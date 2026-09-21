@@ -35,6 +35,7 @@ faq: - q: "Is moss-trade-bot-factory safe to install?"
   - q: "What strategies actually work on Hyperliquid perps based on the data?"
     a: "Limited to v1.0.26 BTC 304-day data: mean-revert dominated grids on 2-3x leverage produced the only positive return (+4.36%). Trend-following with 5-10x leverage lost -8% to -20% over the same window. This is regime-specific — BTC 2025-07 to 2026-04 was choppy. The same grid logic would likely lose in a strong trending market."
 ---
+
 {{</* resource-info */>}}
 
 # Moss Trade Bot Factory Review 2026: AI Agent Quant Workbench — Why Pretty Backtests Lie
@@ -45,33 +46,33 @@ If you've ever opened a YouTube "I made $50k with my AI trading bot" video, you'
 
 **That gap — between in-sample fantasy and out-of-sample reality — is what this review is about.**
 
-Moss Trade Bot Factory (`moss-trade-bot-skills` v1.0.26, MIT-0) is an open-source AI agent that turns natural-language trading style descriptions ("Livermore trend-following, conservative leverage, breakout strategy") into fully parameterized Hyperliquid perp strategies, runs local backtests on shipped CSV data, and optionally evolves parameters via LLM reflection. After two days of hands-on testing — including a security audit, a Sharpe-annualization bug fix, five strategy comparisons, evolution mode, and a strict 70/30 train/OOS validation — the verdict is more nuanced than either fans or skeptics will tell you.
+Moss Trade Bot Factory (```moss-trade-bot-skills```` v1.0.26, MIT-0) is an open-source AI agent that turns natural-language trading style descriptions ("Livermore trend-following, conservative leverage, breakout strategy") into fully parameterized Hyperliquid perp strategies, runs local backtests on shipped CSV data, and optionally evolves parameters via LLM reflection. After two days of hands-on testing — including a security audit, a Sharpe-annualization bug fix, five strategy comparisons, evolution mode, and a strict 70/30 train/OOS validation — the verdict is more nuanced than either fans or skeptics will tell you.
 
 ## ⚡ TL;DR — 90-Second Verdict
 
 > **What it is**: An open-source CLI skill that converts natural-language strategy descriptions into 30+ Hyperliquid perp parameters, runs Decimal-precision backtests on shipped CSV data, and offers an LLM-reflection-driven evolution loop.
 >
-> **What it's not**: A live trading system (without explicit `--platform-url` bind to ai.moss.site). Not a paper-trading sandbox in the traditional sense — backtests are historical replay, not real-time market emulation.
+> **What it's not**: A live trading system (without explicit ````--platform-url```` bind to ai.moss.site). Not a paper-trading sandbox in the traditional sense — backtests are historical replay, not real-time market emulation.
 >
 > **Best for**: Quant learners who want to see industrial-grade backtest internals (Decimal arithmetic, 20-level depth book modeling, liquidation accounting). Strategy designers comparing rule-based templates against natural-language LLM-generated parameters.
 >
 > **Not for**: Anyone planning to deploy evolved params to live without independent OOS validation. The evolution loop is an in-sample fitting machine with cosmetic LLM commentary, not a learning system. We document the proof below.
 >
-> **Open-source posture**: MIT-0 license, no `eval`/`exec`, HMAC-signed platform calls that never upload secrets, no wallet private key access. The funnel is moss.site (a commercial AI trading platform), but the local backtest pipeline runs entirely offline.
+> **Open-source posture**: MIT-0 license, no ````eval````/````exec````, HMAC-signed platform calls that never upload secrets, no wallet private key access. The funnel is moss.site (a commercial AI trading platform), but the local backtest pipeline runs entirely offline.
 
 
----
+* * *
 ## What Moss Trade Bot Factory Is (And Isn't)
 
-The project lives at [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) under the `moss-site` GitHub org (Moss AI, [moss.site](https://moss.site), founded 2025-07). As of v1.0.26 (released 2026-05-25) it has 98 stars, 14 forks, 101 commits, and three contributors (slowfirary 79 commits, fei-moss 14, lokix006 1).
+The project lives at [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) under the ````moss-site```` GitHub org (Moss AI, [moss.site](https://moss.site), founded 2025-07). As of v1.0.26 (released 2026-05-25) it has 98 stars, 14 forks, 101 commits, and three contributors (slowfirary 79 commits, fei-moss 14, lokix006 1).
 
-Mechanically, the skill works in three stages: 1. **Parse**: Natural-language input ("BTC conservative grid for the last 90 days") is parsed by the agent into a structured `params.json` covering 30+ tactical and personality parameters — five signal weights (trend / momentum / mean-revert / volume / volatility), leverage, entry/exit thresholds, ATR-based stop and target multipliers, regime-switching parameters, and more.
+Mechanically, the skill works in three stages: 1. **Parse**: Natural-language input ("BTC conservative grid for the last 90 days") is parsed by the agent into a structured ````params.json```` covering 30+ tactical and personality parameters — five signal weights (trend / momentum / mean-revert / volume / volatility), leverage, entry/exit thresholds, ATR-based stop and target multipliers, regime-switching parameters, and more.
 
-2. **Replay**: Backtest engine reads shipped Hyperliquid CSV data (15m bars, 43 symbols, 148–304 days of coverage) and replays trades using: - Decimal-precision accounting (aligned with the Moss platform's Go `shopspring/decimal` backend)
+2. **Replay**: Backtest engine reads shipped Hyperliquid CSV data (15m bars, 43 symbols, 148–304 days of coverage) and replays trades using: - Decimal-precision accounting (aligned with the Moss platform's Go ````shopspring/decimal```` backend)
    - 20-level frozen depth book templates for realistic slippage modeling
    - Explicit liquidation accounting via maintenance margin breach detection
    - Cross-margin simulation (single contract, not multi-asset portfolio margin)
-   - Funding rate settlement at hourly intervals (fixed rate `0.0000125`, not real historical funding)
+   - Funding rate settlement at hourly intervals (fixed rate ````0.0000125````, not real historical funding)
 
 3. **Reflect & Evolve** (optional): Splits the backtest window into segments (default 4000 bars ≈ 41.7 days per segment), runs baseline on each segment, then invokes an LLM agent to read segment-level summaries (exit reasons, win/loss averages, market context) and produce a per-segment parameter schedule that drift-bounded ±30% from baseline. Personality parameters (signal weights, leverage, long_bias) are locked.
 
@@ -81,43 +82,43 @@ The pitch that doesn't quite land is the evolution loop. We'll get to that.
 
 ## How the Backtest Engine Actually Works
 
-For anyone evaluating quant tools, the engine internals matter more than the marketing. Three things stand out in `scripts/core/backtest.py`: ### 1. Look-Ahead Bias Defense (Mostly Good)
+For anyone evaluating quant tools, the engine internals matter more than the marketing. Three things stand out in ````scripts/core/backtest.py````: ### 1. Look-Ahead Bias Defense (Mostly Good)
 
-The replay loop feeds the strategy bars `range(last_fed_idx + 1, end_idx)` — strictly stopping before the evaluation bar's close. Mark price for execution is synthesized as `open + (close-open)/15`, simulating the first minute of the next 15m bar. This is correct in principle but assumes linear price progression within a bar, which is wrong during high-volatility regimes. Not a bug, but a known approximation.
+The replay loop feeds the strategy bars ````range(last_fed_idx + 1, end_idx)```` — strictly stopping before the evaluation bar's close. Mark price for execution is synthesized as ````open + (close-open)/15````, simulating the first minute of the next 15m bar. This is correct in principle but assumes linear price progression within a bar, which is wrong during high-volatility regimes. Not a bug, but a known approximation.
 
 ### 2. Liquidation Modeling (Correct)
 
-Maintenance margin breach is checked against bar high (for shorts) and bar low (for longs) on every replay step. Position is force-closed at the liquidation price if a breach occurs. The `blowup_count` field in results tracks how many times your strategy got wiped — across all five strategies we tested on 304 days of BTC data, blowup count was 0, confirming the leverage caps and ATR stops actually trigger.
+Maintenance margin breach is checked against bar high (for shorts) and bar low (for longs) on every replay step. Position is force-closed at the liquidation price if a breach occurs. The ````blowup_count```` field in results tracks how many times your strategy got wiped — across all five strategies we tested on 304 days of BTC data, blowup count was 0, confirming the leverage caps and ATR stops actually trigger.
 
 ### 3. The Sharpe Annualization Bug
 
-`backtest.py:828` originally read: ```python
+``backtest.py:828`` originally read: `````python
 sharpe = (valid_returns.mean() / valid_returns.std(ddof=0) * np.sqrt(8760)) ...
-```
+`````
 
-Here `8760` is the hourly-bar annualization constant (`365 × 24`). But `equity` is stepped at 15-minute intervals (see `equity_points.append` at line 735). The correct constant is `35040` = `365 × 24 × 4`. The original constant matches the Moss platform's Go backend for verify parity, but for any local backtest comparison or absolute Sharpe interpretation, **all default Sharpe values are biased low by approximately 2x**.
+Here ````8760```` is the hourly-bar annualization constant (````365 × 24````). But ````equity```` is stepped at 15-minute intervals (see ````equity_points.append```` at line 735). The correct constant is ````35040```` = ````365 × 24 × 4````. The original constant matches the Moss platform's Go backend for verify parity, but for any local backtest comparison or absolute Sharpe interpretation, **all default Sharpe values are biased low by approximately 2x**.
 
-Easy fix: ```python
+Easy fix: `````python
 ANNUALIZATION_FACTOR = 35040  # 15m bars per year
 sharpe = (valid_returns.mean() / valid_returns.std(ddof=0) * np.sqrt(ANNUALIZATION_FACTOR)) ...
-```
+`````
 
-If you plan to upload backtests to moss.site for verification, revert to `8760`. If you're learning quant or comparing strategies locally, use `35040`.
+If you plan to upload backtests to moss.site for verification, revert to ````8760````. If you're learning quant or comparing strategies locally, use ````35040````.
 
 ## Installation: 10 Minutes End-to-End
 
-This is the only AI agent skill we've installed without a single env-var fight. The standard workflow: ```bash
+This is the only AI agent skill we've installed without a single env-var fight. The standard workflow: `````bash
 git clone --depth 1 --branch v1.0.26 https://github.com/moss-site/moss-trade-bot-skills.git
 cd moss-trade-bot-skills/moss-trade-bot-factory/scripts
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-```
+`````
 
-Dependencies are minimal: `pandas≥2.0`, `numpy≥1.24`, `ccxt≥4.0`. First run of `dataset_catalog.py` triggers a one-time download of ~100MB of historical CSV data from a GitHub Release Asset (not from moss.site — they pin data by SHA256 to a tagged release for reproducibility). After that, everything runs offline.
+Dependencies are minimal: ````pandas≥2.0````, ````numpy≥1.24````, ````ccxt≥4.0````. First run of ````dataset_catalog.py```` triggers a one-time download of ~100MB of historical CSV data from a GitHub Release Asset (not from moss.site — they pin data by SHA256 to a tagged release for reproducibility). After that, everything runs offline.
 
-To list available symbols: ```bash
+To list available symbols: `````bash
 python3 dataset_catalog.py --list --timeframe 15m
-```
+`````
 
 Output covers 43 Hyperliquid symbols: BTC (304 days), ETH/SOL/ADA/AAVE etc. (148 days), plus tokenized stocks (TSLA, NVDA, MSTR) and commodities (GOLD, SILVER, BRENTOIL, SP500).
 
@@ -127,21 +128,21 @@ We ran five hand-crafted strategies across BTC's full 304-day window (2025-07-01
 
 | Strategy | Leverage | Final Equity | Return | Win Rate | Max DD | PF | Trades |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Conservative Grid (mean-revert) | 2x | $10,436 | **+4.36%** ✅ | 51.9% | -22.8% | 1.27 | 214 |
 | High-Frequency Breakout | 10x | $9,207 | -7.93% | 42.0% | -17.4% | 1.04 | 100 |
@@ -173,15 +174,15 @@ It also produces beautiful backtests that fail out-of-sample.
 
 | Metric | Train Base | Train Evolved | OOS Base | OOS Evolved |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Return | +3.02% | **+5.60%** ✅ | +7.22% | **-2.43%** ❌ |
 | Annualized | +5.20% | +9.64% | +28.63% | -9.64% |
@@ -214,7 +215,7 @@ The skill itself is free (MIT-0). The funnel is moss.site, where you can: - Bind
 
 We did not test the platform side. The README disclaims this is a research and educational tool, and we kept it that way. If you want to live-trade, you'll need your own Hyperliquid wallet, real USDC, and the patience to ignore Train-only backtest metrics.
 
-The org runs in clear funnel mode (6 repos, one with stars, the rest support infrastructure: `moss-og-pass-nft` for membership, `moss-bounty-x402-client` for payments, `Hyperliquid-copy-trade` for execution). Not evil — standard open-core distribution — but worth knowing when the skill defaults to `ai.moss.site` for every platform-touching command.
+The org runs in clear funnel mode (6 repos, one with stars, the rest support infrastructure: ````moss-og-pass-nft```` for membership, ````moss-bounty-x402-client```` for payments, ````Hyperliquid-copy-trade```` for execution). Not evil — standard open-core distribution — but worth knowing when the skill defaults to ````ai.moss.site```` for every platform-touching command.
 
 ## When This Skill Is the Right Tool
 
@@ -232,8 +233,8 @@ Skip it if: - You want to live-trade without learning the OOS validation rigor
 
 After two days of intensive testing: - **Sharpe annualization bug** (covered above). Fixable in one line.
 - **No built-in train/test split**. You'll need to write your own CSV slicer and result comparator. We have ours in [our 95至尊交易员记忆 archive](https://github.com/luckybbjason1/home-hermes/tree/main/95%E8%87%B3%E5%B0%8A%E4%BA%A4%E6%98%93%E5%91%98%E8%AE%B0%E5%BF%86).
-- **Regime detection labels can be wrong**. Seg 4 was labeled SIDEWAYS but BTC dropped -19.6% during that window. The regime detector in `core/regime.py` deserves its own audit.
-- **Funding rate is a fixed constant** (`0.0000125` per hour). Real Hyperliquid funding fluctuates. Long-duration positions will see backtest-vs-live divergence here.
+- **Regime detection labels can be wrong**. Seg 4 was labeled SIDEWAYS but BTC dropped -19.6% during that window. The regime detector in ````core/regime.py```` deserves its own audit.
+- **Funding rate is a fixed constant** (````0.0000125``` per hour). Real Hyperliquid funding fluctuates. Long-duration positions will see backtest-vs-live divergence here.
 - **No multi-asset cross-margin**. Single-contract cross-margin only. Portfolio strategies need custom work.
 
 ## Recommended Infrastructure for Self-Hosting
@@ -254,7 +255,7 @@ Install it, fix the Sharpe bug, run five hand-crafted strategies to see how the 
 The bots aren"t going to teach you to be honest about your edge. You have to do that yourself.
 
 
----
+* * *
 **GitHub**: [moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) · **License**: MIT-0 · **Latest**: v1.0.26 (2026-05-25) · **Stars**: 98 · **Maintainer**: moss-site / Moss AI ([moss.site](https://moss.site))
 
 
@@ -283,7 +284,7 @@ The bots aren"t going to teach you to be honest about your edge. You have to do 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -293,7 +294,7 @@ The bots aren"t going to teach you to be honest about your edge. You have to do 
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](moss-trade-bot-factory-2026-review)
 - [codebase-memory-mcp-high-performance-code-intelligence](moss-trade-bot-factory-2026-review)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

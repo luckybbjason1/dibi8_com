@@ -7,6 +7,7 @@ aliases:
   - /posts/litellm-unified-api-tutorial/-
 ---
 
+
 {</* resource-info */>}
 
 如果你正在同时对接 OpenAI、Anthropic、Google Gemini 和多个开源模型，你一定受够了为每个供应商写一套完全不同的 SDK 代码。LiteLLM 正是为解决这个问题而生——它提供了一套统一的 OpenAI 兼容接口，让你用同一套代码调用超过 100 个 LLM 提供商。
@@ -25,11 +26,11 @@ LiteLLM 本质上是一个**LLM 网关（Gateway）**和**统一 API 抽象层**
 
 | 功能 | 说明 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 统一 API 接口 | 将 100+ 提供商转换为 OpenAI 兼容格式 | 多模型集成项目 |
 | 代理服务器 | 提供 HTTP API + 虚拟密钥管理 | 企业级 LLM 网关 |
@@ -67,13 +68,13 @@ LiteLLM 的提供商覆盖范围在同类工具中最为全面。以下为主要
 
 安装 LiteLLM SDK 只需一行命令：
 
-```bash
+````bash
 pip install litellm
-```
+`````
 
 ### 第一次统一调用
 
-```python
+`````python
 import litellm
 
 # 调用 OpenAI
@@ -93,20 +94,20 @@ response = litellm.completion(
     model="gemini/gemini-1.5-pro",
     messages=[{"role": "user", "content": "Hello!"}]
 )
-```
+`````
 
 注意模型名称的**提供商前缀规则**：
-- 无前缀：默认使用 OpenAI（如 `gpt-4o`）
-- `claude-*`：Anthropic（如 `claude-3-5-sonnet-20241022`）
-- `gemini/`：Google（如 `gemini/gemini-1.5-pro`）
-- `ollama/`：本地 Ollama（如 `ollama/llama3.1`）
-- `groq/`：Groq（如 `groq/llama3-70b-8192`）
+- 无前缀：默认使用 OpenAI（如 ````gpt-4o````）
+- ````claude-*````：Anthropic（如 ````claude-3-5-sonnet-20241022````）
+- ````gemini/````：Google（如 ````gemini/gemini-1.5-pro````）
+- ````ollama/````：本地 Ollama（如 ````ollama/llama3.1````）
+- ````groq/````：Groq（如 ````groq/llama3-70b-8192````）
 
 ### 异步支持
 
 生产环境建议直接使用异步版本：
 
-```python
+`````python
 import litellm
 
 async def async_call(): response = await litellm.acompletion(
@@ -114,7 +115,7 @@ async def async_call(): response = await litellm.acompletion(
         messages=[{"role": "user", "content": "异步调用示例"}]
     )
     return response.choices[0].message.content
-```
+`````
 
 ## LiteLLM Proxy Server：企业级部署核心
 
@@ -122,13 +123,13 @@ async def async_call(): response = await litellm.acompletion(
 
 ### 启动代理服务器
 
-```bash
+`````bash
 litellm --config config.yaml
-```
+`````
 
 ### config.yaml 配置详解
 
-```yaml
+`````yaml
 model_list: - model_name: gpt-4o          # 自定义别名
     litellm_params: model: gpt-4o
       api_key: os.environ/OPENAI_API_KEY
@@ -147,7 +148,7 @@ router_settings: routing_strategy: simple-shuffle  # 负载均衡策略
 
 general_settings: master_key: os.environ/LITELLM_MASTER_KEY  # 管理密钥
   database_url: os.environ/DATABASE_URL       # PostgreSQL 用于持久化
-```
+`````
 
 ### 虚拟密钥管理
 
@@ -158,7 +159,7 @@ LiteLLM Proxy 允许为不同团队创建**虚拟 API Key**，每个虚拟 Key �
 - **可用模型白名单**：如仅限 GPT-4o-mini
 - **元数据标签**：用于费用分摊
 
-```bash
+`````bash
 # 创建虚拟 Key
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer sk-master-xxx" \
@@ -168,11 +169,11 @@ curl -X POST http://localhost:4000/key/generate \
     "rpm_limit": 100,
     "team_id": "engineering"
   }'
-```
+`````
 
 ### 负载均衡与故障转移
 
-```yaml
+`````yaml
 model_list: - model_name: llama-3         # 同一个别名对应多个后端
     litellm_params: model: groq/llama3-70b-8192
       rpm: 100
@@ -180,15 +181,15 @@ model_list: - model_name: llama-3         # 同一个别名对应多个后端
   - model_name: llama-3         # 同别名 —— 自动负载均衡
     litellm_params: model: together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
       rpm: 60
-```
+`````
 
-当 `groq` 不可用时，请求自动路由到 `together_ai`。你还可以设置 `fallbacks` 规则，指定任意模型间的故障转移策略。
+当 ````groq```` 不可用时，请求自动路由到 ````together_ai````。你还可以设置 ````fallbacks```` 规则，指定任意模型间的故障转移策略。
 
 ## 高级功能实战
 
 ### 智能路由与模型选择
 
-```python
+`````python
 from litellm import Router
 
 router = Router(
@@ -197,24 +198,24 @@ router = Router(
     fallback_dict={"gpt-4o": ["claude-3-5-sonnet"]},
     cooldown_time=300                  # 失败模型冷却 5 分钟
 )
-```
+`````
 
-支持的策略包括：`simple-shuffle`、`least-busy`、`latency-based`、`cost-based`。
+支持的策略包括：````simple-shuffle````、````least-busy````、````latency-based````、````cost-based````。
 
 ### 响应缓存
 
-```yaml
+`````yaml
 caching: - type: redis
     host: localhost
     port: 6379
     password: xxx
-```
+`````
 
 启用后，完全相同的查询（模型+消息）将命中缓存，不消耗 API Token。在客服问答场景下，缓存可降低 30-60% 的 API 成本。
 
 ### Embedding 模型统一调用
 
-```python
+`````python
 import litellm
 
 response = litellm.aembedding(
@@ -227,7 +228,7 @@ response = litellm.aembedding(
     model="ollama/nomic-embed-text",
     input=["这是第一段文本"]
 )
-```
+`````
 
 ## 如何用 LiteLLM 构建多模型应用？
 
@@ -235,7 +236,7 @@ response = litellm.aembedding(
 
 生产环境中，高成本模型应在必要时才调用。LiteLLM Router 可以实现"先尝试低成本模型，不满足再升级"的策略：
 
-```python
+`````python
 from litellm import Router
 
 router = Router(
@@ -249,7 +250,7 @@ router = Router(
 
 # 实际调用时始终使用 "cheap"，失败自动切换到 "premium"
 response = router.completion(model="cheap", messages=messages)
-```
+`````
 
 这种策略在客服场景中可降低 60-80% 的 API 成本。
 
@@ -257,22 +258,22 @@ response = router.completion(model="cheap", messages=messages)
 
 当某个供应商出现延迟或故障时，自动切换到备用供应商：
 
-```yaml
+`````yaml
 model_list: - model_name: llama-3-70b
     litellm_params: model: together_ai/meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
       api_key: os.environ/TOGETHER_API_KEY
   - model_name: llama-3-70b
     litellm_params: model: groq/llama3-70b-8192
       api_key: os.environ/GROQ_API_KEY
-```
+`````
 
-两个后端使用相同的模型别名 `llama-3-70b`，LiteLLM 自动在两者之间轮询。当 Groq 达到速率限制时，请求无缝路由到 Together AI。
+两个后端使用相同的模型别名 ````llama-3-70b````，LiteLLM 自动在两者之间轮询。当 Groq 达到速率限制时，请求无缝路由到 Together AI。
 
 ### 场景三：多团队成本分摊
 
-通过虚拟 Key 的 `metadata` 和 `team_id` 字段，可以实现精细化的成本追踪：
+通过虚拟 Key 的 ````metadata```` 和 ````team_id```` 字段，可以实现精细化的成本追踪：
 
-```bash
+`````bash
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer sk-master-xxx" \
   -d '{
@@ -281,7 +282,7 @@ curl -X POST http://localhost:4000/key/generate \
     "metadata": {"project": "chatbot-v2", "env": "production", "team": "ai-platform"},
     "team_id": "team-ai-platform"
   }'
-```
+`````
 
 在管理界面中，你可以按团队、项目、环境维度查看花费明细，精确到每一次 API 调用。
 
@@ -291,7 +292,7 @@ LiteLLM 最大的一个优势是**零成本集成**：因为它本身就是 Open
 
 ### 与 LangChain 配合使用
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 import os
 
@@ -301,11 +302,11 @@ os.environ["OPENAI_API_BASE"] = "http://localhost:4000"
 
 llm = ChatOpenAI(model="claude-sonnet")  # 通过 Proxy 调用 Claude
 response = llm.invoke("Hello!")
-```
+`````
 
 ### 与 LlamaIndex 配合使用
 
-```python
+`````python
 from llama_index.llms.openai import OpenAI
 
 llm = OpenAI(
@@ -313,7 +314,7 @@ llm = OpenAI(
     api_base="http://localhost:4000",
     model="gpt-4o"
 )
-```
+`````
 
 **核心优势**：你的应用代码完全不用改，只需要改环境变量，就可以从直连 OpenAI 切换到通过 LiteLLM Proxy 管理的多模型架构。
 
@@ -321,15 +322,15 @@ llm = OpenAI(
 
 | 特性 | LiteLLM | Portkey | 直接集成 | LangChain 模型抽象 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 统一 API | ✅ 100+ 提供商 | ✅ 20+ 提供商 | ❌ 每套独立代码 | ⚠️ 仅支持部分 |
 | 代理服务器 | ✅ 完整企业级 | ✅ 有 | ❌ 自建 | ❌ 无 |
@@ -358,21 +359,21 @@ llm = OpenAI(
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 FROM ghcr.io/berriai/litellm:main-latest
 COPY config.yaml /app/config.yaml
 CMD ["--config", "/app/config.yaml", "--port", "4000"]
-```
+`````
 
 ### Kubernetes 部署
 
 LiteLLM 官方提供 Helm Chart：
 
-```bash
+`````bash
 helm repo add litellm https://berriai.github.io/litellm
 helm install litellm litellm/litellm \
   --set config.master_key=sk-master-xxx
-```
+````
 
 ### 安全最佳实践
 
@@ -405,11 +406,11 @@ LiteLLM Proxy 提供虚拟 Key 系统：管理员持有 Master Key，为各团�
 SDK 是一个 Python 库，在你的应用中直接调用，适合开发阶段快速切换模型。Proxy 是一个独立 HTTP 服务，提供虚拟 Key、负载均衡、用量追踪等企业级功能，适合生产环境部署。两者可以独立使用，也可以组合使用。
 
 
----
+* * *
 更多技术细节可参考 [LiteLLM GitHub 仓库](https://github.com/BerriAI/litellm) 和 [官方文档](https://docs.litellm.ai/docs/proxy)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -482,7 +483,7 @@ LiteLLM统一调用多模型教程2025：一个API接入100+大模型 represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -514,15 +515,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

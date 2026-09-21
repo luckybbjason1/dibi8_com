@@ -10,11 +10,12 @@ draft: false
 slug: sglang-structured-generation-llm
 ---
 
+
 ## TL;DR
 
 SGLang(Structured Generation Language) là thư viện mã nguồn mở để deploy và serving large language model. Nó gồm hai component chính: SGLang Runtime (server hiệu suất cao serve LLM endpoint với optimized memory management và request scheduling) và SGLang Python Library (ngôn ngữ lập trình để viết LLM application với structured output, tool calling và multi-step reasoning). Nó đạt throughput improvement 25x so với vLLM cho structured output task và hỗ trợ serving model từ 1B đến 70B parameter trên single hoặc multi-GPU setup.
 
----
+* * *
 
 ## SGLang Là Gì?
 
@@ -29,13 +30,13 @@ Traditional LLM serving engine(vLLM, TGI, text-generation-inference) xuất sắ
 
 SGLang giải quyết cả ba native. RadixAttention system của nó xây dựng shared radix tree của KV cache giữa request, trong khi constrained decoding engine đảm bảo structured output tại generation time — không phải sau đó.
 
----
+* * *
 
 ## Bắt Đầu
 
 ### Bước 1: Cài Đặt SGLang
 
-```bash
+````bash
 # Cài đặt Python library
 pip install sglang
 
@@ -44,11 +45,11 @@ docker pull sglang/sglang:latest
 docker run --gpus all -p 30000:30000 sglang/sglang:latest \
   --model-path meta-llama/Llama-3.2-8B-Instruct \
   --host 0.0.0.0 --port 30000
-```
+`````
 
 ### Bước 2: Khởi Động Server
 
-```bash
+`````bash
 # Serve một model trên một GPU
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B-Instruct \
@@ -65,11 +66,11 @@ python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq \
   --port 30000
-```
+`````
 
 ### Bước 3: Request Đầu Tiên
 
-```bash
+`````bash
 curl http://localhost:30000/generate \
   -H "Content-Type: application/json" \
   -d '{
@@ -79,22 +80,22 @@ curl http://localhost:30000/generate \
       "temperature": 0
     }
   }'
-```
+`````
 
-Response: ```json
+Response: `````json
 {
   "text": "Thủ đô của Pháp là Paris.",
   "meta": {"prompt_tokens": 12, "completion_tokens": 8}
 }
-```
+`````
 
----
+* * *
 
 ## Structured Generation
 
 ### JSON Schema Enforcement
 
-Generate valid JSON match bất kỳ Pydantic schema: ```python
+Generate valid JSON match bất kỳ Pydantic schema: `````python
 import sglang as sgl
 from pydantic import BaseModel, Field
 from typing import List, Optional
@@ -125,11 +126,11 @@ result = program.run(
 
 review = ProductReview.model_validate_json(result["json_output"])
 print(f"Product: {review.product_name}, Rating: {review.rating}/5")
-```
+`````
 
 ### Regex-Constrained Generation
 
-Force output match specific pattern: ```python
+Force output match specific pattern: `````python
 @sgl.program
 def email_extractor(state, text: str): state += sgl.user("Trích xuất tất cả địa chỉ email từ text này:")
     state += sgl.assistant(
@@ -146,9 +147,9 @@ result = program.run(
 )
 print(result["emails"])
 # Output: "support@example.com, sales@example.com, billing@company.org."
-```
+`````
 
----
+* * *
 
 ## Performance Optimization
 
@@ -156,7 +157,7 @@ print(result["emails"])
 
 Signature feature của SGLang: tự động share computation giữa request có common prefix.
 
-```python
+`````python
 import sglang as sgl
 
 @sgl.program
@@ -172,26 +173,26 @@ r1 = chatbot().run("Thời tiết hôm nay thế nào?")
 
 # Request thứ hai với cùng system prompt + conversation history: # Chỉ compute attention cho new user message
 r2 = chatbot().run("Cho biết thêm")
-```
+`````
 
 Benchmark kết quả show **3-10x throughput improvement** cho chat application nơi system prompt và conversation history share giữa request.
 
 ### Continuous Batching
 
-Khác với traditional batch inference chờ tất cả request trong batch complete, SGLang dùng continuous batching để start new request ngay khi slot free: ```bash
+Khác với traditional batch inference chờ tất cả request trong batch complete, SGLang dùng continuous batching để start new request ngay khi slot free: `````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.85 \
   --context-length 8192
-```
+`````
 
-Key parameters: - `--mem-fraction-static`: Fraction of GPU memory cho KV cache(0.85 = 85%)
-- `--context-length`: Maximum context window size
-- `--scheduler-latency-bound`: Maximum wait time trước schedule new request
+Key parameters: - ````--mem-fraction-static````: Fraction of GPU memory cho KV cache(0.85 = 85%)
+- ````--context-length````: Maximum context window size
+- ````--scheduler-latency-bound````: Maximum wait time trước schedule new request
 
 ### Multi-GPU Deployment
 
-```bash
+`````bash
 # 4x A100-80GB cho model 70B
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-70B-Instruct \
@@ -201,15 +202,15 @@ python -m sglang.launch_server \
 
 # Check GPU utilization
 nvidia-smi
-```
+`````
 
----
+* * *
 
 ## Advanced Use Case
 
 ### Mẫu 1: Multi-Step Reasoning(ReAct)
 
-Implement ReAct reasoning trong single SGLang program: ```python
+Implement ReAct reasoning trong single SGLang program: `````python
 @sgl.program
 def react_agent(state, question: str): state += sgl.user(f"Trả lời câu hỏi này từng bước bằng tool:\n{question}")
     
@@ -231,11 +232,11 @@ def execute_tool(action: str) -> str: if "search(" in action: query = action.spl
     elif "calculate(" in action: expr = action.split("(")[1].split(")")[0]
         return str(eval(expr))
     return "Unknown action"
-```
+`````
 
 ### Mẫu 2: Parallel Document Analysis
 
-Xử lý hàng trăm tài liệu đồng thời: ```python
+Xử lý hàng trăm tài liệu đồng thời: `````python
 @sgl.program
 def document_summarizer(state, doc: str): state += sgl.user(f"Tóm tắt tài liệu này trong 3 bullet point:\n{doc}")
     state += sgl.assistant(sgl.gen("summary", max_tokens=256))
@@ -245,11 +246,11 @@ results = sgl.compile(
     [document_summarizer(doc) for doc in documents[:100]],
     scheduler_policy="lookahead"
 )
-```
+`````
 
 ### Mẫu 4: Hàm gọi pipeline
 
-Xây dựng một agent gọi hàm hoàn chỉnh: ```python
+Xây dựng một agent gọi hàm hoàn chỉnh: `````python
 from pydantic import BaseModel
 from typing import Literal
 
@@ -259,11 +260,11 @@ class WeatherRequest(BaseModel): city: str
 @sgl.program
 def function_caller(state, user_input: str): state += sgl.user(user_input)
     state += sgl.assistant(sgl.gen("function_call", max_tokens=256))
-```
+`````
 
 Gọi hàm cho phép LLM thực thi các tác vụ cụ thể dưới dạng cấu trúc JSON. Bạn có thể kết nối với nhiều công cụ khác nhau — tìm kiếm, tính toán, truy vấn cơ sở dữ liệu — và vì phản hồi luôn tuân theo schema hợp lệ nên không cần xác minh thêm ở phía frontend.
 
----
+* * *
 
 ## So Sánh: SGLang So Với Alternatives
 
@@ -287,43 +288,43 @@ Gọi hàm cho phép LLM thực thi các tác vụ cụ thể dưới dạng c�
 
 SGLang's native constrained decoding đạt perfect validity với minimal latency overhead.
 
----
+* * *
 
 ## Monitoring Và Observability
 
 ### Built-in Metric
 
-SGLang expose Prometheus-compatible metric tại `/metrics`: ```
+SGLang expose Prometheus-compatible metric tại ``/metrics``: `````
 # HELP sglang_request_latency_seconds Request processing latency
 sglang_request_latency_seconds_bucket{le="0.5"} 1250
 sglang_request_latency_seconds_bucket{le="1.0"} 2890
 sglang_gpu_cache_hit_rate 0.847
 sglang_active_requests 23
-```
+`````
 
 ### Health Check Endpoint
 
-```bash
+`````bash
 curl http://localhost:30000/health
 # Returns: {"status": "ok", "gpu_memory_usage": "72%", "active_requests": 15}
-```
+`````
 
----
+* * *
 
 ## Xử Lý Vấn Đề
 
 ### Vấn Đề 1: CUDA Out Of Memory
 
-```
+`````
 RuntimeError: CUDA out of memory. Tried to allocate X GiB.
-```
+`````
 
-**Fix**: Giảm `--mem-fraction-static` hoặc tăng `--max-running-requests`: ```bash
+**Fix**: Giảm ``--mem-fraction-static`` hoặc tăng ``--max-running-requests``: `````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.75 \
   --max-running-requests 32
-```
+`````
 
 ### Vấn Đề 2: Constrained Decoding Produce Invalid Output
 
@@ -334,17 +335,17 @@ python -m sglang.launch_server \
 
 First request sau server startup bao gồm model loading time(30-120 giây tùy model size).
 
-**Fix**: Dùng `keep_warm` hoặc pre-warm server: ```bash
+**Fix**: Dùng ``keep_warm`` hoặc pre-warm server: `````bash
 curl -X POST http://localhost:30000/generate \
   -H "Content-Type: application/json" \
   -d '{"text": "warmup", "sampling_params": {"max_new_tokens": 1}}'
-```
+`````
 
 ### Vấn Đề 4: RadixCache Không Hit
 
 Nếu prefix caching không improve performance: **Check**: Đảm bảo request share identical prefix token. Whitespace difference, khác system prompt hoặc reordered conversation history sẽ prevent cache hit.
 
----
+* * *
 
 ## Hướng Phát Triển Tương Lai
 
@@ -370,7 +371,7 @@ Nếu prefix caching không improve performance: **Check**: Đảm bảo request
 - Bạn đã invested vào vLLM và không cần structured generation — vLLM excellent cho raw throughput
 - Bạn cần real-time audio/video inference — specialized engine như Whisper.cpp hoặc MediaPipe phù hợp hơn
 
----
+* * *
 
 ## Cập Nhật Cộng Đồng
 
@@ -381,7 +382,7 @@ SGLang đã thấy explosive growth trong 2026: - **GitHub star**: Vượt 15,00
 
 Project maintain comprehensive benchmark suite update monthly, providing transparent performance comparison giữa serving engine và model family.
 
----
+* * *
 
 ## FAQ
 
@@ -391,19 +392,19 @@ Constrained decoding của SGLang operate ở tokenizer level, filter candidate 
 
 ### Q: Tôi có thể dùng SGLang với quantized model không?
 
-Có. SGLang hỗ trợ AWQ, GPTQ, INT8 và FP8 quantization native: ```bash
+Có. SGLang hỗ trợ AWQ, GPTQ, INT8 và FP8 quantization native: `````bash
 python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq
-```
+`````
 
 Quantized model thường đạt 80-90% full-precision quality ở 50-60% memory footprint, enable larger model trên same hardware.
 
 ### Q: SGLang có hỗ trợ streaming response không?
 
-Có. Enable streaming với `"stream": true` trong sampling param. Token được gửi sebagai Server-Sent Event(SSE) đến client. Python SDK cũng cung cấp async generator cho streaming: ```python
+Có. Enable streaming với ``"stream": true`` trong sampling param. Token được gửi sebagai Server-Sent Event(SSE) đến client. Python SDK cũng cung cấp async generator cho streaming: `````python
 async for event in program.run_async(stream=True): print(event.delta, end="", flush=True)
-```
+`````
 
 ### Q: Model size tối đa SGLang có thể serve là bao nhiêu?
 
@@ -411,17 +412,17 @@ SGLang hỗ trợ model từ 1B đến 400+ billion parameter. Cho model trên 7
 
 ### Q: Làm sao xử lý rate limiting và request queuing?
 
-SGLang có built-in rate limiting: ```bash
+SGLang có built-in rate limiting: `````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --rate-limit-requests 100 \
   --rate-limit-tokens 50000 \
   --scheduler-policy lookahead
-```
+`````
 
-Request vượt limit được queue và process khi capacity available. `lookahead` scheduler optimize ordering để minimize latency variance.
+Request vượt limit được queue và process khi capacity available. ````lookahead``` scheduler optimize ordering để minimize latency variance.
 
----
+* * *
 
 ## Nguồn Tham Khảo
 
@@ -431,7 +432,7 @@ Request vượt limit được queue và process khi capacity available. `lookah
 - [Benchmarking LLM Serving Engine — ML Infrastructure Report Q2 2026](https://mlinfra.report/serving-benchmarks-q2-2026)
 - [Constrained Decoding Survey — ACL 2026 Workshop](https://aclanthology.org/2026.constrained-decoding/)
 
----
+* * *
 
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
 
@@ -461,7 +462,7 @@ Request vượt limit được queue và process khi capacity available. `lookah
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -471,6 +472,6 @@ Request vượt limit được queue và process khi capacity available. `lookah
 - [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm)
 - [sglang-structured-generation-llm](sglang-structured-generation-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/gpt-sovits/
 ---
 
+
 {{</* resource-info */>}}
 
 > 5초 오디오로 모든 목소리를 복제합니다. 1분 데이터로 미세 조정. 20분 안에 프로덕션 배포. 이 가이드가 전체 프로세스를 안내합니다.
@@ -40,11 +41,11 @@ aliases:
 
 ### 아키텍처 개요
 
-GPT-SoVITS는 언어 이해와 오디오 파형 생성을 분리하는 2단계 파이프라인을 사용합니다: ```
+GPT-SoVITS는 언어 이해와 오디오 파형 생성을 분리하는 2단계 파이프라인을 사용합니다: ````
 텍스트 입력 → BERT 텍스트 인코더 → GPT 모델 (330M 파라미터) → 의미 토큰
                                                               ↓
 참조 오디오 → HuBERT 인코더 → SoVITS 모델 (77M 파라미터) → 보코더 → 48kHz 오디오
-```
+`````
 
 **단계 1 — GPT (텍스트→의미):** 330M 파라미터 GPT 모델이 음소 시퀀스를 이산 의미 토큰으로 변환합니다. BERT 임베딩이 정확한 발음과 운율 예측을 위한 언어적 맥락을 제공합니다.
 
@@ -75,25 +76,25 @@ GPT-SoVITS는 언어 이해와 오디오 파형 생성을 분리하는 2단계 �
 
 ### 파이프라인 데이터 흐름
 
-완전한 훈련 및 추론 파이프라인은 다음 흐름을 따릅니다: ```
+완전한 훈련 및 추론 파이프라인은 다음 흐름을 따릅니다: `````
 원시 오디오 → UVR5 분리 → 오디오 슬라이서 → ASR 전사 → 텍스트 라벨링
                                                                       ↓
 사전학습된 GPT + SoVITS ← 미세 조정 (1분 데이터) ← 포맷된 데이터셋
                                                                       ↓
 추론: 참조 오디오 + 텍스트 → GPT (의미 토큰) → SoVITS → 48kHz 오디오
-```
+`````
 
 ![GPT-SoVITS WebUI 스크린샷, 전체 훈련 및 추론 인터페이스 표시](https://www.nite07.com/en/posts/gpt-sovits/webui.png)
 
 ### 파이프라인 데이터 흐름
 
-완전한 훈련 및 추론 파이프라인은 다음 흐름을 따릅니다: ```
+완전한 훈련 및 추론 파이프라인은 다음 흐름을 따릅니다: `````
 원시 오디오 → UVR5 분리 → 오디오 슬라이서 → ASR 전사 → 텍스트 라벨링
                                                                       ↓
 사전학습된 GPT + SoVITS ← 미세 조정 (1분 데이터) ← 포맷된 데이터셋
                                                                       ↓
 추론: 참조 오디오 + 텍스트 → GPT (의미 토큰) → SoVITS → 48kHz 오디오
-```
+`````
 
 ![GPT-SoVITS WebUI 스크린샷, 전체 훈련 및 추론 인터페이스 표시](https://www.nite07.com/en/posts/gpt-sovits/webui.png)
 
@@ -110,7 +111,7 @@ GPT-SoVITS는 언어 이해와 오디오 파형 생성을 분리하는 2단계 �
 
 ### 방법 A: Conda 설치 (Linux / macOS)
 
-```bash
+`````bash
 # 단계 1: 환경 생성 및 활성화
 conda create -n GPTSoVits python=3.10 -y
 conda activate GPTSoVits
@@ -125,20 +126,20 @@ cd GPT-SoVITS
 # 단계 4: 의존성 설치
 pip install -r extra-req.txt --no-deps
 pip install -r requirements.txt
-```
+`````
 
 ### 방법 B: Windows 통합 패키지
 
-```powershell
+`````powershell
 # HuggingFace에서 통합 패키지 다운로드
 # 압축 해제 후 실행: conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
 pwsh -F install.ps1 -Device CU126 -Source HF
-```
+`````
 
 ### 방법 C: Docker 배포 (프로덕션 권장)
 
-```bash
+`````bash
 # 프로젝트 디렉토리 클론 및 진입
 git clone https://github.com/RVC-Boss/GPT-SoVITS.git
 cd GPT-SoVITS
@@ -151,11 +152,11 @@ bash docker_build.sh --cuda 12.8
 
 # 또는 Docker Hub 사전 빌드 이미지 사용
 docker compose run --service-ports GPT-SoVITS-CU128
-```
+`````
 
 ### Docker Compose 설정
 
-```yaml
+`````yaml
 # 프로덕션용 docker-compose.override.yaml
 services: GPT-SoVITS-CU128: shm_size: 16g
     environment: - is_half=true
@@ -166,11 +167,11 @@ services: GPT-SoVITS-CU128: shm_size: 16g
     deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
 ### 사전학습 모델 설정
 
-```bash
+`````bash
 # 사전학습 모델 다운로드 (한 번 실행)
 mkdir -p GPT_SoVITS/pretrained_models
 
@@ -182,11 +183,11 @@ mkdir -p GPT_SoVITS/pretrained_models
 
 # 음성 분리용 UVR5 가중치 다운로드
 # tools/uvr5/uvr5_weights/에 배치
-```
+`````
 
 ### WebUI 실행
 
-```bash
+`````bash
 # 기본 실행 (기본 포트 9874)
 python webui.py
 
@@ -195,13 +196,13 @@ python webui.py ko
 
 # 추론 전용 API 서버 실행
 python api_v2.py
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### ComfyUI 통합
 
-ComfyUI 노드를 통해 GPT-SoVITS를 비주얼 워크플로우에서 음성 생성 가능: ```bash
+ComfyUI 노드를 통해 GPT-SoVITS를 비주얼 워크플로우에서 음성 생성 가능: `````bash
 # ComfyUI-GPT-SoVITS 노드 설치
 cd ComfyUI/custom_nodes
 git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
@@ -210,11 +211,11 @@ git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
 pip install -r ComfyUI-GPT-SoVITS/requirements.txt
 
 # 학습된 .pth 및 .ckpt 모델 배치: # ComfyUI/models/GPT-SoVITS/
-```
+`````
 
 ### RVC(검색 기반 음성 변환) 통합
 
-RVC와 GPT-SoVITS는 동일한 생태계를 공유합니다. RVC로 실시간 음성 변환, GPT-SoVITS로 고품질 TTS: ```python
+RVC와 GPT-SoVITS는 동일한 생태계를 공유합니다. RVC로 실시간 음성 변환, GPT-SoVITS로 고품질 TTS: `````python
 # 파이프라인: GPT-SoVITS TTS → RVC 음성 변환
 import requests
 import subprocess
@@ -240,11 +241,11 @@ rvc_cmd = [
     "--output", "final_output.wav"
 ]
 subprocess.run(rvc_cmd)
-```
+`````
 
 ### MeloTTS 통합
 
-MeloTTS가 GPT-SoVITS 합성 전 다국어 텍스트 전처리를 담당: ```python
+MeloTTS가 GPT-SoVITS 합성 전 다국어 텍스트 전처리를 담당: `````python
 from melo.api import TTS
 import requests
 
@@ -260,18 +261,18 @@ response = requests.post("http://localhost:9880/tts", json={
     "prompt_text": "원본 프롬프트",
     "prompt_lang": "ko"
 })
-```
+`````
 
 ### REST API 통합
 
-내장 `api_v2.py`는 프로덕션용 풀 REST API를 제공합니다: ```bash
+내장 ``api_v2.py``는 프로덕션용 풀 REST API를 제공합니다: `````bash
 # API 서버 시작
 python api_v2.py -a 0.0.0.0 -p 9880
 
 # http://localhost:9880/docs 에서 API 문서 확인
-```
+`````
 
-```python
+`````python
 # Python 클라이언트 예제
 import requests
 
@@ -305,11 +306,11 @@ synthesize(
     "참조 텍스트입니다.",
     "/output/cloned.wav"
 )
-```
+`````
 
 ### OpenAI 호환 API 래퍼
 
-```bash
+`````bash
 # 커뮤니티 OpenAI 호환 래퍼 사용
 git clone https://github.com/enihsyou/GPT-SoVITS-2-OpenAI.git
 cd GPT-SoVITS-2-OpenAI
@@ -321,7 +322,7 @@ cp config.yaml.example config.yaml
 
 docker compose up -d
 # 이제 http://localhost:5000/v1/audio/speech 에서 서비스
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -375,7 +376,7 @@ RTF < 1은 실시간보다 빠른 생성을 의미합니다. RTX 4090의 GPT-SoV
 
 ### GPU 메모리 최적화
 
-```bash
+`````bash
 # 반정밀도 (fp16) 활성화로 VRAM 50% 절감
 export is_half=true
 
@@ -384,11 +385,11 @@ python webui.py --device cuda --half_precision --offload_text_encoder
 
 # 낮은 VRAM 설정용 CPU 추론 버전
 git clone https://github.com/baicai-1145/GPT-SoVITS-CPUFast.git
-```
+`````
 
 ### 엣지 배포용 모델 양자화
 
-```python
+`````python
 # 더 빠른 추론을 위해 ONNX로 낳出
 python GPT_SoVITS/onnx_export.py \
     --gpt_model GPT_SoVITS/GPT_weights/your_model.ckpt \
@@ -400,11 +401,11 @@ python GPT_SoVITS/onnx_export.py \
     --onnx=./onnx_models/gpt_model.onnx \
     --saveEngine=./trt_models/gpt_model.trt \
     --fp16
-```
+`````
 
 ### API 속도 제한 및 모니터링
 
-```python
+`````python
 # 속도 제한이 있는 api_v2.py 프로덕션 래퍼
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -433,11 +434,11 @@ app.add_middleware(
     allow_methods=["POST"],
     allow_headers=["*"],
 )
-```
+`````
 
 ### 배치 처리 파이프라인
 
-```bash
+`````bash
 #!/bin/bash
 # batch_synthesize.sh — 텍스트 파일 일괄 처리
 
@@ -464,17 +465,17 @@ for txt_file in "$INPUT_DIR"/*.txt; do
     
     echo "생성됨: $OUTPUT_DIR/${filename}.wav"
 done
-```
+`````
 
 ### 프로덕션 보안 체크리스트
 
 1. **API 인증**: 내장 API는 인증이 없습니다. API 키 검증이 있는 nginx 역방향 프록시 뒤에 배치하세요.
-2. **입력 검증**: 경로 탐색 공격을 방지하기 위해 `ref_audio_path`를 검증하세요.
-3. **리소스 제한**: OOM 크래시를 방지하기 위해 `ulimit`과 Docker 메모리 제한을 설정하세요.
+2. **입력 검증**: 경로 탐색 공격을 방지하기 위해 ````ref_audio_path````를 검증하세요.
+3. **리소스 제한**: OOM 크래시를 방지하기 위해 ````ulimit````과 Docker 메모리 제한을 설정하세요.
 4. **모델 접근 제어**: 학습된 모델을 별도 볼륨에 제한된 권한으로 저장하세요.
 5. **HTTPS 종료**: TLS용 역방향 프록시를 사용하세요 — API 서버를 인터넷에 직접 노출하지 마세요.
 
-```nginx
+`````nginx
 # nginx 역방향 프록시 설정
 server {
     listen 443 ssl;
@@ -496,7 +497,7 @@ server {
         proxy_pass_request_body off;
     }
 }
-```
+`````
 
 ## 대안과의 비교
 
@@ -549,7 +550,7 @@ server {
 RTX 4060 Ti (8GB)가 대부분의 사용자에게 최적의 균형점입니다 — RTF 0.028로 추론하고 fp16으로 미세 조정합니다. 프로덕션 서빙에는 RTX 4090 (RTF 0.014)이나 A100/H100 서버 GPU가 처리량을 극대화합니다. 6GB 미만 VRAM 카드는 피하세요.
 
 **Q4: 모델 버전 (V2, V3, V4) 간 전환은 어떻게 하나요?**
-WebUI 드롭다운이나 API 구성으로 버전을 선택합니다. 새 버전을 사용하려면 `git pull`로 코드를 업데이트하고, HuggingFace에서 해당 사전학습 모델을 다운로드하여 `GPT_SoVITS/pretrained_models/`에 배치하세요. `tts_infer.yaml` 파일이 버전 선택을 제어합니다.
+WebUI 드롭다운이나 API 구성으로 버전을 선택합니다. 새 버전을 사용하려면 ````git pull````로 코드를 업데이트하고, HuggingFace에서 해당 사전학습 모델을 다운로드하여 ````GPT_SoVITS/pretrained_models/````에 배치하세요. ````tts_infer.yaml```` 파일이 버전 선택을 제어합니다.
 
 **Q5: 생성된 음성이 금속성이거나 답답하게 들리는 이유는 무엇인가요?**
 이는 V3에서 비정수 배수 업샘플링으로 인한 알려진 문제입니다. V4로 업그레이드하면 금속성 아티팩트가 수정되고 네이티브 48kHz 오디오가 출력됩니다. 참조 오디오가 깨끗한지도 확인하세요 — 배경 소음과 압축 아티팩트가 출력에 전파됩니다.
@@ -558,17 +559,17 @@ WebUI 드롭다운이나 API 구성으로 버전을 선택합니다. 새 버전�
 nginx나 HAProxy 뒤에 여러 API 인스턴스를 실행하세요. 각 인스턴스는 다른 포트에 바인딩합니다. 모델용 공유 네트워크 볼륨을 사용하세요. 자동 확장에는 Kubernetes와 GPU 노드 풀을 활용하세요.
 
 **Q7: Docker 없이 GPT-SoVITS를 실행할 수 있나요?**
-네. Conda 설치 경로가 완전히 지원됩니다. FFmpeg가 설치되어 있고 `requirements.txt`의 모든 Python 의존성이 충족되는지 확인하세요. WebUI와 API는 Docker 외부에서 동일하게 작동합니다.
+네. Conda 설치 경로가 완전히 지원됩니다. FFmpeg가 설치되어 있고 ````requirements.txt````의 모든 Python 의존성이 충족되는지 확인하세요. WebUI와 API는 Docker 외부에서 동일하게 작동합니다.
 
 ## 결론
 
 GPT-SoVITS는 최소한의 데이터 요구사항, MIT 라이선싱, 성숙한 배포 생태계로 프로덕션급 음성 클로닝을 제공합니다. 소비자 GPU에서 0.014 RTF는 실시간 애플리케이션을 가능하게 하고, 풀 WebUI 도구체인은 입문자의 진입 장벽을 낮춥니다. 2026년에 음성 제품을 구축하는 팀에게 이것이 가장 실용적인 오픈소스 기반입니다.
 
 **오늘 배포하는 행동 항목:**
-1. `https://github.com/RVC-Boss/GPT-SoVITS`를 클론하고 Docker 설정 실행
+1. ````https://github.com/RVC-Boss/GPT-SoVITS````를 클론하고 Docker 설정 실행
 2. 사전학습 모델 다운로드 (속도를 위해 V2 ProPlus로 시작)
 3. 5초 참조 오디오를 녹음하고 WebUI에서 제로샷 추론 테스트
-4. `api_v2.py` 엔드포인트를 인증 레이어로 감싸기
+4. ````api_v2.py``` 엔드포인트를 인증 레이어로 감싸기
 5. [dibi8.com Telegram 그룹](https://t.me/dibi8tech)에 가입하여 배포 지원과 커뮤니티 토론
 
 
@@ -619,7 +620,7 @@ GPT-SoVITS는 최소한의 데이터 요구사항, MIT 라이선싱, 성숙한 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -629,6 +630,6 @@ GPT-SoVITS는 최소한의 데이터 요구사항, MIT 라이선싱, 성숙한 �
 - [agent-reach-internet-access-ai-agents](gpt-sovits)
 - [microsoft-markitdown-file-to-markdown-converter-cli](gpt-sovits)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

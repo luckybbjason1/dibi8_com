@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/affine-knowledge-base-whiteboard/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 2026년 지식 관리의 혼란
@@ -40,12 +41,12 @@ AFFiNE의 아키텍처는 세 개의 레이어로 구성됩니다: **레이어 1
 
 자체 호스팅 배포를 위해 PostgreSQL(애플리케이션 데이터), Redis(캐싱 및 세션 관리), AFFiNE 서버 컨테이너(Node.js API 및 WebSocket 동기화)가 추가됩니다.
 
-```yaml
+````yaml
 # - AFFiNE 서버 (웹 + API + 동기화)
 # - PostgreSQL 16 (영구 데이터)
 # - Redis 7 (캐시 + 세션)
 # - 선택 사항: blob 파일용 객체 스토리지
-```
+`````
 
 기본 포트는 **3010**입니다. 등록하는 첫 번째 사용자가 자동으로 관리자가 됩니다.
 
@@ -53,13 +54,13 @@ AFFiNE의 아키텍처는 세 개의 레이어로 구성됩니다: **레이어 1
 
 AFFiNE의 공식 Docker Compose 설정이 권장 배포 방법입니다. 데이터베이스 마이그레이션, 영구 저장소 및 서비스 종속성을 자동으로 처리합니다.
 
-**1단계:** 디렉터리를 만들고 공식 compose 파일을 다운로드합니다: ```bash
+**1단계:** 디렉터리를 만들고 공식 compose 파일을 다운로드합니다: `````bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
-```
+`````
 
-**2단계:** 환경 파일을 자격 증명으로 편집합니다: ```bash
+**2단계:** 환경 파일을 자격 증명으로 편집합니다: `````bash
 # .env 파일 편집
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -72,26 +73,26 @@ UPLOAD_LOCATION=./storage
 REDIS_DATA_LOCATION=./redis
 CONFIG_LOCATION=./config
 EOF
-```
+`````
 
-**3단계:** 스택을 시작합니다: ```bash
+**3단계:** 스택을 시작합니다: `````bash
 docker compose up -d
 # 가져오기: affineteams/affine-graphql, postgres:16, redis:7.2
 # 자동 DB 마이그레이션 실행
 # 첫 부팅 시 .env에서 관리자 계정 생성
-```
+`````
 
-**4단계:** 모든 컨테이너가 정상 상태인지 확인합니다: ```bash
+**4단계:** 모든 컨테이너가 정상 상태인지 확인합니다: `````bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
 affine-postgres Up 10 seconds   5432/tcp
 affine-redis    Up 10 seconds   6379/tcp
-```
+`````
 
-**5단계:** 브라우저에서 `http://localhost:3010`을 엽니다. `.env` 파일의 자격 증명으로 로그인합니다.
+**5단계:** 브라우저에서 ````http://localhost:3010````을 엽니다. ````.env```` 파일의 자격 증명으로 로그인합니다.
 
-```bash
+`````bash
 # 스택 중지
 docker compose down
 
@@ -100,11 +101,11 @@ docker compose down
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 docker compose pull
 docker compose up -d
-```
+`````
 
 **역방향 프록시 뒤에서 (프로덕션):**
 
-```nginx
+`````nginx
 # AFFiNE용 Nginx 설정
 server {
     listen 443 ssl http2;
@@ -119,9 +120,9 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
-`Upgrade` 및 `Connection` 헤더는 중요합니다 — WebSocket 기반 실시간 협업을 활성화합니다.
+````Upgrade```` 및 ````Connection```` 헤더는 중요합니다 — WebSocket 기반 실시간 협업을 활성화합니다.
 
 **클우드 배포를 위해** [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 신규 계정에 $200 무제 크레딧을 제공하며, 관리 PostgreSQL이 포함된 2-CPU Droplet에서 AFFiNE를 실행하기에 충분합니다.
 
@@ -129,17 +130,17 @@ server {
 
 AFFiNE은 플러그인 시스템과 API를 통해 기존 도구 체인에 연결됩니다: **1. CalDAV 캘린더 통합**
 
-AFFiNE v0.26+는 CalDAV를 지원하여 외부 캘린더와 작업 및 마감일을 동기화합니다. **설정 > 통합 > CalDAV**에서 구성합니다: ```bash
+AFFiNE v0.26+는 CalDAV를 지원하여 외부 캘린더와 작업 및 마감일을 동기화합니다. **설정 > 통합 > CalDAV**에서 구성합니다: `````bash
 # CalDAV 연결 테스트
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
   -H "Content-Type: text/xml" \
   -d '<?xml version="1.0"?><d:propfind xmlns:d="DAV:"><d:prop><d:displayname/></d:prop></d:propfind>'
-```
+`````
 
 **2. AI 어시스턴트 구성 (OpenAI API)**
 
-AI 어시스턴트는 Ollama 또는 LiteLLM을 통한 로컬 모델을 포함하여 모든 OpenAI 호환 엔드포인트를 가리킬 수 있습니다: ```bash
+AI 어시스턴트는 Ollama 또는 LiteLLM을 통한 로컬 모델을 포함하여 모든 OpenAI 호환 엔드포인트를 가리킬 수 있습니다: `````bash
 # AFFiNE 관리 패널 > 설정 > AI
 # 제공자 URL: http://your-ollama:11434/v1
 # API 키: sk-ollama (또는 사용자 키)
@@ -148,11 +149,11 @@ AI 어시스턴트는 Ollama 또는 LiteLLM을 통한 로컬 모델을 포함하
 # 또는 OpenAI 직접 사용
 # 제공자 URL: https://api.openai.com/v1
 # 모델: gpt-4o-mini
-```
+`````
 
 **3. 외부 자동화용 REST API**
 
-```bash
+`````bash
 # API를 통한 작업 공간 데이터 낳으로
 curl -H "Authorization: Bearer $AFFINE_TOKEN" \
   http://localhost:3010/api/workspaces
@@ -162,16 +163,16 @@ curl -X POST http://localhost:3010/api/docs \
   -H "Authorization: Bearer $AFFINE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"스프린트 회고","content":"<blocks>...</blocks>"}'
-```
+`````
 
 **4. 개발자 워크플로용 Git 동기화**
 
-AFFiNE의 낳출 기능과 `git`을 결합하여 버전 제어 문서를 만듭니다: ```bash
+AFFiNE의 낳출 기능과 ``git``을 결합하여 버전 제어 문서를 만듭니다: `````bash
 #!/bin/bash
 # daily-backup.sh - cron으로 매일 밤 실행
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
 git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%d)"
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -191,7 +192,7 @@ AFFiNE의 성능 특성은 프로덕션 배포에 중요합니다: | 메트릭 |
 
 **Let's Encrypt로 HTTPS 활성화:**
 
-```bash
+`````bash
 # 역방향 프록시로 Caddy 사용
 cat > Caddyfile << EOF
 affine.yourdomain.com {
@@ -199,11 +200,11 @@ affine.yourdomain.com {
     tls admin@yourdomain.com
 }
 EOF
-```
+`````
 
 **백업 전략:**
 
-```bash
+`````bash
 # 자동화된 매일 백업
 cat > backup-affine.sh << EOF
 #!/bin/bash
@@ -222,11 +223,11 @@ EOF
 chmod +x backup-affine.sh
 # 매일 오전 2시 실행
 echo "0 2 * * * /root/backup-affine.sh" | crontab -
-```
+`````
 
 **초대용 SMTP 구성:**
 
-```bash
+`````bash
 # config/affine.js 또는 관리 UI를 통해
 {
   "mailer": {
@@ -240,11 +241,11 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     "from": "AFFiNE <affine@yourdomain.com>"
   }
 }
-```
+`````
 
 **OAuth 인증 (Google):**
 
-```bash
+`````bash
 # config/affine.js에서
 {
   "auth": {
@@ -258,17 +259,17 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     }
   }
 }
-```
+`````
 
 **데이터베이스 연결 풀 튜닝:**
 
-```yaml
+`````yaml
 # 높은 부하 시나리오를 위해 docker-compose.yml에 추가
 environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
-```
+`````
 
 ## 대안과 비교
 
@@ -311,7 +312,7 @@ AFFiNE은 완벽하지 않습니다. 약속하기 전에 알아야 할 사항: 1
 
 **질문: 기존 Notion 작업 공간을 AFFiNE로 가져올 수 있나요?**
 
-답변: 예. AFFiNE은 Notion `.zip` 낳출을 지원합니다. **가져오기 > Notion**으로 이동하여 낳출한 zip을 업로드합니다. 페이지 계층 구조, 텍스트 콘텐츠 및 이미지가 올바르게 전송됩니다. 데이터베이스 뷰는 AFFiNE 데이터베이스 테이블로 변환되지만, 복잡한 Notion 공식은 수동 조정이 필요할 수 있습니다.
+답변: 예. AFFiNE은 Notion ````.zip``` 낳출을 지원합니다. **가져오기 > Notion**으로 이동하여 낳출한 zip을 업로드합니다. 페이지 계층 구조, 텍스트 콘텐츠 및 이미지가 올바르게 전송됩니다. 데이터베이스 뷰는 AFFiNE 데이터베이스 테이블로 변환되지만, 복잡한 Notion 공식은 수동 조정이 필요할 수 있습니다.
 
 **질문: 20인 팀을 자체 호스팅하는 AFFiNE의 하드웨어 요구 사항은 무엇인가요?**
 
@@ -381,7 +382,7 @@ Docker로 오늘 5분 만에 배포하고, 선택한 AI 모델을 연결하고, 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -391,6 +392,6 @@ Docker로 오늘 5분 만에 배포하고, 선택한 AI 모델을 연결하고, 
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](affine-knowledge-base-whiteboard)
 - [moneyprinterturbo-one-click-ai-video-generator](affine-knowledge-base-whiteboard)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

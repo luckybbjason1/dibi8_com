@@ -24,6 +24,7 @@ aliases:
   - /posts/dify/
 - /resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-
 ---
+
 {{</* resource-info */>}}
 
 Most teams ship AI chatbots the hard way. They wire Flask routes to OpenAI APIs, hand-craft prompt templates in JSON files, and build RAG pipelines from scratch with embedding models, vector stores, and chunking logic. Three months later, the prototype is unmaintainable, the product manager cannot update a prompt without a developer, and the knowledge base sync is a cron job that fails silently.
@@ -51,13 +52,13 @@ Dify's architecture separates concerns into discrete services that communicate t
 
 | Service | Port | Technology | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Web Frontend | 3000 | Next.js | Visual builder, dashboard, management UI |
 | API Service | 5001 | Python Flask | REST API endpoints, business logic |
@@ -71,11 +72,11 @@ Dify's architecture separates concerns into discrete services that communicate t
 
 | Component | Default | Alternatives |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Metadata DB | PostgreSQL 15 | AWS RDS, Cloud SQL |
 | Cache/Queue | Redis 7 | AWS ElastiCache, Redis Cloud |
@@ -92,11 +93,11 @@ Dify's workflow engine uses a DAG (Directed Acyclic Graph) execution model with 
 
 Before you start, ensure your machine meets these requirements: | Resource | Minimum | Recommended |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | 2 cores | 4+ cores |
 | RAM | 4 GiB | 8 GiB |
@@ -106,26 +107,26 @@ Before you start, ensure your machine meets these requirements: | Resource | Min
 
 ### Step 1 — Clone Dify
 
-Clone the latest release from GitHub: ```bash
+Clone the latest release from GitHub: ````bash
 git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
-```
+`````
 
 This checks out the most recent stable tag (v1.14.2 at the time of writing).
 
 ### Step 2 — Configure Environment
 
-```bash
+`````bash
 cd dify/docker
 cp .env.example .env
-```
+`````
 
-Edit `.env` to set a secure secret key: ```bash
+Edit ``.env`` to set a secure secret key: `````bash
 # Generate a cryptographically secure secret
 SECRET=$(openssl rand -hex 32)
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/" .env
-```
+`````
 
-Key variables to review in `.env`: ```bash
+Key variables to review in ``.env``: `````bash
 # Core settings
 CONSOLE_API_URL=http://localhost:5001
 CONSOLE_WEB_URL=http://localhost:3000
@@ -149,45 +150,45 @@ REDIS_DB=0
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=http://weaviate:8080
 WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
-```
+`````
 
 ### Step 3 — Start Dify
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
-This starts 11 containers: 5 core services and 6 dependencies. Verify everything is running: ```bash
+This starts 11 containers: 5 core services and 6 dependencies. Verify everything is running: `````bash
 docker compose ps
-```
+`````
 
-You should see all containers in an `Up (healthy)` state. The first startup takes 60–90 seconds as the API service runs database migrations.
+You should see all containers in an ````Up (healthy)```` state. The first startup takes 60–90 seconds as the API service runs database migrations.
 
 ### Step 4 — Initialize Admin Account
 
-Open your browser and navigate to: ```
+Open your browser and navigate to: `````
 http://localhost/install
-```
+`````
 
-Complete the setup wizard with your email and password. After setup, log in at: ```
+Complete the setup wizard with your email and password. After setup, log in at: `````
 http://localhost
-```
+`````
 
 ### Step 5 — Add Your First Model Provider
 
 Navigate to **Settings → Model Provider** and add an API key for at least one provider. For OpenAI: 1. Select "OpenAI" from the provider list
-2. Paste your API key (`sk-...`)
+2. Paste your API key (````sk-...````)
 3. Click "Save"
 
-For local development with Ollama: 1. Ensure Ollama is running locally (`ollama serve`)
+For local development with Ollama: 1. Ensure Ollama is running locally (````ollama serve````)
 2. Select "Ollama" from the provider list
-3. Set the base URL to `http://host.docker.internal:11434`
-4. Select a downloaded model (e.g., `llama3.1:8b`)
+3. Set the base URL to ````http://host.docker.internal:11434````
+4. Select a downloaded model (e.g., ````llama3.1:8b````)
 
-```bash
+`````bash
 # Pull a lightweight model for testing
 ollama pull llama3.1:8b
-```
+`````
 
 Your Dify instance is now ready to build AI applications.
 
@@ -201,7 +202,7 @@ Adding major LLM providers is a configuration change, not a deployment. After ad
 4. Select your model (GPT-4o, Claude Sonnet, etc.) from the dropdown
 5. Click **Publish**
 
-Access the app via API: ```bash
+Access the app via API: `````bash
 curl -X POST 'http://localhost/v1/chat-messages' \
   -H 'Authorization: Bearer YOUR_APP_API_KEY' \
   -H 'Content-Type: application/json' \
@@ -212,74 +213,74 @@ curl -X POST 'http://localhost/v1/chat-messages' \
     "conversation_id": "",
     "user": "user-123"
   }'
-```
+`````
 
 ### Ollama (Local LLMs)
 
-For air-gapped or cost-sensitive environments, Ollama integration lets you run local models: ```bash
+For air-gapped or cost-sensitive environments, Ollama integration lets you run local models: `````bash
 # Start Ollama
 ollama serve
 
 # Pull a model
 ollama pull llama3.1:8b
 ollama pull qwen2.5:14b
-```
+`````
 
 In Dify, go to **Settings → Model Provider → Ollama** and configure: | Field | Value |
 |
----
+* * *
 |
----
+* * *
 |
-| Model Name | `llama3.1:8b` |
-| Base URL | `http://host.docker.internal:11434` |
+| Model Name | ````llama3.1:8b```` |
+| Base URL | ````http://host.docker.internal:11434```` |
 
 Use local models for development and switch to cloud models for production without changing your app logic.
 
 ### Qdrant Vector Store
 
-Replace Weaviate with Qdrant for better performance at scale: ```bash
+Replace Weaviate with Qdrant for better performance at scale: `````bash
 cd dify/docker
 cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env
-```
+`````
 
-Edit `envs/vectorstores/qdrant.env`: ```bash
+Edit ``envs/vectorstores/qdrant.env``: `````bash
 VECTOR_STORE=qdrant
 QDRANT_URL=http://qdrant:6333
 QDRANT_API_KEY=your-api-key
 QDRANT_CLIENT_TIMEOUT=20
-```
+`````
 
-Add Qdrant to your `docker-compose.override.yaml`: ```yaml
+Add Qdrant to your ``docker-compose.override.yaml``: `````yaml
 services: qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
     volumes: - qdrant_data:/qdrant/storage
     environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
-Restart Dify: ```bash
+Restart Dify: `````bash
 docker compose down
 docker compose up -d
-```
+`````
 
 ### Weaviate
 
-Weaviate is the default vector store and works out of the box. For production, use an external Weaviate cluster: ```bash
+Weaviate is the default vector store and works out of the box. For production, use an external Weaviate cluster: `````bash
 # In .env
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
 WEAVIATE_API_KEY=your-api-key
-```
+`````
 
 ### Claude Code Integration
 
 Export your Dify app as an MCP (Model Context Protocol) server and connect it to Claude Code: 1. In your Dify app, go to **API Access → MCP Server**
 2. Enable MCP publishing
 3. Copy the MCP server URL
-4. In Claude Code, run: ```bash
+4. In Claude Code, run: `````bash
 claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
-```
+`````
 
 Your Dify workflows are now callable directly from Claude Code conversations.
 
@@ -289,13 +290,13 @@ Your Dify workflows are now callable directly from Claude Code conversations.
 
 Based on community benchmarks and load testing data: | Metric | 1 CPU / 2 GB RAM | 4 CPU / 8 GB RAM | 8 CPU / 16 GB RAM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QPS (no model call) | 3 req/s | 8 req/s | 11 req/s |
 | QPS (with GPT-4o) | 2 req/s | 5 req/s | 6 req/s |
@@ -308,13 +309,13 @@ Based on community benchmarks and load testing data: | Metric | 1 CPU / 2 GB RAM
 
 | Operation | 100 Docs | 1,000 Docs | 10,000 Docs |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Upload + Chunk | 30s | 4 min | 35 min |
 | Embedding (OpenAI) | 45s | 6 min | 50 min |
@@ -324,13 +325,13 @@ Based on community benchmarks and load testing data: | Metric | 1 CPU / 2 GB RAM
 
 | Scale | VPS Cost | LLM Cost | Total |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Dev / 1 user | $20 | $5–10 | $25–30 |
 | Small team / 50 users | $40 | $50–100 | $90–140 |
@@ -348,12 +349,12 @@ Based on community benchmarks and load testing data: | Metric | 1 CPU / 2 GB RAM
 
 ### Environment Isolation
 
-For production, never use the default `.env` values. Create environment-specific configs: ```bash
+For production, never use the default ``.env`` values. Create environment-specific configs: `````bash
 # Production environment
 cp .env .env.production
-```
+`````
 
-Critical changes for production: ```bash
+Critical changes for production: `````bash
 # Security
 SECRET_KEY=$(openssl rand -hex 48)
 CONSOLE_API_URL=https://dify.yourcompany.com
@@ -378,11 +379,11 @@ S3_BUCKET_NAME=dify-prod-uploads
 S3_ACCESS_KEY=AKIA...
 S3_SECRET_KEY=...
 S3_REGION=us-east-1
-```
+`````
 
 ### Reverse Proxy with SSL
 
-Use Nginx or Traefik for TLS termination: ```nginx
+Use Nginx or Traefik for TLS termination: `````nginx
 server {
     listen 443 ssl http2;
     server_name dify.yourcompany.com;
@@ -404,11 +405,11 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### Monitoring and Observability
 
-Dify exposes metrics via the API service. For production monitoring, set up: ```yaml
+Dify exposes metrics via the API service. For production monitoring, set up: `````yaml
 # docker-compose.monitoring.yaml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -421,15 +422,15 @@ services: prometheus: image: prom/prometheus:latest
   node-exporter: image: prom/node-exporter:latest
     ports: - "9100:9100"
 
-volumes: grafana_data: ```
+volumes: grafana_data: `````
 
 Key metrics to track: | Metric | Warning Threshold | Critical Threshold |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API Response Time (P95) | > 2s | > 5s |
 | Worker Queue Depth | > 100 | > 500 |
@@ -439,7 +440,7 @@ Key metrics to track: | Metric | Warning Threshold | Critical Threshold |
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # backup-dify.sh — Run daily via cron
 
@@ -457,31 +458,31 @@ tar czf $BACKUP_DIR/dify_uploads_$DATE.tar.gz /var/lib/docker/volumes/dify_uploa
 
 # Upload to S3 (optional)
 aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
-```
+`````
 
 ### Scaling Workers
 
-For high-volume document processing, scale Celery workers horizontally: ```bash
+For high-volume document processing, scale Celery workers horizontally: `````bash
 # docker-compose.override.yaml
 services: worker: deploy: replicas: 3
     environment: - CELERY_WORKER_CONCURRENCY=8
 
   worker-beat: deploy: replicas: 1  # Keep exactly 1 beat instance
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Dify | Flowise | n8n | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 141,955 | 51,000 | 182,000 | 110,000 |
 | **License** | Apache-2.0 | MIT | Fair-code | MIT |
@@ -527,20 +528,20 @@ Dataset indexing is synchronous and can take minutes for large uploads. Document
 ## Frequently Asked Questions
 
 **Q: How do I install Dify on a cloud VPS?**
-The process is identical to local installation. Provision a VPS with 4 GB RAM minimum (DigitalOcean, Hetzner, or AWS Lightsail work well), install Docker and Docker Compose, clone the repo, and run `docker compose up -d`. For a one-click deployment, use the [DigitalOcean Dify Marketplace app](https://www.digitalocean.com).
+The process is identical to local installation. Provision a VPS with 4 GB RAM minimum (DigitalOcean, Hetzner, or AWS Lightsail work well), install Docker and Docker Compose, clone the repo, and run ````docker compose up -d````. For a one-click deployment, use the [DigitalOcean Dify Marketplace app](https://www.digitalocean.com).
 
 **Q: Can Dify run entirely offline?**
 Yes. Configure Ollama as your model provider and run local models like Llama 3.1, Qwen 2.5, or Mistral. All Dify services run inside Docker with no external dependencies required. The only limitation is that you cannot use cloud LLM APIs without internet access.
 
 **Q: How do I upgrade Dify to a new version?**
-```bash
+`````bash
 cd dify/docker
 docker compose down
 git fetch --tags
 git checkout $(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)
 docker compose pull
 docker compose up -d
-```
+````
 Always check the release notes for breaking changes and new required environment variables before upgrading.
 
 **Q: What is the difference between Dify's Chatbot and Agent app types?**
@@ -623,7 +624,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [dify-vs-flowise-2026](dify)
@@ -633,7 +634,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [12-factor-agents](dify)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

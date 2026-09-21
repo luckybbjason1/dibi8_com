@@ -23,6 +23,7 @@ faq: - q: "最常见的单个多智能体失败是什么？"
   - q: "如果多智能体编排这么频繁出错，那它值得这份复杂度吗？"
     a: "值得——当任务确实超出单个上下文窗口、或需要独立核验时。但这五种失败恰恰就是你不该条件反射地上手编排的原因。一个提示词写得好的单智能体，每一次都胜过一条有 bug 的五智能体流水线。当问题是真实的（需要全面覆盖、并行的独立工作、对抗式审查）时再用编排，而当你用它时，把那些能预防这些失败模式的核验步骤和停止条件内建进去。你无法核验的复杂，比你能核验的简单更糟糕。"
 ---
+
 # 多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）
 
 
@@ -38,7 +39,7 @@ faq: - q: "最常见的单个多智能体失败是什么？"
 
 **根因。** 子智能体返回的是一份*摘要*——对它打算做什么的描述，而不是它实际做了什么的经核验记录。"所有测试通过"可能意味着它真跑了测试，也可能意味着它相信测试会通过。编排器把散文当成了基准事实。
 
-**修复方案。** 对照产物来核验，绝不对照摘要。当一个子智能体声称做了某项改动后，编排器要去读实际的 `git diff`、检查测试命令的退出码，或者重新读一遍文件。我们是吃过苦头才学会这一条的——这也是为什么，当我们 [用一个翻译子智能体写一篇四语言文章](/zh/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) 时，我们跑 `npm run build` 作为基准事实，而不是相信智能体说的"YAML 有效：是"。摘要是一个声明。构建是证据。
+**修复方案。** 对照产物来核验，绝不对照摘要。当一个子智能体声称做了某项改动后，编排器要去读实际的 ```git diff````、检查测试命令的退出码，或者重新读一遍文件。我们是吃过苦头才学会这一条的——这也是为什么，当我们 [用一个翻译子智能体写一篇四语言文章](/zh/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) 时，我们跑 ````npm run build```` 作为基准事实，而不是相信智能体说的"YAML 有效：是"。摘要是一个声明。构建是证据。
 
 ## 失败 2：上下文串台
 
@@ -46,7 +47,7 @@ faq: - q: "最常见的单个多智能体失败是什么？"
 
 **根因。** 两个智能体都写入了同一个文件，或者各自假设了一个被对方在底下改掉的工作树状态。并行写入者共用一个工作树，就是加了几道工序的竞态条件。
 
-**修复方案。** 互不重叠的作用域加 worktree 隔离。把智能体 A 的作用域限定在 `/auth/`、智能体 B 限定在 `/payments/`，零重叠。当智能体要做非琐碎的改动时，给每个智能体它自己的 git worktree，让它们在独立的检出上操作，事后你再刻意地合并。绝不要让两个写入者共用一棵树。
+**修复方案。** 互不重叠的作用域加 worktree 隔离。把智能体 A 的作用域限定在 ````/auth/````、智能体 B 限定在 ````/payments/````，零重叠。当智能体要做非琐碎的改动时，给每个智能体它自己的 git worktree，让它们在独立的检出上操作，事后你再刻意地合并。绝不要让两个写入者共用一棵树。
 
 ## 失败 3：失控的扇出
 
@@ -70,7 +71,7 @@ faq: - q: "最常见的单个多智能体失败是什么？"
 
 **根因。** 为了隔离而创建的 worktree，却从未被当作有作用域的资源对待。完成后没有清理；没有清晰地界定哪棵树是标准的。
 
-**修复方案。** 把每个 worktree 都当作一个有生命周期的资源对待。当一个智能体没有做任何改动时，自动清理。当有改动时，显式地 review-and-merge 或丢弃——别让它悬在那。而且绝不让下游智能体把另一个智能体的 worktree 当作基准事实来读；标准状态就是主树，没有例外。（我们亲手在流水线进行到一半时清理过一个孤儿 worktree——这是一个五秒钟的 `git worktree remove`，能省下一个小时的"这文件怎么是错的"。）
+**修复方案。** 把每个 worktree 都当作一个有生命周期的资源对待。当一个智能体没有做任何改动时，自动清理。当有改动时，显式地 review-and-merge 或丢弃——别让它悬在那。而且绝不让下游智能体把另一个智能体的 worktree 当作基准事实来读；标准状态就是主树，没有例外。（我们亲手在流水线进行到一半时清理过一个孤儿 worktree——这是一个五秒钟的 ````git worktree remove```，能省下一个小时的"这文件怎么是错的"。）
 
 ## 原则
 
@@ -160,12 +161,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](multi-agent-pipeline-postmortem-5-failures-2026)
@@ -174,7 +175,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](multi-agent-pipeline-postmortem-5-failures-2026)
 - [cursor-vs-claude-code](multi-agent-pipeline-postmortem-5-failures-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -244,15 +245,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

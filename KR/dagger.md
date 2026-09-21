@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/dagger/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -57,7 +58,7 @@ Dagger의 아키텍처는 네 개의 레이어로 구성된다: 1. **파이프�
 3. **Dagger 엔진** —— 파이프라인 그래프를 실행하는 BuildKit 기반 컨테이너 런타임.
 4. **컨테이너 런타임** —— Docker, Podman 또는 엔진을 호스팅하는 모든 OCI 호환 런타임.
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │  파이프라인 코드 (Go/Python/TS)                              │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐                 │
@@ -82,24 +83,24 @@ Dagger의 아키텍처는 네 개의 레이어로 구성된다: 1. **파이프�
 ┌─────────────────────────────────────────────────────────────┐
 │  Docker / Podman / OCI 런타임                               │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### 실행 모델
 
 Dagger 파이프라인을 실행하면 SDK가 함수 호출을 작업의 방향성 비순환 그래프(DAG)로 변환한다. DAG의 각 노드는 컨테이너 작업을 나타낸다: 이미지 풀링, 파일 복사, 명령 실행 또는 아티팩트 낳출. Dagger 엔진은 이러한 작업을 자동 병렬화로 예약하고 모든 중간 결과를 캐시한다.
 
-```
+`````
 # 예제 DAG 실행 흐름
 기본 이미지 풀링 ──┬── 의존성 설치 ──┬── 테스트 실행 ──┬── 바이너리 낳출
                    │                  │                  │
                    └── 캐시 히트? 스킵  └── 캐시 히트?    └── 캐시 히트?
-```
+`````
 
 ### 핵심 개념
 
 | 개념 | 설명 |
 |---------|-------------|
-| **모듈** | `dagger.json` 매니페스트에 정의된 재사용 가능한 Dagger 함수 패키지 |
+| **모듈** | ````dagger.json```` 매니페스트에 정의된 재사용 가능한 Dagger 함수 패키지 |
 | **함수** | 입력을 받고 출력을 생성하는 타입화된 샌드박스 작업 |
 | **디렉터리** | 함수 간에 전달되는 콘텐츠 주소 지정 파일 시스템 트리 |
 | **컨테이너** | API를 통해 조작되는 OCI 컨테이너 이미지 또는 실행 중인 컨테이너 |
@@ -117,18 +118,18 @@ Dagger 파이프라인을 실행하면 SDK가 함수 호출을 작업의 방향�
 
 **macOS (Homebrew):**
 
-```bash
+`````bash
 # Homebrew tap을 통해 설치
 brew install dagger/tap/dagger
 
 # 설치 확인
 dagger version
 # 예상 출력: dagger v0.19.7 (registry.dagger.io/engine:v0.19.7)
-```
+`````
 
 **Linux:**
 
-```bash
+`````bash
 # 공식 설치 스크립트 사용
 curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
 
@@ -138,22 +139,22 @@ curl -fsSL https://dl.dagger.io/dagger/install.sh | \
 
 # 확인
 dagger version
-```
+`````
 
 **Windows:**
 
-```powershell
+`````powershell
 # scoop을 통해 설치
 scoop bucket add dagger https://github.com/dagger/scoop-bucket
 scoop install dagger
 
 # 확인
 dagger version
-```
+`````
 
 ### 첫 번째 프로젝트 초기화
 
-```bash
+`````bash
 # 새 Dagger 모듈 생성
 dagger init --sdk=python --source=./dagger my-pipeline
 
@@ -167,11 +168,11 @@ dagger init --sdk=typescript --source=./dagger my-pipeline
 # │   └── src/main.py (또는 main.go, 또는 index.ts)
 # ├── dagger.json
 # └── .gitignore
-```
+`````
 
 ### 빠른 로컬 테스트
 
-```python
+`````python
 # dagger/src/main.py — 최소 Dagger 파이프라인
 import dagger
 from dagger import dag, function, object_type
@@ -182,20 +183,20 @@ class MyPipeline: @function
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
-```
+`````
 
-```bash
+`````bash
 # 함수를 로컬에서 실행
 dagger call hello --name="Dagger"
 
 # 출력: # Hello, Dagger!
-```
+`````
 
 ## Docker, Go, Python 및 TypeScript와의 통합
 
 ### Docker 통합 — 이미지 빌드 및 푸시
 
-Dagger는 기본적으로 Docker 생태계의 컨테이너를 조작한다. Docker 이미지를 빌드, 태그 및 푸시하는 완전한 파이프라인은 다음과 같다: ```python
+Dagger는 기본적으로 Docker 생태계의 컨테이너를 조작한다. Docker 이미지를 빌드, 태그 및 푸시하는 완전한 파이프라인은 다음과 같다: `````python
 # dagger/src/main.py — Docker 이미지 빌드 및 푸시
 import dagger
 from dagger import dag, function, object_type, Directory
@@ -219,9 +220,9 @@ class CiPipeline: @function
             .publish(f"{registry}/{repository}:{tag}")
 
         return digest
-```
+`````
 
-```bash
+`````bash
 # 빌드 및 푸시 함수 실행
 dagger call build-and-push \
   --source=. \
@@ -230,11 +231,11 @@ dagger call build-and-push \
   --password=env:GITHUB_TOKEN \
   --repository=my-org/my-app \
   --tag=v1.2.3
-```
+`````
 
 ### Go SDK — 전체 CI 파이프라인
 
-```go
+`````go
 // dagger/main.go — 테스트를 포함한 Go 기반 CI 파이프라인
 dagger "dagger.io/dagger"
 
@@ -270,16 +271,16 @@ func (m *CiPipeline) Run(ctx context.Context, source *dagger.Directory) (*dagger
     // 빌드된 바이너리를 파일로 추출
     return binary.File("/src/bin/myapp"), nil
 }
-```
+`````
 
-```bash
+`````bash
 # 프로젝트 루트에서 Go 파이프라인 실행
 dagger call run --source=. -o ./bin/myapp
-```
+`````
 
 ### Python SDK — 서비스를 사용한 통합 테스트
 
-```python
+`````python
 # dagger/src/main.py — PostgreSQL 서비스로 통합 테스트
 import dagger
 from dagger import dag, function, object_type, Directory, Service
@@ -310,11 +311,11 @@ class TestPipeline: @function
         )
 
         return test_result
-```
+`````
 
 ### TypeScript SDK — 멀티 플랫폼 빌드
 
-```typescript
+`````typescript
 // dagger/src/index.ts — 멀티 플랫폼 컨테이너 빌드
 import { dag, function, objectType, Directory } from "@dagger.io/dagger";
 
@@ -329,14 +330,14 @@ class BuildPipeline {
             platforms.map(async (platform) => {
                 return await image
                     .platform(platform)
-                    .publish(`ghcr.io/my-org/my-app:${platform.replace("/", "-")}`);
+                    .publish(````ghcr.io/my-org/my-app:${platform.replace("/", "-")}````);
             })
         );
 
         return digests;
     }
 }
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -365,20 +366,20 @@ Daggerverse ([daggerverse.dev](https://daggerverse.dev))는 재사용 가능한 
 - 보안 스캔: Trivy, Snyk, SLSA 검증
 - 테스트: k6 부하 테스트, Playwright 브라우저 테스트
 
-```bash
+`````bash
 # Daggerverse에서 모듈 설치 및 사용
 dagger -m github.com/kpenfound/blueprints/go call build \
   --source=. --args=./cmd/myapp
 
 # 설치된 모듈 나열
 dagger module use github.com/Dudesons/daggerverse/node
-```
+`````
 
 ## 고급 사용법 / 프로덕션 하드닝
 
 ### 비밀 관리
 
-비밀을 일반 문자열로 전달하지 마라. Dagger의 `Secret` 타입은 로그와 추적에서 민감한 값을 마스킹한다: ```python
+비밀을 일반 문자열로 전달하지 마라. Dagger의 ``Secret`` 타입은 로그와 추적에서 민감한 값을 마스킹한다: `````python
 import dagger
 from dagger import dag, function, object_type, Secret
 
@@ -400,18 +401,18 @@ class SecurePipeline: @function
             ])
             .stdout()
         )
-```
+`````
 
-```bash
+`````bash
 # 환경 변수에서 비밀 전달
 dagger call deploy \
   --kubeconfig=file:$HOME/.kube/config \
   --image-digest=ghcr.io/my-org/my-app@sha256:abc123...
-```
+`````
 
 ### 병렬 실행 패턴
 
-Dagger는 독립적인 작업을 자동으로 병렬화한다. 병렬성을 최대화하도록 파이프라인을 구성하라: ```python
+Dagger는 독립적인 작업을 자동으로 병렬화한다. 병렬성을 최대화하도록 파이프라인을 구성하라: `````python
 import asyncio
 from dagger import dag, function, object_type, Directory
 
@@ -445,11 +446,11 @@ class ParallelPipeline: @function
             .with_workdir("/src")
             .with_exec(["trivy", "fs", "--scanners=vuln", "."])
             .stdout()
-```
+`````
 
 ### OpenTelemetry으로 모니터링
 
-Dagger는 모든 작업에 대해 OpenTelemetry 추적을 낳출한다. 백엔드로 낳출하여 파이프라인 가시성을 확보하라: ```bash
+Dagger는 모든 작업에 대해 OpenTelemetry 추적을 낳출한다. 백엔드로 낳출하여 파이프라인 가시성을 확보하라: `````bash
 # OTel을 Jaeger로 낳출
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
@@ -457,11 +458,11 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 dagger call run --source=. --otel-export=auto
 
 # Jaeger UI에서 추적 보기 http://localhost:16686
-```
+`````
 
 ### CI 통합 — GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/dagger.yml
 name: Dagger CI
 
@@ -477,11 +478,11 @@ jobs: ci: runs-on: ubuntu-latest
           module: .
           args: run --source=.
         env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+`````
 
 ### CI 통합 — GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: [build]
 
@@ -494,11 +495,11 @@ dagger:build: stage: build
   script: - dagger call run --source=.
   cache: key: dagger-cache
     paths: - .dagger-cache/
-```
+`````
 
 ### CI 통합 — Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -517,14 +518,14 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ## 대안과의 비교
 
 | 기능 | Dagger | GitHub Actions | GitLab CI | Jenkins |
 |---------|--------|---------------|-----------|---------|
-| **파이프라인 정의** | Go/Python/TypeScript 코드 | YAML 워크플로 | YAML `.gitlab-ci.yml` | Groovy/Java DSL |
-| **로컬 실행** | 네이티브 — CI와 동일 | 지원하지 않음 (act는 부분 지원) | 제한적 (`gitlab-runner exec`) | 완전한 지원 |
+| **파이프라인 정의** | Go/Python/TypeScript 코드 | YAML 워크플로 | YAML ````.gitlab-ci.yml```` | Groovy/Java DSL |
+| **로컬 실행** | 네이티브 — CI와 동일 | 지원하지 않음 (act는 부분 지원) | 제한적 (````gitlab-runner exec````) | 완전한 지원 |
 | **캐싱 세분화** | 작업 수준 (콘텐츠 주소 지정) | 키-값 + Docker 레이어 캐시 | 키-값 + 캐시 레이어 | 플러그인 의존 |
 | **벤더 종속성** | 없음 — 모든 CI에서 실행 | 오케스트레이션은 GitHub 전용 | 오케스트레이션은 GitLab 전용 | 없음 (자체 호스팅) |
 | **학습 곡선** | 중간 (Go/TS/Py 필요) | 낮음 (YAML + 마켓플레이스) | 낮음-중간 (YAML + DSL) | 높음 (Groovy 복잡성) |
@@ -584,7 +585,7 @@ Dagger는 작업 수준에서 콘텐츠 주소 지정 방식의 캐싱을 사용
 예, 하지만 주의사항이 있습니다. Dagger의 콘텐츠 주소 지정 캐싱은 변경되지 않은 패키지가 완전히 건례되므로 모노레포에서 잘 작동합니다. 그러나 매우 큰 레포지토리(10GB+)의 경우 초기 DAG 구성과 파일 스캔이 느릴 수 있습니다. Dagger 팀은 v0.20.x 릴리스 주기에서 모노레포 성능을 적극적으로 최적화하고 있습니다.
 
 **Q: 기존 GitHub Actions 워크플로를 Dagger로 어떻게 마이그레이션하나요?**
-점진적으로 마이그레이션하세요. 한 번에 하나의 작업을 이식하는 것으로 시작하세요 —— 일반적으로 먼저 빌드 또는 테스트 작업. GitHub Actions 워크플로를 오케스트레이션 레이어로 유지하고 개별 단계를 `dagger call` 호출로 교체하세요. 이러한 하이브리드 접근 방식을 통해 기존 CI 인프라를 유지하면서 Dagger를 검증할 수 있습니다. 시간이 지남에 따라 나머지 작업을 Dagger 함수로 통합하세요.
+점진적으로 마이그레이션하세요. 한 번에 하나의 작업을 이식하는 것으로 시작하세요 —— 일반적으로 먼저 빌드 또는 테스트 작업. GitHub Actions 워크플로를 오케스트레이션 레이어로 유지하고 개별 단계를 ````dagger call```` 호출로 교체하세요. 이러한 하이브리드 접근 방식을 통해 기존 CI 인프라를 유지하면서 Dagger를 검증할 수 있습니다. 시간이 지남에 따라 나머지 작업을 Dagger 함수로 통합하세요.
 
 **Q: Dagger는 어떤 컨테이너 런타임을 지원하나요?**
 Dagger는 Linux 컨테이너 런타임이 필요합니다: Docker Engine 24.0+, Podman 4.0+, containerd 또는 모든 OCI 호환 런타임. macOS 및 Windows에서는 Docker Desktop 또는 Podman Desktop이 필요합니다. Rootless Docker 및 Podman은 공식 참조 문서에 문서화된 일부 구성 주의사항과 함께 지원됩니다.
@@ -600,8 +601,8 @@ Go, Python 또는 TypeScript로 작업하는 팀에게 Dagger는 애플리케이
 
 ### 실행 항목
 
-1. Dagger CLI 설치: `brew install dagger/tap/dagger`
-2. 퀵스타트 실행: `dagger init --sdk=python --source=./dagger my-pipeline`
+1. Dagger CLI 설치: ````brew install dagger/tap/dagger````
+2. 퀵스타트 실행: ````dagger init --sdk=python --source=./dagger my-pipeline```
 3. 먼저 빌드 작업을 이식하세요 —— 기존 CI를 트리거 레이어로 유지
 4. 지원을 위해 [Discord](https://discord.com/invite/dagger-io)의 Dagger 커뮤니티에 가입하세요
 5. 재사용 가능한 모듈을 위해 [Daggerverse](https://daggerverse.dev)를 탐색하세요
@@ -657,7 +658,7 @@ Go, Python 또는 TypeScript로 작업하는 팀에게 Dagger는 애플리케이
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -667,6 +668,6 @@ Go, Python 또는 TypeScript로 작업하는 팀에게 Dagger는 애플리케이
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](dagger)
 - [moneyprinterturbo-one-click-ai-video-generator](dagger)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

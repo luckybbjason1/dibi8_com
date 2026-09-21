@@ -36,6 +36,7 @@ faqs: - q: 'What is Agent Skills by Addy Osmani?'
     a: 'For Claude Code you can clone the repo into your project with `gh repo clone addyosmani/agent-skills .claude/skills`, or install it as a plugin with `claude plugin install addyosmani/agent-skills`.'
   - q: 'What is an anti-rationalization table in Agent Skills?'
     a: 'An anti-rationalization table is a feature embedded in each skill that pre-emptively flags common excuses developers and AI agents use to cut corners (such as "I''ll add tests later") and provides a counter-argument. The tables are derived from real post-mortems and code-review feedback at Google-scale organizations.'---
+
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -50,10 +51,10 @@ AI coding agents are everywhere — but most produce toy code that breaks in pro
 
 Agent Skills is a collection of **20 production-grade engineering skills** and **7 slash commands** that encode the workflows, quality gates, and best practices used by senior engineers at Google-scale companies. It works with Claude Code, Cursor, Gemini CLI, Windsurf, OpenCode, GitHub Copilot, Kiro, and Codex.
 
-The system maps to the full software development lifecycle: ```
+The system maps to the full software development lifecycle: ````
 DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
   /spec   /plan  /build  /test   /review  /ship
-```
+`````
 
 ## The 7 Slash Commands
 
@@ -61,19 +62,19 @@ DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
-| Define what to build | `/spec` | Spec before code |
-| Plan how to build it | `/plan` | Small, atomic tasks |
-| Build incrementally | `/build` | One slice at a time |
-| Prove it works | `/test` | Tests are proof |
-| Review before merge | `/review` | Improve code health |
-| Simplify the code | `/code-simplify` | Clarity over cleverness |
-| Ship to production | `/ship` | Faster is safer |
+| Define what to build | ````/spec```` | Spec before code |
+| Plan how to build it | ````/plan```` | Small, atomic tasks |
+| Build incrementally | ````/build```` | One slice at a time |
+| Prove it works | ````/test```` | Tests are proof |
+| Review before merge | ````/review```` | Improve code health |
+| Simplify the code | ````/code-simplify```` | Clarity over cleverness |
+| Ship to production | ````/ship```` | Faster is safer |
 
-Each command automatically activates the right skills. For example, `/build` triggers `incremental-implementation`, `test-driven-development`, and `frontend-ui-engineering` depending on what files you are editing.
+Each command automatically activates the right skills. For example, ````/build```` triggers ````incremental-implementation````, ````test-driven-development````, and ````frontend-ui-engineering```` depending on what files you are editing.
 
 ## The 20 Production-Grade Skills
 
@@ -114,31 +115,31 @@ Each command automatically activates the right skills. For example, `/build` tri
 
 ### Claude Code (Recommended)
 
-```bash
+`````bash
 # Clone into your project
 gh repo clone addyosmani/agent-skills .claude/skills
 
 # Or install as a plugin
 claude plugin install addyosmani/agent-skills
-```
+`````
 
 ### Cursor
 
-Copy the `.cursor/skills/` directory into your project root. Skills auto-activate based on file type.
+Copy the ````.cursor/skills/```` directory into your project root. Skills auto-activate based on file type.
 
 ### Gemini CLI
 
-```bash
+`````bash
 gemini install skills addyosmani/agent-skills
-```
+`````
 
 ### Windsurf / OpenCode / Copilot
 
-Each has a dedicated directory (`.windsurf/`, `.opencode/`, `.github/copilot/`) with skill manifests.
+Each has a dedicated directory (````.windsurf/````, ````.opencode/````, ````.github/copilot/````) with skill manifests.
 
 ## Code Example: Spec-Driven Development
 
-```markdown
+`````markdown
 # /spec output example
 
 ## Objective
@@ -169,37 +170,37 @@ Build a REST API for user authentication with JWT tokens.
 - No plaintext password storage
 - Tokens expire in 15 minutes
 - Rate limit: 5 attempts per minute
-```
+`````
 
 The agent uses this spec to generate implementation, tests, and documentation — all aligned before a single line of code is written.
 
 ## Real-World Use Cases
 
 ### Use Case 1: Startup MVP in 2 Weeks
-A 3-person startup used `/spec` → `/plan` → `/build` → `/test` to ship a full-stack SaaS MVP in 10 days. The spec prevented 3 major architectural pivots that would have cost 2 weeks each.
+A 3-person startup used ````/spec```` → ````/plan```` → ````/build```` → ````/test```` to ship a full-stack SaaS MVP in 10 days. The spec prevented 3 major architectural pivots that would have cost 2 weeks each.
 
 ### Use Case 2: Enterprise Refactor
-A Fortune 500 team used `incremental-implementation` and `code-review` skills to refactor a 100K-line React codebase. Zero production incidents during the 3-month migration.
+A Fortune 500 team used ````incremental-implementation```` and ````code-review```` skills to refactor a 100K-line React codebase. Zero production incidents during the 3-month migration.
 
 ### Use Case 3: Agency Delivery
 A web development agency embedded Agent Skills into their standard workflow. Project delivery time dropped 40%, and client change requests decreased 25% because specs caught ambiguities early.
 
 ### Use Case 4: Open Source Maintainer
-A popular npm package maintainer uses `/review` on every PR. The skill catches edge cases, missing tests, and API breaking changes before human review.
+A popular npm package maintainer uses ````/review```` on every PR. The skill catches edge cases, missing tests, and API breaking changes before human review.
 
 ## Comparison with Alternatives
 
 | Feature | Agent Skills | GitHub Copilot | Cursor Rules | Generic Prompts |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | ✅ Yes | ❌ No | ❌ No | N/A |
 | **20 Structured Skills** | ✅ Yes | ❌ Generic | ❌ Basic | ❌ Ad-hoc |
@@ -230,17 +231,17 @@ The project is gaining traction in **engineering leadership circles** because it
 
 Agent Skills uses a context-aware activation engine that determines which skills to load based on multiple signals: ### Signal Sources
 
-1. **Explicit Commands**: `/build`, `/test`, `/review` directly load their mapped skill bundles.
-2. **File Type Detection**: Editing `.tsx` files auto-loads `frontend-ui-engineering`; `.proto` files trigger `api-and-interface-design`.
-3. **Git State**: Uncommitted changes in `src/` trigger `incremental-implementation`; failing CI status triggers `debugging-and-error-recovery`.
-4. **Natural Language Intent**: "I need to design an API for user authentication" activates `api-and-interface-design` even without a slash command.
+1. **Explicit Commands**: ````/build````, ````/test````, ````/review```` directly load their mapped skill bundles.
+2. **File Type Detection**: Editing ````.tsx```` files auto-loads ````frontend-ui-engineering````; ````.proto```` files trigger ````api-and-interface-design````.
+3. **Git State**: Uncommitted changes in ````src/```` trigger ````incremental-implementation````; failing CI status triggers ````debugging-and-error-recovery````.
+4. **Natural Language Intent**: "I need to design an API for user authentication" activates ````api-and-interface-design```` even without a slash command.
 
 ### Skill Composition
 
-Skills are composable. When you run `/build` on a React component that fetches data from a new API endpoint, the engine loads: - `incremental-implementation` (primary)
-- `frontend-ui-engineering` (UI layer)
-- `api-and-interface-design` (data contract)
-- `test-driven-development` (verification)
+Skills are composable. When you run ````/build```` on a React component that fetches data from a new API endpoint, the engine loads: - ````incremental-implementation```` (primary)
+- ````frontend-ui-engineering```` (UI layer)
+- ````api-and-interface-design```` (data contract)
+- ````test-driven-development```` (verification)
 
 This composition prevents the common failure mode where AI agents optimize for one layer while breaking adjacent systems.
 
@@ -248,11 +249,11 @@ This composition prevents the common failure mode where AI agents optimize for o
 
 One of the most innovative features of Agent Skills is the **anti-rationalization table** embedded in each skill. Senior engineers know that junior developers (and AI agents) often justify cutting corners. These tables pre-emptively flag common rationalizations and provide counter-arguments: | Common Rationalization | Counter-Argument | Skill |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | "I'll add tests later" | "Later never comes. Untested code ships to production." | test-driven-development |
 | "The API is internal only" | "Internal APIs become public. Design for external consumers from day one." | api-and-interface-design |
@@ -263,10 +264,10 @@ These tables are derived from real post-mortems and code review feedback at Goog
 
 ## Context Engineering: The Secret Sauce
 
-The `context-engineering` skill is arguably the most transformative. It teaches AI agents how to manage their own context window effectively: ### Rules Files
+The ````context-engineering```` skill is arguably the most transformative. It teaches AI agents how to manage their own context window effectively: ### Rules Files
 
-Place `.cursorrules`, `.claude.md`, or `.kiro.md` files in project roots to define: - Architecture decisions and their rationale
-- Forbidden patterns (e.g., "never use `any` in TypeScript")
+Place ````.cursorrules````, ````.claude.md````, or ````.kiro.md```` files in project roots to define: - Architecture decisions and their rationale
+- Forbidden patterns (e.g., "never use ````any```` in TypeScript")
 - Preferred libraries and version constraints
 - Testing conventions (jest vs vitest, coverage thresholds)
 
@@ -287,13 +288,13 @@ The skill includes Model Context Protocol (MCP) configurations for: - **Browser 
 
 Teams using Agent Skills should track these metrics: | Metric | Baseline (No Skills) | With Agent Skills | Delta |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Time from spec to first commit | 4 hours | 45 minutes | -81% |
 | PR review rounds | 3.2 average | 1.4 average | -56% |
@@ -305,36 +306,36 @@ Teams using Agent Skills should track these metrics: | Metric | Baseline (No Ski
 
 ### Strategy 1: Gradual Rollout
 
-Week 1-2: Introduce `/spec` and `/plan` only. Measure spec quality before any code is written.
-Week 3-4: Add `/build` and `/test`. Track test coverage improvements.
-Week 5-6: Enable `/review` and `/ship`. Measure production incident reduction.
+Week 1-2: Introduce ````/spec```` and ````/plan```` only. Measure spec quality before any code is written.
+Week 3-4: Add ````/build```` and ````/test````. Track test coverage improvements.
+Week 5-6: Enable ````/review```` and ````/ship````. Measure production incident reduction.
 
 ### Strategy 2: Pilot Squad
 
-Select a 3-4 person feature squad as the pilot. Have them use all 7 commands for one full sprint. Document learnings and create team-specific `.cursorrules` files based on feedback.
+Select a 3-4 person feature squad as the pilot. Have them use all 7 commands for one full sprint. Document learnings and create team-specific ````.cursorrules```` files based on feedback.
 
 ### Strategy 3: Gatekeeping Integration
 
 Integrate Agent Skills into CI/CD: - Block PRs that don't include a spec file for features > 100 lines
-- Run `/review` automatically on PRs and post results as comments
-- Require `/test` output (test plan) for any bug fix PR
+- Run ````/review```` automatically on PRs and post results as comments
+- Require ````/test```` output (test plan) for any bug fix PR
 
 ## Comparison: Agent Skills vs Engineering Ladders
 
 Agent Skills effectively compresses the learning curve of senior engineering practices: | Senior Engineer Practice | Years to Master | Agent Skills Equivalent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Writing comprehensive specs | 2-3 years | `/spec` command |
-| Breaking down complex projects | 1-2 years | `/plan` command |
-| Test-driven development discipline | 2-4 years | `/test` + skill |
-| Code review expertise | 3-5 years | `/review` command |
-| Production debugging intuition | 3-5 years | `debugging-and-error-recovery` |
-| API design judgment | 2-3 years | `api-and-interface-design` skill |
+| Writing comprehensive specs | 2-3 years | ````/spec```` command |
+| Breaking down complex projects | 1-2 years | ````/plan```` command |
+| Test-driven development discipline | 2-4 years | ````/test```` + skill |
+| Code review expertise | 3-5 years | ````/review```` command |
+| Production debugging intuition | 3-5 years | ````debugging-and-error-recovery```` |
+| API design judgment | 2-3 years | ````api-and-interface-design``` skill |
 
 This compression means junior developers using Agent Skills can produce output quality comparable to mid-level engineers within weeks, not years.
 
@@ -349,11 +350,11 @@ This compression means junior developers using Agent Skills can produce output q
 Agent Skills is the missing link between "AI can code" and "AI can ship production software." By encoding senior engineering judgment into structured, verifiable workflows, Addy Osmani has created a force multiplier for any development team. Whether you are a solo founder, a startup engineer, or an enterprise lead, these skills will make your AI agents write code you actually want to deploy.
 
 
----
+* * *
 *Which Agent Skill has improved your workflow the most? Let us know in the comments.*
 
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.

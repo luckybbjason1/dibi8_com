@@ -12,13 +12,14 @@ aliases:
   - /vi/posts/opensea-nft-marketplace-api/
 ---
 
+
 {{</* resource-info */>}}
 
 Hệ sinh thái token không thể thay thế (NFT) đã phát triển đáng kể kể từ sự bùng nổ tăng trưởng vào năm 2021. Từ một thị trường ngách cho nghệ thuật kỹ thuật số, nó đã phát triển thành một lớp cơ sở hạ tầng trị giá hàng tỷ đô la bao gồm game, bất động sản, danh tính và tài chính phi tập trung. Ở trung tâm của sự chuyển đổi này là [OpenSea](https://opensea.io/), thị trường NFT lớn nhất thế giới, và [OpenSea API](https://docs.opensea.io/reference/api-overview) mạnh mẽ của nó cho phép các nhà phát triển xây dựng hệ thống giao dịch lập trình, bảng phân tích và công cụ quản lý bộ sưu tập tự động.
 
 Trong hướng dẫn toàn diện 2026 này, chúng ta sẽ khám phá mọi thứ bạn cần biết về OpenSea API: từ lấy khóa API và thiết lập Python SDK đến niêm yết NFT, thực hiện giao dịch, phát trực tuyến sự kiện thở gian thực qua WebSocket, và xử lý giới hạn tốc độ trong môi trường sản xuất. Cho dù bạn đang xây dựng bot giao dịch, trình theo dõi danh mục đầu tư hay bộ tổng hợp thị trường, hướng dẫn này cung cấp nền tảng kỹ thuật đầy đủ.
 
----
+* * *
 
 ## OpenSea API là gì?
 
@@ -28,7 +29,7 @@ Tính đến năm 2026, OpenSea API hỗ trợ nhiều mạng blockchain bao g�
 
 API tuân theo các quy ước REST hiện đại với định dạng yêu cầu/phản hồi JSON, sử dụng xác thực dựa trên khóa API và triển khai mã trạng thái HTTP chuẩn để xử lý lỗi. Đối với các ứng dụng thở gian thực, API WebSocket cung cấp phát trực tuyến sự kiện cho các giao dịch, niêm yết, chuyển giao và cập nhật bộ sưu tập với độ trễ dưới một giây.
 
----
+* * *
 
 ## Bắt Đầu: Thiết Lập Khóa API và Xác Thực
 
@@ -43,15 +44,15 @@ Truy cập [OpenSea Developer Dashboard](https://docs.opensea.io/reference/api-k
 Sau khi được phê duyệt, hãy tạo khóa API mới từ bảng điều khiển. Bạn sẽ nhận được hai thông tin xác thực: - **Khóa API**: Dùng để xác định ứng dụng của bạn
 - **Khóa Bí Mật API**: Dùng để ký một số yêu cầu đã xác thực
 
-Lưu trữ các thông tin xác thực này một cách an toàn trong các biến môi trường: ```bash
+Lưu trữ các thông tin xác thực này một cách an toàn trong các biến môi trường: ````bash
 # Tệp .env
 OPENSEA_API_KEY=your_api_key_here
 OPENSEA_API_SECRET=your_api_secret_here
-```
+`````
 
 ### Bước 3: Kiểm Tra Xác Thực của Bạn
 
-Xác minh khóa API của bạn đang hoạt động bằng kiểm tra sức khỏe đơn giản: ```python
+Xác minh khóa API của bạn đang hoạt động bằng kiểm tra sức khỏe đơn giản: `````python
 import os
 import requests
 from dotenv import load_dotenv
@@ -75,11 +76,11 @@ response = requests.get(
 
 print(f"Trạng thái: {response.status_code}")
 print(f"Số bộ sưu tập: {len(response.json()[collections])}")
-```
+`````
 
 ### Bước 4: Cài Đặt SDK
 
-Cài đặt SDK JavaScript chính thức hoặc trình bao bọc Python do cộng đồng duy trì: ```bash
+Cài đặt SDK JavaScript chính thức hoặc trình bao bọc Python do cộng đồng duy trì: `````bash
 # SDK JavaScript chính thức
 npm install opensea-js
 
@@ -88,9 +89,9 @@ pip install opensea-api
 
 # Hoặc sử dụng requests trực tiếp
 pip install requests python-dotenv
-```
+`````
 
----
+* * *
 
 ## Tổng Quan Các Endpoint OpenSea API
 
@@ -100,7 +101,7 @@ OpenSea API được tổ chức thành các nhóm endpoint logic bao gồm mọ
 
 Các endpoint bộ sưu tập cung cấp metadata toàn diện về các bộ sưu tập NFT, bao gồm giá sàn, thống kê khối lượng, phân phối đặc điểm và liên kết xã hội.
 
-```python
+`````python
 def get_collection_details(collection_slug: str): """Lấy thông tin chi tiết về một bộ sưu tập NFT."""
     endpoint = f"{BASE_URL}/collections/{collection_slug}"
     response = requests.get(endpoint, headers=headers)
@@ -119,13 +120,13 @@ def get_collection_details(collection_slug: str): """Lấy thông tin chi tiết
 # Ví dụ sử dụng
 crypto_punks = get_collection_details("cryptopunks")
 print(f"Giá sàn CryptoPunks: {crypto_punks[floor_price]} ETH")
-```
+`````
 
 ### Endpoint Truy Vấn Tài Sản
 
 Các endpoint tài sản cho phép bạn truy xuất metadata NFT riêng lẻ, thông tin sở hữu và trạng thái niêm yết.
 
-```python
+`````python
 def get_asset_details(chain: str, address: str, token_id: str): """Truy xuất metadata cho một tài sản NFT cụ thể."""
     endpoint = f"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}"
     response = requests.get(endpoint, headers=headers)
@@ -150,13 +151,13 @@ bored_ape = get_asset_details(
 )
 print(f"Tài sản: {bored_ape[name]}")
 print(f"Số đặc điểm: {len(bored_ape[traits])}")
-```
+`````
 
 ### Endpoint Niêm Yết và Lệnh
 
 Các endpoint niêm yết quản lý việc tạo, truy xuất và hủy các lệnh bán NFT. Đây là các endpoint cốt lõi cho giao dịch lập trình.
 
-```python
+`````python
 def get_listings_by_collection(collection_slug: str, limit: int = 20): """Lấy các niêm yết đang hoạt động cho một bộ sưu tập cụ thể."""
     endpoint = f"{BASE_URL}/listings/collection/{collection_slug}/all"
     params = {"limit": limit}
@@ -179,13 +180,13 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20): """Lấy 
 # Lấy các niêm yết rẻ nhất
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
 for listing in sorted(listings, key=lambda x: float(x["price"])): print(f"Giá: {listing[price]} | Token: {listing[token][identifier]}")
-```
+`````
 
 ### Endpoint Tài Khoản và Hoạt Động
 
 Theo dõi hoạt động ví, tài sản sở hữu và các sự kiện lịch sử cho bất kỳ địa chỉ Ethereum nào.
 
-```python
+`````python
 def get_account_events(account_address: str, event_type: str = "order", limit: int = 50): """Truy xuất các sự kiện hoạt động cho một tài khoản cụ thể."""
     endpoint = f"{BASE_URL}/events/accounts/{account_address}"
     params = {
@@ -209,17 +210,17 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
 for event in events: print(f"{event[timestamp]}: {event[asset]} đã bán với giá {event[payment]}")
-```
+`````
 
----
+* * *
 
 ## Xây Dựng Tích Hợp Python SDK
 
-Trong khi SDK OpenSea chính thức được viết bằng JavaScript/TypeScript, các nhà phát triển Python có thể xây dựng các tích hợp mạnh mẽ bằng thư viện `requests` hoặc các gói do cộng đồng duy trì. Dưới đây là trình bao bọc SDK Python sẵn sàng cho sản xuất xử lý xác thực, phân trang, thử lại lỗi và giới hạn tốc độ.
+Trong khi SDK OpenSea chính thức được viết bằng JavaScript/TypeScript, các nhà phát triển Python có thể xây dựng các tích hợp mạnh mẽ bằng thư viện ````requests```` hoặc các gói do cộng đồng duy trì. Dưới đây là trình bao bọc SDK Python sẵn sàng cho sản xuất xử lý xác thực, phân trang, thử lại lỗi và giới hạn tốc độ.
 
 ### Lớp Python SDK Đầy Đủ
 
-```python
+`````python
 import os
 import time
 import logging
@@ -329,9 +330,9 @@ sdk = OpenSeaAPI()
 stats = sdk.get_collection_stats("boredapeyachtclub")
 print(f"Giá sàn: {stats[total][floor_price]}")
 print(f"Khối lượng: {stats[total][volume]}")
-```
+`````
 
----
+* * *
 
 ## Niêm Yết, Mua và Bán NFT Bằng Lập Trình
 
@@ -339,7 +340,7 @@ Giao dịch lập trình là tính năng mạnh mẽ nhất của OpenSea API. B
 
 ### Tạo Niêm Yết
 
-Để niêm yết một NFT, bạn cần tạo lệnh Seaport. Điều này yêu cầu ký lệnh bằng khóa riêng của chủ sở hữu: ```python
+Để niêm yết một NFT, bạn cần tạo lệnh Seaport. Điều này yêu cầu ký lệnh bằng khóa riêng của chủ sở hữu: `````python
 from web3 import Web3
 
 # Kết nối với nút Ethereum
@@ -393,11 +394,11 @@ response = requests.post(
     json=listing_data
 )
 print(f"Niêm yết đã tạo: {response.status_code}")
-```
+`````
 
 ### Thực Hiện Lệnh (Mua NFT)
 
-Để mua một NFT đã niêm yết, hãy truy xuất lệnh và gửi giao dịch thực hiện: ```python
+Để mua một NFT đã niêm yết, hãy truy xuất lệnh và gửi giao dịch thực hiện: `````python
 def fulfill_order(order_hash: str, buyer_address: str): """Thực hiện lệnh hiện có để mua NFT."""
     # Lấy chi tiết lệnh
     order_response = requests.get(
@@ -435,11 +436,11 @@ def fulfill_order(order_hash: str, buyer_address: str): """Thực hiện lệnh 
 # Mua vật phẩm niêm yết rẻ nhất
 cheapest = min(listings, key=lambda x: float(x["price"]))
 tx = fulfill_order(cheapest["order_hash"], "0xBuyerWalletAddress")
-```
+`````
 
 ### Các Thao Tác Hàng Loạt
 
-Để giao dịch tần suất cao, hãy sử dụng các endpoint hàng loạt để xử lý nhiều thao tác: ```python
+Để giao dịch tần suất cao, hãy sử dụng các endpoint hàng loạt để xử lý nhiều thao tác: `````python
 def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """Lấy nhiều niêm yết trong một yêu cầu duy nhất."""
     response = requests.post(
         f"{BASE_URL}/listings/batch",
@@ -452,9 +453,9 @@ def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """Lấy nhiề
 collections = ["boredapeyachtclub", "cryptopunks", "azuki"]
 requests_list = [{"collection": c, "limit": 5} for c in collections]
 batch_results = batch_get_listings(requests_list)
-```
+`````
 
----
+* * *
 
 ## Phát Trực Tuyến Sự Kiện Thở Gian Thực với WebSocket
 
@@ -462,7 +463,7 @@ API WebSocket OpenSea cho phép giám sát các sự kiện thị trường th�
 
 ### Thiết Lập Kết Nối WebSocket
 
-```python
+`````python
 import json
 import asyncio
 import websockets
@@ -530,11 +531,11 @@ async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.listen(handle_event)
 
 # asyncio.run(main())
-```
+`````
 
 ### Tham Chiếu Các Loại Sự Kiện
 
-API WebSocket hỗ trợ nhiều loại sự kiện cho các trường hợp sử dụng khác nhau: ```python
+API WebSocket hỗ trợ nhiều loại sự kiện cho các trường hợp sử dụng khác nhau: `````python
 # Các loại sự kiện có sẵn
 EVENT_TYPES = {
     "item_listed": "Niêm yết mới được tạo",
@@ -547,9 +548,9 @@ EVENT_TYPES = {
     "item_metadata_updated": "Metadata NFT đã được làm mới",
     "item_transfer": "Token đã được chuyển"
 }
-```
+`````
 
----
+* * *
 
 ## Giới Hạn Tốc Độ và Các Phương Pháp Tốt Nhất
 
@@ -566,7 +567,7 @@ Hiểu các giới hạn tốc độ là rất quan trọng cho các ứng dụn
 
 ### Các Tiêu Đề Giới Hạn Tốc Độ
 
-Mỗi phản hồi API đều bao gồm các tiêu đề giới hạn tốc độ: ```python
+Mỗi phản hồi API đều bao gồm các tiêu đề giới hạn tốc độ: `````python
 def check_rate_limits(response: requests.Response): """Trích xuất và giám sát trạng thái giới hạn tốc độ."""
     limit = response.headers.get("X-RateLimit-Limit")
     remaining = response.headers.get("X-RateLimit-Remaining")
@@ -587,11 +588,11 @@ def check_rate_limits(response: requests.Response): """Trích xuất và giám s
 # Áp dụng cho mỗi yêu cầu
 response = requests.get(f"{BASE_URL}/collections", headers=headers)
 limits = check_rate_limits(response)
-```
+`````
 
 ### Triển Khai Các Chiến Lược Backoff
 
-```python
+`````python
 import random
 
 class AdaptiveRateLimiter: """Bộ giới hạn tốc độ thích ứng với backoff hàm mũ."""
@@ -627,11 +628,11 @@ for page in range(100): limiter.wait()
         limiter.on_success()
         process_assets(response.json())
     except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code)
-```
+`````
 
 ### Các Chiến Lược Lưu Vào Bộ Nhớ Đệm
 
-```python
+`````python
 from functools import lru_cache
 from datetime import datetime, timedelta
 
@@ -657,13 +658,13 @@ def get_cached_collection(slug: str): cached = collection_cache.get(slug)
     data = sdk.get_collection_stats(slug)
     collection_cache.set(slug, data)
     return data
-```
+`````
 
----
+* * *
 
 ## Xây Dựng Bot Giao Dịch: Ví Dụ Hoàn Chỉnh
 
-Dưới đây là ví dụ hoàn chỉnh về bot giao dịch phát hiện chênh lệch giá giám sát giá sàn trên các bộ sưu tập: ```python
+Dưới đây là ví dụ hoàn chỉnh về bot giao dịch phát hiện chênh lệch giá giám sát giá sàn trên các bộ sưu tập: `````python
 import time
 from dataclasses import dataclass
 from typing import Callable
@@ -754,13 +755,13 @@ bot.add_collection("boredapeyachtclub", floor_threshold=30.0)
 bot.add_collection("azuki", floor_threshold=10.0)
 bot.on_opportunity(notify_discord)
 # bot.run(interval=60)
-```
+`````
 
----
+* * *
 
 ## Xử Lý Lỗi và Gỡ Lỗi
 
-Các ứng dụng sản xuất yêu cầu xử lý lỗi mạnh mẽ. API OpenSea trả về các phản hồi lỗi có cấu trúc: ```python
+Các ứng dụng sản xuất yêu cầu xử lý lỗi mạnh mẽ. API OpenSea trả về các phản hồi lỗi có cấu trúc: `````python
 class OpenSeaAPIError(Exception): """Ngoại lệ tùy chỉnh cho lỗi API OpenSea."""
     
     def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
@@ -793,9 +794,9 @@ def handle_api_error(response: requests.Response): """Phân tích và nâng các
 class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
         if not response.ok: handle_api_error(response)
         return response.json()
-```
+`````
 
----
+* * *
 
 ## Câu Hỏi Thường Gặp
 
@@ -805,7 +806,7 @@ Truy cập [OpenSea Developer Dashboard](https://docs.opensea.io/reference/api-k
 
 ### Các giới hạn tốc độ của OpenSea API là gì?
 
-Giới hạn tốc độ phụ thuộc vào cấp API của bạn. Cấp miễn phí cho phép 1 yêu cầu mỗi giây với đột biến 5. Cấp nhà phát triển tăng lên 10 RPS với đột biến 50. Cấp chuyên nghiệp hỗ trợ 40 RPS với đột biến 200. Các cấp doanh nghiệp cung cấp 120+ RPS cho các ứng dụng giao dịch tần suất cao. Kiểm tra các tiêu đề `X-RateLimit-*` trong mỗi phản hồi để giám sát việc sử dụng của bạn.
+Giới hạn tốc độ phụ thuộc vào cấp API của bạn. Cấp miễn phí cho phép 1 yêu cầu mỗi giây với đột biến 5. Cấp nhà phát triển tăng lên 10 RPS với đột biến 50. Cấp chuyên nghiệp hỗ trợ 40 RPS với đột biến 200. Các cấp doanh nghiệp cung cấp 120+ RPS cho các ứng dụng giao dịch tần suất cao. Kiểm tra các tiêu đề ````X-RateLimit-*```` trong mỗi phản hồi để giám sát việc sử dụng của bạn.
 
 ### Tôi có thể mua và bán NFT thông qua API không?
 
@@ -813,21 +814,21 @@ Có, API hỗ trợ giao dịch lập trình đầy đủ. Bạn có thể tạo
 
 ### OpenSea API hỗ trợ những blockchain nào?
 
-Tính đến năm 2026, OpenSea API hỗ trợ Ethereum mainnet, Polygon (PoS và zkEVM), Arbitrum One, Optimism, Base, Zora và Sepolia testnet. Mỗi chuỗi có tiền tố endpoint riêng (ví dụ: `/chain/ethereum/`, `/chain/polygon/`). Các endpoint tổng hợp đa chuỗi cho phép truy vấn đồng thởi trên nhiều mạng.
+Tính đến năm 2026, OpenSea API hỗ trợ Ethereum mainnet, Polygon (PoS và zkEVM), Arbitrum One, Optimism, Base, Zora và Sepolia testnet. Mỗi chuỗi có tiền tố endpoint riêng (ví dụ: ````/chain/ethereum/````, ````/chain/polygon/````). Các endpoint tổng hợp đa chuỗi cho phép truy vấn đồng thởi trên nhiều mạng.
 
 ### Có SDK Python chính thức cho OpenSea không?
 
-Không có SDK Python chính thức từ OpenSea. SDK chính thức là [opensea-js](https://github.com/ProjectOpenSea/opensea-js) (JavaScript/TypeScript). Tuy nhiên, có một số gói Python do cộng đồng duy trì, và bạn có thể dễ dàng xây dựng tích hợp của riêng mình bằng thư viện `requests` như được trình bày trong hướng dẫn này. REST API được tài liệu hóa đầy đủ và tuân theo các quy ước chuẩn.
+Không có SDK Python chính thức từ OpenSea. SDK chính thức là [opensea-js](https://github.com/ProjectOpenSea/opensea-js) (JavaScript/TypeScript). Tuy nhiên, có một số gói Python do cộng đồng duy trì, và bạn có thể dễ dàng xây dựng tích hợp của riêng mình bằng thư viện ````requests```` như được trình bày trong hướng dẫn này. REST API được tài liệu hóa đầy đủ và tuân theo các quy ước chuẩn.
 
 ### Làm thế nào để phát trực tuyến các sự kiện thở gian thực?
 
-Sử dụng API WebSocket tại `wss://stream.opensea.io/socket`. Đăng ký các loại sự kiện như `item_listed`, `item_sold` và `item_cancelled` với bộ lọc bộ sưu tập tùy chọn. Kết nối WebSocket yêu cầu khóa API của bạn trong tiêu đề `X-API-KEY`. Triển khai logic kết nối lại để đảm bảo độ tin cậy trong sản xuất.
+Sử dụng API WebSocket tại ````wss://stream.opensea.io/socket````. Đăng ký các loại sự kiện như ````item_listed````, ````item_sold```` và ````item_cancelled```` với bộ lọc bộ sưu tập tùy chọn. Kết nối WebSocket yêu cầu khóa API của bạn trong tiêu đề ````X-API-KEY```. Triển khai logic kết nối lại để đảm bảo độ tin cậy trong sản xuất.
 
 ### Giao thức Seaport là gì?
 
 Seaport là giao thức giao dịch NFT phi tập trung của OpenSea. Đó là một tiêu chuẩn hợp đồng thông minh nguồn mở xử lý khớp lệnh, thực hiện và phân phối phí. Khi bạn tạo hoặc thực hiện lệnh thông qua API, bạn đang tương tác với các hợp đồng Seaport trên chuỗi. Giao thức hỗ trợ các tính năng nâng cao như lệnh dựa trên tiêu chí, điền một phần và thực hiện hàng loạt.
 
----
+* * *
 
 
 
@@ -851,7 +852,7 @@ Các điểm chính từ hướng dẫn này: - **Xác Thực**: Lấy khóa API
 
 Cho dù bạn đang xây dựng trình theo dõi danh mục đầu tư đơn giản hay bot giao dịch tần suất cao, OpenSea API đều cung cấp cơ sở hạ tầng để tương tác lập trình với thị trường NFT lớn nhất thế giới. Bắt đầu với các ví dụ trong hướng dẫn này, giám sát các giới hạn tốc độ của bạn và mở rộng ứng dụng khi nhu cầu phát triển.
 
----
+* * *
 
 *Bài viết này được viết vào 2026-05-19. Thông số kỹ thuật API và giới hạn tốc độ có thể thay đổi. Tham khảo [tài liệu OpenSea chính thức](https://docs.opensea.io/) để biết các cập nhật mới nhất.*
 

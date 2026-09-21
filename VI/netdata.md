@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/netdata/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -54,21 +55,21 @@ Kiến trúc của Netdata tuân theo mô hình phân tán ưu tiên edge. Mỗi
 
 ### Cài đặt Một Dòng Lệnh (Linux)
 
-Cách nhanh nhất để chạy Netdata: ```bash
+Cách nhanh nhất để chạy Netdata: ````bash
 # Cài đặt Netdata với tất cả giá trị mặc định
 curl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash
-```
+`````
 
-Xác minh cài đặt: ```bash
+Xác minh cài đặt: `````bash
 sudo systemctl status netdata
 # Active: active (running) since ...
-```
+`````
 
-Truy cập dashboard cục bộ tại `http://localhost:19999`.
+Truy cập dashboard cục bộ tại ````http://localhost:19999````.
 
 ### Triển khai Docker
 
-Cho môi trường container: ```bash
+Cho môi trường container: `````bash
 docker run -d --name=netdata \
   -p 19999:19999 \
   -v /proc:/host/proc:ro \
@@ -77,11 +78,11 @@ docker run -d --name=netdata \
   --cap-add SYS_PTRACE \
   --security-opt apparmor=unconfined \
   netdata/netdata:latest
-```
+`````
 
 ### Docker Compose (Sẵn sàng Production)
 
-```yaml
+`````yaml
 version: '3.8'
 services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
@@ -101,13 +102,13 @@ services: netdata: image: netdata/netdata:v2.5.0
     environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes: netdata-config: netdata-lib: netdata-cache: ```
+volumes: netdata-config: netdata-lib: netdata-cache: `````
 
 ![Giao diện Giám sát Hệ thống Netdata](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
 ### Cài đặt Kubernetes Helm
 
-```bash
+`````bash
 # Thêm kho lưu trữ Helm của Netdata
 helm repo add netdata https://netdata.github.io/helmchart/
 helm repo update
@@ -116,33 +117,33 @@ helm repo update
 helm install netdata netdata/netdata \
   --namespace monitoring \
   --create-namespace
-```
+`````
 
-Xác minh các pod: ```bash
+Xác minh các pod: `````bash
 kubectl get pods -n monitoring
 # NAME                    READY   STATUS
 # netdata-parent-0        1/1     Running
 # netdata-child-xxx       1/1     Running
-```
+`````
 
 ### Tạo Cấu hình Hiện tại
 
-Tải xuống cấu hình đang chạy để tùy chỉnh: ```bash
+Tải xuống cấu hình đang chạy để tùy chỉnh: `````bash
 # Tải xuống cấu hình hiện tại đang áp dụng
 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
 # Hoặc sử dụng script edit-config
 sudo /etc/netdata/edit-config netdata.conf
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
 ### Prometheus Remote Write
 
-Xuất metrics Netdata sang Prometheus để lưu trữ dài hạn và truy vấn PromQL: ```bash
+Xuất metrics Netdata sang Prometheus để lưu trữ dài hạn và truy vấn PromQL: `````bash
 sudo /etc/netdata/edit-config exporting.conf
-```
+`````
 
-```conf
+`````conf
 [prometheus:remote_write]
     enabled = yes
     destination = prometheus:9090
@@ -151,15 +152,15 @@ sudo /etc/netdata/edit-config exporting.conf
     prefix = netdata
     send charts matching = *
     send hosts matching = *
-```
+`````
 
-Khởi động lại Netdata: ```bash
+Khởi động lại Netdata: `````bash
 sudo systemctl restart netdata
-```
+`````
 
 ### Grafana Dashboard
 
-Mặc dù Netdata có dashboard tích hợp, nhiều team thích Grafana để trực quan hóa tập trung. Thêm Netdata làm nguồn dữ liệu Prometheus trong Grafana: ```yaml
+Mặc dù Netdata có dashboard tích hợp, nhiều team thích Grafana để trực quan hóa tập trung. Thêm Netdata làm nguồn dữ liệu Prometheus trong Grafana: `````yaml
 # datasource.yaml trong Grafana
 apiVersion: 1
 datasources: - name: Netdata-Prometheus
@@ -168,11 +169,11 @@ datasources: - name: Netdata-Prometheus
     access: proxy
     isDefault: false
     jsonData: timeInterval: "1s"
-```
+`````
 
 ### Kubernetes DaemonSet (Nâng cao)
 
-Để có khả năng hiển thị ở cấp host trên mọi node K8s: ```yaml
+Để có khả năng hiển thị ở cấp host trên mọi node K8s: `````yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata: name: netdata
@@ -201,11 +202,11 @@ spec: selector: matchLabels: app: netdata
           hostPath: path: /sys
         - name: docker-sock
           hostPath: path: /var/run/docker.sock
-```
+`````
 
 ### Giám sát PostgreSQL
 
-Bật bộ thu thập PostgreSQL trong `go.d/postgres.conf`: ```yaml
+Bật bộ thu thập PostgreSQL trong ``go.d/postgres.conf``: `````yaml
 jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
     collect: - database_statistics
@@ -213,17 +214,17 @@ jobs: - name: local
       - index_statistics
       - replication_statistics
     timeout: 2
-```
+`````
 
-Kiểm tra bộ thu thập: ```bash
+Kiểm tra bộ thu thập: `````bash
 sudo /etc/netdata/edit-config go.d/postgres.conf
 # Khởi động lại để áp dụng
 sudo systemctl restart netdata
-```
+`````
 
 ### Giám sát Nginx
 
-Giám sát stub_status và access log của Nginx: ```yaml
+Giám sát stub_status và access log của Nginx: `````yaml
 # /etc/netdata/go.d/nginx.conf
 jobs: - name: local
     url: http://localhost/stub_status
@@ -231,7 +232,7 @@ jobs: - name: local
   - name: access_log
     path: /var/log/nginx/access.log
     parser: type: ltsv
-```
+`````
 
 ## Benchmarks / Các trường hợp sử dụng thực tế
 
@@ -269,7 +270,7 @@ Cấu hình mặc định được tối ưu cho sử dụng độc lập. Đố
 
 **Dấu chân tối thiểu (node con production):**
 
-```conf
+`````conf
 [global]
     # Chạy với mức ưu tiên thấp nhất để tránh ảnh hưởng ứng dụng
     process scheduling policy = batch
@@ -308,11 +309,11 @@ Cấu hình mặc định được tối ưu cho sử dụng độc lập. Đố
     idlejitter = no
     debugfs = no
     systemd-journal = no
-```
+`````
 
 **Node parent với lưu trữ phân tầng (giám sát trung tâm):**
 
-```conf
+`````conf
 [db]
     mode = dbengine
     storage tiers = 3
@@ -349,11 +350,11 @@ Cấu hình mặc định được tối ưu cho sử dụng độc lập. Đố
     bind to = *
     # Hạn chế truy cập mạng nội bộ
     allow connections from = 10.* 192.168.* 172.16.* 172.17.*
-```
+`````
 
 ### Cấu hình Streaming: stream.conf
 
-Trên node con (`/etc/netdata/stream.conf`): ```conf
+Trên node con (``/etc/netdata/stream.conf``): `````conf
 [stream]
     enabled = yes
     destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
@@ -364,35 +365,35 @@ Trên node con (`/etc/netdata/stream.conf`): ```conf
     buffer size bytes = 1048576
     reconnect delay seconds = 5
     initial clock resync iterations = 60
-```
+`````
 
-Trên parent (`/etc/netdata/stream.conf`): ```conf
+Trên parent (``/etc/netdata/stream.conf``): `````conf
 [API_KEY]
     enabled = yes
     default memory mode = dbengine
     health enabled by default = yes
-```
+`````
 
 ### Củng cố bảo mật
 
-Bật TLS cho giao diện web: ```conf
+Bật TLS cho giao diện web: `````conf
 [web]
     tls version = 1.3
     ssl key = /etc/netdata/ssl/key.pem
     ssl certificate = /etc/netdata/ssl/cert.pem
     # Yêu cầu TLS cho mọi kết nối
     bind to = *=dashboard|registry|badges|management|streaming|netdata.conf|readable|writable
-```
+`````
 
 ### Giám sát chính Netdata
 
-Theo dõi mức sử dụng tài nguyên của chính agent: ```bash
+Theo dõi mức sử dụng tài nguyên của chính agent: `````bash
 # Xem metrics nội bộ
 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog"
 
 # Kiểm tra thống kê dbengine
 curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -445,11 +446,11 @@ Một node parent duy nhất có thể tiêu thụ 1 triệu+ mẫu/giây. Để
 
 **Q: Làm thế nào để sao lưu cơ sở dữ liệu và cấu hình của Netdata?**
 
-Cấu hình nằm trong `/etc/netdata/` và có thể được quản lý phiên bản (Git, Ansible, Puppet). Cơ sở dữ liệu dbengine trong `/var/cache/netdata/` có khả năng tự phục hồi và không cần sao lưu thủ công — streaming đến nhiều node parent cung cấp sự dự phòng tự nhiên. Với môi trường quan trọng, hãy chạy cặp parent active-active.
+Cấu hình nằm trong ````/etc/netdata/```` và có thể được quản lý phiên bản (Git, Ansible, Puppet). Cơ sở dữ liệu dbengine trong ````/var/cache/netdata/```` có khả năng tự phục hồi và không cần sao lưu thủ công — streaming đến nhiều node parent cung cấp sự dự phòng tự nhiên. Với môi trường quan trọng, hãy chạy cặp parent active-active.
 
 **Q: Netdata có hỗ trợ metrics ứng dụng tùy chỉnh không?**
 
-Có. Sử dụng máy chủ StatsD tích hợp (cổng 8125), endpoint OpenMetrics, hoặc viết bộ thu thập tùy chỉnh bằng Python hoặc Go. Framework `go.d.plugin` hỗ trợ xây dựng bộ thu thập mới với mã mẫu tối thiểu.
+Có. Sử dụng máy chủ StatsD tích hợp (cổng 8125), endpoint OpenMetrics, hoặc viết bộ thu thập tùy chỉnh bằng Python hoặc Go. Framework ````go.d.plugin```` hỗ trợ xây dựng bộ thu thập mới với mã mẫu tối thiểu.
 
 ## Kết luận
 
@@ -460,7 +461,7 @@ Netdata thực hiện đúng lợi hứa mà hầu hết công cụ giám sát k
 1. Chạy lệnh cài đặt một dòng trên máy chủ quan trọng nhất của bạn ngay hôm nay
 2. Triển khai Helm chart trên cluster Kubernetes của bạn
 3. Cấu hình streaming parent-child để củng cố production
-4. Tinh chỉnh `netdata.conf` theo giới hạn tài nguyên của bạn bằng các cấu hình ở trên
+4. Tinh chỉnh ````netdata.conf``` theo giới hạn tài nguyên của bạn bằng các cấu hình ở trên
 
 Tham gia [cộng đồng Netdata trên Telegram](https://t.me/netdata) để được hỗ trợ thở gian thực và trao đổi với hơn 5.000 kỹ sư.
 
@@ -514,7 +515,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -524,7 +525,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](netdata)
 - [moneyprinterturbo-one-click-ai-video-generator](netdata)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

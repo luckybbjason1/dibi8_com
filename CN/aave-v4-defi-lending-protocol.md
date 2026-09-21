@@ -23,6 +23,7 @@ tags: ["aave"]
 aliases:
   - /posts/aave-v4-defi-lending-protocol/-
 ---
+
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -41,7 +42,7 @@ For developers building DeFi applications, trading bots, yield aggregators, or p
 Explore more articles in this category: 1. [1Inch Dex Aggregator Routing](/cn/1inch-dex-aggregator-routing)
 2. [Alpaca Trading Api Stock Broker](/cn/alpaca-trading-api-stock-broker)
 
----
+* * *
 
 ## What Is AAVE?
 
@@ -57,7 +58,7 @@ AAVE v4 introduces several architectural innovations: - **Modular pool architect
 - **Account abstraction integration** for gasless transactions and social recovery
 
 
----
+* * *
 ## Understanding the AAVE v4 Architecture
 
 Before diving into code, it is important to understand the core architectural components of AAVE v4.
@@ -74,36 +75,36 @@ Before diving into code, it is important to understand the core architectural co
 
 **Risk Module.** A new modular component in v4 that encapsulates risk parameters, collateral configurations, and isolation mode logic. This separation allows governance to update risk settings without modifying the core pool.
 
----
+* * *
 ## Setting Up Your Development Environment
 
 To integrate with AAVE v4, you need a properly configured development environment.
 
 ### Hardhat Project Setup
 
-```bash
+````bash
 mkdir aave-integration && cd aave-integration
 npm init -y
 npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
 npx hardhat init
-```
+`````
 
 ### Install AAVE Dependencies
 
-```bash
+`````bash
 npm install @aave/core-v4 @aave/periphery-v4
 npm install ethers dotenv
-```
+`````
 
 ### Environment Configuration
 
-```bash
+`````bash
 # .env
 ETHEREUM_RPC=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
 PRIVATE_KEY=your_private_key
-```
+`````
 
-```javascript
+`````javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
 require(dotenv).config();
@@ -123,19 +124,19 @@ module.exports = {
     },
   },
 };
-```
+`````
 
----
+* * *
 
 ## Core Smart Contract Integration
 
-The primary interface for interacting with AAVE v4 is the `IPool` contract. All supply, borrow, and repayment operations flow through this contract.
+The primary interface for interacting with AAVE v4 is the ````IPool```` contract. All supply, borrow, and repayment operations flow through this contract.
 
 ### Supplying Assets to AAVE
 
 When you supply assets to AAVE, you deposit ERC-20 tokens into the pool and receive aTokens in exchange. These aTokens automatically accrue interest.
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
@@ -163,13 +164,13 @@ contract AaveSupplier {
         pool.supply(asset, amount, msg.sender, 0);
     }
 }
-```
+`````
 
 ### Borrowing Assets
 
 Borrowing requires that the user has sufficient collateral supplied. The maximum borrow amount is determined by the collateral factor of supplied assets.
 
-```solidity
+`````solidity
 contract AaveBorrower {
     IPool public immutable pool;
     
@@ -196,11 +197,11 @@ contract AaveBorrower {
         pool.repay(asset, amount, interestRateMode, msg.sender);
     }
 }
-```
+`````
 
 ### Withdrawing Supplied Assets
 
-```solidity
+`````solidity
 function withdrawAsset(
     address asset,
     uint256 amount // use type(uint256).max for full withdrawal
@@ -208,15 +209,15 @@ function withdrawAsset(
     // Withdraw aTokens and receive underlying asset
     pool.withdraw(asset, amount, msg.sender);
 }
-```
+`````
 
----
+* * *
 
 ## Reading User Account Data
 
 AAVE provides a data provider contract that aggregates user-specific information including health factor, available borrows, and collateral breakdown.
 
-```solidity
+`````solidity
 import {IPoolDataProvider} from '@aave/core-v4/contracts/interfaces/IPoolDataProvider.sol';
 
 contract AaveDataReader {
@@ -253,13 +254,13 @@ contract AaveDataReader {
         return dataProvider.getReserveConfigurationData(asset);
     }
 }
-```
+`````
 
 ### JavaScript Integration with ethers.js
 
 For frontend and scripting integrations, ethers.js provides a convenient interface.
 
-```javascript
+`````javascript
 const { ethers } = require(ethers);
 require(dotenv).config();
 
@@ -287,9 +288,9 @@ async function getUserAccountData(userAddress) {
   console.log('Health Factor:', ethers.formatUnits(data.healthFactor, 18));
   return data;
 }
-```
+`````
 
----
+* * *
 
 ## Working with Flash Loans
 
@@ -297,7 +298,7 @@ Flash loans are uncollateralized loans that must be borrowed and repaid within a
 
 ### Flash Loan Receiver Contract
 
-```solidity
+`````solidity
 import {IFlashLoanSimpleReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanSimpleReceiver.sol';
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
@@ -346,13 +347,13 @@ contract FlashLoanArbitrage is IFlashLoanSimpleReceiver {
         return true;
     }
 }
-```
+`````
 
 ### Multi-Asset Flash Loans
 
 For advanced strategies requiring multiple assets, use the full flash loan interface.
 
-```solidity
+`````solidity
 import {IFlashLoanReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanReceiver.sol';
 
 contract MultiAssetFlashLoan is IFlashLoanReceiver {
@@ -393,9 +394,9 @@ contract MultiAssetFlashLoan is IFlashLoanReceiver {
         return true;
     }
 }
-```
+`````
 
----
+* * *
 
 ## Isolation Mode and Risk Management
 
@@ -403,7 +404,7 @@ AAVE v4 enhanced isolation mode, which allows borrowing against specific collate
 
 ### Supplying in Isolation Mode
 
-```solidity
+`````solidity
 contract IsolationModeSupplier {
     IPool public immutable pool;
     
@@ -437,11 +438,11 @@ contract IsolationModeSupplier {
         return pool.getReserveData(asset).isolationModeTotalDebt;
     }
 }
-```
+`````
 
 ### Checking Isolation Mode Constraints
 
-```javascript
+`````javascript
 async function checkIsolationModeConstraints(userAddress, asset) {
   const reserveData = await pool.getReserveData(asset);
   const userConfig = await pool.getUserConfiguration(userAddress);
@@ -456,9 +457,9 @@ async function checkIsolationModeConstraints(userAddress, asset) {
   console.log('User Collateral:', 
     ethers.formatUnits(userReserveConfig.currentATokenBalance, 18));
 }
-```
+`````
 
----
+* * *
 
 ## GHO Stablecoin Integration
 
@@ -466,7 +467,7 @@ GHO is AAVE's native decentralized stablecoin, minted against supplied collatera
 
 ### Minting GHO Against Collateral
 
-```solidity
+`````solidity
 import {IGhoToken} from '@aave/gho-core/contracts/gho/interfaces/IGhoToken.sol';
 
 contract GhoMinter {
@@ -507,11 +508,11 @@ contract GhoMinter {
         return gho.getDiscountPercent(user);
     }
 }
-```
+`````
 
 ### GHO Facilitator Pattern
 
-```solidity
+`````solidity
 import {IGhoFacilitator} from '@aave/gho-core/contracts/gho/interfaces/IGhoFacilitator.sol';
 
 contract CustomGhoFacilitator is IGhoFacilitator {
@@ -539,9 +540,9 @@ contract CustomGhoFacilitator is IGhoFacilitator {
         // Implementation for fee distribution
     }
 }
-```
+`````
 
----
+* * *
 
 ## Cross-Chain Portal and Bridge Operations
 
@@ -549,7 +550,7 @@ AAVE v4 leverages Chainlink CCIP for cross-chain liquidity transfers, allowing u
 
 ### Bridging aTokens Across Chains
 
-```solidity
+`````solidity
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 
 contract AaveCrossChainBridge {
@@ -590,15 +591,15 @@ contract AaveCrossChainBridge {
         return address(0); // Implementation details
     }
 }
-```
+`````
 
----
+* * *
 
 ## Liquidation Bot Implementation
 
 Liquidations are a critical mechanism for protocol solvency. Building a liquidation bot can be profitable while contributing to protocol health.
 
-```solidity
+`````solidity
 contract AaveLiquidator {
     IPool public immutable pool;
     
@@ -643,11 +644,11 @@ contract AaveLiquidator {
         return (healthFactor < 1e18, healthFactor);
     }
 }
-```
+`````
 
 ### JavaScript Liquidation Scanner
 
-```javascript
+`````javascript
 async function scanForLiquidations(usersToCheck) {
   const liquidatableUsers = [];
   
@@ -663,24 +664,24 @@ async function scanForLiquidations(usersToCheck) {
           totalCollateral: ethers.formatUnits(data.totalCollateralBase, 8),
           totalDebt: ethers.formatUnits(data.totalDebtBase, 8),
         });
-        console.log(`Liquidatable: ${user} HF: ${healthFactor}`);
+        console.log(````Liquidatable: ${user} HF: ${healthFactor}````);
       }
     } catch (error) {
-      console.error(`Error checking ${user}:`, error.message);
+      console.error(````Error checking ${user}:````, error.message);
     }
   }
   
   return liquidatableUsers;
 }
-```
+`````
 
----
+* * *
 
 ## Frontend Integration with React
 
 Modern DeFi frontends typically use wagmi and viem for blockchain interactions.
 
-```typescript
+`````typescript
 // hooks/useAave.ts
 import { useContractWrite, usePrepareContractWrite } from wagmi;
 import { parseUnits } from viem;
@@ -706,18 +707,18 @@ export function useSupplyAsset(asset: string, amount: string, decimals: number) 
     abi: POOL_ABI,
     functionName: supply,
     args: [
-      asset as `0x${string}`,
+      asset as ````0x${string}````,
       parseUnits(amount, decimals),
-      0xYourAddress as `0x${string}`,
+      0xYourAddress as ````0x${string}````,
       0,
     ],
   });
 
   return useContractWrite(config);
 }
-```
+`````
 
-```tsx
+`````tsx
 // components/SupplyButton.tsx
 import { useSupplyAsset } from '../hooks/useAave';
 
@@ -734,9 +735,9 @@ export function SupplyButton({ asset, amount }: { asset: string; amount: string 
     </button>
   );
 }
-```
+````
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -764,7 +765,7 @@ GHO is AAVE's native decentralized stablecoin, pegged to the US dollar. Unlike c
 
 Yes, AAVE v4 is deployed on multiple Layer 2 networks including Arbitrum, Optimism, Base, and Polygon. The integration patterns are nearly identical across chains, though you should use the appropriate contract addresses and RPC endpoints for each network. Layer 2 deployments typically offer significantly lower gas costs while maintaining the same security guarantees through rollup architectures.
 
----
+* * *
 
 
 

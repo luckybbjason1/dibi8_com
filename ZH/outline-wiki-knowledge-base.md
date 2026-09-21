@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/outline-wiki-knowledge-base/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：文档去哪了
@@ -55,7 +56,7 @@ Outline 的技术栈现代且架构良好：
 
 Outline 需要三个服务：应用、PostgreSQL 和 Redis。一个可用于生产环境的 Docker Compose 配置：
 
-```yaml
+````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -120,13 +121,13 @@ services: outline: image: outlinewiki/outline:0.83.0
       exit 0;
       "
 
-volumes: postgres-data: redis-data: minio-data: ```
+volumes: postgres-data: redis-data: minio-data: `````
 
 ### 生成密钥
 
 启动之前，生成所需的密钥：
 
-```bash
+`````bash
 # 生成 256 位密钥
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -135,11 +136,11 @@ export UTILS_SECRET=$(openssl rand -hex 16)
 
 echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
-```
+`````
 
-添加到 `.env` 文件：
+添加到 ````.env```` 文件：
 
-```bash
+`````bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -150,11 +151,11 @@ OIDC_CLIENT_ID=
 OIDC_CLIENT_SECRET=
 EOF
 chmod 600 .env
-```
+`````
 
 ### 启动服务栈
 
-```bash
+`````bash
 docker-compose up -d
 
 # 检查所有服务是否健康
@@ -162,9 +163,9 @@ docker-compose ps
 
 # 查看日志
 docker-compose logs -f outline
-```
+`````
 
-约 30 秒后，Outline 可在 `http://localhost:3000` 访问。
+约 30 秒后，Outline 可在 ````http://localhost:3000```` 访问。
 
 ### 配置认证
 
@@ -172,29 +173,29 @@ Outline 需要外部认证提供商。最简单的生产环境设置是 Google W
 
 1. 前往 [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
 2. 创建 **OAuth 2.0 Client ID**（Web application）
-3. 添加授权重定向 URI：`https://wiki.yourcompany.com/auth/oidc.callback`
-4. 将 client ID 和 secret 添加到 `.env` 文件：
+3. 添加授权重定向 URI：````https://wiki.yourcompany.com/auth/oidc.callback````
+4. 将 client ID 和 secret 添加到 ````.env```` 文件：
 
-```bash
+`````bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
 OIDC_TOKEN_URI=https://oauth2.googleapis.com/token
 OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
-```
+`````
 
 重启 Outline：
 
-```bash
+`````bash
 docker-compose restart outline
-```
+`````
 
 ### 在 DigitalOcean 上快速部署
 
 对于没有现有 Docker 设置的团队，[在 DigitalOcean 上部署](https://m.do.co/c/eca87ac14ee0)：
 
-```bash
+`````bash
 # 在全新的 Ubuntu 24.04 Droplet（$6/月）上
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -203,7 +204,7 @@ git clone https://github.com/outline/outline.git
 cd outline
 # 复制上面的 docker-compose.yml，配置 .env，然后：
 docker compose up -d
-```
+`````
 
 或者，使用 [HTStack](https://my.htstack.com/aff.php?aff=27187) 进行内置 SSL 和备份的托管 Outline 部署。
 
@@ -216,7 +217,7 @@ Outline 的 Slack 集成是其最强大的功能之一：
 1. 前往 [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
 2. 粘贴此 manifest：
 
-```yaml
+`````yaml
 _display_name: Outline Wiki
 features: bot_user: display_name: Outline
     always_online: true
@@ -233,19 +234,19 @@ settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hoo
     bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
-```
+`````
 
 3. 将应用安装到你的 workspace
-4. 将 Bot User OAuth Token 和 Verification Token 复制到 `.env`
+4. 将 Bot User OAuth Token 和 Verification Token 复制到 ````.env````
 5. 重启 Outline
 
-连接后，在 Slack 中输入 `/outline deploy rollback` 即可即时搜索你的 Wiki 并粘贴带有文档预览的链接。
+连接后，在 Slack 中输入 ````/outline deploy rollback```` 即可即时搜索你的 Wiki 并粘贴带有文档预览的链接。
 
 ### API 和 Webhooks
 
 对你的知识库进行编程访问：
 
-```bash
+`````bash
 # 列出所有 Collection
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -266,7 +267,7 @@ curl -X POST "https://wiki.yourcompany.com/api/documents.search" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"query": "rollback procedure"}'
-```
+`````
 
 从 Outline UI 的 **Settings** → **API** 生成 API Token。
 
@@ -274,7 +275,7 @@ curl -X POST "https://wiki.yourcompany.com/api/documents.search" \
 
 从你的 Git 仓库自动发布文档：
 
-```bash
+`````bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
@@ -296,13 +297,13 @@ jobs: publish: runs-on: ubuntu-latest
               "text": $(echo "$DOCS" | jq -R -s .),
               "append": false
             }"
-```
+`````
 
 ### 从 Notion 或 Confluence 导入
 
 迁移现有文档：
 
-```bash
+`````bash
 # 从 Notion 导出：
 # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
@@ -312,7 +313,7 @@ jobs: publish: runs-on: ubuntu-latest
 # 导入 Outline：
 # Collection → Import → Upload Markdown/ZIP file
 # Outline 保留标题结构并将 Notion 数据库转换为表格
-```
+`````
 
 ## 基准测试与实际用例
 
@@ -322,9 +323,9 @@ jobs: publish: runs-on: ubuntu-latest
 
 | 指标 | 结果 |
 |
----
+* * *
 |
----
+* * *
 |
 | 首次文档加载时间 | **~180ms** |
 | 实时同步延迟（2 位编辑者） | **~45ms** |
@@ -351,7 +352,7 @@ jobs: publish: runs-on: ubuntu-latest
 
 ### 1. 使用 Let's Encrypt 配置 HTTPS
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/outline
 server {
     listen 80;
@@ -387,11 +388,11 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ### 2. 数据库备份与恢复
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/backup/outline-backup.sh
 set -euo pipefail
@@ -421,16 +422,16 @@ aws s3 cp "$BACKUP_DIR/outline_full_$TIMESTAMP.zip" \
 ls -t "$BACKUP_DIR"/outline_full_*.zip | tail -n +15 | xargs -r rm
 
 echo "Backup completed: outline_full_$TIMESTAMP.zip"
-```
+`````
 
-```bash
+`````bash
 # 每天凌晨 3 点运行
 0 3 * * * /opt/backup/outline-backup.sh >> /var/log/outline-backup.log 2>&1
-```
+`````
 
 ### 3. 监控技术栈
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v2.51.0
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -453,13 +454,13 @@ services: prometheus: image: prom/prometheus:v2.51.0
       - '--path.sysfs=/host/sys'
     restart: unless-stopped
 
-volumes: prometheus-data: grafana-data: ```
+volumes: prometheus-data: grafana-data: `````
 
 ### 4. 使用 Backblaze B2 的 S3 兼容存储
 
 生产环境文件存储，用 Backblaze B2（或 AWS S3）替代 MinIO：
 
-```bash
+`````bash
 # 为 Backblaze B2 添加 .env 配置
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -467,11 +468,11 @@ AWS_REGION=us-west-002
 AWS_S3_UPLOAD_BUCKET_URL=https://s3.us-west-002.backblazeb2.com
 AWS_S3_UPLOAD_BUCKET_NAME=your-outline-bucket
 AWS_S3_FORCE_PATH_STYLE=false
-```
+`````
 
 ### 5. 多环境设置
 
-```yaml
+`````yaml
 # docker-compose.prod.yml — 使用生产配置扩展基础配置
 services: outline: image: outlinewiki/outline:0.83.0
     environment: - NODE_ENV=production
@@ -486,23 +487,23 @@ services: outline: image: outlinewiki/outline:0.83.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | Outline | Notion | Confluence | BookStack | Wiki.js |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | BSL-1.1 | 专有 | 专有 | MIT | AGPL-3.0 |
 | **自托管** | **是** | 否 | 是（Data Center） | 是 | 是 |
@@ -552,11 +553,11 @@ Outline 使用 Operational Transforms（OT）—— 与 Google Docs 使用的相
 
 ### 自托管 Outline 实例的备份策略是什么？
 
-备份三个组件：（1）使用 `pg_dump` 的 PostgreSQL 数据库，（2）来自 S3 兼容存储（MinIO 或 AWS S3）的上传文件，以及（3）Redis 数据（可选，可以重建）。每日 cron 作业将数据库转储并同步文件到外部存储，涵盖大多数恢复场景。每季度测试恢复。
+备份三个组件：（1）使用 ````pg_dump```` 的 PostgreSQL 数据库，（2）来自 S3 兼容存储（MinIO 或 AWS S3）的上传文件，以及（3）Redis 数据（可选，可以重建）。每日 cron 作业将数据库转储并同步文件到外部存储，涵盖大多数恢复场景。每季度测试恢复。
 
 ### 我可以从 Notion 或 Confluence 导入文档吗？
 
-可以。Notion 支持 Markdown 导出（**Settings** → **Export All Workspace Content**），Outline 直接导入。Confluence 需要 XML 导出，通过 `confluence-to-markdown` 等工具转换为 Markdown。导入保留标题结构、代码块和图像。Notion 数据库在 Outline 中转换为 Markdown 表格。
+可以。Notion 支持 Markdown 导出（**Settings** → **Export All Workspace Content**），Outline 直接导入。Confluence 需要 XML 导出，通过 ````confluence-to-markdown```` 等工具转换为 Markdown。导入保留标题结构、代码块和图像。Notion 数据库在 Outline 中转换为 Markdown 表格。
 
 ### 50 人团队 Outline 需要多少服务器资源？
 
@@ -564,11 +565,11 @@ Outline 使用 Operational Transforms（OT）—— 与 Google Docs 使用的相
 
 ### 有没有办法公开访问文档？
 
-有。任何文档都可以通过只读公开链接共享。前往 **Share** → **Publish to Internet** 生成公开 URL。这对 API 文档、用户指南或开源项目 Wiki 很有用。公开文档不需要认证，除非添加 `noindex` 标签，否则会被搜索引擎索引。
+有。任何文档都可以通过只读公开链接共享。前往 **Share** → **Publish to Internet** 生成公开 URL。这对 API 文档、用户指南或开源项目 Wiki 很有用。公开文档不需要认证，除非添加 ````noindex```` 标签，否则会被搜索引擎索引。
 
 ### 我可以将 Outline 与 CI/CD 流水线集成吗？
 
-可以，通过 REST API。从 **Settings** → **API** 生成 API Token，然后在 GitHub Actions、GitLab CI 或任何 CI 工具中使用它来自动发布文档更新。常见模式是将 Markdown 文件提交到 Git 仓库的 `docs/` 目录，然后让 CI 在每次合并到 main 时推送到 Outline。
+可以，通过 REST API。从 **Settings** → **API** 生成 API Token，然后在 GitHub Actions、GitLab CI 或任何 CI 工具中使用它来自动发布文档更新。常见模式是将 Markdown 文件提交到 Git 仓库的 ````docs/``` 目录，然后让 CI 在每次合并到 main 时推送到 Outline。
 
 ## 结论：拥有团队的知识
 
@@ -585,7 +586,7 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 **相关工具**：[Keycloak SSO 设置](keycloak-sso-setup-dibi8-internal-link) | [MinIO S3 设置指南](minio-s3-setup-dibi8-internal-link)
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -606,7 +607,7 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 - [MinIO 文档](https://min.io/docs/)
 - [Google OIDC 设置指南](https://developers.google.com/identity/protocols/oauth2/openid-connect)
 
----
+* * *
 
 *本文可能包含联盟链接。如果你通过我们的推荐链接注册 DigitalOcean 或 HTStack，我们会获得佣金，不会增加你的额外费用。我们只推荐自己使用的服务。*
 
@@ -636,7 +637,7 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -646,6 +647,6 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](outline-wiki-knowledge-base)
 - [2026-06-22-trending-ai-agents](outline-wiki-knowledge-base)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

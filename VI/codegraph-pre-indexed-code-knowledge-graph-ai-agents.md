@@ -8,6 +8,7 @@ tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
 
+
 # CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn
 
 ## Giới thiệu
@@ -38,7 +39,7 @@ Cài đặt CodeGraph rất đơn giản. Cách phổ biến nhất là qua plug
 
 ### Cài đặt qua Gradle
 
-Thêm CodeGraph như một phụ thuộc trong `build.gradle.kts` của bạn: ```kotlin
+Thêm CodeGraph như một phụ thuộc trong ``build.gradle.kts`` của bạn: ````kotlin
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
 }
@@ -47,50 +48,50 @@ dependencies {
     implementation("io.codegraph:codegraph-core:1.2.0")
     implementation("io.codegraph:codegraph-cli:1.2.0")
 }
-```
+`````
 
 ### Cài đặt qua Maven
 
-```xml
+`````xml
 <dependency>
     <groupId>io.codegraph</groupId>
     <artifactId>codegraph-core</artifactId>
     <version>1.2.0</version>
 </dependency>
-```
+`````
 
 ### Cài đặt CLI
 
-Tải JAR CLI mới nhất và chạy trực tiếp: ```bash
+Tải JAR CLI mới nhất và chạy trực tiếp: `````bash
 curl -L -o codegraph-cli.jar https://repo.maven.apache.org/maven2/io/codegraph/codegraph-cli/1.2.0/codegraph-cli-1.2.0.jar
 java -jar codegraph-cli.jar --version
-```
+`````
 
-hoặc cài đặt qua Homebrew trên macOS: ```bash
+hoặc cài đặt qua Homebrew trên macOS: `````bash
 brew tap codegraph/tap
 brew install codegraph
-```
+`````
 
 ## Xây dựng đồ thị đầu tiên của bạn
 
-Sau khi CodeGraph được cài đặt, tạo một đồ thị kiến thức từ mã nguồn của bạn chỉ cần một lệnh: ```bash
+Sau khi CodeGraph được cài đặt, tạo một đồ thị kiến thức từ mã nguồn của bạn chỉ cần một lệnh: `````bash
 codegraph scan \
   --source-dir ./src/main \
   --output-dir ./codegraph-output \
   --format json
-```
+`````
 
-Lệnh này quét tất cả các tệp nguồn Kotlin và Java dưới `./src/main`, xây dựng đồ thị phụ thuộc và xuất nó sang JSON trong `./codegraph-output`. Bạn có thể thay `json` bằng `dot` cho định dạng Graphviz hoặc `graphml` cho định dạng tương thích với các công cụ cơ sở dữ liệu đồ thị.
+Lệnh này quét tất cả các tệp nguồn Kotlin và Java dưới ````./src/main````, xây dựng đồ thị phụ thuộc và xuất nó sang JSON trong ````./codegraph-output````. Bạn có thể thay ````json```` bằng ````dot```` cho định dạng Graphviz hoặc ````graphml```` cho định dạng tương thích với các công cụ cơ sở dữ liệu đồ thị.
 
-Sau khi tạo, kiểm tra kết quả đầu ra: ```bash
+Sau khi tạo, kiểm tra kết quả đầu ra: `````bash
 codegraph inspect \
   --input ./codegraph-output/graph.json \
   --query "classes package=com.example.service"
-```
+`````
 
 ## Sử dụng API lập trình
 
-Để tích hợp sâu hơn, CodeGraph cung cấp một API lập trình phong phú. Dưới đây là cách tải đồ thị, truy vấn và trích xuất mối quan hệ một cách lập trình: ```kotlin
+Để tích hợp sâu hơn, CodeGraph cung cấp một API lập trình phong phú. Dưới đây là cách tải đồ thị, truy vấn và trích xuất mối quan hệ một cách lập trình: `````kotlin
 import io.codegraph.*
 import io.codegraph.query.*
 
@@ -126,56 +127,56 @@ fun main() {
     println("Trình gọi: ${callers.count()}")
     println("Phụ thuộc truyền dẫn: ${dependencies.count()}")
 }
-```
+`````
 
 ## Truy vấn đồ thị bằng ngôn ngữ truy vấn tích hợp
 
 CodeGraph bao gồm một ngôn ngữ truy vấn khai báo mạnh mẽ. Dưới đây là một số mẫu phổ biến: ### Tìm tất cả các lớp trong một gói
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "classes package=com.example.api"
-```
+`````
 
 ### Tìm các hàm gọi một phương thức cụ thể
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "callers of UserService.login"
-```
+`````
 
 ### Theo dõi chuỗi gọi cho một hàm
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "call chain of UserController.processRequest" \
   --depth 5
-```
+`````
 
 ### Tìm các hàm bị cô lập
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "functions with zero callers"
-```
+`````
 
 ### Phát hiện phụ thuộc vòng lặp
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "circular dependencies among packages"
-```
+`````
 
 ## Trường hợp sử dụng
 
 CodeGraph phục vụ nhiều kịch bản phát triển đa dạng. Đây là những trường hợp có tác động nhất: ### Đào tạo nhân viên mới
 
-Thành viên mới có thể truy vấn đồ thị để hiểu cấu trúc mã nguồn mà không cần đọc mọi tệp. Một truy vấn đơn giản như `classes package=com.example` trả về danh sách sạch tất cả các lớp được tổ chức theo gói, cung cấp bản đồ tư duy tức thì về kiến trúc.
+Thành viên mới có thể truy vấn đồ thị để hiểu cấu trúc mã nguồn mà không cần đọc mọi tệp. Một truy vấn đơn giản như ````classes package=com.example```` trả về danh sách sạch tất cả các lớp được tổ chức theo gói, cung cấp bản đồ tư duy tức thì về kiến trúc.
 
 ### An toàn khi tái cấu trúc
 
@@ -183,22 +184,22 @@ Trước khi tái cấu trúc một lớp hoặc hàm, nhà phát triển có th
 
 ### Phát hiện vi phạm kiến trúc
 
-CodeGraph có thể tự động phát hiện vi phạm kiến trúc. Ví dụ, bạn có thể truy vấn bất kỳ phụ thuộc nào từ lớp UI đến lớp dữ liệu bỏ qua lớp dịch vụ: ```bash
+CodeGraph có thể tự động phát hiện vi phạm kiến trúc. Ví dụ, bạn có thể truy vấn bất kỳ phụ thuộc nào từ lớp UI đến lớp dữ liệu bỏ qua lớp dịch vụ: `````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "classes package=ui" \
   --follow "DEPENDS_ON" \
   --filter "classes package=repo" \
   --violation "should go through service layer"
-```
+`````
 
 ### Nhận diện nợ kỹ thuật
 
-Các hàm có quá nhiều cạnh đầu vào hoặc các hàm không có trình gọi nào có thể cho thấy gánh năng bảo trì. CodeGraph đánh dấu những vấn đề này bằng các truy vấn: ```bash
+Các hàm có quá nhiều cạnh đầu vào hoặc các hàm không có trình gọi nào có thể cho thấy gánh năng bảo trì. CodeGraph đánh dấu những vấn đề này bằng các truy vấn: `````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "functions with callers > 20"
-```
+`````
 
 ### Phân tích bề mặt API
 
@@ -223,7 +224,7 @@ codegraph query \
 
 ## Ví dụ thực tế: Xây dựng máy chủ GraphQL
 
-Giả sử bạn đang xây dựng máy chủ GraphQL bằng Ktor. CodeGraph giúp bạn trực quan hóa mối quan hệ giữa các mô hình dữ liệu, kiểu GraphQL và bộ giải trình: ```kotlin
+Giả sử bạn đang xây dựng máy chủ GraphQL bằng Ktor. CodeGraph giúp bạn trực quan hóa mối quan hệ giữa các mô hình dữ liệu, kiểu GraphQL và bộ giải trình: `````kotlin
 import io.codegraph.*
 
 fun analyzeGraphQLServer() {
@@ -255,7 +256,7 @@ fun analyzeGraphQLServer() {
     println("Bộ giải: ${resolvers.count()}")
     println("Ánh xạ mô hình-bộ giải: ${mappings.count()}")
 }
-```
+`````
 
 Phân tích này tiết lộ các khoảng trống trong phạm vi phủ bộ giải của bạn và giúp đảm bảo mọi mô hình dữ liệu đều có bộ giải GraphQL tương ứng.
 
@@ -274,7 +275,7 @@ Phân tích này tiết lộ các khoảng trống trong phạm vi phủ bộ gi
 
 ## Tích hợp với quy trình CI/CD
 
-CodeGraph tích hợp liền mạch vào quy trình CI/CD để tự động thực thi các quy tắc kiến trúc: ```yaml
+CodeGraph tích hợp liền mạch vào quy trình CI/CD để tự động thực thi các quy tắc kiến trúc: `````yaml
 # .github/workflows/codegraph.yml
 name: Phân tích CodeGraph
 on: pull_request: branches: [main]
@@ -296,7 +297,7 @@ jobs: analyze: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: codegraph-report
           path: build/codegraph/
-```
+`````
 
 ## Hạn chế
 
@@ -316,15 +317,15 @@ CodeGraph hiện hỗ trợ Kotlin và Java. Nó sử dụng các API nội bộ
 
 ### Q2: CodeGraph có thể phân tích các dự án Gradle đa mô-đun không?
 
-Có. CodeGraph xử lý native các dự án Gradle và Maven đa mô-đun. Khi bạn chạy `codegraph scan` ở gốc dự án, nó tự động phát hiện tất cả các mô-đun và các phụ thuộc giữa chúng. Cờ `--multi-module` kích hoạt phân tích giữa các mô-đun bổ sung: ```bash
+Có. CodeGraph xử lý native các dự án Gradle và Maven đa mô-đun. Khi bạn chạy ``codegraph scan`` ở gốc dự án, nó tự động phát hiện tất cả các mô-đun và các phụ thuộc giữa chúng. Cờ ``--multi-module`` kích hoạt phân tích giữa các mô-đun bổ sung: `````bash
 codegraph scan --source-dir . --multi-module
-```
+`````
 
 ### Q3: CodeGraph có thể xử lý mã nguồn lớn đến mức nào?
 
-CodeGraph đã được kiểm tra với các mã nguồn lên đến 2 triệu dòng mã. Hiệu suất mở rộng xấp xỉ tuyến tính với kích thước mã. Đối với các mã nguồn rất lớn (1M+ dòng), tăng kích thước heap JVM xuống 8GB hoặc hơn: ```bash
+CodeGraph đã được kiểm tra với các mã nguồn lên đến 2 triệu dòng mã. Hiệu suất mở rộng xấp xỉ tuyến tính với kích thước mã. Đối với các mã nguồn rất lớn (1M+ dòng), tăng kích thước heap JVM xuống 8GB hoặc hơn: `````bash
 java -Xmx8g -jar codegraph-cli.jar scan --source-dir ./src
-```
+`````
 
 ### Q4: Tôi có thể sử dụng CodeGraph với các dự án không phải Kotlin không?
 
@@ -332,17 +333,17 @@ Nếu dự án của bạn biên dịch trên JVM, bạn có thể sử dụng C
 
 ### Q5: CodeGraph có xử lý mã được tạo động không?
 
-CodeGraph phân tích mã nguồn được biên dịch tĩnh. Nếu dự án của bạn sử dụng tạo mã (ví dụ: Kotlin Poet, jOOQ codegen, Protobuf), bạn nên đảm bảo mã được tạo được bao gồm trong mục tiêu quét. Thêm các thư mục nguồn được tạo vào đường dẫn quét: ```bash
+CodeGraph phân tích mã nguồn được biên dịch tĩnh. Nếu dự án của bạn sử dụng tạo mã (ví dụ: Kotlin Poet, jOOQ codegen, Protobuf), bạn nên đảm bảo mã được tạo được bao gồm trong mục tiêu quét. Thêm các thư mục nguồn được tạo vào đường dẫn quét: `````bash
 codegraph scan \
   --source-dir ./src/main \
   --source-dir ./build/generated
-```
+`````
 
 ### Q6: CodeGraph có thể được sử dụng cho các chỉ số chất lượng mã không?
 
-Có. CodeGraph có thể tính toán nhiều chỉ số chất lượng mã từ cấu trúc đồ thị: độ phức tạp cyclomatic khi kết hợp với phân tích AST, chỉ số coupling, điểm cohesion và độ sâu phụ thuộc. Sử dụng lệnh con `codegraph metrics`: ```bash
+Có. CodeGraph có thể tính toán nhiều chỉ số chất lượng mã từ cấu trúc đồ thị: độ phức tạp cyclomatic khi kết hợp với phân tích AST, chỉ số coupling, điểm cohesion và độ sâu phụ thuộc. Sử dụng lệnh con ``codegraph metrics``: `````bash
 codegraph metrics --input ./codegraph-output/graph.json --output ./report.json
-```
+````
 
 ### Q7: CodeGraph khác với các công cụ phân tích mã tích hợp sẵn trong IDE như thế nào?
 
@@ -370,7 +371,7 @@ Sẵn sàng biến mã nguồn của bạn thành một đồ thị kiến thứ
 - DigitalOcean: Triển khai dự án của bạn trên DigitalOcean. Đăng ký tại: https://m.do.co/c/eca87ac14ee0
 - HTStack: Quản lý cơ sở hạ tầng đám mây của bạn. Tham gia tại: https://my.htstack.com/aff.php?aff=27187
 
----
+* * *
 
 DIBI8 là cổng vào để khám phá các công cụ mã nguồn mở tốt nhất, đổi mới AI và tài nguyên nhà phát triển. Đăng ký kênh Telegram của chúng tôi để nhận cập nhật hàng ngày về các dự án có tác động nhất trong công nghệ.
 
@@ -400,7 +401,7 @@ DIBI8 là cổng vào để khám phá các công cụ mã nguồn mở tốt nh
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -410,7 +411,7 @@ DIBI8 là cổng vào để khám phá các công cụ mã nguồn mở tốt nh
 - [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
 - [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

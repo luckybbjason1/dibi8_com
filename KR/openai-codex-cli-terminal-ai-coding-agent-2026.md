@@ -22,6 +22,7 @@ aliases:
   - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
 ---
 
+
 {</* resource-info */>}
 
 ## 1. OpenAI Codex CLI란 무엇이며 왜 2026년 개발자들이 전환하는가
@@ -39,7 +40,7 @@ OpenAI Codex CLI는 이 변화의 중심에 있다. **GitHub Star 83,000개 이�
 
 브라우저 탭에서 스니펫을 복사 붙여넣기 하고 있다면, 이 도구는 소프트웨어 작성 방식을 근본적으로 재편할 것이다.
 
----
+* * *
 
 ## 2. 제로에서 프로덕션까지 5분 이내 설치
 
@@ -53,56 +54,56 @@ OpenAI Codex CLI는 이 변화의 중심에 있다. **GitHub Star 83,000개 이�
 
 **옵션 A: npm(크로스 플랫폼)**
 
-```bash
+````bash
 npm install -g @openai/codex
 codex --version
-```
+`````
 
 **옵션 B: Homebrew(macOS 네이티브 바이너리)**
 
-```bash
+`````bash
 brew update
 brew install --cask codex
 codex --version
-```
+`````
 
 **옵션 C: 원라인 설치 스크립트**
 
-```bash
+`````bash
 curl -sSL https://releases.openai.com/codex/install.sh | bash
-```
+`````
 
 ### 인증
 
-```bash
+`````bash
 codex login
-```
+`````
 
 기본 브라우저가 OpenAI 인증 흐름을 연다. ChatGPT 계정으로 로그인하고 OAuth 요청을 승인한 뒤 터미널로 돌아오면 된다. API 키 관리 불필요. 별도 과금 대시보드 불필요. 사용량은 ChatGPT 플랜 할당량에 카운트된다.
 
-API 키 모드가 필요한 팀(공유 구독이 부족한 엔터프라이즈 환경에서 흔함): ```bash
+API 키 모드가 필요한 팀(공유 구독이 부족한 엔터프라이즈 환경에서 흔함): `````bash
 export OPENAI_API_KEY="sk-..."
 codex
-```
+`````
 
-또는 `~/.codex/config.toml`에 영구 저장: ```toml
+또는 ``~/.codex/config.toml``에 영구 저장: `````toml
 preferred_auth_method = "apikey"
-```
+`````
 
 ### 첫 작업: 표준 스모크 테스트
 
-아무 리포지토리로 이동해서 범위가 정해진 작업을 발급한다: ```bash
+아무 리포지토리로 이동해서 범위가 정해진 작업을 발급한다: `````bash
 cd ~/projects/your-repo
 codex "src/utils/date.ts의 parseDate 함수에 대한 단위 테스트를 추가하라. 유효한 입력, 경계 케이스, 잘못된 형식을 모두 다뤄라. 테스트 스위트를 실행하고 모든 테스트가 통과하는지 확인하라."
-```
+`````
 
 Codex가 다음을 수행한다: 1. 리포지토리를 스캔해 테스트 프레임워크(Jest, Vitest, Mocha, pytest 등)를 식별
-2. `parseDate` 구현 읽기
+2. ````parseDate```` 구현 읽기
 3. 의미 있는 케이스로 테스트 파일 생성
 4. 테스트 실행
 5. diff를 제시하고 디스크에 쓰기 전 승인 요청
 
----
+* * *
 
 ## 3. 사고방식의 전환: 코드 타이핑에서 에이전트 지휘로
 
@@ -115,7 +116,7 @@ Codex CLI를 사용할 때 가장 중요한 적응은 자기 인식의 변화다
 | **목표** | 무엇을 만들거나 수정할 것인가 | "JWT 기반 인증 미들웨어 구현" |
 | **컨텍스트** | 어떤 파일, 프레임워크, 규약이 중요한가 | "Go + Gin 사용. DB 연결은 db/conn.go. 기존 에러 처리 패턴 따라라." |
 | **제약** | 위반해서는 안 되는 규칙 | "기존 REST API 계약을 깨지 마라. 모든 신규 함수는 단위 테스트가 있어야 한다." |
-| **검증** | 작업 완료를 어떻게 증명할 것인가 | "`go test ./...` 실행. 모든 테스트 통과. 로그인과 갱신 흐름 검증용 curl 명령 제공." |
+| **검증** | 작업 완료를 어떻게 증명할 것인가 | "````go test ./...```` 실행. 모든 테스트 통과. 로그인과 갱신 흐름 검증용 curl 명령 제공." |
 
 **약한 프롬프트:** "로그인 함수 작성해줘."
 
@@ -135,30 +136,30 @@ Codex는 패키지 구조를 스캐폴딩하고, 핸들러를 작성하고, 데�
 | **Read Only** | 자동 허용 | 금지 | 금지 | 코드베이스 탐색, 온보딩, 감사 |
 | **Full Access** | 자동 허용 | 자동 허용 | 자동 허용 | CI/CD 컨테이너, 격리 VM, 신뢰 가능한 자동화 |
 
-실행 플래그: ```bash
+실행 플래그: `````bash
 codex --sandbox read-only              # 순수 분석; 변경 위험 제로
 codex --sandbox workspace-write        # 파일 편집 가능; 신뢰할 수 없는 명령은 여전히 승인 필요
 codex --full-auto                      # 승인 자동화; 샌드박스는 여전히 활성
 codex --yolo                           # 샌드박스와 승인 모두 비활성화. 격리 환경 전용.
-```
+`````
 
-**중대한 안전 주의:** `--yolo`(긴 형식: `--dangerously-bypass-approvals-and-sandbox`)는 일회용 컨테이너, CI 러너, 샌드박스 VM 전용이다. 로컬 워크스테이션의 프로덕션 리포지토리에는 절대 실행하지 마라.
+**중대한 안전 주의:** ````--yolo````(긴 형식: ````--dangerously-bypass-approvals-and-sandbox````)는 일회용 컨테이너, CI 러너, 샌드박스 VM 전용이다. 로컬 워크스테이션의 프로덕션 리포지토리에는 절대 실행하지 마라.
 
----
+* * *
 
 ## 4. AGENTS.md: 코드 품질을 결정하는 하나의 파일
 
-Codex CLI는 모든 작업 전에 `AGENTS.md` 파일을 자동으로 탐지하고 읽는다. 이것을 새 인간 엔지니어에게 줄 온보딩 문서처럼 생각하라—단지 새 팀원은 그것을 밀리초 안에 읽고 완벽한 회상력으로 따른다.
+Codex CLI는 모든 작업 전에 ````AGENTS.md```` 파일을 자동으로 탐지하고 읽는다. 이것을 새 인간 엔지니어에게 줄 온보딩 문서처럼 생각하라—단지 새 팀원은 그것을 밀리초 안에 읽고 완벽한 회상력으로 따른다.
 
 ### 프로덕션 준비 AGENTS.md 템플릿
 
-```markdown
+`````markdown
 # AGENTS.md — AI 엔지니어링 보조 가이드
 
 ## 리포지토리 레이아웃
-- `src/` — 비즈니스 로직; 모든 핸들러, 서비스, 도메인 모델
-- `tests/` — `src/`의 미러 구조; 소스 파일마다 한 개의 테스트 파일
-- `migrations/` — Alembic 관리 DB 마이그레이션; 절대 수동 편집 금지
+- ````src/```` — 비즈니스 로직; 모든 핸들러, 서비스, 도메인 모델
+- ````tests/```` — ````src/````의 미러 구조; 소스 파일마다 한 개의 테스트 파일
+- ````migrations/```` — Alembic 관리 DB 마이그레이션; 절대 수동 편집 금지
 
 ## 기술 스택 및 표준
 - 런타임: Python 3.11+
@@ -167,21 +168,21 @@ Codex CLI는 모든 작업 전에 `AGENTS.md` 파일을 자동으로 탐지하�
 - 타입 힌트: 모든 함수 시그니처와 공개 클래스 속성에 필수
 
 ## 테스트 요구사항
-- 명령: `pytest tests/`
+- 명령: ````pytest tests/````
 - 커버리지 임계값: 신규 기능 85%
-- 비동기 테스트: `@pytest.mark.asyncio`와 함께 `pytest-asyncio` 사용 필수
+- 비동기 테스트: ````@pytest.mark.asyncio````와 함께 ````pytest-asyncio```` 사용 필수
 
 ## Git & CI
-- 커밋 형식: `[Type] 짧은 설명` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
-- `main`에 직접 푸시 금지; 모든 변경은 최소 1명 리뷰가 있는 PR을 통해
+- 커밋 형식: ````[Type] 짧은 설명```` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
+- ````main````에 직접 푸시 금지; 모든 변경은 최소 1명 리뷰가 있는 PR을 통해
 - 머지 전 검사: lint → typecheck → test → build
-```
+`````
 
 ### 모노레포용 계층형 설정
 
-전역 규약을 위해 루트 레벨 `AGENTS.md`를 배치하라. 서브디렉토리(예: `src/ml/`, `src/api/`) 안에 모듈별 규칙을 위한 중첩 `AGENTS.md` 파일을 추가하라. Codex는 근접 기반 우선순위로 설정을 머지한다—더 가까운 파일이 먼 파일을 오버라이드한다.
+전역 규약을 위해 루트 레벨 ````AGENTS.md````를 배치하라. 서브디렉토리(예: ````src/ml/````, ````src/api/````) 안에 모듈별 규칙을 위한 중첩 ````AGENTS.md```` 파일을 추가하라. Codex는 근접 기반 우선순위로 설정을 머지한다—더 가까운 파일이 먼 파일을 오버라이드한다.
 
----
+* * *
 
 ## 5. 멀티 에이전트 병렬 개발: 한 인간, 여러 AI 팀원
 
@@ -193,16 +194,16 @@ Codex CLI는 모든 작업 전에 `AGENTS.md` 파일을 자동으로 탐지하�
 |---|---|---|
 | **Explorer** | 리포지토리 구조 매핑, 의존성 식별, 관련 파일 위치 파악 | 복잡한 작업에 자동 첨부 |
 | **Worker** | 코드 변경 구현, 파일 생성, 로직 수정 | 기본 주 에이전트 |
-| **Reviewer** | 정확성, 보안, 스타일 준수에 대한 변경 감사 | `/review` 또는 머지 전 훅 |
+| **Reviewer** | 정확성, 보안, 스타일 준수에 대한 변경 감사 | ````/review```` 또는 머지 전 훅 |
 | **Tester** | 테스트 케이스 생성, 커버리지 검증, 보고된 버그 재현 | 프롬프트에서 명시적으로 요청 |
 
 ### 실전 병렬 워크플로우
 
 이커머스 백엔드에 "로열티 할인" 기능을 추가한다고 상상해보라. 작업을 순차로 진행하는 대신 세 표면으로 병렬화한다: **터미널 1 — 구현(CLI):**
 
-```bash
-codex "pricing.py에 `loyalty_discount(price, customer_tier)`를 추가하라. 등급: bronze(0%), silver(5%), gold(10%). 알 수 없는 등급은 ValueError로 거부하라. 다른 함수는 수정하지 마라."
-```
+`````bash
+codex "pricing.py에 ````loyalty_discount(price, customer_tier)````를 추가하라. 등급: bronze(0%), silver(5%), gold(10%). 알 수 없는 등급은 ValueError로 거부하라. 다른 함수는 수정하지 마라."
+`````
 
 **클라우드 2 — 테스트 생성(chatgpt.com/codex):**
 
@@ -214,7 +215,7 @@ codex "pricing.py에 `loyalty_discount(price, customer_tier)`를 추가하라. �
 
 세 작업이 동시에 진행된다. 구현이 도착하면 테스트가 검증하고, 문서는 이미 라이브 상태다. 순차 단계 간 인간 대기 시간 없음.
 
----
+* * *
 
 ## 6. MCP와 Skills: 코드 너머로 Codex 확장하기
 
@@ -225,25 +226,25 @@ MCP는 2026년 AI 도구의 보편 어댑터가 되었다. Codex CLI는 일급 M
 - **Notion / Confluence / 내부 위키** — 비즈니스 규칙과 기능 사양을 코딩 세션에 끌어옴
 - **Datadog / Sentry / CloudWatch** — 에러 트레이스를 수집해 프로덕션 인시던트 자동 진단/패치
 
-명령 레퍼런스: ```bash
+명령 레퍼런스: `````bash
 codex /mcp          # 구성된 MCP 서버와 도구 나열
 codex /apps         # 사용 가능한 앱 커넥터 탐색/활성화
-```
+`````
 
 ### Skills 카탈로그: 재사용 가능한 워크플로우 자동화
 
 반복되는 프롬프트 패턴은 **Skills**—공유 가능하고 버전 관리되는 명령어 세트—로 캡슐화되어야 한다.
 
-```bash
+`````bash
 $skill-creator      # 새 스킬 작성용 대화형 마법사
-```
+`````
 
 Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, GitHub Copilot 간 이식 가능하다. 전형적인 스킬 응용: - 로컬라이제이션 PR 생성(문자열 추출 → 번역 → PR 오픈)
 - 보안 감사 체크리스트(SQL 인젝션, XSS, 시크릿 누출 스캔)
 - 커밋 이력에서 릴리스 노트 초안 작성
 - 마이그레이션 스크립트(Python 2→3, Flask→FastAPI, JavaScript→TypeScript)
 
----
+* * *
 
 ## 7. 보안 아키텍처: 엔터프라이즈가 Codex CLI를 승인하는 이유
 
@@ -259,11 +260,11 @@ Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, 
 - **RBAC 워크스페이스**: 다른 승인 임계값을 가진 관리자/사용자 스코프 분리
 - **Context Compaction**: 장시간 세션 이력 자동 압축으로 컨텍스트 윈도우에 민감 데이터가 남는 것 방지
 
----
+* * *
 
 ## 8. 모델 선택: GPT-5.3-Codex vs GPT-5.3-Codex-Spark
 
-Codex CLI는 기본적으로 OpenAI의 코딩 최적화 플래그십 모델 `gpt-5.3-codex`를 사용한다. 두 번째 변형 **Spark**는 2026년 초 지연 민감 워크플로우용으로 도입되었다.
+Codex CLI는 기본적으로 OpenAI의 코딩 최적화 플래그십 모델 ````gpt-5.3-codex````를 사용한다. 두 번째 변형 **Spark**는 2026년 초 지연 민감 워크플로우용으로 도입되었다.
 
 | 모델 | 강점 | 이상적 사용 사례 | 가용성 |
 |---|---|---|---|
@@ -272,20 +273,20 @@ Codex CLI는 기본적으로 OpenAI의 코딩 최적화 플래그십 모델 `gpt
 
 Spark는 Cerebras WSE-3 웨이퍼 스케일 칩과 공동 엔지니어링되었다—NVIDIA 실리콘이 아닌 곳에서 운영되는 첫 OpenAI 프로덕션 모델이다. 기본적으로 타깃 편집을 최소화하고 테스트 자동 실행하지 않으므로 자율 장기 작업보다는 빠듯한 피드백 루프에 적합하다.
 
-런타임 모델 전환: ```bash
+런타임 모델 전환: `````bash
 codex -m gpt-5.3-codex
 codex -m gpt-5.3-codex-spark
 /model                    # 세션 중 대화형 모델 메뉴
-```
+`````
 
-작업 유형별 추론 노력 조정: ```toml
+작업 유형별 추론 노력 조정: `````toml
 # ~/.codex/config.toml
 model_reasoning_effort = "high"      # 아키텍처, 디버깅, 감사
 model_reasoning_effort = "medium"    # 일상 코딩, 테스트, 리팩토링(기본)
 model_reasoning_effort = "low"       # 포맷팅, 이름 변경, 단순 쿼리
-```
+`````
 
----
+* * *
 
 ## 9. Codex CLI vs Claude Code: 편향 없는 결정 프레임워크
 
@@ -307,71 +308,71 @@ model_reasoning_effort = "low"       # 포맷팅, 이름 변경, 단순 쿼리
 - 50,000개 이상의 파일이 있는 리포지토리를 정기적으로 다루거나, 멀티 모달 컨텍스트(UI 스크린샷, PDF 사양)가 필요하거나, 가장 깊은 코드 리뷰 엄격성이 필요할 때 **Claude Code 추가**.
 - **둘 다 사용하라.** 많은 시니어 엔지니어는 빠른 프로토타이핑과 신속 수정에 Codex를, 대규모 리팩토링과 아키텍처 변경에 Claude를 사용한다. 도구가 당신을 섬기는 것이지 당신이 도구를 섬기는 것이 아니다.
 
----
+* * *
 
 ## 10. 오늘 복사해서 쓸 수 있는 검증된 프롬프트 템플릿 10개
 
 ### 1. 신규 개발자 온보딩
 
-```bash
+`````bash
 codex "이 프로젝트의 아키텍처를 설명하고, 주요 모듈의 의존성 그래프를 매핑하고, 새 팀원이 먼저 읽어야 할 세 파일을 알려달라"
-```
+`````
 
 ### 2. 데드 코드 제거
 
-```bash
+`````bash
 codex "src/에서 사용되지 않는 import와 도달 불가 함수를 모두 찾아 제거하고 테스트 스위트가 여전히 통과하는지 확인하라"
-```
+`````
 
 ### 3. 의존성 현대화
 
-```bash
+`````bash
 codex "React를 18에서 19로 업그레이드하라. 모든 브레이킹 체인지를 처리하고, 테스트 스위트를 실행하고, 실패를 수정하고, CHANGELOG.md의 마이그레이션 노트를 업데이트하라"
-```
+`````
 
 ### 4. 데이터베이스 쿼리 최적화
 
-```bash
+`````bash
 codex "api/routes.py에서 N+1 쿼리 패턴을 분석하라. 이거 로딩(joinload 또는 selectinload)으로 교체하라. 전/후 벤치마크 수치 제공."
-```
+`````
 
 ### 5. 보안 취약점 스캔
 
-```bash
+`````bash
 codex "모든 API 엔드포인트에 대해 인증 누락이나 입력 검증 누락 감사. 발견된 각 취약점에 대해 수정과 회귀 테스트 제공."
-```
+`````
 
 ### 6. 문서 생성
 
-```bash
+`````bash
 codex "모든 공개 함수에 Google 스타일 docstring 생성하고 README.md의 API 레퍼런스 섹션 업데이트"
-```
+`````
 
 ### 7. 크로스 언어 포팅
 
-```bash
+`````bash
 codex "scripts/data_processor.py를 동등한 TypeScript로 번역. 모든 로직, 에러 처리, async 동작 보존."
-```
+`````
 
 ### 8. CI/CD 파이프라인 생성
 
-```bash
+`````bash
 codex "GitHub Actions 워크플로우 생성: PR에서 lint + test + typecheck; main 머지에서 Docker 이미지 빌드 및 GHCR 푸시"
-```
+`````
 
 ### 9. 프로덕션 인시던트 진단
 
-```bash
+`````bash
 codex "이 에러 로그가 방금 Sentry에 떴다. 근본 원인을 설명하고, 문제 코드를 찾고, 최소 수정 제안: [스택 트레이스 붙여넣기]"
-```
+`````
 
 ### 10. 커밋 전 셀프 리뷰
 
-```bash
+`````bash
 codex /review --uncommitted
-```
+`````
 
----
+* * *
 
 ## 11. 30-60-90일 마스터리 로드맵
 
@@ -380,7 +381,7 @@ codex /review --uncommitted
 - [ ] 3개 이상의 다른 프로젝트에 Codex CLI 설치
 - [ ] 각 프로젝트용 v1 AGENTS.md 작성
 - [ ] Auto와 Read-Only 모드로 15+ 엔드-투-엔드 작업 완료
-- [ ] `/review`를 커밋 전 의식에 통합
+- [ ] ````/review```를 커밋 전 의식에 통합
 - [ ] 코드베이스에서 잘 작동하는 5개 프롬프트 패턴 문서화
 
 ### 31–60일: 툴킷 확장
@@ -399,7 +400,7 @@ codex /review --uncommitted
 - [ ] 생산성 메트릭 측정(시간-PR, 버그 회귀율, 테스트 커버리지)
 - [ ] Claude Code가 보조 도구로 측정 가능한 가치를 추가하는지 평가
 
----
+* * *
 
 ## 12. 자주 묻는 질문
 
@@ -418,7 +419,7 @@ A: Python과 JavaScript/TypeScript가 일급. Go, Rust, Java, C/C++, Ruby, PHP�
 **Q: Windows가 지원되는가?**
 A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱 앱은 2026년 4월 출시.
 
----
+* * *
 
 ## 결론: 터미널이 새로운 IDE다
 
@@ -428,7 +429,7 @@ A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱
 
 바이브 코딩의 시대는 다가오는 것이 아니다. 이미 와 있다. 그리고 Codex CLI는 합류 초대장이다.
 
----
+* * *
 
 **더 읽을거리:**
 - [OpenAI Codex CLI GitHub](https://github.com/openai/codex)

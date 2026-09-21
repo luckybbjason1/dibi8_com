@@ -10,6 +10,7 @@ draft: false
 slug: sglang-structured-generation-llm
 -CN---
 
+
 ## TL;DR
 
 SGLang（结构化生成语言）是一个用于部署和服务大型语言模型的开源全栈库。它引入了 RadixAttention 系统以实现请求间的前缀缓存、通过语法约束解码实现结构化生成，以及对 ReAct 和工具调用等复杂推理模式的原生支持。它在结构化输出任务上比 vLLM 提供 25 倍吞吐提升，并支持在单卡或多 GPU 设置上服务 1B 到 700 亿参数的模型。
@@ -35,7 +36,7 @@ SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构
 
 ### 架构概览
 
-```
+````
 ┌─────────────────────────────────────────────┐
 │              客户端应用                       │
 │  (Python SDK、REST API、WebSocket、gRPC)      │
@@ -63,15 +64,15 @@ SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构
 │  - FlashAttention-3 集成                      │
 │  - 支持 10 亿到 700 亿+ 参数模型               │
 └─────────────────────────────────────────────┘
-```
+`````
 
 
----
+* * *
 ## 快速开始
 
 ### 第一步：安装 SGLang
 
-```bash
+`````bash
 # 安装 Python 库
 pip install sglang
 
@@ -80,11 +81,11 @@ docker pull sglang/sglang:latest
 docker run --gpus all -p 30000:30000 sglang/sglang:latest \
   --model-path meta-llama/Llama-3.2-8B-Instruct \
   --host 0.0.0.0 --port 30000
-```
+`````
 
 ### 第二步：启动服务器
 
-```bash
+`````bash
 # 在一个 GPU 上服务一个模型
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B-Instruct \
@@ -101,11 +102,11 @@ python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq \
   --port 30000
-```
+`````
 
 ### 第三步：发送第一个请求
 
-```bash
+`````bash
 curl http://localhost:30000/generate \
   -H "Content-Type: application/json" \
   -d '{
@@ -115,17 +116,17 @@ curl http://localhost:30000/generate \
       "temperature": 0
     }
   }'
-```
+`````
 
 响应：
-```json
+`````json
 {
   "text": "法国的首都是巴黎。",
   "meta": {"prompt_tokens": 12, "completion_tokens": 8}
 }
-```
+`````
 
----
+* * *
 
 ## 结构化生成
 
@@ -133,7 +134,7 @@ curl http://localhost:30000/generate \
 
 生成匹配任何 Pydantic 模式的有效 JSON：
 
-```python
+`````python
 import sglang as sgl
 from pydantic import BaseModel, Field
 from typing import List, Optional
@@ -164,13 +165,13 @@ result = program.run(
 
 review = ProductReview.model_validate_json(result["json_output"])
 print(f"产品: {review.product_name}, 评分: {review.rating}/5")
-```
+`````
 
 ### 正则约束生成
 
 强制输出匹配特定模式：
 
-```python
+`````python
 @sgl.program
 def email_extractor(state, text: str): state += sgl.user("从此文本中提取所有电子邮件地址:")
     state += sgl.assistant(
@@ -188,21 +189,21 @@ result = program.run(
 )
 print(result["emails"])
 # 输出: "support@example.com, sales@example.com, billing@company.org."
-```
+`````
 
 ### SQL 查询生成
 
 生成可执行的 SQL 并带有结构保证：
 
-```python
+`````python
 from pydantic import BaseModel
 
 class SQLQuery(BaseModel): query: str = Field(description="有效的 SQL SELECT 语句")
     explanation: str = Field(description="此查询的作用")
     estimated_rows: Optional[int] = Field(description="预期行数")
-```
+`````
 
----
+* * *
 
 ## 性能优化
 
@@ -210,7 +211,7 @@ class SQLQuery(BaseModel): query: str = Field(description="有效的 SQL SELECT 
 
 SGLang 的标志功能：自动在具有公共前缀的请求间共享计算。
 
-```python
+`````python
 import sglang as sgl
 
 @sgl.program
@@ -227,7 +228,7 @@ r1 = chatbot().run("今天天气怎么样?")
 # 第二个请求使用相同的系统提示 + 对话历史：
 # 仅计算新 user message 的注意力
 r2 = chatbot().run("告诉我更多")
-```
+`````
 
 基准结果显示 **3-10 倍吞吐提升** 对于聊天应用，其中系统提示和对话历史在请求间共享。
 
@@ -235,21 +236,21 @@ r2 = chatbot().run("告诉我更多")
 
 与传统批处理推理等待批次中所有请求完成不同，SGLang 使用连续批处理，在任何槽位释放时立即启动新请求：
 
-```bash
+`````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.85 \
   --context-length 8192
-```
+`````
 
 关键参数：
-- `--mem-fraction-static`：GPU 内存用于 KV 缓存的比例（0.85 = 85%）
-- `--context-length`：最大上下文窗口大小
-- `--scheduler-latency-bound`：调度新请求前的最大等待时间
+- ````--mem-fraction-static````：GPU 内存用于 KV 缓存的比例（0.85 = 85%）
+- ````--context-length````：最大上下文窗口大小
+- ````--scheduler-latency-bound````：调度新请求前的最大等待时间
 
 ### 多 GPU 部署
 
-```bash
+`````bash
 # 4x A100-80GB 用于 70B 模型
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-70B-Instruct \
@@ -260,9 +261,9 @@ python -m sglang.launch_server \
 # 检查 GPU 利用率
 nvidia-smi
 # 每个 GPU 在活跃推理期间显示 ~95% 利用率
-```
+`````
 
----
+* * *
 
 ## 高级用例
 
@@ -270,7 +271,7 @@ nvidia-smi
 
 在单个 SGLang 程序中实现 ReAct 推理：
 
-```python
+`````python
 @sgl.program
 def react_agent(state, question: str): state += sgl.user(f"使用工具逐步回答这个问题:\n{question}")
     
@@ -286,13 +287,13 @@ def react_agent(state, question: str): state += sgl.user(f"使用工具逐步回
         state += sgl.user(f"\n观察: {obs}")
     
     state += sgl.assistant(sgl.gen("final_answer", max_tokens=500))
-```
+`````
 
 ### 模式二：并行文档分析
 
 同时处理数百份文档：
 
-```python
+`````python
 @sgl.program
 def document_summarizer(state, doc: str): state += sgl.user(f"用 3 个要点总结此文档:\n{doc}")
     state += sgl.assistant(sgl.gen("summary", max_tokens=256))
@@ -302,13 +303,13 @@ results = sgl.compile(
     [document_summarizer(doc) for doc in documents[:100]],
     scheduler_policy="lookahead"
 )
-```
+`````
 
 ### 模式三：带结构化输出的流式传输
 
 以 token 为单位流式传输结构化响应：
 
-```python
+`````python
 from sglang import RuntimeClient
 
 client = RuntimeClient("http://localhost:30000")
@@ -326,13 +327,13 @@ stream = client.generate({
 })
 
 for chunk in stream: if chunk["event_type"] == "text": print(chunk["text"], end="", flush=True)
-```
+`````
 
 ### 模式四：函数调用流水线
 
 构建完整的函数调用 Agent：
 
-```python
+`````python
 from pydantic import BaseModel
 from typing import Literal
 
@@ -342,9 +343,9 @@ class WeatherRequest(BaseModel): city: str
 @sgl.program
 def function_caller(state, user_input: str): state += sgl.user(user_input)
     state += sgl.assistant(sgl.gen("function_call", max_tokens=256))
-```
+`````
 
----
+* * *
 
 ## 对比：SGLang vs 替代方案
 
@@ -352,17 +353,17 @@ def function_caller(state, user_input: str): state += sgl.user(user_input)
 
 | 模型 | 批处理大小 | SGLang | vLLM | TGI | 相比 vLLM 加速 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x |
 | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x |
@@ -373,13 +374,13 @@ def function_caller(state, user_input: str): state += sgl.user(user_input)
 
 | 方法 | JSON 有效性 | 模式合规性 | 延迟开销 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 后处理（正则） | 78% | N/A | +2ms |
 | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token |
@@ -388,47 +389,47 @@ def function_caller(state, user_input: str): state += sgl.user(user_input)
 
 SGLang 的原生约束解码以最小的延迟开销实现完美有效性。
 
----
+* * *
 
 ## 监控和可观测性
 
 ### 内置指标
 
-SGLang 在 `/metrics` 暴露 Prometheus 兼容指标：
+SGLang 在 ````/metrics```` 暴露 Prometheus 兼容指标：
 
-```
+`````
 # HELP sglang_request_latency_seconds 请求处理延迟
 sglang_request_latency_seconds_bucket{le="0.5"} 1250
 sglang_request_latency_seconds_bucket{le="1.0"} 2890
 sglang_gpu_cache_hit_rate 0.847
 sglang_active_requests 23
-```
+`````
 
 ### 健康检查端点
 
-```bash
+`````bash
 curl http://localhost:30000/health
 # 返回: {"status": "ok", "gpu_memory_usage": "72%", "active_requests": 15}
-```
+`````
 
----
+* * *
 
 ## 常见问题排查
 
 ### 问题一：CUDA 显存不足
 
-```
+`````
 RuntimeError: CUDA out of memory. Tried to allocate X GiB.
-```
+`````
 
-**修复**：减少 `--mem-fraction-static` 或增加 `--max-running-requests`：
+**修复**：减少 ````--mem-fraction-static```` 或增加 ````--max-running-requests````：
 
-```bash
+`````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.75 \
   --max-running-requests 32
-```
+`````
 
 ### 问题二：约束解码产生无效输出
 
@@ -441,13 +442,13 @@ python -m sglang.launch_server \
 
 服务器启动后的首次请求包括模型加载时间（30-120 秒，取决于模型大小）。
 
-**修复**：使用 `keep_warm` 或预预热服务器：
+**修复**：使用 ````keep_warm```` 或预预热服务器：
 
-```bash
+`````bash
 curl -X POST http://localhost:30000/generate \
   -H "Content-Type: application/json" \
   -d '{"text": "warmup", "sampling_params": {"max_new_tokens": 1}}'
-```
+`````
 
 ### 问题四：RadixCache 未命中
 
@@ -455,7 +456,7 @@ curl -X POST http://localhost:30000/generate \
 
 **检查**：确保请求共享相同的前缀 token。空格差异、不同的系统提示或重新排序的对话历史将阻止缓存命中。
 
----
+* * *
 
 ## 未来方向
 
@@ -481,7 +482,7 @@ curl -X POST http://localhost:30000/generate \
 - 你已投入 vLLM 且不需要结构化生成——vLLM 对原始吞吐量出色
 - 你需要实时音频/视频推理——专门的引擎如 Whisper.cpp 或 MediaPipe 更适合
 
----
+* * *
 
 ## 社区动态
 
@@ -494,7 +495,7 @@ SGLang 在 2026 年经历了爆炸性增长：
 
 该项目维护全面的月度更新基准套件，提供跨推理引擎和模型家族的透明性能比较。
 
----
+* * *
 
 ## FAQ
 
@@ -506,21 +507,21 @@ SGLang 的约束解码在 tokenizer 级别运行，在采样前过滤候选 toke
 
 可以。SGLang 原生支持 AWQ、GPTQ、INT8 和 FP8 量化：
 
-```bash
+`````bash
 python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq
-```
+`````
 
 量化模型通常以 50-60% 的内存占用达到全精度质量的 80-90%，允许在同一硬件上运行更大的模型。
 
 ### Q: SGLang 支持流式响应吗？
 
-支持。在采样参数中使用 `"stream": true` 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：
+支持。在采样参数中使用 ````"stream": true```` 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：
 
-```python
+`````python
 async for event in program.run_async(stream=True): print(event.delta, end="", flush=True)
-```
+`````
 
 ### Q: SGLang 能服务的最大模型尺寸是多少？
 
@@ -530,17 +531,17 @@ SGLang 支持从 10 亿到 4000 多亿参数的模型。对于 700 亿以上的�
 
 SGLang 有内置速率限制：
 
-```bash
+`````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --rate-limit-requests 100 \
   --rate-limit-tokens 50000 \
   --scheduler-policy lookahead
-```
+`````
 
-超过限制的请求被排队并在容量可用时处理。`lookahead` 调度器优化排序以最小化延迟方差。
+超过限制的请求被排队并在容量可用时处理。````lookahead``` 调度器优化排序以最小化延迟方差。
 
----
+* * *
 
 ## 参考资料
 
@@ -550,7 +551,7 @@ python -m sglang.launch_server \
 - [LLM 推理引擎基准测试 — ML 基础设施报告 2026 年第二季度](https://mlinfra.report/serving-benchmarks-q2-2026)
 - [约束解码调查 — ACL 2026 研讨会](https://aclanthology.org/2026.constrained-decoding/)
 
----
+* * *
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
@@ -616,12 +617,12 @@ SGLang — 结构化生成和高速 LLM 推理引擎 represents an important ste
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -631,6 +632,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [sglang-structured-generation-llm](sglang-structured-generation-llm)
 - [sglang-structured-generation-llm](sglang-structured-generation-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

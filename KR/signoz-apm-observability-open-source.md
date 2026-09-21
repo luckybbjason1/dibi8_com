@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/signoz-apm-observability-open-source/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 아묵도 이야기하지 않는 연간 $65,000 가시성 비용
@@ -49,7 +50,7 @@ SigNoz는 현대적인 가시성 파이프라인 아키텍처를 따릅니다: 1
 5. **쿼리 서비스(Go)**: API 요청을 처리하고 ClickHouse 및 Druid에 대해 쿼리를 실행합니다
 6. **프론트엔드(React)**: 추적 탐색, 메트릭 대시보드, 로그 검색, 알림 구성을 위한 웹 UI
 
-```yaml
+````yaml
 애플리케이션(OTel SDK) → OTLP/gRPC → SigNoz Otel Collector
                                         ↓
                               ┌──────────────────┐
@@ -63,7 +64,7 @@ SigNoz는 현대적인 가시성 파이프라인 아키텍처를 따릅니다: 1
                               쿼리 서비스(Go)
                                      ↓
                                 React 프론트엔드
-```
+`````
 
 ### 추적 및 로그에 ClickHouse를 사용하는 이유?
 
@@ -74,7 +75,7 @@ ClickHouse는 대규모 데이터셋에 대한 분석 쿼리를 위해 최적화
 
 ### OpenTelemetry 네이티브 설계
 
-Datadog이나 New Relic과 같이 전용 에이전트가 필요한 것과 달리, SigNoz는 표준 OpenTelemetry 데이터를 소비합니다: ```python
+Datadog이나 New Relic과 같이 전용 에이전트가 필요한 것과 달리, SigNoz는 표준 OpenTelemetry 데이터를 소비합니다: `````python
 # 벤더별 SDK가 필요 없음 — 표준 OTel만 사용
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -91,7 +92,7 @@ provider = TracerProvider()
 processor = BatchSpanProcessor(otlp_exporter)
 provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
-```
+`````
 
 SigNoz에서 이전해야 할 경우 동일한 OTLP 익스포터를 다른 백엔드를 가리키기만 하면 됩니다. 코드 변경이 필요 없습니다.
 
@@ -106,7 +107,7 @@ SigNoz에서 이전해야 할 경우 동일한 OTLP 익스포터를 다른 백�
 
 ### 옵션 A: Docker Compose(권장)
 
-```bash
+`````bash
 # 1. SigNoz 저장소 클론
 git clone -b main https://github.com/SigNoz/signoz.git
 cd signoz/deploy/docker
@@ -118,13 +119,13 @@ cd signoz/deploy/docker
 # - 필요한 모든 이미지 가져오기(ClickHouse, Kafka, 쿼리 서비스, 프론트엔드)
 # - 모든 서비스 시작
 # - 접속 URL 출력
-```
+`````
 
-설치가 완료되면 `http://localhost:3301`에서 SigNoz에 접속합니다.
+설치가 완료되면 ````http://localhost:3301````에서 SigNoz에 접속합니다.
 
 ### 옵션 B: Helm을 통한 Kubernetes
 
-```bash
+`````bash
 # 1. SigNoz Helm 저장소 추가
 helm repo add signoz https://charts.signoz.io
 helm repo update
@@ -141,11 +142,11 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=signoz -n signo
 
 # 4. 프론트엔드 포트 포워딩
 kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
-```
+`````
 
 ### 옵션 C: 프로덕션 VPS 배포
 
-[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해: ```bash
+[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해: `````bash
 # docker-compose.production.yml
 version: "3.8"
 services: signoz-frontend: image: signoz/frontend:0.76.0
@@ -190,13 +191,13 @@ services: signoz-frontend: image: signoz/frontend:0.76.0
     volumes: - kafka-data:/bitnami/kafka
     depends_on: - zookeeper
 
-volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````
 
-`docker compose -f docker-compose.production.yml up -d`로 배포합니다.
+````docker compose -f docker-compose.production.yml up -d````로 배포합니다.
 
 ### 설치 확인
 
-```bash
+`````bash
 # 모든 컨테이너가 실행 중인지 확인
 docker ps --format "table {{.Names}}\t{{.Status}}"
 
@@ -211,13 +212,13 @@ docker ps --format "table {{.Names}}\t{{.Status}}"
 # 헬스 엔드포인트 테스트
 curl http://localhost:3301/api/v1/health
 # 출력: {"status":"ok"}
-```
+`````
 
 ## 애플리케이션 계측
 
 ### 자동 계측(퀵 스타트 권장)
 
-SigNoz는 대부분의 언어에 대해 코드 변경 없이 자동 계측을 지원합니다: ```bash
+SigNoz는 대부분의 언어에 대해 코드 변경 없이 자동 계측을 지원합니다: `````bash
 # Node.js —— 코드 변경 없음
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=payment-service" \
@@ -238,11 +239,11 @@ java -javaagent:opentelemetry-javaagent.jar \
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=api-gateway" \
 go run main.go
-```
+`````
 
 ### 수동 계측(프로덕션급)
 
-프로덕션 서비스의 경우 수동 계측이 더 나은 제어를 제공합니다: ```python
+프로덕션 서비스의 경우 수동 계측이 더 나은 제어를 제공합니다: `````python
 # 수동 계측이 있는 Python Flask
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -273,11 +274,11 @@ def process_payment(): with tracer.start_as_current_span("process_payment") as s
             pass
 
         return {"status": "success"}
-```
+`````
 
 ### 커스텀 대시보드 및 메트릭
 
-데이터가 흐르기 시작하면 SigNoz UI 또는 API에서 대시보드를 생성합니다: ```bash
+데이터가 흐르기 시작하면 SigNoz UI 또는 API에서 대시보드를 생성합니다: `````bash
 # API를 통한 커스텀 대시보드 생성
 curl -X POST http://localhost:3301/api/v1/dashboards \
   -H "Content-Type: application/json" \
@@ -304,7 +305,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
       }
     ]
   }'
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -345,7 +346,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 ### 고가용성 설정
 
-```yaml
+`````yaml
 # docker-compose.ha.yml — ZooKeeper가 있는 다중 노드 ClickHouse
 services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - clickhouse1-data:/var/lib/clickhouse
@@ -370,11 +371,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
     ports: - "8123:8123"
       - "9000:9000"
-```
+`````
 
 ### S3를 이용한 장기 저장
 
-```yaml
+`````yaml
 # ClickHouse S3 백업 구성
 <clickhouse>
   <storage_configuration>
@@ -401,11 +402,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     </policies>
   </storage_configuration>
 </clickhouse>
-```
+`````
 
 ### 알림 구성
 
-```yaml
+`````yaml
 # alert-rules.yml — SigNoz 알림 관리자 규칙
 groups: - name: payment_service_alerts
     rules: - alert: HighErrorRate
@@ -431,13 +432,13 @@ groups: - name: payment_service_alerts
         labels: severity: warning
         annotations: summary: "로그 오류 스파이크 감지"
           description: "{{ $value }} 오류/분"
-```
+`````
 
 SigNoz UI의 설정 → 알림 채널에서 알림 채널(Slack, PagerDuty, 이메일)을 구성합니다.
 
 ### Kubernetes 자동 계측
 
-```yaml
+`````yaml
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
@@ -451,7 +452,7 @@ spec: ports: - name: otlp-grpc
       protocol: TCP
   selector: app.kubernetes.io/name: otel-collector
 
----
+* * *
 # OTel 환경 변수 추가로 Deployment 계측
 apiVersion: apps/v1
 kind: Deployment
@@ -466,11 +467,11 @@ spec: template: spec: containers: - name: payment-service
               value: "parentbased_traceidratio"
             - name: OTEL_TRACES_SAMPLER_ARG
               value: "0.1"  # 추적의 10% 샘플링
-```
+`````
 
 ### 고트래픽 서비스의 샘플링 전략
 
-초당 10,000건 이상의 요청을 처리하는 서비스의 경우 헤드 기반 샘플링을 구현합니다: ```yaml
+초당 10,000건 이상의 요청을 처리하는 서비스의 경우 헤드 기반 샘플링을 구현합니다: `````yaml
 # otel-collector-config.yaml
 receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
       http: endpoint: 0.0.0.0:4318
@@ -494,7 +495,7 @@ exporters: clickhousetraces: datasource: tcp://clickhouse:9000
 service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
-```
+`````
 
 이 구성은 100%의 오류 추적, 100%의 느린 요청(>500ms), 10%의 정상 트래픽을 샘플링합니다. — 저장 비용을 제어하면서 완전한 오류 가시성을 제공합니다.
 
@@ -545,10 +546,10 @@ SigNoz은 통합 경험을 제공합니다: 추적, 메트릭, 로그를 위한 
 
 **Q: 기존 Prometheus 메트릭을 SigNoz와 함께 사용할 수 있나요?**
 
-예. SigNoz의 OTel Collector에는 Prometheus 수신기가 포함되어 있습니다. `otel-collector-config.yaml`에서 구성합니다: ```yaml
+예. SigNoz의 OTel Collector에는 Prometheus 수신기가 포함되어 있습니다. ``otel-collector-config.yaml``에서 구성합니다: `````yaml
 receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
           static_configs: - targets: ['my-app:9090']
-```
+`````
 
 기존 Prometheus 스크랩 구성을 직접 가져올 수 있습니다. SigNoz은 장기 쿼리를 위해 Druid에 메트릭을 저장합니다.
 
@@ -570,7 +571,7 @@ SigNoz은 규모가 있는 엔지니어링 팀이 실제로 필요로 하는 것
 
 5분 Docker 설정, 수십억 스팬에서 ClickHouse 기반 서브세컨드 쿼리, 제로 벤더 락인을 갖춘 SigNoz은 연간 $50,000+를 클라우드 APM에 지출하는 것을 정당화하기 어렵게 만듭니다.
 
-**오늘 배포하기**: [DigitalOcean](https://m.do.co/c/eca87ac14ee0)(8GB 월 $48) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서 VPS를 생성하고, `./install.sh`를 실행하고, 10분 이내에 첫 번째 서비스를 계측하세요.
+**오늘 배포하기**: [DigitalOcean](https://m.do.co/c/eca87ac14ee0)(8GB 월 $48) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서 VPS를 생성하고, ````./install.sh```를 실행하고, 10분 이내에 첫 번째 서비스를 계측하세요.
 
 **커뮤니티 참여**: 한국어 개발자를 위한 [Telegram 그룹](https://t.me/dibi8ko) | [GitHub Discussions](https://github.com/SigNoz/signoz/discussions) | [Slack](https://signoz.io/slack)
 
@@ -593,7 +594,7 @@ SigNoz은 규모가 있는 엔지니어링 팀이 실제로 필요로 하는 것
 - [Grafana Stack](dibi8-internal-link) — 대체 오픈소스 가시성 스택
 - [셀프호스팅 가이드](dibi8-internal-link) — dibi8.com의 일반 셀프호스팅 모범 사례
 
----
+* * *
 
 *제휴 공개: 본 문서에는 DigitalOcean과 HTStack의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 dibi8.com에 추가 비용 없이 수수료가 지급됩니다. 모든 추천은 실제 테스트를 기반으로 하며, 제휴 가용성이 아닌 실제 성능에 근거합니다.*
 
@@ -623,7 +624,7 @@ SigNoz은 규모가 있는 엔지니어링 팀이 실제로 필요로 하는 것
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -633,6 +634,6 @@ SigNoz은 규모가 있는 엔지니어링 팀이 실제로 필요로 하는 것
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](signoz-apm-observability-open-source)
 - [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](signoz-apm-observability-open-source)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

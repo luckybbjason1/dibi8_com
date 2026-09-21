@@ -20,6 +20,7 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
+
 ## TL;DR
 
 테이스트 스킬은 AI 에이전트에 디자인 감각을 부여합니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신,更强的 레이아웃 변화와 의도적인 모션, 프리미엄한 시각적 밀도를 적용합니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동하는 포트폴리오형 SKILL.md 파일로 제공됩니다.
@@ -34,7 +35,7 @@ featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-
 - **MOTION_INTENSITY (1-10):** 애니메이션 깊이 — 낮으면 호버 효과, 높으면 스크롤/자기자석 애니메이션
 - **VISUAL_DENSITY (1-10):** 뷰포트당 정보량 — 낮으면 여유로운 레이아웃, 높으면 밀도 높은 대시보드
 
-```bash
+````bash
 # 모든 스킬 한 번에 설치
 npx skills add https://github.com/Leonxlnx/taste-skill
 
@@ -43,33 +44,33 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 # v1에 고정 (기존 동작)
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend-v1"
-```
+`````
 
 기본 스킬은 이제 **v2(실험적)**로, 원래 코드의 상당한 재작성입니다.brief 추론, 디자인 시스템 매핑, em-dash 강제 금지, GSAP 코드 스켈레톤 표준화, redesign-audit 프로토콜이 포함되어 있습니다.
 
 ## 테이스트 스킬의 작동 방식
 
-테이스트 스킬은 3층 아키텍처로 동작합니다: 1. **구현 스킬** — 프로덕션 수준 코드를 출력합니다. 플래그십 `design-taste-frontend` 스킬은 프로젝트 명세를 읽고 디자인 언어를 추론하며, 세 개의 다이얼을 튜닝하고 엄격한 반복 방지 규칙으로 코드를 생성합니다.
+테이스트 스킬은 3층 아키텍처로 동작합니다: 1. **구현 스킬** — 프로덕션 수준 코드를 출력합니다. 플래그십 ````design-taste-frontend```` 스킬은 프로젝트 명세를 읽고 디자인 언어를 추론하며, 세 개의 다이얼을 튜닝하고 엄격한 반복 방지 규칙으로 코드를 생성합니다.
 
-2. **이미지 생성 스킬** — 코드 대신 레퍼런스 보드를 생성합니다. `imagegen-frontend-web`은 웹사이트 컴포즈를 생성하고, `imagegen-frontend-mobile`은 모바일 플로우를 만들며, `brandkit`은 아이덴티티 보드를 생성합니다. 이들을 Codex나 ChatGPT Images에 피드하여 구현에 활용합니다.
+2. **이미지 생성 스킬** — 코드 대신 레퍼런스 보드를 생성합니다. ````imagegen-frontend-web````은 웹사이트 컴포즈를 생성하고, ````imagegen-frontend-mobile````은 모바일 플로우를 만들며, ````brandkit````은 아이덴티티 보드를 생성합니다. 이들을 Codex나 ChatGPT Images에 피드하여 구현에 활용합니다.
 
-3. **스타일 변형** — 구체적인 시각적 방향: `minimalist-ui`(Notion/Linear 분위기), `industrial-brutalist-ui`(스위스 타이포그래피, 날카로운 대비), `high-end-visual-design`(정교하고 차분하고 고급스러운 UI), `stitch-design-taste`(Google Stitch 호환)
+3. **스타일 변형** — 구체적인 시각적 방향: ````minimalist-ui````(Notion/Linear 분위기), ````industrial-brutalist-ui````(스위스 타이포그래피, 날카로운 대비), ````high-end-visual-design````(정교하고 차분하고 고급스러운 UI), ````stitch-design-taste````(Google Stitch 호환)
 
-```bash
+`````bash
 # 이미지 퍼스트 파이프라인: 레퍼런스 먼저 생성, 그다음 코드 생성
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "image-to-code"
 
 # 이미지-투-코드 워크플로우용 프롬프트 예시
 # "follow the skill: generate images, then analyze, then code"
-```
+`````
 
-이미지 퍼스트 파이프라인은 특히 강력합니다: ChatGPT Images나 Codex 이미지 모드에서 레퍼런스 보드를 생성한 후, 구현을 위해 `image-to-code` 스킬과 함께 생성된 렌더링을 코딩 에이전트에 전달합니다.
+이미지 퍼스트 파이프라인은 특히 강력합니다: ChatGPT Images나 Codex 이미지 모드에서 레퍼런스 보드를 생성한 후, 구현을 위해 ````image-to-code```` 스킬과 함께 생성된 렌더링을 코딩 에이전트에 전달합니다.
 
 ## 설치 및 설정
 
-설치는 30초도 걸리지 않습니다. 테이스트 스킬은 Vercel Labs의 `npx skills` CLI를 사용하며, 레포지토리의 `skills/` 폴더를 스캔하여 SKILL.md 파일을 프로젝트에 설치합니다.
+설치는 30초도 걸리지 않습니다. 테이스트 스킬은 Vercel Labs의 ````npx skills```` CLI를 사용하며, 레포지토리의 ````skills/```` 폴더를 스캔하여 SKILL.md 파일을 프로젝트에 설치합니다.
 
-```bash
+`````bash
 # 1단계: 모든 스킬 설치
 npx skills add https://github.com/Leonxlnx/taste-skill
 
@@ -78,30 +79,30 @@ ls ~/.hermes/skills/ | grep taste
 
 # 3단계: 에이전트 대화에서 사용
 # 스킬은 참조 시 자동으로 로드됩니다
-```
+`````
 
 ### v2로 업데이트
 
-v1이 설치되어 있고 실험적 v2로 업그레이드하려면: ```bash
+v1이 설치되어 있고 실험적 v2로 업그레이드하려면: `````bash
 # 설치 재실행 — 설치 이름은 변경되지 않았습니다
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
 
 # v1→v2 차이점 변경 기록 확인
 curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50
-```
+`````
 
 ### 수동 설치
 
-SKILL.md를 프로젝트에 직접 복사하거나 ChatGPT/Codex 대화에 붙여넣을 수도 있습니다: ```bash
+SKILL.md를 프로젝트에 직접 복사하거나 ChatGPT/Codex 대화에 붙여넣을 수도 있습니다: `````bash
 # 수동 접근을 위해 클론
 curl -sL "https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip" -o /tmp/taste-skill.zip
 unzip -q /tmp/taste-skill.zip -d /tmp
 ls /tmp/taste-skill-main/skills/
-```
+`````
 
 ### 사용 가능한 스킬 목록
 
-설치 후 사용할 수 있는 스킬을 확인하세요: ```bash
+설치 후 사용할 수 있는 스킬을 확인하세요: `````bash
 # 설치된 모든 스킬 목록
 npx skills list | grep taste
 
@@ -112,20 +113,20 @@ grep '^version:' ~/.hermes/skills/design-taste-frontend/SKILL.md 2>/dev/null || 
 
 # v2 변경 기록 읽기
 curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md" | head -30
-```
+`````
 
 ## 주요 코딩 에이전트와의 통합
 
 테이스트 스킬은 프레임워크에 독립적이며 모든 주요 AI 코딩 에이전트와 함께 작동합니다: || 에이전트 | 통합 방법 | 최적 스킬 |
 ||-------|-------------------|------------|
-|| **Codex** | `npx skills add` + CLI | `gpt-taste` (더 엄격한 변형) |
-|| **Cursor** | `.cursorrules`에 SKILL.md 붙여넣기 | `design-taste-frontend` |
-|| **Claude Code** | `.claude/skills/`를 통해 로드 | `design-taste-frontend` |
-|| **ChatGPT** | 대화에 SKILL.md 붙여넣기 | `imagegen-frontend-web` |
-|| **Gemini** | 대화에 SKILL.md 붙여넣기 | `design-taste-frontend` |
-|| **OpenCode** | SKILL.md 로드 | `redesign-existing-projects` |
+|| **Codex** | ````npx skills add```` + CLI | ````gpt-taste```` (더 엄격한 변형) |
+|| **Cursor** | ````.cursorrules````에 SKILL.md 붙여넣기 | ````design-taste-frontend```` |
+|| **Claude Code** | ````.claude/skills/````를 통해 로드 | ````design-taste-frontend```` |
+|| **ChatGPT** | 대화에 SKILL.md 붙여넣기 | ````imagegen-frontend-web```` |
+|| **Gemini** | 대화에 SKILL.md 붙여넣기 | ````design-taste-frontend```` |
+|| **OpenCode** | SKILL.md 로드 | ````redesign-existing-projects```` |
 
-```bash
+`````bash
 # Cursor 통합: .cursorrules에 추가
 cat >> .cursorrules << 'EOF'
 # Taste Skill v2 — 저질 방지 프론트엔드 규칙
@@ -137,11 +138,11 @@ EOF
 mkdir -p ~/.claude/skills/taste-skill
 curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md" \
   > ~/.claude/skills/taste-skill/SKILL.md
-```
+`````
 
 ## 벤치마크: 테이스트 스킬 vs 범용 AI 출력
 
-테이스트 스킬이 생성한 인터페이스와 범용 AI 출力的 차이는 여러 차원에서 측정 가능합니다: ```
+테이스트 스킬이 생성한 인터페이스와 범용 AI 출力的 차이는 여러 차원에서 측정 가능합니다: `````
 Metric              | Generic AI | Taste Skill v2
 --------------------|-----------|----------------
 Layout Variance     | 1-2       | 7-9
@@ -150,7 +151,7 @@ Motion Depth        | Hover     | Scroll/Magnetic
 Typography Scale    | 2 levels  | 4+ levels
 Visual Density      | Uniform   | Adaptive
 Frame-to-Code Time  | 2-3 hours | 30-45 min
-```
+`````
 
 이 벤치마크는 두 그룹 간에 생성된 50개 이상의 랜딩 페이지를 비교한 것입니다: 하나는 기본 AI 프롬프트 사용, 다른 하나는 모든 다이얼을 중-높음 설정으로 튜닝한 Taste Skill v2 사용.
 
@@ -161,14 +162,14 @@ Frame-to-Code Time  | 2-3 hours | 30-45 min
 - **의도적인 모션** — 장식이 아닌 내비게이션을 위한
 - **맥락별 시각적 밀도** — 히어로 섹션은 여유롭게, 데이터 패널은 밀도 높게
 
-```bash
+`````bash
 # 생성된 출력이 맛 검사를 통과하는지 확인
 # 테이스트 스킬은 SKILL.md에 사전 비행 체크리스트를 포함합니다
 # 주요 체크 항목: # - 가운데 정렬만 사용하지 않음
 # - 최소 3단계 타이포그래피
 # - 적어도 하나의 의도적 비대칭 포함
 # - 모션은 기능에 봉사함, 장식이 아님
-```
+`````
 
 ## 고급 사용: 세 다이얼 사용자 정의
 
@@ -176,7 +177,7 @@ Frame-to-Code Time  | 2-3 hours | 30-45 min
 
 ### 디자인 분산 (낮음 → 높음)
 
-```yaml
+`````yaml
 # 낮은 분산 (1-3): 깔끔하고 가운데 정렬된 전통적 스타일
 # 최적: 기업 사이트, 대시보드, 문서
 DESIGN_VARIANCE: 2
@@ -188,11 +189,11 @@ DESIGN_VARIANCE: 5
 # 높은 분산 (7-10): 비대칭적이고 대담한 편집 스타일
 # 최적: 크리에이티브 에이전시, 예술 포트폴리오, 브랜드 사이트
 DESIGN_VARIANCE: 9
-```
+`````
 
 ### 모션 강도
 
-```yaml
+`````yaml
 # 낮음 (1-3): 미묘한 호버 효과, 스크롤 애니메이션 없음
 MOTION_INTENSITY: 2
 
@@ -201,11 +202,11 @@ MOTION_INTENSITY: 5
 
 # 높음 (7-10): 자기자석 커서, 스크롤 기반 변환, GSAP 타임라인
 MOTION_INTENSITY: 9
-```
+`````
 
 ### 시각적 밀도
 
-```yaml
+`````yaml
 # 여유로운 (1-3): 큰 패딩, 단일 열 중심
 VISUAL_DENSITY: 2
 
@@ -214,11 +215,11 @@ VISUAL_DENSITY: 5
 
 # 밀집 (7-10): 대시보드 스타일, 다중 열, 뷰포트당 최대 정보
 VISUAL_DENSITY: 9
-```
+`````
 
 ### 특정 스타일을 위한 다이얼 조합
 
-```yaml
+`````yaml
 # 프리미엄 SaaS 랜딩 페이지
 DESIGN_VARIANCE: 6
 MOTION_INTENSITY: 5
@@ -238,11 +239,11 @@ VISUAL_DENSITY: 9
 DESIGN_VARIANCE: 4
 MOTION_INTENSITY: 3
 VISUAL_DENSITY: 5
-```
+`````
 
 ### 실제 다이얼 구성 예시
 
-다양한 프로젝트 유형은 서로 다른 다이얼 조합의 혜택을 받습니다. 다음은 테이스트 스킬의 자체 예시에서 검증된 구성입니다: ```yaml
+다양한 프로젝트 유형은 서로 다른 다이얼 조합의 혜택을 받습니다. 다음은 테이스트 스킬의 자체 예시에서 검증된 구성입니다: `````yaml
 # 자기자석 스크롤 애니메이션을 포함한 포트폴리오
 DESIGN_VARIANCE: 8
 MOTION_INTENSITY: 9
@@ -262,7 +263,7 @@ VISUAL_DENSITY: 6
 DESIGN_VARIANCE: 9
 MOTION_INTENSITY: 7
 VISUAL_DENSITY: 4
-```
+`````
 
 이 구성들은 44,000개 이상의 스타 커뮤니티 피드백을 통해 테스트되었습니다. 핵심은 다이얼 설정을 프로젝트의 정보 밀도와 브랜드 성격에 맞추는 것입니다.
 
@@ -284,7 +285,7 @@ VISUAL_DENSITY: 4
 
 테이스트 스킬은 강력하지만 만능 해결책은 아닙니다. 다음과 같은 상황에서는 문제가 해결되지 않습니다: 1. **복잡한 백엔드 로직** — 테이스트 스킬은 프론트엔드 디자인에 집중합니다. API, 데이터베이스 스키마, 인증 흐름을 설계하지는 않습니다.
 
-2. **브랜아이덴티티 처음부터** — 전체 브랜드 시스템(로고, 컬러 팔레트, 타이포그래피 선택)이 필요하다면, 테이스트 스킬은 이미 디자인 방향성이 있다고 가정합니다. `brandkit`은 레퍼런스 보드를 생성하지만 최종 브랜드 결정은 귀하가 내립니다.
+2. **브랜아이덴티티 처음부터** — 전체 브랜드 시스템(로고, 컬러 팔레트, 타이포그래피 선택)이 필요하다면, 테이스트 스킬은 이미 디자인 방향성이 있다고 가정합니다. ````brandkit````은 레퍼런스 보드를 생성하지만 최종 브랜드 결정은 귀하가 내립니다.
 
 3. **비표준 컴포넌트 라이브러리** — 테이스트 스킬은 첫 원칙에서 CSS를 생성합니다. Material Design, Ant Design, Tailwind UI 컴포넌트 패턴을 엄격하게 따르려면 생성된 출력이 디자인 시스템과 정확히 일치하지 않을 수 있습니다.
 
@@ -292,14 +293,14 @@ VISUAL_DENSITY: 4
 
 5. **모바일 반응형의 예외 케이스** — 스킬은 반응형 레이아웃을 생성하지만, 복잡한 모바일 상호작용(스와이프 제스처, 줌 인/아웃, 네이티브 앱 브리지)은 수동 구현이 필요합니다.
 
-```bash
+`````bash
 # 간단한 현실 체크: 프로젝트에 테이스트 스킬이 필요합니까?
 # ✅ 랜딩 페이지, 포트폴리오, SaaS 사이트 → 네
 # ✅ AI 생성 UI 재디자인 → 네
 # ✅ 백엔드 API, 데이터베이스 스키마 → 아니요
 # ✅ 네이티브 모바일 앱(Swift/Kotlin) → 부분
 # ✅ 복잡한 데이터 시각화 → 부분 (D3 스킬과 병행)
-```
+`````
 
 ## 자주 묻는 질문
 
@@ -313,11 +314,11 @@ VISUAL_DENSITY: 4
 
 ### v1과 v2의 차이는 무엇인가요?
 
-v2는 brief 추론, 디자인 시스템 매핑, GSAP 코드 스켈레톤, redesign-audit 프로토콜을 포함한 상당한 재작성입니다. v1은 원래 동작에 의존하는 프로젝트를 위해 보존됩니다. `--skill "design-taste-frontend-v1"`로 v1을 명시적으로 설치할 수 있습니다.
+v2는 brief 추론, 디자인 시스템 매핑, GSAP 코드 스켈레톤, redesign-audit 프로토콜을 포함한 상당한 재작성입니다. v1은 원래 동작에 의존하는 프로젝트를 위해 보존됩니다. ````--skill "design-taste-frontend-v1"````로 v1을 명시적으로 설치할 수 있습니다.
 
 ### npx skills CLI 없이 테이스트 스킬을 사용하나요?
 
-네. 어떤 SKILL.md든 프로젝트에 복사하거나, ChatGPT/Codex 대화에 붙여넣거나, Cursor `.cursorrules` 지시어로 사용할 수 있습니다. `npx skills add` 명령은 편리하지만 필수 사항은 아닙니다.
+네. 어떤 SKILL.md든 프로젝트에 복사하거나, ChatGPT/Codex 대화에 붙여넣거나, Cursor ````.cursorrules```` 지시어로 사용할 수 있습니다. ````npx skills add```` 명령은 편리하지만 필수 사항은 아닙니다.
 
 ### 테이스트 스킬은 무료인가요?
 
@@ -325,7 +326,7 @@ v2는 brief 추론, 디자인 시스템 매핑, GSAP 코드 스켈레톤, redesi
 
 ### 어떤 스킬 변형을 선택해야 하나요?
 
-가장 안전한 일반 기본값으로 `design-taste-frontend`(v2)로 시작하세요. GPT/Codex 중심의 더 엄격한 규칙에는 `gpt-taste`를 사용하세요. 이미지 퍼스트 워크플로우에는 `image-to-code`를 사용하고, 기존 코드베이스 개선을 위해 `redesign-existing-projects`를 사용하세요.
+가장 안전한 일반 기본값으로 ````design-taste-frontend````(v2)로 시작하세요. GPT/Codex 중심의 더 엄격한 규칙에는 ````gpt-taste````를 사용하세요. 이미지 퍼스트 워크플로우에는 ````image-to-code````를 사용하고, 기존 코드베이스 개선을 위해 ````redesign-existing-projects````를 사용하세요.
 
 ### 테이스트 스킬은 Next.js나 Astro와 함께 작동하나요?
 
@@ -349,13 +350,13 @@ DESIGN_VARIANCE를 2-3으로, VISUAL_DENSITY를 2-3으로 낮추세요. 그러�
 
 **오늘 바로 시작하세요:**
 
-```bash
+`````bash
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
-```
+````
 
 **내부 링크**: [AI 코딩 에이전트 알아보기](https://dibi8.com/ai-tools/oh-my-pi) · [개발 유틸리티 비교](https://dibi8.com/dev-utils/)
 
----
+* * *
 
 **소스 및 추가 읽을거리**: - 공식 사이트: https://tasteskill.dev
 - GitHub 레포지토리: https://github.com/Leonxlnx/taste-skill
@@ -397,7 +398,7 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -407,7 +408,7 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 - [2026-06-01-trending-ai-agents](taste-skill)
 - [2026-06-08-trending-ai-agents](taste-skill)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

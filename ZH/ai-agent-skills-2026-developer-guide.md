@@ -7,6 +7,7 @@ aliases:
   - /posts/ai-agent-skills-2026-developer-guide/-
 ---
 
+
 {</* resource-info */>}
 
 **Meta Description:** 深入解析2026年最热门的AI Agent Skills生态系统，从mattpocock/skills到rohitg00/agentmemory，手把手教你安装、使用和编写Claude Code Skills，掌握AI编程代理的进阶玩法。
@@ -16,13 +17,13 @@ aliases:
 **关键词:** AI Agent Skills, Claude Code Skills, mattpocock skills教程, AI编程代理技能包, Cursor Skills安装, Codex CLI Skills, 2026 AI开发工具趋势
 
 
----
+* * *
 ## TL;DR 核心要点
 
 2026年5月，GitHub Trending被AI Agent Skills霸榜超过两周。mattpocock/skills以75,000+ Star稳居第一，obra/superpowers坐拥188,000 Star构建最大社区，rohitg00/agentmemory则解决了AI编程代理最痛的记忆丢失问题。Skills不是提示词——它们是可复用的结构化工作流，正在重新定义开发者与AI协作的方式。
 
 
----
+* * *
 ## 一、什么是AI Agent Skills？为什么它不只是"高级提示词"
 
 如果你还在把Skills理解为"写得更长的prompt"，那你错过了2026年AI开发工具领域最重要的范式转移。
@@ -31,11 +32,11 @@ aliases:
 
 | 维度 | Prompt（提示词） | Skill（技能包） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 生命周期 | 单次会话，对话结束即失效 | 持久化文件，跨会话复用 |
 | 结构化程度 | 自由文本，依赖模型理解 | 标准化模板，定义工作流步骤 |
@@ -45,9 +46,9 @@ aliases:
 
 简单来说：Prompt告诉AI"做什么"，Skill告诉AI"怎么做"——而且是以同样的方式，每次都做。
 
-Claude Code在2026年初正式支持`.claude/skills/`目录，Cursor、Codex CLI、Windsurf紧随其后。Skills已经成为AI编程代理的事实标准配置方式。
+Claude Code在2026年初正式支持```.claude/skills/````目录，Cursor、Codex CLI、Windsurf紧随其后。Skills已经成为AI编程代理的事实标准配置方式。
 
----
+* * *
 
 ## 二、2026年5月GitHub Trending三大Skills仓库深度盘点
 
@@ -58,32 +59,32 @@ TypeScript教育领域最知名的名字之一Matt Pocock开源了他每天都�
 **核心技能分类：**
 
 **规划与设计类**
-- `write-a-prd` — 不写模板填空，而是通过与开发者交互式访谈、探索现有代码库、设计模块边界，产出完整的PRD并自动提交为GitHub Issue
-- `to-issues` — 将PRD拆解为结构化的GitHub Issues，包含范围界定、验收标准和依赖关系识别
-- `grill-me` — 在编码前通过结构化审问暴露设计假设、边缘情况和接口选择缺陷
-- `design-an-interface` — 在零实现之前探索API的使用模式、人体工程学和约束条件
+- ````write-a-prd```` — 不写模板填空，而是通过与开发者交互式访谈、探索现有代码库、设计模块边界，产出完整的PRD并自动提交为GitHub Issue
+- ````to-issues```` — 将PRD拆解为结构化的GitHub Issues，包含范围界定、验收标准和依赖关系识别
+- ````grill-me```` — 在编码前通过结构化审问暴露设计假设、边缘情况和接口选择缺陷
+- ````design-an-interface```` — 在零实现之前探索API的使用模式、人体工程学和约束条件
 
 **开发类**
-- `tdd` — 最技术偏执也最值钱的Skill：强制Red-Green-Refactor循环，Agent必须先写失败的测试，确认失败原因正确，再写最小实现，最后重构
-- `triage-issue` — 将模糊的Bug报告转化为结构化的根因分析，在尝试修复前完成问题复现、定位相关代码、文档化发现
-- `improve-codebase-architecture` — 识别深层模块、浅层接口和可简化模式
+- ````tdd```` — 最技术偏执也最值钱的Skill：强制Red-Green-Refactor循环，Agent必须先写失败的测试，确认失败原因正确，再写最小实现，最后重构
+- ````triage-issue```` — 将模糊的Bug报告转化为结构化的根因分析，在尝试修复前完成问题复现、定位相关代码、文档化发现
+- ````improve-codebase-architecture```` — 识别深层模块、浅层接口和可简化模式
 
 **工具与安全类**
-- `setup-pre-commit` — 配置Husky、lint-staged和Prettier
-- `git-guardrails-claude-code` — 给Agent添加与资深工程师约束 junior contributor 同样的Git操作护栏
+- ````setup-pre-commit```` — 配置Husky、lint-staged和Prettier
+- ````git-guardrails-claude-code```` — 给Agent添加与资深工程师约束 junior contributor 同样的Git操作护栏
 
 **安装方式（推荐）：**
-```bash
+`````bash
 # 逐个安装，按需取用
 npx skills@latest add mattpocock/skills/write-a-prd
 npx skills@latest add mattpocock/skills/tdd
 npx skills@latest add mattpocock/skills/git-guardrails-claude-code
-```
+`````
 
 **为什么值得优先关注：**
 Matt Pocock不是AI网红，他的TypeScript教学内容被数十万开发者验证过。这些Skills解决的是他真实遇到的Agent失败模式——不是理论推演，是战斗伤疤。
 
----
+* * *
 
 ### 2.2 obra/superpowers — 社区最大的Agent工作流技能集（188,714 Star）
 
@@ -98,7 +99,7 @@ Matt Pocock不是AI网红，他的TypeScript教学内容被数十万开发者验
 
 **核心价值：** 即使不直接采用具体Skill定义，其工作流结构本身就可以作为你自己团队Agent指令集的参考模式。188K Star背后是一个持续演进的社区实践库。
 
----
+* * *
 
 ### 2.3 rohitg00/agentmemory — 解决AI编程代理的遗忘症（6,513 Star，Apache-2.0）
 
@@ -117,32 +118,32 @@ Matt Pocock不是AI网红，他的TypeScript教学内容被数十万开发者验
 - 本地存储模型，无云端依赖
 
 **安装：**
-```bash
+`````bash
 npm install agentmemory
 # 或
 docker pull rohitg00/agentmemory
-```
+`````
 
 **为什么它可能是三者中最影响生产力的：** Skills让Agent做得更规范，agentmemory让Agent记得你说过什么。前者是效率问题，后者是可用性问题。
 
----
+* * *
 
 ## 三、实战：从零开始使用mattpocock/skills
 
 ### 3.1 环境准备
 
 确保你已安装Claude Code（或Cursor/Codex CLI）：
-```bash
+`````bash
 # Claude Code
 curl -fsSL https://claude.ai/install.sh | bash
 
 # 验证安装
 claude --version
-```
+`````
 
 ### 3.2 安装Skills
 
-```bash
+`````bash
 # 进入你的项目目录
 cd your-project
 
@@ -153,20 +154,20 @@ npx skills@latest add mattpocock/skills/diagnose
 
 # 验证安装
 ls .claude/skills/
-```
+`````
 
-Claude Code会在下次启动时自动发现`.claude/skills/`目录下的所有Skill文件。
+Claude Code会在下次启动时自动发现````.claude/skills/````目录下的所有Skill文件。
 
 ### 3.3 调用Skill
 
 无需记忆特殊语法，像正常对话一样描述需求：
 
 **场景1：启动新功能开发（触发tdd Skill）**
-```
+`````
 我需要给项目添加用户认证模块，用TDD方式实现。
-```
+`````
 
-Claude Code会自动匹配`tdd` Skill，执行：
+Claude Code会自动匹配````tdd```` Skill，执行：
 1. 分析现有代码库结构
 2. 编写第一个失败的测试
 3. 运行测试确认失败原因
@@ -175,11 +176,11 @@ Claude Code会自动匹配`tdd` Skill，执行：
 6. 重构代码
 
 **场景2：处理模糊Bug报告（触发triage Skill）**
-```
+`````
 用户报告说"有时候保存按钮不工作"，帮我调查一下。
-```
+`````
 
-`triage` Skill会启动结构化调查：
+````triage```` Skill会启动结构化调查：
 1. 搜索相关代码路径
 2. 尝试复现问题
 3. 识别根因
@@ -187,19 +188,19 @@ Claude Code会自动匹配`tdd` Skill，执行：
 5. 给出修复建议或自动修复
 
 **场景3：设计新API（触发design-an-interface Skill）**
-```
+`````
 我要设计一个文件上传接口，支持断点续传和进度通知。
-```
+`````
 
----
+* * *
 
 ## 四、进阶：如何编写属于你自己的Skill
 
 ### 4.1 Skill文件的基本解剖
 
-每个Skill都是一个标准的Markdown文件，放置在`.claude/skills/{skill-name}/SKILL.md`：
+每个Skill都是一个标准的Markdown文件，放置在````.claude/skills/{skill-name}/SKILL.md````：
 
-```markdown
+`````markdown
 # 代码审查 Skill
 
 ## 描述
@@ -229,7 +230,7 @@ Claude Code会自动匹配`tdd` Skill，执行：
 - [ ] 性能影响评估
 
 ### 步骤4：输出审查报告
-```
+`````
 ## 审查结果
 
 ### 严重问题（必须修复）
@@ -240,13 +241,13 @@ Claude Code会自动匹配`tdd` Skill，执行：
 
 ### 积极反馈
 1. ...
-```
+`````
 
 ## 约束
 - 不要建议风格问题，除非影响可读性
 - 优先关注安全性和正确性
 - 每个问题必须引用具体代码行
-```
+`````
 
 ### 4.2 高质量Skill的设计原则
 
@@ -263,23 +264,23 @@ Claude Code会自动匹配`tdd` Skill，执行：
 
 Meta技能——用Skill来创建Skill：
 
-```bash
+`````bash
 npx skills@latest add mattpocock/skills/write-a-skill
-```
+`````
 
 然后在Claude Code中：
-```
+`````
 帮我创建一个Skill，用于在提交代码前自动生成CHANGELOG条目。
-```
+`````
 
-`write-a-skill`会引导你完成：
+````write-a-skill````会引导你完成：
 1. 定义Skill的目的和触发条件
 2. 设计工作流步骤
 3. 选择是否配套脚本（确定性操作）
 4. 决定是否拆分为多文件
 5. 运行自检清单
 
----
+* * *
 
 ## 五、Skills vs MCP vs Prompts：三者如何协同
 
@@ -287,13 +288,13 @@ npx skills@latest add mattpocock/skills/write-a-skill
 
 | 组件 | 类比 | 作用域 | 类比传统开发 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Prompts** | 临时便签 | 单次对话 | 口头沟通 |
 | **Skills** | 标准作业程序（SOP） | 项目/团队级 | 内部文档 |
@@ -308,7 +309,7 @@ npx skills@latest add mattpocock/skills/write-a-skill
 
 三者不是替代关系，是互补关系。MCP扩展能力边界，Skills规范执行方式，Prompts处理即时意图。
 
----
+* * *
 
 ## 六、2026年Skills生态的未来走向
 
@@ -321,7 +322,7 @@ explainx.ai等平台已经上线Skills分发和变现功能。开发者可以：
 
 ### 6.2 从个人到企业
 
-早期Skills是个人`.claude`目录的共享，2026年Q2开始出现：
+早期Skills是个人````.claude````目录的共享，2026年Q2开始出现：
 - 团队级Skills registry
 - CI/CD集成（自动在PR中运行代码审查Skill）
 - 合规与审计（金融、医疗行业的定制化约束Skill）
@@ -333,15 +334,15 @@ Cursor的Composer和Windsurf的Cascade已经将Skills作为一等公民：
 - 实时Skill效果预览
 - Skill组合编排（多个Skill串联执行）
 
----
+* * *
 
 ## 七、FAQ常见问题
 
 **Q: Skills只适用于Claude Code吗？**
-A: 不是。虽然`.claude/skills/`是Claude Code的原生路径，但mattpocock/skills等仓库已经提供对Cursor、Codex CLI、Cline、Windsurf等多Agent的安装支持。核心格式是标准Markdown，跨工具兼容。
+A: 不是。虽然````.claude/skills/````是Claude Code的原生路径，但mattpocock/skills等仓库已经提供对Cursor、Codex CLI、Cline、Windsurf等多Agent的安装支持。核心格式是标准Markdown，跨工具兼容。
 
 **Q: 安装Skills会影响现有项目吗？**
-A: 不会。Skills是纯Markdown文件，放置在`.claude/skills/`目录，不修改任何源代码或依赖。卸载即删除对应文件夹。
+A: 不会。Skills是纯Markdown文件，放置在````.claude/skills/````目录，不修改任何源代码或依赖。卸载即删除对应文件夹。
 
 **Q: Skills和自定义GPTs有什么区别？**
 A: 自定义GPTs是ChatGPT的封装层，主要影响对话风格。Skills是Agent的工作流定义，直接影响代码生成、文件操作和命令执行的流程。
@@ -353,9 +354,9 @@ A: 不需要。虽然Matt Pocock是TypeScript专家，但他的Skills（如tdd�
 A: 完全不冲突。agentmemory解决"Agent忘记上下文"的问题，Skills解决"Agent做事不规范"的问题。两者结合使用效果更佳：Agent既记得你的偏好，又遵循标准流程。
 
 **Q: 2026年最值得优先学习的Skill是什么？**
-A: 如果你是团队负责人，优先`write-a-prd`和`to-issues`。如果你是开发者，优先`tdd`和`diagnose`。如果你是安全敏感项目，优先`git-guardrails-claude-code`。
+A: 如果你是团队负责人，优先````write-a-prd````和````to-issues````。如果你是开发者，优先````tdd````和````diagnose````。如果你是安全敏感项目，优先````git-guardrails-claude-code```。
 
----
+* * *
 
 ## 结语
 
@@ -365,7 +366,7 @@ mattpocock/skills、obra/superpowers和rohitg00/agentmemory代表了三个不同
 
 如果你只从这篇文章带走一个行动项：**今天就在你的主要项目中安装一个Skill，体验Agent从"聊天"到"协作"的转变**。
 
----
+* * *
 
 **相关阅读：**
 - [Claude Code官方文档 — Agent Skills](https://docs.anthropic.com/en/docs/claude-code/skills)
@@ -438,7 +439,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -470,15 +471,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

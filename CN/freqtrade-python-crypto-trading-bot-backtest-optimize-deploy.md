@@ -12,9 +12,10 @@ maintainer: 'xmatthias'
 license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
+
 # Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Freqtrade Trading Engine                 │
 │                                                      │
@@ -31,7 +32,7 @@ featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/doc
 │                                                      │
 │  Exchanges: Binance | OKX | Bitget | Dex-Trade      │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Freqtrade architecture: backtest → optimize → deploy*
 
@@ -56,7 +57,7 @@ The project is built with Python (core), FastAPI (RPC server), React (web UI), a
 
 Freqtrade operates through four distinct phases: ### Phase 1: Strategy Development
 
-```python
+`````python
 # strategies/MyStrategy.py
 from freqtrade.strategy import IStrategy
 from pandas import DataFrame
@@ -84,11 +85,11 @@ class MyStrategy(IStrategy): # Strategy interface settings
             (dataframe[ema_fast] < dataframe[ema_slow]),
             'sell'] = 1
         return dataframe
-```
+`````
 
 ### Phase 2: Backtesting
 
-```bash
+`````bash
 # Download historical data
 freqtrade download-data --timerange 20230101-20260101 --days 1000
 
@@ -98,20 +99,20 @@ freqtrade backtesting \
   --timerange 20240101-20251231 \
   --datadir ./data \
   --export trades
-```
+`````
 
 ### Phase 3: Hyperopt Optimization
 
-```bash
+`````bash
 # Optimize strategy parameters
 freqtrade hyperopt \
   --strategy MyStrategy \
   --hyperopt-loss SharpeHyperOptLossDaily \
   --epochs 500 \
   --spaces buy sell roi stoploss trailing
-```
+`````
 
-You can create a custom hyperopt loss function to optimize for your specific risk preferences: ```python
+You can create a custom hyperopt loss function to optimize for your specific risk preferences: `````python
 # custom_hyperopt_loss.py
 from freqtrade.optimize.hyperopt import IHyperOptLoss
 from pandas import DataFrame
@@ -121,20 +122,20 @@ class CalmarHyperOptLoss(IHyperOptLoss): @staticmethod
         max_drawdown = results.groupby('trade_nr')[profit_ratio].cummax().max()
         calmar_ratio = total_profit / max_drawdown if max_drawdown > 0 else 0
         return -calmar_ratio  # Minimize negative = maximize calmar ratio
-```
+`````
 
-```bash
+`````bash
 # Use custom loss function
 freqtrade hyperopt \
   --hyperopt-loss CalmarHyperOptLoss \
   --strategy MyStrategy \
   --epochs 500 \
   --spaces all
-```
+`````
 
 ### Phase 4: Live Deployment
 
-```bash
+`````bash
 # Start with dry-run (paper trading)
 freqtrade trade \
   --strategy MyStrategy \
@@ -146,23 +147,23 @@ freqtrade trade \
 freqtrade trade \
   --strategy MyStrategy \
   --config config.json
-```
+`````
 
 ## Integration with Binance, OKX, Bitget, and 20+ Exchanges
 
-Freqtrade uses the `ccxt` library for exchange connectivity, supporting all major crypto exchanges: ### Supported Exchanges
+Freqtrade uses the ````ccxt```` library for exchange connectivity, supporting all major crypto exchanges: ### Supported Exchanges
 
 | Exchange | API Type | Fees | Min. Capital | KYC Required |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Binance | Spot/Futures | 0.1% | $10 | Yes |
 | OKX | Spot/Futures | 0.08% | $10 | Partial |
@@ -175,7 +176,7 @@ Freqtrade uses the `ccxt` library for exchange connectivity, supporting all majo
 
 ### Exchange Configuration
 
-```json
+`````json
 // config.json
 {
     "exchange": {
@@ -198,7 +199,7 @@ Freqtrade uses the `ccxt` library for exchange connectivity, supporting all majo
         "dry_run": false
     }
 }
-```
+`````
 
 For self-hosted trading infrastructure, I recommend deploying on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU droplets for low-latency exchange connections, or [HTStack](https://my.htstack.com/aff.php?aff=27187) for Asia-to-exchange routing. Consider [Dex-Trade](https://dex-trade.com/refcode/1mviku) for DEX trading without centralized exchanges.
 
@@ -208,15 +209,15 @@ For self-hosted trading infrastructure, I recommend deploying on [DigitalOcean](
 
 Backtesting on BTC/USDT 1H timeframe, 2024-01-01 to 2025-12-31, $1000 starting capital: | Strategy | Win Rate | Total Profit | Max Drawdown | Trades |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RSI + EMA Cross | 58% | +34.2% | -12.3% | 142 |
 | MACD + Bollinger | 52% | +18.7% | -18.5% | 89 |
@@ -227,15 +228,15 @@ Backtesting on BTC/USDT 1H timeframe, 2024-01-01 to 2025-12-31, $1000 starting c
 
 Optimizing RSI threshold and EMA period on 500 epochs: | Epoch | Best ROI | Best Buy Param | Best Sell Param | Profit (%) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 0.02 | rsi=40 | rsi=75 | 12.3 |
 | 100 | 0.08 | rsi=32 | rsi=68 | 28.7 |
@@ -244,7 +245,7 @@ Optimizing RSI threshold and EMA period on 500 epochs: | Epoch | Best ROI | Best
 
 ### Real-World Use Case 1: Algorithmic Day Trading
 
-A developer runs a grid strategy on 5 altcoins across 3 timeframes: ```bash
+A developer runs a grid strategy on 5 altcoins across 3 timeframes: `````bash
 # Config for multi-pair trading
 # config.json: # "stake_currency": "USDT"
 # "stake_amount": 100
@@ -254,13 +255,13 @@ A developer runs a grid strategy on 5 altcoins across 3 timeframes: ```bash
 
 # Start 24/7 trading
 freqtrade trade --strategy GridStrategy --config config.json --dry-run &
-```
+`````
 
 The bot executed 347 trades in 30 days, with a 61% win rate and +23.8% portfolio growth.
 
 ### Real-World Use Case 2: Swing Trading with Risk Management
 
-```python
+`````python
 # Strategy with protections
 class SwingStrategy(IStrategy): stoploss = -0.08
     trailing_stop = True
@@ -275,7 +276,7 @@ class SwingStrategy(IStrategy): stoploss = -0.08
     def populate_indicators(self, dataframe, metadata): dataframe[bb_upper], dataframe[bb_middle], dataframe[bb_lower] = ta.BBANDS(dataframe, timeperiod=20)
         dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
         return dataframe
-```
+`````
 
 This strategy limits daily losses to 2% of portfolio while capturing swing moves of 3-8%.
 
@@ -285,14 +286,14 @@ This strategy limits daily losses to 2% of portfolio while capturing swing moves
 
 ### Method 1: Install via pip (Native)
 
-```bash
+`````bash
 pip install freqtrade
 freqtrade --version  # Verify installation
-```
+`````
 
 ### Method 2: Docker (Recommended for Production)
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/freqtrade/freqtrade.git
 cd freqtrade
@@ -308,13 +309,13 @@ docker compose up
 # For production (detached mode): docker compose up -d
 
 # Access the web UI at http://localhost:8080
-```
+`````
 
 See the [Docker Quickstart Guide](https://www.freqtrade.io/en/stable/docker_quickstart/) for full Docker setup instructions.
 
 ### Quick Start Commands
 
-```bash
+`````bash
 # Create a user directory
 freqtrade create-userdir --userdir user_data
 
@@ -332,11 +333,11 @@ freqtrade trade --strategy MyStrategy --config user_data/config.json --dry-run
 
 # Start live trading
 freqtrade trade --strategy MyStrategy --config user_data/config.json
-```
+`````
 
 ### Custom Data Source Integration
 
-For non-standard data sources: ```bash
+For non-standard data sources: `````bash
 # Import custom CSV data
 freqtrade convert-trade-data \
   --input-file /path/to/trades.csv \
@@ -350,11 +351,11 @@ freqtrade download-data \
   --timeframes 5m 15m 1h \
   --exchange custom \
   --datadir ./custom_data
-```
+`````
 
 ### Telegram Bot Integration
 
-```bash
+`````bash
 # Enable Telegram notifications
 # In config.json: {
     "telegram": {
@@ -368,11 +369,11 @@ freqtrade download-data \
 # - Daily P&L summary
 # - Error alerts
 # - Manual sell commands via chat
-```
+`````
 
 ### Exchange Error Handling & Retry Logic
 
-Freqtrade has built-in retry logic for common exchange errors: ```python
+Freqtrade has built-in retry logic for common exchange errors: `````python
 # config.json — Exchange configuration with error handling
 {
     "exchange": {
@@ -393,9 +394,9 @@ Freqtrade has built-in retry logic for common exchange errors: ```python
     "db_url": "sqlite:///trades.db",
     "strategy": "MyStrategy"
 }
-```
+`````
 
-For self-hosted deployments, configure health checks: ```bash
+For self-hosted deployments, configure health checks: `````bash
 # Monitor bot health
 curl -s http://localhost:8080/api/v1/health | jq
 
@@ -404,21 +405,21 @@ curl -s http://localhost:8080/api/v1/trades/open | jq
 
 # Graceful shutdown (waits for active trades to close)
 freqtrade stop
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Freqtrade | Hummingbot | 3Commas | Cryptohopper |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open source | Yes | Yes | No | No |
 | Self-hosted | Yes | Yes | No | No |
@@ -463,7 +464,7 @@ A: Yes. Docker makes VPS deployment straightforward. A basic VPS with 1 vCPU and
 
 **Q: Does Freqtrade support futures/margin trading?**
 
-A: Yes. Freqtrade supports spot and futures trading on Binance, OKX, Bybit, and other exchanges. Configure `contract_size` and `margin_mode` in your strategy for futures trading.
+A: Yes. Freqtrade supports spot and futures trading on Binance, OKX, Bybit, and other exchanges. Configure ````contract_size```` and ````margin_mode```` in your strategy for futures trading.
 
 ## 
 
@@ -483,7 +484,7 @@ Freqtrade has been the go-to open-source crypto trading bot since 2016, and with
 
 Whether you"re building algorithmic day-trading strategies, swing trading systems, or just learning quantitative finance, Freqtrade provides the tools to go from idea to live trading in days, not months. The Docker deployment means no local setup headaches, and the Telegram integration means you can monitor from anywhere.
 
-Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Freqtrade strategies and configurations. Check out our guides on [爬虫/反检测浏览器](https://dibi8.com/cloakbrowser-st[本地ChatGPT部署](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu)n workflow automation]([cloakbrowser guide](https://dibi8.com/cloakbrowser-*) for complementary tools. Try Freqtrade today — clone the repo, run `freqtrade download-data`, and start your first backtest.
+Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Freqtrade strategies and configurations. Check out our guides on [爬虫/反检测浏览器](https://dibi8.com/cloakbrowser-st[本地ChatGPT部署](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu)n workflow automation]([cloakbrowser guide](https://dibi8.com/cloakbrowser-*) for complementary tools. Try Freqtrade today — clone the repo, run ````freqtrade download-data```, and start your first backtest.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -514,7 +515,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
@@ -524,7 +525,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -13,6 +13,7 @@ tags: ["ai", "voice-ai", "voice-clone", "speech-to-text", "text-to-speech", "whi
   license: MIT---
 
 
+
 # VoiceBox: The Open-Source AI Voice Studio
 
 **VoiceBox** is a comprehensive, open-source AI voice studio that enables voice cloning, speech generation, and dictation — all running locally on your machine. With **33,745 GitHub stars** and an active development community, it has become the go-to solution for developers, content creators, and privacy-conscious users who need powerful voice AI without relying on cloud APIs.
@@ -55,7 +56,7 @@ VoiceBox supports multiple hardware configurations: **GPU Accelerated (Recommend
 
 ### Option 1: Quick Install with Pip
 
-```bash
+````bash
 # Install VoiceBox from PyPI
 pip install voicebox-ai
 
@@ -64,11 +65,11 @@ voicebox --version
 
 # Initialize the application
 voicebox init --model qwen3-tts
-```
+`````
 
 ### Option 2: From Source (Latest Features)
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/jamiepine/voicebox.git
 cd voicebox
@@ -85,11 +86,11 @@ pip install -e .
 
 # Download the default voice models
 voicebox download-models --all
-```
+`````
 
 ### Option 3: Docker Deployment
 
-```bash
+`````bash
 # Pull the official image
 docker pull jamiepine/voicebox:latest
 
@@ -109,11 +110,11 @@ docker run -d \
   -v ${HOME}/voicebox-data:/data \
   -e VOICEBOX_MODEL=qwen3-tts \
   jamiepine/voicebox:latest
-```
+`````
 
 ### Option 4: Windows Installation
 
-```powershell
+`````powershell
 # Install Python 3.11+ from microsoft store
 # Then install VoiceBox
 pip install voicebox-ai
@@ -123,13 +124,13 @@ pip install voicebox-ai
 
 # Initialize VoiceBox
 voicebox init --gpu cuda
-```
+`````
 
 ## Voice Cloning
 
 ### Recording a Voice Sample
 
-To clone a voice, you need at least 3 seconds of clear audio. For best results, provide 30-60 seconds of speech: ```bash
+To clone a voice, you need at least 3 seconds of clear audio. For best results, provide 30-60 seconds of speech: `````bash
 # Record audio using the built-in recorder
 voicebox record --output sample.wav --duration 30
 
@@ -137,11 +138,11 @@ voicebox record --output sample.wav --duration 30
 voicebox clone --audio my_voice_sample.mp3 --name "my-voice"
 
 # VoiceBox automatically processes the audio and extracts voice characteristics
-```
+`````
 
 ### Voice Processing Pipeline
 
-The voice cloning pipeline consists of several stages: ```python
+The voice cloning pipeline consists of several stages: `````python
 from voicebox.engine import VoiceCloner
 from voicebox.audio import AudioProcessor
 
@@ -171,11 +172,11 @@ output = voice_model.synthesize(
     emotion="neutral"
 )
 voice_model.save(output, "test_output.wav")
-```
+`````
 
 ### Advanced Voice Parameters
 
-VoiceBox exposes fine-grained control over voice synthesis: ```bash
+VoiceBox exposes fine-grained control over voice synthesis: `````bash
 # Control speech rate
 voicebox synthesize --input script.txt --output speech.wav --speed 0.8
 
@@ -193,11 +194,11 @@ voicebox synthesize \
   --pitch +100 \
   --emotion confident \
   --clarity high
-```
+`````
 
 ### Multi-Voice Support
 
-You can create and manage multiple voice clones simultaneously: ```python
+You can create and manage multiple voice clones simultaneously: `````python
 from voicebox.engine import VoiceManager
 
 manager = VoiceManager()
@@ -218,7 +219,7 @@ hybrid = manager.blend_voices(
     weight_b=0.3
 )
 output = hybrid.synthesize("Blended voice output")
-```
+`````
 
 ## Dictation Mode
 
@@ -226,7 +227,7 @@ VoiceBox's dictation mode provides real-time speech-to-text transcription that w
 
 ### System-Wide Dictation Setup
 
-```bash
+`````bash
 # Enable system-wide dictation
 voicebox dictation --enable
 
@@ -238,11 +239,11 @@ voicebox dictation --language en
 
 # Configure hotkey
 voicebox dictation --hotkey "ctrl+space"
-```
+`````
 
 ### Dictation API Usage
 
-```python
+`````python
 from voicebox.dictation import DictationEngine
 
 # Initialize the dictation engine
@@ -270,11 +271,11 @@ result = await engine.listen_session(
 print(f"Transcribed: {result.text}")
 print(f"Confidence: {result.confidence:.2%}")
 print(f"Words: {result.word_count}")
-```
+`````
 
 ### Multi-Language Dictation
 
-VoiceBox supports simultaneous multi-language dictation with automatic language detection: ```bash
+VoiceBox supports simultaneous multi-language dictation with automatic language detection: `````bash
 # Enable auto-detection
 voicebox dictation --auto-detect
 
@@ -283,13 +284,13 @@ voicebox dictation --languages en,zh,ko,ja,es,fr,de
 
 # Set primary language (for better accuracy)
 voicebox dictation --primary-language en
-```
+`````
 
 ## Text-to-Speech API
 
 VoiceBox exposes a full REST API for programmatic text-to-speech generation: ### Basic TTS
 
-```bash
+`````bash
 # Simple text-to-speech conversion
 curl -X POST "https://your-voicebox/api/v1/tts" \
   -H "Content-Type: application/json" \
@@ -300,21 +301,21 @@ curl -X POST "https://your-voicebox/api/v1/tts" \
     "output_format": "wav"
   }' \
   --output speech.wav
-```
+`````
 
 ### Streaming TTS
 
-For real-time audio streaming applications: ```bash
+For real-time audio streaming applications: `````bash
 # Stream audio in chunks
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
   -d '{"text": "This audio will stream in real-time...", "voice": "cloned-voice"}' \
   --output - | aplay
-```
+`````
 
 ### Batch Processing
 
-Process multiple texts simultaneously: ```python
+Process multiple texts simultaneously: `````python
 from voicebox.api import VoiceBoxClient
 
 client = VoiceBoxClient("https://your-voicebox")
@@ -333,7 +334,7 @@ results = await client.tts.batch(
 )
 
 for i, result in enumerate(results): print(f"Generated: speech_{i}.mp3 ({result.duration:.1f}s)")
-```
+````
 
 ## Hardware Requirements and Performance
 
@@ -415,7 +416,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [open-llm-vtuber-voice-powered-ai-avatar](voicebox-open-source-ai-voice-studio)
@@ -424,6 +425,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-05-25-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 - [2026-06-01-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

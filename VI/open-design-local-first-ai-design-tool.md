@@ -34,6 +34,7 @@ faqs: - q: 'Open Design là gì và khác gì so với Claude Design?'
     a: 'Bản thân công cụ này hoàn toàn miễn phí và mã nguồn mở theo giấy phép MIT, không có phí đăng ký hay phí theo số lượng người dùng. Chi phí duy nhất là lượng sử dụng API của nhà cung cấp AI mà bạn tiêu thụ.'
 ---
 
+
 {</* resource-info */>}
 
 # Open Design: Công Cụ Thiết Kế AI Ưu Tiên Local Thay Thế Claude Design Tối Ưu Nhất
@@ -135,28 +136,28 @@ Trước khi cài đặt, hãy đảm bảo hệ thống của bạn đáp ứng
 
 ### Bước 1: Clone Kho Lưu Trữ
 
-```bash
+````bash
 git clone https://github.com/nexu-io/open-design.git
 cd open-design
-```
+`````
 
 ### Bước 2: Cài Đặt Các Phụ Thuộc
 
-Open Design sử dụng cấu trúc monorepo. Cài đặt tất cả các gói bằng: ```bash
+Open Design sử dụng cấu trúc monorepo. Cài đặt tất cả các gói bằng: `````bash
 npm install
 # hoặc
 pnpm install
 # hoặc
 yarn install
-```
+`````
 
 ### Bước 3: Cấu Hình Biến Môi Trường
 
-Sao chép tệp môi trường mẫu và tùy chỉnh nó: ```bash
+Sao chép tệp môi trường mẫu và tùy chỉnh nó: `````bash
 cp .env.example .env
-```
+`````
 
-Chỉnh sửa `.env` để thêm khóa API của nhà cung cấp AI bạn dự định sử dụng: ```env
+Chỉnh sửa ``.env`` để thêm khóa API của nhà cung cấp AI bạn dự định sử dụng: `````env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -169,39 +170,39 @@ GEMINI_API_KEY=your-gemini-key
 # Tùy chọn: Các điểm cuối mô hình tùy chỉnh
 CUSTOM_MODEL_URL=https://your-model-endpoint.com
 CUSTOM_MODEL_API_KEY=your-custom-key
-```
+`````
 
 ### Bước 4: Xây Dựng Dự Án
 
-```bash
+`````bash
 npm run build
-```
+`````
 
 Việc này biên dịch các nguồn TypeScript và đóng gói các tài sản hệ thống thiết kế.
 
 ### Bước 5: Khởi Tạo Hệ Thống Thiết Kế
 
-Tải xuống 71 hệ thống thiết kế đạt chuẩn thương hiệu: ```bash
+Tải xuống 71 hệ thống thiết kế đạt chuẩn thương hiệu: `````bash
 npm run init:design-systems
-```
+`````
 
 Lệnh này tìm nạp và lưu trong bộ nhớ cache tất cả các định nghĩa hệ thống thiết kế local, cho phép sử dụng ngoại tuyến.
 
 ### Bước 6: Khởi Chạy Open Design
 
-Khởi động máy chủ phát triển local: ```bash
+Khởi động máy chủ phát triển local: `````bash
 npm run dev
-```
+`````
 
-Giao diện sẽ khả dụng tại `http://localhost:3000`. Mở trình duyệt và bạn đã sẵn sàng bắt đầu tạo thiết kế.
+Giao diện sẽ khả dụng tại ````http://localhost:3000````. Mở trình duyệt và bạn đã sẵn sàng bắt đầu tạo thiết kế.
 
 ### Bước 7: Cấu Hình Trợ Lý AI (Tùy Chọn)
 
-Nếu bạn sử dụng Open Design với trợ lý AI bên ngoài như Claude Code hoặc Cursor, hãy cài đặt plugin đi kèm: ```bash
+Nếu bạn sử dụng Open Design với trợ lý AI bên ngoài như Claude Code hoặc Cursor, hãy cài đặt plugin đi kèm: `````bash
 npm run install:cursor-plugin
 # hoặc
 npm run install:claude-plugin
-```
+````
 
 Các plugin này thêm lệnh Open Design trực tiếp vào bảng lệnh của trình soạn thảo của bạn.
 
@@ -283,11 +284,11 @@ Với **39.107 sao** và đang không ngừng tăng trưởng, dự án rõ ràn
 
 Để biết thêm thông tin chi tiết về các công cụ phát triển hỗ trợ bởi AI, hãy xem các bài viết liên quan của dibi8 tại: [Các Trợ Lý Lập Trình AI Năm 2026](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/), [Hướng Dẫn Kiến Trúc Ưu Tiên Local](/resources/llm-frameworks/anythingllm-architecture-local-rag/), và [Các Giải Pháp Mã Nguồn Mở Thay Thế Công Cụ AI Độc Quyền](/resources/llm-frameworks/top-10-open-source-ai-tools-2026/).
 
----
+* * *
 
 *Bạn đã sử dụng Open Design trong các dự án của mình chưa? Chia sẻ trải nghiệm của bạn trong phần bình luận bên dưới hoặc liên hệ với dibi8 Tech Team để tìm kiếm cơ hội hợp tác.*
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

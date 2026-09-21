@@ -24,6 +24,7 @@ aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/-
 ---
 
+
 如果 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 是生产多 GPU 微调框架，**Unsloth** 是单 GPU 速度之王。通过用自定义 Triton + Python 重写 LLM 训练 kernel 而不依赖 PyTorch 通用 autograd，Unsloth 比 HuggingFace TRL 基线**快 2×** 且**少用 70% VRAM**。
 
 64.9k GitHub 星，双 Apache 2.0 / AGPL-3.0 license。支持 500+ 模型（Llama 3-3.2 / Mistral / Qwen 3-3.6 / Gemma / DeepSeek / Phi-4 / gpt-oss）。单 24 GB 消费级 GPU 上要快速迭代时的默认微调工具。
@@ -53,9 +54,9 @@ aliases:
 
 | GPU | 能 QLoRA 微调的模型大小（带 Unsloth 70% VRAM 减少）|
 |
----
+* * *
 |
----
+* * *
 |
 | 8 GB（RTX 3060 8GB）| Llama 3.2 3B QLoRA, Phi-4 mini |
 | 12 GB（RTX 3060 12GB / 4070）| Llama 3.2 8B QLoRA, Mistral 7B QLoRA |
@@ -68,13 +69,13 @@ aliases:
 
 ## 3. 快装（5 分）
 
-```bash
+````bash
 pip install unsloth
-```
+`````
 
 Hello world —— ~20 行 QLoRA 微调 Llama 3.2 8B：
 
-```python
+`````python
 from unsloth import FastLanguageModel
 from trl import SFTTrainer
 from datasets import load_dataset
@@ -101,19 +102,19 @@ trainer = SFTTrainer(
 )
 trainer.train()
 model.save_pretrained("./outputs/llama-alpaca-lora")
-```
+`````
 
 完事。同模型同数据 —— 跑在 Unsloth 优化 kernel 上。
 
 ## 4. 预量化模型目录
 
-Unsloth 在 `huggingface.co/unsloth` 维护流行模型的预量化 4-bit / 8-bit 版本。用这些每次新跑节省 5-15 分初始下载 + 量化：
+Unsloth 在 ````huggingface.co/unsloth```` 维护流行模型的预量化 4-bit / 8-bit 版本。用这些每次新跑节省 5-15 分初始下载 + 量化：
 
-- `unsloth/llama-3.2-8b-bnb-4bit`
-- `unsloth/mistral-7b-v0.3-bnb-4bit`
-- `unsloth/qwen3-coder-14b-bnb-4bit`
-- `unsloth/gemma-3-9b-bnb-4bit`
-- `unsloth/DeepSeek-V3-bnb-4bit`（48 GB+ 勇者用）
+- ````unsloth/llama-3.2-8b-bnb-4bit````
+- ````unsloth/mistral-7b-v0.3-bnb-4bit````
+- ````unsloth/qwen3-coder-14b-bnb-4bit````
+- ````unsloth/gemma-3-9b-bnb-4bit````
+- ````unsloth/DeepSeek-V3-bnb-4bit````（48 GB+ 勇者用）
 
 下原始发布者前总是先检查 Unsloth HF profile 有没有目标模型的预量化版。
 
@@ -121,7 +122,7 @@ Unsloth 在 `huggingface.co/unsloth` 维护流行模型的预量化 4-bit / 8-bi
 
 GRPO（Group Relative Policy Optimization）是 2026 RL 微调默认（DeepSeek-R1 背后的技术）。Unsloth 的 GRPO 实现比 HF TRL 少 80% VRAM，让 GRPO 在单 24 GB GPU 上可行而不需多 GPU 节点。
 
-```python
+`````python
 from trl import GRPOConfig, GRPOTrainer
 from unsloth import FastLanguageModel, PatchFastRL
 
@@ -138,7 +139,7 @@ trainer = GRPOTrainer(
     reward_funcs=[reward_fn],
 )
 trainer.train()
-```
+`````
 
 领域特定推理（数学 / 代码 / 结构化输出），单 GPU GRPO + Unsloth 现在是把推理改进烤进基础模型的最经济方式。
 
@@ -146,9 +147,9 @@ trainer.train()
 
 | 挑 | 何时 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Unsloth** | 单 GPU，快速迭代，RL 微调，消费级硬件，原型 |
 | **Axolotl** | 多 GPU 生产，多节点，广方法支持（DPO/IPO/KTO/ORPO/GRPO/GDPO），YAML config-as-code。看 [Axolotl 2026 指南](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
@@ -175,19 +176,19 @@ Unsloth 双 license：
 多数团队定下来的 2 模式：
 
 **模式 A —— 纯 Unsloth（单 GPU shop）**：
-```
+`````
 Vast.ai 租 RTX 4090 → Unsloth QLoRA 实验 → 
 合 LoRA + base → 推到 HF Hub → 通过 vLLM 服务
-```
+`````
 
 **模式 B —— Unsloth + Axolotl 混合（生产团队）**：
-```
+`````
 开发笔记本上 Unsloth 做 50 次快速实验
 ↓ 找到赢家
 8× H100 集群上 Axolotl 做最终长上下文、多 epoch full fine-tune
 ↓ 生产模型
 推到 HF Hub → LiteLLM 网关后通过 vLLM 服务
-```
+````
 
 混合模式只在有候选值得扩展时才付集群费。
 
@@ -205,7 +206,7 @@ Unsloth = **单 GPU LLM 微调速度之王**。64.9k 星，vs HuggingFace TRL �
 配 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 做生产多 GPU 阶段。要训练时租 {{< aff "digitalocean" "footer-cta" "GPU 实例" >}} 或用 Vast.ai。
 
 
----
+* * *
 *dibi8 Fine-Tuning Stack 的一部分 —— 见即将上线的 Fine-Tuning Stack 合集，覆盖从数据集准备到生产部署的完整管线。*
 
 
@@ -271,7 +272,7 @@ Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

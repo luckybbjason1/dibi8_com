@@ -7,6 +7,7 @@ aliases:
   - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
 
+
 # CI/CD 도구 비교: GitHub Actions vs GitLab CI vs Jenkins 2025년 종합 평가
 
 
@@ -28,13 +29,13 @@ CI/CD 시장은 지난 5년간 클라우드 네이티브 중심으로 급변했�
 
 ## GitHub Actions: 저장소 안에서 완결되는 CI/CD
 
-GitHub Actions는 2018년 10월 출시 이후 GitHub 저장소와의 완벽한 통합을 무기로 급성장했다. 워크플로우는 `.github/workflows/` 디렉토리의 YAML 파일로 정의하며, 이벤트 기반 트리거(push, pull_request, schedule 등)를 지원한다.
+GitHub Actions는 2018년 10월 출시 이후 GitHub 저장소와의 완벽한 통합을 무기로 급성장했다. 워크플로우는 ```.github/workflows/```` 디렉토리의 YAML 파일로 정의하며, 이벤트 기반 트리거(push, pull_request, schedule 등)를 지원한다.
 
 ### 핵심 구성 요소와 동작 방식
 
-워크플로우는 **워크플로우 > 잡 > 스텝**의 3단계 계층으로 구성된다. 각 잡은 별도의 가상 환경(Runner)에서 실행되며, `ubuntu-latest`, `windows-latest`, `macos-latest` 등을 선택할 수 있다. 매트릭스 빌드 기능을 사용하면 Node.js 18/20/22, Python 3.10/3.11/3.12 등 다양한 환경을 병렬로 테스트할 수 있다.
+워크플로우는 **워크플로우 > 잡 > 스텝**의 3단계 계층으로 구성된다. 각 잡은 별도의 가상 환경(Runner)에서 실행되며, ````ubuntu-latest````, ````windows-latest````, ````macos-latest```` 등을 선택할 수 있다. 매트릭스 빌드 기능을 사용하면 Node.js 18/20/22, Python 3.10/3.11/3.12 등 다양한 환경을 병렬로 테스트할 수 있다.
 
-GitHub Marketplace는 [2025년 5월 기준 20,000개 이상의 재사용 가능한 액션](https://github.com/marketplace?type=actions)을 제공한다. `actions/setup-node@v4`, `docker/build-push-action@v5` 같은 공식 액션부터 서드파티 액션까지 폭넓게 활용할 수 있다.
+GitHub Marketplace는 [2025년 5월 기준 20,000개 이상의 재사용 가능한 액션](https://github.com/marketplace?type=actions)을 제공한다. ````actions/setup-node@v4````, ````docker/build-push-action@v5```` 같은 공식 액션부터 서드파티 액션까지 폭넓게 활용할 수 있다.
 
 셀프 호스팅 러너(Self-hosted Runner)를 구성하면 온프레미스 하드웨어나 낮은 버전의 OS에서도 빌드를 실행할 수 있다. 기업용으로는 더 나은 보안과 비용 최적화가 가능하다.
 
@@ -50,11 +51,11 @@ GitHub Marketplace는 [2025년 5월 기준 20,000개 이상의 재사용 가능�
 
 ## GitLab CI: 올인원 DevOps 플랫폼
 
-GitLab CI는 GitLab 저장소에 내장된 CI/CD 기능으로, 별도의 추가 설치 없이 `.gitlab-ci.yml` 파일로 바로 파이프라인을 구성할 수 있다. GitLab의 핵심 철학은 **이슈 트래킹, 코드 리뷰, CI/CD, 모니터링, 컨테이너 레지스트리**를 하나의 플랫폼에서 제공하는 것이다.
+GitLab CI는 GitLab 저장소에 내장된 CI/CD 기능으로, 별도의 추가 설치 없이 ````.gitlab-ci.yml```` 파일로 바로 파이프라인을 구성할 수 있다. GitLab의 핵심 철학은 **이슈 트래킹, 코드 리뷰, CI/CD, 모니터링, 컨테이너 레지스트리**를 하나의 플랫폼에서 제공하는 것이다.
 
 ### 파이프라인 구조와 고급 기능
 
-GitLab CI는 **스테이지 > 잡**의 2단계 구조를 가진다. `build`, `test`, `deploy` 스테이지를 순차적으로 실행하고, 각 스테이지 내 잡은 병렬로 처리된다. 2024년에 도입된 [CI/CD 컴포넌트](https://docs.gitlab.com/ee/ci/components/) 기능으로 재사용 가능한 파이프라인 모듈을 카탈로그 형태로 관리할 수 있다.
+GitLab CI는 **스테이지 > 잡**의 2단계 구조를 가진다. ````build````, ````test````, ````deploy```` 스테이지를 순차적으로 실행하고, 각 스테이지 내 잡은 병렬로 처리된다. 2024년에 도입된 [CI/CD 컴포넌트](https://docs.gitlab.com/ee/ci/components/) 기능으로 재사용 가능한 파이프라인 모듈을 카탈로그 형태로 관리할 수 있다.
 
 부모-자식 파이프라인(Parent-Child Pipeline)을 사용하면 모노레포처럼 큰 프로젝트에서도 효율적으로 빌드를 관리할 수 있다. Kubernetes 통합은 GitLab의 강력한 차별점으로, 클러스터에 직접 배포하고 모니터링까지 연동할 수 있다.
 
@@ -88,7 +89,7 @@ Jenkins의 핵심 자산은 방대한 플러그인 생태계다. Git, Docker, Ku
 
 빌드 속도 측면에서는 GitHub Actions와 GitLab CI가 클라우드 인프라의 이점으로 우위에 있다. 두 플랫폼 모두 병렬 잡 실행과 캐싱을 기본 지원한다. Jenkins는 하드웨어 자원에 따라 성능이 결정되므로 충분한 인프라 투자가 필요하다.
 
-모노레포 대응 능력에서는 GitLab CI의 부모-자식 파이프라인과 GitHub Actions의 매트릭스 빌드가 각각 강점을 보인다. Jenkins는 `pipeline-stage-step` 플러그인으로 유사한 기능을 구현할 수 있지만 설정이 복잡하다.
+모노레포 대응 능력에서는 GitLab CI의 부모-자식 파이프라인과 GitHub Actions의 매트릭스 빌드가 각각 강점을 보인다. Jenkins는 ````pipeline-stage-step```` 플러그인으로 유사한 기능을 구현할 수 있지만 설정이 복잡하다.
 
 ### 보안 기능 비교
 
@@ -110,7 +111,7 @@ SBOM 생성과 취약점 스캔 통합에서는 GitHub의 Dependabot과 GitLab�
 
 GitHub Actions의 Node.js 프로젝트 기본 워크플로우는 다음과 같다.
 
-```yaml
+`````yaml
 name: CI
 on: [push, pull_request]
 jobs: test: runs-on: ubuntu-latest
@@ -122,11 +123,11 @@ jobs: test: runs-on: ubuntu-latest
       - run: npm ci
       - run: npm test
       - run: npm run build
-```
+`````
 
-GitLab CI의 동등한 설정은 `.gitlab-ci.yml`에 작성한다.
+GitLab CI의 동등한 설정은 ````.gitlab-ci.yml````에 작성한다.
 
-```yaml
+`````yaml
 stages: [build, test]
 variables: NODE_VERSION: "20"
 test: stage: test
@@ -134,7 +135,7 @@ test: stage: test
   script: - npm ci
     - npm test
   parallel: matrix: - NODE_VERSION: ["18", "20", "22"]
-```
+`````
 
 ## 2025년 전망과 결론
 
@@ -142,7 +143,7 @@ CI/CD 시장은 Git 네이티브 도구로의 전환을 가속화하고 있다. 
 
 결론적으로 2025년 대부분의 팀에게 GitHub Actions가 가장 실용적인 출발점이다. 이미 GitLab을 전사적으로 사용 중이라면 GitLab CI가 자연스러운 선택이며, 특수한 온프레미스 요구사항이나 레거시 시스템 통합이 필요할 때 Jenkins가 여전히 유효하다. 중요한 것은 도구 자첳보다 **파이프라인의 안정성, 보안, 유지보수성**을 지속적으로 개선하는 문화를 구축하는 것이다.
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -164,9 +165,9 @@ GitHub Actions가 학습 곡선이 더 완만합니다. GitHub Marketplace의 �
 
 **Jenkins에서 GitHub Actions로 마이그레이션하려면 어떻게 해야 하나요?**
 
-1단계로 Jenkinsfile의 각 스테이지를 GitHub Actions의 잡으로 매핑하는 문서화 작업부터 시작하세요. `actions/checkout`, `actions/setup-*` 계열 액션으로 도구 설치를 대체하고, Jenkins 플러그인 기능은 Marketplace에서 대체 액션을 검색합니다. 마이그레이션 중에는 두 시스템을 병렬로 운영하며 점진적으로 전환하는 것이 안전합니다.
+1단계로 Jenkinsfile의 각 스테이지를 GitHub Actions의 잡으로 매핑하는 문서화 작업부터 시작하세요. ````actions/checkout````, ````actions/setup-*``` 계열 액션으로 도구 설치를 대체하고, Jenkins 플러그인 기능은 Marketplace에서 대체 액션을 검색합니다. 마이그레이션 중에는 두 시스템을 병렬로 운영하며 점진적으로 전환하는 것이 안전합니다.
 
----
+* * *
 
 ## 추천 인프라
 
@@ -238,7 +239,7 @@ CI/CD 도구 비교: GitHub Actions vs GitLab CI vs Jenkins 2025년 종합 평�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

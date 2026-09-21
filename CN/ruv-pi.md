@@ -12,6 +12,7 @@ maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
+
 ## Introduction
 
 The landscape of AI coding tools has become remarkably fragmented. Developers juggle between Claude Code, Cursor, Copilot, Codex, and a growing zoo of CLI tools — each with its own configuration, pricing, and capabilities. Managing multiple model providers, each with different APIs, rate limits, and token costs, has become a significant operational burden for teams building intelligent applications.
@@ -48,7 +49,7 @@ The agent runtime is the brain of the system. It maintains conversation context,
 
 Pi's tool system is what makes it self-extensible. Tools are functions that the agent can call to interact with the external world — reading files, executing commands, making API calls, running tests, and more. The unique aspect is that the agent can generate new tools on the fly when it encounters a task that requires capabilities it doesn't currently have.
 
-```python
+````python
 # Example: Define a custom tool for Pi
 from pi_agent import tool
 
@@ -64,13 +65,13 @@ def calculate_compound_interest(
         "final_amount": round(result, 2),
         "interest_earned": round(result - principal, 2)
     }
-```
+`````
 
 ### Unified LLM API
 
 The unified API abstracts away the differences between model providers. Whether you want to use GPT-4o, Claude Sonnet, Gemini Pro, or any other supported model, the API is consistent. This means you can switch providers by changing a single configuration value.
 
-```bash
+`````bash
 # Configure Pi to use different providers
 # Use OpenAI
 export PI_PROVIDER=openai
@@ -86,7 +87,7 @@ export PI_MODEL=gemini-pro
 
 # Use Pi's default smart routing
 export PI_PROVIDER=auto
-```
+`````
 
 ## How It Works
 
@@ -94,7 +95,7 @@ Pi operates through a continuous loop of three phases: 1. **Think** — The agen
 2. **Act** — The agent calls the appropriate tools, executing code, reading files, querying databases, or making API calls.
 3. **Reflect** — The agent evaluates the results, checking for errors or incomplete work, and decides whether to continue or report completion.
 
-```bash
+`````bash
 # Start a Pi session
 pi start --model claude-sonnet-4-20250514
 
@@ -103,11 +104,11 @@ pi start --auto
 
 # Start with a specific task
 pi start --task "Refactor the authentication module to use JWT"
-```
+`````
 
 The agent maintains a conversation context that persists across invocations. You can think of it as a coding assistant that remembers what you've discussed and built in previous sessions.
 
-```bash
+`````bash
 # Continue a previous session
 pi continue --session-id abc123
 
@@ -116,11 +117,11 @@ pi sessions list
 
 # Archive a completed session
 pi sessions archive abc123
-```
+`````
 
 ## Installation
 
-Installing Pi is straightforward. The primary installation method is through pip: ```bash
+Installing Pi is straightforward. The primary installation method is through pip: `````bash
 # Install via pip
 pip install pi-agent
 
@@ -129,17 +130,17 @@ pi --version
 
 # Check available providers
 pi providers list
-```
+`````
 
-Alternatively, you can install through npm if you prefer a JavaScript-based setup: ```bash
+Alternatively, you can install through npm if you prefer a JavaScript-based setup: `````bash
 # Install via npm
 npm install @earendil-works/pi-coding-agent
 
 # Verify the installation
 npx pi --version
-```
+`````
 
-For development or to contribute to the project: ```bash
+For development or to contribute to the project: `````bash
 # Clone the repository
 git clone https://github.com/earendil-works/pi.git
 
@@ -151,13 +152,13 @@ pip install -e '.[dev]'
 
 # Run tests
 pytest tests/
-```
+`````
 
 ## Integration Patterns
 
 Pi is designed to integrate seamlessly into existing development workflows. Here are the key integration patterns: ### Git Integration
 
-Pi can interact with your Git repository, making commits, creating branches, and managing pull requests: ```bash
+Pi can interact with your Git repository, making commits, creating branches, and managing pull requests: `````bash
 # Configure Git integration
 export PI_GIT_ENABLED="true"
 export PI_GIT_AUTO_COMMIT="true"
@@ -165,32 +166,32 @@ export PI_GIT_COMMIT_MESSAGE="Auto-commit by Pi agent"
 
 # Let Pi manage Git operations
 pi start --task "Refactor database module and commit changes"
-```
+`````
 
 ### CI/CD Pipeline Integration
 
-Pi can be integrated into CI/CD pipelines for automated testing, code review, and deployment: ```bash
+Pi can be integrated into CI/CD pipelines for automated testing, code review, and deployment: `````bash
 # Configure Pi for CI/CD
 export PI_CI_ENABLED="true"
 export PI_CI_MODE="review"  # review, test, or deploy
 
 # Run in CI review mode
 pi ci-review --base main --head feature-branch
-```
+`````
 
 ### IDE Integration
 
-Pi works alongside your preferred IDE, providing intelligent suggestions and executing tasks: ```bash
+Pi works alongside your preferred IDE, providing intelligent suggestions and executing tasks: `````bash
 # Start Pi in watch mode, monitoring file changes
 pi watch --directory ./src --interval 5
 
 # Integrate with VS Code via extension
 # Install the Pi extension for VS Code from the marketplace
-```
+`````
 
 ### Multi-Provider Routing
 
-One of Pi's most powerful features is intelligent model routing. Based on the task type, Pi can automatically select the best model: ```yaml
+One of Pi's most powerful features is intelligent model routing. Based on the task type, Pi can automatically select the best model: `````yaml
 # pi-config.yaml
 routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
@@ -202,7 +203,7 @@ routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
   default: model: auto
     temperature: 0.7
-```
+`````
 
 ![Ruv Pi Model Routing](https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/model-routing-diagram.png)
 
@@ -212,13 +213,13 @@ routing: code_generation: model: claude-sonnet-4-20250514
 
 Pi's unified API enables direct comparison of different models on the same tasks: | Task Type | Best Model (Pi Auto-Select) | Avg. Latency | Cost per 1K tokens |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Code generation | Claude Sonnet 4 | 1.2s | $0.003 |
 | Code review | GPT-4o | 0.8s | $0.005 |
@@ -230,9 +231,9 @@ Pi's unified API enables direct comparison of different models on the same tasks
 
 Pi's self-extending capabilities have been benchmarked on a suite of complex coding tasks: | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | Average tools generated per complex task | 3.2 |
 | Tool success rate (first try) | 94.5% |
@@ -244,7 +245,7 @@ Pi's self-extending capabilities have been benchmarked on a suite of complex cod
 
 ### Custom Tool Development
 
-For power users, creating custom tools gives you full control over Pi's capabilities: ```python
+For power users, creating custom tools gives you full control over Pi's capabilities: `````python
 # Advanced custom tool with error handling
 from pi_agent import tool, ToolResponse
 
@@ -271,11 +272,11 @@ def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse: """Depl
     except subprocess.CalledProcessError as e: return ToolResponse.error(
             f"Deployment failed: {e.stderr}"
         )
-```
+`````
 
 ### Agent Memory and Context Management
 
-For long-running sessions, managing context is critical: ```bash
+For long-running sessions, managing context is critical: `````bash
 # Configure context window
 export PI_CONTEXT_WINDOW="200000"
 export PI_CONTEXT_STRATEGY="summary"  # summary, truncate, or keep-all
@@ -286,11 +287,11 @@ export PI_SUMMARIZE_EVERY_N_STEPS="50"
 
 # View context usage
 pi context status
-```
+`````
 
 ### Multi-Agent Collaboration
 
-Pi supports multi-agent collaboration for complex tasks that require specialized expertise: ```bash
+Pi supports multi-agent collaboration for complex tasks that require specialized expertise: `````bash
 # Launch a collaborative session
 pi collaborate --agents research,implementation,review
 
@@ -298,11 +299,11 @@ pi collaborate --agents research,implementation,review
 # Research agent: gather requirements and analyze options
 # Implementation agent: write the code
 # Review agent: verify correctness and quality
-```
+`````
 
 ### Plugin System
 
-Pi has a rich plugin ecosystem that extends its capabilities: ```bash
+Pi has a rich plugin ecosystem that extends its capabilities: `````bash
 # List available plugins
 pi plugins list
 
@@ -312,7 +313,7 @@ pi plugins install pi-plugin-react
 
 # Configure plugins
 pi plugins configure pi-plugin-django --settings dev
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -320,17 +321,17 @@ How does Pi compare to other coding agents and LLM frameworks?
 
 | Feature | Ruv Pi | Claude Code | Cursor | OpenClaw |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Installation | `pip install pi-agent` | Invite-only | IDE Extension | Custom CLI |
+| Installation | ````pip install pi-agent```` | Invite-only | IDE Extension | Custom CLI |
 | Model Support | 10+ providers | Anthropic only | OpenAI + Anthropic | Multiple |
 | Self-Extension | Yes | No | Limited | Limited |
 | CLI-first | Yes | Yes | No (IDE) | Yes |
@@ -360,7 +361,7 @@ Pi supports OpenAI (GPT-4, GPT-4o), Anthropic (Claude Sonnet, Claude Opus), Goog
 
 ### 2. Can I use Pi with my own API keys?
 
-Yes. Pi uses your own API keys — it never stores or proxies your keys. Simply set the appropriate environment variables (e.g., `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`) and Pi will use them directly.
+Yes. Pi uses your own API keys — it never stores or proxies your keys. Simply set the appropriate environment variables (e.g., ````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY```) and Pi will use them directly.
 
 ### 3. Is Pi suitable for enterprise use?
 
@@ -395,7 +396,7 @@ Visit the official documentation at [https://pi.dev/docs/latest](https://pi.dev/
 
 
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://ruv-pi.dev (check official repo)
 - GitHub repository: https://github.com/ruv-pi/11/ruv/pi
 - Community discussion: https://github.com/ruv-pi/discussions
@@ -410,7 +411,7 @@ Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
 
----
+* * *
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
@@ -439,7 +440,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -449,7 +450,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 - [12-factor-agents-production-llm-software-2026](ruv-pi)
 - [12-factor-agents](ruv-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
 
+
 {{</* resource-info */>}}
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
@@ -37,18 +38,18 @@ Claude로 추론하고, GPT-4o로 코딩하고, Gemini Flash로 저비용 분류
 
 **22,500개 이상의 GitHub 스타**와 **1,500명 이상의 기여자**를 보유한 LiteLLM은 게이트웨이 수준의 제어와 제로 벤더 종속성을 원하는 팀의 기본 선택이 되었다. 이 가이드는 30분 이내에 프로덕션급 설정 — Docker 배포부터 가상 키 관리, 모니터링까지 — 안내한다.
 
----
+* * *
 
 ## LiteLLM이란?
 
 LiteLLM은 100개 이상의 LLM API — OpenAI, Anthropic, Azure, Google Vertex AI, AWS Bedrock, Cohere, Ollama 등 — 을 단일 OpenAI 호환 API 형식으로 호출하는 통합 인터페이스를 제공하는 오픈소스 LLM 프록시 게이트웨이이자 Python SDK이다.
 
-두 가지 모드가 있다: - **Python SDK** — 코드에서 `import litellm; completion(...)`으로 공급자와 무관하게 사용
-- **프록시 서버** — `:4000`에서 실행되는 자체 호스팅 HTTP 게이트웨이, 모든 OpenAI SDK 클라이언트가 가리킬 수 있음
+두 가지 모드가 있다: - **Python SDK** — 코드에서 ```import litellm; completion(...)````으로 공급자와 무관하게 사용
+- **프록시 서버** — ````:4000````에서 실행되는 자체 호스팅 HTTP 게이트웨이, 모든 OpenAI SDK 클라이언트가 가리킬 수 있음
 
-대부분의 프로덕션 팀이 사용하는 프록시 모드는 가상 키, 팀 관리, 예산 제어, 속도 제한, 캐싱, 관찰 가능성을 추가한다 — 모두 단일 `config.yaml` 파일로 구성된다.
+대부분의 프로덕션 팀이 사용하는 프록시 모드는 가상 키, 팀 관리, 예산 제어, 속도 제한, 캐싱, 관찰 가능성을 추가한다 — 모두 단일 ````config.yaml```` 파일로 구성된다.
 
----
+* * *
 
 ## LiteLLM 작동 방식
 
@@ -56,7 +57,7 @@ LiteLLM은 100개 이상의 LLM API — OpenAI, Anthropic, Azure, Google Vertex 
 
 **요청 흐름:**
 
-1. 애플리케이션이 `http://litellm-proxy:4000/v1/chat/completions`에 OpenAI 형식 요청을 전송
+1. 애플리케이션이 ````http://litellm-proxy:4000/v1/chat/completions````에 OpenAI 형식 요청을 전송
 2. LiteLLM은 가상 키를 검증하고 팀 예산과 속도 제한을 확인
 3. 라우터가 구성된 전략(지연 시간 기반, 비용 기반, 또는 단순 로드 밸런싱)에 따라 최적의 모델 배포를 선택
 4. 기본 공급자가 429/5xx를 반환하면 밀리초 내에 자동 폴오버가 트리거됨
@@ -72,7 +73,7 @@ LiteLLM은 100개 이상의 LLM API — OpenAI, Anthropic, Azure, Google Vertex 
 | Redis | 속도 제한 조정, 캐싱 | 권장 |
 | 관리 UI | 키/모델용 웹 대시보드 | 내장 |
 
----
+* * *
 
 ## 설치 및 설정
 
@@ -84,7 +85,7 @@ LiteLLM은 100개 이상의 LLM API — OpenAI, Anthropic, Azure, Google Vertex 
 
 ### 1단계: Docker Compose 템플릿 다운로드
 
-```bash
+`````bash
 # 프로젝트 디렉토리 생성
 mkdir -p litellm-gateway && cd litellm-gateway
 
@@ -99,11 +100,11 @@ OPENAI_API_KEY="sk-your-openai-key"
 ANTHROPIC_API_KEY="sk-your-anthropic-key"
 DATABASE_URL="postgresql://llmproxy:dbpassword9090@db:5432/litellm"
 EOF
-```
+`````
 
 ### 2단계: config.yaml 생성
 
-```yaml
+`````yaml
 # litellm_config.yaml
 model_list: - model_name: gpt-4o
     litellm_params: model: openai/gpt-4o
@@ -160,11 +161,11 @@ litellm_settings: drop_params: true
   # 관찰 가능성 콜백
   success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
 ### 3단계: 서비스 스택 시작
 
-```bash
+`````bash
 # 모든 서비스 가져오기 및 시작
 docker compose up -d
 
@@ -173,13 +174,13 @@ docker compose ps
 
 # 프록시 로그 확인
 docker compose logs -f litellm
-```
+`````
 
-프록시가 이제 `http://localhost:4000`에서 실행 중이다. 관리 UI는 `http://localhost:4000/ui/` — 사용자 이름 `admin`과 `LITELLM_MASTER_KEY`를 비밀번호로 사용하여 로그인한다.
+프록시가 이제 ````http://localhost:4000````에서 실행 중이다. 관리 UI는 ````http://localhost:4000/ui/```` — 사용자 이름 ````admin````과 ````LITELLM_MASTER_KEY````를 비밀번호로 사용하여 로그인한다.
 
 ### 4단계: 요청으로 테스트
 
-```bash
+`````bash
 # 채팅 완성 테스트
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -197,15 +198,15 @@ curl http://localhost:4000/v1/embeddings \
     "model": "text-embedding",
     "input": ["LiteLLM은 AI 게이트웨이입니다"]
   }'
-```
+`````
 
----
+* * *
 
 ## 인기 도구와의 통합
 
 ### OpenAI SDK (Python)
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(
@@ -218,11 +219,11 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "로드 밸런싱 설명"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### LangChain
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
@@ -233,11 +234,11 @@ llm = ChatOpenAI(
 
 result = llm.invoke("LLM 게이트웨이 유형은 무엇인가?")
 print(result.content)
-```
+`````
 
 ### Anthropic SDK (네이티브 호환)
 
-```python
+`````python
 from anthropic import Anthropic
 
 client = Anthropic(
@@ -251,19 +252,19 @@ response = client.messages.create(
     messages=[{"role": "user", "content": "LiteLLM과 OpenRouter 비교"}]
 )
 print(response.content[0].text)
-```
+`````
 
 ### Ollama (로컬 모델)
 
-```yaml
+`````yaml
 # litellm_config.yaml에 추가
 model_list: - model_name: local-llama
     litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
     model_info: mode: chat
-```
+`````
 
-```bash
+`````bash
 # LiteLLM을 통해 로컬 모델 테스트
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -272,26 +273,26 @@ curl http://localhost:4000/v1/chat/completions \
     "model": "local-llama",
     "messages": [{"role": "user", "content": "안녕 로컬 모델"}]
   }'
-```
+`````
 
 ### Cohere
 
-```yaml
+`````yaml
 model_list: - model_name: cohere-command
     litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 client = OpenAI(base_url="http://localhost:4000", api_key="sk-virtual-key")
 response = client.chat.completions.create(
     model="cohere-command",
     messages=[{"role": "user", "content": "요약하라"}]
 )
-```
+`````
 
----
+* * *
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -316,7 +317,7 @@ response = client.chat.completions.create(
 
 **참고:** 게이트웨이 오버헤드는 LLM API 응답 시간을 제외한다. LiteLLM은 작고 예측 가능한 지연 시간 페널티를 추가한다. 매 밀리초가 중요한 흐름의 경우 애플리케이션과 동일한 VPC에 프록시를 배포한다.
 
----
+* * *
 
 ## 고급 사용법 / 프로덕션 하드닝
 
@@ -326,7 +327,7 @@ response = client.chat.completions.create(
 
 ![LiteLLM 관리 대시보드](images/litellm-dashboard.png)
 
-```bash
+`````bash
 # "프론트엔드 팀"용 가상 키 생성
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -351,19 +352,19 @@ curl -X POST http://localhost:4000/key/generate \
 #   "max_budget": 500.00,
 #   "models": ["gpt-4o", "gemini-flash"]
 # }
-```
+`````
 
 ### 공급자 수준 예산 상한
 
-```yaml
+`````yaml
 general_settings: provider_budget_config: openai: monthly_budget: 5000.00
     anthropic: monthly_budget: 3000.00
     gemini: monthly_budget: 1000.00
-```
+`````
 
 ### 지연 시간 기반 라우팅
 
-```yaml
+`````yaml
 router_settings: routing_strategy: latency-based-routing
   routing_strategy_args: ttl: 60
   allowed_fails: 3
@@ -371,11 +372,11 @@ router_settings: routing_strategy: latency-based-routing
   num_retries: 2
   timeout: 90
   retry_after: 5
-```
+`````
 
 ### 보안 체크리스트
 
-```yaml
+`````yaml
 # 보안 강화된 config.yaml
 general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
@@ -389,11 +390,11 @@ general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   # 저장 시 키 암호화
   litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
-```
+`````
 
 ### Kubernetes / Helm 배포
 
-```bash
+`````bash
 # LiteLLM Helm 저장소 추가
 helm pull oci://docker.litellm.ai/berriai/litellm-helm
 
@@ -406,17 +407,17 @@ helm install litellm-gateway ./litellm-helm \
   --set ingress.hosts[0].host=litellm.yourdomain.com \
   --set env.LITELLM_MASTER_KEY="sk-$(openssl rand -hex 16)" \
   --set env.DATABASE_URL="postgresql://user:pass@neon-host/litellm"
-```
+`````
 
 ### Prometheus + Grafana 모니터링
 
-```yaml
+`````yaml
 # config.yaml에 추가
 litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
-`/metrics`에서 노출되는 주요 Prometheus 메트릭: ```promql
+``/metrics``에서 노출되는 주요 Prometheus 메트릭: `````promql
 # 모델별 요청 속도
 rate(litellm_request_total_requests[5m])
 
@@ -428,11 +429,11 @@ litellm_remaining_requests
 
 # 게이트웨이 오버헤드 히스토그램
 histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
-```
+`````
 
 요청/초, 토큰 사용량, 팀별 비용, 지연 시간 백분위수를 보여주는 사전 구축된 패널을 위해 [공식 Grafana 대시보드](https://github.com/BerriAI/litellm/blob/main/examples/grafana/grafana_dashboard.json)를 가져온다.
 
----
+* * *
 
 ## 대안과의 비교
 
@@ -456,7 +457,7 @@ histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
 - **OpenRouter** — 제로 인프라 작업으로 300+ 모델에 즉시 접근하고, 5.5% 크레딧 수수료가 허용 가능한 경우.
 - **Helicone** — 관찰 가능성이 1차 우선순위이고, LLM 호출에 대한 상세한 추적과 비용 귀속이 필요한 경우.
 
----
+* * *
 
 ## 한계 / 솔직한 평가
 
@@ -470,7 +471,7 @@ LiteLLM은 모든 상황에 적합한 도구가 아니다. 다음은 부족한 �
 
 5. **엔터프라이즈 SSO 유료** — SAML/SSO, 감사 로그, 고급 가드레일은 LiteLLM Enterprise의 일부이다. OSS 버전은 가상 키와 기본 예산만 처리한다.
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -480,7 +481,7 @@ LiteLLM은 자체 호스팅 오픈소스 게이트웨이이다; OpenRouter는 �
 
 **Q: 기존 OpenAI SDK 코드와 LiteLLM을 함께 사용할 수 있나요?**
 
-예 — 두 줄만 변경하면 된다: `base_url`을 LiteLLM 프록시로 설정하고, `api_key`를 가상 키로 설정한다. 나머지는 그대로 유지된다. 이것이 팀이 LiteLLM을 채택하는 주된 이유이다; 구성 외에는 코드 변경이 전혀 없다.
+예 — 두 줄만 변경하면 된다: ````base_url````을 LiteLLM 프록시로 설정하고, ````api_key````를 가상 키로 설정한다. 나머지는 그대로 유지된다. 이것이 팀이 LiteLLM을 채택하는 주된 이유이다; 구성 외에는 코드 변경이 전혀 없다.
 
 **Q: LiteLLM에 어떤 데이터베이스가 필요한가요?**
 
@@ -488,7 +489,7 @@ LiteLLM은 자체 호스팅 오픈소스 게이트웨이이다; OpenRouter는 �
 
 **Q: 폴오버 메커니즘은 어떻게 작동하나요?**
 
-`config.yaml`에서 폴오버 체인을 정의한다. 모델이 429, 500 또는 타임아웃을 반환하면, LiteLLM이 동일한 클라이언트 요청 내에서 체인의 다음 모델에 대해 요청을 재시도한다. 클라이언트는 단일 응답을 본다; 페일오버는 투명하게 발생한다.
+````config.yaml````에서 폴오버 체인을 정의한다. 모델이 429, 500 또는 타임아웃을 반환하면, LiteLLM이 동일한 클라이언트 요청 내에서 체인의 다음 모델에 대해 요청을 재시도한다. 클라이언트는 단일 응답을 본다; 페일오버는 투명하게 발생한다.
 
 **Q: LiteLLM은 고트래픽 프로덕션 사용에 적합한가요?**
 
@@ -496,13 +497,13 @@ LiteLLM은 자체 호스팅 오픈소스 게이트웨이이다; OpenRouter는 �
 
 **Q: 프로덕션에서 LiteLLM을 어떻게 모니터링하나요?**
 
-`config.yaml`에서 Prometheus 콜백을 활성화하고, `/metrics` 엔드포인트를 스크래핑하고, 공식 Grafana 대시보드를 가져온다. `litellm_requests_total_failed`(오류율)과 `litellm_remaining_requests`(예산 소진)에서 알림을 설정한다. 요청별 추적을 위해 `success_callback`을 Langfuse에 연결한다.
+````config.yaml````에서 Prometheus 콜백을 활성화하고, ````/metrics```` 엔드포인트를 스크래핑하고, 공식 Grafana 대시보드를 가져온다. ````litellm_requests_total_failed````(오류율)과 ````litellm_remaining_requests````(예산 소진)에서 알림을 설정한다. 요청별 추적을 위해 ````success_callback````을 Langfuse에 연결한다.
 
----
+* * *
 
 ## 결론
 
-LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다: 여러 SDK, 흩어진 API 키, 불투명한 비용, 수동 페일오버. 단일 `config.yaml`로 통합된 OpenAI 호환 게이트웨이, 예산이 있는 가상 키, 자동 페일오버, 실시간 소비 추적을 얻는다.
+LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다: 여러 SDK, 흩어진 API 키, 불투명한 비용, 수동 페일오버. 단일 ````config.yaml```로 통합된 OpenAI 호환 게이트웨이, 예산이 있는 가상 키, 자동 페일오버, 실시간 소비 추적을 얻는다.
 
 월 LLM API 소비 $5,000+이고 기본 DevOps 역량이 있는 팀에게, 자체 호스팅 LiteLLM은 낮은 마크업 수수료와 향상된 신뢰성으로 비용을 회수한다. 위의 Docker Compose 설정으로 시작하고, Redis 캐싱을 추가한 다음, 트래픽 증가에 따라 Helm을 사용하여 Kubernetes로 확장한다.
 
@@ -515,7 +516,7 @@ LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다
 
 *일부 링크는 제휴 링크입니다. 호스팅 서비스를 통해 구매하면 커미션을 받을 수 있습니다 — 이는 가격이나 추천에 영향을 미치지 않습니다.*
 
----
+* * *
 
 
 
@@ -565,7 +566,7 @@ LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -575,7 +576,7 @@ LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다
 - [microsoft-markitdown-file-to-markdown-converter-cli](litellm)
 - [nanochat-karpathy-100-chatgpt-single-gpu](litellm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

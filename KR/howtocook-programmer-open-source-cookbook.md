@@ -28,6 +28,7 @@ faqs: - q: 'HowToCook이란 무엇인가요?'
     a: '저장소를 Fork하고, 템플릿 레시피를 복사한 뒤, 프로젝트의 구조화된 형식에 맞게 레시피를 작성하고 Pull Request를 제출하면 됩니다. 이 프로젝트에는 200명 이상의 기여자가 있으며 중국어, 영어, 일본어를 지원합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## HowToCook란?
@@ -41,7 +42,7 @@ faqs: - q: 'HowToCook이란 무엇인가요?'
 **기여자**: 200+  
 **라이선스**: Unlicense
 
----
+* * *
 
 ## 왜 프로그래머가 이것이 필요한가?
 
@@ -64,7 +65,7 @@ faqs: - q: 'HowToCook이란 무엇인가요?'
 - **시간 추적**: 준비 시간, 조리 시간, 총 시간
 - **에러 처리**: 일반적인 실수와 피하는 방법
 
----
+* * *
 
 ## 레시피 분류
 
@@ -87,11 +88,11 @@ faqs: - q: 'HowToCook이란 무엇인가요?'
 - **아침**: 23道（죽, 팬케이크, 샌드위치）
 - **디저트**: 17道（케이크, 푸딩, 단팥죽）
 
----
+* * *
 
 ## 샘플 레시피: 토마토 계란볶음
 
-```markdown
+````markdown
 # 토마토 계란볶음 ⭐
 
 ## 재료
@@ -128,9 +129,9 @@ faqs: - q: 'HowToCook이란 무엇인가요?'
 - 계란을 너무 오래 볶지 마세요 — 꺼낸 후에도 익어갑니다
 - 토마토가 너무 신맛이 나면 설탕 1g 더 추가
 - 더 부드러운 식감을 원하면 계란에 우유 10ml 추가
-```
+`````
 
----
+* * *
 
 ## 커뮤니티와 기여
 
@@ -150,23 +151,23 @@ faqs: - q: 'HowToCook이란 무엇인가요?'
 
 ### 웹 배포
 
-```bash
+`````bash
 # 로컬 배포
 docker pull ghcr.io/anduin2017/how-to-cook:latest
 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 # http://localhost:5000 접속
-```
+`````
 
----
+* * *
 
 ## NPM 패키지
 
-Node.js 패키지로 설치: ```bash
+Node.js 패키지로 설치: `````bash
 npm install how-to-cook
-```
+`````
 
-프로그래밍 방식 사용: ```javascript
+프로그래밍 방식 사용: `````javascript
 const recipes = require('how-to-cook');
 
 // 레시피 검색
@@ -177,9 +178,9 @@ const easyRecipes = recipes.filterByStars(1);
 
 // 랜덤 가져오기
 const dinner = recipes.random();
-```
+````
 
----
+* * *
 
 ## 학습 경로
 
@@ -201,7 +202,7 @@ const dinner = recipes.random();
 - 맛 균형
 - 플레이팅
 
----
+* * *
 
 ## 왜 이 프로젝트가 주목받아야 하는가
 
@@ -211,7 +212,7 @@ const dinner = recipes.random();
 4. **에버그린 콘텐츠**: 요리는 결코 시대에 뒤떨어지지 않음
 5. **다국어**: 중국어, 영어, 일본어 버전
 
----
+* * *
 
 ## 관련 기사
 
@@ -219,11 +220,11 @@ const dinner = recipes.random();
 - [Pixelle-Video AI 쇼트 비디오 생성기](/kr/resources/ai-tools/pixelle-video-ai-short-video-generator/) — AI 콘텐츠 제작 도구
 - [OpenClaw 42개 사용 사례](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 일상 작업
 
----
+* * *
 
 *면책 조항: 본 문서는 오픈소스 프로젝트를 소개합니다. 모든 레시피 콘텐츠는 HowToCook 커뮤니티에 속합니다. 요리 시 식품 안전 지침을 따르세요.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -295,7 +296,7 @@ HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 29
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

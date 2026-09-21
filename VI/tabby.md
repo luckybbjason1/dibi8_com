@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/tabby/
 ---
 
+
 {{</* resource-info */>}}
 
 GitHub Copilot gửi code độc quyền của bạn lên cloud của Microsoft. Với các team xử lý IP nhạy cảm — fintech, chăm sóc sức khỏe, quốc phòng, doanh nghiệp SaaS — điều đó là không thể chấp nhận được. Tabby là câu trả lờ từ mã nguồn mở: một trợ lý lập trình AI tự lưu trữ chạy hoàn toàn trên phần cứng của chính bạn, không có rò rỉ dữ liệu bên ngoài. Với hơn 33.530 sao GitHub và chu kỳ phát hành tích cực (v0.32.0 ra mắt tháng 1/2026), Tabby đã trưởng thành từ dự án thử nghiệm thành giải pháp thay thế Copilot cấp production. Hướng dẫn này đi qua cài đặt Tabby hoàn chỉnh, từ triển khai Docker đến tích hợp IDE và hardening production.
@@ -61,7 +62,7 @@ Cách nhanh nhất chạy Tabby là qua Docker. Các lệnh dưới đây hỗ t
 
 #### NVIDIA GPU (CUDA)
 
-```bash
+````bash
 # Chạy Tabby với CUDA acceleration
 docker run -d \
   --name tabby \
@@ -73,9 +74,9 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device cuda
-```
+`````
 
-Với hệ thống bật SELinux, thêm cờ `:Z` vào volume mount: ```bash
+Với hệ thống bật SELinux, thêm cờ ``:Z`` vào volume mount: `````bash
 docker run -d \
   --name tabby \
   --gpus all \
@@ -86,11 +87,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device cuda
-```
+`````
 
 #### Apple Silicon (Metal)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   -p 8080:8080 \
@@ -100,11 +101,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device metal
-```
+`````
 
 #### AMD GPU (ROCm)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   --device /dev/kfd --device /dev/dri \
@@ -115,11 +116,11 @@ docker run -d \
   serve \
   --model StarCoder-1B \
   --device rocm
-```
+`````
 
 #### Chỉ CPU (dự phòng)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   -p 8080:8080 \
@@ -128,11 +129,11 @@ docker run -d \
   serve \
   --model Qwen2.5-Coder-0.5B \
   --device cpu
-```
+`````
 
 ### Kiểm tra cài đặt
 
-```bash
+`````bash
 # Kiểm tra health server
 curl http://localhost:8080/v1/health
 
@@ -141,13 +142,13 @@ docker logs -f tabby
 
 # Mở admin dashboard
 open http://localhost:8080
-```
+`````
 
-Lần khởi động đầu, Tabby tải model weights đã chỉ định về `$HOME/.tabby`. Tùy bandwidth, quá trình này mất 2–10 phút. Admin dashboard sẽ yêu cầu tạo tài khoản admin.
+Lần khởi động đầu, Tabby tải model weights đã chỉ định về ````$HOME/.tabby````. Tùy bandwidth, quá trình này mất 2–10 phút. Admin dashboard sẽ yêu cầu tạo tài khoản admin.
 
 ### Docker Compose (Production-Ready)
 
-Cho triển khai lâu dài, dùng Docker Compose: ```yaml
+Cho triển khai lâu dài, dùng Docker Compose: `````yaml
 version: '3.8'
 services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
@@ -164,19 +165,19 @@ services: tabby: image: registry.tabbyml.com/tabbyml/tabby
       --chat-model Qwen2.5-Coder-7B-Instruct
       --device cuda
       --parallelism 4
-```
+`````
 
-Tạo JWT secret an toàn: ```bash
+Tạo JWT secret an toàn: `````bash
 openssl rand -hex 32
-```
+`````
 
-Triển khai: ```bash
+Triển khai: `````bash
 docker compose up -d
-```
+`````
 
 ### Homebrew (macOS Native)
 
-Nếu không muốn dùng Docker trên macOS: ```bash
+Nếu không muốn dùng Docker trên macOS: `````bash
 # Cài qua Homebrew
 brew install tabbyml/tabby/tabby
 
@@ -188,7 +189,7 @@ tabby serve \
 
 # Kiểm tra
 curl http://localhost:8080/v1/health
-```
+`````
 
 ## Tích hợp VS Code, JetBrains, Vim và Ollama
 
@@ -197,19 +198,19 @@ curl http://localhost:8080/v1/health
 ### VS Code
 
 1. Mở Extensions marketplace, tìm **"Tabby"**, cài extension của TabbyML.
-2. Mở Settings (Ctrl+,), tìm **"Tabby"**, đặt Server Endpoint thành `http://localhost:8080`.
+2. Mở Settings (Ctrl+,), tìm **"Tabby"**, đặt Server Endpoint thành ````http://localhost:8080````.
 3. Thanh trạng thái hiển thị icon Tabby khi đã kết nối. Bắt đầu gõ để nhận completion.
 
 ### JetBrains IDE (IntelliJ, PyCharm, GoLand)
 
 1. Mở **Settings → Plugins → Marketplace**, tìm **"Tabby"** và cài.
 2. Khởi động lại IDE.
-3. Vào **Settings → Tools → Tabby** và nhập server endpoint URL (ví dụ: `http://localhost:8080`).
+3. Vào **Settings → Tools → Tabby** và nhập server endpoint URL (ví dụ: ````http://localhost:8080````).
 4. Tạo API token từ Tabby admin dashboard và dán vào IDE settings.
 
 ### Vim / Neovim
 
-Cho Neovim với `nvim-cmp` và `cmp-tabby`: ```lua
+Cho Neovim với ``nvim-cmp`` và ``cmp-tabby``: `````lua
 -- Trong config Neovim (ví dụ: init.lua)
 require(cmp).setup({
   sources = {
@@ -219,11 +220,11 @@ require(cmp).setup({
 
 -- Cấu hình URL server Tabby
 vim.g.tabby_server_url = 'http://localhost:8080"
-```
+`````
 
 ### Dùng Ollama làm Backend
 
-Tabby có thể ủy thác inference cho Ollama, cho phép chuyển đổi model động và quản lý nhiều model: ```toml
+Tabby có thể ủy thác inference cho Ollama, cho phép chuyển đổi model động và quản lý nhiều model: `````toml
 # ~/.tabby/config.toml
 [model.completion.http]
 kind = "ollama/completion"
@@ -235,17 +236,17 @@ prompt_template = "<PRE> {prefix} <SUF>{suffix} <MID>"
 kind = "openai/chat"
 model_name = "qwen2.5-coder:7b"
 api_endpoint = "http://localhost:11434/v1"
-```
+`````
 
-Khởi động Ollama với các model cần thiết: ```bash
+Khởi động Ollama với các model cần thiết: `````bash
 ollama pull deepseek-coder:6.7b
 ollama pull qwen2.5-coder:7b
 ollama serve
-```
+`````
 
-Sau đó khởi động Tabby không chỉ định `--model` (đọc từ config.toml): ```bash
+Sau đó khởi động Tabby không chỉ định ``--model`` (đọc từ config.toml): `````bash
 tabby serve --device cuda
-```
+`````
 
 Thiết lập này lý tưởng khi muốn chạy nhiều model trên một GPU VRAM hạn chế — Ollama xử lý tải và giải phóng model động.
 
@@ -278,20 +279,20 @@ Cho hosting cơ sở hạ tầng server, cân nhắc [Hostinger](https://www.hos
 
 Tính năng killer của Tabby cho team là indexing context cấp repository. Nó clone và index Git repository của bạn, sau đó dùng RAG (Retrieval-Augmented Generation) để trích xuất code snippets nội bộ liên quan trong quá trình completion.
 
-Thêm repository qua admin dashboard: ```bash
+Thêm repository qua admin dashboard: `````bash
 # Điều hướng đến Repositories → Thêm Git URL
 # Hỗ trợ GitHub, GitLab, và self-hosted Git
-```
+`````
 
-Hoặc cấu hình qua scheduler CLI: ```bash
+Hoặc cấu hình qua scheduler CLI: `````bash
 docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
-```
+`````
 
 ### Security Hardening
 
-1. **Thay đổi JWT secret mặc định**: Đặt `TABBY_WEBSERVER_JWT_TOKEN_SECRET` thành chuỗi hex 32-byte ngẫu nhiên mật mã học.
+1. **Thay đổi JWT secret mặc định**: Đặt ````TABBY_WEBSERVER_JWT_TOKEN_SECRET```` thành chuỗi hex 32-byte ngẫu nhiên mật mã học.
 
-2. **Chạy sau reverse proxy** với TLS termination: ```nginx
+2. **Chạy sau reverse proxy** với TLS termination: `````nginx
 # Ví dụ Nginx
 server {
     listen 443 ssl;
@@ -306,20 +307,20 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 3. **Bật LDAP/SSO authentication** (Enterprise feature) cho kiểm soát truy cập team.
 
-4. **Đặt giới hạn tài nguyên** trên container Docker: ```bash
+4. **Đặt giới hạn tài nguyên** trên container Docker: `````bash
 docker run -d \
   --memory=24g \
   --cpus=8 \
   # ... các flag khác
-```
+`````
 
 ### Tuning Hiệu suất
 
-```bash
+`````bash
 # Tăng parallelism cho request đồng thợi của team
 tabby serve \
   --model StarCoder2-3B \
@@ -331,11 +332,11 @@ tabby serve \
   --model StarCoder2-3B \
   --device cuda \
   --dtype float16
-```
+`````
 
 ### Giám sát
 
-```bash
+`````bash
 # Kiểm tra API health
 curl http://localhost:8080/v1/health
 
@@ -344,7 +345,7 @@ docker stats tabby
 
 # Xem logs lỗi
 docker logs tabby 2>&1 | grep ERROR
-```
+`````
 
 ## So sánh với Giải pháp Thay thế
 
@@ -392,11 +393,11 @@ Có. Tabby hỗ trợ model ở định dạng Hugging Face Transformers với A
 
 ### Tabby có phù hợp cho team doanh nghiệp lớn không?
 
-Tabby scale đến 50+ users với phần cứng phù hợp (server đa GPU) và flag `--parallelism`. Admin dashboard hỗ trợ quản lý ngườ dùng, xoay vòng token API, và phân tích sử dụng. Cho tích hợp SSO/LDAP, bạn cần enterprise license.
+Tabby scale đến 50+ users với phần cứng phù hợp (server đa GPU) và flag ````--parallelism````. Admin dashboard hỗ trợ quản lý ngườ dùng, xoay vòng token API, và phân tích sử dụng. Cho tích hợp SSO/LDAP, bạn cần enterprise license.
 
 ### Làm thế nào cập nhật Tabby lên phiên bản mới?
 
-```bash
+`````bash
 # Pull image mới nhất
 docker pull registry.tabbyml.com/tabbyml/tabby
 
@@ -406,7 +407,7 @@ docker compose up -d
 
 # Xác minh phiên bản mới
 curl http://localhost:8080/v1/health
-```
+`````
 
 ## Kết luận
 
@@ -415,7 +416,7 @@ Tabby lấp đầy khoảng trống quan trọng trong thị trường trợ lý
 **Hành động để bắt đầu:**
 
 1. Chạy lệnh Docker ở Phần 4 để khởi động Tabby trên máy local.
-2. Cài IDE extension cho trình soạn thảo và kết nối đến `http://localhost:8080`.
+2. Cài IDE extension cho trình soạn thảo và kết nối đến ````http://localhost:8080```.
 3. Index một test repository từ admin dashboard để trải nghiệm completion hỗ trợ bở RAG.
 4. Tham gia [cộng đồng Telegram](https://t.me/dibi8_ai_hub) để nhận mẹo triển khai và khuyến nghị model.
 
@@ -470,7 +471,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -480,7 +481,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](tabby)
 - [moneyprinterturbo-one-click-ai-video-generator](tabby)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

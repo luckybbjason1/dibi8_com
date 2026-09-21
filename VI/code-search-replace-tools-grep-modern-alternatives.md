@@ -22,16 +22,17 @@ aliases:
   - /posts/code-search-replace-tools-grep-modern-alternatives/
 ---
 
+
 {</* resource-info */>}
 
 Tìm kiếm trong codebase là một trong những thao tác thường xuyên nhất của lập trình viên. Dù là truy tìm hàm được gọi ở đâu, tìm kiếm TODO cần xử lý, hay refactor tên biến trên toàn bộ dự án — một công cụ tìm kiếm nhanh và đáng tin cậy có thể tiết kiệm hàng giờ mỗi tuần.
 
-Từ `grep` — công cụ 50 năm tuổi có mặt trên mọi hệ thống Unix — đến [ripgrep](https://github.com/BurntSushi/ripgrep) viết bằng Rust hiện đại, [fzf](https://github.com/junegunn/fzf) mang tính tương tác, và [sd](https://github.com/chmln/sd) thay thế `sed` — hệ sinh thái công cụ tìm kiếm code đã phát triển vượt bậc. Bài viết này dẫn bạn qua lộ trình tiến hóa của công cụ tìm kiếm code và giúp xây dựng workflow tối ưu.
+Từ ```grep```` — công cụ 50 năm tuổi có mặt trên mọi hệ thống Unix — đến [ripgrep](https://github.com/BurntSushi/ripgrep) viết bằng Rust hiện đại, [fzf](https://github.com/junegunn/fzf) mang tính tương tác, và [sd](https://github.com/chmln/sd) thay thế ````sed```` — hệ sinh thái công cụ tìm kiếm code đã phát triển vượt bậc. Bài viết này dẫn bạn qua lộ trình tiến hóa của công cụ tìm kiếm code và giúp xây dựng workflow tối ưu.
 
 ## Tại Sao grep Không Còn Đủ Cho Developer?
 
-`grep` là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, `grep` gặp phải nhiều hạn chế: - **Không tự động đệ quy**: Phải thêm flag `-r` hoặc kết hợp với `find`
-- **Không tôn trọng .gitignore**: Tìm kiếm vào cả `node_modules/`, `.git/`, `vendor/`, tạo ra kết quả nhiễu
+````grep```` là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, ````grep```` gặp phải nhiều hạn chế: - **Không tự động đệ quy**: Phải thêm flag ````-r```` hoặc kết hợp với ````find````
+- **Không tôn trọng .gitignore**: Tìm kiếm vào cả ````node_modules/````, ````.git/````, ````vendor/````, tạo ra kết quả nhiễu
 - **Tốc độ chậm hơn**: Không song song hóa, không tối ưu cho large codebase
 - **Xử lý Unicode kém**: Gặp vấn đề với file UTF-8 có BOM
 - **Output không tối ưu**: Cú pháp flags phức tạp, màu sắc cần bật thủ công
@@ -42,7 +43,7 @@ Các công cụ hiện đại sinh ra để giải quyết chính xác những v
 
 ### Cú Pháp Cơ Bản Và Các Flags Thông Dụng
 
-```bash
+`````bash
 # Tìm kiếm đơn giản
 grep "pattern" file.txt
 
@@ -63,7 +64,7 @@ grep -c "TODO" *.py
 
 # Tìm file KHÔNG chứa pattern
 grep -L "pattern" *.txt
-```
+`````
 
 ### Khi Nào grep Vẫn Là Lựa Chọn Đúng?
 
@@ -74,13 +75,13 @@ grep -L "pattern" *.txt
 
 ## ack: grep Dành Riêng Cho Developer
 
-[ack](https://beyondgrep.com) (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm "developer-friendly": - **Tự động đệ quy**: Không cần flag `-r`
-- **Tôn trọng .gitignore**: Tự động bỏ qua file trong `.gitignore` và các thư mục như `.git/`, `node_modules/`
-- **Nhận diện file type**: `--js` tìm trong file JavaScript, `--py` cho Python, `--html` cho HTML
+[ack](https://beyondgrep.com) (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm "developer-friendly": - **Tự động đệ quy**: Không cần flag ````-r````
+- **Tôn trọng .gitignore**: Tự động bỏ qua file trong ````.gitignore```` và các thư mục như ````.git/````, ````node_modules/````
+- **Nhận diện file type**: ````--js```` tìm trong file JavaScript, ````--py```` cho Python, ````--html```` cho HTML
 - **Output có màu**: Mặc định highlight kết quả
 - **Hiển thị số dòng**: Mặc định
 
-```bash
+`````bash
 # Cài đặt
 cpan App::Ack          # macOS/Linux có Perl
 brew install ack       # macOS với Homebrew
@@ -89,15 +90,15 @@ brew install ack       # macOS với Homebrew
 ack "class User" --js        # Tìm trong file JavaScript
 ack "def " --py -C 2          # Tìm trong Python, hiển thị 2 dòng context
 ack "TODO|FIXME"              # Tìm TODO hoặc FIXME
-```
+`````
 
 ack đặt nền móng cho thế hệ công cụ tiếp theo, mặc dù hiện tại đã bị vượt mặt về tốc độ.
 
 ## The Silver Searcher (ag): Tốc Độ Lên Ngôi
 
-[The Silver Searcher](https://github.com/ggreer/the_silver_searcher) (`ag`) được viết bằng C, nhanh hơn ack từ 3-5 lần nhờ song song hóa và tối ưu hệ thống file. `ag` giữ lại tất cả ưu điểm của ack và bổ sung tốc độ.
+[The Silver Searcher](https://github.com/ggreer/the_silver_searcher) (````ag````) được viết bằng C, nhanh hơn ack từ 3-5 lần nhờ song song hóa và tối ưu hệ thống file. ````ag```` giữ lại tất cả ưu điểm của ack và bổ sung tốc độ.
 
-```bash
+`````bash
 # Cài đặt
 brew install the_silver_searcher    # macOS
 apt install silversearcher-ag       # Ubuntu/Debian
@@ -109,7 +110,7 @@ ag -i "pattern"                     # Không phân biệt hoa thường
 ag --js "pattern"                   # Chỉ tìm trong JavaScript
 ag -l "pattern"                     # Chỉ liệt kê tên file
 ag -C 3 "pattern"                   # Hiển thị 3 dòng context
-```
+`````
 
 Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripgrep — commit cuối cùng thường cách đây nhiều tháng.
 
@@ -117,12 +118,12 @@ Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripg
 
 ### Tại Sao ripgrep Thống Trị Code Search Ngày Nay?
 
-[ripgrep](https://github.com/BurntSushi/ripgrep) (`rg`) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. **Tốc độ cực nhanh**: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks
+[ripgrep](https://github.com/BurntSushi/ripgrep) (````rg````) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. **Tốc độ cực nhanh**: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks
 2. **Song song hóa tự động**: Sử dụng tất cả CPU core có sẵn
 3. **Smart defaults**: Đệ quy, hiển thị số dòng, tôn trọng .gitignore, hidden files — tất cả là mặc định
 4. **Unicode support tuyệt vờii**: Xử lý đa ngôn ngữ tốt hơn bất kỳ đối thủ nào
-5. **Type filtering linh hoạt**: `--type`, `--type-add` cho phép định nghĩa loại file tùy chỉnh
-6. **Configuration file**: Hỗ trợ `.ripgreprc` để lưu cấu hình mặc định
+5. **Type filtering linh hoạt**: ````--type````, ````--type-add```` cho phép định nghĩa loại file tùy chỉnh
+6. **Configuration file**: Hỗ trợ ````.ripgreprc```` để lưu cấu hình mặc định
 7. **Integration hoàn hảo**: Backend search cho VS Code, fzf, Vim, Emacs
 
 ### Bảng Benchmark: grep vs ack vs ag vs ripgrep
@@ -134,11 +135,11 @@ Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripg
 | ag | C | Linux kernel | ~0.2x grep | Có | Có | Tốt |
 | **ripgrep** | **Rust** | **Linux kernel** | **~0.1x grep (10x nhanh)** | **Có** | **Có** | **Xuất sắc** |
 
-> Dữ liệu benchmark từ [ripgrep GitHub repository](https://github.com/BurntSushi/ripgrep#quick-examples-comparing-tools), thử nghiệm tìm kiếm `fn run` trong Linux kernel source tree.
+> Dữ liệu benchmark từ [ripgrep GitHub repository](https://github.com/BurntSushi/ripgrep#quick-examples-comparing-tools), thử nghiệm tìm kiếm ````fn run```` trong Linux kernel source tree.
 
 ### Các Pattern Tìm Kiếm Thông Dụng Với ripgrep
 
-```bash
+`````bash
 # Tìm kiếm cơ bản — đệ quy, tôn trọng .gitignore mặc định
 rg "function name"
 
@@ -166,11 +167,11 @@ rg "pattern" --hidden
 # Thêm loại file tùy chỉnh trong .ripgreprc
 --type-add
 web:*.{html,css,js,jsx,ts,tsx,vue}
-```
+`````
 
 ### File Cấu Hình .ripgreprc
 
-```bash
+`````bash
 # ~/.ripgreprc
 --max-columns=150
 --max-columns-preview
@@ -184,9 +185,9 @@ web:*.{html,css,js,jsx,ts,tsx,vue,svelte}
 --glob=!vendor/
 --glob=!.next/
 --glob=!dist/
-```
+`````
 
-Kết hợp với biến môi trường: `export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc`
+Kết hợp với biến môi trường: ````export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc````
 
 ## fzf: Cách Mạng Tìm Kiếm Tương Tác
 
@@ -196,7 +197,7 @@ Kết hợp với biến môi trường: `export RIPGREP_CONFIG_PATH=$HOME/.ripg
 
 ### Combo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo
 
-```bash
+`````bash
 # Tìm file và xem preview với syntax highlighting
 rg --files | fzf --preview 'bat --style=numbers --color=always {}'
 
@@ -210,40 +211,40 @@ rg --line-number --no-heading --smart-case "pattern" | \
 
 # Duyệt Git commits
  git log --oneline | fzf --preview ' git show --stat {1}'
-```
+`````
 
 ### Key Bindings Mặc Định
 
 | Phím tắt | Chức năng |
 |----------|-----------|
-| `Ctrl+T` | Chèn file đã chọn vào dòng lệnh |
-| `Alt+C` | Chuyển đến thư mục đã chọn (`cd`) |
-| `Ctrl+R` | Tìm kiếm tương tác trong lịch sử lệnh |
-| `Tab` | Chọn nhiều mục (multi-select) |
-| `Ctrl+/` | Chuyển đổi giữa match chính xác và fuzzy |
+| ````Ctrl+T```` | Chèn file đã chọn vào dòng lệnh |
+| ````Alt+C```` | Chuyển đến thư mục đã chọn (````cd````) |
+| ````Ctrl+R```` | Tìm kiếm tương tác trong lịch sử lệnh |
+| ````Tab```` | Chọn nhiều mục (multi-select) |
+| ````Ctrl+/```` | Chuyển đổi giữa match chính xác và fuzzy |
 
 ## sd: Thay Thế Find & Replace Trực Quan
 
 ### Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?
 
-[sd](https://github.com/chmln/sd) là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn `sed` đáng kể: | Tác vụ | sed | sd |
+[sd](https://github.com/chmln/sd) là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn ````sed```` đáng kể: | Tác vụ | sed | sd |
 |--------|-----|-----|
-| Thay thế đơn giản | `sed 's/old/new/g'` | `sd 'old' 'new'` |
-| Thay thế file | `sed -i 's/old/new/g' file` | `sd 'old' 'new' file` |
-| Thay thế đệ quy | `find . -exec sed -i 's/old/new/g' {} +` | `sd 'old' 'new' **/*.rs` |
-| Regex phức tạp | `sed 's/\(foo\)\(bar\)/\2\1/g'` | `sd '(foo)(bar)' '$2$1'` |
-| Preview trước khi áp dụng | Không có | `sd -p 'old' 'new' file` |
+| Thay thế đơn giản | ````sed 's/old/new/g'```` | ````sd 'old' 'new'```` |
+| Thay thế file | ````sed -i 's/old/new/g' file```` | ````sd 'old' 'new' file```` |
+| Thay thế đệ quy | ````find . -exec sed -i 's/old/new/g' {} +```` | ````sd 'old' 'new' **/*.rs```` |
+| Regex phức tạp | ````sed 's/\(foo\)\(bar\)/\2\1/g'```` | ````sd '(foo)(bar)' '$2$1'```` |
+| Preview trước khi áp dụng | Không có | ````sd -p 'old' 'new' file```` |
 
 ### Các Tính Năng Nổi Bật CủA sd
 
-- **Không cần escape dấu `/`**: `sd 'http://localhost:3000' 'https://api.example.com'` hoạt động bình thường
-- **Preview mode** (`-p`): Xem thay đổi trước khi áp dụng — cực kỳ quan trọng cho refactoring
-- **Recursive**: `sd 'pattern' 'replacement' **/*.js` thay thế tất cả file JavaScript
-- **Syntax regex hiện đại**: Sử dụng Rust regex engine, hỗ trợ capture groups với `$1`, `$2`
+- **Không cần escape dấu ````/````**: ````sd 'http://localhost:3000' 'https://api.example.com'```` hoạt động bình thường
+- **Preview mode** (````-p````): Xem thay đổi trước khi áp dụng — cực kỳ quan trọng cho refactoring
+- **Recursive**: ````sd 'pattern' 'replacement' **/*.js```` thay thế tất cả file JavaScript
+- **Syntax regex hiện đại**: Sử dụng Rust regex engine, hỗ trợ capture groups với ````$1````, ````$2````
 
 ### So Sánh: sd vs sed vs perl -pi
 
-```bash
+`````bash
 # Thay thế đơn giản — sd rõ ràng hơn
 sed -i 's/old/new/g' file.txt           # sed
 sd 'old' 'new' file.txt                  # sd — đơn giản hơn
@@ -256,13 +257,13 @@ sd 'http://localhost' 'http://127.0.0.1' file             # sd — không cần 
 # Thay thế recursive trong nhiều file
 find . -name "*.js" -exec sed -i 's/var/const/g' {} +     # sed
 sd 'var' 'const' **/*.js                                   # sd
-```
+`````
 
 ## Tìm Kiếm Trong IDE Và Editor Hiện Đại
 
 ### VS Code: Global Search Với Regex
 
-VS Code sử dụng ripgrep làm backend cho tính năng global search (`Ctrl+Shift+F`), hỗ trợ regex, include/exclude patterns, và replace across files. Điểm mạnh: tích hợp sâu với refactoring — sau khi tìm, bạn có thể rename symbol hoặc extract function ngay lập tức.
+VS Code sử dụng ripgrep làm backend cho tính năng global search (````Ctrl+Shift+F````), hỗ trợ regex, include/exclude patterns, và replace across files. Điểm mạnh: tích hợp sâu với refactoring — sau khi tìm, bạn có thể rename symbol hoặc extract function ngay lập tức.
 
 ### JetBrains: Structural Search And Replace
 
@@ -270,7 +271,7 @@ Các IDE của JetBrains (IntelliJ IDEA, PyCharm, WebStorm) cung cấp **Structu
 
 ### NeoVim: Telescope Với Live Grep
 
-Trong hệ sinh thái NeoVim, [Telescope](https://github.com/nvim-telescope/telescope.nvim) kết hợp với ripgrep tạo ra trải nghiệm tìm kiếm code tuyệt vờii ngay trong editor. `Telescope live_grep` tìm kiếm toàn bộ project theo thờii gian thực khi bạn gõ.
+Trong hệ sinh thái NeoVim, [Telescope](https://github.com/nvim-telescope/telescope.nvim) kết hợp với ripgrep tạo ra trải nghiệm tìm kiếm code tuyệt vờii ngay trong editor. ````Telescope live_grep```` tìm kiếm toàn bộ project theo thờii gian thực khi bạn gõ.
 
 ## Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn
 
@@ -280,7 +281,7 @@ Trong hệ sinh thái NeoVim, [Telescope](https://github.com/nvim-telescope/tele
 
 ### GitHub Code Search
 
-GitHub cung cấp [Code Search](https://github.com/features/code-search) mới với regex support, symbol search, và path filtering. Ví dụ: `language:rust repo:tokio-rs/tokio fn spawn` tìm hàm `spawn` trong repository tokio, giới hạn file Rust. Đây là công cụ miễn phí và mạnh mẽ cho việc tìm kiếm trong mã nguồn mở.
+GitHub cung cấp [Code Search](https://github.com/features/code-search) mới với regex support, symbol search, và path filtering. Ví dụ: ````language:rust repo:tokio-rs/tokio fn spawn```` tìm hàm ````spawn```` trong repository tokio, giới hạn file Rust. Đây là công cụ miễn phí và mạnh mẽ cho việc tìm kiếm trong mã nguồn mở.
 
 ### Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ
 
@@ -290,7 +291,7 @@ GitHub cung cấp [Code Search](https://github.com/features/code-search) mới v
 
 ### Workflow Hàng Ngày: rg + fzf + bat
 
-```bash
+`````bash
 # 1. Tìm kiếm file
 eza --files | fzf --preview 'bat --style=numbers --color=always {}'
 
@@ -302,11 +303,11 @@ grep_func() {
 
 # 3. Xem nội dung file
 cat() { bat "$@"; }
-```
+`````
 
 ### Workflow Refactoring Hàng Loạt: rg + sd
 
-```bash
+`````bash
 # Bước 1: Tìm tất cả file chứa pattern cần thay đổi
 rg "oldFunctionName" -l
 
@@ -318,11 +319,11 @@ sd "oldFunctionName" "newFunctionName" $(rg "oldFunctionName" -l)
 
 # Bước 4: Kiểm tra bằng test
  npm test
-```
+`````
 
 ### Tìm Kiếm Lịch Sử Git
 
-```bash
+`````bash
 # Tìm commit thêm/xóa một dòng code cụ thể
  git log -S "function name" --oneline
 
@@ -334,11 +335,11 @@ sd "oldFunctionName" "newFunctionName" $(rg "oldFunctionName" -l)
 
 # Tìm khi một file được đề cập
  git log --all --full-history -- "**/config.ts"
-```
+`````
 
 ## Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn
 
-Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. **ripgrep** (`rg`): Tìm kiếm code siêu tốc trên toàn bộ codebase
+Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. **ripgrep** (````rg````): Tìm kiếm code siêu tốc trên toàn bộ codebase
 2. **fzf**: Lọc và chọn tương tác từ bất kỳ danh sách nào
 3. **sd**: Thay thế text đơn giản, trực quan hơn sed
 
@@ -354,11 +355,11 @@ Có, ripgrep nhanh hơn grep khoảng 10 lần trong hầu hết các tình hu�
 
 ### Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?
 
-ripgrep (`rg`) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều file nhờ tốc độ nhanh, tôn trọng .gitignore, và cú pháp đơn giản. Kết hợp với fzf để có trải nghiệm tương tác. Nếu cần tìm kiếm across nhiều repository, GitHub Code Search hoặc Sourcegraph là lựa chọn phù hợp.
+ripgrep (````rg````) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều file nhờ tốc độ nhanh, tôn trọng .gitignore, và cú pháp đơn giản. Kết hợp với fzf để có trải nghiệm tương tác. Nếu cần tìm kiếm across nhiều repository, GitHub Code Search hoặc Sourcegraph là lựa chọn phù hợp.
 
 ### Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?
 
-Sử dụng **sd** cho cú pháp đơn giản nhất: `sd "oldText" "newText" $(rg "oldText" -l)`. Lệnh `rg -l` liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag `-p` (preview) trước để xem thay đổi: `sd -p "old" "new" $(rg "old" -l)`. Nếu không có sd, dùng `perl -pi -e 's/old/new/g" $(rg "old" -l)`.
+Sử dụng **sd** cho cú pháp đơn giản nhất: ````sd "oldText" "newText" $(rg "oldText" -l)````. Lệnh ````rg -l```` liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag ````-p```` (preview) trước để xem thay đổi: ````sd -p "old" "new" $(rg "old" -l)````. Nếu không có sd, dùng ````perl -pi -e 's/old/new/g" $(rg "old" -l)```.
 
 ### Có thể dùng ripgrep với VS Code không?
 
@@ -379,7 +380,7 @@ VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc 
 - [GitHub Code Search](https://github.com/features/code-search)
 - [Livegrep GitHub Repository](https://github.com/livegrep/livegrep)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

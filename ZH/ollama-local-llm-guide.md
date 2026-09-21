@@ -7,13 +7,14 @@ aliases:
   - /posts/ollama-local-llm-guide/-
 ---
 
+
 {</* resource-info */>}
 
 Ollama是目前最流行的本地LLM运行工具之一。它将下载模型、配置环境和启动推理服务的过程简化为一条命令，让任何人都能在本地硬件上运行Llama、Mistral、Qwen等主流开源大模型。截至2025年5月，Ollama的GitHub星标已超过85,000，成为本地AI部署的事实标准。
 
 ## 什么是Ollama？为什么要本地运行LLM？
 
-Ollama是一个开源的本地大语言模型管理工具。它的核心价值在于**极度简化**：你只需要运行`ollama run llama3`，剩下的工作（模型下载、量化加载、推理服务启动）全部自动完成。
+Ollama是一个开源的本地大语言模型管理工具。它的核心价值在于**极度简化**：你只需要运行```ollama run llama3````，剩下的工作（模型下载、量化加载、推理服务启动）全部自动完成。
 
 ### 本地运行LLM的五大优势
 
@@ -27,11 +28,11 @@ Ollama是一个开源的本地大语言模型管理工具。它的核心价值�
 
 | 维度 | Ollama本地 | 云端API（GPT-4/Claude） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 运行成本 | 硬件电费 | 按token计费 |
 | 数据隐私 | 完全本地 | 数据离开本地 |
@@ -48,13 +49,13 @@ Ollama是一个开源的本地大语言模型管理工具。它的核心价值�
 
 macOS是最简单的安装方式，支持Intel和Apple Silicon：
 
-```bash
+`````bash
 # 方式一：官方安装包
 curl -fsSL https://ollama.com/install.sh | sh
 
 # 方式二：Homebrew
 brew install ollama
-```
+`````
 
 Apple Silicon（M1/M2/M3/M4）用户可获得最佳体验，因为GPU（Neural Engine）加速在macOS上开箱即用。
 
@@ -64,26 +65,26 @@ Windows 10/11均支持：
 
 1. 访问 [ollama.com/download](https://ollama.com) 下载安装程序
 2. 双击安装，按向导完成
-3. 打开PowerShell或CMD验证：`ollama --version`
+3. 打开PowerShell或CMD验证：````ollama --version````
 
 Windows版目前已支持NVIDIA GPU加速（通过CUDA），AMD GPU支持正在开发中。
 
 ### Linux安装
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
 
 # 或使用包管理器
 # Ubuntu/Debian: sudo apt install ollama
 
 # Fedora: sudo dnf install ollama
-```
+`````
 
 Linux是功能最完整的平台，支持NVIDIA GPU（CUDA）、AMD GPU（ROCm）和CPU推理。
 
 ### Docker运行
 
-```bash
+`````bash
 # CPU版本
 docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
@@ -92,26 +93,26 @@ docker run -d --gpus all -v ollama:/root/.ollama -p 11434:11434 --name ollama ol
 
 # AMD GPU版本（Linux only）
 docker run -d --device /dev/kfd --device /dev/dri -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:rocm
-```
+`````
 
 Docker方式最适合服务器部署，配合Docker Compose可以方便地管理持久化存储和网络配置。
 
 ### 验证安装
 
-```bash
+`````bash
 ollama --version
 # 应输出版本号，如：ollama version 0.5.4
 
 # 查看是否运行
 ollama list
 # 初始为空列表
-```
+`````
 
 ## 快速上手：运行你的第一个本地模型
 
 ### 拉取与运行模型
 
-```bash
+`````bash
 # 下载并运行Llama 3.1（Meta的最强开源模型）
 ollama run llama3.1
 
@@ -120,7 +121,7 @@ ollama run qwen2.5
 
 # 运行代码专用模型
 ollama run codellama
-```
+`````
 
 第一次运行会自动下载模型。Llama 3.1 8B的下载大小约为4.7GB（Q4_K_M量化）。
 
@@ -128,23 +129,23 @@ ollama run codellama
 
 | 命令 | 作用 |
 |
----
+* * *
 |
----
+* * *
 |
-| `ollama run <模型>` | 下载（如未下载）并运行模型，进入交互模式 |
-| `ollama pull <模型>` | 仅下载模型，不运行 |
-| `ollama list` | 列出已下载的模型 |
-| `ollama rm <模型>` | 删除指定模型 |
-| `ollama ps` | 查看正在运行的模型 |
-| `ollama stop <模型>` | 停止运行中的模型 |
-| `ollama show <模型>` | 查看模型详情和Modelfile |
+| ````ollama run <模型>```` | 下载（如未下载）并运行模型，进入交互模式 |
+| ````ollama pull <模型>```` | 仅下载模型，不运行 |
+| ````ollama list```` | 列出已下载的模型 |
+| ````ollama rm <模型>```` | 删除指定模型 |
+| ````ollama ps```` | 查看正在运行的模型 |
+| ````ollama stop <模型>```` | 停止运行中的模型 |
+| ````ollama show <模型>```` | 查看模型详情和Modelfile |
 
 ### REST API调用
 
 Ollama运行后会暴露REST API（默认端口11434）：
 
-```bash
+`````bash
 # 生成文本
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.1",
@@ -156,7 +157,7 @@ curl http://localhost:11434/api/chat -d '{
   "model": "llama3.1",
   "messages": [{"role": "user", "content": "你好"}]
 }'
-```
+`````
 
 ## 2025年热门Ollama模型推荐
 
@@ -164,13 +165,13 @@ curl http://localhost:11434/api/chat -d '{
 
 | 模型 | 参数 | 特点 | 推荐量化 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.2 | 1B/3B | Meta最新轻量模型，端侧友好 | Q4_K_M |
 | Llama 3.1 | 8B/70B | 综合能力最强开源模型 | Q4_K_M |
@@ -185,9 +186,9 @@ curl http://localhost:11434/api/chat -d '{
 
 | 模型 | 用途 |
 |
----
+* * *
 |
----
+* * *
 |
 | CodeLlama | Meta代码模型，支持多种编程语言 |
 | DeepSeek Coder | 中文代码能力最强 |
@@ -207,13 +208,13 @@ curl http://localhost:11434/api/chat -d '{
 
 | 模型规模 | Q4_K_M量化大小 | 推荐显存 | 最低内存 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 3B | 2.0 GB | 4 GB | 8 GB |
 | 7B-8B | 4.7 GB | 8 GB | 16 GB |
@@ -227,12 +228,12 @@ curl http://localhost:11434/api/chat -d '{
 
 Ollama会自动检测NVIDIA GPU并使用CUDA加速。确保驱动版本>=525.60.13。
 
-```bash
+`````bash
 # 验证GPU是否被使用
 ollama ps
 # NAME              ID              SIZE      PROCESSOR    
 # llama3.1:latest   ...             5.5 GB    100% GPU     
-```
+`````
 
 **Apple Silicon**：
 
@@ -246,13 +247,13 @@ Linux系统支持ROCm加速。需要安装ROCm驱动并使用ROCm专用镜像。
 
 没有GPU时，以下设置可以提升CPU推理速度：
 
-```bash
+`````bash
 # 使用更多线程
 export OLLAMA_NUM_PARALLEL=4
 
 # 启用AVX/AVX2指令集（现代CPU自动支持）
 # 在Docker中运行时确保不限制CPU核心数
-```
+`````
 
 ### 量化级别说明
 
@@ -260,30 +261,30 @@ Ollama支持多种量化格式，影响模型大小和质量的平衡：
 
 | 量化 | 大小比例 | 质量损失 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Q4_K_M | ~70% | 轻微 | 推荐默认选择 |
 | Q5_K_M | ~80% | 极少 | 质量优先 |
 | Q6_K | ~88% | 几乎无 | 高质量需求 |
 | Q8_0 | ~94% | 无感知 | 精度敏感任务 |
 
-`Q4_K_M`是大多数情况下最佳选择，在模型大小和质量之间取得理想平衡。
+````Q4_K_M````是大多数情况下最佳选择，在模型大小和质量之间取得理想平衡。
 
 ## 开发者集成指南
 
 ### Python集成
 
-```bash
+`````bash
 pip install ollama
-```
+`````
 
-```python
+`````python
 import ollama
 
 # 同步调用
@@ -297,15 +298,15 @@ for chunk in ollama.chat(model="llama3.1", messages=[...], stream=True): print(c
 
 # 生成文本
 response = ollama.generate(model="llama3.1", prompt="写一首关于春天的诗")
-```
+`````
 
 ### JavaScript/TypeScript集成
 
-```bash
+`````bash
 npm install ollama
-```
+`````
 
-```javascript
+`````javascript
 import ollama from 'ollama'
 
 const response = await ollama.chat({
@@ -313,11 +314,11 @@ const response = await ollama.chat({
   messages: [{ role: 'user', content: '你好' }]
 })
 console.log(response.message.content)
-```
+`````
 
 ### LangChain集成
 
-```python
+`````python
 from langchain_ollama import ChatOllama
 
 llm = ChatOllama(
@@ -327,13 +328,13 @@ llm = ChatOllama(
 )
 
 response = llm.invoke("解释量子计算")
-```
+`````
 
 ### OpenAI兼容API
 
 Ollama提供了与OpenAI API兼容的端点，可以直接替换现有应用中的OpenAI调用：
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(
@@ -345,7 +346,7 @@ response = client.chat.completions.create(
     model="llama3.1",
     messages=[{"role": "user", "content": "你好"}]
 )
-```
+`````
 
 这种兼容性意味着几乎所有支持OpenAI API的应用都可以无缝切换到Ollama。
 
@@ -355,7 +356,7 @@ response = client.chat.completions.create(
 
 Modelfile是Ollama的模型定义文件，可以创建带自定义系统提示的模型：
 
-```dockerfile
+`````dockerfile
 FROM llama3.1
 
 # 系统提示
@@ -365,21 +366,21 @@ SYSTEM "你是一位专业的Python编程导师。用中文回答，代码注释
 PARAMETER temperature 0.3
 PARAMETER top_p 0.9
 PARAMETER num_ctx 8192
-```
+`````
 
 创建自定义模型：
 
-```bash
+`````bash
 # 保存上述内容为PythonTutor
 ollama create python-tutor -f Modelfile
 ollama run python-tutor
-```
+`````
 
 ### 多模型并发服务
 
 Ollama支持同时加载多个模型：
 
-```bash
+`````bash
 # 终端1
 ollama run llama3.1
 
@@ -387,13 +388,13 @@ ollama run llama3.1
 ollama run codellama
 
 # 两个模型同时运行，各自独立服务
-```
+`````
 
 ### 持久化上下文
 
 通过API可以维护跨请求的上下文：
 
-```python
+`````python
 import ollama
 
 # 维护对话历史
@@ -407,13 +408,13 @@ while True: user_input = input("你: ")
     print(f"AI: {assistant_msg}")
 
     messages.append({"role": "assistant", "content": assistant_msg})
-```
+`````
 
 ## 生产部署方案
 
 ### Docker Compose配置
 
-```yaml
+`````yaml
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
     container_name: ollama
@@ -424,13 +425,13 @@ services: ollama: image: ollama/ollama:latest
               capabilities: [gpu]
     restart: unless-stopped
 
-volumes: ollama_data: ```
+volumes: ollama_data: `````
 
 ### 负载均衡
 
 高并发场景下，可以部署多个Ollama实例并通过Nginx负载均衡：
 
-```nginx
+`````nginx
 upstream ollama_backend {
     server localhost:11434;
     server localhost:11435;
@@ -443,11 +444,11 @@ server {
         proxy_pass http://ollama_backend;
     }
 }
-```
+`````
 
 ### 安全最佳实践
 
-- **绑定本地地址**：启动时加`OLLAMA_HOST=127.0.0.1`避免暴露到公网
+- **绑定本地地址**：启动时加````OLLAMA_HOST=127.0.0.1````避免暴露到公网
 - **反向代理认证**：通过Nginx/Traefik添加API Key验证
 - **模型访问控制**：限制可下载和运行的模型列表
 - **日志审计**：记录所有API调用，便于安全审计
@@ -456,11 +457,11 @@ server {
 
 | 工具 | 特点 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | 最简单易用，生态最好 | 个人开发、中小企业 |
 | LM Studio | GUI界面，适合非技术用户 | 桌面端用户 |
@@ -472,9 +473,9 @@ server {
 
 ### 推理速度太慢
 
-- **检查GPU是否被使用**：`ollama ps`看Processor列
+- **检查GPU是否被使用**：````ollama ps````看Processor列
 - **降低量化级别**：尝试Q4_0代替Q4_K_M
-- **减少上下文长度**：设置`num_ctx`为2048或更小
+- **减少上下文长度**：设置````num_ctx````为2048或更小
 - **关闭其他GPU程序**：释放显存带宽
 
 ### 模型下载失败
@@ -506,7 +507,7 @@ server {
 
 ### Ollama如何与LangChain配合使用？
 
-通过`langchain-ollama`包实现集成。安装后使用`ChatOllama`类替代`ChatOpenAI`，其他代码几乎无需修改。Ollama也提供OpenAI兼容API，可以直接替换base_url。
+通过````langchain-ollama````包实现集成。安装后使用````ChatOllama````类替代````ChatOpenAI```，其他代码几乎无需修改。Ollama也提供OpenAI兼容API，可以直接替换base_url。
 
 ### Ollama哪个模型最适合编程？
 
@@ -524,7 +525,7 @@ Ollama让本地部署大模型变得前所未有的简单。无论你是出于�
 更多资源：[Ollama官网](https://ollama.com)、[Ollama GitHub](https://github.com/ollama/ollama)、[Ollama Python库](https://github.com/ollama/ollama-python)、[LangChain Ollama集成](https://python.langchain.com/docs/integrations/chat/ollama/)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -598,7 +599,7 @@ Ollama本地运行LLM完整指南2025：在任何硬件上本地部署大模型 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -629,15 +630,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

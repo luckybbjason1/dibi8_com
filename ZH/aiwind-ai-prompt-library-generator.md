@@ -29,6 +29,7 @@ faqs: - q: 'AiWind 是免费使用的吗？'
   - q: 'AiWind 与 PromptHero、Lexica 和 Civitai 相比如何？'
     a: 'AiWind 的突出优势在于完全免费、强大的中文支持以及覆盖 10+ 个模型，而 Lexica 仅覆盖约 3 个模型，Civitai 则主要专注于 Stable Diffusion。AiWind、PromptHero 和 Civitai 均支持社区提示词投稿，而 Lexica 不支持。'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -84,11 +85,11 @@ faqs: - q: 'AiWind 是免费使用的吗？'
 
 | 模型 | 类型 | 特点 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GPT-Image 2** | OpenAI | 语义理解强，文字渲染好 |
 | **Nanobanana** | 国产 | 中文支持优秀，速度快 |
@@ -116,67 +117,67 @@ faqs: - q: 'AiWind 是免费使用的吗？'
 
 ### 1. 写实肖像 — 迪拜夜色金发超模
 
-```
+````
 迪拜夜色金发超模
 关键词: dubai, night, blonde
 风格: 时尚摄影，夜景人像
 适用: GPT-Image 2, Midjourney
-```
+`````
 
 **效果**: 金发模特在迪拜夜景前，城市灯光作为背景光，营造高级时尚杂志感。
 
 ### 2. 美食大片 — 悬浮食材 8K
 
-```
+`````
 悬浮食材8K美食大片
 关键词: food, 8k, suspended
 风格: 商业美食摄影，悬浮构图
 适用: Nanobanana, Stable Diffusion
-```
+`````
 
 **效果**: 食材在空中悬浮，水滴飞溅，8K 超高清质感，适合餐厅菜单和广告。
 
 ### 3. 3D 渲染 — 皮克斯风阳光少年
 
-```
+`````
 皮克斯风阳光少年
 关键词: pixar, disney, 3d
 风格: 3D 动画角色，皮克斯风格
 适用: GPT-Image 2, Flux
-```
+`````
 
 **效果**: 阳光洒在少年脸上，皮肤有次表面散射，眼睛有高光反射，典型的皮克斯角色质感。
 
 ### 4. 超现实 — 灯泡中的火箭升空
 
-```
+`````
 灯泡中的火箭升空
 关键词: surreal, rocket, lightbulb
 风格: 超现实主义，概念艺术
 适用: Midjourney, Stable Diffusion
-```
+`````
 
 **效果**: 火箭从灯泡中发射，玻璃碎片四散，创意十足，适合海报和封面。
 
 ### 5. 国风 — 汉服花瓶仕女图
 
-```
+`````
 汉服花瓶仕女图
 关键词: hanfu, chinese, traditional
 风格: 中国传统工笔画，仕女图
 适用: Nanobanana, Hunyuan
-```
+`````
 
 **效果**: 仕女身着汉服，手持花瓶，背景有山水元素，工笔细腻，色彩典雅。
 
 ### 6. 时尚大片 — 暗黑猎食 Vogue 封面
 
-```
+`````
 暗黑猎食Vogue封面
 关键词: vogue, editorial, predatory
 风格: 高端时尚编辑，暗黑美学
 适用: GPT-Image 2, Midjourney
-```
+`````
 
 **效果**: 模特眼神锐利，妆容暗黑，构图参考 Vogue 封面，质感高级。
 
@@ -198,7 +199,7 @@ faqs: - q: 'AiWind 是免费使用的吗？'
 
 复制提示词到你的 AI 图像生成工具：
 
-```
+`````
 # Midjourney 示例
 /imagine prompt: 迪拜夜色金发超模, dubai night blonde, 
 fashion photography, golden hour lighting, 
@@ -209,7 +210,7 @@ editorial style, 8k, ultra detailed --ar 3:4 --v 6
 golden hour, editorial, 8k, ultra detailed, 
 best quality, masterpiece
 负向提示词: blurry, low quality, distorted face, extra limbs
-```
+`````
 
 ### 步骤 4：投稿分享
 
@@ -219,7 +220,7 @@ best quality, masterpiece
 
 ### 1. 结构化提示词
 
-```
+`````
 [主体] + [风格] + [光线] + [构图] + [质量词]
 
 示例: 主体: 金发超模站在迪拜夜景前
@@ -227,33 +228,33 @@ best quality, masterpiece
 光线: 金色时刻，城市灯光背景光
 构图: 中景，三分法
 质量: 8K，超高清，最佳质量，杰作
-```
+`````
 
 ### 2. 权重控制（Stable Diffusion）
 
-```
+`````
 (金发超模:1.3) 表示增加权重
 [夜景:0.8] 表示降低权重
-```
+`````
 
 ### 3. 负面提示词
 
-```
+`````
  blurry, lowres, bad anatomy, bad hands, text, error, 
  missing fingers, extra digit, fewer digits, cropped, 
  worst quality, low quality, normal quality, 
  jpeg artifacts, signature, watermark, username
-```
+````
 
 ### 4. 参数调优
 
 | 参数 | 作用 | 推荐值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **CFG Scale** | 提示词遵循度 | 7-12 |
 | **Steps** | 迭代步数 | 20-50 |
@@ -264,15 +265,15 @@ best quality, masterpiece
 
 | 特性 | AiWind | PromptHero | Lexica | Civitai |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **免费** | ✅ 完全 | ⚠️ 部分 | ✅ 是 | ✅ 是 |
 | **中文支持** | ✅ 优秀 | ❌ 弱 | ❌ 弱 | ⚠️ 一般 |
@@ -303,7 +304,7 @@ AiWind 是**中文用户最好的 AI 绘画提示词库**。
 - [Hermes Agent: Self-Improving AI Agent](/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -314,4 +315,4 @@ AiWind 是**中文用户最好的 AI 绘画提示词库**。
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
 
----
+* * *

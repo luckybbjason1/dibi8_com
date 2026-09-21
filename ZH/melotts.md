@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/melotts/-
 ---
 
+
 {{</* resource-info */>}}
 
 关键词: melotts tutorial, melotts vs coqui, multilingual tts, melotts benchmark, melotts setup, text to speech python library, cpu tts inference, docker tts deployment
@@ -33,7 +34,7 @@ MeloTTS 是一个基于 VITS、VITS2 和 Bert-VITS2 架构的高质量多语言�
 
 MeloTTS 的核心设计理念是"高效优先"。与自回归模型（如 Bark）逐个生成音频 token 不同，MeloTTS 采用源自 VITS2 的非自回归端到端神经架构，并结合基于 BERT 的文本编码。这使其可以在普通消费级 CPU 上达到比实时更快的推理速度。整个流程分为四个阶段：
 
-1. **文本处理**：通过 `espeak-ng` 进行 G2P（字素到音素）转换；中日语使用 BERT 分词器（通过 `unidic`）。中英混合文本会被自动分段并路由到相应的音素提取器。
+1. **文本处理**：通过 ```espeak-ng```` 进行 G2P（字素到音素）转换；中日语使用 BERT 分词器（通过 ````unidic````）。中英混合文本会被自动分段并路由到相应的音素提取器。
 
 2. **BERT 编码器**：轻量级 MiniLM 编码器从输入文本中提取上下文表征，捕捉韵律和语义细微差别。
 
@@ -53,7 +54,7 @@ MeloTTS 的核心设计理念是"高效优先"。与自回归模型（如 Bark�
 
 安装 MeloTTS 之前，请确保已安装：
 
-```bash
+`````bash
 # Ubuntu/Debian
 sudo apt-get update && sudo apt-get install -y espeak-ng libsndfile1 ffmpeg
 
@@ -62,11 +63,11 @@ brew install espeak libsndfile ffmpeg
 
 # 验证 espeak-ng
 espeak-ng --version
-```
+`````
 
 ### 方式一：pip 安装（Linux/macOS）
 
-```bash
+`````bash
 # 创建虚拟环境
 python -m venv melotts-env
 source melotts-env/bin/activate
@@ -76,37 +77,37 @@ pip install melotts
 
 # 下载日语词典（JA 支持必需）
 python -m unidic download
-```
+`````
 
 ### 方式二：从源码安装
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 pip install -e .
 python -m unidic download
-```
+`````
 
 ### 方式三：Docker（Windows 推荐）
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 docker build -t melotts .
 docker run -it -p 8888:8888 melotts
-```
+`````
 
 GPU 加速版本：
 
-```bash
+`````bash
 docker run --gpus all -it -p 8888:8888 melotts
-```
+`````
 
-打开 `http://localhost:8888` 即可使用内置 Web UI。Docker 镜像已经预装了所有必要的系统依赖，包括 espeak-ng、ffmpeg 和 unidic 词典，无需任何额外配置即可直接开始使用。对于需要在多台服务器上批量部署的团队来说，Docker 方案可以确保环境一致性，避免"在我机器上可以运行"的问题。
+打开 ````http://localhost:8888```` 即可使用内置 Web UI。Docker 镜像已经预装了所有必要的系统依赖，包括 espeak-ng、ffmpeg 和 unidic 词典，无需任何额外配置即可直接开始使用。对于需要在多台服务器上批量部署的团队来说，Docker 方案可以确保环境一致性，避免"在我机器上可以运行"的问题。
 
 ### 验证安装
 
-```python
+`````python
 from melo.api import TTS
 
 # 语速可调
@@ -120,23 +121,23 @@ speaker_ids = model.hps.data.spk2id
 output_path = 'test_output.wav'
 model.tts_to_file(text, speaker_ids['EN-Default'], output_path, speed=speed)
 print(f"Audio saved to {output_path}")
-```
+`````
 
 ### 首次合成
 
-```bash
+`````bash
 # CLI 使用（pip 安装后）
 melo "Hello, this is MeloTTS speaking." output.wav -l EN --speaker EN-US
 
 # 列出可用说话人
 melo --list-speakers
-```
+`````
 
 ## 与主流工具集成
 
 ### Python API —— 多口音英语
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -157,11 +158,11 @@ model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # 澳式口音
 model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
-```
+`````
 
 ### 中英混合
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -174,11 +175,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
 model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
-```
+`````
 
 ### 日语
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -190,11 +191,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
 model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
-```
+`````
 
 ### FastAPI REST API
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from melo.api import TTS
@@ -224,17 +225,17 @@ async def text_to_speech(req: TTSRequest): if req.language not in models: raise 
     model.tts_to_file(req.text, speaker_ids[req.speaker], output_path, speed=req.speed)
     
     return {"audio_file": output_path}
-```
+`````
 
 运行 API：
 
-```bash
+`````bash
 uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### Docker Compose 生产部署
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: melotts: build: context: .
@@ -249,11 +250,11 @@ services: melotts: build: context: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### WebSocket 流式 TTS
 
-```python
+`````python
 import asyncio
 import websockets
 import json
@@ -273,11 +274,11 @@ async def tts_stream(websocket, path): async for message in websocket: data = js
 start_server = websockets.serve(tts_stream, '0.0.0.0', 8765)
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
-```
+`````
 
 ### Gradio Web UI
 
-```python
+`````python
 import gradio as gr
 from melo.api import TTS
 
@@ -302,7 +303,7 @@ iface = gr.Interface(
 )
 
 iface.launch(server_name='0.0.0.0', server_port=7860)
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -312,13 +313,13 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 
 | 硬件 | RTF | 延迟（15 词） | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Intel i7-12700 (12代) | 0.41 | ~85 ms | 比实时快 2 倍 |
 | Apple M1 (8核) | 0.48 | ~95 ms | 无需 GPU |
@@ -330,15 +331,15 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 
 | 特性 | MeloTTS | Coqui TTS (XTTS) | ChatTTS | Bark |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 7,400 | 34,000 | 33,000 | 37,000 |
 | **许可证** | MIT | MIT / AGPL | AGPL-3.0 | MIT |
@@ -357,11 +358,11 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 
 | 应用场景 | 最佳选择 | 原因 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 仅 CPU 边缘部署 | MeloTTS | CPU 上唯一 RTF < 0.5 的选项，模型不到 300MB |
 | 语音克隆应用 | Coqui XTTS | 专用语音克隆管线，6 秒参考音频即可 |
@@ -378,13 +379,13 @@ iface.launch(server_name='0.0.0.0', server_port=7860)
 
 | 工具 | 峰值内存 (CPU) | 峰值显存 (GPU) | 冷启动时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **MeloTTS** | ~350 MB | ~1.2 GB | ~2 秒 |
 | **Coqui XTTS** | ~2.1 GB | ~4.5 GB | ~8 秒 |
@@ -406,7 +407,7 @@ MeloTTS 的内存占用不到 Coqui XTTS 的六分之一，这使得它可以在
 
 生产环境中，始终在启动时加载模型以避免冷启动延迟：
 
-```python
+`````python
 from melo.api import TTS
 import functools
 
@@ -417,11 +418,11 @@ def get_model(language): """缓存模型加载器 —— 模型只加载一次�
 # 启动时预热所有语言
 for lang in [EN, ZH, ES, FR, JA, KO]: get_model(lang)
 print("所有模型已加载完毕。")
-```
+`````
 
 ### 批处理提升吞吐量
 
-```python
+`````python
 from melo.api import TTS
 import concurrent.futures
 
@@ -440,11 +441,11 @@ def synth(text): output_path = f"batch_{hash(text)}.wav"
 
 # 并行批处理
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(synth, texts))
-```
+`````
 
 ### Gunicorn + FastAPI 生产服务器
 
-```bash
+`````bash
 # 安装 gunicorn 和 uvicorn 工作进程
 pip install gunicorn uvicorn
 
@@ -455,11 +456,11 @@ gunicorn tts_api:app -k uvicorn.workers.UvicornWorker \
   --timeout 120 \
   --max-requests 1000 \
   --max-requests-jitter 100
-```
+`````
 
 ### systemd 服务文件
 
-```ini
+`````ini
 [Unit]
 Description=MeloTTS REST API
 After=network.target
@@ -477,21 +478,21 @@ RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
 安装并启动：
 
-```bash
+`````bash
 sudo cp melotts.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable melotts
 sudo systemctl start melotts
 sudo systemctl status melotts
-```
+`````
 
 ### Prometheus 监控
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
@@ -505,11 +506,11 @@ async def metrics(): return Response(content=generate_latest(), media_type="text
 @app.post("/tts")
 async def text_to_speech(req: TTSRequest): with tts_duration.time(): # ... 现有 TTS 逻辑 ...
         tts_requests.labels(language=req.language, speaker=req.speaker).inc()
-```
+`````
 
 ### Nginx 反向代理
 
-```nginx
+`````nginx
 upstream melotts {
     server 127.0.0.1:8000;
     keepalive 32;
@@ -531,7 +532,7 @@ server {
         limit_req zone=tts_zone burst=20 nodelay;
     }
 }
-```
+`````
 
 ## 与替代品对比
 
@@ -539,15 +540,15 @@ server {
 
 | 能力 | MeloTTS | Coqui TTS | ChatTTS | Bark |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **架构** | VITS2 + BERT | VITS / XTTS | GPT-based | GPT-style transformer |
 | **训练数据** | 多语言语料库 | LJSpeech + 自定义 | 对话数据 | Suno 内部数据 |
@@ -578,13 +579,13 @@ MeloTTS 并非万能方案。以下是需要考虑的具体局限：
 
 2. **无情感控制**：你可以调整语速，但没有参数控制快乐、悲伤、愤怒等情感质量。Bark 和 ChatTTS 提供更丰富的情感表达。
 
-3. **G2P 限制**：默认字素到音素管线使用基于规则的 `espeak-ng`，偶尔会对罕见词或专有名词发音错误。没有开箱即用的神经 G2P。
+3. **G2P 限制**：默认字素到音素管线使用基于规则的 ````espeak-ng````，偶尔会对罕见词或专有名词发音错误。没有开箱即用的神经 G2P。
 
 4. **无流式推理**：虽然完整生成速度很快，但你必须等待整个音频合成完成后才能开始播放。不支持真正的逐块流式传输。
 
 5. **微调文档有限**：自定义数据集训练可行，但文档比 Coqui TTS 稀疏。自定义训练需要阅读源代码。训练流程包括数据预处理、BERT 特征提取、声学模型训练和声码器微调四个阶段，每个阶段都需要仔细调整超参数。
 
-6. **不支持 SSML**：不支持用于控制停顿、强调和音素级细节的语音合成标记语言（Speech Synthesis Markup Language）。这意味着你无法通过 XML 标签控制语音的韵律细节，如 `<break time="500ms"/>` 或 `<emphasis>` 等。
+6. **不支持 SSML**：不支持用于控制停顿、强调和音素级细节的语音合成标记语言（Speech Synthesis Markup Language）。这意味着你无法通过 XML 标签控制语音的韵律细节，如 ````<break time="500ms"/>```` 或 ````<emphasis>```` 等。
 
 7. **每种语言说话人数量少**：每种语言只有一个说话人（英语有口音变体）。Coqui TTS 提供数百个预训练语音。对于需要大量不同声音的应用场景（如有声小说多角色配音），这是一个明显的限制。
 
@@ -600,23 +601,23 @@ MeloTTS 并非万能方案。以下是需要考虑的具体局限：
 
 ### Q3: 中英混合输入如何工作？
 
-中文模型（`language=ZH`）自动检测中文文本中的英文单词，并通过英语 G2P 管线路由，同时保持韵律连贯性。无需手动标记或切换模型。
+中文模型（````language=ZH````）自动检测中文文本中的英文单词，并通过英语 G2P 管线路由，同时保持韵律连贯性。无需手动标记或切换模型。
 
 ### Q4: MeloTTS 能处理的最大文本长度是多少？
 
 没有硬编码长度限制。但模型在单次前向传播中处理整个文本，因此超长文本（> 1000 字符）可能在低内存系统上导致 OOM。长内容建议分句批量合成。
 
-### Q5: 如何解决 `espeak-ng not found` 错误？
+### Q5: 如何解决 ````espeak-ng not found```` 错误？
 
-通过系统包管理器安装 `espeak-ng`。Ubuntu: `sudo apt-get install espeak-ng`。macOS: `brew install espeak`。Windows 从 espeak-ng GitHub releases 下载安装程序并添加到 PATH。
+通过系统包管理器安装 ````espeak-ng````。Ubuntu: ````sudo apt-get install espeak-ng````。macOS: ````brew install espeak````。Windows 从 espeak-ng GitHub releases 下载安装程序并添加到 PATH。
 
 ### Q6: 可以用自己的声音微调 MeloTTS 吗？
 
-可以，但有注意事项。训练管线存在（`docs/training.md`）但文档有限。需要约 30 分钟干净音频录音及对应文本转录。微调需要 GPU（NVIDIA 8GB+ 显存），耗时数小时。训练完成后，你会得到一个新的 speaker checkpoint 文件，可以通过 `config_path` 和 `ckpt_path` 参数在初始化 TTS 模型时加载。
+可以，但有注意事项。训练管线存在（````docs/training.md````）但文档有限。需要约 30 分钟干净音频录音及对应文本转录。微调需要 GPU（NVIDIA 8GB+ 显存），耗时数小时。训练完成后，你会得到一个新的 speaker checkpoint 文件，可以通过 ````config_path```` 和 ````ckpt_path```` 参数在初始化 TTS 模型时加载。
 
 ### Q7: MeloTTS 支持哪些 Python 版本和操作系统？
 
-MeloTTS 官方在 Ubuntu 20.04 和 Python 3.9 上开发和测试。社区用户报告称在 Python 3.8-3.11 上运行正常。支持的操作系统包括 Linux（Ubuntu 20.04+）、macOS（Intel 和 Apple Silicon）以及通过 WSL2 或 Docker 的 Windows。Windows 原生安装可能会遇到 `espeak-ng` 兼容性问题，因此推荐使用 Docker 方案。
+MeloTTS 官方在 Ubuntu 20.04 和 Python 3.9 上开发和测试。社区用户报告称在 Python 3.8-3.11 上运行正常。支持的操作系统包括 Linux（Ubuntu 20.04+）、macOS（Intel 和 Apple Silicon）以及通过 WSL2 或 Docker 的 Windows。Windows 原生安装可能会遇到 ````espeak-ng```` 兼容性问题，因此推荐使用 Docker 方案。
 
 ### Q8: MeloTTS 与 ElevenLabs 等商业 TTS 相比如何？
 
@@ -627,7 +628,7 @@ MeloTTS 在可懂度上匹敌商业服务，支持语言的自然度接近商业
 MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持、MIT 许可证和实时 CPU 推理整合在不到 300MB 包中的库。对于构建需要可靠语音合成而无需 GPU 基础设施的 SaaS 产品、聊天机器人或内容管线的团队，MeloTTS 是务实的选择。
 
 **行动清单：**
-1. 运行 `pip install melotts` 今天合成你的第一个音频，体验亚秒级语音合成的速度
+1. 运行 ````pip install melotts``` 今天合成你的第一个音频，体验亚秒级语音合成的速度
 2. 在 Nginx 后部署 FastAPI 示例以获得生产级 TTS 端点
 3. 加入 [MeloTTS GitHub Discussions](https://github.com/myshell-ai/MeloTTS/discussions) 获取社区支持和最新更新
 4. 关注 dibi8 Telegram 群组获取每周 AI 工具更新
@@ -688,7 +689,7 @@ MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](melotts)
@@ -698,5 +699,5 @@ MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持�
 - [microsoft-markitdown-file-to-markdown-converter-cli](melotts)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

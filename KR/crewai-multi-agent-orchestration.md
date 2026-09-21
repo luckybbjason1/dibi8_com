@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/crewai-multi-agent-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 단일 LLM 호출은 더 이상 충분하지 않습니다
@@ -38,36 +39,36 @@ CrewAI의 아키텍처는 네 가지 기본 요소: **에이전트**, **작업**
 
 CrewAI의 에이전트는 LLM 인스턴스 이상입니다. 다음을 갖춘 정의된 역할입니다: | 속성 | 목적 | 예시 |
 |------|------|------|
-| `role` | 직함 / 정체성 | `"Senior Research Analyst"` |
-| `goal` | 에이전트가 달성하려는 것 | `"3개 경쟁사의 상세 가격 데이터 찾기"` |
-| `backstory` | 성격 / 컨텍스트 | `"10년 경험을 가진 세심한 분석가"` |
-| `tools` | 외부 기능 | `[search_tool, scraper_tool, calculator]` |
-| `allow_delegation` | 타인에게 작업 할당 가능 | 관리자는 `True`, 전문가는 `False` |
-| `memory` | 작업 간 컨텍스트 유지 | 다단계 추론의 경우 `True` |
+| ```role```` | 직함 / 정체성 | ````"Senior Research Analyst"```` |
+| ````goal```` | 에이전트가 달성하려는 것 | ````"3개 경쟁사의 상세 가격 데이터 찾기"```` |
+| ````backstory```` | 성격 / 컨텍스트 | ````"10년 경험을 가진 세심한 분석가"```` |
+| ````tools```` | 외부 기능 | ````[search_tool, scraper_tool, calculator]```` |
+| ````allow_delegation```` | 타인에게 작업 할당 가능 | 관리자는 ````True````, 전문가는 ````False```` |
+| ````memory```` | 작업 간 컨텍스트 유지 | 다단계 추론의 경우 ````True```` |
 
-`backstory`는 장식이 아닙니다 — LLM의 응답 방식을 형성합니다. `"부주의한 인턴"` 배경 이야기는 `"모든 것을 세 번 확인하는 시니어 엔지니어"`와 다른 출력을 생산합니다.
+````backstory````는 장식이 아닙니다 — LLM의 응답 방식을 형성합니다. ````"부주의한 인턴"```` 배경 이야기는 ````"모든 것을 세 번 확인하는 시니어 엔지니어"````와 다른 출력을 생산합니다.
 
 ### 작업: 정의된 작업 단위
 
 작업은 무엇을 해야 하는지, 누가 하는지, 어떤 출력이 예상되는지를 지정합니다: | 속성 | 목적 | 예시 |
 |------|------|------|
-| `description` | 무엇을 할지 (`{변수}` 포함 가능) | `"{회사} 가격 플랜 조사"` |
-| `expected_output` | 품질 사양 | `"플랜명, 가격, 기능이 있는 표"` |
-| `agent` | 누가 작업을 수행하는지 | `researcher` |
-| `context` | 참조할 이전 작업 출력 | `[task1, task2]` |
-| `tools` | 작업별 도구 | `[search_tool]` |
+| ````description```` | 무엇을 할지 (````{변수}```` 포함 가능) | ````"{회사} 가격 플랜 조사"```` |
+| ````expected_output```` | 품질 사양 | ````"플랜명, 가격, 기능이 있는 표"```` |
+| ````agent```` | 누가 작업을 수행하는지 | ````researcher```` |
+| ````context```` | 참조할 이전 작업 출력 | ````[task1, task2]```` |
+| ````tools```` | 작업별 도구 | ````[search_tool]```` |
 
-`expected_output` 필드는 중요합니다 — LLM의 응답 형식과 깊이를 안내하는 품질 기준으로 작동합니다.
+````expected_output```` 필드는 중요합니다 — LLM의 응답 형식과 깊이를 안내하는 품질 기준으로 작동합니다.
 
 ### 프로세스: 에이전트가 협업하는 방식
 
 CrewAI는 세 가지 협업 패턴을 지원합니다: | 프로세스 | 패턴 | 최적 사용처 |
 |----------|------|------------|
-| `Process.sequential` | 선형 핸드오프: A → B → C | 명확한 의존성이 있는 워크플로 |
-| `Process.hierarchical` | 관리자가 작업자에게 위임 | 감독이 필요한 복잡한 프로젝트 |
-| `Process.parallel` | 다중 에이전트가 동시에 작업 | 독립적 작업, 속도 최적화 |
+| ````Process.sequential```` | 선형 핸드오프: A → B → C | 명확한 의존성이 있는 워크플로 |
+| ````Process.hierarchical```` | 관리자가 작업자에게 위임 | 감독이 필요한 복잡한 프로젝트 |
+| ````Process.parallel```` | 다중 에이전트가 동시에 작업 | 독립적 작업, 속도 최적화 |
 
-**계층적** 모드에서는 작업 할당을 계획하고, 진행 상황을 모니터링하고, 작업이 완료된 시점을 결정하는 `manager_llm` (종종 GPT-4 같은 더 강력한 모델)을 지정합니다.
+**계층적** 모드에서는 작업 할당을 계획하고, 진행 상황을 모니터링하고, 작업이 완료된 시점을 결정하는 ````manager_llm```` (종종 GPT-4 같은 더 강력한 모델)을 지정합니다.
 
 ### 도구: 에이전트 기능 확장
 
@@ -77,7 +78,7 @@ CrewAI 에이전트는 LangChain 호환 도구를 사용할 수 있습니다. �
 - **데이터베이스 쿼리** — SQL 커넥터
 - **파일 작업** — 로컬 파일 읽기/쓰기
 - **API 호출** — REST API 툴킷
-- **커스텀 도구** — `@tool`로 래핑된 모든 Python 함수
+- **커스텀 도구** — ````@tool````로 래핑된 모든 Python 함수
 
 ## 설치 및 설정: 5분快速 시작
 
@@ -85,7 +86,7 @@ CrewAI는 Python 3.10+가 필요하며 모든 LLM 공급자와 작동합니다.
 
 ### 기본 설치
 
-```bash
+`````bash
 python -m venv venv_crewai
 source venv_crewai/bin/activate
 
@@ -96,13 +97,13 @@ pip install "crewai[tools]==0.108.0"
 pip install langchain-openai    # OpenAI
 pip install langchain-anthropic # Anthropic
 pip install langchain-google    # Google Gemini
-```
+`````
 
-2026년 5월 기준 CrewAI는 **v0.108.0**입니다. `[tools]` extra는 SerpAPI, Selenium 및 기타 일반적인 도구 의존성을 설치합니다.
+2026년 5월 기준 CrewAI는 **v0.108.0**입니다. ````[tools]```` extra는 SerpAPI, Selenium 및 기타 일반적인 도구 의존성을 설치합니다.
 
 ### 설치 확인
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool
 
@@ -118,18 +119,18 @@ researcher = Agent(
 )
 
 print("CrewAI 설치 성공!")
-```
+`````
 
 ### 환경 설정
 
-```bash
+`````bash
 # 필수 API 키
 export OPENAI_API_KEY="sk-..."
 export SERPAPI_API_KEY="..."
 
 # 선택: 로컬 모델용
 export OLLAMA_HOST="http://localhost:11434"
-```
+`````
 
 CrewAI 기반 시스템을 자체 호스팅하려면 안정적인 VPS가 필수입니다. [DigitalOcean droplets](https://m.do.co/c/eca87ac14ee0)는 에이전트 오케스트레이션 API를 실행하는 데 적합합니다.
 
@@ -137,7 +138,7 @@ CrewAI 기반 시스템을 자체 호스팅하려면 안정적인 VPS가 필수�
 
 ### 예시 1: 블로그 포스트 작성 팀
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool, ScrapeWebsiteTool
 
@@ -217,11 +218,11 @@ crew = Crew(
 
 result = crew.kickoff()
 print(result)
-```
+`````
 
 ### 예시 2: 계층적 프로젝트 관리
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 
 # 계층적 프로세스에는 관리자 LLM 필요
@@ -235,13 +236,13 @@ project_crew = Crew(
 )
 
 result = project_crew.kickoff()
-```
+`````
 
-계층적 모드에서 `manager_llm`은 에이전트 역량과 작업 의존성을 기반으로 동적으로 작업을 할당합니다. 이것은 수동 작업 순서가 번거로워지는 **10+ 에이전트 팀**에 강력합니다.
+계층적 모드에서 ````manager_llm````은 에이전트 역량과 작업 의존성을 기반으로 동적으로 작업을 할당합니다. 이것은 수동 작업 순서가 번거로워지는 **10+ 에이전트 팀**에 강력합니다.
 
 ### 예시 3: 코드 리뷰 팀
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import CodeInterpreterTool
 
@@ -295,7 +296,7 @@ code_crew = Crew(
     process=Process.sequential,
     memory=True,
 )
-```
+`````
 
 ## LangChain, LlamaIndex 및 외부 API 통합
 
@@ -303,7 +304,7 @@ CrewAI는 LangChain 호환 도구와 콜백을 통해 더 넓은 AI 생태계와
 
 ### LangChain 도구 사용
 
-```python
+`````python
 from crewai import Agent
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -319,11 +320,11 @@ researcher = Agent(
     tools=[ddg_search, wikipedia],
     llm="gpt-4o",
 )
-```
+`````
 
 ### 커스텀 도구 정의
 
-```python
+`````python
 from crewai import Agent, Task
 from crewai.tools import tool
 import requests
@@ -342,11 +343,11 @@ analyst = Agent(
     tools=[check_stock_price],
     llm="gpt-4o",
 )
-```
+`````
 
 ### 콜백 및 관찰 가능성
 
-```python
+`````python
 from crewai import Crew
 
 # 모니터링을 위한 단계 콜백
@@ -362,11 +363,11 @@ monitored_crew = Crew(
     step_callback=on_step_callback,
     task_callback=on_task_callback,
 )
-```
+`````
 
 ### LlamaIndex와의 통합으로 RAG 강화 에이전트 구축
 
-```python
+`````python
 from crewai import Agent, Task, Crew
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -388,7 +389,7 @@ policy_expert = Agent(
     tools=[query_knowledge_base],
     llm="gpt-4o",
 )
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -429,7 +430,7 @@ policy_expert = Agent(
 
 ### 벡터 스토어를 사용한 커스텀 메모리
 
-```python
+`````python
 from crewai import Agent, Crew, Process
 from chromadb import Client
 from chromadb.config import Settings
@@ -455,11 +456,11 @@ crew = Crew(
     memory=True,  # 공유 단기 메모리 활성화
     cache=True,   # LLM 응답 캐싱
 )
-```
+`````
 
 ### Pydantic을 사용한 출력 검증
 
-```python
+`````python
 from pydantic import BaseModel, Field
 from crewai import Task
 
@@ -475,11 +476,11 @@ structured_task = Task(
     output_json=CompetitorAnalysis,  # 스키마에 대해 검증
     agent=researcher,
 )
-```
+`````
 
 ### 에러 처리 및 재시도 로직
 
-```python
+`````python
 from crewai import Crew
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -493,11 +494,11 @@ def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
         raise
 
 result = run_crew_with_retry(my_crew)
-```
+`````
 
 ### 의존성이 있는 병렬 작업 실행
 
-```python
+`````python
 from crewai import Task, Crew, Process
 
 # 작업 1과 2가 병렬 실행 (의존성 없음)
@@ -515,11 +516,11 @@ parallel_crew = Crew(
     tasks=[task1, task2, task3],
     process=Process.sequential,  # 크루가 낶부적으로 병렬화 처리
 )
-```
+`````
 
 ### FastAPI 서비스로 배포
 
-```python
+`````python
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
 from crewai import Crew, Agent, Task, Process
@@ -572,13 +573,13 @@ def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
     results_db[job_id] = {"status": "completed", "result": str(result)}
 
 # 실행: uvicorn main:app --host 0.0.0.0 --port 8000
-```
+`````
 
 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 로드 밸런서 뒤에 이것을 배포하여 프로덕션 준비 에이전트 API를 구축하세요.
 
 ### LangSmith로 모니터링
 
-```python
+`````python
 import os
 from crewai import Crew
 
@@ -592,7 +593,7 @@ crew = Crew(
     tasks=[task1, task2],
     process=Process.sequential,
 )
-```
+`````
 
 ## 대안과의 비교
 
@@ -616,7 +617,7 @@ crew = Crew(
 **선택 가이드:**
 
 - **CrewAI**: 다중 에이전트 시스템 초보자에게 최적. 역할 기반 API가 직관적이고, 문서가 우수하며, 학습 곡선이 완만합니다. 콘텐츠 생성, 연구 워크플로, 비즈니스 분석 작업에 이상적.
-- **AutoGen (Microsoft)**: 대화 패턴과 코드 실행이 중심일 때 선택. AutoGen의 그룹 채팅 패턴은 디버깅 및 코딩 에이전트에 강력합니다. `UserProxyAgent`는 원활한 인간-인-더-루프 워크플로를 가능하게 합니다.
+- **AutoGen (Microsoft)**: 대화 패턴과 코드 실행이 중심일 때 선택. AutoGen의 그룹 채팅 패턴은 디버깅 및 코딩 에이전트에 강력합니다. ````UserProxyAgent````는 원활한 인간-인-더-루프 워크플로를 가능하게 합니다.
 - **LangGraph (LangChain)**: 에이전트 상태와 전환에 대한 세밀한 제어가 필요할 때 선택. LangGraph의 그래프 기반 접근은 복잡한 조걸 로직과 상태 관리에 탁월하지만 학습 곡선이 더 가파릅니다.
 - **MetaGPT**: 소프트웨어 엔지니어링 작업에 특별히 선택. MetaGPT 에이전트는 전체 개발 팀(PM, 아키텍트, 엔지니어, QA)을 에뮬레이트하고 구조화된 코드 출력을 생산합니다. 코딩이 아닌 사용 사례에는 과합니다.
 
@@ -624,7 +625,7 @@ crew = Crew(
 
 CrewAI는 강력하지만 은탄환은 아닙니다. 알아야 할 프로덕션 현실: **1. LLM 비용은 에이전트 수에 따라 증가합니다.** GPT-4o로 8개 작업을 실행하는 5-에이전트 팀은 실행당 $0.50-2.00이 될 수 있습니다. 하루 1,000회 실행하면 $500-2,000/일입니다. 예산에 맞게 계획하거나 덜 중요한 에이전트에는 더 저렴한 모델을 사용하세요.
 
-**2. 토큰 제한이 컨텍스트 공유를 제한합니다.** 에이전트 A가 에이전트 B에 출력을 전달할 때, 해당 출력은 에이전트 B의 컨텍스트 창에서 토큰을 소비합니다. 각각 2K 토큰을 생산하는 5개 에이전트의 경우, 최종 에이전트가 GPT-4o의 128K 제한에 도달할 수 있습니다. `max_iter`를 사용하고 중간 출력을 요약하세요.
+**2. 토큰 제한이 컨텍스트 공유를 제한합니다.** 에이전트 A가 에이전트 B에 출력을 전달할 때, 해당 출력은 에이전트 B의 컨텍스트 창에서 토큰을 소비합니다. 각각 2K 토큰을 생산하는 5개 에이전트의 경우, 최종 에이전트가 GPT-4o의 128K 제한에 도달할 수 있습니다. ````max_iter````를 사용하고 중간 출력을 요약하세요.
 
 **3. 계층적 계획이 지연을 추가합니다.** 계층적 모드에서 관리자 LLM은 작업 시작 전 작업 할당에 대해 추론해야 합니다. 소규모 크루(3-4 에이전트)의 경우 이 오버헤드가 가치가 없을 수 있습니다. 간단한 워크플로의 경우 순차가 종종 더 빠릅니다.
 
@@ -646,7 +647,7 @@ CrewAI는 LangChain이나 LlamaIndex를 대체하지 않습니다 — **상위 �
 
 ### 에이전트 간 메모리 공유는 어떻게 작동하나요?
 
-Crew에 `memory=True`가 설정되면 모든 에이전트가 작업 간 지속되는 단기 메모리 버퍼를 공유합니다. `context` 파라미터를 통해 지정될 때, 에이전트 A의 작업 출력이 에이전트 B의 작업 컨텍스트가 됩니다. 장기 메모리의 경우, CrewAI는 관련 과거 상호작용을 검색하기 위해 임베드된 Chroma 벡터 스토어를 사용합니다. 컨텍스트 작업 출력을 명시적으로 전달하여 커스텀 메모리를 주입할 수도 있습니다.
+Crew에 ````memory=True````가 설정되면 모든 에이전트가 작업 간 지속되는 단기 메모리 버퍼를 공유합니다. ````context```` 파라미터를 통해 지정될 때, 에이전트 A의 작업 출력이 에이전트 B의 작업 컨텍스트가 됩니다. 장기 메모리의 경우, CrewAI는 관련 과거 상호작용을 검색하기 위해 임베드된 Chroma 벡터 스토어를 사용합니다. 컨텍스트 작업 출력을 명시적으로 전달하여 커스텀 메모리를 주입할 수도 있습니다.
 
 ### 크루당 최대 에이전트 수는 얼마인가요?
 
@@ -654,15 +655,15 @@ Crew에 `memory=True`가 설정되면 모든 에이전트가 작업 간 지속�
 
 ### 에이전트가 루프에 갇히는 것을 어떻게 방지하나요?
 
-작업에 `max_iter` (기본값 25)를 설정하여 작업당 반복 횟수를 제한하세요. 크루에는 `max_rpm`을 설정하여 분당 API 호출을 제한하세요. 계층적 모드에서는 관리자 에이전트가 진행 상황을 모니터링하고 멈춘 에이전트를 중단할 수 있습니다. 에이전트가 언제 작업이 완료되었는지 알 수 있도록 `expected_output` 품질 게이트를 추가하세요.
+작업에 ````max_iter```` (기본값 25)를 설정하여 작업당 반복 횟수를 제한하세요. 크루에는 ````max_rpm````을 설정하여 분당 API 호출을 제한하세요. 계층적 모드에서는 관리자 에이전트가 진행 상황을 모니터링하고 멈춘 에이전트를 중단할 수 있습니다. 에이전트가 언제 작업이 완료되었는지 알 수 있도록 ````expected_output```` 품질 게이트를 추가하세요.
 
 ### CrewAI는 실시간 스트리밍 출력을 처리할 수 있나요?
 
-v0.108.0 기준, CrewAI는 콜백(`step_callback`)을 통해 단계별 출력을 지원하지만, 에이전트 출력의 전체 스트리밍은 제한적입니다. 콜백을 사용하여 에이전트 진행 상황을 표시하는 실시간 UI를 구축하세요. 전체 스트리밍 지원은 2026년 하반기 로드맵에 있습니다.
+v0.108.0 기준, CrewAI는 콜백(````step_callback````)을 통해 단계별 출력을 지원하지만, 에이전트 출력의 전체 스트리밍은 제한적입니다. 콜백을 사용하여 에이전트 진행 상황을 표시하는 실시간 UI를 구축하세요. 전체 스트리밍 지원은 2026년 하반기 로드맵에 있습니다.
 
 ### 에이전트 크루를 어떻게 효과적으로 테스트하나요?
 
-각 에이전트를 단일 작업을 실행하여 독립적으로 단위 테스트하세요. LangChain의 `FakeListLLM`을 사용하여 API 비용 없이 작업 라우팅과 도구 선택을 테스트하기 위해 모의 LLM 응답을 사용하세요. 작고 알려진 양호한 작업으로 전체 크루를 통합 테스트하세요. 회귀 테스트를 위해 모든 중간 출력을 로깅하세요.
+각 에이전트를 단일 작업을 실행하여 독립적으로 단위 테스트하세요. LangChain의 ````FakeListLLM```을 사용하여 API 비용 없이 작업 라우팅과 도구 선택을 테스트하기 위해 모의 LLM 응답을 사용하세요. 작고 알려진 양호한 작업으로 전체 크루를 통합 테스트하세요. 회귀 테스트를 위해 모든 중간 출력을 로깅하세요.
 
 ## 결론: 작게 시작, 팀으로 확장
 
@@ -696,7 +697,7 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 에이�
 - [다중 에이전트 시스템 구축 가이드](https://docs.crewai.com/how-to/Creating-a-Crew-and-kick-it-off/)
 - 관련: [LangChain](dibi8-internal-link), [AutoGen 가이드](dibi8-internal-link), [LangGraph 패턴](dibi8-internal-link)
 
----
+* * *
 
 *제휴 마케팅 공개: 본문에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. CrewAI는 오픈소스이자 묶인 사용 가능합니다; CrewAI 프로젝트와 상업적 관계는 없습니다. 의견은 실제 테스트와 프로덕션 배포를 기반으로 합니다.*
 
@@ -726,7 +727,7 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 에이�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -736,7 +737,7 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 에이�
 - [9router-smart-llm-proxy-token-saver-free-coding](crewai-multi-agent-orchestration)
 - [ai-engineering-from-scratch](crewai-multi-agent-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,6 +24,7 @@ aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
 
+
 # Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đầy Đủ Sinh Ảnh Self-Host 163k Sao
 
 
@@ -37,7 +38,7 @@ Nếu bạn từng Google "stable diffusion install" kết quả đầu tiên l�
 - **GitHub**: 163k sao, 7,689+ commit, mới nhất v1.10.1
 - **License**: AGPL-3.0 (chú ý cho triển khai SaaS)
 - **Mô hình**: SD 1.5, SD 2.x, SSD-1B, Alt-Diffusion native; SDXL qua extension; SD3 / Flux qua fork
-- **Phần cứng**: 4 GB VRAM tối thiểu (báo cáo 2 GB hoạt động với `--lowvram`)
+- **Phần cứng**: 4 GB VRAM tối thiểu (báo cáo 2 GB hoạt động với ```--lowvram````)
 - **Fork đáng biết**: Forge (nhanh hơn, focus SDXL/Flux), SD.Next (rolling release)
 
 ## 1. Vì Sao A1111 Vẫn Là Mặc Định Năm 2026
@@ -53,8 +54,8 @@ Nếu mới làm sinh ảnh local: bắt đầu ở đây. Chuyển sang ComfyUI
 
 | GPU | SD 1.5 (512×768) | SDXL (1024×1024) | Flux (1024×1024) |
 |---|---|---|---|
-| 4 GB (GTX 1650 / 3050) | ~15s/ảnh | ~60s (`--lowvram`) | Không thực tế |
-| 8 GB (RTX 3060 / 4060) | ~5s | ~12s | ~30s (`--medvram`) |
+| 4 GB (GTX 1650 / 3050) | ~15s/ảnh | ~60s (````--lowvram````) | Không thực tế |
+| 8 GB (RTX 3060 / 4060) | ~5s | ~12s | ~30s (````--medvram````) |
 | 12 GB (RTX 3060 12GB / 4070) | ~3s | ~6s | ~15s |
 | 16-24 GB (RTX 4080 / 4090) | ~1.5s | ~3s | ~6s |
 
@@ -62,15 +63,15 @@ Sử dụng cloud: instance GPU $0.30-0.50/giờ trên Vast.ai hoặc {{< aff "d
 
 ## 3. Cài Nhanh (15 phút)
 
-**Linux/macOS**: ```bash
+**Linux/macOS**: `````bash
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 cd stable-diffusion-webui
 ./webui.sh  # tự cài Python deps, tải mô hình mặc định
-```
+`````
 
-**Windows**: Tải zip release mới nhất, giải nén, chạy `webui-user.bat`.
+**Windows**: Tải zip release mới nhất, giải nén, chạy ````webui-user.bat````.
 
-Lần chạy đầu tải xuống ~4 GB (mô hình SD 1.5 mặc định) + ~2 GB Python deps. Mở trình duyệt tại `http://localhost:7860`.
+Lần chạy đầu tải xuống ~4 GB (mô hình SD 1.5 mặc định) + ~2 GB Python deps. Mở trình duyệt tại ````http://localhost:7860````.
 
 ## 4. Cài Đặt 80/20
 
@@ -78,7 +79,7 @@ Cho workflow "chỉ tạo ảnh đẹp cho tôi": - **Sampler**: DPM++ 2M Karras
 - **Steps**: 20-30 (trên 30 = lợi nhuận giảm)
 - **CFG Scale**: 7 (thấp hơn = sáng tạo hơn, cao hơn = literal hơn)
 - **Độ phân giải**: 512×768 cho SD 1.5, 1024×1024 cho SDXL
-- **Negative prompt baseline**: `bad anatomy, blurry, low quality, watermark, text, signature`
+- **Negative prompt baseline**: ````bad anatomy, blurry, low quality, watermark, text, signature````
 
 Cho chất lượng cao: bật Hires fix (2× upscale + denoise 0.4-0.5) với chi phí 2× thời gian sinh.
 
@@ -87,7 +88,7 @@ Cho chất lượng cao: bật Hires fix (2× upscale + denoise 0.4-0.5) với c
 Top pick từ 500+ tab Extensions: - **ControlNet** — điều kiện hóa pose / depth / canny / scribble. Extension hữu ích đơn lẻ nhất
 - **ADetailer** — tự sửa khuôn mặt và tay (hai mode thất bại của SD)
 - **Regional Prompter** — prompt khác nhau cho phần khác nhau của ảnh
-- **Dynamic Prompts** — cú pháp wildcard `{red|blue|green} car`
+- **Dynamic Prompts** — cú pháp wildcard ````{red|blue|green} car````
 - **Civitai Helper** — quản lý mô hình tải từ Civitai
 - **sd-webui-prompt-history** — khôi phục prompt từ sinh quá khứ
 
@@ -95,9 +96,9 @@ Cài qua Extensions tab → Install from URL → dán URL GitHub → Apply và r
 
 ## 6. LoRA / Embedding / ControlNet Workflow
 
-Ba cơ chế tùy chỉnh: - **LoRA** (Low-Rank Adaptation) — file nhỏ (~150 MB) điều chỉnh mô hình cơ sở về style hoặc đối tượng cụ thể. Đặt vào `models/Lora/`, tham chiếu trong prompt: `<lora:style_name:0.8>`
-- **Textual Inversion / Embeddings** — nhỏ hơn (~30 KB), bổ sung khái niệm đơn. Đặt vào `embeddings/`, chỉ gõ từ trigger trong prompt
-- **ControlNet** — điều kiện sinh trên pose / depth / line art / v.v. Mô hình vào `models/ControlNet/`
+Ba cơ chế tùy chỉnh: - **LoRA** (Low-Rank Adaptation) — file nhỏ (~150 MB) điều chỉnh mô hình cơ sở về style hoặc đối tượng cụ thể. Đặt vào ````models/Lora/````, tham chiếu trong prompt: ````<lora:style_name:0.8>````
+- **Textual Inversion / Embeddings** — nhỏ hơn (~30 KB), bổ sung khái niệm đơn. Đặt vào ````embeddings/````, chỉ gõ từ trigger trong prompt
+- **ControlNet** — điều kiện sinh trên pose / depth / line art / v.v. Mô hình vào ````models/ControlNet/````
 
 Civitai là hub de-facto cho LoRA và checkpoint cộng đồng. Extension Civitai Helper tự đồng bộ file local với metadata.
 
@@ -113,7 +114,7 @@ Setup 2026 dùng SDXL hàng ngày: mainline A1111 hoạt động. Pipeline sáng
 
 ## 8. Pattern Self-Host Production
 
-Triển khai "API ảnh cá nhân": ```
+Triển khai "API ảnh cá nhân": `````
    {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}} (RTX 6000 Ada $0.50/giờ hoặc thuê trên Vast.ai)
             │
             ▼
@@ -124,7 +125,7 @@ Triển khai "API ảnh cá nhân": ```
             │
             ▼
    App / agent của bạn gọi /sdapi/v1/txt2img
-```
+````
 
 Ví dụ chi phí: 8 giờ/ngày × $0.50/giờ × 30 ngày = $120/tháng cho sinh không giới hạn, vs Midjourney $30/tháng cho 200 fast giờ. Hòa vốn ở sử dụng vừa phải.
 
@@ -145,7 +146,7 @@ AUTOMATIC1111 SD WebUI = **sinh ảnh self-host mặc định cho creator solo n
 
 Bật instance GPU, chạy cài đặt mục 3, và 15 phút sau bạn có sinh ảnh local hòa vốn với Midjourney ở bất kỳ volume có ý nghĩa.
 
----
+* * *
 
 *Một phần của stack nội dung đa phương thức dibi8 — xem [ComfyUI cho workflow dựa node](/vi/resources/ai-tools/comfyui-node-based-ai-image-2026/) và bộ sưu tập Multi-Modal Content Pipeline sắp tới.*
 
@@ -211,7 +212,7 @@ Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đầy Đủ Sinh �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -26,6 +26,7 @@ faqs: - q: 'Chạy DeepSeek tại chỗ có rẻ hơn dùng API GPT-4o không?'
     a: 'Suy luận tại chỗ có thể cách ly mạng (air-gapped) 100%, nghĩa là dữ liệu của bạn không bao giờ rời khỏi hạ tầng của chính bạn. Với một API đám mây như của OpenAI, dữ liệu yêu cầu của bạn rời khỏi môi trường của bạn và được xử lý trên máy chủ của nhà cung cấp.'
 ---
 
+
 {</* resource-info */>}
 
 # Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local Xóa Sổ Hóa Đơn API
@@ -56,7 +57,7 @@ A: Một dev cày AI code ngày đốt 2 triệu token là bình thường. Dùn
 **Q: Cúp mạng có code AI được không? (Local AI coding without internet)**
 A: Bỏ mạng viễn thông đi vẫn code ầm ầm. Bạn chỉ cần tải cục model DeepSeek V4 về máy, ném vào DS4 là xong. Đỉnh cao bảo mật cho mấy anh em làm trong ngân hàng hay cơ quan nhà nước cấm tuồn dữ liệu ra ngoài.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -129,7 +130,7 @@ Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local Xóa Sổ Hóa �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

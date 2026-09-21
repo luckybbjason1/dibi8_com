@@ -17,6 +17,7 @@ faqs: - q: 'What is the difference between Dify and Flowise?'
   - q: 'Is Flowise just a visual LangChain builder?'
     a: 'Flowise started as a drag-and-drop LangChain UI and that remains its core identity, but it has evolved beyond a simple wrapper. It supports LlamaIndex components in addition to LangChain, adds its own chatbot embed widget, API endpoint publishing, and has grown an ecosystem of community nodes. It is best described as a visual LLM pipeline builder that abstracts LangChain and LlamaIndex, not a pure LangChain wrapper.'
 ---
+
 # Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas
 
 
@@ -29,16 +30,16 @@ Choose **Dify** if: You want an end-to-end platform, need built-in RAG without m
 Choose **Flowise** if: You are a developer who thinks in LangChain primitives, want a minimal self-hosted service, prefer full transparency over each pipeline node, or are prototyping quickly with maximum flexibility.
 
 
----
+* * *
 ## Side-by-Side Comparison
 
 | Dimension | Dify | Flowise |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Core concept | Full-stack LLM app platform | Visual LangChain/LlamaIndex canvas |
 | Built-in RAG | Yes — document upload, chunking, retrieval | Via LangChain RAG nodes (manual assembly) |
@@ -51,7 +52,7 @@ Choose **Flowise** if: You are a developer who thinks in LangChain primitives, w
 | License | Open-source (Apache 2.0) | Open-source (Apache 2.0) |
 
 
----
+* * *
 ## When to Choose Dify
 
 ### Use case 1: End-to-end RAG without manual setup
@@ -68,7 +69,7 @@ Dify is designed to be the backend that powers a real application. Every workflo
 
 ![An enterprise AI platform dashboard for managing LLM applications, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
----
+* * *
 
 ## When to Choose Flowise
 
@@ -78,7 +79,7 @@ Flowise maps very directly to LangChain and LlamaIndex concepts — document loa
 
 ### Use case 2: Lightweight single-container deployment
 
-Flowise runs as a single Node.js service — `docker run` or `npx flowise start` and it is up. There is no PostgreSQL, Redis, or vector database baked in (you bring your own if needed). For a solo developer or a small team running on minimal infrastructure, this lightweight footprint is a significant advantage over Dify's multi-service stack.
+Flowise runs as a single Node.js service — ```docker run```` or ````npx flowise start```` and it is up. There is no PostgreSQL, Redis, or vector database baked in (you bring your own if needed). For a solo developer or a small team running on minimal infrastructure, this lightweight footprint is a significant advantage over Dify's multi-service stack.
 
 ### Use case 3: Rapid prototyping with maximum component flexibility
 
@@ -86,7 +87,7 @@ Because Flowise exposes every LangChain and LlamaIndex component as a swappable 
 
 ![A developer building AI pipeline nodes on a visual canvas, via dibi8.com](https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=760&q=80)
 
----
+* * *
 
 ## RAG Pipeline Comparison
 
@@ -98,27 +99,27 @@ RAG (Retrieval-Augmented Generation) is where the platforms diverge most clearly
 
 **Verdict:** For a production RAG product delivered quickly, Dify. For fine-grained control over every RAG component and parameter, Flowise.
 
----
+* * *
 
 ## Self-Hosting Requirements
 
 | Requirement | Dify | Flowise |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Services | API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant | Single Node.js process |
-| Docker | Docker Compose (5+ containers) | Single `docker run` |
+| Docker | Docker Compose (5+ containers) | Single ````docker run``` |
 | External DB | PostgreSQL required | SQLite (default), external optional |
 | Memory footprint | Higher (multi-service) | Very low |
 | Setup time | 10–20 minutes | Under 5 minutes |
 
 Both are straightforward for developers comfortable with Docker, but Flowise has a noticeably smaller footprint. For self-hosted AI stacks, see our [Local-First AI Stack 2026](https://dibi8.com/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/).
 
----
+* * *
 
 ## Ecosystem and Plugins
 
@@ -128,13 +129,13 @@ Both are straightforward for developers comfortable with Docker, but Flowise has
 
 Both ecosystems are healthy. Dify's marketplace is more curated; Flowise's node ecosystem is broader and more developer-driven.
 
----
+* * *
 
 ## Can They Complement Each Other?
 
 In some architectures, yes. Teams use **Flowise to prototype and validate a pipeline**, then **rebuild the validated flow in Dify** for managed deployment and user-facing publishing. The workflows are not directly portable, but the patterns transfer. Alternatively, some teams use Flowise for internal developer tooling and Dify for customer-facing AI products.
 
----
+* * *
 
 ## dibi8's Take
 
@@ -216,12 +217,12 @@ Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas re
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -231,7 +232,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [supermemory-open-source-ai-memory-api](dify-vs-flowise-2026)
 - [claude-code-vs-cline](dify-vs-flowise-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

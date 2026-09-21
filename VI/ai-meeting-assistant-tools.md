@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/ai-meeting-assistant-tools/
 ---
 
+
 # Các Công Cụ Trợ Lý Họp AI Tốt Nhất 2025: So Sánh Otter.ai, Fireflies, Fathom Và Hơn Thế Nữa
 
 
@@ -286,7 +287,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -296,6 +297,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [2026-06-08-trending-ai-agents](ai-meeting-assistant-tools)
 - [2026-06-15-trending-ai-agents](ai-meeting-assistant-tools)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

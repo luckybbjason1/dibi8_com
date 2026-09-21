@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/hummingbot-crypto-trading-bot/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 대부분의 트레이딩 봇이 실패하는 이유
@@ -35,7 +36,7 @@ Hummingbot은 자동화된 암호화폐 트레이딩 전략을 구축하고 실�
 
 ## Hummingbot 작동 원리: 아키텍처 개요
 
-Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다: ```
+Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다: ````
 ┌─────────────────────────────────────────────────────┐
 │                   전략 레이어 (Strategy Layer)       │
 │  (순수 마켓 메이킹 / 차익거래 / 커스텀 스크립트)   │
@@ -49,7 +50,7 @@ Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다: ```
 │                   인프라 (Infrastructure)             │
 │  (Docker / 설정 / 로그 / SQLite 데이터베이스)      │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 **핵심 루프** 작동 방식: 1. **전략(Strategy)**이 주문 매개변수(스프레드, 인벤토리 스큐, 갱신 시간)를 정의
 2. **커넥터(Connector)**가 특정 거래소 API를 통합 인터페이스로 정규화
@@ -68,7 +69,7 @@ Hummingbot의 아키텍처는 명확한 관심사 분리를 따릅니다: ```
 
 ### 1단계: 이미지 가져오기 및 실행
 
-```bash
+`````bash
 # Hummingbot 파일 디렉터리 생성
 mkdir -p hummingbot_files/hummingbot_conf
 mkdir -p hummingbot_files/hummingbot_logs
@@ -83,9 +84,9 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data" \
   hummingbot/hummingbot:latest
-```
+`````
 
-컨테이너가 시작되면 Hummingbot CLI가 표시됩니다: ```
+컨테이너가 시작되면 Hummingbot CLI가 표시됩니다: `````
     ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
@@ -95,11 +96,11 @@ docker run -it --name hummingbot \
     Enter "start" to start the current strategy
     
     >>>
-```
+`````
 
 ### 2단계: 거래소 연결
 
-```bash
+`````bash
 # Hummingbot CLI 낶에서
 >>> connect binance
 
@@ -111,20 +112,20 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 
 # 연결 확인
 >>> balance
-```
+`````
 
-```
+`````
 Updating balances, please wait...
 
  binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
-```
+`````
 
 ### 3단계: 순수 마켓 메이킹 전략 설정
 
-```bash
+`````bash
 # 새 전략 설정 생성
 >>> create
 
@@ -143,19 +144,19 @@ How often do you want to cancel and replace orders (in seconds)? >>> 30
 
 # 주문 수량 설정
 What is the amount of BTC per order? >>> 0.001
-```
+`````
 
 ### 4단계: 트레이딩 시작
 
-```bash
+`````bash
 # 설정 확인
 >>> config
 
 # 전략 시작
 >>> start
-```
+`````
 
-```
+`````
 The pure_market_making strategy is starting.
 Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
@@ -163,11 +164,11 @@ Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
 Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
-```
+`````
 
 ### 5단계: 백그라운드 실행 (분리 모드)
 
-```bash
+`````bash
 # Hummingbot을 종료하되 컨테이너는 계속 실행
 Ctrl+P then Ctrl+Q
 
@@ -181,7 +182,7 @@ docker run -d --name hummingbot \
 # 상태 확인을 위해 연결
 docker attach hummingbot
 # 다시 분리하려면 Ctrl+P, Ctrl+Q
-```
+`````
 
 ## 거래소 및 도구 통합
 
@@ -189,7 +190,7 @@ docker attach hummingbot
 
 Binance는 현물 및 USD-M 선물을 모두 지원하는 가장 인기 있는 커넥터입니다. 커넥터는 속도 제한을 자동으로 처리합니다 — **분당 1,200 요청 가중치** 제한을 적응형 백오프와 함께 따릅니다.
 
-```yaml
+`````yaml
 # conf/connectors/binance.yml
 connector: binance
 api_key: ${BINANCE_API_KEY}
@@ -197,19 +198,19 @@ api_secret: ${BINANCE_API_SECRET}
 rate_limit: adaptive
 timeout: 10
 use_futures: false
-```
+`````
 
 ### Coinbase Advanced Trade
 
-Coinbase는 2024년 이후 다른 인증 방식(JWT 기반)을 사용합니다. Hummingbot의 Coinbase 커넥터는 낶적으로 JWT 서명을 처리합니다: ```bash
+Coinbase는 2024년 이후 다른 인증 방식(JWT 기반)을 사용합니다. Hummingbot의 Coinbase 커넥터는 낶적으로 JWT 서명을 처리합니다: `````bash
 >>> connect coinbase_advanced_trade
 Enter your Coinbase API key (UUID format) >>> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
-```
+`````
 
 ### Hummingbot Gateway를 이용한 DEX 트레이딩
 
-Uniswap, PancakeSwap 및 기타 DEX를 위해서는 Gateway 서비스가 필요합니다: ```bash
+Uniswap, PancakeSwap 및 기타 DEX를 위해서는 Gateway 서비스가 필요합니다: `````bash
 # Gateway 가져오기 및 실행
 docker pull hummingbot/gateway:latest
 
@@ -220,9 +221,9 @@ docker run -d --name gateway \
 
 # Hummingbot에서 Gateway에 연결
 >>> gateway connect uniswap_ethereum_mainnet
-```
+`````
 
-```yaml
+`````yaml
 # 이더리움 메인넷의 Uniswap용 Gateway 설정
 networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
@@ -230,11 +231,11 @@ networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
 connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
-```
+`````
 
 ### Telegram 알림
 
-```yaml
+`````yaml
 # conf/telegram.yml
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
@@ -242,15 +243,15 @@ telegram_chat_id: "YOUR_CHAT_ID"
 notify_events: - order_filled
   - trade_completed
   - strategy_error
-```
+`````
 
 ### Grafana로 데이터 낶기
 
-Hummingbot은 모든 거래를 SQLite에 기록합니다. Prometheus/Grafana로 낶기하여 시각화할 수 있습니다: ```bash
+Hummingbot은 모든 거래를 SQLite에 기록합니다. Prometheus/Grafana로 낶기하여 시각화할 수 있습니다: `````bash
 # SQLite 쿼리 예제
 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
   "SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;"
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -265,7 +266,7 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 ### 사례 연구: Binance에서 BTC-USDT 마켓 메이킹
 
-커뮤니티 회원이 BTC-USDT에서 **30일간** 순수 마켓 메이킹을 실행한 데이터를 공유했습니다 — **$5,000** 자본으로: ```
+커뮤니티 회원이 BTC-USDT에서 **30일간** 순수 마켓 메이킹을 실행한 데이터를 공유했습니다 — **$5,000** 자본으로: `````
 총 거래 실행 횟수: 8,247
 메이커 수수료 (0.02%): 0.412 BTC
 스프레드 캡처 (평균): 0.42%
@@ -274,7 +275,7 @@ PnL (수수료 전): +2.14%/월
 PnL (수수료 후): +1.72%/월
 샤프 비율: 1.34
 최대 낙폭: 1.2%
-```
+`````
 
 ### 리소스 사용량
 
@@ -291,7 +292,7 @@ Hummingbot은 기본적으로 경량입니다: | 리소스 | 유휴 | 활성 (1 
 
 ### Python으로 커스텀 전략 작성
 
-Hummingbot v2.0의 스크립트 전략 인터페이스를 사용하면 순수 Python으로 로직을 작성할 수 있습니다: ```python
+Hummingbot v2.0의 스크립트 전략 인터페이스를 사용하면 순수 Python으로 로직을 작성할 수 있습니다: `````python
 # strategies/my_custom_mm.py
 from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
@@ -333,11 +334,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
     def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
-```
+`````
 
 ### RSI 기반 인벤토리 관리
 
-```python
+`````python
 # 인벤토리 스큐용 전략에 추가
     def calculate_inventory_skew(self): """인벤토리 비율 기반 주문 크기 조정."""
         base_balance = self.connectors["binance"].get_balance("BTC")
@@ -356,11 +357,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
             self.sell_multiplier = Decimal("1.5")
         else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
-```
+`````
 
 ### 역사적 데이터를 이용한 백테스팅
 
-```bash
+`````bash
 # 역사적 거래 데이터 다운로드
 python scripts/download_historical_data.py \
   --exchange binance \
@@ -375,9 +376,9 @@ python scripts/backtest.py \
   --config conf/strategies/pmm_btc.yml \
   --data data/binance_BTC-USDT_1m.csv \
   --output results/btc_pmm_backtest.html
-```
+`````
 
-```
+`````
 백테스트 결과 (2026-01-01 ~ 2026-03-31)
 ========================================
 총 거래 횟수: 12,450
@@ -387,11 +388,11 @@ python scripts/backtest.py \
 평균 거래 지속 시간: 18.4분
 승률: 62.3%
 수익 요인: 1.48
-```
+`````
 
 ### 페이퍼 트레이딩 모드
 
-실전 투입 전 항상 페이퍼 트레이딩으로 테스트하세요: ```bash
+실전 투입 전 항상 페이퍼 트레이딩으로 테스트하세요: `````bash
 # 설정에서 페이퍼 트레이딩 활성화
 paper_trade_enabled: true
 paper_trade_account_balance: BTC: 1.0
@@ -400,11 +401,11 @@ paper_trade_account_balance: BTC: 1.0
 # 페이퍼 트레이드는 [PAPER] 접두사로 표시
 >>> status
   Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
-```
+`````
 
 ### 프로덕션용 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -426,11 +427,11 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### 보안 체크리스트
 
-```bash
+`````bash
 # 1. IP 화이트리스트 API 키 사용 (Binance 지원)
 # 2. API 키에서 출금 제한 활성화
 # 3. 격리된 Docker 네트워크에서 실행
@@ -438,7 +439,7 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
 
 # 민감한 설정 암호화
 openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
-```
+`````
 
 ## 대안과의 비교
 
@@ -499,7 +500,7 @@ Hummingbot은 물비, 오픈소스, 완전히 커스터마이저블합니다 —
 
 ### Hummingbot을 새 버전으로 업데이트하려면 어떻게 하나요?
 
-```bash
+`````bash
 # 최신 이미지 가져오기
 docker pull hummingbot/hummingbot:latest
 
@@ -511,13 +512,13 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   hummingbot/hummingbot:latest
-```
+`````
 
 설정은 마운트된 볼륨에 영속화됩니다.
 
 ### Hummingbot을 선물/무기한 트레이딩에 사용할 수 있나요?
 
-예. Binance, Bybit, OKX 커넥터는 무기한 선물을 지원합니다. `domain` 파라미터를 선물 서브도메인으로 설정하고 레버리지를 신중하게 구성하세요. 펀딩비 메커니즘을 이해할 때까지 **1x-3x 레버리지**로 시작하세요.
+예. Binance, Bybit, OKX 커넥터는 무기한 선물을 지원합니다. ````domain``` 파라미터를 선물 서브도메인으로 설정하고 레버리지를 신중하게 구성하세요. 펀딩비 메커니즘을 이해할 때까지 **1x-3x 레버리지**로 시작하세요.
 
 ## 결론: 오늘부터 알고리즘 트레이딩 시작하기
 

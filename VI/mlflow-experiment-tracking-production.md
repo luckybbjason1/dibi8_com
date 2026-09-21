@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/mlflow-experiment-tracking-production/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Hỗn Loạn Củ Các Thử Nghiệm Không Được Theo Dõi
@@ -40,7 +41,7 @@ Hướng dẫn này cho bạn thấy cách thiết lập MLflow trong vòng 5 ph
 
 MLflow là một **nền tảng mã nguồn mở để quản lý vòng đồi machine learning**, bao gồm theo dõi thử nghiệm, đóng gói mô hình, model registry, và model serving. Nó chạy như một thư viện Python, một server độc lập, hoặc một container Docker — không yêu cầu phụ thuộc vào Kubernetes, cloud provider, hoặc framework ML cụ thể.
 
-Khác với các nền tảng MLOps nặng nề đòi hỏi team infrastructure thiết lập, MLflow cài đặt bằng `pip install mlflow` và bắt đầu theo dõi thử nghiệm bằng một dòng code. Rào cản gia nhập thấp này khiến nó trở thành công cụ ML lifecycle open-source được áp dụng rộng rãi nhất, với **hơn 250 triệu lượt tải** trên PyPI tính đến đầu năm 2026.
+Khác với các nền tảng MLOps nặng nề đòi hỏi team infrastructure thiết lập, MLflow cài đặt bằng ```pip install mlflow```` và bắt đầu theo dõi thử nghiệm bằng một dòng code. Rào cản gia nhập thấp này khiến nó trở thành công cụ ML lifecycle open-source được áp dụng rộng rãi nhất, với **hơn 250 triệu lượt tải** trên PyPI tính đến đầu năm 2026.
 
 ## MLflow Hoạt Động Như Thế Nào: Các Thành Phần Cốt Lõi
 
@@ -50,9 +51,9 @@ MLflow được tổ chức thành bốn thành phần đề cập đến các g
 
 **MLflow Model Registry** cung cấp một kho lưu trữ tập trung cho quản lý vòng đồi mô hình. Đăng ký mô hình, gán số phiên bản, tag các giai đoạn (Staging, Production, Archived), và theo dõi lineage xuyên suốt các phiên bản. Các đội sử dụng đây là nguồn chân lý duy nhất cho việc mô hình nào được deploy ở đâu.
 
-**MLflow Projects** đóng gói code ML ở định dạng reproducible với một file `MLproject` định nghĩa các entry points, parameters, dependencies, và môi trường thực thi.
+**MLflow Projects** đóng gói code ML ở định dạng reproducible với một file ````MLproject```` định nghĩa các entry points, parameters, dependencies, và môi trường thực thi.
 
-```python
+`````python
 # Kiến trúc MLflow đầy đủ trong một sơ đồ: # 1. Tracking Server (REST API + UI)
 #    ├── Backend Store: PostgreSQL / MySQL / SQLite
 #    └── Artifact Store: S3 / GCS / Azure / Local
@@ -67,13 +68,13 @@ MLflow được tổ chức thành bốn thành phần đề cập đến các g
 #
 # 4. Model Serving
 #    └── REST endpoint: /invocations
-```
+`````
 
 ## Cài Đặt & Thiết Lập: Chạy Thử Nghiệm Đầu Tiên Trong 5 Phút
 
 ### Thiết Lập Local (Một Máy)
 
-```bash
+`````bash
 # Cài đặt MLflow
 pip install mlflow==2.22.0
 
@@ -84,9 +85,9 @@ mlflow server \
   --default-artifact-root ~/mlflow-tracking/artifacts \
   --host 0.0.0.0 \
   --port 5000
-```
+`````
 
-```bash
+`````bash
 # Trong một terminal riêng, chạy thử nghiệm tracked đầu tiên
 python -c "
 import mlflow
@@ -100,18 +101,18 @@ with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
     mlflow.log_metric(f1_score, 0.93)
     print(f'Run ID: {mlflow.active_run().info.run_id}')
 "
-```
+`````
 
-Truy cập `http://localhost:5000` — thử nghiệm của bạn xuất hiện trong MLflow UI với parameters, metrics, và lịch sử chạy được track đầy đủ.
+Truy cập ````http://localhost:5000```` — thử nghiệm của bạn xuất hiện trong MLflow UI với parameters, metrics, và lịch sử chạy được track đầy đủ.
 
 ### Thiết Lập Production với PostgreSQL và S3
 
-```bash
+`````bash
 # Cài đặt với database và cloud support
 pip install mlflow[extras]==2.22.0 psycopg2-binary boto3
-```
+`````
 
-```bash
+`````bash
 # Khởi động tracking server với PostgreSQL và S3
 export MLFLOW_S3_ENDPOINT_URL=https://s3.amazonaws.com
 export AWS_ACCESS_KEY_ID=your-key
@@ -122,11 +123,11 @@ mlflow server \
   --default-artifact-root s3://your-bucket/mlflow-artifacts \
   --host 0.0.0.0 \
   --port 5000
-```
+`````
 
 ### Docker Deployment (Khuyến nghị cho Teams)
 
-```bash
+`````bash
 # docker-compose.yml — Stack MLflow hoàn chỉnh
 version: '3.8'
 services: postgres: image: postgres:16
@@ -145,19 +146,19 @@ services: postgres: image: postgres:16
     ports: - "5000:5000"
     depends_on: - postgres
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
-```bash
+`````bash
 # Khởi chạy toàn bộ stack
 docker-compose up -d
 
 # Xác minh tracking server đang chạy
 curl http://localhost:5000/api/2.0/mlflow/experiments/list
-```
+`````
 
 ### DigitalOcean Droplet Deployment
 
-Cho một production tracking server chuyên dụng: ```bash
+Cho một production tracking server chuyên dụng: `````bash
 # Tạo droplet và cài đặt MLflow
 ssh root@your-droplet-ip << EOF
 apt update && apt install -y python3-pip
@@ -181,7 +182,7 @@ SERVICEDEF
 
 systemctl enable mlflow && systemctl start mlflow
 EOF
-```
+`````
 
 [Triển khai trên DigitalOcean](https://m.do.co/c/eca87ac14ee0) — nhận $200 credit để chạy MLflow tracking server và experiment infrastructure trong hai tháng miễn phí.
 
@@ -189,7 +190,7 @@ EOF
 
 ### Theo Dõi Thử Nghiệm Cơ Bản
 
-```python
+`````python
 # tracking_example.py — Log thử nghiệm với MLflow
 import mlflow
 import mlflow.sklearn
@@ -251,16 +252,16 @@ if __name__ == __main__: configs = [
         (500, None, 0.02),
     ]
     for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
-```
+`````
 
-```bash
+`````bash
 # Chạy experiment sweep
 python tracking_example.py
-```
+`````
 
 ### Autologging: Theo Dõi Không Cần Nỗ Lực
 
-```python
+`````python
 # autolog_example.py — Auto logging cho scikit-learn
 import mlflow
 from sklearn.ensemble import RandomForestClassifier
@@ -279,11 +280,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     # Không cần manual logging — autolog capture tất cả
-```
+`````
 
 ### Theo Dõi Thử Nghiệm Deep Learning
 
-```python
+`````python
 # pytorch_tracking.py — Theo dõi PyTorch training với MLflow
 import mlflow
 import torch
@@ -342,11 +343,11 @@ def train_model(epochs, lr, batch_size): with mlflow.start_run(): mlflow.log_par
         mlflow.pytorch.log_model(model, model)
 
 if __name__ == __main__: train_model(epochs=5, lr=0.001, batch_size=64)
-```
+`````
 
 ## Model Registry: Quản Lý Vòng Đồi Mô Hình
 
-```python
+`````python
 # registry_example.py — Quản lý phiên bản mô hình và stages
 import mlflow
 from mlflow.tracking import MlflowClient
@@ -382,9 +383,9 @@ client.set_model_version_tag(
     key=reviewed_by,
     value='ml-lead@company.com'
 )
-```
+`````
 
-```bash
+`````bash
 # Liệt kê tất cả phiên bản của một mô hình
 mlflow models list-versions -m wine-classifier
 
@@ -392,9 +393,9 @@ mlflow models list-versions -m wine-classifier
 #   1        Production  Initial production model
 #   2        Staging     Wine classifier with 94.4% accuracy...
 #   3        None        Experimental architecture
-```
+`````
 
-```python
+`````python
 # Load một phiên bản mô hình cụ thể để inference
 import mlflow.pyfunc
 
@@ -406,19 +407,19 @@ model = mlflow.pyfunc.load_model(
 model_v2 = mlflow.pyfunc.load_model(
     model_uri='models:/wine-classifier/2'
 )
-```
+`````
 
 ## Model Serving: Deploy Qua REST API
 
-```bash
+`````bash
 # Serve mô hình local với server built-in của MLflow
 mlflow models serve \
   -m models:/wine-classifier/Production \
   -p 5001 \
   --env-manager local
-```
+`````
 
-```bash
+`````bash
 # Test endpoint
 curl -X POST http://localhost:5001/invocations \
   -H "Content-Type: application/json" \
@@ -430,19 +431,19 @@ curl -X POST http://localhost:5001/invocations \
   }'
 
 # Response: {"predictions": [0, 1]}
-```
+`````
 
 ### Production Serving với Docker
 
-```bash
+`````bash
 # Build Docker image cho model
 mlflow models build-docker \
   -m models:/wine-classifier/Production \
   -n wine-classifier-serving:v1.0 \
   --enable-mlserver
-```
+`````
 
-```bash
+`````bash
 # Chạy serving container
 docker run -p 5001:8080 wine-classifier-serving:v1.0
 
@@ -450,11 +451,11 @@ docker run -p 5001:8080 wine-classifier-serving:v1.0
 curl -X POST http://localhost:5001/invocations \
   -H "Content-Type: application/json" \
   -d '{"inputs": [[14.23, 1.71, 2.43, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0]]}'
-```
+`````
 
 ### Deploy Lên Cloud với MLflow
 
-```python
+`````python
 # deploy_sagemaker.py — Deploy lên AWS SageMaker
 import mlflow.sagemaker
 
@@ -465,9 +466,9 @@ mlflow.sagemaker.deploy(
     instance_type='ml.m5.large',
     region_name='us-east-1'
 )
-```
+`````
 
-```python
+`````python
 # deploy_azure.py — Deploy lên Azure ML
 from azureml.core import Workspace
 import mlflow.azureml
@@ -482,7 +483,7 @@ mlflow.azureml.deploy(
     },
     service_name='wine-classifier-aci'
 )
-```
+`````
 
 ## Benchmark: Hiệu Năng ở Quy Mô Lớn
 
@@ -521,7 +522,7 @@ Một tracking server backed bởi PostgreSQL duy nhất có thể dễ dàng x�
 
 ### Xác Thực với HTTP Basic Auth
 
-```python
+`````python
 # auth_server.py — MLflow server với basic authentication
 from flask import Flask, request, Response
 import mlflow.server
@@ -544,9 +545,9 @@ def require_auth(): if not check_auth(): return Response('Authentication require
 
 # Mount MLflow phía sau authenticated proxy
 # Hoặc dùng nginx reverse proxy với basic auth
-```
+`````
 
-```nginx
+`````nginx
 # nginx.conf — Reverse proxy với basic auth cho MLflow
 server {
     listen 80;
@@ -560,11 +561,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### Dọn Dẹp Tự Động Các Thử Nghiệm Cũ
 
-```python
+`````python
 # cleanup.py — Xóa các run cũ để quản lý lưu trữ
 from mlflow.tracking import MlflowClient
 from datetime import datetime, timedelta
@@ -583,17 +584,17 @@ for exp in experiments: runs = client.search_runs(
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 
 print(f'Cleanup completed. Deleted {len(runs)} old runs.')
-```
+`````
 
-```bash
+`````bash
 # Chạy cleanup hàng tuần qua cron
 crontab -e
 # Thêm: 0 2 * * 0 /usr/bin/python3 /opt/mlflow/cleanup.py >> /var/log/mlflow-cleanup.log 2>&1
-```
+`````
 
 ### Tích Hợp với CI/CD
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Training Pipeline
 on: push: branches: [main]
@@ -616,7 +617,7 @@ jobs: train: runs-on: ubuntu-latest
       - name: Notify team
         run: |
           echo "Model trained and registered. Review at $MLFLOW_TRACKING_URI"
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -656,13 +657,13 @@ MLflow xuất sắc nhưng không phải phổ quát: **Không có pipeline orch
 ## Các Câu Hỏi Thường Gặp
 
 **Q: MLflow lưu trữ dữ liệu thử nghiệm như thế nào?**
-A: MLflow sử dụng một **backend store** cho metadata (experiments, runs, parameters, metrics) và một **artifact store** cho files (models, plots, datasets). Backend store có thể là SQLite (phát triển), PostgreSQL/MySQL (production), hoặc file store. Artifact store có thể là local filesystem, S3, GCS, Azure Blob, hoặc HDFS. Cả hai đều được cấu hình khi khởi động `mlflow server`.
+A: MLflow sử dụng một **backend store** cho metadata (experiments, runs, parameters, metrics) và một **artifact store** cho files (models, plots, datasets). Backend store có thể là SQLite (phát triển), PostgreSQL/MySQL (production), hoặc file store. Artifact store có thể là local filesystem, S3, GCS, Azure Blob, hoặc HDFS. Cả hai đều được cấu hình khi khởi động ````mlflow server````.
 
 **Q: Tôi có thể sử dụng MLflow mà không cần tracking server không?**
-A: Có. MLflow hoạt động ở **local mode** nơi các thử nghiệm được log vào một thư mục `mlruns/` local. Điều này hoàn hảo cho phát triển cá nhân. Chỉ cần sử dụng `mlflow.start_run()` mà không cần thiết lập tracking URI — mọi thứ được log local và bạn có thể xem kết quả với `mlflow ui`.
+A: Có. MLflow hoạt động ở **local mode** nơi các thử nghiệm được log vào một thư mục ````mlruns/```` local. Điều này hoàn hảo cho phát triển cá nhân. Chỉ cần sử dụng ````mlflow.start_run()```` mà không cần thiết lập tracking URI — mọi thứ được log local và bạn có thể xem kết quả với ````mlflow ui````.
 
 **Q: Làm thế nào để migrate từ local SQLite sang PostgreSQL?**
-A: MLflow cung cấp một tiện ích database migration. Đầu tiên, đảm bảo cả hai databases đều có thể truy cập. Sau đó sử dụng `mlflow db upgrade postgresql://user:pass@host/db` để khởi tạo schema PostgreSQL. Để migrate dữ liệu run hiện có, export runs sử dụng `mlflow experiments csv` và re-import, hoặc sử dụng một công cụ database migration như `pgloader` cho việc transfer trực tiếp từ SQLite sang PostgreSQL.
+A: MLflow cung cấp một tiện ích database migration. Đầu tiên, đảm bảo cả hai databases đều có thể truy cập. Sau đó sử dụng ````mlflow db upgrade postgresql://user:pass@host/db```` để khởi tạo schema PostgreSQL. Để migrate dữ liệu run hiện có, export runs sử dụng ````mlflow experiments csv```` và re-import, hoặc sử dụng một công cụ database migration như ````pgloader```` cho việc transfer trực tiếp từ SQLite sang PostgreSQL.
 
 **Q: Sự khác biệt giữa logging một model và registering nó là gì?**
 A: **Logging một model** lưu các model artifacts vào một run cụ thể — nó được gắn với experiment run đó và có thể được truy xuất qua run ID. **Registering một model** thêm nó vào Model Registry, là một catalog versioned riêng biệt độc lập với bất kỳ experiment nào. Các model đã đăng ký có thể được staged (Staging, Production, Archived) và load theo tên và phiên bản, làm cho chúng thành đường dẫn được khuyến nghị cho production deployments.
@@ -671,13 +672,13 @@ A: **Logging một model** lưu các model artifacts vào một run cụ thể �
 A: Deploy MLflow như một container trong cluster của bạn. Sử dụng PostgreSQL StatefulSet cho backend và S3/GCS cho artifacts. Expose tracking server qua một Ingress với xác thực. MLflow server là stateless và có thể chạy với nhiều replicas phía sau một Service cho high availability. Xem hướng dẫn deploy [Kubernetes](dibi8-internal-link) để có các manifest chi tiết.
 
 **Q: MLflow có thể track thử nghiệm trong các ngôn ngữ khác Python không?**
-A: Có. MLflow có các client chính thức cho **R** (gói `mlflow` R) và **Java/Scala** (thư viện Java client). Có các client cộng đồng cho **Julia**, **C#**, và **Go**. REST API được tài liệu đầy đủ và có thể được sử dụng từ bất kỳ ngôn ngữ nào có thể thực hiện HTTP requests. Tuy nhiên, Python SDK có tập hợp tính năng hoàn chỉnh nhất bao gồm autologging.
+A: Có. MLflow có các client chính thức cho **R** (gói ````mlflow```` R) và **Java/Scala** (thư viện Java client). Có các client cộng đồng cho **Julia**, **C#**, và **Go**. REST API được tài liệu đầy đủ và có thể được sử dụng từ bất kỳ ngôn ngữ nào có thể thực hiện HTTP requests. Tuy nhiên, Python SDK có tập hợp tính năng hoàn chỉnh nhất bao gồm autologging.
 
 ## Kết Luận: Bắt Đầu Theo Dõi Mọi Thử Nghiệm Ngay Hôm Nay
 
 MLflow vẫn là giải pháp open-source thực tế nhất cho quản lý vòng đồi ML. Sự kết hợp của thiết lập zero-friction, thiết kế framework-agnostic, và model registry mạnh mẽ khiến nó trở thành lựa chọn mặc định cho các đội muốn experiment reproducibility mà không có infrastructure overhead. Với v2.22.0 (tháng 4/2026) mang đến autologging được cải thiện cho các framework LLM, streaming artifact tốt hơn, và UI được refresh, chưa bao giờ có thờ điểm tốt hơn để áp dụng MLflow.
 
-Con đường đến theo dõi thử nghiệm cấp production bắt đầu bằng một dòng: `mlflow.start_run()`. Log parameters của bạn, log metrics của bạn, đăng ký các model tốt nhất của bạn. Trong ba tháng, khi ai đó hỏi "model nào chúng ta nên ship?", bạn sẽ có câu trả lờ trong Model Registry, với đầy đủ lineage và reproducibility.
+Con đường đến theo dõi thử nghiệm cấp production bắt đầu bằng một dòng: ````mlflow.start_run()```. Log parameters của bạn, log metrics của bạn, đăng ký các model tốt nhất của bạn. Trong ba tháng, khi ai đó hỏi "model nào chúng ta nên ship?", bạn sẽ có câu trả lờ trong Model Registry, với đầy đủ lineage và reproducibility.
 
 Sẵn sàng deploy? [Nhận $200 credit trên DigitalOcean](https://m.do.co/c/eca87ac14ee0) để host MLflow tracking server của bạn và bắt đầu ship ML có thể reproduce ngay hôm nay. Tham gia [nhóm Telegram](https://t.me/dibi8tech) của chúng tôi để nhận mẹo từ các đội chạy MLflow ở quy mô lớn.
 
@@ -731,7 +732,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -741,6 +742,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [ray-distributed-ai-framework-complete-guide](mlflow-experiment-tracking-production)
 - [cleanlab-11k-star-ai-data-cleaning](mlflow-experiment-tracking-production)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

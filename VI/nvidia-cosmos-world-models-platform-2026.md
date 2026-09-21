@@ -11,6 +11,7 @@ license: 'Apache-2.0"
 featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
 ---
 
+
 ![Nền tảng NVIDIA Cosmos](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 
 # NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)
@@ -25,12 +26,12 @@ Các mô hình có kích thước từ 16B (Nano) đến 64B (Super), có sẵn 
 
 ## NVIDIA Cosmos là gì?
 
-NVIDIA Cosmos là một **nền tảng mở của các mô hình thế giới, tập dữ liệu và công cụ** được thiết kế để xây dựng các hệ thống Physical AI. Nó vượt xa những gì AI truyền thống có thể làm: ```
+NVIDIA Cosmos là một **nền tảng mở của các mô hình thế giới, tập dữ liệu và công cụ** được thiết kế để xây dựng các hệ thống Physical AI. Nó vượt xa những gì AI truyền thống có thể làm: ````
 AI truyền thống: Cosmos: Đầu vào → Đầu ra    →  Đầu vào → Lý luận → Đầu ra
   (ảnh vào,            (hiểu vật lý,
    caption ra)         dự đoán tương lai,
                        tạo hành động)
-```
+`````
 
 Các khả năng chính: - **Hiểu thế giới**: Phân tích video và hình ảnh để tạo mô tả, sự kiện theo thời gian, hành động tiếp theo, nền tảng không gian, tính hợp lý vật lý, và kết quả nhân quả
 - **Tạo thế giới**: Tạo ra hình ảnh, video, âm thanh đồng bộ, và chuỗi hành động có điều kiện từ đầu vào văn bản, hình ảnh, video hoặc hành động
@@ -49,7 +50,7 @@ Họ mô hình Cosmos 3 bao gồm: | Mô hình | Kích thước | Khả năng |
 Cosmos 3 sử dụng kiến trúc **Mixture-of-Transformers (MoT)** thống nhất kết hợp: 1. **Transformer tự hồi quy (AR)** để lý luận — xử lý các token ngôn ngữ và hình ảnh thông qua tự attention nhân quả để dự đoán token tiếp theo
 2. **Transformer khuếch tán (DM)** để tạo — loại nhiễu của các token hình ảnh, video, âm thanh và hành động thông qua full attention
 
-```
+`````
 ┌─────────────────────────────────────────────┐
 │         Cosmos 3: Thống nhất MoT            │
 ├─────────────────┬───────────────────────────┤
@@ -66,7 +67,7 @@ Cosmos 3 sử dụng kiến trúc **Mixture-of-Transformers (MoT)** thống nh�
 │ - Các lớp đa phương thức attention       │
 │ - 3D mRoPE (mã hóa không gian + thời gian)│
 └─────────────────┴──────────────────────────┘
-```
+`````
 
 Cả hai chế độ đều chia sẻ cùng kiến trúc transformer, các lớp đa phương thức attention, và một 3D embedding vị trí xoay đa chiều thống nhất (mRoPE) mã hóa cấu trúc không gian và thời gian xuyên suốt các phương thức.
 
@@ -74,13 +75,13 @@ Cả hai chế độ đều chia sẻ cùng kiến trúc transformer, các lớp
 
 Cosmos 3 cung cấp hai bề mặt runtime riêng biệt: ### Reasoner (Hiểu biết)
 
-Xử lý đầu vào và tạo ra đầu ra văn bản cho các tác vụ hiểu thế giới: ```
+Xử lý đầu vào và tạo ra đầu ra văn bản cho các tác vụ hiểu thế giới: `````
 Đầu vào: Văn bản + Hình ảnh + Video + Hành động
          ↓
     Reasoner (AR Transformer)
          ↓
 Đầu ra: Văn bản (mô tả, hành động tiếp theo, lý luận vật lý, kế hoạch tác vụ)
-```
+`````
 
 **Các trường hợp sử dụng**: - Hiểu thế giới từ luồng video
 - Dự đoán hành động tiếp theo cho robot
@@ -90,13 +91,13 @@ Xử lý đầu vào và tạo ra đầu ra văn bản cho các tác vụ hiểu
 
 ### Generator (Sáng tạo)
 
-Tạo ra các đầu ra không phải văn bản được điều kiện hóa bởi đầu vào đa phương thức: ```
+Tạo ra các đầu ra không phải văn bản được điều kiện hóa bởi đầu vào đa phương thức: `````
 Đầu vào: Văn bản + Hình ảnh + Video + Âm thanh + Hành động
          ↓
     Generator (Diffusion Transformer)
          ↓
 Đầu ra: Hình ảnh + Video + Âm thanh + Hành động
-```
+`````
 
 **Các trường hợp sử dụng**: - Tạo hình ảnh từ văn bản
 - Tạo video từ hình ảnh
@@ -107,7 +108,7 @@ Tạo ra các đầu ra không phải văn bản được điều kiện hóa b�
 
 ## Bắt đầu nhanh: Cài đặt
 
-Cosmos chạy trên Linux với NVIDIA GPU (Ampere, Hopper hoặc Blackwell). Cài đặt sử dụng `uv` (trình quản lý gói Python tốc độ cao): ### Yêu cầu hệ thống
+Cosmos chạy trên Linux với NVIDIA GPU (Ampere, Hopper hoặc Blackwell). Cài đặt sử dụng ````uv```` (trình quản lý gói Python tốc độ cao): ### Yêu cầu hệ thống
 
 - **Hệ điều hành**: Linux
 - **GPU**: NVIDIA GPU (Ampere/A100/H100/Blackwell RTX 6000+)
@@ -117,7 +118,7 @@ Cosmos chạy trên Linux với NVIDIA GPU (Ampere, Hopper hoặc Blackwell). C�
 
 ### Cài đặt với uv
 
-```bash
+`````bash
 # Cài đặt các phụ thuộc hệ thống
 sudo apt-get install -y --no-install-recommends curl ffmpeg git-lfs \
   libx11-dev tree wget
@@ -131,11 +132,11 @@ uv sync --all-extras --group=cu128-train
 source .venv/bin/activate
 
 # Hoặc CUDA 13.0 (khuyến nghị): # uv sync --all-extras --group=cu130-train
-```
+`````
 
 ### Suy luận nhanh
 
-```python
+`````python
 # Suy luận single-GPU với backend Diffusers
 python -m cosmos_framework.scripts.inference \
     --parallelism-preset=latency \
@@ -143,21 +144,21 @@ python -m cosmos_framework.scripts.inference \
     -o outputs/omni_nano \
     --checkpoint-path Cosmos3-Nano \
     --seed=0
-```
+`````
 
 ### Mô hình HuggingFace
 
-```bash
+`````bash
 # Tải một mô hình từ HuggingFace
 huggingface-cli download nvidia/Cosmos3-Nano \
     --local-dir ~/cosmos/models/nano
-```
+`````
 
 ## Chế độ Generator: Tạo thế giới
 
 Generator tạo ra các đầu ra hình ảnh, video, âm thanh và hành động được điều kiện hóa bởi đầu vào đa phương thức: ### Text-to-Image
 
-```python
+`````python
 from cosmos_framework.scripts.inference import run_inference
 
 # Tạo hình ảnh từ văn bản
@@ -170,11 +171,11 @@ result = run_inference(
     seed=42
 )
 # Đầu ra: Hình ảnh chất lượng cao của robot đang lắp ráp mạch điện
-```
+`````
 
 ### Image-to-Video
 
-```python
+`````python
 # Tạo video nhất quán về thời gian từ một hình ảnh duy nhất
 result = run_inference(
     checkpoint="Cosmos3-Super-Image2Video",
@@ -186,11 +187,11 @@ result = run_inference(
     resolution="720p"
 )
 # Đầu ra: Video của cảnh phòng thí nghiệm robot đang chuyển động
-```
+`````
 
 ### Text-to-Video
 
-```python
+`````python
 # Tạo video trực tiếp từ prompt văn bản
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -202,7 +203,7 @@ result = run_inference(
     resolution="720p"
 )
 # Đầu ra: Video có âm thanh đồng bộ (AAC stereo 48kHz)
-```
+`````
 
 ### Các cài đặt tạo được hỗ trợ
 
@@ -216,7 +217,7 @@ result = run_inference(
 
 ## Chế độ Reasoner: Hiểu thế giới
 
-Reasoner cung cấp đầu ra văn bản để hiểu và lập kế hoạch: ```python
+Reasoner cung cấp đầu ra văn bản để hiểu và lập kế hoạch: `````python
 # Hiểu thế giới từ video
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -246,24 +247,24 @@ result = run_inference(
     task="check_physical_plausibility"
 )
 # Đầu ra: "Quỹ đạo quả bóng vi phạm định luật trọng lực..."
-```
+`````
 
 ## Các trường hợp sử dụng
 
 ### Huấn luyện robot với dữ liệu tổng hợp
 
-Cosmos tạo ra dữ liệu huấn luyện tổng hợp cho robot, giảm nhu cầu thu thập dữ liệu thực tế đắt tiền: ```bash
+Cosmos tạo ra dữ liệu huấn luyện tổng hợp cho robot, giảm nhu cầu thu thập dữ liệu thực tế đắt tiền: `````bash
 # Tạo 1000 clip video tổng hợp của robot trong kho
 # để huấn luyện chính sách thao tác
 cosmos_framework.scripts.training.train \
     --recipe examples/launch_sft_vision_nano.sh \
     --num-samples 1000 \
     --output-dir /data/warehouse_synthetic
-```
+`````
 
 ### Mô phỏng xe tự hành
 
-```python
+`````python
 # Mô phỏng các kịch bản lái xe tự hành
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -274,11 +275,11 @@ result = run_inference(
     task="predict_vehicle_dynamics"
 )
 # Đầu ra: Video xe dừng + vector hành động (lái, ga, phanh)
-```
+`````
 
 ### Giám sát cơ sở hạ tầng thông minh
 
-```python
+`````python
 # Phân tích footage camera bảo mật để phát hiện bất thường
 result = run_inference(
     checkpoint="Cosmos3-Super",
@@ -288,11 +289,11 @@ result = run_inference(
     task="detect_anomalies"
 )
 # Đầu ra: "Lúc 14:32:15, xe không nhãn đã xâm nhập khu vực hạn chế..."
-```
+`````
 
 ## Huấn luyện: Fine-tuning các mô hình Cosmos
 
-Framework Cosmos bao gồm các script huấn luyện cho supervised fine-tuning (SFT) trên dữ liệu tùy chỉnh: ```bash
+Framework Cosmos bao gồm các script huấn luyện cho supervised fine-tuning (SFT) trên dữ liệu tùy chỉnh: `````bash
 # Huấn luyện SFT multi-GPU trên 8× H100 80GB
 bash examples/launch_sft_vision_nano.sh
 
@@ -302,9 +303,9 @@ bash examples/launch_sft_vision_nano.sh
 # - Các adapter tập dữ liệu JSONL / WebDataset / LeRobot
 # - Huấn luyện mixed precision
 # - Hỗ trợ tiếp tục checkpoint
-```
+`````
 
-```python
+`````python
 # Ví dụ cấu hình huấn luyện
 training_config = {
     "model": "Cosmos3-Nano",
@@ -318,7 +319,7 @@ training_config = {
     },
     "checkpoint_dir": "/checkpoints/sft_nano"
 }
-```
+````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -407,14 +408,14 @@ Sự kết hợp của Chế độ Reasoner (hiểu biết) và Chế độ Gene
 
 Nếu bạn đang xây dựng các hệ thống Physical AI, Cosmos nên nằm ở đầu danh sách nghiên cứu của bạn.
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Báo cáo kỹ thuật: https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
 - Mô hình Cosmos 3: https://huggingface.co/collections/nvidia/cosmos3
 - Cosmos Framework: https://github.com/NVIDIA/cosmos-framework
 - Website: https://www.nvidia.com/en-us/ai/cosmos/
 
----
+* * *
 
 **Trải nghiệm NVIDIA Cosmos**: Truy cập [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) cho trải nghiệm có hướng dẫn, hoặc clone [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) cho full framework.
 
@@ -450,7 +451,7 @@ Internal links: [Runway Gen-3 Review 2026](https://dibi8.com/runway-gen3-review-
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -460,6 +461,6 @@ Internal links: [Runway Gen-3 Review 2026](https://dibi8.com/runway-gen3-review-
 - [2026-06-08-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
 - [2026-06-15-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

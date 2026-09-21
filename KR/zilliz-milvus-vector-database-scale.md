@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/zilliz-milvus-vector-database-scale/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 10억 벡터 문제
@@ -49,27 +50,27 @@ Milvus 2.5는 **클우드 네이티브 마이크로서비스 아키텍처**를 �
 
 스토리지는 분리되어 있다: **etcd**가 메타데이터를, **MinIO/S3**가 실제 벡터 데이터와 인덱스를 저장한다. 이러한 분리는 **계층화 스토리지**를 가능하게 한다 — 핫 벡터는 로컬 NVMe에, 웜 벡터는 객체 스토리지로, 콜드 벡터는 아카이브될 수 있다.
 
-```bash
+````bash
 # etcd: 메타데이터 조정
 # MinIO: 세그먼트와 인덱스용 객체 스토리지
 # Pulsar/Kafka: 스트리밍 삽입용 로그 브로커
 # Milvus: proxy, query/data/index 노드, coordinators
-```
+`````
 
 **GPU 인덱싱 (2.5 신규):** Milvus 2.5는 NVIDIA RAFT를 통해 GPU 가속 인덱스 빌딩을 도입했다. 단일 Tesla T4에서 인덱스 구축은 CPU 전용 대비 **약 6배 빠르다**. 쿼리 처리량은 두 배로 증가한다. GPU 지원 Kubernetes 클러스터를 운영하는 팀에게 ([DigitalOcean GPU Droplet](https://m.do.co/c/eca87ac14ee0) 등) 이것은 혁신적이다.
 
-```yaml
+`````yaml
 # Milvus index node용 GPU 리소스 할당 (Helm values)
 indexNode: resources: limits: nvidia.com/gpu: 1  # 인덱스 빌딩을 위해 1개 GPU 요청
     requests: memory: "16Gi"
       cpu: "8"
-```
+`````
 
 ## 설치 및 설정: Docker부터 Kubernetes까지
 
 ### 옵션 A: Docker 단독 실행 (<5분)
 
-```bash
+`````bash
 # docker-compose 파일 다운로드
 curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
 
@@ -79,9 +80,9 @@ bash standalone_embed.sh start
 # 확인
 docker ps | grep milvus
 # 출력: milvusdb/milvus:v2.5.10  "milvus run standalone"
-```
+`````
 
-```bash
+`````bash
 # Python SDK 설치
 pip install pymilvus==2.5.10
 
@@ -91,11 +92,11 @@ from pymilvus import connections, utility
 connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
-```
+`````
 
 ### 옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)
 
-```bash
+`````bash
 # Milvus Helm 저장소 추가
 helm repo add milvus https://zilliztech.github.io/milvus-helm/
 helm repo update
@@ -110,28 +111,28 @@ helm install my-milvus milvus/milvus \
 
 # 모든 Pod 실행 확인
 kubectl get pods -l app.kubernetes.io/instance=my-milvus
-```
+`````
 
-```bash
+`````bash
 # LoadBalancer를 통해 외부 노출
 kubectl patch svc my-milvus-proxy -p '{"spec":{"type":"LoadBalancer"}}'
 
 # 엔드포인트 확인
 export MILVUS_HOST=$(kubectl get svc my-milvus-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo $MILVUS_HOST
-```
+`````
 
 ### 옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)
 
-```bash
+`````bash
 # https://cloud.zilliz.com 에서 가입
 # 묣체 클러스터 생성 (최대 100만 벡터)
 # API 키와 엔드포인트 복사
 
 pip install pymilvus==2.5.10
-```
+`````
 
-```python
+`````python
 from pymilvus import connections, Collection
 
 # Zilliz Cloud에 연결
@@ -142,13 +143,13 @@ connections.connect(
 )
 
 print("Connected to Zilliz Cloud!")
-```
+`````
 
 ## 핵심 작업: 컬렉션 생성, 삽입, 검색
 
 ### HNSW 인덱스로 컬렉션 생성
 
-```python
+`````python
 from pymilvus import FieldSchema, CollectionSchema, DataType, Collection
 
 # 필드 정의
@@ -170,11 +171,11 @@ index_params = {
 }
 collection.create_index(field_name="embedding", index_params=index_params)
 collection.load()
-```
+`````
 
 ### 벡터 삽입 (단일 및 배치)
 
-```python
+`````python
 import numpy as np
 
 # 샘플 데이터 생성: 10만 벡터, 각 1536 차원
@@ -191,11 +192,11 @@ for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch
 # 지속성 보장을 위해 플러시
 collection.flush()
 print(f"총 삽입 수: {collection.num_entities}")
-```
+`````
 
 ### 메타데이터 필터가 적용된 벡터 검색
 
-```python
+`````python
 # 단일 벡터 검색
 results = collection.search(
     data=[np.random.randn(1536).tolist()],
@@ -206,9 +207,9 @@ results = collection.search(
 )
 
 for hit in results[0]: print(f"ID: {hit.id}, 거리: {hit.distance:.4f}, 텍스트: {hit.entity.text}")
-```
+`````
 
-```python
+`````python
 # 하이브리드 검색: 벡터 유사도 + 메타데이터 필터
 from pymilvus import Filter
 
@@ -224,11 +225,11 @@ results = collection.search(
 )
 
 print(f"{len(results[0])}개 필터링된 결과 발견")
-```
+`````
 
 ## 벤치마크: 실제 데이터
 
-2026년 4월 독립 벤치마크, `dbpedia-openai-1M` 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+2026년 4월 독립 벤치마크, ````dbpedia-openai-1M```` 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |--------|-------------|-----------------|----------|----------|--------|
 | **p99 쿼리 지연시간** | 18 ms | **8 ms** | 28 ms | 19 ms | 12 ms |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
@@ -247,7 +248,7 @@ print(f"{len(results[0])}개 필터링된 결과 발견")
 
 ### 대규모 삽입 벤치마크
 
-```python
+`````python
 # 삽입 처리량 벤치마크 스크립트
 import time
 from pymilvus import Collection
@@ -265,17 +266,17 @@ print(f"{batch:,} 벡터 삽입 완료, {elapsed:.2f}초 소요")
 print(f"처리량: {batch/elapsed:,.0f} 벡터/초")
 # GPU index node 출력: 100,000 벡터 삽입 완료, 0.31초 소요
 # 출력: 처리량: 320,000 벡터/초
-```
+`````
 
 ## 인기 AI 프레임워크와의 통합
 
 ### LangChain 통합
 
-```python
+`````python
 pip install langchain-milvus==0.1.8
-```
+`````
 
-```python
+`````python
 from langchain_milvus import Milvus
 from langchain_openai import OpenAIEmbeddings
 
@@ -295,15 +296,15 @@ vector_store.add_documents(docs)
 # 유사도 검색
 results = vector_store.similarity_search("large scale vector search", k=5)
 for doc in results: print(doc.page_content)
-```
+`````
 
 ### LlamaIndex 통합
 
-```python
+`````python
 pip install llama-index-vector-stores-milvus==0.6.0
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -322,11 +323,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What is Milvus architecture?")
 print(response)
-```
+`````
 
 ### OpenAI Embeddings 통합
 
-```python
+`````python
 from openai import OpenAI
 import numpy as np
 
@@ -342,13 +343,13 @@ def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
 # OpenAI 임베딩을 Milvus에 삽입
 embedding = get_embedding("Milvus vector database handles 10 billion vectors")
 collection.insert([[embedding], ["milvus_overview"]])
-```
+`````
 
 ## 고급 사용법 및 프로덕션 강화
 
 ### 계층화 스토리지 구성
 
-Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: ```yaml
+Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: `````yaml
 # 계층화 스토리지용 Helm values
 extraConfigFiles: user.yaml: |+
     common: storageType: remote
@@ -360,11 +361,11 @@ extraConfigFiles: user.yaml: |+
         memoryLimit: 8GB  # 메모리의 핫 데이터
       disk: enabled: true     # 로컬 디스크의 웜 데이터
         capacity: 100GB
-```
+`````
 
 ### 백업 및 재해 복구
 
-```bash
+`````bash
 # Milvus Backup 도구 설치
 git clone https://github.com/zilliztech/milvus-backup.git
 cd milvus-backup
@@ -375,30 +376,30 @@ make
 
 # 새 클러스터로 복원
 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection
-```
+`````
 
 ### Prometheus 및 Grafana 모니터링
 
-```yaml
+`````yaml
 # Helm values의 Milvus 모니터링 구성
 metrics: enabled: true
   serviceMonitor: enabled: true
     interval: 30s
 
 # Grafana 대시보드: https://github.com/zilliztech/milvus-insight
-```
+`````
 
-```bash
+`````bash
 # Milvus 메트릭 접근을 위한 포트 포워딩
 kubectl port-forward svc/my-milvus-proxy 9091:9091
 
 # 상태 확인
 curl http://localhost:9091/metrics | grep milvus_querynode_latency
-```
+`````
 
 ### 파티션을 이용한 다중 테넌트
 
-```python
+`````python
 # 다중 테넌트 격리를 위한 파티션 생성
 collection.create_partition("tenant_acme")
 collection.create_partition("tenant_globalcorp")
@@ -417,7 +418,7 @@ results = collection.search(
     limit=10,
     partition_names=["tenant_acme"]
 )
-```
+`````
 
 ## 대안과의 비교
 
@@ -483,9 +484,9 @@ Milvus 2.5는 NVIDIA RAFT와 통합하여 GPU 가속 HNSW 및 IVF 인덱스 구�
 
 ### Milvus는 어떤 백업 전략을 지원하나요?
 
-Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: ```bash
+Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: `````bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
-```
+````
 
 Pulsar를 메시지 브로커로 사용할 때 포인트인타임 복구를 사용할 수 있으며, Pulsar는 작업 로그를 보존한다.
 
@@ -551,13 +552,13 @@ Milvus 배포 경험을 공유하고 동료 엔지니어로부터 도움을 받�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

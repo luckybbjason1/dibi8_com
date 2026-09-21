@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/mem0/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -44,7 +45,7 @@ Mem0의 아키텍처는 메모리를 네 가지 운영 계층으로 분리합니
 
 **4. 그래프 계층(Pro 티어)**: 평면 벡터 저장을 넘어 Mem0 Pro는 엔터티 관계를 이해하는 지식 그래프를 구축합니다 — 멀티 홉 추론을 활성화합니다( "James가 누구와 일합니까?"는 "James가 TechCorp에서 일함" + "Sarah가 TechCorp에서 일함"을 연결해야 합니다).
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │                    사용자 메시지                       │
 └──────────────────────┬───────────────────────────────┘
@@ -68,21 +69,21 @@ Mem0의 아키텍처는 메모리를 네 가지 운영 계층으로 분리합니
           ┌────────────▼────────────┐
           │   프롬프트에 주입         │  ← 컨텍스트 강화
           └─────────────────────────┘
-```
+`````
 
 ## 설치 및 설정
 
 ### 클라우드 설정 (가장 빠른 경로)
 
-```bash
+`````bash
 # Python 클라이언트 설치
 pip install mem0ai
 
 # API 키 설정 (https://app.mem0.ai에서 가져오기)
 export MEM0_API_KEY="m0-your-key-here"
-```
+`````
 
-```python
+`````python
 # mem0_quickstart.py
 import os
 from mem0 import MemoryClient
@@ -102,11 +103,11 @@ results = client.search(
     user_id="user123"
 )
 print(results)
-```
+`````
 
 ### 셀프 호스팅 설정 (Docker)
 
-데이터 레지던시 또는 에어갭 배포가 필요한 팀을 위한 설정: ```bash
+데이터 레지던시 또는 에어갭 배포가 필요한 팀을 위한 설정: `````bash
 # 리포지토리 클론
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -114,9 +115,9 @@ cd mem0
 # Docker로 부트스트랩
 make bootstrap
 # 관리자 생성, API 키 생성, 서버 + 대시보드 시작
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml 프로덕션용
 docker run -d \
   -p 8000:8000 \
@@ -126,15 +127,15 @@ docker run -d \
   -e LLM_PROVIDER=openai \
   -e OPENAI_API_KEY=$OPENAI_API_KEY \
   mem0/mem0-server:latest
-```
+`````
 
 ### 오픈소스 SDK (로컬)
 
-```bash
+`````bash
 pip install mem0ai openai chromadb
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # 사용자 정의 벡터 스토어로 초기화
@@ -150,13 +151,13 @@ m.add(messages, user_id="alice", metadata={"category": "movies"})
 
 # 메타데이터 필터링으로 검색
 results = m.search("movie recommendations", filters={"user_id": "alice"})
-```
+`````
 
 ## 메모리 구성 및 성능 튜닝
 
 ### YAML을 사용한 사용자 정의 구성
 
-`mem0config.yaml` 파일은 메모리 파이프라인의 모든 구성 요소를 제어합니다: ```yaml
+``mem0config.yaml`` 파일은 메모리 파이프라인의 모든 구성 요소를 제어합니다: `````yaml
 # mem0config.yaml — 프로덕션 튜닝 구성
 llm: provider: openai
   config: model: "gpt-4o-mini"
@@ -180,15 +181,15 @@ custom_instructions: |
   사용자 선호도, 개인 사실, 컨텍스트를 추출합니다.
   식이 제한, 알레르기, 기술적 선호도에 중점을 둡니다.
   임시 상태와 일회성 요청은 무시합니다.
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # 사용자 정의 구성 로드
 config_path = "mem0config.yaml"
 m = Memory.from_config(config_path)
-```
+`````
 
 ### 벡터 스토어 백엔드 비교
 
@@ -202,7 +203,7 @@ m = Memory.from_config(config_path)
 
 ### 성능 튜닝 체크리스트
 
-```python
+`````python
 # 1. 고처리량 앱을 위한 비동기 메모리 활성화
 from mem0 import MemoryClient
 import asyncio
@@ -230,11 +231,11 @@ results = client.search(
     top_k=5,  # 속도를 위해 줄이고, 범위를 위해 늘리기
     rerank=True
 )
-```
+`````
 
 ### 사용자 정의 지침이 있는 메모리
 
-```python
+`````python
 # 어떤 사실을 추출하고 저장할지 안내
 m = Memory.from_config({
     "custom_instructions": """
@@ -248,17 +249,17 @@ m = Memory.from_config({
     - 동의 없는 타인 정보
     """
 })
-```
+`````
 
 ## LangChain, CrewAI 및 OpenAI와의 통합
 
 ### LangChain 통합
 
-```bash
+`````bash
 pip install langchain langchain-openai mem0ai
-```
+`````
 
-```python
+`````python
 # langchain_mem0_agent.py
 import os
 from typing import List, Dict
@@ -314,15 +315,15 @@ print(response1)
 # 이후 세션 — 에이전트가 기억함
 response2 = chat(user_id, "What should I pack for my trip?")
 # 출력은 도쿄, 계절, 여행자의 선호도를 참조합니다
-```
+`````
 
 ### CrewAI 통합
 
-```bash
+`````bash
 pip install crewai mem0ai
-```
+`````
 
-```python
+`````python
 # crewai_mem0_crew.py
 import os
 from crewai import Agent, Task, Crew
@@ -364,15 +365,15 @@ task = Task(
 crew = Crew(agents=[researcher], tasks=[task])
 result = crew.kickoff(inputs={"user_id": "user123"})
 print(result)
-```
+`````
 
 ### OpenAI Agents SDK 통합
 
-```bash
+`````bash
 pip install openai-agents mem0ai
-```
+`````
 
-```python
+`````python
 # openai_agents_mem0.py
 import os
 from dataclasses import dataclass
@@ -411,11 +412,11 @@ async def run_agent(): context = UserContext(user_id="user_42")
     print(result.final_output)
 
 # asyncio.run(run_agent())
-```
+`````
 
 ### Docker Compose 프로덕션 스택
 
-```yaml
+`````yaml
 # mem0-production-stack.yml
 version: "3.8"
 
@@ -441,7 +442,7 @@ services: qdrant: image: qdrant/qdrant:latest
     environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes: qdrant_storage: ```
+volumes: qdrant_storage: `````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -487,7 +488,7 @@ Mem0의 새로운 토큰 효율 알고리즘(2026년 4월 릴리스)은 더 낮�
 
 ### 보안 구성
 
-```python
+`````python
 # 메타데이터를 사용한 메모리 액세스 제어
 def store_sensitive_memory(user_id: str, fact: str, classification: str): """보안 분류가 있는 메모리를 저장합니다."""
     messages = [{"role": "user", "content": fact}]
@@ -509,11 +510,11 @@ results = client.search(
         "metadata.classification": ["public", "internal"]
     }
 )
-```
+`````
 
 ### 멀티 테넌트 격리
 
-```python
+`````python
 # SaaS 애플리케이션을 위한 조직 범위 메모리
 def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """조직과 사용자 모두에 범위가 지정된 메모리를 저장합니다."""
     client.add(
@@ -527,11 +528,11 @@ results = client.get_all(
     filters={"metadata.org_id": "org_123"},
     limit=100
 )
-```
+`````
 
 ### 메모리 모니터링 및 관찰 가능성
 
-```python
+`````python
 # 메모리 메트릭 추적
 import time
 
@@ -556,11 +557,11 @@ def memory_health_check(user_id: str): """사용자에 대한 메모리 무결�
         "categories": len(set(m.get("metadata", {}).get("category", "") for m in all_memories)),
         "avg_score": sum(m.get("score", 0) for m in all_memories) / len(all_memories) if all_memories else 0
     }
-```
+`````
 
 ### 속도 제한 및 비용 제어
 
-```python
+`````python
 # 클라이언트 측 속도 제한 구현
 from functools import wraps
 import time
@@ -582,7 +583,7 @@ def rate_limited_add(messages, user_id): if not limiter.can_call(): # 나중을 
         return {"status": "queued"}
     limiter.record_call()
     return client.add(messages, user_id=user_id)
-```
+`````
 
 ## 대안과의 비교
 
@@ -642,7 +643,7 @@ A: Qdrant는 하이브리드 검색 기능(밀집+희소 벡터), 수평 확장 
 
 **Q: LangChain Memory에서 Mem0으로 마이그레이션하려면 어떻게 합니까?**
 
-A: 마이그레이션은 점진적입니다. 기존 LangChain 메모리와 함께 Mem0을 초기화합니다. 두 시스템에 새 대화를 저장합니다. Mem0의 `search()` API를 사용하여 메모리를 검색하고 `memories` 변수를 통해 LangChain 프롬프트에 주입합니다. 신뢰도가 높아지면 메모리 소스를 Mem0으로 전환합니다. Mem0 문서에서 마이그레이션 가이드를 제공합니다.
+A: 마이그레이션은 점진적입니다. 기존 LangChain 메모리와 함께 Mem0을 초기화합니다. 두 시스템에 새 대화를 저장합니다. Mem0의 ````search()```` API를 사용하여 메모리를 검색하고 ````memories```` 변수를 통해 LangChain 프롬프트에 주입합니다. 신뢰도가 높아지면 메모리 소스를 Mem0으로 전환합니다. Mem0 문서에서 마이그레이션 가이드를 제공합니다.
 
 **Q: 대규모에서 Mem0의 가격은 얼마입니까?**
 
@@ -658,7 +659,7 @@ Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 �
 
 **액션 아이템:**
 
-1. mem0ai/mem0 리포지토리를 클론하고 `pip install mem0ai`로 퀵스타트 실행
+1. mem0ai/mem0 리포지토리를 클론하고 ````pip install mem0ai```로 퀵스타트 실행
 2. app.mem0.ai에서 물뇌 API 키 등록
 3. LangChain 또는 CrewAI 에이전트 프롬프트에 Mem0 검색 통합
 4. 자체 대화 데이터셋에서 현재 메모리 솔루션을 Mem0 검색과 벤치마크 비교
@@ -718,7 +719,7 @@ Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -728,7 +729,7 @@ Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 �
 - [docker-genai-stack-local-development](mem0)
 - [langchain-complete-guide](mem0)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

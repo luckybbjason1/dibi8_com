@@ -18,6 +18,7 @@ faqs: - q: 'Gemini CLI có thực sự miễn phí không?'
     a: 'Gemini CLI thắng đa phương thức trong terminal — nhận hình ảnh, PDF, khung video gốc thông qua flag (ví dụ `--image screenshot.png`). Claude Code hỗ trợ ảnh qua hội thoại nhưng thiên về text trước. Với luồng kiểu "nhìn screenshot UI này và viết component React", Gemini CLI nhanh hơn ngay khi mở hộp."
 ---
 
+
 # Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?
 
 
@@ -29,7 +30,7 @@ Dùng **Gemini CLI** nếu: Muốn AI coding chi phí zero (1.000 request/ngày 
 
 Dùng **Claude Code** nếu: Muốn trải nghiệm agent tinh chỉnh nhất, cần chất lượng refactor đa file cao cấp, ship code production nơi mọi edit đều quan trọng, sẵn sàng trả $20-$200/tháng cho output đẳng cấp Anthropic.
 
----
+* * *
 
 ## So sánh trực tiếp
 
@@ -52,9 +53,9 @@ Dùng **Claude Code** nếu: Muốn trải nghiệm agent tinh chỉnh nhất, c
 | **Sandbox / an toàn** | Prompt xác nhận | Phân quyền cấu hình được |
 | **Mã nguồn mở** | Có (chỉ CLI) | Không |
 | **Kích cỡ codebase tối ưu** | < 500K LOC (1M context) | < 500K LOC (1M context) |
-| **Cài đặt** | `npm i -g @google/gemini-cli` | `npm i -g @anthropic-ai/claude-code` |
+| **Cài đặt** | ```npm i -g @google/gemini-cli```` | ````npm i -g @anthropic-ai/claude-code```` |
 
----
+* * *
 
 ## Khi nào chọn Gemini CLI
 
@@ -67,7 +68,7 @@ Cần "nhìn screenshot thiết kế này và viết component tương ứng"? G
 ### Tình huống 3: Long context giá rẻ
 Gemini CLI cho bạn 1M token context **ở gói miễn phí**. Muốn dump 200 file vào một prompt cho phân tích xuyên file? Miễn phí với Gemini CLI; cần subscribe Claude Code Max (~$200/tháng) để có dung lượng tương tự.
 
----
+* * *
 
 ## Khi nào chọn Claude Code
 
@@ -80,7 +81,7 @@ Checkpoint-resume của Claude Code thực sự hữu ích — bạn có thể p
 ### Tình huống 3: Hệ sinh thái MCP hạng nhất
 Claude Code ra mắt với hỗ trợ MCP (Model Context Protocol) native và có hệ sinh thái MCP server lớn nhất trong 2026 — databases, trình duyệt, monitor, CRM. Gemini CLI đã thêm MCP nhưng hệ sinh thái mỏng hơn. Nếu luồng làm việc cắm vào 5+ MCP server, Claude Code là con đường mượt hơn.
 
----
+* * *
 
 ## Phân tích giá chi tiết
 
@@ -106,7 +107,7 @@ Sinh viên/hobbyist: **Gemini CLI miễn phí > Claude Pro $20**. Riêng gói mi
 Freelancer ship việc cho client: combo **Claude Pro $20 + Gemini CLI miễn phí** — Gemini cho khám phá, Claude cho thực thi.
 Full-time builder: **Claude Max 5x $100 + Gemini CLI miễn phí** — Claude làm chính, Gemini cho đa phương thức và tràn lưu lượng.
 
----
+* * *
 
 ## Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)
 
@@ -125,30 +126,30 @@ Full-time builder: **Claude Max 5x $100 + Gemini CLI miễn phí** — Claude l�
 
 → Gemini CLI thắng ở gói miễn phí, đa phương thức, hấp thụ PDF/docs. Claude Code thắng ở chất lượng vòng agent, refactor đa file, kỷ luật edit cấp production.
 
----
+* * *
 
 ## Mẹo chuyển đổi
 
 ### Claude Code → Gemini CLI
-- Cài bằng `npm install -g @google/gemini-cli`
-- Chạy `gemini` một lần để xác thực qua tài khoản Google (không cần API key cho gói miễn phí)
-- Map lệnh: `/clear` → `/clear`, `/compact` → `/compress`, `/cost` → `/stats`
-- Sandbox mặc định của Gemini CLI dễ dãi hơn — đặt `--sandbox-mode strict` nếu muốn prompt xác nhận kiểu Claude Code
+- Cài bằng ````npm install -g @google/gemini-cli````
+- Chạy ````gemini```` một lần để xác thực qua tài khoản Google (không cần API key cho gói miễn phí)
+- Map lệnh: ````/clear```` → ````/clear````, ````/compact```` → ````/compress````, ````/cost```` → ````/stats````
+- Sandbox mặc định của Gemini CLI dễ dãi hơn — đặt ````--sandbox-mode strict```` nếu muốn prompt xác nhận kiểu Claude Code
 - Dùng gói miễn phí trước — chỉ chuyển sang billing Vertex AI khi chạm trần 1.000 req/ngày
 - Mong đợi edit đa file yếu hơn chút; bù bằng prompt rõ ràng hơn ("chỉ chạm 3 file này")
 
 ### Gemini CLI → Claude Code
-- Cài bằng `npm install -g @anthropic-ai/claude-code`
-- Chạy `claude` và xác thực qua subscription Claude Pro/Max hoặc API key
+- Cài bằng ````npm install -g @anthropic-ai/claude-code````
+- Chạy ````claude```` và xác thực qua subscription Claude Pro/Max hoặc API key
 - Vòng agent của Claude Code tự chủ hơn — mong đợi ít prompt xác nhận hơn, edit trực tiếp nhiều hơn
-- Dùng `/permissions` để siết sandbox nếu muốn kiểu Gemini CLI "hỏi trước mỗi hành động"
+- Dùng ````/permissions``` để siết sandbox nếu muốn kiểu Gemini CLI "hỏi trước mỗi hành động"
 - Tận dụng MCP server — hệ sinh thái MCP của Claude Code phong phú hơn nhiều
 - Ngân sách thực tế: user Claude Code nặng thường rơi vào $100/tháng (Max 5x) khi cảm giác lạ với gói miễn phí trôi đi
 
 ### Mẹo Self-Hosting
 Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.
 
----
+* * *
 
 ## Lựa chọn thay thế đáng thử
 
@@ -157,7 +158,7 @@ Nếu cả Gemini CLI và Claude Code đều không hợp: - **[Cursor](https://
 - **[Continue.dev](https://dibi8.com/resources/llm-frameworks/continue/)** — Extension VS Code miễn phí, BYO model
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Định tuyến Claude Code qua nhà cung cấp rẻ hơn, cắt giảm 60-80% chi phí
 
----
+* * *
 
 ## Góc nhìn dibi8
 
@@ -169,13 +170,13 @@ Muốn cả hai → combo **Gemini CLI miễn phí + Claude Pro $20**. Gemini ch
 
 Với indie dev đang ship SaaS một mình trên **ngân sách cuối cùng**? **Gemini CLI gói miễn phí** là lựa chọn ROI dương nhất trong AI coding hiện nay — đúng nghĩa không có cách nào rẻ hơn để ship code với trợ giúp AI. Lý do duy nhất để nâng cấp lên Claude Code là khi bạn bắt đầu mất giờ vì chất lượng refactor đa file yếu hơn của Gemini. Đến lúc đó, miễn phí vẫn là miễn phí.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -219,7 +220,7 @@ Với indie dev đang ship SaaS một mình trên **ngân sách cuối cùng**? 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -229,7 +230,7 @@ Với indie dev đang ship SaaS một mình trên **ngân sách cuối cùng**? 
 - [claude-code-vs-aider](gemini-cli-vs-claude-code)
 - [cursor-vs-claude-code](gemini-cli-vs-claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

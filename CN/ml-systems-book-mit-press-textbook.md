@@ -32,6 +32,7 @@ faqs: - q: 'What topics does the ML Systems Book cover?'
   - q: 'Who is the ML Systems Book intended for?'
     a: 'It targets ML engineers who need to scale training and serve low-latency models in production, software engineers transitioning into ML, researchers wanting to speed up experiments, and engineering managers planning ML infrastructure investments and team structure.'
 ---
+
 # ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering
 
 
@@ -148,13 +149,13 @@ The book includes detailed case studies from: - **Google Search** — Serving bi
 
 | Resource | Focus | Depth | Practicality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **ML Systems Book** | End-to-end systems | Deep | Very high |
 | **Designing ML Systems** (Huyen) | Design patterns | Medium | High |
@@ -211,7 +212,7 @@ If you are serious about shipping ML models in production, this book belongs on 
 - [Hermes Agent: Self-Improving AI Agent](/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -288,7 +289,7 @@ ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering repr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

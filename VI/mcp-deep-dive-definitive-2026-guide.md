@@ -22,9 +22,10 @@ aliases:
   - /vi/posts/mcp-deep-dive-definitive-2026-guide/
 ---
 
+
 {</* resource-info */>}
 
----
+* * *
 
 ## Mở đầu: Tại sao MCP là khoản đầu tư công nghệ đáng giá nhất năm 2026
 
@@ -36,7 +37,7 @@ Quan trọng hơn, tháng 12/2025, Linux Foundation tiếp quản MCP và thành
 
 Bài viết này không phải giới thiệu khái niệm. Tôi sẽ dẫn bạn từ dòng code đầu tiên, xây dựng một **MCP server thực sự sẵn sàng production**, sau đó kết nối với Claude Desktop, Cursor và VS Code Copilot Agent Mode. Khi đọc xong, bạn sẽ sở hữu một **công cụ giám sát server hoạt động thực**, có thể truy vấn trạng thái website và thời hạn chứng chỉ SSL ngay trong cửa sổ chat AI.
 
----
+* * *
 
 ## Mục lục
 
@@ -50,7 +51,7 @@ Bài viết này không phải giới thiệu khái niệm. Tôi sẽ dẫn bạ
 8. [Cẩm nang hệ sinh thái: 15 MCP server đáng thử ngay](#8-cẩm-nang-hệ-sinh-thái-15-mcp-server-đáng-thử-ngay)
 9. [Câu hỏi thường gặp FAQ](#9-câu-hỏi-thường-gặp-faq)
 
----
+* * *
 
 ## 1. Bản chất của MCP: Cổng USB-C trong thế giới AI
 
@@ -79,7 +80,7 @@ MCP đã rút gọn độ phức tạp này xuống còn **M+N**: - Nhà phát t
 - **GitHub Copilot Agent Mode**: VS Code v1.99+ tích hợp sẵn MCP
 - **Sourcegraph Cody**: Triển khai MCP cấp doanh nghiệp
 
----
+* * *
 
 ## 2. Phân tích kiến trúc: Client và Server cộng tác như thế nào
 
@@ -87,12 +88,12 @@ MCP áp dụng kiến trúc **Client-Server** cổ điển, giao tiếp qua **JS
 
 ### Các thành phần chính
 
-```
+````
 ┌─────────────┐      JSON-RPC 2.0       ┌─────────────┐
 │  MCP Host   │  ◄──────────────────►  │  MCP Server │
 │  (AI Agent) │    stdio / HTTP+SSE      │  (Tool Box) │
 └─────────────┘                          └─────────────┘
-```
+`````
 
 **Host**: Chương trình chính chạy mô hình AI (ví dụ: Claude Desktop).  
 **Client**: Module bên trong Host đảm nhiệm giao tiếp với Server.  
@@ -114,7 +115,7 @@ MCP áp dụng kiến trúc **Client-Server** cổ điển, giao tiếp qua **JS
 
 **Khuyến nghị**: Prototype local bằng stdio. Production chuyển sang HTTP/SSE.
 
----
+* * *
 
 ## 3. Chuẩn bị môi trường: 5 phút xong việc
 
@@ -122,38 +123,38 @@ SDK chính thức của MCP hỗ trợ **Python** và **TypeScript/JavaScript**,
 
 ### Cài đặt uv (trình quản lý package khuyên dùng)
 
-```bash
+`````bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+`````
 
 ### Tạo dự án
 
-```bash
+`````bash
 mkdir mcp-site-monitor && cd mcp-site-monitor
 uv init
 uv add "mcp[cli]" httpx
-```
+`````
 
 ### Cấu trúc dự án
 
-```
+`````
 mcp-site-monitor/
 ├── .env              # API key (thêm vào .gitignore)
 ├── .gitignore
 ├── pyproject.toml
 └── server.py         # File chính MCP server
-```
+`````
 
----
+* * *
 
 ## 4. Thực chiến: Xây dựng MCP server giám sát website
 
-Chúng ta sẽ tạo một MCP server tên **SiteMonitor**, expose hai công cụ: - `check_site_status`: Kiểm tra website online và đo thời gian phản hồi
-- `check_ssl_expiry`: Kiểm tra số ngày còn lại của chứng chỉ SSL
+Chúng ta sẽ tạo một MCP server tên **SiteMonitor**, expose hai công cụ: - ````check_site_status````: Kiểm tra website online và đo thời gian phản hồi
+- ````check_ssl_expiry````: Kiểm tra số ngày còn lại của chứng chỉ SSL
 
 ### Code hoàn chỉnh (server.py)
 
-```python
+`````python
 import asyncio
 import ssl
 import socket
@@ -211,33 +212,33 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """Kiểm tra
 
 
 if __name__ == "__main__": mcp.run(transport="stdio")
-```
+`````
 
 ### Giải thích điểm then chốt trong code
 
-1. **Decorator `@mcp.tool()`**: Đăng ký hàm Python thành công cụ MCP. Docstring của hàm được tự động trích xuất làm mô tả công cụ — AI dựa vào mô tả này để quyết định khi nào gọi.
-2. **Type annotation**: Kiểu tham số (`str`, `int`) tự động chuyển thành JSON Schema để AI kiểm tra đầu vào.
-3. **`transport="stdio"`**: Giao tiếp qua stdin/stdout, Claude Desktop khởi động Server như tiến trình con.
+1. **Decorator ````@mcp.tool()````**: Đăng ký hàm Python thành công cụ MCP. Docstring của hàm được tự động trích xuất làm mô tả công cụ — AI dựa vào mô tả này để quyết định khi nào gọi.
+2. **Type annotation**: Kiểu tham số (````str````, ````int````) tự động chuyển thành JSON Schema để AI kiểm tra đầu vào.
+3. **````transport="stdio"````**: Giao tiếp qua stdin/stdout, Claude Desktop khởi động Server như tiến trình con.
 4. **Xử lý lỗi**: Mọi exception được bắt và trả về text thân thiện, tránh làm hỏng luồng JSON-RPC.
 
 ### Kiểm thử local
 
-```bash
+`````bash
 uv run server.py
 # Server sẽ đợi đầu vào stdin, có thể dùng MCP Inspector để thử trước
-```
+`````
 
----
+* * *
 
 ## 5. Kết nối Claude Desktop và Cursor
 
 ### Claude Desktop (macOS)
 
-Chỉnh sửa file cấu hình: ```bash
+Chỉnh sửa file cấu hình: `````bash
 ~/Library/Application\ Support/Claude/claude_desktop_config.json
-```
+`````
 
-Thêm cấu hình Server: ```json
+Thêm cấu hình Server: `````json
 {
   "mcpServers": {
     "site-monitor": {
@@ -251,15 +252,15 @@ Thêm cấu hình Server: ```json
     }
   }
 }
-```
+`````
 
 **Khởi động lại Claude Desktop**, sau đó dùng trong hội thoại: > "Kiểm tra giúp tôi trạng thái https://github.com, và cho biết chứng chỉ SSL còn bao lâu nữa hết hạn."
 
-Claude sẽ tự động gọi `check_site_status` và `check_ssl_expiry`, sau đó tổng hợp kết quả trả lời bạn.
+Claude sẽ tự động gọi ````check_site_status```` và ````check_ssl_expiry````, sau đó tổng hợp kết quả trả lời bạn.
 
 ### Cursor
 
-Tạo file `.cursor/mcp.json` ở thư mục gốc dự án: ```json
+Tạo file ``.cursor/mcp.json`` ở thư mục gốc dự án: `````json
 {
   "mcpServers": {
     "site-monitor": {
@@ -273,13 +274,13 @@ Tạo file `.cursor/mcp.json` ở thư mục gốc dự án: ```json
     }
   }
 }
-```
+`````
 
 AI Chat của Cursor sẽ tự nhận diện và sử dụng các công cụ này.
 
 ### VS Code Copilot Agent Mode
 
-VS Code v1.99+ hỗ trợ MCP native ở Copilot Agent Mode. Cấu hình trong `settings.json`: ```json
+VS Code v1.99+ hỗ trợ MCP native ở Copilot Agent Mode. Cấu hình trong ``settings.json``: `````json
 {
   "github.copilot.chat.mcpServers": {
     "site-monitor": {
@@ -289,15 +290,15 @@ VS Code v1.99+ hỗ trợ MCP native ở Copilot Agent Mode. Cấu hình trong `
     }
   }
 }
-```
+`````
 
----
+* * *
 
 ## 6. Nâng cao: Resources, Prompts và Streaming HTTP
 
 ### Expose Resources (Dữ liệu chỉ đọc)
 
-Cho phép AI đọc file cấu hình hoặc log trên server: ```python
+Cho phép AI đọc file cấu hình hoặc log trên server: `````python
 @mcp.resource("config://app")
 def get_app_config() -> str: """Lấy cấu hình ứng dụng hiện tại."""
     import json
@@ -306,11 +307,11 @@ def get_app_config() -> str: """Lấy cấu hình ứng dụng hiện tại."""
 @mcp.resource("log://latest")
 def get_latest_log() -> str: """Đọc bản ghi log giám sát mới nhất."""
     return "[2026-05-15 08:00:00] github.com: OK (23ms)"
-```
+`````
 
 ### Expose Prompts (Template tái sử dụng)
 
-```python
+`````python
 @mcp.prompt()
 def debug_site_issue(url: str, error_code: int) -> str: """Sinh prompt chẩn đoán sự cố website."""
     return f"""Website {url} đang trả về HTTP {error_code}. Hãy điều tra theo các bước sau: 1. Kiểm tra phân giải DNS có bình thường không
@@ -318,11 +319,11 @@ def debug_site_issue(url: str, error_code: int) -> str: """Sinh prompt chẩn đ
 3. Xem log ứng dụng 10 phút gần nhất
 4. Phân tích xem có đợt tăng traffic đột biến từ CDN không
 """
-```
+`````
 
 ### Chuyển sang HTTP + SSE (Production)
 
-```python
+`````python
 from mcp.server.sse import SseServerTransport
 from starlette.applications import Starlette
 from starlette.routing import Route
@@ -332,11 +333,11 @@ sse = SseServerTransport("/messages/")
 async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
 
 app = Starlette(routes=[Route("/sse", endpoint=handle_sse)])
-```
+`````
 
 Triển khai lên bất kỳ nền tảng ASGI nào (Vercel, Railway, server riêng), client AI kết nối qua URL từ xa.
 
----
+* * *
 
 ## 7. Bảo mật và thực tiễn tốt nhất cho production
 
@@ -348,11 +349,11 @@ Kết nối AI với thế giới bên ngoài là quyền năng, cũng là rủi
 2. **Nguyên tắc quyền hạn tối thiểu** — Server chỉ expose công cụ và phạm vi dữ liệu tối thiểu cần thiết. Đừng cho AI quyền đọc toàn bộ filesystem.
 3. **Kiểm tra đầu vào nghiêm ngặt** — Dùng Pydantic/Zod kiểm tra mọi tham số, từ chối input không hợp lệ ngay tại biên.
 4. **Xác nhận hai lần cho thao tác nhạy cảm** — Xóa dữ liệu, chuyển khoản, gửi email... Server nên trả về yêu cầu xác nhận thay vì thực thi ngay.
-5. **Quản lý biến môi trường** — API key nằm trong file `.env`, tuyệt đối không hardcode, không commit lên Git.
+5. **Quản lý biến môi trường** — API key nằm trong file ````.env````, tuyệt đối không hardcode, không commit lên Git.
 6. **Production bắt buộc HTTPS** — Truyền tải HTTP phải có TLS, ngăn chặn tấn công man-in-the-middle can thiệp tool call.
 7. **Giám sát và kiểm tra** — Ghi log mọi lần gọi công cụ, cảnh báo hành vi bất thường. Tháng 7/2025 lỗ hổng RCE trong MCP Inspector (CVE-2025-49596, CVSS 9.4) là hồi chuông cảnh tỉnh.
 
----
+* * *
 
 ## 8. Cẩm nang hệ sinh thái: 15 MCP server đáng thử ngay
 
@@ -376,13 +377,13 @@ Kết nối AI với thế giới bên ngoài là quyền năng, cũng là rủi
 
 Danh mục đầy đủ: [Smithery.ai](https://smithery.ai) · [MCP.so](https://mcp.so)
 
----
+* * *
 
 ## 9. Câu hỏi thường gặp FAQ
 
 **C1: MCP khác Function Calling / Tool Use như thế nào?**
 
-Function Calling là khả năng ở cấp mô hình (ví dụ: tham số `tools` của GPT-4), định dạng khác nhau giữa các nền tảng. MCP là tiêu chuẩn ở **cấp giao thức**, định nghĩa Server expose công cụ như thế nào và Client phát hiện + gọi ra sao. Chúng bổ trợ lẫn nhau — MCP Server có thể là lớp triển khai bên dưới của Function Calling.
+Function Calling là khả năng ở cấp mô hình (ví dụ: tham số ````tools```` của GPT-4), định dạng khác nhau giữa các nền tảng. MCP là tiêu chuẩn ở **cấp giao thức**, định nghĩa Server expose công cụ như thế nào và Client phát hiện + gọi ra sao. Chúng bổ trợ lẫn nhau — MCP Server có thể là lớp triển khai bên dưới của Function Calling.
 
 **C2: MCP Server chỉ chạy được trên local?**
 
@@ -394,7 +395,7 @@ Lý thuyết không giới hạn, nhưng khuyến nghị **dưới 10 công cụ
 
 **C4: MCP và LangChain có liên quan gì?**
 
-LangChain là **framework** cung cấp chaining, memory management, agent orchestration. MCP là **giao thức** chuẩn hóa cách kết nối công cụ. LangChain đã hỗ trợ MCP qua `langchain-mcp-adapters`, hai bên có thể phối hợp.
+LangChain là **framework** cung cấp chaining, memory management, agent orchestration. MCP là **giao thức** chuẩn hóa cách kết nối công cụ. LangChain đã hỗ trợ MCP qua ````langchain-mcp-adapters````, hai bên có thể phối hợp.
 
 **C5: Doanh nghiệp cần lưu ý gì khi dùng MCP?**
 
@@ -404,13 +405,13 @@ LangChain là **framework** cung cấp chaining, memory management, agent orches
 - Cách ly trust domain
 - Kiểm tra toàn bộ log gọi công cụ
 
----
+* * *
 
 ## Kết luận: Hãy bắt đầu ngay hôm nay
 
 MCP không phải công nghệ tương lai. Nó là **tiêu chuẩn đang hoạt động** cho việc tích hợp công cụ AI trong năm 2026. Nếu bạn chưa biết cách xây dựng MCP Server, bạn đang thiếu kỹ năng nền tảng mà mọi đội ngũ phát triển AI-native sẽ yêu cầu ngày mai.
 
-Code trong bài viết này có thể copy chạy ngay. Đề xuất các bước tiếp theo: 1. Chạy SiteMonitor bằng `uv` ngay bây giờ
+Code trong bài viết này có thể copy chạy ngay. Đề xuất các bước tiếp theo: 1. Chạy SiteMonitor bằng ````uv``` ngay bây giờ
 2. Kết nối Claude Desktop, trải nghiệm truy vấn vận hành bằng ngôn ngữ tự nhiên
 3. Đóng gói API nội bộ hay dùng nhất của team thành MCP Server
 4. Open source lên GitHub, gia nhập hệ sinh thái 10.000+ MCP server
@@ -423,17 +424,17 @@ Code trong bài viết này có thể copy chạy ngay. Đề xuất các bướ
 - [Smithery.ai — Thư mục Server](https://smithery.ai)
 - [MCP.so — Chợ cộng đồng](https://mcp.so)
 
----
+* * *
 
 ## 🔌 Bỏ Qua Boilerplate JSON Schema
 
 Viết JSON Schema bằng tay cho mỗi tool là phần tẻ nhạt nhất khi phát triển MCP. Thử **[MCP Tool Builder](/vi/tools/mcp-tool-builder/)** miễn phí của dibi8 — dán signature hàm Python hoặc TypeScript, nhận tool definition đúng chuẩn + server boilerplate đầy đủ (FastMCP / TypeScript SDK) + lệnh cURL test. Tiết kiệm 80% công sức boilerplate.
 
----
+* * *
 
 *Xuất bản ngày 15 tháng 5 năm 2026. Dựa trên MCP Protocol Specification 2025-11-25 (bản phát hành kỷ niệm 1 năm).*
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

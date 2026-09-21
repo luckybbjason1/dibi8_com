@@ -27,6 +27,7 @@ faq: - q: "2026 年 RAG 何时胜过微调？"
     a: "1 万 chunks 以下：全文搜索（FTS5、MeiliSearch）通常足够，且简单 10 倍。5 万 chunks 以上：向量数据库的复杂度才值得。1 万-5 万的灰色地带——先试 FTS，只有当检索精度低于 precision@5 80% 时再切换到向量。"
 ---
 
+
 {{</* resource-info */>}}
 
 # RAG 还是微调 2026：基于数据的决策框架
@@ -48,14 +49,14 @@ RAG 与微调之争已积累了三年的相互矛盾建议。2026 年，技术�
 > **盈亏平衡点**：在知识稳定且每月 100 万+ 查询时，微调经济性优于 RAG。
 
 
----
+* * *
 ## 自 2024 年以来发生了什么变化
 
 三股力量改变了计算公式：
 
 1. **上下文窗口扩大**：Gemini 2.5 Pro 和 Claude Sonnet 4.6 达到 100 万 tokens。对于 < 20 万 tokens 的语料库，你可以直接塞入上下文，跳过 RAG。这在 2024 年是不可想象的。
 
-2. **Embedding 大幅提升**：`text-embedding-3-large`（OpenAI）、Voyage-3、BGE-M3——在 2024 年 embedding 难以应对的混乱企业语料库上，precision@5 检索精度达到 80%+。
+2. **Embedding 大幅提升**：```text-embedding-3-large````（OpenAI）、Voyage-3、BGE-M3——在 2024 年 embedding 难以应对的混乱企业语料库上，precision@5 检索精度达到 80%+。
 
 3. **开源微调变便宜**：LoRA + Unsloth + 普通 GPU（RTX 4090、单卡 H100）让微调成本从 $5K-50K 降到 $50-200。"微调很贵"这个论点已经过时。
 
@@ -69,14 +70,14 @@ RAG 与微调之争已积累了三年的相互矛盾建议。2026 年，技术�
 - 需要在不重新训练的情况下更新事实
 
 ### RAG 实际成本（2026 Q2 价格）：
-```
+`````
 Embedding 查询：     $0.0001/次
 检索 + 重排：        $0.0003/次
 LLM 生成：           $0.003-0.015/次（视模型而定）
                     ─────────
 总计：               约 $0.005/次（Claude Sonnet）
                     约 $0.001/次（GPT-4o-mini）
-```
+`````
 
 每月 10 万次查询：$100-500 计算成本 + $20-100 向量数据库托管。
 
@@ -84,11 +85,11 @@ LLM 生成：           $0.003-0.015/次（视模型而定）
 
 | 级别 | 技术栈 | 适用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 轻量级 | SQLite FTS5 / MeiliSearch | < 1 万文档 |
 | 中型 | pgvector / Weaviate（自托管） | 1 万-100 万文档 |
@@ -104,7 +105,7 @@ LLM 生成：           $0.003-0.015/次（视模型而定）
 - 想锁定性能特征（避免 API 意外变更）
 
 ### 微调实际成本（2026）：
-```
+`````
 LoRA 微调（Llama 3.3 70B）：
   硬件：         单卡 H100（$2/小时 × 约 10 小时）= $20
   数据准备：     工程师 1-2 天                    = 约 $1K 人力
@@ -114,13 +115,13 @@ LoRA 微调（Llama 3.3 70B）：
 
 推理（自托管）：
   每 1K tokens 生成：约 $0.0001（摊销到自有 GPU）
-```
+`````
 
 对比 API：$0.003-0.015/1K tokens。在高量场景下盈亏平衡。
 
 ## 决策树
 
-```
+`````
 开始
   │
   ├─ 知识每周以上更新？
@@ -142,7 +143,7 @@ LoRA 微调（Llama 3.3 70B）：
   ├─ 单月 > 100 万查询？
   │   ├─ 是 → 微调（成本优势）
   │   └─ 否 → RAG（运维更简单）
-```
+````
 
 ## 混合方案：微调 + RAG
 
@@ -180,15 +181,15 @@ LoRA 微调（Llama 3.3 70B）：
 
 | 方案 | 启动成本 | 单次成本（1K tokens） | 延迟 | 更新延迟 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 塞入上下文 | $0 | $0.003-0.015 | 200ms | 实时 |
 | RAG（向量数据库） | $100-500/月 | $0.005 | 200-400ms | 数小时 |
@@ -211,7 +212,7 @@ RAG / 微调托管：
 对于 2026 年大多数生产系统：从 RAG 开始，当风格/规模值得时加入微调。混合方案日益成为默认——这不是因为有人这样规划，而是因为每一层都解决了一个不同的真实问题。
 
 
----
+* * *
 **相关阅读**：[MCP 服务器 2026 排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent 记忆系统 2026](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents 指南](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
 
 
@@ -276,12 +277,12 @@ RAG 还是微调 2026：基于真实成本数据的决策框架 represents an im
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -291,7 +292,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](rag-vs-fine-tuning-2026-decision-framework)
 - [ai-engineering-from-scratch](rag-vs-fine-tuning-2026-decision-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

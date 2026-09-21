@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-search-tools-perplexity-gemini-chatgpt/
 ---
 
+
 # So Sánh Công Cụ Tìm Kiếm AI: Perplexity vs Google Gemini vs ChatGPT Search 2025
 
 
@@ -168,7 +169,7 @@ Perplexity AI và ChatGPT Search là hai lựa chọn hàng đầu cho câu hỏ
 
 Mức độ bảo mật khác nhau tùy công cụ. You.com cam kết không theo dõI ngườI dùng và không bán dữ liệu — đây là chính sách quyền riêng tư tốt nhất hiện tạI. Perplexity cho phép xóa lịch sử tìm kiếm và không sử dụng dữ liệu ngườI dùng bản Pro để huấn luyện mô hình. Google và Microsoft thu thập dữ liệu theo chính sách riêng của họ. Đối vớI thông tin nhạy cảm, ngườI dùng nên đọc kỹ chính sách quyền riêng tư của từng nền tảng trước khi sử dụng.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

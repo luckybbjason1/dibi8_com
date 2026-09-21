@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-image-generation-tools-complete-guide/
 ---
 
+
 # Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney, DALL-E, Stable Diffusion
 
 
@@ -176,11 +177,11 @@ Yêu cầu tối thiểu là GPU vớI 4GB VRAM (NVIDIA GTX 1650 trở lên). Đ
 
 TạI Mỹ, USCO hiện không cấp bản quyền cho tác phẩm hoàn toàn do AI tạo ra. Tuy nhiên, nếu bạn chỉnh sửa đáng kể hình ảnh AI — thêm các yếu tố sáng tạo của con ngườI — tác phẩm kết hợp có thể đủ điều kiện bảo hộ. Quy định này khác nhau giữa các quốc gia và đang phát triển nhanh chóng.
 
----
+* * *
 
 *TàI liệu tham khảo: [OpenAI DALL-E](https://openai.com/dall-e-3), [Midjourney Documentation](https://docs.midjourney.com), [Stability AI](https://stability.ai), [Adobe Firefly](https://adobe.com/firefly), [arxiv.org - Diffusion Models Survey](https://arxiv.org/abs/2306.07295)*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

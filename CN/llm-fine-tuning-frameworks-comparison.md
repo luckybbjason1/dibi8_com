@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/llm-fine-tuning-frameworks-comparison/-
 ---
+
 {</* resource-info */>}
 
 Fine-tuning large language models used to require millions of dollars in GPU clusters and weeks of training time. In 2025, parameter-efficient fine-tuning (PEFT) techniques let you adapt a 70-billion-parameter model on a single consumer GPU in hours, not days.
@@ -66,12 +67,12 @@ This decomposition reduces trainable parameters from $d \times k$ to $r \times (
 ### LoRA Hyperparameters: Rank, Alpha, Dropout
 
 Three hyperparameters control LoRA's behavior: - **Rank (r)**: Controls the expressiveness of the adaptation. Higher rank captures more complex patterns but increases parameters and overfitting risk. Typical values: 8, 16, 32, 64. Start with 16 and adjust based on validation loss.
-- **Alpha (lora_alpha)**: Scales the LoRA weights. The effective scaling is `alpha / rank`. Common practice sets `alpha = 2 * rank`. Higher alpha amplifies the fine-tuning signal.
+- **Alpha (lora_alpha)**: Scales the LoRA weights. The effective scaling is ```alpha / rank````. Common practice sets ````alpha = 2 * rank````. Higher alpha amplifies the fine-tuning signal.
 - **Dropout (lora_dropout)**: Regularization applied to LoRA layers. Values between 0.0 and 0.1 typically work best. Use 0.05 for small datasets, 0.0 for large datasets.
 
 ### Target Modules and Configuration
 
-LoRA can be applied to specific layers. For transformer models, the most common target modules are the query and value projection matrices: ```python
+LoRA can be applied to specific layers. For transformer models, the most common target modules are the query and value projection matrices: `````python
 from peft import LoraConfig
 
 lora_config = LoraConfig(
@@ -82,9 +83,9 @@ lora_config = LoraConfig(
     bias="none",
     task_type="CAUSAL_LM"
 )
-```
+`````
 
-For better results, some practitioners target all linear layers: `["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]`.
+For better results, some practitioners target all linear layers: ````["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]````.
 
 ### Pros, Cons, and Best Practices
 
@@ -127,11 +128,11 @@ Paged optimizers use NVIDIA unified memory to automatically page optimizer state
 
 | Metric | LoRA (16-bit) | QLoRA (4-bit) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **VRAM (Llama 3 8B)** | 16 GB | 6 GB |
 | **VRAM (Llama 3 70B)** | 140 GB | 48 GB |
@@ -166,19 +167,19 @@ For most use cases, LoRA remains the recommended starting point due to its matur
 
 ### Integration with Transformers and Accelerate
 
-PEFT's core abstraction is the `get_peft_model()` function, which wraps any Hugging Face model with PEFT adapters: ```python
+PEFT's core abstraction is the ``get_peft_model()`` function, which wraps any Hugging Face model with PEFT adapters: `````python
 from transformers import AutoModelForCausalLM
 from peft import get_peft_model, LoraConfig
 
 base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B")
 peft_model = get_peft_model(base_model, lora_config)
-```
+`````
 
-After wrapping, training proceeds normally with Hugging Face's `Trainer` or any PyTorch training loop. The base model weights remain frozen; only LoRA parameters receive gradients.
+After wrapping, training proceeds normally with Hugging Face's ````Trainer```` or any PyTorch training loop. The base model weights remain frozen; only LoRA parameters receive gradients.
 
 ### Unified API for All PEFT Methods
 
-PEFT provides a consistent interface across methods. Switching from LoRA to IA³ requires only changing the configuration class: ```python
+PEFT provides a consistent interface across methods. Switching from LoRA to IA³ requires only changing the configuration class: `````python
 # LoRA
 from peft import LoraConfig
 config = LoraConfig(r=16, lora_alpha=32)
@@ -186,18 +187,18 @@ config = LoraConfig(r=16, lora_alpha=32)
 # IA3
 from peft import IA3Config
 config = IA3Config(target_modules=["q_proj", "v_proj"])
-```
+`````
 
 ### Saving and Loading Adapters
 
-PEFT adapters save independently from the base model: ```python
+PEFT adapters save independently from the base model: `````python
 # Save only the adapter weights (~10-100 MB)
 peft_model.save_pretrained("./lora_adapter")
 
 # Load adapter on top of base model
 from peft import PeftModel
 model = PeftModel.from_pretrained(base_model, "./lora_adapter")
-```
+`````
 
 This separation enables efficient experiment management: one base model with dozens of small adapter checkpoints for different tasks.
 
@@ -222,13 +223,13 @@ These kernels are benchmarked and optimized for modern NVIDIA GPUs (Ampere, Ada 
 
 Unsloth's memory optimizations enable training larger models on the same hardware: | Model | Standard PEFT VRAM | Unsloth VRAM | Savings |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3 8B QLoRA | 6.2 GB | 4.8 GB | 23% |
 | Mistral 7B QLoRA | 5.8 GB | 4.2 GB | 28% |
@@ -253,11 +254,11 @@ Unsloth offers both a free open-source version (Apache 2.0 license) and a paid P
 
 Training speed (tokens/second) for Llama 3 8B QLoRA on RTX 4090 (24GB): | Framework | Speed | Relative |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Standard PEFT + PyTorch | 1,200 t/s | 1.0x |
 | PEFT + Flash Attention 2 | 1,580 t/s | 1.3x |
@@ -268,9 +269,9 @@ Training speed (tokens/second) for Llama 3 8B QLoRA on RTX 4090 (24GB): | Framew
 
 Peak VRAM during Llama 3 8B QLoRA training (batch size 1, sequence length 2048): | Framework | VRAM Usage |
 |
----
+* * *
 |
----
+* * *
 |
 | Standard PEFT | 16.2 GB |
 | PEFT + Gradient Checkpointing | 12.4 GB |
@@ -281,9 +282,9 @@ Peak VRAM during Llama 3 8B QLoRA training (batch size 1, sequence length 2048):
 
 Quality measured by validation loss on the Alpaca instruction-tuning dataset (lower is better): | Framework | Final Val Loss |
 |
----
+* * *
 |
----
+* * *
 |
 | Full Fine-tuning (BF16) | 1.084 |
 | LoRA (rank 16) | 1.092 |
@@ -296,13 +297,13 @@ All PEFT methods achieve within 1.3% of full fine-tuning quality, with Unsloth m
 
 | Framework | Documentation | Setup Complexity | Community |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PEFT (Hugging Face) | Excellent | Low | Massive |
 | Unsloth | Good | Low | Growing rapidly |
@@ -314,14 +315,14 @@ All PEFT methods achieve within 1.3% of full fine-tuning quality, with Unsloth m
 
 For this tutorial, we will use Google Colab (free T4 GPU) or a local GPU with 16GB+ VRAM.
 
-Install dependencies: ```bash
+Install dependencies: `````bash
 pip install transformers datasets peft bitsandbytes accelerate
 # For Unsloth: pip install unsloth
-```
+`````
 
 ### Dataset Preparation and Formatting
 
-We will use the Alpaca instruction-funing format, a JSON structure with `instruction`, `input`, and `output` fields: ```python
+We will use the Alpaca instruction-funing format, a JSON structure with ``instruction``, ``input``, and ``output`` fields: `````python
 from datasets import load_dataset
 
 dataset = load_dataset("yahma/alpaca-cleaned", split="train")
@@ -331,11 +332,11 @@ def format_prompt(example): if example["input"]: prompt = f"### Instruction:\n{e
     return {"text": prompt}
 
 formatted_dataset = dataset.map(format_prompt)
-```
+`````
 
 ### Fine-Tuning Llama 3 with LoRA/QLoRA
 
-Using standard PEFT + QLoRA: ```python
+Using standard PEFT + QLoRA: `````python
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer
@@ -360,11 +361,11 @@ trainer = SFTTrainer(
     args=TrainingArguments(num_train_epochs=1, per_device_train_batch_size=1)
 )
 trainer.train()
-```
+`````
 
 ### Fine-Tuning with Unsloth (Faster Option)
 
-Using Unsloth for 2-3x faster training: ```python
+Using Unsloth for 2-3x faster training: `````python
 from unsloth import FastLanguageModel
 from trl import SFTTrainer
 
@@ -386,11 +387,11 @@ trainer = SFTTrainer(
     args=TrainingArguments(num_train_epochs=1, per_device_train_batch_size=2)
 )
 trainer.train()
-```
+`````
 
 ### Evaluating Your Fine-Tuned Model
 
-Evaluate using standard NLP metrics: ```python
+Evaluate using standard NLP metrics: `````python
 from evaluate import load
 
 # Perplexity
@@ -399,11 +400,11 @@ results = perplexity.compute(model_id="your-model", predictions=test_texts)
 
 # MT-Bench or custom evaluation
 # Use the lm-evaluation-harness for standardized benchmarks
-```
+`````
 
 ### Merging Adapters and Exporting to GGUF
 
-Merge LoRA adapters back into the base model for inference without PEFT dependencies: ```python
+Merge LoRA adapters back into the base model for inference without PEFT dependencies: `````python
 # Merge adapters
 merged_model = model.merge_and_unload()
 merged_model.save_pretrained("./merged_model")
@@ -411,7 +412,7 @@ merged_model.save_pretrained("./merged_model")
 # Export to GGUF for Ollama
 # Use llama.cpp convert script or Unsloth's built-in export
 model.save_pretrained_gguf("./gguf_model", tokenizer, quantization_method="q4_k_m")
-```
+`````
 
 ## Fine-Tuning Best Practices
 
@@ -434,13 +435,13 @@ Quality matters more than quantity. A few thousand high-quality examples typical
 
 Start with these defaults and adjust based on validation loss: | Hyperparameter | Default | Range | Effect |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Rank (r) | 16 | 4-256 | Higher = more expressive, more parameters |
 | Alpha | 32 | 8-512 | Higher = stronger fine-tuning signal |
@@ -469,49 +470,49 @@ Evaluate fine-tuned models with: - **Perplexity**: Measures fluency on held-out 
 
 ### Merging LoRA Weights with Base Model
 
-For production deployment, merge adapter weights into the base model to eliminate PEFT inference overhead: ```python
+For production deployment, merge adapter weights into the base model to eliminate PEFT inference overhead: `````python
 merged_model = peft_model.merge_and_unload()
 merged_model.save_pretrained("./production_model")
-```
+`````
 
 The merged model is a standard Hugging Face model that works with any inference engine.
 
 ### Converting to GGUF for Ollama/llama.cpp
 
-For local deployment with Ollama or llama.cpp: ```bash
+For local deployment with Ollama or llama.cpp: `````bash
 # Using Unsloth's export
 model.save_pretrained_gguf("model_gguf", tokenizer, quantization_method="q4_k_m")
 
 # Or using llama.cpp directly
 python convert_hf_to_gguf.py ./production_model --outfile model.gguf
-```
+`````
 
 ### Deploying with vLLM for Serving
 
-For production API serving, use [vLLM](https://github.com/vllm-project/vllm): ```python
+For production API serving, use [vLLM](https://github.com/vllm-project/vllm): `````python
 from vllm import LLM
 
 llm = LLM(model="./production_model", tensor_parallel_size=1)
 output = llm.generate("Hello, how can I help?")
-```
+`````
 
 vLLM provides continuous batching, PagedAttention, and OpenAI-compatible API serving.
 
 ### Hugging Face Hub Upload and Sharing
 
-Upload your model or adapters to the Hugging Face Hub: ```python
+Upload your model or adapters to the Hugging Face Hub: `````python
 from huggingface_hub import HfApi
 
 api = HfApi()
 api.create_repo(repo_id="your-username/your-model", repo_type="model")
 api.upload_folder(folder_path="./lora_adapter", repo_id="your-username/your-model")
-```
+`````
 
 ## Alternatives and Complementary Tools
 
 ### Axolotl: YAML-Based Fine-Tuning
 
-[Axoloth](https://github.com/OpenAccess-AI-Collective/axolotl) simplifies fine-tuning through YAML configuration files. Define your dataset, model, and training parameters in a single YAML file, then run `axolotl train config.yaml`. It is ideal for users who prefer configuration over code.
+[Axoloth](https://github.com/OpenAccess-AI-Collective/axolotl) simplifies fine-tuning through YAML configuration files. Define your dataset, model, and training parameters in a single YAML file, then run ````axolotl train config.yaml```. It is ideal for users who prefer configuration over code.
 
 ### LLaMA-Factory: Comprehensive Training Toolkit
 
@@ -551,13 +552,13 @@ Yes. Unsloth achieves 2-5x speedups over standard PEFT training through hand-opt
 
 VRAM requirements depend on model size and quantization: | Model Size | LoRA (16-bit) | QLoRA (4-bit) | Unsloth QLoRA |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 7B/8B | 16 GB | 6 GB | 5 GB |
 | 13B | 28 GB | 10 GB | 8 GB |
@@ -574,7 +575,7 @@ Yes. Google Colab"s free T4 GPU (16 GB VRAM) can fine-tune 7B and 8B parameter m
 PEFT (Parameter-Efficient Fine-Tuning) trains only a small fraction of parameters, typically 0.1% to 1% of total model weights, while freezing the rest. Full fine-tuning updates all parameters. PEFT requires 100x less memory, trains faster, and produces tiny checkpoints, but may achieve slightly lower performance on tasks requiring extensive knowledge updates. For most instruction-following and style adaptation tasks, PEFT matches or approaches full fine-tuning quality.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -631,4 +632,4 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
----
+* * *

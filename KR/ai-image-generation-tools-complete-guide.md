@@ -7,6 +7,7 @@ aliases:
   - /posts/ai-image-generation-tools-complete-guide/
 ---
 
+
 # AI 이미지 생성 도구 완벽 가이드: Midjourney, DALL-E, Stable Diffusion 비교 2025
 
 
@@ -106,18 +107,18 @@ Black Forest Labs가 2024년 8월 출시한 FLUX.1은 Midjourney 수준의 품�
 ### Midjourney로 첫 이미지 생성하기
 
 1. Discord 계정을 생성하고 Midjourney 서버에 참여한다.
-2. `/subscribe` 명령으로 요금제를 선택한다.
-3. `/imagine` 명령 뒤에 영문 프롬프트를 입력한다.
+2. ```/subscribe```` 명령으로 요금제를 선택한다.
+3. ````/imagine```` 명령 뒤에 영문 프롬프트를 입력한다.
 4. 생성된 4개의 썸네일 중 원하는 번호의 U 버튼을 눌러 업스케일한다.
-5. V 버튼으로 변형을 생성하거나, `⬅️➡️` 버튼으로 미세 조정한다.
+5. V 버튼으로 변형을 생성하거나, ````⬅️➡️```` 버튼으로 미세 조정한다.
 
 ### Stable Diffusion 3.5 로컬 설치하기
 
 1. [Stability AI GitHub](https://github.com/Stability-AI/stablediffusion)에서 모델 가중치를 다운로드한다.
 2. ComfyUI 또는 Automatic1111 WebUI를 설치한다.
 3. Python 3.10 이상과 CUDA 12.1 환경을 구성한다.
-4. 모델 체크포인트를 `models/checkpoints` 폴터에 배치한다.
-5. 웹 브라우저에서 `localhost:7860`에 접속해 프롬프트를 입력한다.
+4. 모델 체크포인트를 ````models/checkpoints```` 폴터에 배치한다.
+5. 웹 브라우저에서 ````localhost:7860```에 접속해 프롬프트를 입력한다.
 
 ## 자주 묻는 질문
 
@@ -141,11 +142,11 @@ Stable Diffusion 3.5 Medium 기준으로 최소 **RTX 3060 12GB** 이상의 VRAM
 
 2025년 5월 기준, 미국에서는 순수 AI 생성 이미지에 대해 저작권을 부여하지 않는다. 다만 AI를 도구로 활용하여 인간의 창의적 기여가 포함된 경우(예: Photoshop로 후보정, 콜라주 작업)에는 등록이 가능할 수 있다. 한국은 관련 법제가 아직 명확하지 않아 법원 판례에 따라 달라질 수 있다.
 
----
+* * *
 
 *본 기사는 2025년 5월 기준의 정보를 바탕으로 작성되었습니다. AI 도구의 기능과 가격은 수시로 변경되므로 각 공식 웹사이트에서 최신 정보를 확인하시기 바랍니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -216,7 +217,7 @@ AI 이미지 생성 도구 완벽 가이드: Midjourney, DALL-E, Stable Diffusio
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

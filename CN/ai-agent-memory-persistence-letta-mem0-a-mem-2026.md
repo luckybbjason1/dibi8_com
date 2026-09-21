@@ -27,6 +27,7 @@ faq: - q: "Why do AI agents need persistent memory?"
   - q: "Is agent memory worth the complexity?"
     a: "For most production agents serving real users: yes, materially. The quality difference between 'remembers you' and 'starts from scratch' is large. For one-shot tasks or simple workflows: not worth the complexity."
 ---
+
 {{</* resource-info */>}}
 
 # AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM
@@ -70,13 +71,13 @@ Simulated 10 sessions over 2 weeks with a coding assistant agent. Tracked: - Mem
 
 | Memory framework | Session 2 | Session 5 | Session 10 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Letta | 95% | 90% | 85% |
 | Mem0 | 92% | 80% | 65% |
@@ -89,13 +90,13 @@ Simulated 10 sessions over 2 weeks with a coding assistant agent. Tracked: - Mem
 
 | | Letta | Mem0 | A-MEM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | p95 added latency | 180ms | 80ms | 120ms |
 
@@ -105,13 +106,13 @@ Simulated 10 sessions over 2 weeks with a coding assistant agent. Tracked: - Mem
 
 | | Letta | Mem0 | A-MEM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Time to working integration | 1-2 hrs | 20 min | 30-45 min |
 
@@ -137,7 +138,7 @@ Simulated 10 sessions over 2 weeks with a coding assistant agent. Tracked: - Mem
 
 ## Implementation Reality
 
-For Mem0 (simplest), adding memory to existing agent: ```python
+For Mem0 (simplest), adding memory to existing agent: ````python
 from mem0 import Memory
 m = Memory()
 m.add("User prefers TypeScript over JavaScript", user_id="alice")
@@ -146,9 +147,9 @@ m.add("User's project uses pnpm not npm", user_id="alice")
 # Later session
 relevant = m.search("What package manager?", user_id="alice")
 # Returns: "User's project uses pnpm not npm"
-```
+`````
 
-Inject `relevant` into agent context. That's it.
+Inject ````relevant``` into agent context. That's it.
 
 For Letta, the integration is heavier but gets you the sophisticated hierarchy.
 
@@ -174,7 +175,7 @@ Letta for sophisticated production agents. Mem0 for quick integration into exist
 For simple cases, the MCP memory server is enough. Don't over-engineer. The complexity of dedicated memory frameworks is worth it only when memory quality is a real product differentiator.
 
 
----
+* * *
 **Related**: [AI Agent Memory Systems 2026](https://dibi8.com/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Open Source AI Agent Frameworks Top 10](https://dibi8.com/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
 
@@ -240,11 +241,11 @@ AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM Real Test represents an
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -254,7 +255,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [academic-research-skills](ai-agent-memory-persistence-letta-mem0-a-mem-2026)
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](ai-agent-memory-persistence-letta-mem0-a-mem-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

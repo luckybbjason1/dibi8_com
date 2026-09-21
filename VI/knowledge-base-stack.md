@@ -27,6 +27,7 @@ aliases:
   - /posts/knowledge-base-stack/
 ---
 
+
 Bạn có 500 PDF, 2,000 ghi chú, 10 năm email, và AI trong editor không biết chúng tồn tại. Notion AI tốn $10/seat/tháng và không thấy file local. Glean tốn tối thiểu $30k/năm. Mem.ai tuyệt nhưng là SaaS — "bộ não thứ hai" của bạn sống trên phần cứng người khác.
 
 Bộ sưu tập này lắp ráp **stack knowledge base self-host 5 thành phần** ingest tất cả (PDF, notes, web page, code), embed local, cho phép bạn query qua chat + API, và expose nó cho AI coding agent qua MCP — tổng **$10-25/tháng** chi phí hạ tầng.
@@ -47,7 +48,7 @@ So với SaaS tương đương: Notion AI + Mem + Glean Lite = $50-200/tháng ch
 
 ## 1. Vì Sao Self-Host Knowledge Base Năm 2026
 
-Ba điều hội tụ: 1. **Model embedding local đạt chất lượng production** — `nomic-embed-text` và `bge-large` chạy trên VPS 4GB, embed ở 200 doc/phút, retrieve sub-100ms. Không còn "gửi dữ liệu sang OpenAI để embed"
+Ba điều hội tụ: 1. **Model embedding local đạt chất lượng production** — ```nomic-embed-text```` và ````bge-large```` chạy trên VPS 4GB, embed ở 200 doc/phút, retrieve sub-100ms. Không còn "gửi dữ liệu sang OpenAI để embed"
 2. **MCP chuẩn hóa tích hợp agent-knowledge** — khi knowledge base nói MCP, mọi AI coding agent (Claude Desktop, OpenCode, Cursor, Continue) đều query được mà không cần code tích hợp tùy biến. Xem [hướng dẫn MCP server registry](/vi/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) cho chi tiết protocol
 3. **RAGFlow ship phân tích doc cấp doanh nghiệp mã nguồn mở** — PDF nhiều cột, bảng có cell hợp nhất, công thức nhúng. Cái mọi stack "DIY RAG" đều thất bại, giờ giải quyết
 
@@ -55,7 +56,7 @@ Stack ba — embedding local + expose MCP + phân tích cấp RAGFlow — quyế
 
 ## 2. Tổng Quan Kiến Trúc
 
-```
+`````
    ┌────────────────────────────────────────────────────┐
    │ VPS ($10-25/tháng)                                 │
    │                                                    │
@@ -87,7 +88,7 @@ Stack ba — embedding local + expose MCP + phân tích cấp RAGFlow — quyế
    │  │    (Claude / Cursor / OpenCode)  │               │
    │  └─────────────────────────────────┘               │
    └────────────────────────────────────────────────────┘
-```
+`````
 
 Phân chia: AnythingLLM là cửa trước cho user, RAGFlow xử doc AnythingLLM parser vấp, vector DB là backend retrieval chia sẻ, mem0 + AgentMemory MCP expose cùng kiến thức cho AI coding agent.
 
@@ -97,16 +98,16 @@ Phân chia: AnythingLLM là cửa trước cho user, RAGFlow xử doc AnythingLL
 
 **Vì sao chọn**: 28k+ stars, container Docker đơn deploy 10 phút, có web UI tinh tế nhất trong các tool RAG mã nguồn mở. Hỗ trợ 40+ LLM provider làm chat backend (Ollama / DeepSeek / Claude / GPT-5 / OpenRouter) nên giữ linh hoạt chi phí.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker run -d --name anythingllm \
   -p 3001:3001 \
   -v anythingllm-storage:/app/server/storage \
   -e LLM_PROVIDER=ollama \
   -e EMBEDDING_ENGINE=native \
   mintplexlabs/anythingllm:latest
-```
+`````
 
-Mở `http://your-vps:3001`, tạo workspace, kéo PDF vào. Parser tích hợp xử 80% doc. Cho 20% còn lại, route sang RAGFlow (thành phần tiếp).
+Mở ````http://your-vps:3001````, tạo workspace, kéo PDF vào. Parser tích hợp xử 80% doc. Cho 20% còn lại, route sang RAGFlow (thành phần tiếp).
 
 **Setup đầy đủ** bao gồm auth team, cấu trúc workspace, routing LLM provider: [Kiến trúc AnythingLLM local RAG](/vi/resources/llm-frameworks/anythingllm-architecture-local-rag/).
 
@@ -116,10 +117,10 @@ Mở `http://your-vps:3001`, tạo workspace, kéo PDF vào. Parser tích hợp 
 
 **Vì sao chọn**: Parser "DeepDoc" của RAGFlow dùng vision model trên mỗi page, bảo toàn cấu trúc bảng (cell hợp nhất, hàng lồng), chunk doc theo khối ngữ nghĩa thay vì count token. Kết quả retrieval chính xác hơn 3-5× cho doc khó.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-compose.yml up -d
 # Web UI :80, API :9380
-```
+`````
 
 **Pattern workflow**: AnythingLLM là daily driver. Khi chất lượng retrieval giảm cho doc cụ thể, xử lại qua RAGFlow, lưu chunk đã parse về vector DB chia sẻ.
 
@@ -127,16 +128,16 @@ docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-c
 
 ## 5. Thành Phần 3 — mem0 (Layer Memory Agent)
 
-**Vai trò**: Memory ngữ nghĩa bền vững sống qua các phiên chat và qua các agent. "Nhớ user đang dùng Tailwind v4 và auth ở `src/lib/auth.ts`" — và bất kỳ agent nào nói chuyện với mem0 đều có sự thật đó phiên sau, tháng sau, năm sau.
+**Vai trò**: Memory ngữ nghĩa bền vững sống qua các phiên chat và qua các agent. "Nhớ user đang dùng Tailwind v4 và auth ở ````src/lib/auth.ts````" — và bất kỳ agent nào nói chuyện với mem0 đều có sự thật đó phiên sau, tháng sau, năm sau.
 
 **Vì sao chọn**: 30k+ stars. Xây riêng cho memory agent (không phải vector DB tổng quát). Tự trích xuất sự thật từ hội thoại, dedupe, sự thật cũ tự nhiên suy giảm.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 pip install mem0ai
 # Hoặc chạy như service: docker run -d --name mem0 -p 8765:8765 \
   -e VECTOR_DB=chroma \
   mem0ai/mem0-server:latest
-```
+`````
 
 **Use case**: Kết nối mem0 làm layer writeback tới workspace AnythingLLM. Mỗi hội thoại chat tự chưng cất thành sự thật mem0. AI coding agent (thành phần tiếp) sau đó có cả corpus doc VÀ sự thật trích xuất từ hội thoại.
 
@@ -146,12 +147,12 @@ pip install mem0ai
 
 **Vai trò**: Expose mem0 (và tùy chọn vector DB AnythingLLM) tới bất kỳ MCP host — Claude Desktop, OpenCode, Cursor, Continue, Hermes Agent. Knowledge base bây giờ nói protocol mọi AI coding agent hiện đại hiểu.
 
-**Vì sao quan trọng**: Không có MCP, tích hợp knowledge base tùy biến với từng AI coding tool yêu cầu code tùy biến per tool. Với AgentMemory MCP, bạn thêm một lần vào `claude_desktop_config.json` và mọi agent nhận thức MCP đều có.
+**Vì sao quan trọng**: Không có MCP, tích hợp knowledge base tùy biến với từng AI coding tool yêu cầu code tùy biến per tool. Với AgentMemory MCP, bạn thêm một lần vào ````claude_desktop_config.json```` và mọi agent nhận thức MCP đều có.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 npm install -g @mem0/mem0-mcp
 # Thêm vào OpenCode / Claude Desktop MCP config: # { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
-```
+`````
 
 **Kết quả**: Coding agent giờ có thể trả lời "dựa trên doc project và hội thoại quá khứ, tôi nên cấu trúc luồng auth mới thế nào?" — với trích dẫn từ cả PDF và quyết định trước.
 
@@ -167,11 +168,11 @@ npm install -g @mem0/mem0-mcp
 
 **Khuyến nghị mặc định**: Bắt đầu Chroma (đã bên trong AnythingLLM). Migrate tới Qdrant khi corpus > 100 GB hoặc latency query > 200ms.
 
-```bash
+`````bash
 # Qdrant khi vượt Chroma: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
   -v qdrant-storage:/qdrant/storage \
   qdrant/qdrant:latest
-```
+````
 
 ## 8. Thứ Tự Setup Day 1 (90 phút)
 
@@ -223,7 +224,7 @@ Thay $50-200/tháng SaaS (Notion AI + Mem + Glean Lite) bằng self-host bạn s
 
 Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/tháng droplet" >}} cho tier khởi đầu, theo mục 8, và knowledge base của bạn có thể query từ Claude Desktop / Cursor / OpenCode vào ngày mai.
 
----
+* * *
 
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cắm knowledge base này vào stack coding agent. [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí chat-LLM. [Stack Marketing AI Xuyên Biên Giới](/vi/collections/cross-border-ai-marketing-stack/) cho team Trung Quốc cần host thân thiện Trung Quốc.*
 
@@ -253,7 +254,7 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/tháng droplet" >}} 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -263,7 +264,7 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/tháng droplet" >}} 
 - [arize-ai-observability-llm](knowledge-base-stack)
 - [cognee-ai-memory-platform](knowledge-base-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

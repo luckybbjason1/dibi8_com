@@ -28,6 +28,7 @@ faq: - q: "2026년에는 어떤 AI 에이전트 프레임워크를 선택해야 
     a: "가능하지만 고통스럽습니다. 각 프레임워크는 자체 도구 호출 API, 상태 모델, 관측성 훅을 가지고 있습니다. 한번 선택하면 6개월 이상 고수할 계획을 세우세요. 전환 비용은 새 에이전트 워크플로우 1-2개를 구축하는 비용과 거의 같습니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # 오픈소스 AI 에이전트 프레임워크 Top 10 (2026)
@@ -126,7 +127,7 @@ AI 에이전트 프레임워크 지형은 2026년에 통합되었습니다. 2년
 
 언어 스택과 워크플로우 스타일로 선택하세요. 기능이 충분히 수렴되어 선택은 기능보다 생태계 적합성에 더 가깝습니다. Python 프로덕션이면 LangGraph, TypeScript이면 Mastra, 자율 코딩이면 OpenHands. 6개월 이상 헌신하세요 — 전환 비용은 실재합니다.
 
----
+* * *
 
 **관련 글**: [12-Factor Agents 프로덕션 가이드](https://dibi8.com/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [AI 에이전트 메모리 시스템](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP 서버 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -192,12 +193,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -207,7 +208,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-agent-frameworks-comparison-2026](open-source-ai-agent-framework-top-10-2026)
 - [langgraph-vs-crewai](open-source-ai-agent-framework-top-10-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

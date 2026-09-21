@@ -12,11 +12,12 @@ aliases:
   - /zh/posts/flowise-ai-workflow-builder-lowcode/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么构建 AI Agent 仍然像 2006 年
 
-2026 年，构建生产级 AI Agent 仍然需要同时处理 **3-5 个不同的 Python 库**，为内存管理编写样板代码，调试静默失败的异步链，并在添加下一个集成时祈祷 `requirements.txt` 不会冲突。你需要 LangChain 作为框架，一个单独的向量存储客户端，另一个用于文档加载的库，FastAPI 用于 HTTP 层，如果你想要前端还需要 Streamlit。等到你的"简单"RAG 聊天机器人部署完成时，你已经写了 **800+ 行 Python** 代码，并承担了随每次模型更新而增长的维护负担。
+2026 年，构建生产级 AI Agent 仍然需要同时处理 **3-5 个不同的 Python 库**，为内存管理编写样板代码，调试静默失败的异步链，并在添加下一个集成时祈祷 ```requirements.txt```` 不会冲突。你需要 LangChain 作为框架，一个单独的向量存储客户端，另一个用于文档加载的库，FastAPI 用于 HTTP 层，如果你想要前端还需要 Streamlit。等到你的"简单"RAG 聊天机器人部署完成时，你已经写了 **800+ 行 Python** 代码，并承担了随每次模型更新而增长的维护负担。
 
 **Flowise** 颠覆了这一范式。它是一个 Apache-2.0 许可的可视化工作流构建器，构建于 LangChain 之上，允许你通过拖拽和连接画布上的节点来构建复杂的 AI 管道 —— RAG 聊天机器人、多 Agent 系统、文档处理器。拥有 **45,000+ GitHub Stars** 和 **100+ 集成**的繁荣生态系统，它已成为希望快速交付 AI 功能而又不牺牲 LangChain 底层引擎灵活性的团队的首选工具。
 
@@ -32,7 +33,7 @@ aliases:
 
 Flowise 的架构由三层组成：
 
-```yaml
+`````yaml
 ┌─────────────────────────────────────────────┐
 │           前端 (React + Flow Editor)         │
 │           - 拖拽式画布                       │
@@ -50,7 +51,7 @@ Flowise 的架构由三层组成：
 │           - 向量存储 (外部)                  │
 │           - 文件系统 (文档上传)              │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ### 核心概念
 
@@ -64,7 +65,7 @@ Flowise 的架构由三层组成：
 
 **助手**（v2.2.0 新增）是具有线程管理的持久对话 Agent，基于 OpenAI Assistants API 或本地等效物构建。
 
-```bash
+`````bash
 # Flowise 将流程定义作为 JSON 存储在数据库中
 # 简化的聊天流程结构示例
 {
@@ -78,13 +79,13 @@ Flowise 的架构由三层组成：
     { "source": "prompt_1", "target": "llm_1", "input": "prompt" }
   ]
 }
-```
+`````
 
 ## 安装与配置：5 分钟内运行 Flowise
 
 ### Docker Compose（推荐）
 
-```bash
+`````bash
 # 创建项目目录
 mkdir -p ~/flowise && cd ~/flowise
 
@@ -111,13 +112,13 @@ docker compose up -d
 
 # 检查状态
 curl -s http://localhost:3000/api/v1/health | jq .
-```
+`````
 
-首次拉取 `flowiseai/flowise:2.2.0` 镜像约 **1.4 GB**。运行后，访问 `http://localhost:3000` 并使用 compose 文件中的凭据登录。
+首次拉取 ````flowiseai/flowise:2.2.0```` 镜像约 **1.4 GB**。运行后，访问 ````http://localhost:3000```` 并使用 compose 文件中的凭据登录。
 
 ### 生产环境 PostgreSQL 配置
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: postgres: image: postgres:16-alpine
     environment: POSTGRES_USER: flowise
@@ -138,11 +139,11 @@ services: postgres: image: postgres:16-alpine
     depends_on: - postgres
     volumes: - flowise_storage:/root/.flowise
 
-volumes: postgres_data: flowise_storage: ```
+volumes: postgres_data: flowise_storage: `````
 
 ### 环境变量参考
 
-```bash
+`````bash
 # 核心配置
 PORT=3000                                    # 应用端口
 FLOWISE_USERNAME=admin                       # 管理员用户名
@@ -161,7 +162,7 @@ BLOB_STORAGE_TYPE=s3
 S3_STORAGE_BUCKET=flowise-docs
 S3_STORAGE_ACCESS_KEY_ID=...
 S3_STORAGE_SECRET_ACCESS_KEY=...
-```
+`````
 
 > 💡 **推广链接：** 在可靠的 VPS 上通过 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 部署 Flowise。使用他们 $200 的免费额度在 2 vCPU / 4 GB RAM Droplet 上测试带 PostgreSQL 后端的 Flowise。
 
@@ -171,22 +172,22 @@ S3_STORAGE_SECRET_ACCESS_KEY=...
 
 ### 第一步：创建新的聊天流程
 
-打开 Flowise 访问 `http://localhost:3000` → **聊天流程** → **创建新流程**。你将看到一个空白画布，左侧有节点面板。
+打开 Flowise 访问 ````http://localhost:3000```` → **聊天流程** → **创建新流程**。你将看到一个空白画布，左侧有节点面板。
 
 ### 第二步：添加向量存储检索器
 
-```bash
+`````bash
 # 从左侧面板拖拽这些节点到画布：
 # 1. 向量存储 → "内存向量存储" (测试用)
 #    或 "Chroma" / "Qdrant" / "Pinecone" (生产用)
 # 2. 文档加载器 → "PDF 文件" 或 "纯文本"
 # 3. 嵌入 → "OpenAI 嵌入" 或 "Ollama 嵌入"
 # 4. 文本拆分器 → "递归字符文本拆分器"
-```
+`````
 
 ### 第三步：连接文档摄取链
 
-```
+`````
 # 按此顺序连接节点：
 # [PDF 文件] → [递归字符文本拆分器] → [OpenAI 嵌入] → [向量存储]
 #
@@ -195,11 +196,11 @@ S3_STORAGE_SECRET_ACCESS_KEY=...
 # - 文本拆分器: chunkSize=1000, chunkOverlap=200
 # - 嵌入: model=text-embedding-3-small
 # - 向量存储: collectionName=my-docs
-```
+`````
 
 ### 第四步：添加对话式 RAG 链
 
-```
+`````
 # 为查询端添加这些节点：
 # [聊天提示模板] → [OpenAI 聊天模型] → [输出解析器]
 #         ↑
@@ -211,11 +212,11 @@ S3_STORAGE_SECRET_ACCESS_KEY=...
 # - 向量存储输出 → 向量存储检索器输入
 # - 检索器输出 → QA 链的 "source_documents" 输入
 # - QA 链输出 → 聊天模型输入
-```
+`````
 
 ### 第五步：配置提示模板
 
-```python
+`````python
 # RAG 聊天机器人的系统提示模板
 SYSTEM_PROMPT = """你是一个基于所提供上下文回答问题的有用助手。
 如果上下文中没有答案，请说"我没有足够的信息来回答这个问题。"
@@ -232,11 +233,11 @@ SYSTEM_PROMPT = """你是一个基于所提供上下文回答问题的有用助�
 # 将模板设置为上述文本
 # {context} 自动从检索器填充
 # {question} 来自用户输入
-```
+`````
 
 ### 第六步：测试和部署
 
-```bash
+`````bash
 # 在 Flowise UI 中，点击右上角的聊天气泡
 # 询问与上传文档相关的问题
 # 查看"使用上下文"标签以查看检索到了哪些块
@@ -246,7 +247,7 @@ SYSTEM_PROMPT = """你是一个基于所提供上下文回答问题的有用助�
 curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "What is the main topic of this document?"}'
-```
+`````
 
 ## 多 Agent 流程：可视化 Agent 编排
 
@@ -254,7 +255,7 @@ Flowise v2.2.0 的 **Agent 流程** 功能让你无需编写编排代码即可�
 
 ### 构建研究团队
 
-```
+`````
 # 3-Agent 研究团队的画布布局：
 #
 #                    ┌─────────────────┐
@@ -270,11 +271,11 @@ Flowise v2.2.0 的 **Agent 流程** 功能让你无需编写编排代码即可�
 #     └─────────────┘ └─────────────┘ └─────────────┘
 #
 # 主管根据用户输入中检测到的任务类型将查询路由到适当的 Agent。
-```
+`````
 
 ### 节点配置
 
-```bash
+`````bash
 # 主管 Agent 节点：
 # - LLM: gpt-4.1-nano
 # - 类型: supervisor
@@ -294,11 +295,11 @@ Flowise v2.2.0 的 **Agent 流程** 功能让你无需编写编排代码即可�
 # - LLM: gpt-4.1-nano
 # - 工具: 向量存储检索器
 # - 系统提示: "分析提供的文档以获取相关信息。"
-```
+`````
 
 ### 部署多 Agent 流程
 
-```bash
+`````bash
 # 部署为 API 端点
 curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
   -H "Content-Type: application/json" \
@@ -318,7 +319,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 #     {"agent": "web_search", "action": "found industry benchmarks"}
 #   ]
 # }
-```
+`````
 
 ## 与 100+ 工具和服务的集成
 
@@ -326,11 +327,11 @@ Flowise 支持以下类别的 **100+ 集成**：
 
 | 类别 | 热门集成 | 数量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LLM 提供商** | OpenAI, Anthropic, Google, Ollama, Groq, Mistral, Cohere | 15+ |
 | **向量存储** | Chroma, Qdrant, Pinecone, Weaviate, LanceDB, Milvus, Redis | 10+ |
@@ -343,7 +344,7 @@ Flowise 支持以下类别的 **100+ 集成**：
 
 ### 添加自定义工具
 
-```javascript
+`````javascript
 // custom_tool.js — 保存在 Flowise 服务器的 tools 目录中
 const { Tool } = require('langchain/tools');
 
@@ -359,7 +360,7 @@ class JiraTicketTool extends Tool {
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
       method: POST,
       headers: {
-        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
+        Authorization: ````Basic ${Buffer.from('email:token').toString(base64)}````,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -376,7 +377,7 @@ class JiraTicketTool extends Tool {
 }
 
 module.exports = { JiraTicketTool };
-```
+`````
 
 ## 基准测试与实际性能
 
@@ -386,15 +387,15 @@ module.exports = { JiraTicketTool };
 
 | 工作流类型 | 节点数 | 平均延迟 | 95 百分位 | Token/秒 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 简单 LLM 调用 | 3 | 0.8秒 | 1.2秒 | 142 |
 | RAG (1 文档, 10 页) | 7 | 2.1秒 | 3.4秒 | 98 |
@@ -406,11 +407,11 @@ module.exports = { JiraTicketTool };
 
 | 并发用户 | 平均响应时间 | 错误率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 2.1秒 | 0% |
 | 5 | 2.8秒 | 0% |
@@ -424,13 +425,13 @@ module.exports = { JiraTicketTool };
 
 | 指标 | Flowise | 手写 Python | 节省时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 简单 RAG 设置 | 15 分钟 | 4 小时 | **94%** |
 | 多 Agent 流程 | 45 分钟 | 12 小时 | **94%** |
@@ -445,7 +446,7 @@ module.exports = { JiraTicketTool };
 
 ### 嵌入 Flowise 作为聊天小部件
 
-```html
+`````html
 import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
@@ -464,11 +465,11 @@ import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.j
     }
   });
 </script>
-```
+`````
 
 ### API 认证与速率限制
 
-```bash
+`````bash
 # 启用 API 密钥认证
 # 设置 → API 密钥 → 创建新密钥
 
@@ -481,11 +482,11 @@ curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
 # 生产环境，添加 Nginx 速率限制：
 # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
 # limit_req zone=flowise burst=20 nodelay;
-```
+`````
 
 ### Webhook 触发器
 
-```bash
+`````bash
 # 配置流程以在外部事件上触发
 # 设置 → Webhook → 启用
 
@@ -496,11 +497,11 @@ curl -X POST http://localhost:3000/api/v1/webhook/your-webhook-id \
     "event": "new_ticket",
     "data": { "ticket_id": "TKT-123", "description": "..." }
   }'
-```
+`````
 
 ### 备份与迁移
 
-```bash
+`````bash
 #!/bin/bash
 # backup-flowise.sh — 通过 cron 运行
 
@@ -522,11 +523,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > "$BACKUP_DIR/database.
 
 # 保留最近 14 天
 find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
-```
+`````
 
 ### 使用 Prometheus 监控
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v3.0
     ports: - "9090:9090"
@@ -541,21 +542,21 @@ services: prometheus: image: prom/prometheus:v3.0
       - METRICS_PORT=9091
     ports: - "3000:3000"
       - "9091:9091"
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Flowise | LangGraph Studio | Dify | n8n AI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | Apache-2.0 | MIT | Apache-2.0 | Fair-code |
 | **GitHub Stars** | 45,000 | 8,500 | 92,000 | 75,000 |
@@ -590,11 +591,11 @@ services: prometheus: image: prom/prometheus:v3.0
 
 ### 我可以导出 Flowise 流程并在没有 Flowise 的情况下运行吗？
 
-不能直接运行。Flowise 流程以 JSON 图定义存储，并由 Flowise 的运行时引擎执行。但是，你可以导出流程 JSON 并使用 Flowise 的开源运行时包（`flowise-components`）在 Node.js 中以编程方式执行。对于纯 Python 环境，你需要重建等效的 LangChain 代码。团队暗示未来版本将推出 Python 运行时。
+不能直接运行。Flowise 流程以 JSON 图定义存储，并由 Flowise 的运行时引擎执行。但是，你可以导出流程 JSON 并使用 Flowise 的开源运行时包（````flowise-components````）在 Node.js 中以编程方式执行。对于纯 Python 环境，你需要重建等效的 LangChain 代码。团队暗示未来版本将推出 Python 运行时。
 
 ### Flowise 如何安全地处理 API 密钥？
 
-API 密钥使用 AES-256 静态加密，密钥派生自你的 `FLOWISE_SECRETKEY_OVERWRITE` 环境变量。密钥在输入后永远不会在 UI 中暴露，流程导出会剥离凭证值。生产环境中，使用基于环境变量的凭证而非 UI 输入的凭证，并每季度轮换密钥。
+API 密钥使用 AES-256 静态加密，密钥派生自你的 ````FLOWISE_SECRETKEY_OVERWRITE```` 环境变量。密钥在输入后永远不会在 UI 中暴露，流程导出会剥离凭证值。生产环境中，使用基于环境变量的凭证而非 UI 输入的凭证，并每季度轮换密钥。
 
 ### Flowise 能处理的最大流程复杂度是多少？
 
@@ -602,13 +603,13 @@ API 密钥使用 AES-256 静态加密，密钥派生自你的 `FLOWISE_SECRETKEY
 
 ### 我可以仅使用本地 LLM 吗？
 
-当然可以。连接 Ollama（通过 Ollama 聊天模型节点）、LM Studio 或 LocalAI 节点。所有向量存储、嵌入和工具节点都可以与本地设置一起工作。唯一需要云访问的 Flowise 功能是内置遥测（可以用 `DISABLE_FLOWISE_TELEMETRY=true` 禁用）。
+当然可以。连接 Ollama（通过 Ollama 聊天模型节点）、LM Studio 或 LocalAI 节点。所有向量存储、嵌入和工具节点都可以与本地设置一起工作。唯一需要云访问的 Flowise 功能是内置遥测（可以用 ````DISABLE_FLOWISE_TELEMETRY=true```` 禁用）。
 
 ### 如何从 Flowise v1.x 迁移到 v2.x？
 
 从 v1.x 升级到 v2.2.0 需要：
 1. 通过 JSON 导出备份所有聊天流程
-2. 拉取新 Docker 镜像：`flowiseai/flowise:2.2.0`
+2. 拉取新 Docker 镜像：````flowiseai/flowise:2.2.0````
 3. 首次启动时自动运行数据库迁移
 4. 验证并重新配置任何已弃用的节点
 5. v2.0 版本弃用了 4 个旧版节点；查看 https://docs.flowiseai.com/migration/v1-to-v2 的迁移指南
@@ -624,7 +625,7 @@ Flowise 消除了将 LangChain 想法与部署的 AI 功能分隔开的 **800 �
 **45,000+ GitHub Stars** 和 Apache-2.0 许可证确保了长期可行性，而 100+ 集成意味着你不太可能遇到连接障碍。对于交付 RAG 聊天机器人、文档处理器或多 Agent 研究工具的团队，Flowise 与手写代码相比将开发时间减少了 **90%+**。
 
 **下一步：**
-1. 部署：`docker run -p 3000:3000 flowiseai/flowise:2.2.0`
+1. 部署：````docker run -p 3000:3000 flowiseai/flowise:2.2.0```
 2. 15 分钟内构建 RAG 聊天机器人
 3. 将其作为嵌入式小部件部署到你的网站
 4. 尝试多 Agent 流程用于复杂研究任务
@@ -688,7 +689,7 @@ Flowise 消除了将 LangChain 想法与部署的 AI 功能分隔开的 **800 �
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [langflow-visual-llm-workflow-builder-2026](flowise-ai-workflow-builder-lowcode)
@@ -698,7 +699,7 @@ Flowise 消除了将 LangChain 想法与部署的 AI 功能分隔开的 **800 �
 - [mattpocock-skills-ai-agent-framework-guide](flowise-ai-workflow-builder-lowcode)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

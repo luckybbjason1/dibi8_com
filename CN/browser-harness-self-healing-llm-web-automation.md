@@ -33,6 +33,7 @@ faqs: - q: 'What is Browser Harness?'
   - q: 'What are the main limitations of Browser Harness?'
     a: 'Its limitations are cost (LLM API calls incur fees, though local models can be used), speed (it is slower than traditional automation because the model needs time to reason), safety (strict guardrails are needed to prevent mis-operations), and complex CAPTCHAs that may still need a human.'
 ---
+
 {</* resource-info */>}
 
 ## 问题：传统爬虫已死，AI 时代需要新范式
@@ -64,19 +65,19 @@ faqs: - q: 'What is Browser Harness?'
 ### 1. 自愈合（Self-Healing）
 
 传统自动化：
-```python
+````python
 # 脆弱的选择器，页面一改就失效
 button = driver.find_element(By.CSS_SELECTOR, "#submit-btn")
 button.click()
-```
+`````
 
 Browser Harness：
-```python
+`````python
 # LLM 理解页面语义，自动找到正确的按钮
 # 即使 id 变了，也能通过上下文理解
 result = harness.execute("点击提交按钮")
 # 如果按钮找不到，LLM 会分析页面并提出替代方案
-```
+`````
 
 **自愈机制**：
 - 操作失败 → 截图分析 → LLM 诊断 → 生成新策略 → 重试
@@ -86,7 +87,7 @@ result = harness.execute("点击提交按钮")
 
 Browser Harness 不依赖 CSS 选择器，而是让 LLM **理解页面内容**：
 
-```python
+`````python
 # 告诉 LLM 目标，而不是步骤
 harness.execute("在亚马逊搜索无线耳机，按评分排序，选择第一个结果加入购物车")
 
@@ -97,11 +98,11 @@ harness.execute("在亚马逊搜索无线耳机，按评分排序，选择第一
 # 4. 选择 "Customer Reviews"
 # 5. 找到第一个商品
 # 6. 点击 "Add to Cart"
-```
+`````
 
 ### 3. 多步骤任务规划
 
-```python
+`````python
 from browser_harness import Harness
 
 harness = Harness(model="gpt-4o")
@@ -128,13 +129,13 @@ result = harness.execute(task)
 # 8. 选择无托运票价
 # 9. 填写乘客信息
 # 10. 提交订单
-```
+`````
 
 ### 4. 视觉感知（Visual Perception）
 
 Browser Harness 可以给 LLM 发送页面截图，让模型"看到"网页：
 
-```python
+`````python
 # 截图分析
 screenshot = harness.screenshot()
 analysis = harness.llm.analyze_image(screenshot, 
@@ -146,21 +147,21 @@ analysis = harness.llm.analyze_image(screenshot,
 #  - 密码输入框（type=password）
 #  - 记住我复选框
 #  - 登录按钮"
-```
+`````
 
 ### 5. 与现有工具对比
 
 | 特性 | Browser Harness | Playwright | Selenium | Scrapy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **自愈合** | ✅ 自动修复 | ❌ 手动维护 | ❌ 手动维护 | ❌ 手动维护 |
 | **语义理解** | ✅ LLM 驱动 | ❌ 选择器 | ❌ 选择器 | ❌ XPath |
@@ -171,7 +172,7 @@ analysis = harness.llm.analyze_image(screenshot,
 
 ## 架构设计
 
-```
+`````
 Browser Harness
 ├── LLM Core (GPT-4o / Claude / Local LLM)
 ├── Browser Controller (Playwright / Selenium)
@@ -188,22 +189,22 @@ Browser Harness
     ├── URL Whitelist
     ├── Action Limits
     └── Human-in-the-Loop
-```
+`````
 
 ## 安装与使用
 
 ### 安装
 
-```bash
+`````bash
 pip install browser-harness
 
 # 安装浏览器依赖
 playwright install
-```
+`````
 
 ### 基本用法
 
-```python
+`````python
 from browser_harness import Harness
 
 # 初始化
@@ -225,11 +226,11 @@ task = """
 """
 result = harness.execute(task)
 print(result)  # "当前 Stars: 11251"
-```
+`````
 
 ### 高级配置
 
-```python
+`````python
 from browser_harness import Harness, Config
 
 config = Config(
@@ -244,13 +245,13 @@ config = Config(
 )
 
 harness = Harness(model="gpt-4o", config=config)
-```
+`````
 
 ## 实际应用场景
 
 ### 场景 1：自动化测试
 
-```python
+`````python
 # 让 LLM 测试你的网站
 test_cases = [
     "注册一个新用户，验证收到确认邮件",
@@ -260,11 +261,11 @@ test_cases = [
 
 for test in test_cases: result = harness.execute(test)
     assert result.success, f"测试失败: {test}"
-```
+`````
 
 ### 场景 2：数据采集
 
-```python
+`````python
 # 智能爬虫，自动适应网站变化
 data = harness.execute("""
 访问 example.com/products，
@@ -275,11 +276,11 @@ data = harness.execute("""
 - 库存状态
 保存为 JSON
 """)
-```
+`````
 
 ### 场景 3：自动化办公
 
-```python
+`````python
 # 自动处理日常网页任务
 harness.execute("""
 1. 登录公司报销系统
@@ -288,30 +289,30 @@ harness.execute("""
 4. 填写审批人
 5. 提交申请
 """)
-```
+`````
 
 ### 场景 4：竞品监控
 
-```python
+`````python
 # 每天检查竞品价格
 harness.execute("""
 访问 amazon.com，搜索我们的核心产品关键词，
 记录前 10 个结果的价格和评分，
 生成对比报告
 """)
-```
+````
 
 ## 与类似项目对比
 
 | 项目 | Stars | 特点 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Browser Harness** | 11K+ | 自愈合、LLM 驱动 | 通用网页任务 |
 | **Playwright** | 66K+ | 高性能、多浏览器 | 自动化测试 |
@@ -346,7 +347,7 @@ Browser Harness 代表了**网页自动化的新范式** —— 从"写死的选
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -432,7 +433,7 @@ Browser Harness：让 LLM 自主操控浏览器的自愈型神器 represents an 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -463,15 +464,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

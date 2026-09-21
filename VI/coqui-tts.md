@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/coqui-tts/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -62,7 +63,7 @@ Sơ đồ kiến trúc bên dưới cho thấy luồng dữ liệu từ văn b�
 
 **Yêu cầu:** Python 3.9+, CUDA 11.8+ (tùy chọn, cho GPU), tối thiểu 4 GB RAM, khuyến nghị 8 GB VRAM cho XTTS v2.
 
-Cài đặt từ PyPI trong vòng hai phút: ```bash
+Cài đặt từ PyPI trong vòng hai phút: ````bash
 python -m venv coqui-env
 source coqui-env/bin/activate
 
@@ -71,18 +72,18 @@ pip install coqui-tts
 
 # Xác minh cài đặt
 tts --list_models | head -20
-```
+`````
 
-Cài đặt phiên bản phát triển mới nhất từ nhánh cộng đồng: ```bash
+Cài đặt phiên bản phát triển mới nhất từ nhánh cộng đồng: `````bash
 pip install coqui-tts --upgrade
 
 # Hoặc cài đặt từ mã nguồn
 git clone https://github.com/idiap/coqui-ai-TTS.git
 cd coqui-ai-TTS
 pip install -e .
-```
+`````
 
-Cài đặt espeak-ng cho các mô hình dựa trên âm vị (bắt buộc cho nhiều ngôn ngữ không phải tiếng Anh): ```bash
+Cài đặt espeak-ng cho các mô hình dựa trên âm vị (bắt buộc cho nhiều ngôn ngữ không phải tiếng Anh): `````bash
 # Ubuntu / Debian
 sudo apt-get install espeak-ng
 
@@ -91,11 +92,11 @@ brew install espeak
 
 # Xác minh
 espeak-ng --version
-```
+`````
 
 **Cài đặt Docker — con đường nhanh nhất đến sản xuất:**
 
-```bash
+`````bash
 # Kéo image GPU chính thức
 docker pull ghcr.io/coqui-ai/tts:latest
 
@@ -110,11 +111,11 @@ docker run -d --name coqui-tts \
   ghcr.io/coqui-ai/tts \
   --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
   --use_cuda true
-```
+`````
 
 **Kiểm tra tổng hợp nhanh:**
 
-```bash
+`````bash
 # Liệt kê tất cả các mô hình có sẵn
 tts --list_models
 
@@ -129,13 +130,13 @@ tts --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
     --speaker_wav reference_voice.wav \
     --language_idx zh \
     --out_path chinese_output.wav
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
 ### Python API — Tổng hợp cơ bản
 
-```python
+`````python
 import torch
 from TTS.api import TTS
 
@@ -151,11 +152,11 @@ wav = tts.tts(
     speaker="Ana Florence",
     language="en"
 )
-```
+`````
 
 ### Python API — Nhân bản giọng nói
 
-```python
+`````python
 # Nhân bản giọng từ 6 giây âm thanh tham chiếu
 tts.tts_to_file(
     text="This cloned voice will sound like your reference speaker.",
@@ -171,11 +172,11 @@ tts.tts_to_file(
     language="en",
     file_path="batch_cloned.wav"
 )
-```
+`````
 
 ### Máy chủ REST API
 
-```bash
+`````bash
 # Khởi động máy chủ tích hợp (không phải cấp sản xuất, dùng gunicorn sau nginx)
 tts-server \
     --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
@@ -195,11 +196,11 @@ curl -X POST "http://localhost:5002/v1/audio/speech" \
         "response_format": "wav"
     }' \
     --output openai_compat.wav
-```
+`````
 
 ### Tích hợp Flask
 
-```python
+`````python
 from flask import Flask, request, send_file
 from TTS.api import TTS
 import torch
@@ -226,11 +227,11 @@ def synthesize(): data = request.get_json()
     return send_file(buffer, mimetype="audio/wav")
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
-```
+`````
 
 ### Docker Compose cho sản xuất
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -255,11 +256,11 @@ services: coqui-tts: build: .
     ports: - "80:80"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on: - coqui-tts
-```
+`````
 
 ### Dockerfile cho Coqui TTS
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -282,11 +283,11 @@ RUN python3 warm_up.py
 
 EXPOSE 5002
 CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5002", "--timeout", "120", "server:app"]
-```
+`````
 
 ### Tích hợp chuyển đổi giọng nói
 
-```python
+`````python
 # Chuyển đổi giọng nói từ nguồn sang ngườii nói mục tiêu
 tts = TTS("voice_conversion_models/multilingual/vctk/freevc24").to("cuda")
 
@@ -295,7 +296,7 @@ tts.voice_conversion_to_file(
     target_wav="target_voice.wav",
     file_path="converted_voice.wav"
 )
-```
+`````
 
 ## Điểm chuẩn / Trường hợp sử dụng thực tế
 
@@ -321,7 +322,7 @@ Chúng tôi chạy điểm chuẩn được kiểm soát trên NVIDIA A10 (24 GB
 
 **Số liệu triển khai thực tế (API sản xuất phục vụ 5000 yêu cầu/ngày):**
 
-```
+`````
 Phần cứng: 2x NVIDIA A10G (AWS g5.2xlarge)
 Cân bằng tải: nginx round-robin
 Container: Docker + gunicorn (4 worker mỗi GPU)
@@ -329,13 +330,13 @@ Container: Docker + gunicorn (4 worker mỗi GPU)
 Thông lượng: 12 req/giây mỗi GPU
 Tỷ lệ lỗi: 0.03% (OOM trên đầu vào >500 ký tự)
 Thờii gian hoạt động: 99.7% trong 30 ngày
-```
+`````
 
 ## Sử dụng nâng cao / Củng cố sản xuất
 
 ### Script làm nóng mô hình
 
-Lần suy luận đầu tiên sau khi khởi động container sẽ kích hoạt biên dịch CUDA kernel, thêm 5-10 giây độ trễ. Tích hợp điều này vào ENTRYPOINT: ```python
+Lần suy luận đầu tiên sau khi khởi động container sẽ kích hoạt biên dịch CUDA kernel, thêm 5-10 giây độ trễ. Tích hợp điều này vào ENTRYPOINT: `````python
 # warm_up.py
 import os
 from TTS.api import TTS
@@ -347,11 +348,11 @@ if torch.cuda.is_available(): tts = tts.to("cuda")
 # Kích hoạt JIT compile
 _ = tts.tts(text="warm up", speaker_wav=None, language="en")
 print("[warmup] CUDA kernels đã biên dịch, mô hình sẵn sàng")
-```
+`````
 
 ### Tối ưu bộ nhớ với ONNX + FP16
 
-```python
+`````python
 # Chuyển đổi mô hình PyTorch sang ONNX để tăng tốc 2x
 import torch
 from TTS.api import TTS
@@ -364,11 +365,11 @@ tts = TTS("tts_models/en/ljspeech/tacotron2-DDC").to("cuda")
 # Bật suy luận FP16
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.benchmark = True
-```
+`````
 
 ### Suy luận batch để tăng thông lượng
 
-```python
+`````python
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
@@ -389,11 +390,11 @@ def batch_worker(text_queue, result_queue): """Xử lý văn bản theo batch đ
 
 # Sử dụng
 with ThreadPoolExecutor(max_workers=2) as executor: executor.submit(batch_worker, text_q, result_q)
-```
+`````
 
 ### Fine-tune XTTS v2 trên dữ liệu tùy chỉnh
 
-```bash
+`````bash
 # Chuẩn bị tập dữ liệu theo định dạng LJSpeech: # metadata.csv: audio_file|text|speaker_name
 # wavs/*.wav: 22050 Hz, mono, 16-bit
 
@@ -408,11 +409,11 @@ python TTS/bin/train_tts.py \
     --epochs 10
 
 # Thờii gian huấn luyện dự kiến: 12-24 giờ trên RTX 4090 cho 1 giờ dữ liệu
-```
+`````
 
 ### Giám sát với Prometheus
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 
 # Các chỉ số
@@ -428,7 +429,7 @@ def synthesize(): with TTS_LATENCY.time(): try: # ... logic tổng hợp
             TTS_REQUESTS.labels(language=lang).inc()
         except Exception as e: TTS_ERRORS.labels(error_type=type(e).__name__).inc()
             raise
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -464,7 +465,7 @@ Coqui TTS không phải công cụ phù hợp cho mọi công việc. Đây là 
 - **Phình bộ nhớ với văn bản dài** — Đầu vào trên 500 ký tự có thể gây OOM trên GPU 16 GB. Triển khai phân đoạn câu mức 300 ký tự mỗi yêu cầu.
 - **Khoảng cách chất lượng tiếng Trung** — XTTS v2 hỗ trợ tiếng Trung, nhưng mô hình bản địa như ChatTTS tạo ra giai điệu tiếng Quan thoại tự nhiên hơn. Điểm mạnh của Coqui là độ rộng, không phải sự hoàn hảo từng ngôn ngữ.
 - **Không có API batch tích hợp** — Python API chính thức xử lý một văn bản tại một thờii điểm. Bạn phải tự triển khai lớp batching cho kịch bản thông lượng cao.
-- **Máy chủ chưa sẵn sàng sản xuất** — `tts-server` tích hợp sử dụng Flask development server. Luôn triển khai sau gunicorn + nginx trong sản xuất.
+- **Máy chủ chưa sẵn sàng sản xuất** — ````tts-server```` tích hợp sử dụng Flask development server. Luôn triển khai sau gunicorn + nginx trong sản xuất.
 
 ## Câu hỏi thường gặp
 
@@ -490,11 +491,11 @@ Ba chiến lược đã được chứng minh: (1) Chuyển sang ONNX Runtime + 
 
 **Q6: Coqui TTS có hỗ trợ streaming không?**
 
-Có — XTTS v2 hỗ trợ suy luận streaming với độ trễ chunk đầu tiên dưới 200ms. Kích hoạt qua Python API bằng cách truyền `stream=True`. Máy chủ REST chưa hỗ trợ mã hóa truyền chunk gốc.
+Có — XTTS v2 hỗ trợ suy luận streaming với độ trễ chunk đầu tiên dưới 200ms. Kích hoạt qua Python API bằng cách truyền ````stream=True````. Máy chủ REST chưa hỗ trợ mã hóa truyền chunk gốc.
 
 **Q7: Có thể fine-tune trên tập dữ liệu giọng nói riêng không?**
 
-Có. Chuẩn bị dữ liệu theo định dạng LJSpeech (22050 Hz WAV + metadata.csv) và dùng công thức huấn luyện trong `TTS/tts/recipes/`. Fine-tune XTTS v2 với 1 giờ âm thanh sạch trên RTX 4090 mất 12-24 giờ và cải thiện đáng kể độ khớp giọng so với zero-shot.
+Có. Chuẩn bị dữ liệu theo định dạng LJSpeech (22050 Hz WAV + metadata.csv) và dùng công thức huấn luyện trong ````TTS/tts/recipes/```. Fine-tune XTTS v2 với 1 giờ âm thanh sạch trên RTX 4090 mất 12-24 giờ và cải thiện đáng kể độ khớp giọng so với zero-shot.
 
 **Q8: Xử lý văn bản đầu vào dài như thế nào?**
 
@@ -561,7 +562,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -571,6 +572,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](coqui-tts)
 - [moneyprinterturbo-one-click-ai-video-generator](coqui-tts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

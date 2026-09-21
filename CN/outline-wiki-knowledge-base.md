@@ -23,6 +23,7 @@ tags: ["outline", "wiki", "knowledge-base", "team-docs", "open-source", "self-ho
 aliases:
   - /posts/outline-wiki-knowledge-base/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Where Documentation Goes to Die
@@ -61,7 +62,7 @@ Documents inherit collection permissions but can override them individually. Thi
 
 ## Installation & Setup: Production Docker Deploy
 
-Outline requires three services: the app, PostgreSQL, and Redis. A production-ready Docker Compose setup: ```yaml
+Outline requires three services: the app, PostgreSQL, and Redis. A production-ready Docker Compose setup: ````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -127,11 +128,11 @@ services: outline: image: outlinewiki/outline:0.83.0
       exit 0;
       "
 
-volumes: postgres-data: redis-data: minio-data: ```
+volumes: postgres-data: redis-data: minio-data: `````
 
 ### Generating Secrets
 
-Before starting, generate the required secrets: ```bash
+Before starting, generate the required secrets: `````bash
 # Generate a 256-bit secret key
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -140,9 +141,9 @@ export UTILS_SECRET=$(openssl rand -hex 16)
 
 echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
-```
+`````
 
-Add these to a `.env` file: ```bash
+Add these to a ``.env`` file: `````bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -153,11 +154,11 @@ OIDC_CLIENT_ID=
 OIDC_CLIENT_SECRET=
 EOF
 chmod 600 .env
-```
+`````
 
 ### Start the Stack
 
-```bash
+`````bash
 docker-compose up -d
 
 # Check all services are healthy
@@ -165,31 +166,31 @@ docker-compose ps
 
 # View logs
 docker-compose logs -f outline
-```
+`````
 
-After ~30 seconds, Outline is available at `http://localhost:3000`.
+After ~30 seconds, Outline is available at ````http://localhost:3000````.
 
 ### Setting Up Authentication
 
 Outline requires an external authentication provider. The easiest production setup is Google Workspace OIDC: 1. Go to [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
 2. Create **OAuth 2.0 Client ID** (Web application)
-3. Add authorized redirect URI: `https://wiki.yourcompany.com/auth/oidc.callback`
-4. Add the client ID and secret to your `.env` file: ```bash
+3. Add authorized redirect URI: ````https://wiki.yourcompany.com/auth/oidc.callback````
+4. Add the client ID and secret to your ``.env`` file: `````bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
 OIDC_TOKEN_URI=https://oauth2.googleapis.com/token
 OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
-```
+`````
 
-Restart Outline: ```bash
+Restart Outline: `````bash
 docker-compose restart outline
-```
+`````
 
 ### Quick Deploy on DigitalOcean
 
-For teams without an existing Docker setup, [deploy on DigitalOcean](https://m.do.co/c/eca87ac14ee0): ```bash
+For teams without an existing Docker setup, [deploy on DigitalOcean](https://m.do.co/c/eca87ac14ee0): `````bash
 # On a fresh Ubuntu 24.04 Droplet ($6/month)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -197,7 +198,7 @@ sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/outline/outline.git
 cd outline
 # Copy the docker-compose.yml above, configure .env, then: docker compose up -d
-```
+`````
 
 Alternatively, use [HTStack](https://my.htstack.com/aff.php?aff=27187) for a managed Outline deployment with built-in SSL and backups.
 
@@ -206,7 +207,7 @@ Alternatively, use [HTStack](https://my.htstack.com/aff.php?aff=27187) for a man
 ### Slack Integration (Deep Link)
 
 Outline's Slack integration is one of its strongest features: 1. Go to [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
-2. Paste this manifest: ```yaml
+2. Paste this manifest: `````yaml
 _display_name: Outline Wiki
 features: bot_user: display_name: Outline
     always_online: true
@@ -223,17 +224,17 @@ settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hoo
     bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
-```
+`````
 
 3. Install the app to your workspace
-4. Copy the Bot User OAuth Token and Verification Token to your `.env`
+4. Copy the Bot User OAuth Token and Verification Token to your ````.env````
 5. Restart Outline
 
-Once connected, type `/outline deploy rollback` in Slack to instantly search your wiki and paste links that unfurl with document previews.
+Once connected, type ````/outline deploy rollback```` in Slack to instantly search your wiki and paste links that unfurl with document previews.
 
 ### API and Webhooks
 
-Programmatic access to your knowledge base: ```bash
+Programmatic access to your knowledge base: `````bash
 # List all collections
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -254,13 +255,13 @@ curl -X POST "https://wiki.yourcompany.com/api/documents.search" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"query": "rollback procedure"}'
-```
+`````
 
 Generate an API token from **Settings** → **API** in the Outline UI.
 
 ### CI/CD Documentation Automation
 
-Auto-publish docs from your Git repository: ```bash
+Auto-publish docs from your Git repository: `````bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
@@ -282,18 +283,18 @@ jobs: publish: runs-on: ubuntu-latest
               \"text\": $(echo "$DOCS" | jq -R -s .),
               \"append\": false
             }"
-```
+`````
 
 ### Import from Notion or Confluence
 
-Migrating your existing docs: ```bash
+Migrating your existing docs: `````bash
 # Export from Notion: # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
 # Export from Confluence: # Space Tools → Content Tools → Export → XML format
 
 # Import into Outline: # Collection → Import → Upload Markdown/ZIP file
 # Outline preserves heading structure and converts Notion databases to tables
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -301,9 +302,9 @@ Migrating your existing docs: ```bash
 
 Tested on a $6/month DigitalOcean Droplet (1 vCPU, 1GB RAM): | Metric | Result |
 |
----
+* * *
 |
----
+* * *
 |
 | Time to first document load | **~180ms** |
 | Real-time sync latency (2 editors) | **~45ms** |
@@ -330,7 +331,7 @@ Tested on a $6/month DigitalOcean Droplet (1 vCPU, 1GB RAM): | Metric | Result |
 
 ### 1. HTTPS with Let's Encrypt
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/outline
 server {
     listen 80;
@@ -367,11 +368,11 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ### 2. Database Backup and Recovery
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/backup/outline-backup.sh
 set -euo pipefail
@@ -401,16 +402,16 @@ aws s3 cp "$BACKUP_DIR/outline_full_$TIMESTAMP.zip" \
 ls -t "$BACKUP_DIR"/outline_full_*.zip | tail -n +15 | xargs -r rm
 
 echo "Backup completed: outline_full_$TIMESTAMP.zip"
-```
+`````
 
-```bash
+`````bash
 # Run daily at 3 AM
 0 3 * * * /opt/backup/outline-backup.sh >> /var/log/outline-backup.log 2>&1
-```
+`````
 
 ### 3. Monitoring Stack
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v2.51.0
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -433,11 +434,11 @@ services: prometheus: image: prom/prometheus:v2.51.0
       - '--path.sysfs=/host/sys'
     restart: unless-stopped
 
-volumes: prometheus-data: grafana-data: ```
+volumes: prometheus-data: grafana-data: `````
 
 ### 4. S3-Compatible Storage with Backblaze B2
 
-For production file storage, replace MinIO with Backblaze B2 (or AWS S3): ```bash
+For production file storage, replace MinIO with Backblaze B2 (or AWS S3): `````bash
 # .env additions for Backblaze B2
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -445,11 +446,11 @@ AWS_REGION=us-west-002
 AWS_S3_UPLOAD_BUCKET_URL=https://s3.us-west-002.backblazeb2.com
 AWS_S3_UPLOAD_BUCKET_NAME=your-outline-bucket
 AWS_S3_FORCE_PATH_STYLE=false
-```
+`````
 
 ### 5. Multi-Environment Setup
 
-```yaml
+`````yaml
 # docker-compose.prod.yml — extends base with production config
 services: outline: image: outlinewiki/outline:0.83.0
     environment: - NODE_ENV=production
@@ -464,23 +465,23 @@ services: outline: image: outlinewiki/outline:0.83.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Outline | Notion | Confluence | BookStack | Wiki.js |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | BSL-1.1 | Proprietary | Proprietary | MIT | AGPL-3.0 |
 | **Self-hosted** | **Yes** | No | Yes (Data Center) | Yes | Yes |
@@ -528,11 +529,11 @@ Outline uses Operational Transforms (OT) — the same algorithm Google Docs uses
 
 ### What is the backup strategy for a self-hosted Outline instance?
 
-Back up three components: (1) the PostgreSQL database using `pg_dump`, (2) the uploaded files from your S3-compatible store (MinIO or AWS S3), and (3) the Redis data (optional, can be rebuilt). A daily cron job dumping the database and syncing files to external storage covers most recovery scenarios. Test your restores quarterly.
+Back up three components: (1) the PostgreSQL database using ````pg_dump````, (2) the uploaded files from your S3-compatible store (MinIO or AWS S3), and (3) the Redis data (optional, can be rebuilt). A daily cron job dumping the database and syncing files to external storage covers most recovery scenarios. Test your restores quarterly.
 
 ### Can I import documents from Notion or Confluence?
 
-Yes. Notion supports Markdown export (**Settings** → **Export All Workspace Content**), which Outline imports directly. Confluence requires an XML export converted to Markdown via tools like `confluence-to-markdown`. The import preserves heading structure, code blocks, and images. Notion databases convert to Markdown tables in Outline.
+Yes. Notion supports Markdown export (**Settings** → **Export All Workspace Content**), which Outline imports directly. Confluence requires an XML export converted to Markdown via tools like ````confluence-to-markdown````. The import preserves heading structure, code blocks, and images. Notion databases convert to Markdown tables in Outline.
 
 ### How much server resources does Outline need for a 50-person team?
 
@@ -540,11 +541,11 @@ A 2-vCPU VPS with 2GB RAM handles 50 concurrent users comfortably. PostgreSQL us
 
 ### Is there a way to make documents publicly accessible?
 
-Yes. Any document can be shared via a public link with read-only access. Go to **Share** → **Publish to Internet** to generate a public URL. This is useful for API documentation, user guides, or open-source project wikis. Public documents do not require authentication and are indexed by search engines unless you add a `noindex` tag.
+Yes. Any document can be shared via a public link with read-only access. Go to **Share** → **Publish to Internet** to generate a public URL. This is useful for API documentation, user guides, or open-source project wikis. Public documents do not require authentication and are indexed by search engines unless you add a ````noindex```` tag.
 
 ### Can I integrate Outline with my CI/CD pipeline?
 
-Yes, via the REST API. Generate an API token from **Settings** → **API**, then use it in GitHub Actions, GitLab CI, or any CI tool to publish documentation updates automatically. A common pattern is committing Markdown files to a `docs/` directory in your Git repo, then having CI push them to Outline on every merge to main.
+Yes, via the REST API. Generate an API token from **Settings** → **API**, then use it in GitHub Actions, GitLab CI, or any CI tool to publish documentation updates automatically. A common pattern is committing Markdown files to a ````docs/``` directory in your Git repo, then having CI push them to Outline on every merge to main.
 
 ## Conclusion: Own Your Team's Knowledge
 
@@ -561,7 +562,7 @@ If your team currently pays for Notion or Confluence, Outline pays for itself in
 **Related tools**: [Keycloak SSO Setup](keycloak-sso-setup-dibi8-internal-link) | [MinIO S3 Setup Guide](minio-s3-setup-dibi8-internal-link)
 
 
----
+* * *
 ## Recommended Hosting & Infrastructure
 
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -580,7 +581,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [MinIO Documentation](https://min.io/docs/)
 - [Google OIDC Setup Guide](https://developers.google.com/identity/protocols/oauth2/openid-connect)
 
----
+* * *
 
 *This article may contain affiliate links. If you sign up for DigitalOcean or HTStack through our referral links, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
 
@@ -610,7 +611,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -620,6 +621,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-15-trending-ai-agents](outline-wiki-knowledge-base)
 - [2026-06-22-trending-ai-agents](outline-wiki-knowledge-base)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

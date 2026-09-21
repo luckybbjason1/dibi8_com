@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/atuin/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
@@ -32,11 +33,11 @@ aliases:
 
 ![Atuin Stats](https://docs.atuin.sh/assets/images/stats.png)
 
-*`atuin stats` 명령어는 가장 많이 사용한 명령어, 총 명령어 수 및 고유 명령어 분석을 표시한다.*
+*```atuin stats```` 명령어는 가장 많이 사용한 명령어, 총 명령어 수 및 고유 명령어 분석을 표시한다.*
 
 ## 소개
 
-그 복잡한 `kubectl` 명령어를 이번 주에 최소 세 번 입력했을 것이다. 히스토리 어딘가에 있을 거라는 걸 안다 — 아마도 다른 4만 개 명령어 아래 묻혀 있겠지만 — `Ctrl+R` 역방향 검색은 한 번에 하나씩만 매칭을 순환하고, `grep ~/.bash_history`는 잡음의 벽을 반환한다. 터미널에서 사는 개발자에게 셸 히스토리는 두 번째 기억이다. 이것이 실패하면 생산성이 떨어진다.
+그 복잡한 ````kubectl```` 명령어를 이번 주에 최소 세 번 입력했을 것이다. 히스토리 어딘가에 있을 거라는 걸 안다 — 아마도 다른 4만 개 명령어 아래 묻혀 있겠지만 — ````Ctrl+R```` 역방향 검색은 한 번에 하나씩만 매칭을 순환하고, ````grep ~/.bash_history````는 잡음의 벽을 반환한다. 터미널에서 사는 개발자에게 셸 히스토리는 두 번째 기억이다. 이것이 실패하면 생산성이 떨어진다.
 
 Atuin은 SQLite 기반 히스토리 데이터베이스로 이 문제를 해결한다. 명령어뿐만 아니라 그 주변 컨텍스트도 기록한다: 종료 코드, 작업 디렉토리, 호스트명, 세션 ID, 실행 시간. 29,794개의 GitHub Stars와 Rust 기반 코드베이스를 바탕으로 Atuin은 모든 셸 세션에 퍼지 검색, 암호화된 머신 간 동기화, 사용량 분석을 추가한다. 이 가이드는 첫 번째 명령어부터 자체 호스팅 동기화 서버까지 프로덕션급 Atuin 설치를 안내한다.
 
@@ -50,7 +51,7 @@ Atuin은 클라이언트 측 히스토리 인터셉터와 선택적 동기화 �
 
 ### 아키텍처 개요
 
-```
+`````
 +-------------+     preexec/precmd 훅       +------------------+
 |   Shell     |  -------------------------->  |   Atuin Client   |
 | (bash/zsh)  |                             |   (Rust binary)  |
@@ -70,14 +71,14 @@ Atuin은 클라이언트 측 히스토리 인터셉터와 선택적 동기화 �
                               |         Atuin 서버 (자체 호스팅 또는 클라우드) |
                               |         PostgreSQL 또는 SQLite 백엔드         |
                               +---------------------------------------------+
-```
+`````
 
 ### 핵심 컴포넌트
 
-1. **셸 훅 레이어**: Atuin은 셸 전용 플러그인을 통해 `preexec`(명령 전) 및 `precmd`(명령 후) 훅을 등록한다. 이 훅은 명령어 문자열, 작업 디렉토리, 시작 시간, 종료 코드를 캡처한다.
-2. **로컬 SQLite 데이터베이스**: 모든 히스토리는 `~/.local/share/atuin/history.db`에 SQLite WAL 모드를 사용하여 저장되어 동시 읽기/쓰기 성능을 보장한다.
+1. **셸 훅 레이어**: Atuin은 셸 전용 플러그인을 통해 ````preexec````(명령 전) 및 ````precmd````(명령 후) 훅을 등록한다. 이 훅은 명령어 문자열, 작업 디렉토리, 시작 시간, 종료 코드를 캡처한다.
+2. **로컬 SQLite 데이터베이스**: 모든 히스토리는 ````~/.local/share/atuin/history.db````에 SQLite WAL 모드를 사용하여 저장되어 동시 읽기/쓰기 성능을 보장한다.
 3. **동기화 클라이언트**: 선택적 백그라운드 동기화는 암호화된 레코드를 Atuin 서버로 푸시한다. 데이터는 머신을 떠나기 전에 레코드별 콘텐츠 암호화 키로 봉투 암호화된다.
-4. **TUI 검색 인터페이스**: 전체 터미널 UI(`ratatui` 기반)가 `Ctrl+R`을 대체하여 퍼지/접두사/전문 검색과 필터 모드를 제공한다.
+4. **TUI 검색 인터페이스**: 전체 터미널 UI(````ratatui```` 기반)가 ````Ctrl+R````을 대체하여 퍼지/접두사/전문 검색과 필터 모드를 제공한다.
 
 ### 암호화 상세
 
@@ -86,25 +87,25 @@ Atuin은 클라이언트 측 히스토리 인터셉터와 선택적 동기화 �
 | V1 (레거시) | XSalsa20Poly1305 (NaCl secretbox) | 단계적 폐지 |
 | V2 (현재) | PASETO V4 Local (XChaCha20-Poly1305 + Blake2b) | 활성 |
 
-V2는 봉투 암호화를 사용한다: 각 레코드는 사용자 마스터 키로 래핑된 무작위 CEK를 얻는다. 마스터 키는 `~/.local/share/atuin/key`에 있으며 기기를 절대 떠나지 않는다.
+V2는 봉투 암호화를 사용한다: 각 레코드는 사용자 마스터 키로 래핑된 무작위 CEK를 얻는다. 마스터 키는 ````~/.local/share/atuin/key````에 있으며 기기를 절대 떠나지 않는다.
 
 ## 설치 및 설정
 
 ### 원라인 설치 (권장)
 
-```bash
+`````bash
 # Unix/macOS — 인터랙티브 설치, 셸 설정 프롬프트 포함
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
 # 비인터랙티브 (CI, Dockerfile)
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
-```
+`````
 
-인스톨러는 바이너리를 `~/.atuin/bin/atuin`에 배치하고 rc 파일에 셸 통합을 추가한다.
+인스톨러는 바이너리를 ````~/.atuin/bin/atuin````에 배치하고 rc 파일에 셸 통합을 추가한다.
 
 ### 패키지 매니저
 
-```bash
+`````bash
 # Homebrew (macOS/Linux)
 brew install atuin
 
@@ -124,11 +125,11 @@ sudo dpkg -i "atuin_${VERSION}_amd64.deb"
 
 # Windows (WinGet)
 winget install -e Atuinsh.Atuin
-```
+`````
 
 ### 셸 통합
 
-설치 후 셸의 rc 파일에 Atuin을 추가한다: ```bash
+설치 후 셸의 rc 파일에 Atuin을 추가한다: `````bash
 # Bash — ~/.bashrc에 추가
 eval "$(atuin init bash)"
 
@@ -141,13 +142,13 @@ atuin init fish | source
 # Nushell — config.nu에 추가
 atuin init nu | save ~/.config/nushell/atuin.nu
 source ~/.config/nushell/atuin.nu
-```
+`````
 
-셸을 다시 로드하거나 `exec $SHELL`을 실행하여 활성화한다.
+셸을 다시 로드하거나 ````exec $SHELL````을 실행하여 활성화한다.
 
 ### 기존 히스토리 가져오기
 
-```bash
+`````bash
 # 셸 자동 감지 및 가져오기
 atuin import auto
 
@@ -158,11 +159,11 @@ atuin import fish
 
 # 가져온 개수 확인
 atuin stats
-```
+`````
 
 ### 설치 확인
 
-```bash
+`````bash
 $ atuin --version
 atuin 18.16.1
 
@@ -172,13 +173,13 @@ Checking for diagnostics
 [✓] Atuin is compiled with sqlite support
 [✓] Atuin is compiled with sync support
 [✓] Atuin config directory exists
-```
+`````
 
 ## 핵심 설정
 
-Atuin의 설정 파일은 `~/.config/atuin/config.toml`에 있다. 설정을 자세히 살펴 보기 전에, 다양한 필터 모드가 적용된 검색 인터페이스의 실제 모습은 다음과 같다: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
+Atuin의 설정 파일은 ````~/.config/atuin/config.toml````에 있다. 설정을 자세히 살펴 보기 전에, 다양한 필터 모드가 적용된 검색 인터페이스의 실제 모습은 다음과 같다: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
 
-*Atuin의 TUI가 퍼지 매칭과 디렉토리 범위 결과가 포함된 인라인 검색 창을 표시한다.* 다음은 프로덕션 하드닝 설정이다: ```toml
+*Atuin의 TUI가 퍼지 매칭과 디렉토리 범위 결과가 포함된 인라인 검색 창을 표시한다.* 다음은 프로덕션 하드닝 설정이다: `````toml
 # ~/.config/atuin/config.toml
 [settings]
 # 검색 모드: prefix, fulltext, fuzzy, skim
@@ -218,11 +219,11 @@ show_help = false
 
 # 결과 수
 inline_height = 20
-```
+`````
 
 ### 주요 설정 옵션 설명
 
-```bash
+`````bash
 # 현재 설정값 확인
 atuin config get search_mode
 # fuzzy
@@ -237,11 +238,11 @@ atuin config set filter_mode directory
 
 # 전체 설정 출력
 atuin config print
-```
+`````
 
 ### 검색 및 필터 모드
 
-```bash
+`````bash
 # Ctrl+R로 필터 모드 간 인터랙티브 전환
 # 기본 필터 모드: global -> host -> session -> directory
 
@@ -252,37 +253,37 @@ atuin search --exit 1 --session       # 이 세션의 실패한 명령어
 
 # 매칭 항목 삭제
 atuin search --delete "rm -rf /accident"
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### Starship 프롬프트
 
-Starship은 Atuin과 충돌 없이 함께 작동한다. 둘 다 독립적으로 셸 이벤트에 후킹한다: ```toml
+Starship은 Atuin과 충돌 없이 함께 작동한다. 둘 다 독립적으로 셸 이벤트에 후킹한다: `````toml
 # ~/.config/starship.toml — 특별한 설정 불필요
 # Atuin이 히스토리 처리; Starship이 프롬프트 처리
 # rc 파일에서 Atuin init이 Starship init보다 먼저 실행되도록 설정
-```
+`````
 
-```bash
+`````bash
 # ~/.zshrc — 순서가 중요
 eval "$(atuin init zsh)"       # Atuin 먼저
 eval "$(starship init zsh)"    # Starship 다음
-```
+`````
 
 ### tmux
 
-Atuin은 tmux 세션과 깔끔하게 통합된다. 각 tmux 윈도우는 고유한 세션 ID를 가져 세션별 히스토리 필터링이 가능하다: ```bash
+Atuin은 tmux 세션과 깔끔하게 통합된다. 각 tmux 윈도우는 고유한 세션 ID를 가져 세션별 히스토리 필터링이 가능하다: `````bash
 # ~/.tmux.conf — 키를 Atuin 검색 열기에 바인딩
 bind-key r run-shell "tmux send-keys C-r"
 
 # Atuin은 환경 변수를 통해 tmux 세션을 자동 감지
 # 세션별 필터: Ctrl+R 누른 후 필터 모드 전환
-```
+`````
 
 ### fzf
 
-일부 사용자는 파일 퍼지 검색은 fzf로, 히스토리는 Atuin으로 함께 사용한다: ```bash
+일부 사용자는 파일 퍼지 검색은 fzf로, 히스토리는 Atuin으로 함께 사용한다: `````bash
 # 파일은 fzf로, 히스토리는 Atuin으로
 # fzf 히스토리 바인딩 비활성화 (~/.bashrc 또는 ~/.zshrc에서)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
@@ -292,26 +293,26 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 alias ff='fzf --preview "bat --style=numbers --color=always {}"'
 
 # 히스토리용 Atuin (자동으로 Ctrl+R에 바인딩)
-```
+`````
 
 ### Nushell
 
-Nushell은 다른 설정 시스템을 사용하므로 명시적 설정이 필요하다: ```nushell
+Nushell은 다른 설정 시스템을 사용하므로 명시적 설정이 필요하다: `````nushell
 # config.nu
 source ~/.config/nushell/atuin.nu
 
 # 환경 변수 설정
 $env.ATUIN_NOBIND = true  # 커스텀 키바인딩을 원할 경우
-```
+`````
 
 ### Docker / Dev Containers
 
-```dockerfile
+`````dockerfile
 # Dockerfile.dev
 RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
 COPY config.toml /root/.config/atuin/config.toml
 RUN echo 'eval "$(atuin init bash)"' >> /root/.bashrc
-```
+`````
 
 ## 자체 호스팅 동기화 서버
 
@@ -319,7 +320,7 @@ RUN echo 'eval "$(atuin init bash)"' >> /root/.bashrc
 
 ### Docker Compose 설정
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3"
 services: atuin: restart: always
@@ -356,11 +357,11 @@ services: atuin: restart: always
       POSTGRES_EXTRA_OPTS: "-Z6 --schema=public --blobs"
       SCHEDULE: "@daily"
       BACKUP_KEEP_DAYS: "7"
-```
+`````
 
 ### 서버 시작
 
-```bash
+`````bash
 # 데이터 디렉토리 생성
 mkdir -p atuin-data postgres-data backups
 
@@ -370,19 +371,19 @@ docker compose up -d
 # 상태 확인
 curl http://localhost:8888/health
 # {"status":"ok"}
-```
+`````
 
 ### 자체 호스팅 클라이언트 설정
 
-```toml
+`````toml
 # ~/.config/atuin/config.toml
 [settings]
 sync_address = "http://your-server:8888"
 auto_sync = true
 sync_frequency = "5m"
-```
+`````
 
-```bash
+`````bash
 # 자체 호스팅 서버에 새 계정 등록
 atuin register -u myuser -e myuser@example.com -p securepassword
 
@@ -395,11 +396,11 @@ atuin key
 
 # 동기화 트리거
 atuin sync
-```
+`````
 
 ### Kubernetes 배포
 
-```yaml
+`````yaml
 # atuin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -416,14 +417,14 @@ spec: replicas: 2
             - name: ATUIN_DB_URI
               valueFrom: secretKeyRef: name: atuin-db-secret
                   key: uri
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: atuin-service
 spec: selector: app: atuin
   ports: - port: 8888
       targetPort: 8888
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -441,13 +442,13 @@ Atuin의 Rust 구현과 SQLite 백엔드는 대용량 히스토리 데이터셋�
 
 ### 프로덕션 사용 사례
 
-1. **다중 장치 개발**: 업무용 노트북, 개인 데스크톱, 클라우드 VM을 가진 개발자가 모든 셸 히스토리를 동기화한다. 한 머신에서 `docker compose up`을 실행한 것을 다른 머신에서 검색할 수 있다.
+1. **다중 장치 개발**: 업무용 노트북, 개인 데스크톱, 클라우드 VM을 가진 개발자가 모든 셸 히스토리를 동기화한다. 한 머신에서 ````docker compose up````을 실행한 것을 다른 머신에서 검색할 수 있다.
 2. **팀 지식 보존**: DevOps 팀이 Atuin을 자체 호스팅하여 교대 근무 엔지니어 간에 검색 가능한 인프라 명령 감사 추적을 유지한다.
 3. **원격 환경 복구**: 임시 클라우드 워크스페이스(Gitpod, Coder)를 사용하는 개발자가 히스토리를 동기화하여 워크스페이스 제거 시 명령어 컨텍스트가 지워지지 않도록 한다.
 
 ### Stats 명령어 출력
 
-```bash
+`````bash
 $ atuin stats
 [▮▮▮▮▮▮▮▮▮▮]  9,607 fg
 [▮▮▮▮▮▮▮▮▮ ]  9,458 vim
@@ -461,13 +462,13 @@ $ atuin stats
 [▮         ]  1,322 git log
 Total commands: 62,849
 Unique commands: 26,908
-```
+`````
 
 ## 고급 사용법 / 프로덕션 하드닝
 
 ### 히스토리 프라이버시 필터
 
-민감한 명령어가 데이터베이스에 들어가는 것을 방지한다: ```toml
+민감한 명령어가 데이터베이스에 들어가는 것을 방지한다: `````toml
 # ~/.config/atuin/config.toml
 [settings]
 history_filter = [
@@ -486,11 +487,11 @@ history_filter = [
     "^psql.*://.*:",
     "^mysql.*-p",
 ]
-```
+`````
 
 ### 히스토리 백업
 
-```bash
+`````bash
 # SQLite 백업 (안전, 락 문제 없음)
 sqlite3 ~/.local/share/atuin/history.db ".backup '/backup/atuin-$(date +%Y%m%d).db'"
 
@@ -499,11 +500,11 @@ cp ~/.local/share/atuin/history.db ~/backups/atuin-backup.db
 
 # cron을 통한 자동 일일 백업
 0 2 * * * sqlite3 ~/.local/share/atuin/history.db ".backup '/backups/atuin/atuin-$(date +\%Y\%m\%d).db'" && find /backups/atuin -mtime +30 -delete
-```
+`````
 
 ### 동기화 상태 모니터링
 
-```bash
+`````bash
 # 마지막 동기화 시간 확인
 atuin sync --force  # 강제 동기화 및 상태 표시
 
@@ -517,11 +518,11 @@ atuin info
 
 # 문제 확인
 atuin doctor
-```
+`````
 
 ### TUI 테마
 
-```toml
+`````toml
 # ~/.config/atuin/config.toml
 [theme]
 # 터미널 기본 색상 사용
@@ -532,11 +533,11 @@ base = "#1e1e2e"
 layer1 = "#313244"
 text = "#cdd6f4"
 accent = "#89b4fa"
-```
+`````
 
 ### 다중 머신 키 마이그레이션
 
-새 머신을 설정할 때 암호화 키를 안전하게 전송한다: ```bash
+새 머신을 설정할 때 암호화 키를 안전하게 전송한다: `````bash
 # 이전 머신에서 — 클립보드에 키 복사 (또는 안전한 전송)
 cat ~/.local/share/atuin/key
 
@@ -548,7 +549,7 @@ chmod 600 ~/.local/share/atuin/key
 # 동기화가 작동하는지 확인
 atuin sync
 atuin stats
-```
+`````
 
 ## 대안과의 비교
 
@@ -558,7 +559,7 @@ atuin stats
 | **머신 간 동기화** | 예 (E2EE) | 아니오 | 아니오 | 아니오 |
 | **검색 UI** | 내장 TUI | 내장 TUI | fzf 통합 | 내장 TUI |
 | **컨텍스트 기록** | cwd, 종료, 시간, 호스트 | cwd, 종료 | 없음 | 없음 |
-| **통계** | `atuin stats` | 없음 | 없음 | 없음 |
+| **통계** | ````atuin stats```` | 없음 | 없음 | 없음 |
 | **셸 지원** | bash, zsh, fish, nu, xonsh | bash, zsh, fish | 모든 셸 | bash, zsh |
 | **암호화** | PASETO V4 | 없음 | 없음 | 없음 |
 | **자체 호스팅 서버** | 예 (Docker/K8s) | 해당 없음 | 해당 없음 | 해당 없음 |
@@ -578,13 +579,13 @@ atuin stats
 
 Atuin은 모든 시나리오에 적합한 도구가 아니다: 1. **실행자 추적 없음**: Atuin은 명령어를 기록하지만 수동 입력, 스크립트 실행, AI 코딩 보조 생성 여부는 구분하지 않는다. 모든 소스가 데이터베이스에서 동일하게 보인다.
 
-2. **로컬 데이터베이스는 암호화되지 않음**: `~/.local/share/atuin/`의 SQLite 데이터베이스는 성능을 위해 평문으로 저장된다. 동기화는 암호화되지만 로컬 저장은 그렇지 않다. 보호를 위해 파일 시스템 암호화(LUKS, FileVault)를 사용하라.
+2. **로컬 데이터베이스는 암호화되지 않음**: ````~/.local/share/atuin/````의 SQLite 데이터베이스는 성능을 위해 평문으로 저장된다. 동기화는 암호화되지만 로컬 저장은 그렇지 않다. 보호를 위해 파일 시스템 암호화(LUKS, FileVault)를 사용하라.
 
-3. **Bash 통합이 취약할 수 있음**: Bash의 `preexec` 훅은 DEBUG 트랩에 의존하며 다른 도구(pyenv, nodenv, 특정 PROMPT_COMMAND 설정)와 충돌할 수 있다. Zsh와 Fish 통합이 더 안정적이다.
+3. **Bash 통합이 취약할 수 있음**: Bash의 ````preexec```` 훅은 DEBUG 트랩에 의존하며 다른 도구(pyenv, nodenv, 특정 PROMPT_COMMAND 설정)와 충돌할 수 있다. Zsh와 Fish 통합이 더 안정적이다.
 
 4. **동기화에 계정 필요**: 자체 호스팅 동기화에도 사용자 등록이 필요하다. 익명 또는 "S3에 직접 동기화" 모드는 없다.
 
-5. **위쪽 화살표 바인딩이 신규 사용자를 혼란스럽게 함**: Atuin은 기본적으로 위쪽 화살표 키를 대체하여 최근 명령어만 순환하려는 사용자를 혼란스럽게 할 수 있다. `filter_mode_shell_up_key = "session"`을 설정하거나 바인딩을 완전히 비활성화하라.
+5. **위쪽 화살표 바인딩이 신규 사용자를 혼란스럽게 함**: Atuin은 기본적으로 위쪽 화살표 키를 대체하여 최근 명령어만 순환하려는 사용자를 혼란스럽게 할 수 있다. ````filter_mode_shell_up_key = "session"````을 설정하거나 바인딩을 완전히 비활성화하라.
 
 6. **PowerShell 지원은 2차**: 기능적으로 작동하지만 PowerShell 통합은 테스트가 적어 Unix 셸 기능보다 뒤처질 수 있다.
 
@@ -592,12 +593,12 @@ Atuin은 모든 시나리오에 적합한 도구가 아니다: 1. **실행자 �
 
 ### 위쪽 화살표 바인딩을 비활성화하려면?
 
-설정에 `filter_mode_shell_up_key = "global"` 또는 `show_preview = false`를 추가한다. Atuin의 위쪽 화살표를 완전히 비활성화하려면 init 줄 전에 `export ATUIN_NOBIND=1`을 추가하고 `Ctrl+R`만 수동으로 바인딩한다: ```bash
+설정에 ``filter_mode_shell_up_key = "global"`` 또는 ``show_preview = false``를 추가한다. Atuin의 위쪽 화살표를 완전히 비활성화하려면 init 줄 전에 ``export ATUIN_NOBIND=1``을 추가하고 ``Ctrl+R``만 수동으로 바인딩한다: `````bash
 # ~/.bashrc
 export ATUIN_NOBIND=1
 eval "$(atuin init bash)"
 bind '"\C-r": "\C-aatuin search\C-j"'
-```
+`````
 
 ### 동기화 없이 Atuin을 사용할 수 있나?
 
@@ -609,7 +610,7 @@ bind '"\C-r": "\C-aatuin search\C-j"'
 
 ### 암호화 키를 잃어버리면 어떻게 되나?
 
-암호화 키는 동기화된 히스토리를 복호화하는 데 필요하다. 분실하면 이전에 동기화된 데이터를 복구할 수 없다. 키는 초기 설정 중 `atuin key`로 표시되며 — 비밀번호 관리자에 백업하라. 로컬 히스토리는 키와 관계없이 접근 가능하다.
+암호화 키는 동기화된 히스토리를 복호화하는 데 필요하다. 분실하면 이전에 동기화된 데이터를 복구할 수 없다. 키는 초기 설정 중 ````atuin key````로 표시되며 — 비밀번호 관리자에 백업하라. 로컬 히스토리는 키와 관계없이 접근 가능하다.
 
 ### 두 사용자가 히스토리 데이터베이스를 공유할 수 있나?
 
@@ -621,20 +622,20 @@ bind '"\C-r": "\C-aatuin search\C-j"'
 
 ### 히스토리에서 명령어를 삭제하려면?
 
-```bash
+`````bash
 # 검색 패턴으로 삭제
 atuin search --delete "sensitive-command"
 
 # 또는 TUI 사용 — 명령어를 찾은 후 Alt+Delete 누르기
-```
+`````
 
 ## 결론
 
 Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 검색 가능하며 이식 가능한 데이터베이스로 전환한다. 29,794개의 GitHub Stars, E2E 암호화 동기화, 모든 주요 셸에 대한 지원을 갖춘 Atuin은 터미널에서 사는 모든 개발자에게 실용적인 업그레이드이다.
 
 **다음 단계:**
-1. `curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh`를 실행하여 설치
-2. `atuin import auto`로 기존 히스토리 가져오기
+1. ````curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh````를 실행하여 설치
+2. ````atuin import auto```로 기존 히스토리 가져오기
 3. 동기화를 위해 등록하거나 자체 호스팅 서버 구성
 4. 팁과 문제 해결을 위해 [Telegram 개발자 커뮤니티](https://t.me/dibi8dev) 가입
 
@@ -685,7 +686,7 @@ Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -695,6 +696,6 @@ Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 �
 - [cc-switch-all-in-one-ai-coding-agent-manager](atuin)
 - [zed-vs-cursor](atuin)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

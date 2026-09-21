@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/mlflow-experiment-tracking-production/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言: 未追踪实验的混乱
@@ -40,7 +41,7 @@ MLflow 于 2018 年在 Databricks 创建并在 Linux Foundation 下开源，通�
 
 MLflow 是一个**用于管理机器学习生命周期的开源平台**，包括实验追踪、模型打包、模型注册表和模型服务。它以 Python 库、独立服务器或 Docker 容器的形式运行 — 不依赖于 Kubernetes、云提供商或特定的 ML 框架。
 
-与需要基础设施团队设置的重量级 MLOps 平台不同，MLflow 通过 `pip install mlflow` 安装，一行代码即可开始追踪实验。这种低准入门槛使其成为最广泛采用的开源 ML 生命周期工具，截至 2026 年初在 PyPI 上拥有 **超过 2.5 亿次下载**。
+与需要基础设施团队设置的重量级 MLOps 平台不同，MLflow 通过 ```pip install mlflow```` 安装，一行代码即可开始追踪实验。这种低准入门槛使其成为最广泛采用的开源 ML 生命周期工具，截至 2026 年初在 PyPI 上拥有 **超过 2.5 亿次下载**。
 
 ## MLflow 工作原理: 核心组件
 
@@ -52,9 +53,9 @@ MLflow 由四个组件组成，分别针对 ML 生命周期的不同阶段：
 
 **MLflow Model Registry** 提供模型生命周期管理的集中存储。注册模型、分配版本号、标记阶段（Staging、Production、Archived），并追踪各版本之间的血缘关系。
 
-**MLflow Projects** 以可复现的格式打包 ML 代码，并通过 `MLproject` 文件定义入口点、参数、依赖和执行环境。
+**MLflow Projects** 以可复现的格式打包 ML 代码，并通过 ````MLproject```` 文件定义入口点、参数、依赖和执行环境。
 
-```python
+`````python
 # 完整的 MLflow 架构一览: # 1. Tracking Server (REST API + UI)
 #    ├── Backend Store: PostgreSQL / MySQL / SQLite
 #    └── Artifact Store: S3 / GCS / Azure / Local
@@ -69,13 +70,13 @@ MLflow 由四个组件组成，分别针对 ML 生命周期的不同阶段：
 #
 # 4. Model Serving
 #    └── REST endpoint: /invocations
-```
+`````
 
 ## 安装与设置: 5 分钟内运行你的第一个实验
 
 ### 本地设置 (单机)
 
-```bash
+`````bash
 # 安装 MLflow
 pip install mlflow==2.22.0
 
@@ -86,9 +87,9 @@ mlflow server \
   --default-artifact-root ~/mlflow-tracking/artifacts \
   --host 0.0.0.0 \
   --port 5000
-```
+`````
 
-```bash
+`````bash
 # 在另一个终端中，运行你的第一个追踪实验
 python -c "
 import mlflow
@@ -102,18 +103,18 @@ with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
     mlflow.log_metric(f1_score, 0.93)
     print(f'Run ID: {mlflow.active_run().info.run_id}')
 "
-```
+`````
 
-访问 `http://localhost:5000` — 你的实验将出现在 MLflow UI 中，参数、指标和运行历史都被完整追踪。
+访问 ````http://localhost:5000```` — 你的实验将出现在 MLflow UI 中，参数、指标和运行历史都被完整追踪。
 
 ### 使用 PostgreSQL 和 S3 的生产环境设置
 
-```bash
+`````bash
 # 安装数据库和云支持
 pip install mlflow[extras]==2.22.0 psycopg2-binary boto3
-```
+`````
 
-```bash
+`````bash
 # 使用 PostgreSQL 和 S3 启动追踪服务器
 export MLFLOW_S3_ENDPOINT_URL=https://s3.amazonaws.com
 export AWS_ACCESS_KEY_ID=your-key
@@ -124,11 +125,11 @@ mlflow server \
   --default-artifact-root s3://your-bucket/mlflow-artifacts \
   --host 0.0.0.0 \
   --port 5000
-```
+`````
 
 ### Docker 部署 (推荐用于团队)
 
-```bash
+`````bash
 # docker-compose.yml — 完整的 MLflow 堆栈
 version: '3.8'
 services: postgres: image: postgres:16
@@ -147,21 +148,21 @@ services: postgres: image: postgres:16
     ports: - "5000:5000"
     depends_on: - postgres
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
-```bash
+`````bash
 # 启动完整堆栈
 docker-compose up -d
 
 # 验证追踪服务器正在运行
 curl http://localhost:5000/api/2.0/mlflow/experiments/list
-```
+`````
 
 ### DigitalOcean Droplet 部署
 
 用于专用生产追踪服务器：
 
-```bash
+`````bash
 # 创建 droplet 并安装 MLflow
 ssh root@your-droplet-ip << EOF
 apt update && apt install -y python3-pip
@@ -185,7 +186,7 @@ SERVICEDEF
 
 systemctl enable mlflow && systemctl start mlflow
 EOF
-```
+`````
 
 [在 DigitalOcean 上部署](https://m.do.co/c/eca87ac14ee0) — 获得 **200 美元赠金**，免费运行你的 MLflow 追踪服务器和实验基础设施两个月。
 
@@ -193,7 +194,7 @@ EOF
 
 ### 基础实验追踪
 
-```python
+`````python
 # tracking_example.py — 使用 MLflow 记录实验
 import mlflow
 import mlflow.sklearn
@@ -255,16 +256,16 @@ if __name__ == __main__: configs = [
         (500, None, 0.02),
     ]
     for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
-```
+`````
 
-```bash
+`````bash
 # 运行实验搜索
 python tracking_example.py
-```
+`````
 
 ### Autologging: 零工作量追踪
 
-```python
+`````python
 # autolog_example.py — scikit-learn 的自动日志记录
 import mlflow
 from sklearn.ensemble import RandomForestClassifier
@@ -283,11 +284,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     # 无需手动记录 — autolog 自动捕获所有内容
-```
+`````
 
 ### 深度学习实验追踪
 
-```python
+`````python
 # pytorch_tracking.py — 使用 MLflow 追踪 PyTorch 训练
 import mlflow
 import torch
@@ -346,11 +347,11 @@ def train_model(epochs, lr, batch_size): with mlflow.start_run(): mlflow.log_par
         mlflow.pytorch.log_model(model, model)
 
 if __name__ == __main__: train_model(epochs=5, lr=0.001, batch_size=64)
-```
+`````
 
 ## 模型注册表: 管理模型生命周期
 
-```python
+`````python
 # registry_example.py — 管理模型版本和阶段
 import mlflow
 from mlflow.tracking import MlflowClient
@@ -386,9 +387,9 @@ client.set_model_version_tag(
     key=reviewed_by,
     value='ml-lead@company.com'
 )
-```
+`````
 
-```bash
+`````bash
 # 列出模型的所有版本
 mlflow models list-versions -m wine-classifier
 
@@ -396,9 +397,9 @@ mlflow models list-versions -m wine-classifier
 #   1        Production  Initial production model
 #   2        Staging     Wine classifier with 94.4% accuracy...
 #   3        None        Experimental architecture
-```
+`````
 
-```python
+`````python
 # 加载特定模型版本进行推理
 import mlflow.pyfunc
 
@@ -410,19 +411,19 @@ model = mlflow.pyfunc.load_model(
 model_v2 = mlflow.pyfunc.load_model(
     model_uri='models:/wine-classifier/2'
 )
-```
+`````
 
 ## 模型服务: 通过 REST API 部署
 
-```bash
+`````bash
 # 使用 MLflow 内置服务器在本地提供服务
 mlflow models serve \
   -m models:/wine-classifier/Production \
   -p 5001 \
   --env-manager local
-```
+`````
 
-```bash
+`````bash
 # 测试端点
 curl -X POST http://localhost:5001/invocations \
   -H "Content-Type: application/json" \
@@ -434,19 +435,19 @@ curl -X POST http://localhost:5001/invocations \
   }'
 
 # 响应: {"predictions": [0, 1]}
-```
+`````
 
 ### 使用 Docker 进行生产服务
 
-```bash
+`````bash
 # 为模型构建 Docker 镜像
 mlflow models build-docker \
   -m models:/wine-classifier/Production \
   -n wine-classifier-serving:v1.0 \
   --enable-mlserver
-```
+`````
 
-```bash
+`````bash
 # 运行服务容器
 docker run -p 5001:8080 wine-classifier-serving:v1.0
 
@@ -454,11 +455,11 @@ docker run -p 5001:8080 wine-classifier-serving:v1.0
 curl -X POST http://localhost:5001/invocations \
   -H "Content-Type: application/json" \
   -d '{"inputs": [[14.23, 1.71, 2.43, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0]]}'
-```
+`````
 
 ### 使用 MLflow 部署到云端
 
-```python
+`````python
 # deploy_sagemaker.py — 部署到 AWS SageMaker
 import mlflow.sagemaker
 
@@ -469,9 +470,9 @@ mlflow.sagemaker.deploy(
     instance_type='ml.m5.large',
     region_name='us-east-1'
 )
-```
+`````
 
-```python
+`````python
 # deploy_azure.py — 部署到 Azure ML
 from azureml.core import Workspace
 import mlflow.azureml
@@ -486,7 +487,7 @@ mlflow.azureml.deploy(
     },
     service_name='wine-classifier-aci'
 )
-```
+`````
 
 ## 基准测试: 大规模性能
 
@@ -496,13 +497,13 @@ mlflow.azureml.deploy(
 
 | 指标 | SQLite (本地) | PostgreSQL (本地) | PostgreSQL + S3 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 每秒记录的运行数 | **~180** | **~350** | **~320** |
 | 并发客户端 (稳定) | 5 | 50 | 40 |
@@ -515,9 +516,9 @@ mlflow.azureml.deploy(
 
 | 操作 | 延迟 (毫秒) |
 |
----
+* * *
 |
----
+* * *
 |
 | 创建实验 | 12 |
 | 开始运行 | 25 |
@@ -531,13 +532,13 @@ mlflow.azureml.deploy(
 
 | 规模 | 每月实验数 | 存储增长 | 推荐后端 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 小团队 (5 用户) | 500 | ~5 GB | SQLite + 本地磁盘 |
 | 中团队 (20 用户) | 5,000 | ~50 GB | PostgreSQL + S3 |
@@ -547,7 +548,7 @@ mlflow.azureml.deploy(
 
 ### 使用 HTTP Basic Auth 认证
 
-```python
+`````python
 # auth_server.py — 带基本认证的 MLflow 服务器
 from flask import Flask, request, Response
 import mlflow.server
@@ -570,9 +571,9 @@ def require_auth(): if not check_auth(): return Response('Authentication require
 
 # 在认证代理后挂载 MLflow
 # 或使用带基本认证的 nginx 反向代理
-```
+`````
 
-```nginx
+`````nginx
 # nginx.conf — 带基本认证的反向代理
 server {
     listen 80;
@@ -586,11 +587,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### 自动清理旧实验
 
-```python
+`````python
 # cleanup.py — 删除旧运行以管理存储
 from mlflow.tracking import MlflowClient
 from datetime import datetime, timedelta
@@ -609,17 +610,17 @@ for exp in experiments: runs = client.search_runs(
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 
 print(f'Cleanup completed. Deleted {len(runs)} old runs.')
-```
+`````
 
-```bash
+`````bash
 # 通过 cron 每周运行清理
 crontab -e
 # 添加: 0 2 * * 0 /usr/bin/python3 /opt/mlflow/cleanup.py >> /var/log/mlflow-cleanup.log 2>&1
-```
+`````
 
 ### 与 CI/CD 集成
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Training Pipeline
 on: push: branches: [main]
@@ -642,21 +643,21 @@ jobs: train: runs-on: ubuntu-latest
       - name: Notify team
         run: |
           echo "Model trained and registered. Review at $MLFLOW_TRACKING_URI"
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | MLflow | Weights & Biases | Neptune.ai | TensorBoard |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | **是 (Apache-2.0)** | 否 (专有) | 否 (专有) | 是 (Apache-2.0) |
 | 自托管 | **是 (免费)** | 否 (仅云) | 否 (仅云) | 是 |
@@ -694,13 +695,13 @@ MLflow 很出色但并非万能：
 ## 常见问题解答
 
 **Q: MLflow 如何存储实验数据？**
-A: MLflow 使用 **backend store** 存储元数据（实验、运行、参数、指标），使用 **artifact store** 存储文件（模型、图表、数据集）。Backend store 可以是 SQLite (开发)、PostgreSQL/MySQL (生产) 或文件存储。Artifact store 可以是本地文件系统、S3、GCS、Azure Blob 或 HDFS。两者都在启动 `mlflow server` 时配置。
+A: MLflow 使用 **backend store** 存储元数据（实验、运行、参数、指标），使用 **artifact store** 存储文件（模型、图表、数据集）。Backend store 可以是 SQLite (开发)、PostgreSQL/MySQL (生产) 或文件存储。Artifact store 可以是本地文件系统、S3、GCS、Azure Blob 或 HDFS。两者都在启动 ````mlflow server```` 时配置。
 
 **Q: 我可以不使用追踪服务器使用 MLflow 吗？**
-A: 可以。MLflow 在**本地模式**下工作，实验记录到本地 `mlruns/` 目录。这对于个人开发非常完美。只需使用 `mlflow.start_run()` 而不设置追踪 URI — 所有内容都在本地记录，你可以使用 `mlflow ui` 查看结果。
+A: 可以。MLflow 在**本地模式**下工作，实验记录到本地 ````mlruns/```` 目录。这对于个人开发非常完美。只需使用 ````mlflow.start_run()```` 而不设置追踪 URI — 所有内容都在本地记录，你可以使用 ````mlflow ui```` 查看结果。
 
 **Q: 如何从本地 SQLite 迁移到 PostgreSQL？**
-A: MLflow 提供数据库迁移工具。首先确保两个数据库都可访问。然后使用 `mlflow db upgrade postgresql://user:pass@host/db` 初始化 PostgreSQL 模式。对于迁移现有运行数据，使用 `mlflow experiments csv` 导出并重新导入，或使用 `pgloader` 等数据库迁移工具进行直接的 SQLite 到 PostgreSQL 传输。
+A: MLflow 提供数据库迁移工具。首先确保两个数据库都可访问。然后使用 ````mlflow db upgrade postgresql://user:pass@host/db```` 初始化 PostgreSQL 模式。对于迁移现有运行数据，使用 ````mlflow experiments csv```` 导出并重新导入，或使用 ````pgloader```` 等数据库迁移工具进行直接的 SQLite 到 PostgreSQL 传输。
 
 **Q: 记录模型和注册模型有什么区别？**
 A: **记录模型**将模型制品保存到特定运行 — 它与该实验运行绑定，可以通过运行 ID 检索。**注册模型**将其添加到模型注册表，这是一个独立于任何实验的版本化目录。已注册模型可以被分阶段（Staging、Production、Archived）并按名称和版本加载，使其成为生产部署的推荐路径。
@@ -709,13 +710,13 @@ A: **记录模型**将模型制品保存到特定运行 — 它与该实验运�
 A: 在集群中将 MLflow 部署为容器。使用 PostgreSQL StatefulSet 作为后端，S3/GCS 用于制品。通过带认证的 Ingress 暴露追踪服务器。MLflow 服务器本身是无状态的，可以在 Service 后运行多个副本以实现高可用性。详细的 manifest 请参阅 [Kubernetes](dibi8-internal-link) 部署指南。
 
 **Q: MLflow 可以追踪 Python 以外的语言中的实验吗？**
-A: 可以。MLflow 有 **R** (`mlflow` R 包) 和 **Java/Scala** (Java 客户端库) 的官方客户端。还有 **Julia**、**C#** 和 **Go** 的社区客户端。REST API 有完整文档，任何能发起 HTTP 请求的语言都可以使用。然而，Python SDK 具有最完整的功能集，包括 autologging。
+A: 可以。MLflow 有 **R** (````mlflow```` R 包) 和 **Java/Scala** (Java 客户端库) 的官方客户端。还有 **Julia**、**C#** 和 **Go** 的社区客户端。REST API 有完整文档，任何能发起 HTTP 请求的语言都可以使用。然而，Python SDK 具有最完整的功能集，包括 autologging。
 
 ## 结论: 今天开始追踪每个实验
 
 MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩擦设置、框架无关设计和强大模型注册表的结合，使其成为想要实验可复现性而不增加基础设施开销团队的默认选择。v2.22.0 (2026年4月) 带来了针对 LLM 框架的改进 autologging、更好的制品流和刷新后的 UI，现在是采用 MLflow 的最佳时机。
 
-通往生产级实验追踪的路径从一行代码开始：`mlflow.start_run()`。记录你的参数，记录你的指标，注册你最好的模型。三个月后，当有人问"我们应该发布哪个模型？"时，你将在模型注册表中拥有答案，带有完整的血缘关系和可复现性。
+通往生产级实验追踪的路径从一行代码开始：````mlflow.start_run()```。记录你的参数，记录你的指标，注册你最好的模型。三个月后，当有人问"我们应该发布哪个模型？"时，你将在模型注册表中拥有答案，带有完整的血缘关系和可复现性。
 
 准备好部署了吗？[在 DigitalOcean 上获得 $200 赠金](https://m.do.co/c/eca87ac14ee0) 来托管你的 MLflow 追踪服务器，今天就开始发布可复现的 ML。加入我们的 [Telegram 群组](https://t.me/dibi8tech) 获取大规模运行 MLflow 的团队提供的技巧。
 
@@ -772,7 +773,7 @@ MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](mlflow-experiment-tracking-production)
@@ -782,5 +783,5 @@ MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩
 - [cleanlab-11k-star-ai-data-cleaning](mlflow-experiment-tracking-production)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

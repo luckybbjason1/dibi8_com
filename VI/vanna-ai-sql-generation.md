@@ -9,6 +9,7 @@ aliases:
   - /vi/posts/vanna-ai-sql-generation/
 ---
 
+
 {{</* resource-info */>}}
 
 Khả năng tương tác với cơ sở dữ liệu bằng ngôn ngữ tự nhiên từ lâu đã là chén thánh của phân tích dữ liệu. Mỗi ngày, vô số giờ đồng hồ bị lãng phí cho việc dịch các câu hỏi kinh doanh thành truy vấn SQL — một quá trình đòi hỏi kiến thức sâu rộng về schema cơ sở dữ liệu, mối quan hệ bảng, và cú pháp SQL. Năm 2026, nút thắt cổ chai này đang nhanh chóng tan biến nhờ **Vanna AI**, một thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn và tạo ra SQL sẵn sàng cho production từ tiếng Anh đơn giản với độ chính xác trên 90%.
@@ -17,7 +18,7 @@ Với hơn 18.000 sao GitHub và giấy phép MIT, Vanna AI đã nổi lên như
 
 Trong hướng dẫn toàn diện này, chúng ta sẽ đi qua mọi thứ bạn cần biết về Vanna AI: từ cài đặt và huấn luyện schema đến tạo SQL nâng cao, xác thực, và tích hợp vào quy trình phân tích của bạn. Dù bạn là nhà phân tích dữ liệu muốn đặt câu hỏi bằng tiếng Anh, hay kỹ sư đang xây dựng giao diện ngôn ngữ tự nhiên cho nền tảng dữ liệu của bạn, Vanna AI cung cấp các công cụ bạn cần để biến text-to-SQL thành hiện thực.
 
----
+* * *
 
 ## Vanna AI là gì? Ngôn ngữ Tự nhiên Gặp gỡ SQL
 
@@ -28,7 +29,7 @@ Quy trình làm việc đầy thanh lịch: 1. **Kết nối** Vanna với cơ s
 3. **Đặt câu hỏi** bằng ngôn ngữ tự nhiên
 4. **Nhận** SQL chính xác, có thể thực thi
 
-```python
+````python
 import vanna as vn
 from vanna.remote import VannaDefault
 
@@ -53,11 +54,11 @@ CREATE TABLE sales (
 # Đặt câu hỏi bằng tiếng Anh đơn giản
 sql = vn.generate_sql("What are the top 5 regions by total sales in 2026?")
 print(sql)
-```
+`````
 
 SQL được tạo ra không chỉ đúng về mặt cú pháp — nó còn chính xác về mặt ngữ nghĩa, tham chiếu đến đúng các bảng, cột, và mối quan hệ từ schema thực tế của bạn.
 
----
+* * *
 
 ## Tại sao Vanna AI Quan trọng vào năm 2026
 
@@ -69,7 +70,7 @@ Vanna AI giải quyết tất cả những thách thức này một cách trực
 - **Xác thực SQL**: Mỗi truy vấn được tạo được xác thực trước cơ sở dữ liệu của bạn trước khi được trả về
 - **Nhiều Backend LLM**: Sử dụng OpenAI, Anthropic, Google, hoặc các mô hình cục bộ như Ollama
 
-```python
+`````python
 # Vanna hỗ trợ nhiều backend LLM
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
@@ -81,17 +82,17 @@ class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): Ch
 vn = MyVanna()
 vn.connect_to_sqlite("my_database.db")
 vn.train(ddl="SELECT sql FROM sqlite_master WHERE type=table;")
-```
+`````
 
 Vào năm 2026, khi các tổ chức đối phó với các schema dữ liệu ngày càng phức tạp và các yêu cầu tuân thủ nghiêm ngặt hơn, phương pháp của Vanna — huấn luyện trên schema thay vì gửi dữ liệu lên đám mây — đại diện cho tiêu chuẩn vàng cho text-to-SQL an toàn và chính xác.
 
----
+* * *
 
 ## Cài đặt và Cấu hình Vanna AI
 
 Vanna được thiết kế để dễ dàng cài đặt và cấu hình, với các giá trị mặc định hợp lý giúp bạn nhanh chóng làm việc hiệu quả.
 
-```bash
+`````bash
 # Cài đặt Vanna core
 pip install vanna
 
@@ -109,9 +110,9 @@ pip install "vanna[bigquery]"
 
 # Cài đặt tất cả
 pip install "vanna[all]"
-```
+`````
 
-Cấu hình nhanh cho thiết lập phổ biến nhất: ```python
+Cấu hình nhanh cho thiết lập phổ biến nhất: `````python
 from vanna.remote import VannaDefault
 
 # Sử dụng dịch vụ được lưu trữ của Vanna (thiết lập dễ nhất)
@@ -128,9 +129,9 @@ vn.connect_to_postgres(
     password="secure-password",
     port=5432
 )
-```
+`````
 
-Để thiết lập hoàn toàn tự lưu trữ với LLM cục bộ: ```python
+Để thiết lập hoàn toàn tự lưu trữ với LLM cục bộ: `````python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
@@ -140,9 +141,9 @@ class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None):
 vn = LocalVanna()
 vn.connect_to_postgres(host="localhost", dbname="sales",
                        user="admin", password="admin", port=5432)
-```
+`````
 
----
+* * *
 
 ## Huấn luyện Vanna trên Schema Cơ sở dữ liệu của Bạn
 
@@ -152,7 +153,7 @@ Huấn luyện là nơi Vanna thực sự tỏa sáng. Bạn huấn luyện Vann
 
 Phương pháp huấn luyện cơ bản nhất là cung cấp DDL (Ngôn ngữ Định nghĩa Dữ liệu) của cơ sở dữ liệu — các câu lệnh CREATE TABLE xác định schema của bạn.
 
-```python
+`````python
 # Huấn luyện với các câu lệnh DDL riêng lẻ
 vn.train(ddl="""
 CREATE TABLE customers (
@@ -183,13 +184,13 @@ CREATE TABLE order_items (
     unit_price DECIMAL(10,2)
 );
 """)
-```
+`````
 
 ### Huấn luyện với Tự động Khám phá Schema
 
 Đối với các cơ sở dữ liệu lớn, việc viết DDL thủ công là không thực tế. Vanna có thể tự động trích xuất thông tin schema từ cơ sở dữ liệu của bạn.
 
-```python
+`````python
 # PostgreSQL: trích xuất schema từ information_schema
 import psycopg2
 
@@ -222,13 +223,13 @@ for (table_name,) in tables: cursor.execute(f"""
     vn.train(ddl=ddl)
 
 conn.close()
-```
+`````
 
 ### Huấn luyện với Tài liệu và Logic Kinh doanh
 
 Vượt ra khỏi schema thô, bạn có thể huấn luyện Vanna trên bối cảnh kinh doanh — giúp nó hiểu các cột của bạn thực sự có nghĩa là gì.
 
-```python
+`````python
 # Huấn luyện với tài liệu
 vn.train(documentation="""
 The sales table records all completed transactions.
@@ -254,13 +255,13 @@ WHERE o.status = completed
 GROUP BY c.id, c.name
 HAVING SUM(o.total_amount) > 10000;
 """)
-```
+`````
 
 ### Huấn luyện với Các Cặp Câu hỏi-SQL
 
 Để đạt độ chính xác tối đa, hãy cung cấp các cặp câu hỏi ngôn ngữ tự nhiên và các truy vấn SQL tương ứng của chúng.
 
-```python
+`````python
 # Dữ liệu huấn luyện chuẩn vàng
 vn.train(
     question="What are the top 10 customers by lifetime value?",
@@ -284,15 +285,15 @@ vn.train(
     ORDER BY month;
     """
 )
-```
+`````
 
----
+* * *
 
 ## Tạo SQL từ Ngôn ngữ Tự nhiên
 
-Một khi được huấn luyện, Vanna có thể tạo SQL từ các câu hỏi ngôn ngữ tự nhiên với độ chính xác đáng kinh ngạc. Phương thức `generate_sql` là giao diện chính.
+Một khi được huấn luyện, Vanna có thể tạo SQL từ các câu hỏi ngôn ngữ tự nhiên với độ chính xác đáng kinh ngạc. Phương thức ````generate_sql```` là giao diện chính.
 
-```python
+`````python
 # Các câu hỏi đơn giản
 sql = vn.generate_sql("Show me all customers from the West region")
 print(sql)
@@ -318,9 +319,9 @@ sql = vn.generate_sql(
     "showing year-over-year growth percentage"
 )
 print(sql)
-```
+`````
 
-Vanna cũng hỗ trợ tạo SQL với các ràng buộc hoặc mẫu cụ thể: ```python
+Vanna cũng hỗ trợ tạo SQL với các ràng buộc hoặc mẫu cụ thể: `````python
 # Tạo SQL với giải thích
 sql, explanation = vn.generate_sql(
     "Which customers haven't placed an order in the last 90 days?",
@@ -335,15 +336,15 @@ print(result_df)
 
 # Phương thức ask() tạo SQL, xác thực nó, thực thi nó,
 # và trả về một DataFrame pandas — tất cả trong một lần gọi
-```
+`````
 
----
+* * *
 
 ## Xác thực SQL và Xử lý Lỗi
 
 Một trong những tính năng nổi bật của Vanna là **xác thực SQL tự động**. Trước khi trả về một truy vấn cho bạn, Vanna có thể kiểm tra xem nó có thực sự chạy trên cơ sở dữ liệu của bạn không, bắt các lỗi cú pháp và sự không khớp schema.
 
-```python
+`````python
 # Bật xác thực tự động
 vn = VannaDefault(model="my-model", api_key="vn-...", 
                   config={"validate_sql": True})
@@ -357,9 +358,9 @@ except Exception as e: print(f"Validation failed: {e}")
         "Show me the top 10 products by revenue",
         max_retries=3
     )
-```
+`````
 
-Vanna cũng có thể xử lý các câu hỏi tiếp theo tham chiếu đến ngữ cảnh trước đó: ```python
+Vanna cũng có thể xử lý các câu hỏi tiếp theo tham chiếu đến ngữ cảnh trước đó: `````python
 # Câu hỏi đầu tiên
 result1 = vn.ask("What were total sales in 2026?")
 
@@ -373,9 +374,9 @@ result3 = vn.ask("Now show only regions with more than $1M in sales")
 # Tạo: SELECT region, SUM(amount) as total 
 #            FROM sales WHERE sale_date >= '2026-01-01' 
 #            GROUP BY region HAVING SUM(amount) > 1000000
-```
+`````
 
----
+* * *
 
 ## Các Tính năng Nâng cao và Tùy biến
 
@@ -383,7 +384,7 @@ Vanna cung cấp các tùy chọn tùy biến rộng rãi cho ngườ dùng nân
 
 ### Mẫu Prompt Tùy chỉnh
 
-```python
+`````python
 # Ghi đè mẫu prompt mặc định
 vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
@@ -397,11 +398,11 @@ Generate only the SQL query, with no additional explanation.
 """)
 
 sql = vn.generate_sql("List all high-value customers")
-```
+`````
 
 ### Làm việc với Nhiều Cơ sở dữ liệu
 
-```python
+`````python
 # Tạo các instance Vanna riêng biệt cho các cơ sở dữ liệu khác nhau
 vn_sales = VannaDefault(model="sales-model", api_key="vn-...")
 vn_sales.connect_to_postgres(host="sales-db", dbname="sales")
@@ -412,11 +413,11 @@ vn_hr.connect_to_mysql(host="hr-db", dbname="human_resources")
 # Truy vấn cơ sở dữ liệu phù hợp
 sales_sql = vn_sales.generate_sql("Total revenue by quarter")
 hr_sql = vn_hr.generate_sql("Employee count by department")
-```
+`````
 
 ### Sử dụng Các Kho Lưu trữ Vector Tùy chỉnh
 
-```python
+`````python
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
@@ -428,15 +429,15 @@ vn = PineconeVanna(config={
     "pinecone_api_key": "your-pinecone-key",
     "pinecone_index": "vanna-index"
 })
-```
+`````
 
----
+* * *
 
 ## Tích hợp Jupyter và Các Quy trình Tương tác
 
 Vanna tỏa sáng trong các notebook Jupyter, cung cấp các widget tương tác phong phú và khả năng trực quan hóa.
 
-```python
+`````python
 from vanna.remote import VannaDefault
 import vanna as vn
 
@@ -446,31 +447,31 @@ vn.connect_to_postgres(host="localhost", dbname="analytics",
 
 # Khởi chạy giao diện trò chuyện tương tác trong Jupyter
 vn.ask("What are the top selling products?")
-```
+`````
 
-Phương thức `ask()` trong Jupyter trả về đầu ra phong phú bao gồm SQL được tạo, giải thích, và bảng kết quả. Để có trải nghiệm tương tác đầy đủ: ```python
+Phương thức ``ask()`` trong Jupyter trả về đầu ra phong phú bao gồm SQL được tạo, giải thích, và bảng kết quả. Để có trải nghiệm tương tác đầy đủ: `````python
 # Khởi chạy giao diện Web UI tương tác trong Jupyter
 from vanna.flask import VannaFlaskApp
 
 app = VannaFlaskApp(vn)
 app.run()
-```
+`````
 
-Vanna cũng tạo các trực quan tự động khi phù hợp: ```python
+Vanna cũng tạo các trực quan tự động khi phù hợp: `````python
 # Tạo SQL và tự động tạo biểu đồ
 vn.ask("Plot monthly sales trends for 2026")
 
 # Tạo SQL, thực thi nó, và tạo biểu đồ đường
 # từ các kết quả chuỗi thờ gian tự động
-```
+`````
 
----
+* * *
 
 ## Kiến trúc Vanna AI và Mô hình Quyền riêng tư
 
 Hiểu kiến trúc của Vanna là chìa khóa để triển khai nó an toàn trong các môi trường production.
 
-```
+`````
 ┌─────────────────────────────────────────────────────────────┐
 │                    Kiến trúc Vanna AI                        │
 ├─────────────────────────────────────────────────────────────┤
@@ -499,9 +500,9 @@ Hiểu kiến trúc của Vanna là chìa khóa để triển khai nó an toàn 
 │                       ▼                                     │
 │               Trả về Kết quả                                │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
-Mô hình quyền riêng tư hoạt động như sau: ```python
+Mô hình quyền riêng tư hoạt động như sau: `````python
 # Cấu hình Ưu tiên Quyền riêng tư (Khuyến nghị)
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
@@ -518,13 +519,13 @@ vn.connect_to_postgres(host="internal-db", dbname="analytics",
 # LLM chạy cục bộ qua Ollama
 # Các truy vấn cơ sở dữ liệu thực thi trên cơ sở dữ liệu nội bộ
 # Không dữ liệu nào đến được các API bên ngoài
-```
+`````
 
----
+* * *
 
 ## Benchmark và Độ chính xác
 
-Độ chính xác của Vanna phụ thuộc nhiều vào chất lượng và số lượng dữ liệu huấn luyện. Dưới đây là các đặc điểm hiệu suất điển hình được quan sát vào năm 2026: ```python
+Độ chính xác của Vanna phụ thuộc nhiều vào chất lượng và số lượng dữ liệu huấn luyện. Dưới đây là các đặc điểm hiệu suất điển hình được quan sát vào năm 2026: `````python
 # Script đánh giá độ chính xác
 import pandas as pd
 
@@ -556,7 +557,7 @@ for test in test_cases: generated = vn.generate_sql(test["question"])
 
 accuracy = correct / len(test_cases) * 100
 print(f"Độ chính xác: {accuracy:.1f}%")
-```
+`````
 
 Với việc huấn luyện toàn diện (DDL + tài liệu + các truy vấn mẫu), Vanna liên tục đạt được: - **Độ chính xác 90-95%** trên các truy vấn phân tích thông thường
 - **Độ chính xác 85-90%** trên các phép join đa bảng phức tạp
@@ -565,7 +566,7 @@ Với việc huấn luyện toàn diện (DDL + tài liệu + các truy vấn m�
 
 Chìa khóa cho độ chính xác cao là huấn luyện kỹ lưỡng. Một instance Vanna được huấn luyện tốt với 50+ câu lệnh DDL, 20+ truy vấn mẫu, và tài liệu liên quan vượt trội hơn đáng kể so với các phương pháp LLM chung chung.
 
----
+* * *
 
 ## Câu Hỏi Thường Gặp (FAQ)
 
@@ -573,20 +574,20 @@ Chìa khóa cho độ chính xác cao là huấn luyện kỹ lưỡng. Một in
 
 Có, Vanna AI là mã nguồn mở theo giấy phép MIT và miễn phí sử dụng. Thư viện lõi, tất cả các tích hợp, và hệ thống huấn luyện dựa trên RAG đều có sẵn miễn phí. Vanna cũng cung cấp dịch vụ đám mây được lưu trữ với gói miễn phí cho các dự án nhỏ, với các gói trả phí cho các tính năng doanh nghiệp như cộng tác team và phân tích nâng cao. Tùy chọn tự lưu trữ sử dụng LLM cục bộ (qua Ollama) và kho lưu trữ vector cục bộ (qua ChromaDB) hoàn toàn miễn phí không giới hạn sử dụng.
 
-```python
+`````python
 # Thiết lập tự lưu trữ hoàn toàn miễn phí
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
 class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
-```
+`````
 
 ### Vanna xử lý các thay đổi schema như thế nào?
 
 Khi schema cơ sở dữ liệu của bạn thay đổi, bạn cần huấn luyện lại Vanna với các câu lệnh DDL đã cập nhật. Phương pháp được khuyến nghị là phiên bản hóa dữ liệu huấn luyện của bạn và thiết lập một pipeline tự động trích xuất schema mới nhất và huấn luyện lại Vanna khi triển khai.
 
-```python
+`````python
 # Pipeline huấn luyện lại tự động
 import subprocess
 
@@ -600,13 +601,13 @@ new_ddl = result.stdout
 # Xóa dữ liệu huấn luyện cũ và huấn luyện lại
 vn.remove_training_data()
 vn.train(ddl=new_ddl)
-```
+`````
 
 ### Tôi có thể sử dụng Vanna với các ngôn ngữ không phải tiếng Anh không?
 
 Có, Vanna hỗ trợ các câu hỏi ngôn ngữ tự nhiên bằng nhiều ngôn ngữ. Backend LLM xử lý việc dịch sang SQL generation. Bạn có thể huấn luyện Vanna bằng tài liệu và ví dụ bằng ngôn ngữ ưa thích của bạn.
 
-```python
+`````python
 # Huấn luyện bằng tài liệu tiếng Trung
 vn.train(documentation="""
 销售额表记录所有完成的交易。
@@ -615,13 +616,13 @@ amount 列单位为美元，含税。
 """)
 
 sql = vn.generate_sql("显示2026年每个区域的总销售额")
-```
+`````
 
 ### Vanna hỗ trợ những cơ sở dữ liệu nào?
 
 Vanna hỗ trợ hầu hết tất cả các cơ sở dữ liệu chính thông qua hệ thống kết nối linh hoạt của nó: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse, và bất kỳ cơ sở dữ liệu nào có trình điều khiển Python DB-API. Các trình kết nối tùy chỉnh cũng có thể được triển khai cho các hệ thống chuyên dụng.
 
-```python
+`````python
 # SQLite
 vn.connect_to_sqlite("mydb.sqlite")
 
@@ -636,7 +637,7 @@ vn.connect_to_bigquery(project_id="my-project")
 
 # DuckDB
 vn.connect_to_duckdb("mydb.duckdb")
-```
+`````
 
 ### Làm thế nào để cải thiện độ chính xác của Vanna cho trường hợp sử dụng cụ thể của tôi?
 
@@ -645,15 +646,15 @@ Cách hiệu quả nhất để cải thiện độ chính xác là thông qua h
 3. **Tài liệu Kinh doanh** (tác động trung bình — thêm ngữ cảnh)
 4. **Các câu lệnh DDL** (nền tảng — loại bỏ ảo giác)
 
-```python
+`````python
 # Chế độ huấn luyện độ chính xác tối đa
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
 for example in curated_sql_examples: vn.train(sql=example)
 for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
-```
+````
 
----
+* * *
 
 
 
@@ -696,7 +697,7 @@ Vào năm 2026, khi khoảng cách giữa các nhà phân tích dữ liệu và 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -706,7 +707,7 @@ Vào năm 2026, khi khoảng cách giữa các nhà phân tích dữ liệu và 
 - [2026-06-08-trending-ai-agents](vanna-ai-sql-generation)
 - [2026-06-15-trending-ai-agents](vanna-ai-sql-generation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

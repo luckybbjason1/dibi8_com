@@ -12,6 +12,7 @@ maintainer: bytedance
 license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 ---
+
 ## Introduction
 
 The dream of a truly autonomous AI assistant — one that can look at your computer screen, understand what it sees, and take actions to complete tasks — has been the holy grail of AI development for years. ByteDance's UI-TARS Desktop brings this dream much closer to reality by combining state-of-the-art vision-language models with desktop automation capabilities.
@@ -51,67 +52,67 @@ UI-TARS Desktop can be installed via npm (for the desktop application) or pip (f
 
 ### Install via npm (Desktop Application)
 
-```bash
+````bash
 npm install -g @agent-tars/desktop
-```
+`````
 
 This installs the UI-TARS Desktop application globally, providing a full GUI agent experience with a built-in interface.
 
 ### Alternative: Install via pip (Python Library)
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 This installs the Python library version, which is ideal for programmatic use and server-side deployment.
 
 ### Start Web UI
 
-```bash
+`````bash
 agent-tars web
-```
+`````
 
 Launches the web-based interface for the UI-TARS agent. The web UI provides a browser-based interface for controlling the agent and viewing its actions.
 
 ### Verify Installation
 
-```bash
+`````bash
 agent-tars --version
-```
+`````
 
 ### Install from Source
 
-```bash
+`````bash
 git clone https://github.com/bytedance/UI-TARS-desktop.git && cd UI-TARS-desktop && pip install -r requirements.txt
-```
+`````
 
 ### Download Pre-trained Model
 
-```bash
+`````bash
 python download_model.py --model ui-tars-7b
-```
+`````
 
 Downloads the pre-trained 7-billion parameter vision-language model. The model is downloaded from HuggingFace and stored locally for offline inference.
 
 ### Docker Installation
 
-```bash
+`````bash
 docker pull bytedance/uitars-desktop
 docker run --gpus all -it bytedance/uitars-desktop
-```
+`````
 
 ### Install on macOS
 
-```bash
+`````bash
 brew install python@3.11
 pip3 install agent-tars
-```
+`````
 
 ### Install on Windows
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 ![UI-TARS GitHub OG preview](https://opengraph.github.com/github/bytedance/UI-TARS-desktop)
 
@@ -121,83 +122,83 @@ pip install agent-tars
 
 ### Start the Agent
 
-```bash
+`````bash
 agent-tars --model ui-tars-7b
-```
+`````
 
 This starts the UI-TARS agent with the 7-billion parameter vision-language model, which is the recommended size for most use cases.
 
 ### Run a Single Task
 
-```bash
+`````bash
 agent-tars run --task "Open the browser and search for 'machine learning tutorial'" --model ui-tars-7b
-```
+`````
 
 The agent will automatically open your default browser, navigate to a search engine, and search for the specified query.
 
 ### Run from a Task File
 
-```bash
+`````bash
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
-```
+`````
 
-Where `tasks.yaml` contains: ```yaml
+Where ``tasks.yaml`` contains: `````yaml
 tasks: - "Open the file explorer"
   - "Navigate to Desktop"
   - "Right-click and create a new folder"
   - "Name the folder 'My Project'"
-```
+`````
 
 ### Screenshot Mode (Analyze Only)
 
-```bash
+`````bash
 agent-tars analyze --screenshot screenshot.png
-```
+`````
 
 This analyzes a screenshot and describes the UI elements visible, without performing any actions. Useful for debugging and understanding what the model sees.
 
 ### Record and Replay
 
-```bash
+`````bash
 agent-tars record --output recording.yaml
 agent-tars replay --recording recording.yaml
-```
+`````
 
 Records your agent's actions and generates a YAML file that can be replayed later, enabling automation script generation.
 
 ### Run in Headless Mode
 
-```bash
+`````bash
 agent-tars run --headless --task "Close all open browser tabs" --model ui-tars-7b
-```
+`````
 
 Headless mode runs the agent without displaying the UI, useful for server environments and CI/CD pipelines.
 
 ### Configure Agent Parameters
 
-```bash
+`````bash
 agent-tars run --task "Your task" --model ui-tars-7b --max-steps 20 --confidence-threshold 0.8
-```
+`````
 
 ### Batch Task Processing
 
-```bash
+`````bash
 agent-tars batch --task-file tasks.yaml --parallel 3 --output results.jsonl
-```
+`````
 
 Processes multiple tasks in parallel and logs results to a JSONL file for programmatic analysis.
 
 ### Export Task Logs
 
-```bash
+`````bash
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Model Selection
 
-UI-TARS supports multiple model sizes for different performance trade-offs: ```bash
+UI-TARS supports multiple model sizes for different performance trade-offs: `````bash
 # 7B parameter model (recommended for most use cases)
 agent-tars --model ui-tars-7b
 
@@ -206,11 +207,11 @@ agent-tars --model ui-tars-1b
 
 # 72B parameter model (most accurate, slowest, requires 40GB+ VRAM)
 agent-tars --model ui-tars-72b
-```
+`````
 
 ### Custom Configuration File
 
-```yaml
+`````yaml
 # uitars-config.yaml
 agent: model: ui-tars-7b
   max_steps: 30
@@ -226,25 +227,25 @@ actions: click: method: mouse
 environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
-```
+`````
 
 ### Multi-Monitor Support
 
-```bash
+`````bash
 agent-tars --monitor 0 --task "Open settings on display 2"
-```
+`````
 
 Specifies which monitor the agent should use for screenshot capture and action execution.
 
 ### API Server Mode
 
-```bash
+`````bash
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
-```
+`````
 
 Starts a REST API server for programmatic control of the agent. This enables integration with other tools and automated workflows.
 
-```bash
+`````bash
 # Send a task via API
 curl -X POST http://localhost:8000/run \
   -H "Content-Type: application/json" \
@@ -255,21 +256,21 @@ curl http://localhost:8000/tasks/task-001/status
 
 # Cancel a running task
 curl -X POST http://localhost:8000/tasks/task-001/cancel
-```
+`````
 
 ### Custom Vision Model
 
-```bash
+`````bash
 # Use a fine-tuned vision model from a local path
 agent-tars --model-path ./custom-model/ --task "Your custom task"
 
 # Use a custom VLM
 agent-tars --vlm-path ./my-vlm/ --task "Your task"
-```
+`````
 
 ### Screen Capture Methods
 
-```bash
+`````bash
 # Use screenshot method (default)
 agent-tars --capture screenshot --task "Your task"
 
@@ -278,25 +279,25 @@ agent-tars --capture recording --task "Your task"
 
 # Use desktop sharing method (Linux with PipeWire)
 agent-tars --capture pipewire --task "Your task"
-```
+`````
 
 ### Keyboard Layout Configuration
 
-```bash
+`````bash
 agent-tars --keyboard-layout us --task "Type 'Hello World'"
-```
+`````
 
 ### CI/CD Testing Integration
 
-```bash
+`````bash
 # Use UI-TARS for GUI testing in CI/CD pipelines
 agent-tars run --task "Open the application, fill out the form, submit" \
   --headless --output test-report.json
-```
+`````
 
 ### Python API Usage
 
-```python
+`````python
 from agent_tars import Agent
 
 # Create an agent instance
@@ -314,7 +315,7 @@ for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"Success: {result.success}")
 print(f"Reason: {result.explanation}")
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -322,13 +323,13 @@ print(f"Reason: {result.explanation}")
 
 | Task Type | UI-TARS Desktop | Traditional Automation | ScreenOCR + Script |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Simple button clicks | 98% | 95% | 85% |
 | Form filling | 92% | 70% | 60% |
@@ -341,11 +342,11 @@ print(f"Reason: {result.explanation}")
 
 | Model | Latency (ms) | GPU Memory |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | UI-TARS 1B | 150ms | 4GB |
 | UI-TARS 7B | 800ms | 8GB |
@@ -355,15 +356,15 @@ print(f"Reason: {result.explanation}")
 
 | Feature | UI-TARS | Accessibility APIs | Selenium | Playwright |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Works on any GUI app | Yes | No | Web only | Web only |
 | Visual understanding | Yes (VLM) | No | Limited | Limited |
@@ -374,22 +375,22 @@ print(f"Reason: {result.explanation}")
 
 ### Real-World Case: QA Testing Team
 
-A QA team of 8 engineers uses UI-TARS to automate GUI testing across their web and desktop applications: ```bash
+A QA team of 8 engineers uses UI-TARS to automate GUI testing across their web and desktop applications: `````bash
 #!/bin/bash
 # Automated regression test suite
 agent-tars batch --task-file regression-tests.yaml \
   --headless --parallel 4 --output test-results.jsonl
-```
+`````
 
 The team reports a 60% reduction in regression testing time and the ability to test applications that previously required manual testing due to lack of DOM access.
 
 ### Real-World Case: Accessibility Automation
 
-A company uses UI-TARS to automate accessibility testing across their applications: ```bash
+A company uses UI-TARS to automate accessibility testing across their applications: `````bash
 # Test multiple UI states
 agent-tars run --task "Navigate to all menus and verify keyboard shortcuts work" \
   --model ui-tars-7b --max-steps 50
-```
+`````
 
 The agent navigates through all menus and verifies that keyboard shortcuts are properly implemented, catching regressions that traditional automated tests missed.
 
@@ -397,18 +398,18 @@ The agent navigates through all menus and verifies that keyboard shortcuts are p
 
 ### Production Configuration with Secret Management
 
-```bash
+`````bash
 # Configure model path securely
 export UI_TARS_MODEL_PATH=/secure/path/to/models
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
 
 # Use environment-based configuration
 agent-tars --config /etc/uitars/config.yaml serve
-```
+`````
 
 ### Container Deployment
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 
 RUN pip install agent-tars
@@ -417,43 +418,43 @@ COPY uitars-config.yaml /etc/uitars/config.yaml
 EXPOSE 8000
 
 ENTRYPOINT ["agent-tars", "serve", "--config", "/etc/uitars/config.yaml"]
-```
+`````
 
 ### Resource Limits for Production
 
-```bash
+`````bash
 # Limit GPU memory usage
 CUDA_VISIBLE_DEVICES=0 agent-tars --model ui-tars-7b --max-gpu-memory 8192
 
 # Limit concurrent tasks
 agent-tars serve --max-concurrent-tasks 5 --task-timeout 300
-```
+`````
 
 ### Logging and Monitoring
 
-```bash
+`````bash
 # Enable detailed logging
 agent-tars run --task "Your task" --verbose --log-level debug
 
 # Export logs for analysis
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Install Method | `npm install -g @agent-tars/desktop` | pip install | pip install | pip install |
+| Install Method | ````npm install -g @agent-tars/desktop```` | pip install | pip install | pip install |
 | Visual Understanding | VLM-based (screenshot analysis) | Limited | No | Partial |
 | Any GUI App | Yes | Limited | Yes | Limited |
 | Self-Correction | Yes (visual feedback loop) | Partial | No | Partial |
@@ -472,7 +473,7 @@ While UI-TARS Desktop is powerful, be aware of these limitations: 1. **GPU requi
 2. **Latency** — Each action requires a screenshot and model inference, adding latency to each step. Multi-step tasks may take several minutes.
 3. **Security considerations** — The agent has full control of your desktop. Use in trusted environments only, and restrict access with proper authentication.
 4. **Complex text input** — Typing long or complex text may occasionally produce errors in character recognition or input simulation.
-5. **High-DPI displays** — Screen scaling on some displays may affect position accuracy. Configure the `scale_factor` parameter to match your display settings.
+5. **High-DPI displays** — Screen scaling on some displays may affect position accuracy. Configure the ````scale_factor```` parameter to match your display settings.
 6. **Non-GUI workflows** — For pure command-line or API-based tasks, traditional CLI tools are more efficient than UI-TARS.
 
 ## Frequently Asked Questions
@@ -509,7 +510,7 @@ Whether you are automating repetitive tasks, building GUI tests, developing inte
 
 For hosting your AI agent infrastructure and GPU workloads, consider deploying on cloud platforms that offer affordable GPU instances. Use [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for development servers, [HTStack](https://my.htstack.com/aff.php?aff=27187) for production hosting, and [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) for reliable proxy and content distribution.
 
-Get started today: `npm install -g @agent-tars/desktop` and give your computer an AI assistant that can actually see and understand what it's doing.
+Get started today: ````npm install -g @agent-tars/desktop``` and give your computer an AI assistant that can actually see and understand what it's doing.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -554,7 +555,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [bytedance-ui-tars-desktop-ai-agent-guide](bytedance-ui-tars-desktop-ai-agent-guide)
@@ -564,7 +565,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [2026-06-08-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

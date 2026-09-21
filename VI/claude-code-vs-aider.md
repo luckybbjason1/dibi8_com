@@ -18,6 +18,7 @@ faqs: - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'
     a: 'Có — Aider giấy phép Apache 2.0 và chạy hoàn toàn trên máy của bạn. Cuộc gọi bên ngoài duy nhất là tới model API bạn cấu hình (OpenAI, Anthropic, Ollama local, v.v.). Cho môi trường air-gapped hoặc nhạy cảm compliance, ghép Aider với model local và bạn có setup AI coding hoàn toàn tự host. Claude Code yêu cầu cloud của Anthropic."
 ---
 
+
 # Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở
 
 
@@ -29,7 +30,7 @@ Chọn **Claude Code** nếu: Bạn muốn agent AI coding quản lý hoàn toà
 
 Chọn **Aider** nếu: Bạn muốn công cụ mã nguồn mở dưới Apache 2.0, tự mang API key (hoặc model local), thích vòng lặp chỉnh sửa-commit-diff dễ kiểm tra, và muốn tối ưu chi phí mỗi phiên xuống dưới giá subscription.
 
----
+* * *
 
 ## So sánh chi tiết
 
@@ -52,7 +53,7 @@ Chọn **Aider** nếu: Bạn muốn công cụ mã nguồn mở dưới Apache 
 | **Hỗ trợ MCP** | Có (native) | Không native; plugin cộng đồng |
 | **Hệ thống subagent** | Có (tool Task) | Không |
 
----
+* * *
 
 ## Khi nào chọn Claude Code
 
@@ -60,12 +61,12 @@ Chọn **Aider** nếu: Bạn muốn công cụ mã nguồn mở dưới Apache 
 Claude Code có thể nhận spec mơ hồ như "thêm đăng nhập OAuth với Google và GitHub, cập nhật schema, viết test, deploy" và chạy 30-60 phút với giám sát tối thiểu. Nó lập kế hoạch, chỉnh sửa, chạy test, quan sát thất bại, tự sửa. Aider thiết kế cho lượt chặt human-in-the-loop và sẽ không tự chạy vòng lặp dài như vậy.
 
 ### Tình huống 2: Monorepo khổng lồ
-Tier context Sonnet 1M nghĩa là Claude Code có thể giữ toàn bộ repo 800K-LOC trong bộ nhớ làm việc. Kết hợp với hệ thống subagent, nó có thể điều phối "agent nghiên cứu" song song khám phá code không quen mà không làm bẩn phiên chính. Aider trên codebase 1M yêu cầu bạn thủ công thêm file qua `/add`.
+Tier context Sonnet 1M nghĩa là Claude Code có thể giữ toàn bộ repo 800K-LOC trong bộ nhớ làm việc. Kết hợp với hệ thống subagent, nó có thể điều phối "agent nghiên cứu" song song khám phá code không quen mà không làm bẩn phiên chính. Aider trên codebase 1M yêu cầu bạn thủ công thêm file qua ```/add````.
 
 ### Tình huống 3: Tính dự đoán phí cố định
 $20/tháng Pro hoặc $200/tháng Max nghĩa là chi phí AI coding hàng tháng có giới hạn. Người dùng heavy thường xuyên đốt $200+ chi phí Anthropic API thô qua Aider — ở mức đó, Claude Code Max cùng giá nhưng không lo metering.
 
----
+* * *
 
 ## Khi nào chọn Aider
 
@@ -78,7 +79,7 @@ Aider miễn phí công cụ. Bạn chỉ trả model API nền. Cho sử dụng
 ### Tình huống 3: Workflow chỉnh sửa-commit-diff dễ kiểm tra
 Vòng lặp Aider là: đề xuất chỉnh sửa → hiển thị unified diff → chờ phê duyệt → commit với message mô tả. Mỗi thay đổi là một git commit, hoàn toàn review được. Cho team muốn hỗ trợ AI mà không mất chất lượng lịch sử git-blame, kỷ luật của Aider tỏa sáng.
 
----
+* * *
 
 ## Phân tích giá sâu
 
@@ -104,7 +105,7 @@ Sử dụng nhẹ (<20 phiên/tuần): **Aider với Sonnet cached ~$10-$15/thá
 Sử dụng nặng (>50 phiên/tuần): **Claude Code Pro $20/tháng** là trần chi phí.
 Sử dụng nặng không giới hạn: **Claude Code Max $200/tháng** thắng $300+ API thô qua Aider.
 
----
+* * *
 
 ## Benchmark hiệu suất (chủ quan, từ sử dụng hàng ngày)
 
@@ -123,30 +124,30 @@ Sử dụng nặng không giới hạn: **Claude Code Max $200/tháng** thắng 
 
 → Claude Code thắng về tự chủ agent và quy mô. Aider thắng về vệ sinh git, minh bạch chi phí, tự do mã nguồn mở.
 
----
+* * *
 
 ## Lời khuyên migration
 
 ### Claude Code → Aider
-- Cài đặt: `pip install aider-chat` hoặc `pipx install aider-chat`
-- Đặt API key: `export ANTHROPIC_API_KEY=sk-ant-...`
-- Chạy từ root repo: `aider --sonnet`
-- Dùng `/add file.py` để include file (Aider KHÔNG tự discover như Claude Code)
+- Cài đặt: ````pip install aider-chat```` hoặc ````pipx install aider-chat````
+- Đặt API key: ````export ANTHROPIC_API_KEY=sk-ant-...````
+- Chạy từ root repo: ````aider --sonnet````
+- Dùng ````/add file.py```` để include file (Aider KHÔNG tự discover như Claude Code)
 - Bật auto-commit: mặc định bật; review diff trước khi phê duyệt
 - Hạ kỳ vọng về tự chủ — Aider mong vòng lặp 1-2 lượt, không phải chạy 30 phút
 
 ### Aider → Claude Code
-- Cài đặt: `npm install -g @anthropic-ai/claude-code` hoặc dùng `claude` CLI từ anthropic.com
-- Xác thực: `claude login` (dùng tài khoản Anthropic, không phải API key)
-- Chạy từ root repo: `claude`
-- Đừng thủ công `/add` file — Claude Code dùng subagent để tìm cái cần
+- Cài đặt: ````npm install -g @anthropic-ai/claude-code```` hoặc dùng ````claude```` CLI từ anthropic.com
+- Xác thực: ````claude login```` (dùng tài khoản Anthropic, không phải API key)
+- Chạy từ root repo: ````claude````
+- Đừng thủ công ````/add``` file — Claude Code dùng subagent để tìm cái cần
 - Tắt auto-commit nếu muốn vệ sinh git kiểu Aider; nếu không, để nó batch
 - Mong lượt đơn dài hơn (10-60 giây) nhưng tổng lượt mỗi tác vụ ít hơn
 
 ### Lưu ý tự host
 Muốn chạy Aider với model local và nhận lợi ích mã nguồn mở mà không thuê GPU? {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean GPU droplet với $200 credit miễn phí" >}} cho bạn đủ runway để test Llama 3.3 70B hoặc DeepSeek V3 trên codebase thật 2-3 tháng trước khi quyết định. Rẻ hơn 2 tháng Claude Code Max, và bạn giữ infrastructure cho workload inference.
 
----
+* * *
 
 ## Máy tính hiệu quả chi phí (sơ bộ)
 
@@ -159,7 +160,7 @@ Muốn chạy Aider với model local và nhận lợi ích mã nguồn mở mà
 | 8 giờ tự chủ mỗi ngày | Claude Code Max 20x | $200 |
 | Tự host / air-gapped | Aider + Ollama local | $0 (+ phần cứng) |
 
----
+* * *
 
 ## Giải thích khác biệt phong cách agent
 
@@ -169,7 +170,7 @@ Muốn chạy Aider với model local và nhận lợi ích mã nguồn mở mà
 
 Tính năng greenfield: Claude Code nhanh hơn. Code legacy có giám sát quy định: Aider an toàn hơn.
 
----
+* * *
 
 ## Lựa chọn thay thế đáng thử
 
@@ -178,7 +179,7 @@ Nếu Claude Code và Aider đều không phù hợp: - **[Cursor](https://dibi8
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code qua provider rẻ hơn, cắt 60-80% chi phí
 - **[Cline](https://dibi8.com/vi/resources/llm-frameworks/cline-autonomous-coding-agent/)** — Agent VS Code, tương tự Aider nhưng nhiều UI hơn
 
----
+* * *
 
 ## Quan điểm của dibi8
 
@@ -192,13 +193,13 @@ Dev indie ship SaaS solo với ngân sách chặt? **Aider với Sonnet 1M và p
 
 Team nhỏ ship nhanh không có thời gian review diff? **Claude Code Max 5x ở $100/tháng** trả lại bằng giờ engineering tiết kiệm trong tuần đầu.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -243,7 +244,7 @@ Team nhỏ ship nhanh không có thời gian review diff? **Claude Code Max 5x �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -253,7 +254,7 @@ Team nhỏ ship nhanh không có thời gian review diff? **Claude Code Max 5x �
 - [claude-code-vs-aider](claude-code-vs-aider)
 - [cursor-vs-claude-code](claude-code-vs-aider)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

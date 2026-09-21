@@ -37,6 +37,7 @@ faqs: - q: 'What is Polymarket Agents?'
   - q: 'How do I execute a trade with the Polymarket Agents CLI?'
     a: 'Run the CLI command ''python scripts/python/cli.py trade --market-id  --side buy --size ''. You can also list markets with ''get-all-markets --sort-by volume'' or inspect a single market with ''get-market --market-id ''.'
 ---
+
 {</* resource-info */>}
 
 ![Polymarket Agents CLI showing available commands](/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png)
@@ -55,7 +56,7 @@ This framework enables developers to: - 🤖 Build AI agents that analyze market
 🔗 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
 
----
+* * *
 ## What is Polymarket?
 
 **Polymarket** is a decentralized prediction market platform where users trade on the outcomes of real-world events: - **Politics** — Election results, policy decisions
@@ -67,14 +68,14 @@ This framework enables developers to: - 🤖 Build AI agents that analyze market
 Traders buy "Yes" or "No" shares based on their predictions, with prices reflecting the market's consensus probability.
 
 
----
+* * *
 ## Key Features
 
 | Feature | Description |
 |
----
+* * *
 |
----
+* * *
 |
 | **Polymarket API Integration** | Full access to market data, order book, and trade execution |
 | **AI Agent Utilities** | Tools for building autonomous trading agents |
@@ -85,7 +86,7 @@ Traders buy "Yes" or "No" shares based on their predictions, with prices reflect
 | **Docker Support** | Containerized deployment for easy setup |
 | **MIT License** | Free and open-source |
 
----
+* * *
 
 ## Architecture
 
@@ -93,9 +94,9 @@ Polymarket Agents features modular components that can be maintained and extende
 
 | Component | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
 | **Chroma.py** | Vector database for news sources and API data |
 | **Gamma.py** | Polymarket Gamma API client for market metadata |
@@ -104,7 +105,7 @@ Polymarket Agents features modular components that can be maintained and extende
 
 ### CLI Commands
 
-The primary user interface for interacting with Polymarket: ```bash
+The primary user interface for interacting with Polymarket: ````bash
 # Get all markets sorted by volume
 python scripts/python/cli.py get-all-markets --limit 10 --sort-by volume
 
@@ -113,36 +114,36 @@ python scripts/python/cli.py get-market --market-id <MARKET_ID>
 
 # Execute a trade
 python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>
-```
+`````
 
----
+* * *
 
 ## Quick Start
 
 ### 1. Clone Repository
 
-```bash
+`````bash
 git clone https://github.com/polymarket/agents.git
 cd agents
-```
+`````
 
 ### 2. Set Up Environment
 
-```bash
+`````bash
 # Create virtual environment
 virtualenv --python=python3.9 .venv
 source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-```
+`````
 
 ### 3. Configure API Keys
 
-Create `.env` file: ```env
+Create ``.env`` file: `````env
 POLYGON_WALLET_PRIVATE_KEY="your-wallet-private-key"
 OPENAI_API_KEY="your-openai-api-key"
-```
+`````
 
 ### 4. Load Wallet with USDC
 
@@ -150,26 +151,26 @@ Transfer USDC to your Polygon wallet for trading.
 
 ### 5. Run CLI
 
-```bash
+`````bash
 # Set Python path
 export PYTHONPATH="."
 
 # Run CLI
 python scripts/python/cli.py
-```
+`````
 
-Or execute trades directly: ```bash
+Or execute trades directly: `````bash
 python agents/application/trade.py
-```
+`````
 
 ### 6. Docker Alternative
 
-```bash
+`````bash
 ./scripts/bash/build-docker.sh
 ./scripts/bash/run-docker-dev.sh
-```
+````
 
----
+* * *
 
 ## Trading Strategies
 
@@ -193,17 +194,17 @@ Polymarket Agents supports various AI-driven trading strategies: ### 1. News-Bas
 - Use RAG to query historical data
 - Make informed predictions
 
----
+* * *
 
 ## Data Sources
 
 The framework integrates multiple data sources: | Source | Type | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **News APIs** | Real-time news | Event tracking |
 | **Web Search** | General information | Background research |
@@ -211,7 +212,7 @@ The framework integrates multiple data sources: | Source | Type | Use Case |
 | **Social Media** | Sentiment analysis | Trend detection |
 | **On-Chain Data** | Transaction data | Market intelligence |
 
----
+* * *
 
 ## RAG Implementation
 
@@ -220,15 +221,15 @@ Retrieval-Augmented Generation for informed trading: 1. **Vector Database** — 
 3. **Retrieval** — Query relevant information based on market context
 4. **Generation** — LLM synthesizes retrieved data into trading decisions
 
----
+* * *
 
 ## Risk Management
 
 Important considerations for automated trading: | Risk | Mitigation |
 |
----
+* * *
 |
----
+* * *
 |
 | **Market Risk** | Position sizing, stop-losses |
 | **Liquidity Risk** | Trade in high-volume markets |
@@ -236,19 +237,19 @@ Important considerations for automated trading: | Risk | Mitigation |
 | **Operational Risk** | Monitor bot performance regularly |
 | **Regulatory Risk** | Comply with local regulations |
 
----
+* * *
 
 ## Comparison with Other Tools
 
 | Feature | Polymarket Agents | Custom Bot | Manual Trading |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | ✅ | Varies | N/A |
 | **AI Integration** | ✅ | Optional | ❌ |
@@ -259,7 +260,7 @@ Important considerations for automated trading: | Risk | Mitigation |
 | **Speed** | Fast | Fast | Slow |
 | **Emotion-Free** | ✅ | ✅ | ❌ |
 
----
+* * *
 
 ## Use Cases
 
@@ -283,15 +284,15 @@ Important considerations for automated trading: | Risk | Mitigation |
 - Box office predictions
 - Reality show outcomes
 
----
+* * *
 
 ## Related Repositories
 
 | Repository | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
 | [py-clob-client](https://github.com/Polymarket/py-clob-client) | Python client for Polymarket CLOB |
 | [python-order-utils](https://github.com/Polymarket/python-order-utils) | Order generation and signing |
@@ -299,7 +300,7 @@ Important considerations for automated trading: | Risk | Mitigation |
 | [Langchain](https://github.com/langchain-ai/langchain) | Context-aware reasoning |
 | [Chroma](https://docs.trychroma.com) | Vector database |
 
----
+* * *
 
 ## Reading Resources
 
@@ -307,14 +308,14 @@ Important considerations for automated trading: | Risk | Mitigation |
 - [Crypto + AI Applications](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) by Vitalik Buterin
 - [Superforecasting](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment)
 
----
+* * *
 
 ## Related Articles
 
 - [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/resources/dev-utils/polymarket-trading-bot-stack/) — Complete trading bot architecture
 - [Free Claude Code: Use Claude Code CLI for Free](/resources/ai-tools/free-claude-code-open-source-proxy/) — AI coding assistant
 
----
+* * *
 
 ## Conclusion
 
@@ -324,11 +325,11 @@ Important considerations for automated trading: | Risk | Mitigation |
 
 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
+* * *
 
 
 -
----
+* * *
 
 ## Recommended Infrastructure for Self-Hosting
 
@@ -410,7 +411,7 @@ Polymarket Agents: Build AI Trading Bots for Prediction Markets represents an im
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -24,25 +24,26 @@ aliases:
   - /vi/posts/supabase-postgres-vector-ai-apps/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao các nhà xây dựng ứng dụng AI đang chuyển từ Firebase sang Supabase
 
 Vào tháng 1 năm 2026, một startup AI có trụ sở tại San Francisco đang xây dựng công cụ phân tích tài liệu pháp lý đã gặp khó khăn. Họ cần tìm kiếm vector trên **2,3 triệu** embedding PDF, cộng tác thờ gian thực cho đội ngũ chú thích, và đăng nhập OAuth — tất cả trong một backend duy nhất. Firestore của Firebase không có tìm kiếm vector gốc, và kết nối Algolia + Firebase Auth + Cloud Functions có nghĩa là ba dịch vụ riêng biệt với các bậc giá không tương thích. Họ đã chuyển sang Supabase, có pipeline RAG hoạt động trong **dưới 3 giờ**, và giảm **62%** chi phí hạ tầng backend.
 
-Tính đến tháng 5 năm 2026, Supabase đã vượt quá **80.000 sao GitHub** và cung cấp năng lượng cho **hơn 1 triệu dự án hoạt động**. Đây là một giải pháp thay thế Firebase mã nguồn mở được xây dựng trên **PostgreSQL 16**, với `pgvector` tích hợp sẵn cho tìm kiếm tương đồng vector. Không giống như kho tài liệu độc quyền của Firebase, Supabase cung cấp cho bạn toàn bộ sức mạnh của SQL, giao dịch ACID, và cơ sở dữ liệu quan hệ đã qua thử nghiệm — trong khi vẫn cung cấp sự tiện lợi của API tự động tạo, đăng ký thờ gian thực, và xác thực tích hợp.
+Tính đến tháng 5 năm 2026, Supabase đã vượt quá **80.000 sao GitHub** và cung cấp năng lượng cho **hơn 1 triệu dự án hoạt động**. Đây là một giải pháp thay thế Firebase mã nguồn mở được xây dựng trên **PostgreSQL 16**, với ```pgvector```` tích hợp sẵn cho tìm kiếm tương đồng vector. Không giống như kho tài liệu độc quyền của Firebase, Supabase cung cấp cho bạn toàn bộ sức mạnh của SQL, giao dịch ACID, và cơ sở dữ liệu quan hệ đã qua thử nghiệm — trong khi vẫn cung cấp sự tiện lợi của API tự động tạo, đăng ký thờ gian thực, và xác thực tích hợp.
 
 Hướng dẫn này bao gồm mọi thứ từ thiết lập cục bộ và cấu hình tìm kiếm vector đến tích hợp pipeline RAG, edge functions, triển khai tự host qua Docker, và tăng cường sản xuất. Dù bạn đang xây dựng AI SaaS tiếp theo hay thêm tìm kiếm ngữ nghĩa vào ứng dụng hiện có, Supabase là backend mà bạn muốn có trong stack.
 
 ## Supabase là gì?
 
-Supabase là nền tảng backend-as-a-service (BaaS) mã nguồn mở đóng gói PostgreSQL với bộ công cụ dành cho nhà phát triển: API REST và GraphQL tức thờ, xác thực, lưu trữ file, đăng ký thờ gian thực, edge functions, và tìm kiếm vector qua `pgvector`. Được thành lập vào năm 2020 bởi Paul Copplestone và Ant Wilson, được cấp phép Apache-2.0 và được hỗ trợ bởi Y Combinator. Phiên bản được host cung cấp một tier miễn phí hào phóng; toàn bộ stack cũng có thể được tự host qua Docker Compose trên bất kỳ VPS hoặc máy chủ bare-metal nào.
+Supabase là nền tảng backend-as-a-service (BaaS) mã nguồn mở đóng gói PostgreSQL với bộ công cụ dành cho nhà phát triển: API REST và GraphQL tức thờ, xác thực, lưu trữ file, đăng ký thờ gian thực, edge functions, và tìm kiếm vector qua ````pgvector````. Được thành lập vào năm 2020 bởi Paul Copplestone và Ant Wilson, được cấp phép Apache-2.0 và được hỗ trợ bởi Y Combinator. Phiên bản được host cung cấp một tier miễn phí hào phóng; toàn bộ stack cũng có thể được tự host qua Docker Compose trên bất kỳ VPS hoặc máy chủ bare-metal nào.
 
 ## Kiến trúc: Supabase cung cấp năng lượng cho ứng dụng AI như thế nào
 
 Supabase là hơn cả một trình bao bọc cơ sở dữ liệu. Kiến trúc của nó được thiết kế xung quanh nguyên tắc: **"PostgreSQL là trung tâm của mọi thứ."**
 
-1. **PostgreSQL 16 + pgvector** — Engine cơ sở dữ liệu xử lý dữ liệu có cấu trúc, tài liệu JSONB, tìm kiếm toàn văn, và tìm kiếm tương đồng vector thông qua tiện ích mở rộng `pgvector` (hiện hỗ trợ lên đến **2.048 chiều** với lập chỉ mục HNSW).
+1. **PostgreSQL 16 + pgvector** — Engine cơ sở dữ liệu xử lý dữ liệu có cấu trúc, tài liệu JSONB, tìm kiếm toàn văn, và tìm kiếm tương đồng vector thông qua tiện ích mở rộng ````pgvector```` (hiện hỗ trợ lên đến **2.048 chiều** với lập chỉ mục HNSW).
 
 2. **PostgREST** — Tự động tạo API RESTful trực tiếp từ schema cơ sở dữ liệu. Mỗi bảng, view, và hàm trở thành endpoint HTTP mà không cần viết code backend.
 
@@ -54,24 +55,24 @@ Supabase là hơn cả một trình bao bọc cơ sở dữ liệu. Kiến trúc
 
 6. **Edge Functions** — Hàm serverless dựa trên Deno được triển khai ở edge. Lý tưởng để gọi API AI bên ngoài, xử lý trước tài liệu, hoặc chạy suy luận nhẹ.
 
-7. **Vector / AI** — Thông qua `pgvector`, bạn lưu trữ embedding, xây dựng chỉ mục HNSW, và chạy truy vấn tương đồng cosine — xương sống của bất kỳ ứng dụng RAG nào.
+7. **Vector / AI** — Thông qua ````pgvector````, bạn lưu trữ embedding, xây dựng chỉ mục HNSW, và chạy truy vấn tương đồng cosine — xương sống của bất kỳ ứng dụng RAG nào.
 
 ## Cài đặt & Thiết lập: Từ con số không đến Backend sẵn sàng Production
 
 ### Đám mây được Host (Đường dẫn nhanh nhất)
 
-```bash
+`````bash
 # Dự án của bạn đi kèm với: # - Cơ sở dữ liệu PostgreSQL 16
 # - API REST tự động tạo
 # - Xác thực tích hợp
 # - 500 MB lưu trữ cơ sở dữ liệu (tier miễn phí)
 # - 1 GB lưu trữ file (tier miễn phí)
 # - 2 GB băng thông (tier miễn phí)
-```
+`````
 
 ### Phát triển cục bộ với CLI
 
-```bash
+`````bash
 # Cài đặt Supabase CLI
 # macOS
 brew install supabase/tap/supabase
@@ -97,13 +98,13 @@ supabase start
 # API URL: http://localhost:54321
 # GraphQL URL: http://localhost:54321/graphql/v1
 # anon key: eyJhbGciOiJIUzI1NiIs...
-```
+`````
 
-Stack cục bộ bao gồm PostgreSQL, PostgREST, GoTrue, Realtime, Storage, và Studio (GUI cơ sở dữ liệu dựa trên web tại `http://localhost:54323`).
+Stack cục bộ bao gồm PostgreSQL, PostgREST, GoTrue, Realtime, Storage, và Studio (GUI cơ sở dữ liệu dựa trên web tại ````http://localhost:54323````).
 
 ### Tự host qua Docker Compose
 
-Để tự host production trên hạ tầng của riêng bạn (ví dụ: qua [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187)): ```bash
+Để tự host production trên hạ tầng của riêng bạn (ví dụ: qua [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187)): `````bash
 # Clone repository tự host chính thức
 git clone https://github.com/supabase/supabase.git
 cd supabase/docker
@@ -133,21 +134,21 @@ docker compose ps
 # supabase-storage    healthy
 # supabase-meta       healthy
 # supabase-studio     healthy
-```
+`````
 
 Để có Postgres được quản lý với hỗ trợ vector, [HTStack](https://my.htstack.com/aff.php?aff=27187) cung cấp hosting tối ưu hóa cho việc triển khai Supabase với sao lưu tự động.
 
 ### Kết nối ứng dụng của bạn
 
-```bash
+`````bash
 # Cài đặt thư viện client
 npm install @supabase/supabase-js
 
 # Hoặc cho Python
 pip install supabase
-```
+`````
 
-```typescript
+`````typescript
 // TypeScript / Next.js
 import { createClient } from '@supabase/supabase-js'
 
@@ -159,9 +160,9 @@ const supabase = createClient(
 // Test kết nối
 const { data, error } = await supabase.from(test).select('*')
 console.log(data)
-```
+`````
 
-```python
+`````python
 # Python
 from supabase import create_client
 
@@ -173,23 +174,23 @@ supabase = create_client(
 # Test kết nối
 response = supabase.table(test).select('*').execute()
 print(response.data)
-```
+`````
 
 ## Thiết lập Tìm kiếm Vector: Kích hoạt pgvector cho ứng dụng AI
 
 ### Kích hoạt tiện ích mở rộng pgvector
 
-```sql
+`````sql
 -- Trong Trình soạn thảo SQL Supabase hoặc psql
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Xác minh tiện ích mở rộng đã được cài đặt
 SELECT * FROM pg_extension WHERE extname = vector;
-```
+`````
 
 ### Tạo bảng với cột Vector
 
-```sql
+`````sql
 -- Tạo bảng tài liệu với embedding
 CREATE TABLE documents (
     id          BIGSERIAL PRIMARY KEY,
@@ -210,13 +211,13 @@ WITH (m = 16, ef_construction = 64);
 -- Thêm chỉ mục tìm kiếm toàn văn cho tìm kiếm hybrid
 CREATE INDEX idx_documents_fts ON documents
 USING GIN (to_tsvector(english, content));
-```
+`````
 
-`vector(1536)` chiều khớp với đầu ra của OpenAI `text-embedding-3-large`. Đối với các mô hình embedding khác, điều chỉnh cho phù hợp: Cohere embed-v4 sử dụng **1.024** chiều, và Jina AI embeddings sử dụng **768**.
+````vector(1536)```` chiều khớp với đầu ra của OpenAI ````text-embedding-3-large````. Đối với các mô hình embedding khác, điều chỉnh cho phù hợp: Cohere embed-v4 sử dụng **1.024** chiều, và Jina AI embeddings sử dụng **768**.
 
 ### Chèn tài liệu với Embedding
 
-```python
+`````python
 # Python: Tạo embedding và chèn vào Supabase
 from supabase import create_client
 import openai
@@ -247,11 +248,11 @@ insert_document(
     content="Use multi-stage builds to reduce image size...",
     source_url="https://docs.docker.com"
 )
-```
+`````
 
 ### Thực hiện Tìm kiếm Tương đồng Vector
 
-```sql
+`````sql
 -- SQL thuần: Tìm 5 tài liệu tương đồng nhất
 SELECT
     id,
@@ -261,9 +262,9 @@ SELECT
 FROM documents
 ORDER BY embedding <=> :query_embedding::vector
 LIMIT 5;
-```
+`````
 
-```python
+`````python
 # Python: Hàm truy xuất RAG
 async def search_similar_documents(query: str, top_k: int = 5): # Tạo query embedding
     response = client.embeddings.create(
@@ -282,11 +283,11 @@ async def search_similar_documents(query: str, top_k: int = 5): # Tạo query em
         }
     ).execute()
     return result.data
-```
+`````
 
 ### Tạo hàm RPC match_documents
 
-```sql
+`````sql
 -- Tạo thủ tục lưu trữ cho việc truy xuất tài liệu
 CREATE OR REPLACE FUNCTION match_documents(
     query_embedding VECTOR(1536),
@@ -314,20 +315,20 @@ BEGIN
     LIMIT match_count;
 END;
 $$;
-```
+`````
 
 ## Xây dựng Pipeline RAG Hoàn chỉnh
 
 ### Tổng quan Kiến trúc
 
-Một pipeline RAG điển hình với Supabase bao gồm bốn giai đoạn: 1. **Tiếp nhận** — Tài liệu được chunk, embed, và lưu trữ trong bảng `documents`.
-2. **Truy xuất** — Các truy vấn ngườ dùng được embed và khớp với vector đã lưu qua `pgvector`.
+Một pipeline RAG điển hình với Supabase bao gồm bốn giai đoạn: 1. **Tiếp nhận** — Tài liệu được chunk, embed, và lưu trữ trong bảng ````documents````.
+2. **Truy xuất** — Các truy vấn ngườ dùng được embed và khớp với vector đã lưu qua ````pgvector````.
 3. **Sinh nội dung** — Các chunk được truy xuất được cung cấp như ngữ cảnh cho LLM (OpenAI, [Ollama](dibi8-internal-link), hoặc Claude).
-4. **Lưu trữ** — Các cuộc hội thoại được lưu trong bảng `conversations` để duy trì.
+4. **Lưu trữ** — Các cuộc hội thoại được lưu trong bảng ````conversations```` để duy trì.
 
 ### Triển khai RAG đầy đủ
 
-```python
+`````python
 # rag_pipeline.py
 from supabase import create_client
 from openai import OpenAI
@@ -402,13 +403,13 @@ class SupabaseRAG: def __init__(self, supabase_url: str, supabase_key: str, open
 rag = SupabaseRAG(SUPABASE_URL, SUPABASE_KEY, OPENAI_KEY)
 result = rag.chat("Các phương pháp hay nhất của Docker là gì?")
 print(result[answer])
-```
+`````
 
 ## Xác thực & Row Level Security (RLS)
 
 ### Bật RLS trên các bảng
 
-```sql
+`````sql
 -- Bật Row Level Security
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 
@@ -421,11 +422,11 @@ USING (auth.uid() = user_id);
 CREATE POLICY "Ngườ dùng có thể chèn tài liệu của họ"
 ON documents FOR INSERT
 WITH CHECK (auth.uid() = user_id);
-```
+`````
 
 ### Xác thực phía Client
 
-```typescript
+`````typescript
 // Đăng ký ngườ dùng mới
 const { data: authData, error: authError } = await supabase.auth.signUp({
   email: 'user@example.com',
@@ -445,19 +446,19 @@ const accessToken = session.session?.access_token
 const { data } = await supabase
   .from(documents)
   .select('*')
-```
+`````
 
-```python
+`````python
 # Python: Xác thực phía server với service role key
 supabase_admin = create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 
 -- Bỏ qua RLS cho các thao tác quản trị
 all_docs = supabase_admin.table(documents).select('*').execute()
-```
+`````
 
 ## Đăng ký Thờ gian thực cho các tính năng AI trực tiếp
 
-```typescript
+`````typescript
 // Đăng ký các thay đổi cơ sở dữ liệu thờ gian thực
 const channel = supabase
   .channel('documents-changes')
@@ -473,9 +474,9 @@ const channel = supabase
 
 // Hủy đăng ký khi xong
 supabase.removeChannel(channel)
-```
+`````
 
-```python
+`````python
 # Python asyncio version
 import asyncio
 
@@ -490,21 +491,21 @@ async def subscribe_to_changes(): channel = supabase.channel('documents-changes'
     ).subscribe()
 
 asyncio.run(subscribe_to_changes())
-```
+`````
 
 ## Edge Functions: Serverless tại Edge
 
 ### Tạo Edge Function
 
-```bash
+`````bash
 # Khởi tạo edge function
 supabase functions new ai-completion
 
 # Chỉnh sửa file đã tạo
 # supabase/functions/ai-completion/index.ts
-```
+`````
 
-```typescript
+`````typescript
 // supabase/functions/ai-completion/index.ts
 import { serve } from 'https://deno.land/std@0.224.0/http/server.ts'
 
@@ -515,7 +516,7 @@ serve(async (req) => {
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: POST,
     headers: {
-      Authorization: `Bearer ${Deno.env.get(OPENAI_API_KEY)}`,
+      Authorization: ````Bearer ${Deno.env.get(OPENAI_API_KEY)}````,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -532,9 +533,9 @@ serve(async (req) => {
     { headers: { 'Content-Type': 'application/json' } }
   )
 })
-```
+`````
 
-```bash
+`````bash
 # Đặt secrets
 supabase secrets set OPENAI_API_KEY=sk-...
 
@@ -543,7 +544,7 @@ supabase functions deploy ai-completion
 
 # Gọi qua HTTP
 supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
-```
+`````
 
 ## Benchmark: Hiệu năng Tìm kiếm Vector Supabase
 
@@ -560,14 +561,14 @@ Tất cả các benchmark chạy trên tier Supabase được host (Small Comput
 
 - Lập chỉ mục HNSW cung cấp **độ trễ truy vấn nhanh hơn 2–3 lần** so với ivfflat với recall cao hơn.
 - Đối với dataset dưới **100K tài liệu**, độ trễ truy vấn ở mức dưới **50ms** trên phần cứng phổ thông.
-- Tham số `ef_search` có thể được điều chỉnh theo truy vấn: giá trị cao hơn cải thiện recall đánh đổi tốc độ.
+- Tham số ````ef_search```` có thể được điều chỉnh theo truy vấn: giá trị cao hơn cải thiện recall đánh đổi tốc độ.
 - Với lập chỉ mục phù hợp, Supabase xử lý thoải mái **1 triệu tài liệu vector** trên một instance 2 vCPU.
 
 ## Triển khai Sản xuất Tự Host
 
 ### Cấu hình Docker Compose Sản xuất
 
-```yaml
+`````yaml
 # docker-compose.prod.yml (đoạn trích)
 services: db: image: supabase/postgres:15.8.1.040
     environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -592,11 +593,11 @@ services: db: image: supabase/postgres:15.8.1.040
       - rest
       - realtime
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### Biến môi trường
 
-```bash
+`````bash
 # File .env cho production
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 JWT_SECRET=$(openssl rand -base64 32)
@@ -614,19 +615,19 @@ STORAGE_S3_BUCKET=your-bucket
 STORAGE_S3_ENDPOINT=s3.amazonaws.com
 STORAGE_S3_ACCESS_KEY=AKIA...
 STORAGE_S3_SECRET_KEY=...
-```
+`````
 
 Triển khai lên VPS của bạn qua [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để có hạ tầng phân tán toàn cầu đáng tin cậy bắt đầu từ **$4/tháng**.
 
 ### Chiến lược Sao lưu
 
-```bash
+`````bash
 # Sao lưu hàng ngày tự động với pg_dump
 0 2 * * * docker exec supabase-db pg_dump -U postgres -Fc postgres > /backups/supabase-$(date +\%Y\%m\%d).dump
 
 # Hoặc sử dụng Khôi phục Điểm Thờ Gian (PITR) tích hợp sẵn của Supabase
 # Có sẵn ở tier Pro trở lên
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -647,13 +648,13 @@ Triển khai lên VPS của bạn qua [DigitalOcean](https://m.do.co/c/eca87ac14
 
 ## Hạn chế: Đánh giá trung thực
 
-1. **Giới hạn chiều pgvector.** `pgvector` hiện tại hỗ trợ tối đa **2.048 chiều**. Một số mô hình embedding (ví dụ: GTE-large ở 4.096 chiều) yêu cầu giảm chiều trước khi lưu trữ.
+1. **Giới hạn chiều pgvector.** ````pgvector```` hiện tại hỗ trợ tối đa **2.048 chiều**. Một số mô hình embedding (ví dụ: GTE-large ở 4.096 chiều) yêu cầu giảm chiều trước khi lưu trữ.
 
 2. **Độ phức tạp thiết lập tự host.** Stack Docker Compose có **15+ dịch vụ**. Giám sát, tổng hợp log và cập nhật đòi hỏi chuyên môn vận hành. Tier được host được khuyến nghị mạnh cho các đội không có nguồn lực DevOps.
 
 3. **Cold start của Edge function.** Các hàm Deno edge có thể có độ trễ cold start **500ms–2s** tùy thuộc vào khu vực và phụ thuộc. Đối với các đường dẫn nhạy cảm với độ trễ, sử dụng logic phía client hoặc giữ hàm ấm.
 
-4. **Không có lượng tử hóa vector tích hợp.** Không giống như Pinecone hoặc Weaviate, `pgvector` không hỗ trợ lượng tử hóa sản phẩm hoặc embedding nhị phân. Các triển khai quy mô lớn (10M+ vector) có thể cần sharding hoặc kho vector bên ngoài.
+4. **Không có lượng tử hóa vector tích hợp.** Không giống như Pinecone hoặc Weaviate, ````pgvector```` không hỗ trợ lượng tử hóa sản phẩm hoặc embedding nhị phân. Các triển khai quy mô lớn (10M+ vector) có thể cần sharding hoặc kho vector bên ngoài.
 
 5. **Khả năng mở rộng Realtime.** Máy chủ Realtime (Elixir/Phoenix) có giới hạn thực tế khoảng **10K kết nối đồng thờ** mỗi instance trên phần cứng phổ thông. Các triển khai rất lớn cần clustering.
 
@@ -667,7 +668,7 @@ Trên tier Pro được host với **8 vCPU và 32GB RAM**, Supabase thoải má
 
 ### Tôi có thể sử dụng Supabase với LLM cục bộ như [Ollama](dibi8-internal-link) thay vì OpenAI không?
 
-Chắc chắn. Supabase lưu trữ và truy xuất vector — bước tạo embedding được tách biệt. Chỉ pipeline embedding của bạn đến instance [Ollama](dibi8-internal-link) cục bộ sử dụng `nomic-embed-text` hoặc một mô hình embedding khác. Lưu trữ `pgvector` và truy xuất HNSW hoạt động giống hệt nhau bất kể nguồn embedding.
+Chắc chắn. Supabase lưu trữ và truy xuất vector — bước tạo embedding được tách biệt. Chỉ pipeline embedding của bạn đến instance [Ollama](dibi8-internal-link) cục bộ sử dụng ````nomic-embed-text```` hoặc một mô hình embedding khác. Lưu trữ ````pgvector```` và truy xuất HNSW hoạt động giống hệt nhau bất kể nguồn embedding.
 
 ### Giá Supabase so với Firebase cho một ứng dụng AI như thế nào?
 
@@ -675,7 +676,7 @@ Chắc chắn. Supabase lưu trữ và truy xuất vector — bước tạo embe
 
 ### pgvector đã sẵn sàng production cho các ứng dụng RAG chưa?
 
-Có. `pgvector` v0.8.0 (đi kèm với Supabase) hỗ trợ lập chỉ mục HNSW, xây dựng chỉ mục song song, và các hoạt động vector tuân thủ ACID. Nó được sử dụng trong production bởi hàng nghìn ứng dụng AI. Đối với RAG tính sẵn sàng cao, hãy bật read replica và điều chỉnh `hnsw.ef_search` theo truy vấn: **64 cho tốc độ**, **256 cho độ chính xác**.
+Có. ````pgvector```` v0.8.0 (đi kèm với Supabase) hỗ trợ lập chỉ mục HNSW, xây dựng chỉ mục song song, và các hoạt động vector tuân thủ ACID. Nó được sử dụng trong production bởi hàng nghìn ứng dụng AI. Đối với RAG tính sẵn sàng cao, hãy bật read replica và điều chỉnh ````hnsw.ef_search```` theo truy vấn: **64 cho tốc độ**, **256 cho độ chính xác**.
 
 ### Tôi có thể chạy Supabase hoàn toàn on-premise không có truy cập internet không?
 
@@ -683,7 +684,7 @@ Có. Stack Docker Compose tự host chạy hoàn toàn trong môi trường air-
 
 ### Làm thế nào để xử lý schema migrations trong Supabase?
 
-Sử dụng hệ thống migration của Supabase CLI: ```bash
+Sử dụng hệ thống migration của Supabase CLI: `````bash
 # Tạo migration mới
 supabase migration new add_documents_table
 
@@ -698,11 +699,11 @@ supabase db push
 
 # Tạo kiểu TypeScript từ schema
 supabase gen types typescript --local > src/types/supabase.ts
-```
+`````
 
 ### Supabase có hỗ trợ ứng dụng AI đa tenant không?
 
-Có, thông qua sự kết hợp chính sách RLS và cách ly schema. Đối với đa tenant **chia sẻ cơ sở dữ liệu**, thêm cột `tenant_id` vào mọi bảng và thực thi nó qua RLS. Đối với **một cơ sở dữ liệu cho mỗi tenant**, Supabase hỗ trợ tạo dự án lập trình qua Management API. Hầu hết các nhà xây dựng AI SaaS sử dụng phương pháp chia sẻ với RLS để tối ưu chi phí.
+Có, thông qua sự kết hợp chính sách RLS và cách ly schema. Đối với đa tenant **chia sẻ cơ sở dữ liệu**, thêm cột ````tenant_id``` vào mọi bảng và thực thi nó qua RLS. Đối với **một cơ sở dữ liệu cho mỗi tenant**, Supabase hỗ trợ tạo dự án lập trình qua Management API. Hầu hết các nhà xây dựng AI SaaS sử dụng phương pháp chia sẻ với RLS để tối ưu chi phí.
 
 ## Kết luận: Xây dựng Backend AI của bạn trên Supabase ngay hôm nay
 
@@ -762,7 +763,7 @@ Bài viết này chứa các liên kết liên kết. Nếu bạn mua dịch v�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -772,7 +773,7 @@ Bài viết này chứa các liên kết liên kết. Nếu bạn mua dịch v�
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

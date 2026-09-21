@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/preset-superset-data-exploration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao stack BI của bạn tốn quá nhiều chi phí
@@ -56,7 +57,7 @@ Khi ngườ dùng mở dashboard, Superset kiểm tra cache trước. Khi cache 
 
 1. **Database-native execution**: Superset không bao giờ import dữ liệu của bạn. Nó tạo SQL được tối ưu hóa và đẩy compute về nguồn.
 2. **Semantic layer**: Metrics và dimensions có thể được định nghĩa một lần và tái sử dụng xuyên suốt các biểu đồ.
-3. **Extensible visualization**: Các loại biểu đồ mới được thêm dưới dạng plugin sử dụng framework `@superset-ui/core`.
+3. **Extensible visualization**: Các loại biểu đồ mới được thêm dưới dạng plugin sử dụng framework ```@superset-ui/core````.
 
 ## Cài đặt và thiết lập
 
@@ -68,17 +69,17 @@ Khi ngườ dùng mở dashboard, Superset kiểm tra cache trước. Khi cache 
 
 ### Bước 1: Clone repository
 
-```bash
+`````bash
 git clone https://github.com/apache/superset.git
 cd superset
 
 # Checkout phiên bản ổn định mới nhất (v5.0.0 tính đến tháng 5/2025)
 git checkout 5.0.0
-```
+`````
 
 ### Bước 2: Khởi động với Docker Compose
 
-```bash
+`````bash
 # Khởi động tất cả services ở detached mode
 docker compose -f docker-compose-image-tag.yml up -d
 
@@ -99,15 +100,15 @@ docker compose exec superset superset load-examples
 
 # Khởi động lại để áp dụng tất cả thay đổi
 docker compose restart superset
-```
+`````
 
 ### Bước 3: Truy cập UI
 
-Truy cập `http://localhost:8088` và đăng nhập bằng thông tin đăng nhập bạn đã thiết lập ở trên.
+Truy cập ````http://localhost:8088```` và đăng nhập bằng thông tin đăng nhập bạn đã thiết lập ở trên.
 
 ### Triển khai Production với Docker
 
-Cho production, hãy sử dụng managed database và Redis bên ngoài: ```yaml
+Cho production, hãy sử dụng managed database và Redis bên ngoài: `````yaml
 # docker-compose.prod.yml
 services: superset: image: apache/superset:5.0.0
     environment: - DATABASE_DB=superset
@@ -121,7 +122,7 @@ services: superset: image: apache/superset:5.0.0
     ports: - "8088:8088"
     deploy: replicas: 2
       resources: limits: memory: 2G
-```
+`````
 
 **Mẹo tự host**: Để có VPS đáng tin cậy chạy Superset, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp droplet 2 GB RAM từ $12/tháng với triển khai Docker chỉ một click. Sử dụng link giới thiệu của chúng tôi để nhận $200 credit trong 60 ngày.
 
@@ -129,57 +130,57 @@ services: superset: image: apache/superset:5.0.0
 
 ### PostgreSQL / MySQL
 
-Thiết lập phổ biến nhất là kết nối Superset với cơ sở dữ liệu ứng dụng hoặc data warehouse hiện có: ```python
+Thiết lập phổ biến nhất là kết nối Superset với cơ sở dữ liệu ứng dụng hoặc data warehouse hiện có: `````python
 # Định dạng connection string cho PostgreSQL
 postgresql://username:password@host:port/database?sslmode=require
 
 # Định dạng connection string cho MySQL
 mysql://username:password@host:port/database
-```
+`````
 
 Trong UI, điều hướng đến **Settings > Database Connections > + Database** và dán SQLAlchemy URI của bạn. Test kết nối trước khi lưu.
 
 ### BigQuery
 
-```python
+`````python
 # BigQuery yêu cầu service account JSON key
 bigquery://project-id?credentials_path=/path/to/service-account.json
 
 # Hoặc inline key (không khuyến nghị cho production)
 bigquery://project-id
-```
+`````
 
 Upload service account JSON trong trường **Secure Extra** dưới cài đặt Advanced.
 
 ### Snowflake
 
-```python
+`````python
 # Snowflake connection URI
 snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE
-```
+`````
 
-Bật Snowflake SQL dialect trong `superset_config.py` để có autocomplete tốt hơn: ```python
+Bật Snowflake SQL dialect trong ``superset_config.py`` để có autocomplete tốt hơn: `````python
 # superset_config.py
 EXTRA_ALLOWED_DOMAIN_SHARDES = []
 DEFAULT_SQLLAB_LIMIT = 10000
-```
+`````
 
 ### Apache Druid
 
-Superset ban đầu được xây dựng tại Airbnb để truy vấn Druid. Tích hợp này vẫn là first-class: ```python
+Superset ban đầu được xây dựng tại Airbnb để truy vấn Druid. Tích hợp này vẫn là first-class: `````python
 # Kết nối Druid qua native JSON API
 druid://broker-host:8082/datasource/v2
 
 # Hoặc qua SQL over HTTP
 druid://broker-host:8082/druid/v2/sql
-```
+`````
 
 ### DuckDB (Mới trong v5.0)
 
-Hỗ trợ DuckDB đã đến trong Superset 5.0.0, cho phép workload phân tích local mà không cần server riêng: ```python
+Hỗ trợ DuckDB đã đến trong Superset 5.0.0, cho phép workload phân tích local mà không cần server riêng: `````python
 # DuckDB in-memory hoặc file-based
 duckdb:///path/to/local/database.db
-```
+`````
 
 Điều này lý tưởng cho prototyping và dataset nhỏ đến ~50 GB.
 
@@ -211,25 +212,25 @@ Một công ty fintech được YC hỗ trợ mà chúng tôi phỏng vấn ch�
 
 ### Row-Level Security (RLS)
 
-Superset hỗ trợ chính sách row-level security lọc dữ liệu dựa trên thuộc tính ngườ dùng: ```python
+Superset hỗ trợ chính sách row-level security lọc dữ liệu dựa trên thuộc tính ngườ dùng: `````python
 # superset_config.py
 ROW_LEVEL_SECURITY_FILTERING = True
 
 # Định nghĩa filter trong UI: # Table: orders
 # Filter clause: region = '{{ current_username() }}"
 # Group: Sales Team
-```
+`````
 
 Điều này đảm bảo ngườ dùng chỉ thấy dữ liệu cho khu vực được gán của họ mà không cần duy trì dashboard riêng biệt.
 
 ### Embedding Dashboard
 
-Superset 5.0.0 bao gồm SDK embedding ổn định cho ứng dụng React: ```bash
+Superset 5.0.0 bao gồm SDK embedding ổn định cho ứng dụng React: `````bash
 # Cài đặt embedding SDK
 npm install @superset-ui/embedded-sdk
-```
+`````
 
-```typescript
+`````typescript
 // App.tsx
 import { embedDashboard } from "@superset-ui/embedded-sdk";
 
@@ -244,11 +245,11 @@ embedDashboard({
     hideTab: false,
   },
 });
-```
+`````
 
 ### Cảnh báo và Báo cáo
 
-Cấu hình email hoặc Slack alerts cho điều kiện dashboard: ```python
+Cấu hình email hoặc Slack alerts cho điều kiện dashboard: `````python
 # superset_config.py
 ALERT_REPORTS_NOTIFICATION_METHODS = ["email", "slack"]
 SLACK_API_TOKEN = "xoxb-your-slack-bot-token"
@@ -256,11 +257,11 @@ SMTP_HOST = "smtp.sendgrid.net"
 SMTP_PORT = 587
 SMTP_USER = "apikey"
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-```
+`````
 
 ### Custom Chart Plugins
 
-Xây dựng loại biểu đồ độc quyền cho sử dụng nội bộ: ```bash
+Xây dựng loại biểu đồ độc quyền cho sử dụng nội bộ: `````bash
 # Tạo khung chart plugin mới
 npx @superset-ui/cli create-chart-plugin my-company-charts
 
@@ -270,21 +271,21 @@ npm run build
 
 # Copy vào thư mục plugin của Superset
 cp -r dist/* /app/superset/static/assets/my-company-charts/
-```
+`````
 
-Đăng ký trong `superset_config.py`: ```python
+Đăng ký trong ``superset_config.py``: `````python
 EXTRA_PLUGINS = ["my_company_charts"]
-```
+`````
 
 ### Chiến lược Backup
 
-Cơ sở dữ liệu metadata của bạn chứa tất cả dashboard, biểu đồ, và định nghĩa ngườ dùng. Sao lưu hàng ngày: ```bash
+Cơ sở dữ liệu metadata của bạn chứa tất cả dashboard, biểu đồ, và định nghĩa ngườ dùng. Sao lưu hàng ngày: `````bash
 # Backup hàng ngày tự động qua cron
 0 2 * * * pg_dump -h postgres-host -U superset superset > /backups/superset-$(date +\%Y\%m\%d).sql
 
 # Giữ lại 7 ngày
 find /backups -name "superset-*.sql" -mtime +7 -delete
-```
+````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -356,7 +357,7 @@ Các bước tiếp theo của bạn: 1. Triển khai Superset local với Docke
 
 Tham gia nhóm Telegram cho data engineers: **t.me/dibi8** — chia sẻ dashboard Superset của bạn, đặt câu hỏi, và nhận trợ giúp từ hơn 5.000 chuyên gia dữ liệu.
 
----
+* * *
 
 
 
@@ -377,7 +378,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [dibi8: Hướng dẫn chuyển đổi dữ liệu dbt](dbt-data-transformation-dibi8-internal-link)
 - [dibi8: Hướng dẫn orchestration Apache Airflow](apache-airflow-orchestration-dibi8-internal-link)
 
----
+* * *
 
 *Công bố liên kết liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký bằng liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phát sinh cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng.*
 
@@ -407,7 +408,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -417,7 +418,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](preset-superset-data-exploration)
 - [moneyprinterturbo-one-click-ai-video-generator](preset-superset-data-exploration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

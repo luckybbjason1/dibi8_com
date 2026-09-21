@@ -10,11 +10,12 @@ draft: false
 slug: temporal-ai-workflow-orchestration
 ---
 
+
 ## TL;DR
 
 Temporal은 신뢰할 수 있는 AI 워크플로우를 쉽게 구축할 수 있는 내구성 실행 플랫폼입니다. Kubernetes CronJob, 데드 레터 큐 및 수동 재시도 로직과 고군분투하는 대신, Temporal activity와 workflow로 데코레이터된 Python 함수를 작성합니다. Temporal은 정확히 한 번 실행 보장, 지수 백오프 자동 재시도 및 즉시 사용 가능한 전체 관찰성을 제공합니다.
 
----
+* * *
 
 ## Temporal이란?
 
@@ -27,9 +28,9 @@ AI 워크로드에这意味着: - rate limit로 인해 실패하는 LLM 추론 �
 
 ### 전통적 AI 오케스트레이션의 문제
 
-典型的인 AI 파이프라인을 고려해보세요: ```
+典型的인 AI 파이프라인을 고려해보세요: ````
 [데이터 로드] → [전처리] → [문서 임베딩] → [벡터 DB 인덱싱] → [검색 테스트] → [팀 알림]
-```
+`````
 
 전통적 도구(Airflow, Celery, cron 스크립트)로 구현하려면 각 단계가 필요합니다: - 네트워크 타임아웃용 커스텀 에러 핸들링
 - 장애 시 재개를 위한 수동 체크포인팅
@@ -49,13 +50,13 @@ Temporal은 Python 코드를 **자동 재개 가능하게** 만들어 이를 모
 | 대화형 디버깅 | ✅(web UI + CLI) | ⚠️(limited) | ❌ | ❌ |
 | ML 친화적 통합 | ✅(native) | ⚠️(plugins) | ❌ | ❌ |
 
----
+* * *
 
 ## 시작하기
 
 ### 1단계: Temporal Stack 설치
 
-```bash
+`````bash
 # Option A: Docker Compose(local dev 권장)
 git clone https://github.com/temporalio/docker-compose.git
 cd docker-compose
@@ -66,7 +67,7 @@ docker compose up -d
 
 # 서버 실행 확인
 temporal cluster health
-```
+`````
 
 기본 Docker Compose 설정 포함: - Temporal Server(gRPC API + history)
 - Temporal UI(localhost:8233)
@@ -75,13 +76,13 @@ temporal cluster health
 
 ### 2단계: Python SDK 설치
 
-```bash
+`````bash
 pip install temporalio
-```
+`````
 
 ### 3단계: 첫 번째 Workflow
 
-```python
+`````python
 import asyncio
 from temporalio import worker, workflow, activity
 from temporalio.client import Client
@@ -152,11 +153,11 @@ class MLTrainingPipeline: @workflow.run
         )
         
         return deployment
-```
+`````
 
 ### 4단계: Worker 및 Client 실행
 
-```python
+`````python
 # worker.py
 import asyncio
 from temporalio.worker import Worker
@@ -172,15 +173,15 @@ async def main(): worker = Worker(
     await worker.run()
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## AI 전용 워크플로우 패턴
 
 ### 패턴 1: 폴백이 있는 LLM 체인
 
-여러 LLM 호출을 체인하고 더 저렴한 모델로 자동 폴백: ```python
+여러 LLM 호출을 체인하고 더 저렴한 모델로 자동 폴백: `````python
 from temporalio import workflow, activity
 
 @activity.defn
@@ -220,11 +221,11 @@ class ResilientLLMChain: @workflow.run
                 model_used = "local-llama"
         
         return {"response": result, "model_used": model_used, "fallback_chain": True}
-```
+`````
 
 ### 패턴 2: 비동기 멀티 에이전트 오케스트레이션
 
-여러 AI agent를 병렬로 실행한 다음 결과 집계: ```python
+여러 AI agent를 병렬로 실행한 다음 결과 집계: `````python
 @activity.defn
 async def agent_research(query: str) -> dict: """연구 agent: 웹에서 정보 수집."""
     results = await search_web(query)
@@ -259,11 +260,11 @@ class MultiAgentResearch: @workflow.run
         )
         
         return final_report
-```
+`````
 
 ### 패턴 3: 체크포인트 복원이 있는 ML 훈련
 
-어떤 장애 후에도 마지막 체크포인트에서 자동 재개: ```python
+어떤 장애 후에도 마지막 체크포인트에서 자동 재개: `````python
 @activity.defn
 async def save_checkpoint(epoch: int, model_state: dict) -> str: """훈련 체크포인트를 영구 저장소에 저장."""
     checkpoint_path = f"s3://my-bucket/checkpoints/epoch_{epoch}.pt"
@@ -305,26 +306,26 @@ class ResumableTraining: @workflow.run
                 workflow.set_memo({"last_checkpoint": cp_path})
         
         return {"final_state": model_state, "total_epochs": total_epochs}
-```
+`````
 
 ### 패턴 4: 스트리밍 LLM 출력
 
-워크플로우 내에서 LLM의 스트리밍 응답 처리: ```python
+워크플로우 내에서 LLM의 스트리밍 응답 처리: `````python
 @activity.defn
 async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]: """LLM에서 토큰을 스트리밍하여 리스트로 반환."""
     tokens = []
     async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
         await asyncio.sleep(0.01)
     return tokens
-```
+`````
 
----
+* * *
 
 ## AI 워크플로우 고급 기능
 
 ### 신호 기반 워크플로우 제어
 
-외부에서 워크플로우에 신호를 보내 취소, 우선순위 업데이트 또는 새 데이터 주입: ```python
+외부에서 워크플로우에 신호를 보내 취소, 우선순위 업데이트 또는 새 데이터 주입: `````python
 @workflow.defn
 class PriorityWorkflow: def __init__(self): self.priority = "normal"
         self.cancel_requested = False
@@ -341,11 +342,11 @@ class PriorityWorkflow: def __init__(self): self.priority = "normal"
     async def run(self, task_data: dict) -> dict: while not self.cancel_requested: result = await process_task(task_data, self.priority)
             await asyncio.sleep(0.1)
         return {"status": "cancelled", "partial_result": result}
-```
+`````
 
 ### 하위 워크플로우로 모듈식 설계
 
-복잡한 파이프라인을 중첩 하위 워크플로우로 분해: ```python
+복잡한 파이프라인을 중첩 하위 워크플로우로 분해: `````python
 @workflow.defn
 class DataPreparation: @workflow.run
     async def run(self, raw_data: dict) -> dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
@@ -358,11 +359,11 @@ class FullMLPipeline: @workflow.run
         trained_model = await workflow.child_execute(ModelTraining.run, prepared_data, model_config)
         eval_results = await workflow.child_execute(ModelEvaluation.run, trained_model)
         return eval_results
-```
+`````
 
 ### 워크플로우 상태 쿼리
 
-중단 없이 실행 중인 워크플로우 검사: ```python
+중단 없이 실행 중인 워크플로우 검사: `````python
 from temporalio.client import Client
 
 client = await Client.connect("localhost:7233")
@@ -374,22 +375,22 @@ print(f"현재 상태: {state}")
 info = await handle.describe()
 print(f"상태: {info.status}")
 print(f"시작 시간: {info.start_time}")
-```
+`````
 
----
+* * *
 
 ## 모니터링 및 디버깅
 
 ### Temporal Web UI
 
-`http://localhost:8233`에서 빌트인 Web UI 접근: - 실행 중 및 완료된 모든 워크플로우 보기
+````http://localhost:8233````에서 빌트인 Web UI 접근: - 실행 중 및 완료된 모든 워크플로우 보기
 - 각 activity의 input/output 데이터 검사
 - 단계별 워크플로우 히스토리 리플레이
 - ID, 상태 또는 사용자 정의 속성으로 워크플로우 검색
 
 ### CLI 디버깅
 
-```bash
+`````bash
 # 모든 워크플로우 나열
 temporal workflow list --namespace default
 
@@ -404,11 +405,11 @@ temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClo
 
 # 실행 중인 워크플로우 종료
 temporal workflow terminate --workflow-id training-job-001 --reason "사용자 요청"
-```
+`````
 
 ### 구조화된 로깅
 
-```python
+`````python
 import structlog
 from temporalio import activity
 
@@ -422,26 +423,26 @@ async def train_with_logging(model_config: dict) -> dict: logger.info("training_
     
     logger.info("training_complete", final_loss=loss)
     return {"final_loss": loss}
-```
+`````
 
 로그는 Temporal UI에 나타나며 Elasticsearch, Datadog 또는 어떤 SIEM으로도 내보낼 수 있습니다.
 
----
+* * *
 
 ## 비용 최적화
 
 ### 장기간 실행 작업을 위한 Activity Heartbeat
 
-진행률 보고로 계산 낭비 방지: ```python
+진행률 보고로 계산 낭비 방지: `````python
 @activity.defn
 async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f"{epoch}/100 epoch 완료")
         loss = train_one_epoch(config)
     return {"final_loss": loss}
-```
+`````
 
 ### 워커 리소스 적정 크기 조정
 
-```python
+`````python
 worker = Worker(
     client, task_queue="ml-workers",
     workflows=[MLTrainingPipeline],
@@ -449,7 +450,7 @@ worker = Worker(
     max_concurrent_activities=50,
     max_concurrent_workflow_tasks=100,
 )
-```
+`````
 
 ### 비용 비교
 
@@ -460,7 +461,7 @@ worker = Worker(
 | Temporal Cloud | $200(compute) + $0 ops | 없음 |
 | Self-hosted Temporal | $150(2대 소형 VM) + 월 5시간 유지보수 | 낮음 |
 
----
+* * *
 
 ## 미래 방향
 
@@ -487,7 +488,7 @@ Temporal은 AI 전용 기능을 적극적으로 구축 중: 1. **네이티브 LL
 - 시각적 DAG 편집기를 선호하는 경우 — Apache Airflow 고려
 - AWS Step Functions에 깊이 투자된 경우 — 네이티브 통합이 더 간단할 수 있음
 
----
+* * *
 
 ## 커뮤니티 업데이트
 
@@ -498,20 +499,20 @@ Temporal은 AI 전용 기능을 적극적으로 구축 중: 1. **네이티브 LL
 
 Temporal 커뮤니티는 프로덕션 AI 시스템을 구축하는 회사의 활발한 기여와 함께 50,000개 이상의 GitHub star로 성장했습니다. 이cosystem에는 인기 ML 프레임워크용 connector, 모니터링 통합 및 일반 AI 워크플로우 패턴용 템플릿 레포지토리가 포함되어 있습니다.
 
----
+* * *
 
 ## FAQ
 
 ### Q: Temporal은 LLM rate limiting을 어떻게 처리하나요?
 
-Temporal의 재시도 정책을 지수 백오프와 함께 사용합니다. `initial_interval`, `maximum_interval`, `backoff_coefficient`를 구성하여 정중한 재시도 전략을 구현합니다: ```python
+Temporal의 재시도 정책을 지수 백오프와 함께 사용합니다. ``initial_interval``, ``maximum_interval``, ``backoff_coefficient``를 구성하여 정중한 재시도 전략을 구현합니다: `````python
 retry=RetryPolicy(
     initial_interval=timedelta(seconds=1),
     maximum_interval=timedelta(minutes=5),
     backoff_coefficient=2.0,
     maximum_attempts=5
 )
-```
+````
 
 이는 naive 재시도 루프가 API를 혼란스럽게 하는 것과 달리 rate limit이 발생하면 자연스럽게 요청을 throttle합니다.
 
@@ -531,7 +532,7 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 
 예. Temporal worker는 어디에서나 실행할 수 있습니다 — EC2, GKE, EKS 또는 심지어 서버리스 컨테이너. Modal function 또는 RunPod instance 옆에 Temporal worker를 배포합니다. 핵심 통찰: Temporal은 워크플로우 오케스트레이션을 관리하고, 실제 GPU 컴퓨팅은 가장 저렴한 곳에서 발생합니다.
 
----
+* * *
 
 ## 출처
 
@@ -541,7 +542,7 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 - [Temporal로 탄력적 ML 파이프라인 구축 — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal)
 - [AI용 워크플로우 오케스트레이터 비교 — ML 인프라 보고서 2026](https://mlinfra.report/workflow-comparison-2026)
 
----
+* * *
 
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
 
@@ -571,7 +572,7 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -581,6 +582,6 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 - [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration)
 - [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

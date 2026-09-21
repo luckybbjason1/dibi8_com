@@ -37,6 +37,7 @@ faqs: - q: 'DocuSeal có phải là lựa chọn thay thế miễn phí cho Docu
     a: 'DocuSeal hỗ trợ lưu trữ trên đĩa cục bộ với SQLite theo mặc định, PostgreSQL hoặc MySQL cho quy mô production, và lưu trữ đối tượng đám mây trên AWS S3, Google Cloud Storage hoặc Azure Blob. Khuyến nghị dùng PostgreSQL với SSL và S3 với mã hóa phía máy chủ cho các triển khai đa người dùng trong môi trường production.'
 ---
 
+
 {</* resource-info */>}
 
 # Đánh giá DocuSeal：Giảm 90% chi phí ký tài liệu với lựa chọn thay thế DocuSign mã nguồn mở
@@ -97,12 +98,12 @@ Trải nghiệm ký hoạt động hoàn hảo trên điện thoại và máy t�
 
 ### 7. API & Webhooks
 
-Tích hợp DocuSeal vào stack hiện có của bạn: ```bash
+Tích hợp DocuSeal vào stack hiện có của bạn: ````bash
 # Tạo mẫu qua API
 curl -X POST https://your-docuseal.com/api/templates   -H "Authorization: Bearer YOUR_API_KEY"   -d '{"name":"Mẫu NDA","fields":[{"type":"signature","role":"signer"}]}'
-```
+`````
 
-Webhooks kích hoạt trên các sự kiện: `document_signed`, `submitter_completed`, `template_created`.
+Webhooks kích hoạt trên các sự kiện: ````document_signed````, ````submitter_completed````, ````template_created````.
 
 ### 8. Hỗ trợ đa ngôn ngữ
 
@@ -126,16 +127,16 @@ DocuSeal cung cấp giấy phép thương mại với các tính năng nâng cao
 
 ### Docker (Nhanh nhất)
 
-```bash
+`````bash
 docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal
-```
+`````
 
 ### Docker Compose (Sản xuất)
 
-```bash
+`````bash
 curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
 sudo HOST=your-domain.com docker compose up
-```
+`````
 
 Điều này tự động cung cấp HTTPS qua Caddy khi DNS của bạn trỏ đến máy chủ.
 
@@ -145,7 +146,7 @@ Các nút triển khai một cú nhấp chuột có sẵn cho tất cả các n�
 
 ## Ví dụ mã: Ký nhúng trong React
 
-```jsx
+`````jsx
 import { DocuSealForm } from "@docuseal/react";
 
 function ContractPage() {
@@ -157,7 +158,7 @@ function ContractPage() {
     />
   );
 }
-```
+`````
 
 ## Các trường hợp sử dụng thực tế
 
@@ -210,7 +211,7 @@ DocuSeal được xây dựng trên Ruby on Rails 8.1.2 với kiến trúc mô-�
 
 ### Đường ống xử lý tài liệu
 
-Khi người dùng tải lên PDF, DocuSeal chạy nó qua đường ống sau: 1. **Phân tích PDF**: Sử dụng gem `pdf-reader` để trích xuất văn bản, trường và siêu dữ liệu.
+Khi người dùng tải lên PDF, DocuSeal chạy nó qua đường ống sau: 1. **Phân tích PDF**: Sử dụng gem ````pdf-reader```` để trích xuất văn bản, trường và siêu dữ liệu.
 2. **Phát hiện trường biểu mẫu**: Tự động phát hiện các trường AcroForm hiện có và đề xuất ánh xạ sang các loại trường DocuSeal.
 3. **Đặt trường**: Trình tạo WYSIWYG hiển thị PDF trong lớp canvas nơi quản trị viên kéo các trường vào tọa độ cụ thể.
 4. **Tạo lược đồ**: Một lược đồ JSON được tạo mô tả các loại trường, quy tắc xác thực, logic có điều kiện và định tuyến người ký.
@@ -238,7 +239,7 @@ Khi triển khai DocuSeal trên cơ sở hạ tầng của riêng bạn, hãy l�
 
 API REST và hệ thống webhook của DocuSeal cho phép các kịch bản tự động hóa mạnh mẽ: ### Mẫu 1: Tạo hợp đồng do CRM kích hoạt
 
-Khi giao dịch đạt giai đoạn "Closed-Won" trong Salesforce: ```python
+Khi giao dịch đạt giai đoạn "Closed-Won" trong Salesforce: `````python
 import requests
 
 def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportunity_id)
@@ -261,11 +262,11 @@ def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportun
         }
     )
     return response.json()["submission_url"]
-```
+`````
 
 ### Mẫu 2: Cấp phát do Webhook điều khiển
 
-Khi tài liệu được ký đầy đủ, hãy kích hoạt các hành động hạ nguồn: ```javascript
+Khi tài liệu được ký đầy đủ, hãy kích hoạt các hành động hạ nguồn: `````javascript
 // Trình xử lý webhook Express
 app.post('/webhooks/docuseal', (req, res) => {
     const event = req.body.event;
@@ -281,13 +282,13 @@ app.post('/webhooks/docuseal', (req, res) => {
     }
     res.status(200).send('OK');
 });
-```
+`````
 
 ### Mẫu 3: Onboarding HR hàng loạt
 
-Đối với đỉnh điểm tuyển dụng theo mùa, hãy sử dụng API gửi hàng loạt: ```bash
+Đối với đỉnh điểm tuyển dụng theo mùa, hãy sử dụng API gửi hàng loạt: `````bash
 curl -X POST https://docuseal.yourcompany.com/api/bulk_submissions   -H "Authorization: Bearer API_KEY"   -F "template_id=employee-agreement"   -F "file=@new_hires.csv"   -F "column_mapping={"email":"submitter_email","name":"full_name"}"
-```
+`````
 
 ## Hiệu suất và khả năng mở rộng
 
@@ -329,7 +330,7 @@ DocuSeal có một hệ sinh thái đang phát triển nhanh chóng: - **Cộng 
 **Giải pháp**: Cấu hình các bản ghi SPF, DKIM và DMARC cho miền gửi của bạn. Sử dụng IP chuyên dụng với SendGrid hoặc AWS SES cho sản xuất.
 
 ### Vấn đề: Trường PDF không hiển thị chính xác
-**Giải pháp**: Đảm bảo PDF nguồn sử dụng các trường AcroForm tiêu chuẩn, không phải biểu mẫu XFA. Chuyển đổi XFA sang AcroForm bằng Adobe Acrobat hoặc `qpdf` trước khi tải lên.
+**Giải pháp**: Đảm bảo PDF nguồn sử dụng các trường AcroForm tiêu chuẩn, không phải biểu mẫu XFA. Chuyển đổi XFA sang AcroForm bằng Adobe Acrobat hoặc ````qpdf``` trước khi tải lên.
 
 ### Vấn đề: Tải tài liệu chậm trên thiết bị di động
 **Giải pháp**: Bật bộ nhớ đệm CDN cho tài sản PDF. Nén hình ảnh trong PDF xuống dưới 300 DPI. Sử dụng tải chậm cho tài liệu nhiều trang.
@@ -346,11 +347,11 @@ DocuSeal là dự án mã nguồn mở hiếm hoi trực tiếp thay thế một
 
 > **Lưu ý giấy phép**: Phân phối theo AGPLv3 với các Điều khoản bổ sung Mục 7(b). Sử dụng thương mại yêu cầu tuân thủ các điều khoản giấy phép.
 
----
+* * *
 
 *Bạn đã di chuyển từ DocuSign sang DocuSeal chưa? Chia sẻ trải nghiệm của bạn trong phần bình luận.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

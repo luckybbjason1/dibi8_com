@@ -11,6 +11,7 @@ description: "两大主流 agent SDK 的逐项对比——架构（hooks+subagen
 
 ---
 
+
 ## 何时选择 OpenAI Agents SDK
 
 ### 场景 1：语音与多模态产品
@@ -22,7 +23,7 @@ code interpreter、文件搜索和网页搜索都运行在 OpenAI 的基础设�
 ### 场景 3：多厂商灵活性
 2026 年 4 月的更新加入了模型原生 harness（文件操作、代码执行、shell）和原生沙箱，并支持七家厂商。如果你需要自由切换 LLM——或者对冲单一厂商风险——OpenAI 的模型抽象层能降低切换成本。
 
----
+* * *
 
 ## 架构深度解析
 
@@ -34,14 +35,14 @@ code interpreter、文件搜索和网页搜索都运行在 OpenAI 的基础设�
 
 二者并无"谁更好"。隐式组合原型更快；显式结构更易审计和加固。
 
----
+* * *
 
 ## 生产环境考量
 
 - **可观测性。** Claude 的方案与 Anthropic 仪表盘紧密耦合——结构化日志和 token 跟踪零埋点，但定制性受限（不借助变通手段就没有自定义遥测）。OpenAI 的 OpenTelemetry 支持需要配置，但能在你的 agent *和*应用基础设施之间实现统一监控。
 - **厂商锁定。** Claude Agent SDK 把你与 Anthropic 模型*以及*托管基础设施捆绑在一起；切换意味着重写 agent 逻辑和工具集成。OpenAI Agents SDK 的模型抽象层降低了切换模型的成本，但你仍然被锁定在框架的执行模型里。多厂商问题要在一开始就定夺——这是个一旦决定就难以逆转、代价高昂的选择。
 
----
+* * *
 
 ## dibi8 的看法
 
@@ -54,13 +55,13 @@ code interpreter、文件搜索和网页搜索都运行在 OpenAI 的基础设�
 - 语音 / 多模态 / 多厂商 / 托管运维 → **OpenAI Agents SDK**
 - 还在*框架与内置 subagents 之间*犹豫 → 先读我们的 [subagents 对比 LangGraph/CrewAI/AutoGen 指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/)。
 
----
+* * *
 
 ## FAQ
 
 （通过 faqs frontmatter 渲染——内联可见 + 面向 AIO 的 JSON-LD）
 
----
+* * *
 
 ## 延伸阅读
 
@@ -140,12 +141,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -155,7 +156,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](claude-agent-sdk-vs-openai-agents-sdk)
 - [chatgpt-pro-vs-claude-pro](claude-agent-sdk-vs-openai-agents-sdk)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

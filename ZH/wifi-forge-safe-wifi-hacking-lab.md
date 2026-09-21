@@ -30,6 +30,7 @@ faqs: - q: 'WiFi-Forge 是什么？'
     a: '内置实验涵盖：WPA/WPA2 握手包捕获、WPS 攻击（Reaver PIN 爆破和 Pixie-Dust）、evil-twin/Karma 流氓 AP、去认证洪泛、Beacon 洪泛、MAC 地址随机化分析，以及 PMKID 攻击。每个实验会启动一个特定的网络拓扑，并提供一个类 CTF 的小目标。'
   - q: '安装和运行 WiFi-Forge 需要什么？'
     a: '你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。'---
+
 # WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒
 
 {</* resource-info */>}
@@ -44,13 +45,13 @@ faqs: - q: 'WiFi-Forge 是什么？'
 
 传统 WiFi 实战教学有三件事最劝退人: 1. **硬件不可控。** 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。
 2. **法律灰区。** 在大多数国家,接触任何不属于你的网络 —— 哪怕只是被动监听 —— 都是违法行为。"我只是嗅探一下" 不是抗辩理由。
-3. **环境难复位。** 真实硬件不能一键回退。搞砸了的配置没办法 `git checkout` 回去。
+3. **环境难复位。** 真实硬件不能一键回退。搞砸了的配置没办法 ``git checkout`` 回去。
 
 WiFi-Forge 把这三个问题全部合并到笔记本上的一个沙盒里。
 
 ## 底层是什么
 
-WiFi-Forge 建在 [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi) 之上 —— 一个 802.11 网络模拟器,在 Linux 网络命名空间里创建虚拟接入点、客户端和"无线电波"。每个 AP 和客户端都是真实的 Linux 进程,你可以用 `iwconfig`、`airodump-ng`、`tcpdump`,甚至 Reaver、Hashcat 直接打模拟流量,所有标准工具的行为跟在真实电波上完全一样。
+WiFi-Forge 建在 [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi) 之上 —— 一个 802.11 网络模拟器,在 Linux 网络命名空间里创建虚拟接入点、客户端和"无线电波"。每个 AP 和客户端都是真实的 Linux 进程,你可以用 ``iwconfig``、``airodump-ng``、``tcpdump``,甚至 Reaver、Hashcat 直接打模拟流量,所有标准工具的行为跟在真实电波上完全一样。
 
 WiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击场景、以及一套引导式结构,让你不用每次想练点东西都先去设计一个网络。
 
@@ -70,12 +71,12 @@ WiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击�
 
 ## 怎么开始
 
-```bash
+````bash
 git clone https://github.com/blackhillsinfosec/WifiForge
 cd WifiForge
 sudo ./install.sh
 sudo python3 wififorge.py
-```
+`````
 
 需要 Linux 环境(Ubuntu/Debian 最稳)、Python 3、root 权限(mininet-wifi 要用内核功能)。安装脚本会自动处理依赖 —— mininet-wifi、aircrack-ng、hashcat、reaver 等。
 
@@ -172,7 +173,7 @@ WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 represents an impor
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -185,7 +186,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -196,7 +197,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -206,7 +207,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -217,4 +218,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

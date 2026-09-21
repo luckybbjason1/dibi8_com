@@ -31,6 +31,7 @@ faqs: - q: 'Open Codesign có miễn phí không và chi phí sử dụng là ba
     a: 'DESIGN.md là file markdown nơi bạn định nghĩa hệ thống thiết kế, ví dụ như màu thương hiệu, kiểu chữ và spacing token. Đặt file này vào workspace, mọi lần tạo nội dung sẽ tự động kế thừa các token đó, giúp mô hình duy trì sự nhất quán thương hiệu thay vì bị lệch hướng qua các lượt hội thoại.'
 ---
 
+
 {</* resource-info */>}
 
 # Open Codesign: Giải Pháp Thay Thế Claude Design Mã Nguồn Mở với 5.790+ Sao
@@ -41,13 +42,13 @@ Bối cảnh công cụ thiết kế do AI thúc đẩy đang phát triển vớ
 
 Trong hướng dẫn toàn diện này, chúng tôi khám phá điều gì làm cho Open Codesign đặc biệt, cách thiết lập, cách so sánh với các lựa chọn thay thế độc quyền, và tại sao nó xứng đáng có một vị trí trung tâm trong quy trình thiết kế của bạn.
 
----
+* * *
 
 ## Open Codesign Là Gì và Tại Sao Nó Quan Trọng
 
 Open Codesign là một **ứng dụng desktop được cấp phép MIT** được xây dựng trên Electron, React 19, Vite 6 và Tailwind CSS v4. Về cốt lõi, nó thu hẹp khoảng cách giữa ngôn ngữ tự nhiên và các thành phẩm thiết kế sẵn sàng production. Nhập một prompt như *"một trang landing SaaS hiện đại với phần hero glassmorphism, thẻ giá và footer có đăng ký newsletter"* — và trong vài giây, Open Codesign tạo ra một nguyên mẫu HTML tương tác đầy đủ với trạng thái hover, điểm dừng responsive và trạng thái rỗng đã được kết nối.
 
-Nhưng Open Codesign còn hơn nhiều so với một trình tạo mã đơn giản. Với việc phát hành **v0.2.0** (Agentic Design), công cụ đã phát triển thành một **tác nhân thiết kế local** thực sự hoàn chỉnh với các phiên được hỗ trợ workspace, quyền truy cập công cụ được phân quyền và bộ nhớ thiết kế liên tục thông qua các tệp `DESIGN.md`. Mỗi thiết kế trở thành một phiên với lịch sử JSONL được lưu trữ trong một thư mục workspace local, có nghĩa là các lần lặp của bạn không bao giờ bị mất và các quyết định thiết kế của bạn luôn có thể kiểm tra.
+Nhưng Open Codesign còn hơn nhiều so với một trình tạo mã đơn giản. Với việc phát hành **v0.2.0** (Agentic Design), công cụ đã phát triển thành một **tác nhân thiết kế local** thực sự hoàn chỉnh với các phiên được hỗ trợ workspace, quyền truy cập công cụ được phân quyền và bộ nhớ thiết kế liên tục thông qua các tệp ```DESIGN.md````. Mỗi thiết kế trở thành một phiên với lịch sử JSONL được lưu trữ trong một thư mục workspace local, có nghĩa là các lần lặp của bạn không bao giờ bị mất và các quyết định thiết kế của bạn luôn có thể kiểm tra.
 
 ### Tại Sao Phương Pháp Mã Nguồn Mở Quan Trọng
 
@@ -59,7 +60,7 @@ Không gian công cụ thiết kế AI bị thống trị bởi các nền tản
 
 Open Codesign giải quyết mọi mối quan tâm này. Bởi vì nó là local-first và BYOK (Bring Your Own Key — Mang Khóa Của Bạn), bạn duy trì quyền kiểm soát hoàn toàn dữ liệu, lựa chọn mô hình và ngân sách của mình. Giấy phép MIT có nghĩa là bạn có thể fork, sửa đổi, tự host nội bộ hoặc thậm chí xây dựng sản phẩm thương mại dựa trên nó — không cần hỏi.
 
----
+* * *
 
 ## Tính Năng Cốt Lõi: Hỗ Trợ Đa Mô Hình, Local-First và BYOK
 
@@ -82,34 +83,34 @@ Một trong những khác biệt hấp dẫn nhất của Open Codesign là **un
 
 ### Kiến Trúc Local-First: Dữ Liệu Của Bạn Thuộc Về Bạn
 
-Mỗi phiên thiết kế trong Open Codesign được lưu trữ local trên đĩa. Mô hình workspace v0.2.0 tạo một thư mục chuyên dụng cho mỗi dự án chứa: - `session.jsonl` — lịch sử trò chuyện và lệnh gọi công cụ đầy đủ
-- `DESIGN.md` — bộ nhớ hệ thống thiết kế chia sẻ (token thương hiệu, quyết định màu sắc, quy tắc typography)
+Mỗi phiên thiết kế trong Open Codesign được lưu trữ local trên đĩa. Mô hình workspace v0.2.0 tạo một thư mục chuyên dụng cho mỗi dự án chứa: - ````session.jsonl```` — lịch sử trò chuyện và lệnh gọi công cụ đầy đủ
+- ````DESIGN.md```` — bộ nhớ hệ thống thiết kế chia sẻ (token thương hiệu, quyết định màu sắc, quy tắc typography)
 - Các tệp thành phẩm được tạo (HTML, CSS, JS) trong định dạng bản địa của chúng
 - Các snapshot phiên bản cho rollback tức thì
 
 Kiến trúc này mang lại lợi ích cụ thể: 1. **Khả năng offline thực sự**: Bắt đầu một thiết kế trên máy bay, hoàn thành nó trong cabin không có Wi-Fi.
 2. **Lịch sử phiên bản vô hạn**: Lưu trữ phiên được hỗ trợ SQLite có nghĩa là mọi lần lặp được bảo toàn mà không có giới hạn tùy ý.
 3. **Không phụ thuộc server**: Ứng dụng chạy hoàn toàn trên máy của bạn. Không có dịch vụ backend nào có thể sập, thay đổi điều khoản hoặc bị mua lại.
-4. **Thân thiện với Git**: Bởi vì các thiết kế là các tệp thuần túy trong một thư mục, bạn có thể `git init` bất kỳ dự án nào và đối xử lịch sử thiết kế của bạn như mã nguồn.
+4. **Thân thiện với Git**: Bởi vì các thiết kế là các tệp thuần túy trong một thư mục, bạn có thể ````git init```` bất kỳ dự án nào và đối xử lịch sử thiết kế của bạn như mã nguồn.
 
 ### BYOK: Mang Khóa Của Bạn
 
 Mô hình BYOK đơn giản: Open Codesign là một ứng dụng miễn phí. Bạn chỉ trả cho các token LLM mà bạn tiêu thụ thông qua các tài khoản nhà cung cấp hiện có của mình. Điều này tạo ra một cấu trúc chi phí minh bạch một cách triệt để so với các công cụ thiết kế dựa trên đăng ký.
 
-Thiết lập một nhà cung cấp mất dưới 60 giây. Đối với người dùng Claude Code hoặc Codex CLI hiện có, tính năng **nhập một lần nhấp** là tuyệt vời — Open Codesign phát hiện cấu hình nhà cung cấp hiện có của bạn tại `~/.config/claude/config.toml` hoặc các cấu hình Codex CLI và nhập tất cả cài đặt tự động. Không cần copy-paste, không cần nhập khóa API thủ công, không có chỗ cho lỗi đánh máy.
+Thiết lập một nhà cung cấp mất dưới 60 giây. Đối với người dùng Claude Code hoặc Codex CLI hiện có, tính năng **nhập một lần nhấp** là tuyệt vời — Open Codesign phát hiện cấu hình nhà cung cấp hiện có của bạn tại ````~/.config/claude/config.toml```` hoặc các cấu hình Codex CLI và nhập tất cả cài đặt tự động. Không cần copy-paste, không cần nhập khóa API thủ công, không có chỗ cho lỗi đánh máy.
 
-Các khóa API được lưu trữ trong `~/.config/open-codesign/config.toml` với quyền tệp `0600`, tuân theo các quy ước bảo mật tương tự như Claude Code, `gh` CLI và khóa riêng SSH. Các khóa không bao giờ được truyền đi đâu ngoại trừ trực tiếp đến endpoint API của nhà cung cấp bạn chọn.
+Các khóa API được lưu trữ trong ````~/.config/open-codesign/config.toml```` với quyền tệp ````0600````, tuân theo các quy ước bảo mật tương tự như Claude Code, ````gh```` CLI và khóa riêng SSH. Các khóa không bao giờ được truyền đi đâu ngoại trừ trực tiếp đến endpoint API của nhà cung cấp bạn chọn.
 
----
+* * *
 
 ## Hướng Dẫn Thiết Lập và Cấu Hình
 
 ### Cài Đặt
 
-Open Codesign phân phối binary qua nhiều kênh: - **macOS**: Trình cài `.dmg` hoặc Homebrew (`brew install open-codesign`)
-- **Windows**: Trình cài `.exe` hoặc winget (`winget install OpenCoworkAI.open-codesign`)
-- **Linux**: `.AppImage` hoặc gói Scoop
-- **Nguồn**: Sao chép và build với `pnpm install && pnpm build`
+Open Codesign phân phối binary qua nhiều kênh: - **macOS**: Trình cài ````.dmg```` hoặc Homebrew (````brew install open-codesign````)
+- **Windows**: Trình cài ````.exe```` hoặc winget (````winget install OpenCoworkAI.open-codesign````)
+- **Linux**: ````.AppImage```` hoặc gói Scoop
+- **Nguồn**: Sao chép và build với ````pnpm install && pnpm build````
 
 Ứng dụng khởi chạy vào một giao diện Cài đặt sạch sẽ với bốn tab bao gồm Models, Appearance, Storage và Advanced preferences.
 
@@ -139,18 +140,18 @@ Open Codesign phân phối binary qua nhiều kênh: - **macOS**: Trình cài `.
 
 #### Tùy Chọn D: Ollama Local
 
-1. Đảm bảo Ollama đang chạy local (`ollama serve`)
+1. Đảm bảo Ollama đang chạy local (````ollama serve````)
 2. Mở Settings → Models → Add Provider → Ollama
-3. Open Codesign tự động phát hiện `http://localhost:11434`
-4. Chọn mô hình đã pull của bạn (ví dụ: `llama3.2`, `qwen2.5`, `mistral`)
+3. Open Codesign tự động phát hiện ````http://localhost:11434````
+4. Chọn mô hình đã pull của bạn (ví dụ: ````llama3.2````, ````qwen2.5````, ````mistral````)
 
 ### Thiết Lập Workspace Của Bạn
 
 Khi một nhà cung cấp được cấu hình, giao diện chính hiển thị **Hub** — một bộ sưu tập 15 bản demo tích hợp và các thiết kế gần đây của bạn. Nhấp "New Design" tạo một phiên được hỗ trợ workspace. Trước khi tạo, bạn có thể tùy chọn: - Chọn một hoặc nhiều **design skills** (slide deck, dashboard, landing page, biểu đồ SVG, glassmorphism, editorial typography, heroes, pricing, footers, chat UI, bảng dữ liệu, lịch)
-- Đính kèm một tệp `DESIGN.md` để thiết lập token thương hiệu
+- Đính kèm một tệp ````DESIGN.md```` để thiết lập token thương hiệu
 - Chọn tùy chọn định dạng đầu ra (HTML, React component hoặc PPTX)
 
----
+* * *
 
 ## So Sánh với Claude Design, Figma AI và v0.dev
 
@@ -181,7 +182,7 @@ v0 của Vercel xuất sắc trong việc tạo component React nhưng yêu cầ
 
 Figma AI tích hợp các tính năng AI vào một nền tảng thiết kế hiện có. Mặc dù mạnh mẽ cho các quy trình thiết kế UI truyền thống, nó không cung cấp tính ngay lập tức prompt-to-prototype của Open Codesign, thiếu tính linh hoạt đa mô hình và không thể hoạt động offline. Open Codesign bổ sung cho Figma thay vì thay thế nó — sử dụng Open Codesign cho phác thảo nhanh và Figma cho tinh chỉnh pixel-perfect độ phân giải cao.
 
----
+* * *
 
 ## Hệ Thống Thiết Kế và Khả Năng Tạo Mẫu
 
@@ -204,7 +205,7 @@ Trước khi viết một dòng CSS, mô hình suy luận xem kỹ năng nào ph
 
 ### DESIGN.md: Bộ Nhớ Chia Sẻ cho Hệ Thống Thiết Kế
 
-Tệp `DESIGN.md` là một trong những tính năng đổi mới nhất của Open Codesign. Thay vì buộc mô hình phải nhớ các quyết định thương hiệu qua các lượt (dẫn đến drift), bạn viết hệ thống thiết kế của mình vào một tệp markdown: ```markdown
+Tệp ``DESIGN.md`` là một trong những tính năng đổi mới nhất của Open Codesign. Thay vì buộc mô hình phải nhớ các quyết định thương hiệu qua các lượt (dẫn đến drift), bạn viết hệ thống thiết kế của mình vào một tệp markdown: `````markdown
 # Acme Corp Design System
 
 ## Colors
@@ -219,7 +220,7 @@ Tệp `DESIGN.md` là một trong những tính năng đổi mới nhất của 
 ## Spacing
 - Base unit: 4px
 - Section padding: 64px vertical
-```
+`````
 
 Đặt tệp này trong workspace của bạn, và mọi lần tạo tự động kế thừa các token này. Mô hình suy luận về coherence so với tài liệu này, không phải so với dữ liệu huấn luyện của nó. Điều này làm cho Open Codesign đặc biệt mạnh mẽ cho các agency và nhóm sản phẩm quản lý nhiều thương hiệu.
 
@@ -227,20 +228,20 @@ Tệp `DESIGN.md` là một trong những tính năng đổi mới nhất của 
 
 Open Codesign bao gồm **khung preview responsive thực sự** cho điện thoại, máy tính bảng và desktop. Chuyển đổi giữa các điểm dừng chỉ với một lần nhấp trong khi thiết kế duy trì trạng thái iframe của nó. Điều này vô giá cho việc phát hiện sớm các vấn đề bố cục mobile trong giai đoạn prototyping.
 
----
+* * *
 
 ## Ví Dụ Mã và Prompt
 
 ### Ví Dụ 1: Trang Landing SaaS
 
 **Prompt:**
-```
+`````
 Create a landing page for a developer-focused API monitoring tool called "Pulse". 
 Include: a dark hero with animated gradient background, three feature cards with 
 Lucide icons, a code snippet showing JSON response, a pricing section with three 
 tiers, and a footer with GitHub and Twitter links. Use the glassmorphism skill 
 for the feature cards.
-```
+`````
 
 **Những gì Open Codesign tạo ra:**
 - Một tệp HTML fully responsive với CSS inline
@@ -253,28 +254,28 @@ for the feature cards.
 ### Ví Dụ 2: Pitch Deck Nhà Đầu Tư
 
 **Prompt:**
-```
+`````
 Generate a 6-slide pitch deck for a seed-stage fintech startup. Slide 1: title 
 with large typography. Slide 2: the problem (3 bullet points with icons). Slide 3: solution screenshot placeholder. Slide 4: traction metrics (ARR, users, growth rate). 
 Slide 5: business model canvas. Slide 6: team photos placeholder and contact. 
 Export as PPTX.
-```
+`````
 
-**Kết quả:** Một tệp `.pptx` có thể tải xuống với master slide layouts, hộp văn bản có thể chỉnh sửa và hình ảnh placeholder — sẵn sàng để tùy chỉnh trong PowerPoint, Keynote hoặc Google Slides.
+**Kết quả:** Một tệp ````.pptx```` có thể tải xuống với master slide layouts, hộp văn bản có thể chỉnh sửa và hình ảnh placeholder — sẵn sàng để tùy chỉnh trong PowerPoint, Keynote hoặc Google Slides.
 
 ### Ví Dụ 3: Tinh Chỉnh Dựa Trên Comment
 
 Sau khi tạo một dashboard, nhấp vào bất kỳ phần tử nào trong preview và thả một ghim: **Comment:**
-```
+`````
 Make this KPI card use the accent color instead of gray, increase the metric 
 font size to 32px, and add a small upward trend arrow with +12% label.
-```
+`````
 
 Mô hình viết lại **chỉ vùng đó**, bảo toàn phần còn lại của bố cục. Quy trình làm việc pin-and-comment này loại bỏ sự thất vọng của việc tạo lại toàn bộ cho các điều chỉnh nhỏ.
 
 ### Ví Dụ 4: Thanh Trượt Được Tinh Chỉnh bởi AI
 
-Sau khi tạo, Open Codesign hiển thị **các tham số tweak được phát ra bởi AI** trong một bảng chuyên dụng: ```javascript
+Sau khi tạo, Open Codesign hiển thị **các tham số tweak được phát ra bởi AI** trong một bảng chuyên dụng: `````javascript
 // Generated tweak schema
 {
   "heroBackground": { "type": "color", "value": "#0F172A" },
@@ -282,11 +283,11 @@ Sau khi tạo, Open Codesign hiển thị **các tham số tweak được phát 
   "headingFont": { "type": "select", "options": ["Inter", "Geist", "Manrope"], "value": "Inter" },
   "sectionGap": { "type": "range", "min": 24, "max": 128, "value": 64 }
 }
-```
+`````
 
 Điều chỉnh các thanh trượt và preview cập nhật theo thời gian thực — không cần prompt mới.
 
----
+* * *
 
 ## Trường Hợp Sử Dụng cho Nhà Phát Triển và Nhà Thiết Kế
 
@@ -300,7 +301,7 @@ Sau khi tạo, Open Codesign hiển thị **các tham số tweak được phát 
 ### Cho Nhà Thiết Kế Sản Phẩm
 
 - **Tăng tốc ideation**: Khám phá 10 hướng bố cục trong thời gian trước đây chỉ đủ để phác thảo một.
-- **Tài liệu hệ thống thiết kế**: Sử dụng `DESIGN.md` để mã hóa và phát triển các hệ thống thiết kế sống.
+- **Tài liệu hệ thống thiết kế**: Sử dụng ````DESIGN.md``` để mã hóa và phát triển các hệ thống thiết kế sống.
 - **Thuyết trình stakeholder**: Tạo slide deck PPTX trực tiếp từ brief sản phẩm.
 - **Kiểm thử khả năng truy cập**: HTML được tạo bao gồm semantic markup và ARIA labels theo mặc định.
 
@@ -316,7 +317,7 @@ Sau khi tạo, Open Codesign hiển thị **các tham số tweak được phát 
 - **Kiểm soát chi phí**: BYOK có nghĩa là không có đăng ký SaaS theo chỗ ngồi — chỉ các hợp đồng API hiện có.
 - **Khả năng kiểm toán**: Mọi quyết định thiết kế được lưu trữ trong các tệp phiên plaintext, đáp ứng yêu cầu tuân thủ.
 
----
+* * *
 
 ## Kết Luận
 
@@ -328,11 +329,11 @@ Với **tính linh hoạt đa mô hình**, **kiến trúc local-first**, **kinh 
 
 Nếu bạn chưa khám phá Open Codesign, việc thiết lập mất dưới 90 giây. Nguyên mẫu tiếp theo của bạn chỉ cách một prompt — và lần này, nó thực sự thuộc về bạn.
 
----
+* * *
 
 *Được viết bởi dibi8 Tech Team. Để biết thêm phân tích sâu về công cụ phát triển AI, quy trình làm việc mã nguồn mở và design engineering, hãy theo dõi blog của chúng tôi tại [dibi8.com](https://dibi8.com).*
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

@@ -33,6 +33,7 @@ sources: - name: GitHub
     type: star_count---
 
 
+
 > **编辑披露**：此比较使用截至 2026 年 6 月 30 日的 GitHub 实时数据（星标数量、提交频率、Fork 数量）。所有代码示例均经过测试和验证。我们不接受任何框架供应商的付款用于包含或排名。
 
 
@@ -89,7 +90,7 @@ sources: - name: GitHub
 选择合适的取决于您的使用场景：单代理自动化、多代理协作或以文档为主的RAG流程。请继续阅读详细比较。
 
 
----
+* * *
 ## 为什么我们要比较 AI Agent 框架
 
 自2023年以来，AI代理框架领域已经显著成熟。最初只是简单的提示链库，现已发展成为支持多代理协作、持久记忆、工具执行和人工监督的完整编排平台。
@@ -104,7 +105,7 @@ sources: - name: GitHub
 
 在选择框架之前，理解这些哲学上的差异至关重要。错误的选择可能意味着数月的重构工作。
 
----
+* * *
 ## 1. LangChain —— 集成之王
 
 **星标**: 141k · **语言**: TypeScript · **分支**: 23.3k · **许可证**: MIT
@@ -117,7 +118,7 @@ LangChain 是用于构建由大型语言模型驱动的应用程序的最成熟�
 
 ### Architecture Overview
 
-```typescript
+````typescript
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
@@ -133,7 +134,7 @@ const chain = prompt.pipe(model).pipe(outputParser);
 
 const result = await chain.invoke({ input: "Explain quantum computing" });
 console.log(result);
-```
+`````
 
 ### Why It Matters
 
@@ -143,17 +144,17 @@ TypeScript 基金会确保了出色的 IDE 支持、类型安全性以及与现�
 
 ### Hands-On Notes
 
-- `@langchain/community` 包提供 200 多种集成，但会显著增加包体积
+- ````@langchain/community```` 包提供 200 多种集成，但会显著增加包体积
 - LangSmith（商业追踪平台）原生集成，对于生产应用值得订阅
 - v0.2 迁移引入了重大 API 更改 — 升级前请查看迁移指南
-- Agent 执行器模式（`create_react_agent`、`create_tool_calling_agent`）抽象了大部分编排复杂性
+- Agent 执行器模式（````create_react_agent````、````create_tool_calling_agent````）抽象了大部分编排复杂性
 
 
 ### Configuration Management
 
 适当的配置管理对于生产环境中的 LangChain 应用至关重要：
 
-```python
+`````python
 from langchain_core.settings import merge_settings
 from langchain_openai import ChatOpenAI
 from langchain_community.chat_models import ChatAnthropic
@@ -166,13 +167,13 @@ settings = merge_settings(
 
 # Create model with settings
 model = ChatOpenAI(settings=settings)
-```
+`````
 
 ### Tool Definition and Registration
 
 LangChain 的工具系统支持基于函数和基于类的工具：
 
-```python
+`````python
 from langchain.tools import tool
 
 @tool
@@ -182,13 +183,13 @@ def search_wikipedia(query: str) -> str: """Search Wikipedia and return the summ
 
 # Register multiple tools
 tools = [search_wikipedia, ...]  # Add more tools
-```
+`````
 
 ### Memory Systems
 
 LangChain 提供了几种用于维护对话上下文的记忆类型：
 
-```python
+`````python
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory
 
@@ -198,13 +199,13 @@ buffer_mem.save_context({"human": "Hello"}, {"ai": "Hi there!"})
 
 # Summary memory (uses LLM to summarize)
 summary_mem = ConversationSummaryMemory(llm=model)
-```
+`````
 
 ### RAG Pipeline Example
 
 一个完整的检索增强生成管道：
 
-```python
+`````python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
@@ -230,7 +231,7 @@ qa_chain = RetrievalQA.from_chain_type(
     retriever=retriever,
 )
 result = qa_chain.run("What are the main findings?")
-```
+`````
 
 
 ### When to Choose LangChain
@@ -242,7 +243,7 @@ result = qa_chain.run("What are the main findings?")
 - 你正在构建一个需要可观测性的生产应用（LangSmith）
 - 你想要最大的社区和最多的文档
 
----
+* * *
 
 ## 2. CrewAI —— 让多智能体协作变得简单
 
@@ -256,7 +257,7 @@ CrewAI 建立在一个简单的前提上：复杂的任务最好由一组具有�
 
 ### Architecture Overview
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 
@@ -301,7 +302,7 @@ crew = Crew(
 
 result = crew.kickoff()
 print(result)
-```
+`````
 
 ### Why It Matters
 
@@ -313,7 +314,7 @@ CrewAI 的基于角色的抽象自然地映射到现实世界的团队结构。�
 
 - 顺序处理按顺序执行各个智能体；层级模式增加了一个“管理者”智能体用于委派  
 - 智能体记忆默认是每个智能体单独作用——使用共享记忆可以实现跨智能体的知识传递  
-- `allow_delegation` 标志允许智能体彼此请求帮助，从而产生协作效果  
+- ````allow_delegation```` 标志允许智能体彼此请求帮助，从而产生协作效果  
 - 性能：大约 3-5 个智能体是最佳数量；超过这个数量，协调开销会增加
 
 
@@ -321,7 +322,7 @@ CrewAI 的基于角色的抽象自然地映射到现实世界的团队结构。�
 
 CrewAI 支持基于 JSON 的船员配置以实现版本控制和可复现性：
 
-```json
+`````json
 {
   "crews": [
     {
@@ -344,13 +345,13 @@ CrewAI 支持基于 JSON 的船员配置以实现版本控制和可复现性：
     }
   ]
 }
-```
+`````
 
 ### Task Delegation Patterns
 
 CrewAI 支持顺序和层次化任务执行：
 
-```python
+`````python
 from crewai import Crew, Process
 
 # Hierarchical mode: manager agent delegates to team members
@@ -360,13 +361,13 @@ crew = Crew(
     process=Process.hierarchical,
     manager_llm=ChatOpenAI(model="gpt-4o"),
 )
-```
+`````
 
 ### Custom Tools for CrewAI
 
 使用自定义工具扩展CrewAI代理：
 
-```python
+`````python
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
@@ -378,7 +379,7 @@ class WebSearchTool(BaseTool): name: str = "Web Search"
 
     def _run(self, query: str) -> str: # Implement your search logic
         return f"Results for: {query}"
-```
+`````
 
 
 ### When to Choose CrewAI
@@ -390,7 +391,7 @@ class WebSearchTool(BaseTool): name: str = "Web Search"
 - 你的团队更喜欢 Python 而不是 TypeScript
 - 你需要能够协作和分配任务的代理
 
----
+* * *
 
 ## 3. Microsoft AutoGen —— 对话式智能体框架
 
@@ -404,7 +405,7 @@ AutoGen，由微软研究院开发，采用了根本不同的方法：代理通�
 
 ### Architecture Overview
 
-```python
+`````python
 import autogen
 from autogen import AssistantAgent, UserProxyAgent
 
@@ -439,7 +440,7 @@ user_proxy.initiate_chat(
     message="""Write a Python function that implements a binary search tree.
     Include insert, search, and delete operations. TERMINATE""",
 )
-```
+`````
 
 ### Why It Matters
 
@@ -449,7 +450,7 @@ AutoGen 的对话模型在复杂的开放性问题上表现出色，这些问题
 
 ### Hands-On Notes
 
-- `GroupChat` 和 `GroupChatManager` 支持带有说话者选择的多代理对话
+- ````GroupChat```` 和 ````GroupChatManager```` 支持带有说话者选择的多代理对话
 - 代码执行沙箱可配置 — 推荐使用 Docker 以提高安全性
 - 人类参与模式允许在代理对话中进行交互干预
 - 框架仍在发展中 — 不同版本之间的 API 稳定性存在差异
@@ -460,7 +461,7 @@ AutoGen 的对话模型在复杂的开放性问题上表现出色，这些问题
 
 AutoGen 的群聊功能支持结构化的多代理对话：
 
-```python
+`````python
 from autogen import GroupChat, GroupChatManager
 
 # Define participants
@@ -481,13 +482,13 @@ manager = GroupChatManager(groupchat=group_chat)
 user_proxy.initiate_chats([
     {"recipient": manager, "message": "Write a Python script for data analysis", "clear_history": True}
 ])
-```
+`````
 
 ### Function Calling in AutoGen
 
 AutoGen 支持 OpenAI 函数调用以实现结构化代理交互：
 
-```python
+`````python
 from autogen.function_utils import get_function_schema
 
 def calculate_bmi(weight_kg: float, height_cm: float) -> dict: """Calculate BMI from weight and height."""
@@ -496,13 +497,13 @@ def calculate_bmi(weight_kg: float, height_cm: float) -> dict: """Calculate BMI 
 
 # Register function with agent
 schema = get_function_schema(calculate_bmi)
-```
+`````
 
 ### Coding Agent Pattern
 
 AutoGen 在带有执行反馈的代码生成方面表现出色：
 
-```python
+`````python
 import autogen
 
 config_list = [{"model": "gpt-4o", "api_key": "sk-..."}]
@@ -520,7 +521,7 @@ executor = autogen.UserProxyAgent(
 )
 
 executor.initiate_chat(coder, message="Write a Flask API for a todo list app")
-```
+`````
 
 
 ### When to Choose AutoGen
@@ -532,7 +533,7 @@ executor.initiate_chat(coder, message="Write a Flask API for a todo list app")
 - 您处于研究或实验环境中
 - 您希望具有人类参与的监督能力
 
----
+* * *
 
 ## 4. LlamaIndex —— 数据基础架构
 
@@ -546,7 +547,7 @@ LlamaIndex（前称 GPT Index）最初是一个面向大型语言模型（LLM）
 
 ### Architecture Overview
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.openai import OpenAI
 
@@ -572,7 +573,7 @@ kg_index = KnowledgeGraphIndex.from_documents(
     max_triplets_per_chunk=5,
 )
 kg_query_engine = kg_index.as_query_engine(include_text=True)
-```
+`````
 
 ### Why It Matters
 
@@ -585,15 +586,15 @@ kg_query_engine = kg_index.as_query_engine(include_text=True)
 - VectorStoreIndex 是默认选项，适用于大多数使用场景  
 - KnowledgeGraphIndex 增加了关系感知 —— 对复杂文档网络非常有价值  
 - 元数据过滤可以精确控制查询哪些文档  
-- `PineconeIndex`、`WeaviateIndex` 以及其他向量存储集成支持生产级检索  
-- 数据代理（`QueryEngineTool`、`AgentRunner`）支持多步骤文档推理
+- ````PineconeIndex````、````WeaviateIndex```` 以及其他向量存储集成支持生产级检索  
+- 数据代理（````QueryEngineTool````、````AgentRunner````）支持多步骤文档推理
 
 
 ### Advanced: Multi-Modal Document Processing
 
 LlamaIndex 支持图片、PDF 和其他非文本文档：
 
-```python
+`````python
 from llama_index.readers.file import PDFReader, ImageReader
 
 # Read PDF documents
@@ -603,13 +604,13 @@ pdf_docs = pdf_reader.load_data(file="./document.pdf")
 # Read images with OCR
 image_reader = ImageReader()
 image_docs = image_reader.load_data(file="./diagram.png")
-```
+`````
 
 ### Embedding Configuration
 
 为不同的使用场景定制嵌入：
 
-```python
+`````python
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.embeddings.cohere import CohereEmbedding
 
@@ -620,13 +621,13 @@ openai_embed = OpenAIEmbedding(model="text-embedding-3-large")
 cohere_embed = CohereEmbedding(model="embed-english-v3.0")
 
 Settings.embed_model = cohere_embed
-```
+`````
 
 ### Document Transformation Pipelines
 
 在索引之前预处理文档以获得更好的检索效果：
 
-```python
+`````python
 from llama_index.core.node_parser import SentenceWindowNodeParser, MarkdownNodeParser
 
 # Sentence window parser (preserves context around chunks)
@@ -639,13 +640,13 @@ sentence_parser = SentenceWindowNodeParser.from_defaults(
 # Markdown parser (preserves document structure)
 markdown_parser = MarkdownNodeParser()
 nodes = markdown_parser.get_nodes_from_documents(documents)
-```
+`````
 
 ### Semantic Router for Query Routing
 
 根据意图将查询直接导向不同的索引：
 
-```python
+`````python
 from llama_index.core.indices.prompt_helper import PromptHelper
 from llama_index.core.retrievers import VectorIndexRetriever
 
@@ -656,7 +657,7 @@ legal_index = VectorStoreIndex.from_documents(legal_docs)
 # Route queries based on keywords
 def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]): return legal_index.as_retriever()
     else: return tech_index.as_retriever()
-```
+`````
 
 
 ### When to Choose LlamaIndex
@@ -668,7 +669,7 @@ def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "co
 - 您希望智能体能够对文档集合进行推理
 - 您的数据需要复杂的预处理和转换
 
----
+* * *
 
 ## 5. LangGraph —— 有状态智能体工作流
 
@@ -682,7 +683,7 @@ LangGraph 引入了一种基于图的抽象，其中节点表示计算步骤，�
 
 ### Architecture Overview
 
-```python
+`````python
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 import operator
@@ -720,7 +721,7 @@ workflow.add_conditional_edges(
 workflow.add_edge("revise", "chatbot")
 
 app = workflow.compile()
-```
+`````
 
 ### Why It Matters
 
@@ -730,7 +731,7 @@ LangGraph 的有状态图形方法非常适合需要可靠性和可审计性的�
 
 ### Hands-On Notes
 
-- `StateGraph` 提供核心抽象；`MessageGraph` 对仅聊天的工作流更简单
+- ````StateGraph```` 提供核心抽象；````MessageGraph```` 对仅聊天的工作流更简单
 - 内置检查点 — 代理在每个节点转换时自动保存状态
 - 已编译的图可以使用 LangServe 部署为 API 端点
 - 原生支持流式传输 — 实时将 token 输出到前端
@@ -741,7 +742,7 @@ LangGraph 的有状态图形方法非常适合需要可靠性和可审计性的�
 
 LangGraph 支持在任意节点暂停以供人工审批：
 
-```python
+`````python
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 
@@ -761,11 +762,11 @@ result = agent.invoke({"messages": [("human", "Book a flight to Tokyo")]}, confi
 
 # The agent pauses at tool calls for approval
 # Resume with: # result = agent.invoke(None, config)
-```
+`````
 
 ### Streaming Responses
 
-来自 LangGraph 代理的实时令牌流: ```python
+来自 LangGraph 代理的实时令牌流: `````python
 from langchain_core.messages import AIMessageChunk
 
 # Stream agent execution
@@ -774,13 +775,13 @@ for event in agent.stream(
     config={"stream_mode": "values"},
 ): last_msg = event["messages"][-1]
     if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end="", flush=True)
-```
+`````
 
 ### Subgraphs for Modular Design
 
 将复杂工作流程拆分为可重复使用的子图：
 
-```python
+`````python
 from langgraph.graph import StateGraph
 
 # Define subgraph for research phase
@@ -798,13 +799,13 @@ main_graph.add_node("write", write_nodes)
 main_graph.add_edge("research", "write")
 main_graph.set_entry_point("research")
 workflow = main_graph.compile()
-```
+`````
 
 ### Error Recovery Patterns
 
 在图节点中实现重试和备用逻辑：
 
-```python
+`````python
 import asyncio
 from functools import wraps
 
@@ -819,7 +820,7 @@ def retry_with_backoff(max_retries=3, base_delay=1.0): def decorator(func): @wra
 @retry_with_backoff(max_retries=3)
 async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
     return response
-```
+`````
 
 
 ### When to Choose LangGraph
@@ -831,23 +832,23 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 - 您希望具备检查点/恢复功能以提高可靠性
 - 您正在构建需要审计跟踪的生产系统
 
----
+* * *
 
 ## 横向对比
 
 | Feature | LangChain | CrewAI | AutoGen | LlamaIndex | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Stars** | 141k | 54.6k | 59.4k | 50.5k | 36k |
 | **Language** | TypeScript | Python | Python | Python | Python |
@@ -857,7 +858,7 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 | **Human-in-Loop** | Via LangSmith | Limited | Native | Limited | Native |
 | **Best For** | General purpose | Role-based teams | Research | Document AI | Complex workflows |
 
----
+* * *
 
 ## 如何选择：决策框架
 
@@ -893,7 +894,7 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 - **LlamaIndex + CrewAI**：使用 LlamaIndex 进行文档索引，使用 CrewAI 进行多代理分析
 - **LangChain + AutoGen**：结合使用 LangChain 的工具生态系统和 AutoGen 的对话代理
 
----
+* * *
 
 ## 性能基准测试
 
@@ -905,13 +906,13 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 
 | Framework | Accuracy | Time (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 87% | 12s | Strong tool integration for code execution |
 | CrewAI | 82% | 18s | Multi-agent review improves quality |
@@ -925,13 +926,13 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 
 | Framework | Quality Score | Time (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 7.2/10 | 30s | Good but loses nuance |
 | CrewAI | 8.1/10 | 45s | Multi-agent synthesis works well |
@@ -945,13 +946,13 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 
 | Framework | Success Rate | Time (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 73% | 20s | Chain-of-thought helps but limited recovery |
 | CrewAI | 81% | 35s | Agent delegation handles complexity |
@@ -959,13 +960,13 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 | LlamaIndex | 65% | 25s | Not optimized for reasoning tasks |
 | LangGraph | 92% | 30s | Graph cycles enable retry and recovery |
 
----
+* * *
 
 ## 开发环境 Docker 配置
 
 所有五个框架都支持基于 Docker 的开发环境。以下是统一的设置：
 
-```dockerfile
+`````dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -996,16 +997,16 @@ ENV LANGCHAIN_TRACING_V2=true
 ENV LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
 
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
-```
+`````
 
 构建并运行：
 
-```bash
+`````bash
 docker build -t ai-frameworks-dev .
 docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
-```
+````
 
----
+* * *
 
 ## 社区与生态系统
 
@@ -1039,7 +1040,7 @@ docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
 - **第三方**：新兴 — 自定义图模板和模式
 - **商业支持**：通过 LangChain 生态系统和 LangSmith
 
----
+* * *
 
 ## 未来展望
 
@@ -1055,7 +1056,7 @@ docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
 
 5. **评估**：随着代理变得更强大，评估其性能变得更加困难。具有内置评估和监控功能的框架（如 LangSmith、LlamaIndex 评估器）将在生产应用中领先。
 
----
+* * *
 
 ## 常见问题
 
@@ -1079,7 +1080,7 @@ CrewAI 有最温和的学习曲线。它基于角色的抽象直观易懂——�
 
 不太可能。这些框架解决不同的问题，采用不同的理念。LangChain 优化集成，CrewAI 优化协作，AutoGen 优化对话，LlamaIndex 优化数据，LangGraph 优化状态。市场很可能会形成一个多框架的生态系统，团队根据各自的具体需求进行选择。
 
----
+* * *
 
 ## 加入社区
 
@@ -1089,7 +1090,7 @@ CrewAI 有最温和的学习曲线。它基于角色的抽象直观易懂——�
 - **在评论中分享**你使用这些框架的经验
 - **建议你希望我们下次比较的框架**
 
----
+* * *
 
 ## Dibi8 更多内容
 
@@ -1097,7 +1098,7 @@ CrewAI 有最温和的学习曲线。它基于角色的抽象直观易懂——�
 - [向量数据库比较：Qdrant 与 Weaviate 与 Milvus](/resources/llm-frameworks/vector-db-2026-qdrant-weaviate-milvus/)
 - [Unsloth：2026 年快速大语言模型微调](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)
 
----
+* * *
 
 *最后更新：2026年6月30日。星标数量和指标为近似值，可能会发生变化。所有代码示例均在发布当天的框架版本上测试。*
 

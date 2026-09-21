@@ -32,6 +32,7 @@ faq: - q: "Tại sao việc phát hiện overfit trong backtest lại khó đế
     a: "Nếu Train PF / OOS PF > 1.5, nghi ngờ overfit. Nếu > 2.0, gần như chắc chắn overfit. Lần chạy moss-trade-bot gần đây của chúng tôi cho Train PF 2.08 / OOS PF 0.94 — tỉ lệ 2.21 — overfit kinh điển. Chiến lược lành mạnh có tỉ lệ dưới 1.3."
 ---
 
+
 {{</* resource-info */>}}
 
 # Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sharpe Thực Tế
@@ -52,7 +53,7 @@ Phần lớn trader định lượng biết overfit tồn tại. Ít người h�
 >
 > **Phòng thủ**: walk-forward, quét độ nhạy tham số, cổng OOS khi triển khai.
 
----
+* * *
 
 ## Tại Sao Điều Này Quan Trọng
 
@@ -86,13 +87,13 @@ Các chiến lược "vượt qua" backtest dưới dạng kết quả optimizer
 
 **Định nghĩa**: Kết quả chiến lược suy giảm không liên tục khi tham số thay đổi 1 đơn vị.
 
-**Quét ví dụ** (tham số lookback): ```
+**Quét ví dụ** (tham số lookback): ````
 lookback=12: PF 1.42
 lookback=13: PF 1.55
 lookback=14: PF 2.08  ← lựa chọn của optimizer
 lookback=15: PF 0.91
 lookback=16: PF 0.87
-```
+````
 
 "Vách đá" giữa 14 và 15 mà không có giải thích kinh tế = optimizer tìm thấy cực đại cục bộ trong nhiễu.
 
@@ -162,7 +163,7 @@ Overfit không phải một thứ. Là năm mẫu hình, mỗi mẫu có dấu h
 
 Tiến hóa moss-trade-bot gần đây của chúng tôi kết thúc thành overfit kinh điển (tỉ lệ 2.21). Đó không phải thất bại của công cụ — đó là thất bại của *tiến hóa không có cổng OOS*. Cách sửa không phải optimizer tốt hơn; là cổng kiểm định nghiêm khắc hơn.
 
----
+* * *
 
 **Liên quan**: [Đánh giá Moss Trade Bot Factory 2026](https://dibi8.com/vi/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python Backtesting](https://dibi8.com/vi/resources/ai-trading/backtrader-python-backtesting/) · [Framework Jesse AI Trading](https://dibi8.com/vi/resources/ai-trading/jesse-ai-trading-framework/)
 
@@ -228,12 +229,12 @@ Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sharpe Thực
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -243,7 +244,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [temporal-ai-workflow-orchestration](backtest-overfit-5-patterns-2026)
 - [cleanlab-11k-star-ai-data-cleaning](backtest-overfit-5-patterns-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

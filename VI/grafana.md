@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/grafana/
 ---
 
+
 {{</* resource-info */>}}
 
 Mỗi sự cố production đều bắt đầu bằng một câu hỏi: "Cái gì đã thay đổi?" Không có một góc nhìn tập trung về metrics, logs và traces, câu hỏi đó có thể mất vài phút — đôi khi là vài giờ — để trả lờii. Grafana, nền tảng trực quan hóa mã nguồn mở với 73,876 sao GitHub, biến câu hỏi đó thành một dashboard có thể nhìn thấy trong một cái liếc mắt. Hướng dẫn này đi qua triển khai Docker cấp production, tích hợp nguồn dữ liệu, và các quyết định cứng hóa phân biệt giữa một bằng chứng khái niệm và một stack giám sát sẵn sàng cho production.
@@ -56,7 +57,7 @@ Một dashboard production Grafana điển hình kết hợp nhiều loại pane
 
 ### Docker CLI — Container Đơn (30 giây)
 
-Cách nhanh nhất để chạy Grafana cho việc khám phá local: ```bash
+Cách nhanh nhất để chạy Grafana cho việc khám phá local: ````bash
 # Tạo volume bền vững cho dữ liệu Grafana
 docker volume create grafana-storage
 
@@ -66,20 +67,20 @@ docker run -d \
   --name=grafana \
   --volume grafana-storage:/var/lib/grafana \
   grafana/grafana-enterprise
-```
+`````
 
-Truy cập `http://localhost:3000`. Thông tin xác thực mặc định là `admin` / `admin`. Bạn sẽ được yêu cầu thay đổi mật khẩu khi đăng nhập lần đầu.
+Truy cập ````http://localhost:3000````. Thông tin xác thực mặc định là ````admin```` / ````admin````. Bạn sẽ được yêu cầu thay đổi mật khẩu khi đăng nhập lần đầu.
 
 ### Docker Compose — Stack Sẵn sàng Production
 
-Để có stack giám sát cấp production, kết hợp Grafana với Prometheus và Loki. Tạo cấu trúc thư mục sau: ```bash
+Để có stack giám sát cấp production, kết hợp Grafana với Prometheus và Loki. Tạo cấu trúc thư mục sau: `````bash
 mkdir -p ~/grafana-stack/{prometheus,loki,grafana/provisioning/datasources,grafana/provisioning/dashboards,grafana/dashboards}
 cd ~/grafana-stack
-```
+`````
 
 **docker-compose.yml:**
 
-```yaml
+`````yaml
 version: "3.8"
 
 services: grafana: image: grafana/grafana-enterprise:11.6.0
@@ -128,11 +129,11 @@ services: grafana: image: grafana/grafana-enterprise:11.6.0
     networks: - monitoring
 
 volumes: grafana-data: prometheus-data: loki-data: networks: monitoring: driver: bridge
-```
+`````
 
 **prometheus/prometheus.yml:**
 
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
@@ -144,11 +145,11 @@ scrape_configs: - job_name: prometheus
 
   - job_name: grafana
     static_configs: - targets: ['grafana:3000']
-```
+`````
 
 **loki/loki-config.yml:**
 
-```yaml
+`````yaml
 auth_enabled: false
 
 server: http_listen_port: 3100
@@ -179,11 +180,11 @@ compactor: working_directory: /loki/compactor
   retention_delete_delay: 2h
 
 limits_config: retention_period: 720h
-```
+`````
 
 **loki/promtail-config.yml:**
 
-```yaml
+`````yaml
 server: http_listen_port: 9080
   grpc_listen_port: 0
 
@@ -195,17 +196,17 @@ scrape_configs: - job_name: system-logs
     static_configs: - targets: - localhost
         labels: job: system-logs
           __path__: /var/log/*.log
-```
+`````
 
-Khởi động stack: ```bash
+Khởi động stack: `````bash
 docker compose up -d
-```
+`````
 
-Truy cập Grafana tại `http://your-server-ip:3000`. Prometheus có sẵn trên cổng 9090, Loki trên cổng 3100.
+Truy cập Grafana tại ````http://your-server-ip:3000````. Prometheus có sẵn trên cổng 9090, Loki trên cổng 3100.
 
 ### Cung cấp Nguồn dữ liệu Tự động
 
-Thay vì click thủ công qua UI để thêm nguồn dữ liệu, hãy dùng hệ thống provisioning của Grafana. Tạo `grafana/provisioning/datasources/datasources.yml`: ```yaml
+Thay vì click thủ công qua UI để thêm nguồn dữ liệu, hãy dùng hệ thống provisioning của Grafana. Tạo ``grafana/provisioning/datasources/datasources.yml``: `````yaml
 apiVersion: 1
 
 datasources: - name: Prometheus
@@ -226,17 +227,17 @@ datasources: - name: Prometheus
     access: proxy
     url: http://tempo:3200
     editable: false
-```
+`````
 
-Khởi động lại Grafana và các nguồn dữ liệu sẽ xuất hiện đã được cấu hình sẵn: ```bash
+Khởi động lại Grafana và các nguồn dữ liệu sẽ xuất hiện đã được cấu hình sẵn: `````bash
 docker compose restart grafana
-```
+`````
 
 ## Tích hợp với Prometheus, Loki, InfluxDB và Elasticsearch
 
 ### Prometheus — Dashboard Metrics
 
-Prometheus là nguồn metrics thực tế cho Grafana. Một panel giám sát CPU điển hình dùng PromQL: ```promql
+Prometheus là nguồn metrics thực tế cho Grafana. Một panel giám sát CPU điển hình dùng PromQL: `````promql
 # Phần trăm sử dụng CPU
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
@@ -245,30 +246,30 @@ Prometheus là nguồn metrics thực tế cho Grafana. Một panel giám sát C
 
 # Sử dụng đĩa
 100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"})
-```
+`````
 
-Nhập dashboard Node Exporter Full chính thức (ID: `1860`) từ thư viện dashboard Grafana để có 115+ panel metrics hệ thống được xây dựng sẵn.
+Nhập dashboard Node Exporter Full chính thức (ID: ````1860````) từ thư viện dashboard Grafana để có 115+ panel metrics hệ thống được xây dựng sẵn.
 
 ### Loki — Tổng hợp Log
 
-Loki tích hợp các dòng log cùng với metrics trong cùng một dashboard. Một truy vấn LogQL để tìm dòng lỗi: ```logql
+Loki tích hợp các dòng log cùng với metrics trong cùng một dashboard. Một truy vấn LogQL để tìm dòng lỗi: `````logql
 # Đếm log lỗi theo ứng dụng
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # Tìm kiếm các mẫu lỗi cụ thể
 {job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
-```
+`````
 
 ### InfluxDB — Dữ liệu Chuỗi thờii gian
 
-Đối với các workload IoT và metrics cardinality cao, InfluxDB kết hợp tốt với Grafana: ```sql
+Đối với các workload IoT và metrics cardinality cao, InfluxDB kết hợp tốt với Grafana: `````sql
 -- Ví dụ InfluxQL: nhiệt độ trung bình theo cảm biến
 SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id", time($__interval) fill(null)
-```
+`````
 
 ### Elasticsearch — Tìm kiếm Log
 
-Đối với các team đã đầu tư vào Elastic Stack, Grafana có thể truy vấn trực tiếp các index Elasticsearch: ```json
+Đối với các team đã đầu tư vào Elastic Stack, Grafana có thể truy vấn trực tiếp các index Elasticsearch: `````json
 {
   "query": {
     "bool": {
@@ -279,7 +280,7 @@ SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id"
     }
   }
 }
-```
+`````
 
 ## Benchmark / Các Trường hợp Sử dụng Thực tế
 
@@ -308,7 +309,7 @@ Dashboard timeline cảnh báo của Grafana trực quan hóa các mẫu kích h
 
 ### Chấm dứt SSL/TLS với Reverse Proxy
 
-Không bao giờ phơi bày Grafana trực tiếp ra internet. Dùng Traefik hoặc Nginx làm reverse proxy: ```yaml
+Không bao giờ phơi bày Grafana trực tiếp ra internet. Dùng Traefik hoặc Nginx làm reverse proxy: `````yaml
 # Phần bổ sung docker-compose.yml
   traefik: image: traefik:v3.3
     command: - "--api.insecure=true"
@@ -321,11 +322,11 @@ Không bao giờ phơi bày Grafana trực tiếp ra internet. Dùng Traefik ho�
     volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
     networks: - monitoring
-```
+`````
 
 ### Thiết lập High Availability
 
-Đối với các môi trường production yêu cầu zero downtime: ```yaml
+Đối với các môi trường production yêu cầu zero downtime: `````yaml
 # Grafana HA yêu cầu cơ sở dữ liệu dùng chung (PostgreSQL hoặc MySQL)
 # và nhiều instance Grafana phía sau load balancer
 
@@ -344,11 +345,11 @@ Không bao giờ phơi bày Grafana trực tiếp ra internet. Dùng Traefik ho�
       - GF_REMOTE_CACHE_TYPE=redis
       - GF_REMOTE_CACHE_CONNSTR=redis:6379
     depends_on: - postgres
-```
+`````
 
 ### Cấu hình Cảnh báo dưới dạng Code
 
-Định nghĩa quy tắc cảnh báo thông qua provisioning: ```yaml
+Định nghĩa quy tắc cảnh báo thông qua provisioning: `````yaml
 # grafana/provisioning/alerting/alert-rules.yml
 apiVersion: 1
 groups: - orgId: 1
@@ -367,11 +368,11 @@ groups: - orgId: 1
         execErrState: Error
         for: 5m
         annotations: summary: "Mức sử dụng CPU cao trên {{ $labels.instance }}"
-```
+`````
 
 ### Provisioning Dashboard từ Git
 
-Lưu dashboard dưới dạng JSON trong repository của bạn và tự động provision: ```yaml
+Lưu dashboard dưới dạng JSON trong repository của bạn và tự động provision: `````yaml
 # grafana/provisioning/dashboards/dashboards.yml
 apiVersion: 1
 
@@ -384,16 +385,16 @@ providers: - name: default
     updateIntervalSeconds: 30
     options: path: /var/lib/grafana/dashboards
       foldersFromFilesStructure: true
-```
+`````
 
 ### Danh sách Kiểm tra Bảo mật
 
 - Thay đổi mật khẩu admin mặc định ngay lập tức
-- Vô hiệu hóa đăng ký ngườii dùng: `GF_USERS_ALLOW_SIGN_UP=false`
+- Vô hiệu hóa đăng ký ngườii dùng: ````GF_USERS_ALLOW_SIGN_UP=false````
 - Bật HTTPS với chứng chỉ hợp lệ
 - Dùng OAuth 2.0 hoặc LDAP để xác thực trong môi trường nhóm
 - Hạn chế quyền truy cập proxy nguồn dữ liệu cho vai trò admin
-- Bật audit logging: `GF_AUDIT_ENABLED=true`
+- Bật audit logging: ````GF_AUDIT_ENABLED=true````
 - Chạy Grafana với ngườii dùng non-root trong container
 - Giữ plugin được cập nhật — các plugin dễ bị tổn thương là vector tấn công phổ biến
 
@@ -444,7 +445,7 @@ Tùy thuộc. Đối với trực quan hóa metrics, log và trace, Grafana vớ
 
 **Q3: Làm sao để sao lưu dashboard Grafana?**
 
-Dashboard được lưu dưới dạng JSON trong cơ sở dữ liệu của Grafana. Sử dụng API để xuất chúng: `curl -H "Authorization: Bearer $API_KEY" http://grafana:3000/api/dashboards/uid/<uid>`. Đối với các quy trình GitOps, hãy provision dashboard từ các file JSON trong version control.
+Dashboard được lưu dưới dạng JSON trong cơ sở dữ liệu của Grafana. Sử dụng API để xuất chúng: ````curl -H "Authorization: Bearer $API_KEY" http://grafana:3000/api/dashboards/uid/<uid>````. Đối với các quy trình GitOps, hãy provision dashboard từ các file JSON trong version control.
 
 **Q4: Sự khác biệt giữa Grafana OSS và Grafana Enterprise là gì?**
 
@@ -470,7 +471,7 @@ Grafana xứng đáng với 73,876 sao GitHub của mình bằng cách giải qu
 
 1. Clone [kho GitHub Grafana](https://github.com/grafana/grafana) và khám phá codebase
 2. Triển khai stack Docker Compose từ hướng dẫn này trên hạ tầng của bạn
-3. Nhập dashboard ID `1860` (Node Exporter Full) để có khả năng hiển thị hệ thống ngay lập tức
+3. Nhập dashboard ID ````1860``` (Node Exporter Full) để có khả năng hiển thị hệ thống ngay lập tức
 4. Tham gia [diễn đàn cộng đồng Grafana](https://community.grafana.com/) để được hỗ trợ
 5. Theo dõi [nhóm Telegram dibi8](https://t.me/dibi8hub) để có các phân tích công cụ dev hàng tuần
 
@@ -524,7 +525,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -534,6 +535,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](grafana)
 - [moneyprinterturbo-one-click-ai-video-generator](grafana)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

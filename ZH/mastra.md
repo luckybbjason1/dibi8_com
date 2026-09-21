@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/mastra/-
 ---
 
+
 {{</* resource-info */>}}
 
 绝大多数 AI 框架都是为 Python 构建的。如果你的技术栈运行在 TypeScript 和 Node.js 上，你只能在跨语言桥接和次优开发体验之间做出选择。这种情况在 Gatsby 团队推出 Mastra 后发生了改变 —— 一个用于构建 AI 智能体的 TypeScript 原生框架，截至 2026 年 5 月已获得 **24,050 个 GitHub Star**，目前被 Replit、PayPal 和 Sanity 等公司用于生产环境。本文涵盖安装 Mastra、构建第一个智能体所需的一切，以及其 Observational Memory 如何比传统 RAG 方法减少 4-10 倍 Token 成本。
@@ -34,7 +35,7 @@ Mastra 是一个用于构建 AI 驱动应用和智能体的开源 TypeScript 框
 
 ![Mastra Logo](https://raw.githubusercontent.com/mastra-ai/mastra/main/docs/public/logo.png)
 
-核心概念很简单：智能体处理开放式对话任务并可访问工具，工作流管理确定性的多步骤流程，RAG 将回答基于你的数据，记忆在对话间保持上下文，评估则衡量质量。所有六个原语都包含在 `@mastra/core` 中，通过一致的 Zod 类型 API 协同工作。
+核心概念很简单：智能体处理开放式对话任务并可访问工具，工作流管理确定性的多步骤流程，RAG 将回答基于你的数据，记忆在对话间保持上下文，评估则衡量质量。所有六个原语都包含在 ```@mastra/core```` 中，通过一致的 Zod 类型 API 协同工作。
 
 ![Mastra Studio — 用于调试智能体、工作流和记忆的本地开发 UI](https://www.firecrawl.dev/images/blog/mastra-tutorial/workflow-graph.webp)
 
@@ -43,7 +44,7 @@ Mastra 是一个用于构建 AI 驱动应用和智能体的开源 TypeScript 框
 Mastra 的架构围绕六个构建块展开，对应生产级 AI 系统真正需要的组件：
 
 ### 智能体 (Agents)
-智能体是主要参与者。你给它们指令、模型和工具访问权限。它们自主决定调用什么工具、何时停止以及如何响应。智能体提供 `.generate()` 获取完整响应，`.stream()` 获取实时 Token 流 —— 这对聊天界面至关重要。
+智能体是主要参与者。你给它们指令、模型和工具访问权限。它们自主决定调用什么工具、何时停止以及如何响应。智能体提供 ````.generate()```` 获取完整响应，````.stream()```` 获取实时 Token 流 —— 这对聊天界面至关重要。
 
 ### 工作流 (Workflows)
 工作流基于 XState 提供确定性编排，支持需要显式控制的多步骤操作。支持分支、并行执行、循环和人机协同模式（暂停执行等待人工审批后恢复）。
@@ -60,7 +61,7 @@ Mastra 的 RAG 管道处理文档分块、嵌入生成、向量存储、相似�
 ### 评估 (Evals)
 评估框架通过模型评分、基于规则和统计的方法跟踪智能体质量。可评估相关性、忠实度、毒性、语气一致性和自定义指标。
 
-```typescript
+`````typescript
 // Mastra 核心架构 —— 六个原语一站式配置
 import { Mastra } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -77,7 +78,7 @@ const mastra = new Mastra({
   vectorStore: new PgVector(connectionString),
   telemetry: otel,
 });
-```
+`````
 
 ## 安装与设置 —— 5 分钟以内
 
@@ -85,7 +86,7 @@ Mastra 需要 Node.js 22.13.0 或更高版本。推荐路径是使用 CLI 向导
 
 ### 步骤 1：创建新项目
 
-```bash
+`````bash
 # 使用交互式 CLI 脚手架创建新的 Mastra 项目
 npm create mastra@latest
 
@@ -94,13 +95,13 @@ npm create mastra@latest
 # - 组件（智能体、工作流、RAG、记忆）
 # - LLM 提供商（OpenAI、Anthropic、Google 等）
 # - 是否包含示例代码
-```
+`````
 
 ### 步骤 2：手动安装（替代方案）
 
 如果你希望将 Mastra 添加到现有项目中：
 
-```bash
+`````bash
 # 安装核心包和用于模式验证的 Zod
 npm install @mastra/core@latest zod@^4
 
@@ -109,19 +110,19 @@ npm install @ai-sdk/openai
 
 # 可选：向量存储、记忆和部署器包
 npm install @mastra/pg @mastra/memory @mastra/deployer-vercel
-```
+`````
 
 ### 步骤 3：环境配置
 
-```bash
+`````bash
 # .env —— Mastra 在运行时自动加载这些变量
 OPENAI_API_KEY=sk-xxxx
 DATABASE_URL=postgresql://user:pass@localhost:5432/mastra
-```
+`````
 
 ### 步骤 4：项目结构
 
-```
+`````
 my-mastra-project/
 ├── src/
 │   └── mastra/
@@ -135,17 +136,17 @@ my-mastra-project/
 ├── .env
 ├── package.json
 └── tsconfig.json
-```
+`````
 
 ### 步骤 5：启动 Mastra Studio
 
-```bash
+`````bash
 # 在 localhost:4111 启动本地开发 UI
 npx mastra dev
 
 # Studio 允许你与智能体对话、检查工具调用、
 # 查看记忆状态、可视化工作流并迭代提示词
-```
+`````
 
 ![Mastra Changelog Digest 工作流 — 展示 INPUT → SCRAPE → EXTRACT → OUTPUT 管道](https://www.firecrawl.dev/images/blog/mastra-tutorial/changelog-pipeline.webp)
 
@@ -153,7 +154,7 @@ npx mastra dev
 
 ### 带工具的基础智能体
 
-```typescript
+`````typescript
 // src/mastra/agents/support.ts
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -174,16 +175,16 @@ const searchTool = createTool({
 
 export const supportAgent = new Agent({
   name: SupportAgent,
-  instructions: `你是一个技术支持智能体。使用搜索工具回答问题。
-    保持简洁并引用来源。`,
+  instructions: ````你是一个技术支持智能体。使用搜索工具回答问题。
+    保持简洁并引用来源。````,
   model: openai('gpt-4o'),
   tools: { searchTool },
 });
-```
+`````
 
 ### 结构化输出的智能体
 
-```typescript
+`````typescript
 // 获取类型对象而非纯文本
 const result = await supportAgent.generate(
   '分类这张工单："无法部署到 Vercel"',
@@ -199,11 +200,11 @@ const result = await supportAgent.generate(
 
 // result.object 是完全类型化的 —— TypeScript 知道其结构
 console.log(result.object.priority); // high | low | medium | critical
-```
+`````
 
 ### 流式响应
 
-```typescript
+`````typescript
 // 为聊天界面实时流式传输 Token
 const stream = await supportAgent.stream(
   '如何配置环境变量？'
@@ -212,11 +213,11 @@ const stream = await supportAgent.stream(
 for await (const chunk of stream.textStream) {
   process.stdout.write(chunk); // Token 到达时立即写入
 }
-```
+`````
 
 ### 带分支的多步骤工作流
 
-```typescript
+`````typescript
 // src/mastra/workflows/ticket.ts
 import { Workflow, Step } from '@mastra/core';
 import { z } from zod;
@@ -228,7 +229,7 @@ const classifyStep = new Step({
   execute: async ({ input, mastra }) => {
     const agent = mastra.getAgent(supportAgent);
     const result = await agent.generate(
-      `分类：${input.ticketText}`,
+      ````分类：${input.ticketText}````,
       { output: z.object({ category: z.string(), priority: z.string() }) }
     );
     return result.object;
@@ -239,7 +240,7 @@ const escalateStep = new Step({
   id: escalate,
   outputSchema: z.object({ escalated: z.boolean() }),
   execute: async ({ input }) => {
-    await sendSlackAlert(`高优先级：${input.ticketText}`);
+    await sendSlackAlert(````高优先级：${input.ticketText}````);
     return { escalated: true };
   },
 });
@@ -264,11 +265,11 @@ export const ticketPipeline = new Workflow({
   .then(autoRespondStep, {
     when: { 'classify.priority': [low, medium] },
   });
-```
+`````
 
 ### 并行工作流执行
 
-```typescript
+`````typescript
 // 使用 .after() 并行运行步骤
 import { Workflow, Step } from '@mastra/core';
 
@@ -286,13 +287,13 @@ const parallelWorkflow = new Workflow({
   .step(stepC)
   .after(stepA, stepB, stepC)
   .step(stepD); // stepD 仅在 A、B、C 全部完成后运行
-```
+`````
 
 ## 与 Next.js、Node.js 和 Vercel AI SDK 集成
 
 ### Next.js 集成
 
-```typescript
+`````typescript
 // app/api/agent/route.ts —— 在 Next.js 中将智能体暴露为 API 路由
 import { mastra } from '@/mastra';
 import { NextResponse } from 'next/server';
@@ -307,11 +308,11 @@ export async function POST(req: Request) {
     headers: { 'Content-Type': 'text/event-stream' },
   });
 }
-```
+`````
 
 ### 使用 Hono 的 Node.js 服务器
 
-```bash
+`````bash
 # Mastra 构建时会打包 Hono HTTP 服务器
 npx mastra build
 
@@ -320,13 +321,13 @@ npx mastra build
 
 npx mastra start
 # 服务器运行在 http://localhost:4111
-```
+`````
 
 ### Vercel AI SDK 集成
 
 Mastra 基于 Vercel AI SDK 构建。你可以直接使用 SDK 进行底层控制：
 
-```typescript
+`````typescript
 // Mastra 底层使用 AI SDK 提供商
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
@@ -339,11 +340,11 @@ const agent = new Agent({
   model: openai('gpt-4o'), // 或 anthropic('claude-sonnet-4') 或 google('gemini-2.0-pro')
   tools: { searchTool, calcTool },
 });
-```
+`````
 
 ### MCP（模型上下文协议）集成
 
-```typescript
+`````typescript
 // 连接任何 MCP 服务器 —— 超过 10,000 个可用
 import { MCPClient } from '@mastra/core';
 
@@ -369,7 +370,7 @@ const agent = new Agent({
   model: openai('gpt-4o'),
   tools, // 所有 MCP 工具现在可用
 });
-```
+`````
 
 ## 基准测试与实际用例
 
@@ -385,11 +386,11 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 
 | 工作负载类型 | 压缩比率 | 示例场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 纯文本对话 | 3-6x | 客户支持聊天 |
 | 工具调用密集型智能体 | 5-40x | 浏览器自动化、编码智能体 |
@@ -399,11 +400,11 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 
 | 记忆系统 | GPT-4o 分数 | GPT-5-mini 分数 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Mastra Observational Memory | 84.23% | 94.87% |
 | Mastra RAG（基线） | 80.05% | — |
@@ -415,13 +416,13 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 
 | 框架 | DX 分数 (1-10) | 设置时间 | 首个智能体时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Mastra | 9/10 | < 5 分钟 | 数分钟 |
 | LangChain (Python) | 5/10 | 15-30 分钟 | 数小时 |
@@ -442,7 +443,7 @@ Mastra 的 Observational Memory 是生产经济学的标志性功能。数据如
 
 ### Observational Memory 配置
 
-```typescript
+`````typescript
 import { Mastra } from '@mastra/core';
 import { ObservationalMemory } from '@mastra/memory';
 import { PgStorage } from '@mastra/pg';
@@ -456,11 +457,11 @@ const mastra = new Mastra({
     compressionInterval: 5, // 每 5 条消息压缩一次
   }),
 });
-```
+`````
 
 ### RAG 管道设置
 
-```typescript
+`````typescript
 import { MastraRAG } from '@mastra/rag';
 import { openai } from '@ai-sdk/openai';
 import { PgVector } from '@mastra/pg';
@@ -480,11 +481,11 @@ await rag.index(documentBatch);
 
 // 带相似性搜索的查询
 const results = await rag.query('如何配置 SSO？', { topK: 5 });
-```
+`````
 
 ### 使用 OpenTelemetry 实现可观测性
 
-```typescript
+`````typescript
 import { Mastra } from '@mastra/core';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 
@@ -502,11 +503,11 @@ const mastra = new Mastra({
 
 // 追踪自动出现在你的可观测平台中
 // 每个智能体调用、工具执行和工作流步骤都被自动插桩
-```
+`````
 
 ### 护栏与安全
 
-```typescript
+`````typescript
 import { Agent } from '@mastra/core';
 import { createGuardrail } from '@mastra/core';
 
@@ -532,11 +533,11 @@ const agent = new Agent({
   tools: { searchTool },
   guardrails: [promptInjectionGuard, piiGuard],
 });
-```
+`````
 
 ### 人机协同
 
-```typescript
+`````typescript
 import { Workflow, Step } from '@mastra/core';
 
 const humanApprovalStep = new Step({
@@ -557,11 +558,11 @@ const refundWorkflow = new Workflow({
   .step(validateStep)
   .then(humanApprovalStep)
   .then(processRefundStep, { when: { 'await-approval.approved': true } });
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile 用于生产部署
 FROM node:22-slim
 
@@ -574,9 +575,9 @@ RUN npx mastra build
 
 EXPOSE 4111
 CMD ["node", ".mastra/output/index.mjs"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8"
 services: mastra: build: .
@@ -591,21 +592,21 @@ services: mastra: build: .
       POSTGRES_DB: mastra
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## 与替代方案对比
 
 | 特性 | Mastra | LangChain | CrewAI | Vercel AI SDK |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **主要语言** | TypeScript (99.2%) | Python (也支持 JS) | Python | TypeScript |
 | **GitHub Stars** | 24,050 | 117,000 | 39,200 | N/A (Vercel 的一部分) |
@@ -647,7 +648,7 @@ Mastra 并非适用于所有情况。以下是其不足之处：
 LangChain 提供 ConversationBufferMemory、ConversationSummaryMemory 和基于向量的检索。这些方法要么消耗完整上下文窗口，要么依赖使提示缓存失效的向量搜索。Mastra 的 Observational Memory 将上下文压缩为可缓存的观察，实现 4-10 倍成本降低，同时在 LongMemEval 基准上得分更高（84.23% vs RAG 的 80.05%）。
 
 **Q: 我可以在 DigitalOcean 或 AWS 上部署 Mastra 而不是 Vercel 吗？**
-可以。Mastra 是完全开源的，可部署到任何 Node.js 运行时。使用 `mastra build` 构建，然后在 DigitalOcean App Platform、AWS ECS、Google Cloud Run 或任何 Docker 主机上运行输出。Vercel 和 Cloudflare Workers 的部署器是可选的。
+可以。Mastra 是完全开源的，可部署到任何 Node.js 运行时。使用 ````mastra build```` 构建，然后在 DigitalOcean App Platform、AWS ECS、Google Cloud Run 或任何 Docker 主机上运行输出。Vercel 和 Cloudflare Workers 的部署器是可选的。
 
 **Q: Mastra 支持哪些 LLM 提供商？**
 Mastra 通过 Vercel AI SDK 支持 40+ 提供商：OpenAI、Anthropic、Google、Mistral、Cohere、xAI、DeepSeek、Fireworks、Together 等。切换提供商只需修改一行代码。
@@ -665,10 +666,10 @@ Mastra 工作流包含可配置的重试策略，步骤级别支持指数退避�
 
 Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeScript 原生工具包，让 JavaScript 开发者无需离开其生态即可构建智能体。Observational Memory 带来的 4-10 倍 Token 成本降低并非营销噱头，而是由 LongMemEval 基准验证的、可量化的生产优势。框架的 DX 评分 9/10 和不足 5 分钟的设置时间，使其成为 TypeScript 团队从构想到部署智能体的最快路径。
 
-如果你正在为 Next.js 应用、Node.js 服务或任何 TypeScript 项目构建 AI 功能，Mastra 值得认真评估。从 `npm create mastra@latest` 开始，构建一个工作流，并自己测量 Token 成本的差异。
+如果你正在为 Next.js 应用、Node.js 服务或任何 TypeScript 项目构建 AI 功能，Mastra 值得认真评估。从 ````npm create mastra@latest```` 开始，构建一个工作流，并自己测量 Token 成本的差异。
 
 **行动项：**
-1. 克隆 Mastra 仓库并运行快速入门：`npm create mastra@latest`
+1. 克隆 Mastra 仓库并运行快速入门：````npm create mastra@latest```
 2. 加入 [Mastra Discord 社区](https://discord.gg/mastra)（5,500+ 成员）
 3. 探索 [官方文档](https://mastra.ai/docs)
 4. 关注 [Mastra GitHub 仓库](https://github.com/mastra-ai/mastra) 获取更新
@@ -731,7 +732,7 @@ Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeSc
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](mastra)
@@ -741,7 +742,7 @@ Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeSc
 - [1m-context-window-llm-2026-real-test](mastra)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

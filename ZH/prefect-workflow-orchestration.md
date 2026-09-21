@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/prefect-workflow-orchestration/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：你的 Cron 作业是一颗定时炸弹
@@ -49,7 +50,7 @@ Prefect 3.x 引入了混合执行模型，将本地开发的简洁性与分布�
 ### 流（Flows）与任务（Tasks）
 **流**是一个定义工作流的装饰 Python 函数。**任务**是流中的工作单元——也是一个装饰的 Python 函数。任务自动获得重试、缓存、超时和并发限制。流可以调用其他流（子流）以进行模块化组合。
 
-```python
+````python
 from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=5)
@@ -63,7 +64,7 @@ def fetch_data(url: str) -> dict: """Fetch data from an API with automatic retry
 def main_flow(): """Main pipeline orchestrating multiple tasks."""
     raw_data = fetch_data("https://api.example.com/data")
     # ... more tasks
-```
+`````
 
 ### Prefect 服务器
 **Prefect 服务器**是一个轻量级的、可自托管的控制平面，提供：
@@ -83,11 +84,11 @@ def main_flow(): """Main pipeline orchestrating multiple tasks."""
 ### 状态与状态转换
 每个任务和流运行都通过定义良好的状态机进行转换：
 
-```
+`````
 Scheduled → Pending → Running → Completed
                               → Failed → Retrying → Running
                               → Cancelled
-```
+`````
 
 转换被持久化到 Prefect 数据库中，并在仪表板上实时可见。你可以定义**状态变更钩子**，在任意转换时触发操作（发送警报、运行清理、触发下游流）。
 
@@ -100,7 +101,7 @@ Scheduled → Pending → Running → Completed
 
 ### 步骤 1：安装 Prefect
 
-```bash
+`````bash
 python -m venv prefect-env
 source prefect-env/bin/activate  # Linux/Mac
 # prefect-env\Scripts\activate  # Windows
@@ -111,21 +112,21 @@ pip install prefect>=3.3.0
 # 验证安装
 prefect version
 # Expected output: 3.3.0+
-```
+`````
 
 ### 步骤 2：启动 Prefect 服务器（自托管）
 
-```bash
+`````bash
 # 选项 A：使用 SQLite 快速启动（单台机器）
 prefect server start
 
 # 服务器在 http://localhost:4200 启动
 # 在浏览器中打开仪表板
-```
+`````
 
 对于使用 PostgreSQL 的团队部署：
 
-```bash
+`````bash
 # 选项 B：使用 PostgreSQL 的 Docker Compose
 cat > docker-compose.yml << EOF
 services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
@@ -148,24 +149,24 @@ services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
 volumes: postgres_data: EOF
 
 docker-compose up -d
-```
+`````
 
 配置 Prefect 客户端连接：
 
-```bash
+`````bash
 # 将 Prefect CLI 指向你的服务器
 prefect config set PREFECT_API_URL=http://localhost:4200/api
 
 # 验证连接
 prefect version
 # Should show: Server: http://localhost:4200/api
-```
+`````
 
 ### 步骤 3：构建你的第一个流
 
-创建 `etl_pipeline.py`：
+创建 ````etl_pipeline.py````：
 
-```python
+`````python
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from prefect.artifacts import create_table_artifact
@@ -243,19 +244,19 @@ def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key
 
 if __name__ == "__main__": result = etl_pipeline()
     print(f"Pipeline completed: {result}")
-```
+`````
 
 运行它：
 
-```bash
+`````bash
 python etl_pipeline.py
-```
+`````
 
-在浏览器中打开 `http://localhost:4200`。你将看到你的流运行，每个任务状态转换都在实时追踪，包括摘要工件表。
+在浏览器中打开 ````http://localhost:4200````。你将看到你的流运行，每个任务状态转换都在实时追踪，包括摘要工件表。
 
 ### 步骤 4：调度流
 
-```python
+`````python
 from prefect import flow
 from prefect.schedules import IntervalSchedule
 from datetime import timedelta
@@ -266,17 +267,17 @@ etl_pipeline.serve(
     schedule=IntervalSchedule(interval=timedelta(hours=24)),
     tags=["production", "etl"]
 )
-```
+`````
 
 或使用 cron 语法：
 
-```bash
+`````bash
 # 使用 cron 计划部署
 prefect deployment build etl_pipeline.py:etl_pipeline \
   --name "daily-etl-cron" \
   --cron "0 6 * * *" \
   --apply
-```
+`````
 
 ## 与 20+ 工具集成：构建生产级数据技术栈
 
@@ -286,7 +287,7 @@ Prefect 与现代数据生态系统原生集成。以下是最关键的集成。
 
 在隔离的 Docker 容器中运行流：
 
-```python
+`````python
 from prefect.docker import DockerImage
 
 @flow
@@ -299,21 +300,21 @@ containerized_flow.deploy(
     work_pool_name="docker-pool",
     image=DockerImage(name="my-etl", tag="1.0")
 )
-```
+`````
 
 配置 Docker 工作池：
 
-```bash
+`````bash
 # 创建 Docker 工作池
 prefect work-pool create docker-pool --type docker
 
 # 启动工作进程
 prefect worker start --pool docker-pool
-```
+`````
 
 对于 Kubernetes：
 
-```bash
+`````bash
 # 创建 Kubernetes 工作池
 prefect work-pool create k8s-pool --type kubernetes
 
@@ -323,13 +324,13 @@ prefect deployment build etl_pipeline.py:etl_pipeline \
   --pool k8s-pool \
   --infra kubernetes-job \
   --apply
-```
+`````
 
 ### dbt 集成
 
 直接从 Prefect 编排你的 dbt 模型：
 
-```python
+`````python
 from prefect import flow
 from prefect_dbt.cli.commands import trigger_dbt_cli_command
 from prefect_dbt.cli.configs import TargetConfigs
@@ -350,17 +351,17 @@ def run_dbt_models(): """Run dbt models with Prefect orchestration."""
 
 # Deploy
 run_dbt_models.serve(name="dbt-daily")
-```
+`````
 
 安装集成：
 
-```bash
+`````bash
 pip install prefect-dbt[cli]
-```
+`````
 
 ### AWS 服务
 
-```python
+`````python
 from prefect import flow, task
 from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
@@ -380,20 +381,20 @@ def s3_pipeline(): """Pipeline moving data through S3."""
     data = download_from_s3("raw-data", "input.csv")
     # ... process ...
     upload_to_s3("processed.csv", "processed-data", "output.csv")
-```
+`````
 
 配置 AWS 凭证：
 
-```bash
+`````bash
 pip install prefect-aws
 
 # 注册 AWS 凭证块
 prefect block register --module prefect_aws.credentials
-```
+`````
 
 ### Slack 通知
 
-```python
+`````python
 from prefect import flow
 from prefect.blocks.notifications import SlackWebhook
 
@@ -407,13 +408,13 @@ def send_slack_alert(flow, flow_run, state): """Send alert to Slack when flow fa
         body=f"Flow {flow.name} failed with state {state.name}. "
              f"Check: http://localhost:4200/flow-runs/{flow_run.id}"
     )
-```
+`````
 
 ### 自定义基于事件的触发器
 
 无需轮询即可响应外部事件：
 
-```python
+`````python
 from prefect.events import emit_event
 from prefect import flow
 
@@ -430,13 +431,13 @@ def on_file_uploaded(file_path: str): """Process file when S3 upload event fires
 
 # 定义在此事件上触发的自动化
 # 在 Prefect 仪表板或通过 API 配置
-```
+`````
 
 ### 异步和并发执行
 
 Prefect 的异步支持允许大规模并发：
 
-```python
+`````python
 import asyncio
 from prefect import flow, task
 
@@ -455,7 +456,7 @@ async def concurrent_fetch_flow(urls: list[str]): """Fetch all URLs concurrently
 # 并发运行 100 个 API 调用
 urls = [f"https://api.example.com/item/{i}" for i in range(100)]
 results = asyncio.run(concurrent_fetch_flow(urls))
-```
+`````
 
 ## 基准测试与真实案例
 
@@ -465,15 +466,15 @@ Prefect 为从初创公司到财富 500 强公司的组织提供数据流水线�
 
 | 公司 | 行业 | 规模 | 用例 | 成果 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Canva | 设计 SaaS | **每日 10,000+ 运行** | ML 特征流水线 | 流水线 MTTR 减少 95% |
 | FuboTV | 流媒体 | 50TB/天处理 | 实时分析 | KPI 仪表板延迟低于 1 分钟 |
@@ -486,13 +487,13 @@ Prefect 为从初创公司到财富 500 强公司的组织提供数据流水线�
 
 | 指标 | Prefect 3.x | Airflow 2.10 | Dagster 1.9 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动（单任务） | **0.8s** | 3.2s | 2.1s |
 | 100 个并发任务 | **1.2s** | 8.5s | 4.3s |
@@ -505,22 +506,22 @@ Prefect 为从初创公司到财富 500 强公司的组织提供数据流水线�
 
 ### 吞吐量扩展
 
-```
+`````
 # Prefect 3.3.0 吞吐量测试
 # DigitalOcean 8 vCPU / 32GB 云服务器
 
 并发任务 | 吞吐量（任务/秒） | 平均延迟（毫秒）
 
----
+* * *
 |
----
+* * *
 |---
        1         |        1.25          |      800
       10         |       8.33           |      120
       50         |       41.7           |       24
      100         |       83.3           |       12
      500         |      250.0           |        4
-```
+`````
 
 在 500 个并发任务下，Prefect 保持 **每秒 250 个任务**，平均延迟为 4ms——适合高频事件处理和实时数据流水线。
 
@@ -528,7 +529,7 @@ Prefect 为从初创公司到财富 500 强公司的组织提供数据流水线�
 
 ### 带指数退避的自定义重试逻辑
 
-```python
+`````python
 from prefect import task
 from datetime import timedelta
 
@@ -542,13 +543,13 @@ def call_external_api(endpoint: str) -> dict: """Call external API with smart re
     response = requests.get(endpoint, timeout=10)
     response.raise_for_status()
     return response.json()
-```
+`````
 
 ### 任务并发限制
 
 通过全局并发限制防止资源耗尽：
 
-```python
+`````python
 from prefect import flow, task
 from prefect.concurrency.sync import concurrency
 
@@ -562,18 +563,18 @@ def limited_processing_flow(item_ids: list[str]): """Process items with max 10 c
     from prefect.tasks import map
     results = map(process_with_resource_limit, item_ids)
     return results
-```
+`````
 
 配置限制：
 
-```bash
+`````bash
 # 通过 CLI 创建并发限制
 prefect concurrency-limit create database-slots 10
-```
+`````
 
 ### 使用 Pydantic 进行输入/输出验证
 
-```python
+`````python
 from prefect import flow, task
 from pydantic import BaseModel, Field
 from typing import List
@@ -602,11 +603,11 @@ def validated_pipeline(raw_data: List[dict]) -> PipelineOutput: """Pipeline with
         transaction_count=len(transactions),
         currency=transactions[0].currency if transactions else "USD"
     )
-```
+`````
 
 ### 使用 GitHub Actions 进行 CI/CD 部署
 
-```yaml
+`````yaml
 # .github/workflows/prefect-deploy.yml
 name: Deploy Prefect Flows
 on: push: branches: [main]
@@ -635,11 +636,11 @@ jobs: deploy: runs-on: ubuntu-latest
       - name: Run health check
         run: |
           prefect flow-run list --limit 5
-```
+`````
 
 ### Prefect.yaml 配置
 
-```yaml
+`````yaml
 # prefect.yaml — 将部署定义为代码
 name: production-pipelines
 prefect-version: 3.3.0
@@ -668,11 +669,11 @@ tags: ["production", "etl", "daily"]
     work_pool: name: k8s-pool
     schedule: interval: 3600
 tags: ["production", "analytics"]
-```
+`````
 
 ### 监控和告警
 
-```python
+`````python
 from prefect import flow
 from prefect.blocks.webhook import Webhook
 from datetime import timedelta
@@ -704,21 +705,21 @@ def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for c
             }
         })
     )
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Prefect 3.x | Apache Airflow 2.10 | Dagster 1.9 | Temporal |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **学习曲线** | **低**（纯 Python） | **中**（DAG + 运算符） | **中**（基于资产） | 高（自定义 SDK） |
 | **自托管 UI** | **是 — 单二进制文件** | 是（复杂） | 是（中等） | 是（复杂） |
@@ -742,7 +743,7 @@ Prefect 并非适用于每个工作流的正确工具。了解以下权衡：
 
 1. **插件生态系统成熟度**：Airflow 有 500+ 提供商包。Prefect 的集成库较小但增长迅速。自定义集成需要编写你自己的任务包装器。
 
-2. **长时间运行的工作流**：Prefect 的默认超时是每个流 1 小时。对于多天的工作流（ML 训练中常见），你需要配置 `timeout_seconds=None` 并确保你的工作进程在重启后仍然存活。
+2. **长时间运行的工作流**：Prefect 的默认超时是每个流 1 小时。对于多天的工作流（ML 训练中常见），你需要配置 ````timeout_seconds=None```` 并确保你的工作进程在重启后仍然存活。
 
 3. **Prefect Cloud 定价**：免费层允许 3 个活跃工作进程和每月 10,000 次任务运行。对于更大的团队，需要每月 $500 的 Pro 计划。自托管开源服务器可以避免这一点，但需要运维专业知识。
 
@@ -753,7 +754,7 @@ Prefect 并非适用于每个工作流的正确工具。了解以下权衡：
 ## 常见问题解答
 
 **Q：我可以从 Apache Airflow 增量迁移到 Prefect 吗？**
-A：可以。Prefect 可以通过 `PrefectAirflow` 集成调用 Airflow DAG，允许你逐个任务迁移。首先将现有的 Python 函数包装为 Prefect 任务，然后逐步用 Prefect 流替换 DAG 依赖项。对于中等复杂度的流水线，迁移通常需要 2-4 周。
+A：可以。Prefect 可以通过 ````PrefectAirflow```` 集成调用 Airflow DAG，允许你逐个任务迁移。首先将现有的 Python 函数包装为 Prefect 任务，然后逐步用 Prefect 流替换 DAG 依赖项。对于中等复杂度的流水线，迁移通常需要 2-4 周。
 
 **Q：Prefect 如何处理任务状态持久化？**
 A：每个任务和流状态都持久化到 Prefect 数据库（SQLite 或 PostgreSQL）。如果工作进程在执行过程中崩溃，新工作进程会从上次中断的地方继续——不会丢失状态。这是相对于基于 cron 的解决方案的核心优势，后者在失败时会丢失所有上下文。
@@ -762,15 +763,15 @@ A：每个任务和流状态都持久化到 Prefect 数据库（SQLite 或 Postg
 A：Prefect Cloud 增加了 RBAC、SSO、审计日志和托管基础设施。自托管的开源服务器具有所有核心编排功能，但缺少企业认证。对于 10 人以下的团队，使用 PostgreSQL 的自托管通常足够。对于合规要求（SOC2、HIPAA），建议使用 Prefect Cloud。
 
 **Q：我可以在没有服务器的情况下运行 Prefect 吗？**
-A：可以。Prefect 支持**临时模式**，流运行完全在本地执行，无需任何服务器。使用 `prefect flow-run` 进行临时执行。服务器仅用于调度、多工作进程协调和仪表板。
+A：可以。Prefect 支持**临时模式**，流运行完全在本地执行，无需任何服务器。使用 ````prefect flow-run```` 进行临时执行。服务器仅用于调度、多工作进程协调和仪表板。
 
 **Q：如何在 Kubernetes 上部署 Prefect？**
-A：使用官方 Helm chart：`helm install prefect prefecthq/prefect-server`。对于工作进程，部署为使用 `prefect worker start --pool <pool-name>` 的 Kubernetes deployment。有关开箱即用的托管 K8s 集群，请参阅 [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0)。
+A：使用官方 Helm chart：````helm install prefect prefecthq/prefect-server````。对于工作进程，部署为使用 ````prefect worker start --pool <pool-name>```` 的 Kubernetes deployment。有关开箱即用的托管 K8s 集群，请参阅 [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0)。
 
 **Q：Prefect 支持动态任务映射吗？**
-A：支持。Prefect 的 `map` 函数允许运行时动态任务生成。映射到输入列表，Prefect 会自动创建具有依赖关系追踪的并行任务运行。这非常适合扇出模式，例如处理可变数量的文件。
+A：支持。Prefect 的 ````map```` 函数允许运行时动态任务生成。映射到输入列表，Prefect 会自动创建具有依赖关系追踪的并行任务运行。这非常适合扇出模式，例如处理可变数量的文件。
 
-```python
+`````python
 from prefect import flow, task
 from prefect.tasks import map
 
@@ -785,7 +786,7 @@ def dynamic_processing_flow(directory: str): """Dynamically process all files in
     files = [f for f in os.listdir(directory) if f.endswith(".csv")]
     results = map(process_file, files)
     return results
-```
+````
 
 ## 结论：用可观察的流水线取代 Cron
 
@@ -844,4 +845,4 @@ Prefect 3.x 代表了数据团队构建和运营工作流方式的根本性转�
   }
 }
 </script>
----
+* * *

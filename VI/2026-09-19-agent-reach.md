@@ -11,6 +11,7 @@ maintainer: 'Panniantong'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -69,54 +70,54 @@ Agent-Reach là một công cụ CLI mã nguồn mở được xây dựng bởi
 - Git (tùy chọn, cho development)
 
 ### Cài Đặt Nhanh
-```bash
+````bash
 pip install agent-reach
-```
+`````
 
 ### Thay Thế: Từ Source
-```bash
+`````bash
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
 pip install -e .
-```
+`````
 
 ### Xác Nhận Cài Đặt
-```bash
+`````bash
 agent-reach --version
 # Nên xuất ra: agent-reach vX.X.X
-```
+`````
 
 ## Tính Năng Chính
 
 ### 1. Tìm Kiếm Twitter/X
-```bash
+`````bash
 # Tìm kiếm tweet gần đây
 agent-reach twitter search "AI agents" --limit 20
 
 # Lấy timeline người dùng
 agent-reach twitter user @elonmusk --tweets 50
-```
+`````
 
 ### 2. Scraping Reddit
-```bash
+`````bash
 # Duyệt bài viết phổ biến từ subreddit
 agent-reach reddit browse r/generativeai --top 20
 
 # Tìm kiếm qua subreddit
 agent-reach reddit search "Claude Code" --sort new
-```
+`````
 
 ### 3. Transcript YouTube
-```bash
+`````bash
 # Lấy transcript cho video
 agent-reach youtube transcript <video_url>
 
 # Tìm kiếm và lấy kết quả hàng đầu
 agent-reach youtube search "MCP protocol tutorial" --limit 10
-```
+`````
 
 ### 4. GitHub Intelligence
-```bash
+`````bash
 # Tìm kiếm repository
 agent-reach github search "plugin system ai" --sort stars
 
@@ -125,25 +126,25 @@ agent-reach github repo deepseek-ai/deepseek-harness
 
 # Kiểm tra issue gần đây
 agent-reach github issues Panniantong/Agent-Reach --open --limit 10
-```
+`````
 
 ### 5. Scraping Trang Web
-```bash
+`````bash
 # Trích xuất nội dung dễ đọc từ URL
 agent-reach web extract "https://example.com/article"
 
 # Lấy dữ liệu có cấu trúc
 agent-reach web extract "https://example.com" --format json
-```
+`````
 
 ### 6. Giám Sát RSS Feed
-```bash
+`````bash
 # Giám sát cập nhật RSS feed
 agent-reach rss monitor "https://hnrss.org/frontpage" --interval 300
 
 # Phân tích và tóm tắt mục feed
 agent-reach rss fetch "https://blog.openai.com/rss.xml" --limit 10
-```
+`````
 
 ## Trường Hợp Sử Dụng Thực Tế
 
@@ -154,7 +155,7 @@ Tôi đã xây dựng một bot nghiên cứu thị trường hàng tuần: 1. T
 3. Kiểm tra repository GitHub liên quan
 4. Compile báo cáo tóm tắt
 
-```bash
+`````bash
 #!/bin/bash
 # weekly-research.sh
 
@@ -175,41 +176,41 @@ agent-reach github search "ai agent framework" --sort stars --json > github.json
 # Kết hợp kết quả
 python combine.py twitter.json reddit.json github.json
 echo "Báo cáo đã tạo: weekly-report.md"
-```
+`````
 
 ### Trường Hợp 2: Aggregate Nội Dung
 
-Giám sát nhiều nguồn cho breaking news trong niche của bạn: ```bash
+Giám sát nhiều nguồn cho breaking news trong niche của bạn: `````bash
 # Giám sát bài mới từ r/MachineLearning
 agent-reach reddit monitor r/MachineLearning --interval 300 --last-only
 
 # Theo dõi đề cập Twitter về sản phẩm của bạn
 agent-reach twitter monitor --query "myproduct" --interval 600
-```
+`````
 
 ### Trường Hợp 3: Phân Tích Cạnh Tranh
 
-So sánh tính năng giữa các đối thủ: ```bash
+So sánh tính năng giữa các đối thủ: `````bash
 # So sánh GitHub
 for repo in deepseek-ai/deepseek-harness addyosmani/agent-skills diegosouzapw/OmniRoute; do
   agent-reach github repo "$repo" --json
 done | jq '. | {name: .full_name, stars: .stargazers_count, lang: .language}'
-```
+`````
 
 ## Tích Hợp Với Agent AI
 
 ### Với Claude Code
-```bash
+`````bash
 # Thiết lập một lần
 claude code
 
 # Trong session
 > /plugin agent-reach
 > agent-reach github search "langchain alternatives" --limit 10
-```
+`````
 
 ### Với Cursor
-Cấu hình Cursor để sử dụng Agent-Reach như một lệnh terminal: ```json
+Cấu hình Cursor để sử dụng Agent-Reach như một lệnh terminal: `````json
 // .cursorrc
 {
   "terminal": {
@@ -218,14 +219,14 @@ Cấu hình Cursor để sử dụng Agent-Reach như một lệnh terminal: ```
     }
   }
 }
-```
+`````
 
-Sau đó trong Cursor: ```
+Sau đó trong Cursor: `````
 > ar reddit search "Claude Code vs Cursor"
-```
+`````
 
 ### Với Custom Scripts
-Tích hợp Python rất đơn giản: ```python
+Tích hợp Python rất đơn giản: `````python
 import subprocess
 import json
 
@@ -239,10 +240,10 @@ def search_twitter(query: str, limit: int = 20) -> list: result = subprocess.run
 # Usage
 tweets = search_twitter("AI agents", 10)
 for tweet in tweets: print(f"@{tweet['user']}: {tweet['text'][:100]}...")
-```
+`````
 
 ### Với LangChain
-Tích hợp Agent-Reach vào LangChain pipeline: ```python
+Tích hợp Agent-Reach vào LangChain pipeline: `````python
 from langchain.tools import Tool
 from langchain.agents import initialize_agent, AgentType
 
@@ -262,10 +263,10 @@ tools = [
 ]
 
 agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
-```
+`````
 
 ### Với AutoGPT
-Sử dụng Agent-Reach như một built-in tool: ```json
+Sử dụng Agent-Reach như một built-in tool: `````json
 {
   "tools": ["agent-reach"],
   "config": {
@@ -273,7 +274,7 @@ Sử dụng Agent-Reach như một built-in tool: ```json
     "cache_enabled": true
   }
 }
-```
+`````
 
 ## Benchmark Hiệu Suất
 
@@ -288,20 +289,20 @@ Tôi đã test Agent-Reach so với paid APIs qua nhiều platform: | Platform |
 **Kết luận:** Chậm nhưng usable. Cho batch jobs và non-urgent tasks, chi phí miễn phí vượt trội so với sự khác biệt tốc độ. Trong production, tôi cache results aggressively để giảm thiểu repeated requests.
 
 ### Chiến Lược Cache
-```bash
+`````bash
 # Enable caching cho repeated queries nhanh hơn
 agent-reach twitter search "AI agents" --cache --ttl 3600
 
 # Xóa cache thủ công
 agent-reach cache clear
-```
+`````
 
 ## Rate Limiting Và Best Practices
 
 Agent-Reach tôn trọng basic rate limits, nhưng bạn nên use responsibly: ### Nên Làm
-- Thêm delay giữa requests (`--delay 1`)
-- Cache results locally (`--cache`)
-- Sử dụng `--quiet` cho non-interactive modes
+- Thêm delay giữa requests (````--delay 1````)
+- Cache results locally (````--cache````)
+- Sử dụng ````--quiet```` cho non-interactive modes
 - Tôn trọng robots.txt khi có thể
 
 ### Không Nên
@@ -309,13 +310,13 @@ Agent-Reach tôn trọng basic rate limits, nhưng bạn nên use responsibly: #
 - Đừng scrape private content
 - Đừng sử dụng cho commercial redistribution mà không có permission
 
-```bash
+`````bash
 # Best practice: thêm delay
 agent-reach twitter search "AI" --limit 20 --delay 2
 
 # Best practice: cache results
 agent-reach reddit browse r/LocalLLaMA --cache --ttl 3600
-```
+`````
 
 ## Giới Hạn Và Đánh Giá Thành Thật
 
@@ -349,31 +350,31 @@ Nếu bạn cần guaranteed uptime, legal clarity, hoặc sub-second latency, h
 ## Khắc Phục Sự Cố
 
 ### Lỗi Thường Gặp: Rate Limit Exceeded
-```bash
+`````bash
 # Nếu bạn hit rate limits, thêm delay giữa requests
 agent-reach twitter search "AI" --limit 10 --delay 3
 
 # Hoặc sử dụng batch mode với built-in throttling
 agent-reach batch run research-script.sh --throttle 2
-```
+`````
 
 ### Lỗi Thường Gặp: Bị Chặn Bởi Cloudflare
-Một số site sử dụng Cloudflare protection. Workarounds: ```bash
+Một số site sử dụng Cloudflare protection. Workarounds: `````bash
 # Sử dụng residential proxy nếu có
 agent-reach web extract "https://example.com" --proxy http://your-proxy:8080
 
 # Hoặc sử dụng mobile user-agent
 agent-reach web extract "https://example.com" --ua mobile
-```
+`````
 
 ### Lỗi Thường Gặp: Kết Quả Trống
-```bash
+`````bash
 # Kiểm tra platform có được hỗ trợ không
 agent-reach platforms list
 
 # Thử với broad hơn search terms
 agent-reach reddit search "AI agents 2026" --limit 50
-```
+`````
 
 ## Câu Hỏi Thường Gặp
 
@@ -390,7 +391,7 @@ Có, nhưng cẩn thận về IP bans. Consider rotating proxies nếu bạn c�
 Agent-Reach fast hơn cho simple searches nhưng less flexible than full browser automation. Use Agent-Reach cho quick data extraction, Playwright cho complex interactions.
 
 ### Q: Rate limit là gì?
-Default là 1 request per second per platform. Bạn có thể increase với `--delay` flag nhưng tôn trọng platform's terms.
+Default là 1 request per second per platform. Bạn có thể increase với ````--delay``` flag nhưng tôn trọng platform's terms.
 
 ### Q: Tôi có thể sử dụng cho commercial research không?
 Cho internal business intelligence, có. Cho reselling scraped data, consult legal counsel. Most platforms prohibit commercial redistribution.
@@ -408,7 +409,7 @@ The speed trade-off là thực tế, nhưng cho most use cases — weekly report
 
 Bạn đã thử Agent-Reach chưa? Use case yêu thích của bạn là gì? Share trong comments hoặc open an issue on GitHub!
 
----
+* * *
 
 **Nguồn Và Đọc Thêm:**
 - GitHub repo: https://github.com/Panniantong/Agent-Reach

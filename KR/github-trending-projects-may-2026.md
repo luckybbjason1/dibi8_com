@@ -28,6 +28,7 @@ faqs: - q: 'DeepSeek-TUI는 무엇이며 Cursor나 GitHub Copilot과 어떻게 �
     a: 'Local Deep Research는 텔레메트리 없이 클라우드 의존성도 없이 전적으로 사용자 자신의 하드웨어에서 실행되며, 연구 기록을 SQLCipher로 암호화된 데이터베이스에 저장합니다. 로컬에서 실행됨에도 불구하고 RTX 3090에서 Qwen3.6-27B와 함께 사용할 때 SimpleQA에서 약 95%의 정확도에 도달하며, arXiv와 PubMed를 포함해 10개 이상의 검색 엔진을 지원합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 소개
@@ -38,36 +39,36 @@ faqs: - q: 'DeepSeek-TUI는 무엇이며 Cursor나 GitHub Copilot과 어떻게 �
 
 ![모니터 여러 대로 구성된 현대적 작업 공간](https://images.pexels.com/photos/34804018/pexels-photo-34804018.jpeg?auto=compress&cs=tinysrgb&h=350) *사진 출처: Daniil Komov / Pexels*
 
----
+* * *
 
 ## 프로젝트 1: Hmbown / DeepSeek-TUI — 당신의 터미널이 이제 슈퍼 코딩 에이전트가 된다
 
-**Stars:** 21,085 &nbsp;|&nbsp; **+오늘新增 5,799 스타** &nbsp;|&nbsp; 저장소: [`Hmbown/DeepSeek-TUI`](https://github.com/Hmbown/DeepSeek-TUI)
+**Stars:** 21,085 &nbsp;|&nbsp; **+오늘新增 5,799 스타** &nbsp;|&nbsp; 저장소: [```Hmbown/DeepSeek-TUI````](https://github.com/Hmbown/DeepSeek-TUI)
 
 만약 하나의 프로젝트가 현재 AI 코딩 열풍을 정의한다면, DeepSeek-TUI가 바로 그것입니다. 하루 만에 거의 5,800개의 새로운 stars를 기록했으며 — 이는 다른 모든 트렌드 리포지토리를 압도하는 수치입니다. 단순히 브라우저에서 ChatGPT를 감싸는 포장지가 아닙니다. 기존 개발 워크플로우에 완전히 통합되는 진짜 터미널 기반 코딩 에이전트입니다.
 
 ### 어떤 점이 다른가
 
-DeepSeek-TUI는 `deepseek` 명령어를 통해 로컬 터미널에서 실행됩니다. 웹 탭을 열고 텍스트 상자에 입력할 필요가 없습니다. 코드베이스 내에서 직접 상호작용합니다. 에이전트는 추론 블록을 터미널로 스트리밍하며, 디스크의 파일을 읽고 쓰고, 파일 시스템 변경 전에는 승인 게이트를 사용합니다. 즉, AI 보조 편집의 속도 이점을 얻으면서도 통제권을 유지할 수 있습니다.
+DeepSeek-TUI는 ````deepseek```` 명령어를 통해 로컬 터미널에서 실행됩니다. 웹 탭을 열고 텍스트 상자에 입력할 필요가 없습니다. 코드베이스 내에서 직접 상호작용합니다. 에이전트는 추론 블록을 터미널로 스트리밍하며, 디스크의 파일을 읽고 쓰고, 파일 시스템 변경 전에는 승인 게이트를 사용합니다. 즉, AI 보조 편집의 속도 이점을 얻으면서도 통제권을 유지할 수 있습니다.
 
-Cursor나 Copilot과 같은 전체 GUI 에디터를 필요로 하는 도구와 달리, DeepSeek-TUI는 터미널 퍼스트 개발자들을 위해 설계되었습니다. `tmux`, `neovim`, `zsh`에서 하루를 보낸다면 이것이 네이티브처럼 느껴질 것입니다. 브라우저 탭과 IDE 창 간 컨텍스트 전환이 필요없습니다.
+Cursor나 Copilot과 같은 전체 GUI 에디터를 필요로 하는 도구와 달리, DeepSeek-TUI는 터미널 퍼스트 개발자들을 위해 설계되었습니다. ````tmux````, ````neovim````, ````zsh````에서 하루를 보낸다면 이것이 네이티브처럼 느껴질 것입니다. 브라우저 탭과 IDE 창 간 컨텍스트 전환이 필요없습니다.
 
 ### Auto Mode: 스마트 모델 라우팅으로 비용 절감
 
-가장 돋보이는 기능은 자동 모드(`deepseek --model auto`)입니다. 각 요청을 보내기 전에 DeepSeek-TUI는 `deepseek-v4-flash`(추론 비활성)로 작은 라우팅 호출을 수행합니다. 라우터는 최신 요청과 최근 대화 컨텍스트를 평가하여 최적 조합을 선택합니다: - **모델:** 빠른 작업에는 `deepseek-v4-flash`, 복잡한 아키텍처 작업에는 `deepseek-v4-pro`
-- **추론 레벨:** 간단한 리팩토링에는 `off`, 보안 검토나 다단계 디버깅에는 `high` 또는 `max`
+가장 돋보이는 기능은 자동 모드(````deepseek --model auto````)입니다. 각 요청을 보내기 전에 DeepSeek-TUI는 ````deepseek-v4-flash````(추론 비활성)로 작은 라우팅 호출을 수행합니다. 라우터는 최신 요청과 최근 대화 컨텍스트를 평가하여 최적 조합을 선택합니다: - **모델:** 빠른 작업에는 ````deepseek-v4-flash````, 복잡한 아키텍처 작업에는 ````deepseek-v4-pro````
+- **추론 레벨:** 간단한 리팩토링에는 ````off````, 보안 검토나 다단계 디버깅에는 ````high```` 또는 ````max````
 
-단순 질문은 저가로 유지되고, 정말 복잡한 작업만 고비용 추론을 트리거합니다. 업스트림 API는 `"model": "auto"`를 받지 않습니다 — TUI가 내부적으로 해석하며 실제 사용된 모델 기준으로 요금이 부과됩니다. 비용 추적은 투명하게 이루어집니다.
+단순 질문은 저가로 유지되고, 정말 복잡한 작업만 고비용 추론을 트리거합니다. 업스트림 API는 ````"model": "auto"````를 받지 않습니다 — TUI가 내부적으로 해석하며 실제 사용된 모델 기준으로 요금이 부과됩니다. 비용 추적은 투명하게 이루어집니다.
 
 ### 크로스 플랫폼 설치 지원
 
-```bash
+`````bash
 # npm — 가장 쉬운 방법
 npm install -g deepseek-tui
 
 # Cargo — Node.js 불필요
-cargo install deepseek-tui-cli --locked   # `deepseek` 제공
-cargo install deepseek-tui     --locked   # `deepseek-tui` 제공
+cargo install deepseek-tui-cli --locked   # ````deepseek```` 제공
+cargo install deepseek-tui     --locked   # ````deepseek-tui```` 제공
 
 # Homebrew (macOS)
 brew tap Hmbown/deepseek-tui
@@ -78,9 +79,9 @@ docker run --rm -it \
   -e DEEPSEEK_API_KEY \
   -v "$PWD:/workspace" \
   ghcr.io/hmbown/deepseek-tui:latest
-```
+`````
 
-인증은 `deepseek auth set --provider deepseek`로 관리합니다. `deepseek auth status`로 키를 노출하지 않고 설정 상태 확인 가능하며, `deepseek auth clear`로 기존 키 회전 또는 삭제가 가능합니다.
+인증은 ````deepseek auth set --provider deepseek````로 관리합니다. ````deepseek auth status````로 키를 노출하지 않고 설정 상태 확인 가능하며, ````deepseek auth clear````로 기존 키 회전 또는 삭제가 가능합니다.
 
 중국 본토 개발자를 위한 Cargo 레지스트리 미러(칭화대 Tuna 등)와 구성 가능한 릴리즈 URL 기본값 지원을 제공합니다. Windows 사용자는 Scoop 패키지 매니저 통합 혜택을 받을 수 있습니다. ARM64 Linux(라즈베리파이, Asahi, Graviton, 화웨이 하모니OS PC)는 v0.8.8부터 네이티브 지원됩니다.
 
@@ -109,11 +110,11 @@ docker run --rm -it \
 
 DeepSeek-TUI는 Claude Code보다 가격 경쟁력이 있으면서 핵심 기능을 동일하게 제공합니다. Linux 서버나 무두headless CI 파이프라인에서 실행하는 팀에게는 터미널 환경에서 편안하게 실행할 수 있는 유일한 옵션입니다.
 
----
+* * *
 
 ## 프로젝트 2: anthropics / financial-services — 월스트리트용 엔터프라이즈급 AI 에이전트
 
-**Stars:** 13,496 &nbsp;|&nbsp; **+오늘新增 1,343 스타** &nbsp;|&nbsp; 저장소: [`anthropics/claude-for-financial-services`](https://github.com/anthropics/claude-for-financial-services)
+**Stars:** 13,496 &nbsp;|&nbsp; **+오늘新增 1,343 스타** &nbsp;|&nbsp; 저장소: [````anthropics/claude-for-financial-services````](https://github.com/anthropics/claude-for-financial-services)
 
 소비자용 AI 코딩 도구가 헤드라인을 장식하는 동안, Anthropic은 훨씬 더 상업적으로 의미 있는 것을 출시했습니다: 금융 서비스를 위한 완전한 프로덕션 레디 AI 에이전트 스위트입니다. 장난감 프로토타입이 아닙니다 — 투자 은행, 주식 연구, 사모투자, 자산 관리 워크플로우를 아우릅니다.
 
@@ -127,13 +128,13 @@ DeepSeek-TUI는 Claude Code보다 가격 경쟁력이 있으면서 핵심 기능
 | 펀드 운영 | **GL Reconciler** | 차이점 발견 → 근본 원인 추적 |
 | 운영 및 컴플라이언스 | **KYC Screener** | 온보딩 문서 분석 → 규칙 엔진으로 이슈 표시 |
 
-`/comps`, `/dcf`, `/earnings` 등의 수직 플러그인과 더 세분화된 슬래시 명령어도 포함되어 있습니다. LSEG와 S&P Global의 파트너 빌드 플러그인으로 생태계가 더욱 확장됩니다.
+````/comps````, ````/dcf````, ````/earnings```` 등의 수직 플러그인과 더 세분화된 슬래시 명령어도 포함되어 있습니다. LSEG와 S&P Global의 파트너 빌드 플러그인으로 생태계가 더욱 확장됩니다.
 
 ### 두 가지 배포 경로
 
 진정한 핵심은 이중 분배 모델입니다: 1. **Claude Cowork 플러그인** — Claude.ai에 저장소 URL 붙이거나 zip 업로드 후 설치. 개별 에이전트 또는 풀 스택 선택 가능. 프리랜서 애널리스트나 소형 팀에 적합.
 
-2. **Claude Managed Agents API** — `/v1/agents` 엔드포인트를 통해 자체 워크플로우 엔진 뒤에 배포. `agent.yaml` 구성, 리프-워커 서브에이전트 템플릿, 이벤트 스티어링, per-agent 보안 노트 포함. 감사 추적, 역할 기반 접근 제어, 내부 시스템 통합이 필요한 대형 기관을 위한 디자인.
+2. **Claude Managed Agents API** — ````/v1/agents```` 엔드포인트를 통해 자체 워크플로우 엔진 뒤에 배포. ````agent.yaml```` 구성, 리프-워커 서브에이전트 템플릿, 이벤트 스티어링, per-agent 보안 노트 포함. 감사 추적, 역할 기반 접근 제어, 내부 시스템 통합이 필요한 대형 기관을 위한 디자인.
 
 ### 상업적 가치
 
@@ -144,26 +145,26 @@ DeepSeek-TUI는 Claude Code보다 가격 경쟁력이 있으면서 핵심 기능
 
 ### 시작하기
 
-```bash
+`````bash
 # Claude Code 마켓플레이스를 통해
 claude plugin marketplace add anthropics/claude-for-financial-services
 claude plugin install financial-analysis@claude-for-financial-services
 
 # 또는 Cowork 설정: Settings → Plugins → Add plugin
 # 붙이기: https://github.com/anthropics/claude-for-financial-services
-```
+`````
 
-Managed Agent 배포의 경우, `managed-agent-cookbooks/` 디렉토리에 각 네임드 에이전트를 위한 사전 준비된 `agent.yaml` 구성 파일이 제공됩니다.
+Managed Agent 배포의 경우, ````managed-agent-cookbooks/```` 디렉토리에 각 네임드 에이전트를 위한 사전 준비된 ````agent.yaml```` 구성 파일이 제공됩니다.
 
 ### 리스크와 책임
 
 Anthropic은 명확히 말합니다: 이 저장소의 내용이 투자, 법률, 세금, 회계 조언을 구성하지 않습니다. 이 에이전트들은 자격을 갖춘 전문가 검토를 위한 애널리스트 작업 제품 — 모델, 메모, 연구 노트, 재고 — 을 작성합니다. 출력을 검증하고 관련 법규 준수를 유지하는 것은 사용자의 책임입니다. 이것이 기업 도입을 위한 올바른 포지셔닝입니다.
 
----
+* * *
 
 ## 프로젝트 3: LearningCircuit / local-deep-research — 프라이빗 & 암호화된 로컬 AI 연구
 
-**Stars:** 6,542 &nbsp;|&nbsp; 저장소: [`LearningCircuit/local-deep-research`](https://github.com/LearningCircuit/local-deep-research)
+**Stars:** 6,542 &nbsp;|&nbsp; 저장소: [````LearningCircuit/local-deep-research````](https://github.com/LearningCircuit/local-deep-research)
 
 AI 생성 콘텐츠가 인터넷을 범람하면서, 진정한 딥 리서치를 수행할 수 있는 능력이 프리미엄 기술이 되었습니다. Local Deep Research는 하드웨어 위에서 완전히 실행함으로써 이 약속을 실현합니다 — 아무런 데이터도 기기를 떠나지 않으며, 어느 API도 쿼리를 서드파티로 보내지 않으며, 모든 데이터베이스 연결이 SQLCipher 암호화를 사용합니다.
 
@@ -184,15 +185,15 @@ AI 생성 콘텐츠가 인터넷을 범람하면서, 진정한 딥 리서치를 
 
 ### 설치 방법
 
-```bash
+`````bash
 pip install local-deep-research
-```
+`````
 
-Docker 이미지로 격리 배포: ```bash
+Docker 이미지로 격리 배포: `````bash
 docker pull localdeepresearch/local-deep-research
-```
+`````
 
----
+* * *
 
 ## 3개 프로젝트 비교표
 
@@ -207,7 +208,7 @@ docker pull localdeepresearch/local-deep-research
 | **배포 방식** | 터미널, Docker | Cowork 플러그인, API, Docker | pip, Docker |
 | **상업적 잠재력** | ★★★★★ | ★★★★★ | ★★★★☆ |
 
----
+* * *
 
 ## 선정 기준
 
@@ -215,28 +216,28 @@ docker pull localdeepresearch/local-deep-research
 2. **수직 특화 승자** — Anthropic 금융 서비스 제품은 잘 정의된 예산 부유 시장에 타겟팅
 3. **프라이버시가 성장하는 요새** — Local Deep Research가 클라우드 AI로부터 기업 이탈을 유도하는 규제顺风에 대응
 
----
+* * *
 
 ## 결론: 뭐부터 시도할까?
 
-- **더 빠른 코딩을 원하는 개발자** → DeepSeek-TUI부터 시작. `npm`으로 설치, API 키 설정, 브라우저 제한 AI와 터미널 네이티브 에이전트 워크플로우의 차이를 경험하세요.
+- **더 빠른 코딩을 원하는 개발자** → DeepSeek-TUI부터 시작. ````npm```으로 설치, API 키 설정, 브라우저 제한 AI와 터미널 네이티브 에이전트 워크플로우의 차이를 경험하세요.
 - **금융 전문가** → Cowork를 통해 Pitch Agent 또는 Market Researcher 설치. 구조화된 금융 분석이 시간 단위에서 분 단위로 얼마나 빨라지는지 확인하세요.
 - **연구자와 기자** → 자체 문서 컬렉션으로 Local Deep Research 테스트. 오프라인 보증 alone 만이라도 설정 노력이 충분할 만큼 가치 있습니다.
 
 세 프로젝트 모두 2026년 오픈소스 AI 혁신이 gimmick에서 infrastructure로 이동 중임을 보여줍니다 — 예산을 쓸 수 있는 사람들이 겪는 비싸고 반복적인 문제를 해결하는 도구들입니다.
 
----
+* * *
 
 ## 관련 기사
 
 - [Addy Osmani의 Agent-Skills: AI 코딩 에이전트를 위한 프로덕션-grade 엔지니어링](/kr/resources/llm-frameworks/agent-skills-production-grade-ai-coding/)
 - [Docuseal: DocuSign의 오픈소스 대체재](/kr/resources/ai-tools/docuseal-open-source-docusign-alternative/)
 
----
+* * *
 
 💬 *터미널 기반 AI 코딩 에이전트에 대해 어떻게 생각하시나요? DeepSeek-TUI를 사용해 보셨나요? 댓글에서 의견을 나눠주세요.*
 
----
+* * *
 
 ## 추천 도구
 

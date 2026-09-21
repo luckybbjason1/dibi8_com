@@ -26,6 +26,7 @@ faqs: - q: 'Docker 안에서 Ollama에 연결할 때 AnythingLLM의 ''Connection
     a: '기본 임베디드 벡터 데이터베이스(LanceDB/Chroma)는 고빈도 동시 쓰기 상황에서 파일 잠금 문제가 있어, 여러 사용자가 같은 워크스페이스에 대용량 PDF를 업로드할 때 SQLITE_BUSY 또는 쓰기 잠금 오류를 발생시킵니다. 직원이 많은 프로덕션 환경에서는 Vector DB를 독립형 Qdrant 또는 Milvus 인스턴스로 전환하세요.'
 ---
 
+
 {</* resource-info */>}
 
 # 기업들은 왜 ChatGPT를 두려워하는가?
@@ -61,7 +62,7 @@ ToC(일반 소비자) 시장에서 ChatGPT는 전지전능하지만, ToB(기업 
 
 RAG에서 텍스트 분할(Chunking)을 대충 하면, 검색되어 나오는 문맥은 토막 난 쓰레기가 됩니다. AnythingLLM은 매우 강력하고 견고한 문서 파싱 파이프라인을 구현했습니다.
 
-```javascript
+````javascript
 // 핵심 소스코드 추출: server/utils/vectorDbProviders/lancedb/index.js (벡터 청킹 로직)
 const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
 
@@ -87,15 +88,15 @@ async function processDocument(documentText, workspaceConfig) {
   await LanceDB.insert(workspaceConfig.namespace, embeddings);
   return chunks.length;
 }
-```
+`````
 
-**심층 분석**: 이 코드는 AnythingLLM이 문서를 다루는 섬세함을 보여줍니다. `RecursiveCharacterTextSplitter`에 무려 200 token의 `chunkOverlap`을 결합하여, 글자 수 제한 때문에 문단 간의 핵심 논리가 유실되는 것을 막아냅니다. 이러한 중첩(Overlap) 절단은 로컬 LLM이 답변의 지능을 유지하는 데 결정적인 역할을 합니다.
+**심층 분석**: 이 코드는 AnythingLLM이 문서를 다루는 섬세함을 보여줍니다. ````RecursiveCharacterTextSplitter````에 무려 200 token의 ````chunkOverlap````을 결합하여, 글자 수 제한 때문에 문단 간의 핵심 논리가 유실되는 것을 막아냅니다. 이러한 중첩(Overlap) 절단은 로컬 LLM이 답변의 지능을 유지하는 데 결정적인 역할을 합니다.
 
 ### 2. 프론트엔드-백엔드 데이터 교환: Server-Sent Events (SSE) 스트리밍 출력
 
 LLM을 사용할 때 답변이 완전히 생성될 때까지 기다리게 하면 사용자 경험(UX)은 나락으로 떨어집니다. AnythingLLM은 SSE를 통해 부드러운 타자기 효과를 구현합니다.
 
-```javascript
+`````javascript
 // 백엔드 스트리밍 응답 핵심 로직 (Express.js 라우트)
 app.post('/api/workspace/:slug/chat', async (request, response) => {
   // HTTP 헤더를 설정하여 지속적인 SSE 영구 연결(Long-lived connection) 수립
@@ -110,18 +111,18 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
     for await (const chunk of stream) {
       // 데이터 청크를 SSE 규격에 맞게 포맷팅하여 프론트엔드로 푸시
       // 게이트웨이 타임아웃으로 인해 연결이 끊기는 것을 방지
-      response.write(`data: ${JSON.stringify({ text: chunk })}\n\n`);
+      response.write(````data: ${JSON.stringify({ text: chunk })}\n\n````);
     }
     
-    response.write(`data: [DONE]\n\n`);
+    response.write(````data: [DONE]\n\n````);
     response.end();
   } catch (error) {
     // [실전 삽질 방지]: 스트리밍 연결 중 발생한 예외는 반드시 수동으로 response를 닫아주어야 함
-    response.write(`data: ${JSON.stringify({ error: "Streaming failed" })}\n\n`);
+    response.write(````data: ${JSON.stringify({ error: "Streaming failed" })}\n\n````);
     response.end();
   }
 });
-```
+`````
 
 **심층 분석**: 무겁고 복잡한 WebSocket 대신, AnythingLLM은 더 가벼운 단방향 통신 스트림인 SSE를 선택했습니다. 이는 다중 Nginx 리버스 프록시를 거치는 험악한 기업 내부망 배포 환경에서 방화벽에 막힐 확률을 획기적으로 낮춰주는, 매우 전략적이고 똑똑한 엔지니어링 결정입니다.
 
@@ -130,11 +131,11 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 **Ollama AnythingLLM 연동**을 통해 프라이빗 구축을 실행할 때, 다음 두 가지 거대한 지뢰(Pitfall)를 반드시 피해야 합니다.
 
 1. **함정 1: Docker 내부망 격리와 Ollama 포트 거부 (Network Isolation)**
-   - **증상**: Docker 컨테이너 안에서 도는 AnythingLLM이 호스트 머신의 Ollama 서비스에 접근하지 못하고 `Connection Refused` 에러를 미친 듯이 뿜어냅니다.
-   - **해결책**: Docker 내부에서 `localhost`는 호스트 머신이 아니라 컨테이너 자기 자신을 의미합니다! AnythingLLM의 대형 모델 설정 주소를 반드시 `http://host.docker.internal:11434`로 지정해야 합니다. 또한 Ollama를 실행할 때 `OLLAMA_HOST=0.0.0.0` 환경 변수를 주입하여 타 네트워크 인터페이스의 접근을 허용해야 합니다.
+   - **증상**: Docker 컨테이너 안에서 도는 AnythingLLM이 호스트 머신의 Ollama 서비스에 접근하지 못하고 ````Connection Refused```` 에러를 미친 듯이 뿜어냅니다.
+   - **해결책**: Docker 내부에서 ````localhost````는 호스트 머신이 아니라 컨테이너 자기 자신을 의미합니다! AnythingLLM의 대형 모델 설정 주소를 반드시 ````http://host.docker.internal:11434````로 지정해야 합니다. 또한 Ollama를 실행할 때 ````OLLAMA_HOST=0.0.0.0```` 환경 변수를 주입하여 타 네트워크 인터페이스의 접근을 허용해야 합니다.
 
 2. **함정 2: LanceDB의 디스크 IO 락(Lock) 현상**
-   - **증상**: 여러 사용자가 동시에 동일한 Workspace에 대용량 PDF를 업로드하면, 데이터베이스가 `SQLITE_BUSY` 에러나 쓰기 잠금(Write lock) 에러를 냅니다.
+   - **증상**: 여러 사용자가 동시에 동일한 Workspace에 대용량 PDF를 업로드하면, 데이터베이스가 ````SQLITE_BUSY``` 에러나 쓰기 잠금(Write lock) 에러를 냅니다.
    - **해결책**: 기본 내장된 임베디드 벡터 DB인 LanceDB/Chroma는 고빈도 동시 쓰기 시 파일 잠금 이슈가 있습니다. 수십 명의 직원이 사용하는 실제 기업 환경이라면, 시스템 설정에서 Vector DB를 독립적으로 배포된 Qdrant나 Milvus 인스턴스로 반드시 교체하십시오.
 
 ## 비즈니스 루프: B2B 기업에 "절대적 보안"을 팔아 폭리를 취하는 법칙
@@ -149,7 +150,7 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 
 **결론**: AnythingLLM은 화려한 프론트엔드 껍데기와 엔터프라이즈급 권한 격리 기능을 통해, 뼈 빠지고 지루한 기저의 RAG 엔진을 완벽하게 포장해 냅니다. 이것을 마스터하면, 당신은 차갑고 기괴한 대형 모델과 벡터 DB를, B2B 기업 대표의 책상 위에 올려놓고 기꺼이 거액의 수표를 쓰게 만드는 궁극의 디지털 자산으로 둔갑시킬 수 있습니다.
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -221,7 +222,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

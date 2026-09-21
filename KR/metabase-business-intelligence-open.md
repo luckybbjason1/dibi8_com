@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/metabase-business-intelligence-open/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: $50,000 Tableau 갱신 청구서의 문제
@@ -38,7 +39,7 @@ Metabase는 **질문** — 시각적으로 또는 SQL로 구축할 수 있는 �
 
 ### 시각적 쿼리 빌더 (SQL 불필요)
 
-핵심 UX는 GUI 동작을 데이터베이스 쿼리로 변환하는 질문 빌더다: ```sql
+핵심 UX는 GUI 동작을 데이터베이스 쿼리로 변환하는 질문 빌더다: ````sql
 -- 사용자가 클릭한 내용: -- 테이블: orders
 -- 필터: created_at 이 "지난 30일"
 -- 그룹화: country
@@ -52,13 +53,13 @@ FROM orders
 WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
-```
+`````
 
 동일한 질문은 저장, 대시보드에 추가, SQL 편집용으로 변환, 이메일 전달용으로 예약될 수 있다 — 원래 사용자가 SQL 구문을 이해할 필요 없이.
 
 ### 분석가를 위한 네이티브 SQL 에디터
 
-완전한 제어가 필요한 분석가를 위해, 네이티브 SQL 에디터는 지원한다: ```sql
+완전한 제어가 필요한 분석가를 위해, 네이티브 SQL 에디터는 지원한다: `````sql
 -- Metabase의 네이티브 SQL 질문
 WITH cohort_users AS (
     SELECT 
@@ -84,20 +85,20 @@ SELECT
 FROM retention
 WHERE period <= 12
 ORDER BY 1, 2;
-```
+`````
 
-SQL 질문은 `{{variable}}` 구문을 통한 변수 주입을 지원하여, 다른 필터 값을 가진 대시보드에서 재사용할 수 있게 한다.
+SQL 질문은 ````{{variable}}```` 구문을 통한 변수 주입을 지원하여, 다른 필터 값을 가진 대시보드에서 재사용할 수 있게 한다.
 
 ### 대시보드 구성
 
-```markdown
+`````markdown
 대시보드: "Q2 매출 개요"
 ├── 질문: "월간 매출 추이" (선 차트)
 ├── 질문: "국가별 매출" (막대 차트)
 ├── 질문: "상위 10 제품" (표)
 ├── 질문: "고객 획득 퍼널" (퍼널 차트)
 └── 필터: "날짜 범위" (모든 질문에 연결)
-```
+`````
 
 대시보드는 크로스 필터링, 자동 새로 고침, 전체 화면 프레젠테이션 모드를 지원한다.
 
@@ -111,7 +112,7 @@ SQL 질문은 `{{variable}}` 구문을 통한 변수 주입을 지원하여, 다
 
 ### 1단계: Docker로 실행
 
-```bash
+`````bash
 mkdir -p ~/metabase-data
 chmod 777 ~/metabase-data
 
@@ -126,11 +127,11 @@ docker run -d \
 
 # 로그 확인
 docker logs -f metabase
-```
+`````
 
 ### 2단계: 설정 마법사 완료
 
-`http://localhost:3000/setup`을 열고 첫 실행 마법사를 완료한다: ```markdown
+``http://localhost:3000/setup``을 열고 첫 실행 마법사를 완료한다: `````markdown
 1. 언어 선택 (English)
 2. 관리자 계정 생성 (이메일 + 비밀번호)
 3. 첫 번째 데이터베이스 추가: - 데이터베이스 유형: PostgreSQL
@@ -140,11 +141,11 @@ docker logs -f metabase
    - 사용자명: metabase_readonly
    - 비밀번호: ********
 4. 완료 — Metabase가 테이블과 관계를 자동 검색
-```
+`````
 
 ### 3단계: 프로덕션 Docker Compose
 
-영구 저장소와 상태 확인이 있는 프로덕션 배포를 위해: ```yaml
+영구 저장소와 상태 확인이 있는 프로덕션 배포를 위해: `````yaml
 # docker-compose.yml
 version: "3.8"
 services: metabase: image: metabase/metabase:v0.60.2
@@ -176,9 +177,9 @@ services: metabase: image: metabase/metabase:v0.60.2
       timeout: 5s
       retries: 5
 
-volumes: metabase_db: ```
+volumes: metabase_db: `````
 
-프로덕션 스택 시작: ```bash
+프로덕션 스택 시작: `````bash
 # 환경 파일 생성
 echo "POSTGRES_PASSWORD=$(openssl rand -base64 24)" > .env
 
@@ -187,11 +188,11 @@ docker-compose up -d
 
 # 두 서비스 모두 정상 확인
 docker-compose ps
-```
+`````
 
 ### 4단계: DigitalOcean에서 배포 (VPS)
 
-**DigitalOcean Droplet**(2 vCPU / 4GB RAM, 월 $24부터)에서의 프로덕션급 배포: ```bash
+**DigitalOcean Droplet**(2 vCPU / 4GB RAM, 월 $24부터)에서의 프로덕션급 배포: `````bash
 # 1. Docker가 사전 설치된 Droplet 생성
 #    추천 링크로 $200 묶은 크레딧 받기: #    https://m.do.co/c/eca87ac14ee0
 
@@ -225,15 +226,15 @@ EOF
 ln -s /etc/nginx/sites-available/metabase /etc/nginx/sites-enabled/
 certbot --nginx -d analytics.yourdomain.com
 systemctl reload nginx
-```
+`````
 
-Metabase 인스턴스가 이제 `https://analytics.yourdomain.com`에서 HTTPS로 라이브 상태다.
+Metabase 인스턴스가 이제 ````https://analytics.yourdomain.com````에서 HTTPS로 라이브 상태다.
 
 ## 20개 이상 데이터베이스와의 통합
 
 ### PostgreSQL 연결
 
-```yaml
+`````yaml
 # Metabase UI의 연결 설정
 데이터베이스 유형: PostgreSQL
 호스트: db.example.com
@@ -243,11 +244,11 @@ Metabase 인스턴스가 이제 `https://analytics.yourdomain.com`에서 HTTPS�
 비밀번호: ${POSTGRES_PASSWORD}
 SSL: 필수
 추가 JDBC 옵션: ?prepareThreshold=0
-```
+`````
 
 ### Snowflake 연결
 
-```yaml
+`````yaml
 데이터베이스 유형: Snowflake
 계정: xyz123.us-east-1
 웨어하우스: REPORTING_WH
@@ -256,18 +257,18 @@ SSL: 필수
 사용자명: METABASE_USER
 비밀번호: ${SNOWFLAKE_PASSWORD}
 역할: METABASE_ROLE
-```
+`````
 
 ### BigQuery 연결 (서비스 계정)
 
-```bash
+`````bash
 # 1. Google Cloud Console에서 서비스 계정 생성
 # 2. JSON 키 파일 다운로드
 # 3. Metabase 연결 대화상자에 업로드
 
 # 필요한 IAM 역할: # - roles/bigquery.dataViewer
 # - roles/bigquery.jobUser
-```
+`````
 
 ### 지원 데이터베이스 (v60.2)
 
@@ -298,7 +299,7 @@ SSL: 필수
 
 ### 첫 번째 질문 생성
 
-```markdown
+`````markdown
 탐색: + 새로 만들기 > 질문
 데이터베이스: analytics
 테이블: orders
@@ -312,11 +313,11 @@ SSL: 필수
 정렬: Total 내림차순
 
 저장: "국가별 매출 (30일)"
-```
+`````
 
 ### 대시보드 구축
 
-```markdown
+`````markdown
 탐색: + 새로 만들기 > 대시보드
 이름: "Executive Summary"
 
@@ -329,11 +330,11 @@ SSL: 필수
   - 국가 (질문 2, 3에 연결)
 
 자동 새로 고침 구성: 5분마다
-```
+`````
 
 ### 대화형 대시보드용 SQL 변수
 
-```sql
+`````sql
 -- 질문: "사용자 코호트 분석"
 -- 날짜 필터 변수 포함
 
@@ -344,9 +345,9 @@ FROM users
 WHERE created_at >= {{start_date}}  -- 대시보드 필터
 GROUP BY 1
 ORDER BY 1;
-```
+`````
 
-`{{start_date}}` 변수는 대시보드에서 날짜 선택기로 렌더링된다. 사용자가 필터 값을 변경하면 연결된 모든 질문이 자동으로 새로 고쳐진다.
+````{{start_date}}```` 변수는 대시보드에서 날짜 선택기로 렌더링된다. 사용자가 필터 값을 변경하면 연결된 모든 질문이 자동으로 새로 고쳐진다.
 
 ## 벤치마크와 실제 사용 사례
 
@@ -370,11 +371,11 @@ B 시리즈 핀테크 회사(익명)가 Tableau Desktop과 수동 SQL 요청의 
 
 ### 고객 대상 앱에 분석 임베딩
 
-Metabase의 임베딩 API를 통해 제품에 대시보드를 화이트라벨링할 수 있다: ```html
+Metabase의 임베딩 API를 통해 제품에 대시보드를 화이트라벨링할 수 있다: `````html
 </iframe>
-```
+`````
 
-```javascript
+`````javascript
 // 서명 임베딩용 JWT 토큰 생성 (Node.js)
 const jwt = require(jsonwebtoken);
 
@@ -384,8 +385,8 @@ const token = jwt.sign({
   exp: Math.round(Date.now() / 1000) + (60 * 60) // 1시간
 }, process.env.METABASE_SECRET_KEY);
 
-const embedUrl = `https://analytics.yourapp.com/embed/dashboard/123#${token}`;
-```
+const embedUrl = ````https://analytics.yourapp.com/embed/dashboard/123#${token}````;
+`````
 
 서명 임베딩을 통해 각 고객은 자신의 데이터만 볼 수 있다 — 임베딩 레이어에서 행 수준 보안이 집행된다.
 
@@ -393,7 +394,7 @@ const embedUrl = `https://analytics.yourapp.com/embed/dashboard/123#${token}`;
 
 ### 이메일 및 Slack 알림
 
-메트릭이 임계값을 초과할 때 알림을 본륵하도록 Metabase 구성: ```markdown
+메트릭이 임계값을 초과할 때 알림을 본륵하도록 Metabase 구성: `````markdown
 1. 저장된 질문 열기
 2. 종 아이콘 클릭 → "알림 설정"
 3. 조건 선택: - "결과가 목표에 도달했을 때"
@@ -402,39 +403,39 @@ const embedUrl = `https://analytics.yourapp.com/embed/dashboard/123#${token}`;
 4. 전달 선택: - 이메일: team@company.com
    - Slack: #data-alerts 채널
 5. 빈도 설정: 매시간 확인
-```
+`````
 
-Slack 통합: ```bash
+Slack 통합: `````bash
 # Metabase 관리 > 설정 > Slack에서: Slack API 토큰: xoxb-your-bot-token
 Slack 채널: #data-alerts, #executive-summary
-```
+`````
 
 ### 성능 캐싱
 
-```markdown
+`````markdown
 관리 > 설정 > 캐싱: - 쿼리 캐싱 활성화: 켬
   - 최소 캐싱 쿼리 지속 시간: 1초
   - 캐시 TTL 승수: 10
   - 최대 캐시 항목 크기: 1,000 KB
-```
+`````
 
 빈번하게 액세스되는 대시보드의 경우, 캐싱은 데이터베이스 부하를 60-80% 감소시킨다.
 
 ### 행 수준 보안 (프로/엔터프라이즈)
 
-```sql
+`````sql
 -- 엔터프라이즈 샌드박스: 사용자는 자신의 지역 데이터만 볼 수 있음
 -- 관리 > 권한 > 데이터 > 샌드박스
 
 SELECT * FROM orders
 WHERE region = user_attribute(region);
-```
+`````
 
-`user_attribute` 함수는 쿼리 시간에 사용자별로 해석되어, 별도의 데이터베이스 뷰 없이 데이터 격리를 집행한다.
+````user_attribute```` 함수는 쿼리 시간에 사용자별로 해석되어, 별도의 데이터베이스 뷰 없이 데이터 격리를 집행한다.
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # metabase-backup.sh — cron을 통해 매일 실행
 
@@ -454,7 +455,7 @@ find "$BACKUP_DIR" -name "*.sql" -mtime +7 -delete
 find "$BACKUP_DIR" -name "*.db" -mtime +7 -delete
 
 echo "Metabase 백업 완료: $DATE"
-```
+`````
 
 ## 대안과의 비교
 
@@ -513,7 +514,7 @@ Metabase의 시각적 쿼리 빌더는 비기술 사용자를 위해 특별히 �
 
 ### Metabase 인스턴스를 어떻게 백업하나?
 
-두 가지를 백업하라: 애플리케이션 데이터베이스 (PostgreSQL 덤프)와 환경 변수/비밀. H2 데이터베이스를 사용하는 경우 Metabase가 중지된 상태에서 `.db` 파일을 백업하라. Docker 배포의 경우 볼륨의 스냅샷을 찍어라. 분기별로 복구 프로세스를 테스트하라 — 복원할 수 없는 백업은 백업이 아니다.
+두 가지를 백업하라: 애플리케이션 데이터베이스 (PostgreSQL 덤프)와 환경 변수/비밀. H2 데이터베이스를 사용하는 경우 Metabase가 중지된 상태에서 ````.db``` 파일을 백업하라. Docker 배포의 경우 볼륨의 스냅샷을 찍어라. 분기별로 복구 프로세스를 테스트하라 — 복원할 수 없는 백업은 백업이 아니다.
 
 ### Metabase가 실시간 대시보드를 처리할 수 있나?
 
@@ -582,7 +583,7 @@ v60.2는 이미 탄탄한 플랫폼을 더 나은 성능, 개선된 임베딩, �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -592,6 +593,6 @@ v60.2는 이미 탄탄한 플랫폼을 더 나은 성능, 개선된 임베딩, �
 - [paddleocr-81k-star-ocr-engine](metabase-business-intelligence-open)
 - [markitdown-universal-file-to-markdown-converter](metabase-business-intelligence-open)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

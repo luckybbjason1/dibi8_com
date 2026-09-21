@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/-
 ---
 
+
 {</* resource-info */>}
 
 ## 引言：这不是一次普通的工具迭代
@@ -35,12 +36,12 @@ aliases:
 对开发者而言，这意味着两件事：**能力边界被大幅拓宽**，以及** vendor lock-in 的风险从未如此真实。**
 
 
----
+* * *
 ## 一、Claude Code Skills生态：从玩具到基础设施
 
 ### 1.1 Skills市场是怎么爆发的
 
-2026年4月之前，Claude Code的skills只是一个实验性功能——你可以在`~/.claude/skills/`目录下放几个markdown文件，让Claude记住一些操作习惯。
+2026年4月之前，Claude Code的skills只是一个实验性功能——你可以在```~/.claude/skills/````目录下放几个markdown文件，让Claude记住一些操作习惯。
 
 转折点来自两个事件：
 
@@ -51,7 +52,7 @@ Skill的定义粒度被重新设计：一个plugin = skills集合 + MCP servers 
 
 ### 1.2 实测：安装一个skill只需10秒
 
-```bash
+`````bash
 # 克隆Karpathy的skills到本地技能库
 gh repo clone andrej-karpathy/skills ~/.claude/skills/karpathy
 
@@ -61,7 +62,7 @@ ls ~/.claude/skills/karpathy
 # 在Claude Code中使用
 claude
 > run the profiling skill on this Go module
-```
+`````
 
 Skill文件本质是结构化的markdown，包含：
 - **触发条件**（自然语言描述匹配）
@@ -82,7 +83,7 @@ Skill文件本质是结构化的markdown，包含：
 **这意味着什么？** 新成员入职后，装好团队skills包，Claude立刻就能按团队标准写代码——文档即执行。
 
 
----
+* * *
 ## 二、MCP协议：AI时代的USB-C接口
 
 ### 2.1 什么是Model Context Protocol
@@ -99,11 +100,11 @@ MCP由Anthropic提出，但正在被整个生态采纳。它的设计哲学很�
 
 | 原语 | 作用 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Resources** | 只读数据供AI引用 | 数据库schema、API文档、设计稿 |
 | **Tools** | 可被AI调用的函数 | 执行shell命令、调用API、读写文件 |
@@ -123,7 +124,7 @@ AI通过JSON-RPC 2.0与MCP server通信，无需关心底层实现语言。
 
 **关键洞察：** MCP正在把AI从"聊天框里的助手"变成"能操作你整个技术栈的执行层"。
 
----
+* * *
 
 ## 三、开源替代方案崛起：OpenCode与Hermes Agent
 
@@ -141,14 +142,14 @@ AI通过JSON-RPC 2.0与MCP server通信，无需关心底层实现语言。
 
 Hermes Agent的核心卖点是**简单、默认好用、与MCP兼容**。
 
-```python
+`````python
 # Hermes Agent的典型使用
 from hermes import Agent, Skill
 
 agent = Agent(model="local-llama-3-70b")  # 支持本地模型
 agent.load_skill("git-workflow")          # 加载skill
 agent.run("Refactor the auth module to use JWT tokens")
-```
+`````
 
 相比LangGraph的复杂编排，Hermes的API更接近"增强版的脚本自动化"——学习曲线平缓，但能力天花板足够高。
 
@@ -160,7 +161,7 @@ OpenCode的定位是**"agnostic AI coding agent"**：
 - 支持通过MCP接入任意工具链
 - 完全开源，可自托管
 
-```bash
+`````bash
 # 安装OpenCode
 pip install opencode
 
@@ -169,17 +170,17 @@ opencode config --model ollama/llama3:70b
 
 # 启动agent模式
 opencode agent --project ./my-app
-```
+`````
 
 ### 3.4 闭源vs开源：一张对比表
 
 | 维度 | Claude Code / Codex | OpenCode / Hermes Agent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 模型选择 | 锁定供应商 | 任意模型，包括本地 |
 | 数据隐私 | 代码上传云端 | 完全本地运行 |
@@ -188,13 +189,13 @@ opencode agent --project ./my-app
 | 能力上限 | 前沿模型，推理强 | 取决于所选模型 |
 | 协作能力 | 团队共享 | 需自建同步机制 |
 
----
+* * *
 
 ## 四、实战：搭建不被锁定的AI编程工作流
 
 ### 4.1 分层架构建议
 
-```
+`````
 ┌─────────────────────────────────────┐
 │  Layer 3: AI Agent (Claude/OpenCode) │  ← 可替换层
 ├─────────────────────────────────────┤
@@ -202,7 +203,7 @@ opencode agent --project ./my-app
 ├─────────────────────────────────────┤
 │  Layer 1: 工具链 (Git/DB/Cloud)    │  ← 基础设施
 └─────────────────────────────────────┘
-```
+`````
 
 **原则：** MCP层是你的"逃生舱"。即使换掉上层Agent，底层工具链的调用逻辑不用重写。
 
@@ -210,15 +211,15 @@ opencode agent --project ./my-app
 
 **Step 1: 安装MCP CLI**
 
-```bash
+`````bash
 npm install -g @anthropics/mcp-cli
 # 或
 pip install mcp-cli
-```
+`````
 
 **Step 2: 注册常用MCP servers**
 
-```bash
+`````bash
 # GitHub MCP server（代码操作）
 mcp server add github --command npx -y @modelcontextprotocol/server-github
 
@@ -227,13 +228,13 @@ mcp server add postgres --command uvx mcp-server-postgres
 
 # Filesystem MCP server（本地文件）
 mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
-```
+`````
 
 **Step 3: 配置AI agent使用MCP**
 
-对于Claude Code，在`~/.claude/config.json`中：
+对于Claude Code，在````~/.claude/config.json````中：
 
-```json
+`````json
 {
   "mcpServers": {
     "github": {
@@ -246,26 +247,26 @@ mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
     }
   }
 }
-```
+`````
 
-对于OpenCode，在`opencode.yaml`中：
+对于OpenCode，在````opencode.yaml````中：
 
-```yaml
+`````yaml
 mcp: servers: - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: postgres
       command: uvx mcp-server-postgres postgresql://localhost/mydb
-```
+`````
 
 **Step 4: 编写团队Skill**
 
-创建一个`team-standard.md`：
+创建一个````team-standard.md````：
 
-```markdown
----
+`````markdown
+* * *
 skill: team-standard
 version: 1.0
----
+* * *
 
 # 团队编码标准
 
@@ -276,7 +277,7 @@ version: 1.0
 
 ## 错误处理
 所有异步函数必须try/catch，错误日志包含requestId：
-```typescript
+`````typescript
 const requestId = crypto.randomUUID();
 try {
   await riskyOperation();
@@ -284,22 +285,22 @@ try {
   logger.error({ requestId, error: err.message });
   throw new AppError("OPERATION_FAILED", { requestId });
 }
-```
+`````
 
 ## 测试要求
 - 每个public函数至少一个单元测试
 - 使用vitest + @testing-library
-```
+`````
 
-放入`~/.claude/skills/`或Hermes Agent的skills目录即可。
+放入````~/.claude/skills/````或Hermes Agent的skills目录即可。
 
----
+* * *
 
 ## 五、未来12个月的预测
 
 ### 5.1 Skills将成为新的"包管理"
 
-npm/pip/cargo管理代码依赖，skills管理**AI行为依赖**。2026年底，我预计主流语言生态会出现`skills.yaml`文件，像`package.json`一样被版本控制和共享。
+npm/pip/cargo管理代码依赖，skills管理**AI行为依赖**。2026年底，我预计主流语言生态会出现````skills.yaml````文件，像````package.json```一样被版本控制和共享。
 
 ### 5.2 MCP将催生"Agent Store"
 
@@ -313,7 +314,7 @@ Kimi K2.6在编码基准上 reportedly 超过Claude和GPT-5.5，DeepSeek V4以�
 
 当AI agent拥有对生产环境的真实操作权限时，"它干了什么"必须可追溯。Skills的执行日志、MCP调用的审批流、agent行为的录像回放——这些会成为企业采购的硬性要求。
 
----
+* * *
 
 ## 六、给不同开发者的行动建议
 
@@ -335,10 +336,10 @@ Kimi K2.6在编码基准上 reportedly 超过Claude和GPT-5.5，DeepSeek V4以�
 2. **制定AI工具使用政策**——哪些数据可以上传、哪些必须本地处理
 3. **实验"混合架构"**——前沿任务用闭源强模型，批量任务用开源本地模型
 
----
+* * *
 
 -
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -356,7 +357,7 @@ Kimi K2.6在编码基准上 reportedly 超过Claude和GPT-5.5，DeepSeek V4以�
 
 保持好奇，保持可迁移。这是开发者面对快速迭代的技术生态时，最稳妥的生存策略。
 
----
+* * *
 
 **延伸阅读：**
 - [Claude Code Skills官方文档](https://docs.anthropic.com/claude-code/skills)
@@ -367,7 +368,7 @@ Kimi K2.6在编码基准上 reportedly 超过Claude和GPT-5.5，DeepSeek V4以�
 
 **关于作者：** 关注AI工程化、开源工具链与开发者生产力的技术写作者。定期追踪GitHub Trending与Hacker News前沿动态。
 
----
+* * *
 
 *本文关键词布局：AI编程助手 2026, Claude Code skills教程, MCP协议详解, 开源AI代码助手对比, OpenCode安装配置, Hermes Agent使用指南, AI coding agent避免锁定, 大模型编程工具选型, 本地部署AI编程助手, Claude Code替代方案*
 
@@ -433,7 +434,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -465,15 +466,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

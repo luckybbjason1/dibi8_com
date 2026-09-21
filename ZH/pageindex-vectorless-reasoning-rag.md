@@ -31,6 +31,7 @@ faqs: - q: 'PageIndex 是什么？它和传统 RAG 有何不同？'
     a: '用 `pip install pageindex` 安装。然后用 `pi = PageIndex()` 初始化，通过 `pi.load_pdf("file.pdf")` 加载文档，再用 `result = pi.query("your question")` 进行查询。返回结果中既包含答案，也包含页码、章节等引用来源。'
   - q: 'PageIndex 最适合处理哪类文档？'
     a: 'PageIndex 专为那些结构很重要、且需要可解释引用的长篇专业文档而设计，例如财报和招股说明书、法律合同和判例法、医学文献和临床试验报告，以及 API 参考、操作手册等技术文档。'---
+
 {</* resource-info */>}
 
 ![PageIndex 官方 hero banner](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -57,9 +58,9 @@ Stars: **29,202+** | 语言: Python | 协议: Apache-2.0
 
 | 问题 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **相似度 ≠ 相关性** | 向量搜索找语义相似的，但不一定是真正相关的 |
 | **分块破坏结构** | 强制分块会切断文档逻辑结构 |
@@ -75,14 +76,14 @@ PageIndex 模拟**人类专家**阅读文档的方式：
 3. 在相关章节中深入查找
 
 
----
+* * *
 ## 核心技术原理
 
 ### 1. 文档树结构生成
 
 PageIndex 将 PDF 转换为层次化的树结构：
 
-```json
+````json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -104,7 +105,7 @@ PageIndex 将 PDF 转换为层次化的树结构：
     }
   ]
 }
-```
+`````
 
 ### 2. 推理驱动的树搜索
 
@@ -122,52 +123,52 @@ PageIndex 受 AlphaGo 启发，使用**树搜索算法**：
 - **评估** — LLM 评估节点相关性
 - **回溯** — 更新节点权重
 
----
+* * *
 
 ## 快速开始
 
 ### 安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/VectifyAI/PageIndex.git
 cd PageIndex
 
 # 安装依赖
 pip3 install --upgrade -r requirements.txt
-```
+`````
 
 ### 配置 API Key
 
-```bash
+`````bash
 # 创建 .env 文件
 echo "OPENAI_API_KEY=your_openai_key_here" > .env
-```
+`````
 
 ### 生成文档树
 
-```bash
+`````bash
 # 为 PDF 生成 PageIndex 树结构
 python3 run_pageindex.py --pdf_path /path/to/your/document.pdf
-```
+`````
 
 ### 可选参数
 
-```bash
+`````bash
 --model                  # LLM 模型（默认: gpt-4o-2024-11-20）
 --toc-check-pages       # 检查目录的页数（默认: 20）
 --max-pages-per-node    # 每节点最大页数（默认: 10）
 --max-tokens-per-node   # 每节点最大 token（默认: 20000）
 --if-add-node-summary   # 添加节点摘要（默认: yes）
-```
+`````
 
----
+* * *
 
 ## 实战示例
 
 ### 示例 1：金融文档分析
 
-```python
+`````python
 from pageindex import PageIndex
 
 # 加载文档树
@@ -184,11 +185,11 @@ print(result.answer)
 
 print(result.sources)
 # [{"page": 45, "section": "Financial Results", "node_id": "0012"}]
-```
+`````
 
 ### 示例 2：法律合同审查
 
-```python
+`````python
 # 加载合同文档
 pi = PageIndex(tree_path="contract.pdf.json")
 
@@ -198,11 +199,11 @@ result = pi.query(
 )
 
 # PageIndex 会自动定位到相关章节
-```
+`````
 
 ### 示例 3：学术论文研究
 
-```python
+`````python
 # 加载论文
 pi = PageIndex(tree_path="paper.pdf.json")
 
@@ -212,23 +213,23 @@ result = pi.query(
 )
 
 # PageIndex 会遍历树结构，找到关联信息
-```
+`````
 
----
+* * *
 
 ## 与竞品对比
 
 | 特性 | PageIndex | 传统向量 RAG | LlamaIndex | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 向量数据库 | ❌ 不需要 | ✅ 必需 | ✅ 必需 | ✅ 必需 |
 | 分块 | ❌ 不需要 | ✅ 必需 | ✅ 必需 | ✅ 必需 |
@@ -238,7 +239,7 @@ result = pi.query(
 | 专业文档 | ✅ 优秀 | ⚠️ 一般 | ⚠️ 一般 | ⚠️ 一般 |
 | 准确率 | ✅ 98.7% | ~75% | ~80% | ~78% |
 
----
+* * *
 
 ## 商业模式与赚钱机会
 
@@ -265,7 +266,7 @@ PageIndex 的 Apache-2.0 协议允许商业使用：
 - **定制开发**
 - **培训服务**
 
----
+* * *
 
 ## 性能基准
 
@@ -273,9 +274,9 @@ PageIndex 的 Apache-2.0 协议允许商业使用：
 
 | 系统 | 准确率 |
 |
----
+* * *
 |
----
+* * *
 |
 | **PageIndex (Mafin 2.5)** | **98.7%** |
 | 传统向量 RAG | ~75% |
@@ -283,17 +284,17 @@ PageIndex 的 Apache-2.0 协议允许商业使用：
 
 PageIndex 在金融文档问答上达到 **state-of-the-art**，证明了推理驱动检索的优越性。
 
----
+* * *
 
 ## 部署选项
 
 ### 1. 自托管（Open Source）
 
-```bash
+`````bash
 git clone https://github.com/VectifyAI/PageIndex.git
 pip3 install -r requirements.txt
 python3 run_pageindex.py --pdf_path your.pdf
-```
+````
 
 适合：技术团队、数据敏感场景
 
@@ -311,7 +312,7 @@ python3 run_pageindex.py --pdf_path your.pdf
 - 定制 OCR 管道
 - 专属支持
 
----
+* * *
 
 ## 社区与资源
 
@@ -321,7 +322,7 @@ python3 run_pageindex.py --pdf_path your.pdf
 - **Discord**: https://discord.com/invite/VuXuf29EUj
 - **API**: https://pageindex.ai/developer
 
----
+* * *
 
 ## 总结
 
@@ -342,7 +343,7 @@ PageIndex 是 RAG 技术的下一代演进：
 
 **立即开始**: https://github.com/VectifyAI/PageIndex
 
----
+* * *
 
 ## Related Articles
 
@@ -351,11 +352,11 @@ PageIndex 是 RAG 技术的下一代演进：
 - [Agent Reach: 让你的 AI Agent 一键连接互联网](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — 让 AI 连接互联网
 - [42 Real-World OpenClaw Use Cases: 人们如何在Daily Life中使用 AI 代理](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 代理用例
 
----
+* * *
 
 
 -
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -430,7 +431,7 @@ PageIndex：29K⭐革命性 RAG 系统，不用向量数据库也能做文档检
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -462,15 +463,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

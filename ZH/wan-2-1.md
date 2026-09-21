@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/wan-2-1/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![Wan 2.1 封面图](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
@@ -42,15 +43,15 @@ Wan 2.1 基于 Diffusion Transformer（DiT）范式，采用 Flow Matching 框�
 
 | 模型 | 参数量 | 分辨率 | 显存（单 GPU） | 典型生成时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | T2V-1.3B | 1.3B | 480P | 8.19 GB | RTX 4090 约 4 分钟 |
 | T2V-14B | 14B | 480P / 720P | 40–48 GB (480P fp8) | H100 约 4 分钟 (480P) |
@@ -69,7 +70,7 @@ Wan 2.1 基于 Diffusion Transformer（DiT）范式，采用 Flow Matching 框�
 
 ### 基础安装
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/Wan-Video/Wan2.1.git
 cd Wan2.1
@@ -80,11 +81,11 @@ source venv/bin/activate
 
 # 安装依赖（需要 torch >= 2.4.0）
 pip install -r requirements.txt
-```
+`````
 
 requirements.txt 包含：
 
-```
+`````
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -94,11 +95,11 @@ accelerate>=1.1.1
 flash_attn
 gradio>=5.0.0
 numpy>=1.23.5,<2
-```
+`````
 
 ### 使用 Poetry 安装（可选）
 
-```bash
+`````bash
 # 安装依赖
 poetry install
 
@@ -106,13 +107,13 @@ poetry install
 poetry run pip install --upgrade pip setuptools wheel
 poetry run pip install flash-attn --no-build-isolation
 poetry install
-```
+`````
 
 ### 模型下载
 
 使用 HuggingFace CLI 下载模型：
 
-```bash
+`````bash
 # 安装 huggingface-cli
 pip install "huggingface_hub[cli]"
 
@@ -127,38 +128,38 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 
 # 下载文本编码器
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
-```
+`````
 
 在开始 wan setup 之前，请确保系统已安装 CUDA 12.1 或更高版本，并且 PyTorch 版本不低于 2.4.0。如果系统中有多个 Python 版本，建议使用虚拟环境隔离依赖。对于 Windows 用户，WSL2 是推荐的运行环境，因为部分依赖项（如 flash-attn）在原生 Windows 上的编译支持有限。国内用户可使用 ModelScope 加速下载：
 
-```bash
+`````bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
-```
+`````
 
 ### 首次视频生成（T2V-1.3B）
 
-```bash
+`````bash
 python generate.py \
   --task t2v-1.3B \
   --size 832*480 \
   --ckpt_dir ./Wan2.1-T2V-1.3B \
   --prompt "日出时分宁静的山间湖泊，水面上雾气缭绕，镜头缓慢向右平移"
-```
+`````
 
 ### 首次视频生成（T2V-14B）
 
-```bash
+`````bash
 python generate.py \
   --task t2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "两只穿着舒适拳击装备、戴着亮色手套的拟人化猫咪在聚光灯下的舞台上激烈对战。"
-```
+`````
 
 ### 运行 Gradio Web UI
 
-```bash
+`````bash
 cd gradio
 
 # 单 GPU 运行 T2V 14B
@@ -169,7 +170,7 @@ python t2v_14B_singleGPU.py \
 # 运行 T2V 1.3B（更轻量，适合消费级 GPU）
 python t2v_1.3B_singleGPU.py \
   --ckpt_dir ./Wan2.1-T2V-1.3B
-```
+`````
 
 ## 与 ComfyUI、Diffusers 等工具的集成
 
@@ -177,7 +178,7 @@ python t2v_1.3B_singleGPU.py \
 
 Wan 2.1 原生支持 ComfyUI。推荐使用 Kijai 开发的 ComfyUI-WanVideoWrapper 自定义节点：
 
-```bash
+`````bash
 # 安装自定义节点
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -187,11 +188,11 @@ git clone https://github.com/kijai/ComfyUI-KJNodes.git
 # 安装节点依赖
 cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
 下载模型文件并放入对应目录：
 
-```bash
+`````bash
 # 扩散模型 -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -201,7 +202,7 @@ pip install -r requirements.txt
 
 # VAE -> ComfyUI/models/vae
 # Wan2_1_VAE_fp32.safetensors
-```
+`````
 
 ![Wan 2.1 ComfyUI 工作流](https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/vben_vs_sota.png)
 
@@ -209,7 +210,7 @@ pip install -r requirements.txt
 
 Wan 2.1 可通过 HuggingFace Diffusers 使用：
 
-```python
+`````python
 import torch
 from diffusers.utils import export_to_video
 from diffusers import AutoencoderKLWan, WanPipeline
@@ -260,13 +261,13 @@ output = pipe(
 ).frames[0]
 
 export_to_video(output, "output.mp4", fps=16)
-```
+`````
 
 ### FSDP + xDiT 多 GPU 推理
 
 生产环境部署可使用分布式推理：
 
-```bash
+`````bash
 # 安装 xDiT
 pip install "xfuser>=0.4.1"
 
@@ -278,22 +279,22 @@ torchrun --nproc_per_node=8 generate.py \
   --dit_fsdp --t5_fsdp \
   --ulysses_size 8 \
   --prompt "你的提示词"
-```
+`````
 
 ### 图生视频（I2V）
 
-```bash
+`````bash
 python generate.py \
   --task i2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-I2V-14B-720P \
   --image examples/i2v_input.JPG \
   --prompt "夏日海滩度假风格，一只戴着墨镜的白猫坐在冲浪板上。"
-```
+`````
 
 ### 首尾帧生视频（FLF2V）
 
-```bash
+`````bash
 python generate.py \
   --task flf2v-14B \
   --size 1280*720 \
@@ -301,13 +302,13 @@ python generate.py \
   --first_frame examples/flf2v_input_first_frame.png \
   --last_frame examples/flf2v_input_last_frame.png \
   --prompt "CG 动画风格，一只蓝色小鸟从地面起飞，拍打着翅膀。"
-```
+`````
 
 ### 提示词扩展
 
 Wan 2.1 提供可选的提示词扩展功能，使用 Qwen 模型将短提示扩展为详细描述：
 
-```bash
+`````bash
 # 使用本地 Qwen 模型
 python generate.py \
   --task t2v-14B \
@@ -325,7 +326,7 @@ DASH_API_KEY=your_key python generate.py \
   --prompt "一只猫在弹钢琴" \
   --use_prompt_extend \
   --prompt_extend_method dashscope
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -341,13 +342,13 @@ Wan 2.1 使用 1,035 个内部提示词，在 14 个主要维度和 26 个子维
 
 | GPU | 1.3B 480P | 14B 480P | 14B 720P |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4090 (24GB) | 281s / 8.2GB | 不支持 | 不支持 |
 | A5000 (24GB) | 462s / 8.2GB | 不支持 | 不支持 |
@@ -362,17 +363,17 @@ Wan 2.1 使用 1,035 个内部提示词，在 14 个主要维度和 26 个子维
 
 | 模型 | 分辨率 | 时长 | 生成时间 | GPU 成本 | 每条成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Wan 2.1 1.3B | 480P | 5s | ~4 分钟 | RTX 4090 本地 | ~$0.02 (电费) |
 | Wan 2.1 14B | 480P | 5s | ~4 分钟 | $2.50/时 (H100) | ~$0.17 |
@@ -395,7 +396,7 @@ Wan 2.1 使用 1,035 个内部提示词，在 14 个主要维度和 26 个子维
 
 在显存有限的设备上运行 14B 模型：
 
-```bash
+`````bash
 # FP8 量化可减少约 20% 显存
 python generate.py \
   --task t2v-14B \
@@ -404,26 +405,26 @@ python generate.py \
   --offload_model True \
   --t5_cpu \
   --prompt "你的提示词"
-```
+`````
 
 ### 显存优化参数
 
 | 参数 | 说明 | 显存影响 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `--offload_model True` | 步骤间将 Transformer 卸载到 CPU | -15–20GB |
-| `--t5_cpu` | 在 CPU 上运行 T5 编码器 | -2–3GB |
-| `--dit_fsdp` | 跨 GPU 分片 DiT | 除以 GPU 数量 |
-| `--ulysses_size N` | 使用序列并行 | 线性降低 |
+| ````--offload_model True```` | 步骤间将 Transformer 卸载到 CPU | -15–20GB |
+| ````--t5_cpu```` | 在 CPU 上运行 T5 编码器 | -2–3GB |
+| ````--dit_fsdp```` | 跨 GPU 分片 DiT | 除以 GPU 数量 |
+| ````--ulysses_size N```` | 使用序列并行 | 线性降低 |
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 WORKDIR /app
@@ -438,20 +439,20 @@ RUN huggingface-cli download Wan-AI/Wan2.1-T2V-14B \
 
 EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
-```
+`````
 
 构建与运行：
 
-```bash
+`````bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
-```
+`````
 
 ### 生成任务监控
 
 生产环境可用监控脚本包装生成过程：
 
-```python
+`````python
 import time
 import psutil
 import torch
@@ -471,13 +472,13 @@ def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     print(f"RAM 增量: {peak_mem - start_mem:.1f} GB")
     
     return result
-```
+`````
 
 ### LoRA 微调
 
 DiffSynth-Studio 等社区工具支持 Wan 2.1 的 LoRA 训练：
 
-```bash
+`````bash
 # 安装 DiffSynth-Studio
 pip install diffsynth-studio
 
@@ -488,21 +489,21 @@ python -m diffsynth.train \
   --output_path ./wan_lora_output \
   --learning_rate 1e-4 \
   --num_train_steps 1000
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Wan 2.1 | HunyuanVideo | CogVideoX-1.5-5B | Open-Sora 2.0 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **参数量** | 1.3B / 14B | ~13B | 5B | 7B |
 | **最小显存 (T2V)** | 8.19GB (1.3B) | 12GB (量化) | 5GB (diffusers) | 24GB |
@@ -578,7 +579,7 @@ Sora 和 Kling 等闭源模型在时间一致性、物理理解和最大片段�
 
 **Q: 如何降低 14B 模型的显存使用？**
 
-使用 `--offload_model True` 在扩散步骤间将 Transformer 移至 CPU，`--t5_cpu` 在 CPU 上运行文本编码器，FP8 量化可减少约 20% 显存。综合所有优化后，14B 480P 模型可在约 35GB 显存上运行。
+使用 ````--offload_model True```` 在扩散步骤间将 Transformer 移至 CPU，````--t5_cpu``` 在 CPU 上运行文本编码器，FP8 量化可减少约 20% 显存。综合所有优化后，14B 480P 模型可在约 35GB 显存上运行。
 
 **Q: 生成的视频出现闪烁或运动不一致怎么办？**
 
@@ -652,7 +653,7 @@ Wan 2.1 兑现了少数开源视频模型未能实现的承诺：在可获取的
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](wan-2-1)
@@ -662,5 +663,5 @@ Wan 2.1 兑现了少数开源视频模型未能实现的承诺：在可获取的
 - [nanochat-karpathy-100-chatgpt-single-gpu](wan-2-1)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

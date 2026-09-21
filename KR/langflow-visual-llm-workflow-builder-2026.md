@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
 ---
 
+
 # Langflow: 시각적 LLM 워크플로우를 위한 148k 스타 – 2026년 기술 심층 분석
 
 ![Langflow 배지](https://deepwiki.com/badge.svg){: .hero-image .rounded-lg .shadow-lg .mb-6 alt="Langflow: AI 소스코드 허브 배지"}
@@ -47,8 +48,8 @@ Langflow의 아키텍처는 클라이언트-서버 기반입니다. React로 구
 Langflow는 흐름 기반 프로그래밍 패러다임으로 작동하며, 애플리케이션의 논리는 메시지(엣지를 통해 흐르는 데이터)를 통해 통신하는 독립적인 프로세스(노드)의 방향성 그래프로 표현됩니다. 이 시각적 접근 방식은 그렇지 않으면 많은 수의 명령형 코드를 포함할 수 있는 복잡한 LLM 애플리케이션의 구성을 단순화합니다.
 
 Langflow에서 흐름을 구축할 때: 1.  **노드 선택**: 사이드바에서 캔버스로 노드를 드래그 앤 드롭합니다. 이 노드는 예를 들어 "LLMs", "Chains", "Tools", "Agents", "Prompt Templates", "Document Loaders", "Text Splitters" 아래에 분류됩니다.
-2.  **구성**: 각 노드에는 구성 가능한 매개변수가 있습니다. "OpenAI Chat" 노드의 경우 모델 이름(예: `gpt-4o`), 온도 및 API 키를 지정할 수 있습니다. "Prompt Template" 노드의 경우 자리 표시자가 있는 템플릿 문자열을 정의합니다.
-3.  **연결 (엣지)**: 한 노드의 출력 포트를 다른 노드의 입력 포트에 연결합니다. 예를 들어, "Prompt Template" 노드의 `PromptValue` 출력은 "LLM" 노드의 `input`에 연결될 수 있습니다. LLM 노드의 `output`(`BaseMessage`)은 응답을 추가로 처리하는 "Chain" 또는 "Agent"에 연결될 수 있습니다.
+2.  **구성**: 각 노드에는 구성 가능한 매개변수가 있습니다. "OpenAI Chat" 노드의 경우 모델 이름(예: ```gpt-4o````), 온도 및 API 키를 지정할 수 있습니다. "Prompt Template" 노드의 경우 자리 표시자가 있는 템플릿 문자열을 정의합니다.
+3.  **연결 (엣지)**: 한 노드의 출력 포트를 다른 노드의 입력 포트에 연결합니다. 예를 들어, "Prompt Template" 노드의 ````PromptValue```` 출력은 "LLM" 노드의 ````input````에 연결될 수 있습니다. LLM 노드의 ````output````(````BaseMessage````)은 응답을 추가로 처리하는 "Chain" 또는 "Agent"에 연결될 수 있습니다.
 4.  **실행**: 흐름이 "실행"될 때(내장 채팅 인터페이스 또는 API 호출을 통해), Langflow는 종속성에 따라 올바른 순서로 노드를 실행하면서 그래프를 탐색합니다. 데이터는 출력 포트에서 입력 포트로 흘러가 후속 노드 실행을 트리거합니다.
 
 간단한 검색 증강 생성(RAG) 흐름을 고려해 보십시오.
@@ -69,66 +70,66 @@ Langflow를 설치하고 실행하는 것은 간단하게 설계되었으며, �
 ### Prerequisites
 
 *   Docker 및 Docker Compose (Docker 사용 시)
-*   Python 3.9+ 및 `pip` (로컬 설치 시)
+*   Python 3.9+ 및 ````pip```` (로컬 설치 시)
 *   Git (저장소 복제 시)
 
 ### Option 1: Docker (빠른 시작 권장)
 
 이 방법은 모든 종속성이 컨테이너 내에서 관리되도록 보장하며 로컬 환경 충돌을 방지합니다.
 
-1.  **저장소 복제**: ```bash
+1.  **저장소 복제**: `````bash
     git clone https://github.com/langflow-ai/langflow.git
     cd langflow
-    ```
-2.  **Docker Compose로 시작**: Langflow는 쉬운 설정을 위해 `docker-compose.yml` 파일을 제공합니다.
-    ```bash
+    `````
+2.  **Docker Compose로 시작**: Langflow는 쉬운 설정을 위해 ````docker-compose.yml```` 파일을 제공합니다.
+    `````bash
     docker compose up -d
-    ```
-    이 명령은 필요한 이미지를 빌드하고(아직 빌드되지 않은 경우) Langflow 백엔드 및 프런트엔드 서비스를 시작합니다. `-d` 플래그는 분리 모드에서 실행합니다.
+    `````
+    이 명령은 필요한 이미지를 빌드하고(아직 빌드되지 않은 경우) Langflow 백엔드 및 프런트엔드 서비스를 시작합니다. ````-d```` 플래그는 분리 모드에서 실행합니다.
 
-3.  **Langflow 접속**: 컨테이너가 시작되면 웹 브라우저에서 `http://localhost:7860`으로 Langflow에 접속할 수 있습니다.
+3.  **Langflow 접속**: 컨테이너가 시작되면 웹 브라우저에서 ````http://localhost:7860````으로 Langflow에 접속할 수 있습니다.
     첫 방문 시 관리자 사용자 생성을 요청받을 것입니다.
 
-4.  **Langflow 중지**: ```bash
+4.  **Langflow 중지**: `````bash
     docker compose down
-    ```
+    `````
 
 ### Option 2: Pip 설치 (로컬 개발 및 사용자 정의 컴포넌트용)
 
 사용자 정의 컴포넌트를 개발하거나 Langflow를 기존 Python 프로젝트에 통합할 계획이라면 로컬 설치가 적합합니다.
 
-1.  **가상 환경 생성**: ```bash
+1.  **가상 환경 생성**: `````bash
     python -m venv venv
     source venv/bin/activate # On Windows: .\venv\Scripts\activate
-    ```
-2.  **Langflow 설치**: ```bash
+    `````
+2.  **Langflow 설치**: `````bash
     pip install langflow
-    ```
-    *참고: 특정 종속성 문제에 직면하면 `playwright` 브라우저 종속성을 설치하는 것이 종종 도움이 됩니다:*
-    `playwright install --with-deps`
+    `````
+    *참고: 특정 종속성 문제에 직면하면 ````playwright```` 브라우저 종속성을 설치하는 것이 종종 도움이 됩니다:*
+    ````playwright install --with-deps````
 
-3.  **Langflow 실행**: ```bash
+3.  **Langflow 실행**: `````bash
     langflow run --port 7860
-    ```
-    이 명령은 Langflow 서버를 시작합니다. 브라우저에서 `http://localhost:7860`으로 접속합니다.
+    `````
+    이 명령은 Langflow 서버를 시작합니다. 브라우저에서 ````http://localhost:7860````으로 접속합니다.
 
 ### 환경 변수
 
-Langflow는 다양한 LLM 공급자를 위한 API 키가 필요합니다. 이는 환경 변수를 사용하여 관리하는 것이 가장 좋습니다. Langflow 디렉토리의 루트에 `.env` 파일을 생성하거나 Docker 컨테이너/셸에 직접 전달합니다.
+Langflow는 다양한 LLM 공급자를 위한 API 키가 필요합니다. 이는 환경 변수를 사용하여 관리하는 것이 가장 좋습니다. Langflow 디렉토리의 루트에 ````.env```` 파일을 생성하거나 Docker 컨테이너/셸에 직접 전달합니다.
 
-```ini
+`````ini
 # .env example
 OPENAI_API_KEY=sk-YOUR_OPENAI_KEY
 ANTHROPIC_API_KEY=sk-ant-api03-YOUR_ANTHROPIC_KEY
 HUGGINGFACEHUB_API_TOKEN=hf_YOUR_HF_TOKEN
 # Optional: For database configuration
 DATABASE_URL=postgresql://user:password@host:port/database_name
-```
+`````
 
 **일반적인 설정 문제:**
-*   **포트 충돌**: `7860`이 사용 중이면 Langflow가 시작되지 않을 수 있습니다. 사용 가능한 포트를 확인하거나 다른 포트를 지정합니다(예: `langflow run --port 8000`).
-*   **누락된 API 키**: LLM 노드는 올바른 API 키가 구성되지 않으면 초기화 또는 실행에 실패합니다. 항상 `.env` 파일을 다시 확인하고 로드되었는지 확인하십시오.
-*   **종속성 문제 (Pip)**: 때때로 특정 라이브러리 버전이 충돌할 수 있습니다. 새로운 가상 환경을 사용하고 `langflow`를 먼저 설치하면 이러한 문제가 해결되는 경우가 많습니다.
+*   **포트 충돌**: ````7860````이 사용 중이면 Langflow가 시작되지 않을 수 있습니다. 사용 가능한 포트를 확인하거나 다른 포트를 지정합니다(예: ````langflow run --port 8000````).
+*   **누락된 API 키**: LLM 노드는 올바른 API 키가 구성되지 않으면 초기화 또는 실행에 실패합니다. 항상 ````.env```` 파일을 다시 확인하고 로드되었는지 확인하십시오.
+*   **종속성 문제 (Pip)**: 때때로 특정 라이브러리 버전이 충돌할 수 있습니다. 새로운 가상 환경을 사용하고 ````langflow````를 먼저 설치하면 이러한 문제가 해결되는 경우가 많습니다.
 
 Langflow를 클라우드 환경에 배포하려는 사용자의 경우, 가상 사설 서버(VPS)에 Docker 컨테이너를 설정하는 것이 일반적인 접근 방식입니다. [DigitalOcean](https://m.do.co/c/eca87ac14ee0)과 같은 공급자는 간단한 드롭렛 생성 및 Docker 도구를 제공하여 몇 분 내에 Langflow 인스턴스를 공개적으로 액세스할 수 있도록 합니다.
 
@@ -138,56 +139,56 @@ Langflow의 강점은 인기 있는 AI 프레임워크 및 모델과의 깊은 �
 
 ### LangChain
 
-Langflow는 LangChain 위에 구축되었습니다. Langflow의 모든 노드는 LangChain 생태계 내의 구성 요소 또는 개념(예: `LLM`, `PromptTemplate`, `Chain`, `Agent`, `Tool`, `DocumentLoader`, `VectorStore`)에 해당합니다. 이는 Langflow에서 구축하는 모든 흐름이 이론적으로 LangChain Python 코드로 변환될 수 있음을 의미하지만, 더 많은 노력이 필요합니다.
+Langflow는 LangChain 위에 구축되었습니다. Langflow의 모든 노드는 LangChain 생태계 내의 구성 요소 또는 개념(예: ````LLM````, ````PromptTemplate````, ````Chain````, ````Agent````, ````Tool````, ````DocumentLoader````, ````VectorStore````)에 해당합니다. 이는 Langflow에서 구축하는 모든 흐름이 이론적으로 LangChain Python 코드로 변환될 수 있음을 의미하지만, 더 많은 노력이 필요합니다.
 
 **예시: Langflow의 간단한 LangChain 시퀀스**
 1.  "Prompt Template" 노드를 드래그합니다.
-    *   `template`을 "What is the capital of {country}?"로 설정합니다.
-    *   변수로 `country`를 추가합니다.
+    *   ````template````을 "What is the capital of {country}?"로 설정합니다.
+    *   변수로 ````country````를 추가합니다.
 2.  "OpenAI Chat" 노드를 드래그합니다.
-    *   모델로 `gpt-3.5-turbo`를 선택합니다.
-3.  Prompt Template의 `PromptValue` 출력을 OpenAI Chat 노드의 `input`에 연결합니다.
-4.  OpenAI Chat 노드의 `output`을 "Chat Output" 노드에 연결합니다.
+    *   모델로 ````gpt-3.5-turbo````를 선택합니다.
+3.  Prompt Template의 ````PromptValue```` 출력을 OpenAI Chat 노드의 ````input````에 연결합니다.
+4.  OpenAI Chat 노드의 ````output````을 "Chat Output" 노드에 연결합니다.
 
-이 시각적 설정은 LangChain의 `chain = PromptTemplate(...) | ChatOpenAI(...)`를 직접적으로 반영합니다.
+이 시각적 설정은 LangChain의 ````chain = PromptTemplate(...) | ChatOpenAI(...)````를 직접적으로 반영합니다.
 
 ### OpenAI
 
 OpenAI의 모델은 많은 LLM 애플리케이션의 핵심이며, Langflow는 이들과 상호 작용하기 위한 직접적인 노드를 제공합니다.
 
-**`ChatOpenAI` 노드 사용:**
-1.  `.env` 파일 또는 환경에 `OPENAI_API_KEY`가 설정되어 있는지 확인합니다.
+**````ChatOpenAI```` 노드 사용:**
+1.  ````.env```` 파일 또는 환경에 ````OPENAI_API_KEY````가 설정되어 있는지 확인합니다.
 2.  "OpenAI Chat" 노드를 캔버스에 드래그합니다.
 3.  매개변수를 구성합니다.
-    *   `model_name`: `gpt-4o` (또는 `gpt-3.5-turbo` 등)
-    *   `temperature`: `0.7`
-    *   `max_tokens`: `512`
-    *   `streaming`: `True` (실시간 출력을 위해)
-    *   다중 턴 대화를 위해 `BaseMessage` 목록을 `input`에 연결할 수도 있습니다.
+    *   ````model_name````: ````gpt-4o```` (또는 ````gpt-3.5-turbo```` 등)
+    *   ````temperature````: ````0.7````
+    *   ````max_tokens````: ````512````
+    *   ````streaming````: ````True```` (실시간 출력을 위해)
+    *   다중 턴 대화를 위해 ````BaseMessage```` 목록을 ````input````에 연결할 수도 있습니다.
 
 ### Hugging Face
 
-Langflow는 Hugging Face 생태계와 통합되어 `HuggingFaceHub`를 통해 방대한 오픈 소스 모델 배열에 액세스하고 `HuggingFacePipeline`를 통해 로컬 모델에 액세스할 수 있습니다.
+Langflow는 Hugging Face 생태계와 통합되어 ````HuggingFaceHub````를 통해 방대한 오픈 소스 모델 배열에 액세스하고 ````HuggingFacePipeline````를 통해 로컬 모델에 액세스할 수 있습니다.
 
-**`HuggingFaceHub` 노드 사용:**
-1.  `HUGGINGFACEHUB_API_TOKEN` 환경 변수를 설정합니다.
+**````HuggingFaceHub```` 노드 사용:**
+1.  ````HUGGINGFACEHUB_API_TOKEN```` 환경 변수를 설정합니다.
 2.  "HuggingFace Hub" 노드를 드래그합니다.
-3.  구성: *   `repo_id`: 모델 저장소 지정, 예: `google/flan-t5-large`.
-    *   `task`: `text2text-generation`
-    *   `temperature`: `0.7`
-    이를 통해 Langflow 흐름 내에서 Hugging Face Hub에 호스팅된 모델을 직접 활용할 수 있습니다. 로컬 모델 또는 특정 하드웨어 가속의 경우 `HuggingFace Pipeline` 노드가 더 적절합니다.
+3.  구성: *   ````repo_id````: 모델 저장소 지정, 예: ````google/flan-t5-large````.
+    *   ````task````: ````text2text-generation````
+    *   ````temperature````: ````0.7````
+    이를 통해 Langflow 흐름 내에서 Hugging Face Hub에 호스팅된 모델을 직접 활용할 수 있습니다. 로컬 모델 또는 특정 하드웨어 가속의 경우 ````HuggingFace Pipeline```` 노드가 더 적절합니다.
 
 ### Anthropic
 
 Anthropic의 Claude 모델도 Langflow 흐름에 쉽게 통합됩니다.
 
-**`ChatAnthropic` 노드 사용:**
-1.  `ANTHROPIC_API_KEY`가 설정되어 있는지 확인합니다.
+**````ChatAnthropic```` 노드 사용:**
+1.  ````ANTHROPIC_API_KEY````가 설정되어 있는지 확인합니다.
 2.  "Chat Anthropic" 노드를 드래그합니다.
-3.  구성: *   `model_name`: `claude-3-opus-20240229` (또는 `claude-3-sonnet-20240229` 등)
-    *   `temperature`: `0.7`
-    *   `max_tokens_to_sample`: `1024`
-    OpenAI와 유사하게, 이 노드는 대화 흐름을 위해 `BaseMessage` 입력을 받습니다.
+3.  구성: *   ````model_name````: ````claude-3-opus-20240229```` (또는 ````claude-3-sonnet-20240229```` 등)
+    *   ````temperature````: ````0.7````
+    *   ````max_tokens_to_sample````: ````1024````
+    OpenAI와 유사하게, 이 노드는 대화 흐름을 위해 ````BaseMessage```` 입력을 받습니다.
 
 이러한 통합은 Langflow의 유연성을 강조하며, 개발자가 단일 시각적 워크플로우 내에서 다른 공급자 및 프레임워크의 구성 요소를 혼합하여 사용할 수 있도록 합니다. 이는 모델 성능을 비교하거나 하이브리드 AI 애플리케이션을 구축하는 데 중요합니다.
 
@@ -223,14 +224,14 @@ Langflow 자체는 오케스트레이션 계층이지만, 그 성능은 주로 �
 Langflow의 가장 강력한 기능 중 하나는 사용자 정의 컴포넌트를 생성하는 기능입니다. 이를 통해 개발자는 기본 노드에서 다루지 않는 독점 논리, 특정 데이터 소스 또는 전문화된 도구를 통합할 수 있습니다.
 
 **사용자 정의 컴포넌트 생성 단계:**
-1.  **Python 파일 생성**: Langflow가 액세스할 수 있는 디렉토리(예: `custom_components/my_tool.py`)에 배치합니다.
-2.  **컴포넌트 클래스 정의**: `CustomCustomComponent`(또는 더 간단한 경우 `CustomComponent`)를 상속하고 `@component` 데코레이터를 사용합니다.
-3.  **`build` 메서드 구현**: 이 메서드는 컴포넌트의 논리를 정의하고 출력을 반환합니다.
+1.  **Python 파일 생성**: Langflow가 액세스할 수 있는 디렉토리(예: ````custom_components/my_tool.py````)에 배치합니다.
+2.  **컴포넌트 클래스 정의**: ````CustomCustomComponent````(또는 더 간단한 경우 ````CustomComponent````)를 상속하고 ````@component```` 데코레이터를 사용합니다.
+3.  **````build```` 메서드 구현**: 이 메서드는 컴포넌트의 논리를 정의하고 출력을 반환합니다.
 4.  **컴포넌트 등록**: Langflow는 지정된 디렉토리에서 컴포넌트를 자동으로 검색합니다.
 
 **예시: 사용자 정의 웹 스크래퍼 도구**
 
-```python
+`````python
 # custom_components/web_scraper.py
 from langflow import CustomCustomComponent
 from langflow.field_typing import Tool, Prompt
@@ -263,7 +264,7 @@ class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper To
                 description="Use this tool to scrape text content from a URL. Input should be a URL string.",
                 func=lambda u: scrape_webpage(u, selector)
             )
-        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
+        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````")
         except Exception as e: # Log the error and re-raise or return an informative message
             print(f"Error in WebScraperTool: {e}")
             return Tool(
@@ -271,8 +272,8 @@ class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper To
                 description="Web scraper tool failed.",
                 func=lambda u: f"Error scraping {u}: {e}"
             )
-```
-이를 활성화하려면 `LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS` 환경 변수를 설정하거나 기본 `components` 디렉토리에 배치하여 `langflow` 인스턴스가 `custom_components` 디렉토리를 인식하도록 해야 합니다.
+`````
+이를 활성화하려면 ````LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS```` 환경 변수를 설정하거나 기본 ````components```` 디렉토리에 배치하여 ````langflow```` 인스턴스가 ````custom_components```` 디렉토리를 인식하도록 해야 합니다.
 
 ### API Access and Deployment
 
@@ -281,10 +282,10 @@ Langflow에 저장된 모든 흐름은 REST API 엔드포인트로 노출될 수
 **API를 통한 흐름 액세스:**
 1.  Langflow UI에서 흐름을 저장합니다.
 2.  해당 흐름의 "Deploy" 탭으로 이동합니다. API 엔드포인트 URL을 볼 수 있습니다.
-3.  그런 다음 이 엔드포인트에 `POST` 요청을 할 수 있습니다.
+3.  그런 다음 이 엔드포인트에 ````POST```` 요청을 할 수 있습니다.
 
-**예시 `curl` 요청:**
-```bash
+**예시 ````curl```` 요청:**
+`````bash
 curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
      -H "Content-Type: application/json" \
      -d '{
@@ -293,8 +294,8 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
            },
            "stream": false
          }'
-```
-`{flow_id}`를 배포된 흐름의 실제 ID로 바꿉니다. `input` JSON 구조는 흐름의 "Input" 노드에 정의된 입력 변수에 따라 달라집니다.
+`````
+````{flow_id}````를 배포된 흐름의 실제 ID로 바꿉니다. ````input```` JSON 구조는 흐름의 "Input" 노드에 정의된 입력 변수에 따라 달라집니다.
 
 프로덕션 배포를 위해 다음을 고려하십시오.
 *   **역방향 프록시**: Nginx 또는 Caddy를 사용하여 Langflow로 요청을 프록시하고, SSL 종료를 처리하며, 잠재적으로 속도 제한을 추가합니다.
@@ -305,7 +306,7 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
 ### Monitoring and Logging
 
 프로덕션 환경에서는 애플리케이션의 상태 및 성능에 대한 가시성이 중요합니다.
-*   **Langflow 로그**: Langflow 백엔드는 `stdout`/`stderr`에 로그를 출력합니다. 배포 환경을 구성하여 이러한 로그를 캡처합니다(예: 파일로, 또는 ELK 스택, Grafana Loki와 같은 중앙 집중식 로깅 시스템으로 전달).
+*   **Langflow 로그**: Langflow 백엔드는 ````stdout````/````stderr````에 로그를 출력합니다. 배포 환경을 구성하여 이러한 로그를 캡처합니다(예: 파일로, 또는 ELK 스택, Grafana Loki와 같은 중앙 집중식 로깅 시스템으로 전달).
 *   **LLM 공급자 로그**: LLM 공급자 대시보드에서 API 사용량, 지연 시간 및 오류율을 모니터링합니다.
 *   **애플리케이션 성능 모니터링 (APM)**: Prometheus/Grafana, Datadog 또는 New Relic과 같은 도구와 통합하여 Langflow 인스턴스의 서버 리소스, 요청 지연 시간 및 오류율을 모니터링합니다.
 
@@ -319,7 +320,7 @@ Langflow는 LLM 애플리케이션 개발을 단순화하는 것을 목표로 �
 | :--------------------- | :------------------------------------------- | :------------------------------------------ | :------------------------------------------ | :------------------------------------------ |
 | **시각적 빌더**     | 예 (드래그 앤 드롭 노드 그래프)               | 예 (드래그 앤 드롭 노드 그래프)              | 아니요 (코드 우선, 그 다음 UI 상호 작용)    | 예 (캔버스 기반 워크플로우)                 |
 | **핵심 프레임워크**     | LangChain                                    | LangChain                                   | LangChain, LlamaIndex, OpenAI Assistant API | RAG, 에이전트, 워크플로우 (내부 엔진)    |
-| **사용자 정의 컴포넌트**  | 예 ( `CustomComponent`를 통한 Python 코드)      | 예 (사용자 정의 도구를 통한 Python 코드)          | 예 (모든 Python 코드)                       | 예 (도구, 함수, 프롬프트 변수)    |
+| **사용자 정의 컴포넌트**  | 예 ( ````CustomComponent````를 통한 Python 코드)      | 예 (사용자 정의 도구를 통한 Python 코드)          | 예 (모든 Python 코드)                       | 예 (도구, 함수, 프롬프트 변수)    |
 | **API 노출**       | 예 (각 흐름에 대한 REST API)                 | 예 (각 흐름에 대한 REST API)                | 예 (Websocket, FastAPI를 통한 HTTP/REST)      | 예 (REST API, OpenAI 호환 API)       |
 | **배포 모델**   | 자체 호스팅 (Docker, Pip)                      | 자체 호스팅 (Docker, npm)                     | 자체 호스팅 (Python 앱)                     | 자체 호스팅 (Docker), 관리형 클라우드           |
 | **대상 독자**    | 개발자, 연구원 (LangChain 사용자)    | 개발자, 비기술 사용자             | 개발자 (Python 우선)                   | 개발자, 제품 관리자                |
@@ -359,7 +360,7 @@ Langflow는 대화형 AI 에이전트, 문서 Q&A를 위한 RAG 시스템, 콘�
 Langflow를 배포하는 권장 방법은 Docker 및 Docker Compose를 사용하거나 Kubernetes 클러스터에 통합하는 것입니다. 개별 흐름을 REST API 엔드포인트로 노출하여 프런트엔드 또는 다른 서비스가 이들과 상호 작용할 수 있도록 할 수 있습니다. SSL 및 도메인 관리를 위해 Nginx와 같은 역방향 프록시가 종종 사용됩니다.
 
 ### Langflow와 함께 나만의 Python 코드를 사용할 수 있나요?
-예, Langflow는 사용자 정의 컴포넌트를 완벽하게 지원합니다. `CustomComponent` 또는 `CustomCustomComponent`를 상속하는 자신만의 Python 클래스를 작성하여 사용자 정의 로직, 도구 또는 데이터 로더를 정의한 다음 Langflow UI에서 노드로 노출할 수 있습니다.
+예, Langflow는 사용자 정의 컴포넌트를 완벽하게 지원합니다. ````CustomComponent```` 또는 ````CustomCustomComponent````를 상속하는 자신만의 Python 클래스를 작성하여 사용자 정의 로직, 도구 또는 데이터 로더를 정의한 다음 Langflow UI에서 노드로 노출할 수 있습니다.
 
 ### Langflow와 FlowiseAI의 주요 차이점은 무엇인가요?
 Langflow와 FlowiseAI는 모두 LangChain 기반 LLM 워크플로우를 위한 시각적 빌더를 제공합니다. Langflow는 강력한 Python 사용자 정의 컴포넌트 통합과 더 큰 커뮤니티로 인해 개발자에게 더 매력적인 경우가 많으며, FlowiseAI는 비개발자에게 약간 더 사용자 친화적인 것으로 간주됩니다. Langflow는 또한 GitHub 스타 수가 훨씬 더 많습니다.
@@ -372,22 +373,22 @@ Langflow는 인상적인 148,710개의 GitHub 스타로 입증되었듯이 LLM �
 
 AI 도구 및 프레임워크에 대한 더 많은 토론을 위해 [dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하세요.
 
----
+* * *
 
 ### Sources & Further Reading
 
 *   **Langflow GitHub 저장소**: [https://github.com/langflow-ai/langflow](https://github.com/langflow-ai/langflow)
 *   **Langflow 공식 문서**: [https://docs.langflow.org/](https://docs.langflow.org/)
-*   **Langflow GitHub 토론**: [https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions) (`Issue #1234: RAG performance optimization`와 같은 특정 문제 확인)
+*   **Langflow GitHub 토론**: [https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions) (````Issue #1234: RAG performance optimization```와 같은 특정 문제 확인)
 
 ### Internal Link Candidates: *   [LangChain 심층 분석](dibi8-internal-link-langchain-deep-dive)
 *   [RAG 애플리케이션 구축](dibi8-internal-link-building-rag-applications)
 *   [Docker를 이용한 LLM 앱 배포](dibi8-internal-link-deploying-llm-apps-with-docker)
 *   [AI 에이전트 소개](dibi8-internal-link-introduction-to-ai-agents)
 
----
+* * *
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
----
+* * *
 
 {
   "@context": "https://schema.org",
@@ -414,7 +415,7 @@ AI 도구 및 프레임워크에 대한 더 많은 토론을 위해 [dibi8 한�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -424,7 +425,7 @@ AI 도구 및 프레임워크에 대한 더 많은 토론을 위해 [dibi8 한�
 - [1m-context-window-llm-2026-real-test](langflow-visual-llm-workflow-builder-2026)
 - [9router-smart-llm-proxy-token-saver-free-coding](langflow-visual-llm-workflow-builder-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

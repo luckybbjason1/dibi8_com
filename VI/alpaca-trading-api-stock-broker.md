@@ -7,10 +7,11 @@
 
 ---
 
+
 **Đã đăng:** 2026-05-19 | **Danh mục:** Giao Dịch Trí Tuệ Tự Nhiên | **Thời gian đọc:** 15 phút
 
----
----
+* * *
+* * *
 ## Alpaca Trading API là Gì?
 
 Alpaca Trading API là một nền tảng môi giới đầu tư không thu phí, thiết kế theo phương pháp API dành riêng cho các nhà phát triển và trader tự động hóa. Được thành lập vào năm 2015 và trụ sở tại Silicon Valley, Alpaca đã nhanh chóng trở thành lựa chọn phổ biến nhất để xây dựng hệ thống giao dịch tự động, với hơn **7 triệu tài khoản kết nối qua API** và được công nhận là Broker Tốt Nhất theo đánh giá của BrokerChooser vào tháng 1 năm 2026.
@@ -32,8 +33,8 @@ Alpaca Trading API là một nền tảng môi giới đầu tư không thu phí
 | **Chứng khoán phân số** | Có — đầu tư theo giá trị tiền tệ |
 | **Tỷ lệ ký quỹ** | 6.25% |
 
----
----
+* * *
+* * *
 ## Tại Sao Nên Chọn Alpaca Cho Giao Dịch Tự Động?
 
 ### Thực Hiện Miễn Phí
@@ -49,7 +50,7 @@ Mỗi khía cạnh của Alpaca được xây dựng dành riêng cho các phát
 Môi trường giao dịch trình bày của Alpaca không phải là một phiên bản đơn giản hóa demo — nó là một sandbox đầy đủ tính năng phản ánh API sản phẩm hoàn toàn. Bạn nhận được dữ liệu thị trường thời gian thực, có thể thực thi tất cả các loại lệnh và nhận mô phỏng điền thực tế. Điều này nghĩa là mã viết cho môi trường trình bày không yêu cầu thay đổi nào khi chuyển sang giao dịch trực tiếp — chỉ cần hoán đổi điểm kết nối API và thông tin tài khoản.
 
 Theo một nghiên cứu của Aite-Novarica Group năm 2025, các chiến lược tự động đã thử nghiệm trên giấy trong ít nhất 90 ngày trước khi triển khai thực tế cho thấy **giảm 23% mức rút lui** trong năm đầu tiên giao dịch trực tiếp.
----
+* * *
 ## Bắt Đầu: SETUP TÀI KHOẢN VÀ API KEY
 
 ### Bước 1: Tạo Tài Khoản Alpaca
@@ -58,20 +59,20 @@ Theo một nghiên cứu của Aite-Novarica Group năm 2025, các chiến lư�
 
 ### Bước 2: Tạo API KEY
 
-Sau khi tài khoản của bạn được phê duyệt, chuyển đến phần Paper Trading để tạo API key đầu tiên: ```python
+Sau khi tài khoản của bạn được phê duyệt, chuyển đến phần Paper Trading để tạo API key đầu tiên: ````python
 # API credentials sẽ như sau: API_KEY = 'PKABCDEF1234567890EXAMPLE'
 API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example'
 BASE_URL = 'https://paper-api.alpaca.markets'  # Endpoint Paper Trading
-```
+`````
 
-```javascript
+`````javascript
 // Cấu hình credentials cho JavaScript/Node.js
 const API_KEY = 'PKABCDEF1234567890EXAMPLE';
 const API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example';
 const BASE_URL = 'https://paper-api.alpaca.markets';
-```
+`````
 
-Giữ key bí mật an toàn — đừng bao giờ commit nó vào quản lý phiên bản. Sử dụng biến môi trường hoặc một dịch vụ quản lý secrets: ```python
+Giữ key bí mật an toàn — đừng bao giờ commit nó vào quản lý phiên bản. Sử dụng biến môi trường hoặc một dịch vụ quản lý secrets: `````python
 # Quản lý credentials an toàn với biến môi trường
 import os
 from alpaca_trade_api import REST
@@ -81,17 +82,17 @@ api = REST(
     secret_key=os.getenv('ALPACA_SECRET_KEY'),
     base_url='https://paper-api.alpaca.markets'
 )
-```
+`````
 
-```bash
+`````bash
 # .env file (thêm vào .gitignore!)
 ALPACA_API_KEY=PKABCDEF1234567890EXAMPLE
 ALPACA_SECRET_KEY=abcdefghijklmnopqrstuvwxyz1234567890example
-```
+`````
 
 ### Bước 3: Cài Đặt SDK
 
-```bash
+`````bash
 # SDK Python
 pip install alpaca-trade-api
 
@@ -100,15 +101,15 @@ npm install @alpacahq/alpaca-trade-api
 
 # SDK Go
 go get github.com/alpacahq/alpaca-trade-api-go/v3/alpaca
-```
+`````
 
----
----
+* * *
+* * *
 ## Các Hoạt Động Giao Dịch Cơ Bản
 
 ### Placing Your First Order — Đặt Đơn Hàng Đầu Tiên Của Bạn
 
-Alpaca hỗ trợ nhiều loại lệnh giao dịch bao gồm lệnh thị trường, hạn mức, dừng, dừng-hạn mức và dừng theo dõi. Dưới đây là cách đặt mỗi loại lệnh: ```python
+Alpaca hỗ trợ nhiều loại lệnh giao dịch bao gồm lệnh thị trường, hạn mức, dừng, dừng-hạn mức và dừng theo dõi. Dưới đây là cách đặt mỗi loại lệnh: `````python
 from alpaca_trade_api import REST
 import os
 
@@ -127,9 +128,9 @@ market_order = api.submit_order(
     time_in_force='day'
 )
 print(f"Đơn hàng thị trường đã đặt: {market_order.id}")
-```
+`````
 
-```python
+`````python
 # Lệnh hạn mức — chỉ thực hiện khi giá đạt hoặc thấp hơn so với giá hạn mức
 limit_order = api.submit_order(
     symbol='TSLA',
@@ -140,9 +141,9 @@ limit_order = api.submit_order(
     time_in_force='gtc'  # Good-til-cancelled
 )
 print(f"Đơn hàng hạn mức đã đặt: {limit_order.id}")
-```
+`````
 
-```python
+`````python
 # Lệnh dừng mất mát — kích hoạt bán thị trường khi giá giảm xuống mức dừng
 stop_order = api.submit_order(
     symbol='MSFT',
@@ -152,9 +153,9 @@ stop_order = api.submit_order(
     stop_price=380.00,
     time_in_force='day'
 )
-```
+`````
 
-```python
+`````python
 # Lệnh dừng-hạn mức — kết hợp lệnh dừng kích hoạt với thực hiện hạn mức
 stop_limit_order = api.submit_order(
     symbol='GOOGL',
@@ -165,9 +166,9 @@ stop_limit_order = api.submit_order(
     limit_price=164.50,
     time_in_force='day'
 )
-```
+`````
 
-```python
+`````python
 # Lệnh theo dõi dừng — giá dừng theo dõi thị trường tại một khoảng cách cố định
 trailing_stop = api.submit_order(
     symbol='AMZN',
@@ -177,11 +178,11 @@ trailing_stop = api.submit_order(
     trail_percent=5.0,  # 5% khoảng cách theo dõi
     time_in_force='gtc'
 )
-```
+`````
 
 ### Giao Dịch Chia Phép (Fractional Share Trading)
 
-Một trong những đặc điểm nổi bật của Alpaca là **giao dịch chia phép**, cho phép bạn đầu tư số tiền chính xác thay vì lượng cổ phiếu: ```python
+Một trong những đặc điểm nổi bật của Alpaca là **giao dịch chia phép**, cho phép bạn đầu tư số tiền chính xác thay vì lượng cổ phiếu: `````python
 # Mua 500 USD Apple — không phụ thuộc vào giá cổ phiếu
 fractional_order = api.submit_order(
     symbol='AAPL',
@@ -190,9 +191,9 @@ fractional_order = api.submit_order(
     type='market',
     time_in_force='day'
 )
-```
+`````
 
-```python
+`````python
 # Xây dựng một danh mục đầu tư cân bằng với phân bổ chính xác theo giá trị USD
 portfolio = {
     'VTI': 2000.00,   # Tổng thị trường chứng khoán Hoa Kỳ
@@ -209,11 +210,11 @@ for symbol, amount in portfolio.items(): order = api.submit_order(
         time_in_force='day'
     )
     print(f"Đã đặt ${amount} của {symbol}")
-```
+`````
 
 ### Giao Dịch Trong Giờ Nghiên Cứu (24/5)
 
-Alpaca hỗ trợ **giao dịch 24/5**, cho phép bạn giao dịch ngoài giờ làm việc thông thường (9:30 AM – 4:00 PM ET): ```python
+Alpaca hỗ trợ **giao dịch 24/5**, cho phép bạn giao dịch ngoài giờ làm việc thông thường (9:30 AM – 4:00 PM ET): `````python
 # Đặt đơn hàng để thực hiện trong giờ nghiên cứu
 extended_hours_order = api.submit_order(
     symbol='SPY',
@@ -224,9 +225,9 @@ extended_hours_order = api.submit_order(
     time_in_force='day',
     extended_hours=True  # Kích hoạt trước thị trường (4:00 AM) và sau giờ làm việc (8:00 PM)
 )
-```
+`````
 
-```python
+`````python
 # Kiểm tra các giờ giao dịch có sẵn cho một mã chứng khoán
 from alpaca_trade_api import REST
 
@@ -236,15 +237,15 @@ clock = api.get_clock()
 print(f"Thị trường {'mở' if clock.is_open else 'đóng'}")
 print(f"Giờ mở tiếp theo: {clock.next_open}")
 print(f"Giờ đóng tiếp theo: {clock.next_close}")
-```
+`````
 
----
----
+* * *
+* * *
 ## Dữ liệu thị trường thực tế với giao thức WebSocket
 
 ### Cài Đặt Lưu Trữ Dữ Liệu qua Giao Ph WHETHER THE TEXT IS CORRECT DEP WebSocket
 
-Alpaca's WebSocket API cung cấp lưu trữ dữ liệu thời gian thực về các giao dịch, báo giá và thanh khoản phút. Điều này rất quan trọng đối với chiến lược phản ứng với sự kiện thị trường trong thời gian thực: ```python
+Alpaca's WebSocket API cung cấp lưu trữ dữ liệu thời gian thực về các giao dịch, báo giá và thanh khoản phút. Điều này rất quan trọng đối với chiến lược phản ứng với sự kiện thị trường trong thời gian thực: `````python
 import asyncio
 from alpaca_trade_api.stream import Stream
 
@@ -271,9 +272,9 @@ stream.subscribe_bars(xu_ly_than_khoan, 'SPY', 'QQQ')
 # Chạy lưu trữ
 print("Bắt đầu giao thức WebSocket...")
 stream.run()
-```
+`````
 
-```python
+`````python
 # Kiểu quản lý ngữ cảnh async cho lưu trữ qua giao thức WebSocket
 import asyncio
 from alpaca_trade_api.stream import Stream
@@ -293,9 +294,9 @@ async def chay_strategi_gia_tri(): stream = Stream(
     await stream._run_forever()
 
 # asyncio.run(chay_strategi_gia_tri())
-```
+`````
 
-```javascript
+`````javascript
 // Lưu trữ qua giao thức WebSocket trong Node.js
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 
@@ -313,19 +314,19 @@ client.onConnect(() => {
 });
 
 client.onStockTrade((subject, data) => {
-    console.log(`Giao dịch: ${data.sym} @ $${data.p} x ${data.s}`);
+    console.log(````Giao dịch: ${data.sym} @ $${data.p} x ${data.s}````);
 });
 
 client.connect();
-```
+`````
 
----
----
+* * *
+* * *
 ## Quản lý danh mục và hoạt động tài khoản
 
 ### Kiểm tra vị trí và thông tin tài khoản
 
-```python
+`````python
 from alpaca_trade_api import REST
 import pandas as pd
 
@@ -339,46 +340,46 @@ print(fTiền mặt: ${account.cash}")
 print(fMô men mua: ${account.buying_power}")
 print(fQuyền sở hữu: ${account.equity}")
 print(fSố lượng giao dịch trong ngày: {account.daytrade_count}")
-```
+`````
 
-```python
+`````python
 # Danh sách tất cả vị trí hiện tại
 positions = api.list_positions()
 print(f"Số lượng vị trí: {len(positions)}")
 
 for pos in positions: print(f"{pos.symbol}: {pos.qty} cổ phiếu @ ${pos.avg_entry_price}")
     print(f"  Hiện tại: ${pos.current_price} | Lợi nhuận chưa thực hiện: ${pos.unrealized_pl} ({pos.unrealized_plpc}%)")
-```
+`````
 
-```python
+`````python
 # Lấy vị trí cho một ký hiệu cụ thể
 aapl_position = api.get_position('AAPL')
 print(f"Vị trí AAPL: {aapl_position.qty} cổ phiếu")
 print(fGiá trị thị trường: ${aapl_position.market_value}")
 print(fLợi nhuận chưa thực hiện: ${aapl_position.unrealized_pl}")
-```
+`````
 
 ### Quản lý lệnh
 
-```python
+`````python
 # Danh sách tất cả các lệnh mở
 open_orders = api.list_orders(status='open')
 for order in open_orders: print(f"Lệnh {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
-```
+`````
 
-```python
+`````python
 # Hủy một lệnh cụ thể
 api.cancel_order('ORDER_ID_HERE')
 print("Lệnh đã bị hủy")
-```
+`````
 
-```python
+`````python
 # Hủy tất cả các lệnh mở
 api.cancel_all_orders()
 print("Tất cả các lệnh đã bị hủy")
-```
+`````
 
-```python
+`````python
 # Lấy lịch sử lệnh (các lệnh đóng)
 closed_orders = api.list_orders(
     status='closed',
@@ -387,18 +388,18 @@ closed_orders = api.list_orders(
 )
 
 for order in closed_orders: print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
-```
+`````
 
----
+* * *
 
 
----
----
+* * *
+* * *
 ## Dữ liệu Lịch sử và Kiểm thử Lại
 
 ### Lấy Dữ liệu Dòng Lịch Sử
 
-```python
+`````python
 from alpaca_trade_api import REST
 from datetime import datetime, timedelta
 
@@ -418,9 +419,9 @@ bars = api.get_bars(
 
 print(f"Trích xuất {len(bars)} dòng")
 print(bars.head())
-```
+`````
 
-```python
+`````python
 # Lấy các dòng phút cho chiến lược trong ngày
 minute_bars = api.get_bars(
     'SPY',
@@ -440,9 +441,9 @@ minute_bars.loc[minute_bars['SMA_20'] > minute_bars['SMA_50'], 'signal'] = 1
 minute_bars.loc[minute_bars['SMA_20'] < minute_bars['SMA_50'], 'signal'] = -1
 
 print(minute_bars[['close', 'SMA_20', 'SMA_50', 'signal']].tail(10))
-```
+`````
 
-```python
+`````python
 # Truy xuất nhiều mã chứng khoán hiệu quả
 import pandas as pd
 
@@ -466,13 +467,13 @@ print(prices_df.head())
 returns = prices_df.pct_change().dropna()
 print("\nLợi nhuận Hàng Ngày:")
 print(returns.head())
-```
+`````
 
----
----
+* * *
+* * *
 ## Xây Dựng Một Chiến Lược Giao Dịch Completed
 
-Đây là một bot giao dịch động lượng hoàn chỉnh kết hợp tất cả những gì chúng ta đã đề cập: ```python
+Đây là một bot giao dịch động lượng hoàn chỉnh kết hợp tất cả những gì chúng ta đã đề cập: `````python
 """
 Bot Giao Dịch Động Lượng Alpaca
 Strategi: Mua khi giá vượt qua SMA 20 kỳ với xác nhận khối lượng
@@ -561,15 +562,15 @@ class MomentumTrader: def __init__(self): self.api = REST(key_id=API_KEY, secret
 
 if __name__ == '__main__': trader = MomentumTrader()
     trader.run()
-```
+`````
 
----
----
+* * *
+* * *
 ## Tính Năng Nâng Cao và Cách Sử Dụng Tốt
 
 ### Sử Dụng Các Loại Đặt Hàng Nâng Cao (OCO, IOC)
 
-Với Alpaca Elite, bạn có thể truy cập các loại đặt hàng phức tạp: ```python
+Với Alpaca Elite, bạn có thể truy cập các loại đặt hàng phức tạp: `````python
 # One-Cancels-Other (OCO) bracket order
 bracket_order = api.submit_order(
     symbol='TSLA',
@@ -582,9 +583,9 @@ bracket_order = api.submit_order(
     take_profit=dict(limit_price=220.00),
     stop_loss=dict(stop_price=185.00, limit_price=184.50)
 )
-```
+`````
 
-```python
+`````python
 # Immediate-Or-Cancel (IOC) order
 ioc_order = api.submit_order(
     symbol='SPY',
@@ -594,11 +595,11 @@ ioc_order = api.submit_order(
     limit_price=520.00,
     time_in_force='ioc'  # Cancelled if not filled immediately
 )
-```
+`````
 
 ### Webhooks cho Giao Dịch Sự Kiện
 
-```python
+`````python
 # Flask webhook handler for external signals
 from flask import Flask, request, jsonify
 from alpaca_trade_api import REST
@@ -633,10 +634,10 @@ def handle_trading_signal(): data = request.json
     return jsonify({'status': 'unknown_signal'}), 400
 
 if __name__ == '__main__': app.run(host='0.0.0.0', port=5000)
-```
+````
 
----
----
+* * *
+* * *
 ## Câu Hỏi Thường Encounter (FAQ)
 
 ### Alpaca có thực sự không mất phí hoa hồng?
@@ -663,8 +664,8 @@ Alpaca áp dụng giới hạn tốc độ để đảm bảo sử dụng công 
 
 Alpaca và Interactive Brokers phục vụ mục đích sử dụng khác nhau. Alpaca phù hợp cho các nhà phát triển và trader algo muốn một API hiện đại, miễn phí hoa hồng với việc cài đặt dễ dàng. Interactive Brokers phù hợp hơn cho các nhà giao dịch chuyên nghiệp cần truy cập vào thị trường toàn cầu, hàng hóa, ngoại hối và phân tích danh mục đa tài sản nâng cao. Nhiều trader sử dụng cả hai: Alpaca cho các chiến lược U.S. equity và IBKR cho trading đa tài sản toàn cầu.
 
----
----
+* * *
+* * *
 ## Kết luận
 
 **API Giao Dịch Alpaca** đại diện cho một cuộc cách mạng trong cơ sở hạ tầng giao dịch tự động. Bằng việc loại bỏ phí hoa hồng, cung cấp một API tập trung vào nhà phát triển và cung cấp một môi trường thử nghiệm giấy mạnh mẽ, Alpaca đã dân chủ hóa quyền truy cập vào các công cụ giao dịch cấp tổ chức.
@@ -673,10 +674,10 @@ Dù bạn đang xây dựng một bot đầu tư theo phương pháp bình quân
 
 Đối với các nhà giao dịch muốn nhanh chóng bước chân vào giao dịch tự động hóa mà không cần viết mã từ đầu, chúng tôi khuyên bạn nên kết hợp Alpaca với **[Minara](https://minara.ai/r/OSXG4X)** — một nền tảng giao dịch dựa trên trí tuệ nhân tạo giúp bạn xây dựng, kiểm thử và triển khai các chiến lược một cách trực quan. Đăng ký Minara ngay hôm nay [tại đây](https://minara.ai/r/OSXG4X) và thấy làm thế nào trí tuệ nhân tạo có thể thay đổi luồng làm việc giao dịch của bạn.
 
----
+* * *
 
 *Cuối cùng được cập nhật: 2026-05-19 | API Alpaca phiên bản: v2*
----
+* * *
 
 {
   "@context": "https://schema.org",

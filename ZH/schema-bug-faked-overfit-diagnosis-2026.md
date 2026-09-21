@@ -32,6 +32,7 @@ faq: - q: "什么是 schema drift？为什么它能伪造回测结果？"
     a: "从 7 条扩展到 13 条。新增条目：不要信任没有 schema 验证的实验、不要在不足 200 个交易日的数据集上下结论、不要接受成交不足 30 次的 PF > 3、不要在没有跨资产验证的情况下上线策略、不要忽略 stdev/mean 比值（大于 1 = 噪音）、不要在没有分段分解的情况下汇报 PF、不要接受没有 IS/OOS 比值的报告。"
 ---
 
+
 {{</* resource-info */>}}
 
 # schema bug 伪造了我的 overfit 诊断
@@ -48,13 +49,13 @@ faq: - q: "什么是 schema drift？为什么它能伪造回测结果？"
 
 > **原始结论**：BTC 304 天上的教科书级 overfit（PF 2.08 → 0.94，比值 2.21）。
 >
-> **真实发现**：schema 字段错配。`evolved_final_params.json` 用的是 `leverage` / `tp_atr_mult` 字段名；当前 schema 用的是 `base_leverage` / `tp_rr_ratio`。`from_dict()` 把它们静默丢掉了。实际运行用的是默认 10x leverage，而不是进化出来的 2x。
+> **真实发现**：schema 字段错配。```evolved_final_params.json```` 用的是 ````leverage```` / ````tp_atr_mult```` 字段名；当前 schema 用的是 ````base_leverage```` / ````tp_rr_ratio````。````from_dict()```` 把它们静默丢掉了。实际运行用的是默认 10x leverage，而不是进化出来的 2x。
 >
 > **修正后结果**：PF 1.494 / 1.478，比值 1.01。无聊地稳定。没有 overfit。
 >
 > **但同时**：跨资产测试仍然最多只是盈亏平衡。DOT 的滚动前推 IS/OOS 比值 6.47 —— 真正教科书级的 overfit 藏在「幸运段」的故事里。
 >
-> **Meta 教训**：在信任回测输出之前，先验证参数加载。5 秒钟的 `print(vars(params))` 本可以省下 7 次实验。
+> **Meta 教训**：在信任回测输出之前，先验证参数加载。5 秒钟的 ````print(vars(params))```` 本可以省下 7 次实验。
 
 ## 原始「发现」
 
@@ -85,34 +86,34 @@ ETH 跑完。PF 1.154 → 0.697，比值 1.66。轻度 overfit，大致跟我们
 
 ## schema drift 来了
 
-在 Python 典型的 `dataclass.from_dict()` 模式里，未知字段会被静默丢掉。pydantic 也一样，除非你开 strict mode。
+在 Python 典型的 ````dataclass.from_dict()```` 模式里，未知字段会被静默丢掉。pydantic 也一样，除非你开 strict mode。
 
 进化出来的配置文件包含：
 
-```json
+`````json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
   "tp_atr_mult": 2.5,
   ...
 }
-```
+`````
 
-运行时的 `DecisionParams` schema 期望：
+运行时的 ````DecisionParams```` schema 期望：
 
-```python
+`````python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
 tp_rr_ratio: float = ...
-```
+`````
 
-`leverage` → 被静默丢掉 → `base_leverage` 默认为 **10.0**。
-`tp_atr_mult` → 被静默丢掉 → `tp_rr_ratio` 默认为它自己的值。
+````leverage```` → 被静默丢掉 → ````base_leverage```` 默认为 **10.0**。
+````tp_atr_mult```` → 被静默丢掉 → ````tp_rr_ratio```` 默认为它自己的值。
 
 我们以为自己在跑的「进化出来的 2x leverage 配对称 2.5/2.5 ATR multiplier」实际上变成了「默认 10x leverage 配默认 tp_rr_ratio」。
 
-`from_dict()` 之后 5 秒钟的 `print(vars(params))` 本可以暴露这一切。我们没做。
+````from_dict()```` 之后 5 秒钟的 ````print(vars(params))```` 本可以暴露这一切。我们没做。
 
 ## 修正后的数字
 
@@ -134,13 +135,13 @@ tp_rr_ratio: float = ...
 
 | 资产 | Train PF | OOS PF | 比值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ETH | 1.154 | 0.697 | 1.66 |
 | BNB | 1.512 | 0.213 | 7.10 |
@@ -162,7 +163,7 @@ DOT 看起来像那个出挑的 —— Train 1.65、OOS 1.91，两边都强。�
 
 **1. 严格 deserialization。** 让你的参数加载器拒绝未知字段。在 Python 里：
 
-```python
+`````python
 @dataclass(frozen=True, kw_only=True)
 class DecisionParams: base_leverage: float = 10.0
     # ...
@@ -172,17 +173,17 @@ class DecisionParams: base_leverage: float = 10.0
         unknown = set(d.keys()) - valid
         if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
-```
+`````
 
-原来的 `from_dict()` 把字段过滤到有效字段集合，**但遇到未知字段不抛错**。一个缺失的 `raise` 害我们花掉了 7 次实验。
+原来的 ````from_dict()```` 把字段过滤到有效字段集合，**但遇到未知字段不抛错**。一个缺失的 ````raise```` 害我们花掉了 7 次实验。
 
 **2. 在回测之前打印有效 params。** 三行：
 
-```python
+`````python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
-```
+````
 
 **3. 钉住参数文件的 schema 版本。** 当框架的 schema 改了，旧参数文件应该大声失败，而不是静默降级。
 
@@ -215,7 +216,7 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 *Affiliate 链接 —— 价格相同，支持 dibi8.com。*
 
 
----
+* * *
 **相关阅读**：[Moss Trade Bot Factory 2026 评测](https://dibi8.com/zh/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [回测 OVERFIT 5 种模式 2026](https://dibi8.com/zh/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python 回测](https://dibi8.com/zh/resources/ai-trading/backtrader-python-backtesting/)
 
 
@@ -281,7 +282,7 @@ schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘 repre
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

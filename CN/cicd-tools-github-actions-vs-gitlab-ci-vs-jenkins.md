@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
+
 # CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jenkins in 2025
 
 
@@ -40,7 +41,7 @@ The trend is clear: Git-native CI/CD is winning. Developers want pipelines defin
 
 ## GitHub Actions: CI/CD Inside Your Repository
 
-GitHub Actions launched in 2018 and quickly became the default CI/CD choice for repositories hosted on GitHub. By 2025, over 100 million repositories use GitHub Actions workflows. The core idea is simple: define your pipeline in a YAML file stored in `.github/workflows/`, and GitHub executes it on every push, pull request, or scheduled trigger.
+GitHub Actions launched in 2018 and quickly became the default CI/CD choice for repositories hosted on GitHub. By 2025, over 100 million repositories use GitHub Actions workflows. The core idea is simple: define your pipeline in a YAML file stored in ```.github/workflows/````, and GitHub executes it on every push, pull request, or scheduled trigger.
 
 A workflow consists of one or more jobs. Each job runs on a virtual machine called a runner. Jobs contain steps, which execute shell commands or reusable actions from the GitHub Marketplace. The Marketplace now hosts over 20,000 community-built actions covering everything from AWS deployments to security scanning.
 
@@ -56,7 +57,7 @@ GitHub Actions excels when your code already lives on GitHub. The integration is
 
 GitLab CI ships as part of GitLab, which means every GitLab repository has CI/CD built in. There is no separate service to configure, no marketplace to browse, and no third-party authentication to manage. This integration is GitLab CI's primary competitive advantage.
 
-Pipelines are defined in `.gitlab-ci.yml` at the repository root. The file structure revolves around stages and jobs. Stages run sequentially — for example, build, then test, then deploy. Jobs within a stage run in parallel. GitLab CI uses a runner model similar to GitHub, with shared runners available on GitLab.com and self-hosted runners for private infrastructure.
+Pipelines are defined in ````.gitlab-ci.yml```` at the repository root. The file structure revolves around stages and jobs. Stages run sequentially — for example, build, then test, then deploy. Jobs within a stage run in parallel. GitLab CI uses a runner model similar to GitHub, with shared runners available on GitLab.com and self-hosted runners for private infrastructure.
 
 GitLab CI's feature depth exceeds GitHub Actions in several areas. Parent-child pipelines let you trigger sub-pipelines from a main pipeline, enabling complex orchestration. CI/CD components, introduced in GitLab 16, provide reusable pipeline modules across projects. The built-in container registry, Kubernetes agent, and security scanning tools create a unified DevOps experience without external integrations.
 
@@ -72,7 +73,7 @@ Jenkins predates both GitHub Actions and GitLab CI by nearly a decade. First rel
 
 Modern Jenkins uses a master-agent architecture. The master server handles job scheduling, configuration, and the web UI. Agent nodes execute the actual build steps. This separation allows horizontal scaling — add agents as your build volume grows. Jenkins supports permanent agents, cloud-provisioned agents (via EC2, Kubernetes, or Docker), and ephemeral agents for security isolation.
 
-Pipeline-as-code in Jenkins means writing a `Jenkinsfile` in Groovy. This gives you a full programming language for pipeline logic — loops, conditionals, functions, and error handling that go far beyond YAML's capabilities. However, this power comes with complexity. Debugging a 200-line Groovy Jenkinsfile requires expertise that most developers do not have.
+Pipeline-as-code in Jenkins means writing a ````Jenkinsfile```` in Groovy. This gives you a full programming language for pipeline logic — loops, conditionals, functions, and error handling that go far beyond YAML's capabilities. However, this power comes with complexity. Debugging a 200-line Groovy Jenkinsfile requires expertise that most developers do not have.
 
 The plugin ecosystem is Jenkins's greatest strength and biggest weakness. Essential functionality — Git integration, Docker support, Slack notifications — requires plugins. Plugin compatibility issues, security vulnerabilities in outdated plugins, and breaking changes across Jenkins versions consume significant maintenance effort. In 2025, the Jenkins project has improved plugin security scanning, but the maintenance burden remains real.
 
@@ -84,13 +85,13 @@ Jenkins is free and open-source under the MIT license. The only costs are infras
 
 | Feature | GitHub Actions | GitLab CI | Jenkins |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Setup Complexity** | Low — YAML in repo | Medium — YAML in repo | High — server installation + plugins |
 | **Pricing (5 users, private repos)** | $20/month (Team) | $145/month (Premium) | Free (infra only) |
@@ -110,9 +111,9 @@ Setup complexity follows a clear hierarchy: GitHub Actions takes minutes, GitLab
 
 Build speed depends on runner hardware, caching, and parallelization. GitHub Actions provides standard runners with 2 vCPU and 7 GB RAM (Ubuntu), which is sufficient for most projects. Larger runners (up to 64 vCPU, 256 GB RAM) are available at a premium. GitLab.com shared runners offer similar specs. Jenkins performance is entirely dependent on your provisioned infrastructure.
 
-Caching is critical for fast builds. GitHub Actions supports artifact caching via `actions/cache`, with a 10 GB cache limit per repository. GitLab CI provides a built-in cache mechanism with S3-compatible backend support. Jenkins caching requires manual configuration or the Job Cacher plugin.
+Caching is critical for fast builds. GitHub Actions supports artifact caching via ````actions/cache````, with a 10 GB cache limit per repository. GitLab CI provides a built-in cache mechanism with S3-compatible backend support. Jenkins caching requires manual configuration or the Job Cacher plugin.
 
-Monorepo support varies. GitHub Actions introduced path filters and reusable workflows for monorepos. GitLab CI has rules and `changes:` directives for conditional job execution. Jenkins handles monorepos through Pipeline Multibranch with filtering, but configuration is manual.
+Monorepo support varies. GitHub Actions introduced path filters and reusable workflows for monorepos. GitLab CI has rules and ````changes:``` directives for conditional job execution. Jenkins handles monorepos through Pipeline Multibranch with filtering, but configuration is manual.
 
 Scalability limits are real. GitHub Actions queues jobs when concurrent limits are reached — 20 concurrent jobs on Free, 60 on Team, 500 on Enterprise. GitLab CI has similar limits on shared runners. Jenkins scales horizontally by adding agents, limited only by your infrastructure budget.
 
@@ -151,7 +152,7 @@ Three trends will shape the next phase of CI/CD. First, the rise of programmable
 Your CI/CD tool is not a permanent decision. Start with the platform that matches your current hosting and team size. Migrate when your requirements outgrow your current tool. The investment in pipeline automation — regardless of platform — pays dividends in faster releases, fewer bugs, and more confident deployments.
 
 
----
+* * *
 ## FAQ
 
 **Which is easier to learn: GitHub Actions or GitLab CI?**
@@ -175,7 +176,7 @@ For public repositories, GitHub Actions is free and unlimited. For private repos
 Start by auditing your existing Jenkins pipelines and identifying equivalent GitHub Actions. The GitHub Actions importer tool (available on GitHub Enterprise) can automate much of the conversion. Replace Jenkins plugins with GitHub Marketplace actions. Migrate secrets to GitHub"s encrypted secrets storage. Plan the runner infrastructure — GitHub-hosted runners work for most workloads, but self-hosted runners may be needed for custom requirements. A typical migration takes 2-4 weeks for a medium-sized project.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.

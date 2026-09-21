@@ -27,6 +27,7 @@ aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---
 
+
 # Stack Marketing AI Xuyên Biên Giới 2026: Setup 7 Công Cụ Cho Team Trung Quốc Ra Toàn Cầu
 
 
@@ -60,7 +61,7 @@ Stack này giải quyết từng điểm đau với công cụ cụ thể.
 
 ## 2. Kiến Trúc — Pattern Cầu Nối Hong Kong
 
-```
+````
    ┌─────────────────────────────────────┐
    │ VPS Hong Kong (HTStack)             │
    │                                     │
@@ -91,7 +92,7 @@ Stack này giải quyết từng điểm đau với công cụ cụ thể.
    │ │   (GDPR tuân thủ, EU + China)   │ │
    │ └─────────────────────────────────┘ │
    └─────────────────────────────────────┘
-```
+`````
 
 VPS HK là cầu nối: latency thấp tới cả Trung Quốc và toàn cầu, quản lý trung lập cho analytics, card thanh toán thường hoạt động cả hai hướng.
 
@@ -101,12 +102,12 @@ VPS HK là cầu nối: latency thấp tới cả Trung Quốc và toàn cầu, 
 
 **Vì sao self-host quan trọng ở đây**: Giá "per task" của Zapier trừng phạt workflow xuyên biên giới — mọi dịch, mọi biến thể platform, mọi check analytics là một "task". n8n trên VPS self-host = task không giới hạn với $6 hạ tầng.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker run -d --name n8n -p 5678:5678 \
   -v ~/.n8n:/home/node/.n8n \
   -e WEBHOOK_URL=https://n8n.yourdomain.com \
   n8nio/n8n
-```
+`````
 
 **Template workflow đáng import**: "RSS → dịch → 5 platform", "Booking Calendly → CRM → chuỗi email", "Release GitHub → công bố ra mắt xuyên platform".
 
@@ -118,11 +119,11 @@ Setup đầy đủ bao gồm backend PostgreSQL (quan trọng cho độ tin cậ
 
 **Vì sao chọn cái này hơn LlamaIndex / AutoGen**: Primitive i18n trưởng thành (PromptTemplate xử lý format date/currency theo locale), nhiều tích hợp provider nhất (100+), và framework agent với hệ sinh thái tool dựng sẵn lớn nhất cho task xuyên biên giới (API dịch, scraping, lịch).
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 pip install langchain langchain-community langchain-openai
-```
+`````
 
-Cho agent đa ngôn ngữ cụ thể, package `langchain-community` ship connector cho DeepL, Google Translate, cộng template prompt xử lý rendering phải-sang-trái cho mở rộng tiếng Ả Rập tương lai.
+Cho agent đa ngôn ngữ cụ thể, package ````langchain-community```` ship connector cho DeepL, Google Translate, cộng template prompt xử lý rendering phải-sang-trái cho mở rộng tiếng Ả Rập tương lai.
 
 Setup LangChain đầy đủ + recipe agent: [Hướng dẫn LangChain production](/vi/resources/llm-frameworks/langchain/).
 
@@ -146,9 +147,9 @@ So sánh chi tiết + khi nào mỗi cái thắng: [Công cụ AI Search 2026 (P
 - Self-host được ở Hong Kong = không bị chặn từ đại lục VÀ EU
 - ~80% rate capture data vs ~60% GA (không filter ad-blocker)
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/compose.yml up -d
-```
+`````
 
 Setup đầy đủ bao gồm event tracking cho conversion attribution: [Plausible vs GA — analytics ưu tiên privacy](/vi/resources/ai-tools/plausible-analytics-privacy-google/).
 
@@ -160,10 +161,10 @@ Setup đầy đủ bao gồm event tracking cho conversion attribution: [Plausib
 - **Rẻ hơn Claude 20× ở cùng task** — toán học nghiêm túc ở 3+ dev
 - **DeepSeek chấp nhận thanh toán RMB** — không cần thuyết phục tài chính nạp card USD
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 npm install -g @opencode-ai/opencode
 opencode --provider deepseek --api-key $DEEPSEEK_KEY
-```
+`````
 
 Setup đầy đủ bao gồm cách chia sẻ MCP server qua team: [Hướng dẫn OpenCode mã nguồn mở](/vi/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/).
 
@@ -187,10 +188,10 @@ Chúng tôi chạy dibi8.com chính nó trên {{< aff "htstack" "stack-vps" "VPS
 
 **Trade-off**: OpenRouter thêm 100-150ms latency vs kết nối provider trực tiếp — ổn cho sinh content offline, không tốt cho chat thời gian thực.
 
-**Cài nhanh**: Đăng ký openrouter.ai, nạp crypto, dùng qua client tương thích OpenAI: ```python
+**Cài nhanh**: Đăng ký openrouter.ai, nạp crypto, dùng qua client tương thích OpenAI: `````python
 from openai import OpenAI
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="sk-or-...")
-```
+````
 
 Hướng dẫn OpenRouter đầy đủ + khi direct thắng OpenRouter: [OpenRouter unified LLM API gateway 2026](/vi/resources/llm-frameworks/openrouter-unified-llm-api-gateway/) hoặc [So sánh Portkey vs LiteLLM vs OpenRouter](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
@@ -244,7 +245,7 @@ Bạn sẽ vượt tier $35-80/tháng khi: - **Team > 10 người** — Thêm Li
 
 Thắng đặc thù xuyên biên giới: không ma sát thanh toán, không vi phạm GDPR/luật dữ liệu Trung Quốc, không Cursor $80/seat USD, không GA bị chặn, không vấn đề Cloudflare-vs-Trung Quốc. Khởi động {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}} và bắt đầu với thành phần 1-4 tuần đầu tiên, thêm 5-7 tuần thứ hai.
 
----
+* * *
 
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho phía dev, [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cho suy luận tối ưu chi phí.*
 
@@ -274,7 +275,7 @@ Thắng đặc thù xuyên biên giới: không ma sát thanh toán, không vi p
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -284,6 +285,6 @@ Thắng đặc thù xuyên biên giới: không ma sát thanh toán, không vi p
 - [2026-06-08-trending-ai-agents](cross-border-ai-marketing-stack)
 - [2026-06-15-trending-ai-agents](cross-border-ai-marketing-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

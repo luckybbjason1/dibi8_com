@@ -5,6 +5,7 @@ slug: codebase-memory-mcp-high-performance-code-intelligence
 featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
 ---
 
+
 # Codebase-Memory-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스 
 
 빠르게 발전하는 AI 지원 소프트웨어 개발 환경에서 한 가지 병목 현상은 여전히 끈질기게 남아 있습니다. **AI 코딩 에이전트는 어떻게 대규모 코드베이스를 효율적으로 이해하고 탐색합니까?** 파일별 검색 또는 순진한 RAG 시스템과 같은 기존 접근 방식은 엄청난 양의 토큰을 낭비하고, 단편화된 컨텍스트를 생성하며, 구조적 코드 이해에 어려움을 겪습니다. 
@@ -44,7 +45,7 @@ codebase-memory-mcp의 가장 큰 장점 중 하나는 단순성입니다. Docke
 
 [릴리스 페이지](https://github.com/DeusData/codebase-memory-mcp/releases/latest)를 방문하여 플랫폼에 맞는 바이너리를 다운로드하세요. 
 
-``배쉬 
+```배쉬 
 # 리눅스 amd64 
 wget https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-amd64 
 
@@ -59,18 +60,18 @@ wget https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/co
 
 # 윈도우 amd64 
 # 릴리스 페이지에서 다운로드하고 codebase-memory-mcp.exe로 이름을 바꿉니다. 
-```` 
+`````` 
 
 ### 2단계: 실행 파일 만들기 및 설치 
 
 ### 2단계: 실행 파일 만들기 및 설치 
 
-``배쉬 
+````배쉬 
 chmod +x 코드베이스-메모리-mcp-* 
 ./codebase-memory-mcp 설치 
-```` 
+`````` 
 
-`install` 명령은 마법의 총알입니다. 사용 중인 AI 코딩 에이전트를 자동으로 감지하고 모든 것을 자동으로 구성합니다. 
+````install```` 명령은 마법의 총알입니다. 사용 중인 AI 코딩 에이전트를 자동으로 감지하고 모든 것을 자동으로 구성합니다. 
 
 ### 3단계: 지원되는 에이전트 
 
@@ -104,15 +105,15 @@ codebase-memory-mcp가 어떻게 그렇게 인상적인 성능을 달성하는�
 
 인덱싱 파이프라인은 다음과 같습니다. 
 
-```` 
+`````` 
 소스 코드 → Lexer → Parser → CST → AST → 지식 그래프 
-```` 
+`````` 
 
 이 접근 방식의 장점은 텍스트뿐만 아니라 **코드 구조**를 이해한다는 것입니다. 함수가 어디에서 시작하고 끝나는지, 어떤 클래스가 어느 클래스에서 상속되는지, 다양한 모듈이 어떻게 상호 작용하는지를 알고 있습니다. 
 
 ### 하이브리드 LSP 의미론적 해결 
 
-Tree-sitter는 구문 구조를 제공하지만 때로는 `user` 변수가 `id`, `name` 및 `email` 속성을 가진 `User` 유형이라는 것을 아는 것과 같이 **의미론적인** 정보가 필요합니다. 
+Tree-sitter는 구문 구조를 제공하지만 때로는 ````user```` 변수가 ````id````, ````name```` 및 ````email```` 속성을 가진 ````User```` 유형이라는 것을 아는 것과 같이 **의미론적인** 정보가 필요합니다. 
 
 이것이 하이브리드 LSP가 등장하는 곳입니다. 다양한 언어에 대한 LSP(Language Server Protocol) 구현과 통합함으로써 codebase-memory-mcp는 순수 AST 분석이 확인할 수 없는 유형, 가져오기 및 상호 참조를 확인할 수 있습니다. 
 
@@ -192,7 +193,7 @@ Codebase-memory-mcp의 지식 그래프 접근 방식은 **코드 요소 간의 
 
 ### 사용 사례 1: 레거시 코드 리팩토링 
 
-레거시 코드베이스를 리팩토링하는 임무를 맡고 있다고 상상해 보세요. 코드베이스-메모리-mcp 사용: ``파이썬 
+레거시 코드베이스를 리팩토링하는 임무를 맡고 있다고 상상해 보세요. 코드베이스-메모리-mcp 사용: ````파이썬 
 # 더 이상 사용되지 않는 함수의 호출자를 모두 찾습니다. 
 결과 = mcp.call("find_callers", { 
 "symbol": "legacy_authenticate", 
@@ -208,7 +209,7 @@ Codebase-memory-mcp의 지식 그래프 접근 방식은 **코드 요소 간의 
 deps = mcp.call("analyze_dependent", { 
 "모듈": "auth_service" 
 }) 
-```` 
+`````` 
 
 이제 AI 에이전트는 변경 사항을 적용하기 전에 변경 사항의 전체 영향을 이해할 수 있으므로 기존 기능이 손상될 위험이 크게 줄어듭니다. 
 
@@ -216,7 +217,7 @@ deps = mcp.call("analyze_dependent", {
 
 새로운 개발자가 팀에 합류하면 codebase-memory-mcp를 사용하여 코드베이스 구조를 빠르게 이해할 수 있습니다.
 
-``배쉬 
+````배쉬 
 # 전체 프로젝트 구조를 가져옵니다 
 mcp.call("get_file_structure", {"project": "."}) 
 
@@ -228,7 +229,7 @@ mcp.call("search_symbols", {
 
 # 서비스 아키텍처를 이해한다 
 mcp.call("get_import_graph", {"module": "services"}) 
-```` 
+`````` 
 
 이를 통해 새로운 개발자는 일반적으로 획득하는 데 몇 주가 걸리는 코드베이스에 대한 구조적인 이해를 제공합니다. 
 
@@ -236,7 +237,7 @@ mcp.call("get_import_graph", {"module": "services"})
 
 보안 감사의 경우 codebase-memory-mcp는 잠재적인 취약점을 식별할 수 있습니다. 
 
-``파이썬 
+````파이썬 
 # 모든 HTTP 엔드포인트 찾기 
 엔드포인트 = mcp.call("search_symbols", { 
 "쿼리": "@app.route", 
@@ -246,7 +247,7 @@ mcp.call("get_import_graph", {"module": "services"})
 # 각 엔드포인트에서 인증을 확인합니다. 
 끝점의 끝점: 호출자 = mcp.call("find_callers", {"symbol": 끝점}) 
 # 인증 미들웨어 적용 여부 확인 
-```` 
+`````` 
 
 이러한 체계적인 접근 방식은 수동 코드 검토보다 훨씬 더 철저합니다. 
 
@@ -254,9 +255,9 @@ mcp.call("get_import_graph", {"module": "services"})
 
 ### MCP 서버 구성 
 
-수동 구성(`install` 명령이 에이전트를 감지하지 못하는 경우)의 기본 설정은 다음과 같습니다. 
+수동 구성(````install```` 명령이 에이전트를 감지하지 못하는 경우)의 기본 설정은 다음과 같습니다. 
 
-``json 
+````json 
 { 
 "mcp서버": { 
 "코드베이스 메모리": { 
@@ -268,13 +269,13 @@ mcp.call("get_import_graph", {"module": "services"})
 } 
 } 
 } 
-```` 
+`````` 
 
 ### 색인 옵션 
 
 인덱싱 동작을 사용자 정의할 수 있습니다. 
 
-``배쉬 
+````배쉬 
 # 특정 디렉토리만 색인화 
 ./codebase-memory-mcp 인덱스 --include src/,lib/ 
 
@@ -286,18 +287,18 @@ mcp.call("get_import_graph", {"module": "services"})
 
 # 자세한 로깅을 활성화합니다 
 ./codebase-memory-mcp 인덱스 --verbose 
-```` 
+`````` 
 
 ### 그래프 시각화 
 
 Codebase-memory-mcp에는 내장된 3D 그래프 시각화 UI가 포함되어 있습니다. 
 
-``배쉬 
+````배쉬 
 # 시각화 서버를 시작합니다 
 ./codebase-memory-mcp 봉사 --viz 
 
 # http://localhost:9749에 접속 
-````
+``````
 
 시각화를 사용하면 지식 그래프를 대화형으로 탐색하고, 특정 영역을 확대하고, 코드 관계를 시각적으로 이해할 수 있습니다. 
 
@@ -305,14 +306,14 @@ Codebase-memory-mcp에는 내장된 3D 그래프 시각화 UI가 포함되어 �
 
 다음은 다양한 에이전트에 대한 몇 가지 구성 예입니다. 
 
-``yaml 
+````yaml 
 # 클로드 코드 구성 
 mcp서버: 코드베이스 메모리: 명령: /path/to/codebase-memory-mcp 
 인수: [서빙] 
 환경: CBM_PROJECT_ROOT: /path/to/your/project 
-```` 
+`````` 
 
-``json 
+````json 
 // 코덱스 CLI 구성 
 { 
 "mcp서버": { 
@@ -322,13 +323,13 @@ mcp서버: 코드베이스 메모리: 명령: /path/to/codebase-memory-mcp
 } 
 } 
 } 
-```` 
+`````` 
 
 ### Python SDK 사용법 
 
 지식 그래프에 프로그래밍 방식으로 액세스하려면 다음을 수행하세요. 
 
-``파이썬 
+````파이썬 
 코드베이스_메모리 가져오기 
 
 # 클라이언트 초기화 
@@ -345,13 +346,13 @@ refs = client.find_references(symbol="인증")
 
 # 호출 그래프 가져오기 
 call_graph = client.get_call_graph(function="인증") 
-```` 
+`````` 
 
 ### 고급 쿼리 예 
 
 다음은 몇 가지 고급 사용 예입니다. 
 
-``파이썬 
+````파이썬 
 # 함수의 모든 호출자를 찾습니다. 
 발신자 = client.find_callers(function="login") 
 
@@ -363,26 +364,26 @@ deps = client.analyze_dependent(module="auth_service")
 
 # 코드 변경사항 가져오기 
 변경 사항 = client.get_code_changes(file="auth.py") 
-```` 
+`````` 
 
 ### 도커 배포 
 
-컨테이너화된 환경의 경우: ``도커파일 
+컨테이너화된 환경의 경우: ````도커파일 
 알파인에서:최신 
 복사 코드베이스-메모리-mcp /usr/local/bin/ 
 RUN chmod +x /usr/local/bin/codebase-memory-mcp 
 
 ENTRYPOINT ["코드베이스-메모리-mcp"] 
 CMD ["서빙"] 
-```` 
+`````` 
 
-``배쉬 
+````배쉬 
 # 도커 이미지 빌드 
 docker build -t codebase-memory . 
 
 # 컨테이너를 실행 
 docker run -v /path/to/project:/project codebase-memory 서브 
-```` 
+`````` 
 
 ## 보안과 신뢰 
 
@@ -404,7 +405,7 @@ codebase-memory-mcp는 인상적이지만 제한 사항을 이해하는 것이 �
 1. **바이너리 전용 배포**: 대부분의 플랫폼에는 소스 컴파일 옵션이 없습니다. 
 2. **제한적인 자연어 지원**: 주로 대화형 상호작용이 아닌 구조화된 쿼리용으로 설계되었습니다. 
 3. **리소스 집약적**: 대규모 코드베이스에는 인덱싱 중에 상당한 RAM이 필요합니다. 
-4. **에이전트별 최적화**: 일부 에이전트는 `install` 명령 외에 수동 구성이 필요할 수 있습니다. 
+4. **에이전트별 최적화**: 일부 에이전트는 ````install```` 명령 외에 수동 구성이 필요할 수 있습니다. 
 
 ### 사용해야 하는 경우(및 사용하지 않는 경우) 
 
@@ -441,7 +442,7 @@ codebase-memory-mcp 프로젝트는 활발히 개발되고 있으며 흥미로�
 코드 인텔리전스의 미래를 경험할 준비가 되셨나요? 시작하는 방법은 다음과 같습니다. 
 
 1. **다운로드**: [GitHub 릴리스](https://github.com/DeusData/codebase-memory-mcp/releases/latest)를 방문하세요. 
-2. **설치**: `./codebase-memory-mcp install`을 실행합니다. 
+2. **설치**: ````./codebase-memory-mcp install````을 실행합니다. 
 3. **구성**: AI 코딩 에이전트를 선택하세요. 
 4. **탐색**: 14가지 MCP 도구 사용 시작 
 
@@ -463,7 +464,7 @@ grep 또는 ripgrep과 같은 기존 코드 검색 도구는 텍스트 일치에
 
 ### Q: 기존 AI 코딩 에이전트에 codebase-memory-mcp를 사용할 수 있나요?
 
-예! `install` 명령은 Claude Code, Codex CLI, Gemini CLI, Zed, OpenCode 등을 포함하여 널리 사용되는 11가지 AI 코딩 에이전트에 대한 지원을 자동으로 감지하고 구성합니다. 에이전트가 목록에 없더라도 수동 MCP 구성은 간단합니다. 
+예! ````install``` 명령은 Claude Code, Codex CLI, Gemini CLI, Zed, OpenCode 등을 포함하여 널리 사용되는 11가지 AI 코딩 에이전트에 대한 지원을 자동으로 감지하고 구성합니다. 에이전트가 목록에 없더라도 수동 MCP 구성은 간단합니다. 
 
 ### Q: 성능이 저하되기 전에 코드베이스가 얼마나 커질 수 있나요? 
 
@@ -481,7 +482,7 @@ Codebase-memory-mcp는 AI 코딩 에이전트가 코드와 상호 작용하는 �
 
 소프트웨어 개발에 AI를 활용하는 데 진지한 개발자에게 codebase-memory-mcp는 단지 있으면 좋은 기능이 아니라 필수 인프라가 되고 있습니다. 
 
---- 
+* * *
 
 **출처:** 
 - [GitHub 저장소](https://github.com/DeusData/codebase-memory-mcp) 

@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
 
+
 {{</* resource-info */>}}
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
@@ -70,7 +71,7 @@ Chế độ queue mang lại cải thiện hiệu suất 7 lần bằng cách t�
 
 ### Yêu cầu trước khi cài đặt
 
-```bash
+````bash
 # Khuyến nghị Ubuntu 22.04 LTS
 # Tối thiểu: 2 vCPU, 4 GB RAM, 20 GB SSD
 # Khuyến nghị: 4 vCPU, 8 GB RAM, 50 GB SSD
@@ -82,11 +83,11 @@ sudo sh get-docker.sh
 # Cài đặt Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-```
+`````
 
 ### Docker Compose cơ bản (Môi trường phát triển)
 
-```yaml
+`````yaml
 # docker-compose.dev.yml
 version: '3.8'
 
@@ -102,16 +103,16 @@ services: n8n: image: n8nio/n8n:latest
       - TZ=UTC
     volumes: - n8n_data:/home/node/.n8n
 
-volumes: n8n_data: ```
+volumes: n8n_data: `````
 
-Khởi động: ```bash
+Khởi động: `````bash
 docker-compose -f docker-compose.dev.yml up -d
 # Truy cập tại http://localhost:5678
-```
+`````
 
 ### Docker Compose Production với PostgreSQL
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -148,18 +149,18 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-Biến môi trường trong `.env`: ```bash
+Biến môi trường trong ``.env``: `````bash
 # .env
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 N8N_HOST=automation.yourdomain.com
-```
+`````
 
 ### Chế độ Queue cho thông lượng cao
 
-```yaml
+`````yaml
 # docker-compose.queue.yml
 version: '3.8'
 
@@ -228,9 +229,9 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-Triển khai: ```bash
+Triển khai: `````bash
 # Tạo khóa bí mật
 openssl rand -base64 32 > .postgres_password
 openssl rand -base64 32 > .redis_password
@@ -248,11 +249,11 @@ docker-compose -f docker-compose.queue.yml up -d
 # Xác minh
 docker-compose ps
 docker-compose logs -f n8n-main
-```
+`````
 
 ### Nginx Reverse Proxy với SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/n8n
 server {
     listen 80;
@@ -285,22 +286,22 @@ server {
         proxy_read_timeout 300;
     }
 }
-```
+`````
 
-Kích hoạt: ```bash
+Kích hoạt: `````bash
 sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
 # Lấy chứng chỉ SSL
 sudo certbot --nginx -d automation.yourdomain.com
-```
+`````
 
 ## Tích hợp với Claude Code, OpenAI, Slack, Discord và Telegram
 
 ### Node Chat Model OpenAI
 
-```javascript
+`````javascript
 // Cấu hình OpenAI Chat Model trong n8n
 {
   "nodes": [
@@ -326,17 +327,17 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
-Thêm credential trong UI n8n: ```bash
+Thêm credential trong UI n8n: `````bash
 # Điều hướng đến Settings > Credentials > Add Credential
 # Chọn "OpenAI API"
 # Dán API key từ https://platform.openai.com/api-keys
-```
+`````
 
 ### Node Chat Model Anthropic Claude
 
-```javascript
+`````javascript
 // Cấu hình Anthropic Claude Chat Model
 {
   "nodes": [
@@ -358,11 +359,11 @@ Thêm credential trong UI n8n: ```bash
     }
   ]
 }
-```
+`````
 
 ### Workflow thông báo Slack
 
-```json
+`````json
 {
   "name": "AI Summary to Slack",
   "nodes": [
@@ -418,11 +419,11 @@ Thêm credential trong UI n8n: ```bash
     }
   }
 }
-```
+`````
 
 ### Bot Telegram Webhook
 
-```javascript
+`````javascript
 // Cấu hình node trigger Telegram
 {
   "nodes": [
@@ -455,20 +456,20 @@ Thêm credential trong UI n8n: ```bash
     }
   ]
 }
-```
+`````
 
 ### Tích hợp Bot Discord
 
-```bash
+`````bash
 # 1. Tạo ứng dụng Discord tại https://discord.com/developers/applications
 # 2. Tạo bot user và sao chép token
 # 3. Trong n8n: Settings > Credentials > Add Credential > Discord Bot API
 # 4. Dán bot token
 
 # Workflow: Discord message trigger -> AI xử lý -> Discord phản hồi
-```
+`````
 
-```json
+`````json
 {
   "nodes": [
     {
@@ -488,7 +489,7 @@ Thêm credential trong UI n8n: ```bash
     }
   ]
 }
-```
+`````
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
@@ -529,7 +530,7 @@ Thêm credential trong UI n8n: ```bash
 
 ### Checklist bảo mật
 
-```bash
+`````bash
 # 1. Sử dụng khóa mã hóa mạnh
 export N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 
@@ -555,11 +556,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 # 7. Tắt editor trong container worker
 # (Worker dùng command: worker, không expose UI)
-```
+`````
 
 ### Tối ưu cơ sở dữ liệu
 
-```sql
+`````sql
 -- Tuning PostgreSQL cho n8n production
 ALTER SYSTEM SET shared_buffers = 512MB;
 ALTER SYSTEM SET effective_cache_size = 2GB;
@@ -576,11 +577,11 @@ CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_execution_entity_startedat
 
 -- Reload cấu hình
 SELECT pg_reload_conf();
-```
+`````
 
 ### Giám sát với Prometheus và Grafana
 
-```yaml
+`````yaml
 # Thêm vào docker-compose.queue.yml
   prometheus: image: prom/prometheus:latest
     restart: unless-stopped
@@ -597,20 +598,20 @@ SELECT pg_reload_conf();
     volumes: - grafana_data:/var/lib/grafana
     networks: - n8n_network
     ports: - "127.0.0.1:3000:3000"
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml
 global: scrape_interval: 15s
 
 scrape_configs: - job_name: n8n
     static_configs: - targets: ['n8n-main:5678"]
     metrics_path: /metrics
-```
+`````
 
 ### Luân chuyển log
 
-```bash
+`````bash
 # /etc/logrotate.d/n8n
 /opt/n8n/logs/*.log {
     daily
@@ -624,11 +625,11 @@ scrape_configs: - job_name: n8n
         docker restart n8n-main
     endscript
 }
-```
+`````
 
 ### Chiến lược sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # backup-n8n.sh - Chạy hàng ngày qua cron
 
@@ -648,12 +649,12 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 
 # Đồng bộ lên S3 (tùy chọn)
 # aws s3 sync $BACKUP_DIR s3://your-backup-bucket/n8n/
-```
+`````
 
-Thêm vào crontab: ```bash
+Thêm vào crontab: `````bash
 # Chạy sao lưu lúc 2 giờ sáng mỗi ngày
 0 2 * * * /opt/n8n/backup-n8n.sh >> /var/log/n8n-backup.log 2>&1
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -709,7 +710,7 @@ Có. Instance n8n tự host trên mạng nội bộ có thể chạy workflow b�
 
 ### Cập nhật n8n lên phiên bản mới nhất như thế nào?
 
-```bash
+`````bash
 # Pull image mới nhất
 docker-compose pull
 
@@ -718,7 +719,7 @@ docker-compose up -d
 
 # Xác minh phiên bản
 docker-compose exec n8n-main n8n --version
-```
+`````
 
 Luôn sao lưu cơ sở dữ liệu trước khi nâng cấp phiên bản lớn. Xem changelog tại https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md.
 
@@ -728,7 +729,7 @@ Có, với chế độ queue được kích hoạt. n8n hỗ trợ LDAP/SAML SSO
 
 ### Khắc phục workflow lỗi như thế nào?
 
-Kiểm tra log thực thi trong UI n8n (Settings > Executions). Bật debug logging với `N8N_LOG_LEVEL=debug`. Cho vấn đề Webhook, xác minh `WEBHOOK_URL` khớp với domain công khai. Cho lỗi cơ sở dữ liệu, kiểm tra giới hạn connection pool PostgreSQL. Lệnh thường dùng: `docker-compose logs -f n8n-main | grep ERROR`.
+Kiểm tra log thực thi trong UI n8n (Settings > Executions). Bật debug logging với ````N8N_LOG_LEVEL=debug````. Cho vấn đề Webhook, xác minh ````WEBHOOK_URL```` khớp với domain công khai. Cho lỗi cơ sở dữ liệu, kiểm tra giới hạn connection pool PostgreSQL. Lệnh thường dùng: ````docker-compose logs -f n8n-main | grep ERROR```.
 
 ### n8n hỗ trợ những cơ sở dữ liệu nào?
 
@@ -794,7 +795,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -804,7 +805,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [n8n-ai-automation-complete-guide](n8n)
 - [n8n-vs-make-com-2026](n8n)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

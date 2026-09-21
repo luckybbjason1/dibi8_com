@@ -23,6 +23,7 @@ tags: ["whisper", "speech-recognition", "asr", "openai", "faster-whisper", "whis
 aliases:
   - /posts/openai-whisper/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -48,17 +49,17 @@ Whisper follows an encoder-decoder Transformer architecture. The audio input is 
 
 | Model | Parameters | English WER | Multilingual WER | VRAM (GPU) | Relative Speed |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | tiny  | 39M       | ~7.6%       | ~12%            | ~1 GB      | ~10x           |
 | base  | 74M       | ~5.0%       | ~10%            | ~1 GB      | ~7x            |
@@ -71,7 +72,7 @@ Whisper follows an encoder-decoder Transformer architecture. The audio input is 
 
 ### Python Installation
 
-```bash
+````bash
 python -m venv whisper-env
 source whisper-env/bin/activate  # Linux/macOS
 # whisper-env\Scripts\activate  # Windows
@@ -81,11 +82,11 @@ pip install -U openai-whisper
 
 # Verify installation
 whisper --version
-```
+`````
 
 ### System Dependencies
 
-FFmpeg is required for audio preprocessing: ```bash
+FFmpeg is required for audio preprocessing: `````bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -94,11 +95,11 @@ brew install ffmpeg
 
 # Verify
 ffmpeg -version | head -1
-```
+`````
 
 ### GPU Acceleration (CUDA)
 
-```bash
+`````bash
 # Check CUDA availability
 python -c "import torch; print(torch.cuda.is_available())"
 
@@ -107,11 +108,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # For CPU-only inference
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
+`````
 
 ### Docker Deployment
 
-```bash
+`````bash
 # Pull and run the official image
 docker pull openai/whisper:latest
 
@@ -132,11 +133,11 @@ docker run --rm \
   /audio/podcast.mp3 \
   --model base \
   --device cpu
-```
+`````
 
 ### Quick First Transcription
 
-```python
+`````python
 import whisper
 
 # Load model (downloads on first run)
@@ -148,11 +149,11 @@ print(result["text"])
 
 # Get segments with timestamps
 for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
-```
+`````
 
 ### CLI Usage Examples
 
-```bash
+`````bash
 # Basic transcription
 whisper audio.mp3 --model medium --language en
 
@@ -164,7 +165,7 @@ whisper french_interview.mp3 --model large-v3 --task translate
 
 # Detect language automatically
 whisper unknown.mp3 --model base --task transcribe
-```
+`````
 
 ## Integration with Popular Tools
 
@@ -172,11 +173,11 @@ whisper unknown.mp3 --model base --task transcribe
 
 WhisperX wraps faster-whisper and adds phoneme-level alignment and speaker diarization. It is the tool of choice for meeting transcripts and interview processing.
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -217,17 +218,17 @@ for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     end = segment["end"]
     text = segment["text"]
     print(f"[{start:.2f}s - {end:.2f}s] {speaker}: {text}")
-```
+`````
 
 ### faster-whisper (Production Inference)
 
 faster-whisper re-implements Whisper using CTranslate2, delivering 4-8x speedup with quantization support. This is the default for production APIs.
 
-```bash
+`````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # Load with quantization for lower memory
@@ -256,11 +257,11 @@ segments, info = model.transcribe(
 print(f"Detected language: {info.language} (probability: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ### LibreTranslate Integration (Translation Pipeline)
 
-```python
+`````python
 import whisper
 import requests
 
@@ -281,11 +282,11 @@ def translate(text, source="ja", target="en"): response = requests.post(
 english_text = translate(japanese_text)
 print(f"JA: {japanese_text}")
 print(f"EN: {english_text}")
-```
+`````
 
 ### FastAPI Real-Time Transcription Server
 
-```python
+`````python
 from fastapi import FastAPI, UploadFile, File
 from faster_whisper import WhisperModel
 import tempfile
@@ -321,13 +322,13 @@ async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporary
         "language_probability": info.language_probability,
         "segments": results
     }
-```
+`````
 
-Run with: `uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2`
+Run with: ````uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2````
 
 ### Prometheus Monitoring Integration
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -353,7 +354,7 @@ def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time(
 
 # Start metrics server on port 9090
 start_http_server(9090)
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -363,15 +364,15 @@ start_http_server(9090)
 
 | Model / Engine | WER (clean) | WER (other) | Multilingual | Year |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Whisper tiny   | 7.6%        | 12.0%       | 12.0%        | 2022 |
 | Whisper base   | 5.0%        | 8.1%        | 10.0%        | 2022 |
@@ -387,15 +388,15 @@ start_http_server(9090)
 
 | Engine | Model | Time | VRAM | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI Whisper | large-v3 | ~90 min | ~10 GB | Baseline |
 | faster-whisper | large-v3 | ~18 min | ~6 GB | float16, 4-8x speedup |
@@ -408,15 +409,15 @@ start_http_server(9090)
 
 | Use Case | Recommended Model | Engine | Hardware | Daily Volume |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Podcast transcription | large-v3 | faster-whisper | 1x A100 | 500+ hours |
 | Real-time meeting notes | turbo | faster-whisper | 1x RTX 4090 | 200+ hours |
@@ -428,7 +429,7 @@ start_http_server(9090)
 
 ### Model Quantization for Lower Memory
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # INT8 quantization — 2x speed, 50% less VRAM
@@ -439,11 +440,11 @@ model_hybrid = WhisperModel("large-v3", device="cuda", compute_type="int8_float1
 
 # CPU with INT8
 model_cpu = WhisperModel("medium", device="cpu", compute_type="int8", cpu_threads=8)
-```
+`````
 
 ### Batch Processing Pipeline
 
-```python
+`````python
 import os
 from concurrent.futures import ThreadPoolExecutor
 from faster_whisper import WhisperModel
@@ -467,11 +468,11 @@ files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith
 with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"Processed {len(results)} files")
-```
+`````
 
 ### NGINX Load Balancing (Multi-GPU)
 
-```nginx
+`````nginx
 upstream whisper_backend {
     least_conn;
     server 10.0.1.10:8000 weight=1;  # GPU 0
@@ -488,11 +489,11 @@ server {
         client_max_body_size 500M;
     }
 }
-```
+`````
 
 ### Health Check Endpoint
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from faster_whisper import WhisperModel
 import torch
@@ -509,11 +510,11 @@ async def health(): gpu_available = torch.cuda.is_available()
         "gpu_memory_gb": gpu_memory / (1024**3),
         "model_loaded": model is not None
     }
-```
+`````
 
 ### Redis Queue for Async Processing
 
-```python
+`````python
 import redis
 import json
 from faster_whisper import WhisperModel
@@ -535,7 +536,7 @@ def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
         time.sleep(0.1)
 
 if __name__ == "__main__": worker()
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -543,15 +544,15 @@ if __name__ == "__main__": worker()
 
 | Feature | OpenAI Whisper | WhisperX | faster-whisper | DeepSpeech |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 99,800 | 19,700 | 20,400 | 26,700 (archived) |
 | **License** | MIT | BSD-2 | MIT | MPL-2.0 |
@@ -591,11 +592,11 @@ Yes. All models except large-v3 run comfortably on modern CPUs. Use the tiny mod
 
 ### 3. Which model size should I choose?
 
-Start with `base` for English-only quick tasks, `small` for daily multilingual use, `medium` for professional accuracy, and `large-v3` when maximum accuracy is non-negotiable. The `turbo` model is the sweet spot for latency-sensitive production workloads.
+Start with ````base```` for English-only quick tasks, ````small```` for daily multilingual use, ````medium```` for professional accuracy, and ````large-v3```` when maximum accuracy is non-negotiable. The ````turbo```` model is the sweet spot for latency-sensitive production workloads.
 
 ### 4. How do I handle long audio files efficiently?
 
-Use faster-whisper with `vad_filter=True` to skip silent segments. For files longer than 1 hour, split into chunks and process in parallel. WhisperX handles long files natively and is more stable on 3+ hour audio than base Whisper.
+Use faster-whisper with ````vad_filter=True```` to skip silent segments. For files longer than 1 hour, split into chunks and process in parallel. WhisperX handles long files natively and is more stable on 3+ hour audio than base Whisper.
 
 ### 5. Is Whisper free for commercial use?
 
@@ -611,10 +612,10 @@ A single NVIDIA A100 (80 GB) can run 4 large-v3 instances with float16, processi
 
 ## Conclusion
 
-OpenAI Whisper remains the pragmatic choice for production speech recognition in 2026. Its 99,800 GitHub stars reflect not just popularity but ecosystem maturity: faster-whisper gives you speed, WhisperX gives you diarization, and the core model gives you accuracy across 99 languages. Start with `faster-whisper` and the `medium` model, add `WhisperX` when you need speaker labels, and quantize to INT8 when GPU memory is tight.
+OpenAI Whisper remains the pragmatic choice for production speech recognition in 2026. Its 99,800 GitHub stars reflect not just popularity but ecosystem maturity: faster-whisper gives you speed, WhisperX gives you diarization, and the core model gives you accuracy across 99 languages. Start with ````faster-whisper```` and the ````medium```` model, add ````WhisperX```` when you need speaker labels, and quantize to INT8 when GPU memory is tight.
 
 **Next steps:**
-- Clone the repo: `git clone https://github.com/openai/whisper`
+- Clone the repo: ````git clone https://github.com/openai/whisper```
 - Join the dibi8 developer community on Telegram for deployment tips
 - Benchmark faster-whisper on your own audio data before committing to a model size
 
@@ -665,7 +666,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](openai-whisper)
@@ -675,5 +676,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](openai-whisper)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

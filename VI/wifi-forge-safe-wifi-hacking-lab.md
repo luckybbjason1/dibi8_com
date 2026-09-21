@@ -32,6 +32,7 @@ faqs: - q: 'WiFi-Forge là gì?'
     a: 'Bạn cần Linux (Ubuntu hoặc Debian là tốt nhất), Python 3 và quyền root vì mininet-wifi sử dụng các tính năng của kernel. Sau khi clone repo, chạy sudo ./install.sh để cài đặt các dependency, rồi chạy sudo python3 wififorge.py để khởi động.'
 ---
 
+
 # WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi
 
 {</* resource-info */>}
@@ -46,13 +47,13 @@ Nếu bạn từng thử học các cuộc tấn công WiFi theo cách truyền 
 
 Học WiFi truyền thống có ba điểm khiến nhiều người bỏ cuộc: 1. **Hên xui phần cứng.** Không phải USB adapter nào cũng hỗ trợ monitor + injection sạch sẽ. Những cái đáng tin (Alfa AWUS036, Panda PAU09, v.v.) tốn 30–60 USD, và một lần chỉ dùng được một cái.
 2. **Vùng xám pháp lý.** Ở hầu hết các nước, chạm vào bất kỳ mạng nào bạn không sở hữu —— kể cả nghe lén bị động —— đều là phạm pháp. *"Tôi chỉ sniff thôi"* không phải lý do biện hộ được.
-3. **Chi phí reset.** Phần cứng thật không reset bằng một lệnh. Bạn không thể `git checkout` để hoàn tác cấu hình hỏng.
+3. **Chi phí reset.** Phần cứng thật không reset bằng một lệnh. Bạn không thể ```git checkout```` để hoàn tác cấu hình hỏng.
 
 WiFi-Forge gói gọn cả ba vấn đề này vào một sandbox duy nhất trên laptop của bạn.
 
 ## Cấu trúc bên trong
 
-WiFi-Forge được xây dựng trên [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi) —— một bộ mô phỏng mạng 802.11 tạo các access point ảo, station và "sóng vô tuyến" trong các Linux network namespace. Mỗi AP và client là một process Linux thực —— bạn có thể dùng `iwconfig`, `airodump-ng`, `tcpdump`, thậm chí cả Reaver và Hashcat trên traffic mô phỏng, và tất cả các công cụ tiêu chuẩn đều hành xử như đang chạm vào sóng radio thật.
+WiFi-Forge được xây dựng trên [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi) —— một bộ mô phỏng mạng 802.11 tạo các access point ảo, station và "sóng vô tuyến" trong các Linux network namespace. Mỗi AP và client là một process Linux thực —— bạn có thể dùng ````iwconfig````, ````airodump-ng````, ````tcpdump````, thậm chí cả Reaver và Hashcat trên traffic mô phỏng, và tất cả các công cụ tiêu chuẩn đều hành xử như đang chạm vào sóng radio thật.
 
 WiFi-Forge thêm vào trên đó: các topology dựng sẵn, các kịch bản tấn công sẵn sàng chạy, và cấu trúc hướng dẫn để bạn không phải thiết kế mạng từ đầu mỗi lần muốn luyện tập.
 
@@ -72,12 +73,12 @@ Mỗi lab khởi động một topology cụ thể, đưa bạn vào shell, và 
 
 ## Bắt đầu
 
-```bash
+`````bash
 git clone https://github.com/blackhillsinfosec/WifiForge
 cd WifiForge
 sudo ./install.sh
 sudo python3 wififorge.py
-```
+````
 
 Cần Linux (Ubuntu hoặc Debian là tốt nhất), Python 3, và quyền root (mininet-wifi dùng các tính năng kernel). Script cài đặt sẽ xử lý dependencies —— mininet-wifi, aircrack-ng, hashcat, reaver, v.v.
 
@@ -96,13 +97,13 @@ Cần Linux (Ubuntu hoặc Debian là tốt nhất), Python 3, và quyền root 
 
 Loại dự án này bắt buộc phải nói thẳng: **chỉ sử dụng các kỹ thuật này trên các mạng bạn sở hữu hoặc có giấy phép kiểm thử bằng văn bản.** WiFi-Forge tồn tại *chính vì* lab mô phỏng loại bỏ mọi cám dỗ "thử một chút" với WiFi của quán cà phê bên cạnh. Học một cách an toàn —— đó là toàn bộ ý nghĩa.
 
----
+* * *
 
 - **Repo:** [github.com/blackhillsinfosec/WifiForge](https://github.com/blackhillsinfosec/WifiForge)
 - **Dựa trên:** [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi)
 - **Bảo trì bởi:** [Black Hills InfoSec](https://www.blackhillsinfosec.com/)
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -175,7 +176,7 @@ WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

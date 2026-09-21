@@ -24,13 +24,14 @@ aliases:
   - /vi/posts/trino-distributed-sql-query/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Khi Data Warehouse Củng Củng Trước Dữ Liệu Petabyte
 
 Năm 2024, một công ty fintech vừa và nhỏ ở Singapore chứng kiến hóa đơn Snowflake của họ đạt **$47.000/tháng** — chỉ cho các truy vấn phân tích ad-hoc trên data lake S3. Đội ngũ data gồm 12 kỹ sư dành nhiều thờigian tối ưu chi phí hơn là viết truy vấn thực tế. Đến tháng 3/2025, họ di chuyển sang cluster Trino tự host trên ba máy chủ bare-metal. Chi phí truy vấn giảm **82%**. Độ trễ truy vấn cho 20 dashboard hàng đầu cải thiện từ **4,2s xuống 1,1s trung bình**.
 
-Đây không phải câu chuyện cá biệt. Tính đến tháng 5/2026, Trino (trước đây là PrestoSQL) đang cung cấp năng lực phân tích cho **Netflix, Airbnb, Uber, Lyft và Goldman Sachs**. Dự án có **khoảng 11.000 sao GitHub** dưới tổ chức `trinodb`, phiên bản **464+** được phát hành đầu năm 2026. Trino là một công cụ truy vấn SQL phân tán được thiết kế để chạy các truy vấn phân tích tương tác trên các nguồn dữ liệu mọi quy mô — từ gigabyte đến petabyte.
+Đây không phải câu chuyện cá biệt. Tính đến tháng 5/2026, Trino (trước đây là PrestoSQL) đang cung cấp năng lực phân tích cho **Netflix, Airbnb, Uber, Lyft và Goldman Sachs**. Dự án có **khoảng 11.000 sao GitHub** dưới tổ chức ```trinodb````, phiên bản **464+** được phát hành đầu năm 2026. Trino là một công cụ truy vấn SQL phân tán được thiết kế để chạy các truy vấn phân tích tương tác trên các nguồn dữ liệu mọi quy mô — từ gigabyte đến petabyte.
 
 Hướng dẫn này đi qua thiết lập cluster Trino production-ready, cấu hình connector, tối ưu hiệu suất và benchmark trung thực. Dù bạn đang xây data lakehouse hay thay thế warehouse đắt tiền, bạn sẽ có cluster chạy được trong vòng 30 phút.
 
@@ -45,7 +46,7 @@ Nguyên tắc thiết kế cốt lõi: - **Tách biệt compute và storage**: T
 
 ## Trino Hoạt Động Như Thế Nào: Kiến trúc Chi tiết
 
-Trino tuân theo **kiến trúc coordinator-worker** với sự phân chia vai trò rõ ràng: ```
+Trino tuân theo **kiến trúc coordinator-worker** với sự phân chia vai trò rõ ràng: `````
 ┌─────────────────────────────────────────────────────────────┐
 │                        Client (CLI / JDBC)                   │
 └───────────────────────┬─────────────────────────────────────┘
@@ -68,7 +69,7 @@ Trino tuân theo **kiến trúc coordinator-worker** với sự phân chia vai t
 │ │ Operator │ │ │ │ Operator │ │ │ │ Operator │ │
 │ └──────────┘ │ │ └──────────┘ │ │ └──────────┘ │
 └──────────────┘ └──────────────┘ └──────────────┘
-```
+`````
 
 Vòng đờ truy vấn gồm các giai đoạn: 1. **Client gửi SQL** → Coordinator nhận truy vấn qua HTTP REST API
 2. **Phân tích & Phân tích** → SQL được parse thành AST, được giải quyết dựa trên catalog metadata
@@ -92,24 +93,24 @@ Bạn cần: - **3+ máy chủ** (hoặc VM): 1 coordinator + 2+ worker
 
 ### Bước 1: Tải Trino Server
 
-```bash
+`````bash
 export TRINO_VERSION=464
 wget https://repo1.maven.org/maven2/io/trino/trino-server/${TRINO_VERSION}/trino-server-${TRINO_VERSION}.tar.gz
 tar -xzf trino-server-${TRINO_VERSION}.tar.gz
 cd trino-server-${TRINO_VERSION}
-```
+`````
 
 ### Bước 2: Tạo các thư mục cần thiết
 
-```bash
+`````bash
 sudo mkdir -p /var/trino/data
 sudo mkdir -p /etc/trino
 export JAVA_HOME=/usr/lib/jvm/java-22-openjdk-amd64
-```
+`````
 
 ### Bước 3: Cấu hình Coordinator
 
-Trên node coordinator, tạo `/etc/trino/config.properties`: ```properties
+Trên node coordinator, tạo ``/etc/trino/config.properties``: `````properties
 # /etc/trino/config.properties — Coordinator Node
 coordinator=true
 node-scheduler.include-coordinator=false
@@ -118,16 +119,16 @@ query.max-memory=50GB
 query.max-memory-per-node=5GB
 query.max-total-memory-per-node=6GB
 discovery.uri=http://trino-coordinator:8080
-```
+`````
 
-Tạo `/etc/trino/node.properties`: ```properties
+Tạo ``/etc/trino/node.properties``: `````properties
 # /etc/trino/node.properties
 node.environment=production
 node.id=trino-coordinator-01
 node.data-dir=/var/trino/data
-```
+`````
 
-Tạo `/etc/trino/jvm.config`: ```bash
+Tạo ``/etc/trino/jvm.config``: `````bash
 # /etc/trino/jvm.config
 -server
 -Xmx16G
@@ -137,11 +138,11 @@ Tạo `/etc/trino/jvm.config`: ```bash
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:OnOutOfMemoryError=kill -9 %p
 -Djdk.attach.allowAttachSelf=true
-```
+`````
 
 ### Bước 4: Cấu hình Worker
 
-Trên mỗi node worker, tạo `/etc/trino/config.properties`: ```properties
+Trên mỗi node worker, tạo ``/etc/trino/config.properties``: `````properties
 # /etc/trino/config.properties — Worker Node
 coordinator=false
 http-server.http.port=8080
@@ -149,13 +150,13 @@ query.max-memory=50GB
 query.max-memory-per-node=5GB
 query.max-total-memory-per-node=6GB
 discovery.uri=http://trino-coordinator:8080
-```
+`````
 
-Dùng `node.properties` và `jvm.config` giống coordinator, nhưng đổi `node.id` thành giá trị duy nhất mỗi worker (vd: `trino-worker-01`, `trino-worker-02`).
+Dùng ````node.properties```` và ````jvm.config```` giống coordinator, nhưng đổi ````node.id```` thành giá trị duy nhất mỗi worker (vd: ````trino-worker-01````, ````trino-worker-02````).
 
 ### Bước 5: Thêm Catalog (S3 + Iceberg)
 
-Tạo `/etc/trino/catalog/iceberg.properties`: ```properties
+Tạo ``/etc/trino/catalog/iceberg.properties``: `````properties
 # /etc/trino/catalog/iceberg.properties
 connector.name=iceberg
 hive.s3.aws-access-key=YOUR_ACCESS_KEY
@@ -164,19 +165,19 @@ hive.s3.endpoint=https://s3.us-east-1.amazonaws.com
 hive.s3.region=us-east-1
 iceberg.catalog.type=glue
 iceberg.file-format=PARQUET
-```
+`````
 
-Catalog filesystem local khi testing: ```properties
+Catalog filesystem local khi testing: `````properties
 # /etc/trino/catalog/local.properties
 connector.name=iceberg
 iceberg.catalog.type=file_system
 iceberg.file-format=PARQUET
 hive.metastore.uri=thrift://localhost:9083
-```
+`````
 
 ### Bước 6: Khởi động Cluster
 
-```bash
+`````bash
 # Khởi động coordinator
 bin/launcher start
 
@@ -185,17 +186,17 @@ bin/launcher start
 
 # Kiểm tra trạng thái cluster
 ./trino --server http://trino-coordinator:8080 --execute "SELECT * FROM system.runtime.nodes"
-```
+`````
 
-Output mong đợi hiển thị tất cả node: ```
+Output mong đợi hiển thị tất cả node: `````
 http://trino-coordinator:8080    trino-coordinator-01    coordinator    true       active
 http://trino-worker-01:8080     trino-worker-01         worker         false      active
 http://trino-worker-02:8080     trino-worker-02         worker         false      active
-```
+`````
 
 ### Bước 7: Truy vấn đầu tiên
 
-```bash
+`````bash
 # Cài Trino CLI
 wget https://repo1.maven.org/maven2/io/trino/trino-cli/${TRINO_VERSION}/trino-cli-${TRINO_VERSION}-executable.jar
 chmod +x trino-cli-${TRINO_VERSION}-executable.jar
@@ -206,24 +207,24 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
   --catalog iceberg \
   --schema default \
   --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL 7 DAY"
-```
+`````
 
 ## Tích hợp với Công cụ Dữ liệu Chính thống
 
 ### Tích hợp 1: Apache Superset (BI Dashboard)
 
-Superset kết nối với Trino qua dialect PyHive SQLAlchemy: ```bash
+Superset kết nối với Trino qua dialect PyHive SQLAlchemy: `````bash
 # Cài driver Trino cho Superset
 pip install trino[sqlalchemy]
-```
+`````
 
-Trong Superset, thêm database với connection string: ```
+Trong Superset, thêm database với connection string: `````
 trino://trino-coordinator:8080/iceberg/default
-```
+`````
 
 ### Tích hợp 2: dbt (Biến đổi Dữ liệu)
 
-Cấu hình `~/.dbt/profiles.yml`: ```yaml
+Cấu hình ``~/.dbt/profiles.yml``: `````yaml
 my_trino_project: target: dev
   outputs: dev: type: trino
       method: none
@@ -233,15 +234,15 @@ my_trino_project: target: dev
       catalog: iceberg
       schema: analytics
       threads: 8
-```
+`````
 
-Chạy model dbt: ```bash
+Chạy model dbt: `````bash
 dbt run --profiles-dir ~/.dbt --project-dir ./my_project
-```
+`````
 
 ### Tích hợp 3: Apache Airflow (Điều phối)
 
-Dùng `TrinoOperator` trong DAG: ```python
+Dùng ``TrinoOperator`` trong DAG: `````python
 from airflow.providers.trino.operators.trino import TrinoOperator
 from airflow import DAG
 from datetime import datetime
@@ -257,19 +258,19 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
         """,
         trino_conn_id="trino_default",
     )
-```
+`````
 
 ### Tích hợp 4: Apache Kafka (Phân tích Streaming)
 
-Tạo `/etc/trino/catalog/kafka.properties`: ```properties
+Tạo ``/etc/trino/catalog/kafka.properties``: `````properties
 connector.name=kafka
 kafka.table-names=events,orders,user_activity
 kafka.default-schema=default
 kafka.nodes=kafka-01:9092,kafka-02:9092,kafka-03:9092
 kafka.table-description-dir=/etc/trino/kafka/
-```
+`````
 
-Truy vấn topic Kafka trực tiếp bằng SQL: ```sql
+Truy vấn topic Kafka trực tiếp bằng SQL: `````sql
 -- Truy vấn Kafka stream trực tiếp
 SELECT
     _message,
@@ -280,19 +281,19 @@ SELECT
 FROM kafka.default.events
 WHERE _offset > 1000000
 LIMIT 100;
-```
+`````
 
 ### Tích hợp 5: PostgreSQL (Liên kết Dữ liệu Vận hành)
 
-Tạo `/etc/trino/catalog/postgres.properties`: ```properties
+Tạo ``/etc/trino/catalog/postgres.properties``: `````properties
 connector.name=postgresql
 connection-url=jdbc:postgresql://postgres:5432/production
 connection-user=trino_reader
 connection-password=${ENV:POSTGRES_PASSWORD}
 case-insensitive-name-matching=true
-```
+`````
 
-Liên kết PostgreSQL và S3 trong một truy vấn duy nhất: ```sql
+Liên kết PostgreSQL và S3 trong một truy vấn duy nhất: `````sql
 SELECT
     u.id,
     u.email,
@@ -303,7 +304,7 @@ WHERE u.created_at > DATE '2026-01-01'
 GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 100;
-```
+`````
 
 ## Benchmark & Các Trường hợp Sử dụng Thực tế
 
@@ -344,7 +345,7 @@ Tự host Trino trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTS
 
 ### Tối ưu truy vấn với EXPLAIN ANALYZE
 
-Trino cung cấp kế hoạch truy vấn chi tiết. Luôn kiểm tra trước khi tối ưu: ```sql
+Trino cung cấp kế hoạch truy vấn chi tiết. Luôn kiểm tra trước khi tối ưu: `````sql
 EXPLAIN ANALYZE
 SELECT
     region,
@@ -354,7 +355,7 @@ FROM orders o
 JOIN customers c ON o.customer_id = c.id
 WHERE o.order_date > DATE '2026-01-01'
 GROUP BY region;
-```
+`````
 
 Tìm các vấn đề phổ biến trong output: - **Collocated joins** vs **repartitioned joins** — hướng đến broadcast join trên bảng dimension nhỏ
 - **Table scan không có predicate pushdown** — đảm bảo partition pruning đang hoạt động
@@ -362,7 +363,7 @@ Tìm các vấn đề phổ biến trong output: - **Collocated joins** vs **rep
 
 ### Nhóm Tài nguyên (Cô lập Production-Grade)
 
-Tạo `/etc/trino/resource-groups.json`: ```json
+Tạo ``/etc/trino/resource-groups.json``: `````json
 {
   "rootGroups": [
     {
@@ -403,58 +404,58 @@ Tạo `/etc/trino/resource-groups.json`: ```json
     {"source": "superset", "group": "global.dashboard"}
   ]
 }
-```
+`````
 
-Tham chiếu trong `config.properties`: ```properties
+Tham chiếu trong ``config.properties``: `````properties
 resource-groups.config-file=/etc/trino/resource-groups.json
-```
+`````
 
 ### Bật Exchange Spilling (Bảo vệ Bộ nhớ)
 
-Cho các truy vấn vượt quá bộ nhớ khả dụng, bật spilling ra đĩa: ```properties
+Cho các truy vấn vượt quá bộ nhớ khả dụng, bật spilling ra đĩa: `````properties
 # /etc/trino/config.properties
 spill-enabled=true
 spiller-spill-path=/var/trino/spill
 memory-revoking-threshold=0.8
 memory-revoking-target=0.5
-```
+`````
 
 ### Xác thực & SSL (Bảo mật Production)
 
-Bật xác thực mật khẩu với LDAP hoặc file-based: ```properties
+Bật xác thực mật khẩu với LDAP hoặc file-based: `````properties
 # /etc/trino/config.properties
 http-server.authentication.type=PASSWORD
 http-server.https.enabled=true
 http-server.https.port=8443
 http-server.https.keystore.path=/etc/trino/keystore.jks
 http-server.https.keystore.key=changeit
-```
+`````
 
-Tạo `/etc/trino/password-authenticator.properties`: ```properties
+Tạo ``/etc/trino/password-authenticator.properties``: `````properties
 password-authenticator.name=file
 file.password-file=/etc/trino/password.db
-```
+`````
 
-Tạo password hash: ```bash
+Tạo password hash: `````bash
 # Cài plugin trino-password-authenticator, sau đó: java -cp trino-server-464/plugin/password-authenticators/* \
   io.trino.plugin.password.file.EncryptPassword \
   --password 'your-secure-password'
-```
+`````
 
 ### Giám sát với JMX + Prometheus
 
-Bật JMX catalog cho runtime metrics: ```properties
+Bật JMX catalog cho runtime metrics: `````properties
 # /etc/trino/catalog/jmx.properties
 connector.name=jmx
-```
+`````
 
-Truy vấn runtime metrics trực tiếp: ```sql
+Truy vấn runtime metrics trực tiếp: `````sql
 -- Truy vấn đang hoạt động
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
 -- Bộ nhớ sử dụng mỗi truy vấn
 SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = RUNNING;
-```
+````
 
 ## So sánh với Các lựa chọn Khác
 
@@ -574,7 +575,7 @@ Bài viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -582,6 +583,6 @@ Bài viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do
 - [academic-research-skills](trino-distributed-sql-query)
 - [last30days-skill-ai-agent-research-engine-social-media](trino-distributed-sql-query)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

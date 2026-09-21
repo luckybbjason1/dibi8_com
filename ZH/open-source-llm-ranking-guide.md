@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/open-source-llm-ranking-guide/-
 ---
+
 # 开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比
 
 
@@ -45,11 +46,11 @@ aliases:
 
 | Benchmark | 测试内容 | 分数范围 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | MMLU | 57 个学科的多选题 | 0-100% |
 | HumanEval | Python 编程题 | 0-100% |
@@ -68,13 +69,13 @@ Meta 的 Llama 系列依然是 2025 年开源模型的**事实标准**。截至 
 
 | 版本 | 参数量 | 上下文长度 | 定位 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.2 1B/3B | 1B/3B | 128K | 端侧/移动设备 |
 | Llama 3.1/3.3 8B | 8B | 128K | 高效推理、消费级 GPU |
@@ -100,11 +101,11 @@ Llama 3 采用 Llama 3 License，允许商业使用，但月活用户超过 7 �
 
 | 模型 | 参数量/架构 | 特点 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Mistral 7B | 7B | 2023 年的突破之作，超越 Llama 2 13B |
 | Mixtral 8x7B | 8x7B MoE | 专家混合架构，激活参数仅 13B |
@@ -129,13 +130,13 @@ Qwen（通义千问）是阿里巴巴达摩院开发的大模型系列，2025 �
 
 | 模型 | 参数量 | 上下文 | 定位 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qwen2.5 0.5B | 0.5B | 32K | 端侧、嵌入式 |
 | Qwen2.5 1.5B | 1.5B | 32K | 轻量级应用 |
@@ -189,11 +190,11 @@ Gemma 是 Google 推出的开源模型系列，主打**轻量级 + 高性能**�
 
 | 模型 | 参数量 | 特点 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Gemma 2 2B | 2B | 可在手机端运行，知识蒸馏自大模型 |
 | Gemma 2 9B | 9B | 性能接近 Llama 3 8B，但参数量更少 |
@@ -222,17 +223,17 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 | 模型 | 参数量 | MMLU | HumanEval | MT-Bench | LMSYS ELO |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-4o（闭源参考） | - | 88.7% | 90.2% | 9.20 | 1318 |
 | Llama 3.1 405B | 405B | 85.2% | 89.0% | 8.88 | 1290 |
@@ -251,13 +252,13 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 | 模型 | FP16 显存 | 4-bit 量化 | 推荐 GPU（4-bit） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.2 3B | 6GB | 2GB | RTX 3060 12GB |
 | Qwen2.5 7B | 14GB | 5GB | RTX 3060 12GB |
@@ -275,9 +276,9 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 | 推荐模型 | 理由 |
 |
----
+* * *
 |
----
+* * *
 |
 | **DeepSeek Coder V2** | 338 种语言，SWE-bench 超越 GPT-4o |
 | **CodeQwen 1.5 7B/14B** | 中文注释理解强，HumanEval 86%+ |
@@ -287,9 +288,9 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 | 推荐模型 | 理由 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Qwen2.5 72B** | 中文 benchmark 持续领先，多语言 29 种 |
 | **Llama 3.3 70B** | 多语言支持改善，社区生态最丰富 |
@@ -299,9 +300,9 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 | 推荐模型 | 理由 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Phi-4 14B** | MIT 许可证，小参数高性能 |
 | **Gemma 2 9B** | Google 官方优化，端侧友好 |
@@ -311,9 +312,9 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 | 推荐模型 | 理由 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Llama 3.3 70B** | 生态最成熟，vLLM/TensorRT 优化完善 |
 | **Qwen2.5 72B** | 中文场景首选，工具调用稳定 |
@@ -323,7 +324,7 @@ Phi-4 证明了：数据质量比模型规模更重要。
 
 ### Hugging Face Hub（最常用）
 
-```python
+````python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained(
@@ -332,16 +333,16 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map="auto"
 )
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
-```
+`````
 
 ### Ollama（最简单的本地运行）
 
-```bash
+`````bash
 ollama run llama3.3        # 运行 Llama 3.3
 ollama run qwen2.5:7b      # 运行 Qwen2.5
 ollama run deepseek-coder  # 运行 DeepSeek Coder
 ollama run phi4            # 运行 Phi-4
-```
+````
 
 ### GPT4All / LM Studio（带 UI 的本地运行）
 
@@ -409,11 +410,11 @@ ollama run phi4            # 运行 Phi-4
 对于预算有限的团队，建议优先尝试 Qwen2.5 32B 或 DeepSeek V3 的 MoE 架构，用更少的硬件获得接近的质量。
 
 
----
+* * *
 更多模型详情可参考各模型官方页面：[Meta Llama](https://ai.meta.com/llama)、[Mistral AI](https://mistral.ai/)、[Qwen 系列](https://huggingface.co/Qwen)、[DeepSeek](https://deepseek.com/)，以及 [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard) 和 [LMSYS Arena](https://chat.lmsys.org/)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -486,7 +487,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

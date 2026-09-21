@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/scrapy/
 ---
 
+
 {{</* resource-info */>}}
 
 단일 Python 프레임워크가 전 세계 약 **34%의 프로덕션 스크래핑 프로젝트**를 지원하고 GitHub에서 61,700개의 star를 유지하고 있다면, 깊이 있는 분석이 필요하다. Scrapy는 2008년부터 웹 크롤링의 주력 도구였지만, 2026년에는 Playwright와 같은 현대적인 브라우저 자동화 도구와 BeautifulSoup과 같은 검증된 라이브러리가 시장에 있다. 이제 질문은 "Scrapy가 크롤링할 수 있는가?"가 아니라 "특정 워크로드에 대해 여전히 Scrapy를 대안보다 선택해야 하는가?"이다.
@@ -53,11 +54,11 @@ Scrapy의 아키텍처는 관심사를 명확하게 분리한 이벤트 기반 �
 
 ### 데이터 흐름
 
-```
+````
 스파이더 → 엔진 → 스케줄러 → 엔진 → 다운로더 → 스파이더 → 아이템 파이프라인
                   ↓                                    ↓
              (중복 필터)                          (새 요청)
-```
+`````
 
 엔진은 스파이더에서 초기 요청을 가져와 스케줄링하고, 다운로더를 통해 전송하고, 응답을 받아 스파이더로 다시 전달하여 파싱하고, 추출된 아이템을 파이프라인을 통해 전송한다. 파싱 중 발견된 새 요청은 스케줄러로 다시 순환한다. 남은 요청이 없을 때까지 이 루프가 계속된다.
 
@@ -73,7 +74,7 @@ Scrapy의 아키텍처는 관심사를 명확하게 분리한 이벤트 기반 �
 
 ### 기본 설치
 
-```bash
+`````bash
 # 가상 환경 생성
 python -m venv scrapy_env
 source scrapy_env/bin/activate  # Linux/Mac
@@ -88,20 +89,20 @@ scrapy version
 
 # 내장 벤치마크 실행
 scrapy bench
-```
+`````
 
 ### 프로젝트 스캐폴드
 
-```bash
+`````bash
 # 새 Scrapy 프로젝트 생성
 scrapy startproject price_monitor
 cd price_monitor
 
 # 스파이더 템플릿 생성
 scrapy genspider products example.com
-```
+`````
 
-표준 프로젝트 구조가 생성된다: ```
+표준 프로젝트 구조가 생성된다: `````
 price_monitor/
 ├── scrapy.cfg              # 프로젝트 설정
 ├── price_monitor/
@@ -113,11 +114,11 @@ price_monitor/
 │   └── spiders/
 │       ├── __init__.py
 │       └── products.py     # 사용자 스파이더
-```
+`````
 
 ### 첫 번째 스파이더: 상품 스크래퍼
 
-```python
+`````python
 # price_monitor/spiders/products.py
 import scrapy
 
@@ -142,11 +143,11 @@ class ProductsSpider(scrapy.Spider): name = products
         # 페이지네이션 팔로우
         next_page = response.css('.next-page::attr(href)').get()
         if next_page: yield response.follow(next_page, self.parse)
-```
+`````
 
 ### 스파이더 실행
 
-```bash
+`````bash
 # 스파이더 실행 및 JSON 출력
 scrapy crawl products -o products.json
 
@@ -155,11 +156,11 @@ scrapy crawl products -o products.csv
 
 # 로그 레벨 제어와 함께 실행
 scrapy crawl products -L INFO
-```
+`````
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -169,9 +170,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["scrapy", "crawl", "products"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: scrapy: build: .
@@ -189,27 +190,27 @@ services: scrapy: build: .
       POSTGRES_PASSWORD: scraper_pass
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## 인기 도구와의 통합
 
 ### Redis를 활용한 분산 크롤링 (scrapy-redis)
 
-단일 머신으로는 부족할 때, scrapy-redis는 Redis를 공유 큐로 사용하여 크롤링을 여러 노드에 분산한다: ```bash
+단일 머신으로는 부족할 때, scrapy-redis는 Redis를 공유 큐로 사용하여 크롤링을 여러 노드에 분산한다: `````bash
 pip install scrapy-redis
-```
+`````
 
-```python
+`````python
 # settings.py
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_URL = "redis://localhost:6379"
 SCHEDULER_PERSIST = True  # 실행 간 큐 유지
-```
+`````
 
 ### PostgreSQL 파이프라인
 
-```python
+`````python
 # pipelines.py
 import psycopg2
 from scrapy.exceptions import DropItem
@@ -243,24 +244,24 @@ class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.conn
 
     def close_spider(self, spider): self.cur.close()
         self.conn.close()
-```
+`````
 
 ### JavaScript 렌더링 페이지용 Playwright
 
-```bash
+`````bash
 pip install scrapy-playwright
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-```
+`````
 
-```python
+`````python
 # Playwright를 사용하는 스파이더
 import scrapy
 from scrapy_playwright.page import PageMethod
@@ -283,11 +284,11 @@ class JSSpider(scrapy.Spider): name = js_site
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
-```
+`````
 
 ### WebShare를 활용한 프록시 로테이션
 
-프로덕션 크롤링을 위해 안정적인 로테이팅 프록시 풀은 필수적이다. WebShare는 데이터센터 및 레지덴셜 프록시를 제공하여 Scrapy의 미들웨어와 깔끔하게 통합된다: ```python
+프로덕션 크롤링을 위해 안정적인 로테이팅 프록시 풀은 필수적이다. WebShare는 데이터센터 및 레지덴셜 프록시를 제공하여 Scrapy의 미들웨어와 깔끔하게 통합된다: `````python
 # middlewares.py
 import base64
 
@@ -298,16 +299,16 @@ class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
 
     def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         spider.logger.debug(f'{request.url}에 프록시 사용 중')
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOADER_MIDDLEWARES = {
     'price_monitor.middlewares.ProxyMiddleware': 350,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 400,
 }
 WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
-```
+`````
 
 프록시 목록을 Scrapy 설정에 구성하면 미들웨어가 IP를 자동으로 로테이션한다. 대용량 스크래핑의 경우 WebShare의 로테이팅 프록시 엔드포인트는 인증과 로테이션을 투명하게 처리한다 — Scrapy를 단일 URL로 향하게 하면 요청마다 다른 이그레스 IP를 얻는다.
 
@@ -351,29 +352,29 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 
 ### 자동 스로틀 구성
 
-스로틀링 없이는 Scrapy가 대상 서버를 압도하고 수 초 내에 차단될 수 있다. AutoThrottle은 서버 응답 시간에 기반하여 다운로드 지연을 동적으로 조정한다: ```python
+스로틀링 없이는 Scrapy가 대상 서버를 압도하고 수 초 내에 차단될 수 있다. AutoThrottle은 서버 응답 시간에 기반하여 다운로드 지연을 동적으로 조정한다: `````python
 # settings.py
 AUTOTHROTTLE_ENABLED = True
 AUTOTHROTTLE_START_DELAY = 1.0
 AUTOTHROTTLE_MAX_DELAY = 10.0
 AUTOTHROTTLE_TARGET_CONCURRENCY = 2.0
 AUTOTHROTTLE_DEBUG = False
-```
+`````
 
 ### 재시도 및 타임아웃 정책
 
-```python
+`````python
 # settings.py
 RETRY_ENABLED = True
 RETRY_TIMES = 3
 RETRY_HTTP_CODES = [500, 502, 503, 504, 408, 429]
 DOWNLOAD_TIMEOUT = 30
 DOWNLOAD_FAIL_ON_DATALOSS = False
-```
+`````
 
 ### 커스텀 User-Agent 로테이션
 
-```python
+`````python
 # middlewares.py
 import random
 
@@ -384,11 +385,11 @@ USER_AGENTS = [
 ]
 
 class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
-```
+`````
 
 ### 통계 수집을 통한 모니터링
 
-```python
+`````python
 # extensions.py
 from scrapy import signals
 
@@ -408,30 +409,30 @@ class StatsCollector: def __init__(self): self.requests_count = 0
 
     def item_scraped(self, item, spider): self.items_count += 1
         if self.items_count % 1000 == 0: spider.logger.info(f'{self.items_count}개 아이템, {self.requests_count}개 요청 스크랩됨')
-```
+`````
 
 ### 로그 로테이션 및 구조화된 로깅
 
-```python
+`````python
 # settings.py
 LOG_LEVEL = INFO
 LOG_FILE = 'logs/scrapy.log'
 LOG_FORMAT = '%(asctime)s [%(name)s] %(levelname)s: %(message)s"
 LOG_STDOUT = False
-```
+`````
 
 ### Scrapyd를 활용한 수평 확장
 
-```bash
+`````bash
 pip install scrapyd
 scrapyd  # 6800번 포트에서 데몬 시작
-```
+`````
 
-```bash
+`````bash
 # HTTP API를 통한 배포 및 스케줄링
 curl http://localhost:6800/schedule.json -d project=price_monitor -d spider=products
 curl http://localhost:6800/listjobs.json -d project=price_monitor
-```
+`````
 
 ## 대안과의 비교
 
@@ -497,7 +498,7 @@ Scrapy는 Python에서 대규모, 프로덕션급 웹 크롤링을 위한 가장
 
 **실행 항목:**
 
-1. Scrapy 저장소를 클론하고 하드웨어에서 `scrapy bench`를 실행한다.
+1. Scrapy 저장소를 클론하고 하드웨어에서 ````scrapy bench```를 실행한다.
 2. PostgreSQL 및 Redis 통합이 포함된 Docker 기반 프로젝트를 설정한다.
 3. 프로덕션 크롤링을 위해 프록시 로테이션을 구성한다.
 4. 일일 팁과 문제 해결을 위해 Telegram 커뮤니티에 가입한다: [dibi8_tg_group](https://t.me/dibi8open)
@@ -522,7 +523,7 @@ Scrapy는 Python에서 대규모, 프로덕션급 웹 크롤링을 위한 가장
 - 성능 벤치마크 (NextGrowth.ai): https://nextgrowth.ai/best-tools-for-web-scraping/
 - Scrapy vs BeautifulSoup 분석 (HasData): https://hasdata.com/blog/scrapy-vs-beautifulsoup
 
----
+* * *
 
 *이 기사에는 제휴 링크가 포함되어 있다. 이 기사의 WebShare 링크를 통해 프록시 서비스를 구매할 때, 추가 비용 없이 커미션을 받을 수 있다. 모든 벤치마크 데이터와 추천은 독립적인 테스트와 커뮤니티 검증 출처에 기반한다.*
 
@@ -552,7 +553,7 @@ Scrapy는 Python에서 대규모, 프로덕션급 웹 크롤링을 위한 가장
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -562,6 +563,6 @@ Scrapy는 Python에서 대규모, 프로덕션급 웹 크롤링을 위한 가장
 - [agent-reach-internet-access-ai-agents](scrapy)
 - [microsoft-markitdown-file-to-markdown-converter-cli](scrapy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

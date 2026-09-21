@@ -1,6 +1,3 @@
-# CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu | Công Cụ Open Source 2026
-**Meta Description**: CC Switch là ứng dụng desktop open source miễn phí giúp quản lý Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode trong một giao diện duy nhất. 74K+ stars GitHub, Rust+Tauri, 50+ nhà cung cấp tích hợp, đồng bộ MCP server. Hướng dẫn cài đặt và đánh giá chi tiết.
-
 ---
 
 ## Mở Đầu: Khi Quá Nhiều Công Cụ AI Trở Thành Gánh Nặng
@@ -9,11 +6,12 @@ Năm 2026, lập trình viên đang đối mặt với một vấn đề "sang c
 
 Claude Code với cửa sổ ngữ cảnh 2 triệu token là vua của việc tái cấu trúc codebase. OpenAI Codex được viết lại bằng Rust để khởi động nhanh như chớp. Gemini CLI của Google tung chiêu 1,000 lượt miễn phí mỗi ngày. OpenClaw gây sốt cộng đồng tech với khả năng orchestrate nhiều sub-agent. OpenCode với 162K stars chứng minh sức mạnh cộng đồng.
 
-Mỗi công cụ đều tuyệt vời. Nhưng việc chuyển đổi giữa chúng? Đó là cơn ác mộng. Sửa file `.env`, nhớ địa chỉ MCP server, nhảy qua lại giữa terminal và IDE — những việc vặt này đang ăn mòn thời gian mà AI lẽ ra phải tiết kiệm cho bạn.
+Mỗi công cụ đều tuyệt vời. Nhưng việc chuyển đổi giữa chúng? Đó là cơn ác mộng. Sửa file ``.env``, nhớ địa chỉ MCP server, nhảy qua lại giữa terminal và IDE — những việc vặt này đang ăn mòn thời gian mà AI lẽ ra phải tiết kiệm cho bạn.
 
 **CC Switch** sinh ra để giải quyết đúng vấn đề này.
 
 ---
+
 
 ## 1. Tổng Quan Dự Án: 74K Stars và Lý Do
 
@@ -35,7 +33,7 @@ CC Switch chọn Tauri, và đó không phải quyết định ngẫu nhiên: - 
 
 Kiến trúc "web tech cho UI, Rust cho engine" đang trở thành chuẩn mực 2026 cho công cụ desktop nghiêm túc.
 
----
+* * *
 
 ## 2. Tính Năng Chính: Từ "Địa Ngục Cấu Hình" Đến "Chuyển Đổi Một Click"
 
@@ -76,14 +74,14 @@ Model Context Protocol (MCP) là chuẩn kết nối AI agent năm 2026. CC Swit
 
 Với lập trình viên thường xuyên so sánh output giữa Claude và GPT (A/B testing prompt), tính năng này biến context switch 2 phút thành 3 giây.
 
----
+* * *
 
 ## 3. Tính Năng Nâng Cao Cho Power User
 
 ### 3.1 Quản Lý Prompt Preset
 
 - Tạo unlimited system prompt presets với Markdown editor
-- Auto-map đến file config của từng công cụ (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`)
+- Auto-map đến file config của từng công cụ (```CLAUDE.md````, ````AGENTS.md````, ````GEMINI.md````)
 - Chuẩn hóa prompt cho cả nhóm: code review format, security checklist, API doc template
 
 ### 3.2 Skills Browser
@@ -98,19 +96,19 @@ Với lập trình viên thường xuyên so sánh output giữa Claude và GPT 
 - SQLite database với atomic transactions — giải quyết xung đột đơn giản
 - Mac ở công ty, PC ở nhà, server Linux — tất cả đều đồng bộ hoàn hảo
 
-### 3.4 Deep Link Protocol (`ccswitch://`)
+### 3.4 Deep Link Protocol (````ccswitch://````)
 
 - Click link từ dashboard API provider → CC Switch tự động cấu hình
 - Giảm thiểu lỗi copy-paste API key (vector bảo mật thực sự)
 - Tích hợp OAuth flow
 
----
+* * *
 
 ## 4. Hướng Dẫn Cài Đặt
 
 ### Cài Đặt Nhanh
 
-```bash
+`````bash
 # macOS / Linux
 brew install cc-switch
 
@@ -119,7 +117,7 @@ scoop install cc-switch
 
 # Hoặc tải trực tiếp từ GitHub Releases
 # https://github.com/farion1231/cc-switch/releases
-```
+`````
 
 ### Cấu Hình Lần Đầu (Khuyến Nghị)
 
@@ -131,7 +129,7 @@ scoop install cc-switch
 
 ### Template Onboarding Nhóm
 
-```
+`````
 team-ai-config/
 ├── mcp-servers.json          # MCP config dùng chung
 ├── prompt-presets/           # Prompt chuẩn
@@ -139,11 +137,11 @@ team-ai-config/
 │   ├── test-generation.md
 │   └── api-documentation.md
 └── skills-index.json         # Skills nội bộ
-```
+`````
 
-Thành viên mới: cài CC Switch → import `team-ai-config` → sẵn sàng trong 5 phút.
+Thành viên mới: cài CC Switch → import ````team-ai-config``` → sẵn sàng trong 5 phút.
 
----
+* * *
 
 ## 5. Bối Cảnh AI CLI Năm 2026
 
@@ -163,7 +161,7 @@ CC Switch cho phép **di chuyển xuyên tầng** — task đơn giản chạy q
 2. **Chuyển đổi model theo task**: Không còn trung thành với một model — suy luận phức tạp → Claude, cần tốc độ → Gemini, tiết kiệm chi phí → open source.
 3. **Công cụ quản lý config nổi lên**: CC Switch chứng minh nhu cầu. Cạnh tranh sẽ xuất hiện, nhưng lợi thế first-mover và cộng đồng 74K stars đã tạo rào cản.
 
----
+* * *
 
 ## 6. So Sánh Và Khuyến Nghị
 
@@ -178,7 +176,7 @@ CC Switch cho phép **di chuyển xuyên tầng** — task đơn giản chạy q
 
 **Kết luận**: Nếu bạn thường xuyên dùng 2+ AI CLI tool, CC Switch hoàn vốn ngay ngày đầu tiên.
 
----
+* * *
 
 ## Kết Luận: Meta-Công Cụ Cho Kỷ Nguyên Agent
 
@@ -190,7 +188,7 @@ Năm 2026, câu hỏi không còn là "nên dùng AI coding agent nào?" — mà
 - Website: https://ccswitch.io
 - Tải xuống: GitHub Releases
 
----
+* * *
 
 *Bài viết dựa trên CC Switch v2.x. Tính năng có thể thay đổi — tham khảo tài liệu chính thức để cập nhật mới nhất.*
 

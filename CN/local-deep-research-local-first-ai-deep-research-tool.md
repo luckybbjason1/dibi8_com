@@ -34,6 +34,7 @@ faqs: - q: 'What is Local Deep Research (LDR)?'
   - q: 'How does Local Deep Research avoid AI hallucinations and ensure trust?'
     a: 'LDR provides high-fidelity citations, supplying a bibliography for every claim it makes so you can verify the source material instantly. It also performs iterative synthesis, identifying gaps and running follow-up searches rather than relying on a single surface-level answer.'
 ---
+
 {</* resource-info */>}
 
 Most AI assistants are "chat-first," meaning they give you quick answers based on pre-trained data. But what if you need a **research-first** approach that crawls the web, academic papers, and your local documents to synthesize a deep report? And what if you want to do it with **100% privacy**?
@@ -68,13 +69,13 @@ To get the most out of LDR, I recommend the **Local-First Stack**: - **LLM Engin
 
 ### Quick Deployment (Docker)
 
-```bash
+````bash
 # Run SearXNG
 docker run -d -p 8080:8080 --name searxng searxng/searxng
 
 # Run Local Deep Research
 docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research
-```
+````
 
 ## 💡 Mentor's Tip: The "Deepening" Strategy
 
@@ -85,12 +86,12 @@ When using LDR, don't just ask one question. Use the **Detailed Research Mode**.
 Local Deep Research is more than just a tool; it's a paradigm shift for how we interact with information in the AI era. If you're tired of shallow AI answers and concerned about your data privacy, it's time to move your research local.
 
 
----
+* * *
 ### Related Resources
 - [Mastering Python Context Managers](/zh/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) — Clean up your local AI scripts.
 
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -171,7 +172,7 @@ Local Deep Research: The Ultimate Local-First AI Deep Research Tool represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -203,15 +204,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/hummingbot-crypto-trading-bot/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么大多数交易机器人会失败
@@ -39,7 +40,7 @@ Hummingbot是一个用于构建和运行自动化加密货币交易策略的开�
 
 Hummingbot的架构遵循清晰的责任分离：
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                   策略层（Strategy Layer）            │
 │  （纯做市 / 套利 / 自定义脚本）                      │
@@ -53,7 +54,7 @@ Hummingbot的架构遵循清晰的责任分离：
 │                   基础设施（Infrastructure）           │
 │  （Docker / 配置 / 日志 / SQLite数据库）             │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 **核心循环**工作原理：
 1. **策略（Strategy）** 定义订单参数（价差、库存偏移、刷新时间）
@@ -73,7 +74,7 @@ Hummingbot的架构遵循清晰的责任分离：
 
 ### 步骤一：拉取并运行Hummingbot
 
-```bash
+`````bash
 # 创建Hummingbot文件目录
 mkdir -p hummingbot_files/hummingbot_conf
 mkdir -p hummingbot_files/hummingbot_logs
@@ -88,11 +89,11 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data" \
   hummingbot/hummingbot:latest
-```
+`````
 
 容器启动后，你将看到Hummingbot命令行界面：
 
-```
+`````
     ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
@@ -102,11 +103,11 @@ docker run -it --name hummingbot \
     Enter "start" to start the current strategy
     
     >>>
-```
+`````
 
 ### 步骤二：连接你的交易所
 
-```bash
+`````bash
 # 在Hummingbot CLI中
 >>> connect binance
 
@@ -118,20 +119,20 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 
 # 验证连接
 >>> balance
-```
+`````
 
-```
+`````
 Updating balances, please wait...
 
  binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
-```
+`````
 
 ### 步骤三：配置纯做市策略
 
-```bash
+`````bash
 # 创建新策略配置
 >>> create
 
@@ -150,19 +151,19 @@ How often do you want to cancel and replace orders (in seconds)? >>> 30
 
 # 设置订单数量
 What is the amount of BTC per order? >>> 0.001
-```
+`````
 
 ### 步骤四：开始交易
 
-```bash
+`````bash
 # 确认配置
 >>> config
 
 # 启动策略
 >>> start
-```
+`````
 
-```
+`````
 The pure_market_making strategy is starting.
 Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
@@ -170,11 +171,11 @@ Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
 Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
-```
+`````
 
 ### 步骤五：后台运行（分离模式）
 
-```bash
+`````bash
 # 退出Hummingbot但保持容器运行
 Ctrl+P then Ctrl+Q
 
@@ -188,7 +189,7 @@ docker run -d --name hummingbot \
 # 附加到容器查看状态
 docker attach hummingbot
 # 然后再次使用 Ctrl+P, Ctrl+Q 分离
-```
+`````
 
 ## 与交易所和工具的集成
 
@@ -196,7 +197,7 @@ docker attach hummingbot
 
 Binance是最受欢迎的连接器，支持现货和U本位合约。连接器自动处理速率限制 —— 遵循Binance的 **每分钟1,200请求权重** 限制，并采用自适应退避策略。
 
-```yaml
+`````yaml
 # conf/connectors/binance.yml
 connector: binance
 api_key: ${BINANCE_API_KEY}
@@ -204,23 +205,23 @@ api_secret: ${BINANCE_API_SECRET}
 rate_limit: adaptive
 timeout: 10
 use_futures: false
-```
+`````
 
 ### Coinbase Advanced Trade
 
 Coinbase使用不同的认证方式（2024年后采用基于JWT的认证）。Hummingbot的Coinbase连接器在内部处理JWT签名：
 
-```bash
+`````bash
 >>> connect coinbase_advanced_trade
 Enter your Coinbase API key (UUID format) >>> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
-```
+`````
 
 ### Hummingbot Gateway 进行DEX交易
 
 对于Uniswap、PancakeSwap和其他DEX，你需要Gateway服务：
 
-```bash
+`````bash
 # 拉取并运行Gateway
 docker pull hummingbot/gateway:latest
 
@@ -231,9 +232,9 @@ docker run -d --name gateway \
 
 # 在Hummingbot中连接到Gateway
 >>> gateway connect uniswap_ethereum_mainnet
-```
+`````
 
-```yaml
+`````yaml
 # Gateway配置：以太坊主网上的Uniswap
 networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
@@ -241,11 +242,11 @@ networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
 connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
-```
+`````
 
 ### Telegram通知
 
-```yaml
+`````yaml
 # conf/telegram.yml
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
@@ -253,17 +254,17 @@ telegram_chat_id: "YOUR_CHAT_ID"
 notify_events: - order_filled
   - trade_completed
   - strategy_error
-```
+`````
 
 ### 导出数据到Grafana
 
 Hummingbot将所有交易记录到SQLite数据库。你可以导出到Prometheus/Grafana进行可视化：
 
-```bash
+`````bash
 # SQLite查询示例
 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
   "SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;"
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -271,15 +272,15 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 | 策略类型 | 日均交易次数 | 平均价差捕获 | 交易所延迟 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 纯做市 | 150-400 | 0.3-0.8% | 50-200ms | 流动性好的交易对 |
 | 跨所做市 | 80-200 | 0.5-1.2% | 100-300ms | BTC/ETH跨所套利 |
@@ -290,7 +291,7 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 一位社区成员分享了在BTC-USDT上运行 **30天** 纯做市策略的数据，使用 **$5,000** 资金：
 
-```
+`````
 总交易次数：             8,247
 Maker手续费（0.02%）：   0.412 BTC
 价差捕获（平均）：        0.42%
@@ -299,7 +300,7 @@ PnL（税前）：            +2.14%/月
 PnL（税后）：            +1.72%/月
 夏普比率：               1.34
 最大回撤：               1.2%
-```
+`````
 
 ### 资源占用
 
@@ -307,13 +308,13 @@ Hummingbot设计轻量：
 
 | 资源 | 空闲 | 活跃（1个策略） | 活跃（5个策略） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | <1% | 5-15% | 20-40% |
 | RAM | 80MB | 200-400MB | 800MB-1.5GB |
@@ -328,7 +329,7 @@ Hummingbot设计轻量：
 
 Hummingbot v2.0的脚本策略接口允许你用纯Python编写逻辑：
 
-```python
+`````python
 # strategies/my_custom_mm.py
 from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
@@ -370,11 +371,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
     def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
-```
+`````
 
 ### 基于库存管理的订单偏移
 
-```python
+`````python
 # 添加到你的策略中实现库存偏移
     def calculate_inventory_skew(self): """Adjust order sizes based on inventory ratio."""
         base_balance = self.connectors["binance"].get_balance("BTC")
@@ -393,11 +394,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
             self.sell_multiplier = Decimal("1.5")
         else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
-```
+`````
 
 ### 使用历史数据回测
 
-```bash
+`````bash
 # 下载历史交易数据
 python scripts/download_historical_data.py \
   --exchange binance \
@@ -412,9 +413,9 @@ python scripts/backtest.py \
   --config conf/strategies/pmm_btc.yml \
   --data data/binance_BTC-USDT_1m.csv \
   --output results/btc_pmm_backtest.html
-```
+`````
 
-```
+`````
 回测结果（2026-01-01 至 2026-03-31）
 ========================================
 总交易次数：           12,450
@@ -424,13 +425,13 @@ python scripts/backtest.py \
 平均持仓时间：          18.4分钟
 胜率：                 62.3%
 盈亏比：               1.48
-```
+`````
 
 ### 模拟交易模式
 
 在实盘交易之前，始终先在模拟模式下测试：
 
-```bash
+`````bash
 # 在配置中启用模拟交易
 paper_trade_enabled: true
 paper_trade_account_balance: BTC: 1.0
@@ -439,11 +440,11 @@ paper_trade_account_balance: BTC: 1.0
 # 模拟交易会显示[PAPER]前缀
 >>> status
   Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
-```
+`````
 
 ### 生产环境Docker Compose配置
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -465,11 +466,11 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### 安全检查清单
 
-```bash
+`````bash
 # 1. 使用IP白名单API密钥（Binance支持）
 # 2. 在API密钥上启用提币限制
 # 3. 在隔离的Docker网络中运行
@@ -477,21 +478,21 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
 
 # 加密敏感配置
 openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Hummingbot | Freqtrade | 3Commas | Gunbot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | Apache-2.0 | GPL-3.0 | 专有 | 专有 |
 | **CEX连接器** | 50+ | 20+ | 15+ | 10+ |
@@ -550,7 +551,7 @@ Hummingbot免费、开源且完全可定制 —— 但需要技术设置。3Comm
 
 ### 如何将Hummingbot更新到新版本？
 
-```bash
+`````bash
 # 拉取最新镜像
 docker pull hummingbot/hummingbot:latest
 
@@ -562,13 +563,13 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   hummingbot/hummingbot:latest
-```
+`````
 
 你的配置存储在挂载卷中，会持久保留。
 
 ### Hummingbot可以用于期货/永续合约交易吗？
 
-可以。Binance、Bybit和OKX连接器支持永续合约。将 `domain` 参数设置为合约子域名，并谨慎配置杠杆。在理解资金费率机制之前，建议使用 **1x-3x杠杆**。
+可以。Binance、Bybit和OKX连接器支持永续合约。将 ````domain``` 参数设置为合约子域名，并谨慎配置杠杆。在理解资金费率机制之前，建议使用 **1x-3x杠杆**。
 
 ## 结论：今天就开始算法交易
 
@@ -671,7 +672,7 @@ Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 �
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
@@ -698,4 +699,4 @@ For the latest updates and community discussions, join our Telegram channel: htt
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

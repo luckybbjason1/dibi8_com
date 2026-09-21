@@ -13,15 +13,16 @@ aliases:
   - /vi/posts/mistral-ai-local-llm-deployment/
 ---
 
+
 {{</* resource-info */>}}
 
 Chạy các Mô hình Ngôn ngữ Lớn (LLM) locally đã chuyển từ một thử nghiệm thích ít ngưởi thành một yêu cầu production. Các doanh nghiệp cần chủ quyền dữ liệu, độ trễ dự đoán được và tự do khỏi ràng buộc nhà cung cấp. Dòng model Mistral AI — dẫn đầu bởi kiến trúc **8x7B Mixture of Experts (MoE)** đột phá — mang lại hiệu suất ngang cấp GPT-4 trong khi đủ hiệu quả để chạy trên phần cứng có thể tiếp cận.
 
-Trong hướng dẫn toàn diện này, bạn sẽ học cách triển khai các model Mistral cấp production locally bằng công cụ suy luận chính thức `mistral-inference`, vLLM để phục vụ thông lượng cao, lượng tử hóa GGUF cho suy luận CPU, và toàn bộ hệ sinh thái công cụ bao gồm function calling, fine-tuning, và triển khai máy chủ API.
+Trong hướng dẫn toàn diện này, bạn sẽ học cách triển khai các model Mistral cấp production locally bằng công cụ suy luận chính thức ```mistral-inference````, vLLM để phục vụ thông lượng cao, lượng tử hóa GGUF cho suy luận CPU, và toàn bộ hệ sinh thái công cụ bao gồm function calling, fine-tuning, và triển khai máy chủ API.
 
 > **Bắt đầu Nhanh**: Công cụ suy luận của Mistral là mã nguồn mở theo giấy phép Apache-2.0 với hơn 9.500 sao GitHub. Chúng tôi sẽ bao gồm mọi thứ từ triển khai đơn GPU đến cluster đa node.
 
----
+* * *
 
 ## Hiểu về Kiến trúc Mô hình của Mistral
 
@@ -52,7 +53,7 @@ Model Mistral có khả năng nhất với 123B tham số, được thiết kế
 
 Một model 22B tham số chuyên về tạo mã với việc đào tạo trên 80+ ngôn ngữ lập trình. Hỗ trợ hoàn thành fill-in-the-middle (FIM) và khả năng hiểu ngữ cảnh cấp repository.
 
----
+* * *
 
 ## Yêu cầu Phần cứng và Lập kế hoạch
 
@@ -70,37 +71,37 @@ Trước khi triển khai, hãy đảm bảo phần cứng của bạn đáp ứ
 ### Cấu hình Phần cứng Đề xuất
 
 **Triển khai Đơn GPU (Mistral 7B / Nemo):**
-```
+`````
 - GPU: NVIDIA RTX 4090 (24GB) hoặc A6000 (48GB)
 - RAM: 32GB bộ nhớ hệ thống
 - Lưu trữ: 50GB NVMe SSD
 - HĐH: Ubuntu 22.04 LTS
-```
+`````
 
 **Triển khai Đa GPU (Mixtral 8x7B):**
-```
+`````
 - GPU: 2x NVIDIA A100 80GB hoặc 4x RTX 4090
 - RAM: 128GB bộ nhớ hệ thống
 - Lưu trữ: 100GB NVMe SSD
 - Kết nối: Ưu tiên NVLink cho đa GPU
-```
+`````
 
 **Triển khai Chỉ CPU (GGUF Quantized):**
-```
+`````
 - CPU: 16+ nhân (AMD Ryzen 9 hoặc Intel Xeon)
 - RAM: 64GB+ (phụ thuộc vào model)
 - Lưu trữ: 50GB NVMe SSD
-```
+`````
 
 Đối với instance GPU cloud, [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) cung cấp các tùy chọn máy chủ GPU cạnh tranh được tối ưu hóa cho khối lượng công việc suy luận LLM.
 
----
+* * *
 
 ## Cài đặt và Thiết lập Môi trường
 
 ### Phụ thuộc Hệ thống
 
-```bash
+`````bash
 # Cập nhật các gói hệ thống
 sudo apt update && sudo apt upgrade -y
 
@@ -113,11 +114,11 @@ sudo apt install -y cuda-toolkit-12-4
 # Xác minh cài đặt CUDA
 nvcc --version
 nvidia-smi
-```
+`````
 
 ### Môi trường Python
 
-```bash
+`````bash
 # Tạo môi trường chuyên dụng
 python3 -m venv ~/mistral-env
 source ~/mistral-env/bin/activate
@@ -133,11 +134,11 @@ pip install vllm
 
 # Cài đặt tùy chọn: Hỗ trợ GGUF cho suy luận CPU
 pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
-```
+`````
 
 ### Tải Trọng số Mô hình
 
-```bash
+`````bash
 # Cài đặt huggingface-cli
 pip install huggingface-hub
 
@@ -158,17 +159,17 @@ huggingface-cli download mistralai/Mixtral-8x7B-Instruct-v0.1 \
 huggingface-cli download mistralai/Mistral-Nemo-Instruct-2407 \
   --local-dir ~/models/mistral-nemo \
   --local-dir-use-symlinks False
-```
+`````
 
----
+* * *
 
 ## Chạy Suy luận với mistral-inference
 
-Gói `mistral-inference` chính thức cung cấp cách đơn giản nhất để chạy các model Mistral locally với hỗ trợ đầy đủ tính năng.
+Gói ````mistral-inference```` chính thức cung cấp cách đơn giản nhất để chạy các model Mistral locally với hỗ trợ đầy đủ tính năng.
 
 ### Script Suy luận Cơ bản
 
-```python
+`````python
 from mistral_inference.model import Transformer
 from mistral_inference.generate import generate
 from mistral_inference.tokenizer import Tokenizer
@@ -197,11 +198,11 @@ result = generate(
 )
 
 print(result[0].text)
-```
+`````
 
 ### Chạy với Các Mức Độ Chính xác Khác nhau
 
-```python
+`````python
 # Tải với BF16 (mặc định, khuyến nghị)
 model_bf16 = Transformer.from_folder(model_path, device="cuda", dtype="bfloat16")
 
@@ -213,11 +214,11 @@ model_int8 = Transformer.from_folder(model_path, device="cuda", load_in_8bit=Tru
 
 # Suy luận CPU (chậm nhưng không cần GPU)
 model_cpu = Transformer.from_folder(model_path, device="cpu", dtype="float32")
-```
+`````
 
 ### Suy luận Hàng loạt cho Thông lượng
 
-```python
+`````python
 from mistral_inference.generate import generate
 
 # Chuẩn bị nhiều prompt
@@ -244,9 +245,9 @@ results = generate(
 )
 
 for i, result in enumerate(results): print(f"Phản hồi {i+1}: {result.text}\n")
-```
+`````
 
----
+* * *
 
 ## Triển khai Production với vLLM
 
@@ -254,7 +255,7 @@ for i, result in enumerate(results): print(f"Phản hồi {i+1}: {result.text}\n
 
 ### Khởi động Máy chủ vLLM
 
-```bash
+`````bash
 # Triển khai đơn GPU cho Mistral 7B
 python -m vllm.entrypoints.openai.api_server \
   --model mistralai/Mistral-7B-Instruct-v0.3 \
@@ -263,9 +264,9 @@ python -m vllm.entrypoints.openai.api_server \
   --max-model-len 32768 \
   --gpu-memory-utilization 0.85 \
   --port 8000
-```
+`````
 
-```bash
+`````bash
 # Triển khai đa GPU cho Mixtral 8x7B
 python -m vllm.entrypoints.openai.api_server \
   --model mistralai/Mixtral-8x7B-Instruct-v0.1 \
@@ -274,9 +275,9 @@ python -m vllm.entrypoints.openai.api_server \
   --max-model-len 32768 \
   --gpu-memory-utilization 0.90 \
   --port 8000
-```
+`````
 
-```bash
+`````bash
 # Triển khai 4 GPU cho thông lượng tối đa
 python -m vllm.entrypoints.openai.api_server \
   --model mistralai/Mixtral-8x7B-Instruct-v0.1 \
@@ -286,11 +287,11 @@ python -m vllm.entrypoints.openai.api_server \
   --max-num-seqs 256 \
   --max-model-len 32768 \
   --port 8000
-```
+`````
 
 ### Cấu hình Máy chủ API
 
-Tạo `vllm-config.yaml` cho các triển khai có thể tái tạo: ```yaml
+Tạo ``vllm-config.yaml`` cho các triển khai có thể tái tạo: `````yaml
 model: mistralai/Mistral-7B-Instruct-v0.3
 dtype: bfloat16
 tensor_parallel_size: 1
@@ -312,17 +313,17 @@ uvicorn_log_level: info
 # Bật chunked prefill liên tục
 enable_chunked_prefill: true
 max_num_batched_tokens: 4096
-```
+`````
 
-```bash
+`````bash
 # Khởi động với file cấu hình
 python -m vllm.entrypoints.openai.api_server \
   --config vllm-config.yaml
-```
+`````
 
 ### Gọi API
 
-```bash
+`````bash
 # Điểm cuối chat completion
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -335,9 +336,9 @@ curl http://localhost:8000/v1/chat/completions \
     "temperature": 0.2,
     "max_tokens": 512
   }'
-```
+`````
 
-```python
+`````python
 # Client Python
 from openai import OpenAI
 
@@ -355,9 +356,9 @@ response = client.chat.completions.create(
 )
 
 for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
----
+* * *
 
 ## Lượng tử hóa GGUF cho Suy luận CPU
 
@@ -365,7 +366,7 @@ Khi tài nguyên GPU không khả dụng, lượng tử hóa GGUF cho phép ch�
 
 ### Chuyển đổi sang Định dạng GGUF
 
-```bash
+`````bash
 # Cài đặt công cụ chuyển đổi llama.cpp
 git clone https://github.com/ggerganov/llama.cpp.git
 cd llama.cpp
@@ -382,11 +383,11 @@ python convert_hf_to_gguf.py \
   ~/models/mixtral-8x7b-instruct \
   --outfile ~/models/mixtral-8x7b-instruct-q4.gguf \
   --outtype q4_k_m
-```
+`````
 
 ### Chạy GGUF với Máy chủ llama.cpp
 
-```bash
+`````bash
 # Khởi động máy chủ với model Q4 quantized
 ./server \
   -m ~/models/mistral-7b-instruct-q4.gguf \
@@ -395,9 +396,9 @@ python convert_hf_to_gguf.py \
   -t 16 \
   --host 0.0.0.0 \
   --port 8080
-```
+`````
 
-```bash
+`````bash
 # Với GPU offloading (một số layer trên GPU, phần còn lại trên CPU)
 ./server \
   -m ~/models/mistral-7b-instruct-q4.gguf \
@@ -406,11 +407,11 @@ python convert_hf_to_gguf.py \
   -t 8 \
   --host 0.0.0.0 \
   --port 8080
-```
+`````
 
 ### Truy cập API đến Máy chủ GGUF
 
-```bash
+`````bash
 # Điểm cuối completion
 curl http://localhost:8080/completion \
   -H "Content-Type: application/json" \
@@ -420,9 +421,9 @@ curl http://localhost:8080/completion \
     "temperature": 0.7,
     "stop": ["</s>"]
   }"
-```
+`````
 
----
+* * *
 
 ## Function Calling và Sử dụng Công cụ
 
@@ -430,7 +431,7 @@ Các model Mistral Instruct hỗ trợ function calling, cho phép các agent c�
 
 ### Định nghĩa Công cụ
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="local")
@@ -488,11 +489,11 @@ response = client.chat.completions.create(
 if response.choices[0].message.tool_calls: tool_call = response.choices[0].message.tool_calls[0]
     print(f"Hàm: {tool_call.function.name}")
     print(f"Tham số: {tool_call.function.arguments}")
-```
+`````
 
 ### Thực thi Tool Calls và Tiếp tục Cuộc trò chuyện
 
-```python
+`````python
 import json
 
 # Thực thi công cụ (ví dụ triển khai)
@@ -517,9 +518,9 @@ final_response = client.chat.completions.create(
     messages=messages
 )
 print(final_response.choices[0].message.content)
-```
+`````
 
----
+* * *
 
 ## Fine-tuning cho Các Miền Tùy chỉnh
 
@@ -527,16 +528,16 @@ Fine-tuning điều chỉnh các model Mistral theo miền cụ thể, thuật n
 
 ### Chuẩn bị Dữ liệu Huấn luyện
 
-```jsonl
+`````jsonl
 # training_data.jsonl
 {"messages": [{"role": "user", "content": "Phân loại: yêu cầu hoàn tiền"}, {"role": "assistant", "content": "danh mục: thanh toán"}]}
 {"messages": [{"role": "user", "content": "Phân loại: ứng dụng gặp sự cố khi đăng nhập"}, {"role": "assistant", "content": "danh mục: kỹ thuật"}]}
 {"messages": [{"role": "user", "content": "Phân loại: thêm chế độ tối"}, {"role": "assistant", "content": "danh mục: yêu cầu tính năng"}]}
-```
+`````
 
 ### Fine-tuning với PEFT/LoRA
 
-```python
+`````python
 from transformers import (
     AutoModelForCausalLM, 
     AutoTokenizer, 
@@ -616,11 +617,11 @@ trainer.train()
 
 # Lưu adapter
 model.save_pretrained("./mistral-lora-adapter")
-```
+`````
 
 ### Merge và Triển khai Model Fine-tuned
 
-```python
+`````python
 from peft import PeftModel
 
 # Tải base model
@@ -637,24 +638,24 @@ merged_model = merged_model.merge_and_unload()
 # Lưu model đã merge
 merged_model.save_pretrained("./mistral-finetuned-merged")
 tokenizer.save_pretrained("./mistral-finetuned-merged")
-```
+`````
 
----
+* * *
 
 ## Giám sát và Vận hành Production
 
 ### Điểm cuối Kiểm tra Sức khỏe
 
-```bash
+`````bash
 # Kiểm tra sức khỏe vLLM
 curl http://localhost:8000/health
 
 # Mong đợi: {"status": "healthy"}
-```
+`````
 
 ### Số liệu Prometheus
 
-```bash
+`````bash
 # vLLM expose số liệu Prometheus
 curl http://localhost:8000/metrics
 
@@ -662,11 +663,11 @@ curl http://localhost:8000/metrics
 # - vllm:gpu_cache_usage_perc
 # - vllm:time_to_first_token_seconds
 # - vllm:time_per_output_token_seconds
-```
+`````
 
 ### Triển khai Kubernetes
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: mistral-vllm
@@ -693,7 +694,7 @@ spec: replicas: 1
       volumes: - name: model-cache
         persistentVolumeClaim: claimName: model-cache-pvc
       nodeSelector: accelerator: nvidia-gpu
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: mistral-vllm-service
@@ -701,9 +702,9 @@ spec: selector: app: mistral-vllm
   ports: - port: 80
     targetPort: 8000
   type: ClusterIP
-```
+`````
 
----
+* * *
 
 ## FAQ: Triển khai Local Mistral AI
 
@@ -721,7 +722,7 @@ Có. Mistral 7B, Mixtral 8x7B, và Mistral Nemo đều được cấp phép theo
 
 ### Sự khác biệt giữa mistral-inference và vLLM là gì?
 
-`mistral-inference` là công cụ suy luận chính thức của Mistral với hỗ trợ đầy đủ các khả năng dành riêng cho Mistral như function calling và tokenization. **vLLM** là công cụ suy luận đa năng được tối ưu hóa cho thông lượng với PagedAttention và continuous batching. Sử dụng `mistral-inference` cho phát triển và tính đầy đủ của tính năng; sử dụng **vLLM** cho production serving yêu cầu đồng thởi cao.
+````mistral-inference```` là công cụ suy luận chính thức của Mistral với hỗ trợ đầy đủ các khả năng dành riêng cho Mistral như function calling và tokenization. **vLLM** là công cụ suy luận đa năng được tối ưu hóa cho thông lượng với PagedAttention và continuous batching. Sử dụng ````mistral-inference```` cho phát triển và tính đầy đủ của tính năng; sử dụng **vLLM** cho production serving yêu cầu đồng thởi cao.
 
 ### Làm thế nào để fine-tune trên bộ nhớ GPU hạn chế?
 
@@ -731,7 +732,7 @@ Sử dụng parameter-efficient fine-tuning (PEFT) với bộ điều hợp LoRA
 
 Đối với các yêu cầu đơn lẻ, triển khai local thường có độ trễ thấp hơn cloud API vì không có vòng lặp mạng đến máy chủ bên ngoài. Đối với thông lượng batch, triển khai vLLM được cấu hình tốt có thể xử lý hàng trăm token mỗi giây. Sự đánh đổi chính là chi phí phần cứng so với giá API mỗi token.
 
----
+* * *
 
 
 
@@ -746,11 +747,11 @@ Sử dụng parameter-efficient fine-tuning (PEFT) với bộ điều hợp LoRA
 
 Triển khai các model Mistral AI locally mang lại cho bạn quyền kiểm soát hoàn toàn đối với hạ tầng AI của mình. Kiến trúc 8x7B Mixture of Experts mang lại hiệu suất xuất sắc trên mỗi tham số, trong khi hệ sinh thái Mistral rộng lớn hơn — Nemo cho hiệu quả, Large cho khả năng tối đa, Codestral cho mã — bao phủ hầu hết mọi trường hợp sử dụng production.
 
-Bắt đầu với `mistral-inference` để thử nghiệm, mở rộng sang vLLM cho production serving, và tận dụng lượng tử hóa GGUF khi tài nguyên GPU bị hạn chế. Với khả năng hỗ trợ function calling, khả năng fine-tuning, và một hệ sinh thái mã nguồn mở sôi động, Mistral đại diện cho trạng thái tiên tiến trong LLM có thể triển khai locally.
+Bắt đầu với ````mistral-inference``` để thử nghiệm, mở rộng sang vLLM cho production serving, và tận dụng lượng tử hóa GGUF khi tài nguyên GPU bị hạn chế. Với khả năng hỗ trợ function calling, khả năng fine-tuning, và một hệ sinh thái mã nguồn mở sôi động, Mistral đại diện cho trạng thái tiên tiến trong LLM có thể triển khai locally.
 
 Đối với tài nguyên GPU cloud để lưu trữ việc triển khai của bạn, hãy cân nhắc [虎网云 GPU servers](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) cho hạ tầng suy luận hiệu suất cao, chi phí hợp lý.
 
----
+* * *
 
 *Xuất bản: 2026-05-19 | Mistral AI | [GitHub: mistralai/mistral-inference](https://github.com/mistralai/mistral-inference)*
 
@@ -780,7 +781,7 @@ Bắt đầu với `mistral-inference` để thử nghiệm, mở rộng sang vL
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -790,6 +791,6 @@ Bắt đầu với `mistral-inference` để thử nghiệm, mở rộng sang vL
 - [2026-06-08-trending-ai-agents](mistral-ai-local-llm-deployment)
 - [2026-06-15-trending-ai-agents](mistral-ai-local-llm-deployment)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

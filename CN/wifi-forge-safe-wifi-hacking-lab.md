@@ -31,6 +31,7 @@ faqs: - q: 'What is WiFi-Forge?'
   - q: 'What do I need to install and run WiFi-Forge?'
     a: 'You need Linux (Ubuntu or Debian works best), Python 3, and root privileges since mininet-wifi uses kernel features. After cloning the repo, run sudo ./install.sh to install dependencies, then sudo python3 wififorge.py to start.'
 ---
+
 # WiFi-Forge — A Safe, Legal Sandbox for Learning WiFi Hacking
 
 {</* resource-info */>}
@@ -45,13 +46,13 @@ If you've ever tried to learn WiFi attacks the traditional way, the workflow loo
 
 Three things make traditional WiFi practice painful: 1. **Hardware lottery.** Not every USB adapter supports monitor mode plus packet injection cleanly. The reliable ones (Alfa AWUS036, Panda PAU09, etc.) cost $30–60 each and only one works at a time.
 2. **Legal grey zone.** In most jurisdictions, touching any network you don't own — even passively listening — is a crime. *"Just sniffing"* is not a defense.
-3. **Reset overhead.** Real hardware doesn't reset with one command. You can't `git checkout` your way out of a botched config.
+3. **Reset overhead.** Real hardware doesn't reset with one command. You can't ```git checkout```` your way out of a botched config.
 
 WiFi-Forge collapses all three problems into a single sandbox running on your laptop.
 
 ## What's under the hood
 
-WiFi-Forge is built on top of [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi), an 802.11 network emulator that creates virtual access points, stations, and "airwaves" inside Linux network namespaces. Each AP and client is a real Linux process — you can run `iwconfig`, `airodump-ng`, `tcpdump`, even Reaver and Hashcat against the simulated traffic, and every standard tool behaves exactly as if it were touching real radio waves.
+WiFi-Forge is built on top of [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi), an 802.11 network emulator that creates virtual access points, stations, and "airwaves" inside Linux network namespaces. Each AP and client is a real Linux process — you can run ````iwconfig````, ````airodump-ng````, ````tcpdump````, even Reaver and Hashcat against the simulated traffic, and every standard tool behaves exactly as if it were touching real radio waves.
 
 What WiFi-Forge adds on top: pre-built lab topologies, ready-to-run attack scenarios, and a guided structure so you don't have to design a network from scratch every time you want to practice something.
 
@@ -71,12 +72,12 @@ Each lab boots a specific topology, drops you in a shell, and gives you a small 
 
 ## Getting started
 
-```bash
+`````bash
 git clone https://github.com/blackhillsinfosec/WifiForge
 cd WifiForge
 sudo ./install.sh
 sudo python3 wififorge.py
-```
+````
 
 You'll need Linux (Ubuntu or Debian works best), Python 3, and root privileges (mininet-wifi uses kernel features). The install script handles the rest of the dependencies — mininet-wifi, aircrack-ng, hashcat, reaver, and so on.
 
@@ -106,7 +107,7 @@ This is the kind of project where saying it out loud matters: **only use these t
 - [Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping](/resources/dev-utils/scrapling-python-stealthy-web-scraping-review/) — Data collection for security analysis
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -177,7 +178,7 @@ WiFi-Forge — A Safe, Legal Sandbox for Learning WiFi Hacking represents an imp
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -209,15 +210,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Tool | Type | Stars | License | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
 | **Trivy** | Container | 10K+ | Apache 2.0 | Container security |

@@ -12,6 +12,7 @@ github_repo: https://github.com/NVIDIA/SkillSpector
 license: Apache-2.0
 ---
 
+
 # SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스캐너
 
 **SkillSpector**는 Claude Code, GitHub Copilot, Codex CLI, Gemini CLI 등의 프레임워크를 powering하는 모듈형 플러그인 및 확장 프로그램인 AI 에이전트 스킬을 위해 특별히 설계된 보안 스캔 도구입니다. NVIDIA에서 개발했으며 GitHub에서 **10,273개의 스타**를 기록했으며, 프로덕션 환경에서 검증되지 않은 에이전트 스킬을 설치하는 것과 관련된 급증하는 보안 문제를 해결합니다.
@@ -43,7 +44,7 @@ SkillSpector은 중요한 관찰에서 탄생했습니다: AI 에이전트 스�
 
 ### 옵션 1: Pip 설치
 
-```bash
+````bash
 # PyPI에서 SkillSpector 설치
 pip install skillspector
 
@@ -52,11 +53,11 @@ skillspector --version
 
 # 최신 스킬 데이터베이스 다운로드
 skillspector update-db
-```
+`````
 
 ### 옵션 2: 소스에서 설치
 
-```bash
+`````bash
 # 저장소 복제
 git clone https://github.com/NVIDIA/SkillSpector.git
 cd SkillSpector
@@ -70,11 +71,11 @@ pip install -e .
 
 # 스캐너 초기화
 skillspector init --download-database
-```
+`````
 
 ### 옵션 3: Docker 배포
 
-```bash
+`````bash
 # 공식 이미지 가져오기
 docker pull nvcr.io/nvidia/skillspector:latest
 
@@ -91,7 +92,7 @@ docker run -d \
   -v ${PWD}/reports:/app/reports \
   nvcr.io/nvidia/skillspector:latest \
   daemon --interval 3600
-```
+````
 
 ## 스캔 기능
 
@@ -167,12 +168,12 @@ SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -182,7 +183,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 - [cursor-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

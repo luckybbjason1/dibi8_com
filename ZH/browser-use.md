@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/browser-use/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
@@ -31,13 +32,13 @@ aliases:
 > **GitHub**: [browser-use/browser-use](https://github.com/browser-use/browser-use) | **Stars**: 94,731 | **License**: MIT | **Version**: 0.12.7
 
 
----
+* * *
 ## 引言
 
 用 Selenium 编写和维护现代网页自动化脚本，无异于被一千个选择器凌迟处死。一个 class 名变了，一个按钮挪了位置，你的整个流水线就在凌晨 3 点崩掉。Browser Use 是 Magnus Müller 和 Gregor Žunič 于 2024 年底发布的开源 Python 框架，它走了一条截然不同的路：把浏览器控制权交给大语言模型，让 AI 自己决定点什么、填什么、读什么。凭借 94,731 个 GitHub Star、319 位贡献者以及 WebVoyager 基准测试 89.1% 的成功率，Browser Use 已成为 AI 驱动浏览器自动化的事实开源标准。本教程涵盖安装配置、真实基准数据、与主流 LLM 的集成，以及与 Selenium、Puppeteer、Scrapy 的正面对比。
 
 
----
+* * *
 ## Browser Use 是什么？
 
 Browser Use 是一个 Python 库（要求 ≥3.11），通过 Playwright 将任何兼容 LangChain 的 LLM 连接到真实浏览器。你无需硬编码 CSS 选择器或 XPath 表达式，只需用自然语言描述任务 —— "找到下周从纽约到旧金山最便宜的航班" —— 智能体便会自主完成导航、填表、点击和数据提取。
@@ -50,7 +51,7 @@ Browser Use 是一个 Python 库（要求 ≥3.11），通过 Playwright 将任�
 - **持久记忆**：在导航步骤之间保持上下文和对话历史。
 - **基于 Playwright**：继承 Playwright 的全部能力 —— 隐身模式、代理支持、网络拦截和视频录制。
 
----
+* * *
 
 ## Browser Use 的工作原理
 
@@ -58,7 +59,7 @@ Browser Use 基于持续的 **观察 → 规划 → 执行 → 验证** 循环�
 
 ### 架构概览
 
-```
+````
 ┌─────────────┐    DOM + 截图          ┌─────────────┐
 │   浏览器     │ ─────────────────────> │     LLM     │
 │ (Playwright)│                        │(Claude/GPT/)│
@@ -66,7 +67,7 @@ Browser Use 基于持续的 **观察 → 规划 → 执行 → 验证** 循环�
 └─────────────┘     动作 (点击/输入)    └─────────────┘
       ↑                                       │
       └────────── 页面状态变更 ────────────────┘
-```
+`````
 
 ![Browser Use Agent Loop Architecture](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/agent-loop-diagram.png)
 
@@ -75,10 +76,10 @@ Browser Use 基于持续的 **观察 → 规划 → 执行 → 验证** 循环�
 1. **捕获**：Browser Use 对当前页面进行 DOM 快照和截图。
 2. **精简**：DOM 被过滤为仅保留交互元素（按钮、输入框、链接），减少干扰信息。
 3. **推理**：LLM 接收精简后的页面状态和用户的任务目标，规划下一步动作。
-4. **执行**：Browser Use 将 LLM 的决策转换为 Playwright API 调用（`page.click()`、`page.fill()`）。
-5. **验证**：循环重复，直到任务完成或达到 `max_steps` 上限。
+4. **执行**：Browser Use 将 LLM 的决策转换为 Playwright API 调用（````page.click()````、````page.fill()````）。
+5. **验证**：循环重复，直到任务完成或达到 ````max_steps```` 上限。
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -93,9 +94,9 @@ async def main(): browser = Browser()
     print(result)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## 安装与配置
 
@@ -107,7 +108,7 @@ if __name__ == "__main__": asyncio.run(main())
 
 ### 第一步：安装 Browser Use
 
-```bash
+`````bash
 # 使用 uv（推荐）
 uv init
 uv add browser-use
@@ -118,11 +119,11 @@ pip install browser-use
 
 # 安装 Chromium（如果尚未安装）
 playwright install chromium
-```
+`````
 
 ### 第二步：配置环境变量
 
-```bash
+`````bash
 # .env 文件
 OPENAI_API_KEY=sk-your-openai-key
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
@@ -130,11 +131,11 @@ GOOGLE_API_KEY=your-google-api-key
 
 # 可选：Browser Use Cloud 隐身浏览器
 BROWSER_USE_API_KEY=your-cloud-key
-```
+`````
 
 ### 第三步：运行你的第一个智能体
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
@@ -148,13 +149,13 @@ async def main(): browser = Browser()
     print(result.output)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
 
 ### Docker 部署（生产环境）
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -165,9 +166,9 @@ RUN playwright install-deps
 
 COPY . .
 CMD ["python", "agent.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: browser-use: build: .
@@ -175,15 +176,15 @@ services: browser-use: build: .
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     volumes: - ./scripts:/app
     command: python agent.py
-```
+`````
 
----
+* * *
 
 ## 与主流工具集成
 
 ### OpenAI GPT-4o / GPT-5.1
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -196,11 +197,11 @@ async def search_flights(): agent = Agent(
     return await agent.run()
 
 asyncio.run(search_flights())
-```
+`````
 
 ### Anthropic Claude Sonnet 4
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
@@ -214,11 +215,11 @@ async def extract_data(): agent = Agent(
     print(result.output)
 
 asyncio.run(extract_data())
-```
+`````
 
 ### Google Gemini 3 Flash
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
@@ -231,11 +232,11 @@ async def research_topic(): agent = Agent(
     return await agent.run()
 
 asyncio.run(research_topic())
-```
+`````
 
 ### Ollama（本地模型）
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
@@ -248,11 +249,11 @@ async def local_automation(): agent = Agent(
     return await agent.run()
 
 asyncio.run(local_automation())
-```
+`````
 
 ### Playwright 直接集成
 
-```python
+`````python
 from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -272,9 +273,9 @@ async def hybrid_automation(): async with async_playwright() as p: browser = awa
         result = await agent.run()
         await browser.close()
         return result
-```
+`````
 
----
+* * *
 
 ## 基准测试 / 真实场景用例
 
@@ -286,13 +287,13 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 
 | 排名 | 系统 | 得分 | 组织 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | Alumnium | 98.6% | Alumnium |
 | 2 | Surfer 2 | 97.1% | H Company |
@@ -310,15 +311,15 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 
 | 指标 | Browser Use (AI) | Playwright | Puppeteer | Selenium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动到首次导航 | ~0.5–0.8s | ~0.4–0.7s | ~0.3–0.5s | ~1.2–2.5s |
 | 空闲内存（每实例） | ~100–150MB | ~90–130MB | ~60–100MB | ~180–280MB |
@@ -331,11 +332,11 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 
 | LLM 提供商 | 每任务成本（平均 10 步） | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-4o | ~$0.15–$0.30 | 复杂推理任务 |
 | Claude Sonnet 4 | ~$0.10–$0.20 | 生产环境可靠性 |
@@ -344,7 +345,7 @@ WebVoyager 基准测试基于 586 个真实网页任务评估浏览器智能体�
 
 ### 用例：自动化价格监控
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -368,15 +369,15 @@ async def monitor_prices(): urls = [
 
 # 通过 cron 或定时任务每日运行
 prices = asyncio.run(monitor_prices())
-```
+`````
 
----
+* * *
 
 ## 高级用法 / 生产环境加固
 
 ### 并行智能体执行
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -396,11 +397,11 @@ tasks = [
 ]
 
 results = asyncio.run(run_parallel_agents(tasks))
-```
+`````
 
 ### 代理配置（用于爬虫）
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -420,11 +421,11 @@ agent = Agent(
     llm=ChatOpenAI(model="gpt-4o"),
     browser=browser,
 )
-```
+`````
 
 ### 会话持久化与认证
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig, Agent
 from langchain_openai import ChatOpenAI
 
@@ -441,11 +442,11 @@ async def authenticated_task(): browser = Browser(config=config)
         browser=browser,
     )
     return await agent.run()
-```
+`````
 
 ### 错误处理与重试
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -461,11 +462,11 @@ async def robust_agent(task, max_retries=3): for attempt in range(max_retries): 
         except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # 指数退避
     raise Exception(f"Task failed after {max_retries} attempts")
-```
+`````
 
 ### Prometheus 监控集成
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 from browser_use import Agent, Browser
 
@@ -481,23 +482,23 @@ async def monitored_agent(task): agent_runs.inc()
             return result
         except Exception: agent_failures.inc()
             raise
-```
+`````
 
----
+* * *
 
 ## 与替代方案对比
 
 | 特性 | Browser Use | Scrapy | Puppeteer | Selenium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **编程语言** | Python | Python | JavaScript/TypeScript | Python, Java, C#, JS |
 | **AI 原生** | 是（LLM 驱动） | 否 | 否 | 否 |
@@ -518,7 +519,7 @@ async def monitored_agent(task): agent_runs.inc()
 - **Puppeteer**：需要速度且你控制目标站点的纯 Chrome 自动化。适合 PDF 生成和截图。
 - **Selenium**：企业级跨浏览器测试，有严格的浏览器覆盖要求。
 
----
+* * *
 
 ## 局限性 / 客观评估
 
@@ -534,7 +535,7 @@ Browser Use 并非传统浏览器自动化的万能替代品。以下场景不�
 
 5. **LLM 依赖**：你受限于第三方 LLM API 的可用性和定价。速率限制可能成为生产工作负载的瓶颈。
 
----
+* * *
 
 ## 常见问题
 
@@ -551,18 +552,18 @@ Browser Use 无需维护选择器（AI 读取页面），原生处理动态 UI�
 框架本身免费（MIT 许可证）。LLM API 使用费约为每 10 步任务 $0.02–$0.30，具体取决于模型。Browser Use Cloud 提供托管隐身浏览器，起步价 $29/月。
 
 ### 可以在 Docker 中运行 Browser Use 吗？
-可以。在 Python 3.11+ 容器中安装 `browser-use` 和 `playwright`，运行 `playwright install chromium`，并通过环境变量设置 API Key。上面的安装章节提供了 Dockerfile 示例。
+可以。在 Python 3.11+ 容器中安装 ````browser-use```` 和 ````playwright````，运行 ````playwright install chromium````，并通过环境变量设置 API Key。上面的安装章节提供了 Dockerfile 示例。
 
 ### Browser Use 能解决 CAPTCHA 吗？
 Browser Use 本身不能解决 CAPTCHA。对于受保护的站点，可搭配 Browser Use Cloud（内置 CAPTCHA 解决），或集成 2Captcha、CapSolver 等专用 CAPTCHA 服务。
 
 ### 如何在 Browser Use 中处理认证？
-使用持久化浏览器配置文件（`BrowserConfig` 中的 `user_data_dir`）来保持 Cookie 和登录状态。对于 OAuth 或 2FA 流程，初始登录使用有头模式，后续任务切换为无头模式。
+使用持久化浏览器配置文件（````BrowserConfig```` 中的 ````user_data_dir````）来保持 Cookie 和登录状态。对于 OAuth 或 2FA 流程，初始登录使用有头模式，后续任务切换为无头模式。
 
 ### Browser Use 与 Stagehand 有什么区别？
-Browser Use 是完全自主的智能体框架 —— LLM 控制所有导航决策。Stagehand（由 Browserbase 开发）在 Playwright 之上添加 AI 原语（`act()`、`extract()`、`observe()`），适合确定性与 AI 驱动步骤共存的混合工作流。全自主选 Browser Use；精确增强现有 Playwright 脚本选 Stagehand。
+Browser Use 是完全自主的智能体框架 —— LLM 控制所有导航决策。Stagehand（由 Browserbase 开发）在 Playwright 之上添加 AI 原语（````act()````、````extract()````、````observe()````），适合确定性与 AI 驱动步骤共存的混合工作流。全自主选 Browser Use；精确增强现有 Playwright 脚本选 Stagehand。
 
----
+* * *
 
 ## 结论
 
@@ -574,11 +575,11 @@ Browser Use 凭借 94,731 个 GitHub Star，解决了真实痛点：在现代、
 
 **行动清单**：
 1. 克隆 [browser-use/browser-use](https://github.com/browser-use/browser-use) 仓库
-2. 运行 `pip install browser-use`，用上面的示例配置你的第一个智能体
+2. 运行 ````pip install browser-use```，用上面的示例配置你的第一个智能体
 3. 针对你的使用场景评估 WebVoyager 基准
 4. 加入 [Browser Use Discord](https://link.browser-use.com/discord) 获取社区支持和生产环境技巧
 
----
+* * *
 
 
 
@@ -602,7 +603,7 @@ Browser Use 凭借 94,731 个 GitHub Star，解决了真实痛点：在现代、
 - [Browser Use 代理配置指南](https://www.coronium.io/blog/browser-use-proxy-setup)
 - [Stagehand vs Browser Use vs Playwright 对比](https://www.nxcode.io/resources/news/stagehand-vs-browser-use-vs-playwright-ai-browser-automation-2026)
 
----
+* * *
 
 *本文面向需要生产级浏览器自动化的开发者。所有基准数据来源于公开排行榜和 2026 年 5 月的独立测试。*
 
@@ -632,7 +633,7 @@ Browser Use 凭借 94,731 个 GitHub Star，解决了真实痛点：在现代、
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -642,7 +643,7 @@ Browser Use 凭借 94,731 个 GitHub Star，解决了真实痛点：在现代、
 - [obscura-rust-headless-browser-ai-agents-web-scraping](browser-use)
 - [ray-distributed-ai-framework-complete-guide](browser-use)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

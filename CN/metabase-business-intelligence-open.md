@@ -23,6 +23,7 @@ tags: ["metabase", "bi", "business-intelligence", "open-source", "tableau", "das
 aliases:
   - /posts/metabase-business-intelligence-open/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The $50,000 Tableau Invoice Problem
@@ -49,7 +50,7 @@ Metabase organizes analytics around **questions** — saved queries that can be 
 
 ### The Visual Query Builder (No SQL Required)
 
-The core UX is the question builder, which translates GUI actions into database queries: ```sql
+The core UX is the question builder, which translates GUI actions into database queries: ````sql
 -- What the user clicks: -- Table: orders
 -- Filter: created_at is "Last 30 Days"
 -- Group by: country
@@ -63,13 +64,13 @@ FROM orders
 WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
-```
+`````
 
 The same question can be saved, added to a dashboard, converted to SQL for editing, or scheduled for email delivery — all without the original user understanding SQL syntax.
 
 ### Native SQL Editor for Analysts
 
-For analysts who need full control, the native SQL editor supports: ```sql
+For analysts who need full control, the native SQL editor supports: `````sql
 -- Native SQL question in Metabase
 WITH cohort_users AS (
     SELECT 
@@ -95,20 +96,20 @@ SELECT
 FROM retention
 WHERE period <= 12
 ORDER BY 1, 2;
-```
+`````
 
-SQL questions support variable injection via `{{variable}}` syntax, making them reusable across dashboards with different filter values.
+SQL questions support variable injection via ````{{variable}}```` syntax, making them reusable across dashboards with different filter values.
 
 ### Dashboard Composition
 
-```markdown
+`````markdown
 Dashboard: "Q2 Revenue Overview"
 ├── Question: "Monthly Revenue Trend" (line chart)
 ├── Question: "Revenue by Country" (bar chart)
 ├── Question: "Top 10 Products" (table)
 ├── Question: "Customer Acquisition Funnel" (funnel chart)
 └── Filter: "Date Range" (linked to all questions)
-```
+`````
 
 Dashboards support cross-filtering, auto-refresh, and full-screen presentation mode.
 
@@ -122,7 +123,7 @@ Dashboards support cross-filtering, auto-refresh, and full-screen presentation m
 
 ### Step 1: Launch with Docker
 
-```bash
+`````bash
 mkdir -p ~/metabase-data
 chmod 777 ~/metabase-data
 
@@ -137,11 +138,11 @@ docker run -d \
 
 # Check logs
 docker logs -f metabase
-```
+`````
 
 ### Step 2: Complete Setup Wizard
 
-Open `http://localhost:3000/setup` and complete the first-run wizard: ```markdown
+Open ``http://localhost:3000/setup`` and complete the first-run wizard: `````markdown
 1. Select language (English)
 2. Create admin account (email + password)
 3. Add your first database: - Database type: PostgreSQL
@@ -151,11 +152,11 @@ Open `http://localhost:3000/setup` and complete the first-run wizard: ```markdow
    - Username: metabase_readonly
    - Password: ********
 4. Finish — Metabase auto-discovers tables and relationships
-```
+`````
 
 ### Step 3: Production Docker Compose
 
-For a production deployment with persistent storage and health checks: ```yaml
+For a production deployment with persistent storage and health checks: `````yaml
 # docker-compose.yml
 version: "3.8"
 services: metabase: image: metabase/metabase:v0.60.2
@@ -187,9 +188,9 @@ services: metabase: image: metabase/metabase:v0.60.2
       timeout: 5s
       retries: 5
 
-volumes: metabase_db: ```
+volumes: metabase_db: `````
 
-Launch the production stack: ```bash
+Launch the production stack: `````bash
 # Create environment file
 echo "POSTGRES_PASSWORD=$(openssl rand -base64 24)" > .env
 
@@ -198,11 +199,11 @@ docker-compose up -d
 
 # Verify both services are healthy
 docker-compose ps
-```
+`````
 
 ### Step 4: Deploy on DigitalOcean (VPS)
 
-For a production-grade deployment on a **DigitalOcean Droplet** (2 vCPU / 4GB RAM from $24/month): ```bash
+For a production-grade deployment on a **DigitalOcean Droplet** (2 vCPU / 4GB RAM from $24/month): `````bash
 # 1. Create Droplet with Docker pre-installed
 #    Get $200 free credit with my referral link: #    https://m.do.co/c/eca87ac14ee0
 
@@ -236,15 +237,15 @@ EOF
 ln -s /etc/nginx/sites-available/metabase /etc/nginx/sites-enabled/
 certbot --nginx -d analytics.yourdomain.com
 systemctl reload nginx
-```
+`````
 
-Your Metabase instance is now live with HTTPS at `https://analytics.yourdomain.com`.
+Your Metabase instance is now live with HTTPS at ````https://analytics.yourdomain.com````.
 
 ## Integration with 20+ Databases
 
 ### PostgreSQL Connection
 
-```yaml
+`````yaml
 # Connection settings in Metabase UI
 Database type: PostgreSQL
 Host: db.example.com
@@ -254,11 +255,11 @@ Username: metabase_readonly
 Password: ${POSTGRES_PASSWORD}
 SSL: Required
 Additional JDBC options: ?prepareThreshold=0
-```
+`````
 
 ### Snowflake Connection
 
-```yaml
+`````yaml
 Database type: Snowflake
 Account: xyz123.us-east-1
 Warehouse: REPORTING_WH
@@ -267,28 +268,28 @@ Schema: PUBLIC
 Username: METABASE_USER
 Password: ${SNOWFLAKE_PASSWORD}
 Role: METABASE_ROLE
-```
+`````
 
 ### BigQuery Connection (Service Account)
 
-```bash
+`````bash
 # 1. Create service account in Google Cloud Console
 # 2. Download JSON key file
 # 3. Upload in Metabase connection dialog
 
 # Required IAM roles: # - roles/bigquery.dataViewer
 # - roles/bigquery.jobUser
-```
+`````
 
 ### Supported Databases (v60.2)
 
 | Database | Connection Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PostgreSQL | Native | Best support, materialized views |
 | MySQL / MariaDB | Native | Full feature parity |
@@ -315,7 +316,7 @@ Role: METABASE_ROLE
 
 ### Creating Your First Question
 
-```markdown
+`````markdown
 Navigation: + New > Question
 Database: analytics
 Table: orders
@@ -329,11 +330,11 @@ Visualization: Bar chart
 Sort: Total descending
 
 Save as: "Revenue by Country (30d)"
-```
+`````
 
 ### Building a Dashboard
 
-```markdown
+`````markdown
 Navigation: + New > Dashboard
 Name: "Executive Summary"
 
@@ -346,11 +347,11 @@ Add filters: - Date Range (linked to all questions)
   - Country (linked to questions 2, 3)
 
 Configure auto-refresh: Every 5 minutes
-```
+`````
 
 ### SQL Variables for Interactive Dashboards
 
-```sql
+`````sql
 -- Question: "User Cohort Analysis"
 -- With a date filter variable
 
@@ -361,9 +362,9 @@ FROM users
 WHERE created_at >= {{start_date}}  -- Dashboard filter
 GROUP BY 1
 ORDER BY 1;
-```
+`````
 
-The `{{start_date}}` variable renders as a date picker in the dashboard. When the user changes the filter value, all linked questions refresh automatically.
+The ````{{start_date}}```` variable renders as a date picker in the dashboard. When the user changes the filter value, all linked questions refresh automatically.
 
 ## Benchmarks and Real-World Use Cases
 
@@ -371,15 +372,15 @@ The `{{start_date}}` variable renders as a date picker in the dashboard. When th
 
 Benchmark running 50 concurrent analytical queries against a 100M-row orders table: | Metric | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Power BI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Median query time | 1.2s | 0.9s | 1.8s | 1.1s |
 | UI render (50 cards) | 0.8s | 0.5s | 1.5s | 0.6s |
@@ -397,11 +398,11 @@ A Series B fintech company (name anonymized) deployed Metabase to replace a mix 
 
 ### Embedding Analytics in Customer-Facing Apps
 
-Metabase's embedding API allows whitelabeling dashboards in your product: ```html
+Metabase's embedding API allows whitelabeling dashboards in your product: `````html
 </iframe>
-```
+`````
 
-```javascript
+`````javascript
 // JWT token generation for signed embedding (Node.js)
 const jwt = require(jsonwebtoken);
 
@@ -411,8 +412,8 @@ const token = jwt.sign({
   exp: Math.round(Date.now() / 1000) + (60 * 60) // 1 hour
 }, process.env.METABASE_SECRET_KEY);
 
-const embedUrl = `https://analytics.yourapp.com/embed/dashboard/123#${token}`;
-```
+const embedUrl = ````https://analytics.yourapp.com/embed/dashboard/123#${token}````;
+`````
 
 With signed embedding, each customer sees only their data — row-level security enforced at the embedding layer.
 
@@ -420,7 +421,7 @@ With signed embedding, each customer sees only their data — row-level security
 
 ### Email and Slack Alerts
 
-Configure Metabase to send alerts when metrics cross thresholds: ```markdown
+Configure Metabase to send alerts when metrics cross thresholds: `````markdown
 1. Open any saved question
 2. Click the bell icon → "Set up an alert"
 3. Choose condition: - "When the result reaches a goal"
@@ -429,39 +430,39 @@ Configure Metabase to send alerts when metrics cross thresholds: ```markdown
 4. Choose delivery: - Email: team@company.com
    - Slack: #data-alerts channel
 5. Set frequency: Check every hour
-```
+`````
 
-For Slack integration: ```bash
+For Slack integration: `````bash
 # In Metabase Admin > Settings > Slack: Slack API Token: xoxb-your-bot-token
 Slack channels: #data-alerts, #executive-summary
-```
+`````
 
 ### Caching for Performance
 
-```markdown
+`````markdown
 Admin > Settings > Caching: - Enable query caching: ON
   - Minimum query duration to cache: 1 second
   - Cache Time-to-live (TTL) multiplier: 10
   - Max cache entry size: 1,000 KB
-```
+`````
 
 For frequently accessed dashboards, caching reduces database load by 60-80%.
 
 ### Row-Level Security (Pro/Enterprise)
 
-```sql
+`````sql
 -- Enterprise sandboxing: users only see their region's data
 -- Admin > Permissions > Data > Sandboxes
 
 SELECT * FROM orders
 WHERE region = user_attribute(region);
-```
+`````
 
-The `user_attribute` function resolves per-user at query time, enforcing data isolation without separate database views.
+The ````user_attribute```` function resolves per-user at query time, enforcing data isolation without separate database views.
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # metabase-backup.sh — Run via cron daily
 
@@ -481,23 +482,23 @@ find "$BACKUP_DIR" -name "*.sql" -mtime +7 -delete
 find "$BACKUP_DIR" -name "*.db" -mtime +7 -delete
 
 echo "Metabase backup completed: $DATE"
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Metabase v60.2 | Tableau Cloud | Apache Superset 6.0 | Microsoft Power BI | Redash |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License cost (20 users)** | **$0** (OSS) | **$16,800/yr** | **$0** (OSS) | **$240/yr** (F3) | **$0** (OSS) |
 | **Visual query builder** | Excellent | N/A (prep tool) | Basic | Good | N/A |
@@ -552,7 +553,7 @@ For production, use **PostgreSQL** as Metabase's application database (where it 
 
 ### How do I back up my Metabase instance?
 
-Backup two things: the application database (PostgreSQL dump) and any environment variables/secrets. If using the H2 database, backup the `.db` file while Metabase is stopped. For Docker deployments, snapshot the volume. Test your restore process quarterly — a backup you cannot restore is not a backup.
+Backup two things: the application database (PostgreSQL dump) and any environment variables/secrets. If using the H2 database, backup the ````.db``` file while Metabase is stopped. For Docker deployments, snapshot the volume. Test your restore process quarterly — a backup you cannot restore is not a backup.
 
 ### Can Metabase handle real-time dashboards?
 
@@ -622,7 +623,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](metabase-business-intelligence-open)
@@ -632,5 +633,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [markitdown-universal-file-to-markdown-converter](metabase-business-intelligence-open)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -6,6 +6,7 @@ Nếu bạn sống trong tmux/Vim/JetBrains và không muốn đổi IDE, Claude
 
 ---
 
+
 ## Phân tích giá sâu
 
 ### Cursor
@@ -20,12 +21,12 @@ Nếu bạn sống trong tmux/Vim/JetBrains và không muốn đổi IDE, Claude
 - Power user điển hình: **20-50M token/tháng** = $200-$400/tháng
 - Người dùng nhẹ (đôi khi dùng CLI): **$10-$30/tháng**
 
-→ **Biên độ rất lớn**. Đặt giới hạn bằng `claude --max-cost-per-session` để tránh hóa đơn vỡ trận.
+→ **Biên độ rất lớn**. Đặt giới hạn bằng ```claude --max-cost-per-session```` để tránh hóa đơn vỡ trận.
 
 ### Chiến lược kết hợp (Power user thông minh)
 Nhiều dev dùng **Cursor làm IDE mặc định** ($20/tháng) và **Claude Code trong terminal** cho các task agent phức tạp (giới hạn $100/tháng). Tổng: ~$120/tháng cho bộ kép cao cấp. Vẫn rẻ hơn Copilot Business + GitHub Copilot Enterprise cộng lại.
 
----
+* * *
 
 ## Benchmark hiệu năng (Chủ quan, từ trải nghiệm hàng ngày của tôi)
 
@@ -40,15 +41,15 @@ Nhiều dev dùng **Cursor làm IDE mặc định** ($20/tháng) và **Claude Co
 
 → Cursor thắng autocomplete inline (công cụ CLI không làm được). Claude Code thắng mọi thứ hưởng lợi từ context lớn + vòng lặp agent.
 
----
+* * *
 
 ## Mẹo chuyển đổi
 
 ### Cursor → Claude Code
-- Cài: `npm install -g @anthropic-ai/claude-code`
+- Cài: ````npm install -g @anthropic-ai/claude-code````
 - Giữ VS Code/Cursor làm editor, chạy Claude Code trong terminal tích hợp
-- Bắt đầu với lệnh chỉ đọc (`/explain`, `/review`) trước khi cấp quyền sửa
-- Dùng `claude --resume` để tiếp tục phiên trước
+- Bắt đầu với lệnh chỉ đọc (````/explain````, ````/review````) trước khi cấp quyền sửa
+- Dùng ````claude --resume``` để tiếp tục phiên trước
 
 ### Claude Code → Cursor
 - Cài Cursor từ cursor.com
@@ -59,7 +60,7 @@ Nhiều dev dùng **Cursor làm IDE mặc định** ($20/tháng) và **Claude Co
 ### Ghi chú tự host
 Bạn đang chuẩn bị tự host Aider / cc-switch / Claude Code router? Mở một {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — đủ cho 2 tháng dùng vừa phải để test stack không rủi ro.
 
----
+* * *
 
 ## Các lựa chọn thay thế đáng thử
 
@@ -67,7 +68,7 @@ Nếu Cursor và Claude Code đều không hợp, cân nhắc: - **[Aider](https
 - **[Continue.dev](https://dibi8.com/vi/resources/llm-frameworks/continue/)** — Extension VS Code miễn phí, tự đem API key
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Định tuyến request Claude Code qua provider rẻ hơn (DeepSeek, Mistral) để cắt 60-80% chi phí
 
----
+* * *
 
 ## Quan điểm của dibi8
 
@@ -77,13 +78,13 @@ Nếu chi phí dự đoán được quan trọng nhất → **Cursor**.
 Nếu năng lực thô quan trọng nhất → **Claude Code**.
 Nếu hiệu quả chi phí tối đa quan trọng nhất → **Aider + cc-switch + DeepSeek**.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -162,12 +163,12 @@ Cursor vs Claude Code 2026: Công cụ AI lập trình nào tốt hơn? represen
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -177,7 +178,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](cursor-vs-claude-code)
 - [cursor-vs-claude-code](cursor-vs-claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

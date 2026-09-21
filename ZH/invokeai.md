@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/invokeai/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
@@ -38,7 +39,7 @@ InvokeAI 是一个免费的开源创意引擎，用于基于 Stable Diffusion �
 
 ## InvokeAI 的工作原理
 
-InvokeAI 采用模块化客户端-服务器架构。后端是基于 Python 的 API 服务器（`invokeai.app.api_app`），负责处理模型加载、图像生成和队列管理。前端是基于 React 的单页应用，提供画布、画廊和工作流编辑器。
+InvokeAI 采用模块化客户端-服务器架构。后端是基于 Python 的 API 服务器（```invokeai.app.api_app````），负责处理模型加载、图像生成和队列管理。前端是基于 React 的单页应用，提供画布、画廊和工作流编辑器。
 
 **核心组件：**
 
@@ -63,47 +64,47 @@ Docker 是部署生产级 InvokeAI 的最快路径。官方镜像支持 NVIDIA�
 
 **步骤 1 — 克隆仓库：**
 
-```bash
+`````bash
 git clone https://github.com/invoke-ai/InvokeAI.git
 cd InvokeAI/docker
-```
+`````
 
 **步骤 2 — 配置环境：**
 
-```bash
+`````bash
 cp .env.sample .env
-```
+`````
 
-编辑 `.env` 文件：
+编辑 ````.env```` 文件：
 
-```bash
+`````bash
 # 核心配置
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
 GPU_DRIVER=cuda
 CONTAINER_UID=1000
 HUGGINGFACE_TOKEN=hf_your_token_here
-```
+`````
 
 **步骤 3 — 启动容器：**
 
-```bash
+`````bash
 ./run.sh
-```
+`````
 
 或直接运行：
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
-在浏览器中访问 `http://localhost:9090`。
+在浏览器中访问 ````http://localhost:9090````。
 
 ### 快速 Docker 运行（无需 Compose）
 
 如需快速测试而不持久化数据：
 
-```bash
+`````bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -119,35 +120,35 @@ docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
   --volume /mnt/invokeai-data:/invokeai \
   ghcr.io/invoke-ai/invokeai:latest
-```
+`````
 
 ### 方法二：裸机安装（Linux/macOS）
 
 **步骤 1 — 安装启动器：**
 
-```bash
+`````bash
 pip install invokeai
-```
+`````
 
 **步骤 2 — 运行配置向导：**
 
-```bash
+`````bash
 invokeai-configure
-```
+`````
 
 此交互式向导会安装正确的 PyTorch 版本、下载默认模型并配置运行时目录。
 
 **步骤 3 — 启动 WebUI：**
 
-```bash
+`````bash
 invokeai-web
-```
+`````
 
 ### 方法三：云 VPS（DigitalOcean）
 
 对于没有本地 GPU 硬件的团队，云 GPU 实例可以提供完整的 InvokeAI 访问。配备 NVIDIA A10G 或 H100 的 DigitalOcean GPU Droplets 表现良好。
 
-```bash
+`````bash
 # 在全新的 Ubuntu 24.04 GPU droplet 上
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 sudo systemctl enable --now docker
@@ -167,11 +168,11 @@ cd InvokeAI/docker
 cp .env.sample .env
 # 编辑 .env：设置 INVOKEAI_ROOT 和 HUGGINGFACE_TOKEN
 sudo docker compose up -d
-```
+`````
 
 ### 生产环境 docker-compose.yml 参考
 
-```yaml
+`````yaml
 # Copyright (c) 2023 Eugene Brodsky https://github.com/ebr
 
 x-invokeai: &invokeai
@@ -203,7 +204,7 @@ services: invokeai-cuda: <<: *invokeai
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
     profiles: - rocm
-```
+`````
 
 ## 与 Stable Diffusion、ComfyUI 和 ControlNet 集成
 
@@ -224,13 +225,13 @@ InvokeAI 开箱即用支持多种模型系列：
 
 **手动添加模型：**
 
-```bash
+`````bash
 # 将 .safetensors 或 .ckpt 文件放入模型目录
 cp your-model.safetensors /opt/invokeai-data/models/sd-1/main/
 
 # 重启容器
 docker compose restart
-```
+`````
 
 ### ControlNet 集成
 
@@ -255,7 +256,7 @@ InvokeAI 通过其节点工作区原生支持 ControlNet。可用的处理器包
 - Image Scale 节点
 - ControlNet 处理器
 
-```python
+`````python
 # 示例：通过 InvokeAI 的 REST API 编程设置生成参数（v6.12.0+）
 import requests
 
@@ -273,7 +274,7 @@ response = requests.post(
     }
 )
 print(response.json()["session_id"])
-```
+`````
 
 ## 性能基准测试 / 实际用例
 
@@ -281,13 +282,13 @@ print(response.json()["session_id"])
 
 | 平台 | 768×1024（平均） | 1024×1024（平均） | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **InvokeAI** | 18.83秒 | 24.44秒 | 专业 UI，队列系统 |
 | **ComfyUI** | 16.16秒 | 21.47秒 | 原始生成速度最快 |
@@ -300,11 +301,11 @@ print(response.json()["session_id"])
 
 | 平台 | VRAM 使用 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | InvokeAI | 14.2 GB | 高效的模型缓存 |
 | ComfyUI | 13.8 GB | 最低开销 |
@@ -317,10 +318,10 @@ print(response.json()["session_id"])
 
 InvokeAI 现在支持在单个后端上运行多个隔离账户：
 
-```bash
+`````bash
 # 在 .env 中启用多用户模式
 INVOKEAI_ENABLE_MULTIUSER=true
-```
+`````
 
 每个用户拥有：
 - 独立的图像画板和画廊
@@ -332,7 +333,7 @@ INVOKEAI_ENABLE_MULTIUSER=true
 
 ### 反向代理与 SSL
 
-```nginx
+`````nginx
 # 生产环境 Nginx 配置
 server {
     listen 443 ssl http2;
@@ -353,11 +354,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### 使用 systemd 管理服务
 
-```ini
+`````ini
 # /etc/systemd/system/invokeai.service
 [Unit]
 Description=InvokeAI Creative Engine
@@ -374,18 +375,18 @@ TimeoutStartSec=0
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
 启用并启动：
 
-```bash
+`````bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
-```
+`````
 
 ### 使用 Prometheus 监控
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -394,11 +395,11 @@ services: prometheus: image: prom/prometheus:latest
   dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
     ports: - "9400:9400"
-```
+`````
 
 ### 自动备份
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/invokeai-backup/backup.sh
 BACKUP_DIR="/backups/invokeai"
@@ -410,27 +411,27 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 
 # 只保留最近 7 天
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
-```
+`````
 
 添加到 crontab：
 
-```bash
+`````bash
 0 2 * * * /opt/invokeai-backup/backup.sh
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | InvokeAI | AUTOMATIC1111 | ComfyUI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **WebUI 完善度** | 专业，为创意人员设计 | 功能齐全但较旧 | 极简，节点为主 | 极简，提示词为主 |
 | **节点式工作流** | 是，可视化编辑器 | 否（基于扩展） | 是，原生支持 | 否 |
@@ -466,7 +467,7 @@ find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
 
 ### 没有 GPU 可以运行 InvokeAI 吗？
 
-可以，InvokeAI 支持仅 CPU 系统，但生成速度慢 10-20 倍。使用 CPU Docker 配置文件：`docker compose --profile cpu up -d`。在现代 8 核 CPU 上，1024×1024 图像约需 2-5 分钟。这适合测试但不适合生产使用。
+可以，InvokeAI 支持仅 CPU 系统，但生成速度慢 10-20 倍。使用 CPU Docker 配置文件：````docker compose --profile cpu up -d````。在现代 8 核 CPU 上，1024×1024 图像约需 2-5 分钟。这适合测试但不适合生产使用。
 
 ### InvokeAI 如何处理模型许可？
 
@@ -474,25 +475,25 @@ InvokeAI 本身是 Apache-2.0 许可。你下载的模型（SD 1.5、SDXL、FLUX
 
 ### 可以从 AUTOMATIC1111 迁移到 InvokeAI 吗？
 
-可以。InvokeAI 可以使用 A1111 安装中的现有 `.safetensors` 和 `.ckpt` 模型。将 `INVOKEAI_ROOT` 指向你现有的模型目录，或将模型复制到 InvokeAI 模型文件夹。注意 A1111 扩展和脚本不会转移 —— InvokeAI 使用自己的节点式工作流系统。
+可以。InvokeAI 可以使用 A1111 安装中的现有 ````.safetensors```` 和 ````.ckpt```` 模型。将 ````INVOKEAI_ROOT```` 指向你现有的模型目录，或将模型复制到 InvokeAI 模型文件夹。注意 A1111 扩展和脚本不会转移 —— InvokeAI 使用自己的节点式工作流系统。
 
 ### 如何更新 InvokeAI 到新版本？
 
 Docker 安装：拉取最新镜像并重启：
 
-```bash
+`````bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
-```
+`````
 
 裸机安装：使用启动器：
 
-```bash
+`````bash
 invokeai-update
-```
+`````
 
-主要版本更新前务必备份你的 `INVOKEAI_ROOT` 目录。
+主要版本更新前务必备份你的 ````INVOKEAI_ROOT```` 目录。
 
 ### InvokeAI 有托管/云版本吗？
 
@@ -500,7 +501,7 @@ InvokeAI 主要是自托管的。开发者提供 Invoke for Teams（商业产品
 
 ### v6.12.0 中的多用户模式如何工作？
 
-多用户模式创建具有独立画廊、画布状态和偏好的独立账户。管理员账户管理模型和系统设置。通过 `INVOKEAI_ENABLE_MULTIUSER=true` 启用。每个用户使用用户名和密码登录。在 v6.12.0 中标记为实验性功能 —— 未来版本将持续改进。
+多用户模式创建具有独立画廊、画布状态和偏好的独立账户。管理员账户管理模型和系统设置。通过 ````INVOKEAI_ENABLE_MULTIUSER=true``` 启用。每个用户使用用户名和密码登录。在 v6.12.0 中标记为实验性功能 —— 未来版本将持续改进。
 
 ## 总结
 
@@ -538,7 +539,7 @@ InvokeAI 在 AI 图像生成生态中填补了特定空白：一款专业级、�
 - [InvokeAI PyPI 包](https://pypi.org/project/InvokeAI/)
 
 
----
+* * *
 *本文包含 DigitalOcean 联盟链接。通过此链接注册，我们会在不向你额外收费的情况下获得佣金。这有助于支持网站和我们的开源内容。所有观点和基准测试均为独立制作。*
 
 
@@ -604,11 +605,11 @@ InvokeAI: 27.2K+ Stars — 2026 完整安装配置指南 represents an important
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -618,6 +619,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](invokeai)
 - [nanochat-karpathy-100-chatgpt-single-gpu](invokeai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

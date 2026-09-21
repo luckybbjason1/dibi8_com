@@ -33,6 +33,7 @@ faqs: - q: 'Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có ngh
     a: 'Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.'
 ---
 
+
 # Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc
 
 
@@ -43,21 +44,21 @@ faqs: - q: 'Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có ngh
 ## Ba con số thực sự quan trọng
 
 ### 1. **Tổng thời gian thực thi (Total Execution Time)**
-```
+````
 Total runtime: 1234.567 ms
-```
+`````
 Đây là chỉ số quan trọng nhất. Nếu truy vấn chậm, nó sẽ cho bạn biết ở đây.
 
 ### 2. **Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)**
-```
+`````
 Seq Scan on users  (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1)
-```
+`````
 Sự khác biệt lớn cho thấy trình lập kế hoạch đã đưa ra giả định sai.
 
 ### 3. **Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)**
-```
+`````
 Buffers: shared hit=1000 read=50
-```
+`````
 Tỷ lệ trúng cao = sử dụng bộ đệm tốt, tỷ lệ trúng thấp = vấn đề I/O đĩa.
 
 ## Thứ tự đọc
@@ -70,29 +71,29 @@ Tỷ lệ trúng cao = sử dụng bộ đệm tốt, tỷ lệ trúng thấp = 
 ## Mẫu vấn đề phổ biến
 
 ### **Quét tuần tự khi nên quét chỉ mục**
-```
+`````
 Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32)
-```
+`````
 **Giải pháp**: Thêm chỉ mục phù hợp
 
 ### **Vòng lồng khi nên kết nối băm**
-```
+`````
 Nested Loop (cost=1000.00..100000.00 rows=1000 width=64)
   -> Seq Scan on users
   -> Index Scan on orders
-```
+`````
 **Giải pháp**: Tăng work_mem hoặc viết lại truy vấn
 
 ### **Quá nhiều bộ đệm không trúng**
-```
+`````
 Buffers: shared hit=10 read=1000
-```
+`````
 **Giải pháp**: Tăng shared_buffers hoặc cải thiện truy vấn
 
 ### **Sắp xếp tràn ra đĩa**
-```
+`````
 Sort Method: external merge  Disk: 16384kB
-```
+````
 **Giải pháp**: Tăng work_mem
 
 ## Ứng dụng thực tế
@@ -104,7 +105,7 @@ Những hiểu biết này giúp tôi xác định và sửa chữa: - Chỉ m�
 
 Hãy nhớ: EXPLAIN ANALYZE là trình gỡ lỗi hiệu suất truy vấn của bạn. Học cách đọc nó sẽ tiết kiệm cho bạn vô số giờ đoán mò.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -177,7 +178,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

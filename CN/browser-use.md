@@ -23,6 +23,7 @@ tags: ["browser-use", "ai-agents", "playwright", "browser-automation", "web-scra
 aliases:
   - /posts/browser-use/-
 ---
+
 {{</* resource-info */>}}
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
@@ -30,13 +31,13 @@ aliases:
 > **GitHub**: [browser-use/browser-use](https://github.com/browser-use/browser-use) | **Stars**: 94,731 | **License**: MIT | **Version**: 0.12.7
 
 
----
+* * *
 ## Introduction
 
 Writing and maintaining Selenium scripts for modern web automation is a slow death by a thousand selectors. A class name changes, a button moves, and your entire pipeline collapses at 3 AM. Browser Use, an open-source Python framework launched in late 2024 by Magnus Müller and Gregor Žunič, takes a different approach: it hands the browser controls to a large language model and lets the AI figure out what to click, type, and read. With 94,731 GitHub stars, 319 contributors, and an 89.1% success rate on the WebVoyager benchmark, it has become the de facto open-source standard for AI-driven browser automation. This tutorial covers the setup, real benchmark data, integration with popular LLMs, and a head-to-head comparison against Selenium, Puppeteer, and Scrapy.
 
 
----
+* * *
 ## What Is Browser Use?
 
 Browser Use is a Python library (≥3.11) that connects any LangChain-compatible LLM to a real web browser via Playwright. Instead of hardcoding CSS selectors or XPath expressions, you describe the task in natural language — "find the cheapest flight from NYC to SFO next Friday" — and the agent handles navigation, form filling, clicking, and data extraction autonomously.
@@ -49,13 +50,13 @@ Browser Use is a Python library (≥3.11) that connects any LangChain-compatible
 - **Persistent memory**: Maintains context and conversation history across navigation steps.
 - **Built on Playwright**: Inherits all Playwright features — stealth mode, proxy support, network interception, and video recording.
 
----
+* * *
 
 ## How Browser Use Works
 
 Browser Use operates on a continuous **observe → plan → act → verify** loop: ### Architecture Overview
 
-```
+````
 ┌─────────────┐    DOM + Screenshot     ┌─────────────┐
 │   Browser   │ ──────────────────────> │     LLM     │
 │  (Playwright)│                        │(Claude/GPT/)│
@@ -63,7 +64,7 @@ Browser Use operates on a continuous **observe → plan → act → verify** loo
 └─────────────┘     Action (click/type) └─────────────┘
       ↑                                        │
       └────────── Page State Change ───────────┘
-```
+`````
 
 ![Browser Use Agent Loop Architecture](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/agent-loop-diagram.png)
 
@@ -72,10 +73,10 @@ Browser Use operates on a continuous **observe → plan → act → verify** loo
 1. **Capture**: Browser Use takes a DOM snapshot and screenshot of the current page.
 2. **Distill**: The DOM is filtered to only interactive elements (buttons, inputs, links), reducing noise.
 3. **Reason**: The LLM receives the distilled page state and the user's goal, then plans the next action.
-4. **Execute**: Browser Use translates the LLM's decision into Playwright API calls (`page.click()`, `page.fill()`).
-5. **Verify**: The loop repeats until the task is complete or `max_steps` is reached.
+4. **Execute**: Browser Use translates the LLM's decision into Playwright API calls (````page.click()````, ````page.fill()````).
+5. **Verify**: The loop repeats until the task is complete or ````max_steps```` is reached.
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -90,9 +91,9 @@ async def main(): browser = Browser()
     print(result)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## Installation & Setup
 
@@ -104,7 +105,7 @@ if __name__ == "__main__": asyncio.run(main())
 
 ### Step 1: Install Browser Use
 
-```bash
+`````bash
 # Using uv (recommended)
 uv init
 uv add browser-use
@@ -115,11 +116,11 @@ pip install browser-use
 
 # Install Chromium if not already present
 playwright install chromium
-```
+`````
 
 ### Step 2: Configure Environment Variables
 
-```bash
+`````bash
 # .env file
 OPENAI_API_KEY=sk-your-openai-key
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
@@ -127,11 +128,11 @@ GOOGLE_API_KEY=your-google-api-key
 
 # Optional: Browser Use Cloud for stealth browsers
 BROWSER_USE_API_KEY=your-cloud-key
-```
+`````
 
 ### Step 3: Run Your First Agent
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
@@ -145,13 +146,13 @@ async def main(): browser = Browser()
     print(result.output)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
 
 ### Docker Setup (Production)
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -162,9 +163,9 @@ RUN playwright install-deps
 
 COPY . .
 CMD ["python", "agent.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: browser-use: build: .
@@ -172,15 +173,15 @@ services: browser-use: build: .
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     volumes: - ./scripts:/app
     command: python agent.py
-```
+`````
 
----
+* * *
 
 ## Integration with Popular Tools
 
 ### OpenAI GPT-4o / GPT-5.1
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -193,11 +194,11 @@ async def search_flights(): agent = Agent(
     return await agent.run()
 
 asyncio.run(search_flights())
-```
+`````
 
 ### Anthropic Claude Sonnet 4
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
@@ -211,11 +212,11 @@ async def extract_data(): agent = Agent(
     print(result.output)
 
 asyncio.run(extract_data())
-```
+`````
 
 ### Google Gemini 3 Flash
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
@@ -228,11 +229,11 @@ async def research_topic(): agent = Agent(
     return await agent.run()
 
 asyncio.run(research_topic())
-```
+`````
 
 ### Ollama (Local Models)
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
@@ -245,11 +246,11 @@ async def local_automation(): agent = Agent(
     return await agent.run()
 
 asyncio.run(local_automation())
-```
+`````
 
 ### Playwright Direct Integration
 
-```python
+`````python
 from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -269,9 +270,9 @@ async def hybrid_automation(): async with async_playwright() as p: browser = awa
         result = await agent.run()
         await browser.close()
         return result
-```
+`````
 
----
+* * *
 
 ## Benchmarks / Real-World Use Cases
 
@@ -283,13 +284,13 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 
 | Rank | System | Score | Organization |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | Alumnium | 98.6% | Alumnium |
 | 2 | Surfer 2 | 97.1% | H Company |
@@ -307,15 +308,15 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 
 | Metric | Browser Use (AI) | Playwright | Puppeteer | Selenium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start to first navigation | ~0.5–0.8s | ~0.4–0.7s | ~0.3–0.5s | ~1.2–2.5s |
 | Idle RAM (per instance) | ~100–150MB | ~90–130MB | ~60–100MB | ~180–280MB |
@@ -328,11 +329,11 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 
 | LLM Provider | Cost per Task (avg 10 steps) | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-4o | ~$0.15–$0.30 | Complex reasoning tasks |
 | Claude Sonnet 4 | ~$0.10–$0.20 | Production reliability |
@@ -341,7 +342,7 @@ The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web 
 
 ### Use Case: Automated Price Monitoring
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -365,15 +366,15 @@ async def monitor_prices(): urls = [
 
 # Run daily via cron or scheduled task
 prices = asyncio.run(monitor_prices())
-```
+`````
 
----
+* * *
 
 ## Advanced Usage / Production Hardening
 
 ### Parallel Agent Execution
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -393,11 +394,11 @@ tasks = [
 ]
 
 results = asyncio.run(run_parallel_agents(tasks))
-```
+`````
 
 ### Proxy Configuration for Scraping
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -417,11 +418,11 @@ agent = Agent(
     llm=ChatOpenAI(model="gpt-4o"),
     browser=browser,
 )
-```
+`````
 
 ### Session Persistence and Authentication
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig, Agent
 from langchain_openai import ChatOpenAI
 
@@ -438,11 +439,11 @@ async def authenticated_task(): browser = Browser(config=config)
         browser=browser,
     )
     return await agent.run()
-```
+`````
 
 ### Error Handling and Retries
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -458,11 +459,11 @@ async def robust_agent(task, max_retries=3): for attempt in range(max_retries): 
         except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # Exponential backoff
     raise Exception(f"Task failed after {max_retries} attempts")
-```
+`````
 
 ### Monitoring with Prometheus
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 from browser_use import Agent, Browser
 
@@ -478,23 +479,23 @@ async def monitored_agent(task): agent_runs.inc()
             return result
         except Exception: agent_failures.inc()
             raise
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
 | Feature | Browser Use | Scrapy | Puppeteer | Selenium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Language** | Python | Python | JavaScript/TypeScript | Python, Java, C#, JS |
 | **AI-Native** | Yes (LLM-driven) | No | No | No |
@@ -515,7 +516,7 @@ async def monitored_agent(task): agent_runs.inc()
 - **Puppeteer**: Chrome-only automation where speed matters and you control the target site. Ideal for PDF generation and screenshots.
 - **Selenium**: Cross-browser testing for enterprise applications with strict browser coverage requirements.
 
----
+* * *
 
 ## Limitations / Honest Assessment
 
@@ -529,7 +530,7 @@ Browser Use is not a universal replacement for traditional browser automation. H
 
 5. **LLM dependency**: You are bound to the availability and pricing of third-party LLM APIs. Rate limits can bottleneck production workloads.
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -546,18 +547,18 @@ Any LangChain-compatible LLM: OpenAI GPT-4o/5.1, Anthropic Claude Sonnet 4, Goog
 The framework is free (MIT license). You pay for LLM API usage: approximately $0.02–$0.30 per 10-step task depending on the model. Browser Use Cloud offers managed stealth browsers starting at $29/month.
 
 ### Can I run Browser Use in Docker?
-Yes. Install `browser-use` and `playwright` in a Python 3.11+ container, run `playwright install chromium`, and set your API keys via environment variables. A sample Dockerfile is provided in the Installation section above.
+Yes. Install ````browser-use```` and ````playwright```` in a Python 3.11+ container, run ````playwright install chromium````, and set your API keys via environment variables. A sample Dockerfile is provided in the Installation section above.
 
 ### Does Browser Use solve CAPTCHAs?
 Browser Use does not solve CAPTCHAs natively. For protected sites, pair it with Browser Use Cloud (built-in CAPTCHA solving), or integrate with a dedicated CAPTCHA service like 2Captcha or CapSolver.
 
 ### How do I handle authentication in Browser Use?
-Use persistent browser profiles (`user_data_dir` in `BrowserConfig`) to maintain cookies and login state across sessions. For OAuth or 2FA flows, run the initial login in headed mode, then switch to headless for subsequent tasks.
+Use persistent browser profiles (````user_data_dir```` in ````BrowserConfig````) to maintain cookies and login state across sessions. For OAuth or 2FA flows, run the initial login in headed mode, then switch to headless for subsequent tasks.
 
 ### What is the difference between Browser Use and Stagehand?
-Browser Use is a fully autonomous agent framework — the LLM controls all navigation decisions. Stagehand (by Browserbase) adds AI primitives (`act()`, `extract()`, `observe()`) on top of Playwright for hybrid workflows where deterministic and AI-driven steps coexist. Choose Browser Use for full autonomy; choose Stagehand for surgical AI enhancement of existing Playwright scripts.
+Browser Use is a fully autonomous agent framework — the LLM controls all navigation decisions. Stagehand (by Browserbase) adds AI primitives (````act()````, ````extract()````, ````observe()````) on top of Playwright for hybrid workflows where deterministic and AI-driven steps coexist. Choose Browser Use for full autonomy; choose Stagehand for surgical AI enhancement of existing Playwright scripts.
 
----
+* * *
 
 ## Conclusion
 
@@ -566,13 +567,13 @@ Browser Use has earned its 94,731 GitHub stars by solving a genuine pain point: 
 The framework is not without tradeoffs — LLM costs add up at scale, and deterministic testing remains the domain of Selenium and Playwright. But for teams building AI agents that need to navigate arbitrary websites, fill forms, extract data, and adapt to UI changes without human intervention, Browser Use is the most mature open-source option available.
 
 **Action items**: 1. Clone the [browser-use/browser-use](https://github.com/browser-use/browser-use) repository
-2. Run `pip install browser-use` and set up your first agent with the code examples above
+2. Run ````pip install browser-use``` and set up your first agent with the code examples above
 3. Evaluate the WebVoyager benchmark against your use case
 4. Join the [Browser Use Discord](https://link.browser-use.com/discord) for community support and production tips
 
 > **Want more AI automation tutorials?** Join our [Telegram group](https://t.me/dibi8opensource) for weekly deep-dives on open-source AI tools, production deployment tips, and benchmark data.
 
----
+* * *
 
 
 
@@ -594,7 +595,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Browser Use Proxy Setup Guide](https://www.coronium.io/blog/browser-use-proxy-setup)
 - [Stagehand vs Browser Use vs Playwright Comparison](https://www.nxcode.io/resources/news/stagehand-vs-browser-use-vs-playwright-ai-browser-automation-2026)
 
----
+* * *
 
 *This article was written for developers who need production-grade browser automation. All benchmark data is sourced from publicly available leaderboards and independent testing as of May 2026.*
 
@@ -624,7 +625,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -634,7 +635,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [obscura-rust-headless-browser-ai-agents-web-scraping](browser-use)
 - [12-factor-agents-production-llm-software-2026](browser-use)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

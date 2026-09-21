@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/rvc/
 ---
 
+
 {{</* resource-info */>}}
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
@@ -44,7 +45,7 @@ RVC 아키텍처는 네 가지 핵심 모듈로 구성된다: **콘텐츠 특징
 
 **음향 모델링(Acoustic Modeling)** — VITS(Variational Inference with adversarial learning for end-to-end Text-to-Speech) 기반으로, 정규화 흐름으로 강화된 조걵 VAE다. VITS는 생성기와 다중 주기 판별기 간의 적대적 훈련을 통해 고품질 오디오를 생성한다.
 
-**검색 모듈(Retrieval Module)** — RVC의 시그니처 혁신이다. 훈련 중 콘텐츠 특징이 Faiss 벡터 데이터베이스에 인덱싱된다. 추론 시 소스 특징은 훈련 세트의 Top-K 개 최근접 이웃으로 대첸된다(기본 K=8). 이를 통해 소스 화자의 음색 누출을 극적으로 줄인다. `index_rate` 파라미터(α, 일반적으로 0.3)는 검색된 특징과 소스 특징의 혼합 비율을 제어한다.
+**검색 모듈(Retrieval Module)** — RVC의 시그니처 혁신이다. 훈련 중 콘텐츠 특징이 Faiss 벡터 데이터베이스에 인덱싱된다. 추론 시 소스 특징은 훈련 세트의 Top-K 개 최근접 이웃으로 대첸된다(기본 K=8). 이를 통해 소스 화자의 음색 누출을 극적으로 줄인다. ```index_rate```` 파라미터(α, 일반적으로 0.3)는 검색된 특징과 소스 특징의 혼합 비율을 제어한다.
 
 ![RVC 아키텍처 다이어그램](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/raw/main/docs/rvc_arch.png)
 
@@ -62,7 +63,7 @@ RVC는 Linux, macOS, Windows에서 실행된다. 훈련에는 최소 4GB VRAM의
 
 ### 방법 1: Docker 배포(프로덕션 환경 권장)
 
-공식 Dockerfile은 CUDA 11.6.2 + Ubuntu 20.04 + Python 3.9을 사용한다: ```bash
+공식 Dockerfile은 CUDA 11.6.2 + Ubuntu 20.04 + Python 3.9을 사용한다: `````bash
 # 저장소 클론
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -77,9 +78,9 @@ docker run -d --name rvc \
   -v $(pwd)/weights:/app/weights \
   -v $(pwd)/opt:/app/opt \
   rvc-webui:latest
-```
+`````
 
-docker-compose 사용자: ```yaml
+docker-compose 사용자: `````yaml
 version: '3.8'
 
 services: rvc: build: .
@@ -94,19 +95,19 @@ services: rvc: build: .
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # docker-compose로 시작
 docker-compose up -d
 
 # 로그 확인
 docker-compose logs -f rvc
-```
+`````
 
 ### 방법 2: 로컬 Python 설치
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -128,11 +129,11 @@ wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_v2/f0G40k.pth -P assets/pretrained_v2/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -P assets/hubert/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt -P assets/rmvpe/
-```
+`````
 
 ### 방법 3: AMD GPU 설치(ROCm)
 
-```bash
+`````bash
 # ROCm 종속성 설치(Ubuntu/Debian)
 sudo apt install rocm-hip-sdk rocm-opencl-sdk
 
@@ -146,16 +147,16 @@ sudo usermod -aG video $USER
 
 # AMD 전용 종속성 설치
 pip install -r requirements-amd.txt
-```
+`````
 
 ### WebUI 시작
 
-```bash
+`````bash
 # Gradio 웹 인터페이스 시작
 python infer-web.py
 
 # WebUI는 http://localhost:7865 에서 사용 가능
-```
+`````
 
 ## 훈련 파이프라인
 
@@ -166,24 +167,24 @@ RVC는 깨끗한 모노 오디오가 필요하다. 최상의 결과를 위해: -
 - **콘텐츠:** 단일 화자, 배경 소음 최소, 음악이나 잔향 없음
 - **침묵:** 긴 침묵 구간 제거(> 3초)
 
-UVR5(내장)를 사용한 음원 분리: ```bash
+UVR5(내장)를 사용한 음원 분리: `````bash
 # 배경 음악에서 보컬 분리
 python tools/uvr5/uvr5_cli.py \
   --input_path ./raw_audio/song_with_music.wav \
   --output_path ./dataset/ \
   --model_name "HP2-人声vocals+非人声instrumentals"
-```
+`````
 
 ### 2단계: 전처리 및 특징 추출
 
-WebUI의 **훈련** 탭에서: 1. **실험 이름** 설정(예: `my_voice_v2`)
+WebUI의 **훈련** 탭에서: 1. **실험 이름** 설정(예: ````my_voice_v2````)
 2. **타겟 샘플링 레이트**를 40kHz로 설정(권장)
 3. **RVC 버전**을 v2로 설정
-4. **모델 아키텍처**를 `rmvpe_gpu`로 설정
+4. **모델 아키텍처**를 ````rmvpe_gpu````로 설정
 5. **데이터셋 경로**를 오디오 폴더로 설정
 6. **원클릭 훈련** 클릭
 
-또는 명령줄로: ```bash
+또는 명령줄로: `````bash
 # 1단계: 전처리(리샘플링, 슬라이싱, 침묵 제거)
 python trainset_preprocess_pipeline_print.py \
   ./dataset/my_voice \
@@ -207,25 +208,25 @@ python train_nsf_sim_cache_sid_load_pretrain.py \
   --pretrained_G assets/pretrained_v2/f0G40k.pth \
   --pretrained_D assets/pretrained_v2/f0D40k.pth \
   --gpu 0
-```
+`````
 
 ### 3단계: 특징 인덱스 구축
 
-```bash
+`````bash
 # 검색용 Faiss 인덱스 생성
 python tools/infer/train_index.py \
   --model_name my_voice_v2 \
   --sample_rate 40000
-```
+`````
 
-훈련 출력 위치: ```
+훈련 출력 위치: `````
 logs/
 └── my_voice_v2/
     ├── added_IVF512_Flat_nprobe_1.index   # Faiss 검색 인덱스
     ├── G_*.pth                             # 생성기 체크포인트
     ├── D_*.pth                             # 판별기 체크포인트
     └── config.json                         # 모델 구성
-```
+`````
 
 ![RVC WebUI 훈련 탭](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/docs/en/training_tab.png)
 
@@ -243,7 +244,7 @@ logs/
 
 ### 통합 1: GPT-SoVITS(TTS + RVC 파이프라인)
 
-GPT-SoVITS는 텍스트에서 음성을 생성하고, RVC는 이를 타겟 목소리로 변환한다. 두 도구를 결합하면 완전한 텍스트-음성 클론 파이프라인이 된다: ```python
+GPT-SoVITS는 텍스트에서 음성을 생성하고, RVC는 이를 타겟 목소리로 변환한다. 두 도구를 결합하면 완전한 텍스트-음성 클론 파이프라인이 된다: `````python
 # gpt_sovits_rvc_pipeline.py
 import requests
 
@@ -271,11 +272,11 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str): """GPT-SoVITS
     })
     
     return rvc_response.json()["output_path"]
-```
+`````
 
 ### 통합 2: Coqui TTS
 
-```python
+`````python
 # coqui_rvc_bridge.py
 from TTS.api import TTS
 import requests
@@ -299,11 +300,11 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # Coqui XTTS v2�
     
     with open(output_path, "wb") as f: f.write(response.content)
     return output_path
-```
+`````
 
 ### 통합 3: demucs(고급 음원 분리)
 
-훈련 전 프로덕션급 보컬 분리를 위해: ```bash
+훈련 전 프로덕션급 보컬 분리를 위해: `````bash
 # demucs 설치
 pip install demucs
 
@@ -312,13 +313,13 @@ demucs --two-stems=vocals --mp3 --mp3-bitrate 320 input_song.mp3
 
 # 분리된 보컬 트랙을 RVC 훈련에 사용
 mv separated/htdemucs/input_song/vocals.wav ./dataset/clean_voice.wav
-```
+`````
 
 ### 통합 4: 실시간 음성 변환 GUI
 
 RVC는 라이브 애플리케이션을 위한 실시간 음성 변환 GUI를 포함한다: ![RVC 실시간 GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
 
-```bash
+`````bash
 # 실시간 GUI 시작
 python gui_v1.py
 
@@ -329,9 +330,9 @@ python gui_v1.py --dml
 # - 크로스페이드: 0.05s
 # - 추가 시간: 2.5s
 # - 피치 추출기: fcpe(가장 빠름) 또는 rmvpe(최상의 품질)
-```
+`````
 
-스트리밍 구성(ASIO로 90ms 종단 지연 시간): ```python
+스트리밍 구성(ASIO로 90ms 종단 지연 시간): `````python
 # gui_config.py 예시
 config = {
     "block_time": 0.1,        # 낮은 지연 시간을 위한 100ms 블록
@@ -344,18 +345,18 @@ config = {
     "I_noise_reduce": True,
     "O_noise_reduce": False
 }
-```
+`````
 
 ### 통합 5: API 서버(FastAPI)
 
-RVC는 프로덕션 배포를 위한 FastAPI 기반 REST API를 제공한다: ```bash
+RVC는 프로덕션 배포를 위한 FastAPI 기반 REST API를 제공한다: `````bash
 # API 서버 시작
 python api_240604.py
 
 # API는 http://localhost:7865 에서 사용 가능
-```
+`````
 
-```python
+`````python
 # API 추론 클라이언트 예시
 import requests
 
@@ -379,7 +380,7 @@ with open("input_audio.wav", "rb") as f: response = requests.post(
     )
 
 with open("converted_output.wav", "wb") as f: f.write(response.content)
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -410,7 +411,7 @@ with open("converted_output.wav", "wb") as f: f.write(response.content)
 
 ### 보안 고려사항
 
-```python
+`````python
 # api_production.py — 강화된 API 래퍼
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -430,11 +431,11 @@ async def secure_convert(
 ): verify_token(credentials)
     # ... 변환 로직
     return {"output_url": signed_url}
-```
+`````
 
 ### 모델 관리
 
-```bash
+`````bash
 # 여러 음성 모델 조직
 models/
 ├── celeb_voice_a/
@@ -449,9 +450,9 @@ models/
     ├── model.pth
     ├── index.faiss
     └── config.json
-```
+`````
 
-```python
+`````python
 # 멀티 테넌트 배포를 위한 동적 모델 로더
 import os
 import glob
@@ -464,11 +465,11 @@ def list_available_models(models_dir="./models"): """사용 가능한 모든 음
                       glob.glob(os.path.join(model_dir, "*.index"))
         if pth_files and index_files: models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
     return models
-```
+`````
 
 ### 모니터링 및 로깅
 
-```python
+`````python
 # monitoring.py — Prometheus 호환 메트릭
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -487,17 +488,17 @@ def monitored_convert(audio_path, model_name): start = time.time()
 
 # 메트릭 엔드포인트 시작
 start_http_server(9090)
-```
+`````
 
 ### ONNX 낮출을 위한 더 빠른 추론
 
-```bash
+`````bash
 # 훈련된 모델을 ONNX로 낮출하여 CPU/GPU 독립적 추론
 python tools/export_onnx.py \
   --checkpoint_path ./logs/my_voice_v2/G_12000.pth \
   --output_path ./models/my_voice_v2/model.onnx \
   --sample_rate 40000
-```
+`````
 
 ## 대안과의 비교
 
@@ -555,7 +556,7 @@ RVC v2는 콘텐츠 인코더를 9층 HuBERT의 256차원 특징에서 12층 HuB
 **index_rate** 파라미터를 조정하라. 높은 값(0.7–1.0)은 검색 인덱스에 더 의존하여 훈련 세트에서 더 많은 특징을 가져오고 소스에서 더 적게 가져온다. 0.75부터 시작하여 출력 품질에 따라 조정하라. 목소리가 인공적으로 들린다면 0.3–0.5로 낮춰라.
 
 ### Discord/Zoom/게임에서 RVC 실시간 변성을 사용할 수 있나?
-예, RVC 실시간 GUI(`gui_v1.py`)를 통해 가능하다. 가상 오디오 케이블(Windows는 VB-Cable, macOS는 BlackHole, Linux는 PulseAudio)을 통해 마이크를 라우팅하고, RVC를 입력 장치로 설정하고, 애플리케이션이 가상 케이블 출력을 사용하도록 구성하라. ASIO 드라이버와 현대 GPU를 사용하면 지연 시간이 100ms 이하로 유지된다.
+예, RVC 실시간 GUI(````gui_v1.py```)를 통해 가능하다. 가상 오디오 케이블(Windows는 VB-Cable, macOS는 BlackHole, Linux는 PulseAudio)을 통해 마이크를 라우팅하고, RVC를 입력 장치로 설정하고, 애플리케이션이 가상 케이블 출력을 사용하도록 구성하라. ASIO 드라이버와 현대 GPU를 사용하면 지연 시간이 100ms 이하로 유지된다.
 
 ### RVC는 어떤 파일 형식을 지원하나?
 RVC는 입력으로 WAV, MP3, FLAC, OGG, M4A를 지원한다. 출력은 항상 대상 샘플링 레이트(32kHz, 40kHz, 또는 48kHz)의 WAV다. 최상의 품질을 위해 입력으로 무손실 WAV 또는 FLAC를 사용하고 MP3 파일을 여러 번 재인코딩하지 마라.
@@ -625,7 +626,7 @@ RVC는 중급 하드웨어에서 20분 이내의 훈련 시간으로 프로덕�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -635,6 +636,6 @@ RVC는 중급 하드웨어에서 20분 이내의 훈련 시간으로 프로덕�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](rvc)
 - [moneyprinterturbo-one-click-ai-video-generator](rvc)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

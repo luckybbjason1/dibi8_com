@@ -10,11 +10,12 @@ draft: false
 slug: comfyui-workflows-complete-guide
 ---
 
+
 ## TL;DR
 
 ComfyUI là một giao diện đồ thị dựa trên nodes mạnh mẽ để chạy các model AI image generation, cho phép bạn xây dựng pipeline tùy chỉnh bằng cách kết nối các nodes thay vì viết code. Nó hỗ trợ Stable Diffusion, Flux, SDXL và hàng chục model khác. Bài viết này bao gồm các mẫu thiết kế workflow, quản lý nodes, tối ưu hiệu năng và cách xây dựng các pipeline tạo ảnh chất lượng cao.
 
----
+* * *
 
 ## ComfyUI là gì?
 
@@ -35,17 +36,17 @@ Các công cụ AI image generation truyền thống cung cấp pipeline cố đ
 
 Workflows dạng nodes xử lý tất cả những điều này một cách native.
 
----
+* * *
 
 ## Khái niệm cốt lõi
 
 ### Nodes và Connections
 
-Mỗi thao tác trong ComfyUI là một **node** — một đơn vị xử lý tự chứa với inputs và outputs: ```
+Mỗi thao tác trong ComfyUI là một **node** — một đơn vị xử lý tự chứa với inputs và outputs: ````
 [Load Checkpoint] → [CLIP Text Encode] → [KSampler] → [VAE Decode] → [Save Image]
      │                    │                      │                │
   model              positive/negative        seed/samples      output
-```
+`````
 
 Mỗi loại node xử lý một nhiệm vụ cụ thể: - **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings
 - **Text Encoding**: Chuyển đổi prompt thành biểu diễn latent space
@@ -55,7 +56,7 @@ Mỗi loại node xử lý một nhiệm vụ cụ thể: - **Model Loading**: L
 
 ### Kiến trúc Workflow
 
-Một ComfyUI workflow hoàn chỉnh tuân theo pattern sau: ```python
+Một ComfyUI workflow hoàn chỉnh tuân theo pattern sau: `````python
 # Flow khái niệm (ComfyUI thực tế sử dụng connections trực quan)
 workflow = {
     "input": {
@@ -78,7 +79,7 @@ workflow = {
         "save_path": "./outputs/"
     }
 }
-```
+`````
 
 ### Các Category Node Chính
 
@@ -93,23 +94,23 @@ workflow = {
 | ControlNet | Guide generation với references | ControlNetApply, Preprocessor |
 | Output | Save và manage results | SaveImage, PreviewImage |
 
----
+* * *
 
 ## Xây dựng Workflow đầu tiên
 
 ### Image Generation cơ bản
 
-```
+`````
 Bước 1: Load Checkpoint → Chọn model (SDXL, Flux, v.v.)
 Bước 2: CLIP Text Encode → Nhập positive và negative prompts
 Bước 3: KSampler → Đặt steps (20-50), CFG (7-12), seed
 Bước 4: VAE Decode → Chuyển latent sang pixel space
 Bước 5: Save Image → Chọn định dạng và vị trí
-```
+`````
 
 ### Nâng cao: Multi-stage Pipeline
 
-Để có kết quả chuyên nghiệp, chain nhiều stages: ```
+Để có kết quả chuyên nghiệp, chain nhiều stages: `````
 Stage 1: Base Generation
 ├── Load Checkpoint (SDXL)
 ├── Encode Prompts
@@ -129,15 +130,15 @@ Stage 4: Final Polish
 ├── Color Correction
 ├── Detail Enhancement
 └── Save High-Res PNG
-```
+`````
 
----
+* * *
 
 ## Các Pattern Workflow Phổ biến
 
 ### Pattern 1: Iterative Refinement
 
-Tạo ảnh base, đánh giá, sau đó refine các khía cạnh cụ thể: ```json
+Tạo ảnh base, đánh giá, sau đó refine các khía cạnh cụ thể: `````json
 {
   "workflow_id": "iterative-refinement",
   "stages": [
@@ -146,11 +147,11 @@ Tạo ảnh base, đánh giá, sau đó refine các khía cạnh cụ thể: ```
     {"name": "detail", "steps": 30, "resolution": "2048x2048", "denoise": 0.3}
   ]
 }
-```
+`````
 
 ### Pattern 2: Batch Variation Generation
 
-Tạo nhiều biến thể để so sánh: ```json
+Tạo nhiều biến thể để so sánh: `````json
 {
   "workflow_id": "batch-variations",
   "config": {
@@ -164,11 +165,11 @@ Tạo nhiều biến thể để so sánh: ```json
     "parallel_workers": 4
   }
 }
-```
+`````
 
 ### Pattern 3: ControlNet-Guided Generation
 
-Sử dụng reference images để guide composition: ```
+Sử dụng reference images để guide composition: `````
 Input: Reference Image
    ↓
 Canny Edge Detection → ControlNet (edge guidance)
@@ -178,17 +179,17 @@ Depth Estimation → ControlNet (depth guidance)
 Combined Conditioning → KSampler
    ↓
 Final Image với precise composition control
-```
+`````
 
 ### Pattern 4: Img2Img Pipeline
 
-Biến đổi existing images trong khi vẫn giữ nguyên structure: ```
+Biến đổi existing images trong khi vẫn giữ nguyên structure: `````
 Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result
-```
+`````
 
 Điều chỉnh denoising strength (0.1-0.9) để kiểm soát cường độ transformation.
 
----
+* * *
 
 ## Quản lý Models
 
@@ -205,7 +206,7 @@ ComfyUI hỗ trợ rộng rãi các model: | Model Type | Ví dụ | Tốt nhấ
 
 ### Cài đặt Models
 
-```bash
+`````bash
 # Tải model vào ComfyUI/models/checkpoints/
 wget -P models/checkpoints/ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
 
@@ -214,11 +215,11 @@ wget -P models/loras/ https://civitai.com/api/download/models/12345
 
 # Cài đặt VAEs
 wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
-```
+`````
 
 ### Quản lý Dependencies
 
-```json
+`````json
 {
   "dependencies": {
     "checkpoints": ["sdxl_v1.0.safetensors"],
@@ -228,15 +229,15 @@ wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdx
     "upscale": ["4x-UltraSharp.pth"]
   }
 }
-```
+`````
 
----
+* * *
 
 ## Tối ưu Hiệu năng
 
 ### Quản lý GPU Memory
 
-```python
+`````python
 # Tối ưu cho các kích thước GPU khác nhau
 optimization_config = {
     "24GB_GPU": {
@@ -258,7 +259,7 @@ optimization_config = {
         "lowvram_mode": True
     }
 }
-```
+`````
 
 ### Tốc độ Batch Processing
 
@@ -271,7 +272,7 @@ optimization_config = {
 
 ### Strategies Caching
 
-```json
+`````json
 {
   "caching": {
     "checkpoint_cache": true,
@@ -281,60 +282,60 @@ optimization_config = {
     "max_cache_size_gb": 8
   }
 }
-```
+`````
 
----
+* * *
 
 ## Kỹ thuật Nâng cao
 
 ### Technique 1: Hierarchical Generation
 
-Tạo ở low resolution trước, sau đó progressively upscale: ```
+Tạo ở low resolution trước, sau đó progressively upscale: `````
 Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048)
        ↓                   ↓                    ↓
     Coarse details     Fine details          Ultra details
-```
+`````
 
 ### Technique 2: Region-based Editing
 
-Chỉnh sửa các phần cụ thể của ảnh mà không ảnh hưởng đến phần khác: ```
+Chỉnh sửa các phần cụ thể của ảnh mà không ảnh hưởng đến phần khác: `````
 Mask Selection → Inpaint Node → Local Prompt → KSampler (masked only)
-```
+`````
 
 ### Technique 3: Style Transfer Pipeline
 
-Áp dụng artistic styles trong khi vẫn giữ nguyên content: ```
+Áp dụng artistic styles trong khi vẫn giữ nguyên content: `````
 Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler
-```
+`````
 
 ### Technique 4: Automated Quality Scoring
 
-Scoring và lọc tự động các ảnh được tạo: ```
+Scoring và lọc tự động các ảnh được tạo: `````
 Generated Images → CLIP Score Node → Filter (> threshold) → Save Best
-```
+`````
 
----
+* * *
 
 ## Troubleshooting
 
 ### Issue 1: Lỗi Out of Memory
 
-```
+`````
 Error: CUDA out of memory
-```
+`````
 
 **Fixes:**
 - Giảm batch size
-- Enable `--lowvram` flag
+- Enable ````--lowvram```` flag
 - Sử dụng fp16 precision
 - Đóng các ứng dụng GPU khác
 - Chia workflow thành các stages nhỏ hơn
 
 ### Issue 2: Generate chậm
 
-```
+`````
 Warning: Generation taking longer than expected
-```
+`````
 
 **Fixes:**
 - Sử dụng sampler nhanh hơn (Euler a, DPM++ 2M)
@@ -345,9 +346,9 @@ Warning: Generation taking longer than expected
 
 ### Issue 3: Output chất lượng kém
 
-```
+`````
 Images trông mờ hoặc có artifacts
-```
+`````
 
 **Fixes:**
 - Tăng steps lên 30-50
@@ -356,7 +357,7 @@ Images trông mờ hoặc có artifacts
 - Enable high-res fix
 - Kiểm tra quality của negative prompt
 
----
+* * *
 
 ## So sánh: ComfyUI vs Alternatives
 
@@ -371,13 +372,13 @@ Images trông mờ hoặc có artifacts
 
 ComfyUI thắng cho complex, custom workflows. Các tool khác dễ hơn cho simple generation.
 
----
+* * *
 
 ## Bắt đầu
 
 ### Installation
 
-```bash
+`````bash
 # Clone ComfyUI
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -390,11 +391,11 @@ pip install -r requirements.txt
 
 # Start ComfyUI
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
 ### Browser Interface
 
-Mở `http://localhost:8188` trong browser. Bạn sẽ thấy: - Canvas trống để build workflows
+Mở ````http://localhost:8188```` trong browser. Bạn sẽ thấy: - Canvas trống để build workflows
 - Node library bên phải
 - Settings panel (icon bánh răng)
 - Queue và history tabs
@@ -407,7 +408,7 @@ ComfyUI bao gồm nhiều preset workflows: - **Basic**: Simple text-to-image
 - **Upscale**: Resolution enhancement
 - **AnimateDiff**: Animation generation
 
----
+* * *
 
 ## Community Resources
 
@@ -426,7 +427,7 @@ ComfyUI bao gồm nhiều preset workflows: - **Basic**: Simple text-to-image
 - **GitHub**: Open-source workflow collections
 - **Discord**: Active community sharing tips và templates
 
----
+* * *
 
 ## FAQ
 
@@ -440,7 +441,7 @@ Có. Với AnimateDiff và các animation nodes khác, bạn có thể tạo sho
 
 ### Q: Làm thế nào để chia sẻ workflows với người khác?
 
-Export dưới dạng `.json` hoặc `.png` files. Chia sẻ qua Civitai, GitHub hoặc Discord. Recipients import bằng cách drag file lên canvas ComfyUI.
+Export dưới dạng ````.json```` hoặc ````.png``` files. Chia sẻ qua Civitai, GitHub hoặc Discord. Recipients import bằng cách drag file lên canvas ComfyUI.
 
 ### Q: ComfyUI có miễn phí không?
 
@@ -454,7 +455,7 @@ Chắc chắn. ComfyUI hoạt động trên mọi GPU cloud: RunPod, Vast.ai, La
 
 ComfyUI là core application. ComfyUI Manager là một extension giúp cài đặt models, nodes và workflows dễ dàng hơn nhiều. Install nó đầu tiên để có trải nghiệm tốt nhất.
 
----
+* * *
 
 ## References
 
@@ -465,7 +466,7 @@ ComfyUI là core application. ComfyUI Manager là một extension giúp cài đ�
 - [Stable Diffusion Model Zoo](https://huggingface.co/stabilityai)
 - [AI Image Generation Benchmark Report 2026](https://aigbenchmark.report/2026)
 
----
+* * *
 
 *Tham gia nhóm Telegram để thảo luận công cụ AI thời gian thực và mẹo deployment: [t.me/dibi8](https://t.me/dibi8)*
 
@@ -495,7 +496,7 @@ ComfyUI là core application. ComfyUI Manager là một extension giúp cài đ�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -505,6 +506,6 @@ ComfyUI là core application. ComfyUI Manager là một extension giúp cài đ�
 - [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
 - [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

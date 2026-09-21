@@ -35,6 +35,7 @@ faqs: - q: 'ML Systems Book은 어떤 주제를 다루나요?'
     a: '이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?
@@ -61,7 +62,7 @@ faqs: - q: 'ML Systems Book은 어떤 주제를 다루나요?'
 
 ### 1. 데이터 엔지니어링(Data Engineering)
 
-```python
+````python
 # 비효율적인 데이터 로딩은 훈련 병목의 1위 원인
 # 이 책은 효율적인 데이터 파이프라인 구축을 가르칩니다
 
@@ -75,7 +76,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
            .map(preprocess, num_parallel_calls=tf.data.AUTOTUNE)
            .cache()
            .prefetch(tf.data.AUTOTUNE))
-```
+`````
 
 다루는 주제: - 데이터 형식(TFRecord, Parquet, Arrow)
 - ETL 파이프라인 설계
@@ -94,13 +95,13 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ### 3. 하드웨어 인식 훈련(Hardware-Aware Training)
 
-```python
+`````python
 # 하드웨어 특성을 이해해야 효율적인 훈련 코드를 작성할 수 있습니다
 
 # GPU: 메모리 대역폭이 병목 → 데이터 전송 감소
 # TPU: 행렬 곱 최적화 → 적절한 batch size 사용
 # Edge NPU: 고정 소수점 연산 → 양자화 인식 훈련
-```
+`````
 
 - **GPU**: CUDA 프로그래밍, 메모리 관리, 다중 카드 병렬
 - **TPU**: XLA 컴파일, Pod 아키텍처, GSPMD
@@ -108,7 +109,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ### 4. 추론 가속(Inference Acceleration)
 
-```python
+`````python
 # 100ms에서 10ms로 줄이는 엔지니어링 실무
 
 # 1. 모델 변환: ONNX → TensorRT
@@ -116,7 +117,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 # 3. 메모리 최적화: 가중치 공유, 활성화 재계산
 # 4. 배치 처리: 동적 batching + 요청 병합
 # 5. 캐싱: 결과 캐싱 + 모델 워밍업
-```
+`````
 
 ### 5. 배포 및 MLOps
 
@@ -127,13 +128,13 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ### 6. 엣지 및 임베디드 ML(Edge / TinyML)
 
-```cpp
+`````cpp
 // 마이크로컨트롤러에서 ML 실행(TinyML)
 #include "tensorflow/lite/micro/micro_interpreter.h"
 
 // 모델이 20KB에 불과, 16MHz Arduino에서 실행
 // 음성 웨이크업, 제스처 인식 가능
-```
+`````
 
 - **모델 압축**: 100MB에서 100KB로
 - **하드웨어 플랫폼**: Arduino, ESP32, Raspberry Pi
@@ -141,7 +142,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ## 지식 아키텍처
 
-```
+`````
 ML Systems Book
 ├── Part 1: Foundations
 │   ├── ML 복습
@@ -171,27 +172,27 @@ ML Systems Book
     ├── ML용 CI/CD
     ├── 모니터링 및 관찰 가능성
     └── 윤리 및 보안
-```
+`````
 
 ## 획득 방법
 
 ### 무료 온라인 읽기
 
-```
+`````
 https://mlsysbook.ai/book/
-```
+`````
 
 ### 무료 PDF 다운로드
 
-```
+`````
 https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf
-```
+`````
 
 ### GitHub 소스
 
-```bash
+`````bash
 git clone https://github.com/harvard-edge/cs249r_book.git
-```
+````
 
 ### 종이책 구매
 
@@ -247,7 +248,7 @@ ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교
 - [Free LLM API Resources for AI Development](/kr/resources/llm-frameworks/free-llm-api-resources-ai-development/)
 - [Hermes Agent: 자기 개선하는 AI 에이전트](/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
----
+* * *
 
 ## 추천 도구
 
@@ -319,7 +320,7 @@ ML Systems Book：MIT 무료 머신러닝 시스템 교과서 represents an impo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

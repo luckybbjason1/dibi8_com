@@ -23,11 +23,12 @@ tags: ["dvc", "data version control", "mlops", "git", "machine learning", "repro
 aliases:
   - /posts/dvc-data-version-control-ml/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Dataset That Broke the Git Repository
 
-Last year, a computer vision team at a mid-sized AI startup committed a 47 GB image dataset directly into their Git repository. Within two weeks, `git clone` times exceeded 3 hours, CI runners crashed with disk-full errors, and onboarding new engineers became a day-long ordeal. The repository had become an unmaintainable monolith — not because of bad code, but because Git was never designed for data.
+Last year, a computer vision team at a mid-sized AI startup committed a 47 GB image dataset directly into their Git repository. Within two weeks, ```git clone```` times exceeded 3 hours, CI runners crashed with disk-full errors, and onboarding new engineers became a day-long ordeal. The repository had become an unmaintainable monolith — not because of bad code, but because Git was never designed for data.
 
 This story repeats across ML teams worldwide. Git excels at source code but fails catastrophically at versioning datasets, model weights, and experiment artifacts. The result? Teams lose reproducibility, waste compute on duplicate experiments, and struggle to answer a fundamental question: **"What exact data produced this model?"**
 
@@ -41,42 +42,42 @@ In this guide, you will install DVC, configure cloud storage backends, build rep
 
 Unlike Git LFS or traditional version control, DVC handles **multi-terabyte datasets**, deduplicates storage across versions, and integrates natively with Python-based ML workflows. The tool is 100% Python (no compiled dependencies for core usage) and works on Linux, macOS, and Windows.
 
-Key capabilities at a glance: - **Data versioning**: Track datasets and models with Git-like `add`, `push`, `pull`, and `checkout` commands
+Key capabilities at a glance: - **Data versioning**: Track datasets and models with Git-like ````add````, ````push````, ````pull````, and ````checkout```` commands
 - **Remote storage**: Store data in S3, GCS, Azure Blob, HDFS, SSH, or local paths
-- **Pipeline definition**: Define ML workflows as DAGs in `dvc.yaml` with dependencies, outputs, and parameters
+- **Pipeline definition**: Define ML workflows as DAGs in ````dvc.yaml```` with dependencies, outputs, and parameters
 - **Experiment tracking**: Compare metrics, parameters, and plots across experiment runs
-- **Reproducibility**: Re-run any experiment from any Git commit with `dvc repro`
+- **Reproducibility**: Re-run any experiment from any Git commit with ````dvc repro````
 
 ## How DVC Works: Architecture & Core Concepts
 
 DVC operates as a thin layer between Git and your data storage. Understanding three core concepts explains its entire architecture: ### 1. Pointer Files (.dvc)
 
-When you run `dvc add data/dataset.csv`, DVC computes an MD5 hash of the file, moves it to a local cache (`.dvc/cache`), and creates a tiny `dataset.csv.dvc` metadata file. This `.dvc` file contains the hash and size — it is the only thing committed to Git: ```
+When you run ``dvc add data/dataset.csv``, DVC computes an MD5 hash of the file, moves it to a local cache (``.dvc/cache``), and creates a tiny ``dataset.csv.dvc`` metadata file. This ``.dvc`` file contains the hash and size — it is the only thing committed to Git: `````
 # data/dataset.csv.dvc — tracked in Git (~100 bytes)
 outs: - md5: a1b2c3d4e5f6...
   size: 104857600
   hash: md5
   path: dataset.csv
-```
+`````
 
-The actual 100 MB dataset lives in `.dvc/cache` and can be pushed to remote storage. This separation is the fundamental trick: **Git tracks the metadata, DVC tracks the data.**
+The actual 100 MB dataset lives in ````.dvc/cache```` and can be pushed to remote storage. This separation is the fundamental trick: **Git tracks the metadata, DVC tracks the data.**
 
 ### 2. Cache & Remote Storage
 
-DVC maintains a content-addressable cache locally (`.dvc/cache`). Files are stored by their MD5 hash, which enables automatic deduplication — identical files across versions are stored only once. You configure remote storage to share data across teams: ```bash
+DVC maintains a content-addressable cache locally (``.dvc/cache``). Files are stored by their MD5 hash, which enables automatic deduplication — identical files across versions are stored only once. You configure remote storage to share data across teams: `````bash
 # Local cache layout
 .dvc/cache/
   files/
     md5/
       a1/
         b2c3d4e5f6...  # actual file content
-```
+`````
 
-Remote storage follows the same structure, making `dvc push` and `dvc pull` simple synchronization operations.
+Remote storage follows the same structure, making ````dvc push```` and ````dvc pull```` simple synchronization operations.
 
 ### 3. Pipelines (dvc.yaml)
 
-DVC pipelines define reproducible ML workflows as directed acyclic graphs (DAGs). Each stage has dependencies, outputs, and a command: ```yaml
+DVC pipelines define reproducible ML workflows as directed acyclic graphs (DAGs). Each stage has dependencies, outputs, and a command: `````yaml
 # dvc.yaml — pipeline definition
 stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output data/processed.csv
     deps: - src/preprocess.py
@@ -89,13 +90,13 @@ stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output dat
     outs: - models/model.pkl
     params: - train.epochs
       - train.lr
-```
+`````
 
 DVC tracks stage dependencies and only re-runs stages when inputs change — similar to a Makefile but with content-aware hashing and full reproducibility.
 
 ## Installation & Setup: Under 5 Minutes
 
-DVC requires Python 3.9+ and Git. Install with pip: ```bash
+DVC requires Python 3.9+ and Git. Install with pip: `````bash
 # Core DVC (minimal install)
 pip install dvc
 
@@ -105,29 +106,29 @@ pip install "dvc[gs]"      # Google Cloud Storage
 pip install "dvc[azure]"   # Azure Blob Storage
 pip install "dvc[ssh]"     # SSH/SFTP
 pip install "dvc[all]"     # All remotes
-```
+`````
 
-Verify the installation: ```bash
+Verify the installation: `````bash
 dvc --version
 # dvc version 3.67.1
-```
+`````
 
-Initialize DVC in an existing Git repository: ```bash
+Initialize DVC in an existing Git repository: `````bash
 cd my-ml-project
 git init          # if not already a Git repo
 dvc init          # creates .dvc/ directory and .dvcignore
 git add .dvc
 git commit -m "Initialize DVC"
-```
+`````
 
-The `dvc init` command creates: - `.dvc/` — DVC configuration and cache directory
-- `.dvc/.gitignore` — prevents cache files from being tracked by Git
-- `.dvc/config` — local DVC configuration file
-- `.dvcignore` — patterns to exclude from DVC tracking
+The ````dvc init```` command creates: - ````.dvc/```` — DVC configuration and cache directory
+- ````.dvc/.gitignore```` — prevents cache files from being tracked by Git
+- ````.dvc/config```` — local DVC configuration file
+- ````.dvcignore```` — patterns to exclude from DVC tracking
 
 ## Tracking Data: Your First Dataset
 
-Add a dataset to DVC tracking: ```bash
+Add a dataset to DVC tracking: `````bash
 # Add a single file
 dvc add data/training_data.csv
 
@@ -139,21 +140,21 @@ ls data/
 # training_data.csv
 # training_data.csv.dvc   <- This goes to Git
 # .gitignore               <- DVC adds data to gitignore
-```
+`````
 
-The `.dvc` file is a small YAML file that Git can handle efficiently. Commit it: ```bash
+The ``.dvc`` file is a small YAML file that Git can handle efficiently. Commit it: `````bash
 git add data/training_data.csv.dvc data/.gitignore
 git commit -m "Track training dataset with DVC"
-```
+`````
 
-To retrieve data on another machine or after cloning: ```bash
+To retrieve data on another machine or after cloning: `````bash
 # Pull data from remote (after configuring remote storage)
 dvc pull
 
 # Or checkout a specific version
 git checkout v1.0
 dvc checkout   # restores data files matching the .dvc pointers
-```
+`````
 
 ## Configuring Remote Storage: S3, GCS, Azure
 
@@ -161,7 +162,7 @@ Remote storage enables team collaboration by providing a shared data location. D
 
 ### Amazon S3
 
-```bash
+`````bash
 # Add S3 as default remote
 dvc remote add -d myremote s3://my-bucket/dvc-storage
 
@@ -170,30 +171,30 @@ dvc remote add -d myremote s3://my-bucket/dvc-storage --profile production
 
 # Set region
 dvc remote modify myremote region us-east-1
-```
+`````
 
 ### Google Cloud Storage (GCS)
 
-```bash
+`````bash
 # Add GCS remote
 dvc remote add -d myremote gs://my-bucket/dvc-storage
 
 # With service account
 dvc remote modify myremote credentialpath /path/to/service-account.json
-```
+`````
 
 ### Azure Blob Storage
 
-```bash
+`````bash
 # Add Azure remote
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # Set account name and key
 dvc remote modify myremote account_name myaccount
 dvc remote modify myremote account_key mykey
-```
+`````
 
-After configuring, push data to remote: ```bash
+After configuring, push data to remote: `````bash
 # Push all tracked data to remote
 dvc push
 
@@ -202,13 +203,13 @@ dvc pull
 
 # Fetch data for a specific target
 dvc pull data/training_data.csv
-```
+`````
 
 For a production deployment on a cloud VPS, [DigitalOcean Spaces](https://m.do.co/c/eca87ac14ee0) provides S3-compatible object storage starting at $5/month — a cost-effective alternative for teams getting started with DVC.
 
 ## Defining ML Pipelines
 
-DVC pipelines turn ad-hoc training scripts into reproducible workflows. Here is a complete pipeline for a typical ML project: ```yaml
+DVC pipelines turn ad-hoc training scripts into reproducible workflows. Here is a complete pipeline for a typical ML project: `````yaml
 # dvc.yaml
 stages: prepare: cmd: python src/prepare.py --config params.yaml
     deps: - src/prepare.py
@@ -235,9 +236,9 @@ stages: prepare: cmd: python src/prepare.py --config params.yaml
       - data/features/
     metrics: - metrics.json: cache: false
     plots: - plots/roc_curve.csv
-```
+`````
 
-Run the pipeline: ```bash
+Run the pipeline: `````bash
 # Run all stages (only re-runs changed stages)
 dvc repro
 
@@ -248,51 +249,51 @@ dvc repro train
 dvc dag
 
 # Output: # +
----
+* * *
 +     
 # | data/raw  |     
 # +
----
+* * *
 +     
 #       |           
 #       v           
 # +
----
+* * *
 +     
 # |  prepare  |     
 # +
----
+* * *
 +     
 #       |           
 #       v           
 # +
----
+* * *
 +     
 # | featurize |     
 # +
----
+* * *
 +     
 #       |           
 #       v           
 # +
----
+* * *
 +     
 # |   train   |     
 # +
----
+* * *
 +     
 #       |           
 #       v           
 # +
----
+* * *
 +     
 # |  evaluate |     
 # +
----
+* * *
 +
-```
+`````
 
-Parameters are defined in `params.yaml`: ```yaml
+Parameters are defined in ``params.yaml``: `````yaml
 # params.yaml
 prepare: split: 0.2
   seed: 42
@@ -301,11 +302,11 @@ train: lr: 0.001
   epochs: 50
   batch_size: 32
   model_type: resnet50
-```
+`````
 
 ## Experiment Tracking
 
-DVC provides lightweight experiment tracking without external databases. Run experiments and compare results: ```bash
+DVC provides lightweight experiment tracking without external databases. Run experiments and compare results: `````bash
 # Run an experiment with modified parameters
 dvc exp run --set-param train.lr=0.01
 
@@ -316,9 +317,9 @@ dvc exp run --set-param train.lr=0.1,0.01,0.001
 dvc exp show
 
 # Output includes Git commit, parameters, and metrics in a table format
-```
+`````
 
-Compare experiment results: ```bash
+Compare experiment results: `````bash
 # Show experiment table with metrics
 dvc exp show --no-timestamp --precision 4
 
@@ -327,9 +328,9 @@ dvc exp apply exp-abc123
 
 # Push experiments to remote
 dvc exp push origin exp-abc123
-```
+`````
 
-For metrics visualization, DVC can generate plots: ```yaml
+For metrics visualization, DVC can generate plots: `````yaml
 # dvc.yaml (plots section)
 plots: - plots/loss.csv: x: step
       y: loss
@@ -337,12 +338,12 @@ plots: - plots/loss.csv: x: step
   - plots/accuracy.csv: x: step
       y: accuracy
       title: Validation Accuracy
-```
+`````
 
-```bash
+`````bash
 # Generate and view plots
 dvc plots show
-```
+`````
 
 ## CI/CD Integration: GitHub Actions & GitLab CI
 
@@ -350,7 +351,7 @@ DVC integrates natively with CI/CD platforms for automated pipeline runs and mod
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline
 on: [push]
@@ -382,11 +383,11 @@ jobs: train: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: metrics
           path: metrics.json
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - data
   - train
@@ -416,17 +417,17 @@ evaluate_model: stage: evaluate
   dependencies: - train_model
   script: - dvc repro evaluate
     - cat metrics.json
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
 DVC is battle-tested at organizations ranging from startups to Fortune 500 companies. Here are performance benchmarks and real-world adoption metrics: | Metric | Value | Source |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | **15,600+** | GitHub (May 2026) |
 | PyPI Downloads/Month | **500,000+** | PyPI Stats |
@@ -439,22 +440,22 @@ DVC is battle-tested at organizations ranging from startups to Fortune 500 compa
 
 | Operation | 1 GB Dataset | 50 GB Dataset | 1 TB Dataset |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `dvc add` (local SSD) | 2.1s | 45s | 18 min |
-| `dvc push` (to S3) | 8s | 3.2 min | 52 min |
-| `dvc pull` (from S3) | 5s | 2.1 min | 38 min |
-| `dvc checkout` (switch version) | 0.3s | 2.1s | 8.5s |
+| ````dvc add```` (local SSD) | 2.1s | 45s | 18 min |
+| ````dvc push```` (to S3) | 8s | 3.2 min | 52 min |
+| ````dvc pull```` (from S3) | 5s | 2.1 min | 38 min |
+| ````dvc checkout```` (switch version) | 0.3s | 2.1s | 8.5s |
 
 *Benchmarks run on c5.2xlarge (8 vCPU, 16 GB RAM) with 10 Gbps network to S3 us-east-1. Times are averages of 3 runs.*
 
-The standout number is `dvc checkout` at 0.3s for 1 GB — DVC uses hardlinks and reflinks where available, making version switches essentially instant regardless of dataset size.
+The standout number is ````dvc checkout```` at 0.3s for 1 GB — DVC uses hardlinks and reflinks where available, making version switches essentially instant regardless of dataset size.
 
 ### Real-World Use Cases
 
@@ -468,7 +469,7 @@ The standout number is `dvc checkout` at 0.3s for 1 GB — DVC uses hardlinks an
 
 ### Storage Optimization
 
-Enable automatic garbage collection to reclaim space from old cache versions: ```bash
+Enable automatic garbage collection to reclaim space from old cache versions: `````bash
 # Keep only files referenced by current Git workspace
 dvc gc --workspace
 
@@ -477,11 +478,11 @@ dvc gc --all-branches --all-tags
 
 # Preview what would be deleted (dry run)
 dvc gc --workspace --dry
-```
+`````
 
 ### Multiple Remotes for Different Environments
 
-```bash
+`````bash
 # Production remote (read-only for most users)
 dvc remote add production s3://prod-bucket/dvc-storage
 
@@ -490,11 +491,11 @@ dvc remote add -d dev s3://dev-bucket/dvc-storage
 
 # Push to specific remote
 dvc push --remote production
-```
+`````
 
 ### Data Import from External Sources
 
-```bash
+`````bash
 # Import data without copying (track external URLs)
 dvc import-url s3://external-bucket/dataset.csv data/dataset.csv
 
@@ -503,11 +504,11 @@ dvc import-url --rev v1.0 https://github.com/user/repo/data.csv
 
 # Update imported data
 dvc update data/dataset.csv
-```
+`````
 
 ### Large File Optimization with Symlinks/Hardlinks
 
-```bash
+`````bash
 # Use reflinks (copy-on-write) — fastest, no duplicate space
 dvc config cache.type reflink,hardlink,copy
 
@@ -517,34 +518,34 @@ dvc cache dir --show
 
 # Check cache health
 dvc fsck
-```
+`````
 
 ### Protecting Sensitive Data
 
-```bash
+`````bash
 # Use .dvcignore to exclude sensitive files
 echo "secrets/" >> .dvcignore
 echo "*.key" >> .dvcignore
 
 # Encrypt remote storage at rest (S3 SSE)
 dvc remote modify myremote sse AES256
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | DVC | Git LFS | Pachyderm | LakeFS | MLflow |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | Yes (Apache-2.0) | Yes (MIT) | Yes (Apache-2.0) | Yes (Apache-2.0) | Yes (Apache-2.0) |
 | **Max File Size** | Unlimited | 2 GB (GitHub) | Unlimited | Unlimited | N/A (no data storage) |
@@ -588,11 +589,11 @@ Yes. DVC streams data in chunks and does not load entire files into memory. Team
 Git LFS stores large files on a separate server but still tracks file versions through Git commits. DVC decouples data from Git entirely — only tiny pointer files enter Git, while data lives in S3, GCS, or any remote. DVC also provides pipeline definitions and experiment tracking that Git LFS does not offer.
 
 **Q: Does DVC work with Jupyter Notebooks?**
-Yes. Use `dvc.api` to read datasets directly from DVC remotes inside notebooks without manual `dvc pull`: ```python
+Yes. Use ``dvc.api`` to read datasets directly from DVC remotes inside notebooks without manual ``dvc pull``: `````python
 import dvc.api
 
 with dvc.api.open('data/dataset.csv', remote=myremote) as f: df = pd.read_csv(f)
-```
+`````
 
 **Q: Can I use DVC with private Git repositories?**
 Absolutely. DVC works with any Git repository — GitHub, GitLab, Bitbucket, or self-hosted Git. The DVC remote storage is independent of Git hosting and can be any S3-compatible store.
@@ -604,9 +605,9 @@ DVC stores files by content hash (MD5). If two versions of a dataset share 90% o
 Yes. DVC v3.x has been stable since 2023 and is used by enterprises including Shell, IBM, and Microsoft Research. The Apache-2.0 license allows commercial use without restrictions.
 
 **Q: Can DVC track data on my local NAS or shared drive?**
-Yes. Use a local remote for network-attached storage: ```bash
+Yes. Use a local remote for network-attached storage: `````bash
 dvc remote add -d myremote /mnt/shared-nas/dvc-storage
-```
+`````
 
 ## Conclusion: Start Versioning Your Data Today
 
@@ -614,12 +615,12 @@ If you have ever lost track of which dataset produced a model, wasted hours re-r
 
 With **15,600+ stars**, a mature v3.67.1 release, and deep Git integration, DVC has earned its place as the standard for ML data versioning. The setup takes under 5 minutes, the commands mirror Git exactly, and the learning curve is minimal for anyone already using version control.
 
-Start today: ```bash
+Start today: `````bash
 pip install dvc
 cd your-ml-project
 dvc init
 dvc add your-dataset.csv
-```
+````
 
 Join the DVC community on [Discord](https://dvc.org/chat) and follow the project on [GitHub](https://github.com/iterative/dvc) for updates.
 
@@ -678,7 +679,7 @@ This article contains affiliate links for [DigitalOcean](https://m.do.co/c/eca87
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](dvc-data-version-control-ml)
@@ -686,5 +687,5 @@ This article contains affiliate links for [DigitalOcean](https://m.do.co/c/eca87
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](dvc-data-version-control-ml)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

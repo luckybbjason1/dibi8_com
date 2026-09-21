@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/invokeai/
 ---
 
+
 {{</* resource-info */>}}
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
@@ -38,7 +39,7 @@ InvokeAI는 Stable Diffusion 모델을 기반으로 한 AI 구동 이미지 생�
 
 ## InvokeAI의 작동 방식
 
-InvokeAI는 모듈형 클라이언트-서버 아키텍처를 따른다. 백엔드는 모델 로딩, 이미지 생성, 큐 관리를 처리하는 Python 기반 API 서버(`invokeai.app.api_app`)이고, 프론트엔드는 캔버스, 갤러리, 워크플로우 에디터를 제공하는 React 기반 단일 페이지 애플리케이션이다.
+InvokeAI는 모듈형 클라이언트-서버 아키텍처를 따른다. 백엔드는 모델 로딩, 이미지 생성, 큐 관리를 처리하는 Python 기반 API 서버(```invokeai.app.api_app````)이고, 프론트엔드는 캔버스, 갤러리, 워크플로우 에디터를 제공하는 React 기반 단일 페이지 애플리케이션이다.
 
 **핵심 구성 요소:**
 
@@ -63,41 +64,41 @@ Docker는 프로덕션 레디 InvokeAI를 설정하는 가장 빠른 경로이�
 
 **단계 1 — 리포지토리 클론:**
 
-```bash
+`````bash
 git clone https://github.com/invoke-ai/InvokeAI.git
 cd InvokeAI/docker
-```
+`````
 
 **단계 2 — 환경 설정:**
 
-```bash
+`````bash
 cp .env.sample .env
-```
+`````
 
-`.env` 파일을 편집한다: ```bash
+``.env`` 파일을 편집한다: `````bash
 # 핵심 설정
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
 GPU_DRIVER=cuda
 CONTAINER_UID=1000
 HUGGINGFACE_TOKEN=hf_your_token_here
-```
+`````
 
 **단계 3 — 컨테이너 시작:**
 
-```bash
+`````bash
 ./run.sh
-```
+`````
 
-또는 직접 실행: ```bash
+또는 직접 실행: `````bash
 docker compose up -d
-```
+`````
 
-브라우저에서 `http://localhost:9090`으로 접속한다.
+브라우저에서 ````http://localhost:9090````으로 접속한다.
 
 ### 빠른 Docker 실행 (Compose 없이)
 
-데이터 유지 없이 빠르게 테스트하려면: ```bash
+데이터 유지 없이 빠르게 테스트하려면: `````bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -113,35 +114,35 @@ docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
   --volume /mnt/invokeai-data:/invokeai \
   ghcr.io/invoke-ai/invokeai:latest
-```
+`````
 
 ### 방법 2: 베어 메탈 설치 (Linux/macOS)
 
 **단계 1 — 런처 설치:**
 
-```bash
+`````bash
 pip install invokeai
-```
+`````
 
 **단계 2 — 설정 마법사 실행:**
 
-```bash
+`````bash
 invokeai-configure
-```
+`````
 
 이 대화형 마법사는 올바른 PyTorch 버전을 설치하고 기본 모델을 다운로드하며 런타임 디렉토리를 구성한다.
 
 **단계 3 — WebUI 시작:**
 
-```bash
+`````bash
 invokeai-web
-```
+`````
 
 ### 방법 3: 클라우드 VPS (DigitalOcean)
 
 로컬 GPU 하드웨어가 없는 팀을 위해 클라우드 GPU 인스턴스가 완전한 InvokeAI 접근을 제공한다. NVIDIA A10G 또는 H100을 갖춘 DigitalOcean GPU Droplets가 적합하다.
 
-```bash
+`````bash
 # 새로운 Ubuntu 24.04 GPU Droplet에서
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 sudo systemctl enable --now docker
@@ -161,11 +162,11 @@ cd InvokeAI/docker
 cp .env.sample .env
 # .env 편집: INVOKEAI_ROOT 및 HUGGINGFACE_TOKEN 설정
 sudo docker compose up -d
-```
+`````
 
 ### 프로덕션 docker-compose.yml 참조
 
-```yaml
+`````yaml
 # Copyright (c) 2023 Eugene Brodsky https://github.com/ebr
 
 x-invokeai: &invokeai
@@ -197,7 +198,7 @@ services: invokeai-cuda: <<: *invokeai
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
     profiles: - rocm
-```
+`````
 
 ## Stable Diffusion, ComfyUI 및 ControlNet 통합
 
@@ -216,13 +217,13 @@ InvokeAI는 다양한 모델 계열을 기본적으로 지원한다: - **SD 1.5*
 
 **수동 모델 추가:**
 
-```bash
+`````bash
 # .safetensors 또는 .ckpt 파일을 모델 디렉토리에 복사
 cp your-model.safetensors /opt/invokeai-data/models/sd-1/main/
 
 # 컨테이너 재시작
 docker compose restart
-```
+`````
 
 ### ControlNet 통합
 
@@ -245,7 +246,7 @@ InvokeAI와 ComfyUI는 서로 다른 워크플로우 형식을 사용하지만, 
 - Image Scale 노드
 - ControlNet 프로세서
 
-```python
+`````python
 # 예시: InvokeAI의 REST API를 통한 프로그래밍 방식 생성 매개변수 설정 (v6.12.0+)
 import requests
 
@@ -263,7 +264,7 @@ response = requests.post(
     }
 )
 print(response.json()["session_id"])
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -291,10 +292,10 @@ print(response.json()["session_id"])
 
 ### 멀티유저 모드 (v6.12.0+)
 
-InvokeAI는 이제 단일 백엔드에서 여러 격리된 계정을 지원한다: ```bash
+InvokeAI는 이제 단일 백엔드에서 여러 격리된 계정을 지원한다: `````bash
 # .env에서 멀티유저 모드 활성화
 INVOKEAI_ENABLE_MULTIUSER=true
-```
+`````
 
 각 사용자는 다음을 갖는다: - 별도의 이미지 보드 및 갤러리
 - 독립적인 캔버스 상태
@@ -305,7 +306,7 @@ INVOKEAI_ENABLE_MULTIUSER=true
 
 ### 리버스 프록시 및 SSL
 
-```nginx
+`````nginx
 # 프로덕션용 Nginx 설정
 server {
     listen 443 ssl http2;
@@ -326,11 +327,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### systemd 서비스
 
-```ini
+`````ini
 # /etc/systemd/system/invokeai.service
 [Unit]
 Description=InvokeAI Creative Engine
@@ -347,16 +348,16 @@ TimeoutStartSec=0
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-활성화 및 시작: ```bash
+활성화 및 시작: `````bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
-```
+`````
 
 ### Prometheus 모니터링
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -365,11 +366,11 @@ services: prometheus: image: prom/prometheus:latest
   dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
     ports: - "9400:9400"
-```
+`````
 
 ### 자동 백업
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/invokeai-backup/backup.sh
 BACKUP_DIR="/backups/invokeai"
@@ -381,11 +382,11 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 
 # 최근 7일만 유지
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
-```
+`````
 
-crontab에 추가: ```bash
+crontab에 추가: `````bash
 0 2 * * * /opt/invokeai-backup/backup.sh
-```
+`````
 
 ## 대안과의 비교
 
@@ -425,7 +426,7 @@ crontab에 추가: ```bash
 
 ### GPU 없이 InvokeAI를 실행할 수 있나?
 
-예, InvokeAI는 CPU 전용 시스템에서 실행되지만 생성 속도가 10-20배 느리다. CPU Docker 프로파일 사용: `docker compose --profile cpu up -d`. 현대적인 8코어 CPU에서 1024×1024 이미지당 2-5분이 소요된다. 테스트에는 적합하지만 프로덕션 사용에는 적합하지 않다.
+예, InvokeAI는 CPU 전용 시스템에서 실행되지만 생성 속도가 10-20배 느리다. CPU Docker 프로파일 사용: ````docker compose --profile cpu up -d````. 현대적인 8코어 CPU에서 1024×1024 이미지당 2-5분이 소요된다. 테스트에는 적합하지만 프로덕션 사용에는 적합하지 않다.
 
 ### InvokeAI는 모델 라이선스를 어떻게 처리하나?
 
@@ -433,21 +434,21 @@ InvokeAI 자체는 Apache-2.0 라이선스이다. 다운로드하는 모델(SD 1
 
 ### AUTOMATIC1111에서 InvokeAI로 마이그레이션할 수 있나?
 
-예. InvokeAI는 A1111 설치의 기존 `.safetensors` 및 `.ckpt` 모델을 사용할 수 있다. `INVOKEAI_ROOT`를 기존 모델 디렉토리로 지정하거나 모델을 InvokeAI 모델 폴터에 복사하라. A1111 확장과 스크립트는 이전되지 않는다. InvokeAI는 자체 노드 기반 워크플로우 시스템을 사용한다.
+예. InvokeAI는 A1111 설치의 기존 ````.safetensors```` 및 ````.ckpt```` 모델을 사용할 수 있다. ````INVOKEAI_ROOT````를 기존 모델 디렉토리로 지정하거나 모델을 InvokeAI 모델 폴터에 복사하라. A1111 확장과 스크립트는 이전되지 않는다. InvokeAI는 자체 노드 기반 워크플로우 시스템을 사용한다.
 
 ### InvokeAI를 새 버전으로 업데이트하려면?
 
-Docker 설치의 경우 최신 이미지를 가져오고 재시작한다: ```bash
+Docker 설치의 경우 최신 이미지를 가져오고 재시작한다: `````bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
-```
+`````
 
-베어 메탈 설치의 경우 런처를 사용한다: ```bash
+베어 메탈 설치의 경우 런처를 사용한다: `````bash
 invokeai-update
-```
+`````
 
-주요 버전 업데이트 전 항상 `INVOKEAI_ROOT` 디렉토리를 백업하라.
+주요 버전 업데이트 전 항상 ````INVOKEAI_ROOT```` 디렉토리를 백업하라.
 
 ### InvokeAI의 호스팅/클리우드 버전이 있나?
 
@@ -455,7 +456,7 @@ InvokeAI는 주로 자체 호스팅이다. 개발자는 Invoke for Teams(상용 
 
 ### v6.12.0의 멀티유저 모드는 어떻게 작동하나?
 
-멀티유저 모드는 독립된 갤러리, 캔버스 상태 및 환경 설정을 가진 별도 계정을 생성한다. 관리자 계정이 모델과 시스템 설정을 관리한다. `INVOKEAI_ENABLE_MULTIUSER=true`로 활성화한다. 각 사용자는 사용자 이름과 비밀번호로 로그인한다. v6.12.0에서 실험적 기능으로 표시된다. 향후 릴리스에서 개선될 예정이다.
+멀티유저 모드는 독립된 갤러리, 캔버스 상태 및 환경 설정을 가진 별도 계정을 생성한다. 관리자 계정이 모델과 시스템 설정을 관리한다. ````INVOKEAI_ENABLE_MULTIUSER=true```로 활성화한다. 각 사용자는 사용자 이름과 비밀번호로 로그인한다. v6.12.0에서 실험적 기능으로 표시된다. 향후 릴리스에서 개선될 예정이다.
 
 ## 결론
 
@@ -490,7 +491,7 @@ InvokeAI는 AI 이미지 생성 생태계에서 특정 틈새를 채운다. 전�
 - [ComfyUI vs InvokeAI vs Fooocus 비교](https://toolhalla.ai/blog/comfyui-vs-invokeai-vs-fooocus-2026)
 - [InvokeAI PyPI 패키지](https://pypi.org/project/InvokeAI/)
 
----
+* * *
 
 *이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하면 추가 비용 없이 우리에게 커미션이 지급된다. 이는 사이트와 오픈소스 콘텐츠 지원에 도움이 된다. 모든 의견과 벤치마크는 독립적으로 제작되었다.*
 
@@ -520,7 +521,7 @@ InvokeAI는 AI 이미지 생성 생태계에서 특정 틈새를 채운다. 전�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -530,6 +531,6 @@ InvokeAI는 AI 이미지 생성 생태계에서 특정 틈새를 채운다. 전�
 - [2026-06-08-trending-ai-agents](invokeai)
 - [2026-06-15-trending-ai-agents](invokeai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

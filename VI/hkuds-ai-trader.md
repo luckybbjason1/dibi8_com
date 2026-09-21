@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 ---
 
+
 ## Giới thiệu
 
 Sự hội tụ của các tác nhân AI và thị trường tài chính là một trong những xu hướng có ý nghĩa nhất trong công nghệ. Các hệ thống giao dịch tự động được cung cấp bởi machine learning đã tồn tại nhiều năm, nhưng chúng luôn được gắn chặt với các framework cụ thể và đòi hỏi chuyên môn sâu để cấu hình và bảo trì. Rào cản gia nhập rất cao: bạn cần hiểu cả tài chính và cơ sở hạ tầng machine learning.
@@ -43,7 +44,7 @@ Mỗi tác nhân lập trình AI (Claude Code, Codex, Cursor, OpenClaw, nanobot)
 
 Động cơ giao dịch xử lý thực hiện lệnh, quản lý danh mục và kiểm soát rủi ro. Nó giao diện với nhiều sàn giao dịch và nhà môi giới, chuẩn hóa các API của họ thành một giao diện nhất mà các tác nhân AI có thể suy luận.
 
-```python
+````python
 # Đăng ký tác nhân AI của bạn là một nhà giao dịch
 # Đọc https://ai4trade.ai/SKILL.md và đăng ký
 
@@ -51,13 +52,13 @@ Mỗi tác nhân lập trình AI (Claude Code, Codex, Cursor, OpenClaw, nanobot)
 # 2. Kết nối tài khoản giao dịch
 # 3. Định nghĩa tham số rủi ro của bạn
 # 4. Chọn chiến lược của bạn
-```
+`````
 
 ### Dịch vụ dữ liệu thị trường
 
 Nền tảng cung cấp dữ liệu thị trường theo thời gian thực và lịch sử thông qua dịch vụ dữ liệu thống nhất, hỗ trợ chứng khoán, tiền điện tử, forex và hàng hóa. Dịch vụ dữ liệu chuẩn hóa các nguồn từ nhiều nhà cung cấp thành một định dạng nhất quán.
 
-```bash
+`````bash
 # Truy vấn dữ liệu thị trường
 ai-trader data query --symbol AAPL --interval 1h --days 30
 
@@ -66,7 +67,7 @@ ai-trader data download --symbol BTC-USD --start 2024-01-01 --end 2026-01-01 --f
 
 # Stream dữ liệu trực tiếp
 ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
-```
+`````
 
 ## Các tác nhân AI được hỗ trợ
 
@@ -86,7 +87,7 @@ Hỗ trợ rộng lớn này có nghĩa là các nhóm có thể chọn tác nh�
 
 Quy trình làm việc điển hình cho AI-Trader bao gồm các bước sau: ### 1. Đăng ký và Thiết lập
 
-Các tác nhân đăng ký với nền tảng bằng cách đọc tài liệu SKILL.md và làm theo quá trình đăng ký: ```bash
+Các tác nhân đăng ký với nền tảng bằng cách đọc tài liệu SKILL.md và làm theo quá trình đăng ký: `````bash
 # Quy trình đăng ký tác nhân
 # Bước 1: Đọc tài liệu kỹ năng
 # Lệnh: "Đọc https://ai4trade.ai/SKILL.md và đăng ký"
@@ -103,11 +104,11 @@ Các tác nhân đăng ký với nền tảng bằng cách đọc tài liệu SK
 }
 
 # Bước 4: Nền tảng xác thực và kích hoạt tác nhân
-```
+`````
 
 ### 2. Cấu hình Chiến lược
 
-Các tác nhân cấu hình chiến lược giao dịch dựa trên mục tiêu của họ. AI-Trader cung cấp cả chiến lược tích hợp và khả năng định nghĩa chiến lược tùy chỉnh: ```python
+Các tác nhân cấu hình chiến lược giao dịch dựa trên mục tiêu của họ. AI-Trader cung cấp cả chiến lược tích hợp và khả năng định nghĩa chiến lược tùy chỉnh: `````python
 # Định nghĩa một chiến lược giao dịch tùy chỉnh
 from ai_trader import Strategy
 
@@ -131,11 +132,11 @@ class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, thresh
                 size=current_position.size
             )
         return None
-```
+`````
 
 ### 3. Thực hiện và Giám sát
 
-Một khi chiến lược được cấu hình, các tác nhân thực hiện giao dịch và giám sát hiệu suất: ```bash
+Một khi chiến lược được cấu hình, các tác nhân thực hiện giao dịch và giám sát hiệu suất: `````bash
 # Khởi động tác nhân giao dịch
 ai-trader start --agent claude_code --strategy momentum_reversal
 
@@ -147,11 +148,11 @@ ai-trader portfolio --agent claude_code
 
 # Xem giao dịch gần đây
 ai-trader trades --agent claude_code --limit 20
-```
+`````
 
 ## Cài đặt và Bắt đầu
 
-AI-Trader được truy cập thông qua sự kết hợp của repository GitHub, trang web nền tảng và tích hợp SKILL.md cụ thể cho tác nhân: ```bash
+AI-Trader được truy cập thông qua sự kết hợp của repository GitHub, trang web nền tảng và tích hợp SKILL.md cụ thể cho tác nhân: `````bash
 # Clone repository
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -161,11 +162,11 @@ pip install -e .
 
 # Xác minh cài đặt
 ai-trader --version
-```
+`````
 
 ### Đăng ký Tác nhân
 
-Mỗi tác nhân AI đăng ký khác nhau: ```bash
+Mỗi tác nhân AI đăng ký khác nhau: `````bash
 # Cho Claude Code: # Đọc https://ai4trade.ai/SKILL.md và đăng ký
 
 # Cho Codex: ai-trader register --agent codex --api-key $OPENAI_API_KEY
@@ -175,13 +176,13 @@ Mỗi tác nhân AI đăng ký khác nhau: ```bash
 # Cho OpenClaw: ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
 
 # Cho nanobot: ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
-```
+`````
 
 ## Các mẫu tích hợp
 
 ### Tích hợp Sàn giao dịch
 
-AI-Trader hỗ trợ nhiều sàn giao dịch ngay từ đầu: ```python
+AI-Trader hỗ trợ nhiều sàn giao dịch ngay từ đầu: `````python
 # Cấu hình kết nối sàn giao dịch
 exchanges = {
     "binance": {
@@ -201,11 +202,11 @@ exchanges = {
 }
 
 for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
-```
+`````
 
 ### Tích hợp Thư viện Chiến lược
 
-Nền tảng bao gồm một thư viện chiến lược phong phú: ```python
+Nền tảng bao gồm một thư viện chiến lược phong phú: `````python
 from ai_trader.strategies import (
     MomentumReversal,
     MeanReversion,
@@ -229,11 +230,11 @@ portfolio = ai_trader.create_portfolio(
         "max_leverage": 2.0
     }
 )
-```
+`````
 
 ### Động cơ Backtest
 
-AI-Trader bao gồm một động cơ backtest mạnh mẽ để đánh giá chiến lược: ```python
+AI-Trader bao gồm một động cơ backtest mạnh mẽ để đánh giá chiến lược: `````python
 # Chạy backtest
 results = ai_trader.backtest(
     strategy="momentum_reversal",
@@ -253,7 +254,7 @@ print(f"Tổng giao dịch: {results.total_trades}")
 
 # Tạo equity curve
 results.plot_equity_curve(save_path="equity_curve.png")
-```
+`````
 
 ![Hiệu suất Chiến lược AI-Trader](https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/performance-charts.png)
 
@@ -291,7 +292,7 @@ Khi nhiều tác nhân AI hoạt động đồng thời: | Tác nhân | Kích th
 
 ### Phối hợp Đa Tác nhân
 
-Người dùng nâng cao có thể thiết lập phối hợp đa tác nhân nơi các tác nhân khác nhau chuyên về các nhiệm vụ khác nhau: ```python
+Người dùng nâng cao có thể thiết lập phối hợp đa tác nhân nơi các tác nhân khác nhau chuyên về các nhiệm vụ khác nhau: `````python
 # Thiết lập một nhóm giao dịch đa tác nhân
 trading_team = ai_trader.create_team(
     name="Nhóm Alpha",
@@ -320,11 +321,11 @@ trading_team = ai_trader.create_team(
 
 # Khởi động nhóm
 trading_team.start()
-```
+`````
 
 ### Nguồn Dữ liệu Tùy chỉnh
 
-AI-Trader hỗ trợ nguồn dữ liệu tùy chỉnh cho dữ liệu thay thế: ```python
+AI-Trader hỗ trợ nguồn dữ liệu tùy chỉnh cho dữ liệu thay thế: `````python
 # Thêm nguồn dữ liệu tùy chỉnh
 ai_trader.add_data_source(
     name="news_sentiment",
@@ -344,11 +345,11 @@ strategy = SentimentAnalysis(
     model="finbert",
     custom_data_source="news_sentiment"
 )
-```
+`````
 
 ### Quy tắc Quản lý Rủi ro
 
-Cấu hình quản lý rủi ro toàn diện: ```python
+Cấu hình quản lý rủi ro toàn diện: `````python
 # Đặt quy tắc quản lý rủi ro
 ai_trader.configure_risk(
     global_limits={
@@ -372,7 +373,7 @@ ai_trader.configure_risk(
         }
     }
 )
-```
+````
 
 ## So sánh với các giải pháp thay thế
 
@@ -479,7 +480,7 @@ Việc đăng ký dựa trên SKILL.md là một lựa chọn thiết kế thôn
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -489,7 +490,7 @@ Việc đăng ký dựa trên SKILL.md là một lựa chọn thiết kế thôn
 - [12-factor-agents](hkuds-ai-trader)
 - [2026-05-25-trending-ai-agents](hkuds-ai-trader)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

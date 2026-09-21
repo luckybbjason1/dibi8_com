@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
 ---
 
+
 ## Giới thiệu
 
 Thị giác máy tính đã trở thành một trong những ứng dụng impactful nhất của machine learning, powering từ autonomous vehicles và quality inspection systems đến medical imaging và retail analytics. Nhưng xây dựng production-grade CV system yêu cầu nhiều hơn chỉ training model — nó demands robust tools cho data annotation, evaluation, visualization và debugging.
@@ -39,7 +40,7 @@ Supervision cung cấp tools across toàn bộ computer vision lifecycle: ### Da
 
 Supervision cung cấp utility cho việc tạo, manipulat và convert annotation format. Nó hỗ trợ COCO, YOLO, Pascal VOC và custom format, làm cho dễ dàng làm việc với các ML framework và pipeline khác nhau.
 
-```python
+````python
 # Import supervision
 from supervision import *
 
@@ -58,13 +59,13 @@ stats = get_annotation_stats(annotations)
 print(f"Tổng objects: {stats.total_objects}")
 print(f"Classes: {stats.classes}")
 print(f"Images: {stats.total_images}")
-```
+`````
 
 ### Detection Processing
 
 Supervision cung cấp powerful tools cho việc processing detection model output, bao gồm confidence filtering, non-maximum suppression và result visualization.
 
-```python
+`````python
 import supervision as sv
 import cv2
 
@@ -81,11 +82,11 @@ detections = sv.NMS(detections, iou_threshold=0.45)
 
 # Filter by confidence
 detections = detections[detections.confidence > 0.6]
-```
+`````
 
 ### Visualization và Annotation Drawing
 
-Một trong những strength của Supervision là visualization toolkit. Vẽ bounding box, segmentation mask, keypoint và tracking ID trên image và video frame là straightforward: ```python
+Một trong những strength của Supervision là visualization toolkit. Vẽ bounding box, segmentation mask, keypoint và tracking ID trên image và video frame là straightforward: `````python
 # Tạo annotation context cho drawing
 annotation_context = sv.BoxAnnotator(
     thickness=2,
@@ -124,11 +125,11 @@ annotated_image = label_annotator.annotate(
 
 # Save result
 cv2.imwrite("annotated_scene.jpg", annotated_image)
-```
+`````
 
 ### Tracking Support
 
-Supervision có first-class support cho object tracking, với built-in integration cho các tracking algorithm phổ biến: ```python
+Supervision có first-class support cho object tracking, với built-in integration cho các tracking algorithm phổ biến: `````python
 # Khởi tạo một tracker
 tracker = sv.Tracker(
     tracker_type="ocsort",  # hoặc "bytetrack"
@@ -146,11 +147,11 @@ for frame_number, frame in enumerate(
     
     # Annotated frame với tracking ID
     annotated_frame = draw_tracking_ids(frame, detections)
-```
+`````
 
 ### Metric Computation
 
-Supervision cung cấp tools cho việc computing common CV evaluation metric: ```python
+Supervision cung cấp tools cho việc computing common CV evaluation metric: `````python
 # Compute confusion matrix
 confusion_matrix = sv.ConfusionMatrix(
     num_classes=10,
@@ -166,15 +167,15 @@ confusion_matrix.plot(title="Model Performance")
 
 # Get precision, recall và F1 per class
 for class_name, metrics in confusion_matrix.class_metrics().items(): print(f"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}")
-```
+`````
 
 ## Cách hoạt động
 
 Supervision hoạt động qua một clean, consistent API theo một vài core design pattern: ### Detections như Data Structure
 
-Trái tim của Supervision là class `Detections`, cung cấp unified representation cho tất cả các loại object detection output — bounding box, segmentation mask, keypoint và orientation angle.
+Trái tim của Supervision là class ````Detections````, cung cấp unified representation cho tất cả các loại object detection output — bounding box, segmentation mask, keypoint và orientation angle.
 
-```python
+`````python
 from supervision import Detections
 
 # Create detections từ scratch
@@ -195,11 +196,11 @@ high_confidence = detections[detections.confidence > 0.8]
 
 # Compute IoU giữa hai detection set
 ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5)
-```
+`````
 
 ### Pipeline Composition
 
-Supervision khuyến nghị composing operation vào pipeline. Mỗi step lấy một `Detections` object và produce một cái mới: ```python
+Supervision khuyến nghị composing operation vào pipeline. Mỗi step lấy một ``Detections`` object và produce một cái mới: `````python
 # Build một detection pipeline
 pipeline = [
     {"operation": "filter_confidence", "threshold": 0.5},
@@ -210,11 +211,11 @@ pipeline = [
 
 # Execute pipeline
 results = apply_pipeline(original_detections, pipeline)
-```
+`````
 
 ## Cài đặt
 
-Cài đặt Supervision là đơn giản: ```bash
+Cài đặt Supervision là đơn giản: `````bash
 # Cài đặt qua pip
 pip install supervision
 
@@ -223,21 +224,21 @@ python -c "import supervision as sv; print(sv.__version__)"
 
 # Cài đặt với tất cả optional dependency cho maximum compatibility
 pip install supervision[all]
-```
+`````
 
 ### Cài đặt với PyTorch
 
-Cho deep learning workflow, cài đặt với PyTorch: ```bash
+Cho deep learning workflow, cài đặt với PyTorch: `````bash
 # Cài đặt với PyTorch (CPU)
 pip install supervision torch torchvision
 
 # Cài đặt với PyTorch (CUDA 12.x)
 pip install supervision torch torchvision --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Colab Demo
 
-Roboflow cung cấp một interactive Colab notebook cho việc exploring Supervision capability: ```bash
+Roboflow cung cấp một interactive Colab notebook cho việc exploring Supervision capability: `````bash
 # Mở interactive Colab demo
 # https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb
 
@@ -245,13 +246,13 @@ Roboflow cung cấp một interactive Colab notebook cho việc exploring Superv
 git clone https://github.com/roboflow/supervision.git
 cd supervision
 jupyter notebook demo.ipynb
-```
+`````
 
 ## Integration Patterns
 
 ### YOLO Integration
 
-Supervision có first-class integration với YOLO model: ```python
+Supervision có first-class integration với YOLO model: `````python
 # Integration với YOLOv8 (Ultralytics)
 from ultralytics import YOLO
 import supervision as sv
@@ -271,11 +272,11 @@ annotated_frame = annotator.annotate(
     scene=results[0].plot(),
     detections=detections
 )
-```
+`````
 
 ### MediaPipe Integration
 
-Cho pose estimation và landmark detection: ```python
+Cho pose estimation và landmark detection: `````python
 import supervision as sv
 from mediapipe import solutions
 
@@ -287,11 +288,11 @@ results = pose.process(image)
 
 # Convert sang Supervision keypoint format
 if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
-```
+`````
 
 ### ONNX Runtime Integration
 
-Cho optimized inference: ```python
+Cho optimized inference: `````python
 import supervision as sv
 from onnxruntime import InferenceSession
 
@@ -301,7 +302,7 @@ session = InferenceSession("model.onnx")
 # Run inference và convert sang Supervision format
 outputs = session.run(None, {session.get_inputs()[0].name: input_tensor})
 detections = sv.Detections.from_onnx(outputs)
-```
+`````
 
 ![Supervision Pipeline Architecture](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png)
 
@@ -319,7 +320,7 @@ Evaluation function của Supervision được optimize cho speed: | Operation |
 
 ### Model Evaluation Throughput
 
-Supervision được sử dụng để evaluate model ở quy mô lớn: ```python
+Supervision được sử dụng để evaluate model ở quy mô lớn: `````python
 # Batch evaluation script
 import supervision as sv
 from tqdm import tqdm
@@ -345,13 +346,13 @@ def evaluate_model(model, dataset): all_predictions = []
     print(f"mAP@0.5: {metrics.map_50:.4f}")
     print(f"mAP@0.5:0.95: {metrics.map_50_95:.4f}")
     return metrics
-```
+`````
 
 ## Usage Nâng cao
 
 ### Custom Annotator
 
-Bạn có thể tạo custom annotator cho specialized visualization need: ```python
+Bạn có thể tạo custom annotator cho specialized visualization need: `````python
 import supervision as sv
 import cv2
 import numpy as np
@@ -389,11 +390,11 @@ arrow_annotator = ArrowAnnotator(
     color=sv.Color.GREEN,
     thickness=3
 )
-```
+`````
 
 ### Video Analytics Pipeline
 
-Cho real-time video analytics: ```python
+Cho real-time video analytics: `````python
 import supervision as sv
 
 class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path
@@ -435,11 +436,11 @@ class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_
 # Chạy pipeline
 pipeline = VideoAnalyticsPipeline("camera_feed.mp4", model)
 pipeline.run()
-```
+`````
 
 ### Metric Visualization
 
-Supervision cung cấp built-in visualization cho evaluation metric: ```python
+Supervision cung cấp built-in visualization cho evaluation metric: `````python
 import supervision as sv
 
 # ROC curve
@@ -456,7 +457,7 @@ pr = sv.PrecisionRecallCurve(
 )
 pr.compute(predictions, targets)
 pr.plot(save_path="pr_curve.png")
-```
+`````
 
 ## So sánh với Alternatives
 
@@ -489,11 +490,11 @@ Trong khi Supervision là một powerful toolkit, nó có một số limitation:
 
 ### 1. Làm thế nào để cài đặt Supervision?
 
-Chỉ cần chạy `pip install supervision`. Cho full compatibility với tất cả feature, sử dụng `pip install supervision[all]`.
+Chỉ cần chạy ````pip install supervision````. Cho full compatibility với tất cả feature, sử dụng ````pip install supervision[all]````.
 
 ### 2. Supervision có hoạt động với YOLO model không?
 
-Có, nó có first-class integration với YOLOv5, YOLOv8 và YOLO-NAS qua method `Detections.from_ultralytics()`.
+Có, nó có first-class integration với YOLOv5, YOLOv8 và YOLO-NAS qua method ````Detections.from_ultralytics()````.
 
 ### 3. Tôi có thể sử dụng Supervision cho real-time video processing không?
 
@@ -505,7 +506,7 @@ Supervision hỗ trợ COCO, YOLO, Pascal VOC và custom JSON format. Conversion
 
 ### 5. Tôi có thể tạo custom annotator không?
 
-Chắc chắn. Annotator system được design để extendable. Bạn có thể subclass `sv.Annotator` để tạo custom visualization tool cho use case cụ thể của bạn.
+Chắc chắn. Annotator system được design để extendable. Bạn có thể subclass ````sv.Annotator```` để tạo custom visualization tool cho use case cụ thể của bạn.
 
 ### 6. Supervision có phù hợp cho production use không?
 
@@ -521,7 +522,7 @@ Supervision của Roboflow là một essential tool cho bất kỳ ai làm việ
 
 Từ data annotation và model evaluation đến visualization và tracking, Supervision cover gap mà tool khác để ngỏ. Nó lightweight, well-documented và easy integrate vào bất kỳ Python-based CV workflow nào. Cho dù bạn đang annotating training data, evaluating model performance hoặc xây dựng một real-time detection system, Supervision có tool bạn cần.
 
-Bắt đầu với `pip install supervision` và explore [interactive Colab demo](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) để xem nó hoạt động.
+Bắt đầu với ````pip install supervision``` và explore [interactive Colab demo](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) để xem nó hoạt động.
 
 [CTA: Xây dựng hệ thống computer vision tốt hơn với Supervision. [Cài đặt ngay](https://github.com/roboflow/supervision) | [Đọc tài liệu](https://supervision.roboflow.com)]
 
@@ -561,7 +562,7 @@ Bắt đầu với `pip install supervision` và explore [interactive Colab demo
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -569,6 +570,6 @@ Bắt đầu với `pip install supervision` và explore [interactive Colab demo
 - [roboflow-supervision](roboflow-supervision)
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

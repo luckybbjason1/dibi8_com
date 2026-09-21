@@ -28,6 +28,7 @@ faq: - q: "'바이브 코딩'이란 무엇인가?"
     a: "아니다. 워크플로는 언어 비종속적이다 — 자신이 쓰는 어떤 자연어로든 의도를 기술하면 된다. 용어는 한국에서 출발했지만 실천은 전 세계에서 통한다. 영어권 개발자들은 Cursor와 Claude Code가 나온 이래로 이미 그렇게 해왔다. 단지 이름이 없었을 뿐이다."
 ---
 
+
 {{</* resource-info */>}}
 
 # 바이브 코딩 2026: 한국 개념을 모두에게 풀어 설명한다
@@ -49,7 +50,7 @@ faq: - q: "'바이브 코딩'이란 무엇인가?"
 
 ## 실제로 어떻게 작동하나
 
-한국 핀테크의 전형적인 바이브 코딩 세션(Toss 엔지니어링 블로그에서 익명화): ```
+한국 핀테크의 전형적인 바이브 코딩 세션(Toss 엔지니어링 블로그에서 익명화): ````
 Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘.
                  Redis 사용. 분당 100 req. 초과시 429 응답."
 
@@ -57,7 +58,7 @@ Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘.
        분당 100 req. 초과 시 429 응답."
 
 AI Claude Code: [미들웨어 생성, 라우트 업데이트, 테스트 추가]
-```
+````
 
 사람 리뷰어: - 레이트 리미팅 알고리즘을 직접 쓰지 않는다
 - 생성된 미들웨어가 올바른지 검토한다
@@ -132,7 +133,7 @@ AI Claude Code: [미들웨어 생성, 라우트 업데이트, 테스트 추가]
 
 가장 강한 도입은 "모든 걸 바이브 코딩"이 아니다. "맞는 곳에서는 바이브 코딩, 중요한 곳에서는 손코딩"이다. 한국은 이것이 프로덕션 규모에서 작동함을 증명했다. 나머지 우리의 질문은 시도할 것인가가 아니라 — 어디서 시도할 것인가다.
 
----
+* * *
 
 **관련**: [AI 코딩 2026-Q2 비교](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Aider vs Cline vs OpenHands](https://dibi8.com/kr/resources/dev-utils/aider-cline-openhands-2026-honest-comparison/)
 
@@ -198,12 +199,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -213,7 +214,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](vibe-coding-2026-korean-concept-explained)
 - [claude-4-opus-sonnet-review-2026](vibe-coding-2026-korean-concept-explained)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/feast-feature-store-ml/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 200ms 피처 엔지니어링 위기
@@ -54,7 +55,7 @@ Feast는 피처를 **계산하지 않습니다** — Spark, Airflow, dbt 등의 
 
 Feast 아키텍처는 네 가지 핵심 구성 요소로 구성됩니다: ### 1. 피처 레지스트리
 
-레지스트리는 Feast의 두뇌입니다. 모든 피처 정의를 코드(feature_store.yaml 및 Python 파일)로 저장하고 메타데이터를 백엔드 — 파일(로컬, S3, GCS) 또는 SQL 데이터베이스(PostgreSQL, MySQL) — 에 지속합니다: ```yaml
+레지스트리는 Feast의 두뇌입니다. 모든 피처 정의를 코드(feature_store.yaml 및 Python 파일)로 저장하고 메타데이터를 백엔드 — 파일(로컬, S3, GCS) 또는 SQL 데이터베이스(PostgreSQL, MySQL) — 에 지속합니다: ````yaml
 # feature_store.yaml — Feast 프로젝트 구성
 project: fraud_detection
 provider: local
@@ -65,9 +66,9 @@ offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
-```
+`````
 
-프로덕션에서는 여러 팀원이 동시에 `feast apply`를 실행할 때 충돌을 방지하기 위해 **SQL 레지스트리**(PostgreSQL)를 사용하세요.
+프로덕션에서는 여러 팀원이 동시에 ````feast apply````를 실행할 때 충돌을 방지하기 위해 **SQL 레지스트리**(PostgreSQL)를 사용하세요.
 
 ### 2. 오프라인 스토어
 
@@ -76,7 +77,7 @@ entity_key_serialization_version: 2
 
 지원되는 백엔드: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino**
 
-```python
+`````python
 # 학습을 위한 역사적 피처 검색
 from feast import FeatureStore
 
@@ -90,9 +91,9 @@ historical_df = store.get_historical_features(
         "user_features:days_since_last_order",
     ],
 ).to_df()
-```
+`````
 
-`get_historical_features()` 호출은 **포인트인타임 조인**을 수행합니다 — entity_df에 지정된 타임스탬프에 존재했던 각 피처 값을 검색합니다. 이는 ML 학습 파이프라인에서 가장 흔한 실수 중 하나인 데이터 누출을 방지합니다.
+````get_historical_features()```` 호출은 **포인트인타임 조인**을 수행합니다 — entity_df에 지정된 타임스탬프에 존재했던 각 피처 값을 검색합니다. 이는 ML 학습 파이프라인에서 가장 흔한 실수 중 하나인 데이터 누출을 방지합니다.
 
 ### 3. 온라인 스토어
 
@@ -100,7 +101,7 @@ historical_df = store.get_historical_features(
 
 지원되는 백엔드: **Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL**
 
-```python
+`````python
 # 실시간 추론을 위한 온라인 피처 검색
 features = store.get_online_features(
     features=[
@@ -111,11 +112,11 @@ features = store.get_online_features(
 ).to_dict()
 
 # 반환: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
-```
+`````
 
 ### 4. 피처 서버
 
-Feast 피처 서버는 REST와 gRPC를 통해 피처 검색을 노출하는 Go 기반 고성능 서비스입니다. 모델 서빙 인프라(KServe, Seldon, 커스텀) 옆에 사이드카로 배포하세요: ```bash
+Feast 피처 서버는 REST와 gRPC를 통해 피처 검색을 노출하는 Go 기반 고성능 서비스입니다. 모델 서빙 인프라(KServe, Seldon, 커스텀) 옆에 사이드카로 배포하세요: `````bash
 # 피처 서버 시작
 feast serve --port 6566
 
@@ -126,11 +127,11 @@ curl -X POST "http://localhost:6566/get-online-features" \
     "features": ["user_features:avg_order_amount_30d"],
     "entities": {"user_id": ["user_12345"]}
   }'
-```
+`````
 
 ## 설치 및 설정: 5분 이내
 
-Feast에는 Python 3.9+와 pip가 필요합니다. 원하는 백엔드와 함께 설치하세요: ```bash
+Feast에는 Python 3.9+와 pip가 필요합니다. 원하는 백엔드와 함께 설치하세요: `````bash
 # 코어 Feast (최소 설치)
 pip install feast
 
@@ -148,14 +149,14 @@ pip install "feast[postgres]"
 
 # 모든 일반적인 백엔드가 포함된 전체 설치
 pip install "feast[gcp,redis,postgres,snowflake]"
-```
+`````
 
-설치 확인: ```bash
+설치 확인: `````bash
 feast version
 # Feast SDK Version: 0.63.0
-```
+`````
 
-새로운 Feast 프로젝트 초기화: ```bash
+새로운 Feast 프로젝트 초기화: `````bash
 # 프로젝트 디렉토리 생성 및 진입
 mkdir fraud_detection_feature_store
 cd fraud_detection_feature_store
@@ -169,7 +170,7 @@ feast init
 # │   ├── repo/
 # │   │   ├── example.py    # 피처 정의
 # │   │   └── test_workflow.py
-```
+`````
 
 ## 피처 정의: 엔터티, 피처 뷰, 피처 서비스
 
@@ -177,7 +178,7 @@ Feast는 **엔터티**(모델이 예측하는 객체)와 **피처 뷰**(데이�
 
 ### 1단계: 엔터티 정의
 
-```python
+`````python
 # features/entities.py
 from feast import Entity, ValueType
 
@@ -188,11 +189,11 @@ user = Entity(
     description="각 사용자의 고유 식별자",
     join_key="user_id",
 )
-```
+`````
 
 ### 2단계: 데이터 소스 정의
 
-```python
+`````python
 # features/data_sources.py
 from feast import BigQuerySource
 
@@ -210,16 +211,16 @@ transaction_stats_source = BigQuerySource(
             avg_transaction_amount_7d,
             failed_transaction_rate_30d,
             created
-        FROM `my-gcp-project.featds.transaction_aggregates`
+        FROM ````my-gcp-project.featds.transaction_aggregates````
     """,
     timestamp_field="event_timestamp",
     created_timestamp_column="created",
 )
-```
+`````
 
 ### 3단계: 피처 뷰 정의
 
-```python
+`````python
 # features/feature_views.py
 from feast import FeatureView, Field
 from feast.types import Float32, Int64, Float64
@@ -245,11 +246,11 @@ user_transaction_features = FeatureView(
     tags={"team": "fraud", "domain": "transactions"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### 4단계: 피처 서비스 정의
 
-```python
+`````python
 # features/feature_services.py
 from feast import FeatureService
 from features.feature_views import user_transaction_features
@@ -261,11 +262,11 @@ fraud_detection_v1 = FeatureService(
     tags={"version": "1.0", "model": "fraud_xgboost"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### 5단계: 적용 및 머티리얼라이즈
 
-```bash
+`````bash
 # 레지스트리에 피처 정의 적용
 feast apply
 
@@ -275,7 +276,7 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 
 # 또는 특정 시간 범위 머티리얼라이즈
 feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
-```
+`````
 
 ## 프로덕션 구성: Redis + BigQuery
 
@@ -283,7 +284,7 @@ feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
 
 ### feature_store.yaml (프로덕션)
 
-```yaml
+`````yaml
 # feature_store.yaml — 프로덕션 설정
 project: fraud_detection
 provider: gcp
@@ -304,21 +305,21 @@ entity_key_serialization_version: 2
 
 flags: alpha_features: true
   on_demand_transforms: true
-```
+`````
 
 ### Redis 온라인 스토어 구성
 
-서브밀리세컨드 제공을 위해 적절한 샤딩이 있는 Redis Cluster를 사용하세요: ```yaml
+서브밀리세컨드 제공을 위해 적절한 샤딩이 있는 Redis Cluster를 사용하세요: `````yaml
 # Redis Cluster 구성
 online_store: type: redis
   redis_type: redis_cluster
   connection_string: "redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379"
   key_ttl_seconds: 604800
-```
+`````
 
 ### VPS에 Redis 배포
 
-셀프 호스팅 배포의 경우 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 자동 장애 조치 기능이 있는 관리형 Redis 클러스터를 월 $15부터 제공합니다. 또는 Droplet에 Redis를 배포하세요: ```bash
+셀프 호스팅 배포의 경우 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 자동 장애 조치 기능이 있는 관리형 Redis 클러스터를 월 $15부터 제공합니다. 또는 Droplet에 Redis를 배포하세요: `````bash
 # Ubuntu 22.04에 Redis 배포 (DigitalOcean Droplet)
 sudo apt update
 sudo apt install redis-server
@@ -337,13 +338,13 @@ sudo systemctl restart redis
 # 확인
 redis-cli ping
 # PONG
-```
+`````
 
 ## ML 파이프라인과 통합
 
 ### 학습 파이프라인 통합 (Python SDK)
 
-```python
+`````python
 # training_pipeline.py
 from feast import FeatureStore
 import pandas as pd
@@ -379,11 +380,11 @@ model.fit(X_train, y_train)
 # 평가
 from sklearn.metrics import roc_auc_score
 print(f"AUC-ROC: {roc_auc_score(y_test, model.predict_proba(X_test)[:, 1]):.4f}")
-```
+`````
 
 ### 실시간 추론 통합
 
-```python
+`````python
 # inference_service.py
 from feast import FeatureStore
 from fastapi import FastAPI
@@ -426,11 +427,11 @@ async def predict(user_id: str, transaction_amount: float): # Redis에서 온라
         "is_fraud": fraud_probability > 0.7,
         "features_retrieved": {k: v[0] for k, v in features.items()},
     }
-```
+`````
 
 ### 머티리얼라이제이션을 위한 Airflow DAG
 
-```python
+`````python
 # dags/feast_materialize.py
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -467,7 +468,7 @@ with DAG(
     )
     
     materialize >> validate
-```
+`````
 
 ## 벤치마크와 실제 사용 사례
 
@@ -511,7 +512,7 @@ Feast는 스타트업부터 엔터프라이즈까지 다양한 회사의 프로�
 
 ### 온디맨드 피처 변환
 
-머티리얼라이즈할 수 없는 요청 시점의 피처를 계산합니다: ```python
+머티리얼라이즈할 수 없는 요청 시점의 피처를 계산합니다: `````python
 from feast import on_demand_feature_view
 from feast.types import Float64
 
@@ -529,11 +530,11 @@ def transaction_transforms(inputs): import pandas as pd
         inputs["transaction_amount"] / inputs["avg_order_amount_30d"]
     ).fillna(0)
     return df
-```
+`````
 
 ### 피처 모니터링 및 유효성 검사
 
-```python
+`````python
 from feast.dqm.profilers.ge_profiler import GeProfiler
 
 # 데이터 품질 기대치를 피처 뷰에 첨부
@@ -558,11 +559,11 @@ user_transaction_features_with_validation = FeatureView(
         ]
     ),
 )
-```
+`````
 
 ### 멀티 프로젝트 설정
 
-```yaml
+`````yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
 registry: path: s3://shared-bucket/registry_team_a.db
@@ -571,7 +572,7 @@ online_store: type: redis
 offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_a_features
-```
+`````
 
 ## 대안과 비교
 
@@ -617,7 +618,7 @@ offline_store: type: bigquery
 데이터 웨어하우스(BigQuery, Snowflake)는 분석을 위한 데이터를 저장합니다. 피처 스토어는 세 가지를 추가합니다: (1) 서브세컨드 제공을 위한 온라인 스토어, (2) 데이터 누출 방지를 위한 포인트인타임 조인, (3) 발견과 거버넌스를 위한 피처 레지스트리.
 
 **Q: 온라인 피처는 얼마나 최신 상태인가요?**
-피처 최신성은 머티리얼라이제이션 일정에 따라 달라집니다. 5분마다 `feast materialize-incremental`을 실행하면 온라인 피처는 최대 5분 stale합니다.
+피처 최신성은 머티리얼라이제이션 일정에 따라 달라집니다. 5분마다 ````feast materialize-incremental````을 실행하면 온라인 피처는 최대 5분 stale합니다.
 
 **Q: 클라우드 제공업체 없이 Feast를 사용할 수 있나요?**
 예. 오프라인 스토어로 SQLite 또는 PostgreSQL을, 온라인 스토어로 Redis(셀프 호스팅) 또는 SQLite를 사용하세요.
@@ -643,13 +644,13 @@ ML 모델이 학습-서빙 스큐로 고통받고, 추론 파이프라인이 너
 
 **7,000+ Stars**, **361명의 기여자**가 있는 활발한 커뮤니티, **20+ 스토리지 백엔드** 지원으로 Feast는 유연성과 멀티 클라우드 이식성을 중시하는 팀의 오픈소스 피처 스토어 선택입니다. Redis + BigQuery 조합은 **p50 온라인 제공 지연 시간이 2ms 미만**이며 포인트인타임 조인은 학습 데이터가 누출되지 않도록 보장합니다.
 
-오늘 시작하세요: ```bash
+오늘 시작하세요: `````bash
 pip install feast[redis,bigquery]
 feast init
 # 엔터티, 피처 뷰, 피처 서비스 정의
 feast apply
 feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
-```
+````
 
 Feast 커뮤니티 [Slack](https://join.slack.com/t/feastopensource/shared_invite)에 참여하고 [GitHub](https://github.com/feast-dev/feast)에서 프로젝트 업데이트를 팔로우하세요.
 
@@ -705,7 +706,7 @@ Telegram 그룹에서 이 가이드를 논의하고 Feast 배포를 공유하세
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -714,6 +715,6 @@ Telegram 그룹에서 이 가이드를 논의하고 Feast 배포를 공유하세
 - [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
 - [spec-kit-github-spec-driven-development-toolkit](feast-feature-store-ml)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

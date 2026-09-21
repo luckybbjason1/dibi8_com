@@ -32,6 +32,7 @@ faq: - q: "Khi nào RAG thắng fine-tuning trong năm 2026?"
     a: "Dưới 10K chunks: full-text search (FTS5, MeiliSearch) thường đã đủ và đơn giản hơn 10 lần. Trên 50K chunks: vector DB xứng đáng với độ phức tạp. Vùng xám 10K-50K — thử FTS trước, chỉ chuyển sang vector khi chất lượng truy xuất giảm dưới precision@5 80%."
 ---
 
+
 {{</* resource-info */>}}
 
 # RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Liệu
@@ -52,13 +53,13 @@ Cuộc tranh luận RAG-vs-fine-tuning đã tích lũy ba năm lời khuyên tr�
 >
 > **Điểm hòa vốn**: fine-tune đánh bại RAG về mặt kinh tế trên ~1M truy vấn/tháng với tri thức ổn định.
 
----
+* * *
 
 ## Điều Gì Đã Thay Đổi Kể Từ 2024
 
 Ba lực lượng đã thay đổi phép tính: 1. **Cửa sổ context lớn lên**: Gemini 2.5 Pro và Claude Sonnet 4.6 chạm 1M token. Với kho < 200K token, bạn có thể nhét hết context và bỏ qua RAG hoàn toàn. Điều này không tưởng vào năm 2024.
 
-2. **Embedding cải thiện đáng kể**: `text-embedding-3-large` (OpenAI), Voyage-3, BGE-M3 — precision@5 truy xuất đạt 80%+ trên các kho doanh nghiệp lộn xộn mà embedding 2024 không xử lý nổi.
+2. **Embedding cải thiện đáng kể**: ```text-embedding-3-large```` (OpenAI), Voyage-3, BGE-M3 — precision@5 truy xuất đạt 80%+ trên các kho doanh nghiệp lộn xộn mà embedding 2024 không xử lý nổi.
 
 3. **Fine-tuning mã nguồn mở rẻ**: LoRA + Unsloth + GPU phổ thông (RTX 4090, H100 đơn) khiến fine-tuning chỉ tốn $50-200 thay vì $5K-50K. Lập luận "fine-tune đắt đỏ" đã lỗi thời.
 
@@ -70,14 +71,14 @@ Ba lực lượng đã thay đổi phép tính: 1. **Cửa sổ context lớn l�
 - Ngân sách độ trễ cho phép 200-400ms truy xuất + LLM
 - Bạn cần cập nhật sự kiện mà không huấn luyện lại
 
-### Chi phí thực tế của RAG (giá Q2 2026): ```
+### Chi phí thực tế của RAG (giá Q2 2026): `````
 Tra cứu embedding: $0.0001/truy vấn
 Truy xuất + rerank: $0.0003/truy vấn
 Sinh LLM: $0.003-0.015/truy vấn (tùy mô hình)
                       ─────────
 Tổng: ~$0.005/truy vấn (Claude Sonnet)
                       ~$0.001/truy vấn (GPT-4o-mini)
-```
+`````
 
 Ở mức 100K truy vấn/tháng: $100-500 compute + $20-100 hosting vector DB.
 
@@ -95,7 +96,7 @@ Tổng: ~$0.005/truy vấn (Claude Sonnet)
 - Khối lượng > 1M truy vấn/tháng biện minh được chi phí ban đầu
 - Bạn muốn cố định đặc tính hiệu năng (không bị bất ngờ thay đổi API)
 
-### Chi phí thực tế của fine-tuning (2026): ```
+### Chi phí thực tế của fine-tuning (2026): `````
 LoRA fine-tune (Llama 3.3 70B): Phần cứng: H100 đơn ($2/giờ × ~10 giờ)        = $20
   Chuẩn bị dữ liệu: 1-2 ngày công kỹ sư              = ~$1K nhân công
   Lưu trữ: LoRA adapter ~100MB                = không đáng kể
@@ -103,13 +104,13 @@ LoRA fine-tune (Llama 3.3 70B): Phần cứng: H100 đơn ($2/giờ × ~10 giờ
   Ban đầu: ~$50 compute + nhân công
 
 Suy luận (tự host): Mỗi 1K token sinh ra: ~$0.0001 (GPU sở hữu đã khấu hao)
-```
+`````
 
 So với API: $0.003-0.015/1K token. Hòa vốn ở khối lượng cao.
 
 ## Cây Quyết Định
 
-```
+`````
 BẮT ĐẦU
   │
   ├─ Tri thức cập nhật hơn một lần mỗi tuần?
@@ -131,7 +132,7 @@ BẮT ĐẦU
   ├─ Khối lượng > 1M truy vấn/tháng?
   │   ├─ Có → Fine-tune (chi phí thắng)
   │   └─ Không → RAG (vận hành đơn giản hơn)
-```
+````
 
 ## Hybrid: Fine-Tune + RAG
 
@@ -186,7 +187,7 @@ Lời khuyên 2024 ("RAG cho sự kiện, fine-tune cho phong cách") vẫn ho�
 
 Với hầu hết hệ thống sản xuất năm 2026: bắt đầu với RAG, thêm fine-tuning khi phong cách/khối lượng biện minh được. Hybrid ngày càng là mặc định — và không phải vì ai đó lên kế hoạch như vậy, mà vì mỗi tầng giải quyết một vấn đề thực tế khác nhau.
 
----
+* * *
 
 **Liên quan**: [Xếp hạng MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Hệ Thống Trí Nhớ AI Agent 2026](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [Hướng dẫn 12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
 
@@ -252,12 +253,12 @@ RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Liệu Với Con
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -267,7 +268,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](rag-vs-fine-tuning-2026-decision-framework)
 - [ai-engineering-from-scratch](rag-vs-fine-tuning-2026-decision-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

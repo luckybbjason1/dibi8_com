@@ -26,6 +26,7 @@ aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
 
+
 # Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cái Chính Thức, Tìm Đúng Cái Trong 60 Giây
 
 
@@ -73,15 +74,15 @@ Nếu bắt đầu hôm nay, copy config bao gồm **Filesystem + Fetch + Memory
 
 ## 4. awesome-mcp-servers — Chỉ Mục Cộng Đồng 87.3k Star
 
-[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) là catalog cộng đồng de facto: **87.3k star, 10.5k fork, 1.6k PR**. Server nhóm thành ~40 category. Đây là các category quan trọng nhất cho workflow AI dev 2026: - **Aggregators** — Compose nhiều MCP server đằng sau một endpoint (`1mcp/agent`, `a2asearch-mcp`)
-- **Browser Automation** — `playwright-mcp`, `browsermcp/mcp`, `real-browser-mcp`
-- **Cloud Platforms** — `terraform-mcp-server`, `aws-mcp-server`, `k8s-mcp-server`, `localstack-mcp-server`
-- **Code Execution** — `e2b-sandbox-mcp` (sandbox cloud), `piston-mcp` (multi-lang runner), `pydantic-ai/mcp-run-python`
-- **Coding Agents** — `codemcp`, `claude-concilium`, `any-cli-mcp-server`
+[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) là catalog cộng đồng de facto: **87.3k star, 10.5k fork, 1.6k PR**. Server nhóm thành ~40 category. Đây là các category quan trọng nhất cho workflow AI dev 2026: - **Aggregators** — Compose nhiều MCP server đằng sau một endpoint (```1mcp/agent````, ````a2asearch-mcp````)
+- **Browser Automation** — ````playwright-mcp````, ````browsermcp/mcp````, ````real-browser-mcp````
+- **Cloud Platforms** — ````terraform-mcp-server````, ````aws-mcp-server````, ````k8s-mcp-server````, ````localstack-mcp-server````
+- **Code Execution** — ````e2b-sandbox-mcp```` (sandbox cloud), ````piston-mcp```` (multi-lang runner), ````pydantic-ai/mcp-run-python````
+- **Coding Agents** — ````codemcp````, ````claude-concilium````, ````any-cli-mcp-server````
 - **Databases** — connector Postgres, MySQL, MongoDB, Redis, SQLite, ClickHouse, Snowflake đều có MCP server OSS
 - **Communication** — Slack (Zencoder), Discord, Teams, Telegram, email (IMAP/SMTP)
-- **Knowledge & Memory** — `mem0-mcp`, `letta-mcp`, tích hợp vector DB (Pinecone, Weaviate, Chroma)
-- **Search** — `brave-search-mcp-server`, `tavily-mcp`, `exa-mcp`, `perplexity-mcp`
+- **Knowledge & Memory** — ````mem0-mcp````, ````letta-mcp````, tích hợp vector DB (Pinecone, Weaviate, Chroma)
+- **Search** — ````brave-search-mcp-server````, ````tavily-mcp````, ````exa-mcp````, ````perplexity-mcp````
 
 **Cách dùng awesome list**: đừng duyệt tuyến tính. Ctrl-F domain vấn đề ("postgres", "kubernetes", "stripe"), pick top 2-3, check star count và ngày commit cuối. **List sắp theo judgment người duy trì chứ không phải star** — tự verify.
 
@@ -94,7 +95,7 @@ Khi awesome list vượt 500 server tháng 1/2026, hai nền tảng registry xu�
 - **Mô hình**: Registry + runtime hosted + CLI installer
 - **Số server**: ~5,000 curated (nhỏ hơn mcp.so, chuẩn chất lượng cao hơn)
 - **Giá**: Liệt kê miễn phí, duyệt miễn phí, cài miễn phí. Server hosted có thể có giá theo usage
-- **Tính năng killer**: `npx -y @smithery/cli@latest install <server>` thêm vào config Claude Desktop / Cursor / Continue không cần edit JSON tay
+- **Tính năng killer**: ````npx -y @smithery/cli@latest install <server>```` thêm vào config Claude Desktop / Cursor / Continue không cần edit JSON tay
 - **Trade-off**: Chưa có monetization cho creator — dev không kiếm được từ server phổ biến
 
 ### mcp.so
@@ -114,33 +115,33 @@ Khi awesome list vượt 500 server tháng 1/2026, hai nền tảng registry xu�
 ## 6. Top MCP Server Theo Category (Tháng 5/2026)
 
 Dựa trên star cộng đồng, độ phủ tích hợp, hoạt động commit gần đây: **Filesystem & Code**
-- `modelcontextprotocol/server-filesystem` (chính thức) — FS sandboxed
-- `cyanheads/git-mcp-server` — thao tác Git vượt scope server Git reference
-- `tools-mcp/codemap-mcp` — điều hướng code ngữ nghĩa
+- ````modelcontextprotocol/server-filesystem```` (chính thức) — FS sandboxed
+- ````cyanheads/git-mcp-server```` — thao tác Git vượt scope server Git reference
+- ````tools-mcp/codemap-mcp```` — điều hướng code ngữ nghĩa
 
 **Browser & Web**
-- `microsoft/playwright-mcp` — tốt nhất cho scenario test E2E + tương tác page phức tạp
-- `browsermcp/mcp` — nhẹ, dùng session browser đã đăng nhập
-- `tavily-mcp` — kết quả search pre-format cho LLM tiêu thụ
+- ````microsoft/playwright-mcp```` — tốt nhất cho scenario test E2E + tương tác page phức tạp
+- ````browsermcp/mcp```` — nhẹ, dùng session browser đã đăng nhập
+- ````tavily-mcp```` — kết quả search pre-format cho LLM tiêu thụ
 
 **Database**
-- `postgres-mcp-server` — introspection schema + thực thi query an toàn
-- `mongodb-mcp` — MongoDB tự bảo trì
-- `redis-mcp` — kv + pub/sub cho phối hợp agent
+- ````postgres-mcp-server```` — introspection schema + thực thi query an toàn
+- ````mongodb-mcp```` — MongoDB tự bảo trì
+- ````redis-mcp```` — kv + pub/sub cho phối hợp agent
 
 **Memory & Knowledge**
-- `mem0-mcp` — lớp memory ngữ nghĩa persistent (link mem0 SaaS)
-- `letta-mcp` — framework state agent
-- `pinecone-mcp` — vector store
+- ````mem0-mcp```` — lớp memory ngữ nghĩa persistent (link mem0 SaaS)
+- ````letta-mcp```` — framework state agent
+- ````pinecone-mcp```` — vector store
 
 **Cloud Ops**
-- `aws-mcp-server` — truy cập API AWS theo scope IAM
-- `k8s-mcp-server` — tương đương kubectl + safety guardrails
-- `terraform-mcp-server` — plan/apply với cổng xác nhận
+- ````aws-mcp-server```` — truy cập API AWS theo scope IAM
+- ````k8s-mcp-server```` — tương đương kubectl + safety guardrails
+- ````terraform-mcp-server```` — plan/apply với cổng xác nhận
 
 **Coding Agents**
-- `codemcp` — biến IDE bất kỳ thành MCP host
-- `e2b-sandbox-mcp` — thực thi code cloud sandbox (thay Code Interpreter)
+- ````codemcp```` — biến IDE bất kỳ thành MCP host
+- ````e2b-sandbox-mcp```` — thực thi code cloud sandbox (thay Code Interpreter)
 
 ## 7. Self-Host vs Cloud-Host MCP Server
 
@@ -165,7 +166,7 @@ VPS 4GB thoải mái chạy 10+ MCP server stdio-bridged hoặc HTTP song song. 
 **Checklist chọn (30 giây mỗi candidate)**: 1. **Star > 500** + **commit cuối < 90 ngày** = project hoạt động (không thì tìm chỗ khác)
 2. **Open issue có label "good first issue"** = maintainer kỳ vọng đóng góp (khỏe)
 3. **License = MIT/Apache 2.0** = an toàn dùng thương mại
-4. **README có snippet `claude_desktop_config.json`** = tác giả test path cài
+4. **README có snippet ````claude_desktop_config.json````** = tác giả test path cài
 5. **Verify chữ ký binary** nếu cài từ npm/PyPI — tấn công chuỗi cung qua MCP server là vector mối đe dọa 2026 thực
 
 **Nếu không có gì phù hợp**: tự viết. SDK TypeScript và Python cho phép bạn ship MCP server hoạt động trong ~50 dòng. Team Anthropic chủ đích giữ protocol mỏng để xây server không có ma sát.
@@ -181,9 +182,9 @@ Hệ sinh thái MCP server 2026 có 4 layer đáng biết: 1. **7 server referen
 
 Phần khó không còn là tìm server. Mà là **chọn đúng cái** — dùng checklist 30 giây mục 8 và cây khám phá mục 2. Nếu không có gì phù hợp, tự viết trong một buổi chiều (50 dòng TS hoặc Python).
 
----
+* * *
 
-*Muốn self-host 5+ MCP server (postgres + filesystem + git + memory + tavily-search) mà không đốt bill cloud? Bật một {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} $6/tháng, chạy chúng dưới một supervisor duy nhất (systemd hoặc PM2), và trỏ `claude_desktop_config.json` của Claude Desktop vào host. Xong trong một buổi chiều.*
+*Muốn self-host 5+ MCP server (postgres + filesystem + git + memory + tavily-search) mà không đốt bill cloud? Bật một {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} $6/tháng, chạy chúng dưới một supervisor duy nhất (systemd hoặc PM2), và trỏ ````claude_desktop_config.json``` của Claude Desktop vào host. Xong trong một buổi chiều.*
 
 
 {
@@ -211,7 +212,7 @@ Phần khó không còn là tìm server. Mà là **chọn đúng cái** — dùn
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -221,7 +222,7 @@ Phần khó không còn là tìm server. Mà là **chọn đúng cái** — dùn
 - [headroom-token-compression-proxy-library-mcp-server](mcp-server-registry-comprehensive-guide-2026)
 - [codebase-memory-mcp-deep-code-intelligence](mcp-server-registry-comprehensive-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

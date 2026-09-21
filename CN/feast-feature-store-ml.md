@@ -23,6 +23,7 @@ tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "o
 aliases:
   - /posts/feast-feature-store-ml/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The 200ms Feature Engineering Crisis
@@ -53,7 +54,7 @@ Feast does **not** compute features — it stores and serves pre-computed featur
 
 Feast architecture consists of four core components: ### 1. Feature Registry
 
-The registry is the brain of Feast. It stores all feature definitions as code (in `feature_store.yaml` and Python files) and persists metadata to a backend — either a file (local, S3, GCS) or SQL database (PostgreSQL, MySQL): ```yaml
+The registry is the brain of Feast. It stores all feature definitions as code (in ``feature_store.yaml`` and Python files) and persists metadata to a backend — either a file (local, S3, GCS) or SQL database (PostgreSQL, MySQL): ````yaml
 # feature_store.yaml — Feast project configuration
 project: fraud_detection
 provider: local
@@ -64,9 +65,9 @@ offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
-```
+`````
 
-For production, use a **SQL registry** (PostgreSQL) to prevent conflicts when multiple team members run `feast apply` simultaneously.
+For production, use a **SQL registry** (PostgreSQL) to prevent conflicts when multiple team members run ````feast apply```` simultaneously.
 
 ### 2. Offline Store
 
@@ -75,7 +76,7 @@ The offline store holds large volumes of historical feature data. It serves two 
 
 Supported backends: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino**
 
-```python
+`````python
 # Retrieve historical features for training
 from feast import FeatureStore
 
@@ -89,9 +90,9 @@ historical_df = store.get_historical_features(
         "user_features:days_since_last_order",
     ],
 ).to_df()
-```
+`````
 
-The `get_historical_features()` call performs a **point-in-time join** — it retrieves each feature value as it existed at the timestamp specified in `entity_df`. This prevents data leakage, one of the most common mistakes in ML training pipelines.
+The ````get_historical_features()```` call performs a **point-in-time join** — it retrieves each feature value as it existed at the timestamp specified in ````entity_df````. This prevents data leakage, one of the most common mistakes in ML training pipelines.
 
 ### 3. Online Store
 
@@ -99,7 +100,7 @@ The online store is a low-latency key-value database for real-time feature servi
 
 Supported backends: **Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL**
 
-```python
+`````python
 # Retrieve online features for real-time inference
 features = store.get_online_features(
     features=[
@@ -110,11 +111,11 @@ features = store.get_online_features(
 ).to_dict()
 
 # Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
-```
+`````
 
 ### 4. Feature Server
 
-The Feast feature server is a Go-based high-performance service that exposes feature retrieval via REST and gRPC. Deploy it as a sidecar alongside your model serving infrastructure (KServe, Seldon, custom): ```bash
+The Feast feature server is a Go-based high-performance service that exposes feature retrieval via REST and gRPC. Deploy it as a sidecar alongside your model serving infrastructure (KServe, Seldon, custom): `````bash
 # Start the feature server
 feast serve --port 6566
 
@@ -125,11 +126,11 @@ curl -X POST "http://localhost:6566/get-online-features" \
     "features": ["user_features:avg_order_amount_30d"],
     "entities": {"user_id": ["user_12345"]}
   }'
-```
+`````
 
 ## Installation & Setup: Under 5 Minutes
 
-Feast requires Python 3.9+ and pip. Install with your desired backends: ```bash
+Feast requires Python 3.9+ and pip. Install with your desired backends: `````bash
 # Core Feast (minimal)
 pip install feast
 
@@ -147,14 +148,14 @@ pip install "feast[postgres]"
 
 # Full install with all common backends
 pip install "feast[gcp,redis,postgres,snowflake]"
-```
+`````
 
-Verify installation: ```bash
+Verify installation: `````bash
 feast version
 # Feast SDK Version: 0.63.0
-```
+`````
 
-Initialize a new Feast project: ```bash
+Initialize a new Feast project: `````bash
 # Create and enter project directory
 mkdir fraud_detection_feature_store
 cd fraud_detection_feature_store
@@ -168,7 +169,7 @@ feast init
 # │   ├── repo/
 # │   │   ├── example.py    # Feature definitions
 # │   │   └── test_workflow.py
-```
+`````
 
 ## Defining Features: Entities, Feature Views, and Feature Services
 
@@ -176,7 +177,7 @@ Feast organizes features around **entities** (the objects your model makes predi
 
 ### Step 1: Define the Entity
 
-```python
+`````python
 # features/entities.py
 from feast import Entity, ValueType
 
@@ -187,11 +188,11 @@ user = Entity(
     description="Unique identifier for each user",
     join_key="user_id",
 )
-```
+`````
 
 ### Step 2: Define the Data Source
 
-```python
+`````python
 # features/data_sources.py
 from feast import BigQuerySource
 
@@ -209,16 +210,16 @@ transaction_stats_source = BigQuerySource(
             avg_transaction_amount_7d,
             failed_transaction_rate_30d,
             created
-        FROM `my-gcp-project.featds.transaction_aggregates`
+        FROM ````my-gcp-project.featds.transaction_aggregates````
     """,
     timestamp_field="event_timestamp",
     created_timestamp_column="created",
 )
-```
+`````
 
 ### Step 3: Define the Feature View
 
-```python
+`````python
 # features/feature_views.py
 from feast import FeatureView, Field
 from feast.types import Float32, Int64, Float64
@@ -244,11 +245,11 @@ user_transaction_features = FeatureView(
     tags={"team": "fraud", "domain": "transactions"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### Step 4: Define a Feature Service
 
-```python
+`````python
 # features/feature_services.py
 from feast import FeatureService
 from features.feature_views import user_transaction_features
@@ -260,11 +261,11 @@ fraud_detection_v1 = FeatureService(
     tags={"version": "1.0", "model": "fraud_xgboost"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### Step 5: Apply and Materialize
 
-```bash
+`````bash
 # Apply feature definitions to the registry
 feast apply
 
@@ -274,7 +275,7 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 
 # Or materialize a specific time range
 feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
-```
+`````
 
 ## Production Configuration: Redis + BigQuery
 
@@ -282,7 +283,7 @@ For production deployments, the Redis + BigQuery combination offers the best bal
 
 ### feature_store.yaml (Production)
 
-```yaml
+`````yaml
 # feature_store.yaml — Production configuration
 project: fraud_detection
 provider: gcp
@@ -303,21 +304,21 @@ entity_key_serialization_version: 2
 
 flags: alpha_features: true
   on_demand_transforms: true
-```
+`````
 
 ### Redis Online Store Configuration
 
-For sub-millisecond serving, use Redis Cluster with proper sharding: ```yaml
+For sub-millisecond serving, use Redis Cluster with proper sharding: `````yaml
 # Redis Cluster configuration
 online_store: type: redis
   redis_type: redis_cluster
   connection_string: "redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379"
   key_ttl_seconds: 604800
-```
+`````
 
 ### Deploying Redis on a VPS
 
-For self-hosted deployments, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers managed Redis clusters starting at $15/month with automatic failover. Alternatively, deploy Redis on a Droplet: ```bash
+For self-hosted deployments, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers managed Redis clusters starting at $15/month with automatic failover. Alternatively, deploy Redis on a Droplet: `````bash
 # Deploy Redis on Ubuntu 22.04 (DigitalOcean Droplet)
 sudo apt update
 sudo apt install redis-server
@@ -336,13 +337,13 @@ sudo systemctl restart redis
 # Verify
 redis-cli ping
 # PONG
-```
+`````
 
 ## Integration with ML Pipelines
 
 ### Training Pipeline Integration (Python SDK)
 
-```python
+`````python
 # training_pipeline.py
 from feast import FeatureStore
 import pandas as pd
@@ -377,11 +378,11 @@ model.fit(X_train, y_train)
 
 # Evaluate
 print(f"AUC-ROC: {roc_auc_score(y_test, model.predict_proba(X_test)[:, 1]):.4f}")
-```
+`````
 
 ### Real-Time Inference Integration
 
-```python
+`````python
 # inference_service.py
 from feast import FeatureStore
 from fastapi import FastAPI
@@ -424,11 +425,11 @@ async def predict(user_id: str, transaction_amount: float): # Retrieve online fe
         "is_fraud": fraud_probability > 0.7,
         "features_retrieved": {k: v[0] for k, v in features.items()},
     }
-```
+`````
 
 ### Airflow DAG for Materialization
 
-```python
+`````python
 # dags/feast_materialize.py
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -465,17 +466,17 @@ with DAG(
     )
     
     materialize >> validate
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
 Feast powers production ML systems at companies ranging from startups to enterprises. Here are performance benchmarks and adoption metrics: | Metric | Value | Source |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | **7,000+** | GitHub (May 2026) |
 | Contributors | **361** | GitHub |
@@ -490,13 +491,13 @@ Feast powers production ML systems at companies ranging from startups to enterpr
 
 | Operation | p50 Latency | p99 Latency | Test Setup |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Online feature retrieval (Redis, 6 features) | **1.2ms** | **3.8ms** | Single Redis node, local network |
 | Online feature retrieval (DynamoDB, 6 features) | **4.5ms** | **12ms** | DynamoDB on-demand, us-east-1 |
@@ -523,7 +524,7 @@ The standout number: **p50 online feature retrieval from Redis is 1.2ms** — we
 
 ### On-Demand Feature Transformations
 
-Compute features at request time that cannot be pre-materialized: ```python
+Compute features at request time that cannot be pre-materialized: `````python
 from feast import on_demand_feature_view
 from feast.types import Float64
 from pyspark.sql import functions as F
@@ -542,11 +543,11 @@ def transaction_transforms(inputs): import pandas as pd
         inputs["transaction_amount"] / inputs["avg_order_amount_30d"]
     ).fillna(0)
     return df
-```
+`````
 
 ### Feature Monitoring and Validation
 
-```python
+`````python
 from feast.dqm.profilers.ge_profiler import GeProfiler
 
 # Attach data quality expectations to a feature view
@@ -579,11 +580,11 @@ user_transaction_features_with_validation = FeatureView(
         ]
     ),
 )
-```
+`````
 
 ### Multi-Project Setup for Different Teams
 
-```yaml
+`````yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
 registry: path: s3://shared-bucket/registry_team_a.db
@@ -594,7 +595,7 @@ offline_store: type: bigquery
   dataset: team_a_features
 
 
----
+* * *
 # feature_store_team_b.yaml
 project: team_b_recommendations
 registry: path: s3://shared-bucket/registry_team_b.db
@@ -603,11 +604,11 @@ online_store: type: redis
 offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_b_features
-```
+`````
 
 ### Feature Versioning and Rollback
 
-```python
+`````python
 # Tag feature definitions with version metadata
 user_transaction_features_v2 = FeatureView(
     name="user_transaction_features_v2",
@@ -621,11 +622,11 @@ user_transaction_features_v2 = FeatureView(
         "owner": "ml-team@company.com",
     },
 )
-```
+`````
 
 ### Securing the Feature Store
 
-```yaml
+`````yaml
 # RBAC configuration (Feast 0.60+)
 auth: type: oidc
   oidc_server_url: "https://auth.company.com"
@@ -640,11 +641,11 @@ authorization: enabled: true
     - resource: "feature_service:fraud_detection_v1"
       actions: ["read"]
       roles: ["model-server"]
-```
+`````
 
 ### Stream Feature Ingestion (Kafka → Redis)
 
-```python
+`````python
 # stream_ingestion.py
 from feast import FeatureStore
 from confluent_kafka import Consumer
@@ -673,23 +674,23 @@ while True: msg = consumer.poll(timeout=1.0)
             "avg_transaction_amount_7d": event["amount"],
         }]),
     )
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Feast | Tecton | SageMaker Feature Store | Vertex AI Feature Store | Hopsworks |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | Yes (Apache-2.0) | No | No (AWS managed) | No (GCP managed) | Yes (AGPL) |
 | **Online Store Latency** | **p99 < 5ms** (Redis) | **p99 < 10ms** | **p99 < 15ms** | **p99 < 10ms** | **p99 < 5ms** (RonDB) |
@@ -735,7 +736,7 @@ while True: msg = consumer.poll(timeout=1.0)
 A data warehouse (BigQuery, Snowflake) stores raw and aggregated data for analytics. A feature store adds three things: (1) an online store for sub-second serving, (2) point-in-time correct joins to prevent data leakage, and (3) a feature registry for discovery and governance. You can use BigQuery as both your data warehouse and Feast's offline store — they complement each other.
 
 **Q: How fresh are online features in Feast?**
-Feature freshness depends on your materialization schedule. If you run `feast materialize-incremental` every 5 minutes, your online features are at most 5 minutes stale. For true real-time features, use the Push API or stream ingestion to update the online store within seconds of event arrival.
+Feature freshness depends on your materialization schedule. If you run ````feast materialize-incremental```` every 5 minutes, your online features are at most 5 minutes stale. For true real-time features, use the Push API or stream ingestion to update the online store within seconds of event arrival.
 
 **Q: Can I use Feast without a cloud provider?**
 Yes. Use SQLite or PostgreSQL as the offline store and Redis (self-hosted) or SQLite as the online store. Feast runs entirely on-premises or in a single VM. For a cost-effective setup, deploy on a [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) with self-hosted Redis and PostgreSQL.
@@ -761,13 +762,13 @@ If your ML models suffer from training-serving skew, your inference pipeline mak
 
 Feast, with **7,000+ stars**, a vibrant community of **361 contributors**, and support for **20+ storage backends**, is the open-source feature store of choice for teams who value flexibility and multi-cloud portability. The Redis + BigQuery combination delivers **p50 online serving latency under 2ms**, while point-in-time joins ensure your training data is free from leakage.
 
-Start today: ```bash
+Start today: `````bash
 pip install feast[redis,bigquery]
 feast init
 # Define your entities, feature views, and feature services
 feast apply
 feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
-```
+````
 
 Join the Feast community on [Slack](https://join.slack.com/t/feastopensource/shared_invite) and follow the project on [GitHub](https://github.com/feast-dev/feast) for updates.
 
@@ -826,7 +827,7 @@ This article contains affiliate links for [DigitalOcean](https://m.do.co/c/eca87
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](feast-feature-store-ml)
@@ -834,5 +835,5 @@ This article contains affiliate links for [DigitalOcean](https://m.do.co/c/eca87
 - [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
 - [spec-kit-github-spec-driven-development-toolkit](feast-feature-store-ml)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

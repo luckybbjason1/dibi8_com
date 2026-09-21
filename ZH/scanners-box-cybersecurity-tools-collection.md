@@ -34,6 +34,7 @@ faqs: - q: '什么是 Scanners-Box?'
     a: '它列出了 20+ 款 fuzzer，包括 AFL（American Fuzzy Lop）、honggfuzz、syzkaller 和 libFuzzer。AFL 是覆盖率引导的，已在真实软件中发现了数千个 bug；而 syzkaller 是 Linux 内核 fuzzer，已发现 3000 多个内核 bug，被 Google 和 Microsoft 使用。'
   - q: '像 Scanners-Box 里这样的渗透测试工具，使用是否合法?'
     a: '这些工具仅在获得授权的安全测试中才合法；在没有明确书面许可的情况下对系统使用它们是违法且不道德的。相关法律包括美国《计算机欺诈和滥用法》（CFAA）、英国《计算机滥用法》、中国《网络安全法》以及欧盟 GDPR，因此在测试前务必取得书面授权并界定测试范围。'---
+
 {</* resource-info */>}
 
 ## Scanners-Box 是什么？
@@ -51,11 +52,11 @@ faqs: - q: '什么是 Scanners-Box?'
 
 | 分类 | 工具数量 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **子域名枚举** | 15+ | subDomainsBrute, amass, subfinder, OneForAll |
 | **数据库 & SQL注入** | 10+ | sqlmap, jsql-injection, SQLiScanner, NoSQLAttack |
@@ -74,7 +75,7 @@ faqs: - q: '什么是 Scanners-Box?'
 | **学习资源** | 20+ | sec-wiki, FreeBuf, Web Hacking 101 |
 
 
----
+* * *
 ## 精选工具深度解析
 
 ### 1. 子域名枚举
@@ -96,13 +97,13 @@ faqs: - q: '什么是 Scanners-Box?'
 - 支持 6 种数据库类型
 - 篡改脚本绕过 WAF
 
-```bash
+````bash
 # 基本用法
 sqlmap -u "http://target.com/page.php?id=1" --dbs
 
 # 导出特定表
 sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
-```
+`````
 
 ### 3. 模糊测试框架
 
@@ -119,7 +120,7 @@ sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
 ### 4. 端口扫描
 
 **Nmap** — 网络扫描器之王
-```bash
+`````bash
 # 基本扫描
 nmap -sV -sC target.com
 
@@ -128,7 +129,7 @@ nmap -p- -sV --script=vuln target.com
 
 # 激进扫描
 nmap -A target.com
-```
+`````
 
 **masscan** — 最快的互联网端口扫描器
 - 6 分钟扫描整个互联网
@@ -148,7 +149,7 @@ nmap -A target.com
 - 会话 Cookie 捕获
 - 绕过双因素认证
 
----
+* * *
 
 ## 安全学习资源
 
@@ -170,17 +171,17 @@ nmap -A target.com
 - **Node.js Web 安全问题**
 - **Python 安全系列**
 
----
+* * *
 
 ## 漏洞靶场练习
 
 | 平台 | 描述 | 链接 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **vulfocus** | Docker 漏洞平台 | GitHub |
 | **vulhub** | 预构建漏洞环境 | GitHub |
@@ -190,7 +191,7 @@ nmap -A target.com
 | **DVWA** | 该死的漏洞 Web 应用 | GitHub |
 | **WebGoat** | OWASP Web 安全练习 | GitHub |
 
----
+* * *
 
 ## 负责任的披露
 
@@ -209,49 +210,49 @@ nmap -A target.com
 4. 及时报告发现
 5. 测试后销毁数据
 
----
+* * *
 
 ## 工具选择指南
 
 ### Web 应用测试
-```
+`````
 侦察: amass, subfinder, theHarvester
 扫描: Nmap, masscan, whatweb
 漏洞: sqlmap, XSS 扫描器, dirsearch
 利用: Burp Suite, 自定义脚本
 报告: Dradis, Faraday
-```
+`````
 
 ### 网络渗透测试
-```
+`````
 发现: Nmap, masscan, nbtscan
 枚举: enum4linux, snmp-check
 漏洞: OpenVAS, Nessus
 利用: Metasploit, Cobalt Strike
 后渗透: PowerShell Empire, Mimikatz
-```
+`````
 
 ### 红队行动
-```
+`````
 初始访问: SET, gophish, evilginx2
 持久化: 自定义植入, 计划任务
 权限提升: PowerUp, BeRoot
 横向移动: Pass-the-hash, Kerberoasting
 数据渗出: DNS 隧道, HTTPS C2
-```
+````
 
----
+* * *
 
 ## 相关文章
 
 - [Agent Reach：AI 代理互联网访问](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI 驱动的安全自动化
 - [Free Claude Code：开源 AI 编码](/zh/resources/ai-tools/free-claude-code-open-source-proxy/) — 安全编码实践
 
----
+* * *
 
 *免责声明：本文仅供教育目的。所有工具应负责任地使用，仅用于您拥有或获得明确许可测试的系统。作者和 dibi8.com 不对所提供信息的任何滥用负责。*
 
----
+* * *
 
 ## 推荐工具
 
@@ -325,7 +326,7 @@ Scanners-Box：200+ 网络安全工具合集 — 安全从业人员必备 repres
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -357,15 +358,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Tool | Type | Stars | License | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
 | **Trivy** | Container | 10K+ | Apache 2.0 | Container security |

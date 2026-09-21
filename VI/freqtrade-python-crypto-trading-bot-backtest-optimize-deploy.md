@@ -13,9 +13,10 @@ license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
 
+
 # Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu, Triển khai — Hướng dẫn thực tế 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Freqtrade Trading Engine                 │
 │                                                      │
@@ -28,7 +29,7 @@ featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/doc
 │  │  define_buy_signal() │ define_sell_signal()     │  │
 │  └───────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 ## Introduction
 
@@ -49,18 +50,18 @@ Tính năng chính: - **Phát triển chiến lược** — Viết chiến lư�
 
 ### Docker Compose (Recommended)
 
-```bash
+`````bash
 git clone https://github.com/freqtrade/freqtrade.git
 cd freqtrade
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 docker compose up -d
 # http://localhost:8080
-```
+`````
 
 ### Strategy Development
 
-```python
+`````python
 # strategies/MyStrategy.py
 from freqtrade.strategy import IStrategy
 from pandas import DataFrame
@@ -87,11 +88,11 @@ class MyStrategy(IStrategy): stoploss = -0.10
             (dataframe['ema_fast'] < dataframe['ema_slow']),
             'sell'] = 1
         return dataframe
-```
+`````
 
 ## Integration with Binance, OKX, Bitget, and 20+ Exchanges
 
-Freqtrade dùng thư viện `ccxt` kết nối tất cả major crypto exchanges: | Exchange | API Type | Fees | Min. Capital | KYC |
+Freqtrade dùng thư viện ````ccxt```` kết nối tất cả major crypto exchanges: | Exchange | API Type | Fees | Min. Capital | KYC |
 |----------|----------|------|-------------|-----|
 | Binance | Spot/Futures | 0.1% | $10 | Yes |
 | OKX | Spot/Futures | 0.08% | $10 | Partial |
@@ -102,7 +103,7 @@ Freqtrade dùng thư viện `ccxt` kết nối tất cả major crypto exchanges
 
 ### Exchange Configuration
 
-```json
+`````json
 // config.json
 {
     "exchange": {
@@ -119,7 +120,7 @@ Freqtrade dùng thư viện `ccxt` kết nối tất cả major crypto exchanges
         "dry_run": false
     }
 }
-```
+`````
 
 Self-hosted: [DigitalOcean](https://m.do.co/c/eca87ac14ee0) low-latency, [HTStack](https://my.htstack.com/aff.php?aff=27187) Asia routing, [Dex-Trade](https://dex-trade.com/refcode/1mviku) DEX.
 
@@ -145,9 +146,9 @@ BTC/USDT 1H, 2024-2025, $1000 start: | Strategy | Win Rate | Total Profit | Max 
 
 ### Use Case: Algorithmic Day Trading
 
-```bash
+`````bash
 freqtrade trade --strategy GridStrategy --config config.json --dry-run &
-```
+`````
 
 30 ngày, 347 trades, 61% win rate, +23.8% portfolio growth.
 
@@ -155,21 +156,21 @@ freqtrade trade --strategy GridStrategy --config config.json --dry-run &
 
 ### Docker Production
 
-```dockerfile
+`````dockerfile
 FROM freqtradeorg/freqtrade:stable
 COPY strategies/MyStrategy.py /freqtrade/user_data/strategies/
 CMD ["trade", "--strategy", "MyStrategy", "--config", "/freqtrade/user_data/config.json"]
-```
+`````
 
-```bash
+`````bash
 docker run -d --name freqtrade-bot --restart unless-stopped \
   -v $(pwd)/user_data:/freqtrade/user_data \
   freqtradeorg/freqtrade:stable
-```
+`````
 
 ### Telegram Integration
 
-```json
+`````json
 {
     "telegram": {
         "enabled": true,
@@ -177,7 +178,7 @@ docker run -d --name freqtrade-bot --restart unless-stopped \
         "chat_id": "YOUR_CHAT_ID"
     }
 }
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -223,7 +224,7 @@ A: Có. 1 vCPU 1GB RAM cho 3-5 pairs. Nhiều hơn thì 2 vCPU 2GB.
 
 **Q: Hỗ trợ futures/margin?**
 
-A: Có. Binance, OKX, Bybit hỗ trợ spot/futures. Set `contract_size` và `margin_mode` trong strategy.
+A: Có. Binance, OKX, Bybit hỗ trợ spot/futures. Set ````contract_size```` và ````margin_mode```` trong strategy.
 
 ## Sources & Further Reading
 
@@ -239,7 +240,7 @@ Freqtrade là go-to open-source crypto bot từ 2016, 51.300 sao — option matu
 
 Dù là algorithmic day-trading, swing trading, hay học quantitative finance, Freqtrade cung cấp tools từ idea đến live trading trong ngày. Docker deployment không headache, Telegram integration monitor từ bất kỳ đâu.
 
-Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) thảo luận Freqtrade strategies. Xem [Minara AI trading](dibi8-internal-link) và [n8n workflow automation](dibi8-internal-link). Thử hôm nay — `freqtrade download-data` và start first backtest.
+Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) thảo luận Freqtrade strategies. Xem [Minara AI trading](dibi8-internal-link) và [n8n workflow automation](dibi8-internal-link). Thử hôm nay — ````freqtrade download-data``` và start first backtest.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí. Giao dịch có rủi ro, chỉ đầu tư số tiền bạn có thể mất.
 
@@ -305,12 +306,12 @@ Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu,
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -320,7 +321,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 - [llm-inference-cost-optimization-guide-2026](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

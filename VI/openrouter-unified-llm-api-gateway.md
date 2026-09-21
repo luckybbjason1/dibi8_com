@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/openrouter-unified-llm-api-gateway/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt
@@ -46,13 +47,13 @@ Hãy nghĩ về nó như một "bộ chuyển đổi vạn năng" cho các API L
 
 ### Tổng Quan Kiến Trúc
 
-OpenRouter hoạt động như một **lớp proxy** giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ```
+OpenRouter hoạt động như một **lớp proxy** giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ````
 Ứng dụng → OpenRouter Gateway → Nhà cung cấp (OpenAI / Anthropic / Google / ...)
                 ↓
          [Nhà cung cấp dự phòng]
                 ↓
          [Nhà cung cấp miễn phí]
-```
+`````
 
 Gateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầu** — Chuyển tiếp lệnh gọi API đến nhà cung cấp đã chọn bằng giao thức gốc
 2. **Chuẩn hóa phản hồi** — Trả về kết quả ở định dạng tương thích OpenAI bất kể nhà cung cấp phía trên
@@ -61,7 +62,7 @@ Gateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầ
 
 ### Pipeline Giá Trị OpenRouter
 
-```
+`````
 Lớp Tích hợp Nhà cung cấp
 ├── 60+ endpoint nhà cung cấp (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek...)
 ├── Quản lý xác thực cho mỗi nhà cung cấp
@@ -81,7 +82,7 @@ Giao diện Lập trình viên
 ├── Dashboard phân tích mức sử dụng
 ├── Theo dõi chi phí cho mỗi mô hình
 └── OAuth cho thanh toán ngườ dùng cuối
-```
+`````
 
 ## Cài Đặt & Thiết Lập
 
@@ -89,14 +90,14 @@ Giao diện Lập trình viên
 
 Đăng ký tại [openrouter.ai](https://openrouter.ai/) và lấy API key của bạn. Gói miễn phí bao gồm quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ — đủ để thử nghiệm và xây dựng prototype.
 
-```bash
+`````bash
 # Lưu API key an toàn
 export OPENROUTER_API_KEY="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+`````
 
 ### Bước 2: Kiểm tra với cURL (30 giây)
 
-```bash
+`````bash
 # Yêu cầu chat completion cơ bản
 curl -s https://openrouter.ai/api/v1/chat/completions \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -107,16 +108,16 @@ curl -s https://openrouter.ai/api/v1/chat/completions \
       {"role": "user", "content": "Giải thích điện toán lượng tử trong 3 câu"}
     ]
   }'
-```
+`````
 
 ### Bước 3: Thiết Lập Python SDK (2 phút)
 
-```bash
+`````bash
 # Không cần SDK đặc biệt — chỉ cần dùng client OpenAI
 pip install openai>=1.30.0
-```
+`````
 
-```python
+`````python
 # openrouter_demo.py
 from openai import OpenAI
 import os
@@ -140,19 +141,19 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 print(f"Model used: {response.model}")
 print(f"Tokens: {response.usage.total_tokens}")
-```
+`````
 
-Chạy: ```bash
+Chạy: `````bash
 python openrouter_demo.py
-```
+`````
 
 ### Bước 4: Thiết Lập JavaScript/TypeScript
 
-```bash
+`````bash
 npm install openai
-```
+`````
 
-```typescript
+`````typescript
 // openrouter-demo.ts
 import OpenAI from "openai";
 
@@ -173,22 +174,22 @@ async function main() {
 }
 
 main();
-```
+`````
 
 ### Bước 5: Truy vấn Các Mô Hình Khả Dụng
 
-```bash
+`````bash
 # Liệt kê tất cả 300+ mô hình với giá
 curl -s https://openrouter.ai/api/v1/models \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" | \
   jq '.data[] | {id: .id, pricing: .pricing}' | head -50
-```
+`````
 
 ## Tích Hợp với Các Framework Phổ Biến
 
 ### Tích hợp LangChain
 
-```python
+`````python
 # openrouter_langchain.py
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -209,11 +210,11 @@ chain = prompt | llm
 
 result = chain.invoke({"input": "Write a FastAPI middleware for rate limiting"})
 print(result.content)
-```
+`````
 
 ### Tích hợp LlamaIndex
 
-```python
+`````python
 # openrouter_llamaindex.py
 from llama_index.llms.openai import OpenAI as LlamaOpenAI
 from llama_index.core import Settings
@@ -234,11 +235,11 @@ index = VectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine()
 response = query_engine.query("What does OpenRouter do?")
 print(response)
-```
+`````
 
 ### Tích hợp Vercel AI SDK
 
-```typescript
+`````typescript
 // app/api/chat/route.ts
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { convertToModelMessages, streamText } from "ai";
@@ -258,11 +259,11 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### Tích hợp Go SDK
 
-```go
+`````go
 // openrouter_demo.go
 package main
 
@@ -293,11 +294,11 @@ func main() {
 
 	fmt.Println(resp.Choices[0].Message.Content)
 }
-```
+`````
 
 ### Sử dụng OpenRouter "Auto" Router
 
-```python
+`````python
 # Để OpenRouter tự động chọn mô hình tốt nhất
 response = client.chat.completions.create(
     model="openrouter/auto",
@@ -311,7 +312,7 @@ response = client.chat.completions.create(
     }
 )
 print(response.model)
-```
+`````
 
 ## Benchmark / Các Trường Hợp Sử Dụng Thực Tế
 
@@ -355,7 +356,7 @@ Công ty SaaS vừa xử lý **50 triệu token/tháng** chuyển sang OpenRoute
 
 ### Chuỗi Dự Phòng Tự Động
 
-```python
+`````python
 # Cấu hình dự phòng production
 response = client.chat.completions.create(
     model="anthropic/claude-sonnet-4.5",
@@ -367,11 +368,11 @@ response = client.chat.completions.create(
         }
     }
 )
-```
+`````
 
 ### Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)
 
-```bash
+`````bash
 # Lưu key nhà cung cấp trực tiếp
 curl -X POST https://openrouter.ai/api/v1/credentials \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -380,11 +381,11 @@ curl -X POST https://openrouter.ai/api/v1/credentials \
     "provider": "openai",
     "key": "sk-proj-your-direct-openai-key"
   }"
-```
+`````
 
 ### Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ
 
-```python
+`````python
 # Định tuyến đến mô hình rẻ nhất
 response = client.chat.completions.create(
     model="openrouter/auto",
@@ -396,11 +397,11 @@ response = client.chat.completions.create(
         }
     }
 )
-```
+`````
 
 ### Triển Khai Tự Host với Docker
 
-```dockerfile
+`````dockerfile
 # Dockerfile.openrouter-proxy
 FROM node:20-alpine
 WORKDIR /app
@@ -409,9 +410,9 @@ RUN npm install express axios
 COPY . .
 EXPOSE 3000
 CMD ["node", "proxy.js"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: openrouter-proxy: build: context: .
@@ -421,13 +422,13 @@ services: openrouter-proxy: build: context: .
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
-```
+`````
 
 Triển khai lên [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) với cấu hình production-grade.
 
 ### Giám Sát và Cảnh Báo
 
-```python
+`````python
 # Theo dõi mức sử dụng và chi phí
 import requests
 
@@ -440,7 +441,7 @@ usage = requests.get(
 
 print(f"Tín dụng còn lại: ${usage[data][total_credits] - usage[data][total_usage]}")
 print(f"Tổng đã dùng: ${usage[data][total_usage]}")
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -492,19 +493,19 @@ Dùng tính năng **BYOK**. Kết nối API key trực tiếp — OpenRouter kh�
 
 ### Làm thế nào chuyển đổi mô hình mà không thay đổi code?
 
-Chỉ cần thay đổi tham số `model` trong lệnh gọi API. OpenRouter dùng cùng định dạng tương thích OpenAI cho tất cả nhà cung cấp.
+Chỉ cần thay đổi tham số ````model```` trong lệnh gọi API. OpenRouter dùng cùng định dạng tương thích OpenAI cho tất cả nhà cung cấp.
 
-```python
+`````python
 model = "anthropic/claude-sonnet-4.5"
 response = client.chat.completions.create(
     model=model,
     messages=[{"role": "user", "content": "Hello!"}]
 )
-```
+`````
 
 ### Nếu nhà cung cấp ngừng hoạt động thì sao?
 
-Nếu bật `allow_fallbacks: true`, OpenRouter tự động thử lại với nhà cung cấp dự phòng. Nếu tất cả đều thất bại, trả về lỗi có cấu trúc.
+Nếu bật ````allow_fallbacks: true```, OpenRouter tự động thử lại với nhà cung cấp dự phòng. Nếu tất cả đều thất bại, trả về lỗi có cấu trúc.
 
 ## Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay
 
@@ -565,7 +566,7 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -575,7 +576,7 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 - [llm-inference-cost-optimization-guide-2026](openrouter-unified-llm-api-gateway)
 - [12-factor-agents-production-llm-software-2026](openrouter-unified-llm-api-gateway)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

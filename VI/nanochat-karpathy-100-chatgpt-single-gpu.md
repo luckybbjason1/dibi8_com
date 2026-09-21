@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png"
 ---
 
+
 # nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng AI Chat của bạn trên một GPU duy nhất — Hướng dẫn thực tế 2026
 
 ![logo nanochat](https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png)
@@ -25,20 +26,20 @@ Crawl4AI đã tăng từ 12.000 lên 63.000 sao GitHub trong 90 ngày. Còn nano
 
 ## What Is nanochat?
 
-nanochat là **một ứng dụng chat tối giản mã nguồn mở** do Andrej Karpathy viết, minh họa cách xây dựng trải nghiệm kiểu ChatGPT bằng các mô hình bạn tự huấn luyện trên một GPU duy nhất. Nó không phải framework hay thư viện. Đó là một file `app.py` (~400 dòng) triển khai: - Tạo văn bản dựa trên token với streaming
+nanochat là **một ứng dụng chat tối giản mã nguồn mở** do Andrej Karpathy viết, minh họa cách xây dựng trải nghiệm kiểu ChatGPT bằng các mô hình bạn tự huấn luyện trên một GPU duy nhất. Nó không phải framework hay thư viện. Đó là một file ```app.py```` (~400 dòng) triển khai: - Tạo văn bản dựa trên token với streaming
 - Quản lý lịch sử hội thoại (đa lượt)
 - Web UI render qua Streamlit
 - Hai chế độ: **SGLang** (huấn luyện từ đầu với dữ liệu thực) và **vLLM** (phục vụ mô hình đã huấn luyện trước tại chỗ)
 
-Triết lý là "build để hiểu". Karpathy có thành tích biến các khái niệm AI phức tạp thành code tối giản — từ `nanoGPT` đến `karpathy/llm.c` — và nanochat tiếp nối truyền thống này bằng cách cho bạn thấy chính xác chat app hoạt động như thế nào, từ đầu đến cuối.
+Triết lý là "build để hiểu". Karpathy có thành tích biến các khái niệm AI phức tạp thành code tối giản — từ ````nanoGPT```` đến ````karpathy/llm.c```` — và nanochat tiếp nối truyền thống này bằng cách cho bạn thấy chính xác chat app hoạt động như thế nào, từ đầu đến cuối.
 
 ## How nanochat Works
 
 nanochat hoạt động ở hai chế độ riêng biệt, mỗi chế độ có pipeline training/inference khác nhau: ### Chế độ SGLang: Huấn luyện từ đầu
 
-```
+`````
 Corpus văn bản thô → Huấn luyện tokenizer → Huấn luyện mô hình → Chat UI
-```
+`````
 
 1. **Thu thập dữ liệu** — Tải xuống và parse một corpus văn bản (vd: Wikipedia, sách, code)
 2. **Huấn luyện tokenizer** — Huấn luyện BPE (BytePair Encoding) tokenizer trên corpus
@@ -47,15 +48,15 @@ Corpus văn bản thô → Huấn luyện tokenizer → Huấn luyện mô hình
 
 ### Chế độ vLLM: Phục vụ mô hình pre-trained
 
-```
+`````
 Mô hình pre-trained (HuggingFace) → vLLM serving → Chat UI
-```
+`````
 
 1. **Tải mô hình** — Pull mô hình pre-trained từ HuggingFace (vd: Qwen, Llama, Mistral)
 2. **vLLM serving** — Sử dụng PagedAttention của vLLM cho inference throughput cao
 3. **Phục vụ chat** — Nanochat wrap endpoint vLLM với web UI chat streaming
 
-```
+`````
 ┌──────────────────────────────────────────────┐
 │              nanochat Web UI                 │
 │           (Streamlit + WebSocket)             │
@@ -64,7 +65,7 @@ Mô hình pre-trained (HuggingFace) → vLLM serving → Chat UI
 ├──────────────────────────────────────────────┤
 │  Chế độ SGLang: Huấn luyện từ đầu  │  Chế độ vLLM: Phục vụ mô hình HF  │
 └──────────────────────────────────────────────┘
-```
+`````
 
 *Kiến trúc nanoChat: hai chế độ, một web UI*
 
@@ -76,7 +77,7 @@ Insight cốt lõi: cả hai chế độ dùng chung giao diện chat. Chỉ kh�
 
 Bạn cần một máy có ít nhất một GPU. Cho chế độ SGLang (huấn luyện từ đầu), khuyến nghị 8+ GB VRAM. Cho chế độ vLLM, 6+ GB VRAM hoạt động cho mô hình nhỏ.
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/karpathy/nanochat.git
 cd nanochat
@@ -87,11 +88,11 @@ source .venv/bin/activate
 
 # Cài đặt dependencies
 pip install -r requirements.txt
-```
+`````
 
 ### Tùy chọn A: Chế độ SGLang — Huấn luyện từ đầu
 
-```bash
+`````bash
 # Cài đặt SGLang (cần CUDA 12.x)
 pip install sglang
 
@@ -103,11 +104,11 @@ python train_model.py --tokenizer tokenizer.json --epochs 3 --batch_size 32
 
 # Khởi chạy chat app
 python app.py --mode sglang --model_path checkpoints/latest.pth
-```
+`````
 
 ### Tùy chọn B: Chế độ vLLM — Phục vụ mô hình pre-trained
 
-```bash
+`````bash
 # Cài đặt vLLM (cần CUDA 12.x)
 pip install vllm
 
@@ -119,26 +120,26 @@ python -m vllm.entrypoints.openai.api_server \
 
 # Khởi chạy chat app (chỉ đến vLLM)
 python app.py --mode vllm --api_url http://localhost:8000/v1/chat/completions
-```
+`````
 
 ### Quick Start — Docker
 
-Cho cài đặt nhanh nhất, dùng Dockerfile có sẵn: ```bash
+Cho cài đặt nhanh nhất, dùng Dockerfile có sẵn: `````bash
 # Build Docker image
 docker build -t nanochat .
 
 # Chạy với GPU support
 docker run --gpus all -p 8501:8501 nanochat \
   --mode vllm --model Qwen/Qwen2.5-3B-Instruct
-```
+`````
 
-Truy cập web UI tại `http://localhost:8501`.
+Truy cập web UI tại ````http://localhost:8501````.
 
 ## Integration with SGLang, vLLM, HuggingFace Models
 
 nanochat được thiết kế để hoạt động mượt mà với hệ sinh thái AI inference rộng hơn: ### Tích hợp SGLang
 
-SGLang (Structured Generation Language) là backend training. Cung cấp distributed training capabilities tối ưu cho transformer models: ```python
+SGLang (Structured Generation Language) là backend training. Cung cấp distributed training capabilities tối ưu cho transformer models: `````python
 # sglang_config.py — cài đặt đặc thù SGLang
 config = {
     "model_type": "gpt",
@@ -153,11 +154,11 @@ config = {
     "weight_decay": 0.01,
     "bf16": True,
 }
-```
+`````
 
 ### Tích hợp vLLM
 
-vLLM cung cấp inference throughput cao với PagedAttention, quản lý KV cache memory động: ```python
+vLLM cung cấp inference throughput cao với PagedAttention, quản lý KV cache memory động: `````python
 # vllm_config.py — cài đặt serving vLLM
 from vllm import LLM, SamplingParams
 
@@ -174,7 +175,7 @@ sampling_params = SamplingParams(
     max_tokens=2048,
     stop=["\n\n"],
 )
-```
+`````
 
 ### Tương thích mô hình HuggingFace
 
@@ -210,20 +211,20 @@ Serving Qwen2.5-7B-Instruct trên A10G đơn (24 GB VRAM): | Batch size | Throug
 
 ### Use Case thực tế 1: Giáo dục — Dạy fundamentals LLM
 
-Giáo sư CS dùng nanochat để dạy sinh viên cách LLM hoạt động: ```bash
+Giáo sư CS dùng nanochat để dạy sinh viên cách LLM hoạt động: `````bash
 # Sinh viên bắt đầu với tokenizer training
 python train_tokenizer.py --input data/shakespeare.txt --output tokenizer.json
 # Rồi train 200M model trên corpus Shakespeare
 python train_model.py --tokenizer tokenizer.json --epochs 2 --batch_size 16
 # Chat với mô hình tự huấn luyện
 python app.py --mode sglang --model_path checkpoints/epoch2.pth
-```
+`````
 
 Điều này cho sinh viên trải nghiệm thực tế về tokenization, training loop và inference mà không textbook nào sánh được.
 
 ### Use Case thực tế 2: Prototype custom chatbots
 
-Kỹ sư prototype startup dùng nanochat để test custom-trained chatbots trước khi commit cho production: ```bash
+Kỹ sư prototype startup dùng nanochat để test custom-trained chatbots trước khi commit cho production: `````bash
 # Train trên company-specific documentation
 python train_tokenizer.py --input data/docs/ --output company_tokenizer.json
 python train_model.py --tokenizer company_tokenizer.json --epochs 5
@@ -231,7 +232,7 @@ python train_model.py --tokenizer company_tokenizer.json --epochs 5
 # Prompt: "Làm sao reset mật khẩu?"
 # Model A (general): "Truy cập trang settings..."
 # Model B (custom-trained): "Tới /auth/reset hoặc email support@company.com..."
-```
+`````
 
 Custom-trained model tạo responses domain-specific mà general models không thể.
 
@@ -239,7 +240,7 @@ Custom-trained model tạo responses domain-specific mà general models không t
 
 ### Multi-GPU SGLang Training
 
-Cho models lớn hơn hoặc training nhanh hơn, SGLang hỗ trợ multi-GPU distributed training: ```bash
+Cho models lớn hơn hoặc training nhanh hơn, SGLang hỗ trợ multi-GPU distributed training: `````bash
 # Train trên 4 GPUs
 python -m torch.distributed.run \
   --nproc_per_node=4 \
@@ -247,20 +248,20 @@ python -m torch.distributed.run \
   --tokenizer tokenizer.json \
   --epochs 5 \
   --distributed_backend nccl
-```
+`````
 
 ### Custom Chat System Prompts
 
-Chỉnh sửa `app.py` để customize system prompt: ```python
+Chỉnh sửa ``app.py`` để customize system prompt: `````python
 # System prompt tùy chỉnh trong app.py
 SYSTEM_PROMPT = """Bạn là trợ lý lập trình hữu ích chuyên về Python.
 Luôn cung cấp ví dụ code với comment.
 Sử dụng định dạng markdown cho code blocks."""
-```
+`````
 
 ### Docker Production Deployment
 
-Cho production deployment lên cloud provider: ```dockerfile
+Cho production deployment lên cloud provider: `````dockerfile
 FROM nvidia/cuda:12.2-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y python3 python3-pip git
 COPY requirements.txt .
@@ -269,14 +270,14 @@ WORKDIR /app
 COPY . .
 EXPOSE 8501
 CMD ["python3", "app.py", "--mode", "vllm", "--model", "Qwen/Qwen2.5-7B-Instruct"]
-```
+`````
 
-```bash
+`````bash
 # Deploy trên DigitalOcean GPU droplet
 docker run -d --gpus all -p 8501:8501 \
   --restart unless-stopped \
   nanochat:latest
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -342,7 +343,7 @@ nanochat chứng minh bạn không cần $20/tháng API subscription hay datacen
 
 Dù bạn là sinh viên học LLM fundamentals, developer prototype custom chatbot, hoặc chỉ là người muốn hiểu những gì xảy ra bên trong "black box", nanochat mang lại trải nghiệm thực hành mà không tutorial video nào sánh được.
 
-Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận kinh nghiệm và cấu hình huấn luyện nanochat. Xem hướng dẫn về [Langflow visual workflows](dibi8-internal-link) và [AI Agent memory systems](dibi8-internal-link) cho các công cụ bổ trợ. Thử nanochat ngay hôm nay — clone repo, chạy `python app.py`, và xem model của bạn phản hồi.
+Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận kinh nghiệm và cấu hình huấn luyện nanochat. Xem hướng dẫn về [Langflow visual workflows](dibi8-internal-link) và [AI Agent memory systems](dibi8-internal-link) cho các công cụ bổ trợ. Thử nanochat ngay hôm nay — clone repo, chạy ````python app.py```, và xem model của bạn phản hồi.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 
@@ -372,7 +373,7 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -382,6 +383,6 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 - [llm-inference-cost-optimization-guide-2026](nanochat-karpathy-100-chatgpt-single-gpu)
 - [ollama-vs-vllm](nanochat-karpathy-100-chatgpt-single-gpu)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

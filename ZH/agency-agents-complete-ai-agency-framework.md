@@ -17,6 +17,7 @@ featureImage: /images/articles/polymarket-agents-polymarket-예측-시장용-ai-
 
 
 
+
 <<<<<<< HEAD
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
@@ -77,7 +78,7 @@ Agency Agents的关键创新在于其多Agent编排系统。该框架不是让�
 
 ＃＃＃ 安装
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/msitarzewski/agency-agents.git
 cd agency-agents
@@ -88,11 +89,11 @@ pip install -r 要求.txt
 # 配置您的 AI API 密钥
 导出 AI_API_KEY="your-api-key-here"
 导出 AI_MODEL="claude-sonnet-4-20250514"
-```
+`````
 
 ### 运行单个代理
 
-```bash
+`````bash
 # Use the Frontend Designer agent
 python agents/frontend_designer.py --task "Create a landing page for a SaaS product"
 
@@ -101,11 +102,11 @@ python Agents/backend_dev.py --task"构建带有身份验证的 REST API"
 
 # 使用 DevOps 工程师代理
 python Agents/devops.py --task "使用 Docker 和 GitHub Actions 设置 CI/CD 管道"
-```
+`````
 
 ### 运营整个代理机构
 
-```bash
+`````bash
 # Run the complete agency workflow
 python agency.py --project "Build a task management app" --agents all
 
@@ -115,11 +116,11 @@ python Agency.py --project"构建任务管理应用程序"\
 
 # 以交互模式运行
 python Agency.py --交互式
-```
+`````
 
 ### 项目结构
 
-```
+`````
 agency-agents/
 ├── agents/
 │   ├── frontend_designer.py
@@ -137,7 +138,7 @@ agency-agents/
 ├── agency.py          # Main orchestrator
 ├── requirements.txt
 └── README.md
-```
+`````
 
 <<<<<<< HEAD
 
@@ -150,7 +151,7 @@ agency-agents/
 
 ### 第 1 步：项目初始化
 
-```bash
+`````bash
 # Create a new project directory
 mkdir my-ai-project
 cd my-ai-project
@@ -166,13 +167,13 @@ python -m Agency_agents init --project"我的 SaaS 仪表板"
 # ├── 输出/
 # ├── 日志/
 # └── README.md
-```
+`````
 
 ### 第 2 步：配置您的团队
 
 编辑"config.yaml"以指定要激活的代理：
 
-```yaml
+`````yaml
 team: frontend: model: claude-sonnet-4-20250514
     temperature: 0.3
     max_tokens: 4096
@@ -185,13 +186,13 @@ team: frontend: model: claude-sonnet-4-20250514
   qa: model: claude-sonnet-4-20250514
     temperature: 0.2
     max_tokens: 2048
-```
+`````
 
 ### 第 3 步：定义您的任务
 
 创建一个描述您的项目需求的"tasks.yaml"文件：
 
-```yaml
+`````yaml
 project: tech_stack: - React
     - Node.js
     - PostgreSQL
@@ -208,11 +209,11 @@ project: tech_stack: - React
     - name: "Testing"
       agent: qa
       deadline: "Day 5-6"
-```
+`````
 
 ### 步骤 4：执行管道
 
-```bash
+`````bash
 # Run the full agency pipeline
 python -m agency_agents run --tasks tasks.yaml --config config.yaml
 
@@ -221,13 +222,13 @@ python -m Agency_agents 监视器 --follow
 
 # 查看各个代理的输出
 python -m Agency_agents 输出 --agent frontend --latest
-```
+`````
 
 ### 第 5 步：回顾和迭代
 
 管道完成后，查看生成的代码：
 
-```bash
+`````bash
 # Check the output directory
 tree output/
 
@@ -236,7 +237,7 @@ tree output/
 
 # 运行自动化测试
 cd 输出 && npm 测试
-```
+`````
 
 本教程演示了人工智能项目的完整生命周期，从初始化到部署。每个代理都贡献其专业知识，从而形成一个有凝聚力、可投入生产的应用程序。
 
@@ -246,7 +247,7 @@ cd 输出 && npm 测试
 
 任务路由器是代理机构的大脑。它结合使用关键字匹配和语义分析来确定哪个代理应该处理给定的任务。
 
-```python
+`````python
 class TaskRouter: def __init__(self, agents): self.agents = agents
         self.keywords = self._build_keyword_index()
 <<<<<<< HEAD
@@ -282,13 +283,13 @@ def 路线（自身，任务描述）：
 
 返回 max(分数, key=scores.get)
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ### 代理通信协议
 
 代理通过共享任务队列进行通信，从而实现并行处理和依赖性管理。
 
-```python
+`````python
 from queue import Queue
 import threading
 
@@ -319,13 +320,13 @@ self.tasks.put({
 
 def get_next_task(自身): 返回 self.tasks.get(block=False)
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ### 质量保证管道
 
 每个代理的输出在被接受之前都会经过质量检查。
 
-```python
+`````python
 def quality_check(agent_output, task_requirements): checks = [
         ('syntax', check_syntax(agent_output)),
         ('completeness', check_completeness(agent_output, task_requirements)),
@@ -349,7 +350,7 @@ def quality_check(agent_output, task_requirements): checks = [
 'score': sum(c[1] for c in checks) / len(checks)
 }
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ## 与替代方案的比较
 
@@ -357,12 +358,12 @@ def quality_check(agent_output, task_requirements): checks = [
 |---
 
 |-
----
+* * *
 
 |---
 
 |-
----
+* * *
 
 |---
 
@@ -424,10 +425,10 @@ def quality_check(agent_output, task_requirements): checks = [
 
 答：是的。该存储库包含一个"Dockerfile"和"docker-compose.yml"，以便于部署。您可以通过以下方式运营整个代理机构：
 
-```bash
+`````bash
 docker-compose up -d
 docker exec -it agency-agents python agency.py --project "Build a web app"
-```
+````
 
 ## 加入社区
 
@@ -448,7 +449,7 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 - [代理机构自述文件](https://github.com/msitarzewski/agency-agents/blob/main/README.md)
 
 
----
+* * *
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -518,11 +519,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -532,7 +533,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](agency-agents-complete-ai-agency-framework)
 - [2026-06-15-trending-ai-agents](agency-agents-complete-ai-agency-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -540,15 +541,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

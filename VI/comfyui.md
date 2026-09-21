@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/ai-tools/comfyui-architecture-node-based-ai-image/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -60,17 +61,17 @@ Kiến trúc của ComfyUI chia thành ba lớp: 1. **Frontend** — Canvas Reac
 
 | Khái niệm | Mô tả |
 |-----------|-------|
-| **Node** | Một thao tác đơn lẻ (ví dụ: `KSampler`, `Load Checkpoint`, `Save Image`) |
+| **Node** | Một thao tác đơn lẻ (ví dụ: ```KSampler````, ````Load Checkpoint````, ````Save Image````) |
 | **Link** | Kết nối có hướng truyền dữ liệu kiểu (MODEL, LATENT, IMAGE, CONDITIONING) |
 | **Workflow** | Đồ thị JSON định nghĩa pipeline tạo ảnh hoàn chỉnh |
 | **Queue** | Bộ lập lịch thực thi chạy workflow theo thứ tự |
 | **Custom Node** | Lớp Python mở rộng registry node của ComfyUI |
 
-Hệ thống node bắt buộc an toàn kiểu ở cấp độ đồ thị. Node `KSampler` yêu cầu đầu vào `MODEL` và xuất ra tensor `LATENT`. Nối chuỗi vào slot model thì editor sẽ highlight không khớp kiểu trước khi thực thi.
+Hệ thống node bắt buộc an toàn kiểu ở cấp độ đồ thị. Node ````KSampler```` yêu cầu đầu vào ````MODEL```` và xuất ra tensor ````LATENT````. Nối chuỗi vào slot model thì editor sẽ highlight không khớp kiểu trước khi thực thi.
 
 ### Serialize workflow
 
-Mỗi workflow là một file JSON. Chia sẻ với đồng nghiệp, quản lý phiên bản bằng Git, hoặc POST lên server API: ```json
+Mỗi workflow là một file JSON. Chia sẻ với đồng nghiệp, quản lý phiên bản bằng Git, hoặc POST lên server API: `````json
 {
   "1": {
     "inputs": {
@@ -88,7 +89,7 @@ Mỗi workflow là một file JSON. Chia sẻ với đồng nghiệp, quản lý
     "_meta": { "title": "Positive Prompt" }
   }
 }
-```
+`````
 
 Cách tiếp cận ưu tiên JSON này khiến ComfyUI đặc biệt phù hợp với pipeline CI/CD và xử lý batch tự động hóa.
 
@@ -105,7 +106,7 @@ Cách tiếp cận ưu tiên JSON này khiến ComfyUI đặc biệt phù hợp 
 
 ### Cách 1: Cài đặt trực tiếp (5 phút)
 
-```bash
+`````bash
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 
@@ -121,22 +122,22 @@ pip install -r requirements.txt
 
 # Khởi động server
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
-Mở `http://localhost:8188` trong trình duyệt. Giao diện tải workflow text-to-image mặc định.
+Mở ````http://localhost:8188```` trong trình duyệt. Giao diện tải workflow text-to-image mặc định.
 
 ### Cách 2: ComfyUI Desktop
 
-Cho ngườ dùng thích trình cài đặt hơn terminal: ```bash
+Cho ngườ dùng thích trình cài đặt hơn terminal: `````bash
 # Tải bản desktop mới nhất từ: # https://github.com/Comfy-Org/ComfyUI-Desktop/releases
 
 # Ứng dụng desktop tự động quản lý Python, CUDA và các phụ thuộc.
 # Lần khởi động đầu tiên mất ~15 phút (tải model và thiết lập môi trường).
-```
+`````
 
 ### Cách 3: Docker (Khuyến nghị cho production)
 
-Docker giữ hệ thống host sạch sẽ và triển khai có thể tái tạo: ```bash
+Docker giữ hệ thống host sạch sẽ và triển khai có thể tái tạo: `````bash
 # Kiểm tra GPU passthrough
 nvidia-smi
 docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
@@ -144,9 +145,9 @@ docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
 # Tạo cấu trúc thư mục lưu trữ liên tục
 mkdir -p comfyui-deploy/{models/checkpoints,models/loras,models/vae,models/controlnet,output,custom_nodes,workflows}
 cd comfyui-deploy
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -162,9 +163,9 @@ services: comfyui: image: ghcr.io/ai-dock/comfyui:latest-cuda
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # Khởi động stack
 docker compose up -d
 
@@ -173,11 +174,11 @@ docker compose logs -f comfyui
 
 # Kiểm tra GPU utilization trong container
 docker exec comfyui nvidia-smi
-```
+`````
 
 ### Thiết lập model
 
-Tải model vào thư mục thích hợp: ```bash
+Tải model vào thư mục thích hợp: `````bash
 # SDXL Base (6.9 GB)
 wget -P models/checkpoints \
   "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
@@ -193,15 +194,15 @@ wget -P models/vae \
 # ControlNet OpenPose
 wget -P models/controlnet \
   "https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors"
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Stable Diffusion & SDXL
 
-ComfyUI hỗ trợ tất cả biến thể Stable Diffusion chính ngay từ đầu. Node `CheckpointLoaderSimple` tích hợp xử lý cả checkpoint SD 1.5 và SDXL mà không cần thay đổi cấu hình.
+ComfyUI hỗ trợ tất cả biến thể Stable Diffusion chính ngay từ đầu. Node ````CheckpointLoaderSimple```` tích hợp xử lý cả checkpoint SD 1.5 và SDXL mà không cần thay đổi cấu hình.
 
-```python
+`````python
 # Cấu hình tải SDXL với pipeline refiner
 CheckpointLoaderSimple: ckpt_name: "sd_xl_base_1.0.safetensors"
 
@@ -211,11 +212,11 @@ KSampler: seed: 42
   sampler_name: "dpmpp_2m"
   scheduler: "karras"
   denoise: 1.0
-```
+`````
 
 ### Flux
 
-Các model Flux tích hợp qua node chuyên dụng với implementation attention tối ưu: ```python
+Các model Flux tích hợp qua node chuyên dụng với implementation attention tối ưu: `````python
 # Node workflow Flux
 UNETLoader: unet_name: "flux1-dev.safetensors"
   weight_dtype: "fp8_e4m3fn"  # Giảm VRAM từ 24GB xuống 12GB
@@ -227,20 +228,20 @@ DualCLIPLoader: clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
 EmptySD3LatentImage: width: 1024
   height: 1024
   batch_size: 1
-```
+`````
 
 Hỗ trợ Flux bao gồm Dev, Schnell, và các phiên bản fine-tune cộng đồng. Lượng tử hóa FP8 giảm sử dụng VRAM ~50% với tổn thất chất lượng tối thiểu.
 
 ### Wan Video Models
 
-Tích hợp Wan 2.1/2.2 cho text-to-video và image-to-video: ```bash
+Tích hợp Wan 2.1/2.2 cho text-to-video và image-to-video: `````bash
 # Cài node tùy chỉnh Wan
 cd custom_nodes
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 pip install -r ComfyUI-WanVideoWrapper/requirements.txt
-```
+`````
 
-```python
+`````python
 # Workflow Wan text-to-video
 WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   positive: "slow motion aerial shot of ocean waves"
@@ -248,11 +249,11 @@ WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   height: 720
   frames: 81
   steps: 30
-```
+`````
 
 ### ControlNet & LoRA
 
-Node ControlNet và LoRA tích hợp ở cấp model, cho phép conditioning có thể kết hợp: ```python
+Node ControlNet và LoRA tích hợp ở cấp model, cho phép conditioning có thể kết hợp: `````python
 # Áp dụng nhiều LoRA với điều khiển cường độ
 LoraLoaderModelOnly: model: ["CheckpointLoader", 0]
   lora_name: "add_detail.safetensors"
@@ -264,11 +265,11 @@ ControlNetApplyAdvanced: positive: ["CLIPTextEncode", 0]
   strength: 1.0
   start_percent: 0.0
   end_percent: 0.8
-```
+`````
 
 ### Tích hợp API
 
-Mỗi workflow có thể được thực thi qua REST API: ```bash
+Mỗi workflow có thể được thực thi qua REST API: `````bash
 # Gửi workflow qua API
 curl -X POST http://localhost:8188/prompt \
   -H "Content-Type: application/json" \
@@ -284,7 +285,7 @@ curl http://localhost:8188/queue
 
 # Lấy ảnh đã tạo
 curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&type=output
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -305,24 +306,24 @@ Benchmark chạy trên cùng phần cứng (RTX 4090, CUDA 12.4, 64 GB RAM): | T
 
 ### Trường hợp: Pipeline ảnh sản phẩm
 
-Một team thương mại điện tử tạo 50 ảnh sản phẩm mỗi ngày với ánh sáng nhất quán: ```python
+Một team thương mại điện tử tạo 50 ảnh sản phẩm mỗi ngày với ánh sáng nhất quán: `````python
 # Workflow batch với style LoRA chia sẻ
 LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
                     ↓
             LoadPromptList (50 prompt)
                     ↓
             SaveImage (với metadata + pattern tên file)
-```
+`````
 
 Kết quả: 50 ảnh trong 11 phút (SDXL, 1024x1024), hoàn toàn có thể tái tạo bằng cách tải lại file JSON workflow.
 
 ### Trường hợp: Studio tạo video
 
-Một studio nội dung sản xuất các clip video ngắn: ```
+Một studio nội dung sản xuất các clip video ngắn: `````
 Text Prompt → WanVideoSampler → Nội suy khung hình (RIFE) → Tổng hợp video
                    ↓
          Điều kiện hình ảnh (tùy chọn img2video)
-```
+`````
 
 Wan 2.1 14B tạo 81 khung hình ở độ phân giải 1280x720 trong ~4 phút mỗi clip. Cấu trúc node cho phép chuyển đổi giữa các biến thể Wan (1.3B nhẹ, 14B chất lượng) bằng cách thay đổi một node loader duy nhất.
 
@@ -330,7 +331,7 @@ Wan 2.1 14B tạo 81 khung hình ở độ phân giải 1280x720 trong ~4 phút 
 
 ### Reverse Proxy với SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/comfyui
 server {
     listen 443 ssl http2;
@@ -355,20 +356,20 @@ server {
         proxy_pass http://127.0.0.1:8188;
     }
 }
-```
+`````
 
 ### Xác thực
 
-```bash
+`````bash
 # Khởi động chỉ listen localhost + API key
 python main.py --listen 0.0.0.0 --port 8188 \
   --api-key "your-secure-api-key-here" \
   --disable-xformers
-```
+`````
 
 ### Phát triển node tùy chỉnh
 
-```python
+`````python
 # custom_nodes/my_custom_node/nodes.py
 class MyUpscaleNode: """Node upscale 4x đơn giản dùng Real-ESRGAN."""
 
@@ -389,18 +390,18 @@ class MyUpscaleNode: """Node upscale 4x đơn giản dùng Real-ESRGAN."""
 
 NODE_CLASS_MAPPINGS = {"MyUpscaleNode": MyUpscaleNode}
 NODE_DISPLAY_NAME_MAPPINGS = {"MyUpscaleNode": "My Upscale (Real-ESRGAN)"}
-```
+`````
 
-```python
+`````python
 # custom_nodes/my_custom_node/__init__.py
 from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
-```
+`````
 
 ### Giám sát
 
-```bash
+`````bash
 # Dashboard GPU utilization (chạy song song với ComfyUI)
 watch -n 1 nvidia-smi
 
@@ -409,11 +410,11 @@ curl -s http://localhost:8188/queue | jq '.queue_running | length"
 
 # Giám sát dung lượng đĩa cho model storage
 df -h models/ output/
-```
+`````
 
 ### Chiến lược sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # backup-comfyui.sh
 BACKUP_DIR="/backup/comfyui-$(date +%Y%m%d)"
@@ -432,7 +433,7 @@ rsync -av --progress output/ "$BACKUP_DIR/output/"
 # rsync -av --progress models/ "$BACKUP_DIR/models/"
 
 echo "Sao lưu hoàn tất: $BACKUP_DIR"
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -463,7 +464,7 @@ ComfyUI không phải công cụ phù hợp mọi tình huống. Sau đây là n
 
 **Không thân thiện ngườ mới.** Nếu muốn nhập prompt và có ảnh trong 30 giây, dùng Fooocus. ComfyUI đền đáp đầu tư bằng khả năng kiểm soát, nhưng khoản đầu tư đó là thật.
 
-**Quản lý model thủ công.** Khác với trình duyệt model tích hợp của InvokeAI, ComfyUI yêu cầu bạn tự `wget` file vào cấu trúc thư mục đúng. Node ComfyUI Manager giúp ích, nhưng không phải package manager hạng nhất.
+**Quản lý model thủ công.** Khác với trình duyệt model tích hợp của InvokeAI, ComfyUI yêu cầu bạn tự ````wget```` file vào cấu trúc thư mục đúng. Node ComfyUI Manager giúp ích, nhưng không phải package manager hạng nhất.
 
 ## Frequently Asked Questions
 
@@ -477,7 +478,7 @@ Có, với hạn chế. Mac Apple Silicon hoạt động qua backend MPS, chậm
 
 ### Cách cài đặt node tùy chỉnh?
 
-Dùng ComfyUI Manager (cài qua `git clone https://github.com/Comfy-Org/ComfyUI-Manager.git` vào `custom_nodes/`), hoặc clone thủ công repository vào thư mục `custom_nodes/`. Khởi động lại ComfyUI sau khi cài đặt. Manager cung cấp trình duyệt có thể tìm kiếm với cài đặt một click cho 3000+ node cộng đồng.
+Dùng ComfyUI Manager (cài qua ````git clone https://github.com/Comfy-Org/ComfyUI-Manager.git```` vào ````custom_nodes/````), hoặc clone thủ công repository vào thư mục ````custom_nodes/````. Khởi động lại ComfyUI sau khi cài đặt. Manager cung cấp trình duyệt có thể tìm kiếm với cài đặt một click cho 3000+ node cộng đồng.
 
 ### ComfyUI có miễn phí cho sử dụng thương mại không?
 
@@ -485,24 +486,24 @@ ComfyUI được cấp phép GPL-3.0, cho phép sử dụng thương mại với
 
 ### Cách nâng cấp ComfyUI an toàn?
 
-```bash
+`````bash
 cd ComfyUI
 git pull origin master
 pip install -r requirements.txt
 # Khởi động lại server
-```
+`````
 
-Cho triển khai production, gắn tag release cụ thể thay vì master: `git checkout v0.21.1`. Luôn sao lưu workflow trước khi nâng cấp, vì khả năng tương thích node tùy chỉnh có thể bị phá vỡ qua phiên bản.
+Cho triển khai production, gắn tag release cụ thể thay vì master: ````git checkout v0.21.1````. Luôn sao lưu workflow trước khi nâng cấp, vì khả năng tương thích node tùy chỉnh có thể bị phá vỡ qua phiên bản.
 
 ### Có thể dùng ComfyUI với model AUTOMATIC1111 hiện có không?
 
-Có. Cả hai công cụ dùng cùng định dạng model `.safetensors` và `.ckpt`. Chỉ thư mục model của ComfyUI đến thư mục model A1111 hiện có, hoặc tạo symlink: `ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints`.
+Có. Cả hai công cụ dùng cùng định dạng model ````.safetensors```` và ````.ckpt````. Chỉ thư mục model của ComfyUI đến thư mục model A1111 hiện có, hoặc tạo symlink: ````ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints````.
 
 ## Conclusion
 
 ComfyUI là giao diện mã nguồn mở có khả năng nhất cho các workflow mô hình diffusion. Kiến trúc node-based của nó đánh đổi sự đơn giản ban đầu lấy sức mạnh dài hạn — một khi xây dựng workflow, bạn có thể quản lý phiên bản, tự động hóa, và mở rộng quy mô. 87,200+ sao trên GitHub phản ánh một cộng đồng đánh giá cao khả năng kiểm soát hơn sự tiện lợi.
 
-Bắt đầu với cài đặt Docker cho môi trường production, hoặc trình cài đặt desktop cho thử nghiệm local. Cài đặt ComfyUI Manager ngay lập tức — nó mở khóa hệ sinh thái 3000+ node tùy chỉnh. Benchmark workflow với `nvidia-smi` đang chạy, và gắn tag phiên bản khi tìm được tổ hợp ổn định.
+Bắt đầu với cài đặt Docker cho môi trường production, hoặc trình cài đặt desktop cho thử nghiệm local. Cài đặt ComfyUI Manager ngay lập tức — nó mở khóa hệ sinh thái 3000+ node tùy chỉnh. Benchmark workflow với ````nvidia-smi``` đang chạy, và gắn tag phiên bản khi tìm được tổ hợp ổn định.
 
 **Danh sách hành động:**
 1. Clone repo và chạy thiết lập Docker Compose
@@ -560,7 +561,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -570,6 +571,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [2026-05-25-trending-ai-agents](comfyui)
 - [2026-06-01-trending-ai-agents](comfyui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

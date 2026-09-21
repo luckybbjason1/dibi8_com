@@ -12,11 +12,12 @@ aliases:
   - /kr/posts/flowise-ai-workflow-builder-lowcode/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: AI 에이전트 구축이 여전히 2006년 같이 느껴지는 이유
 
-2026년에도 프로덕션 AI 에이전트를 구축하려면 여전히 **3-5개의 서로 다른 Python 라이브러리**를 동시에 다루고, 메모리 관리를 위한 상용구 코드를 작성하고, 조용히 실패하는 비동기 체인을 디버깅하고, 다음 통합을 추가할 때 `requirements.txt`가 충돌하지 않기를 기도해야 합니다. 프레임워크용 LangChain, 별도의 벡터 저장소 클라이언트, 문서 로더용 또 다른 라이브러리, HTTP 레이어용 FastAPI, 프론트엔드를 원한다면 Streamlit이 필요합니다. "간단한" RAG 챗봇을 배포할 때쯤이면 **800줄 이상의 Python**을 작성했고, 모델 업데이트마다 커지는 유지보수 부담을 물려받게 됩니다.
+2026년에도 프로덕션 AI 에이전트를 구축하려면 여전히 **3-5개의 서로 다른 Python 라이브러리**를 동시에 다루고, 메모리 관리를 위한 상용구 코드를 작성하고, 조용히 실패하는 비동기 체인을 디버깅하고, 다음 통합을 추가할 때 ```requirements.txt````가 충돌하지 않기를 기도해야 합니다. 프레임워크용 LangChain, 별도의 벡터 저장소 클라이언트, 문서 로더용 또 다른 라이브러리, HTTP 레이어용 FastAPI, 프론트엔드를 원한다면 Streamlit이 필요합니다. "간단한" RAG 챗봇을 배포할 때쯤이면 **800줄 이상의 Python**을 작성했고, 모델 업데이트마다 커지는 유지보수 부담을 물려받게 됩니다.
 
 **Flowise**는 이 패러다임을 뒤집습니다. Apache-2.0 라이선스의 시각적 워크플로우 빌더로, LangChain 위에 구축되어 캔버스에서 노드를 드래그 앤 드롭하고 연결하여 복잡한 AI 파이프라인 — RAG 챗봇, 멀티 에이전트 시스템, 문서 프로세서 — 를 구성할 수 있습니다. **45,000+ GitHub Stars**와 번성하는 **100+ 통합** 생태계를 보유한 이 도구는 LangChain의 기본 엔진 유연성을 희생하지 않고 AI 기능을 빠르게 출시하려는 팀의 선택이 되었습니다.
 
@@ -30,7 +31,7 @@ aliases:
 
 ## Flowise 작동 방식: 아키텍처 및 핵심 개념
 
-Flowise의 아키텍처는 세 개의 계층으로 구성됩니다: ```yaml
+Flowise의 아키텍처는 세 개의 계층으로 구성됩니다: `````yaml
 ┌─────────────────────────────────────────────┐
 │           프론트엔드 (React + Flow Editor)  │
 │           - 드래그 앤 드롭 캔버스           │
@@ -48,7 +49,7 @@ Flowise의 아키텍처는 세 개의 계층으로 구성됩니다: ```yaml
 │           - 벡터 저장소 (외부)              │
 │           - 파일 시스템 (문서 업로드)       │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ### 핵심 개념
 
@@ -62,7 +63,7 @@ Flowise의 아키텍처는 세 개의 계층으로 구성됩니다: ```yaml
 
 **어시스턴트**(v2.2.0 신규)는 스레드 관리 기능이 있는 지속적인 대화 에이전트로, OpenAI Assistants API 또는 로컬 등가물을 기반으로 구축됩니다.
 
-```bash
+`````bash
 # Flowise는 플로우 정의를 데이터베이스의 JSON으로 저장
 # 단순화된 챗플로우 구조 예제
 {
@@ -76,13 +77,13 @@ Flowise의 아키텍처는 세 개의 계층으로 구성됩니다: ```yaml
     { "source": "prompt_1", "target": "llm_1", "input": "prompt" }
   ]
 }
-```
+`````
 
 ## 설치 및 설정: 5분 이내 Flowise 실행
 
 ### Docker Compose (권장)
 
-```bash
+`````bash
 # 프로젝트 디렉토리 생성
 mkdir -p ~/flowise && cd ~/flowise
 
@@ -109,13 +110,13 @@ docker compose up -d
 
 # 상태 확인
 curl -s http://localhost:3000/api/v1/health | jq .
-```
+`````
 
-`flowiseai/flowise:2.2.0`의 초기 풀은 **~1.4 GB**입니다. 실행되면 `http://localhost:3000`에 접속하여 compose 파일의 자격 증명으로 로그인합니다.
+````flowiseai/flowise:2.2.0````의 초기 풀은 **~1.4 GB**입니다. 실행되면 ````http://localhost:3000````에 접속하여 compose 파일의 자격 증명으로 로그인합니다.
 
 ### 프로덕션 PostgreSQL 설정
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: postgres: image: postgres:16-alpine
     environment: POSTGRES_USER: flowise
@@ -136,11 +137,11 @@ services: postgres: image: postgres:16-alpine
     depends_on: - postgres
     volumes: - flowise_storage:/root/.flowise
 
-volumes: postgres_data: flowise_storage: ```
+volumes: postgres_data: flowise_storage: `````
 
 ### 환경 변수 참조
 
-```bash
+`````bash
 # 핵심 구성
 PORT=3000                                    # 애플리케이션 포트
 FLOWISE_USERNAME=admin                       # 관리자 사용자명
@@ -159,7 +160,7 @@ BLOB_STORAGE_TYPE=s3
 S3_STORAGE_BUCKET=flowise-docs
 S3_STORAGE_ACCESS_KEY_ID=...
 S3_STORAGE_SECRET_ACCESS_KEY=...
-```
+`````
 
 > 💡 **제휴:** 안정적인 VPS에서 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)으로 Flowise를 배포하세요. 2 vCPU / 4 GB RAM Droplet에서 PostgreSQL 백엔드로 Flowise를 테스트할 수 있는 $200 물론 크레딧을 사용하세요.
 
@@ -167,32 +168,32 @@ S3_STORAGE_SECRET_ACCESS_KEY=...
 
 ### 1단계: 새 챗플로우 생성
 
-Flowise를 `http://localhost:3000`에서 열기 → **챗플로우** → **새로 생성**합니다. 왼쪽에 노드 팔레트가 있는 빈 캔버스가 표시됩니다.
+Flowise를 ````http://localhost:3000````에서 열기 → **챗플로우** → **새로 생성**합니다. 왼쪽에 노드 팔레트가 있는 빈 캔버스가 표시됩니다.
 
 ### 2단계: 벡터 저장소 검색기 추가
 
-```bash
+`````bash
 # 왼쪽 패널에서 이러한 노드를 캔버스로 드래그: # 1. 벡터 저장소 → "인메모리 벡터 저장소" (테스트용)
 #    또는 "Chroma" / "Qdrant" / "Pinecone" (프로덕션용)
 # 2. 문서 로더 → "PDF 파일" 또는 "일반 텍스트"
 # 3. 임베딩 → "OpenAI 임베딩" 또는 "Ollama 임베딩"
 # 4. 텍스트 분할기 → "재귀 문자 텍스트 분할기"
-```
+`````
 
 ### 3단계: 문서 수집 체인 연결
 
-```
+`````
 # 이 순서대로 노드를 연결: # [PDF 파일] → [재귀 문자 텍스트 분할기] → [OpenAI 임베딩] → [벡터 저장소]
 #
 # 각 노드의 구성: # - PDF 파일: 문서 업로드
 # - 텍스트 분할기: chunkSize=1000, chunkOverlap=200
 # - 임베딩: model=text-embedding-3-small
 # - 벡터 저장소: collectionName=my-docs
-```
+`````
 
 ### 4단계: 대화형 RAG 체인 추가
 
-```
+`````
 # 쿼리 측면에 이러한 노드를 추가: # [채팅 프롬프트 템플릿] → [OpenAI 채팅 모델] → [출력 파서]
 #         ↑
 # [벡터 저장소 검색기] ← [벡터 저장소 (위와 동일)]
@@ -202,11 +203,11 @@ Flowise를 `http://localhost:3000`에서 열기 → **챗플로우** → **새�
 # 연결: # - 벡터 저장소 출력 → 벡터 저장소 검색기 입력
 # - 검색기 출력 → QA 체인의 "source_documents" 입력
 # - QA 체인 출력 → 채팅 모델 입력
-```
+`````
 
 ### 5단계: 프롬프트 템플릿 구성
 
-```python
+`````python
 # RAG 챗봇용 시스템 프롬프트 템플릿
 SYSTEM_PROMPT = """제공된 컨텍스트를 기반으로 질문에 답변하는 유용한 어시스턴트입니다.
 컨텍스트에 답이 없으면 "해당 질문에 답변할 충분한 정보가 없습니다."라고 말하세요.
@@ -221,11 +222,11 @@ SYSTEM_PROMPT = """제공된 컨텍스트를 기반으로 질문에 답변하는
 # 템플릿을 위 텍스트로 설정
 # {context}는 검색기에서 자동 채움
 # {question}은 사용자 입력에서 옴
-```
+`````
 
 ### 6단계: 테스트 및 배포
 
-```bash
+`````bash
 # Flowise UI에서 오른쪽 상단의 채팅 버블을 클릭
 # 업로드된 문서와 관련된 질문하기
 # 어떤 청크가 검색되었는지 본려면 "사용 컨텍스트" 탭 확인
@@ -234,7 +235,7 @@ SYSTEM_PROMPT = """제공된 컨텍스트를 기반으로 질문에 답변하는
 # curl 명령 복사: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "이 문서의 주요 주제는 무엇입니까?"}'
-```
+`````
 
 ## 멀티 에이전트 플로우: 시각적 에이전트 오케스트레이션
 
@@ -242,7 +243,7 @@ Flowise v2.2.0의 **에이전트플로우** 기능을 사용하면 오케스트�
 
 ### 연구 에이전트 팀 구축
 
-```
+`````
 # 3-에이전트 연구 팀의 캔버스 레이아웃: #
 #                    ┌─────────────────┐
 #                    │  Supervisor     │
@@ -258,11 +259,11 @@ Flowise v2.2.0의 **에이전트플로우** 기능을 사용하면 오케스트�
 #
 # Supervisor가 사용자 입력에서 감지된 작업 유형에 따라
 # 쿼리를 적절한 에이전트로 라우팅합니다.
-```
+`````
 
 ### 노드 구성
 
-```bash
+`````bash
 # Supervisor 에이전트 노드: # - LLM: gpt-4.1-nano
 # - 타입: supervisor
 # - 시스템 프롬프트: "당신은 연구 코디네이터입니다. 작업을 적절한 전문가 에이전트로 라우팅하세요."
@@ -278,11 +279,11 @@ Flowise v2.2.0의 **에이전트플로우** 기능을 사용하면 오케스트�
 # 문서 분석 에이전트 노드: # - LLM: gpt-4.1-nano
 # - 도구: 벡터 저장소 검색기
 # - 시스템 프롬프트: "제공된 문서에서 관련 정보를 분석하세요."
-```
+`````
 
 ### 멀티 에이전트 플로우 배포
 
-```bash
+`````bash
 # API 엔드포인트로 배포
 curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
   -H "Content-Type: application/json" \
@@ -301,7 +302,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 #     {"agent": "web_search", "action": "업계 벤치마크 발견"}
 #   ]
 # }
-```
+`````
 
 ## 100개 이상의 도구 및 서비스와의 통합
 
@@ -318,7 +319,7 @@ Flowise는 다음 카테고리에서 **100개 이상의 통합**을 지원합니
 
 ### 커스텀 도구 추가
 
-```javascript
+`````javascript
 // custom_tool.js — Flowise 서버의 tools 디렉토리에 저장
 const { Tool } = require('langchain/tools');
 
@@ -334,7 +335,7 @@ class JiraTicketTool extends Tool {
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
       method: POST,
       headers: {
-        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
+        Authorization: ````Basic ${Buffer.from('email:token').toString(base64)}````,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -351,7 +352,7 @@ class JiraTicketTool extends Tool {
 }
 
 module.exports = { JiraTicketTool };
-```
+`````
 
 ## 벤치마크 및 실제 성능
 
@@ -394,7 +395,7 @@ OpenAI API를 사용한 로컬 Docker에서 **Intel i7-13700K + 32 GB RAM**으�
 
 ### 채팅 위젯으로 Flowise 임베딩
 
-```html
+`````html
 import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
@@ -413,11 +414,11 @@ import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.j
     }
   });
 </script>
-```
+`````
 
 ### API 인증 및 속도 제한
 
-```bash
+`````bash
 # API 키 인증 활성화
 # 설정 → API 키 → 새 키 생성
 
@@ -429,11 +430,11 @@ curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
 
 # 프로덕션의 경우 Nginx 속도 제한 추가: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
 # limit_req zone=flowise burst=20 nodelay;
-```
+`````
 
 ### 웹훅 트리거
 
-```bash
+`````bash
 # 외부 이벤트에서 트리거되도록 플로우 구성
 # 설정 → 웹훅 → 활성화
 
@@ -444,11 +445,11 @@ curl -X POST http://localhost:3000/api/v1/webhook/your-webhook-id \
     "event": "new_ticket",
     "data": { "ticket_id": "TKT-123", "description": "..." }
   }'
-```
+`````
 
 ### 백업 및 마이그레이션
 
-```bash
+`````bash
 #!/bin/bash
 # backup-flowise.sh — cron을 통해 실행
 
@@ -470,11 +471,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > "$BACKUP_DIR/database.
 
 # 최근 14일 유지
 find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
-```
+`````
 
 ### Prometheus로 모니터링
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v3.0
     ports: - "9090:9090"
@@ -489,7 +490,7 @@ services: prometheus: image: prom/prometheus:v3.0
       - METRICS_PORT=9091
     ports: - "3000:3000"
       - "9091:9091"
-```
+`````
 
 ## 대안과의 비교
 
@@ -528,11 +529,11 @@ services: prometheus: image: prom/prometheus:v3.0
 
 ### Flowise 플로우를 날추하고 Flowise 없이 실행할 수 있나요?
 
-직접적으로는 불가능합니다. Flowise 플로우는 JSON 그래프 정의로 저장되며 Flowise의 런타임 엔진에 의해 실행됩니다. 그러나 플로우 JSON을 날추하고 Flowise의 오픈소스 런타임 패키지(`flowise-components`)를 사용하여 Node.js에서 프로그래밍 방식으로 실행할 수 있습니다. 순수 Python 환경의 경우 동등한 LangChain 코드를 재구성해야 합니다. 팀은 향후 릴리즈에서 Python 런타임을 암시했습니다.
+직접적으로는 불가능합니다. Flowise 플로우는 JSON 그래프 정의로 저장되며 Flowise의 런타임 엔진에 의해 실행됩니다. 그러나 플로우 JSON을 날추하고 Flowise의 오픈소스 런타임 패키지(````flowise-components````)를 사용하여 Node.js에서 프로그래밍 방식으로 실행할 수 있습니다. 순수 Python 환경의 경우 동등한 LangChain 코드를 재구성해야 합니다. 팀은 향후 릴리즈에서 Python 런타임을 암시했습니다.
 
 ### Flowise는 API 키를 어떻게 안전하게 처리하나요?
 
-API 키는 `FLOWISE_SECRETKEY_OVERWRITE` 환경 변수에서 파생된 키로 AES-256을 사용하여 미사용 시 암호화됩니다. 키는 입력 후 UI에 절대 노출되지 않으며 플로우 날추는 자격 증명 값을 제거합니다. 프로덕션에서는 UI 입력 자격 증명보다 환경 변수 기반 자격 증명을 사용하고 분기별로 키를 교체하세요.
+API 키는 ````FLOWISE_SECRETKEY_OVERWRITE```` 환경 변수에서 파생된 키로 AES-256을 사용하여 미사용 시 암호화됩니다. 키는 입력 후 UI에 절대 노출되지 않으며 플로우 날추는 자격 증명 값을 제거합니다. 프로덕션에서는 UI 입력 자격 증명보다 환경 변수 기반 자격 증명을 사용하고 분기별로 키를 교체하세요.
 
 ### Flowise가 처리할 수 있는 최대 플로우 복잡성은 얼마인가요?
 
@@ -540,12 +541,12 @@ API 키는 `FLOWISE_SECRETKEY_OVERWRITE` 환경 변수에서 파생된 키로 AE
 
 ### Flowise를 로컬 LLM만으로 사용할 수 있나요?
 
-물론입니다. Ollama(Ollama 채팅 모델 노드를 통해), LM Studio 또는 LocalAI 노드를 연결하세요. 모든 벡터 저장소, 임베딩 및 도구 노드는 로컬 설정에서 작동합니다. Flowise 기능 중 클라우드 액세스가 필요한 유일한 기능은 내장 원격 측정입니다(이는 `DISABLE_FLOWISE_TELEMETRY=true`로 비활성화할 수 있음).
+물론입니다. Ollama(Ollama 채팅 모델 노드를 통해), LM Studio 또는 LocalAI 노드를 연결하세요. 모든 벡터 저장소, 임베딩 및 도구 노드는 로컬 설정에서 작동합니다. Flowise 기능 중 클라우드 액세스가 필요한 유일한 기능은 내장 원격 측정입니다(이는 ````DISABLE_FLOWISE_TELEMETRY=true````로 비활성화할 수 있음).
 
 ### Flowise v1.x에서 v2.x로 어떻게 마이그레이션하나요?
 
 v1.x에서 v2.2.0으로 업그레이드하려면: 1. JSON 날추를 통해 모든 챗플로우 백업
-2. 새 Docker 이미지 가져오기: `flowiseai/flowise:2.2.0`
+2. 새 Docker 이미지 가져오기: ````flowiseai/flowise:2.2.0````
 3. 첫 시작 시 데이터베이스 마이그레이션 자동 실행
 4. 모든 더 이상 사용되지 않는 노드 확인 및 재구성
 5. v2.0 릴리즈는 4개의 레거시 노드를 더 이상 사용하지 않습니다. https://docs.flowiseai.com/migration/v1-to-v2의 마이그레이션 가이드 확인
@@ -561,7 +562,7 @@ Flowise는 LangChain 아이디어와 배포된 AI 기능 사이에 일반적으�
 **45,000+ GitHub Stars**와 Apache-2.0 라이선스는 장기적인 생존 가능성을 보장하고, 100+ 통합은 연결성 벽에 부딪히기 어렵다는 것을 의미합니다. RAG 챗봇, 문서 프로세서, 멀티 에이전트 연구 도구를 제공하는 팀에게 Flowise는 수동 코딩에 비해 개발 시간을 **90%+** 절약합니다.
 
 **다음 단계:**
-1. 배포: `docker run -p 3000:3000 flowiseai/flowise:2.2.0`
+1. 배포: ````docker run -p 3000:3000 flowiseai/flowise:2.2.0```
 2. 15분 안에 RAG 챗봇 구축
 3. 웹사이트에 임베디드 위젯으로 배포
 4. 복잡한 연구 작업을 위한 멀티 에이전트 플로우 실험
@@ -622,7 +623,7 @@ AI 워크플로우 빌더를 위한 Telegram 그룹에 참여하세요: **[@dibi
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -632,7 +633,7 @@ AI 워크플로우 빌더를 위한 Telegram 그룹에 참여하세요: **[@dibi
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](flowise-ai-workflow-builder-lowcode)
 - [ai-agent-frameworks-comparison-2026](flowise-ai-workflow-builder-lowcode)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

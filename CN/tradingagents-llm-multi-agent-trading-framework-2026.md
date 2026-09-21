@@ -12,6 +12,7 @@ maintainer: 'TauricResearch'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
 ---
+
 # TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南
 
 ## 引言
@@ -52,7 +53,7 @@ TradingAgents 需要 Python 3.10+。你克隆仓库、安装依赖；它需要�
 
 要把 TradingAgents 跑成定时的生产任务，你需要一台常开的机器——可以在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上开一台（新账户有免费试用额度），或者用 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的低延迟香港 VPS（和 dibi8.com 同一个 IDC）。
 
-```bash
+````bash
 # 1. 克隆
 git clone https://github.com/TauricResearch/TradingAgents.git
 cd TradingAgents
@@ -62,43 +63,43 @@ conda create -n tradingagents python=3.10 -y && conda activate tradingagents
 
 # 3. 安装依赖
 pip install -r requirements.txt
-```
+`````
 
 更喜欢用纯 virtualenv 而非 conda？都行：
 
-```bash
+`````bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-```
+`````
 
 把两个必需的 API key 设为环境变量：
 
-```bash
+`````bash
 export OPENAI_API_KEY=sk-your-key-here
 export FINNHUB_API_KEY=your-finnhub-key   # 免费档即可测试
-```
+`````
 
-或者放进本地 `.env`，省得每个 shell 都重新 export：
+或者放进本地 ````.env````，省得每个 shell 都重新 export：
 
-```bash
+`````bash
 # .env （绝不要提交这个文件）
 OPENAI_API_KEY=sk-your-key-here
 FINNHUB_API_KEY=your-finnhub-key
-```
+`````
 
-如果报 `KeyError: 'FINNHUB_API_KEY'`，是当前 shell 没 export 这个变量。如果 LLM 调用返回 429，是 OpenAI 那边限速了——放慢，或在配置里换模型（见下）。
+如果报 ````KeyError: 'FINNHUB_API_KEY'````，是当前 shell 没 export 这个变量。如果 LLM 调用返回 429，是 OpenAI 那边限速了——放慢，或在配置里换模型（见下）。
 
 ## 核心用法
 
 最快的路径是交互式 CLI，它会提示你输入股票代码和日期，并流式打印每个智能体的推理：
 
-```bash
+`````bash
 python -m cli.main
-```
+`````
 
-要做自动化，用 `TradingAgentsGraph` API 从 Python 驱动它。你传入股票代码和日期，拿回智能体状态加最终决策：
+要做自动化，用 ````TradingAgentsGraph```` API 从 Python 驱动它。你传入股票代码和日期，拿回智能体状态加最终决策：
 
-```python
+`````python
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.default_config import DEFAULT_CONFIG
 
@@ -106,11 +107,11 @@ ta = TradingAgentsGraph(debug=True, config=DEFAULT_CONFIG.copy())
 # 按特定日期分析 NVDA（point-in-time，无前视）
 _, decision = ta.propagate("NVDA", "2024-05-10")
 print(decision)   # -> BUY / SELL / HOLD + 理由
-```
+`````
 
 你通过配置控制成本和深度。TradingAgents 把工作拆给一个"深度思考"模型（重推理）和一个"快速思考"模型（便宜、高频调用）：
 
-```python
+`````python
 config = DEFAULT_CONFIG.copy()
 config["llm_provider"] = "openai"
 config["deep_think_llm"] = "gpt-4o"        # 用于辩论 / 硬推理
@@ -118,60 +119,60 @@ config["quick_think_llm"] = "gpt-4o-mini"  # 用于常规智能体步骤
 config["max_debate_rounds"] = 2            # 轮数越多越深但越贵
 config["online_tools"] = True              # 拉实时数据 vs 缓存
 ta = TradingAgentsGraph(debug=True, config=config)
-```
+`````
 
-学习阶段把 `max_debate_rounds` 设低——每多一轮都会让整个智能体团队的 LLM 调用翻倍。
+学习阶段把 ````max_debate_rounds```` 设低——每多一轮都会让整个智能体团队的 LLM 调用翻倍。
 
 你也可以选择运行哪些分析师，在只关心比如基本面和新闻时省成本：
 
-```python
+`````python
 config["selected_analysts"] = ["fundamentals", "news"]  # 跳过情绪 + 技术面
 ta = TradingAgentsGraph(debug=True, config=config)
-```
+`````
 
 要筛一个自选股清单，对同一日期循环调用多个股票代码：
 
-```python
+`````python
 watchlist = ["NVDA", "AAPL", "TSLA"]
 for ticker in watchlist: _, decision = ta.propagate(ticker, "2024-05-10")
     print(f"{ticker}: {decision.splitlines()[0]}")   # 第一行 = 决策
-```
+`````
 
 返回的状态里存着完整辩论，让你能查*为什么*，而不只是*是什么*：
 
-```python
+`````python
 final_state, decision = ta.propagate("NVDA", "2024-05-10")
 print(final_state["investment_debate_state"]["bull_history"])   # 看多论据
 print(final_state["investment_debate_state"]["bear_history"])   # 看空论据
 print(final_state["final_trade_decision"])                       # 最终理由
-```
+`````
 
 ## 集成
 
 因为决策这一步就是一个返回 BUY/SELL/HOLD 加理由的 Python 调用，TradingAgents 嵌进流水线的研究那一半。它**不自己下单**——你把它的输出接到自己的执行或日志层：
 
-```python
+`````python
 _, decision = ta.propagate("AAPL", "2024-06-01")
 if "BUY" in decision: log_signal("AAPL", "BUY", source="tradingagents")
     # 在这里转发给你的券商 / 模拟盘层
-```
+`````
 
 数据层也是可插拔的：FinnHub 提供基本面和新闻，价格/指标工具提供技术面，社交源提供情绪。
 
 要每个交易日早上重新生成决策，用 cron 包一个脚本：
 
-```bash
+`````bash
 # 每个工作日 08:00 跑自选股筛选
 0 8 * * 1-5 cd /opt/TradingAgents && /opt/.venv/bin/python screen_watchlist.py >> /var/log/ta.log 2>&1
-```
+`````
 
 你不被 OpenAI 绑死——通过同样的配置把深度/快速模型指向别的供应商：
 
-```python
+`````python
 config["llm_provider"] = "anthropic"
 config["deep_think_llm"] = "claude-sonnet-4-6"
 config["quick_think_llm"] = "claude-haiku-4-5"
-```
+`````
 
 ## 基准 & 真实用例
 
@@ -183,21 +184,21 @@ TradingAgents 被当作研究测试台用：你回放一个历史日期，让智
 
 一次完整运行返回一个决策加推理链，大致如下：
 
-```text
+`````text
 FINAL TRANSACTION PROPOSAL: BUY
 Rationale: 基本面分析师指出数据中心营收加速；
 多方论点（利润率扩张）经 2 轮辩论压过空方论点（估值）；
 风控团队：中性立场，仓位谨慎。组合经理：批准。
-```
+`````
 
 因为辩论记录被保存下来，你可以对比换模型或加辩论轮数时决策如何变化：
 
-```python
+`````python
 for rounds in (1, 3): config["max_debate_rounds"] = rounds
     ta = TradingAgentsGraph(config=config)
     _, d = ta.propagate("NVDA", "2024-05-10")
     print(rounds, "rounds ->", d.splitlines()[0])
-```
+`````
 
 ## 与同类工具的对比
 
@@ -207,13 +208,13 @@ TradingAgents、Qlib 和单智能体 bot 解决的是不同问题。这里讲清
 
 | 特性 | TradingAgents | Qlib | 单智能体 LLM bot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 方法 | LLM 多智能体辩论 | ML 因子模型 | 一个 LLM + 提示词 |
 | 核心单元 | 分析师/研究员/交易员/风控 智能体 | LightGBM/LSTM 信号 | 单次决策调用 |
@@ -249,7 +250,7 @@ TradingAgents 覆盖面很广，但它不适合所有人，假装适合只会浪
 两个：一个 LLM 供应商 key（默认 OPENAI_API_KEY）和一个用于金融数据的 FINNHUB_API_KEY。FinnHub 免费档足够测试。
 
 **一次分析大概花多少 LLM 调用？**
-取决于 `max_debate_rounds` 和所选模型。每个股票/日期都跑完整的 分析师 → 研究员 → 交易员 → 风控 流水线，所以学习阶段把辩论轮数设低、用便宜的快速思考模型。
+取决于 ````max_debate_rounds``` 和所选模型。每个股票/日期都跑完整的 分析师 → 研究员 → 交易员 → 风控 流水线，所以学习阶段把辩论轮数设低、用便宜的快速思考模型。
 
 **这和直接问 ChatGPT"该不该买 NVDA"有什么区别？**
 TradingAgents 强制结构化、多视角的推理——独立的分析师、明确的多空辩论、风控复审——并返回完整记录，而不是一个未经审计的答案。
@@ -263,7 +264,7 @@ TradingAgents 是 2026 年研究"一队 LLM 智能体如何推理出一个交易
 - 在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上开一台研究机，今晚就跑你的第一次分析。
 
 
----
+* * *
 **资料来源与延伸阅读**：
 - GitHub 仓库：https://github.com/TauricResearch/TradingAgents
 - 官方文档 / README：https://github.com/TauricResearch/TradingAgents#readme
@@ -337,11 +338,11 @@ TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -351,7 +352,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [1m-context-window-llm-2026-real-test](tradingagents-llm-multi-agent-trading-framework-2026)
 - [9router-smart-llm-proxy-token-saver-free-coding](tradingagents-llm-multi-agent-trading-framework-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

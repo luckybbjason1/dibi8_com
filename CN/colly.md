@@ -23,6 +23,7 @@ tags: ["colly", "go", "web-scraping", "crawler", "golang", "scrapy", "benchmark"
 aliases:
   - /posts/colly/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -31,7 +32,7 @@ Python has dominated web scraping for over a decade. Scrapy, BeautifulSoup, and 
 
 ## What Is Colly?
 
-**Colly** is an elegant, lightning-fast web scraping and crawling framework for Go. It provides a clean callback-based API that handles HTTP requests, HTML parsing, cookie management, rate limiting, and parallel execution — all behind a single `Collector` object. The framework compiles to a static binary with zero runtime dependencies, making it a go-to choice for DevOps-friendly scraping pipelines.
+**Colly** is an elegant, lightning-fast web scraping and crawling framework for Go. It provides a clean callback-based API that handles HTTP requests, HTML parsing, cookie management, rate limiting, and parallel execution — all behind a single ```Collector```` object. The framework compiles to a static binary with zero runtime dependencies, making it a go-to choice for DevOps-friendly scraping pipelines.
 
 ## How Colly Works
 
@@ -39,14 +40,14 @@ Python has dominated web scraping for over a decade. Scrapy, BeautifulSoup, and 
 
 ![Colly gopher mascot](https://go-colly.org/img/colly_gopher.png)
 
-Colly's architecture revolves around the **Collector** — a stateful orchestrator that manages the entire scraping lifecycle. Here's how data flows: 1. **Collector** receives a starting URL via `Visit()`
+Colly's architecture revolves around the **Collector** — a stateful orchestrator that manages the entire scraping lifecycle. Here's how data flows: 1. **Collector** receives a starting URL via ````Visit()````
 2. **HTTP Backend** fires the request with configured timeouts, proxies, and headers
-3. **Response** triggers registered callbacks (`OnHTML`, `OnResponse`, `OnError`)
+3. **Response** triggers registered callbacks (````OnHTML````, ````OnResponse````, ````OnError````)
 4. **HTMLElement** parses the DOM using goquery-inspired selectors
 5. **Queue** handles URL scheduling for recursive crawling
 6. **Storage Backend** manages cookies, sessions, and caching
 
-```
+`````
 ┌─────────────┐    HTTP GET     ┌──────────────┐
 │  Collector  │ ──────────────> │ Target Site  │
 │  (State)    │ <────────────── │              │
@@ -62,7 +63,7 @@ Colly's architecture revolves around the **Collector** — a stateful orchestrat
 ┌─────────────┐
 │    Queue    │ ──> Visit next URL
 └─────────────┘
-```
+`````
 
 The collector pattern keeps code organized: you register handlers for specific HTML elements and let Colly manage concurrency, retries, and politeness automatically.
 
@@ -71,11 +72,11 @@ The collector pattern keeps code organized: you register handlers for specific H
 ### Prerequisites
 
 - Go 1.21+ installed
-- A working Go module (`go mod init`)
+- A working Go module (````go mod init````)
 
 ### Install Colly
 
-```bash
+`````bash
 # Initialize your project
 mkdir colly-scraper && cd colly-scraper
 go mod init github.com/youruser/colly-scraper
@@ -85,11 +86,11 @@ go get github.com/gocolly/colly/v2
 
 # Verify installation
 go list -m github.com/gocolly/colly/v2
-```
+`````
 
 ### Your First Scraper
 
-```go
+`````go
 package main
 
 import (
@@ -117,15 +118,15 @@ func main() {
 
 	c.Visit("https://go-colly.org/")
 }
-```
+`````
 
-Run it: ```bash
+Run it: `````bash
 go run main.go
-```
+`````
 
 ### Docker Setup
 
-```dockerfile
+`````dockerfile
 FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
@@ -138,30 +139,30 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /app/scraper .
 CMD ["./scraper"]
-```
+`````
 
-```bash
+`````bash
 # Build and run
 docker build -t colly-scraper .
 docker run --rm colly-scraper
-```
+`````
 
 ### Docker Compose with Redis Cache
 
-```yaml
+`````yaml
 version: '3.8'
 services: scraper: build: .
     depends_on: - redis
     environment: - REDIS_URL=redis:6379
   redis: image: redis:7-alpine
     volumes: - redis-data:/data
-  volumes: redis-data: ```
+  volumes: redis-data: `````
 
 ## Integration with Popular Tools
 
 ### Redis Caching Backend
 
-For large-scale crawling, avoid redundant requests with Redis-backed caching: ```go
+For large-scale crawling, avoid redundant requests with Redis-backed caching: `````go
 package main
 
 import (
@@ -193,13 +194,13 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### Proxy Rotation with Webshare
 
 When scraping at scale, rotating proxies prevents IP bans. [Webshare](https://www.webshare.io/) provides residential proxies that integrate seamlessly with Colly.
 
-```go
+`````go
 package main
 
 import (
@@ -230,11 +231,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### goquery for Advanced DOM Traversal
 
-Colly's built-in `HTMLElement` covers most cases, but goquery unlocks complex DOM navigation: ```go
+Colly's built-in ``HTMLElement`` covers most cases, but goquery unlocks complex DOM navigation: `````go
 package main
 
 import (
@@ -265,11 +266,11 @@ func main() {
 
 	c.Visit("https://news.ycombinator.com")
 }
-```
+`````
 
 ### chromedp for JavaScript-Rendered Pages
 
-Colly does not execute JavaScript. For SPAs, pair it with chromedp: ```go
+Colly does not execute JavaScript. For SPAs, pair it with chromedp: `````go
 package main
 
 import (
@@ -308,23 +309,23 @@ func main() {
 	// Parse rendered HTML...
 	fmt.Println("Rendered length:", len(htmlContent))
 }
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 ### Throughput Benchmarks
 
-We ran controlled benchmarks scraping 1,000 static HTML pages across four tools on an AWS `c6i.xlarge` (4 vCPU, 8GB RAM): | Tool | Time (1000 pages) | Memory Used | Requests/sec | Binary Size |
+We ran controlled benchmarks scraping 1,000 static HTML pages across four tools on an AWS ````c6i.xlarge```` (4 vCPU, 8GB RAM): | Tool | Time (1000 pages) | Memory Used | Requests/sec | Binary Size |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Colly** (parallel) | ~7s | 25 MB | ~1,200 | 12 MB |
 | **Colly** (sync) | ~52s | 20 MB | ~19 | 12 MB |
@@ -352,7 +353,7 @@ Key observations from the colly benchmark: 1. **Colly parallel mode** achieves a
 
 ### Rate Limiting and Politeness
 
-```go
+`````go
 package main
 
 import (
@@ -379,11 +380,11 @@ func main() {
 
 	c.Visit("https://example.com/products")
 }
-```
+`````
 
 ### Distributed Scraping with Redis Queue
 
-```go
+`````go
 package main
 
 import (
@@ -416,11 +417,11 @@ func main() {
 	q.AddURL("https://example.com/start")
 	q.Run(c)
 }
-```
+`````
 
 ### Custom HTTP Backend with Timeouts
 
-```go
+`````go
 package main
 
 import (
@@ -453,11 +454,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### Structured Data with Struct Tags
 
-```go
+`````go
 package main
 
 import (
@@ -467,9 +468,9 @@ import (
 )
 
 type Product struct {
-	Name  string `selector:"h1.product-title"`
-	Price string `selector:"span.price"`
-	SKU   string `selector:"meta[itemprop=sku]" attr:"content"`
+	Name  string ````selector:"h1.product-title"````
+	Price string ````selector:"span.price"````
+	SKU   string ````selector:"meta[itemprop=sku]" attr:"content"````
 }
 
 func main() {
@@ -484,21 +485,21 @@ func main() {
 
 	c.Visit("https://shop.example.com/item/123")
 }
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Colly | Scrapy | Puppeteer | goquery |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Language** | Go | Python | Node.js | Go |
 | **Requests/sec** (single core) | 1,000+ | ~300 | ~3 | ~20 |
@@ -547,15 +548,15 @@ No — Colly does not execute JavaScript natively. For SPAs and dynamic content,
 
 ### How do I scale Colly across multiple machines?
 
-Use the Redis-backed queue (`colly/queue`) to distribute URLs across workers. Each worker runs a Colly instance that consumes from the shared queue and writes results to a central database. Add horizontal pod autoscaling in Kubernetes for elastic capacity.
+Use the Redis-backed queue (````colly/queue````) to distribute URLs across workers. Each worker runs a Colly instance that consumes from the shared queue and writes results to a central database. Add horizontal pod autoscaling in Kubernetes for elastic capacity.
 
 ### What proxy providers work best with Colly?
 
-Any HTTP proxy works via `colly/proxy`. [Webshare](https://www.webshare.io/) offers residential proxies with rotating IP pools that integrate cleanly with Colly's `RoundRobinProxySwitcher`. Bright Data and Oxylabs are enterprise alternatives with dedicated support.
+Any HTTP proxy works via ````colly/proxy````. [Webshare](https://www.webshare.io/) offers residential proxies with rotating IP pools that integrate cleanly with Colly's ````RoundRobinProxySwitcher````. Bright Data and Oxylabs are enterprise alternatives with dedicated support.
 
 ### How do I avoid getting blocked while scraping?
 
-Combine multiple techniques: rotate User-Agents via Colly extensions, add random delays (`RandomDelay` in `LimitRule`), respect `robots.txt`, use residential proxies, and distribute requests across time. Never exceed the target site's capacity — monitor response codes and back off on 429 errors.
+Combine multiple techniques: rotate User-Agents via Colly extensions, add random delays (````RandomDelay```` in ````LimitRule````), respect ````robots.txt````, use residential proxies, and distribute requests across time. Never exceed the target site's capacity — monitor response codes and back off on 429 errors.
 
 ### Is Colly suitable for crawling millions of pages?
 
@@ -563,14 +564,14 @@ Yes, with proper architecture. Use Redis for URL deduplication and caching, impl
 
 ### How do I debug Colly scrapers?
 
-Enable debug logging with `colly.Debugger(&debug.LogDebugger{})` to trace every request/response. Use `OnError` callbacks to capture and log failed requests. For complex issues, attach a custom HTTP backend with request/response dump capabilities.
+Enable debug logging with ````colly.Debugger(&debug.LogDebugger{})```` to trace every request/response. Use ````OnError```` callbacks to capture and log failed requests. For complex issues, attach a custom HTTP backend with request/response dump capabilities.
 
 ## Conclusion
 
 Colly delivers exactly what Go developers need from a scraping framework: speed, simplicity, and a single-binary deployment story. At **25,302 GitHub stars** and **1,000+ requests per second**, it outperforms Python and Node.js alternatives on throughput and memory efficiency. The callback API is intuitive, the Redis integration enables real distributed crawling, and the proxy support keeps you unblocked at scale.
 
 **Action items to get started:**
-1. Clone the [Colly GitHub repo](https://github.com/gocolly/colly) and run the `_examples/` folder
+1. Clone the [Colly GitHub repo](https://github.com/gocolly/colly) and run the ````_examples/``` folder
 2. Build your first scraper with the 5-minute setup above
 3. Add Redis caching and proxy rotation before scaling past 10K pages
 4. Join the [dibi8 Telegram group](https://t.me/dibi8_channel) for Go scraping discussions and production tips
@@ -625,7 +626,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](colly)
@@ -634,5 +635,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](colly)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -7,6 +7,7 @@ aliases:
   - /posts/data-cleaning-tools-best-practices/
 ---
 
+
 {</* resource-info */>}
 
 데이터 과학자의 업무 시간 80%는 데이터 수집과 클리닝에 소비된다는 연구 결과가 있습니다. 깨끗한 데이터는 정확한 모델과 신뢰할 수 있는 비즈니스 의사결정의 기초가 됩니다. 이 글에서는 데이터 클리닝을 위한 주요 도구와 라이브러리를 비교하고, 재현 가능한 클리닝 파이프라인을 구축하는 모범 사례를 제시합니다.
@@ -37,7 +38,7 @@ aliases:
 
 OpenRefine의 강력한 기능 중 하나는 모든 조작 이력을 JSON으로 익스포트할 수 있다는 점입니다. 이를 통해 동일한 클리닝 절차를 다른 데이터셋에 재적용할 수 있습니다.
 
-```json
+````json
 // OpenRefine 작업 난출 예시 (일부)
 [
   {
@@ -52,7 +53,7 @@ OpenRefine의 강력한 기능 중 하나는 모든 조작 이력을 JSON으로 
     ]
   }
 ]
-```
+`````
 
 대용량 데이터셋(수백만 행)도 브라우저에서 처리 가능하며, 메모리 제한은 시스템 RAM에 따라 달라집니다. 여러 클리닝 단계를 Undo/Redo 히스토리로 관리하며, Wikidata와의 조화 기능은 엔티티 매칭 작업에 유용합니다.
 
@@ -66,7 +67,7 @@ Python은 데이터 클리닝을 위한 풍부한 라이브러리를 제공합�
 
 [Pandas](https://pandas.pydata.org)는 데이터 클리닝의 기본 도구입니다. 핵심 패턴은 다음과 같습니다.
 
-```python
+`````python
 import pandas as pd
 import numpy as np
 
@@ -89,9 +90,9 @@ pd.to_datetime(df[date_col], format='%Y-%m-%d', errors='coerce')
 
 # 정규식 문자열 클리닝
 df[phone] = df[phone].str.replace(r'[^0-9]', '', regex=True)
-```
+`````
 
-**pyjanitor**는 Pandas에 깔끔한 API를 추가하는 라이브러리로, 메서드 체이닝을 통한 가독성 높은 코드를 작성할 수 있게 해줍니다. `clean_names()`, `remove_empty()`, `coalesce()` 등의 유틸리티 함수를 제공합니다.
+**pyjanitor**는 Pandas에 깔끔한 API를 추가하는 라이브러리로, 메서드 체이닝을 통한 가독성 높은 코드를 작성할 수 있게 해줍니다. ````clean_names()````, ````remove_empty()````, ````coalesce()```` 등의 유틸리티 함수를 제공합니다.
 
 ## 자동 데이터 클리닝 라이브러리
 
@@ -102,7 +103,7 @@ df[phone] = df[phone].str.replace(r'[^0-9]', '', regex=True)
 - **dataprep.clean**: 자동 타입 추론과 형식 표준화
 - **Klib**: 데이터 프로파일링과 클리닝 제안
 
-```python
+`````python
 # Cleanlab 라벨 오류 탐지 예시
 from cleanlab.classification import CleanLearning
 from sklearn.ensemble import RandomForestClassifier
@@ -112,7 +113,7 @@ issues = cl.find_label_issues(X, labels)
 
 # 라벨 오류가 의심되는 데이터 확인
 suspicious = issues[issues[is_label_issue] == True]
-```
+`````
 
 Cleanlab은 2024년 기준 2.7 버전에서 신경망 기반의 confident learning 알고리즘을 제공하며, 라벨 노이즈 비율을 자동 추정합니다.
 
@@ -122,12 +123,12 @@ Cleanlab은 2024년 기준 2.7 버전에서 신경망 기반의 confident learni
 
 **핵심 특징:**
 
-- **기대값 코드화**: `expect_column_mean_to_be_between` 같은 선언적 검증 규칙
+- **기대값 코드화**: ````expect_column_mean_to_be_between```` 같은 선언적 검증 규칙
 - **파이프라인 자동 검증**: Airflow, dbt, Spark와 통합
 - **자동 문서화**: 검증 결과를 HTML 문서로 생성
 - **데이터 품질 메트릭**: 컬럼별 통계와 품질 점수 시각화
 
-```python
+`````python
 # Great Expectations 기본 예시
 import great_expectations as gx
 
@@ -145,7 +146,7 @@ expectation = gx.expectations.ExpectColumnValuesToNotBeNull(
 
 # 검증 실행
 validation_result = batch.validate(expectation)
-```
+`````
 
 **적합한 사용 사례:** 생산 ML 파이프라인, 데이터 계약, 팀 협업 환경
 
@@ -157,7 +158,7 @@ validation_result = batch.validate(expectation)
 - **MAR (무작위)**: 다른 변수를 이용한 조걶적 대체 (KNN Imputer, MICE)
 - **MNAR (비무작위)**: 결측 자체가 정보를 담음 — 별도 플래그 변수 추가
 
-```python
+`````python
 from sklearn.impute import KNNImputer
 
 # MAR에 적합한 KNN 대체
@@ -166,18 +167,18 @@ df_imputed = pd.DataFrame(
     imputer.fit_transform(df),
     columns=df.columns
 )
-```
+`````
 
 ### 중복 탐지와 퍼지 매칭
 
 정확히 일치하지 않는 중복("Samsung" vs "samsung electronics")을 찾기 위해 **thefuzz** (구 fuzzywuzzy) 라이브러리를 사용합니다. Levenshtein 거리 기반의 유사도를 계산합니다.
 
-```python
+`````python
 from thefuzz import fuzz
 
 similarity = fuzz.ratio("Samsung Electronics", "samsung electronics")
 # similarity == 95
-```
+`````
 
 ### 이상치 처리
 
@@ -207,13 +208,13 @@ similarity = fuzz.ratio("Samsung Electronics", "samsung electronics")
 
 ## 재사용 가능한 데이터 클리닝 파이프라인 구축
 
-모듈화된 파이프라인 설계는 5단계로 구성됩니다: ```
+모듈화된 파이프라인 설계는 5단계로 구성됩니다: `````
 로드(Load) → 프로파일(Profile) → 클린(Clean) → 검증(Validate) → 익스포트(Export)
-```
+`````
 
 **실제 구현 예시:**
 
-```python
+`````python
 # 모듈화된 클리닝 파이프라인 예시
 import pandas as pd
 import great_expectations as gx
@@ -253,7 +254,7 @@ def run_pipeline(filepath): """전체 파이프라인 실행"""
 
 # 실행
 if __name__ == "__main__": run_pipeline('raw_data.csv')
-```
+`````
 
 **CI/CD 통합:**
 
@@ -277,13 +278,13 @@ if __name__ == "__main__": run_pipeline('raw_data.csv')
 
 ### 대용량 데이터셋에서 이상치를 어떻게 효율적으로 탐지하나요?
 
-Pandas의 IQR 방법은 수백만 행까지는 충분히 빠릭니다. 수 GB 이상의 데이터에는 Dask나 PySpark의 분산 처리를 활용합니다. Isolation Forest나 Local Outlier Factor는 sklearn의 `partial_fit`을 사용해 점진적 학습도 가능합니다. 시각적 확인이 필요하면 100만 행 단위로 샘플링한 후 Box Plot을 그립니다.
+Pandas의 IQR 방법은 수백만 행까지는 충분히 빠릭니다. 수 GB 이상의 데이터에는 Dask나 PySpark의 분산 처리를 활용합니다. Isolation Forest나 Local Outlier Factor는 sklearn의 ````partial_fit```을 사용해 점진적 학습도 가능합니다. 시각적 확인이 필요하면 100만 행 단위로 샘플링한 후 Box Plot을 그립니다.
 
 ### 데이터 클리닝 프로세스를 어떻게 재현 가능하게 만들 수 있나요?
 
 세 가지 원칙이 핵심입니다. 첫째, 모든 조작을 코드로 작성하고 스크립트화합니다. 둘째, Git으로 클리닝 코드를 버전 관리합니다. 셋째, Great Expectations이나 dbt tests로 검증 규칙을 코드화합니다. OpenRefine 사용자는 작업 이력을 JSON으로 익스포트하여 재적용할 수 있습니다. 원본 데이터는 절대 수정하지 않고, 클리닝 결과를 별도 파일로 저장하는 것도 중요합니다.
 
----
+* * *
 
 **참고 자료:**
 
@@ -293,7 +294,7 @@ Pandas의 IQR 방법은 수백만 행까지는 충분히 빠릭니다. 수 GB �
 - [Cleanlab 공식 문서](https://cleanlab.ai/)
 - [pyjanitor 문서](https://pyjanitor-devs.github.io/pyjanitor/)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -365,7 +366,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

@@ -7,6 +7,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 ---
 
+
 # open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026
 
 ![open-notebook 로고](https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png)
@@ -31,7 +32,7 @@ open-notebook은 **셀프호스팅 RAG (Retrieval-Augmented Generation) 지식�
 
 ### Docker Compose (추천)
 
-```bash
+````bash
 git clone https://github.com/lfnovo/open-notebook.git
 cd open-notebook
 cp .env.example .env
@@ -39,18 +40,18 @@ cp .env.example .env
 # 최소: ANTHROPIC_API_KEY, OPENAI_API_KEY 또는 OLLAMA_HOST 중 하나
 docker compose up -d
 # http://localhost:3000
-```
+`````
 
 ### 로컬 개발
 
-```bash
+`````bash
 git clone https://github.com/lfnovo/open-notebook.git
 cd open-notebook
 cd backend && pip install -r requirements.txt
 cd ../frontend && npm install && cd ..
 cd backend && uvicorn api.main:app --reload &
 cd frontend && npm run dev &
-```
+`````
 
 ## Integration with 15+ AI Providers
 
@@ -78,14 +79,14 @@ cd frontend && npm run dev &
 
 ### Use Case: 학술 연구
 
-```bash
+`````bash
 for pdf in research/*.pdf; do
   curl -X POST http://localhost:3000/api/documents -F "file=@$pdf"
 done
 # 문서 간 질문
 curl -X POST http://localhost:3000/api/chat \
   -d '{"question": "공통 방법론은?", "docs": "all"}'
-```
+`````
 
 200+ 논문을 수 시간 내에 분석, 올바른 인용 포함.
 
@@ -93,20 +94,20 @@ curl -X POST http://localhost:3000/api/chat \
 
 ### 커스텀 문서 처리
 
-```python
+`````python
 chunking_strategies = {
     "pdf": {"strategy": "semantic", "chunk_size": 1000, "overlap": 200},
     "markdown": {"strategy": "heading-based", "chunk_size": 2000},
     "code": {"strategy": "function-based", "chunk_size": 500},
 }
-```
+`````
 
 ### 벡터 데이터베이스 확장
 
-```bash
+`````bash
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage qdrant/qdrant:latest
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -136,7 +137,7 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 **Q: 오픈/오프라인 AI 모델 지원?**
 
-A: 예. `.env`에서 `AI_PROVIDER=ollama` 설정하고 `OLLAMA_HOST` 구성하면 llama3.2, qwen2.5, nomic-embed-text로 전체 로컬 실행 가능. API key 없이 인터넷 연결 없이.
+A: 예. ````.env````에서 ````AI_PROVIDER=ollama```` 설정하고 ````OLLAMA_HOST```` 구성하면 llama3.2, qwen2.5, nomic-embed-text로 전체 로컬 실행 가능. API key 없이 인터넷 연결 없이.
 
 **Q: 어떤 벡터 DB 지원?**
 
@@ -144,7 +145,7 @@ A: Qdrant(권장), Weaviate, Supabase/pgvector. Qdrant가 문서 컬렉션에 �
 
 **Q: OpenRouter 사용 가능한가요?**
 
-A: 예. `AI_PROVIDER=openrouter` 설정하고 OpenRouter API key 제공. 단일 API로 50+ 모델 접근, 비용 최적화에 좋음.
+A: 예. ````AI_PROVIDER=openrouter```` 설정하고 OpenRouter API key 제공. 단일 API로 50+ 모델 접근, 비용 최적화에 좋음.
 
 **Q: 셀프호스팅 보안 수준?**
 
@@ -168,7 +169,7 @@ open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없�
 
 수백 논문 관리 연구원이든, 내부 지식베이스 구축 엔지니어든, 문서 프라이버시 가치 사람이라도, open-notebook은 인프라에서 실행되는 RAG 지식베이스 구축 도구를 제공합니다.
 
-[dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 open-notebook 설정을 논의하세요. [LangChain RAG 아키텍처](dibi8-internal-link) 및 [벡터 데이터베이스 비교](dibi8-internal-link) 가이드 확인. 오늘 시도해보세요 — `docker compose up`, PDF 업로드, 질문하세요.
+[dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 open-notebook 설정을 논의하세요. [LangChain RAG 아키텍처](dibi8-internal-link) 및 [벡터 데이터베이스 비교](dibi8-internal-link) 가이드 확인. 오늘 시도해보세요 — ````docker compose up```, PDF 업로드, 질문하세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 
@@ -234,12 +235,12 @@ open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -249,6 +250,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [1m-context-window-llm-2026-real-test](open-notebook-open-source-notebooklm-alternative-15-ai-providers)
 - [9router-smart-llm-proxy-token-saver-free-coding](open-notebook-open-source-notebooklm-alternative-15-ai-providers)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

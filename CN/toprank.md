@@ -31,6 +31,7 @@ faqs: - q: 'What is Toprank and how is it different from SEO SaaS tools?'
   - q: 'Who is Toprank best suited for?'
     a: 'Toprank targets technical SEOs automating audits in their CLI, growth engineers running marketing infrastructure alongside application code, agencies managing many client accounts with version-controlled playbooks, and startup founders who need professional SEO and ad management without a $500+/month SaaS stack.'
 ---
+
 {</* resource-info */>}
 
 # Toprank: Open-Source Claude Code Skills That Automate SEO, GEO, and Ad Campaign Optimization
@@ -89,11 +90,11 @@ The project is still new and trending, which means early adopters have an opport
 Visit the repository at [github.com/nowork-studio/toprank](https://github.com/nowork-studio/toprank) to read the setup guide, browse the skill catalog, and join the growing community of developers treating SEO and paid media as code.
 
 
----
+* * *
 *Built by nowork-studio / notfair.co. Open source. Automatically updated. Designed for Claude Code.*
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -171,7 +172,7 @@ Toprank: Open-Source Claude Code Skills That Automate SEO, GEO, and Ad Campaign 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

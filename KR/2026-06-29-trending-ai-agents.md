@@ -10,8 +10,9 @@ review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
 
+
 # 이번 주 오픈소스 AI 에이전트 소식 - 인기 GitHub 저장소 순위 (2026년 6월 29일 주)
----
+* * *
 
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
 
@@ -48,7 +49,7 @@ macOS 26(Tahoe) 요구 사항은 이것이 Apple의 최신 플랫폼 기능을 �
 
 → [macOS용 다운로드](https://github.com/palmier-io/palmier-pro/releases/latest/download/PalmierPro.dmg)
 
----
+* * *
 
 ## 2. Anthropic Cybersecurity Skills - 817 Structured Skills for AI Agents
 
@@ -79,7 +80,7 @@ AI 에이전트에 관심 있는 dibi8 관객에게 이것은 금광과 같습�
 
 → [기술 라이브러리 탐색](https://github.com/mukul975/Anthropic-Cybersecurity-Skills)
 
----
+* * *
 
 ## 3. Penpot - Open-Source Design Tool for Teams
 
@@ -112,7 +113,7 @@ Penpot의 Clojure/ClojureScript 스택은 디자인 도구로서는 특이하지
 
 ### Quick Start: Self-Hosting Penpot
 
-Penpot은 자체 호스를 위해 Docker Compose 설정을 제공합니다: ```yaml
+Penpot은 자체 호스를 위해 Docker Compose 설정을 제공합니다: ````yaml
 version: "3.6"
 services: penpot-backend: image: penpotapp/backend:latest
     ports: - 9001:9001
@@ -122,12 +123,12 @@ services: penpot-backend: image: penpotapp/backend:latest
     ports: - 9000:80
     environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_BACKEND_URI=http://localhost:9001
-```
+`````
 
-배포 후, `http://localhost:9000`에서 Penpot에 접속하여 팀과 함께 디자인을 시작하세요.
+배포 후, ````http://localhost:9000```에서 Penpot에 접속하여 팀과 함께 디자인을 시작하세요.
 
 
----
+* * *
 
 ## 4. AI Website Cloner Template - One-Command Website Duplication
 
@@ -157,7 +158,7 @@ TypeScript 구현은 아마도 인기 있는 AI 코딩 프레임워크와 통합
 
 → [GitHub에서 보기](https://github.com/JCodesMore/ai-website-cloner-template)
 
----
+* * *
 
 ## 5. SimpleX Chat - Privacy-First Messaging Without User IDs
 
@@ -187,7 +188,7 @@ Haskell로 구축된 SimpleX는 보안 중심 애플리케이션에 필수적인
 
 → [더 알아보기](https://simplex.chat)
 
----
+* * *
 
 ## This Week's Trends
 
@@ -239,7 +240,7 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 - [AI 에이전트 도구 체인](https://dibi8.com/en/collections/ai-agent-tool-chain/) - AI 에이전트 개발 도구의 엄선된 컬렉션.
 - [주간 인기 아카이브](https://dibi8.com/en/resources/llm-frameworks/) - 이전 주의 인기 보고서.
 
----
+* * *
 
 *이번 주 오픈소스 AI 에이전트 소식은 Dibi8 Tribe Intel에서 매주 발행합니다. 수집된 데이터: 2026년 6월 29일. 다음 호: 2026년 7월 6일.*
 
@@ -268,7 +269,7 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -278,7 +279,7 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 - [2026-06-29-trending-ai-agents](2026-06-29-trending-ai-agents)
 - [semgrep-15k-star-sast-security-scanner](2026-06-29-trending-ai-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

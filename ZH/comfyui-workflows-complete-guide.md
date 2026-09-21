@@ -10,6 +10,7 @@ draft: false
 slug: comfyui-workflows-complete-guide
 -CN---
 
+
 ## TL;DR
 
 ComfyUI 是一个强大的节点式图形界面，用于运行 AI 图像生成模型。它让你通过连接节点而不是编写代码来构建自定义管线。支持 Stable Diffusion、Flux、SDXL 和数十种其他模型。本指南涵盖工作流设计模式、节点管理、性能优化以及如何创建专业级图像生成管线。
@@ -40,18 +41,18 @@ ComfyUI 是一个用于运行 AI 图像生成模型的节点式图形界面。�
 基于节点的工作流原生处理所有这些。
 
 
----
+* * *
 ## 核心概念
 
 ### 节点和连接
 
 ComfyUI 中的每个操作都是一个**节点**——一个具有输入和输出的自包含处理单元：
 
-```
+````
 [加载检查点] → [CLIP 文本编码] → [KSampler] → [VAE 解码] → [保存图像]
      │                    │                      │                │
   模型              正向/负向提示          种子/采样数      输出
-```
+`````
 
 每种节点类型处理特定任务：
 - **模型加载**: 加载 Stable Diffusion 检查点、LoRA、嵌入
@@ -64,7 +65,7 @@ ComfyUI 中的每个操作都是一个**节点**——一个具有输入和输�
 
 完整的 ComfyUI 工作流遵循此模式：
 
-```python
+`````python
 # 概念流程（实际 ComfyUI 使用视觉连接）
 workflow = {
     "input": {
@@ -87,17 +88,17 @@ workflow = {
         "save_path": "./outputs/"
     }
 }
-```
+`````
 
 ### 关键节点类别
 
 | 类别 | 用途 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 模型加载 | 加载基础模型和扩展 | CheckpointLoader, LoraLoader |
 | 条件处理 | 处理文本提示 | CLIPTextEncode, Condition |
@@ -108,25 +109,25 @@ workflow = {
 | ControlNet | 用参考图像引导生成 | ControlNetApply, Preprocessor |
 | 输出 | 保存和管理结果 | SaveImage, PreviewImage |
 
----
+* * *
 
 ## 构建你的第一个工作流
 
 ### 基本图像生成
 
-```
+`````
 步骤 1: 加载检查点 → 选择你的模型（SDXL、Flux 等）
 步骤 2: CLIP 文本编码 → 输入正向和负向提示词
 步骤 3: KSampler → 设置步数（20-50）、CFG（7-12）、种子
 步骤 4: VAE 解码 → 将潜在空间转换为像素空间
 步骤 5: 保存图像 → 选择格式和位置
-```
+`````
 
 ### 高级：多阶段管线
 
 为了获得专业结果，串联多个阶段：
 
-```
+`````
 阶段 1: 基础生成
 ├── 加载检查点（SDXL）
 ├── 编码提示词
@@ -146,9 +147,9 @@ workflow = {
 ├── 色彩校正
 ├── 细节增强
 └── 保存高分辨率 PNG
-```
+`````
 
----
+* * *
 
 ## 流行工作流模式
 
@@ -156,7 +157,7 @@ workflow = {
 
 生成基础图像，评估，然后细化特定方面：
 
-```json
+`````json
 {
   "workflow_id": "iterative-refinement",
   "stages": [
@@ -165,13 +166,13 @@ workflow = {
     {"name": "detail", "steps": 30, "resolution": "2048x2048", "denoise": 0.3}
   ]
 }
-```
+`````
 
 ### 模式二：批量变体生成
 
 为比较生成多个变体：
 
-```json
+`````json
 {
   "workflow_id": "batch-variations",
   "config": {
@@ -185,13 +186,13 @@ workflow = {
     "parallel_workers": 4
   }
 }
-```
+`````
 
 ### 模式三：ControlNet 引导生成
 
 使用参考图像引导构图：
 
-```
+`````
 输入: 参考图像
    ↓
 Canny 边缘检测 → ControlNet（边缘引导）
@@ -201,19 +202,19 @@ Canny 边缘检测 → ControlNet（边缘引导）
 组合条件 → KSampler
    ↓
 最终图像，精确的构图控制
-```
+`````
 
 ### 模式四：图生图管线
 
 转换现有图像同时保留结构：
 
-```
+`````
 原始图像 → 编码（VAE）→ 添加噪声 → KSampler（去噪）→ 解码（VAE）→ 结果
-```
+`````
 
 调整去噪强度（0.1-0.9）来控制变换强度。
 
----
+* * *
 
 ## 模型管理
 
@@ -223,11 +224,11 @@ ComfyUI 支持广泛的模型：
 
 | 模型类型 | 示例 | 最佳用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stable Diffusion 1.5 | sd-v1-5, dreamshaper | 快速原型设计 |
 | SDXL | sdxl_v1.0, juggernaut | 高质量基础 |
@@ -238,7 +239,7 @@ ComfyUI 支持广泛的模型：
 
 ### 安装模型
 
-```bash
+`````bash
 # 下载模型到 ComfyUI/models/checkpoints/
 wget -P models/checkpoints/ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
 
@@ -247,11 +248,11 @@ wget -P models/loras/ https://civitai.com/api/download/models/12345
 
 # 安装 VAE
 wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
-```
+`````
 
 ### 管理依赖项
 
-```json
+`````json
 {
   "dependencies": {
     "checkpoints": ["sdxl_v1.0.safetensors"],
@@ -261,15 +262,15 @@ wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdx
     "upscale": ["4x-UltraSharp.pth"]
   }
 }
-```
+`````
 
----
+* * *
 
 ## 性能优化
 
 ### GPU 内存管理
 
-```python
+`````python
 # 针对不同 GPU 大小进行优化
 optimization_config = {
     "24GB_GPU": {
@@ -291,17 +292,17 @@ optimization_config = {
         "lowvram_mode": True
     }
 }
-```
+`````
 
 ### 批量处理速度
 
 | 配置 | 每分钟图像数 | 质量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 单张，SDXL，30 步 | 2-3 | 高 |
 | 批量 4，SDXL，30 步 | 8-12 | 高 |
@@ -310,7 +311,7 @@ optimization_config = {
 
 ### 缓存策略
 
-```json
+`````json
 {
   "caching": {
     "checkpoint_cache": true,
@@ -320,9 +321,9 @@ optimization_config = {
     "max_cache_size_gb": 8
   }
 }
-```
+`````
 
----
+* * *
 
 ## 高级技巧
 
@@ -330,58 +331,58 @@ optimization_config = {
 
 先在低分辨率生成，然后逐步放大：
 
-```
+`````
 低分辨率 (512x512) → 中分辨率 (1024x1024) → 高分辨率 (2048x2048)
        ↓                   ↓                    ↓
     粗略细节            精细细节             超细节
-```
+`````
 
 ### 技巧二：基于区域的编辑
 
 编辑图像的特定部分而不影响其他部分：
 
-```
+`````
 蒙版选择 → 修复节点 → 局部提示词 → KSampler（仅蒙版区域）
-```
+`````
 
 ### 技巧三：风格迁移管线
 
 在保留内容的同时应用艺术风格：
 
-```
+`````
 内容图像 → CLIP Vision → 风格参考 → 交叉注意力 → KSampler
-```
+`````
 
 ### 技巧四：自动化质量评分
 
 自动评分和过滤生成的图像：
 
-```
+`````
 生成图像 → CLIP 评分节点 → 过滤（> 阈值）→ 保存最佳
-```
+`````
 
----
+* * *
 
 ## 常见问题排查
 
 ### 问题一：显存不足错误
 
-```
+`````
 错误：CUDA out of memory
-```
+`````
 
 **修复方法：**
 - 减少批量大小
-- 启用 `--lowvram` 标志
+- 启用 ````--lowvram```` 标志
 - 使用 fp16 精度
 - 关闭其他 GPU 应用程序
 - 将工作流拆分为更小的阶段
 
 ### 问题二：生成速度慢
 
-```
+`````
 警告：生成时间超过预期
-```
+`````
 
 **修复方法：**
 - 使用更快的采样器（Euler a、DPM++ 2M）
@@ -392,9 +393,9 @@ optimization_config = {
 
 ### 问题三：输出质量差
 
-```
+`````
 图像看起来模糊或有伪影
-```
+`````
 
 **修复方法：**
 - 将步数增加到 30-50
@@ -403,21 +404,21 @@ optimization_config = {
 - 启用高清修复
 - 检查负向提示词质量
 
----
+* * *
 
 ## 对比：ComfyUI vs 替代方案
 
 | 功能 | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 基于节点的 UI | ✅ | ❌ | ❌ | ❌ |
 | 自定义管线 | ✅ | 有限 | ❌ | 有限 |
@@ -428,13 +429,13 @@ optimization_config = {
 
 ComfyUI 在复杂自定义工作流方面胜出。其他工具对于简单生成更容易上手。
 
----
+* * *
 
 ## 入门指南
 
 ### 安装
 
-```bash
+`````bash
 # 克隆 ComfyUI
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -447,11 +448,11 @@ pip install -r requirements.txt
 
 # 启动 ComfyUI
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
 ### 浏览器界面
 
-在浏览器中打开 `http://localhost:8188`。你会看到：
+在浏览器中打开 ````http://localhost:8188````。你会看到：
 - 用于构建工作流的空画布
 - 右侧的节点库
 - 设置面板（齿轮图标）
@@ -466,7 +467,7 @@ ComfyUI 包含许多预设工作流：
 - **超分**: 分辨率增强
 - **AnimateDiff**: 动画生成
 
----
+* * *
 
 ## 社区资源
 
@@ -485,7 +486,7 @@ ComfyUI 包含许多预设工作流：
 - **GitHub**: 开源工作流集合
 - **Discord**: 活跃社区分享技巧和模板
 
----
+* * *
 
 ## FAQ
 
@@ -499,7 +500,7 @@ ComfyUI 比大多数替代方案更高效。12GB GPU（RTX 3060/4070）可以很
 
 ### Q: 我如何与他人共享工作流？
 
-导出为 `.json` 或 `.png` 文件。通过 Civitai、GitHub 或 Discord 共享。接收者通过将文件拖到 ComfyUI 画布上来导入。
+导出为 ````.json```` 或 ````.png``` 文件。通过 Civitai、GitHub 或 Discord 共享。接收者通过将文件拖到 ComfyUI 画布上来导入。
 
 ### Q: ComfyUI 是免费的吗？
 
@@ -513,7 +514,7 @@ ComfyUI 比大多数替代方案更高效。12GB GPU（RTX 3060/4070）可以很
 
 ComfyUI 是核心应用程序。ComfyUI Manager 是一个扩展，使安装模型、节点和工作流变得容易得多。首先安装它以获得最佳体验。
 
----
+* * *
 
 ## 参考资料
 
@@ -524,7 +525,7 @@ ComfyUI 是核心应用程序。ComfyUI Manager 是一个扩展，使安装模�
 - [Stable Diffusion 模型库](https://huggingface.co/stabilityai)
 - [AI 图像生成基准报告 2026](https://aigbenchmark.report/2026)
 
----
+* * *
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
@@ -590,12 +591,12 @@ ComfyUI 工作流 — AI 图像生成的可视化编程语言 represents an impo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -605,6 +606,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
 - [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

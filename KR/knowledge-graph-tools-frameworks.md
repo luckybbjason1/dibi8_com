@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/knowledge-graph-tools-frameworks/
 ---
 
+
 # 2025년 최고의 지식 그래프 도구 및 프레임워크 비교: Neo4j", "RDFlib", "Amazon Neptune", "Stardog
 
 
@@ -210,7 +211,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

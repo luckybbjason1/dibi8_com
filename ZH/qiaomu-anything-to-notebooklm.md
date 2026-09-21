@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 ---
 
+
 ## 简介
 
 Google NotebookLM 已迅速成为最实用的 AI 驱动知识管理工具之一。通过上传文档和来源，用户可以创建一个个人"笔记本"，AI 助手可以在其上推理、回答问题，并综合为摘要、学习指南和深入分析。它本质上是一个开箱即用的 RAG 系统。
@@ -32,7 +33,7 @@ Qiaomu 万物转 NotebookLM 是一个全面的工具包，可将来自 15 多种
 该工具包围绕两种主要操作模式构建：
 
 1. **Claude Code 技能模式** — 在 Claude Code 中使用自然语言触发转换："将这个关于机器学习的 YouTube 视频转换为 NotebookLM 来源。"该技能处理整个流水线。
-2. **Python 包模式** — 使用 `qiaomu-notebooklm` Python 包进行批处理、调度和集成到更大的数据流水线中。
+2. **Python 包模式** — 使用 ```qiaomu-notebooklm```` Python 包进行批处理、调度和集成到更大的数据流水线中。
 
 **功能图片：**
 
@@ -44,9 +45,9 @@ Qiaomu 万物转 NotebookLM 是一个全面的工具包，可将来自 15 多种
 
 | 类别 | 来源 |
 |
----
+* * *
 |
----
+* * *
 |
 | 视频 | YouTube、Vimeo、哔哩哔哩 |
 | 音频 | 播客（RSS 订阅）、MP3 文件、Spotify（通过转录） |
@@ -67,7 +68,7 @@ Qiaomu 万物转 NotebookLM 是一个全面的工具包，可将来自 15 多种
 
 工具使用适当的提取策略从来源中提取内容：
 
-```python
+`````python
 # 安装包
 pip install qiaomu-notebooklm
 
@@ -82,13 +83,13 @@ result = converter.convert(
     output_format="notebooklm"
 )
 print(f"已将 {result.word_count} 个单词转换为 NotebookLM 格式")
-```
+`````
 
 ### 2. 文本处理和清理
 
 提取的内容经过清理、去重和结构化处理。工具移除导航元素、广告、页脚和其他非内容元素：
 
-```python
+`````python
 # 高级转换，带预处理选项
 result = converter.convert(
     source_url="https://example.com/article",
@@ -101,13 +102,13 @@ result = converter.convert(
         "language": "en"
     }
 )
-```
+`````
 
 ### 3. NotebookLM 格式化
 
 处理后的内容被格式化为 Google NotebookLM 可以摄入的结构。这通常意味着生成结构良好的 Markdown 或 PDF 文件：
 
-```python
+`````python
 # 导出为 NotebookLM 兼容格式
 converter.export(
     result,
@@ -120,13 +121,13 @@ import os
 for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
     size = os.path.getsize(filepath)
     print(f"{f}: {size / 1024:.1f} KB")
-```
+`````
 
 ### 4. 上传到 NotebookLM
 
 可选地，工具可以通过 API 直接将转换后的内容上传到 Google NotebookLM（当可用时）：
 
-```python
+`````python
 # 上传到 NotebookLM
 notebooklm = converter.connect_notebooklm(
     google_account="your_email@gmail.com"
@@ -141,13 +142,13 @@ notebook = notebooklm.create_notebook(
 # 上传来源
 notebook.upload_source("./notebooklm_sources/youtube_tutorial.md")
 notebook.upload_source("./notebooklm_sources/paper_abstract.pdf")
-```
+`````
 
 ## 安装
 
 ### Python 包安装
 
-```bash
+`````bash
 # 通过 pip 安装
 pip install qiaomu-notebooklm
 
@@ -156,13 +157,13 @@ python -c "import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)"
 
 # 安装所有可选依赖
 pip install qiaomu-notebooklm[all]
-```
+`````
 
 ### Git 克隆安装
 
 获取最新开发版本：
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git
 cd qiaomu-anything-to-notebooklm
@@ -172,13 +173,13 @@ pip install -e .
 
 # 安装开发依赖
 pip install -r requirements-dev.txt
-```
+`````
 
 ### Claude Code 技能安装
 
 要作为 Claude Code 技能使用，请将技能配置添加到你的 Claude Code 设置中：
 
-```bash
+`````bash
 # 在 Claude Code 配置目录中
 mkdir -p ~/.claude/skills
 
@@ -187,7 +188,7 @@ cp -r qiaomu-notebooklm/claude-code-skill/ ~/.claude/skills/
 
 # 重启 Claude Code
 claude --reload-skills
-```
+`````
 
 ## 集成模式
 
@@ -195,7 +196,7 @@ claude --reload-skills
 
 用于处理大型内容集合：
 
-```python
+`````python
 # 批处理 URL 列表
 urls = [
     "https://youtube.com/watch?v=video1",
@@ -214,13 +215,13 @@ results = converter.batch_convert(
 
 for url, result in results.items(): status = "成功" if result.success else "失败"
     print(f"[{status}] {url}: {result.word_count} 个单词已转换")
-```
+`````
 
 ### 定时转换
 
 设置定时内容摄入：
 
-```python
+`````python
 import schedule
 import time
 from datetime import datetime
@@ -250,13 +251,13 @@ schedule.every().day.at("06:00").do(daily_content_sync)
 
 while True: schedule.run_pending()
     time.sleep(60)
-```
+`````
 
 ### 绕过付费墙
 
 Qiaomu 最独特的功能之一是其访问付费墙内容的能力：
 
-```python
+`````python
 # 绕过付费墙提取文章内容
 result = converter.convert(
     source_url="https://premium-article.example.com/breaking-news",
@@ -272,7 +273,7 @@ result = converter.convert(
 # 2. 代理服务查找
 # 3. 纯文本回退
 # 4. 基于代理的访问（通过 WebShare）
-```
+`````
 
 ![Qiaomu 转换流水线](https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/conversion-pipeline.png)
 
@@ -282,11 +283,11 @@ result = converter.convert(
 
 | 内容类型 | 准确率 | 平均处理时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | YouTube 视频 | 98.5% | 45 秒 |
 | 播客转录 | 97.2% | 30 秒 |
@@ -300,11 +301,11 @@ result = converter.convert(
 
 | 批处理大小 | 总时间 | 吞吐量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 10 项 | 4 分钟 | 2.5 项/分钟 |
 | 50 项 | 18 分钟 | 2.8 项/分钟 |
@@ -317,7 +318,7 @@ result = converter.convert(
 
 你可以为尚不支持的内容源编写自定义提取插件：
 
-```python
+`````python
 from qiaomu_notebooklm.plugins import BaseExtractor
 
 @BaseExtractor.register("my_custom_source")
@@ -340,13 +341,13 @@ result = converter.convert(
     source_url="https://custom-source.example.com/article",
     extractor="my_custom_source"
 )
-```
+`````
 
 ### 多笔记本管理
 
 从单个脚本管理多个 NotebookLM 笔记本：
 
-```python
+`````python
 notebooklm = converter.connect_notebooklm()
 
 # 为每个项目创建笔记本
@@ -369,13 +370,13 @@ for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebo
     for url in urls: result = converter.convert(url, output_format="notebooklm")
         notebook.upload_source(result.file_path)
         print(f"已添加到 {notebook_name}: {url}")
-```
+`````
 
 ### 知识图谱生成
 
 从转换后的内容中生成结构化知识：
 
-```python
+`````python
 from qiaomu_notebooklm import KnowledgeExtractor
 
 extractor = KnowledgeExtractor()
@@ -392,7 +393,7 @@ knowledge_graph.save("./knowledge_graph.json")
 # 查询图谱
 entities = knowledge_graph.get_entities_by_type("Person")
 print(f"找到 {len(entities)} 个实体: {[e.name for e in entities]}")
-```
+`````
 
 ## 与替代方案比较
 
@@ -400,15 +401,15 @@ Qiaomu 万物转 NotebookLM 与其他内容转笔记本解决方案相比如何�
 
 | 功能 | Qiaomu | NotebookLM 原生 | Notion AI | Obsidian + AI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 来源支持 | 15+ 格式 | 仅手动上传 | 有限 | 依赖插件 |
 | 自动转换 | 是 | 否 | 有限 | 依赖插件 |
@@ -438,7 +439,7 @@ Qiaomu 填补了其他工具均未解决的一个空白：为 NotebookLM 提供�
 
 ### 1. 如何安装 Qiaomu 万物转 NotebookLM？
 
-运行 `pip install qiaomu-notebooklm` 安装 Python 包。要获取最新版本，使用 `git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git` 克隆仓库并从源码安装。
+运行 ````pip install qiaomu-notebooklm```` 安装 Python 包。要获取最新版本，使用 ````git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git```` 克隆仓库并从源码安装。
 
 ### 2. 它支持哪些内容来源？
 
@@ -474,9 +475,9 @@ Qiaomu 万物转 NotebookLM 解决了一个实际问题：如何从你最喜欢�
 
 立即安装并开始构建你的自动化知识流水线：
 
-```bash
+`````bash
 pip install qiaomu-notebooklm
-```
+````
 
 [CTA：将任意内容转换为 NotebookLM 知识库。[开始使用](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) | [查看示例](https://github.com/joeseesun/qiaomu-anything-to-notebooklm/tree/main/examples)]
 
@@ -552,12 +553,12 @@ Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM repr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [qiaomu-anything-to-notebooklm](qiaomu-anything-to-notebooklm)
@@ -566,7 +567,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-01-trending-ai-agents](qiaomu-anything-to-notebooklm)
 - [2026-06-08-trending-ai-agents](qiaomu-anything-to-notebooklm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -597,15 +598,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -31,6 +31,7 @@ faq: - q: "Is Claude Max ($200) worth it vs API pay-as-you-go?"
   - q: "What changed in May 2026 pricing that wasn't in earlier reviews?"
     a: "Anthropic adjusted Max plan rate limits in late April (looser, more headroom). OpenAI's Codex CLI moved fully to pay-as-you-go (no Pro tier). Cursor added a $50 Business tier with API credits bundled. All three changes shift the threshold math compared to Q1 reviews."
 ---
+
 {{</* resource-info */>}}
 
 # AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts
@@ -52,7 +53,7 @@ Most AI coding tool reviews talk about subscription prices in isolation. Almost 
 > **Stacking 3 only worth it** if you have shell/devops automation needs where Codex CLI's terminal-native flow wins.
 
 
----
+* * *
 ## The 30-Day Workload
 
 To make this comparable: I tracked one solo developer's actual usage across all three platforms, May 1-30, 2026. Project mix: 70% TypeScript SaaS feature work, 20% Python data scripts, 10% misc (config / docs / ops).
@@ -67,38 +68,38 @@ Some hours overlap (Cursor open while Claude Code running in terminal). Total wo
 
 ### Claude Max ($200/month) — Most Hours, Most Value
 
-```
+````
 Plan: Anthropic Max ($200)
 Period: 2026-05-01 to 2026-05-30
 Token usage: ~14.2M input, ~3.1M output (estimated)
 Rate limit hits: 2 (both during long debug loops near 200K context)
 Effective cost per hour: $2.98
-```
+`````
 
 If billed via API at standard Sonnet 4.6 rates, the same usage would have been roughly $340. Max saves ~$140 at this volume. **Threshold**: at < 3 hours/day usage, API pay-as-you-go ($80-150 range) wins. Above 3 hours, Max wins.
 
 ### ChatGPT Plus + Codex CLI API ($165 effective)
 
-```
+`````
 Plan: ChatGPT Plus ($20) + Codex CLI API
 Period: 2026-05-01 to 2026-05-30
 API usage: $144.80 (GPT-5 + Codex)
 Effective monthly: $164.80
 Effective cost per hour (Codex only): $7.49
-```
+`````
 
 Codex CLI's strength is shell-driven workflow — devops scripts, CI/CD glue, log analysis. Per-hour cost is higher but hour count is lower. **For 22 hours/month of agent terminal work**, this slots in between Claude Max and Cursor Pro.
 
 ### Cursor Pro + API ($87 actual)
 
-```
+`````
 Plan: Cursor Pro ($20)
 Period: 2026-05-01 to 2026-05-30
 Subscription: $20
 API overflow (agent mode): $67.12
 Effective monthly: $87.12
 Effective cost per hour: $0.98
-```
+````
 
 Lowest per-hour cost — but most of those 89 hours are passive tab completion. Active agent-loop hours are ~12. **Cost per active hour** is much closer to $7.26. The "cheap" framing hides what happens when you use agent mode heavily.
 
@@ -108,13 +109,13 @@ What does each tool actually charge for a typical task?
 
 | Task type | Claude Code | Cursor | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | New feature, ~200 LOC, 3 files | $0.42 | $0.18 | $0.55 |
 | Repo-wide refactor (~40 sites) | $0.84 | $0.05 (symbol rename) | $1.10 |
@@ -168,7 +169,7 @@ The honest answer is "no single tool wins" — but the *combination* matters mor
 Track your own usage for 30 days before you optimize. The receipts above are one developer's reality, but your workflow mix will shift the math. The exercise of tracking itself often reveals the biggest savings — most developers don't know what they pay per hour until they look.
 
 
----
+* * *
 **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [RTK Rust CLI Proxy](https://dibi8.com/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/)
 
 
@@ -233,12 +234,12 @@ AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts from Claude Max, ChatGPT
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -248,7 +249,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ai-coding-agent-monthly-bill-2026-real-receipts)
 - [cursor-vs-claude-code](ai-coding-agent-monthly-bill-2026-real-receipts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

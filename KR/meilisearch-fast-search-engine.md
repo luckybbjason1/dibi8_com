@@ -12,11 +12,12 @@ aliases:
   - /kr/posts/meilisearch-fast-search-engine/
 ---
 
+
 {{</* resource-info */>}}
 
-## 소개: 데이터베이스의 `LIKE` 쿼리가 UX를 죽이고 있다
+## 소개: 데이터베이스의 ```LIKE```` 쿼리가 UX를 죽이고 있다
 
-검색은 대부분의 애플리케이션에서 가장 높은 트래픽을 차지하는 상호작용이다. 그러나 2026년에도 **63%의 웹 애플리케이션이 데이터베이스 `LIKE` 쿼리**를 검색에 사용하고 있다. 결과는? 100", "000개 이상의 행이 있는 데이터셋에서 쿼리가 **300ms에서 3초**가 걸린다. 사용자는 500ms 후에 검색을 포기한다. 당신은 참여도를 잃고 있다.
+검색은 대부분의 애플리케이션에서 가장 높은 트래픽을 차지하는 상호작용이다. 그러나 2026년에도 **63%의 웹 애플리케이션이 데이터베이스 ````LIKE```` 쿼리**를 검색에 사용하고 있다. 결과는? 100", "000개 이상의 행이 있는 데이터셋에서 쿼리가 **300ms에서 3초**가 걸린다. 사용자는 500ms 후에 검색을 포기한다. 당신은 참여도를 잃고 있다.
 
 Elasticsearch에 대해 들어봤을 것이다. 잘 작동하지만 **최소 8GB RAM**", "JVM 튜닝", "전용 운영 팀이 필요하다. Algolia는 빠르지만 확장 시 **1", "000건 검색당 $1.00**이 든다. 몇 분 안에 배포되고", "$20 VPS에서 실행되며", "수백만 문서를 번쩍이는 눈썂 처리하는 것이 필요하다.
 
@@ -70,7 +71,7 @@ Meilisearch는 사용자 정의 순위 규칙 시스템을 사용한다. 기본 
 ### 패싯 검색", "필터링 및 정렬
 
 Meilisearch는 다음을 지원한다: - **동적 패싯** — 모든 필터 가능한 속성에 대한 패싯 카운트 요청
-- **복잡한 필터** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
+- **복잡한 필터** — ````price >= 10 AND (category = "shoes" OR in_stock = true)````
 - **쿼리 시점 정렬** — 모든 정렬 가능한 속성으로 정렬
 - **지리 검색** — 위도/경도로부터의 거리로 필터링 및 정렬
 - **멀티 테넌시** — 테넌트 토큰을 통한 보안 다중 사용자 격리 (v1.12)
@@ -82,7 +83,7 @@ Meilisearch는 다음을 지원한다: - **동적 패싯** — 모든 필터 가
 
 Meilisearch는 거의 모든 검색 엔진보다 빠르게 시작한다. **Docker 24.0+**와 **최소 512MB RAM**이 필요하다 (1GB 권장).
 
-```bash
+`````bash
 docker run -d \
   --name meilisearch \
   --restart unless-stopped \
@@ -95,15 +96,15 @@ docker run -d \
 # 상태 확인
 curl -s http://localhost:7700/health | jq .
 # 예상: { "status": "available" }
-```
+`````
 
-**참고**: `MEILI_MASTER_KEY`는 프로덕션에서 최소 16바이트여야 한다. `your-secure-master-key-32-chars-long!!`를 실제 비밀로 교체하라.
+**참고**: ````MEILI_MASTER_KEY````는 프로덕션에서 최소 16바이트여야 한다. ````your-secure-master-key-32-chars-long!!````를 실제 비밀로 교체하라.
 
 ### 2단계: 인덱스를 생성하고 문서 추가
 
 Meilisearch는 "컬렉션" 대신 "인덱스"를 사용한다. Typesense와 달리 **Meilisearch는 미리 정의된 스키마가 필요 없다** — 첫 번째 문서 수집 시 필드 유형을 자동 감지한다.
 
-```bash
+`````bash
 # 인덱스 생성
 curl -s -X POST 'http://localhost:7700/indexes' \
   -H 'Content-Type: application/json' \
@@ -122,11 +123,11 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
     }", "{
       "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
     }"]' | jq .
-```
+`````
 
 ### 3단계: 검색 가능 및 필터 가능 필드 구성
 
-Meilisearch에게 어떤 필드를 검색하고 어떤 필드를 필터링에 사용할지 알려준다: ```bash
+Meilisearch에게 어떤 필드를 검색하고 어떤 필드를 필터링에 사용할지 알려준다: `````bash
 # 인덱스 설정 업데이트
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -144,11 +145,11 @@ curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
       "exactness"
     ]
   }' | jq .
-```
+`````
 
 ### 4단계: 오타 허용으로 검색
 
-```bash
+`````bash
 # 오타로 검색 ("headphones" 대신 "headphons")
 curl -s -X POST 'http://localhost:7700/indexes/products/search' \
   -H 'Content-Type: application/json' \
@@ -160,28 +161,28 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "facets": ["category"],
     "limit": 10
   }' | jq .
-```
+`````
 
 응답에는 일치하는 문서, 카테고리별 패싯 카운트, 그리고 강조된 일치 항목이 포함된다 — 모두 **30ms 미만**에.
 
 ### 5단계: 인덱싱 작업 대기
 
-Meilisearch는 문서 추가를 비동기로 처리한다. 작업 상태 확인: ```bash
+Meilisearch는 문서 추가를 비동기로 처리한다. 작업 상태 확인: `````bash
 # 최신 작업 확인
 curl -s 'http://localhost:7700/tasks?limit=1' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq '.results[0] | {uid, status, type, duration}'
 # 예상: { "uid": 1, "status": "succeeded", "type": "documentAdditionOrUpdate", "duration": "PT0.234S" }
-```
+`````
 
 ## JavaScript, Python, PHP, Go 및 React 통합
 
 ### JavaScript/Node.js SDK
 
-```bash
+`````bash
 npm install meilisearch
-```
+`````
 
-```javascript
+`````javascript
 const { MeiliSearch } = require(meilisearch);
 
 const client = new MeiliSearch({
@@ -201,24 +202,24 @@ async function search(query) {
     attributesToHighlight: [name, description]
   });
 
-  console.log(`Found ${results.estimatedTotalHits} hits`);
+  console.log(````Found ${results.estimatedTotalHits} hits````);
   console.log('Facets:', results.facetDistribution);
   
   results.hits.forEach(hit => {
-    console.log(`- ${hit.name} ($${hit.price}) [${hit._formatted.name}]`);
+    console.log(````- ${hit.name} ($${hit.price}) [${hit._formatted.name}]````);
   });
 }
 
 search(headphons); // 오타 자동 처리
-```
+`````
 
 ### Python SDK
 
-```bash
+`````bash
 pip install meilisearch
-```
+`````
 
-```python
+`````python
 import meilisearch
 import os
 
@@ -244,15 +245,15 @@ results = index.search(
 print(f"Hits: {results[estimatedTotalHits]}")
 print(f"Facets: {results.get(facetDistribution, {})}")
 for hit in results[hits]: print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
-```
+`````
 
 ### React InstantSearch 통합
 
-Meilisearch는 React InstantSearch 호환성을 위해 `meilisearch/instant-meilisearch`를 제공한다: ```bash
+Meilisearch는 React InstantSearch 호환성을 위해 ``meilisearch/instant-meilisearch``를 제공한다: `````bash
 npm install @meilisearch/instant-meilisearch react-instantsearch-dom
-```
+`````
 
-```jsx
+`````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList, Stats } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -294,15 +295,15 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-```
+`````
 
 ### PHP SDK
 
-```bash
+`````bash
 composer require meilisearch/meilisearch-php
-```
+`````
 
-```php
+`````php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -324,15 +325,15 @@ foreach ($results->getHits() as $hit) {
     echo "- {$hit[name]} \${$hit[price]}\n";
 }
 ?>
-```
+`````
 
 ### Go SDK
 
-```bash
+`````bash
 go get github.com/meilisearch/meilisearch-go
-```
+`````
 
-```go
+`````go
 package main
 
 import (
@@ -366,7 +367,7 @@ func main() {
         fmt.Printf("- %s ($%.0f)\n", doc["name"], doc["price"])
     }
 }
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -390,7 +391,7 @@ func main() {
 
 ### AI 기반 검색 (Meilisearch AI)
 
-v1.10부터 Meilisearch는 `embedders` 설정을 통해 **벡터 검색 및 하이브리드 검색**을 지원한다: ```bash
+v1.10부터 Meilisearch는 ``embedders`` 설정을 통해 **벡터 검색 및 하이브리드 검색**을 지원한다: `````bash
 # 의미 검색을 위한 임베더 구성
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -414,7 +415,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "hybrid": { "semanticRatio": 0.5 },
     "limit": 5
   }' | jq '.hits[] | {name, _rankingScore}'
-```
+`````
 
 이는 **의미 검색**을 가능하게 한다 — 사용자가 "comfortable audio device"를 검색할 때 "headphones"를 찾을 수 있게 한다 — 별도의 벡터 데이터베이스 없이.
 
@@ -432,7 +433,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 
 ### 1. 프로덕션용 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -456,13 +457,13 @@ services: meilisearch: image: getmeili/meilisearch:v1.12
     volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes: meilisearch-data: caddy-data: ```
+volumes: meilisearch-data: caddy-data: `````
 
 모든 VPS에서 배포할 수 있다. 안정적인 호스트가 필요하면, [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 **$200 물리 크레딧**을 제공한다 — 2GB 드롭릿에서 Meilisearch를 11개월 동안 실행할 수 있다.
 
 ### 2. 테넌트 토큰을 통한 멀티 테넌시
 
-Meilisearch 1.12는 테넌트 토큰을 통한 보안 멀티 테넌시를 지원한다: ```javascript
+Meilisearch 1.12는 테넌트 토큰을 통한 보안 멀티 테넌시를 지원한다: `````javascript
 const { MeiliSearch } = require(meilisearch);
 const crypto = require(crypto);
 
@@ -486,11 +487,11 @@ const token = client.generateTenantToken(
 
 console.log('Tenant token:', token);
 // 이 토큰은 user_id = 123인 문서만 검색할 수 있음
-```
+`````
 
 ### 3. 예약된 스냅샷 및 백업
 
-```bash
+`````bash
 # 덤프(스냅샷) 트리거
 curl -s -X POST 'http://localhost:7700/dumps' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq .
@@ -499,11 +500,11 @@ curl -s -X POST 'http://localhost:7700/dumps' \
 # 작업 완료 후 /dumps/에서 다운로드
 
 # 자동 백업을 위해 crontab에 추가: # 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
-```
+`````
 
 ### 4. 동의어 및 불용어
 
-```bash
+`````bash
 # 동의어 구성
 curl -s -X PUT 'http://localhost:7700/indexes/products/settings/synonyms' \
   -H 'Content-Type: application/json' \
@@ -519,11 +520,11 @@ curl -s -X PUT 'http://localhost:7700/indexes/products/settings/stop-words' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '["the", "a", "an", "and", "or"]' | jq .
-```
+`````
 
 ### 5. Prometheus를 통한 모니터링 (공식 통합)
 
-Meilisearch는 네이티브로 Prometheus 메트릭을 노출한다: ```bash
+Meilisearch는 네이티브로 Prometheus 메트릭을 노출한다: `````bash
 # 메트릭 엔드포인트 활성화
 curl -s -X PATCH 'http://localhost:7700/experimental-features' \
   -H 'Content-Type: application/json' \
@@ -534,7 +535,7 @@ curl -s -X PATCH 'http://localhost:7700/experimental-features' \
 curl -s http://localhost:7700/metrics
 # meilisearch_search_requests_total{index="products"} 15420
 # meilisearch_http_requests_duration_seconds_sum 2.45
-```
+`````
 
 ## 대안과의 비교
 
@@ -593,11 +594,11 @@ Meilisearch는 완벽하지 않다. 실제 한계는 다음과 같다: 1. **아�
 
 ### 다운타임 없이 Meilisearch를 어떻게 업그레이드하나요?
 
-Meilisearch는 아직 제로 다운타임 롤링 업그레이드를 지원하지 않는다. 권장 접근법: (1) `/dumps` 엔드포인트를 통해 덤프 트리거, (2) 새 버전으로 새 Meilisearch 컨테이너 시작, (3) 덤프 복원, (4) 트래픽 전환. 프로덕션에서는 로드 밸런서로 블루-그린 배포를 실행한다. 데이터셋 크기에 따라 프로세스에 5-15분이 소요된다.
+Meilisearch는 아직 제로 다운타임 롤링 업그레이드를 지원하지 않는다. 권장 접근법: (1) ````/dumps```` 엔드포인트를 통해 덤프 트리거, (2) 새 버전으로 새 Meilisearch 컨테이너 시작, (3) 덤프 복원, (4) 트래픽 전환. 프로덕션에서는 로드 밸런서로 블루-그린 배포를 실행한다. 데이터셋 크기에 따라 프로세스에 5-15분이 소요된다.
 
 ### Meilisearch는 사용자 생성 콘텐츠에 대한 실시간 검색을 지원하나요?
 
-예. 문서는 추가된 후 **1-2초 내** 검색 가능하다. 일반적인 UGC 애플리케이션(댓글, 게시물, 리뷰)의 경우 이는 사실상 실시간이다. Meilisearch는 낮ㅂ 큐를 통해 비동기로 작업을 처리한다. `/tasks/{taskUid}` 엔드포인트를 통해 작업 완료 상태를 확인할 수 있다. 지연 시간이 중요한 사용 사례의 경우, 최적의 처리량을 위해 100-1,000 문서 그룹으로 쓰기를 일괄 처리하라.
+예. 문서는 추가된 후 **1-2초 내** 검색 가능하다. 일반적인 UGC 애플리케이션(댓글, 게시물, 리뷰)의 경우 이는 사실상 실시간이다. Meilisearch는 낮ㅂ 큐를 통해 비동기로 작업을 처리한다. ````/tasks/{taskUid}```` 엔드포인트를 통해 작업 완료 상태를 확인할 수 있다. 지연 시간이 중요한 사용 사례의 경우, 최적의 처리량을 위해 100-1,000 문서 그룹으로 쓰기를 일괄 처리하라.
 
 ### Meilisearch Cloud는 셀프 호스팅에 비해 가치가 있나요?
 
@@ -605,7 +606,7 @@ Meilisearch Cloud 개발자 요금제는 월 **$29** (자동 업그레이드, �
 
 ## 결론: 3분 안에 인스턴트 검색 배포하기
 
-Meilisearch 1.12는 2026년에 배포하기 가장 쉬운 프로덕션급 검색 엔진이다. `docker run`부터 첫 번째 검색 결과까지 전체 과정이 **3분 미만**이다. MIT 라이선스, 10+ SDK, 내장 오타 허용, 그리고 이제 AI 기반 의미 검색을 통해, 데이터베이스 `LIKE` 쿼리를 사용할 모든 핑계를 제거한다.
+Meilisearch 1.12는 2026년에 배포하기 가장 쉬운 프로덕션급 검색 엔진이다. ````docker run````부터 첫 번째 검색 결과까지 전체 과정이 **3분 미만**이다. MIT 라이선스, 10+ SDK, 내장 오타 허용, 그리고 이제 AI 기반 의미 검색을 통해, 데이터베이스 ````LIKE``` 쿼리를 사용할 모든 핑계를 제거한다.
 
 새 프로젝트의 경우 이 가이드의 Docker 설정으로 시작하라. Algolia에 월 $500+를 지불하는 팀에게, $18 VPS에서 실행되는 Meilisearch는 동등한 트래픽을 처리한다. Elasticsearch에서 마이그레이션하는 개발자에게, 운영 단순성은 휴가처럼 느껴질 것이다.
 
@@ -632,7 +633,7 @@ Meilisearch 1.12는 2026년에 배포하기 가장 쉬운 프로덕션급 검색
 - [비교: Meilisearch vs Typesense vs Elasticsearch](dibi8-internal-link)
 - [검색 엔진 Docker 모범 사례](dibi8-internal-link)
 
----
+* * *
 
 *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하시면 추가 비용 없이 커미션을 받습니다. 우리는 실제 테스트를 기반으로 서비스를 독립적으로 추천합니다. Meilisearch는 물리 오픈소스 소프트웨어입니다 — 유일한 비용은 호스팅 비용입니다.*
 

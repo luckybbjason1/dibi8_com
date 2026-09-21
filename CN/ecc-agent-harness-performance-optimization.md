@@ -10,6 +10,7 @@ github_repo: "https://github.com/affaan-m/ECC"
 license: 'MIT'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
 # ECC: Agent Harness Performance Optimization — 2026 Guide
 
 ECC (212,000+ stars) is an agent harness performance optimization system that reduces context window usage and speeds up AI coding agents. It works with Claude Code, Codex, Opencode, Cursor, and 20+ other tools through a unified skill and MCP server layer.
@@ -20,11 +21,11 @@ ECC (212,000+ stars) is an agent harness performance optimization system that re
 
 ECC sits between your AI coding agent (Claude Code, Codex CLI, Cursor, etc.) and the underlying model. It intercepts tool outputs, response tokens, and context data — then applies compression, caching, and selective filtering to reduce the amount of data the agent needs to process.
 
-```
+````
 User → Agent (Claude Code) → ECC Middleware → Model (Sonnet/Opus)
                     ↑
            Performance optimization layer
-```
+`````
 
 The system operates through three main mechanisms: 1. **Context Compression** — Reduces tool output size by identifying and removing redundant tokens, whitespace, and low-value diagnostic output
 2. **Skill Registry** — Pre-built optimization profiles for common coding tasks (debugging, code review, refactoring)
@@ -36,14 +37,14 @@ ECC is written in JavaScript/TypeScript and uses an MIT license, making it freel
 
 ## How ECC Works
 
-ECC's optimization pipeline runs in real-time as data flows between your agent and the model. Here's the flow: ```bash
+ECC's optimization pipeline runs in real-time as data flows between your agent and the model. Here's the flow: `````bash
 # ECC intercepts tool output before it reaches the LLM context
 Claude Code → exec("ls -la /tmp") → [raw output: 15KB]
                     ↓
             ECC compression layer
                     ↓
           [compressed output: 2.3KB] → LLM context
-```
+`````
 
 The compression ratio depends on output type: - **Terminal output**: 60-85% reduction (removes ANSI codes, redundant paths, repeated patterns)
 - **Code diffs**: 40-60% reduction (keeps hunks, removes context lines when irrelevant)
@@ -52,7 +53,7 @@ The compression ratio depends on output type: - **Terminal output**: 60-85% redu
 
 ECC achieves this through a combination of regex-based token filtering, semantic deduplication, and configurable compression profiles. Each profile targets a specific output type and can be tuned per-project.
 
-```
+`````
 ECC Compression Flow: ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
 │  Agent    │────▶│  ECC      │────▶│  Compress │────▶│  Model    │
 │  (Claude) │     │  Middleware│    │  Engine   │     │ (Sonnet)  │
@@ -60,61 +61,61 @@ ECC Compression Flow: ┌──────────┐     ┌────�
                     Profile: terminal
                     Filter: ANSI codes
                     Reduce: 85%
-```
+`````
 
 ## Installation & Setup
 
-ECC supports multiple installation methods depending on your workflow: ```bash
+ECC supports multiple installation methods depending on your workflow: `````bash
 # Method 1: Git clone + npm (recommended for full feature set)
 git clone https://github.com/affaan-m/ECC.git
 cd ECC
 npm install
-```
+`````
 
-```bash
+`````bash
 # Method 2: npm global install (lightweight)
 npm install -g ecc-universal
-```
+`````
 
-```bash
+`````bash
 # Method 3: Anthropic Marketplace plugin
 # Search for "ecc@ecc" in the Claude Code marketplace
 # Install and the plugin registers automatically
-```
+`````
 
-```bash
+`````bash
 # Post-install: Sync ECC to Codex if using Codex CLI
 npm install && bash scripts/sync-ecc-to-codex.sh
-```
+`````
 
-After installation, verify with: ```bash
+After installation, verify with: `````bash
 ecc --version
 # Should show the installed version number
-```
+`````
 
-For Claude Code integration, ECC registers as a skill layer. For Cursor, it operates as an extension. For MCP-compatible agents, the bundled server (`ecc-mcp-server`) connects directly.
+For Claude Code integration, ECC registers as a skill layer. For Cursor, it operates as an extension. For MCP-compatible agents, the bundled server (````ecc-mcp-server````) connects directly.
 
 ## Integration with Popular Tools
 
 ### Claude Code
 
-ECC integrates natively with Claude Code through its marketplace plugin system. After installation, it automatically intercepts tool outputs: ```bash
+ECC integrates natively with Claude Code through its marketplace plugin system. After installation, it automatically intercepts tool outputs: `````bash
 # Claude Code with ECC compression active
 claude "explain the error in my last command"
 # ECC compresses the error output from ~8KB to ~1.2KB before sending to the model
-```
+`````
 
-The marketplace identifier is `ecc@ecc` (shortened to fit Claude Code's namespace limits).
+The marketplace identifier is ````ecc@ecc```` (shortened to fit Claude Code's namespace limits).
 
 ### Codex CLI
 
-For OpenAI's Codex, ECC provides a sync script that configures the compression layer: ```bash
+For OpenAI's Codex, ECC provides a sync script that configures the compression layer: `````bash
 # Install Codex CLI first
 npm install -g opencode
 
 # Sync ECC to Codex
 bash scripts/sync-ecc-to-codex.sh
-```
+`````
 
 ### Cursor IDE
 
@@ -124,7 +125,7 @@ ECC runs as a Cursor extension. In Cursor settings, enable the ECC skill layer. 
 
 For CI/CD integration, [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) offers a reliable proxy network that works well with ECC's MCP server for distributed optimization across multiple regions.
 
-```json
+`````json
 // .cursor/mcp.json or equivalent config
 {
   "mcpServers": {
@@ -134,11 +135,11 @@ For CI/CD integration, [WebShare.io](https://www.webshare.io/?referral_code=oa14
     }
   }
 }
-```
+`````
 
 ### GitLab CI / GitHub Actions
 
-ECC can be integrated into CI pipelines to reduce token costs: ```yaml
+ECC can be integrated into CI pipelines to reduce token costs: `````yaml
 # .github/workflows/ecc-optimization.yml
 jobs: optimize: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
@@ -146,7 +147,7 @@ jobs: optimize: runs-on: ubuntu-latest
         run: npm install -g ecc-universal
       - name: Run ECC optimization
         run: ecc --target . --output optimized-output.json
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -154,13 +155,13 @@ jobs: optimize: runs-on: ubuntu-latest
 
 Testing across 500+ real-world agent sessions (5-30 minute coding sessions): | Output Type | Before ECC | After ECC | Reduction |
 |
----
+* * *
 |
----
+* * *
 :|
----
+* * *
 :|
----
+* * *
 :|
 | npm install output | 14.2 KB | 2.1 KB | 85% |
 | git diff (large PR) | 28.7 KB | 8.4 KB | 71% |
@@ -173,7 +174,7 @@ Average compression across all output types: **73% token reduction**, equivalent
 
 ### Cost Savings Example
 
-For a typical developer session, you can spin up an optimized development environment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) to run ECC with any agent. Use the following setup for production: ```
+For a typical developer session, you can spin up an optimized development environment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) to run ECC with any agent. Use the following setup for production: `````
 Before ECC: - 45 tool executions × avg 12KB output = 540KB processed
   - ~3,200 tokens consumed by tool outputs
   - Estimated API cost: $0.042 per session
@@ -184,7 +185,7 @@ After ECC: - 45 tool executions × avg 3.2KB output = 144KB processed
 
 Monthly savings (5 sessions/day, 22 days): $3.63/month
 Annual savings: $43.56/year
-```
+`````
 
 ### Enterprise Case Studies
 
@@ -194,7 +195,7 @@ Companies using ECC report average token savings of 60-75% across development te
 
 ### Custom Compression Profiles
 
-ECC allows creating project-specific compression profiles: ```json
+ECC allows creating project-specific compression profiles: `````json
 // .ecc-profile.json
 {
   "name": "my-project",
@@ -211,27 +212,27 @@ ECC allows creating project-specific compression profiles: ```json
   },
   "sensitivity": "balanced"
 }
-```
+`````
 
 ### Debugging Mode
 
-To see what ECC is compressing and how much: ```bash
+To see what ECC is compressing and how much: `````bash
 # Enable verbose logging
 export ECC_DEBUG=1
 claude "check my code"
 # Shows compression stats for each intercepted tool output
-```
+`````
 
-```
+`````
 [EC] Tool output intercepted: exec("find . -name *.js")
 [EC] Raw size: 24.3 KB → Compressed: 3.1 KB (87% reduction)
 [EC] Filtered: 186 lines (node_modules, .git, test fixtures)
 [EC] Kept: 34 lines (source files)
-```
+`````
 
 ### Performance Tuning
 
-ECC's performance is configurable through environment variables: ```bash
+ECC's performance is configurable through environment variables: `````bash
 # Maximum compression (aggressive filtering, may miss edge cases)
 export ECC_COMPRESSION=aggressive
 
@@ -240,21 +241,21 @@ export ECC_COMPRESSION=balanced
 
 # Minimal compression (keep most data, only remove noise)
 export ECC_COMPRESSION=conservative
-```
+`````
 
-For production use, `balanced` mode provides the best trade-off between compression and data integrity. The `aggressive` mode is recommended for CI environments where you primarily need error detection.
+For production use, ````balanced```` mode provides the best trade-off between compression and data integrity. The ````aggressive```` mode is recommended for CI environments where you primarily need error detection.
 
 ECC can be deployed on [HTStack](https://my.htstack.com/aff.php?aff=27187) for enterprise teams needing multi-region availability and dedicated support.
 
 ### Docker Deployment
 
-ECC can run as a Dockerized service for multi-agent environments: ```bash
+ECC can run as a Dockerized service for multi-agent environments: `````bash
 docker run -d \
   --name ecc-service \
   -p 8080:8080 \
   -v $(pwd)/.ecc-profile.json:/app/.ecc-profile.json \
   affaanm/ecc:latest
-```
+`````
 
 Agents connect via the MCP protocol on port 8080. The Docker image includes the full ECC engine with all compression profiles.
 
@@ -262,15 +263,15 @@ Agents connect via the MCP protocol on port 8080. The Docker image includes the 
 
 | Feature | ECC | headroom | Claude Code built-in | No optimization |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Token reduction | 73% avg | 60-95% | None | 0% |
 | Multi-agent support | 20+ tools | Library + proxy | Claude Code only | N/A |
@@ -286,7 +287,7 @@ ECC's key differentiator is its **unified skill layer** that works across all ma
 ## Limitations / Honest Assessment
 
 ECC is a young project (launched 2026) with significant momentum but some known limitations: - **Compression artifacts**: In aggressive mode, the compression filter occasionally removes context that the model later needs. This is rare in balanced mode (~2% of sessions report needing uncompressed data).
-- **Marketplace-only Claude integration**: The marketplace plugin (`ecc@ecc`) is the most seamless integration path. Manual installation requires additional configuration.
+- **Marketplace-only Claude integration**: The marketplace plugin (````ecc@ecc````) is the most seamless integration path. Manual installation requires additional configuration.
 - **JavaScript ecosystem**: The project is built in JavaScript/TypeScript. Python-based agents work through the MCP server, but native Python bindings don't exist yet.
 - **No GPU acceleration**: Compression runs on CPU. For extremely large outputs (>100KB), compression may add 50-200ms of latency.
 - **Learning curve**: Custom compression profiles require understanding regex patterns and ECC's internal filtering system.
@@ -305,7 +306,7 @@ A: In balanced mode (default), ECC preserves all meaningful code content and onl
 
 **Q: Can I use ECC with team projects?**
 
-A: ECC supports project-level configuration through `.ecc-profile.json`. Teams can share compression profiles in their repository, ensuring consistent token optimization across all developers. The marketplace plugin automatically loads the repository's ECC profile when opening a project.
+A: ECC supports project-level configuration through ````.ecc-profile.json````. Teams can share compression profiles in their repository, ensuring consistent token optimization across all developers. The marketplace plugin automatically loads the repository's ECC profile when opening a project.
 
 **Q: How does ECC compare to Claude Code's built-in context management?**
 
@@ -317,7 +318,7 @@ A: Yes, ECC is licensed under MIT. There are no usage limits, subscription fees,
 
 **Q: What about security? Does ECC intercept sensitive data?**
 
-A: ECC only processes data that flows through the agent's tool pipeline. It does not intercept keystrokes, clipboard content, or network traffic outside the agent"s operations. Compression profiles can be configured to exclude sensitive file patterns (e.g., `.env`, `*.key`) from any processing.
+A: ECC only processes data that flows through the agent's tool pipeline. It does not intercept keystrokes, clipboard content, or network traffic outside the agent"s operations. Compression profiles can be configured to exclude sensitive file patterns (e.g., ````.env````, ````*.key````) from any processing.
 
 ## Conclusion
 
@@ -325,7 +326,7 @@ ECC represents a practical approach to the context window problem that every AI 
 
 The core value proposition is simple: reduce the data your agent processes without losing the information it needs. The 73% average token reduction translates to roughly 3x effective context, lower API costs, and faster response times.
 
-**Try ECC today** — install with `npm install -g ecc-universal` and see the difference. The marketplace plugin (`ecc@ecc`) is the easiest path for Claude Code users.
+**Try ECC today** — install with ````npm install -g ecc-universal```` and see the difference. The marketplace plugin (````ecc@ecc```) is the easiest path for Claude Code users.
 
 For more on agent optimization: - [Headroom: Token Compression Proxy](/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/) — alternative compression approach
 - [Agent Memory Systems](/resources/llm-frameworks/ai-agent-memory-systems-2026/) — complement ECC with persistent agent memory
@@ -340,7 +341,7 @@ For more on developer tools: - [Docker Development Best Practices](/resources/de
 **Join our community**: https://t.me/DIBI8_Group
 
 
----
+* * *
 **Disclosure**: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.
 
 
@@ -370,7 +371,7 @@ For more on developer tools: - [Docker Development Best Practices](/resources/de
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](ecc-agent-harness-performance-optimization)
@@ -379,7 +380,7 @@ For more on developer tools: - [Docker Development Best Practices](/resources/de
 - [personal-ai-infrastructure-daniel-miessler](ecc-agent-harness-performance-optimization)
 - [prompts-chat](ecc-agent-harness-performance-optimization)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

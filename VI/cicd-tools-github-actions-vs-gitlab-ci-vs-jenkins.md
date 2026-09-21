@@ -22,6 +22,7 @@ aliases:
   - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
 
+
 # So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025
 
 
@@ -47,7 +48,7 @@ Một nền tảng CI/CD tốt trong năm 2025 cần đáp ứng ít nhất bố
 
 ### Cách GitHub Actions Hoạt Động
 
-GitHub Actions xây dựng pipeline dựa trên ba khái niệm cốt lõi: **Workflow** (quy trình tự động hóa), **Job** (tập hợp các bước chạy trên cùng một runner) và **Step** (lệnh cá nhân hoặc action được sử dụng lại). Workflow được định nghĩa trong thư mục `.github/workflows/` dưới dạng file YAML, tức là pipeline và mã nguồn tồn tại cùng một nơi — một lợi thế lớn về khả năng truy xuất và quản lý phiên bản.
+GitHub Actions xây dựng pipeline dựa trên ba khái niệm cốt lõi: **Workflow** (quy trình tự động hóa), **Job** (tập hợp các bước chạy trên cùng một runner) và **Step** (lệnh cá nhân hoặc action được sử dụng lại). Workflow được định nghĩa trong thư mục ```.github/workflows/```` dưới dạng file YAML, tức là pipeline và mã nguồn tồn tại cùng một nơi — một lợi thế lớn về khả năng truy xuất và quản lý phiên bản.
 
 Một tính năng mạnh mẽ là **matrix builds**, cho phép bạn chạy cùng một job trên nhiều phiên bản ngôn ngữ, hệ điều hành hoặc biến môi trường khác nhau. Ví dụ, bạn có thể kiểm thử ứng dụng Node.js trên đồng thợi Node 18, 20 và 22 trên cả Ubuntu, macOS lẫn Windows — tất cả chỉ trong vài dòng YAML.
 
@@ -65,7 +66,7 @@ GitHub Actions cung cấp runners được quản lý miễn phí (với giới 
 
 ### Cấu Trúc .gitlab-ci.yml
 
-GitLab CI sử dụng file `.gitlab-ci.yml` đặt ở thư mục gốc repository để định nghĩa pipeline. Cấu trúc này xoay quanh ba khái niệm: **Stages** (các giai đoạn như build, test, deploy chạy tuần tự), **Jobs** (công việc cụ thể trong mỗi stage) và **Runners** (agent thực thi job).
+GitLab CI sử dụng file ````.gitlab-ci.yml```` đặt ở thư mục gốc repository để định nghĩa pipeline. Cấu trúc này xoay quanh ba khái niệm: **Stages** (các giai đoạn như build, test, deploy chạy tuần tự), **Jobs** (công việc cụ thể trong mỗi stage) và **Runners** (agent thực thi job).
 
 Một tính năng nổi bật là **parent-child pipelines**, cho phép tách pipeline phức tạp thành nhiều pipeline con có thể chạy độc lập. Điều này cực kỳ hữu ích với monorepo lớn, khi bạn chỉ muốn build và test những phần đã thay đổi thay vì toàn bộ codebase.
 
@@ -105,7 +106,7 @@ Giao diện **Blue Ocean**, được giới thiệu từ năm 2017, mang lại t
 | **Tích hợp repository** | Native (chính GitHub) | Native (chính GitLab) | Tích hợp với mọi Git provider qua plugin |
 | **Số lượng plugin/action** | 20.000+ actions trong Marketplace | CI/CD components, tích hợp native | 1.800+ plugins |
 | **Hỗ trợ Kubernetes** | Qua action bên thứ ba | Native, tích hợp sâu | Qua plugin |
-| **Cấu hình pipeline** | `.github/workflows/*.yml` | `.gitlab-ci.yml` | `Jenkinsfile` hoặc UI |
+| **Cấu hình pipeline** | ````.github/workflows/*.yml```` | ````.gitlab-ci.yml```` | ````Jenkinsfile```` hoặc UI |
 | **Bảo mật secrets** | Encrypted secrets, OIDC | CI/CD variables, OIDC | Credentials plugin, vault integration |
 | **Khả năng mở rộng** | Tốt ( runners có thể tự động scale) | Tốt (Kubernetes runner tự động scale) | Xuất sắc (master-agent không giới hạn) |
 | **Cộng đồng & tài liệu** | Rất lớn, nhiều hướng dẫn | Lớn, tài liệu chính thức chi tiết | Rất lớn, lâu đờii nhưng phân mảnh |
@@ -142,7 +143,7 @@ Bên cạnh ba ông lớn, năm 2025 còn có nhiều lựa chọn CI/CD đáng 
 
 ### Ví Dụ GitHub Actions cho Node.js
 
-```yaml
+`````yaml
 name: Node.js CI
 on: [push, pull_request]
 jobs: build: runs-on: ubuntu-latest
@@ -156,11 +157,11 @@ jobs: build: runs-on: ubuntu-latest
       - run: npm run lint
       - run: npm test
       - run: npm run build
-```
+`````
 
 ### Ví Dụ GitLab CI
 
-```yaml
+`````yaml
 stages: [build, test, deploy]
 
 variables: NODE_VERSION: "20"
@@ -177,11 +178,11 @@ test: stage: test
     - npm run lint
     - npm test
   parallel: matrix: - NODE_VERSION: [18, 20, 22]
-```
+`````
 
 ### Ví Dụ Jenkinsfile
 
-```groovy
+`````groovy
 pipeline {
     agent any
     stages {
@@ -199,7 +200,7 @@ pipeline {
         }
     }
 }
-```
+````
 
 ## Làm Thế Nào Để Chọn Đúng Công Cụ CI/CD?
 
@@ -256,7 +257,7 @@ Quá trình migration gồm ba bước: (1) Phân tích pipeline Jenkins hiện 
 - [Woodpecker CI](https://woodpecker-ci.org)
 - [Dagger - Programmable Pipelines](https://dagger.io)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

@@ -9,6 +9,7 @@ license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -51,10 +52,10 @@ github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 
 ### LangChain：Agent编排平台
 
-LangChain在2025年10月发布了1.0版本，完成了从"链式库"到"Agent工程平台"的定位转变。现在，LangChain的核心API简化为`create_agent`，所有复杂的链式调用都被重新设计为Agent模式。
+LangChain在2025年10月发布了1.0版本，完成了从"链式库"到"Agent工程平台"的定位转变。现在，LangChain的核心API简化为```create_agent````，所有复杂的链式调用都被重新设计为Agent模式。
 
 **核心特性：**
-- `create_agent` API（10行代码创建Agent）
+- ````create_agent```` API（10行代码创建Agent）
 - LangGraph作为官方Agent运行时
 - LangSmith用于可观测性
 - 40+检索器集成
@@ -94,15 +95,15 @@ LangGraph是LangChain生态中的低层级编排框架，专注于长运行、�
 
 | 框架 | 检索速度 | 准确率 | 内存占用 | 易用性 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LlamaIndex | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 低 | ⭐⭐⭐⭐ |
 | LangChain | ⭐⭐⭐ | ⭐⭐⭐⭐ | 中 | ⭐⭐⭐ |
@@ -114,15 +115,15 @@ LlamaIndex在纯RAG场景下明显领先，因为它专注于文档索引和检�
 
 | 框架 | 工作流复杂度 | 错误恢复 | 人工干预 | 学习曲线 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | 中等 |
 | LlamaIndex | ⭐⭐ | ⭐⭐ | ⭐⭐ | 简单 |
@@ -142,7 +143,7 @@ LangGraph在复杂工作流和错误恢复方面表现最强，但学习成本�
 ### 简单RAG查询
 
 **LlamaIndex（推荐）：**
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.ollama import Ollama
 
@@ -152,10 +153,10 @@ query_engine = index.as_query_engine(llm=Ollama(model="llama3.2"))
 
 response = query_engine.query("项目的核心架构是什么？")
 print(response)
-```
+`````
 
 **LangChain：**
-```python
+`````python
 from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
@@ -171,12 +172,12 @@ qa = RetrievalQA.from_chain_type(llm=OllamaLLM(), retriever=vectorstore.as_retri
 
 response = qa.run("项目的核心架构是什么？")
 print(response)
-```
+`````
 
 ### Agent创建
 
 **LangChain 1.0（推荐）：**
-```python
+`````python
 from langchain.agents import create_agent
 
 def get_weather(city: str) -> str: """获取指定城市的天气"""
@@ -192,10 +193,10 @@ result = agent.invoke({
     "messages": [{"role": "user", "content": "旧金山天气如何？"}]
 })
 print(result)
-```
+`````
 
 **LangGraph（更精细控制）：**
-```python
+`````python
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
 
@@ -216,7 +217,7 @@ graph.add_conditional_edges("tool", should_continue, {"tool": "tool", "end": END
 
 app = graph.compile()
 result = app.invoke({"messages": [("user", "旧金山天气？")]})
-```
+`````
 
 ## 生产部署方案
 
@@ -224,11 +225,11 @@ result = app.invoke({"messages": [("user", "旧金山天气？")]})
 
 这是2026年最流行的生产方案：
 
-```
+`````
 用户请求 → LlamaIndex检索 → LangGraph编排 → 模型生成 → 响应
            ↑                                      ↓
         文档索引 ←────────────────────── 人工审核
-```
+`````
 
 **优点：**
 - LlamaIndex负责高效的文档检索
@@ -239,7 +240,7 @@ result = app.invoke({"messages": [("user", "旧金山天气？")]})
 
 ### 方案二：纯LangChain 1.0
 
-```python
+`````python
 from langchain.agents import create_agent
 from langchain.tools import Tool
 from langchain_community.vectorstores import Chroma
@@ -256,14 +257,14 @@ agent = create_agent(
     tools=[search_tool],
     memory=ChatMemoryBuffer(max_tokens=1000)
 )
-```
+`````
 
 **优点：** 简单快速，适合原型和中小规模应用
 **缺点：** 复杂工作流支持有限
 
 ### 方案三：纯LlamaIndex Workflows
 
-```python
+`````python
 from llama_index.workflow import Workflow, Step
 
 @Step(deps=[1, 2])
@@ -277,32 +278,32 @@ workflow = Workflow()
 workflow.add_step(retrieve_docs)
 workflow.add_step(generate_response)
 result = await workflow.run("查询问题")
-```
+`````
 
 **优点：** 专注文档处理，API简洁
 **缺点：** 复杂Agent逻辑受限
 
 ## 选型决策树
 
-```
+`````
 你的主要需求是什么？
 ├─ 文档检索和RAG → LlamaIndex
 ├─ 复杂Agent编排 → LangGraph
 ├─ 快速原型开发 → LangChain 1.0
 └─ 混合方案 → LlamaIndex + LangGraph
-```
+`````
 
 ## 社区和生态系统
 
 | 指标 | LangChain | LlamaIndex | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | ~143k | ~51k | ~15k |
 | 月PyPI下载 | ~299M | ~23M | N/A |
@@ -315,7 +316,7 @@ result = await workflow.run("查询问题")
 ### 陷阱1：过度使用LangChain链式结构
 
 **问题：** 继续使用2024年的链式思维构建应用
-**解决：** 使用LangChain 1.0的`create_agent` API
+**解决：** 使用LangChain 1.0的````create_agent```` API
 
 ### 陷阱2：忽略LlamaIndex的Agent能力
 
@@ -340,9 +341,9 @@ result = await workflow.run("查询问题")
 记住，没有"最好"的框架，只有"最适合"你场景的框架。评估你的需求，选择对应的工具，然后在必要时组合使用。
 
 
----
+* * *
 **问：** LangChain 1.0和旧版本有什么区别？
-**答：** LangChain 1.0完全重写了Agent API，使用`create_agent`简化了开发。旧版链式结构被移到`langchain-classic`包，不再推荐新用户使用。
+**答：** LangChain 1.0完全重写了Agent API，使用````create_agent````简化了开发。旧版链式结构被移到````langchain-classic````包，不再推荐新用户使用。
 
 **问：** LlamaIndex可以替代LangChain吗？
 **答：** 不完全。LlamaIndex在文档检索方面更强，但LangChain在通用Agent编排方面功能更全面。最佳实践是结合使用。
@@ -357,7 +358,7 @@ result = await workflow.run("查询问题")
 **答：** LlamaIndex支持Chroma、Qdrant、Weaviate等。对于新项目，建议从Chroma开始（免费、易用），需要时再迁移到其他方案。
 
 
----
+* * *
 *觉得有用？加入Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group*
 
 ## Frequently Asked Questions (FAQ)
@@ -389,7 +390,7 @@ To get started with AI agents, you need to understand three core components: 1. 
 
 ### Prerequisites
 
-Before building your first agent, ensure you have: ```bash
+Before building your first agent, ensure you have: `````bash
 # Required tools
 python3 >= 3.9
 pip install openai anthropic langchain
@@ -397,11 +398,11 @@ pip install openai anthropic langchain
 # Optional but recommended
 docker  # For containerized deployments
 kubectl  # For Kubernetes orchestration
-```
+`````
 
 ### Basic Agent Architecture
 
-```python
+`````python
 from langchain.agents import initialize_agent, AgentType
 from langchain.tools import Tool
 from langchain.llms import OpenAI
@@ -427,7 +428,7 @@ agent = initialize_agent(
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
     verbose=True
 )
-```
+`````
 
 This foundation allows you to build increasingly sophisticated agents.
 
@@ -437,7 +438,7 @@ To get started with AI agents, you need to understand three core components: 1. 
 
 ### Prerequisites
 
-Before building your first agent, ensure you have: ```bash
+Before building your first agent, ensure you have: `````bash
 # Required tools
 python3 >= 3.9
 pip install openai anthropic langchain
@@ -445,11 +446,11 @@ pip install openai anthropic langchain
 # Optional but recommended
 docker  # For containerized deployments
 kubectl  # For Kubernetes orchestration
-```
+`````
 
 ### Basic Agent Architecture
 
-```python
+`````python
 from langchain.agents import initialize_agent, AgentType
 from langchain.tools import Tool
 from langchain.llms import OpenAI
@@ -475,7 +476,7 @@ agent = initialize_agent(
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
     verbose=True
 )
-```
+````
 
 This foundation allows you to build increasingly sophisticated agents.
 
@@ -483,15 +484,15 @@ This foundation allows you to build increasingly sophisticated agents.
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

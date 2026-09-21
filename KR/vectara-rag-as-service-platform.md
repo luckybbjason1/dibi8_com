@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/vectara-rag-as-service-platform/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction: 대부분의 RAG 시스템이 프로덕션에서 실패하는 이유
@@ -24,9 +25,9 @@ aliases:
 
 이 글에서는 2026년 기준 Vectara 플랫폼의 아키텍처, API 통합 패턴, 벤치마크, 그리고 정직한 한계를 다룬다.
 
-> **전제 조건:** Vectara 계정 (묣 티어 제공), Python 3.10+, API 호출을 위한 `curl` 또는 `requests`.
+> **전제 조건:** Vectara 계정 (묣 티어 제공), Python 3.10+, API 호출을 위한 ```curl```` 또는 ````requests````.
 
----
+* * *
 
 ## What Is Vectara?
 
@@ -34,11 +35,11 @@ Vectara는 관리형 API를 통해 전체 검색-증강 생성 파이프라인�
 
 플랫폼의 핵심 차별화는 **항상 켜진 거버넌스**이다. 할루시네이션 감지, 사실적 일관성 검사, 브랜드 정책 시행, 인용 추적은 선택적 후처리 단계가 아닌 생성 파이프라인에 직접 임베드된다. 이는 정확성과 감사 가능성이 협상 불가인 규제 산업에서 Vectara를 특히 매력적으로 만든다.
 
----
+* * *
 
 ## How Vectara Works
 
-Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파이프라인**이다: ```
+Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파이프라인**이다: `````
 ┌─────────────────────────────────────────────────────────────┐
 │  1. 수용 (INGESTION)                                         │
 │     문서 → 텍스트 추출 → 표/이미지 파싱                       │
@@ -70,7 +71,7 @@ Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파�
 │     HHEM 할루시네이션 검사 → 사실적 일관성                   │
 │     → 정책 시행 → 감사 추적                                  │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### 핵심 기술 컴포넌트
 
@@ -82,13 +83,13 @@ Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파�
 
 **할루시네이션 보정기.** 2025년 5월 출시된 이 컴포넌트는 콘텐츠가 사용자에게 도달하기 전에 할루시네이션된 내용을 능동적으로 교정하여, 7B 파라미터 미만의 LLM을 사용할 때도 **1% 미만의 할루시네이션율**을 달성한다.
 
----
+* * *
 
 ## Getting Started: 가입부터 첫 쿼리까지 10분
 
 ### 1단계: 계정 생성 및 API 자격 증명 획득
 
-```bash
+`````bash
 # 가입 후 콘솔에서 자격 증명을 확인: # - Customer ID
 # - Corpus ID  
 # - API Key
@@ -97,21 +98,21 @@ Vectara의 아키텍처는 통합 API를 통해 노출되는 **6단계 RAG 파�
 export VECTARA_CUSTOMER_ID="your-customer-id"
 export VECTARA_CORPUS_ID="your-corpus-id"
 export VECTARA_API_KEY="zwt-your-api-key"
-```
+`````
 
 ### 2단계: Python SDK 설치
 
-```bash
+`````bash
 # 공식 Vectara Python 클라이언트 설치
 pip install vectara
 
 # 또는 REST API 직접 접근을 위해 requests 사용
 pip install requests
-```
+`````
 
 ### 3단계: 첫 문서 인덱싱
 
-```python
+`````python
 from vectara import VectaraClient
 
 # 클라이언트 초기화
@@ -145,11 +146,11 @@ document = {
 
 client.index_document(corpus_id=corpus.corpus_id, document=document)
 print(f"Document indexed to corpus {corpus.corpus_id}")
-```
+`````
 
 ### 4단계: 첫 RAG 쿼리 실행
 
-```python
+`````python
 # RAG로 쿼리
 response = client.query(
     corpus_id="your-corpus-id",
@@ -166,18 +167,18 @@ response = client.query(
 print("Answer:", response.summary)
 print("\nSources:")
 for idx, result in enumerate(response.search_results, 1): print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
-```
+`````
 
-출력: ```
+출력: `````
 Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
 Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
-```
+`````
 
 ### 5단계: 문서 일괄 업로드
 
-```python
+`````python
 import os
 from pathlib import Path
 
@@ -192,15 +193,15 @@ for pdf_file in pdf_dir.glob("*.pdf"): with open(pdf_file, "rb") as f: client.up
     print(f"Uploaded: {pdf_file.name}")
 
 print("Batch upload complete!")
-```
+`````
 
----
+* * *
 
 ## Integration with Mainstream Tools
 
 ### REST API 직접 통합
 
-공식 SDK가 없는 언어의 경우 REST API를 직접 사용: ```bash
+공식 SDK가 없는 언어의 경우 REST API를 직접 사용: `````bash
 # 쿼리 엔드포인트
 curl -X POST "https://api.vectara.io/v1/query" \
   -H "x-api-key: ${VECTARA_API_KEY}" \
@@ -216,11 +217,11 @@ curl -X POST "https://api.vectara.io/v1/query" \
       }
     ]
   }'
-```
+`````
 
 ### Node.js / TypeScript 통합
 
-```typescript
+`````typescript
 import { VectaraClient } from "@vectara/sdk";
 
 const client = new VectaraClient({
@@ -251,11 +252,11 @@ app.post("/api/rag", async (req, res) => {
   const result = await askQuestion(req.body.question);
   res.json(result);
 });
-```
+`````
 
 ### 메타데이터 필터링
 
-구조화된 메타데이터로 검색 결과를 정제: ```python
+구조화된 메타데이터로 검색 결과를 정제: `````python
 # 메타데이터 필드로 필터링
 response = client.query(
     corpus_id="your-corpus-id",
@@ -272,11 +273,11 @@ response = client.query(
     metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin"",
     generate=True
 )
-```
+`````
 
 ### 다국어 RAG
 
-Vectara의 Boomerang 모델은 교차 언어 검색을 기본적으로 처리: ```python
+Vectara의 Boomerang 모델은 교차 언어 검색을 기본적으로 처리: `````python
 # 영어로 스페인어 문서에 대해 쿼리
 response = client.query(
     corpus_id="your-corpus-id",
@@ -292,11 +293,11 @@ response = client.query(
     query="API 통합 방법은?",
     response_lang="kor"
 )
-```
+`````
 
 ### 스트리밍 응답
 
-실시간 챗 인터페이스를 위해 스트리밍 사용: ```python
+실시간 챗 인터페이스를 위해 스트리밍 사용: `````python
 import json
 
 # SSE 스트리밍으로 챗 애플리케이션 구현
@@ -310,11 +311,11 @@ response = client.query(
 # 스트리밍 청크 처리
 for chunk in response: if chunk.type == "search_result": print(f"Source: {chunk.document_id}")
     elif chunk.type == "generation": print(chunk.text, end="", flush=True)  # 토큰 스트리밍
-```
+`````
 
 ### 하이브리드 검색 구성
 
-키워드와 의미 검색의 균형 조정: ```python
+키워드와 의미 검색의 균형 조정: `````python
 # 하이브리드 검색 가중치 구성
 response = client.query(
     corpus_id="your-corpus-id",
@@ -329,9 +330,9 @@ response = client.query(
     },
     generate=True
 )
-```
+`````
 
----
+* * *
 
 ## Benchmarks and Real-World Performance
 
@@ -363,13 +364,13 @@ response = client.query(
 
 **사례 3 — 법률 문서 분석:** 한 법률 회사가 50,000건의 사건 파일과 계약을 수용했다. 법무 보조원은 Vectara의 인용 기반 답변으로 출처 자료에 대해 주장을 검증하는 데 **약 15초**가 소요되었다. 이전 수동 검색에는 약 4분이 소요되었다.
 
----
+* * *
 
 ## Advanced Usage and Production Hardening
 
 ### 커스텀 재순위화
 
-도메인 특화 애플리케이션을 위해 결과 순서 미세 조정: ```python
+도메인 특화 애플리케이션을 위해 결과 순서 미세 조정: `````python
 # 다양한 결과를 위한 MMR 재순위화
 response = client.query(
     corpus_id="your-corpus-id",
@@ -393,11 +394,11 @@ response = client.query(
         }
     }
 )
-```
+`````
 
 ### 문서 업데이트 및 버전 관리
 
-모든 것을 다시 인덱싱하지 않고 문서 변경 처리: ```python
+모든 것을 다시 인덱싱하지 않고 문서 변경 처리: `````python
 # 특정 문서 업데이트
 document_update = {
     "documentId": "api-guide-v2",
@@ -416,11 +417,11 @@ client.index_document(
     corpus_id="your-corpus-id",
     document=document_update
 )
-```
+`````
 
 ### 다중 코퍼스 쿼리
 
-여러 문서 모음을 동시에 검색: ```python
+여러 문서 모음을 동시에 검색: `````python
 response = client.query(
     query="authentication timeout",
     corpus_keys=[
@@ -430,11 +431,11 @@ response = client.query(
     ],
     generate=True
 )
-```
+`````
 
 ### 대화 기록 구현
 
-여러 턴에 걸쳐 대화 맥락 유지: ```python
+여러 턴에 걸쳐 대화 맥락 유지: `````python
 # 대화 기록 저장
 conversation = []
 
@@ -455,11 +456,11 @@ def chat_turn(user_query: str) -> str: global conversation
     conversation.append({"role": "assistant", "text": response.summary})
     
     return response.summary
-```
+`````
 
 ### 모니터링 및 분석
 
-```python
+`````python
 # 코퍼스 통계 확인
 stats = client.get_corpus_stats(corpus_id="your-corpus-id")
 print(f"Documents: {stats.num_docs}")
@@ -475,9 +476,9 @@ analytics = client.get_query_analytics(
 print(f"Total queries: {analytics.total_queries}")
 print(f"Avg latency: {analytics.avg_latency_ms}ms")
 print(f"Hallucination rate: {analytics.hallucination_rate}%")
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
@@ -508,7 +509,7 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 - **Weaviate**: GraphQL 인터페이스가 있는 자체 호스팅 솔루션을 원할 때
 - **LlamaIndex**: 최대 유연성으로 자체 RAG 파이프라인을 조립하고 싶을 때
 
----
+* * *
 
 ## Limitations: 정직한 평가
 
@@ -522,7 +523,7 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 
 **5. 검색 튜닝에 대한 제어 부족.** Vectara의 검색 파이프라인은 블랙박스이다. 하이브리드 가중치와 재순위화는 조정할 수 있지만, 개별 컴포넌트(예: 커스텀 임베딩 모델이나 다른 재순위화기)는 교체할 수 없다.
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -552,9 +553,9 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 
 ### Vectara는 문서 업데이트와 버전 관리를 어떻게 처리하나?
 
-동일한 `documentId`로 문서를 재인덱싱하면 Vectara는 원자적으로 이전 버전을 새 버전으로 교체한다. 다운타임이 없으며, 업데이트 중 쿼리는 일관된 상태를 본다. 플랫폼은 또한 시간에 따른 인용 무결성을 추적하여, 소스 문서가 변경될 때 업데이트가 필요할 수 있는 응답을 플래깅한다.
+동일한 ````documentId```로 문서를 재인덱싱하면 Vectara는 원자적으로 이전 버전을 새 버전으로 교체한다. 다운타임이 없으며, 업데이트 중 쿼리는 일관된 상태를 본다. 플랫폼은 또한 시간에 따른 인용 무결성을 추적하여, 소스 문서가 변경될 때 업데이트가 필요할 수 있는 응답을 플래깅한다.
 
----
+* * *
 
 ## Conclusion: RAG의 무거운 작업을 Vectara에 맡겨라
 
@@ -564,7 +565,7 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 
 > **토론에 참여하세요:** 우리의 [Telegram 그룹](https://t.me/dibi8ai_ko)에서 Vectara 배포 결과를 공유하세요——검색 벤치마크를 비교하고, 코퍼스 튜닝 전략을 공유하며, 매주 수용 파이프라인을 리뷰합니다.
 
----
+* * *
 
 ## Sources & Further Reading
 
@@ -576,7 +577,7 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 - [Mockingbird LLM 벤치마크](https://vectara.com/blog/mockingbird)
 - [Stanford HAI RAG 연구 2025](https://hai.stanford.edu)
 
----
+* * *
 
 
 
@@ -617,7 +618,7 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -627,6 +628,6 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 - [1m-context-window-llm-2026-real-test](vectara-rag-as-service-platform)
 - [9router-smart-llm-proxy-token-saver-free-coding](vectara-rag-as-service-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

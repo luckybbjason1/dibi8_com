@@ -34,6 +34,7 @@ faqs: - q: 'What is Caveman for Claude Code?'
   - q: 'What intensity levels and commands does Caveman offer?'
     a: 'Caveman has three levels: Lite (removes filler, keeps grammar), Full (default mode, drops articles and uses fragments), and Ultra (maximum telegraphic compression). It also ships sub-commands like /caveman-commit, /caveman-review, /caveman-stats, and /caveman:compress for rewriting memory files such as CLAUDE.md.'
 ---
+
 # Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens
 
 {</* resource-info */>}
@@ -45,7 +46,7 @@ If you use Claude Code daily, you have probably noticed the token counter climbi
 In this post, I will explain why token consumption matters, how Caveman works under the hood, how to install and use it, and what real benchmarks look like.
 
 
----
+* * *
 ## Why Token Consumption Matters for Claude Code Users
 
 Claude Code is an agentic coding assistant. Unlike a simple chatbot, it reads your codebase, runs commands, and produces multi-step plans. Every word it outputs costs tokens. Every token costs money.
@@ -58,7 +59,7 @@ Here is why controlling token usage is critical: 1. **Cost scales linearly with 
 The takeaway: fewer tokens is not just cheaper — it is often better.
 
 
----
+* * *
 ## How Caveman Works
 
 Caveman is a **Claude Code skill** (also available for Cline, Cursor, Windsurf, and Codex). It injects a lightweight prompt constraint that tells Claude to drop filler, remove articles, use sentence fragments, and get straight to the point.
@@ -67,80 +68,80 @@ The key insight is that **thinking/reasoning tokens are untouched**. Caveman doe
 
 Caveman offers three intensity levels: | Level | Trigger | Behavior |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Lite** | `/caveman lite` | Removes filler, keeps grammar. Professional but concise. |
-| **Full** | `/caveman full` | Default mode. Drops articles, uses fragments, full caveman style. |
-| **Ultra** | `/caveman ultra` | Maximum compression. Telegraphic. Abbreviates everything. |
+| **Lite** | ```/caveman lite```` | Removes filler, keeps grammar. Professional but concise. |
+| **Full** | ````/caveman full```` | Default mode. Drops articles, uses fragments, full caveman style. |
+| **Ultra** | ````/caveman ultra```` | Maximum compression. Telegraphic. Abbreviates everything. |
 
 There is also a **Wenyan mode** that uses classical Chinese literary compression for the absolute minimum token count, but Full mode is what most developers use.
 
----
+* * *
 
 ## Installation and Setup
 
 Caveman supports multiple AI coding tools. Choose the one you use: ### Claude Code
 
-Clone the skill into your global skills directory: ```bash
+Clone the skill into your global skills directory: `````bash
 git clone https://github.com/JuliusBrussee/caveman.git \
   ~/.claude/skills/caveman
-```
+`````
 
 Restart Claude Code. The skill auto-loads.
 
 ### Cursor
 
-Copy the rules file into your Cursor project: ```bash
+Copy the rules file into your Cursor project: `````bash
 cp caveman/.cursor/.cursorrules /path/to/your/project/
-```
+`````
 
 ### Cline / Roo Code
 
-Install via the Cline marketplace or copy the `.clinerules` file to your project root.
+Install via the Cline marketplace or copy the ````.clinerules```` file to your project root.
 
 ### Windsurf
 
-Copy the `.windsurf` rules into your project configuration.
+Copy the ````.windsurf```` rules into your project configuration.
 
 ### Codex (OpenAI)
 
-Use the `$caveman` trigger after loading the skill.
+Use the ````$caveman```` trigger after loading the skill.
 
----
+* * *
 
 ## How to Use Caveman
 
-Once installed, trigger it with any of these phrases: - `/caveman`
-- `talk like caveman`
-- `caveman mode`
-- `less tokens please`
+Once installed, trigger it with any of these phrases: - ````/caveman````
+- ````talk like caveman````
+- ````caveman mode````
+- ````less tokens please````
 
-To return to normal: - `stop caveman`
-- `normal mode`
+To return to normal: - ````stop caveman````
+- ````normal mode````
 
 ### Example: Asking for a Code Review
 
 **Without Caveman:**
 
-```text
+`````text
 User: Review this auth middleware for security issues.
 Claude: Certainly! I would be happy to review your authentication middleware for potential security vulnerabilities. Let me examine the code carefully...
 [700+ tokens of polite preamble and explanation]
-```
+`````
 
 **With Caveman:**
 
-```text
+`````text
 User: /caveman
 User: Review this auth middleware for security issues.
 Claude: L42: 🔴 bug — user null. Add guard.
 L58: 🟡 weak token expiry. Use 15min max.
 L71: 🔴 secret in env var? Move to vault.
-```
+`````
 
 Same technical content. No throat-clearing. **41% fewer tokens** in this real benchmark case.
 
@@ -148,29 +149,29 @@ Same technical content. No throat-clearing. **41% fewer tokens** in this real be
 
 Caveman ships with several sub-commands: | Command | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
-| `/caveman-commit` | Terse commit messages (Conventional Commits, ≤50 chars) |
-| `/caveman-review` | One-line PR comments. No fluff. |
-| `/caveman-help` | Quick-reference card for all modes. |
-| `/caveman-stats` | Real session token usage + estimated savings in USD. |
-| `/caveman:compress <file>` | Rewrites a memory file (e.g., `CLAUDE.md`) into caveman-speak. Cuts ~46% of input tokens. |
+| ````/caveman-commit```` | Terse commit messages (Conventional Commits, ≤50 chars) |
+| ````/caveman-review```` | One-line PR comments. No fluff. |
+| ````/caveman-help```` | Quick-reference card for all modes. |
+| ````/caveman-stats```` | Real session token usage + estimated savings in USD. |
+| ````/caveman:compress <file>```` | Rewrites a memory file (e.g., ````CLAUDE.md````) into caveman-speak. Cuts ~46% of input tokens. |
 
----
+* * *
 
 ## Real Benchmarks and Results
 
 The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers: | Task | Normal (tokens) | Caveman (tokens) | Saved |
 |
----
+* * *
 |
----
+* * *
 :|
----
+* * *
 :|
----
+* * *
 :|
 | Explain React re-render bug | 1,180 | 159 | **87%** |
 | Fix auth middleware token expiry | 704 | 121 | **83%** |
@@ -193,7 +194,7 @@ Range: **22% to 87%** savings depending on how verbose the original task is.
 - **Accuracy:** All technical info is preserved; only fluff is removed.
 - **Cost:** 65% fewer output tokens directly translates to a lower API bill.
 
----
+* * *
 
 ## Practical Code Example
 
@@ -201,17 +202,17 @@ Here is a side-by-side comparison for a common developer task: asking Claude to 
 
 **Normal Mode (1,042 tokens):**
 
-```text
+`````text
 Certainly! I would be happy to explain how a multi-stage Docker build works and why it is beneficial for your Node.js application.
 
 A multi-stage build is a feature in Docker that allows you to use multiple FROM statements in a single Dockerfile. Each FROM instruction can use a different base image, and each stage can copy artifacts from previous stages. This approach is particularly useful because it helps you create smaller, more secure final images by separating the build environment from the runtime environment.
 
 Let me walk you through a typical example for a Node.js application...
-```
+`````
 
 **Caveman Mode (290 tokens):**
 
-```text
+`````text
 Multi-stage build = smaller image.
 
 Stage 1: Build
@@ -230,11 +231,11 @@ COPY --from=builder /app/node_modules ./node_modules
 CMD ["node", "dist/main.js"]
 
 Why: builder has gcc, python, devdeps. Runtime no need. Image go from 1.2GB to 180MB.
-```
+````
 
 Same technical depth. Same code. **72% fewer tokens.**
 
----
+* * *
 
 ## Summary
 
@@ -250,11 +251,11 @@ If your monthly Claude Code bill is climbing or you are tired of scrolling throu
 
 **Star count:** 57,003 and growing.
 
----
+* * *
 
 *Have you tried Caveman? Drop your token savings in the comments below.*
 
----
+* * *
 
 ## Recommended Tools
 
@@ -332,7 +333,7 @@ Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

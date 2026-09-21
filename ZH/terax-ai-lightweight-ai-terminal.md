@@ -36,6 +36,7 @@ faqs: - q: 'Terax AI 是什么？'
     a: 'Terax 的安装包约为 7 MB（磁盘占用不足 10 MB），远小于基于 Electron 的同类产品。这是因为 Tauri 2 使用操作系统的原生 WebView（macOS 上的 WKWebView、Windows 上的 WebView2、Linux 上的 WebKitGTK），而非捆绑完整的 Chromium 实例。'
   - q: '如何安装 Terax AI？'
     a: 'Terax 需从源码构建：先安装 Rust（stable）以及带有 pnpm 的 Node.js 20+，用 git 克隆仓库，执行 pnpm install，然后运行 pnpm tauri dev 进行开发，或运行 pnpm tauri build 生成正式发布包。官方暂未提供预编译安装程序。'---
+
 {</* resource-info */>}
 
 # Terax AI：懂你的轻量级 AI 终端模拟器
@@ -58,11 +59,11 @@ faqs: - q: 'Terax AI 是什么？'
 
 ### 自然语言转 Shell 命令生成
 
-再也不用死记硬背晦涩的 `find`、`awk` 或 `sed` 参数了。只需用 plain English 描述你想完成的任务，Terax 就会将其转换为正确的 Shell 命令。无论是需要"查找过去 24 小时内修改的所有 `.log` 文件并压缩它们"，还是"显示上周的 git 提交及其差异"，Terax 都能即时生成准确、上下文感知的命令。
+再也不用死记硬背晦涩的 ``find``、``awk`` 或 ``sed`` 参数了。只需用 plain English 描述你想完成的任务，Terax 就会将其转换为正确的 Shell 命令。无论是需要"查找过去 24 小时内修改的所有 ``.log`` 文件并压缩它们"，还是"显示上周的 git 提交及其差异"，Terax 都能即时生成准确、上下文感知的命令。
 
 ### 内联 AI 辅助（解释、调试、建议）
 
-Terax 不仅仅生成命令——它还帮助你理解命令。将鼠标悬停在任意命令上，即可获得 AI 驱动的功能说明。当命令执行失败时，Terax 会分析错误输出并建议修复方案。AI 侧边栏支持多智能体工作流、编辑差异（edit diffs）、语音输入，甚至通过 `TERAX.md` 配置文件实现项目记忆功能。
+Terax 不仅仅生成命令——它还帮助你理解命令。将鼠标悬停在任意命令上，即可获得 AI 驱动的功能说明。当命令执行失败时，Terax 会分析错误输出并建议修复方案。AI 侧边栏支持多智能体工作流、编辑差异（edit diffs）、语音输入，甚至通过 ``TERAX.md`` 配置文件实现项目记忆功能。
 
 ### 上下文感知的智能自动补全
 
@@ -99,7 +100,7 @@ Terax 内置代码编辑器（CodeMirror 6），支持 TS/JS、Rust、Python、H
 
 ### 克隆并构建
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/crynta/terax-ai.git
 cd terax-ai
@@ -112,24 +113,24 @@ pnpm tauri dev
 
 # 构建生产包
 pnpm tauri build
-```
+`````
 
 ### 配置 AI
 
 1. 在 Terax 中打开 **设置 → AI**。
 2. 选择你偏好的提供商：OpenAI、Anthropic、Google、Groq、xAI、Cerebras，或任何兼容 OpenAI 的端点。
 3. 粘贴你的 API 密钥。如需完全离线运行，请将 Terax 指向你的 **LM Studio** 本地推理端点。
-4. 密钥通过 `keyring` 写入操作系统密钥链——它们永远不会接触磁盘或 `localStorage`。
+4. 密钥通过 ``keyring`` 写入操作系统密钥链——它们永远不会接触磁盘或 ``localStorage``。
 
 ### 运行检查
 
-```bash
+`````bash
 # 前端类型检查
 pnpm exec tsc --noEmit
 
 # Rust 代码检查
 cd src-tauri && cargo clippy
-```
+`````
 
 ## 对比：Terax AI 与替代品
 
@@ -137,15 +138,15 @@ cd src-tauri && cargo clippy
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **安装包大小** | ~7 MB | ~50 MB | ~150 MB | ~80 MB | ~20 MB |
 | **AI 集成** | 原生侧边栏 | 无 | 云端 AI | 有限 | 仅 CLI |
@@ -168,11 +169,11 @@ Terax 脱颖而出，是唯一一个将**原生 AI 集成**、**真正跨平台�
 
 ### 调试复杂管道
 
-当一个多阶段的 `grep | sed | awk` 管道静默失败时，Terax 的错误诊断能精准定位问题。AI 分析 stderr，建议修正版本，并解释原始命令为何失败——节省数小时的手动调试时间。
+当一个多阶段的 ````grep | sed | awk```` 管道静默失败时，Terax 的错误诊断能精准定位问题。AI 分析 stderr，建议修正版本，并解释原始命令为何失败——节省数小时的手动调试时间。
 
 ### DevOps 和基础设施管理
 
-管理 Kubernetes 集群、Docker 容器和云资源的系统管理员可以使用自然语言生成复杂的 `kubectl`、`docker` 和 AWS CLI 命令。AI 侧边栏通过 `TERAX.md` 维护项目上下文，使重复操作变得更加智能。
+管理 Kubernetes 集群、Docker 容器和云资源的系统管理员可以使用自然语言生成复杂的 ````kubectl````、````docker```` 和 AWS CLI 命令。AI 侧边栏通过 ````TERAX.md```` 维护项目上下文，使重复操作变得更加智能。
 
 ### 跨平台开发工作流
 
@@ -186,7 +187,7 @@ Terax 脱颖而出，是唯一一个将**原生 AI 集成**、**真正跨平台�
 
 要理解 Terax 的独特之处，需要深入了解其底层架构。它的架构经过精心分层，兼顾性能与可扩展性：
 
-**Rust 后端层** — 核心的 PTY（伪终端）管理通过 `portable-pty` 在 Rust 上运行，提供原生速度的 Shell 集成，而不会像 Electron 或 Java 终端那样产生内存膨胀。Rust 的所有权模型消除了困扰传统终端模拟器的一类内存安全漏洞。
+**Rust 后端层** — 核心的 PTY（伪终端）管理通过 ````portable-pty```` 在 Rust 上运行，提供原生速度的 Shell 集成，而不会像 Electron 或 Java 终端那样产生内存膨胀。Rust 的所有权模型消除了困扰传统终端模拟器的一类内存安全漏洞。
 
 **Tauri 2 框架** — 与捆绑整个 Chromium 实例（100+ MB）的 Electron 不同，Tauri 2 使用操作系统的原生 WebView。在 macOS 上是 WKWebView，Windows 上是 WebView2，Linux 上是 WebKitGTK。仅这一架构选择就能解释其约 7 MB 的安装包体积。
 
@@ -200,7 +201,7 @@ Terax 脱颖而出，是唯一一个将**原生 AI 集成**、**真正跨平台�
 
 **初级开发者** — 希望学习 shell 命令而无需记忆 man 手册页。自然语言界面大幅降低了 CLI 熟练度的入门门槛。
 
-**资深工程师** — 管理多个云环境和复杂部署流水线。配备项目专属 `TERAX.md` 记忆功能的 AI 侧边面板成为不可或缺的上下文感知助手。
+**资深工程师** — 管理多个云环境和复杂部署流水线。配备项目专属 ````TERAX.md```` 记忆功能的 AI 侧边面板成为不可或缺的上下文感知助手。
 
 **安全意识强的团队** — 金融、医疗或政府领域中代码不能离线的机构。LM Studio 集成实现了完全气隙隔离的 AI 辅助。
 
@@ -234,7 +235,7 @@ Terax 脱颖而出，是唯一一个将**原生 AI 集成**、**真正跨平台�
 
 从第一天起就充分发挥 Terax AI 的潜力：
 
-1. **创建 `TERAX.md` 文件** — 在项目根目录中创建此文件，记录你的技术栈、编码规范和常用命令。AI 将参考这些文件以提供更相关的建议。
+1. **创建 ````TERAX.md```` 文件** — 在项目根目录中创建此文件，记录你的技术栈、编码规范和常用命令。AI 将参考这些文件以提供更相关的建议。
 2. **配置多个 AI 提供商** — 同时设置一个云提供商（用于复杂推理）和 LM Studio（用于快速的离线查询），以便根据任务灵活切换。
 3. **启用 Shell 集成脚本** — 允许 Terax 向其 Shell 配置注入初始化脚本，以获得最丰富的上下文感知能力。
 4. **探索键盘快捷键** — Terax 支持大量快捷键，用于切换标签页、开关 AI 面板和文件资源管理器导航，大幅提升工作效率。
@@ -246,7 +247,7 @@ Terax 脱颖而出，是唯一一个将**原生 AI 集成**、**真正跨平台�
 
 Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。即将推出的功能包括增强的多智能体编排、更深的 IDE 集成、自定义 AI 提供商的插件支持，以及用于结对编程的协作终端会话。维护者对社区反馈响应迅速，问题通常在 48 小时内得到回复。
 
-参与贡献非常直接：代码库组织良好，Rust 后端（`src-tauri/`）和 React 前端（`src/`）之间有清晰的分离。无论你是想添加新主题、改进 Shell 集成脚本，还是实现新的 AI 提供商适配器，都有 good-first-issue 标签帮助新手入门。
+参与贡献非常直接：代码库组织良好，Rust 后端（````src-tauri/````）和 React 前端（````src/```）之间有清晰的分离。无论你是想添加新主题、改进 Shell 集成脚本，还是实现新的 AI 提供商适配器，都有 good-first-issue 标签帮助新手入门。
 
 ## 结论
 
@@ -261,7 +262,7 @@ Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。
 🌐 **探索更多开发者工具和洞察：** [dibi8.com](https://dibi8.com)
 
 
----
+* * *
 *dibi8 Tech Team 相关文章：*
 - [2026 年开发者十大开源 AI 工具](https://dibi8.com/zh/blog/top-10-open-source-ai-tools-2026)
 - [使用 Tauri 2 和 Rust 构建轻量级桌面应用](https://dibi8.com/zh/blog/building-lightweight-desktop-apps-tauri-rust)
@@ -270,7 +271,7 @@ Terax 项目正在积极开发中，透明的路线图可在 GitHub 上查看。
 > **关于 dibi8** — dibi8 是一个专注于开发者生产力、开源工具和技术创新的技术博客。我们致力于发掘和分享能够真正提升开发效率的优质工具与最佳实践。
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -343,7 +344,7 @@ Terax AI：懂你的轻量级 AI 终端模拟器 represents an important step fo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -36,6 +36,7 @@ faq: - q: "Skill nằm ở đâu và một SKILL.md tối thiểu cần những 
     a: "Hãy viết một skill khi bạn cần dạy một quy trình chạy trong cuộc trò chuyện hiện tại. Hãy viết một subagent khi công việc cần cửa sổ context riêng của nó — khám phá nặng, nghiên cứu song song, hay đánh giá độc lập mà nếu không sẽ làm phình context cha. Chúng kết hợp được với nhau: một subagent có thể nạp một skill để tuân theo phương pháp của bạn trong khi chạy biệt lập. Quy tắc kinh nghiệm từ khung quyết định mở rộng — skill thay đổi hành vi, subagent bảo vệ context, MCP server thêm năng lực."
 ---
 
+
 # Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà Claude Chỉ Nạp Khi Cần (2026)
 
 
@@ -43,20 +44,20 @@ faq: - q: "Skill nằm ở đâu và một SKILL.md tối thiểu cần những 
 
 Trong [Subagent vs MCP vs Skill](/vi/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) chúng tôi đã vẽ ra tấm bản đồ ba trục: skill dịch chuyển trục **kiến thức**, subagent dịch chuyển trục **context**, MCP server dịch chuyển trục **năng lực**. Từ đó chúng tôi đã xuất bản các hướng dẫn chuyên sâu về trục subagent — [viết custom agent](/vi/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) và [các kiểu thất bại khi điều phối](/vi/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/). Hướng dẫn này hoàn thiện bộ ba: cách viết chính bản thân **skill**.
 
-Skill là thứ bị đánh giá thấp nhất trong bộ ba bởi vì nó trông có vẻ tầm thường — "nó chỉ là một file markdown thôi mà." Nhưng một skill được viết tốt là khác biệt giữa kiến thức *có sẵn đúng lúc bạn cần* và một `CLAUDE.md` phình to đến mức mọi prompt phải kéo theo 4.000 token quy tắc mà chẳng nhiệm vụ nào hiện cần. Chúng ta sẽ bàn về cấu trúc SKILL.md, trường description quyết định tất cả, tiết lộ tăng dần để giữ nó nhẹ nhàng, hai ví dụ thực tế, và những sai lầm khiến skill không bao giờ kích hoạt.
+Skill là thứ bị đánh giá thấp nhất trong bộ ba bởi vì nó trông có vẻ tầm thường — "nó chỉ là một file markdown thôi mà." Nhưng một skill được viết tốt là khác biệt giữa kiến thức *có sẵn đúng lúc bạn cần* và một ```CLAUDE.md```` phình to đến mức mọi prompt phải kéo theo 4.000 token quy tắc mà chẳng nhiệm vụ nào hiện cần. Chúng ta sẽ bàn về cấu trúc SKILL.md, trường description quyết định tất cả, tiết lộ tăng dần để giữ nó nhẹ nhàng, hai ví dụ thực tế, và những sai lầm khiến skill không bao giờ kích hoạt.
 
 ## Một Skill Thực Chất Là Gì
 
-Một skill là một **thư mục**, không chỉ là một file: ```
+Một skill là một **thư mục**, không chỉ là một file: `````
 .claude/skills/cut-release/
   SKILL.md            # frontmatter + instructions
   references/
     versioning.md     # heavy detail, loaded on demand
   scripts/
     bump-version.sh    # an executable the skill can run
-```
+`````
 
-`SKILL.md` là điểm vào. Phần frontmatter của nó khai báo danh tính của skill và — quan trọng nhất — *khi nào nó nên nạp*. Phần thân giữ quy trình. Các file hỗ trợ (tài liệu tham khảo, template, script) nằm bên cạnh và chỉ được kéo vào khi cần. Skill nằm trong `.claude/skills/` (dự án, chia sẻ với cả nhóm) hoặc `~/.claude/skills/` (người dùng, áp dụng cho mọi dự án trên máy của bạn).
+````SKILL.md```` là điểm vào. Phần frontmatter của nó khai báo danh tính của skill và — quan trọng nhất — *khi nào nó nên nạp*. Phần thân giữ quy trình. Các file hỗ trợ (tài liệu tham khảo, template, script) nằm bên cạnh và chỉ được kéo vào khi cần. Skill nằm trong ````.claude/skills/```` (dự án, chia sẻ với cả nhóm) hoặc ````~/.claude/skills/```` (người dùng, áp dụng cho mọi dự án trên máy của bạn).
 
 ## Skill vs CLAUDE.md: Câu Hỏi Về Thời Điểm Nạp
 
@@ -69,23 +70,23 @@ Phép thử: *chỉ dẫn này có áp dụng cho một prompt ngẫu nhiên v�
 
 ## Phần Frontmatter: Name và Description
 
-```markdown
----
+`````markdown
+* * *
 name: cut-release
 description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
----
+* * *
 
 You are helping cut a release. Follow these steps in order...
-```
+`````
 
-### `name`
+### ````name````
 
 Kebab-case, mang tính mô tả. Đây là danh tính của skill.
 
-### `description` — tín hiệu kích hoạt quyết định tất cả
+### ````description```` — tín hiệu kích hoạt quyết định tất cả
 
-Claude đọc các description của skill để định tuyến: nó quét chúng, quyết định skill nào hợp với nhiệm vụ hiện tại, rồi nạp phần thân của skill đó. Vậy nên description không phải là một cái nhãn — nó là một **điều kiện khi-nào-kích-hoạt**. Hãy nhồi vào đó những trigger cụ thể: > ❌ `description: Release helper.`
-> ✅ `description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.`
+Claude đọc các description của skill để định tuyến: nó quét chúng, quyết định skill nào hợp với nhiệm vụ hiện tại, rồi nạp phần thân của skill đó. Vậy nên description không phải là một cái nhãn — nó là một **điều kiện khi-nào-kích-hoạt**. Hãy nhồi vào đó những trigger cụ thể: > ❌ ````description: Release helper.````
+> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
 
 Cái đầu tiên không bao giờ kích hoạt vì chẳng có gì trong một nhiệm vụ thực tế khớp với "release helper." Cái thứ hai kích hoạt ngay khoảnh khắc người dùng nói "let"s ship 2.4.0." Nếu skill của bạn tồn tại nhưng không bao giờ kích hoạt, thủ phạm chính là description — lần nào cũng vậy.
 
@@ -93,7 +94,7 @@ Cái đầu tiên không bao giờ kích hoạt vì chẳng có gì trong một 
 
 Phần thân là các chỉ dẫn mà Claude tuân theo một khi skill được nạp. Ba quy tắc: 1. **Hãy là một quy trình, không phải văn xuôi.** Các bước được đánh số để mô hình thực thi theo thứ tự sẽ hơn hẳn những đoạn văn chứa context. "1. Bump version trong package.json. 2. Tái tạo changelog từ các commit kể từ tag gần nhất. 3. ..."
 2. **Nêu các điều kiện tiên quyết và cạm bẫy ngay tại chỗ.** "Trước khi gắn tag, hãy xác nhận CI đã xanh trên main" — đúng kiểu điều mà một con người sẽ biết phải kiểm tra.
-3. **Trỏ tới chi tiết nặng, đừng đưa nó vào trực tiếp.** Nếu chính sách versioning dài 800 từ, hãy đặt nó trong `references/versioning.md` và viết "để biết quy tắc bump version, đọc references/versioning.md." Đó chính là tiết lộ tăng dần, phần kế tiếp.
+3. **Trỏ tới chi tiết nặng, đừng đưa nó vào trực tiếp.** Nếu chính sách versioning dài 800 từ, hãy đặt nó trong ````references/versioning.md```` và viết "để biết quy tắc bump version, đọc references/versioning.md." Đó chính là tiết lộ tăng dần, phần kế tiếp.
 
 ## Tiết Lộ Tăng Dần: Giữ SKILL.md Nhẹ Nhàng
 
@@ -101,22 +102,22 @@ Nước đi đỉnh cao trong việc viết skill. SKILL.md nên **nhỏ** — p
 
 Tại sao điều này quan trọng: description và tổng quan cần phải rẻ, vì chúng được quét để định tuyến. Bản đặc tả chi tiết 2.000 từ chỉ nên thuộc về context một khi skill đã thực sự được kích hoạt và nhiệm vụ cần độ sâu đó. Một skill nhồi mọi thứ vào trong sẽ đi ngược lại mục đích — bạn lại quay về kiểu phình như CLAUDE.md, chỉ là được kích hoạt theo cách khác.
 
-```markdown
+`````markdown
 ## Steps
 1. Bump version (see references/versioning.md for the semver rules)
 2. Run scripts/changelog.sh to generate the draft
 3. ...
-```
+`````
 
-Claude chỉ đọc `references/versioning.md` khi nó thực sự cần các quy tắc đó, chứ không phải trong mọi lần nạp.
+Claude chỉ đọc ````references/versioning.md```` khi nó thực sự cần các quy tắc đó, chứ không phải trong mọi lần nạp.
 
 ## Ví Dụ Thực Tế: Một Skill Checklist Phát Hành
 
-```markdown
----
+`````markdown
+* * *
 name: cut-release
 description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
----
+* * *
 
 You are cutting a release. Do NOT skip the precondition check.
 
@@ -129,17 +130,17 @@ Steps: 1. Determine the new version (semver; see references/versioning.md).
 5. After merge: tag, push the tag, publish.
 
 Report which step you stopped at if anything blocks.
-```
+`````
 
 Điều kiện tiên quyết và dòng "báo cáo bạn đã dừng ở đâu" chính là thứ làm cho nó đạt chuẩn sản xuất — không chỉ là các bước, mà là những lan can an toàn mà một con người cẩn trọng sẽ áp dụng.
 
 ## Ví Dụ Thực Tế: Một Skill Playbook Theo Lĩnh Vực
 
-```markdown
----
+`````markdown
+* * *
 name: debug-flaky-test
 description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
----
+* * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
 
@@ -148,7 +149,7 @@ You are diagnosing a flaky test. Flakiness is almost always one of: shared state
 2. Check for unawaited async, real timers, and fixed sleeps.
 3. Check for shared mutable state between tests.
 4. Only after locating the cause, propose the fix. Do not "add a retry."
-```
+`````
 
 Hãy lưu ý kiến thức lĩnh vực được nhúng vào (bốn nguyên nhân thường gặp) — đó là chuyên môn tích lũy của tổ chức, được đóng gói sao cho bất cứ ai cũng có thể kích hoạt danh sách kiểm tra trong đầu của một kỹ sư kỳ cựu.
 
@@ -156,7 +157,7 @@ Hãy lưu ý kiến thức lĩnh vực được nhúng vào (bốn nguyên nhân
 
 - **Description mơ hồ.** Skill tồn tại nhưng không bao giờ kích hoạt. Hãy thêm các cụm trigger cụ thể — chính những từ mà người dùng thực sự gõ khi họ cần nó.
 - **Đổ mọi thứ vào CLAUDE.md.** Các quy trình tình huống làm phình mọi prompt. Hãy chuyển chúng sang skill.
-- **Đưa chi tiết nặng vào trực tiếp.** Một SKILL.md dài 2.000 từ. Hãy dùng tiết lộ tăng dần — trỏ tới `references/`.
+- **Đưa chi tiết nặng vào trực tiếp.** Một SKILL.md dài 2.000 từ. Hãy dùng tiết lộ tăng dần — trỏ tới ````references/```.
 - **Văn xuôi thay vì quy trình.** Một skill đọc như một bài luận. Hãy đánh số các bước.
 - **Không có lan can an toàn.** Các bước không có điều kiện tiên quyết hay điều kiện dừng. Hãy thêm những kiểm tra mà một con người cẩn trọng sẽ làm.
 
@@ -209,7 +210,7 @@ Skill là điểm mở rộng rẻ nhất, bị đánh giá thấp nhất — m�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -219,7 +220,7 @@ Skill là điểm mở rộng rẻ nhất, bị đánh giá thấp nhất — m�
 - [claude-code-vs-aider](claude-code-skill-authoring-guide-2026)
 - [cursor-vs-claude-code](claude-code-skill-authoring-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

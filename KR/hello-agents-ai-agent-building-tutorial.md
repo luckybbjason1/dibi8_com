@@ -31,6 +31,7 @@ faqs: - q: 'Datawhale Hello-Agents란 무엇인가요?'
     a: '이 튜토리얼에는 세 가지 종합 사례 연구가 포함되어 있습니다. MCP 도구 호출을 통해 여러 전문 에이전트를 조율하는 스마트 여행 어시스턴트, 웹 검색 결과를 찾아 보고서로 종합하는 자동화된 딥 리서치 에이전트, 그리고 각기 다른 성격과 일과를 가진 AI 에이전트들로 채워진 사이버 타운 시뮬레이션입니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## Hello-Agents란?
@@ -41,7 +42,7 @@ faqs: - q: 'Datawhale Hello-Agents란 무엇인가요?'
 **Stars**: 45,600+
 **라이선스**: Apache 2.0
 
----
+* * *
 
 ## 왜 Hello-Agents가 필요한가?
 
@@ -49,7 +50,7 @@ faqs: - q: 'Datawhale Hello-Agents란 무엇인가요?'
 
 그러나 대부분의 개발자에게 "챗봇 사용"에서 "진정한 Agent 구축"까지의 간극은 여전히 큽니다. Hello-Agents는 바로 이 공백을 채우는 완전한 솔루션입니다.
 
----
+* * *
 
 ## 16장 완전한 커리큘럼
 
@@ -79,7 +80,7 @@ faqs: - q: 'Datawhale Hello-Agents란 무엇인가요?'
 ### 파트 5: 캡스톤 & 전망
 - **16장: 캡스톤 프로젝트** — 제로부터 완전한 지능형 에이전트 애플리케이션 설계 및 구축
 
----
+* * *
 
 ## 핵심 하이라이트
 
@@ -94,11 +95,11 @@ faqs: - q: 'Datawhale Hello-Agents란 무엇인가요?'
 | 커뮤니티 업데이트 | 71명 기여자 | 벤더 제어 | N/A | 신뢰할 수 없음 |
 | 가격 | 무료 | 무료 | $500-$5000 | 무료 |
 
----
+* * *
 
 ## 빠른 시작
 
-```bash
+````bash
 # 온라인 읽기
 # https://datawhalechina.github.io/hello-agents/
 
@@ -109,13 +110,13 @@ cd hello-agents
 
 # 4장 ReAct Agent 실행
 python code/chapter4/react_agent.py
-```
+`````
 
----
+* * *
 
 ## 코드 예시: 제로에서 ReAct Agent 구축
 
-```python
+`````python
 import openai
 import json
 
@@ -166,11 +167,11 @@ for step in range(5): response = openai.chat.completions.create(
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
     else: print("최종 답변:", message.content)
         break
-```
+````
 
 > 이 "생각 → 도구 호출 → 결과 관찰 → 다시 생각"의 루프는 OpenAI Operator와 Claude Computer Use 등 최고의 Agent가 사용하는 핵심 메커니즘입니다.
 
----
+* * *
 
 ## 대상 독자
 
@@ -181,7 +182,7 @@ for step in range(5): response = openai.chat.completions.create(
 | **연구자/학자** | Agentic RL과 평가 장은 연구 프로젝트의 시작점으로 충분한 깊이 |
 | **인디 개발자/창업가** | 캡스톤 구조와 커뮤니티 프로젝트 라이브러리가 제품화에 영감과 참조 구현 제공 |
 
----
+* * *
 
 ## 요약
 
@@ -191,7 +192,7 @@ Hello-Agents는 오늘날 가장 포괄적이고 이해하기 쉬우며 커뮤�
 
 > 💡 더 많은 AI 도구와 오픈소스 프로젝트를 원하시나요? 매주 선별된 추천을 위해 [dibi8.com](https://dibi8.com)을 팔로우하세요.
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -263,7 +264,7 @@ Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

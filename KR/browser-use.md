@@ -24,19 +24,20 @@ aliases:
   - /kr/posts/browser-use/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 
 > **GitHub**: [browser-use/browser-use](https://github.com/browser-use/browser-use) | **Stars**: 94,731 | **License**: MIT | **Version**: 0.12.7
 
----
+* * *
 
 ## 소개
 
 현대 웹 자동화를 위해 Selenium 스크립트를 작성하고 유지보수하는 것은 수천 개의 셀렉터에 의해 천천히 죽어가는 것과 같습니다. 클래스명이 바뀌고, 버튼 위치가 이동하면, 새벽 3시에 전체 파이프라인이 붕괴합니다. 2024년 말 Magnus Müller와 Gregor Žunič이 출시한 Browser Use는 완전히 다른 접근법을 취합니다: 브라우저 제어권을 대규모 언어 모델에 넘기고, AI가 무엇을 클릭하고, 입력하고, 읽을지 스스로 판단하게 합니다. 94,731개의 GitHub Star, 319명의 기여자, WebVoyager 벤치마크 89.1% 성공률을 기록하며 Browser Use는 AI 기반 브라우저 자동화의 사실상 오픈소스 표준이 되었습니다. 본 튜토리얼에서는 설치 방법, 실제 벤치마크 데이터, 주요 LLM과의 연동, 그리고 Selenium, Puppeteer, Scrapy와의 직접 비교를 다룹니다.
 
----
+* * *
 
 ## Browser Use란?
 
@@ -50,13 +51,13 @@ Browser Use는 Python 3.11 이상에서 LangChain 호환 LLM을 Playwright를 �
 - **지속적 메모리**: 탐색 단계 간 컨텍스트와 대화 기록 유지.
 - **Playwright 기반**: 스텔스 모드, 프록시 지원, 네트워크 가로채기, 비디오 녹화 등 Playwright의 모든 기능 상속.
 
----
+* * *
 
 ## Browser Use 작동 방식
 
 Browser Use는 **관찰 → 계획 → 실행 → 검증** 루프를 지속적으로 실행합니다: ### 아키텍처 개요
 
-```
+````
 ┌─────────────┐    DOM + 스크린샷      ┌─────────────┐
 │   브라우저   │ ─────────────────────> │     LLM     │
 │ (Playwright)│                        │(Claude/GPT/)│
@@ -64,7 +65,7 @@ Browser Use는 **관찰 → 계획 → 실행 → 검증** 루프를 지속적�
 └─────────────┘     동작 (클릭/입력)    └─────────────┘
       ↑                                       │
       └────────── 페이지 상태 변경 ────────────┘
-```
+`````
 
 ![Browser Use Agent Loop Architecture](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/agent-loop-diagram.png)
 
@@ -73,10 +74,10 @@ Browser Use는 **관찰 → 계획 → 실행 → 검증** 루프를 지속적�
 1. **캡처**: Browser Use가 현재 페이지의 DOM 스냅샷과 스크린샷을 촬영합니다.
 2. **정제**: DOM에서 상호작용 요소(버튼, 입력창, 링크)만 필터링하여 노이즈를 제거합니다.
 3. **추론**: LLM이 정제된 페이지 상태와 사용자 목표를 받아 다음 동작을 계획합니다.
-4. **실행**: Browser Use가 LLM의 결정을 Playwright API 호출(`page.click()`, `page.fill()`)로 변환합니다.
-5. **검증**: 작업이 완료되거나 `max_steps`에 도달할 때까지 루프가 반복됩니다.
+4. **실행**: Browser Use가 LLM의 결정을 Playwright API 호출(````page.click()````, ````page.fill()````)로 변환합니다.
+5. **검증**: 작업이 완료되거나 ````max_steps````에 도달할 때까지 루프가 반복됩니다.
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -91,9 +92,9 @@ async def main(): browser = Browser()
     print(result)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## 설치 및 설정
 
@@ -105,7 +106,7 @@ if __name__ == "__main__": asyncio.run(main())
 
 ### 1단계: Browser Use 설치
 
-```bash
+`````bash
 # uv 사용 (권장)
 uv init
 uv add browser-use
@@ -116,11 +117,11 @@ pip install browser-use
 
 # Chromium 설치 (미설치 시)
 playwright install chromium
-```
+`````
 
 ### 2단계: 환경 변수 설정
 
-```bash
+`````bash
 # .env 파일
 OPENAI_API_KEY=sk-your-openai-key
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
@@ -128,11 +129,11 @@ GOOGLE_API_KEY=your-google-api-key
 
 # 선택: Browser Use Cloud 스텔스 브라우저
 BROWSER_USE_API_KEY=your-cloud-key
-```
+`````
 
 ### 3단계: 첫 에이전트 실행
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
@@ -146,13 +147,13 @@ async def main(): browser = Browser()
     print(result.output)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
 
 ### Docker 배포 (프로덕션)
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -163,9 +164,9 @@ RUN playwright install-deps
 
 COPY . .
 CMD ["python", "agent.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: browser-use: build: .
@@ -173,15 +174,15 @@ services: browser-use: build: .
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     volumes: - ./scripts:/app
     command: python agent.py
-```
+`````
 
----
+* * *
 
 ## 인기 도구와의 연동
 
 ### OpenAI GPT-4o / GPT-5.1
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -194,11 +195,11 @@ async def search_flights(): agent = Agent(
     return await agent.run()
 
 asyncio.run(search_flights())
-```
+`````
 
 ### Anthropic Claude Sonnet 4
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
@@ -212,11 +213,11 @@ async def extract_data(): agent = Agent(
     print(result.output)
 
 asyncio.run(extract_data())
-```
+`````
 
 ### Google Gemini 3 Flash
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
@@ -229,11 +230,11 @@ async def research_topic(): agent = Agent(
     return await agent.run()
 
 asyncio.run(research_topic())
-```
+`````
 
 ### Ollama (로컬 모델)
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
@@ -246,11 +247,11 @@ async def local_automation(): agent = Agent(
     return await agent.run()
 
 asyncio.run(local_automation())
-```
+`````
 
 ### Playwright 직접 연동
 
-```python
+`````python
 from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -270,9 +271,9 @@ async def hybrid_automation(): async with async_playwright() as p: browser = awa
         result = await agent.run()
         await browser.close()
         return result
-```
+`````
 
----
+* * *
 
 ## 벤치마크 / 실전 활용 사례
 
@@ -318,7 +319,7 @@ WebVoyager 벤치마크는 586개의 실제 웹 작업으로 브라우저 에이
 
 ### 활용 사례: 자동화 가격 모니터링
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -342,15 +343,15 @@ async def monitor_prices(): urls = [
 
 # cron 또는 예약 작업으로 매일 실행
 prices = asyncio.run(monitor_prices())
-```
+`````
 
----
+* * *
 
 ## 고급 사용법 / 프로덕션 하드닝
 
 ### 병렬 에이전트 실행
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -370,11 +371,11 @@ tasks = [
 ]
 
 results = asyncio.run(run_parallel_agents(tasks))
-```
+`````
 
 ### 스크래핑용 프록시 구성
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -394,11 +395,11 @@ agent = Agent(
     llm=ChatOpenAI(model="gpt-4o"),
     browser=browser,
 )
-```
+`````
 
 ### 세션 지속성 및 인증
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig, Agent
 from langchain_openai import ChatOpenAI
 
@@ -415,11 +416,11 @@ async def authenticated_task(): browser = Browser(config=config)
         browser=browser,
     )
     return await agent.run()
-```
+`````
 
 ### 오류 처리 및 재시도
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -435,11 +436,11 @@ async def robust_agent(task, max_retries=3): for attempt in range(max_retries): 
         except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # 지수 백오프
     raise Exception(f"Task failed after {max_retries} attempts")
-```
+`````
 
 ### Prometheus 모니터링 통합
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 from browser_use import Agent, Browser
 
@@ -455,9 +456,9 @@ async def monitored_agent(task): agent_runs.inc()
             return result
         except Exception: agent_failures.inc()
             raise
-```
+`````
 
----
+* * *
 
 ## 대안과의 비교
 
@@ -482,7 +483,7 @@ async def monitored_agent(task): agent_runs.inc()
 - **Puppeteer**: 속도가 중요하고 대상 사이트를 제어하는 Chrome 전용 자동화. PDF 생성 및 스크린샷에 이상적.
 - **Selenium**: 엄격한 브라우저 커버리지가 필요한 엔터프라이즈 애플리케이션의 크로스 브라우저 테스트.
 
----
+* * *
 
 ## 한계 / 객관적 평가
 
@@ -496,7 +497,7 @@ Browser Use는 전통적인 브라우저 자동화의 만능 대체재가 아닙
 
 5. **LLM 의존성**: 서드파티 LLM API의 가용성과 가격에 의존합니다. 속도 제한이 프로덕션 워크로드의 병목이 될 수 있습니다.
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -513,18 +514,18 @@ LangChain 호환 LLM 모두: OpenAI GPT-4o/5.1, Anthropic Claude Sonnet 4, Googl
 프레임워크 자체는 물음(MIT 라이선스). LLM API 사용료가 작업당 약 $0.02–$0.30입니다. Browser Use Cloud는 관리형 스텔스 브라우저를 월 $29부터 제공합니다.
 
 ### Docker에서 Browser Use를 실행할 수 있나요?
-예. Python 3.11+ 컨테이너에 `browser-use`와 `playwright`를 설치하고, `playwright install chromium`을 실행한 후 환경 변수로 API 키를 설정하세요. 위 설치 섹션에 Dockerfile 예제가 제공됩니다.
+예. Python 3.11+ 컨테이너에 ````browser-use````와 ````playwright````를 설치하고, ````playwright install chromium````을 실행한 후 환경 변수로 API 키를 설정하세요. 위 설치 섹션에 Dockerfile 예제가 제공됩니다.
 
 ### Browser Use는 CAPTCHA를 해결하나요?
 Browser Use는 기본적으로 CAPTCHA를 해결하지 않습니다. 보호된 사이트에는 Browser Use Cloud(내장 CAPTCHA 해결)를 사용하거나, 2Captcha나 CapSolver 같은 전용 CAPTCHA 서비스를 통합하세요.
 
 ### Browser Use에서 인증은 어떻게 처리하나요?
-영구 브라우저 프로필(`BrowserConfig`의 `user_data_dir`)을 사용하여 세션 간 Cookie와 로그인 상태를 유지합니다. OAuth나 2FA 흐름은 초기 로그인에 헤드 모드를 사용하고, 이후 작업은 헤드리스로 전환합니다.
+영구 브라우저 프로필(````BrowserConfig````의 ````user_data_dir````)을 사용하여 세션 간 Cookie와 로그인 상태를 유지합니다. OAuth나 2FA 흐름은 초기 로그인에 헤드 모드를 사용하고, 이후 작업은 헤드리스로 전환합니다.
 
 ### Browser Use와 Stagehand의 차이점은 무엇인가요?
-Browser Use는 완전히 자율적인 에이전트 프레임워크 — LLM이 모든 탐색 결정을 제어합니다. Stagehand(Browserbase 개발)는 Playwright 위에 AI 원시 함수(`act()`, `extract()`, `observe()`)를 추가하여 결정적 단계와 AI 기반 단계가 공존하는 하이브리드 워크플로우에 적합합니다. 완전 자율에는 Browser Use를, 기존 Playwright 스크립트의 정밀 AI 강화에는 Stagehand를 선택하세요.
+Browser Use는 완전히 자율적인 에이전트 프레임워크 — LLM이 모든 탐색 결정을 제어합니다. Stagehand(Browserbase 개발)는 Playwright 위에 AI 원시 함수(````act()````, ````extract()````, ````observe()````)를 추가하여 결정적 단계와 AI 기반 단계가 공존하는 하이브리드 워크플로우에 적합합니다. 완전 자율에는 Browser Use를, 기존 Playwright 스크립트의 정밀 AI 강화에는 Stagehand를 선택하세요.
 
----
+* * *
 
 ## 결론
 
@@ -535,11 +536,11 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 > **더 많은 AI 자동화 튜토리얼이 필요하신가요?** [Telegram 그룹](https://t.me/dibi8opensource)에 참여하여 오픈소스 AI 도구 주간 심층 분석, 프로덕션 배포 팁 및 벤치마크 데이터를 받아보세요.
 
 **실행 목록**: 1. [browser-use/browser-use](https://github.com/browser-use/browser-use) 저장소 클론
-2. `pip install browser-use` 실행 후 위 예제로 첫 에이전트 구성
+2. ````pip install browser-use``` 실행 후 위 예제로 첫 에이전트 구성
 3. 자신의 사용 사례에 맞게 WebVoyager 벤치마크 평가
 4. [Browser Use Discord](https://link.browser-use.com/discord)에 참여하여 커뮤니티 지원과 프로덕션 팁 얻기
 
----
+* * *
 
 
 
@@ -561,7 +562,7 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 - [Browser Use 프록시 설정 가이드](https://www.coronium.io/blog/browser-use-proxy-setup)
 - [Stagehand vs Browser Use vs Playwright 비교](https://www.nxcode.io/resources/news/stagehand-vs-browser-use-vs-playwright-ai-browser-automation-2026)
 
----
+* * *
 
 *본 문서는 프로덕션급 브라우저 자동화가 필요한 개발자를 대상으로 합니다. 모든 벤치마크 데이터는 공개 리더보드와 2026년 5월 독립 테스트에서 가져왔습니다.*
 
@@ -591,7 +592,7 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -601,7 +602,7 @@ Browser Use는 94,731개의 GitHub Star를 통해 진정한 문제를 해결했�
 - [obscura-rust-headless-browser-ai-agents-web-scraping](browser-use)
 - [ray-distributed-ai-framework-complete-guide](browser-use)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

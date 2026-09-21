@@ -11,6 +11,7 @@ license: 'MIT'
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
+
 # Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử cho con người — Hướng dẫn 2026
 
 Cơ sở hạ tầng AI Cá nhân (PAI) (hơn 15.000 sao) của Daniel Miessler là một "Hệ điều hành Cuộc sống" kết hợp chiến lược AI, thực thi và phản ánh thành một nền tảng thống nhất. Với 45 kỹ năng, 171 quy trình làm việc, 37 hooks và Algorithm v6.3.0, PAI biến AI từ một công cụ đơn giản thành một đối tác thông minh, biết bạn là ai và bạn đang cố gắng đạt được điều gì.
@@ -21,7 +22,7 @@ Cơ sở hạ tầng AI Cá nhân (PAI) (hơn 15.000 sao) của Daniel Miessler 
 
 PAI không phải là chatbot, không phải là bộ tạo mã, và không phải là ứng năng suất. Đó là một **Hệ điều hành Cuộc sống** — một lớp cơ sở hạ tầng hoàn chỉnh nằm giữa bạn và tất cả các công cụ AI của bạn, quản lý ngữ cảnh, chiến lược và thực thi trong mọi tương tác AI bạn có.
 
-PAI có ba lớp: ```
+PAI có ba lớp: ````
 ┌─────────────────────────────────────┐
 │         PAI (The OS)                │
 │  Skills, Memory, Algorithm, Telos   │
@@ -35,11 +36,11 @@ PAI có ba lớp: ```
 │  Your AI's voice and personality    │
 │  Named, Voice-picked, TELOS-driven  │
 └─────────────────────────────────────┘
-```
+`````
 
 **PAI** — bản thân hệ điều hành. Kỹ năng, bộ nhớ, Algorithm, TELOS của bạn, các tệp định danh của bạn.
 
-**Pulse** — Bảng điều khiển Cuộc sống tại `localhost:31337`. Nơi bạn xem trạng thái, mục tiêu và công việc của mình.
+**Pulse** — Bảng điều khiển Cuộc sống tại ````localhost:31337````. Nơi bạn xem trạng thái, mục tiêu và công việc của mình.
 
 **The DA** — Trợ lý Số của bạn. Giọng nói và tính cách mà bạn trò chuyện cùng.
 
@@ -47,7 +48,7 @@ Hệ thống được thiết kế cho cá nhân là chính, nhưng cùng kiến
 
 ## Algorithm v6.3.0
 
-Trái tim của PAI là một thuật toán tùy chỉnh thúc đẩy quá trình chuyển đổi từ trạng thái hiện tại sang trạng thái lý tưởng thông qua một vòng lặp bảy giai đoạn: ```
+Trái tim của PAI là một thuật toán tùy chỉnh thúc đẩy quá trình chuyển đổi từ trạng thái hiện tại sang trạng thái lý tưởng thông qua một vòng lặp bảy giai đoạn: `````
 Current State ──▶ OBSERVE ──▶ THINK ──▶ PLAN
                     ▲                         │
                     │                         ▼
@@ -56,7 +57,7 @@ Current State ──▶ OBSERVE ──▶ THINK ──▶ PLAN
                     └───────────────── VERIFY  │
                              │                 │
                              └──────── LEARN ←┘
-```
+`````
 
 Mỗi giai đoạn có một mục đích cụ thể: | Phase | Purpose | Output |
 |-------|---------|--------|
@@ -72,7 +73,7 @@ Bộ phân loại xác định xem một lời nhắc (prompt) cần phản hồ
 
 ### Bộ phân loại chế độ
 
-PAI bao gồm một bộ phân loại chế độ được hỗ trợ bởi Sonnet, chọn chế độ xử lý phù hợp cho mỗi lời nhắc: ```
+PAI bao gồm một bộ phân loại chế độ được hỗ trợ bởi Sonnet, chọn chế độ xử lý phù hợp cho mỗi lời nhắc: `````
 Mode Classification: ┌────────────┬───────────────┐
 │ Mode       │ Description   │
 ├────────────┼───────────────┤
@@ -90,23 +91,23 @@ Tier Classification: ┌────────┬─────────�
 │ E4     │ Multi-phase project │
 │ E5     │ Life-scale project  │
 └────────┴─────────────────────┘
-```
+`````
 
 Bộ phân loại xác định xem một lời nhắc (prompt) cần phản hồi tối thiểu, xử lý LLM tiêu chuẩn, hay toàn bộ thuật toán bảy giai đoạn. Điều này ngăn lãng phí tài tính toán cho các truy vấn đơn giản trong khi đảm bảo các tác vụ phức tạp nhận được xử lý đầy đủ.
 
 ## Cài đặt & Thiết lập
 
-PAI v5.0.0 (phát hành chính mới nhất) là một bản viết lại hoàn toàn — không phải bản nâng cấp gia tăng. Cài đặt bằng một lệnh: ```bash
+PAI v5.0.0 (phát hành chính mới nhất) là một bản viết lại hoàn toàn — không phải bản nâng cấp gia tăng. Cài đặt bằng một lệnh: `````bash
 curl -sSL https://ourpai.ai/install.sh | bash
-```
+`````
 
-Sau khi cài đặt: ```bash
+Sau khi cài đặt: `````bash
 # Start the Pulse daemon
 pulse start
 
 # Access the Life Dashboard
 open http://localhost:31337
-```
+`````
 
 Bảng điều khiển cung cấp khả năng quan sát theo thời gian thực vào: - Tài liệu trạng thái hiện tại
 - Các dự án và mục tiêu đang hoạt động
@@ -116,9 +117,9 @@ Bảng điều khiển cung cấp khả năng quan sát theo thời gian thực 
 
 ### Phỏng vấn
 
-PAI bắt đầu với một buổi phỏng vấn định hình Trợ lý Số của bạn: ```bash
+PAI bắt đầu với một buổi phỏng vấn định hình Trợ lý Số của bạn: `````bash
 /interview
-```
+`````
 
 Buổi phỏng vấn dẫn dắt bạn qua: 1. **Đặt tên cho DA** — Định danh trợ lý AI của bạn
 2. **Chọn giọng nói** — Định danh âm thanh cho tương tác thoại
@@ -130,14 +131,14 @@ TELOS (Τέλος) là cấu hình quan trọng nhất. Nó nắm bắt mục đ
 
 ### Tệp định danh
 
-PAI sử dụng các tệp định danh để cung cấp ngữ cảnh cho DA của bạn: ```
+PAI sử dụng các tệp định danh để cung cấp ngữ cảnh cho DA của bạn: `````
 ~/.pai/
 ├── PRINCIPAL_IDENTITY.md    # Bạn là ai
 ├── DA_IDENTITY.md           # Tính cách trợ lý số của bạn
 ├── TELOS.md                 # Mục đích cuộc sống của bạn
 ├── CONTAINMENT_ZONES/       # Quy tắc cách ly quyền riêng tư
 └── SKILLS/                  # Thư mục kỹ năng tùy chỉnh
-```
+`````
 
 ### Nâng cấp từ v4.x
 
@@ -145,7 +146,7 @@ Nếu bạn đang nâng cấp từ PAI v4.x, đây là một hệ thống khác 
 
 ## 45 Kỹ năng — Hệ thống hoàn chỉnh
 
-PAI bao gồm 45 kỹ năng tích hợp sẵn được tổ chức theo các danh mục: ```
+PAI bao gồm 45 kỹ năng tích hợp sẵn được tổ chức theo các danh mục: `````
 Skill Categories: ┌──────────────────────┬───────┐
 │ Category             │ Count │
 ├──────────────────────┼───────┤
@@ -156,7 +157,7 @@ Skill Categories: ┌───────────────────�
 │ Automation Skills    │   5   │
 │ Reflection Skills    │   4   │
 └──────────────────────┴───────┘
-```
+`````
 
 ### Kỹ năng tư duy
 
@@ -172,18 +173,18 @@ Các kỹ năng tư duy của PAI là tính năng phân biệt nhất của chú
 
 ### Kỹ năng thực thi mã
 
-PAI thiên về thực thi mã xác định hơn là lời nhắc thuần túy: ```
+PAI thiên về thực thi mã xác định hơn là lời nhắc thuần túy: `````
 Skill Hierarchy (deterministic > prompt-based): 1. Code (deterministic) ← Most preferred
 2. CLI to run the code
 3. Workflow that prompts the CLI
 4. SKILL.md that routes between workflows
 
 "Prompts wrap code; code doesn't wrap prompts."
-```
+`````
 
 ### ISA — Ideal State Artifact
 
-ISA là một nguyên mẫu phổ quát để diễn đạt "trạng thái lý tưởng": ```markdown
+ISA là một nguyên mẫu phổ quát để diễn đạt "trạng thái lý tưởng": `````markdown
 # ISA Document Structure
 
 1. Problem — What are we solving?
@@ -198,7 +199,7 @@ ISA là một nguyên mẫu phổ quát để diễn đạt "trạng thái lý t
 10. Decisions — Key architectural choices
 11. Changelog — Version history
 12. Verification — Final validation
-```
+`````
 
 Mọi dự án lớn trong PAI đều bắt đầu với một ISA. Điều này bắt buộc sự rõ ràng trước khi thực thi.
 
@@ -206,14 +207,14 @@ Mọi dự án lớn trong PAI đều bắt đầu với một ISA. Điều này
 
 ### Pulse Daemon
 
-Pulse là daemon thống nhất cung cấp năng lượng cho Bảng điều khiển Cuộc sống tại `localhost:31337`. Nó cung cấp: - **Tích hợp giọng nói** — Nhập/xuất thoại cho tương tác rảnh tay
+Pulse là daemon thống nhất cung cấp năng lượng cho Bảng điều khiển Cuộc sống tại ````localhost:31337````. Nó cung cấp: - **Tích hợp giọng nói** — Nhập/xuất thoại cho tương tác rảnh tay
 - **Hooks** — Kích hoạt tự động dựa trên sự kiện, thời gian hoặc ngữ cảnh
 - **Khả năng quan sát** — Giám sát theo thời gian thực mọi tương tác AI
 - **Lập lịch Cron** — Các tác vụ được lên lịch và quy trình làm việc tự động
 - **Wiki API** — Truy cập cơ sở kiến thức có cấu trúc
 - **Cầu nối Telegram/iMessage** — Tích hợp nhắn tin tùy chọn
 
-Bảng điều khiển Pulse có 22 route bao gồm: ```
+Bảng điều khiển Pulse có 22 route bao gồm: `````
 Pulse Dashboard Routes: ┌────────────────────────────────────────────────────┐
 │ Dashboard │ Current State │ Ideal State │ Strategy  │
 │ Tasks     │ Projects      │ Skills      │ Workflows │
@@ -221,21 +222,21 @@ Pulse Dashboard Routes: ┌─────────────────�
 │ Settings  │ Identity      │ TELOS       │ Contain.  │
 │ Reports   │ Audit         │ Backup      │ Restore   │
 └────────────────────────────────────────────────────┘
-```
+`````
 
 ### 171 Quy trình làm việc
 
-Quy trình làm việc là các chuỗi kỹ năng được xây dựng sẵn tự động hóa các mẫu phổ biến: ```
+Quy trình làm việc là các chuỗi kỹ năng được xây dựng sẵn tự động hóa các mẫu phổ biến: `````
 Workflow Examples: - research-workflow: Gather sources → Analyze → Synthesize
 - code-review: Read code → Test → Review → Document
 - decision-framework: Define problem → Gather options → Evaluate → Decide
 - project-init: Brainstorm → ISA → Plan → Execute
 - daily-standup: Review progress → Update state → Plan next steps
-```
+`````
 
 ### 37 Hooks
 
-Hooks tự động hóa phản ứng cho các kích hoạt cụ thể: ```json
+Hooks tự động hóa phản ứng cho các kích hoạt cụ thể: `````json
 // Hook examples
 {
   "trigger": "git-commit",
@@ -245,11 +246,11 @@ Hooks tự động hóa phản ứng cho các kích hoạt cụ thể: ```json
     "template": "commit-template.md"
   }
 }
-```
+`````
 
 ### Vùng cách ly
 
-PAI cung cấp quyền riêng tư cấu trúc thông qua các vùng cách ly. Mỗi vùng cách ly dữ liệu và tương tác AI: ```json
+PAI cung cấp quyền riêng tư cấu trúc thông qua các vùng cách ly. Mỗi vùng cách ly dữ liệu và tương tác AI: `````json
 // Containment zone configuration
 {
   "zones": [
@@ -273,7 +274,7 @@ PAI cung cấp quyền riêng tư cấu trúc thông qua các vùng cách ly. M�
     }
   ]
 }
-```
+`````
 
 ## Tích hợp với các công cụ khác
 
@@ -290,25 +291,25 @@ PAI tích hợp với hệ sinh thái AI rộng hơn: | Tool | Integration | Dir
 
 ### Tích hợp Obsidian
 
-PAI đồng bộ hóa cơ sở kiến thức của nó với Obsidian: ```bash
+PAI đồng bộ hóa cơ sở kiến thức của nó với Obsidian: `````bash
 # Sync PAI data to Obsidian vault
 pulse sync --target obsidian --vault ~/Obsidian
 
 # Import Obsidian notes into PAI
 pulse import --source obsidian --vault ~/Obsidian
-```
+`````
 
 Điều này tạo ra một cơ sở kiến thức bền vững tồn tại qua các phiên PAI.
 
 ### Tích hợp GitHub
 
-PAI theo dõi các dự án trong GitHub: ```bash
+PAI theo dõi các dự án trong GitHub: `````bash
 # Create a PAI-managed GitHub repo
 pulse project --create --github my-new-project
 
 # Sync current state to GitHub issues
 pulse sync --target github --issues
-```
+`````
 
 ## Đánh giá chỉ số / Trường hợp sử dụng thực tế
 
@@ -324,7 +325,7 @@ Người dùng báo cáo những cải thiện đáng kể trong chất lượng
 
 ### Quy trình làm việc hàng ngày điển hình
 
-Một ngày điển hình với PAI: ```bash
+Một ngày điển hình với PAI: `````bash
 # Morning: Daily standup
 pulse standup
 
@@ -339,7 +340,7 @@ pulse standup
 # Evening: Reflection
 pulse reflect --today
 # PAI compiles daily learnings into TELOS update
-```
+`````
 
 ### So sánh chi phí
 
@@ -355,15 +356,15 @@ Giá trị của PAI không nằm ở việc giảm chi phí AI — mà nằm �
 
 ### Kỹ năng tùy chỉnh
 
-Tạo kỹ năng của riêng bạn: ```bash
+Tạo kỹ năng của riêng bạn: `````bash
 # Generate a new skill from template
 pulse skill create my-custom-skill --template thinking
 
 # Edit the skill
 pulse skill edit my-custom-skill
-```
+`````
 
-Kỹ năng tuân theo quy ước SKILL.md: ```markdown
+Kỹ năng tuân theo quy ước SKILL.md: `````markdown
 # My Custom Skill
 
 ## Description
@@ -380,11 +381,11 @@ The actual implementation
 
 ## Examples
 Usage examples
-```
+`````
 
 ### Cấu hình Pulse nâng cao
 
-```bash
+`````bash
 # Configure Pulse hooks
 pulse hooks create --trigger git-push --action notify --config '{"channels": ["telegram"]}"
 
@@ -393,17 +394,17 @@ pulse cron add --schedule "0 9 * * *" --action "pulse standup" --name "morning-r
 
 # Enable voice mode
 pulse voice enable --model whisper --language en
-```
+`````
 
 ### Triển khai doanh nghiệp
 
-Đối với sử dụng nhóm hoặc tổ chức: ```bash
+Đối với sử dụng nhóm hoặc tổ chức: `````bash
 # Create a team PAI instance
 pulse team create --name my-org --members 10
 
 # Deploy on remote server
 pulse deploy --target remote --host pai.myorg.com --port 31337
-```
+`````
 
 ## Hạn chế / Đánh giá trung thực
 
@@ -448,13 +449,13 @@ Cơ sở hạ tầng AI Cá nhân đại diện cho nỗ lực tham vọng nhấ
 
 Cốt lõi của nhận thức — rằng các công cụ AI cần cấu trúc, bộ nhớ và định danh để thực sự hữu ích — vừa đơn giản vừa sâu sắc. PAI cung cấp cơ sở hạ tầng đó sẵn có.
 
-**Hãy thử PAI ngay hôm nay** — `curl -sSL https://ourpai.ai/install.sh | bash` và bắt đầu buổi phỏng vấn.
+**Hãy thử PAI ngay hôm nay** — ````curl -sSL https://ourpai.ai/install.sh | bash``` và bắt đầu buổi phỏng vấn.
 
 Để tìm hiểu thêm về các thiết lập AI cá nhân: - [ECC: Agent Harness Performance Optimization](/vi/resources/dev-utils/ecc-agent-harness-performance-optimization/) — tối ưu hóa hiệu suất tác tử AI của bạn
 - [Compound Engineering](/vi/resources/llm-frameworks/compound-engineering-multi-agent-coding-claude-codex-cursor/) — các quy trình làm việc đa tác tử có cấu trúc
 
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/danielmiessler/Personal_AI_Infrastructure
 - Bài viết blog: https://danielmiessler.com/blog/personal-ai-infrastructure
@@ -463,7 +464,7 @@ Cốt lõi của nhận thức — rằng các công cụ AI cần cấu trúc, 
 
 **Tham gia cộng đồng của chúng tôi**: https://t.me/DIBI8_Group
 
----
+* * *
 
 **Tiết lộ**: Bài viết này chứa các liên kết liên kết. Chúng tôi có thể kiếm được hoa hồng nếu bạn đăng ký thông qua các liên kết của chúng tôi, mà không tốn thêm chi phí cho bạn.
 
@@ -492,7 +493,7 @@ Cốt lõi của nhận thức — rằng các công cụ AI cần cấu trúc, 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -502,6 +503,6 @@ Cốt lõi của nhận thức — rằng các công cụ AI cần cấu trúc, 
 - [pm-skills-68-product-management-skills-ai-agents](personal-ai-infrastructure-daniel-miessler)
 - [mattpocock-skills-ai-agent-framework-guide](personal-ai-infrastructure-daniel-miessler)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

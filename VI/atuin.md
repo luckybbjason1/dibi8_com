@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/atuin/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
@@ -32,11 +33,11 @@ aliases:
 
 ![Atuin Stats](https://docs.atuin.sh/assets/images/stats.png)
 
-*Lệnh `atuin stats` hiển thị các lệnh bạn dùng nhiều nhất, tổng số lệnh và phân tích lệnh duy nhất.*
+*Lệnh ```atuin stats```` hiển thị các lệnh bạn dùng nhiều nhất, tổng số lệnh và phân tích lệnh duy nhất.*
 
 ## Giới thiệu
 
-Bạn đã gõ lệnh `kubectl` phức tạp đó ít nhất ba lần trong tuần này. Bạn biết nó nằm đâu đó trong lịch sử — có lẽ bị chôn vùi dưới 40.000 lệnh khác — nhưng `Ctrl+R` tìm kiếm ngược chỉ lặp qua từng kết quả một, còn `grep ~/.bash_history` trả về một bức tường nhiễu. Với developer sống trong terminal, lịch sử shell là bộ nhớ thứ hai. Khi nó thất bại, năng suất giảm sút.
+Bạn đã gõ lệnh ````kubectl```` phức tạp đó ít nhất ba lần trong tuần này. Bạn biết nó nằm đâu đó trong lịch sử — có lẽ bị chôn vùi dưới 40.000 lệnh khác — nhưng ````Ctrl+R```` tìm kiếm ngược chỉ lặp qua từng kết quả một, còn ````grep ~/.bash_history```` trả về một bức tường nhiễu. Với developer sống trong terminal, lịch sử shell là bộ nhớ thứ hai. Khi nó thất bại, năng suất giảm sút.
 
 Atuin giải quyết vấn đề này bằng cơ sở dữ liệu lịch sử dùng SQLite, ghi lại không chỉ lệnh mà cả ngữ cảnh xung quanh: mã thoát, thư mục làm việc, tên máy, ID phiên và thờ gian thực thi. Với 29.794 GitHub Stars và codebase Rust, Atuin thêm tìm kiếm mờ (fuzzy), đồng bộ máy-to-máy có mã hóa, và phân tích sử dụng vào mọi phiên shell. Hướng dẫn này đi qua cài đặt Atuin production-grade, từ lệnh đầu tiên đến server đồng bộ tự host.
 
@@ -50,7 +51,7 @@ Atuin hoạt động như trình chặn lịch sử phía client và client đ�
 
 ### Tổng quan kiến trúc
 
-```
+`````
 +-------------+     hook preexec/precmd     +------------------+
 |   Shell     |  -------------------------->  |   Atuin Client   |
 | (bash/zsh)  |                             |   (Rust binary)  |
@@ -70,14 +71,14 @@ Atuin hoạt động như trình chặn lịch sử phía client và client đ�
                               |         Server Atuin (tự host hoặc cloud)   |
                               |         Backend PostgreSQL hoặc SQLite      |
                               +---------------------------------------------+
-```
+`````
 
 ### Các thành phần chính
 
-1. **Lớp Shell Hook**: Atuin đăng ký hook `preexec` (trước lệnh) và `precmd` (sau lệnh) qua plugin shell cụ thể. Các hook này ghi lại chuỗi lệnh, thư mục làm việc, thờ gian bắt đầu và mã thoát.
-2. **Cơ sở dữ liệu SQLite local**: Mọi lịch sử được lưu tại `~/.local/share/atuin/history.db` sử dụng SQLite với chế độ WAL để đảm bảo hiệu năng đọc/ghi đồng thờ.
+1. **Lớp Shell Hook**: Atuin đăng ký hook ````preexec```` (trước lệnh) và ````precmd```` (sau lệnh) qua plugin shell cụ thể. Các hook này ghi lại chuỗi lệnh, thư mục làm việc, thờ gian bắt đầu và mã thoát.
+2. **Cơ sở dữ liệu SQLite local**: Mọi lịch sử được lưu tại ````~/.local/share/atuin/history.db```` sử dụng SQLite với chế độ WAL để đảm bảo hiệu năng đọc/ghi đồng thờ.
 3. **Client đồng bộ**: Đồng bộ nền tùy chọn đẩy record đã mã hóa lên server Atuin. Dữ liệu được envelope-encrypted với content encryption key riêng cho mỗi record trước khi rồi khỏi máy.
-4. **Giao diện TUI tìm kiếm**: Giao diện terminal toàn màn hình (xây dựng bằng `ratatui`) thay thế `Ctrl+R` bằng tìm kiếm fuzzy/prefix/fulltext và chế độ lọc.
+4. **Giao diện TUI tìm kiếm**: Giao diện terminal toàn màn hình (xây dựng bằng ````ratatui````) thay thế ````Ctrl+R```` bằng tìm kiếm fuzzy/prefix/fulltext và chế độ lọc.
 
 ### Chi tiết mã hóa
 
@@ -86,25 +87,25 @@ Atuin hoạt động như trình chặn lịch sử phía client và client đ�
 | V1 (legacy) | XSalsa20Poly1305 (NaCl secretbox) | Đang loại bỏ |
 | V2 (hiện tại) | PASETO V4 Local (XChaCha20-Poly1305 + Blake2b) | Đang hoạt động |
 
-V2 sử dụng envelope encryption: mỗi record nhận một CEK ngẫu nhiên được wrap bằng master key của ngườ dùng. Master key nằm tại `~/.local/share/atuin/key` và không bao giờ rồi khỏi thiết bị.
+V2 sử dụng envelope encryption: mỗi record nhận một CEK ngẫu nhiên được wrap bằng master key của ngườ dùng. Master key nằm tại ````~/.local/share/atuin/key```` và không bao giờ rồi khỏi thiết bị.
 
 ## Cài đặt & Thiết lập
 
 ### Cài đặt một dòng (Khuyến nghị)
 
-```bash
+`````bash
 # Unix/macOS — cài đặt tương tác với prompt thiết lập shell
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
 # Không tương tác (CI, Dockerfile)
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
-```
+`````
 
-Trình cài đặt đặt binary tại `~/.atuin/bin/atuin` và thêm tích hợp shell vào file rc.
+Trình cài đặt đặt binary tại ````~/.atuin/bin/atuin```` và thêm tích hợp shell vào file rc.
 
 ### Trình quản lý gói
 
-```bash
+`````bash
 # Homebrew (macOS/Linux)
 brew install atuin
 
@@ -124,11 +125,11 @@ sudo dpkg -i "atuin_${VERSION}_amd64.deb"
 
 # Windows (WinGet)
 winget install -e Atuinsh.Atuin
-```
+`````
 
 ### Tích hợp Shell
 
-Sau cài đặt, thêm Atuin vào file rc của shell: ```bash
+Sau cài đặt, thêm Atuin vào file rc của shell: `````bash
 # Bash — thêm vào ~/.bashrc
 eval "$(atuin init bash)"
 
@@ -141,13 +142,13 @@ atuin init fish | source
 # Nushell — thêm vào config.nu
 atuin init nu | save ~/.config/nushell/atuin.nu
 source ~/.config/nushell/atuin.nu
-```
+`````
 
-Tải lại shell hoặc chạy `exec $SHELL` để kích hoạt.
+Tải lại shell hoặc chạy ````exec $SHELL```` để kích hoạt.
 
 ### Nhập lịch sử hiện có
 
-```bash
+`````bash
 # Tự động phát hiện shell và nhập
 atuin import auto
 
@@ -158,11 +159,11 @@ atuin import fish
 
 # Kiểm tra số lệnh đã nhập
 atuin stats
-```
+`````
 
 ### Xác minh cài đặt
 
-```bash
+`````bash
 $ atuin --version
 atuin 18.16.1
 
@@ -172,13 +173,13 @@ Checking for diagnostics
 [✓] Atuin is compiled with sqlite support
 [✓] Atuin is compiled with sync support
 [✓] Atuin config directory exists
-```
+`````
 
 ## Cấu hình cốt lõi
 
-File cấu hình Atuin nằm tại `~/.config/atuin/config.toml`. Trước khi đi sâu vào cài đặt, đây là giao diện tìm kiếm trong thực tế với các chế độ lọc khác nhau: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
+File cấu hình Atuin nằm tại ````~/.config/atuin/config.toml````. Trước khi đi sâu vào cài đặt, đây là giao diện tìm kiếm trong thực tế với các chế độ lọc khác nhau: ![Atuin Search UI](https://docs.atuin.sh/assets/images/search.png)
 
-*Giao diện TUI của Atuin hiển thị cửa sổ tìm kiếm nội tuyến với fuzzy matching và kết quả theo phạm vi thư mục.* Đây là cấu hình production-hardened: ```toml
+*Giao diện TUI của Atuin hiển thị cửa sổ tìm kiếm nội tuyến với fuzzy matching và kết quả theo phạm vi thư mục.* Đây là cấu hình production-hardened: `````toml
 # ~/.config/atuin/config.toml
 [settings]
 # Chế độ tìm kiếm: prefix, fulltext, fuzzy, skim
@@ -218,11 +219,11 @@ show_help = false
 
 # Số kết quả
 inline_height = 20
-```
+`````
 
 ### Giải thích các tùy chọn cấu hình chính
 
-```bash
+`````bash
 # Xem giá trị cấu hình hiện tại
 atuin config get search_mode
 # fuzzy
@@ -237,11 +238,11 @@ atuin config set filter_mode directory
 
 # In toàn bộ cấu hình
 atuin config print
-```
+`````
 
 ### Chế độ tìm kiếm và lọc
 
-```bash
+`````bash
 # Ctrl+R chuyển đổi giữa các chế độ lọc một cách tương tác
 # Chế độ lọc mặc định: global -> host -> session -> directory
 
@@ -252,37 +253,37 @@ atuin search --exit 1 --session       # lệnh thất bại trong phiên này
 
 # Xóa mục khớp
 atuin search --delete "rm -rf /accident"
-```
+`````
 
 ## Tích hợp với công cụ phổ biến
 
 ### Starship Prompt
 
-Starship hoạt động cùng Atuin không có xung đột. Cả hai đều hook vào sự kiện shell độc lập: ```toml
+Starship hoạt động cùng Atuin không có xung đột. Cả hai đều hook vào sự kiện shell độc lập: `````toml
 # ~/.config/starship.toml — không cần cấu hình đặc biệt
 # Atuin xử lý lịch sử; Starship xử lý prompt
 # Đảm bảo Atuin init chạy trước Starship init trong file rc
-```
+`````
 
-```bash
+`````bash
 # ~/.zshrc — thứ tự quan trọng
 eval "$(atuin init zsh)"       # Atuin trước
 eval "$(starship init zsh)"    # Starship sau
-```
+`````
 
 ### tmux
 
-Atuin tích hợp sạch sẽ với phiên tmux. Mỗi cửa sổ tmux nhận ID phiên riêng, cho phép lọc lịch sử theo cửa sổ: ```bash
+Atuin tích hợp sạch sẽ với phiên tmux. Mỗi cửa sổ tmux nhận ID phiên riêng, cho phép lọc lịch sử theo cửa sổ: `````bash
 # ~/.tmux.conf — gán phím mở tìm kiếm Atuin
 bind-key r run-shell "tmux send-keys C-r"
 
 # Atuin tự động phát hiện phiên tmux qua biến môi trường
 # Lọc theo phiên: nhấn Ctrl+R rồi chuyển chế độ lọc
-```
+`````
 
 ### fzf
 
-Một số ngườ dùng kết hợp Atuin với fzf để tìm file fuzzy, dùng Atuin cho lịch sử: ```bash
+Một số ngườ dùng kết hợp Atuin với fzf để tìm file fuzzy, dùng Atuin cho lịch sử: `````bash
 # Giữ fzf cho file, Atuin cho lịch sử
 # Vô hiệu hóa fzf history binding (trong ~/.bashrc hoặc ~/.zshrc)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
@@ -292,26 +293,26 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 alias ff='fzf --preview "bat --style=numbers --color=always {}"'
 
 # Atuin cho lịch sử (tự động bind Ctrl+R)
-```
+`````
 
 ### Nushell
 
-Tích hợp Nushell yêu cầu thiết lập rõ ràng vì Nushell dùng hệ thống cấu hình khác: ```nushell
+Tích hợp Nushell yêu cầu thiết lập rõ ràng vì Nushell dùng hệ thống cấu hình khác: `````nushell
 # config.nu
 source ~/.config/nushell/atuin.nu
 
 # Đặt biến môi trường
 $env.ATUIN_NOBIND = true  # nếu muốn keybind tùy chỉnh
-```
+`````
 
 ### Docker / Dev Containers
 
-```dockerfile
+`````dockerfile
 # Dockerfile.dev
 RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
 COPY config.toml /root/.config/atuin/config.toml
 RUN echo 'eval "$(atuin init bash)"' >> /root/.bashrc
-```
+`````
 
 ## Server đồng bộ tự host
 
@@ -319,7 +320,7 @@ Cho team hoặc ngườ dùng quan tâm quyền riêng tư, server đồng bộ 
 
 ### Thiết lập Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3"
 services: atuin: restart: always
@@ -356,11 +357,11 @@ services: atuin: restart: always
       POSTGRES_EXTRA_OPTS: "-Z6 --schema=public --blobs"
       SCHEDULE: "@daily"
       BACKUP_KEEP_DAYS: "7"
-```
+`````
 
 ### Khởi động Server
 
-```bash
+`````bash
 # Tạo thư mục dữ liệu
 mkdir -p atuin-data postgres-data backups
 
@@ -370,19 +371,19 @@ docker compose up -d
 # Kiểm tra sức khỏe
 curl http://localhost:8888/health
 # {"status":"ok"}
-```
+`````
 
 ### Cấu hình Client cho tự host
 
-```toml
+`````toml
 # ~/.config/atuin/config.toml
 [settings]
 sync_address = "http://your-server:8888"
 auto_sync = true
 sync_frequency = "5m"
-```
+`````
 
-```bash
+`````bash
 # Đăng ký tài khoản mới trên server tự host
 atuin register -u myuser -e myuser@example.com -p securepassword
 
@@ -395,11 +396,11 @@ atuin key
 
 # Kích hoạt đồng bộ
 atuin sync
-```
+`````
 
 ### Triển khai Kubernetes
 
-```yaml
+`````yaml
 # atuin-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -416,14 +417,14 @@ spec: replicas: 2
             - name: ATUIN_DB_URI
               valueFrom: secretKeyRef: name: atuin-db-secret
                   key: uri
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: atuin-service
 spec: selector: app: atuin
   ports: - port: 8888
       targetPort: 8888
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -441,13 +442,13 @@ Triển khai Rust và backend SQLite của Atuin cung cấp hiệu năng ổn đ
 
 ### Trường hợp sử dụng production
 
-1. **Phát triển đa thiết bị**: Developer với laptop công việc, desktop cá nhân và VM cloud giữ lịch sử shell đồng bộ. Chạy `docker compose up` trên một máy có thể tìm kiếm từ máy khác.
+1. **Phát triển đa thiết bị**: Developer với laptop công việc, desktop cá nhân và VM cloud giữ lịch sử shell đồng bộ. Chạy ````docker compose up```` trên một máy có thể tìm kiếm từ máy khác.
 2. **Bảo toàn kiến thức team**: Team DevOps tự host Atuin để duy trì audit trail lệnh infrastructure có thể tìm kiếm qua các kỹ sư on-call luân phiên.
 3. **Khôi phục môi trường remote**: Developer dùng workspace cloud tạm thờ (Gitpod, Coder) đồng bộ lịch sử để việc teardown workspace không xóa ngữ cảnh lệnh.
 
 ### Output lệnh Stats
 
-```bash
+`````bash
 $ atuin stats
 [▮▮▮▮▮▮▮▮▮▮]  9,607 fg
 [▮▮▮▮▮▮▮▮▮ ]  9,458 vim
@@ -461,13 +462,13 @@ $ atuin stats
 [▮         ]  1,322 git log
 Total commands: 62,849
 Unique commands: 26,908
-```
+`````
 
 ## Sử dụng nâng cao / Củng cố production
 
 ### Bộ lọc quyền riêng tư lịch sử
 
-Ngăn lệnh nhạy cảm vào cơ sở dữ liệu: ```toml
+Ngăn lệnh nhạy cảm vào cơ sở dữ liệu: `````toml
 # ~/.config/atuin/config.toml
 [settings]
 history_filter = [
@@ -486,11 +487,11 @@ history_filter = [
     "^psql.*://.*:",
     "^mysql.*-p",
 ]
-```
+`````
 
 ### Sao lưu lịch sử
 
-```bash
+`````bash
 # Sao lưu SQLite (an toàn, không vấn đề khóa)
 sqlite3 ~/.local/share/atuin/history.db ".backup '/backup/atuin-$(date +%Y%m%d).db'"
 
@@ -499,11 +500,11 @@ cp ~/.local/share/atuin/history.db ~/backups/atuin-backup.db
 
 # Tự động sao lưu hàng ngày qua cron
 0 2 * * * sqlite3 ~/.local/share/atuin/history.db ".backup '/backups/atuin/atuin-$(date +\%Y\%m\%d).db'" && find /backups/atuin -mtime +30 -delete
-```
+`````
 
 ### Giám sát sức khỏe đồng bộ
 
-```bash
+`````bash
 # Kiểm tra lần đồng bộ cuối
 atuin sync --force  # force sync và hiển thị trạng thái
 
@@ -517,11 +518,11 @@ atuin info
 
 # Kiểm tra vấn đề
 atuin doctor
-```
+`````
 
 ### Tùy chỉnh giao diện TUI
 
-```toml
+`````toml
 # ~/.config/atuin/config.toml
 [theme]
 # Dùng màu mặc định terminal
@@ -532,11 +533,11 @@ base = "#1e1e2e"
 layer1 = "#313244"
 text = "#cdd6f4"
 accent = "#89b4fa"
-```
+`````
 
 ### Di chuyển key đa máy
 
-Khi thiết lập máy mới, chuyển encryption key một cách an toàn: ```bash
+Khi thiết lập máy mới, chuyển encryption key một cách an toàn: `````bash
 # Trên máy cũ — copy key vào clipboard (hoặc chuyển an toàn)
 cat ~/.local/share/atuin/key
 
@@ -548,7 +549,7 @@ chmod 600 ~/.local/share/atuin/key
 # Xác minh đồng bộ hoạt động
 atuin sync
 atuin stats
-```
+`````
 
 ## So sánh với lựa chọn thay thế
 
@@ -558,7 +559,7 @@ atuin stats
 | **Đồng bộ máy-to-máy** | Có (E2EE) | Không | Không | Không |
 | **UI tìm kiếm** | TUI tích hợp | TUI tích hợp | Tích hợp fzf | TUI tích hợp |
 | **Ghi ngữ cảnh** | cwd, exit, thờ gian, host | cwd, exit | Không | Không |
-| **Thống kê** | `atuin stats` | Không | Không | Không |
+| **Thống kê** | ````atuin stats```` | Không | Không | Không |
 | **Hỗ trợ shell** | bash, zsh, fish, nu, xonsh | bash, zsh, fish | Mọi shell | bash, zsh |
 | **Mã hóa** | PASETO V4 | Không | Không | Không |
 | **Server tự host** | Có (Docker/K8s) | N/A | N/A | N/A |
@@ -578,13 +579,13 @@ atuin stats
 
 Atuin không phải công cụ phù hợp mọi kịch bản: 1. **Không theo dõi ngườ thực thi**: Atuin ghi lệnh nhưng không biết lệnh được gõ thủ công, chạy bởi script, hay tạo bởi AI assistant. Mọi nguồn đều giống nhau trong CSDL.
 
-2. **CSDL local không mã hóa**: CSDL SQLite tại `~/.local/share/atuin/` được lưu dạng plain text để đảm bảo hiệu năng tìm kiếm. Đồng bộ có mã hóa nhưng lưu trữ local thì không. Dùng mã hóa hệ thống file (LUKS, FileVault) để bảo vệ.
+2. **CSDL local không mã hóa**: CSDL SQLite tại ````~/.local/share/atuin/```` được lưu dạng plain text để đảm bảo hiệu năng tìm kiếm. Đồng bộ có mã hóa nhưng lưu trữ local thì không. Dùng mã hóa hệ thống file (LUKS, FileVault) để bảo vệ.
 
-3. **Tích hợp Bash có thể mong manh**: Hook `preexec` của Bash phụ thuộc DEBUG trap, có thể xung đột với công cụ khác (pyenv, nodenv, một số thiết lập PROMPT_COMMAND). Tích hợp Zsh và Fish đáng tin cậy hơn.
+3. **Tích hợp Bash có thể mong manh**: Hook ````preexec```` của Bash phụ thuộc DEBUG trap, có thể xung đột với công cụ khác (pyenv, nodenv, một số thiết lập PROMPT_COMMAND). Tích hợp Zsh và Fish đáng tin cậy hơn.
 
 4. **Đồng bộ yêu cầu tài khoản**: Ngay cả đồng bộ tự host cũng cần đăng ký ngườ dùng. Không có chế độ ẩn danh hoặc "đồng bộ trực tiếp lên S3".
 
-5. **Binding phím mũi tên lên gây bối rối**: Atuin thay thế phím mũi tên lên mặc định, có thể làm ngườ mới bối rối khi chỉ muốn duyệt lệnh gần đây. Đặt `filter_mode_shell_up_key = "session"` hoặc vô hiệu hóa hoàn toàn.
+5. **Binding phím mũi tên lên gây bối rối**: Atuin thay thế phím mũi tên lên mặc định, có thể làm ngườ mới bối rối khi chỉ muốn duyệt lệnh gần đây. Đặt ````filter_mode_shell_up_key = "session"```` hoặc vô hiệu hóa hoàn toàn.
 
 6. **Hỗ trợ PowerShell là tier 2**: Mặc dù hoạt động, tích hợp PowerShell ít được test hơn và có thể thiếu tính năng so với shell Unix.
 
@@ -592,12 +593,12 @@ Atuin không phải công cụ phù hợp mọi kịch bản: 1. **Không theo d
 
 ### Làm sao tắt binding phím mũi tên lên?
 
-Thêm `filter_mode_shell_up_key = "global"` hoặc `show_preview = false` trong cấu hình. Để hoàn toàn tắt Atuin trên phím mũi tên lên, thêm `export ATUIN_NOBIND=1` trước dòng init và bind thủ công chỉ `Ctrl+R`: ```bash
+Thêm ``filter_mode_shell_up_key = "global"`` hoặc ``show_preview = false`` trong cấu hình. Để hoàn toàn tắt Atuin trên phím mũi tên lên, thêm ``export ATUIN_NOBIND=1`` trước dòng init và bind thủ công chỉ ``Ctrl+R``: `````bash
 # ~/.bashrc
 export ATUIN_NOBIND=1
 eval "$(atuin init bash)"
 bind '"\C-r": "\C-aatuin search\C-j"'
-```
+`````
 
 ### Có thể dùng Atuin không đồng bộ không?
 
@@ -609,7 +610,7 @@ Mọi dữ liệu đồng bộ được mã hóa client-side bằng PASETO V4 (X
 
 ### Nếu mất encryption key thì sao?
 
-Encryption key cần thiết để giải mã lịch sử đã đồng bộ. Nếu mất, không thể khôi phục dữ liệu đã đồng bộ trước đó. Key hiển thị trong thiết lập ban đầu qua `atuin key` — sao lưu vào trình quản lý mật khẩu. Lịch sử local vẫn truy cập được bất kể key.
+Encryption key cần thiết để giải mã lịch sử đã đồng bộ. Nếu mất, không thể khôi phục dữ liệu đã đồng bộ trước đó. Key hiển thị trong thiết lập ban đầu qua ````atuin key```` — sao lưu vào trình quản lý mật khẩu. Lịch sử local vẫn truy cập được bất kể key.
 
 ### Hai ngườ dùng có thể chia sẻ CSDL lịch sử không?
 
@@ -621,20 +622,20 @@ Không có tác động đo được. Binary Rust thêm ~5-10ms vào thờ gian 
 
 ### Làm sao xóa lệnh khỏi lịch sử?
 
-```bash
+`````bash
 # Xóa theo mẫu tìm kiếm
 atuin search --delete "sensitive-command"
 
 # Hoặc dùng TUI — tìm lệnh, rồi nhấn Alt+Delete
-```
+`````
 
 ## Kết luận
 
 Atuin biến lịch sử shell từ file text phẳng thành cơ sở dữ liệu có cấu trúc, có thể tìm kiếm và di động. Với 29.794 GitHub Stars, đồng bộ mã hóa đầu cuối, và hỗ trợ mọi shell chính, đây là nâng cấp thực tế cho mọi developer sống trong terminal.
 
 **Các bước tiếp theo:**
-1. Chạy `curl --proto '=https" --tlsv1.2 -LsSf https://setup.atuin.sh | sh` để cài đặt
-2. Nhập lịch sử hiện có bằng `atuin import auto`
+1. Chạy ````curl --proto '=https" --tlsv1.2 -LsSf https://setup.atuin.sh | sh```` để cài đặt
+2. Nhập lịch sử hiện có bằng ````atuin import auto```
 3. Đăng ký đồng bộ hoặc cấu hình server tự host
 4. Tham gia [cộng đồng developer Telegram](https://t.me/dibi8dev) để tips và khắc phục sự cố
 
@@ -685,7 +686,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -695,6 +696,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [cc-switch-all-in-one-ai-coding-agent-manager](atuin)
 - [zed-vs-cursor](atuin)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

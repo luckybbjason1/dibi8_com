@@ -28,6 +28,7 @@ faqs: - q: 'AI Token Monitor 支持 macOS 或 Windows 吗？'
   - q: '为什么 Grok 显示"耗尽"但我的账户有余额？'
     a: 'Grok 检测调用 GET /v1/models，认证有效且有余额时返回 200，余额耗尽时返回 403。xAI 的 403 特指账户余额为零。如果有余额却显示 403，请确认 ~/.config/.ai_monitor_keys 中的 API key 是否正确。'---
 
+
 {{< resource-info >}}
 
 ## 痛点：同时管理六个 AI 服务，永远不知道哪个已经耗尽
@@ -38,27 +39,27 @@ faqs: - q: 'AI Token Monitor 支持 macOS 或 Windows 吗？'
 
 **AI Token Monitor** 通过一个始终可见的桌面小工具解决这个问题——无需离开编辑器，一眼看清所有服务状态。
 
-```
+````
 ● Claude  ░░░░░░░░░  无余额
 ● Gemini  ░░░░░░░░░  配额用完
 ● Grok    ░░░░░░░░░  耗尽
 ● Kimi    █████████  22.4M剩
 ● Codex   ─────────  18:42:01
 ● Kilo    ─────────  18:42:01
-```
+`````
 
 ## 工作原理
 
 监控工具由两个组件构成：
 
-**`api_fetcher.py`** — 后台脚本（每 5 分钟 cron 执行），轮询各服务 API 并将结果写入 `~/token-monitor/api_cache.json`。
+**``api_fetcher.py``** — 后台脚本（每 5 分钟 cron 执行），轮询各服务 API 并将结果写入 ``~/token-monitor/api_cache.json``。
 
-**`conky_ai.py`** — 每 30 秒读取缓存，输出带内联 `${color}` 标签的 Conky 格式文本，Conky 将其渲染为桌面小工具。
+**``conky_ai.py``** — 每 30 秒读取缓存，输出带内联 ``${color}`` 标签的 Conky 格式文本，Conky 将其渲染为桌面小工具。
 
-```
+`````
 api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 显示
   （cron/5分钟）    （JSON 缓存）      （30秒轮询）     （常驻桌面）
-```
+`````
 
 这种架构确保 API 故障不会导致桌面卡死——缓存始终保存着最后一次已知状态。
 
@@ -70,19 +71,19 @@ api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 显示
 |
 ---
 |
----
+* * *
 |
-| `█████████` 绿色 | 配额超过 50% |
-| `████░░░░░` 橙色 | 剩余 20-50% |
-| `█░░░░░░░░` 红色 | 低于 20% |
-| `░░░░░░░░░` 红色 | 已耗尽 / 无余额 |
-| `─────────` 灰色 | 未配置 API key |
+| ````█████████```` 绿色 | 配额超过 50% |
+| ````████░░░░░```` 橙色 | 剩余 20-50% |
+| ````█░░░░░░░░```` 红色 | 低于 20% |
+| ````░░░░░░░░░```` 红色 | 已耗尽 / 无余额 |
+| ````─────────```` 灰色 | 未配置 API key |
 
-进度条宽度为 9 个字符，每个 `█` 约代表 11% 的配额。
+进度条宽度为 9 个字符，每个 ````█```` 约代表 11% 的配额。
 
 ## 安装步骤
 
-```bash
+`````bash
 # 1. 克隆仓库
 git clone https://github.com/luckybbjason1/ai-token-monitor
 cd ai-token-monitor
@@ -95,38 +96,38 @@ nano ~/.config/.ai_monitor_keys
 
 # 4. 重启 Conky
 pkill conky && conky --daemonize --pause=1
-```
+`````
 
 安装脚本自动完成：
-- 将脚本复制到 `~/token-monitor/`
-- 在 Conky 配置中添加 `${execpi 30 python3 ~/token-monitor/conky_ai.py}`
-- 设置 `api_fetcher.py` 的 cron 定时任务
+- 将脚本复制到 ````~/token-monitor/````
+- 在 Conky 配置中添加 ````${execpi 30 python3 ~/token-monitor/conky_ai.py}````
+- 设置 ````api_fetcher.py```` 的 cron 定时任务
 
 ## 各服务支持情况
 
 | 服务 | API 端点 | 检测内容 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Kimi**（Moonshot） | `GET /v1/users/me` | 精确剩余 Token 配额 |
-| **Claude**（Anthropic） | `POST /v1/messages` | 响应头中的速率限制窗口 |
-| **Gemini**（Google） | `POST .../generateContent` | 429 = 配额已用完 |
-| **Grok**（xAI） | `GET /v1/models` | 403 = 余额耗尽 |
+| **Kimi**（Moonshot） | ````GET /v1/users/me```` | 精确剩余 Token 配额 |
+| **Claude**（Anthropic） | ````POST /v1/messages```` | 响应头中的速率限制窗口 |
+| **Gemini**（Google） | ````POST .../generateContent```` | 429 = 配额已用完 |
+| **Grok**（xAI） | ````GET /v1/models```` | 403 = 余额耗尽 |
 | Codex / Kilo | — | 倒计时至 UTC+8 午夜 |
 
 ## 安全设计
 
-API key 存储在 `~/.config/.ai_monitor_keys`，文件权限为 `chmod 600`，并通过 `.gitignore` 排除在 git 之外。key 不会被打印到终端或写入日志——fetcher 在启动时读取一次，仅在 HTTP 请求期间保留在内存中。
+API key 存储在 ````~/.config/.ai_monitor_keys````，文件权限为 ````chmod 600````，并通过 ````.gitignore```` 排除在 git 之外。key 不会被打印到终端或写入日志——fetcher 在启动时读取一次，仅在 HTTP 请求期间保留在内存中。
 
 ## 扩展自定义服务
 
-在 `api_fetcher.py` 末尾添加代码块：
+在 ````api_fetcher.py```` 末尾添加代码块：
 
-```python
+`````python
 # ── 自定义服务 ────────────────────────────────────
 key = keys.get(yourservice)
 if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
@@ -141,9 +142,9 @@ if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
             }
         else: cache[YourService] = {ok: False, label: 'API 错误'}
     except Exception: pass
-```
+`````
 
-然后在 `conky_ai.py` 的 `SERVICES` 列表中添加 `{name: YourService, reset_h: 24}`。
+然后在 ````conky_ai.py```` 的 ````SERVICES```` 列表中添加 ````{name: YourService, reset_h: 24}```。
 
 ## dibi8 相关工具
 
@@ -224,12 +225,12 @@ AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-token-monitor-conky-linux)
@@ -238,7 +239,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](ai-token-monitor-conky-linux)
 - [mattpocock-skills-ai-agent-framework-guide](ai-token-monitor-conky-linux)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -269,15 +270,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

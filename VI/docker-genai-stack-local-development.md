@@ -24,13 +24,14 @@ aliases:
   - /vi/posts/docker-genai-stack-local-development/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Cơn Ác Mộng Môi Trường GenAI Dev
 
-Chắc hẳn bạn đã từng trải qua. Bạn muốn xây prototype RAG với LangChain, tích hợp vector database, kết nối local LLM qua Ollama, và thêm knowledge graph — nhưng lại mất ba giờ để vật lộn với xung đột dependency. PyTorch cần CUDA 12.1, nhưng Neo4j driver lại muốn phiên bản `numpy` khác. Vector database cần bản build `protobuf` cụ thể. Output của `pip install` như một stack trace từ địa ngục.
+Chắc hẳn bạn đã từng trải qua. Bạn muốn xây prototype RAG với LangChain, tích hợp vector database, kết nối local LLM qua Ollama, và thêm knowledge graph — nhưng lại mất ba giờ để vật lộn với xung đột dependency. PyTorch cần CUDA 12.1, nhưng Neo4j driver lại muốn phiên bản ```numpy```` khác. Vector database cần bản build ````protobuf```` cụ thể. Output của ````pip install```` như một stack trace từ địa ngục.
 
-Docker đã nhìn thấy vấn đề này. Tại DockerCon 2024, họ ra mắt **Docker GenAI Stack** —— một file `docker-compose.yml` duy nhất khởi động toàn bộ môi trường phát triển GenAI trong vòng 5 phút. Tính đến tháng 5/2026, dự án này có **khoảng 5,500 GitHub Stars**, tích hợp **LangChain v0.3.x**, và bao gồm các tích hợp sẵn có cho Neo4j, Ollama, và vector database. Toàn bộ stack chạy local với zero cloud dependency, API keys ở lại môi trường local và dữ liệu không bao giờ rồi khỏi máy của bạn.
+Docker đã nhìn thấy vấn đề này. Tại DockerCon 2024, họ ra mắt **Docker GenAI Stack** —— một file ````docker-compose.yml```` duy nhất khởi động toàn bộ môi trường phát triển GenAI trong vòng 5 phút. Tính đến tháng 5/2026, dự án này có **khoảng 5,500 GitHub Stars**, tích hợp **LangChain v0.3.x**, và bao gồm các tích hợp sẵn có cho Neo4j, Ollama, và vector database. Toàn bộ stack chạy local với zero cloud dependency, API keys ở lại môi trường local và dữ liệu không bao giờ rồi khỏi máy của bạn.
 
 Trong hướng dẫn này, bạn sẽ đi từ con số không đến một pipeline RAG hoạt động được hỗ trợ bởi knowledge graph —— tất cả trong Docker containers. Chúng tôi sẽ đề cập đến cài đặt, kiến trúc, benchmark thực tế, hardening production, và các hạn chế thực tế.
 
@@ -40,13 +41,13 @@ Trong hướng dẫn này, bạn sẽ đi từ con số không đến một pipe
 
 ## Docker GenAI Stack hoạt động như thế nào?
 
-Kiến trúc theo mô hình pipeline module. Mỗi service là một container độc lập, giao tiếp qua mạng nội bộ của Docker: ```yaml
+Kiến trúc theo mô hình pipeline module. Mỗi service là một container độc lập, giao tiếp qua mạng nội bộ của Docker: `````yaml
 services: llm: # Ollama — local LLM inference
   database: # Neo4j — knowledge graph + vector search
   loader: # Pipeline ingest document
   bot: # Giao diện chat powered by LangChain
   pdf-frontend: # UI tùy chọn cho tương tác PDF
-```
+`````
 
 **Dữ liệu chảy qua bốn giai đoạn:**
 
@@ -63,33 +64,33 @@ Neo4j đảm nhận vai trò kép —— lưu trữ **knowledge graph** (cấu t
 
 **Bước 1 —— Clone repository:**
 
-```bash
+`````bash
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack
-```
+`````
 
 **Bước 2 —— Copy và cấu hình biến môi trường:**
 
-```bash
+`````bash
 cp .env.example .env
-```
+`````
 
-Chỉnh sửa `.env` để chọn model LLM và embedding: ```bash
+Chỉnh sửa ``.env`` để chọn model LLM và embedding: `````bash
 # .env —— cấu hình tối thiểu cho Ollama local
 LLM=ollama
 EMBEDDING_MODEL=sentence_transformer
 OLLAMA_BASE_URL=http://llm:11434
 NEO4J_URI=neo4j://database:7687
 NEO4J_PASSWORD=password
-```
+`````
 
 **Bước 3 —— Khởi động stack:**
 
-```bash
+`````bash
 docker compose up --build
-```
+`````
 
-Lần pull đầu tiên sẽ build tất cả images và tải models. Pha cà phê đi —— mất **3–5 phút** trên kết nối hiện đại. Bạn sẽ thấy Ollama đang pull model mặc định (thường là Llama 3.2 7B): ```
+Lần pull đầu tiên sẽ build tất cả images và tải models. Pha cà phê đi —— mất **3–5 phút** trên kết nối hiện đại. Bạn sẽ thấy Ollama đang pull model mặc định (thường là Llama 3.2 7B): `````
 [+] Running 6/6
  ⠿ Network genai-stack_default       Created
  ⠿ Container genai-stack-database-1  Started
@@ -97,11 +98,11 @@ Lần pull đầu tiên sẽ build tất cả images và tải models. Pha cà p
  ⠿ Container genai-stack-loader-1    Started
  ⠿ Container genai-stack-bot-1       Started
  ⠿ Container genai-stack-pdf-frontend-1  Started
-```
+`````
 
 **Bước 4 —— Xác minh các service:**
 
-```bash
+`````bash
 # Kiểm tra tất cả container đều healthy
 docker compose ps
 
@@ -109,17 +110,17 @@ docker compose ps
 curl http://localhost:11434/api/tags
 
 # Output mong đợi: danh sách các model có sẵn
-```
+`````
 
 **Bước 5 —— Mở giao diện chat:**
 
-Truy cập `http://localhost:8501` cho Streamlit chat UI, hoặc `http://localhost:8080` cho PDF frontend. Bot service chạy ở port 8000 cho API access.
+Truy cập ````http://localhost:8501```` cho Streamlit chat UI, hoặc ````http://localhost:8080```` cho PDF frontend. Bot service chạy ở port 8000 cho API access.
 
 ## Tích hợp với LangChain, Neo4j & Ollama
 
 ### Tích hợp LangChain
 
-Stack sử dụng `Neo4jVector` và `GraphCypherQAChain` của LangChain cho retrieval-augmented generation trên knowledge graph: ```python
+Stack sử dụng ``Neo4jVector`` và ``GraphCypherQAChain`` của LangChain cho retrieval-augmented generation trên knowledge graph: `````python
 # Ví dụ: Query knowledge graph với LangChain
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
@@ -141,32 +142,32 @@ chain = GraphCypherQAChain.from_llm(
 
 result = chain.invoke({"query": "What companies work in the AI sector?"})
 print(result[result])
-```
+`````
 
 ### Thiết lập Neo4j Knowledge Graph
 
-Stack tự động tạo vector indexes khi Neo4j khởi động. Bạn có thể kiểm tra và mở rộng graph schema: ```bash
+Stack tự động tạo vector indexes khi Neo4j khởi động. Bạn có thể kiểm tra và mở rộng graph schema: `````bash
 # Truy cập Neo4j Browser tại http://localhost:7474
 # Login: neo4j / password
 
 # Cypher: kiểm tra vector index
 SHOW INDEXES YIELD name, type, entityType
 WHERE type = VECTOR
-```
+`````
 
-```cypher
+`````cypher
 // Tạo vector index tùy chỉnh cho documents
 CREATE VECTOR INDEX document_embeddings FOR (d:Document)
 ON (d.embedding)
 OPTIONS {indexConfig: {
- `vector.dimensions`: 384,
- `vector.similarity_function`: cosine
+ ````vector.dimensions````: 384,
+ ````vector.similarity_function````: cosine
 }}
-```
+`````
 
 ### Quản lý Ollama Models
 
-Chuyển đổi giữa các models mà không cần restart stack: ```bash
+Chuyển đổi giữa các models mà không cần restart stack: `````bash
 # Pull một model khác
 docker compose exec llm ollama pull mistral:7b
 
@@ -175,16 +176,16 @@ docker compose exec llm ollama list
 
 # Chạy test inference
 docker compose exec llm ollama run llama3.2 "Explain Docker containers"
-```
+`````
 
-Ghi đè model mặc định qua biến môi trường: ```bash
+Ghi đè model mặc định qua biến môi trường: `````bash
 # Trong .env hoặc docker-compose.override.yml
 OLLAMA_MODEL=mistral:7b docker compose up
-```
+`````
 
 ### Kết nối Vector Database bên ngoài
 
-Mặc dù Neo4j xử lý vectors natively, bạn có thể thay thế bằng Pinecone, Weaviate, hoặc pgvector bằng cách sửa đổi khởi tạo LangChain vector store: ```python
+Mặc dù Neo4j xử lý vectors natively, bạn có thể thay thế bằng Pinecone, Weaviate, hoặc pgvector bằng cách sửa đổi khởi tạo LangChain vector store: `````python
 # Thay Neo4jVector bằng Pinecone (cần PINECONE_API_KEY trong .env)
 from langchain_pinecone import PineconeVectorStore
 
@@ -193,7 +194,7 @@ vectorstore = PineconeVectorStore.from_documents(
     embedding=embeddings,
     index_name="genai-stack"
 )
-```
+`````
 
 ## Benchmark & Use Case Thực Tế
 
@@ -236,30 +237,30 @@ vectorstore = PineconeVectorStore.from_documents(
 
 ### GPU Acceleration cho Ollama
 
-Bật hỗ trợ NVIDIA GPU để inference nhanh hơn 5–10 lần: ```yaml
+Bật hỗ trợ NVIDIA GPU để inference nhanh hơn 5–10 lần: `````yaml
 # docker-compose.override.yml
 services: llm: deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
-```bash
+`````bash
 # Xác minh GPU đang được sử dụng
 nvidia-smi
 # Tiến trình Ollama nên xuất hiện với ~3GB VRAM usage
-```
+`````
 
 ### Persistent Data Volumes
 
-Theo mặc định, dữ liệu Neo4j lưu trong Docker volume. Để persistence production-grade: ```yaml
+Theo mặc định, dữ liệu Neo4j lưu trong Docker volume. Để persistence production-grade: `````yaml
 services: database: volumes: - ./neo4j-data:/data
       - ./neo4j-logs:/logs
       - ./neo4j-plugins:/plugins
-```
+`````
 
 ### Custom Document Loaders
 
-Mở rộng loader service để ingest từ nguồn dữ liệu của bạn: ```python
+Mở rộng loader service để ingest từ nguồn dữ liệu của bạn: `````python
 # loader/custom_loader.py
 from langchain_community.document_loaders import ConfluenceLoader
 
@@ -269,11 +270,11 @@ def load_confluence(): loader = ConfluenceLoader(
         api_key="your-api-key"
     )
     return loader.load(space_key="DEV")
-```
+`````
 
 ### Bảo mật Stack
 
-```bash
+`````bash
 # Tạo mật khẩu Neo4j an toàn
 openssl rand -base64 32
 
@@ -283,18 +284,18 @@ openssl rand -base64 32
 # Hạn chế Ollama chỉ trong mạng nội bộ
 # Xóa port 11434 khỏi docker-compose.yml
 # Truy cập qua container network: http://llm:11434
-```
+`````
 
 ### Triển khai lên [DigitalOcean](https://m.do.co/c/eca87ac14ee0)
 
-Cho instance chia sẻ nhóm hoặc demo khách hàng, stack chạy tốt trên **4 vCPU / 8GB RAM Droplet** (~$48/tháng): ```bash
+Cho instance chia sẻ nhóm hoặc demo khách hàng, stack chạy tốt trên **4 vCPU / 8GB RAM Droplet** (~$48/tháng): `````bash
 # Trên DigitalOcean Droplet (Ubuntu 24.04)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack && docker compose up -d
-```
+`````
 
-Thêm reverse proxy với HTTPS: ```nginx
+Thêm reverse proxy với HTTPS: `````nginx
 # /etc/nginx/sites-available/genai
 server {
     listen 443 ssl;
@@ -310,7 +311,7 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -339,11 +340,11 @@ server {
 
 **Ngốn RAM.** Chạy Ollama + Neo4j + LangChain cùng lúc tiêu tốn tối thiểu **5.5–6 GB RAM**. Trên máy 8GB, swap thrashing giết chết hiệu năng. Bạn cần 16GB để dev thoải mái.
 
-**Lần boot đầu tải nặng.** Lần `docker compose up` đầu tiên pull ~6GB images và models. Đây là chi phí một lần, nhưng hãy lên kế hoạch phù hợp trên kết nối chậm.
+**Lần boot đầu tải nặng.** Lần ````docker compose up```` đầu tiên pull ~6GB images và models. Đây là chi phí một lần, nhưng hãy lên kế hoạch phù hợp trên kết nối chậm.
 
 **Neo4j Community edition.** Stack dùng Neo4j Community, thiếu role-based access control, clustering, và monitoring nâng cao. Lộ trình nâng cấp Enterprise tồn tại nhưng cần license.
 
-**UI chọn model hạn chế.** Chuyển đổi model Ollama đòi hỏi tương tác command-line hoặc chỉnh sửa `.env`. Không có model picker runtime trong web UI.
+**UI chọn model hạn chế.** Chuyển đổi model Ollama đòi hỏi tương tác command-line hoặc chỉnh sửa ````.env````. Không có model picker runtime trong web UI.
 
 **Không có authentication tích hợp.** Các frontend Streamlit và PDF không có hệ thống đăng nhập. Expose ra internet đòi hỏi thêm reverse proxy với auth (xem ví dụ Nginx ở trên).
 
@@ -351,11 +352,11 @@ server {
 
 **Q: Tôi có thể dùng OpenAI GPT-4 thay vì Ollama không?**
 
-Có. Đặt `LLM=openai` trong `.env` và thêm `OPENAI_API_KEY`. Stack sẽ dùng GPT-4 cho generation trong khi vẫn dùng Neo4j cho vector storage. Hữu ích khi bạn muốn response nhanh trong development nhưng định chuyển sang local models cho production.
+Có. Đặt ````LLM=openai```` trong ````.env```` và thêm ````OPENAI_API_KEY````. Stack sẽ dùng GPT-4 cho generation trong khi vẫn dùng Neo4j cho vector storage. Hữu ích khi bạn muốn response nhanh trong development nhưng định chuyển sang local models cho production.
 
 **Q: Làm thế nào thêm tài liệu của riêng tôi vào knowledge graph?**
 
-Đặt file PDF hoặc text vào thư mục `data/`, sau đó restart loader service: `docker compose restart loader`. Loader theo dõi thư mục này và xử lý file mới khi khởi động. Cho production, mở rộng loader với custom document sources (xem Advanced Usage).
+Đặt file PDF hoặc text vào thư mục ````data/````, sau đó restart loader service: ````docker compose restart loader````. Loader theo dõi thư mục này và xử lý file mới khi khởi động. Cho production, mở rộng loader với custom document sources (xem Advanced Usage).
 
 **Q: Có thể chạy trên macOS hoặc Windows không?**
 
@@ -367,25 +368,25 @@ Có —— Docker Desktop xử lý mọi khác biệt nền tảng. GPU accelera
 
 **Q: Làm thế nào để cập nhật stack lên phiên bản mới hơn?**
 
-Pull các thay đổi mới nhất và rebuild: `git pull && docker compose up --build`. Điều này cập nhật phiên bản LangChain và cấu hình stack. Các model Ollama persist trong volume của chúng và sẽ không re-download. Luôn kiểm tra [CHANGELOG](https://github.com/docker/genai-stack/blob/main/CHANGELOG.md) trước khi cập nhật.
+Pull các thay đổi mới nhất và rebuild: ````git pull && docker compose up --build````. Điều này cập nhật phiên bản LangChain và cấu hình stack. Các model Ollama persist trong volume của chúng và sẽ không re-download. Luôn kiểm tra [CHANGELOG](https://github.com/docker/genai-stack/blob/main/CHANGELOG.md) trước khi cập nhật.
 
 **Q: Tôi có thể deploy lên Kubernetes không?**
 
-File Compose có thể được chuyển đổi với Kompose (`kompose convert`), nhưng bạn cần cấu hình thủ công persistent volumes, secrets, và ingress. Cho production Kubernetes deployments, xem xét Helm charts cho từng thành phần riêng lẻ (Neo4j Helm chart, Ollama với GPU operators) thay vì cách all-in-one.
+File Compose có thể được chuyển đổi với Kompose (````kompose convert````), nhưng bạn cần cấu hình thủ công persistent volumes, secrets, và ingress. Cho production Kubernetes deployments, xem xét Helm charts cho từng thành phần riêng lẻ (Neo4j Helm chart, Ollama với GPU operators) thay vì cách all-in-one.
 
 ## Kết luận: Bắt đầu xây dựng trong 5 phút
 
-Docker GenAI Stack loại bỏ ma sát lớn nhất trong GenAI development: thiết lập môi trường. Một `docker compose up` cho bạn LangChain, Neo4j, Ollama, và vector database —— tất cả đều giao tiếp đúng với nhau. Việc tích hợp knowledge graph một mình đã đáng để chọn nó hơn các template RAG đơn giản hơn.
+Docker GenAI Stack loại bỏ ma sát lớn nhất trong GenAI development: thiết lập môi trường. Một ````docker compose up```` cho bạn LangChain, Neo4j, Ollama, và vector database —— tất cả đều giao tiếp đúng với nhau. Việc tích hợp knowledge graph một mình đã đáng để chọn nó hơn các template RAG đơn giản hơn.
 
 Cho team development, triển khai instance chia sẻ trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để mọi ngườ làm việc với cùng một dữ liệu. Cho solo hacking, nó chạy thoải mái trên laptop hiện đại với 16GB RAM.
 
-Stack sẽ không giải quyết mọi vấn đề GenAI —— bạn vẫn cần thiết kế prompts, đánh giá chất lượng retrieval, và tune models. Nhưng nó đưa bạn qua rào cản thiết lập môi trường trong vòng 5 phút, có nghĩa là bạn có thể tập trung vào xây dựng thay vì debug xung đột `pip`.
+Stack sẽ không giải quyết mọi vấn đề GenAI —— bạn vẫn cần thiết kế prompts, đánh giá chất lượng retrieval, và tune models. Nhưng nó đưa bạn qua rào cản thiết lập môi trường trong vòng 5 phút, có nghĩa là bạn có thể tập trung vào xây dựng thay vì debug xung đột ````pip````.
 
-**Sẵn sàng chưa?** Clone repo, copy `.env`, và chạy `docker compose up`. Pipeline RAG của bạn sẽ đợi ở `localhost:8501`.
+**Sẵn sàng chưa?** Clone repo, copy ````.env````, và chạy ````docker compose up````. Pipeline RAG của bạn sẽ đợi ở ````localhost:8501```.
 
 Tham gia cộng đồng developer Telegram: **@dibi8dev** —— chia sẻ cấu hình GenAI stack và nhận trợ giúp từ 5,000+ builders.
 
----
+* * *
 
 ## Nguồn & Tài liệu tham khảo
 
@@ -396,7 +397,7 @@ Tham gia cộng đồng developer Telegram: **@dibi8dev** —— chia sẻ cấu
 5. [Neo4j Vector Search Documentation](https://neo4j.com/docs/cypher-manual/current/indexes/vector-indexes/) —— Cấu hình vector index
 6. [Docker Compose Specification](https://docs.docker.com/compose/compose-file/) —— Tùy chỉnh stack
 
----
+* * *
 
 
 
@@ -437,7 +438,7 @@ Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOce
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -447,7 +448,7 @@ Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOce
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](docker-genai-stack-local-development)
 - [moneyprinterturbo-one-click-ai-video-generator](docker-genai-stack-local-development)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -8,6 +8,7 @@ tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
 
+
 # MoneyPrinterTurbo：使用 AI 自动生成视频
 
 ## 简介
@@ -42,7 +43,7 @@ MoneyPrinterTurbo 运行在 Python 3.10+ 上，需要 FFmpeg 进行视频渲染�
 
 首先安装 FFmpeg——它是所有视频操作所必需的：
 
-```bash
+````bash
 # Ubuntu/Debian
 sudo apt install ffmpeg
 
@@ -51,86 +52,86 @@ brew install ffmpeg
 
 # Windows (使用 Chocolatey)
 choco install ffmpeg
-```
+`````
 
 ### 克隆并安装
 
-```bash
+`````bash
 git clone https://github.com/HFrost665/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
 pip install -r requirements.txt
-```
+`````
 
 ### 配置 API 密钥
 
 您需要一个 OpenAI 兼容的 API 密钥用于脚本生成。将其设置为环境变量：
 
-```bash
+`````bash
 export OPENAI_API_KEY="your-api-key"
 export OPENAI_BASE_URL="https://api.openai.com/v1"
-```
+`````
 
 对于语音生成，配置您偏好的 TTS 后端：
 
-```bash
+`````bash
 # Azure TTS
 export AZURE_SPEECH_KEY="your-azure-key"
 export AZURE_SPEECH_REGION="eastus"
 
 # OpenAI TTS
 export OPENAI_TTS_KEY="your-openai-key"
-```
+`````
 
 ## 生成您的第一个视频
 
 通过 CLI 生成视频的最简单方法：
 
-```bash
+`````bash
 python main.py \
   --topic "人工智能的历史" \
   --language zh \
   --voice zh-CN-XiaoxiaoNeural \
   --resolution 1920x1080 \
   --output ./output
-```
+`````
 
-该命令生成一部关于 AI 历史的完整视频，使用 Aria 神经语音进行旁白，分辨率为 1080p，输出保存到 `./output` 目录。
+该命令生成一部关于 AI 历史的完整视频，使用 Aria 神经语音进行旁白，分辨率为 1080p，输出保存到 ````./output```` 目录。
 
 ### 自定义脚本
 
 您可以提供自己的脚本而不是使用 AI 生成：
 
-```bash
+`````bash
 python main.py \
   --script ./my-script.txt \
   --language zh \
   --voice zh-CN-YunxiNeural \
   --output ./output
-```
+`````
 
 ### 批量生成视频
 
 从文本文件处理主题列表：
 
-```bash
+`````bash
 python main.py \
   --topics-list ./topics.txt \
   --language zh \
   --voice zh-CN-XiaoxiaoNeural \
   --output ./output
-```
+`````
 
-其中 `topics.txt` 每行包含一个主题：
+其中 ````topics.txt```` 每行包含一个主题：
 
-```
+`````
 量子计算的未来
 区块链如何改变金融
 可再生能源的重要性
-```
+`````
 
 ## Web UI 使用
 
-MoneyPrinterTurbo 还包括一个 Web 界面，可通过 `http://localhost:8501` 访问。UI 提供：
+MoneyPrinterTurbo 还包括一个 Web 界面，可通过 ````http://localhost:8501```` 访问。UI 提供：
 
 - 新视频的主题输入框
 - 所有可用语音的选择下拉菜单
@@ -139,10 +140,10 @@ MoneyPrinterTurbo 还包括一个 Web 界面，可通过 `http://localhost:8501`
 - 长生成任务的进度跟踪
 - 已完成视频的下载链接
 
-```bash
+`````bash
 # 启动 Web UI
 python main.py --ui
-```
+`````
 
 然后在浏览器中打开 http://localhost:8501。
 
@@ -150,7 +151,7 @@ python main.py --ui
 
 为了集成到您自己的应用程序中，MoneyPrinterTurbo 提供 REST API：
 
-```python
+`````python
 from moneyprinter import VideoGenerator
 
 generator = VideoGenerator(
@@ -167,13 +168,13 @@ result = generator.generate(
 )
 
 print(f"视频保存至: {result.video_path}")
-```
+`````
 
 ### API 端点
 
 MoneyPrinterTurbo 暴露以下 REST 端点：
 
-```bash
+`````bash
 # 从主题生成视频
 curl -X POST http://localhost:8080/api/v1/generate \
   -H "Content-Type: application/json" \
@@ -184,42 +185,42 @@ curl http://localhost:8080/api/v1/status/{job-id}
 
 # 下载已完成的视频
 curl -O http://localhost:8080/api/v1/download/{job-id}
-```
+`````
 
 ## 高级配置
 
 ### 自定义语音模型
 
-将自定义语音模型放入 `voices/` 目录并在配置中注册：
+将自定义语音模型放入 ````voices/```` 目录并在配置中注册：
 
-```yaml
+`````yaml
 # config.yaml
 voices: custom: - name: "my-voice"
       language: "zh-CN"
       gender: "female"
       backend: "custom-tts"
       model_path: "./custom-voices/my-model.onnx"
-```
+`````
 
 ### 自定义音乐库
 
-```bash
+`````bash
 mkdir -p ./music/calm
 mkdir -p ./music/energetic
 mkdir -p ./music/sad
 python main.py --music ./music/calm/
-```
+`````
 
 ### 视觉风格预设
 
-```yaml
+`````yaml
 # config.yaml
 styles: cinematic: transition: "fade"
     font_family: "Georgia"
     font_size: 32
     subtitle_color: "#FFFFFF"
     background_style: "gradient"
-```
+`````
 
 ## 使用场景
 
@@ -249,17 +250,17 @@ MoneyPrinterTurbo 服务于广泛的内容创作场景：
 
 | 功能 | MoneyPrinterTurbo | Pictory | InVideo AI | Lumen5 | Synthesia |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | 是 | 否 | 否 | 否 | 否 |
 | 自托管 | 是 | 否 | 否 | 否 | 否 |
@@ -280,11 +281,11 @@ MoneyPrinterTurbo 服务于广泛的内容创作场景：
 
 | 方面 | 手动制作 | MoneyPrinterTurbo |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 脚本撰写 | 每个视频 1-2 小时 | 10 秒 |
 | 录音 | 30 分钟设置 | 即时 |
@@ -300,7 +301,7 @@ MoneyPrinterTurbo 服务于广泛的内容创作场景：
 
 您可以将 MoneyPrinterTurbo 与排程工具集成以自动化内容流程：
 
-```python
+`````python
 import schedule
 import time
 from moneyprinter import VideoGenerator
@@ -313,7 +314,7 @@ schedule.every().day.at("08:00").do(generate_daily_video)
 
 while True: schedule.run_pending()
     time.sleep(60)
-```
+`````
 
 ## 局限性
 
@@ -348,7 +349,7 @@ while True: schedule.run_pending()
 
 ### Q5：生成视频前可以编辑 AI 生成的脚本吗？
 
-可以。`--script` 标志允许您提供自己的脚本文件。使用 `--topic` 标志生成草稿后，可以在重新运行生成之前查看和编辑生成的脚本。
+可以。````--script```` 标志允许您提供自己的脚本文件。使用 ````--topic``` 标志生成草稿后，可以在重新运行生成之前查看和编辑生成的脚本。
 
 ### Q6：输出支持哪些视频格式？
 
@@ -381,7 +382,7 @@ while True: schedule.run_pending()
 - HTStack：管理您的云基础设施。加入：https://my.htstack.com/aff.php?aff=27187
 
 
----
+* * *
 DIBI8 是您发现最佳开源工具、AI 创新和开发者资源的门户。订阅我们的 Telegram 频道获取每日更新。
 
 {
@@ -446,11 +447,11 @@ MoneyPrinterTurbo：使用 AI 自动生成视频 represents an important step fo
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -460,6 +461,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](moneyprinter-turbo-ai-video-generation-one-command)
 - [ai-engineering-from-scratch](moneyprinter-turbo-ai-video-generation-one-command)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

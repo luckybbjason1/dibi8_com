@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/scrapy/
 ---
 
+
 {{</* resource-info */>}}
 
 Khi một framework Python cung cấp năng lượng cho khoảng **34% dự án scraping production** trên toàn thế giới và duy trì kho lưu trữ GitHub 61,700 star, nó đáng được nghiên cứu kỹ lưỡng. Scrapy đã là công cụ chủ lực cho web crawling từ năm 2008, nhưng trong năm 2026, bối cảnh bao gồm các công cụ tự động hóa trình duyệt hiện đại như Playwright và các thư viện đã được chứng minh như BeautifulSoup. Câu hỏi không còn là "Scrapy có thể crawl không?" — mà là "Bạn có nên vẫn chọn Scrapy thay vì các lựa chọn thay thế cho khối lượng công việc cụ thể của mình không?"
@@ -53,11 +54,11 @@ Kiến trúc của Scrapy tuân theo một thiết kế hướng sự kiện, kh
 
 ### Luồng dữ liệu
 
-```
+````
 Spider → Engine → Scheduler → Engine → Downloader → Spider → Item Pipeline
                           ↓                                  ↓
                     (bộ lọc trùng)                    (requests mới)
-```
+`````
 
 Engine nhận các Requests ban đầu từ Spider, lập lịch chúng, gửi qua Downloader, nhận Response, chuyển lại cho Spider để phân tích, và gửi các Item đã trích xuất qua Pipeline. Các Requests mới được phát hiện trong quá trình phân tích sẽ quay lại Scheduler. Vòng lặp này tiếp tục cho đến khi không còn requests nào.
 
@@ -73,7 +74,7 @@ Lợi thế hiệu suất chính đến từ kiến trúc không đồng bộ c�
 
 ### Cài đặt cơ bản
 
-```bash
+`````bash
 # Tạo môi trường ảo
 python -m venv scrapy_env
 source scrapy_env/bin/activate  # Linux/Mac
@@ -88,20 +89,20 @@ scrapy version
 
 # Chạy benchmark tích hợp
 scrapy bench
-```
+`````
 
 ### Khung dự án
 
-```bash
+`````bash
 # Tạo dự án Scrapy mới
 scrapy startproject price_monitor
 cd price_monitor
 
 # Tạo mẫu spider
 scrapy genspider products example.com
-```
+`````
 
-Cấu trúc dự án chuẩn được tạo ra: ```
+Cấu trúc dự án chuẩn được tạo ra: `````
 price_monitor/
 ├── scrapy.cfg              # Cấu hình dự án
 ├── price_monitor/
@@ -113,11 +114,11 @@ price_monitor/
 │   └── spiders/
 │       ├── __init__.py
 │       └── products.py     # Spider của bạn
-```
+`````
 
 ### Spider đầu tiên: Trình scrape sản phẩm
 
-```python
+`````python
 # price_monitor/spiders/products.py
 import scrapy
 
@@ -142,11 +143,11 @@ class ProductsSpider(scrapy.Spider): name = products
         # Theo dõi phân trang
         next_page = response.css('.next-page::attr(href)').get()
         if next_page: yield response.follow(next_page, self.parse)
-```
+`````
 
 ### Chạy Spider
 
-```bash
+`````bash
 # Chạy spider và xuất ra JSON
 scrapy crawl products -o products.json
 
@@ -155,11 +156,11 @@ scrapy crawl products -o products.csv
 
 # Chạy với kiểm soát mức độ logging
 scrapy crawl products -L INFO
-```
+`````
 
 ### Triển khai Docker
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -169,9 +170,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["scrapy", "crawl", "products"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: scrapy: build: .
@@ -189,27 +190,27 @@ services: scrapy: build: .
       POSTGRES_PASSWORD: scraper_pass
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## Tích hợp với các công cụ phổ biến
 
 ### Redis cho Crawling phân tán (scrapy-redis)
 
-Khi một máy đơn không đủ, scrapy-redis phân phối việc crawl qua nhiều node sử dụng Redis làm hàng đợi chia sẻ: ```bash
+Khi một máy đơn không đủ, scrapy-redis phân phối việc crawl qua nhiều node sử dụng Redis làm hàng đợi chia sẻ: `````bash
 pip install scrapy-redis
-```
+`````
 
-```python
+`````python
 # settings.py
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_URL = "redis://localhost:6379"
 SCHEDULER_PERSIST = True  # Giữ hàng đợi giữa các lần chạy
-```
+`````
 
 ### Pipeline PostgreSQL
 
-```python
+`````python
 # pipelines.py
 import psycopg2
 from scrapy.exceptions import DropItem
@@ -243,24 +244,24 @@ class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.conn
 
     def close_spider(self, spider): self.cur.close()
         self.conn.close()
-```
+`````
 
 ### Playwright cho các trang render JavaScript
 
-```bash
+`````bash
 pip install scrapy-playwright
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-```
+`````
 
-```python
+`````python
 # spider với Playwright
 import scrapy
 from scrapy_playwright.page import PageMethod
@@ -283,11 +284,11 @@ class JSSpider(scrapy.Spider): name = js_site
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
-```
+`````
 
 ### Xoay vòng Proxy với WebShare
 
-Để crawl production, một proxy pool xoay vòng đáng tin cậy là điều cần thiết. WebShare cung cấp proxy datacenter và residential tích hợp sạch sẽ với middleware của Scrapy: ```python
+Để crawl production, một proxy pool xoay vòng đáng tin cậy là điều cần thiết. WebShare cung cấp proxy datacenter và residential tích hợp sạch sẽ với middleware của Scrapy: `````python
 # middlewares.py
 import base64
 
@@ -298,16 +299,16 @@ class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
 
     def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         spider.logger.debug(f'Sử dụng proxy cho {request.url}')
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOADER_MIDDLEWARES = {
     'price_monitor.middlewares.ProxyMiddleware': 350,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 400,
 }
 WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
-```
+`````
 
 Cấu hình danh sách proxy trong cài đặt Scrapy và middleware sẽ tự động xoay vòng IP. Để scraping khối lượng cao, điểm cuối proxy xoay vòng của WebShare xử lý xác thực và xoay vòng một cách minh bạch — bạn chỉ Scrapy vào một URL duy nhất và nhận được một IP egress khác nhau cho mỗi request.
 
@@ -351,29 +352,29 @@ Một pipeline giám sát giá production tại một công ty tình báo thươ
 
 ### Cấu hình Autothrottle
 
-Không có giới hạn tốc độ, Scrapy có thể làm quá tải máy chủ đích và bị cấm trong vòng giây lát. Autothrottle điều chỉnh độ trễ tải xuống động dựa trên thởi gian phản hồi của máy chủ: ```python
+Không có giới hạn tốc độ, Scrapy có thể làm quá tải máy chủ đích và bị cấm trong vòng giây lát. Autothrottle điều chỉnh độ trễ tải xuống động dựa trên thởi gian phản hồi của máy chủ: `````python
 # settings.py
 AUTOTHROTTLE_ENABLED = True
 AUTOTHROTTLE_START_DELAY = 1.0
 AUTOTHROTTLE_MAX_DELAY = 10.0
 AUTOTHROTTLE_TARGET_CONCURRENCY = 2.0
 AUTOTHROTTLE_DEBUG = False
-```
+`````
 
 ### Chính sách Retry và Timeout
 
-```python
+`````python
 # settings.py
 RETRY_ENABLED = True
 RETRY_TIMES = 3
 RETRY_HTTP_CODES = [500, 502, 503, 504, 408, 429]
 DOWNLOAD_TIMEOUT = 30
 DOWNLOAD_FAIL_ON_DATALOSS = False
-```
+`````
 
 ### Xoay vòng User-Agent tùy chỉnh
 
-```python
+`````python
 # middlewares.py
 import random
 
@@ -384,11 +385,11 @@ USER_AGENTS = [
 ]
 
 class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
-```
+`````
 
 ### Giám sát với Thu thập Thống kê
 
-```python
+`````python
 # extensions.py
 from scrapy import signals
 
@@ -408,30 +409,30 @@ class StatsCollector: def __init__(self): self.requests_count = 0
 
     def item_scraped(self, item, spider): self.items_count += 1
         if self.items_count % 1000 == 0: spider.logger.info(f'Đã scrape {self.items_count} items, {self.requests_count} requests')
-```
+`````
 
 ### Xoay vòng Log và Logging có cấu trúc
 
-```python
+`````python
 # settings.py
 LOG_LEVEL = INFO
 LOG_FILE = 'logs/scrapy.log'
 LOG_FORMAT = '%(asctime)s [%(name)s] %(levelname)s: %(message)s"
 LOG_STDOUT = False
-```
+`````
 
 ### Mở rộng Ngang với Scrapyd
 
-```bash
+`````bash
 pip install scrapyd
 scrapyd  # Khởi động daemon trên cổng 6800
-```
+`````
 
-```bash
+`````bash
 # Triển khai và lập lịch qua HTTP API
 curl http://localhost:6800/schedule.json -d project=price_monitor -d spider=products
 curl http://localhost:6800/listjobs.json -d project=price_monitor
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -497,7 +498,7 @@ Ma trận quyết định rõ ràng: **BeautifulSoup** cho script nhanh dưới 
 
 **Các hành động:**
 
-1. Clone kho lưu trữ Scrapy và chạy `scrapy bench` trên phần cứng của bạn.
+1. Clone kho lưu trữ Scrapy và chạy ````scrapy bench``` trên phần cứng của bạn.
 2. Thiết lập dự án dựa trên Docker với tích hợp PostgreSQL và Redis.
 3. Cấu hình xoay vòng proxy cho crawling production.
 4. Tham gia cộng đồng trên Telegram để nhận mẹo hàng ngày và khắc phục sự cố: [dibi8_tg_group](https://t.me/dibi8open)
@@ -522,7 +523,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Benchmark hiệu suất (NextGrowth.ai): https://nextgrowth.ai/best-tools-for-web-scraping/
 - Phân tích Scrapy vs BeautifulSoup (HasData): https://hasdata.com/blog/scrapy-vs-beautifulsoup
 
----
+* * *
 
 *Bài viết này chứa liên kết affiliate. Khi mua dịch vụ proxy qua các liên kết WebShare trong bài viết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Tất cả dữ liệu benchmark và khuyến nghị dựa trên kiểm thử độc lập và các nguồn đã được cộng đồng xác minh.*
 
@@ -552,7 +553,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -562,6 +563,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [agent-reach-internet-access-ai-agents](scrapy)
 - [microsoft-markitdown-file-to-markdown-converter-cli](scrapy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

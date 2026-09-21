@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/melotts/
 ---
 
+
 {{</* resource-info */>}}
 
 Hầu hết các thư viện TTS mã nguồn mở đều buộc bạn phải lựa chọn: chất lượng cao đòi hỏi GPU, còn tùy chọn thân thiện với CPU nghe như robot. MeloTTS, được phát triển bởi các nhà nghiên cứu từ MIT và MyShell.ai, phá vỡ sự đánh đổi này. Với hơn 7.400 GitHub Stars và giấy phép MIT, nó cung cấp tổng hợp giọng nói đa ngôn ngữ thờ gian thực trên CPU với 6 ngôn ngữ và nhiều giọng Anh khác nhau. Hướng dẫn này sẽ đi qua toàn bộ quá trình thiết lập MeloTTS, đánh giá hiệu năng so với Coqui TTS, ChatTTS và Bark, và cung cấp cấu hình triển khai production-ready.
@@ -40,7 +41,7 @@ Các điểm khác biệt chính: - **Suy luận thờ gian thực trên CPU** v
 
 ## MeloTTS hoạt động như thế nào?
 
-MeloTTS sử dụng kiến trúc neural end-to-end không tự hồi quy (non-autoregressive) từ VITS2 với mã hóa văn bản dựa trên BERT. Quy trình gồm bốn giai đoạn: 1. **Xử lý văn bản**: Chuyển đổi G2P (Grapheme-to-Phoneme) qua `espeak-ng` cho hầu hết ngôn ngữ; BERT tokenizer cho tiếng Trung và Nhật (qua `unidic`). Văn bản Trung-Anh pha trộn được phân đoạn và định tuyến đến các trình trích xuất âm vị phù hợp.
+MeloTTS sử dụng kiến trúc neural end-to-end không tự hồi quy (non-autoregressive) từ VITS2 với mã hóa văn bản dựa trên BERT. Quy trình gồm bốn giai đoạn: 1. **Xử lý văn bản**: Chuyển đổi G2P (Grapheme-to-Phoneme) qua ```espeak-ng```` cho hầu hết ngôn ngữ; BERT tokenizer cho tiếng Trung và Nhật (qua ````unidic````). Văn bản Trung-Anh pha trộn được phân đoạn và định tuyến đến các trình trích xuất âm vị phù hợp.
 
 2. **Bộ mã hóa BERT**: Bộ mã hóa MiniLM nhẹ trích xuất biểu diễn ngữ cảnh từ văn bản đầu vào, nắm bắt các sắc thái về ngữ điệu và ngữ nghĩa.
 
@@ -58,7 +59,7 @@ Toàn bộ pipeline là non-autoregressive, nghĩa là mô hình xử lý toàn 
 
 ### Yêu cầu tiên quyết
 
-Trước khi cài đặt MeloTTS, hãy đảm bảo bạn đã cài: ```bash
+Trước khi cài đặt MeloTTS, hãy đảm bảo bạn đã cài: `````bash
 # Ubuntu/Debian
 sudo apt-get update && sudo apt-get install -y espeak-ng libsndfile1 ffmpeg
 
@@ -67,11 +68,11 @@ brew install espeak libsndfile ffmpeg
 
 # Kiểm tra espeak-ng
 espeak-ng --version
-```
+`````
 
 ### Cách 1: Cài đặt qua pip (Linux/macOS)
 
-```bash
+`````bash
 # Tạo môi trường ảo
 python -m venv melotts-env
 source melotts-env/bin/activate
@@ -81,35 +82,35 @@ pip install melotts
 
 # Tải từ điển tiếng Nhật (bắt buộc cho hỗ trợ JA)
 python -m unidic download
-```
+`````
 
 ### Cách 2: Cài đặt từ mã nguồn
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 pip install -e .
 python -m unidic download
-```
+`````
 
 ### Cách 3: Docker (Khuyến nghị cho Windows)
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 docker build -t melotts .
 docker run -it -p 8888:8888 melotts
-```
+`````
 
-Phiên bản tăng tốc GPU: ```bash
+Phiên bản tăng tốc GPU: `````bash
 docker run --gpus all -it -p 8888:8888 melotts
-```
+`````
 
-Mở `http://localhost:8888` để truy cập Web UI tích hợp.
+Mở ````http://localhost:8888```` để truy cập Web UI tích hợp.
 
 ### Xác minh cài đặt
 
-```python
+`````python
 from melo.api import TTS
 
 # Tốc độ có thể điều chỉnh
@@ -123,23 +124,23 @@ speaker_ids = model.hps.data.spk2id
 output_path = 'test_output.wav'
 model.tts_to_file(text, speaker_ids['EN-Default'], output_path, speed=speed)
 print(f"Audio saved to {output_path}")
-```
+`````
 
 ### Tổng hợp đầu tiên
 
-```bash
+`````bash
 # Sử dụng CLI (sau khi cài pip)
 melo "Hello, this is MeloTTS speaking." output.wav -l EN --speaker EN-US
 
 # Liệt kê các speaker có sẵn
 melo --list-speakers
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
 ### Python API — Tiếng Anh với nhiều giọng khác nhau
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -160,11 +161,11 @@ model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # Giọng Úc
 model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
-```
+`````
 
 ### Tiếng Trung pha trộn tiếng Anh
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -177,11 +178,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
 model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
-```
+`````
 
 ### Tiếng Nhật
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -193,11 +194,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
 model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
-```
+`````
 
 ### FastAPI REST API
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from melo.api import TTS
@@ -227,15 +228,15 @@ async def text_to_speech(req: TTSRequest): if req.language not in models: raise 
     model.tts_to_file(req.text, speaker_ids[req.speaker], output_path, speed=req.speed)
     
     return {"audio_file": output_path}
-```
+`````
 
-Chạy API: ```bash
+Chạy API: `````bash
 uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### Docker Compose cho Production
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: melotts: build: context: .
@@ -250,11 +251,11 @@ services: melotts: build: context: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### TTS Streaming với WebSocket
 
-```python
+`````python
 import asyncio
 import websockets
 import json
@@ -274,11 +275,11 @@ async def tts_stream(websocket, path): async for message in websocket: data = js
 start_server = websockets.serve(tts_stream, '0.0.0.0', 8765)
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
-```
+`````
 
 ### Gradio Web UI
 
-```python
+`````python
 import gradio as gr
 from melo.api import TTS
 
@@ -303,7 +304,7 @@ iface = gr.Interface(
 )
 
 iface.launch(server_name='0.0.0.0', server_port=7860)
-```
+`````
 
 ## Đánh giá hiệu năng / Các trường hợp sử dụng thực tế
 
@@ -371,7 +372,7 @@ Trong các bài kiểm tra đối đầu trên phần cứng giống hệt (Inte
 
 ### Làm nóng mô hình (Pre-warming)
 
-Trong production, luôn tải mô hình khi khởi động để tránh độ trễ khởi động lạnh: ```python
+Trong production, luôn tải mô hình khi khởi động để tránh độ trễ khởi động lạnh: `````python
 from melo.api import TTS
 import functools
 
@@ -382,11 +383,11 @@ def get_model(language): """Trình tải mô hình được cache — mô hình 
 # Làm nóng trước tất cả ngôn ngữ khi khởi động
 for lang in [EN, ZH, ES, FR, JA, KO]: get_model(lang)
 print("Tất cả mô hình đã sẵn sàng.")
-```
+`````
 
 ### Xử lý batch để tăng thông lượng
 
-```python
+`````python
 from melo.api import TTS
 import concurrent.futures
 
@@ -405,11 +406,11 @@ def synth(text): output_path = f"batch_{hash(text)}.wav"
 
 # Xử lý batch song song
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(synth, texts))
-```
+`````
 
 ### Máy chủ Production Gunicorn + FastAPI
 
-```bash
+`````bash
 # Cài đặt gunicorn với uvicorn workers
 pip install gunicorn uvicorn
 
@@ -420,11 +421,11 @@ gunicorn tts_api:app -k uvicorn.workers.UvicornWorker \
   --timeout 120 \
   --max-requests 1000 \
   --max-requests-jitter 100
-```
+`````
 
 ### File dịch vụ systemd
 
-```ini
+`````ini
 [Unit]
 Description=MeloTTS REST API
 After=network.target
@@ -442,19 +443,19 @@ RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-Cài đặt và khởi động: ```bash
+Cài đặt và khởi động: `````bash
 sudo cp melotts.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable melotts
 sudo systemctl start melotts
 sudo systemctl status melotts
-```
+`````
 
 ### Giám sát với Prometheus
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
@@ -468,11 +469,11 @@ async def metrics(): return Response(content=generate_latest(), media_type="text
 @app.post("/tts")
 async def text_to_speech(req: TTSRequest): with tts_duration.time(): # ... logic TTS hiện tại ...
         tts_requests.labels(language=req.language, speaker=req.speaker).inc()
-```
+`````
 
 ### Reverse Proxy Nginx
 
-```nginx
+`````nginx
 upstream melotts {
     server 127.0.0.1:8000;
     keepalive 32;
@@ -494,7 +495,7 @@ server {
         limit_req zone=tts_zone burst=20 nodelay;
     }
 }
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -529,7 +530,7 @@ MeloTTS không phải giải pháp vạn năng. Đây là các hạn chế cụ 
 
 2. **Không điều khiển cảm xúc**: Bạn có thể điều chỉnh tốc độ, nhưng không có tham số nào để điều khiển vui, buồn, giận dữ hay các chất lượng cảm xúc khác. Bark và ChatTTS cung cấp biểu đạt cảm xúc phong phú hơn.
 
-3. **Hạn chế G2P**: Pipeline grapheme-to-phoneme mặc định sử dụng `espeak-ng` dựa trên quy tắc, đôi khi phát âm sai các từ hiếm hoặc danh từ riêng. Không có G2P neural nào được tích hợp sẵn.
+3. **Hạn chế G2P**: Pipeline grapheme-to-phoneme mặc định sử dụng ````espeak-ng```` dựa trên quy tắc, đôi khi phát âm sai các từ hiếm hoặc danh từ riêng. Không có G2P neural nào được tích hợp sẵn.
 
 4. **Không streaming inference**: Dù việc tạo âm thanh đầy đủ rất nhanh, bạn phải đợi toàn bộ âm thanh được tổng hợp xong trước khi phát. Streaming thực sự từng chunk không được hỗ trợ.
 
@@ -551,19 +552,19 @@ Có. MeloTTS được phát hành theo giấy phép MIT, cho phép sử dụng t
 
 ### Q3: Đầu vào pha trộn Trung-Anh hoạt động như thế nào?
 
-Mô hình Trung (`language=ZH`) tự động phát hiện các từ tiếng Anh trong văn bản tiếng Trung và định tuyến chúng qua pipeline G2P tiếng Anh trong khi duy trì tính liên tục về ngữ điệu. Không cần gán nhãn thủ công hay chuyển đổi mô hình.
+Mô hình Trung (````language=ZH````) tự động phát hiện các từ tiếng Anh trong văn bản tiếng Trung và định tuyến chúng qua pipeline G2P tiếng Anh trong khi duy trì tính liên tục về ngữ điệu. Không cần gán nhãn thủ công hay chuyển đổi mô hình.
 
 ### Q4: Độ dài văn bản tối đa MeloTTS có thể xử lý là bao nhiêu?
 
 Không có giới hạn độ dài được hardcode. Tuy nhiên, mô hình xử lý toàn bộ văn bản trong một forward pass duy nhất, nên văn bản rất dài (> 1000 ký tự) có thể gây lỗi out-of-memory trên hệ thống RAM thấp. Đối với nội dung dạng, hãy chia văn bản thành câu và tổng hợp theo batch.
 
-### Q5: Làm thế nào để sửa lỗi `espeak-ng not found`?
+### Q5: Làm thế nào để sửa lỗi ````espeak-ng not found````?
 
-Cài đặt `espeak-ng` qua trình quản lý gói hệ thống trước khi cài MeloTTS. Trên Ubuntu: `sudo apt-get install espeak-ng`. Trên macOS: `brew install espeak`. Trên Windows, tải trình cài đặt từ trang phát hành espeak-ng GitHub và thêm vào PATH.
+Cài đặt ````espeak-ng```` qua trình quản lý gói hệ thống trước khi cài MeloTTS. Trên Ubuntu: ````sudo apt-get install espeak-ng````. Trên macOS: ````brew install espeak````. Trên Windows, tải trình cài đặt từ trang phát hành espeak-ng GitHub và thêm vào PATH.
 
 ### Q6: Tôi có thể fine-tune MeloTTS bằng giọng của mình không?
 
-Có, nhưng có lưu ý. Pipeline huấn luyện tồn tại (`docs/training.md`) nhưng tài liệu còn hạn chế. Bạn cần khoảng 30 phút bản ghi âm sạch và bản ghi chép văn bản tương ứng. Fine-tuning yêu cầu GPU (NVIDIA với 8GB+ VRAM) và mất vài giờ.
+Có, nhưng có lưu ý. Pipeline huấn luyện tồn tại (````docs/training.md````) nhưng tài liệu còn hạn chế. Bạn cần khoảng 30 phút bản ghi âm sạch và bản ghi chép văn bản tương ứng. Fine-tuning yêu cầu GPU (NVIDIA với 8GB+ VRAM) và mất vài giờ.
 
 ### Q7: MeloTTS so với ElevenLabs hoặc các dịch vụ TTS thương mại khác như thế nào?
 
@@ -574,7 +575,7 @@ MeloTTS sánh ngang các dịch vụ thương mại về khả năng hiểu và 
 MeloTTS chiếm một vị trí độc đáo trong bức tranh TTS mã nguồn mở: đây là thư viện duy nhất kết hợp hỗ trợ đa ngôn ngữ, giấy phép MIT và suy luận CPU thờ gian thực trong một gói dưới 300MB. Đối với các đội ngũ xây dựng sản phẩm SaaS, chatbot hoặc pipeline nội dung cần tổng hợp giọng nói đáng tin cậy mà không cần hạ tầng GPU, MeloTTS là lựa chọn thực tiễn.
 
 **Các hành động cần thực hiện:**
-1. Chạy `pip install melotts` và tổng hợp đoạn âm thanh đầu tiên ngay hôm nay
+1. Chạy ````pip install melotts``` và tổng hợp đoạn âm thanh đầu tiên ngay hôm nay
 2. Triển khai ví dụ FastAPI phía sau Nginx để có endpoint TTS sẵn sàng production
 3. Tham gia [MeloTTS GitHub Discussions](https://github.com/myshell-ai/MeloTTS/discussions) để được hỗ trợ từ cộng đồng
 4. Theo dõi nhóm Telegram dibi8 để cập nhật công cụ AI hàng tuần
@@ -630,7 +631,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -640,6 +641,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [agent-reach-internet-access-ai-agents](melotts)
 - [microsoft-markitdown-file-to-markdown-converter-cli](melotts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

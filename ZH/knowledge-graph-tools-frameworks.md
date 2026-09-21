@@ -8,6 +8,7 @@ tags: ["知识图谱", "图数据库", "neo4j", "图神经网络", "语义网"]
 aliases:
   - /zh/posts/knowledge-graph-tools-frameworks/-
 ---
+
 # 2025年最佳知识图谱构建工具与框架对比：Neo4j、RDFlib、Amazon Neptune、Stardog全面评测
 
 
@@ -23,11 +24,11 @@ aliases:
 
 | 特性 | 知识图谱（图数据库） | 传统关系型数据库 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据模型 | 节点-关系-属性 | 表-行-列 |
 | 关系查询 | 原生支持多跳关系 | 需多次JOIN，性能下降 |
@@ -119,19 +120,19 @@ TigerGraph是一款采用原生并行图（Native Parallel Graph）架构的图�
 
 | 功能特性 | Neo4j | RDFlib | Amazon Neptune | Stardog | TigerGraph | Dgraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据模型 | 属性图 | RDF | 属性图+RDF | RDF+属性图 | 属性图 | 属性图 |
 | 查询语言 | Cypher | SPARQL | Gremlin+SPARQL | SPARQL | GSQL | GraphQL+- |
@@ -172,15 +173,15 @@ TigerGraph是一款采用原生并行图（Native Parallel Graph）架构的图�
 
 | 查询语言 | 代表数据库 | 语法风格 | 学习曲线 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cypher | Neo4j | 类ASCII艺术 | 平缓 | 属性图查询 |
 | Gremlin | Neptune、JanusGraph | 过程式/函数式 | 较陡峭 | 复杂图遍历 |
@@ -188,7 +189,7 @@ TigerGraph是一款采用原生并行图（Native Parallel Graph）架构的图�
 | GSQL | TigerGraph | 类SQL+图语法 | 中等 | 复杂图分析 |
 | GraphQL+- | Dgraph | 类GraphQL | 平缓 | API式图查询 |
 
-**Cypher** 以直观的ASCII艺术语法著称，`(a:Person)-[:KNOWS]->(b)` 这样的表达让关系查询一目了然。**Gremlin** 是Apache TinkerPop标准的图遍历语言，功能强大但学习曲线较陡。**SPARQL** 是W3C标准的RDF查询语言，适合语义网场景。
+**Cypher** 以直观的ASCII艺术语法著称，```(a:Person)-[:KNOWS]->(b)``` 这样的表达让关系查询一目了然。**Gremlin** 是Apache TinkerPop标准的图遍历语言，功能强大但学习曲线较陡。**SPARQL** 是W3C标准的RDF查询语言，适合语义网场景。
 
 ## 构建你的第一个知识图谱：分步教程
 
@@ -209,7 +210,7 @@ TigerGraph是一款采用原生并行图（Native Parallel Graph）架构的图�
 **动态图谱（Dynamic Graph）** 技术让知识图谱能够实时反映世界的变化，结合流处理技术（如Kafka + Flink），知识图谱可以在新事件发生时自动更新，实现真正的"活"知识库。预计2025年，知识图谱将成为企业AI基础设施的标准组件，与LLM、向量数据库和实时流处理深度融合。
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -304,7 +305,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

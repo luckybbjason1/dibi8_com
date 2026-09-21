@@ -13,6 +13,7 @@ maintainer: 'tinyhumansai'
 license: 'GPL-3.0'
 ---
 
+
 # OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 활용 2026
 
 아마 이런 패턴을 눈치채셨을 겁니다. 새로운 AI 도구를 구매하고, API 키를 설정하고, 통합을 연결하고, 에이전트에게 코드베이스를 교육하는 데 몇 시간을 쏟지만 — 재시작하면 모든 것을 잊어버립니다. 이것이 모든 AI 어시스턴트가 직면하는 콜드 스타트 문제입니다.
@@ -32,7 +33,7 @@ OpenHuman은 모든 것을 로컬에서 유지하면서 일상 작업 흐름에 
 
 이 프로젝트는 2026년 2월에 시작되었으며 이미 **31,869 GitHub 스타**와 **3,089 포크**를 기록했습니다. GPL-3.0 하에 출시되었고, 개인정보 중심 AI 도구에 집중하는 TinyHumans AI 팀에서 개발했습니다.
 
-```yaml
+````yaml
 # OpenHuman 설정 — 메모리 트리 위치
 # 모든 데이터는 기본적으로 사용자의 기기에만 저장됩니다
 memory: vault_path: ~/.openhuman/vault
@@ -40,11 +41,11 @@ memory: vault_path: ~/.openhuman/vault
   model_default: gpt-4o
   model_fallback: claude-sonnet-4
   token_compression: true
-```
+`````
 
 ## OpenHuman 작동 방식
 
-OpenHuman은 선택적 관리 서비스와 함께 **로컬 우선 아키텍처**를 따릅니다: ```
+OpenHuman은 선택적 관리 서비스와 함께 **로컬 우선 아키텍처**를 따릅니다: `````
 ┌─────────────────────────────────────────────┐
 │              OpenHuman 데스크탑 앱            │
 ├─────────────┬──────────────┬────────────────┤
@@ -57,13 +58,13 @@ OpenHuman은 선택적 관리 서비스와 함께 **로컬 우선 아키텍처**
 ├─────────────────────────────────────────────┤
 │        로컬 런타임 (Rust 기반, <50MB RAM)   │
 └─────────────────────────────────────────────┘
-```
+`````
 
 **메모리 트리(Memory Tree)**는 핵심 혁신입니다. 스스로 구축되는 개인 지식 그래프라고 생각하면 됩니다. 모든 대화, 파일 참조, 워크플로우 결정 사항이 로컬 금고에 Markdown 형식으로 저장됩니다. 2주 전 프로젝트에 대해 OpenHuman에게 물어보면, 채팅 기록을 검색하는 것이 아니라 이미 해당 프로젝트에 대한 구조화된 문맥을 가진 메모리 트리를 읽습니다.
 
 선택적인 **관리 서비스(managed services)** 레이어는 Composio 커넥터를 통해 계정 로그인, 웹 검색 프록시, OAuth 흐름을 처리합니다. 모든 것을 선택 해제하고 100% 로컬에서 실행할 수도 있지만, 관리 서비스 레이어는 서드파티 통합을 시작하는 과정을 진정으로 마찰 없이 만들어줍니다.
 
-```bash
+`````bash
 # 메모리 트리 크기와 구조 확인
 # 모든 데이터는 일반 마크다운 — grep, ripgrep, Obsidian 모두 사용 가능
 find ~/.openhuman/vault -name '*.md' | wc -l
@@ -72,7 +73,7 @@ find ~/.openhuman/vault -name '*.md' | wc -l
 # 메모리 트리 인덱스 보기
 cat ~/.openhuman/vault/_index.md
 # 메모리 간 자동 생성된 교차 참조 포함
-```
+`````
 
 ## 설치 및 설정
 
@@ -80,7 +81,7 @@ OpenHuman은 네이티브 패키지 관리자를 통해 배포되는 데스크�
 
 ### macOS (Homebrew) — 권장
 
-```bash
+`````bash
 # 공식 저장소 탭하고 설치
 brew tap tinyhumansai/core
 brew install openhuman
@@ -88,15 +89,15 @@ brew install openhuman
 # 설치 확인
 openhuman --version
 # 출력 예시: OpenHuman v0.12.x (빌드 날짜, Rust 백엔드)
-```
+`````
 
 # 터미널이나 Spotlight에서 실행
 openhuman
-```
+`````
 
 ### 리눅스 (Debian/Ubuntu) — 공식 APT 저장소
 
-```bash
+`````bash
 # GPG 키 및 APT 저장소 추가
 sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates
 curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \
@@ -109,23 +110,23 @@ sudo apt-get install -y openhuman
 
 # 버전 확인
 openhuman --version
-```
+`````
 
 ### 리눅스 (Arch Linux — AUR)
 
-```bash
+`````bash
 # openhuman-bin AUR 레시피는 저장소 자체에 있음
 # AUR에 게시되면: yay -S openhuman-bin
-```
+`````
 
 ### 윈도우
 
 MSI 설치 프로그램을 [GitHub Releases 페이지](https://github.com/tinyhumansai/openhuman/releases/latest) 또는 [tinyhumans.ai](https://tinyhumans.ai/openhuman)에서 다운로드하세요. 설치 프로그램에는 내장 업데이트 관리자를 통한 자동 업데이트가 포함되어 있습니다.
 
-```powershell
+`````powershell
 # 설치 후 PowerShell에서 확인
 openhuman --version
-```
+`````
 
 > **중요**: OpenHuman은 현재 **초기 베타** 단계입니다. 일부 미완성 기능이 있을 수 있습니다. 핵심 기능(메모리 트리, 모델 라우팅, 기본 통합)은 안정적이지만, 일부 실시간 트리거 및 호스팅 기능은 여전히 관리형 백엔드를 필요로 합니다.
 
@@ -135,7 +136,7 @@ OpenHuman의 118개 이상의 통합 기능이 핵심 특징입니다. 각 서�
 
 ### GitHub 통합
 
-```bash
+`````bash
 # GitHub 통합 구성
 # OpenHuman은 깃허브 리포지토리 구조를 매 20분마다 Memory Tree로 자동 가져옵니다
 openhuman configure github --repo tinyhumansai/openhuman
@@ -144,11 +145,11 @@ openhuman configure github --repo tinyhumansai/openhuman
 # "Memory Tree 인덱서는 무엇을 하나요?"
 # → OpenHuman은 로컬 캐시에서 리포지토리 구조를 읽고
 #   정확한 답변을 제공합니다, 웹 검색은 필요없음
-```
+`````
 
 ### Obsidian 호환성
 
-Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동합니다: ```bash
+Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동합니다: `````bash
 # Obsidian에서 Memory Tree 열기
 # 모든 AI 대화 기록이 이미 노트로 저장되어 있습니다
 # 일반 노트처럼 검색, 링크, 정리할 수 있습니다
@@ -165,11 +166,11 @@ Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동�
 # └── workflows/
 #     ├── coding-patterns.md
 #     └── design-decisions.md
-```
+`````
 
 ### Composio 커넥터 레이어
 
-Composio는 OAuth 기반의 통합 프레임워크를 제공합니다: ```bash
+Composio는 OAuth 기반의 통합 프레임워크를 제공합니다: `````bash
 # 사용 가능한 Composio 커넥터 목록
 openhuman integrations list
 
@@ -180,11 +181,11 @@ openhuman integrations enable notion --scope write
 openhuman integrations status
 # 출력: 23/118개의 커넥터 활성화됨
 #   GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗
-```
+`````
 
 ### 여러 제공자와 함께하는 모델 라우팅
 
-```bash
+`````bash
 # 선호하는 모델 순서 구성
 openhuman config models \
   --primary gpt-4o \
@@ -196,7 +197,7 @@ openhuman config models \
 # 압축 없이: 8,420 토큰
 # TokenJuice 사용: 1,890 토큰 (77.5% 감소)
 # 정확도 영향: 벤치마크 테스트에서 <2%
-```
+`````
 
 ## 벤치마크 및 실제 성능
 
@@ -213,13 +214,13 @@ openhuman config models \
 
 ### TokenJuice 토큰 압축
 
-TokenJuice는 3가지 모델 계열에서 정확도 손실 <2%로 60~95%의 토큰 감소를 달성함: ```
+TokenJuice는 3가지 모델 계열에서 정확도 손실 <2%로 60~95%의 토큰 감소를 달성함: `````
 모델                | 기준치 (토큰) | 압축 후 (토큰) | 절감률 | 정확도 Δ
 --------------------|---------------|----------------|--------|----------
 gpt-4o              | 12,400        | 2,100          | 83.1%  | -1.2%
 claude-sonnet-4     | 9,800         | 1,950          | 80.1%  | -0.8%
 llama-3.2 (로컬)     | 6,200         | 1,400          | 77.4%  | -1.5%
-```
+`````
 
 **출처**: 내부 벤치마크, 2026년 5월. 코드, 창작 글쓰기, 사실 기반 Q&A를 포함한 1,000개의 다양한 프롬프트에서 테스트됨.
 
@@ -237,10 +238,10 @@ llama-3.2 (로컬)     | 6,200         | 1,400          | 77.4%  | -1.5%
 
 ### 100% 로컬 실행 (관리형 서비스 없음)
 
-클라우드 의존성을 완전히 제거하려면: ```bash
+클라우드 의존성을 완전히 제거하려면: `````bash
 # 완전 로컬 모드로 전환
 openhuman config sync --mode local
-openhuman config managed --disable```
+openhuman config managed --disable`````
 
 # 클라우드 연결 여부 확인
 openhuman status
@@ -248,11 +249,11 @@ openhuman status
 # 모델 라우팅: 로컬 전용 ✓
 # 통합: 연결 끊김 ✓
 # 클라우드 서비스: 비활성화 ✓
-```
+`````
 
 ### 커스텀 모델 구성
 
-```bash
+`````bash
 # OpenAI 호환 엔드포인트 추가
 openhuman config models add \
   --name custom-model \
@@ -269,22 +270,22 @@ openhuman config models set-primary \
 openhuman config tokenjuice \
   --aggressive false \
   --preservation-rate 0.15  # 토큰의 15% 유지
-```
+`````
 
 ### Obsidian Vault 자동화
 
-메모리 트리가 표준 Markdown 저장소이므로, 고급 워크플로를 위해 Obsidian 플러그인을 사용할 수 있습니다: ```bash
+메모리 트리가 표준 Markdown 저장소이므로, 고급 워크플로를 위해 Obsidian 플러그인을 사용할 수 있습니다: `````bash
 # Obsidian과 메모리 트리를 매일 동기화
 crontab -e  # 다음 줄을 추가: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/
 
 # 메모리 트리 쿼리를 위해 Obsidian dataview 사용
 # Obsidian Dataview 플러그인에서: # TABLE file.mdate, file.tags FROM "projects/"
 # SORT file.mdate DESC
-```
+`````
 
 ### Composio 커넥터와 CI/CD 통합
 
-OpenHuman을 개발 워크플로우에 사용하는 팀을 위해: ```bash
+OpenHuman을 개발 워크플로우에 사용하는 팀을 위해: `````bash
 # 자동화된 테스트 러너 통합
 openhuman integrations enable github --scope repo,workflow
 
@@ -297,7 +298,7 @@ openhuman ci status project-alpha --last 5
 # 출력: #   Build #142: ✅ 2분 13초 | 847개 테스트 통과
 #   Build #141: ❌ 0분 31초 | 인증 모듈에서 3개 실패
 #   Build #140: ✅ 1분 58초 | 847개 테스트 통과
-```
+`````
 
 ## 대안과의 비교
 
@@ -350,16 +351,16 @@ OpenHuman은 2026년에 로컬 AI 비서에게 일어난 최고의 사건이며,
 
 재시작할 때 모든 것을 잊어버리는 AI 어시스턴트에 지치셨다면, OpenHuman이 그 해답입니다.
 
----
+* * *
 
 **출처 및 추가 읽을거리**: - 공식 문서: https://tinyhumans.gitbook.io/openhuman/
 - GitHub 저장소: https://github.com/tinyhumansai/openhuman
 - Discord 커뮤니티: https://discord.tinyhumans.ai/
 - Product Hunt: https://www.producthunt.com/products/openhuman
 
----
+* * *
 
-**OpenHuman 시도해보기**: `brew tap tinyhumansai/core && brew install openhuman` 명령어로 설치하거나 [tinyhumans.ai/openhuman](https://tinyhumans.ai/openhuman?utm_source=github&utm_medium=readme)을 방문하세요.
+**OpenHuman 시도해보기**: ````brew tap tinyhumansai/core && brew install openhuman``` 명령어로 설치하거나 [tinyhumans.ai/openhuman](https://tinyhumans.ai/openhuman?utm_source=github&utm_medium=readme)을 방문하세요.
 
 커뮤니티 참여하기: [Telegram](https://t.me/DIBI8_Group) · [Discord](https://discord.tinyhumans.ai/)
 

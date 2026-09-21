@@ -13,6 +13,7 @@ license: MIT
 featureImage: ''
 ---
 
+
 ## 소개
 
 개발자로서 우리는 복잡한 작업을 단순화하고 워크플로우를 가속화하는 도구를 끊임없이 찾고 있습니다. 대규모 언어 모델(LLM)의 부상은 더욱 지능적이고 자율적인 에이전트를 가능하게 하는 소프트웨어 개발의 새로운 패러다임을 열었습니다. 그러나 이러한 잠재력을 활용하려면 종종 복잡한 프레임워크와 방법론을 탐색해야 합니다.
@@ -48,7 +49,7 @@ Superpowers는 "스킬"을 "에이전트"로 구성하여 작업을 실행하는
 
 간단한 상호 작용을 시각화해 보겠습니다. 주어진 도시의 날씨를 찾는 에이전트가 있다고 가정해 봅시다.
 
-```ascii
+````ascii
 +-------------------+      +-------------------+      +-------------------+
 |                   |      |                   |      |                   |
 |      Agent        |----->|    Skill: Get     |----->|   External API    |
@@ -60,11 +61,11 @@ Superpowers는 "스킬"을 "에이전트"로 구성하여 작업을 실행하는
           +----------------------------------------------------+
                      (API Response)
 
-```
+`````
 
 이 다이어그램에서: *   **에이전트**는 요청(예: "런던 날씨는?")을 받습니다.
-*   날씨 정보의 필요성을 식별하고 `get_weather` 스킬을 호출합니다.
-*   `get_weather` 스킬은 `curl` 또는 `wget`과 같은 도구를 사용하여 외부 날씨 API와 상호 작용할 수 있습니다.
+*   날씨 정보의 필요성을 식별하고 ````get_weather```` 스킬을 호출합니다.
+*   ````get_weather```` 스킬은 ````curl```` 또는 ````wget````과 같은 도구를 사용하여 외부 날씨 API와 상호 작용할 수 있습니다.
 *   API의 응답은 스킬에 의해 처리되어 에이전트로 반환됩니다.
 *   에이전트는 LLM을 사용하여 이 정보를 사람이 읽을 수 있는 형식으로 구성할 수 있습니다.
 
@@ -77,42 +78,42 @@ Superpowers의 강점은 이러한 스킬 실행을 관리하는 복잡성을 �
 **필수 구성 요소:**
 
 *   Unix 계열 환경 (Linux, macOS, Windows의 WSL).
-*   `git` 설치.
-*   최신 Shell 인터프리터 (예: `bash`, `zsh`).
-*   (선택 사항, LLM 통합용) LLM API 키 및 관련 도구 (예: `ollama`, `openai-cli` 등).
+*   ````git```` 설치.
+*   최신 Shell 인터프리터 (예: ````bash````, ````zsh````).
+*   (선택 사항, LLM 통합용) LLM API 키 및 관련 도구 (예: ````ollama````, ````openai-cli```` 등).
 
 **설치 단계:**
 
 1.  **저장소 복제:**
     Superpowers를 얻는 주된 방법은 GitHub 저장소를 복제하는 것입니다.
 
-    ```bash
+    `````bash
     git clone https://github.com/obra/superpowers.git
     cd superpowers
-    ```
+    `````
 
 2.  **환경 소싱:**
     Superpowers는 주요 스크립트를 소싱하여 필요한 환경 변수와 함수를 설정합니다.
 
-    ```bash
+    `````bash
     source ./superpowers.sh
-    ```
+    `````
 
-    이 명령은 현재 셸 세션에서 Superpowers 명령 및 함수를 사용할 수 있도록 합니다. 영구적인 액세스를 위해서는 일반적으로 이 줄을 셸 구성 파일(예: `~/.bashrc`, `~/.zshrc`)에 추가합니다.
+    이 명령은 현재 셸 세션에서 Superpowers 명령 및 함수를 사용할 수 있도록 합니다. 영구적인 액세스를 위해서는 일반적으로 이 줄을 셸 구성 파일(예: ````~/.bashrc````, ````~/.zshrc````)에 추가합니다.
 
 3.  **구성 초기화 (선택 사항이지만 권장):**
     Superpowers는 종종 구성 파일을 사용하여 설정, API 키 및 경로를 관리합니다. 기본 구성을 초기화할 수 있습니다.
 
-    ```bash
+    `````bash
     # 이 명령은 기본 구성 파일을 생성할 수 있습니다. 예: ~/.config/superpowers/config
     superpowers init
-    ```
+    `````
 
-    그런 다음 이 구성 파일(예: `~/.config/superpowers/config`)을 편집하여 LLM 제공업체, API 키 및 기타 필요한 매개변수를 설정해야 합니다.
+    그런 다음 이 구성 파일(예: ````~/.config/superpowers/config````)을 편집하여 LLM 제공업체, API 키 및 기타 필요한 매개변수를 설정해야 합니다.
 
-    **예제 `~/.config/superpowers/config`:**
+    **예제 ````~/.config/superpowers/config````:**
 
-    ```ini
+    `````ini
     # Superpowers 구성
     # 2026-05-23 기준
 
@@ -132,12 +133,12 @@ Superpowers의 강점은 이러한 스킬 실행을 관리하는 복잡성을 �
     SKILL_DIR="$HOME/.superpowers/skills"
 
     # ... 기타 구성
-    ```
+    `````
 
 4.  **첫 번째 스킬 생성 (예제):**
     간단한 "hello world" 스킬을 만들어 보겠습니다.
 
-    ```bash
+    `````bash
     # 스킬 디렉토리가 없으면 생성
     mkdir -p ~/.superpowers/skills
     cd ~/.superpowers/skills
@@ -156,22 +157,22 @@ Superpowers의 강점은 이러한 스킬 실행을 관리하는 복잡성을 �
 
     # 스킬을 실행 가능하게 만들기
     chmod +x hello.sh
-    ```
+    `````
 
 5.  **간단한 에이전트 실행:**
     이제 이 스킬을 사용하는 에이전트를 실행해 볼 수 있습니다. Superpowers는 종종 에이전트와 상호 작용하기 위한 명령줄 인터페이스를 제공합니다.
 
-    ```bash
+    `````bash
     # 'superpowers' 명령이 소싱 후 사용 가능하다고 가정
     # 정확한 명령은 Superpowers CLI에 따라 다를 수 있습니다.
     superpowers agent --prompt "Greet my friend John" --skills ~/.superpowers/skills
-    ```
+    `````
 
-    에이전트 로직이 프롬프트를 올바르게 구문 분석하고 "John"을 인자로 `hello.sh` 스킬을 호출하면 출력은 다음과 같습니다.
+    에이전트 로직이 프롬프트를 올바르게 구문 분석하고 "John"을 인자로 ````hello.sh```` 스킬을 호출하면 출력은 다음과 같습니다.
 
-    ```
+    `````
     greeting=Hello, John!
-    ```
+    `````
 
 이 설정 프로세스, 특히 주요 스크립트를 소싱하고 기본 구성을 설정하는 것은 새로운 시스템에서 실제로 5분 이내에 완료될 수 있습니다.
 
@@ -184,25 +185,25 @@ Superpowers의 강점은 개발자가 일반적으로 사용하는 다양한 도
 이는 아마도 에이전트 프레임워크에서 가장 중요한 통합일 것입니다. Superpowers는 에이전트가 LLM의 추론 및 생성 기능을 활용할 수 있도록 합니다.
 
 **작동 방식:**
-`superpowers.sh` 스크립트(또는 관련 CLI)는 일반적으로 LLM API 또는 로컬 모델을 호출하는 로직을 가집니다. `~/.config/superpowers/config`의 구성은 제공업체, 모델 및 API 엔드포인트/키를 지정합니다.
+````superpowers.sh```` 스크립트(또는 관련 CLI)는 일반적으로 LLM API 또는 로컬 모델을 호출하는 로직을 가집니다. ````~/.config/superpowers/config````의 구성은 제공업체, 모델 및 API 엔드포인트/키를 지정합니다.
 
-**예제 구성 (`~/.config/superpowers/config`):**
+**예제 구성 (````~/.config/superpowers/config````):**
 
-```ini
+`````ini
 LLM_PROVIDER="ollama"
 LLM_MODEL="llama3:latest"
 LLM_API_BASE="http://localhost:11434"
-```
+`````
 
-또는 OpenAI의 경우: ```ini
+또는 OpenAI의 경우: `````ini
 LLM_PROVIDER="openai"
 LLM_MODEL="gpt-4o-mini"
 LLM_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+`````
 
-**예제 스킬 (개념적 `llm_query.sh`):**
+**예제 스킬 (개념적 ````llm_query.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: LLM Query
 # 설명: 구성된 LLM에 프롬프트를 보내고 응답을 반환합니다.
@@ -226,18 +227,18 @@ elif [ "\$PROVIDER" = "openai" ]; then
     # curl 또는 openai-cli를 사용한 OpenAI API에 대한 유사한 로직
     echo "response=OpenAI 통합은 이 예제에서 완전히 구현되지 않았습니다."
 fi
-```
+`````
 
 ### 2. 버전 관리 시스템 (Git)
 
 에이전트는 코드 저장소와 상호 작용하고, 브랜치를 체크아웃하고, 변경 사항을 커밋하고, 코드를 관리해야 할 수 있습니다.
 
 **작동 방식:**
-Superpowers는 표준 `git` 명령을 래핑하는 스킬을 정의할 수 있습니다. 그런 다음 에이전트는 버전 관리 작업을 수행하도록 지시받을 수 있습니다.
+Superpowers는 표준 ````git```` 명령을 래핑하는 스킬을 정의할 수 있습니다. 그런 다음 에이전트는 버전 관리 작업을 수행하도록 지시받을 수 있습니다.
 
-**예제 스킬 (`git_commit.sh`):**
+**예제 스킬 (````git_commit.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Git Commit
 # 설명: 현재 Git 저장소에서 스테이징된 변경 사항을 커밋합니다.
@@ -267,7 +268,7 @@ else
     echo "error=Git commit failed."
     exit 1
 fi
-```
+`````
 
 에이전트는 코드 또는 문서를 생성한 후 이 스킬을 사용할 수 있습니다.
 
@@ -276,11 +277,11 @@ fi
 많은 에이전트 작업(예: 구성 읽기, 출력 쓰기 또는 데이터 파일 처리)에는 기본 파일 조작이 필수적입니다.
 
 **작동 방식:**
-Superpowers는 `cat`, `echo`, `mkdir`, `mv`, `rm`, `grep`, `sed`, `awk` 등과 같은 표준 Unix 유틸리티를 스킬로 활용할 수 있습니다.
+Superpowers는 ````cat````, ````echo````, ````mkdir````, ````mv````, ````rm````, ````grep````, ````sed````, ````awk```` 등과 같은 표준 Unix 유틸리티를 스킬로 활용할 수 있습니다.
 
-**예제 스킬 (`write_file.sh`):**
+**예제 스킬 (````write_file.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Write File
 # 설명: 지정된 파일에 내용을 씁니다.
@@ -305,18 +306,18 @@ else
     echo "error=Failed to write to file \$FILEPATH."
     exit 1
 fi
-```
+`````
 
-### 4. 웹 스크래핑 / API 상호 작용 (예: `curl`, `wget`)
+### 4. 웹 스크래핑 / API 상호 작용 (예: ````curl````, ````wget````)
 
 에이전트는 종종 웹에서 데이터를 가져오거나 외부 API와 상호 작용해야 합니다.
 
 **작동 방식:**
-`curl` 및 `wget`과 같은 Shell 표준은 스킬에 대한 완벽한 후보입니다.
+````curl```` 및 ````wget````과 같은 Shell 표준은 스킬에 대한 완벽한 후보입니다.
 
-**예제 스킬 (`fetch_url.sh`):**
+**예제 스킬 (````fetch_url.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Fetch URL
 # 설명: 주어진 URL에서 내용을 가져옵니다.
@@ -340,20 +341,20 @@ if [ \$? -ne 0 ]; then
 fi
 
 echo "content=\$CONTENT"
-```
+`````
 
-더 복잡한 웹 스크래핑의 경우 `BeautifulSoup` 또는 `Scrapy`와 같은 라이브러리를 사용하는 Python 스크립트와 통합할 수 있으며, 이는 `run_python_script.sh` 스킬을 통해 호출됩니다.
+더 복잡한 웹 스크래핑의 경우 ````BeautifulSoup```` 또는 ````Scrapy````와 같은 라이브러리를 사용하는 Python 스크립트와 통합할 수 있으며, 이는 ````run_python_script.sh```` 스킬을 통해 호출됩니다.
 
-### 5. 데이터 처리 (예: `jq`, `awk`, `sed`)
+### 5. 데이터 처리 (예: ````jq````, ````awk````, ````sed````)
 
 구조화되거나 비구조화된 데이터를 조작하는 것은 일반적인 에이전트 작업입니다.
 
 **작동 방식:**
 데이터 처리를 위한 강력한 명령줄 도구를 스킬로 직접 노출할 수 있습니다.
 
-**예제 스킬 (`process_json.sh` with `jq`):**
+**예제 스킬 (````process_json.sh```` with ````jq````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Process JSON with jq
 # 설명: jq 필터를 사용하여 JSON 데이터를 처리합니다.
@@ -383,7 +384,7 @@ if [ \$? -ne 0 ]; then
 fi
 
 echo "processed_data=\$PROCESSED_DATA"
-```
+`````
 
 이러한 명령줄 도구 및 서비스와 통합하는 능력은 Superpowers를 지능형 에이전트를 구축하기 위한 다용도 프레임워크로 만들어 소프트웨어 생태계와 상호 작용할 수 있도록 합니다. 웹 스크래핑 또는 API 호출을 위한 고속 프록시에 액세스하려면 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)와 같은 서비스를 고려해 보세요.
 
@@ -395,7 +396,7 @@ echo "processed_data=\$PROCESSED_DATA"
 
 **시나리오:** 팀은 Superpowers를 사용하여 레거시 Python 코드 리팩터링 프로세스를 자동화합니다. 에이전트는 다음 작업을 수행합니다.
 1.  리팩터링 영역 식별 (예: 긴 함수, 중복 코드).
-2.  자동 리팩터링 도구 적용 (예: `autopep8`, `black`, 사용자 지정 AST 조작 스크립트).
+2.  자동 리팩터링 도구 적용 (예: ````autopep8````, ````black````, 사용자 지정 AST 조작 스크립트).
 3.  리팩터링된 코드에 대한 독스트링 생성 또는 업데이트.
 4.  설명적인 메시지로 Git 저장소에 변경 사항 커밋.
 
@@ -404,21 +405,21 @@ echo "processed_data=\$PROCESSED_DATA"
 *   **작업 완료 시간:** 이전에는 개발자 노력으로 2-3일이 걸렸던 복잡한 리팩터링 작업은 코드 검토 주기를 포함하여 4시간 이내에 에이전트가 시작하고 완료할 수 있었습니다.
 *   **일관성:** 코드베이스 전체에서 일관된 형식 및 문서화를 보장하여 검토 오버헤드를 줄였습니다.
 
-**관련 스킬:** `run_python_script.sh`, `git_commit.sh`, `find_files.sh`, `llm_query.sh` (독스트링 생성용).
+**관련 스킬:** ````run_python_script.sh````, ````git_commit.sh````, ````find_files.sh````, ````llm_query.sh```` (독스트링 생성용).
 
 ### 사용 사례 2: 콘텐츠 생성 및 배포 파이프라인
 
 **시나리오:** 마케팅 팀은 Superpowers를 사용하여 콘텐츠 생성 및 배포를 자동화합니다. 에이전트의 워크플로우: 1.  RSS 피드 또는 뉴스 API에서 인기 있는 주제 가져오기.
 2.  LLM을 사용하여 주제에 기반한 블로그 게시물 또는 소셜 미디어 업데이트 초안 작성.
 3.  다양한 플랫폼(예: Twitter, LinkedIn)에 맞게 콘텐츠 형식 지정.
-4.  (선택 사항) 플랫폼 API를 통해 게시물 예약 (사용자 지정 `post_to_platform.sh` 스킬 사용).
+4.  (선택 사항) 플랫폼 API를 통해 게시물 예약 (사용자 지정 ````post_to_platform.sh```` 스킬 사용).
 
 **벤치마크/결과:**
 *   **콘텐츠 처리량:** 주당 콘텐츠 생산량을 3배 증가시켰습니다.
 *   **시간 절약:** 수동 콘텐츠 준비 시간을 70% 단축했습니다.
 *   **적응성:** 에이전트의 프롬프트 또는 입력 소스를 단순히 업데이트하여 새로운 인기 주제에 빠르게 적응했습니다.
 
-**관련 스킬:** `fetch_url.sh`, `llm_query.sh`, `format_text.sh` (사용자 지정 스크립트), `post_to_twitter.sh` (사용자 지정 스킬).
+**관련 스킬:** ````fetch_url.sh````, ````llm_query.sh````, ````format_text.sh```` (사용자 지정 스크립트), ````post_to_twitter.sh```` (사용자 지정 스킬).
 
 ### 사용 사례 3: CI/CD 파이프라인 강화
 
@@ -432,9 +433,9 @@ echo "processed_data=\$PROCESSED_DATA"
 *   **개발자 집중:** 개발자가 반복적인 디버깅이 아닌 새로운 문제에 집중할 수 있도록 했습니다.
 *   **비용 효율성:** 수동 개입이 필요한 많은 작업을 자동화했습니다.
 
-**관련 스킬:** `read_file.sh`, `grep_logs.sh`, `run_script.sh` (수정 적용용), `send_notification.sh`.
+**관련 스킬:** ````read_file.sh````, ````grep_logs.sh````, ````run_script.sh```` (수정 적용용), ````send_notification.sh````.
 
-### 성능 고려 사항: *   **Shell 스크립트 속도:** 기본 Shell 작업은 매우 빠릅니다. `grep` 또는 `sed` 명령은 밀리초 단위로 실행됩니다.
+### 성능 고려 사항: *   **Shell 스크립트 속도:** 기본 Shell 작업은 매우 빠릅니다. ````grep```` 또는 ````sed```` 명령은 밀리초 단위로 실행됩니다.
 *   **LLM 지연 시간:** 많은 에이전트 작업에 대한 주요 병목 현상은 LLM 추론 시간입니다. 이는 LLM에 내재된 것이며 Superpowers 프레임워크 자체의 한계는 아닙니다.
 *   **외부 API 호출:** 외부 API 호출에 대한 네트워크 지연 시간은 작업 완료 시간에 영향을 미칩니다.
 *   **스킬 복잡성:** 사용자 지정 스킬의 효율성은 개발자에게 달려 있습니다. 잘 작성되고 최적화된 스크립트가 중요합니다.
@@ -447,14 +448,14 @@ Superpowers는 설정이 쉽지만 프로덕션에 에이전트를 배포하려�
 
 ### 1. 견고한 스킬 설계
 
-*   **오류 처리:** 모든 스킬에는 포괄적인 오류 처리가 있어야 합니다. `set -e`(명령이 0이 아닌 상태로 종료되면 즉시 종료) 및 `set -o pipefail`(파이프라인의 반환 값은 0이 아닌 상태로 종료된 마지막 명령의 상태이거나, 0이 아닌 상태로 종료된 명령이 없으면 0)을 사용합니다.
+*   **오류 처리:** 모든 스킬에는 포괄적인 오류 처리가 있어야 합니다. ````set -e````(명령이 0이 아닌 상태로 종료되면 즉시 종료) 및 ````set -o pipefail````(파이프라인의 반환 값은 0이 아닌 상태로 종료된 마지막 명령의 상태이거나, 0이 아닌 상태로 종료된 명령이 없으면 0)을 사용합니다.
 *   **입력 유효성 검사:** 예기치 않은 동작이나 보안 취약점을 방지하기 위해 스킬의 모든 입력을 정리하고 유효성을 검사합니다.
 *   **멱등성:** 가능한 경우 스킬을 멱등적으로 설계합니다. 동일한 입력으로 여러 번 실행해도 부작용 없이 동일한 결과가 나옵니다.
 *   **리소스 관리:** 리소스 사용량(CPU, 메모리, 네트워크)을 염두에 둡니다. 장기 실행 또는 리소스 집약적인 스킬의 경우 전용 서비스로 오프로드하는 것을 고려합니다.
 
-**예제 `robust_skill.sh` 스니펫:**
+**예제 ````robust_skill.sh```` 스니펫:**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Robust Example
 # ... (설명, 입력, 출력)
@@ -476,7 +477,7 @@ RESULT="Processed: $INPUT_DATA"
 
 # 출력 형식 지정
 echo "result=$RESULT"
-```
+`````
 
 ### 2. 상태 관리 및 지속성
 
@@ -488,7 +489,7 @@ echo "result=$RESULT"
 
 **예제: 에이전트 상태를 파일로 사용:**
 
-```bash
+`````bash
 # 에이전트 진행 상태를 업데이트하는 스킬
 update_agent_state.sh: #!/bin/bash
 set -e
@@ -523,19 +524,19 @@ if [ -f "$STATE_FILE" ]; then
 else
     echo "{}"
 fi
-```
+`````
 
 ### 3. 로깅 및 모니터링
 
 효과적인 로깅은 프로덕션에서 에이전트 동작을 디버깅하고 이해하는 데 필수적입니다.
 
-*   **표준 출력/오류:** 스킬이 `stdout` 및 `stderr`에 의미 있는 정보를 로깅하도록 합니다. Superpowers 런타임은 이를 캡처해야 합니다.
+*   **표준 출력/오류:** 스킬이 ````stdout```` 및 ````stderr````에 의미 있는 정보를 로깅하도록 합니다. Superpowers 런타임은 이를 캡처해야 합니다.
 *   **중앙 집중식 로깅:** 스킬이 로그를 전송하거나 Superpowers의 출력 로그를 처리하여 중앙 집중식 로깅 시스템(예: ELK 스택, Splunk)과 통합합니다.
 *   **메트릭:** 작업 성공률, 실행 시간 및 오류 빈도와 같은 주요 메트릭을 추적합니다.
 
 **예제: 로그에 타임스탬프 추가:**
 
-```bash
+`````bash
 # 에이전트 실행 스크립트 또는 래퍼 스킬에서: log_with_timestamp() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
 }
@@ -544,7 +545,7 @@ fi
 ./my_skill.sh arg1 arg2 >> agent.log 2>&1
 EXIT_CODE=$?
 log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
-```
+`````
 
 ### 4. 보안 고려 사항
 
@@ -561,11 +562,11 @@ log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
 
 **예제: cron을 통해 Superpowers 에이전트 트리거:**
 
-```bash
+`````bash
 # crontab에서 (run 'crontab -e")
 # 매일 오전 3시에 일일 에이전트 작업 실행
 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf >> /var/log/superpowers_agent.log 2>&1
-```
+`````
 
 이러한 고급 관행을 구현함으로써 프로덕션 환경을 위해 Superpowers 프레임워크를 사용하여 견고하고 안정적이며 안전한 AI 에이전트를 구축할 수 있습니다.
 
@@ -612,8 +613,8 @@ Superpowers는 인상적인 성장과 실용적인 매력을 가지고 있지만
 ### 1. Shell 스크립팅의 내재된 과제
 
 *   **복잡성 관리:** Shell은 간단한 작업에 훌륭하지만, 매우 크고 복잡한 에이전트 로직을 전적으로 Shell로 관리하는 것은 다루기 어려울 수 있습니다. 복잡한 Shell 스크립트를 디버깅하는 것은 특히 그 미묘한 차이에 익숙하지 않은 개발자에게는 어려울 수 있습니다.
-*   **이식성 미묘함:** Shell은 이식성이 높지만, Shell 버전 및 운영 체제 간의 미묘한 차이(예: `sed` 동작, 파일 경로 처리)는 때때로 플랫폼별 문제를 일으킬 수 있으며 신중한 테스트가 필요합니다.
-*   **풍부한 데이터 구조 부족:** Shell은 주로 문자열을 처리합니다. 복잡한 데이터 구조(예: 중첩된 사전 또는 목록)는 `jq`와 같은 외부 도구나 사용자 지정 구문 분석을 필요로 하며, 이는 오버헤드를 추가합니다.
+*   **이식성 미묘함:** Shell은 이식성이 높지만, Shell 버전 및 운영 체제 간의 미묘한 차이(예: ````sed```` 동작, 파일 경로 처리)는 때때로 플랫폼별 문제를 일으킬 수 있으며 신중한 테스트가 필요합니다.
+*   **풍부한 데이터 구조 부족:** Shell은 주로 문자열을 처리합니다. 복잡한 데이터 구조(예: 중첩된 사전 또는 목록)는 ````jq````와 같은 외부 도구나 사용자 지정 구문 분석을 필요로 하며, 이는 오버헤드를 추가합니다.
 
 ### 2. 생태계 성숙도
 
@@ -623,7 +624,7 @@ Superpowers는 인상적인 성장과 실용적인 매력을 가지고 있지만
 ### 3. 개발 패러다임 전환
 
 *   **추상화 수준:** 높은 수준의 Python 추상화에 익숙한 개발자는 Shell 명령 및 스크립트에 대한 Superpowers의 직접적인 의존성을 복잡한 작업에 대한 인지 부하 측면에서 덜 "개발자 친화적"이라고 생각할 수 있습니다. 금속에 더 가깝다는 것은 양날의 검입니다.
-*   **오류 전파:** `set -e` 및 `set -o pipefail`이 도움이 되지만, 여러 개의 연결된 Shell 스크립트에서 오류를 추적하는 것은 Python 호출 스택을 디버깅하는 것보다 때때로 덜 명확할 수 있습니다.
+*   **오류 전파:** ````set -e```` 및 ````set -o pipefail````이 도움이 되지만, 여러 개의 연결된 Shell 스크립트에서 오류를 추적하는 것은 Python 호출 스택을 디버깅하는 것보다 때때로 덜 명확할 수 있습니다.
 
 ### 4. 성능 병목 현상
 
@@ -647,13 +648,13 @@ Superpowers는 LLM 기능을 익숙하고, 이식성이 높으며, 종종 이미
 ## 자주 묻는 질문
 
 **Q1: Superpowers는 Shell 스크립팅 전용인가요? Python이나 다른 언어를 사용할 수 있나요?**
-A1: Superpowers는 주로 Shell 기반 프레임워크이므로 핵심 실행 엔진과 제공되는 많은 유틸리티가 Shell로 되어 있습니다. 그러나 Python, Node.js, Go 또는 기타 언어로 작성된 스킬을 통합할 수 있습니다. 일반적으로 Python 스크립트를 실행하는 Shell 스크립트("스킬")를 만들고 인수를 전달하고 출력을 캡처합니다. 예를 들어 `run_python_script.sh` 스킬이 있습니다.
+A1: Superpowers는 주로 Shell 기반 프레임워크이므로 핵심 실행 엔진과 제공되는 많은 유틸리티가 Shell로 되어 있습니다. 그러나 Python, Node.js, Go 또는 기타 언어로 작성된 스킬을 통합할 수 있습니다. 일반적으로 Python 스크립트를 실행하는 Shell 스크립트("스킬")를 만들고 인수를 전달하고 출력을 캡처합니다. 예를 들어 ````run_python_script.sh```` 스킬이 있습니다.
 
 **Q2: Superpowers는 LLM 비용을 어떻게 처리하나요?**
-A2: Superpowers 자체는 LLM 비용을 직접 관리하지 않습니다. 오케스트레이터 역할을 합니다. 비용은 `~/.config/superpowers/config` 파일에서 구성한 LLM 제공업체(예: OpenAI, Anthropic)에 의해 발생합니다. API 키를 관리하고 해당 제공업체와의 사용량을 모니터링할 책임이 있습니다. Ollama와 같은 일부 로컬 LLM 제공업체는 토큰당 비용이 없으며 하드웨어/전기 비용만 발생합니다.
+A2: Superpowers 자체는 LLM 비용을 직접 관리하지 않습니다. 오케스트레이터 역할을 합니다. 비용은 ````~/.config/superpowers/config```` 파일에서 구성한 LLM 제공업체(예: OpenAI, Anthropic)에 의해 발생합니다. API 키를 관리하고 해당 제공업체와의 사용량을 모니터링할 책임이 있습니다. Ollama와 같은 일부 로컬 LLM 제공업체는 토큰당 비용이 없으며 하드웨어/전기 비용만 발생합니다.
 
 **Q3: 팀 내에서 스킬이나 에이전트를 어떻게 공유할 수 있나요?**
-A3: 스킬은 일반적으로 개별 스크립트(예: `.sh` 파일)입니다. 다음을 통해 공유할 수 있습니다.
+A3: 스킬은 일반적으로 개별 스크립트(예: ````.sh``` 파일)입니다. 다음을 통해 공유할 수 있습니다.
     *   공유 Git 저장소에 저장합니다.
     *   공통 디렉토리 구조를 사용하고 에이전트가 해당 디렉토리를 가리키도록 합니다.
     *   더 큰 애플리케이션 또는 Docker 이미지의 일부로 패키징합니다.
@@ -713,7 +714,7 @@ Shell 스크립팅에 능숙하거나 에이전트 AI를 위한 가볍고 이식
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -723,7 +724,7 @@ Shell 스크립팅에 능숙하거나 에이전트 AI를 위한 가볍고 이식
 - [windsurf-ai-ide](superpowers)
 - [windsurf-ai-ide](superpowers)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

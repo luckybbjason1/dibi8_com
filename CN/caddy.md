@@ -11,6 +11,7 @@ tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops",
 aliases:
   - /posts/caddy/-
 ---
+
 {{</* resource-info */>}}
 
 Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought. While Nginx requires manual certificate configuration and Apache needs mod_ssl wrangling, Caddy provisions and renews TLS certificates from Let's Encrypt and ZeroSSL automatically — no cron jobs, no certbot, no configuration. With **72,595 GitHub stars** and a codebase written in Go, Caddy has served trillions of requests and manages millions of TLS certificates in production environments ranging from single VPS deployments to clusters handling hundreds of thousands of sites.
@@ -35,7 +36,7 @@ Caddy's architecture differs fundamentally from traditional C-based servers. Und
 
 Caddy is built on a **modular middleware chain** architecture. Every incoming request flows through a sequence of HTTP handlers defined in configuration — logging, authentication, reverse proxying, static file serving, error handling, and more. Each handler can modify the request, generate a response, or pass the request to the next handler in the chain.
 
-The server uses **Go's goroutine scheduler** instead of a traditional event-loop or process-per-connection model. Each HTTP request gets its own goroutine, which means: - No worker process tuning needed (no `worker_processes` directive)
+The server uses **Go's goroutine scheduler** instead of a traditional event-loop or process-per-connection model. Each HTTP request gets its own goroutine, which means: - No worker process tuning needed (no ```worker_processes```` directive)
 - Concurrent request handling scales with GOMAXPROCS automatically
 - Memory per connection is higher than Nginx's event loop but simpler to reason about
 
@@ -43,7 +44,7 @@ The server uses **Go's goroutine scheduler** instead of a traditional event-loop
 
 When Caddy starts with a domain name in its configuration, it performs the following steps automatically: 1. **ACME client activation**: Caddy's built-in ACME client contacts Let's Encrypt (primary) and ZeroSSL (fallback)
 2. **Domain validation**: HTTP-01 or TLS-ALPN-01 challenge proves domain ownership
-3. **Certificate issuance**: TLS certificate is obtained and stored in `$HOME/.local/share/caddy` or `/data`
+3. **Certificate issuance**: TLS certificate is obtained and stored in ````$HOME/.local/share/caddy```` or ````/data````
 4. **OCSP stapling**: Certificate status is fetched and stapled to TLS handshakes automatically
 5. **Renewal monitoring**: Background goroutine checks expiry and renews 60 days before expiration
 6. **HTTP-to-HTTPS redirect**: Port 80 traffic is automatically redirected to port 443
@@ -52,9 +53,9 @@ This entire pipeline requires zero configuration. The operator only specifies th
 
 ### JSON Configuration API
 
-Caddy exposes a RESTful admin API on `localhost:2019` that accepts JSON configuration. This enables dynamic configuration changes without process restarts, and powers the `caddy-docker-proxy` plugin for automatic Docker service discovery.
+Caddy exposes a RESTful admin API on ````localhost:2019```` that accepts JSON configuration. This enables dynamic configuration changes without process restarts, and powers the ````caddy-docker-proxy```` plugin for automatic Docker service discovery.
 
-```bash
+`````bash
 # Get current running configuration
 curl http://localhost:2019/config/
 
@@ -62,7 +63,7 @@ curl http://localhost:2019/config/
 curl -X POST http://localhost:2019/config/apps/http/servers/srv0/routes \
   -H "Content-Type: application/json" \
   -d '{"handle": [{"handler": "static_response", "body": "OK"}]}'
-```
+`````
 
 ## Installation & Setup
 
@@ -70,7 +71,7 @@ Getting Caddy running takes under five minutes on any platform. This **Caddy set
 
 ### Install via Official Repository (Recommended)
 
-```bash
+`````bash
 # Install required packages
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
 
@@ -88,11 +89,11 @@ sudo apt install caddy
 
 # Check version
 caddy version
-```
+`````
 
 ### Install via Docker
 
-```yaml
+`````yaml
 # File: docker-compose.yml
 services: caddy: image: caddy:2-alpine
     container_name: caddy
@@ -108,19 +109,19 @@ services: caddy: image: caddy:2-alpine
 
 volumes: caddy_data: caddy_config: networks: caddy_network: name: caddy_network
     driver: bridge
-```
+`````
 
-```bash
+`````bash
 # Start the container
 docker compose up -d
 
 # Check logs
 docker compose logs -f caddy
-```
+`````
 
 ### First Caddyfile — Static Site
 
-```caddy
+`````caddy
 # File: Caddyfile
 example.com {
     root * /usr/share/caddy
@@ -135,19 +136,19 @@ example.com {
         Referrer-Policy "strict-origin-when-cross-origin"
     }
 }
-```
+`````
 
-```bash
+`````bash
 # Validate configuration
 caddy validate --config /etc/caddy/Caddyfile
 
 # Reload with zero downtime
 caddy reload --config /etc/caddy/Caddyfile
-```
+`````
 
 ### Systemd Service Configuration
 
-```ini
+`````ini
 # File: /etc/systemd/system/caddy.service
 [Unit]
 Description=Caddy Web Server
@@ -170,14 +171,14 @@ AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-```bash
+`````bash
 # Enable and start
 sudo systemctl daemon-reload
 sudo systemctl enable --now caddy
 sudo systemctl status caddy
-```
+`````
 
 ## Integration with Docker, Prometheus, Grafana, and Let's Encrypt
 
@@ -185,7 +186,7 @@ sudo systemctl status caddy
 
 The most common production setup uses Caddy as a reverse proxy for multiple containerized applications.
 
-```yaml
+`````yaml
 # File: docker-compose.yml
 services: caddy: image: caddy:2-alpine
     container_name: caddy
@@ -226,9 +227,9 @@ services: caddy: image: caddy:2-alpine
 
 volumes: caddy_data: caddy_config: prometheus_data: grafana_data: networks: proxy: name: proxy
     driver: bridge
-```
+`````
 
-```caddy
+`````caddy
 # File: Caddyfile
 {
     # Global options
@@ -296,11 +297,11 @@ prometheus.example.com {
 grafana.example.com {
     reverse_proxy grafana:3000
 }
-```
+`````
 
 ### Prometheus Scrape Configuration
 
-```yaml
+`````yaml
 # File: prometheus.yml
 global: scrape_interval: 15s
   evaluation_interval: 15s
@@ -311,13 +312,13 @@ scrape_configs: - job_name: caddy
 
   - job_name: 'node-exporter'
     static_configs: - targets: [node-exporter:9100]
-```
+`````
 
 ### On-Demand TLS for Multi-Tenant SaaS
 
 For platforms that serve customer subdomains dynamically, Caddy supports on-demand TLS — certificates are obtained the first time a domain is requested.
 
-```caddy
+`````caddy
 # File: Caddyfile
 {
     on_demand_tls {
@@ -334,9 +335,9 @@ For platforms that serve customer subdomains dynamically, Caddy supports on-dema
 
     reverse_proxy app:3000
 }
-```
+`````
 
-```python
+`````python
 # File: app/allow_endpoint.py (Flask example)
 from flask import Flask, request, jsonify
 
@@ -350,7 +351,7 @@ def check_domain(): domain = request.args.get("domain", "")
     return "Not allowed", 403
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -360,13 +361,13 @@ Independent benchmark campaigns published between November 2025 and April 2026 r
 
 | Benchmark Workload | Caddy 2.8 | Nginx 1.26 | Winner |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 KB static, HTTP/2 (16 cores) | 142,000 req/s | 117,000 req/s | Caddy +22% |
 | 1 MB static, HTTP/2 (16 cores) | 9,800 req/s | 11,400 req/s | Nginx +16% |
@@ -380,13 +381,13 @@ Independent benchmark campaigns published between November 2025 and April 2026 r
 
 | Scenario | Caddy 2.8 | Nginx 1.30 | Traefik 3.1 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HTTP reverse proxy (2 KB JSON) | 81,000 req/s | 88,000 req/s | 82,000 req/s |
 | HTTPS reverse proxy | 36,000 req/s | 38,000 req/s | 36,500 req/s |
@@ -408,7 +409,7 @@ For teams preferring managed infrastructure, several hosting providers offer Cad
 
 ### File Server with Pre-Compressed Assets
 
-```caddy
+`````caddy
 # File: Caddyfile
 example.com {
     root * /var/www/html
@@ -428,11 +429,11 @@ example.com {
         Cache-Control "public, max-age=31536000, immutable"
     }
 }
-```
+`````
 
 ### Advanced Load Balancing with Health Checks
 
-```caddy
+`````caddy
 # File: Caddyfile
 api.example.com {
     reverse_proxy backend1:8080 backend2:8080 backend3:8080 {
@@ -458,11 +459,11 @@ api.example.com {
         header_up X-Forwarded-Proto {scheme}
     }
 }
-```
+`````
 
 ### Custom Error Pages
 
-```caddy
+`````caddy
 # File: Caddyfile
 example.com {
     root * /var/www/html
@@ -470,12 +471,12 @@ example.com {
 
     handle_errors {
         @404 {
-            expression `{http.error.status_code} == 404`
+            expression ````{http.error.status_code} == 404````
         }
         rewrite @404 /404.html
 
         @5xx {
-            expression `{http.error.status_code} >= 500`
+            expression ````{http.error.status_code} >= 500````
         }
         rewrite @5xx /500.html
 
@@ -484,11 +485,11 @@ example.com {
         }
     }
 }
-```
+`````
 
 ### Logging to File with Rotation
 
-```caddy
+`````caddy
 # File: Caddyfile
 {
     log {
@@ -514,11 +515,11 @@ example.com {
 
     reverse_proxy app:3000
 }
-```
+`````
 
 ### API Authentication with JWT
 
-```caddy
+`````caddy
 # File: Caddyfile
 api.example.com {
     # Validate JWT tokens (requires http.jwt module)
@@ -543,11 +544,11 @@ api.example.com {
         reverse_proxy protected:3000
     }
 }
-```
+`````
 
 ### Docker-Compose for Full Production Stack
 
-```yaml
+`````yaml
 # File: docker-compose.prod.yml
 services: caddy: image: caddy:2-alpine
     restart: unless-stopped
@@ -574,21 +575,21 @@ volumes: caddy_data: driver: local
 
 networks: proxy: driver: bridge
     internal: false
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Caddy 2.8 | Nginx 1.30 | Apache 2.4 | Traefik 3.1 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Auto HTTPS (zero config)** | Yes — built-in | No — certbot required | No — mod_ssl + certbot | Yes — built-in ACME |
 | **HTTP/3 (QUIC) support** | Native, default | Native, manual config | Experimental module | Native, experimental |
@@ -607,11 +608,11 @@ networks: proxy: driver: bridge
 
 Caddy is not the right tool for every deployment. These are the trade-offs to understand before committing: **Higher memory footprint at idle.** Caddy uses 3-4x more RAM than Nginx for the same number of idle keep-alive connections. On a 1 GB Raspberry Pi, this matters. On a 64 GB Kubernetes node, it does not.
 
-**Lower large-file streaming performance.** Nginx's `sendfile` zero-copy path gives it a 17% throughput advantage for files over 1 GB. If you operate a video streaming platform, Nginx remains the better choice.
+**Lower large-file streaming performance.** Nginx's ````sendfile```` zero-copy path gives it a 17% throughput advantage for files over 1 GB. If you operate a video streaming platform, Nginx remains the better choice.
 
 **Smaller operational knowledge pool.** Nginx expertise is ubiquitous — every SRE has debugged an nginx.conf. Caddy's community is smaller, though it is growing rapidly. Finding consultants with deep Caddy production experience is harder.
 
-**No built-in Docker discovery.** Traefik auto-discovers containers via labels. Caddy requires the third-party `caddy-docker-proxy` plugin for equivalent functionality, or manual Caddyfile updates when services change.
+**No built-in Docker discovery.** Traefik auto-discovers containers via labels. Caddy requires the third-party ````caddy-docker-proxy```` plugin for equivalent functionality, or manual Caddyfile updates when services change.
 
 **Cold start latency.** Caddy's 180 ms cold start (vs Nginx's 45 ms) can cause brief 503 cascades in aggressive autoscaling environments. Pre-warmed pools or readiness probes mitigate this.
 
@@ -619,7 +620,7 @@ Caddy is not the right tool for every deployment. These are the trade-offs to un
 
 ### Does Caddy's automatic HTTPS work behind Cloudflare?
 
-Yes. If Cloudflare proxies your DNS (orange cloud), set Caddy's DNS A record to your server's public IP and let Cloudflare handle the edge. Caddy still auto-provisions certificates for the origin. For full encryption between Cloudflare and Caddy, use Cloudflare's Origin CA certificate or configure Caddy with the DNS challenge for direct ACME issuance. The `tls` directive accepts custom certificate paths if needed.
+Yes. If Cloudflare proxies your DNS (orange cloud), set Caddy's DNS A record to your server's public IP and let Cloudflare handle the edge. Caddy still auto-provisions certificates for the origin. For full encryption between Cloudflare and Caddy, use Cloudflare's Origin CA certificate or configure Caddy with the DNS challenge for direct ACME issuance. The ````tls```` directive accepts custom certificate paths if needed.
 
 ### Can Caddy replace Nginx completely in production?
 
@@ -627,19 +628,19 @@ For approximately 90% of web workloads — static sites, API gateways, microserv
 
 ### How does Caddy handle certificate renewal failures?
 
-Caddy implements multi-issuer fallback: if Let's Encrypt fails, it automatically retries with ZeroSSL. Certificates are renewed 60 days before expiry, and Caddy retries with exponential backoff on transient failures. The admin API endpoint `/certificates` shows the status of all managed certificates, enabling monitoring and alerting.
+Caddy implements multi-issuer fallback: if Let's Encrypt fails, it automatically retries with ZeroSSL. Certificates are renewed 60 days before expiry, and Caddy retries with exponential backoff on transient failures. The admin API endpoint ````/certificates```` shows the status of all managed certificates, enabling monitoring and alerting.
 
 ### What is the Caddyfile vs JSON configuration trade-off?
 
-The Caddyfile is human-readable and optimized for hand-written configurations — ideal for most deployments. JSON is machine-generated and enables dynamic updates via the admin API — use it when building configuration management tools or when using `caddy-docker-proxy`. Both formats have identical capabilities; the choice depends on who generates the config.
+The Caddyfile is human-readable and optimized for hand-written configurations — ideal for most deployments. JSON is machine-generated and enables dynamic updates via the admin API — use it when building configuration management tools or when using ````caddy-docker-proxy````. Both formats have identical capabilities; the choice depends on who generates the config.
 
 ### How do I monitor Caddy in production?
 
-Enable the `servers { metrics }` global option to expose Prometheus-compatible metrics on `:2019/metrics`. Key metrics include `caddy_http_requests_total`, `caddy_http_request_duration_seconds`, and `caddy_tls_handshake_duration_seconds`. Grafana dashboard ID `14280` provides a ready-made visualization. Combine with the `health_uri` directive on upstreams for end-to-end service health monitoring.
+Enable the ````servers { metrics }```` global option to expose Prometheus-compatible metrics on ````:2019/metrics````. Key metrics include ````caddy_http_requests_total````, ````caddy_http_request_duration_seconds````, and ````caddy_tls_handshake_duration_seconds````. Grafana dashboard ID ````14280```` provides a ready-made visualization. Combine with the ````health_uri```` directive on upstreams for end-to-end service health monitoring.
 
 ### Can I run Caddy with my own wildcard certificate?
 
-Yes. Mount your certificate and key into the container, then reference them in the Caddyfile: `tls /etc/caddy/cert.pem /etc/caddy/key.pem`. Caddy will use these directly and skip ACME provisioning. This is common in corporate environments with internal certificate authorities.
+Yes. Mount your certificate and key into the container, then reference them in the Caddyfile: ````tls /etc/caddy/cert.pem /etc/caddy/key.pem```. Caddy will use these directly and skip ACME provisioning. This is common in corporate environments with internal certificate authorities.
 
 ## Conclusion
 
@@ -679,7 +680,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Caddy Community Forum](https://caddy.community/)
 
 
----
+* * *
 *Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All benchmark data and recommendations are based on independent testing and editorial judgment.*
 
 
@@ -709,7 +710,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](caddy)
@@ -718,6 +719,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](caddy)
 - [moneyprinterturbo-one-click-ai-video-generator](caddy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

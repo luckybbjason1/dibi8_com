@@ -33,6 +33,7 @@ faqs: - q: 'EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 
     a: '정렬 또는 해시 작업이 work_mem에 맞지 않아 디스크로 스필된 것을 의미하며, 이로 인해 해당 노드의 시간이 쉽게 10배까지 늘어날 수 있습니다. 해결 방법은 해당 세션의 work_mem을 늘리고 EXPLAIN을 다시 실행하는 것입니다.'
 ---
 
+
 # PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게
 
 
@@ -43,21 +44,21 @@ EXPLAIN ANALYZE 출력은 실제로 중요한 세 숫자를 알기 전까지는 
 ## 실제로 중요한 세 숫자
 
 ### 1. **총 실행 시간 (Total Execution Time)**
-```
+````
 Total runtime: 1234.567 ms
-```
+`````
 가장 중요한 지표입니다. 쿼리가 느리면 여기에서 알려줍니다.
 
 ### 2. **실제 행 수 vs 예상 행 수 (Actual vs Estimated Rows)**
-```
+`````
 Seq Scan on users  (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1)
-```
+`````
 거대한 차이는 플래너가 잘못된 가정을 했다는 것을 나타냅니다.
 
 ### 3. **버퍼 히트 비율 (Buffer Hit Ratio)**
-```
+`````
 Buffers: shared hit=1000 read=50
-```
+`````
 높은 히트율 = 좋은 캐시 사용, 낮은 히트율 = 디스크 I/O 문제.
 
 ## 읽는 순서
@@ -70,29 +71,29 @@ Buffers: shared hit=1000 read=50
 ## 일반적인 문제 패턴
 
 ### **인덱스 스캔이어야 할 때 순차 스캔**
-```
+`````
 Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32)
-```
+`````
 **해결책**: 적절한 인덱스 추가
 
 ### **해시 조인이어야 할 때 중첩 루프**
-```
+`````
 Nested Loop (cost=1000.00..100000.00 rows=1000 width=64)
   -> Seq Scan on users
   -> Index Scan on orders
-```
+`````
 **해결책**: work_mem 증가 또는 쿼리 재작성
 
 ### **너무 많은 버퍼 미스**
-```
+`````
 Buffers: shared hit=10 read=1000
-```
+`````
 **해결책**: shared_buffers 증가 또는 쿼리 개선
 
 ### **디스크로 정렬 오버플로**
-```
+`````
 Sort Method: external merge  Disk: 16384kB
-```
+````
 **해결책**: work_mem 증가
 
 ## 실제 적용
@@ -104,7 +105,7 @@ Sort Method: external merge  Disk: 16384kB
 
 기억하세요: EXPLAIN ANALYZE는 쿼리 성능 디버거입니다. 그것을 읽는 법을 배우면 추측에 수많은 시간을 절약할 수 있습니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -176,7 +177,7 @@ PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게 represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

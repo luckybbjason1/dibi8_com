@@ -11,6 +11,7 @@ license: NOASSERTION
 featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
 ---
 
+
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
 title: 'prompts.chat: Thư viện Prompt mã nguồn mở với hơn 163k sao -- Hướng dẫn 2026'
@@ -87,12 +88,12 @@ prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026 represe
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -102,7 +103,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](prompts-chat)
 - [2026-05-25-trending-ai-agents](prompts-chat)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -114,7 +115,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -125,7 +126,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -135,7 +136,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -146,7 +147,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -156,7 +157,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -167,7 +168,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -177,7 +178,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -188,7 +189,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -198,7 +199,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -209,4 +210,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

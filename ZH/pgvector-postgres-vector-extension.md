@@ -12,17 +12,18 @@ aliases:
   - /zh/posts/pgvector-postgres-vector-extension/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：那个杀死演示的 47 秒查询
 
 那是 2025 年 3 月。一位 AI 初创公司创始人站在潜在客户面前，运行 RAG 演示。问题很简单：*"你们的产品是做什么的？"* 在他们 PostgreSQL 数据库中针对 200 万份文档的向量搜索耗时 **47 秒** 才返回结果。客户在第一行结果出现之前就离开了房间。
 
-问题不在 PostgreSQL，而在 `vector` 列上缺少 **HNSW 索引**。添加 `CREATE INDEX ... USING hnsw` 后，同样的查询降到了 **3.2 毫秒** —— 提升了 **14,000 倍**。无需数据库迁移，无需新基础设施，只需一条 SQL 语句。
+问题不在 PostgreSQL，而在 ```vector```` 列上缺少 **HNSW 索引**。添加 ````CREATE INDEX ... USING hnsw```` 后，同样的查询降到了 **3.2 毫秒** —— 提升了 **14,000 倍**。无需数据库迁移，无需新基础设施，只需一条 SQL 语句。
 
 这就是 **pgvector 0.8.2** 的力量——这个开源 PostgreSQL 扩展将全球最受信赖的关系型数据库转变为高性能向量数据库。拥有 **15,000+ GitHub Stars**，并在 Supabase、Neon、AWS RDS 和 Google Cloud SQL 上原生支持，pgvector 是 **70% 的 AI Agent 工作负载**（保持在 1000 万向量以下）的务实选择。
 
-本指南涵盖所有内容：PostgreSQL 18 上的安装、HNSW 调优、`halfvec` 量化、过滤混合搜索以及生产级 RAG 集成。
+本指南涵盖所有内容：PostgreSQL 18 上的安装、HNSW 调优、````halfvec```` 量化、过滤混合搜索以及生产级 RAG 集成。
 
 ## pgvector 是什么？——PostgreSQL 内部的向量
 
@@ -32,9 +33,9 @@ aliases:
 
 | 指标 | 数值 |
 |
----
+* * *
 |
----
+* * *
 |
 | 当前版本 | **0.8.2** |
 | PostgreSQL 兼容性 | **14 至 18** |
@@ -56,7 +57,7 @@ pgvector 支持两种 ANN 索引类型，各有不同的权衡：
 
 **适用场景：** 数据集不超过约 5000 万向量的高召回率低延迟查询。
 **构建时间：** 比 IVFFlat 慢（pgvector 0.8.2 中为单线程）。
-**查询参数：** `hnsw.ef_search` 控制召回率与延迟的权衡。
+**查询参数：** ````hnsw.ef_search```` 控制召回率与延迟的权衡。
 
 ### IVFFlat（倒排文件 + 平面索引）
 
@@ -64,9 +65,9 @@ pgvector 支持两种 ANN 索引类型，各有不同的权衡：
 
 **适用场景：** 索引构建更快、内存受限的环境。
 **权衡：** 相同延迟预算下召回率低于 HNSW。
-**查询参数：** `ivfflat.probes` 控制扫描的聚类数量。
+**查询参数：** ````ivfflat.probes```` 控制扫描的聚类数量。
 
-```sql
+`````sql
 -- HNSW 索引（推荐大多数工作负载）
 CREATE INDEX ON documents
   USING hnsw (embedding vector_l2_ops)
@@ -76,7 +77,7 @@ CREATE INDEX ON documents
 CREATE INDEX ON documents
   USING ivfflat (embedding vector_l2_ops)
   WITH (lists = 100);
-```
+`````
 
 ### 距离算子
 
@@ -84,17 +85,17 @@ pgvector 提供三种距离算子：
 
 | 算子 | 说明 | 使用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `<->` | 欧几里得（L2）距离 | 通用相似性（默认） |
-| `<#>` | 负内积 | OpenAI embedding |
-| `<=>` | 余弦距离 | 语义相似性（归一化向量） |
+| ````<->```` | 欧几里得（L2）距离 | 通用相似性（默认） |
+| ````<#>```` | 负内积 | OpenAI embedding |
+| ````<=>```` | 余弦距离 | 语义相似性（归一化向量） |
 
-```sql
+`````sql
 -- L2 距离（越小越相似）
 SELECT id, embedding <-> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
@@ -102,13 +103,13 @@ FROM documents ORDER BY distance LIMIT 10;
 -- 余弦距离（用于归一化 embedding）
 SELECT id, embedding <=> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
-```
+`````
 
 ## 安装与配置：不到 5 分钟
 
 ### 方案 A：Docker（最快）
 
-```bash
+`````bash
 docker run -d \
   --name pgvector-demo \
   -e POSTGRES_PASSWORD=mysecretpassword \
@@ -118,11 +119,11 @@ docker run -d \
 
 # 验证
 docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
-```
+`````
 
 ### 方案 B：现有 PostgreSQL
 
-```bash
+`````bash
 # 安装构建依赖（Ubuntu/Debian）
 sudo apt-get install postgresql-server-dev-18 build-essential git
 
@@ -134,32 +135,32 @@ sudo make install
 
 # 在数据库中启用扩展
 psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
-```
+`````
 
 ### 方案 C：Supabase（托管）
 
-```sql
+`````sql
 -- pgvector 已在 Supabase 上预装。只需启用：
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 验证版本
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 返回: 0.8.2
-```
+`````
 
 ### 方案 D：AWS RDS / Google Cloud SQL
 
-```sql
+`````sql
 -- 在 RDS PostgreSQL 18 上，pgvector 作为扩展可用
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 如需查看可用扩展
 SELECT * FROM pg_available_extensions WHERE name = vector;
-```
+`````
 
 ### 验证安装
 
-```sql
+`````sql
 -- 检查 pgvector 版本
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 预期: 0.8.2
@@ -167,13 +168,13 @@ SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 测试向量类型
 SELECT '[1,2,3]'::vector(3) <-> '[4,5,6]'::vector(3) AS l2_distance;
 -- 预期: ~5.196
-```
+`````
 
 ## 核心操作：创建表、插入与查询
 
 ### 创建向量表
 
-```sql
+`````sql
 -- 创建带向量列的表（1536 维度 = OpenAI embedding）
 CREATE TABLE documents (
     id          BIGSERIAL PRIMARY KEY,
@@ -188,11 +189,11 @@ CREATE TABLE documents (
 -- 为常用过滤列添加索引
 CREATE INDEX idx_docs_tenant ON documents(tenant_id);
 CREATE INDEX idx_docs_created ON documents(created_at);
-```
+`````
 
 ### 插入向量
 
-```sql
+`````sql
 -- 插入单条带 embedding 的文档
 INSERT INTO documents (title, content, embedding, metadata, tenant_id)
 VALUES (
@@ -205,9 +206,9 @@ VALUES (
 
 -- 使用实际 OpenAI embedding 插入（从 Python）
 -- 详见下方 RAG 集成部分的完整示例
-```
+`````
 
-```python
+`````python
 # 从 Python 批量插入向量
 import psycopg2
 import numpy as np
@@ -230,11 +231,11 @@ cur.executemany(
 )
 conn.commit()
 print(f"已插入 {batch_size} 条文档")
-```
+`````
 
 ### 构建 HNSW 索引（生产调优）
 
-```sql
+`````sql
 -- 设置并行索引构建参数
 SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
@@ -250,19 +251,19 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
 -- 检查索引大小
 SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- 典型值: 100K 条 1536 维向量约 ~450 MB
-```
+`````
 
 ### 向量相似性搜索
 
-```sql
+`````sql
 -- 基础 ANN 搜索
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-```sql
+`````sql
 -- 带过滤的向量搜索（最常见的生产模式）
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
@@ -271,11 +272,11 @@ WHERE tenant_id = 42
   AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
-```
+`````
 
 ### 混合搜索：向量 + 全文
 
-```sql
+`````sql
 -- 首先启用 pg_trgm 用于文本搜索
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
@@ -290,13 +291,13 @@ WHERE d.title % $2  -- trigram 相似度过滤
 ORDER BY
     (d.embedding <-> $1::vector) * 0.7 + (1 - similarity(d.title, $2)) * 0.3
 LIMIT 10;
-```
+`````
 
 ## 性能调优：从 47 秒到 3 毫秒
 
 ### HNSW 的 GUC 参数
 
-```sql
+`````sql
 -- 调优 ef_search 以平衡召回率与延迟
 -- 越高 = 召回率越好，查询越慢
 SET hnsw.ef_search = 100;  -- 默认 40；64-128 是生产典型值
@@ -308,13 +309,13 @@ FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
 -- 应显示: Index Scan using idx_docs_embedding_hnsw
-```
+`````
 
 ### 半精度量化（halfvec）
 
-pgvector 0.8.2 支持 `halfvec` 类型，可**减少 50% 存储空间**，召回率损失极小：
+pgvector 0.8.2 支持 ````halfvec```` 类型，可**减少 50% 存储空间**，召回率损失极小：
 
-```sql
+`````sql
 -- 为量化存储添加 halfvec 列
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -336,11 +337,11 @@ SELECT
     pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
     pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size 通常为 full_size 的 ~45-50%
-```
+`````
 
 ### 连接池（Pgbouncer）
 
-```ini
+`````ini
 ; pgbouncer.ini 用于 pgvector 工作负载
 [databases]
 vectordb = host=localhost port=5432 dbname=vectordb
@@ -350,21 +351,21 @@ pool_mode = transaction
 max_client_conn = 10000
 default_pool_size = 50
 reserve_pool_size = 10
-```
+`````
 
 ### 基准对比：调优前后
 
 | 配置 | 查询延迟 (p99) | Recall@10 | 索引大小 | 构建时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 无索引（顺序扫描） | 47,000 ms | 1.00 | N/A | N/A |
 | HNSW 默认 (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s |
@@ -376,11 +377,11 @@ reserve_pool_size = 10
 
 ### LangChain + pgvector
 
-```bash
+`````bash
 pip install langchain-postgres==0.0.13 langchain-openai==0.3.0
-```
+`````
 
-```python
+`````python
 from langchain_postgres import PGVector
 from langchain_openai import OpenAIEmbeddings
 
@@ -408,15 +409,15 @@ results = vector_store.similarity_search(
     filter={"source": "blog"}
 )
 for doc in results: print(f"Content: {doc.page_content}")
-```
+`````
 
 ### LlamaIndex + pgvector
 
-```bash
+`````bash
 pip install llama-index-vector-stores-postgres==0.4.2
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.postgres import PGVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -445,11 +446,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("How does pgvector work?")
 print(response)
-```
+`````
 
 ### 直接 RAG 管道（无框架）
 
-```python
+`````python
 import psycopg2
 from openai import OpenAI
 import numpy as np
@@ -487,13 +488,13 @@ def rag_query(user_question: str) -> str: docs = retrieve_documents(user_questio
     return response.choices[0].message.content
 
 print(rag_query("What is pgvector used for?"))
-```
+`````
 
 ## 生产环境加固
 
 ### 行级安全实现多租户
 
-```sql
+`````sql
 -- 启用 RLS
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 
@@ -506,11 +507,11 @@ SET app.current_tenant = 42;
 
 -- 现在所有查询自动按租户过滤
 SELECT * FROM documents;  -- 仅可见租户 42 的文档
-```
+`````
 
 ### 监控查询性能
 
-```sql
+`````sql
 -- 追踪慢向量查询
 CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
@@ -520,18 +521,18 @@ FROM pg_stat_statements
 WHERE query LIKE '%<->%'
 ORDER BY mean_exec_time DESC
 LIMIT 10;
-```
+`````
 
-```bash
+`````bash
 # 在 postgresql.conf 中启用 pg_stat_statements
 shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
-```
+`````
 
 ### 使用 pg_dump 备份（包含向量）
 
-```bash
+`````bash
 # 包含向量数据的完整备份
 pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 
@@ -539,11 +540,11 @@ pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
 
 # 向量以文本数组形式备份并正确恢复
-```
+`````
 
 ### 高 QPS 的连接最佳实践
 
-```python
+`````python
 # 生产工作负载使用连接池
 from psycopg2 import pool
 
@@ -564,23 +565,23 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
         )
         return cur.fetchall()
     finally: conn_pool.putconn(conn)
-```
+`````
 
 ## 与竞品对比
 
 | 特性 | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源协议** | PostgreSQL License | 否 | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **最大规模** | ~5000 万向量 | 无限 | 200M/节点 | 500M/节点 | **10B+** |
@@ -612,7 +613,7 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
 
 **仅单节点：** pgvector 在单个 PostgreSQL 实例内运行。没有原生分布式模式。对于超过可用内存的数据集，性能显著下降。超过 5000 万向量时，考虑专用向量数据库。
 
-**HNSW 构建是单线程的：** 截至 pgvector 0.8.2，HNSW 索引构建仅使用一个 CPU 核心。对于 1000 万向量，这可能需要 **20-30 分钟**。`max_parallel_maintenance_workers` 设置不会加速 HNSW 构建。
+**HNSW 构建是单线程的：** 截至 pgvector 0.8.2，HNSW 索引构建仅使用一个 CPU 核心。对于 1000 万向量，这可能需要 **20-30 分钟**。````max_parallel_maintenance_workers```` 设置不会加速 HNSW 构建。
 
 **查询延迟较高：** p99 延迟 25-40ms 对大多数 RAG 应用是可接受的（LLM 推理占 1-5 秒），但比 Qdrant（~12ms）或 Milvus GPU（~8ms）等专用向量数据库慢。
 
@@ -632,13 +633,13 @@ pgvector 0.8.2 支持 **PostgreSQL 14 至 18**。生产部署建议使用 **Post
 
 ### 如何在 HNSW 和 IVFFlat 索引之间选择？
 
-**HNSW** 作为默认选择。它提供更好的召回率（~95%）和更低的查询延迟。仅在以下情况使用 **IVFFlat**：（a）索引构建时间至关重要，（b）内存严重受限，或（c）向量很少变化。对于大多数 RAG 应用，HNSW 配合 `m=16` 和 `ef_construction=64` 是正确的起点。
+**HNSW** 作为默认选择。它提供更好的召回率（~95%）和更低的查询延迟。仅在以下情况使用 **IVFFlat**：（a）索引构建时间至关重要，（b）内存严重受限，或（c）向量很少变化。对于大多数 RAG 应用，HNSW 配合 ````m=16```` 和 ````ef_construction=64```` 是正确的起点。
 
 ### pgvector 可以与托管 PostgreSQL 服务一起使用吗？
 
 可以。pgvector 在以下平台可用：
 
-- **Supabase** — 已预装，只需运行 `CREATE EXTENSION vector;`
+- **Supabase** — 已预装，只需运行 ````CREATE EXTENSION vector;````
 - **Neon** — 所有方案支持，包括免费层
 - **AWS RDS** — PostgreSQL 15+ 可用
 - **Google Cloud SQL** — PostgreSQL 15+ 可用
@@ -648,9 +649,9 @@ pgvector 0.8.2 支持 **PostgreSQL 14 至 18**。生产部署建议使用 **Post
 
 ### pgvector 支持过滤向量搜索吗？
 
-支持，这是 pgvector 胜过专用向量数据库的地方。因为向量数据在 PostgreSQL 中，你可以在向量相似性旁边应用任何 SQL `WHERE` 子句：
+支持，这是 pgvector 胜过专用向量数据库的地方。因为向量数据在 PostgreSQL 中，你可以在向量相似性旁边应用任何 SQL ````WHERE```` 子句：
 
-```sql
+`````sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -658,25 +659,25 @@ WHERE tenant_id = 42
   AND metadata @> '{"status": "published"}'
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-PostgreSQL 的规划器通过在 HNSW 遍历期间下推 `WHERE` 谓词来优化此查询。
+PostgreSQL 的规划器通过在 HNSW 遍历期间下推 ````WHERE```` 谓词来优化此查询。
 
 ### 如何为我的工作负载调优 HNSW？
 
 两个关键参数：
 
-- `ef_construction`（默认 64）：越高 = 索引质量越好，构建越慢。生产 RAG 使用 **128-256**。
-- `ef_search`（默认 40）：越高 = 召回率越好，查询越慢。对召回率做基准测试并设为 **64-100**。
+- ````ef_construction````（默认 64）：越高 = 索引质量越好，构建越慢。生产 RAG 使用 **128-256**。
+- ````ef_search````（默认 40）：越高 = 召回率越好，查询越慢。对召回率做基准测试并设为 **64-100**。
 
-```sql
+`````sql
 -- 对 ef_search 值做基准测试
 SET hnsw.ef_search = 64;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
 
 SET hnsw.ef_search = 128;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
-```
+`````
 
 ## 结论：务实的选择
 
@@ -684,7 +685,7 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 
 **下一步：**
 
-1. 在现有 PostgreSQL 实例上启用 pgvector（`CREATE EXTENSION vector;`）。
+1. 在现有 PostgreSQL 实例上启用 pgvector（````CREATE EXTENSION vector;```）。
 2. 为文档表添加向量列和 HNSW 索引。
 3. 加载你的 embedding 并运行本指南中的调优基准测试。
 4. 与 LangChain 或 LlamaIndex 集成实现生产级 RAG。
@@ -743,7 +744,7 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [alpaca-trading-api-stock-broker](pgvector-postgres-vector-extension)
@@ -753,7 +754,7 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 - [flowise](pgvector-postgres-vector-extension)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

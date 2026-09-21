@@ -28,6 +28,7 @@ faqs: - q: 'Local Deep Research란 무엇이며 정확도는 얼마나 되나요
     a: '에이전트는 먼저 Local Deep Research를 사용해 검증되고 인용이 포함된 보고서를 생성하고, 그다음 MCP tool calls를 통해 InsForge로 전체 백엔드(데이터베이스, edge functions, 스토리지, 인증)를 프로비저닝하며, Agent Skills의 spec-to-ship 워크플로를 따라 프런트엔드를 구축하고, 그 전 과정에 걸쳐 Karpathy에서 영감을 받은 행동 가드레일을 적용하여 과도한 엔지니어링과 잘못된 가정을 방지합니다. 각 기둥은 자율 개발에서 발생하는 고유한 실패 모드를 다룹니다.'
 ---
 
+
 # 챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥
 
 {</* resource-info */>}
@@ -50,11 +51,11 @@ This isn't 점진적 개선. It's 아키텍처 진화. And four open-source proj
 - **다중 소스 인텔리전스**: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — 각 소스가 색인되고 교차 참조됨
 - **무지식 암호화**: User data isolated per-database, 서버 관리자도 내용을 읽을 수 없음
 
-The architecture is instructive: ```
+The architecture is instructive: ````
 User Query -> Strategy Selector -> Question Generator 
     -> Parallel Search (academic + web + documents) 
     -> Analysis Loop -> Report Synthesis -> Multi-format Export
-```
+`````
 
 What's novel is the **iterative research loop**. Instead of one-shot query-response, the system generates sub-questions, searches across diverse sources, analyzes results, and iterates until confidence thresholds are met. This mimics how human experts actually do research: hypothesize, investigate, evaluate, refine.
 
@@ -81,14 +82,14 @@ The key innovation is **이중 인터페이스 지원**: 1. **MCP 서버** — S
 
 This means an AI agent doesn't just generate code — it can provision its own database schema, configure authentication, deploy edge functions, set up storage buckets, and even route its own API calls through the model gateway. End-to-end autonomy.
 
-The SDK is elegantly simple: ```javascript
+The SDK is elegantly simple: `````javascript
 import { createClient } from '@insforge/sdk';
 
 const client = createClient({
   baseUrl: 'https://your-app.region.insforge.app',
   anonKey: 'your-anon-key-here'
 });
-```
+`````
 
 Everything from database CRUD to auth flows to AI operations is available through this unified client. For a coding agent, this reduces what would normally require a DevOps engineer to a single API call.
 
@@ -104,15 +105,15 @@ The core insight: **스킬은 시니어 엔지니어가 개발 전 과정에서 
 
 The seven-slash-command framework maps to the complete development lifecycle: ||Command|Phase|Principle||
 ||---------|-------|-----------||
-||`/spec`|Define|Spec before code — requirements first||
-||`/plan`|Plan|Small, atomic tasks — break down complexity||
-||`/build`|Build|One slice at a time — incremental delivery||
-||`/test`|Verify|Tests are proof — not decoration||
-||`/review`|Review|Improve code health — continuous refinement||
-||`/code-simplify`|Simplify|Clarity over cleverness — readability wins||
-||`/ship`|Ship|Faster is safer — ship incrementally||
+||````/spec````|Define|Spec before code — requirements first||
+||````/plan````|Plan|Small, atomic tasks — break down complexity||
+||````/build````|Build|One slice at a time — incremental delivery||
+||````/test````|Verify|Tests are proof — not decoration||
+||````/review````|Review|Improve code health — continuous refinement||
+||````/code-simplify````|Simplify|Clarity over cleverness — readability wins||
+||````/ship````|Ship|Faster is safer — ship incrementally||
 
-But the real magic is **context-aware auto-discovery**. When designing an API, the `api-and-interface-design` skill activates automatically. Building UI? `frontend-ui-engineering` triggers. The agent understands its task and loads the appropriate expertise.
+But the real magic is **context-aware auto-discovery**. When designing an API, the ````api-and-interface-design```` skill activates automatically. Building UI? ````frontend-ui-engineering```` triggers. The agent understands its task and loads the appropriate expertise.
 
 This transforms AI coding from "write code that happens to work" to "follow proven engineering workflows that produce maintainable results."
 
@@ -122,7 +123,7 @@ This transforms AI coding from "write code that happens to work" to "follow prov
 
 기반 행동에 결함이 있으면 최고의 엔지니어링 프레임워크도 실패합니다. Andrej Karpathy identified LLM 코딩 실패의 패턴: > "The models make wrong assumptions on your behalf and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."
 
-This project distills Karpathy's observations into four behavioral principles embedded in a `CLAUDE.md` file: **1. Think Before Coding** — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.
+This project distills Karpathy's observations into four behavioral principles embedded in a ````CLAUDE.md```` file: **1. Think Before Coding** — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.
 
 **2. Simplicity First** — Minimum viable solution. No speculative features. No abstractions for single-use code. If 200 lines could be 50, rewrite it. The test: "Would a senior engineer say this is overcomplicated?"
 
@@ -138,7 +139,7 @@ The breakthrough moment comes when you connect all four pillars into a single wo
 
 2. **Platform** (InsForge): The agent provisions the entire backend — PostgreSQL for market data, edge functions for real-time updates, storage for historical charts, auth for user accounts, model gateway for analysis APIs. All via MCP tool calls.
 
-3. **Engineering** (Agent Skills): The agent builds the frontend following the `/spec → /plan → /build → /test → /review → /ship` workflow. Context-aware skills activate as needed — `frontend-ui-engineering` for the dashboard, `data-visualization` for charting, `api-integration` for real-time websockets.
+3. **Engineering** (Agent Skills): The agent builds the frontend following the ````/spec → /plan → /build → /test → /review → /ship```` workflow. Context-aware skills activate as needed — ````frontend-ui-engineering```` for the dashboard, ````data-visualization```` for charting, ````api-integration```` for real-time websockets.
 
 4. **Wisdom** (Karpathy Skills): Throughout this process, the behavioral guardrails prevent classic LLM mistakes — no overengineered abstractions, no touching unrelated code, explicit assumption-stating before every architectural decision, verifiable success criteria instead of vague "make it work" targets.
 
@@ -159,16 +160,16 @@ Together, these four open-source projects form the first complete stack for genu
 
 ## Getting Started
 
-All four projects are open-source and free: - **Local Deep Research**: `pip install local-deep-research` or Docker Compose
-- **InsForge**: `npm install @insforge/sdk` (cloud) or self-hosted MCP server
-- **Agent Skills**: Claude Code marketplace plugin or `.cursor/rules/`
-- **Karpathy Skills**: Single `CLAUDE.md` file merge
+All four projects are open-source and free: - **Local Deep Research**: ````pip install local-deep-research```` or Docker Compose
+- **InsForge**: ````npm install @insforge/sdk```` (cloud) or self-hosted MCP server
+- **Agent Skills**: Claude Code marketplace plugin or ````.cursor/rules/````
+- **Karpathy Skills**: Single ````CLAUDE.md``` file merge
 
 You don't need to adopt all four simultaneously. Start with what addresses your biggest gap. But once you experience the synergy — research informing architecture, architecture guiding implementation, implementation disciplined by skills, all guided by wisdom — it's hard to go back to doing it alone.
 
 The future of software development isn't humans replacing AI or AI replacing humans. It's humans orchestrating AI systems that combine deep intelligence, robust infrastructure, engineering discipline, and practical wisdom. And those systems are already here.
 
----
+* * *
 
 ## 추천 도구
 

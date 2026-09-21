@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/hyperliquid-perp-dex-trading/
 ---
 
+
 {{</* resource-info */>}}
 
 **날짜:** 2026-05-19  
@@ -31,7 +32,7 @@ aliases:
 **태그:** Hyperliquid, 영구 DEX, 온체인 트레이딩, 레버리지 트레이딩, 트레이딩 봇, DeFi, HyperEVM  
 **읽는 시간:** 18분
 
----
+* * *
 
 ## 소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유
 
@@ -43,7 +44,7 @@ Hyperliquid는 중앙화와 탈중앙화 플랫폼 사이에서 트레이더가 
 
 이 종합 가이드에서는 Hyperliquid의 핵심 아키텍처 이해부터 프로덕션 레디 트레이딩 봇 구축까지 2026년 Hyperliquid 트레이딩의 모든 측면을 살펴 보겠습니다.
 
----
+* * *
 
 ## Hyperliquid 핵심 아키텍처 이해
 
@@ -65,13 +66,13 @@ Hyperliquid의 오더북은 독점 L1 체인에서 완전히 결제되며, **1�
 - **사용자 정의 주문 유형** — 스마트 컨트랙트 자동화를 통한 조걶 주문, 추적 손절 및 TWAP 실행
 - **가스 없는 트랜잭션** — 수수료를 어떤 토큰으로도 지불하거나 타사가 후원할 수 있는 메타 트랜잭션 지원
 
----
+* * *
 
 ## Hyperliquid 트레이딩 환경 설정
 
 ### Python SDK 설치
 
-```bash
+````bash
 # 가상 환경 생성
 python -m venv hyperliquid-env
 source hyperliquid-env/bin/activate
@@ -81,18 +82,18 @@ pip install hyperliquid-python-sdk
 
 # 추가 의존성 설치
 pip install websockets aiohttp pandas numpy python-dotenv
-```
+`````
 
-`.env` 파일 생성: ```bash
+``.env`` 파일 생성: `````bash
 # .env — 절대 버전 관리에 커밋하지 마세요
 PRIVATE_KEY=your_ethereum_private_key_here
 WALLET_ADDRESS=0x_your_wallet_address
 TESTNET=true
-```
+`````
 
 ### 기본 연결 및 인증
 
-```python
+`````python
 import os
 from dotenv import load_dotenv
 from hyperliquid.exchange import Exchange
@@ -123,15 +124,15 @@ class HyperliquidTrader: """프로덕션 레디 Hyperliquid 트레이딩 클라�
 
 trader = HyperliquidTrader(use_testnet=True)
 trader.get_account_summary()
-```
+`````
 
----
+* * *
 
 ## 프로덕션 레디 트레이딩 봇 구축
 
 ### WebSocket을 통한 실시간 시장 데이터
 
-```python
+`````python
 import json
 import websockets
 
@@ -182,11 +183,11 @@ class HyperliquidWebSocketFeed: """Hyperliquid용 고성능 WebSocket 데이터 
         }
         self.subscriptions[f"trades_{coin}"] = sub
         if self.running: await self.ws.send(json.dumps(sub))
-```
+`````
 
 ### 주문 유형: 시장가, 지정가, 조걶 주문
 
-```python
+`````python
     def place_market_order(self, coin: str, is_buy: bool, sz: float): """슬리피지 보호가 있는 시장가 주문 실행."""
         order_type = {"limit": {"tif": "Ioc"}}  # Immediate-or-Cancel
         result = self.exchange.order(coin, is_buy, sz, 0, order_type, reduce_only=False)
@@ -244,11 +245,11 @@ class HyperliquidWebSocketFeed: """Hyperliquid용 고성능 WebSocket 데이터 
                 return self.place_market_order(coin, is_buy, sz)
         print(f"{coin}에 미결 포지션이 없습니다")
         return None
-```
+`````
 
 ### 완전한 트렌드 팔로잉 봇 예제
 
-```python
+`````python
 import time
 import pandas as pd
 from datetime import datetime, timedelta
@@ -317,15 +318,15 @@ class TrendFollowingBot: """Hyperliquid용 EMA 크로스오버 트렌드 팔로�
                 time.sleep(check_interval)
             except Exception as e: print(f"봇 루프 오류: {e}")
                 time.sleep(10)
-```
+`````
 
----
+* * *
 
 ## 고급 Hyperliquid API 통합
 
 ### 펀딩 비율 및 역사적 데이터
 
-```python
+`````python
     def get_funding_rates(self): """모든 시장의 현재 펀딩 비율 조회."""
         meta = self.info.meta()
         assets = meta[universe]
@@ -341,11 +342,11 @@ class TrendFollowingBot: """Hyperliquid용 EMA 크로스오버 트렌드 팔로�
         print("\n펀딩 비율 상위:")
         for f in funding_data[:10]: print(f"  {f[coin]}: {f[funding_rate]*100:+.4f}%")
         return funding_data
-```
+`````
 
 ### 다중 자산 WebSocket 관리
 
-```python
+`````python
 class MultiAssetWebSocketManager: """여러 자산에 대한 동시 WebSocket 연결 관리."""
     
     def __init__(self, assets: list): self.assets = assets
@@ -366,15 +367,15 @@ class MultiAssetWebSocketManager: """여러 자산에 대한 동시 WebSocket �
                     if coin in self.data_cache: bids = msg[data][levels][0]
                         asks = msg[data][levels][1]
                         if bids and asks: self.data_cache[coin][spread] = float(asks[0][px]) - float(bids[0][px])
-```
+`````
 
----
+* * *
 
 ## Hyperliquid 리스크 관리
 
 ### 고립형 vs. 교차 마진
 
-```python
+`````python
     def set_cross_margin(self, coin: str): """교차 마진 모드 활성화."""
         result = self.exchange.update_isolated_margin(coin, False, None)
         print(f"{coin} 교차 마진 활성화됨")
@@ -384,11 +385,11 @@ class MultiAssetWebSocketManager: """여러 자산에 대한 동시 WebSocket �
         result = self.exchange.update_isolated_margin(coin, True, leverage)
         print(f"{coin} 고립형 마진 {leverage}x 활성화됨")
         return result
-```
+`````
 
 ### 자동화된 리스크 컨트롤
 
-```python
+`````python
 class RiskManager: """Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템."""
     
     def __init__(self, trader: HyperliquidTrader): self.trader = trader
@@ -414,9 +415,9 @@ class RiskManager: """Hyperliquid 트레이딩을 위한 종합 리스크 관리
         positions = self.trader.get_positions()
         for pos in positions: if pos[size] != 0: self.trader.close_position(pos[coin])
                 time.sleep(0.5)
-```
+`````
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -441,9 +442,9 @@ Hyperliquid는 **비수탁형 거래소**로 운영됩니다 — 자금은 귀�
 
 ### 실전 투입 전 전략을 어떻게 백테스트하나요?
 
-Hyperliquid는 API를 통해 **묣은 역사적 데이터**를 제공합니다. `fetch_historical_candles` 메서드로 OHLCV 데이터를 가져와 `BacktestEngine` 클래스로 EMA 크로스오버 백테스트를 실행합니다.
+Hyperliquid는 API를 통해 **묣은 역사적 데이터**를 제공합니다. ````fetch_historical_candles```` 메서드로 OHLCV 데이터를 가져와 ````BacktestEngine``` 클래스로 EMA 크로스오버 백테스트를 실행합니다.
 
----
+* * *
 
 
 
@@ -460,11 +461,11 @@ Hyperliquid는 2026년 최고의 온체인 영구 선물 트레이딩 플랫폼�
 
 Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 조합은 정교한 트레이딩 시스템을 구축하기 위한 최고의 환경을 만듭니다. 오늘부터 구축을 시작하고 Hyperliquid의 오더북을 통해 매일 수십억 달러의 거래량이 흐르는 이유를 경험해 보세요.
 
----
+* * *
 
 *면책 조항: 암호화폐 트레이딩에는 상당한 리스크가 따릅니다. 이 문서는 교육 목적으로만 작성되었으며 재무 조언을 구성하지 않습니다. 항상 자체 연구를 수행하고 절대 잃을 여유가 없는 자금으로 트레이딩하지 마세요.*
 
----
+* * *
 
 **관련 리소스:**
 - [Minara AI 트레이딩 봇](https://minara.ai/r/OSXG4X)
@@ -496,7 +497,7 @@ Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -506,7 +507,7 @@ Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 �
 - [llm-inference-cost-optimization-guide-2026](hyperliquid-perp-dex-trading)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](hyperliquid-perp-dex-trading)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

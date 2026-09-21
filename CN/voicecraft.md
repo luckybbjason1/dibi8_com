@@ -23,6 +23,7 @@ tags: ["voicecraft", "zero-shot-tts", "speech-editing", "neural-codec", "voice-c
 aliases:
   - /posts/voicecraft/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -51,13 +52,13 @@ The model pipeline follows three stages: 1. **Encodec Quantization**: Raw audio 
 
 | Model | Parameters | Best For | Max Duration |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | giga330M | 330M | Balanced quality/speed | 16 seconds |
 | giga830M | 830M | Highest quality | 30+ seconds |
@@ -76,7 +77,7 @@ VoiceCraft introduced **RealEdit**, a benchmark dataset of 310 real-world speech
 
 Docker is the fastest path to a working VoiceCraft environment. The official Dockerfile handles all dependencies including EnCodec, Montreal Forced Aligner (MFA), and CUDA bindings.
 
-```bash
+````bash
 # 1. Clone the repository
 git clone https://github.com/jasonppy/VoiceCraft.git
 cd VoiceCraft
@@ -93,15 +94,15 @@ docker logs jupyter | grep "127.0.0.1:8888"
 
 # 5. Verify GPU access inside the container
 docker exec -it jupyter nvidia-smi
-```
+`````
 
-The container exposes Jupyter Lab on port 8888 and Gradio UI on port 7860. Open `inference_tts.ipynb` or `inference_speech_editing.ipynb` to run inference.
+The container exposes Jupyter Lab on port 8888 and Gradio UI on port 7860. Open ````inference_tts.ipynb```` or ````inference_speech_editing.ipynb```` to run inference.
 
 ### Option 2: Conda Environment (Local Development)
 
 For model development and fine-tuning, a local Conda environment provides more flexibility.
 
-```bash
+`````bash
 # Create and activate the environment
 conda create -n voicecraft python=3.9.16
 conda activate voicecraft
@@ -134,11 +135,11 @@ mfa model download acoustic english_us_arpa
 
 # Jupyter kernel (optional)
 conda install -n voicecraft ipykernel --no-deps --force-reinstall
-```
+`````
 
 ### Option 3: Gradio Local UI
 
-For a browser-based interface without notebooks: ```bash
+For a browser-based interface without notebooks: `````bash
 # Additional system dependencies for Gradio
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -148,45 +149,45 @@ pip install -r gradio_requirements.txt
 
 # Launch the Gradio server
 python gradio_app.py
-```
+`````
 
-Navigate to `http://127.0.0.1:7860` to access the web UI.
+Navigate to ````http://127.0.0.1:7860```` to access the web UI.
 
 ### Hardware Requirements
 
 | Configuration | Minimum GPU | Recommended GPU | RAM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Full inference (830M) | 8 GB with kvcache | 32 GB VRAM | 32 GB |
 | Fast inference (330M) | 8 GB | 16 GB VRAM | 16 GB |
 | Gradio UI | 8 GB | 16 GB VRAM | 16 GB |
 
-The `kvcache` optimization trades a small amount of quality for significant memory reduction, enabling 8 GB GPUs to run inference.
+The ````kvcache```` optimization trades a small amount of quality for significant memory reduction, enabling 8 GB GPUs to run inference.
 
 ## Integration with Popular Tools
 
 ### VoiceCraft + Gradio Web UI
 
-The built-in Gradio interface provides the easiest way to experiment: ```bash
+The built-in Gradio interface provides the easiest way to experiment: `````bash
 # Launch the Gradio app with default settings
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
 # With custom model path
 python gradio_app.py   --model-path "./pretrained_models/giga330M.pth"   --codec-model "encodec_16khz"   --share  # Create a public URL
-```
+`````
 
 The Gradio UI supports three modes: **TTS Mode** (zero-shot voice cloning), **Edit Mode** (speech editing), and **Long TTS Mode** (chunked generation for long texts).
 
 ### VoiceCraft + Jupyter Notebooks
 
-For programmatic access, the Jupyter notebooks provide step-by-step inference: ```python
+For programmatic access, the Jupyter notebooks provide step-by-step inference: `````python
 # inference_tts.ipynb — Zero-shot TTS example
 from voicecraft import VoiceCraft
 
@@ -209,21 +210,21 @@ output = model.tts(
     temperature=1.0
 )
 output.save("output_tts.wav")
-```
+`````
 
 ### VoiceCraft + Command Line
 
-For batch processing and scripting: ```bash
+For batch processing and scripting: `````bash
 # TTS inference via CLI
 python tts_demo.py   --audio_path "demo/pam.wav"   --target_transcript "This is the text to speak"   --model_name "giga330M"   --top_k 40   --temperature 1.0   --output_path "output.wav"
 
 # Speech editing via CLI
 python speech_editing_demo.py   --audio_path "demo/pam.wav"   --original_transcript "original text here"   --edited_transcript "edited text here"   --model_name "giga830M"   --output_path "edited_output.wav"
-```
+`````
 
 ### VoiceCraft + Docker API
 
-For production deployment, wrap VoiceCraft in a REST API: ```dockerfile
+For production deployment, wrap VoiceCraft in a REST API: `````dockerfile
 # Dockerfile.api — Production API wrapper
 FROM voicecraft:latest
 
@@ -236,9 +237,9 @@ RUN pip install -r requirements-api.txt
 EXPOSE 8000
 
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
-```python
+`````python
 # api.py — FastAPI wrapper for VoiceCraft
 from fastapi import FastAPI, UploadFile, File
 from voicecraft import VoiceCraft
@@ -261,11 +262,11 @@ async def tts(
         top_k=40
     )
     return {"output": output.serialize()}
-```
+`````
 
 ### VoiceCraft + HuggingFace Hub
 
-Download pre-trained models directly from HuggingFace: ```python
+Download pre-trained models directly from HuggingFace: `````python
 from huggingface_hub import hf_hub_download
 
 # Download model weights
@@ -279,7 +280,7 @@ model_path = hf_hub_download(
 # Also available via ModelScope (for China region)
 from modelscope import snapshot_download
 model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -287,17 +288,17 @@ model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
 
 Human evaluation results from the ACL 2024 paper compare VoiceCraft against VALL-E, XTTS v2, FluentSpeech, and YourTTS on 250 test utterances (LibriTTS + YouTube): | Model | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** |
 | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 |
@@ -312,13 +313,13 @@ VoiceCraft achieves the highest speaker similarity (SIM 0.55) and the best human
 
 On the RealEdit dataset (310 real-world editing examples), VoiceCraft outperforms FluentSpeech: | Model | WER | Intelligibility MOS | Naturalness MOS |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **VoiceCraft** | 6.1 | **4.11** | **4.03** |
 | FluentSpeech | 4.5 | 3.97 | 3.81 |
@@ -330,13 +331,13 @@ Notably, in side-by-side listening tests, human listeners preferred VoiceCraft-e
 
 | Use Case | Reference Audio | Output Quality | Setup Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Podcast editing | 5 seconds host voice | MOS 4.03 naturalness | < 2 min |
 | Audiobook voice cloning | 5 seconds narrator | SIM 0.55 | < 2 min |
@@ -350,7 +351,7 @@ Notably, in side-by-side listening tests, human listeners preferred VoiceCraft-e
 
 ### Memory Optimization with KV Cache
 
-For GPUs with limited VRAM, enable the key-value cache: ```python
+For GPUs with limited VRAM, enable the key-value cache: `````python
 # Enable kvcache for 8GB GPU inference
 output = model.tts(
     target_text=target_text,
@@ -360,11 +361,11 @@ output = model.tts(
     kvcache=True,  # Reduces VRAM usage by ~60%
     batch_size=1
 )
-```
+`````
 
 ### Top-k Sampling (March 2025 Update)
 
-The default sampling strategy was updated from top-p=1.0 to top-k=40, which dramatically improves output quality: ```python
+The default sampling strategy was updated from top-p=1.0 to top-k=40, which dramatically improves output quality: `````python
 # Recommended: top-k=40 for best quality
 output = model.tts(
     target_text=target_text,
@@ -373,11 +374,11 @@ output = model.tts(
     top_k=40,
     temperature=1.0
 )
-```
+`````
 
 ### Fine-tuning on Custom Data
 
-For domain-specific voices, fine-tune the pre-trained model: ```bash
+For domain-specific voices, fine-tune the pre-trained model: `````bash
 # Prepare your dataset
 conda activate voicecraft
 cd ./data
@@ -386,11 +387,11 @@ python phonemize_encodec_encode_hf.py   --dataset_size xs   --download_to /path/
 # Start fine-tuning
 cd ../z_scripts
 bash e830M_ft.sh  # Fine-tune 830M model
-```
+`````
 
 ### Monitoring and Logging
 
-```python
+`````python
 import logging
 from torch.utils.tensorboard import SummaryWriter
 
@@ -402,7 +403,7 @@ logger = logging.getLogger("voicecraft")
 writer = SummaryWriter(log_dir="./runs/voicecraft-ft")
 writer.add_scalar("loss/train", loss.item(), global_step)
 writer.add_scalar("mos/validation", val_mos, global_step)
-```
+`````
 
 ### Security and Safety Considerations
 
@@ -415,15 +416,15 @@ VoiceCraft's license (CC BY-NC-SA 4.0 for code, Coqui Public Model License for w
 
 | Feature | VoiceCraft | GPT-SoVITS | Coqui TTS (XTTS v2) | VALL-E |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 8,500 | 57,000 | 35,000* | N/A (paper only) |
 | **Parameters** | 330M / 830M | ~1B combined | 467M | 1B |
@@ -483,7 +484,7 @@ The VoiceCraft codebase is under CC BY-NC-SA 4.0 and model weights under Coqui P
 
 **Q3: What GPU do I need to run VoiceCraft?**
 
-The 830M model requires 32 GB VRAM (A100, V100, or RTX 4090 + system RAM sharing). The 330M model runs on 16 GB GPUs, and with `kvcache=True`, inference is possible on 8 GB cards. CPU-only inference is possible but takes 7+ minutes per utterance on an 8-core Ryzen versus 35 seconds on GPU.
+The 830M model requires 32 GB VRAM (A100, V100, or RTX 4090 + system RAM sharing). The 330M model runs on 16 GB GPUs, and with ````kvcache=True```, inference is possible on 8 GB cards. CPU-only inference is possible but takes 7+ minutes per utterance on an 8-core Ryzen versus 35 seconds on GPU.
 
 **Q4: How does VoiceCraft compare to GPT-SoVITS for voice cloning?**
 
@@ -562,7 +563,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](voicecraft)
@@ -572,5 +573,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](voicecraft)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

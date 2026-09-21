@@ -8,6 +8,7 @@ tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
 
+
 # MoneyPrinterTurbo: Tự động tạo video bằng AI
 
 ## Giới thiệu
@@ -34,7 +35,7 @@ MoneyPrinterTurbo là ứng dụng Python mã nguồn mở sử dụng mô hình
 
 ## Cài đặt
 
-```bash
+````bash
 # Cài FFmpeg trước
 sudo apt install ffmpeg  # Linux
 brew install ffmpeg      # macOS
@@ -43,57 +44,57 @@ brew install ffmpeg      # macOS
 git clone https://github.com/HFrost665/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
 pip install -r requirements.txt
-```
+`````
 
 ### Cấu hình API Key
 
-```bash
+`````bash
 export OPENAI_API_KEY="your-key-here"
 export OPENAI_BASE_URL="https://api.openai.com/v1"
 
 # Azure TTS
 export AZURE_SPEECH_KEY="your-azure-key"
 export AZURE_SPEECH_REGION="eastus"
-```
+`````
 
 ## Tạo video đầu tiên
 
-```bash
+`````bash
 python main.py \
   --topic "Lịch sử trí tuệ nhân tạo" \
   --language vi \
   --resolution 1920x1080 \
   --output ./output
-```
+`````
 
 ### Tùy chỉnh kịch bản
 
-```bash
+`````bash
 python main.py \
   --script ./my-script.txt \
   --language vi \
   --output ./output
-```
+`````
 
 ### Tạo hàng loạt
 
-```bash
+`````bash
 python main.py \
   --topics-list ./topics.txt \
   --language vi \
   --output ./output
-```
+`````
 
 ### Web UI
 
-```bash
+`````bash
 python main.py --ui
 # Mở trình duyệt: http://localhost:8501
-```
+`````
 
 ## API lập trình
 
-```python
+`````python
 from moneyprinter import VideoGenerator
 
 generator = VideoGenerator(
@@ -109,11 +110,11 @@ result = generator.generate(
     aspect_ratio="16:9"
 )
 print(f"Video lưu tại: {result.video_path}")
-```
+`````
 
 ### API Endpoints
 
-```bash
+`````bash
 # Tạo video từ topic
 curl -X POST http://localhost:8080/api/v1/generate \
   -H "Content-Type: application/json" \
@@ -124,36 +125,36 @@ curl http://localhost:8080/api/v1/status/{job-id}
 
 # Tải video
 curl -O http://localhost:8080/api/v1/download/{job-id}
-```
+`````
 
 ## Cấu hình nâng cao
 
 ### Giọng nói tùy chỉnh
 
-```yaml
+`````yaml
 voices: custom: - name: "custom-voice"
       language: "vi-VN"
       gender: "female"
       backend: "custom-tts"
-```
+`````
 
 ### Thư viện nhạc
 
-```bash
+`````bash
 mkdir -p ./music/calm
 mkdir -p ./music/energetic
 python main.py --music ./music/calm/
-```
+`````
 
 ### Phong cách hình ảnh
 
-```yaml
+`````yaml
 styles: cinematic: transition: "fade"
     font_family: "Georgia"
     font_size: 32
     subtitle_color: "#FFFFFF"
     background_style: "gradient"
-```
+`````
 
 ## Trường hợp sử dụng
 
@@ -211,7 +212,7 @@ Tạo video giới thiệu sản phẩm cho thương mại điện tử.
 
 ## Tích hợp lịch trình nội dung
 
-```python
+`````python
 import schedule
 import time
 from moneyprinter import VideoGenerator
@@ -223,7 +224,7 @@ schedule.every().day.at("08:00").do(generate_daily_video)
 
 while True: schedule.run_pending()
     time.sleep(60)
-```
+`````
 
 ## Hạn chế
 
@@ -256,7 +257,7 @@ Render video (FFmpeg) hoạt động offline. AI script và TTS cần kết nố
 
 ### Q5: Có thể sửa kịch bản AI trước khi tạo video?
 
-Có. Dùng `--script` flag để cung cấp file kịch bản riêng. Sau khi generate draft với `--topic`, có thể xem và chỉnh sửa rồi chạy lại.
+Có. Dùng ````--script```` flag để cung cấp file kịch bản riêng. Sau khi generate draft với ````--topic```, có thể xem và chỉnh sửa rồi chạy lại.
 
 ### Q6: Hỗ trợ định dạng video nào?
 
@@ -288,7 +289,7 @@ Telegram: https://t.me/DIBI8_Group/18
 - DigitalOcean: https://m.do.co/c/eca87ac14ee0
 - HTStack: https://my.htstack.com/aff.php?aff=27187
 
----
+* * *
 
 DIBI8 - Cánh cửa khám phá công cụ mã nguồn mở, AI và tài nguyên phát triển hàng đầu.
 
@@ -317,7 +318,7 @@ DIBI8 - Cánh cửa khám phá công cụ mã nguồn mở, AI và tài nguyên 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -327,6 +328,6 @@ DIBI8 - Cánh cửa khám phá công cụ mã nguồn mở, AI và tài nguyên 
 - [9router-smart-llm-proxy-token-saver-free-coding](moneyprinter-turbo-ai-video-generation-one-command)
 - [ai-engineering-from-scratch](moneyprinter-turbo-ai-video-generation-one-command)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

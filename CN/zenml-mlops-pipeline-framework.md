@@ -23,6 +23,7 @@ tags: ["]
 aliases:
   - /posts/zenml-mlops-pipeline-framework/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Your ML Pipelines Are Broken
@@ -51,7 +52,7 @@ ZenML's architecture revolves around four key abstractions that map directly to 
 A **Pipeline** is a decorated Python function that chains multiple steps together. ZenML compiles this function into a DAG, validates dependencies, and executes it on your chosen orchestrator.
 
 ### Steps
-A **Step** is the smallest unit of work — a Python function that performs one task (load data, preprocess, train, evaluate). Steps are decorated with `@step` and declare their inputs/outputs through type annotations.
+A **Step** is the smallest unit of work — a Python function that performs one task (load data, preprocess, train, evaluate). Steps are decorated with ```@step```` and declare their inputs/outputs through type annotations.
 
 ### Artifacts
 Every output from a step is an **Artifact** — a typed, versioned object stored in the artifact store. Artifacts can be datasets (pandas DataFrames, NumPy arrays), models (sklearn, PyTorch, TensorFlow), or custom objects. ZenML automatically serializes, versions, and tracks lineage for every artifact.
@@ -75,7 +76,7 @@ Switching stacks is a single CLI command. Your pipeline code does not change.
 
 ### Step 1: Install ZenML
 
-```bash
+`````bash
 python -m venv zenml-env
 source zenml-env/bin/activate  # Linux/Mac
 # zenml-env\Scripts\activate  # Windows
@@ -86,23 +87,23 @@ pip install zenml
 # Verify installation
 zenml version
 # Output: ZenML version 0.80.0
-```
+`````
 
 ### Step 2: Initialize ZenML
 
-```bash
+`````bash
 # Initialize a ZenML repository (creates a .zen directory)
 zenml init
 
 # Check status
 zenml status
-```
+`````
 
-The `zenml init` command creates a `.zen` configuration directory. This is similar to `git init` — it marks the root of your ZenML project and stores stack configurations locally.
+The ````zenml init```` command creates a ````.zen```` configuration directory. This is similar to ````git init```` — it marks the root of your ZenML project and stores stack configurations locally.
 
 ### Step 3: Register a Local Stack
 
-```bash
+`````bash
 # Register a local artifact store
 zenml artifact-store register local_store --flavor=local --path=./artifacts
 
@@ -117,11 +118,11 @@ zenml stack register local_stack \
 
 # Verify the active stack
 zenml stack describe
-```
+`````
 
 ### Step 4: Run Your First Pipeline
 
-Create a file named `first_pipeline.py`: ```python
+Create a file named ``first_pipeline.py``: `````python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -170,11 +171,11 @@ def training_pipeline(): """End-to-end ML training pipeline."""
 
 if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
-```
+`````
 
-Run it: ```bash
+Run it: `````bash
 python first_pipeline.py
-```
+`````
 
 You should see output showing each step executing in sequence, culminating in a model accuracy around **0.9667**. ZenML has automatically tracked every artifact, cached intermediate outputs, and recorded the run history.
 
@@ -183,7 +184,7 @@ You should see output showing each step executing in sequence, culminating in a 
 ZenML's power lies in its integration ecosystem. Here are the most commonly connected tools across the ML lifecycle.
 
 ### Orchestrators
-ZenML supports multiple orchestrators for different scale requirements: ```bash
+ZenML supports multiple orchestrators for different scale requirements: `````bash
 # Install Airflow integration
 pip install zenml[airflow]
 
@@ -194,13 +195,13 @@ zenml orchestrator register airflow_orchestrator \
 
 # Switch to Airflow stack
 zenml stack update local_stack -o airflow_orchestrator
-```
+`````
 
 Other orchestrators: **Kubernetes**, **GitHub Actions**, **AzureML**, **Vertex AI**, **SageMaker**, **Databricks**, **Kubeflow**.
 
 ### Experiment Tracking with MLflow
 
-```bash
+`````bash
 # Install MLflow integration
 pip install zenml[mlflow]
 
@@ -221,9 +222,9 @@ zenml model-registry register mlflow_registry \
 zenml stack update local_stack \
   -e mlflow_tracker \
   -r mlflow_registry
-```
+`````
 
-Now modify your pipeline to log experiments: ```python
+Now modify your pipeline to log experiments: `````python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
@@ -255,11 +256,11 @@ def register_model(
         print(f"Model registered: {model_version}")
         return "iris-classifier"
     return "below-threshold"
-```
+`````
 
 ### Artifact Storage with S3
 
-```bash
+`````bash
 # Register S3 artifact store
 zenml artifact-store register s3_store \
   --flavor=s3 \
@@ -269,11 +270,11 @@ zenml artifact-store register s3_store \
 
 # Update stack to use S3
 zenml stack update local_stack -a s3_store
-```
+`````
 
 ### Container Registry for Cloud Execution
 
-```bash
+`````bash
 # Register Docker container registry
 zenml container-registry register docker_registry \
   --flavor=default \
@@ -282,22 +283,22 @@ zenml container-registry register docker_registry \
 # Build and run containerized pipeline
 zenml stack update local_stack -c docker_registry
 zenml pipeline run first_pipeline.py --build-docker
-```
+`````
 
 ### Weights & Biases Integration
 
-```bash
+`````bash
 pip install zenml[wandb]
 
 zenml experiment-tracker register wandb_tracker \
   --flavor=wandb \
   --api_key=$WANDB_API_KEY \
   --project_name="zenml-mlops"
-```
+`````
 
 ### Full Stack Configuration Example
 
-```yaml
+`````yaml
 # stack.yaml — Define your entire MLOps stack as code
 stack_name: production_stack
 components: orchestrator: flavor: kubernetes
@@ -315,11 +316,11 @@ components: orchestrator: flavor: kubernetes
   step_operator: flavor: sagemaker
     configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
-```
+`````
 
-Register this stack: ```bash
+Register this stack: `````bash
 zenml stack register -f stack.yaml --set
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -329,15 +330,15 @@ ZenML is used in production across industries. Here are real deployment patterns
 
 | Company | Industry | Scale | Stack | Results |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ML6 (consultancy) | Various | **500+ pipelines/month** | Kubernetes + MLflow + S3 | 60% reduction in pipeline setup time |
 | Renteaze | PropTech | 12 models in production | Local → Vertex AI | Deployment time: 2 weeks → 2 days |
@@ -348,13 +349,13 @@ ZenML is used in production across industries. Here are real deployment patterns
 
 We benchmarked ZenML v0.80.0 against common MLOps patterns on a **DigitalOcean 8 vCPU / 32GB RAM droplet** (see [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for $200 free credit): | Metric | Local Mode | Airflow | Kubernetes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start time | **1.2s** | 8.5s | 45s |
 | Pipeline overhead | **0.3s** | 2.1s | 12s |
@@ -367,21 +368,21 @@ Key finding: ZenML's local mode adds only **300ms of overhead** per pipeline, ma
 
 ### Scaling Characteristics
 
-```
+`````
 # ZenML pipeline execution time vs. number of steps
 # Measured on DigitalOcean 8 vCPU / 32GB droplet
 
 Steps | Local (s) | Kubernetes (s)
 
----
+* * *
 |
----
+* * *
 |---
   5   |    1.5    |     52
   10  |    2.8    |     68
   20  |    5.2    |     95
   50  |   11.5    |    175
-```
+`````
 
 The linear scaling of local mode makes it ideal for development. Kubernetes mode has a fixed overhead (~45s) but scales better for compute-intensive steps that benefit from distributed resources.
 
@@ -389,7 +390,7 @@ The linear scaling of local mode makes it ideal for development. Kubernetes mode
 
 ### Custom Step Operators for GPU Workloads
 
-When training requires GPUs, offload specific steps to cloud instances without changing pipeline code: ```python
+When training requires GPUs, offload specific steps to cloud instances without changing pipeline code: `````python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
@@ -407,11 +408,11 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """Tra
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model
-```
+`````
 
 ### Pipeline Scheduling
 
-```python
+`````python
 from zenml.pipelines import Schedule
 
 # Run pipeline every day at 3 AM UTC
@@ -422,11 +423,11 @@ daily_schedule = Schedule(
 )
 
 zenml.pipeline_schedule register daily_schedule
-```
+`````
 
 ### Caching and Reproducibility
 
-ZenML's caching system is automatic and artifact-aware. If inputs and step code haven't changed, ZenML reuses cached outputs: ```python
+ZenML's caching system is automatic and artifact-aware. If inputs and step code haven't changed, ZenML reuses cached outputs: `````python
 @step(enable_cache=True)  # Default behavior
 def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """This only re-runs if input df or this function changes."""
     # Heavy transformation that takes 30 minutes
@@ -434,11 +435,11 @@ def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """This only re-r
 
 # Force re-run when needed
 zenml pipeline run training_pipeline.py --no-cache
-```
+`````
 
 ### Secrets Management
 
-```bash
+`````bash
 # Register secrets for database credentials
 zenml secrets-manager register aws_secrets \
   --flavor=aws \
@@ -451,9 +452,9 @@ zenml secrets-manager secret register db_credentials \
   --schema=username_password \
   --username=ml_user \
   --password=$DB_PASSWORD
-```
+`````
 
-Access in steps: ```python
+Access in steps: `````python
 from zenml.client import Client
 
 @step
@@ -469,11 +470,11 @@ def load_from_database() -> pd.DataFrame: """Load data using credentials from Ze
     )
     df = pd.read_sql("SELECT * FROM training_data", conn)
     return df
-```
+`````
 
 ### CI/CD Integration
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
 on: push: branches: [main]
@@ -498,21 +499,21 @@ jobs: train: runs-on: ubuntu-latest
         run: |
           curl -X POST $SLACK_WEBHOOK \
             -d '{"text":"Pipeline failed! Check ZenML dashboard."}'
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | ZenML | Kubeflow Pipelines | Metaflow | MLflow Pipelines |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Pipeline Abstraction** | Python decorators | YAML + Python | Python decorators | YAML-based |
 | **Orchestrator Integrations** | **20+** (Airflow, K8s, etc.) | Kubernetes only | AWS Step Functions, local | Limited |
@@ -547,22 +548,22 @@ ZenML is not a silver bullet. Here are the trade-offs to understand before commi
 ## Frequently Asked Questions
 
 **Q: Can I use ZenML with my existing Jupyter notebooks?**
-A: Yes, but with restructuring. You extract cell logic into `@step`-decorated functions and compose them into `@pipeline` functions. ZenML provides a `zenml notebook` command that helps with this migration. The notebook kernel can still be used for development and debugging.
+A: Yes, but with restructuring. You extract cell logic into ````@step````-decorated functions and compose them into ````@pipeline```` functions. ZenML provides a ````zenml notebook```` command that helps with this migration. The notebook kernel can still be used for development and debugging.
 
 **Q: How does ZenML handle data versioning?**
-A: Every artifact produced by a step is automatically versioned using content hashing. The artifact store (local, S3, GCS) keeps all versions. You can retrieve any historical artifact via `Client().get_artifact_version(name, version)`. This gives you full reproducibility without manual data management.
+A: Every artifact produced by a step is automatically versioned using content hashing. The artifact store (local, S3, GCS) keeps all versions. You can retrieve any historical artifact via ````Client().get_artifact_version(name, version)````. This gives you full reproducibility without manual data management.
 
 **Q: Is ZenML suitable for real-time inference pipelines?**
 A: ZenML is primarily designed for batch training and batch inference pipelines. For real-time serving, train with ZenML, register the model, then deploy via [KServe](dibi8-internal-link), [Seldon](dibi8-internal-link), or [BentoML](dibi8-internal-link). ZenML has built-in deployment integrations for these tools.
 
 **Q: How do I deploy ZenML server for team collaboration?**
-A: Run `zenml deploy` to deploy a ZenML server on AWS, GCP, Azure, or use the Helm chart for self-hosted Kubernetes. For a quick team setup on [DigitalOcean](https://m.do.co/c/eca87ac14ee0), deploy a droplet and run `zenml up --docker` — this starts the ZenML server with Docker Compose in minutes.
+A: Run ````zenml deploy```` to deploy a ZenML server on AWS, GCP, Azure, or use the Helm chart for self-hosted Kubernetes. For a quick team setup on [DigitalOcean](https://m.do.co/c/eca87ac14ee0), deploy a droplet and run ````zenml up --docker```` — this starts the ZenML server with Docker Compose in minutes.
 
 **Q: What happens when a pipeline step fails?**
-A: ZenML supports configurable retry logic (`@step(retry=3)`). Failed runs are recorded with full stack traces in the dashboard. You can resume from the failed step using `zenml pipeline run --from-failure`, which reuses cached outputs from successful upstream steps.
+A: ZenML supports configurable retry logic (````@step(retry=3)````). Failed runs are recorded with full stack traces in the dashboard. You can resume from the failed step using ````zenml pipeline run --from-failure````, which reuses cached outputs from successful upstream steps.
 
 **Q: Can I use ZenML without Docker?**
-A: Absolutely. The default local stack runs entirely without Docker. Docker is only required for containerized execution on remote orchestrators (Kubernetes, Airflow in Docker mode). Local development and testing need nothing beyond `pip install zenml`.
+A: Absolutely. The default local stack runs entirely without Docker. Docker is only required for containerized execution on remote orchestrators (Kubernetes, Airflow in Docker mode). Local development and testing need nothing beyond ````pip install zenml```.
 
 ## Conclusion: From Notebook Chaos to Production Pipelines
 
@@ -619,4 +620,4 @@ This article contains affiliate links. If you sign up for services through links
   }
 }
 </script>
----
+* * *

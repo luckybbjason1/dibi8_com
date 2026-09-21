@@ -19,6 +19,7 @@ description: "Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API �
 
 ---
 
+
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-vs-aider)
@@ -27,7 +28,7 @@ description: "Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API �
 - [claude-code-vs-aider](claude-code-vs-aider)
 - [cursor-vs-claude-code](claude-code-vs-aider)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

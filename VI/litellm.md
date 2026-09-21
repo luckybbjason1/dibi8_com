@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
 
+
 {{</* resource-info */>}}
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
@@ -37,18 +38,18 @@ Bạn đang chạy Claude để suy luận, GPT-4o để lập trình, và Gemin
 
 Với **22,500+ sao GitHub** và **1,500+ ngườI đóng góp**, LiteLLM đã trở thành lựa chọn mặc định cho các đội muốn kiểm soát ở cấp gateway mà không bị khóa vào nhà cung cấp. Hướng dẫn này đi qua thiết lập cấp production — từ triển khai Docker đến quản lý khóa ảo và giám sát — trong vòng 30 phút.
 
----
+* * *
 
 ## LiteLLM là gì?
 
 LiteLLM là một cổng proxy LLM và Python SDK mã nguồn mở, cung cấp giao diện thống nhất để gọi 100+ API LLM — OpenAI, Anthropic, Azure, Google Vertex AI, AWS Bedrock, Cohere, Ollama, v.v. — sử dụng định dạng API tương thích OpenAI duy nhất.
 
-Hai chế độ tồn tại: - **Python SDK** — `import litellm; completion(...)` trong code, không phụ thuộc nhà cung cấp
-- **Proxy Server** — gateway HTTP tự lưu trữ tại `:4000`, bất kỳ client OpenAI SDK nào cũng có thể trỏ đến
+Hai chế độ tồn tại: - **Python SDK** — ```import litellm; completion(...)```` trong code, không phụ thuộc nhà cung cấp
+- **Proxy Server** — gateway HTTP tự lưu trữ tại ````:4000````, bất kỳ client OpenAI SDK nào cũng có thể trỏ đến
 
-Chế độ proxy là những gì hầu hết các đội production sử dụng. Nó thêm khóa ảo, quản lý đội, kiểm soát ngân sách, giới hạn tốc độ, bộ nhớ đệm, và khả năng quan sát — tất cả được cấu hình qua một tệp `config.yaml`.
+Chế độ proxy là những gì hầu hết các đội production sử dụng. Nó thêm khóa ảo, quản lý đội, kiểm soát ngân sách, giới hạn tốc độ, bộ nhớ đệm, và khả năng quan sát — tất cả được cấu hình qua một tệp ````config.yaml````.
 
----
+* * *
 
 ## LiteLLM hoạt động như thế nào
 
@@ -56,7 +57,7 @@ Chế độ proxy là những gì hầu hết các đội production sử dụng
 
 **Luồng yêu cầu:**
 
-1. Ứng dụng gửi yêu cầu định dạng OpenAI đến `http://litellm-proxy:4000/v1/chat/completions`
+1. Ứng dụng gửi yêu cầu định dạng OpenAI đến ````http://litellm-proxy:4000/v1/chat/completions````
 2. LiteLLM xác thực khóa ảo, kiểm tra ngân sách và giới hạn tốc độ của đội
 3. Bộ định tuyến chọn triển khai mô hình tốt nhất dựa trên chiến lược đã cấu hình (dựa trên độ trễ, dựa trên chi phí, hoặc cân bằng tải đơn giản)
 4. Nếu nhà cung cấp chính trả về 429/5xx, tự động chuyển đổi dự phòng kích hoạt trong vài mili giây
@@ -72,7 +73,7 @@ Chế độ proxy là những gì hầu hết các đội production sử dụng
 | Redis | Điều phối giới hạn tốc độ, bộ nhớ đệm | Khuyến nghị |
 | Admin UI | Dashboard web cho khóa/mô hình | Tích hợp sẵn |
 
----
+* * *
 
 ## Cài đặt & Thiết lập
 
@@ -84,7 +85,7 @@ Chế độ proxy là những gì hầu hết các đội production sử dụng
 
 ### Bước 1: Tải Mẫu Docker Compose
 
-```bash
+`````bash
 # Tạo thư mục dự án
 mkdir -p litellm-gateway && cd litellm-gateway
 
@@ -99,11 +100,11 @@ OPENAI_API_KEY="sk-your-openai-key"
 ANTHROPIC_API_KEY="sk-your-anthropic-key"
 DATABASE_URL="postgresql://llmproxy:dbpassword9090@db:5432/litellm"
 EOF
-```
+`````
 
 ### Bước 2: Tạo config.yaml
 
-```yaml
+`````yaml
 # litellm_config.yaml
 model_list: - model_name: gpt-4o
     litellm_params: model: openai/gpt-4o
@@ -160,11 +161,11 @@ litellm_settings: drop_params: true
   # Callback khả năng quan sát
   success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
 ### Bước 3: Khởi động Stack
 
-```bash
+`````bash
 # Kéo và khởi động tất cả dịch vụ
 docker compose up -d
 
@@ -173,13 +174,13 @@ docker compose ps
 
 # Kiểm tra log proxy
 docker compose logs -f litellm
-```
+`````
 
-Proxy hiện đang chạy tại `http://localhost:4000`. Admin UI tại `http://localhost:4000/ui/` — đăng nhập với tên ngườI dùng `admin` và `LITELLM_MASTER_KEY` làm mật khẩu.
+Proxy hiện đang chạy tại ````http://localhost:4000````. Admin UI tại ````http://localhost:4000/ui/```` — đăng nhập với tên ngườI dùng ````admin```` và ````LITELLM_MASTER_KEY```` làm mật khẩu.
 
 ### Bước 4: Kiểm tra với Yêu cầu
 
-```bash
+`````bash
 # Kiểm tra chat completions
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -197,15 +198,15 @@ curl http://localhost:4000/v1/embeddings \
     "model": "text-embedding",
     "input": ["LiteLLM là một cổng AI"]
   }'
-```
+`````
 
----
+* * *
 
 ## Tích hợp với các Công cụ Phổ biến
 
 ### OpenAI SDK (Python)
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(
@@ -218,11 +219,11 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Giải thích cân bằng tải"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### LangChain
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
@@ -233,11 +234,11 @@ llm = ChatOpenAI(
 
 result = llm.invoke("Các loại gateway LLM là gì?")
 print(result.content)
-```
+`````
 
 ### Anthropic SDK (Tương thích Gốc)
 
-```python
+`````python
 from anthropic import Anthropic
 
 client = Anthropic(
@@ -251,19 +252,19 @@ response = client.messages.create(
     messages=[{"role": "user", "content": "So sánh LiteLLM và OpenRouter"}]
 )
 print(response.content[0].text)
-```
+`````
 
 ### Ollama (Mô hình Cục bộ)
 
-```yaml
+`````yaml
 # Thêm vào litellm_config.yaml
 model_list: - model_name: local-llama
     litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
     model_info: mode: chat
-```
+`````
 
-```bash
+`````bash
 # Kiểm tra mô hình cục bộ qua LiteLLM
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -272,26 +273,26 @@ curl http://localhost:4000/v1/chat/completions \
     "model": "local-llama",
     "messages": [{"role": "user", "content": "Xin chào mô hình cục bộ"}]
   }'
-```
+`````
 
 ### Cohere
 
-```yaml
+`````yaml
 model_list: - model_name: cohere-command
     litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 client = OpenAI(base_url="http://localhost:4000", api_key="sk-virtual-key")
 response = client.chat.completions.create(
     model="cohere-command",
     messages=[{"role": "user", "content": "Tóm tắt điều này"}]
 )
-```
+`````
 
----
+* * *
 
 ## Benchmark / Trường hợp Sử dụng Thực tế
 
@@ -316,7 +317,7 @@ Startup AI 50 ngườI phục vụ 5 đội nội bộ và khách hàng API bên
 
 **Lưu ý:** Chi phí gateway không bao gồm thờI gian phản hồi API LLM. LiteLLM thêm chi phí độ trễ nhỏ, có thể dự đoán. Đối với các luồng mà mỗi mili giây đều quan trọng, triển khai proxy trong cùng VPC với ứng dụng.
 
----
+* * *
 
 ## Sử dụng Nâng cao / Cứng hóa Production
 
@@ -326,7 +327,7 @@ Khóa ảo là xương sống bảo mật của triển khai LiteLLM production.
 
 ![LiteLLM Admin Dashboard](images/litellm-dashboard.png)
 
-```bash
+`````bash
 # Tạo khóa ảo cho "đội frontend"
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -351,19 +352,19 @@ curl -X POST http://localhost:4000/key/generate \
 #   "max_budget": 500.00,
 #   "models": ["gpt-4o", "gemini-flash"]
 # }
-```
+`````
 
 ### Giới hạn Ngân sách Cấp Nhà cung cấp
 
-```yaml
+`````yaml
 general_settings: provider_budget_config: openai: monthly_budget: 5000.00
     anthropic: monthly_budget: 3000.00
     gemini: monthly_budget: 1000.00
-```
+`````
 
 ### Định tuyến Dựa trên Độ trễ
 
-```yaml
+`````yaml
 router_settings: routing_strategy: latency-based-routing
   routing_strategy_args: ttl: 60
   allowed_fails: 3
@@ -371,11 +372,11 @@ router_settings: routing_strategy: latency-based-routing
   num_retries: 2
   timeout: 90
   retry_after: 5
-```
+`````
 
 ### Danh sách Kiểm tra Bảo mật
 
-```yaml
+`````yaml
 # config.yaml được cứng hóa bảo mật
 general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
@@ -389,11 +390,11 @@ general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   # Mã hóa khóa khi lưu trữ
   litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
-```
+`````
 
 ### Triển khai Kubernetes / Helm
 
-```bash
+`````bash
 # Thêm repo Helm LiteLLM
 helm pull oci://docker.litellm.ai/berriai/litellm-helm
 
@@ -406,17 +407,17 @@ helm install litellm-gateway ./litellm-helm \
   --set ingress.hosts[0].host=litellm.yourdomain.com \
   --set env.LITELLM_MASTER_KEY="sk-$(openssl rand -hex 16)" \
   --set env.DATABASE_URL="postgresql://user:pass@neon-host/litellm"
-```
+`````
 
 ### Giám sát với Prometheus + Grafana
 
-```yaml
+`````yaml
 # Thêm vào config.yaml
 litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
-Các chỉ số Prometheus chính hiển thị tại `/metrics`: ```promql
+Các chỉ số Prometheus chính hiển thị tại ``/metrics``: `````promql
 # Tốc độ yêu cầu theo mô hình
 rate(litellm_request_total_requests[5m])
 
@@ -428,11 +429,11 @@ litellm_remaining_requests
 
 # Histogram chi phí gateway
 histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
-```
+`````
 
 Nhập [dashboard Grafana chính thức](https://github.com/BerriAI/litellm/blob/main/examples/grafana/grafana_dashboard.json) để có các panel đã xây dựng sẵn hiển thị yêu cầu/giây, lượng token, chi phí theo đội, và phân vị độ trễ.
 
----
+* * *
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -456,7 +457,7 @@ Nhập [dashboard Grafana chính thức](https://github.com/BerriAI/litellm/blob
 - **OpenRouter** — Bạn muốn truy cập ngay 300+ mô hình với không công việc hạ tầng, và phí tín dụng 5.5% là chấp nhận được.
 - **Helicone** — Khả năng quan sát là mối quan tâm chính; bạn cần dò tìm chi tiết và phân bổ chi phí cho các cuộc gọi LLM.
 
----
+* * *
 
 ## Hạn chế / Đánh giá Trung thực
 
@@ -470,7 +471,7 @@ LiteLLM không phải công cụ phù hợp cho mọi tình huống. Đây là n
 
 5. **SSO doanh nghiệp có phí** — SAML/SSO, log kiểm tra, và guardrail nâng cao là một phần của LiteLLM Enterprise. Phiên bản OSS chỉ xử lý khóa ảo và ngân sách cơ bản.
 
----
+* * *
 
 ## Câu hỏi Thường gặp
 
@@ -480,7 +481,7 @@ LiteLLM là gateway mã nguồn mở tự lưu trữ; OpenRouter là API đa mô
 
 **Q: Tôi có thể dùng LiteLLM với code OpenAI SDK hiện có không?**
 
-Có — chỉ cần đổi hai dòng: đặt `base_url` về proxy LiteLLM và `api_key` về khóa ảo. Mọi thứ khác giữ nguyên. Đây là lý do chính các đội áp dụng LiteLLM; không thay đổi code ngoàI cấu hình.
+Có — chỉ cần đổi hai dòng: đặt ````base_url```` về proxy LiteLLM và ````api_key```` về khóa ảo. Mọi thứ khác giữ nguyên. Đây là lý do chính các đội áp dụng LiteLLM; không thay đổi code ngoàI cấu hình.
 
 **Q: LiteLLM cần cơ sở dữ liệu gì?**
 
@@ -488,7 +489,7 @@ PostgreSQL 14+ là bắt buộc cho tính năng production (khóa ảo, theo dõ
 
 **Q: Cơ chế failover hoạt động như thế nào?**
 
-Bạn định nghĩa chuỗi fallback trong `config.yaml`. Nếu mô hình trả về 429, 500, hoặc timeout, LiteLLM thử lại yêu cầu với mô hình tiếp theo trong chuỗi — tất cả trong cùng một yêu cầu client. Client thấy một phản hồi duy nhất; failover xảy ra trong suốt.
+Bạn định nghĩa chuỗi fallback trong ````config.yaml````. Nếu mô hình trả về 429, 500, hoặc timeout, LiteLLM thử lại yêu cầu với mô hình tiếp theo trong chuỗi — tất cả trong cùng một yêu cầu client. Client thấy một phản hồi duy nhất; failover xảy ra trong suốt.
 
 **Q: LiteLLM có phù hợp cho production lưu lượng cao không?**
 
@@ -496,13 +497,13 @@ Có — với bộ nhớ đệm Redis và 2+ bản sao phía sau load balancer, 
 
 **Q: Làm thế nào để giám sát LiteLLM trong production?**
 
-Bật callback Prometheus trong `config.yaml`, scrape endpoint `/metrics`, và nhập dashboard Grafana chính thức. Thiết lập cảnh báo trên `litellm_requests_total_failed` (tỷ lệ lỗi) và `litellm_remaining_requests` (cạn kiệt ngân sách). Kết nối `success_callback` với Langfuse để dò tìm theo yêu cầu.
+Bật callback Prometheus trong ````config.yaml````, scrape endpoint ````/metrics````, và nhập dashboard Grafana chính thức. Thiết lập cảnh báo trên ````litellm_requests_total_failed```` (tỷ lệ lỗi) và ````litellm_remaining_requests```` (cạn kiệt ngân sách). Kết nối ````success_callback```` với Langfuse để dò tìm theo yêu cầu.
 
----
+* * *
 
 ## Kết luận
 
-LiteLLM giải quyết thực tế hỗn loạn của việc triển khai đa LLM production: nhiều SDK, khóa API rải rác, chi phí không minh bạch, và failover thủ công. Với một `config.yaml`, bạn có gateway tương thích OpenAI thống nhất, khóa ảo với ngân sách, tự động failover, và theo dõi chi phí thờI gian thực.
+LiteLLM giải quyết thực tế hỗn loạn của việc triển khai đa LLM production: nhiều SDK, khóa API rải rác, chi phí không minh bạch, và failover thủ công. Với một ````config.yaml```, bạn có gateway tương thích OpenAI thống nhất, khóa ảo với ngân sách, tự động failover, và theo dõi chi phí thờI gian thực.
 
 Với đội chi tiêu $5,000+/tháng cho API LLM và có năng lực DevOps cơ bản, tự lưu trữ LiteLLM hoàn vốn qua phí markup giảm và độ tin cậy cải thiện. Bắt đầu với thiết lập Docker Compose ở trên, thêm bộ nhớ đệm Redis, rồi mở rộng lên Kubernetes với Helm khi lưu lượng tăng.
 
@@ -515,7 +516,7 @@ Với đội chi tiêu $5,000+/tháng cho API LLM và có năng lực DevOps cơ
 
 *Một số liên kết trong bàI viết này là liên kết tiếp thị. Chúng tôi có thể nhận hoa hồng nếu bạn mua dịch vụ lưu trữ qua chúng — điều này không ảnh hưởng đến giá hoặc khuyến nghị.*
 
----
+* * *
 
 
 
@@ -565,7 +566,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -575,7 +576,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](litellm)
 - [moneyprinterturbo-one-click-ai-video-generator](litellm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

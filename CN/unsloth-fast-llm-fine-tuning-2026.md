@@ -26,6 +26,7 @@ tags: ["unsloth", "fine-tuning", "lora", "qlora", "grpo", "fast training"]
 aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/-
 ---
+
 If [Axolotl](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) is the production multi-GPU fine-tuning framework, **Unsloth** is the single-GPU speed king. By rewriting the LLM training kernels in custom Triton + Python instead of relying on PyTorch's generic autograd, Unsloth fine-tunes models **2× faster** with **70% less VRAM** than HuggingFace TRL baselines.
 
 64.9k GitHub stars, dual Apache 2.0 / AGPL-3.0 license. Supports 500+ models (Llama 3-3.2, Mistral, Qwen 3-3.6, Gemma, DeepSeek, Phi-4, gpt-oss). The default fine-tuning tool when you have a single 24 GB consumer GPU and need to iterate fast.
@@ -53,9 +54,9 @@ The combined effect: Llama 3 8B QLoRA fine-tuning on RTX 3090 — HF TRL ~3.5 hr
 
 | GPU | Model size you can QLoRA-finetune (with Unsloth's 70% VRAM reduction) |
 |
----
+* * *
 |
----
+* * *
 |
 | 8 GB (RTX 3060 8GB) | Llama 3.2 3B QLoRA, Phi-4 mini |
 | 12 GB (RTX 3060 12GB / 4070) | Llama 3.2 8B QLoRA, Mistral 7B QLoRA |
@@ -68,11 +69,11 @@ For cloud rentals: H100 on Vast.ai (~$1.50/hr) handles anything; for cheaper exp
 
 ## 3. Quick Install (5 min)
 
-```bash
+````bash
 pip install unsloth
-```
+`````
 
-Hello world — QLoRA fine-tune Llama 3.2 8B in ~20 lines: ```python
+Hello world — QLoRA fine-tune Llama 3.2 8B in ~20 lines: `````python
 from unsloth import FastLanguageModel
 from trl import SFTTrainer
 from datasets import load_dataset
@@ -99,17 +100,17 @@ trainer = SFTTrainer(
 )
 trainer.train()
 model.save_pretrained("./outputs/llama-alpaca-lora")
-```
+`````
 
 That's it. Same model, same data — running with Unsloth-optimized kernels.
 
 ## 4. The Pre-Quantized Model Catalog
 
-Unsloth maintains pre-quantized 4-bit / 8-bit versions of popular models at `huggingface.co/unsloth`. Using these saves 5-15 minutes of initial download + quantization on every fresh run: - `unsloth/llama-3.2-8b-bnb-4bit`
-- `unsloth/mistral-7b-v0.3-bnb-4bit`
-- `unsloth/qwen3-coder-14b-bnb-4bit`
-- `unsloth/gemma-3-9b-bnb-4bit`
-- `unsloth/DeepSeek-V3-bnb-4bit` (for the brave on 48 GB+)
+Unsloth maintains pre-quantized 4-bit / 8-bit versions of popular models at ````huggingface.co/unsloth````. Using these saves 5-15 minutes of initial download + quantization on every fresh run: - ````unsloth/llama-3.2-8b-bnb-4bit````
+- ````unsloth/mistral-7b-v0.3-bnb-4bit````
+- ````unsloth/qwen3-coder-14b-bnb-4bit````
+- ````unsloth/gemma-3-9b-bnb-4bit````
+- ````unsloth/DeepSeek-V3-bnb-4bit```` (for the brave on 48 GB+)
 
 Always check the Unsloth HF profile for pre-quantized versions of your target model before downloading from the original publisher.
 
@@ -117,7 +118,7 @@ Always check the Unsloth HF profile for pre-quantized versions of your target mo
 
 GRPO (Group Relative Policy Optimization) is the 2026 default for RL fine-tuning (the technique behind DeepSeek-R1). Unsloth's GRPO implementation uses 80% less VRAM than HF TRL's, making GRPO feasible on a single 24 GB GPU instead of requiring a multi-GPU node.
 
-```python
+`````python
 from trl import GRPOConfig, GRPOTrainer
 from unsloth import FastLanguageModel, PatchFastRL
 
@@ -134,7 +135,7 @@ trainer = GRPOTrainer(
     reward_funcs=[reward_fn],
 )
 trainer.train()
-```
+`````
 
 For domain-specific reasoning (math, code, structured output), GRPO + Unsloth on a single GPU is now the most cost-efficient way to bake reasoning improvements into a base model.
 
@@ -142,9 +143,9 @@ For domain-specific reasoning (math, code, structured output), GRPO + Unsloth on
 
 | Pick | When |
 |
----
+* * *
 |
----
+* * *
 |
 | **Unsloth** | Single GPU, fast iteration, RL fine-tuning, consumer hardware, prototyping |
 | **Axolotl** | Multi-GPU production, multi-node, broad method support (DPO/IPO/KTO/ORPO/GRPO/GDPO), YAML config-as-code. See [Axolotl 2026 guide](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
@@ -166,18 +167,18 @@ For 99% of users (you're fine-tuning models for your own product), Apache is wha
 
 ## 8. Production Patterns
 
-The two patterns most teams settle on: **Pattern A — Pure Unsloth (single-GPU shop)**: ```
+The two patterns most teams settle on: **Pattern A — Pure Unsloth (single-GPU shop)**: `````
 Rent RTX 4090 on Vast.ai → Unsloth QLoRA experiments → 
 Merge LoRA + base → Push to HF Hub → Serve via vLLM
-```
+`````
 
-**Pattern B — Unsloth + Axolotl hybrid (production team)**: ```
+**Pattern B — Unsloth + Axolotl hybrid (production team)**: `````
 Unsloth on dev laptop for 50 quick experiments
 ↓ winner found
 Axolotl on 8× H100 cluster for final long-context, multi-epoch full fine-tune
 ↓ production model
 Push to HF Hub → Serve via vLLM behind LiteLLM gateway
-```
+````
 
 The hybrid pattern pays for the cluster only when you have a candidate worth scaling.
 
@@ -195,7 +196,7 @@ Unsloth = **single-GPU LLM fine-tuning speed king**. 64.9k stars, 2× faster + 7
 Pair with [Axolotl](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) for the production multi-GPU phase. Rent a {{< aff "digitalocean" "footer-cta" "GPU instance" >}} or use Vast.ai when you need to train.
 
 
----
+* * *
 *Part of dibi8's Fine-Tuning Stack — see the upcoming Fine-Tuning Stack collection for the full pipeline from dataset prep to production deployment.*
 
 
@@ -261,7 +262,7 @@ Unsloth 2026: 64.9k-Star Fast LLM Fine-Tuning — 2× Speed, 70% Less VRAM, Sing
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

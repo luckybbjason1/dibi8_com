@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
 ---
 
+
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
 ![W&B Sweeps](https://opengraph.github.com/github/wandb/wandb/tree/main/wandb/sweeps)
@@ -27,7 +28,7 @@ featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screens
 
 Weights & Biases 是一个端到端的 ML 开发平台，覆盖整个实验生命周期。其核心是 logger——一个你添加到训练脚本中的轻量级库，自动跟踪指标、配置、工件甚至模型检查点。除了记录之外，W&B 还提供用于可视化运行、并排比较实验、与团队共享结果以及从训练到部署管理模型的网络仪表板。
 
-```
+````
 ┌───────────────────────────────────────────────┐
 │           W&B Platform Architecture            │
 ├───────────────────────────────────────────────┤
@@ -51,13 +52,13 @@ Weights & Biases 是一个端到端的 ML 开发平台，覆盖整个实验生�
 │    ├─ PyTorch Lightning, FastAI               │
 │    └─ Ray Tune, Optuna, Ax                    │
 └───────────────────────────────────────────────┘
-```
+`````
 
 ## W&B 的工作原理
 
 W&B 通过记录你的训练循环来工作。你初始化一个 run，在每一步记录指标，W&B 将数据实时发送到云端仪表板。SDK 设计为开销极小——记录一个指标大约需要 0.1 毫秒，网络调用被批处理和压缩以减少带宽使用。
 
-```python
+`````python
 import wandb
 
 # Initialize a new run with your configuration
@@ -74,7 +75,7 @@ wandb.init(
 for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch)
         # Log metrics — W&B handles the rest
         wandb.log({"train_loss": loss, "lr": config.learning_rate})
-```
+`````
 
 平台区分三种类型的跟踪数据：**metrics**（随时间记录的标量值如损失和准确性）、**artifacts**（版本化文件如数据集和模型检查点）和 **media**（直接在仪表板中可视化的图像、音频、文本样本）。
 
@@ -82,31 +83,31 @@ for epoch in range(config.epochs): for batch in train_dataloader: loss = model.t
 
 **选项 1：pip install（标准）**
 
-```bash
+`````bash
 pip install wandb
-```
+`````
 
 **选项 2：使用 W&B 认证**
 
-```bash
+`````bash
 wandb login
 # Paste your API key from https://wandb.ai/authorize
-```
+`````
 
 **选项 3：Docker**
 
-```bash
+`````bash
 docker pull wandb/launch
 docker run -e WANDB_API_KEY=$WANDB_API_KEY \
   -v /path/to/code:/app wandb/launch python train.py
-```
+`````
 
 **选项 4：Hugging Face 集成**
 
-```bash
+`````bash
 pip install wandb transformers
 # W&B is pre-configured for Hugging Face Trainer
-```
+`````
 
 ## 与 PyTorch、Hugging Face 和 Ray Tune 的集成
 
@@ -114,7 +115,7 @@ W&B 与几乎所有流行的 ML 框架集成。以下是最常见的设置。
 
 **PyTorch Lightning**
 
-```python
+`````python
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import WandbCallback
 
@@ -125,11 +126,11 @@ class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): lo
 # W&B callback auto-logs everything
 trainer = pl.Trainer(callbacks=[WandbCallback()])
 trainer.fit(model)
-```
+`````
 
 **Hugging Face Transformers**
 
-```python
+`````python
 from transformers import Trainer, TrainingArguments
 import wandb
 
@@ -146,11 +147,11 @@ trainer = Trainer(
     train_dataset=dataset,
 )
 trainer.train()
-```
+`````
 
 **用于超参数扫描的 Ray Tune**
 
-```python
+`````python
 import ray
 from ray import tune
 import wandb
@@ -171,7 +172,7 @@ sweep = tune.run(
     metric="score",
     mode="max",
 )
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -179,15 +180,15 @@ W&B 的日志性能已在各种训练规模下进行了基准测试。在典型�
 
 || 场景 | 日志开销 | 网络带宽 | 仪表板加载时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 小模型（1 万参数） | 0.5% | <1 MB/run | <1 秒 |
 | 中等模型（1 亿参数） | 1.2% | <5 MB/run | <2 秒 |
@@ -197,7 +198,7 @@ W&B 的日志性能已在各种训练规模下进行了基准测试。在典型�
 
 实际使用示例：
 
-```python
+`````python
 # Log a confusion matrix as a W&B table
 import numpy as np
 import wandb
@@ -215,13 +216,13 @@ wandb.log({
 artifact = wandb.Artifact("training_data", type="dataset")
 artifact.add_file("dataset.csv")
 wandb.log_artifact(artifact)
-```
+`````
 
 ## 高级用法 / 生产环境加固
 
 **工件版本控制和血缘**
 
-```python
+`````python
 # Log a model checkpoint as an artifact
 model_artifact = wandb.Artifact("best_model", type="model")
 model_artifact.add(model, "model.pt")
@@ -233,11 +234,11 @@ wandb.log_artifact(model_artifact, aliases=["best", "v1.0"])
 run = wandb.init()
 art = run.use_artifact("project/model:v1", type="model")
 path = art.download()
-```
+`````
 
 **自定义报告与仪表板**
 
-```python
+`````python
 # Create a report with custom panels
 report = wandb.Report(
     title="Experiment Results",
@@ -253,11 +254,11 @@ report = wandb.Report(
     ]
 )
 report.save("experiment-report")
-```
+`````
 
 **Sweeps 配置**
 
-```yaml
+`````yaml
 # sweeps.yaml
 name: nlp-sweep
 program: train.py
@@ -269,18 +270,18 @@ parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4]
     max: 0.1
 command: - python
   - train.py
-```
+`````
 
 运行 sweep：
 
-```bash
+`````bash
 wandb sweep sweeps.yaml
 wandb agent $SWEEP_ID
-```
+`````
 
 **用于部署的模型注册表**
 
-```python
+`````python
 # Log model to the registry
 run.log_model(
     path="./fine_tuned_model",
@@ -292,11 +293,11 @@ run.log_model(
 api = wandb.Api()
 model = api.model("my-nlp-model:staging")
 model.change_alias("production")
-```
+`````
 
 **W&B SDK 用于自定义训练循环**
 
-```python
+`````python
 import wandb
 import torch
 from torch.optim import AdamW
@@ -330,11 +331,11 @@ for epoch in range(config.epochs): model.train()
         "epoch_loss_avg": epoch_loss / len(train_loader),
         "epoch": epoch,
     })
-```
+`````
 
 **数据集工作流的工件版本控制**
 
-```python
+`````python
 # Create and log a dataset artifact
 dataset_artifact = wandb.Artifact(
     name="cleaned_dataset",
@@ -354,21 +355,21 @@ wandb.log_artifact(dataset_artifact, aliases=["latest", "v1.2"])
 run = wandb.init()
 clean_data = run.use_artifact("project/cleaned_dataset:v1.2", type="dataset")
 data_path = clean_data.download()
-```
+`````
 
 ## 与替代方案的比较
 
 || 功能 | W&B | MLflow | Weights & Biases | TensorBoard | Neptune.ai |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 实验跟踪 | ✓ | ✓ | ✓ | ✓ | ✓ |
 | 超参数扫描 | ✓（原生） | ✓ | ✓ | 否 | ✓ |
@@ -390,7 +391,7 @@ W&B 是最成熟的 ML 跟踪平台，但存在一些权衡：
 1. **云端优先模型**：W&B 的免费层要求使用他们的云平台。虽然他们提供自托管的 W&B Enterprise 供需要本地部署的团队使用，但免费层不支持自托管。如果你的组织要求所有数据保留在你的基础设施内，这可能是一个决定性因素。
 2. **免费层限制**：免费层限制为 1 个团队成员。对于较大的研究团队，付费计划的起始成本较高，尤其是当你考虑到大型模型工件所需的额外存储时。
 3. **高级功能的学习曲线**：基本记录很简单，但扫描、工件版本控制和自定义报告等功能需要理解 W&B 的数据模型。新用户可能需要 1-2 小时才能熟悉平台的完整功能。
-4. **有限的离线功能**：如果你的训练环境间歇性连接互联网，W&B 会在连接恢复时同步数据。但是，SDK 支持 `wandb.init(mode="offline")` 用于完全断开连接的环境，稍后手动同步。
+4. **有限的离线功能**：如果你的训练环境间歇性连接互联网，W&B 会在连接恢复时同步数据。但是，SDK 支持 ````wandb.init(mode="offline")```` 用于完全断开连接的环境，稍后手动同步。
 5. **供应商锁定风险**：虽然 W&B 以标准格式（JSON、CSV）导出数据，但在数百个实验后提交到 W&B 后构建到其他平台的迁移可能很耗时。
 
 ## 常见问题
@@ -401,7 +402,7 @@ W&B 是最成熟的 ML 跟踪平台，但存在一些权衡：
 
 **Q：我可以在 Jupyter Notebooks 中使用 W&B 吗？**
 
-当然可以。W&B 在 Jupyter Notebooks 中无缝工作。在笔记本单元顶部初始化你的 run 为 `wandb.init()`，后续所有 `wandb.log()` 调用都会流式传输到仪表板。使用 `wandb.jupyter` 与 Jupyter widgets 自动集成。
+当然可以。W&B 在 Jupyter Notebooks 中无缝工作。在笔记本单元顶部初始化你的 run 为 ````wandb.init()````，后续所有 ````wandb.log()```` 调用都会流式传输到仪表板。使用 ````wandb.jupyter```` 与 Jupyter widgets 自动集成。
 
 **Q：W&B 如何处理大型模型工件？**
 
@@ -419,7 +420,7 @@ W&B 支持团队工作区，其中所有运行、工件和报告默认共享。�
 
 Weights & Biases 改变了 ML 团队对待实验跟踪的方式。通过结合实时日志、直观的可视化和强大的协作功能，W&B 将模型训练的混乱转变为结构化、可重现的工作流程。无论你是微调 70 亿参数的 LLM 还是运行小型超参数扫描，W&B 都提供你需要的可见性以更快地做出更好的决策。
 
-该平台与 PyTorch、Hugging Face 和 Ray Tune 的深度集成意味着你可以用一行代码开始跟踪实验（`report_to="wandb"`）。对于大规模构建 ML 应用的团队，[DigitalOcean](https://m.do.co/c/oa14d5f0wx4f) 提供与 W&B 跟踪基础设施配合良好的实惠 GPU 实例。
+该平台与 PyTorch、Hugging Face 和 Ray Tune 的深度集成意味着你可以用一行代码开始跟踪实验（````report_to="wandb"```）。对于大规模构建 ML 应用的团队，[DigitalOcean](https://m.do.co/c/oa14d5f0wx4f) 提供与 W&B 跟踪基础设施配合良好的实惠 GPU 实例。
 
 对于部署 ML 流水线的团队：[WebShare](https://webshare.io/?referral_code=oa14d5f0wx4f) 为分布式训练工作流提供可靠的代理基础设施。
 
@@ -434,7 +435,7 @@ Weights & Biases 改变了 ML 团队对待实验跟踪的方式。通过结合�
 加入 DIBI8 社区 [Telegram](https://t.me/DIBI8_Group) 群组，参与关于 ML 工具、实验跟踪和 MLOps 实践的持续讨论。
 
 
----
+* * *
 **来源与延伸阅读**：
 - W&B 文档：https://docs.wandb.ai/
 - W&B GitHub 仓库：https://github.com/wandb/wandb
@@ -508,11 +509,11 @@ Weights & Biases (W&B)：像专业人士一样跟踪每个实验 — ML 实验�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -522,6 +523,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](wandb-ml-experiment-tracking-platform-2026)
 - [ai-engineering-from-scratch](wandb-ml-experiment-tracking-platform-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

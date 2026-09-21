@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/vimax-agentic-video-generation-multi-agent-2026/
 ---
 
+
 ## Ba giới hạn đã chặn đứng AI video trong 2025
 
 Mọi tool AI video generation lọt vào tầm mắt người tiêu dùng trong 2024–2025 — Sora, Runway Gen-3, Pika, Luma Dream Machine, OpenSora — đều dính chung ba giới hạn: 1. **Chỉ làm được clip ngắn.** 5–10 giây là trần thực tế. Dài hơn là tính nhất quán sụp đổ.
@@ -32,11 +33,11 @@ Mọi tool AI video generation lọt vào tầm mắt người tiêu dùng trong
 
 Với clip social media, các giới hạn này còn chịu được. Với bất cứ ai muốn dùng AI để *thật sự kể chuyện* — video giải thích, nội dung giáo dục, narrative thương hiệu — pipeline vỡ ngay khi user muốn cảnh 2 nối logic từ cảnh 1.
 
-**[ViMax](https://github.com/HKUDS/ViMax)** (GitHub: `HKUDS/ViMax`, **7,100+ stars** tính đến tháng 5/2026) của Hong Kong University Data Science Lab là nỗ lực mã nguồn mở được cộng đồng đón nhận đầu tiên phá ba giới hạn đó bằng cách coi việc sinh video là *bài toán điều phối multi-agent*, không phải bài toán sinh một phát ăn ngay.
+**[ViMax](https://github.com/HKUDS/ViMax)** (GitHub: ```HKUDS/ViMax````, **7,100+ stars** tính đến tháng 5/2026) của Hong Kong University Data Science Lab là nỗ lực mã nguồn mở được cộng đồng đón nhận đầu tiên phá ba giới hạn đó bằng cách coi việc sinh video là *bài toán điều phối multi-agent*, không phải bài toán sinh một phát ăn ngay.
 
 Tagline của họ nói thẳng: **"Director, Screenwriter, Producer, and Video Generator All-in-One."**
 
----
+* * *
 
 ## Bốn vai agentic
 
@@ -54,11 +55,11 @@ Lớp render cuối cùng. Sinh các shot song song, tổng hợp ảnh cho từ
 
 Mỗi vai là một LLM agent riêng với prompt riêng, context window riêng, và hợp đồng output deterministic riêng — một ứng dụng sách giáo khoa của [12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) factor 10 ("small, focused agents").
 
----
+* * *
 
 ## Tech Stack
 
-- **Ngôn ngữ**: Python 3.12, quản lý bằng `uv`.
+- **Ngôn ngữ**: Python 3.12, quản lý bằng ````uv````.
 - **Framework multi-agent**: Lớp orchestration tự xây.
 - **Chat models hỗ trợ**: Google Gemini 2.5 Flash Lite (qua OpenRouter), MiniMax-M2.7 (1M context), MiniMax-M2.5 (204K context). Context window dài rất quan trọng — agent Biên kịch cần giữ toàn bộ kịch bản trong bộ nhớ làm việc.
 - **Sinh ảnh**: Google Nanobana API.
@@ -67,34 +68,34 @@ Mỗi vai là một LLM agent riêng với prompt riêng, context window riêng,
 
 Việc giao phần sinh pixel cho các API thương mại (Veo, Nanobana) là quyết định thẳng thắn. Các model video mã nguồn mở chưa đuổi kịp chất lượng hình ảnh của các model thương mại đầu bảng, và giả vờ ngược lại sẽ làm hỏng demo. Đóng góp của ViMax là *phần điều phối* — bring your own pixel engine.
 
----
+* * *
 
 ## Cài đặt nhanh
 
-```bash
+`````bash
 git clone https://github.com/HKUDS/ViMax.git
 cd ViMax
 uv sync
-```
+`````
 
 Vậy là xong phần dependency. Bạn cần API key cho ít nhất một chat model (OpenRouter cho Gemini chạy được) và các API Google Veo + Nanobana cho phần sinh video/ảnh.
 
 ### Workflow Idea-to-Video
 
-```python
+`````python
 idea = "If a cat and a dog are best friends, what would happen when they meet a new cat?"
 user_requirement = "For children, do not exceed 3 scenes."
 style = "Cartoon"
 # Run: python main_idea2video.py
-```
+`````
 
 Biên kịch mở rộng ý tưởng thành kịch bản 3 cảnh. Đạo diễn lên kế hoạch shot. Nhà sản xuất chọn ảnh tham chiếu và áp tính nhất quán. Bộ sinh video render từng cảnh và ghép lại.
 
 ### Workflow Script-to-Video
 
-Với người dùng đã có sẵn kịch bản, `main_script2video.py` nhận kịch bản trực tiếp và bỏ qua bước Biên kịch. Ba agent còn lại vẫn chạy.
+Với người dùng đã có sẵn kịch bản, ````main_script2video.py``` nhận kịch bản trực tiếp và bỏ qua bước Biên kịch. Ba agent còn lại vẫn chạy.
 
----
+* * *
 
 ## Khác gì so với Sora, Runway, OpenSora
 
@@ -110,7 +111,7 @@ Với người dùng đã có sẵn kịch bản, `main_script2video.py` nhận 
 
 Phản biện thẳng thắn: Sora và Runway có chất lượng pixel mỗi shot trông rõ ràng đẹp hơn. ViMax thắng ở *tính mạch lạc giữa các shot*. Nếu bạn cần demo công nghệ 10 giây, Sora thắng. Nếu bạn cần video explainer 90 giây mà con chó vẫn phải y hệt con chó ở cảnh 4, sự điều phối của ViMax mới là thứ bạn cần.
 
----
+* * *
 
 ## Những điều ViMax KHÔNG phải
 
@@ -120,7 +121,7 @@ Phản biện thẳng thắn: Sora và Runway có chất lượng pixel mỗi sh
 - **Không có benchmark hiệu năng trong README.** ViMax quảng bá lợi thế *định tính* (nhất quán, độ dài, narrative); ablation định lượng chưa được công bố.
 - **Phụ thuộc Google API.** Veo và Nanobana không miễn phí cũng không mở. Hãy tính trước chi phí.
 
----
+* * *
 
 ## Use case thực tế
 
@@ -132,7 +133,7 @@ Nơi pipeline agentic của ViMax thực sự tạo khác biệt: - **Video giá
 
 Với mỗi cái trên, lựa chọn thay thế *không có* ViMax hoặc là sản xuất người tốn kém, hoặc là tool AI short-clip không thể sustain một câu chuyện.
 
----
+* * *
 
 ## ViMax đứng ở đâu trong bối cảnh AI video 2026
 
@@ -142,7 +143,7 @@ Ghép ViMax với: - **Image generator** — đã tích hợp sẵn (Nanobana), 
 
 Bộ ba ViMax + Supertonic + sinh ảnh mã nguồn mở là thứ năm 2026 đến gần nhất với pipeline "tả một bộ phim, nhận lại một bộ phim" mà phần lớn nằm trong tầm kiểm soát của người dùng.
 
----
+* * *
 
 ## Ai nên thử ViMax
 
@@ -157,7 +158,7 @@ Bộ ba ViMax + Supertonic + sinh ảnh mã nguồn mở là thứ năm 2026 đ�
 - Không thoải mái với tooling Python cấp researcher.
 - Cần self-host end-to-end hoàn toàn (hãy chờ thêm một vòng nữa của các model video mở).
 
----
+* * *
 
 ## Kết luận
 
@@ -167,7 +168,7 @@ License MIT, hậu thuẫn học thuật của HKUDS, cùng 7,100 stars chỉ tr
 
 Nếu bạn từng sản xuất một video có kịch bản, đây là workflow AI cuối cùng cũng map đúng với cách công việc thực sự diễn ra.
 
----
+* * *
 
 **GitHub**: [HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **License**: MIT · **Stars**: 7.1K+ · **Tác giả**: Hong Kong University Data Science Lab · **Trạng thái**: Đang phát triển tích cực, chưa có tag release
 
@@ -197,7 +198,7 @@ Nếu bạn từng sản xuất một video có kịch bản, đây là workflow
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -207,7 +208,7 @@ Nếu bạn từng sản xuất một video có kịch bản, đây là workflow
 - [hkuds-ai-trader](vimax-agentic-video-generation-multi-agent-2026)
 - [agency-agents-complete-ai-agency-framework](vimax-agentic-video-generation-multi-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

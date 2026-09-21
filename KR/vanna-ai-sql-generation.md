@@ -9,6 +9,7 @@ aliases:
   - /kr/posts/vanna-ai-sql-generation/
 ---
 
+
 {{</* resource-info */>}}
 
 데이터베이스와 자연어를 사용하여 상호작용하는 능력은 오랫동안 데이터 분석의 성배로 여겨져 왔습니다. 매일 무수한 시간이 비즈니스 질문을 SQL 쿼리로 번역하는 데 낭비됩니다 — 이 과정은 데이터베이스 스키마, 테이블 관계 및 SQL 구문에 대한 깊은 지식을 요구합니다. 2026년, 이 병목 현상은 **Vanna AI** 덕분에 빠르게 사라지고 있습니다. Vanna AI는 데이터베이스 스키마에서 학습하여 평범한 영어로 90% 이상의 정확도로 프로덕션 수준의 SQL을 생성하는 오픈소스 Python 라이브러리입니다.
@@ -17,7 +18,7 @@ aliases:
 
 이 포괄적인 가이드에서는 설치 및 스키마 학습부터 고급 SQL 생성, 검증, 분석 워크플로우에의 통합까지 Vanna AI에 대해 알아야 할 모든 것을 살펴 보겠습니다. 영어로 질문하고 싶은 데이터 분석가이든, 데이터 플랫폼을 위한 자연어 인터페이스를 구축하는 엔지니어이든, Vanna AI는 Text-to-SQL을 현실로 만드는 데 필요한 도구를 제공합니다.
 
----
+* * *
 
 ## Vanna AI란? 자연어가 SQL을 만나다
 
@@ -28,7 +29,7 @@ Vanna AI는 인간의 언어와 구조화된 쿼리 언어 사이의 간극을 �
 3. 자연어로 **질문**
 4. 정확하고 실행 가능한 SQL **수신**
 
-```python
+````python
 import vanna as vn
 from vanna.remote import VannaDefault
 
@@ -53,11 +54,11 @@ CREATE TABLE sales (
 # 평범한 영어로 질문
 sql = vn.generate_sql("What are the top 5 regions by total sales in 2026?")
 print(sql)
-```
+`````
 
 생성된 SQL은 구문적으로 올바를 뿐만 아니라 — 실제 스키마에서 올바른 테이블, 열, 관계를 참조하는 의미적으로 정확합니다.
 
----
+* * *
 
 ## 2026년에 Vanna AI가 중요한 이유
 
@@ -69,7 +70,7 @@ Vanna AI는 이러한 모든 과제에 정면으로 대응합니다: - **스키�
 - **SQL 검증**: 생성된 모든 쿼리가 반환되기 전에 데이터베이스에 대해 검증됩니다
 - **다중 LLM 백엔드**: OpenAI, Anthropic, Google 또는 Ollama와 같은 로컬 모델 사용
 
-```python
+`````python
 # Vanna는 다중 LLM 백엔드를 지원합니다
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
@@ -81,17 +82,17 @@ class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): Ch
 vn = MyVanna()
 vn.connect_to_sqlite("my_database.db")
 vn.train(ddl="SELECT sql FROM sqlite_master WHERE type=table;")
-```
+`````
 
 2026년, 조직이 점점 더 복잡한 데이터 스키마와 더 엄격한 규정 준수 요구 사항에 대응하면서, Vanna의 접근 방식 — 클라우드로 데이터를 본내는 대신 스키마에서 학습 — 은 안전하고 정확한 Text-to-SQL을 위한 골드 스탠다드를 대표합니다.
 
----
+* * *
 
 ## Vanna AI 설치 및 구성
 
 Vanna는 빠르게 생산성을 높일 수 있는 합리적인 기본값을 통해 쉽게 설치하고 구성할 수 있도록 설계되었습니다.
 
-```bash
+`````bash
 # Vanna 핵심 설치
 pip install vanna
 
@@ -109,9 +110,9 @@ pip install "vanna[bigquery]"
 
 # 모두 설치
 pip install "vanna[all]"
-```
+`````
 
-가장 일반적인 설정에 대한 빠른 구성: ```python
+가장 일반적인 설정에 대한 빠른 구성: `````python
 from vanna.remote import VannaDefault
 
 # Vanna의 호스팅 서비스 사용 (가장 쉬운 설정)
@@ -128,9 +129,9 @@ vn.connect_to_postgres(
     password="secure-password",
     port=5432
 )
-```
+`````
 
-로컬 LLM을 사용하는 완전 자체 호스팅 설정의 경우: ```python
+로컬 LLM을 사용하는 완전 자체 호스팅 설정의 경우: `````python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
@@ -140,9 +141,9 @@ class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None):
 vn = LocalVanna()
 vn.connect_to_postgres(host="localhost", dbname="sales",
                        user="admin", password="admin", port=5432)
-```
+`````
 
----
+* * *
 
 ## 데이터베이스 스키마에서 Vanna 학습시키기
 
@@ -152,7 +153,7 @@ vn.connect_to_postgres(host="localhost", dbname="sales",
 
 가장 기본적인 학습 방법은 데이터베이스의 DDL(데이터 정의 언어) — 스키마를 정의하는 CREATE TABLE 문 — 을 제공하는 것입니다.
 
-```python
+`````python
 # 개별 DDL 문으로 학습
 vn.train(ddl="""
 CREATE TABLE customers (
@@ -183,13 +184,13 @@ CREATE TABLE order_items (
     unit_price DECIMAL(10,2)
 );
 """)
-```
+`````
 
 ### 스키마 자동 검색으로 학습
 
 대형 데이터베이스의 경우 수동으로 DDL을 작성하는 것은 비현실적입니다. Vanna는 데이터베이스에서 자동으로 스키마 정보를 추출할 수 있습니다.
 
-```python
+`````python
 # PostgreSQL: information_schema에서 스키마 추출
 import psycopg2
 
@@ -222,13 +223,13 @@ for (table_name,) in tables: cursor.execute(f"""
     vn.train(ddl=ddl)
 
 conn.close()
-```
+`````
 
 ### 문서 및 비즈니스 로직으로 학습
 
 원시 스키마를 넘어 비즈니스 맥락에서 Vanna를 학습시킬 수 있습니다 — 열이 실제로 무엇을 의미하는지 이해하도록 돕습니다.
 
-```python
+`````python
 # 문서로 학습
 vn.train(documentation="""
 The sales table records all completed transactions.
@@ -254,13 +255,13 @@ WHERE o.status = completed
 GROUP BY c.id, c.name
 HAVING SUM(o.total_amount) > 10000;
 """)
-```
+`````
 
 ### 질문-SQL 쌍으로 학습
 
 최대 정확도를 위해 자연어 질문과 해당 SQL 쿼리의 쌍을 제공합니다.
 
-```python
+`````python
 # 골드 스탠다드 학습 데이터
 vn.train(
     question="What are the top 10 customers by lifetime value?",
@@ -284,15 +285,15 @@ vn.train(
     ORDER BY month;
     """
 )
-```
+`````
 
----
+* * *
 
 ## 자연어에서 SQL 생성하기
 
-학습이 완료되면 Vanna는 놀라운 정확도로 자연어 질문에서 SQL을 생성할 수 있습니다. `generate_sql` 메서드가 주요 인터페이스입니다.
+학습이 완료되면 Vanna는 놀라운 정확도로 자연어 질문에서 SQL을 생성할 수 있습니다. ````generate_sql```` 메서드가 주요 인터페이스입니다.
 
-```python
+`````python
 # 간단한 질문
 sql = vn.generate_sql("Show me all customers from the West region")
 print(sql)
@@ -318,9 +319,9 @@ sql = vn.generate_sql(
     "showing year-over-year growth percentage"
 )
 print(sql)
-```
+`````
 
-Vanna는 특정 제약이나 패턴이 있는 SQL 생성도 지원합니다: ```python
+Vanna는 특정 제약이나 패턴이 있는 SQL 생성도 지원합니다: `````python
 # 설명이 포함된 SQL 생성
 sql, explanation = vn.generate_sql(
     "Which customers haven't placed an order in the last 90 days?",
@@ -335,15 +336,15 @@ print(result_df)
 
 # ask() 메서드는 SQL을 생성하고, 검증하고, 실행하고,
 # pandas DataFrame을 반환합니다 — 한 번의 호출로 모두 수행
-```
+`````
 
----
+* * *
 
 ## SQL 검증 및 오류 처리
 
 Vanna의 두드러진 기능 중 하나는 **자동 SQL 검증**입니다. 쿼리를 반환하기 전에 Vanna는 실제로 데이터베이스에서 실행되는지 확인하여 구문 오류와 스키마 불일치를 포착할 수 있습니다.
 
-```python
+`````python
 # 자동 검증 활성화
 vn = VannaDefault(model="my-model", api_key="vn-...", 
                   config={"validate_sql": True})
@@ -357,9 +358,9 @@ except Exception as e: print(f"Validation failed: {e}")
         "Show me the top 10 products by revenue",
         max_retries=3
     )
-```
+`````
 
-Vanna는 이전 맥락을 참조하는 후속 질문도 처리할 수 있습니다: ```python
+Vanna는 이전 맥락을 참조하는 후속 질문도 처리할 수 있습니다: `````python
 # 첫 번째 질문
 result1 = vn.ask("What were total sales in 2026?")
 
@@ -373,9 +374,9 @@ result3 = vn.ask("Now show only regions with more than $1M in sales")
 # 생성: SELECT region, SUM(amount) as total 
 #            FROM sales WHERE sale_date >= '2026-01-01' 
 #            GROUP BY region HAVING SUM(amount) > 1000000
-```
+`````
 
----
+* * *
 
 ## 고급 기능 및 사용자 정의
 
@@ -383,7 +384,7 @@ Vanna는 고급 사용자와 프로덕션 배포를 위해 광범위한 사용�
 
 ### 사용자 정의 프롬프트 템플릿
 
-```python
+`````python
 # 기본 프롬프트 템플릿 재정의
 vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
@@ -397,11 +398,11 @@ Generate only the SQL query, with no additional explanation.
 """)
 
 sql = vn.generate_sql("List all high-value customers")
-```
+`````
 
 ### 여러 데이터베이스 작업
 
-```python
+`````python
 # 다른 데이터베이스에 대해 별도의 Vanna 인스턴스 생성
 vn_sales = VannaDefault(model="sales-model", api_key="vn-...")
 vn_sales.connect_to_postgres(host="sales-db", dbname="sales")
@@ -412,11 +413,11 @@ vn_hr.connect_to_mysql(host="hr-db", dbname="human_resources")
 # 적절한 데이터베이스에 쿼리
 sales_sql = vn_sales.generate_sql("Total revenue by quarter")
 hr_sql = vn_hr.generate_sql("Employee count by department")
-```
+`````
 
 ### 사용자 정의 벡터 저장소 사용
 
-```python
+`````python
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
@@ -428,15 +429,15 @@ vn = PineconeVanna(config={
     "pinecone_api_key": "your-pinecone-key",
     "pinecone_index": "vanna-index"
 })
-```
+`````
 
----
+* * *
 
 ## Jupyter 통합 및 대화형 워크플로우
 
 Vanna는 Jupyter 노트북에서 풍부한 대화형 위젯과 시각화 기능을 제공하며 빛을 발합니다.
 
-```python
+`````python
 from vanna.remote import VannaDefault
 import vanna as vn
 
@@ -446,31 +447,31 @@ vn.connect_to_postgres(host="localhost", dbname="analytics",
 
 # Jupyter에서 대화형 채팅 인터페이스 시작
 vn.ask("What are the top selling products?")
-```
+`````
 
-Jupyter에서 `ask()` 메서드는 생성된 SQL, 설명 및 결과 테이블을 포함한 풍부한 출력을 반환합니다. 완전한 대화형 경험을 위해: ```python
+Jupyter에서 ``ask()`` 메서드는 생성된 SQL, 설명 및 결과 테이블을 포함한 풍부한 출력을 반환합니다. 완전한 대화형 경험을 위해: `````python
 # Jupyter 내에서 대화형 Web UI 시작
 from vanna.flask import VannaFlaskApp
 
 app = VannaFlaskApp(vn)
 app.run()
-```
+`````
 
-Vanna는 적절할 때 자동으로 시각화도 생성합니다: ```python
+Vanna는 적절할 때 자동으로 시각화도 생성합니다: `````python
 # SQL을 생성하고 자동으로 차트 생성
 vn.ask("Plot monthly sales trends for 2026")
 
 # SQL을 생성하고, 실행하고, 시계열 결과에서
 # 자동으로 라인 차트를 만듭니다
-```
+`````
 
----
+* * *
 
 ## Vanna AI 아키텍처 및 프라이버시 모델
 
 Vanna의 아키텍처를 이해하는 것은 프로덕션 환경에 안전하게 배포하는 데 핵심입니다.
 
-```
+`````
 ┌─────────────────────────────────────────────────────────────┐
 │                    Vanna AI 아키텍처                         │
 ├─────────────────────────────────────────────────────────────┤
@@ -499,9 +500,9 @@ Vanna의 아키텍처를 이해하는 것은 프로덕션 환경에 안전하게
 │                       ▼                                     │
 │               결과 반환                                     │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
-프라이버시 모델은 다음과 같이 작동합니다: ```python
+프라이버시 모델은 다음과 같이 작동합니다: `````python
 # 프라이버시 우선 구성 (권장)
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
@@ -518,13 +519,13 @@ vn.connect_to_postgres(host="internal-db", dbname="analytics",
 # LLM은 Ollama를 통해 로컬에서 실행됩니다
 # 데이터베이스 쿼리는 낶부 데이터베이스에 대해 실행됩니다
 # 데이터는 외부 API에 도달하지 않습니다
-```
+`````
 
----
+* * *
 
 ## 벤치마크 및 정확도
 
-Vanna의 정확도는 학습 데이터의 품질과 양에 크게 의존합니다. 2026년에 관찰된 전형적인 성능 특성은 다음과 같습니다: ```python
+Vanna의 정확도는 학습 데이터의 품질과 양에 크게 의존합니다. 2026년에 관찰된 전형적인 성능 특성은 다음과 같습니다: `````python
 # 정확도 평가 스크립트
 import pandas as pd
 
@@ -556,7 +557,7 @@ for test in test_cases: generated = vn.generate_sql(test["question"])
 
 accuracy = correct / len(test_cases) * 100
 print(f"정확도: {accuracy:.1f}%")
-```
+`````
 
 포괄적인 학습 (DDL + 문서 + 예제 쿼리)을 통해 Vanna는 일관되게 다음을 달성합니다: - 일반적인 분석 쿼리에 대해 **90-95% 정확도**
 - 복잡한 다중 테이블 조인에 대해 **85-90% 정확도**
@@ -565,7 +566,7 @@ print(f"정확도: {accuracy:.1f}%")
 
 높은 정확도의 핵심은 철저한 학습입니다. 50개 이상의 DDL 문, 20개 이상의 예제 쿼리, 관련 문서가 있는 잘 훈련된 Vanna 인스턴스는 범용 LLM 접근 방식보다 상당한 차이로 뛰어납니다.
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -573,20 +574,20 @@ print(f"정확도: {accuracy:.1f}%")
 
 예, Vanna AI는 MIT 라이선스 하에 오픈소스이며 묶음으로 사용할 수 있습니다. 핵심 라이브러리, 모든 통합, RAG 기반 학습 시스템은 비용 없이 사용할 수 있습니다. Vanna는 소규모 프로젝트를 위한 묶음 티어가 있는 호스팅 클라우드 서비스도 제공하며, 팀 협업 및 고급 분석과 같은 엔터프라이즈 기능에 대해서는 유료 계획이 있습니다. Ollama를 통한 로컬 LLM과 ChromaDB를 통한 로컬 벡터 저장소를 사용하는 자체 호스팅 옵션은 사용 제한 없이 완전히 묶음입니다.
 
-```python
+`````python
 # 묶음, 완전히 자체 호스팅 설정
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
 class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
-```
+`````
 
 ### Vanna는 스키마 변경을 어떻게 처리합니까?
 
 데이터베이스 스키마가 변경되면 업데이트된 DDL 문으로 Vanna를 재학습해야 합니다. 권장되는 접근 방식은 학습 데이터를 버전 관리하고 최신 스키마를 추출하고 배포 시 Vanna를 재학습하는 자동화된 파이프라인을 설정하는 것입니다.
 
-```python
+`````python
 # 자동화된 재학습 파이프라인
 import subprocess
 
@@ -600,13 +601,13 @@ new_ddl = result.stdout
 # 이전 학습 데이터 지우고 재학습
 vn.remove_training_data()
 vn.train(ddl=new_ddl)
-```
+`````
 
 ### 비영어 언어로 Vanna를 사용할 수 있나요?
 
 예, Vanna는 여러 언어의 자연어 질문을 지원합니다. LLM 백엔드가 SQL 생성으로의 번역을 처리합니다. 선호하는 언어로 문서와 예제를 사용하여 Vanna를 학습시킬 수 있습니다.
 
-```python
+`````python
 # 중국어 문서로 학습
 vn.train(documentation="""
 销售额表记录所有完成的交易。
@@ -615,13 +616,13 @@ amount 列单位为美元，含税。
 """)
 
 sql = vn.generate_sql("显示2026年每个区域的总销售额")
-```
+`````
 
 ### Vanna는 어떤 데이터베이스를 지원합니까?
 
 Vanna는 유연한 연결 시스템을 통해 거의 모든 주요 데이터베이스를 지원합니다: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse 및 Python DB-API 드라이버가 있는 모든 데이터베이스. 사용자 정의 커넥터도 특수 시스템에 대해 구현할 수 있습니다.
 
-```python
+`````python
 # SQLite
 vn.connect_to_sqlite("mydb.sqlite")
 
@@ -636,7 +637,7 @@ vn.connect_to_bigquery(project_id="my-project")
 
 # DuckDB
 vn.connect_to_duckdb("mydb.duckdb")
-```
+`````
 
 ### 내 특정 사용 사례에서 Vanna의 정확도를 어떻게 향상시킬 수 있나요?
 
@@ -645,15 +646,15 @@ vn.connect_to_duckdb("mydb.duckdb")
 3. **비즈니스 문서** (중간 영향 — 맥락 추가)
 4. **DDL 문** (기초 — 환각 제거)
 
-```python
+`````python
 # 최대 정확도 학습 요법
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
 for example in curated_sql_examples: vn.train(sql=example)
 for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
-```
+````
 
----
+* * *
 
 
 
@@ -696,7 +697,7 @@ Vanna AI는 데이터베이스 접근 대중화에서 중대한 도약을 대표
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -706,7 +707,7 @@ Vanna AI는 데이터베이스 접근 대중화에서 중대한 도약을 대표
 - [2026-06-08-trending-ai-agents](vanna-ai-sql-generation)
 - [2026-06-15-trending-ai-agents](vanna-ai-sql-generation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

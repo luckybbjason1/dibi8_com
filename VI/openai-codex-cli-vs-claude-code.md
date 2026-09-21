@@ -18,6 +18,7 @@ faqs: - q: 'OpenAI Codex CLI có miễn phí không?'
     a: 'Claude Code có câu chuyện doanh nghiệp trưởng thành hơn trong 2026 — Anthropic cung cấp SOC 2 Type II, HIPAA qua API, Claude Enterprise với triển khai VPC riêng. OpenAI Codex CLI mới hơn (mở mã nguồn 11/2025), kết nối vào gói OpenAI Enterprise tiêu chuẩn, nhưng bản thân CLI chưa có tầng doanh nghiệp riêng. Cho ngành được quản lý, hôm nay Claude Code thắng; OpenAI đang bám sát nhanh.'
 ---
 
+
 # OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?
 
 
@@ -29,7 +30,7 @@ Dùng **OpenAI Codex CLI** nếu: Bạn đã trả OpenAI API, muốn mã nguồ
 
 Dùng **Claude Code** nếu: Bạn làm việc trên monorepo 200K+ LOC hưởng lợi từ ngữ cảnh 1M, muốn UX agent CLI tinh tế nhất 2026, cần tuân thủ cấp doanh nghiệp (SOC 2, HIPAA), hoặc đã trả Claude Pro/Max.
 
----
+* * *
 
 ## So sánh song song
 
@@ -49,10 +50,10 @@ Dùng **Claude Code** nếu: Bạn làm việc trên monorepo 200K+ LOC hưởng
 | **Giá mô hình** | ~$1.50/1M đầu vào, ~$10/1M đầu ra (gpt-5-codex) | ~$3/1M đầu vào, ~$15/1M đầu ra (Sonnet 4.6) |
 | **Doanh nghiệp** | OpenAI Enterprise (không có tầng riêng cho CLI) | Claude Enterprise, SOC 2, HIPAA, VPC riêng |
 | **Cỡ codebase tốt nhất** | < 80K LOC (ngữ cảnh 400K) | < 250K LOC (ngữ cảnh 1M) |
-| **Hooks / lệnh tùy chỉnh** | Cấu hình qua `~/.codex/config.toml` | Hạng nhất (hooks, slash commands, agents) |
+| **Hooks / lệnh tùy chỉnh** | Cấu hình qua ```~/.codex/config.toml```` | Hạng nhất (hooks, slash commands, agents) |
 | **Chỉnh sửa đa file** | Có (sandbox xác nhận) | Có (xem trước diff + phê duyệt) |
 
----
+* * *
 
 ## Khi nào chọn OpenAI Codex CLI
 
@@ -65,7 +66,7 @@ Mặc định, Codex CLI chạy mọi lệnh shell và ghi file qua sandbox cấ
 ### Trường hợp 3: Tích hợp hệ sinh thái OpenAI chặt
 Nếu đội của bạn đã chạy trên OpenAI (Assistants API, ChatGPT Enterprise, OpenAI o1 cho lập kế hoạch), Codex CLI cắm vào sạch sẽ. Chia sẻ API key, chia sẻ dashboard sử dụng, chia sẻ rate limit. Chi phí ròng rẻ hơn nếu bạn đã cam kết với giảm giá theo volume của OpenAI.
 
----
+* * *
 
 ## Khi nào chọn Claude Code
 
@@ -78,7 +79,7 @@ Claude Code trong 2026 là UX agent CLI tinh tế nhất thị trường — xem
 ### Trường hợp 3: Tuân thủ doanh nghiệp
 Claude Enterprise cung cấp SOC 2 Type II, triển khai đủ điều kiện HIPAA, lưu trú VPC riêng, log audit. Cho ngành được quản lý (chăm sóc sức khỏe, tài chính, khu vực công), Claude Code là lựa chọn có thể bảo vệ hôm nay. OpenAI cung cấp tương tự ở lớp nền tảng, nhưng bản thân CLI chưa có tầng doanh nghiệp riêng.
 
----
+* * *
 
 ## Phân tích giá sâu
 
@@ -106,7 +107,7 @@ Sử dụng thỉnh thoảng: **Codex CLI PAYG** thắng về chi phí token thu
 Sử dụng hàng ngày dưới $20: **Claude Pro $20/tháng cố định** khó đánh bại — chi phí dự đoán được, không có hóa đơn bất ngờ.
 Sử dụng nặng không giới hạn: **Claude Max 20x $200/tháng** vượt chi PAYG tương đương ở quy mô.
 
----
+* * *
 
 ## Benchmark hiệu năng (chủ quan, từ sử dụng hàng ngày)
 
@@ -125,30 +126,30 @@ Sử dụng nặng không giới hạn: **Claude Max 20x $200/tháng** vượt c
 
 → Codex CLI thắng về an toàn sandbox và mã nguồn mở. Claude Code thắng task ngữ cảnh nặng, UX bóng bẩy, doanh nghiệp.
 
----
+* * *
 
 ## Mẹo chuyển đổi
 
 ### Codex CLI → Claude Code
-- Cài đặt: `npm i -g @anthropic-ai/claude-code` rồi `claude` để khởi chạy
+- Cài đặt: ````npm i -g @anthropic-ai/claude-code```` rồi ````claude```` để khởi chạy
 - Mang Anthropic API key hoặc đăng nhập Pro/Max
-- Hooks `~/.codex/config.toml` của Codex CLI → hooks `~/.claude/settings.json` của Claude Code
-- Thay chạy sandbox xác nhận bằng `--dangerously-skip-permissions` chỉ trên VM dùng một lần
+- Hooks ````~/.codex/config.toml```` của Codex CLI → hooks ````~/.claude/settings.json```` của Claude Code
+- Thay chạy sandbox xác nhận bằng ````--dangerously-skip-permissions```` chỉ trên VM dùng một lần
 - Đấu lại MCP server — Claude Code hỗ trợ MCP gốc, thường có thể đưa công cụ vào thẳng
 - Dự trù chi phí mỗi token cao hơn nhưng cửa sổ ngữ cảnh lớn hơn — bật Anthropic prompt caching để thu hồi 60-90% trên lượt đọc lặp
 
 ### Claude Code → Codex CLI
-- Cài đặt: `npm i -g @openai/codex` (hoặc `brew install codex`)
-- Đặt `OPENAI_API_KEY` trong env
-- Xác minh sandbox: `codex --sandbox` phải báo Seatbelt/Landlock đang hoạt động
-- Map hooks Claude Code → `~/.codex/config.toml`
+- Cài đặt: ````npm i -g @openai/codex```` (hoặc ````brew install codex````)
+- Đặt ````OPENAI_API_KEY```` trong env
+- Xác minh sandbox: ````codex --sandbox```` phải báo Seatbelt/Landlock đang hoạt động
+- Map hooks Claude Code → ````~/.codex/config.toml```
 - Slash commands và skills không dịch 1:1 — xây lại các cái quan trọng dưới dạng shell script gọi được từ lớp công cụ Codex
 - Dự trù cửa sổ ngữ cảnh nhỏ hơn — kỷ luật hơn về file nào tải mỗi task
 
 ### Ghi chú tự host
 Chạy cả hai CLI trên codebase thật để quyết định? Spin up {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — droplet thường $12/tháng chạy cả hai CLI thoải mái và để bạn giữ môi trường staging cô lập cho chạy agent không giám sát. Hai tháng đánh giá miễn phí, sau đó $12/tháng. Rẻ hơn duy trì hai môi trường local song song, và bạn giữ hạ tầng khi đã quyết định.
 
----
+* * *
 
 ## Các lựa chọn thay thế đáng thử
 
@@ -157,7 +158,7 @@ Nếu cả Codex CLI lẫn Claude Code đều không phù hợp, xem: - **[Curso
 - **[Claude Code vs Aider](https://dibi8.com/vi/vs/claude-code-vs-aider/)** — So sánh agent CLI mã nguồn mở
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Định tuyến Claude Code qua provider rẻ hơn, giảm 60-80%
 
----
+* * *
 
 ## Quan điểm của dibi8
 
@@ -171,13 +172,13 @@ Indie dev ra mắt SaaS solo trên codebase trung bình? **Claude Code Pro $20/t
 
 Câu trả lời trung thực cho hầu hết dev trong 2026: thử cả hai một tuần, giữ cái mà UX cảm giác như nhà.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -222,7 +223,7 @@ Câu trả lời trung thực cho hầu hết dev trong 2026: thử cả hai m�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -232,7 +233,7 @@ Câu trả lời trung thực cho hầu hết dev trong 2026: thử cả hai m�
 - [claude-code-vs-aider](openai-codex-cli-vs-claude-code)
 - [cursor-vs-claude-code](openai-codex-cli-vs-claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

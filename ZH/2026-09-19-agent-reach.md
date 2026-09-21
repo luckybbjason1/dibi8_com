@@ -12,6 +12,7 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -77,48 +78,48 @@ Agent-Reach 是 Panniantong 开发的开源 CLI 工具，让 AI Agent 能够浏�
 - Git（可选，用于开发）
 
 ### 快速安装
-```bash
+````bash
 pip install agent-reach
-```
+`````
 
 ### 备选方案：从源码安装
-```bash
+`````bash
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
 pip install -e .
-```
+`````
 
 ### 验证安装
-```bash
+`````bash
 agent-reach --version
 # 应该输出: agent-reach vX.X.X
-```
+`````
 
 安装过程很简单，比国内很多 SaaS 工具的用户注册流程还要顺畅。不像有些工具需要手机号验证、邮箱确认、短信验证码一连串操作，Agent-Reach 就一条命令搞定。
 
-如果你习惯用 `uv`（类似于国内的 `pipx` 但更快），也可以这样安装：
+如果你习惯用 ````uv````（类似于国内的 ````pipx```` 但更快），也可以这样安装：
 
-```bash
+`````bash
 uv pip install agent-reach
-```
+`````
 
 ## 核心功能
 
 ### 1. Twitter/X 搜索
-```bash
+`````bash
 # 搜索最新推文
 agent-reach twitter search "AI agents" --limit 20
 
 # 获取用户时间线
 agent-reach twitter user @elonmusk --tweets 50
-```
+`````
 
 这相当于一个免费的 Twitter 数据接口。在国内，如果你做过舆情监控，就知道官方 API 有多贵——Twitter 的企业级 API 年费动辄数千美元。Agent-Reach 让你不用开户也能获取数据，有点像用「八爪鱼采集器」的免费版做数据采集。
 
 对于国内读者，你可能习惯用「集搜客」或「火车头采集器」来做类似的事情，但那些工具通常需要付费授权。Agent-Reach 的不同之处在于它是为 AI Agent 设计的——你可以直接把结果喂给 LLM 做分析。
 
 ### 2. Reddit 抓取
-```bash
+`````bash
 # 浏览某个子版块的热门帖子
 agent-reach reddit browse r/generativeai --top 20
 
@@ -127,27 +128,27 @@ agent-reach reddit search "Claude Code" --sort new
 
 # 获取帖子评论
 agent-reach reddit thread <url> --depth 5
-```
+`````
 
 Reddit 的功能类似于国内的「即刻」或「虎扑」社区，但规模更大、更开放。Agent-Reach 的 Reddit 抓取能力让你不用登录就能看到热门讨论，这对于做海外市场调研特别有用。
 
-如果你想追踪特定话题的讨论热度，可以配合 `--sort` 参数按热门或最新排序。这与国内「知乎热榜」的追踪逻辑类似，只是数据来源不同。
+如果你想追踪特定话题的讨论热度，可以配合 ````--sort```` 参数按热门或最新排序。这与国内「知乎热榜」的追踪逻辑类似，只是数据来源不同。
 
 ### 3. YouTube 字幕获取
-```bash
+`````bash
 # 获取视频字幕
 agent-reach youtube transcript <video_url>
 
 # 搜索并获取 top 结果
 agent-reach youtube search "MCP protocol tutorial" --limit 10
-```
+`````
 
 这个功能特别实用。YouTube 的字幕数据是高质量的英文语料库，对于训练垂直领域模型或者做内容分析非常有帮助。类似的功能国内有「轻抖」等工具，但那些通常需要付费会员才能导出字幕。
 
 对于做 AI 研究的读者，你可以用这个功能批量收集技术教程的字幕，然后训练自己的小模型。这比购买商业数据集便宜得多。
 
 ### 4. GitHub 情报
-```bash
+`````bash
 # 搜索仓库
 agent-reach github search "plugin system ai" --sort stars
 
@@ -156,33 +157,33 @@ agent-reach github repo deepseek-ai/deepseek-harness
 
 # 查看近期 Issue
 agent-reach github issues Panniantong/Agent-Reach --open --limit 10
-```
+`````
 
 GitHub 搜索功能相当于一个免费的 GitHub API 替代方案。在国内，如果你用过「Gitee」的 API，就知道免费额度有多抠门——每天只能调几十次。Agent-Reach 完全不限制，想查多少查多少。
 
 你可以用它来追踪某个领域的热门项目、查看开源项目的活跃度，甚至监控竞品的技术栈变化。
 
 ### 5. 网页内容提取
-```bash
+`````bash
 # 从任意 URL 提取可读内容
 agent-reach web extract "https://example.com/article"
 
 # 获取结构化数据
 agent-reach web extract "https://example.com" --format json
-```
+`````
 
 这个功能类似于国内的「简悦」或「Readwise」，但更轻量、更自动化。你可以把它集成到 Agent 的工作流里，让 AI 自动读取任意网页内容。
 
 对于需要定期抓取新闻资讯的场景，这个功能特别有用。你可以设定一个 RSS 监控任务，让 Agent 自动总结每日热点。
 
 ### 6. RSS 订阅监控
-```bash
+`````bash
 # 监控 RSS 更新
 agent-reach rss monitor "https://hnrss.org/frontpage" --interval 300
 
 # 解析并总结 Feed 条目
 agent-reach rss fetch "https://blog.openai.com/rss.xml" --limit 10
-```
+`````
 
 RSS 功能是国内读者可能不太熟悉的，但在海外技术圈非常流行。如果你用过「Inoreader」或「Feedly」，就会明白 RSS 的价值——它是一种去中心化的信息聚合方式，不受算法推荐的影响。
 
@@ -198,7 +199,7 @@ RSS 功能是国内读者可能不太熟悉的，但在海外技术圈非常流�
 3. 查看 GitHub 上相关项目的 Stars 数
 4. 生成汇总报告
 
-```bash
+`````bash
 #!/bin/bash
 # weekly-research.sh
 
@@ -219,83 +220,83 @@ agent-reach github search "ai agent framework" --sort stars --json > github.json
 # 整合结果
 python combine.py twitter.json reddit.json github.json
 echo "报告已生成：weekly-report.md"
-```
+`````
 
 这个脚本就像国内的「爬虫+报告生成」一体化解决方案，但不需要买任何商业爬虫服务。每月省下的 API 费用够请团队喝好几轮奶茶。
 
-如果你在中国大陆使用，可能需要配置代理才能访问 Twitter 和 Reddit。可以通过 `--proxy` 参数指定代理地址：
+如果你在中国大陆使用，可能需要配置代理才能访问 Twitter 和 Reddit。可以通过 ````--proxy```` 参数指定代理地址：
 
-```bash
+`````bash
 agent-reach twitter search "AI trends" --proxy http://127.0.0.1:7890
-```
+`````
 
 ### 场景二：内容聚合监控
 
 监控多个来源获取你所在领域的突发新闻：
 
-```bash
+`````bash
 # 监控 r/MachineLearning 的新帖子
 agent-reach reddit monitor r/MachineLearning --interval 300 --last-only
 
 # 追踪 Twitter 上对你产品的提及
 agent-reach twitter monitor --query "myproduct" --interval 600
-```
+`````
 
 这类似于国内的「新榜」或「蝉妈妈」这类舆情监控工具，但完全免费。对于独立开发者或小团队来说，这是性价比极高的选择。
 
 你可以将这个脚本加入 crontab，让它每小时自动运行一次：
 
-```bash
+`````bash
 # 每小时运行一次
 0 * * * * /path/to/monitor.sh >> /var/log/research.log 2>&1
-```
+`````
 
 ### 场景三：竞品分析
 
 跨竞品对比功能特性：
 
-```bash
+`````bash
 # GitHub 仓库对比
 for repo in deepseek-ai/deepseek-harness addyosmani/agent-skills diegosouzapw/OmniRoute; do
   agent-reach github repo "$repo" --json
 done | jq '. | {name: .full_name, stars: .stargazers_count, lang: .language}'
-```
+`````
 
 这个功能类似于国内的「GitHub 趋势」网站，但你可以自定义对比维度和排序方式。对于做技术选型或竞品调研特别有用。
 
-你可以将这个脚本保存为 `compare.sh`，然后在需要分析竞品时运行。结果会输出 JSON 格式，方便后续处理。
+你可以将这个脚本保存为 ````compare.sh````，然后在需要分析竞品时运行。结果会输出 JSON 格式，方便后续处理。
 
 ### 场景四：学术追踪
 
 监控 arXiv 和学术讨论：
 
-```bash
+`````bash
 # 追踪最新 ML 论文
 agent-reach web extract "https://arxiv.org/list/cs.AI/recent" --limit 20
 
 # 在 Reddit 搜索论文讨论
 agent-reach reddit search "new LLM paper" --subreddit MachineLearning --sort new
-```
+`````
 
 这对学术研究者特别有用。你可以每周自动追踪最新论文，并在 Reddit 上查看同行的讨论和评价。类似功能国内有「学术搜索」等工具，但通常限制每月查询次数。
 
 对于做文献综述的研究者，你可以将结果导出为 BibTeX 格式，方便引用：
 
-```bash
+`````bash
 agent-reach web extract "https://arxiv.org/abs/2301.xxxxx" --format bibtex
-```
+`````
 
 ### 场景五：社交媒体情感分析
 
 追踪公众对产品或事件的情感倾向：
 
-```bash
+`````bash
 # Twitter 情感扫描
 agent-reach twitter search "product launch" --sentiment --limit 100 > sentiment.json
 
 # Reddit 情感分析
 agent-reach reddit search "product review" --sentiment --subreddit product_threads
-```
+`````
 
 这类似于国内的「识微商情」或「鹰眼速读网」，但完全免费。对于品牌方或产品经理来说，这是一个低成本的情感监控方案。
 
@@ -304,20 +305,20 @@ agent-reach reddit search "product review" --sentiment --subreddit product_threa
 ## 与 AI Agent 集成
 
 ### 与 Claude Code 集成
-```bash
+`````bash
 # 一次性配置
 claude code
 
 # 在会话中使用
 > /plugin agent-reach
 > agent-reach github search "langchain alternatives" --limit 10
-```
+`````
 
 Claude Code 是国内开发者熟悉的「Cursor」的中国版替代品，支持本地运行和离线使用。通过 Agent-Reach 插件，Agent 可以直接调用网页数据。
 
 ### 与 Cursor 集成
 配置 Cursor 使用 Agent-Reach 作为终端命令：
-```json
+`````json
 // .cursorrc
 {
   "terminal": {
@@ -326,19 +327,19 @@ Claude Code 是国内开发者熟悉的「Cursor」的中国版替代品，支�
     }
   }
 }
-```
+`````
 
 然后在 Cursor 中使用：
-```
+`````
 > ar reddit search "Claude Code vs Cursor"
-```
+`````
 
 Cursor 是国内开发者使用最广泛的 AI 编程助手之一，这款中国团队开发的产品支持多种 AI 模型切换。通过 Agent-Reach 集成，Cursor 可以实时获取网络数据辅助编程决策。
 
 ### 与自定义脚本集成
 Python 集成非常简单：
 
-```python
+`````python
 import subprocess
 import json
 
@@ -352,13 +353,13 @@ def search_twitter(query: str, limit: int = 20) -> list: result = subprocess.run
 # 使用示例
 tweets = search_twitter("AI agents", 10)
 for tweet in tweets: print(f"@{tweet['user']}: {tweet['text'][:100]}...")
-```
+`````
 
 这段代码可以嵌入到你的任何 Python 项目中，类似于国内的「requests + BeautifulSoup」爬虫方案，但更开箱即用。
 
 你可以将这个函数封装成类，方便在多个项目中复用：
 
-```python
+`````python
 class AgentReach: def __init__(self): self.base_cmd = ['agent-reach']
     
     def search_twitter(self, query: str, limit: int = 20) -> list: result = subprocess.run(
@@ -367,12 +368,12 @@ class AgentReach: def __init__(self): self.base_cmd = ['agent-reach']
             text=True
         )
         return json.loads(result.stdout)
-```
+`````
 
 ### 与 LangChain 集成
 将 Agent-Reach 集成到 LangChain 管道：
 
-```python
+`````python
 from langchain.tools import Tool
 from langchain.agents import initialize_agent, AgentType
 
@@ -392,7 +393,7 @@ tools = [
 ]
 
 agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
-```
+`````
 
 LangChain 在国内有庞大的用户基础，被广泛应用于各种 AI 应用开发。通过这个集成，你的 Agent 可以实时获取社交媒体数据，而不需要手动调用 API。
 
@@ -401,7 +402,7 @@ LangChain 在国内有庞大的用户基础，被广泛应用于各种 AI 应用
 ### 与 AutoGPT 集成
 将 Agent-Reach 作为内置工具使用：
 
-```json
+`````json
 {
   "tools": ["agent-reach"],
   "config": {
@@ -409,7 +410,7 @@ LangChain 在国内有庞大的用户基础，被广泛应用于各种 AI 应用
     "cache_enabled": true
   }
 }
-```
+`````
 
 AutoGPT 是早期著名的自主 AI Agent 项目，国内也有类似的「AutoDL」等项目。通过这种方式，Agent 可以自动执行数据采集任务。
 
@@ -421,13 +422,13 @@ AutoGPT 是早期著名的自主 AI Agent 项目，国内也有类似的「AutoD
 
 | 平台 | Agent-Reach（免费） | 付费 API | 相对速度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Twitter | 每 20 条推文 1.2 秒 | 每 20 条推文 0.3 秒 | 慢 240% |
 | Reddit | 每 20 篇帖子 0.8 秒 | 每 20 篇帖子 0.2 秒 | 慢 300% |
@@ -440,13 +441,13 @@ AutoGPT 是早期著名的自主 AI Agent 项目，国内也有类似的「AutoD
 对于国内读者，你可能会问：这个速度在国内网络环境下会不会更慢？答案是：如果你配置了代理，速度会略有下降，但差异不大。建议在不同时间段测试，选择网络最畅通的时段进行批量抓取。
 
 ### 缓存策略
-```bash
+`````bash
 # 启用缓存以加速重复查询
 agent-reach twitter search "AI agents" --cache --ttl 3600
 
 # 手动清除缓存
 agent-reach cache clear
-```
+`````
 
 缓存功能类似于国内的「CDN 加速」概念——第一次访问慢，但后续访问就快了。对于需要定期监控的场景，这个功能非常实用。
 
@@ -457,9 +458,9 @@ agent-reach cache clear
 Agent-Reach 会遵守基本的限流规则，但你应该负责任地使用：
 
 ### 推荐做法
-- 在请求之间添加延迟（`--delay 1`）
-- 本地缓存结果（`--cache`）
-- 在非交互模式使用 `--quiet`
+- 在请求之间添加延迟（````--delay 1````）
+- 本地缓存结果（````--cache````）
+- 在非交互模式使用 ````--quiet````
 - 在适用的情况下尊重 robots.txt
 
 ### 不推荐做法
@@ -467,13 +468,13 @@ Agent-Reach 会遵守基本的限流规则，但你应该负责任地使用：
 - 不要抓取私人内容
 - 未经授权不要用于商业再分发
 
-```bash
+`````bash
 # 良好实践：添加延迟
 agent-reach twitter search "AI" --limit 20 --delay 2
 
 # 良好实践：缓存结果
 agent-reach reddit browse r/LocalLLaMA --cache --ttl 3600
-```
+`````
 
 这些实践类似于国内的「爬虫反反爬」原则——尊重网站规则，避免被封禁。
 
@@ -522,13 +523,13 @@ Agent-Reach 很强大，但有一些真实的权衡你需要了解：
 
 | 方案 | 成本 | 可靠性 | 复杂度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Agent-Reach** | 免费 | 中等 | 低 |
 | **官方 API** | $50-500/月 | 高 | 中等 |
@@ -564,11 +565,11 @@ Agent-Reach 对于简单搜索更快，但不如完整的浏览器自动化工�
 如果你有复杂的交互需求，比如需要登录、点击、填写表单，建议使用 Playwright 或 Selenium。
 
 ### 问：限流规则是什么？
-默认每个平台每秒 1 个请求。你可以用 `--delay` 标志增加，但请尊重平台的服务条款。
+默认每个平台每秒 1 个请求。你可以用 ````--delay```` 标志增加，但请尊重平台的服务条款。
 
 如果你发现被限流，可以：
-1. 增加 `--delay` 参数
-2. 使用 `--cache` 缓存结果
+1. 增加 ````--delay```` 参数
+2. 使用 ````--cache```` 缓存结果
 3. 分时段请求，避免高峰时段
 
 ### 问：我可以用于商业研究吗？
@@ -581,39 +582,39 @@ Agent-Reach 对于简单搜索更快，但不如完整的浏览器自动化工�
 
 这类似于国内的「模拟登录」功能——有些网站需要你登录才能看到完整内容，Agent-Reach 支持传入 Cookie 来模拟登录状态。
 
-你可以在浏览器中登录后，导出 Cookie 文件，然后使用 `--cookies` 参数指定。
+你可以在浏览器中登录后，导出 Cookie 文件，然后使用 ````--cookies```` 参数指定。
 
 ## 故障排除
 
 ### 常见错误：超出限流
-```bash
+`````bash
 # 如果遇到限流，在请求之间添加延迟
 agent-reach twitter search "AI" --limit 10 --delay 3
 
 # 或使用内置节流功能的批处理模式
 agent-reach batch run research-script.sh --throttle 2
-```
+`````
 
 ### 常见错误：被 Cloudflare 阻止
 一些网站使用 Cloudflare 保护。解决方法：
-```bash
+`````bash
 # 如果有可用的住宅代理
 agent-reach web extract "https://example.com" --proxy http://your-proxy:8080
 
 # 或使用移动端的 User-Agent
 agent-reach web extract "https://example.com" --ua mobile
-```
+`````
 
 这类似于国内一些网站使用的「盾」防护系统——当你请求太频繁时会触发验证。
 
 ### 常见错误：空结果
-```bash
+`````bash
 # 检查平台是否支持
 agent-reach platforms list
 
 # 尝试使用更广泛的搜索词
 agent-reach reddit search "AI agents 2026" --limit 50
-```
+````
 
 如果你在国内使用，可能会遇到网络不稳定导致的结果为空。建议：
 1. 检查代理连接是否正常
@@ -636,7 +637,7 @@ Agent-Reach 让 AI Agent 的互联网访问变得民主化。在这个工具出�
 你有没有尝试过 Agent-Reach？你最喜欢的使用场景是什么？在评论区分享或是在 GitHub 上开一个 Issue。
 
 
----
+* * *
 **来源与延伸阅读：**
 - GitHub 仓库：https://github.com/Panniantong/Agent-Reach
 - 文档：https://agent-reach.readthedocs.io/
@@ -646,4 +647,4 @@ Agent-Reach 让 AI Agent 的互联网访问变得民主化。在这个工具出�
 
 [DeepSeek Harness 指南](dibi8-internal-link) | [2026 AI Agent 安全](dibi8-internal-link)
 
----
+* * *

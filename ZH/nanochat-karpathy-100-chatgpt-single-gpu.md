@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png'
 ---
 
+
 # nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 — 2026 实战指南
 
 ![nanochat logo](https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png)
@@ -25,14 +26,14 @@ Crawl4AI 在 90 天内从 12,000 涨到 63,000 GitHub 星标。而 nanochat 在�
 
 ## What Is nanochat?
 
-nanochat 是 **一个开源最小化聊天应用**，由 Andrej Karpathy 编写，演示如何用你自己训练的模型在单 GPU 上构建 ChatGPT 般的体验。它不是框架，不是库。它是一个大约 400 行的 `app.py` 文件，实现了：
+nanochat 是 **一个开源最小化聊天应用**，由 Andrej Karpathy 编写，演示如何用你自己训练的模型在单 GPU 上构建 ChatGPT 般的体验。它不是框架，不是库。它是一个大约 400 行的 ```app.py```` 文件，实现了：
 
 - 基于 token 的文本流式生成
 - 对话历史管理（多轮对话）
 - 通过 Streamlit 渲染的 Web UI
 - 两种模式：**SGLang**（用真实数据从头训练）和 **vLLM**（在本地提供预训练模型服务）
 
-核心理念是"动手构建，才能理解"。Karpathy 有一套让复杂 AI 概念通过极简代码变得易懂的传统——从 `nanoGPT` 到 `karpathy/llm.c`——而 nanochat 通过展示聊天应用从端到端的每一个环节，继续了这一传统。
+核心理念是"动手构建，才能理解"。Karpathy 有一套让复杂 AI 概念通过极简代码变得易懂的传统——从 ````nanoGPT```` 到 ````karpathy/llm.c````——而 nanochat 通过展示聊天应用从端到端的每一个环节，继续了这一传统。
 
 ## How nanochat Works
 
@@ -40,9 +41,9 @@ nanochat 以两种截然不同的模式运行，每种模式有不同的训练/�
 
 ### SGLang 模式：从头训练
 
-```
+`````
 原始文本语料 → 训练 tokenizer → 训练模型 → 聊天 UI
-```
+`````
 
 1. **数据收集** — 下载并解析文本语料库（如维基百科、书籍、代码）
 2. **Tokenizer 训练** — 在语料库上训练一个 BytePair Encoding (BPE) tokenizer
@@ -51,15 +52,15 @@ nanochat 以两种截然不同的模式运行，每种模式有不同的训练/�
 
 ### vLLM 模式：提供预训练模型
 
-```
+`````
 预训练模型（HuggingFace）→ vLLM 提供 → 聊天 UI
-```
+`````
 
 1. **模型下载** — 从 HuggingFace 拉取预训练模型（如 Qwen、Llama、Mistral）
 2. **vLLM 服务** — 使用 vLLM 的 PagedAttention 实现高吞吐量推理
 3. **聊天提供** — Nanochat 将 vLLM 端点包装成流式聊天 UI
 
-```
+`````
 ┌──────────────────────────────────────────────┐
 │              nanochat Web UI                 │
 │           (Streamlit + WebSocket)             │
@@ -68,7 +69,7 @@ nanochat 以两种截然不同的模式运行，每种模式有不同的训练/�
 ├──────────────────────────────────────────────┤
 │  SGLang 模式：从头训练    │  vLLM 模式：提供 HF 模型 │
 └──────────────────────────────────────────────┘
-```
+`````
 
 *nanoChat 架构：两种模式，一个 Web UI*
 
@@ -80,7 +81,7 @@ nanochat 以两种截然不同的模式运行，每种模式有不同的训练/�
 
 你需要一台至少有 GPU 的机器。SGLang 模式（从头训练），推荐 8+ GB VRAM。vLLM 模式，6+ GB VRAM 对小模型可用。
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/karpathy/nanochat.git
 cd nanochat
@@ -91,11 +92,11 @@ source .venv/bin/activate
 
 # 安装依赖
 pip install -r requirements.txt
-```
+`````
 
 ### 选项 A：SGLang 模式——从头训练
 
-```bash
+`````bash
 # 安装 SGLang（需要 CUDA 12.x）
 pip install sglang
 
@@ -107,11 +108,11 @@ python train_model.py --tokenizer tokenizer.json --epochs 3 --batch_size 32
 
 # 启动聊天应用
 python app.py --mode sglang --model_path checkpoints/latest.pth
-```
+`````
 
 ### 选项 B：vLLM 模式——提供预训练模型
 
-```bash
+`````bash
 # 安装 vLLM（需要 CUDA 12.x）
 pip install vllm
 
@@ -123,22 +124,22 @@ python -m vllm.entrypoints.openai.api_server \
 
 # 启动聊天应用（指向 vLLM）
 python app.py --mode vllm --api_url http://localhost:8000/v1/chat/completions
-```
+`````
 
 ### 快速启动——Docker
 
 最快的设置方式使用 Docker：
 
-```bash
+`````bash
 # 构建 Docker 镜像
 docker build -t nanochat .
 
 # 带 GPU 支持运行
 docker run --gpus all -p 8501:8501 nanochat \
   --mode vllm --model Qwen/Qwen2.5-3B-Instruct
-```
+`````
 
-在 `http://localhost:8501` 访问 Web UI。
+在 ````http://localhost:8501```` 访问 Web UI。
 
 ## Integration with SGLang, vLLM, HuggingFace Models
 
@@ -148,7 +149,7 @@ nanochat 设计为与更广泛的 AI 推理生态系统无缝协作。以下是�
 
 SGLang（结构化生成语言）是训练后端。它为 transformer 模型提供优化的分布式训练能力：
 
-```python
+`````python
 # sglang_config.py — SGLang 特定设置
 config = {
     "model_type": "gpt",
@@ -163,13 +164,13 @@ config = {
     "weight_decay": 0.01,
     "bf16": True,
 }
-```
+`````
 
 ### vLLM 集成
 
 vLLM 提供带有 PagedAttention 的高吞吐量推理，动态管理 KV 缓存内存：
 
-```python
+`````python
 # vllm_config.py — vLLM 服务设置
 from vllm import LLM, SamplingParams
 
@@ -186,7 +187,7 @@ sampling_params = SamplingParams(
     max_tokens=2048,
     stop=["\n\n"],
 )
-```
+`````
 
 ### HuggingFace 模型兼容性
 
@@ -194,13 +195,13 @@ nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模
 
 | 模型 | 参数量 | 所需 VRAM | 质量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qwen2.5-1.5B-Instruct | 15 亿 | ~4 GB | 简单聊天很好 |
 | Qwen2.5-3B-Instruct | 30 亿 | ~6 GB | 极好平衡 |
@@ -218,13 +219,13 @@ nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模
 
 | 轮次 | 训练时间 | 结束时损失 | VRAM 峰值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | ~4 小时 | 2.87 | 18 GB |
 | 2 | ~8 小时 | 2.34 | 18 GB |
@@ -237,11 +238,11 @@ nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模
 
 | 批大小 | 吞吐量（tok/s） | 延迟（ms/token） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 45 tok/s | 22 ms |
 | 8 | 280 tok/s | 28 ms |
@@ -252,14 +253,14 @@ nanochat 支持任何遵循标准 transformer 架构的 HuggingFace 模型。模
 
 计算机科学家教授使用 nanochat 教授学生 LLM 的工作原理：
 
-```bash
+`````bash
 # 学生从 tokenizer 训练开始
 python train_tokenizer.py --input data/shakespeare.txt --output tokenizer.json
 # 然后在莎士比亚语料上训练 2 亿参数模型
 python train_model.py --tokenizer tokenizer.json --epochs 2 --batch_size 16
 # 与自己训练的模型聊天
 python app.py --mode sglang --model_path checkpoints/epoch2.pth
-```
+`````
 
 这给学生提供动手体验，涉及标记化、训练循环和推理，任何教科书都无法匹敌。
 
@@ -267,7 +268,7 @@ python app.py --mode sglang --model_path checkpoints/epoch2.pth
 
 初创公司原型工程师使用 nanochat 在提交生产基础设施之前测试自定义训练的聊天机器人：
 
-```bash
+`````bash
 # 在公司特定文档上训练
 python train_tokenizer.py --input data/docs/ --output company_tokenizer.json
 python train_model.py --tokenizer company_tokenizer.json --epochs 5
@@ -275,7 +276,7 @@ python train_model.py --tokenizer company_tokenizer.json --epochs 5
 # 提示："如何重置我的密码？"
 # 模型 A（通用）："访问设置页面..."
 # 模型 B（自定义训练）："去 /auth/reset 或发邮件到 support@company.com..."
-```
+`````
 
 自定义训练的模型产生通用模型无法产生的领域特定响应。
 
@@ -285,7 +286,7 @@ python train_model.py --tokenizer company_tokenizer.json --epochs 5
 
 对于更大的模型或更快的训练，SGLang 支持多 GPU 分布式训练：
 
-```bash
+`````bash
 # 在 4 张 GPU 上训练
 python -m torch.distributed.run \
   --nproc_per_node=4 \
@@ -293,24 +294,24 @@ python -m torch.distributed.run \
   --tokenizer tokenizer.json \
   --epochs 5 \
   --distributed_backend nccl
-```
+`````
 
 ### 自定义聊天系统提示词
 
-编辑 `app.py` 来自定义系统提示词：
+编辑 ````app.py```` 来自定义系统提示词：
 
-```python
+`````python
 # app.py 中的自定义系统提示词
 SYSTEM_PROMPT = """你是一个专注于 Python 的有用编码助手。
 始终提供带注释的代码示例。
 对代码块使用 markdown 格式。"""
-```
+`````
 
 ### Docker 生产部署
 
 在生产环境部署到云提供商：
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.2-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y python3 python3-pip git
 COPY requirements.txt .
@@ -319,28 +320,28 @@ WORKDIR /app
 COPY . .
 EXPOSE 8501
 CMD ["python3", "app.py", "--mode", "vllm", "--model", "Qwen/Qwen2.5-7B-Instruct"]
-```
+`````
 
-```bash
+`````bash
 # 在 DigitalOcean GPU droplet 上部署
 docker run -d --gpus all -p 8501:8501 \
   --restart unless-stopped \
   nanochat:latest
-```
+`````
 
 ## Comparison with Alternatives
 
 | 功能 | nanochat | ChatGPT（API） | LM Studio | Ollama |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 可自训练 | 是（SGLang） | 否 | 否 | 否 |
 | 需要 GPU | 是（8+ GB） | 否（云端） | 是（4+ GB） | 是（4+ GB） |
@@ -404,7 +405,7 @@ nanochat 证明你不需要 20 美元的月 API 订阅或数据中心来运行 C
 
 无论你是学习 LLM 基础的学生、原型定制聊天机器人的开发者，还是只想了解"黑盒"内部运作的人，nanochat 提供教程视频无法匹敌的动手体验。
 
-加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 nanochat 经验和训练配置。查看我们的 [Langflow 可视化工作流](dibi8-internal-link) 和 [AI Agent 记忆系统](dibi8-internal-link) 指南了解互补工具。今天就试试 nanochat——克隆仓库，运行 `python app.py`，看看你自己的模型如何响应。
+加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 nanochat 经验和训练配置。查看我们的 [Langflow 可视化工作流](dibi8-internal-link) 和 [AI Agent 记忆系统](dibi8-internal-link) 指南了解互补工具。今天就试试 nanochat——克隆仓库，运行 ````python app.py```，看看你自己的模型如何响应。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 
@@ -471,12 +472,12 @@ nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-100-chatgpt-single-gpu)
@@ -485,6 +486,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ollama-vs-vllm](nanochat-karpathy-100-chatgpt-single-gpu)
 - [llm-inference-cost-optimization-guide-2026](nanochat-karpathy-100-chatgpt-single-gpu)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/zilliz-milvus-vector-database-scale/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Vấn đề Tỷ Vector
@@ -61,27 +62,27 @@ Milvus 2.5 tuân theo **kiến trúc microservices cloud-native** với năm th�
 
 Lưu trữ được tách rồi: **etcd** lưu metadata, **MinIO/S3** lưu dữ liệu vector thực tế và chỉ mục. Sự tách biệt này cho phép **lưu trữ phân tầng** — vector nóng ở trên NVMe cục bộ, vector ấm chuyển sang lưu trữ đối tượng, và vector lạnh có thể được lưu trữ.
 
-```bash
+````bash
 # etcd: điều phối metadata
 # MinIO: lưu trữ đối tượng cho các phân đoạn và chỉ mục
 # Pulsar/Kafka: log broker cho chèn luồng
 # Milvus: proxy, query/data/index nodes, coordinators
-```
+`````
 
 **Lập chỉ mục GPU (mới trong 2.5):** Milvus 2.5 giới thiệu xây dựng chỉ mục GPU qua NVIDIA RAFT. Trên một Tesla T4 đơn, xây dựng chỉ mục **nhanh hơn ~6 lần** so với chỉ sử dụng CPU. Thông lượng truy vấn tăng gấp đôi. Đối với các nhóm chạy các cụm Kubernetes có GPU (như trên [DigitalOcean GPU Droplets](https://m.do.co/c/eca87ac14ee0)), đây là một yếu tố thay đổi cuộc chơi.
 
-```yaml
+`````yaml
 # Phân bổ tài nguyên GPU cho Milvus index node (Helm values)
 indexNode: resources: limits: nvidia.com/gpu: 1  # Yêu cầu 1 GPU cho xây dựng chỉ mục
     requests: memory: "16Gi"
       cpu: "8"
-```
+`````
 
 ## Cài đặt & Thiết lập: Từ Docker đến Kubernetes
 
 ### Tùy chọn A: Docker Standalone (<5 phút)
 
-```bash
+`````bash
 # Tải file docker-compose
 curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
 
@@ -91,9 +92,9 @@ bash standalone_embed.sh start
 # Xác minh
 docker ps | grep milvus
 # Đầu ra: milvusdb/milvus:v2.5.10  "milvus run standalone"
-```
+`````
 
-```bash
+`````bash
 # Cài đặt Python SDK
 pip install pymilvus==2.5.10
 
@@ -103,11 +104,11 @@ from pymilvus import connections, utility
 connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
-```
+`````
 
 ### Tùy chọn B: Kubernetes với Helm (Sản xuất)
 
-```bash
+`````bash
 # Thêm Milvus Helm repo
 helm repo add milvus https://zilliztech.github.io/milvus-helm/
 helm repo update
@@ -122,28 +123,28 @@ helm install my-milvus milvus/milvus \
 
 # Xác minh tất cả các pod đang chạy
 kubectl get pods -l app.kubernetes.io/instance=my-milvus
-```
+`````
 
-```bash
+`````bash
 # Expose qua LoadBalancer
 kubectl patch svc my-milvus-proxy -p '{"spec":{"type":"LoadBalancer"}}'
 
 # Lấy endpoint
 export MILVUS_HOST=$(kubectl get svc my-milvus-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo $MILVUS_HOST
-```
+`````
 
 ### Tùy chọn C: Zilliz Cloud (Được quản lý, Zero Ops)
 
-```bash
+`````bash
 # Đăng ký tại https://cloud.zilliz.com
 # Tạo cluster miễn phí (lên đến 1M vector)
 # Lấy API key và endpoint
 
 pip install pymilvus==2.5.10
-```
+`````
 
-```python
+`````python
 from pymilvus import connections, Collection
 
 # Kết nối đến Zilliz Cloud
@@ -154,13 +155,13 @@ connections.connect(
 )
 
 print("Connected to Zilliz Cloud!")
-```
+`````
 
 ## Các thao tác cốt lõi: Collection, Chèn và Tìm kiếm
 
 ### Tạo Collection với Chỉ mục HNSW
 
-```python
+`````python
 from pymilvus import FieldSchema, CollectionSchema, DataType, Collection
 
 # Định nghĩa các trường
@@ -182,11 +183,11 @@ index_params = {
 }
 collection.create_index(field_name="embedding", index_params=index_params)
 collection.load()
-```
+`````
 
 ### Chèn Vector (Đơn và Hàng loạt)
 
-```python
+`````python
 import numpy as np
 
 # Tạo dữ liệu mẫu: 100K vector, mỗi vector 1536 chiều
@@ -203,11 +204,11 @@ for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch
 # Flush để đảm bảo persistence
 collection.flush()
 print(f"Tổng đã chèn: {collection.num_entities}")
-```
+`````
 
 ### Tìm kiếm Vector với Bộ lọc Metadata
 
-```python
+`````python
 # Tìm kiếm vector đơn
 results = collection.search(
     data=[np.random.randn(1536).tolist()],
@@ -218,9 +219,9 @@ results = collection.search(
 )
 
 for hit in results[0]: print(f"ID: {hit.id}, Khoảng cách: {hit.distance:.4f}, Văn bản: {hit.entity.text}")
-```
+`````
 
-```python
+`````python
 # Tìm kiếm lai: vector similarity + bộ lọc metadata
 from pymilvus import Filter
 
@@ -236,11 +237,11 @@ results = collection.search(
 )
 
 print(f"Tìm thấy {len(results[0])} kết quả đã lọc")
-```
+`````
 
 ## Benchmark: Số liệu Thực tế
 
-Benchmark độc lập từ tháng 4/2026 trên bộ dữ liệu `dbpedia-openai-1M` (1M vector, 1536 chiều, AWS c6i.8xlarge trừ khi có ghi chú): | Chỉ số | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+Benchmark độc lập từ tháng 4/2026 trên bộ dữ liệu ````dbpedia-openai-1M```` (1M vector, 1536 chiều, AWS c6i.8xlarge trừ khi có ghi chú): | Chỉ số | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |--------|-------------|-----------------|----------|----------|--------|
 | **Độ trễ p99 (ms)** | 18 | **8** | 28 | 19 | 12 |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
@@ -259,7 +260,7 @@ Benchmark độc lập từ tháng 4/2026 trên bộ dữ liệu `dbpedia-openai
 
 ### Benchmark Chèn Quy mô Lớn
 
-```python
+`````python
 # Script benchmark thông lượng chèn
 import time
 from pymilvus import Collection
@@ -277,17 +278,17 @@ print(f"Đã chèn {batch:,} vector trong {elapsed:.2f}s")
 print(f"Thông lượng: {batch/elapsed:,.0f} vector/giây")
 # Đầu ra trên GPU index node: Đã chèn 100,000 vector trong 0.31s
 # Đầu ra: Thông lượng: 320,000 vector/giây
-```
+`````
 
 ## Tích hợp với Các Framework AI Phổ biến
 
 ### Tích hợp LangChain
 
-```python
+`````python
 pip install langchain-milvus==0.1.8
-```
+`````
 
-```python
+`````python
 from langchain_milvus import Milvus
 from langchain_openai import OpenAIEmbeddings
 
@@ -307,15 +308,15 @@ vector_store.add_documents(docs)
 # Tìm kiếm tương tự
 results = vector_store.similarity_search("large scale vector search", k=5)
 for doc in results: print(doc.page_content)
-```
+`````
 
 ### Tích hợp LlamaIndex
 
-```python
+`````python
 pip install llama-index-vector-stores-milvus==0.6.0
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -334,11 +335,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What is Milvus architecture?")
 print(response)
-```
+`````
 
 ### Tích hợp OpenAI Embeddings
 
-```python
+`````python
 from openai import OpenAI
 import numpy as np
 
@@ -354,13 +355,13 @@ def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
 # Chèn OpenAI embeddings vào Milvus
 embedding = get_embedding("Milvus vector database handles 10 billion vectors")
 collection.insert([[embedding], ["milvus_overview"]])
-```
+`````
 
 ## Sử dụng Nâng cao và Củng cố Sản xuất
 
 ### Cấu hình Lưu trữ Phân tầng
 
-Milvus 2.5 hỗ trợ lưu trữ phân tầng để giảm chi phí cho các bộ dữ liệu lớn: ```yaml
+Milvus 2.5 hỗ trợ lưu trữ phân tầng để giảm chi phí cho các bộ dữ liệu lớn: `````yaml
 # Helm values cho lưu trữ phân tầng
 extraConfigFiles: user.yaml: |+
     common: storageType: remote
@@ -372,11 +373,11 @@ extraConfigFiles: user.yaml: |+
         memoryLimit: 8GB  # Dữ liệu nóng trong bộ nhớ
       disk: enabled: true     # Dữ liệu ấm trên đĩa cục bộ
         capacity: 100GB
-```
+`````
 
 ### Sao lưu và Phục hồi Thảm họa
 
-```bash
+`````bash
 # Cài đặt Công cụ Milvus Backup
 git clone https://github.com/zilliztech/milvus-backup.git
 cd milvus-backup
@@ -387,30 +388,30 @@ make
 
 # Khôi phục sang cụm mới
 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection
-```
+`````
 
 ### Giám sát với Prometheus và Grafana
 
-```yaml
+`````yaml
 # Helm values cho giám sát Milvus
 metrics: enabled: true
   serviceMonitor: enabled: true
     interval: 30s
 
 # Dashboard Grafana: https://github.com/zilliztech/milvus-insight
-```
+`````
 
-```bash
+`````bash
 # Port-forward để truy cập metrics Milvus
 kubectl port-forward svc/my-milvus-proxy 9091:9091
 
 # Kiểm tra sức khỏe
 curl http://localhost:9091/metrics | grep milvus_querynode_latency
-```
+`````
 
 ### Đa ngườ thuê với Phân vùng
 
-```python
+`````python
 # Tạo phân vùng cho cách ly đa ngườ thuê
 collection.create_partition("tenant_acme")
 collection.create_partition("tenant_globalcorp")
@@ -429,7 +430,7 @@ results = collection.search(
     limit=10,
     partition_names=["tenant_acme"]
 )
-```
+`````
 
 ## So sánh với Các Lựa chọn Thay thế
 
@@ -495,9 +496,9 @@ Milvus 2.5 tích hợp NVIDIA RAFT để xây dựng chỉ mục HNSW và IVF đ
 
 ### Milvus hỗ trợ những chiến lược sao lưu nào?
 
-Milvus Backup (công cụ chính thức) hỗ trợ snapshot cụm đầy đủ đến lưu trữ tương thích S3. Đối với sản xuất, lập lịch sao lưu hàng ngày qua cron: ```bash
+Milvus Backup (công cụ chính thức) hỗ trợ snapshot cụm đầy đủ đến lưu trữ tương thích S3. Đối với sản xuất, lập lịch sao lưu hàng ngày qua cron: `````bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
-```
+````
 
 Khôi phục điểm thờ gian có sẵn khi sử dụng Pulsar làm message broker, nó giữ lại log hoạt động.
 
@@ -563,13 +564,13 @@ Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

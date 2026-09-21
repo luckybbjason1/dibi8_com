@@ -23,6 +23,7 @@ tags: ["kubeflow", "kubernetes", "machine learning", "ml pipeline", "mlops", "ku
 aliases:
   - /posts/kubeflow-ml-pipeline-kubernetes/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Kubernetes-Native ML Matters
@@ -55,7 +56,7 @@ Kubeflow's architecture centers on the principle: **everything runs on Kubernete
 
 The control plane includes Istio for service mesh, Dex or OIDC for authentication, and the Central Dashboard for unified navigation across all components.
 
-```bash
+````bash
 # High-level component view
 kubectl get pods -n kubeflow
 # Expected output shows pods for: # - ml-pipeline (KFP API server)
@@ -64,7 +65,7 @@ kubectl get pods -n kubeflow
 # - training-operator
 # - centraldashboard
 # - notebooks in kubeflow-user-example-com namespace
-```
+`````
 
 ## Installation & Setup: Get Running in 10 Minutes
 
@@ -77,7 +78,7 @@ kubectl get pods -n kubeflow
 
 ### Option A: Deploy with kustomize (Official Method)
 
-```bash
+`````bash
 # Clone the manifests repo
 export KUBEFLOW_VERSION=v1.10.0
 git clone https://github.com/kubeflow/manifests.git
@@ -91,26 +92,26 @@ while ! kustomize build example | kubectl apply -f -; do
   echo "Retrying to apply resources..."
   sleep 10
 done
-```
+`````
 
-```bash
+`````bash
 # Verify core components are running
 kubectl get pods -n kubeflow --watch
 # Wait until all pods show Running or Completed
 # This typically takes 5-10 minutes on a 3-node cluster
-```
+`````
 
-```bash
+`````bash
 # Port-forward to access the central dashboard
 kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 
 # Access at http://localhost:8080
 # Default credentials: user@example.com / 12341234
-```
+`````
 
 ### Option B: Deploy with Helm (Faster for Development)
 
-```bash
+`````bash
 # Add the Kubeflow Helm repository (community-maintained)
 helm repo add kubeflow https://kubeflow.github.io/manifests/
 helm repo update
@@ -120,11 +121,11 @@ helm install kubeflow kubeflow/kubeflow \
   --namespace kubeflow \
   --create-namespace \
   --set pipeline.objectStore.minio.persistence.enabled=true
-```
+`````
 
 ### Option C: DigitalOcean Kubernetes (Production-Ready)
 
-For a production-grade cluster without managing the control plane: ```bash
+For a production-grade cluster without managing the control plane: `````bash
 # Install doctl and authenticate
 doctl kubernetes cluster create kubeflow-ml \
   --region nyc3 \
@@ -132,20 +133,20 @@ doctl kubernetes cluster create kubeflow-ml \
   --node-pool "name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2"
 
 # Then apply Kubeflow manifests as shown in Option A
-```
+`````
 
 [Sign up for DigitalOcean](https://m.do.co/c/eca87ac14ee0) and get $200 in credit for your first 60 days — enough to run a GPU-enabled Kubeflow cluster for a full month of experimentation.
 
-```bash
+`````bash
 # Check all namespaces created by Kubeflow
 kubectl get namespaces | grep kubeflow
 # kubeflow          Active
 # kubeflow-user-example-com  Active
-```
+`````
 
 ## Building Your First ML Pipeline
 
-Kubeflow Pipelines (KFP) is where Kubeflow delivers the most value. Here's a complete pipeline that downloads data, trains a model, and evaluates it: ```python
+Kubeflow Pipelines (KFP) is where Kubeflow delivers the most value. Here's a complete pipeline that downloads data, trains a model, and evaluates it: `````python
 # pipeline.py — A complete ML pipeline using KFP SDK v2
 import kfp
 from kfp import dsl
@@ -236,9 +237,9 @@ if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
-```
+`````
 
-```bash
+`````bash
 # Compile and upload the pipeline
 python pipeline.py
 
@@ -248,21 +249,21 @@ kfp pipeline create \
   --description "Iris classification training pipeline" \
   --engine argo \
   iris_pipeline.yaml
-```
+`````
 
-```bash
+`````bash
 # Run the pipeline from CLI
 kfp run create \
   --experiment-name default \
   --pipeline-id <PIPELINE_ID> \
   --display-name "iris-run-$(date +%s)"
-```
+`````
 
 The pipeline appears in the KFP UI with full lineage tracking — every artifact, parameter, and execution is logged automatically. You can click through from a model artifact back to the exact dataset and code version that produced it.
 
 ## Distributed Training with the Training Operator
 
-For workloads that don't fit on a single GPU, Kubeflow's Training Operator manages distributed training jobs: ```yaml
+For workloads that don't fit on a single GPU, Kubeflow's Training Operator manages distributed training jobs: `````yaml
 # pytorch-job.yaml — Distributed PyTorch training
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
@@ -286,9 +287,9 @@ spec: pytorchReplicaSpecs: Master: replicas: 1
             resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-```
+`````
 
-```bash
+`````bash
 # Submit the training job
 kubectl apply -f pytorch-job.yaml
 
@@ -296,17 +297,17 @@ kubectl apply -f pytorch-job.yaml
 kubectl get pytorchjobs -n kubeflow-user-example-com -w
 kubectl logs -f cifar10-distributed-master-0 \
   -n kubeflow-user-example-com
-```
+`````
 
-```bash
+`````bash
 # Check GPU utilization across the cluster
 kubectl top nodes
 nvidia-smi  # Run inside any GPU pod
-```
+`````
 
 ## Model Serving with KServe
 
-KServe provides production-grade model serving with autoscaling, traffic splitting, and standardized inference protocols: ```yaml
+KServe provides production-grade model serving with autoscaling, traffic splitting, and standardized inference protocols: `````yaml
 # inference-service.yaml — Deploy a trained model
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
@@ -319,9 +320,9 @@ spec: predictor: serviceAccountName: sa-default
           memory: 2Gi
         requests: cpu: "100m"
           memory: 256Mi
-```
+`````
 
-```bash
+`````bash
 # Apply the InferenceService
 kubectl apply -f inference-service.yaml
 
@@ -329,18 +330,18 @@ kubectl apply -f inference-service.yaml
 kubectl get inferenceservices -n kubeflow-user-example-com -w
 
 # Expected: iris-classifier   True    100   http://iris-classifier...   Ready
-```
+`````
 
-```bash
+`````bash
 # Test the deployed model
 curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict \
   -H "Content-Type: application/json" \
   -d '{"instances": [[5.1, 3.5, 1.4, 0.2]]}'
 
 # Response: {"predictions": [0]}
-```
+`````
 
-For canary deployments, KServe supports traffic splitting: ```yaml
+For canary deployments, KServe supports traffic splitting: `````yaml
 # canary-rollout.yaml — Gradual rollout of v2
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
@@ -348,11 +349,11 @@ metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
 spec: predictor: canaryTrafficPercent: 20
     sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
-```
+`````
 
 ## Hyperparameter Tuning with Katib
 
-Katib automates the search for optimal hyperparameters using Kubernetes-native experiments: ```yaml
+Katib automates the search for optimal hyperparameters using Kubernetes-native experiments: `````yaml
 # katib-experiment.yaml — Optimize Random Forest hyperparameters
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
@@ -392,9 +393,9 @@ spec: objective: type: maximize
                 resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
-```
+`````
 
-```bash
+`````bash
 # Launch the experiment
 kubectl apply -f katib-experiment.yaml
 
@@ -406,7 +407,7 @@ kubectl get trials -n kubeflow-user-example-com
 kubectl get experiment iris-hp-tuning \
   -n kubeflow-user-example-com \
   -o jsonpath='{.status.currentOptimalTrial}'
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -414,13 +415,13 @@ kubectl get experiment iris-hp-tuning \
 
 | Configuration | Time per Epoch (CIFAR-10 ResNet-50) | GPUs | Cost/hr* |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Single GPU (NVIDIA A100) | 4 min 12 sec | 1 | $2.50 |
 | Kubeflow PyTorchJob (4x A100) | 1 min 05 sec | 4 | $10.00 |
@@ -433,11 +434,11 @@ kubectl get experiment iris-hp-tuning \
 
 | Scenario | Total Runtime | Overhead from KFP |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 5-step pipeline, small data (< 1 GB) | 3 min 45 sec | ~18 sec |
 | 12-step pipeline, medium data (10 GB) | 22 min 10 sec | ~45 sec |
@@ -455,7 +456,7 @@ The KFP orchestration overhead is consistently **under 3%** of total pipeline ru
 
 ### GPU Scheduling and Resource Quotas
 
-```yaml
+`````yaml
 # gpu-quota.yaml — Enforce GPU limits per namespace
 apiVersion: v1
 kind: ResourceQuota
@@ -463,19 +464,19 @@ metadata: name: gpu-quota
   namespace: data-science-team
 spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
-```
+`````
 
-```bash
+`````bash
 # Apply the quota
 kubectl apply -f gpu-quota.yaml
 
 # Check GPU allocation per namespace
 kubectl describe resourcequota gpu-quota -n data-science-team
-```
+`````
 
 ### Persistent Storage for Datasets
 
-```yaml
+`````yaml
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -484,19 +485,19 @@ metadata: name: training-datasets
 spec: accessModes: - ReadWriteMany
   resources: requests: storage: 500Gi
   storageClassName: nfs-client  # Or efs-sc on AWS
-```
+`````
 
-```bash
+`````bash
 # Mount in notebook server via the Kubeflow UI
 # Or reference in pipeline components: # dsl.VolumeOp(name="create-dataset-volume",
 #              resource_name="training-datasets",
 #              size="500Gi",
 #              modes=dsl.VOLUME_MODE_RWM)
-```
+`````
 
 ### Authentication and RBAC
 
-```bash
+`````bash
 # Create a user profile with resource limits
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
@@ -509,11 +510,11 @@ spec: owner: kind: User
       nvidia.com/gpu: "8"
       pods: "50"
 EOF
-```
+`````
 
 ### Backup and Disaster Recovery
 
-```bash
+`````bash
 # Backup MySQL metadata database (KFP experiments/runs)
 kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- \
   mysqldump -u root -p$mysqlpassword mlpipeline \
@@ -522,11 +523,11 @@ kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- \
 # Backup MinIO artifact store
 mc mirror myminio/kubeflow-pipelines/ \
   s3-backup/kubeflow-pipelines-backup/
-```
+`````
 
 ### Monitoring with Prometheus and Grafana
 
-```bash
+`````bash
 # Kubeflow exposes Prometheus metrics on several components
 kubectl apply -f \
   https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
@@ -535,21 +536,21 @@ kubectl apply -f \
 # - kubeflow_pipelines_run_latency_seconds (pipeline execution time)
 # - nvidia_gpu_utilization_gpu (GPU utilization per pod)
 # - container_memory_working_set_bytes (OOM detection)
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Kubeflow | MLflow | Airflow | SageMaker |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Kubernetes-native | **Yes (core design)** | No (can deploy on K8s) | Optional (via Helm) | N/A (managed AWS) |
 | Pipeline orchestration | **Yes (KFP DAGs)** | Limited (MLflow Pipelines) | Yes (general purpose) | Yes (Step Functions) |
@@ -588,19 +589,19 @@ Kubeflow is powerful but not without challenges: **Setup complexity**: A full Ku
 A: A minimal production cluster (3 CPU nodes + 2 GPU nodes) costs approximately **$800-1,200 per month** on DigitalOcean or GCP, depending on GPU type. For GPU compute, [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) offers competitive pricing for Chinese developers. CPU-only experimentation clusters can run as low as $200 per month.
 
 **Q: Can I use Kubeflow without GPUs?**
-A: Yes. Kubeflow works entirely on CPU nodes. The Training Operator, KFP, and KServe all function without GPUs. However, deep learning training will be significantly slower. For CPU-only clusters, reduce the `nvidia.com/gpu` resource requests in all manifests to zero.
+A: Yes. Kubeflow works entirely on CPU nodes. The Training Operator, KFP, and KServe all function without GPUs. However, deep learning training will be significantly slower. For CPU-only clusters, reduce the ````nvidia.com/gpu```` resource requests in all manifests to zero.
 
 **Q: How does Kubeflow compare to using raw Kubernetes + custom scripts?**
 A: Raw Kubernetes gives you full control but requires building your own pipeline engine, artifact tracking, experiment management, and model serving layer. Kubeflow provides all of these out-of-the-box, saving an estimated **3-6 months** of platform engineering effort. The tradeoff is accepting Kubeflow's opinions about how components should interact.
 
 **Q: Can I integrate Kubeflow with my existing CI/CD system?**
-A: Yes. Kubeflow Pipelines can be triggered from GitHub Actions, GitLab CI, Jenkins, or any system that can make HTTP API calls. Use the KFP SDK to compile pipelines in CI and the KFP API to trigger runs. Many teams implement a pattern where merging to `main` automatically triggers a pipeline run that trains, evaluates, and conditionally deploys a model.
+A: Yes. Kubeflow Pipelines can be triggered from GitHub Actions, GitLab CI, Jenkins, or any system that can make HTTP API calls. Use the KFP SDK to compile pipelines in CI and the KFP API to trigger runs. Many teams implement a pattern where merging to ````main```` automatically triggers a pipeline run that trains, evaluates, and conditionally deploys a model.
 
 **Q: What is the recommended storage backend for artifacts?**
 A: For on-premise deployments, **MinIO** (included in Kubeflow manifests) provides S3-compatible storage. For cloud deployments, use the native object store: **GCS** on GCP, **S3** on AWS, or **Azure Blob Storage**. Ensure your bucket has lifecycle policies to prevent artifact storage costs from growing indefinitely — old pipeline runs can accumulate **hundreds of gigabytes per month**.
 
 **Q: How do I debug a failed pipeline step?**
-A: Each KFP step runs as a Kubernetes Pod. Use `kubectl logs <pod-name> -n <namespace>` to inspect container logs. The KFP UI shows pod names and links to logs. For persistent debugging, add a `dsl.Retry` policy to your component or use `kubectl describe pod` to check for resource limits, image pull errors, or PVC mount failures.
+A: Each KFP step runs as a Kubernetes Pod. Use ````kubectl logs <pod-name> -n <namespace>```` to inspect container logs. The KFP UI shows pod names and links to logs. For persistent debugging, add a ````dsl.Retry```` policy to your component or use ````kubectl describe pod``` to check for resource limits, image pull errors, or PVC mount failures.
 
 ## Conclusion: Start Building Production ML Pipelines Today
 
@@ -661,7 +662,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](kubeflow-ml-pipeline-kubernetes)
@@ -670,5 +671,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

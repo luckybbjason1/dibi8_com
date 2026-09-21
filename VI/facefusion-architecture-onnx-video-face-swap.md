@@ -26,6 +26,7 @@ faqs: - q: 'FaceFusion là gì và khác gì so với Roop?'
     a: 'Theo mặc định, FaceFusion tải các model lớn như yoloface và gfpgan độc lập trong mỗi tiến trình, khiến xử lý đa tiến trình đồng thời có thể đẩy RAM lên 100% và làm máy chủ treo cứng. Thay vào đó, hãy dùng mô hình singleton đơn tiến trình dựa trên hàng đợi, xử lý các yêu cầu tuần tự trong khi giữ model thường trú trong VRAM.'
 ---
 
+
 {</* resource-info */>}
 
 # Tại Sao Huyền Thoại Roop Lại Chết Bất Đắc Kỳ Tử?
@@ -59,9 +60,9 @@ FaceFusion render một cái clip 1080P nhanh gấp chục lần Roop. Nó đã 
 
 ### 1. Đường Ống Xử Lý Frame Đa Luồng: Vắt Kiệt Từng Giọt Sức Mạnh Phần Cứng
 
-Khi xử lý video, FaceFusion lấy `ffmpeg` xé nát cái video ra thành từng khung hình (frame), rồi quăng cả đống đó vào một cái hồ bơi đa luồng (Thread Pool) để đập tơi bời cùng lúc.
+Khi xử lý video, FaceFusion lấy ```ffmpeg```` xé nát cái video ra thành từng khung hình (frame), rồi quăng cả đống đó vào một cái hồ bơi đa luồng (Thread Pool) để đập tơi bời cùng lúc.
 
-```python
+`````python
 # Đoạn mã lõi trích từ: facefusion/core.py (Lập lịch xử lý video đa luồng)
 import concurrent.futures
 from queue import Queue
@@ -81,15 +82,15 @@ def process_video_frames(frame_paths, update_progress): """
         for future in concurrent.futures.as_completed(futures): # Nhận kết quả rớt ra và kéo thanh tiến trình (progress bar) trên màn hình UI lên
             future.result()
             update_progress()
-```
+`````
 
-**Bóc tách chuyên sâu**: Đây là lý do FaceFusion nhanh như ăn cướp. Cái trò dùng OpenCV xử lý video kiểu cũ là dùng vòng lặp `while` đồng bộ, đọc chậm chạp từng frame một. FaceFusion thì bạo lực hơn, nó băm nát frame ra (Frame Extraction), ném vào `ThreadPoolExecutor` để ép hệ thống chạy song song tới chết. Kết hợp với cơ chế cache cực xịn ở dưới, CPU nhiều nhân với GPU nhà bạn bị nó vắt kiệt không chừa một giọt.
+**Bóc tách chuyên sâu**: Đây là lý do FaceFusion nhanh như ăn cướp. Cái trò dùng OpenCV xử lý video kiểu cũ là dùng vòng lặp ````while```` đồng bộ, đọc chậm chạp từng frame một. FaceFusion thì bạo lực hơn, nó băm nát frame ra (Frame Extraction), ném vào ````ThreadPoolExecutor```` để ép hệ thống chạy song song tới chết. Kết hợp với cơ chế cache cực xịn ở dưới, CPU nhiều nhân với GPU nhà bạn bị nó vắt kiệt không chừa một giọt.
 
 ### 2. ONNX Execution Providers: Động Cơ Ép Xung Dưới Đáy Xã Hội Chữ Thập
 
 Trái tim của FaceFusion là ONNX Runtime. Bất kể bạn xài card Xanh (NVIDIA), card Đỏ (AMD), hay sành điệu xài chip M của Mac, nó đều tự móc nối xuống tận đáy phần cứng để ép xung.
 
-```python
+`````python
 # Đoạn mã lõi trích từ: facefusion/execution_helper.py (Đăng ký bộ tăng tốc phần cứng)
 import onnxruntime
 
@@ -109,9 +110,9 @@ def apply_execution_provider_options(execution_providers): """
             applied_providers.append(provider)
             
     return applied_providers
-```
+`````
 
-**Bóc tách chuyên sâu**: Đoạn code này là đỉnh cao của việc deploy đa nền tảng. Thằng ONNX gom hết mấy mạng Neural phức tạp lại, rồi thông qua việc trói (bind) vào các `ExecutionProvider` (như CUDA, CoreML, DirectML) để đục thẳng xuống phần cứng. Chú ý cái cờ ẩn `arena_extend_strategy` kìa, nó là chốt chặn để chống lại hiện tượng "chảy máu VRAM" (fragmentation leaks), giúp cho bạn cắm máy render clip dài 1 tiếng mà server không bị đột tử giữa chừng.
+**Bóc tách chuyên sâu**: Đoạn code này là đỉnh cao của việc deploy đa nền tảng. Thằng ONNX gom hết mấy mạng Neural phức tạp lại, rồi thông qua việc trói (bind) vào các ````ExecutionProvider```` (như CUDA, CoreML, DirectML) để đục thẳng xuống phần cứng. Chú ý cái cờ ẩn ````arena_extend_strategy```` kìa, nó là chốt chặn để chống lại hiện tượng "chảy máu VRAM" (fragmentation leaks), giúp cho bạn cắm máy render clip dài 1 tiếng mà server không bị đột tử giữa chừng.
 
 ## Thực Chiến Engineering: Những Quả Mìn (Landmines) Chết Người Khi Vác Lên Production
 
@@ -119,11 +120,11 @@ Dù project có xịn tới đâu, nhiều team MMO dắt túi vẫn đạp ph�
 
 1. **Cạm bẫy 1: Ghép video xong hình đi đằng hình, tiếng đi đằng tiếng**
    - **Triệu chứng**: Chạy đổi mặt xong xuôi, ra file MP4 bật lên thì hoặc là câm như hến, hoặc là hình một nơi tiếng một nẻo (Out of sync).
-   - **Cách fix**: Trong lúc chạy, FaceFusion lột cái file âm thanh ra riêng. Nếu cái video gốc của bạn quay bằng điện thoại xài FPS thay đổi (VFR - Variable Frame Rate), lúc ghép lại nó lệch bét nhè. Trước khi nhét video cho FaceFusion nhai, bắt buộc phải xài 1 dòng lệnh FFmpeg để "tẩy rửa" source, ép nó về FPS cố định (CFR): `ffmpeg -i input.mp4 -r 30 -vsync cfr output_cfr.mp4`
+   - **Cách fix**: Trong lúc chạy, FaceFusion lột cái file âm thanh ra riêng. Nếu cái video gốc của bạn quay bằng điện thoại xài FPS thay đổi (VFR - Variable Frame Rate), lúc ghép lại nó lệch bét nhè. Trước khi nhét video cho FaceFusion nhai, bắt buộc phải xài 1 dòng lệnh FFmpeg để "tẩy rửa" source, ép nó về FPS cố định (CFR): ````ffmpeg -i input.mp4 -r 30 -vsync cfr output_cfr.mp4````
 
 2. **Cạm bẫy 2: Chạy song song làm load model đè nhau gây banh RAM**
    - **Triệu chứng**: Mở 3 luồng bắn 3 cái clip lên server cho nó chạy cùng lúc. Kết quả RAM 32GB bị ăn sạch bách trong 1 giây, server cứng đơ phải rút phích cắm.
-   - **Cách fix**: Mặc định FaceFusion cứ mỗi process là nó lại load một cục model nhận diện (`yoloface`) với model làm nét (`gfpgan`) vào VRAM. Lên server mà dùng Multiprocessing để chọc API là ăn cám. Bắt buộc phải dùng mô hình Hàng đợi (Queue) 1 luồng duy nhất (Singleton). Gom hết mớ request quăng vào queue cho nó chạy tuần tự (Sequential) từng cái một, bắt mấy cục model nằm im ru trong VRAM không được nhúc nhích.
+   - **Cách fix**: Mặc định FaceFusion cứ mỗi process là nó lại load một cục model nhận diện (````yoloface````) với model làm nét (````gfpgan```) vào VRAM. Lên server mà dùng Multiprocessing để chọc API là ăn cám. Bắt buộc phải dùng mô hình Hàng đợi (Queue) 1 luồng duy nhất (Singleton). Gom hết mớ request quăng vào queue cho nó chạy tuần tự (Sequential) từng cái một, bắt mấy cục model nằm im ru trong VRAM không được nhúc nhích.
 
 ## Vòng Lặp Thương Mại: Ăn Cướp Của Băng Thông Bằng Ảo Giác Thị Giác
 
@@ -136,7 +137,7 @@ Công nghệ sinh ra là để bú tiền. Với FaceFusion, bạn có thể tri
 
 **Tổng kết**: Roop giờ chỉ còn là một giọt nước mắt rơi giữa cơn mưa, còn FaceFusion mới là con quái thú ăn liền khét lẹt nhất trong ngành công nghiệp thị giác hiện tại. Bằng cái kiến trúc đa luồng ma mãnh và tà thuật phần cứng của ONNX, nó đã kéo lê thứ công nghệ deep-learning nặng chịch từ phòng lab xuống tận cái laptop ghẻ của anh em cày view. Nắm được nó, bạn chính thức trở thành trùm buôn "mai thúy thị giác" hợp pháp trong cái kỷ nguyên mà View là Vua này.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

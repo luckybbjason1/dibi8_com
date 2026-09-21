@@ -37,6 +37,7 @@ faqs: - q: 'What is Terax AI?'
   - q: 'How do I install Terax AI?'
     a: 'Terax is built from source: install Rust (stable) and Node.js 20+ with pnpm, clone the repository with git, run pnpm install, then pnpm tauri dev for development or pnpm tauri build for a production bundle. No official prebuilt installer binaries are listed.'
 ---
+
 {</* resource-info */>}
 
 # Terax AI: The Lightweight AI Terminal Emulator That Understands You
@@ -59,11 +60,11 @@ Unlike cloud-dependent terminals that require accounts and send your data to rem
 
 ### Natural Language to Shell Command Generation
 
-Stop memorizing obscure `find`, `awk`, or `sed` flags. Simply describe what you want to accomplish in plain English, and Terax translates it into the correct shell command. Whether you need to "find all `.log` files modified in the last 24 hours and compress them" or "show git commits from last week with their diffs," Terax generates accurate, context-aware commands instantly.
+Stop memorizing obscure ```find````, ````awk````, or ````sed```` flags. Simply describe what you want to accomplish in plain English, and Terax translates it into the correct shell command. Whether you need to "find all ````.log```` files modified in the last 24 hours and compress them" or "show git commits from last week with their diffs," Terax generates accurate, context-aware commands instantly.
 
 ### Inline AI Assistance (Explain, Debug, Suggest)
 
-Terax doesn't just generate commands — it helps you understand them. Hover over any command to get an AI-powered explanation of what it does. When a command fails, Terax analyzes the error output and suggests fixes. The AI side-panel supports multi-agent workflows, edit diffs, voice input, and even project memory via `TERAX.md` configuration files.
+Terax doesn't just generate commands — it helps you understand them. Hover over any command to get an AI-powered explanation of what it does. When a command fails, Terax analyzes the error output and suggests fixes. The AI side-panel supports multi-agent workflows, edit diffs, voice input, and even project memory via ````TERAX.md```` configuration files.
 
 ### Smart Autocomplete with Context Awareness
 
@@ -96,7 +97,7 @@ Before building from source, ensure you have the following installed: - **Rust**
 
 ### Clone and Build
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/crynta/terax-ai.git
 cd terax-ai
@@ -109,40 +110,40 @@ pnpm tauri dev
 
 # Build production bundle
 pnpm tauri build
-```
+`````
 
 ### Configure AI
 
 1. Open **Settings → AI** inside Terax.
 2. Select your preferred provider: OpenAI, Anthropic, Google, Groq, xAI, Cerebras, or any OpenAI-compatible endpoint.
 3. Paste your API key. For fully offline operation, point Terax to your **LM Studio** local inference endpoint.
-4. Keys are written to the OS keychain via `keyring` — they never touch disk or `localStorage`.
+4. Keys are written to the OS keychain via ````keyring```` — they never touch disk or ````localStorage````.
 
 ### Run Checks
 
-```bash
+`````bash
 # Frontend type-check
 pnpm exec tsc --noEmit
 
 # Rust lint
 cd src-tauri && cargo clippy
-```
+`````
 
 ## Comparison: Terax AI vs Alternatives
 
 | Feature | Terax AI | iTerm2 | Warp | Fig | GitHub Copilot CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Bundle Size** | ~7 MB | ~50 MB | ~150 MB | ~80 MB | ~20 MB |
 | **AI Integration** | Native side-panel | None | Cloud AI | Limited | CLI-only |
@@ -165,11 +166,11 @@ New developers often struggle with the steep learning curve of shell scripting. 
 
 ### Debugging Complex Pipelines
 
-When a multi-stage `grep | sed | awk` pipeline fails silently, Terax's error diagnosis pinpoints the issue. The AI analyzes stderr, suggests corrected versions, and explains why the original failed — saving hours of manual debugging.
+When a multi-stage ````grep | sed | awk```` pipeline fails silently, Terax's error diagnosis pinpoints the issue. The AI analyzes stderr, suggests corrected versions, and explains why the original failed — saving hours of manual debugging.
 
 ### DevOps and Infrastructure Management
 
-System administrators managing Kubernetes clusters, Docker containers, and cloud resources can use natural language to generate complex `kubectl`, `docker`, and AWS CLI commands. The AI side-panel maintains project context via `TERAX.md`, making repeated operations more intelligent.
+System administrators managing Kubernetes clusters, Docker containers, and cloud resources can use natural language to generate complex ````kubectl````, ````docker````, and AWS CLI commands. The AI side-panel maintains project context via ````TERAX.md````, making repeated operations more intelligent.
 
 ### Cross-Platform Development Workflow
 
@@ -181,7 +182,7 @@ Organizations with strict data privacy requirements can deploy Terax with **loca
 
 ## Technical Architecture Deep Dive
 
-Understanding what makes Terax special requires looking under the hood. The architecture is deliberately layered for performance and extensibility: **Rust Backend Layer** — The core PTY (Pseudo Terminal) management runs on Rust via `portable-pty`, providing native-speed shell integration without the memory bloat of Electron or Java-based terminals. Rust's ownership model eliminates an entire class of memory safety bugs that plague traditional terminal emulators.
+Understanding what makes Terax special requires looking under the hood. The architecture is deliberately layered for performance and extensibility: **Rust Backend Layer** — The core PTY (Pseudo Terminal) management runs on Rust via ````portable-pty````, providing native-speed shell integration without the memory bloat of Electron or Java-based terminals. Rust's ownership model eliminates an entire class of memory safety bugs that plague traditional terminal emulators.
 
 **Tauri 2 Framework** — Unlike Electron which bundles an entire Chromium instance (100+ MB), Tauri 2 uses the operating system's native WebView. On macOS that's WKWebView, on Windows it's WebView2, and on Linux it's WebKitGTK. This architectural choice alone explains the ~7 MB bundle size.
 
@@ -195,7 +196,7 @@ Understanding what makes Terax special requires looking under the hood. The arch
 
 **Junior Developers** who want to learn shell commands without memorizing man pages. The natural language interface lowers the barrier to CLI proficiency dramatically.
 
-**Senior Engineers** managing multiple cloud environments and complex deployment pipelines. The AI side-panel with project-specific `TERAX.md` memory becomes an invaluable context-aware assistant.
+**Senior Engineers** managing multiple cloud environments and complex deployment pipelines. The AI side-panel with project-specific ````TERAX.md```` memory becomes an invaluable context-aware assistant.
 
 **Security-Conscious Teams** in finance, healthcare, or government sectors where code cannot leave the premises. The LM Studio integration enables fully air-gapped AI assistance.
 
@@ -227,7 +228,7 @@ Understanding what makes Terax special requires looking under the hood. The arch
 
 ## Getting Started Tips
 
-To get the most out of Terax AI from day one: 1. **Create a `TERAX.md` file** in your project root with context about your tech stack, conventions, and frequently used commands. The AI will reference this for more relevant suggestions.
+To get the most out of Terax AI from day one: 1. **Create a ````TERAX.md```` file** in your project root with context about your tech stack, conventions, and frequently used commands. The AI will reference this for more relevant suggestions.
 2. **Configure multiple AI providers** — Set up both a cloud provider (for complex reasoning) and LM Studio (for quick, offline queries) so you can switch based on the task.
 3. **Enable shell integration scripts** — Allow Terax to inject its init scripts into your shell configuration for the richest context awareness.
 4. **Explore keyboard shortcuts** — Terax supports extensive shortcuts for tab switching, AI panel toggling, and file explorer navigation that dramatically speed up workflows.
@@ -239,7 +240,7 @@ To get the most out of Terax AI from day one: 1. **Create a `TERAX.md` file** in
 
 The Terax project is actively developed with a transparent roadmap available on GitHub. Upcoming features include enhanced multi-agent orchestration, deeper IDE integrations, plugin support for custom AI providers, and collaborative terminal sessions for pair programming. The maintainers are responsive to community feedback, with issues typically receiving responses within 48 hours.
 
-Contributing is straightforward: the codebase is well-organized with clear separation between the Rust backend (`src-tauri/`) and React frontend (`src/`). Whether you want to add a new theme, improve shell integration scripts, or implement a new AI provider adapter, there are good-first-issue labels to help newcomers get started.
+Contributing is straightforward: the codebase is well-organized with clear separation between the Rust backend (````src-tauri/````) and React frontend (````src/```). Whether you want to add a new theme, improve shell integration scripts, or implement a new AI provider adapter, there are good-first-issue labels to help newcomers get started.
 
 ## Conclusion
 
@@ -254,7 +255,7 @@ Ready to upgrade your terminal experience?
 🌐 **Explore more developer tools and insights:** [dibi8.com](https://dibi8.com)
 
 
----
+* * *
 *Related articles from dibi8 Tech Team:*
 - [Top 10 Open Source AI Tools for Developers in 2026](https://dibi8.com/blog/top-10-open-source-ai-tools-2026)
 - [Building Lightweight Desktop Apps with Tauri 2 and Rust](https://dibi8.com/blog/building-lightweight-desktop-apps-tauri-rust)
@@ -263,7 +264,7 @@ Ready to upgrade your terminal experience?
 > **About dibi8** — dibi8 is a technology blog focused on developer productivity, open source tools, and tech innovation. We are dedicated to discovering and sharing quality tools and best practices that genuinely improve development efficiency.
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.

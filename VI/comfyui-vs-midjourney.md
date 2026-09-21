@@ -26,6 +26,7 @@ faqs: - q: 'Đâu là giải pháp thay thế miễn phí, mã nguồn mở tố
     a: 'ComfyUI chạy 100% offline trên máy cục bộ, nên các tài sản được tạo ra không bao giờ rời khỏi thiết bị của bạn và các mô hình không bị hạn chế. Midjourney lưu trữ tài sản trên máy chủ cloud công khai và kiểm duyệt prompt cùng các từ bị cấm rất nghiêm ngặt.'
 ---
 
+
 {</* resource-info */>}
 
 # Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Miễn Phí
@@ -60,7 +61,7 @@ A: ComfyUI tối ưu cực kỳ khét. Card ghẻ 4GB VRAM cũng vọc được 
 **Q: Dùng Mac có đú được ComfyUI không?**
 A: Vô tư! Chip Apple Silicon (M1/M2/M3) được hỗ trợ tận răng thông qua framework MPS của PyTorch. Mac nào RAM càng to thì chạy càng sướng.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
@@ -133,7 +134,7 @@ Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Mi
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

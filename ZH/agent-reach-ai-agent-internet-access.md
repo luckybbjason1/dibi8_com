@@ -34,6 +34,7 @@ faqs: - q: 'Agent Reach 是什么，它能做什么？'
   - q: 'Agent Reach 与哪些 AI agent 和编程工具兼容？'
     a: 'Agent Reach 可与 Claude Code、GitHub Copilot、OpenAI Codex CLI、Cursor、Windsurf、Gemini CLI 以及任何兼容 MCP 的 agent 配合使用。每个平台都实现为一个独立、可替换的 channel 文件，因此你可以替换任意平台底层使用的工具，而不会被锁定。'---
 
+
 {</* resource-info */>}
 
 ## 问题：AI Agent 对互联网"视而不见"
@@ -59,17 +60,17 @@ Claude Code、Cursor、OpenAI Codex CLI 等 AI Agent 在写代码、分析文档
 
 ### 一行命令安装
 
-```
+````
 帮我安装 Agent Reach：https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md
-```
+`````
 
 就这一步，Agent 会完成剩下的一切：
 
-1. 通过 pip 安装 `agent-reach` 命令行工具
+1. 通过 pip 安装 ``agent-reach`` 命令行工具
 2. 检测并安装系统依赖（Node.js、gh CLI、mcporter）
 3. 通过 Exa MCP 配置搜索引擎（免费，无需 API Key）
 4. 注册 SKILL.md，让 Agent 知道每个平台该调用哪个工具
-5. 运行 `agent-reach doctor` 验证一切正常
+5. 运行 ``agent-reach doctor`` 验证一切正常
 
 ### 支持的平台
 
@@ -77,14 +78,14 @@ Claude Code、Cursor、OpenAI Codex CLI 等 AI Agent 在写代码、分析文档
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | **网页** | 阅读任意网页 | 无需配置 |
 | **YouTube** | 字幕提取 + 搜索 | 无需配置 |
 | **RSS** | 解析任意源 | 无需配置 |
-| **GitHub** | 读取仓库、搜索、创建 Issue | `gh auth login` |
+| **GitHub** | 读取仓库、搜索、创建 Issue | ````gh auth login```` |
 | **Twitter/X** | 读取推文、搜索、时间线 | Cookie 导出 |
 | **Reddit** | 搜索帖子、阅读评论 | Cookie 登录 |
 | **B站** | 字幕 + 搜索 | 服务器需代理 |
@@ -102,7 +103,7 @@ Claude Code、Cursor、OpenAI Codex CLI 等 AI Agent 在写代码、分析文档
 
 每个平台都作为独立渠道实现：
 
-```
+`````
 channels/
 ├── web.py          → Jina Reader（免费，无需 Key）
 ├── twitter.py      → twitter-cli（基于 Cookie）
@@ -116,7 +117,7 @@ channels/
 ├── wechat.py       → Exa + Camoufox
 ├── rss.py          → feedparser
 └── exa_search.py   → mcporter MCP
-```
+`````
 
 不喜欢某个工具？换掉对应的渠道文件即可。架构设计为可替换，而非锁定。
 
@@ -124,10 +125,10 @@ channels/
 
 Agent Reach 重视安全性：
 
-- **本地凭证存储**：Cookie 和 Token 保存在 `~/.agent-reach/config.yaml`，权限 600
+- **本地凭证存储**：Cookie 和 Token 保存在 ````~/.agent-reach/config.yaml````，权限 600
 - **完全开源**：所有代码和依赖都可审计
-- **安全模式**：`agent-reach install --safe` 预览更改但不应用
-- **试运行**：`agent-reach install --dry-run` 精确展示将要执行的操作
+- **安全模式**：````agent-reach install --safe```` 预览更改但不应用
+- **试运行**：````agent-reach install --dry-run```` 精确展示将要执行的操作
 - **建议使用专用账号**：Cookie 平台使用小号，降低封号风险
 
 ### 实际使用场景
@@ -151,14 +152,14 @@ Agent 会根据安装时注册的 SKILL.md 自动选择正确的工具。
 
 ## 开始使用
 
-```bash
+`````bash
 # 通过 npx 一键安装
 npx skills add Panniantong/Agent-Reach
 
 # 或手动克隆
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
-```
+````
 
 兼容 Claude Code、GitHub Copilot、OpenAI Codex CLI、Cursor、Windsurf、Gemini CLI 及任何 MCP 兼容的 Agent。
 
@@ -173,7 +174,7 @@ Agent Reach 代表了我们对 AI Agent 能力认知的转变。它不再将互�
 **Stars**：在 AI Agent 社区快速增长
 
 
----
+* * *
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -247,7 +248,7 @@ Agent Reach：让你的 AI Agent 一键连接互联网 represents an important s
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -278,15 +279,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -18,6 +18,7 @@ faqs: - q: 'OpenAI Codex CLI는 무료인가요?'
     a: '2026년에는 Claude Code의 엔터프라이즈 스토리가 더 성숙합니다 — Anthropic은 SOC 2 Type II, API 레이어 HIPAA, Claude Enterprise 프라이빗 VPC 배포를 제공합니다. OpenAI Codex CLI는 더 새롭고(2025년 11월 오픈소스화), 표준 OpenAI 엔터프라이즈 플랜에 통합되지만 CLI 자체에는 전용 엔터프라이즈 티어가 아직 없습니다. 규제 산업에서는 오늘 Claude Code가 이깁니다. OpenAI가 빠르게 따라잡고 있습니다.'
 ---
 
+
 # OpenAI Codex CLI vs Claude Code 2026: 어떤 에이전트가 더 좋은가?
 
 
@@ -29,7 +30,7 @@ faqs: - q: 'OpenAI Codex CLI는 무료인가요?'
 
 **Claude Code**가 맞는 경우: 200K+ LOC 모노레포에서 작업하며 1M 컨텍스트의 혜택을 받음, 2026년 가장 다듬어진 CLI 에이전트 UX를 원함, 엔터프라이즈급 컴플라이언스(SOC 2, HIPAA)가 필요, 또는 이미 Claude Pro/Max를 결제 중.
 
----
+* * *
 
 ## 정면 비교
 
@@ -49,10 +50,10 @@ faqs: - q: 'OpenAI Codex CLI는 무료인가요?'
 | **모델 가격** | gpt-5-codex 약 $1.50/1M 입력, $10/1M 출력 | Sonnet 4.6 약 $3/1M 입력, $15/1M 출력 |
 | **엔터프라이즈** | OpenAI Enterprise (CLI 전용 티어 없음) | Claude Enterprise, SOC 2, HIPAA, 프라이빗 VPC |
 | **최적 코드베이스 크기** | < 8만 LOC (400K 컨텍스트) | < 25만 LOC (1M 컨텍스트) |
-| **Hooks / 커스텀 명령** | `~/.codex/config.toml`로 설정 | 일급 (hooks, 슬래시 명령, agents) |
+| **Hooks / 커스텀 명령** | ```~/.codex/config.toml````로 설정 | 일급 (hooks, 슬래시 명령, agents) |
 | **멀티 파일 편집** | 가능 (샌드박스 확인) | 가능 (diff 미리보기 + 승인) |
 
----
+* * *
 
 ## OpenAI Codex CLI를 선택할 때
 
@@ -65,7 +66,7 @@ Codex CLI는 Apache 2.0입니다 — 리포지토리를 clone하고, 모든 라�
 ### 사용 사례 3: 긴밀한 OpenAI 생태계 통합
 팀이 이미 OpenAI(Assistants API, ChatGPT Enterprise, OpenAI o1으로 계획)에서 운영 중이라면 Codex CLI가 깔끔하게 들어맞습니다. 공유 API 키, 공유 사용량 대시보드, 공유 속도 제한. 이미 OpenAI 볼륨 할인을 약정했다면 순 비용이 더 저렴합니다.
 
----
+* * *
 
 ## Claude Code를 선택할 때
 
@@ -78,7 +79,7 @@ Claude Code의 1M 토큰 컨텍스트 윈도우는 킬러 기능입니다. 200K-
 ### 사용 사례 3: 엔터프라이즈 컴플라이언스
 Claude Enterprise는 SOC 2 Type II, HIPAA 적합 배포, 프라이빗 VPC 거주, 감사 로그를 제공합니다. 규제 산업(헬스케어, 금융, 공공 부문)에서는 오늘 Claude Code가 방어 가능한 선택입니다. OpenAI는 플랫폼 레이어에서 비슷하게 제공하지만 CLI 자체에는 아직 전용 엔터프라이즈 티어가 없습니다.
 
----
+* * *
 
 ## 가격 심층 분석
 
@@ -106,7 +107,7 @@ Claude Enterprise는 SOC 2 Type II, HIPAA 적합 배포, 프라이빗 VPC 거주
 $20 이하 일일 헤비 사용: **월 $20 정액 Claude Pro**가 이기기 어렵습니다 — 예측 가능한 비용, 놀라운 청구서 없음.
 무제한 헤비 사용: **월 $200 Claude Max 20x**가 규모에서 동등한 PAYG 지출을 능가합니다.
 
----
+* * *
 
 ## 성능 벤치마크 (주관적, 일상 사용 기반)
 
@@ -125,30 +126,30 @@ $20 이하 일일 헤비 사용: **월 $20 정액 Claude Pro**가 이기기 어�
 
 → Codex CLI는 샌드박스 안전과 오픈소스에서 이깁니다. Claude Code는 컨텍스트 집약 작업, UX 광택, 엔터프라이즈에서 이깁니다.
 
----
+* * *
 
 ## 마이그레이션 팁
 
 ### Codex CLI → Claude Code
-- 설치: `npm i -g @anthropic-ai/claude-code` 다음 `claude` 실행
+- 설치: ````npm i -g @anthropic-ai/claude-code```` 다음 ````claude```` 실행
 - Anthropic API 키를 가져오거나 Pro/Max에 로그인
-- Codex CLI `~/.codex/config.toml` hooks → Claude Code `~/.claude/settings.json` hooks
-- 샌드박스 확인 실행을 `--dangerously-skip-permissions`로 교체(일회용 VM에서만)
+- Codex CLI ````~/.codex/config.toml```` hooks → Claude Code ````~/.claude/settings.json```` hooks
+- 샌드박스 확인 실행을 ````--dangerously-skip-permissions````로 교체(일회용 VM에서만)
 - MCP 서버 재연결 — Claude Code는 MCP를 네이티브 지원하므로 도구를 보통 그대로 옮길 수 있습니다
 - 토큰당 비용은 더 높지만 컨텍스트 윈도우가 더 크다는 점 — Anthropic prompt caching을 설정하여 반복 읽기에서 60-90% 회수
 
 ### Claude Code → Codex CLI
-- 설치: `npm i -g @openai/codex` (또는 `brew install codex`)
-- 환경에 `OPENAI_API_KEY` 설정
-- 샌드박스 확인: `codex --sandbox`가 Seatbelt/Landlock 활성 상태를 보고해야 함
-- Claude Code hooks → `~/.codex/config.toml`로 매핑
+- 설치: ````npm i -g @openai/codex```` (또는 ````brew install codex````)
+- 환경에 ````OPENAI_API_KEY```` 설정
+- 샌드박스 확인: ````codex --sandbox````가 Seatbelt/Landlock 활성 상태를 보고해야 함
+- Claude Code hooks → ````~/.codex/config.toml```로 매핑
 - 슬래시 명령과 skills는 1:1로 변환되지 않습니다 — 중요한 것은 Codex의 도구 레이어에서 호출 가능한 셸 스크립트로 다시 만드세요
 - 컨텍스트 윈도우가 더 작음을 예상하세요 — 작업당 어떤 파일을 로드할지 더 규율 있게
 
 ### 셀프 호스팅 노트
 두 CLI를 실제 코드베이스에서 결정하려고 실행 중인가요? {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet에서 $200 무료 크레딧" >}}으로 spinning up하세요 — $12/월짜리 일반 droplet이 두 CLI를 편안히 돌리고, 무인 에이전트 실행을 위한 격리된 staging 환경을 유지할 수 있습니다. 무료 평가 2개월, 그 후 $12/월. 두 개의 병렬 로컬 환경을 유지하는 것보다 저렴하며, 결정 후 인프라를 그대로 보유할 수 있습니다.
 
----
+* * *
 
 ## 시도해 볼 만한 대안
 
@@ -157,7 +158,7 @@ Codex CLI도 Claude Code도 맞지 않다면: - **[Cursor vs Claude Code](https:
 - **[Claude Code vs Aider](https://dibi8.com/kr/vs/claude-code-vs-aider/)** — 오픈소스 CLI 에이전트 비교
 - **[cc-switch](https://dibi8.com/kr/resources/dev-utils/cc-switch-claude-code-api-router/)** — Claude Code를 더 저렴한 프로바이더로 라우팅, 60-80% 비용 절감
 
----
+* * *
 
 ## dibi8의 견해
 
@@ -171,13 +172,13 @@ Codex CLI도 Claude Code도 맞지 않다면: - **[Cursor vs Claude Code](https:
 
 2026년 대부분의 개발자를 위한 정직한 답변: 둘 다 일주일 사용해 보고, UX가 집처럼 느껴지는 쪽을 유지하세요.
 
----
+* * *
 
 ## FAQ
 
 (faqs frontmatter로 렌더링 — 인라인 표시 + AIO용 JSON-LD)
 
----
+* * *
 
 ## 더 읽기
 
@@ -222,7 +223,7 @@ Codex CLI도 Claude Code도 맞지 않다면: - **[Cursor vs Claude Code](https:
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -232,7 +233,7 @@ Codex CLI도 Claude Code도 맞지 않다면: - **[Cursor vs Claude Code](https:
 - [claude-code-vs-aider](openai-codex-cli-vs-claude-code)
 - [cursor-vs-claude-code](openai-codex-cli-vs-claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

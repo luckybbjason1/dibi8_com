@@ -7,6 +7,7 @@ aliases:
   - /posts/open-source-llm-ranking-guide/
 ---
 
+
 # 오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교
 
 
@@ -166,8 +167,8 @@ Gemma는 동급 크기에서 최고 수준의 성능을 보여주며, 특히 소
 
 ## 모델 다운로드 및 실행 방법
 
-- **Hugging Face Hub**: `transformers` 라이브러리로 직접 로드
-- **Ollama**: `ollama run llama3.1` 명령으로 로컬 실행
+- **Hugging Face Hub**: ```transformers```` 라이브러리로 직접 로드
+- **Ollama**: ````ollama run llama3.1``` 명령으로 로컬 실행
 - **GPT4All / LM Studio**: GUI 기반 로컬 실행 도구
 - **클우드**: RunPod, Together AI에서 GPU 인스턴스로 배포
 
@@ -216,7 +217,7 @@ FP16 기준으로 140GB VRAM이 필요합니다. 4비트 양자화 시 약 40GB�
 - [Qwen Hugging Face](https://huggingface.co/Qwen)
 - [DeepSeek 공식 웹사이트](https://deepseek.com)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -288,7 +289,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

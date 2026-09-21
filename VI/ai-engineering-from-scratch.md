@@ -20,6 +20,7 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
+
 ## TL;DR
 
 Kỹ Thuật AI Từ Đầu là một chương trình giảng dạy toàn diện, thực hành để xây dựng hệ thống AI cấp sản xuất. Với 32.771 sao, nó bao gồm toàn bộ stack: tinh chỉnh LLM, đường ống RAG, khung tác nhân, cơ sở dữ liệu vector và triển khai đám mây. Dự án cung cấp các ví dụ mã thực tiễn, không phải trừu tượng lý thuyết.
@@ -38,7 +39,7 @@ Chương trình giảng dạy được tổ chức thành các mô-đun tiến b
 6. **Khung Tác Nhân** — Sử dụng công cụ, lập kế hoạch, bộ nhớ và điều phối đa tác nhân
 7. **Sản Xuất** — Triển khai, giám sát, mở rộng và tối ưu chi phí
 
-```bash
+````bash
 # Clone kho lưu trữ
 curl -sL "https://github.com/rohitg00/ai-engineering-from-scratch/archive/refs/heads/main.zip" -o /tmp/ai-eng.zip
 unzip -q /tmp/ai-eng.zip -d /tmp
@@ -46,7 +47,7 @@ ls /tmp/ai-engineering-from-scratch-main/
 
 # Kiểm tra cấu trúc mô-đun
 find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
-```
+`````
 
 ## Cách Hoạt Động: Đường Ống Học Tập
 
@@ -55,7 +56,7 @@ Dự án theo dõi phương pháp luận "xây dựng nó, phá vỡ nó, sửa 
 - **Dữ liệu thực** — Huấn luyện trên các tập dữ liệu thực, không phải ví dụ toy
 - **Triển khai sản xuất** — Các mô-đun cuối cùng bao gồm phục vụ, giám sát và mở rộng
 
-```bash
+`````bash
 # Cấu trúc mô-đun điển hình
 module-name/
 ├── README.md          # Lý thuyết và mục tiêu
@@ -65,13 +66,13 @@ module-name/
 │   ├── train.py       # Vòng lặp huấn luyện
 │   └── deploy.py      # Mã phục vụ
 └── tests/             # Kiểm thử đơn vị và tích hợp
-```
+`````
 
 Nhận thức sư phạm then chốt: bạn không thể sử dụng hiệu quả một khung AI cho đến khi bạn hiểu nó trừu tượng hóa cái gì. Bằng cách triển khai transformer từ đầu, bạn phát triển trực giác về tại sao LoRA hoạt động, tại sao RAG cải thiện độ chính xác và tại sao lập kế hoạch tác nhân quan trọng.
 
 ## Cài Đặt & Thiết Lập
 
-Dự án yêu cầu Python 3.10+ và phụ thuộc vào các thư viện ML tiêu chuẩn: ```bash
+Dự án yêu cầu Python 3.10+ và phụ thuộc vào các thư viện ML tiêu chuẩn: `````bash
 # Clone kho lưu trữ
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
@@ -86,25 +87,25 @@ pip install -r requirements.txt
 # Xác minh cài đặt
 python3 -c "import torch; print(f'PyTorch {torch.__version__}')"
 python3 -c "import transformers; print(f'Transformers {transformers.__version__}')"
-```
+`````
 
 ### Tăng Tốc GPU
 
-Đối với các mô-đun tinh chỉnh và suy luận, tăng tốc GPU được khuyến nghị: ```bash
+Đối với các mô-đun tinh chỉnh và suy luận, tăng tốc GPU được khuyến nghị: `````bash
 # Kiểm tra khả dụng CUDA
 python3 -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
 
 # Cài đặt PyTorch bật CUDA (nếu cần)
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Phương Án Thay Thế: Chạy Không Cần GPU
 
-Tất cả các mô-đun hoạt động trên CPU, mặc dù tinh chỉnh và suy luận quy mô lớn sẽ chậm đáng kể: ```bash
+Tất cả các mô-đun hoạt động trên CPU, mặc dù tinh chỉnh và suy luận quy mô lớn sẽ chậm đáng kể: `````bash
 # Buộc chế độ CPU
 export CUDA_VISIBLE_DEVICES=""
 python3 src/train.py --device cpu
-```
+`````
 
 ## Tích Hợp Với Các Công Cụ AI Phổ Biến
 
@@ -117,7 +118,7 @@ Kỹ Thuật AI Từ Đầu bổ sung, chứ không thay thế, các công cụ 
 | **vLLM** | Mô-đun 7 (Sản xuất) | Phục vụ thông lượng cao |
 | **Ollama** | Mô-đun 3 (Transformer) | Kiểm tra mô hình cục bộ |
 
-```bash
+`````bash
 # Ví dụ: Tinh chỉnh mô hình với LoRA và triển khai với vLLM
 # Bước 1: Tinh chỉnh (Mô-đun 4)
 python3 src/fine_tune.py --model meta-llama/Llama-3.1-8B --lora_rank 16
@@ -130,11 +131,11 @@ pip install vllm
 python3 -m vllm.entrypoints.api_server \
   --model ./lora_adapter_merged \
   --port 8000
-```
+`````
 
 ## Số Liệu So Sánh: Từ Đầu So Với Chỉ Học Khung
 
-Học sinh hoàn thành toàn bộ chương trình giảng dạy Kỹ Thuật AI Từ Đầu thể hiện kết quả đo lường được tốt hơn so với những người học chỉ qua khung: ```
+Học sinh hoàn thành toàn bộ chương trình giảng dạy Kỹ Thuật AI Từ Đầu thể hiện kết quả đo lường được tốt hơn so với những người học chỉ qua khung: `````
 Chỉ Số                        | Chỉ Khung     | Từ Đầu
 ------------------------------|---------------|-------------
 Thời Gian Gỡ Lỗi (trung bình) | 4,2 giờ       | 1,1 giờ
@@ -143,7 +144,7 @@ Tối Ưu Hiệu Năng              | Mức bề mặt    | Hiểu biết sâu s
 Cải Thiện Chất Lượng RAG      | Dựa trên template | Thuật toán
 Phục Hồi Thất Bại Tác Nhân    | Khởi động lại | Phân tích gốc rễ
 Tỷ Lệ Triển Khai Sản Xuất     | 23%           | 67%
-```
+`````
 
 Dữ liệu benchmark đến từ việc theo dõi kết quả học sinh trong 18 tháng trên 3 nhóm. Nhóm từ đầu thể hiện gỡ lỗi nhanh hơn 3,8 lần và tỷ lệ triển khai sản xuất cao gấp gần 3 lần.
 
@@ -151,7 +152,7 @@ Dữ liệu benchmark đến từ việc theo dõi kết quả học sinh trong 
 
 Khi bạn đã tự triển khai backpropagation, gỡ lỗi một vòng huấn luyện không phải là đoán hàm PyTorch nào hoạt động sai — đó là hiểu dòng gradient. Khi bạn đã xây dựng chỉ mục cơ sở dữ liệu vector từ đầu, tối ưu hóa truy xuất không phải là điều chỉnh siêu tham số ngẫu nhiên — đó là hiểu sự đánh đổi giữa recall và độ trễ.
 
-```python
+`````python
 # Ví dụ: Cơ chế Attention từ đầu
 # Đây là những gì học sinh triển khai trong Mô-đun 3
 import torch
@@ -169,13 +170,13 @@ def attention_from_scratch(Q, K, V, mask=None): """Multi-head attention được
     output = torch.matmul(attention_weights, V)
     
     return output, attention_weights
-```
+`````
 
 ## Sử Dụng Nâng Cao: Chiến Lược Huấn Luyện Tùy Chỉnh
 
 Ngoài các mô-đun được cung cấp, các chuyên gia sử dụng kho lưu trữ làm nền tảng cho các chiến lược huấn luyện tùy chỉnh: ### Tinh Chỉnh Nhận Thức Lượng Hóa
 
-```bash
+`````bash
 # QLoRA với lượng hóa 4-bit
 python3 src/qlora_train.py \
   --model meta-llama/Llama-3.1-8B \
@@ -185,11 +186,11 @@ python3 src/qlora_train.py \
   --dataset custom_dataset.jsonl \
   --epochs 3 \
   --batch_size 4
-```
+`````
 
 ### Tối Ưu Hóa RAG Nhiều Giai Đoạn
 
-```python
+`````python
 # Giai đoạn 1: Phân đoạn tài liệu với kích thước tối ưu
 from rag_pipeline import DocumentChunker
 
@@ -214,11 +215,11 @@ from reranker import CrossEncoderReranker
 reranker = CrossEncoderReranker("ms-marco-MiniLM-L-12-v2")
 results = index.search("truy vấn của bạn ở đây", top_k=20)
 reranked = reranker.rank("truy vấn của bạn ở đây", results)
-```
+`````
 
 ### Chiến Lược Huấn Luyện Phân Tán
 
-Đối với các mô hình lớn hơn, huấn luyện phân tán trên nhiều GPU là cần thiết: ```bash
+Đối với các mô hình lớn hơn, huấn luyện phân tán trên nhiều GPU là cần thiết: `````bash
 # Huấn luyện đa GPU với DeepSpeed
 pip install deepspeed
 
@@ -231,20 +232,20 @@ deepspeed --num_gpus=4 src/train.py \
 
 # Giám sát huấn luyện với TensorBoard
 tensorboard --logdir ./runs/
-```
+`````
 
-```python
+`````python
 # Thiết lập FSDP (Fully Sharded Data Parallel)
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from torch.distributed.fsdp.wrap import size_based_auto_wrap_policy
 
 policy = size_based_auto_wrap_policy(min_params=1e8)
 model = FSDP(model, auto_wrap_policy=policy, cpu_offload=Offload(cpu=True))
-```
+`````
 
 ### Khung Đánh Giá
 
-Đo lường chất lượng mô hình yêu cầu đánh giá có hệ thống: ```python
+Đo lường chất lượng mô hình yêu cầu đánh giá có hệ thống: `````python
 # Đường ống đánh giá tự động
 from eval_framework import Evaluator
 
@@ -262,11 +263,11 @@ results = evaluator.evaluate(
 # Xuất kết quả
 results.to_csv("evaluation_results.csv")
 results.plot_confusion_matrix()
-```
+`````
 
 ### Hệ Thống Bộ Nhớ Tác Nhân
 
-```python
+`````python
 # Triển khai bộ nhớ tác nhân vĩnh viễn
 from agent_memory import EpisodicMemory, SemanticMemory
 
@@ -279,7 +280,7 @@ episodic.store(action="query", result="answer", timestamp="2026-06-15")
 # Truy xuất bộ nhớ liên quan
 relevant = episodic.retrieve(context="cuộc trò chuyện trước về RAG")
 similar_semantic = semantic.query("Tối ưu hóa RAG", top_k=5)
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -308,14 +309,14 @@ Kỹ Thuật AI Từ Đầu rất toàn diện nhưng có các khoảng trống 
 
 5. **Mô hình đa phương thức** — Chương trình giảng dạy tập trung vào văn bản. Các mô hình ngôn ngữ-hình ảnh và âm thanh không được bao gồm.
 
-```bash
+`````bash
 # Đánh giá nhanh: cái này có phù hợp với bạn không?
 # ✅ Bạn biết cơ bản Python → CÓ
 # ✅ Bạn muốn hiểu nội thất AI → CÓ
 # ✅ Bạn muốn xây dựng hệ thống AI sản xuất → CÓ
 # ✅ Bạn là người mới hoàn toàn về lập trình → KHÔNG (hãy bắt đầu với Python cơ bản trước)
 # ✅ Bạn chỉ cần gọi API, không cần xây dựng mô hình → XEM XÉT phương án thay thế
-```
+`````
 
 ## Câu Hỏi Thường Gặp
 
@@ -353,15 +354,15 @@ Với 32.771 sao, nó đã trở thành nguồn tài nguyên được ưa chuộ
 
 **Bắt đầu xây dựng ngay hôm nay:**
 
-```bash
+`````bash
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
 pip install -r requirements.txt
-```
+````
 
 **Liên kết nội bộ**: [So sánh khung tác nhân AI](https://dibi8.com/ai-tools/oh-my-pi) · [Học kỹ thuật prompt](https://dibi8.com/dev-utils/taste-skill)
 
----
+* * *
 
 **Nguồn & Đọc Thêm**: - Kho lưu trữ GitHub: https://github.com/rohitg00/ai-engineering-from-scratch
 - Tài liệu PyTorch: https://pytorch.org/docs/
@@ -396,7 +397,7 @@ pip install -r requirements.txt
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -406,6 +407,6 @@ pip install -r requirements.txt
 - [9router-smart-llm-proxy-token-saver-free-coding](ai-engineering-from-scratch)
 - [ai-engineering-from-scratch](ai-engineering-from-scratch)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

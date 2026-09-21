@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/zenml-mlops-pipeline-framework/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：你的 ML 流水线已经崩溃了
@@ -52,7 +53,7 @@ ZenML 的架构围绕四个关键抽象概念展开，这些概念直接对应�
 **流水线**是一个装饰过的 Python 函数，将多个步骤链接在一起。ZenML 将此函数编译为 DAG，验证依赖关系，并在你选择的编排器上执行。
 
 ### 步骤（Steps）
-**步骤**是最小的工作单元 —— 一个执行单个任务的 Python 函数（加载数据、预处理、训练、评估）。步骤使用 `@step` 装饰，并通过类型注解声明其输入/输出。
+**步骤**是最小的工作单元 —— 一个执行单个任务的 Python 函数（加载数据、预处理、训练、评估）。步骤使用 ```@step```` 装饰，并通过类型注解声明其输入/输出。
 
 ### 制品（Artifacts）
 每个步骤的输出都是一个**制品** —— 一个类型化的、版本化的对象，存储在制品仓库中。制品可以是数据集（pandas DataFrame、NumPy 数组）、模型（sklearn、PyTorch、TensorFlow）或自定义对象。ZenML 自动为每个制品序列化、版本控制和追踪血缘关系。
@@ -77,7 +78,7 @@ ZenML 的架构围绕四个关键抽象概念展开，这些概念直接对应�
 
 ### 步骤 1：安装 ZenML
 
-```bash
+`````bash
 python -m venv zenml-env
 source zenml-env/bin/activate  # Linux/Mac
 # zenml-env\Scripts\activate  # Windows
@@ -88,23 +89,23 @@ pip install zenml
 # 验证安装
 zenml version
 # Output: ZenML version 0.80.0
-```
+`````
 
 ### 步骤 2：初始化 ZenML
 
-```bash
+`````bash
 # 初始化 ZenML 仓库（创建 .zen 目录）
 zenml init
 
 # 检查状态
 zenml status
-```
+`````
 
-`zenml init` 命令会创建一个 `.zen` 配置目录。这类似于 `git init` —— 它标记你的 ZenML 项目根目录并在本地存储技术栈配置。
+````zenml init```` 命令会创建一个 ````.zen```` 配置目录。这类似于 ````git init```` —— 它标记你的 ZenML 项目根目录并在本地存储技术栈配置。
 
 ### 步骤 3：注册本地技术栈
 
-```bash
+`````bash
 # 注册本地制品仓库
 zenml artifact-store register local_store --flavor=local --path=./artifacts
 
@@ -119,13 +120,13 @@ zenml stack register local_stack \
 
 # 验证当前技术栈
 zenml stack describe
-```
+`````
 
 ### 步骤 4：运行你的第一个流水线
 
-创建一个名为 `first_pipeline.py` 的文件：
+创建一个名为 ````first_pipeline.py```` 的文件：
 
-```python
+`````python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -174,13 +175,13 @@ def training_pipeline(): """End-to-end ML training pipeline."""
 
 if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
-```
+`````
 
 运行：
 
-```bash
+`````bash
 python first_pipeline.py
-```
+`````
 
 你应该能看到显示每个步骤按顺序执行的输出，最终模型精度约为 **0.9667**。ZenML 已自动追踪了每个制品，缓存了中间输出，并记录了运行历史。
 
@@ -191,7 +192,7 @@ ZenML 的强大之处在于其集成生态系统。以下是 ML 生命周期中�
 ### 编排器
 ZenML 支持多种编排器以满足不同规模需求：
 
-```bash
+`````bash
 # 安装 Airflow 集成
 pip install zenml[airflow]
 
@@ -202,13 +203,13 @@ zenml orchestrator register airflow_orchestrator \
 
 # 切换到 Airflow 技术栈
 zenml stack update local_stack -o airflow_orchestrator
-```
+`````
 
 其他编排器：**Kubernetes**、**GitHub Actions**、**AzureML**、**Vertex AI**、**SageMaker**、**Databricks**、**Kubeflow**。
 
 ### 使用 MLflow 进行实验追踪
 
-```bash
+`````bash
 # 安装 MLflow 集成
 pip install zenml[mlflow]
 
@@ -229,11 +230,11 @@ zenml model-registry register mlflow_registry \
 zenml stack update local_stack \
   -e mlflow_tracker \
   -r mlflow_registry
-```
+`````
 
 现在修改你的流水线以记录实验：
 
-```python
+`````python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
@@ -265,11 +266,11 @@ def register_model(
         print(f"Model registered: {model_version}")
         return "iris-classifier"
     return "below-threshold"
-```
+`````
 
 ### 使用 S3 进行制品存储
 
-```bash
+`````bash
 # 注册 S3 制品仓库
 zenml artifact-store register s3_store \
   --flavor=s3 \
@@ -279,11 +280,11 @@ zenml artifact-store register s3_store \
 
 # 更新技术栈以使用 S3
 zenml stack update local_stack -a s3_store
-```
+`````
 
 ### 用于云端执行的容器注册表
 
-```bash
+`````bash
 # 注册 Docker 容器注册表
 zenml container-registry register docker_registry \
   --flavor=default \
@@ -292,22 +293,22 @@ zenml container-registry register docker_registry \
 # 构建并运行容器化流水线
 zenml stack update local_stack -c docker_registry
 zenml pipeline run first_pipeline.py --build-docker
-```
+`````
 
 ### Weights & Biases 集成
 
-```bash
+`````bash
 pip install zenml[wandb]
 
 zenml experiment-tracker register wandb_tracker \
   --flavor=wandb \
   --api_key=$WANDB_API_KEY \
   --project_name="zenml-mlops"
-```
+`````
 
 ### 完整技术栈配置示例
 
-```yaml
+`````yaml
 # stack.yaml —— 将完整的 MLOps 技术栈定义为代码
 stack_name: production_stack
 components: orchestrator: flavor: kubernetes
@@ -325,13 +326,13 @@ components: orchestrator: flavor: kubernetes
   step_operator: flavor: sagemaker
     configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
-```
+`````
 
 注册此技术栈：
 
-```bash
+`````bash
 zenml stack register -f stack.yaml --set
-```
+`````
 
 ## 基准测试与真实案例
 
@@ -341,15 +342,15 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 
 | 公司 | 行业 | 规模 | 技术栈 | 成果 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ML6（咨询公司） | 各行业 | **每月 500+ 流水线** | Kubernetes + MLflow + S3 | 流水线设置时间减少 60% |
 | Renteaze | 房地产科技 | 12 个生产模型 | 本地 → Vertex AI | 部署时间：2 周 → 2 天 |
@@ -362,13 +363,13 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 
 | 指标 | 本地模式 | Airflow | Kubernetes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动时间 | **1.2s** | 8.5s | 45s |
 | 流水线开销 | **0.3s** | 2.1s | 12s |
@@ -381,21 +382,21 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 
 ### 扩展特性
 
-```
+`````
 # ZenML 流水线执行时间 vs. 步骤数
 # 在 DigitalOcean 8 vCPU / 32GB 云服务器上测试
 
 步骤数 | 本地 (s) | Kubernetes (s)
 
----
+* * *
 |
----
+* * *
 |---
   5   |    1.5    |     52
   10  |    2.8    |     68
   20  |    5.2    |     95
   50  |   11.5    |    175
-```
+`````
 
 本地模式的线性扩展使其非常适合开发。Kubernetes 模式有固定开销（~45s），但对于受益于分布式资源的计算密集型步骤扩展性更好。
 
@@ -405,7 +406,7 @@ ZenML 已在各行业的生产环境中使用。以下是真实的部署模式�
 
 当训练需要 GPU 时，将特定步骤卸载到云实例，无需更改流水线代码：
 
-```python
+`````python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
@@ -423,11 +424,11 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """通
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model
-```
+`````
 
 ### 流水线调度
 
-```python
+`````python
 from zenml.pipelines import Schedule
 
 # 每天凌晨 3 点 UTC 运行流水线
@@ -438,13 +439,13 @@ daily_schedule = Schedule(
 )
 
 zenml.pipeline_schedule register daily_schedule
-```
+`````
 
 ### 缓存与可复现性
 
 ZenML 的缓存系统是自动的且制品感知的。如果输入和步骤代码未更改，ZenML 会复用缓存的输出：
 
-```python
+`````python
 @step(enable_cache=True)  # 默认行为
 def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """仅在输入 df 或此函数更改时重新运行。"""
     # 耗时 30 分钟的繁重转换
@@ -452,11 +453,11 @@ def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """仅在输入 d
 
 # 需要时强制重新运行
 zenml pipeline run training_pipeline.py --no-cache
-```
+`````
 
 ### 密钥管理
 
-```bash
+`````bash
 # 注册数据库凭据的密钥
 zenml secrets-manager register aws_secrets \
   --flavor=aws \
@@ -469,11 +470,11 @@ zenml secrets-manager secret register db_credentials \
   --schema=username_password \
   --username=ml_user \
   --password=$DB_PASSWORD
-```
+`````
 
 在步骤中访问：
 
-```python
+`````python
 from zenml.client import Client
 
 @step
@@ -489,11 +490,11 @@ def load_from_database() -> pd.DataFrame: """使用 ZenML 密钥管理器的凭�
     )
     df = pd.read_sql("SELECT * FROM training_data", conn)
     return df
-```
+`````
 
 ### CI/CD 集成
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
 on: push: branches: [main]
@@ -518,21 +519,21 @@ jobs: train: runs-on: ubuntu-latest
         run: |
           curl -X POST $SLACK_WEBHOOK \
             -d '{"text":"Pipeline failed! Check ZenML dashboard."}'
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | ZenML | Kubeflow Pipelines | Metaflow | MLflow Pipelines |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **流水线抽象** | Python 装饰器 | YAML + Python | Python 装饰器 | 基于 YAML |
 | **编排器集成** | **20+** (Airflow, K8s 等) | 仅 Kubernetes | AWS Step Functions, 本地 | 有限 |
@@ -569,22 +570,22 @@ ZenML 不是银弹。在投入之前，需要了解以下权衡：
 ## 常见问题解答
 
 **Q：我可以将 ZenML 与现有的 Jupyter Notebook 一起使用吗？**
-A：可以，但需要重构。你将单元格逻辑提取到 `@step` 装饰的函数中，并将它们组合到 `@pipeline` 函数中。ZenML 提供了 `zenml notebook` 命令来帮助完成此迁移。Notebook 内核仍可用于开发和调试。
+A：可以，但需要重构。你将单元格逻辑提取到 ````@step```` 装饰的函数中，并将它们组合到 ````@pipeline```` 函数中。ZenML 提供了 ````zenml notebook```` 命令来帮助完成此迁移。Notebook 内核仍可用于开发和调试。
 
 **Q：ZenML 如何处理数据版本控制？**
-A：每个步骤产生的制品都使用内容哈希自动进行版本控制。制品仓库（本地、S3、GCS）保留所有版本。你可以通过 `Client().get_artifact_version(name, version)` 检索任何历史制品。这为你提供了完整的可复现性，无需手动数据管理。
+A：每个步骤产生的制品都使用内容哈希自动进行版本控制。制品仓库（本地、S3、GCS）保留所有版本。你可以通过 ````Client().get_artifact_version(name, version)```` 检索任何历史制品。这为你提供了完整的可复现性，无需手动数据管理。
 
 **Q：ZenML 适合实时推理流水线吗？**
 A：ZenML 主要设计用于批量训练和批量推理流水线。对于实时服务，使用 ZenML 训练，注册模型，然后通过 [KServe](dibi8-internal-link)、[Seldon](dibi8-internal-link) 或 [BentoML](dibi8-internal-link) 部署。ZenML 为这些工具提供内置的部署集成。
 
 **Q：如何部署 ZenML 服务器以供团队协作？**
-A：运行 `zenml deploy` 在 AWS、GCP、Azure 上部署 ZenML 服务器，或使用 Helm chart 进行自托管 Kubernetes 部署。对于在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上快速搭建团队环境，部署一个云服务器并运行 `zenml up --docker` —— 这会在几分钟内通过 Docker Compose 启动 ZenML 服务器。
+A：运行 ````zenml deploy```` 在 AWS、GCP、Azure 上部署 ZenML 服务器，或使用 Helm chart 进行自托管 Kubernetes 部署。对于在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上快速搭建团队环境，部署一个云服务器并运行 ````zenml up --docker```` —— 这会在几分钟内通过 Docker Compose 启动 ZenML 服务器。
 
 **Q：流水线步骤失败时会发生什么？**
-A：ZenML 支持可配置的重试逻辑（`@step(retry=3)`）。失败的运行会在仪表板中记录完整的堆栈跟踪。你可以使用 `zenml pipeline run --from-failure` 从失败的步骤恢复，这会复用成功上游步骤的缓存输出。
+A：ZenML 支持可配置的重试逻辑（````@step(retry=3)````）。失败的运行会在仪表板中记录完整的堆栈跟踪。你可以使用 ````zenml pipeline run --from-failure```` 从失败的步骤恢复，这会复用成功上游步骤的缓存输出。
 
 **Q：我可以在不使用 Docker 的情况下使用 ZenML 吗？**
-A：完全可以。默认的本地技术栈完全不需要 Docker。Docker 仅在远程编排器（Kubernetes、Docker 模式下的 Airflow）上需要用于容器化执行。本地开发和测试除了 `pip install zenml` 之外不需要任何其他东西。
+A：完全可以。默认的本地技术栈完全不需要 Docker。Docker 仅在远程编排器（Kubernetes、Docker 模式下的 Airflow）上需要用于容器化执行。本地开发和测试除了 ````pip install zenml``` 之外不需要任何其他东西。
 
 ## 结论：从 Notebook 混乱到生产级流水线
 
@@ -643,4 +644,4 @@ ZenML 解决了机器学习中最常见的失败模式：从"在我的笔记本�
   }
 }
 </script>
----
+* * *

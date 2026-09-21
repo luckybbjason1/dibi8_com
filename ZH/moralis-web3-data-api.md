@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/moralis-web3-data-api/-
 ---
 
+
 {{</* resource-info */>}}
 
 区块链数据是每个去中心化应用的生命线。无论您是在构建DeFi仪表板、NFT市场、钱包追踪器还是交易机器人，您的应用都需要快速、可靠地访问链上数据。在2026年，Moralis仍然是最广泛采用的Web3数据API，为超过100,000个去中心化应用提供跨10多条EVM兼容链的实时区块链数据。
@@ -33,7 +34,7 @@ Moralis消除了运行自有区块链节点、索引层和数据管道的复杂�
 > **联盟营销披露：** 本文包含[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)的联盟链接。当您通过我们的链接注册时，我们可能会赚取佣金，而不会给您带来额外费用。
 
 
----
+* * *
 ## Moralis是什么
 
 Moralis是一个统一的Web3数据API和开发平台，为开发者提供对区块链数据的实时访问。自2021年成立以来，它已经发展成为超过100,000个DApp的基础设施支柱，从小型独立项目到企业级DeFi协议。Moralis通过干净、文档完善的REST API和SDK来处理索引、规范化和提供区块链数据的繁重工作。
@@ -50,7 +51,7 @@ Moralis提供几个关键的API组：
 - **Auth API** — Web3认证和用户会话管理
 
 
----
+* * *
 ## 为什么2026年选择Moralis
 
 Web3基础设施格局已经显著成熟，但Moralis仍然保持领先，有以下几个令人信服的原因。
@@ -65,7 +66,7 @@ Web3基础设施格局已经显著成熟，但Moralis仍然保持领先，有以
 
 **丰富的SDK生态系统。** 适用于JavaScript、Python和Unity的官方SDK允许您在首选环境中集成Moralis。React hooks和Next.js绑定进一步加速前端开发。
 
----
+* * *
 
 ## 设置您的Moralis账户
 
@@ -73,29 +74,29 @@ Web3基础设施格局已经显著成熟，但Moralis仍然保持领先，有以
 
 **第一步：** 访问admin.moralis.io的Moralis管理控制台并注册一个新账户。您可以使用电子邮件地址或连接Web3钱包。
 
-**第二步：** 登录后，从仪表板创建一个新项目。给它一个描述性名称，如`defi-dashboard`或`nft-tracker`。
+**第二步：** 登录后，从仪表板创建一个新项目。给它一个描述性名称，如```defi-dashboard````或````nft-tracker````。
 
 **第三步：** 导航到API密钥部分并复制您的默认API密钥。Moralis采用分层定价模型。免费层每月包含大量API调用，足以满足开发和小型生产应用的需求。
 
 **第四步：** 使用环境变量保护您的API密钥。切勿将API密钥直接提交到源代码仓库。
 
-```bash
+`````bash
 # .env
 MORALIS_API_KEY=your_api_key_here
-```
+`````
 
-使用`dotenv`或运行时内置的环境变量支持在您的应用中加载此变量。
+使用````dotenv````或运行时内置的环境变量支持在您的应用中加载此变量。
 
-```javascript
+`````javascript
 // server.js
 require(dotenv).config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
   throw new Error('MORALIS_API_KEY is not defined');
 }
-```
+`````
 
----
+* * *
 
 ## 安装Moralis SDK
 
@@ -103,11 +104,11 @@ Moralis为多种编程语言和框架提供官方SDK。选择与您的技术栈�
 
 ### JavaScript / Node.js
 
-```bash
+`````bash
 npm install moralis
-```
+`````
 
-```javascript
+`````javascript
 // 在Node.js应用中初始化Moralis
 const Moralis = require(moralis).default;
 
@@ -116,15 +117,15 @@ await Moralis.start({
 });
 
 console.log('Moralis SDK initialized successfully');
-```
+`````
 
 ### Python
 
-```bash
+`````bash
 pip install moralis
-```
+`````
 
-```python
+`````python
 # 在Python中初始化Moralis
 from moralis import evm_api
 import os
@@ -133,13 +134,13 @@ api_key = os.environ.get(MORALIS_API_KEY)
 if not api_key: raise ValueError("MORALIS_API_KEY environment variable is required")
 
 print("Moralis Python SDK ready")
-```
+`````
 
 ### Unity
 
 对于Unity开发者，Moralis通过Unity包管理器提供专用SDK包。从官方Moralis GitHub仓库导入包，然后在游戏启动脚本中初始化。
 
-```csharp
+`````csharp
 // Unity C# 初始化
 using MoralisUnity;
 using MoralisUnity.Web3Api.Client;
@@ -153,9 +154,9 @@ async void Start()
     await moralis.StartAsync();
     Debug.Log("Moralis Unity SDK initialized");
 }
-```
+`````
 
----
+* * *
 
 ## 使用Token API获取代币数据
 
@@ -165,7 +166,7 @@ Token API是Moralis中最常用的组件之一。它提供查询ERC-20代币余�
 
 获取任何代币的当前价格非常简单。Moralis汇总了来自多个去中心化交易所和流动性池的价格数据。
 
-```javascript
+`````javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
   address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   chain: 0x1, // 以太坊主网
@@ -173,28 +174,28 @@ const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
 
 console.log('Token Price:', priceResponse.result.usdPrice);
 console.log('Price Change 24h:', priceResponse.result.usdPricePercentChange24h);
-```
+`````
 
 ### 获取钱包代币余额
 
 通过单个API调用检索特定钱包地址持有的所有ERC-20代币。
 
-```javascript
+`````javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
 });
 
 balances.result.forEach((token) => {
-  console.log(`${token.name}: ${token.balance} (${token.symbol})`);
+  console.log(````${token.name}: ${token.balance} (${token.symbol})````);
 });
-```
+`````
 
 ### 获取代币转账记录
 
 追踪钱包或特定代币合约的转入和转出记录。
 
-```javascript
+`````javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
@@ -202,15 +203,15 @@ const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}`);
+  console.log(````From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}````);
 });
-```
+`````
 
 ### 获取代币元数据
 
 检索任何ERC-20代币的详细元数据，包括名称、符号、小数位数和Logo。
 
-```javascript
+`````javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
   addresses: [
     0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
@@ -220,11 +221,11 @@ const metadata = await Moralis.EvmApi.token.getTokenMetadata({
 });
 
 metadata.result.forEach((token) => {
-  console.log(`${token.name} (${token.symbol}) - ${token.decimals} decimals`);
+  console.log(````${token.name} (${token.symbol}) - ${token.decimals} decimals````);
 });
-```
+`````
 
----
+* * *
 
 ## 使用NFT API
 
@@ -232,7 +233,7 @@ NFT API提供对查询NFT所有权、元数据、转账和收藏级统计的全�
 
 ### 获取钱包拥有的NFT
 
-```javascript
+`````javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
@@ -240,14 +241,14 @@ const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
 });
 
 nfts.result.forEach((nft) => {
-  console.log(`Collection: ${nft.name} Token ID: ${nft.tokenId}`);
-  console.log(`Metadata: ${nft.metadata}`);
+  console.log(````Collection: ${nft.name} Token ID: ${nft.tokenId}````);
+  console.log(````Metadata: ${nft.metadata}````);
 });
-```
+`````
 
 ### 通过代币ID获取NFT元数据
 
-```javascript
+`````javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
   address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
   tokenId: 1,
@@ -257,11 +258,11 @@ const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
 console.log('Name:', nftMetadata.result.name);
 console.log('Image:', nftMetadata.result.metadata?.image);
 console.log('Attributes:', nftMetadata.result.metadata?.attributes);
-```
+`````
 
 ### 获取收藏的NFT转账记录
 
-```javascript
+`````javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
   address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
   chain: 0x1,
@@ -269,13 +270,13 @@ const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}`);
+  console.log(````Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}````);
 });
-```
+`````
 
 ### Python示例：获取地板价
 
-```python
+`````python
 from moralis import evm_api
 
 params = {
@@ -289,9 +290,9 @@ result = evm_api.nft.get_nft_floor_price(
 )
 
 print(f"Floor Price: {result[floor_price]} ETH")
-```
+`````
 
----
+* * *
 
 ## 使用Streams API实现实时Webhook
 
@@ -299,7 +300,7 @@ Moralis的突出功能之一是Streams API，它支持链上事件的实时Webho
 
 ### 设置Stream
 
-```javascript
+`````javascript
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
@@ -330,13 +331,13 @@ description: "Track USDC transfers"
 
 const newStream = await Moralis.Streams.add(stream);
 console.log('Stream created:', newStream.result.id);
-```
+`````
 
 ### 处理Webhook负载
 
 您的Webhook端点在监控事件发生时接收结构化的JSON负载。
 
-```javascript
+`````javascript
 // Express webhook处理程序
 const express = require(express);
 const crypto = require(crypto);
@@ -370,9 +371,9 @@ app.post('/webhooks/moralis', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Webhook server running on port 3000'));
-```
+`````
 
----
+* * *
 
 ## 使用Auth API进行认证
 
@@ -380,7 +381,7 @@ Moralis通过提供完整的Auth API简化了Web3认证，该API处理消息签�
 
 ### 请求消息签名
 
-```javascript
+`````javascript
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const authMessage = await Moralis.Auth.requestMessage({
@@ -395,11 +396,11 @@ const authMessage = await Moralis.Auth.requestMessage({
 });
 
 console.log('Sign-in message:', authMessage.result.message);
-```
+`````
 
 ### 验证已签名消息
 
-```javascript
+`````javascript
 const authResult = await Moralis.Auth.verify({
   network: evm,
   message: authMessage.result.message,
@@ -408,9 +409,9 @@ const authResult = await Moralis.Auth.verify({
 
 console.log('Authenticated user:', authResult.result.profileId);
 console.log('Address:', authResult.result.address);
-```
+`````
 
----
+* * *
 
 ## 跨链开发模式
 
@@ -418,7 +419,7 @@ Moralis的一个强大方面是能够编写跨链兼容的代码。无论您定�
 
 ### 多链投资组合追踪器
 
-```javascript
+`````javascript
 const chains = [0x1, 0x89, 0x38, 0xa4b1]; // ETH, MATIC, BNB, ARB
 const address = 0x1234567890123456789012345678901234567890;
 
@@ -443,9 +444,9 @@ for (const chain of chains) {
 }
 
 console.log('Multi-chain portfolio:', JSON.stringify(portfolio, null, 2));
-```
+`````
 
----
+* * *
 
 ## 高级查询模式与优化
 
@@ -455,7 +456,7 @@ console.log('Multi-chain portfolio:', JSON.stringify(portfolio, null, 2));
 
 大多数Moralis列表端点支持基于游标的分页，以实现高效的数据检索。
 
-```javascript
+`````javascript
 let cursor = null;
 const allTransfers = [];
 
@@ -471,12 +472,12 @@ do {
   cursor = response.pagination.cursor;
 } while (cursor);
 
-console.log(`Retrieved ${allTransfers.length} transfers`);
-```
+console.log(````Retrieved ${allTransfers.length} transfers````);
+`````
 
 ### 速率限制管理
 
-```javascript
+`````javascript
 const axios = require(axios);
 const rateLimit = require('axios-rate-limit');
 
@@ -497,18 +498,18 @@ async function safeApiCall(apiFunction) {
     throw error;
   }
 }
-```
+`````
 
 ### 使用Redis的缓存层
 
 对于高流量应用，实施缓存层以减少冗余API调用。
 
-```javascript
+`````javascript
 const Redis = require(ioredis);
 const redis = new Redis();
 
 async function getCachedTokenPrice(tokenAddress, chain) {
-  const cacheKey = `price:${chain}:${tokenAddress}`;
+  const cacheKey = ````price:${chain}:${tokenAddress}````;
   const cached = await redis.get(cacheKey);
   
   if (cached) {
@@ -524,9 +525,9 @@ async function getCachedTokenPrice(tokenAddress, chain) {
   await redis.setex(cacheKey, 60, JSON.stringify(price.result));
   return price.result;
 }
-```
+`````
 
----
+* * *
 
 ## 常见问题解答
 
@@ -548,13 +549,13 @@ Moralis支持以太坊、Polygon、BNB Chain、Arbitrum、Optimism、Avalanche�
 
 ### Streams API的Webhook交付有多安全
 
-Moralis使用密钥对所有Webhook负载进行签名，您可以在服务器上验证该密钥。始终根据使用您的流密钥的请求主体的HMAC-SHA256哈希验证`x-signature`头。这可以防止攻击者向您的端点发送伪造的Webhook请求。此外，使用HTTPS端点并考虑实施幂等性检查以处理重复交付。
+Moralis使用密钥对所有Webhook负载进行签名，您可以在服务器上验证该密钥。始终根据使用您的流密钥的请求主体的HMAC-SHA256哈希验证````x-signature```头。这可以防止攻击者向您的端点发送伪造的Webhook请求。此外，使用HTTPS端点并考虑实施幂等性检查以处理重复交付。
 
 ### 官方支持哪些编程语言
 
 Moralis官方为JavaScript/TypeScript（Node.js和浏览器）、Python和Unity（C#）提供SDK。对于其他语言，您可以直接使用标准HTTP客户端调用REST API。该API遵循OpenAPI规范，因此您还可以为Go、Rust、Java或任何其他语言生成客户端库。
 
----
+* * *
 
 
 
@@ -637,7 +638,7 @@ Moralis 2026: 为100K+ DApp提供实时链上数据的Web3数据API — 设置�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -669,15 +670,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

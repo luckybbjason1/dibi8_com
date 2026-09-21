@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
 
+
 ## Giới thiệu
 
 Landscape của công cụ mã hóa AI đã trở nên fragmented đáng chú ý. Nhà phát triển phải juggle giữa Claude Code, Cursor, Copilot, Codex và một zoo ngày càng tăng của CLI tool — mỗi cái có cấu hình, giá cả và khả năng riêng. Quản lý nhiều model provider, mỗi cái có API, rate limit và chi phí token khác nhau, đã trở thành operational burden đáng kể cho các đội xây dựng ứng dụng thông minh.
@@ -44,7 +45,7 @@ Agent runtime là não của hệ thống. Nó duy trì conversation context, qu
 
 Hệ thống công cụ của Pi là thứ làm cho nó tự mở rộng. Công cụ là function mà agent có thể gọi để tương tác với thế giới bên ngoài — đọc file, thực thi command, thực hiện API call, chạy test và nhiều hơn nữa. Điểm unique là agent có thể generate mới tool on the fly khi encountering task yêu cầu capability nó hiện không có.
 
-```python
+````python
 # Ví dụ: Định nghĩa một custom tool cho Pi
 from pi_agent import tool
 
@@ -60,13 +61,13 @@ def calculate_compound_interest(
         "final_amount": round(result, 2),
         "interest_earned": round(result - principal, 2)
     }
-```
+`````
 
 ### API LLM Thống nhất
 
 API thống nhất abstract hóa sự khác biệt giữa model provider. Cho dù bạn muốn sử dụng GPT-4o, Claude Sonnet, Gemini Pro hay bất kỳ model supported nào khác, API là consistent. Điều này có nghĩa bạn có thể switch provider bằng cách thay đổi một single configuration value.
 
-```bash
+`````bash
 # Cấu hình Pi để sử dụng các provider khác nhau
 # Sử dụng OpenAI
 export PI_PROVIDER=openai
@@ -82,7 +83,7 @@ export PI_MODEL=gemini-pro
 
 # Sử dụng smart routing mặc định của Pi
 export PI_PROVIDER=auto
-```
+`````
 
 ## Cách hoạt động
 
@@ -90,7 +91,7 @@ Pi hoạt động qua một continuous loop của ba phase: 1. **Think** — Age
 2. **Act** — Agent gọi tool phù hợp, thực thi mã, đọc file, query database hoặc thực hiện API call.
 3. **Reflect** — Agent đánh giá kết quả, checking lỗi hoặc incomplete work và quyết định tiếp tục hay báo cáo hoàn thành.
 
-```bash
+`````bash
 # Bắt đầu session Pi
 pi start --model claude-sonnet-4-20250514
 
@@ -99,11 +100,11 @@ pi start --auto
 
 # Bắt đầu với một task cụ thể
 pi start --task "Refactor authentication module để sử dụng JWT"
-```
+`````
 
 Agent duy trì conversation context persist qua invocation. Bạn có thể xem nó như một assistant mã hóa nhớ những gì bạn đã discuss và build trong session trước.
 
-```bash
+`````bash
 # Tiếp tục session trước
 pi continue --session-id abc123
 
@@ -112,11 +113,11 @@ pi sessions list
 
 # Archive một session hoàn thành
 pi sessions archive abc123
-```
+`````
 
 ## Cài đặt
 
-Cài đặt Pi khá straightforward. Phương pháp cài đặt chính là qua pip: ```bash
+Cài đặt Pi khá straightforward. Phương pháp cài đặt chính là qua pip: `````bash
 # Cài đặt qua pip
 pip install pi-agent
 
@@ -125,17 +126,17 @@ pi --version
 
 # Kiểm tra provider có sẵn
 pi providers list
-```
+`````
 
-Ngoài ra, bạn có thể cài đặt qua npm nếu prefer một setup dựa trên JavaScript: ```bash
+Ngoài ra, bạn có thể cài đặt qua npm nếu prefer một setup dựa trên JavaScript: `````bash
 # Cài đặt qua npm
 npm install @earendil-works/pi-coding-agent
 
 # Xác nhận cài đặt
 npx pi --version
-```
+`````
 
-Cho development hoặc để contribute cho project: ```bash
+Cho development hoặc để contribute cho project: `````bash
 # Clone repository
 git clone https://github.com/earendil-works/pi.git
 
@@ -147,13 +148,13 @@ pip install -e '.[dev]'
 
 # Chạy test
 pytest tests/
-```
+`````
 
 ## Integration Patterns
 
 Pi được thiết kế để integrate seamless vào existing development workflow. Sau đây là key integration pattern: ### Git Integration
 
-Pi có thể tương tác với Git repository của bạn, thực hiện commit, tạo branch và quản lý pull request: ```bash
+Pi có thể tương tác với Git repository của bạn, thực hiện commit, tạo branch và quản lý pull request: `````bash
 # Cấu hình Git integration
 export PI_GIT_ENABLED="true"
 export PI_GIT_AUTO_COMMIT="true"
@@ -161,32 +162,32 @@ export PI_GIT_COMMIT_MESSAGE="Auto-commit bởi Pi agent"
 
 # Cho Pi quản lý Git operation
 pi start --task "Refactor database module và commit changes"
-```
+`````
 
 ### CI/CD Pipeline Integration
 
-Pi có thể được integrate vào CI/CD pipeline cho automated testing, code review và deployment: ```bash
+Pi có thể được integrate vào CI/CD pipeline cho automated testing, code review và deployment: `````bash
 # Cấu hình Pi cho CI/CD
 export PI_CI_ENABLED="true"
 export PI_CI_MODE="review"  # review, test hoặc deploy
 
 # Chạy trong CI review mode
 pi ci-review --base main --head feature-branch
-```
+`````
 
 ### IDE Integration
 
-Pi làm việc cùng IDE ưa thích của bạn, cung cấp intelligent suggestion và thực thi task: ```bash
+Pi làm việc cùng IDE ưa thích của bạn, cung cấp intelligent suggestion và thực thi task: `````bash
 # Start Pi trong watch mode, monitoring file change
 pi watch --directory ./src --interval 5
 
 # Tích hợp với VS Code qua extension
 # Cài đặt Pi extension cho VS Code từ marketplace
-```
+`````
 
 ### Multi-Provider Routing
 
-Một trong những feature powerful nhất của Pi là intelligent model routing. Dựa trên task type, Pi có thể automatic select model tốt nhất: ```yaml
+Một trong những feature powerful nhất của Pi là intelligent model routing. Dựa trên task type, Pi có thể automatic select model tốt nhất: `````yaml
 # pi-config.yaml
 routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
@@ -198,7 +199,7 @@ routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
   default: model: auto
     temperature: 0.7
-```
+`````
 
 ![Ruv Pi Model Routing](https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/model-routing-diagram.png)
 
@@ -228,7 +229,7 @@ Khả năng tự mở rộng của Pi đã được benchmark trên một suite 
 
 ### Custom Tool Development
 
-Cho power user, creating custom tool cho bạn full control over khả năng của Pi: ```python
+Cho power user, creating custom tool cho bạn full control over khả năng của Pi: `````python
 # Advanced custom tool với error handling
 from pi_agent import tool, ToolResponse
 
@@ -255,11 +256,11 @@ def deploy_docker(image_name: str, tag: str = "latest") -> ToolResponse: """Depl
     except subprocess.CalledProcessError as e: return ToolResponse.error(
             f"Deployment thất bại: {e.stderr}"
         )
-```
+`````
 
 ### Agent Memory và Context Management
 
-Cho session dài-running, managing context là critical: ```bash
+Cho session dài-running, managing context là critical: `````bash
 # Cấu hình context window
 export PI_CONTEXT_WINDOW="200000"
 export PI_CONTEXT_STRATEGY="summary"  # summary, truncate hoặc keep-all
@@ -270,11 +271,11 @@ export PI_SUMMARIZE_EVERY_N_STEPS="50"
 
 # Xem context usage
 pi context status
-```
+`````
 
 ### Multi-Agent Collaboration
 
-Pi hỗ trợ multi-agent collaboration cho complex task yêu cầu specialized expertise: ```bash
+Pi hỗ trợ multi-agent collaboration cho complex task yêu cầu specialized expertise: `````bash
 # Launch một collaborative session
 pi collaborate --agents research,implementation,review
 
@@ -282,11 +283,11 @@ pi collaborate --agents research,implementation,review
 # Research agent: gather requirement và analyze option
 # Implementation agent: viết code
 # Review agent: verify correctness và quality
-```
+`````
 
 ### Plugin System
 
-Pi có một rich plugin ecosystem mở rộng khả năng của nó: ```bash
+Pi có một rich plugin ecosystem mở rộng khả năng của nó: `````bash
 # Liệt kê plugin có sẵn
 pi plugins list
 
@@ -296,7 +297,7 @@ pi plugins install pi-plugin-react
 
 # Cấu hình plugin
 pi plugins configure pi-plugin-django --settings dev
-```
+`````
 
 ## So sánh với Alternatives
 
@@ -304,7 +305,7 @@ Pi so sánh như thế nào với các đại diện mã hóa khác và framewor
 
 | Tính năng | Ruv Pi | Claude Code | Cursor | OpenClaw |
 |-----------|--------|-------------|--------|----------|
-| Installation | `pip install pi-agent` | Invite-only | IDE Extension | Custom CLI |
+| Installation | ````pip install pi-agent```` | Invite-only | IDE Extension | Custom CLI |
 | Model Support | 10+ provider | Anthropic only | OpenAI + Anthropic | Multiple |
 | Self-Extension | Yes | No | Limited | Limited |
 | CLI-first | Yes | Yes | No (IDE) | Yes |
@@ -334,7 +335,7 @@ Pi hỗ trợ OpenAI (GPT-4, GPT-4o), Anthropic (Claude Sonnet, Claude Opus), Go
 
 ### 2. Tôi có thể sử dụng Pi với API key riêng không?
 
-Có. Pi sử dụng API key riêng của bạn — nó không bao giờ lưu trữ hoặc proxy key của bạn. Chỉ cần set appropriate environment variable (ví dụ, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`) và Pi sẽ sử dụng chúng trực tiếp.
+Có. Pi sử dụng API key riêng của bạn — nó không bao giờ lưu trữ hoặc proxy key của bạn. Chỉ cần set appropriate environment variable (ví dụ, ````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY```) và Pi sẽ sử dụng chúng trực tiếp.
 
 ### 3. Pi có phù hợp cho enterprise use không?
 
@@ -402,7 +403,7 @@ Visit official documentation tại [https://pi.dev/docs/latest](https://pi.dev/d
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -412,7 +413,7 @@ Visit official documentation tại [https://pi.dev/docs/latest](https://pi.dev/d
 - [12-factor-agents-production-llm-software-2026](ruv-pi)
 - [12-factor-agents](ruv-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

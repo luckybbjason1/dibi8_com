@@ -36,6 +36,7 @@ faqs: - q: 'What is the Ladybird browser?'
   - q: 'How do you install or try Ladybird?'
     a: 'You build Ladybird from source by cloning its GitHub repository, installing dependencies (build-essential, cmake, ninja-build on Ubuntu/Debian), then building with CMake and Ninja and running ./bin/Ladybird. An experimental Docker image is also available.'
 ---
+
 {</* resource-info */>}
 
 ## What is Ladybird?
@@ -48,20 +49,20 @@ faqs: - q: 'What is the Ladybird browser?'
 **License**: BSD-2-Clause
 
 
----
+* * *
 ## The Browser Monopoly Problem
 
 ### Current Landscape (2026)
 
 | Browser | Engine | Market Share | Corporate Control |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Chrome | Blink (Chromium) | 65% | Google |
 | Edge | Blink (Chromium) | 5% | Microsoft |
@@ -81,7 +82,7 @@ faqs: - q: 'What is the Ladybird browser?'
 5. **Freedom**: Corporate interests vs user interests
 
 
----
+* * *
 ## Ladybird's Approach
 
 ### Built From Scratch
@@ -94,7 +95,7 @@ Ladybird doesn't fork Chromium or Firefox. It builds everything: - **Web Engine*
 
 ### Architecture
 
-```
+````
 User Request
     ↓
 Network Layer (LibHTTP)
@@ -104,9 +105,9 @@ HTML Parser (LibWeb)
 DOM Tree → CSS Parser → Style Computation
     ↓
 Layout Engine → Rendering → Display
-```
+`````
 
----
+* * *
 
 ## Key Features
 
@@ -134,7 +135,7 @@ Layout Engine → Rendering → Display
 - Fast startup time
 - Efficient rendering
 
----
+* * *
 
 ## Development Status
 
@@ -142,11 +143,11 @@ Layout Engine → Rendering → Display
 
 | Feature | Status | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Basic HTML/CSS | ✅ | Most sites render |
 | JavaScript | ✅ | ES2026 support |
@@ -166,13 +167,13 @@ Layout Engine → Rendering → Display
 - **100+ contributors**
 - **Daily commits**
 
----
+* * *
 
 ## How to Try Ladybird
 
 ### Build from Source
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/LadybirdBrowser/ladybird.git
 cd ladybird
@@ -187,16 +188,16 @@ ninja
 
 # Run
 ./bin/Ladybird
-```
+`````
 
 ### Docker (Experimental)
 
-```bash
+`````bash
 docker pull ladybird/browser
 docker run -it ladybird/browser
-```
+````
 
----
+* * *
 
 ## Why Ladybird Matters
 
@@ -218,7 +219,7 @@ docker run -it ladybird/browser
 - **Innovation**: Competition drives progress
 - **Resilience**: No single point of failure
 
----
+* * *
 
 ## Comparison with Other Browsers
 
@@ -226,11 +227,11 @@ docker run -it ladybird/browser
 
 | Aspect | Ladybird | Chrome |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Engine | LibWeb (new) | Blink (Chromium) |
 | Size | ~50MB | ~200MB |
@@ -242,18 +243,18 @@ docker run -it ladybird/browser
 
 | Aspect | Ladybird | Firefox |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Engine | LibWeb (new) | Gecko (legacy) |
 | Age | 2 years | 20+ years |
 | Modernity | Fresh start | Technical debt |
 | Funding | Community | Mozilla Corp |
 
----
+* * *
 
 ## The Team Behind Ladybird
 
@@ -269,7 +270,7 @@ docker run -it ladybird/browser
 - Volunteer driven
 - Transparent governance
 
----
+* * *
 
 ## Related Articles
 
@@ -277,11 +278,11 @@ docker run -it ladybird/browser
 - [Free Claude Code: Open Source AI Coding](/resources/ai-tools/free-claude-code-open-source-proxy/) — Developer tools
 - [Polymarket Agents: AI Trading Bots](/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — AI in finance
 
----
+* * *
 
 *Disclaimer: Ladybird is under active development and not yet ready for daily use. This article introduces an important open-source project fighting browser monopoly.*
 
----
+* * *
 
 ## Recommended Tools
 
@@ -357,7 +358,7 @@ Ladybird: Truly Independent Web Browser — A New Era of Browser Independence re
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

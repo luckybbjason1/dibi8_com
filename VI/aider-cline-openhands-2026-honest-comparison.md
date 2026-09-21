@@ -32,6 +32,7 @@ faq: - q: "Coding agent mã nguồn mở nào tốt nhất năm 2026?"
     a: "Aider: 15 phút để bắt đầu hiệu quả (là một CLI theo các pattern hiển nhiên). Cline: 30 phút (cài đặt VS Code extension + thiết lập model). OpenHands: 2-3 giờ (cài đặt Docker, cấu hình công cụ browser, điều chỉnh vòng lặp agent). Aider có rào cản thấp nhất, OpenHands có trần cao nhất."
 ---
 
+
 {{</* resource-info */>}}
 
 # Aider vs Cline vs OpenHands 2026: So sánh OSS trung thực 3 bên
@@ -52,7 +53,7 @@ AI coding agent mã nguồn mở trưởng thành nhanh trong năm 2026. Ba ứn
 >
 > **Combo 2 công cụ tốt nhất cho người dùng chỉ OSS**: Aider (chính hàng ngày) + OpenHands (tác vụ tự động).
 
----
+* * *
 
 ## Chúng là gì
 
@@ -125,14 +126,14 @@ Bộ tác vụ (mỗi agent chạy cùng 5 tác vụ trên app TypeScript 5K LOC
 
 ## Thực tế chi phí ở quy mô
 
-BYO API key với Sonnet 4.6 (model cân bằng nhất cho các công cụ này): ```
+BYO API key với Sonnet 4.6 (model cân bằng nhất cho các công cụ này): ````
 Sử dụng 60 giờ/tháng: Aider: ~$80-110  (sử dụng context hiệu quả nhất)
   Cline: ~$95-140  (kế hoạch dài dòng hơn = nhiều token hơn)
   OpenHands: ~$120-180 (vòng lặp tự động = nhiều lần lặp hơn)
 
 vs Claude Max: $200 không giới hạn
 vs Cursor Pro + API: $87 (ít công việc agent hơn nhiều)
-```
+````
 
 Tuyên bố "rẻ hơn thương mại" chỉ đúng nếu bạn: - Theo dõi kích thước context (không truyền toàn bộ repo vào mọi cuộc gọi)
 - Dùng Sonnet thay vì Opus cho tác vụ thường xuyên
@@ -192,7 +193,7 @@ Cả ba coding agent OSS đều sẵn sàng cho production năm 2026. Lựa ch�
 
 Lựa chọn thương mại vs OSS không phải về giá (chúng gần nhau hơn marketing gợi ý). Đó là về kiểm soát, độ hoàn thiện, và bạn dành bao nhiêu thời gian cho cài đặt công cụ so với công việc thực tế. Với nhà phát triển độc lập và đội nhỏ đã dùng git tốt, OSS thắng. Với đội lớn hơn cần hỗ trợ có thể dự đoán và UX đồng nhất, thương mại vẫn thắng.
 
----
+* * *
 
 **Liên quan**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Các phương án thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Cài đặt OpenCode](https://dibi8.com/vi/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
 
@@ -222,7 +223,7 @@ Lựa chọn thương mại vs OSS không phải về giá (chúng gần nhau h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -232,7 +233,7 @@ Lựa chọn thương mại vs OSS không phải về giá (chúng gần nhau h�
 - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison)
 - [claude-code-vs-cline](aider-cline-openhands-2026-honest-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

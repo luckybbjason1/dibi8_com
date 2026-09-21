@@ -34,6 +34,7 @@ faqs: - q: 'JustHireMe có miễn phí và mã nguồn mở không?'
     a: 'Ứng dụng desktop sử dụng Tauri 2 kết hợp React 19 và TypeScript; phần backend chạy Python 3.13 với FastAPI và WebSockets; dữ liệu được lưu trong SQLite cùng cơ sở dữ liệu đồ thị Kuzu và kho vector LanceDB; và Playwright đảm nhiệm tự động hóa trình duyệt cho việc thu thập dữ liệu và nộp đơn.'
 ---
 
+
 {</* resource-info */>}
 
 ## Vấn Đề: Tìm Việc Là Một Công Việc Toàn Thời Gian
@@ -115,7 +116,7 @@ Tất cả dữ liệu lưu trữ cục bộ: - Cơ sở dữ liệu SQLite
 
 ## Cài Đặt Và Sử Dụng
 
-```bash
+````bash
 # Clone kho lưu trữ
 git clone https://github.com/vasu-devs/JustHireMe.git
 cd JustHireMe
@@ -128,7 +129,7 @@ npm run dev
 
 # Khởi động ứng dụng desktop
 npm run tauri dev
-```
+````
 
 ## Quy Trình Sử Dụng
 
@@ -160,13 +161,13 @@ Tìm việc không nên bị độc quyền bởi nền tảng: - **Quyền sở
 - [Free Claude Code：Sử dụng Claude Code miễn phí](/vi/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42 trường hợp sử dụng thực tế：AI Agent đã thay đổi cuộc sống của chúng ta như thế nào](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
+* * *
 
 **Địa chỉ dự án**: [github.com/vasu-devs/JustHireMe](https://github.com/vasu-devs/JustHireMe)
 
 **Stars**: 471 ⭐ | **Forks**: 91 | **Ngôn ngữ**: Python 47.3%, TypeScript 27.5%
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -239,7 +240,7 @@ JustHireMe：AI Giúp Bạn Tự Động Tìm Việc, Từ Gửi Hồ Sơ Đến
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

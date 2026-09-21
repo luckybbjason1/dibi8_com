@@ -36,6 +36,7 @@ faqs: - q: 'What is Datawhale Hello-Agents?'
   - q: 'What real-world projects can you build by following Hello-Agents?'
     a: 'The tutorial includes three comprehensive case studies: a Smart Travel Assistant that coordinates multiple specialized agents via MCP tool calling, an Automated Deep Research agent that searches and synthesizes web findings into a report, and a Cyber Town simulation populated by AI agents with distinct personalities and routines.'
 ---
+
 {</* resource-info */>}
 
 # Hello-Agents: How Datawhale's Open-Source AI Agent Tutorial Helps You Build Production-Grade Agents from Scratch
@@ -49,10 +50,10 @@ Unlike scattered blog posts or framework documentation that assumes prior knowle
 In this deep-dive review, we explore what makes Hello-Agents the most valuable agent education resource on GitHub today, how its structured curriculum accelerates your path from beginner to production-ready agent developer, and why its combination of theory, hands-on coding, and real-world projects creates a learning experience that no paid bootcamp can match.
 
 
----
+* * *
 ## What Is Hello-Agents?
 
-Hello-Agents is a **systematic, open-source tutorial for building AI agents from scratch**, created by the Datawhale community — one of China's most influential open-source AI education organizations. The project is published under the Apache 2.0 license and hosted on GitHub at `datawhalechina/hello-agents`.
+Hello-Agents is a **systematic, open-source tutorial for building AI agents from scratch**, created by the Datawhale community — one of China's most influential open-source AI education organizations. The project is published under the Apache 2.0 license and hosted on GitHub at ```datawhalechina/hello-agents````.
 
 The tutorial addresses a critical market gap: while there are countless introductions to ChatGPT prompting and plenty of framework README files, there is almost no resource that systematically teaches **how agents actually work under the hood** — from the Transformer architecture that powers them, to the reasoning patterns that guide them, to the communication protocols that connect them, to the reinforcement learning that trains them.
 
@@ -63,7 +64,7 @@ Hello-Agents fills this gap with five major parts: 1. **Agent & LLM Foundations*
 5. **Capstone Project & Future Outlook** — Building a complete intelligent application from end to end
 
 
----
+* * *
 ## Core Curriculum: The 16-Chapter Learning Path
 
 The heart of Hello-Agents is its meticulously structured 16-chapter curriculum, designed to take a developer from zero knowledge to the ability to build and deploy production-grade agent systems.
@@ -150,7 +151,7 @@ The most creative project in the curriculum. You build a simulated town populate
 **Chapter 16: Capstone Project**
 The final chapter challenges you to design and build a complete intelligent agent application from scratch, applying everything learned across the previous 15 chapters. It includes project planning guidance, architecture decision frameworks, and deployment considerations.
 
----
+* * *
 
 ## Community Contributions and Extra Content
 
@@ -162,34 +163,34 @@ Beyond the core 16 chapters, Hello-Agents maintains an active community contribu
 
 With **71 contributors** and continuous pull request activity, the project benefits from a vibrant community that keeps the content current with the rapidly evolving agent landscape.
 
----
+* * *
 
 ## Installation and Learning Setup
 
 Hello-Agents is designed to be accessible through multiple formats: ### Online Reading
-Visit the official documentation site at `https://datawhalechina.github.io/hello-agents/` for the complete web-based tutorial. An optimized mirror is available for users in China.
+Visit the official documentation site at ````https://datawhalechina.github.io/hello-agents/```` for the complete web-based tutorial. An optimized mirror is available for users in China.
 
 ### Local Setup
-Clone the repository and serve the documentation locally: ```bash
+Clone the repository and serve the documentation locally: `````bash
 git clone https://github.com/datawhalechina/hello-agents.git
 cd hello-agents
 # Follow the environment setup guide in Extra-Chapter/07
-```
+`````
 
 ### PDF Download
 A complete PDF version is available free of charge via GitHub releases or the Datawhale website. The PDF includes a Datawhale watermark to prevent commercial resale while remaining fully usable for personal learning.
 
 ### Code Environment
-The `/code` directory contains runnable implementations for every chapter. The primary language is Python (72.5%), with Jupyter notebooks for interactive exploration. Recommended environment: - Python 3.9+
+The ````/code```` directory contains runnable implementations for every chapter. The primary language is Python (72.5%), with Jupyter notebooks for interactive exploration. Recommended environment: - Python 3.9+
 - OpenAI API key or access to GitHub Models
 - Optional: Ollama for local model execution
 - Optional: Vector database (Chroma or Weaviate) for RAG chapters
 
----
+* * *
 
 ## Code Example: Building a ReAct Agent from Scratch
 
-To illustrate the hands-on nature of the tutorial, here is a simplified version of the ReAct agent you build in Chapter 4: ```python
+To illustrate the hands-on nature of the tutorial, here is a simplified version of the ReAct agent you build in Chapter 4: `````python
 import openai
 import json
 
@@ -260,11 +261,11 @@ for step in range(5): # Max 5 reasoning steps
             })
     else: print("Final answer:", message.content)
         break
-```
+`````
 
 This pattern — reasoning about what tool to call, executing it, observing the result, and reasoning again — is the fundamental loop that powers professional agents like OpenAI's Operator and Anthropic's Claude Computer Use.
 
----
+* * *
 
 ## Real-World Use Cases and Career Impact
 
@@ -280,21 +281,21 @@ The Agentic RL chapter (SFT to GRPO) and the evaluation chapter provide enough d
 ### For Indie Developers and Founders
 The capstone project structure and the community-contributed project gallery provide inspiration and reference implementations for shipping agent-powered products. The cyber town simulation chapter demonstrates how agents can create engaging user experiences beyond simple chat interfaces.
 
----
+* * *
 
 ## Comparison with Alternatives
 
 | Capability | Hello-Agents | Framework Docs (AutoGen, etc.) | Paid Bootcamps | YouTube Tutorials |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Structured curriculum | 16 chapters, progressive | Fragmented, assumes knowledge | Varies widely | Unstructured, random |
 | Theory depth | Transformer to RL | Framework-specific only | Often shallow | Usually shallow |
@@ -308,7 +309,7 @@ The capstone project structure and the community-contributed project gallery pro
 
 Hello-Agents occupies a unique position: it has the depth of a university course, the practicality of a bootcamp, the community of an open-source project, and the price of free documentation.
 
----
+* * *
 
 ## The Datawhale Community Advantage
 
@@ -319,7 +320,7 @@ This community backing means: - **Sustained maintenance** — The project receiv
 - **Network effects** — Learners join a community of thousands, not just read documentation in isolation
 - **Career connections** — Datawhale's industry partnerships create pathways from learning to employment
 
----
+* * *
 
 ## Limitations and Considerations
 
@@ -328,7 +329,7 @@ While Hello-Agents is exceptional, learners should be aware of a few constraints
 - **Hardware requirements** — The Agentic RL chapter benefits from GPU access for training; CPU execution is possible but slow
 - **API costs** — Hands-on practice requires OpenAI API or equivalent access; costs can accumulate during intensive experimentation
 
----
+* * *
 
 ## Conclusion and Getting Started
 
@@ -341,18 +342,18 @@ If you are a developer who wants to move beyond prompting ChatGPT and start buil
 1. Visit the repository at [github.com/datawhalechina/hello-agents](https://github.com/datawhalechina/hello-agents)
 2. Read the online documentation at [datawhalechina.github.io/hello-agents](https://datawhalechina.github.io/hello-agents/)
 3. Download the PDF release for offline study
-4. Clone the `/code` directory and run the Chapter 4 ReAct implementation
+4. Clone the ````/code``` directory and run the Chapter 4 ReAct implementation
 5. Join the community discussion and explore the Extra-Chapter contributions
 
 The agent revolution is not coming — it is here. Hello-Agents ensures you do not just watch it happen. You build it.
 
----
+* * *
 
 ## Related Articles
 
 - [Anthropics Claude for Financial Services: How AI Agents Automate Investment Banking & Fund Administration](/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation/)
 
----
+* * *
 
 ## Recommended Infrastructure for Self-Hosting
 

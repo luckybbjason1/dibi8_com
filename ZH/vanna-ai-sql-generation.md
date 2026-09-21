@@ -9,6 +9,7 @@ aliases:
   - /zh/posts/vanna-ai-sql-generation/-
 ---
 
+
 {{</* resource-info */>}}
 
 使用自然语言与数据库交互的能力长期以来一直是数据分析领域的圣杯。每天，无数时间被浪费在将业务问题转化为 SQL 查询上 — 这个过程需要对数据库 Schema、表关系和 SQL 语法有深入的了解。2026年，这一瓶颈正在迅速消融，这要归功于 **Vanna AI** — 一款基于你的数据库 Schema 训练、以超过 90% 的准确率从纯英文生成生产级 SQL 的开源 Python 库。
@@ -18,7 +19,7 @@ aliases:
 在本综合指南中，我们将详细介绍关于 Vanna AI 的一切：从安装和 Schema 训练到高级 SQL 生成、验证和集成到分析工作流。无论你是想用英文提问的数据分析师，还是为数据平台构建自然语言界面的工程师，Vanna AI 都能提供你所需的工具，让 Text-to-SQL 成为现实。
 
 
----
+* * *
 ## 什么是 Vanna AI？自然语言遇见 SQL
 
 Vanna AI 是一款弥合人类语言和结构化查询语言之间差距的开源 Python 库。其核心是一个专为 SQL 生成而构建的 **检索增强生成（RAG）** 框架。与偶尔会产生表名幻觉或虚构列引用的通用 LLM 聊天机器人不同，Vanna 在你实际的数据库 Schema 上进行训练 — 学习你的表、列、关系，甚至你组织的命名约定。
@@ -30,7 +31,7 @@ Vanna AI 是一款弥合人类语言和结构化查询语言之间差距的开�
 3. 用自然语言**提问**
 4. 接收准确、可执行的 SQL
 
-```python
+````python
 import vanna as vn
 from vanna.remote import VannaDefault
 
@@ -55,12 +56,12 @@ CREATE TABLE sales (
 # 用纯英文提问
 sql = vn.generate_sql("What are the top 5 regions by total sales in 2026?")
 print(sql)
-```
+`````
 
 生成的 SQL 不仅在语法上正确，而且在语义上准确，引用了你实际 Schema 中的正确表、列和关系。
 
 
----
+* * *
 ## 为什么 Vanna AI 在 2026 年至关重要
 
 近年来，大型语言模型的爆发为自然语言界面创造了巨大的机会。然而，通用 LLM 在 SQL 生成方面面临几个关键挑战：它们会产生 Schema 元素幻觉、忽略数据库特定的语法，并且对实际数据模型一无所知。将原始数据发送到第三方 API 端点还会引发严重的隐私和合规性问题。
@@ -73,7 +74,7 @@ Vanna AI 直面所有这些挑战：
 - **SQL 验证**：每个生成的查询在返回之前都会针对你的数据库进行验证
 - **多 LLM 后端**：使用 OpenAI、Anthropic、Google 或本地模型如 Ollama
 
-```python
+`````python
 # Vanna 支持多个 LLM 后端
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
@@ -85,17 +86,17 @@ class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): Ch
 vn = MyVanna()
 vn.connect_to_sqlite("my_database.db")
 vn.train(ddl="SELECT sql FROM sqlite_master WHERE type=table;")
-```
+`````
 
 2026年，随着组织应对日益复杂的数据 Schema 和更严格的合规要求，Vanna 的方法 — 在 Schema 上训练而不是将数据发送到云端 — 代表了安全、准确的 Text-to-SQL 的黄金标准。
 
----
+* * *
 
 ## 安装和配置 Vanna AI
 
 Vanna 设计为易于安装和配置，具有合理的默认值，可让你快速上手。
 
-```bash
+`````bash
 # 安装 Vanna 核心
 pip install vanna
 
@@ -113,11 +114,11 @@ pip install "vanna[bigquery]"
 
 # 安装全部
 pip install "vanna[all]"
-```
+`````
 
 最常见的设置快速配置：
 
-```python
+`````python
 from vanna.remote import VannaDefault
 
 # 使用 Vanna 的托管服务（最简单的设置）
@@ -134,11 +135,11 @@ vn.connect_to_postgres(
     password="secure-password",
     port=5432
 )
-```
+`````
 
 对于使用本地 LLM 的完全自托管设置：
 
-```python
+`````python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
@@ -148,9 +149,9 @@ class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None):
 vn = LocalVanna()
 vn.connect_to_postgres(host="localhost", dbname="sales",
                        user="admin", password="admin", port=5432)
-```
+`````
 
----
+* * *
 
 ## 在数据库 Schema 上训练 Vanna
 
@@ -160,7 +161,7 @@ vn.connect_to_postgres(host="localhost", dbname="sales",
 
 最基本的训练方法是提供数据库的 DDL（数据定义语言）— 定义 Schema 的 CREATE TABLE 语句。
 
-```python
+`````python
 # 使用单个 DDL 语句训练
 vn.train(ddl="""
 CREATE TABLE customers (
@@ -191,13 +192,13 @@ CREATE TABLE order_items (
     unit_price DECIMAL(10,2)
 );
 """)
-```
+`````
 
 ### 使用 Schema 自动发现训练
 
 对于大型数据库，手动编写 DDL 是不现实的。Vanna 可以自动从你的数据库中提取 Schema 信息。
 
-```python
+`````python
 # PostgreSQL：从 information_schema 提取 Schema
 import psycopg2
 
@@ -230,13 +231,13 @@ for (table_name,) in tables: cursor.execute(f"""
     vn.train(ddl=ddl)
 
 conn.close()
-```
+`````
 
 ### 使用文档和业务逻辑训练
 
 除了原始 Schema 之外，你还可以在业务上下文上训练 Vanna — 帮助它理解你的列的实际含义。
 
-```python
+`````python
 # 使用文档训练
 vn.train(documentation="""
 The sales table records all completed transactions.
@@ -262,13 +263,13 @@ WHERE o.status = completed
 GROUP BY c.id, c.name
 HAVING SUM(o.total_amount) > 10000;
 """)
-```
+`````
 
 ### 使用问题-SQL 对训练
 
 为了获得最大准确性，提供自然语言问题及其对应 SQL 查询的配对。
 
-```python
+`````python
 # 黄金标准训练数据
 vn.train(
     question="What are the top 10 customers by lifetime value?",
@@ -292,15 +293,15 @@ vn.train(
     ORDER BY month;
     """
 )
-```
+`````
 
----
+* * *
 
 ## 从自然语言生成 SQL
 
-经过训练后，Vanna 能够以惊人的准确性从自然语言问题生成 SQL。`generate_sql` 方法是主要接口。
+经过训练后，Vanna 能够以惊人的准确性从自然语言问题生成 SQL。````generate_sql```` 方法是主要接口。
 
-```python
+`````python
 # 简单问题
 sql = vn.generate_sql("Show me all customers from the West region")
 print(sql)
@@ -326,11 +327,11 @@ sql = vn.generate_sql(
     "showing year-over-year growth percentage"
 )
 print(sql)
-```
+`````
 
 Vanna 还支持生成具有特定约束或模式的 SQL：
 
-```python
+`````python
 # 生成带有解释的 SQL
 sql, explanation = vn.generate_sql(
     "Which customers haven't placed an order in the last 90 days?",
@@ -345,15 +346,15 @@ print(result_df)
 
 # ask() 方法生成 SQL、验证它、执行它，
 # 并返回一个 pandas DataFrame — 全部在一行调用中完成
-```
+`````
 
----
+* * *
 
 ## SQL 验证和错误处理
 
 Vanna 的突出功能之一是 **自动 SQL 验证**。在将查询返回给你之前，Vanna 可以检查它是否实际在你的数据库上运行，捕获语法错误和 Schema 不匹配。
 
-```python
+`````python
 # 启用自动验证
 vn = VannaDefault(model="my-model", api_key="vn-...", 
                   config={"validate_sql": True})
@@ -367,11 +368,11 @@ except Exception as e: print(f"Validation failed: {e}")
         "Show me the top 10 products by revenue",
         max_retries=3
     )
-```
+`````
 
 Vanna 还可以处理引用先前上下文的后续问题：
 
-```python
+`````python
 # 第一个问题
 result1 = vn.ask("What were total sales in 2026?")
 
@@ -385,9 +386,9 @@ result3 = vn.ask("Now show only regions with more than $1M in sales")
 # 生成: SELECT region, SUM(amount) as total 
 #            FROM sales WHERE sale_date >= '2026-01-01' 
 #            GROUP BY region HAVING SUM(amount) > 1000000
-```
+`````
 
----
+* * *
 
 ## 高级功能和自定义
 
@@ -395,7 +396,7 @@ Vanna 为高级用户和生产部署提供了广泛的自定义选项。
 
 ### 自定义提示模板
 
-```python
+`````python
 # 覆盖默认提示模板
 vn.set_prompt_template("""
 You are an expert SQL analyst. Given the following database schema,
@@ -409,11 +410,11 @@ Generate only the SQL query, with no additional explanation.
 """)
 
 sql = vn.generate_sql("List all high-value customers")
-```
+`````
 
 ### 使用多个数据库
 
-```python
+`````python
 # 为不同的数据库创建单独的 Vanna 实例
 vn_sales = VannaDefault(model="sales-model", api_key="vn-...")
 vn_sales.connect_to_postgres(host="sales-db", dbname="sales")
@@ -424,11 +425,11 @@ vn_hr.connect_to_mysql(host="hr-db", dbname="human_resources")
 # 查询适当的数据库
 sales_sql = vn_sales.generate_sql("Total revenue by quarter")
 hr_sql = vn_hr.generate_sql("Employee count by department")
-```
+`````
 
 ### 使用自定义向量存储
 
-```python
+`````python
 from vanna.pinecone import Pinecone_VectorStore
 from vanna.openai import OpenAI_Chat
 
@@ -440,15 +441,15 @@ vn = PineconeVanna(config={
     "pinecone_api_key": "your-pinecone-key",
     "pinecone_index": "vanna-index"
 })
-```
+`````
 
----
+* * *
 
 ## Jupyter 集成和交互式工作流
 
 Vanna 在 Jupyter 笔记本中表现出色，提供丰富的交互式小部件和可视化功能。
 
-```python
+`````python
 from vanna.remote import VannaDefault
 import vanna as vn
 
@@ -458,35 +459,35 @@ vn.connect_to_postgres(host="localhost", dbname="analytics",
 
 # 在 Jupyter 中启动交互式聊天界面
 vn.ask("What are the top selling products?")
-```
+`````
 
-`ask()` 方法在 Jupyter 中返回丰富的输出，包括生成的 SQL、解释和结果表。为了获得完整的交互式体验：
+````ask()```` 方法在 Jupyter 中返回丰富的输出，包括生成的 SQL、解释和结果表。为了获得完整的交互式体验：
 
-```python
+`````python
 # 在 Jupyter 中启动交互式 Web UI
 from vanna.flask import VannaFlaskApp
 
 app = VannaFlaskApp(vn)
 app.run()
-```
+`````
 
 Vanna 还可以在适当时自动生成可视化：
 
-```python
+`````python
 # 生成 SQL 并自动创建图表
 vn.ask("Plot monthly sales trends for 2026")
 
 # 生成 SQL，执行它，并自动创建折线图
 # 从时间序列结果
-```
+`````
 
----
+* * *
 
 ## Vanna AI 架构和隐私模型
 
 理解 Vanna 的架构是在生产环境中安全部署它的关键。
 
-```
+`````
 ┌─────────────────────────────────────────────────────────────┐
 │                    Vanna AI 架构                             │
 ├─────────────────────────────────────────────────────────────┤
@@ -515,11 +516,11 @@ vn.ask("Plot monthly sales trends for 2026")
 │                       ▼                                     │
 │               返回结果                                       │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 隐私模型的工作原理如下：
 
-```python
+`````python
 # 隐私优先配置（推荐）
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
@@ -536,15 +537,15 @@ vn.connect_to_postgres(host="internal-db", dbname="analytics",
 # LLM 通过 Ollama 本地运行
 # 数据库查询在内部数据库上执行
 # 数据永远不会到达外部 API
-```
+`````
 
----
+* * *
 
 ## 基准测试和准确性
 
 Vanna 的准确性在很大程度上取决于训练数据的质量和数量。以下是 2026 年观察到的典型性能特征：
 
-```python
+`````python
 # 准确性评估脚本
 import pandas as pd
 
@@ -576,7 +577,7 @@ for test in test_cases: generated = vn.generate_sql(test["question"])
 
 accuracy = correct / len(test_cases) * 100
 print(f"准确性: {accuracy:.1f}%")
-```
+`````
 
 通过全面的训练（DDL + 文档 + 示例查询），Vanna 持续实现：
 
@@ -587,7 +588,7 @@ print(f"准确性: {accuracy:.1f}%")
 
 高准确性的关键在于彻底训练。一个训练充分的 Vanna 实例，具有 50+ 条 DDL 语句、20+ 条示例查询和相关文档，其表现显著优于通用 LLM 方法。
 
----
+* * *
 
 ## 常见问题解答（FAQ）
 
@@ -595,20 +596,20 @@ print(f"准确性: {accuracy:.1f}%")
 
 是的，Vanna AI 是 MIT 许可证下的开源软件，可以免费使用。核心库、所有集成和基于 RAG 的训练系统均可免费使用。Vanna 还为小型项目提供免费层的托管云服务，企业功能如团队协作和高级分析则有付费计划。使用本地 LLM（通过 Ollama）和本地向量存储（通过 ChromaDB）的自托管选项完全免费，没有使用限制。
 
-```python
+`````python
 # 免费、完全自托管的设置
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
 class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
         Ollama.__init__(self, config={"model": "llama3"})
-```
+`````
 
 ### Vanna 如何处理 Schema 变更？
 
 当你的数据库 Schema 变更时，你需要使用更新的 DDL 语句重新训练 Vanna。推荐的方法是对训练数据进行版本控制，并设置一个自动化管道，在部署时提取最新的 Schema 并重新训练 Vanna。
 
-```python
+`````python
 # 自动化重新训练管道
 import subprocess
 
@@ -622,13 +623,13 @@ new_ddl = result.stdout
 # 清除旧训练数据并重新训练
 vn.remove_training_data()
 vn.train(ddl=new_ddl)
-```
+`````
 
 ### 我可以在非英语语言中使用 Vanna 吗？
 
 是的，Vanna 支持多种语言的自然语言问题。LLM 后端处理翻译到 SQL 生成的过程。你可以用你喜欢的语言训练 Vanna 文档和示例。
 
-```python
+`````python
 # 使用中文文档训练
 vn.train(documentation="""
 销售额表记录所有完成的交易。
@@ -637,13 +638,13 @@ amount 列单位为美元，含税。
 """)
 
 sql = vn.generate_sql("显示2026年每个区域的总销售额")
-```
+`````
 
 ### Vanna 支持哪些数据库？
 
 Vanna 通过其灵活的连接系统支持几乎所有主要数据库：PostgreSQL、MySQL、SQLite、SQL Server、Snowflake、BigQuery、Redshift、Oracle、DuckDB、ClickHouse 以及任何具有 Python DB-API 驱动程序的数据库。自定义连接器也可以为专门的系统实现。
 
-```python
+`````python
 # SQLite
 vn.connect_to_sqlite("mydb.sqlite")
 
@@ -658,7 +659,7 @@ vn.connect_to_bigquery(project_id="my-project")
 
 # DuckDB
 vn.connect_to_duckdb("mydb.duckdb")
-```
+`````
 
 ### 如何提高 Vanna 在我特定用例中的准确性？
 
@@ -669,15 +670,15 @@ vn.connect_to_duckdb("mydb.duckdb")
 3. **业务文档**（中等影响 — 添加上下文）
 4. **DDL 语句**（基础 — 消除幻觉）
 
-```python
+`````python
 # 最大准确性训练方案
 vn.train(ddl=all_schema_ddl)
 vn.train(documentation=business_context)
 for example in curated_sql_examples: vn.train(sql=example)
 for qa in historical_question_sql_pairs: vn.train(question=qa["question"], sql=qa["sql"])
-```
+````
 
----
+* * *
 
 
 
@@ -722,7 +723,7 @@ Vanna AI 代表了在普及数据库访问方面的重大飞跃。通过将现�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -732,7 +733,7 @@ Vanna AI 代表了在普及数据库访问方面的重大飞跃。通过将现�
 - [2026-06-08-trending-ai-agents](vanna-ai-sql-generation)
 - [2026-06-15-trending-ai-agents](vanna-ai-sql-generation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

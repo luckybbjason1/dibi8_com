@@ -24,23 +24,24 @@ aliases:
   - /kr/posts/httpie/
 ---
 
+
 {{</* resource-info */>}}
 
-**HTTPie**(발음: "에이치-티-티-파이")는 API 시대를 위해 설계된 CLI HTTP 클라이언트다. **38,200개 GitHub Stars**를 보유한 이 도구는 `api testing cli` 분야에서 가장 인기 있는 개발자 도구 중 하나다. 이 가이드는 `httpie setup`부터 `httpie vs curl` 벤치마크 비교 및 실전 명령어까지 전부 다룬다.
+**HTTPie**(발음: "에이치-티-티-파이")는 API 시대를 위해 설계된 CLI HTTP 클라이언트다. **38,200개 GitHub Stars**를 보유한 이 도구는 ```api testing cli```` 분야에서 가장 인기 있는 개발자 도구 중 하나다. 이 가이드는 ````httpie setup````부터 ````httpie vs curl```` 벤치마크 비교 및 실전 명령어까지 전부 다룬다.
 
 ![HTTPie Logo](https://raw.githubusercontent.com/httpie/cli/master/docs/httpie-logo.svg)
 
 ## 소개
 
-모든 개발자는 이런 경험을 핸들다: `curl`이 출력한 방대한 JSON 데이터를 보고, 중요한 필드를 찾기 위해 눈을 가늘게 뜨고, 읽기 위해 포맷터에 복사하는 것. 1990년대의 CLI HTTP 도구는 기계를 위해 설계되었다. Jakub Roztocil이 2012년에 만든 HTTPie는 사람을 위해 설계되었다.
+모든 개발자는 이런 경험을 핸들다: ````curl````이 출력한 방대한 JSON 데이터를 보고, 중요한 필드를 찾기 위해 눈을 가늘게 뜨고, 읽기 위해 포맷터에 복사하는 것. 1990년대의 CLI HTTP 도구는 기계를 위해 설계되었다. Jakub Roztocil이 2012년에 만든 HTTPie는 사람을 위해 설계되었다.
 
-2026년 현재 REST와 GraphQL API가 웹을 지배한다. JSON은 데이터 교환의 기본 언어다. 그러나 대부분의 개발자는 습관 때문에 여전히 `curl`을 기본으로 사용하며, 그것이 최선의 도구라서가 아니다. HTTPie는 직관적인 구문, 내장 JSON 지원, 컬러 출력 및 지속 세션으로 이 간극을 메운다 — 스크립팅 기능을 희생하지 않으면서.
+2026년 현재 REST와 GraphQL API가 웹을 지배한다. JSON은 데이터 교환의 기본 언어다. 그러나 대부분의 개발자는 습관 때문에 여전히 ````curl````을 기본으로 사용하며, 그것이 최선의 도구라서가 아니다. HTTPie는 직관적인 구문, 내장 JSON 지원, 컬러 출력 및 지속 세션으로 이 간극을 메운다 — 스크립팅 기능을 희생하지 않으면서.
 
-이 `httpie tutorial`은 설치, 실전 사용법, curl 및 wget과의 성능 벤치마크 비교, 프로덕션 환경 강화, 정직한 한계 분석을 다룬다. `curl alternative`를 찾든 API 테스트 워크플로를 가속화하든, 이 가이드는 프로덕션 준비 명령어와 설정을 제공한다.
+이 ````httpie tutorial````은 설치, 실전 사용법, curl 및 wget과의 성능 벤치마크 비교, 프로덕션 환경 강화, 정직한 한계 분석을 다룬다. ````curl alternative````를 찾든 API 테스트 워크플로를 가속화하든, 이 가이드는 프로덕션 준비 명령어와 설정을 제공한다.
 
 ## HTTPie란 무엇인가?
 
-HTTPie는 Python으로 작성된 오픈소스 CLI HTTP 클라이언트로, 웹 서비스와의 명령줄 상호작용을 최대한 사람 친화적으로 만드는 것이 목표다. `http` 및 `https` 두 개의 명령어를 제공하며, 자연스러운 구문을 사용해 임의의 HTTP 요청을 생성하고 전송하며, 포맷되고 컬러화된 터미널 출력을 제공한다.
+HTTPie는 Python으로 작성된 오픈소스 CLI HTTP 클라이언트로, 웹 서비스와의 명령줄 상호작용을 최대한 사람 친화적으로 만드는 것이 목표다. ````http```` 및 ````https```` 두 개의 명령어를 제공하며, 자연스러운 구문을 사용해 임의의 HTTP 요청을 생성하고 전송하며, 포맷되고 컬러화된 터미널 출력을 제공한다.
 
 이 도구는 API 및 HTTP 서버의 테스트, 디버깅 및 상호작용을 위해 특별히 설계되었다. 범용 다운로드 도구와 달리 HTTPie는 API 개발의 read-eval-print 루프를 최적화한다: 요청을 본어고, 포맷된 응답을 읽고, 수정하고, 반복.
 
@@ -51,7 +52,7 @@ HTTPie는 Python으로 작성된 오픈소스 CLI HTTP 클라이언트로, 웹 �
 | **GitHub Stars** | 38,200+ |
 | **최신 버전** | 3.2.4 (2024년 11월) |
 | **유지관리자** | HTTPie, Inc. |
-| **기본 Content-Type** | `application/json` |
+| **기본 Content-Type** | ````application/json```` |
 | **지원 플랫폼** | Linux, macOS, Windows, FreeBSD |
 
 ## HTTPie의 작동 원리
@@ -61,8 +62,8 @@ HTTPie는 Python으로 작성된 오픈소스 CLI HTTP 클라이언트로, 웹 �
 HTTPie는 두 개의 잘 알려진 Python 라이브러리 위에서 동작한다: 1. **Requests** — 실제 HTTP 전송 처리 (커넥션 풀링, Keep-Alive, SSL, 리다이렉트)
 2. **Pygments** — 터미널 출력에 구문 강조 제공
 
-HTTPie 명령을 실행하면 도구는 다음 단계를 수행한다: 1. **요청 항목 파싱** — 헤더(`Name:Value`), 쿼리 파라미터(`name==value`), 데이터 필드(`name=value`), 원시 JSON 필드(`name:=value`), 파일 업로드(`name@file`)
-2. **요청 구축** — 데이터를 JSON(기본), 폼 데이터(`--form`), 또는 멀티파트(`--multipart`)로 직렬화
+HTTPie 명령을 실행하면 도구는 다음 단계를 수행한다: 1. **요청 항목 파싱** — 헤더(````Name:Value````), 쿼리 파라미터(````name==value````), 데이터 필드(````name=value````), 원시 JSON 필드(````name:=value````), 파일 업로드(````name@file````)
+2. **요청 구축** — 데이터를 JSON(기본), 폼 데이터(````--form````), 또는 멀티파트(````--multipart````)로 직렬화
 3. **Requests 라이브러리로 전송** — SSL, 인증, 프록시, 쿠키 처리
 4. **응답 포맷팅 및 컬러화** — Content-Type 기반 Pygments 구문 강조
 5. **스트리밍 또는 버퍼링 출력** — 대용량 파일 스트리밍, 포맷 표시 시 버퍼링
@@ -71,7 +72,7 @@ HTTPie 명령을 실행하면 도구는 다음 단계를 수행한다: 1. **요�
 
 ### 핵심 설계 철학
 
-명령줄 구문은 전송되는 HTTP 요청에 직접 매핑된다. 다음 HTTP 요청을 비교핸들다: ```http
+명령줄 구문은 전송되는 HTTP 요청에 직접 매핑된다. 다음 HTTP 요청을 비교핸들다: `````http
 POST /post HTTP/1.1
 Host: pie.dev
 X-API-Key: 123
@@ -79,17 +80,17 @@ User-Agent: Bacon/1.0
 Content-Type: application/x-www-form-urlencoded
 
 name=value&name2=value2
-```
+`````
 
-해당 HTTPie 명령과: ```bash
+해당 HTTPie 명령과: `````bash
 http -f POST pie.dev/post \
     X-API-Key:123 \
     User-Agent:Bacon/1.0 \
     name=value \
     name2=value2
-```
+`````
 
-순서와 구문이 거의 동일하다. 유일한 HTTPie 특화 플래그는 폼 인코딩을 위한 `-f`이다.
+순서와 구문이 거의 동일하다. 유일한 HTTPie 특화 플래그는 폼 인코딩을 위한 ````-f````이다.
 
 ![HTTPie 터미널 스크린샷](https://httpie.io/_next/static/media/hero-terminal.5a23ab28.svg)
 
@@ -97,13 +98,13 @@ http -f POST pie.dev/post \
 
 ### 사전 요구 사항
 
-HTTPie는 **Python 3.7 이상**을 필요로 한다. 버전을 확인한다: ```bash
+HTTPie는 **Python 3.7 이상**을 필요로 한다. 버전을 확인한다: `````bash
 python --version
-```
+`````
 
 ### 방법 1: pip (범용 — Linux, macOS, Windows)
 
-```bash
+`````bash
 # pip와 wheel 먼저 업그레이드
 python -m pip install --upgrade pip wheel
 
@@ -112,21 +113,21 @@ python -m pip install httpie
 
 # 설치 확인
 http --version
-```
+`````
 
 ### 방법 2: Homebrew (macOS)
 
-```bash
+`````bash
 brew update
 brew install httpie
 
 # 나중에 업그레이드
 brew upgrade httpie
-```
+`````
 
 ### 방법 3: Debian/Ubuntu (APT)
 
-```bash
+`````bash
 # 공식 HTTPie 저장소 추가
 curl -SsL https://packages.httpie.io/deb/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./" | \
@@ -135,41 +136,41 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages
 # 설치
 sudo apt update
 sudo apt install httpie
-```
+`````
 
 ### 방법 4: Fedora / RHEL
 
-```bash
+`````bash
 # Fedora
 sudo dnf install httpie
 
 # CentOS / RHEL
 sudo yum install epel-release
 sudo yum install httpie
-```
+`````
 
 ### 방법 5: Windows (Chocolatey)
 
-```powershell
+`````powershell
 choco install httpie
 
 # 업그레이드
 choco upgrade httpie
-```
+`````
 
 ### 방법 6: Docker
 
-```bash
+`````bash
 # 가져와서 실행
 docker run --rm httpie/cli https://httpie.io/hello
 
 # 편의를 위한 셸 별칭 생성
 alias http='docker run --rm -it --net=host httpie/cli'
-```
+`````
 
 ### 방법 7: 독립형 바이너리 (Linux)
 
-```bash
+`````bash
 # 독립형 바이너리 다운로드
 https --download packages.httpie.io/binaries/linux/http-latest -o http
 ln -s ./http ./https
@@ -177,11 +178,11 @@ chmod +x ./http ./https
 
 # 이제 ./http와 ./https를 직접 사용
 ./http https://api.example.com/users
-```
+`````
 
 ### 빠른 확인
 
-```bash
+`````bash
 $ http https://httpie.io/hello
 
 HTTP/1.1 200 OK
@@ -190,13 +191,13 @@ Content-Type: application/json
 {
     "message": "Hello, world!"
 }
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### jq와의 통합 (JSON 처리)
 
-HTTPie의 JSON 출력은 CLI JSON 프로세서인 `jq`와 자연스럽게 잘 맞는다: ```bash
+HTTPie의 JSON 출력은 CLI JSON 프로세서인 ``jq``와 자연스럽게 잘 맞는다: `````bash
 # API 응답에서 특정 필드 추출
 http GET https://api.github.com/repos/httpie/cli | jq '.stargazers_count, .forks_count'
 
@@ -205,11 +206,11 @@ http GET https://jsonplaceholder.typicode.com/posts | jq '.[] | {id: .id, title:
 
 # HTTPie를 jq로, 다시 HTTPie로 파이프 (API 체이닝)
 http GET https://api.github.com/user | jq -r '.login' | http POST example.com/webhook user=@-
-```
+`````
 
 ### 셸 스크립트와의 통합
 
-HTTPie로 스크립팅할 때의 모범 사례: ```bash
+HTTPie로 스크립팅할 때의 모범 사례: `````bash
 #!/bin/bash
 
 # 스크립트에서 항상 --ignore-stdin 사용하여 멈춤 방지
@@ -225,9 +226,9 @@ else
         *) echo '기타 오류!' ;;
     esac
 fi
-```
+`````
 
-```bash
+`````bash
 #!/bin/bash
 
 # 로그인에서 인증 토큰 저장
@@ -235,11 +236,11 @@ TOKEN=$(http POST api.example.com/auth username=user password=pass | jq -r '.tok
 
 # 후속 요청에 토큰 사용
 http GET api.example.com/protected "Authorization:Bearer $TOKEN"
-```
+`````
 
 ### Git 훅과의 통합
 
-```bash
+`````bash
 #!/bin/bash
 # .git/hooks/pre-push — 푸시 전 API 상태 확인
 
@@ -247,11 +248,11 @@ http --check-status --timeout=5 --ignore-stdin GET https://api.staging.example.c
     echo "오류: 스테이징 API가 정상이 아닙니다. 푸시가 중단되었습니다."
     exit 1
 }
-```
+`````
 
 ### CI/CD와의 통합 (GitHub Actions)
 
-```yaml
+`````yaml
 # .github/workflows/api-test.yml
 name: API 상태 확인
 
@@ -265,11 +266,11 @@ jobs: test: runs-on: ubuntu-latest
         run: |
           http --check-status --timeout=10 GET ${{ secrets.API_URL }}/health
           http --check-status POST ${{ secrets.API_URL }}/users name=Test email=test@example.com
-```
+`````
 
 ### VS Code와의 통합
 
-`.vscode/tasks.json`에 HTTPie 명령을 VS Code 작업으로 추가: ```json
+``.vscode/tasks.json``에 HTTPie 명령을 VS Code 작업으로 추가: `````json
 {
   "version": "2.0.0",
   "tasks": [
@@ -281,7 +282,7 @@ jobs: test: runs-on: ubuntu-latest
     }
   ]
 }
-```
+`````
 
 ## 벤치마크 / 실전 사용 사례
 
@@ -312,17 +313,17 @@ jobs: test: runs-on: ubuntu-latest
 
 **마이크로서비스 상태 확인:**
 
-```bash
+`````bash
 # 클러스터의 모든 서비스 확인
 for service in api-gateway user-service order-service payment-service; do
     http --check-status --timeout=3 GET "http://$service.internal/health" && \
         echo "✓ $service 정상" || echo "✗ $service 실패"
 done
-```
+`````
 
 **API 문서 생성:**
 
-```bash
+`````bash
 # 요청을 본어내지 않고 구축 (오프라인 모드)
 http --offline POST api.example.com/v2/users \
     Content-Type:application/json \
@@ -331,32 +332,32 @@ http --offline POST api.example.com/v2/users \
     email="jane@example.com" \
     role:="[admin, editor]" \
     active:=true
-```
+`````
 
 **Webhook 테스트:**
 
-```bash
+`````bash
 # 테스트 Webhook 페이로드 본어기
 http POST https://webhook.site/your-uuid \
     event=order.created \
     order:='{"id": 12345, "total": 99.99, "currency": "USD"}' \
     signature="sha256=abc123..."
-```
+`````
 
 **일괄 API 작업:**
 
-```bash
+`````bash
 # 여러 리소스 삭제
 for id in $(cat ids.txt); do
     http --check-status DELETE "https://api.example.com/items/$id"
 done
-```
+`````
 
 ## 고급 사용법 / 프로덕션 강화
 
 ### 인증 패턴
 
-```bash
+`````bash
 # Basic 인증 (사용자명:비밀번호)
 http -a username:password api.example.com/protected
 
@@ -373,11 +374,11 @@ http -A bearer -a YOUR_TOKEN api.example.com/protected
 cat ~/.netrc
 # machine api.example.com login myuser password mypass
 http api.example.com/protected  # .netrc 자동 사용
-```
+`````
 
 ### 지속 세션
 
-```bash
+`````bash
 # 인증 및 헤더가 포함된 명명된 세션 생성
 http --session=prod -a user:pass api.example.com/login API-Key:123
 
@@ -390,11 +391,11 @@ http --session-read-only=prod api.example.com/data
 # 익명 세션 (파일 기반, 호스트 간)
 http --session=./shared-session.json api.host1.com/data
 http --session=./shared-session.json api.host2.com/data
-```
+`````
 
 ### SSL/TLS 설정
 
-```bash
+`````bash
 # SSL 검증 걱정 (개발 전용 — 프로덕션에서 절대 사용 금지)
 http --verify=no https://self-signed.example.com
 
@@ -409,11 +410,11 @@ http --ssl=tls1.2 https://legacy.example.com
 
 # 사용자 정의 암호화 스위트
 http --ciphers=ECDHE-RSA-AES128-GCM-SHA256 https://secure.example.com
-```
+`````
 
 ### 출력 제어 및 포맷팅
 
-```bash
+`````bash
 # 응답 본문만 표시
 http --body GET api.example.com/users
 
@@ -440,11 +441,11 @@ http GET api.example.com/report > report.json
 
 # 진행률 표시줄로 다운로드 (wget 스타일)
 http --download GET api.example.com/files/large-archive.zip
-```
+`````
 
 ### 중첩 JSON 요청 구축
 
-```bash
+`````bash
 # 명령줄에서 복잡한 중첩 JSON 구조 인라인 구축
 http POST api.example.com/orders \
     customer[name]=Alice \
@@ -458,11 +459,11 @@ http POST api.example.com/orders \
     shipping[address][street]='123 Main St' \
     shipping[address][city]=Boston \
     shipping[method]=express
-```
+`````
 
 ### 플러그인 관리
 
-```bash
+`````bash
 # 설치된 플러그인 나열
 httpie cli plugins list
 
@@ -479,11 +480,11 @@ httpie cli plugins uninstall httpie-jwt-auth
 
 # HTTPie 업데이트 확인
 httpie cli check-updates
-```
+`````
 
 ### 설정 파일
 
-```json
+`````json
 // ~/.config/httpie/config.json
 {
     "default_options": [
@@ -494,7 +495,7 @@ httpie cli check-updates
     ],
     "plugins_dir": "~/.config/httpie/plugins"
 }
-```
+`````
 
 ## 대안과의 비교
 
@@ -513,7 +514,7 @@ httpie cli check-updates
 | **지속 세션** | 예 — JSON 파일 | 아니오 (cookie jar) | 아니오 | 예 — 컬렉션 변수 |
 | **플러그인 시스템** | 예 — Python 플러그인 | 아니오 | 아니오 | 예 — Node.js 패키지 |
 | **오프라인 모드** | 예 (요청 드라이런) | 아니오 | 아니오 | 아니오 |
-| **기본 Content-Type** | `application/json` | 없음 | 없음 | `application/json` |
+| **기본 Content-Type** | ````application/json```` | 없음 | 없음 | ````application/json```` |
 | **인증** | Basic, Digest, Bearer, 플러그인 | Basic, Digest, NTLM 등 | Basic만 | OAuth, Bearer 등 |
 | **바이너리 크기** | ~20MB (Python 의존 포함) | ~200KB | ~500KB | ~50MB (Node 포함) |
 | **OS 사전 설치** | 아니오 | macOS, Windows, Linux | 대부분 Linux | 아니오 |
@@ -539,7 +540,7 @@ HTTPie는 API 상호작용을 위해 특별히 설계되었으며, 이 집중은
 
 **5. 재귀 다운로드 없음.** wget과 달리 HTTPie에는 웹사이트 미러링이나 재귀 링크 추적 기능이 없다.
 
-**6. 제한된 헤더 조작.** HTTPie는 헤더에 잘못된 UTF-8을 본어는 것을 금지하고, `Content-Length`와 같은 낸부 헤더 수정을 차단한다. curl은 더 많은 자유를 준다.
+**6. 제한된 헤더 조작.** HTTPie는 헤더에 잘못된 UTF-8을 본어는 것을 금지하고, ````Content-Length````와 같은 낸부 헤더 수정을 차단한다. curl은 더 많은 자유를 준다.
 
 **결론:** HTTPie는 전문 도구이다. 대화형 API 작업에 최고의 CLI HTTP 클라이언트지만, curl이나 wget의 범용 대체제는 아니다.
 
@@ -555,28 +556,28 @@ curl은 20개 이상의 프로토콜을 지원하는 범용 데이터 전송 도
 
 ### HTTPie로 JSON 데이터를 어떻게 본어는가?
 
-HTTPie는 문자열 필드에 `=`, 원시 JSON 타입(숫자, 불리언, 배열, 객체)에 `:=`을 사용한다: ```bash
+HTTPie는 문자열 필드에 ``=``, 원시 JSON 타입(숫자, 불리언, 배열, 객체)에 ``:=``을 사용한다: `````bash
 http POST api.example.com/users \
     name="John Doe" \
     age:=29 \
     active:=true \
     roles:='["admin", "editor"]' \
     profile:='{"city": "Boston", "timezone": "EST"}"
-```
+`````
 
-HTTPie는 `Content-Type: application/json`을 자동 설정하고 데이터를 직렬화한다.
+HTTPie는 ````Content-Type: application/json````을 자동 설정하고 데이터를 직렬화한다.
 
 ### HTTPie는 CI/CD 파이프라인에 적합한가?
 
-예, `--check-status`, `--ignore-stdin`, `--timeout` 플래그와 함께 사용하면 된다. `--check-status` 옵션은 HTTP 상태가 3xx/4xx/5xx일 때 오류 종료 코드(각각 3/4/5)를 반환하며, CI 시스템이 이를 감지할 수 있다. 비대화형 환경에서는 항상 `--ignore-stdin`을 사용하여 멈춤을 방지한다.
+예, ````--check-status````, ````--ignore-stdin````, ````--timeout```` 플래그와 함께 사용하면 된다. ````--check-status```` 옵션은 HTTP 상태가 3xx/4xx/5xx일 때 오류 종료 코드(각각 3/4/5)를 반환하며, CI 시스템이 이를 감지할 수 있다. 비대화형 환경에서는 항상 ````--ignore-stdin````을 사용하여 멈춤을 방지한다.
 
 ### HTTPie는 인증을 어떻게 안전하게 처리하는가?
 
-HTTPie는 기본적으로 Basic, Digest, Bearer 인증을 지원하며, 플러그인 생태계로 OAuth, JWT, AWS SigV4, NTLM 등을 추가할 수 있다. 비밀번호는 대화식으로 입력받을 수 있으며(터미널에 에코되지 않음), `.netrc`에 저장할 수 있다. 세션 파일은 인증 데이터를 일반 JSON으로 저장하므로 적절한 파일 권한(`chmod 600`)으로 보호해야 한다.
+HTTPie는 기본적으로 Basic, Digest, Bearer 인증을 지원하며, 플러그인 생태계로 OAuth, JWT, AWS SigV4, NTLM 등을 추가할 수 있다. 비밀번호는 대화식으로 입력받을 수 있으며(터미널에 에코되지 않음), ````.netrc````에 저장할 수 있다. 세션 파일은 인증 데이터를 일반 JSON으로 저장하므로 적절한 파일 권한(````chmod 600````)으로 보호해야 한다.
 
 ### HTTPie는 프록시와 함께 사용할 수 있는가?
 
-예. HTTPie는 `--proxy` 플래그 또는 표준 환경 변수를 통해 HTTP, HTTPS, SOCKS 프록시를 지원한다: ```bash
+예. HTTPie는 ``--proxy`` 플래그 또는 표준 환경 변수를 통해 HTTP, HTTPS, SOCKS 프록시를 지원한다: `````bash
 # 요청별 프록시
 http --proxy=http:http://proxy.company.com:8080 api.example.com
 
@@ -584,38 +585,38 @@ http --proxy=http:http://proxy.company.com:8080 api.example.com
 export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=https://proxy.company.com:8080
 export NO_PROXY=localhost,127.0.0.1
-```
+`````
 
 ### HTTPie는 파일 업로드를 지원하는가?
 
-예, `@` 구문을 `--form` 또는 `--multipart`와 함께 사용: ```bash
+예, ``@`` 구문을 ``--form`` 또는 ``--multipart``와 함께 사용: `````bash
 # 폼 파일 업로드
 http -f POST api.example.com/upload name="My File" file@~/documents/report.pdf
 
 # 파일 없는 멀티파트 요청
 http --multipart POST api.example.com/data field1=value1 field2=value2
-```
+`````
 
 ### HTTPie에서 컬러 출력을 비활성화하려면?
 
-CI 환경이나 다른 도구로 파이프할 때 컬러는 자동으로 비활성화된다. 터미널에서 강제로 일반 텍스트를 출력하려면: ```bash
+CI 환경이나 다른 도구로 파이프할 때 컬러는 자동으로 비활성화된다. 터미널에서 강제로 일반 텍스트를 출력하려면: `````bash
 http --pretty=none GET api.example.com/data
 # 또는 환경 변수 설정
 export HTTPIE_NO_COLORS=1
-```
+`````
 
 ## 결론
 
 HTTPie는 특정 문제를 잘 해결함으로써 38,200개의 GitHub Stars를 얻었다: 터미널에서의 API 상호작용을 직관적이고 읽기 쉽고 빠르게 만드는 것이다. 자연스러운 구문, 내장 JSON 지원, 지속 세션, 컬러화된 출력은 API 개발의 일상적인 워크플로에서 마찰을 제거한다.
 
-이 `httpie tutorial`은 7가지 설치 방법, `jq`, 셸 스크립트, Git 훅, GitHub Actions, VS Code와의 통합 패턴, `curl` 및 `wget`과의 성능 벤치마크, SSL 및 인증 프로덕션 강화, 그리고 HTTPie의 단점에 대한 정직한 분석을 다루었다.
+이 ````httpie tutorial````은 7가지 설치 방법, ````jq````, 셸 스크립트, Git 훅, GitHub Actions, VS Code와의 통합 패턴, ````curl```` 및 ````wget````과의 성능 벤치마크, SSL 및 인증 프로덕션 강화, 그리고 HTTPie의 단점에 대한 정직한 분석을 다루었다.
 
 **시작을 위한 액션 아이템:**
 
-1. `pip install httpie` 또는 시스템 패키지 관리자로 HTTPie 설치
-2. `http https://httpie.io/hello`로 설치 확인
+1. ````pip install httpie```` 또는 시스템 패키지 관리자로 HTTPie 설치
+2. ````http https://httpie.io/hello````로 설치 확인
 3. 다음 API 디버깅 세션을 curl 대신 HTTPie로 실행
-4. `~/.config/httpie/config.json`에 기본값 설정
+4. ````~/.config/httpie/config.json```에 기본값 설정
 5. 지원을 위해 [Discord 커뮤니티](https://httpie.io/discord) 가입
 
 **이 가이드에 대해 토론하기:** [텔레그램 그룹](https://t.me/dibi8opensource)에 가입하여 HTTPie 워크플로를 공유하고 커뮤니티에서 도움을 받으세요.
@@ -665,7 +666,7 @@ HTTPie는 특정 문제를 잘 해결함으로써 38,200개의 GitHub Stars를 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -675,6 +676,6 @@ HTTPie는 특정 문제를 잘 해결함으로써 38,200개의 GitHub Stars를 �
 - [claude-code-vs-aider](httpie)
 - [microsoft-markitdown-file-to-markdown-converter-cli](httpie)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

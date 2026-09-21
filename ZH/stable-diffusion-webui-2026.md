@@ -23,6 +23,7 @@ tags: ["stable diffusion", "sdxl", "图像生成", "automatic1111", "开源"]
 aliases:
   - /posts/stable-diffusion-webui-2026/-
 ---
+
 # Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成完整指南
 
 
@@ -36,7 +37,7 @@ aliases:
 - **GitHub**：163k 星，7689+ commits，最新 v1.10.1
 - **License**：AGPL-3.0（SaaS 部署注意）
 - **模型**：原生 SD 1.5 / 2.x / SSD-1B / Alt-Diffusion；扩展支持 SDXL；fork 支持 SD3 / Flux
-- **硬件**：最低 4 GB VRAM（有 2 GB 报告 `--lowvram` 能跑）
+- **硬件**：最低 4 GB VRAM（有 2 GB 报告 ```--lowvram```` 能跑）
 - **值得知道的 fork**：Forge（更快，SDXL/Flux 重点）/ SD.Next（rolling release）
 
 ## 1. 为什么 A1111 在 2026 还是默认
@@ -54,16 +55,16 @@ Flux（2024 年 9 月）和 SD 3.5 后图像生成生态严重碎片化。ComfyU
 
 | GPU | SD 1.5（512×768）| SDXL（1024×1024）| Flux（1024×1024）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 4 GB（GTX 1650 / 3050）| ~15 秒/图 | ~60 秒（`--lowvram`）| 不实用 |
-| 8 GB（RTX 3060 / 4060）| ~5 秒 | ~12 秒 | ~30 秒（`--medvram`）|
+| 4 GB（GTX 1650 / 3050）| ~15 秒/图 | ~60 秒（````--lowvram````）| 不实用 |
+| 8 GB（RTX 3060 / 4060）| ~5 秒 | ~12 秒 | ~30 秒（````--medvram````）|
 | 12 GB（RTX 3060 12GB / 4070）| ~3 秒 | ~6 秒 | ~15 秒 |
 | 16-24 GB（RTX 4080 / 4090）| ~1.5 秒 | ~3 秒 | ~6 秒 |
 
@@ -72,15 +73,15 @@ Flux（2024 年 9 月）和 SD 3.5 后图像生成生态严重碎片化。ComfyU
 ## 3. 快装（15 分钟）
 
 **Linux/macOS**：
-```bash
+`````bash
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 cd stable-diffusion-webui
 ./webui.sh  # 自动装 Python 依赖，下默认模型
-```
+`````
 
-**Windows**：下最新 release zip，解压，跑 `webui-user.bat`。
+**Windows**：下最新 release zip，解压，跑 ````webui-user.bat````。
 
-首次运行下 ~4 GB（默认 SD 1.5 模型）+ ~2 GB Python 依赖。浏览器打开 `http://localhost:7860`。
+首次运行下 ~4 GB（默认 SD 1.5 模型）+ ~2 GB Python 依赖。浏览器打开 ````http://localhost:7860````。
 
 ## 4. 80/20 设置
 
@@ -90,7 +91,7 @@ cd stable-diffusion-webui
 - **Steps**：20-30（30 以上收益递减）
 - **CFG Scale**：7（越低越创意，越高越死板）
 - **分辨率**：SD 1.5 用 512×768，SDXL 用 1024×1024
-- **Negative prompt 基线**：`bad anatomy, blurry, low quality, watermark, text, signature`
+- **Negative prompt 基线**：````bad anatomy, blurry, low quality, watermark, text, signature````
 
 高质量：开 Hires fix（2× 上采样 + denoise 0.4-0.5），代价是 2× 生成时间。
 
@@ -101,7 +102,7 @@ cd stable-diffusion-webui
 - **ControlNet** —— pose / depth / canny / scribble 条件控制。最有用单一扩展
 - **ADetailer** —— 自动修脸和手（SD 两个失败模式）
 - **Regional Prompter** —— 不同区域不同 prompt
-- **Dynamic Prompts** —— wildcard 语法 `{red|blue|green} car`
+- **Dynamic Prompts** —— wildcard 语法 ````{red|blue|green} car````
 - **Civitai Helper** —— 管理 Civitai 下载的模型
 - **sd-webui-prompt-history** —— 找回过去生成的 prompt
 
@@ -111,9 +112,9 @@ cd stable-diffusion-webui
 
 三种定制机制：
 
-- **LoRA**（Low-Rank Adaptation）—— 小文件（~150 MB），把基础模型适配到特定风格或主题。丢 `models/Lora/`，prompt 里引用：`<lora:style_name:0.8>`
-- **Textual Inversion / Embeddings** —— 更小（~30 KB），单概念添加。丢 `embeddings/`，prompt 里打触发词
-- **ControlNet** —— pose / depth / 线稿等条件生成。模型进 `models/ControlNet/`
+- **LoRA**（Low-Rank Adaptation）—— 小文件（~150 MB），把基础模型适配到特定风格或主题。丢 ````models/Lora/````，prompt 里引用：````<lora:style_name:0.8>````
+- **Textual Inversion / Embeddings** —— 更小（~30 KB），单概念添加。丢 ````embeddings/````，prompt 里打触发词
+- **ControlNet** —— pose / depth / 线稿等条件生成。模型进 ````models/ControlNet/````
 
 Civitai 是社区 LoRA 和 checkpoint 的事实 hub。Civitai Helper 扩展自动同步你本地文件和元数据。
 
@@ -133,7 +134,7 @@ Civitai 是社区 LoRA 和 checkpoint 的事实 hub。Civitai Helper 扩展自�
 
 "个人图像 API" 部署：
 
-```
+`````
    {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}}（RTX 6000 Ada $0.50/小时 或 Vast.ai）
             │
             ▼
@@ -144,7 +145,7 @@ Civitai 是社区 LoRA 和 checkpoint 的事实 hub。Civitai Helper 扩展自�
             │
             ▼
    你的 app / agent 调 /sdapi/v1/txt2img
-```
+````
 
 成本例：8 小时/天 × $0.50/小时 × 30 天 = $120/月无限生成，vs Midjourney $30/月 200 fast 小时。中等用量打平。
 
@@ -152,9 +153,9 @@ Civitai 是社区 LoRA 和 checkpoint 的事实 hub。Civitai Helper 扩展自�
 
 | 挑 | 何时 |
 |
----
+* * *
 |
----
+* * *
 |
 | **A1111 主线** | 默认，SD 1.x/SDXL 焦点，最大扩展生态 |
 | **Forge** | 同 A1111 UI 但快 30-75%，SDXL/Flux 就绪，VRAM 占用更小 |
@@ -170,7 +171,7 @@ AUTOMATIC1111 SD WebUI = **2026 个人创作者自托管图像生成默认**。1
 开 GPU 实例，跑第 3 节安装，15 分钟后你有本地图像生成，任何有意义量上和 Midjourney 打平。
 
 
----
+* * *
 *dibi8 多模态内容 stack 的一部分 —— 见 [ComfyUI 节点式工作流](/zh/resources/ai-tools/comfyui-node-based-ai-image-2026/) 和即将上线的多模态内容 Pipeline 合集。*
 
 
@@ -236,11 +237,11 @@ Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -250,6 +251,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](stable-diffusion-webui-2026)
 - [nanochat-karpathy-100-chatgpt-single-gpu](stable-diffusion-webui-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

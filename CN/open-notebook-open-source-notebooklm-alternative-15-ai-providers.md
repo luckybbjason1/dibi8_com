@@ -12,6 +12,7 @@ maintainer: 'lfnovo'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 ---
+
 # open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026
 
 ![open-notebook logo](https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png)
@@ -38,9 +39,9 @@ The project is built with Next.js (frontend) and Python FastAPI (backend). It us
 
 open-notebook operates through a three-stage pipeline: ### Stage 1: Document Ingestion
 
-```
+````
 Raw Documents → Chunking → Embedding → Vector Storage
-```
+`````
 
 1. **Upload** — Import documents in multiple formats (PDF, MD, TXT, DOCX, URL)
 2. **Chunking** — Split documents into semantic chunks using configurable strategies
@@ -49,9 +50,9 @@ Raw Documents → Chunking → Embedding → Vector Storage
 
 ### Stage 2: Question Answering
 
-```
+`````
 User Question → Embedding → Vector Search → Context Assembly → LLM Response
-```
+`````
 
 1. **Query** — User asks a question about their documents
 2. **Embedding** — The question is embedded using the same model
@@ -61,16 +62,16 @@ User Question → Embedding → Vector Search → Context Assembly → LLM Respo
 
 ### Stage 3: Audio Episode Generation
 
-```
+`````
 Documents → Script Generation → Multi-host TTS → Audio Episode
-```
+`````
 
 1. **Document analysis** — The system analyzes connected documents to identify key topics
 2. **Script generation** — An LLM generates a dialogue script between two "hosts"
 3. **TTS synthesis** — Text-to-speech converts each host's lines into audio
 4. **Episode assembly** — Audio clips are stitched together into a polished episode
 
-```
+`````
 ┌──────────────────────────────────────────────────┐
 │              open-notebook UI                     │
 │  ┌──────────┐  ┌──────────┐  ┌──────────────┐   │
@@ -84,7 +85,7 @@ Documents → Script Generation → Multi-host TTS → Audio Episode
 ├──────────────────────────────────────────────────┤
 │  AI Providers: Claude | GPT-4 | Ollama | OpenRouter│
 └──────────────────────────────────────────────────┘
-```
+`````
 
 *open-notebook architecture: three pipelines, one unified interface*
 
@@ -92,20 +93,20 @@ Documents → Script Generation → Multi-host TTS → Audio Episode
 
 ### Docker Compose (Recommended)
 
-```bash
+`````bash
 curl -o docker-compose.yml https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
 docker compose up -d
-```
+`````
 
-Access the UI at `http://localhost:3000`.
+Access the UI at ````http://localhost:3000````.
 
 ### Environment Configuration
 
-Edit the `.env` file with your API keys and provider configuration: - Minimum: one of `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, or `OLLAMA_HOST`
+Edit the ````.env```` file with your API keys and provider configuration: - Minimum: one of ````ANTHROPIC_API_KEY````, ````OPENAI_API_KEY````, or ````OLLAMA_HOST````
 
 ### Self-Hosted with GPU Acceleration
 
-For faster embedding and generation, run with GPU support: ```bash
+For faster embedding and generation, run with GPU support: `````bash
 # Ollama with GPU
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull nomic-embed-text:latest
@@ -118,11 +119,11 @@ ollama pull llama3.2:3b
 # COMPLETION_MODEL=llama3.2:3b
 
 docker compose up -d
-```
+`````
 
 ### Importing Existing Notes
 
-Open-notebook can import from popular note formats: ```bash
+Open-notebook can import from popular note formats: `````bash
 # Import Obsidian vault
 open-notebook import --source obsidian --path /path/to/vault
 
@@ -134,7 +135,7 @@ open-notebook import --source markdown --path /path/to/md-files
 
 # Import PDFs for RAG (extracts text + generates embeddings)
 open-notebook import --source pdf --path /path/to/papers/*.pdf
-```
+`````
 
 ## Integration with 15+ AI Providers
 
@@ -142,17 +143,17 @@ open-notebook supports a wide range of AI providers through a unified configurat
 
 | Provider | Type | Embedding | Chat | Audio | Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI | Cloud | GPT-4o embedding | GPT-4o | GPT-4o Realtime | $20-50/mo |
 | Anthropic | Cloud | N/A | Claude Sonnet 4 | N/A | $15-40/mo |
@@ -165,7 +166,7 @@ open-notebook supports a wide range of AI providers through a unified configurat
 
 ### Configuration Example
 
-```yaml
+`````yaml
 # config.yaml — Provider configuration
 providers: default_chat: anthropic
   default_embedding: openai
@@ -184,11 +185,11 @@ providers: default_chat: anthropic
     models: embedding: nomic-embed-text
       chat: - llama3.2:3b
         - qwen2.5:7b
-```
+`````
 
 ### Switching Providers On the Fly
 
-You can switch between providers without editing config files: ```bash
+You can switch between providers without editing config files: `````bash
 # Switch default chat provider
 open-notebook provider set --default-chat anthropic
 
@@ -200,7 +201,7 @@ open-notebook collection set-model --collection research --model ollama:llama3.2
 
 # List available providers
 open-notebook provider list
-```
+`````
 
 For self-hosted deployment on reliable infrastructure, I recommend [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU droplets or [HTStack](https://my.htstack.com/aff.php?aff=27187) for low-latency model serving.
 
@@ -210,13 +211,13 @@ For self-hosted deployment on reliable infrastructure, I recommend [DigitalOcean
 
 Testing on a 50-document collection (mix of PDF research papers and technical documentation): | Configuration | Top-3 Accuracy | Citation Accuracy | Hallucination Rate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI + GPT-4o | 94% | 96% | 2% |
 | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% |
@@ -227,11 +228,11 @@ Testing on a 50-document collection (mix of PDF research papers and technical do
 
 Generating a 10-minute audio episode from 5 documents: | Provider | Generation Time | Audio Quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI GPT-4o + TTS | ~4 min | Excellent |
 | Anthropic + Piper TTS | ~2 min | Good |
@@ -240,7 +241,7 @@ Generating a 10-minute audio episode from 5 documents: | Provider | Generation T
 
 ### Real-World Use Case 1: Academic Research
 
-A researcher ingests 200+ papers on a specific topic: ```bash
+A researcher ingests 200+ papers on a specific topic: `````bash
 # Bulk upload research papers
 for pdf in research/*.pdf; do
   curl -X POST http://localhost:3000/api/documents \
@@ -252,13 +253,13 @@ done
 curl -X POST http://localhost:3000/api/chat \
   -H "Authorization: Bearer $TOKEN" \
   -d '{"question": "What are the common methodologies across these papers?", "docs": "all"}'
-```
+`````
 
 Result: Literature review completed in hours instead of weeks, with proper citations.
 
 ### Real-World Use Case 2: Technical Documentation Knowledge Base
 
-A startup creates an internal knowledge base from engineering docs: ```bash
+A startup creates an internal knowledge base from engineering docs: `````bash
 # Ingest Confluence-style markdown docs
 open-notebook ingest --source ./docs/ --provider ollama
 
@@ -266,7 +267,7 @@ open-notebook ingest --source ./docs/ --provider ollama
 # "How does the auth system work?"
 # "What's the deployment pipeline?"
 # "Explain the rate limiting strategy"
-```
+`````
 
 Result: New team members find answers 3x faster than searching Slack.
 
@@ -274,7 +275,7 @@ Result: New team members find answers 3x faster than searching Slack.
 
 ### Custom Document Processing
 
-Configure chunking strategies for different document types: ```python
+Configure chunking strategies for different document types: `````python
 # chunking_config.py
 chunking_strategies = {
     "pdf": {
@@ -294,11 +295,11 @@ chunking_strategies = {
         "overlap": 50,
     },
 }
-```
+`````
 
 ### Vector Database Scaling
 
-For large document collections (10K+ documents): ```bash
+For large document collections (10K+ documents): `````bash
 # Deploy Qdrant on a separate server
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage \
@@ -308,11 +309,11 @@ docker run -p 6333:6333 -p 6334:6334 \
 # In .env: # VECTOR_DB=qdrant
 # QDRANT_HOST=qdrant.internal
 # QDRANT_PORT=6333
-```
+`````
 
 ### Multi-User Setup
 
-```bash
+`````bash
 # Enable user authentication
 # In .env: # ENABLE_AUTH=true
 # JWT_SECRET=<generated-secret>
@@ -321,21 +322,21 @@ docker run -p 6333:6333 -p 6334:6334 \
 curl -X POST http://localhost:3000/api/users \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
   -d '{"username": "researcher1", "role": "user"}'
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | open-notebook | NotebookLM | RAGflow | LangChain Chat |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Self-hosted | Yes | No | Yes | Yes |
 | AI providers | 15+ | Google only | Multiple | Multiple |
@@ -352,7 +353,7 @@ curl -X POST http://localhost:3000/api/users \
 
 open-notebook is not for everyone. Here's when it's NOT a good fit: 1. **Zero-setup requirement** — If you want something that works instantly with no configuration, use Google NotebookLM. open-notebook requires Docker setup and API key configuration.
 
-2. **Non-English documents** — The embedding models and LLMs are optimized for English. Non-English documents (especially CJK) may have reduced retrieval quality. You can improve this by using multilingual embedding models like `text-embedding-3-large`.
+2. **Non-English documents** — The embedding models and LLMs are optimized for English. Non-English documents (especially CJK) may have reduced retrieval quality. You can improve this by using multilingual embedding models like ````text-embedding-3-large````.
 
 3. **Very large collections** — While the system handles thousands of documents well, collections exceeding 50K documents may experience slowdowns without a dedicated vector database server. Use Qdrant or Weaviate on a separate machine for large-scale deployments.
 
@@ -364,7 +365,7 @@ open-notebook is not for everyone. Here's when it's NOT a good fit: 1. **Zero-se
 
 **Q: Does open-notebook support local/offline AI models?**
 
-A: Yes. By setting `AI_PROVIDER=ollama` in your `.env` file and configuring `OLLAMA_HOST`, you can run everything locally with models like llama3.2, qwen2.5, or nomic-embed-text. No API keys or internet connection required.
+A: Yes. By setting ````AI_PROVIDER=ollama```` in your ````.env```` file and configuring ````OLLAMA_HOST````, you can run everything locally with models like llama3.2, qwen2.5, or nomic-embed-text. No API keys or internet connection required.
 
 **Q: What vector databases are supported?**
 
@@ -372,7 +373,7 @@ A: open-notebook supports Qdrant (recommended), Weaviate, and Supabase/pgvector.
 
 **Q: Can I use open-notebook with OpenRouter?**
 
-A: Yes. Set `AI_PROVIDER=openrouter` and provide your OpenRouter API key. This gives access to 50+ models from different providers through a single API, which is great for cost optimization.
+A: Yes. Set ````AI_PROVIDER=openrouter```` and provide your OpenRouter API key. This gives access to 50+ models from different providers through a single API, which is great for cost optimization.
 
 **Q: How secure is self-hosted open-notebook?**
 
@@ -383,14 +384,14 @@ A: Very secure. All documents, embeddings, and conversations are stored on your 
 A: Not directly with the current version. Audio episodes use configurable TTS providers (OpenAI, Piper, Edge TTS, etc.). Voice cloning is not currently supported, but this is on the roadmap for future releases.
 
 
-```yaml
+`````yaml
 # docker-compose.yml additional configuration
 services: open-notebook: environment: - MAX_UPLOAD_SIZE=100MB
       - ENABLE_TRANSCRIPTION=true
       - TRANSCRIPTION_PROVIDER=whisper
       - EMBEDDING_MODEL=snowflake-arctic-embed
       - VECTOR_STORE=chroma
-```
+`````
 
 
 ## 
@@ -411,7 +412,7 @@ open-notebook proves that a personal AI research assistant doesn't need to live 
 
 Whether you"re a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.
 
-Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](https://dibi8.com/agentmemory-persistent-m[知识图谱](https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory guide](https://dibi8.com/agentmemory-*) for complementary knowledge. Try open-notebook today — `docker compose up`, upload a PDF, and ask it a question.
+Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](https://dibi8.com/agentmemory-persistent-m[知识图谱](https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory guide](https://dibi8.com/agentmemory-*) for complementary knowledge. Try open-notebook today — ````docker compose up```, upload a PDF, and ask it a question.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -442,7 +443,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [moneyprinterturbo-one-click-ai-video-generator](open-notebook-open-source-notebooklm-alternative-15-ai-providers)
@@ -452,5 +453,5 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [12-factor-agents](open-notebook-open-source-notebooklm-alternative-15-ai-providers)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/plausible-analytics-privacy-google/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Vấn Đề Quyền Riêng Tư Trong Phân Tích Mà Không Ai Nói Đến
@@ -44,7 +45,7 @@ Plausible tiếp cận theo cách hoàn toàn khác với phân tích truyền t
 
 ### Tổng quan kiến trúc
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │              (Reverse Proxy + SSL)                   │
@@ -65,7 +66,7 @@ Plausible tiếp cận theo cách hoàn toàn khác với phân tích truyền t
 │          │ (Cache)  │                                │
 │          └──────────┘                                │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### Tại sao sử dụng ClickHouse cho lưu trữ sự kiện
 
@@ -87,9 +88,9 @@ Plausible sử dụng **ClickHouse** làm cơ sở dữ liệu phân tích — c
 
 ### Script 1KB: Nó thực sự làm gì
 
-```html
+`````html
 </script>
-```
+`````
 
 Script này chỉ làm đúng ba việc: (1) gửi URL trang hiện tại và referrer, (2) gửi kích thước viewport để phân loại desktop/mobile, và (3) lắng nghe sự kiện navigation SPA. Nó **không**: đặt cookie, sử dụng localStorage, tạo hash vân tay, hoặc thực thi request bên thứ ba. Kết quả là payload dưới 1KB khi gzip và thờ gian thực thi dưới 10ms trên mạng 4G.
 
@@ -106,18 +107,18 @@ VPS đáng tin cậy, chúng tôi khuyên dùng [DigitalOcean](https://m.do.co/c
 
 ### Bước 1: Tạo Thư mục và File Compose
 
-```bash
+`````bash
 # Tạo thư mục dự án
 mkdir -p /opt/plausible
 cd /opt/plausible
 
 # Tải template Docker Compose chính thức
 curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml
-```
+`````
 
 ### Bước 2: Tạo Secret và Cấu hình
 
-```bash
+`````bash
 # Tạo secret ngẫu nhiên
 export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
@@ -143,11 +144,11 @@ SMTP_HOST_SSL_ENABLED=true
 # Đăng ký
 DISABLE_REGISTRATION=false  # Đặt true sau khi tạo tài khoản
 EOF
-```
+`````
 
 ### Bước 3: Khởi chạy với Docker Compose
 
-```bash
+`````bash
 # Khởi động tất cả dịch vụ
 docker compose up -d
 
@@ -158,11 +159,11 @@ docker compose ps
 # plausible               Up 10 seconds   0.0.0.0:8000->8000/tcp
 # plausible_db            Up 10 seconds   5432/tcp
 # plausible_events_db     Up 10 seconds   8123/tcp
-```
+`````
 
 ### Bước 4: Reverse Proxy với SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/plausible
 server {
     listen 80;
@@ -185,39 +186,39 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-```
+`````
 
-```bash
+`````bash
 # Kích hoạt site và lấy SSL
 sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 sudo certbot --nginx -d analytics.yourdomain.com
-```
+`````
 
 ### Bước 5: Đăng nhập Lần Đầu và Thiết lập Site
 
-```bash
+`````bash
 # Tạo ngườ dùng admin
 docker compose exec plausible bin/plausible remote
 Plausible.Release.created_admin_user("admin@yourdomain.com", "YourSecurePassword123!")
 # Nhấn Ctrl+C để thoát
-```
+`````
 
-Truy cập `https://analytics.yourdomain.com`, đăng nhập, và thêm site đầu tiên. Sao chép đoạn mã tracking script vào phần header của website.
+Truy cập ````https://analytics.yourdomain.com````, đăng nhập, và thêm site đầu tiên. Sao chép đoạn mã tracking script vào phần header của website.
 
 ### Thêm Tracking vào Website
 
-```html
+`````html
 </script>
 
 </script>
-```
+`````
 
 ## Tích hợp với Frameworks, CMS và Build Tools
 
 ### Tích hợp React / Next.js
 
-```javascript
+`````javascript
 // components/PlausibleAnalytics.js
 import Script from 'next/script';
 
@@ -247,11 +248,11 @@ export default function RootLayout({ children }) {
 
   return <html>{children}</html>;
 }
-```
+`````
 
 ### Tích hợp Vue.js / Nuxt.js
 
-```javascript
+`````javascript
 // plugins/plausible.client.js (Nuxt 3)
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
@@ -261,7 +262,7 @@ export default defineNuxtPlugin(() => {
       {
         defer: true,
         'data-domain': config.public.plausibleDomain,
-        src: `${config.public.plausibleHost}/js/script.js`,
+        src: ````${config.public.plausibleHost}/js/script.js````,
       },
     ],
   });
@@ -274,11 +275,11 @@ export default defineNuxtPlugin(() => {
     }
   });
 });
-```
+`````
 
 ### Plugin WordPress
 
-```bash
+`````bash
 # Tùy chọn 1: Sử dụng plugin WordPress chính thức của Plausible
 # Cài từ wp-admin: Plugins > Add New > Tìm "Plausible Analytics"
 # Cấu hình với URL tự host
@@ -288,17 +289,17 @@ export default defineNuxtPlugin(() => {
 "
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
-```
+`````
 
 ### Static Site Generators (Hugo, Jekyll, Astro)
 
-```html
+`````html
 {{ if not hugo.IsServer }}
 </script>
 {{ end }}
-```
+`````
 
-```javascript
+`````javascript
 // astro.config.mjs
 export default defineConfig({
   integrations: [
@@ -306,20 +307,20 @@ export default defineConfig({
       name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript(head, `
+          injectScript(head, ````
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
-          `);
+          ````);
         },
       },
     },
   ],
 });
-```
+`````
 
 ### Theo dõi Sự kiện Tùy chỉnh
 
-```javascript
+`````javascript
 // Theo dõi click nút, submit form, hoặc bất kỳ sự kiện tùy chỉnh
 document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
@@ -339,7 +340,7 @@ plausible(Purchase, {
   },
   revenue: { currency: USD, amount: 9900 }  // tính bằng cent
 });
-```
+`````
 
 ## Benchmark & Các trường hợp sử dụng thực tế
 
@@ -403,7 +404,7 @@ Một công ty SaaS châu Âu với 200K khách truy cập/tháng đã thay Goog
 
 ### Kích hoạt Các phép đo Nâng cao
 
-```bash
+`````bash
 # plausible-conf.env — Kích hoạt các tính năng tracking bổ sung
 # Theo dõi link ra ngoài
 SCRIPT_NAME=script.outbound-links.js
@@ -416,15 +417,15 @@ SCRIPT_NAME=script.hash.js
 
 # Kết hợp: tất cả tính năng
 SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
-```
+`````
 
-```html
+`````html
 </script>
-```
+`````
 
 ### Tích hợp API cho Dashboard Tùy chỉnh
 
-```bash
+`````bash
 # Lấy stats qua Stats API
 curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&period=30d&metrics=visitors,pageviews,bounce_rate" \
   -H "Authorization: Bearer YOUR_API_KEY"
@@ -436,9 +437,9 @@ curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=you
 #     "bounce_rate": {"value": 42}
 #   }
 # }
-```
+`````
 
-```python
+`````python
 # Python script kéo stats vào BI tool
 import requests
 from datetime import datetime, timedelta
@@ -464,11 +465,11 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews")
-```
+`````
 
 ### Chiến lược Sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/plausible-backup.sh
 
@@ -488,16 +489,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/plausible/"
 
 # Dọn dẹp: chỉ giữ 30 ngày
 find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron — hàng ngày lúc 3 giờ sáng
 0 3 * * * /opt/scripts/plausible-backup.sh >> /var/log/plausible-backup.log 2>&1
-```
+`````
 
 ### Thiết lập High Availability
 
-```yaml
+`````yaml
 # docker-compose.ha.yaml — ClickHouse đa node với replication
 version: '3.8'
 services: plausible: image: plausible/analytics:v3.0
@@ -510,28 +511,28 @@ services: plausible: image: plausible/analytics:v3.0
 
   clickhouse-2: image: clickhouse/clickhouse-server:24.3
     volumes: - clickhouse_data_2:/var/lib/clickhouse
-```
+`````
 
 ### Giám sát với Prometheus
 
-```yaml
+`````yaml
 # Thêm vào prometheus.yml
 scrape_configs: - job_name: plausible
     static_configs: - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
-```bash
+`````bash
 # Các chỉ số chính cần theo dõi
 # plausible_clickhouse_event_insertions_total — Tốc độ tiếp nhận sự kiện
 # plausible_phoenix_request_duration_ms — Thờ gian phản hồi API
 # plausible_db_query_duration_ms — Hiệu suất truy vấn CSDL
-```
+`````
 
 ### Cơ sở dữ liệu GeoIP cho Dữ liệu Vị trí
 
-```bash
+`````bash
 # Tải cơ sở dữ liệu MaxMind GeoLite2 cho dữ liệu quốc gia/thành phố
 mkdir -p /opt/plausible/geoip
 cd /opt/plausible/geoip
@@ -547,7 +548,7 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 # Thêm vào plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
 # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -596,11 +597,11 @@ Plausible thường báo cáo **số lượng khách truy cập cao hơn 5-15%**
 
 Có. Plausible cung cấp trình nhập Google Analytics kéo dữ liệu qua GA Reporting API v4. Trình nhập xử lý cả thuộc tính Universal Analytics (UA) và GA4, ánh xạ dimensions sang mô hình dữ liệu của Plausible. Do sự khác biệt mô hình dữ liệu của GA4, một số chỉ số (như "thờ gian tương tác") không có tương đương trực tiếp. Quá trình nhập chạy như một job nền và có thể mất vài giờ cho các dataset lớn.
 
-```bash
+`````bash
 # Chạy trình nhập GA (từ container Plausible)
 docker compose exec plausible bin/plausible \
   "Plausible.Google.Import.start('your-ga-property-id", YOUR_API_KEY)"
-```
+`````
 
 **Điều gì xảy ra khi trang web của tôi vượt quá dung lượng VPS?**
 
@@ -608,11 +609,11 @@ Plausible mở rộng theo cách có thể dự đoán. **VPS 2GB xử lý ~500K
 
 **Làm thế nào để theo dõi nhiều domain hoặc subdomain?**
 
-Mỗi domain là một "site" riêng trong Plausible, nhưng bạn có thể tổ chức chúng bằng đăng nhập chung. Để theo dõi subdomain (ví dụ: `blog.yourdomain.com` và `app.yourdomain.com`), bạn có hai tùy chọn: theo dõi riêng cho báo cáo chi tiết, hoặc tổng hợp bằng thuộc tính `data-api-host` để báo cáo vào cùng một site ID. Theo dõi xuyên subdomain hoạt động mà không cần cấu hình đặc biệt vì Plausible không sử dụng cookie hoặc session storage.
+Mỗi domain là một "site" riêng trong Plausible, nhưng bạn có thể tổ chức chúng bằng đăng nhập chung. Để theo dõi subdomain (ví dụ: ````blog.yourdomain.com```` và ````app.yourdomain.com````), bạn có hai tùy chọn: theo dõi riêng cho báo cáo chi tiết, hoặc tổng hợp bằng thuộc tính ````data-api-host```` để báo cáo vào cùng một site ID. Theo dõi xuyên subdomain hoạt động mà không cần cấu hình đặc biệt vì Plausible không sử dụng cookie hoặc session storage.
 
-```html
+`````html
 </script>
-```
+````
 
 **Plausible tự host thực sự miễn phí mãi mãi không?**
 
@@ -628,7 +629,7 @@ Triển khai instance của bạn trong tuần này. Thiết lập Docker Compos
 
 **Tham gia nhóm Telegram của chúng tôi để thảo luận công cụ mã nguồn mở**: [t.me/dibi8vn](https://t.me/dibi8vn)
 
----
+* * *
 
 
 
@@ -651,7 +652,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [EDPB Guidelines on Consent](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — Cơ sở pháp lý cho phân tích không cookie
 - [DigitalOcean VPS Setup](https://m.do.co/c/eca87ac14ee0) — VPS hosting cho triển khai tự host
 
----
+* * *
 
 *Bài viết này chứa liên kết tiếp thị đến DigitalOcean. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả khuyến nghị đều dựa trên thử nghiệm thực tế và kinh nghiệm triển khai thực tế.*
 
@@ -681,7 +682,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -691,6 +692,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google)
 - [moneyprinterturbo-one-click-ai-video-generator](plausible-analytics-privacy-google)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/vectara-rag-as-service-platform/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction: Tại Sao Hầu Hết Hệ Thống RAG Thất Bại trong Production
@@ -36,9 +37,9 @@ Bạn đã thấy demo: một chatbot trả lờ câu hởi bằng cách tìm ki
 
 Bài viết này bao gồm kiến trúc, pattern tích hợp API, benchmark, và những hạn chế trung thực của nền tảng Vectara tính đến 2026.
 
-> **Yêu cầu tiên quyết:** Tài khoản Vectara (có tier miễn phí), Python 3.10+, và `curl` hoặc `requests` cho các API call.
+> **Yêu cầu tiên quyết:** Tài khoản Vectara (có tier miễn phí), Python 3.10+, và ```curl```` hoặc ````requests```` cho các API call.
 
----
+* * *
 
 ## What Is Vectara?
 
@@ -46,11 +47,11 @@ Vectara là một **nền tảng RAG-as-a-Service** cung cấp toàn bộ pipeli
 
 Điểm khác biệt cốt lõi của nền tảng là **governance luôn bật**. Phát hiện hallucination, kiểm tra tính nhất quán thực tế, thực thi chính sách thương hiệu, và theo dõi trích dẫn được nhúng trực tiếp vào generation pipeline, không phải gắn thêm như các bước xử lý sau tùy chọn. Điều này làm cho Vectara đặc biệt hấp dẫn cho các ngành được quản lý nơi độ chính xác và khả năng kiểm toán không thể thương lượng.
 
----
+* * *
 
 ## How Vectara Works
 
-Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được trình bày thông qua API thống nhất: ```
+Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được trình bày thông qua API thống nhất: `````
 ┌─────────────────────────────────────────────────────────────┐
 │  1. INGESTION (TIẾP NHẬN)                                   │
 │     Tài liệu → Trích xuất văn bản → Phân tích bảng/hình    │
@@ -82,7 +83,7 @@ Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được tr
 │     Kiểm tra HHEM hallucination → Tính nhất quán thực tế   │
 │     → Thực thi chính sách → Audit trail                     │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### Các Thành phần Kỹ thuật Chính
 
@@ -94,13 +95,13 @@ Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được tr
 
 **Hallucination Corrector.** Ra mắt tháng 5/2025, thành phần này chủ động sửa nội dung hallucinated trước khi nó đến ngườ dùng, đạt **tỷ lệ hallucination dưới 1%** ngay cả khi sử dụng LLM dưới 7B tham số.
 
----
+* * *
 
 ## Getting Started: Từ Đăng ký đến Truy vấn Đầu tiên trong 10 Phút
 
 ### Bước 1: Tạo Tài khoản và Lấy Thông tin API
 
-```bash
+`````bash
 # Sau đăng ký, truy cập Console để lấy thông tin: # - Customer ID
 # - Corpus ID  
 # - API Key
@@ -109,21 +110,21 @@ Kiến trúc của Vectara là một **pipeline RAG 6 giai đoạn** được tr
 export VECTARA_CUSTOMER_ID="your-customer-id"
 export VECTARA_CORPUS_ID="your-corpus-id"
 export VECTARA_API_KEY="zwt-your-api-key"
-```
+`````
 
 ### Bước 2: Cài đặt Python SDK
 
-```bash
+`````bash
 # Cài đặt client Python chính thức của Vectara
 pip install vectara
 
 # Hoặc sử dụng requests trực tiếp để truy cập REST API
 pip install requests
-```
+`````
 
 ### Bước 3: Index Tài liệu Đầu tiên
 
-```python
+`````python
 from vectara import VectaraClient
 
 # Khởi tạo client
@@ -157,11 +158,11 @@ document = {
 
 client.index_document(corpus_id=corpus.corpus_id, document=document)
 print(f"Document indexed to corpus {corpus.corpus_id}")
-```
+`````
 
 ### Bước 4: Chạy Truy vấn RAG Đầu tiên
 
-```python
+`````python
 # Truy vấn với RAG
 response = client.query(
     corpus_id="your-corpus-id",
@@ -178,18 +179,18 @@ response = client.query(
 print("Answer:", response.summary)
 print("\nSources:")
 for idx, result in enumerate(response.search_results, 1): print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
-```
+`````
 
-Output: ```
+Output: `````
 Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
 Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
-```
+`````
 
 ### Bước 5: Upload Hàng loạt Tài liệu
 
-```python
+`````python
 import os
 from pathlib import Path
 
@@ -204,15 +205,15 @@ for pdf_file in pdf_dir.glob("*.pdf"): with open(pdf_file, "rb") as f: client.up
     print(f"Uploaded: {pdf_file.name}")
 
 print("Batch upload complete!")
-```
+`````
 
----
+* * *
 
 ## Integration with Mainstream Tools
 
 ### Tích hợp Trực tiếp REST API
 
-Cho các ngôn ngữ không có SDK chính thức, sử dụng REST API trực tiếp: ```bash
+Cho các ngôn ngữ không có SDK chính thức, sử dụng REST API trực tiếp: `````bash
 # Endpoint truy vấn
 curl -X POST "https://api.vectara.io/v1/query" \
   -H "x-api-key: ${VECTARA_API_KEY}" \
@@ -228,11 +229,11 @@ curl -X POST "https://api.vectara.io/v1/query" \
       }
     ]
   }'
-```
+`````
 
 ### Tích hợp Node.js / TypeScript
 
-```typescript
+`````typescript
 import { VectaraClient } from "@vectara/sdk";
 
 const client = new VectaraClient({
@@ -263,11 +264,11 @@ app.post("/api/rag", async (req, res) => {
   const result = await askQuestion(req.body.question);
   res.json(result);
 });
-```
+`````
 
 ### Lọc Metadata
 
-Tinh chỉnh kết quả tìm kiếm bằng metadata có cấu trúc: ```python
+Tinh chỉnh kết quả tìm kiếm bằng metadata có cấu trúc: `````python
 # Lọc theo trường metadata
 response = client.query(
     corpus_id="your-corpus-id",
@@ -284,11 +285,11 @@ response = client.query(
     metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin"",
     generate=True
 )
-```
+`````
 
 ### RAG Đa ngôn ngữ
 
-Mô hình Boomerang của Vectara xử lý truy xuất đa ngôn ngữ một cách tự nhiên: ```python
+Mô hình Boomerang của Vectara xử lý truy xuất đa ngôn ngữ một cách tự nhiên: `````python
 # Truy vấn bằng tiếng Anh trên tài liệu tiếng Tây Ban Nha
 response = client.query(
     corpus_id="your-corpus-id",
@@ -304,11 +305,11 @@ response = client.query(
     query="Cách tích hợp API như thế nào?",
     response_lang="vie"
 )
-```
+`````
 
 ### Phản hồi Streaming
 
-Cho giao diện chat real-time, sử dụng streaming: ```python
+Cho giao diện chat real-time, sử dụng streaming: `````python
 import json
 
 # SSE streaming cho ứng dụng chat
@@ -322,11 +323,11 @@ response = client.query(
 # Xử lý các chunk streaming
 for chunk in response: if chunk.type == "search_result": print(f"Source: {chunk.document_id}")
     elif chunk.type == "generation": print(chunk.text, end="", flush=True)  # Stream token
-```
+`````
 
 ### Cấu hình Tìm kiếm Hybrid
 
-Điều chỉnh cân bằng giữa tìm kiếm từ khóa và tìm kiếm ngữ nghĩa: ```python
+Điều chỉnh cân bằng giữa tìm kiếm từ khóa và tìm kiếm ngữ nghĩa: `````python
 # Cấu hình trọng số tìm kiếm hybrid
 response = client.query(
     corpus_id="your-corpus-id",
@@ -341,9 +342,9 @@ response = client.query(
     },
     generate=True
 )
-```
+`````
 
----
+* * *
 
 ## Benchmarks and Real-World Performance
 
@@ -375,13 +376,13 @@ response = client.query(
 
 **Trường hợp 3 — Phân tích Tài liệu Pháp lý:** Một công ty luật tiếp nhận 50.000 hồ sơ vụ án và hợp đồng. Thư ký pháp lý báo cáo rằng câu trả lờ có trích dẫn của Vectara cho phép họ xác minh tuyên bố dựa trên tài liệu nguồn chỉ trong **~15 giây** so vớ ~4 phút tìm kiếm thủ công trước đây.
 
----
+* * *
 
 ## Advanced Usage and Production Hardening
 
 ### Re-ranking Tùy chỉnh
 
-Tinh chỉnh thứ tự kết quả cho ứng dụng theo miền cụ thể: ```python
+Tinh chỉnh thứ tự kết quả cho ứng dụng theo miền cụ thể: `````python
 # Re-ranking MMR cho kết quả đa dạng
 response = client.query(
     corpus_id="your-corpus-id",
@@ -405,11 +406,11 @@ response = client.query(
         }
     }
 )
-```
+`````
 
 ### Cập nhật Tài liệu và Quản lý Phiên bản
 
-Xử lý thay đổi tài liệu mà không cần re-index toàn bộ: ```python
+Xử lý thay đổi tài liệu mà không cần re-index toàn bộ: `````python
 # Cập nhật tài liệu cụ thể
 document_update = {
     "documentId": "api-guide-v2",
@@ -428,11 +429,11 @@ client.index_document(
     corpus_id="your-corpus-id",
     document=document_update
 )
-```
+`````
 
 ### Truy vấn Đa-Corpus
 
-Tìm kiếm đồng thờ xuyên suốt nhiều bộ sưu tập tài liệu: ```python
+Tìm kiếm đồng thờ xuyên suốt nhiều bộ sưu tập tài liệu: `````python
 response = client.query(
     query="authentication timeout",
     corpus_keys=[
@@ -442,11 +443,11 @@ response = client.query(
     ],
     generate=True
 )
-```
+`````
 
 ### Triển khai Lịch sử Trò chuyện
 
-Duy trì ngữ cảnh hội thoại xuyên suốt nhiều lượt: ```python
+Duy trì ngữ cảnh hội thoại xuyên suốt nhiều lượt: `````python
 # Lưu lịch sử hội thoại
 conversation = []
 
@@ -467,11 +468,11 @@ def chat_turn(user_query: str) -> str: global conversation
     conversation.append({"role": "assistant", "text": response.summary})
     
     return response.summary
-```
+`````
 
 ### Giám sát và Phân tích
 
-```python
+`````python
 # Lấy thống kê corpus
 stats = client.get_corpus_stats(corpus_id="your-corpus-id")
 print(f"Documents: {stats.num_docs}")
@@ -487,9 +488,9 @@ analytics = client.get_query_analytics(
 print(f"Total queries: {analytics.total_queries}")
 print(f"Avg latency: {analytics.avg_latency_ms}ms")
 print(f"Hallucination rate: {analytics.hallucination_rate}%")
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
@@ -520,7 +521,7 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 - Chọn **Weaviate** nếu bạn muốn giải pháp tự host vớ giao diện GraphQL
 - Chọn **LlamaIndex** nếu bạn thích tự lắp ráp RAG pipeline vớ độ linh hoạt tối đa
 
----
+* * *
 
 ## Limitations: Đánh Giá Trung Thực
 
@@ -534,7 +535,7 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 
 **5. Ít kiểm soát tuning retrieval.** Pipeline retrieval của Vectara là một hộp đen. Mặc dù bạn có thể điều chỉnh hybrid weight và reranking, bạn không thể thay thế từng thành phần riêng lẻ (ví dụ: dùng mô hình embedding tùy chỉnh hay reranker khác).
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -564,9 +565,9 @@ Có. Vectara hỗ trợ văn bản, bảng, và hình ảnh thông qua pipeline 
 
 ### Vectara xử lý cập nhật tài liệu và quản lý phiên bản như thế nào?
 
-Khi bạn re-index một tài liệu vớ cùng `documentId`, Vectara thay thế phiên bản cũ bằng phiên bản mới một cách nguyên tử. Không có downtime, và các truy vấn trong quá trình cập nhật thấy trạng thái nhất quán. Nền tảng cũng theo dõi tính toàn vẹn trích dẫn theo thờ gian, flag các phản hồi có thể cần cập nhật khi tài liệu nguồn thay đổi.
+Khi bạn re-index một tài liệu vớ cùng ````documentId```, Vectara thay thế phiên bản cũ bằng phiên bản mới một cách nguyên tử. Không có downtime, và các truy vấn trong quá trình cập nhật thấy trạng thái nhất quán. Nền tảng cũng theo dõi tính toàn vẹn trích dẫn theo thờ gian, flag các phản hồi có thể cần cập nhật khi tài liệu nguồn thay đổi.
 
----
+* * *
 
 ## Conclusion: Để Vectara Xử Lý Phần Việc Nặng Nhề của RAG
 
@@ -576,7 +577,7 @@ Cho các team cần phản hồi AI chính xác, được quản lý, có trích
 
 > **Tham gia thảo luận:** Chia sẻ kết quả triển khai Vectara của bạn trong [nhóm Telegram](https://t.me/dibi8ai_vi) của chúng tôi——chúng tôi so sánh benchmark retrieval, chia sẻ chiến lược tuning corpus, và review pipeline ingestion hàng tuần.
 
----
+* * *
 
 ## Sources & Further Reading
 
@@ -588,7 +589,7 @@ Cho các team cần phản hồi AI chính xác, được quản lý, có trích
 - [Mockingbird LLM Benchmarks](https://vectara.com/blog/mockingbird)
 - [Nghiên cứu RAG Stanford HAI 2025](https://hai.stanford.edu)
 
----
+* * *
 
 
 
@@ -629,7 +630,7 @@ Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [Digi
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -639,6 +640,6 @@ Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [Digi
 - [9router-smart-llm-proxy-token-saver-free-coding](vectara-rag-as-service-platform)
 - [ai-engineering-from-scratch](vectara-rag-as-service-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

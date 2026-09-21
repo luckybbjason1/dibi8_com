@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 ---
 
+
 # Agent Skills Của Addy Osmani: Cách Tiếp Cận Production-Grade
 
 Tôi từng nghĩ AI coding assistants chỉ là fancy autocomplete with chat. Sau đó Addy Osmani publish Agent Skills framework và chứng tỏ tôi sai.
@@ -31,41 +32,41 @@ Khi một người có track record của Addy nói "build skills cho AI agents,
 
 ## Agent Skills Là Gì?
 
-Agent Skills là một framework cho creating reusable, shareable capabilities cho AI coding assistants. Hãy tưởng tượng nó như npm cho agent behaviors: ```
+Agent Skills là một framework cho creating reusable, shareable capabilities cho AI coding assistants. Hãy tưởng tượng nó như npm cho agent behaviors: ````
 Skills = AI knowledge của organization bạn
        = Pre-built workflows
        = Custom commands
        = Context-aware helpers
-```
+`````
 
 ## Cài Đặt Và Thiết Lập
 
 ### Phương Pháp 1: Quick Start
-```bash
+`````bash
 npm install -g agent-skills
 skills init my-project
-```
+`````
 
 ### Phương Pháp 2: Manual Installation
-```bash
+`````bash
 git clone https://github.com/addyosmani/agent-skills.git
 cd agent-skills
 npm install
 npm run build
-```
+`````
 
 ### IDE Integration
 **Cho VS Code:**
-```json
+`````json
 // settings.json
 {
   "agentSkills.enabled": true,
   "agentSkills.skillsPath": "./skills"
 }
-```
+`````
 
 **Cho Cursor:**
-```json
+`````json
 // .cursorrc
 {
   "skills": {
@@ -73,45 +74,45 @@ npm run build
     "directory": "./skills"
   }
 }
-```
+`````
 
 ## Xây Dựng Skill Đầu Tiên
 
 ### Cấu Trúc Cơ Bản
-```
+`````
 skills/
 ├── my-skill/
 │   ├── SKILL.md          # Skill definition
 │   ├── execute.ts        # Implementation
 │   └── config.yaml       # Configuration
-```
+`````
 
 ### Skill Definition
-```markdown
----
+`````markdown
+* * *
 name: my-skill
 description: "Mô tả một dòng về skill này làm gì"
 version: 1.0.0
 author: ten-cua-ban
----
+* * *
 
 # Skill Của Tôi
 
 Mô tả chi tiết ở đây...
 
 ## Usage
-\`\`\`
+\````\````\````
 skills run my-skill --flag value
-\`\`\`
+\````\````\````
 
 ## Examples
-\`\`\`typescript
+\````\````\````typescript
 // Example code
-\`\`\`
-```
+\````\````\````
+`````
 
 ### Implementation
-```typescript
+`````typescript
 import { Skill, SkillContext } from 'agent-skills';
 
 export class MySkill extends Skill {
@@ -127,12 +128,12 @@ export class MySkill extends Skill {
     };
   }
 }
-```
+`````
 
 ## Ví Dụ Skill Thực Tế
 
 ### 1. Security Scanner
-Automated security checks trước commits: ```typescript
+Automated security checks trước commits: `````typescript
 class SecurityScanSkill extends Skill {
   async execute(ctx) {
     const files = await this.getModifiedFiles();
@@ -153,10 +154,10 @@ class SecurityScanSkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 ### 2. Documentation Generator
-Auto-generate docs from code: ```typescript
+Auto-generate docs from code: `````typescript
 class DocGeneratorSkill extends Skill {
   async execute(ctx) {
     const api = await this.extractAPI(ctx.code);
@@ -166,14 +167,14 @@ class DocGeneratorSkill extends Skill {
     
     return {
       success: true,
-      output: `Generated ${api.length} API docs`
+      output: ````Generated ${api.length} API docs````
     };
   }
 }
-```
+`````
 
 ### 3. Performance Profiler
-Measure và optimize code: ```typescript
+Measure và optimize code: `````typescript
 class PerformanceProfileSkill extends Skill {
   async execute(ctx) {
     const metrics = await this.profileCode(ctx.code);
@@ -185,12 +186,12 @@ class PerformanceProfileSkill extends Skill {
     };
   }
 }
-```
+`````
 
 ## Các Mẫu Nâng Cao
 
 ### Pattern 1: Conditional Execution
-```typescript
+`````typescript
 class ConditionalSkill extends Skill {
   async shouldExecute(ctx): Promise<boolean> {
     // Chỉ chạy nếu điều kiện nhất định được meeting
@@ -201,10 +202,10 @@ class ConditionalSkill extends Skill {
     // ...
   }
 }
-```
+`````
 
 ### Pattern 2: Multi-Step Workflows
-```typescript
+`````typescript
 class DeploySkill extends Skill {
   async execute(ctx) {
     const steps = [
@@ -221,10 +222,10 @@ class DeploySkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 ### Pattern 3: State Persistence
-```typescript
+`````typescript
 class CachingSkill extends Skill {
   async execute(ctx) {
     const cacheKey = this.computeKey(ctx);
@@ -239,10 +240,10 @@ class CachingSkill extends Skill {
     return result;
   }
 }
-```
+`````
 
 ### Pattern 4: Error Recovery
-```typescript
+`````typescript
 class RobustSkill extends Skill {
   async execute(ctx) {
     const maxRetries = 3;
@@ -256,10 +257,10 @@ class RobustSkill extends Skill {
     }
   }
 }
-```
+`````
 
 ### Pattern 5: Parallel Execution
-```typescript
+`````typescript
 class ParallelSkill extends Skill {
   async execute(ctx) {
     const results = await Promise.all([
@@ -270,27 +271,27 @@ class ParallelSkill extends Skill {
     return { data: results[0], meta: results[1], valid: results[2] };
   }
 }
-```
+`````
 
 ## Mẫu Deployment
 
 ### Containerized Deployment
-Chạy Agent Skills trong Docker cho isolated environments: ```dockerfile
+Chạy Agent Skills trong Docker cho isolated environments: `````dockerfile
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 COPY . .
 CMD ["skills", "run", "my-skill"]
-```
+`````
 
-```bash
+`````bash
 docker build -t agent-skills-app .
 docker run -v $(pwd)/skills:/app/skills agent-skills-app
-```
+`````
 
 ### CI/CD Integration
-Automate skill testing trong pipeline của bạn: ```yaml
+Automate skill testing trong pipeline của bạn: `````yaml
 # .github/workflows/skills-test.yml
 name: Test Skills
 on: [push, pull_request]
@@ -301,10 +302,10 @@ jobs: test: runs-on: ubuntu-latest
       - run: skills test
       - run: skills lint
       - run: skills coverage
-```
+`````
 
 ### Multi-Team Setup
-Cho organizations với multiple teams: ```yaml
+Cho organizations với multiple teams: `````yaml
 # skills-config.yaml
 global: pluginsDir: ~/.agent-skills/plugins
   cacheDir: ~/.agent-skills/cache
@@ -313,7 +314,7 @@ teams: platform: skillsDir: ./skills/platform
     members: [alice, bob]
   data: skillsDir: ./skills/data
     members: [charlie, diana]
-```
+`````
 
 ## Benchmark Hiệu Suất
 
@@ -336,7 +337,7 @@ Sau 3 tháng production use: - **First-month bug rate:** 8.2 bugs per 1000 lines
 
 ### Pitfall 1: Skills Overlap
 **Problem:** Multiple skills do similar things.
-**Solution:** Use skill composition, not duplication: ```typescript
+**Solution:** Use skill composition, not duplication: `````typescript
 // Thay vì duplicate logic
 class AuthSkill extends Skill { /* auth logic */ }
 class APIKeySkill extends Skill { /* more auth logic */ }
@@ -349,29 +350,29 @@ class AuthenticatedRequest extends Skill {
     return result;
   }
 }
-```
+`````
 
 ### Pitfall 2: State Leakage
 **Problem:** Skills interfere with each other's state.
-**Solution:** Isolate state per skill instance: ```typescript
+**Solution:** Isolate state per skill instance: `````typescript
 class IsolatedSkill extends Skill {
   async execute(ctx) {
     const localState = this.createIsolatedState();
     // ... use localState only
   }
 }
-```
+`````
 
 ### Pitfall 3: Performance Degradation
 **Problem:** Too many skills slow down the assistant.
-**Solution:** Lazy loading: ```typescript
+**Solution:** Lazy loading: `````typescript
 class LazySkill extends Skill {
   async load() {
     // Only load when needed
     return import('./heavy-module');
   }
 }
-```
+`````
 
 ## So Sánh Với Các Alternatives
 
@@ -389,24 +390,24 @@ class LazySkill extends Skill {
 ## Khắc Phục Sự Cố
 
 ### Issue Thường Gặp: Skills Not Loading
-```bash
+`````bash
 # Check skill registration
 skills list
 
 # View skill logs
 skills logs --skill my-skill --tail 50
-```
+`````
 
 ### Issue Thường Gặp: TypeScript Compilation Errors
-```bash
+`````bash
 # Clear cache và rebuild
 rm -rf node_modules/.cache
 npm run clean
 npm run build
-```
+`````
 
 ### Issue Thường Gặp: Memory Leak Trong Long Sessions
-Enable memory limits trong skill config: ```typescript
+Enable memory limits trong skill config: `````typescript
 // skill.config.ts
 export default {
   memory: {
@@ -414,16 +415,16 @@ export default {
     gcInterval: '5m'
   }
 };
-```
+`````
 
 ### Issue Thường Gặp: Plugin Conflicts
-When multiple skills conflict: ```bash
+When multiple skills conflict: `````bash
 # List all loaded skills
 skills list --all
 
 # Disable conflicting skills temporarily
 skills disable skill-name
-```
+`````
 
 ## Security Considerations
 Khi deploy skills trong production environments: 1. **Sandbox Execution** — Luôn chạy skills trong isolated containers
@@ -431,10 +432,10 @@ Khi deploy skills trong production environments: 1. **Sandbox Execution** — Lu
 3. **Secret Scanning** — Tích hợp một secrets scanner như một pre-deploy check
 4. **Skill Auditing** — Review third-party skills trước khi installation
 
-```bash
+`````bash
 # Security scan cho skills
 skills security scan --deep ./skills
-```
+`````
 
 ## Community & Ecosystem
 
@@ -450,14 +451,14 @@ Quan tâm đến contributing?
 3. Gửi PR với tests
 4. Tham gia Discord community
 
-```bash
+`````bash
 # Development setup
 git clone git@github.com:addyosmani/agent-skills.git
 cd agent-skills
 npm install
 npm test  # Chạy test suite
 npm run dev    # Khởi động development mode
-```
+````
 
 ## Câu Hỏi Thường Gặp
 
@@ -494,7 +495,7 @@ Bài học: Build skills, not just prompts. Structure beats magic.
 
 **Bạn làm gì?** Bạn muốn build skill nào đầu tiên? Chia sẻ ideas của bạn!
 
----
+* * *
 
 **Nguồn Và Đọc Thêm:**
 - GitHub repo: https://github.com/addyosmani/agent-skills
@@ -534,7 +535,7 @@ Bài học: Build skills, not just prompts. Structure beats magic.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -544,6 +545,6 @@ Bài học: Build skills, not just prompts. Structure beats magic.
 - [claude-code-vs-aider](agent-skills-production-workflows)
 - [cursor-vs-claude-code](agent-skills-production-workflows)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

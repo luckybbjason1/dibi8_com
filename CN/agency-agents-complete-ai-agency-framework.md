@@ -13,6 +13,7 @@ tech_stack: - Bash
   - Shell
 featureImage: /images/articles/free-llm-api-resources-ai-development.png
 stars: 128667---
+
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 
 
@@ -68,7 +69,7 @@ You'll need: - Python 3.10+
 
 ### Installation
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/msitarzewski/agency-agents.git
 cd agency-agents
@@ -79,11 +80,11 @@ pip install -r requirements.txt
 # Configure your AI API key
 export AI_API_KEY="your-api-key-here"
 export AI_MODEL="claude-sonnet-4-20250514"
-```
+`````
 
 ### Running a Single Agent
 
-```bash
+`````bash
 # Use the Frontend Designer agent
 python agents/frontend_designer.py --task "Create a landing page for a SaaS product"
 
@@ -92,11 +93,11 @@ python agents/backend_dev.py --task "Build a REST API with authentication"
 
 # Use the DevOps Engineer agent
 python agents/devops.py --task "Set up CI/CD pipeline with Docker and GitHub Actions"
-```
+`````
 
 ### Running the Full Agency
 
-```bash
+`````bash
 # Run the complete agency workflow
 python agency.py --project "Build a task management app" --agents all
 
@@ -106,11 +107,11 @@ python agency.py --project "Build a task management app" \
 
 # Run in interactive mode
 python agency.py --interactive
-```
+`````
 
 ### Project Structure
 
-```
+`````
 agency-agents/
 ├── agents/
 │   ├── frontend_designer.py
@@ -128,7 +129,7 @@ agency-agents/
 ├── agency.py          # Main orchestrator
 ├── requirements.txt
 └── README.md
-```
+`````
 
 
 {{< aff "digitalocean" "deployment" "Deploy Agency Agents: 125K+ Star Open-Source AI Agency Framework on DigitalOcean" >}}
@@ -139,7 +140,7 @@ For newcomers to AI agency frameworks, here's a complete walkthrough of setting 
 
 ### Step 1: Project Initialization
 
-```bash
+`````bash
 # Create a new project directory
 mkdir my-ai-project
 cd my-ai-project
@@ -154,11 +155,11 @@ python -m agency_agents init --project "My SaaS Dashboard"
 # ├── output/
 # ├── logs/
 # └── README.md
-```
+`````
 
 ### Step 2: Configure Your Team
 
-Edit the `config.yaml` to specify which agents you want to activate: ```yaml
+Edit the ``config.yaml`` to specify which agents you want to activate: `````yaml
 team: frontend: model: claude-sonnet-4-20250514
     temperature: 0.3
     max_tokens: 4096
@@ -171,11 +172,11 @@ team: frontend: model: claude-sonnet-4-20250514
   qa: model: claude-sonnet-4-20250514
     temperature: 0.2
     max_tokens: 2048
-```
+`````
 
 ### Step 3: Define Your Tasks
 
-Create a `tasks.yaml` file that describes your project requirements: ```yaml
+Create a ``tasks.yaml`` file that describes your project requirements: `````yaml
 project: name: "SaaS Dashboard"
   description: "A real-time analytics dashboard for e-commerce"
   tech_stack: - React
@@ -194,11 +195,11 @@ project: name: "SaaS Dashboard"
     - name: "Testing"
       agent: qa
       deadline: "Day 5-6"
-```
+`````
 
 ### Step 4: Execute the Pipeline
 
-```bash
+`````bash
 # Run the full agency pipeline
 python -m agency_agents run --tasks tasks.yaml --config config.yaml
 
@@ -207,11 +208,11 @@ python -m agency_agents monitor --follow
 
 # View individual agent outputs
 python -m agency_agents output --agent frontend --latest
-```
+`````
 
 ### Step 5: Review and Iterate
 
-After the pipeline completes, review the generated code: ```bash
+After the pipeline completes, review the generated code: `````bash
 # Check the output directory
 tree output/
 
@@ -220,7 +221,7 @@ cat output/qa-report.md
 
 # Run automated tests
 cd output && npm test
-```
+`````
 
 This tutorial demonstrates the full lifecycle of an AI-powered project, from initialization to deployment. Each agent contributes its specialized expertise, resulting in a cohesive, production-ready application.
 
@@ -230,7 +231,7 @@ This tutorial demonstrates the full lifecycle of an AI-powered project, from ini
 
 The task router is the brain of Agency Agents. It uses a combination of keyword matching and semantic analysis to determine which agent should handle a given task.
 
-```python
+`````python
 class TaskRouter: def __init__(self, agents): self.agents = agents
         self.keywords = self._build_keyword_index()
     
@@ -247,13 +248,13 @@ class TaskRouter: def __init__(self, agents): self.agents = agents
             scores[agent_name] = score
         
         return max(scores, key=scores.get)
-```
+`````
 
 ### Agent Communication Protocol
 
 Agents communicate through a shared task queue, enabling parallel processing and dependency management.
 
-```python
+`````python
 from queue import Queue
 import threading
 
@@ -268,13 +269,13 @@ class AgentQueue: def __init__(self): self.tasks = Queue()
         })
     
     def get_next_task(self): return self.tasks.get(block=False)
-```
+`````
 
 ### Quality Assurance Pipeline
 
 Each agent's output goes through a quality check before being accepted.
 
-```python
+`````python
 def quality_check(agent_output, task_requirements): checks = [
         ('syntax', check_syntax(agent_output)),
         ('completeness', check_completeness(agent_output, task_requirements)),
@@ -288,7 +289,7 @@ def quality_check(agent_output, task_requirements): checks = [
         'checks': checks,
         'score': sum(c[1] for c in checks) / len(checks)
     }
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -296,13 +297,13 @@ def quality_check(agent_output, task_requirements): checks = [
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Number of Agents | 12+ | 1-2 | 3-5 | Custom |
 | Pre-built Roles | Yes | No | Partial | No |
@@ -347,7 +348,7 @@ A: The framework itself is free and open-source under the MIT license. The only 
 
 ### Q: Can I add custom agents to the framework?
 
-A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the `BaseAgent` interface and registering them with the task router. The framework provides templates for creating new agents.
+A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the ````BaseAgent```` interface and registering them with the task router. The framework provides templates for creating new agents.
 
 ### Q: Does it support open-source AI models?
 
@@ -359,10 +360,10 @@ A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT
 
 ### Q: Is there a Docker setup?
 
-A: Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with: ```bash
+A: Yes. The repository includes a ``Dockerfile`` and ``docker-compose.yml`` for easy deployment. You can run the entire agency with: `````bash
 docker-compose up -d
 docker exec -it agency-agents python agency.py --project "Build a web app"
-```
+`````
 
 ## Join the Community
 
@@ -383,7 +384,7 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 - [Agency Agents README](https://github.com/msitarzewski/agency-agents/blob/main/README.md)
 
 
----
+* * *
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
 
 
@@ -397,7 +398,7 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
     },
     {
       "question": "Can I add custom agents to the framework?",
-      "answer": "Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the `BaseAgent` interface and registering them with the task router. The framework provides templates for creating new agents."
+      "answer": "Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the ````BaseAgent```` interface and registering them with the task router. The framework provides templates for creating new agents."
     },
     {
       "question": "Does it support open-source AI models?",
@@ -409,7 +410,7 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
     },
     {
       "question": "Is there a Docker setup?",
-      "answer": "Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with:\n\n```bash\ndocker-compose up -d\ndocker exec -it agency-agents python agency.py --project "Build a web app"\n```"
+      "answer": "Yes. The repository includes a ``Dockerfile`` and ``docker-compose.yml`` for easy deployment. You can run the entire agency with:\n\n`````bash\ndocker-compose up -d\ndocker exec -it agency-agents python agency.py --project "Build a web app"\n````"
     }
   ]
 }
@@ -441,7 +442,7 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [agency-agents-complete-ai-agency-framework](agency-agents-complete-ai-agency-framework)
@@ -450,6 +451,6 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 - [2026-06-08-trending-ai-agents](agency-agents-complete-ai-agency-framework)
 - [2026-06-15-trending-ai-agents](agency-agents-complete-ai-agency-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

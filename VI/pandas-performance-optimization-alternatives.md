@@ -22,6 +22,7 @@ aliases:
   - /posts/pandas-performance-optimization-alternatives/
 ---
 
+
 {</* resource-info */>}
 
 Pandas đã là thư viện xử lý dữ liệu chủ lực của Python trong hơn một thập kỷ, vớ hơn 300 triệu lượt tải mỗi tháng trên PyPI. Tuy nhiên, khi dữ liệu tăng trưởng từ hàng triệu lên hàng tỷ dòng, các hạn chế về hiệu suất của Pandas ngày càng trở nên rõ rệt. Năm 2024, hai thư viện mớ nổi — Polars và DuckDB — đã chứng minh khả năng vượt trội về tốc độ và hiệu quả bộ nhớ, mở ra kỷ nguyên mới cho xử lý dữ liệu trong Python.
@@ -40,17 +41,17 @@ Trước khi đầu tư thờ gian học công cụ mớ, hãy tối ưu hóa co
 
 ### Tối Ưu Ở Mức Code
 
-1. **Sử dụng kiểu dữ liệu category:** Đối với cột có số lượng giá trị unique thấp (như giới tính, thành phố, loại sản phẩm), chuyển sang kiểu `category` giảm bộ nhớ đến 90%.
+1. **Sử dụng kiểu dữ liệu category:** Đối với cột có số lượng giá trị unique thấp (như giới tính, thành phố, loại sản phẩm), chuyển sang kiểu ```category```` giảm bộ nhớ đến 90%.
 
-2. **Xử lý theo chunk:** Đọc file lớn theo từng phần nhỏ bằng tham số `chunksize`, xử lý từng chunk và kết hợp kết quả: 3. **Vectorization thay vì vòng lặp:** Thao tác vectorized trong Pandas nhanh hơn 50-100 lần so vớ vòng lặp `for`. Thay `df.apply()` bằng các phép toán trực tiếp trên Series.
+2. **Xử lý theo chunk:** Đọc file lớn theo từng phần nhỏ bằng tham số ````chunksize````, xử lý từng chunk và kết hợp kết quả: 3. **Vectorization thay vì vòng lặp:** Thao tác vectorized trong Pandas nhanh hơn 50-100 lần so vớ vòng lặp ````for````. Thay ````df.apply()```` bằng các phép toán trực tiếp trên Series.
 
-4. **Sử dụng định dạng file hiệu quả:** Parquet và Feather nhanh hơn 3-5 lần so vớ CSV ở cả khâu đọc và ghi, đồng thờ nén dữ liệu tốt hơn đáng kể. Sử dụng `pd.read_parquet()` thay vì `pd.read_csv()` khi có thể.
+4. **Sử dụng định dạng file hiệu quả:** Parquet và Feather nhanh hơn 3-5 lần so vớ CSV ở cả khâu đọc và ghi, đồng thờ nén dữ liệu tốt hơn đáng kể. Sử dụng ````pd.read_parquet()```` thay vì ````pd.read_csv()```` khi có thể.
 
-5. **Sử dụng `eval()` và `query()`:** Các phương thức này sử dụng NumExpr engine để tính toán song song, nhanh hơn 2-4 lần cho các biểu thức phức tạp trên DataFrame lớn.
+5. **Sử dụng ````eval()```` và ````query()````:** Các phương thức này sử dụng NumExpr engine để tính toán song song, nhanh hơn 2-4 lần cho các biểu thức phức tạp trên DataFrame lớn.
 
-6. **Tránh chained indexing:** Sử dụng `.loc[]` và `.iloc[]` thay vì chuỗi các phép lọc liên tiếp để tránh tạo bản sao dữ liệu không cần thiết.
+6. **Tránh chained indexing:** Sử dụng ````.loc[]```` và ````.iloc[]```` thay vì chuỗi các phép lọc liên tiếp để tránh tạo bản sao dữ liệu không cần thiết.
 
-7. **Theo dõi bộ nhớ:** Sử dụng thư viện `memory_profiler` để xác định điểm nóng tiêu thụ bộ nhớ và tối ưu tương ứng.
+7. **Theo dõi bộ nhớ:** Sử dụng thư viện ````memory_profiler```` để xác định điểm nóng tiêu thụ bộ nhớ và tối ưu tương ứng.
 
 ## Polars: Cuộc Cách Mạng DataFrame Với Sức Mạnh Rust
 
@@ -64,7 +65,7 @@ Multi-threading tận dụng toàn bộ sức mạnh CPU, tự động phân chi
 
 ### Lazy API và Streaming Cứa Polars
 
-Lazy API là tính năng mạnh nhất của Polars. Thay vì thực thi từng lệnh ngay lập tức như Pandas, bạn xây dựng query plan và chỉ thực thi khi gọi `.collect()`: ```python
+Lazy API là tính năng mạnh nhất của Polars. Thay vì thực thi từng lệnh ngay lập tức như Pandas, bạn xây dựng query plan và chỉ thực thi khi gọi ``.collect()``: `````python
 import polars as pl
 
 # Lazy query - chưa thực thi
@@ -81,9 +82,9 @@ query = (
 
 # Thực thi với tối ưu
 result = query.collect(streaming=True)  # Streaming mode cho dữ liệu lớn
-```
+`````
 
-Streaming mode (`streaming=True`) cho phép Polars xử lý dataset vượt quá RAM bằng cách tạo các partition pipeline thông minh, tương tự Spark nhưng vớ overhead thấp hơn đáng kể.
+Streaming mode (````streaming=True````) cho phép Polars xử lý dataset vượt quá RAM bằng cách tạo các partition pipeline thông minh, tương tự Spark nhưng vớ overhead thấp hơn đáng kể.
 
 ## DuckDB: Cơ Sở Dữ Liệu OLAP Trong Quá Trình
 
@@ -94,12 +95,12 @@ Streaming mode (`streaming=True`) cho phép Polars xử lý dataset vượt quá
 - **Giao diện SQL:** DuckDB sử dụng SQL chuẩn, giúp ngườ quen thuộc vớ SQL dễ dàng tiếp cận.
 - **Cost-based optimizer:** Tự động tối ưu hóa query plan dựa trên thống kê dữ liệu.
 - **Vectorized execution:** Xử lý theo từng batch (vector) thay vì từng dòng, tận dụng tối đa CPU cache.
-- **Không phụ thuộc ngoài:** Zero external dependencies, chỉ cần `pip install duckdb`.
+- **Không phụ thuộc ngoài:** Zero external dependencies, chỉ cần ````pip install duckdb````.
 - **Tích hợp Pandas hoàn hảo:** Chuyển đổi qua lại giữa DuckDB và Pandas DataFrame không mất chi phí copy.
 
 ### Tích Hợp DuckDB + Pandas
 
-DuckDB có thể truy vấn trực tiếp trên Pandas DataFrame bằng SQL: ```python
+DuckDB có thể truy vấn trực tiếp trên Pandas DataFrame bằng SQL: `````python
 import duckdb
 import pandas as pd
 
@@ -113,7 +114,7 @@ result = duckdb.query("""
     GROUP BY category
     ORDER BY total DESC
 """).to_df()
-```
+`````
 
 DuckDB cũng đọc trực tiếp file Parquet từ local hoặc cloud storage (S3, GCS) vớ predicate pushdown — chỉ đọc các cột và dòng cần thiết, giảm I/O đáng kể.
 
@@ -159,7 +160,7 @@ Kết quả cho thấy Polars và DuckDB nhanh hơn Pandas 5-15 lần tùy thao 
 
 Việc chuyển đổi hoàn toàn sang Polars hoặc DuckDB không phải lúc nào cũng cần thiết. Chiến lược tốt nhất là tiếp cận từng bước: **Phương pháp từng bước:** Bắt đầu bằng cách sử dụng Polars hoặc DuckDB cho các bước xử lý dữ liệu nặng (đọc file, filter, join), sau đó chuyển kết quả về Pandas cho các thao tác phân tích và visualization cần thiết.
 
-```python
+`````python
 import polars as pl
 import pandas as pd
 
@@ -170,7 +171,7 @@ result = df_polars.filter(...).group_by(...).agg(...).collect()
 # Chuyển về Pandas cho phân tích sau
 df_pandas = result.to_pandas()
 df_pandas.plot(...)  # Hoặc seaborn, matplotlib
-```
+`````
 
 **Kết hợp trong cùng pipeline:** Cả Polars và DuckDB đều hỗ trợ chuyển đổi sang Pandas DataFrame không copy dữ liệu (zero-copy khi có thể). Điều này cho phép kết hợp công cụ mớ vớ hệ sinh thái Pandas hiện có một cách liền mạch.
 
@@ -184,7 +185,7 @@ Pandas vẫn là thư viện tuyệt vờ cho phân tích dữ liệu quy mô nh
 
 ### Polars có thể thay thế hoàn toàn Pandas không?
 
-Polars không phải drop-in replacement cho Pandas — API có sự khác biệt đáng kể, đặc biệt ở lazy evaluation và cách xử lý index (Polars không có implicit index như Pandas). Tuy nhiên, Polars cung cấp phương thức `.to_pandas()` để chuyển đổi dễ dàng. Khoảng 80-90% thao tác phổ biến có thể chuyển đổi trực tiếp, nhưng một số tính năng như MultiIndex, time series resampling phức tạp cần viết lại theo cách Polars.
+Polars không phải drop-in replacement cho Pandas — API có sự khác biệt đáng kể, đặc biệt ở lazy evaluation và cách xử lý index (Polars không có implicit index như Pandas). Tuy nhiên, Polars cung cấp phương thức ````.to_pandas()```` để chuyển đổi dễ dàng. Khoảng 80-90% thao tác phổ biến có thể chuyển đổi trực tiếp, nhưng một số tính năng như MultiIndex, time series resampling phức tạp cần viết lại theo cách Polars.
 
 ### Khi nào nên dùng DuckDB thay vì Polars?
 
@@ -192,13 +193,13 @@ Chọn DuckDB khi: (1) bạn hoặc team thành thạo SQL hơn Python API, (2) 
 
 ### Polars và DuckDB có thể làm việc cùng nhau không?
 
-Có, và đây là kết hợp rất mạnh mẽ. Bạn có thể sử dụng Polars để đọc và làm sạch dữ liệu (lazy streaming), sau đó chuyển sang DuckDB cho các truy vấn SQL phức tạp: ```python
+Có, và đây là kết hợp rất mạnh mẽ. Bạn có thể sử dụng Polars để đọc và làm sạch dữ liệu (lazy streaming), sau đó chuyển sang DuckDB cho các truy vấn SQL phức tạp: `````python
 import polars as pl
 import duckdb
 
 df = pl.scan_parquet("data/*.parquet").filter(...).collect()
 result = duckdb.execute("SELECT * FROM df WHERE ...").pl()
-```
+````
 
 DuckDB có thể truy vấn trực tiếp trên Polars DataFrame, và Polars có thể đọc kết quả từ DuckDB query — tạo ra pipeline hybrid tận dụng điểm mạnh của cả hai.
 
@@ -219,7 +220,7 @@ Nên bắt đầu vớ Pandas vì tài liệu học phong phú, cộng đồng l
 - [Polars GitHub Repository](https://github.com/pola-rs/polars)
 - [H2O.ai Database Benchmark](https://github.com/h2oai/db-benchmark)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

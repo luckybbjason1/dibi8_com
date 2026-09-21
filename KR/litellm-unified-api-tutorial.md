@@ -7,6 +7,7 @@ aliases:
   - /posts/litellm-unified-api-tutorial/
 ---
 
+
 {</* resource-info */>}
 
 AI 서비스를 개발하다 별면 여러 LLM 제공자의 API를 각각 연결해야 하는 번거로움을 경험하게 됩니다. LiteLLM은 이런 문제를 해결하는 통합 LLM API 게이트웨이로, 100개 이상의 모델을 하나의 인터페이스로 호출할 수 있게 해줍니다.
@@ -15,7 +16,7 @@ AI 서비스를 개발하다 별면 여러 LLM 제공자의 API를 각각 연결
 
 ### 범용 LLM API 게이트웨이
 
-LiteLLM은 BerriAI가 개발한 오픈소스 LLM 프록시 서버로, OpenAI, Anthropic, Google, Azure 등 다양한 제공자의 API를 표준화된 OpenAI 호환 형식으로 변환합니다. 개발자는 `completion()` 함수 하나로 GPT-4, Claude 3, Gemini, Llama 등 어떤 모델이든 동일한 코드로 호출할 수 있습니다.
+LiteLLM은 BerriAI가 개발한 오픈소스 LLM 프록시 서버로, OpenAI, Anthropic, Google, Azure 등 다양한 제공자의 API를 표준화된 OpenAI 호환 형식으로 변환합니다. 개발자는 ```completion()```` 함수 하나로 GPT-4, Claude 3, Gemini, Llama 등 어떤 모델이든 동일한 코드로 호출할 수 있습니다.
 
 ### 왜 LiteLLM을 사용해야 할까?
 
@@ -58,13 +59,13 @@ LiteLLM은 BerriAI가 개발한 오픈소스 LLM 프록시 서버로, OpenAI, An
 
 ### pip로 LiteLLM 설치
 
-```bash
+`````bash
 pip install litellm
-```
+`````
 
 ### 첫 번째 통합 API 호출
 
-```python
+`````python
 import litellm
 
 # OpenAI 모델 호출
@@ -84,34 +85,34 @@ response = litellm.completion(
     model="gemini/gemini-1.5-pro",
     messages=[{"role": "user", "content": "안녕하세요!"}]
 )
-```
+`````
 
-모델명 앞에 제공자 접두사(`gemini/`, `anthropic/` 등)를 붙이면 LiteLLM이 자동으로 해당 제공자의 API로 라우팅합니다. 접두사 없이 사용하면 기본 제공자로 해석됩니다.
+모델명 앞에 제공자 접두사(````gemini/````, ````anthropic/```` 등)를 붙이면 LiteLLM이 자동으로 해당 제공자의 API로 라우팅합니다. 접두사 없이 사용하면 기본 제공자로 해석됩니다.
 
 ### 비동기 지원
 
-```python
+`````python
 import litellm
 
 response = await litellm.acompletion(
     model="gpt-4o",
     messages=[{"role": "user", "content": "비동기 호출 예시"}]
 )
-```
+`````
 
-`acompletion()` 함수로 비동기 처리가 가능하며, 고성능 애플리케이션에서 필수적입니다.
+````acompletion()```` 함수로 비동기 처리가 가능하며, 고성능 애플리케이션에서 필수적입니다.
 
 ## LiteLLM 프록시 서버
 
 ### 프록시 서버 설정
 
-```bash
+`````bash
 litellm --config config.yaml
-```
+`````
 
 ### config.yaml 상세 구성
 
-```yaml
+`````yaml
 model_list: - model_name: gpt-4o
     litellm_params: model: openai/gpt-4o
       api_key: os.environ/OPENAI_API_KEY
@@ -127,15 +128,15 @@ model_list: - model_name: gpt-4o
 router_settings: routing_strategy: simple-shuffle
   timeout: 30
   num_retries: 3
-```
+`````
 
 ### 가상 키 관리
 
-```yaml
+`````yaml
 litellm_settings: fallbacks: [{"gpt-4o": ["claude-sonnet", "gemini-pro"]}]
   budget_alerts: True
   max_budget: 100
-```
+`````
 
 가상 키를 통해 팀별 접근 권한과 예산을 독립적으로 관리할 수 있습니다.
 
@@ -147,21 +148,21 @@ litellm_settings: fallbacks: [{"gpt-4o": ["claude-sonnet", "gemini-pro"]}]
 
 ### 폴리백과 재시도
 
-```yaml
+`````yaml
 fallbacks: - {"gpt-4o": ["claude-3-sonnet", "gemini-1.5-pro"]}
   - {"claude-3-opus": ["gpt-4-turbo"]}
-```
+`````
 
 1순위 모델이 실패하면 2순위, 3순위 모델로 자동 전환됩니다.
 
 ### 응답 캐싱
 
-```yaml
+`````yaml
 cache: True
 cache_params: type: redis
   host: localhost
   port: 6379
-```
+`````
 
 Redis를 백엔드로 사용하면 동일한 질문에 대한 반복 호출을 캐싱하여 API 비용을 최대 40% 절감할 수 있습니다.
 
@@ -169,20 +170,20 @@ Redis를 백엔드로 사용하면 동일한 질문에 대한 반복 호출을 �
 
 ### LangChain에서 사용하기
 
-```python
+`````python
 from langchain_community.chat_models import ChatLiteLLM
 
 llm = ChatLiteLLM(model="gpt-4o")
 response = llm.predict("LangChain에서 LiteLLM 사용하기")
-```
+`````
 
 ### LlamaIndex에서 사용하기
 
-```python
+`````python
 from llama_index.llms.litellm import LiteLLM
 
 llm = LiteLLM(model="claude-3-sonnet")
-```
+`````
 
 기존 코드베이스에서 모델 교체가 필요할 때 LiteLLM은 거의 드롭인 방식으로 적용 가능합니다.
 
@@ -218,18 +219,18 @@ llm = LiteLLM(model="claude-3-sonnet")
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 FROM ghcr.io/berriai/litellm:main-latest
 COPY config.yaml /app/config.yaml
 CMD ["litellm", "--config", "/app/config.yaml", "--port", "4000"]
-```
+`````
 
 ### Kubernetes Helm 차트
 
-```bash
+`````bash
 helm repo add litellm https://berriai.github.io/litellm
 helm install litellm litellm/litellm -f values.yaml
-```
+`````
 
 ## 자주 묻는 질문
 
@@ -243,11 +244,11 @@ helm install litellm litellm/litellm -f values.yaml
 
 **LiteLLM이 API 키 관리를 어떻게 처리하나요?**
 
-환경 변수나 `.env` 파일에서 API 키를 읽어옵니다. `config.yaml`에서 `api_key: os.environ/KEY_NAME` 형식으로 참조하여 코드에 민감한 정보를 노출하지 않습니다.
+환경 변수나 ````.env```` 파일에서 API 키를 읽어옵니다. ````config.yaml````에서 ````api_key: os.environ/KEY_NAME```` 형식으로 참조하여 코드에 민감한 정보를 노출하지 않습니다.
 
 **셀프 호스팅 모델과 LiteLLM을 연동할 수 있나요?**
 
-Ollama나 vLLM으로 로컬에서 실행하는 모델도 LiteLLM에 등록할 수 있습니다. `model: ollama/llama3` 또는 `model: hosted_vllm/llama3` 형식으로 설정합니다.
+Ollama나 vLLM으로 로컬에서 실행하는 모델도 LiteLLM에 등록할 수 있습니다. ````model: ollama/llama3```` 또는 ````model: hosted_vllm/llama3``` 형식으로 설정합니다.
 
 **LiteLLM SDK와 프록시의 차이점은 무엇인가요?**
 
@@ -261,7 +262,7 @@ SDK는 Python 라이브러리로 코드에서 직접 호출합니다. 프록시 
 - [OpenAI API 문서](https://platform.openai.com/docs)
 - [Anthropic API 문서](https://docs.anthropic.com)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -333,7 +334,7 @@ LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기 re
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -32,6 +32,7 @@ faq: - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?
     a: "Train PF / OOS PF > 1.5면 과적합을 의심한다. > 2.0이면 거의 확실한 과적합이다. 최근 moss-trade-bot 실행에서 Train PF 2.08 / OOS PF 0.94 — 비율 2.21 — 교과서적인 과적합이 나왔다. 건강한 전략은 1.3 미만이다."
 ---
 
+
 {{</* resource-info */>}}
 
 # 백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴
@@ -52,7 +53,7 @@ faq: - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?
 >
 > **방어**: walk-forward, 파라미터 민감도 스윕, 배포 시 OOS 게이트.
 
----
+* * *
 
 ## 왜 이 주제가 중요한가
 
@@ -86,13 +87,13 @@ faq: - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?
 
 **정의**: 파라미터가 1 단위 바뀔 때 결과가 불연속적으로 악화되는 전략.
 
-**예시 스윕** (lookback 파라미터): ```
+**예시 스윕** (lookback 파라미터): ````
 lookback=12: PF 1.42
 lookback=13: PF 1.55
 lookback=14: PF 2.08  ← 옵티마이저 선택
 lookback=15: PF 0.91
 lookback=16: PF 0.87
-```
+````
 
 14와 15 사이의 "절벽"에 경제적 설명이 없음 = 옵티마이저가 노이즈에서 국소 최대값을 찾음.
 
@@ -162,7 +163,7 @@ lookback=16: PF 0.87
 
 최근 moss-trade-bot 진화는 결국 교과서적 과적합 (비율 2.21)으로 끝났다. 이건 도구의 실패가 아니라 *OOS 게이팅 없는 진화*의 실패다. 해결책은 더 좋은 옵티마이저가 아니라 더 엄격한 검증 게이트다.
 
----
+* * *
 
 **관련**: [Moss Trade Bot Factory 2026 리뷰](https://dibi8.com/kr/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python 백테스팅](https://dibi8.com/kr/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI 트레이딩 프레임워크](https://dibi8.com/kr/resources/ai-trading/jesse-ai-trading-framework/)
 
@@ -228,12 +229,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -243,7 +244,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [temporal-ai-workflow-orchestration](backtest-overfit-5-patterns-2026)
 - [cleanlab-11k-star-ai-data-cleaning](backtest-overfit-5-patterns-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

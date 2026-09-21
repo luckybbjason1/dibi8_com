@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 ---
 
+
 # CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크래핑 도구 — 2026 실전 가이드
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              CloakBrowser 안티-디텍션                  │
 │                                                      │
@@ -38,7 +39,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 │  │         안티-디텍션 브라우저                    │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *CloakBrowser: 모든 봇 테스트를 통과하는 드롭인 Playwright 교체품*
 
@@ -52,7 +53,7 @@ CloakBrowser는 **모든 알려진 봇 감지 테스트를 통과하도록 소�
 
 핵심 기능: - **소스 레벨 패치** — 런타임 하킹이 아닌 빌드 타임에 Chromium 수정
 - **30/30 감지 테스트 통과** — 주요 봇 감지 시스템 통과 (Cloudflare, Datadome, PerimeterX 등)
-- **드롭인 Playwright 교체품** — `playwright.chromium.launch()`를 한 줄로 교체
+- **드롭인 Playwright 교체품** — ````playwright.chromium.launch()````를 한 줄로 교체
 - **TLS 지문 랜덤화** — 실제 브라우저처럼 TLS 지문 회전
 - **WebRTC 누수 방지** — WebRTC를 통한 IP 누수 방지
 - **Headless 감지 우회** — 모든 헤드리스 브라우저 시그니처 숨기기
@@ -64,7 +65,7 @@ CloakBrowser는 **모든 알려진 봇 감지 테스트를 통과하도록 소�
 
 ### 단계 1: 소스 레벨 패치
 
-CloakBrowser는 Chromium 빌드 타임에 패치를 적용합니다: ```bash
+CloakBrowser는 Chromium 빌드 타임에 패치를 적용합니다: `````bash
 # 소스에서 CloakBrowser 빌드
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser
@@ -83,11 +84,11 @@ cd CloakBrowser
 # - 언어 감지
 # - 플러그인 열거
 # - 폰트 열거
-```
+`````
 
 ### 단계 2: 런타임 통합
 
-```python
+`````python
 # Playwright의 Chromium을 CloakBrowser로 교체
 from playwright.sync_api import sync_playwright
 
@@ -99,11 +100,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     page.goto("https://example.com")
     print(page.title())
     browser.close()
-```
+`````
 
 ### 단계 3: 스텔스 구성
 
-```python
+`````python
 # 고급 스텔스 구성
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -120,13 +121,13 @@ browser = p.chromium.launch(
 import os
 os.environ["CLOAK_RANDOMIZE_FINGERPRINT"] = "true"
 os.environ["CLOAK_PROXY_ROTATION"] = "true"
-```
+`````
 
 ## 설치 및 설정
 
 ### 빠른 시작 (Python)
 
-```bash
+`````bash
 # CloakBrowser 설치
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser && ./build.sh
@@ -137,11 +138,11 @@ playwright install chromium
 
 # CloakBrowser로 실행
 python stealth_scrape.py
-```
+`````
 
 ### Node.js 설정
 
-```bash
+`````bash
 # CloakBrowser 설치
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser && ./build.sh
@@ -154,11 +155,11 @@ npx playwright install chromium
 const browser = await chromium.launch({
   executablePath: './cloak-browser/chrome",
 });
-```
+`````
 
 ### Docker 배포
 
-```bash
+`````bash
 # Docker에서 빌드 및 실행
 docker build -t cloak-browser .
 
@@ -168,11 +169,11 @@ docker run -d \
   -v $(pwd)/output:/output \
   -e CLOAK_PROXY=http://proxy:8080 \
   cloak-browser:latest
-```
+`````
 
 ### 프록시 통합
 
-```python
+`````python
 # 프록시 회전을 사용하는 CloakBrowser
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -194,7 +195,7 @@ for url in urls: proxy = get_proxy()
     page = browser.new_page(proxy=proxy)
     page.goto(url)
     # 스크래핑...
-```
+`````
 
 신뢰할 수 있는 프록시 인프라를 위해 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 데이터센터 프록시, [ProxyShard](https://www.proxyshard.com/?ref=11457) 리지던시 프록시를 사용하거나 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 셀프호스팅 스크래핑을 위해 배포하세요.
 
@@ -231,7 +232,7 @@ for url in urls: proxy = get_proxy()
 
 ### 실제 사용 사례 1: 이커머스 가격 모니터링
 
-```python
+`````python
 # 50개 이커머스 사이트의 가격 모니터링
 from playwright.sync_api import sync_playwright
 import time
@@ -253,11 +254,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     browser.close()
 
 # 결과: 50개 사이트 중 48개 통과, 2개 차단 (수동 captcha)
-```
+`````
 
 ### 실제 사용 사례 2: SEO 도구 데이터 수집
 
-```python
+`````python
 # 검색 엔진에서 SEO 데이터 수집
 page = browser.new_page()
 
@@ -272,13 +273,13 @@ for query in seo_queries: ua = random.choice(user_agents)
     page.goto(f"https://google.com/search?q={query}")
     results = page.locator(".g").all()
     print(f"쿼리: {query}, 결과: {len(results)}")
-```
+`````
 
 ## 고급 사용 / 프로덕션 견고화
 
 ### 지문 랜덤화
 
-```python
+`````python
 # 자동 지문 회전 활성화
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -304,11 +305,11 @@ fingerprint = {
 
 # 사용자 정의 지문 적용
 os.environ["CLOAK_FINGERPRINT"] = json.dumps(fingerprint)
-```
+`````
 
 ### 세션 관리
 
-```python
+`````python
 # 요청 간 세션 쿠키 유지
 context = browser.new_context()
 
@@ -317,11 +318,11 @@ context.storage_state(path="./cookies.json")
 
 # 다음 실행 시 쿠키 복원
 context = browser.new_context(storage_state="./cookies.json")
-```
+`````
 
 ### 헤드리스 모드
 
-```python
+`````python
 # CloakBrowser는 헤드리스와 헤디드 모드 모두에서 작동
 # 헤드리스: 서버 배포용
 browser = p.chromium.launch(
@@ -334,7 +335,7 @@ browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
     headless=False,
 )
-```
+````
 
 ## 대체 제품과의 비교
 
@@ -444,7 +445,7 @@ dibi8 한국어 텔레그램 그룹 [dibi8 한국어 Telegram 그룹](https://t.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -454,7 +455,7 @@ dibi8 한국어 텔레그램 그룹 [dibi8 한국어 Telegram 그룹](https://t.
 - [obscura-rust-headless-browser-ai-agents-web-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping)
 - [agent-reach-internet-access-ai-agents](cloakbrowser-stealth-chromium-bot-detection-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

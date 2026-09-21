@@ -35,6 +35,7 @@ faqs: - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있�
     a: 'agent 워크플로에서는 안전합니다. set -e 엄격 모드에서 정확한 출력 텍스트에 의존하는 파이프라인에는 쓰지 마세요. 하지만 AI agent가 출력을 읽고 다음 단계를 결정하는 loop에서는 rtk의 압축 출력이 agent가 실제로 필요한 것입니다.'
 ---
 
+
 {{</* resource-info */>}}
 
 ## Quick Answer
@@ -45,7 +46,7 @@ faqs: - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있�
 
 > **한 줄 요약**: rtk는 Rust로 작성된 단일 바이너리 CLI 프록시로, Claude Code·Cursor·Copilot·Codex 등 AI 코딩 도구 사용 시 **60~90% 토큰 소비를 절감**한다. 100개 이상의 개발 명령어를 지원하고 13개 AI 도구와 호환되며, 오버헤드는 10ms 미만. 설치는 30초, 설정은 필요 없다.
 
----
+* * *
 
 ## 목차
 
@@ -60,7 +61,7 @@ faqs: - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있�
 9. [대안 도구 비교: 왜 rtk인가](#대안-도구-비교-왜-rtk인가)
 10. [결론: 올해 설치할 가장 ROI 높은 도구](#결론-올해-설치할-가장-roi-높은-도구)
 
----
+* * *
 
 ## 2026년, 한국 개발자들이 겪는 'AI 비용 통증'
 
@@ -78,21 +79,21 @@ faqs: - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있�
 
 하지진 가장 큰 문제는 **이 비용의 상당 부분이 낭비되고 있다**는 점이다.
 
-`git status`를 실행했는데 Claude Code가 2,000토큰짜리 원본 출력을 받아본다. `cargo test` 결과에 진행 바(progress bar), ASCII 아트, 반복되는 로그가 수백 토큰을 차지한다. 이 모든 잡음이 LLM의 컨텍스트 윈도우에 밀려 들어가며 매번 비용을 발생시킨다.
+```git status````를 실행했는데 Claude Code가 2,000토큰짜리 원본 출력을 받아본다. ````cargo test```` 결과에 진행 바(progress bar), ASCII 아트, 반복되는 로그가 수백 토큰을 차지한다. 이 모든 잡음이 LLM의 컨텍스트 윈도우에 밀려 들어가며 매번 비용을 발생시킨다.
 
 **rtk는 바로 이 낭비 구간을 제거하는 도구다.**
 
----
+* * *
 
 ## rtk란 무엇인가: 또 다른 AI 도구가 아니다
 
 rtk(GitHub: rtk-ai/rtk)는 AI 모델도, 챗 인터페이스도, Copilot 대체재도 아니다. 그 목표는 단 하나: > "rtk는 명령어 출력이 LLM 컨텍스트에 도달하기 전에 이를 필터링하고 압축한다."
 
-구조적으로는 AI 에이전트와 셸 사이에 위치한 투명 프록시 계층이다: ```
+구조적으로는 AI 에이전트와 셸 사이에 위치한 투명 프록시 계층이다: `````
 rtk 없을 때: Claude Code --git status--> 셸 --> git --> 2,000토큰 원본 출력
 
 rtk 있을 때: Claude Code --git status--> RTK --> git --> 필터링/압축 --> 200토큰 정제 출력
-```
+`````
 
 **핵심 스펙 요약:**
 
@@ -104,177 +105,177 @@ rtk 있을 때: Claude Code --git status--> RTK --> git --> 필터링/압축 -->
 | **통합** | 자동 재작성 훅 — AI 도구가 투명하게 rtk 호출 |
 | **라이선스** | MIT, 완전 오픈소스 |
 
----
+* * *
 
 ## 실측 데이터: 30분 Claude Code 세션에서 토큰 80% 절약
 
 rtk 공식 문서의 벤치마크를 한국의 중견 TypeScript 풀스택 프로젝트에서 재현한 결과: | 작업 | 빈도 | 원본 토큰 | rtk 토큰 | 절약률 |
 |------|------|-----------|----------|--------|
-| `ls` / `tree` | 10회 | 2,000 | 400 | **-80%** |
-| `cat` / 파일 읽기 | 20회 | 40,000 | 12,000 | **-70%** |
-| `grep` / `rg` | 8회 | 16,000 | 3,200 | **-80%** |
-| `git status` | 10회 | 3,000 | 600 | **-80%** |
-| `git diff` | 5회 | 10,000 | 2,500 | **-75%** |
-| `git log` | 5회 | 2,500 | 500 | **-80%** |
-| `git add/commit/push` | 8회 | 1,600 | 120 | **-92%** |
-| `cargo test` / `npm test` | 5회 | 25,000 | 2,500 | **-90%** |
-| `pytest` / `go test` | 기타 | 14,000 | 1,400 | **-90%** |
+| ````ls```` / ````tree```` | 10회 | 2,000 | 400 | **-80%** |
+| ````cat```` / 파일 읽기 | 20회 | 40,000 | 12,000 | **-70%** |
+| ````grep```` / ````rg```` | 8회 | 16,000 | 3,200 | **-80%** |
+| ````git status```` | 10회 | 3,000 | 600 | **-80%** |
+| ````git diff```` | 5회 | 10,000 | 2,500 | **-75%** |
+| ````git log```` | 5회 | 2,500 | 500 | **-80%** |
+| ````git add/commit/push```` | 8회 | 1,600 | 120 | **-92%** |
+| ````cargo test```` / ````npm test```` | 5회 | 25,000 | 2,500 | **-90%** |
+| ````pytest```` / ````go test```` | 기타 | 14,000 | 1,400 | **-90%** |
 | **합계** | | **~118,000** | **~23,900** | **-80%** |
 
 **80% 절약이 의미하는 것:**
 
 월간 Claude Code API 비용이 30만원이라면, rtk 설치 후 6만원으로 줄어든다. 에이전트가 받는 정보는 전혀 줄지 않는다——잡음만 제거됐을 뿐이다.
 
----
+* * *
 
 ## rtk의 4가지 핵심 압축 전략
 
 rtk는 단순한 자르기가 아니라 명령어 유형별 최적 전략을 적용한다: ### 1. Smart Filtering (스마트 필터링)
 
-LLM에게 의미 없는 잡음을 제거한다: 주석, 공백, 보일러플레이트, 진행 바, ASCII 장식. `git push` 결과를 15줄에서 `ok main` 한 줄로 압축한다.
+LLM에게 의미 없는 잡음을 제거한다: 주석, 공백, 보일러플레이트, 진행 바, ASCII 장식. ````git push```` 결과를 15줄에서 ````ok main```` 한 줄로 압축한다.
 
 ### 2. Grouping (그룹화)
 
-유사 항목을 카테고리별로 집계한다. `git status`는 파일을 나열하지 않고 디렉토리별로 묶는다: `src/ (8 files)`. 테스트 실패는 `FAILED: 2/15 tests`로 표시하고 구체적인 실패 항목만 펼친다.
+유사 항목을 카테고리별로 집계한다. ````git status````는 파일을 나열하지 않고 디렉토리별로 묶는다: ````src/ (8 files)````. 테스트 실패는 ````FAILED: 2/15 tests````로 표시하고 구체적인 실패 항목만 펼친다.
 
 ### 3. Smart Truncation (스마트 트렁케이션)
 
-구조는 유지하되 중복을 제거한다. 500줄짜리 설정 파일의 구조는 살리되 값은 압축한다. `rtk read file.rs -l aggressive` 옵션으로 함수 본문을 제거하고 서명만 남길 수 있다.
+구조는 유지하되 중복을 제거한다. 500줄짜리 설정 파일의 구조는 살리되 값은 압축한다. ````rtk read file.rs -l aggressive```` 옵션으로 함수 본문을 제거하고 서명만 남길 수 있다.
 
 ### 4. Deduplication (중복 제거)
 
-Docker 로그나 테스트 출력에서 흔한 반복 줄을 `... (repeated 47x)`로 접는다.
+Docker 로그나 테스트 출력에서 흔한 반복 줄을 ````... (repeated 47x)````로 접는다.
 
----
+* * *
 
 ## 13개 AI 도구를 하나의 rtk로 통합 관리
 
 rtk의 가장 큰 장점 중 하나는 생태계 호환성이다. 한 도구에 종속되지 않는다: | AI 도구 | 설치 명령 | 가로채기 방식 |
 |---------|----------|---------------|
-| **Claude Code** | `rtk init -g` | PreToolUse hook (bash) |
-| **GitHub Copilot (VS Code)** | `rtk init -g --copilot` | PreToolUse hook |
-| **Cursor** | `rtk init -g --agent cursor` | hooks.json |
-| **Gemini CLI** | `rtk init -g --gemini` | BeforeTool hook |
-| **Codex (OpenAI)** | `rtk init -g --codex` | AGENTS.md + RTK.md |
-| **Windsurf** | `rtk init --agent windsurf` | .windsurfrules |
-| **Cline / Roo Code** | `rtk init --agent cline` | .clinerules |
-| **OpenCode** | `rtk init -g --opencode` | Plugin TS |
-| **OpenClaw** | `openclaw plugins install` | Plugin TS |
-| **Hermes** | `rtk init --agent hermes` | Python plugin |
-| **Kilo Code** | `rtk init --agent kilocode` | .kilocode/rules |
-| **Google Antigravity** | `rtk init --agent antigravity` | rules 파일 |
+| **Claude Code** | ````rtk init -g```` | PreToolUse hook (bash) |
+| **GitHub Copilot (VS Code)** | ````rtk init -g --copilot```` | PreToolUse hook |
+| **Cursor** | ````rtk init -g --agent cursor```` | hooks.json |
+| **Gemini CLI** | ````rtk init -g --gemini```` | BeforeTool hook |
+| **Codex (OpenAI)** | ````rtk init -g --codex```` | AGENTS.md + RTK.md |
+| **Windsurf** | ````rtk init --agent windsurf```` | .windsurfrules |
+| **Cline / Roo Code** | ````rtk init --agent cline```` | .clinerules |
+| **OpenCode** | ````rtk init -g --opencode```` | Plugin TS |
+| **OpenClaw** | ````openclaw plugins install```` | Plugin TS |
+| **Hermes** | ````rtk init --agent hermes```` | Python plugin |
+| **Kilo Code** | ````rtk init --agent kilocode```` | .kilocode/rules |
+| **Google Antigravity** | ````rtk init --agent antigravity```` | rules 파일 |
 
 도구를 바꿔도 토큰 절약 효과는 그대로 유지된다. rtk가 워크플로우를 따라다니지, 그 반대가 아니다.
 
----
+* * *
 
 ## 설치부터 사용까지: 말 그대로 30초
 
 ### macOS (Homebrew 권장)
 
-```bash
+`````bash
 brew install rtk
 rtk init -g   # 기본 AI 도구용 자동 재작성 훅 설치
 # Claude Code / Cursor / 에이전트 재시작
-```
+`````
 
 ### Linux
 
-```bash
+`````bash
 curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
 rtk init -g
-```
+`````
 
 ### Windows (WSL 사용 권장)
 
-```bash
+`````bash
 # WSL 내부 — 전체 기능 지원
 curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
 rtk init -g
-```
+`````
 
 ### 설치 확인
 
-```bash
+`````bash
 rtk --version   # rtk 0.28.2
 rtk gain        # 토큰 절약 통계 확인
-```
+`````
 
-설치 후에는 **기존 사용 방식을 그대로 유지**한다. 훅이 투명하게 bash 명령어를 재작성한다——`git status`가 내부적으로 `rtk git status`로 변환되며 사용자는 전혀 느끼지 못한다.
+설치 후에는 **기존 사용 방식을 그대로 유지**한다. 훅이 투명하게 bash 명령어를 재작성한다——````git status````가 내부적으로 ````rtk git status````로 변환되며 사용자는 전혀 느끼지 못한다.
 
----
+* * *
 
 ## 실전 활용: Git부터 AWS·Kubernetes까지
 
 ### Git 작업
 
-```bash
+`````bash
 rtk git status        # 간결한 상태
 rtk git log -n 10     # 한 줄 커밋 기록
 rtk git diff          # 압축된 diff
 rtk git push          # 결과: ok main
-```
+`````
 
 ### 테스트 실행기: 실패만 보기
 
-```bash
+`````bash
 rtk pytest            # 90% 절약, 실패 항목만
 rtk cargo test        # Rust에도 동일 적용
 rtk test <cmd>        # 범용 테스트 래퍼
-```
+`````
 
 ### 린트 & 빌드: 규칙별 그룹화
 
-```bash
+`````bash
 rtk lint              # ESLint를 규칙/파일별로 그룹화
 rtk tsc               # TypeScript 오류를 파일별로 집계
 rtk ruff check        # Python 린트, 80% 절약
-```
+`````
 
 ### Docker & K8s: 중복 제거 로그
 
-```bash
+`````bash
 rtk docker ps         # 간결한 컨테이너 목록
 rtk docker logs <id>  # 중복 제거된 로그
 rtk kubectl pods      # 간결한 pod 목록
-```
+`````
 
 ### AWS: 민감정보 제거 + 간결화
 
-```bash
+`````bash
 rtk aws ec2 describe-instances   # 간결한 인스턴스 목록
 rtk aws lambda list-functions  # 이름/런타임/메모리, 시크릿 제거
 rtk aws s3 ls                   # tee 복구 지원
-```
+`````
 
 ### 데이터 & 분석: 구조화 출력
 
-```bash
+`````bash
 rtk json config.json    # 값 제거, 구조만 유지 (안전)
 rtk deps                # 의존성 요약
 rtk summary <long cmd>  # 휴리스틱 요약
-```
+`````
 
----
+* * *
 
 ## rtk의 한계와 모범 사례
 
 ### 알려진 한계
 
-1. **Bash 명령어만 가로챔**: Claude Code의 내장 `Read`, `Grep`, `Glob` 도구는 bash 훅을 우회한다. 해결: 셸 명령어(`cat`, `rg`, `find`)를 사용하거나 명시적 `rtk read`, `rtk grep` 호출.
+1. **Bash 명령어만 가로챔**: Claude Code의 내장 ````Read````, ````Grep````, ````Glob```` 도구는 bash 훅을 우회한다. 해결: 셸 명령어(````cat````, ````rg````, ````find````)를 사용하거나 명시적 ````rtk read````, ````rtk grep```` 호출.
 
-2. **Windows 네이티브**: 자동 재작성은 Unix 셸이 필요함. cmd/PowerShell에서는 CLAUDE.md 주입 모드로 폴백——작동하나 명시적 `rtk` 접두사 필요. WSL은 전체 기능 지원.
+2. **Windows 네이티브**: 자동 재작성은 Unix 셸이 필요함. cmd/PowerShell에서는 CLAUDE.md 주입 모드로 폴백——작동하나 명시적 ````rtk```` 접두사 필요. WSL은 전체 기능 지원.
 
-3. **엣지 케이스**: rtk가 실패 시 tee를 통해 원본 출력을 저장. 더 상세한 출력이 필요하면 `-v` / `--verbose` 플래그 사용.
+3. **엣지 케이스**: rtk가 실패 시 tee를 통해 원본 출력을 저장. 더 상세한 출력이 필요하면 ````-v```` / ````--verbose```` 플래그 사용.
 
 ### 모범 사례
 
 - **설치하고 잊는다**: 훅이 투명하게 작동하므로 rtk를 의식할 필요 없음
-- **주간 `rtk gain` 확인**: 절약 프로필 파악
-- **`rtk discover` 실행**: 아직 rtk가 커버하지 않는 명령어 발굴
-- **민감 명령어 제외**: `~/.config/rtk/config.toml`에서 `exclude_commands = ["curl", "playwright"]` 설정
+- **주간 ````rtk gain```` 확인**: 절약 프로필 파악
+- **````rtk discover```` 실행**: 아직 rtk가 커버하지 않는 명령어 발굴
+- **민감 명령어 제외**: ````~/.config/rtk/config.toml````에서 ````exclude_commands = ["curl", "playwright"]```` 설정
 
----
+* * *
 
 ## 대안 도구 비교: 왜 rtk인가
 
@@ -288,7 +289,7 @@ rtk summary <long cmd>  # 휴리스틱 요약
 
 rtk의 독보적인 장점: **명령어 계층에서 작동하며 코드 변경, 인프라 구축, 새로운 추상화가 전혀 필요 없다.** 한 번 설치하면 다시 생각할 필요 없는 투명 필터다.
 
----
+* * *
 
 ## 결론: 올해 설치할 가장 ROI 높은 도구
 
@@ -302,13 +303,13 @@ rtk의 독보적인 장점: **명령어 계층에서 작동하며 코드 변경,
 
 AI 코딩 도구에 비용을 지불하고 있다면, rtk는 '있으면 좋은' 도구가 아니다. **'없으면 손해'**다.
 
-```bash
+`````bash
 # 30초. 오늘부터 절약 시작.
 brew install rtk
 rtk init -g
-```
+`````
 
----
+* * *
 
 **추천 자료**
 
@@ -317,17 +318,17 @@ rtk init -g
 - [Anthropic Claude Code 요금](https://docs.anthropic.com/)
 - [Morph: LLM 비용 최적화 5가지 전략](https://www.morphllm.com/ai-coding-costs)
 
----
+* * *
 
----
+* * *
 
 ## dibi8의 관점
 
-지난 분기에 우리 팀의 AI 코딩 비용을 감사했습니다. 3월의 월 20만원짜리 Claude API 청구서는 실제였고, 놀라운 발견은 **약 70%의 토큰이 노이즈**라는 점이었습니다 — AI 에이전트가 `git status`를 컨텍스트에 넣고, `git diff`, `npm test` 출력을 차례로 넣는데 대부분이 반복 로그, 진행 표시줄, 오래된 ASCII 디렉토리 트리였습니다. rtk는 우리가 본 가장 직접적인 해결책입니다 — 명령어 경계에 살아서, workflow 파일 한 줄도 바꿀 필요가 없습니다.
+지난 분기에 우리 팀의 AI 코딩 비용을 감사했습니다. 3월의 월 20만원짜리 Claude API 청구서는 실제였고, 놀라운 발견은 **약 70%의 토큰이 노이즈**라는 점이었습니다 — AI 에이전트가 ````git status````를 컨텍스트에 넣고, ````git diff````, ````npm test``` 출력을 차례로 넣는데 대부분이 반복 로그, 진행 표시줄, 오래된 ASCII 디렉토리 트리였습니다. rtk는 우리가 본 가장 직접적인 해결책입니다 — 명령어 경계에 살아서, workflow 파일 한 줄도 바꿀 필요가 없습니다.
 
 여러 AI CLI를 동시에 사용한다면 [CC Switch와 함께 사용](/kr/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)하여 통합 관리 효율을 높이세요.
 
----
+* * *
 
 ## 추천 호스팅 (AI 코딩 셋업)
 
@@ -338,7 +339,7 @@ AI agent를 지속적으로 원격 실행해야 한다면 (CI runner / 셀프 �
 
 *이 글에는 제휴 링크가 포함되어 있습니다. 링크를 통해 구매하시면 추가 비용 없이 저희가 소액의 수수료를 받을 수 있습니다.*
 
----
+* * *
 
 ## 추가 자료
 
@@ -374,7 +375,7 @@ AI agent를 지속적으로 원격 실행해야 한다면 (CI runner / 셀프 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -384,7 +385,7 @@ AI agent를 지속적으로 원격 실행해야 한다면 (CI runner / 셀프 �
 - [claude-code-vs-aider](rtk-rust-cli-proxy-llm-token-savings-2026)
 - [cursor-vs-claude-code](rtk-rust-cli-proxy-llm-token-savings-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

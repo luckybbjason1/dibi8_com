@@ -13,9 +13,10 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg
 ---
 
+
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────┐
 │              Odysseus Architecture                 │
 │                                                   │
@@ -41,7 +42,7 @@ featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/de
 │  │        Frontend: Responsive Web UI (PWA)      │ │
 │  └───────────────────────────────────────────────┘ │
 └──────────────────────────────────────────────────┘
-```
+`````
 
 Odysseus là một không gian AI tự lưu trữ, tích hợp hơn 10 công cụ vào một giao diện ưu tiên quyền riêng tư.
 
@@ -77,7 +78,7 @@ Dự án tích hợp các khả năng sau trong một ứng dụng web duy nhấ
 
 Odysseus hoạt động như một kiến trúc phân tầng.
 
-```
+`````
 Client (Browser/PWA)
     │
     ▼
@@ -100,7 +101,7 @@ Client (Browser/PWA)
     ▼     ▼          ▼          ▼
   vLLM  Ollama    SearXNG   ChromaDB
  (GPU)  (CPU)    (Search)  (Memory)
-```
+`````
 
 Thành phần **Cookbook** đặc biệt đáng chú ý — nó quét phần cứng của bạn để phát hiện GPU khả dụng, sau đó đề xuất và tải xuống các mô hình tương thích ở định dạng GGUF, FP8 hoặc AWQ.
 
@@ -112,7 +113,7 @@ Thành phần **Cookbook** đặc biệt đáng chú ý — nó quét phần c�
 
 Docker là cách đơn giản và đáng tin cậy nhất để chạy Odysseus.
 
-```bash
+`````bash
 # Clone the repository (use dev branch for latest features)
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
@@ -127,16 +128,16 @@ cp .env.example .env
 
 # Start the stack
 docker compose up -d --build
-```
+`````
 
-Sau khi khởi động, mở `http://localhost:7000`.
+Sau khi khởi động, mở ````http://localhost:7000````.
 
-Để bao gồm các tính năng bổ sung tùy chọn (trình xem PDF, trích xuất Office với AGPL PyMuPDF): ```bash
+Để bao gồm các tính năng bổ sung tùy chọn (trình xem PDF, trích xuất Office với AGPL PyMuPDF): `````bash
 docker compose build --build-arg INSTALL_OPTIONAL=true
 docker compose up -d --build
-```
+`````
 
-Để bật GPU passthrough cho GPU NVIDIA: ```bash
+Để bật GPU passthrough cho GPU NVIDIA: `````bash
 # Diagnose GPU passthrough
 scripts/check-docker-gpu.sh
 
@@ -145,17 +146,17 @@ scripts/check-docker-gpu.sh --install-nvidia-toolkit
 
 # Enable GPU overlay
 scripts.check-docker-gpu.sh --enable-nvidia-overlay
-```
+`````
 
-Đối với AMD/ROCm: ```bash
+Đối với AMD/ROCm: `````bash
 scripts/check-docker-amd-gpu.sh
-```
+`````
 
-Sau đó chỉnh sửa `.env` để thêm overlay và ID nhóm render của host.
+Sau đó chỉnh sửa ````.env```` để thêm overlay và ID nhóm render của host.
 
 ### Cài đặt Native Linux/macOS
 
-Nếu bạn không muốn sử dụng Docker: ```bash
+Nếu bạn không muốn sử dụng Docker: `````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
@@ -171,7 +172,7 @@ python setup.py
 
 # Start the server
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
-```
+`````
 
 Yêu cầu: Python 3.11+.
 
@@ -179,31 +180,31 @@ Yêu cầu: Python 3.11+.
 
 Docker trên macOS không thể sử dụng Metal GPU.
 
-```bash
+`````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
 # The bundled script handles venv + dependencies + startup
 ./start-macos.sh
-```
+`````
 
-Nó khởi động tại `http://127.0.0.1:7860`.
+Nó khởi động tại ````http://127.0.0.1:7860````.
 
-```bash
+`````bash
 ODYSSEUS_HOST=0.0.0.0 ./start-macos.sh
-```
+`````
 
 ### Xây dựng Ứng dụng Desktop
 
-Bạn có thể gói Odysseus dưới dạng wrapper ứng dụng desktop native: ```bash
+Bạn có thể gói Odysseus dưới dạng wrapper ứng dụng desktop native: `````bash
 ./build-macos-app.sh
-```
+`````
 
 ## Cấu hình và Thiết lập Mô hình
 
 Sau khi cài đặt, cấu hình mô hình AI của bạn qua bảng **Cài đặt** của giao diện web.
 
-```yaml
+`````yaml
 # Example .env configuration for multi-provider setup
 APP_BIND=127.0.0.1
 APP_PORT=7000
@@ -222,13 +223,13 @@ OLLAMA_BASE_URL=http://localhost:11434
 
 # OpenRouter
 OPENROUTER_API_KEY=sk-or-your-key-here
-```
+`````
 
 Cookbook cung cấp cách thức hỗ trợ GUI để tải xuống và phục vụ mô hình.
 
 ### Thêm Mô hình Tùy chỉnh
 
-```bash
+`````bash
 # List available models in Cookbook
 odysseus cookbook list
 
@@ -237,7 +238,7 @@ odysseus cookbook download mistral-7b
 
 # Start serving a local model
 odysseus cookbook serve llama-3.1-8b
-```
+`````
 
 ## Tích hợp với Các công cụ Khác
 
@@ -245,7 +246,7 @@ odysseus cookbook serve llama-3.1-8b
 
 Tác nhân Odysseus được xây dựng trên [OpenCode](https://github.com/anomalyco/opencode), cho phép chúng sử dụng công cụ một cách tự động.
 
-```bash
+`````bash
 # Configure MCP in .env
 MCP_SERVERS=http://localhost:3000,mcp://your-server
 
@@ -253,13 +254,13 @@ MCP_SERVERS=http://localhost:3000,mcp://your-server
 # - Shell execution
 # - Web search
 # - Custom skills
-```
+`````
 
 ### ChromaDB cho Bộ nhớ Bền vững
 
 Odysseus bao gồm ChromaDB cho bộ nhớ dựa trên vector bền vững.
 
-```bash
+`````bash
 # Memory import/export
 odysseus memory export --output memory.json
 odysseus memory import --input memory.json
@@ -267,21 +268,21 @@ odysseus memory import --input memory.json
 # The memory system uses: # - ChromaDB for vector storage
 # - fastembed (ONNX) for embeddings
 # - Combined vector + keyword retrieval
-```
+`````
 
 ### Tìm kiếm Web SearXNG
 
 Đối với các tác nhân cần nghiên cứu web, Odysseus tích hợp SearXNG (một công cụ tìm kiếm siêu dữ tôn trọng quyền riêng tư).
 
-```bash
+`````bash
 # SearXNG is included in the Docker stack
 # Access it at: http://localhost:8888 (inside Docker network)
 # Agent web search uses it automatically
-```
+`````
 
 ### Tích hợp Email
 
-Odysseus bao gồm hòm thư IMAP/SMTP đầy đủ với phân loại được hỗ trợ AI: ```yaml
+Odysseus bao gồm hòm thư IMAP/SMTP đầy đủ với phân loại được hỗ trợ AI: `````yaml
 # Email config in .env
 EMAIL_IMAP_SERVER=imap.gmail.com
 EMAIL_IMAP_PORT=993
@@ -289,7 +290,7 @@ EMAIL_SMTP_SERVER=smtp.gmail.com
 EMAIL_SMTP_PORT=587
 EMAIL_USERNAME=your@email.com
 EMAIL_PASSWORD=app-password
-```
+`````
 
 AI có thể tự động: tóm tắt email, đánh dấu mức độ khẩn cấp, soạn phản hồi, gắn thẻ tự động và lọc thư rác.
 
@@ -306,27 +307,27 @@ AI có thể tự động: tóm tắt email, đánh dấu mức độ khẩn c�
 
 ### Hiệu suất Nghiên cứu Chuyên sâu
 
-Tính năng nghiên cứu chuyên sâu của Odysseus (được điều chỉnh từ DeepResearch của Alibaba) thực hiện các quy trình nghiên cứu nhiều bước: ```
+Tính năng nghiên cứu chuyên sâu của Odysseus (được điều chỉnh từ DeepResearch của Alibaba) thực hiện các quy trình nghiên cứu nhiều bước: `````
 Research Task: "Compare RAG vs. fine-tuning for enterprise QA"
 
 Step 1: Web search (SearXNG) → 15 sources
 Step 2: Read & extract key points → 8 documents
 Step 3: Synthesize into report → 5-page summary
 Step 4: Visualize with charts → auto-generated
-```
+`````
 
 Điều này đặc biệt hữu ích cho nhà nghiên cứu, nhà phân tích và bất kỳ ai cần tổng hợp thông tin từ nhiều nguồn thành báo cáo có cấu trúc.
 
 ### Chế độ So sánh Mô hình
 
-Tính năng Compare cho phép kiểm tra A/B mù các mô hình khác nhau bên cạnh nhau: ```
+Tính năng Compare cho phép kiểm tra A/B mù các mô hình khác nhau bên cạnh nhau: `````
 Prompt: "Write a Python binary search implementation"
 
 Model A: [hidden] → Response
 Model B: [hidden] → Response
 
 User selects best response → rankings updated
-```
+`````
 
 Điều này loại bỏ thiên kiến thương hiệu khi đánh giá mô hình nào hoạt động tốt nhất cho trường hợp sử dụng của bạn.
 
@@ -334,7 +335,7 @@ User selects best response → rankings updated
 
 ### Thiết lập Đa người dùng
 
-```bash
+`````bash
 # Enable authentication (default)
 AUTH_ENABLED=true
 
@@ -346,11 +347,11 @@ ODYSSEUS_ADMIN_PASSWORD=secure-password
 
 # After first login, disable temporary password requirement
 # via Settings panel
-```
+`````
 
 ### Cấu hình Proxy ngược
 
-For production deployment behind a reverse proxy: ```nginx
+For production deployment behind a reverse proxy: `````nginx
 server {
     listen 443 ssl;
     server_name ai.yourdomain.com;
@@ -369,11 +370,11 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ### Docker Compose cho Sản xuất
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     restart: unless-stopped
@@ -384,11 +385,11 @@ services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
 ### Chiến lược Sao lưu
 
-```bash
+`````bash
 # Backup ChromaDB (memory) and configuration
 tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
   data/ \
@@ -397,7 +398,7 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 # ChromaDB data persists in: ./data/chroma/
 # SQLite database: ./odysseus.db
-```
+`````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -415,11 +416,11 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 ## Hạn chế / Đánh giá Trung thực
 
-Mặc dù Odysseus đáng ấn tượng, nhưng nó có một số hạn chế cần lưu ý: 1. **Dự án mới (tạo ngày 31 tháng 5 năm 2026)** — Dù có hơn 65.000 sao, Odysseus vẫn rất non trẻ. Hãy mong đợi lỗi, thay đổi phá vỡ và tài liệu không đầy đủ. Nhánh `dev` là mặc định nhưng "có thể không ổn định."
+Mặc dù Odysseus đáng ấn tượng, nhưng nó có một số hạn chế cần lưu ý: 1. **Dự án mới (tạo ngày 31 tháng 5 năm 2026)** — Dù có hơn 65.000 sao, Odysseus vẫn rất non trẻ. Hãy mong đợi lỗi, thay đổi phá vỡ và tài liệu không đầy đủ. Nhánh ````dev```` là mặc định nhưng "có thể không ổn định."
 
-2. **Hỗ trợ GPU tập trung vào Docker/NVIDIA** — Hỗ trợ AMD ROCm tồn tại nhưng yêu cầu cấu hình `.env` thủ công. Apple Silicon yêu cầu cài đặt native (không có Docker GPU).
+2. **Hỗ trợ GPU tập trung vào Docker/NVIDIA** — Hỗ trợ AMD ROCm tồn tại nhưng yêu cầu cấu hình ````.env```` thủ công. Apple Silicon yêu cầu cài đặt native (không có Docker GPU).
 
-3. **Chưa có hình ảnh container chính thức** — Bạn phải xây dựng từ nguồn (`git clone` + `docker compose build`). Hình ảnh Docker Hub chính thức sẽ đơn giản hóa việc triển khai.
+3. **Chưa có hình ảnh container chính thức** — Bạn phải xây dựng từ nguồn (````git clone```` + ````docker compose build```). Hình ảnh Docker Hub chính thức sẽ đơn giản hóa việc triển khai.
 
 4. **Lựa chọn mô hình Cookbook bị hạn chế** — Mặc dù nhận thức VRAM, Cookbook tải từ HuggingFace có thể chậm với mô hình lớn. Không có đăng ký mô hình tích hợp với điểm chất lượng được tuyển chọn.
 
@@ -472,7 +473,7 @@ Việc cài đặt dựa trên Docker khiến nó dễ tiếp cận ngay cả v�
 - Deep Research (adapted from): https://github.com/Alibaba-NLP/DeepResearch
 - Agent framework (OpenCode): https://github.com/anomalyco/opencode
 
----
+* * *
 
 Tham gia cộng đồng của chúng tôi để tìm hiểu sâu hơn về các công cụ AI:[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
@@ -504,7 +505,7 @@ Tham gia cộng đồng của chúng tôi để tìm hiểu sâu hơn về các 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -514,7 +515,7 @@ Tham gia cộng đồng của chúng tôi để tìm hiểu sâu hơn về các 
 - [2026-05-25-trending-ai-agents](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
 - [2026-06-01-trending-ai-agents](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

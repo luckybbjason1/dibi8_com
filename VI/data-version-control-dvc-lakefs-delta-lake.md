@@ -22,6 +22,7 @@ aliases:
   - /posts/data-version-control-dvc-lakefs-delta-lake/
 ---
 
+
 {</* resource-info */>}
 
 Trong quy trình Machine Learning hiện đại, mã nguồn chỉ là một phần của bức tranh. Dữ liệu huấn luyện, siêu tham số, và các artifact mô hình thay đổi liên tục — việc theo dõi tất cả những thay đổi này đòi hỏi một hệ thống quản lý phiên bản chuyên dụng. Ba công cụ dẫn đầu trong lĩnh vực này là **DVC (Data Version Control)**, **LakeFS**, và **Delta Lake**. Mỗi công cụ mang một triết lý thiết kế khác biệt, phục vụ các nhu cầu khác nhau trong hệ sinh thái MLOps.
@@ -45,9 +46,9 @@ DVC là công cụ mã nguồn mở hoạt động như một "Git cho dữ li�
 
 ### Cách DVC Hoạt Động
 
-DVC sử dụng **content-addressable storage** — mỗi file dữ liệu được xác định bởi hash MD5 của nội dung thay vì tên file. Các file `.dvc` nhỏ được lưu trong Git repository, chứa metadata và hash của dữ liệu thực tế, trong khi dữ liệu lớn được lưu trữ tách biệt (S3, GCS, Azure Blob, NAS, hoặc local cache).
+DVC sử dụng **content-addressable storage** — mỗi file dữ liệu được xác định bởi hash MD5 của nội dung thay vì tên file. Các file ```.dvc```` nhỏ được lưu trong Git repository, chứa metadata và hash của dữ liệu thực tế, trong khi dữ liệu lớn được lưu trữ tách biệt (S3, GCS, Azure Blob, NAS, hoặc local cache).
 
-DVC cung cấp CLI commands quen thuộc với ngườI dùng Git: ```bash
+DVC cung cấp CLI commands quen thuộc với ngườI dùng Git: `````bash
 # Theo dõi dữ liệu
 dvc add data/training.csv
 git add data/training.csv.dvc
@@ -58,11 +59,11 @@ dvc push
 # Khôi phục dữ liệu từ phiên bản trước
 git checkout <commit-hash>
 dvc checkout
-```
+`````
 
 ### Pipeline Và Khả Năng Tái Tạo
 
-Một trong những tính năng mạnh nhất của DVC là **pipeline as code**. Bạn định nghĩa các stage trong file `dvc.yaml`: ```yaml
+Một trong những tính năng mạnh nhất của DVC là **pipeline as code**. Bạn định nghĩa các stage trong file ``dvc.yaml``: `````yaml
 stages: preprocess: cmd: python src/preprocess.py
     deps: - src/preprocess.py
       - data/raw.csv
@@ -71,11 +72,11 @@ stages: preprocess: cmd: python src/preprocess.py
     deps: - src/train.py
       - data/processed.csv
     outs: - model.pkl
-```
+`````
 
-Với cấu hình này, DVC tự động theo dõi dependencies, caching kết quả trung gian, và chỉ chạy lại các stage cần thiết khi có thay đổi. Lệnh `dvc repro` đảm bảo pipeline tái tạo hoàn toàn từ bất kỳ phiên bản nào.
+Với cấu hình này, DVC tự động theo dõi dependencies, caching kết quả trung gian, và chỉ chạy lại các stage cần thiết khi có thay đổi. Lệnh ````dvc repro```` đảm bảo pipeline tái tạo hoàn toàn từ bất kỳ phiên bản nào.
 
-Từ phiên bản 2.0, DVC còn cung cấp `dvc exp` để quản lý thí nghiệm — cho phép chạy thí nghiệm với các siêu tham số khác nhau và so sánh kết quả trong bảng leaderboard.
+Từ phiên bản 2.0, DVC còn cung cấp ````dvc exp```` để quản lý thí nghiệm — cho phép chạy thí nghiệm với các siêu tham số khác nhau và so sánh kết quả trong bảng leaderboard.
 
 ### Khi Nào Chọn DVC?
 
@@ -95,13 +96,13 @@ LakeFS sử dụng cơ chế **zero-copy branching** — khi tạo một branch 
 
 LakeFS tương thích với **S3 API gốc**, có nghĩa là các công cụ hiện tại như Spark, Pandas, Trino, hoặc Apache Hive có thể tương tác với LakeFS mà không cần thay đổi code.
 
-```python
+`````python
 # Truy cập dữ liệu qua LakeFS bằng Spark
 spark.read.parquet("s3a://my-repo/main/data/transactions/")
 
 # Hoặc truy cập một branch thí nghiệm
 spark.read.parquet("s3a://my-repo/experiment-2024/data/transactions/")
-```
+`````
 
 ### Branching Và Merging Cho Dữ Liệu
 
@@ -110,7 +111,7 @@ LakeFS mang đến các khái niệm quen thuộc từ Git: - **Branch**: Tạo 
 - **Merge**: Kết hợp thay đổi từ một nhánh sang nhánh khác
 - **Pre-commit hooks**: Kiểm tra chất lượng dữ liệu trước khi merge
 
-```bash
+`````bash
 # Tạo branch mới từ main
 lakectl branch create lakefs://my-repo/experiment-2024 --source lakefs://my-repo/main
 
@@ -119,7 +120,7 @@ lakectl commit lakefs://my-repo/experiment-2024 -m "Thêm dữ liệu tháng 6"
 
 # Merge vào main
 lakectl merge lakefs://my-repo/experiment-2024 lakefs://my-repo/main
-```
+`````
 
 LakeFS còn hỗ trợ **ACID guarantees** ở cấp độ object storage, đảm bảo tính nhất quán khi nhiều ứng dụng cùng ghi dữ liệu.
 
@@ -141,7 +142,7 @@ Delta Lake lưu trữ dữ liệu dưới dạng **Parquet files** cùng với *
 - **Schema evolution**: Hỗ trợ thay đổi schema một cách có kiểm soát
 - **Z-ordering**: Tối ưu hóa layout dữ liệu để truy vấn nhanh hơn
 
-```sql
+`````sql
 -- Time travel: truy vấn phiên bản 5
 SELECT * FROM my_table VERSION AS OF 5;
 
@@ -150,7 +151,7 @@ SELECT * FROM my_table TIMESTAMP AS OF '2024-06-01T00:00:00Z";
 
 -- Tối ưu hóa và Z-ordering
 OPTIMIZE my_table ZORDER BY (user_id);
-```
+`````
 
 ### Unified Batch Và Streaming
 
@@ -223,17 +224,17 @@ Khả năng tích hợp với các công cụ MLOps khác là yếu tố quan tr
 
 ### Three-Way Version Lock
 
-Một best practice trong MLOps là **three-way version lock** — khóa đồng thờI phiên bản của code, dữ liệu, và mô hình. Ví dụ với DVC + MLflow: ```yaml
+Một best practice trong MLOps là **three-way version lock** — khóa đồng thờI phiên bản của code, dữ liệu, và mô hình. Ví dụ với DVC + MLflow: `````yaml
 # dvc.yaml với MLflow integration
 stages: train: cmd: python train.py --data-version $(dvc data version)
     outs: - model.pkl: meta: mlflow.model: true
-```
+`````
 
 Điều này đảm bảo rằng bất kỳ lúc nào bạn cũng có thể tái tạo chính xác một thí nghiệm từ bất kỳ thờI điểm nào trong quá khứ.
 
 ## Thiết Lập Pipeline ML Tái Tạo Được
 
-Hãy xem một ví dụ end-to-end sử dụng DVC để xây dựng pipeline tái tạo: ```bash
+Hãy xem một ví dụ end-to-end sử dụng DVC để xây dựng pipeline tái tạo: `````bash
 # 1. Khởi tạo DVC
 git init
 dvc init
@@ -267,13 +268,13 @@ dvc repro
 # 6. Đẩy dữ liệu và mô hình lên remote
 dvc push
 git add . && git commit -m "Pipeline tái tạo được"
-```
+`````
 
-Từ bất kỳ máy nào, bạn có thể khôi phục toàn bộ pipeline: ```bash
+Từ bất kỳ máy nào, bạn có thể khôi phục toàn bộ pipeline: `````bash
 git clone <repo>
 dvc pull
 dvc repro  # Chỉ chạy lại các stage cần thiết
-```
+`````
 
 ## FAQ
 
@@ -293,7 +294,7 @@ Mức độ tăng dung lượng phụ thuộc vào công cụ: - **DVC**: Chỉ 
 
 ### Công Cụ Nào Tốt Nhất Cho Team Nhỏ Mới Bắt Đầu?
 
-**DVC** là lựa chọn tốt nhất cho team nhỏ. Dễ cài đặt (chỉ cần `pip install dvc`), không cần server riêng, và workflow quen thuộc với ngườI dùng Git. LakeFS và Delta Lake yêu cầu nhiều hạ tầng và kiến thức vận hành hơn.
+**DVC** là lựa chọn tốt nhất cho team nhỏ. Dễ cài đặt (chỉ cần ````pip install dvc```), không cần server riêng, và workflow quen thuộc với ngườI dùng Git. LakeFS và Delta Lake yêu cầu nhiều hạ tầng và kiến thức vận hành hơn.
 
 ### LakeFS Có Hoạt Động Với Storage Khác S3 Không?
 
@@ -317,7 +318,7 @@ Lựa chọn đúng phụ thuộc vào ngăn xếp công nghệ hiện có, quy 
 - [MLflow Tracking](https://mlflow.org/docs/latest/tracking.html) — Tích hợp theo dõi thí nghiệm ML
 - [The Linux Foundation Delta Lake](https://delta.io/) — Trang chủ dự án Delta Lake
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

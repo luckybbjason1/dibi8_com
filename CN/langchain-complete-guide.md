@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/langchain-complete-guide/-
 ---
+
 {</* resource-info */>}
 
 Building applications with large language models used to mean writing hundreds of lines of boilerplate code for every project. You would manually handle API calls, craft prompts, parse outputs, and manage conversation state — repeating the same patterns again and again. LangChain changed that. First released by Harrison Chase in October 2022, LangChain has grown into the most widely adopted orchestration framework for LLM-powered applications, with over 91,000 GitHub stars and 10 million monthly PyPI downloads as of early 2025.
@@ -43,11 +44,11 @@ Beyond model abstraction, LangChain excels at orchestration. Modern AI apps rare
 
 LangChain today is not just one library — it is an ecosystem of three integrated tools: | Tool | Purpose | When to Use |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | Core orchestration framework | Building chains, agents, and RAG pipelines |
 | **LangGraph** | Stateful multi-agent applications | Complex workflows with cycles, branching, and persistence |
@@ -63,17 +64,17 @@ LangChain's power comes from its component architecture. Each piece handles a sp
 
 LangChain distinguishes between two types of models. LLMs take a string input and return a string output — this is the traditional text-in, text-out interface. Chat models accept a list of messages and return a message object, which is the format used by modern conversational APIs like GPT-4 and Claude 3.
 
-In 2025, you should almost always use chat models. LangChain's `init_chat_model` function provides a provider-agnostic way to instantiate any major chat model: ```python
+In 2025, you should almost always use chat models. LangChain's ``init_chat_model`` function provides a provider-agnostic way to instantiate any major chat model: ````python
 from langchain.chat_models import init_chat_model
 
 # Works with OpenAI, Anthropic, Google, and 20+ providers
 model = init_chat_model("gpt-4o", model_provider="openai")
 # Or simply: init_chat_model("claude-3-5-sonnet-20241022")
-```
+`````
 
 ### Prompts and Prompt Templates
 
-Prompt engineering directly impacts application quality. LangChain provides `PromptTemplate` and `ChatPromptTemplate` classes for structuring prompts with dynamic inputs. The `ChatPromptTemplate` is particularly powerful — it lets you define system messages, human messages, and AI messages as reusable templates: ```python
+Prompt engineering directly impacts application quality. LangChain provides ``PromptTemplate`` and ``ChatPromptTemplate`` classes for structuring prompts with dynamic inputs. The ``ChatPromptTemplate`` is particularly powerful — it lets you define system messages, human messages, and AI messages as reusable templates: `````python
 from langchain.prompts import ChatPromptTemplate
 
 template = ChatPromptTemplate([
@@ -82,26 +83,26 @@ template = ChatPromptTemplate([
 ])
 
 prompt = template.invoke({"role": "Python expert", "question": "What are dataclasses?"})
-```
+`````
 
 LangChain also supports few-shot prompting, example selectors, and output parsers — all critical for reliable production applications.
 
 ### Chains: Simple and Complex Workflows
 
-A chain is the most fundamental LangChain abstraction. It is a sequence of calls — whether to an LLM, a tool, or a data source. The simplest chain connects a prompt template to a model: ```python
+A chain is the most fundamental LangChain abstraction. It is a sequence of calls — whether to an LLM, a tool, or a data source. The simplest chain connects a prompt template to a model: `````python
 from langchain.chains import LLMChain
 
 chain = template | model
 response = chain.invoke({"role": "Python expert", "question": "Explain list comprehensions"})
-```
+`````
 
-The pipe operator (`|`) creates a Runnable sequence, LangChain's unified execution interface introduced in version 0.1. This composition syntax, inspired by Unix pipes, makes it trivial to build multi-step workflows.
+The pipe operator (````|````) creates a Runnable sequence, LangChain's unified execution interface introduced in version 0.1. This composition syntax, inspired by Unix pipes, makes it trivial to build multi-step workflows.
 
 ### Document Loaders and Text Splitters
 
-RAG applications need data. LangChain includes over 100 document loaders for sources ranging from PDFs and Word documents to web pages, databases, and cloud storage. The most commonly used loaders include `PyPDFLoader`, `UnstructuredFileLoader`, and `WebBaseLoader`.
+RAG applications need data. LangChain includes over 100 document loaders for sources ranging from PDFs and Word documents to web pages, databases, and cloud storage. The most commonly used loaders include ````PyPDFLoader````, ````UnstructuredFileLoader````, and ````WebBaseLoader````.
 
-Loading is only half the battle. LLMs have context limits, so long documents must be split into chunks. LangChain's text splitters handle this intelligently: ```python
+Loading is only half the battle. LLMs have context limits, so long documents must be split into chunks. LangChain's text splitters handle this intelligently: `````python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 splitter = RecursiveCharacterTextSplitter(
@@ -110,29 +111,29 @@ splitter = RecursiveCharacterTextSplitter(
     separators=["\n\n", "\n", " ", ""]
 )
 docs = splitter.split_documents(loaded_documents)
-```
+`````
 
-The `RecursiveCharacterTextSplitter` preserves semantic boundaries by trying larger separators first, keeping paragraphs and sentences intact when possible.
+The ````RecursiveCharacterTextSplitter```` preserves semantic boundaries by trying larger separators first, keeping paragraphs and sentences intact when possible.
 
 ### Vector Stores and Retrievers
 
 Once documents are split, they are converted to embeddings and stored in a vector database. LangChain supports [30+ vector store integrations](https://python.langchain.com/docs/integrations/vectorstores/) including Chroma, Pinecone, Weaviate, Milvus, and pgvector.
 
-The retriever interface abstracts the similarity search process: ```python
+The retriever interface abstracts the similarity search process: `````python
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 
 vectorstore = Chroma.from_documents(docs, OpenAIEmbeddings())
 retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
-```
+`````
 
-In 2025, most developers use the `create_retrieval_chain` helper, which combines retrieval with a generation step in a single, optimized pipeline.
+In 2025, most developers use the ````create_retrieval_chain```` helper, which combines retrieval with a generation step in a single, optimized pipeline.
 
 ### Agents and Tool Integration
 
 Agents represent LangChain's most powerful abstraction. An agent uses an LLM to decide which actions to take, rather than following a predetermined sequence. You provide the agent with tools — functions it can call — and the agent reasons about which tool to use and when.
 
-LangChain supports several agent types, with ReAct (Reasoning + Acting) being the most popular: ```python
+LangChain supports several agent types, with ReAct (Reasoning + Acting) being the most popular: `````python
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain.tools import tool
 
@@ -142,11 +143,11 @@ def search_api(query: str) -> str: """Search the company knowledge base."""
 
 agent = create_react_agent(model, [search_api])
 executor = AgentExecutor(agent=agent, tools=[search_api])
-```
+`````
 
 ### Memory and Conversation Management
 
-Conversational applications need to remember previous turns. LangChain's memory components store and retrieve chat history. The most commonly used options include `ConversationBufferMemory` (stores full history), `ConversationBufferWindowMemory` (keeps last N exchanges), and `ConversationSummaryMemory` (summarizes older turns to save tokens).
+Conversational applications need to remember previous turns. LangChain's memory components store and retrieve chat history. The most commonly used options include ````ConversationBufferMemory```` (stores full history), ````ConversationBufferWindowMemory```` (keeps last N exchanges), and ````ConversationSummaryMemory```` (summarizes older turns to save tokens).
 
 In production, most teams now use LangGraph's persistence layer instead of standalone memory classes, as it offers more control over state management.
 
@@ -166,14 +167,14 @@ Let us build a complete RAG application in under 50 lines of code. You will need
 
 ### Installation and Environment Setup
 
-```bash
+`````bash
 pip install langchain langchain-openai langchain-chroma
 export OPENAI_API_KEY="your-key-here"
-```
+`````
 
 ### Building a Simple LLM Chain
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
@@ -183,11 +184,11 @@ chain = template | model
 
 result = chain.invoke({"topic": "vector embeddings"})
 print(result.content)
-```
+`````
 
 ### Adding RAG with Document Loading
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -211,11 +212,11 @@ rag_chain = create_retrieval_chain(retriever, combine_docs)
 
 result = rag_chain.invoke({"input": "What are the main findings?"})
 print(result["answer"])
-```
+`````
 
 ### Creating a ReAct Agent with Tools
 
-```python
+`````python
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 from langchain.tools import tool
@@ -229,7 +230,7 @@ agent = create_react_agent(model, [calculator], prompt)
 executor = AgentExecutor(agent=agent, tools=[calculator], verbose=True)
 
 executor.invoke({"input": "What is 127 multiplied by 43?"})
-```
+`````
 
 ## Advanced LangChain Patterns
 
@@ -237,7 +238,7 @@ Once you have mastered the basics, these patterns will help you build more robus
 
 ### Building Multi-Step Reasoning Chains
 
-Complex tasks often require breaking problems into sub-tasks. LangChain's expression language (LCEL) makes this compositional: ```python
+Complex tasks often require breaking problems into sub-tasks. LangChain's expression language (LCEL) makes this compositional: `````python
 from operator import itemgetter
 from langchain_core.runnables import RunnablePassthrough
 
@@ -246,26 +247,26 @@ chain = (
     | template
     | model
 )
-```
+`````
 
 ### Streaming and Async Execution
 
-Production applications should stream responses to reduce perceived latency: ```python
+Production applications should stream responses to reduce perceived latency: `````python
 for chunk in chain.stream({"topic": "machine learning"}): print(chunk.content, end="", flush=True)
-```
+`````
 
-Async support is built in — simply use `ainvoke`, `astream`, or `abatch` instead of their synchronous counterparts.
+Async support is built in — simply use ````ainvoke````, ````astream````, or ````abatch```` instead of their synchronous counterparts.
 
 ### Error Handling and Fallbacks
 
-Models fail. Rate limits hit. Networks timeout. LangChain's fallback mechanism lets you specify backup models: ```python
+Models fail. Rate limits hit. Networks timeout. LangChain's fallback mechanism lets you specify backup models: `````python
 from langchain_openai import ChatAnthropic
 
 primary = ChatOpenAI(model="gpt-4o")
 backup = ChatAnthropic(model="claude-3-5-sonnet-20241022")
 
 model_with_fallback = primary.with_fallbacks([backup])
-```
+`````
 
 ## LangChain in Production: Best Practices
 
@@ -273,7 +274,7 @@ Deploying LangChain applications requires attention to several operational conce
 
 ### Performance Optimization Tips
 
-- **Use batching**: The `batch` method processes multiple inputs concurrently, dramatically improving throughput
+- **Use batching**: The ````batch``` method processes multiple inputs concurrently, dramatically improving throughput
 - **Enable caching**: LangChain supports caching LLM responses via SQLite, Redis, or in-memory stores
 - **Choose the right model**: GPT-4o-mini handles 80% of tasks at 1/50th the cost of GPT-4o
 - **Optimize retrieval**: Use MMR (Maximal Marginal Relevance) to diversify retrieved documents and reduce redundancy
@@ -305,11 +306,11 @@ LangChain applications deploy like any Python service. Common patterns include: 
 
 While LangChain leads in adoption, several alternatives excel in specific scenarios: | Framework | Strength | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LlamaIndex** | Advanced RAG and data ingestion | Document Q&A over large knowledge bases |
 | **Haystack** | Enterprise search pipelines | Semantic search and information retrieval |
@@ -352,7 +353,7 @@ The best way to learn LangChain is to build something. Pick a problem you have �
 For the latest updates, follow the [LangChain blog](https://blog.langchain.dev) and explore the ever-growing collection of integrations and templates in the official documentation.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -409,4 +410,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

@@ -15,6 +15,7 @@ faqs: - q: 'Is it cheaper to run DeepSeek locally than to use the GPT-4o API?'
     a: 'A local inference setup calculates the KV Cache once and saves it directly to your NVMe SSD. On subsequent queries, the context is restored instantly instead of being recomputed, making local inference faster than cloud APIs for long-running iterative tasks.'
   - q: 'What are the data privacy advantages of local LLM inference over a cloud API?'
     a: 'Local inference can be 100% air-gapped, meaning your data never leaves your own infrastructure. With a cloud API like OpenAI''s, your request data leaves your environment and is processed on the provider''s servers.'---
+
 {</* resource-info */>}
 
 # Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs
@@ -122,7 +123,7 @@ Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs represents 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -153,15 +154,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

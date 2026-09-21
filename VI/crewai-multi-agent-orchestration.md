@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/crewai-multi-agent-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Một Lệnh Gọi LLM Không Còn Đủ Nữa
@@ -50,36 +51,36 @@ Kiến trúc của CrewAI xoay quanh bốn thành phần cơ bản: **Tác tự*
 
 Một Tác tự trong CrewAI hơn cả một instance LLM. Đó là một vai trò xác định với: | Thuộc tính | Mục đích | Ví dụ |
 |-----------|---------|--------|
-| `role` | Chức danh / danh tính | `"Senior Research Analyst"` |
-| `goal` | Điều tác tự muốn đạt được | `"Tìm dữ liệu giá chi tiết cho 3 đối thủ"` |
-| `backstory` | Tính cách / bối cảnh | `"Bạn là nhà phân tích tỉ mỉ với 10 năm kinh nghiệm"` |
-| `tools` | Khả năng bên ngoài | `[search_tool, scraper_tool, calculator]` |
-| `allow_delegation` | Có thể giao việc cho ngườI khác | `True` cho quản lý, `False` cho chuyên gia |
-| `memory` | Giữ ngữ cảnh xuyên suốt nhiệm vụ | `True` cho suy luận nhiều bước |
+| ```role```` | Chức danh / danh tính | ````"Senior Research Analyst"```` |
+| ````goal```` | Điều tác tự muốn đạt được | ````"Tìm dữ liệu giá chi tiết cho 3 đối thủ"```` |
+| ````backstory```` | Tính cách / bối cảnh | ````"Bạn là nhà phân tích tỉ mỉ với 10 năm kinh nghiệm"```` |
+| ````tools```` | Khả năng bên ngoài | ````[search_tool, scraper_tool, calculator]```` |
+| ````allow_delegation```` | Có thể giao việc cho ngườI khác | ````True```` cho quản lý, ````False```` cho chuyên gia |
+| ````memory```` | Giữ ngữ cảnh xuyên suốt nhiệm vụ | ````True```` cho suy luận nhiều bước |
 
-`backstory` không chỉ là trang trí — nó định hình cách LLM phản hồi. Backstory `"thực tập sinh cẩu thả"` tạo ra đầu ra khác với `"kỹ sư cấp cao kiểm tra mọi thứ ba lần"`.
+````backstory```` không chỉ là trang trí — nó định hình cách LLM phản hồi. Backstory ````"thực tập sinh cẩu thả"```` tạo ra đầu ra khác với ````"kỹ sư cấp cao kiểm tra mọi thứ ba lần"````.
 
 ### Nhiệm vụ: Các Đơn Vị Công Việc Xác Định
 
 Nhiệm vụ chỉ định cần làm gì, ai làm, và đầu ra mong đợi: | Thuộc tính | Mục đích | Ví dụ |
 |-----------|---------|--------|
-| `description` | Việc cần làm (có thể chứa `{biến}`) | `"Nghiên cứu gói giá của {công ty}"` |
-| `expected_output` | Thông số chất lượng | `"Bảng với tên gói, giá, và tính năng"` |
-| `agent` | Ai thực hiện nhiệm vụ | `researcher` |
-| `context` | Đầu ra nhiệm vụ trước để tham khảo | `[task1, task2]` |
-| `tools` | Công cụ theo nhiệm vụ | `[search_tool]` |
+| ````description```` | Việc cần làm (có thể chứa ````{biến}````) | ````"Nghiên cứu gói giá của {công ty}"```` |
+| ````expected_output```` | Thông số chất lượng | ````"Bảng với tên gói, giá, và tính năng"```` |
+| ````agent```` | Ai thực hiện nhiệm vụ | ````researcher```` |
+| ````context```` | Đầu ra nhiệm vụ trước để tham khảo | ````[task1, task2]```` |
+| ````tools```` | Công cụ theo nhiệm vụ | ````[search_tool]```` |
 
-Trường `expected_output` rất quan trọng — nó đóng vai trò như tiêu chí chất lượng hướng dẫn định dạng và độ sâu phản hồi của LLM.
+Trường ````expected_output```` rất quan trọng — nó đóng vai trò như tiêu chí chất lượng hướng dẫn định dạng và độ sâu phản hồi của LLM.
 
 ### Quy trình: Các Tác tự Cộng Tác Như Thế Nào
 
 CrewAI hỗ trợ ba mẫu cộng tác: | Quy trình | Mẫu | Phù hợp cho |
 |-----------|------|-------------|
-| `Process.sequential` | Bàn giao tuyến tính: A → B → C | Workflow có phụ thuộc rõ ràng |
-| `Process.hierarchical` | Quản lý phân công cho nhân viên | Dự án phức tạp cần giám sát |
-| `Process.parallel` | Nhiều tác tự làm việc đồng thờI | Nhiệm vụ độc lập, tối ưu tốc độ |
+| ````Process.sequential```` | Bàn giao tuyến tính: A → B → C | Workflow có phụ thuộc rõ ràng |
+| ````Process.hierarchical```` | Quản lý phân công cho nhân viên | Dự án phức tạp cần giám sát |
+| ````Process.parallel```` | Nhiều tác tự làm việc đồng thờI | Nhiệm vụ độc lập, tối ưu tốc độ |
 
-Ở chế độ **phân cấp**, bạn chỉ định `manager_llm` (thường là mô hình mạnh hơn như GPT-4) lập kế hoạch phân bổ nhiệm vụ, theo dõi tiến độ, và quyết định khi nào công việc hoàn thành.
+Ở chế độ **phân cấp**, bạn chỉ định ````manager_llm```` (thường là mô hình mạnh hơn như GPT-4) lập kế hoạch phân bổ nhiệm vụ, theo dõi tiến độ, và quyết định khi nào công việc hoàn thành.
 
 ### Công cụ: Mở Rộng Khả Năng Tác tự
 
@@ -89,7 +90,7 @@ Các tác tự CrewAI có thể sử dụng bất kỳ công cụ tương thích
 - **Truy vấn cơ sở dữ liệu** — SQL connectors
 - **Thao tác file** — Đọc/ghi file local
 - **Gọi API** — REST API toolkit
-- **Công cụ tùy chỉnh** — Bất kỳ hàm Python nào wrapped với `@tool`
+- **Công cụ tùy chỉnh** — Bất kỳ hàm Python nào wrapped với ````@tool````
 
 ## Cài Đặt & Thiết Lập: Khởi Động 5 Phút
 
@@ -97,7 +98,7 @@ CrewAI yêu cầu Python 3.10+ và hoạt động với bất kỳ nhà cung c�
 
 ### Cài Đặt Cơ Bản
 
-```bash
+`````bash
 python -m venv venv_crewai
 source venv_crewai/bin/activate
 
@@ -108,13 +109,13 @@ pip install "crewai[tools]==0.108.0"
 pip install langchain-openai    # OpenAI
 pip install langchain-anthropic # Anthropic
 pip install langchain-google    # Google Gemini
-```
+`````
 
-Tính đến tháng 5/2026, CrewAI đang ở **v0.108.0**. Extra `[tools]` cài đặt SerpAPI, Selenium và các phụ thuộc công cụ phổ biến.
+Tính đến tháng 5/2026, CrewAI đang ở **v0.108.0**. Extra ````[tools]```` cài đặt SerpAPI, Selenium và các phụ thuộc công cụ phổ biến.
 
 ### Xác Minh Cài Đặt
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool
 
@@ -130,18 +131,18 @@ researcher = Agent(
 )
 
 print("CrewAI cài đặt thành công!")
-```
+`````
 
 ### Thiết Lập Môi Trường
 
-```bash
+`````bash
 # API key bắt buộc
 export OPENAI_API_KEY="sk-..."
 export SERPAPI_API_KEY="..."
 
 # Tùy chọn: cho mô hình local
 export OLLAMA_HOST="http://localhost:11434"
-```
+`````
 
 Tự host các hệ thống dựa trên CrewAI cần VPS đáng tin cậy. [DigitalOcean droplets](https://m.do.co/c/eca87ac14ee0) hoạt động tốt cho việc chạy API điều phối tác tự.
 
@@ -149,7 +150,7 @@ Tự host các hệ thống dựa trên CrewAI cần VPS đáng tin cậy. [Digi
 
 ### Ví dụ 1: Đội Tạo Bài Blog
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool, ScrapeWebsiteTool
 
@@ -231,11 +232,11 @@ crew = Crew(
 
 result = crew.kickoff()
 print(result)
-```
+`````
 
 ### Ví dụ 2: Quản Lý Dự Án Phân Cấp
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 
 # Quy trình phân cấp cần một manager LLM
@@ -249,13 +250,13 @@ project_crew = Crew(
 )
 
 result = project_crew.kickoff()
-```
+`````
 
-Ở chế độ phân cấp, `manager_llm` động gán nhiệm vụ dựa trên khả năng tác tự và phụ thuộc nhiệm vụ. Điều này mạnh mẽ cho **đội 10+ tác tự** nơi việc sắp xếp nhiệm vụ thủ công trở nên cồng kềnh.
+Ở chế độ phân cấp, ````manager_llm```` động gán nhiệm vụ dựa trên khả năng tác tự và phụ thuộc nhiệm vụ. Điều này mạnh mẽ cho **đội 10+ tác tự** nơi việc sắp xếp nhiệm vụ thủ công trở nên cồng kềnh.
 
 ### Ví dụ 3: Đội Review Code
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import CodeInterpreterTool
 
@@ -309,7 +310,7 @@ code_crew = Crew(
     process=Process.sequential,
     memory=True,
 )
-```
+`````
 
 ## Tích Hợp Với LangChain, LlamaIndex & API Bên Ngoài
 
@@ -317,7 +318,7 @@ CrewAI tích hợp với hệ sinh thái AI rộng hơn thông qua các công c�
 
 ### Sử Dụng Công Cụ LangChain
 
-```python
+`````python
 from crewai import Agent
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -333,11 +334,11 @@ researcher = Agent(
     tools=[ddg_search, wikipedia],
     llm="gpt-4o",
 )
-```
+`````
 
 ### Định Nghĩa Công Cụ Tùy Chỉnh
 
-```python
+`````python
 from crewai import Agent, Task
 from crewai.tools import tool
 import requests
@@ -356,11 +357,11 @@ analyst = Agent(
     tools=[check_stock_price],
     llm="gpt-4o",
 )
-```
+`````
 
 ### Callbacks và Khả Năng Quan Sát
 
-```python
+`````python
 from crewai import Crew
 
 # Step callback để giám sát
@@ -376,11 +377,11 @@ monitored_crew = Crew(
     step_callback=on_step_callback,
     task_callback=on_task_callback,
 )
-```
+`````
 
 ### Tích Hợp Với LlamaIndex cho Tác tự Tăng Cường RAG
 
-```python
+`````python
 from crewai import Agent, Task, Crew
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -402,7 +403,7 @@ policy_expert = Agent(
     tools=[query_knowledge_base],
     llm="gpt-4o",
 )
-```
+`````
 
 ## Benchmarks & Các Trường Hợp Sử Dụng Thực Tế
 
@@ -443,7 +444,7 @@ Các con số này đến từ use case **phân tích cạnh tranh** nơi 3 tác
 
 ### Bộ Nhớ Tùy Chỉnh với Vector Store
 
-```python
+`````python
 from crewai import Agent, Crew, Process
 from chromadb import Client
 from chromadb.config import Settings
@@ -469,11 +470,11 @@ crew = Crew(
     memory=True,  # bật bộ nhớ ngắn hạn chia sẻ
     cache=True,   # cache phản hồi LLM
 )
-```
+`````
 
 ### Xác Thực Đầu Ra với Pydantic
 
-```python
+`````python
 from pydantic import BaseModel, Field
 from crewai import Task
 
@@ -489,11 +490,11 @@ structured_task = Task(
     output_json=CompetitorAnalysis,  # xác thực theo schema
     agent=researcher,
 )
-```
+`````
 
 ### Xử Lý Lỗi và Logic Thử Lại
 
-```python
+`````python
 from crewai import Crew
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -507,11 +508,11 @@ def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
         raise
 
 result = run_crew_with_retry(my_crew)
-```
+`````
 
 ### Thực Thi Nhiệm Vụ Song Song với Phụ Thuộc
 
-```python
+`````python
 from crewai import Task, Crew, Process
 
 # Nhiệm vụ 1 và 2 chạy song song (không phụ thuộc)
@@ -529,11 +530,11 @@ parallel_crew = Crew(
     tasks=[task1, task2, task3],
     process=Process.sequential,  # crew xử lý song song nội bộ
 )
-```
+`````
 
 ### Triển Khai như Dịch Vụ FastAPI
 
-```python
+`````python
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
 from crewai import Crew, Agent, Task, Process
@@ -586,13 +587,13 @@ def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
     results_db[job_id] = {"status": "completed", "result": str(result)}
 
 # Chạy với: uvicorn main:app --host 0.0.0.0 --port 8000
-```
+`````
 
 Triển khai điều này phía sau load balancer trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để có API tác tự sẵn sàng production.
 
 ### Giám Sát với LangSmith
 
-```python
+`````python
 import os
 from crewai import Crew
 
@@ -606,7 +607,7 @@ crew = Crew(
     tasks=[task1, task2],
     process=Process.sequential,
 )
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -630,7 +631,7 @@ crew = Crew(
 **Khi nào chọn gì:**
 
 - **CrewAI**: Tốt nhất cho các đội mới với hệ thống đa tác tự. API dựa trên vai trò trực quan, tài liệu xuất sắc, và độ khó học nhẹ nhàng. Lý tưởng cho tạo nội dung, workflow nghiên cứu, và tác vụ phân tích kinh doanh.
-- **AutoGen (Microsoft)**: Chọn khi mẫu đàm thoại và thực thi code là trung tâm. Mẫu group chat của AutoGen rất mạnh cho debug và các tác tự coding. `UserProxyAgent` cho phép workflow human-in-the-loop liền mạch.
+- **AutoGen (Microsoft)**: Chọn khi mẫu đàm thoại và thực thi code là trung tâm. Mẫu group chat của AutoGen rất mạnh cho debug và các tác tự coding. ````UserProxyAgent```` cho phép workflow human-in-the-loop liền mạch.
 - **LangGraph (LangChain)**: Chọn khi bạn cần kiểm soát chi tiết trạng thái và chuyển tiếp tác tự. Cách tiếp cận dựa trên đồ thị của LangGraph xuất sắc cho logic điều kiện phức tạp và quản lý trạng thái nhưng có độ khó học cao hơn.
 - **MetaGPT**: Chọn cụ thể cho tác vụ kỹ thuật phần mềm. Các tác tự MetaGPT mô phỏng đội dev đầy đủ (PM, kiến trúc sư, kỹ sư, QA) và tạo ra đầu ra code có cấu trúc. Quá mức cho các use case không phải coding.
 
@@ -638,7 +639,7 @@ crew = Crew(
 
 CrewAI mạnh mẽ nhưng không phải bùa chú. Thực tế production bạn nên biết: **1. Chi phí LLM tỷ lệ với số tác tự.** Một đội 5 tác tự chạy 8 nhiệm vụ với GPT-4o có thể tốn $0.50-2.00 mỗi lần chạy. Với 1,000 lần chạy mỗi ngày, đó là $500-2,000/ngày. Lập ngân sách phù hợp hoặc sử dụng mô hình rẻ hơn cho các tác tự ít quan trọng hơn.
 
-**2. Giới hạn token hạn chế chia sẻ ngữ cảnh.** Khi Tác tự A truyền output cho Tác tự B, output đó tiêu thụ token trong cửa sổ ngữ cảnh của Tác tự B. Với 5 tác tự mỗi tác tự sản xuất 2K token, tác tự cuối cùng có thể chạm giới hạn 128K của GPT-4o. Sử dụng `max_iter` và tóm tắt các output trung gian.
+**2. Giới hạn token hạn chế chia sẻ ngữ cảnh.** Khi Tác tự A truyền output cho Tác tự B, output đó tiêu thụ token trong cửa sổ ngữ cảnh của Tác tự B. Với 5 tác tự mỗi tác tự sản xuất 2K token, tác tự cuối cùng có thể chạm giới hạn 128K của GPT-4o. Sử dụng ````max_iter```` và tóm tắt các output trung gian.
 
 **3. Lập kế hoạch phân cấp thêm độ trễ.** Manager LLM ở chế độ phân cấp cần suy luận về phân bổ nhiệm vụ trước khi bắt đầu. Với crew nhỏ (3-4 tác tự), overhead này có thể không đáng. Tuần tự thường nhanh hơn cho workflow đơn giản.
 
@@ -660,7 +661,7 @@ Có. CrewAI hoạt động với bất kỳ LLM tương thích LangChain nào, b
 
 ### Chia sẻ bộ nhớ giữa các tác tự hoạt động như thế nào?
 
-Khi `memory=True` được đặt trên Crew, tất cả tác tự chia sẻ bộ đệm bộ nhớ ngắn hạn tồn tại xuyên suốt các nhiệm vụ. Output nhiệm vụ của Tác tự A trở thành ngữ cảnh cho nhiệm vụ của Tác tự B khi được chỉ định qua tham số `context`. Cho bộ nhớ dài hạn, CrewAI sử dụng vector store Chroma embedded để truy xuất các tương tác quá khứ liên quan. Bạn cũng có thể inject bộ nhớ tùy chỉnh bằng cách truyền output nhiệm vụ context một cách rõ ràng.
+Khi ````memory=True```` được đặt trên Crew, tất cả tác tự chia sẻ bộ đệm bộ nhớ ngắn hạn tồn tại xuyên suốt các nhiệm vụ. Output nhiệm vụ của Tác tự A trở thành ngữ cảnh cho nhiệm vụ của Tác tự B khi được chỉ định qua tham số ````context````. Cho bộ nhớ dài hạn, CrewAI sử dụng vector store Chroma embedded để truy xuất các tương tác quá khứ liên quan. Bạn cũng có thể inject bộ nhớ tùy chỉnh bằng cách truyền output nhiệm vụ context một cách rõ ràng.
 
 ### Số lượng tác tự tối đa mỗi crew là bao nhiêu?
 
@@ -668,15 +669,15 @@ Không có giới hạn cứng, nhưng các yếu tố thực tế áp dụng. M
 
 ### Làm sao ngăn tác tự bị kẹt trong vòng lặp?
 
-Đặt `max_iter` trên các nhiệm vụ (mặc định là 25) để giới hạn số lần lặp mỗi nhiệm vụ. Cho crew, đặt `max_rpm` để giới hạn số lần gọi API mỗi phút. Ở chế độ phân cấp, tác tự quản lý theo dõi tiến độ và có thể ngắt các tác tự bị kẹt. Thêm `expected_output` quality gates để tác tự biết khi nào công việc hoàn thành thay vì tinh chỉnh vô tận.
+Đặt ````max_iter```` trên các nhiệm vụ (mặc định là 25) để giới hạn số lần lặp mỗi nhiệm vụ. Cho crew, đặt ````max_rpm```` để giới hạn số lần gọi API mỗi phút. Ở chế độ phân cấp, tác tự quản lý theo dõi tiến độ và có thể ngắt các tác tự bị kẹt. Thêm ````expected_output```` quality gates để tác tự biết khi nào công việc hoàn thành thay vì tinh chỉnh vô tận.
 
 ### CrewAI có xử lý output streaming real-time không?
 
-Tính đến v0.108.0, CrewAI hỗ trợ output từng bước thông qua callbacks (`step_callback`), nhưng streaming đầy đủ của output tác tự còn hạn chế. Sử dụng callbacks để xây dựng UI real-time hiển thị tiến độ tác tự. Hỗ trợ streaming đầy đủ nằm trong roadmap H2 2026.
+Tính đến v0.108.0, CrewAI hỗ trợ output từng bước thông qua callbacks (````step_callback````), nhưng streaming đầy đủ của output tác tự còn hạn chế. Sử dụng callbacks để xây dựng UI real-time hiển thị tiến độ tác tự. Hỗ trợ streaming đầy đủ nằm trong roadmap H2 2026.
 
 ### Làm sao test crew tác tự hiệu quả?
 
-Unit test từng tác tự độc lập bằng cách chạy các nhiệm vụ đơn. Sử dụng mock LLM responses (qua `FakeListLLM` của LangChain) để test định tuyến nhiệm vụ và lựa chọn công cụ không tốn API. Integration test toàn bộ crew với một nhiệm vụ nhỏ, đã biết tốt. Log tất cả output trung gian cho kiểm thử hồi quy.
+Unit test từng tác tự độc lập bằng cách chạy các nhiệm vụ đơn. Sử dụng mock LLM responses (qua ````FakeListLLM``` của LangChain) để test định tuyến nhiệm vụ và lựa chọn công cụ không tốn API. Integration test toàn bộ crew với một nhiệm vụ nhỏ, đã biết tốt. Log tất cả output trung gian cho kiểm thử hồi quy.
 
 ## Kết Luận: Bắt Đầu Nhỏ, Mở Rộng Thành Đội
 
@@ -710,7 +711,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Hướng dẫn xây dựng hệ thống đa tác tự](https://docs.crewai.com/how-to/Creating-a-Crew-and-kick-it-off/)
 - Liên quan: [LangChain](dibi8-internal-link), [Hướng dẫn AutoGen](dibi8-internal-link), [Mẫu LangGraph](dibi8-internal-link)
 
----
+* * *
 
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa liên kết tiếp thị của DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. CrewAI là mã nguồn mở và miễn phí sử dụng; chúng tôi không có quan hệ thương mại với dự án CrewAI. Các ý kiến dựa trên thử nghiệm thực tế và triển khai production.*
 
@@ -740,7 +741,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -750,7 +751,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](crewai-multi-agent-orchestration)
 - [ai-engineering-from-scratch](crewai-multi-agent-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

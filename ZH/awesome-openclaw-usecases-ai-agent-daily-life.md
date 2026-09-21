@@ -31,6 +31,7 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
     a: '可以。OpenClaw 支持通过自然语言聊天指令进行 AI 视频剪辑，比如「trim first 30 seconds」或「generate subtitles」，无需时间轴或 GUI；它还能运行一条自主的游戏开发流水线，处理待办事项选择、采用「Bugs First」策略的实现、自动文档编写以及 git commits。'
   - q: '安装 OpenClaw 技能和第三方依赖安全吗？'
     a: 'OpenClaw 技能和第三方依赖可能包含安全漏洞，因此你应在安装前审查技能源代码、检查所请求的权限、避免硬编码 API key 或凭证，并对敏感数据使用环境变量。'---
+
 # OpenClaw 42 个真实用例：人们如何在日常生活中使用 AI 代理
 
 {</* resource-info */>}
@@ -56,9 +57,9 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 
 | 用例 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **每日 Reddit 摘要** | 根据偏好总结精选的 subreddit |
 | **每日 YouTube 摘要** | 获取喜爱频道的每日新视频摘要 |
@@ -70,9 +71,9 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 
 | 用例 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **目标驱动自主任务** | 倾吐目标，代理自动生成并完成每日任务 |
 | **YouTube 内容流水线** | 自动化视频创意发掘、研究和跟踪 |
@@ -85,9 +86,9 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 
 | 用例 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **n8n 工作流编排** | 通过 webhooks 将 API 调用委托给 n8n 工作流 |
 | **自愈家庭服务器** | 始终在线的基础设施代理，带 SSH 和定时任务 |
@@ -96,9 +97,9 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 
 | 用例 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **自主项目管理** | 使用 STATE.yaml 模式的多代理项目 |
 | **多渠道 AI 客户服务** | 统一 WhatsApp、Instagram、邮件、Google 评论 |
@@ -125,9 +126,9 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 
 | 用例 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **AI 财报追踪器** | 追踪科技/AI 财报，自动预览和摘要 |
 | **个人知识库 (RAG)** | 通过粘贴 URL、推文和文章构建可搜索的知识库 |
@@ -142,23 +143,23 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 
 | 用例 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Polymarket 自动驾驶** | 预测市场的自动模拟交易，带回测和策略分析 |
 
 
----
+* * *
 ## 关键类别细分
 
 | 类别 | 用例数 | 重点领域 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **生产力** | 18 | 日常工作流、管理、组织 |
 | **研究与学习** | 7 | 知识收集、分析、写作 |
@@ -167,7 +168,7 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 | **基础设施** | 2 | DevOps、服务器管理、工作流 |
 | **金融** | 1 | 交易、市场分析 |
 
----
+* * *
 
 ## 热门用例亮点
 
@@ -200,16 +201,16 @@ faqs: - q: 'OpenClaw 是用来做什么的？'
 - 用自然语言搜索所有记忆
 - 用于可视化的自定义 Next.js 仪表板
 
----
+* * *
 
 ## OpenClaw 入门
 
 ### 1. 安装 OpenClaw
 
-```bash
+````bash
 git clone https://github.com/openclaw/openclaw.git
 cd openclaw
-```
+````
 
 ### 2. 配置你的代理
 
@@ -223,7 +224,7 @@ cd openclaw
 
 按照特定用例文档部署你的代理。
 
----
+* * *
 
 ## 安全注意事项
 
@@ -233,21 +234,21 @@ cd openclaw
 - 避免硬编码 API 密钥或凭证
 - 对敏感数据使用环境变量
 
----
+* * *
 
 ## 与其他 AI 代理对比
 
 | 功能 | OpenClaw | AutoGPT | BabyAGI | AgentGPT |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | ✅ | ✅ | ✅ | ✅ |
 | **多代理** | ✅ | ❌ | ❌ | ❌ |
@@ -257,7 +258,7 @@ cd openclaw
 | **真实世界用例** | 42+ | 少 | 少 | 少 |
 | **社区** | 增长中 | 大 | 中 | 中 |
 
----
+* * *
 
 ## 相关文章
 
@@ -265,7 +266,7 @@ cd openclaw
 - [Agent Reach：让你的 AI Agent 一键连接互联网](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI 代理联网工具
 - [Polymarket Agents：构建预测市场 AI 自动交易机器人的开源框架](/zh/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — 预测市场 AI 交易
 
----
+* * *
 
 ## 总结
 
@@ -278,11 +279,11 @@ cd openclaw
 **GitHub**: [https://github.com/openclaw/openclaw](https://github.com/openclaw/openclaw)
 **用例集合**: [https://github.com/hesamsheikh/awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases)
 
----
+* * *
 
 *最后更新：2026-05-06*
 
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -356,7 +357,7 @@ OpenClaw 42 个真实用例：人们如何在日常生活中使用 AI 代理 rep
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -388,15 +389,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

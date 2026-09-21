@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/coqui-tts/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -55,11 +56,11 @@ Coqui TTS 将合成流水线分离为三个可互换阶段：**文本到频谱�
 
 | 类别 | 模型 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 频谱图 | Tacotron2, Glow-TTS, FastSpeech2, FastPitch, OverFlow | 单说话人、资源受限部署 |
 | 端到端 | VITS, YourTTS, XTTS v2, Bark, Tortoise | 高质量、多说话人、语音克隆 |
@@ -72,7 +73,7 @@ Coqui TTS 将合成流水线分离为三个可互换阶段：**文本到频谱�
 
 通过 PyPI 在 2 分钟内完成安装：
 
-```bash
+````bash
 python -m venv coqui-env
 source coqui-env/bin/activate
 
@@ -81,22 +82,22 @@ pip install coqui-tts
 
 # 验证安装
 tts --list_models | head -20
-```
+`````
 
 安装社区维护版的最新开发版本：
 
-```bash
+`````bash
 pip install coqui-tts --upgrade
 
 # 或从源码安装
 git clone https://github.com/idiap/coqui-ai-TTS.git
 cd coqui-ai-TTS
 pip install -e .
-```
+`````
 
 安装 espeak-ng 以支持基于音素的模型（许多非英语语言必需）：
 
-```bash
+`````bash
 # Ubuntu / Debian
 sudo apt-get install espeak-ng
 
@@ -105,11 +106,11 @@ brew install espeak
 
 # 验证
 espeak-ng --version
-```
+`````
 
 **Docker 安装 — 最快的生产部署路径：**
 
-```bash
+`````bash
 # 拉取官方 GPU 镜像
 docker pull ghcr.io/coqui-ai/tts:latest
 
@@ -124,11 +125,11 @@ docker run -d --name coqui-tts \
   ghcr.io/coqui-ai/tts \
   --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
   --use_cuda true
-```
+`````
 
 **快速合成测试：**
 
-```bash
+`````bash
 # 列出所有可用模型
 tts --list_models
 
@@ -143,13 +144,13 @@ tts --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
     --speaker_wav reference_voice.wav \
     --language_idx zh \
     --out_path chinese_output.wav
-```
+`````
 
 ## 与热门工具集成
 
 ### Python API — 基础合成
 
-```python
+`````python
 import torch
 from TTS.api import TTS
 
@@ -165,11 +166,11 @@ wav = tts.tts(
     speaker="Ana Florence",
     language="en"
 )
-```
+`````
 
 ### Python API — 语音克隆
 
-```python
+`````python
 # 从 6 秒参考音频克隆语音
 tts.tts_to_file(
     text="This cloned voice will sound like your reference speaker.",
@@ -185,11 +186,11 @@ tts.tts_to_file(
     language="en",
     file_path="batch_cloned.wav"
 )
-```
+`````
 
 ### REST API 服务
 
-```bash
+`````bash
 # 启动内置服务（非生产级，生产环境使用 nginx 后的 gunicorn）
 tts-server \
     --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
@@ -209,11 +210,11 @@ curl -X POST "http://localhost:5002/v1/audio/speech" \
         "response_format": "wav"
     }' \
     --output openai_compat.wav
-```
+`````
 
 ### Flask 集成
 
-```python
+`````python
 from flask import Flask, request, send_file
 from TTS.api import TTS
 import torch
@@ -240,11 +241,11 @@ def synthesize(): data = request.get_json()
     return send_file(buffer, mimetype="audio/wav")
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
-```
+`````
 
 ### Docker Compose 生产部署
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -269,11 +270,11 @@ services: coqui-tts: build: .
     ports: - "80:80"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on: - coqui-tts
-```
+`````
 
 ### Dockerfile for Coqui TTS
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -296,11 +297,11 @@ RUN python3 warm_up.py
 
 EXPOSE 5002
 CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5002", "--timeout", "120", "server:app"]
-```
+`````
 
 ### 语音转换集成
 
-```python
+`````python
 # 将源说话人语音转换为目标说话人
 tts = TTS("voice_conversion_models/multilingual/vctk/freevc24").to("cuda")
 
@@ -309,7 +310,7 @@ tts.voice_conversion_to_file(
     target_wav="target_voice.wav",
     file_path="converted_voice.wav"
 )
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -319,17 +320,17 @@ tts.voice_conversion_to_file(
 
 | 模型 | RTF（越低越好） | 峰值显存占用 | MOS 评分 | 语音克隆 | 支持语言 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Coqui XTTS v2 | 0.15 | 4.1 GB | 4.2 | 是（3 秒参考） | 17 |
 | Coqui VITS | 0.08 | 2.1 GB | 4.1 | 否 | 每模型 1 种 |
@@ -347,7 +348,7 @@ tts.voice_conversion_to_file(
 
 **实际生产部署指标（生产 API 每日处理 5000 次请求）：**
 
-```
+`````
 硬件: 2x NVIDIA A10G（AWS g5.2xlarge）
 负载均衡: nginx 轮询
 容器: Docker + gunicorn（每 GPU 4 个工作进程）
@@ -355,7 +356,7 @@ tts.voice_conversion_to_file(
 吞吐量: 每 GPU 12 请求/秒
 错误率: 0.03%（>500 字符输入导致 OOM）
 正常运行时间: 30 天内 99.7%
-```
+`````
 
 ## 高级用法 / 生产环境加固
 
@@ -363,7 +364,7 @@ tts.voice_conversion_to_file(
 
 容器启动后的首次推理会触发 CUDA 内核编译，增加 5-10 秒延迟。将此融入 ENTRYPOINT：
 
-```python
+`````python
 # warm_up.py
 import os
 from TTS.api import TTS
@@ -375,11 +376,11 @@ if torch.cuda.is_available(): tts = tts.to("cuda")
 # 触发 JIT 编译
 _ = tts.tts(text="warm up", speaker_wav=None, language="en")
 print("[warmup] CUDA 内核已编译，模型就绪")
-```
+`````
 
 ### ONNX + FP16 内存优化
 
-```python
+`````python
 # 将 PyTorch 模型转换为 ONNX 以获得 2 倍加速
 import torch
 from TTS.api import TTS
@@ -392,11 +393,11 @@ tts = TTS("tts_models/en/ljspeech/tacotron2-DDC").to("cuda")
 # 启用 FP16 推理
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.benchmark = True
-```
+`````
 
 ### 批处理推理提高吞吐量
 
-```python
+`````python
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
@@ -417,11 +418,11 @@ def batch_worker(text_queue, result_queue): """以批处理方式处理文本以
 
 # 使用
 with ThreadPoolExecutor(max_workers=2) as executor: executor.submit(batch_worker, text_q, result_q)
-```
+`````
 
 ### XTTS v2 自定义数据微调
 
-```bash
+`````bash
 # 以 LJSpeech 格式准备数据集：
 # metadata.csv: audio_file|text|speaker_name
 # wavs/*.wav: 22050 Hz, 单声道, 16 位
@@ -437,11 +438,11 @@ python TTS/bin/train_tts.py \
     --epochs 10
 
 # 预计训练时间：RTX 4090 上 1 小时数据需 12-24 小时
-```
+`````
 
 ### Prometheus 监控
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 
 # 指标
@@ -457,21 +458,21 @@ def synthesize(): with TTS_LATENCY.time(): try: # ... 合成逻辑
             TTS_REQUESTS.labels(language=lang).inc()
         except Exception as e: TTS_ERRORS.labels(error_type=type(e).__name__).inc()
             raise
-```
+`````
 
 ## 与竞品对比
 
 | 特性 | Coqui TTS | ChatTTS | MeloTTS | Bark (Suno) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 45,300 | 33,400 | 5,100 | 37,200 |
 | **许可证** | MPL-2.0 | AGPL-3.0 | MIT | MIT |
@@ -505,7 +506,7 @@ Coqui TTS 不是万能的。以下是我们从实践中总结的教训：
 - **长文本显存膨胀** — 超过 500 字符的输入可能导致 16 GB GPU OOM。按句子分块，单次请求限制 300 字符。
 - **中文质量差距** — XTTS v2 支持中文，但 ChatTTS 等原生模型产生更自然的普通话韵律。Coqui 的优势是广度，不是单语言完美。
 - **无内置批处理 API** — 官方 Python API 一次处理一个文本。高吞吐场景需自行实现批处理层。
-- **服务非生产级** — 内置 `tts-server` 使用 Flask 开发服务器。生产环境务必使用 gunicorn + nginx。
+- **服务非生产级** — 内置 ````tts-server```` 使用 Flask 开发服务器。生产环境务必使用 gunicorn + nginx。
 
 ## 常见问题解答
 
@@ -531,11 +532,11 @@ VITS 是端到端单说话人模型，针对速度优化（GPU 上 67x RTF）。
 
 **Q6：Coqui TTS 支持流式输出吗？**
 
-支持——XTTS v2 支持流式推理，首块延迟低于 200 毫秒。通过 Python API 传递 `stream=True` 启用。REST 服务目前不原生支持分块传输编码。
+支持——XTTS v2 支持流式推理，首块延迟低于 200 毫秒。通过 Python API 传递 ````stream=True```` 启用。REST 服务目前不原生支持分块传输编码。
 
 **Q7：可以用自己的语音数据集微调吗？**
 
-可以。以 LJSpeech 格式准备数据（22050 Hz WAV + metadata.csv），使用 `TTS/tts/recipes/` 下的训练配方。在 RTX 4090 上微调 XTTS v2（1 小时干净语音）需 12-24 小时，语音匹配度明显优于零样本克隆。
+可以。以 LJSpeech 格式准备数据（22050 Hz WAV + metadata.csv），使用 ````TTS/tts/recipes/``` 下的训练配方。在 RTX 4090 上微调 XTTS v2（1 小时干净语音）需 12-24 小时，语音匹配度明显优于零样本克隆。
 
 **Q8：如何处理长文本输入？**
 
@@ -605,7 +606,7 @@ Coqui TTS 在 2026 年仍然是最通用的开源 TTS 工具包。拥有 45,300 
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](coqui-tts)
@@ -615,5 +616,5 @@ Coqui TTS 在 2026 年仍然是最通用的开源 TTS 工具包。拥有 45,300 
 - [moneyprinterturbo-one-click-ai-video-generator](coqui-tts)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

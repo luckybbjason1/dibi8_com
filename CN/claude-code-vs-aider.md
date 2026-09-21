@@ -17,6 +17,7 @@ faqs: - q: 'Is Claude Code or Aider cheaper for daily use?'
   - q: 'Is Aider open source enough for enterprise use?'
     a: 'Yes — Aider is Apache 2.0 licensed and runs entirely on your machine. The only external call is to whichever model API you configure (OpenAI, Anthropic, local Ollama, etc.). For air-gapped or compliance-sensitive environments, pair Aider with a local model and you have a fully self-hosted AI coding setup. Claude Code requires Anthropic''s cloud.'
 ---
+
 # Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown
 
 
@@ -29,16 +30,16 @@ Use **Claude Code** if: You want a fully managed AI coding agent on a flat $20-$
 Use **Aider** if: You want open-source tooling under Apache 2.0, you want to bring your own API key (or local model), you prefer auditable edit-commit-diff loops, and you want to optimize cost per session below subscription pricing.
 
 
----
+* * *
 ## Side-by-Side Comparison
 
 | Feature | Claude Code | Aider |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Vendor** | Anthropic | Paul Gauthier (open source) |
 | **Launched** | 2024 | 2023 |
@@ -58,19 +59,19 @@ Use **Aider** if: You want open-source tooling under Apache 2.0, you want to bri
 | **Subagent system** | Yes (Task tool) | No |
 
 
----
+* * *
 ## When to Choose Claude Code
 
 ### Use case 1: Long autonomous loops
 Claude Code can take a vague spec like "add OAuth login with Google and GitHub, update the schema, write tests, and deploy" and run for 30-60 minutes with minimal supervision. It plans, edits, runs tests, observes failures, and self-corrects. Aider is built for tighter human-in-the-loop turns and won't drive that long a loop on its own.
 
 ### Use case 2: Massive monorepos
-The Sonnet 1M context tier means Claude Code can hold an entire 800K-LOC repo in working memory. Combined with the subagent system, it can dispatch parallel "research agents" to explore unfamiliar code without polluting your main session. Aider on a 1M codebase requires you to manually add files via `/add`.
+The Sonnet 1M context tier means Claude Code can hold an entire 800K-LOC repo in working memory. Combined with the subagent system, it can dispatch parallel "research agents" to explore unfamiliar code without polluting your main session. Aider on a 1M codebase requires you to manually add files via ```/add````.
 
 ### Use case 3: Flat-fee predictability
 $20/month Pro or $200/month Max means your monthly AI coding cost is bounded. Heavy users routinely burn $200+ in raw Anthropic API costs going through Aider — at that volume, Claude Code Max is the same price with no metering anxiety.
 
----
+* * *
 
 ## When to Choose Aider
 
@@ -83,7 +84,7 @@ Aider charges nothing for the tool. You pay only the underlying model API. For o
 ### Use case 3: Auditable edit-commit-diff workflow
 Aider's loop is: propose edit → show unified diff → wait for approval → commit with descriptive message. Every change is one git commit, fully reviewable. For teams who want AI assistance without losing git-blame history quality, Aider's discipline shines.
 
----
+* * *
 
 ## Pricing Deep Dive
 
@@ -109,17 +110,17 @@ For light use (<20 sessions/week): **Aider with cached Sonnet ~$10-$15/month** b
 For heavy use (>50 sessions/week): **Claude Code Pro $20/month** is the cost ceiling.
 For unlimited heavy use: **Claude Code Max $200/month** beats $300+ raw API burn through Aider.
 
----
+* * *
 
 ## Performance Benchmarks (Subjective, From My Daily Use)
 
 | Task | Claude Code | Aider |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Single-file bug fix | 8/10 | 9/10 |
 | Multi-file refactor (5-10 files) | 9/10 | 8/10 |
@@ -134,40 +135,40 @@ For unlimited heavy use: **Claude Code Max $200/month** beats $300+ raw API burn
 
 → Claude Code wins on agent autonomy and scale. Aider wins on git hygiene, cost transparency, and open-source freedom.
 
----
+* * *
 
 ## Migration Tips
 
 ### Claude Code → Aider
-- Install: `pip install aider-chat` or `pipx install aider-chat`
-- Set your API key: `export ANTHROPIC_API_KEY=sk-ant-...`
-- Run from your repo root: `aider --sonnet`
-- Use `/add file.py` to include files (Aider does NOT auto-discover like Claude Code)
+- Install: ````pip install aider-chat```` or ````pipx install aider-chat````
+- Set your API key: ````export ANTHROPIC_API_KEY=sk-ant-...````
+- Run from your repo root: ````aider --sonnet````
+- Use ````/add file.py```` to include files (Aider does NOT auto-discover like Claude Code)
 - Enable auto-commit: it's on by default; review diffs before approving
 - Lower your expectation of autonomy — Aider expects 1-2 turn loops, not 30-minute runs
 
 ### Aider → Claude Code
-- Install: `npm install -g @anthropic-ai/claude-code` or use `claude` CLI from anthropic.com
-- Authenticate: `claude login` (uses Anthropic account, not API key)
-- Run from your repo root: `claude`
-- Don't manually `/add` files — Claude Code uses subagents to find what it needs
+- Install: ````npm install -g @anthropic-ai/claude-code```` or use ````claude```` CLI from anthropic.com
+- Authenticate: ````claude login```` (uses Anthropic account, not API key)
+- Run from your repo root: ````claude````
+- Don't manually ````/add``` files — Claude Code uses subagents to find what it needs
 - Disable auto-commit if you want Aider-style git hygiene; otherwise let it batch
 - Expect longer single turns (10-60 seconds) but fewer total turns per task
 
 ### Self-Hosting Note
 Want to run Aider with a local model and get the open-source benefits without renting GPU time? A {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean GPU droplet with $200 free credit" >}} gives you enough runway to test Llama 3.3 70B or DeepSeek V3 on a real codebase for 2-3 months before deciding. Cheaper than 2 months of Claude Code Max, and you keep the infrastructure for inference workloads.
 
----
+* * *
 
 ## Cost Efficiency Calculator (Rough)
 
 | Usage Pattern | Best Choice | Estimated Monthly Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 5 sessions/week, single-file edits | Aider + Gemini Flash | $3-$8 |
 | 15 sessions/week, multi-file | Aider + Sonnet w/cache | $15-$25 |
@@ -176,7 +177,7 @@ Want to run Aider with a local model and get the open-source benefits without re
 | Daily 8-hour autonomous work | Claude Code Max 20x | $200 |
 | Self-hosted / air-gapped | Aider + local Ollama | $0 (+ hardware) |
 
----
+* * *
 
 ## Agent Style Difference Explained
 
@@ -186,7 +187,7 @@ Want to run Aider with a local model and get the open-source benefits without re
 
 For greenfield features: Claude Code is faster. For legacy code with regulatory scrutiny: Aider is safer.
 
----
+* * *
 
 ## Alternatives Worth Trying
 
@@ -195,7 +196,7 @@ If neither Claude Code nor Aider fits, consider: - **[Cursor](https://dibi8.com/
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code through cheaper providers, cut costs 60-80%
 - **[Cline (Claude Dev)](https://dibi8.com/resources/llm-frameworks/cline-autonomous-coding-agent/)** — VS Code agent, similar to Aider but with more UI
 
----
+* * *
 
 ## dibi8's Take
 
@@ -209,13 +210,13 @@ For an indie dev shipping a SaaS solo on a tight budget? **Aider with Sonnet 1M 
 
 For a small team shipping fast with no time for diff review? **Claude Code Max 5x at $100/month** pays for itself in saved engineering hours within the first week.
 
----
+* * *
 
 ## FAQ
 
 (rendered via faqs frontmatter — visible inline + JSON-LD for AIO)
 
----
+* * *
 
 ## Further Reading
 
@@ -260,7 +261,7 @@ For a small team shipping fast with no time for diff review? **Claude Code Max 5
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -270,7 +271,7 @@ For a small team shipping fast with no time for diff review? **Claude Code Max 5
 - [cursor-vs-claude-code](claude-code-vs-aider)
 - [openai-codex-cli-vs-claude-code](claude-code-vs-aider)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

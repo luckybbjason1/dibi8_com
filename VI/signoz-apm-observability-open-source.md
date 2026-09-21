@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/signoz-apm-observability-open-source/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Hóa đơn Observability $65,000/năm mà không ai nói đến
@@ -61,7 +62,7 @@ SigNoz tuân theo kiến trúc pipeline observability hiện đại: 1. **OpenTe
 5. **Query Service (Go)**: Xử lý requests API, chạy queries chống lại ClickHouse và Druid
 6. **Frontend (React)**: Web UI cho trace exploration, metrics dashboards, log search và cấu hình alerts
 
-```yaml
+````yaml
 Ứng dụng (OTel SDK) → OTLP/gRPC → SigNoz Otel Collector
                                         ↓
                               ┌──────────────────┐
@@ -75,7 +76,7 @@ SigNoz tuân theo kiến trúc pipeline observability hiện đại: 1. **OpenTe
                               Query Service (Go)
                                      ↓
                                 React Frontend
-```
+`````
 
 ### Tại sao dùng ClickHouse cho Traces và Logs?
 
@@ -86,7 +87,7 @@ ClickHouse là cơ sở dữ liệu OLAP dạng cột được tối ưu cho cá
 
 ### Thiết kế OpenTelemetry-Native
 
-Không giống như Datadog hoặc New Relic yêu cầu các agent độc quyền, SigNoz tiêu thụ dữ liệu OpenTelemetry tiêu chuẩn: ```python
+Không giống như Datadog hoặc New Relic yêu cầu các agent độc quyền, SigNoz tiêu thụ dữ liệu OpenTelemetry tiêu chuẩn: `````python
 # Không cần SDK dành riêng cho vendor — chỉ cần OTel chuẩn
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -103,7 +104,7 @@ provider = TracerProvider()
 processor = BatchSpanProcessor(otlp_exporter)
 provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
-```
+`````
 
 Nếu bạn cần di chuyển khỏi SigNoz, chỉ cần trỏ cùng một OTLP exporter sang một backend khác. Không cần thay đổi code.
 
@@ -118,7 +119,7 @@ Nếu bạn cần di chuyển khỏi SigNoz, chỉ cần trỏ cùng một OTLP 
 
 ### Tùy chọn A: Docker Compose (Khuyến nghị)
 
-```bash
+`````bash
 # 1. Clone repository SigNoz
 git clone -b main https://github.com/SigNoz/signoz.git
 cd signoz/deploy/docker
@@ -130,13 +131,13 @@ cd signoz/deploy/docker
 # - Pull tất cả các images cần thiết (ClickHouse, Kafka, Query Service, Frontend)
 # - Khởi động tất cả services
 # - In URL truy cập
-```
+`````
 
-Sau khi cài đặt hoàn tất, truy cập SigNoz tại `http://localhost:3301`.
+Sau khi cài đặt hoàn tất, truy cập SigNoz tại ````http://localhost:3301````.
 
 ### Tùy chọn B: Kubernetes qua Helm
 
-```bash
+`````bash
 # 1. Thêm Helm repository SigNoz
 helm repo add signoz https://charts.signoz.io
 helm repo update
@@ -153,11 +154,11 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=signoz -n signo
 
 # 4. Port-forward frontend
 kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
-```
+`````
 
 ### Tùy chọn C: Triển khai VPS Production
 
-Để triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187): ```bash
+Để triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187): `````bash
 # docker-compose.production.yml
 version: "3.8"
 services: signoz-frontend: image: signoz/frontend:0.76.0
@@ -202,13 +203,13 @@ services: signoz-frontend: image: signoz/frontend:0.76.0
     volumes: - kafka-data:/bitnami/kafka
     depends_on: - zookeeper
 
-volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````
 
-Triển khai với `docker compose -f docker-compose.production.yml up -d`.
+Triển khai với ````docker compose -f docker-compose.production.yml up -d````.
 
 ### Xác minh cài đặt
 
-```bash
+`````bash
 # Kiểm tra tất cả containers đang chạy
 docker ps --format "table {{.Names}}\t{{.Status}}"
 
@@ -223,13 +224,13 @@ docker ps --format "table {{.Names}}\t{{.Status}}"
 # Test health endpoint
 curl http://localhost:3301/api/v1/health
 # Output: {"status":"ok"}
-```
+`````
 
 ## Instrument Ứng dụng của bạn
 
 ### Auto-Instrumentation (Khuyến nghị cho Quick Start)
 
-SigNoz hỗ trợ auto-instrumentation cho hầu hết các ngôn ngữ không cần thay đổi code: ```bash
+SigNoz hỗ trợ auto-instrumentation cho hầu hết các ngôn ngữ không cần thay đổi code: `````bash
 # Node.js —— zero code changes
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=payment-service" \
@@ -250,11 +251,11 @@ java -javaagent:opentelemetry-javaagent.jar \
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=api-gateway" \
 go run main.go
-```
+`````
 
 ### Manual Instrumentation (Production-Grade)
 
-Cho production services, manual instrumentation cung cấp kiểm soát tốt hơn: ```python
+Cho production services, manual instrumentation cung cấp kiểm soát tốt hơn: `````python
 # Python Flask với manual instrumentation
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -285,11 +286,11 @@ def process_payment(): with tracer.start_as_current_span("process_payment") as s
             pass
 
         return {"status": "success"}
-```
+`````
 
 ### Dashboards và Metrics tùy chỉnh
 
-Khi dữ liệu bắt đầu chảy, tạo dashboards trong SigNoz UI hoặc qua API: ```bash
+Khi dữ liệu bắt đầu chảy, tạo dashboards trong SigNoz UI hoặc qua API: `````bash
 # Tạo dashboard tùy chỉnh qua API
 curl -X POST http://localhost:3301/api/v1/dashboards \
   -H "Content-Type: application/json" \
@@ -316,7 +317,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
       }
     ]
   }'
-```
+`````
 
 ## Benchmark & Các trường hợp sử dụng thực tế
 
@@ -357,7 +358,7 @@ Kiểm thử với 1 triệu spans/ngày ingestion trên VPS 4 vCPU / 8 GB RAM: 
 
 ### Thiết lập High-Availability
 
-```yaml
+`````yaml
 # docker-compose.ha.yml — multi-node ClickHouse với ZooKeeper
 services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - clickhouse1-data:/var/lib/clickhouse
@@ -382,11 +383,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
     ports: - "8123:8123"
       - "9000:9000"
-```
+`````
 
 ### Lưu trữ dài hạn với S3
 
-```yaml
+`````yaml
 # Cấu hình backup ClickHouse S3
 <clickhouse>
   <storage_configuration>
@@ -413,11 +414,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     </policies>
   </storage_configuration>
 </clickhouse>
-```
+`````
 
 ### Cấu hình Alert
 
-```yaml
+`````yaml
 # alert-rules.yml — SigNoz alert manager rules
 groups: - name: payment_service_alerts
     rules: - alert: HighErrorRate
@@ -443,13 +444,13 @@ groups: - name: payment_service_alerts
         labels: severity: warning
         annotations: summary: "Log error spike detected"
           description: "{{ $value }} errors/minute"
-```
+`````
 
 Cấu hình kênh alert (Slack, PagerDuty, email) trong SigNoz UI dưới Settings → Alert Channels.
 
 ### Kubernetes Auto-Instrumentation
 
-```yaml
+`````yaml
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
@@ -463,7 +464,7 @@ spec: ports: - name: otlp-grpc
       protocol: TCP
   selector: app.kubernetes.io/name: otel-collector
 
----
+* * *
 # Instrument deployment bằng cách thêm OTel env vars
 apiVersion: apps/v1
 kind: Deployment
@@ -478,11 +479,11 @@ spec: template: spec: containers: - name: payment-service
               value: "parentbased_traceidratio"
             - name: OTEL_TRACES_SAMPLER_ARG
               value: "0.1"  # Sample 10% traces
-```
+`````
 
 ### Chiến lược Sampling cho Services có traffic cao
 
-Cho services xử lý >10,000 requests/giây, triển khai head-based sampling: ```yaml
+Cho services xử lý >10,000 requests/giây, triển khai head-based sampling: `````yaml
 # otel-collector-config.yaml
 receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
       http: endpoint: 0.0.0.0:4318
@@ -506,7 +507,7 @@ exporters: clickhousetraces: datasource: tcp://clickhouse:9000
 service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
-```
+`````
 
 Cấu hình này sample 100% error traces, 100% slow requests (>500ms), và 10% traffic bình thường — cho bạn khả năng hiển thị lỗi hoàn chỉnh trong khi kiểm soát chi phí lưu trữ.
 
@@ -557,10 +558,10 @@ Cho việc ingestion 1 triệu spans/ngày với 7 ngày hot retention: 4 vCPU, 
 
 **Q: Tôi có thể sử dụng metrics Prometheus hiện có với SigNoz không?**
 
-Có. OTel Collector của SigNoz bao gồm một Prometheus receiver. Cấu hình trong `otel-collector-config.yaml`: ```yaml
+Có. OTel Collector của SigNoz bao gồm một Prometheus receiver. Cấu hình trong ``otel-collector-config.yaml``: `````yaml
 receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
           static_configs: - targets: ['my-app:9090"]
-```
+`````
 
 Các scrape configs Prometheus hiện có có thể được import trực tiếp. SigNoz sẽ lưu metrics trong Druid cho truy vấn dài hạn.
 
@@ -582,7 +583,7 @@ SigNoz mang lại những gì các đội kỹ sư quy mô thực sự cần: **
 
 Với thiết lập Docker 5 phút, truy vấn sub-second trên hàng tỷ spans nhờ ClickHouse, và zero vendor lock-in, việc chi tiêu $50,000+/năm cho cloud APM trở nên khó có thể biện minh.
 
-**Triển khai ngay hôm nay**: Khởi tạo VPS trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($48/tháng cho 8 GB) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187), chạy `./install.sh`, và bắt đầu instrument service đầu tiên trong vòng 10 phút.
+**Triển khai ngay hôm nay**: Khởi tạo VPS trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($48/tháng cho 8 GB) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187), chạy ````./install.sh```, và bắt đầu instrument service đầu tiên trong vòng 10 phút.
 
 **Tham gia cộng đồng**: [Nhóm Telegram](https://t.me/dibi8vn) cho developer Việt Nam | [GitHub Discussions](https://github.com/SigNoz/signoz/discussions) | [Slack](https://signoz.io/slack)
 
@@ -605,7 +606,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Grafana Stack](dibi8-internal-link) — Stack observability mã nguồn mở thay thế
 - [Hướng dẫn self-hosting](dibi8-internal-link) — Các thực hành tốt nhất về self-hosting trên dibi8.com
 
----
+* * *
 
 *Công bố liên kết liên kết: Bài viết này chứa các liên kết liên kết đến DigitalOcean và HTStack. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com sẽ nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả các khuyến nghị đều dựa trên kiểm thử thực tế, không phải khả năng có liên kết liên kết.*
 
@@ -635,7 +636,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -645,6 +646,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [2026-06-22-trending-ai-agents](signoz-apm-observability-open-source)
 - [prompts-chat](signoz-apm-observability-open-source)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

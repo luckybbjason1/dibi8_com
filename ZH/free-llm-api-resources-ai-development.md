@@ -30,6 +30,7 @@ faqs: - q: '最快的免费 LLM 推理服务商是哪个？'
     a: 'Groq、Together AI 和 LM Studio 都提供 OpenAI 兼容的端点，所以你只需更改 base_url（例如 Together 用 https://api.together.xyz/v1，LM Studio 用 http://localhost:1234/v1）即可使用标准的 OpenAI Python 客户端。'
   - q: '免费 LLM API 层级适合用于生产环境吗？'
     a: '免费层级适用于低流量应用、备用服务商以及对成本敏感或社区类项目，但它们带有速率限制，且条款可能会变更。对于高流量的生产环境，你应当谨慎使用，或将其与付费方案搭配使用。'---
+
 {</* resource-info */>}
 
 ## 什么是免费 LLM API 资源？
@@ -49,13 +50,13 @@ faqs: - q: '最快的免费 LLM 推理服务商是哪个？'
 
 | 提供商 | 模型 | 输入成本 | 输出成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI | GPT-4o | $5/百万 tokens | $15/百万 tokens |
 | Anthropic | Claude 3.5 | $3/百万 tokens | $15/百万 tokens |
@@ -68,13 +69,13 @@ faqs: - q: '最快的免费 LLM 推理服务商是哪个？'
 
 | 提供商 | 免费套餐 | 速率限制 | 模型 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Groq | 100% 免费 | 20 请求/分钟 | Llama 3, Mixtral |
 | Together AI | $5 额度 | 60 请求/分钟 | 各种开源 |
@@ -83,7 +84,7 @@ faqs: - q: '最快的免费 LLM 推理服务商是哪个？'
 | LM Studio | 本地 | 无限 | 自托管 |
 
 
----
+* * *
 ## 精选免费提供商
 
 ### 1. Groq — 最快推理
@@ -96,7 +97,7 @@ faqs: - q: '最快的免费 LLM 推理服务商是哪个？'
 - Mixtral 8x7B
 - Gemma 7B
 
-```python
+````python
 import requests
 
 # Groq API (免费套餐)
@@ -109,7 +110,7 @@ response = requests.post(
     }
 )
 print(response.json()["choices"][0]["message"]["content"])
-```
+`````
 
 ### 2. Together AI — $5 免费额度
 
@@ -118,7 +119,7 @@ print(response.json()["choices"][0]["message"]["content"])
 **模型**: 100+ 开源模型
 **特性**: 微调、嵌入
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -131,7 +132,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "解释量子计算"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 3. Ollama — 本地运行
 
@@ -140,7 +141,7 @@ print(response.choices[0].message.content)
 **隐私**: 100% 私密
 **模型**: 从 Ollama 库拉取
 
-```bash
+`````bash
 # 安装 Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -155,7 +156,7 @@ curl http://localhost:11434/api/generate -d '{
   "model": "llama3",
   "prompt": "为什么天空是蓝色的？"
 }'
-```
+`````
 
 ### 4. LM Studio — GUI + API
 
@@ -164,7 +165,7 @@ curl http://localhost:11434/api/generate -d '{
 **特性**: GUI 模型浏览器、API 服务器
 **最适合**: 测试模型、开发
 
-```python
+`````python
 # LM Studio 本地 API
 import openai
 
@@ -177,7 +178,7 @@ response = client.chat.completions.create(
     model="local-model",
     messages=[{"role": "user", "content": "你好！"}]
 )
-```
+`````
 
 ### 5. Fireworks AI — 快速开源模型
 
@@ -186,23 +187,23 @@ response = client.chat.completions.create(
 **速度**: 优化推理
 **模型**: Llama、Mixtral、CodeLlama
 
----
+* * *
 
 ## 对比表
 
 | 提供商 | 成本 | 速度 | 隐私 | 易用性 | 最适合 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Groq | 免费 | ⚡⚡⚡ | ❌ | ⭐⭐⭐ | 生产应用 |
 | Together | $5 额度 | ⚡⚡ | ❌ | ⭐⭐⭐ | 实验 |
@@ -210,7 +211,7 @@ response = client.chat.completions.create(
 | LM Studio | 免费 | ⚡ | ✅ | ⭐⭐⭐ | 开发 |
 | Fireworks | 试用 | ⚡⚡ | ❌ | ⭐⭐ | 快速推理 |
 
----
+* * *
 
 ## 使用场景
 
@@ -238,13 +239,13 @@ response = client.chat.completions.create(
 - 成本敏感项目
 - 社区工具
 
----
+* * *
 
 ## 如何选择
 
 ### 决策树
 
-```
+`````
 需要 API 访问？
 ├── 是 → 需要高速度？
 │   ├── 是 → Groq（最快）
@@ -252,25 +253,25 @@ response = client.chat.completions.create(
 ├── 否 → 需要隐私？
 │   ├── 是 → Ollama/LM Studio（本地）
 │   └── 否 → 考虑付费选项
-```
+````
 
 ### 速率限制很重要
 
 | 提供商 | 请求/分钟 | Tokens/分钟 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Groq | 20 | 6,000 | 对开发很慷慨 |
 | Together | 60 | 12,000 | 适合测试 |
 | Ollama | 无限 | 硬件限制 | 你的硬件 = 限制 |
 
----
+* * *
 
 ## 社区与更新
 
@@ -289,7 +290,7 @@ response = client.chat.completions.create(
 - **加入** 讨论获取技巧
 - **关注** GitHub 上的 @cheahjs
 
----
+* * *
 
 ## 相关文章
 
@@ -297,11 +298,11 @@ response = client.chat.completions.create(
 - [TabPFN: 表格数据基础模型](/zh/resources/ai-tools/tabpfn-foundation-model-tabular-data/) — 数据科学 AI
 - [OpenClaw 42 个用例](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 代理应用
 
----
+* * *
 
 *免责声明：免费套餐有速率限制，可能会更改。请始终查看提供商的当前条款。这是一个社区资源，不隶属于任何 API 提供商。*
 
----
+* * *
 
 ## 推荐工具
 
@@ -375,7 +376,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -407,15 +408,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

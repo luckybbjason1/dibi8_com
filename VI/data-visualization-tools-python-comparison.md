@@ -22,6 +22,7 @@ aliases:
   - /posts/data-visualization-tools-python-comparison/
 ---
 
+
 {</* resource-info */>}
 
 Trực quan hóa dữ liệu là một trong những kỹ năng cốt lõi của bất kỳ nhà khoa học dữ liệu nào. Một biểu đồ tốt có thể tiết lộ insight mà bảng số liệu không thể truyền tải được. Trong hệ sinh thái Python năm 2024, bốn công cụ chính thống lĩnh vực này: Matplotlib, Seaborn, Plotly và Observable — mỗi công cụ mang đến triết lý và điểm mạnh riêng biệt. Việc chọn đúng công cụ cho từng nhiệm vụ không chỉ tiết kiệm thờ gian mà còn nâng cao chất lượng thông điệp bạn truyền tải.
@@ -42,10 +43,10 @@ Matplotlib là nền tảng — hầu hết các thư viện trực quan hóa Py
 
 ### Mẹo Nâng Cao Cho Matplotlib
 
-1. **Style sheets:** Sử dụng `plt.style.use('seaborn-v0_8-whitegrid')` hoặc tạo style sheet riêng để đảm bảo tính nhất quán trong toàn bộ dự án.
-2. **rcParams customization:** Tùy chỉnh toàn cục qua `matplotlib.rcParams` — font family, kích thước figure DPI, màu sắc mặc định.
-3. **Figure composition:** Sử dụng `subplots()` hoặc `GridSpec` để tạo bố cục phức tạp với nhiều biểu đồ liên kết.
-4. **Animation:** Matplotlib hỗ trợ tạo animation qua `FuncAnimation`, hữu ích cho việc minh họa sự thay đổi theo thờ gian.
+1. **Style sheets:** Sử dụng ```plt.style.use('seaborn-v0_8-whitegrid')```` hoặc tạo style sheet riêng để đảm bảo tính nhất quán trong toàn bộ dự án.
+2. **rcParams customization:** Tùy chỉnh toàn cục qua ````matplotlib.rcParams```` — font family, kích thước figure DPI, màu sắc mặc định.
+3. **Figure composition:** Sử dụng ````subplots()```` hoặc ````GridSpec```` để tạo bố cục phức tạp với nhiều biểu đồ liên kết.
+4. **Animation:** Matplotlib hỗ trợ tạo animation qua ````FuncAnimation````, hữu ích cho việc minh họa sự thay đổi theo thờ gian.
 
 Nhược điểm chính của Matplotlib là API cấp thấp đòi hỏi nhiều dòng code cho biểu đồ phức tạp, và các biểu đồ mặc định thường cần nhiều tinh chỉnh mới đẹp mắt.
 
@@ -55,14 +56,14 @@ Nhược điểm chính của Matplotlib là API cấp thấp đòi hỏi nhiề
 
 ### Điểm Mạnh Cứa Seaborn
 
-- **EDA (Exploratory Data Analysis):** Seaborn vượt trội trong việc khám phá dữ liệu với các biểu đồ `pairplot`, `heatmap`, `violinplot`, `boxplot`.
-- **Regression plots:** Tạo scatter plot kèm đường hồi quy và confidence interval chỉ với `sns.regplot()` hoặc `sns.lmplot()`.
-- **Distribution analysis:** `histplot`, `kdeplot`, `ecdfplot` giúp hiểu rõ phân phối dữ liệu.
-- **Pandas-native:** Truyền trực tiếp tên cột vào tham số `x`, `y`, `hue` thay vì phải truyền array.
+- **EDA (Exploratory Data Analysis):** Seaborn vượt trội trong việc khám phá dữ liệu với các biểu đồ ````pairplot````, ````heatmap````, ````violinplot````, ````boxplot````.
+- **Regression plots:** Tạo scatter plot kèm đường hồi quy và confidence interval chỉ với ````sns.regplot()```` hoặc ````sns.lmplot()````.
+- **Distribution analysis:** ````histplot````, ````kdeplot````, ````ecdfplot```` giúp hiểu rõ phân phối dữ liệu.
+- **Pandas-native:** Truyền trực tiếp tên cột vào tham số ````x````, ````y````, ````hue```` thay vì phải truyền array.
 
 ### Tính Năng Nâng Cao Cứa Seaborn
 
-Seaborn 0.12+ giới thiệu hệ thống objects API mớ dựa trên grammar of graphics: ```python
+Seaborn 0.12+ giới thiệu hệ thống objects API mớ dựa trên grammar of graphics: `````python
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -75,9 +76,9 @@ p = (
     .label(title="Tips by Time and Day")
 )
 p.show()
-```
+`````
 
-`FacetGrid` cho phép tạo bố cục multi-plot theo các giá trị phân loại, rất hữu ích cho việc so sánh phân phối qua nhiều nhóm. Seaborn cũng cho phép kết hợp với Matplotlib để tinh chỉnh chi tiết — sau khi tạo biểu đồ Seaborn, bạn có thể truy cập đối tượng Axes và thêm annotation, điều chỉnh axis.
+````FacetGrid```` cho phép tạo bố cục multi-plot theo các giá trị phân loại, rất hữu ích cho việc so sánh phân phối qua nhiều nhóm. Seaborn cũng cho phép kết hợp với Matplotlib để tinh chỉnh chi tiết — sau khi tạo biểu đồ Seaborn, bạn có thể truy cập đối tượng Axes và thêm annotation, điều chỉnh axis.
 
 ## Plotly: Tương Tác Web Là Mặc Định
 
@@ -85,7 +86,7 @@ p.show()
 
 ### Plotly Express vs Graph Objects
 
-Plotly cung cấp hai API chính: **Plotly Express** là API cấp cao, tương tự Seaborn, cho phép tạo biểu đồ phức tạp vớ một dòng code. Hỗ trợ animation, faceting, và tích hợp Pandas DataFrame: ```python
+Plotly cung cấp hai API chính: **Plotly Express** là API cấp cao, tương tự Seaborn, cho phép tạo biểu đồ phức tạp vớ một dòng code. Hỗ trợ animation, faceting, và tích hợp Pandas DataFrame: `````python
 import plotly.express as px
 
 fig = px.scatter(
@@ -95,7 +96,7 @@ fig = px.scatter(
     log_x=True, size_max=60
 )
 fig.show()
-```
+`````
 
 **Graph Objects (GO)** là API cấp thấp cho phép kiểm soát từng thành phần của biểu đồ — subplots phức tạp, các trace tùy chỉnh, 3D plots, và choropleth maps. GO phù hợp khi cần tạo dashboard phức tạp hoặc biểu đồ không có sẵn trong Express.
 
@@ -105,7 +106,7 @@ fig.show()
 - **Trình bày cho stakeholder:** Biểu đồ tương tác cho phép ngườ xem tự khám phá dữ liệu.
 - **3D visualization và maps:** Plotly hỗ trợ 3D scatter, surface, choropleth, scatter geo vượt trội.
 
-Nhược điểm của Plotly là hiệu suất với dataset lớn (>100k điểm) có thể chậm do render bằng JavaScript trong browser. Giải pháp là sử dụng `scattergl` (WebGL) thay vì `scatter`, hoặc giảm số lượng điểm bằng sampling.
+Nhược điểm của Plotly là hiệu suất với dataset lớn (>100k điểm) có thể chậm do render bằng JavaScript trong browser. Giải pháp là sử dụng ````scattergl```` (WebGL) thay vì ````scatter````, hoặc giảm số lượng điểm bằng sampling.
 
 ## Observable Plot: Sức Mạnh JavaScript Cho Web
 
@@ -140,7 +141,7 @@ Observable miễn phí cho cá nhân (public notebooks), gói Pro $12/tháng cho
 
 ### Giai Đoạn EDA
 
-Trong giai đoạn khám phá dữ liệu, **Seaborn** là lựa chọn hàng đầu. `pairplot()` cho phép nhìn tổng quan mối quan hệ giữa tất cả các biến số trong vòng 30 giây. `heatmap()` của correlation matrix giúp nhanh chóng xác định các mối tương quan quan trọng. Kết hợp Seaborn với Matplotlib để tinh chỉnh annotation và bố cục khi cần trình bày kết quả.
+Trong giai đoạn khám phá dữ liệu, **Seaborn** là lựa chọn hàng đầu. ````pairplot()```` cho phép nhìn tổng quan mối quan hệ giữa tất cả các biến số trong vòng 30 giây. ````heatmap()```` của correlation matrix giúp nhanh chóng xác định các mối tương quan quan trọng. Kết hợp Seaborn với Matplotlib để tinh chỉnh annotation và bố cục khi cần trình bày kết quả.
 
 ### Xây Dựng Dashboard
 
@@ -163,36 +164,36 @@ Trong thực tế, các nhà khoa học dữ liệu thường kết hợp nhiề
 ### Biểu Đồ Scatter Plot
 
 **Matplotlib:**
-```python
+`````python
 import matplotlib.pyplot as plt
 plt.scatter(df['x'], df['y'], c=df['category'].map({'A':'blue','B':'red'}), alpha=0.6)
 plt.xlabel('X Label'); plt.ylabel('Y Label'); plt.title('Scatter Plot')
 plt.colorbar(); plt.show()
-```
+`````
 
 **Seaborn:**
-```python
+`````python
 import seaborn as sns
 sns.scatterplot(data=df, x='x', y='y', hue='category', alpha=0.6)
 plt.title('Scatter Plot'); plt.show()
-```
+`````
 
 **Plotly:**
-```python
+`````python
 import plotly.express as px
 fig = px.scatter(df, x='x', y='y', color='category', opacity=0.6, title='Scatter Plot")
 fig.show()
-```
+`````
 
 **Observable (JavaScript):**
-```javascript
+`````javascript
 Plot.plot({
   marks: [
     Plot.dot(data, {x: "x", y: "y", fill: "category", fillOpacity: 0.6}),
     Plot.frame()
   ]
 })
-```
+````
 
 Nhận xét: Seaborn và Plotly Express đạt được kết quả tốt nhất với ít code nhất. Matplotlib đòi hỏi nhiều thao tác thủ công hơn nhưng cho kiểm soát tối đa. Observable Plot với cú pháp khai báo tạo ra biểu đồ sẵn sàng cho web.
 
@@ -233,7 +234,7 @@ Với dataset trên 100,000 điểm dữ liệu: - **Matplotlib + sampling:** V�
 - [Observable Platform](https://observablehq.com)
 - [Dash by Plotly](https://dash.plotly.com)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

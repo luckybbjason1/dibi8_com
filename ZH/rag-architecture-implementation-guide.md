@@ -7,6 +7,7 @@ aliases:
   - /posts/rag-architecture-implementation-guide/-
 ---
 
+
 {</* resource-info */>}
 
 RAG（Retrieval-Augmented Generation，检索增强生成）是让大语言模型"开卷考试"的技术——在回答前先从知识库中检索相关文档，将检索结果作为上下文注入提示词，从而显著降低幻觉（Hallucination）并回答训练数据之外的问题。
@@ -27,11 +28,11 @@ RAG（Retrieval-Augmented Generation，检索增强生成）是让大语言模�
 
 | 维度 | RAG | 微调 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 知识更新 | 实时（只需更新文档） | 需重新训练 |
 | 事实准确性 | 高（有据可查） | 依赖训练数据 |
@@ -57,7 +58,7 @@ RAG（Retrieval-Augmented Generation，检索增强生成）是让大语言模�
 
 ### 用 LangChain 实现基础 RAG
 
-```python
+````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
@@ -90,7 +91,7 @@ qa = RetrievalQA.from_chain_type(
 
 # 5. 查询
 result = qa.invoke({"query": "这份文档的核心结论是什么？"})
-```
+`````
 
 ### Naive RAG 的局限
 
@@ -112,7 +113,7 @@ result = qa.invoke({"query": "这份文档的核心结论是什么？"})
 3. **子查询分解**：将复杂问题拆分为多个子问题分别检索
 4. **查询扩展**：提取关键词同义词，扩展检索覆盖面
 
-```python
+`````python
 # HyDE 示例
 from langchain.chains import HypotheticalDocumentEmbedder
 
@@ -123,7 +124,7 @@ hyde_embeddings = HypotheticalDocumentEmbedder.from_llm(
 
 # 用生成的假设文档做检索
 vectorstore = Chroma.from_documents(documents, hyde_embeddings)
-```
+`````
 
 ### 混合搜索（Dense + Sparse）
 
@@ -131,19 +132,19 @@ vectorstore = Chroma.from_documents(documents, hyde_embeddings)
 
 | 检索方式 | 优势 | 劣势 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 向量搜索（Dense） | 语义理解强，容错性好 | 对精确术语不敏感 |
 | 关键词搜索（BM25） | 精确匹配，计算快 | 无法理解语义 |
 | 混合搜索 | 两者互补 | 需要额外的融合逻辑 |
 
-主流向量数据库中，Pinecone 和 Weaviate 原生支持混合搜索。在 LangChain 中可以通过 `EnsembleRetriever` 实现：
+主流向量数据库中，Pinecone 和 Weaviate 原生支持混合搜索。在 LangChain 中可以通过 ````EnsembleRetriever```` 实现：
 
-```python
+`````python
 from langchain.retrievers import EnsembleRetriever
 from langchain_community.retrievers import BM25Retriever
 
@@ -155,13 +156,13 @@ ensemble_retriever = EnsembleRetriever(
     retrievers=[vector_retriever, bm25_retriever],
     weights=[0.6, 0.4]
 )
-```
+`````
 
 ### 重排序（Re-ranking）
 
 初步召回的 Top-K 结果未必是最相关的。用专门的**交叉编码器（Cross-Encoder）**对召回结果精排，可显著提升最终质量。
 
-```python
+`````python
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain_community.document_transformers import EmbeddingsRedundantFilter
 
@@ -175,17 +176,17 @@ compression_retriever = ContextualCompressionRetriever(
     base_compressor=compressor,
     base_retriever=retriever
 )
-```
+`````
 
 常用开源重排序模型：
 
 | 模型 | 参数 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | BAAI/bge-reranker-base | 约 100M | 通用重排序 |
 | BAAI/bge-reranker-large | 约 300M | 高质量需求 |
@@ -196,13 +197,13 @@ compression_retriever = ContextualCompressionRetriever(
 
 | 策略 | 原理 | 效果提升 | 额外开销 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 父文档检索 | 检索小块，返回完整父文档 | 上下文更完整 | 存储冗余 |
 | 句子窗口 | 检索句子，返回周围窗口 | 边界问题减少 | 存储增加 |
@@ -214,7 +215,7 @@ compression_retriever = ContextualCompressionRetriever(
 
 ### Self-RAG：反思式检索
 
-Self-RAG 让模型在生成过程中**自行判断是否需要检索**。模型输出特殊 token（如 `[Retrieve]`、`[NoRetrieve]`），系统根据 token 决定是否触发检索。
+Self-RAG 让模型在生成过程中**自行判断是否需要检索**。模型输出特殊 token（如 ````[Retrieve]````、````[NoRetrieve]````），系统根据 token 决定是否触发检索。
 
 工作流程：
 1. 模型评估当前回答的确定性
@@ -233,7 +234,7 @@ CRAG 在 Self-RAG 基础上增加了**检索结果评估**：
 
 Agentic RAG 将检索系统包装为 LLM Agent 的工具之一：
 
-```python
+`````python
 from langchain.agents import Tool, AgentExecutor
 
 tools = [
@@ -246,7 +247,7 @@ tools = [
 ]
 
 agent = create_openai_tools_agent(llm, tools, prompt)
-```
+`````
 
 Agent 可以自主决定：调用哪个工具、是否需要多次检索、如何综合多个来源的信息。
 
@@ -264,15 +265,15 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 
 | 模型 | 维度 | 上下文 | 特点 | 排名（MTEB） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | text-embedding-3-large | 3072 | 8K | OpenAI 最强，效果好 | 闭源 |
 | BAAI/bge-m3 | 1024 | 8K | 多语言，开源免费 | Top 3 |
@@ -287,13 +288,13 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 
 | 策略 | chunk_size | overlap | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 固定大小 | 512-1024 | 100-200 | 通用场景 |
 | 语义分块 | 动态 | 0 | 需要保持语义完整性的文档 |
@@ -319,11 +320,11 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 
 | 指标 | 说明 | 目标值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 召回率@K | Top-K 中包含正确答案的比例 | > 80% |
 | MRR（平均倒数排名） | 正确答案的平均排名倒数 | > 0.6 |
@@ -333,7 +334,7 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 
 生产 RAG 常用的提示模板结构：
 
-```
+`````
 你是专业助手。请基于以下参考文档回答用户问题。
 如果参考文档不包含答案，请明确说明"根据现有资料无法回答"。
 
@@ -343,7 +344,7 @@ Agent 可以自主决定：调用哪个工具、是否需要多次检索、如�
 用户问题：{question}
 
 请提供准确、简洁的回答，并在引用处标注文档来源。
-```
+`````
 
 LLM 选型建议：
 - 高质量需求：GPT-4o、Claude 3.5 Sonnet
@@ -367,11 +368,11 @@ LLM 选型建议：
 
 | 指标 | 衡量内容 | 计算方式 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Faithfulness | 回答是否忠实于检索到的文档 | 对比回答与文档的一致性 |
 | Answer Relevancy | 回答是否与问题相关 | 语义相似度评分 |
@@ -379,7 +380,7 @@ LLM 选型建议：
 | Context Recall | 相关文档被检索到了多少 | 召回率计算 |
 | Context Relevancy | 检索文档的整体相关度 | 综合评分 |
 
-```python
+`````python
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
 
@@ -387,7 +388,7 @@ result = evaluate(
     dataset=eval_dataset,
     metrics=[faithfulness, answer_relevancy]
 )
-```
+````
 
 ### 人工评估指南
 
@@ -403,11 +404,11 @@ result = evaluate(
 
 | 技术 | 效果 | 实现难度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 查询缓存（Redis） | 命中时延迟 < 50ms | 低 |
 | 向量索引预热 | 避免冷启动 | 低 |
@@ -428,11 +429,11 @@ result = evaluate(
 
 | 组件 | 本地替代方案 | 硬件需求 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Embedding 模型 | BAAI/bge-m3（Ollama/Hugging Face） | 4-8GB 显存 |
 | 向量数据库 | Chroma 或 Milvus | 内存/磁盘 |
@@ -445,11 +446,11 @@ result = evaluate(
 
 | 框架 | 特点 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | 生态最完善，组件最丰富 | 需要高度定制的复杂管道 |
 | **LlamaIndex** | 专注 RAG/数据检索，高级抽象 | 以文档检索为核心的项目 |
@@ -460,11 +461,11 @@ result = evaluate(
 
 | 问题 | 原因 | 解决方案 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 回答不准确 | 分块切断了关键上下文 | 增大 overlap，使用父文档检索 |
 | 检索不到相关内容 | 查询与文档用词差异大 | 查询改写 + 混合搜索 |
@@ -507,11 +508,11 @@ RAG 在推理时动态检索外部知识，知识更新只需更新文档；微�
 Agentic RAG 更灵活但延迟更高，适合复杂的多步骤查询场景。
 
 
----
+* * *
 更多技术细节可参考 [LangChain 文档](https://python.langchain.com)、[LlamaIndex 文档](https://docs.llamaindex.ai)、[RAGAS 框架](https://docs.ragas.io)、[MTEB Embedding 排行榜](https://huggingface.co/spaces/mteb/leaderboard) 及 [LangChain GitHub 仓库](https://github.com/langchain-ai/langchain)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -584,7 +585,7 @@ RAG检索增强生成架构实现指南2025：构建生产级系统 represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

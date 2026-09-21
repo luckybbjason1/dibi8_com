@@ -29,6 +29,7 @@ faqs: - q: 'FaceFusion 是什么，它与 Roop 有什么区别？'
     a: 'FaceFusion 在处理前会剥离音轨，而源视频若使用可变帧率（VFR）会导致合并后严重的音视频不同步。解决方法是先用以下命令强制转换为固定帧率：ffmpeg -i input.mp4 -r 30 -vsync cfr output_cfr.mp4'
   - q: '如何防止 FaceFusion 在处理并发请求时耗尽内存？'
     a: '默认情况下，FaceFusion 会在每个进程中独立加载 yoloface、gfpgan 等大型模型，多进程并发时内存会飙升至 100% 并导致服务器卡死。应改用单进程、基于队列的单例模式，将请求顺序入队处理，同时让模型常驻显存。'---
+
 {</* resource-info */>}
 
 # 为什么经典的 Roop 最终走向了死亡？
@@ -62,9 +63,9 @@ FaceFusion 渲染一段 1080P 视频的速度是 Roop 的数倍，甚至几十�
 
 ### 1. 多线程帧处理管道：吃透硬件性能
 
-在处理视频时，FaceFusion 会利用 `ffmpeg` 将视频拆解为单帧，然后分配给多线程池并发处理。
+在处理视频时，FaceFusion 会利用 ``ffmpeg`` 将视频拆解为单帧，然后分配给多线程池并发处理。
 
-```python
+````python
 # 核心源码提取自：facefusion/core.py (视频处理多线程调度)
 import concurrent.futures
 from queue import Queue
@@ -84,16 +85,16 @@ def process_video_frames(frame_paths, update_progress): """
         for future in concurrent.futures.as_completed(futures): # 获取处理结果并更新前端进度条
             future.result()
             update_progress()
-```
+`````
 
 **深度拆解**：
-这就是为何 FaceFusion 渲染极快的原因。传统的 OpenCV 处理视频是同步的 `while` 循环读帧，而 FaceFusion 把帧拆散（Frame Extraction），丢进 `ThreadPoolExecutor` 里面进行并发压榨。配合其底层强大的缓存机制，多核 CPU 和 GPU 算力被完美榨干。
+这就是为何 FaceFusion 渲染极快的原因。传统的 OpenCV 处理视频是同步的 ``while`` 循环读帧，而 FaceFusion 把帧拆散（Frame Extraction），丢进 ``ThreadPoolExecutor`` 里面进行并发压榨。配合其底层强大的缓存机制，多核 CPU 和 GPU 算力被完美榨干。
 
 ### 2. ONNX Execution Providers：跨平台的底层加速引擎
 
 FaceFusion 的心脏是 ONNX Runtime。无论你是 N 卡、A 卡还是苹果 Mac M系列芯片，它都能调用最底层的硬件加速。
 
-```python
+`````python
 # 核心源码提取自：facefusion/execution_helper.py (执行提供者注册)
 import onnxruntime
 
@@ -113,10 +114,10 @@ def apply_execution_provider_options(execution_providers): """
             applied_providers.append(provider)
             
     return applied_providers
-```
+`````
 
 **深度拆解**：
-这段代码揭示了跨平台部署的最高境界。ONNX 能够将复杂的神经网络抽象化，通过绑定不同的 `ExecutionProvider` (如 CUDA, CoreML, DirectML) 来实现硬件级别的底层加速。其中 `arena_extend_strategy` 这个隐藏参数的设置，就是为了防止显存的碎片化泄漏，保证渲染 1 小时长视频时服务器不会中途宕机。
+这段代码揭示了跨平台部署的最高境界。ONNX 能够将复杂的神经网络抽象化，通过绑定不同的 ``ExecutionProvider`` (如 CUDA, CoreML, DirectML) 来实现硬件级别的底层加速。其中 ``arena_extend_strategy`` 这个隐藏参数的设置，就是为了防止显存的碎片化泄漏，保证渲染 1 小时长视频时服务器不会中途宕机。
 
 ## 工程化落地：生产环境部署的坑点与排雷指南
 
@@ -125,11 +126,11 @@ def apply_execution_provider_options(execution_providers): """
 1. **坑点一：视频合并时的音频丢失与口型不同步**
    - **症状**：经过换脸处理后，合并出来的 MP4 视频完全没有声音，或者音画明显错位。
    - **解决方案**：在渲染流程中，FaceFusion 会先将音轨剥离。如果原视频的帧率（FPS）是不固定帧率（VFR），合并时就会完全错位。在输入 FaceFusion 之前，必须先用一行 FFmpeg 命令对原素材进行洗帧，强制转换为固定帧率（CFR）：
-     `ffmpeg -i input.mp4 -r 30 -vsync cfr output_cfr.mp4`
+     ``ffmpeg -i input.mp4 -r 30 -vsync cfr output_cfr.mp4``
 
 2. **坑点二：多并发导致的模型重复加载耗尽内存**
    - **症状**：在后端开启 3 个并发任务同时处理 3 个短视频时，系统 RAM 瞬间被占满（32GB 都不够用），系统卡死。
-   - **解决方案**：FaceFusion 默认在每个进程中独立加载庞大的检测模型（如 `yoloface`）和增强模型（如 `gfpgan`）。在服务器部署时，切忌使用多进程（Multiprocessing）并发调用 API，必须使用基于队列的单进程单例模式，将所有的请求丢入一个全局队列串行处理，让模型常驻显存。
+   - **解决方案**：FaceFusion 默认在每个进程中独立加载庞大的检测模型（如 ``yoloface``）和增强模型（如 ``gfpgan`）。在服务器部署时，切忌使用多进程（Multiprocessing）并发调用 API，必须使用基于队列的单进程单例模式，将所有的请求丢入一个全局队列串行处理，让模型常驻显存。
 
 ## 商业闭环：收割视觉红利的流量密码
 
@@ -220,6 +221,6 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

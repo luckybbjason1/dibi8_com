@@ -18,6 +18,7 @@ faqs: - q: 'Windsurf có tốt hơn GitHub Copilot năm 2026 không?'
     a: 'Có. Windsurf hỗ trợ Bring Your Own Key (BYOK) cho các model Claude Sonnet và Opus, bao gồm biến thể extended thinking. Hữu ích nếu bạn đã có Anthropic API credits và muốn tránh giới hạn quota Windsurf. GitHub Copilot không hỗ trợ BYOK."
 ---
 
+
 # Windsurf vs GitHub Copilot 2026: So Sánh Chuyên Sâu, Chọn Cái Nào?
 
 
@@ -40,7 +41,7 @@ faqs: - q: 'Windsurf có tốt hơn GitHub Copilot năm 2026 không?'
 
 **Kết luận:** Windsurf là công cụ tốt hơn cho công việc lập trình tự chủ, chuyên sâu. GitHub Copilot là lựa chọn tốt hơn cho developer đã gắn bó sâu với hệ sinh thái GitHub. Nếu chọn lại từ đầu năm 2026, Windsurf.
 
----
+* * *
 
 ## Chỉ Số Thực Sự Quan Trọng: Chỉnh Sửa Đa File
 
@@ -57,8 +58,8 @@ Cascade 2.0 (ra mắt Q1 2026) bổ sung cải tiến lập luận đa bước v
 
 ### GitHub Copilot Agent Mode
 
-Copilot Agent Mode GA tháng 4/2025 với hỗ trợ MCP. Nó dịch ý tưởng thành code qua nhiều file, chạy lệnh terminal và tự sửa lỗi. Hai dạng: - **Local agent** (`agent_mode`): chạy trong VS Code/JetBrains/Eclipse/Xcode, tự chỉnh sửa file
-- **Cloud agent** (`coding_agent`): thực thi trong môi trường GitHub Actions CI, xử lý toàn bộ luồng issue→PR
+Copilot Agent Mode GA tháng 4/2025 với hỗ trợ MCP. Nó dịch ý tưởng thành code qua nhiều file, chạy lệnh terminal và tự sửa lỗi. Hai dạng: - **Local agent** (```agent_mode````): chạy trong VS Code/JetBrains/Eclipse/Xcode, tự chỉnh sửa file
+- **Cloud agent** (````coding_agent```): thực thi trong môi trường GitHub Actions CI, xử lý toàn bộ luồng issue→PR
 
 Cloud agent của Copilot thực sự mạnh cho workflow gốc GitHub — bạn có thể giao một issue và xem nó tự mở PR.
 
@@ -66,7 +67,7 @@ Cloud agent của Copilot thực sự mạnh cho workflow gốc GitHub — bạn
 
 Khảo sát Hệ sinh thái Developer JetBrains 2025 cho thấy 67% developer gặp giới hạn ngữ cảnh khi dùng Copilot cho tác vụ đa file. Phàn nàn phổ biến nhất: "mất ngữ cảnh tại ranh giới file" — khi sửa các module phụ thuộc nhau trải trên hơn 5 file, Copilot mất đi tính nhất quán. Cascade của Windsurf được thiết kế từ kiến trúc để giải quyết điều này; agent của Copilot được ghép vào hệ thống hoàn thành có sẵn.
 
----
+* * *
 
 ## Giá Cả: Chấn Động Tháng 6/2026
 
@@ -101,7 +102,7 @@ Tác động: người dùng nặng chạy Copilot Agent Mode cho tác vụ agen
 
 Hệ thống hạn mức của Windsurf cũng có bực bội (hết hạn mức buổi chiều trong ngày dùng nhiều), nhưng chi phí tháng ít nhất dự đoán được.
 
----
+* * *
 
 ## Model và Cửa Sổ Ngữ Cảnh
 
@@ -129,7 +130,7 @@ Dòng SWE-1 của Windsurf được xây dựng chuyên cho code. Tuyên bố "1
 
 Model mặc định của Copilot trong Agent Mode thường là GPT-4o (128K ngữ cảnh) thay vì model Claude 1M token. Quan trọng với codebase lớn: 128K xử lý dự án vừa; 1M xử lý tất cả. Hãy kiểm tra model mặc định của gói trước khi giả định có 1M context.
 
----
+* * *
 
 ## Doanh Nghiệp và Bảo Mật: Khoảng Cách Đáng Kể
 
@@ -154,7 +155,7 @@ Phần này sẽ quyết định cho nhiều team.
 
 Nếu tổ chức của bạn xử lý dữ liệu y tế, làm việc với chính phủ Mỹ, hoặc có yêu cầu tuân thủ quốc phòng/tình báo — Copilot Enterprise không thể đáp ứng các yêu cầu tuân thủ theo nghĩa đen. Windsurf là lựa chọn duy nhất trong hai công cụ này có thể.
 
----
+* * *
 
 ## Hệ Sinh Thái IDE: Lợi Thế Rõ Nhất Của Copilot
 
@@ -175,7 +176,7 @@ Windsurf là IDE độc lập (fork VS Code với Cascade tích hợp sâu). Dù
 
 Nếu team dùng nhiều IDE — người IntelliJ, người Xcode — Copilot phục vụ tất cả. Windsurf tốt nhất với người dùng Windsurf IDE.
 
----
+* * *
 
 ## Ai Nên Chọn Cái Gì
 
@@ -195,7 +196,7 @@ Nếu team dùng nhiều IDE — người IntelliJ, người Xcode — Copilot p
 
 **Phương án trung dung:** Một số team dùng cả hai — Copilot cho workflow PR gốc GitHub, Windsurf cho phát triển tính năng chuyên sâu. Hai công cụ không nhất thiết phải loại trừ nhau.
 
----
+* * *
 
 ## Ma Trận Tính Năng Đầy Đủ
 
@@ -215,7 +216,7 @@ Nếu team dùng nhiều IDE — người IntelliJ, người Xcode — Copilot p
 | Cửa sổ ngữ cảnh | 1M (Claude) | 1M (Claude) / 128K (GPT-4o) |
 | Hỗ trợ offline | ✅ | ❌ |
 
----
+* * *
 
 ## Kết Luận
 
@@ -229,7 +230,7 @@ Thay đổi tính phí tháng 6/2026 là ẩn số: với người dùng agent n
 
 Xem thêm so sánh công cụ AI lập trình: [Cursor vs Windsurf 2026](cursor-vs-windsurf.md), [đánh giá chuyên sâu Claude 4](claude-4-opus-sonnet-review-2026.md), và [Top 10 công cụ MCP miễn phí](../tools/free-mcp-tools-top10-2026.md) dùng được với cả hai editor.
 
----
+* * *
 
 *Giá xác minh tháng 6/2026. Tính phí theo mức sử dụng GitHub Copilot có hiệu lực từ 1/6/2026 — tác động hóa đơn thực tế khác biệt đáng kể tùy theo mẫu sử dụng.*
 
@@ -259,7 +260,7 @@ Xem thêm so sánh công cụ AI lập trình: [Cursor vs Windsurf 2026](cursor-
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -269,7 +270,7 @@ Xem thêm so sánh công cụ AI lập trình: [Cursor vs Windsurf 2026](cursor-
 - [windsurf-vs-github-copilot-2026](windsurf-vs-github-copilot-2026)
 - [windsurf-ai-ide](windsurf-vs-github-copilot-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

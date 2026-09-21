@@ -32,6 +32,7 @@ faqs: - q: 'Goose AI agent란 무엇인가요?'
     a: 'Goose에는 위험한 명령을 실행하기 전에 묻는 승인 모드(approval mode), 격리된 환경에서 명령을 실행하는 샌드박스 모드(sandbox mode), 모든 작업을 추적하는 감사 로그(audit log), 그리고 API 남용을 방지하는 속도 제한(rate limiting)이 포함되어 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## Goose란?
@@ -46,7 +47,7 @@ faqs: - q: 'Goose AI agent란 무엇인가요?'
 GitHub: https://github.com/aaif-goose/goose  
 Stars: **44,261+** | 언어: Rust | 라이선스: Apache-2.0
 
----
+* * *
 
 ## Goose의 특별한 점
 
@@ -79,67 +80,67 @@ Goose는 특정 AI 회사에 종속되지 않습니다: - **Anthropic** (Claude)
 - 🐙 GitHub 작업
 - 📊 데이터 분석 도구
 
----
+* * *
 
 ## 설치 및 사용
 
 ### 데스크톱 앱 (권장)
 
-```bash
+````bash
 # macOS (Homebrew)
 brew install goose
-```
+`````
 
 ### CLI 설치
 
-```bash
+`````bash
 # 설치 스크립트 사용
 curl -fsSL https:// goose-docs.ai/install.sh | bash
 
 # 또는 cargo 사용
 cargo install goose-cli
-```
+`````
 
 ### 첫 설정
 
-```bash
+`````bash
 # LLM 제공업체 설정
 goose configure
-```
+`````
 
 ### 기본 사용법
 
-```bash
+`````bash
 # 대화형 세션 시작
 goose session
 
 # 단일 작업 실행
 goose run "Python 스크래퍼를 작성해줘, GitHub Trending을 크롤링하는"
-```
+`````
 
----
+* * *
 
 ## 실전 시나리오
 
 ### 시나리오 1: 자동 코드 리뷰
 
-```bash
+`````bash
 goose run "이 PR의 코드 품질을 검토하고 잠재적 버그와 성능 문제를 찾아줘"
-```
+`````
 
 ### 시나리오 2: 데이터 분석 보고서
 
-```bash
+`````bash
 goose run "sales_data.csv를 분석하고 월간 판매 추세 차트를 생성해줘"
-```
+`````
 
 ### 시나리오 3: 자동화 배포
 
-```bash
+`````bash
 goose run "이 앱을 AWS에 배포하고 로드 밸런싱과 자동 확장을 구성해줘"
-```
+````
 
----
+* * *
 
 ## 경쟁사 비교
 
@@ -153,7 +154,7 @@ goose run "이 앱을 AWS에 배포하고 로드 밸런싱과 자동 확장을 �
 | CLI | ✅ | ✅ | ❌ | ❌ |
 | API | ✅ | ❌ | ❌ | ✅ |
 
----
+* * *
 
 ## 비즈니스 모델과 수익 기회
 
@@ -175,7 +176,7 @@ Goose 기반으로 다음을 제공: - AI 자동화 컨설팅
 - 맞춤형 개발 서비스
 - 교육 및 구현
 
----
+* * *
 
 ## 커뮤니티와 생태계
 
@@ -184,7 +185,7 @@ Goose 기반으로 다음을 제공: - AI 자동화 컨설팅
 - **Linux Foundation**: https://aaif.io/
 - **기여자**: 4,500+ Forks, 활발한 커뮤니티
 
----
+* * *
 
 ## 요약
 
@@ -203,7 +204,7 @@ Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다: ✅ **4
 
 **시작하기**: https://goose-docs.ai/docs/getting-started/installation
 
----
+* * *
 
 ## Related Articles
 
@@ -212,10 +213,10 @@ Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다: ✅ **4
 - [Agent Reach: Connect Your AI Agent to the Internet](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI 에이전트를 인터넷에 연결
 - [42 Real-World OpenClaw Use Cases](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 실제 사용 사례
 
----
+* * *
 
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -288,7 +289,7 @@ Goose AI Agent：44K⭐오픈소스 AI 에이전트, 코딩부터 자동화까�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

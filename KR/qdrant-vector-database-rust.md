@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/qdrant-vector-database-rust/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 모든 AI 팀이 마주하는 벡터 데이터베이스 병목 현상
@@ -32,7 +33,7 @@ aliases:
 
 이것이 벡터 데이터베이스 병목 현상입니다. 2025년 기준, **78%의 프로덕션 AI 팀**이 벡터 검색 성능이 RAG 또는 의미 검색 파이프라인에서 중요한 차단 요소라고 보고했습니다. 문제는 임베딩에 있는 것이 아니라 — 검색 레이어에 있습니다. 잘못 선택된 벡터 저장소는 쿼리당 **300-2000ms**의 지연을 추가하여 실시간 애플리케이션을 불가능하게 만듭니다.
 
-[Qdrant](https://qdrant.tech/) — **Rust**로 작성된 벡터 유사도 검색 엔진 — 이 문제를 해결하기 위해 특별히 만들어졌습니다. `qdrant` 조직 하에 **22,000개 이상의 GitHub 스타**를 보유하고, Apache-2.0 라이선스를 따륾며, 성장하는 클라이언트 라이브러리 생태계를 갖춘 Qdrant는 상용 하드웨어에서 **100만 벡터를 10ms P99 지연**으로 처리합니다. HNSW 인덱싱, 페이로드 기반 필터링, 수평적 확장성은 관리형 클라우드 비용 없이 대규모 벡터 검색이 필요한 팀을 위한 필수 선택으로 만들어줍니다.
+[Qdrant](https://qdrant.tech/) — **Rust**로 작성된 벡터 유사도 검색 엔진 — 이 문제를 해결하기 위해 특별히 만들어졌습니다. ```qdrant```` 조직 하에 **22,000개 이상의 GitHub 스타**를 보유하고, Apache-2.0 라이선스를 따륾며, 성장하는 클라이언트 라이브러리 생태계를 갖춘 Qdrant는 상용 하드웨어에서 **100만 벡터를 10ms P99 지연**으로 처리합니다. HNSW 인덱싱, 페이로드 기반 필터링, 수평적 확장성은 관리형 클라우드 비용 없이 대규모 벡터 검색이 필요한 팀을 위한 필수 선택으로 만들어줍니다.
 
 이 가이드는 모든 것을 다룹니다: 단일 노드 Docker 배포, 프로덕션 클러스터링, Python/Go/JS 클라이언트, 벤치마킹 방법론, 경쟁사에 대한 정직한 트레이드오프. 10분 안에 자체 호스팅 벡터 데이터베이스를 실행하게 됩니다.
 
@@ -47,19 +48,19 @@ Qdrant는 Rust로 작성된 오픈소스 벡터 유사도 검색 엔진으로, �
 ### HNSW 인덱싱: 핵심 알고리즘
 
 Qdrant는 Pinecone, Weaviate, Milvus를 구동하는 것과 동일한 **계층적 탐색 가능한 소규모 세계(HNSW)** 그래프를 사용하며, 여러 Rust 특정 최적화가 추가되었습니다: - **다층 그래프**: 벡터는 여러 레이어에 존재하며, 상위 레이어는 빠른 장거리 탐색을 제공하고 하위 레이어는 정확한 이웃으로 정제합니다
-- **기본 `ef` 매개변수**: `ef=128`은 리콜(~95%)과 빌드 시간 사이의 균형을 맞춥니다
+- **기본 ````ef```` 매개변수**: ````ef=128````은 리콜(~95%)과 빌드 시간 사이의 균형을 맞춥니다
 - **증분 인덱싱**: 새로운 벡터는 전체 재구축 없이 삽입됩니다
 - **Rust 메모리 안전성**: 제로카피 역직렬화와 캐시 친화적 레이아웃으로 JVM 기반 대안 대비 약 30%의 메모리 오버헤드를 줄입니다
 
 ### 세그먼트 기반 저장소 아키텍처
 
-Qdrant는 데이터를 **세그먼트** — 병렬로 검색할 수 있는 독립적인 샤드 — 로 구성합니다: ```
+Qdrant는 데이터를 **세그먼트** — 병렬로 검색할 수 있는 독립적인 샤드 — 로 구성합니다: `````
 컬렉션 "documents"
 ├── 세그먼트 1 (0-100K 벡터) — HOT — RAM에 mmap
 ├── 세그먼트 2 (100K-200K 벡터) — WARM — 디스크에
 ├── 세그먼트 3 (200K-300K 벡터) — WARM — 디스크에
 └── 세그먼트 4 (신규 쓰기) — NEW — 가변 버퍼
-```
+`````
 
 세그먼트는 여러 프로덕션에 필수적인 기능을 가능하게 합니다: - **증분 최적화**: 이전 세그먼트는 백그라운드 스레드에서 압축됩니다
 - **mmap 지원**: 벡터를 디스크에서 메모리 매핑하여 RAM 요구량을 줄입니다
@@ -68,7 +69,7 @@ Qdrant는 데이터를 **세그먼트** — 병렬로 검색할 수 있는 독�
 
 ### 페이로드 시스템: 메타데이터 필터링
 
-이것이 Qdrant를 단순한 벡터 저장소와 차별화하는 부분입니다. 각 벡터는 JSON 페이로드를 가집니다: ```json
+이것이 Qdrant를 단순한 벡터 저장소와 차별화하는 부분입니다. 각 벡터는 JSON 페이로드를 가집니다: `````json
 {
   "id": "doc_4821",
   "vector": [0.01, -0.23, 0.89, ...],
@@ -80,19 +81,19 @@ Qdrant는 데이터를 **세그먼트** — 병렬로 검색할 수 있는 독�
     "file_size_mb": 4.2
   }
 }
-```
+`````
 
-페이로드는 쿼리 시점에 풍부한 필터링을 지원합니다: - **Match**: 정확한 문자열/정수 매칭 (`department = "legal"`)
-- **Range**: 숫자 비교 (`file_size_mb > 2.0`)
+페이로드는 쿼리 시점에 풍부한 필터링을 지원합니다: - **Match**: 정확한 문자열/정수 매칭 (````department = "legal"````)
+- **Range**: 숫자 비교 (````file_size_mb > 2.0````)
 - **Geo**: 반경 및 경계 상자 쿼리
 - **Full-text**: 페이로드 내 인덱싱된 텍스트 검색 (v1.9.0에 추가)
-- **Nested objects**: 서브 필드 필터링 (`metadata.priority = "high"`)
+- **Nested objects**: 서브 필드 필터링 (````metadata.priority = "high"````)
 
 ## 설치 및 설정: 5분 만에 자체 호스팅 Qdrant
 
 ### Docker (권장)
 
-```bash
+`````bash
 docker pull qdrant/qdrant:v1.13.0
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage:z \
@@ -100,11 +101,11 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 # 확인 — {"title":"qdrant","version":"1.13.0"} 반환해야 함
 curl http://localhost:6333
-```
+`````
 
 ### Docker Compose (프로덕션 템플릿)
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: qdrant: image: qdrant/qdrant:v1.13.0
@@ -117,16 +118,16 @@ services: qdrant: image: qdrant/qdrant:v1.13.0
         hard: 65536
     restart: unless-stopped
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
-배포: ```bash
+배포: `````bash
 docker-compose up -d
 curl http://localhost:6333/collections  # 컬렉션 목록 (초기에는 비어 있음)
-```
+`````
 
 ### 바이너리 설치 (Docker 없이)
 
-```bash
+`````bash
 # 사전 빌드된 바이너리 다운로드 (Linux x86_64)
 wget https://github.com/qdrant/qdrant/releases/download/v1.13.0/qdrant-x86_64-unknown-linux-gnu.tar.gz
 tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
@@ -134,11 +135,11 @@ tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
 
 # 또는 Homebrew로 설치 (macOS)
 brew install qdrant/tap/qdrant
-```
+`````
 
 ### 설정 파일
 
-미세 조정을 위해 `config/production.yaml`을 생성합니다: ```yaml
+미세 조정을 위해 ``config/production.yaml``을 생성합니다: `````yaml
 # production.yaml
 storage: storage_path: /qdrant/storage
   snapshots_path: /qdrant/snapshots
@@ -151,13 +152,13 @@ service: http_port: 6333
 
 cluster: enabled: false  # 분산 모드에서는 true로 설정
   p2p: port: 6335
-```
+`````
 
 ## 핵심 작업: 벡터 CRUD
 
 ### 컬렉션 생성
 
-```bash
+`````bash
 # 1536 차원의 컬렉션 생성 (OpenAI 임베딩)
 curl -X PUT http://localhost:6333/collections/documents \
   -H "Content-Type: application/json" \
@@ -176,11 +177,11 @@ curl -X PUT http://localhost:6333/collections/documents \
       "indexing_threshold": 20000
     }
   }'
-```
+`````
 
 ### 페이로드가 있는 벡터 업서트
 
-```python
+`````python
 # upsert_vectors.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
@@ -209,11 +210,11 @@ points = [
 
 client.upsert(collection_name="documents", points=points)
 print(f"{len(points)}개 벡터를 업서트했습니다")
-```
+`````
 
 ### 페이로드 필터링이 있는 검색
 
-```python
+`````python
 # search_filtered.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -237,11 +238,11 @@ results = client.search(
 )
 
 for point in results: print(f"ID: {point.id}, 점수: {point.score:.4f}, 페이로드: {point.payload}")
-```
+`````
 
 ### 업데이트 및 삭제
 
-```python
+`````python
 # update_delete.py
 # 페이로드 업데이트
 client.set_payload(
@@ -261,17 +262,17 @@ client.delete(
         )
     ),
 )
-```
+`````
 
 ## 주요 도구와 통합
 
 ### Python 클라이언트 (공식)
 
-```bash
+`````bash
 pip install qdrant-client==1.13.0
-```
+`````
 
-```python
+`````python
 # python_client.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
@@ -289,15 +290,15 @@ scroll_results = client.scroll(
     with_payload=True,
 )
 print(f"{len(scroll_results[0])}개 포인트를 검색했습니다")
-```
+`````
 
 ### JavaScript/TypeScript 클라이언트
 
-```bash
+`````bash
 npm install @qdrant/js-client-rest@1.13.0
-```
+`````
 
-```typescript
+`````typescript
 // ts_client.ts
 import { QdrantClient } from "@qdrant/js-client-rest";
 
@@ -313,16 +314,16 @@ const results = await client.search("documents", {
   with_payload: true,
 });
 
-console.log(`${results.length}개의 일치를 찾았습니다`);
-```
+console.log(````${results.length}개의 일치를 찾았습니다````);
+`````
 
 ### Go 클라이언트
 
-```bash
+`````bash
 go get github.com/qdrant/go-client@v1.13.0
-```
+`````
 
-```go
+`````go
 // go_client.go
 package main
 
@@ -350,11 +351,11 @@ func main() {
         fmt.Printf("컬렉션: %s\n", c.GetName())
     }
 }
-```
+`````
 
 ### LangChain 통합
 
-```python
+`````python
 # langchain_qdrant.py
 from langchain_qdrant import QdrantVectorStore
 from langchain_openai import OpenAIEmbeddings
@@ -374,11 +375,11 @@ vector_store.add_documents(docs)
 # 유사도 검색
 results = vector_store.similarity_search("hello", k=5)
 print(f"{len(results)}개의 유사한 문서를 찾았습니다")
-```
+`````
 
 ### LlamaIndex 통합
 
-```python
+`````python
 # llamaindex_qdrant.py
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -392,7 +393,7 @@ vector_store = QdrantVectorStore(
 
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ## 벤치마크와 실제 사용 사례
 
@@ -408,7 +409,7 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 | **디스크 사용량** | 385MB | 1.9GB | 3.8GB | 19GB |
 | **Recall@10** | 0.97 | 0.96 | 0.95 | 0.93 |
 
-**핵심 수치**: 메모리 매핑(`mmap`)을 활성화하면 Qdrant는 **100만 벡터**를 **720MB RAM**만으로 처리하면서 **P50 10ms**, **P99 22ms**의 쿼리 지연을 달성합니다. 이것이 자체 호스팅을 가능하게 만드는 것입니다 — 백만 벡터 워크로드에 월 $200 서버가 필요하지 않습니다.
+**핵심 수치**: 메모리 매핑(````mmap````)을 활성화하면 Qdrant는 **100만 벡터**를 **720MB RAM**만으로 처리하면서 **P50 10ms**, **P99 22ms**의 쿼리 지연을 달성합니다. 이것이 자체 호스팅을 가능하게 만드는 것입니다 — 백만 벡터 워크로드에 월 $200 서버가 필요하지 않습니다.
 
 ### 필터링된 검색 성능
 
@@ -420,7 +421,7 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 | + 전체 텍스트 필터 | 15ms | +50% |
 | + 지리 반경 필터 | 14ms | +40% |
 
-최상의 성능을 위해 페이로드 필드를 인덱싱하세요: ```bash
+최상의 성능을 위해 페이로드 필드를 인덱싱하세요: `````bash
 # 자주 필터링되는 필드에 대한 페이로드 인덱스 생성
 curl -X PUT http://localhost:6333/collections/documents/index \
   -H "Content-Type: application/json" \
@@ -428,12 +429,12 @@ curl -X PUT http://localhost:6333/collections/documents/index \
     "field_name": "category",
     "field_schema": "keyword"
   }'
-```
+`````
 
 ### 사례 연구: 전자상거래 제품 검색
 
 패션 전자상거래 플랫폼이 Qdrant에 **230만 제품 벡터**(이미지 + 텍스트 임베딩)를 인덱싱합니다: - **서버**: 4 vCPU / 16GB RAM 전용 서버
-- **인덱스**: 1536차원 OpenAI `text-embedding-3-large` + 512차원 CLIP 이미지 임베딩 (다중 벡터 컬렉션)
+- **인덱스**: 1536차원 OpenAI ````text-embedding-3-large```` + 512차원 CLIP 이미지 임베딩 (다중 벡터 컬렉션)
 - **필터**: 카테고리, 가격 범위, 가용성, 브랜드 (페이로드 인덱싱됨)
 - **부하**: 피크 시간당 초당 2,000개 쿼리
 - **결과**: P50 **8ms**, P99 **19ms**, 6개월간 무중단
@@ -441,7 +442,7 @@ curl -X PUT http://localhost:6333/collections/documents/index \
 
 ### 사례 연구: 법률 문서 검색
 
-법률 테크 스타트업이 **85만 건의 판결**을 의미 검색을 위해 인덱싱합니다: - **임베딩**: 3072차원 `text-embedding-3-large`
+법률 테크 스타트업이 **85만 건의 판결**을 의미 검색을 위해 인덱싱합니다: - **임베딩**: 3072차원 ````text-embedding-3-large````
 - **필터**: 관할권, 날짜 범위, 사건 유형, 판사 이름
 - **통합**: Qdrant를 벡터 저장소로 사용하는 LlamaIndex RAG 파이프라인
 - **결과**: 평균 쿼리 **45ms** (네트워크 왕복 포함), 관련성 **97% 사용자 만족도**
@@ -450,7 +451,7 @@ curl -X PUT http://localhost:6333/collections/documents/index \
 
 ### 분산 클러스터 모드
 
-단일 노드 한계를 넘는 수평적 확장을 위해: ```yaml
+단일 노드 한계를 넘는 수평적 확장을 위해: `````yaml
 # docker-compose.cluster.yml
 version: "3.8"
 services: qdrant-node1: image: qdrant/qdrant:v1.13.0
@@ -469,9 +470,9 @@ services: qdrant-node1: image: qdrant/qdrant:v1.13.0
     environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node3:6335
-```
+`````
 
-```python
+`````python
 # cluster_client.py
 from qdrant_client import QdrantClient
 
@@ -488,11 +489,11 @@ collection_info = client.create_collection(
     vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
     replication_factor=2,  # 각 샤드가 2개 노드에
 )
-```
+`````
 
 ### 스냅샷과 백업 전략
 
-```bash
+`````bash
 # REST API를 통한 스냅샷 생성
 curl -X POST http://localhost:6333/collections/documents/snapshots
 
@@ -505,9 +506,9 @@ curl http://localhost:6333/collections/documents/snapshots
 curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover \
   -H "Content-Type: application/json" \
   -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}"
-```
+`````
 
-```python
+`````python
 # Python으로 자동화된 스냅샷
 from datetime import datetime
 import requests
@@ -520,18 +521,18 @@ def create_snapshot(collection: str) -> str: url = f"http://localhost:6333/colle
 
 # 일일 스냅샷 (cron을 통해 실행)
 snapshot_name = create_snapshot("documents")
-```
+`````
 
 ### 인증 및 보안
 
-API 키 인증 활성화: ```yaml
+API 키 인증 활성화: `````yaml
 # config/production.yaml
 service: api_key: "your-secret-api-key-32-chars-long!!"
   enable_cors: false
   verify_https: true
-```
+`````
 
-```python
+`````python
 # authenticated_client.py
 from qdrant_client import QdrantClient
 
@@ -543,11 +544,11 @@ client = QdrantClient(
 )
 
 # 이제 모든 요청에 X-API-Key 헤더가 포함됩니다
-```
+`````
 
 ### 페이로드 기반 격리로 멀티 테넌시
 
-```python
+`````python
 # multi_tenant.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -568,11 +569,11 @@ def search_for_tenant(query_vector, tenant_id: str, limit: int = 10): return cli
 
 # 특정 테넌트 내에서만 검색
 results = search_for_tenant(query_vector, tenant_id="acme_corp")
-```
+`````
 
 ### Prometheus 메트릭으로 모니터링
 
-Qdrant는 `:6333/metrics`에서 Prometheus 호환 메트릭을 노출합니다: ```bash
+Qdrant는 ``:6333/metrics``에서 Prometheus 호환 메트릭을 노출합니다: `````bash
 # 메트릭 스크래핑
 curl http://localhost:6333/metrics
 
@@ -580,26 +581,26 @@ curl http://localhost:6333/metrics
 # qdrant_search_latency_ms — 검색 지연 히스토그램
 # qdrant_optimizers_segment_count — 세그먼트 수
 # qdrant_storage_size_bytes — 저장소 크기
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml 스크래이프 구성
 scrape_configs: - job_name: "qdrant"
     static_configs: - targets: ["qdrant:6333"]
     metrics_path: "/metrics"
     scrape_interval: 15s
-```
+`````
 
 ### mmap으로 메모리 최적화
 
-최상의 RAM 대 성능 비율을 위해 메모리 매핑을 활성화합니다: ```bash
+최상의 RAM 대 성능 비율을 위해 메모리 매핑을 활성화합니다: `````bash
 # 환경 변수를 통해 설정
 docker run -p 6333:6333 \
   -e QDRANT__STORAGE__ON_DISK_PAYLOAD=true \
   -e QDRANT__STORAGE__PERFORMANCE__IN_MEMORY_INDEX_MAP_THRESHOLD_KB=20000 \
   -v qdrant_data:/qdrant/storage \
   qdrant/qdrant:v1.13.0
-```
+`````
 
 이러한 설정으로 Qdrant는 HNSW 그래프만 RAM에 유지하고 디스크에서 원시 벡터를 메모리 매핑합니다. NVMe SSD에서 성능 저하는 일반적으로 **15% 미만**이며 RAM 사용량을 **60-80%** 줄입니다.
 
@@ -658,7 +659,7 @@ pgvector는 <10만 벡터와 이미 PostgreSQL을 실행 중인 팀에게 훌륭
 
 ### Pinecone에서 Qdrant로 어떻게 마이그레이션하나요?
 
-Qdrant 마이그레이션 도구를 사용하세요: ```bash
+Qdrant 마이그레이션 도구를 사용하세요: `````bash
 pip install qdrant-client
 qdrant-migrate \
   --source pinecone \
@@ -666,13 +667,13 @@ qdrant-migrate \
   --pinecone-index "my-index" \
   --target http://localhost:6333 \
   --target-collection "migrated_docs"
-```
+`````
 
 대규모 컬렉션의 경우 마이그레이션은 초당 ~5,000 벡터의 속도로 실행됩니다. 전환 중 유지보수 윈도우 또는 이중 쓰기를 계획하세요.
 
 ### Qdrant는 하이브리드 검색(밀집 + 희소 벡터)을 지원하나요?
 
-네, v1.10.0부터 지원합니다. 동일한 컬렉션에 밀집(신경망)과 희소(BM25/TF-IDF) 벡터를 모두 저장하고 쿼리 시점에 결합할 수 있습니다: ```python
+네, v1.10.0부터 지원합니다. 동일한 컬렉션에 밀집(신경망)과 희소(BM25/TF-IDF) 벡터를 모두 저장하고 쿼리 시점에 결합할 수 있습니다: `````python
 from qdrant_client.models import SparseVector
 
 client.search(
@@ -687,7 +688,7 @@ client.search(
     ),
     fusion=models.Fusion.RRF,  # 역순위 퓨전
 )
-```
+`````
 
 이것은 양쪽의 장점을 모두 제공합니다: 밀집 벡터의 의미적 이해와 희소 벡터의 정확한 키워드 매칭.
 
@@ -698,7 +699,7 @@ Qdrant는 커스텀 바이너리 형식으로 데이터를 저장합니다(세�
 ## 결론: 오늘 벡터 데이터베이스 배포하기
 
 Qdrant는 벤더 잠금이나 클라우드 비용 없이 프로덕션급 벡터 검색을 제공합니다. 자체 호스팅 경로는 간단합니다: 1. 4 vCPU / 8GB 서버에서 위의 Docker Compose 템플릿으로 시작하세요
-2. 규모에 맞는 RAM 효율성을 위해 `mmap`을 사용하세요
+2. 규모에 맞는 RAM 효율성을 위해 ````mmap```을 사용하세요
 3. sub-15ms 필터링 검색을 위해 페이로드 필터 필드를 인덱싱하세요
 4. 일일 스냅샷과 Prometheus 모니터링을 설정하세요
 5. 단일 노드 용량을 초과할 때만(일반적으로 1천만+ 벡터) 클러스터 모드로 업그레이드하세요
@@ -727,7 +728,7 @@ GPU 가속 추론이 필요한 중국 팀의 경우, [虎网云](https://www.huw
 7. Qdrant Cloud 가격 — https://qdrant.to/cloud
 8. "Rust for Data Infrastructure" — Qdrant Engineering Blog, 2024
 
----
+* * *
 
 *제휴 공개: 이 기사에는 DigitalOcean, HTStack 및 虎网云的 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 추가 비용 없이 dibi8.com에 수수료가 지급될 수 있습니다. 모든 권장 사항은 진정한 기술 평가를 기반으로 하며, 제휴 가용성에 기반하지 않습니다. 자세한 내용은 [전체 공개 정책](https://dibi8.com/affiliate-disclosure)을 참조하세요.*
 
@@ -759,7 +760,7 @@ GPU 가속 추론이 필요한 중국 팀의 경우, [虎网云](https://www.huw
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -769,6 +770,6 @@ GPU 가속 추론이 필요한 중국 팀의 경우, [虎网云](https://www.huw
 - [2026-06-01-trending-ai-agents](qdrant-vector-database-rust)
 - [2026-06-08-trending-ai-agents](qdrant-vector-database-rust)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

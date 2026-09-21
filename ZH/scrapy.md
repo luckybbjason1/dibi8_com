@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/scrapy/-
 ---
 
+
 {{</* resource-info */>}}
 
 当一个 Python 框架支撑了全球约 **34% 的生产级爬虫项目**，并在 GitHub 上保持 61,700 颗 star 时，它值得深入研究。Scrapy 自 2008 年以来一直是网络爬虫的主力军，但在 2026 年，市场上有 Playwright 这样的现代浏览器自动化工具和 BeautifulSoup 等久经考验的库。问题不再是 "Scrapy 能爬吗？"——而是 "针对你的具体工作负载，你是否应该仍然选择 Scrapy 而非替代品？"
@@ -55,11 +56,11 @@ Scrapy 的架构采用事件驱动、非阻塞设计，将关注点分离为定�
 
 ### 数据流
 
-```
+````
 爬虫 → 引擎 → 调度器 → 引擎 → 下载器 → 爬虫 → 项目管道
                 ↓                              ↓
            (重复过滤器)                    (新请求)
-```
+`````
 
 引擎从爬虫获取初始请求，将它们调度，通过下载器发送，接收响应，传回给爬虫进行解析，并将提取的项目通过管道发送。解析过程中发现的新请求会循环回到调度器。这个过程会一直持续，直到没有剩余请求。
 
@@ -75,7 +76,7 @@ Scrapy 的架构采用事件驱动、非阻塞设计，将关注点分离为定�
 
 ### 基础安装
 
-```bash
+`````bash
 # 创建虚拟环境
 python -m venv scrapy_env
 source scrapy_env/bin/activate  # Linux/Mac
@@ -90,22 +91,22 @@ scrapy version
 
 # 运行内置基准测试
 scrapy bench
-```
+`````
 
 ### 项目脚手架
 
-```bash
+`````bash
 # 创建新的 Scrapy 项目
 scrapy startproject price_monitor
 cd price_monitor
 
 # 生成爬虫模板
 scrapy genspider products example.com
-```
+`````
 
 这将创建标准的项目结构：
 
-```
+`````
 price_monitor/
 ├── scrapy.cfg              # 项目配置
 ├── price_monitor/
@@ -117,11 +118,11 @@ price_monitor/
 │   └── spiders/
 │       ├── __init__.py
 │       └── products.py     # 你的爬虫
-```
+`````
 
 ### 第一个爬虫：商品抓取器
 
-```python
+`````python
 # price_monitor/spiders/products.py
 import scrapy
 
@@ -146,11 +147,11 @@ class ProductsSpider(scrapy.Spider): name = products
         # 跟踪分页
         next_page = response.css('.next-page::attr(href)').get()
         if next_page: yield response.follow(next_page, self.parse)
-```
+`````
 
 ### 运行爬虫
 
-```bash
+`````bash
 # 运行爬虫并输出为 JSON
 scrapy crawl products -o products.json
 
@@ -159,11 +160,11 @@ scrapy crawl products -o products.csv
 
 # 控制日志级别运行
 scrapy crawl products -L INFO
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -173,9 +174,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["scrapy", "crawl", "products"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: scrapy: build: .
@@ -193,7 +194,7 @@ services: scrapy: build: .
       POSTGRES_PASSWORD: scraper_pass
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## 与流行工具的集成
 
@@ -201,21 +202,21 @@ volumes: pgdata: ```
 
 当单台机器不够用时，scrapy-redis 使用 Redis 作为共享队列将爬取任务分布到多个节点：
 
-```bash
+`````bash
 pip install scrapy-redis
-```
+`````
 
-```python
+`````python
 # settings.py
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_URL = "redis://localhost:6379"
 SCHEDULER_PERSIST = True  # 在运行之间保留队列
-```
+`````
 
 ### PostgreSQL 管道
 
-```python
+`````python
 # pipelines.py
 import psycopg2
 from scrapy.exceptions import DropItem
@@ -249,24 +250,24 @@ class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.conn
 
     def close_spider(self, spider): self.cur.close()
         self.conn.close()
-```
+`````
 
 ### Playwright 渲染 JavaScript 页面
 
-```bash
+`````bash
 pip install scrapy-playwright
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-```
+`````
 
-```python
+`````python
 # 使用 Playwright 的爬虫
 import scrapy
 from scrapy_playwright.page import PageMethod
@@ -289,13 +290,13 @@ class JSSpider(scrapy.Spider): name = js_site
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
-```
+`````
 
 ### 使用 WebShare 进行代理轮换
 
 对于生产级爬取，可靠的轮换代理池至关重要。WebShare 提供数据中心和住宅代理，可与 Scrapy 的中间件无缝集成：
 
-```python
+`````python
 # middlewares.py
 import base64
 
@@ -306,16 +307,16 @@ class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
 
     def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         spider.logger.debug(f'使用代理访问 {request.url}')
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOADER_MIDDLEWARES = {
     'price_monitor.middlewares.ProxyMiddleware': 350,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 400,
 }
 WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
-```
+`````
 
 在 Scrapy 设置中配置你的代理列表，中间件会自动轮换 IP。对于大批量爬取，WebShare 的轮换代理端点可以透明地处理认证和轮换——你将 Scrapy 指向单个 URL，每次请求都会获得不同的出口 IP。
 
@@ -329,15 +330,15 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 
 | 指标 | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **吞吐量（页面/秒）** | 100+ | 1–3 | 2–4 | 3–5 |
 | **单实例内存** | ~150 MB | ~80 MB | ~500 MB | ~400 MB |
@@ -375,29 +376,29 @@ WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
 
 如果不加限制，Scrapy 可能在几秒钟内压垮目标服务器并被封禁。AutoThrottle 根据服务器响应时间动态调整下载延迟：
 
-```python
+`````python
 # settings.py
 AUTOTHROTTLE_ENABLED = True
 AUTOTHROTTLE_START_DELAY = 1.0
 AUTOTHROTTLE_MAX_DELAY = 10.0
 AUTOTHROTTLE_TARGET_CONCURRENCY = 2.0
 AUTOTHROTTLE_DEBUG = False
-```
+`````
 
 ### 重试和超时策略
 
-```python
+`````python
 # settings.py
 RETRY_ENABLED = True
 RETRY_TIMES = 3
 RETRY_HTTP_CODES = [500, 502, 503, 504, 408, 429]
 DOWNLOAD_TIMEOUT = 30
 DOWNLOAD_FAIL_ON_DATALOSS = False
-```
+`````
 
 ### 自定义 User-Agent 轮换
 
-```python
+`````python
 # middlewares.py
 import random
 
@@ -408,11 +409,11 @@ USER_AGENTS = [
 ]
 
 class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
-```
+`````
 
 ### 使用统计收集进行监控
 
-```python
+`````python
 # extensions.py
 from scrapy import signals
 
@@ -432,44 +433,44 @@ class StatsCollector: def __init__(self): self.requests_count = 0
 
     def item_scraped(self, item, spider): self.items_count += 1
         if self.items_count % 1000 == 0: spider.logger.info(f'已抓取 {self.items_count} 个项目, {self.requests_count} 个请求')
-```
+`````
 
 ### 日志轮转和结构化日志
 
-```python
+`````python
 # settings.py
 LOG_LEVEL = INFO
 LOG_FILE = 'logs/scrapy.log'
 LOG_FORMAT = '%(asctime)s [%(name)s] %(levelname)s: %(message)s"
 LOG_STDOUT = False
-```
+`````
 
 ### 使用 Scrapyd 水平扩展
 
-```bash
+`````bash
 pip install scrapyd
 scrapyd  # 在 6800 端口启动守护进程
-```
+`````
 
-```bash
+`````bash
 # 通过 HTTP API 部署和调度
 curl http://localhost:6800/schedule.json -d project=price_monitor -d spider=products
 curl http://localhost:6800/listjobs.json -d project=price_monitor
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Scrapy | BeautifulSoup | Selenium | Playwright |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | BSD-3-Clause | MIT | Apache-2.0 | Apache-2.0 |
 | **语言** | Python | Python | 多语言 | 多语言 |
@@ -533,7 +534,7 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 
 **行动清单：**
 
-1. 克隆 Scrapy 仓库并在你的硬件上运行 `scrapy bench`。
+1. 克隆 Scrapy 仓库并在你的硬件上运行 ````scrapy bench```。
 2. 搭建一个集成了 PostgreSQL 和 Redis 的 Docker 项目。
 3. 为生产级爬取配置代理轮换。
 4. 加入 Telegram 社区获取每日技巧和故障排查：[dibi8_tg_group](https://t.me/dibi8open)
@@ -561,7 +562,7 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 - Scrapy vs BeautifulSoup 分析（HasData）：https://hasdata.com/blog/scrapy-vs-beautifulsoup
 
 
----
+* * *
 *本文包含联盟链接。通过本文中的 WebShare 链接购买代理服务时，我们可能会获得佣金，不会向你收取额外费用。所有基准测试数据和推荐均基于独立测试和社区验证的来源。*
 
 
@@ -591,7 +592,7 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](scrapy)
@@ -600,6 +601,6 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 - [agent-reach-internet-access-ai-agents](scrapy)
 - [microsoft-markitdown-file-to-markdown-converter-cli](scrapy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

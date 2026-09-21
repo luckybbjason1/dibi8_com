@@ -13,6 +13,7 @@ featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: ko
 ---
 
+
 # Addy Osmani의 Agent Skills: 프로덕션 등급 접근법
 
 저는 AI 코딩 어시스턴트가 채팅과 함께 한 종류의 화려한 자동 완성이라고 생각했습니다. 그런 다음 Addy Osmani가 Agent Skills 프레임워크를 발행했고 제가 잘못되었음을 보여줬습니다.
@@ -35,41 +36,41 @@ Addy의 이력서가 "AI 에이전트를 위한 스킬을 구축한다"고 말�
 
 Agent Skills는 AI 코딩 어시스턴트를 위한 재사용 가능하고 공유 가능한 능력을 생성하기 위한 프레임워크입니다. 에이전트 행동을 위한 npm처럼 생각하시면 됩니다:
 
-```
+````
 스킬 = 조직의 AI 지식
       = 사전 구축된 워크플로우
       = 커스텀 명령
       = 컨텍스트 인식 도우미
-```
+`````
 
 ## 설치 및 설정
 
 ### 방법 1: 빠른 시작
-```bash
+`````bash
 npm install -g agent-skills
 skills init my-project
-```
+`````
 
 ### 방법 2: 수동 설치
-```bash
+`````bash
 git clone https://github.com/addyosmani/agent-skills.git
 cd agent-skills
 npm install
 npm run build
-```
+`````
 
 ### IDE 통합
 **VS Code용:**
-```json
+`````json
 // settings.json
 {
   "agentSkills.enabled": true,
   "agentSkills.skillsPath": "./skills"
 }
-```
+`````
 
 **Cursor용:**
-```json
+`````json
 // .cursorrc
 {
   "skills": {
@@ -77,45 +78,45 @@ npm run build
     "directory": "./skills"
   }
 }
-```
+`````
 
 ## 첫 번째 스킬 빌드
 
 ### 기본 구조
-```
+`````
 skills/
 ├── my-skill/
 │   ├── SKILL.md          # 스킬 정의
 │   ├── execute.ts        # 구현
 │   └── config.yaml       # 구성
-```
+`````
 
 ### 스킬 정의
-```markdown
----
+`````markdown
+* * *
 name: my-skill
 description: "이 스킬이 하는 일에 대한 한 줄 설명"
 version: 1.0.0
 author: your-name
----
+* * *
 
 # 내 스킬
 
 여기에 자세한 설명...
 
 ## 사용법
-\`\`\`
+\````\````\````
 skills run my-skill --flag value
-\`\`\`
+\````\````\````
 
 ## 예시
-\`\`\`typescript
+\````\````\````typescript
 // 예시 코드
-\`\`\`
-```
+\````\````\````
+`````
 
 ### 구현
-```typescript
+`````typescript
 import { Skill, SkillContext } from 'agent-skills';
 
 export class MySkill extends Skill {
@@ -131,14 +132,14 @@ export class MySkill extends Skill {
     };
   }
 }
-```
+`````
 
 ## 실제 세계 스킬 예시
 
 ### 1. 보안 스캐너
 커밋 전 자동화된 보안 체크:
 
-```typescript
+`````typescript
 class SecurityScanSkill extends Skill {
   async execute(ctx) {
     const files = await this.getModifiedFiles();
@@ -159,12 +160,12 @@ class SecurityScanSkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 ### 2. 문서 생성기
 코드에서 자동으로 문서 생성:
 
-```typescript
+`````typescript
 class DocGeneratorSkill extends Skill {
   async execute(ctx) {
     const api = await this.extractAPI(ctx.code);
@@ -174,16 +175,16 @@ class DocGeneratorSkill extends Skill {
     
     return {
       success: true,
-      output: `${api.length} API 문서 생성`
+      output: ````${api.length} API 문서 생성````
     };
   }
 }
-```
+`````
 
 ### 3. 성능 프로파일러
 측정 및 코드 최적화:
 
-```typescript
+`````typescript
 class PerformanceProfileSkill extends Skill {
   async execute(ctx) {
     const metrics = await this.profileCode(ctx.code);
@@ -195,12 +196,12 @@ class PerformanceProfileSkill extends Skill {
     };
   }
 }
-```
+`````
 
 ## 고급 패턴
 
 ### 패턴 1: 조건부 실행
-```typescript
+`````typescript
 class ConditionalSkill extends Skill {
   async shouldExecute(ctx): Promise<boolean> {
     // 특정 조건이 충족될 때만 실행
@@ -211,10 +212,10 @@ class ConditionalSkill extends Skill {
     // ...
   }
 }
-```
+`````
 
 ### 패턴 2: 다단계 워크플로우
-```typescript
+`````typescript
 class DeploySkill extends Skill {
   async execute(ctx) {
     const steps = [
@@ -231,10 +232,10 @@ class DeploySkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 ### 패턴 3: 상태 영속성
-```typescript
+`````typescript
 class CachingSkill extends Skill {
   async execute(ctx) {
     const cacheKey = this.computeKey(ctx);
@@ -249,10 +250,10 @@ class CachingSkill extends Skill {
     return result;
   }
 }
-```
+`````
 
 ### 패턴 4: 오류 복구
-```typescript
+`````typescript
 class RobustSkill extends Skill {
   async execute(ctx) {
     const maxRetries = 3;
@@ -266,10 +267,10 @@ class RobustSkill extends Skill {
     }
   }
 }
-```
+`````
 
 ### 패턴 5: 병렬 실행
-```typescript
+`````typescript
 class ParallelSkill extends Skill {
   async execute(ctx) {
     const results = await Promise.all([
@@ -280,31 +281,31 @@ class ParallelSkill extends Skill {
     return { data: results[0], meta: results[1], valid: results[2] };
   }
 }
-```
+`````
 
 ## 배포 패턴
 
 ### 컨테이너화된 배포
 격리된 환경에서 Agent Skills 실행:
 
-```dockerfile
+`````dockerfile
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 COPY . .
 CMD ["skills", "run", "my-skill"]
-```
+`````
 
-```bash
+`````bash
 docker build -t agent-skills-app .
 docker run -v $(pwd)/skills:/app/skills agent-skills-app
-```
+`````
 
 ### CI/CD 통합
 파이프라인에서 스킬 테스트 자동화:
 
-```yaml
+`````yaml
 # .github/workflows/skills-test.yml
 name: Test Skills
 on: [push, pull_request]
@@ -318,12 +319,12 @@ jobs:
       - run: skills test
       - run: skills lint
       - run: skills coverage
-```
+`````
 
 ### 멀티 팀 설정
 여러 팀을 위한 조직:
 
-```yaml
+`````yaml
 # skills-config.yaml
 global:
   pluginsDir: ~/.agent-skills/plugins
@@ -336,7 +337,7 @@ teams:
   data:
     skillsDir: ./skills/data
     members: [charlie, diana]
-```
+`````
 
 ## 성능 벤치마크
 
@@ -364,7 +365,7 @@ Agent Skills vs 기존 어시스턴트 테스트:
 **문제:** 여러 스킬이 유사한 일을 합니다.
 **해결:** 중복이 아닌 스킬 구성 사용:
 
-```typescript
+`````typescript
 // 로직 중복 대신
 class AuthSkill extends Skill { /* 인증 로직 */ }
 class APIKeySkill extends Skill { /* 더 많은 인증 로직 */ }
@@ -377,33 +378,33 @@ class AuthenticatedRequest extends Skill {
     return result;
   }
 }
-```
+`````
 
 ### 함정 2: 상태 누출
 **문제:** 스킬이 서로의 상태에 간섭합니다.
 **해결:** 스킬 인스턴스별로 상태를 격리:
 
-```typescript
+`````typescript
 class IsolatedSkill extends Skill {
   async execute(ctx) {
     const localState = this.createIsolatedState();
     // ... localState만 사용
   }
 }
-```
+`````
 
 ### 함정 3: 성능 저하
 **문제:** 너무 많은 스킬이 어시스턴트를 느리게 만듭니다.
 **해결:** 지연 로드:
 
-```typescript
+`````typescript
 class LazySkill extends Skill {
   async load() {
     // 필요할 때만 로드
     return import('./heavy-module');
   }
 }
-```
+`````
 
 ## 대체안과 비교
 
@@ -421,25 +422,25 @@ class LazySkill extends Skill {
 ## 문제 해결
 
 ### 일반 문제: 스킬 로드 안 됨
-```bash
+`````bash
 # 스킬 등록 확인
 skills list
 
 # 스킬 로그 보기
 skills logs --skill my-skill --tail 50
-```
+`````
 
 ### 일반 문제: TypeScript 컴파일 오류
-```bash
+`````bash
 # 캐시 지우고 재빌드
 rm -rf node_modules/.cache
 npm run clean
 npm run build
-```
+`````
 
 ### 일반 문제: 긴 세션에서 메모리 누수
 스킬 구성에서 메모리 제한 활성화:
-```typescript
+`````typescript
 // skill.config.ts
 export default {
   memory: {
@@ -447,17 +448,17 @@ export default {
     gcInterval: '5m"
   }
 };
-```
+`````
 
 ### 일반 문제: 플러그인 충돌
 여러 스킬이 충돌할 때:
-```bash
+`````bash
 # 모든 로드된 스킬 목록
 skills list --all
 
 # 충돌하는 스킬 임시 비활성화
 skills disable skill-name
-```
+`````
 
 ## 보안 고려사항
 프로덕션 환경에서 스킬 배포 시:
@@ -467,10 +468,10 @@ skills disable skill-name
 3. **비밀번호 스캐닝** — pre-deploy 체크로 비밀번호 스캐너 통합
 4. **스킬 감사** — 설치 전 서드파티 스킬 검토
 
-```bash
+`````bash
 # 스킬 보안 스캔
 skills security scan --deep ./skills
-```
+`````
 
 ## 커뮤니티 & 생태계
 
@@ -487,14 +488,14 @@ https://marketplace.agent-skills.addy.io에서 커뮤니티 스킬 탐색:
 3. 테스트와 함께 PR 제출
 4. Discord 커뮤니티 가입
 
-```bash
+`````bash
 # 개발 설정
 git clone git@github.com:addyosmani/agent-skills.git
 cd agent-skills
 npm install
 npm test  # 테스트 스위트 실행
 npm run dev    # 개발 모드 시작
-```
+````
 
 ## FAQ
 
@@ -532,7 +533,7 @@ Agent Skills는 성능 엔지니어가 AI용 도구링을 구축할 때 발생�
 
 첫 번째로 어떤 스킬을 만들고 싶으신가요? 아이디어를 공유하십시오!
 
----
+* * *
 
 **출처 및 추가 읽기:**
 - GitHub 저장소: https://github.com/addyosmani/agent-skills

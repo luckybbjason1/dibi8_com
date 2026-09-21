@@ -13,6 +13,7 @@ aliases:
   - /vi/posts/portkey-ai-gateway-production/
 ---
 
+
 {{</* resource-info */>}}
 
 Quản lý nhiều nhà cung cấp Mô hình Ngôn ngữ Lớn (LLM) trong môi trường production là một cơn ác mộng. Mỗi nhà cung cấp có định dạng API, lược đồ xác thực, giới hạn tốc độ và chế độ lỗi riêng. Mã ứng dụng của bạn trở nên lộn xộn với logic điều kiện cho OpenAI, Anthropic, Google, Azure và hàng chục nhà cung cấp mới xuất hiện mỗi tháng. Hãy đến với **Portkey AI Gateway** — cổng LLM mã nguồn mở thống nhất 200+ mô hình phía sau một API duy nhất, với khả năng cân bằng tải, định tuyến dự phòng, theo dõi chi tiêu, lưu đệm yêu cầu và khả năng quan sát cấp doanh nghiệp.
@@ -21,7 +22,7 @@ Trong hướng dẫn toàn diện này, chúng tôi sẽ hướng dẫn thiết 
 
 > **Bắt đầu Nhanh**: Portkey AI Gateway là mã nguồn mở theo giấy phép MIT với hơn 14.000 sao GitHub. Bạn có thể tự lưu trữ hoặc sử dụng tùy chọn đám mây được quản lý. Sẵn sàng chưa? Hãy bắt đầu.
 
----
+* * *
 
 ## Portkey AI Gateway là gì?
 
@@ -38,7 +39,7 @@ Cổng xử lý các phần khó khăn của việc triển khai LLM production:
 
 Dù bạn là startup chạy một mô hình hay doanh nghiệp quản lý hàng chục nhà cung cấp, Portkey cung cấp lớp hạ tầng bạn cần để đưa ứng dụng AI vào production.
 
----
+* * *
 
 ## Tổng quan Kiến trúc và Tùy chọn Triển khai
 
@@ -54,18 +55,18 @@ Cách nhanh nhất để bắt đầu là sử dụng dịch vụ cloud được
 
 **Triển khai với Docker:**
 
-```bash
+````bash
 # Sao chép repository
 git clone https://github.com/Portkey-AI/gateway.git
 cd gateway
 
 # Chạy với Docker
 docker run -p 8787:8787 -e PORTKEY_GATEWAY_API_KEY=your-gateway-key portkeyai/gateway:latest
-```
+`````
 
 **Triển khai với Docker Compose:**
 
-```yaml
+`````yaml
 version: '3.8'
 services: portkey-gateway: image: portkeyai/gateway:latest
     ports: - "8787:8787"
@@ -74,11 +75,11 @@ services: portkey-gateway: image: portkeyai/gateway:latest
       - CACHE_TTL=3600
     volumes: - ./config:/app/config
     restart: unless-stopped
-```
+`````
 
 **Triển khai lên Kubernetes:**
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: portkey-gateway
@@ -91,7 +92,7 @@ spec: replicas: 3
         env: - name: PORTKEY_GATEWAY_API_KEY
           valueFrom: secretKeyRef: name: portkey-secrets
               key: gateway-api-key
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: portkey-gateway-service
@@ -99,11 +100,11 @@ spec: selector: app: portkey-gateway
   ports: - port: 80
     targetPort: 8787
   type: ClusterIP
-```
+`````
 
 Đối với triển khai production, chúng tôi khuyến nghị Kubernetes với ít nhất 3 bản sao để đảm bảo tính sẵn sàng cao. Nếu bạn cần một nền tảng đám mây đáng tin cậy để lưu trữ cluster, [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0) cung cấp dịch vụ Kubernetes được quản lý thân thiện với nhà phát triển, kết hợp hoàn hảo với Portkey.
 
----
+* * *
 
 ## Cấu hình Nhà cung cấp và Khóa API
 
@@ -111,7 +112,7 @@ Trước khi định tuyến yêu cầu, bạn cần cấu hình các nhà cung 
 
 ### Thiết lập Nhà cung cấp
 
-Tạo tệp cấu hình `providers.yaml`: ```yaml
+Tạo tệp cấu hình ``providers.yaml``: `````yaml
 providers: openai-primary: type: openai
     api_key: ${OPENAI_API_KEY}
     organization: ${OPENAI_ORG_ID}
@@ -131,11 +132,11 @@ providers: openai-primary: type: openai
   mistral-local: type: mistral
     api_key: ${MISTRAL_API_KEY}
     base_url: http://mistral-service:8000/v1
-```
+`````
 
 ### Tải Cấu hình
 
-```bash
+`````bash
 # Đặt biến môi trường
 export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-ant-..."
@@ -146,9 +147,9 @@ docker run -p 8787:8787 \
   -e PORTKEY_GATEWAY_API_KEY=$GATEWAY_API_KEY \
   -v $(pwd)/providers.yaml:/app/config/providers.yaml \
   portkeyai/gateway:latest
-```
+`````
 
----
+* * *
 
 ## API Thống nhất: Một Điểm cuối cho 200+ Mô hình
 
@@ -156,7 +157,7 @@ Giá trị cốt lõi của Portkey là API thống nhất của nó. Bất kể
 
 ### Yêu cầu Hoàn thành Trò chuyện Cơ bản
 
-```bash
+`````bash
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
   -H "Content-Type: application/json" \
@@ -168,11 +169,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
       {"role": "user", "content": "Giải thích điện toán lượng tử bằng thuật ngữ đơn giản."}
     ]
   }'
-```
+`````
 
 ### Chuyển đổi Nhà cung cấp Ngay lập tức
 
-```bash
+`````bash
 # Yêu cầu giống hệt, nhà cung cấp khác — chỉ cần thay đổi trường model/provider
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -185,11 +186,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     ],
     "max_tokens": 1024
   }'
-```
+`````
 
 ### Ví dụ SDK Python
 
-```python
+`````python
 from portkey_ai import Portkey
 
 # Khởi tạo client
@@ -207,11 +208,11 @@ response = portkey.chat.completions.create(
     ]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### Phản hồi Truyền trực tiếp
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(api_key="your-gateway-api-key")
@@ -223,9 +224,9 @@ stream = portkey.chat.completions.create(
 )
 
 for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
----
+* * *
 
 ## Cân bằng Tải và Định tuyến Dự phòng
 
@@ -233,7 +234,7 @@ Hệ thống AI production không thể chấp nhận sự cố nhà cung cấp.
 
 ### Cân bằng Tải Vòng tròn
 
-Phân phối đều lưu lượng qua nhiều khóa API hoặc nhà cung cấp: ```yaml
+Phân phối đều lưu lượng qua nhiều khóa API hoặc nhà cung cấp: `````yaml
 # config/load-balance.yaml
 strategies: gpt4-pool: type: load_balance
     providers: - provider: openai-primary
@@ -242,20 +243,20 @@ strategies: gpt4-pool: type: load_balance
         weight: 1
       - provider: openai-backup
         weight: 1
-```
+`````
 
-```python
+`````python
 # Sử dụng pool cân bằng tải
 response = portkey.chat.completions.create(
     model="gpt-4o",
     config="gpt4-pool",  # Tham chiếu chiến lược
     messages=[{"role": "user", "content": "Xin chào!"}]
 )
-```
+`````
 
 ### Định tuyến Dự phòng Dựa trên Mức độ ưu tiên
 
-Xác định chuỗi dự phòng để chuyển đổi dự phòng tự động: ```yaml
+Xác định chuỗi dự phòng để chuyển đổi dự phòng tự động: `````yaml
 strategies: production-fallback: type: fallback
     targets: - provider: azure-gpt4
         timeout: 10
@@ -269,9 +270,9 @@ strategies: production-fallback: type: fallback
       - provider: google-gemini
         model: gemini-2.5-pro
         timeout: 20
-```
+`````
 
-```bash
+`````bash
 # Cổng thử từng mục tiêu theo thứ tự cho đến khi một cái thành công
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -280,11 +281,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     "config": "production-fallback",
     "messages": [{"role": "user", "content": "Truy vấn kinh doanh quan trọng"}]
   }'
-```
+`````
 
 ### Định tuyến Có điều kiện Dựa trên Thuộc tính Yêu cầu
 
-Định tuyến yêu cầu dựa trên nội dung, ngưởi dùng hoặc các thuộc tính yêu cầu khác: ```yaml
+Định tuyến yêu cầu dựa trên nội dung, ngưởi dùng hoặc các thuộc tính yêu cầu khác: `````yaml
 strategies: smart-router: type: conditional
     rules: - condition: "request.messages[0].content.length > 4000"
         target: provider: anthropic-primary
@@ -295,9 +296,9 @@ strategies: smart-router: type: conditional
       - condition: "default"
         target: provider: azure-gpt4
           model: gpt-4o-mini
-```
+`````
 
----
+* * *
 
 ## Lưu đệm Yêu cầu: Giảm Chi phí và Độ trễ
 
@@ -305,15 +306,15 @@ Các lệnh gọi API LLM đắt đỏ và chậm. Bộ nhớ đệm ngữ nghĩ
 
 ### Bật Bộ nhớ đệm
 
-```yaml
+`````yaml
 cache: enabled: true
   mode: semantic  # hoặc "exact" cho lưu đệm khớp chính xác
   ttl: 3600       # Thờ gian sống của bộ nhớ đệm tính bằng giây
   max_size: 10000 # Số lượng mục được lưu đệm tối đa
   similarity_threshold: 0.95  # Cho lưu đệm ngữ nghĩa
-```
+`````
 
-```python
+`````python
 # Lần gọi đầu tiên truy cập nhà cung cấp và lưu đệm kết quả
 response1 = portkey.chat.completions.create(
     model="gpt-4o",
@@ -327,17 +328,17 @@ response2 = portkey.chat.completions.create(
     messages=[{"role": "user", "content": "Giải thích Kubernetes cho tôi"}],
     cache=True
 )
-```
+`````
 
 ### Thống kê Bộ nhớ đệm và Làm mất hiệu lực
 
-```bash
+`````bash
 # Kiểm tra chỉ số bộ nhớ đệm
 curl http://localhost:8787/v1/admin/cache/stats \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # Làm mất hiệu lực các mục bộ nhớ đệm cụ thể
 curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -346,9 +347,9 @@ curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
     "pattern": "kubernetes",
     "provider": "openai-primary"
   }'
-```
+`````
 
----
+* * *
 
 ## Theo dõi Chi tiêu và Khả năng Quan sát Chi phí
 
@@ -356,7 +357,7 @@ Hiểu rõ chi tiêu AI của bạn trên các nhà cung cấp, mô hình và ng
 
 ### Thiết lập Theo dõi Chi phí
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(
@@ -378,25 +379,25 @@ response = portkey.chat.completions.create(
 print(f"Token đầu vào: {response.usage.prompt_tokens}")
 print(f"Token đầu ra: {response.usage.completion_tokens}")
 print(f"Tổng chi phí: ${response.usage.estimated_cost}")
-```
+`````
 
 ### Truy vấn Phân tích Chi tiêu
 
-```bash
+`````bash
 # Nhận báo cáo chi tiêu theo nhà cung cấp
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=provider" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # Nhận báo cáo chi tiêu theo ngưởi dùng
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=user_id" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
 ### Cảnh báo Ngân sách
 
-```yaml
+`````yaml
 alerts: daily-budget: type: budget
     threshold: 500  # USD
     period: daily
@@ -410,9 +411,9 @@ alerts: daily-budget: type: budget
     window: 1h
     channels: - type: pagerduty
         integration_key: your-pd-key
-```
+`````
 
----
+* * *
 
 ## Quản lý Prompt và Phiên bản hóa
 
@@ -420,7 +421,7 @@ Quản lý prompt tách biệt với mã ứng dụng cho phép các thành viê
 
 ### Tạo Prompt được Quản lý
 
-```python
+`````python
 from portkey_ai import Portkey
 
 portkey = Portkey(api_key="your-gateway-api-key")
@@ -439,11 +440,11 @@ prompt = portkey.prompts.deploy(
         "max_tokens": 50
     }
 )
-```
+`````
 
 ### Kết xuất Prompt với Biến
 
-```python
+`````python
 # Kết xuất và thực thi prompt được quản lý
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -454,11 +455,11 @@ response = portkey.prompts.render(
 
 print(response.choices[0].message.content)
 # Kết quả: "Thanh toán"
-```
+`````
 
 ### A/B Testing Prompt
 
-```python
+`````python
 # Chạy A/B test giữa các phiên bản prompt
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -466,9 +467,9 @@ response = portkey.prompts.render(
     test_version="1.3.0-beta",  # 50% lưu lượng
     variables={"ticket_content": "Ứng dụng gặp sự cố khi tải ảnh lên"}
 )
-```
+`````
 
----
+* * *
 
 ## Rào chắn Bảo vệ và An toàn Nội dung
 
@@ -476,7 +477,7 @@ Hệ thống rào chắn bảo vệ của Portkey cho phép bạn thực thi cá
 
 ### Cấu hình Rào chắn Bảo vệ
 
-```yaml
+`````yaml
 guardrails: input-validation: - type: keyword_filter
       blocklist: ["password", "ssn", "credit_card", "secret_key"]
       action: block
@@ -493,20 +494,20 @@ guardrails: input-validation: - type: keyword_filter
     - type: response_format
       required_schema: type: json_object
       action: retry
-```
+`````
 
-```python
+`````python
 # Áp dụng rào chắn bảo vệ cho yêu cầu
 response = portkey.chat.completions.create(
     model="gpt-4o",
     messages=[{"role": "user", "content": "Nội dung nhập của ngưởi dùng"}],
     guardrails=["input-validation", "output-validation"]
 )
-```
+`````
 
 ### Hàm Rào chắn Bảo vệ Tùy chỉnh
 
-```python
+`````python
 from portkey_ai import Portkey
 import json
 
@@ -519,9 +520,9 @@ def custom_validator(request, response): """Xác thực logic kinh doanh tùy ch
     except json.JSONDecodeError: return False, "Phản hồi phải là JSON hợp lệ"
 
 portkey.guardrails.register("confidence-check", custom_validator)
-```
+`````
 
----
+* * *
 
 ## Khả năng Quan sát: Ghi log, Số liệu và Theo dõi
 
@@ -529,13 +530,13 @@ Hiểu rõ hệ thống AI của bạn hoạt động như thế nào trong prod
 
 ### Ghi log Yêu cầu
 
-```bash
+`````bash
 # Truy vấn nhật ký yêu cầu gần đây
 curl "http://localhost:8787/v1/admin/logs?limit=100&status=error" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```python
+`````python
 # Bật ghi log chi tiết cho mỗi yêu cầu
 response = portkey.chat.completions.create(
     model="gpt-4o",
@@ -546,35 +547,35 @@ response = portkey.chat.completions.create(
         "user_id": "user-456"
     }
 )
-```
+`````
 
 ### Tích hợp OpenTelemetry
 
-```yaml
+`````yaml
 observability: tracing: enabled: true
     exporter: otlp
     endpoint: http://jaeger-collector:4317
   metrics: enabled: true
     exporter: prometheus
     port: 9090
-```
+`````
 
 ### Số liệu Prometheus
 
-Cổng sẽ hiển thị các số liệu tương thích với Prometheus tại `/metrics`: ```bash
+Cổng sẽ hiển thị các số liệu tương thích với Prometheus tại ``/metrics``: `````bash
 # Thu thập số liệu
 curl http://localhost:8787/metrics
-```
+`````
 
-Các số liệu chính bao gồm: - `portkey_requests_total` — Tổng số yêu cầu theo nhà cung cấp, mô hình, trạng thái
-- `portkey_request_duration_seconds` — Biểu đồ độ trễ yêu cầu
-- `portkey_tokens_total` — Sử dụng token theo loại (đầu vào/đầu ra) và mô hình
-- `portkey_cache_hits_total` — Số lượt truy cập bộ nhớ đệm hit/miss
-- `portkey_spend_total` — Chi tiêu ước tính bằng USD
+Các số liệu chính bao gồm: - ````portkey_requests_total```` — Tổng số yêu cầu theo nhà cung cấp, mô hình, trạng thái
+- ````portkey_request_duration_seconds```` — Biểu đồ độ trễ yêu cầu
+- ````portkey_tokens_total```` — Sử dụng token theo loại (đầu vào/đầu ra) và mô hình
+- ````portkey_cache_hits_total```` — Số lượt truy cập bộ nhớ đệm hit/miss
+- ````portkey_spend_total```` — Chi tiêu ước tính bằng USD
 
 ### Bảng điều khiển Grafana
 
-Nhập bảng điều khiển Grafana chính thức của Portkey (ID: `portkey-ai-gateway`) để có trực quan hóa sẵn có: ```json
+Nhập bảng điều khiển Grafana chính thức của Portkey (ID: ``portkey-ai-gateway``) để có trực quan hóa sẵn có: `````json
 {
   "dashboard": {
     "title": "Tổng quan Portkey AI Gateway",
@@ -606,15 +607,15 @@ Nhập bảng điều khiển Grafana chính thức của Portkey (ID: `portkey-
     ]
   }
 }
-```
+`````
 
----
+* * *
 
 ## Danh sách Kiểm tra Triển khai Production
 
 Trước khi đưa Portkey AI Gateway vào production, hãy đảm bảo bạn đã hoàn thành các mục quan trọng sau: ### Hạ tầng
 
-```yaml
+`````yaml
 # docker-compose production với Redis để lưu đệm và PostgreSQL để ghi log
 version: '3.8'
 services: gateway: image: portkeyai/gateway:latest
@@ -637,7 +638,7 @@ services: gateway: image: portkeyai/gateway:latest
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes: - postgres-data:/var/lib/postgresql/data
 
-volumes: redis-data: postgres-data: ```
+volumes: redis-data: postgres-data: `````
 
 ### Danh sách Kiểm tra Bảo mật
 
@@ -652,15 +653,15 @@ volumes: redis-data: postgres-data: ```
 
 ### Kiểm tra Sức khỏe
 
-```bash
+`````bash
 # Điểm cuối sức khỏe gateway
 curl http://localhost:8787/health
 
 # Phản hồi mong đợi
 {"status": "healthy", "version": "2.5.0", "uptime": 86400}
-```
+`````
 
-```yaml
+`````yaml
 # Probe liveness và readiness Kubernetes
 livenessProbe: httpGet: path: /health
     port: 8787
@@ -671,9 +672,9 @@ readinessProbe: httpGet: path: /ready
     port: 8787
   initialDelaySeconds: 5
   periodSeconds: 5
-```
+`````
 
----
+* * *
 
 ## FAQ: Portkey AI Gateway
 
@@ -699,7 +700,7 @@ Khi tự lưu trữ, tất cả dữ liệu yêu cầu vẫn ở trong hạ tầ
 
 ### Tôi có thể sử dụng Portkey với mã SDK OpenAI hiện có không?
 
-Có. Portkey cung cấp khả năng tương thích thả vào với OpenAI SDK. Đơn giản là thay đổi `base_url` thành điểm cuối gateway của bạn và sử dụng khóa API Portkey: ```python
+Có. Portkey cung cấp khả năng tương thích thả vào với OpenAI SDK. Đơn giản là thay đổi ``base_url`` thành điểm cuối gateway của bạn và sử dụng khóa API Portkey: `````python
 import openai
 
 client = openai.OpenAI(
@@ -709,9 +710,9 @@ client = openai.OpenAI(
 
 # Mã hiện có của bạn hoạt động không thay đổi
 response = client.chat.completions.create(...)
-```
+````
 
----
+* * *
 
 
 
@@ -730,7 +731,7 @@ Dù bạn chọn tùy chọn cloud được quản lý hay tự lưu trữ trên
 
 Bắt đầu với Docker nhanh chóng, cấu hình các nhà cung cấp của bạn, thiết lập cân bằng tải với các tuyến đường dự phòng, bật lưu đệm và kết nối ngăn xếp quan sát của bạn. Trong vòng chưa đầy một giờ, bạn sẽ có một cổng LLM cấp production xử lý 200+ mô hình với khả năng quan sát đầy đủ.
 
----
+* * *
 
 *Xuất bản: 2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
 
@@ -760,7 +761,7 @@ Bắt đầu với Docker nhanh chóng, cấu hình các nhà cung cấp của b
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -770,7 +771,7 @@ Bắt đầu với Docker nhanh chóng, cấu hình các nhà cung cấp của b
 - [2026-06-08-trending-ai-agents](portkey-ai-gateway-production)
 - [2026-06-15-trending-ai-agents](portkey-ai-gateway-production)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

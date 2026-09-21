@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 > 30분 내에 CrewAI를 설치하고, 에이전트 역할을 구성하고, 태스크를 연결하며, 프로덕션 준비 멀티 에이전트 시스템을 배포하는 방법.
@@ -45,12 +46,12 @@ CrewAI의 아키텍처는 에이전트 정의와 오케스트레이션 로직을
 
 | 컴포넌트 | 목적 | 설정 파일 |
 |----------|------|-----------|
-| **Agent** | 목표, 배경 스토리, 도구를 가진 역할 기반 AI 작업자 | `agents.yaml` |
-| **Task** | 예상 출력과 함께 에이전트에 할당된 작업 단위 | `tasks.yaml` |
-| **Crew** | 정의된 프로세스를 통해 태스크를 실행하는 에이전트 팀 | `crew.py` |
-| **Flow** | 상태 관리로 여러 crew를 연결하는 이벤트 기반 워크플로우 | `flow.py` |
-| **Tool** | 외부 기능(검색, API, 계산) | `tools/` |
-| **Process** | 실행 전략: 순차, 계층, 또는 병렬 | `crew.py` |
+| **Agent** | 목표, 배경 스토리, 도구를 가진 역할 기반 AI 작업자 | ```agents.yaml```` |
+| **Task** | 예상 출력과 함께 에이전트에 할당된 작업 단위 | ````tasks.yaml```` |
+| **Crew** | 정의된 프로세스를 통해 태스크를 실행하는 에이전트 팀 | ````crew.py```` |
+| **Flow** | 상태 관리로 여러 crew를 연결하는 이벤트 기반 워크플로우 | ````flow.py```` |
+| **Tool** | 외부 기능(검색, API, 계산) | ````tools/```` |
+| **Process** | 실행 전략: 순차, 계층, 또는 병렬 | ````crew.py```` |
 
 ![CrewAI Architecture](https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png)
 
@@ -70,17 +71,17 @@ CrewAI의 아키텍처는 에이전트 정의와 오케스트레이션 로직을
 
 CrewAI는 Python 3.10–3.13과 최소 하나의 LLM 제공업체 API 키가 필요합니다.
 
-```bash
+`````bash
 # Python 버전 확인
 python --version  # 반드시 3.10, 3.11, 3.12, 또는 3.13
 
 # uv 설치 (권장 패키지 관리자)
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+`````
 
 ### CrewAI 설치
 
-```bash
+`````bash
 # CrewAI 코어 프레임워크 설치
 uv pip install crewai
 
@@ -89,11 +90,11 @@ uv pip install 'crewai[tools]'
 
 # 설치 확인
 crewai version
-```
+`````
 
 ### 새 프로젝트 생성
 
-```bash
+`````bash
 # 새 CrewAI 프로젝트 스캐폴드
 crewai create crew research_crew
 
@@ -102,9 +103,9 @@ cd research_crew
 
 # 프로젝트 의존성 설치
 crewai install
-```
+`````
 
-생성된 프로젝트 구조: ```
+생성된 프로젝트 구조: `````
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -121,26 +122,26 @@ research_crew/
         └── tools/
             ├── __init__.py
             └── custom_tool.py
-```
+`````
 
 ### 환경 변수 구성
 
-```bash
+`````bash
 # .env — 이 파일을 .gitignore에 추가!
 OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
-```
+`````
 
-Ollama를 통한 로컬 LLM(API 키 불필요): ```bash
+Ollama를 통한 로컬 LLM(API 키 불필요): `````bash
 # 로컬 모델 다운로드
 ollama pull llama3.1
 
 # 에이전트 설정에서 사용: ollama/llama3.1
-```
+`````
 
 ## 첫 번째 에이전트 정의하기
 
-`src/research_crew/config/agents.yaml`을 편집하여 역할 기반 에이전트를 정의합니다: ```yaml
+``src/research_crew/config/agents.yaml``을 편집하여 역할 기반 에이전트를 정의합니다: `````yaml
 # src/research_crew/config/agents.yaml
 
 researcher: role: >
@@ -179,23 +180,23 @@ editor: role: >
   llm: openai/gpt-4o-mini
   max_iter: 8
   verbose: true
-```
+`````
 
 에이전트별 주요 구성 옵션: | 파라미터 | 설명 | 예시 |
 |----------|------|------|
-| `role` | 에이전트의 직무 및 기능 | `Senior Research Analyst` |
-| `goal` | 에이전트가 달성하려는 목표 | `{topic}` 연구 |
-| `backstory` | 에이전트 행동을 형성하는 맥락 | 경험과 성격 |
-| `llm` | LiteLLM을 통한 LLM 모델 | `openai/gpt-4o` |
-| `max_iter` | 태스크당 최대 추론 루프 수 | `15` |
-| `verbose` | 콘솔에 사고 과정 출력 | `true` |
-| `allow_delegation` | 다른 에이전트에게 위임 가능 여부 | `false` |
+| ````role```` | 에이전트의 직무 및 기능 | ````Senior Research Analyst```` |
+| ````goal```` | 에이전트가 달성하려는 목표 | ````{topic}```` 연구 |
+| ````backstory```` | 에이전트 행동을 형성하는 맥락 | 경험과 성격 |
+| ````llm```` | LiteLLM을 통한 LLM 모델 | ````openai/gpt-4o```` |
+| ````max_iter```` | 태스크당 최대 추론 루프 수 | ````15```` |
+| ````verbose```` | 콘솔에 사고 과정 출력 | ````true```` |
+| ````allow_delegation```` | 다른 에이전트에게 위임 가능 여부 | ````false```` |
 
 ## 태스크 정의 및 Crew 연결
 
 ### 태스크 구성
 
-`src/research_crew/config/tasks.yaml` 편집: ```yaml
+``src/research_crew/config/tasks.yaml`` 편집: `````yaml
 # src/research_crew/config/tasks.yaml
 
 research_task: description: >
@@ -227,11 +228,11 @@ editing_task: description: >
   agent: editor
   context: [writing_task]
   output_file: output/final_article.md
-```
+`````
 
 ### Crew 정의
 
-`src/research_crew/crew.py`에서 에이전트와 태스크를 연결합니다: ```python
+``src/research_crew/crew.py``에서 에이전트와 태스크를 연결합니다: `````python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
@@ -282,11 +283,11 @@ class ResearchCrew: """Research crew for producing high-quality articles."""
             process=Process.sequential,
             verbose=True,
         )
-```
+`````
 
 ### 진입점 및 실행
 
-```python
+`````python
 # src/research_crew/main.py
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
@@ -301,17 +302,17 @@ def run(): """Run the research crew."""
     print(f"\nToken usage: {result.token_usage}")
 
 if __name__ == "__main__": run()
-```
+`````
 
-crew 실행: ```bash
+crew 실행: `````bash
 # CLI를 통해 실행
 crewai run
 
 # 또는 Python으로 직접 실행
 python -m research_crew.main
-```
+`````
 
-예상 출력: ```
+예상 출력: `````
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -323,13 +324,13 @@ python -m research_crew.main
 ========== FINAL OUTPUT ==========
 [완성된 편집된 기사가 여기에 표시됨]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
-```
+`````
 
 ## 고급 사용법: Flows, 도구 및 프로덕션 패턴
 
 ### 복잡한 오케스트레이션을 위한 CrewAI Flows
 
-Flows는 상태 관리가 포함된 이벤트 기반 오케스트레이션을 제공합니다: ```python
+Flows는 상태 관리가 포함된 이벤트 기반 오케스트레이션을 제공합니다: `````python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
@@ -356,11 +357,11 @@ class ArticleFlow(Flow[ArticleState]): @start()
             with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
 if __name__ == "__main__": ArticleFlow().kickoff()
-```
+`````
 
 ### 커스텀 도구 생성
 
-```python
+`````python
 # src/research_crew/tools/custom_tool.py
 from crewai.tools import tool
 import requests
@@ -372,9 +373,9 @@ def web_search(query: str) -> str: """Search the web for information on a given 
         params={"q": query, "api_key": "${SERPER_API_KEY}"}
     )
     return response.json()["organic_results"][0]["snippet"]
-```
+`````
 
-crew에 도구 등록: ```python
+crew에 도구 등록: `````python
 # crew.py에서 도구 임포트 및 연결
 from research_crew.tools.custom_tool import web_search
 
@@ -384,11 +385,11 @@ def researcher(self) -> Agent: return Agent(
         tools=[web_search],  # 커스텀 도구 연결
         allow_delegation=False,
     )
-```
+`````
 
 ### 관리자 에이전트가 있는 계층적 프로세스
 
-```python
+`````python
 @crew
 def crew(self) -> Crew: return Crew(
         agents=self.agents,
@@ -397,11 +398,11 @@ def crew(self) -> Crew: return Crew(
         manager_llm="openai/gpt-4o",
         verbose=True,
     )
-```
+`````
 
 ### FastAPI를 사용한 프로덕션 배포
 
-```python
+`````python
 # api_server.py — 프로덕션 배포
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
@@ -430,7 +431,7 @@ def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     jobs[job_id]["result"] = result.raw
 
 # 실행: uvicorn api_server:app --host 0.0.0.0 --port 8000
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -460,25 +461,25 @@ def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
 
 ### OpenAI / Anthropic / Google Gemini
 
-CrewAI는 LiteLLM을 사용하여 제공업체에 구애받지 않는 모델 라우팅을 제공합니다: ```yaml
+CrewAI는 LiteLLM을 사용하여 제공업체에 구애받지 않는 모델 라우팅을 제공합니다: `````yaml
 # agents.yaml — 에이전트별 모델 선택
 researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # 또는: openai/gpt-4o
   # 또는: gemini/gemini-2.0-flash
-```
+`````
 
 ### Ollama (로컬 LLM)
 
-```yaml
+`````yaml
 researcher: role: Research Analyst
   llm: ollama/llama3.1
   # 필요: ollama pull llama3.1
-```
+`````
 
 ### LangChain 도구
 
-```python
+`````python
 # CrewAI 내에서 LangChain 도구 사용
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -492,11 +493,11 @@ agent = Agent(
     tools=[wiki_tool],  # LangChain 도구가 직접 작동
     verbose=True,
 )
-```
+`````
 
 ### LlamaIndex (RAG 통합)
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from crewai.tools import tool
 
@@ -506,11 +507,11 @@ def document_search(query: str) -> str: """Search internal documents for relevan
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
     return str(query_engine.query(query))
-```
+`````
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -524,16 +525,16 @@ RUN crewai install
 EXPOSE 8000
 
 CMD ["crewai", "run"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: crewai: build: .
     env_file: .env
     volumes: - ./output:/app/output
     ports: - "8000:8000"
-```
+`````
 
 ## 대안과의 비교
 
@@ -565,13 +566,13 @@ services: crewai: build: .
 ## 자주 묻는 질문
 
 **Q: CrewAI에 필요한 Python 버전은 무엇인가요?**
-A: CrewAI는 Python 3.10에서 3.13까지가 필요합니다. Python 3.9 이하 버전은 지원하지 않습니다. 시스템에서 여러 Python 버전을 관리하려면 `pyenv`를 사용하세요.
+A: CrewAI는 Python 3.10에서 3.13까지가 필요합니다. Python 3.9 이하 버전은 지원하지 않습니다. 시스템에서 여러 Python 버전을 관리하려면 ````pyenv````를 사용하세요.
 
 **Q: 로컬 LLM 지원이 포함된 CrewAI를 어떻게 설치하나요?**
-A: `pip install crewai`로 정상 설치한 후 Ollama를 별도로 설치하세요. 에이전트 설정에서 `llm: ollama/llama3.1`을 설정하세요. 로컬 추론에는 API 키가 필요 없습니다.
+A: ````pip install crewai````로 정상 설치한 후 Ollama를 별도로 설치하세요. 에이전트 설정에서 ````llm: ollama/llama3.1````을 설정하세요. 로컬 추론에는 API 키가 필요 없습니다.
 
 **Q: CrewAI는 OpenAI 이외의 모델을 사용할 수 있나요?**
-A: 네. CrewAI는 Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral, Ollama를 통한 로컬 모델을 포함한 모든 LiteLLM 호환 모델을 지원합니다. 에이전트 설정에서 `provider/model-name` 형식을 사용하세요.
+A: 네. CrewAI는 Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral, Ollama를 통한 로컬 모델을 포함한 모든 LiteLLM 호환 모델을 지원합니다. 에이전트 설정에서 ````provider/model-name```` 형식을 사용하세요.
 
 **Q: CrewAI Crews와 Flows의 차이는 무엇인가요?**
 A: Crews는 순차, 계층, 병렬 프로세스를 통해 태스크에 협업하는 에이전트 팀입니다. Flows는 조걸 로직, Pydantic 모델을 통한 상태 관리, 분기로 여러 crew를 연결하는 이벤트 기반 워크플로우입니다. Crews는 단일 워크플로우 협업에, Flows는 다단계 파이프라인에 사용하세요.
@@ -580,7 +581,7 @@ A: Crews는 순차, 계층, 병렬 프로세스를 통해 태스크에 협업하
 A: GPT-4o를 사용하여 하루 100회 실행하는 3-에이전트 crew의 경우 LLM API 비용은 월 $100–$300가 예상됩니다. 단순 태스크에 GPT-4o-mini와 같은 저렴한 모델을 사용하면 비용을 40–60% 절감할 수 있습니다. CrewAI 자체는 물론 묶기 없습니다(MIT 라이선스).
 
 **Q: 결과가 좋지 않은 CrewAI 에이전트를 어떻게 디버그하나요?**
-A: 에이전트에서 `verbose: true`를 설정하여 사고 과정을 확인하세요. `max_iter`로 추론 루프를 제한하세요. 구조화된 출력 스키마를 추가하여 형식을 강제하세요. 각 실행 후 토큰 사용 메트릭을 검토하세요. 지속적인 문제의 경우 태스크 설명을 단순화하고 도구 구성을 확인하세요.
+A: 에이전트에서 ````verbose: true````를 설정하여 사고 과정을 확인하세요. ````max_iter````로 추론 루프를 제한하세요. 구조화된 출력 스키마를 추가하여 형식을 강제하세요. 각 실행 후 토큰 사용 메트릭을 검토하세요. 지속적인 문제의 경우 태스크 설명을 단순화하고 도구 구성을 확인하세요.
 
 **Q: CrewAI는 엔터프라이즈 사용을 위한 프로덕션 준비가 되었나요?**
 A: 중소 규모의 프로덕션 워크로드의 경우, 네. CrewAI+는 월 $99부터 시작하는 관리형 관측 가능성 및 배포 기능을 추가합니다. 대용량 또는 감사가 중요한 워크로드의 경우, 커스텀 체크포인팅과 함께 CrewAI를 사용하거나 LangGraph를 평가해 보세요.
@@ -591,10 +592,10 @@ CrewAI는 아이디어에서 작동하는 멀티 에이전트 시스템까지 �
 
 **오늘 시작하기 위한 액션 아이템:**
 
-1. CrewAI 설치: `pip install crewai`
-2. 첫 번째 프로젝트 스캐폴드: `crewai create crew my_project`
-3. `agents.yaml`에서 2–3개의 뚜렷한 역할을 가진 에이전트 정의
-4. `crewai run`으로 crew 실행
+1. CrewAI 설치: ````pip install crewai````
+2. 첫 번째 프로젝트 스캐폴드: ````crewai create crew my_project````
+3. ````agents.yaml````에서 2–3개의 뚜렷한 역할을 가진 에이전트 정의
+4. ````crewai run```으로 crew 실행
 5. 지원과 고급 패턴을 위해 CrewAI 커뮤니티 가입
 
 Telegram에서 토론에 참여하세요: [dibi8.com 커뮤니티 가입](https://t.me/dibi8tech)하여 멀티 에이전트 AI 팁과 프로덕션 배포 전략을 얻으세요.
@@ -647,7 +648,7 @@ Telegram에서 토론에 참여하세요: [dibi8.com 커뮤니티 가입](https:
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -657,7 +658,7 @@ Telegram에서 토론에 참여하세요: [dibi8.com 커뮤니티 가입](https:
 - [ray-distributed-ai-framework-complete-guide](crewai)
 - [cleanlab-11k-star-ai-data-cleaning](crewai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

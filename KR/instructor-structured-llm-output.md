@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/instructor-structured-llm-output/
 ---
 
+
 {{</* resource-info */>}}
 
 *최종 업데이트: 2026년 5월 19일*
@@ -32,29 +33,29 @@ aliases:
 
 Instructor는 OpenAI 클라이언트(및 기타 10개 이상의 LLM 제공자)를 패치하여 **Pydantic 모델**을 사용하여 구조화되고 타입 안전하며 검증된 출력을 보장하는 Python 라이브러리입니다. LLM 텍스트 생성의 묵묵한 서부를 예측 가능한 소프트웨어 엔지니어링 프로세스로 변환합니다. 11,000개 이상의 GitHub 스타, MIT 라이선스 및 번성하는 커뮤니티를 보유한 Instructor는 Python에서 구조화된 LLM 출력의 사실상 표준이 되었습니다. 이 가이드는 2026년 기본 설정부터 고급 멀티 제공자 패턴까지 모든 것을 다룹니다.
 
----
+* * *
 
 ## Instructor란 무엇이며 왜 중요한가?
 
-**Jason Liu**(`jxnl`)가 생성한 Instructor는 기존 LLM 클라이언트 위에 위치하여 Pydantic 모델 검증을 통해 구조화된 출력을 강제하는 경량 Python 라이브러리입니다. LLM으로부터 원시 텍스트를 받아서 제대로 파싱되기를 기도하는 대신, Pydantic 스키마를 정의하고 Instructor가 모든 응답이 해당 스키마를 준수하도록 보장합니다——또는 수정된 프롬프트로 자동 재시행합니다.
+**Jason Liu**(```jxnl````)가 생성한 Instructor는 기존 LLM 클라이언트 위에 위치하여 Pydantic 모델 검증을 통해 구조화된 출력을 강제하는 경량 Python 라이브러리입니다. LLM으로부터 원시 텍스트를 받아서 제대로 파싱되기를 기도하는 대신, Pydantic 스키마를 정의하고 Instructor가 모든 응답이 해당 스키마를 준수하도록 보장합니다——또는 수정된 프롬프트로 자동 재시행합니다.
 
-Instructor가 해결하는 문제는 근본적인 것입니다: LLM은 텍스트를 생성하지만 애플리케이션은 데이터가 필요합니다. LLM 기능을 프로덕션 환경에 배포한 모든 개발자는 모델이 JSON 객체 앞에 "Here's your result:"를 추가하여 `json.loads()`가 충돌했을 때 새벽 2시에 경보를 받은 경험이 있습니다. Instructor는 이러한 전체 범주의 오류를 제거합니다.
+Instructor가 해결하는 문제는 근본적인 것입니다: LLM은 텍스트를 생성하지만 애플리케이션은 데이터가 필요합니다. LLM 기능을 프로덕션 환경에 배포한 모든 개발자는 모델이 JSON 객체 앞에 "Here's your result:"를 추가하여 ````json.loads()````가 충돌했을 때 새벽 2시에 경보를 받은 경험이 있습니다. Instructor는 이러한 전체 범주의 오류를 제거합니다.
 
-```bash
+`````bash
 # Instructor 설치
 pip install instructor
 
 # 선호하는 LLM 클라이언트 설치(OpenAI 예시)
 pip install openai
-```
+`````
 
----
+* * *
 
 ## 핵심 개념: OpenAI 클라이언트 패치
 
 Instructor의 마법은 **클리이언트 패치**를 통해 이루어집니다. OpenAI의 API를 직접 호출하는 대신, 응답을 가로채고 Pydantic 모델에 대해 검증하며 실패를 자동으로 처리하는 패치된 클라이언트를 만듭니다.
 
-```python
+`````python
 import instructor
 from openai import OpenAI
 from pydantic import BaseModel
@@ -94,17 +95,17 @@ print(profile)
 # 타입이 지정된 필드에 직접 접근
 print(f"이름: {profile.name}, 나이: {profile.age}")
 print(f"이메일 유효: {'@' in profile.email}")
-```
+`````
 
-`response_model=UserProfile`가 Instructor에게 정의한 스키마에 대해 LLM의 출력을 검증하도록 지시하는 방식에 주목하세요. 결과는 완전히 타입이 지정된 Pydantic 객체입니다——원시 문자열이나 비타입화된 딕셔너리가 아닙니다.
+````response_model=UserProfile````가 Instructor에게 정의한 스키마에 대해 LLM의 출력을 검증하도록 지시하는 방식에 주목하세요. 결과는 완전히 타입이 지정된 Pydantic 객체입니다——원시 문자열이나 비타입화된 딕셔너리가 아닙니다.
 
----
+* * *
 
 ## 자동 재시도를 통한 검증 실패 처리
 
 LLM이 잘못된 출력을 생성하면 어떻게 될까요? Instructor의 기본 동작은 무엇이 잘못되었는지에 대한 피드백과 함께 모델에 **재질문**하여 자기 수정 루프를 만드는 것입니다.
 
-```python
+`````python
 from pydantic import BaseModel, Field, field_validator
 
 class ValidatedProduct(BaseModel): name: str = Field(description="제품 이름, 최대 50자")
@@ -140,15 +141,15 @@ product = parse_product(
 print(product)
 # ValidatedProduct(name='무선 블루투스 헤드폰', 
 #                  price=79.99, category=electronics)
-```
+`````
 
----
+* * *
 
 ## 중첩 모델 및 복잡한 스키마
 
 실제 애플리케이션에는 단순한 구조 이상이 필요합니다. Instructor는 임의로 중첩된 Pydantic 모델을 쉽게 처리합니다.
 
-```python
+`````python
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
@@ -198,15 +199,15 @@ order = extract_order("""
 print(f"고객: {order.customer_name}")
 print(f"배송 도시: {order.shipping_address.city}")
 print(f"주문 총액: ${order.grand_total:.2f}")
-```
+`````
 
----
+* * *
 
 ## 멀티 프로바이더 지원: OpenAI를 넘어서
 
 Instructor는 OpenAI에 잠기지 않습니다. 동일한 API로 10개 이상의 LLM 제공자를 지원하여 공급자 전환이 수월합니다.
 
-```python
+`````python
 # --- Anthropic Claude ---
 import anthropic
 import instructor
@@ -246,15 +247,15 @@ result = cohere_client.chat(
     message="추출: David 42세, 골프와 낚시 좋아함"
 )
 print(result)
-```
+`````
 
----
+* * *
 
 ## 대용량 애플리케이션을 위한 배치 처리
 
 수천 개의 항목을 처리할 때 개별 API 호출은 너무 느립니다. Instructor는 동시 실행을 위한 asyncio를 지원하는 배치 처리를 제공합니다.
 
-```python
+`````python
 import asyncio
 import instructor
 from openai import AsyncOpenAI
@@ -292,15 +293,15 @@ texts = [
 results = asyncio.run(analyze_batch(texts))
 positive = sum(1 for r in results if r.sentiment == "positive")
 print(f"긍정: {positive}/{len(results)}")
-```
+`````
 
----
+* * *
 
 ## 스트리밍 구조화된 출력
 
 실시간 애플리케이션을 위해 Instructor는 LLM에서 결과가 도착하는 대로 부분 결과를 스트리밍하는 것을 지원합니다.
 
-```python
+`````python
 from typing import Iterable
 from pydantic import BaseModel
 
@@ -322,15 +323,15 @@ def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.c
 for partial in stream_article("2026년 재생 에너지 트렌드"): print(f"제목: {partial.title}")
     print(f"현재까지의 섹션 수: {len(partial.sections)}")
     print("---")
-```
+`````
 
----
+* * *
 
 ## 내장 재시도 및 재질문
 
 Instructor의 재시도 시스템은 단순히 요청을 반복하는 것이 아닙니다——검증이 실패한 내용에 대한 구체적인 피드백을 LLM에 제공하여 자가 수정을 가능하게 합니다.
 
-```python
+`````python
 from pydantic import BaseModel, field_validator
 
 class StrictDateRange(BaseModel): start_date: str = Field(description="YYYY-MM-DD 형식")
@@ -365,15 +366,15 @@ try: result = extract_date_range(
     )
     print(result)
 except Exception as e: print(f"최대 재시도 횟수 후 실패: {e}")
-```
+`````
 
----
+* * *
 
 ## 제한된 분류를 위한 Literal 사용
 
-분류 작업의 경우 Python의 `Literal` 타입을 사용하여 출력을 특정 값으로 제한합니다.
+분류 작업의 경우 Python의 ````Literal```` 타입을 사용하여 출력을 특정 값으로 제한합니다.
 
-```python
+`````python
 from typing import Literal
 
 class SupportTicket(BaseModel): customer_query: str
@@ -407,13 +408,13 @@ ticket = classify_ticket(
 )
 print(f"카테고리: {ticket.category}")  # 항상 "billing"
 print(f"우선순위: {ticket.priority}")  # 항상 4개 값 중 하나
-```
+`````
 
----
+* * *
 
 ## FastAPI와의 통합으로 프로덕션 API 구축
 
-Instructor는 API 개발에서 빛을 발합니다. 다음은 구조화된 LLM 출력을 갖춘 완전한 FastAPI 엔드포인트입니다: ```python
+Instructor는 API 개발에서 빛을 발합니다. 다음은 구조화된 LLM 출력을 갖춘 완전한 FastAPI 엔드포인트입니다: `````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -451,15 +452,15 @@ async def extract_entities(request: ExtractionRequest): """비구조화된 텍�
     except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # 실행: uvicorn main:app --reload
-```
+`````
 
----
+* * *
 
 ## 고급: 함수 호출 대안
 
 Instructor는 더 강력한 Pydantic 기반 스키마로 OpenAI의 함수 호출을 대체할 수 있습니다.
 
-```python
+`````python
 from typing import Type
 
 class SearchQuery(BaseModel): """매개변수가 있는 생성된 검색 쿼리"""
@@ -484,15 +485,15 @@ query = generate_search(
 print(query.keywords)  # ['wireless earbuds', bluetooth]
 print(query.filters)   # {max_price: 100}
 print(query.sort_by)   # date
-```
+`````
 
----
+* * *
 
 ## 오류 처리 및 로깅
 
 프로덕션 시스템은 Instructor의 재시도 동작에 대한 가시성이 필요합니다. 디버깅을 위해 로깅을 구성합니다.
 
-```python
+`````python
 import logging
 import instructor
 
@@ -518,15 +519,15 @@ result = client.chat.completions.create(
     max_retries=3,
     messages=[{"role": "user", "content": "추출: Jane, 25세, 예술 좋아함"}]
 )
-```
+`````
 
----
+* * *
 
 ## 자주 묻는 질문
 
 ### Instructor는 어떤 LLM 제공자를 지원하나요?
 
-Instructor는 **OpenAI**(GPT-4, GPT-4o, GPT-3.5), **Anthropic**(Claude 3/3.5/4 Sonnet, Opus, Haiku), **Google**(Gemini 1.5/2.0/2.5 Pro, Flash), **Cohere**, **Mistral**, **Groq**, **Ollama**(로컬 모델), **Azure OpenAI**, **AWS Bedrock**, **Fireworks AI**, **Together AI**를 지원합니다. 동일한 `response_model` API가 모든 제공자에서 동일하게 작동합니다.
+Instructor는 **OpenAI**(GPT-4, GPT-4o, GPT-3.5), **Anthropic**(Claude 3/3.5/4 Sonnet, Opus, Haiku), **Google**(Gemini 1.5/2.0/2.5 Pro, Flash), **Cohere**, **Mistral**, **Groq**, **Ollama**(로컬 모델), **Azure OpenAI**, **AWS Bedrock**, **Fireworks AI**, **Together AI**를 지원합니다. 동일한 ````response_model```` API가 모든 제공자에서 동일하게 작동합니다.
 
 ### Instructor는 OpenAI의 JSON 모드와 어떻게 다른가요?
 
@@ -538,21 +539,21 @@ OpenAI의 JSON 모드는 유효한 JSON 구문을 보장하지만 **스키마 �
 
 ### Instructor의 성능 오버헤드는 얼마인가요?
 
-Instructor는 최소한의 오버헤드만 추가합니다——일반적으로 Pydantic 검증에 대해 **호출당 10-50ms**입니다. 재시도 메커니즘은 검증이 실패할 때만 지연을 추가합니다(이는 유능한 모델에서는 호출의 5% 미만이어야 합니다). 고처리량 애플리케이션의 경우 `gpt-4o-mini` 또는 비동기 배치 처리가 있는 로컬 모델을 사용하세요. 오버헤드는 LLM API 지연 자체(일반적으로 500ms-5s)와 비교하면 무시할 수 있습니다.
+Instructor는 최소한의 오버헤드만 추가합니다——일반적으로 Pydantic 검증에 대해 **호출당 10-50ms**입니다. 재시도 메커니즘은 검증이 실패할 때만 지연을 추가합니다(이는 유능한 모델에서는 호출의 5% 미만이어야 합니다). 고처리량 애플리케이션의 경우 ````gpt-4o-mini```` 또는 비동기 배치 처리가 있는 로컬 모델을 사용하세요. 오버헤드는 LLM API 지연 자체(일반적으로 500ms-5s)와 비교하면 무시할 수 있습니다.
 
 ### 재시도/재질문 메커니즘은 어떻게 작동하나요?
 
-검증이 실패하면 Instructor는 Pydantic `ValidationError`를 포착하고 특정 오류 메시지(예: "age must be a positive integer")를 추출하며, 다음을 포함하는 새 요청을 LLM에 볃니다: 원래 프롬프트, 잘못된 응답, 검증 오류 세부 정보. 이는 대부분의 문제를 1-2회 재시도 내에 해결하는 자기 수정 루프를 만듭니다. 최대 재시도 횟수는 `max_retries` 매개변수로 제어합니다.
+검증이 실패하면 Instructor는 Pydantic ````ValidationError````를 포착하고 특정 오류 메시지(예: "age must be a positive integer")를 추출하며, 다음을 포함하는 새 요청을 LLM에 볃니다: 원래 프롬프트, 잘못된 응답, 검증 오류 세부 정보. 이는 대부분의 문제를 1-2회 재시도 내에 해결하는 자기 수정 루프를 만듭니다. 최대 재시도 횟수는 ````max_retries```` 매개변수로 제어합니다.
 
 ### async/await 패턴에서 Instructor를 사용할 수 있나요?
 
-네. Instructor는 `AsyncOpenAI`, `AsyncAnthropic` 및 기타 비동기 클라이언트를 통해 완전히 비동기를 지원합니다. 단일 호출에는 `await client.chat.completions.create()`를 사용하고, 동시 배치 처리에는 `asyncio.gather()`를 사용합니다. 스트리밍도 `create_partial()`을 통해 비동기 모드에서 지원됩니다.
+네. Instructor는 ````AsyncOpenAI````, ````AsyncAnthropic```` 및 기타 비동기 클라이언트를 통해 완전히 비동기를 지원합니다. 단일 호출에는 ````await client.chat.completions.create()````를 사용하고, 동시 배치 처리에는 ````asyncio.gather()````를 사용합니다. 스트리밍도 ````create_partial()````을 통해 비동기 모드에서 지원됩니다.
 
 ### Instructor는 엔터프라이즈 프로덕션 배포에 적합한가요?
 
 물론입니다. Instructor의 11,000개 이상의 GitHub 스타, MIT 라이선스, 활발한 유지 관리, Pydantic 기반 아키텍처로 인해 엔터프라이즈 준비가 되었습니다. FastAPI, 모니터링 시스템(Datadog, Prometheus), 구조화된 로깅과 깔끔하게 통합됩니다. 검증 레이어는 원시 LLM API가 일치시킬 수 없는 신뢰성을 추가합니다. 많은 포춘 500대 기업이 프로덕션 데이터 파이프라인에서 Instructor를 사용합니다.
 
----
+* * *
 
 
 
@@ -569,7 +570,7 @@ Instructor는 LLM을 예측 불가능한 텍스트 생성기에서 신뢰할 수
 
 라이브러리의 멀티 프로바이더 지원은 단일 LLM 공급자에 잠기지 않음을 의미합니다. FastAPI, 비동기 패턴 및 스트리밍과의 원활한 통합으로 백그라운드 배치 작업부터 실시간 API까지 모든 것에 적합합니다. 11,000개 이상의 스타와 활발한 커뮤니티를 보유한 Instructor는 현대 AI 개발자의 도구 키트에서 필수 도구로서의 지위를 확보했습니다.
 
-여전히 원시 LLM 출력을 `json.loads()`로 파싱하고 제대로 작동하기를 기도하고 있다면, 업그레이드할 때입니다. 오늘 Instructor를 설치하고 **100% 유효한 JSON, 100%의 시간**을 경험해 보세요.
+여전히 원시 LLM 출력을 ````json.loads()```로 파싱하고 제대로 작동하기를 기도하고 있다면, 업그레이드할 때입니다. 오늘 Instructor를 설치하고 **100% 유효한 JSON, 100%의 시간**을 경험해 보세요.
 
 
 {

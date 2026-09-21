@@ -24,13 +24,14 @@ aliases:
   - /vi/posts/typesense-instant-search-api/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm
 
 Năm 2026", "ngưởi dùng mong đợi kết quả tìm kiếm **xuất hiện trước khi họ gõ xong**. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm", "bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy **độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%**. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày", "đó là 70.000 tương tác bị mất — mỗi ngày.
 
-Hầu hết các đội ngũ bắt đầu với truy vấn `LIKE` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng", "truy vấn mất **500ms–2 giây**. Ở 1 triệu hàng", "CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.
+Hầu hết các đội ngũ bắt đầu với truy vấn ```LIKE```` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng", "truy vấn mất **500ms–2 giây**. Ở 1 triệu hàng", "CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.
 
 Hãy làm quen với **Typesense** — một công cụ tìm kiếm mã nguồn mở", "chịu lỗi chính tả", "được thiết kế cho **tìm kiếm tức thì dưới 50ms**. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn **1 triệu lượt tìm kiếm mỗi ngày** trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0", "có **hơn 23.200 GitHub Stars**", "và cung cấp SDK cho JavaScript", "Python", "Ruby", "Go", "PHP", "và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.
 
@@ -64,7 +65,7 @@ Typesense sử dụng **khoảng cách Levenshtein** để tự động xử lý
 ### Tìm Kiếm Phân Loại", "Lọc", "và Địa Lý
 
 Typesense hỗ trợ: - **Tìm kiếm phân loại (Faceted search)** — tổng hợp đếm động theo danh mục
-- **Bộ lọc phạm vi số** — `price:>=10&&<=100`
+- **Bộ lọc phạm vi số** — ````price:>=10&&<=100````
 - **Tìm kiếm địa lý** — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ
 - **Sắp xếp** — theo mức độ liên quan", "trường số", "hoặc khoảng cách địa lý
 - **Lọc** — các tổ hợp boolean của bất kỳ trường đã lập chỉ mục nào
@@ -81,7 +82,7 @@ Typesense sử dụng API keys có phạm vi (scoped) cho ứng dụng đa ngư�
 
 Cách nhanh nhất để chạy Typesense là Docker. Bạn cần **Docker 24.0+** và ít nhất **512MB RAM** (khuyến nghị 2GB cho production).
 
-```bash
+`````bash
 mkdir -p /tmp/typesense-data
 
 # Tạo API key
@@ -98,16 +99,16 @@ docker run -d \
   --data-dir /data \
   --api-key=$TYPESENSE_API_KEY \
   --enable-cors
-```
+`````
 
-Xác minh container đang chạy: ```bash
+Xác minh container đang chạy: `````bash
 curl -s "http://localhost:8108/health" | jq .
 # Kỳ vọng: { "ok": true }
-```
+`````
 
 ### Bước 2: Tạo Bộ Sưu Tập Đầu Tiên
 
-Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu: ```bash
+Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu: `````bash
 # Định nghĩa schema cho catalog sản phẩm thương mại điện tử
 curl -s "http://localhost:8108/collections" \
   -X POST \
@@ -118,11 +119,11 @@ curl -s "http://localhost:8108/collections" \
       { "name": "name", "type": "string", "facet": false }", "{ "name": "description", "type": "string", "facet": false }", "{ "name": "price", "type": "float", "facet": true", "sort": true }", "{ "name": "category", "type": "string", "facet": true }", "{ "name": "rating", "type": "float", "facet": true", "sort": true }", "{ "name": "in_stock", "type": "bool", "facet": true }", "{ "name": "location", "type": "geopoint" }"],
     "default_sorting_field": "rating"
   }' | jq .
-```
+`````
 
 ### Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu
 
-```bash
+`````bash
 # Import tài liệu sử dụng endpoint import
 curl -s "http://localhost:8108/collections/products/documents/import?action=create" \
   -X POST \
@@ -134,11 +135,11 @@ curl -s "http://localhost:8108/collections/products/documents/import?action=crea
   {"name": "Running Shoes", "description": "Lightweight running shoes for marathon training", "price": 89.50, "category": "Sports", "rating": 4.2, "in_stock": false, "location": [51.5074, -0.1278]}
   {"name": "Yoga Mat", "description": "Non-slip eco-friendly yoga mat", "price": 29.99, "category": "Sports", "rating": 4.8, "in_stock": true, "location": [48.8566, 2.3522]}
   '
-```
+`````
 
 ### Bước 4: Tìm Kiếm
 
-```bash
+`````bash
 # Tìm kiếm với khả năng chịu lỗi chính tả
 curl -s "http://localhost:8108/collections/products/documents/search?\
 q=headphons&\
@@ -149,7 +150,7 @@ facet_by=category&\
 page=1&\
 per_page=10" \
   -H "X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY" | jq .
-```
+`````
 
 Lưu ý: chúng ta đã tìm kiếm **"headphons"** (lỗi chính tả) và Typesense vẫn trả về "Wireless Bluetooth Headphones". Phản hồi bao gồm số lượng phân loại theo danh mục tự động.
 
@@ -157,11 +158,11 @@ Lưu ý: chúng ta đã tìm kiếm **"headphons"** (lỗi chính tả) và Type
 
 ### SDK JavaScript/Node.js
 
-```bash
+`````bash
 npm install typesense
-```
+`````
 
-```javascript
+`````javascript
 const Typesense = require(typesense);
 
 const client = new Typesense.Client({
@@ -182,22 +183,22 @@ async function searchProducts(query) {
       per_page: 10
     });
   
-  console.log(`Found ${results.found} results`);
+  console.log(````Found ${results.found} results````);
   results.hits.forEach(hit => {
-    console.log(`- ${hit.document.name} ($${hit.document.price})`);
+    console.log(````- ${hit.document.name} ($${hit.document.price})````);
   });
 }
 
 searchProducts(headphons); // lỗi chính tả vẫn hoạt động
-```
+`````
 
 ### SDK Python
 
-```bash
+`````bash
 pip install typesense
-```
+`````
 
-```python
+`````python
 import typesense
 import os
 
@@ -218,15 +219,15 @@ results = client.collections[products].documents.search({
 
 print(f"Total: {results[found]}")
 for hit in results[hits]: print(f"  {hit[document][name]} - ${hit[document][price]}")
-```
+`````
 
 ### Tích Hợp React InstantSearch
 
-Với ứng dụng React, sử dụng `typesense-instantsearch-adapter` để kết nối Typesense với các UI component InstantSearch của Algolia: ```bash
+Với ứng dụng React, sử dụng ``typesense-instantsearch-adapter`` để kết nối Typesense với các UI component InstantSearch của Algolia: `````bash
 npm install typesense-instantsearch-adapter react-instantsearch-dom
-```
+`````
 
-```jsx
+`````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom';
 import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter';
@@ -265,11 +266,11 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-```
+`````
 
 ### SDK Ruby
 
-```ruby
+`````ruby
 require typesense
 
 client = Typesense::Client.new(
@@ -287,11 +288,11 @@ results = client.collections[products].documents.search(
 
 puts "Found #{results[found]} results"
 results[hits].each { |hit| puts "- #{hit[document][name]}" }
-```
+`````
 
 ### SDK Go
 
-```go
+`````go
 package main
 
 import (
@@ -325,7 +326,7 @@ func main() {
         fmt.Printf("- %s ($%.2f)\n", doc["name"], doc["price"])
     }
 }
-```
+`````
 
 ## Đánh Giá Hiệu Suất & Các Trường Hợp Sử Dụng Thực Tế
 
@@ -358,17 +359,17 @@ Chúng tôi đã đánh giá Typesense 27.1 trên một **DigitalOcean droplet**
 
 ### Công Thức Lập Kế Hoạch Tài Nguyên
 
-Sử dụng công thức này để ước tính nhu cầu RAM: ```
+Sử dụng công thức này để ước tính nhu cầu RAM: `````
 RAM (GB) ≈ (Số tài liệu × Kích thước tài liệu trung bình × 3) / 1GB
-```
+`````
 
-Hệ số `×3` tính đến chi phí overhead của inverted index trong bộ nhớ. Một tài liệu 1KB thường cần khoảng 3KB RAM trong Typesense.
+Hệ số ````×3```` tính đến chi phí overhead của inverted index trong bộ nhớ. Một tài liệu 1KB thường cần khoảng 3KB RAM trong Typesense.
 
 ## Sử Dụng Nâng Cao / Gia Cố Production
 
 ### 1. Kích Hoạt HTTPS với Reverse Proxy
 
-Không bao giờ phơi bày Typesense trực tiếp ra internet. Sử dụng Nginx hoặc Caddy: ```nginx
+Không bao giờ phơi bày Typesense trực tiếp ra internet. Sử dụng Nginx hoặc Caddy: `````nginx
 # /etc/nginx/sites-available/typesense
 server {
     listen 443 ssl http2;
@@ -384,11 +385,11 @@ server {
         proxy_read_timeout 30s;
     }
 }
-```
+`````
 
 ### 2. Docker Compose cho Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -413,13 +414,13 @@ services: typesense: image: typesense/typesense:27.1
     volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes: typesense-data: caddy-data: ```
+volumes: typesense-data: caddy-data: `````
 
 Triển khai trên bất kỳ VPS nào. Nếu bạn cần một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp **$200 tín dụng miễn phí** cho ngưởi dùng mới — đủ để chạy Typesense trong 8 tháng trên droplet 4GB.
 
 ### 3. API Keys Có Phạm Vi cho Đa Ngưởi Dùng
 
-```javascript
+`````javascript
 // Tạo API key có phạm vi chỉ xem danh mục Electronics
 const typesense = require(typesense);
 
@@ -437,11 +438,11 @@ const scopedKey = client.keys().generateScopedSearchKey(
 
 console.log('Scoped key cho Electronics:', scopedKey);
 // Key này CHỈ có thể tìm kiếm sản phẩm Electronics
-```
+`````
 
 ### 4. Clustering cho Tính Sẵn Sàng Cao
 
-Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: ```bash
+Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: `````bash
 # Node 1
 docker run -d -p 8108:8108 \
   -v typesense-data:/data \
@@ -453,11 +454,11 @@ docker run -d -p 8108:8108 \
   --peering-port=8107
 
 # Node 2 và 3: cùng lệnh, cập nhật --nodes với tất cả IP
-```
+`````
 
 ### 5. Từ Đồng Nghĩa và Điều Phối Truy Vấn
 
-```bash
+`````bash
 # Tạo từ đồng nghĩa: "laptop" = "notebook"
 curl -s "http://localhost:8108/collections/products/synonyms" \
   -X POST \
@@ -474,7 +475,7 @@ curl -s "http://localhost:8108/collections/products/overrides" \
     "rule": {"query": "deals", "match": "contains"},
     "includes": [{"id": "123", "position": 1}]
   }"
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -504,7 +505,7 @@ Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn
 
 2. **Bắt buộc schema**: Typesense yêu cầu bạn định nghĩa kiểu trường từ trước. Khác với Meilisearch (tự động phát hiện), bạn phải lập kế hoạch schema. Điều này nghiêm ngặt hơn nhưng ngăn lỗi kiểu runtime.
 
-3. **Không hỗ trợ tìm kiếm object lồng nhau**: Typesense làm phẳng các object lồng nhau. Các truy vấn lồng sâu (ví dụ: `reviews.user.name`) yêu cầu chuẩn hóa hoặc tuần tự hóa chuỗi.
+3. **Không hỗ trợ tìm kiếm object lồng nhau**: Typesense làm phẳng các object lồng nhau. Các truy vấn lồng sâu (ví dụ: ````reviews.user.name````) yêu cầu chuẩn hóa hoặc tuần tự hóa chuỗi.
 
 4. **Phân tích hạn chế**: Typesense không có phân tích tìm kiếm tích hợp. Bạn phải tích hợp với công cụ bên ngoài (ví dụ: [n8n](dibi8-internal-link) hoặc logging tùy chỉnh) để theo dõi các truy vấn phổ biến.
 
@@ -524,11 +525,11 @@ Có. Một node Typesense với 4 vCPU và 8GB RAM có thể duy trì **1 triệ
 
 ### Điều gì xảy ra nếu Typesense hết RAM?
 
-Typesense sẽ **từ chối các thao tác ghi mới** khi bộ nhớ cạn kiệt. Truy vấn đọc vẫn hoạt động. Giám sát mức sử dụng bộ nhớ qua endpoint `/health` và metric `system_memory_used_bytes`. Thiết lập cảnh báo ở 80% RAM. Mở rộng theo chiều dọc (thêm RAM) hoặc phân chia qua cluster.
+Typesense sẽ **từ chối các thao tác ghi mới** khi bộ nhớ cạn kiệt. Truy vấn đọc vẫn hoạt động. Giám sát mức sử dụng bộ nhớ qua endpoint ````/health```` và metric ````system_memory_used_bytes````. Thiết lập cảnh báo ở 80% RAM. Mở rộng theo chiều dọc (thêm RAM) hoặc phân chia qua cluster.
 
 ### Làm thế nào để di chuyển từ Algolia sang Typesense?
 
-Sử dụng công cụ di chuyển `typesense-cli` hoặc viết một script đơn giản: xuất bản ghi Algolia qua API của họ, chuyển đổi sang định dạng schema Typesense, và import hàng loạt qua `/collections/{name}/documents/import`. Hầu hết các component UI Algolia InstantSearch hoạt động với Typesense qua `typesense-instantsearch-adapter`. Di chuyển thường mất 2-4 giờ cho dự án vừa.
+Sử dụng công cụ di chuyển ````typesense-cli```` hoặc viết một script đơn giản: xuất bản ghi Algolia qua API của họ, chuyển đổi sang định dạng schema Typesense, và import hàng loạt qua ````/collections/{name}/documents/import````. Hầu hết các component UI Algolia InstantSearch hoạt động với Typesense qua ````typesense-instantsearch-adapter````. Di chuyển thường mất 2-4 giờ cho dự án vừa.
 
 ### Typesense có hỗ trợ lập chỉ mục real-time không?
 
@@ -542,7 +543,7 @@ Typesense Cloud bắt đầu từ **$29/tháng** cho gói Starter (bao gồm HA,
 
 Typesense 27.1 là con đường nhanh nhất đến tìm kiếm tức thì cấp production. Từ khởi chạy Docker đến kết quả tìm kiếm đầu tiên, bạn cần **chưa đầy 5 phút** thiết lập. Với độ trễ truy vấn dưới 50ms, khả năng chịu lỗi chính tả tích hợp, và API REST sạch sẽ, nó loại bỏ sự phức tạp của các triển khai Elasticsearch.
 
-Cho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho ứng dụng hiện tại đang di chuyển từ truy vấn `LIKE` cơ sở dữ liệu, cải thiện hiệu suất sẽ là **100 lần hoặc hơn**. Cho các đội hiện đang trả Algolia $500+/tháng, Typesense tự lưu trữ trên VPS $24 xử lý cùng lưu lượng.
+Cho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho ứng dụng hiện tại đang di chuyển từ truy vấn ````LIKE``` cơ sở dữ liệu, cải thiện hiệu suất sẽ là **100 lần hoặc hơn**. Cho các đội hiện đang trả Algolia $500+/tháng, Typesense tự lưu trữ trên VPS $24 xử lý cùng lưu lượng.
 
 Tự lưu trữ? Một VPS từ [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($200 tín dụng miễn phí) để triển khai Typesense trong vài phút. Tín dụng bao phủ 8+ tháng lưu trữ.
 
@@ -567,7 +568,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So sánh: Typesense vs Meilisearch (2026)](dibi8-internal-link)
 - [Best Practices Docker cho công cụ tìm kiếm](dibi8-internal-link)
 
----
+* * *
 
 *Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Typesense là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.*
 

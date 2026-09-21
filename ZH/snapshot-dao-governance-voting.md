@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/snapshot-dao-governance-voting/-
 ---
 
+
 {{</* resource-info */>}}
 
 **日期：** 2026-05-19  
@@ -21,11 +22,11 @@ aliases:
 **GitHub：** [snapshot-labs/snapshot](https://github.com/snapshot-labs/snapshot) — ⭐ 9,500星，MIT许可证
 
 
----
+* * *
 > 有兴趣交易治理代币？在[币安](https://www.bsmkweb.cc/register?ref=DIBI8)注册，开始DAO代币交易。
 
 
----
+* * *
 ## 1. 引言：为什么DAO治理在2026年至关重要
 
 去中心化自治组织（DAO）从根本上改变了社区进行集体决策的方式。到2026年，DAO管理着DeFi协议、NFT项目、基础设施网络和投资集体超过**500亿美元**的国库资产。然而，在以太坊等网络上进行链上投票在拥堵期间仍然成本高昂，单次投票的Gas费可达5至50美元。这种财务障碍剥夺了较小代币持有者的权利，破坏了去中心化的民主精神。
@@ -36,7 +37,7 @@ aliases:
 
 本综合指南探讨了Snapshot在2026年的架构、投票策略、委托机制、SDK集成和实际实施模式。
 
----
+* * *
 
 ## 2. 核心架构：Snapshot如何实现无Gas投票
 
@@ -44,7 +45,7 @@ aliases:
 
 Snapshot的革命性方法将**投票信号**与**投票执行**分离。传统的链上治理要求每个参与者提交交易，支付与网络拥堵成比例的Gas费。Snapshot颠覆了这一模式：
 
-```typescript
+````typescript
 // 传统链上投票（昂贵）
 // 每位选民为此交易支付Gas费
 await governorContract.castVote(
@@ -52,9 +53,9 @@ await governorContract.castVote(
   support,       // 0=反对, 1=赞成, 2=弃权
   { value: 0, gasPrice: 50000000000 } // Gas费约$5-50
 );
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot链下投票（无Gas）
 // 用户用钱包签名消息——零Gas成本
 const voteMessage = {
@@ -73,7 +74,7 @@ const signature = await signer.signTypedData(
   types,
   voteMessage
 );
-```
+`````
 
 签名后的消息被广播到Snapshot的中心节点并固定到IPFS，创建永久的、可验证的记录，无需任何区块链交易。
 
@@ -81,7 +82,7 @@ const signature = await signer.signTypedData(
 
 所有Snapshot数据——提案、投票和空间——都存储在**星际文件系统（IPFS）**上，确保抗审查性和永久性：
 
-```json
+`````json
 {
   "proposal": {
     "id": "QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz",
@@ -105,11 +106,11 @@ const signature = await signer.signTypedData(
     "votes": 1847
   }
 }
-```
+`````
 
-`snapshot`字段指定计算代币余额的以太坊区块号，防止闪电贷攻击并确保公平的投票权重计算。
+````snapshot````字段指定计算代币余额的以太坊区块号，防止闪电贷攻击并确保公平的投票权重计算。
 
----
+* * *
 
 ## 3. 在Snapshot上设置DAO空间
 
@@ -117,16 +118,16 @@ const signature = await signer.signTypedData(
 
 任何项目都可以在Snapshot上创建治理空间。该过程涉及ENS域名配置和策略选择：
 
-```bash
+`````bash
 # 第一步：确保您拥有ENS域名
 # 您的空间ID将是您的ENS名称（例如 mydao.eth）
 
 # 第二步：设置ENS文本记录
 # 设置快照记录指向您的空间设置
 ens records set mydao.eth text snapshot "ipfs://Qm..."
-```
+`````
 
-```typescript
+`````typescript
 // 第三步：通过Snapshot API配置空间设置
 import snapshot from '@snapshot-labs/snapshot.js';
 
@@ -177,22 +178,22 @@ await snapshot.utils.subgraphRequest(
     }
   }
 );
-```
+`````
 
 ### 3.2 空间验证
 
 配置后，验证您的空间是否可访问：
 
-```bash
+`````bash
 # 通过GraphQL查询空间
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { space(id: "mydao.eth") { id name about network symbol strategies { name params } } }"
   }'
-```
+`````
 
-```python
+`````python
 # Python验证脚本
 import requests
 
@@ -244,9 +245,9 @@ def verify_snapshot_space(space_id: str) -> dict: """验证Snapshot空间配置�
 
 # 验证
 space = verify_snapshot_space("mydao.eth")
-```
+`````
 
----
+* * *
 
 ## 4. 投票策略：灵活的代币加权治理
 
@@ -256,22 +257,22 @@ Snapshot支持50多种投票策略来决定如何计算投票权。最常用的�
 
 | 策略 | 用例 | 示例DAO |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `erc20-balance-of` | 简单代币余额 | Uniswap, Aave |
-| `erc721` | NFT所有权 | Bored Ape Yacht Club |
-| `contract-call` | 通过智能合约自定义逻辑 | Compound |
-| `delegation` | 委托投票权 | Gitcoin |
-| `whitelist` | 预先批准的选民 | 投资DAO |
-| `snapshot-multichain` | 多链代币余额 | Across Protocol |
+| ````erc20-balance-of```` | 简单代币余额 | Uniswap, Aave |
+| ````erc721```` | NFT所有权 | Bored Ape Yacht Club |
+| ````contract-call```` | 通过智能合约自定义逻辑 | Compound |
+| ````delegation```` | 委托投票权 | Gitcoin |
+| ````whitelist```` | 预先批准的选民 | 投资DAO |
+| ````snapshot-multichain```` | 多链代币余额 | Across Protocol |
 
 ### 4.2 配置自定义策略
 
-```typescript
+`````typescript
 // 复杂DAO的多策略配置
 const advancedStrategies = [
   // 策略1：基础治理代币
@@ -341,14 +342,14 @@ const votingPower = await getVotingPower(
   advancedStrategies,
   18945231
 );
-console.log(`投票权: ${votingPower} 代币`);
-```
+console.log(````投票权: ${votingPower} 代币````);
+`````
 
 ### 4.3 二次方投票策略
 
 对于寻求更民主结果的DAO，Snapshot支持二次方投票：
 
-```json
+`````json
 {
   "strategy": {
     "name": "quadratic-balance-of",
@@ -360,11 +361,11 @@ console.log(`投票权: ${votingPower} 代币`);
     }
   }
 }
-```
+`````
 
 通过二次方投票，拥有10,000代币的用户有100投票权（√10,000），而拥有100代币的用户有10投票权（√100）——减少鲸鱼持有者的影响力。
 
----
+* * *
 
 ## 5. 委托：DAO中的代议民主
 
@@ -372,7 +373,7 @@ console.log(`投票权: ${votingPower} 代币`);
 
 委托允许代币持有者将其投票权分配给可信的代表，提高参与率并实现治理专业化：
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -395,9 +396,9 @@ interface IVotingDelegate {
         uint256 blockNumber
     ) external view returns (uint96);
 }
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot委托设置
 import Snapshot from '@snapshot-labs/snapshot.js';
 
@@ -433,12 +434,12 @@ const txHash = await delegateVotingPower(
   "uniswap.eth"             // 空间特定委托
 );
 
-console.log(`委托记录: ${txHash}`);
-```
+console.log(````委托记录: ${txHash}````);
+`````
 
 ### 5.2 委托仪表板查询
 
-```graphql
+`````graphql
 # 查询空间的当前委托
 query GetDelegations($space: String!, $delegate: String!) {
   delegations(
@@ -456,32 +457,32 @@ query GetDelegations($space: String!, $delegate: String!) {
     timestamp
   }
 }
-```
+`````
 
-```bash
+`````bash
 # 执行委托查询
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { delegations(where: {space: "uniswap.eth", delegate: "0x2775b1c75658Be0F640272CCb8c72ac986009e38"}) { delegator timestamp } }"
   }'
-```
+`````
 
----
+* * *
 
 ## 6. 程序化集成：Snapshot SDK
 
 ### 6.1 安装和设置
 
-```bash
+`````bash
 # 安装Snapshot.js SDK
 npm install @snapshot-labs/snapshot.js ethers
 
 # 或使用yarn
 yarn add @snapshot-labs/snapshot.js ethers
-```
+`````
 
-```typescript
+`````typescript
 // 初始化Snapshot客户端
 import snapshot from '@snapshot-labs/snapshot.js';
 import { Wallet } from ethers;
@@ -492,11 +493,11 @@ const client = new snapshot.Client712(hub);
 // 设置提供者和签名者
 const provider = new ethers.JsonRpcProvider('https://eth.llamarpc.com');
 const signer = new Wallet(process.env.PRIVATE_KEY, provider);
-```
+`````
 
 ### 6.2 以编程方式创建提案
 
-```typescript
+`````typescript
 // 通过SDK创建治理提案
 async function createProposal(
   signer: any,
@@ -507,7 +508,7 @@ async function createProposal(
     space: "mydao.eth",
     type: "single-choice",        // "single-choice" | "approval" | "quadratic" | "ranked-choice" | "weighted"
     title: "2026年第二季度国库分配提案",
-    body: `## 摘要
+    body: ````## 摘要
 
 本提案为2026年第二季度的运营分配国库资金。
 
@@ -525,7 +526,7 @@ async function createProposal(
 ## 参考
 
 - [2026年第一季度国库报告](https://mydao.xyz/treasury/q1-2026)
-- [预算电子表格](https://mydao.xyz/budget/q2-2026)`,
+- [预算电子表格](https://mydao.xyz/budget/q2-2026)````,
     choices: ["赞成", "反对", "弃权"],
     start: Math.floor(Date.now() / 1000) + 86400,    // 24小时后开始
     end: Math.floor(Date.now() / 1000) + 259200,      // 72小时后结束
@@ -551,12 +552,12 @@ const proposalId = await createProposal(
   "mydao.eth"
 );
 
-console.log(`提案已创建: ${proposalId}`);
-```
+console.log(````提案已创建: ${proposalId}````);
+`````
 
 ### 6.3 通过API投票
 
-```typescript
+`````typescript
 // 以编程方式提交投票
 async function castVote(
   signer: any,
@@ -593,19 +594,19 @@ const voteReceipt = await castVote(
   "支持此提案，因为预算分配与我们的路线图中概述的战略重点一致。"
 );
 
-console.log(`投票已记录: ${voteReceipt}`);
-```
+console.log(````投票已记录: ${voteReceipt}````);
+`````
 
 ### 6.4 批量投票查询
 
-```typescript
+`````typescript
 // 查询提案的所有投票
 async function getProposalVotes(
   proposalId: string,
   first: number = 100,
   skip: number = 0
 ): Promise<any[]> {
-  const query = `
+  const query = ````
     query GetVotes($proposal: String!, $first: Int!, $skip: Int!) {
       votes(
         where: { proposal: $proposal }
@@ -624,7 +625,7 @@ async function getProposalVotes(
         ipfs
       }
     }
-  `;
+  ````;
 
   const response = await fetch('https://hub.snapshot.org/graphql', {
     method: POST,
@@ -663,12 +664,12 @@ async function getVoteStats(proposalId: string): Promise<any> {
 
 // 用法
 const stats = await getVoteStats("QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz");
-console.log(`总投票者: ${stats.totalVotes}`);
-console.log(`总VP: ${stats.totalVotingPower}`);
+console.log(````总投票者: ${stats.totalVotes}````);
+console.log(````总VP: ${stats.totalVotingPower}````);
 console.log("结果:", stats.results);
-```
+`````
 
----
+* * *
 
 ## 7. 多链和跨平台集成
 
@@ -676,7 +677,7 @@ console.log("结果:", stats.results);
 
 Snapshot支持同时在多个区块链上投票：
 
-```typescript
+`````typescript
 // 多链策略：跨网络聚合代币
 const multichainStrategies = [
   {
@@ -718,11 +719,11 @@ const scores = await snapshot.utils.getScores(
 );
 
 console.log("跨链投票权:", scores);
-```
+`````
 
 ### 7.2 Webhook通知
 
-```typescript
+`````typescript
 // 为提案事件设置Webhook
 import express from express;
 
@@ -734,13 +735,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created': console.log(`新提案: ${event.id}`);
+    case 'proposal/created': console.log(````新提案: ${event.id}````);
       notifyDiscord(event);
       break;
-    case 'proposal/end': console.log(`投票结束: ${event.id}`);
+    case 'proposal/end': console.log(````投票结束: ${event.id}````);
       tallyResults(event);
       break;
-    case vote: console.log(`${event.proposal.id} 上的新投票`);
+    case vote: console.log(````${event.proposal.id} 上的新投票````);
       updateLeaderboard(event);
       break;
   }
@@ -752,8 +753,8 @@ function notifyDiscord(proposal: any) {
   // 发送通知到Discord Webhook
   const message = {
     embeds: [{
-      title: `📋 新提案: ${proposal.title}`,
-      url: `https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}`,
+      title: ````📋 新提案: ${proposal.title}````,
+      url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
       description: proposal.body.substring(0, 200) + '...',
       fields: [
         { name: 空间, value: proposal.space.name, inline: true },
@@ -772,9 +773,9 @@ function notifyDiscord(proposal: any) {
 }
 
 app.listen(3000, () => console.log(Webhook服务器在3000端口监听));
-```
+`````
 
----
+* * *
 
 ## 8. 实际用例和最佳实践
 
@@ -782,7 +783,7 @@ app.listen(3000, () => console.log(Webhook服务器在3000端口监听));
 
 DeFi协议使用Snapshot对关键参数进行投票：
 
-```typescript
+`````typescript
 // Aave风格的风险参数提案
 interface RiskParameterProposal {
   asset: string;              // 代币地址
@@ -801,11 +802,11 @@ const aaveProposal: RiskParameterProposal = {
   justification: "由于市场波动降低风险敞口",
   riskAnalysis: "https://gauntlet.network/analyses/aave-weth-2026-05"
 };
-```
+`````
 
 ### 8.2 国库管理
 
-```typescript
+`````typescript
 // 国库分配投票类别
 interface TreasuryProposal {
   totalAllocation: bigint;
@@ -835,11 +836,11 @@ const treasuryVote: TreasuryProposal = {
     interval: 30 * 86400    // 月度释放
   }
 };
-```
+`````
 
 ### 8.3 安全最佳实践
 
-```yaml
+`````yaml
 # snapshot-security-checklist.yml
 space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
@@ -858,9 +859,9 @@ space_security: admin_keys: - use_multisig: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
-```
+`````
 
----
+* * *
 
 ## 9. 常见问题（FAQ）
 
@@ -874,7 +875,7 @@ Snapshot投票在加密上是安全的。每次投票都使用EIP-712类型数�
 
 ### 9.3 投票权和代币余额如何计算？
 
-投票权由为每个空间配置的**策略**决定。最常见的策略是`erc20-balance-of`，它在特定区块号（`snapshot`区块）检查选民的代币余额。这防止了：
+投票权由为每个空间配置的**策略**决定。最常见的策略是````erc20-balance-of````，它在特定区块号（````snapshot```区块）检查选民的代币余额。这防止了：
 - **闪电贷攻击**：同一交易中借入的代币不能用于投票
 - **双重投票**：相同的代币不能移动并再次投票
 - **最后时刻积累**：用户不能在提案创建后购买代币来影响投票
@@ -900,7 +901,7 @@ Snapshot提供多种集成选项：
 
 最常见的集成模式是使用GraphQL API在您的前端显示治理数据，结合SDK进行投票提交。所有集成都需要以太坊兼容的钱包连接（MetaMask、WalletConnect等）。
 
----
+* * *
 
 
 
@@ -921,11 +922,11 @@ Snapshot通过消除参与的财务障碍，从根本上实现了DAO治理的民
 
 对于构建下一代治理工具的开发者，Snapshot的MIT许可代码库、活跃的开发者社区和模块化架构提供了理想的基础。无论您是启动新的DeFi协议、管理NFT社区，还是为去中心化组织构建基础设施，Snapshot都为现代DAO治理提供所需的灵活性、安全性和可扩展性。
 
----
+* * *
 
 > **立即开始交易治理代币！** 在[币安](https://www.bsmkweb.cc/register?ref=DIBI8)注册，购买、出售和质押来自Uniswap、Aave和Compound等领先DAO的代币。
 
----
+* * *
 
 **许可证：** MIT  
 **维护者：** [Snapshot Labs](https://github.com/snapshot-labs)  

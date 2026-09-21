@@ -28,6 +28,7 @@ faqs: - q: 'WiFi-Forge란 무엇인가요?'
     a: 'Linux(Ubuntu 또는 Debian 권장), Python 3, 그리고 root 권한이 필요합니다. mininet-wifi가 커널 기능을 사용하기 때문입니다. 저장소를 클론한 후 sudo ./install.sh를 실행해 의존성을 설치하고, sudo python3 wififorge.py로 시작하면 됩니다.'
 ---
 
+
 # WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스
 
 {</* resource-info */>}
@@ -42,13 +43,13 @@ WiFi 공격을 전통적인 방식으로 배워본 적이 있다면, 흐름은 �
 
 기존 WiFi 실습 학습이 사람을 떨어뜨리는 세 가지 이유: 1. **하드웨어 복불복.** 모든 USB 어댑터가 모니터 + 인젝션을 깔끔하게 지원하지는 않습니다. 검증된 모델(Alfa AWUS036, Panda PAU09 등)은 30~60 달러이며, 한 번에 한 개만 사용할 수 있습니다.
 2. **법적 회색지대.** 대부분 국가에서 본인 소유가 아닌 네트워크를 건드리는 것은 —— 단순히 패시브 스니핑조차 —— 모두 위법입니다. *"그냥 보기만 했다"* 는 변명이 되지 않습니다.
-3. **롤백 비용.** 실제 하드웨어는 한 번의 명령으로 초기화되지 않습니다. 망가진 설정을 `git checkout`으로 되돌릴 수 없습니다.
+3. **롤백 비용.** 실제 하드웨어는 한 번의 명령으로 초기화되지 않습니다. 망가진 설정을 ```git checkout````으로 되돌릴 수 없습니다.
 
 WiFi-Forge는 이 세 가지를 노트북 위의 단일 샌드박스로 통합합니다.
 
 ## 내부 구조
 
-WiFi-Forge는 [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi) 위에 구축되었습니다 —— 802.11 네트워크 에뮬레이터로, Linux 네트워크 네임스페이스 내부에 가상 AP, 스테이션, "전파"를 만들어냅니다. 모든 AP와 클라이언트는 실제 Linux 프로세스이므로 `iwconfig`, `airodump-ng`, `tcpdump`는 물론 Reaver, Hashcat까지 시뮬레이션된 트래픽에 그대로 적용 가능하며, 표준 도구들이 실제 전파를 다루는 것처럼 동작합니다.
+WiFi-Forge는 [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi) 위에 구축되었습니다 —— 802.11 네트워크 에뮬레이터로, Linux 네트워크 네임스페이스 내부에 가상 AP, 스테이션, "전파"를 만들어냅니다. 모든 AP와 클라이언트는 실제 Linux 프로세스이므로 ````iwconfig````, ````airodump-ng````, ````tcpdump````는 물론 Reaver, Hashcat까지 시뮬레이션된 트래픽에 그대로 적용 가능하며, 표준 도구들이 실제 전파를 다루는 것처럼 동작합니다.
 
 WiFi-Forge가 그 위에 더하는 것: 미리 만들어진 토폴로지, 바로 실행되는 공격 시나리오, 그리고 매번 네트워크를 처음부터 설계할 필요가 없는 가이드 구조.
 
@@ -68,12 +69,12 @@ WiFi-Forge가 그 위에 더하는 것: 미리 만들어진 토폴로지, 바로
 
 ## 시작하기
 
-```bash
+`````bash
 git clone https://github.com/blackhillsinfosec/WifiForge
 cd WifiForge
 sudo ./install.sh
 sudo python3 wififorge.py
-```
+````
 
 Linux(Ubuntu 또는 Debian 권장), Python 3, root 권한이 필요합니다(mininet-wifi가 커널 기능을 사용함). 설치 스크립트가 의존성을 자동으로 처리합니다 —— mininet-wifi, aircrack-ng, hashcat, reaver 등.
 
@@ -92,13 +93,13 @@ Linux(Ubuntu 또는 Debian 권장), Python 3, root 권한이 필요합니다(min
 
 이런 프로젝트는 직접적으로 말하는 것이 중요합니다: **본인이 소유하거나 명시적으로 서면 허가를 받은 네트워크에서만 이 기술을 사용하세요.** WiFi-Forge가 존재하는 *이유*는, 시뮬레이션 랩이 있기에 옆 카페 WiFi에 "한 번 해볼까"라는 유혹이 사라지기 때문입니다. 안전하게 배우는 것 —— 그것이 핵심입니다.
 
----
+* * *
 
 - **저장소:** [github.com/blackhillsinfosec/WifiForge](https://github.com/blackhillsinfosec/WifiForge)
 - **기반:** [mininet-wifi](https://github.com/intrig-unicamp/mininet-wifi)
 - **관리:** [Black Hills InfoSec](https://www.blackhillsinfosec.com/)
 
----
+* * *
 
 ## 추천 도구
 
@@ -170,7 +171,7 @@ WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

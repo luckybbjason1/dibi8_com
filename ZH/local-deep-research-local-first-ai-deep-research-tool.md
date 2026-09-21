@@ -31,6 +31,7 @@ faqs: - q: '什么是 Local Deep Research (LDR)？'
     a: '先用 `docker run -d -p 8080:8080 --name searxng searxng/searxng` 运行 SearXNG，然后用 `docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research` 运行 LDR。这样就同时启动了元搜索引擎和研究智能体。'
   - q: 'Local Deep Research 如何避免 AI 幻觉并确保可信度？'
     a: 'LDR 提供高保真的引用，为它做出的每一个论断都附上参考文献来源，让你可以即时核实原始资料。它还会执行迭代式综合，识别信息空白并运行后续搜索，而不是依赖单一的表层答案。'---
+
 {</* resource-info */>}
 
 大多数 AI 助手都是“对话优先”的，这意味着它们根据预训练数据为你提供快速答案。但如果你需要一种**“研究优先”**的方法，能够抓取网页、学术论文和本地文档，并合成一份深度报告呢？更重要的是，如果你希望在 **100% 隐私保护**的前提下完成这一切呢？
@@ -72,13 +73,13 @@ AI 最大的痛点之一是信任。LDR 为它提出的每一个观点都提供�
 
 ### 快速部署 (Docker)
 
-```bash
+````bash
 # 运行 SearXNG
 docker run -d -p 8080:8080 --name searxng searxng/searxng
 
 # 运行 Local Deep Research
 docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research
-```
+````
 
 ## 💡 导师小贴士：“深化”策略
 
@@ -94,7 +95,7 @@ Local Deep Research 不仅仅是一个工具，它是 AI 时代我们与信息�
 - [精通 Python 上下文管理器](/zh/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) —— 优化你的本地 AI 脚本。
 
 
----
+* * *
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -167,7 +168,7 @@ Local Deep Research：终极本地优先 AI 深度研究工具 represents an imp
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -197,13 +198,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -230,13 +231,13 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -265,15 +266,15 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

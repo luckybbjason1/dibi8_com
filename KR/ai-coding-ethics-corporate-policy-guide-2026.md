@@ -23,6 +23,7 @@ faq: - q: "2026년 기업의 주요 AI 코딩 정책 입장은 무엇인가요?"
     a: "상황 의존적입니다. 순수 웹 SaaS 업무: 가벼운 감사 하 허용이 거의 항상 정답. 헬스케어/금융 규제 업무: DPA 포함 엔터프라이즈 티어 + 제한적 사용이 기본선. 국방/기밀: 클라우드 AI 금지, 로컬만 허용. 정책 불일치는 컴플라이언스 리스크 또는 생산성 손실을 야기합니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # AI 코딩 윤리 2026: 기업 정책 가이드
@@ -101,7 +102,7 @@ AI가 GPL 코드를 독점 코드베이스에 토해낼 수 있고, 그 결과 �
 
 ## 정책 선택 방법
 
-```
+````
 규제 산업(금융, 헬스, 법률)에 속해 있는가?
 ├── 예 → 진영 2: DPA 포함 엔터프라이즈 티어
 └── 아니오 → 다음 질문으로
@@ -109,7 +110,7 @@ AI가 GPL 코드를 독점 코드베이스에 토해낼 수 있고, 그 결과 �
 기밀 또는 국방 업무를 다루는가?
 ├── 예 → 진영 3: 클라우드 AI 금지
 └── 아니오 → 진영 1: 감사 하 허용
-```
+````
 
 불일치 결과: - 제한해야 하는데 허용: 컴플라이언스 위반, 규제 조치
 - 허용해야 하는데 제한: 생산성 손실, 인재 유출
@@ -140,7 +141,7 @@ AI가 GPL 코드를 독점 코드베이스에 토해낼 수 있고, 그 결과 �
 
 가장 나쁜 결과는 아무 정책도 없는 상태입니다 — 개발자들은 어떻게든 AI 도구를 사용할 것입니다. 감시 없는 섀도 AI 사용보다는 가드레일과 함께 의도적 입장을 정하는 편이 낫습니다.
 
----
+* * *
 
 **관련 글**: [AI 코딩 2026-Q2 격돌](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [로컬 우선 AI 스택 2026](https://dibi8.com/kr/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/) · [셀프 호스팅 LLM 2026](https://dibi8.com/kr/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
 
@@ -206,12 +207,12 @@ AI 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드 represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -221,7 +222,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](ai-coding-ethics-corporate-policy-guide-2026)
 - [claude-4-opus-sonnet-review-2026](ai-coding-ethics-corporate-policy-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

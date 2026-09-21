@@ -12,6 +12,7 @@ maintainer: Egonex-AI
 license: MIT
 featureImage: "https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"
 ---
+
 ## Introduction
 
 Knowledge has always been visual. From ancient philosophers mapping the connections between ideas to modern scientists drawing diagrams of biological systems, humans have an innate need to see how concepts relate to each other. In the age of AI and information overload, the ability to automatically generate structured, interactive knowledge graphs from any topic is more valuable than ever.
@@ -51,49 +52,49 @@ Understand-Anything is available via both pip (Python) and npm (Node.js). All co
 
 ### Install via pip (Python)
 
-```bash
+````bash
 pip install understand-anything
-```
+`````
 
 This installs the core Understand-Anything package with default dependencies. The Python version provides access to the full API and CLI tools.
 
 ### Install via npm (Node.js)
 
-```bash
+`````bash
 npm install @egonex/understand-anything
-```
+`````
 
 This installs the Node.js version of Understand-Anything, which provides programmatic access from JavaScript/TypeScript applications.
 
 ### Install from Source
 
-```bash
+`````bash
 git clone https://github.com/Egonex-AI/Understand-Anything.git && cd Understand-Anything && pip install -e .
-```
+`````
 
 Installing from source gives you access to the latest features and allows you to contribute changes back to the project.
 
 ### Docker Installation
 
-```bash
+`````bash
 docker run -it --rm egonex/understand-anything understand-anything --help
-```
+`````
 
 ### Configure AI Model and API Keys
 
-```bash
+`````bash
 understand-anything configure
-```
+`````
 
-This launches an interactive configuration wizard where you set up API keys for the AI model provider (OpenAI, Anthropic, etc.) and web search provider. Configuration is stored in `~/.understand-anything/config.yaml`.
+This launches an interactive configuration wizard where you set up API keys for the AI model provider (OpenAI, Anthropic, etc.) and web search provider. Configuration is stored in ````~/.understand-anything/config.yaml````.
 
 ### Install with All Optional Dependencies
 
-```bash
+`````bash
 pip install understand-anything[all]
-```
+`````
 
-The `[all]` extra installs additional dependencies for full visualization, real-time search, and export capabilities including visualization backends and additional search providers.
+The ````[all]```` extra installs additional dependencies for full visualization, real-time search, and export capabilities including visualization backends and additional search providers.
 
 ![Understand Anything GitHub OG preview](https://opengraph.github.com/github/Egonex-AI/Understand-Anything)
 
@@ -103,73 +104,73 @@ The `[all]` extra installs additional dependencies for full visualization, real-
 
 ### Generate a Knowledge Graph
 
-```bash
+`````bash
 understand-anything generate "Quantum Computing"
-```
+`````
 
 This generates a comprehensive knowledge graph about quantum computing, including concepts, relationships, and hierarchical structure. The graph is saved to the current directory and can be viewed in the browser.
 
 ### Generate with Custom Depth
 
-```bash
+`````bash
 understand-anything generate "Machine Learning" --depth 3 --max-nodes 200
-```
+`````
 
-Generates a knowledge graph with 3 levels of depth and up to 200 nodes. The `--depth` parameter controls how many levels of subtopics are explored, and `--max-nodes` limits the total number of concepts in the graph.
+Generates a knowledge graph with 3 levels of depth and up to 200 nodes. The ````--depth```` parameter controls how many levels of subtopics are explored, and ````--max-nodes```` limits the total number of concepts in the graph.
 
 ### Generate with Web Search
 
-```bash
+`````bash
 understand-anything generate "Artificial Intelligence" --web-search --sources wikipedia arxiv
-```
+`````
 
 Uses web search to supplement AI knowledge with current information from Wikipedia and arXiv. This ensures the graph includes up-to-date information and academic references.
 
 ### Export Knowledge Graph
 
-```bash
+`````bash
 understand-anything export --format gexf --output graph.gexf
-```
+`````
 
 Exports the knowledge graph in GEXF format for visualization in tools like Gephi. Supports multiple export formats including GraphML, JSON, DOT, PNG, and SVG.
 
 ### View in Browser
 
-```bash
+`````bash
 understand-anything view --port 3000
-```
+`````
 
 Launches an interactive web interface for exploring the knowledge graph on port 3000. Navigate through nodes, click to expand subtopics, and filter by concept type.
 
 ### Batch Generation
 
-```bash
+`````bash
 understand-anything batch --topics-file topics.txt --output-dir ./knowledge-graphs
-```
+`````
 
 Processes a list of topics from a text file and generates knowledge graphs for each one. Each graph is saved in the specified output directory.
 
 ### Search for Information
 
-```bash
+`````bash
 understand-anything search "What are the latest developments in nuclear fusion?"
-```
+`````
 
 Performs a targeted search for current information on a specific question using web search and AI synthesis.
 
 ### Compare Topics
 
-```bash
+`````bash
 understand-anything compare "Classical Mechanics" "Quantum Mechanics"
-```
+`````
 
 Generates a side-by-side comparison of two topics, highlighting similarities and differences in a unified knowledge graph.
 
 ### Generate Study Guide
 
-```bash
+`````bash
 understand-anything guide "Organic Chemistry" --format markdown --output study-guide.md
-```
+`````
 
 Generates a structured study guide from the knowledge graph, organized by concept hierarchy with key definitions and relationships.
 
@@ -177,7 +178,7 @@ Generates a structured study guide from the knowledge graph, organized by concep
 
 ### Python API
 
-```python
+`````python
 from understand_anything import KnowledgeGraph
 
 # Create a knowledge graph
@@ -203,17 +204,17 @@ for node in nodes: print(f"Concept: {node[label]}, Confidence: {node[confidence]
 # Find related concepts
 related = graph.get_related("Neural Networks", depth=2)
 for concept in related: print(f"  Related: {concept[label]} ({concept[relation]})")
-```
+`````
 
 ### REST API Server
 
-```bash
+`````bash
 understand-anything serve --host 0.0.0.0 --port 5000
-```
+`````
 
 Starts a REST API server for programmatic access. Generate knowledge graphs, query concepts, and export graphs via HTTP.
 
-```bash
+`````bash
 # Generate a knowledge graph
 curl -X POST http://localhost:5000/generate \
   -H "Content-Type: application/json" \
@@ -226,38 +227,38 @@ curl http://localhost:5000/graphs/ml-graph/nodes?depth=2
 curl -X POST http://localhost:5000/graphs/ml-graph/export \
   -H "Content-Type: application/json" \
   -d '{"format": "gexf"}'
-```
+`````
 
 ### Jupyter Notebook Integration
 
-```python
+`````python
 from understand_anything import KnowledgeGraph, visualize
 
 # Generate and visualize in Jupyter
 graph = KnowledgeGraph()
 graph.generate("Reinforcement Learning")
 visualize(graph, backend="ipython", node_size=8, edge_color="gray")
-```
+`````
 
 ### Obsidian Plugin
 
-```bash
+`````bash
 understand-anything obsidian --install
-```
+`````
 
 Installs the Obsidian plugin for generating knowledge graphs directly within your Obsidian vault. Knowledge graphs appear as interactive plugins in your notes.
 
 ### VS Code Extension
 
-```bash
+`````bash
 understand-anything vscode --install
-```
+`````
 
 Integrates knowledge graph generation into the VS Code IDE. Generate and explore knowledge graphs without leaving your editor.
 
 ### Custom Research Agent
 
-```python
+`````python
 from understand_anything import KnowledgeGraph
 
 # Create a custom research agent with specific sources
@@ -268,7 +269,7 @@ class CustomResearchAgent: def research_topic(self, topic): # Custom research lo
 # Use the custom agent
 graph = KnowledgeGraph(agent=CustomResearchAgent())
 graph.generate("Custom Research Topic")
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -276,13 +277,13 @@ graph.generate("Custom Research Topic")
 
 | Topic Category | Concepts Generated | Sources Used | Avg. Confidence |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Science (Physics) | 145 | 28 | 0.87 |
 | Computer Science | 178 | 35 | 0.82 |
@@ -295,13 +296,13 @@ graph.generate("Custom Research Topic")
 
 | Depth | Nodes | Avg. Time | Web Searches |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 50 | ~15 seconds | 10 |
 | 2 | 150 | ~45 seconds | 30 |
@@ -312,13 +313,13 @@ graph.generate("Custom Research Topic")
 
 | Task | Time (Manual) | Time (AI) | Quality Score |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Topic overview | 2 hours | 30 seconds | 0.85 |
 | Detailed concept map | 8 hours | 5 minutes | 0.88 |
@@ -327,7 +328,7 @@ graph.generate("Custom Research Topic")
 
 ### Real-World Case: Academic Research
 
-A PhD student uses Understand-Anything to explore emerging research areas: ```bash
+A PhD student uses Understand-Anything to explore emerging research areas: `````bash
 # Generate knowledge graph for literature review
 understand-anything generate "Transformer Models in NLP" \
   --depth 3 --max-nodes 300 \
@@ -336,18 +337,18 @@ understand-anything generate "Transformer Models in NLP" \
 
 # Export for Gephi visualization
 understand-anything export --format gexf --output transformer-kg.gexf
-```
+`````
 
 The student generates a comprehensive knowledge graph covering 300 concepts across 35 sources in approximately 2 minutes, saving hours of manual research time.
 
 ### Real-World Case: Education
 
-A university professor uses Understand-Anything to create study materials: ```bash
+A university professor uses Understand-Anything to create study materials: `````bash
 # Generate study guide for organic chemistry
 understand-anything guide "Organic Chemistry" \
   --depth 3 --max-nodes 400 \
   --format markdown --output organic-chem-study-guide.md
-```
+`````
 
 The generated study guide covers all major organic chemistry concepts with hierarchical organization, relationships, and confidence scores for each concept.
 
@@ -355,18 +356,18 @@ The generated study guide covers all major organic chemistry concepts with hiera
 
 ### Custom AI Model Configuration
 
-```bash
+`````bash
 understand-anything generate "Neural Networks" \
   --model gpt-4o \
   --temperature 0.7 \
   --max-tokens 4096
-```
+`````
 
 Configure the AI model, temperature, and token limits for fine-grained control over graph generation quality and cost.
 
 ### Custom Search Sources Configuration
 
-```yaml
+`````yaml
 # understand-anything-config.yaml
 search: sources: - name: wikipedia
       enabled: true
@@ -392,21 +393,21 @@ visualization: layout: force-directed
 research: max_searches_per_topic: 20
   min_sources_per_concept: 2
   confidence_threshold: 0.7
-```
+`````
 
 ### Force-Directed Layout Parameters
 
-```bash
+`````bash
 understand-anything generate "Biology" \
   --layout force-directed \
   --layout-params "spring-length=100 repulsion=500 damping=0.5"
-```
+`````
 
 Customize the force-directed layout parameters to optimize graph visualization for complex knowledge structures.
 
 ### Export Formats
 
-```bash
+`````bash
 # Export as GEXF for Gephi
 understand-anything export --format gexf --output graph.gexf
 
@@ -424,29 +425,29 @@ understand-anything export --format png --output graph.png --resolution 200dpi
 
 # Export as SVG for web use
 understand-anything export --format svg --output graph.svg
-```
+`````
 
 ### Web Interface Customization
 
-```bash
+`````bash
 understand-anything view --port 3000 --theme dark --max-nodes 300 --show-weights
-```
+`````
 
 Customizes the web interface appearance, theme, maximum nodes displayed, and weight visualization.
 
 ### Multi-Language Support
 
-```bash
+`````bash
 understand-anything generate "量子计算" --language zh
 understand-anything generate "Intelligence Artificielle" --language fr
 understand-anything generate "Künstliche Intelligenz" --language de
-```
+`````
 
 Generate knowledge graphs in different languages. The AI model adapts its research and synthesis to the specified language, pulling from language-appropriate sources.
 
 ### Production Configuration with Rate Limiting
 
-```bash
+`````bash
 # Configure rate limiting for API calls
 understand-anything configure --max-requests-per-minute 30 \
   --retry-attempts 3 --backoff-multiplier 2
@@ -455,15 +456,15 @@ understand-anything configure --max-requests-per-minute 30 \
 understand-anything batch --topics-file topics.txt \
   --output-dir ./production-graphs \
   --concurrency 4
-```
+`````
 
 ### Docker-Based Generation
 
-```bash
+`````bash
 docker run -v $(pwd)/output:/app/output \
   egonex/understand-anything understand-anything \
   generate "Topic" --output output/graph.json
-```
+`````
 
 Run knowledge graph generation in an isolated Docker container with persistent output.
 
@@ -471,17 +472,17 @@ Run knowledge graph generation in an isolated Docker container with persistent o
 
 | Feature | Understand-Anything | Wikipedia API | Semantic Scholar | MindMeister |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Install Method | `pip install` / `npm install` | API key | API key | Web app |
+| Install Method | ````pip install```` / ````npm install```` | API key | API key | Web app |
 | AI-Powered | Yes (LLM + search) | No | Partial | No |
 | Multi-Source | Yes (Wikipedia, arXiv, web, PubMed) | No | Limited (academic only) | No |
 | Interactive Graph | Yes (built-in web viewer) | No | No | Limited (mind map) |
@@ -501,7 +502,7 @@ Understand-Anything stands out for its combination of AI-powered research, multi
 While Understand-Anything is powerful, be aware of these limitations: 1. **API costs** — Using large language models for research generates API costs proportional to the depth and size of the knowledge graph. A depth-3 graph with 300 nodes may cost $0.50-$2.00 per generation depending on the model used.
 2. **Information freshness** — While web search supplements knowledge, some information may not be immediately reflected depending on source availability and search provider rate limits.
 3. **Hallucination risk** — AI-generated content may occasionally contain inaccuracies. Always verify critical information against original sources, especially for academic or medical topics.
-4. **Graph complexity** — Very deep or broad topics may generate graphs with hundreds of nodes that are difficult to navigate. Use `--max-nodes` and `--depth` parameters to control complexity.
+4. **Graph complexity** — Very deep or broad topics may generate graphs with hundreds of nodes that are difficult to navigate. Use ````--max-nodes```` and ````--depth```` parameters to control complexity.
 5. **Topic sensitivity** — Sensitive or controversial topics may produce biased or incomplete graphs depending on source availability and the AI model's training data.
 6. **Dependency on AI providers** — The tool requires access to external AI model APIs (OpenAI, Anthropic, etc.) and web search providers. Offline mode is limited to the model's training data.
 
@@ -509,7 +510,7 @@ While Understand-Anything is powerful, be aware of these limitations: 1. **API c
 
 **Q: What AI models does Understand-Anything support?**
 
-A: Understand-Anything supports OpenAI's GPT-4o, GPT-4, and GPT-3.5, as well as Anthropic's Claude models. You can configure the model through the `--model` flag or in the configuration file. The Python API also allows you to pass any OpenAI-compatible endpoint.
+A: Understand-Anything supports OpenAI's GPT-4o, GPT-4, and GPT-3.5, as well as Anthropic's Claude models. You can configure the model through the ````--model```` flag or in the configuration file. The Python API also allows you to pass any OpenAI-compatible endpoint.
 
 **Q: How does Understand-Anything handle information accuracy?**
 
@@ -517,7 +518,7 @@ A: The system uses confidence scores to rate the reliability of each concept in 
 
 **Q: Can I use Understand-Anything offline?**
 
-A: Yes, Understand-Anything can generate knowledge graphs using only the AI model's training data without web search. For the most current and comprehensive results, we recommend enabling web search with the `--web-search` flag.
+A: Yes, Understand-Anything can generate knowledge graphs using only the AI model's training data without web search. For the most current and comprehensive results, we recommend enabling web search with the ````--web-search```` flag.
 
 **Q: What export formats are supported?**
 
@@ -539,7 +540,7 @@ The combination of AI research, web search integration, and interactive visualiz
 
 For hosting your knowledge graph infrastructure and AI pipelines, consider deploying on reliable cloud platforms. Use [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for development servers, [HTStack](https://my.htstack.com/aff.php?aff=27187) for production hosting, and [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) for reliable proxy and content distribution.
 
-Get started today: `pip install understand-anything && understand-anything generate "Your Topic"` and discover the hidden connections in any subject.
+Get started today: ````pip install understand-anything && understand-anything generate "Your Topic"``` and discover the hidden connections in any subject.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -585,7 +586,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [academic-research-skills](egonex-understand-anything-interactive-knowledge-graph-ai)
@@ -595,5 +596,5 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [last30days-skill-ai-agent-research-engine-social-media](egonex-understand-anything-interactive-knowledge-graph-ai)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

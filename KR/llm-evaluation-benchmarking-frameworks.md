@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/llm-evaluation-benchmarking-frameworks/
 ---
 
+
 # 2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCompass, BIG-bench
 
 
@@ -67,7 +68,7 @@ AlpacaEval은 스탠퍼드 대학교가 개발한 **지시 따르기(instruction
 
 ### DeepEval: LLM 단위 테스트 프레임워크
 
-DeepEval은 소프트웨어 엔지니어링의 **단위 테스트(unit testing)** 개념을 LLM 평가에 적용한 프레임워크입니다. 개발자가 Python으로 테스트 케이스를 작성하고, `pytest`와 유사한 인터페이스로 실행합니다. CI/CD 파이프라인에 통합하여 모델 배포 전 자동으로 회귀 테스트를 수행할 수 있어 프로덕션 환경에 특화되어 있습니다.
+DeepEval은 소프트웨어 엔지니어링의 **단위 테스트(unit testing)** 개념을 LLM 평가에 적용한 프레임워크입니다. 개발자가 Python으로 테스트 케이스를 작성하고, ```pytest```와 유사한 인터페이스로 실행합니다. CI/CD 파이프라인에 통합하여 모델 배포 전 자동으로 회귀 테스트를 수행할 수 있어 프로덕션 환경에 특화되어 있습니다.
 
 ## 비교표: 벤치마크 범위, 사용 편의성 및 커뮤니티 지원
 
@@ -232,12 +233,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -247,7 +248,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](llm-evaluation-benchmarking-frameworks)
 - [ai-engineering-from-scratch](llm-evaluation-benchmarking-frameworks)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

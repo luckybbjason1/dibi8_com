@@ -13,31 +13,32 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
 ---
 
+
 # MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零API调用
 
 
----
+* * *
 ## 摘要
 
 MemPalace是一个本地优先的AI记忆系统，它将对话历史以**逐字文本**形式存储，并通过语义搜索进行检索。它在LongMemEval上实现了**96.6%的原始R@5**成绩——这是任何开源记忆系统的最佳基准成绩，且**零API调用**。它专为希望AI智能体记住一切而不向任何外部服务发送数据的开发者设计。
 
 || 指标 | MemPalace | Mem0 | Memory Bank |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 || 基准测试 | 96.6% 原始R@5 | 78.2% R@5 | 71.4% R@5 |
 || API调用 | 0 | 每次会话1-3次 | 每次会话5-8次 |
 || 存储方式 | 本地优先 | 依赖云端 | 混合 |
-|| 安装方式 | `uv tool install mempalace` | `pip install mem0` | 仅Docker |
+|| 安装方式 | ```uv tool install mempalace```` | ````pip install mem0```` | 仅Docker |
 
 
----
+* * *
 ## 它是什么
 
 MemPalace解决一个问题：**AI智能体会忘记你上周告诉它的内容。**
@@ -54,11 +55,11 @@ MemPalace解决一个问题：**AI智能体会忘记你上周告诉它的内容�
 - 零外部API调用
 - 与Claude Code、Cursor、Windsurf及任何MCP兼容的智能体集成
 
----
+* * *
 
 ## 工作原理（30秒了解）
 
-```
+`````
 Your Conversation → MemPalace Index (Local)
                          ↓
                 Semantic Search Query
@@ -66,7 +67,7 @@ Your Conversation → MemPalace Index (Local)
               Retrieved Context (Wings/Rooms/Drawers)
                          ↓
               Agent Gets Structured Memory
-```
+`````
 
 MemPalace分为三个层级：
 
@@ -76,20 +77,20 @@ MemPalace分为三个层级：
 
 **第三层——检索：** 当智能体需要上下文时，它查询可插拔的检索层（默认：ChromaDB）。返回的结果是结构化上下文，而非原始文本。
 
-检索层使用带有混合关键词增强的语义搜索。默认情况下，MemPalace使用ChromaDB和`all-MiniLM-L6-v2`嵌入模型，但你可以替换任何实现了`mempalace/backends/base.py`接口的后端。包括：
+检索层使用带有混合关键词增强的语义搜索。默认情况下，MemPalace使用ChromaDB和````all-MiniLM-L6-v2````嵌入模型，但你可以替换任何实现了````mempalace/backends/base.py````接口的后端。包括：
 
-- `chromadb`：默认后端，适合大多数用例
-- `qdrant`：大数据集更快，支持过滤
-- `weaviate`：生产就绪，支持GraphQL查询
+- ````chromadb````：默认后端，适合大多数用例
+- ````qdrant````：大数据集更快，支持过滤
+- ````weaviate````：生产就绪，支持GraphQL查询
 - 自定义后端：实现基础接口即可对接任何向量数据库
 
----
+* * *
 
 ## 自动保存钩子
 
 MemPalace可以自动保存来自受支持智能体的对话。对于Claude Code，你需要配置自动保存钩子：
 
-```bash
+`````bash
 # Enable auto-save for Claude Code
 mempalace hooks enable claude-code
 
@@ -98,26 +99,26 @@ mempalace hooks list
 
 # Test the hooks
 mempalace hooks test
-```
+`````
 
 这些钩子通过拦截智能体会话并将它们自动存储到你的记忆宫殿中来工作。这意味着你不需要手动保存对话——它们会在你工作时自动持久化。
 
----
+* * *
 
 ## 系统要求
 
 - Python 3.9+
-- 使用`uv`或`pip`进行安装
+- 使用````uv````或````pip````进行安装
 - 嵌入模型和初始索引约需500MB磁盘空间
 - ChromaDB运行约需500MB RAM（大数据集需要更多）
 
----
+* * *
 
 ## 快速开始（60秒）
 
 在隔离环境中安装MemPalace以避免PEP 668错误：
 
-```bash
+`````bash
 # Recommended: uv tool install (isolated on your PATH)
 uv tool install mempalace
 
@@ -126,24 +127,24 @@ mempalace init ~/projects/myapp
 
 # Start Claude Code with mempalace hooks
 claude
-```
+`````
 
 或使用pipx：
 
-```bash
+`````bash
 pipx install mempalace
 mempalace init ~/projects/myapp
-```
+`````
 
-或在虚拟环境中安装（如果你需要`import mempalace`可用）：
+或在虚拟环境中安装（如果你需要````import mempalace````可用）：
 
-```bash
+`````bash
 python -m venv .venv && source .venv/bin/activate
 pip install mempalace
 mempalace init ~/projects/myapp
-```
+`````
 
----
+* * *
 
 ## 何时使用 / 何时跳过
 
@@ -158,7 +159,7 @@ mempalace init ~/projects/myapp
 - 在本地进程无法运行的沙盒环境中工作
 - 需要跨团队成员的云端记忆共享
 
----
+* * *
 
 ## 基准测试
 
@@ -168,13 +169,13 @@ MemPalace在LongMemEval上实现了**96.6%的原始R@5**——这是任何开源
 
 || 模式 | R@5 | 需要的LLM | API调用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 || **MemPalace（原始）** | **96.6%** | 无 | 0 |
 || MemPalace（混合v4） | 98.4% | 无 | 0 |
@@ -191,20 +192,20 @@ MemPalace在LongMemEval上实现了**96.6%的原始R@5**——这是任何开源
 
 原始96.6%的成绩**不需要API密钥、不需要云端、不需要任何阶段的LLM**。混合管线添加了关键词增强、时间邻近增强和偏好模式提取；独立测试集的98.4%才是诚实的可泛化数字。
 
----
+* * *
 
 ## 知识图谱架构
 
 结构化记忆图谱是MemPalace的核心机密。
 
-```
+`````
                     [Wing: Person]
                    /              \
            [Room: Project A]   [Room: Project B]
               /     \               |
         [Drawer: #1] [Drawer: #2] [Drawer: #3]
          (original)  (original)   (original)
-```
+`````
 
 **工作原理：**
 
@@ -214,7 +215,7 @@ MemPalace在LongMemEval上实现了**96.6%的原始R@5**——这是任何开源
 
 这种结构使得限定范围搜索成为可能：
 
-```bash
+`````bash
 # Search across all wings
 mempalace search "auth implementation"
 
@@ -223,13 +224,13 @@ mempalace search "auth" --wing "Person-A"
 
 # Search within a room
 mempalace search "auth" --wing "Person-A" --room "Project-A"
-```
+`````
 
 ### 备份与恢复
 
 由于MemPalace在本地存储数据，你应该定期备份你的记忆：
 
-```bash
+`````bash
 # 备份你的记忆宫殿
 mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz
 
@@ -238,17 +239,17 @@ mempalace restore ~/backups/mempalace-2026-06-10.tar.gz
 
 # 使用cron调度自动备份
 0 2 * * * mempalace backup ~/backups/mempalace-$(date +\%Y-\%m-\%d).tar.gz
-```
+`````
 
-备份包括所有记忆文件、配置和缓存的嵌入模型。你可以通过复制备份并在另一台机器上运行`mempalace init`来注册恢复的数据。
+备份包括所有记忆文件、配置和缓存的嵌入模型。你可以通过复制备份并在另一台机器上运行````mempalace init````来注册恢复的数据。
 
----
+* * *
 
 ## MCP服务器集成
 
 MemPalace内置MCP服务器，用于与Claude Code、Cursor和其他MCP兼容的智能体配合使用。
 
-```bash
+`````bash
 # Start the MCP server
 mempalace mcp --port 8765
 
@@ -260,21 +261,21 @@ mempalace mcp --port 8765
     }
   }
 }
-```
+`````
 
 MCP服务器提供：
-- `mempalace_store`：存储对话片段
-- `mempalace_query`：通过语义搜索检索上下文
-- `mempalace_list_wings`：列出可用的翼
-- `mempalace_list_rooms`：列出翼内的房间
+- ````mempalace_store````：存储对话片段
+- ````mempalace_query````：通过语义搜索检索上下文
+- ````mempalace_list_wings````：列出可用的翼
+- ````mempalace_list_rooms````：列出翼内的房间
 
----
+* * *
 
 ## 深入：Python API
 
 如果你不使用MCP兼容的智能体，可以直接使用MemPalace的Python API：
 
-```python
+`````python
 import mempalace
 
 # Initialize memory store
@@ -296,7 +297,7 @@ for result in results: print(f"[{result.wing}/{result.room}]: {result.content[:2
 
 # List all wings
 for wing in memory.list_wings(): print(f"Wing: {wing.name} ({len(wing.rooms)} rooms)")
-```
+`````
 
 Python API与CLI类似，但提供了对记忆图谱的程序化访问。这适用于：
 - 自定义智能体集成
@@ -304,13 +305,13 @@ Python API与CLI类似，但提供了对记忆图谱的程序化访问。这适�
 - 构建记忆仪表板
 - 自动化备份工作流
 
----
+* * *
 
 ## Docker部署
 
 用于服务器端或容器化部署：
 
-```bash
+`````bash
 # Build the Docker image
 docker build -t mempalace-server .
 
@@ -321,28 +322,28 @@ docker run -d \
   -p 8765:8765 \
   mempalace-server \
   mcp --port 8765
-```
+`````
 
-所有内容都在`/data`下持久化（记忆宫殿、配置和缓存的嵌入模型），因此请在此挂载卷。此设置适用于：
+所有内容都在````/data````下持久化（记忆宫殿、配置和缓存的嵌入模型），因此请在此挂载卷。此设置适用于：
 - 共享团队记忆（多台机器访问同一数据库）
 - 需要智能体记忆的CI/CD流水线
 - 具有Docker编排的生产环境
 
----
+* * *
 
 ## 与替代方案对比
 
 || 功能 | MemPalace | Mem0 | Memory Bank | 本地RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 || 逐字存储 | ✓ | ✗ | ✗ | ✗ |
 || 结构化索引 | 翼/房间/抽屉 | 扁平向量 | 聊天历史 | 嵌入 |
@@ -359,19 +360,19 @@ MemPalace的结构化方法（翼 → 房间 → 抽屉）正是推动96.6%基�
 MemPalace并非适合所有人：
 
 - **不适合云端团队**：如果你需要跨在不同机器上工作的团队成员共享记忆，MemPalace的本地优先设计对此没有帮助
-- **需要Python环境**：安装需要`uv`或`pip`以及兼容的Python版本
+- **需要Python环境**：安装需要````uv````或````pip````以及兼容的Python版本
 - **默认ChromaDB**：虽然可插拔，但大多数用户将使用ChromaDB，嵌入模型需要约500MB RAM
 - **无云端备份**：你的记忆保持本地。如果你的磁盘故障，记忆将消失（除非你已备份）
 
 它专为希望AI智能体拥有持久、私密记忆的**个人开发者**而构建。
 
----
+* * *
 
 ## 实际用例
 
 ### 用例1：持久编码上下文
 
-```bash
+`````bash
 # Start a new Claude Code session
 claude
 
@@ -379,26 +380,26 @@ claude
 # when you ask about previous work on the same feature
 > "Remember when we implemented OAuth2 last week?"
 > [MemPalace retrieves: Wing "Person-A" → Room "Project-A" → Drawer: #3]
-```
+`````
 
 这个用例非常适合在长期项目上工作的开发者，他们需要AI智能体记住之前的实现、决策和约束条件。
 
 ### 用例2：研究上下文
 
-```bash
+`````bash
 # Store research notes from your agent
 mempalace store "Research: LangGraph vs LangChain for agent orchestration"
 mempalace store "Key finding: LangGraph has better state management..."
 
 # Later, query for all research notes
 mempalace search "agent orchestration comparison" --wing "Research"
-```
+`````
 
 非常适合希望在多个研究会话之间维护可搜索知识库的研究人员。
 
 ### 用例3：团队知识库
 
-```bash
+`````bash
 # Share memory across team members (Docker deployment)
 docker run -d \
   --name mempalace \
@@ -408,11 +409,11 @@ docker run -d \
 
 # Each team member connects to the shared memory server
 # with different access levels per project
-```
+`````
 
 适合需要共享记忆但希望保持数据隐私和控制的团队。
 
----
+* * *
 
 ## 常见问题
 
@@ -426,12 +427,12 @@ docker run -d \
 MemPalace在LongMemEval上的96.6%原始R@5是开源记忆系统的最佳基准成绩。大多数竞争者通过上下文扩展（存储更多令牌）实现70-80%的成绩，而非结构化检索。
 
 ### 问4：我可以从ChromaDB切换到其他后端吗？
-可以。检索层是可插拔的。默认是ChromaDB，但你可以替换任何实现了`mempalace/backends/base.py`的后端。支持自定义后端。
+可以。检索层是可插拔的。默认是ChromaDB，但你可以替换任何实现了````mempalace/backends/base.py````的后端。支持自定义后端。
 
 ### 问5：如果我删除记忆文件会怎样？
 由于MemPalace是本地优先的，没有云端恢复机制。如果你删除了记忆文件，数据就消失了（除非你已手动备份）。如果你的记忆很有价值，请考虑设置自动备份。
 
----
+* * *
 
 ## 来源与延伸阅读
 
@@ -441,7 +442,7 @@ MemPalace在LongMemEval上的96.6%原始R@5是开源记忆系统的最佳基准�
 - LongMemEval结果：[96.6% R@5原始](https://github.com/MemPalace/mempalace#benchmarks)
 - MCP服务器文档：[mempalaceofficial.com/concepts/the-palace](https://mempalaceofficial.com/concepts/the-palace.html)
 
----
+* * *
 
 ## 结论：构建真正拥有记忆AI智能体
 
@@ -449,10 +450,10 @@ MemPalace解决了"金鱼智能体"问题。它以逐字形式存储对话历史
 
 **立即尝试：**
 
-```bash
+`````bash
 uv tool install mempalace
 mempalace init ~/projects/myapp
-```
+````
 
 如需在VPS或专用服务器上自托管记忆，请使用[HTStack](https://my.htstack.com/aff.php?aff=27187)获取实惠的GPU托管服务，或使用[DigitalOcean](https://m.do.co/c/eca87ac14ee0)实现轻松的云部署。
 
@@ -526,12 +527,12 @@ MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -540,7 +541,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [supermemory-open-source-ai-memory-api](mempalace-open-source-ai-memory-system)
 - [understand-anything-interactive-knowledge-graphs-codebases](mempalace-open-source-ai-memory-system)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -571,15 +572,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

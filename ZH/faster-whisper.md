@@ -24,9 +24,10 @@ aliases:
   - /zh/posts/faster-whisper/-
 ---
 
+
 {{</* resource-info */>}}
 
-OpenAI 的 Whisper 在 2022 年改变了语音转文本领域，但原始 Python 实现并未充分利用硬件性能。对于一个 13 分钟的音频文件，使用 large-v2 模型的 `openai/whisper` 在 Tesla V100 GPU 上需要超过 4 分钟 —— 对于每天处理数百小时音频的生产流水线来说是不可接受的。SYSTRAN 的 **faster-whisper** 使用 CTranslate2 重新实现了 Whisper 推理，在保持相同准确率的同时实现了高达 4 倍的加速，并将显存使用减少了近 70%。凭借 GitHub 上 23,000+ stars，它已成为 Python 环境中生产级语音转文本的事实标准运行时。
+OpenAI 的 Whisper 在 2022 年改变了语音转文本领域，但原始 Python 实现并未充分利用硬件性能。对于一个 13 分钟的音频文件，使用 large-v2 模型的 ```openai/whisper```` 在 Tesla V100 GPU 上需要超过 4 分钟 —— 对于每天处理数百小时音频的生产流水线来说是不可接受的。SYSTRAN 的 **faster-whisper** 使用 CTranslate2 重新实现了 Whisper 推理，在保持相同准确率的同时实现了高达 4 倍的加速，并将显存使用减少了近 70%。凭借 GitHub 上 23,000+ stars，它已成为 Python 环境中生产级语音转文本的事实标准运行时。
 
 本指南提供生产级的 faster whisper 教程，涵盖安装、基准测试、Docker 部署以及与 WhisperX 和 whisper.cpp 的集成。所有命令和配置均可直接复制粘贴使用。
 
@@ -66,18 +67,18 @@ faster-whisper 是使用 CTranslate2（一个用于 Transformer 模型的高性�
 
 ### pip 安装（CPU）
 
-```bash
+`````bash
 # 创建虚拟环境
 python -m venv venv-whisper
 source venv-whisper/bin/activate
 
 # 安装 faster-whisper
 pip install faster-whisper
-```
+`````
 
 ### pip 安装（GPU 支持）
 
-```bash
+`````bash
 # 通过 pip 安装 cuBLAS 和 cuDNN（仅限 Linux）
 pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.*
 
@@ -86,11 +87,11 @@ export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import
 
 # 安装 faster-whisper
 pip install faster-whisper
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 # 拉取官方 NVIDIA CUDA 镜像
 docker run -it --rm --gpus all \
   -v $(pwd)/audio:/audio \
@@ -100,11 +101,11 @@ docker run -it --rm --gpus all \
 # 容器内
 apt-get update && apt-get install -y python3-pip
 pip install faster-whisper
-```
+`````
 
 ### 验证安装
 
-```python
+`````python
 # verify_setup.py
 from faster_whisper import WhisperModel
 import torch
@@ -115,11 +116,11 @@ print(f"CUDA 设备数: {torch.cuda.device_count()}")
 model = WhisperModel("tiny", device="cuda", compute_type="float16")
 print(f"模型加载设备: {model.model.device}")
 print("安装验证成功")
-```
+`````
 
 ### 首次转录
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # 加载模型（首次运行时自动从 Hugging Face 下载）
@@ -131,7 +132,7 @@ segments, info = model.transcribe("audio.mp3", beam_size=5)
 print(f"检测语言: {info.language} (概率: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ## 与流行工具集成
 
@@ -139,11 +140,11 @@ for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {s
 
 WhisperX 基于 faster-whisper 构建，增加了词级时间戳和说话人分离功能。它是会议转录的首选工具。
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -171,22 +172,22 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
           f"{speaker}: {segment[text]}")
-```
+`````
 
 ### whisper-asr-webservice（OpenAI 兼容 API）
 
 通过 OpenAI 兼容的 HTTP API 暴露 faster-whisper：
 
-```bash
+`````bash
 docker run -d --gpus all \
   -p 9000:9000 \
   -e ASR_MODEL=large-v3 \
   -e ASR_ENGINE=faster_whisper \
   -e COMPUTE_TYPE=int8 \
   onerahming/openai-whisper-asr
-```
+`````
 
-```python
+`````python
 import requests
 
 with open("audio.mp3", "rb") as f: response = requests.post(
@@ -195,32 +196,32 @@ with open("audio.mp3", "rb") as f: response = requests.post(
         data={"language": "en", "output": "json"}
     )
 print(response.json())
-```
+`````
 
 ### Speaches（自托管 OpenAI 兼容服务器）
 
-```bash
+`````bash
 docker run -d --gpus all \
   -p 8000:8000 \
   -e WHISPER__MODEL=large-v3 \
   -e WHISPER__COMPUTE_TYPE=int8 \
   fedirz/speaches:latest-gpu
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="dummy")
 
 with open("audio.mp3", "rb") as f: transcript = client.audio.transcriptions.create(model="large-v3", file=f)
 print(transcript.text)
-```
+`````
 
 ### LibreTranslate（翻译流水线）
 
 将转录与翻译串联用于多语言工作流：
 
-```python
+`````python
 from faster_whisper import WhisperModel
 import requests
 
@@ -232,7 +233,7 @@ response = requests.post("http://localhost:5000/translate", json={
     "q": japanese_text, "source": "ja", "target": "en"
 })
 print(response.json()["translatedText"])
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -244,15 +245,15 @@ print(response.json()["translatedText"])
 
 | 实现方案 | 精度 | Beam Size | 耗时 | 显存占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | openai/whisper | fp16 | 5 | 2分23秒 | 4708 MB |
 | whisper.cpp (Flash Attention) | fp16 | 5 | 1分05秒 | 4127 MB |
@@ -268,15 +269,15 @@ print(response.json()["translatedText"])
 
 | 实现方案 | 精度 | Beam Size | 耗时 | 内存占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | openai/whisper | fp32 | 5 | 6分58秒 | 2335 MB |
 | whisper.cpp | fp32 | 5 | 2分05秒 | 1049 MB |
@@ -290,13 +291,13 @@ print(response.json()["translatedText"])
 
 | 用例 | 模型 | 硬件 | 性能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **会议转录**（1小时音频） | large-v3 int8 | RTX 4070 | ~3 分钟处理 |
 | **播客批量处理**（100 文件） | large-v3 int8 batch=8 | A100 40GB | 100 小时约 20 分钟 |
@@ -307,7 +308,7 @@ print(response.json()["translatedText"])
 
 ### VAD 过滤器预分段
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v3", device="cuda", compute_type="int8")
@@ -322,11 +323,11 @@ segments, info = model.transcribe(
     ),
     beam_size=5
 )
-```
+`````
 
 ### 批处理推理最大化吞吐量
 
-```python
+`````python
 from faster_whisper import WhisperModel
 import glob, time
 
@@ -338,18 +339,18 @@ for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_si
     text = " ".join([s.text for s in segments])
     print(f"{file_path}: {len(text)} 字符")
 print(f"总耗时: {time.time() - start:.1f}秒，处理 {len(audio_files)} 个文件")
-```
+`````
 
 ### 词级时间戳
 
-```python
+`````python
 segments, _ = model.transcribe("audio.mp3", word_timestamps=True)
 for segment in segments: for word in segment.words: print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
-```
+`````
 
 ### 自定义模型转换
 
-```bash
+`````bash
 pip install transformers[torch]>=4.23
 
 ct2-transformers-converter \
@@ -357,11 +358,11 @@ ct2-transformers-converter \
   --output_dir whisper-large-v3-ct2 \
   --copy_files tokenizer.json preprocessor_config.json \
   --quantization float16
-```
+`````
 
 ### 使用 Prometheus 监控
 
-```python
+`````python
 from faster_whisper import WhisperModel
 from prometheus_client import Counter, Histogram, start_http_server
 
@@ -375,11 +376,11 @@ def transcribe(audio_path): REQUEST_COUNT.inc()
     return model.transcribe(audio_path, beam_size=5)
 
 start_http_server(8000)
-```
+`````
 
 ### 优雅错误处理
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_float16", "float16", "float32"]
@@ -389,21 +390,21 @@ def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_f
         except RuntimeError as e: print(f"{compute_type} 失败: {e}，重试中...")
             continue
     raise RuntimeError("所有计算类型均失败")
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | faster-whisper | OpenAI Whisper | WhisperX | whisper.cpp |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GPU 速度 (large-v3)** | ~12 倍实时 | ~3 倍实时 | ~12 倍实时 | ~8 倍实时 |
 | **显存占用 (large-v3)** | ~2.5 GB (int8) | ~11 GB (fp16) | ~3 GB | ~3 GB |
@@ -451,7 +452,7 @@ GPU 推理需要支持 CUDA 12.x 的 NVIDIA GPU。INT8 量化可在 8GB 显存�
 
 ### 如何在 Docker 中安装 faster-whisper？
 
-使用带有 cuDNN 9 的官方 NVIDIA CUDA 运行时镜像。上面的安装与配置部分展示了完整的 Dockerfile。关键要求是 `nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04` 基础镜像。使用 `--gpus all` 参数暴露 GPU。
+使用带有 cuDNN 9 的官方 NVIDIA CUDA 运行时镜像。上面的安装与配置部分展示了完整的 Dockerfile。关键要求是 ````nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04```` 基础镜像。使用 ````--gpus all```` 参数暴露 GPU。
 
 ### 转录准确率与 OpenAI Whisper 相同吗？
 
@@ -459,7 +460,7 @@ GPU 推理需要支持 CUDA 12.x 的 NVIDIA GPU。INT8 量化可在 8GB 显存�
 
 ### 我的 GPU 应该使用哪种 compute_type？
 
-对于 8GB GPU 和 GTX 10xx 显卡使用 `int8` 以获得最大显存节省。对于现代 GPU（RTX 30xx/40xx/50xx、A100、H100）使用 `float16` 获得最佳速度。Pascal 消费级显卡（GTX 1060/1070/1080）因 fp16 支持有限应使用 `int8`。
+对于 8GB GPU 和 GTX 10xx 显卡使用 ````int8```` 以获得最大显存节省。对于现代 GPU（RTX 30xx/40xx/50xx、A100、H100）使用 ````float16```` 获得最佳速度。Pascal 消费级显卡（GTX 1060/1070/1080）因 fp16 支持有限应使用 ````int8````。
 
 ### faster-whisper 与 WhisperX 相比如何？
 
@@ -471,7 +472,7 @@ WhisperX 基于 faster-whisper 构建，增加了说话人分离和通过 wav2ve
 
 ### 如何转换微调的 Whisper 模型？
 
-使用 `ct2-transformers-converter` CLI 工具（高级用法部分展示）。Hugging Face Hub 上的任何模型或与 Transformers 兼容的本地检查点都可以转换。转换期间支持 FP16 和 INT8 量化。
+使用 ````ct2-transformers-converter```` CLI 工具（高级用法部分展示）。Hugging Face Hub 上的任何模型或与 Transformers 兼容的本地检查点都可以转换。转换期间支持 FP16 和 INT8 量化。
 
 ### faster-whisper 是否支持所有 Whisper 模型尺寸？
 
@@ -485,7 +486,7 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 
 **行动清单：**
 
-1. `pip install faster-whisper` 并运行上面的验证脚本。
+1. ````pip install faster-whisper``` 并运行上面的验证脚本。
 2. 使用仓库中的 13 分钟测试音频对您的硬件进行基准测试。
 3. 为生产流水线设置 Docker 部署。
 4. 加入 [dibi8.com Telegram 群组](https://t.me/dibi8tech) 分享基准测试结果并获取生产环境支持。
@@ -540,7 +541,7 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](faster-whisper)
@@ -550,5 +551,5 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 - [microsoft-markitdown-file-to-markdown-converter-cli](faster-whisper)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

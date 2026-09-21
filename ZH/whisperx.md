@@ -24,11 +24,12 @@ aliases:
   - /zh/posts/whisperx/-
 ---
 
+
 {{</* resource-info */>}}
 
 音频转录很简单。但要获得**精确到80毫秒以内的词级时间戳**，并且**准确知道每个词是谁说的**，这就难了。OpenAI Whisper 只提供段落级时间戳，漂移可达数秒。对于播客编辑、视频字幕、会议记录和法律取证来说，这种精度根本无法使用。
 
-**WhisperX** 应运而生 —— 一个在 GitHub 上拥有 22,000 颗星的开源工具包，它通过 wav2vec2 强制音素对齐和 pyannote.audio 说话人分割，为 `faster-whisper` 增添了强大的生产能力。结果是：70倍实时转录速度，附带词级时间戳和多说话人标签。该项目在 INTERSPEECH 2023 上被接收，并已在世界各地的生产管道中经受实战考验。
+**WhisperX** 应运而生 —— 一个在 GitHub 上拥有 22,000 颗星的开源工具包，它通过 wav2vec2 强制音素对齐和 pyannote.audio 说话人分割，为 ```faster-whisper```` 增添了强大的生产能力。结果是：70倍实时转录速度，附带词级时间戳和多说话人标签。该项目在 INTERSPEECH 2023 上被接收，并已在世界各地的生产管道中经受实战考验。
 
 本指南提供完整的 WhisperX 教程：安装、Docker 部署、Python API 集成、生产加固，以及与 Whisper、faster-whisper 和 DeepSpeech 的诚实基准对比。
 
@@ -44,7 +45,7 @@ WhisperX 是一个自动语音识别（ASR）管道，通过三项生产能力�
 
 WhisperX 作为一个三阶段管道运行，每个阶段产生逐渐丰富的输出：
 
-```
+`````
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
 │  阶段 1: ASR    │ →  │  阶段 2: 对齐    │ →  │  阶段 3: 分割    │
 │ (faster-whisper)│    │ (wav2vec2 强制)  │    │ (pyannote.audio) │
@@ -52,9 +53,9 @@ WhisperX 作为一个三阶段管道运行，每个阶段产生逐渐丰富的�
          │                       │                       │
     段落文本               词级时间戳             说话人标签
     （无时间戳）           （亚100毫秒）           （按词分配）
-```
+`````
 
-**阶段 1 — 转录。** 使用 `faster-whisper`（通过 CTranslate2）进行批处理推理。来自 pyannote 的 VAD 预处理去除静音段落，减少幻觉并启用批处理而不降低 WER。输出：无时间戳的文本段落。
+**阶段 1 — 转录。** 使用 ````faster-whisper````（通过 CTranslate2）进行批处理推理。来自 pyannote 的 VAD 预处理去除静音段落，减少幻觉并启用批处理而不降低 WER。输出：无时间戳的文本段落。
 
 **阶段 2 — 对齐。** 通过特定语言的 wav2vec2 音素对齐模型运行转录文本。这通过强制对齐将每个识别的单词映射到其在音频中的精确位置。输出：带词级开始/结束时间戳的段落。
 
@@ -72,15 +73,15 @@ WhisperX 需要 Python 3.10+、PyTorch 2.7.1+ 配合 CUDA 12.8 以及 ffmpeg。�
 
 | 硬件 | 转录 | + 对齐 | + 分割 | 显存 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4090 (FP16) | 72x RTF | 60x | 30x | 24 GB |
 | RTX 4070 (FP16) | 50x | 40x | 22x | 12 GB |
@@ -90,7 +91,7 @@ WhisperX 需要 Python 3.10+、PyTorch 2.7.1+ 配合 CUDA 12.8 以及 ffmpeg。�
 
 ### 方法 1: PyPI 安装（推荐）
 
-```bash
+`````bash
 # 先安装 CUDA 12.8 toolkit (Linux)
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 
@@ -99,21 +100,21 @@ pip install whisperx
 
 # 验证安装
 whisperx --version
-```
+`````
 
 ### 方法 2: uv 安装（最快）
 
-```bash
+`````bash
 # 使用 Astral uv 即时执行工具
 uvx whisperx --help
 
 # 或从 GitHub 安装获取最新功能
 uvx git+https://github.com/m-bain/whisperX.git
-```
+`````
 
 ### 方法 3: Docker 安装（生产）
 
-```bash
+`````bash
 # 拉取包含所有依赖的预构建镜像
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
@@ -135,13 +136,13 @@ EOF
 docker build -f Dockerfile.whisperx -t whisperx:latest .
 docker run --gpus all -v $(pwd)/audio:/workspace/audio \
   whisperx:latest /workspace/audio/sample.wav --model large-v2
-```
+`````
 
 ### Hugging Face 令牌设置（分割必需）
 
 说话人分割需要接受 pyannote 模型许可：
 
-```bash
+`````bash
 # 1. 在 https://huggingface.co 创建账户
 # 2. 在 https://huggingface.co/settings/tokens 生成读取令牌
 # 3. 接受以下模型许可：
@@ -153,15 +154,15 @@ export HF_TOKEN="hf_your_token_here"
 
 # 通过 CLI 传入
 whisperx audio.wav --diarize --hf_token $HF_TOKEN
-```
+`````
 
 ## 与流行工具集成
 
 ### faster-whisper
 
-WhisperX 通过 CTranslate2 使用 `faster-whisper` 作为默认 ASR 后端。你可以配置束宽和计算类型以平衡速度与精度：
+WhisperX 通过 CTranslate2 使用 ````faster-whisper```` 作为默认 ASR 后端。你可以配置束宽和计算类型以平衡速度与精度：
 
-```python
+`````python
 import whisperx
 
 # 使用 faster-whisper 后端加载模型
@@ -176,13 +177,13 @@ model = whisperx.load_model(
         "patience": 2.0,
     }
 )
-```
+`````
 
 ### pyannote.audio
 
-分割使用 pyannote.audio 3.1+ 模型。`DiarizationPipeline` 封装了 pyannote 并添加了 WhisperX 特定的说话人分配功能：
+分割使用 pyannote.audio 3.1+ 模型。````DiarizationPipeline```` 封装了 pyannote 并添加了 WhisperX 特定的说话人分配功能：
 
-```python
+`````python
 from whisperx.diarize import DiarizationPipeline
 
 # 使用 pyannote 后端初始化分割
@@ -202,23 +203,23 @@ diarize_segments = diarize_model(
 
 # 为单词分配说话人
 result = whisperx.assign_word_speakers(diarize_segments, result)
-```
+`````
 
 ### OpenAI Whisper
 
-WhisperX 加载 OpenAI 的 Whisper 权重，但将其转换为 CTranslate2 格式以实现4倍更快的推理。使用 `--model` 参数选择任意 Whisper 变体：
+WhisperX 加载 OpenAI 的 Whisper 权重，但将其转换为 CTranslate2 格式以实现4倍更快的推理。使用 ````--model```` 参数选择任意 Whisper 变体：
 
-```bash
+`````bash
 # 模型大小选项: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
 # 对于 8GB 显存 GPU，使用 INT8 量化
 whisperx audio.wav --model large-v2 --compute_type int8
-```
+`````
 
 ### Docker Compose 生产栈
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -247,11 +248,11 @@ services: whisperx: build: context: .
   # 可选: Redis 队列用于批处理任务
   redis: image: redis:7-alpine
     ports: - "6379:6379"
-```
+`````
 
 ### FastAPI 服务封装
 
-```python
+`````python
 # api.py - 生产级 WhisperX API
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
@@ -311,11 +312,11 @@ async def transcribe(
 
 @app.get("/health")
 async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
-```
+`````
 
 启动 API：
 
-```bash
+`````bash
 # 安装依赖
 pip install fastapi uvicorn python-multipart
 
@@ -325,7 +326,7 @@ uvicorn api:app --host 0.0.0.0 --port 8000 --workers 1
 # 使用 curl 测试
 curl -X POST "http://localhost:8000/transcribe?diarize=true" \
   -F "file=@interview.wav"
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -335,15 +336,15 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 | 模型 | OpenAI Whisper | faster-whisper | WhisperX (完整) | 相对 Whisper 加速 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | tiny | ~12 分钟 | ~1.5 分钟 | ~2 分钟 | 6x |
 | base | ~20 分钟 | ~2.5 分钟 | ~3.5 分钟 | 5.7x |
@@ -359,15 +360,15 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 | 指标 | Whisper | wav2vec2 | WhisperX | 改进 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | 比 Whisper 低7% |
 | 词分割精度 | 62% | 71% | **89%** | 比 wav2vec2 高18% |
@@ -378,13 +379,13 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 | 场景 | Whisper WER | WhisperX WER | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 录音棚质量, 1个说话人 | 5.2% | **4.8%** | 干净播客音频 |
 | 多说话人会议 (AMI) | 12.1% | **8.8%** | 3-4个说话人 |
@@ -397,7 +398,7 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 **法律取证分析。** 一家诉讼支持公司使用 WhisperX 转录8小时的取证录音并附带说话人归属。词级对齐让律师可以点击任意转录行并跳转到音频/视频中的确切时刻。在正式场合下，2-3个说话人的分割精度约为90%。
 
-**视频字幕。** 一家媒体公司为50+种语言生成 SRT 文件。WhisperX 的 VAD 预处理消除静音段落上的幻觉，`--highlight_words` 标志产生卡拉OK式逐词字幕。
+**视频字幕。** 一家媒体公司为50+种语言生成 SRT 文件。WhisperX 的 VAD 预处理消除静音段落上的幻觉，````--highlight_words```` 标志产生卡拉OK式逐词字幕。
 
 **会议转录。** 与 Slack 机器人集成，WhisperX 处理上传的音频文件并返回带说话人标签的线程化转录。RTX 3060 上的 INT8 量化每小时可处理10+个会议。
 
@@ -407,7 +408,7 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 对于显存有限的 GPU：
 
-```bash
+`````bash
 # INT8 量化: 显存减少30-40%，精度损失极小
 whisperx audio.wav \
   --model large-v2 \
@@ -420,11 +421,11 @@ whisperx audio.wav \
   --model base \
   --compute_type int8 \
   --device cpu
-```
+`````
 
 ### 容器环境模型缓存
 
-```bash
+`````bash
 # 预下载模型以避免冷启动延迟
 python3 << PYEOF
 import whisperx
@@ -448,11 +449,11 @@ PYEOF
 
 # 在 Docker 中挂载缓存
 # -v /host/cache:/root/.cache:rw
-```
+`````
 
 ### 监控与日志
 
-```python
+`````python
 # monitoring.py - WhisperX 的 Prometheus 指标
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -493,16 +494,16 @@ def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.tim
 
 # 在 9090 端口暴露指标
 start_http_server(9090)
-```
+`````
 
 ### 安全考虑
 
-1. **令牌管理。** 将 `HF_TOKEN` 存储在密钥管理器（AWS Secrets Manager、Vault）中，永远不要放在代码或环境文件中。
+1. **令牌管理。** 将 ````HF_TOKEN```` 存储在密钥管理器（AWS Secrets Manager、Vault）中，永远不要放在代码或环境文件中。
 2. **输入验证。** 清理上传的文件名。在隔离的临时目录中处理音频。
 3. **速率限制。** 实施每用户速率限制以防止 GPU 资源耗尽。
 4. **模型隔离。** 在具有只读 root 文件系统的专用容器中运行 WhisperX。
 
-```bash
+`````bash
 # 安全的 Docker 运行
 docker run --gpus all \
   --read-only \
@@ -511,11 +512,11 @@ docker run --gpus all \
   --cap-drop ALL \
   -e HF_TOKEN_FILE=/run/secrets/hf_token \
   whisperx:latest audio.wav --diarize
-```
+`````
 
 ### Kubernetes 扩展
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -543,21 +544,21 @@ spec: replicas: 2
       - name: audio-input
         nfs: server: 10.0.0.5
           path: /shared/audio
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **词级时间戳** | 是 (<80ms) | 否 (仅段落) | 否 (仅段落) | 否 |
 | **说话人分割** | 是 (按词) | 否 | 否 | 否 |
@@ -585,7 +586,7 @@ spec: replicas: 2
 
 **重叠语音是个问题。** 当两个说话人同时说话时，WhisperX（以及 Whisper）会将所有语音分配给一个说话人。pyannote 分割模型可以检测重叠但无法分离交织的音频流。对于严重串话场景，预计20-30%的说话人错误。
 
-**分割在已知说话人数时最精确。** 虽然 pyannote 可以自动检测说话人数量，但在4+说话人录音上，精度从约90%（已知数量）下降到约75%（自动检测）。尽可能传入 `--min_speakers` 和 `--max_speakers`。
+**分割在已知说话人数时最精确。** 虽然 pyannote 可以自动检测说话人数量，但在4+说话人录音上，精度从约90%（已知数量）下降到约75%（自动检测）。尽可能传入 ````--min_speakers```` 和 ````--max_speakers````。
 
 **每种语言需要特定的对齐模型。** 词级对齐需要每种语言一个音素模型。WhisperX 为20+语言自动选择模型，但低资源语言可能缺少高质量对齐器。在目标语言上测试后再做决策。
 
@@ -601,7 +602,7 @@ spec: replicas: 2
 
 **Q2: 我可以在不使用说话人分割的情况下使用 WhisperX 吗？**
 
-可以 —— 分割完全可选。不带 `--diarize` 运行以仅获取词级时间戳。对齐阶段始终运行，所以你仍可获得亚100毫秒的词时间戳。这可将处理时间减少约40%。
+可以 —— 分割完全可选。不带 ````--diarize```` 运行以仅获取词级时间戳。对齐阶段始终运行，所以你仍可获得亚100毫秒的词时间戳。这可将处理时间减少约40%。
 
 **Q3: 生产部署需要什么 GPU？**
 
@@ -609,7 +610,7 @@ spec: replicas: 2
 
 **Q4: 如何处理长音频文件（2小时以上）？**
 
-WhisperX 使用 VAD 自动分段长音频。无需手动分块。对于4+小时的文件，如果显存允许增加 `--batch_size`，或在内存受限系统中降低到4。VAD 阶段确保不会截断句中的单词。
+WhisperX 使用 VAD 自动分段长音频。无需手动分块。对于4+小时的文件，如果显存允许增加 ````--batch_size````，或在内存受限系统中降低到4。VAD 阶段确保不会截断句中的单词。
 
 **Q5: 我可以在自己的数据上微调 WhisperX 吗？**
 
@@ -617,7 +618,7 @@ WhisperX 使用 VAD 自动分段长音频。无需手动分块。对于4+小时�
 
 **Q6: 为什么我需要 Hugging Face 令牌？**
 
-pyannote.audio 说话人分割模型 (`speaker-diarization-community-1`) 托管在 Hugging Face 上，需要接受许可协议。令牌证明你已接受条款。它是免费的，设置只需2分钟。如果跳过分割则不需要令牌。
+pyannote.audio 说话人分割模型 (````speaker-diarization-community-1```) 托管在 Hugging Face 上，需要接受许可协议。令牌证明你已接受条款。它是免费的，设置只需2分钟。如果跳过分割则不需要令牌。
 
 ## 结论
 
@@ -680,7 +681,7 @@ WhisperX 填补了开源 ASR 栈中的一个关键空白：以70倍实时速度�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](whisperx)
@@ -690,5 +691,5 @@ WhisperX 填补了开源 ASR 栈中的一个关键空白：以70倍实时速度�
 - [moneyprinterturbo-one-click-ai-video-generator](whisperx)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

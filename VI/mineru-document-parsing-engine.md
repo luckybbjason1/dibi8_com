@@ -11,6 +11,7 @@ featureImage: /images/articles/mineru-docs.png
 
 ---
 
+
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
 *MinerU — công cụ phân tích tài liệu nguồn mở đã đạt 70.600 sao GitHub chỉ sau hơn một năm.*
@@ -40,28 +41,28 @@ Kết quả là nội dung tài liệu mà các tác nhân AI và LLM thực s�
 
 MinerU cung cấp nhiều đường dẫn cài đặt tùy theo nhu cầu của bạn: ### pip (Được khuyến nghị cho hầu hết người dùng)
 
-```bash
+````bash
 pip install mineru
-```
+`````
 
 ### Docker
 
-```bash
+`````bash
 docker pull mineru/mineru:latest
 docker run --gpus all -v $(pwd):/data mineru/mineru:latest
-```
+`````
 
 ### Phát triển địa phương
 
-```bash
+`````bash
 git clone https://github.com/opendatalab/MinerU.git
 cd MinerU
 pip install -e .
-```
+`````
 
-MinerU hỗ trợ cả suy luận **chỉ dành cho CPU** và **tăng tốc GPU**. Để tăng tốc GPU, hãy cài đặt với sự hỗ trợ CUDA: ```bash
+MinerU hỗ trợ cả suy luận **chỉ dành cho CPU** và **tăng tốc GPU**. Để tăng tốc GPU, hãy cài đặt với sự hỗ trợ CUDA: `````bash
 pip install mineru[cuda]
-```
+`````
 
 Trên macOS có Apple Silicon, MinerU tận dụng MPS (Bộ tạo bóng hiệu suất kim loại) để tăng tốc.
 
@@ -69,32 +70,32 @@ Trên macOS có Apple Silicon, MinerU tận dụng MPS (Bộ tạo bóng hiệu 
 
 MinerU cung cấp ba phần phụ trợ phân tích cú pháp khác nhau, mỗi phần được tối ưu hóa cho các tình huống khác nhau: ### 1. Pipeline Backend (Nhanh & Ổn định)
 
-Phần phụ trợ `pipeline` là lựa chọn mặc định cho hầu hết người dùng. Nó nhanh, ổn định và không tạo ra ảo giác. Nó chạy hiệu quả trên CPU và lý tưởng cho việc xử lý hàng loạt.
+Phần phụ trợ ````pipeline```` là lựa chọn mặc định cho hầu hết người dùng. Nó nhanh, ổn định và không tạo ra ảo giác. Nó chạy hiệu quả trên CPU và lý tưởng cho việc xử lý hàng loạt.
 
-```bash
+`````bash
 mineru ./input.pdf -o ./output/
-```
+`````
 
 **Tốt nhất cho:** Xử lý tài liệu khối lượng lớn, quy trình CI/CD, môi trường chỉ có CPU.
 
 ### 2. VLM Engine (Độ chính xác cao)
 
-Công cụ VLM (Mô hình ngôn ngữ tầm nhìn) sử dụng mô hình `MinerU2.5-Pro-2604-1.2B` độc quyền của MinerU để mang lại độ chính xác phân tích cú pháp hiện đại. Nó vượt trội trên các tài liệu phức tạp với bố cục hỗn hợp, văn bản viết tay và công thức dày đặc.
+Công cụ VLM (Mô hình ngôn ngữ tầm nhìn) sử dụng mô hình ````MinerU2.5-Pro-2604-1.2B```` độc quyền của MinerU để mang lại độ chính xác phân tích cú pháp hiện đại. Nó vượt trội trên các tài liệu phức tạp với bố cục hỗn hợp, văn bản viết tay và công thức dày đặc.
 
-```bash
+`````bash
 mineru ./complex.pdf -o ./output/ --engine vlm-engine
-```
+`````
 
 **Tốt nhất cho:** Tài liệu khoa học phức tạp, tài liệu scan, nội dung viết tay, OCR đa ngôn ngữ.
 
 ### 3. Động cơ Hybrid (Cân bằng)
 
-Công cụ `hybrid` kết hợp trích xuất văn bản gốc với phân tích dựa trên VLM. Bắt đầu từ phiên bản 3.3, nó bao gồm tham số `nỗ lực` với mức độ `trung bình` và `cao`: - **Nỗ lực trung bình:** Nhanh hơn 35-220% so với mức cao, với độ chính xác chỉ giảm 0,13 điểm trên OmniDocBench 
+Công cụ ````hybrid```` kết hợp trích xuất văn bản gốc với phân tích dựa trên VLM. Bắt đầu từ phiên bản 3.3, nó bao gồm tham số ````nỗ lực```` với mức độ ````trung bình```` và ````cao````: - **Nỗ lực trung bình:** Nhanh hơn 35-220% so với mức cao, với độ chính xác chỉ giảm 0,13 điểm trên OmniDocBench 
 - **Nỗ lực cao:** Độ chính xác tối đa với hỗ trợ phân tích hình ảnh
 
-```bash
+`````bash
 mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
-```
+`````
 
 **Tốt nhất cho:** Khối lượng công việc sản xuất mà bạn cần cân bằng giữa tốc độ và độ chính xác.
 
@@ -115,15 +116,15 @@ Hỗ trợ DOCX, PPTX và XLSX gốc (được thêm trong phiên bản 3.1.0) c
 
 Công cụ OCR của MinerU hỗ trợ **109 ngôn ngữ** và được nâng cấp lên PP-OCRv6 trong phiên bản 3.4, cải thiện độ chính xác khoảng 11% trên điểm chuẩn OmniDocBench v1.6.
 
-Bắt đầu từ phiên bản 3.4, MinerU đã đơn giản hóa cấu hình ngôn ngữ OCR. Thay vì chọn từng ngôn ngữ (tiếng Nhật, tiếng Trung phồn thể, tiếng Anh, tiếng Latinh), giờ đây tất cả các kịch bản đều định tuyến thông qua mô hình `ch` OCR được tối ưu hóa, giảm độ phức tạp của cấu hình đồng thời cải thiện độ chính xác.
+Bắt đầu từ phiên bản 3.4, MinerU đã đơn giản hóa cấu hình ngôn ngữ OCR. Thay vì chọn từng ngôn ngữ (tiếng Nhật, tiếng Trung phồn thể, tiếng Anh, tiếng Latinh), giờ đây tất cả các kịch bản đều định tuyến thông qua mô hình ````ch```` OCR được tối ưu hóa, giảm độ phức tạp của cấu hình đồng thời cải thiện độ chính xác.
 
-```bash
+`````bash
 # Automatic OCR detection (recommended)
 mineru ./scanned.pdf -o ./output/
 
 # Buộc OCR trên một tài liệu cụ thể 
 minuru ./document.pdf -o ./output/ --ocr 
-```
+`````
 
 ## Real-World Use Cases
 
@@ -131,14 +132,14 @@ minuru ./document.pdf -o ./output/ --ocr
 
 MinerU được xây dựng có mục đích cho quy trình làm việc RAG (Thế hệ tăng cường truy xuất). Bằng cách chuyển đổi tài liệu thành Markdown có cấu trúc với thứ tự đọc, tiêu đề và cấu trúc ngữ nghĩa được giữ nguyên, hệ thống RAG có thể phân tách và nhúng tài liệu hiệu quả hơn nhiều.
 
-```python
+`````python
 import mineru as mu
 
 kết quả = mu.parse("./research_paper.pdf") 
 # result.markdown: Làm sạch Markdown để nhúng 
 # result.json: JSON có cấu trúc để truy xuất 
 # result.layout: Bố cục trực quan để gỡ lỗi 
-```
+`````
 
 ### Cơ sở kiến ​​thức về tác nhân AI
 
@@ -168,19 +169,19 @@ MinerU tích hợp với hầu hết mọi khung AI chính: | Framework | Integr
 
 MinerU cũng cung cấp **MCP Server** để tích hợp với các công cụ mã hóa AI như Cursor, Claude Desktop và Windsurf. Điều này cho phép bạn phân tích cú pháp tài liệu trực tiếp trong quy trình làm việc của tác nhân mã hóa.
 
-```bash
+`````bash
 # Start the MCP server
 mineru-mcp-server
-```
+`````
 
 ## Performance Benchmarks
 
-Phần phụ trợ `pipeline` của MinerU đạt được số điểm **86,2 trên OmniDocBench v1.5**, vượt qua độ chính xác của mô hình VLM thế hệ trước `MinerU2.0-2505-0.9B`.
+Phần phụ trợ ````pipeline```` của MinerU đạt được số điểm **86,2 trên OmniDocBench v1.5**, vượt qua độ chính xác của mô hình VLM thế hệ trước ````MinerU2.0-2505-0.9B````.
 
-Động cơ Hybrid với `nỗ lực=trung bình` mang lại: - **~80% nhanh hơn** đối với các kịch bản PDF văn bản trên Linux 
+Động cơ Hybrid với ````nỗ lực=trung bình```` mang lại: - **~80% nhanh hơn** đối với các kịch bản PDF văn bản trên Linux 
 - **~90% nhanh hơn** cho các kịch bản PDF văn bản trên Windows 
 - **~nhanh hơn 220%** đối với các kịch bản PDF văn bản trên macOS 
-- Chỉ **giảm độ chính xác 0,13 điểm** so với `nỗ lực=cao`
+- Chỉ **giảm độ chính xác 0,13 điểm** so với ````nỗ lực=cao````
 
 ## Why MinerU Stands Out
 
@@ -200,11 +201,11 @@ Cách dễ nhất để dùng thử MinerU là thông qua [ứng dụng web tr�
 
 Đối với các nhà phát triển, [sổ tay Colab](https://colab.research.google.com/Gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb) cung cấp bản trình diễn tương tác nhanh.
 
-```bash
+`````bash
 # Install and parse your first document
 pip install mineru
 mineru ./my-document.pdf -o ./output/ --format markdown
-```
+````
 
 ## Limitations
 
@@ -259,7 +260,7 @@ Với hơn 70.600 sao, đội ngũ phát triển tích cực và khả năng tí
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -269,7 +270,7 @@ Với hơn 70.600 sao, đội ngũ phát triển tích cực và khả năng tí
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
 - [mineru-document-parsing-engine](mineru-document-parsing-engine)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

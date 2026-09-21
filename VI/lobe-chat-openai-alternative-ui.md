@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/lobe-chat-openai-alternative-ui/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: ChatGPT Không Còn Đủ Nữa
@@ -42,7 +43,7 @@ Hướng dẫn này đi qua cài đặt, cấu hình nhà cung cấp, phát tri�
 
 ## Lobe Chat hoạt động như thế nào?
 
-Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Frontend Next.js xử lý việc render UI, trạng thái cuộc trò chuyện, và orchestration plugin, trong khi các lệnh gọi LLM được proxy qua các endpoint API có thể cấu hình: ```
+Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Frontend Next.js xử lý việc render UI, trạng thái cuộc trò chuyện, và orchestration plugin, trong khi các lệnh gọi LLM được proxy qua các endpoint API có thể cấu hình: ````
 ┌─────────────────────────────────────────────┐
 │           Trình duyệt ngườ dùng / PWA      │
 │  ┌─────────┐  ┌─────────┐  ┌────────────┐  │
@@ -65,7 +66,7 @@ Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Fr
 │  OpenAI  │  │  Claude  │  │   Ollama   │
 │  API     │  │  API     │  │  (Local)   │
 └──────────┘  └──────────┘  └────────────┘
-```
+`````
 
 **Các thành phần chính:**
 
@@ -83,21 +84,21 @@ Kiến trúc của Lobe Chat tách lớp presentation khỏi model inference. Fr
 
 **Bước 1 —— Pull và chạy image chính thức:**
 
-```bash
+`````bash
 docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY \
   -e ACCESS_CODE=your-secure-password \
   --name lobe-chat \
   lobehub/lobe-chat:latest
-```
+`````
 
 **Bước 2 —— Truy cập UI:**
 
-Mở `http://localhost:3210`. Bạn sẽ thấy trình hướng dẫn thiết lập để chọn nhà cung cấp LLM mặc định và nhập API keys.
+Mở ````http://localhost:3210````. Bạn sẽ thấy trình hướng dẫn thiết lập để chọn nhà cung cấp LLM mặc định và nhập API keys.
 
 **Bước 3 —— Cấu hình thêm nhà cung cấp (tùy chọn):**
 
-```bash
+`````bash
 # Thiết lập đa nhà cung cấp qua biến môi trường
 docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=sk-xxx \
@@ -107,11 +108,11 @@ docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password \
   --name lobe-chat \
   lobehub/lobe-chat:latest
-```
+`````
 
 ### Cách 2: Docker Compose với Persistent Storage
 
-```yaml
+`````yaml
 # docker-compose.yml
 services: lobe-chat: image: lobehub/lobe-chat:latest
     ports: - "3210:3210"
@@ -129,16 +130,16 @@ services: lobe-chat: image: lobehub/lobe-chat:latest
     volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: lobe-data: pgdata: ```
+volumes: lobe-data: pgdata: `````
 
-```bash
+`````bash
 # Khởi động với persistence
 docker compose up -d
-```
+`````
 
 ### Cách 3: Triển khai lên [DigitalOcean](https://m.do.co/c/eca87ac14ee0)
 
-```bash
+`````bash
 # Trên Droplet 2 vCPU / 4GB RAM (~$24/tháng)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -157,7 +158,7 @@ chat.yourdomain.com {
     reverse_proxy localhost:3210
 }
 EOF
-```
+`````
 
 Thêm bản ghi DNS A trỏ đến IP Droplet của bạn và bạn sẽ online trong vòng 15 phút. [Lấy DigitalOcean Droplet tại đây](https://m.do.co/c/eca87ac14ee0).
 
@@ -165,32 +166,32 @@ Thêm bản ghi DNS A trỏ đến IP Droplet của bạn và bạn sẽ online 
 
 Lobe Chat chuẩn hóa các lệnh gọi API xuyên suốt các nhà cung cấp thông qua một adapter thống nhất. Sau đây là cách cấu hình các nhà cung cấp phổ biến nhất: ### OpenAI (GPT-4, GPT-4o)
 
-```bash
+`````bash
 # Qua biến môi trường
 echo "OPENAI_API_KEY=sk-xxxxxxxx" >> .env
 
 # Qua UI: Cài đặt → Mô hình Ngôn ngữ → OpenAI → Nhập key
-```
+`````
 
 ### Anthropic Claude (Claude 3.5 Sonnet)
 
-```bash
+`````bash
 # Biến môi trường
 echo "ANTHROPIC_API_KEY=sk-ant-xxxxxxxx" >> .env
 
 # Khởi động lại container
 docker restart lobe-chat
-```
+`````
 
 ### Google Gemini (Gemini 1.5 Pro)
 
-```bash
+`````bash
 echo "GOOGLE_API_KEY=AIzaxxxxxxxx" >> .env
-```
+`````
 
 ### Ollama (Model Local — Llama, Mistral, v.v.)
 
-```bash
+`````bash
 # Chạy Ollama trên host
 docker run -d -p 11434:11434 --name ollama ollama/ollama
 
@@ -202,36 +203,36 @@ docker run -d -p 3210:3210 \
   -e OLLAMA_PROXY_URL=http://host.docker.internal:11434 \
   -e ACCESS_CODE=mypassword \
   lobehub/lobe-chat
-```
+`````
 
 ### Azure OpenAI Service
 
-```bash
+`````bash
 # Cần endpoint, API key, và tên deployment
 echo "AZURE_API_KEY=your-azure-key" >> .env
 echo "AZURE_API_ENDPOINT=https://your-resource.openai.azure.com" >> .env
 echo "AZURE_API_VERSION=2024-06-01" >> .env
-```
+`````
 
 ### AWS Bedrock
 
-```bash
+`````bash
 echo "AWS_ACCESS_KEY_ID=AKIAxxx" >> .env
 echo "AWS_SECRET_ACCESS_KEY=xxx" >> .env
 echo "AWS_REGION=us-east-1" >> .env
-```
+`````
 
 ### Chuyển Đổi Nhà Cung Cấp tại Runtime
 
-Ngườ dùng có thể chuyển đổi nhà cung cấp theo từng cuộc trò chuyện trong UI. Điều này cho phép bạn so sánh GPT-4 và Claude cạnh nhau: ```
+Ngườ dùng có thể chuyển đổi nhà cung cấp theo từng cuộc trò chuyện trong UI. Điều này cho phép bạn so sánh GPT-4 và Claude cạnh nhau: `````
 # Không cần restart —— chuyển nhà cung cấp là client-side
 # Click icon nhà cung cấp ở header chat → Chọn model khác
 # Mỗi cuộc trò chuyện nhớ lựa chọn nhà cung cấp của nó
-```
+`````
 
 ## Hệ Thống Plugin: Mở Rộng Lobe Chat
 
-Kiến trúc plugin của Lobe Chat sử dụng hệ thống dựa trên manifest. Plugin khai báo khả năng của chúng trong `manifest.json`, và UI chat render chúng như các công cụ tương tác.
+Kiến trúc plugin của Lobe Chat sử dụng hệ thống dựa trên manifest. Plugin khai báo khả năng của chúng trong ````manifest.json````, và UI chat render chúng như các công cụ tương tác.
 
 ### Cài đặt từ Plugin Marketplace
 
@@ -242,7 +243,7 @@ Kiến trúc plugin của Lobe Chat sử dụng hệ thống dựa trên manifes
 
 ### Xây dựng Plugin Tùy Chỉnh
 
-Tạo một plugin đơn giản query API nội bộ của bạn: ```json
+Tạo một plugin đơn giản query API nội bộ của bạn: `````json
 {
   "api": [
     {
@@ -269,13 +270,13 @@ Tạo một plugin đơn giản query API nội bộ của bạn: ```json
   },
   "version": "1.0.0"
 }
-```
+`````
 
 Host điều này tại một URL công khai, sau đó thêm qua **Plugin Store → Custom Plugin → Nhập URL**.
 
 ### Bảo Mật Runtime Plugin
 
-Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn chế: ```
+Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn chế: `````
 ┌─────────────────────────────┐
 │  Lobe Chat Main Window      │
 │  ┌───────────────────────┐  │
@@ -286,7 +287,7 @@ Các plugin thực thi trong iframe sandboxed với quyền hạn bị hạn ch�
 │  │  - CORS bắt buộc      │  │
 │  └───────────────────────┘  │
 └─────────────────────────────┘
-```
+`````
 
 Mỗi request plugin yêu cầu sự chấp thuận rõ ràng từ ngườ dùng. LLM đề xuất tool calls, nhưng ngườ dùng phải xác nhận trước khi thực thi.
 
@@ -302,21 +303,21 @@ Lobe Chat hoạt động như một Progressive Web App, tạo cảm giác như 
 
 ### Cài đặt trên Mobile (iOS Safari)
 
-```
+`````
 1. Mở Lobe Chat trong Safari
 2. Chạm Chia sẻ → "Thêm vào Màn hình chính"
 3. Xuất hiện như icon app native
 4. Hỗ trợ push notification (qua service worker)
-```
+`````
 
 ### Hỗ Trợ Offline
 
-Service worker cache app shell và các cuộc trò chuyện gần đây. Không có internet: ```
+Service worker cache app shell và các cuộc trò chuyện gần đây. Không có internet: `````
 ✅ Duyệt lịch sử cuộc trò chuyện
 ✅ Xem phản hồi trước đó
 ✅ Soạn tin nhắn (xếp hàng để gửi)
 ❌ Phản hồi LLM mới (cần kết nối API)
-```
+`````
 
 ## Benchmark & Use Case Thực Tế
 
@@ -364,36 +365,36 @@ Service worker cache app shell và các cuộc trò chuyện gần đây. Không
 
 ### Bật Xác thực
 
-Cho triển khai team, đặt mã truy cập: ```bash
+Cho triển khai team, đặt mã truy cập: `````bash
 docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password-2026 \
   -e OPENAI_API_KEY=sk-xxx \
   lobehub/lobe-chat:latest
-```
+`````
 
-Cho tích hợp SSO, cấu hình OAuth: ```bash
+Cho tích hợp SSO, cấu hình OAuth: `````bash
   -e AUTH_PROVIDER=auth0 \
   -e AUTH_AUTH0_ID=your-client-id \
   -e AUTH_AUTH0_SECRET=your-secret \
   -e AUTH_AUTH0_ISSUER=https://your-domain.us.auth0.com \
-```
+`````
 
 ### Theme Tùy Chỉnh
 
-Tạo file theme JSON: ```json
+Tạo file theme JSON: `````json
 {
   "primaryColor": "#1890ff",
   "neutralColor": "#8c8c8c",
   "backgroundColor": "#f0f2f5",
   "sidebarWidth": 280
 }
-```
+`````
 
 Tải lên qua **Cài đặt → Theme → Theme Tùy chỉnh**.
 
 ### Conversations Hỗ trợ Database
 
-Cho persistence đa ngườ dùng, cấu hình PostgreSQL: ```yaml
+Cho persistence đa ngườ dùng, cấu hình PostgreSQL: `````yaml
 # docker-compose.prod.yml
 services: lobe-chat: image: lobehub/lobe-chat:latest
     environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
@@ -406,11 +407,11 @@ services: lobe-chat: image: lobehub/lobe-chat:latest
       POSTGRES_DB: lobechat
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### Reverse Proxy với Caddy
 
-```bash
+`````bash
 # Caddyfile cho HTTPS tự động
 chat.yourdomain.com {
     reverse_proxy localhost:3210
@@ -420,15 +421,15 @@ chat.yourdomain.com {
         X-Content-Type-Options nosniff
     }
 }
-```
+`````
 
-```bash
+`````bash
 caddy run --config Caddyfile
-```
+`````
 
 ### Giám sát với Prometheus
 
-Lobe Chat expose metrics tại `/api/metrics`: ```yaml
+Lobe Chat expose metrics tại ``/api/metrics``: `````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -436,7 +437,7 @@ services: prometheus: image: prom/prometheus
 
   grafana: image: grafana/grafana
     ports: - "3000:3000"
-```
+`````
 
 ## So sánh với các Giải pháp Thay thế
 
@@ -490,7 +491,7 @@ Không trong cùng một thread. Mỗi cuộc trò chuyện gắn với một nh
 
 **Q: Làm thế nào cập nhật Lobe Chat lên phiên bản mới nhất?**
 
-```bash
+`````bash
 # Pull image mới nhất
 docker pull lobehub/lobe-chat:latest
 
@@ -499,7 +500,7 @@ docker compose down && docker compose up -d
 
 # Cuộc trò chuyện persist trong browser localStorage
 # Với backend PostgreSQL, database migrations tự động chạy
-```
+````
 
 Cập nhật được phát hành hàng tuần. Kiểm tra [trang releases](https://github.com/lobehub/lobe-chat/releases) để xem các breaking changes trước khi cập nhật.
 
@@ -531,7 +532,7 @@ Hệ thống plugin và hỗ trợ PWA làm Lobe Chat nhiều hơn một bản s
 
 Tham gia cộng đồng Telegram cho AI developers: **@dibi8dev** —— chia sẻ cấu hình Lobe Chat của bạn và nhận trợ giúp từ 5,000+ builders.
 
----
+* * *
 
 ## Nguồn & Tài Liệu Tham Khảo
 
@@ -542,7 +543,7 @@ Tham gia cộng đồng Telegram cho AI developers: **@dibi8dev** —— chia s�
 5. [LobeHub Plugin Marketplace](https://lobechat.com/plugins) —— Duyệt các plugin có sẵn
 6. [Next.js Documentation](https://nextjs.org/docs) —— Documentation framework nền tảng
 
----
+* * *
 
 
 
@@ -583,7 +584,7 @@ Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOce
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -593,6 +594,6 @@ Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOce
 - [1m-context-window-llm-2026-real-test](lobe-chat-openai-alternative-ui)
 - [9router-smart-llm-proxy-token-saver-free-coding](lobe-chat-openai-alternative-ui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

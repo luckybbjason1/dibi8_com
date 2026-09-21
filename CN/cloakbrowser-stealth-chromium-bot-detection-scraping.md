@@ -12,9 +12,10 @@ maintainer: 'CloakHQ'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 ---
+
 # CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              CloakBrowser Anti-Detection               │
 │                                                      │
@@ -37,7 +38,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 │  │         Anti-detection browser                 │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *CloakBrowser: drop-in Playwright replacement that passes every bot test*
 
@@ -51,7 +52,7 @@ CloakBrowser is **a stealth Chromium browser engine** patched at the source leve
 
 Key capabilities: - **Source-level patches** — Modify Chromium at build time, not runtime hacks
 - **30/30 detection tests passed** — Passes major bot detection systems (Cloudflare, Datadome, PerimeterX, etc.)
-- **Drop-in Playwright replacement** — Replace `playwright.chromium.launch()` with one line
+- **Drop-in Playwright replacement** — Replace ````playwright.chromium.launch()```` with one line
 - **TLS fingerprint randomization** — Rotate TLS fingerprints like real browsers
 - **WebRTC leak prevention** — Prevent IP leak through WebRTC
 - **Headless detection bypass** — Hide all headless browser signatures
@@ -63,50 +64,50 @@ Built as a fork of Chromium with ~200 source-level patches applied. Supports Pyt
 
 ### Stage 1: Installation
 
-```bash
+`````bash
 # Install CloakBrowser for Python
 pip install cloakbrowser
-```
+`````
 
 ### Stage 2: Python Integration
 
-```bash
+`````bash
 # Install CloakBrowser for Node.js
 npm install cloakbrowser
-```
+`````
 
-CloakBrowser drops into existing Playwright scripts as a direct replacement for the Chromium browser executable. Replace `playwright.chromium.launch()` with the CloakBrowser executable path.
+CloakBrowser drops into existing Playwright scripts as a direct replacement for the Chromium browser executable. Replace ````playwright.chromium.launch()```` with the CloakBrowser executable path.
 
 ### Stage 3: Test Stealth
 
-```bash
+`````bash
 # Verify stealth configuration with Docker
 docker run --rm cloakhq/cloakbrowser cloaktest
-```
+`````
 
-The `cloaktest` command runs a comprehensive suite of 30 bot detection tests, verifying that your CloakBrowser build passes all anti-detection checks.
+The ````cloaktest```` command runs a comprehensive suite of 30 bot detection tests, verifying that your CloakBrowser build passes all anti-detection checks.
 
 ## Installation & Setup
 
 ### Quick Start (Python)
 
-```bash
+`````bash
 # Install CloakBrowser
 pip install cloakbrowser
 
 # Test installation
 docker run --rm cloakhq/cloakbrowser cloaktest
-```
+`````
 
 ### Node.js Setup
 
-```bash
+`````bash
 # Install CloakBrowser
 npm install cloakbrowser
 
 # Test installation
 docker run --rm cloakhq/cloakbrowser cloaktest
-```
+`````
 
 ### Proxy Integration
 
@@ -126,11 +127,11 @@ CloakBrowser applies patches at Chromium build time — not runtime hacks. The p
 
 | Detection System | Standard Chromium | CloakBrowser |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cloudflare Turnstile | Blocked | Passed |
 | Datadome | Blocked | Passed |
@@ -146,11 +147,11 @@ CloakBrowser applies patches at Chromium build time — not runtime hacks. The p
 
 | Category | Standard Chromium | CloakBrowser |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Headless detection | Failed (8/8) | Passed (8/8) |
 | WebRTC leak | Leaked IP | No leak (0/0) |
@@ -165,7 +166,7 @@ CloakBrowser applies patches at Chromium build time — not runtime hacks. The p
 
 ### Real-World Use Case 1: E-commerce Price Monitoring
 
-```python
+`````python
 # Monitor prices across multiple e-commerce sites
 from playwright.sync_api import sync_playwright
 
@@ -185,11 +186,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     browser.close()
 
 # Result: 48/50 sites passed, 2 blocked (manual captcha)
-```
+`````
 
 ### Real-World Use Case 2: SEO Tool Data Collection
 
-```python
+`````python
 # Collect SEO data from search engines
 page = browser.new_page()
 
@@ -204,23 +205,23 @@ for query in seo_queries: ua = random.choice(user_agents)
     page.goto(f"https://google.com/search?q={query}")
     results = page.locator(".g").all()
     print(f"Query: {query}, Results: {len(results)}")
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Fingerprint Randomization
 
-```python
+`````python
 # Enable automatic fingerprint rotation
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
     args=["--cloak-randomize-fingerprint=true"],
 )
-```
+`````
 
 ### Session Management
 
-```python
+`````python
 # Maintain session cookies across requests
 context = browser.new_context()
 
@@ -229,11 +230,11 @@ context.storage_state(path="./cookies.json")
 
 # Restore cookies on next run
 context = browser.new_context(storage_state="./cookies.json")
-```
+`````
 
 ### Headless Mode
 
-```python
+`````python
 # CloakBrowser works in both headless and headed modes
 # Headless: for server deployment
 browser = p.chromium.launch(
@@ -246,19 +247,19 @@ browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
     headless=False,
 )
-```
+`````
 
 ### Custom Fingerprint Configuration
 
-Configure specific fingerprint values through environment variables: - **`CLOAK_RANDOMIZE_FINGERPRINT`** — Enable automatic fingerprint randomization
-- **`CLOAK_PROXY_ROTATION`** — Enable proxy rotation between requests
-- **`CLOAK_FINGERPRINT`** — JSON string with custom fingerprint details
+Configure specific fingerprint values through environment variables: - **````CLOAK_RANDOMIZE_FINGERPRINT````** — Enable automatic fingerprint randomization
+- **````CLOAK_PROXY_ROTATION````** — Enable proxy rotation between requests
+- **````CLOAK_FINGERPRINT````** — JSON string with custom fingerprint details
 
 These environment variables are read at launch time and allow per-request configuration without code changes.
 
 ### Playwright Context Configuration
 
-Fine-tune browser context settings for maximum stealth: ```python
+Fine-tune browser context settings for maximum stealth: `````python
 from playwright.sync_api import sync_playwright
 
 with sync_playwright() as p: browser = p.chromium.launch(
@@ -285,11 +286,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     
     context.close()
     browser.close()
-```
+`````
 
 ### Advanced Scraping with Retry Logic
 
-Implement robust scraping with automatic retries and fingerprint rotation: ```python
+Implement robust scraping with automatic retries and fingerprint rotation: `````python
 import time
 import random
 from playwright.sync_api import sync_playwright
@@ -320,11 +321,11 @@ def scrape_with_cloak(url, max_retries=3): for attempt in range(max_retries): wi
             time.sleep(random.uniform(2, 5))
     
     return None
-```
+`````
 
 ### Batch Processing with Proxy Pools
 
-Process thousands of URLs with rotating proxies and user agents: ```python
+Process thousands of URLs with rotating proxies and user agents: `````python
 PROXY_POOL = [
     {"server": "http://proxy1:8080", "country": "US"},
     {"server": "http://proxy2:8080", "country": "UK"},
@@ -335,21 +336,21 @@ def batch_scrape(urls, pool_size=3): for i, url in enumerate(urls): proxy = PROX
         print(f"Scraping {url} with proxy {proxy[country]}")
         scrape_with_cloak(url)
         time.sleep(random.uniform(1, 3))  # Human-like delay
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | CloakBrowser | Stealth-Puppeteer | undetected-chromedriver | Commercial tools |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Source-level patches | Yes | Runtime hacks | Runtime hacks | Cloud-based |
 | Bot detection tests passed | 30/30 | 5-10/30 | 8-12/30 | 15-20/30 |
@@ -371,13 +372,13 @@ CloakBrowser is not a silver bullet: 1. **Detection evolves** — Bot detection 
 
 ### Testing in CI/CD Pipelines
 
-```bash
+`````bash
 # Verify stealth browser in CI environment
 docker run --rm cloakhq/cloakbrowser cloaktest
 
 # Run the full detection test suite
 # Expected: 30/30 tests passed
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -424,10 +425,10 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss C
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-CloakBrowser also supports custom headless configuration overrides through environment variables. Set `CLOAK_HEADERS` to a JSON string for custom headers, `CLOAK_BLOCK_RESOURCES` to filter network requests, and `CLOAK_TIMEOUT` to control page load timeout in milliseconds. These fine-grained controls let you adapt the stealth browser to specific target website requirements.
+CloakBrowser also supports custom headless configuration overrides through environment variables. Set ````CLOAK_HEADERS```` to a JSON string for custom headers, ````CLOAK_BLOCK_RESOURCES```` to filter network requests, and ````CLOAK_TIMEOUT```` to control page load timeout in milliseconds. These fine-grained controls let you adapt the stealth browser to specific target website requirements.
 
 
-```bash
+`````bash
 # Run the built-in stealth test suite
 docker run --rm cloakhq/cloakbrowser cloaktest --output /tmp/test-report.json
 
@@ -436,7 +437,7 @@ docker run --rm cloakhq/cloakbrowser cloaktest --check headers --check fingerpri
 
 # Export test report as PDF
 docker run --rm cloakhq/cloakbrowser cloaktest --output-format pdf --output stealth-audit.pdf
-```
+````
 
 
 
@@ -466,7 +467,7 @@ docker run --rm cloakhq/cloakbrowser cloaktest --output-format pdf --output stea
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping)
@@ -476,7 +477,7 @@ docker run --rm cloakhq/cloakbrowser cloaktest --output-format pdf --output stea
 - [agent-reach-internet-access-ai-agents](cloakbrowser-stealth-chromium-bot-detection-scraping)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

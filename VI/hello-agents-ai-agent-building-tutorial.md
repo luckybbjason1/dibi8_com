@@ -32,6 +32,7 @@ faqs: - q: 'Datawhale Hello-Agents là gì?'
     a: 'Hướng dẫn này bao gồm ba nghiên cứu tình huống toàn diện: một Trợ lý Du lịch Thông minh điều phối nhiều agent chuyên biệt thông qua việc gọi công cụ MCP, một agent Nghiên cứu Chuyên sâu Tự động tìm kiếm và tổng hợp các phát hiện trên web thành một báo cáo, và một mô phỏng Cyber Town được lấp đầy bởi các AI agent với tính cách và thói quen riêng biệt.'
 ---
 
+
 {</* resource-info */>}
 
 ## Hello-Agents Là Gì?
@@ -42,7 +43,7 @@ faqs: - q: 'Datawhale Hello-Agents là gì?'
 **Stars**: 45,600+
 **Giấy phép**: Apache 2.0
 
----
+* * *
 
 ## Tại Sao Cần Hello-Agents?
 
@@ -50,7 +51,7 @@ Năm 2025 được công nhận rộng rãi là "Năm của AI Agent". Từ Oper
 
 Tuy nhiên, đối với hầu hết các nhà phát triển, khoảng cách giữa "sử dụng chatbot" và "xây dựng Agent thực sự" vẫn còn rất lớn. Hello-Agents chính là giải pháp toàn diện lấp đầy khoảng trống này.
 
----
+* * *
 
 ## Chương Trình Học 16 Chương Đầy Đủ
 
@@ -80,7 +81,7 @@ Tuy nhiên, đối với hầu hết các nhà phát triển, khoảng cách gi�
 ### Phần 5: Dự Án Tổng Hợp & Triển Vọng
 - **Chương 16: Dự Án Tổng Hợp** — Thiết kế và xây dựng ứng dụng agent thông minh hoàn chỉnh từ con số 0
 
----
+* * *
 
 ## Điểm Nổi Bật Cốt Lõi
 
@@ -95,11 +96,11 @@ Tuy nhiên, đối với hầu hết các nhà phát triển, khoảng cách gi�
 | Cộng đồng & cập nhật | 71 người đóng góp | Kiểm soát bởi vendor | N/A | Không đáng tin |
 | Giá | Miễn phí | Miễn phí | $500-$5000 | Miễn phí |
 
----
+* * *
 
 ## Bắt Đầu Nhanh
 
-```bash
+````bash
 # Đọc trực tuyến
 # https://datawhalechina.github.io/hello-agents/
 
@@ -110,13 +111,13 @@ cd hello-agents
 
 # Chạy ReAct Agent chương 4
 python code/chapter4/react_agent.py
-```
+`````
 
----
+* * *
 
 ## Ví Dụ Mã: Xây Dựng ReAct Agent Từ Con Số 0
 
-```python
+`````python
 import openai
 import json
 
@@ -167,11 +168,11 @@ for step in range(5): response = openai.chat.completions.create(
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
     else: print("Câu trả lời cuối cùng:", message.content)
         break
-```
+````
 
 > Vòng lặp "suy nghĩ → gọi công cụ → quan sát kết quả → suy nghĩ lại" này chính là cơ chế cốt lõi mà các Agent hàng đầu như OpenAI Operator và Claude Computer Use sử dụng.
 
----
+* * *
 
 ## Đối Tượng Phù Hợp
 
@@ -182,7 +183,7 @@ for step in range(5): response = openai.chat.completions.create(
 | **Nhà nghiên cứu/Học giả** | Chương Agentic RL và đánh giá đủ sâu để làm điểm khởi đầu cho dự án nghiên cứu |
 | **Lập trình viên độc lập/Nhà sáng lập** | Cấu trúc capstone và thư viện dự án cộng đồng cung cấp cảm hứng và tham chiếu cho sản phẩm hóa |
 
----
+* * *
 
 ## Tóm Tắt
 
@@ -192,7 +193,7 @@ Cuộc cách mạng agent không phải sắp đến — nó đã ở đây. Hel
 
 > 💡 Muốn biết thêm công cụ AI và dự án mã nguồn mở? Theo dõi [dibi8.com](https://dibi8.com) để nhận các lựa chọn được chọn lọc hàng tuần.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
@@ -265,7 +266,7 @@ Hello-Agents: Cách Hướng Dẫn AI Agent Mã Nguồn Mở Của Datawhale Gi�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

@@ -5,9 +5,10 @@ license: MIT
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
+
 # Oh My Zsh: 2026년 더 빠른 개발 워크플로우를 위한 7단계
 
-하루에 1시간 이상 터미널에서 작업한다면, 쉘(Shell)은 당신에게 있어 세계와 소통하는 주요 인터페이스입니다. 오랫동안 `bash`가 기본값이었습니다. 작동은 했지만 지루했습니다. 그러다가 `zsh`가 등장했고, 문법 강조, 자동 제안, 더 현대적인 스크립팅 언어를 가져왔습니다. 하지만 처음부터 `zsh`를 설정하는 것은 고통스럽습니다. 바로 **Oh My Zsh**가 그 해결책입니다.
+하루에 1시간 이상 터미널에서 작업한다면, 쉘(Shell)은 당신에게 있어 세계와 소통하는 주요 인터페이스입니다. 오랫동안 ```bash````가 기본값이었습니다. 작동은 했지만 지루했습니다. 그러다가 ````zsh````가 등장했고, 문법 강조, 자동 제안, 더 현대적인 스크립팅 언어를 가져왔습니다. 하지만 처음부터 ````zsh````를 설정하는 것은 고통스럽습니다. 바로 **Oh My Zsh**가 그 해결책입니다.
 
 GitHub에서 187,000개 이상의 스타를 기록한 이 도구는 단순한 도구를 넘어 커뮤니티 표준이 되었습니다. 하지만 2026년 현재에도 여전히 관련성이 있을까요? 터미널 속도를 늦출까요? Starship과 같은 최신 Rust 기반 대안과 비교했을 때 어떨까요?
 
@@ -19,7 +20,7 @@ GitHub에서 187,000개 이상의 스타를 기록한 이 도구는 단순한 �
 
 개발자에게 터미널은 마법이 일어나는 장소입니다. [HTStack](https://my.htstack.com/aff.php?aff=27187)에 배포하든, 마이크로서비스를 디버깅하든, Terraform을 통해 인프라를 관리하든, 속도와 컨텍스트가 중요합니다.
 
-표준 쉘은 종종 컨텍스트 인식 기능이 부족합니다. `pip`를 입력하기 전까지 Python 가상 환경에 있는지 알 수 없습니다. 마지막 `git commit`이 실패했는지 종료 코드를 확인하기 전까지 알 수 없습니다. Oh My Zsh는 `.zshrc` 파일을 관리하고 플러그인을 주입하며 테마를 동적으로 적용하는 프레임워크를 제공하여 이러한 격차를 해소합니다.
+표준 쉘은 종종 컨텍스트 인식 기능이 부족합니다. ````pip````를 입력하기 전까지 Python 가상 환경에 있는지 알 수 없습니다. 마지막 ````git commit````이 실패했는지 종료 코드를 확인하기 전까지 알 수 없습니다. Oh My Zsh는 ````.zshrc```` 파일을 관리하고 플러그인을 주입하며 테마를 동적으로 적용하는 프레임워크를 제공하여 이러한 격차를 해소합니다.
 
 다만, "프레임워크"라는 단어는 오버헤드를 의미합니다. 이 가이드에서는 해당 오버헤드를 정량화하고 최소화하는 방법을 보여드립니다. 우리는 제품에 판매하기 위해 여기 있는 것이 아니라, 더 빠르고 안전하며 생산성 높은 개발 환경을 구축하는 것을 도와주기 위해 여기 있습니다.
 
@@ -30,22 +31,22 @@ Oh My Zsh는 Zsh 구성을 관리하기 위한 오픈소스, 커뮤니티 주도
 ### 핵심 구성 요소
 
 1.  **프레임워크**: 플러그인, 테마 및 사용자 정의 구성을 위한 디렉토리 구조를 제공합니다. 이러한 파일들을 올바른 순서로 소스하는 작업을 처리합니다.
-2.  **플러그인**: 300개 이상의 플러그인이 있습니다. 이들은 특정 기능을 추가하는 작은 스크립트입니다. 예시: *   `git`: 일반적인 git 명령어용 별칭 추가 (예: `git status`용 `gst`).
-    *   `docker`: Docker 명령어용 별칭 및 자동 완성 추가.
-    *   `python`: `requirements.txt` 또는 `venv` 폴더가 포함된 디렉토리로 이동할 때 가상 환경을 자동으로 활성화합니다.
-    *   `kubectl`: Kubernetes용 자동 완성 및 컨텍스트 전환 추가.
-3.  **테마**: 프롬프트의 외관을 변경합니다. 단순한 테마는 현재 디렉토리만 표시하는 반면, 복잡한 테마는 git 브랜치, 더티 상태, 종료 코드, 심지어 AWS 계정 이름까지 표시합니다. 인기 있는 테마로는 `agnoster`, `spaceship`, `powerlevel10k`가 있습니다.
+2.  **플러그인**: 300개 이상의 플러그인이 있습니다. 이들은 특정 기능을 추가하는 작은 스크립트입니다. 예시: *   ````git````: 일반적인 git 명령어용 별칭 추가 (예: ````git status````용 ````gst````).
+    *   ````docker````: Docker 명령어용 별칭 및 자동 완성 추가.
+    *   ````python````: ````requirements.txt```` 또는 ````venv```` 폴더가 포함된 디렉토리로 이동할 때 가상 환경을 자동으로 활성화합니다.
+    *   ````kubectl````: Kubernetes용 자동 완성 및 컨텍스트 전환 추가.
+3.  **테마**: 프롬프트의 외관을 변경합니다. 단순한 테마는 현재 디렉토리만 표시하는 반면, 복잡한 테마는 git 브랜치, 더티 상태, 종료 코드, 심지어 AWS 계정 이름까지 표시합니다. 인기 있는 테마로는 ````agnoster````, ````spaceship````, ````powerlevel10k````가 있습니다.
 4.  **자동 업데이트**: Oh My Zsh는 Git을 통해 자체 및 플러그인을 자동으로 업데이트할 수 있습니다. 이를 통해 최신 버그 수정 및 기능을 항상 사용할 수 있지만, 프로덕션 안정성을 위해 이 기능을 비활성화할 수 있습니다.
 
 ![CI Badge](https://github.com/ohmyzsh/ohmyzsh/workflows/CI/badge.svg)
 
 ## Oh My Zsh의 작동 방식
 
-디버깅과 최적화를 위해서는 작동 원리를 이해하는 것이 중요합니다. Oh My Zsh는 `ZDOTDIR` 환경 변수를 수정하여 작동합니다.
+디버깅과 최적화를 위해서는 작동 원리를 이해하는 것이 중요합니다. Oh My Zsh는 ````ZDOTDIR```` 환경 변수를 수정하여 작동합니다.
 
 ### 디렉토리 구조
 
-Oh My Zsh를 설치하면 `~/.oh-my-zsh` 디렉토리가 생성됩니다. 구조는 다음과 같습니다: ```bash
+Oh My Zsh를 설치하면 ``~/.oh-my-zsh`` 디렉토리가 생성됩니다. 구조는 다음과 같습니다: `````bash
 ~/.oh-my-zsh
 ├── bin/          # 내부 스크립트
 ├── cache/        # 캐시된 자동 완성
@@ -56,9 +57,9 @@ Oh My Zsh를 설치하면 `~/.oh-my-zsh` 디렉토리가 생성됩니다. 구조
 ├── themes/       # 내장 테마
 ├── tools/        # 도우미 스크립트
 └── utils/        # 유틸리티 함수
-```
+`````
 
-개인 구성은 `~/.zshrc`에 저장됩니다. Oh My Zsh는 설치 시 템플릿을 기반으로 이 파일을 생성합니다. `.zshrc`의 핵심 부분은 초기화 줄입니다: ```zsh
+개인 구성은 ``~/.zshrc``에 저장됩니다. Oh My Zsh는 설치 시 템플릿을 기반으로 이 파일을 생성합니다. ``.zshrc``의 핵심 부분은 초기화 줄입니다: `````zsh
 # 프롬프트에서 제거할 디렉토리 이름.
 ZSH_DISABLE_COMPFIX="true"
 
@@ -150,14 +151,14 @@ source $ZSH/oh-my-zsh.sh
 # 개인 별칭을 설정합니다. 별칭은 여기에 배치할 수 있지만, oh-my-zsh
 # 사용자는 전역 부분에 별칭을 정의하는 것이 권장됩니다.
 # alias myzsh="vim ~/.zshrc"
-```
+`````
 
 ### 초기화 흐름
 
 1.  **쉘 시작**: 사용자가 터미널을 엽니다.
-2.  **Zsh 로드**: Zsh가 `~/.zshrc`를 읽습니다.
-3.  **Oh My Zsh 소스**: `source $ZSH/oh-my-zsh.sh` 줄이 실행됩니다.
-4.  **플러그인 로드**: Oh My Zsh는 `plugins` 배열을 순회합니다. 각 플러그인에 대해 `*.plugin.zsh` 파일을 소스합니다.
+2.  **Zsh 로드**: Zsh가 ````~/.zshrc````를 읽습니다.
+3.  **Oh My Zsh 소스**: ````source $ZSH/oh-my-zsh.sh```` 줄이 실행됩니다.
+4.  **플러그인 로드**: Oh My Zsh는 ````plugins```` 배열을 순회합니다. 각 플러그인에 대해 ````*.plugin.zsh```` 파일을 소스합니다.
 5.  **테마 로드**: 테마 파일이 소스되어 프롬프트 함수를 정의합니다.
 6.  **완성 설정**: Oh My Zsh는 Zsh의 자동 완성 시스템을 활성화하며, 이는 Bash의 시스템보다 훨씬 강력합니다.
 7.  **프롬프트 표시**: 정의된 테마를 사용하여 쉘 프롬프트가 렌더링됩니다.
@@ -170,11 +171,11 @@ Oh My Zsh 설치는 간단하지만, 다양한 운영 체제에 대해 중요한
 
 *   **Zsh**: 버전 5.0 이상이 권장됩니다.
 *   **Git**: 리포지토리 클론 및 자동 업데이트에 필요합니다.
-*   **Powerline Fonts**: `agnoster` 또는 `powerlevel10k`와 같은 복잡한 테마를 사용하는 경우 Powerline 글리프를 지원하는 폰트가 필요합니다. 없으면 프롬프트에 깨진 문자가 표시됩니다.
+*   **Powerline Fonts**: ````agnoster```` 또는 ````powerlevel10k````와 같은 복잡한 테마를 사용하는 경우 Powerline 글리프를 지원하는 폰트가 필요합니다. 없으면 프롬프트에 깨진 문자가 표시됩니다.
 
 ### 1단계: Zsh 설치
 
-macOS에서는 Catalina 이후 Zsh가 기본 쉘입니다. Linux에서는 설치가 필요할 수 있습니다: ```bash
+macOS에서는 Catalina 이후 Zsh가 기본 쉘입니다. Linux에서는 설치가 필요할 수 있습니다: `````bash
 # Ubuntu/Debian
 sudo apt-get install zsh
 
@@ -183,56 +184,56 @@ sudo dnf install zsh
 
 # Arch Linux
 sudo pacman -S zsh
-```
+`````
 
 ### 2단계: Zsh를 기본 쉘로 설정
 
-```bash
+`````bash
 chsh -s $(which zsh)
-```
+`````
 
 ### 3단계: Oh My Zsh 설치
 
-표준 설치 방법은 `curl` 또는 `wget`을 사용하여 리포지토리를 클론하고 구성을 설정합니다: ```bash
+표준 설치 방법은 ``curl`` 또는 ``wget``을 사용하여 리포지토리를 클론하고 구성을 설정합니다: `````bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+`````
 
-또는 `wget` 사용: ```bash
+또는 ``wget`` 사용: `````bash
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-```
+`````
 
 ### 4단계: 설치 확인
 
-설치 후 터미널을 닫았다가 다시 엽니다. 새 프롬프트가 표시되어야 합니다. 구성을 확인합니다: ```bash
+설치 후 터미널을 닫았다가 다시 엽니다. 새 프롬프트가 표시되어야 합니다. 구성을 확인합니다: `````bash
 echo $ZSH
 # 출력: /home/username/.oh-my-zsh
-```
+`````
 
 ### 5단계: 테마 변경
 
-`~/.zshrc`를 편집하고 `ZSH_THEME` 변수를 변경합니다. 인기 있는 테마는 다음과 같습니다: *   `robbyrussell`: 기본값. 간단하고 깔끔함.
-*   `agnoster`: git 브랜치, 더티 상태, 종료 코드를 표시합니다. Powerline 폰트가 필요합니다.
-*   `powerlevel10k`: 설정이 다양하고 빠르며 현대적입니다. 고급 사용자에게 권장됨.
+````~/.zshrc````를 편집하고 ````ZSH_THEME```` 변수를 변경합니다. 인기 있는 테마는 다음과 같습니다: *   ````robbyrussell````: 기본값. 간단하고 깔끔함.
+*   ````agnoster````: git 브랜치, 더티 상태, 종료 코드를 표시합니다. Powerline 폰트가 필요합니다.
+*   ````powerlevel10k````: 설정이 다양하고 빠르며 현대적입니다. 고급 사용자에게 권장됨.
 
-```zsh
+`````zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
-```
+`````
 
-`powerlevel10k`를 선택한 경우 폰트를 설치하고 구성 마법사를 실행해야 합니다: ```bash
+``powerlevel10k``를 선택한 경우 폰트를 설치하고 구성 마법사를 실행해야 합니다: `````bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
+`````
 
 ### 6단계: 플러그인 추가
 
-`~/.zshrc`를 편집하고 `plugins` 배열에 플러그인을 추가합니다: ```zsh
+``~/.zshrc``를 편집하고 ``plugins`` 배열에 플러그인을 추가합니다: `````zsh
 plugins=(git docker kubectl python node npm)
-```
+`````
 
 ### 7단계: 구성 다시 로드
 
-```bash
+`````bash
 source ~/.zshrc
-```
+`````
 
 ## [3-5 도구]와의 통합
 
@@ -240,80 +241,80 @@ Oh My Zsh는 개발 도구와 통합되었을 때 빛을 발합니다. 주요 �
 
 ### Docker
 
-`docker` 플러그인은 별칭과 완성을 제공합니다.
+````docker```` 플러그인은 별칭과 완성을 제공합니다.
 
-```zsh
+`````zsh
 # ~/.zshrc 에서
 plugins=(docker)
-```
+`````
 
-생성된 별칭: *   `dc`: `docker-compose`
-*   `dcr`: `docker-compose run`
-*   `dps`: `docker ps`
+생성된 별칭: *   ````dc````: ````docker-compose````
+*   ````dcr````: ````docker-compose run````
+*   ````dps````: ````docker ps````
 
-Docker 명령어용 사용자 정의 완성을 추가할 수도 있습니다: ```zsh
+Docker 명령어용 사용자 정의 완성을 추가할 수도 있습니다: `````zsh
 # Docker용 사용자 정의 완성
 compdef _docker docker
-```
+`````
 
 ### Kubernetes
 
-`kubectl` 플러그인은 컨텍스트 전환 및 완성을 추가합니다.
+````kubectl```` 플러그인은 컨텍스트 전환 및 완성을 추가합니다.
 
-```zsh
+`````zsh
 # ~/.zshrc 에서
 plugins=(kubectl)
-```
+`````
 
-생성된 별칭: *   `k`: `kubectl`
-*   `kg`: `kubectl get`
-*   `kd`: `kubectl describe`
+생성된 별칭: *   ````k````: ````kubectl````
+*   ````kg````: ````kubectl get````
+*   ````kd````: ````kubectl describe````
 
-컨텍스트를 쉽게 전환하려면: ```bash
+컨텍스트를 쉽게 전환하려면: `````bash
 # 컨텍스트 목록
 kubectx
 
 # 컨텍스트 전환
 kubectx minikube
-```
+`````
 
 ### Python
 
-`python` 플러그인은 가상 환경을 자동으로 활성화합니다.
+````python```` 플러그인은 가상 환경을 자동으로 활성화합니다.
 
-```zsh
+`````zsh
 # ~/.zshrc 에서
 plugins=(python)
-```
+`````
 
-`venv` 또는 `requirements.txt`가 있는 디렉토리로 `cd`하면 가상 환경이 자동으로 활성화됩니다. 비활성화하려면 `deactivate`를 실행합니다.
+````venv```` 또는 ````requirements.txt````가 있는 디렉토리로 ````cd````하면 가상 환경이 자동으로 활성화됩니다. 비활성화하려면 ````deactivate````를 실행합니다.
 
 ### Node.js
 
-`node` 및 `npm` 플러그인은 완성 및 별칭을 제공합니다.
+````node```` 및 ````npm```` 플러그인은 완성 및 별칭을 제공합니다.
 
-```zsh
+`````zsh
 # ~/.zshrc 에서
 plugins=(node npm)
-```
+`````
 
-생성된 별칭: *   `ni`: `npm install`
-*   `nr`: `npm run`
-*   `ns`: `npm start`
+생성된 별칭: *   ````ni````: ````npm install````
+*   ````nr````: ````npm run````
+*   ````ns````: ````npm start````
 
 ### Git
 
-`git` 플러그인은 모든 개발자에게 필수적입니다.
+````git```` 플러그인은 모든 개발자에게 필수적입니다.
 
-```zsh
+`````zsh
 # ~/.zshrc 에서
 plugins=(git)
-```
+`````
 
-생성된 별칭: *   `gst`: `git status`
-*   `gc`: `git commit`
-*   `gco`: `git checkout`
-*   `gb`: `git branch`
+생성된 별칭: *   ````gst````: ````git status````
+*   ````gc````: ````git commit````
+*   ````gco````: ````git checkout````
+*   ````gb````: ````git branch````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -326,12 +327,12 @@ Oh My Zsh에 대한 가장 큰 비판 중 하나는 성능입니다. 쉘 속도�
 | 구성 | 시작 시간 (ms) | 비고 |
 | :--- | :--- | :--- |
 | Zsh (네이티브) | 45 ms | 플러그인 없음, 테마 없음 |
-| Zsh + Oh My Zsh (기본) | 120 ms | `robbyrussell` 테마, 플러그인 5개 |
-| Zsh + Oh My Zsh (Powerlevel10k) | 180 ms | `powerlevel10k` 테마, 플러그인 10개 |
+| Zsh + Oh My Zsh (기본) | 120 ms | ````robbyrussell```` 테마, 플러그인 5개 |
+| Zsh + Oh My Zsh (Powerlevel10k) | 180 ms | ````powerlevel10k```` 테마, 플러그인 10개 |
 | Zsh + Starship (Rust) | 35 ms | Rust 기반, 높은 최적화 |
 | Zsh + Prezto | 90 ms | 대안 Zsh 프레임워크 |
 
-*2026-05 기준 데이터. `time zsh -i -c exit` 명령어로 측정.*
+*2026-05 기준 데이터. ````time zsh -i -c exit```` 명령어로 측정.*
 
 ### 분석
 
@@ -341,27 +342,27 @@ Oh My Zsh에 대한 가장 큰 비판 중 하나는 성능입니다. 쉘 속도�
 
 ### 실제 사용 사례: DevOps 엔지니어
 
-Kubernetes와 Docker를 다루는 DevOps 엔지니어는 `kubectl` 및 `docker` 플러그인으로부터 큰 혜택을 받습니다. 전체 명령어를 타이핑하지 않고 자동 완성을 제공함으로써 절약되는 시간이 상당합니다.
+Kubernetes와 Docker를 다루는 DevOps 엔지니어는 ````kubectl```` 및 ````docker```` 플러그인으로부터 큰 혜택을 받습니다. 전체 명령어를 타이핑하지 않고 자동 완성을 제공함으로써 절약되는 시간이 상당합니다.
 
-```bash
+`````bash
 # Oh My Zsh 이전
 $ kubectl get pods -n production -o wide
 
 # Oh My Zsh 이후
 $ k get po -n prod -o w
-```
+`````
 
 ### 실제 사용 사례: 프론트엔드 개발자
 
-Node.js와 React를 다루는 프론트엔드 개발자는 `node` 및 `npm` 플러그인으로부터 혜택을 받습니다.
+Node.js와 React를 다루는 프론트엔드 개발자는 ````node```` 및 ````npm```` 플러그인으로부터 혜택을 받습니다.
 
-```bash
+`````bash
 # Oh My Zsh 이전
 $ npm run build
 
 # Oh My Zsh 이후
 $ nr build
-```
+`````
 
 ## 고급 사용 / 프로덕션 하드닝
 
@@ -369,48 +370,48 @@ $ nr build
 
 ### 자동 업데이트 비활성화
 
-자동 업데이트는 구성을 예기치 않게 깨뜨릴 수 있습니다. `~/.zshrc`에서 비활성화합니다: ```zsh
+자동 업데이트는 구성을 예기치 않게 깨뜨릴 수 있습니다. ``~/.zshrc``에서 비활성화합니다: `````zsh
 export DISABLE_AUTO_UPDATE="true"
-```
+`````
 
 ### 플러그인 제한
 
 각 플러그인은 시작 시간을 추가합니다. 필요한 플러그인만 활성화하세요.
 
-```zsh
+`````zsh
 # 최소 플러그인 세트
 plugins=(git)
-```
+`````
 
 ### 간단한 테마 사용
 
-`powerlevel10k`와 같은 복잡한 테마는 쉘 속도를 늦출 수 있습니다. 프로덕션 서버에는 간단한 테마를 사용하세요.
+````powerlevel10k````와 같은 복잡한 테마는 쉘 속도를 늦출 수 있습니다. 프로덕션 서버에는 간단한 테마를 사용하세요.
 
-```zsh
+`````zsh
 ZSH_THEME="robbyrussell"
-```
+`````
 
 ### 보안 구성
 
-`.zshrc` 파일에 안전한 권한이 있는지 확인합니다: ```bash
+``.zshrc`` 파일에 안전한 권한이 있는지 확인합니다: `````bash
 chmod 600 ~/.zshrc
 chmod 700 ~/.oh-my-zsh
-```
+`````
 
 ### 사용자 정의 플러그인
 
-`~/.oh-my-zsh/custom/plugins/`에 사용자 정의 플러그인을 만들 수 있습니다. 이는 팀별 별칭이나 함수에 유용합니다.
+````~/.oh-my-zsh/custom/plugins/````에 사용자 정의 플러그인을 만들 수 있습니다. 이는 팀별 별칭이나 함수에 유용합니다.
 
-```bash
+`````bash
 mkdir -p ~/.oh-my-zsh/custom/plugins/my-custom-plugin
 touch ~/.oh-my-zsh/custom/plugins/my-custom-plugin/my-custom-plugin.plugin.zsh
-```
+`````
 
-`my-custom-plugin.plugin.zsh`에서: ```zsh
+``my-custom-plugin.plugin.zsh``에서: `````zsh
 # 내부 도구용 사용자 정의 별칭
 alias deploy-staging='ssh staging-server "cd /app && ./deploy.sh"'
 alias deploy-prod='ssh prod-server "cd /app && ./deploy.sh"'
-```
+`````
 
 ## 대안과의 비교
 
@@ -451,25 +452,25 @@ Oh My Zsh는 완벽하지 않습니다. 제한 사항을 확인하세요: 1.  **
 
 ### 2. Bash에서 Oh My Zsh를 사용할 수 있나요?
 
-아니요. Oh My Zsh는 Zsh를 위해 특별히 설계되었습니다. Bash에서 유사한 경험을 원한다면 `bash-it` 또는 `bash-preexec`를 고려하세요.
+아니요. Oh My Zsh는 Zsh를 위해 특별히 설계되었습니다. Bash에서 유사한 경험을 원한다면 ````bash-it```` 또는 ````bash-preexec````를 고려하세요.
 
 ### 3. Oh My Zsh를 제거하는 방법은?
 
-Oh My Zsh를 제거하려면 다음 명령을 실행합니다: ```bash
+Oh My Zsh를 제거하려면 다음 명령을 실행합니다: `````bash
 uninstall_oh_my_zsh
-```
+`````
 
-이 명령은 `~/.oh-my-zsh` 디렉토리를 제거하고 원래 `.zshrc` 파일을 복원합니다.
+이 명령은 ````~/.oh-my-zsh```` 디렉토리를 제거하고 원래 ````.zshrc```` 파일을 복원합니다.
 
 ### 4. Oh My Zsh를 업데이트하는 방법은?
 
-자동 업데이트가 활성화되어 있으면 Oh My Zsh가 자동으로 업데이트됩니다. 그렇지 않으면 수동으로 업데이트할 수 있습니다: ```bash
+자동 업데이트가 활성화되어 있으면 Oh My Zsh가 자동으로 업데이트됩니다. 그렇지 않으면 수동으로 업데이트할 수 있습니다: `````bash
 upgrade_oh_my_zsh
-```
+`````
 
 ### 5. 프롬프트에 깨진 문자가 표시되는 이유는?
 
-이는 보통 Powerline 폰트가 누락되었기 때문입니다. Powerline 폰트(예: `MesloLGS NF`)를 설치하고 터미널에서 사용하도록 구성하세요.
+이는 보통 Powerline 폰트가 누락되었기 때문입니다. Powerline 폰트(예: ````MesloLGS NF````)를 설치하고 터미널에서 사용하도록 구성하세요.
 
 ### 6. Windows에서 Oh My Zsh를 사용할 수 있나요?
 
@@ -477,7 +478,7 @@ upgrade_oh_my_zsh
 
 ### 7. 사용자 정의 플러그인을 만드는 방법은?
 
-`~/.oh-my-zsh/custom/plugins/`에 `.plugin.zsh` 파일이 있는 디렉토리를 만듭니다. 이 파일에 별칭, 함수 또는 훅을 정의합니다.
+````~/.oh-my-zsh/custom/plugins/````에 ````.plugin.zsh``` 파일이 있는 디렉토리를 만듭니다. 이 파일에 별칭, 함수 또는 훅을 정의합니다.
 
 ## 결론
 
@@ -529,7 +530,7 @@ Oh My Zsh를 최대한 활용하려면: 1.  최소한의 플러그인 세트부�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -539,6 +540,6 @@ Oh My Zsh를 최대한 활용하려면: 1.  최소한의 플러그인 세트부�
 - [claude-code-vs-cline](ohmyzsh)
 - [cursor-vs-windsurf](ohmyzsh)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

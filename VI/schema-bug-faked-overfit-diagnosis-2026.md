@@ -32,6 +32,7 @@ faq: - q: "Schema drift là gì và tại sao nó lại ngụy tạo kết quả
     a: "Mở rộng từ 7 lên 13. Các mục mới: không tin thí nghiệm khi không kiểm chứng schema, không kết luận trên dataset dưới 200 ngày giao dịch, không chấp nhận PF > 3 với dưới 30 giao dịch, không phát hành chiến lược nếu chưa kiểm chứng liên tài sản, không phớt lờ tỷ lệ stdev/mean (trên 1 = nhiễu), không báo cáo PF mà không phân rã theo từng đoạn, không chấp nhận báo cáo thiếu tỷ lệ IS/OOS."
 ---
 
+
 {{< resource-info >}}
 
 # Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi
@@ -48,13 +49,13 @@ Rồi đến các thí nghiệm tiếp theo. Và phát hiện rằng chính ch�
 
 > **Kết luận ban đầu**: Overfit kinh điển trên BTC 304 ngày (PF 2.08 → 0.94, tỷ lệ 2.21).
 >
-> **Phát hiện thật**: Không khớp trường schema. `evolved_final_params.json` dùng tên trường `leverage` / `tp_atr_mult`; schema hiện tại dùng `base_leverage` / `tp_rr_ratio`. `from_dict()` đã âm thầm loại bỏ chúng. Lần chạy thực tế dùng leverage mặc định 10x, không phải 2x đã được tiến hóa.
+> **Phát hiện thật**: Không khớp trường schema. ```evolved_final_params.json```` dùng tên trường ````leverage```` / ````tp_atr_mult````; schema hiện tại dùng ````base_leverage```` / ````tp_rr_ratio````. ````from_dict()```` đã âm thầm loại bỏ chúng. Lần chạy thực tế dùng leverage mặc định 10x, không phải 2x đã được tiến hóa.
 >
 > **Kết quả đã sửa**: PF 1.494 / 1.478, tỷ lệ 1.01. Ổn định một cách buồn tẻ. Không overfit.
 >
 > **Nhưng cũng**: Kiểm tra liên tài sản vẫn chỉ ra tốt nhất là hòa vốn. Tỷ lệ IS/OOS walk-forward của DOT 6.47 — overfit kinh điển thực sự ẩn trong câu chuyện «đoạn may mắn».
 >
-> **Bài học meta**: Kiểm chứng việc nạp tham số trước khi tin output backtest. Năm giây `print(vars(params))` đáng lẽ đã tiết kiệm bảy thí nghiệm.
+> **Bài học meta**: Kiểm chứng việc nạp tham số trước khi tin output backtest. Năm giây ````print(vars(params))```` đáng lẽ đã tiết kiệm bảy thí nghiệm.
 
 ## «Phát hiện» ban đầu
 
@@ -84,30 +85,30 @@ Cùng tham số, cùng tài sản, các cửa sổ thời gian khác nhau cho ra
 
 ## Schema drift
 
-Trong mẫu Python điển hình `dataclass.from_dict()`, các trường lạ bị âm thầm loại bỏ. Pydantic cũng làm vậy trừ khi bạn bật strict mode.
+Trong mẫu Python điển hình ````dataclass.from_dict()````, các trường lạ bị âm thầm loại bỏ. Pydantic cũng làm vậy trừ khi bạn bật strict mode.
 
-File cấu hình đã tiến hóa chứa: ```json
+File cấu hình đã tiến hóa chứa: `````json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
   "tp_atr_mult": 2.5,
   ...
 }
-```
+`````
 
-Schema `DecisionParams` runtime mong đợi: ```python
+Schema ``DecisionParams`` runtime mong đợi: `````python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
 tp_rr_ratio: float = ...
-```
+`````
 
-`leverage` → âm thầm bị loại bỏ → `base_leverage` mặc định về **10.0**.
-`tp_atr_mult` → âm thầm bị loại bỏ → `tp_rr_ratio` mặc định về giá trị riêng của nó.
+````leverage```` → âm thầm bị loại bỏ → ````base_leverage```` mặc định về **10.0**.
+````tp_atr_mult```` → âm thầm bị loại bỏ → ````tp_rr_ratio```` mặc định về giá trị riêng của nó.
 
 «Leverage 2x đã tiến hóa với hệ số ATR đối xứng 2.5/2.5» mà chúng tôi nghĩ mình đang chạy thực ra là «leverage mặc định 10x với bất cứ tp_rr_ratio mặc định nào.»
 
-Năm giây `print(vars(params))` sau `from_dict()` đáng lẽ đã chỉ ra điều này. Chúng tôi đã không làm.
+Năm giây ````print(vars(params))```` sau ````from_dict()```` đáng lẽ đã chỉ ra điều này. Chúng tôi đã không làm.
 
 ## Các con số đã sửa
 
@@ -141,7 +142,7 @@ Một kiểm tra walk-forward đã xác nhận: đoạn 1 là in-sample, đoạn
 
 ## Các lớp phòng vệ
 
-Ba lớp, theo thứ tự nỗ lực/giá trị: **1. Deserialization nghiêm ngặt.** Hãy làm cho bộ nạp tham số của bạn từ chối các trường lạ. Trong Python: ```python
+Ba lớp, theo thứ tự nỗ lực/giá trị: **1. Deserialization nghiêm ngặt.** Hãy làm cho bộ nạp tham số của bạn từ chối các trường lạ. Trong Python: `````python
 @dataclass(frozen=True, kw_only=True)
 class DecisionParams: base_leverage: float = 10.0
     # ...
@@ -151,15 +152,15 @@ class DecisionParams: base_leverage: float = 10.0
         unknown = set(d.keys()) - valid
         if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
-```
+`````
 
-Hàm `from_dict()` gốc đã lọc xuống các trường hợp lệ *mà không raise* trên các trường lạ. Một `raise` bị thiếu đã tốn bảy thí nghiệm.
+Hàm ````from_dict()```` gốc đã lọc xuống các trường hợp lệ *mà không raise* trên các trường lạ. Một ````raise```` bị thiếu đã tốn bảy thí nghiệm.
 
-**2. In tham số hiệu lực trước khi backtest.** Ba dòng: ```python
+**2. In tham số hiệu lực trước khi backtest.** Ba dòng: `````python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
-```
+````
 
 **3. Cố định version schema của file tham số.** Khi schema của framework thay đổi, các file tham số cũ nên thất bại ầm ĩ, không âm thầm xuống cấp.
 
@@ -187,7 +188,7 @@ Cho khung thí nghiệm walk-forward + đa tài sản: - **{{< aff "digitalocean
 
 *Liên kết tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
 
----
+* * *
 
 **Liên quan**: [Đánh giá Moss Trade Bot Factory 2026](https://dibi8.com/vi/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [5 mô hình OVERFIT trong Backtest 2026](https://dibi8.com/vi/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtesting Python với Backtrader](https://dibi8.com/vi/resources/ai-trading/backtrader-python-backtesting/)
 

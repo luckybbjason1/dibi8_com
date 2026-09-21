@@ -37,6 +37,7 @@ faqs: - q: 'What are the five Claude Code subagent patterns?'
   - q: 'What are the five ways multi-agent pipelines fail in Claude Code?'
     a: 'The five documented failure modes are the trust trap, context bleed, runaway fan-out, silent truncation, and orphaned worktrees. Studying these is what separates a working demo from a production-ready pipeline.'
 ---
+
 # Claude Code Subagent Mastery Stack 2026: From One Conversation to a Coordinated Agent Council
 
 
@@ -48,18 +49,18 @@ This collection assembles the **complete path** to get there: five deep-dive gui
 
 | # | Component | Layer | Role | Deep dive |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **5 Subagent Patterns** | Foundation | The five workflows: parallel fan-out, worktree isolation, specialist delegation, context protection, pipeline orchestration | [Subagent Patterns](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) |
-| 2 | **Custom Agent Authoring** | Build | How to write `.claude/agents/*.md` — frontmatter, system prompt, tool allowlists | [Custom Agent Authoring](/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
+| 2 | **Custom Agent Authoring** | Build | How to write ```.claude/agents/*.md```` — frontmatter, system prompt, tool allowlists | [Custom Agent Authoring](/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
 | 3 | **Subagent vs MCP vs Skill** | Decide | The three-axis framework — knowledge (skill), context (subagent), capability (MCP) | [Subagent vs MCP vs Skill](/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) |
 | 4 | **Skill Authoring** | Build | Package procedures Claude loads only when relevant — SKILL.md, progressive disclosure | [Skill Authoring](/resources/llm-frameworks/claude-code-skill-authoring-guide-2026/) |
 | 5 | **Orchestration Postmortem** | Avoid | The 5 ways pipelines fail: trust trap, context bleed, runaway fan-out, silent truncation, orphaned worktrees | [Pipeline Postmortem](/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/) |
@@ -69,7 +70,7 @@ This collection assembles the **complete path** to get there: five deep-dive gui
 
 **Start with the five patterns (1).** Before you build anything custom, internalize *when* to spawn a subagent at all — parallel research fan-out is the lowest-friction entry point and the gains are immediate. The underlying principle threads through everything else: your parent conversation is a scarce resource; subagents are how you spend without exhausting it.
 
-**Then learn to author custom agents (2).** Once you know the patterns, codify them. A custom agent is executable institutional knowledge — your review checklist, security gate, or migration auditor as a version-controlled `.md` file. The make-or-break detail is the `description` (the routing signal) and the tool allowlist (least privilege keeps a reviewer from "helpfully" editing the code it was meant to review).
+**Then learn to author custom agents (2).** Once you know the patterns, codify them. A custom agent is executable institutional knowledge — your review checklist, security gate, or migration auditor as a version-controlled ````.md```` file. The make-or-break detail is the ````description``` (the routing signal) and the tool allowlist (least privilege keeps a reviewer from "helpfully" editing the code it was meant to review).
 
 **Step back for the decision framework (3).** This is the keystone. Before building another agent, ask: am I short on *knowledge* (→ write a skill), *context* (→ spawn a subagent), or *capability* (→ build an MCP server)? Most teams over-reach for MCP servers when a markdown file would ship the same outcome by lunch.
 
@@ -171,12 +172,12 @@ Claude Code Subagent Mastery Stack 2026: From One Conversation to a Coordinated 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](claude-code-subagent-mastery-stack)
@@ -185,7 +186,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](claude-code-subagent-mastery-stack)
 - [codebase-memory-mcp-deep-code-intelligence](claude-code-subagent-mastery-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

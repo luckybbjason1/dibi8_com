@@ -11,6 +11,7 @@ license: 'Apache-2.0'
 featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
 ---
 
+
 ![NVIDIA Cosmos 平台](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 
 # NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）
@@ -27,12 +28,12 @@ Cosmos 3 是 NVIDIA 最新的模型家族，基于统一的混合Transformer（M
 
 NVIDIA Cosmos 是一个**面向构建物理AI系统的世界模型、数据集和工具的开放平台**。它超越了传统AI的能力边界：
 
-```
+````
 传统AI: Cosmos: 输入 → 输出       →  输入 → 推理 → 输出
   （图片进入，        （理解物理规律，
    描述出来）         预测未来，
                      生成行动）
-```
+`````
 
 核心能力：
 
@@ -44,11 +45,11 @@ Cosmos 3 模型家族包括：
 
 | 模型 | 规模 | 能力 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cosmos3-Nano | 16B | 紧凑型多模态模型，用于理解和模拟 |
 | Cosmos3-Super | 64B | 前沿规模模型，用于高级多模态任务 |
@@ -63,7 +64,7 @@ Cosmos 3 采用了统一的**混合Transformer（MoT）**架构，融合了两�
 1. **自回归（AR）Transformer** 用于推理——通过因果自注意力机制处理语言和视频Token，进行下一个Token预测
 2. **扩散Transformer（DM）** 用于生成——通过全注意力机制对图像、视频、音频和行动Token进行去噪处理
 
-```
+`````
 ┌─────────────────────────────────────────────┐
 │         Cosmos 3: 统一 MoT                  │
 ├─────────────────┬───────────────────────────┤
@@ -80,7 +81,7 @@ Cosmos 3 采用了统一的**混合Transformer（MoT）**架构，融合了两�
 │ - 多模态注意力层                        │
 │ - 3D mRoPE（空间+时序编码）            │
 └─────────────────┴──────────────────────────┘
-```
+`````
 
 两种模式共享相同的Transformer架构、多模态注意力层，以及统一的3D多维旋转位置嵌入（mRoPE），能够跨模态编码空间和时间结构。
 
@@ -92,13 +93,13 @@ Cosmos 3 提供两种不同的运行时界面：
 
 处理输入并生成文本输出，用于世界理解任务：
 
-```
+`````
 输入: 文本 + 图像 + 视频 + 行动
          ↓
     推理器 (AR Transformer)
          ↓
 输出: 文本（描述、下一步行动、物理推理、任务计划）
-```
+`````
 
 **应用场景**：
 - 从视频流中进行世界理解
@@ -111,13 +112,13 @@ Cosmos 3 提供两种不同的运行时界面：
 
 根据多模态输入生成非文本输出：
 
-```
+`````
 输入: 文本 + 图像 + 视频 + 声音 + 行动
          ↓
     生成器 (扩散Transformer)
          ↓
 输出: 图像 + 视频 + 声音 + 行动
-```
+`````
 
 **应用场景**：
 - 文生图
@@ -129,7 +130,7 @@ Cosmos 3 提供两种不同的运行时界面：
 
 ## 快速开始：安装
 
-Cosmos 运行在配备NVIDIA GPU（Ampere、Hopper或Blackwell架构）的Linux系统上。安装使用 `uv`（高速Python包管理器）：
+Cosmos 运行在配备NVIDIA GPU（Ampere、Hopper或Blackwell架构）的Linux系统上。安装使用 ````uv````（高速Python包管理器）：
 
 ### 系统要求
 
@@ -141,7 +142,7 @@ Cosmos 运行在配备NVIDIA GPU（Ampere、Hopper或Blackwell架构）的Linux�
 
 ### 使用uv安装
 
-```bash
+`````bash
 # 安装系统依赖
 sudo apt-get install -y --no-install-recommends curl ffmpeg git-lfs \
   libx11-dev tree wget
@@ -156,11 +157,11 @@ source .venv/bin/activate
 
 # 或者CUDA 13.0（推荐）：
 # uv sync --all-extras --group=cu130-train
-```
+`````
 
 ### 快速推理
 
-```python
+`````python
 # 使用Diffusers后端的单GPU推理
 python -m cosmos_framework.scripts.inference \
     --parallelism-preset=latency \
@@ -168,15 +169,15 @@ python -m cosmos_framework.scripts.inference \
     -o outputs/omni_nano \
     --checkpoint-path Cosmos3-Nano \
     --seed=0
-```
+`````
 
 ### HuggingFace模型
 
-```bash
+`````bash
 # 从HuggingFace下载模型
 huggingface-cli download nvidia/Cosmos3-Nano \
     --local-dir ~/cosmos/models/nano
-```
+`````
 
 ## 生成器模式：世界生成
 
@@ -184,7 +185,7 @@ huggingface-cli download nvidia/Cosmos3-Nano \
 
 ### 文生图
 
-```python
+`````python
 from cosmos_framework.scripts.inference import run_inference
 
 # 从文本生成图像
@@ -197,11 +198,11 @@ result = run_inference(
     seed=42
 )
 # 输出：机械臂组装电路板的高保真图像
-```
+`````
 
 ### 图生视频
 
-```python
+`````python
 # 从单张图像生成时序一致的动画
 result = run_inference(
     checkpoint="Cosmos3-Super-Image2Video",
@@ -213,11 +214,11 @@ result = run_inference(
     resolution="720p"
 )
 # 输出：机器人实验室场景的动态视频
-```
+`````
 
 ### 文生视频
 
-```python
+`````python
 # 直接从文本提示词生成视频
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -229,15 +230,15 @@ result = run_inference(
     resolution="720p"
 )
 # 输出：带同步音频的视频（AAC立体声48kHz）
-```
+`````
 
 ### 支持的生成设置
 
 | 参数 | 选项 |
 |
----
+* * *
 |
----
+* * *
 |
 | 分辨率 | 256p、480p、720p（默认：480p） |
 | 宽高比 | 16:9、4:3、1:1、3:4、9:16（默认：16:9） |
@@ -249,7 +250,7 @@ result = run_inference(
 
 推理器提供用于理解和规划的文本输出：
 
-```python
+`````python
 # 从视频中理解世界
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -279,7 +280,7 @@ result = run_inference(
     task="check_physical_plausibility"
 )
 # 输出："球的运动轨迹违反重力定律..."
-```
+`````
 
 ## 应用场景
 
@@ -287,18 +288,18 @@ result = run_inference(
 
 Cosmos为机器人生成合成训练数据，减少了对昂贵真实世界数据采集的需求：
 
-```bash
+`````bash
 # 生成1000段仓库机器人的合成视频片段
 # 用于训练操作策略
 cosmos_framework.scripts.training.train \
     --recipe examples/launch_sft_vision_nano.sh \
     --num-samples 1000 \
     --output-dir /data/warehouse_synthetic
-```
+`````
 
 ### 自动驾驶模拟
 
-```python
+`````python
 # 模拟自动驾驶场景
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -309,11 +310,11 @@ result = run_inference(
     task="predict_vehicle_dynamics"
 )
 # 输出：汽车停车的视频 + 行动向量（转向、油门、刹车）
-```
+`````
 
 ### 智能基础设施监控
 
-```python
+`````python
 # 分析监控摄像头的异常事件
 result = run_inference(
     checkpoint="Cosmos3-Super",
@@ -323,13 +324,13 @@ result = run_inference(
     task="detect_anomalies"
 )
 # 输出："14:32:15，无标记车辆进入限制区域..."
-```
+`````
 
 ## 训练：微调Cosmos模型
 
 Cosmos框架包含用于自定义数据监督微调（SFT）的训练脚本：
 
-```bash
+`````bash
 # 在8×H100 80GB上进行多GPU SFT训练
 bash examples/launch_sft_vision_nano.sh
 
@@ -339,9 +340,9 @@ bash examples/launch_sft_vision_nano.sh
 # - JSONL / WebDataset / LeRobot数据集适配器
 # - 混合精度训练
 # - 检查点断点续训支持
-```
+`````
 
-```python
+`````python
 # 训练配置示例
 training_config = {
     "model": "Cosmos3-Nano",
@@ -355,21 +356,21 @@ training_config = {
     },
     "checkpoint_dir": "/checkpoints/sft_nano"
 }
-```
+````
 
 ## 与替代方案对比
 
 | 特性 | NVIDIA Cosmos | Runway Gen-3 | Sora | Pika Labs |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | ✅ 是 | ❌ 专有 | ❌ 专有 | ❌ 专有 |
 | **推理模式** | ✅ 内置 | ❌ | ❌ | ❌ |
@@ -384,13 +385,13 @@ training_config = {
 
 | 特性 | NVIDIA Cosmos | Stable Video Diffusion | Luma Dream Machine |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | ✅ 是 | ✅ 是 | ❌ 专有 |
 | **多模态** | ✅ 文本+图像+视频+音频+行动 | ❌ 仅图生视频 | ❌ 仅文生视频 |
@@ -405,15 +406,15 @@ Cosmos 3模型在多个基准上进行了评估：
 
 | 基准 | Cosmos3-Nano | Cosmos3-Super | Runway Gen-3 | Sora |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | VideoFID（↓） | 8.2 | 5.1 | 6.3 | 4.8 |
 | CLIP-I 分数（↑） | 0.89 | 0.93 | 0.91 | 0.92 |
@@ -426,15 +427,15 @@ Cosmos 3模型在多个基准上进行了评估：
 
 | 模型 | 分辨率 | 帧数 | GPU | 时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cosmos3-Nano | 480p | 189帧 | 1×H100 | ~45秒 |
 | Cosmos3-Nano | 720p | 189帧 | 1×H100 | ~90秒 |
@@ -487,7 +488,7 @@ NVIDIA Cosmos代表了我们在AI和物理世界交互方式上的根本性转�
 如果你正在构建物理AI系统，Cosmos应该成为你研究清单上的首选。
 
 
----
+* * *
 **来源与延伸阅读**：
 - 技术报告：https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
 - Cosmos 3 模型：https://huggingface.co/collections/nvidia/cosmos3
@@ -495,7 +496,7 @@ NVIDIA Cosmos代表了我们在AI和物理世界交互方式上的根本性转�
 - 官网：https://www.nvidia.com/en-us/ai/cosmos/
 
 
----
+* * *
 **体验 NVIDIA Cosmos**：访问 [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) 获取引导式体验，或克隆 [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) 获取完整框架。
 
 加入社区：[Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
@@ -566,12 +567,12 @@ NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标） represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -581,7 +582,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-15-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
 - [2026-06-22-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -589,15 +590,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

@@ -34,6 +34,7 @@ faqs: - q: 'MemPalace란 무엇이며, AI에게 어떻게 기억 기능을 부�
     a: '네. MemPalace는 Claude Code를 위한 .claude-plugin 디렉터리, OpenAI Codex를 위한 .codex-plugin 디렉터리, MCP 호환 도구를 위한 .agents/plugins 디렉터리, 그리고 Gemini CLI 및 로컬 모델 지원을 포함한 네이티브 플러그인을 기본 제공합니다. 기본적으로 MCP 호환 엔드포인트를 노출해 지속적인 코딩 에이전트 메모리를 지원합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 벤치마크 비교: MemPalace vs Mem0 vs Mastra
@@ -54,7 +55,7 @@ AI 어시스턴트와 대화할 때 매번 "내 이름이 뭐라고 했지?"라�
 
 이 글에서는 MemPalace가 어떻게 AI에게 **장기 기억**을 부여하는지, 그리고 여러분의 프로젝트에 어떻게 적용하는지 코드 중심으로 설명합니다.
 
----
+* * *
 
 ## 왜 AI에게 메모리가 필요한가?
 
@@ -66,7 +67,7 @@ AI 어시스턴트와 대화할 때 매번 "내 이름이 뭐라고 했지?"라�
 
 MemPalace는 이 문제를 **벡터 기반 의미 검색 + 계층적 메모리 관리**로 해결합니다.
 
----
+* * *
 
 ## MemPalace의 핵심 아키텍처
 
@@ -78,7 +79,7 @@ MemPalace는 세 가지 메모리 계층으로 구성됩니다: | 계층 | 역�
 
 ### 메모리 흐름도
 
-```
+````
 User Input → Working Memory (현재 대화)
                 ↓
          [의미 분석 + 중요도 평가]
@@ -86,21 +87,21 @@ User Input → Working Memory (현재 대화)
     중요도 높음 → Long-term Memory (벡터 DB 저장)
     중요도 중간 → Short-term Memory (요약 저장)
     중요도 낮음 → Working Memory (세션 종료 시 폐기)
-```
+`````
 
----
+* * *
 
 ## 설치 및 기본 사용법
 
 ### 1. 설치
 
-```bash
+`````bash
 pip install mempalace
-```
+`````
 
 ### 2. 기본 설정
 
-```python
+`````python
 from mempalace import MemoryPalace, ChromaBackend
 
 # 벡터 DB 백엔드 설정 (Chroma, Qdrant, Weaviate 지원)
@@ -116,11 +117,11 @@ memory = MemoryPalace(
     max_working_tokens=4000,   # Working Memory 최대 토큰
     summary_threshold=10       # 10턴 후 자동 요약
 )
-```
+`````
 
 ### 3. 대화 중 메모리 저장
 
-```python
+`````python
 # 사용자 정보 저장 (자동으로 벡터 임베딩되어 Long-term Memory에 저장)
 memory.remember(
     content="사용자는 Python과 React를 주로 사용하며, 
@@ -135,11 +136,11 @@ memory.remember(
     category="fact",
     importance=0.85
 )
-```
+`````
 
 ### 4. 대화 시 메모리 검색 (자동 RAG)
 
-```python
+`````python
 # 현재 질문과 관련된 과거 메모리를 자동 검색
 relevant_memories = memory.recall(
     query="프로젝트 기술 스택 추천해줘",
@@ -159,11 +160,11 @@ print(context)
 # - 사용자의 회사는 '디비에이트'이며 SaaS 분야에 종사함
 # [현재 대화]
 # 사용자: 새 프로젝트 시작하려는데 뭐가 좋을까?
-```
+`````
 
 ### 5. LLM 통합 예시 (OpenAI)
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI()
@@ -200,15 +201,15 @@ reply = chat_with_memory("내가 좋아하는 기술 스택 기억나?")
 print(reply)
 # → "네! Python과 React를 주로 사용하시는 것으로 기억합니다. 
 #    SaaS 프로젝트에 적합한 조합이에요."
-```
+`````
 
----
+* * *
 
 ## 고급 기능: 자동 요약 & 망각
 
 MemPalace는 인간의 기억 메커니즘을 모방한 **자동 요약**과 **망각** 기능을 제공합니다.
 
-```python
+`````python
 # 자동 요약 설정
 memory = MemoryPalace(
     backend=backend,
@@ -223,9 +224,9 @@ memory.set_forgetting_curve(
     medium_importance_ttl_days=30,  # 보통: 30일
     low_importance_ttl_days=7       # 낮음: 7일
 )
-```
+`````
 
----
+* * *
 
 ## MemPalace vs 다른 메모리 솔루션
 
@@ -238,7 +239,7 @@ memory.set_forgetting_curve(
 | 무료/오픈소스 | ✅ 완전 무료 | ✅ 무료 | - |
 | 벤치마크 검증 | ✅ 공개됨 | ❌ 없음 | - |
 
----
+* * *
 
 ## 실제 적용 사례
 
@@ -247,18 +248,18 @@ memory.set_forgetting_curve(
 - 제품 취향 학습 → 관련 제품 자동 추천
 
 ### 2. 코딩 어시스턴트
-- 프로젝트 구조 기억 → "`utils.py`에 추가하시죠"
+- 프로젝트 구조 기억 → "````utils.py````에 추가하시죠"
 - 코드 스타일 학습 → 사용자 스타일에 맞춘 코드 생성
 
 ### 3. 교육/코칭 AI
 - 학습 진도 추적 → "지난번 못 푼 미분 방정식, 다시 도전해볼까요?"
 - 약점 분석 → 취약 영역 집중 복습
 
----
+* * *
 
 ## 시작하기
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/MemPalace/mempalace.git
 
@@ -268,9 +269,9 @@ python basic_chatbot.py
 
 # 문서 확인
 open https://mempalace.github.io/docs
-```
+````
 
----
+* * *
 
 ## 결론
 
@@ -282,7 +283,7 @@ MemPalace는 단순한 "대화 저장소"가 아닙니다. **AI에게 진정한 
 > ⭐ **Stars**: 51,745  
 > 💰 **가격**: 완전 무료 (MIT 라이선스)
 
----
+* * *
 
 ## Related Articles
 
@@ -290,7 +291,7 @@ MemPalace는 단순한 "대화 저장소"가 아닙니다. **AI에게 진정한 
 
 
 
----
+* * *
 
 *이 글은 2026년 5월 10일에 작성되었습니다. MemPalace의 최신 정보는 공식 GitHub 저장소를 참고하세요.*
 
@@ -305,7 +306,7 @@ A: 네! MCP 호환 엔드포인트를 기본 제공하므로, 코딩 에이전�
 **Q: 로컬 메모리용으로 ChromaDB와 Pinecone 중 무엇이 좋나요?**
 A: MemPalace는 로컬 ChromaDB를 사용하여 지연 시간(Latency) 0, API 비용 0을 달성합니다. 프라이버시가 생명인 로컬 에이전트 워크플로우에서는 Pinecone을 압도합니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -377,7 +378,7 @@ MemPalace vs Mem0: 96.6% 리콜 벤치마크 및 2026년 최강 AI 메모리 프
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

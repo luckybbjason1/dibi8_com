@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 ---
 
+
 ## 简介
 
 真正自主 AI 助手的梦想——一个可以查看你的电脑屏幕、理解所见并采取措施完成任务的助手——多年来一直是 AI 开发的圣杯。字节跳动的 UI-TARS Desktop 通过将最先进的视觉语言模型与桌面自动化能力相结合，使这一梦想更接近现实。
@@ -56,67 +57,67 @@ UI-TARS Desktop 可以通过 npm（桌面应用程序）或 pip（Python 库）�
 
 ### 通过 npm 安装（桌面应用程序）
 
-```bash
+````bash
 npm install -g @agent-tars/desktop
-```
+`````
 
 这将全局安装 UI-TARS Desktop 应用程序，提供内置界面的完整 GUI Agent 体验。
 
 ### 替代方案：通过 pip 安装（Python 库）
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 这将安装 Python 库版本，适合程序化使用和服务器端部署。
 
 ### 启动 Web UI
 
-```bash
+`````bash
 agent-tars web
-```
+`````
 
 启动 UI-TARS Agent 的基于 Web 的界面。Web UI 提供基于浏览器的界面来控制和查看 Agent 的操作。
 
 ### 验证安装
 
-```bash
+`````bash
 agent-tars --version
-```
+`````
 
 ### 从源代码安装
 
-```bash
+`````bash
 git clone https://github.com/bytedance/UI-TARS-desktop.git && cd UI-TARS-desktop && pip install -r requirements.txt
-```
+`````
 
 ### 下载预训练模型
 
-```bash
+`````bash
 python download_model.py --model ui-tars-7b
-```
+`````
 
 下载预训练的 70 亿参数视觉语言模型。模型从 HuggingFace 下载并本地存储用于离线推理。
 
 ### Docker 安装
 
-```bash
+`````bash
 docker pull bytedance/uitars-desktop
 docker run --gpus all -it bytedance/uitars-desktop
-```
+`````
 
 ### 在 macOS 上安装
 
-```bash
+`````bash
 brew install python@3.11
 pip3 install agent-tars
-```
+`````
 
 ### 在 Windows 上安装
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 ![UI-TARS 行动循环](https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/action-cycle.png)
 
@@ -124,79 +125,79 @@ pip install agent-tars
 
 ### 启动 Agent
 
-```bash
+`````bash
 agent-tars --model ui-tars-7b
-```
+`````
 
 此命令使用 70 亿参数视觉语言模型启动 UI-TARS Agent，这是大多数用例推荐的尺寸。
 
 ### 运行单个任务
 
-```bash
+`````bash
 agent-tars run --task "打开浏览器并搜索'机器学习教程'" --model ui-tars-7b
-```
+`````
 
 Agent 将自动打开你的默认浏览器，导航到搜索引擎，并搜索指定的查询。
 
 ### 从任务文件运行
 
-```bash
+`````bash
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
-```
+`````
 
-其中 `tasks.yaml` 包含：
+其中 ````tasks.yaml```` 包含：
 
-```yaml
+`````yaml
 tasks: - "打开文件浏览器"
   - "导航到桌面"
   - "右键并创建新文件夹"
   - "将文件夹命名为'我的项目'"
-```
+`````
 
 ### 截图模式（仅分析）
 
-```bash
+`````bash
 agent-tars analyze --screenshot screenshot.png
-```
+`````
 
 此命令分析截图并描述可见的 UI 元素，不执行任何操作。适用于调试和了解模型看到的内容。
 
 ### 录制和重放
 
-```bash
+`````bash
 agent-tars record --output recording.yaml
 agent-tars replay --recording recording.yaml
-```
+`````
 
 记录 Agent 的操作并生成可以在稍后重放的 YAML 文件，实现自动化脚本生成。
 
 ### 在无头模式下运行
 
-```bash
+`````bash
 agent-tars run --headless --task "关闭所有打开的浏览器标签页" --model ui-tars-7b
-```
+`````
 
 无头模式在不调用 UI 的情况下运行 Agent，适用于服务器环境和 CI/CD 管道。
 
 ### 配置 Agent 参数
 
-```bash
+`````bash
 agent-tars run --task "你的任务" --model ui-tars-7b --max-steps 20 --confidence-threshold 0.8
-```
+`````
 
 ### 批量任务处理
 
-```bash
+`````bash
 agent-tars batch --task-file tasks.yaml --parallel 3 --output results.jsonl
-```
+`````
 
 并行处理多个任务并将结果记录到 JSONL 文件以供程序化分析。
 
 ### 导出任务日志
 
-```bash
+`````bash
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## 高级用法 / 生产加固
 
@@ -204,7 +205,7 @@ agent-tars export-logs --output uitars-logs.json
 
 UI-TARS 支持多种模型尺寸以平衡不同性能：
 
-```bash
+`````bash
 # 7B 参数模型（推荐用于大多数用例）
 agent-tars --model ui-tars-7b
 
@@ -213,11 +214,11 @@ agent-tars --model ui-tars-1b
 
 # 72B 参数模型（最准确，最慢，需要 40GB+ VRAM）
 agent-tars --model ui-tars-72b
-```
+`````
 
 ### 自定义配置文件
 
-```yaml
+`````yaml
 # uitars-config.yaml
 agent: model: ui-tars-7b
   max_steps: 30
@@ -233,25 +234,25 @@ actions: click: method: mouse
 environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
-```
+`````
 
 ### 多显示器支持
 
-```bash
+`````bash
 agent-tars --monitor 0 --task "在显示器 2 上打开设置"
-```
+`````
 
 指定 Agent 应使用哪个显示器进行截图捕获和操作执行。
 
 ### API 服务器模式
 
-```bash
+`````bash
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
-```
+`````
 
 启动 REST API 服务器以程序化控制 Agent。这使得与其他工具和自动化工作流的集成成为可能。
 
-```bash
+`````bash
 # 通过 API 发送任务
 curl -X POST http://localhost:8000/run \
   -H "Content-Type: application/json" \
@@ -262,21 +263,21 @@ curl http://localhost:8000/tasks/task-001/status
 
 # 取消运行中的任务
 curl -X POST http://localhost:8000/tasks/task-001/cancel
-```
+`````
 
 ### 自定义视觉模型
 
-```bash
+`````bash
 # 使用来自本地路径的微调视觉模型
 agent-tars --model-path ./custom-model/ --task "你的自定义任务"
 
 # 使用自定义 VLM
 agent-tars --vlm-path ./my-vlm/ --task "你的任务"
-```
+`````
 
 ### 屏幕捕获方法
 
-```bash
+`````bash
 # 使用截图方法（默认）
 agent-tars --capture screenshot --task "你的任务"
 
@@ -285,25 +286,25 @@ agent-tars --capture recording --task "你的任务"
 
 # 使用桌面共享方法（Linux 使用 PipeWire）
 agent-tars --capture pipewire --task "你的任务"
-```
+`````
 
 ### 键盘布局配置
 
-```bash
+`````bash
 agent-tars --keyboard-layout us --task "输入'Hello World'"
-```
+`````
 
 ### CI/CD 测试集成
 
-```bash
+`````bash
 # 在 CI/CD 管道中使用 UI-TARS 进行 GUI 测试
 agent-tars run --task "打开应用程序，填写表单，提交" \
   --headless --output test-report.json
-```
+`````
 
 ### Python API 使用
 
-```python
+`````python
 from agent_tars import Agent
 
 # 创建 Agent 实例
@@ -321,7 +322,7 @@ for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"成功: {result.success}")
 print(f"原因: {result.explanation}")
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -329,13 +330,13 @@ print(f"原因: {result.explanation}")
 
 | 任务类型 | UI-TARS Desktop | 传统自动化 | ScreenOCR + 脚本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 简单按钮点击 | 98% | 95% | 85% |
 | 表单填写 | 92% | 70% | 60% |
@@ -348,11 +349,11 @@ print(f"原因: {result.explanation}")
 
 | 模型 | 延迟（毫秒） | GPU 内存 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | UI-TARS 1B | 150ms | 4GB |
 | UI-TARS 7B | 800ms | 8GB |
@@ -362,15 +363,15 @@ print(f"原因: {result.explanation}")
 
 | 功能 | UI-TARS | 辅助功能 API | Selenium | Playwright |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 适用于任何 GUI 应用 | 是 | 否 | 仅 Web | 仅 Web |
 | 视觉理解 | 是（VLM） | 否 | 有限 | 有限 |
@@ -383,12 +384,12 @@ print(f"原因: {result.explanation}")
 
 一个 8 名工程师的 QA 团队使用 UI-TARS 来自动化其 Web 和桌面应用程序的 GUI 测试：
 
-```bash
+`````bash
 #!/bin/bash
 # 自动化回归测试套件
 agent-tars batch --task-file regression-tests.yaml \
   --headless --parallel 4 --output test-results.jsonl
-```
+`````
 
 该团队报告回归测试时间减少了 60%，并能够测试以前因缺乏 DOM 访问而需要手动测试的应用程序。
 
@@ -396,11 +397,11 @@ agent-tars batch --task-file regression-tests.yaml \
 
 一家公司使用 UI-TARS 来自动化其应用程序的无障碍测试：
 
-```bash
+`````bash
 # 测试多个 UI 状态
 agent-tars run --task "导航到所有菜单并验证键盘快捷键是否正常工作" \
   --model ui-tars-7b --max-steps 50
-```
+`````
 
 Agent 导航通过所有菜单并验证键盘快捷键是否正确实现，捕获了传统自动化测试遗漏的回归问题。
 
@@ -408,18 +409,18 @@ Agent 导航通过所有菜单并验证键盘快捷键是否正确实现，捕�
 
 ### 带密钥管理的生产配置
 
-```bash
+`````bash
 # 安全配置模型路径
 export UI_TARS_MODEL_PATH=/secure/path/to/models
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
 
 # 使用基于环境的配置
 agent-tars --config /etc/uitars/config.yaml serve
-```
+`````
 
 ### 容器部署
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 
 RUN pip install agent-tars
@@ -428,43 +429,43 @@ COPY uitars-config.yaml /etc/uitars/config.yaml
 EXPOSE 8000
 
 ENTRYPOINT ["agent-tars", "serve", "--config", "/etc/uitars/config.yaml"]
-```
+`````
 
 ### 生产资源限制
 
-```bash
+`````bash
 # 限制 GPU 内存使用
 CUDA_VISIBLE_DEVICES=0 agent-tars --model ui-tars-7b --max-gpu-memory 8192
 
 # 限制并发任务
 agent-tars serve --max-concurrent-tasks 5 --task-timeout 300
-```
+`````
 
 ### 日志和监控
 
-```bash
+`````bash
 # 启用详细日志
 agent-tars run --task "你的任务" --verbose --log-level debug
 
 # 导出日志进行分析
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## 与替代方案比较
 
 | 功能 | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 安装方式 | `npm install -g @agent-tars/desktop` | pip install | pip install | pip install |
+| 安装方式 | ````npm install -g @agent-tars/desktop```` | pip install | pip install | pip install |
 | 视觉理解 | 基于 VLM（截图分析） | 有限 | 无 | 部分 |
 | 任何 GUI 应用 | 是 | 有限 | 是 | 有限 |
 | 自我纠正 | 是（视觉反馈循环） | 部分 | 无 | 部分 |
@@ -485,7 +486,7 @@ UI-TARS Desktop 以其视觉理解能力脱颖而出。与需要硬编码坐标�
 2. **延迟**——每次行动需要截图和模型推理，在每个步骤中添加延迟。多步任务可能需要数分钟。
 3. **安全考虑**——Agent 完全控制你的桌面。仅受信任的环境中使用，并使用适当的认证限制访问。
 4. **复杂文本输入**——输入长文本或复杂文本有时会产生命名识别或输入模拟错误。
-5. **高 DPI 显示器**——某些显示器上的屏幕缩放可能影响位置精度。配置 `scale_factor` 参数以匹配你的显示器设置。
+5. **高 DPI 显示器**——某些显示器上的屏幕缩放可能影响位置精度。配置 ````scale_factor```` 参数以匹配你的显示器设置。
 6. **非 GUI 工作流**——对于纯命令行或基于 API 的任务，传统的 CLI 工具比 UI-TARS 更高效。
 
 ## 常见问题
@@ -522,7 +523,7 @@ UI-TARS Desktop 以其视觉理解能力脱颖而出。与需要硬编码坐标�
 
 为了托管你的 AI Agent 基础设施和 GPU 工作负载，考虑部署提供经济实惠 GPU 实例的云平台。使用 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 用于开发服务器，[HTStack](https://my.htstack.com/aff.php?aff=27187) 用于生产托管，以及 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 用于可靠的代理和内容分发。
 
-立即开始：`npm install -g @agent-tars/desktop`，给你的电脑一个真正看得见和理解它在做什么的 AI 助手。
+立即开始：````npm install -g @agent-tars/desktop```，给你的电脑一个真正看得见和理解它在做什么的 AI 助手。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
 
@@ -603,12 +604,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](bytedance-ui-tars-desktop-ai-agent-guide)
@@ -617,7 +618,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-01-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 - [2026-06-08-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

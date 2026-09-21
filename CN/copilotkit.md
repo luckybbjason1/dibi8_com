@@ -23,6 +23,7 @@ tags: ["copilotkit", "react-ai", "generative-ui", "ai-copilot", "langchain", "fr
 aliases:
   - /posts/copilotkit/-
 ---
+
 {{</* resource-info */>}}
 
 CopilotKit is the open-source frontend stack that turns any React or Angular application into an AI-native product. With **31,536 GitHub stars**, 3,300+ forks, and a fresh $27M Series A (May 2026), it has become the default choice for teams shipping in-app AI assistants that read application state, trigger frontend actions, and render generative UI components inside chat interfaces.
@@ -32,28 +33,28 @@ This CopilotKit tutorial walks through a production-grade setup: installing pack
 ![CopilotKit Logo](https://raw.githubusercontent.com/CopilotKit/CopilotKit/main/docs/static/img/logo.png)
 
 
----
+* * *
 ## What Is CopilotKit?
 
-**CopilotKit** is a frontend framework for building in-app AI copilots and generative UI experiences. It provides prebuilt AI copilot components for React (`CopilotSidebar`, `CopilotChat`, `CopilotPopup`), typed hooks (`useCopilotReadable`, `useCopilotAction`), and a pluggable runtime that connects to OpenAI, LangChain, LangGraph, Groq, or any custom agent backend.
+**CopilotKit** is a frontend framework for building in-app AI copilots and generative UI experiences. It provides prebuilt AI copilot components for React (```CopilotSidebar````, ````CopilotChat````, ````CopilotPopup````), typed hooks (````useCopilotReadable````, ````useCopilotAction````), and a pluggable runtime that connects to OpenAI, LangChain, LangGraph, Groq, or any custom agent backend.
 
 The project is maintained by CopilotKit Inc., licensed under MIT, and has raised $27M in funding to date. The team of ~25 engineers publishes weekly releases and maintains the AG-UI open protocol — a wire standard for agent-to-frontend communication now supported by Google, Microsoft, Amazon, LangChain, and Mastra.
 
 
----
+* * *
 ## How CopilotKit Works
 
 CopilotKit sits between your frontend application and the LLM or agent backend. It handles streaming chat, tool calling, state synchronization, and generative UI rendering through a clean three-layer architecture: | Layer | Responsibility | Key Files |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **UI Components** | Render chat sidebar, popup, or inline chat | `CopilotSidebar`, `CopilotChat`, `CopilotPopup` |
-| **React Hooks** | Expose state + actions to the LLM | `useCopilotReadable`, `useCopilotAction` |
-| **Copilot Runtime** | Route requests to LLM/agent backends | `app/api/copilotkit/route.ts` |
+| **UI Components** | Render chat sidebar, popup, or inline chat | ````CopilotSidebar````, ````CopilotChat````, ````CopilotPopup```` |
+| **React Hooks** | Expose state + actions to the LLM | ````useCopilotReadable````, ````useCopilotAction```` |
+| **Copilot Runtime** | Route requests to LLM/agent backends | ````app/api/copilotkit/route.ts```` |
 
 ![CopilotKit Architecture](https://docs.copilotkit.ai/assets/images/copilotkit-architecture.png)
 
@@ -65,7 +66,7 @@ CopilotKit sits between your frontend application and the LLM or agent backend. 
 - **Generative UI** — React components rendered inside the chat as responses to tool calls (weather cards, task items, data tables).
 - **AG-UI Protocol** — An open wire format for agent-to-frontend communication. CopilotKit is the reference implementation.
 
----
+* * *
 
 ## Installation & Setup
 
@@ -77,7 +78,7 @@ CopilotKit sits between your frontend application and the LLM or agent backend. 
 
 ### Step 1: Install Packages
 
-```bash
+`````bash
 # React core + UI components + runtime
 npm install @copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime
 
@@ -86,20 +87,20 @@ npm install @copilotkit/runtime-langchain
 
 # For Groq adapter (optional)
 npm install @copilotkit/runtime groq-sdk
-```
+`````
 
 ### Step 2: Add Environment Variables
 
-```bash
+`````bash
 # .env.local
 OPENAI_API_KEY=sk-your-openai-key
 GROQ_API_KEY=gsk-your-groq-key
 COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # Optional, for cloud features
-```
+`````
 
 ### Step 3: Create the Runtime Endpoint
 
-Create `app/api/copilotkit/route.ts` in your Next.js project: ```typescript
+Create ``app/api/copilotkit/route.ts`` in your Next.js project: `````typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -125,11 +126,11 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### Step 4: Wrap Your App with the Provider
 
-Update your root layout or page component: ```tsx
+Update your root layout or page component: `````tsx
 // app/layout.tsx or app/page.tsx
 "use client";
 
@@ -153,23 +154,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </CopilotKit>
   );
 }
-```
+`````
 
 ### Step 5: Run the Dev Server
 
-```bash
+`````bash
 npm run dev
 # Open http://localhost:3000
 # Click the copilot button — your AI assistant is live
-```
+`````
 
----
+* * *
 
 ## Integration with LangChain, LangGraph, and OpenAI
 
 ### OpenAI Adapter (Simplest)
 
-The OpenAI adapter is the fastest path to production. It connects directly to GPT-4o without additional backend infrastructure: ```typescript
+The OpenAI adapter is the fastest path to production. It connects directly to GPT-4o without additional backend infrastructure: `````typescript
 // app/api/copilotkit/route.ts — OpenAI variant
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -185,11 +186,11 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### LangChain Adapter
 
-For teams already invested in LangChain, use the LangChain adapter to plug in custom chains, retrievers, and agents: ```typescript
+For teams already invested in LangChain, use the LangChain adapter to plug in custom chains, retrievers, and agents: `````typescript
 // app/api/copilotkit/route.ts — LangChain variant
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -212,11 +213,11 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### LangGraph Agent (Advanced)
 
-For stateful multi-step agents, connect to a LangGraph backend: ```typescript
+For stateful multi-step agents, connect to a LangGraph backend: `````typescript
 // app/api/copilotkit/route.ts — LangGraph variant
 import {
   CopilotRuntime,
@@ -242,11 +243,11 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### Groq Adapter (Fast Inference)
 
-For low-latency responses with Llama models via Groq: ```typescript
+For low-latency responses with Llama models via Groq: `````typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -270,15 +271,15 @@ export const POST = async (req: NextRequest) => {
   });
   return handleRequest(req);
 };
-```
+`````
 
----
+* * *
 
 ## Real-World TSX Example: Task Manager Copilot
 
 Here is a complete, production-ready task manager with CopilotKit integration. The AI can read tasks, add new ones, mark them complete, and render task cards inside the chat.
 
-```tsx
+`````tsx
 // app/components/TaskManager.tsx
 "use client";
 
@@ -330,7 +331,7 @@ export function TaskManager() {
         priority: priority as Task["priority"],
       };
       setTasks((prev) => [...prev, newTask]);
-      return `Added task: "${title}" with ${priority} priority`;
+      return ````Added task: "${title}" with ${priority} priority````;
     },
   });
 
@@ -350,7 +351,7 @@ export function TaskManager() {
       setTasks((prev) =>
         prev.map((t) => (t.id === taskId ? { ...t, completed: true } : t))
       );
-      return `Marked task ${taskId} as completed`;
+      return ````Marked task ${taskId} as completed````;
     },
   });
 
@@ -368,7 +369,7 @@ export function TaskManager() {
     ],
     handler: ({ taskId }) => {
       setTasks((prev) => prev.filter((t) => t.id !== taskId));
-      return `Deleted task ${taskId}`;
+      return ````Deleted task ${taskId}````;
     },
   });
 
@@ -386,11 +387,11 @@ export function TaskManager() {
     </div>
   );
 }
-```
+`````
 
 **Generative UI: Render Custom Cards Inside Chat**
 
-```tsx
+`````tsx
 // Render a task card inside the copilot chat
 useCopilotAction({
   name: "showTaskDetails",
@@ -405,28 +406,28 @@ useCopilotAction({
     return (
       <div className="task-card">
         <h4>{task.title}</h4>
-        <span className={`priority-${task.priority}`}>{task.priority}</span>
+        <span className={````priority-${task.priority}````}>{task.priority}</span>
         <p>Status: {task.completed ? "Completed" : "In Progress"}</p>
       </div>
     );
   },
-  handler: ({ taskId }) => `Displayed details for task ${taskId}`,
+  handler: ({ taskId }) => ````Displayed details for task ${taskId}````,
 });
-```
+`````
 
----
+* * *
 
 ## Benchmarks / Real-World Use Cases
 
 CopilotKit is deployed across a range of production applications. Below are verified deployment metrics and use cases: | Use Case | Company / Type | Scale | Integration |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Task management copilot | SaaS startups | 5K-50K MAU | React + OpenAI |
 | CRM data assistant | Sales platforms | 10K+ users | Angular + LangChain |
@@ -438,11 +439,11 @@ CopilotKit is deployed across a range of production applications. Below are veri
 
 | Metric | CopilotKit + GPT-4o | CopilotKit + Groq Llama 3 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Time to first token | 800ms | 180ms |
 | Full response (100 tokens) | 2.1s | 0.9s |
@@ -452,13 +453,13 @@ CopilotKit is deployed across a range of production applications. Below are veri
 
 > **Deploy CopilotKit on DigitalOcean** with $200 free credit: [DigitalOcean](https://www.digitalocean.com/) provides developer-friendly cloud infrastructure starting at $4/month. Spin up a droplet, install Docker, and deploy your CopilotKit runtime in under 10 minutes.
 
----
+* * *
 
 ## Advanced Usage / Production Hardening
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM node:20-alpine
 WORKDIR /app
@@ -470,9 +471,9 @@ EXPOSE 3000
 ENV NODE_ENV=production
 ENV PORT=3000
 CMD ["npm", "start"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: app: build: .
@@ -484,11 +485,11 @@ services: app: build: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### Environment-Based Configuration
 
-```typescript
+`````typescript
 // lib/copilot-config.ts
 export const copilotConfig = {
   runtimeUrl: process.env.NEXT_PUBLIC_COPILOT_RUNTIME_URL || "/api/copilotkit",
@@ -497,11 +498,11 @@ export const copilotConfig = {
   temperature: parseFloat(process.env.COPILOT_TEMPERATURE || "0.7"),
   threadRetention: parseInt(process.env.COPILOT_THREAD_RETENTION || "3"), // days
 };
-```
+`````
 
 ### Rate Limiting & Security
 
-```typescript
+`````typescript
 // middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -523,11 +524,11 @@ export async function middleware(req: NextRequest) {
   }
   return NextResponse.next();
 }
-```
+`````
 
 ### Monitoring with LangSmith
 
-```typescript
+`````typescript
 // Add LangSmith tracing to your runtime
 import { Client } from "langsmith";
 
@@ -552,23 +553,23 @@ const runtime = new CopilotRuntime({
     },
   ],
 });
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
 | Feature | CopilotKit | Vercel AI SDK | LangChain | Dify |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Prebuilt React Components** | CopilotSidebar, CopilotChat, CopilotPopup | AI Elements (shadcn-style) | None — build your own | None — API only |
 | **Frontend State Sharing** | useCopilotReadable hook | Manual via useChat | N/A | N/A |
@@ -592,7 +593,7 @@ const runtime = new CopilotRuntime({
 
 ![CopilotKit Comparison Table](https://docs.copilotkit.ai/assets/images/copilotkit-comparison.png)
 
----
+* * *
 
 ## Limitations / Honest Assessment
 
@@ -608,7 +609,7 @@ CopilotKit is not the right tool for every project. Here are the genuine trade-o
 
 6. **LangGraph dependency for advanced agents.** Complex multi-step agents require LangGraph knowledge. The built-in agent covers basic chat but not sophisticated workflows.
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -618,7 +619,7 @@ A basic integration with OpenAI takes 10-15 minutes: install three packages, cre
 
 ### Can CopilotKit work without Next.js?
 
-Yes. CopilotKit works with any React 18+ application. The runtime endpoint can be hosted separately (Express, Fastify, or any Node server). The `@copilotkit/react-core` package has no Next.js dependency.
+Yes. CopilotKit works with any React 18+ application. The runtime endpoint can be hosted separately (Express, Fastify, or any Node server). The ````@copilotkit/react-core```` package has no Next.js dependency.
 
 ### What LLM providers does CopilotKit support?
 
@@ -634,13 +635,13 @@ Vercel AI SDK is a streaming and chat UI toolkit. CopilotKit is a copilot embedd
 
 ### Does CopilotKit support multi-agent systems?
 
-Yes. The Copilot Runtime can route requests to multiple agents. Use the `agents` config in `CopilotRuntime` to register LangGraph agents, and switch between them at runtime using the `agentId` prop.
+Yes. The Copilot Runtime can route requests to multiple agents. Use the ````agents```` config in ````CopilotRuntime```` to register LangGraph agents, and switch between them at runtime using the ````agentId``` prop.
 
 ### What is the AG-UI protocol?
 
 AG-UI is an open wire protocol for agent-to-frontend communication, created by CopilotKit. It standardizes streaming chat, tool calls, and state sharing. Google, Microsoft, Amazon, LangChain, and Mastra all support AG-UI as of 2026.
 
----
+* * *
 
 ## Conclusion
 
@@ -655,7 +656,7 @@ CopilotKit fills a specific gap: embedding AI copilots inside existing React app
 
 **Discuss this article and get help in our Telegram group:** [t.me/dibi8opensource](https://t.me/dibi8opensource) — share your CopilotKit builds, ask questions, and connect with other developers shipping AI copilots.
 
----
+* * *
 
 
 
@@ -679,7 +680,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Dev.to: LangGraph + CopilotKit Agent System](https://dev.to/ayushgupta/building-a-production-ready-composable-ai-agent-system-with-copilotkit-and-langgraph-141f)
 - [I Evaluated Every AI Chat UI Library in 2026](https://dev.to/alexander_lukashov/i-evaluated-every-ai-chat-ui-library-in-2026-heres-what-i-found-and-what-i-built-4p10)
 
----
+* * *
 
 **Disclosure:** This article contains affiliate links to DigitalOcean. If you sign up through our link, dibi8.com may earn a commission at no additional cost to you. All opinions and benchmarks are independent. DigitalOcean offers $200 in free credits for new users to try CopilotKit deployments.
 
@@ -709,7 +710,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -719,7 +720,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [docker-genai-stack-local-development](copilotkit)
 - [langchain-complete-guide](copilotkit)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

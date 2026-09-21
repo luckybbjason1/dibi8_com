@@ -32,6 +32,7 @@ faq: - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
     a: "LocalAI 是为此设计的 —— 它直接提供 OpenAI 兼容的 /v1/chat/completions 端点。把任何 OpenAI SDK 指向 LocalAI 的 URL 就能直接工作。Ollama 和 vLLM 在 2026 版本中也提供了 OpenAI 兼容端点，但 LocalAI 历史最久、支持的模型最广。"
 ---
 
+
 {{</* resource-info */>}}
 
 # 2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI
@@ -53,13 +54,13 @@ faq: - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
 > **成本平衡点**：每月约 1000 万+ tokens 时自托管胜过 API。低于 500 万则 API 更划算。
 
 
----
+* * *
 ## 它们各是什么
 
 ### Ollama
 **Stars**：约 95K。**技术栈**：Go。**许可证**：MIT。
 
-最简单的本地 LLM 运行时。`ollama pull llama3.3:70b-instruct-q4_K_M && ollama run llama3.3:70b-instruct-q4_K_M`。这就是全部部署过程。单用户、专注于开发者体验。强大的 CLI + 简洁的 HTTP API。
+最简单的本地 LLM 运行时。```ollama pull llama3.3:70b-instruct-q4_K_M && ollama run llama3.3:70b-instruct-q4_K_M````。这就是全部部署过程。单用户、专注于开发者体验。强大的 CLI + 简洁的 HTTP API。
 
 ### vLLM
 **Stars**：约 30K。**技术栈**：Python + CUDA。**许可证**：Apache-2.0。
@@ -69,7 +70,7 @@ faq: - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
 ### LocalAI
 **Stars**：约 22K。**技术栈**：Go + 多种后端。**许可证**：MIT。
 
-OpenAI 兼容的 API 服务器。直接替换：改一下 `OPENAI_API_BASE` 环境变量，现有代码就能用。支持最广泛的模型格式（GGUF、GGML、ONNX、MLC、TensorRT）。最适合"我们有现成的 OpenAI 客户端代码，想换成本地"的场景。
+OpenAI 兼容的 API 服务器。直接替换：改一下 ````OPENAI_API_BASE```` 环境变量，现有代码就能用。支持最广泛的模型格式（GGUF、GGML、ONNX、MLC、TensorRT）。最适合"我们有现成的 OpenAI 客户端代码，想换成本地"的场景。
 
 ## 测试设置
 
@@ -82,13 +83,13 @@ OpenAI 兼容的 API 服务器。直接替换：改一下 `OPENAI_API_BASE` 环�
 
 | 运行时 | 单用户 tok/秒 | 并发（10 用户） | 显存占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | 24 tok/s | 24 tok/s（仅单用户） | 22GB 显存 |
 | vLLM | 28 tok/s | 总计 180 tok/s（每用户 18 tok/s） | 23GB 显存 |
@@ -99,15 +100,15 @@ OpenAI 兼容的 API 服务器。直接替换：改一下 `OPENAI_API_BASE` 环�
 ## 部署耗时与运维复杂度
 
 ### Ollama（10 分钟）
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.3:70b-instruct-q4_K_M
 ollama run llama3.3:70b-instruct-q4_K_M
-```
-三条命令搞定。更新再 `ollama pull` 一次即可。
+`````
+三条命令搞定。更新再 ````ollama pull```` 一次即可。
 
 ### vLLM（2 小时）
-```bash
+`````bash
 # Python 3.11 + CUDA 12.4 venv
 pip install vllm
 # Configure model serving with proper batch size, max context, GPU mem fraction
@@ -116,16 +117,16 @@ vllm serve meta-llama/Llama-3.3-70B-Instruct \
   --max-model-len 8192 \
   --gpu-memory-utilization 0.95 \
   --quantization fp8
-```
-加上依赖地狱调试（CUDA 版本、torch 版本、vllm 版本兼容性）首次通常要 1-2 小时。之后：`vllm serve` 就能跑。
+`````
+加上依赖地狱调试（CUDA 版本、torch 版本、vllm 版本兼容性）首次通常要 1-2 小时。之后：````vllm serve```` 就能跑。
 
 ### LocalAI（45 分钟）
-```yaml
+`````yaml
 # docker-compose.yml
 services: api: image: localai/localai:latest-aio-gpu-nvidia
     volumes: - ./models:/build/models
     environment: - MODELS_PATH=/build/models
-```
+`````
 加上为每个加载的模型写模型配置 YAML。Docker 把依赖处理得很干净。
 
 ## 成本分析：自托管何时胜过 API
@@ -135,7 +136,7 @@ services: api: image: localai/localai:latest-aio-gpu-nvidia
 - 或自购 RTX 4090（前期 $1600）+ $50 电费 = 24 个月摊销约 $80/月
 - 多用户 vLLM 服务 = 满载每 GPU 持续约 50K tokens/秒
 
-```
+`````
 H100 生产：
   $1440/月 / 月潜在 10 亿 tokens
   = $0.0000014/1K tokens
@@ -145,7 +146,7 @@ H100 生产：
   混合约 $0.009
   
 平衡点：约每月 1.6 亿 tokens
-```
+`````
 
 业余玩家用 RTX 4090 每月跑 1 亿 tokens：
 - 自购：硬件摊销 $80/月
@@ -160,15 +161,15 @@ Llama 3.3 70B 表现不错但**未达前沿水平**：
 
 | 基准测试 | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HumanEval（代码） | 80% | 92% | 89% | 87% |
 | MMLU（推理） | 82% | 89% | 88% | 86% |
@@ -179,7 +180,7 @@ Llama 3.3 70B 表现不错但**未达前沿水平**：
 
 ## 怎么选：决策矩阵
 
-```
+`````
 单人开发者、开发/探索 → Ollama
 多用户生产服务器 → vLLM
 OpenAI API 直接替换 → LocalAI
@@ -187,7 +188,7 @@ OpenAI API 直接替换 → LocalAI
 最简单"开箱即用"的部署 → Ollama
 需要最广泛的模型格式支持 → LocalAI
 成本最优 + 高流量 → vLLM 配 H100
-```
+````
 
 ## 推荐基础设施
 
@@ -209,7 +210,7 @@ OpenAI API 直接替换 → LocalAI
 质量方面，Llama 3.3 70B 在大多数日常工作中够用，但远非前沿模型水平。如果你的工作负载要求最佳模型，留在 API 上。如果"很好且私密"胜过"最佳但共享"，那就自托管。
 
 
----
+* * *
 **相关阅读**：[Ollama 部署指南](https://dibi8.com/zh/resources/llm-frameworks/ollama/) · [2026 RAG 与微调对比](https://dibi8.com/zh/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [2026 MCP 服务器排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -274,12 +275,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -289,6 +290,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ollama-vs-vllm](self-hosted-llm-2026-ollama-vllm-localai)
 - [llm-inference-cost-optimization-guide-2026](self-hosted-llm-2026-ollama-vllm-localai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

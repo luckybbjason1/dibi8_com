@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
 ---
 
+
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)
 
 ![Trivy Kubernetes Scanning](https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/trivy-k8s.png)
@@ -27,7 +28,7 @@ Mọi container image được triển khai vào production đều là một b�
 
 Trivy (tiếng Nhật có nghĩa là "đôi mắt sáng," từ cụm từ "đôi mắt sáng, trái tim đầy, không thể thua") là công cụ quét bảo mật toàn diện của Aqua Security, bao phủ toàn bộ chuỗi cung ứng phần mềm. Không giống như các công cụ quét truyền thống chỉ kiểm tra cơ sở dữ liệu CVE, Trivy còn phát hiện cấu hình sai, khóa bí mật bị lộ và giấy phép phần mềm — biến nó thành giải pháp một cửa cho các nhóm bảo mật ứng dụng.
 
-```
+````
 ┌─────────────────────────────────────────────┐
 │              Trivy Scanner                    │
 ├─────────────────────────────────────────────┤
@@ -47,13 +48,13 @@ Trivy (tiếng Nhật có nghĩa là "đôi mắt sáng," từ cụm từ "đôi
 │  • Remote URLs                               │
 │  • Virtual packages (Alpine, RHEL, etc)    │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ## Trivy hoạt động như thế nào
 
 Trivy sử dụng phương pháp quét phân lớp. Đối với container image, nó pull các lớp image, xác định OS cơ bản và các package đã cài đặt, sau đó truy vấn cơ sở dữ liệu lỗ hổng của nó. Pipeline quét đối chiếu từng package với nhiều cơ sở dữ liệu lỗ hổng bao gồm GitHub Advisory Database, OSV và NVD (National Vulnerability Database).
 
-```
+`````
 Container Image → Layer Extraction → Package Detection
                             ↓
               Vulnerability DB Query (600K+ CVEs)
@@ -63,7 +64,7 @@ Container Image → Layer Extraction → Package Detection
               Misconfiguration Detection (policy engine)
                             ↓
               Score & Export (JSON, SARIF, Table)
-```
+`````
 
 Đối với quét filesystem và Git repository, Trivy duyệt qua cây thư mục, phát hiện package manager (go.mod, package-lock.json, requirements.txt, v.v.) và chạy cùng pipeline quét. Quét Kubernetes kết nối trực tiếp với cluster API, thu thập pod specs, deployments và config maps để phân tích cấu hình sai.
 
@@ -71,37 +72,37 @@ Container Image → Layer Extraction → Package Detection
 
 Trivy hỗ trợ nhiều phương pháp cài đặt. Chọn phương pháp phù hợp với workflow của bạn: **Tùy chọn 1: Homebrew (macOS / Linux)**
 
-```bash
+`````bash
 brew install trivy
 trivy --version
 # Expected: trivy version 0.65.x
-```
+`````
 
 **Tùy chọn 2: Docker (khuyến nghị cho CI/CD)**
 
-```bash
+`````bash
 docker run -v /tmp/trivy:/root/.trivy aquasec/trivy image python:3.11-alpine
-```
+`````
 
 **Tùy chọn 3: Tải Binary**
 
-```bash
+`````bash
 curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-```
+`````
 
 **Tùy chọn 4: GitHub Actions**
 
-```yaml
+`````yaml
 - name: Run Trivy vulnerability scanner
   uses: aquasecurity/trivy-action@master
   with: image-ref: my-app:latest
     format: 'sarif'
     output: 'trivy-results.sarif'
-```
+`````
 
-Cơ sở dữ liệu lỗ hổng của Trivy tự động cập nhật khi sử dụng lần đầu và mỗi 6 giờ sau đó. Bạn cũng có thể cập nhật thủ công: ```bash
+Cơ sở dữ liệu lỗ hổng của Trivy tự động cập nhật khi sử dụng lần đầu và mỗi 6 giờ sau đó. Bạn cũng có thể cập nhật thủ công: `````bash
 trivy image --download-db-only
-```
+`````
 
 ## Tích hợp với Docker, GitHub Actions và Kubernetes
 
@@ -109,16 +110,16 @@ Trivy tích hợp liền mạch vào các CI/CD pipeline hiện có. Dưới đ�
 
 **Tích hợp Docker Buildx**
 
-```bash
+`````bash
 # Quét sau khi build image
 docker build -t my-app:latest .
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
   aquasec/trivy image --severity HIGH,CRITICAL my-app:latest
-```
+`````
 
 **GitHub Actions Workflow**
 
-```yaml
+`````yaml
 name: Security Scan
 on: [push, pull_request]
 jobs: trivy: runs-on: ubuntu-latest
@@ -129,27 +130,27 @@ jobs: trivy: runs-on: ubuntu-latest
           scan-ref: '.'
           format: 'table'
           severity: 'HIGH,CRITICAL'
-```
+`````
 
 **Kubernetes Cluster Scan**
 
-```bash
+`````bash
 # Quét toàn bộ cluster cho cấu hình sai
 trivy k8s --report summary cluster
 
 # Export dạng JSON để xử lý tiếp
 trivy k8s --format json --output k8s-report.json cluster
-```
+`````
 
 **Terraform Infrastructure Scanning**
 
-```bash
+`````bash
 # Quét Terraform configs cho cấu hình sai
 trivy conf ./infrastructure/
 
 # Output SARIF để tích hợp với GitHub code scanning
 trivy conf --format sarif --output terraform-results.sarif ./infrastructure/
-```
+`````
 
 ## Benchmarks / Trường hợp sử dụng thực tế
 
@@ -161,7 +162,7 @@ Hiệu suất của Trivy phụ thuộc vào mục tiêu quét và kích thướ
 | Kubernetes cluster (50 resources) | 15-25 giây | N/A | 95% config match |
 | Terraform (200 .tf files) | 3-5 giây | N/A | 94% config match |
 
-Ví dụ triển khai thực tế: ```bash
+Ví dụ triển khai thực tế: `````bash
 # Production: quét đêm tất cả images trong Harbor registry
 trivy registry --security vulns,secret,misconfig harbor.example.com/myproject/api:latest
 
@@ -170,7 +171,7 @@ trivy image --exit-code 1 --severity CRITICAL my-app:latest
 
 # SBOM generation cho compliance (SBOM = Software Bill of Materials)
 trivy image --format spdx-json --output sbom.json my-app:latest
-```
+`````
 
 Đối với các team triển khai infrastructure ở quy mô lớn: hãy thử [HTStack](https://www.htstack.com/) cho cloud hosting hiệu năng cao tích hợp liền mạch với các pipeline quét Trivy.
 
@@ -178,7 +179,7 @@ trivy image --format spdx-json --output sbom.json my-app:latest
 
 **Policy-as-Code với Custom Exit Codes**
 
-```bash
+`````bash
 # Exit code 1 = phát hiện vulnerability
 trivy image --exit-code 1 --severity HIGH,CRITICAL my-app:latest
 
@@ -187,11 +188,11 @@ trivy image --exit-code 0 --format json --output report.json my-app:latest
 
 # Bỏ qua CVE cụ thể (dễ dương tính giả)
 trivy image --ignore-unfixed --severity CRITICAL my-app:latest
-```
+`````
 
 **Custom Configuration File**
 
-```yaml
+`````yaml
 # .trivy.yaml
 severity: - HIGH
   - CRITICAL
@@ -201,11 +202,11 @@ scan: security-checks: vuln,secret,misconfig
   skip-dirs: - tmp
     - .git
 exit-code: 1
-```
+`````
 
 **Docker Compose cho Self-Hosted Scanning**
 
-```yaml
+`````yaml
 version: '3.8'
 services: trivy: image: aquasec/trivy:latest
     volumes: - /var/run/docker.sock:/var/run/docker.sock
@@ -216,21 +217,21 @@ services: trivy: image: aquasec/trivy:latest
       --output /results/report.json
       --severity HIGH,CRITICAL
       my-app:latest
-```
+`````
 
 **Monitoring và Alerting**
 
-```bash
+`````bash
 # Tạo SBOM và push lên registry để lưu audit trail
 trivy image --format spdx-json --output sbom-$(date +%Y%m%d).json my-app:latest
 
 # So sánh scan hiện tại với baseline
 trivy image --exit-code 1 --ignore-unfixed --severity CRITICAL my-app:latest
-```
+`````
 
 **Trivy với GitHub Advanced Security Integration**
 
-```yaml
+`````yaml
 # .github/codeql-config.yml — integrate Trivy SARIF với GitHub
 name: "Trivy SARIF Config"
 
@@ -239,9 +240,9 @@ queries: - uses: security-and-quality
 
 # File này nói cho GitHub cách hiển thị kết quả Trivy
 # trong tab Security → Code scanning
-```
+`````
 
-```bash
+`````bash
 # Chạy Trivy và push SARIF lên GitHub
 trivy image --format sarif --output results.sarif my-app:latest
 
@@ -257,7 +258,7 @@ curl -X POST \
   -H "Authorization: token $GITHUB_TOKEN" \
   -H "Content-Type: application/json" \
   --data-binary @results.sarif
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -281,7 +282,7 @@ curl -X POST \
 
 ## Limitations / Đánh giá khách quan
 
-Trivy là công cụ quét mã nguồn mở toàn diện nhất hiện có, nhưng không hoàn hảo: 1. **False positives tồn tại**: Việc match vulnerability của Trivy có thể đánh dấu các CVE không ảnh hưởng đến cấu hình build cụ thể của bạn. Sử dụng `--ignore-unfixed` để giảm noise.
+Trivy là công cụ quét mã nguồn mở toàn diện nhất hiện có, nhưng không hoàn hảo: 1. **False positives tồn tại**: Việc match vulnerability của Trivy có thể đánh dấu các CVE không ảnh hưởng đến cấu hình build cụ thể của bạn. Sử dụng ````--ignore-unfixed```` để giảm noise.
 2. **Database latency**: Cơ sở dữ liệu vulnerability cập nhật mỗi 6 giờ, vì vậy các lỗ hổng zero-day phát hiện hôm nay sẽ không xuất hiện trong kết quả quét cho đến chu kỳ cập nhật tiếp theo.
 3. **Resource usage**: Container image lớn với hàng nghìn package có thể mất hơn 30 giây để quét. Điều này chấp nhận được cho CI nhưng có thể quá chậm cho các ad-hoc scan theo yêu cầu.
 4. **Không có runtime detection**: Trivy quét static images và files. Nó không phát hiện runtime exploits, zero-day vulnerabilities trong container đang chạy hoặc behavioral anomalies. Kết hợp với các công cụ runtime security để bao phủ toàn diện.
@@ -295,15 +296,15 @@ Trivy có thể quét Windows container image, nhưng khả năng phát hiện v
 
 **Q: Trivy xử lý private container registry như thế nào?**
 
-Trivy hỗ trợ private registry thông qua Docker credentials hoặc token-based authentication. Truyền credentials registry của bạn bằng các cờ `--password` và `--username`, hoặc cấu hình Docker login credentials mà Trivy sẽ tự động đọc từ `~/.docker/config.json`.
+Trivy hỗ trợ private registry thông qua Docker credentials hoặc token-based authentication. Truyền credentials registry của bạn bằng các cờ ````--password```` và ````--username````, hoặc cấu hình Docker login credentials mà Trivy sẽ tự động đọc từ ````~/.docker/config.json````.
 
 **Q: Trivy có thể quét Kubernetes YAML files mà không cần kết nối đến cluster?**
 
-Có. Sử dụng `trivy k8s --dry-run --file deployment.yaml` để quét Kubernetes manifests tại địa phương mà không cần kết nối đến cluster đang chạy. Điều này hữu ích cho pre-commit validation của các cấu hình deploy K8s.
+Có. Sử dụng ````trivy k8s --dry-run --file deployment.yaml```` để quét Kubernetes manifests tại địa phương mà không cần kết nối đến cluster đang chạy. Điều này hữu ích cho pre-commit validation của các cấu hình deploy K8s.
 
 **Q: Độ chính xác của secret detection trong Trivy như thế nào?**
 
-Trivy sử dụng kết hợp các regex patterns và machine learning models để phát hiện secrets. Nó phát hiện API keys, tokens, passwords và private keys. Tỷ lệ false positive ở mức trung bình (10-15%), vì vậy hãy xem xét các kết quả được đánh dấu trước khi thêm vào blocklists. Sử dụng `--scanners secret` để giới hạn quét chỉ cho secret detection.
+Trivy sử dụng kết hợp các regex patterns và machine learning models để phát hiện secrets. Nó phát hiện API keys, tokens, passwords và private keys. Tỷ lệ false positive ở mức trung bình (10-15%), vì vậy hãy xem xét các kết quả được đánh dấu trước khi thêm vào blocklists. Sử dụng ````--scanners secret```` để giới hạn quét chỉ cho secret detection.
 
 **Q: Tôi có thể dùng Trivy cho compliance scanning không?**
 
@@ -313,7 +314,7 @@ Trivy hỗ trợ SBOM generation ở định dạng SPDX và CycloneDX, đây l�
 
 Trivy đã trở thành security scanner mặc định cho các team cloud-native vì nó làm nhiều hơn là chỉ kiểm tra cơ sở dữ liệu CVE — nó bao phủ toàn bộ bề mặt bảo mật ứng dụng trong một command-line tool duy nhất. Dù bạn đang quét container image trong CI, audit Kubernetes cluster trong production, hoặc quét Terraform infrastructure trước khi deploy, Trivy cung cấp coverage toàn diện với cấu hình tối thiểu.
 
-Công cụ này miễn phí, mã nguồn mở và được duy trì tích cực với hơn 36.000 GitHub stars cùng sự đóng góp từ đội ngũ aquasecurity. Bắt đầu với lệnh `trivy image --severity HIGH your-image:tag` đơn giản và dần thêm secret detection, misconfiguration scanning và các rule policy-as-code khi maturity bảo mật của bạn phát triển.
+Công cụ này miễn phí, mã nguồn mở và được duy trì tích cực với hơn 36.000 GitHub stars cùng sự đóng góp từ đội ngũ aquasecurity. Bắt đầu với lệnh ````trivy image --severity HIGH your-image:tag``` đơn giản và dần thêm secret detection, misconfiguration scanning và các rule policy-as-code khi maturity bảo mật của bạn phát triển.
 
 Đối với các team triển khai infrastructure ở quy mô lớn: hãy thử [HTStack](https://www.htstack.com/) cho cloud hosting hiệu năng cao tích hợp liền mạch với các pipeline quét Trivy.
 
@@ -329,7 +330,7 @@ Xem các internal guides về [Kubernetes Security Best Practices](dibi8-interna
 
 Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để thảo luận hàng ngày về bảo mật, DevOps và các công cụ mã nguồn mở.
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Tài liệu chính thức: https://trivy.dev/docs/
 - GitHub repository: https://github.com/aquasecurity/trivy
@@ -366,7 +367,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -376,7 +377,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - [strix-ai-open-source-penetration-testing](trivy-production-security-scanner-2026)
 - [skillspector-nvidia-open-source-security-scanner-ai-agent-skills](trivy-production-security-scanner-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

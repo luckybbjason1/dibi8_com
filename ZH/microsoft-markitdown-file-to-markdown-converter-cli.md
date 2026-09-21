@@ -8,6 +8,7 @@ category: dev-utils
 tags: ["微软", "markitdown", "markdown", "python", "cli", "pdf转换器", "文档处理", "AI", "开源"]
 ---
 
+
 ## 简介
 
 在当今数据驱动的世界中，将文档转换为结构化、可读且可移植格式的能力变得比以往任何时候都更加重要。无论你是正在构建检索增强生成（RAG）管道、将文档导入 AI 知识库，还是仅仅试图从复杂的 PDF 中提取干净的文本，拥有一个可靠的工具将任何文件格式转换为 Markdown 都是非常有价值的。微软 MarkItDown 是一款正好为此目的而构建的开源 Python 工具——它将 PDF、Word 文档、PowerPoint 演示文稿、图片、HTML 页面、电子表格和 ZIP 归档文件转换为干净、一致的 Markdown 输出。
@@ -36,7 +37,7 @@ MarkItDown 是微软开发的一款基于 Python 的命令行工具和库，可�
 
 MarkItDown 基于一个简单的原理：检测文件类型，应用适当的解析器，并生成干净的 Markdown。该工具使用智能文件类型检测系统来确定每个输入的最佳转换方法。对于基于文本的格式（如 DOCX 和 HTML），它直接解析结构化内容。对于 PDF 等二进制格式，它使用文本提取库来处理复杂的布局、表格和多列文档。
 
-对于 PDF 文件，MarkItDown 在提取文本的同时保留文档的视觉结构——标题变为 `#` 标题，列表变为 `-` 项目符号，表格转换为 Markdown 表格语法，超链接也被保留。对于 Word 文档，它保留了包括粗体、斜体、标题和嵌入式图片在内的格式。对于 PowerPoint 演示文稿，每张幻灯片都被转换为结构化的 Markdown 部分。
+对于 PDF 文件，MarkItDown 在提取文本的同时保留文档的视觉结构——标题变为 ```#```` 标题，列表变为 ````-```` 项目符号，表格转换为 Markdown 表格语法，超链接也被保留。对于 Word 文档，它保留了包括粗体、斜体、标题和嵌入式图片在内的格式。对于 PowerPoint 演示文稿，每张幻灯片都被转换为结构化的 Markdown 部分。
 
 该工具还通过 OCR 处理图像文件。当你提供扫描文档图片时，MarkItDown 可以使用 Tesseract OCR 提取文本。对于 ZIP 归档文件，它自动逐个处理包含的每个文件并组合结果。转换流程如下：
 
@@ -52,27 +53,27 @@ MarkItDown 作为 PyPI 上的 Python 包分发，使用 pip 安装非常简单�
 
 ### 通过 pip 安装（核心包）
 
-```bash
+`````bash
 pip install 'markitdown[all]'
-```
+`````
 
-这将安装带有所有可选依赖项的核心 MarkItDown 包，包括 `python-docx`、`python-pptx`、`openpyxl`、`beautifulsoup4` 和 `pytesseract`，以全面覆盖所有支持的文件类型。
+这将安装带有所有可选依赖项的核心 MarkItDown 包，包括 ````python-docx````、````python-pptx````、````openpyxl````、````beautifulsoup4```` 和 ````pytesseract````，以全面覆盖所有支持的文件类型。
 
 ### 验证安装
 
-```bash
+`````bash
 markitdown --version
-```
+`````
 
-成功安装后将打印当前版本号，例如 `markitdown, version 0.0.1a2`。
+成功安装后将打印当前版本号，例如 ````markitdown, version 0.0.1a2````。
 
 ### 选择性安装依赖项
 
 对于只需要特定格式支持的环境：
 
-```bash
+`````bash
 pip install 'markitdown[pdf, docx, pptx]'
-```
+`````
 
 这将仅安装 PDF、DOCX 和 PPTX 转换所需的依赖项，保持安装轻量。
 
@@ -80,28 +81,28 @@ pip install 'markitdown[pdf, docx, pptx]'
 
 MarkItDown 支持插件扩展以提供额外功能：
 
-```bash
+`````bash
 markitdown --list-plugins
 markitdown --use-plugins path-to-file.pdf
-```
+`````
 
 对于扫描图片的 OCR 支持：
 
-```bash
+`````bash
 pip install markitdown-ocr
-```
+`````
 
 对于 Azure 内容理解集成：
 
-```bash
+`````bash
 pip install 'markitdown[az-content-under standing]'
-```
+`````
 
 ### 从源代码安装
 
-```bash
+`````bash
 git clone git@github.com:microsoft/markitdown.git && cd markitdown && pip install -e 'packages/markitdown[all]'
-```
+`````
 
 从源代码安装可以让你访问最新功能，并允许你将更改贡献回项目。
 
@@ -111,74 +112,74 @@ git clone git@github.com:microsoft/markitdown.git && cd markitdown && pip instal
 
 ### 将 PDF 转换为 Markdown
 
-```bash
+`````bash
 markitdown path-to-file.pdf > document.md
-```
+`````
 
 此命令读取 PDF 并将 Markdown 输出到标准输出。转换保留标题、列表、表格和超链接。你可以将输出重定向到文件以供 later 使用。
 
 ### 使用显式输出文件转换
 
-```bash
+`````bash
 markitdown path-to-file.pdf -o document.md
-```
+`````
 
-使用 `-o` 标志，你可以直接指定输出文件，而无需 shell 重定向。这在输出路径可能动态变化的脚本中非常有用。
+使用 ````-o```` 标志，你可以直接指定输出文件，而无需 shell 重定向。这在输出路径可能动态变化的脚本中非常有用。
 
 ### 通过标准输入管道处理
 
-```bash
+`````bash
 cat path-to-file.pdf | markitdown
-```
+`````
 
 MarkItDown 可以从标准输入读取，实现创意管道组合。例如，你可以下载文件并在一条命令中完成转换：
 
-```bash
+`````bash
 curl -sL https://example.com/document.pdf | markitdown
-```
+`````
 
 ### 转换 Word 文档
 
-```bash
+`````bash
 markitdown report.docx > report.md
-```
+`````
 
 Word 文档转换保留完整格式——标题、粗体、斜体、列表、表格和嵌入式图片都会在 Markdown 输出中保留。
 
 ### 转换 PowerPoint 演示文稿
 
-```bash
+`````bash
 markitdown presentation.pptx > slides.md
-```
+`````
 
 演示文稿中的每张幻灯片都被转换为单独的 Markdown 部分，包含幻灯片标题、内容和演讲者备注。
 
 ### 转换 Excel 电子表格
 
-```bash
+`````bash
 markitdown data.xlsx > data.md
-```
+`````
 
 电子表格中的表格被转换为 Markdown 表格格式，每个工作表获得自己的部分。
 
 ### 转换图片（OCR）
 
-```bash
+`````bash
 markitdown scan.png > scan.md
-```
+`````
 
-要使 OCR 工作，你需要在系统中安装 Tesseract 和 `markitdown-ocr` 插件：
+要使 OCR 工作，你需要在系统中安装 Tesseract 和 ````markitdown-ocr```` 插件：
 
-```bash
+`````bash
 sudo apt-get install tesseract-ocr
 pip install markitdown-ocr
-```
+`````
 
 ### 处理整个目录
 
-```bash
+`````bash
 markitdown ./documents/ -o ./output/
-```
+`````
 
 这将递归处理 documents 目录中所有支持的文件，并将 Markdown 输出保存到 output 目录。
 
@@ -188,38 +189,38 @@ markitdown ./documents/ -o ./output/
 
 ### 基本 Python 用法
 
-```python
+`````python
 import markitdown
 
 md = markitdown.MarkItDown()
 result = md.convert("document.pdf")
 print(result.text_content)
-```
+`````
 
 ### 从文件对象转换
 
-```python
+`````python
 import markitdown
 
 md = markitdown.MarkItDown()
 with open("report.docx", "rb") as f: result = md.convert(f)
     print(result.text_content)
-```
+`````
 
 ### 访问元数据
 
-```python
+`````python
 import markitdown
 
 md = markitdown.MarkItDown()
 result = md.convert("document.pdf")
 print(result.metadata)
 print(result.text_content)
-```
+`````
 
 ### Python 批量处理
 
-```python
+`````python
 import markitdown
 import glob
 import os
@@ -230,11 +231,11 @@ for filepath in files: result = md.convert(filepath)
     output_path = os.path.splitext(filepath)[0] + ".md"
     with open(output_path, "w") as f: f.write(result.text_content)
     print(f"已转换: {filepath} -> {output_path}")
-```
+`````
 
 ### 自定义转换器
 
-```python
+`````python
 import markitdown
 
 md = markitdown.MarkItDown(
@@ -243,7 +244,7 @@ md = markitdown.MarkItDown(
 )
 result = md.convert("document.pdf")
 print(result.text_content)
-```
+`````
 
 ## 与 AI 管道集成
 
@@ -251,7 +252,7 @@ print(result.text_content)
 
 MarkItDown 最强大的用例之一是为检索增强生成管道准备文档。以下是一个完整的示例：
 
-```python
+`````python
 import markitdown
 import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -272,11 +273,11 @@ def ingest_documents(directory): md = markitdown.MarkItDown()
 
 docs = ingest_documents("./knowledge_base")
 print(f"已处理 {len(docs)} 个文档块")
-```
+`````
 
 ### 自动化文档处理脚本
 
-```bash
+`````bash
 #!/bin/bash
 # process_uploads.sh — 每日处理所有上传的文档
 
@@ -291,11 +292,11 @@ for file in "$UPLOAD_DIR"/*.pdf "$UPLOAD_DIR"/*.docx "$UPLOAD_DIR"/*.pptx; do
     markitdown "$file" > "$MARKDOWN_DIR/${filename%.*}.md"
     echo "已转换: $file"
 done
-```
+`````
 
 ### AI Agent 文档摄入
 
-```python
+`````python
 import markitdown
 
 def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItDown()
@@ -309,7 +310,7 @@ def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItD
             "format": "markdown"
         }
     return {"status": "error", "message": "转换失败"}
-```
+`````
 
 ## 基准测试与实际应用场景
 
@@ -317,13 +318,13 @@ def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItD
 
 | 格式 | 文件大小 | 转换时间 | 输出大小 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PDF（100 页） | 5 MB | 约 8 秒 | 150 KB |
 | DOCX（50 页） | 2 MB | 约 3 秒 | 80 KB |
@@ -336,12 +337,12 @@ def prepare_document_for_llm(filepath, max_tokens=4000): md = markitdown.MarkItD
 
 在标准笔记本电脑上处理 100 个 PDF 文件（平均每份 50 页）：
 
-```bash
+`````bash
 time markitdown ./batch_docs/ -o ./batch_output/
 real 0m14m32s
 user 0m11m18s
 sys 0m2m45s
-```
+`````
 
 总批量处理时间：100 个 PDF 约 15 分钟。平均每文件时间：9 秒。
 
@@ -349,11 +350,11 @@ sys 0m2m45s
 
 | 图像质量 | OCR 准确率 | 处理时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 高（300 DPI，干净） | 97% | 5 秒 |
 | 中（200 DPI，轻微噪点） | 92% | 8 秒 |
@@ -363,13 +364,13 @@ sys 0m2m45s
 
 一家中型律师事务所每月处理约 500 份法律文档，大多是 PDF 和 Word 文件。在自动化管道中使用 MarkItDown：
 
-```bash
+`````bash
 #!/bin/bash
 # 每日法律文档处理
 for doc in /var/legal/pending/*.pdf; do
     markitdown "$doc" -o /var/legal/processed/$(basename "$doc" .pdf).md
 done
-```
+`````
 
 该事务所平均每个工作日不到 2 小时转换 17 份文档，将手动处理时间减少了 95%。
 
@@ -377,7 +378,7 @@ done
 
 一个数据科学团队使用 MarkItDown 将研究论文导入他们的 AI 知识库：
 
-```python
+`````python
 import markitdown
 import os
 
@@ -386,41 +387,41 @@ papers_dir = "./research_papers/"
 for fname in os.listdir(papers_dir): if fname.endswith(".pdf"): result = md.convert(os.path.join(papers_dir, fname))
         # 将 result.text_content 输入嵌入管道
         print(f"已摄入: {fname}")
-```
+`````
 
 ## 高级用法 / 生产加固
 
 ### 自定义输出选项
 
-```bash
+`````bash
 markitdown document.pdf --encoding utf-8 --output document.md --allow-internal-hyperlinks
-```
+`````
 
 ### 监控目录变化
 
-```bash
+`````bash
 #!/bin/bash
 # 实时监控并自动转换新文件
 inotifywait -m -r -e create /uploads/ | while read path action file; do
     if [[ "$file" == *.pdf || "$file" == *.docx ]]; then
-        markitdown "$path$file" > /markdown/`${file%.*}.md`
+        markitdown "$path$file" > /markdown/````${file%.*}.md````
     fi
 done
-```
+`````
 
 ### 使用虚拟环境
 
-```bash
+`````bash
 python -m venv .venv
 source .venv/bin/activate
 pip install 'markitdown[all]'
 markitdown document.pdf
 deactivate
-```
+`````
 
 ### 自定义解析器扩展
 
-```python
+`````python
 import markitdown
 
 class CustomParser(markitdown.ConversionPlugin): SUPPORTED_EXTENSIONS = [".myformat"]
@@ -431,17 +432,17 @@ class CustomParser(markitdown.ConversionPlugin): SUPPORTED_EXTENSIONS = [".myfor
 md = markitdown.MarkItDown()
 md.register(CustomParser())
 result = md.convert("file.myformat")
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 docker run --rm -v $(pwd):/data python:3.11-slim pip install 'markitdown[all]' && python -m markitdown /data/input.pdf
-```
+`````
 
 对于生产环境的 Docker 部署，创建自定义 Dockerfile：
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y tesseract-ocr && rm -rf /var/lib/apt/lists/*
@@ -449,23 +450,23 @@ RUN pip install 'markitdown[all]'
 
 COPY convert.py /convert.py
 ENTRYPOINT ["python", "/convert.py"]
-```
+`````
 
 ## 与替代方案比较
 
 | 功能 | MarkItDown | Pandoc | Calibre | LibreOffice |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 安装方式 | `pip install markitdown` | apt/cargo/npm | .deb/.exe 安装包 | 内置套件 |
+| 安装方式 | ````pip install markitdown```` | apt/cargo/npm | .deb/.exe 安装包 | 内置套件 |
 | 语言 | Python | 多语言 | 多语言 | 多语言 |
 | CLI 接口 | 简单 CLI | 复杂 CLI | 图形优先 | 图形优先 |
 | PDF 支持 | 良好（文本） | 良好 | 良好 | 良好 |
@@ -494,7 +495,7 @@ MarkItDown 的主要优势在于其简单性和原生 Python 集成，使其成�
 
 **问：MarkItDown 支持哪些文件格式？**
 
-答：MarkItDown 支持 PDF、DOCX、PPTX、XLSX、HTML、XML、EPUB、JPEG、PNG、BMP、TIFF、WAV、MP3 和 ZIP 归档文件。它自动检测文件类型并应用适当的解析器。`[all]` 额外安装确保安装所有格式依赖项以实现最大兼容性。
+答：MarkItDown 支持 PDF、DOCX、PPTX、XLSX、HTML、XML、EPUB、JPEG、PNG、BMP、TIFF、WAV、MP3 和 ZIP 归档文件。它自动检测文件类型并应用适当的解析器。````[all]```` 额外安装确保安装所有格式依赖项以实现最大兼容性。
 
 **问：MarkItDown 可以免费用于商业用途吗？**
 
@@ -506,11 +507,11 @@ MarkItDown 的主要优势在于其简单性和原生 Python 集成，使其成�
 
 **问：MarkItDown 可以处理扫描文档的 OCR 吗？**
 
-答：是的，MarkItDown 支持图片文件的 OCR 转换。你需要在系统中安装 Tesseract OCR 和 `markitdown-ocr` 插件。命令相同：`markitdown scan.png > scan.md`。OCR 质量取决于图像分辨率和清晰度。
+答：是的，MarkItDown 支持图片文件的 OCR 转换。你需要在系统中安装 Tesseract OCR 和 ````markitdown-ocr```` 插件。命令相同：````markitdown scan.png > scan.md````。OCR 质量取决于图像分辨率和清晰度。
 
 **问：如何在生产环境中使用 MarkItDown？**
 
-答：对于生产环境，使用 `pip install 'markitdown[all]'` 在 Python 虚拟环境中安装 MarkItDown，使用 Python API 进行程序化访问，并在容器中运行。设置批量处理脚本或 cron 任务用于自动化文档处理。使用 `-o` 标志为批量操作指定输出目录。
+答：对于生产环境，使用 ````pip install 'markitdown[all]'```` 在 Python 虚拟环境中安装 MarkItDown，使用 Python API 进行程序化访问，并在容器中运行。设置批量处理脚本或 cron 任务用于自动化文档处理。使用 ````-o```` 标志为批量操作指定输出目录。
 
 **问：MarkItDown 可以处理 ZIP 归档文件吗？**
 
@@ -522,7 +523,7 @@ MarkItDown 的主要优势在于其简单性和原生 Python 集成，使其成�
 
 为了大规模托管你的文档处理基础设施，考虑在可靠的云基础设施上部署你的 MarkItDown 应用程序。使用 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 获取经济实惠的开发服务器，[HTStack](https://my.htstack.com/aff.php?aff=27187) 用于生产托管，以及 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 用于可靠的代理和内容分发。
 
-立即开始：`pip install 'markitdown[all]'`，在几秒钟内将你的第一个文档转换为 Markdown。
+立即开始：````pip install 'markitdown[all]'```，在几秒钟内将你的第一个文档转换为 Markdown。
 
 用于托管和代理基础设施：[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 用于开发服务器，[HTStack](https://my.htstack.com/aff.php?aff=27187) 用于生产托管，以及 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 用于数据中心和住宅代理。
 
@@ -603,12 +604,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [markitdown-universal-file-to-markdown-converter](microsoft-markitdown-file-to-markdown-converter-cli)
@@ -617,6 +618,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ray-distributed-ai-framework-complete-guide](microsoft-markitdown-file-to-markdown-converter-cli)
 - [cleanlab-11k-star-ai-data-cleaning](microsoft-markitdown-file-to-markdown-converter-cli)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

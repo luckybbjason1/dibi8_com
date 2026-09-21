@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/prefect-workflow-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Cron Jobs Củɑ Bạn Là Một Quả Bom Hẹn Giờ
@@ -49,7 +50,7 @@ Prefect 3.x giới thiệu một mô hình thực thi kết hợp sự đơn gi�
 ### Flows và Tasks
 Một **Flow** là một hàm Python được decorated định nghĩa một workflow. Một **Task** là đơn vị công việc trong một flow — cũng là một hàm Python được decorated. Tasks tự động nhận retries, caching, timeouts, và concurrency limits. Flows có thể gọi các flows khác (subflows) để kết hợp module.
 
-```python
+````python
 from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=5)
@@ -63,7 +64,7 @@ def fetch_data(url: str) -> dict: """Fetch data from an API with automatic retry
 def main_flow(): """Main pipeline orchestrating multiple tasks."""
     raw_data = fetch_data("https://api.example.com/data")
     # ... more tasks
-```
+`````
 
 ### Prefect Server
 **Prefect server** là một control plane nhẹ, có thể tự host cung cấp: - **REST API** cho đăng ký flow, lập lịch, và theo dõi thực thi
@@ -79,11 +80,11 @@ Server có thể chạy trên một máy với SQLite (cho team nhỏ) hoặc m�
 - Tách biệt điều phối khỏi compute
 
 ### States và State Transitions
-Mỗi task và flow run chuyển đổi qua một state machine được định nghĩa rõ ràng: ```
+Mỗi task và flow run chuyển đổi qua một state machine được định nghĩa rõ ràng: `````
 Scheduled → Pending → Running → Completed
                               → Failed → Retrying → Running
                               → Cancelled
-```
+`````
 
 Các chuyển đổi được lưu trong database Prefect và hiển thị real-time trên dashboard. Bạn có thể định nghĩa **state change hooks** kích hoạt hành động (gửi cảnh báo, chạy cleanup, kích hoạt downstream flows) trên bất kỳ chuyển đổi nào.
 
@@ -96,7 +97,7 @@ Các chuyển đổi được lưu trong database Prefect và hiển thị real-
 
 ### Bước 1: Cài Đặt Prefect
 
-```bash
+`````bash
 python -m venv prefect-env
 source prefect-env/bin/activate  # Linux/Mac
 # prefect-env\Scripts\activate  # Windows
@@ -107,19 +108,19 @@ pip install prefect>=3.3.0
 # Xác minh cài đặt
 prefect version
 # Expected output: 3.3.0+
-```
+`````
 
 ### Bước 2: Khởi Động Prefect Server (Tự Host)
 
-```bash
+`````bash
 # Tùy chọn A: Khởi động nhanh với SQLite (một máy)
 prefect server start
 
 # Server khởi động tại http://localhost:4200
 # Mở dashboard trong trình duyệt
-```
+`````
 
-Cho team deployment với PostgreSQL: ```bash
+Cho team deployment với PostgreSQL: `````bash
 # Tùy chọn B: Docker Compose với PostgreSQL
 cat > docker-compose.yml << EOF
 services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
@@ -142,20 +143,20 @@ services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
 volumes: postgres_data: EOF
 
 docker-compose up -d
-```
+`````
 
-Cấu hình Prefect client để kết nối: ```bash
+Cấu hình Prefect client để kết nối: `````bash
 # Chỉ Prefect CLI đến server của bạn
 prefect config set PREFECT_API_URL=http://localhost:4200/api
 
 # Xác minh kết nối
 prefect version
 # Should show: Server: http://localhost:4200/api
-```
+`````
 
 ### Bước 3: Xây Dựng Flow Đầu Tiên
 
-Tạo `etl_pipeline.py`: ```python
+Tạo ``etl_pipeline.py``: `````python
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from prefect.artifacts import create_table_artifact
@@ -233,17 +234,17 @@ def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key
 
 if __name__ == "__main__": result = etl_pipeline()
     print(f"Pipeline completed: {result}")
-```
+`````
 
-Chạy: ```bash
+Chạy: `````bash
 python etl_pipeline.py
-```
+`````
 
-Mở `http://localhost:4200` trong trình duyệt. Bạn sẽ thấy flow run của mình với mọi chuyển đổi trạng thái task được track real-time, bao gồm bảng summary artifact.
+Mở ````http://localhost:4200```` trong trình duyệt. Bạn sẽ thấy flow run của mình với mọi chuyển đổi trạng thái task được track real-time, bao gồm bảng summary artifact.
 
 ### Bước 4: Lập Lịch Flow
 
-```python
+`````python
 from prefect import flow
 from prefect.schedules import IntervalSchedule
 from datetime import timedelta
@@ -254,15 +255,15 @@ etl_pipeline.serve(
     schedule=IntervalSchedule(interval=timedelta(hours=24)),
     tags=["production", "etl"]
 )
-```
+`````
 
-Hoặc dùng cú pháp cron: ```bash
+Hoặc dùng cú pháp cron: `````bash
 # Deploy với lịch trình cron
 prefect deployment build etl_pipeline.py:etl_pipeline \
   --name "daily-etl-cron" \
   --cron "0 6 * * *" \
   --apply
-```
+`````
 
 ## Tích Hợp Với 20+ Công Cụ: Xây Dựng Stack Dữ Liệu Production
 
@@ -270,7 +271,7 @@ Prefect tích hợp native với hệ sinh thái dữ liệu hiện đại. Dư�
 
 ### Docker và Kubernetes Execution
 
-Chạy flows trong container Docker cô lập: ```python
+Chạy flows trong container Docker cô lập: `````python
 from prefect.docker import DockerImage
 
 @flow
@@ -283,17 +284,17 @@ containerized_flow.deploy(
     work_pool_name="docker-pool",
     image=DockerImage(name="my-etl", tag="1.0")
 )
-```
+`````
 
-Cấu hình Docker work pool: ```bash
+Cấu hình Docker work pool: `````bash
 # Tạo Docker work pool
 prefect work-pool create docker-pool --type docker
 
 # Khởi động worker
 prefect worker start --pool docker-pool
-```
+`````
 
-Cho Kubernetes: ```bash
+Cho Kubernetes: `````bash
 # Tạo Kubernetes work pool
 prefect work-pool create k8s-pool --type kubernetes
 
@@ -303,11 +304,11 @@ prefect deployment build etl_pipeline.py:etl_pipeline \
   --pool k8s-pool \
   --infra kubernetes-job \
   --apply
-```
+`````
 
 ### Tích Hợp dbt
 
-Điều phối models dbt trực tiếp từ Prefect: ```python
+Điều phối models dbt trực tiếp từ Prefect: `````python
 from prefect import flow
 from prefect_dbt.cli.commands import trigger_dbt_cli_command
 from prefect_dbt.cli.configs import TargetConfigs
@@ -328,15 +329,15 @@ def run_dbt_models(): """Run dbt models with Prefect orchestration."""
 
 # Deploy
 run_dbt_models.serve(name="dbt-daily")
-```
+`````
 
-Cài đặt integration: ```bash
+Cài đặt integration: `````bash
 pip install prefect-dbt[cli]
-```
+`````
 
 ### Dịch Vụ AWS
 
-```python
+`````python
 from prefect import flow, task
 from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
@@ -356,18 +357,18 @@ def s3_pipeline(): """Pipeline moving data through S3."""
     data = download_from_s3("raw-data", "input.csv")
     # ... process ...
     upload_to_s3("processed.csv", "processed-data", "output.csv")
-```
+`````
 
-Cấu hình AWS credentials: ```bash
+Cấu hình AWS credentials: `````bash
 pip install prefect-aws
 
 # Đăng ký AWS credentials block
 prefect block register --module prefect_aws.credentials
-```
+`````
 
 ### Thông Báo Slack
 
-```python
+`````python
 from prefect import flow
 from prefect.blocks.notifications import SlackWebhook
 
@@ -381,11 +382,11 @@ def send_slack_alert(flow, flow_run, state): """Send alert to Slack when flow fa
         body=f"Flow {flow.name} failed with state {state.name}. "
              f"Check: http://localhost:4200/flow-runs/{flow_run.id}"
     )
-```
+`````
 
 ### Triggers Dựa Trên Sự Kiện Tùy Chỉnh
 
-Phản ứng với events bên ngoài mà không cần polling: ```python
+Phản ứng với events bên ngoài mà không cần polling: `````python
 from prefect.events import emit_event
 from prefect import flow
 
@@ -402,11 +403,11 @@ def on_file_uploaded(file_path: str): """Process file when S3 upload event fires
 
 # Định nghĩa automation kích hoạt trên event này
 # Cấu hình trong Prefect dashboard hoặc qua API
-```
+`````
 
 ### Thực Thi Async và Đồng Thờ
 
-Hỗ trợ async của Prefect cho phép đồng thờ quy mô lớn: ```python
+Hỗ trợ async của Prefect cho phép đồng thờ quy mô lớn: `````python
 import asyncio
 from prefect import flow, task
 
@@ -425,7 +426,7 @@ async def concurrent_fetch_flow(urls: list[str]): """Fetch all URLs concurrently
 # Chạy 100 lệnh gọi API đồng thờ
 urls = [f"https://api.example.com/item/{i}" for i in range(100)]
 results = asyncio.run(concurrent_fetch_flow(urls))
-```
+`````
 
 ## Benchmark & Các Use Case Thực Tế
 
@@ -455,7 +456,7 @@ Phát hiện chính: Engine dựa trên asyncio của Prefect đạt được **
 
 ### Khả Năng Mở Rộng Thông Lượng
 
-```
+`````
 # Prefect 3.3.0 throughput test
 # DigitalOcean 8 vCPU / 32GB droplet
 
@@ -466,7 +467,7 @@ Task đồng thờ | Thông lượng (task/giây) | Độ trễ trung bình (ms)
       50         |       41.7           |       24
      100         |       83.3           |       12
      500         |      250.0           |        4
-```
+`````
 
 Với 500 task đồng thờ, Prefect duy trì **250 task mỗi giây** với độ trễ trung bình 4ms — phù hợp cho xử lý sự kiện tần số cao và pipeline dữ liệu real-time.
 
@@ -474,7 +475,7 @@ Với 500 task đồng thờ, Prefect duy trì **250 task mỗi giây** với đ
 
 ### Logic Retry Tùy Chỉnh với Exponential Backoff
 
-```python
+`````python
 from prefect import task
 from datetime import timedelta
 
@@ -488,11 +489,11 @@ def call_external_api(endpoint: str) -> dict: """Call external API with smart re
     response = requests.get(endpoint, timeout=10)
     response.raise_for_status()
     return response.json()
-```
+`````
 
 ### Giới Hạn Đồng Thờ Task
 
-Ngăn kiệt tài nguyên với giới hạn đồng thờ toàn cục: ```python
+Ngăn kiệt tài nguyên với giới hạn đồng thờ toàn cục: `````python
 from prefect import flow, task
 from prefect.concurrency.sync import concurrency
 
@@ -506,16 +507,16 @@ def limited_processing_flow(item_ids: list[str]): """Process items with max 10 c
     from prefect.tasks import map
     results = map(process_with_resource_limit, item_ids)
     return results
-```
+`````
 
-Cấu hình giới hạn: ```bash
+Cấu hình giới hạn: `````bash
 # Tạo concurrency limit qua CLI
 prefect concurrency-limit create database-slots 10
-```
+`````
 
 ### Validation Input/Output với Pydantic
 
-```python
+`````python
 from prefect import flow, task
 from pydantic import BaseModel, Field
 from typing import List
@@ -544,11 +545,11 @@ def validated_pipeline(raw_data: List[dict]) -> PipelineOutput: """Pipeline with
         transaction_count=len(transactions),
         currency=transactions[0].currency if transactions else "USD"
     )
-```
+`````
 
 ### CI/CD Deployment với GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/prefect-deploy.yml
 name: Deploy Prefect Flows
 on: push: branches: [main]
@@ -577,11 +578,11 @@ jobs: deploy: runs-on: ubuntu-latest
       - name: Run health check
         run: |
           prefect flow-run list --limit 5
-```
+`````
 
 ### Cấu Hình Prefect.yaml
 
-```yaml
+`````yaml
 # prefect.yaml — Định nghĩa deployments dưới dạng code
 name: production-pipelines
 prefect-version: 3.3.0
@@ -610,11 +611,11 @@ deployments: - name: daily-etl
     work_pool: name: k8s-pool
     schedule: interval: 3600
     tags: ["production", "analytics"]
-```
+`````
 
 ### Giám Sát và Cảnh Báo
 
-```python
+`````python
 from prefect import flow
 from prefect.blocks.webhook import Webhook
 from datetime import timedelta
@@ -646,7 +647,7 @@ def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for c
             }
         })
     )
-```
+`````
 
 ## So Sánh Với Các Lựa Chọn Khác
 
@@ -672,7 +673,7 @@ def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for c
 
 Prefect không phải là công cụ đúng cho mọi workflow. Hiểu các trade-offs sau: 1. **Độ trưởng thành hệ sinh thái plugin**: Airflow có 500+ provider packages. Thư viện tích hợp của Prefect nhỏ hơn nhưng phát triển nhanh. Các tích hợp tùy chỉnh đòi hỏi viết task wrappers của riêng bạn.
 
-2. **Workflow chạy dài**: Timeout mặc định của Prefect là 1 giờ mỗi flow. Cho các workflow multi-day (phổ biến trong ML training), bạn cần cấu hình `timeout_seconds=None` và đảm bảo worker processes sống sót qua restarts.
+2. **Workflow chạy dài**: Timeout mặc định của Prefect là 1 giờ mỗi flow. Cho các workflow multi-day (phổ biến trong ML training), bạn cần cấu hình ````timeout_seconds=None```` và đảm bảo worker processes sống sót qua restarts.
 
 3. **Giá Prefect Cloud**: Free tier cho phép 3 active workers và 10,000 task runs/tháng. Cho team lớn hơn, cần gói Pro $500/tháng. Self-hosting server open-source tránh được điều này nhưng cần chuyên môn vận hành.
 
@@ -683,7 +684,7 @@ Prefect không phải là công cụ đúng cho mọi workflow. Hiểu các trad
 ## Các Câu Hỏi Thường Gặp
 
 **Hỏi: Tôi có thể migrate từ Apache Airflow sang Prefect tăng dần không?**
-Đáp: Có. Prefect có thể gọi Airflow DAGs qua integration `PrefectAirflow`, cho phép bạn migrate từng task. Bắt đầu bằng cách wrap các Python functions hiện có thành Prefect tasks, sau đó dần dần thay thế DAG dependencies bằng Prefect flows. Migration thường mất 2-4 tuần cho pipeline độ phức tạp trung bình.
+Đáp: Có. Prefect có thể gọi Airflow DAGs qua integration ````PrefectAirflow````, cho phép bạn migrate từng task. Bắt đầu bằng cách wrap các Python functions hiện có thành Prefect tasks, sau đó dần dần thay thế DAG dependencies bằng Prefect flows. Migration thường mất 2-4 tuần cho pipeline độ phức tạp trung bình.
 
 **Hỏi: Prefect xử lý persistence trạng thái task như thế nào?**
 Đáp: Mọi trạng thái task và flow được lưu vào database Prefect (SQLite hoặc PostgreSQL). Nếu một worker crash giữa chừng, một worker mới sẽ tiếp tục từ nơi worker trước dừng lại — không mất trạng thái. Đây là lợi thế cốt lõi so với các giải pháp dựa trên cron mất tất cả context khi thất bại.
@@ -692,15 +693,15 @@ Prefect không phải là công cụ đúng cho mọi workflow. Hiểu các trad
 Đáp: Prefect Cloud thêm RBAC, SSO, audit logs, và managed infrastructure. Server open-source self-hosted có tất cả tính năng điều phối cốt lõi nhưng thiếu enterprise authentication. Cho team dưới 10 ngườ, self-hosted với PostgreSQL thường đủ. Cho yêu cầu compliance (SOC2, HIPAA), Prefect Cloud được khuyến nghị.
 
 **Hỏi: Tôi có thể chạy Prefect mà không cần server không?**
-Đáp: Có. Prefect hỗ trợ **ephemeral mode** nơi flow runs được thực thi hoàn toàn locally mà không cần server. Dùng `prefect flow-run` cho thực thi ad-hoc. Server chỉ cần cho scheduling, multi-worker coordination, và dashboard.
+Đáp: Có. Prefect hỗ trợ **ephemeral mode** nơi flow runs được thực thi hoàn toàn locally mà không cần server. Dùng ````prefect flow-run```` cho thực thi ad-hoc. Server chỉ cần cho scheduling, multi-worker coordination, và dashboard.
 
 **Hỏi: Làm thế nào để deploy Prefect trên Kubernetes?**
-Đáp: Sử dụng Helm chart chính thức: `helm install prefect prefecthq/prefect-server`. Cho workers, deploy như Kubernetes deployments với `prefect worker start --pool <pool-name>`. Xem [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0) cho managed K8s cluster hoạt động ngay với Prefect.
+Đáp: Sử dụng Helm chart chính thức: ````helm install prefect prefecthq/prefect-server````. Cho workers, deploy như Kubernetes deployments với ````prefect worker start --pool <pool-name>````. Xem [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0) cho managed K8s cluster hoạt động ngay với Prefect.
 
 **Hỏi: Prefect có hỗ trợ dynamic task mapping không?**
-Đáp: Có. Hàm `map` của Prefect cho phép tạo task động tại runtime. Map qua một danh sách inputs và Prefect tự động tạo các task runs song song với dependency tracking. Điều này lý tưởng cho các pattern fan-out như xử lý số lượng file thay đổi.
+Đáp: Có. Hàm ````map```` của Prefect cho phép tạo task động tại runtime. Map qua một danh sách inputs và Prefect tự động tạo các task runs song song với dependency tracking. Điều này lý tưởng cho các pattern fan-out như xử lý số lượng file thay đổi.
 
-```python
+`````python
 from prefect import flow, task
 from prefect.tasks import map
 
@@ -715,7 +716,7 @@ def dynamic_processing_flow(directory: str): """Dynamically process all files in
     files = [f for f in os.listdir(directory) if f.endswith(".csv")]
     results = map(process_file, files)
     return results
-```
+````
 
 ## Kết Luận: Thay Thế Cron Bằng Các Pipeline Có Thể Quan Sát
 

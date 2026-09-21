@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/libretranslate/-
 ---
 
+
 {{</* resource-info */>}}
 
 LibreTranslate 是一个免费、开源的机器翻译 API，由你自己托管。不需要 Google 的 API 密钥。没有 DeepL 的按字符计费。数据不会离开你的基础设施。凭借 14,400+ 的 GitHub Stars 以及活跃的发布周期（截至 2026 年 5 月为 v1.9.5），它已成为需要私密、离线翻译且零边际成本的开发者的默认选择。本指南是一份完整的 LibreTranslate tutorial，涵盖从 libretranslate setup 到 libretranslate docker 生产部署的全流程，同时包含与 DeepL 和 Google Translate 的详细对比（libretranslate vs deepl）以及 self-hosted translation 的最佳实践。本指南将介绍生产环境部署、基准测试和集成方案。
@@ -44,7 +45,7 @@ LibreTranslate 的架构简单明了：Python Flask 后端提供 REST API，而�
 
 ![LibreTranslate 架构图](architecture.png)
 
-```
+````
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   客户端 (Web)  │────▶│  Flask REST API  │────▶│ Argos Translate │
 │   / API 调用    │◀────│    (端口 5000)   │◀────│   (NMT 引擎)    │
@@ -56,7 +57,7 @@ LibreTranslate 的架构简单明了：Python Flask 后端提供 REST API，而�
                         │   语言       │
                         │ 模型 (~2GB)  │
                         └──────────────┘
-```
+`````
 
 ### 关键组件
 
@@ -75,15 +76,15 @@ LibreTranslate 提供多种部署路径。由于隔离性、可重复性和易�
 
 | 配置 | CPU | 内存 | 存储 | 启动时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 最低 (3 种语言) | 1 vCPU | 2 GB | 1 GB | ~60s |
 | 推荐 (11 种语言) | 2 vCPU | 4 GB | 3 GB | ~90s |
@@ -93,21 +94,21 @@ LibreTranslate 提供多种部署路径。由于隔离性、可重复性和易�
 
 在本地运行 LibreTranslate 的最快方式：
 
-```bash
+`````bash
 # 使用 Docker 运行
 docker run -ti --rm -p 5000:5000 \
   -v lt-models:/home/libretranslate/.local \
   -e LT_LOAD_ONLY=en,es,fr \
   libretranslate/libretranslate:latest
-```
+`````
 
 启动后，在浏览器中打开 http://localhost:5000。首次运行会下载语言模型，因此在 UI 响应之前会有短暂的延迟。
 
 ### 生产环境 Docker Compose
 
-对于生产部署，使用带有持久卷、健康检查和资源限制的专用 `docker-compose.yml`：
+对于生产部署，使用带有持久卷、健康检查和资源限制的专用 ````docker-compose.yml````：
 
-```yaml
+`````yaml
 # docker-compose.yml - 生产环境配置
 version: '3.8'
 
@@ -130,38 +131,38 @@ services: libretranslate: container_name: libretranslate
     deploy: resources: limits: memory: 4G
         reservations: memory: 2G
 
-volumes: lt-models: lt-db: ```
+volumes: lt-models: lt-db: `````
 
 部署：
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
 ### GPU 加速部署 (CUDA)
 
 对于高吞吐场景，LibreTranslate 通过 CUDA 支持 NVIDIA GPU 加速。要求：NVIDIA GPU 支持 CUDA 11.2+，并安装 nvidia-docker2。
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/LibreTranslate/LibreTranslate.git
 cd LibreTranslate
 
 # 构建并运行 CUDA 版本
 docker compose -f docker-compose.cuda.yml up -d --build
-```
+`````
 
 验证 GPU 利用率：
 
-```bash
+`````bash
 nvidia-smi
-```
+`````
 
 ### 原生 Python 安装
 
 对于开发环境或没有 Docker 的环境：
 
-```bash
+`````bash
 # 通过 pip 安装
 pip install libretranslate==1.9.5
 
@@ -170,22 +171,22 @@ libretranslate --host 0.0.0.0 --port 5000 \
   --load-only en,es,fr,de \
   --req-limit 60 \
   --threads 4
-```
+`````
 
 或从源码构建：
 
-```bash
+`````bash
 git clone https://github.com/LibreTranslate/LibreTranslate.git
 cd LibreTranslate
 pip install -e .
 python main.py --host 0.0.0.0 --port 5000
-```
+`````
 
 ### 部署到 DigitalOcean（生产云）
 
 对于云托管的生产实例，DigitalOcean 通过 App Platform 或 Droplets 提供简单的部署路径。使用一键 Docker 镜像进行部署：
 
-```bash
+`````bash
 # 在全新的 Ubuntu 24.04 Droplet 上
 curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
@@ -205,7 +206,7 @@ services: libretranslate: image: libretranslate/libretranslate:v1.9.5
 EOF
 
 docker compose up -d
-```
+`````
 
 > **注意**：如果你正在设置新的 VPS，[DigitalOcean](https://www.digitalocean.com) 为新用户提供 $200 的免费额度，足以覆盖一台 4GB Droplet 7x24 小时运行 LibreTranslate 数月之久。
 
@@ -215,7 +216,7 @@ LibreTranslate 的 REST API 使其与几乎任何技术栈兼容。以下是常�
 
 ### Python SDK 使用
 
-```python
+`````python
 # translate_client.py
 import requests
 
@@ -237,11 +238,11 @@ def translate_text(text: str, source: str = "en", target: str = "es") -> str: pa
 # 示例用法
 if __name__ == "__main__": result = translate_text("Hello, production deployment!", "en", "de")
     print(f"翻译结果: {result}")
-```
+`````
 
 ### JavaScript/TypeScript 集成
 
-```typescript
+`````typescript
 // libretranslate-client.ts
 interface TranslateResponse {
   translatedText: string;
@@ -261,7 +262,7 @@ class LibreTranslateClient {
     source: string = "en",
     target: string = "es"
   ): Promise<string> {
-    const response = await fetch(`${this.baseUrl}/translate`, {
+    const response = await fetch(````${this.baseUrl}/translate````, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -274,7 +275,7 @@ class LibreTranslateClient {
     });
 
     if (!response.ok) {
-      throw new Error(`翻译失败: ${response.statusText}`);
+      throw new Error(````翻译失败: ${response.statusText}````);
     }
 
     const data: TranslateResponse = await response.json();
@@ -286,13 +287,13 @@ class LibreTranslateClient {
 const client = new LibreTranslateClient("http://localhost:5000");
 const result = await client.translate("Deploy to production", "en", "fr");
 console.log(result); // "Déployer en production"
-```
+`````
 
 ### OpenAI Whisper 语音转翻译文本流水线
 
 一种常见的模式是将语音识别与翻译结合。以下是使用 Whisper 进行转录、使用 LibreTranslate 进行翻译的完整流水线：
 
-```python
+`````python
 # whisper_translate_pipeline.py
 import whisper
 import requests
@@ -325,13 +326,13 @@ def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict: 
 # 运行流水线
 output = transcribe_and_translate("meeting.mp3", target_lang="es")
 print(f"ES: {output[translated]}")
-```
+`````
 
 ### Coqui TTS 集成（翻译 + 语音合成）
 
 翻译文本并以目标语言合成语音：
 
-```python
+`````python
 # translate_and_speak.py
 import requests
 from TTS.api import TTS
@@ -356,11 +357,11 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # 翻译
 
 # 生成多语言音频
 for lang in ["es", "fr", "de"]: translate_and_speak("Welcome to our service", lang, "reference.wav")
-```
+`````
 
 ### cURL API 示例
 
-```bash
+`````bash
 # 基础翻译
 curl -X POST http://localhost:5000/translate \
   -H "Content-Type: application/json" \
@@ -391,13 +392,13 @@ curl -X POST http://localhost:5000/translate \
     "target": "fr",
     "format": "html"
   }'
-```
+`````
 
 ### Nginx 反向代理配置
 
 对于带有域名和 HTTPS 的生产部署：
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/libretranslate
 server {
     listen 443 ssl http2;
@@ -424,14 +425,14 @@ server {
     server_name translate.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
 启用配置：
 
-```bash
+`````bash
 sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -443,15 +444,15 @@ LibreTranslate 的性能因硬件配置、加载的语言和文本长度而有�
 
 | 硬件 | 加载语言 | 平均延迟 (50 词) | 吞吐量 (请求/秒) | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 2 vCPU, 4GB 内存 | 5 | 180ms | 12 | 仅 CPU, Docker |
 | 4 vCPU, 8GB 内存 | 11 | 120ms | 28 | 仅 CPU, Docker |
@@ -465,13 +466,13 @@ WMT14 英德测试集的 BLEU 分数对比（越高越好）：
 
 | 系统 | BLEU 分数 | 词错误率 | 推理时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
@@ -484,13 +485,13 @@ LibreTranslate 与 Argos Translate CLI 性能完全一致，因为它们共享�
 
 | 每月翻译量 | LibreTranslate (自托管) | Google Translate | DeepL API |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 100万字符 | $10 (VPS 费用) | $20 | $6.99 (免费额度) |
 | 1000万字符 | $10 (VPS 费用) | $200 | $20 |
@@ -516,7 +517,7 @@ LibreTranslate 与 Argos Translate CLI 性能完全一致，因为它们共享�
 
 启用 API 密钥认证以控制访问并防止滥用：
 
-```yaml
+`````yaml
 # 启用 API 密钥的 docker-compose.yml
 services: libretranslate: image: libretranslate/libretranslate:v1.9.5
     environment: - LT_API_KEYS=true
@@ -524,7 +525,7 @@ services: libretranslate: image: libretranslate/libretranslate:v1.9.5
       - LT_REQ_LIMIT_PER_DAY=10000
     volumes: - lt-models:/home/libretranslate/.local
       - lt-db:/app/db
-```
+`````
 
 通过数据库或管理界面生成和管理 API 密钥。
 
@@ -532,28 +533,28 @@ services: libretranslate: image: libretranslate/libretranslate:v1.9.5
 
 通过仅加载所需语言来控制内存使用：
 
-```bash
+`````bash
 # 仅加载欧洲语言
 LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d
 
 # 加载亚洲 + 欧洲语言
 LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d
-```
+`````
 
 ### 健康监控
 
 LibreTranslate 包含内置的健康检查端点：
 
-```bash
+`````bash
 # 检查服务健康
 curl http://localhost:5000/health
 
 # 预期响应: {"status": "ok"}
-```
+`````
 
 对于基于 Prometheus 的监控，添加一个简单的导出器：
 
-```python
+`````python
 # prometheus_exporter.py
 from prometheus_client import start_http_server, Counter, Histogram
 import requests
@@ -571,13 +572,13 @@ def monitor(): start_http_server(9090)
         time.sleep(30)
 
 if __name__ == "__main__": monitor()
-```
+`````
 
 ### 使用 Kubernetes 自动扩缩容
 
 对于高可用部署，使用带有 HPA 的 Kubernetes：
 
-```yaml
+`````yaml
 # libretranslate-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -601,7 +602,7 @@ spec: replicas: 2
           initialDelaySeconds: 60
           periodSeconds: 30
 
----
+* * *
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata: name: libretranslate-hpa
@@ -614,19 +615,19 @@ spec: scaleTargetRef: apiVersion: apps/v1
     resource: name: cpu
       target: type: Utilization
         averageUtilization: 70
-```
+`````
 
 部署：
 
-```bash
+`````bash
 kubectl apply -f libretranslate-deployment.yaml
-```
+`````
 
 ### 备份策略
 
 语言模型可以重新下载，但存储 API 密钥和日志的 SQLite 数据库应进行备份：
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh - 每日备份定时任务
 BACKUP_DIR="/backups/libretranslate"
@@ -640,27 +641,27 @@ rsync -av /var/lib/docker/volumes/lt-models/_data/ "$BACKUP_DIR/models/"
 
 # 仅保留 7 天备份
 find "$BACKUP_DIR" -name "db_*.sqlite" -mtime +7 -delete
-```
+`````
 
 添加到 crontab：
 
-```bash
+`````bash
 0 2 * * * /path/to/backup.sh
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | LibreTranslate | Argos Translate | Google Translate API | DeepL API |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | AGPL-3.0 | MIT | 专有 | 专有 |
 | **自托管** | 是 | 是 (CLI) | 否 | 否 |
@@ -705,11 +706,11 @@ LibreTranslate 本质上是 Argos Translate 的 REST API 包装器。如果你�
 
 ### 如何在不重启容器的情况下更新语言模型？
 
-设置 `LT_UPDATE_MODELS=true` 环境变量。LibreTranslate 在启动时检查模型更新。对于 Kubernetes 部署中的滚动更新，使用滚动重启策略：使用新的镜像版本更新部署，Kubernetes 将逐步替换 Pod。
+设置 ````LT_UPDATE_MODELS=true```` 环境变量。LibreTranslate 在启动时检查模型更新。对于 Kubernetes 部署中的滚动更新，使用滚动重启策略：使用新的镜像版本更新部署，Kubernetes 将逐步替换 Pod。
 
 ### 每次翻译请求的最大文本长度是多少？
 
-可通过 `--char-limit` 标志或 `LT_CHAR_LIMIT` 环境变量配置。内置默认值为每次请求 10,000 个字符。对于更长的文档，将文本分块并进行顺序 API 调用。
+可通过 ````--char-limit```` 标志或 ````LT_CHAR_LIMIT```` 环境变量配置。内置默认值为每次请求 10,000 个字符。对于更长的文档，将文本分块并进行顺序 API 调用。
 
 ### LibreTranslate 是否符合 HIPAA 或 GDPR 合规要求？
 
@@ -717,13 +718,13 @@ LibreTranslate 的自托管特性意味着数据不会离开你的基础设施�
 
 ### 如何添加自定义语言模型？
 
-LibreTranslate 支持 Argos Translate 格式的模型（OpenNMT CTranslate2 模型）。将自定义 `.argosmodel` 文件放在模型目录中并重启容器。自定义模型适用于默认模型集未涵盖的领域特定术语或语言。
+LibreTranslate 支持 Argos Translate 格式的模型（OpenNMT CTranslate2 模型）。将自定义 ````.argosmodel```` 文件放在模型目录中并重启容器。自定义模型适用于默认模型集未涵盖的领域特定术语或语言。
 
 ### 我可以将 LibreTranslate 与 React 或 Vue 等前端框架一起使用吗？
 
-可以。`/translate` 端点接受 JSON 并在配置时支持 CORS。React Hook 示例：
+可以。````/translate```` 端点接受 JSON 并在配置时支持 CORS。React Hook 示例：
 
-```typescript
+`````typescript
 // useTranslation.ts
 import { useState, useCallback } from "react";
 
@@ -747,11 +748,11 @@ export function useTranslation() {
 
   return { translate, translating };
 }
-```
+`````
 
 ### 离线部署的网络要求是什么？
 
-对于完全离线操作，使用 `--build-arg with_models=true` 构建 Docker 镜像以在构建期间嵌入语言模型。生成的镜像包含所有必要文件，运行时不需要互联网连接。镜像大小根据包含的语言数量增加约 2-3GB。
+对于完全离线操作，使用 ````--build-arg with_models=true``` 构建 Docker 镜像以在构建期间嵌入语言模型。生成的镜像包含所有必要文件，运行时不需要互联网连接。镜像大小根据包含的语言数量增加约 2-3GB。
 
 ## 结论
 
@@ -789,7 +790,7 @@ LibreTranslate 兑现了其核心承诺：一个具有零每次请求成本和�
 - [LibreTranslate Kubernetes 示例](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes)
 
 
----
+* * *
 > **披露**：本文包含联盟链接。如果你使用本指南中的推荐链接注册 DigitalOcean，我们可能会收到佣金，而你无需支付额外费用。联盟链接有助于支持此类开源文档项目的持续维护。
 
 
@@ -818,7 +819,7 @@ LibreTranslate 兑现了其核心承诺：一个具有零每次请求成本和�
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate)
@@ -827,6 +828,6 @@ LibreTranslate 兑现了其核心承诺：一个具有零每次请求成本和�
 - [llm-inference-cost-optimization-guide-2026](libretranslate)
 - [2026-06-22-trending-ai-agents](libretranslate)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

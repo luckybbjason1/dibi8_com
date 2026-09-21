@@ -27,6 +27,7 @@ aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
 
+
 # Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LLM Gateway Thành Thật (Độ Trễ, Chi Phí, Tự Host)
 
 
@@ -150,7 +151,7 @@ Ba gateway. Ba mặc định thành thật: - **Bạn là enterprise** → Portk
 
 Không có LLM gateway "tốt nhất phổ quát". Chỉ có cái khớp với dòng của bạn trong cây quyết định mục 2. Chọn cái đó, ship, và đánh giá lại khi hóa đơn inference hàng tháng vượt $5,000.
 
----
+* * *
 
 *Muốn test 3 cái này ở production mà không cam kết? Bật một [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) $6/tháng với LiteLLM, trỏ OpenAI SDK hiện có vào đó, và xem các tùy chọn fallback mở rộng mà không động vào code ứng dụng.*
 
@@ -180,7 +181,7 @@ Không có LLM gateway "tốt nhất phổ quát". Chỉ có cái khớp với d
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -190,7 +191,7 @@ Không có LLM gateway "tốt nhất phổ quát". Chỉ có cái khớp với d
 - [9router-smart-llm-proxy-token-saver-free-coding](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 - [ai-engineering-from-scratch](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

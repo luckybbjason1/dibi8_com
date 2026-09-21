@@ -28,6 +28,7 @@ faq: - q: "Giá Cursor đã thay đổi gì trong 2025?"
     a: "Dùng cả hai. Cursor cho biên tập trong IDE + tab completion. Claude Code cho vòng lặp agent + debug. Tổng cộng ~$220/tháng. Đa số developer chuyên nghiệp đang chạy stack này — không phải 'chọn một'."
 ---
 
+
 {{</* resource-info */>}}
 
 # Chiến lược tiết kiệm chi phí Cursor 2026
@@ -56,7 +57,7 @@ Agent mode của Cursor mặc định là Opus 4.7 — chất lượng tốt nh�
 ### 2. Siết chặt kích thước context
 Agent mặc định truyền toàn bộ file cho model. Với chỉnh sửa kiểu phẫu thuật, thu hẹp context xuống chỉ function hoặc class bạn đang edit.
 
-Cách làm: ghim file cụ thể vào context, loại trừ phần còn lại. Cú pháp `@files` của Cursor giúp được. Mỗi token không dùng = một credit lãng phí.
+Cách làm: ghim file cụ thể vào context, loại trừ phần còn lại. Cú pháp ```@files```` của Cursor giúp được. Mỗi token không dùng = một credit lãng phí.
 
 **Tiết kiệm**: ~25%.
 
@@ -66,7 +67,7 @@ Tab completion ở mức $20 về cơ bản là miễn phí. Dựa vào nó cho 
 **Chiến lược**: tab cho chỉnh sửa inline, agent cho công việc nhiều file.
 
 ### 4. Tắt auto-suggest trong file test
-Cursor mặc định auto-complete cả file test, đốt credit vào tiếng ồn. Tắt suggest trong `**/*.test.{ts,js}` và `**/spec/**` — viết test thủ công, dù sao cũng nhanh hơn.
+Cursor mặc định auto-complete cả file test, đốt credit vào tiếng ồn. Tắt suggest trong ````**/*.test.{ts,js}```` và ````**/spec/**``` — viết test thủ công, dù sao cũng nhanh hơn.
 
 **Tiết kiệm**: ~10%.
 
@@ -109,7 +110,7 @@ Thay đổi giá của Cursor không phải tử vong — đó là cú huých b�
 
 Với đa số developer chuyên nghiệp, đáp án đúng trong 2026 không phải là "bỏ Cursor" — mà là "kết hợp Cursor với Claude Code, chia việc theo điểm mạnh của từng công cụ". Tổng $220/tháng đánh bại từng cái một mình.
 
----
+* * *
 
 **Liên quan**: [Lựa chọn thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [So sánh AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Hóa đơn hàng tháng AI Coding Agent 2026](https://dibi8.com/vi/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
 
@@ -175,12 +176,12 @@ Chiến lược tiết kiệm chi phí Cursor 2026: Sau khi đổi sang tính th
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -190,7 +191,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](cursor-cost-saving-strategies-2026)
 - [claude-4-opus-sonnet-review-2026](cursor-cost-saving-strategies-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

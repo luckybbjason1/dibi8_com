@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/gpt-sovits/
 ---
 
+
 {{</* resource-info */>}}
 
 > Nhân bản bất kỳ giọng nói nào với 5 giây audio. Tinh chỉnh với 1 phút dữ liệu. Triển khai production trong vòng 20 phút. Hướng dẫn này đi qua toàn bộ quy trình cấu hình.
@@ -40,11 +41,11 @@ Xây dựng pipeline nhân bản giọng nói từng đòi hỏi phòng thu, nhi
 
 ### Tổng quan kiến trúc
 
-GPT-SoVITS sử dụng pipeline 2 giai đoạn tách biệt hiểu ngôn ngữ và tạo sóng âm thanh: ```
+GPT-SoVITS sử dụng pipeline 2 giai đoạn tách biệt hiểu ngôn ngữ và tạo sóng âm thanh: ````
 Input văn bản → BERT Text Encoder → Mô hình GPT (330M tham số) → Semantic Token
                                                               ↓
 Audio tham chiếu → HuBERT Encoder → Mô hình SoVITS (77M tham số) → Vocoder → 48kHz Audio
-```
+`````
 
 **Giai đoạn 1 — GPT (Text-to-Semantic):** Mô hình GPT 330M tham số chuyển đổi chuỗi âm vị thành token semantic rờii rạc. BERT embeddings cung cấp ngữ cảnh ngôn ngữ để dự đoán phát âm và ngữ điệu chính xác.
 
@@ -75,13 +76,13 @@ Audio tham chiếu → HuBERT Encoder → Mô hình SoVITS (77M tham số) → V
 
 ### Luồng dữ liệu Pipeline
 
-Pipeline huấn luyện và inference đầy đủ tuân theo luồng sau: ```
+Pipeline huấn luyện và inference đầy đủ tuân theo luồng sau: `````
 Audio thô → UVR5 Tách → Audio Slicer → ASR Transcription → Text Labeling
                                                                                 ↓
 Pretrained GPT + SoVITS ← Fine-tuning (1 phút dữ liệu) ← Formatted Dataset
                                                                                 ↓
 Inference: Audio tham chiếu + Văn bản → GPT (Semantic Tokens) → SoVITS → 48kHz Audio
-```
+`````
 
 ![Ảnh chụp màn hình GPT-SoVITS WebUI, hiển thị giao diện đào tạo và suy luận đầy đủ](https://www.nite07.com/en/posts/gpt-sovits/webui.png)
 
@@ -98,7 +99,7 @@ Inference: Audio tham chiếu + Văn bản → GPT (Semantic Tokens) → SoVITS 
 
 ### Phương án A: Cài đặt Conda (Linux / macOS)
 
-```bash
+`````bash
 # Bước 1: Tạo và kích hoạt môi trường
 conda create -n GPTSoVits python=3.10 -y
 conda activate GPTSoVits
@@ -113,20 +114,20 @@ cd GPT-SoVITS
 # Bước 4: Cài đặt dependency
 pip install -r extra-req.txt --no-deps
 pip install -r requirements.txt
-```
+`````
 
 ### Phương án B: Gói tích hợp Windows
 
-```powershell
+`````powershell
 # Tải gói tích hợp từ HuggingFace
 # Giải nén và chạy: conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
 pwsh -F install.ps1 -Device CU126 -Source HF
-```
+`````
 
 ### Phương án C: Triển khai Docker (Đề xuất cho Production)
 
-```bash
+`````bash
 # Clone và vào thư mục dự án
 git clone https://github.com/RVC-Boss/GPT-SoVITS.git
 cd GPT-SoVITS
@@ -139,11 +140,11 @@ bash docker_build.sh --cuda 12.8
 
 # Hoặc dùng image pre-built từ Docker Hub
 docker compose run --service-ports GPT-SoVITS-CU128
-```
+`````
 
 ### Cấu hình Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.override.yaml cho production
 services: GPT-SoVITS-CU128: shm_size: 16g
     environment: - is_half=true
@@ -154,11 +155,11 @@ services: GPT-SoVITS-CU128: shm_size: 16g
     deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
 ### Thiết lập mô hình pre-trained
 
-```bash
+`````bash
 # Tải mô hình pre-trained (chạy một lần)
 mkdir -p GPT_SoVITS/pretrained_models
 
@@ -170,11 +171,11 @@ mkdir -p GPT_SoVITS/pretrained_models
 
 # Tải weights UVR5 để tách giọng
 # Đặt vào: tools/uvr5/uvr5_weights/
-```
+`````
 
 ### Khởi chạy WebUI
 
-```bash
+`````bash
 # Khởi chạy chuẩn (mặc định cổng 9874)
 python webui.py
 
@@ -183,13 +184,13 @@ python webui.py vi
 
 # Khởi chạy chỉ API server
 python api_v2.py
-```
+`````
 
 ## Tích hợp với công cụ phổ biến
 
 ### Tích hợp với ComfyUI
 
-Nodes ComfyUI cho GPT-SoVITS cho phép tạo giọng nói trong workflow hình ảnh: ```bash
+Nodes ComfyUI cho GPT-SoVITS cho phép tạo giọng nói trong workflow hình ảnh: `````bash
 # Cài đặt nodes ComfyUI-GPT-SoVITS
 cd ComfyUI/custom_nodes
 git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
@@ -198,11 +199,11 @@ git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
 pip install -r ComfyUI-GPT-SoVITS/requirements.txt
 
 # Đặt mô hình .pth và .ckpt đã train vào: # ComfyUI/models/GPT-SoVITS/
-```
+`````
 
 ### Tích hợp với RVC (Retrieval-based Voice Conversion)
 
-RVC và GPT-SoVITS chia sẻ cùng hệ sinh thái. Dùng RVC cho chuyển đổi giọng thờigian thực, GPT-SoVITS cho TTS chất lượng cao: ```python
+RVC và GPT-SoVITS chia sẻ cùng hệ sinh thái. Dùng RVC cho chuyển đổi giọng thờigian thực, GPT-SoVITS cho TTS chất lượng cao: `````python
 # Pipeline: GPT-SoVITS TTS → RVC Voice Conversion
 import requests
 import subprocess
@@ -228,11 +229,11 @@ rvc_cmd = [
     "--output", "final_output.wav"
 ]
 subprocess.run(rvc_cmd)
-```
+`````
 
 ### Tích hợp với MeloTTS
 
-MeloTTS xử lý tiền xử lý văn bản đa ngôn ngữ trước khi tổng hợp GPT-SoVITS: ```python
+MeloTTS xử lý tiền xử lý văn bản đa ngôn ngữ trước khi tổng hợp GPT-SoVITS: `````python
 from melo.api import TTS
 import requests
 
@@ -248,18 +249,18 @@ response = requests.post("http://localhost:9880/tts", json={
     "prompt_text": "Prompt gốc",
     "prompt_lang": "en"
 })
-```
+`````
 
 ### Tích hợp REST API
 
-`api_v2.py` tích hợp cung cấp đầy đủ REST API cho production: ```bash
+``api_v2.py`` tích hợp cung cấp đầy đủ REST API cho production: `````bash
 # Khởi động API server
 python api_v2.py -a 0.0.0.0 -p 9880
 
 # Xem tài liệu API tại http://localhost:9880/docs
-```
+`````
 
-```python
+`````python
 # Ví dụ client Python
 import requests
 
@@ -293,11 +294,11 @@ synthesize(
     "Đây là bản ghi tham chiếu.",
     "/output/cloned.wav"
 )
-```
+`````
 
 ### OpenAI-Compatible API Wrapper
 
-```bash
+`````bash
 # Sử dụng wrapper tương thích OpenAI của cộng đồng
 git clone https://github.com/enihsyou/GPT-SoVITS-2-OpenAI.git
 cd GPT-SoVITS-2-OpenAI
@@ -309,7 +310,7 @@ cp config.yaml.example config.yaml
 
 docker compose up -d
 # Giờ phục vụ tại http://localhost:5000/v1/audio/speech
-```
+`````
 
 ## Benchmark / Use cases thực tế
 
@@ -363,7 +364,7 @@ RTF < 1 có nghĩa là tạo nhanh hơn thờigian thực. GPT-SoVITS V2 ProPlus
 
 ### Tối ưu hóa bộ nhớ GPU
 
-```bash
+`````bash
 # Bật half-precision (fp16) giảm 50% VRAM
 export is_half=true
 
@@ -372,11 +373,11 @@ python webui.py --device cuda --half_precision --offload_text_encoder
 
 # Dùng phiên bản CPU inference cho thiết lập VRAM thấp
 git clone https://github.com/baicai-1145/GPT-SoVITS-CPUFast.git
-```
+`````
 
 ### Quantization mô hình cho edge deployment
 
-```python
+`````python
 # Export sang ONNX để inference nhanh hơn
 python GPT_SoVITS/onnx_export.py \
     --gpt_model GPT_SoVITS/GPT_weights/your_model.ckpt \
@@ -388,11 +389,11 @@ python GPT_SoVITS/onnx_export.py \
     --onnx=./onnx_models/gpt_model.onnx \
     --saveEngine=./trt_models/gpt_model.trt \
     --fp16
-```
+`````
 
 ### Giới hạn tốc độ API và giám sát
 
-```python
+`````python
 # Wrapper production cho api_v2.py với giới hạn tốc độ
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -421,11 +422,11 @@ app.add_middleware(
     allow_methods=["POST"],
     allow_headers=["*"],
 )
-```
+`````
 
 ### Pipeline xử lý hàng loạt
 
-```bash
+`````bash
 #!/bin/bash
 # batch_synthesize.sh — xử lý file văn bản hàng loạt
 
@@ -452,17 +453,17 @@ for txt_file in "$INPUT_DIR"/*.txt; do
     
     echo "Đã tạo: $OUTPUT_DIR/${filename}.wav"
 done
-```
+`````
 
 ### Checklist bảo mật cho production
 
 1. **Xác thực API**: API tích hợp không có auth. Đặt sau nginx reverse proxy với xác thực API key.
-2. **Kiểm tra đầu vào**: Xác thực `ref_audio_path` để ngăn tấn công path traversal.
-3. **Giới hạn tài nguyên**: Đặt `ulimit` và giới hạn bộ nhớ Docker để ngăn crash OOM.
+2. **Kiểm tra đầu vào**: Xác thực ````ref_audio_path```` để ngăn tấn công path traversal.
+3. **Giới hạn tài nguyên**: Đặt ````ulimit```` và giới hạn bộ nhớ Docker để ngăn crash OOM.
 4. **Kiểm soát truy cập mô hình**: Lưu mô hình đã train trong volume riêng với quyền hạn chế.
 5. **Kết thúc HTTPS**: Dùng reverse proxy cho TLS — không bao giờ expose trực tiếp API server ra internet.
 
-```nginx
+`````nginx
 # Cấu hình nginx reverse proxy
 server {
     listen 443 ssl;
@@ -484,7 +485,7 @@ server {
         proxy_pass_request_body off;
     }
 }
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -537,7 +538,7 @@ Có. GPT-SoVITS phát hành theo giấy phép MIT, cho phép sử dụng thươn
 RTX 4060 Ti (8GB) là điểm ngọt cho hầu hết ngườii dùng — inference RTF 0.028 và hỗ trợ fine-tune fp16. Cho production serving, RTX 4090 (RTF 0.014) hoặc GPU server A100/H100 tối đa hóa throughput. Tránh card dưới 6GB VRAM.
 
 **Q4: Làm sao chuyển đổi giữa các phiên bản mô hình (V2, V3, V4)?**
-Chọn qua dropdown WebUI hoặc cấu hình API. Để dùng phiên bản mới, cập nhật codebase bằng `git pull`, tải pretrained models tương ứng từ HuggingFace và đặt vào `GPT_SoVITS/pretrained_models/`. File `tts_infer.yaml` điều khiển chọn phiên bản.
+Chọn qua dropdown WebUI hoặc cấu hình API. Để dùng phiên bản mới, cập nhật codebase bằng ````git pull````, tải pretrained models tương ứng từ HuggingFace và đặt vào ````GPT_SoVITS/pretrained_models/````. File ````tts_infer.yaml```` điều khiển chọn phiên bản.
 
 **Q5: Tại sao giọng tạo ra nghe có vẻ kim loại hay bị bịt?**
 Đây là vấn đề đã biết trong V3 do upsampling bội số không nguyên. Nâng cấp lên V4, sửa hiện tượng âm kim loại và xuất audio 48kHz gốc. Cũng kiểm tra audio tham chiếu sạch — nhiễu nền và artifact nén lan sang output.
@@ -546,17 +547,17 @@ Chọn qua dropdown WebUI hoặc cấu hình API. Để dùng phiên bản mới
 Chạy nhiều instance API sau nginx hoặc HAProxy. Mỗi instance bind cổng khác nhau. Dùng shared network volume cho models. Cho auto-scaling, containerize với Kubernetes và dùng GPU node pools.
 
 **Q7: Có thể chạy GPT-SoVITS không cần Docker không?**
-Có. Lộ trình cài Conda được hỗ trợ đầy đủ. Đảm bảo FFmpeg đã cài và đáp ứng mọi dependency Python từ `requirements.txt`. WebUI và API hoạt động như nhau bên ngoài Docker.
+Có. Lộ trình cài Conda được hỗ trợ đầy đủ. Đảm bảo FFmpeg đã cài và đáp ứng mọi dependency Python từ ````requirements.txt````. WebUI và API hoạt động như nhau bên ngoài Docker.
 
 ## Kết luận
 
 GPT-SoVITS mang lại voice cloning production-chất lượng với yêu cầu dữ liệu tối thiểu, giấy phép MIT và hệ sinh thái triển khai trưởng thành. RTF 0.014 trên GPU consumer làm ứng dụng thờigian thực khả thi, trong khi toolchain WebUI đầy đủ hạ thấp rào cản cho ngườii mới. Cho các team xây dựng sản phẩm âm thanh năm 2026, đây là nền tảng open-source thực tiễn nhất hiện có.
 
 **Hành động triển khai ngay hôm nay:**
-1. Clone `https://github.com/RVC-Boss/GPT-SoVITS` và chạy thiết lập Docker
+1. Clone ````https://github.com/RVC-Boss/GPT-SoVITS```` và chạy thiết lập Docker
 2. Tải model pre-trained (bắt đầu với V2 ProPlus cho tốc độ tốt nhất)
 3. Ghi lại clip tham chiếu 5 giây và test inference zero-shot qua WebUI
-4. Wrap endpoint `api_v2.py` với lớp xác thực
+4. Wrap endpoint ````api_v2.py``` với lớp xác thực
 5. Tham gia [nhóm Telegram dibi8.com](https://t.me/dibi8tech) để hỗ trợ triển khai và thảo luận cộng đồng
 
 
@@ -607,7 +608,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -617,7 +618,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [agent-reach-internet-access-ai-agents](gpt-sovits)
 - [microsoft-markitdown-file-to-markdown-converter-cli](gpt-sovits)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

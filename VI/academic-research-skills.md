@@ -20,6 +20,7 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
+
 ## TL;DR
 
 Academic Research Skills biến Claude Code thành một trợ lý nghiên cứu có thể tìm kiếm bài báo, trích xuất kết quả chính, tổng hợp tài liệu và tạo bản tổng quan toàn diện. Với 31.628 sao, nó tự động hóa những phần tốn thời gian nhất của nghiên cứu học thuật.
@@ -36,19 +37,19 @@ Bộ kỹ năng bao gồm: - **Tìm kiếm Bài báo** — Truy vấn các cơ s
 - **Công cụ Tổng hợp** — Kết hợp kết quả từ nhiều bài báo thành tóm tắt có cấu trúc
 - **Người viết Tổng quan Tài liệu** — Tạo bản tổng quan tài liệu sẵn sàng xuất bản với trích dẫn đúng chuẩn
 
-```bash
+````bash
 # Cài đặt Academic Research Skills
 npx skills add https://github.com/Imbad0202/academic-research-skills
 
 # Danh sách các kỹ năng nghiên cứu khả dụng
 npx skills list | grep research
-```
+`````
 
 ## Quy trình Nghiên cứu Hoạt động Như thế nào
 
-Quy trình nghiên cứu hoạt động như một đồ thị có hướng không chu trình (DAG), trong đó đầu ra của mỗi kỹ năng truyền vào kỹ năng tiếp theo: ```
+Quy trình nghiên cứu hoạt động như một đồ thị có hướng không chu trình (DAG), trong đó đầu ra của mỗi kỹ năng truyền vào kỹ năng tiếp theo: `````
 Truy vấn → Tìm kiếm → Lọc → Trích xuất → Phân tích → Tổng hợp → Viết
-```
+`````
 
 1. **Xác định Truy vấn** — Bạn cung cấp câu hỏi hoặc chủ đề nghiên cứu
 2. **Tìm kiếm Cơ sở dữ liệu** — Kỹ năng tìm kiếm truy vấn nhiều cơ sở dữ liệu học thuật đồng thời
@@ -58,7 +59,7 @@ Truy vấn → Tìm kiếm → Lọc → Trích xuất → Phân tích → Tổn
 6. **Tổng hợp Liên bài báo** — Kết quả từ tất cả bài báo được so sánh và tổng hợp
 7. **Tạo Báo cáo** — Một bản tổng quan tài liệu có cấu trúc được viết với trích dẫn đúng chuẩn
 
-```bash
+`````bash
 # Ví dụ: Quy trình nghiên cứu cho "hiệu suất transformer"
 # Bước 1: Tìm kiếm
 python3 scripts/search.py --query "transformer model efficiency optimization" --databases arxiv,pubmed --max-results 50
@@ -71,11 +72,11 @@ python3 scripts/extract.py --papers filtered_papers.json --fields methods,result
 
 # Bước 4: Tổng hợp
 python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md
-```
+`````
 
 ## Cài đặt & Thiết lập
 
-Cài đặt Academic Research Skills yêu cầu Python 3.10+ và quyền truy cập API vào các cơ sở dữ liệu học thuật: ```bash
+Cài đặt Academic Research Skills yêu cầu Python 3.10+ và quyền truy cập API vào các cơ sở dữ liệu học thuật: `````bash
 # Sao chép kho lưu trữ
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -87,7 +88,7 @@ pip install -r requirements.txt
 # Cấu hình khóa API
 cp config.example.yaml config.yaml
 # Chỉnh sửa config.yaml với khóa API của bạn
-```
+`````
 
 ### Khóa API Bắt buộc
 
@@ -99,9 +100,9 @@ cp config.example.yaml config.yaml
 | **Crossref** | Dữ liệu siêu phẳng trích dẫn | Không giới hạn |
 | **DOI Resolver** | Tra cứu DOI bài báo | Không giới hạn |
 
-Mỗi khóa API được cấu hình trong `config.yaml` dưới phần dịch vụ tương ứng. Hệ thống xác thực tất cả khóa API khi khởi động và báo cáo bất kỳ lỗi nào trước khi bắt đầu quy trình nghiên cứu.
+Mỗi khóa API được cấu hình trong ````config.yaml```` dưới phần dịch vụ tương ứng. Hệ thống xác thực tất cả khóa API khi khởi động và báo cáo bất kỳ lỗi nào trước khi bắt đầu quy trình nghiên cứu.
 
-```bash
+`````bash
 # Xác minh cấu hình khóa API
 python3 scripts/verify_config.py
 
@@ -114,13 +115,13 @@ resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', par
 })
 print(f'Status: {resp.status_code}, Results: {len(resp.json().get("data", []))}')
 "
-```
+`````
 
 ### Triển khai Docker
 
 Đối với môi trường nghiên cứu có thể tái lập, Academic Research Skills cung cấp một image Docker chính thức, đóng gói tất cả phụ thuộc và client API vào một container duy nhất.
 
-```bash
+`````bash
 # Dựng image Docker
 docker build -t research-skills:latest .
 
@@ -131,7 +132,7 @@ docker run -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
 # Chạy với hỗ trợ GPU cho PDF OCR
 docker run --gpus all -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
   python3 scripts/extract.py --papers papers.json --with-ocr
-```
+`````
 
 Image Docker bao gồm tesseract-ocr cho xử lý tài liệu quét và poppler-utils cho trích xuất văn bản PDF.
 
@@ -145,17 +146,17 @@ Academic Research Skills tích hợp với các công cụ nghiên cứu và vi�
 | **Obsidian** | Đồng bộ kho lưu trữ Markdown | Quản lý kiến thức |
 | **Connected Papers** | Tích hợp API | Trực quan hóa trích dẫn |
 
-```bash
+`````bash
 # Xuất kết quả nghiên cứu sang CSV tương thích Zotero
 python3 scripts/export.py --format zotero --input synthesis.json --output references.csv
 
 # Tạo bibliografia LaTeX sẵn sàng cho Overleaf
 python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib
-```
+`````
 
 ## Đánh giá Hiệu năng: Nghiên cứu Thủ công vs Tự động
 
-Thời gian tiết kiệm được từ việc tự động hóa tổng quan tài liệu là đáng kể: ```
+Thời gian tiết kiệm được từ việc tự động hóa tổng quan tài liệu là đáng kể: `````
 Nhiệm vụ Nghiên cứu             | Thủ công | Tự động   | Tốc độ
 ------------------------------- | -------- | -------- | ------
 Tìm 50 bài báo liên quan        | 8 giờ    | 15 phút   | 32x
@@ -163,13 +164,13 @@ Trích xuất kết quả chính từ 20  | 16 giờ   | 45 phút   | 21x
 Tổng hợp thành báo cáo          | 12 giờ   | 2 giờ     | 6x
 Định dạng trích dẫn đúng chuẩn  | 3 giờ    | 5 phút    | 36x
 TỔNG CỘNG                       | 39 giờ   | 3 giờ     | 13x
-```
+`````
 
 Các benchmark này được đo trên một bài tổng quan hệ thống 20 bài báo trong khoa học máy tính. Quy trình tự động duy trì độ chính xác 94% trong trích xuất kết quả so với đánh giá thủ công, với tính nhất quán cao hơn across các bài báo.
 
 ### So sánh Độ chính xác
 
-```python
+`````python
 # Độ chính xác trích xuất trích dẫn Tự động vs Thủ công
 metrics = {
     "precision": 0.91,    # Trong các trích dẫn được trích xuất, 91% là chính xác
@@ -177,13 +178,13 @@ metrics = {
     "f1_score": 0.90,     # Mean điều hòa của precision và recall
     "time_saved_hours": 36 # Tiết kiệm 36 giờ mỗi báo cáo
 }
-```
+`````
 
 ## Sử dụng Nâng cao: Quy trình Nghiên cứu Tùy chỉnh
 
 Các nhà nghiên cứu giàu kinh nghiệm mở rộng các kỹ năng cơ sở với quy trình tùy chỉnh: ### Chiến lược Tìm kiếm Đa Cơ sở Dữ liệu
 
-```python
+`````python
 # Tìm kiếm qua nhiều cơ sở dữ liệu với kết quả thống nhất
 from research_pipeline import MultiDatabaseSearcher
 
@@ -196,11 +197,11 @@ searcher = MultiDatabaseSearcher(
 
 results = searcher.run()
 print(f"Found {len(results)} papers across {len(set(r['database'] for r in results))} databases")
-```
+`````
 
 ### Phân tích Mạng Lưới Trích dẫn
 
-```python
+`````python
 # Xây dựng và trực quan hóa mạng lưới trích dẫn
 from citation_network import CitationGraph
 
@@ -210,11 +211,11 @@ graph.compute_centrality()  # PageRank, H-index, số lượng trích dẫn
 # Xác định các bài báo tiên phong
 seminal = graph.get_top_cited(k=10)
 for paper in seminal: print(f"{paper.title} — {paper.citation_count} citations")
-```
+`````
 
 ### Mẫu Tổng hợp Tùy chỉnh
 
-```python
+`````python
 # Xác định mẫu tổng hợp tùy chỉnh cho các loại báo cáo khác nhau
 templates = {
     "systematic_review": {
@@ -233,11 +234,11 @@ templates = {
         "min_papers": 8
     }
 }
-```
+`````
 
 ### Định dạng Trích dẫn Tự động
 
-Định dạng trích dẫn đúng chuẩn là yếu tố quan trọng đối với công việc học thuật. Bộ kỹ năng bao gồm một trình định dạng trích dẫn hỗ trợ các phong cách APA, IEEE, Chicago và Vancouver: ```python
+Định dạng trích dẫn đúng chuẩn là yếu tố quan trọng đối với công việc học thuật. Bộ kỹ năng bao gồm một trình định dạng trích dẫn hỗ trợ các phong cách APA, IEEE, Chicago và Vancouver: `````python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -247,7 +248,7 @@ formatted = formatter.format(results)
 formatted.export("references_apa.txt")
 formatted.export("references_bib.bib")
 formatted.export("references_ris.ris")
-```
+`````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -276,14 +277,14 @@ Bất chấp các khả năng của nó, quy trình tự động có những h�
 
 5. **Khám phá phương pháp mới** — Hệ thống xuất sắc trong việc tóm tắt công việc hiện có nhưng gặp khó khăn trong việc xác định các cách tiếp cận phương pháp thực sự mới chưa được trích dẫn rộng rãi. Trong những trường hợp này, khám phá tài liệu thủ công thường cho kết quả tốt hơn. Nhà nghiên cứu nên kết hợp đầu ra quy trình tự động với chuyên môn lĩnh vực để bao quát toàn diện.
 
-```bash
+`````bash
 # Kiểm tra độ phù hợp nhanh
 # ✅ Tổng quan tài liệu hệ thống → CÓ
 # ✅ Phân tích mạng lưới trích dẫn → CÓ
 # ✅ Tìm bài báo về chủ đề cụ thể → CÓ
 # ✅ Viết đề xuất tài trợ từ đầu → CỘN PHÂN (cần đầu vào thủ công)
 # ✅ Tổng quan tài liệu phi tiếng Anh → KHÔNG (sử dụng thận trọng)
-```
+`````
 
 ## Câu hỏi Thường gặp
 
@@ -321,13 +322,13 @@ Academic Research Skills dân chủ hóa các tổng quan tài liệu hệ thố
 
 Sao chép kho lưu trữ và cài đặt các phụ thuộc để bắt đầu tự động hóa quy trình nghiên cứu của bạn ngay hôm nay.
 
-```bash
+`````bash
 npx skills add https://github.com/Imbad0202/academic-research-skills
-```
+````
 
 **Liên kết nội bộ**: [So sánh các tác nhân AI coding](https://dibi8.com/ai-tools/oh-my-pi) · [Xây dựng hệ thống AI production](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch)
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/Imbad0202/academic-research-skills
 - API Semantic Scholar: https://api.semanticscholar.org/
@@ -369,7 +370,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -379,7 +380,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 - [nuwa-skill-distill-thinking-model-ai-agent-skills](academic-research-skills)
 - [pm-skills-68-product-management-skills-ai-agents](academic-research-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

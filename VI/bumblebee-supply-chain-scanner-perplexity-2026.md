@@ -32,6 +32,7 @@ faqs: - q: 'Bumblebee là gì và quét những gì?'
     a: 'Chạy go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1. Kiểm tra hàng ngày: bumblebee scan --profile baseline > inventory.ndjson. Quét sự cố: bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only --max-duration 10m.'
 ---
 
+
 ![Bumblebee 2026: Perplexity AI Supply-Chain Scanner — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 
 Ngày 22 tháng 5 năm 2026, Perplexity AI công bố mã nguồn mở [Bumblebee](https://github.com/perplexityai/bumblebee) — công cụ nội bộ mà nhóm bảo mật của họ dùng để kiểm tra máy tính nhà phát triển tìm rủi ro chuỗi cung ứng. Chưa đầy một tuần, nó đã có hơn 1.500 GitHub star và 112 fork. Câu hỏi công cụ này trả lời: **khi có cảnh báo về package bị xâm phạm, máy nào trong đội của bạn đang có nó?**
@@ -44,11 +45,11 @@ Các công cụ SCA truyền thống (Snyk, Dependabot) kiểm tra dependency tr
 
 ## Đảm bảo chỉ đọc
 
-Ràng buộc cốt lõi của công cụ: **không bao giờ thực thi bất cứ thứ gì**. Không `npm ls`, không `pip check`, không `go list`. Bumblebee hoàn toàn bỏ qua rủi ro này bằng cách chỉ đọc metadata trên đĩa: `package.json`, `go.sum`, `requirements.txt`, extension manifest, và cấu hình MCP JSON.
+Ràng buộc cốt lõi của công cụ: **không bao giờ thực thi bất cứ thứ gì**. Không ```npm ls````, không ````pip check````, không ````go list````. Bumblebee hoàn toàn bỏ qua rủi ro này bằng cách chỉ đọc metadata trên đĩa: ````package.json````, ````go.sum````, ````requirements.txt````, extension manifest, và cấu hình MCP JSON.
 
 ## Ba Profile Quét
 
-```bash
+`````bash
 # Kiểm tra toàn cục hàng ngày
 bumblebee scan --profile baseline > inventory.ndjson
 
@@ -61,25 +62,25 @@ bumblebee scan --profile deep \
   --exposure-catalog ./catalog.json \
   --findings-only \
   --max-duration 10m
-```
+`````
 
 ## Hỗ Trợ Cấu Hình MCP
 
 Đây là tính năng quan trọng nhất với nhà phát triển AI năm 2026. Bumblebee quét các đường dẫn: | File | Công cụ |
 |------|---------|
-| `~/.claude.json` | Claude CLI |
-| `claude_desktop_config.json` | Claude Desktop |
-| `mcp_settings.json` | Cline / Roo Code |
-| `.mcp.json` / `mcp.json` | MCP chung |
-| `~/.gemini/settings.json` | Gemini CLI |
+| ````~/.claude.json```` | Claude CLI |
+| ````claude_desktop_config.json```` | Claude Desktop |
+| ````mcp_settings.json```` | Cline / Roo Code |
+| ````.mcp.json```` / ````mcp.json```` | MCP chung |
+| ````~/.gemini/settings.json```` | Gemini CLI |
 
 ## Thiết Kế Zero Dependency
 
 Viết bằng Go 1.25, **không nhập gì ngoài thư viện chuẩn**. Kết quả là một binary tĩnh duy nhất.
 
-```bash
+`````bash
 go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
-```
+````
 
 > **Triển khai hạ tầng AI an toàn:** Nếu bạn chạy MCP server hoặc workload AI trên VPS, hardening hệ điều hành máy chủ là tuyến phòng thủ đầu tiên. [DigitalOcean Droplet $6/tháng](https://m.do.co/c/eca87ac14ee0) cho phép bạn cấu hình firewall, user isolation và audit log riêng. Người dùng mới nhận **$200 credit miễn phí**.
 
@@ -147,12 +148,12 @@ Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cung Ứng Nội B
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -162,7 +163,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](bumblebee-supply-chain-scanner-perplexity-2026)
 - [codebase-memory-mcp-deep-code-intelligence](bumblebee-supply-chain-scanner-perplexity-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

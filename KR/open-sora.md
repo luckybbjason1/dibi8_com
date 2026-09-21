@@ -24,11 +24,12 @@ aliases:
   - /kr/posts/open-sora/
 ---
 
+
 {{</* resource-info */>}}
 
 대부분의 개발자가 AI 비디오 생성을 실험하면서 동일한 벽에 부딪힙니다. 상업용 API는 초당 $0.10-$0.50을 청구하고, 자체 호스팅 대안은 심층적인 CUDA 지식을 요구하며, 존재하는 소수의 오픈소스 프로젝트는 문서가 부족하거나 엔터프라이즈급 GPU를 필요로 합니다. 2024년 3월, HPC-AI Tech는 이 상황을 바꾸기 위해 Open-Sora를 출시했습니다. 15개월과 29,000개의 GitHub stars 이후, 이 프로젝트는 연구 프로토타입에서 시간당 임대 가능한 하드웨어에서 상업용 대안과 품질이 맞먹는 5초 768p 비디오를 생성할 수 있는 프로덕션급 프레임워크로 발전했습니다.
 
-이 튜토리얼(open-sora tutorial)은 완전한 Open-Sora 설정 방법을 안내합니다. 로컬 설치, Docker 배포, ComfyUI 통합, 프로덕션 하드닝, 그리고 CogVideoX, HunyuanVideo, Wan에 대한 정직한 성능 비교가 포함됩니다. 모든 명령은 최신 `main` 브랜치에 대해 검증되었습니다.
+이 튜토리얼(open-sora tutorial)은 완전한 Open-Sora 설정 방법을 안내합니다. 로컬 설치, Docker 배포, ComfyUI 통합, 프로덕션 하드닝, 그리고 CogVideoX, HunyuanVideo, Wan에 대한 정직한 성능 비교가 포함됩니다. 모든 명령은 최신 ```main```` 브랜치에 대해 검증되었습니다.
 
 ## Open-Sora란 무엇인가?
 
@@ -53,17 +54,17 @@ Open-Sora의 생성 파이프라인은 순차적으로 작동하는 세 가지 �
 
 ### 생성 흐름
 
-```
+`````
 프롬프트 → T5 인코더 → 텍스트 임베딩
                                  ↘
 랜덤 노이즈 → STDiT (50 단계) → 잠재 비디오 → DC-AE 디코더 → MP4 출력
                                  ↗
                                 조건화
-```
+`````
 
 추론 단계에서 Open-Sora는 정류 흐름 샘플링 스케줄러(기본 50 단계)를 사용하며, 텍스트에 대해 CFG 스케일 7.5, 이미지 조건화에 대해 스케일 3.0을 적용합니다. T2I2V(텍스트-이미지-비디오) 파이프라인은 먼저 FLUX 텍스트-이미지 모델을 사용하여 고품질 키프레임을 생성한 다음 I2V 경로를 통해 애니메이션을 적용합니다. 이 2단계 접근 방식은 직접 T2V 생성보다 훨씬 높은 품질을 제공합니다.
 
-```python
+`````python
 # 핵심 추론 파이프라인 (간소화)
 import torch
 from opensora.models import STDiT3, T5Encoder, DC_AE
@@ -88,7 +89,7 @@ for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
 
 # 비디오로 디코딩
 video = vae.decode(latent)  # [1, 3, 65, 768, 768]
-```
+`````
 
 ## 설치 및 설정
 
@@ -104,7 +105,7 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 
 ### 옵션 A: Conda 설치 (개발용 권장)
 
-```bash
+`````bash
 # 가상 환경 생성
 conda create -n opensora python=3.10 -y
 conda activate opensora
@@ -122,11 +123,11 @@ pip install -v .
 # 선택적 가속기 설치
 pip install xformers==0.0.27.post2 --index-url https://download.pytorch.org/whl/cu121
 pip install flash-attn --no-build-isolation
-```
+`````
 
 ### 옵션 B: Docker 설치 (프로덕션용 권장)
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/hpcaitech/Open-Sora.git
 cd Open-Sora
@@ -144,11 +145,11 @@ docker run -ti --gpus all \
 # 컨테이너 낶에서 모델 가중치 다운로드
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
-```
+`````
 
 ### Dockerfile 설명
 
-공식 Dockerfile은 `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04`를 기본 이미지로 사용합니다. 주요 단계는 다음과 같습니다: ```dockerfile
+공식 Dockerfile은 ``nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04``를 기본 이미지로 사용합니다. 주요 단계는 다음과 같습니다: `````dockerfile
 FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 WORKDIR /workspace/Open-Sora
@@ -173,11 +174,11 @@ RUN pip install flash-attn --no-build-isolation
 
 EXPOSE 7860
 CMD ["/bin/bash"]
-```
+`````
 
 ### 모델 가중치 다운로드
 
-Open-Sora 2.0 가중치는 HuggingFace와 ModelScope 모두에서 사용 가능합니다: ```bash
+Open-Sora 2.0 가중치는 HuggingFace와 ModelScope 모두에서 사용 가능합니다: `````bash
 # 옵션 1: HuggingFace
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
@@ -189,7 +190,7 @@ modelscope download hpcai-tech/Open-Sora-v2 --local_dir ./ckpts
 # 다운로드 확인
 ls -la ./ckpts/
 # 예상 출력: model.safetensors, config.json, vae/, text_encoder/
-```
+`````
 
 110억 파라미터 체크포인트는 약 22GB 디스크 공간이 필요합니다. VAE와 텍스트 인코더 가중치는 추가로 약 8GB입니다.
 
@@ -197,7 +198,7 @@ ls -la ./ckpts/
 
 ### ComfyUI 통합
 
-Open-Sora는 공식 API 노드 또는 커뮤니티 커스텀 노드를 통해 ComfyUI와 통합할 수 있습니다. 아직 네이티브 ComfyUI 노드가 없지만 브리지 방식을 사용할 수 있습니다: ```bash
+Open-Sora는 공식 API 노드 또는 커뮤니티 커스텀 노드를 통해 ComfyUI와 통합할 수 있습니다. 아직 네이티브 ComfyUI 노드가 없지만 브리지 방식을 사용할 수 있습니다: `````bash
 # 별도 환경에서 ComfyUI 설치
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -206,9 +207,9 @@ pip install -r requirements.txt
 # Open-Sora용 커스텀 노드 생성
 mkdir -p custom_nodes/opensora-bridge
 cd custom_nodes/opensora-bridge
-```
+`````
 
-```python
+`````python
 # custom_nodes/opensora-bridge/opensora_node.py
 import subprocess
 import torch
@@ -254,11 +255,11 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "OpenSoraTextToVideo": "Open-Sora Text to Video",
 }
-```
+`````
 
 ### Stable Diffusion / FLUX 통합
 
-Open-Sora 2.0은 T2I2V 파이프라인의 T2I 백본으로 FLUX를 사용합니다. 어떤 T2I 모델을 사용할지 구성할 수 있습니다: ```python
+Open-Sora 2.0은 T2I2V 파이프라인의 T2I 백본으로 FLUX를 사용합니다. 어떤 T2I 모델을 사용할지 구성할 수 있습니다: `````python
 # configs/diffusion/inference/t2i2v_768px.py
 # 텍스트-이미지-비디오 구성
 model = dict(
@@ -288,19 +289,19 @@ t2i_model = dict(
 num_sampling_steps = 50
 cfg_scale = 7.5
 cfg_channel = 3  # 이미지 조건화 스케일
-```
+`````
 
 ### Gradio Web UI
 
-Open-Sora에는 대화형 생성을 위한 내장 Gradio 인터페이스가 포함되어 있습니다: ```bash
+Open-Sora에는 대화형 생성을 위한 내장 Gradio 인터페이스가 포함되어 있습니다: `````bash
 # Gradio 종속성 설치
 pip install gradio spaces
 
 # 웹 UI 시작
 python gradio/app.py --model-type v2 --checkpoint ./ckpts
-```
+`````
 
-브라우저에서 `http://localhost:7860`에 접속합니다. 인터페이스는 다음을 지원합니다: - 실시간 미리보기가 있는 텍스트-비디오 생성
+브라우저에서 ````http://localhost:7860````에 접속합니다. 인터페이스는 다음을 지원합니다: - 실시간 미리보기가 있는 텍스트-비디오 생성
 - 이미지 업로드 및 조건화를 통한 이미지-비디오 생성
 - 모션 점수 조정 (1-7 스케일)
 - 해상도 및 프레임 수 선택
@@ -308,7 +309,7 @@ python gradio/app.py --model-type v2 --checkpoint ./ckpts
 
 ### 커스텀 파인튜닝용 ColossalAI 통합
 
-사용자 데이터에서 Open-Sora를 파인튜닝하려면 ColossalAI가 분산 훈련 백본을 제공합니다: ```bash
+사용자 데이터에서 Open-Sora를 파인튜닝하려면 ColossalAI가 분산 훈련 백본을 제공합니다: `````bash
 # ColossalAI 설치
 pip install colossalai
 
@@ -326,7 +327,7 @@ torchrun --nproc_per_node 8 --standalone \
     configs/diffusion/train/stage2_sp.py \
     --data-path /path/to/video/dataset \
     --sequence-parallel-size 4
-```
+`````
 
 ## 벤치마크 / 실전 사용 사례
 
@@ -356,7 +357,7 @@ VBench는 비디오 생성을 위한 표준 평가 도구로, 시각적 품질, 
 | 768x768 | 5초 (65프레임) | 50 | ~240초 | ~150초 | ~55초 |
 | 768x768 | 5초 (65프레임) | 30 | ~145초 | ~90초 | ~33초 |
 
-256x256은 `offload=True`로, 768x768은 시퀀스 병렬로 측정했습니다. Flash Attention 3은 추가로 15-20% 시간을 줄입니다.
+256x256은 ````offload=True````로, 768x768은 시퀀스 병렬로 측정했습니다. Flash Attention 3은 추가로 15-20% 시간을 줄입니다.
 
 ### 실전 배포 시나리오
 
@@ -373,7 +374,7 @@ VBench는 비디오 생성을 위한 표준 평가 도구로, 시각적 품질, 
 
 ### 메모리 최적화 기술
 
-VRAM이 제한된 GPU의 경우 Open-Sora는 여러 가지 최적화 전략을 제공합니다: ```bash
+VRAM이 제한된 GPU의 경우 Open-Sora는 여러 가지 최적화 전략을 제공합니다: `````bash
 # 1. CPU 오프로딩 (~40% VRAM 절약, 25% 느림)
 torchrun --nproc_per_node 1 --standalone \
     scripts/diffusion/inference.py \
@@ -399,11 +400,11 @@ torchrun --nproc_per_node 1 --standalone \
     configs/diffusion/inference/t2i2v_256px.py \
     --prompt "raining, sea" \
     --mixed-precision bf16
-```
+`````
 
 ### 텐서 병렬성을 통한 멀티 GPU 배포
 
-```bash
+`````bash
 # 고해상도 생성을 위한 텐서 병렬성
 torchrun --nproc_per_node 8 --standalone \
     scripts/diffusion/inference.py \
@@ -411,11 +412,11 @@ torchrun --nproc_per_node 8 --standalone \
     --save-dir samples \
     --prompt "A soaring drone footage captures coastal cliffs" \
     --tp-size 4
-```
+`````
 
 ### Open-Sora 프롬프트 엔지니어링
 
-이 모델은 명시적 장면 구성이 있는 구조화된 프롬프트에 가장 잘 반응합니다: ```python
+이 모델은 명시적 장면 구성이 있는 구조화된 프롬프트에 가장 잘 반응합니다: `````python
 # 효과적인 프롬프트 구조
 prompt = """A cinematic wide shot of a golden retriever running along a sandy beach at sunset. 
 Ocean waves break in the background with warm golden hour lighting. 
@@ -425,11 +426,11 @@ High production value, anamorphic lens, shallow depth of field."""
 # 피하세요: 모호하거나 추상적인 프롬프트
 # 나쁨: "a dog video"
 # 좋음: 자세한 주제 + 동작 + 환경 + 조명 + 칩라라 움직임
-```
+`````
 
 ### 프로덕션 배포용 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -462,11 +463,11 @@ services: opensora: build: .
               count: 4
               capabilities: [gpu]
 
-volumes: huggingface_cache: ```
+volumes: huggingface_cache: `````
 
 ### 모니터링 및 로깅
 
-```python
+`````python
 # production_monitor.py
 import torch
 import time
@@ -503,13 +504,13 @@ def generate_with_monitoring(prompt, config): process = psutil.Process()
 
 # 9090 포트에서 메트릭 서버 시작
 start_http_server(9090)
-```
+`````
 
 ### 보안 고려사항
 
 1. **모델 가중치 무결성**: 다운로드한 체크포인트의 SHA-256 체크섬을 공식 레지스트리와 대조하여 확인하세요.
 2. **입력 살균**: T5 토크나이저를 통한 주입 공격을 방지하기 위해 모든 텍스트 프롬프트를 인코딩 전에 살균하세요.
-3. **리소스 제한**: `CUDA_VISIBLE_DEVICES` 및 Docker 메모리 제한을 설정하여 제어 불가능한 생성 프로세스가 모든 GPU 리소스를 소비하지 않도록 하세요.
+3. **리소스 제한**: ````CUDA_VISIBLE_DEVICES```` 및 Docker 메모리 제한을 설정하여 제어 불가능한 생성 프로세스가 모든 GPU 리소스를 소비하지 않도록 하세요.
 4. **콘텐츠 필터링**: 공개 서비스로 배포하는 경우 출력 필터링을 구현하세요. 이 모델에는 내장 안전 분류기가 없습니다.
 
 ## 대안과의 비교
@@ -554,7 +555,7 @@ Open-Sora는 유능한 프레임워크이지만 모든 사용 사례에 적합�
 
 ### Q1: Open-Sora가 RTX 3060이나 RTX 4070과 같은 소비자 GPU에서 실행될 수 있나요?
 
-110억 모델은 INT8 양자화로 256px 생성을 위해 최소 16GB VRAM이 필요합니다. RTX 3060 (12GB)은 11B 모델을 실행할 수 없지만, 이전 724M 모델(Open-Sora 1.0)은 8GB 카드에서 실행됩니다. RTX 4070 Ti Super (16GB)의 경우 `--offload True`로 256px FP16 생성이 가능합니다. 768px의 경우 RTX 4090 (24GB) 또는 멀티 GPU가 필요합니다.
+110억 모델은 INT8 양자화로 256px 생성을 위해 최소 16GB VRAM이 필요합니다. RTX 3060 (12GB)은 11B 모델을 실행할 수 없지만, 이전 724M 모델(Open-Sora 1.0)은 8GB 카드에서 실행됩니다. RTX 4070 Ti Super (16GB)의 경우 ````--offload True````로 256px FP16 생성이 가능합니다. 768px의 경우 RTX 4090 (24GB) 또는 멀티 GPU가 필요합니다.
 
 ### Q2: Open-Sora는 OpenAI의 Sora와 어떻게 비교되나요?
 
@@ -570,7 +571,7 @@ OpenAI의 Sora는 더 높은 피크 품질, 네이티브 1080p 출력, 내장 �
 
 ### Q5: Open-Sora를 API 서비스로 어떻게 배포하나요?
 
-추론 파이프라인을 GPU 워커 큐가 있는 FastAPI 애플리케이션으로 감쌉니다. 작업 분산을 위해 Redis 또는 RabbitMQ를 사용하고, GPU 노드에서 추론 워커를 실행합니다. 저장소에 포함된 Gradio 앱(`gradio/app.py`)은 참조 구현을 제공합니다. 프로덕션을 위해 요청 검증, 속도 제한 및 출력 캐싱을 추가하세요. 저장소의 `examples/api_server/` 디렉토리에서 전체 FastAPI 보일러플레이트를 확인할 수 있습니다.
+추론 파이프라인을 GPU 워커 큐가 있는 FastAPI 애플리케이션으로 감쌉니다. 작업 분산을 위해 Redis 또는 RabbitMQ를 사용하고, GPU 노드에서 추론 워커를 실행합니다. 저장소에 포함된 Gradio 앱(````gradio/app.py````)은 참조 구현을 제공합니다. 프로덕션을 위해 요청 검증, 속도 제한 및 출력 캐싱을 추가하세요. 저장소의 ````examples/api_server/```` 디렉토리에서 전체 FastAPI 보일러플레이트를 확인할 수 있습니다.
 
 ### Q6: 어떤 프롬프트 형식이 Open-Sora에서 가장 잘 작동하나요?
 
@@ -588,7 +589,7 @@ Open-Sora 2.0은 오픈소스 비디오 생성의 이정표를 대표합니다: 
 
 **다음 단계:**
 
-1. 저장소 클론: `git clone https://github.com/hpcaitech/Open-Sora.git`
+1. 저장소 클론: ````git clone https://github.com/hpcaitech/Open-Sora.git```
 2. GitHub Discussions에서 커뮤니티 토론에 참여하여 파인튜닝 팁을 얻으세요
 3. GitHub에서 프로젝트를 팔로우하여 1.4/2.1 릴리스 발표를 확인하세요
 4. dibi8 Telegram 커뮤니티에서 배포 경험을 공유하세요: [https://t.me/dibi8tech](https://t.me/dibi8tech)
@@ -642,7 +643,7 @@ Open-Sora 2.0은 오픈소스 비디오 생성의 이정표를 대표합니다: 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -652,6 +653,6 @@ Open-Sora 2.0은 오픈소스 비디오 생성의 이정표를 대표합니다: 
 - [microsoft-markitdown-file-to-markdown-converter-cli](open-sora)
 - [nanochat-karpathy-100-chatgpt-single-gpu](open-sora)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

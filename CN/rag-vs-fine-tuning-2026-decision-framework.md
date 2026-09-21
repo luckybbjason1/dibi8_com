@@ -31,6 +31,7 @@ faq: - q: "When does RAG win over fine-tuning in 2026?"
   - q: "Should I use Vector DB or just SQLite with full-text search?"
     a: "Under 10K chunks: full-text search (FTS5, MeiliSearch) is often enough and 10x simpler. Above 50K chunks: vector DB justifies its complexity. The 10K-50K gray zone — try FTS first, switch to vectors only when retrieval quality drops below 80% precision@5."
 ---
+
 {{</* resource-info */>}}
 
 # RAG vs Fine-Tuning 2026: Data-Driven Decision Framework
@@ -52,12 +53,12 @@ The RAG-vs-fine-tuning question has accumulated three years of conflicting advic
 > **Break-even**: fine-tune economically beats RAG above ~1M queries/month with stable knowledge.
 
 
----
+* * *
 ## What Changed Since 2024
 
 Three forces shifted the calculus: 1. **Context windows grew**: Gemini 2.5 Pro and Claude Sonnet 4.6 hit 1M tokens. For corpora < 200K tokens, you can stuff context and skip RAG entirely. This was unthinkable in 2024.
 
-2. **Embeddings got dramatically better**: `text-embedding-3-large` (OpenAI), Voyage-3, BGE-M3 — retrieval precision@5 at 80%+ on messy enterprise corpora that 2024 embeddings struggled with.
+2. **Embeddings got dramatically better**: ```text-embedding-3-large```` (OpenAI), Voyage-3, BGE-M3 — retrieval precision@5 at 80%+ on messy enterprise corpora that 2024 embeddings struggled with.
 
 3. **Open-source fine-tuning got cheap**: LoRA + Unsloth + commodity GPUs (RTX 4090, single H100) made fine-tuning $50-200 instead of $5K-50K. The "fine-tune is expensive" argument is outdated.
 
@@ -69,24 +70,24 @@ Three forces shifted the calculus: 1. **Context windows grew**: Gemini 2.5 Pro a
 - Latency budget allows 200-400ms retrieval + LLM
 - You need to update facts without retraining
 
-### RAG actual costs (2026 Q2 pricing): ```
+### RAG actual costs (2026 Q2 pricing): `````
 Embedding lookup: $0.0001/query
 Retrieval + rerank: $0.0003/query
 LLM generation: $0.003-0.015/query (model dependent)
                     ─────────
 Total: ~$0.005/query (Claude Sonnet)
                     ~$0.001/query (GPT-4o-mini)
-```
+`````
 
 At 100K queries/month: $100-500 compute + $20-100 vector DB hosting.
 
 ### RAG infrastructure choices in 2026: | Tier | Stack | Best for |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Lightweight | SQLite FTS5 / MeiliSearch | < 10K docs |
 | Mid | pgvector / Weaviate (self-hosted) | 10K-1M docs |
@@ -100,7 +101,7 @@ At 100K queries/month: $100-500 compute + $20-100 vector DB hosting.
 - Volume > 1M queries/month justifies upfront cost
 - You want to lock in performance characteristics (no surprise API changes)
 
-### Fine-tuning actual costs (2026): ```
+### Fine-tuning actual costs (2026): `````
 LoRA fine-tune (Llama 3.3 70B): Hardware: single H100 ($2/hr × ~10hrs)         = $20
   Data prep: 1-2 days engineer time              = ~$1K labor
   Storage: LoRA adapter ~100MB                  = trivial
@@ -108,13 +109,13 @@ LoRA fine-tune (Llama 3.3 70B): Hardware: single H100 ($2/hr × ~10hrs)         
   Upfront: ~$50 compute + labor
 
 Inference (self-hosted): Per 1K tokens generated: ~$0.0001 (on owned GPU amortized)
-```
+`````
 
 Compare to API: $0.003-0.015/1K tokens. Break-even at high volume.
 
 ## The Decision Tree
 
-```
+`````
 START
   │
   ├─ Knowledge updates more than weekly?
@@ -136,7 +137,7 @@ START
   ├─ Volume > 1M queries/month?
   │   ├─ Yes → Fine-tune (cost wins)
   │   └─ No → RAG (simpler ops)
-```
+````
 
 ## The Hybrid: Fine-Tune + RAG
 
@@ -172,15 +173,15 @@ Fix: experiment with chunk size (256-1024 tokens), overlap (10-20%), and rerank 
 
 | Approach | Setup cost | Per-query cost (1K tokens) | Latency | Update lag |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stuff context | $0 | $0.003-0.015 | 200ms | Real-time |
 | RAG (vector DB) | $100-500/mo | $0.005 | 200-400ms | Hours |
@@ -202,7 +203,7 @@ The 2024 advice ("RAG for facts, fine-tune for style") still works as a starting
 For most production systems in 2026: start with RAG, add fine-tuning when style/volume justifies it. The hybrid is increasingly the default — and it's not because anyone planned it that way, but because each layer solves a different real problem.
 
 
----
+* * *
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent Memory Systems 2026](https://dibi8.com/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents Guide](https://dibi8.com/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
 
 
@@ -267,12 +268,12 @@ RAG vs Fine-Tuning 2026: A Data-Driven Decision Framework with Real Cost Numbers
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -282,7 +283,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](rag-vs-fine-tuning-2026-decision-framework)
 - [ai-engineering-from-scratch](rag-vs-fine-tuning-2026-decision-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

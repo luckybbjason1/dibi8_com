@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/baetyl-edge-ai-computing-platform/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Khoảng cách Edge AI 12 nghìn tỷ USD
@@ -38,14 +39,14 @@ Trong hướng dẫn này, bạn sẽ cài đặt khung biên Baetyl trên nút 
 
 Baetyl là khung điện toán biên mã nguồn mở thuộc LF Edge, mở rộng điện toán đám mây, dữ liệu và dịch vụ một cách liền mạch đến các thiết bị biên. Ban đầu được phát triển bởi nhóm Baidu Intelligent Edge (BIE), cung cấp các dịch vụ điện toán tạm thờ ngoại tuyến, độ trễ thấp bao gồm kết nối thiết bị, định tuyến tin nhắn, đồng bộ từ xa, điện toán chức năng, chụp video, suy luận AI, báo cáo trạng thái và cấu hình OTA.
 
-Baetyl v2 (phiên bản ổn định hiện tại: v2.4.3, phát hành tháng 10/2024) được thiết kế thành hai hệ thống bổ sung cho nhau: - **Khung điện toán biên** (`baetyl/baetyl`): Chạy trên Kubernetes/K3s tại nút biên. Quản lý và triển khai tất cả ứng dụng thông qua các dịch vụ hệ thống (baetyl-init, baetyl-core, baetyl-function).
-- **Bộ quản lý đám mây** (`baetyl/baetyl-cloud`): Triển khai trên Kubernetes trong đám mây. Cung cấp API RESTful cho quản lý nút, triển khai ứng dụng, cấu hình và cấp phát hàng loạt.
+Baetyl v2 (phiên bản ổn định hiện tại: v2.4.3, phát hành tháng 10/2024) được thiết kế thành hai hệ thống bổ sung cho nhau: - **Khung điện toán biên** (```baetyl/baetyl````): Chạy trên Kubernetes/K3s tại nút biên. Quản lý và triển khai tất cả ứng dụng thông qua các dịch vụ hệ thống (baetyl-init, baetyl-core, baetyl-function).
+- **Bộ quản lý đám mây** (````baetyl/baetyl-cloud````): Triển khai trên Kubernetes trong đám mây. Cung cấp API RESTful cho quản lý nút, triển khai ứng dụng, cấu hình và cấp phát hàng loạt.
 
 Khung biên hỗ trợ Linux/amd64, Linux/arm64 và Linux/armv7. Đối với thiết bị hạn chế tài nguyên, K3s (Kubernetes nhẹ) được khuyến nghị với tối thiểu **1GB RAM và 1 lõi CPU**.
 
 ## Baetyl hoạt động như thế nào: Kiến trúc Cloud-Biên
 
-Kiến trúc v2 của Baetyl sử dụng mô hình đồng bộ hóa khai báo dựa trên shadow, lấy cảm hứng từ các controller Kubernetes và shadow thiết bị IoT: ```
+Kiến trúc v2 của Baetyl sử dụng mô hình đồng bộ hóa khai báo dựa trên shadow, lấy cảm hứng từ các controller Kubernetes và shadow thiết bị IoT: `````
 Phía Cloud (Kubernetes)              Phía Biên (K3s/Kubernetes)
 +---------------------+              +---------------------+
 |  baetyl-cloud       |  Report    |  baetyl-init        |
@@ -64,15 +65,15 @@ Phía Cloud (Kubernetes)              Phía Biên (K3s/Kubernetes)
   PostgreSQL/MySQL                   |  - Broker MQTT      |
   (Lưu trữ trạng thái)               |  - Bộ xử lý luồng  |
                                      +---------------------+
-```
+`````
 
 Đồng bộ shadow hoạt động thông qua hai trường: **Report** (những gì biên báo cáo về chính nó) và **Desire** (những gì đám mây muốn biên trở thành). Khi bạn cập nhật thông số ứng dụng trong đám mây, baetyl-core phát hiện thay đổi Desire, kéo hình ảnh container mới và triển khai lại cục bộ. Điều này cho phép cập nhật OTA đáng tin cậy ngay cả qua kết nối không ổn định.
 
 **Các ứng dụng hệ thống chính:**
 
-- `baetyl-init`: Kích hoạt nút biên lên đám mây và khởi tạo baetyl-core. Thoát sau khi hoàn thành.
-- `baetyl-core`: Quản lý trạng thái nút cục bộ, đồng bộ với đám mây qua shadow Report/Desire, và triển khai ứng dụng thông qua engine nhúng.
-- `baetyl-function`: Proxy cho tất cả dịch vụ thờ gian chạy hàm. Lờ gọi hàm định tuyến qua mô-đun này.
+- ````baetyl-init````: Kích hoạt nút biên lên đám mây và khởi tạo baetyl-core. Thoát sau khi hoàn thành.
+- ````baetyl-core````: Quản lý trạng thái nút cục bộ, đồng bộ với đám mây qua shadow Report/Desire, và triển khai ứng dụng thông qua engine nhúng.
+- ````baetyl-function````: Proxy cho tất cả dịch vụ thờ gian chạy hàm. Lờ gọi hàm định tuyến qua mô-đun này.
 
 ## Cài đặt & Thiết lập: Biên + Cloud trong 15 phút
 
@@ -93,18 +94,18 @@ Bạn cần hai môi trường: một VM đám mây (hoặc máy cục bộ) cho
 
 ### Bước 1: Cài đặt K3s trên Nút Biên
 
-```bash
+`````bash
 curl -sfL https://get.k3s.io | sh -
 
 # Xác minh
 sudo kubectl get nodes
 # NAME      STATUS   ROLES                  AGE   VERSION
 # edge-01   Ready    control-plane,master   30s   v1.30.5+k3s1
-```
+`````
 
 ### Bước 2: Triển khai baetyl-cloud (Quản lý Cloud)
 
-```bash
+`````bash
 # Clone kho quản lý đám mây
 git clone https://github.com/baetyl/baetyl-cloud.git
 cd baetyl-cloud
@@ -132,11 +133,11 @@ helm install baetyl-cloud ./baetyl-cloud/
 kubectl get pod
 # NAME                            READY   STATUS    RESTARTS   AGE
 # baetyl-cloud-57cd9597bd-z62kb   1/1     Running   0          97s
-```
+`````
 
 ### Bước 3: Tạo và Kích hoạt Nút Biên
 
-```bash
+`````bash
 # Tạo nút qua API cloud
 curl -d '{"name":"edge-prod-01"}' \
   -H "Content-Type: application/json" \
@@ -149,11 +150,11 @@ curl http://localhost:30004/v1/nodes/edge-prod-01/init
 # Thực thi kích hoạt trên thiết bị biên
 curl -skfL 'https://CLOUD_IP:30003/v1/active/setup.sh?token=YOUR_TOKEN' \
   -o setup.sh && sh setup.sh
-```
+`````
 
 ### Bước 4: Xác minh Trạng thái Nút Biên
 
-```bash
+`````bash
 # Trên nút biên, kiểm tra ứng dụng hệ thống
 kubectl get pods -n baetyl-edge
 # NAME                              READY   STATUS      RESTARTS   AGE
@@ -163,13 +164,13 @@ kubectl get pods -n baetyl-edge
 # Xác minh nút trực tuyến trên cloud
 curl http://localhost:30004/v1/nodes/edge-prod-01
 # "ready": true cho biết kích hoạt thành công
-```
+`````
 
 ## Tích hợp với 4 giao thức chính
 
 Baetyl kết nối với các hệ sinh thái IoT đa dạng thông qua bộ chuyển đổi giao thức tích hợp: **1. MQTT Message Broker**
 
-Mô-đun baetyl-broker cung cấp broker MQTT phía biên định tuyến tin nhắn giữa thiết bị, đám mây và ứng dụng cục bộ: ```yaml
+Mô-đun baetyl-broker cung cấp broker MQTT phía biên định tuyến tin nhắn giữa thiết bị, đám mây và ứng dụng cục bộ: `````yaml
 # Cấu hình ứng dụng MQTT broker
 name: mqtt-app
 version: v1
@@ -182,16 +183,16 @@ services: - name: broker
 volumes: - name: broker-conf
     config: name: broker-conf
       version: v1
-```
+`````
 
-Kiểm tra kết nối: ```bash
+Kiểm tra kết nối: `````bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
-```
+`````
 
 **2. Modbus RTU/TCP cho cảm biến công nghiệp**
 
-```yaml
+`````yaml
 # Cấu hình trình kết nối thiết bị Modbus
 name: modbus-app
 services: - name: modbus-connector
@@ -205,11 +206,11 @@ services: - name: modbus-connector
               address: 0
               quantity: 2
               type: float
-```
+`````
 
 **3. BACnet cho tự động hóa tòa nhà**
 
-```yaml
+`````yaml
 # Trình kết nối BACnet cho hệ thống HVAC
 name: bacnet-app
 services: - name: bacnet-connector
@@ -219,11 +220,11 @@ services: - name: bacnet-connector
           objects: - type: analog-input
               instance: 0
               property: present-value
-```
+`````
 
 **4. Tích hợp xử lý luồng eKuiper**
 
-Baetyl v2.4.3+ tích hợp eKuiper làm ứng dụng hệ thống tùy chọn để xử lý luồng biên: ```bash
+Baetyl v2.4.3+ tích hợp eKuiper làm ứng dụng hệ thống tùy chọn để xử lý luồng biên: `````bash
 # Bật eKuiper khi tạo/cập nhật nút
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -234,7 +235,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 # eKuiper sẽ tự động kết nối baetyl-broker
 # làm nguồn đầu vào cho xử lý luồng
-```
+`````
 
 ## Đánh giá hiệu suất / Triển khai Edge AI thực tế
 
@@ -254,7 +255,7 @@ So sánh hiệu suất: suy luận cloud vs. suy luận biên Baetyl trên NVIDI
 
 **Triển khai dịch vụ suy luận AI:**
 
-```yaml
+`````yaml
 # Mô hình phân loại hình ảnh PyTorch trên biên
 name: ai-inference-app
 version: v1
@@ -269,18 +270,18 @@ services: - name: defect-detector
         mountPath: /models
 volumes: - name: model-cache
     hostPath: path: /opt/baetyl/models
-```
+`````
 
 **Giám sát và chia sẻ GPU:**
 
-baetyl-core có thể giám sát mức sử dụng bộ nhớ GPU, nhiệt độ và mức tiêu thụ năng lượng thờ gian thực. Nhiều ứng dụng có thể chia sẻ tài nguyên GPU: ```yaml
+baetyl-core có thể giám sát mức sử dụng bộ nhớ GPU, nhiệt độ và mức tiêu thụ năng lượng thờ gian thực. Nhiều ứng dụng có thể chia sẻ tài nguyên GPU: `````yaml
 # Cấu hình tài nguyên GPU
 resources: limits: nvidia.com/gpu.shared: 0.5  # Chia sẻ GPU giữa các ứng dụng
-```
+`````
 
 **Chiến lược triển khai cập nhật OTA:**
 
-```bash
+`````bash
 # Triển khai phiên bản mô hình mớ đến tập hợp con nút (canary)
 curl -X POST http://cloud:30004/v1/apps \
   -H "Content-Type: application/json" \
@@ -298,11 +299,11 @@ curl http://cloud:30004/v1/nodes/edge-prod-01/report
 # Triển khai đầy đủ sau khi xác thực canary
 curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
   -d '{"selector": {"node-group": "production"}}'
-```
+`````
 
 **Cơ sở dữ liệu SQLite tại biên:**
 
-```bash
+`````bash
 # Triển khai SQLite để lưu trữ dữ liệu cục bộ tại biên
 cat > sqlite-app.yml << EOF
 name: local-cache
@@ -315,11 +316,11 @@ volumes: - name: data
 EOF
 
 baetyl apply -f sqlite-app.yml
-```
+`````
 
 **Bảo mật: mTLS giữa Biên và Cloud:**
 
-```bash
+`````bash
 # Tạo chứng chỉ cho giao tiếp biên-cloud
 openssl req -x509 -newkey rsa:4096 -keyout edge-key.pem \
   -out edge-cert.pem -days 365 -nodes \
@@ -335,7 +336,7 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
       "key.pem": "'$(base64 -w0 edge-key.pem)'"
     }
   }"
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -391,7 +392,7 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
 
 **Hỏi: Tôi có thể triển khai Baetyl mà không cần bộ quản lý cloud không?**
 
-Đáp: Có, tuy nhiên bạn sẽ mất quản lý tập trung và cập nhật OTA. Bạn có thể triển khai ứng dụng trực tiếp đến nút biên bằng manifest Kubernetes cục bộ hoặc CLI `baetyl apply`. Chế độ độc lập này hữu ích cho triển khai đơn nút hoặc môi trường bảo mật cao nơi kết nối cloud bị cấm.
+Đáp: Có, tuy nhiên bạn sẽ mất quản lý tập trung và cập nhật OTA. Bạn có thể triển khai ứng dụng trực tiếp đến nút biên bằng manifest Kubernetes cục bộ hoặc CLI ````baetyl apply```. Chế độ độc lập này hữu ích cho triển khai đơn nút hoặc môi trường bảo mật cao nơi kết nối cloud bị cấm.
 
 ## Kết luận: Đưa AI đến nơi dữ liệu tồn tại
 
@@ -450,7 +451,7 @@ Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đ
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -459,6 +460,6 @@ Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đ
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

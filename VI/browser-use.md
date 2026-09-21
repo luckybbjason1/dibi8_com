@@ -24,19 +24,20 @@ aliases:
   - /vi/posts/browser-use/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 
 > **GitHub**: [browser-use/browser-use](https://github.com/browser-use/browser-use) | **Stars**: 94,731 | **License**: MIT | **Version**: 0.12.7
 
----
+* * *
 
 ## Giới thiệu
 
 Viết và duy trì script Selenium cho tự động hóa web hiện đại giống như chết dần bởi hàng nghìn selector. Một tên class thay đổi, một nút di chuyển vị trí, và toàn bộ pipeline của bạn sụp đổi lúc 3 giờ sáng. Browser Use, framework Python mã nguồn mở được Magnus Müller và Gregor Žunič ra mắt cuối năm 2024, đi theo hướng tiếp cận khác biệt: giao quyền điều khiển trình duyệt cho mô hình ngôn ngữ lớn, để AI tự quyết định nên nhấn vào đâu, nhập gì, và đọc gì. Với 94,731 sao GitHub, 319 contributor và tỷ lệ thành công 89.1% trên benchmark WebVoyager, Browser Use đã trở thành tiêu chuẩn mã nguồn mở cho tự động hóa trình duyệt dựa trên AI. Bài hướng dẫn này bao gồm cài đặt, dữ liệu benchmark thực tế, tích hợp với LLM phổ biến, và so sánh trực tiếp với Selenium, Puppeteer, và Scrapy.
 
----
+* * *
 
 ## Browser Use là gì?
 
@@ -50,13 +51,13 @@ Browser Use là thư viện Python (yêu cầu ≥3.11) kết nối LLM tương 
 - **Bộ nhớ liên tục**: Duy trì ngữ cảnh và lịch sử cuộc hội thoại qua các bước điều hướng.
 - **Xây dựng trên Playwright**: Kế thừa toàn bộ tính năng Playwright — chế độ ẩn danh, hỗ trợ proxy, chặn mạng, và ghi video.
 
----
+* * *
 
 ## Browser Use hoạt động như thế nào?
 
 Browser Use vận hành trên vòng lặp **quan sát → lập kế hoạch → hành động → xác minh** liên tục: ### Tổng quan kiến trúc
 
-```
+````
 ┌─────────────┐    DOM + Ảnh chụp màn hình   ┌─────────────┐
 │  Trình duyệt│ ────────────────────────────> │     LLM     │
 │ (Playwright)│                               │(Claude/GPT/)│
@@ -64,7 +65,7 @@ Browser Use vận hành trên vòng lặp **quan sát → lập kế hoạch →
 └─────────────┘     Hành động (nhấp/nhập)    └─────────────┘
       ↑                                              │
       └────────── Thay đổi trạng thái trang ───────┘
-```
+`````
 
 ![Browser Use Agent Loop Architecture](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/agent-loop-diagram.png)
 
@@ -73,10 +74,10 @@ Browser Use vận hành trên vòng lặp **quan sát → lập kế hoạch →
 1. **Chụp**: Browser Use chụp ảnh snapshot DOM và screenshot trang hiện tại.
 2. **Tinh chế**: DOM được lọc chỉ giữ lại phần tử tương tác (nút, input, liên kết), loại bỏ nhiễu.
 3. **Suy luận**: LLM nhận trạng thái trang đã tinh chế và mục tiêu ngườii dùng, sau đó lập kế hoạch hành động tiếp theo.
-4. **Thực thi**: Browser Use chuyển quyết định của LLM thành lệnh gọi API Playwright (`page.click()`, `page.fill()`).
-5. **Xác minh**: Vòng lặp lặp lại cho đến khi tác vụ hoàn thành hoặc đạt `max_steps`.
+4. **Thực thi**: Browser Use chuyển quyết định của LLM thành lệnh gọi API Playwright (````page.click()````, ````page.fill()````).
+5. **Xác minh**: Vòng lặp lặp lại cho đến khi tác vụ hoàn thành hoặc đạt ````max_steps````.
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -91,9 +92,9 @@ async def main(): browser = Browser()
     print(result)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## Cài đặt và thiết lập
 
@@ -105,7 +106,7 @@ if __name__ == "__main__": asyncio.run(main())
 
 ### Bước 1: Cài đặt Browser Use
 
-```bash
+`````bash
 # Sử dụng uv (khuyến nghị)
 uv init
 uv add browser-use
@@ -116,11 +117,11 @@ pip install browser-use
 
 # Cài đặt Chromium (nếu chưa có)
 playwright install chromium
-```
+`````
 
 ### Bước 2: Cấu hình biến môi trường
 
-```bash
+`````bash
 # Tệp .env
 OPENAI_API_KEY=sk-your-openai-key
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
@@ -128,11 +129,11 @@ GOOGLE_API_KEY=your-google-api-key
 
 # Tùy chọn: Browser Use Cloud cho trình duyệt ẩn danh
 BROWSER_USE_API_KEY=your-cloud-key
-```
+`````
 
 ### Bước 3: Chạy agent đầu tiên
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser, ChatBrowserUse
 
@@ -146,13 +147,13 @@ async def main(): browser = Browser()
     print(result.output)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ![Browser Use Quick Start Interface](https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png)
 
 ### Thiết lập Docker (Production)
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -163,9 +164,9 @@ RUN playwright install-deps
 
 COPY . .
 CMD ["python", "agent.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8"
 services: browser-use: build: .
@@ -173,15 +174,15 @@ services: browser-use: build: .
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     volumes: - ./scripts:/app
     command: python agent.py
-```
+`````
 
----
+* * *
 
 ## Tích hợp với công cụ phổ biến
 
 ### OpenAI GPT-4o / GPT-5.1
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
 import asyncio
@@ -194,11 +195,11 @@ async def search_flights(): agent = Agent(
     return await agent.run()
 
 asyncio.run(search_flights())
-```
+`````
 
 ### Anthropic Claude Sonnet 4
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_anthropic import ChatAnthropic
 import asyncio
@@ -212,11 +213,11 @@ async def extract_data(): agent = Agent(
     print(result.output)
 
 asyncio.run(extract_data())
-```
+`````
 
 ### Google Gemini 3 Flash
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_google_genai import ChatGoogleGenerativeAI
 import asyncio
@@ -229,11 +230,11 @@ async def research_topic(): agent = Agent(
     return await agent.run()
 
 asyncio.run(research_topic())
-```
+`````
 
 ### Ollama (Mô hình local)
 
-```python
+`````python
 from browser_use import Agent, Browser
 from langchain_ollama import ChatOllama
 import asyncio
@@ -246,11 +247,11 @@ async def local_automation(): agent = Agent(
     return await agent.run()
 
 asyncio.run(local_automation())
-```
+`````
 
 ### Tích hợp trực tiếp Playwright
 
-```python
+`````python
 from playwright.async_api import async_playwright
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -270,9 +271,9 @@ async def hybrid_automation(): async with async_playwright() as p: browser = awa
         result = await agent.run()
         await browser.close()
         return result
-```
+`````
 
----
+* * *
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -318,7 +319,7 @@ Benchmark WebVoyager đánh giá agent trình duyệt trên 586 tác vụ web th
 
 ### Trường hợp sử dụng: Giám sát giá tự động
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -342,15 +343,15 @@ async def monitor_prices(): urls = [
 
 # Chạy hàng ngày qua cron hoặc scheduled task
 prices = asyncio.run(monitor_prices())
-```
+`````
 
----
+* * *
 
 ## Cách sử dụng nâng cao / Hardening Production
 
 ### Thực thi agent song song
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -370,11 +371,11 @@ tasks = [
 ]
 
 results = asyncio.run(run_parallel_agents(tasks))
-```
+`````
 
 ### Cấu hình Proxy cho scraping
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig
 from browser_use import Agent
 from langchain_openai import ChatOpenAI
@@ -394,11 +395,11 @@ agent = Agent(
     llm=ChatOpenAI(model="gpt-4o"),
     browser=browser,
 )
-```
+`````
 
 ### Duy trì phiên và xác thực
 
-```python
+`````python
 from browser_use import Browser, BrowserConfig, Agent
 from langchain_openai import ChatOpenAI
 
@@ -415,11 +416,11 @@ async def authenticated_task(): browser = Browser(config=config)
         browser=browser,
     )
     return await agent.run()
-```
+`````
 
 ### Xử lý lỗi và thử lại
 
-```python
+`````python
 import asyncio
 from browser_use import Agent, Browser
 from langchain_openai import ChatOpenAI
@@ -435,11 +436,11 @@ async def robust_agent(task, max_retries=3): for attempt in range(max_retries): 
         except Exception as e: print(f"Attempt {attempt + 1} failed: {e}")
             await asyncio.sleep(2 ** attempt)  # Backoff theo cấp số nhân
     raise Exception(f"Task failed after {max_retries} attempts")
-```
+`````
 
 ### Giám sát với Prometheus
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 from browser_use import Agent, Browser
 
@@ -455,9 +456,9 @@ async def monitored_agent(task): agent_runs.inc()
             return result
         except Exception: agent_failures.inc()
             raise
-```
+`````
 
----
+* * *
 
 ## So sánh với các lựa chọn thay thế
 
@@ -482,7 +483,7 @@ async def monitored_agent(task): agent_runs.inc()
 - **Puppeteer**: Chrome automation nơi tốc độ quan trọng và bạn kiểm soát trang đích. Lý tưởng cho tạo PDF và screenshot.
 - **Selenium**: Cross-browser testing cho ứng dụng doanh nghiệp với yêu cầu phủ sóng trình duyệt nghiêm ngặt.
 
----
+* * *
 
 ## Hạn chế / Đánh giá trung thực
 
@@ -496,7 +497,7 @@ Browser Use không phải giải pháp thay thế phổ quát cho tự động h
 
 5. **Phụ thuộc LLM**: Bạn phụ thuộc vào khả năng sẵn có và giá của API LLM bên thứ ba. Rate limit có thể làm nghẽn workload production.
 
----
+* * *
 
 ## Câu hỏi thường gặp
 
@@ -513,18 +514,18 @@ Mọi LLM tương thích LangChain: OpenAI GPT-4o/5.1, Anthropic Claude Sonnet 4
 Framework miễn phí (giấy phép MIT). Chi phí sử dụng API LLM khoảng $0.02–$0.30 mỗi tác vụ 10 bước. Browser Use Cloud cung cấp trình duyệt ẩn danh được quản lý từ $29/tháng.
 
 ### Có thể chạy Browser Use trên Docker không?
-Có. Cài `browser-use` và `playwright` trong container Python 3.11+, chạy `playwright install chromium`, và thiết lập API key qua biến môi trường. Ví dụ Dockerfile được cung cấp trong phần Cài đặt phía trên.
+Có. Cài ````browser-use```` và ````playwright```` trong container Python 3.11+, chạy ````playwright install chromium````, và thiết lập API key qua biến môi trường. Ví dụ Dockerfile được cung cấp trong phần Cài đặt phía trên.
 
 ### Browser Use có giải quyết CAPTCHA không?
 Browser Use không tự giải CAPTCHA. Cho trang được bảo vệ, kết hợp với Browser Use Cloud (giải CAPTCHA tích hợp), hoặc tích hợp dịch vụ CAPTCHA chuyên dụng như 2Captcha hoặc CapSolver.
 
 ### Làm thế nào xử lý xác thực trong Browser Use?
-Sử dụng profile trình duyệt liên tục (`user_data_dir` trong `BrowserConfig`) để duy trì cookie và trạng thái đăng nhập qua các phiên. Cho luồng OAuth hoặc 2FA, chạy đăng nhập đầu tiên ở headed mode, sau đó chuyển headless cho các tác vụ tiếp theo.
+Sử dụng profile trình duyệt liên tục (````user_data_dir```` trong ````BrowserConfig````) để duy trì cookie và trạng thái đăng nhập qua các phiên. Cho luồng OAuth hoặc 2FA, chạy đăng nhập đầu tiên ở headed mode, sau đó chuyển headless cho các tác vụ tiếp theo.
 
 ### Browser Use khác Stagehand như thế nào?
-Browser Use là framework agent hoàn toàn tự trị — LLM kiểm soát mọi quyết định điều hướng. Stagehand (phát triển bởi Browserbase) thêm các nguyên hàm AI (`act()`, `extract()`, `observe()`) lên Playwright cho workflow hỗn hợp nơi các bước xác định và AI-driven cùng tồn tại. Tự trị hoàn toàn chọn Browser Use; tăng cường AI chính xác cho script Playwright hiện có chọn Stagehand.
+Browser Use là framework agent hoàn toàn tự trị — LLM kiểm soát mọi quyết định điều hướng. Stagehand (phát triển bởi Browserbase) thêm các nguyên hàm AI (````act()````, ````extract()````, ````observe()````) lên Playwright cho workflow hỗn hợp nơi các bước xác định và AI-driven cùng tồn tại. Tự trị hoàn toàn chọn Browser Use; tăng cường AI chính xác cho script Playwright hiện có chọn Stagehand.
 
----
+* * *
 
 ## Kết luận
 
@@ -535,11 +536,11 @@ Framework không thiếu tradeoff — chi phí LLM tích lũy ở quy mô lớn,
 > **Cần thêm hướng dẫn AI automation?** Tham gia [nhóm Telegram](https://t.me/dibi8opensource) của chúng tôi để nhận phân tích sâu hàng tuần về công cụ AI mã nguồn mở, mẹo triển khai production và dữ liệu benchmark.
 
 **Danh sách hành động**: 1. Clone repository [browser-use/browser-use](https://github.com/browser-use/browser-use)
-2. Chạy `pip install browser-use` và thiết lập agent đầu tiên với ví dụ code phía trên
+2. Chạy ````pip install browser-use``` và thiết lập agent đầu tiên với ví dụ code phía trên
 3. Đánh giá benchmark WebVoyager cho use case của bạn
 4. Tham gia [Browser Use Discord](https://link.browser-use.com/discord) để nhận hỗ trợ cộng đồng và mẹo production
 
----
+* * *
 
 
 
@@ -561,7 +562,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Browser Use Proxy Setup Guide](https://www.coronium.io/blog/browser-use-proxy-setup)
 - [Stagehand vs Browser Use vs Playwright Comparison](https://www.nxcode.io/resources/news/stagehand-vs-browser-use-vs-playwright-ai-browser-automation-2026)
 
----
+* * *
 
 *Bài viết này dành cho developer cần tự động hóa trình duyệt cấp production. Mọi dữ liệu benchmark đều từ leaderboard công khai và testing độc lập tháng 5/2026.*
 
@@ -591,7 +592,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -601,7 +602,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [obscura-rust-headless-browser-ai-agents-web-scraping](browser-use)
 - [ray-distributed-ai-framework-complete-guide](browser-use)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

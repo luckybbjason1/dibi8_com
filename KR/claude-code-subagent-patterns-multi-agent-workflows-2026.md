@@ -24,6 +24,7 @@ faq: - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더
     a: "각 subagent 호출은 다른 Claude 대화처럼 토큰을 소비합니다. 비용은 대략 subagent의 전체 컨텍스트입니다 (시스템 프롬프트 + 도구 스키마 + 작업 프롬프트 + 사고 + 최종 보고서). Pro와 Max 플랜에서 subagent 사용은 부모 세션과 같은 사용 한도에 산입됩니다. API 사용자의 경우 토큰당 직접 청구됩니다. 절약은 부모 컨텍스트를 부풀릴 탐색을 분담함으로써 발생합니다 — subagent에 비용을 지불하지만, 메인 세션은 빠르고 집중된 상태로 유지됩니다."
 ---
 
+
 # Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)
 
 
@@ -41,11 +42,11 @@ faq: - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더
 
 **패턴.** 세 개의 Explore subagent를 병렬로 생성합니다. 각각 질문 하나씩. 각각 자체 샌드박스 컨텍스트에서 실행됩니다. 각각 짧은 보고서를 반환합니다. 부모는 세 개의 grep dump 대신 세 개의 간결한 문단을 봅니다.
 
-```
+````
 단일 메시지 → 3개의 Agent 도구 호출: - Agent("auth 핸들러 찾기", subagent_type="Explore", prompt="...")
   - Agent("상태 관리 매핑", subagent_type="Explore", prompt="...")
   - Agent("폐기된 fn Z 사용처 찾기", subagent_type="Explore", prompt="...")
-```
+`````
 
 **회피하는 실패 모드.** 컨텍스트 윈도우 팽창. 부모 세션이 가볍게 유지되어 실제 구현 대화를 담을 수 있습니다.
 
@@ -53,17 +54,17 @@ faq: - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더
 
 ## 패턴 2: 위험한 편집을 위한 worktree 격리
 
-**문제.** Subagent가 리팩토링을 시도하길 원하지만, 잘못되면 수동으로 `git reset --hard`를 하고 싶지 않습니다. 또한 subagent가 메인 worktree의 활성 변경 사항을 방해하지 않고 테스트를 실행할 수 있길 원합니다.
+**문제.** Subagent가 리팩토링을 시도하길 원하지만, 잘못되면 수동으로 ````git reset --hard````를 하고 싶지 않습니다. 또한 subagent가 메인 worktree의 활성 변경 사항을 방해하지 않고 테스트를 실행할 수 있길 원합니다.
 
 **패턴.** Agent 호출에 worktree 격리 매개변수를 사용합니다. Subagent는 현재 상태에서 분기된 임시 git worktree에서 작동합니다. 변경을 만들면, worktree 경로를 돌려받아 여유롭게 검토, cherry-pick, 또는 폐기할 수 있습니다. 변경이 없으면 worktree는 자동으로 정리됩니다.
 
-```
+`````
 Agent({
   description: "컨트롤러 레벨 리팩토링 시도",
   isolation: "worktree",
   prompt: "controllers/orders.rb를 리팩토링해 검증 로직을 추출..."
 })
-```
+`````
 
 **회피하는 실패 모드.** 평가할 기회를 갖기 전에 작업 트리를 오염시키는 반쯤 완료된 리팩토링.
 
@@ -73,16 +74,16 @@ Agent({
 
 **문제.** 코드 리뷰, 보안 감사, 접근성 감사, SQL 쿼리 최적화 — 모두 집중된 사고방식의 혜택을 받지만, 동시에 기능을 작성하고 있으면 유지하기 어렵습니다. 일반 Claude는 이 모든 것에 능숙하지만, 전문화된 프롬프팅이 더 좋습니다.
 
-**패턴.** `subagent_type` 매개변수를 사용해 전문가에게 위임합니다. `code-reviewer` subagent는 diff를 읽고 신뢰도와 함께 발견 사항을 보고합니다. security-auditor는 위협 모델링 안경을 끼고 동일한 diff를 읽습니다. 당신은 부모 대화에서 기능을 계속 만듭니다.
+**패턴.** ````subagent_type```` 매개변수를 사용해 전문가에게 위임합니다. ````code-reviewer```` subagent는 diff를 읽고 신뢰도와 함께 발견 사항을 보고합니다. security-auditor는 위협 모델링 안경을 끼고 동일한 diff를 읽습니다. 당신은 부모 대화에서 기능을 계속 만듭니다.
 
-```
+`````
 Agent({
   description: "독립 코드 리뷰",
   subagent_type: "code-reviewer",
   prompt: "feat/payment-gateway 브랜치의 변경 사항 리뷰. 재시도 로직에
 ..."
 })
-```
+`````
 
 **회피하는 실패 모드.** "내가 작성했으니 맞을 거야" 사각지대. 당신의 대화 컨텍스트가 없는 별도의 agent는 진정으로 독립적입니다.
 
@@ -106,11 +107,11 @@ Agent({
 
 **패턴.** 체크리스트를 repo의 사용자 정의 subagent로 인코딩합니다. Claude Code가 설치된 누구나 호출할 수 있습니다. 체크리스트는 실행 가능해집니다: 각 단계에 대한 구조화된 보고서를 생성합니다.
 
-```
+`````
 .claude/agents/migration-reviewer.md  # 사용자 정의 subagent 정의
 .claude/agents/security-gate.md
 .claude/agents/perf-budget-checker.md
-```
+````
 
 팀 멤버가 오케스트레이터를 실행하면, 세 개 모두에 fan out 할 수 있습니다: migration-reviewer는 SQL을 감사하고, security-gate는 auth 터치를 감사하고, perf-budget-checker는 요청 핫 패스를 건드리는 모든 것을 감사합니다. 각각 구조화된 보고서를 반환합니다. 오케스트레이터가 집계합니다.
 
@@ -210,12 +211,12 @@ Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -225,7 +226,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagent-patterns-multi-agent-workflows-2026)
 - [cursor-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

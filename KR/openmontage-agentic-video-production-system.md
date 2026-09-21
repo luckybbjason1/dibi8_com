@@ -42,6 +42,7 @@ faqs: - q: 'OpenMontage란 무엇인가요?'
 featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
 
+
 ## The Problem With Current AI Video Tools
 
 2025년에 대중적으로 알려진 모든 AI 비디오 도구 — Sora, Runway Gen-4, Pika, Luma Dream Machine, Kling — 는 동일한 근본적인 한계를 공유합니다: 이들은 **단일 프롬프트-투-클립 생성기**입니다. 설명을 입력하고 60초를 기다리면 스크립트, 내러티브 구조, 동기화된 오디오, 품질 검증 없이 5~30초 길이의 비디오 조각을 받게 됩니다.
@@ -56,23 +57,23 @@ featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agen
 
 이 모든 것을 하나의 AI 모델이 다 하지는 않습니다. 하지만 여러 전문 도구를 구조화된 생산 파이프라인을 통해 조율하는 시스템은 할 수 있습니다.
 
-**[OpenMontage](https://github.com/calesthio/OpenMontage)** (GitHub: `calesthio/OpenMontage`, 2026년 6월 기준 **8,273+ 스타**)는 바로 이 격차를 메우기 위해 설계된 세계 최초의 오픈 소스 에이전트 기반 영상 제작 시스템입니다. 이 시스템은 12개의 제작 파이프라인, 52개의 도구, 500개 이상의 에이전트 스킬을 제공하여 어떤 AI 코딩 어시스턴트라도 완전한 영상 제작 스튜디오로 전환할 수 있게 합니다.
+**[OpenMontage](https://github.com/calesthio/OpenMontage)** (GitHub: ```calesthio/OpenMontage````, 2026년 6월 기준 **8,273+ 스타**)는 바로 이 격차를 메우기 위해 설계된 세계 최초의 오픈 소스 에이전트 기반 영상 제작 시스템입니다. 이 시스템은 12개의 제작 파이프라인, 52개의 도구, 500개 이상의 에이전트 스킬을 제공하여 어떤 AI 코딩 어시스턴트라도 완전한 영상 제작 스튜디오로 전환할 수 있게 합니다.
 
 ## How OpenMontage Works
 
 OpenMontage는 **에이전트 우선 아키텍처**를 사용합니다. 중앙 조정자 프로그램은 없습니다. 당신의 AI 코딩 어시스턴트 — Claude Code, Cursor, Copilot, Windsurf, 또는 Codex — 가 조정자입니다.
 
-이 시스템은 세 가지 지식 층을 통해 작동합니다: ```
+이 시스템은 세 가지 지식 층을 통해 작동합니다: `````
 Layer 1: tools/ + pipeline_defs/     "What exists" — executable capabilities + orchestration
 Layer 2: skills/                      "How to use it" — OpenMontage conventions and quality bars
 Layer 3: .agents/skills/              "How it works" — external technology knowledge packs
-```
+`````
 
 당신은 원하는 것을 평이한 언어로 설명합니다. 에이전트는 사용 가능한 단계, 도구, 검토 기준을 이해하기 위해 파이프라인 매니페스트(YAML)를 읽습니다. 각 단계를 실행하는 방법을 배우기 위해 단계 디렉터 기술(Markdown)을 읽습니다. 점수화된 제공자 선택을 위해 Python 도구를 호출하고, 검토자 기술을 사용하여 자체 검토를 수행하며, 상태를 JSON으로 체크포인트하고, 모든 단계에서 창의적인 결정을 당신의 승인을 위해 제시합니다.
 
-전체 생산 흐름: ```
+전체 생산 흐름: `````
 research → proposal → script → scene_plan → assets → edit → compose
-```
+`````
 
 각 단계에는 전담 디렉터 기술이 있습니다 — 에이전트가 해당 단계를 정확히 수행하는 방법을 가르치는 Markdown 지침 파일입니다. 에이전트는 기술을 읽고, 도구를 사용하며, 스스로 검토하고, 상태를 점검하며, 창의적 결정 지점에서 인간의 승인을 요청합니다.
 
@@ -99,7 +100,7 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 ## Zero-API-Key Production
 
-실제 동영상을 만들기 위해 유료 API 키가 필요하지 않습니다. 기본적으로 `make setup`은 다음을 제공합니다: | Capability | Free Tool | What It Does |
+실제 동영상을 만들기 위해 유료 API 키가 필요하지 않습니다. 기본적으로 ````make setup````은 다음을 제공합니다: | Capability | Free Tool | What It Does |
 |-----------|-----------|-------------|
 | **Narration** | Piper TTS | Free offline text-to-speech — real human-sounding narration |
 | **Open footage** | Archive.org + NASA + Wikimedia Commons | Free/open archival footage, educational media, documentary texture |
@@ -114,11 +115,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 실제 촬영 경로의 경우, **다큐멘터리 몽타주**, **톤 시곡**, 또는 **스톡 영상 콜라주**를 위해 프롬프트를 제공하고, **실제 영상만 사용**이라고 명시적으로 말하세요.
 
-제로 API 키로 작동하는 예시 프롬프트: ```
+제로 API 키로 작동하는 예시 프롬프트: `````
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
 ## With Paid API Keys: Expanded Capabilities
 
@@ -201,7 +202,7 @@ OpenMontage는 비디오 제작을 실제 엔지니어링처럼 다룹니다 —
 - **실행 전 추정** — 비용이 얼마인지 확인
 - **예산 예약** — 호출 전에 자금 확보
 - **실제 비용 정산** — 실제 지출 기록
-- **구성 가능한 모드** — `observe` (추적만), `warn` (초과 기록), `cap` (최대 한도)
+- **구성 가능한 모드** — ````observe```` (추적만), ````warn```` (초과 기록), ````cap```` (최대 한도)
 - **행동별 승인** — 특정 한도 초과 시 확인을 위해 일시 중지 (기본: $0.50)
 - **총 예산 한도** — 기본 $10, 완전히 구성 가능
 
@@ -209,7 +210,7 @@ OpenMontage는 비디오 제작을 실제 엔지니어링처럼 다룹니다 —
 
 ## Architecture Overview
 
-```
+`````
 OpenMontage/
 ├── tools/              # 48 Python tools (the agent\'s hands)
 │   ├── video/          # 13 video gen tools + compose, stitch, trim
@@ -232,21 +233,21 @@ OpenMontage/
 ├── remotion-composer/  # React/Remotion video composition engine
 ├── lib/                # Core infrastructure (config, checkpoints, pipeline loader)
 └── tests/              # Contract tests, QA integration tests, eval harness
-```
+`````
 
-시스템은 세 가지 지식 계층을 사용합니다. 계층 1(`tools/` + `pipeline_defs/`)는 에이전트에게 무엇이 존재하는지를 알려줍니다. 계층 2(`skills/`)는 OpenMontage의 규약과 품질 기준을 어떻게 사용하는지를 알려줍니다. 계층 3(`.agents/skills/`)는 외부 도구와 제공자를 위한 깊은 기술 지식을 제공합니다.
+시스템은 세 가지 지식 계층을 사용합니다. 계층 1(````tools/```` + ````pipeline_defs/````)는 에이전트에게 무엇이 존재하는지를 알려줍니다. 계층 2(````skills/````)는 OpenMontage의 규약과 품질 기준을 어떻게 사용하는지를 알려줍니다. 계층 3(````.agents/skills/````)는 외부 도구와 제공자를 위한 깊은 기술 지식을 제공합니다.
 
 ## Agent Compatibility
 
 OpenMontage는 파일을 읽고 Python을 실행할 수 있는 모든 AI 코딩 어시스턴트와 함께 작동합니다. 다음을 위한 전용 지침 파일도 포함되어 있습니다: | Platform | Config File |
 |----------|------------|
-| **Claude Code** | `CLAUDE.md` |
-| **Cursor** | `CURSOR.md` + `.cursor/rules/` |
-| **GitHub Copilot** | `COPILOT.md` + `.github/copilot-instructions.md` |
-| **Codex** | `CODEX.md` |
-| **Windsurf** | `.windsurfrules` |
+| **Claude Code** | ````CLAUDE.md```` |
+| **Cursor** | ````CURSOR.md```` + ````.cursor/rules/```` |
+| **GitHub Copilot** | ````COPILOT.md```` + ````.github/copilot-instructions.md```` |
+| **Codex** | ````CODEX.md```` |
+| **Windsurf** | ````.windsurfrules```` |
 
-모든 플랫폼 파일은 공유된 `AGENT_GUIDE.md`(운영 가이드 및 에이전트 계약서)와 `PROJECT_CONTEXT.md`(아키텍처 참조)를 가리킵니다.
+모든 플랫폼 파일은 공유된 ````AGENT_GUIDE.md````(운영 가이드 및 에이전트 계약서)와 ````PROJECT_CONTEXT.md````(아키텍처 참조)를 가리킵니다.
 
 Ollama와 LM Studio를 통한 로컬 LLM 지원이 곧 제공될 예정이며, 이를 통해 클라우드 LLM 없이 전체 생산 파이프라인을 실행할 수 있습니다.
 
@@ -255,37 +256,37 @@ Ollama와 LM Studio를 통한 로컬 LLM 지원이 곧 제공될 예정이며, �
 ### Prerequisites
 
 - **Python 3.10 이상** — [python.org](https://www.python.org/downloads/)
-- **FFmpeg** — `brew install ffmpeg` / `sudo apt install ffmpeg`
+- **FFmpeg** — ````brew install ffmpeg```` / ````sudo apt install ffmpeg````
 - **Node.js 18 이상** — [nodejs.org](https://nodejs.org/)
 - **AI 코딩 어시스턴트** — Claude Code, Cursor, Copilot, Windsurf, 또는 Codex
 
 ### Install
 
-```bash
+`````bash
 git clone https://github.com/calesthio/OpenMontage.git
 cd OpenMontage
 make setup
-```
+`````
 
-AI 코딩 어시스턴트에서 프로젝트를 열고 원하는 것을 말하세요: ```
+AI 코딩 어시스턴트에서 프로젝트를 열고 원하는 것을 말하세요: `````
 "Make a 60-second animated explainer about how neural networks learn"
-```
+`````
 
-또는 실제 영상 경로의 경우: ```
+또는 실제 영상 경로의 경우: `````
 "Make a 75-second documentary montage about city life in the rain. Use real footage only, no narration, elegiac tone, with music."
-```
+`````
 
 에이전트는 실시간 웹 검색으로 주제를 조사하고, AI 이미지 생성, 음성 지시와 함께 스크립트 작성 및 내레이션, 자동으로 로열티 없는 배경 음악 찾기, 단어 단위 자막 삽입, 최종 영상 렌더링을 수행합니다. 사용자가 보기도 전에 시스템은 다중 포인트 자체 검토를 실행합니다 — ffprobe 검증, 프레임 샘플링, 오디오 레벨 분석, 전달 약속 확인, 자막 점검.
 
-GPU가 있다면 무료로 로컬 비디오 생성을 활성화할 수 있습니다: ```bash
+GPU가 있다면 무료로 로컬 비디오 생성을 활성화할 수 있습니다: `````bash
 make install-gpu
 # Then add to .env: # VIDEO_GEN_LOCAL_ENABLED=true
 # VIDEO_GEN_LOCAL_MODEL=wan2.1-1.3b  # or wan2.1-14b, hunyuan-1.5, ltx2-local, cogvideo-5b
-```
+`````
 
 ### Optional API Keys
 
-모든 API 키는 선택 사항입니다. 가지고 있는 것을 추가하세요: ```bash
+모든 API 키는 선택 사항입니다. 가지고 있는 것을 추가하세요: `````bash
 # Image + video gateway: FAL_KEY=your-key               # FLUX images + Google Veo, Kling, MiniMax video + Recraft
 
 # Free stock media: PEXELS_API_KEY=your-key        # Free stock footage and images
@@ -297,7 +298,7 @@ UNSPLASH_ACCESS_KEY=your-key   # Free stock images
 # Voice & images: ELEVENLABS_API_KEY=your-key    # Premium TTS, AI music, sound effects
 OPENAI_API_KEY=your-key        # OpenAI TTS, DALL-E 3 images
 GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
-```
+`````
 
 ## Comparison: OpenMontage vs. Competitors
 
@@ -318,41 +319,41 @@ OpenMontage는 비디오 생성 모델이 아닙니다. 그것은 자신의 파�
 
 ## Prompt Gallery
 
-여기에는 복잡성과 출력 유형별로 정리된 테스트된 프롬프트가 있습니다. 각 프롬프트는 AI 코딩 어시스턴트를 통해 전체 프로덕션 파이프라인을 실행합니다: ```text
+여기에는 복잡성과 출력 유형별로 정리된 테스트된 프롬프트가 있습니다. 각 프롬프트는 AI 코딩 어시스턴트를 통해 전체 프로덕션 파이프라인을 실행합니다: `````text
 # Beginner — zero keys needed
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
-```text
+`````text
 # Intermediate — needs one image provider (~$0.15-$0.50)
 "Create a 30-second Ghibli-style animated video of a magical floating library in the clouds at golden hour"
 "Make a 30-second anime-style animation of an underwater temple with bioluminescent coral"
 "Create an animated explainer about how CRISPR gene editing works, using AI-generated visuals"
-```
+`````
 
-```text
+`````text
 # Advanced — full setup (~$1-$3)
 "Create a cinematic 30-second trailer for a sci-fi concept: humanity receives a warning from 1000 years in the future"
 "Make a 90-second animated explainer about quantum computing for middle school students, with a fun narrator voice and custom soundtrack"
-```
+`````
 
-```text
+`````text
 # Reference-driven — start from an existing video
 "Here\'s a YouTube Short I love. Make me something like this, but about CRISPR for high school students."
 "Analyze this Reel and give me 3 original variants I could make for my own product launch."
 "I like the pacing and hook in this video. Keep that energy, but turn it into a 45-second explainer about black holes."
-```
+`````
 
-```text
+`````text
 # Real-footage documentary path
 "Make a 90-second documentary montage about what a city feels like at 4am. Use real footage only, no narration, elegiac tone."
 "Create a 60-second Adam-Curtis-style archival collage about 1950s consumer optimism. Prefer Archive.org and Wikimedia footage."
 "Cut together a dreamlike montage about coming home in the rain using real stock footage only. Music yes, narration no."
-```
+`````
 
-예상 비용과 출력 예제가 포함된 더 많은 테스트된 프롬프트는 저장소의 프롬프트 갤러리에서 확인하거나 `make demo`를 실행하여 즉시 제로키 데모 비디오를 렌더링할 수 있습니다.
+예상 비용과 출력 예제가 포함된 더 많은 테스트된 프롬프트는 저장소의 프롬프트 갤러리에서 확인하거나 ````make demo````를 실행하여 즉시 제로키 데모 비디오를 렌더링할 수 있습니다.
 
 ## Use Cases
 
@@ -392,7 +393,7 @@ OpenMontage는 인상적이지만 마법은 아닙니다. 몇 가지 제한 사�
 
 ## Quality Gate Configuration
 
-OpenMontage의 품질 시스템은 환경 변수와 구성 파일을 통해 사용자 정의할 수 있습니다: ```bash
+OpenMontage의 품질 시스템은 환경 변수와 구성 파일을 통해 사용자 정의할 수 있습니다: `````bash
 # .env quality gate settings
 SLIDESHOW_RISK_THRESHOLD=0.7
 PRE_COMPOSE_VALIDATION=true
@@ -401,9 +402,9 @@ AUDIO_LEVEL_MIN=-30
 AUDIO_LEVEL_MAX=-3
 MAX_STILL_IMAGE_RATIO=0.3
 MIN_VIDEO_DURATION_SECONDS=10
-```
+`````
 
-```json
+`````json
 // .openmontage/config.json — pipeline quality overrides
 {
   "quality_gates": {
@@ -418,15 +419,15 @@ MIN_VIDEO_DURATION_SECONDS=10
     "per_action_approval_threshold": 0.50
   }
 }
-```
+`````
 
 이 설정은 시스템이 렌더링을 차단하고, 위험을 표시하며, 인간의 승인을 요구하는 시점을 제어합니다. 품질 요구 사항과 예산 제약에 따라 임계값을 조정하세요.
 
 ## Getting Started
 
-OpenMontage를 시도하는 가장 빠른 방법: 1. 리포지토리를 클론하세요: `git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup`  
+OpenMontage를 시도하는 가장 빠른 방법: 1. 리포지토리를 클론하세요: ````git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup````  
 2. Claude Code 또는 Cursor에서 열기  
-3. 프롬프트: `"왜 하늘이 파란지에 대한 45초 애니메이션 설명을 만들어 주세요"`  
+3. 프롬프트: ````"왜 하늘이 파란지에 대한 45초 애니메이션 설명을 만들어 주세요"```  
 4. 에이전트가 조사하고, 스크립트를 작성하고, 자산을 생성하고, 구성하고, 검증하는 과정을 지켜보세요  
 5. 출력물을 검토하세요 — 모든 창의적 결정은 이유와 함께 기록됩니다
 
@@ -440,7 +441,7 @@ OpenMontage는 AI 비디오 제작에서 패러다임 전환을 나타냅니다.
 
 셀프 호스팅 인프라를 위해서는 신뢰할 수 있는 GPU 지원 호스팅을 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 고려하세요. 웹 스크래핑과 프록시가 필요하다면, [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f)가 인프라 레이어를 제공합니다. AI 도구와 암호화폐 서비스 관련 할인 혜택을 찾고 계신가요? 독점 혜택을 위해 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe)와 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8)을 확인하세요. 제휴 마케팅 및 퍼널 도구를 위해 [PromoOhLy](https://www.promoohubly.com/join/12190433)는 자동화를 제공합니다.
 
----
+* * *
 
 **출처:** [OpenMontage GitHub](https://github.com/calesthio/OpenMontage) · [에이전트 가이드](https://github.com/calesthio/OpenMontage/blob/main/AGENT_GUIDE.md) · [제공자 문서](https://github.com/calesthio/OpenMontage/blob/main/docs/PROVIDERS.md)
 
@@ -474,7 +475,7 @@ OpenMontage는 AI 비디오 제작에서 패러다임 전환을 나타냅니다.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -484,7 +485,7 @@ OpenMontage는 AI 비디오 제작에서 패러다임 전환을 나타냅니다.
 - [2026-05-25-trending-ai-agents](openmontage-agentic-video-production-system)
 - [2026-06-01-trending-ai-agents](openmontage-agentic-video-production-system)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

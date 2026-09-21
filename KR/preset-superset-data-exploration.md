@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/preset-superset-data-exploration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: BI 스택 비용이 너무 높은 이유
@@ -44,7 +45,7 @@ Superset의 아키텍처는 프레젠테이션, 메타데이터, 쿼리 실행 �
 
 1. **데이터베이스 기본 실행**: Superset은 데이터를 가져오지 않습니다. 최적화된 SQL을 생성하고 컴퓨팅을 소스로 푸시합니다.
 2. **시맨틱 레이어**: 메트릭과 차원을 한 번 정의하고 여러 차트에서 재사용할 수 있습니다.
-3. **확장 가능한 시각화**: 새로운 차트 유형은 `@superset-ui/core` 프레임워크를 사용하여 플러그인으로 추가됩니다.
+3. **확장 가능한 시각화**: 새로운 차트 유형은 ```@superset-ui/core```` 프레임워크를 사용하여 플러그인으로 추가됩니다.
 
 ## 설치 및 설정
 
@@ -56,17 +57,17 @@ Superset의 아키텍처는 프레젠테이션, 메타데이터, 쿼리 실행 �
 
 ### 1단계: 저장소 클론
 
-```bash
+`````bash
 git clone https://github.com/apache/superset.git
 cd superset
 
 # 최신 안정 릴리스로 체크아웃 (2025년 5월 기준 v5.0.0)
 git checkout 5.0.0
-```
+`````
 
 ### 2단계: Docker Compose로 실행
 
-```bash
+`````bash
 # 분리 모드로 모든 서비스 시작
 docker compose -f docker-compose-image-tag.yml up -d
 
@@ -87,15 +88,15 @@ docker compose exec superset superset load-examples
 
 # 모든 변경사항 적용을 위해 재시작
 docker compose restart superset
-```
+`````
 
 ### 3단계: UI 접근
 
-브라우저에서 `http://localhost:8088`로 이동하고 위에서 설정한 자격 증명으로 로그인합니다.
+브라우저에서 ````http://localhost:8088````로 이동하고 위에서 설정한 자격 증명으로 로그인합니다.
 
 ### Docker를 이용한 프로덕션 배포
 
-프로덕션 환경에서는 관리형 데이터베이스와 외부 Redis를 사용하세요: ```yaml
+프로덕션 환경에서는 관리형 데이터베이스와 외부 Redis를 사용하세요: `````yaml
 # docker-compose.prod.yml
 services: superset: image: apache/superset:5.0.0
     environment: - DATABASE_DB=superset
@@ -109,7 +110,7 @@ services: superset: image: apache/superset:5.0.0
     ports: - "8088:8088"
     deploy: replicas: 2
       resources: limits: memory: 2G
-```
+`````
 
 **셀프 호스팅 팁**: Superset을 실행할 안정적인 VPS가 필요하다면, [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 월 $12부터 시작하는 2GB RAM Droplet과 원클릭 Docker 배포를 제공합니다. 추천 링크를 사용하면 60일간 $200 크레딧을 받을 수 있습니다.
 
@@ -117,57 +118,57 @@ services: superset: image: apache/superset:5.0.0
 
 ### PostgreSQL / MySQL
 
-가장 일반적인 설정은 Superset을 기존 애플리케이션 데이터베이스 또는 데이터 웨어하우스에 연결하는 것입니다: ```python
+가장 일반적인 설정은 Superset을 기존 애플리케이션 데이터베이스 또는 데이터 웨어하우스에 연결하는 것입니다: `````python
 # PostgreSQL 연결 문자열 형식
 postgresql://username:password@host:port/database?sslmode=require
 
 # MySQL 연결 문자열 형식
 mysql://username:password@host:port/database
-```
+`````
 
 UI에서 **설정 > 데이터베이스 연결 > + 데이터베이스**로 이동하여 SQLAlchemy URI를 붙여넣습니다. 저장하기 전에 연결을 테스트하세요.
 
 ### BigQuery
 
-```python
+`````python
 # BigQuery는 서비스 계정 JSON 키가 필요함
 bigquery://project-id?credentials_path=/path/to/service-account.json
 
 # 또는 인라인 키 (프로덕션용 권장하지 않음)
 bigquery://project-id
-```
+`````
 
 고급 설정의 **보안 추가 정보** 필드에 서비스 계정 JSON을 업로드하세요.
 
 ### Snowflake
 
-```python
+`````python
 # Snowflake 연결 URI
 snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE
-```
+`````
 
-더 나은 자동완성을 위해 `superset_config.py`에서 Snowflake SQL 방언을 활성화합니다: ```python
+더 나은 자동완성을 위해 ``superset_config.py``에서 Snowflake SQL 방언을 활성화합니다: `````python
 # superset_config.py
 EXTRA_ALLOWED_DOMAIN_SHARDES = []
 DEFAULT_SQLLAB_LIMIT = 10000
-```
+`````
 
 ### Apache Druid
 
-Superset은 원래 Airbnb에서 Druid를 쿼리하기 위해 구축되었습니다. 통합은 여전히 일급입니다: ```python
+Superset은 원래 Airbnb에서 Druid를 쿼리하기 위해 구축되었습니다. 통합은 여전히 일급입니다: `````python
 # 기본 JSON API를 통한 Druid 연결
 druid://broker-host:8082/datasource/v2
 
 # 또는 HTTP를 통한 SQL
 druid://broker-host:8082/druid/v2/sql
-```
+`````
 
 ### DuckDB (v5.0 신규)
 
-Superset 5.0.0에서 DuckDB 지원이 추가되어 별도 서버 없이 로컬 분석 워크로드를 실행할 수 있습니다: ```python
+Superset 5.0.0에서 DuckDB 지원이 추가되어 별도 서버 없이 로컬 분석 워크로드를 실행할 수 있습니다: `````python
 # DuckDB 인메모리 또는 파일 기반
 duckdb:///path/to/local/database.db
-```
+`````
 
 이는 최대 ~50GB의 소규모 데이터 세트에 대한 프로토타이핑에 이상적입니다.
 
@@ -199,25 +200,25 @@ Shopify는 내部分석을 위해 **500개 이상의 대시보드**로 **2,000�
 
 ### 행 수준 보안 (RLS)
 
-Superset은 사용자 속성을 기준으로 데이터를 필터링하는 행 수준 보안 정책을 지원합니다: ```python
+Superset은 사용자 속성을 기준으로 데이터를 필터링하는 행 수준 보안 정책을 지원합니다: `````python
 # superset_config.py
 ROW_LEVEL_SECURITY_FILTERING = True
 
 # UI에서 필터 정의: # 테이블: orders
 # 필터 절: region = '{{ current_username() }}"
 # 그룹: 영업 팀
-```
+`````
 
 이는 별도의 대시보드를 유지 관리하지 않고도 사용자가 할당된 영역의 데이터만 볼 수 있도록 보장합니다.
 
 ### 대시보드 임베딩
 
-Superset 5.0.0에는 React 애플리케이션을 위한 안정적인 임베딩 SDK가 포함되어 있습니다: ```bash
+Superset 5.0.0에는 React 애플리케이션을 위한 안정적인 임베딩 SDK가 포함되어 있습니다: `````bash
 # 임베딩 SDK 설치
 npm install @superset-ui/embedded-sdk
-```
+`````
 
-```typescript
+`````typescript
 // App.tsx
 import { embedDashboard } from "@superset-ui/embedded-sdk";
 
@@ -232,11 +233,11 @@ embedDashboard({
     hideTab: false,
   },
 });
-```
+`````
 
 ### 알림 및 보고
 
-대시보드 조건에 대해 이메일 또는 Slack 알림을 구성합니다: ```python
+대시보드 조건에 대해 이메일 또는 Slack 알림을 구성합니다: `````python
 # superset_config.py
 ALERT_REPORTS_NOTIFICATION_METHODS = ["email", "slack"]
 SLACK_API_TOKEN = "xoxb-your-slack-bot-token"
@@ -244,11 +245,11 @@ SMTP_HOST = "smtp.sendgrid.net"
 SMTP_PORT = 587
 SMTP_USER = "apikey"
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-```
+`````
 
 ### 커스텀 차트 플러그인
 
-낮 사용을 위해 독점적인 차트 유형을 구축합니다: ```bash
+낮 사용을 위해 독점적인 차트 유형을 구축합니다: `````bash
 # 새로운 차트 플러그인 스캐폴드
 npx @superset-ui/cli create-chart-plugin my-company-charts
 
@@ -258,21 +259,21 @@ npm run build
 
 # Superset의 플러그인 디렉토리에 복사
 cp -r dist/* /app/superset/static/assets/my-company-charts/
-```
+`````
 
-`superset_config.py`에 등록: ```python
+``superset_config.py``에 등록: `````python
 EXTRA_PLUGINS = ["my_company_charts"]
-```
+`````
 
 ### 백업 전략
 
-메타데이터 데이터베이스에는 모든 대시보드, 차트 및 사용자 정의가 포함되어 있습니다. 매일 백업하세요: ```bash
+메타데이터 데이터베이스에는 모든 대시보드, 차트 및 사용자 정의가 포함되어 있습니다. 매일 백업하세요: `````bash
 # cron을 통한 자동 일일 백업
 0 2 * * * pg_dump -h postgres-host -U superset superset > /backups/superset-$(date +\%Y\%m\%d).sql
 
 # 7일 보관
 find /backups -name "superset-*.sql" -mtime +7 -delete
-```
+````
 
 ## 대안과의 비교
 
@@ -344,7 +345,7 @@ Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스
 
 데이터 엔지니어를 위한 Telegram 그룹에 참여하세요: **t.me/dibi8** — Superset 대시보드를 공유하고, 질문하고, 5,000명 이상의 데이터 전문가로부터 도움을 받으세요.
 
----
+* * *
 
 
 
@@ -365,7 +366,7 @@ Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스
 - [dibi8: dbt 데이터 변환 가이드](dbt-data-transformation-dibi8-internal-link)
 - [dibi8: Apache Airflow 오케스트레이션 가이드](apache-airflow-orchestration-dibi8-internal-link)
 
----
+* * *
 
 *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 우리는 직접 사용하는 서비스만 추천합니다.*
 
@@ -395,7 +396,7 @@ Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -405,6 +406,6 @@ Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스
 - [mattpocock-skills-ai-agent-framework-guide](preset-superset-data-exploration)
 - [microsoft-markitdown-file-to-markdown-converter-cli](preset-superset-data-exploration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

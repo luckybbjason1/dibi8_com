@@ -13,6 +13,7 @@ aliases:
 - /zh/resources/llm-frameworks/autogen-multi-agent-framework/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -29,18 +30,18 @@ AutoGen 的架构分为四个层级：
 
 | 层级 | 用途 | 入口点 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Core** | 智能体消息传递和状态的事件驱动运行时 | `autogen-core` |
-| **AgentChat** | 基于 Core 构建的高级对话智能体 | `autogen-agentchat` |
-| **Extensions** | 与 OpenAI、Docker、MCP、gRPC 的集成 | `autogen-ext` |
-| **Studio** | 无需编写代码即可进行原型设计的 Web UI | `autogenstudio` |
+| **Core** | 智能体消息传递和状态的事件驱动运行时 | ```autogen-core```` |
+| **AgentChat** | 基于 Core 构建的高级对话智能体 | ````autogen-agentchat```` |
+| **Extensions** | 与 OpenAI、Docker、MCP、gRPC 的集成 | ````autogen-ext```` |
+| **Studio** | 无需编写代码即可进行原型设计的 Web UI | ````autogenstudio```` |
 
-其核心思维模型是智能体之间的消息传递。`AssistantAgent` 生成计划和代码。`UserProxyAgent` 在本地或 Docker 中执行代码并回传输出。`GroupChatManager` 根据选择策略（轮询、自动选择或自定义）在参与者之间路由消息。
+其核心思维模型是智能体之间的消息传递。````AssistantAgent```` 生成计划和代码。````UserProxyAgent```` 在本地或 Docker 中执行代码并回传输出。````GroupChatManager```` 根据选择策略（轮询、自动选择或自定义）在参与者之间路由消息。
 
 ![AutoGen 架构](https://raw.githubusercontent.com/microsoft/autogen/main/website/static/img/autogen_agentchat.png)
 
@@ -64,31 +65,31 @@ AutoGen 需要 **Python 3.10+**。安装路径取决于您需要哪个层级。
 
 ### 基础安装（AgentChat）
 
-```bash
+`````bash
 # 创建虚拟环境
 python -m venv .venv
 source .venv/bin/activate
 
 # 安装 AgentChat + OpenAI 扩展
 pip install -U "autogen-agentchat" "autogen-ext[openai]"
-```
+`````
 
 ### 完整安装（含所有扩展）
 
-```bash
+`````bash
 pip install -U "autogen-agentchat" "autogen-ext[openai,azure,docker,mcp]"
-```
+`````
 
 ### 验证安装
 
-```python
+`````python
 import autogen_agentchat
 print(autogen_agentchat.__version__)
-```
+`````
 
 ### 最小 "Hello World" 智能体
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
@@ -105,18 +106,18 @@ async def main() -> None: agent = AssistantAgent(
     print(result.messages[-1].content)
 
 asyncio.run(main())
-```
+`````
 
 运行：
 
-```bash
+`````bash
 export OPENAI_API_KEY="sk-..."
 python hello_agent.py
-```
+`````
 
 ### Docker 设置（推荐用于生产）
 
-```bash
+`````bash
 # 拉取官方镜像
 docker pull mcr.microsoft.com/autogen/python:latest
 
@@ -125,15 +126,15 @@ docker run -it \
   -e OPENAI_API_KEY="$OPENAI_API_KEY" \
   -v "$(pwd)/workspace:/workspace" \
   mcr.microsoft.com/autogen/python:latest
-```
+`````
 
 ## 与流行工具集成
 
 ### OpenAI / Azure OpenAI
 
-AutoGen 的 AgentChat 使用 `OpenAIChatCompletionClient` 同时支持 OpenAI 和 Azure 端点：
+AutoGen 的 AgentChat 使用 ````OpenAIChatCompletionClient```` 同时支持 OpenAI 和 Azure 端点：
 
-```python
+`````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 # 直接连接 OpenAI
@@ -149,11 +150,11 @@ azure_client = OpenAIChatCompletionClient(
     api_key="YOUR_AZURE_KEY",
     api_version="2024-12-01-preview"
 )
-```
+`````
 
 ### Ollama（本地模型）
 
-```python
+`````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 local_client = OpenAIChatCompletionClient(
@@ -167,11 +168,11 @@ local_client = OpenAIChatCompletionClient(
         "family": "unknown"
     }
 )
-```
+`````
 
 ### Docker 代码执行
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 from autogen_agentchat.agents import CodeExecutorAgent
 
@@ -187,23 +188,23 @@ code_agent = CodeExecutorAgent(
     name="code_executor",
     code_executor=executor
 )
-```
+`````
 
 ### VS Code 扩展
 
 AutoGen VS Code 扩展为智能体对话提供内联调试：
 
-```bash
+`````bash
 # 从应用商店安装（搜索 "AutoGen"）
 # 或通过 CLI
 code --install-extension microsoft.autogen
-```
+`````
 
 ### 模型上下文协议（MCP）
 
 AutoGen 0.5+ 支持用于工具发现的 MCP 服务器：
 
-```python
+`````python
 from autogen_ext.tools.mcp import McpWorkbench
 
 workbench = McpWorkbench(
@@ -211,7 +212,7 @@ workbench = McpWorkbench(
 )
 
 # MCP 服务器的工具对智能体可用
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -221,15 +222,15 @@ workbench = McpWorkbench(
 
 | 基准测试 | AutoGen | CrewAI | LangGraph | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SimpleQA Verified (F1) | 0.62 | **0.71** | 0.68 | CrewAI 最高但慢 55-140% |
 | BIRD-SQL (执行 %) | 54.1 | 54.3 | **55.9** | LangGraph 在 NL2SQL 上领先 |
@@ -249,13 +250,13 @@ workbench = McpWorkbench(
 
 | 框架 | 年预估成本 | 平均延迟（简单） | 平均延迟（复杂） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangGraph | $220–$365 | 180ms | 1.2s |
 | CrewAI | $220–$365 | 220ms | 1.5s |
@@ -275,7 +276,7 @@ AutoGen 在特定场景中优于替代方案：
 
 ### 带自定义选择器的群聊
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
@@ -317,11 +318,11 @@ async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
     for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
-```
+`````
 
 ### 基于选择器的群聊（动态路由）
 
-```python
+`````python
 from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination
 
@@ -332,11 +333,11 @@ team = SelectorGroupChat(
     termination_condition=MaxMessageTermination(max_messages=15),
     allow_repeated_speaker=False  # 防止同一智能体连续发言
 )
-```
+`````
 
 ### 自定义工具集成
 
-```python
+`````python
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
@@ -352,11 +353,11 @@ agent = AssistantAgent(
     tools=[search_tool],
     system_message="Use the search_knowledge_base tool to answer questions."
 )
-```
+`````
 
 ### 长时间运行工作流的状态持久化
 
-```python
+`````python
 from autogen_agentchat.teams import GroupChat
 from autogen_core import CancellationToken
 
@@ -371,11 +372,11 @@ with open("team_state.json", "w") as f: json.dump(state, f)
 with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
-```
+`````
 
 ### 安全：沙箱代码执行
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
@@ -392,11 +393,11 @@ with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCode
         code_executor=executor
     )
     # 智能体在容器内运行所有代码
-```
+`````
 
 ### 使用 OpenTelemetry 监控
 
-```python
+`````python
 from autogen_core import TRACE_LOGGER_NAME
 import logging
 
@@ -408,21 +409,21 @@ from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
 tracer = trace.get_tracer("autogen.production")
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | AutoGen | CrewAI | LangGraph | OpenAI Agents SDK |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 58,196 | ~47,700 | ~30,700 | ~25,500 |
 | **架构** | 消息传递 / 对话 | 基于角色的团队 | 有向状态图 | 显式交接 |
@@ -455,7 +456,7 @@ AutoGen 不是每个工作的正确工具。以下是它不擅长的：
 
 1. **高吞吐量生产 API**：对话模式每次任务生成 20+ 次 LLM 调用。在 1,000 请求/分钟时，您的 LLM 费用和延迟将不可接受。对事务性工作负载使用 LangGraph。
 
-2. **简单线性管道**：如果您的工作流是 "A 做步骤 1，B 做步骤 2，C 做步骤 3" 且无需回溯，CrewAI 的 `Process.sequential` 更简单更便宜。
+2. **简单线性管道**：如果您的工作流是 "A 做步骤 1，B 做步骤 2，C 做步骤 3" 且无需回溯，CrewAI 的 ````Process.sequential```` 更简单更便宜。
 
 3. **非 Python 团队**：虽然 AutoGen 有 .NET 移植版，但生态系统是 Python 优先的。TypeScript 和 Java 团队会发现 LangGraph（JS 支持）或 Semantic Kernel（.NET）更自然。
 
@@ -471,11 +472,11 @@ Microsoft Agent Framework (MAF) 是 AutoGen 的下一代演进，于 2026 年 4 
 
 **Q：如何使用 Llama 或 Mistral 等本地模型运行 AutoGen？**
 
-使用 Ollama 或任何 OpenAI 兼容的本地服务器。在 `OpenAIChatCompletionClient` 中将 `base_url` 设置为本地端点（例如 `http://localhost:11434/v1`）。提供 `model_info` 字典，让 AutoGen 知道模型的能力（视觉、函数调用、JSON 输出）。
+使用 Ollama 或任何 OpenAI 兼容的本地服务器。在 ````OpenAIChatCompletionClient```` 中将 ````base_url```` 设置为本地端点（例如 ````http://localhost:11434/v1````）。提供 ````model_info```` 字典，让 AutoGen 知道模型的能力（视觉、函数调用、JSON 输出）。
 
 **Q：AutoGen 智能体能安全执行代码吗？**
 
-可以，通过 `DockerCommandLineCodeExecutor`。所有生成的代码在 Docker 容器中运行，具有可配置的超时和绑定挂载。切勿在生产中对不受信任的 LLM 生成代码使用 `LocalCommandLineCodeExecutor`。
+可以，通过 ````DockerCommandLineCodeExecutor````。所有生成的代码在 Docker 容器中运行，具有可配置的超时和绑定挂载。切勿在生产中对不受信任的 LLM 生成代码使用 ````LocalCommandLineCodeExecutor````。
 
 **Q：GroupChat 中可以放多少个智能体？**
 
@@ -483,11 +484,11 @@ Microsoft Agent Framework (MAF) 是 AutoGen 的下一代演进，于 2026 年 4 
 
 **Q：AutoGen 支持流式响应吗？**
 
-是的，AgentChat 通过 `run_stream()` 支持流式：
+是的，AgentChat 通过 ````run_stream()```` 支持流式：
 
-```python
+`````python
 async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
-```
+`````
 
 流式是每消息级别（非每令牌），所以粒度比原始 OpenAI 流式更粗。
 
@@ -495,7 +496,7 @@ async for message in team.run_stream(task="Explain Kubernetes"): if message.sour
 
 启用详细日志并保存对话状态：
 
-```python
+`````python
 # 打印每条消息
 team = RoundRobinGroupChat(
     participants=[agent1, agent2],
@@ -503,7 +504,7 @@ team = RoundRobinGroupChat(
 )
 result = await team.run(task="Debug task", max_turns=10)
 for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
-```
+`````
 
 ## 结论
 
@@ -513,7 +514,7 @@ AutoGen 通过解决一个难题赢得了 58,196 颗星：使多个 AI 智能体
 
 **行动项：**
 
-1. 使用 `pip install "autogen-agentchat" "autogen-ext[openai]"` 安装 AutoGen AgentChat
+1. 使用 ````pip install "autogen-agentchat" "autogen-ext[openai]"``` 安装 AutoGen AgentChat
 2. 使用上面的代码示例为您的用例构建 3 智能体 GroupChat
 3. 使用相同提示测量与 LangGraph 和 CrewAI 的令牌使用和延迟
 4. 加入 [AutoGen Discord](https://aka.ms/autogen-discord) 获取社区支持
@@ -606,12 +607,12 @@ AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026 r
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](autogen)
@@ -620,7 +621,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cleanlab-11k-star-ai-data-cleaning](autogen)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](autogen)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

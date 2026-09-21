@@ -33,15 +33,16 @@ faqs: - q: 'When should you write a custom context manager instead of using try/
     a: 'Decorate an async generator with @contextlib.asynccontextmanager and consume it with `async with`. The shape is identical to a synchronous one, except you can await inside the body, which suits patterns like acquiring a connection from a pool, running a query, then releasing it in the finally block.'
   - q: 'When should you NOT use a context manager in Python?'
     a: 'Avoid them when the acquire half needs no paired release (just call the function), when cleanup is best-effort and a small inline try/finally reads more clearly, or when the resource is already lifecycle-managed by something else, such as a framework Session. Each `with` adds machinery and stacking them hurts readability fast.'---
+
 {</* resource-info */>}
 
 Most introductions to context managers in Python show one example —
-`with open("file.txt") as f:` — and call it a day. That's enough to use
+``with open("file.txt") as f:`` — and call it a day. That's enough to use
 them, but it doesn't tell you when to *write* one.
 
 After a few years of writing Python services, I keep reaching for context
 managers in three specific situations. Each one solves a problem that
-`try`/`finally` can technically solve but tends to get wrong in practice.
+``try``/``finally`` can technically solve but tends to get wrong in practice.
 
 ## Case 1: Pairing acquire and release
 
@@ -49,7 +50,7 @@ The classic case. You have something that must be released —
 a lock, a database connection, a temporary file, a network socket — and
 you want to make sure release happens even if the code in between raises.
 
-```python
+````python
 from contextlib import contextmanager
 import threading
 
@@ -61,14 +62,14 @@ def critical_section(): _lock.acquire()
     finally: _lock.release()
 
 with critical_section(): do_dangerous_thing()
-```
+`````
 
-Why not just `try`/`finally`? You can — and at the call site, that's all
-the context manager expands to. The win is that the `try`/`finally` lives
+Why not just ``try``/``finally``? You can — and at the call site, that's all
+the context manager expands to. The win is that the ``try``/``finally`` lives
 in the *helper*, not the call site. Every caller gets it for free, and
-nobody can forget to write the `finally` block.
+nobody can forget to write the ``finally`` block.
 
-When I see five copies of `try: thing.acquire(); ...; finally: thing.release()` in a codebase, I know there's a context manager waiting
+When I see five copies of ``try: thing.acquire(); ...; finally: thing.release()`` in a codebase, I know there's a context manager waiting
 to be extracted.
 
 ## Case 2: Temporarily changing global-ish state
@@ -77,7 +78,7 @@ This one is less talked about, but it's where context managers really
 earn their keep. You want to flip some setting for the duration of a
 block, and you want it back to what it was no matter how the block exits.
 
-```python
+`````python
 import os
 from contextlib import contextmanager
 
@@ -91,31 +92,31 @@ def env(**overrides): """Temporarily set environment variables, restoring previo
 
 with env(DEBUG="1", REGION="us-east-1"): run_test_suite()
 # Environment is back to whatever it was here.
-```
+`````
 
-The same pattern works for `sys.path`, `logging` levels, `decimal`
+The same pattern works for ``sys.path``, ``logging`` levels, ``decimal``
 contexts, mocked attributes — anything that follows the "save, change,
 restore" shape. Tests in particular benefit from this; the alternative
 is fixtures that leak when something raises mid-test.
 
-The subtle part is **restoring `None` correctly**. A common bug is to do
-`os.environ[k] = saved[k]` without checking — that writes the literal
-string `"None"` into the variable when it didn't exist before. Always
-restore "absent" as `pop`, not as a string.
+The subtle part is **restoring ``None`` correctly**. A common bug is to do
+``os.environ[k] = saved[k]`` without checking — that writes the literal
+string ``"None"`` into the variable when it didn't exist before. Always
+restore "absent" as ``pop``, not as a string.
 
 ## Case 3: Suppressing exceptions you genuinely want to ignore
 
 Sometimes you really do want to swallow a specific exception class and
-move on. Python ships `contextlib.suppress` for this: ```python
+move on. Python ships ``contextlib.suppress`` for this: `````python
 from contextlib import suppress
 
 with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")
-```
+`````
 
-This is dramatically clearer than the equivalent `try`/`except: pass`,
+This is dramatically clearer than the equivalent ``try``/``except: pass``,
 *because the limited surface forces you to be specific*. You can't
 accidentally suppress everything — you have to name the class. And you
-can't accidentally suppress code below the cleanup; the `with` block's
+can't accidentally suppress code below the cleanup; the ``with`` block's
 scope is exactly what you wrote.
 
 I find this useful for cleanup in destructors and atexit handlers, where
@@ -123,14 +124,14 @@ you really cannot afford the cleanup itself to raise.
 
 ## When *not* to write one
 
-Context managers are not free. Each `with` introduces a small amount of
+Context managers are not free. Each ``with`` introduces a small amount of
 machinery, and stacking them affects readability fast. I avoid them
 when: - The "acquire" half doesn't actually need a paired "release" — just
   call the function.
 - The cleanup is best-effort and the scope is small enough that
-  `try`/`finally` reads more clearly inline.
+  ``try``/``finally`` reads more clearly inline.
 - The thing being managed is already managed by something else (e.g.
-  don't wrap a `Session` from a framework that already context-manages
+  don't wrap a ``Session`` from a framework that already context-manages
   its own lifecycle).
 
 The test I use: *"if I leave the cleanup out, will the next person
@@ -139,19 +140,19 @@ plain function is fine.
 
 ## A note on async
 
-In `async` code, use `@asynccontextmanager` and `async with`. The shape
-is identical; the only thing to remember is that you can `await` inside
+In ``async`` code, use ``@asynccontextmanager`` and ``async with``. The shape
+is identical; the only thing to remember is that you can ``await`` inside
 the body, which makes the pattern even more useful for things like
 "acquire a connection from a pool, run a query, return it."
 
-```python
+`````python
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def borrowed(pool): conn = await pool.acquire()
     try: yield conn
     finally: await pool.release(conn)
-```
+````
 
 That's it. Three patterns covers maybe 90% of the context managers
 I've written. The other 10% are weird and you'll know one when you see
@@ -242,6 +243,6 @@ Python Context Managers: The Three Cases You Actually Need represents an importa
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

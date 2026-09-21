@@ -24,22 +24,23 @@ aliases:
   - /zh/posts/cogvideo/-
 ---
 
+
 {{</* resource-info */>}}
 
 > 使用智谱 AI 的开源扩散 Transformer 将文本和图像转换为电影级视频。30 分钟内从零搭建到生产环境。
 
 
----
+* * *
 ## 简介
 
 2024-2025 年，文本生成视频从研究课题转变为生产工具。开源模型在质量上已与商业 API 竞争，同时可在消费级 GPU 上运行。问题在于：大多数仓库仅以裸模型权重发布，文档分散。你需要花费数小时拼凑推理脚本、显存优化参数和微调流水线，而不是直接生成视频。
 
-智谱 AI 的 CogVideo 采用了不同的方式。凭借 12.7K GitHub Stars、36 位贡献者和活跃的发布节奏，它提供了一套完整的工具包：预训练的 2B 和 5B 参数模型、Diffusers 流水线集成、基于 SAT 的微调、ComfyUI 节点，以及将视频压缩为高效潜在表示的 3D 因果 VAE。本教程涵盖从 `pip install` 到生产部署的所有内容，包括量化推理和 LoRA 微调。
+智谱 AI 的 CogVideo 采用了不同的方式。凭借 12.7K GitHub Stars、36 位贡献者和活跃的发布节奏，它提供了一套完整的工具包：预训练的 2B 和 5B 参数模型、Diffusers 流水线集成、基于 SAT 的微调、ComfyUI 节点，以及将视频压缩为高效潜在表示的 3D 因果 VAE。本教程涵盖从 ```pip install```` 到生产部署的所有内容，包括量化推理和 LoRA 微调。
 
 ![CogVideo web demo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/web_demo.png)
 
 
----
+* * *
 ## 什么是 CogVideo？
 
 ![CogVideo logo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/logo.svg)
@@ -48,7 +49,7 @@ CogVideo 是智谱 AI 开发的开源**文本生成视频 AI**框架，基于 3D
 
 CogVideo 是智谱 AI 开发的开源文本生成视频和图像生成视频框架，基于 3D 因果 VAE 和专家 Transformer 架构构建。CogVideoX 系列（2024）继承了 2023 年 ICLR 发表的原始 CogVideo 模型，提供 5B 参数模型，可根据文本提示词或静态图像生成 6 秒 720p 视频。
 
----
+* * *
 
 ## CogVideo 工作原理
 
@@ -60,7 +61,7 @@ CogVideoX 使用三组件流水线：
 2. **3D 因果 VAE**：在空间和时间维度上压缩视频至潜在空间 — 4 倍空间压缩和 4-8 倍时间压缩（取决于模型变体）
 3. **专家 Transformer (DiT)**：具有 3D 全注意力机制的扩散 Transformer，在 50 步推理过程中对潜在视频表示进行去噪
 
-架构流程：`文本提示词 → T5 编码器 → 潜在文本嵌入 → DiT 去噪 → 3D VAE 解码器 → MP4 视频`
+架构流程：````文本提示词 → T5 编码器 → 潜在文本嵌入 → DiT 去噪 → 3D VAE 解码器 → MP4 视频````
 
 ![CogVideoX architecture overview](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cogvideox/pipeline.png)
 
@@ -68,17 +69,17 @@ CogVideoX 使用三组件流水线：
 
 | 模型 | 参数量 | 分辨率 | 最大帧数 | 显存 (BF16) | 显存 (INT8) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CogVideoX-2B | 2B | 720 x 480 | 49 | 5 GB 最低 | 4.4 GB |
 | CogVideoX-5B | 5B | 720 x 480 | 49 | 10 GB 最低 | 7 GB |
@@ -86,7 +87,7 @@ CogVideoX 使用三组件流水线：
 | CogVideoX1.5-5B | 5B | 1360 x 768 | 161 (10秒) | 10 GB 最低 | 7 GB |
 | CogVideoX1.5-5B-I2V | 5B | 768 x 1360 | 49 (6秒) | 4 GB 最低 | 3.6 GB |
 
----
+* * *
 
 ## 安装与配置
 
@@ -101,54 +102,54 @@ CogVideoX 使用三组件流水线：
 
 步骤 1 — 创建虚拟环境：
 
-```bash
+`````bash
 python3.11 -m venv cogvideo_env
 source cogvideo_env/bin/activate
-```
+`````
 
 步骤 2 — 克隆仓库并安装依赖：
 
-```bash
+`````bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo
 pip install -r requirements.txt
-```
+`````
 
-`requirements.txt` 安装 PyTorch、Diffusers、Transformers、Accelerate 和 SAT 工具包：
+````requirements.txt```` 安装 PyTorch、Diffusers、Transformers、Accelerate 和 SAT 工具包：
 
-```
+`````
 torch>=2.3.0
 diffusers>=0.30.0
 transformers>=4.40.0
 accelerate>=0.30.0
 sentencepiece
 opencv-python
-```
+`````
 
 步骤 3 — 验证安装：
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXPipeline
 
 print(f"PyTorch version: {torch.__version__}")
 print(f"CUDA available: {torch.cuda.is_available()}")
 print(f"CUDA version: {torch.version.cuda}")
-```
+`````
 
 预期输出：
 
-```
+`````
 PyTorch version: 2.5.1+cu121
 CUDA available: True
 CUDA version: 12.1
-```
+`````
 
 ### 方法 2：Docker 部署（生产环境）
 
 对于可复现部署和多 GPU 推理，使用预构建 Docker 镜像：
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -166,11 +167,11 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 7860
 
 CMD ["python3", "-m", "inference.cli_demo"]
-```
+`````
 
 构建并运行：
 
-```bash
+`````bash
 docker build -t cogvideo:latest .
 docker run --gpus all -it --rm \
   -v $(pwd)/output:/app/output \
@@ -178,36 +179,36 @@ docker run --gpus all -it --rm \
   cogvideo:latest \
   --prompt "A serene mountain lake at sunrise" \
   --model_path THUDM/CogVideoX-5B
-```
+`````
 
-多 GPU 推理时，在 `from_pretrained()` 中添加 `device_map="balanced"` 并移除 `enable_model_cpu_offload()`：
+多 GPU 推理时，在 ````from_pretrained()```` 中添加 ````device_map="balanced"```` 并移除 ````enable_model_cpu_offload()````：
 
-```python
+`````python
 pipe = CogVideoXPipeline.from_pretrained(
     "THUDM/CogVideoX-5B",
     torch_dtype=torch.bfloat16,
     device_map="balanced"
 )
-```
+`````
 
 ### 方法 3：SAT 框架（研究与微调）
 
 Swiss Army Transformer (SAT) 框架是智谱 AI 的训练工具包。安装它以进行微调和研究：
 
-```bash
+`````bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo/sat
 pip install -e .
-```
+`````
 
 验证 SAT 安装：
 
-```python
+`````python
 from sat import get_args
 print("SAT framework loaded successfully")
-```
+`````
 
----
+* * *
 
 ## 与主流工具集成
 
@@ -215,7 +216,7 @@ print("SAT framework loaded successfully")
 
 Diffusers 流水线是最快的视频生成方式。以下是完整的文生视频脚本：
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video
@@ -250,11 +251,11 @@ video = pipe(
 
 # 5. 保存
 export_to_video(video, "output.mp4", fps=8)
-```
+`````
 
 使用 CogVideoX1.5-5B-I2V 进行图生视频：
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video, load_image
@@ -284,18 +285,18 @@ video = pipe(
 ).frames[0]
 
 export_to_video(video, "output_i2v.mp4", fps=8)
-```
+`````
 
 ### ComfyUI 节点式工作流
 
 ComfyUI-CogVideoXWrapper 支持可视化节点工作流。安装方式：
 
-```bash
+`````bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-CogVideoXWrapper.git
 cd ComfyUI-CogVideoXWrapper
 pip install -r requirements.txt
-```
+`````
 
 重启 ComfyUI 并加载 CogVideoX 工作流。该 wrapper 支持所有模型变体，包括 I2V 和视频生成视频。
 
@@ -303,9 +304,9 @@ pip install -r requirements.txt
 
 要微调自定义风格和概念，使用 LoRA 通过 SAT 进行：
 
-配置 `sat/configs/sft.yaml`：
+配置 ````sat/configs/sft.yaml````：
 
-```yaml
+`````yaml
 model_parallel_size: 1
 experiment_name: lora-custom-style
 mode: finetune
@@ -318,53 +319,53 @@ train_data: ["your_train_data_path"]
 valid_data: ["your_val_data_path"]
 deepseed: bf16: enabled: False  # 5B 设为 True
   fp16: enabled: True   # 5B 设为 False
-```
+`````
 
 单 GPU 运行微调：
 
-```bash
+`````bash
 cd CogVideo/sat
 bash finetune_single_gpu.sh
-```
+`````
 
 将 SAT LoRA 权重转换为 Hugging Face 格式：
 
-```bash
+`````bash
 python tools/export_sat_lora_weight.py \
   --sat_pt_path ckpts/lora-custom-style/1000/mp_rank_00_model_states.pt \
   --lora_save_directory ./hf_lora_weights/
-```
+`````
 
 推理时加载微调权重：
 
-```python
+`````python
 pipe.load_lora_weights(
     "./hf_lora_weights/",
     weight_name="pytorch_lora_weights.safetensors",
     adapter_name="custom_style"
 )
 pipe.fuse_lora(components=["transformer"], lora_scale=1.0)
-```
+`````
 
 ### 提示词优化流水线
 
 CogVideoX 使用长描述性提示词训练。短提示词生成质量较低。使用提示词转换脚本：
 
-```bash
+`````bash
 python inference/convert_demo.py \
   --prompt "A girl riding a bike" \
   --type "t2v"
-```
+`````
 
 该脚本调用大语言模型（GLM-4 Plus 或 GPT-4o）将简单提示词扩展为详细描述。转换示例：
 
-**输入：** `"A girl riding a bike"`
+**输入：** ````"A girl riding a bike"````
 
-**输出：** `"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."`
+**输出：** ````"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."````
 
 程序化使用：
 
-```python
+`````python
 from inference.convert_demo import convert_prompt
 
 optimized_prompt = convert_prompt(
@@ -373,17 +374,17 @@ optimized_prompt = convert_prompt(
     type="t2v"
 )
 print(optimized_prompt)
-```
+`````
 
 ### TorchAO 量化推理
 
 对于显存受限的部署，使用 INT8 量化：
 
-```bash
+`````bash
 pip install torchao
-```
+`````
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXPipeline
 from torchao.quantization import quantize_, int8_weight_only
@@ -404,11 +405,11 @@ video = pipe(
     num_inference_steps=50,
     num_frames=49,
 ).frames[0]
-```
+`````
 
 量化将 CogVideoX-5B 的显存从 10GB 降至约 7GB，质量损失极小。
 
----
+* * *
 
 ## 基准测试与真实用例
 
@@ -416,15 +417,15 @@ video = pipe(
 
 | 模型 | 精度 | 步数 | 时间 (5秒视频) | 时间 (10秒视频) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CogVideoX-2B | BF16 | 50 | ~180秒 | 不支持 |
 | CogVideoX-5B | BF16 | 50 | ~1000秒 | 不支持 |
@@ -436,13 +437,13 @@ video = pipe(
 
 | 维度 | CogVideoX-5B (BLADE 8步) | CogVideoX-5B (50步) | Wan2.1-1.3B |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 综合 | 0.569 | 0.534 | 0.570 |
 | 人物保真 | 0.896 | 0.871 | 0.918 |
@@ -462,7 +463,7 @@ video = pipe(
 
 **社交媒体营销**：营销团队使用提示词优化的批量生成，在共享 16GB 显存 GPU 服务器上每天创建 50+ 短视频变体用于 A/B 测试。
 
----
+* * *
 
 ## 高级用法 / 生产环境加固
 
@@ -470,7 +471,7 @@ video = pipe(
 
 高吞吐量部署时，跨多 GPU 分布：
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXPipeline
 
@@ -480,7 +481,7 @@ pipe = CogVideoXPipeline.from_pretrained(
     device_map="balanced"  # 自动跨 GPU 分布
 )
 # 使用 device_map 时不要调用 enable_model_cpu_offload()
-```
+`````
 
 多 GPU 将 CogVideoX-5B 的每卡显存降至约 24GB BF16。
 
@@ -488,7 +489,7 @@ pipe = CogVideoXPipeline.from_pretrained(
 
 将推理封装为生产 API：
 
-```python
+`````python
 from fastapi import FastAPI
 from pydantic import BaseModel
 import torch
@@ -528,13 +529,13 @@ async def generate_video(req: GenerateRequest): video = pipe(
     export_to_video(video, output_path, fps=8)
 
     return {"video_url": f"/videos/{output_id}.mp4", "status": "complete"}
-```
+`````
 
 运行方式：
 
-```bash
+`````bash
 uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
-```
+`````
 
 ### 显存优化检查清单
 
@@ -551,7 +552,7 @@ uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
 
 生产环境跟踪推理指标：
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -568,23 +569,23 @@ def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
     vram = torch.cuda.max_memory_allocated()
     VRAM_USAGE.observe(vram)
     return result
-```
+`````
 
----
+* * *
 
 ## 与替代品对比
 
 | 特性 | CogVideoX-5B | Wan 2.1-14B | HunyuanVideo-13B | Open-Sora 1.2 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **参数量** | 5B | 14B | 13B | ~7B (STDiT3) |
 | **许可证** | Apache-2.0 | Apache-2.0 | Apache-2.0 | Apache-2.0 |
@@ -608,7 +609,7 @@ def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
 
 **何时选择 Open-Sora**：用于研究灵活性和超长视频生成（最长 16 秒），但视觉质量较低。
 
----
+* * *
 
 ## 局限性 / 客观评估
 
@@ -626,7 +627,7 @@ CogVideoX 有明显的限制，在投入前需要了解：
 
 6. **无商业视频 API**：与 Runway 或 Kling 不同，CogVideoX 仅支持自托管。你需要自行管理 GPU 基础设施、扩展和队列。
 
----
+* * *
 
 ## 常见问题
 
@@ -636,11 +637,11 @@ A：CogVideoX-2B 通过 Diffusers + 顺序 CPU 卸载可在 5GB 显存上运行�
 
 **Q：如何将推理速度提升到 50 步以上？**
 
-A：使用 CogVideoXDPMScheduler 配合 `timestep_spacing="trailing"`，并将步数降至 25-30 用于草稿预览。生产加速可使用 Video-BLADE 步数蒸馏，在 CogVideoX-5B 上实现 8.89 倍加速且质量相当。启用 VAE 分块和切片，显存允许时使用 `enable_model_cpu_offload()` 替代顺序卸载。
+A：使用 CogVideoXDPMScheduler 配合 ````timestep_spacing="trailing"````，并将步数降至 25-30 用于草稿预览。生产加速可使用 Video-BLADE 步数蒸馏，在 CogVideoX-5B 上实现 8.89 倍加速且质量相当。启用 VAE 分块和切片，显存允许时使用 ````enable_model_cpu_offload()```` 替代顺序卸载。
 
 **Q：可以在自己的数据集上微调 CogVideoX 吗？**
 
-A：可以，有两条路径。SAT 框架支持全参数微调和 LoRA。Diffusers 通过 `train_cogvideox_lora.py` 支持 LoRA 微调。5B 模型需要 A100 GPU — 2B 模型可在单张 RTX 4090 上使用梯度检查点训练。学习新风格或概念建议准备 25+ 视频。
+A：可以，有两条路径。SAT 框架支持全参数微调和 LoRA。Diffusers 通过 ````train_cogvideox_lora.py```` 支持 LoRA 微调。5B 模型需要 A100 GPU — 2B 模型可在单张 RTX 4090 上使用梯度检查点训练。学习新风格或概念建议准备 25+ 视频。
 
 **Q：CogVideoX-5B 和 CogVideoX1.5-5B 有什么区别？**
 
@@ -652,17 +653,17 @@ A：商业 API 访问更简单，峰值质量更高，尤其在人物主题上�
 
 **Q：CogVideoX 输出什么文件格式？**
 
-A：Diffusers 流水线输出 PyTorch 张量。使用 `diffusers.utils` 中的 `export_to_video()` 保存为 H.264 编码的 MP4，帧率 8-16 fps（取决于模型）。其他格式可用 FFmpeg 转换：
+A：Diffusers 流水线输出 PyTorch 张量。使用 ````diffusers.utils```` 中的 ````export_to_video()```` 保存为 H.264 编码的 MP4，帧率 8-16 fps（取决于模型）。其他格式可用 FFmpeg 转换：
 
-```bash
+`````bash
 ffmpeg -i output.mp4 -c:v libx265 -crf 23 output_h265.mp4
-```
+`````
 
 **Q：有面向非技术用户的 Web UI 吗？**
 
 A：有，多种选择。官方 Hugging Face Space 提供免配置的在线推理。本地使用可安装 ComfyUI 配合 CogVideoXWrapper 节点获得可视化工作流界面。Pinokio 等第三方工具也提供一键安装。
 
----
+* * *
 
 ## 结论
 
@@ -670,17 +671,17 @@ CogVideoX 提供生产级文本生成视频能力，同时具备开源部署的�
 
 **今日开始行动清单：**
 
-1. 克隆仓库：`git clone https://github.com/zai-org/CogVideo.git`
-2. 安装依赖：`pip install -r requirements.txt`
-3. 运行首次生成：`python inference/cli_demo.py --prompt "Your prompt here" --model_path THUDM/CogVideoX-5B`
-4. 使用 `convert_demo.py` 优化提示词以获得更好质量
+1. 克隆仓库：````git clone https://github.com/zai-org/CogVideo.git````
+2. 安装依赖：````pip install -r requirements.txt````
+3. 运行首次生成：````python inference/cli_demo.py --prompt "Your prompt here" --model_path THUDM/CogVideoX-5B````
+4. 使用 ````convert_demo.py``` 优化提示词以获得更好质量
 5. 加入 [Discord](https://github.com/zai-org/CogVideo#-join-our-community) 社区获取支持和工作流分享
 
 生产部署从 Docker 配置开始，添加 FastAPI 封装，并用 Prometheus 监控。需要自定义风格时使用 SAT LoRA 微调。
 
 **加入我们的 Telegram 群组获取每日 AI 源码更新：** [@dibi8source](https://t.me/dibi8source)
 
----
+* * *
 
 
 
@@ -735,7 +736,7 @@ CogVideoX 提供生产级文本生成视频能力，同时具备开源部署的�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -745,6 +746,6 @@ CogVideoX 提供生产级文本生成视频能力，同时具备开源部署的�
 - [comfyui-workflows-complete-guide](cogvideo)
 - [comfyui-workflows-complete-guide](cogvideo)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

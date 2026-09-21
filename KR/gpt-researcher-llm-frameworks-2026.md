@@ -34,6 +34,7 @@ faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
     a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고", "그 함수를 `asyncio.run()`으로 실행하세요.'
 ---
 
+
 # GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드
 
 
@@ -41,7 +42,7 @@ faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
 
 ## 들어가며
 
-대규모 언어 모델(LLM)로 개발해 본 사람이라면 같은 벽에 부딪힌 적이 있을 것입니다. 하나의 질문을 출처가 탄탄하고 사실에 근거한 보고서로 바꾸는 일은 느리고 손이 많이 가는 작업이죠. `assafelovic/gpt-researcher`는 바로 이 과정을 자동화합니다. 웹을 검색하고(로컬 파일도 읽을 수 있습니다) 출처를 모은 뒤", "단 하나의 질의로부터 인용이 달린 리서치 보고서를 작성하는 자율 에이전트입니다. 이 가이드에서는 설치 방법", "Python에서 실행하는 법", "그리고 실제 워크플로에 연결하는 법을 살펴봅니다.
+대규모 언어 모델(LLM)로 개발해 본 사람이라면 같은 벽에 부딪힌 적이 있을 것입니다. 하나의 질문을 출처가 탄탄하고 사실에 근거한 보고서로 바꾸는 일은 느리고 손이 많이 가는 작업이죠. ```assafelovic/gpt-researcher````는 바로 이 과정을 자동화합니다. 웹을 검색하고(로컬 파일도 읽을 수 있습니다) 출처를 모은 뒤", "단 하나의 질의로부터 인용이 달린 리서치 보고서를 작성하는 자율 에이전트입니다. 이 가이드에서는 설치 방법", "Python에서 실행하는 법", "그리고 실제 워크플로에 연결하는 법을 살펴봅니다.
 
 ![gpt-researcher 개요", "via dibi8.com"](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
 
@@ -51,7 +52,7 @@ faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
 
 GPT Researcher는 스스로를 "어떤 작업이든 웹 및 로컬 리서치를 위해 설계된 최초의 오픈 심층 리서치 에이전트"라고 소개합니다. 질의를 주면 리서치 경로를 계획하고, 여러 차례 검색을 실행하며, 결과를 읽고 걸러낸 뒤, 인용이 포함된 보고서로 종합합니다.
 
-이 프로젝트는 GitHub 스타 2만 7천 개 이상을 보유하고 있으며, `assafelovic`이 Apache-2.0 라이선스로 유지보수하고 있습니다. 기본 브랜치는 `master`입니다.
+이 프로젝트는 GitHub 스타 2만 7천 개 이상을 보유하고 있으며, ````assafelovic````이 Apache-2.0 라이선스로 유지보수하고 있습니다. 기본 브랜치는 ````master````입니다.
 
 ## GPT Researcher의 동작 방식
 
@@ -79,56 +80,56 @@ GPT Researcher를 실행하는 일반적인 방법은 두 가지입니다. 직�
 
 먼저 Python이 설치되어 있는지 확인합니다.
 
-```sh
+`````sh
 python3 --version
-```
+`````
 
 그런 다음 패키지를 설치합니다.
 
-```sh
+`````sh
 pip install gpt-researcher
-```
+`````
 
 ### .env로 API 키 설정
 
-GPT Researcher는 LLM(기본값 OpenAI)과 검색 리트리버(기본값 Tavily)를 사용합니다. 프로젝트 루트에 `.env` 파일을 만들고 두 키를 모두 넣으세요.
+GPT Researcher는 LLM(기본값 OpenAI)과 검색 리트리버(기본값 Tavily)를 사용합니다. 프로젝트 루트에 ````.env```` 파일을 만들고 두 키를 모두 넣으세요.
 
-```plaintext
+`````plaintext
 OPENAI_API_KEY=your_openai_key_here
 TAVILY_API_KEY=your_tavily_key_here
-```
+`````
 
-OpenAI 호환 커스텀 엔드포인트를 가리킨다면 `OPENAI_BASE_URL`도 설정합니다. 첫 실행에서 가장 흔한 오류는 키 누락입니다. 인증 오류나 "API key not found" 같은 오류가 보이면, `.env` 파일이 존재하는지, 그리고 researcher를 호출하기 전에 제대로 로드되는지 확인하세요.
+OpenAI 호환 커스텀 엔드포인트를 가리킨다면 ````OPENAI_BASE_URL````도 설정합니다. 첫 실행에서 가장 흔한 오류는 키 누락입니다. 인증 오류나 "API key not found" 같은 오류가 보이면, ````.env```` 파일이 존재하는지, 그리고 researcher를 호출하기 전에 제대로 로드되는지 확인하세요.
 
 ### Docker 사용 (프런트엔드 포함 전체 앱)
 
 전체 애플리케이션(FastAPI 서버 + 웹 UI)을 실행하려면 저장소를 클론하고 Docker Compose를 사용합니다.
 
-```sh
+`````sh
 git clone https://github.com/assafelovic/gpt-researcher.git
 cd gpt-researcher
 docker-compose up --build
-```
+`````
 
-기본적으로 Python 서버는 `localhost:8000`에서, 프런트엔드는 `localhost:3000`에서 시작됩니다.
+기본적으로 Python 서버는 ````localhost:8000````에서, 프런트엔드는 ````localhost:3000````에서 시작됩니다.
 
 ### Docker 없이 서버 실행
 
 FastAPI 서버를 직접 띄울 수도 있습니다.
 
-```sh
+`````sh
 python -m uvicorn main:app --reload
-```
+`````
 
-그런 다음 브라우저에서 `http://localhost:8000`을 엽니다.
+그런 다음 브라우저에서 ````http://localhost:8000````을 엽니다.
 
 ## 핵심 사용법
 
-Python API는 `GPTResearcher` 클래스를 중심으로 구성됩니다. 리서치와 보고서 작성은 모두 **비동기**이므로, async 함수 안에서 `await`로 호출합니다.
+Python API는 ````GPTResearcher```` 클래스를 중심으로 구성됩니다. 리서치와 보고서 작성은 모두 **비동기**이므로, async 함수 안에서 ````await````로 호출합니다.
 
 ### 예제 1: 기본 리서치 보고서
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -141,13 +142,13 @@ async def main(): query = "why is Nvidia stock going up?"
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 ### 예제 2: 보고서 유형 선택
 
-`GPTResearcher`는 `report_type` 인자를 받습니다. 덕분에 기본 리서치 보고서 대신 짧은 요약, 자료 목록, 또는 분량이 더 긴 상세 보고서를 요청할 수 있습니다.
+````GPTResearcher````는 ````report_type```` 인자를 받습니다. 덕분에 기본 리서치 보고서 대신 짧은 요약, 자료 목록, 또는 분량이 더 긴 상세 보고서를 요청할 수 있습니다.
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -160,13 +161,13 @@ async def main(): researcher = GPTResearcher(
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 ### 예제 3: 수집된 출처 확인
 
 리서치가 끝나면 에이전트가 사용한 기반 컨텍스트와 출처 URL을 꺼낼 수 있습니다. 검수하거나 직접 인용 목록을 만들 때 유용합니다.
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -181,7 +182,7 @@ async def main(): researcher = GPTResearcher(query="How does AI impact society?"
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 이 예제들은 출발점일 뿐입니다. LLM과 리트리버는 설정으로 지정되므로, 같은 코드를 그대로 다른 제공자에서도 실행할 수 있습니다.
 
@@ -193,9 +194,9 @@ GPT Researcher는 순수 비동기 라이브러리에 선택적 HTTP 서비스�
 
 OpenAI나 Tavily에만 묶이지 않습니다. 기본 LLM은 OpenAI, 기본 리트리버는 Tavily이지만, 둘 다 환경 변수와 설정 파일로 바꿀 수 있습니다. 예를 들어 기본 웹 검색과 MCP 기반 출처를 함께 쓰려면 리트리버 목록을 설정합니다.
 
-```sh
+`````sh
 export RETRIEVER=tavily,mcp
-```
+`````
 
 이 하이브리드 구성은 에이전트가 일반 웹 검색과, 모델 컨텍스트 프로토콜(MCP)을 통한 전문 데이터 소스 양쪽에서 자료를 끌어오게 합니다.
 
@@ -203,7 +204,7 @@ export RETRIEVER=tavily,mcp
 
 API가 await 두 번 호출로 끝나기 때문에, GPT Researcher를 Jupyter 노트북, 백그라운드 작업, 또는 FastAPI 엔드포인트에 그대로 넣을 수 있습니다.
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -213,7 +214,7 @@ async def research(topic: str) -> str: researcher = GPTResearcher(query=topic)
 
 report = asyncio.run(research("current trends in AI ethics"))
 print(report)
-```
+`````
 
 더 복잡한 파이프라인을 위해, 저장소에는 LangGraph와 AG2로 구축한 멀티 에이전트 구성도 함께 제공됩니다. 여러 전문 에이전트가 협력해 더 긴 보고서를 만들어 냅니다.
 
@@ -244,7 +245,7 @@ GPT Researcher는 '자율 리서치 에이전트' 범주에 속합니다. 경쟁
 | **스타** | 27,473 |
 | **언어** | Python |
 | **라이선스** | Apache-2.0 |
-| **유지보수자** | Assaf Elovic (`assafelovic`) |
+| **유지보수자** | Assaf Elovic (````assafelovic````) |
 | **초점** | 인용 보고서를 출력하는 웹 + 로컬 심층 리서치 |
 | **기본 브랜치** | master |
 | **LLM 제공자** | 기본값 OpenAI; 환경 변수/설정으로 교체 가능 |
@@ -272,14 +273,14 @@ GPT Researcher는 유능하지만, 다음 트레이드오프를 알아 두어야
 
 ## 맺음말
 
-`assafelovic/gpt-researcher`는 계획, 웹 검색, 스크래핑, LLM 작성을 조율하여 하나의 질의를 출처와 구조를 갖춘 보고서로 바꿔 줍니다. 이 모든 것이 작고 단순한 비동기 API 뒤에 숨어 있죠. 2만 7천 개 이상의 스타, Apache-2.0 라이선스, 설정 가능한 LLM/리트리버 스택, 그리고 번들된 웹 앱까지 갖춰, 리서치 자동화의 실용적인 빌딩 블록입니다. 다음 단계: 두 개의 API 키를 설정하고, 실제 질문으로 기본 Python 예제를 돌려 본 뒤, 규모를 키우기 전에 출처를 먼저 확인하세요.
+````assafelovic/gpt-researcher```는 계획, 웹 검색, 스크래핑, LLM 작성을 조율하여 하나의 질의를 출처와 구조를 갖춘 보고서로 바꿔 줍니다. 이 모든 것이 작고 단순한 비동기 API 뒤에 숨어 있죠. 2만 7천 개 이상의 스타, Apache-2.0 라이선스, 설정 가능한 LLM/리트리버 스택, 그리고 번들된 웹 앱까지 갖춰, 리서치 자동화의 실용적인 빌딩 블록입니다. 다음 단계: 두 개의 API 키를 설정하고, 실제 질문으로 기본 Python 예제를 돌려 본 뒤, 규모를 키우기 전에 출처를 먼저 확인하세요.
 
 대규모 스크래핑에는 회전 프록시가 필요합니다 — [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)가 표준적인 선택지입니다.
 
 - 오픈소스 AI 도구 소식을 받아보려면 [dibi8 영어 Telegram 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
 - 다음 읽을거리: [dibi8의 관련 가이드](dibi8-internal-link).
 
----
+* * *
 
 **출처 및 더 읽어보기**: - GitHub 저장소: https://github.com/assafelovic/gpt-researcher
 - 공식 문서 / README: https://github.com/assafelovic/gpt-researcher#readme
@@ -347,7 +348,7 @@ GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

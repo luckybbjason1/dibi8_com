@@ -23,13 +23,14 @@ tags: ["]
 aliases:
   - /posts/vectorbt-quantitative-backtesting/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Backtesting Is Too Slow
 
 If you have ever waited 20 minutes for a pandas-based backtest to finish iterating through 10 years of OHLCV data across 50 symbols", "you are not alone. A 2025 quantitative finance survey found that **73% of retail quants spend more time waiting for backtests than analyzing results**. Event-driven backtesters like Zipline or Backtrader excel at realism but crawl when you need to test thousands of parameter combinations.
 
-Enter VectorBT — a Python library that reimagines backtesting as a vectorized computation problem. By leveraging **NumPy arrays and Numba JIT compilation**", "VectorBT processes **over 1 million trades per second** on a single CPU core. The GitHub repository `polakowo/vectorbt` has accumulated **8", "900+ stars** and is maintained by Oleg Polakowo under the Apache-2.0 license. Released at v0.27.2 as of May 2026", "it supports Python 3.9+ and integrates seamlessly with pandas", "Plotly", "and scikit-learn.
+Enter VectorBT — a Python library that reimagines backtesting as a vectorized computation problem. By leveraging **NumPy arrays and Numba JIT compilation**", "VectorBT processes **over 1 million trades per second** on a single CPU core. The GitHub repository ```polakowo/vectorbt```` has accumulated **8", "900+ stars** and is maintained by Oleg Polakowo under the Apache-2.0 license. Released at v0.27.2 as of May 2026", "it supports Python 3.9+ and integrates seamlessly with pandas", "Plotly", "and scikit-learn.
 
 This guide covers everything: installation", "core concepts", "real code examples", "production hardening", "and honest limitations. Whether you are testing a simple moving-average crossover or running a full walk-forward optimization pipeline", "VectorBT will change how you think about backtesting speed.
 
@@ -41,17 +42,17 @@ VectorBT (Vector Backtesting) is a Python library for backtesting trading strate
 
 VectorBT's speed comes from three architectural decisions: ### NumPy-First Data Representation
 
-All price data lives as NumPy ndarrays. A DataFrame of 10 years of daily data for 100 assets becomes a 2D array of shape `(2", "520", "100)` — approximately 252 trading days per year. No row-wise iteration happens anywhere in the hot path.
+All price data lives as NumPy ndarrays. A DataFrame of 10 years of daily data for 100 assets becomes a 2D array of shape ````(2", "520", "100)```` — approximately 252 trading days per year. No row-wise iteration happens anywhere in the hot path.
 
 ### Numba JIT Compilation
 
-Critical path functions are decorated with `@njit` from Numba", "compiling Python to machine code at runtime. A moving-average crossover that takes 12 seconds in raw pandas drops to **0.03 seconds** in VectorBT.
+Critical path functions are decorated with ````@njit```` from Numba", "compiling Python to machine code at runtime. A moving-average crossover that takes 12 seconds in raw pandas drops to **0.03 seconds** in VectorBT.
 
 ### Broadcasting for Parameter Grids
 
-VectorBT's `vbt` module can broadcast a signal generation function across parameter combinations automatically. Testing 50 window sizes × 10 assets × 2 entry rules does not require nested for-loops — it becomes a single tensor operation.
+VectorBT's ````vbt```` module can broadcast a signal generation function across parameter combinations automatically. Testing 50 window sizes × 10 assets × 2 entry rules does not require nested for-loops — it becomes a single tensor operation.
 
-```python
+`````python
 import vectorbt as vbt
 import numpy as np
 import pandas as pd
@@ -63,26 +64,26 @@ price = vbt.YFData.download(
 
 print(f"Data shape: {price.shape}")  # (2", "210", ") — daily closes
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
-```
+`````
 
 ## Installation & Setup: Under 5 Minutes
 
 VectorBT installs cleanly via pip. The base package includes Numba", "NumPy", "and pandas integration. Optional dependencies add yfinance data fetching and Plotly charting.
 
-```bash
+`````bash
 # Base installation
 pip install vectorbt
 
 # With all optional dependencies (recommended)
 pip install "vectorbt[all"]"
-```
+`````
 
-Verify the installation: ```python
+Verify the installation: `````python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 or later
-```
+`````
 
-For reproducibility, pin your environment: ```bash
+For reproducibility, pin your environment: `````bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -90,17 +91,17 @@ numpy==1.26.4
 pandas==2.2.3
 yfinance==0.2.54
 plotly==5.24.1
-```
+`````
 
-Common installation issue on macOS: Numba requires `llvmlite`, which needs Xcode Command Line Tools: ```bash
+Common installation issue on macOS: Numba requires ``llvmlite``, which needs Xcode Command Line Tools: `````bash
 xcode-select --install  # Run this first if Numba installation fails
-```
+`````
 
 ## Your First Backtest: Moving Average Crossover
 
 Let us build the simplest viable strategy: go long when the 20-day SMA crosses above the 50-day SMA, exit on the reverse.
 
-```python
+`````python
 import vectorbt as vbt
 import pandas as pd
 
@@ -132,13 +133,13 @@ portfolio = vbt.Portfolio.from_signals(
 # Results
 print(portfolio.total_return())
 print(portfolio.sharpe_ratio())
-```
+`````
 
 This runs in under **2 seconds** for three assets across six years. The same backtest in Backtrader takes approximately **90 seconds**.
 
 ## Parameter Optimization: Grid Search at Warp Speed
 
-The real power of VectorBT emerges when you sweep parameters. Let us test MA windows from 5 to 200: ```python
+The real power of VectorBT emerges when you sweep parameters. Let us test MA windows from 5 to 200: `````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -167,13 +168,13 @@ portfolio = vbt.Portfolio.from_signals(
 best_idx = portfolio.sharpe_ratio().idxmax()
 print(f"Best params: {best_idx}")
 print(f"Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}")
-```
+`````
 
 This grid of **180 parameter combinations** evaluates in approximately **3.5 seconds** on an M2 MacBook Air. That is **50 combinations per second**.
 
 ## Walk-Forward Analysis: Robust Strategy Validation
 
-Backtesting on a single period overfits. Walk-forward analysis (WFA) splits data into in-sample training and out-of-sample testing windows. VectorBT implements this via `Portfolio.from_signals` with date slicing: ```python
+Backtesting on a single period overfits. Walk-forward analysis (WFA) splits data into in-sample training and out-of-sample testing windows. VectorBT implements this via ``Portfolio.from_signals`` with date slicing: `````python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -230,13 +231,13 @@ for i in range(n_splits): # Define train/test windows
 
 results_df = pd.DataFrame(results)
 print(results_df[["test_sharpe", "test_return"]].mean())
-```
+`````
 
 Mean out-of-sample Sharpe ratio below 0.5 signals the strategy is not robust — regardless of in-sample performance.
 
 ## Integration with Machine Learning
 
-VectorBT pairs naturally with scikit-learn for ML-driven signals. Train a classifier to predict next-day direction, then feed predictions into VectorBT for realistic execution simulation: ```python
+VectorBT pairs naturally with scikit-learn for ML-driven signals. Train a classifier to predict next-day direction, then feed predictions into VectorBT for realistic execution simulation: `````python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -292,11 +293,11 @@ ml_portfolio = vbt.Portfolio.from_signals(
 print(f"ML Strategy Return: {ml_portfolio.total_return():.2%}")
 print(f"ML Strategy Sharpe: {ml_portfolio.sharpe_ratio():.2f}")
 print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}")
-```
+`````
 
 ## Portfolio Optimization with VectorBT
 
-VectorBT PRO (paid tier, $299/year) adds portfolio-level optimization via Markowitz mean-variance and Black-Litterman models. The open-source version still supports multi-asset weighting: ```python
+VectorBT PRO (paid tier, $299/year) adds portfolio-level optimization via Markowitz mean-variance and Black-Litterman models. The open-source version still supports multi-asset weighting: `````python
 import vectorbt as vbt
 import numpy as np
 
@@ -328,7 +329,7 @@ portfolio = vbt.Portfolio.from_holding(
 print(f"\nCAGR: {portfolio.total_return() ** (1/4) - 1:.2%}")
 print(f"Sharpe: {portfolio.sharpe_ratio():.2f}")
 print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
-```
+`````
 
 For live trading on major exchanges, connect your account via API. Binance offers deep liquidity and low fees for crypto algorithmic trading — [sign up here](https://www.bsmkweb.cc/register?ref=DIBI8). For derivatives and advanced order types, [OKX](https://www.promoohubly.com/join/12190433) provides institutional-grade APIs.
 
@@ -336,15 +337,15 @@ For live trading on major exchanges, connect your account via API. Binance offer
 
 | Scenario | VectorBT | Backtrader | Zipline | pandas loop |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | MA crossover (3 assets, 6yr) | **1.8s** | 92s | 45s | 340s |
 | Grid search (180 params) | **3.5s** | N/A | 810s | 6,200s |
@@ -363,7 +364,7 @@ A systematic crypto fund uses VectorBT as the first stage of their signal valida
 
 ### Custom Indicators
 
-VectorBT's `IndicatorFactory` converts any function into a vectorized indicator: ```python
+VectorBT's ``IndicatorFactory`` converts any function into a vectorized indicator: `````python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
@@ -388,11 +389,11 @@ CustomMomentum = vbt.IF(
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
 cm = CustomMomentum.run(price, period=[7, 14, 30])
 print(cm.momentum)
-```
+`````
 
 ### Risk Management: Stop Losses and Take Profits
 
-```python
+`````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
@@ -413,11 +414,11 @@ portfolio = vbt.Portfolio.from_signals(
 print(f"Return: {portfolio.total_return():.2%}")
 print(f"Win rate: {portfolio.trades.win_rate():.2%}")
 print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
-```
+`````
 
 ### Parallel Execution
 
-VectorBT's tensor operations already saturate single cores. For multi-core scaling, split parameter grids across processes: ```python
+VectorBT's tensor operations already saturate single cores. For multi-core scaling, split parameter grids across processes: `````python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
@@ -435,21 +436,21 @@ params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.re
 chunks = np.array_split(params, 4)
 
 with Pool(4) as p: results = p.map(run_chunk, chunks)
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | VectorBT | Backtrader | Zipline | QuantConnect (Lean) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Execution model | Vectorized | Event-driven | Event-driven | Event-driven |
 | Speed (trades/sec) | **1M+** | ~500 | ~1,000 | ~5,000 (cloud) |
@@ -475,7 +476,7 @@ VectorBT is not a universal solution. Here is what it does not do: 1. **No live 
 
 2. **Vectorized approximations.** The vectorized model fills orders at the same bar's close by default. Real slippage and market impact are approximated, not simulated tick-by-tick. High-frequency strategies will see distorted results.
 
-3. **Memory explosion on large grids.** A 5D parameter grid with 50 values each creates 312 million combinations. This exhausts RAM quickly. Use `chunk_size` parameters or PRO's disk-backed arrays.
+3. **Memory explosion on large grids.** A 5D parameter grid with 50 values each creates 312 million combinations. This exhausts RAM quickly. Use ````chunk_size```` parameters or PRO's disk-backed arrays.
 
 4. **Single-asset focus.** Multi-asset rebalancing logic is possible but less ergonomic than dedicated portfolio optimizers like PyPortfolioOpt.
 
@@ -507,7 +508,7 @@ Absolutely. Any pandas DataFrame or NumPy ndarray of OHLCV data works. VectorBT 
 
 **Does VectorBT support short selling?**
 
-Yes. Set `direction="short"` in `Portfolio.from_signals`, or use `direction="both"` for long/short pairs trading strategies. Shorting includes margin and borrow-cost modeling.
+Yes. Set ````direction="short"```` in ````Portfolio.from_signals````, or use ````direction="both"``` for long/short pairs trading strategies. Shorting includes margin and borrow-cost modeling.
 
 **How do I get started with crypto data?**
 
@@ -593,4 +594,4 @@ This article contains affiliate links to Binance, OKX, Minara, and related platf
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

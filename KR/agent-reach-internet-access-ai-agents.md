@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 ---
 
+
 # Agent-Reach: 무료 인터넷 접근성
 
 AI 어시스턴트가 학습 시점의 정보만 얘기할 때의 frustraion을 기억하십니까? Claude나 GPT-4가 실시간 정보를 찾지 못해 우물거리는 모습을 보면서 frustration을 느껴본 적이 있을 것입니다.
@@ -40,54 +41,54 @@ Agent-Reach는 Panniantong이 만든 오픈소스 CLI 도구로, AI 에이전트
 - Git (선택사항, 개발용)
 
 ### 빠른 설치
-```bash
+````bash
 pip install agent-reach
-```
+`````
 
 ### 소스에서 설치
-```bash
+`````bash
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
 pip install -e .
-```
+`````
 
 ### 설치 확인
-```bash
+`````bash
 agent-reach --version
 # agent-reach vX.X.X 출력
-```
+`````
 
 ## 핵심 기능
 
 ### 1. Twitter/X 검색
-```bash
+`````bash
 # 최근 트윗 검색
 agent-reach twitter search "AI agents" --limit 20
 
 # 사용자 타임라인
 agent-reach twitter user @elonmusk --tweets 50
-```
+`````
 
 ### 2. Reddit 스크래핑
-```bash
+`````bash
 # 서브레딧 인기 게시물 브라우징
 agent-reach reddit browse r/generativeai --top 20
 
 # 서브레딧 간 검색
 agent-reach reddit search "Claude Code" --sort new
-```
+`````
 
 ### 3. YouTube 자막
-```bash
+`````bash
 # 비디오 자막 가져오기
 agent-reach youtube transcript <video_url>
 
 # 검색 및 상위 결과
 agent-reach youtube search "MCP protocol tutorial" --limit 10
-```
+`````
 
 ### 4. GitHub 인텔리전스
-```bash
+`````bash
 # 저장소 검색
 agent-reach github search "plugin system ai" --sort stars
 
@@ -96,25 +97,25 @@ agent-reach github repo deepseek-ai/deepseek-harness
 
 # 최근 이슈 확인
 agent-reach github issues Panniantong/Agent-Reach --open --limit 10
-```
+`````
 
 ### 5. 웹 페이지 스크래핑
-```bash
+`````bash
 # URL에서 읽기 쉬운 콘텐츠 추출
 agent-reach web extract "https://example.com/article"
 
 # 구조화된 데이터 가져오기
 agent-reach web extract "https://example.com" --format json
-```
+`````
 
 ### 6. RSS 피드 모니터링
-```bash
+`````bash
 # RSS 피드 업데이트 모니터링
 agent-reach rss monitor "https://hnrss.org/frontpage" --interval 300
 
 # 피드 항목 구문 분석 및 요약
 agent-reach rss fetch "https://blog.openai.com/rss.xml" --limit 10
-```
+`````
 
 ## 실제 사용 사례
 
@@ -125,7 +126,7 @@ agent-reach rss fetch "https://blog.openai.com/rss.xml" --limit 10
 3. 관련 GitHub 저장소 확인
 4. 요약 보고서 컴파일
 
-```bash
+`````bash
 #!/bin/bash
 # weekly-research.sh
 
@@ -146,41 +147,41 @@ agent-reach github search "ai agent framework" --sort stars --json > github.json
 # 결과 결합
 python combine.py twitter.json reddit.json github.json
 echo "Report generated: weekly-report.md"
-```
+`````
 
 ### 사례 2: 콘텐츠 집계
 
-니치에서 긴급 뉴스를 모니터링하려면: ```bash
+니치에서 긴급 뉴스를 모니터링하려면: `````bash
 # r/MachineLearning의 새 게시물 모니터링
 agent-reach reddit monitor r/MachineLearning --interval 300 --last-only
 
 # 제품 Twitter 언급 추적
 agent-reach twitter monitor --query "myproduct" --interval 600
-```
+`````
 
 ### 사례 3: 경쟁 분석
 
-경쟁사 간 기능 비교: ```bash
+경쟁사 간 기능 비교: `````bash
 # GitHub 비교
 for repo in deepseek-ai/deepseek-harness addyosmani/agent-skills diegosouzapw/OmniRoute; do
   agent-reach github repo "$repo" --json
 done | jq '. | {name: .full_name, stars: .stargazers_count, lang: .language}'
-```
+`````
 
 ## AI 에이전트 통합
 
 ### Claude Code와 통합
-```bash
+`````bash
 # 일회성 설정
 claude code
 
 # 세션에서
 > /plugin agent-reach
 > agent-reach github search "langchain alternatives" --limit 10
-```
+`````
 
 ### Cursor와 통합
-Cursor가 Agent-Reach를 터미널 명령어로 사용하도록 구성: ```json
+Cursor가 Agent-Reach를 터미널 명령어로 사용하도록 구성: `````json
 // .cursorrc
 {
   "terminal": {
@@ -189,14 +190,14 @@ Cursor가 Agent-Reach를 터미널 명령어로 사용하도록 구성: ```json
     }
   }
 }
-```
+`````
 
-그런 다음 Cursor에서: ```
+그런 다음 Cursor에서: `````
 > ar reddit search "Claude Code vs Cursor"
-```
+`````
 
 ### 커스텀 스크립트와 통합
-Python 통합은 간단합니다: ```python
+Python 통합은 간단합니다: `````python
 import subprocess
 import json
 
@@ -210,10 +211,10 @@ def search_twitter(query: str, limit: int = 20) -> list: result = subprocess.run
 # 사용법
 tweets = search_twitter("AI agents", 10)
 for tweet in tweets: print(f"@{tweet['user']}: {tweet['text'][:100]}...")
-```
+`````
 
 ### LangChain과 통합
-Agent-Reach를 LangChain 파이프라인에 통합: ```python
+Agent-Reach를 LangChain 파이프라인에 통합: `````python
 from langchain.tools import Tool
 from langchain.agents import initialize_agent, AgentType
 
@@ -233,10 +234,10 @@ tools = [
 ]
 
 agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
-```
+`````
 
 ### AutoGPT와 통합
-Agent-Reach를 내장 도구로 사용: ```json
+Agent-Reach를 내장 도구로 사용: `````json
 {
   "tools": ["agent-reach"],
   "config": {
@@ -244,7 +245,7 @@ Agent-Reach를 내장 도구로 사용: ```json
     "cache_enabled": true
   }
 }
-```
+`````
 
 ## 성능 벤치마크
 
@@ -259,20 +260,20 @@ Agent-Reach를 내장 도구로 사용: ```json
 **판단:** 느리지만 사용 가능합니다. 배치 작업과 긴급하지 않은 작업에는 무료 비용이 속도 차이보다 가치 있습니다. 프로덕션에서는 반복 요청을 최소화하기 위해 결과를 공격적으로 캐시합니다.
 
 ### 캐싱 전략
-```bash
+`````bash
 # 빠른 반복 쿼리를 위해 캐싱 활성화
 agent-reach twitter search "AI agents" --cache --ttl 3600
 
 # 캐시 수동 지우기
 agent-reach cache clear
-```
+`````
 
 ## 속도 제한 및 모범 사례
 
 Agent-Reach는 기본 속도 제한을 존중하지만, 책임감 있게 사용해야 합니다: ### 해야 할 것
-- 요청 간 지연 추가 (`--delay 1`)
-- 로컬 캐싱 (`--cache`)
-- 비대 모드에서는 `--quiet` 사용
+- 요청 간 지연 추가 (````--delay 1````)
+- 로컬 캐싱 (````--cache````)
+- 비대 모드에서는 ````--quiet```` 사용
 - 가능한 한 robots.txt 준수
 
 ### 하지 말 것
@@ -280,13 +281,13 @@ Agent-Reach는 기본 속도 제한을 존중하지만, 책임감 있게 사용�
 - 비공개 콘텐츠 스크래핑하지 않기
 - 허가 없이 상업적 재배포 하지 않기
 
-```bash
+`````bash
 # 모범 사례: 지연 추가
 agent-reach twitter search "AI" --limit 20 --delay 2
 
 # 모범 사례: 캐싱
 agent-reach reddit browse r/LocalLLaMA --cache --ttl 3600
-```
+`````
 
 ## 제한사항 및 솔직한 평가
 
@@ -320,31 +321,31 @@ Agent-Reach는 강력하지만 알아야 할 현실적인 트레이드오프가 
 ## 문제 해결
 
 ### 일반 오류: 속도 제한 초과
-```bash
+`````bash
 # 속도 제한에 도달하면 요청 간 지연 추가
 agent-reach twitter search "AI" --limit 10 --delay 3
 
 # 또는 내장 throttling으로 배치 모드 사용
 agent-reach batch run research-script.sh --throttle 2
-```
+`````
 
 ### 일반 오류: Cloudflare에 차단됨
-일부 사이트는 Cloudflare 보호를 사용합니다. 우회 방법: ```bash
+일부 사이트는 Cloudflare 보호를 사용합니다. 우회 방법: `````bash
 # 사용 가능한 경우 주거용 프록시 사용
 agent-reach web extract "https://example.com" --proxy http://your-proxy:8080
 
 # 또는 모바일 사용자 에이전트 사용
 agent-reach web extract "https://example.com" --ua mobile
-```
+`````
 
 ### 일반 오류: 빈 결과
-```bash
+`````bash
 # 플랫폼이 지원되는지 확인
 agent-reach platforms list
 
 # 더 넓은 검색어로 시도
 agent-reach reddit search "AI agents 2026" --limit 50
-```
+`````
 
 ## FAQ
 
@@ -361,7 +362,7 @@ agent-reach reddit search "AI agents 2026" --limit 50
 Agent-Reach는 간단한 검색에는 더 빠르지만 전체 브라우저 자동화만큼 유연하지 않습니다. 빠른 데이터 추출에는 Agent-Reach를, 복잡한 상호 작용에는 Playwright를 사용하십시오.
 
 ### Q: 속도 제한은 어떻게 되나요?
-기본값은 플랫폼당 초당 1개 요청입니다. `--delay` 플래그로 증가시킬 수 있지만 플랫폼의 약관을 존중하십시오.
+기본값은 플랫폼당 초당 1개 요청입니다. ````--delay``` 플래그로 증가시킬 수 있지만 플랫폼의 약관을 존중하십시오.
 
 ### Q: 상업적 연구에 사용할 수 있습니까?
 내부 비즈니스 인텔리전스에는 가능합니다. 스크래핑 데이터 재판매의 경우 법률 자문을 구하십시오. 대부분 플랫폼은 상업적 재배포를 금지합니다.
@@ -379,7 +380,7 @@ Agent-Reach는 AI 에이전트의 인터넷 접근을 민주화했습니다. 이
 
 Agent-Reach를 사용해 보셨나요? 가장 좋아하는 사용 사례는 무엇입니까? 댓글이나 GitHub에 이슈를 열어 공유하십시오!
 
----
+* * *
 
 **출처 및 추가 읽기:**
 - GitHub 저장소: https://github.com/Panniantong/Agent-Reach
@@ -416,7 +417,7 @@ Agent-Reach를 사용해 보셨나요? 가장 좋아하는 사용 사례는 무�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -426,6 +427,6 @@ Agent-Reach를 사용해 보셨나요? 가장 좋아하는 사용 사례는 무�
 - [ray-distributed-ai-framework-complete-guide](agent-reach-internet-access-ai-agents)
 - [cleanlab-11k-star-ai-data-cleaning](agent-reach-internet-access-ai-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

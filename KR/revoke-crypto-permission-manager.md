@@ -13,6 +13,7 @@ aliases:
   - /kr/posts/revoke-crypto-permission-manager/
 ---
 
+
 {{</* resource-info */>}}
 
 **날짜:** 2026-05-19  
@@ -21,7 +22,7 @@ aliases:
 **GitHub:** [RevokeCash/revoke.cash](https://github.com/RevokeCash/revoke.cash)（★ 2,500 · GPL-3.0 라이선스）  
 **제휴 공개:** *본 기사에는 제휴 링크가 포함되어 있습니다. 파트너 링크를 통해 등록하시면 커미션을 받을 수 있으며, 이는 추가 비용 없이 제공됩니다. 우리의 편집 의견은 독립적입니다.*
 
----
+* * *
 
 ## 소개: 토큰 승인의 숨겨진 위험
 
@@ -33,11 +34,11 @@ Uniswap에서 토큰을 교환하거나, 수익 볼트에 입금하거나, NFT�
 
 **👉 안전한 거래소에서 거래하고 싶으신가요? [Binance에 등록](https://www.bsmkweb.cc/register?ref=DIBI8)하세요 — 세계에서 가장 신뢰받는 암호화폐 플랫폼입니다.**
 
----
+* * *
 
 ## Revoke.cash란? 토큰 승인 이해하기
 
-DeFi 프로토콜과 상호 작용하려면 먼저 프로토콜의 스마트 계약이 귀하의 토큰에 액세스할 수 있도록 **승인**해야 합니다. 이는 ERC-20 메커니즘으로, 계약이 임의로 자금을 사용하는 것을 방지하도록 설계되었습니다. 그러나 대부분의 dApp은 사용자가 향후 거래에서 가스를 절약할 수 있도록 **무제한 승인**(`type(uint256).max`)을 요청합니다.
+DeFi 프로토콜과 상호 작용하려면 먼저 프로토콜의 스마트 계약이 귀하의 토큰에 액세스할 수 있도록 **승인**해야 합니다. 이는 ERC-20 메커니즘으로, 계약이 임의로 자금을 사용하는 것을 방지하도록 설계되었습니다. 그러나 대부분의 dApp은 사용자가 향후 거래에서 가스를 절약할 수 있도록 **무제한 승인**(```type(uint256).max````)을 요청합니다.
 
 문제는 무엇입니까? 해당 승인은 다음 경우에도 영원히 지속됩니다: - 프로토콜이 해킹당한 경우
 - dApp 사용을 중단한 경우
@@ -48,7 +49,7 @@ Revoke.cash는 여러 블록체인에서 모든 토큰 승인을 **보고 취소
 
 ### ERC-20 승인 메커니즘
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -60,9 +61,9 @@ interface IERC20 {
 
 // Uniswap을 "승인"하면 다음이 발생합니다: // token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
 // 이 숫자 = type(uint256).max = 무제한
-```
+`````
 
----
+* * *
 
 ## 빠른 시작 가이드: Revoke.cash 사용하기
 
@@ -70,7 +71,7 @@ Revoke.cash로 시작하는 데 2분이 채 걸리지 않습니다. 승인을 �
 
 ### 1단계 — Revoke.cash 방문
 
-```bash
+`````bash
 # 공식 웹사이트(URL 항상 확인)
 # https://revoke.cash
 # 
@@ -78,11 +79,11 @@ Revoke.cash로 시작하는 데 2분이 채 걸리지 않습니다. 승인을 �
 # - revoke-cash.app (가짜)
 # - revok3.cash (가짜)
 # 첫 방문 후 공식 URL을 즐겨찾기에 추가하세요
-```
+`````
 
 ### 2단계 — 지갑 연결
 
-```javascript
+`````javascript
 // Revoke.cash는 모든 주요 지갑을 지원합니다
 const supportedWallets = [
   "MetaMask",
@@ -94,11 +95,11 @@ const supportedWallets = [
   "Phantom (EVM 모드)",
   "Trust Wallet"
 ];
-```
+`````
 
 ### 3단계 — 모든 활성 승인 보기
 
-```bash
+`````bash
 # Revoke.cash 대시보드 표시: # ┌────────────────┬─────────────────┬──────────────┬──────────┐
 # │ 토큰           │ 승인된 지출자   │ 금액         │ 위험     │
 # ├────────────────┼─────────────────┼──────────────┼──────────┤
@@ -107,11 +108,11 @@ const supportedWallets = [
 # │ DAI            │ 1inch           │ 5,000 DAI    │ 🟡 중간  │
 # │ USDT           │ 알 수 없는 계약 │ 무제한       │ 🔴 심각  │
 # └────────────────┴─────────────────┴──────────────┴──────────┘
-```
+`````
 
 ### 4단계 — 위험한 승인 취소
 
-```javascript
+`````javascript
 // Revoke.cash는 금액 = 0인 새 승인을 실행합니다
 // 이는 이전의 무제한 승인을 효과적으로 취소합니다
 
@@ -126,9 +127,9 @@ const tokenContract = new ethers.Contract(
 const tx = await tokenContract.approve("0xSuspiciousContract", 0);
 await tx.wait();
 console.log("승인이 취소되었습니다! 거래:", tx.hash);
-```
+`````
 
----
+* * *
 
 ## 심층 분석: Revoke.cash의 작동 방식
 
@@ -136,7 +137,7 @@ Revoke.cash는 특별한 권한이 없습니다 — 기본 블록체인 작업�
 
 ### 기술 메커니즘
 
-```solidity
+`````solidity
 // "승인을 취소"하려면 토큰 0개만 승인하면 됩니다
 // 이것이 이전 승인을 제거하는 유일한 방법입니다
 
@@ -151,11 +152,11 @@ function setLimitedApproval(address token, address spender, uint256 amount) exte
     IERC20(token).approve(spender, amount);
     // 지출자는 최대 amount 토큰만 지출할 수 있습니다
 }
-```
+`````
 
 ### 이벤트 로그 분석
 
-```javascript
+`````javascript
 // Revoke.cash는 블록체인에서 승인 이벤트를 읽습니다
 const filter = {
   address: tokenAddress,           // 토큰 계약
@@ -175,11 +176,11 @@ const approvalEvents = await provider.getLogs({
 
 // 각 (소유자, 지출자, 토큰) 트리플렛에 대한 가장 최근의 이벤트가
 // 현재 활성 승인을 나타냅니다
-```
+`````
 
 ### 현재 허용 한도 읽기
 
-```javascript
+`````javascript
 // 현재 허용 한도를 확인하기 위한 직접 계약 호출
 const checkAllowance = async (tokenAddress, owner, spender) => {
   const token = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
@@ -198,9 +199,9 @@ const checkAllowance = async (tokenAddress, owner, spender) => {
     return { status: "취소됨", risk: "없음" };
   }
 };
-```
+`````
 
----
+* * *
 
 ## 멀티체인 지원: 여러 네트워크에서 자산 보호
 
@@ -208,7 +209,7 @@ Revoke.cash는 모든 주요 EVM 호환 체인을 지원하여 DeFi와 상호 �
 
 ### 지원 네트워크 (2026년)
 
-```yaml
+`````yaml
 # 2026년 완전한 네트워크 지원
 ethereum: chain_id: 1
   rpc_required: true
@@ -237,27 +238,27 @@ bnb_chain: chain_id: 56
 avalanche: chain_id: 43114
   rpc_required: true
   features: ["C-Chain 지원", "TraderJoe 승인"]
-```
+`````
 
 ### 네트워크 전환
 
-```javascript
+`````javascript
 // Revoke.cash가 현재 네트워크를 자동 감지합니다
 // 지갑에서 네트워크를 전환하여 다른 체인에서 승인을 감사합니다
 
 const switchNetwork = async (chainId) => {
   await window.ethereum.request({
     method: "wallet_switchEthereumChain",
-    params: [{ chainId: `0x${chainId.toString(16)}` }]
+    params: [{ chainId: ````0x${chainId.toString(16)}```` }]
   });
   // Revoke.cash가 새 체인에 대해 자동으로 새로 고칩니다
 };
 
 // 예시: Polygon으로 전환
 await switchNetwork(137);
-```
+`````
 
----
+* * *
 
 ## 브라우저 확장 프로그램: 실시간 보호
 
@@ -265,7 +266,7 @@ Revoke.cash는 잠재적으로 위험한 승인에 서명하기 전에 사전 �
 
 ### 확장 프로그램 설치
 
-```bash
+`````bash
 # Chrome 웹 스토어: # https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
 
 # Firefox 부가 기능: # https://addons.mozilla.org/firefox/addon/revokecash/
@@ -274,11 +275,11 @@ Revoke.cash는 잠재적으로 위험한 승인에 서명하기 전에 사전 �
 # - 알려진 악성 계약 승인 시 알림
 # - 위험에 처한 예상 USD 가치 표시
 # - 팝업에서 원클릭 취소
-```
+`````
 
 ### 확장 프로그램 설정
 
-```javascript
+`````javascript
 // 확장 프로그램 설정(팝업을 통해 구성 가능)
 const extensionConfig = {
   // 승인이 이 USD 임계값을 초과할 때 경고
@@ -296,17 +297,17 @@ const extensionConfig = {
   // 다크 모드
   theme: "dark"
 };
-```
+`````
 
----
+* * *
 
 ## 고급: Permit 및 Permit2 서명
 
-현대 DeFi는 EIP-2612 `permit()` 및 Uniswap의 **Permit2** 계약을 통해 **가스 없는 승인**을 사용합니다. 이들은 특히 위험합니다. 왜냐하면 온체인 트랜잭션이 필요하지 않고 서명만 필요하기 때문입니다.
+현대 DeFi는 EIP-2612 ````permit()```` 및 Uniswap의 **Permit2** 계약을 통해 **가스 없는 승인**을 사용합니다. 이들은 특히 위험합니다. 왜냐하면 온체인 트랜잭션이 필요하지 않고 서명만 필요하기 때문입니다.
 
 ### Permit 서명 이해
 
-```solidity
+`````solidity
 // EIP-2612 permit: 오프체인 서명이 온체인 승인이 됩니다
 function permit(
     address owner,
@@ -320,11 +321,11 @@ function permit(
     // 이 호출 후 spender는 value 토큰을 사용할 수 있습니다
     // 사용자는 트랜잭션을 본 적이 없습니다 — 메시지만 서명했습니다!
 }
-```
+`````
 
 ### Permit2 허용 한도 취소
 
-```javascript
+`````javascript
 // Permit2 취소는 Permit2 계약에 대한 트랜잭션이 필요합니다
 const revokePermit2 = async (token, spender) => {
   const permit2 = new ethers.Contract(PERMIT2_ADDRESS, PERMIT2_ABI, signer);
@@ -340,9 +341,9 @@ const revokePermit2 = async (token, spender) => {
   await tx.wait();
   console.log("Permit2 허용 한도가 취소되었습니다!");
 };
-```
+`````
 
----
+* * *
 
 ## 가스 효율적인 취소 전략
 
@@ -350,7 +351,7 @@ const revokePermit2 = async (token, spender) => {
 
 ### 일괄 취소
 
-```javascript
+`````javascript
 // multicall을 사용하여 한 번의 트랜잭션에서 여러 승인을 취소합니다
 const multicall3Address = "0xcA11bde05977b3631167028862bE2a173976CA11";
 
@@ -368,13 +369,13 @@ const batchRevoke = async (revocations) => {
   const tx = await multicall.aggregate3(calls);
   await tx.wait();
   
-  console.log(`한 번의 트랜잭션에서 ${revocations.length}개의 승인을 취소했습니다!`);
+  console.log(````한 번의 트랜잭션에서 ${revocations.length}개의 승인을 취소했습니다!````);
 };
-```
+`````
 
 ### 취소 타이밍
 
-```bash
+`````bash
 # 전략: 가스가 낮은 기간 동안 취소
 # - 주말은 일반적으로 가스가 더 낮습니다
 # - 이른 새벽 UTC(오전 2시 - 오전 6시)가 보통 가장 저렴합니다
@@ -389,15 +390,15 @@ const batchRevoke = async (revocations) => {
 # │ Optimism        │ ~46,000      │ ~$0.30           │
 # │ BNB Chain       │ ~46,000      │ ~$0.10           │
 # └─────────────────┴──────────────┴──────────────────┘
-```
+`````
 
----
+* * *
 
 ## 보안 알림 시스템
 
 Revoke.cash는 알려진 공격을 모니터링하고 손상된 프로토콜에 승인이 있을 수 있는 사용자에게 사전에 경고합니다.
 
-```javascript
+`````javascript
 // 보안 경고 구독(브라우저 확장 프로그램 또는 Telegram을 통해)
 const subscribeToAlerts = async (address) => {
   const alertConfig = {
@@ -412,15 +413,15 @@ const subscribeToAlerts = async (address) => {
   
   return alertConfig;
 };
-```
+`````
 
----
+* * *
 
 ## 토큰 승인 보안 모범 사례
 
 ### 보안 체크리스트
 
-```bash
+`````bash
 # 주간 루틴: # 1. revoke.cash를 방문하여 모든 활성 승인을 스캔합니다
 # 2. 적극적으로 사용하지 않는 프로토콜에 대한 무제한 승인을 취소합니다
 # 3. 알 수 없는 지출자에 대해 "위험" 열을 확인합니다
@@ -432,11 +433,11 @@ const subscribeToAlerts = async (address) => {
 # 프로토콜 취약점 발생 후: # 1. 해당 프로토콜을 사용한 적이 있는지 즉시 revoke.cash를 확인합니다
 # 2. 손상된 계약의 모든 승인을 취소합니다
 # 3. 승인되지 않은 이체에 대해 주소를 모니터링합니다
-```
+`````
 
 ### 제한된 승인 사용
 
-```javascript
+`````javascript
 // 무제한 승인 대신 특정 금액 설정
 const setLimitedApproval = async (token, spender, humanAmount) => {
   const decimals = await token.decimals();
@@ -446,16 +447,16 @@ const setLimitedApproval = async (token, spender, humanAmount) => {
   const tx = await token.approve(spender, amount);
   await tx.wait();
   
-  console.log(`${humanAmount} 토큰을 ${spender}에 대해 승인했습니다`);
+  console.log(````${humanAmount} 토큰을 ${spender}에 대해 승인했습니다````);
 };
 
 // 예시: 스왑을 위해 1000 USDC만 승인
 await setLimitedApproval(usdcContract, uniswapRouter, "1000");
-```
+`````
 
 ### "번거 지갑" 전략
 
-```javascript
+`````javascript
 // 새로운/테스트되지 않은 프로토콜 탐색을 위한: // 1. 별도의 "번거" 지갑 생성
 // 2. 잃을 수 있는 자금만 이체
 // 3. 번거 지갑에서 승인 부여
@@ -466,9 +467,9 @@ const burnerStrategy = {
   approvalPolicy: "LIMITED_ONLY", // 무제한은 절대 안 됨
   postUseAction: "REVOKE_ALL"     // 사용 후 항상 정리
 };
-```
+````
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -496,7 +497,7 @@ A: 네! ERC-721 및 ERC-1155 토큰 승인은 ERC-20과 유사하게 작동합�
 **Q8: 승인을 취소하지 않으면 어떻게 되나요?**
 A: 귀하의 토큰은 무기한 위험에 노출됩니다. 승인된 계약이 공격당하거나 해킹당하거나 악의적으로 변하면 승인된 전체 잔액이 단일 트랜잭션에서 소진될 수 있습니다. 많은 주목할만한 해킹(예: 6억 달러 Poly Network 취약점)은 잔류 승인으로 인해 가능했습니다.
 
----
+* * *
 
 
 
@@ -515,7 +516,7 @@ DeFi에서 보안은 일회성 설정이 아니라 지속적인 관행입니다.
 
 **안전한 거래 장소를 찾고 계신가요? [Binance에 가입](https://www.bsmkweb.cc/register?ref=DIBI8)하세요 — 업계 최고의 보안, 최저 수수료 및 보험 기금 보호를 제공하는 세계 최대의 암호화폐 거래소입니다.**
 
----
+* * *
 
 *면책 조항: 본 문서는 정보 제공 목적으로만 작성되었으며 재무 또는 보안 조언을 구성하지 않습니다. 항상 계약 주소를 확인하고, 상당한 보유 자산에는 하드웨어 지갑을 사용하고, 좋은 운영 보안을 실천하세요. 이 게시물에는 제휴 링크가 포함되어 있으며, 파트너 링크를 사용하실 때 추가 비용 없이 보상을 받을 수 있습니다.*
 

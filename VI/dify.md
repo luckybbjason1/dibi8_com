@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 Hầu hết các đội ngũ phát triển chatbot AI theo cách khó khăn. Họ kết nối các route Flask với API OpenAI, viết template prompt thủ công trong file JSON, và xây dựng pipeline RAG từ đầu với các mô hình embedding, vector store, và logic chunking. Ba tháng sau, prototype không thể bảo trì được, quản lý sản phẩm không thể cập nhật prompt mà không cần lập trình viên, và đồng bộ knowledge base là một cron job thất bại âm thầm.
@@ -87,26 +88,26 @@ Trước khi bắt đầu, đảm bảo máy của bạn đáp ứng các yêu c
 
 ### Bước 1 — Clone Dify
 
-Clone bản phát hành mới nhất từ GitHub: ```bash
+Clone bản phát hành mới nhất từ GitHub: ````bash
 git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
-```
+`````
 
 Lệnh này checkout tag ổn định mới nhất (v1.14.2 tại thờ điểm viết).
 
 ### Bước 2 — Cấu hình môi trường
 
-```bash
+`````bash
 cd dify/docker
 cp .env.example .env
-```
+`````
 
-Chỉnh sửa `.env` để đặt secret key bảo mật: ```bash
+Chỉnh sửa ``.env`` để đặt secret key bảo mật: `````bash
 # Tạo secret mật mã học an toàn
 SECRET=$(openssl rand -hex 32)
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/" .env
-```
+`````
 
-Các biến quan trọng cần xem xét trong `.env`: ```bash
+Các biến quan trọng cần xem xét trong ``.env``: `````bash
 # Cài đặt cốt lõi
 CONSOLE_API_URL=http://localhost:5001
 CONSOLE_WEB_URL=http://localhost:3000
@@ -130,45 +131,45 @@ REDIS_DB=0
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=http://weaviate:8080
 WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
-```
+`````
 
 ### Bước 3 — Khởi động Dify
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
-Lệnh này khởi động 11 container: 5 dịch vụ cốt lõi và 6 phụ thuộc. Xác minh mọi thứ đang chạy: ```bash
+Lệnh này khởi động 11 container: 5 dịch vụ cốt lõi và 6 phụ thuộc. Xác minh mọi thứ đang chạy: `````bash
 docker compose ps
-```
+`````
 
-Bạn sẽ thấy tất cả container ở trạng thái `Up (healthy)`. Khởi động đầu tiên mất 60-90 giây khi dịch vụ API chạy migration cơ sở dữ liệu.
+Bạn sẽ thấy tất cả container ở trạng thái ````Up (healthy)````. Khởi động đầu tiên mất 60-90 giây khi dịch vụ API chạy migration cơ sở dữ liệu.
 
 ### Bước 4 — Khởi tạo tài khoản quản trị
 
-Mở trình duyệt và điều hướng đến: ```
+Mở trình duyệt và điều hướng đến: `````
 http://localhost/install
-```
+`````
 
-Hoàn thành trình hướng dẫn thiết lập với email và mật khẩu của bạn. Sau khi thiết lập, đăng nhập tại: ```
+Hoàn thành trình hướng dẫn thiết lập với email và mật khẩu của bạn. Sau khi thiết lập, đăng nhập tại: `````
 http://localhost
-```
+`````
 
 ### Bước 5 — Thêm nhà cung cấp mô hình đầu tiên
 
 Điều hướng đến **Cài đặt → Nhà cung cấp mô hình** và thêm API key cho ít nhất một nhà cung cấp. Với OpenAI: 1. Chọn "OpenAI" từ danh sách nhà cung cấp
-2. Dán API key của bạn (`sk-...`)
+2. Dán API key của bạn (````sk-...````)
 3. Nhấn "Lưu"
 
-Để phát triển cục bộ với Ollama: 1. Đảm bảo Ollama đang chạy cục bộ (`ollama serve`)
+Để phát triển cục bộ với Ollama: 1. Đảm bảo Ollama đang chạy cục bộ (````ollama serve````)
 2. Chọn "Ollama" từ danh sách nhà cung cấp
-3. Đặt Base URL thành `http://host.docker.internal:11434`
-4. Chọn một mô hình đã tải (ví dụ: `llama3.1:8b`)
+3. Đặt Base URL thành ````http://host.docker.internal:11434````
+4. Chọn một mô hình đã tải (ví dụ: ````llama3.1:8b````)
 
-```bash
+`````bash
 # Tải mô hình nhẹ để kiểm thử
 ollama pull llama3.1:8b
-```
+`````
 
 Phiên bản Dify của bạn giờ đã sẵn sàng xây dựng ứng dụng AI.
 
@@ -182,7 +183,7 @@ Thêm các nhà cung cấp LLM chính chỉ là thay đổi cấu hình, không 
 4. Chọn mô hình (GPT-4o, Claude Sonnet, v.v.) từ dropdown
 5. Nhấn **Xuất bản**
 
-Truy cập ứng dụng qua API: ```bash
+Truy cập ứng dụng qua API: `````bash
 curl -X POST 'http://localhost/v1/chat-messages' \
   -H 'Authorization: Bearer YOUR_APP_API_KEY' \
   -H 'Content-Type: application/json' \
@@ -193,70 +194,70 @@ curl -X POST 'http://localhost/v1/chat-messages' \
     "conversation_id": "",
     "user": "user-123"
   }"
-```
+`````
 
 ### Ollama (LLM cục bộ)
 
-Cho môi trường cách ly hoặc nhạy cảm về chi phí, tích hợp Ollama cho phép bạn chạy các mô hình cục bộ: ```bash
+Cho môi trường cách ly hoặc nhạy cảm về chi phí, tích hợp Ollama cho phép bạn chạy các mô hình cục bộ: `````bash
 # Khởi động Ollama
 ollama serve
 
 # Tải mô hình
 ollama pull llama3.1:8b
 ollama pull qwen2.5:14b
-```
+`````
 
 Trong Dify, vào **Cài đặt → Nhà cung cấp mô hình → Ollama** và cấu hình: | Trường | Giá trị |
 |--------|---------|
-| Tên mô hình | `llama3.1:8b` |
-| Base URL | `http://host.docker.internal:11434` |
+| Tên mô hình | ````llama3.1:8b```` |
+| Base URL | ````http://host.docker.internal:11434```` |
 
 Sử dụng mô hình cục bộ cho phát triển và chuyển sang mô hình cloud cho sản xuất mà không thay đổi logic ứng dụng.
 
 ### Qdrant Vector Store
 
-Thay thế Weaviate bằng Qdrant để hiệu suất tốt hơn khi mở rộng: ```bash
+Thay thế Weaviate bằng Qdrant để hiệu suất tốt hơn khi mở rộng: `````bash
 cd dify/docker
 cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env
-```
+`````
 
-Chỉnh sửa `envs/vectorstores/qdrant.env`: ```bash
+Chỉnh sửa ``envs/vectorstores/qdrant.env``: `````bash
 VECTOR_STORE=qdrant
 QDRANT_URL=http://qdrant:6333
 QDRANT_API_KEY=your-api-key
 QDRANT_CLIENT_TIMEOUT=20
-```
+`````
 
-Thêm Qdrant vào `docker-compose.override.yaml`: ```yaml
+Thêm Qdrant vào ``docker-compose.override.yaml``: `````yaml
 services: qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
     volumes: - qdrant_data:/qdrant/storage
     environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
-Khởi động lại Dify: ```bash
+Khởi động lại Dify: `````bash
 docker compose down
 docker compose up -d
-```
+`````
 
 ### Weaviate
 
-Weaviate là vector store mặc định và hoạt động ngay từ đầu. Cho sản xuất, sử dụng cluster Weaviate bên ngoài: ```bash
+Weaviate là vector store mặc định và hoạt động ngay từ đầu. Cho sản xuất, sử dụng cluster Weaviate bên ngoài: `````bash
 # Trong .env
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
 WEAVIATE_API_KEY=your-api-key
-```
+`````
 
 ### Tích hợp Claude Code
 
 Xuất ứng dụng Dify dưới dạng MCP (Model Context Protocol) server và kết nối với Claude Code: 1. Trong ứng dụng Dify, vào **Truy cập API → MCP Server**
 2. Bật xuất bản MCP
 3. Sao chép URL MCP server
-4. Trong Claude Code, chạy: ```bash
+4. Trong Claude Code, chạy: `````bash
 claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
-```
+`````
 
 Các workflow Dify của bạn giờ có thể được gọi trực tiếp từ cuộc hội thoại Claude Code.
 
@@ -301,12 +302,12 @@ Dựa trên benchmark cộng đồng và dữ liệu kiểm thử tải: | Chỉ
 
 ### Cách ly môi trường
 
-Cho sản xuất, không bao giờ sử dụng các giá trị `.env` mặc định. Tạo cấu hình theo môi trường: ```bash
+Cho sản xuất, không bao giờ sử dụng các giá trị ``.env`` mặc định. Tạo cấu hình theo môi trường: `````bash
 # Môi trường sản xuất
 cp .env .env.production
-```
+`````
 
-Thay đổi quan trọng cho sản xuất: ```bash
+Thay đổi quan trọng cho sản xuất: `````bash
 # Bảo mật
 SECRET_KEY=$(openssl rand -hex 48)
 CONSOLE_API_URL=https://dify.yourcompany.com
@@ -331,11 +332,11 @@ S3_BUCKET_NAME=dify-prod-uploads
 S3_ACCESS_KEY=AKIA...
 S3_SECRET_KEY=...
 S3_REGION=us-east-1
-```
+`````
 
 ### Reverse proxy với SSL
 
-Sử dụng Nginx hoặc Traefik cho TLS termination: ```nginx
+Sử dụng Nginx hoặc Traefik cho TLS termination: `````nginx
 server {
     listen 443 ssl http2;
     server_name dify.yourcompany.com;
@@ -357,11 +358,11 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### Giám sát và khả năng quan sát
 
-Dify expose các chỉ số qua dịch vụ API. Cho giám sát sản xuất, thiết lập: ```yaml
+Dify expose các chỉ số qua dịch vụ API. Cho giám sát sản xuất, thiết lập: `````yaml
 # docker-compose.monitoring.yaml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -374,7 +375,7 @@ services: prometheus: image: prom/prometheus:latest
   node-exporter: image: prom/node-exporter:latest
     ports: - "9100:9100"
 
-volumes: grafana_data: ```
+volumes: grafana_data: `````
 
 Các chỉ số quan trọng cần theo dõi: | Chỉ số | Ngưỡng cảnh báo | Ngưỡng nguy hiểm |
 |--------|-----------------|------------------|
@@ -386,7 +387,7 @@ Các chỉ số quan trọng cần theo dõi: | Chỉ số | Ngưỡng cảnh b�
 
 ### Chiến lược sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # backup-dify.sh — Chạy hàng ngày qua cron
 
@@ -404,17 +405,17 @@ tar czf $BACKUP_DIR/dify_uploads_$DATE.tar.gz /var/lib/docker/volumes/dify_uploa
 
 # Tải lên S3 (tùy chọn)
 aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
-```
+`````
 
 ### Mở rộng Worker
 
-Cho xử lý tài liệu khối lượng lớn, mở rộng Celery workers theo chiều ngang: ```bash
+Cho xử lý tài liệu khối lượng lớn, mở rộng Celery workers theo chiều ngang: `````bash
 # docker-compose.override.yaml
 services: worker: deploy: replicas: 3
     environment: - CELERY_WORKER_CONCURRENCY=8
 
   worker-beat: deploy: replicas: 1  # Giữ đúng 1 beat instance
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -464,20 +465,20 @@ Lập chỉ mục dataset là đồng bộ và có thể mất vài phút cho up
 ## Câu hỏi thường gặp
 
 **Hỏi: Làm thế nào cài đặt Dify trên cloud VPS?**
-Quá trình giống hệt cài đặt cục bộ. Cấu hình VPS với tối thiểu 4 GB RAM (DigitalOcean, Hetzner, hoặc AWS Lightsail đều phù hợp), cài Docker và Docker Compose, clone repo, và chạy `docker compose up -d`. Cho triển khai một cú click, sử dụng [Hostinger](https://www.hostinger.com) để có giá tốt nhất cho VPS chạy Docker.
+Quá trình giống hệt cài đặt cục bộ. Cấu hình VPS với tối thiểu 4 GB RAM (DigitalOcean, Hetzner, hoặc AWS Lightsail đều phù hợp), cài Docker và Docker Compose, clone repo, và chạy ````docker compose up -d````. Cho triển khai một cú click, sử dụng [Hostinger](https://www.hostinger.com) để có giá tốt nhất cho VPS chạy Docker.
 
 **Hỏi: Dify có thể chạy hoàn toàn offline không?**
 Có. Cấu hình Ollama làm nhà cung cấp mô hình và chạy các mô hình cục bộ như Llama 3.1, Qwen 2.5, hoặc Mistral. Tất cả dịch vụ Dify chạy bên trong Docker không cần phụ thuộc bên ngoài. Hạn chế duy nhất là không thể sử dụng API LLM cloud mà không có internet.
 
 **Hỏi: Làm thế nào nâng cấp Dify lên phiên bản mới?**
-```bash
+`````bash
 cd dify/docker
 docker compose down
 git fetch --tags
 git checkout $(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)
 docker compose pull
 docker compose up -d
-```
+````
 Luôn kiểm tra release notes cho các thay đổi phá vỡ và biến môi trường mới trước khi nâng cấp.
 
 **Hỏi: Sự khác biệt giữa Chatbot và Agent app type trong Dify là gì?**
@@ -561,7 +562,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -571,7 +572,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [12-factor-agents-production-llm-software-2026](dify)
 - [12-factor-agents](dify)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

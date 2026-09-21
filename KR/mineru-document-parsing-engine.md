@@ -11,6 +11,7 @@ featureImage: /images/articles/mineru-docs.png
 
 ---
 
+
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
 *MinerU — 단 1년 만에 70,600명의 GitHub 스타를 탄생시킨 오픈 소스 문서 구문 분석 엔진.*
@@ -42,30 +43,30 @@ MinerU는 중국 대형 언어 모델인 [InternLM](https://github.com/InternLM/
 
 MinerU는 필요에 따라 다양한 설치 경로를 제공합니다: ### pip (대부분의 사용자에게 권장)
 
-```bash
+````bash
 pip install mineru
-```
+`````
 
 ### 도커
 
-```bash
+`````bash
 docker pull mineru/mineru:latest
 docker run --gpus all -v $(pwd):/data mineru/mineru:latest
-```
+`````
 
 ### 지역 개발
 
-```bash
+`````bash
 git clone https://github.com/opendatalab/MinerU.git
 cd MinerU
 pip install -e .
-```
+`````
 
 MinerU는 **CPU 전용** 추론과 **GPU 가속** 추론을 모두 지원합니다. GPU 가속을 위해서는 CUDA 지원과 함께 설치하십시오.
 
-```bash
+`````bash
 pip install mineru[cuda]
-```
+`````
 
 Apple Silicon이 탑재된 macOS에서 MinerU는 가속을 위해 MPS(Metal Performance Shaders)를 활용합니다.
 
@@ -75,11 +76,11 @@ MinerU는 각기 다른 시나리오에 최적화된 세 가지 구문 분석 �
 
 ### 1. 파이프라인 백엔드(빠르고 안정적)
 
-`파이프라인` 백엔드는 대부분의 사용자에게 기본 선택입니다. 빠르고 안정적이며 환각을 일으키지 않습니다. CPU에서 효율적으로 실행되며 일괄 처리에 이상적입니다.
+````파이프라인```` 백엔드는 대부분의 사용자에게 기본 선택입니다. 빠르고 안정적이며 환각을 일으키지 않습니다. CPU에서 효율적으로 실행되며 일괄 처리에 이상적입니다.
 
-```bash
+`````bash
 mineru ./input.pdf -o ./output/
-```
+`````
 
 **최적의 용도:** 대용량 문서 처리, CI/CD 파이프라인, CPU 전용 환경.
 
@@ -87,9 +88,9 @@ mineru ./input.pdf -o ./output/
 
 VLM(Vision Language Model) 엔진은 최첨단 구문 분석 정확도를 위해 MinerU의 독점 'MinerU2.5-Pro-2604-1.2B' 모델을 사용합니다. 혼합된 레이아웃, 손으로 쓴 텍스트, 조밀한 수식이 포함된 복잡한 문서에 탁월한 성능을 발휘합니다.
 
-```bash
+`````bash
 mineru ./complex.pdf -o ./output/ --engine vlm-engine
-```
+`````
 
 **최적의 용도:** 복잡한 과학 논문, 스캔한 문서, 필기 콘텐츠, 다국어 OCR.
 
@@ -100,9 +101,9 @@ mineru ./complex.pdf -o ./output/ --engine vlm-engine
 - **중간 노력:** 높은 것보다 35-220% 빠르며 OmniDocBench에서 정확도는 0.13포인트만 떨어집니다. 
 - **많은 노력:** 이미지 분석 지원으로 정확도 극대화
 
-```bash
+`````bash
 mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
-```
+`````
 
 **최적의 용도:** 속도와 정확성의 균형이 필요한 프로덕션 워크로드.
 
@@ -125,13 +126,13 @@ MinerU의 OCR 엔진은 **109개 언어**를 지원하며 버전 3.4에서 PP-OC
 
 버전 3.4부터 MinerU는 OCR 언어 구성을 단순화했습니다. 개별 언어(일본어, 중국어 번체, 영어, 라틴어)를 선택하는 대신 이제 모든 시나리오가 최적화된 'ch' OCR 모델을 통해 라우팅되므로 구성 복잡성이 줄어들고 정확성이 향상됩니다.
 
-```bash
+`````bash
 # Automatic OCR detection (recommended)
 mineru ./scanned.pdf -o ./output/
 
 # 특정 문서에 OCR을 강제 적용 
 미네루 ./document.pdf -o ./output/ --ocr 
-````
+``````
 
 ## Real-World Use Cases
 
@@ -139,14 +140,14 @@ mineru ./scanned.pdf -o ./output/
 
 MinerU는 RAG(Retrieval-Augmented Generation) 워크플로우를 위해 특별히 제작되었습니다. 읽기 순서, 제목, 의미 구조가 보존된 구조화된 마크다운으로 문서를 변환함으로써 RAG 시스템은 문서를 훨씬 더 효과적으로 청크하고 포함할 수 있습니다.
 
-```python
+`````python
 import mineru as mu
 
 결과 = mu.parse("./research_paper.pdf") 
 # result.markdown: 삽입을 위한 깔끔한 마크다운 
 # result.json: 검색을 위해 구조화된 JSON 
 # result.layout: 디버깅을 위한 시각적 레이아웃 
-````
+``````
 
 ### AI 에이전트 기술 자료
 
@@ -178,10 +179,10 @@ MinerU는 거의 모든 주요 AI 프레임워크와 통합됩니다.
 
 MinerU는 또한 Cursor, Claude Desktop 및 Windsurf와 같은 AI 코딩 도구와의 통합을 위해 **MCP 서버**를 제공합니다. 이를 통해 코딩 에이전트의 워크플로 내에서 문서를 직접 구문 분석할 수 있습니다.
 
-```bash
+`````bash
 # Start the MCP server
 mineru-mcp-server
-```
+`````
 
 ## Performance Benchmarks
 
@@ -192,7 +193,7 @@ MinerU의 '파이프라인' 백엔드는 이전 세대 VLM 모델 'MinerU2.0-250
 - Linux에서 텍스트 PDF 시나리오의 경우 **~80% 더 빠름** 
 - Windows에서 텍스트 PDF 시나리오의 경우 **~90% 더 빠름** 
 - macOS의 텍스트 PDF 시나리오에서 **~220% 더 빠름** 
-- `노력=높음`에 비해 **0.13점 정확도 하락**만 있음
+- ````노력=높음````에 비해 **0.13점 정확도 하락**만 있음
 
 ## Why MinerU Stands Out
 
@@ -212,11 +213,11 @@ MinerU를 사용해 보는 가장 쉬운 방법은 설치가 필요 없이 데�
 
 개발자를 위해 [Colab 노트북](https://colab.research.google.com/gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb)에서는 빠른 대화형 데모를 제공합니다.
 
-```bash
+`````bash
 # Install and parse your first document
 pip install mineru
 mineru ./my-document.pdf -o ./output/ --format markdown
-```
+````
 
 ## Limitations
 
@@ -307,12 +308,12 @@ MinerU: 별 70.6K개 — 모든 문서를 LLM 지원 마크다운으로 변환 r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -322,7 +323,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

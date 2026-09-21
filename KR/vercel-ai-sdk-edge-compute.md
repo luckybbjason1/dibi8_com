@@ -10,11 +10,12 @@ draft: false
 slug: vercel-ai-sdk-edge-compute
 ---
 
+
 ## TL;DR
 
 Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.
 
----
+* * *
 
 ## Vercel AI SDK란?
 
@@ -24,19 +25,19 @@ Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라�
 
 ### 왜 Edge-First가 AI 앱에 중요한가
 
-전통적 AI 앱은 이런 패턴을 따릅니다: ```
+전통적 AI 앱은 이런 패턴을 따릅니다: ````
 사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답
-```
+`````
 
-각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: ```
+각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: `````
 사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답
-```
+`````
 
 엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.
 
 ### 핵심 아키텍처
 
-```typescript
+`````typescript
 // 제공자 추상화 계층
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
@@ -51,17 +52,17 @@ const result = await streamText({
   messages: [{ role: "user", content: "안녕!" }],
   system: "도움이 되는 어시스턴트입니다."
 });
-```
+`````
 
-`streamText` 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.
+````streamText```` 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.
 
----
+* * *
 
 ## 시작하기
 
 ### 단계 1: 의존성 설치
 
-```bash
+`````bash
 # TypeScript로 새로운 Next.js 프로젝트 생성
 npx create-next-app@latest my-ai-app --typescript --tailwind --app
 
@@ -71,11 +72,11 @@ cd my-ai-app
 npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
 # 선택사항: 구조화된 출력
 npm install zod
-```
+`````
 
 ### 단계 2: 첫 번째 채팅 API 구성
 
-`app/api/chat/route.ts` 생성: ```typescript
+``app/api/chat/route.ts`` 생성: `````typescript
 import { streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
@@ -90,21 +91,21 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o"),
     messages,
-    system: `도움이 되는 프로그래밍 어시스턴트입니다.
-    관련 시 코드 예시를 제공하세요.`,
+    system: ````도움이 되는 프로그래밍 어시스턴트입니다.
+    관련 시 코드 예시를 제공하세요.````,
     maxTokens: 2048,
     temperature: 0.7,
   });
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 그것뿐입니다. 파일 하나, 20줄 코드로 완전히 스트리밍되는 채팅 API가 생깁니다.
 
 ### 단계 3: 프론트엔드 구축
 
-`app/page.tsx` 생성: ```typescript
+``app/page.tsx`` 생성: `````typescript
 "use client";
 
 import { useChat } from "ai/react";
@@ -119,9 +120,9 @@ export default function Chat() {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`p-3 rounded-lg ${
+            className={````p-3 rounded-lg ${
               msg.role === "user" ? "bg-blue-100 ml-8" : "bg-gray-100 mr-8"
-            }`}
+            }````}
           >
             {msg.content}
           </div>
@@ -147,17 +148,17 @@ export default function Chat() {
     </div>
   );
 }
-```
+`````
 
-`useChat` hook이 상태 관리, 스트리밍 업데이트, 에러 처리 및 로딩 상태를 모두 처리합니다.
+````useChat```` hook이 상태 관리, 스트리밍 업데이트, 에러 처리 및 로딩 상태를 모두 처리합니다.
 
----
+* * *
 
 ## 고급 패턴
 
 ### 패턴 1: 멀티 제공자 라우팅
 
-작업 유형에 따라 요청을 다른 모델로 라우팅: ```typescript
+작업 유형에 따라 요청을 다른 모델로 라우팅: `````typescript
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
@@ -189,11 +190,11 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### 패턴 2: Zod와 함께 구조화된 출력
 
-LLM 응답을 검증하고 타입 객체로 파싱: ```typescript
+LLM 응답을 검증하고 타입 객체로 파싱: `````typescript
 import { z } from "zod";
 import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
@@ -212,19 +213,19 @@ export async function POST(req: Request) {
   const { object } = await generateObject({
     model: openai("gpt-4o"),
     schema: ArticleSchema,
-    prompt: `이 텍스트를 분석하여 기사 메타데이터 추출: ${text}`,
+    prompt: ````이 텍스트를 분석하여 기사 메타데이터 추출: ${text}````,
     temperature: 0,
   });
 
   return Response.json(object);
 }
-```
+`````
 
 응답이 스키마와 일치하도록 보장됩니다 — TypeScript 타입이 스키마 정의부터 프론트엔드 컴포넌트까지 끝에서 끝으로 흐릅니다.
 
 ### 패턴 3: 임베딩이 있는 RAG 파이프라인
 
-단일 라우트에서 검색 증강 생성 구축: ```typescript
+단일 라우트에서 검색 증강 생성 구축: `````typescript
 import { embed, embedMany, streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { cosineSimilarity } from "ai/embeddings";
@@ -266,20 +267,20 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o"),
     messages,
-    system: `다음 컨텍스트만 사용하여 답변하세요.
+    system: ````다음 컨텍스트만 사용하여 답변하세요.
     컨텍스트에 관련 정보가 없으면 그렇게 말하세요.
     
     컨텍스트: ${context.join("\n\n")}
-    `,
+    ````,
   });
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### 패턴 4: 에이전트 도구 호출
 
-LLM에게 외부 도구 접근 권한 부여: ```typescript
+LLM에게 외부 도구 접근 권한 부여: ````typescript
 import { streamText, tool } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
@@ -311,7 +312,7 @@ const result = streamText({
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -321,6 +322,6 @@ const result = streamText({
 - [9router-smart-llm-proxy-token-saver-free-coding](vercel-ai-sdk-edge-compute)
 - [ai-engineering-from-scratch](vercel-ai-sdk-edge-compute)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -13,6 +13,7 @@ license: MIT---
 
 
 
+
 # 每日股票分析：LLM驱动的多市场股票情报
 
 **每日股票分析** 是一个开源的、由LLM驱动的股票分析系统，提供多市场情报，包括实时新闻聚合、自动化决策仪表盘和智能通知系统。凭借 **48,278 个 GitHub Stars**，它已成为寻求机构级分析的个人投资者中最受欢迎的量化交易工具之一。
@@ -47,7 +48,7 @@ license: MIT---
 
 ### 选项一：Docker部署（最简单）
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -61,11 +62,11 @@ docker compose up -d
 
 # 检查状态
 docker compose ps
-```
+`````
 
 ### 选项二：手动安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -88,13 +89,13 @@ cp config.example.yaml config.yaml
 
 # 运行首次分析
 python main.py --market us --date $(date +%Y-%m-%d)
-```
+`````
 
 ### 选项三：本地LLM设置（免费）
 
 对于希望完全避免API费用的用户：
 
-```bash
+`````bash
 # 安装Ollama用于本地LLM推理
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -110,7 +111,7 @@ EOF
 
 # 以零API成本运行分析
 python main.py --market a_shares --date $(date +%Y-%m-%d)
-```
+`````
 
 ## 市场数据集成
 
@@ -118,7 +119,7 @@ python main.py --market a_shares --date $(date +%Y-%m-%d)
 
 AKShare提供免费的中国市场数据访问，无需任何API密钥：
 
-```python
+`````python
 import akshare as ak
 
 # 获取每日A股市场数据
@@ -137,13 +138,13 @@ hist_df = ak.stock_zh_a_hist(
 # 获取板块表现
 sector_df = ak.stock_board_industry_name_em()
 print(sector_df)
-```
+`````
 
 ### Tushare集成（高级A股数据）
 
 对于更全面的基本面A股数据：
 
-```python
+`````python
 import tushare as ts
 
 # 用你的API令牌初始化
@@ -168,11 +169,11 @@ holder_df = pro.stock_holder_top10(
     ts_code="000001.SZ",
     ann_date="20260331"
 )
-```
+`````
 
 ### 美国市场数据
 
-```python
+`````python
 import yfinance as yf
 
 # 获取美股数据
@@ -188,11 +189,11 @@ recommendations = ticker.recommendations
 # 获取新闻情绪
 news = ticker.news
 for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
-```
+`````
 
 ### 加密货币数据
 
-```python
+`````python
 import ccxt
 
 # 连接到交易所
@@ -210,7 +211,7 @@ print(f"成交量: {ticker['quoteVolume']}")
 order_book = exchange.fetch_order_book('ETH/USDT')
 print(f"买单: {order_book['bids'][0][0]}")
 print(f"卖单: {order_book['asks'][0][0]}")
-```
+`````
 
 ## LLM驱动分析
 
@@ -218,7 +219,7 @@ print(f"卖单: {order_book['asks'][0][0]}")
 
 每日股票分析的核心是其LLM驱动的情绪分析管道：
 
-```python
+`````python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -250,13 +251,13 @@ print(f"总体情绪: {analysis.sentiment}")
 print(f"置信度: {analysis.confidence:.1%}")
 print(f"关键因素: {', '.join(analysis.key_factors)}")
 print(f"风险等级: {analysis.risk_level}")
-```
+`````
 
 ### 自定义分析提示
 
 你可以为不同用例定制LLM分析提示：
 
-```python
+`````python
 # 技术分析提示
 tech_prompt = """
 分析以下股票技术指标并提供：
@@ -288,13 +289,13 @@ combined = llm.analyze(
     fundamental_data=fundamental_data,
     news_data=news_data
 )
-```
+`````
 
 ### 多市场对比分析
 
 同时比较不同市场的股票：
 
-```python
+`````python
 # 比较美股科技股
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -308,7 +309,7 @@ a_share_sectors = llm.compare_sectors(
     market="a_shares",
     time_period="1m"
 )
-```
+`````
 
 ## 仪表盘配置
 
@@ -316,12 +317,12 @@ a_share_sectors = llm.compare_sectors(
 
 每日股票分析包含内置Web仪表盘：
 
-```bash
+`````bash
 # 启动仪表盘服务器
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # 访问 http://localhost:8080
-```
+`````
 
 仪表盘提供：
 
@@ -333,7 +334,7 @@ python dashboard.py --host 0.0.0.0 --port 8080
 
 ### 仪表盘定制
 
-```yaml
+`````yaml
 # dashboard_config.yaml
 dashboard: refresh_interval: 300  # 5分钟
   default_market: "a_shares"
@@ -349,11 +350,11 @@ dashboard: refresh_interval: 300  # 5分钟
   alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
-```
+`````
 
 ### 导出报告
 
-```bash
+`````bash
 # 生成PDF格式的每日报告
 python report_generator.py --format pdf --output daily_report.pdf
 
@@ -362,7 +363,7 @@ python report_generator.py --format html --output daily_report.html
 
 # 导出分析数据为CSV
 python report_generator.py --format csv --output analysis_data.csv
-```
+`````
 
 ## 自动化调度
 
@@ -370,7 +371,7 @@ python report_generator.py --format csv --output analysis_data.csv
 
 计划自动分析运行：
 
-```bash
+`````bash
 # 编辑crontab
 crontab -e
 
@@ -382,13 +383,13 @@ crontab -e
 
 # 每周日生成综合报告
 0 9 * * 0 cd /path/to/daily_stock_analysis && python weekly_report.py
-```
+`````
 
 ### Systemd服务
 
 用于持久后台运行：
 
-```ini
+`````ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=每日股票分析服务
@@ -404,20 +405,20 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-```bash
+`````bash
 # 启用并启动服务
 sudo systemctl enable daily-stock-analysis
 sudo systemctl start daily-stock-analysis
 sudo systemctl status daily-stock-analysis
-```
+`````
 
 ## 通知系统
 
 ### Telegram通知
 
-```bash
+`````bash
 # 配置Telegram机器人
 python notify.py --setup telegram \
   --bot-token "${TELEGRAM_BOT_TOKEN}" \
@@ -426,11 +427,11 @@ python notify.py --setup telegram \
 # 发送测试通知
 python notify.py --send "AAPL每日分析完成" \
   --channel telegram
-```
+`````
 
 ### 邮件通知
 
-```python
+`````python
 from daily_stock_analysis.notify import Notifier
 
 # 配置邮件通知器
@@ -449,11 +450,11 @@ notifier.send_email(
     body=analysis_report,
     attach_pdf=True
 )
-```
+`````
 
 ### 自定义Webhook通知
 
-```python
+`````python
 # 发送到自定义webhook（如Slack、Discord）
 notifier.send_webhook(
     url="https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
@@ -470,7 +471,7 @@ notifier.send_webhook(
         ]
     }
 )
-```
+````
 
 ## 对比：每日股票分析 vs 替代品
 
@@ -550,7 +551,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
@@ -559,7 +560,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 - [ai-engineering-from-scratch](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -590,15 +591,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

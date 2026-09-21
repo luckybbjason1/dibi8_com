@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/ultimate-vocal-remover/-
 ---
 
+
 {{</* resource-info */>}}
 
 从伴奏中提取人声曾经需要昂贵的 DAW 插件、手动 EQ 调节，或者外包给音频工程师。到了 2026 年，开源深度学习模型可以在消费级硬件上 60 秒内完成这项任务。**Ultimate Vocal Remover（UVR）** 以 24,700+ GitHub Stars 的成绩引领这一领域，它基于 Tkinter 的 GUI 界面支持多种前沿架构，包括 VR-Net、MDX-Net、MDX23C 和 Demucs。本指南将覆盖三大主流平台的安装、模型选择策略、批量处理工作流，以及与 RVC、GPT-SoVITS 等工具的集成。无论你是想完成 vocal removal setup，还是在比较 vocal remover vs demucs，这篇 uvr guide 都能帮你从入门到生产部署一步到位。对于需要 ai audio separation 的创作者来说，这份 ultimate vocal remover tutorial 是最全面的中文参考资料之一。
@@ -47,7 +48,7 @@ UVR 支持多种 AI 架构：
 
 UVR 不是单一模型的简单封装，而是充当**模型编排层**，在统一界面后加载和运行不同的 PyTorch 分离引擎。
 
-```
+````
 输入音频 (MP3/WAV/FLAC)
     |
     v
@@ -64,7 +65,7 @@ UVR 不是单一模型的简单封装，而是充当**模型编排层**，在统
 [后处理] → WAV 输出
     |-- Vocals.wav
     |-- Instrumental.wav
-```
+`````
 
 每个模型以不同方式处理音频：
 
@@ -84,23 +85,23 @@ UVR v5.6 为 Windows 10 及以上提供独立安装包，无需额外安装 Pyth
 
 **第一步：下载安装程序**
 
-```powershell
+`````powershell
 # 从官方发布页下载 UVR v5.6
 # 64位 Windows（支持 Nvidia GPU 的 CUDA 版本）
 # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_v5.6.0_setup.exe
 
 # 对于 AMD Radeon / Intel Arc GPU，使用 DirectML 版本：
 # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_1_15_25_22_30_BETA_full.exe
-```
+`````
 
 **第二步：安装到 C:\ 盘**
 
-```powershell
+`````powershell
 # 重要：必须安装到 C:\ 盘
 # 安装到 secondary drive 会导致运行不稳定
 # 以管理员身份运行安装程序
 .\UVR_v5.6.0_setup.exe
-```
+`````
 
 **第三步：首次启动并下载模型**
 
@@ -108,20 +109,20 @@ UVR v5.6 为 Windows 10 及以上提供独立安装包，无需额外安装 Pyth
 
 **Windows 系统要求：**
 
-```yaml
+`````yaml
 操作系统: Windows 10 64位 或更高
 CPU: Intel/AMD 64位（不支持 Pentium/Celeron）
 内存: 最低 8GB，推荐 16GB
 显卡: 最低 Nvidia GTX 1060 6GB，推荐 RTX 3060 8GB+
 存储: 15GB 可用空间（强烈推荐 SSD）
 注意: 不支持 Intel Pentium 和 Celeron CPU
-```
+`````
 
 ### macOS 安装
 
 UVR 支持 macOS Big Sur 及以上版本，兼容 Intel 和 Apple Silicon Mac。
 
-```bash
+`````bash
 # 第一步：为你的架构下载 DMG
 # Apple Silicon (M1/M2/M3): # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
 
@@ -135,11 +136,11 @@ sudo xattr -rd com.apple.quarantine "/Applications/Ultimate Vocal Remover.app"
 
 # 第四步：UVR 成功打开后重新启用 Gatekeeper
 sudo spctl --master-enable
-```
+`````
 
 **手动安装（macOS）：**
 
-```bash
+`````bash
 # 偏好从源码运行的开发者
 brew install python@3.10 ffmpeg
 pip3 install -r requirements.txt
@@ -151,7 +152,7 @@ cp /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packag
 # 下载 FFmpeg 二进制文件并放入应用目录
 # 下载 Rubber Band 以使用时域拉伸/音高变换功能
 python3 UVR.py
-```
+`````
 
 macOS 首次启动可能需要 5–10 分钟，因为 Python 在后台编译依赖项。
 
@@ -161,7 +162,7 @@ Linux 安装使用虚拟环境来隔离 UVR 的依赖项，避免与系统 Pytho
 
 **Debian 系系统（Ubuntu、Mint、Pop!_OS）：**
 
-```bash
+`````bash
 # 第一步：安装系统依赖
 sudo apt update && sudo apt upgrade -y
 sudo apt-get install -y ffmpeg python3-pip python3-tk python3-venv
@@ -179,11 +180,11 @@ pip install -r requirements.txt
 
 # 第五步：运行 UVR
 python UVR.py
-```
+`````
 
 **Arch 系系统（EndeavourOS、Manjaro）：**
 
-```bash
+`````bash
 sudo pacman -Syu
 sudo pacman -S ffmpeg python-pip tk python-virtualenv
 
@@ -193,11 +194,11 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python UVR.py
-```
+`````
 
 **无界面 / 服务器部署（Docker）：**
 
-```dockerfile
+`````dockerfile
 # UVR 无界面处理的 Dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 
@@ -218,18 +219,18 @@ os.makedirs(models, exist_ok=True)
 "
 
 ENTRYPOINT ["venv/bin/python", "separate.py"]
-```
+`````
 
-```bash
+`````bash
 # 构建并运行
 docker build -t uvr-gpu .
 docker run --gpus all -v $(pwd)/input:/input -v $(pwd)/output:/output uvr-gpu \
     --input /input/song.mp3 --output /output --model MDX-Net
-```
+`````
 
 ### requirements.txt 关键依赖
 
-```text
+`````text
 altgraph==0.17.3
 audioread==3.0.0
 einops==0.6.0
@@ -248,7 +249,7 @@ torch
 onnxruntime
 onnxruntime-gpu
 numpy==1.23.5
-```
+`````
 
 ## 模型选择与配置
 
@@ -258,26 +259,26 @@ UVR 内置了数十个预训练模型。选择合适的模型取决于你的输�
 
 | 模型 | 架构 | 适用场景 | 速度 | 显存 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `MDX-Net Main` | MDX-Net | 通用人声移除 | 中等 | 6GB |
-| `MDX23C` | MDX23C | 复杂混音、高质量 | 慢 | 8GB |
-| `VR-DeEcho` | VR-Net | 去噪+人声移除 | 快 | 4GB |
-| `UVR-MDX-NET Inst Main` | MDX-Net | 伴奏提取 | 中等 | 6GB |
-| `Demucs v4` | Demucs | 4轨分离 | 慢 | 8GB |
-| `UVR-BVE` | VR-Net | 串音/人声消除 | 快 | 4GB |
+| ````MDX-Net Main```` | MDX-Net | 通用人声移除 | 中等 | 6GB |
+| ````MDX23C```` | MDX23C | 复杂混音、高质量 | 慢 | 8GB |
+| ````VR-DeEcho```` | VR-Net | 去噪+人声移除 | 快 | 4GB |
+| ````UVR-MDX-NET Inst Main```` | MDX-Net | 伴奏提取 | 中等 | 6GB |
+| ````Demucs v4```` | Demucs | 4轨分离 | 慢 | 8GB |
+| ````UVR-BVE```` | VR-Net | 串音/人声消除 | 快 | 4GB |
 
 ### 模型选择策略
 
-```yaml
+`````yaml
 # 模型选择决策流程
 音轨是标准流行/摇滚歌曲？
   是 → MDX-Net Main（速度和质量的最佳平衡）
@@ -286,11 +287,11 @@ UVR 内置了数十个预训练模型。选择合适的模型取决于你的输�
           否 → 是带观众噪音的现场录音？
                   是 → VR-DeEcho（内置降噪）
                   否 → Demucs v4（完整 4轨分离）
-```
+`````
 
 ### 最高质量推荐设置
 
-```python
+`````python
 # UVR 设置 → "选择 MDX-Net 模型"
 # 处理方法: "MDX-Net"
 # 分段大小: 256（越低 = 更多显存占用，质量更好）
@@ -313,11 +314,11 @@ UVR 内置了数十个预训练模型。选择合适的模型取决于你的输�
 重叠度: 0.25
 批处理大小: 1
 处理速度预计慢 5-10 倍
-```
+`````
 
 ### 批量处理配置
 
-```bash
+`````bash
 # 通过 GUI 批量处理整个文件夹：
 # 1. 点击 "Input" → 选择文件夹
 # 2. 勾选 "Batch Processing"
@@ -334,7 +335,7 @@ tracks/
   track1/Vocals_track1.wav
   track2/Instrumental_track2.wav
   track2/Vocals_track2.wav
-```
+`````
 
 ## 与热门工具集成
 
@@ -342,7 +343,7 @@ tracks/
 
 UVR + RVC 是 AI 翻唱制作的流行工作流：
 
-```bash
+`````bash
 # 流水线：原曲 → UVR → 纯人声 → RVC → AI 翻唱
 #         原曲 → UVR → 伴奏 → 最终混音
 
@@ -358,11 +359,11 @@ python infer-web.py --input Vocals.wav --model weights/MyVoice.pth --pitch 0
 ffmpeg -i RVC_Converted_Vocals.wav -i UVR_Instrumental.wav \
        -filter_complex "[0:a][1:a]amix=inputs=2:duration=longest" \
        -ac 2 -ar 44100 Final_Cover.wav
-```
+`````
 
 ### 与 GPT-SoVITS 集成
 
-```python
+`````python
 # GPT-SoVITS 需要干净的语音输入用于音色克隆
 # 使用 UVR 预处理训练数据
 
@@ -376,24 +377,24 @@ python slice_audio.py --input UVR_Vocals/ --output slices/ --threshold -34
 
 # 第三步：使用切片进行 SoVITS 训练
 python webui.py --voice_slices slices/
-```
+`````
 
 ### 与 demucs CLI 集成
 
 UVR 内部使用 Demucs，但你也可以链式调用 CLI 版本：
 
-```bash
+`````bash
 # 使用 demucs 直接进行 4轨分离
 demucs --mp3 --two-stems=vocals input.mp3
 
 # 然后使用 UVR 进行额外的人声清理
 # UVR 可以处理 demucs 输出以进行更精细的人声/伴奏分离
 python separate.py --input demucs_vocals.wav --model VR-DeEcho --output cleaned/
-```
+`````
 
 ### FFmpeg 后处理流水线
 
-```bash
+`````bash
 # 将 UVR 输出转换为多种格式
 for file in UVR_Output/*.wav; do
     base=$(basename "$file" .wav)
@@ -407,7 +408,7 @@ for file in UVR_Output/*.wav; do
     # OGG 流式传输
     ffmpeg -i "$file" -codec:a libvorbis -q:a 6 "${base}.ogg"
 done
-```
+`````
 
 ## 基准测试与真实性能
 
@@ -417,15 +418,15 @@ done
 
 | 硬件 | MDX-Net | MDX23C | Demucs v4 | VR-DeEcho |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4090 (24GB) | 18秒 | 42秒 | 55秒 | 12秒 |
 | RTX 3060 (12GB) | 35秒 | 85秒 | 110秒 | 22秒 |
@@ -439,13 +440,13 @@ SDR 越高 = 分离质量越好，在 MUSDB18 基准上测试：
 
 | 模型 | 人声 SDR | 伴奏 SDR | 伪影程度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | MDX23C | 9.42 | 14.8 | 低 |
 | Demucs v4 | 9.28 | 14.2 | 低 |
@@ -463,7 +464,7 @@ SDR 越高 = 分离质量越好，在 MUSDB18 基准上测试：
 
 ### GPU 内存管理
 
-```python
+`````python
 # 如果遇到 "CUDA out of memory" 错误：
 
 # 方案一：在 GUI 中降低分段大小
@@ -483,11 +484,11 @@ python separate.py \
 # 方案四：关闭其他 GPU 应用程序
 # UVR 处理期间需要独占显存访问
 # 关闭浏览器、游戏和其他 CUDA 程序
-```
+`````
 
 ### 模型管理与存储
 
-```bash
+`````bash
 # UVR 将模型存储在应用目录中
 # Windows: C:\Users\<用户>\AppData\Local\Programs\Ultimate Vocal Remover\models\
 # macOS: /Applications/Ultimate Vocal Remover.app/Contents/models/
@@ -499,11 +500,11 @@ rsync -avz --progress models/ user@new-server:/opt/uvr/models/
 
 # 模型大小从 50MB 到 500MB 不等
 # 完整模型集：约 8GB 下载，磁盘约 12GB
-```
+`````
 
 ### 自动化工作流脚本
 
-```python
+`````python
 #!/usr/bin/env python3
 """UVR 批量处理脚本，用于生产工作流。"""
 
@@ -553,11 +554,11 @@ def main(): os.makedirs(OUTPUT_DIR, exist_ok=True)
     logger.info(f"完成: {success_count}/{len(results)} 个文件已处理")
 
 if __name__ == "__main__": main()
-```
+`````
 
 ### 监控与日志
 
-```python
+`````python
 # UVR 通过 GUI 写入处理日志：
 # 设置按钮 → 错误日志 → 查看详情
 
@@ -578,21 +579,21 @@ logging.basicConfig(
 
 # 处理期间监控 GPU 使用率
 watch -n 1 nvidia-smi
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Ultimate Vocal Remover | demucs | Spleeter | Open-Unmix |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 24,700 | 10,100 | 28,200 | 1,500 |
 | **GUI 界面** | 原生 Tkinter GUI | 无（仅 CLI） | 无（仅 CLI） | 无（仅 CLI） |
@@ -637,7 +638,7 @@ UVR 专为**音乐人声分离**而构建，它并非适用于所有音频任务
 MDX23C 在 SDR 基准测试中持续得分最高（MUSDB18 上 9.42 人声 SDR）。对于大多数流行/摇滚音轨，MDX-Net Main 提供了质量与速度的最佳平衡。在处理完整专辑之前，先用 30 秒片段测试多个模型。
 
 **问：如何处理 FLAC、M4A 或 OGG 文件？**
-安装 FFmpeg 并确保其在系统 PATH 中可用。UVR 使用 FFmpeg 作为所有非 WAV 格式的后端解码器。Linux 上执行 `sudo apt install ffmpeg`，macOS 上执行 `brew install ffmpeg`。Windows 安装包已自动捆绑 FFmpeg。
+安装 FFmpeg 并确保其在系统 PATH 中可用。UVR 使用 FFmpeg 作为所有非 WAV 格式的后端解码器。Linux 上执行 ````sudo apt install ffmpeg````，macOS 上执行 ````brew install ffmpeg```。Windows 安装包已自动捆绑 FFmpeg。
 
 **问：UVR 输出可以用于商业发布吗？**
 UVR 软件及其模型均为 MIT 许可证，允许商业使用。但版权法仍然适用于源材料。从受版权保护的歌曲中移除人声并不会赋予你分发结果伴奏的权利。商业许可问题请咨询法律顾问。
@@ -710,12 +711,12 @@ Ultimate Vocal Remover 填补了纯 CLI 库无法覆盖的空白：通过可视�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](ultimate-vocal-remover)
 - [wandb-ml-experiment-tracking-platform-2026](ultimate-vocal-remover)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

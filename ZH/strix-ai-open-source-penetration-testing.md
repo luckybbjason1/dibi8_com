@@ -17,6 +17,7 @@ featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg
 
 
 
+
 <<<<<<< HEAD
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
@@ -66,7 +67,7 @@ Nessus、Burp Suite 或 OWASP ZAP 等传统扫描仪会产生大量输出，其�
 
 ＃＃＃ 安装
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/usestrix/strix.git
 cd strix
@@ -80,11 +81,11 @@ pip install -e 。
 # 验证安装
 strix --版本
 # 输出：Strix AI v2.4.1
-```
+`````
 
 ### 运行您的第一次扫描
 
-```bash
+`````bash
 # Quick scan of a web application
 strix scan --target https://example.com --profile quick
 
@@ -93,11 +94,11 @@ strix scan --target https://example.com --profile full
 
 # 以 API 为中心的扫描
 strix scan --target https://api.example.com --profile api
-```
+`````
 
 ＃＃＃ 配置
 
-```yaml
+`````yaml
 # strix_config.yaml
 scanner: max_depth: 5
   concurrent_requests: 10
@@ -147,11 +148,11 @@ owasp_top10：正确
 - pdf
 - json
 目录：./reports
-```
+`````
 
 ### 高级扫描
 
-```bash
+`````bash
 # Scan with custom rules
 strix scan --target https://example.com \
   --rules ./custom-rules.yaml \
@@ -167,11 +168,11 @@ strix scan --target https://api.example.com \
 strix扫描--目标192.168.1.0/24 \
 --配置文件基础设施\
 --服务 ssh、http、https、dns、smtp
-```
+`````
 
 ### Python API
 
-```python
+`````python
 from strix import Scanner, ReportGenerator
 
 # 初始化扫描仪
@@ -193,7 +194,7 @@ print(f"严重: {results.ritic_count}")
 print(f"最高: {results.high_count}")
 print(f"中：{results.medium_count}")
 print(f"低: {results.low_count}")
-```
+`````
 
 ## 架构深度探究
 
@@ -201,7 +202,7 @@ print(f"低: {results.low_count}")
 
 Strix AI 使用分层代理架构，其中专用代理通过共享消息总线进行通信：
 
-```python
+`````python
 class AgentBus: """Shared message bus for agent communication"""
     def __init__(self): self.topics = {}
         self.handlers = {}
@@ -229,11 +230,11 @@ def 发布（自身、主题、消息）：
 总线.订阅（"recon.complete"，vuln_scanner.on_recon_complete）
 总线.订阅（"vuln.found"，exploit_agent.on_vulnerability）
 总线.订阅("利用.确认",report_agent.on_exploit_result)
-```
+`````
 
 ### 漏洞分析管道
 
-```python
+`````python
 class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vulnerability type
         vtype = self._classify(finding)
 <<<<<<< HEAD
@@ -287,11 +288,11 @@ class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vuln
 '修复'：self._suggest_remediation（vtype），
 }
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ### AI 驱动的误报过滤器
 
-```python
+`````python
 class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
 <<<<<<< HEAD
     
@@ -307,7 +308,7 @@ class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
             if response.probability < 30: filtered.append(finding)
         
         return filtered
-```
+`````
 
 
 ## Advanced Scanning Techniques
@@ -331,7 +332,7 @@ def过滤器（自我，发现）：
 过滤.追加（查找）
 
 返回已过滤
-```
+`````
 
 ## 先进的扫描技术
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
@@ -340,7 +341,7 @@ def过滤器（自我，发现）：
 
 为您的特定应用定义自定义检测规则：
 
-```yaml
+`````yaml
 # custom-rules.yaml
 rules: description: "Detects exposed environment variables in responses" pattern: "(?i)(password|api_key|secret)\s*[:=]\s..."
 模式："(?i)(密码|api_key|秘密)\s*[:=]\s*[\w-]+"
@@ -349,13 +350,13 @@ rules: description: "Detects exposed environment variables in responses" pattern
 - "/api/v1/config"
 - "/调试"
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ### 身份验证测试
 
 测试各种身份验证机制：
 
-```bash
+`````bash
 # JWT token testing
 strix scan --target https://api.example.com   --auth-type jwt   --jwt-algorithms RS256,HS256   --jwt-exploit "none-algorithm"   --jwt-exploit "key-injection"
 
@@ -364,13 +365,13 @@ strix scan --target https://app.example.com --auth-type oauth2 --oauth-flows 授
 
 # 会话固定测试
 strix scan --target https://app.example.com --auth-type session --session-attacks 固定、劫持、再生
-```
+`````
 
 ### API安全测试
 
 全面的API安全评估：
 
-```bash
+`````bash
 # OpenAPI-based testing
 strix scan --target https://api.example.com   --openapi ./openapi.yaml   --profile api-comprehensive
 
@@ -379,13 +380,13 @@ strix scan --target https://api.example.com/graphql --profile graphql --graphql-
 
 # WebSocket 测试
 strix scan --target wss: //ws.example.com --profile websocket --websocket-messages ./test-messages.json
-```
+`````
 
 ### 持续安全监控
 
 通过 CI/CD 集成设置持续监控：
 
-```yaml
+`````yaml
 # .github/workflows/strix-security.yml
 name: Security Scan
 on: push: branches: [main]
@@ -401,7 +402,7 @@ jobs: security: runs-on: ubuntu-latest
       - name: Upload SARIF to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with: sarif_file: strix-report.sarif
-```
+`````
 
 ## 报告和合规性
 
@@ -409,29 +410,29 @@ jobs: security: runs-on: ubuntu-latest
 
 生成董事会就绪的安全报告：
 
-```bash
+`````bash
 strix report --format executive   --include risk_matrix   --include remediation_timeline   --include compliance_status   --output executive-report.pdf
-```
+`````
 
 ### 合规性映射
 
 将调查结果映射到合规框架：
 
-```bash
+`````bash
 strix compliance --framework SOC2   --framework ISO27001   --framework PCI-DSS   --framework HIPAA   --output compliance-report.json
-```
+`````
 
 ### 补救跟踪
 
 跟踪和管理补救工作：
 
-```bash
+`````bash
 # Create remediation tickets
 strix remediate --project JIRA   --assignee team-backend   --priority high
 
 # 跟踪进度
 strix remediate --track --dashboard http://localhost: 9090
-```
+````
 
 ## 与替代方案的比较
 
@@ -439,12 +440,12 @@ strix remediate --track --dashboard http://localhost: 9090
 |---
 
 |-
----
+* * *
 
 |---
 
 |-
----
+* * *
 
 |---
 
@@ -524,7 +525,7 @@ Strix AI 的增长反映了对人工智能驱动的安全工具日益增长的�
 - [Strix AI 自述文件](https://github.com/usestrix/strix/blob/main/README.md)
 
 
----
+* * *
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -594,11 +595,11 @@ Strix AI：31K+明星开源渗透测试框架 represents an important step forwa
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -608,7 +609,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [skillspector-nvidia-open-source-security-scanner-ai-agent-skills](strix-ai-open-source-penetration-testing)
 - [trivy-production-security-scanner-2026](strix-ai-open-source-penetration-testing)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -616,15 +617,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

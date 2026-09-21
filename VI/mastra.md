@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/mastra/
 ---
 
+
 {{</* resource-info */>}}
 
 Hau het cac framework AI deu duoc xay dung cho Python. Neu stack cua ban chay tren TypeScript va Node.js, ban phai chon cau noi giua cac ngon ngu hoac chap nhan trai nghiem phat trien kem hon. Dieu nay da thay doi khi Gatsby team ra mat Mastra — mot framework TypeScript native de xay dung agent AI, dat **24.050 sao GitHub** vao thang 5/2026 va dang duoc su dung trong moi truong production tai Replit, PayPal, va Sanity. Bai viet nay bao gom moi thu ban can de cai dat Mastra, xay dung agent dau tien, va hieu cach Observational Memory cua no giam chi phi token 4-10 lan so voi cach tiep can RAG truyen thong.
@@ -34,14 +35,14 @@ Mastra la mot framework TypeScript ma nguon mo de xay dung ung dung va agent AI.
 
 ![Mastra Logo](https://raw.githubusercontent.com/mastra-ai/mastra/main/docs/public/logo.png)
 
-Y tuong cot loi rat don gian: agent xu ly cac tac vu doi thoai mo co quyen truy cap cong cu, workflow quan ly cac quy trinh nhieu buoc co tinh dinh huong, RAG neo cau tra loi vao du lieu cua ban, bo nho duy tri ng canh lien cuoc doi thoai, va eval do luong chat luong. Ca sau nguyen thuy deu duoc tich hop trong `@mastra/core` va hoat dong cung nhau thong qua API Zod kieu nhat quan.
+Y tuong cot loi rat don gian: agent xu ly cac tac vu doi thoai mo co quyen truy cap cong cu, workflow quan ly cac quy trinh nhieu buoc co tinh dinh huong, RAG neo cau tra loi vao du lieu cua ban, bo nho duy tri ng canh lien cuoc doi thoai, va eval do luong chat luong. Ca sau nguyen thuy deu duoc tich hop trong ```@mastra/core```` va hoat dong cung nhau thong qua API Zod kieu nhat quan.
 
 ![Mastra Studio — Giao dien phat trien dia phuong de go loi agent, workflow va bo nho](https://www.firecrawl.dev/images/blog/mastra-tutorial/workflow-graph.webp)
 
 ## Mastra Hoat Dong Nhu The Nao — Kien Truc va Khai Niem Cot Loi
 
 Kien truc cua Mastra xoay quanh sau khoi xay dung phan anh nhung gi cac he thong AI production thuc su can: ### Agent
-Agent la cac tac nhan chinh. Ban cung cap cho chung huong dan, mo hinh, va quyen truy cap cong cu. Chung tu quyet dinh goi gi, khi nao dung, va cach tra loi. Agent co `.generate()` de nhan phan hoi day du va `.stream()` de phat truc tiep token — dieu nay rat quan trong cho giao dien tro chuyen noi nguoi dung mong doi thay cau tra loi hinh thanh dan.
+Agent la cac tac nhan chinh. Ban cung cap cho chung huong dan, mo hinh, va quyen truy cap cong cu. Chung tu quyet dinh goi gi, khi nao dung, va cach tra loi. Agent co ````.generate()```` de nhan phan hoi day du va ````.stream()```` de phat truc tiep token — dieu nay rat quan trong cho giao dien tro chuyen noi nguoi dung mong doi thay cau tra loi hinh thanh dan.
 
 ### Workflow
 Workflow cung cap dieu phoi co tinh dinh huong cho cac thao tac nhieu buoc can kiem soat ro rang. Duoc xay dung tren XState, chung ho tro re nhanh, thuc thi song song, vong lap, va che do human-in-the-loop noi thuc thi tam dung cho phe duyet truoc khi tiep tuc.
@@ -58,7 +59,7 @@ Cong cu la cac ham duoc dinh nghia bang schema Zod ma agent co the goi. Chung cu
 ### Eval
 Khung danh gia theo doi chat luong agent thong qua cac phuong phap danh gia dua tren mo hinh, dua tren quy tac, va thong ke. Ban co the danh gia su lien quan, do trung thanh, do doc, tinh nhat quan giong noi, va cac chi so tuy chinh.
 
-```typescript
+`````typescript
 // Kien truc cot loi Mastra — tat ca sau nguyen thuy trong mot thiet lap
 import { Mastra } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -75,7 +76,7 @@ const mastra = new Mastra({
   vectorStore: new PgVector(connectionString),
   telemetry: otel,
 });
-```
+`````
 
 ## Cai Dat va Thiet Lap — Duoi 5 Phut
 
@@ -83,7 +84,7 @@ Mastra yeu cau Node.js 22.13.0 tro len. Duong dan khuyen nghi la su dung tro ly 
 
 ### Buoc 1: Tao Du An Moi
 
-```bash
+`````bash
 # Tao du an Mastra moi voi CLI tuong tac
 npm create mastra@latest
 
@@ -91,11 +92,11 @@ npm create mastra@latest
 # - Thanh phan (agent, workflow, RAG, bo nho)
 # - Nha cung cap LLM (OpenAI, Anthropic, Google, v.v.)
 # - Co bao gom ma vi du khong
-```
+`````
 
 ### Buoc 2: Cai Dat Thu Cong (Thay The)
 
-Neu ban muon them Mastra vao du an hien co: ```bash
+Neu ban muon them Mastra vao du an hien co: `````bash
 # Cai dat goi cot loi voi Zod de xac thuc schema
 npm install @mastra/core@latest zod@^4
 
@@ -104,19 +105,19 @@ npm install @ai-sdk/openai
 
 # Tuy chon: goi vector store, bo nho, va trien khai
 npm install @mastra/pg @mastra/memory @mastra/deployer-vercel
-```
+`````
 
 ### Buoc 3: Thiet Lap Moi Truong
 
-```bash
+`````bash
 # .env — Mastra tu dong tai cac bien nay khi chay
 OPENAI_API_KEY=sk-xxxx
 DATABASE_URL=postgresql://user:pass@localhost:5432/mastra
-```
+`````
 
 ### Buoc 4: Cau Truc Du An
 
-```
+`````
 my-mastra-project/
 ├── src/
 │   └── mastra/
@@ -130,17 +131,17 @@ my-mastra-project/
 ├── .env
 ├── package.json
 └── tsconfig.json
-```
+`````
 
 ### Buoc 5: Khoi Dong Mastra Studio
 
-```bash
+`````bash
 # Khoi dong giao dien phat trien dia phuong tai localhost:4111
 npx mastra dev
 
 # Studio cho phep ban tro chuyen voi agent, kiem tra loi goi cong cu,
 # xem trang thai bo nho, hinh anh hoa workflow, va lap lai prompt
-```
+`````
 
 ![Mastra Changelog Digest Workflow — Hien thi pipeline INPUT → SCRAPE → EXTRACT → OUTPUT](https://www.firecrawl.dev/images/blog/mastra-tutorial/changelog-pipeline.webp)
 
@@ -148,7 +149,7 @@ npx mastra dev
 
 ### Agent Co Ban Voi Cong Cu
 
-```typescript
+`````typescript
 // src/mastra/agents/support.ts
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -172,7 +173,7 @@ services: mastra: build: .
       POSTGRES_DB: mastra
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## So Sanh Voi Cac Lua Chon Thay The
 
@@ -216,7 +217,7 @@ Co, Mastra la TypeScript native. Ky vong co kien thuc co ban ve TypeScript, asyn
 LangChain cung cap ConversationBufferMemory, ConversationSummaryMemory, va truy xuat vector. Cac phuong phap nay hoat dong nhung hoac tieu ton toan bo cua so ng canh hoac dura vao tim kiem vector lam vo hieu bo dem prompt. Observational Memory cua Mastra nen ng canh thanh cac quan sat co the luu vao bo dem, dat duoc giam chi phi 4-10 lan trong khi dat diem cao hon tren benchmark LongMemEval (84,23% so voi 80,05% cua RAG).
 
 **Q: Toi co the trien khai Mastra tren DigitalOcean hoac AWS thay vi Vercel khong?**
-Co. Mastra hoan toan ma nguon mo va trien khai duoc tren bat ky runtime Node.js nao. Xay dung bang `mastra build`, sau do chay dau ra tren DigitalOcean App Platform, AWS ECS, Google Cloud Run, hoac bat ky may chu Docker nao. Cac trinh trien khai cho Vercel va Cloudflare Workers la tuy chon.
+Co. Mastra hoan toan ma nguon mo va trien khai duoc tren bat ky runtime Node.js nao. Xay dung bang ````mastra build````, sau do chay dau ra tren DigitalOcean App Platform, AWS ECS, Google Cloud Run, hoac bat ky may chu Docker nao. Cac trinh trien khai cho Vercel va Cloudflare Workers la tuy chon.
 
 **Q: Mastra ho tro nha cung cap LLM nao?**
 Mastra ho tro 40+ nha cung cap thong qua Vercel AI SDK: OpenAI, Anthropic, Google, Mistral, Cohere, xAI, DeepSeek, Fireworks, Together va nhieu nha khac. Chuyen doi nha cung cap la thay doi mot dong ma.
@@ -234,10 +235,10 @@ Truyen mot the hien bo nho khi tao the hien Mastra. Agent tu dong theo doi chu d
 
 Mastra lap day khoang trong ro rang trong boi canh framework AI — mot bo cong cu TypeScript native cap do production cho phep nha phat trien JavaScript xay dung agent ma khong can roi khoi he sinh thai cua ho. Viec giam chi phi token 4-10 lan tu Observational Memory khong phai la tuyen ba quang cao; no la mot loi the production co the do luong duoc ho tro boi benchmark LongMemEval. Diem DX 9/10 va thoi gian thiet lap duoi 5 phut cua framework khien no la con duong nhanh nhat tu y tuong den agent da trien khai cho cac doi TypeScript.
 
-Neu ban dang xay dung cac tinh nang AI cho ung dung Next.js, dich vu Node.js, hoac bat ky du an TypeScript nao, Mastra xung dang duoc danh gia nghiem tuc. Bat dau voi `npm create mastra@latest`, xay dung mot workflow, va tu do luong su khac biet chi phi token.
+Neu ban dang xay dung cac tinh nang AI cho ung dung Next.js, dich vu Node.js, hoac bat ky du an TypeScript nao, Mastra xung dang duoc danh gia nghiem tuc. Bat dau voi ````npm create mastra@latest````, xay dung mot workflow, va tu do luong su khac biet chi phi token.
 
 **Cac muc hanh dong:**
-1. Clone repo Mastra va chay quickstart: `npm create mastra@latest`
+1. Clone repo Mastra va chay quickstart: ````npm create mastra@latest```
 2. Tham gia [cong dong Discord Mastra](https://discord.gg/mastra) (5.500+ thanh vien)
 3. Kham pha [tai lieu chinh thuc](https://mastra.ai/docs)
 4. Theo doi [repo GitHub Mastra](https://github.com/mastra-ai/mastra) de cap nhat
@@ -297,7 +298,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -307,7 +308,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](mastra)
 - [ai-engineering-from-scratch](mastra)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

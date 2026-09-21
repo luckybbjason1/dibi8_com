@@ -22,6 +22,7 @@ aliases:
   - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
 ---
 
+
 {</* resource-info */>}
 
 Kiểm thử API là một phần không thể thiếu trong quy trình phát triển phần mềm hiện đại. Từ việc gỡ lỗi endpoint REST cho đến tự động hóa kiểm thử CI/CD, việc chọn đúng công cụ kiểm thử API có thể tăng đáng kể năng suất của nhóm phát triển. Năm 2025, bức tranh công cụ kiểm thử API đang thay đổi mạnh mẽ với sự trỗi dậy của các client thân thiện với Git và xu hướng "collections as code".
@@ -99,7 +100,7 @@ Bruno là API client mới nhất trong ba công cụ, nhưng đang tạo nên l
 
 ### Định Dạng Collection Thân Thiện với Git (Bru Files)
 
-Điểm độc đáo cốt lõi của Bruno là lưu collection dưới dạng plain text files có đuôi `.bru`. Mỗi request là một file riêng biệt, dễ dàng diff, review, và merge trong Git: ```
+Điểm độc đáo cốt lõi của Bruno là lưu collection dưới dạng plain text files có đuôi ``.bru``. Mỗi request là một file riêng biệt, dễ dàng diff, review, và merge trong Git: ````
 collections/
 ├── Get Users.bru
 ├── Create User.bru
@@ -109,9 +110,9 @@ collections/
 └── environments/
     ├── local.bru
     └── production.bru
-```
+`````
 
-Khác với Postman export JSON khổng lồ khó review, mỗi file `.bru` đơn giản và readable: ```bru
+Khác với Postman export JSON khổng lồ khó review, mỗi file ``.bru`` đơn giản và readable: `````bru
 meta {
   name: Get Users
   type: http
@@ -131,7 +132,7 @@ headers {
 auth:bearer {
   token: {{authToken}}
 }
-```
+`````
 
 ### Offline-First, Không Cloud Lock-in
 
@@ -139,19 +140,19 @@ Bruno hoạt động hoàn toàn offline. Không cần tài khoản, không đ�
 
 ### Mã Nguồn Mở và CLI Support
 
-Bruno là open-source (MIT license) và cung cấp CLI (`bru run`) cho CI/CD. Bạn có thể chạy collection trong GitHub Actions, GitLab CI, hay bất kỳ pipeline nào: ```yaml
+Bruno là open-source (MIT license) và cung cấp CLI (``bru run``) cho CI/CD. Bạn có thể chạy collection trong GitHub Actions, GitLab CI, hay bất kỳ pipeline nào: `````yaml
 # .github/workflows/api-tests.yml
 - name: Run API Tests
   run: npx @usebruno/cli run --env local
-```
+`````
 
 ### Scripting với JavaScript
 
-Bruno hỗ trợ pre-request và post-response scripts bằng JavaScript, tương tự Postman nhưng với cú pháp đơn giản hơn: ```javascript
+Bruno hỗ trợ pre-request và post-response scripts bằng JavaScript, tương tự Postman nhưng với cú pháp đơn giản hơn: `````javascript
 // Pre-request script
 const token = bru.getEnvVar("authToken");
-req.setHeader("Authorization", `Bearer ${token}`);
-```
+req.setHeader("Authorization", ````Bearer ${token}````);
+`````
 
 ## So Sánh Trực Tiếp: Postman vs Insomnia vs Bruno
 
@@ -186,7 +187,7 @@ req.setHeader("Authorization", `Bearer ${token}`);
 
 ### HTTPie Desktop
 
-HTTPie bắt đầu như CLI tool với syntax thân thiện (`http GET example.com`), nay đã có phiên bản Desktop. Phù hợp cho ngườithích giao diện sạch và CLI integration. Website: [httpie.io](https://httpie.io)
+HTTPie bắt đầu như CLI tool với syntax thân thiện (````http GET example.com````), nay đã có phiên bản Desktop. Phù hợp cho ngườithích giao diện sạch và CLI integration. Website: [httpie.io](https://httpie.io)
 
 ### Hoppscotch
 
@@ -211,7 +212,7 @@ Trong phát triển phần mềm hiện đại, "everything as code" là xu hư�
 
 ### Cách Bruno Thực Hiện Collections as Code
 
-Bruno là công cụ duy nhất trong ba công cụ chính lưu collection dưới dạng plain text files. Mỗi request là một file `.bru` độc lập, dễ dàng diff trong Git và review qua pull request.
+Bruno là công cụ duy nhất trong ba công cụ chính lưu collection dưới dạng plain text files. Mỗi request là một file ````.bru```` độc lập, dễ dàng diff trong Git và review qua pull request.
 
 ### Workaround cho Postman và Insomnia
 
@@ -221,7 +222,7 @@ Postman và Insomnia không có native Git integration. Workaround là export co
 
 ### Bruno CLI cho CI/CD Pipelines
 
-Bruno CLI (`@usebruno/cli`) là một package npm cho phép chạy collection từ command line. Hỗ trợ reporters (junit, html), environment variables, và tích hợp dễ dàng với GitHub Actions.
+Bruno CLI (````@usebruno/cli````) là một package npm cho phép chạy collection từ command line. Hỗ trợ reporters (junit, html), environment variables, và tích hợp dễ dàng với GitHub Actions.
 
 ### Newman (Postman CLI) cho Tự Động Hóa Kiểm Thử
 
@@ -229,7 +230,7 @@ Newman là CLI của Postman, đã có từ lâu và rất ổn định. Hỗ tr
 
 ### Tích Hợp Kiểm Thử API trong GitHub Actions
 
-```yaml
+`````yaml
 name: API Tests
 on: [push, pull_request]
 jobs: test: runs-on: ubuntu-latest
@@ -239,7 +240,7 @@ jobs: test: runs-on: ubuntu-latest
       - name: Run API Tests
         run: bru run --env ci
         working-directory: ./api-tests
-```
+`````
 
 ## Hướng Dẫn Chọn Công Cụ Phù Hợp với Workflow
 
@@ -266,7 +267,7 @@ jobs: test: runs-on: ubuntu-latest
 ### Ngườidùng VS Code
 
 - **Thunder Client**: Extension nhẹ, không rờikhỏi editor
-- **REST Client**: File-based approach, lưu request trong `.http` files
+- **REST Client**: File-based approach, lưu request trong ````.http``` files
 
 ## Hướng Dẫn Di Chuyển Giữa Các Công Cụ
 
@@ -320,7 +321,7 @@ Xu hướng Git-native API clients đang ngày càng mạnh mẽ, phản ánh s�
 
 Tìm hiểu thêm tại [postman.com](https://www.postman.com), [insomnia.rest](https://insomnia.rest), và [usebruno.com](https://www.usebruno.com).
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

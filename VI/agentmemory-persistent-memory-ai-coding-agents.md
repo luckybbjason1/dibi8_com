@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 ---
 
+
 # AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã Hóa AI — 22.000 Sao Với Đánh Giá Thực Tế — Hướng Dẫn Thực Tế 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Kiến trúc AgentMemory                     │
 │                                                      │
@@ -37,7 +38,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 │  │  "Lần trước bạn đã sửa bug xác thực..."         │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *AgentMemory: phiên → lưu trữ bộ nhớ → đại lý nhận ngữ cảnh*
 
@@ -62,7 +63,7 @@ Tính năng cốt lõi: - **Bộ nhớ liên phiên** — Nhớ những gì đã
 
 ### Giai đoạn 1: Trích xuất Bộ nhớ
 
-```bash
+`````bash
 # Khởi tạo kho lưu trữ bộ nhớ
 agentmemory init --project ./my-project
 
@@ -76,11 +77,11 @@ claude-code
 # - facts.db (sự kiện có cấu trúc)
 # - embeddings/ (lưu trữ vector)
 # - graph.db (knowledge graph)
-```
+`````
 
 ### Giai đoạn 2: Lưu trữ Bộ nhớ
 
-```python
+`````python
 # Pipeline trích xuất bộ nhớ
 from agentmemory import MemoryExtractor
 
@@ -100,11 +101,11 @@ extractor.extract_from_session(
 # Kết quả: # - 47 sự kiện được trích xuất (sửa bug, quyết định, mẫu)
 # - 12 vector embeddings được lưu trữ
 # - 89 edges trong knowledge graph
-```
+`````
 
 ### Giai đoạn 3: Truy xuất Bộ nhớ
 
-```python
+`````python
 # Truy xuất bộ nhớ liên quan cho một phiên mới
 from agentmemory import MemoryRetriever
 
@@ -125,13 +126,13 @@ context = retriever.retrieve(
 #   {"type": "decision", "date": "2026-06-01", "summary": "Chọn bcrypt thay vì argon2 cho hash mật khẩu"},
 #   ...
 # ]
-```
+`````
 
 ## Cài đặt và Thiết lập
 
 ### Bắt đầu Nhanh
 
-```bash
+`````bash
 pip install agentmemory
 
 # Khởi tạo cho một dự án
@@ -142,11 +143,11 @@ agentmemory run \
   --agent claude-code \
   --project ./my-app \
   --session-dir ./sessions
-```
+`````
 
 ### Triển khai Docker
 
-```bash
+`````bash
 docker run -d \
   --name agentmemory \
   -v $(pwd)/project:/project \
@@ -158,11 +159,11 @@ docker run -d \
 curl -X POST http://localhost:9090/query \
   -H "Content-Type: application/json" \
   -d '{"query": "What bugs were fixed last week?", "top_k": 5}" | jq
-```
+`````
 
 ### Tùy chọn Lưu trữ Bộ nhớ
 
-```python
+`````python
 # Chọn backend lưu trữ của bạn
 config = {
     "vector_store": "chromadb",  # "chromadb" | "qdrant" | "weaviate" | "sqlite"
@@ -178,39 +179,39 @@ agentmemory init --vector-store qdrant --qdrant-url http://qdrant:6333
 
 # Neo4j (trường hợp sử dụng nặng đồ thị)
 agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687
-```
+`````
 
 ## Tích hợp với Claude Code, Codex CLI, OpenCode và Gemini CLI
 
 AgentMemory tích hợp như một hook/middleware cho bất kỳ đại lý nào hỗ trợ gọi công cụ: ### Claude Code
 
-```bash
+`````bash
 # Plugin AgentMemory cho Claude Code
 agentmemory install claude-code
 
 # Bây giờ mỗi phiên Claude Code tự động: # 1. Bắt đầu bằng cách truy xuất bộ nhớ liên quan
 # 2. Lưu trữ sự kiện mới trong suốt phiên
 # 3. Cập nhật bộ nhớ vào cuối phiên
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # Thiết lập dự án bộ nhớ
 export AGENTMEMORY_PROJECT=./my-project
 # Codex CLI đọc bộ nhớ trước mỗi phiên
 # và lưu kết quả sau khi hoàn tất
-```
+`````
 
 ### OpenCode
 
-```bash
+`````bash
 # Plugin OpenCode
 agentmemory install opencode
 
 # Ngữ cảnh bộ nhớ được injected như một tool call: # agentmemory.query("auth-related changes")
 # Trả về ngữ cảnh quá khứ liên quan dưới dạng dữ liệu có cấu trúc
-```
+`````
 
 Để lưu trữ đáng tin cậy, triển khai trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplets cho bộ nhớ chia sẻ đội nhóm, hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho độ trễ thấp châu Á-Thái Bình Dương.
 
@@ -237,7 +238,7 @@ Bộ nhớ tồn tại như thế nào qua các khoảng thời gian khác nhau:
 
 ### Trường hợp Sử dụng Thực tế: Phát triển Đội nhóm
 
-Một đội 5 nhà phát triển sử dụng AgentMemory: ```bash
+Một đội 5 nhà phát triển sử dụng AgentMemory: `````bash
 # Developer A sửa bug auth vào thứ Hai
 # Developer B nhận cùng task vào thứ Ba
 # AgentMemory truy xuất sửa chữa và ngữ cảnh của A
@@ -251,13 +252,13 @@ agentmemory query \
 # - Nguyên nhân gốc: JWT tokens hết hạn
 # - Giải pháp: thêm token refresh middleware
 # - File liên quan: middleware/auth.py, services/jwt.js
-```
+`````
 
 ## Sử dụng Nâng cao / Cứng hóa Sản xuất
 
 ### Tùy chỉnh Schema Bộ nhớ
 
-```python
+`````python
 # Định nghĩa schema bộ nhớ tùy chỉnh cho dự án
 from agentmemory import SchemaBuilder
 
@@ -277,11 +278,11 @@ schema.add_relationship(
     target="architecture_decision",
     relation="affects"
 )
-```
+`````
 
 ### Đồng bộ Bộ nhớ Đội nhóm
 
-```bash
+`````bash
 # Đồng bộ bộ nhớ giữa các thành viên đội qua remote store
 agentmemory sync \
   --remote git@github.com:myorg/agentmemory-data.git \
@@ -290,11 +291,11 @@ agentmemory sync \
 
 # Mỗi nhà phát triển pull bộ nhớ mới trước phiên
 agentmemory pull --project ./my-app
-```
+`````
 
 ### Phân tích Bộ nhớ
 
-```bash
+`````bash
 # Xem thống kê bộ nhớ
 agentmemory stats --project ./my-app
 
@@ -306,7 +307,7 @@ agentmemory stats --project ./my-app
 
 # Xuất bộ nhớ để phân tích
 agentmemory export --format json --output ./memory-report.json
-```
+`````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -338,7 +339,7 @@ agentmemory export --format json --output ./memory-report.json
 AgentMemory không dành cho tất cả mọi người: 1. **Dự án cá nhân nhỏ** — Nếu bạn là nhà phát triển duy nhất và làm việc trong các phiên đơn, bộ nhớ mang lại giá trị hạn chế. Đại lý đủ nhanh để xử lý mã nguồn nhỏ mà không cần bộ nhớ.
 2. **Mã nhạy cảm với quyền riêng tư** — Bộ nhớ lưu trữ các mẫu mã và quyết định tại chỗ. Đối với mã nguồn doanh nghiệp, bạn cần kiểm tra các fact được trích xuất và lưu trữ. Dự án bao gồm kiểm soát quyền riêng tư, nhưng hãy xem xét kỹ schema.
 3. **Thời gian Cold Start** — Bộ nhớ cần thời gian để xây dựng. Một dự án mới bắt đầu với bộ nhớ trống và cần 10-20 phiên trước khi hệ thống trở nên hữu ích. Lập kế hoạch cho giai đoạn ramp-up này.
-4. **Memory Drift** — Theo thời gian, các fact cũ có thể làm nhầm lẫn đại lý. Triển khai dọn dẹp bộ nhớ định kỳ (hàng tháng khuyến nghị bằng cách sử dụng `agentmemory prune --older-than 90d`).
+4. **Memory Drift** — Theo thời gian, các fact cũ có thể làm nhầm lẫn đại lý. Triển khai dọn dẹp bộ nhớ định kỳ (hàng tháng khuyến nghị bằng cách sử dụng ````agentmemory prune --older-than 90d````).
 5. **Độ phức tạp Vector DB** — Đối với triển khai sản xuất với nhiều đại lý, quản lý ChromaDB/Qdrant/Neo4j thêm overhead vận hành. Bắt đầu với SQLite cho các thiết lập đơn giản.
 
 ## Câu Hỏi Thường Gặp
@@ -357,7 +358,7 @@ AgentMemory không dành cho tất cả mọi người: 1. **Dự án cá nhân 
 
 **H: Làm cách nào để dọn dẹp bộ nhớ cũ?**
 
-Đ: Sử dụng `agentmemory prune --older-than 90d` để loại bỏ các fact cũ hơn 90 ngày. Bạn cũng có thể thiết lập cleanup tự động trong config: `cleanup_threshold_days: 90`.
+Đ: Sử dụng ````agentmemory prune --older-than 90d```` để loại bỏ các fact cũ hơn 90 ngày. Bạn cũng có thể thiết lập cleanup tự động trong config: ````cleanup_threshold_days: 90```.
 
 **H: Nó có hoạt động cho các tác vụ không phải mã hóa không?**
 
@@ -415,7 +416,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -425,7 +426,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa
 - [2026-06-01-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 - [2026-06-08-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

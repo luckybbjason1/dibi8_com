@@ -12,13 +12,14 @@ aliases:
   - /kr/posts/perplexity-api-rag-search/
 ---
 
+
 {{</* resource-info */>}}
 
 Perplexity API의 출시로 지능적이고 사실에 기반한 애플리케이션 구축 경쟁은 중요한 이정표에 도달했습니다. 이 API는 대규모 언어 모델과 실시간 웹 인덱싱을 융합한 전문 RAG(검색 증강 생성) 검색 서비스입니다. 정적 학습 데이터에만 의존하는 기존 LLM API와 달리 Perplexity의 Sonar 모델은 실시간으로 인터넷을 쿼리하고, 권위 있는 소스를 검색하며, 인라인 인용이 포함된 구조화된 답변을 반환합니다. 챗봇, 연구 도구, 지식 어시스턴트, 콘텐츠 검증 파이프라인을 구축하는 개발자에게 이는 패러다임의 전환을 의미합니다. 단순히 텍스트를 생성하는 것이 아니라 모든 주장을 검증 가능한 현실에 기반을 두는 애플리케이션입니다.
 
 이 가이드는 2026년 Perplexity API에 대한 포괄적인 통합 로드맵을 제공합니다. RAG 검색 아키텍처의 작동 방식, 사용 사례에 적합한 Sonar 모델, 스트리밍 챗 완성 구현 방법, 프로그래밍 방식으로 인용 처리, 속도 제한 관리, 정확하고 출처가 있는 답변을 제공하는 프로덕션급 검색 애플리케이션 배포 방법을 알아보겠습니다.
 
----
+* * *
 
 ## Perplexity API란 무엇이며 RAG가 중요한 이유는?
 
@@ -30,7 +31,7 @@ Perplexity API는 내장 RAG를 통해 이 제약을 제거합니다. 쿼리를 
 
 개발자에게 실질적인 의미는 심오합니다. 더 이상 자체 검색 파이프라인을 구축하거나, 벡터 데이터베이스를 관리하거나, 청킹 전략을 조정할 필요가 없습니다. Perplexity는 문서 검색, 관련성 평점 및 컨텍스트 주입을 자동으로 처리하여 OpenAI API를 사용핳 본 사람이라면 누구나 친숙하게 느낄 수 있는 깔끔한 챗 완성 인터페이스를 제공합니다.
 
----
+* * *
 
 ## Sonar 모델군 이해: 선택 방법
 
@@ -52,7 +53,7 @@ Sonar Pro는 일부 대기 시간을 희생하여 상당히 더 깊은 추론 �
 
 엔터프라이즈급 연구 및 포괄적인 주제 탐색을 위해 Sonar Deep Research는 광범위한 다중 소스 조사를 수행하여 수십 개의 문서를 평가하여 상세하고 잘 구조화된 보고서를 생성합니다. 대기 시간과 토큰 사용량이 더 높을 것으로 예상하지만, 비교할 수 없는 철저함을 제공합니다.
 
-```python
+````python
 # 다양한 사용 사례를 위한 모델 선택 매핑
 MODEL_MAP = {
     "fast_chat": "sonar",           # 빠른 Q&A, 낮은 지연 시간
@@ -60,22 +61,22 @@ MODEL_MAP = {
     "analytical": "sonar-reasoning", # 단계별 추론
     "enterprise": "sonar-deep-research"  # 포괄적인 보고서
 }
-```
+`````
 
----
+* * *
 
 ## 시작하기: API 키 및 인증
 
 통합 코드를 작성하기 전에 Perplexity API 키가 필요합니다. Perplexity 개발자 포털을 방문하여 계정을 만들고 대시보드에서 API 키를 생성하세요. Perplexity는 HTTPS를 통한 표준 Bearer 토큰 인증을 사용합니다.
 
-```bash
+`````bash
 # API 키를 안전하게 저장
 export PERPLEXITY_API_KEY="pplx-your-api-key-here"
-```
+`````
 
-모든 API 요청에는 `Authorization: Bearer <token>` 헤더가 필요합니다. 챗 완성을 위한 기본 엔드포인트는 `https://api.perplexity.ai/chat/completions`입니다.
+모든 API 요청에는 ````Authorization: Bearer <token>```` 헤더가 필요합니다. 챗 완성을 위한 기본 엔드포인트는 ````https://api.perplexity.ai/chat/completions````입니다.
 
-```python
+`````python
 import os
 
 API_KEY = os.environ.get("PERPLEXITY_API_KEY")
@@ -84,17 +85,17 @@ HEADERS = {
     "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
-```
+`````
 
 Perplexity는 실험을 위해 관대한 묶음 티어를 제공하며, 유료 티어는 쿼리 볼륨 및 모델 선택에 따라 확장됩니다. 가격 구조는 더 간단한 과금을 위해 토큰 기반이 아닌 쿼리 기반이지만, 토큰 소비는 사용량 분석을 위해 추적됩니다.
 
----
+* * *
 
 ## 기본 챗 완성: 첫 번째 RAG 쿼리
 
 Perplexity API는 OpenAI 호환 챗 완성 인터페이스를 구현하여 이미 GPT 기반 모델을 사용 중인 경우 마이그레이션이 간단합니다. 중요한 차이점은 백그라운드에서 자동으로 발생하는 웹 검색 및 인용 주입입니다.
 
-```python
+`````python
 import requests
 import json
 
@@ -126,11 +127,11 @@ result = perplexity_query(
     "2026년 핵융합 에너지의 최신 발전은 무엇인가요?"
 )
 print(result["choices"][0]["message"]["content"])
-```
+`````
 
 검색 매개변수, 문서 ID 또는 검색 구성이 필요하지 않습니다. Perplexity는 웹 검색이 필요한지 자동으로 결정하고, 검색을 실행하고, 출처가 있는 자료에 응답을 기반을 둡니다.
 
-응답에는 생성된 텍스트뿐만 아니라 인용 메타데이터도 포함됩니다: ```python
+응답에는 생성된 텍스트뿐만 아니라 인용 메타데이터도 포함됩니다: `````python
 # 응답에서 인용 추출
 message = result["choices"][0]["message"]
 answer_text = message["content"]
@@ -139,9 +140,9 @@ citations = message.get("citations", [])
 print(f"답변: {answer_text[:200]}...")
 print(f"\n인용된 출처: {len(citations)}")
 for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
-```
+`````
 
----
+* * *
 
 ## 인용 작업: 투명성을 통한 신뢰 구축
 
@@ -149,9 +150,9 @@ for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
 
 ### 인용 형식 이해
 
-Perplexity는 어시스턴트 메시지의 `citations` 필드에서 URL 목록 형태로 인용을 반환합니다. 콘텐츠 텍스트에서 인용은 괄호 안의 색인 `[1]`, `[2]` 등으로 참조되며, 이는 인용 배열의 순서와 일치합니다.
+Perplexity는 어시스턴트 메시지의 ````citations```` 필드에서 URL 목록 형태로 인용을 반환합니다. 콘텐츠 텍스트에서 인용은 괄호 안의 색인 ````[1]````, ````[2]```` 등으로 참조되며, 이는 인용 배열의 순서와 일치합니다.
 
-```python
+`````python
 def format_response_with_citations(result: dict) -> str: """클릭 가능한 인용 링크가 있는 Perplexity 응답을 형식화합니다."""
     message = result["choices"][0]["message"]
     content = message["content"]
@@ -163,11 +164,11 @@ def format_response_with_citations(result: dict) -> str: """클릭 가능한 인
     return formatted
 
 print(format_response_with_citations(result))
-```
+`````
 
 ### 웹 애플리케이션에서 인용 렌더링
 
-웹 인터페이스를 구축할 때 인용을 대화형 각주 또는 사이드바 참조로 렌더링하세요: ```html
+웹 인터페이스를 구축할 때 인용을 대화형 각주 또는 사이드바 참조로 렌더링하세요: `````html
 function CitedResponse({ content, citations }) {
   // 콘텐츠에서 [1], [2] 마커 파싱
   const parts = content.split(/(\[\d+\])/g);
@@ -194,15 +195,15 @@ function CitedResponse({ content, citations }) {
     </div>
   );
 }
-```
+`````
 
----
+* * *
 
 ## 실시간 사용자 경험을 위한 스트리밍 응답
 
 대화형 애플리케이션의 경우 Perplexity는 서버 전송 이벤트(SSE) 스트리밍을 지원하여 완전한 응답을 기다리는 대신 생성될 때 토큰을 전달합니다. 이는 속도 인식을 만들고 점진적 인용 표시를 가능하게 합니다.
 
-```python
+`````python
 import sseclient
 import io
 
@@ -246,15 +247,15 @@ def perplexity_stream(query: str, model: str = "sonar-pro"): """토큰별로 RAG
 answer, sources = perplexity_stream(
     "최근 UN 기후 정상회의의 결과는 무엇인가요?"
 )
-```
+`````
 
-```javascript
+`````javascript
 // fetch를 사용한 Node.js 스트리밍 예제
 async function streamPerplexity(query) {
   const response = await fetch('https://api.perplexity.ai/chat/completions', {
     method: POST,
     headers: {
-      Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+      Authorization: ````Bearer ${process.env.PERPLEXITY_API_KEY}````,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -284,15 +285,15 @@ async function streamPerplexity(query) {
     }
   }
 }
-```
+`````
 
----
+* * *
 
 ## 컨텍스트 검색이 있는 다중 턴 대화
 
 Perplexity는 여러 턴에 걸쳐 대화 컨텍스트를 유지하여 이전 교환을 참조하는 후속 질문을 가능하게 합니다. 검색 시스템은 대화 흐름에 적응하여 누적된 컨텍스트를 기반으로 검색을 개선합니다.
 
-```python
+`````python
 class PerplexityConversation: """RAG 검색 메모리가 있는 상태 저장 대화 처리기."""
     
     def __init__(self, model: str = "sonar-pro", system_prompt: str = None): self.model = model
@@ -348,9 +349,9 @@ r2 = conv.ask("이 중에서 R&D에 가장 많이 투자하는 곳은 어디인�
 r3 = conv.ask("올해 출시하는 구체적인 제품은 무엇인가요?")
 
 print(conv.get_conversation_summary())
-```
+`````
 
----
+* * *
 
 ## 고급 쿼리 패턴: 구조화된 데이터 및 도메인 필터링
 
@@ -358,7 +359,7 @@ print(conv.get_conversation_summary())
 
 ### 검색 도메인 타겟팅
 
-전문 분야에서 권위 있는 소싱을 위해 특정 도메인으로 검색을 제한하세요: ```python
+전문 분야에서 권위 있는 소싱을 위해 특정 도메인으로 검색을 제한하세요: `````python
 def targeted_search(query: str, domains: list[str]) -> dict: """지정된 도메인 내에서 권위 있는 결과를 검색합니다."""
     payload = {
         "model": "sonar-pro",
@@ -385,11 +386,11 @@ medical_result = targeted_search(
     "최신 mRNA 백신 개발은 무엇인가요?",
     domains=["who.int", "cdc.gov", "nejm.org", " Lancet.com"]
 )
-```
+`````
 
 ### 최신성 필터링
 
-웹 검색의 시간적 범위를 제어하여 최신성을 보장하세요: ```python
+웹 검색의 시간적 범위를 제어하여 최신성을 보장하세요: `````python
 def recent_search(query: str, recency_days: int = 7) -> dict: """최근 정볼만 검색합니다."""
     payload = {
         "model": "sonar-pro",
@@ -407,11 +408,11 @@ def recent_search(query: str, recency_days: int = 7) -> dict: """최근 정볼�
 
 # 최근 24시간의 뉴스만 가져오기
 breaking = recent_search("오늘의 주요 기술 인수", recency_days=1)
-```
+`````
 
 ### 자동 파싱을 위한 JSON 모드
 
-데이터 파이프라인을 구축할 때 구조화된 출력을 요청하세요: ```python
+데이터 파이프라인을 구축할 때 구조화된 출력을 요청하세요: `````python
 import json
 
 def structured_search(query: str, schema: dict) -> dict: """검색하고 스키마와 일치하는 구조화된 JSON을 반환합니다."""
@@ -454,15 +455,15 @@ structured = structured_search(
     company_schema
 )
 print(json.dumps(structured["structured"], indent=2))
-```
+`````
 
----
+* * *
 
 ## 프로덕션 배포: 속도 제한, 오류 처리 및 재시도 로직
 
 프로덕션 통합에는 API 제한과 일시적 오류에 대한 강력한 처리가 필요합니다. Perplexity는 구독 티어에 따라 속도 제한을 시행하며, 일반적인 제한은 분당 20~1000개 요청입니다.
 
-```python
+`````python
 import time
 from functools import wraps
 
@@ -538,15 +539,15 @@ for q in queries: try: result = client.query(q)
         results.append(result)
         print(f"✓ 쿼리 완료: {q[:50]}...")
     except Exception as e: print(f"✗ 쿼리 실패: {q[:50]}... - {e}")
-```
+`````
 
----
+* * *
 
 ## 완전한 RAG 검색 애플리케이션 구축
 
 모든 것을 RAG 기반 검색 서비스의 프로덕션 패턴을 보여주는 완전한 Flask 애플리케이션으로 종합해 보겠습니다.
 
-```python
+`````python
 # app.py - 완전한 RAG 검색 API
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
@@ -634,9 +635,9 @@ def health(): """상태 확인 엔드포인트."""
     return jsonify({"status": "healthy", "service": "rag-search"})
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=5000, debug=True)
-```
+`````
 
-```bash
+`````bash
 # 컨테이너화된 배포를 위한 Dockerfile
 FROM python:3.11-slim
 
@@ -650,9 +651,9 @@ ENV FLASK_ENV=production
 
 EXPOSE 5000
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: rag-search: build: .
@@ -663,9 +664,9 @@ services: rag-search: build: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
----
+* * *
 
 ## FAQ
 
@@ -683,7 +684,7 @@ Perplexity API는 자동으로 실시간 웹 검색과 인용 주입을 수행�
 
 ### Perplexity가 제공하는 인용의 정확도는 어느 정도입니까?
 
-Perplexity의 인용 시스템은 매우 정확하며, 출처는 검색 단계에서 검색된 URL에 직접 연결됩니다. 응답의 `[1]`, `[2]` 마커는 인용 배열과 정확히 일치합니다. 그러나 중요한 정보는 반드시 1차 출처 대해 검증하세요.
+Perplexity의 인용 시스템은 매우 정확하며, 출처는 검색 단계에서 검색된 URL에 직접 연결됩니다. 응답의 ````[1]````, ````[2]```` 마커는 인용 배열과 정확히 일치합니다. 그러나 중요한 정보는 반드시 1차 출처 대해 검증하세요.
 
 ### 스트리밍은 모든 Sonar 모델에서 지원됩니까?
 
@@ -695,9 +696,9 @@ Perplexity는 쿼리 볼륨과 토큰 소비를 기반으로 하는 결합 가�
 
 ### 검색을 특정 도메인이나 날짜 범위로 필터링할 수 있습니까?
 
-네, API는 `search_domain_filter`를 지원하여 특정 도메인으로 쿼리를 제한하고, `search_recency_filter`는 결과를 최신성으로 제한합니다(예: 지난 7일은 "7d"). 이러한 매개변수는 권위 있고 시기적절한 소싱에 도움이 됩니다.
+네, API는 ````search_domain_filter````를 지원하여 특정 도메인으로 쿼리를 제한하고, ````search_recency_filter```는 결과를 최신성으로 제한합니다(예: 지난 7일은 "7d"). 이러한 매개변수는 권위 있고 시기적절한 소싱에 도움이 됩니다.
 
----
+* * *
 
 
 
@@ -740,7 +741,7 @@ Perplexity API는 개발자가 접근할 수 있는 RAG 기술의 중요한 발�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -750,7 +751,7 @@ Perplexity API는 개발자가 접근할 수 있는 RAG 기술의 중요한 발�
 - [llm-inference-cost-optimization-guide-2026](perplexity-api-rag-search)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](perplexity-api-rag-search)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

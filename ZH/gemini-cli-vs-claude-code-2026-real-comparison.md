@@ -28,6 +28,7 @@ faq: - q: "Gemini CLI 算得上 Claude Code 的真正竞争对手吗？"
     a: "很多开发者都是这么做的。Gemini CLI 用于免费额度的探索 + 长上下文工作。Claude Code 用于生产级的智能体循环 + 可靠的工具调用。组合起来比单用任一款覆盖的工作流都多，而且 Gemini 的免费额度意味着几乎零额外成本。"
 ---
 
+
 {{</* resource-info */>}}
 
 # Gemini CLI vs Claude Code 2026：5 个工作流的真实对比
@@ -54,11 +55,11 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 耗时 | 7 分 30 秒 | 4 分 12 秒 |
 | 首次成功 | 1/3 | 3/3 |
@@ -70,11 +71,11 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 耗时 | 5 分 45 秒 | 2 分 50 秒 |
 | 命中数 | 35/40 | 40/40 |
@@ -86,11 +87,11 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 诊断 | 建议重跑 | 竞态条件（首次诊断正确） |
 | 修复 | 无 | 干净、带注释 |
@@ -101,11 +102,11 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 质量 | **优秀 —— 包含了 Claude 漏掉的章节** | 优秀 |
 | 速度 | 最快（1M 上下文优势） | 快 |
@@ -116,11 +117,11 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 工具协同 | 工具链断了 2 次 | 平滑 |
 | 错误数 | 4 | 1 |
@@ -132,11 +133,11 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 
 | 维度 | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 免费额度 | ✅ 慷慨（60/分钟，1500/天） | ❌ 仅试用 |
 | 上下文窗口 | 1M+ | 200K（1M 套餐 $$$） |
@@ -179,7 +180,7 @@ Gemini CLI 在 2026 年是一款严肃的工具，但还不能替代 Claude Code
 2026 年大多数专业开发者的最佳组合：Claude Code 当主力 + Gemini CLI 作为免费额度下的 "什么都能探索" 工具。Gemini 的免费额度意味着几乎零额外成本。
 
 
----
+* * *
 **相关阅读**：[AI Coding 2026-Q2 大乱斗](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Claude Code 配置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/) · [1M 上下文 LLM 2026 实测](https://dibi8.com/zh/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
 
 
@@ -245,11 +246,11 @@ Gemini CLI vs Claude Code 2026：5 个工作流的真实对比 represents an imp
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -259,7 +260,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](gemini-cli-vs-claude-code-2026-real-comparison)
 - [claude-code-vs-cline](gemini-cli-vs-claude-code-2026-real-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

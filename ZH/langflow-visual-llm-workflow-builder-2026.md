@@ -7,6 +7,7 @@ license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
 ---
 
+
 # Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析
 
 ![Langflow：AI 源代码中心徽章](https://deepwiki.com/badge.svg){: .hero-image .rounded-lg .shadow-lg .mb-6 alt="Langflow: AI Source Code Hub Badge"}
@@ -42,8 +43,8 @@ Langflow 采用基于流的编程范式，其中应用程序的逻辑表示为�
 
 当您在 Langflow 中构建流程时：
 1.  **节点选择**：将节点从侧边栏拖放到画布上。这些节点按类别分类，例如“LLMs”、“Chains”、“Tools”、“Agents”、“Prompt Templates”、“Document Loaders”和“Text Splitters”。
-2.  **配置**：每个节点都有可配置的参数。对于“OpenAI Chat”节点，您可以指定模型名称（例如 `gpt-4o`）、温度和 API 密钥。对于“Prompt Template”节点，您定义带有占位符的模板字符串。
-3.  **连接（边）**：将一个节点的输出端口连接到另一个节点的输入端口。例如，“Prompt Template”节点的输出（一个 `PromptValue`）可能连接到“LLM”节点的 `input`。LLM 节点的 `output`（一个 `BaseMessage`）可能随后连接到进一步处理响应的“Chain”或“Agent”。
+2.  **配置**：每个节点都有可配置的参数。对于“OpenAI Chat”节点，您可以指定模型名称（例如 ```gpt-4o````）、温度和 API 密钥。对于“Prompt Template”节点，您定义带有占位符的模板字符串。
+3.  **连接（边）**：将一个节点的输出端口连接到另一个节点的输入端口。例如，“Prompt Template”节点的输出（一个 ````PromptValue````）可能连接到“LLM”节点的 ````input````。LLM 节点的 ````output````（一个 ````BaseMessage````）可能随后连接到进一步处理响应的“Chain”或“Agent”。
 4.  **执行**：当流程“运行”时（通过内置聊天界面或 API 调用），Langflow 会遍历图，根据依赖关系以正确的顺序执行节点。数据从输出端口流向输入端口，触发后续节点的执行。
 
 考虑一个简单的检索增强生成 (RAG) 流程：
@@ -64,7 +65,7 @@ Langflow 的启动和运行旨在简单明了，Docker 是大多数寻求“5 �
 ### 先决条件
 
 *   Docker 和 Docker Compose（如果使用 Docker）
-*   Python 3.9+ 和 `pip`（如果本地安装）
+*   Python 3.9+ 和 ````pip````（如果本地安装）
 *   Git（用于克隆仓库）
 
 ### 选项 1：Docker（推荐用于快速启动）
@@ -72,65 +73,65 @@ Langflow 的启动和运行旨在简单明了，Docker 是大多数寻求“5 �
 此方法确保所有依赖项都在容器中管理，并避免本地环境冲突。
 
 1.  **克隆仓库**：
-    ```bash
+    `````bash
     git clone https://github.com/langflow-ai/langflow.git
     cd langflow
-    ```
+    `````
 2.  **使用 Docker Compose 启动**：
-    Langflow 提供了一个 `docker-compose.yml` 文件，便于设置。
-    ```bash
+    Langflow 提供了一个 ````docker-compose.yml```` 文件，便于设置。
+    `````bash
     docker compose up -d
-    ```
-    此命令将构建必要的镜像（如果尚未构建），并启动 Langflow 后端和前端服务。`-d` 标志以分离模式运行它们。
+    `````
+    此命令将构建必要的镜像（如果尚未构建），并启动 Langflow 后端和前端服务。````-d```` 标志以分离模式运行它们。
 
 3.  **访问 Langflow**：
-    容器启动后，Langflow 将在您的网络浏览器中 `http://localhost:7860` 处可访问。
+    容器启动后，Langflow 将在您的网络浏览器中 ````http://localhost:7860```` 处可访问。
     首次访问时，系统会提示您创建管理员用户。
 
 4.  **停止 Langflow**：
-    ```bash
+    `````bash
     docker compose down
-    ```
+    `````
 
 ### 选项 2：Pip 安装（适用于本地开发和自定义组件）
 
 如果您计划开发自定义组件或将 Langflow 集成到现有 Python 项目中，本地安装是合适的。
 
 1.  **创建虚拟环境**：
-    ```bash
+    `````bash
     python -m venv venv
     source venv/bin/activate # On Windows: .\venv\Scripts\activate
-    ```
+    `````
 2.  **安装 Langflow**：
-    ```bash
+    `````bash
     pip install langflow
-    ```
-    *注意：如果您遇到特定依赖项的问题，通常安装 `playwright` 浏览器依赖项会有帮助：*
-    `playwright install --with-deps`
+    `````
+    *注意：如果您遇到特定依赖项的问题，通常安装 ````playwright```` 浏览器依赖项会有帮助：*
+    ````playwright install --with-deps````
 
 3.  **运行 Langflow**：
-    ```bash
+    `````bash
     langflow run --port 7860
-    ```
-    此命令启动 Langflow 服务器。在您的浏览器中 `http://localhost:7860` 处访问它。
+    `````
+    此命令启动 Langflow 服务器。在您的浏览器中 ````http://localhost:7860```` 处访问它。
 
 ### 环境变量
 
-Langflow 需要各种 LLM 提供商的 API 密钥。这些最好使用环境变量进行管理。在 Langflow 目录的根目录中创建 `.env` 文件（或直接将其传递给您的 Docker 容器/shell）。
+Langflow 需要各种 LLM 提供商的 API 密钥。这些最好使用环境变量进行管理。在 Langflow 目录的根目录中创建 ````.env```` 文件（或直接将其传递给您的 Docker 容器/shell）。
 
-```ini
+`````ini
 # .env example
 OPENAI_API_KEY=sk-YOUR_OPENAI_KEY
 ANTHROPIC_API_KEY=sk-ant-api03-YOUR_ANTHROPIC_KEY
 HUGGINGFACEHUB_API_TOKEN=hf_YOUR_HF_TOKEN
 # Optional: For database configuration
 DATABASE_URL=postgresql://user:password@host:port/database_name
-```
+`````
 
 **常见设置问题：**
-*   **端口冲突**：如果 `7860` 正在使用中，Langflow 可能无法启动。检查可用端口或指定不同的端口（例如 `langflow run --port 8000`）。
-*   **缺少 API 密钥**：如果没有配置正确的 API 密钥，LLM 节点将无法初始化或执行。务必仔细检查您的 `.env` 文件并确保已加载。
-*   **依赖项问题 (Pip)**：偶尔，特定的库版本可能会冲突。使用全新的虚拟环境并首先安装 `langflow` 通常可以解决这些问题。
+*   **端口冲突**：如果 ````7860```` 正在使用中，Langflow 可能无法启动。检查可用端口或指定不同的端口（例如 ````langflow run --port 8000````）。
+*   **缺少 API 密钥**：如果没有配置正确的 API 密钥，LLM 节点将无法初始化或执行。务必仔细检查您的 ````.env```` 文件并确保已加载。
+*   **依赖项问题 (Pip)**：偶尔，特定的库版本可能会冲突。使用全新的虚拟环境并首先安装 ````langflow```` 通常可以解决这些问题。
 
 对于希望将 Langflow 部署到云环境的用户，在虚拟专用服务器 (VPS) 上设置 Docker 容器是一种常见方法。像 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 这样的提供商提供了简单的 droplet 创建和 Docker 工具，使得在几分钟内即可公开访问 Langflow 实例成为可能。
 
@@ -140,58 +141,58 @@ Langflow 的强大之处在于它与流行的 AI 框架和模型的深度集成�
 
 ### LangChain
 
-Langflow 构建在 LangChain 之上。Langflow 中的每个节点都对应于 LangChain 生态系统中的一个组件或概念（例如 `LLM`、`PromptTemplate`、`Chain`、`Agent`、`Tool`、`DocumentLoader`、`VectorStore`）。这意味着您在 Langflow 中构建的任何流程理论上都可以转换为 LangChain Python 代码，尽管需要更多努力。
+Langflow 构建在 LangChain 之上。Langflow 中的每个节点都对应于 LangChain 生态系统中的一个组件或概念（例如 ````LLM````、````PromptTemplate````、````Chain````、````Agent````、````Tool````、````DocumentLoader````、````VectorStore````）。这意味着您在 Langflow 中构建的任何流程理论上都可以转换为 LangChain Python 代码，尽管需要更多努力。
 
 **示例：Langflow 中的简单 LangChain 序列**
 1.  拖动一个“Prompt Template”节点。
-    *   设置 `template`：“What is the capital of {country}?”
-    *   添加 `country` 作为变量。
+    *   设置 ````template````：“What is the capital of {country}?”
+    *   添加 ````country```` 作为变量。
 2.  拖动一个“OpenAI Chat”节点。
-    *   选择 `gpt-3.5-turbo` 作为模型。
-3.  将 Prompt Template 的 `PromptValue` 输出连接到 OpenAI Chat 节点的 `input`。
-4.  将 OpenAI Chat 节点的 `output` 连接到“Chat Output”节点。
+    *   选择 ````gpt-3.5-turbo```` 作为模型。
+3.  将 Prompt Template 的 ````PromptValue```` 输出连接到 OpenAI Chat 节点的 ````input````。
+4.  将 OpenAI Chat 节点的 ````output```` 连接到“Chat Output”节点。
 
-这种可视化设置直接反映了 LangChain 中的 `chain = PromptTemplate(...) | ChatOpenAI(...)`。
+这种可视化设置直接反映了 LangChain 中的 ````chain = PromptTemplate(...) | ChatOpenAI(...)````。
 
 ### OpenAI
 
 OpenAI 的模型是许多 LLM 应用程序的核心，Langflow 提供了直接节点来与它们交互。
 
-**使用 `ChatOpenAI` 节点：**
-1.  确保您的 `OPENAI_API_KEY` 已在 `.env` 文件或环境中设置。
+**使用 ````ChatOpenAI```` 节点：**
+1.  确保您的 ````OPENAI_API_KEY```` 已在 ````.env```` 文件或环境中设置。
 2.  将“OpenAI Chat”节点拖到画布上。
 3.  配置其参数：
-    *   `model_name`：`gpt-4o`（或 `gpt-3.5-turbo` 等）
-    *   `temperature`：`0.7`
-    *   `max_tokens`：`512`
-    *   `streaming`：`True`（用于实时输出）
-    *   您还可以将其 `input` 连接到一个 `BaseMessage` 列表，用于多轮对话。
+    *   ````model_name````：````gpt-4o````（或 ````gpt-3.5-turbo```` 等）
+    *   ````temperature````：````0.7````
+    *   ````max_tokens````：````512````
+    *   ````streaming````：````True````（用于实时输出）
+    *   您还可以将其 ````input```` 连接到一个 ````BaseMessage```` 列表，用于多轮对话。
 
 ### Hugging Face
 
-Langflow 与 Hugging Face 生态系统集成，允许通过 `HuggingFaceHub` 访问大量开源模型，并通过 `HuggingFacePipeline` 访问本地模型。
+Langflow 与 Hugging Face 生态系统集成，允许通过 ````HuggingFaceHub```` 访问大量开源模型，并通过 ````HuggingFacePipeline```` 访问本地模型。
 
-**使用 `HuggingFaceHub` 节点：**
-1.  设置您的 `HUGGINGFACEHUB_API_TOKEN` 环境变量。
+**使用 ````HuggingFaceHub```` 节点：**
+1.  设置您的 ````HUGGINGFACEHUB_API_TOKEN```` 环境变量。
 2.  拖动一个“HuggingFace Hub”节点。
 3.  配置：
-    *   `repo_id`：指定模型仓库，例如 `google/flan-t5-large`。
-    *   `task`：`text2text-generation`
-    *   `temperature`：`0.7`
-    这允许您直接在流程中利用 Hugging Face Hub 上托管的模型。对于本地模型或特定硬件加速，`HuggingFace Pipeline` 节点更合适。
+    *   ````repo_id````：指定模型仓库，例如 ````google/flan-t5-large````。
+    *   ````task````：````text2text-generation````
+    *   ````temperature````：````0.7````
+    这允许您直接在流程中利用 Hugging Face Hub 上托管的模型。对于本地模型或特定硬件加速，````HuggingFace Pipeline```` 节点更合适。
 
 ### Anthropic
 
 Anthropic 的 Claude 模型也易于集成到 Langflow 流程中。
 
-**使用 `ChatAnthropic` 节点：**
-1.  确保您的 `ANTHROPIC_API_KEY` 已设置。
+**使用 ````ChatAnthropic```` 节点：**
+1.  确保您的 ````ANTHROPIC_API_KEY```` 已设置。
 2.  拖动一个“Chat Anthropic”节点。
 3.  配置：
-    *   `model_name`：`claude-3-opus-20240229`（或 `claude-3-sonnet-20240229` 等）
-    *   `temperature`：`0.7`
-    *   `max_tokens_to_sample`：`1024`
-    与 OpenAI 类似，此节点接受 `BaseMessage` 输入用于对话流程。
+    *   ````model_name````：````claude-3-opus-20240229````（或 ````claude-3-sonnet-20240229```` 等）
+    *   ````temperature````：````0.7````
+    *   ````max_tokens_to_sample````：````1024````
+    与 OpenAI 类似，此节点接受 ````BaseMessage```` 输入用于对话流程。
 
 这些集成突出了 Langflow 的灵活性，允许开发者在单个可视化工作流中混合和匹配来自不同提供商和框架的组件。这对于比较模型性能或构建混合 AI 应用程序至关重要。
 
@@ -235,14 +236,14 @@ Anthropic 的 Claude 模型也易于集成到 Langflow 流程中。
 Langflow 最强大的功能之一是创建自定义组件的能力。这允许开发者集成专有逻辑、特定数据源或默认节点未涵盖的专用工具。
 
 **创建自定义组件的步骤：**
-1.  **创建 Python 文件**：将其放置在 Langflow 可访问的目录中（例如 `custom_components/my_tool.py`）。
-2.  **定义组件类**：继承自 `CustomCustomComponent`（或更简单情况下的 `CustomComponent`）并使用 `@component` 装饰器。
-3.  **实现 `build` 方法**：此方法定义组件的逻辑并返回输出。
+1.  **创建 Python 文件**：将其放置在 Langflow 可访问的目录中（例如 ````custom_components/my_tool.py````）。
+2.  **定义组件类**：继承自 ````CustomCustomComponent````（或更简单情况下的 ````CustomComponent````）并使用 ````@component```` 装饰器。
+3.  **实现 ````build```` 方法**：此方法定义组件的逻辑并返回输出。
 4.  **注册组件**：Langflow 会自动发现指定目录中的组件。
 
 **示例：自定义网页抓取工具**
 
-```python
+`````python
 # custom_components/web_scraper.py
 from langflow import CustomCustomComponent
 from langflow.field_typing import Tool, Prompt
@@ -274,7 +275,7 @@ class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper To
                 description="Use this tool to scrape text content from a URL. Input should be a URL string.",
                 func=lambda u: scrape_webpage(u, selector)
             )
-        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
+        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````")
         except Exception as e: # Log the error and re-raise or return an informative message
             print(f"Error in WebScraperTool: {e}")
             return Tool(
@@ -282,8 +283,8 @@ class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper To
                 description="Web scraper tool failed.",
                 func=lambda u: f"Error scraping {u}: {e}"
             )
-```
-要启用此功能，请确保您的 `langflow` 实例知道 `custom_components` 目录，通常通过设置 `LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS` 环境变量或将其放置在默认的 `components` 目录中。
+`````
+要启用此功能，请确保您的 ````langflow```` 实例知道 ````custom_components```` 目录，通常通过设置 ````LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS```` 环境变量或将其放置在默认的 ````components```` 目录中。
 
 ### API 访问与部署
 
@@ -292,10 +293,10 @@ Langflow 中保存的每个流程都可以作为 REST API 端点暴露。这允�
 **通过 API 访问流程：**
 1.  在 Langflow UI 中保存您的流程。
 2.  转到该流程的“Deploy”选项卡。您将看到 API 端点 URL。
-3.  然后，您可以向此端点发出 `POST` 请求。
+3.  然后，您可以向此端点发出 ````POST```` 请求。
 
-**示例 `curl` 请求：**
-```bash
+**示例 ````curl```` 请求：**
+`````bash
 curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
      -H "Content-Type: application/json" \
      -d '{
@@ -304,8 +305,8 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
            },
            "stream": false
          }'
-```
-将 `{flow_id}` 替换为您已部署流程的实际 ID。`input` JSON 结构取决于您的流程“Input”节点中定义的输入变量。
+`````
+将 ````{flow_id}```` 替换为您已部署流程的实际 ID。````input```` JSON 结构取决于您的流程“Input”节点中定义的输入变量。
 
 对于生产部署，请考虑：
 *   **反向代理**：使用 Nginx 或 Caddy 将请求代理到 Langflow，处理 SSL 终止，并可能添加速率限制。
@@ -316,7 +317,7 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
 ### 监控与日志记录
 
 在生产环境中，应用程序健康和性能的可视性至关重要。
-*   **Langflow 日志**：Langflow 后端将日志打印到 `stdout`/`stderr`。配置您的部署环境以捕获这些日志（例如，到文件，或转发到集中式日志系统，如 ELK stack、Grafana Loki）。
+*   **Langflow 日志**：Langflow 后端将日志打印到 ````stdout````/````stderr````。配置您的部署环境以捕获这些日志（例如，到文件，或转发到集中式日志系统，如 ELK stack、Grafana Loki）。
 *   **LLM 提供商日志**：监控您的 LLM 提供商仪表板，了解 API 使用情况、延迟和错误率。
 *   **应用程序性能监控 (APM)**：与 Prometheus/Grafana、Datadog 或 New Relic 等工具集成，以监控 Langflow 实例的服务器资源、请求延迟和错误率。
 
@@ -330,7 +331,7 @@ Langflow 是旨在简化 LLM 应用程序开发的众多工具之一。以下是
 | :--- | :--- | :--- | :--- | :--- |
 | **可视化构建器**     | 是（拖放节点图）                             | 是（拖放节点图）                            | 否（代码优先，然后 UI 交互）                | 是（基于画布的工作流）                      |
 | **核心框架**     | LangChain                                    | LangChain                                   | LangChain, LlamaIndex, OpenAI Assistant API | RAG, Agents, Workflows (内部引擎)           |
-| **自定义组件**  | 是（通过 `CustomComponent` 的 Python 代码）  | 是（通过自定义工具的 Python 代码）          | 是（任何 Python 代码）                      | 是（工具、函数、提示变量）                  |
+| **自定义组件**  | 是（通过 ````CustomComponent```` 的 Python 代码）  | 是（通过自定义工具的 Python 代码）          | 是（任何 Python 代码）                      | 是（工具、函数、提示变量）                  |
 | **API 暴露**       | 是（每个流程的 REST API）                    | 是（每个流程的 REST API）                   | 是（Websocket, HTTP/REST 通过 FastAPI）     | 是（REST API, OpenAI 兼容 API）             |
 | **部署模型**   | 自托管 (Docker, Pip)                         | 自托管 (Docker, npm)                        | 自托管 (Python 应用程序)                    | 自托管 (Docker), 托管云                       |
 | **目标受众**    | 开发者、研究人员 (LangChain 用户)            | 开发者、非技术用户                          | 开发者 (Python 优先)                        | 开发者、产品经理                            |
@@ -370,7 +371,7 @@ Langflow 适用于构建各种 LLM 应用程序，包括对话式 AI 代理、�
 部署 Langflow 的推荐方法是使用 Docker 和 Docker Compose，或将其集成到 Kubernetes 集群中。您可以将单个流程公开为 REST API 端点，允许您的前端或其他服务与它们交互。Nginx 等反向代理通常用于 SSL 和域管理。
 
 ### 我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？
-是的，Langflow 完全支持自定义组件。您可以编写自己的 Python 类，这些类继承自 `CustomComponent` 或 `CustomCustomComponent`，定义自定义逻辑、工具或数据加载器，然后将它们作为节点暴露在 Langflow UI 中。
+是的，Langflow 完全支持自定义组件。您可以编写自己的 Python 类，这些类继承自 ````CustomComponent```` 或 ````CustomCustomComponent````，定义自定义逻辑、工具或数据加载器，然后将它们作为节点暴露在 Langflow UI 中。
 
 ### Langflow 和 FlowiseAI 的主要区别是什么？
 Langflow 和 FlowiseAI 都提供基于 LangChain 的 LLM 工作流可视化构建器。Langflow 通常因其强大的 Python 自定义组件集成和更大的社区而更受开发者欢迎，而 FlowiseAI 有时被认为对非开发者更友好。Langflow 的 GitHub 星标数也明显更多。
@@ -384,12 +385,12 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4)，了解更多关于 AI 工具和框架的讨论。
 
 
----
+* * *
 ### 来源与延伸阅读
 
 *   **Langflow GitHub 仓库**：[https://github.com/langflow-ai/langflow](https://github.com/langflow-ai/langflow)
 *   **Langflow 官方文档**：[https://docs.langflow.org/](https://docs.langflow.org/)
-*   **Langflow GitHub 讨论区**：[https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions)（查看具体问题，如 `Issue #1234: RAG performance optimization`）
+*   **Langflow GitHub 讨论区**：[https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions)（查看具体问题，如 ````Issue #1234: RAG performance optimization```）
 
 ### 内部链接候选：
 *   [LangChain 深度解析](dibi8-internal-link-langchain-deep-dive)
@@ -398,9 +399,9 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 *   [AI 代理简介](dibi8-internal-link-introduction-to-ai-agents)
 
 
----
+* * *
 **披露**：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
----
+* * *
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -426,7 +427,7 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -436,7 +437,7 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 - [9router-smart-llm-proxy-token-saver-free-coding](langflow-visual-llm-workflow-builder-2026)
 - [ai-engineering-from-scratch](langflow-visual-llm-workflow-builder-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

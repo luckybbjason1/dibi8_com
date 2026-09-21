@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-data-analysis-tools-2025/
 ---
 
+
 # Các Công Cụ Phân Tích Dữ Liệu AI Tốt Nhất 2025: ChatGPT, Julius, Tableau AI Và Hơn Thế
 
 
@@ -161,7 +162,7 @@ Có, AI có khả năng phân tích dữ liệu phi cấu trúc bao gồm văn b
 
 Julius AI cung cấp bản miễn phí vớI 15 message mỗI tháng — đủ để thử nghiệm và phân tích các dataset nhỏ. Google BigQuery có 10 GB lưu trữ và 1 TB truy vấn miễn phí mỗI tháng, phù hợp cho phân tích dữ liệu lớn. Microsoft Excel có tính năng "Analyze Data" cơ bản miễn phí (không cần Copilot). Akkio có bản dùng thử 14 ngày. Nếu chỉ cần phân tích cơ bản, ChatGPT Plus 20 USD/tháng mang lạI giá trị vượt trộI nhất vớI khả năng không giớI hạn số lần phân tích.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

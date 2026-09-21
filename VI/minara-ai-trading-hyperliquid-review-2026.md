@@ -22,6 +22,7 @@ aliases:
   - /posts/minara-ai-trading-hyperliquid-review-2026/
 ---
 
+
 {{</* resource-info */>}}
 
 # Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperliquid Nén Cả Bloomberg Terminal Vào Một Cửa Sổ Chat
@@ -48,7 +49,7 @@ Bài đánh giá này dựa trên 2 tuần sử dụng thực tế: nó làm gì
 10. [Câu Hỏi Thường Gặp](#câu-hỏi-thường-gặp)
 11. [Đánh Giá Cuối: Ai Nên Dùng Minara](#đánh-giá-cuối-ai-nên-dùng-minara)
 
----
+* * *
 
 ## Minara Thực Sự Là Gì
 
@@ -91,7 +92,7 @@ Email + mật khẩu. Tier cơ bản không cần KYC. On-ramp fiat ở tier cao
 
 ### Bước 2: Kết nối hoặc tạo ví Hyperliquid
 
-```bash
+````bash
 # Nếu đã có ví Hyperliquid
 1. Click "Connect Wallet" trong Minara settings
 2. Ký message bằng MetaMask / Rabby / Phantom
@@ -101,23 +102,23 @@ Email + mật khẩu. Tier cơ bản không cần KYC. On-ramp fiat ở tier cao
 1. Click "Create Hyperliquid Wallet"
 2. Minara tạo EOA mới (bạn giữ key)
 3. Bridge USDC từ chain bất kỳ qua bridge tích hợp
-```
+`````
 
 Ví là **non-custodial**. Minara không bao giờ giữ tiền của bạn — mọi giao dịch là transaction được ký từ ví của bạn.
 
 ### Bước 3: Đặt câu hỏi đầu tiên
 
-Mở chat, gõ: ```
+Mở chat, gõ: `````
 Open interest của HYPE bây giờ bao nhiêu? So với tuần trước?
-```
+`````
 
 Bạn nhận được câu trả lời có số liệu, biểu đồ nhỏ, và gợi ý giao dịch.
 
 ### Bước 4: Đặt lệnh đầu tiên
 
-```
+`````
 Long HYPE perp $200, đòn bẩy 3x, stop loss 5%
-```
+`````
 
 Minara xác nhận tham số, hiện giá thanh lý dự kiến, hỏi "Execute?". Click yes → ký trên Hyperliquid → khớp lệnh.
 
@@ -129,17 +130,17 @@ Từ đăng ký đến lệnh đầu tiên: **khoảng 3 phút** nếu đã có 
 
 Đây là tính năng đầu bảng và thực sự thay đổi hành vi. Thay vì: > Mở Hyperliquid → tìm HYPE → click perp → set đòn bẩy → tính position size → set stop loss → set take profit → review → confirm
 
-Bạn gõ: ```
+Bạn gõ: `````
 Long HYPE 3x, $500 position, stop 40, take profit 55
-```
+`````
 
 Xong. Minara parse intent → tính số hợp đồng → set conditional orders → hiển thị tóm tắt 1 dòng → execute. 6 click thành 1 câu.
 
 ### Phân Tích AI Thời Gian Thực
 
-AI dựa trên dữ liệu live, không phải kiến thức huấn luyện 2024. Hỏi: ```
+AI dựa trên dữ liệu live, không phải kiến thức huấn luyện 2024. Hỏi: `````
 Sao BTC vừa pump 3% trong 10 phút qua?
-```
+`````
 
 Trả lời: "Coinbase có $40M net spot buy trong 8 phút qua, Hyperliquid open interest tăng 12%, và có Bloomberg headline vừa drop về [headline thực]. Trông như momentum-driven chứ chưa phải news-driven."
 
@@ -149,9 +150,9 @@ Trả lời: "Coinbase có $40M net spot buy trong 8 phút qua, Hyperliquid open
 
 Chat không quan tâm bạn giao dịch HYPE perp, AAPL options, hay gold futures. Bạn hỏi, nó cho biết gì khả dụng, bạn trade.
 
-```
+`````
 Cách rẻ nhất để long Nvidia trong 2 tuần tới?
-```
+`````
 
 Minara so sánh: spot NVDA, NVDA call options, leveraged ETF (NVDL), proxy tương quan crypto. Cho biết option nào có risk/reward tốt nhất theo size tài khoản.
 
@@ -173,42 +174,42 @@ Khi dùng referral link, **cả hai bên đều nhận Spark bonus**: user mới
 
 Bạn đọc Twitter "tỷ lệ đồng/vàng vừa chạm cực trị 10 năm". Lười mở Excel.
 
-```
+`````
 Tỷ lệ đồng/vàng hiện tại? Lịch sử ở đâu?
 Hành động giá 30 ngày điển hình ở mức này?
-```
+`````
 
 Minara pull data → biểu đồ → đề xuất pair trade (long đồng / short vàng) + sizing.
 
 ### Use case 2: "Telegram-bot style nhưng on-chain"
 
-Nếu dùng Maestro, BananaGun, Trojan, bạn biết flow: thấy token → click button → khớp. Minara làm tương tự nhưng trên Hyperliquid (on-chain, có limit order, không honeypot): ```
+Nếu dùng Maestro, BananaGun, Trojan, bạn biết flow: thấy token → click button → khớp. Minara làm tương tự nhưng trên Hyperliquid (on-chain, có limit order, không honeypot): `````
 Mua 100 USDC $TOKEN_TICKER ở giá market
-```
+`````
 
 Xong. Có thể follow up "kéo stop về break-even" hoặc "scale out 30% nếu double".
 
 ### Use case 3: "Long conviction nhưng hedge downside"
 
-```
+`````
 Đang long $5K HYPE. Cách rẻ nhất hedge 50% downside 1 tháng tới?
-```
+`````
 
 Minara đề xuất: OTM put trên asset tương quan có thanh khoản options + cost USDC + breakeven scenario, rồi đề nghị execute.
 
 ### Use case 4: "Tin tức nào ảnh hưởng position của tôi?"
 
-Bạn long ETH. ETH bất ngờ -4%. Hỏi: ```
+Bạn long ETH. ETH bất ngờ -4%. Hỏi: `````
 ETH vừa dump tại sao?
-```
+`````
 
 Minara check đồng thời: news, sentiment Twitter, on-chain flow, ETF in/outflow, liquidation Hyperliquid 1 giờ qua. Trả lời 1 đoạn cho biết là whale đơn lẻ, news event, hay chỉ deleverage. Bạn quyết add hay close.
 
 ### Use case 5: "Review portfolio hàng ngày"
 
-Mỗi sáng 9h: ```
+Mỗi sáng 9h: `````
 Show P&L qua đêm, macro events ảnh hưởng position, và position chạm risk threshold đã set.
-```
+````
 
 Tóm tắt 1 màn hình. Trước đây analyst làm 30 phút.
 
@@ -317,7 +318,7 @@ Nhóm đầu, [đăng ký ở đây](https://minara.ai/r/OSXG4X) — bạn nhậ
 
 Nếu ignore phần còn lại của review, ít nhất nhớ điều này: **AI không có siêu năng lực. Kỷ luật của bạn vẫn là edge.** Minara chỉ bỏ ma sát để bạn dành nhiều thời gian hơn cho phần thực sự quan trọng — suy nghĩ.
 
----
+* * *
 
 **Bài đọc liên quan trên dibi8**: - [MCP Deep Dive — Hướng Dẫn 2026 Toàn Diện](/vi/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)
 - [AI Agent Skills Giải Thích — Hướng Dẫn Developer 2026](/vi/resources/llm-frameworks/ai-agent-skills-2026-developer-guide/)

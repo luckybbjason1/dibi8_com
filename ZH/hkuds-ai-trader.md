@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 ---
 
+
 ## 简介
 
 AI 代理与金融市场的融合是技术领域最具影响力的趋势之一。由机器学习驱动的自主交易系统已经存在多年，但它们始终与特定框架紧密耦合，并且需要专业知识才能配置和维护。入门门槛一直很高：你需要同时理解金融和机器学习基础设施。
@@ -45,7 +46,7 @@ AI-Trader 的架构围绕三个主要组件构建：
 
 交易引擎处理订单执行、投资组合管理和风险控制。它与多个交易所和经纪人接口，将其 API 规范化为 AI 代理可以推理的一致接口。
 
-```python
+````python
 # 注册你的 AI 代理作为交易者
 # 阅读 https://ai4trade.ai/SKILL.md 并注册
 
@@ -54,13 +55,13 @@ AI-Trader 的架构围绕三个主要组件构建：
 # 2. 连接交易账户
 # 3. 定义你的风险参数
 # 4. 选择你的策略
-```
+`````
 
 ### 市场数据服务
 
 该平台通过统一数据服务提供实时和历史市场数据，支持股票、加密货币、外汇和大宗商品。数据服务将多个提供商的馈送规范化为一致的格式。
 
-```bash
+`````bash
 # 查询市场数据
 ai-trader data query --symbol AAPL --interval 1h --days 30
 
@@ -69,7 +70,7 @@ ai-trader data download --symbol BTC-USD --start 2024-01-01 --end 2026-01-01 --f
 
 # 流式传输实时数据
 ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
-```
+`````
 
 ## 支持的 AI 代理
 
@@ -77,11 +78,11 @@ AI-Trader 支持越来越多的 AI 编程代理作为操作员：
 
 | 代理 | 支持级别 | 配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 完整 | SKILL.md 集成 |
 | Codex | 完整 | API 密钥 + 上下文配置 |
@@ -101,7 +102,7 @@ AI-Trader 的典型工作流程包括以下步骤：
 
 代理通过阅读 SKILL.md 文档并按照注册流程与平台注册：
 
-```bash
+`````bash
 # 代理注册流程
 # 第1步：阅读技能文档
 # 命令："阅读 https://ai4trade.ai/SKILL.md 并注册"
@@ -119,13 +120,13 @@ registration = {
 }
 
 # 第4步：平台验证并激活代理
-```
+`````
 
 ### 2. 策略配置
 
 代理根据其目标配置交易策略。AI-Trader 提供内置策略和定义自定义策略的能力：
 
-```python
+`````python
 # 定义自定义交易策略
 from ai_trader import Strategy
 
@@ -149,13 +150,13 @@ class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, thresh
                 size=current_position.size
             )
         return None
-```
+`````
 
 ### 3. 执行和监控
 
 策略配置完成后，代理执行交易并监控表现：
 
-```bash
+`````bash
 # 启动交易代理
 ai-trader start --agent claude_code --strategy momentum_reversal
 
@@ -167,13 +168,13 @@ ai-trader portfolio --agent claude_code
 
 # 查看最近交易
 ai-trader trades --agent claude_code --limit 20
-```
+`````
 
 ## 安装和入门
 
 AI-Trader 通过 GitHub 仓库、平台网站和代理特定 SKILL.md 集成的组合来访问：
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -183,13 +184,13 @@ pip install -e .
 
 # 验证安装
 ai-trader --version
-```
+`````
 
 ### 代理注册
 
 每个 AI 代理的注册方式不同：
 
-```bash
+`````bash
 # 对于 Claude Code：
 # 阅读 https://ai4trade.ai/SKILL.md 并注册
 
@@ -204,7 +205,7 @@ ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
 
 # 对于 nanobot：
 ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
-```
+`````
 
 ## 集成模式
 
@@ -212,7 +213,7 @@ ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
 
 AI-Trader 开箱即用地支持多个交易所：
 
-```python
+`````python
 # 配置交易所连接
 exchanges = {
     "binance": {
@@ -232,13 +233,13 @@ exchanges = {
 }
 
 for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
-```
+`````
 
 ### 策略库集成
 
 平台包含丰富的策略库：
 
-```python
+`````python
 from ai_trader.strategies import (
     MomentumReversal,
     MeanReversion,
@@ -262,13 +263,13 @@ portfolio = ai_trader.create_portfolio(
         "max_leverage": 2.0
     }
 )
-```
+`````
 
 ### 回测引擎
 
 AI-Trader 包含强大的回测引擎用于评估策略：
 
-```python
+`````python
 # 运行回测
 results = ai_trader.backtest(
     strategy="momentum_reversal",
@@ -288,7 +289,7 @@ print(f"总交易次数: {results.total_trades}")
 
 # 生成本金曲线
 results.plot_equity_curve(save_path="equity_curve.png")
-```
+`````
 
 ![AI-Trader 策略表现](https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/performance-charts.png)
 
@@ -300,15 +301,15 @@ AI-Trader 在多个市场中展示了强劲的表现：
 
 | 市场 | 策略 | 年化回报 | 夏普比率 | 最大回撤 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 美股 | 动量 + ML | 34.2% | 1.85 | -12.3% |
 | 加密货币 | 均值回归 | 28.7% | 1.42 | -18.5% |
@@ -319,9 +320,9 @@ AI-Trader 在多个市场中展示了强劲的表现：
 
 | 操作 | 延迟 |
 |
----
+* * *
 |
----
+* * *
 |
 | 订单放置（加密货币） | 45ms |
 | 订单放置（股票） | 120ms |
@@ -335,13 +336,13 @@ AI-Trader 在多个市场中展示了强劲的表现：
 
 | 代理数 | 投资组合大小 | 平均延迟 | 交易成功率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 1 | 45ms | 99.2% |
 | 3 | 3 | 52ms | 98.9% |
@@ -354,7 +355,7 @@ AI-Trader 在多个市场中展示了强劲的表现：
 
 高级用户可以设置多代理协调，其中不同代理专精于不同任务：
 
-```python
+`````python
 # 设置多代理交易团队
 trading_team = ai_trader.create_team(
     name="Alpha 团队",
@@ -383,13 +384,13 @@ trading_team = ai_trader.create_team(
 
 # 启动团队
 trading_team.start()
-```
+`````
 
 ### 自定义数据源
 
 AI-Trader 支持另类数据的自定义数据源：
 
-```python
+`````python
 # 添加自定义数据源
 ai_trader.add_data_source(
     name="新闻情感",
@@ -409,13 +410,13 @@ strategy = SentimentAnalysis(
     model="finbert",
     custom_data_source="新闻情感"
 )
-```
+`````
 
 ### 风险管理规则
 
 配置全面的风险管理：
 
-```python
+`````python
 # 设置风险管理规则
 ai_trader.configure_risk(
     global_limits={
@@ -439,7 +440,7 @@ ai_trader.configure_risk(
         }
     }
 )
-```
+````
 
 ## 与替代方案比较
 
@@ -447,15 +448,15 @@ AI-Trader 与其他 AI 交易平台相比如何？
 
 | 功能 | AI-Trader | QuantConnect | MetaTrader | Backtrader |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 原生代理 | 是 | 否 | 否 | 否 |
 | 代理支持 | 5+ 代理 | 仅 API | 否 | 否 |
@@ -595,12 +596,12 @@ AI-Trader：来自 HKUDS 的原生 AI 交易平台 represents an important step 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [hkuds-ai-trader](hkuds-ai-trader)
@@ -609,7 +610,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents](hkuds-ai-trader)
 - [2026-05-25-trending-ai-agents](hkuds-ai-trader)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

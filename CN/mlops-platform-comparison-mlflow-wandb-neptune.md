@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/mlops-platform-comparison-mlflow-wandb-neptune/
 ---
+
 # MLflow vs Weights & Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024
 
 
@@ -46,9 +47,9 @@ Experiment tracking sits at the foundation of this lifecycle. Without it, you ca
 
 MLflow consists of four components: | Component | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
 | **Tracking** | Log parameters, metrics, artifacts, and code versions for every experiment run |
 | **Projects** | Package ML code in a reproducible format with dependency specifications |
@@ -57,14 +58,14 @@ MLflow consists of four components: | Component | Purpose |
 
 ### MLflow Tracking and Model Registry
 
-The MLflow Tracking API is intentionally minimal. Logging a training run requires just a few lines of code: ```python
+The MLflow Tracking API is intentionally minimal. Logging a training run requires just a few lines of code: ````python
 import mlflow
 
 mlflow.start_run(): mlflow.log_param('learning_rate', 0.01)
     mlflow.log_metric('accuracy', 0.95)
     mlflow.log_artifact('confusion_matrix.png')
     mlflow.sklearn.log_model(model, 'model')
-```
+`````
 
 The Model Registry provides versioned model storage with stage transitions: - **Staging:** Candidate models under evaluation
 - **Production:** Approved models serving live traffic
@@ -112,16 +113,16 @@ W&B Reports transform experiment tracking into communication. A report might inc
 
 [Neptune](https://neptune.ai), founded in 2017 and headquartered in Poland, takes a metadata-first approach to experiment tracking. While MLflow tracks experiments and W&B tracks research, Neptune tracks all metadata associated with ML systems — experiments, datasets, models, CI/CD runs, and production monitoring events — in a unified namespace.
 
-Neptune's architecture reflects its production-first philosophy: - **Hierarchical namespace.** Organize metadata in nested structures: `project/experiment/run/metric`. This scales to thousands of runs without UI slowdown.
+Neptune's architecture reflects its production-first philosophy: - **Hierarchical namespace.** Organize metadata in nested structures: ````project/experiment/run/metric````. This scales to thousands of runs without UI slowdown.
 - **On-premise deployment.** Run Neptune entirely within your infrastructure. Data never leaves your network — critical for healthcare, finance, and defense applications.
 - **CI/CD integration.** Track every training pipeline execution, not just manual experiments. Connect runs to Git commits, Jenkins builds, and GitHub Actions workflows.
 - **Flexible metadata types.** Log scalars, images, videos, audio, HTML, and custom objects. Store dataset fingerprints, model signatures, and evaluation reports alongside metrics.
 
 ### Neptune's Query Language and Monitoring
 
-Neptune provides a powerful query language (Neptune Query Language, NQL) for searching across experiments: ```sql
+Neptune provides a powerful query language (Neptune Query Language, NQL) for searching across experiments: `````sql
 ((accuracy > 0.95) AND (model_size < 100MB)) OR (tags CONTAINS production_candidate)
-```
+`````
 
 Queries filter runs by any logged metadata, enabling complex analyses like "find all experiments from the past month that achieved >95% accuracy with model size under 100 MB."
 
@@ -140,13 +141,13 @@ Custom dashboards aggregate metrics across runs and projects. Drift detection in
 
 | Feature | MLflow | W&B | Neptune |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | Apache 2.0 | Proprietary | Proprietary |
 | **Pricing (entry)** | Free | Free (public) | Free (1 user) |
@@ -207,7 +208,7 @@ Your choice depends on organizational constraints and workflow priorities: **Cho
 ## Setting Up Your First Experiment in Each Platform
 
 Here is the code to log a simple experiment across all three platforms — training a scikit-learn classifier on the Iris dataset: **MLflow:**
-```python
+`````python
 import mlflow
 import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
@@ -229,10 +230,10 @@ with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, max_dept
     mlflow.log_param('max_depth', 5)
     mlflow.log_metric('accuracy', accuracy)
     mlflow.sklearn.log_model(clf, 'model')
-```
+`````
 
 **Weights & Biases:**
-```python
+`````python
 import wandb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
@@ -252,10 +253,10 @@ accuracy = accuracy_score(y_test, clf.predict(X_test))
 wandb.config.update({'n_estimators': 100, 'max_depth': 5})
 wandb.log({'accuracy': accuracy})
 wandb.sklearn.plot_confusion_matrix(y_test, clf.predict(X_test), iris.target_names)
-```
+`````
 
 **Neptune:**
-```python
+`````python
 import neptune
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
@@ -277,7 +278,7 @@ accuracy = accuracy_score(y_test, clf.predict(X_test))
 
 run[metrics/accuracy] = accuracy
 run.stop()
-```
+````
 
 ## Frequently Asked Questions
 
@@ -302,7 +303,7 @@ MLflow leads in dedicated LLM tooling with its MLflow LLM module, Prompt Managem
 Migration is possible but not seamless. Each platform uses its own data model and storage format. The most practical approach is to maintain parallel logging during a transition period — log the same experiment to both the old and new platform for 30-60 days. For MLflow specifically, the open-source nature means you can export the SQLite/PostgreSQL backing store and transform it. W&B and Neptune offer API access to retrieve run data for export. Plan for a manual migration effort rather than expecting automated tooling.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -336,4 +337,4 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
   }
 }
 </script>
----
+* * *

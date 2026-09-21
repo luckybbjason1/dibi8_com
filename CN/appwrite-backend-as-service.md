@@ -23,6 +23,7 @@ tags: ["appwrite", "backend-as-a-service", "firebase alternative", "docker", "op
 aliases:
   - /posts/appwrite-backend-as-service/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The $8.5B Problem Firebase Created
@@ -42,11 +43,11 @@ Appwrite is a self-hosted backend server packaged as a Docker stack that bundles
 - **Realtime** — WebSocket-based live subscriptions to database and auth events
 - **Messaging** — Push notifications, SMS, and email (added in 1.5+)
 
-One `docker compose up` gives you a full backend API with multi-platform SDKs for Web, Flutter, Android, iOS, and server-side Node.js/Python/PHP.
+One ```docker compose up```` gives you a full backend API with multi-platform SDKs for Web, Flutter, Android, iOS, and server-side Node.js/Python/PHP.
 
 ## How Appwrite Works: Architecture Overview
 
-Appwrite follows a modular microservices architecture containerized with Docker: ```
+Appwrite follows a modular microservices architecture containerized with Docker: `````
 ┌─────────────────────────────────────────────────────┐
 │                    Appwrite Stack                    │
 ├─────────────┬─────────────┬─────────────┬───────────┤
@@ -59,7 +60,7 @@ Appwrite follows a modular microservices architecture containerized with Docker:
 ├─────────────┴─────────────┴─────────────┴───────────┤
 │              Docker Compose / Swarm / K8s            │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 Key architectural decisions: - **Traefik** handles reverse proxying and automatic SSL via Let's Encrypt
 - **MariaDB** is the default database (MongoDB optional); Redis caches sessions
@@ -77,17 +78,17 @@ Key architectural decisions: - **Traefik** handles reverse proxying and automati
 
 ### Step 1: Download the Compose File
 
-```bash
+`````bash
 mkdir ~/appwrite && cd ~/appwrite
 
 # Download the official compose file (v1.6.x)
 curl -o docker-compose.yml https://raw.githubusercontent.com/appwrite/appwrite/1.6.1/docker-compose.yml
 curl -o .env https://raw.githubusercontent.com/appwrite/appwrite/1.6.1/.env
-```
+`````
 
 ### Step 2: Configure Environment Variables
 
-```bash
+`````bash
 # Edit key variables in .env
 sed -i 's/_APP_ENV=production/_APP_ENV=production/' .env
 sed -i 's/_APP_CONSOLE_WHITELIST_ROOT=enabled/_APP_CONSOLE_WHITELIST_ROOT=enabled/' .env
@@ -95,34 +96,34 @@ sed -i 's/_APP_CONSOLE_WHITELIST_ROOT=enabled/_APP_CONSOLE_WHITELIST_ROOT=enable
 # Set your domain (or use localhost for testing)
 sed -i 's|_APP_DOMAIN=localhost|_APP_DOMAIN=api.yourdomain.com|' .env
 sed -i 's|_APP_OPTIONS_ABUSE=enabled|_APP_OPTIONS_ABUSE=enabled|' .env
-```
+`````
 
-For production with SSL on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0): ```bash
+For production with SSL on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0): `````bash
 # Point your domain to the droplet IP first
 export _APP_DOMAIN=api.yourdomain.com
 export _APP_ENV=production
 export _APP_OPTIONS_FORCE_HTTPS=enabled
-```
+`````
 
 ### Step 3: Launch the Stack
 
-```bash
+`````bash
 docker compose up -d --remove-orphans
 
 # Verify all services are healthy
 watch docker compose ps
-```
+`````
 
-Within 60 seconds, all 12 containers should show `healthy`. Access the console at `http://localhost` (or your domain).
+Within 60 seconds, all 12 containers should show ````healthy````. Access the console at ````http://localhost```` (or your domain).
 
 ### Step 4: Create Your First Project
 
-```bash
+`````bash
 # Register the root user (first signup becomes admin)
 curl -X POST http://localhost/v1/account \
   -H "Content-Type: application/json" \
   -d '{"userId":"unique()","email":"admin@example.com","password":"SecurePass123!","name":"Admin User"}'
-```
+`````
 
 Navigate to the console, create a project, and note the **Project ID** — you need it for all SDK calls.
 
@@ -130,11 +131,11 @@ Navigate to the console, create a project, and note the **Project ID** — you n
 
 ### Web / Node.js SDK
 
-Install the SDK: ```bash
+Install the SDK: `````bash
 npm install appwrite@16.1.0
-```
+`````
 
-Initialize the client and create a document: ```javascript
+Initialize the client and create a document: `````javascript
 import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
@@ -156,15 +157,15 @@ const doc = await databases.createDocument(
   { title: 'Hello Appwrite', status: active, priority: 3 }
 );
 console.log('Document ID:', doc.$id);
-```
+`````
 
 ### Python SDK (Server-Side)
 
-```bash
+`````bash
 pip install appwrite==6.1.0
-```
+`````
 
-```python
+`````python
 from appwrite.client import Client
 from appwrite.services.databases import Databases
 from appwrite.id import ID
@@ -192,16 +193,16 @@ results = databases.list_documents(
     queries=['equal("status", "active")', 'greaterThan("score", 90)', 'limit(10)']
 )
 print(f"Found {results[total]} matching documents")
-```
+`````
 
 ### Flutter SDK
 
-```yaml
+`````yaml
 # pubspec.yaml
 dependencies: appwrite: ^15.0.0
-```
+`````
 
-```dart
+`````dart
 import 'package:appwrite/appwrite.dart';
 
 class AppwriteService {
@@ -234,20 +235,20 @@ class AppwriteService {
     );
   }
 }
-```
+`````
 
 ### n8n Workflow Automation
 
-Appwrite has an official n8n community node. Install it: ```bash
+Appwrite has an official n8n community node. Install it: `````bash
 cd ~/.n8n/custom && npm install n8n-nodes-appwrite
 # Restart n8n
-```
+`````
 
 In your workflow, use the Appwrite node to: 1. **Trigger**: Watch a collection for new documents (using polling or webhooks)
 2. **Action**: Create a user after Stripe payment
 3. **Query**: Fetch documents matching criteria for reporting
 
-```json
+`````json
 {
   "nodes": [{
     "parameters": {
@@ -264,11 +265,11 @@ In your workflow, use the Appwrite node to: 1. **Trigger**: Watch a collection f
     "typeVersion": 1
   }]
 }
-```
+`````
 
 ## Cloud Functions: Serverless Without the Lock-in
 
-Appwrite Functions support 15+ runtimes. Here's a Node.js function triggered by database events: ```javascript
+Appwrite Functions support 15+ runtimes. Here's a Node.js function triggered by database events: `````javascript
 // src/main.js
 import { Client, Databases, Messaging } from 'node-appwrite';
 
@@ -287,27 +288,27 @@ export default async ({ req, res, log, error }) => {
   const userId = eventData.userId;
   const total = eventData.total;
 
-  log(`Processing order ${orderId} for user ${userId}`);
+  log(````Processing order ${orderId} for user ${userId}````);
 
   try {
     // Send push notification
     await messaging.createPush(
       ID.unique(),
       'Order Confirmed',
-      `Your order #${orderId.slice(-6)} for $${total} is confirmed.`,
+      ````Your order #${orderId.slice(-6)} for $${total} is confirmed.````,
       [],
       [userId]
     );
 
     return res.json({ success: true, orderId });
   } catch (err) {
-    error(`Failed: ${err.message}`);
+    error(````Failed: ${err.message}````);
     return res.json({ success: false, error: err.message }, 500);
   }
 };
-```
+`````
 
-Deploy via CLI: ```bash
+Deploy via CLI: `````bash
 # Install Appwrite CLI
 npm install -g appwrite-cli@6.2.0
 
@@ -316,19 +317,19 @@ appwrite login --endpoint https://api.yourdomain.com/v1 --project your-project-i
 
 # Deploy function
 appwrite push function --id order-processor --source ./order-processor
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 I tested Appwrite 1.6.1 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (4 vCPU / 8GB RAM / $48/mo) against common backend operations: | Operation | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Auth signup (email) | **~45ms** | ~120ms | ~80ms |
 | DB create document | **~18ms** | ~35ms | ~25ms |
@@ -346,7 +347,7 @@ I tested Appwrite 1.6.1 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14e
 
 ### 1. Enable Redis for Session Caching
 
-```bash
+`````bash
 # Add to docker-compose.yml under services
 redis: image: redis:7-alpine
   restart: unless-stopped
@@ -355,11 +356,11 @@ redis: image: redis:7-alpine
 # Add to .env
 _APP_REDIS_HOST=redis
 _APP_REDIS_PORT=6379
-```
+`````
 
 ### 2. Database Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh — run via cron every 6 hours
 BACKUP_DIR=/backups/appwrite
@@ -378,11 +379,11 @@ aws s3 sync $BACKUP_DIR s3://your-backup-bucket/appwrite/ --delete
 
 # Keep only last 7 days
 find $BACKUP_DIR -mtime +7 -delete
-```
+`````
 
 ### 3. Role-Based Access Control (RBAC)
 
-```javascript
+`````javascript
 // Grant team-based permissions
 await databases.createDocument(
   'prod-db',
@@ -396,20 +397,20 @@ await databases.createDocument(
     Permission.create(Role.users())
   ]
 );
-```
+`````
 
 ### 4. Monitoring with Prometheus
 
-Appwrite exposes metrics at `/_metrics` for Prometheus scraping: ```yaml
+Appwrite exposes metrics at ``/_metrics`` for Prometheus scraping: `````yaml
 # prometheus.yml
 scrape_configs: - job_name: appwrite
     static_configs: - targets: [appwrite:80]
     metrics_path: '/_metrics'
-```
+`````
 
 ### 5. Horizontal Scaling with Docker Swarm
 
-```bash
+`````bash
 # Initialize swarm
 docker swarm init
 
@@ -418,23 +419,23 @@ docker stack deploy -c docker-compose.yml appwrite
 
 # Scale function executors
 docker service scale appwrite_appwrite-executor=5
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Appwrite 1.6 | Firebase | Supabase | Nhost | PocketBase |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Self-hosted | **Yes (Docker)** | No | Yes | Yes (K8s) | Yes (single binary) |
 | Open Source | **BSD-3-Clause** | Proprietary | Apache-2.0 | Apache-2.0 | MIT |
@@ -467,7 +468,7 @@ Yes, but not automatically. Export your Firestore data as JSON/CSV, recreate you
 Appwrite uses MinIO by default for S3-compatible object storage. For production, configure it to use your own S3-compatible backend (AWS S3, Wasabi, DigitalOcean Spaces). Files above 20MB are chunked automatically. Enable compression and encryption in project settings. For a CDN, put Cloudflare or Fastly in front of your Appwrite domain.
 
 **Q: Is Appwrite suitable for enterprise/multi-tenant SaaS?**
-Appwrite supports multiple projects per instance, each isolated with its own database, storage, and auth. Use API keys scoped per project. For true multi-tenancy, run one Appwrite instance per tenant or use collection-level permissions with a `tenant_id` field. RBAC via teams works well for internal enterprise apps.
+Appwrite supports multiple projects per instance, each isolated with its own database, storage, and auth. Use API keys scoped per project. For true multi-tenancy, run one Appwrite instance per tenant or use collection-level permissions with a ````tenant_id```` field. RBAC via teams works well for internal enterprise apps.
 
 **Q: What are the hosting costs compared to managed backends?**
 A $48/month DigitalOcean droplet (4 vCPU / 8GB) handles ~5,000 daily active users comfortably. Add $20/month for backups and monitoring. At 50,000 DAUs, you need a $160/month cluster (8 vCPU / 16GB + Redis + replica). This is **3-5x cheaper** than equivalent Firebase or AWS Amplify bills for the same scale.
@@ -476,7 +477,7 @@ A $48/month DigitalOcean droplet (4 vCPU / 8GB) handles ~5,000 daily active user
 Not directly. Appwrite manages its own MariaDB (or MongoDB) instance. To integrate existing data, use Appwrite Functions as a bridge: write functions that query your external DB and expose results via Appwrite's API. Alternatively, sync data periodically with an ETL pipeline. Native external database support is on the 2.x roadmap.
 
 **Q: How do I update Appwrite without losing data?**
-Always backup before upgrading. Read the [migration guide](https://appwrite.io/docs/migrations) for your target version. The standard flow is: `docker compose pull` → `docker compose up -d` → run the migration tool if required. Test the upgrade on a staging instance first. Never skip major versions — upgrade 1.4 → 1.5 → 1.6 sequentially.
+Always backup before upgrading. Read the [migration guide](https://appwrite.io/docs/migrations) for your target version. The standard flow is: ````docker compose pull```` → ````docker compose up -d```` → run the migration tool if required. Test the upgrade on a staging instance first. Never skip major versions — upgrade 1.4 → 1.5 → 1.6 sequentially.
 
 
 
@@ -491,7 +492,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 
 Appwrite 1.6 is the most mature open-source Firebase alternative available in 2026. It gives you authentication, database, storage, functions, and real-time subscriptions in a single Docker stack you fully control. For teams tired of surprise cloud bills and vendor lock-in, it is the pragmatic choice.
 
-Start with the [HTStack one-click Appwrite installer](https://my.htstack.com/aff.php?aff=27187) or spin up a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) and run `docker compose up -d`. Your backend will be live before your coffee gets cold.
+Start with the [HTStack one-click Appwrite installer](https://my.htstack.com/aff.php?aff=27187) or spin up a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) and run ````docker compose up -d```. Your backend will be live before your coffee gets cold.
 
 **Next reads**: [n8n workflow automation](dibi8-internal-link), [Supabase vs Appwrite deep dive](dibi8-internal-link)
 
@@ -508,7 +509,7 @@ Start with the [HTStack one-click Appwrite installer](https://my.htstack.com/aff
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [HTStack](https://my.htstack.com/aff.php?aff=27187). If you purchase hosting through these links, dibi8.com earns a commission at no extra cost to you. We only recommend services we use for our own infrastructure. All benchmarks were conducted independently on paid instances.
 
 
----
+* * *
 *Article published: 2026-05-19 | Category: dev-utils | Tool: Appwrite 1.6.1*
 *Join the dibi8 developer community: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
@@ -539,7 +540,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [database-management-tools-comparison](appwrite-backend-as-service)
@@ -548,5 +549,5 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [noco-db-airtable-alternative](appwrite-backend-as-service)
 - [qdrant-vector-database-rust](appwrite-backend-as-service)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

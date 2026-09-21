@@ -24,11 +24,12 @@ aliases:
   - /vi/posts/flowise-ai-workflow-builder-lowcode/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao Xây dựng AI Agent Vẫn Giống như 2006
 
-Năm 2026, xây dựng một AI agent production vẫn đòi hỏi phải xoay sở với **3-5 thư viện Python khác nhau**, viết code boilerplate cho quản lý bộ nhớ, debug các async chain thất bại âm thầm, và cầu nguyện `requirements.txt` không xung đột khi thêm tích hợp tiếp theo. Bạn cần LangChain cho framework, một client vector store riêng, một thư viện khác cho document loader, FastAPI cho lớp HTTP, và Streamlit nếu muốn frontend. Đến khi chatbot RAG "đơn giản" của bạn được deploy, bạn đã viết **800+ dòng Python** và kế thừa gánh nặng bảo trì tăng lên theo mỗi lần cập nhật model.
+Năm 2026, xây dựng một AI agent production vẫn đòi hỏi phải xoay sở với **3-5 thư viện Python khác nhau**, viết code boilerplate cho quản lý bộ nhớ, debug các async chain thất bại âm thầm, và cầu nguyện ```requirements.txt```` không xung đột khi thêm tích hợp tiếp theo. Bạn cần LangChain cho framework, một client vector store riêng, một thư viện khác cho document loader, FastAPI cho lớp HTTP, và Streamlit nếu muốn frontend. Đến khi chatbot RAG "đơn giản" của bạn được deploy, bạn đã viết **800+ dòng Python** và kế thừa gánh nặng bảo trì tăng lên theo mỗi lần cập nhật model.
 
 **Flowise** đảo ngược quy luật này. Đây là một visual workflow builder có giấy phép Apache-2.0, xây dựng trên LangChain, cho phép bạn xây dựng pipeline AI phức tạp — chatbot RAG, hệ thống multi-agent, bộ xử lý tài liệu — bằng cách kéo thả và kết nối các node trên canvas. Với **45,000+ GitHub Stars** và hệ sinh thái phát triển mạnh với **100+ tích hợp**, nó đã trở thành công cụ lựa chọn cho các team muốn ship tính năng AI nhanh mà không đánh đổi sự linh hoạt của engine LangChain bên dưới.
 
@@ -42,7 +43,7 @@ Phiên bản **2.2.0** (phát hành tháng 3/2026) giới thiệu canvas engine 
 
 ## Flowise hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
-Kiến trúc của Flowise gồm ba lớp: ```yaml
+Kiến trúc của Flowise gồm ba lớp: `````yaml
 ┌─────────────────────────────────────────────┐
 │           Frontend (React + Flow Editor)    │
 │           - Canvas kéo thả                  │
@@ -60,7 +61,7 @@ Kiến trúc của Flowise gồm ba lớp: ```yaml
 │           - Vector stores (bên ngoà)        │
 │           - Hệ thống file (upload tài liệu) │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ### Khái niệm cốt lõi
 
@@ -74,7 +75,7 @@ Kiến trúc của Flowise gồm ba lớp: ```yaml
 
 **Assistants** (mới trong v2.2.0) là các conversational agent liên tục với thread management, được xây dựng trên OpenAI Assistants API hoặc các tương đương local.
 
-```bash
+`````bash
 # Flowise lưu trữ định nghĩa flow dưới dạng JSON trong database
 # Ví dụ cấu trúc chatflow đơn giản
 {
@@ -88,13 +89,13 @@ Kiến trúc của Flowise gồm ba lớp: ```yaml
     { "source": "prompt_1", "target": "llm_1", "input": "prompt" }
   ]
 }
-```
+`````
 
 ## Cài đặt & Thiết lập: Chạy Flowise trong vòng 5 phút
 
 ### Docker Compose (Khuyến nghị)
 
-```bash
+`````bash
 # Tạo thư mục dự án
 mkdir -p ~/flowise && cd ~/flowise
 
@@ -121,13 +122,13 @@ docker compose up -d
 
 # Kiểm tra trạng thái
 curl -s http://localhost:3000/api/v1/health | jq .
-```
+`````
 
-Lần pull đầu của `flowiseai/flowise:2.2.0` là **~1.4 GB**. Sau khi chạy, truy cập UI tại `http://localhost:3000` và đăng nhập bằng credentials từ file compose.
+Lần pull đầu của ````flowiseai/flowise:2.2.0```` là **~1.4 GB**. Sau khi chạy, truy cập UI tại ````http://localhost:3000```` và đăng nhập bằng credentials từ file compose.
 
 ### Cấu hình Production PostgreSQL
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: postgres: image: postgres:16-alpine
     environment: POSTGRES_USER: flowise
@@ -148,11 +149,11 @@ services: postgres: image: postgres:16-alpine
     depends_on: - postgres
     volumes: - flowise_storage:/root/.flowise
 
-volumes: postgres_data: flowise_storage: ```
+volumes: postgres_data: flowise_storage: `````
 
 ### Tham chiếu Biến môi trường
 
-```bash
+`````bash
 # Cấu hình cốt lõi
 PORT=3000                                    # Cổng ứng dụng
 FLOWISE_USERNAME=admin                       # Tên admin
@@ -171,7 +172,7 @@ BLOB_STORAGE_TYPE=s3
 S3_STORAGE_BUCKET=flowise-docs
 S3_STORAGE_ACCESS_KEY_ID=...
 S3_STORAGE_SECRET_ACCESS_KEY=...
-```
+`````
 
 > 💡 **Affiliate:** Triển khai Flowise trên VPS đáng tin cậy với [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Sử dụng $200 tín dụng miễn phí để test Flowise với PostgreSQL backend trên droplet 2 vCPU / 4 GB RAM.
 
@@ -179,32 +180,32 @@ S3_STORAGE_SECRET_ACCESS_KEY=...
 
 ### Bước 1: Tạo Chatflow mới
 
-Mở Flowise tại `http://localhost:3000` → **Chatflows** → **Create New**. Bạn sẽ thấy canvas trống với panel node ở bên trái.
+Mở Flowise tại ````http://localhost:3000```` → **Chatflows** → **Create New**. Bạn sẽ thấy canvas trống với panel node ở bên trái.
 
 ### Bước 2: Thêm Vector Store Retriever
 
-```bash
+`````bash
 # Từ panel bên trái, kéo các node sau vào canvas: # 1. Vector Stores → "In-Memory Vector Store" (để test)
 #    hoặc "Chroma" / "Qdrant" / "Pinecone" (cho production)
 # 2. Document Loaders → "PDF File" hoặc "Plain Text"
 # 3. Embeddings → "OpenAI Embeddings" hoặc "Ollama Embeddings"
 # 4. Text Splitters → "Recursive Character Text Splitter"
-```
+`````
 
 ### Bước 3: Kết nối Document Ingestion Chain
 
-```
+`````
 # Kết nối các node theo thứ tự: # [PDF File] → [Recursive Character Text Splitter] → [OpenAI Embeddings] → [Vector Store]
 #
 # Cấu hình cho mỗi node: # - PDF File: upload tài liệu
 # - Text Splitter: chunkSize=1000, chunkOverlap=200
 # - Embeddings: model=text-embedding-3-small
 # - Vector Store: collectionName=my-docs
-```
+`````
 
 ### Bước 4: Thêm Conversational RAG Chain
 
-```
+`````
 # Thêm các node cho phần query: # [Chat Prompt Template] → [OpenAI Chat Model] → [Output Parser]
 #         ↑
 # [Vector Store Retriever] ← [Vector Store (như trên)]
@@ -214,11 +215,11 @@ Mở Flowise tại `http://localhost:3000` → **Chatflows** → **Create New**.
 # Kết nối: # - Vector Store output → Vector Store Retriever input
 # - Retriever output → QA Chain "source_documents" input
 # - QA Chain output → Chat Model input
-```
+`````
 
 ### Bước 5: Cấu hình Prompt Template
 
-```python
+`````python
 # System prompt template cho chatbot RAG
 SYSTEM_PROMPT = """Bạn là một trợ lý hữu ích trả lờ câu hỏi dựa trên
 ngữ cảnh được cung cấp. Nếu câu trả lờ không có trong ngữ cảnh, hãy nói
@@ -234,11 +235,11 @@ Trả lờ:"""
 # Đặt template thành văn bản trên
 # {context} tự động populate từ retriever
 # {question} đến từ input ngườ dùng
-```
+`````
 
 ### Bước 6: Test và Deploy
 
-```bash
+`````bash
 # Trong UI Flowise, click biểu tượng chat ở góc trên bên phải
 # Đặt câu hỏi liên quan đến tài liệu đã upload
 # Xem tab "Used Context" để thấy chunk nào được truy xuất
@@ -247,7 +248,7 @@ Trả lờ:"""
 # Sao chép lệnh curl: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "Chủ đề chính của tài liệu này là gì?"}'
-```
+`````
 
 ## Multi-Agent Flows: Điều phối Agent Trực quan
 
@@ -255,7 +256,7 @@ Tính năng **Agentflow** của Flowise v2.2.0 cho phép bạn xây dựng hệ 
 
 ### Xây dựng Research Agent Team
 
-```
+`````
 # Bố trí canvas cho đội research 3 agent: #
 #                    ┌─────────────────┐
 #                    │  Supervisor     │
@@ -271,11 +272,11 @@ Tính năng **Agentflow** của Flowise v2.2.0 cho phép bạn xây dựng hệ 
 #
 # Supervisor điều hướng query đến agent phù hợp
 # dựa trên loại nhiệm vụ phát hiện từ input ngườ dùng.
-```
+`````
 
 ### Cấu hình Node
 
-```bash
+`````bash
 # Supervisor Agent node: # - LLM: gpt-4.1-nano
 # - Type: supervisor
 # - System Prompt: "Bạn là điều phối viên nghiên cứu. Điều hướng nhiệm vụ đến agent chuyên gia phù hợp."
@@ -291,11 +292,11 @@ Tính năng **Agentflow** của Flowise v2.2.0 cho phép bạn xây dựng hệ 
 # Document Analyst Agent node: # - LLM: gpt-4.1-nano
 # - Tools: Vector Store Retriever
 # - System Prompt: "Phân tích tài liệu được cung cấp để tìm thông tin liên quan."
-```
+`````
 
 ### Deploy Multi-Agent Flow
 
-```bash
+`````bash
 # Deploy dưới dạng API endpoint
 curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
   -H "Content-Type: application/json" \
@@ -314,7 +315,7 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 #     {"agent": "web_search", "action": "found industry benchmarks"}
 #   ]
 # }
-```
+`````
 
 ## Tích hợp với 100+ Công cụ và Dịch vụ
 
@@ -331,7 +332,7 @@ Flowise hỗ trợ **100+ tích hợp** trong các danh mục sau: | Danh mục 
 
 ### Thêm Custom Tool
 
-```javascript
+`````javascript
 // custom_tool.js — lưu trong thư mục tools của Flowise server
 const { Tool } = require('langchain/tools');
 
@@ -347,7 +348,7 @@ class JiraTicketTool extends Tool {
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
       method: POST,
       headers: {
-        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
+        Authorization: ````Basic ${Buffer.from('email:token').toString(base64)}````,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -364,7 +365,7 @@ class JiraTicketTool extends Tool {
 }
 
 module.exports = { JiraTicketTool };
-```
+`````
 
 ## Benchmark & Hiệu năng Thực tế
 
@@ -407,7 +408,7 @@ Mức **tiết kiệm 94% thờ gian** cho các workflow tiêu chuẩn là lý d
 
 ### Nhúng Flowise dưới dạng Chat Widget
 
-```html
+`````html
 import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
@@ -426,11 +427,11 @@ import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.j
     }
   });
 </script>
-```
+`````
 
 ### API Authentication & Rate Limiting
 
-```bash
+`````bash
 # Bật API key authentication
 # Settings → API Keys → Create New Key
 
@@ -442,11 +443,11 @@ curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
 
 # Cho production, thêm Nginx rate limiting: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
 # limit_req zone=flowise burst=20 nodelay;
-```
+`````
 
 ### Webhook Triggers
 
-```bash
+`````bash
 # Cấu hình flow để trigger trên sự kiện bên ngoà
 # Settings → Webhook → Enable
 
@@ -457,11 +458,11 @@ curl -X POST http://localhost:3000/api/v1/webhook/your-webhook-id \
     "event": "new_ticket",
     "data": { "ticket_id": "TKT-123", "description": "..." }
   }'
-```
+`````
 
 ### Backup và Migration
 
-```bash
+`````bash
 #!/bin/bash
 # backup-flowise.sh — chạy qua cron
 
@@ -483,11 +484,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > "$BACKUP_DIR/database.
 
 # Giữ 14 ngày gần nhất
 find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
-```
+`````
 
 ### Monitoring với Prometheus
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v3.0
     ports: - "9090:9090"
@@ -502,7 +503,7 @@ services: prometheus: image: prom/prometheus:v3.0
       - METRICS_PORT=9091
     ports: - "3000:3000"
       - "9091:9091"
-```
+`````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -541,11 +542,11 @@ services: prometheus: image: prom/prometheus:v3.0
 
 ### Tôi có thể export flow Flowise và chạy không có Flowise không?
 
-Không trực tiếp. Flow Flowise được lưu dưới dạng JSON graph definitions và được thực thi bởi runtime engine của Flowise. Tuy nhiên, bạn có thể export flow JSON và sử dụng package runtime mã nguồn mở (`flowise-components`) để thực thi programmatically trong Node.js. Với môi trường Python thuần, bạn cần xây dựng lại code LangChain tương đương. Team đã ngầm hé lộ Python runtime trong bản phát hành tương lai.
+Không trực tiếp. Flow Flowise được lưu dưới dạng JSON graph definitions và được thực thi bởi runtime engine của Flowise. Tuy nhiên, bạn có thể export flow JSON và sử dụng package runtime mã nguồn mở (````flowise-components````) để thực thi programmatically trong Node.js. Với môi trường Python thuần, bạn cần xây dựng lại code LangChain tương đương. Team đã ngầm hé lộ Python runtime trong bản phát hành tương lai.
 
 ### Flowise xử lý API key an toàn như thế nào?
 
-API key được mã hóa ở trạng thái nghỉ bằng AES-256 với khóa dẫn xuất từ biến môi trường `FLOWISE_SECRETKEY_OVERWRITE`. Key không bao giờ được hiển thị trong UI sau khi nhập, và export flow loại bỏ giá trị credential. Cho production, sử dụng credentials dựa trên biến môi trường thay vì nhập trong UI, và luân chuyển key hàng quý.
+API key được mã hóa ở trạng thái nghỉ bằng AES-256 với khóa dẫn xuất từ biến môi trường ````FLOWISE_SECRETKEY_OVERWRITE````. Key không bao giờ được hiển thị trong UI sau khi nhập, và export flow loại bỏ giá trị credential. Cho production, sử dụng credentials dựa trên biến môi trường thay vì nhập trong UI, và luân chuyển key hàng quý.
 
 ### Độ phức tạp flow tối đa Flowise có thể xử lý là bao nhiêu?
 
@@ -553,12 +554,12 @@ Flow với **tối đa 50 node** thực thi đáng tin cậy. Vượt quá con s
 
 ### Tôi có thể chỉ sử dụng local LLM với Flowise không?
 
-Chắc chắn. Kết nối Ollama (qua node Ollama Chat Model), LM Studio, hoặc LocalAI nodes. Tất cả node vector store, embedding và tool hoạt động với setup local. Tính năng Flowise duy nhất yêu cầu truy cập cloud là telemetry tích hợp (có thể tắt bằng `DISABLE_FLOWISE_TELEMETRY=true`).
+Chắc chắn. Kết nối Ollama (qua node Ollama Chat Model), LM Studio, hoặc LocalAI nodes. Tất cả node vector store, embedding và tool hoạt động với setup local. Tính năng Flowise duy nhất yêu cầu truy cập cloud là telemetry tích hợp (có thể tắt bằng ````DISABLE_FLOWISE_TELEMETRY=true````).
 
 ### Làm thế nào để migrate từ Flowise v1.x sang v2.x?
 
 Nâng cấp từ v1.x lên v2.2.0 đòi hỏi: 1. Backup tất cả chatflows qua JSON export
-2. Pull Docker image mới: `flowiseai/flowise:2.2.0`
+2. Pull Docker image mới: ````flowiseai/flowise:2.2.0````
 3. Chạy database migrations tự động khi khởi động đầu tiên
 4. Xác nhận và cấu hình lại bất kỳ node deprecated nào
 5. V2.0 deprecated 4 legacy nodes; xem migration guide tại https://docs.flowiseai.com/migration/v1-to-v2
@@ -574,7 +575,7 @@ Flowise loại bỏ **800 dòng boilerplate** thường ngăn cách một ý tư
 **45,000+ GitHub Stars** và giấy phép Apache-2.0 đảm bảo khả năng tồn tại lâu dài, trong khi 100+ tích hợp có nghĩa là bạn khó bị tắc ở tường kết nối. Với các team ship chatbot RAG, bộ xử lý tài liệu hoặc công cụ nghiên cứu multi-agent, Flowise cắt giảm thờ gian phát triển **90%+** so với viết code thủ công.
 
 **Các bước tiếp theo:**
-1. Deploy: `docker run -p 3000:3000 flowiseai/flowise:2.2.0`
+1. Deploy: ````docker run -p 3000:3000 flowiseai/flowise:2.2.0```
 2. Xây dựng chatbot RAG trong 15 phút
 3. Deploy dưới dạng embedded widget trên website
 4. Thử nghiệm multi-agent flows cho nhiệm vụ nghiên cứu phức tạp
@@ -635,7 +636,7 @@ Bà viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -645,7 +646,7 @@ Bà viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do.
 - [2026-06-08-trending-ai-agents](flowise-ai-workflow-builder-lowcode)
 - [2026-06-15-trending-ai-agents](flowise-ai-workflow-builder-lowcode)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

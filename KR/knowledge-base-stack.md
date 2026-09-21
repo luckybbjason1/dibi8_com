@@ -27,6 +27,7 @@ aliases:
   - /posts/knowledge-base-stack/
 ---
 
+
 PDF 500개, 노트 2,000개, 이메일 10년치가 있는데 에디터의 AI는 그 어떤 것도 존재함을 모릅니다. Notion AI는 시트당 $10/월이고 로컬 파일을 못 봅니다. Glean은 연 최소 $30k. Mem.ai는 좋지만 SaaS — 당신의 "두 번째 뇌"가 남의 하드웨어에 살아요.
 
 이 컬렉션은 **5컴포넌트 셀프호스트 지식 베이스 스택**을 조립합니다. 모든 것(PDF, 노트, 웹 페이지, 코드) 흡수, 로컬 임베딩, chat + API로 쿼리, MCP로 AI 코딩 에이전트에 노출 — 총 **$10-25/월** 인프라 비용.
@@ -47,7 +48,7 @@ SaaS 등가물과 비교: Notion AI + Mem + Glean Lite = 솔로-작은팀 커버
 
 ## 1. 왜 2026에 지식 베이스를 셀프호스트할 때
 
-세 가지가 수렴: 1. **로컬 임베딩 모델이 프로덕션 품질에 도달** — `nomic-embed-text`와 `bge-large`가 4GB VPS에서 동작, 200 doc/분 임베드, sub-100ms 검색. "임베딩 위해 OpenAI에 데이터 전송"은 더 이상 없음
+세 가지가 수렴: 1. **로컬 임베딩 모델이 프로덕션 품질에 도달** — ```nomic-embed-text````와 ````bge-large````가 4GB VPS에서 동작, 200 doc/분 임베드, sub-100ms 검색. "임베딩 위해 OpenAI에 데이터 전송"은 더 이상 없음
 2. **MCP가 에이전트-지식 베이스 통합 표준화** — 지식 베이스가 MCP를 말하면 모든 AI 코딩 에이전트(Claude Desktop, OpenCode, Cursor, Continue)가 커스텀 통합 코드 없이 쿼리 가능. 프로토콜 디테일은 [MCP 서버 레지스트리 가이드](/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) 참조
 3. **RAGFlow가 엔터프라이즈급 문서 파싱을 오픈소스로 출시** — 다단 PDF, 병합 셀 표, 공식 임베드. 모든 "DIY RAG" 스택이 실패한 그것, 이제 해결
 
@@ -55,7 +56,7 @@ SaaS 등가물과 비교: Notion AI + Mem + Glean Lite = 솔로-작은팀 커버
 
 ## 2. 아키텍처 개요
 
-```
+`````
    ┌────────────────────────────────────────────────────┐
    │ VPS ($10-25/월)                                    │
    │                                                    │
@@ -87,7 +88,7 @@ SaaS 등가물과 비교: Notion AI + Mem + Glean Lite = 솔로-작은팀 커버
    │  │    (Claude / Cursor / OpenCode)  │               │
    │  └─────────────────────────────────┘               │
    └────────────────────────────────────────────────────┘
-```
+`````
 
 분담: AnythingLLM은 사용자 정문, RAGFlow는 AnythingLLM 파서가 비틀거리는 문서 처리, 벡터 DB는 공유 검색 백엔드, mem0 + AgentMemory MCP는 같은 지식을 AI 코딩 에이전트에 노출.
 
@@ -97,16 +98,16 @@ SaaS 등가물과 비교: Notion AI + Mem + Glean Lite = 솔로-작은팀 커버
 
 **왜 이거**: 28k+ stars, 단일 Docker 컨테이너로 10분 배포, 오픈소스 RAG 도구 중 가장 다듬어진 웹 UI. chat 백엔드로 40+ LLM 프로바이더 지원(Ollama / DeepSeek / Claude / GPT-5 / OpenRouter)으로 비용 유연성 유지.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker run -d --name anythingllm \
   -p 3001:3001 \
   -v anythingllm-storage:/app/server/storage \
   -e LLM_PROVIDER=ollama \
   -e EMBEDDING_ENGINE=native \
   mintplexlabs/anythingllm:latest
-```
+`````
 
-`http://your-vps:3001` 열기, 워크스페이스 생성, PDF 드래그. 내장 파서가 80% 문서 처리. 나머지 20%는 RAGFlow(다음 컴포넌트)로 라우팅.
+````http://your-vps:3001```` 열기, 워크스페이스 생성, PDF 드래그. 내장 파서가 80% 문서 처리. 나머지 20%는 RAGFlow(다음 컴포넌트)로 라우팅.
 
 **전체 셋업**(팀 인증, 워크스페이스 구조, LLM 프로바이더 라우팅): [AnythingLLM 로컬 RAG 아키텍처](/kr/resources/llm-frameworks/anythingllm-architecture-local-rag/).
 
@@ -116,10 +117,10 @@ docker run -d --name anythingllm \
 
 **왜 이거**: RAGFlow의 "DeepDoc" 파서가 각 페이지에 비전 모델 사용, 표 구조 보존(병합 셀, 중첩 행), 토큰 카운트 대신 시맨틱 블록으로 문서 청크. 결과는 어려운 문서에서 3-5× 더 정확한 검색.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-compose.yml up -d
 # 웹 UI :80, API :9380
-```
+`````
 
 **워크플로우 패턴**: AnythingLLM이 daily driver. 특정 doc 검색 품질 떨어지면 RAGFlow 통해 재처리, 파싱된 청크를 공유 벡터 DB에 저장.
 
@@ -127,16 +128,16 @@ docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-c
 
 ## 5. 컴포넌트 3 — mem0 (에이전트 메모리 레이어)
 
-**역할**: chat 세션과 에이전트 간 살아남는 영구 시맨틱 메모리. "사용자가 Tailwind v4를 쓰고 auth는 `src/lib/auth.ts`에 있음을 기억" — mem0와 대화하는 어떤 에이전트든 다음 세션, 다음 달, 다음 해에 그 사실을 받음.
+**역할**: chat 세션과 에이전트 간 살아남는 영구 시맨틱 메모리. "사용자가 Tailwind v4를 쓰고 auth는 ````src/lib/auth.ts````에 있음을 기억" — mem0와 대화하는 어떤 에이전트든 다음 세션, 다음 달, 다음 해에 그 사실을 받음.
 
 **왜 이거**: 30k+ stars. 특별히 에이전트 메모리용으로 구축(범용 벡터 DB 아님). 대화에서 사실 자동 추출, 중복 제거, 오래된 사실 자연 감쇠.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install mem0ai
 # 또는 서비스로 실행: docker run -d --name mem0 -p 8765:8765 \
   -e VECTOR_DB=chroma \
   mem0ai/mem0-server:latest
-```
+`````
 
 **사용 사례**: AnythingLLM 워크스페이스에 mem0를 writeback 레이어로 연결. 모든 chat 대화가 자동으로 mem0 사실로 증류. AI 코딩 에이전트(다음 컴포넌트)는 문서 코퍼스 AND 대화 추출 사실을 모두 사용 가능.
 
@@ -146,12 +147,12 @@ pip install mem0ai
 
 **역할**: mem0(및 선택적으로 AnythingLLM 벡터 DB)를 임의의 MCP host에 노출 — Claude Desktop, OpenCode, Cursor, Continue, Hermes Agent. 지식 베이스가 이제 모든 현대 AI 코딩 에이전트가 이해하는 프로토콜 사용.
 
-**중요한 이유**: MCP 없으면 커스텀 지식 베이스를 각 AI 코딩 도구와 통합하려면 도구별 커스텀 코드 필요. AgentMemory MCP로 `claude_desktop_config.json`에 한 번 추가하고 모든 MCP 인식 에이전트가 받음.
+**중요한 이유**: MCP 없으면 커스텀 지식 베이스를 각 AI 코딩 도구와 통합하려면 도구별 커스텀 코드 필요. AgentMemory MCP로 ````claude_desktop_config.json````에 한 번 추가하고 모든 MCP 인식 에이전트가 받음.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 npm install -g @mem0/mem0-mcp
 # OpenCode / Claude Desktop MCP config에 추가: # { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
-```
+`````
 
 **결과**: 코딩 에이전트가 이제 "프로젝트 문서와 과거 대화 기반으로 새 auth 흐름을 어떻게 구조화해야 할까?" 답할 수 있음 — PDF와 과거 결정 모두에서 인용.
 
@@ -167,11 +168,11 @@ npm install -g @mem0/mem0-mcp
 
 **기본 추천**: Chroma 시작(AnythingLLM 안에 이미 있음). 코퍼스 > 100 GB 또는 쿼리 레이턴시 > 200ms 시 Qdrant로 마이그레이션.
 
-```bash
+`````bash
 # Chroma 벗어날 때 Qdrant: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
   -v qdrant-storage:/qdrant/storage \
   qdrant/qdrant:latest
-```
+````
 
 ## 8. Day 1 셋업 순서 (90분)
 
@@ -223,7 +224,7 @@ $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트�
 
 엔트리 tier로 {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/월 droplet" >}} 띄우고 8절 따라가면 내일까지 Claude Desktop / Cursor / OpenCode에서 지식 베이스 쿼리 가능.
 
----
+* * *
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)는 이 지식 베이스를 코딩 에이전트 스택에 연결. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/)은 chat-LLM 비용 측 커버. [국경 간 AI 마케팅 스택](/kr/collections/cross-border-ai-marketing-stack/)은 중국 친화 호스팅 필요한 중국 팀용.*
 
@@ -253,7 +254,7 @@ $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -263,7 +264,7 @@ $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트�
 - [cognee-ai-memory-platform](knowledge-base-stack)
 - [flowise](knowledge-base-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

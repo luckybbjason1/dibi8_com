@@ -12,6 +12,7 @@ github_repo: https://github.com/WorldMonitorHQ/worldmonitor
 license: MIT
 ---
 
+
 # WorldMonitor: 실시간 글로벌 인텔리전스 대시보드
 
 **WorldMonitor**는 뉴스, 지정학적 사건 및 인프라 데이터를 통합된 상황 인식 인터페이스로 집계하는 오픈소스 실시간 글로벌 인텔리전스 대시보드입니다. **59,524개의 GitHub 스타**를 달성하며, 팔란티어 고담과 같은 상업용 플랫폼에 대한 지정학적 모니터링 및 OSINT 분석 분야의 선두 오픈소스 대안이 되었습니다.
@@ -49,7 +50,7 @@ WorldMonitor를 설치하기 전에 시스템이 다음 요구사항을 충족�
 
 ### 옵션 1: Docker Compose 배포 (권장)
 
-가장 빠른 시작 방법은 제공된 Docker Compose 구성을 사용하는 것입니다: ```bash
+가장 빠른 시작 방법은 제공된 Docker Compose 구성을 사용하는 것입니다: ````bash
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
 
@@ -58,13 +59,13 @@ cp config.example.yaml config.yaml
 
 # 모든 서비스 시작
 docker compose up -d
-```
+`````
 
-이는 애플리케이션 서버, PostgreSQL 데이터베이스, Redis 캐시 및 웹 프론트엔드를 실행합니다. 기본 자격 증명은 `.env` 파일에 설정되어 있습니다 — 생산 환경에서는 즉시 변경하세요.
+이는 애플리케이션 서버, PostgreSQL 데이터베이스, Redis 캐시 및 웹 프론트엔드를 실행합니다. 기본 자격 증명은 ````.env```` 파일에 설정되어 있습니다 — 생산 환경에서는 즉시 변경하세요.
 
 ### 옵션 2: 수동 설치
 
-배포에 세밀한 제어가 필요한 사용자를 위한 방법: ```bash
+배포에 세밀한 제어가 필요한 사용자를 위한 방법: `````bash
 # 저장소 복제
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
@@ -91,11 +92,11 @@ python manage.py runserver 0.0.0.0:8000
 
 # 프론트엔드 시작 (별도 터미널에서)
 cd frontend && npm run start
-```
+`````
 
 ### 옵션 3: Kubernetes 배포
 
-여러 노드에 걸친 생산 규모 배포용: ```yaml
+여러 노드에 걸친 생산 규모 배포용: `````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: worldmonitor
@@ -110,13 +111,13 @@ spec: replicas: 3
             cpu: "1000m"
           limits: memory: "4Gi"
             cpu: "2000m"
-```
+`````
 
 ## 구성 심층 분석
 
 ### 데이터 소스 구성
 
-WorldMonitor는 여러 데이터 소스 유형을 지원합니다. `config.yaml`에서 구성하세요: ```yaml
+WorldMonitor는 여러 데이터 소스 유형을 지원합니다. ``config.yaml``에서 구성하세요: `````yaml
 data_sources: rss_feeds: enabled: true
     sources: - name: "Reuters"
         url: "https://feeds.reuters.com/reuters/worldNews"
@@ -151,11 +152,11 @@ data_sources: rss_feeds: enabled: true
           content: ".article-body"
           date: ".article-date"
         refresh_interval: 1800
-```
+`````
 
 ### AI 분석 파이프라인
 
-AI 기반 분석 엔진은 여러 단계를 거쳐 들어오는 데이터를 처리합니다: ```python
+AI 기반 분석 엔진은 여러 단계를 거쳐 들어오는 데이터를 처리합니다: `````python
 from worldmonitor.ai.pipeline import AnalysisPipeline
 from worldmonitor.ai.models import EventClassifier, CorrelationEngine
 
@@ -179,11 +180,11 @@ correlated = await pipeline.get_correlated_events(
     time_window="24h",
     event_types=["political", "economic"]
 )
-```
+`````
 
 ### 알림 구성
 
-모니터링 우선순위에 따라 사용자 정의 알림을 설정하세요: ```yaml
+모니터링 우선순위에 따라 사용자 정의 알림을 설정하세요: `````yaml
 alerts: rules: - name: "주요 충돌 감지"
       conditions: - field: "event_type"
           operator: "eq"
@@ -221,7 +222,7 @@ alerts: rules: - name: "주요 충돌 감지"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
-```
+`````
 
 ## 핵심 기능 상세
 
@@ -229,7 +230,7 @@ alerts: rules: - name: "주요 충돌 감지"
 
 WorldMonitor의 뉴스 집계 엔진은 여러 언어의 50개 이상의 소스에서 데이터를 가져옵니다. 시스템은 스마트 중복 제거를 통해 여러 채널에서 동일한 이야기를 보고하는 것을 방지하면서도 주요 사건에 대한 지역적 관점을 보존합니다.
 
-```bash
+`````bash
 # 필터로 집계된 뉴스 쿼리
 curl -X GET "https://your-worldmonitor/api/v1/news" \
   -H "Authorization: Bearer *** \
@@ -239,7 +240,7 @@ curl -X GET "https://your-worldmonitor/api/v1/news" \
 curl -X GET "https://your-worldmonitor/api/v1/news/deduplicated" \
   -H "Authorization: Bearer *** \
   -d "cluster_window=3600&language=en"
-```
+`````
 
 ### 지정학적 사건 매핑
 
@@ -259,7 +260,7 @@ curl -X GET "https://your-worldmonitor/api/v1/news/deduplicated" \
 
 고유 상관관계 엔진은 겉보기에 관련 없는 사건 간 관계를 식별합니다. 예를 들어, 한 국가의 정치적 발언이 다른 국가의 시장 변동과 상관관계가 있거나, A 지역의 인프라 중단이 B 지역의 유사 사건에 선행했을 수 있음을 감지합니다.
 
-```python
+`````python
 from worldmonitor.correlation import CorrelationEngine
 
 engine = CorrelationEngine()
@@ -276,22 +277,22 @@ for corr in correlations: print(f"강도: {corr.strength:.2f}")
     print(f"유형: {corr.type}")
     print(f"사건: {corr.event_ids}")
     print(f"설명: {corr.explanation}")
-```
+`````
 
 ## API 참조
 
 WorldMonitor는 프로그램matic 접근을 위한 포괄적인 REST API를 제공합니다: ### 인증
 
-```bash
+`````bash
 # API 토큰 발급
 curl -X POST "https://your-worldmonitor/api/v1/auth/login" \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "${WM_PASSWORD}"}'
-```
+`````
 
 ### 뉴스 API
 
-```bash
+`````bash
 # 페이지네이션과 함께 최근 뉴스 목록
 curl "https://your-worldmonitor/api/v1/news?page=1&per_page=50" \
   -H "Authorization: Bearer ***
@@ -303,11 +304,11 @@ curl "https://your-worldmonitor/api/v1/news?region=south_asia&date_from=2026-06-
 # 키워드 검색
 curl "https://your-worldmonitor/api/v1/news/search?q=trade+sanctions" \
   -H "Authorization: Bearer ***
-```
+`````
 
 ### 이벤트 API
 
-```bash
+`````bash
 # 지정학적 사건 목록
 curl "https://your-worldmonitor/api/v1/events?type=political&severity_gte=6" \
   -H "Authorization: Bearer ***
@@ -319,11 +320,11 @@ curl "https://your-worldmonitor/api/v1/events/EVT-2026-0625-001" \
 # 사건 타임라인
 curl "https://your-worldmonitor/api/v1/events/EVT-2026-0625-001/timeline" \
   -H "Authorization: Bearer ***
-```
+`````
 
 ### 알림 API
 
-```bash
+`````bash
 # 활성 알림 목록
 curl "https://your-worldmonitor/api/v1/alerts?status=active" \
   -H "Authorization: Bearer ***
@@ -350,32 +351,32 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
       "recipients": ["team@example.com"]
     }
   }'
-```
+`````
 
 ## 배포 옵션
 
 ### 단일 인스턴스 (개인 분석가)
 
-개인 저널리스트나 연구원에게는 4코어 VPS에서의 단일 Docker Compose 배포로 충분합니다: ```
+개인 저널리스트나 연구원에게는 4코어 VPS에서의 단일 Docker Compose 배포로 충분합니다: `````
 서버: 4 vCPU, 8GB RAM, 100GB SSD
 비용: 약 $20/월 (DigitalOcean / HTStack)
 용량: 약 1,000 사건/일, 30일 유지
-```
+`````
 
 ### 팀 배포
 
-5-20명 분석가 팀을 위해서는 Redis 클러스터와 PostgreSQL 읽기 복제본을 추가하세요: ```
+5-20명 분석가 팀을 위해서는 Redis 클러스터와 PostgreSQL 읽기 복제본을 추가하세요: `````
 애플리케이션 서버: 3x 4 vCPU, 16GB RAM (로드 밸런서 뒤)
 데이터베이스: PostgreSQL 기본 + 2개 읽기 복제본
 캐시: Redis Cluster (3개 노드)
 저장소: 500GB SSD + S3 아카이브
 비용: 약 $200/월
 용량: 약 10,000 사건/일, 90일 유지
-```
+`````
 
 ### 기업/분산
 
-정부 또는 대규모 조직 배포용: ```
+정부 또는 대규모 조직 배포용: `````
 데이터 주권 제어와 함께 다중 지역 배포
 10개 이상 애플리케이션 노드에 대한 수평 확장
 자동 장애 조정을 위한 Patroni 기반 PostgreSQL
@@ -383,13 +384,13 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 기존 SIEM/SOC 플랫폼과의 통합
 비용: 맞춤형 가격
 용량: 무제한, 지리 분산 데이터 수집 지원
-```
+`````
 
 ## 기타 도구와의 통합
 
 WorldMonitor는 인기 있는 인텔리전스 및 통신 도구와 원활하게 통합됩니다: ### Slack 통합
 
-```bash
+`````bash
 # Slack 앱 설치
 curl -X POST "https://your-worldmonitor/api/v1/integrations/slack" \
   -H "Authorization: Bearer *** \
@@ -399,11 +400,11 @@ curl -X POST "https://your-worldmonitor/api/v1/integrations/slack" \
     "alert_rules": ["major_conflict", "infrastructure_disruption"],
     "digest_frequency": "hourly"
   }'
-```
+`````
 
 ### Telegram 봇
 
-```bash
+`````bash
 # Telegram 봇 통합 생성
 curl -X POST "https://your-worldmonitor/api/v1/integrations/telegram" \
   -H "Authorization: Bearer *** \
@@ -413,11 +414,11 @@ curl -X POST "https://your-worldmonitor/api/v1/integrations/telegram" \
     "chat_id": "${TELEGRAM_CHAT_ID}",
     "alert_rules": ["all_high_severity"]
   }'
-```
+`````
 
 ### Grafana 대시보드
 
-```bash
+`````bash
 # Grafana용 메트릭 내보내기
 curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
   -H "Authorization: Bearer *** \
@@ -426,11 +427,11 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
     "datasource": "prometheus",
     "dashboard_template": "worldmonitor-overview"
   }'
-```
+`````
 
 ### ELK Stack / Elasticsearch
 
-```yaml
+`````yaml
 # WorldMonitor Elasticsearch 출력 구성
 output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
@@ -439,7 +440,7 @@ output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     template_overwrite: true
     bulk_size: 500
     flush_interval: 5
-```
+````
 
 ## 비교: WorldMonitor vs 상업용 대안
 
@@ -477,7 +478,7 @@ output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -487,6 +488,6 @@ output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
 - [2026-06-08-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 - [2026-06-15-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

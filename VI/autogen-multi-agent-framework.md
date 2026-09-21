@@ -22,6 +22,7 @@ aliases:
   - /posts/autogen-multi-agent-framework/
 ---
 
+
 {</* resource-info */>}
 
 Khi các tác vụ AI ngày càng phức tạp — từ phân tích dữ liệu đa bước đến lập trình phần mềm tự động — một single LLM call không còn đủ để đạt kết quả chất lượng cao. **AutoGen**, framework multi-agent của Microsoft Research, giải quyết thách thức này bằng cách cho phép nhiều AI agents hợp tác, thảo luận và thực thi code để hoàn thành nhiệm vụ. Ra mắt vào năm 2023, AutoGen đã nhanh chóng đạt hơn 35.000 stars trên GitHub và trở thành một trong những công cụ hàng đầu cho việc xây dựng hệ thống AI đa agent. Bài viết này cung cấp hướng dẫn toàn diện từ cài đặt đến triển khai production.
@@ -51,7 +52,7 @@ AutoGen nổi bật ở khả năng **thực thi code trực tiếp** — agents
 
 ### ConversableAgent: Lớp Agent Cơ Sở
 
-`ConversableAgent` là lớp cơ sở cho mọi agent trong AutoGen. Mỗi agent có: - **Name**: định danh duy nhất trong hệ thống
+```ConversableAgent```` là lớp cơ sở cho mọi agent trong AutoGen. Mỗi agent có: - **Name**: định danh duy nhất trong hệ thống
 - **System message**: hướng dẫn vai trò và hành vi
 - **LLM config**: cấu hình model (GPT-4, Claude, local LLM)
 - **Code execution config**: khả năng thực thi code (Python, shell)
@@ -59,18 +60,18 @@ AutoGen nổi bật ở khả năng **thực thi code trực tiếp** — agents
 
 ### UserProxyAgent: Con Ngườitrong Vòng Lặp
 
-`UserProxyAgent` đại diện cho ngườidùng con ngườitrong hệ thống. Agent này có thể: - Nhập input từ ngườidùng khi được yêu cầu
+````UserProxyAgent```` đại diện cho ngườidùng con ngườitrong hệ thống. Agent này có thể: - Nhập input từ ngườidùng khi được yêu cầu
 - Thực thi code trên máy local
 - Gửi kết quả thực thi cho các agents khác
 - Quyết định khi nào kết thúc cuộc hội thoại
 
 ### AssistantAgent: Agent Viết Code
 
-`AssistantAgent` là agent mặc định sử dụng LLM để viết code, phân tích và giải quyết vấn đề. Đây thường là "bộ não" của hệ thống — nó đưa ra kế hoạch, viết code và yêu cầu UserProxyAgent thực thi.
+````AssistantAgent```` là agent mặc định sử dụng LLM để viết code, phân tích và giải quyết vấn đề. Đây thường là "bộ não" của hệ thống — nó đưa ra kế hoạch, viết code và yêu cầu UserProxyAgent thực thi.
 
 ### GroupChat: Hợp Tác Đa Agent
 
-`GroupChat` cho phép nhiều hơn hai agents tham gia cùng một cuộc hội thoại. Các agents trong group chat có thể: - Trò chuyện theo thứ tự round-robin
+````GroupChat```` cho phép nhiều hơn hai agents tham gia cùng một cuộc hội thoại. Các agents trong group chat có thể: - Trò chuyện theo thứ tự round-robin
 - Sử dụng speaker selection strategy để chọn agent tiếp theo
 - Chia sẻ context và kết quả với nhau
 
@@ -86,7 +87,7 @@ Lịch sử này được truyền cho LLM ở mỗi turn, cho phép agents duy 
 
 ### Cài Đặt AutoGen
 
-```bash
+`````bash
 # Cài đặt phiên bản stable mới nhất (v0.2+)
 pip install pyautogen
 
@@ -96,11 +97,11 @@ pip install git+https://github.com/microsoft/autogen.git
 # Cài với tính năng bổ sung
 pip install "pyautogen[retrievechat]"  # RAG support
 pip install "pyautogen[lmm]"           # Vision support
-```
+`````
 
 ### Cấu Hình LLM Endpoints
 
-```python
+`````python
 import autogen
 
 # Cấu hình OpenAI
@@ -121,13 +122,13 @@ config_list_azure = [
         "api_version": "2024-02-15-preview"
     }
 ]
-```
+`````
 
 ## Xây Dựng Hệ Thống Multi-Agent Đầu Tiên
 
 ### Tạo Cuộc Hội Thoại Hai Agent Đơn Giản
 
-```python
+`````python
 import autogen
 
 # Cấu hình LLM
@@ -155,36 +156,36 @@ user_proxy.initiate_chat(
     assistant,
     message="Viết code Python để vẽ biểu đồ hàm sin(x) từ 0 đến 2*pi và lưu thành file PNG."
 )
-```
+`````
 
 ### Bật Thực Thi Code
 
-AutoGen có thể thực thi code trong sandbox environment: ```python
+AutoGen có thể thực thi code trong sandbox environment: `````python
 code_execution_config = {
     "work_dir": "coding_workspace",  # Thư mục làm việc
     "use_docker": True,               # Chạy trong container Docker
     "timeout": 120,                   # Timeout 120 giây
     "last_n_messages": 3,             # Số message gần nhất để extract code
 }
-```
+`````
 
-**Khuyến nghị bảo mật**: luôn bật `use_docker=True` trong production để cô lập code execution.
+**Khuyến nghị bảo mật**: luôn bật ````use_docker=True```` trong production để cô lập code execution.
 
 ### Thiết Lập Điều Kiện Kết Thúc
 
-```python
+`````python
 # Tự động kết thúc khi agent reply "TERMINATE"
 is_termination_msg = lambda x: "TERMINATE" in x.get("content", "")
 
 # Hoặc giới hạn số lượng reply tự động
 max_consecutive_auto_reply=5
-```
+`````
 
 ## Advanced Agent Patterns
 
 ### GroupChat Với Nhiều Agents
 
-```python
+`````python
 from autogen import GroupChat, GroupChatManager
 
 # Định nghĩa các agents
@@ -217,11 +218,11 @@ groupchat = GroupChat(
 manager = GroupChatManager(groupchat=groupchat, llm_config={"config_list": config_list})
 
 user_proxy.initiate_chat(manager, message="Xây dựng ứng dụng Flask đơn giản với CRUD API.")
-```
+`````
 
 ### Sequential Chat Workflows
 
-```python
+`````python
 # Chạy nhiều cuộc hội thoại liên tiếp với context carryover
 result = user_proxy.initiate_chats(
     [
@@ -230,11 +231,11 @@ result = user_proxy.initiate_chats(
         {"recipient": reviewer, "message": "Review code đã viết.", "summary_method": "last_msg"},
     ]
 )
-```
+`````
 
 ### Nested Chat Patterns
 
-Nested cho phép một agent đóng vai trò như một "ngườimôi giới" — nhận message, chuyển nội bộ cho các agents khác xử lý, rồi trả lờingườigửi ban đầu: ```python
+Nested cho phép một agent đóng vai trò như một "ngườimôi giới" — nhận message, chuyển nội bộ cho các agents khác xử lý, rồi trả lờingườigửi ban đầu: `````python
 # Thiết lập nested chat cho coding assistant
 coding_assistant.register_nested_chats(
     trigger=planner,
@@ -243,11 +244,11 @@ coding_assistant.register_nested_chats(
         {"recipient": reviewer, "message": lambda x: x},
     ]
 )
-```
+`````
 
 ### Human-in-the-Loop Và Approval Modes
 
-```python
+`````python
 # Chế độ ALWAYS: luôn hỏi ngườidùng trước mỗi action
 user_proxy = autogen.UserProxyAgent(
     name="user_proxy",
@@ -256,11 +257,11 @@ user_proxy = autogen.UserProxyAgent(
 
 # Chế độ TERMINATE: chỉ hỏi khi cần quyết định quan trọng
 human_input_mode="TERMINATE"
-```
+`````
 
 ### Tạo Agent Classes Tùy Chỉnh
 
-```python
+`````python
 from autogen import ConversableAgent
 
 class DataAnalystAgent(ConversableAgent): def __init__(self, **kwargs): super().__init__(
@@ -271,13 +272,13 @@ class DataAnalystAgent(ConversableAgent): def __init__(self, **kwargs): super().
 
     def analyze_data(self, data_path): # Logic phân tích tùy chỉnh
         pass
-```
+`````
 
 ## AutoGen Với Local Và Open-Source Models
 
 ### Sử Dụng Ollama Với AutoGen
 
-```python
+`````python
 config_list_local = [
     {
         "model": "llama3.1:8b",
@@ -290,11 +291,11 @@ assistant = autogen.AssistantAgent(
     name="local_assistant",
     llm_config={"config_list": config_list_local}
 )
-```
+`````
 
 ### Tích Hợp vLLM Và LM Studio
 
-```python
+`````python
 # vLLM config
 config_vllm = [{
     "model": "meta-llama/Llama-3.1-8B-Instruct",
@@ -308,7 +309,7 @@ config_lmstudio = [{
     "base_url": "http://localhost:1234/v1",
     "api_key": "dummy",
 }]
-```
+`````
 
 ### Chiến Lược Tối Ưu Chi Phí
 
@@ -336,7 +337,7 @@ Một hệ thống gồm 3 agents tự động phân tích dataset: 1. **Data Lo
 
 ### Trợ Lý Nghiên Cứu Với Tìm Kiếm Web
 
-```python
+`````python
 from autogen.agentchat.contrib.web_surfer import WebSurferAgent
 
 web_surfer = WebSurferAgent(
@@ -345,7 +346,7 @@ web_surfer = WebSurferAgent(
     summarizer_llm_config={"config_list": config_list},
     browser_config={"viewport_size": (4096, 1600)},
 )
-```
+`````
 
 ### Workflow Tạo Nội Dung
 
@@ -377,18 +378,18 @@ Cả hai framework có thể bổ sung cho nhau. Ví dụ: dùng LangGraph để
 
 ### Quản Lý Chi Phí Token
 
-```python
+`````python
 # Giới hạn max_tokens cho mỗi response
 llm_config = {
     "config_list": config_list,
     "cache_seed": 42,  # Bật caching
     "temperature": 0.1,  # Giảm randomness, tiết kiệm tokens
 }
-```
+`````
 
 ### Xử Lý Lỗi Và Retry
 
-```python
+`````python
 import openai
 
 # Cấu hình retry
@@ -397,7 +398,7 @@ custom_config = {
     "timeout": 60,
     "max_retries": 3,
 }
-```
+`````
 
 ### Bảo Mật Cho Thực Thi Code
 
@@ -407,25 +408,25 @@ custom_config = {
 | **Docker sandbox** | Chạy trong container cô lập | Production internal |
 | **Local execution** | Chạy trực tiếp trên máy | Development only |
 
-```python
+`````python
 # Luôn dùng Docker trong production
 code_execution_config = {
     "use_docker": True,
     "image": "python:3.11-slim",
     "timeout": 60,
 }
-```
+`````
 
 ### Debug Cuộc Hội Thoại Agent
 
-```python
+`````python
 # Bật logging chi tiết
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
 # Hoặc dùng GroupChat với speaker selection tự động
 # để theo dõi luồng hội thoại
-```
+`````
 
 ## FAQ — Các Câu Hỏi Thường Gặp
 
@@ -451,7 +452,7 @@ AutoGen cung cấp ba cấp độ bảo mật cho code execution: 1. **No execut
 2. **Docker sandbox**: chạy code trong container Docker cô lập — khuyến nghị cho production
 3. **Local execution**: chạy trực tiếp trên máy — chỉ dùng trong development
 
-Luôn bật `use_docker=True` trong production và giới hạn network access của container để ngăn chặn các cuộc gọi API không mong muốn.
+Luôn bật ````use_docker=True``` trong production và giới hạn network access của container để ngăn chặn các cuộc gọi API không mong muốn.
 
 ## Kết Luận Và Tài Nguyên Khởi Động
 
@@ -465,7 +466,7 @@ AutoGen đại diện cho một bước tiến quan trọng trong cách chúng t
 
 Multi-agent systems đang trở thành tiêu chuẩn cho các ứng dụng AI phức tạp — và AutoGen là một trong những công cụ tốt nhất để bắt đầu hành trình này trong năm 2025.
 
----
+* * *
 
 **Tài liệu tham khảo:**
 
@@ -475,7 +476,7 @@ Multi-agent systems đang trở thành tiêu chuẩn cho các ứng dụng AI ph
 - [OpenAI API Documentation](https://openai.com)
 - [Ollama Official Website](https://ollama.com)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

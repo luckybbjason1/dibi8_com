@@ -9,6 +9,7 @@ slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---
 
+
 # Spec Kit: Bộ công cụ phát triển dựa trên thông số kỹ thuật mang tính cách mạng của GitHub 
 
 Việc phát triển phần mềm luôn gặp trở ngại bởi sự mất kết nối cơ bản: **những gì chúng tôi chỉ định** hiếm khi khớp với **những gì chúng tôi xây dựng**. Các tài liệu yêu cầu bám đầy bụi, PRD trở nên lỗi thời trong vòng vài ngày và sản phẩm cuối cùng thường khác xa đáng kể so với tầm nhìn ban đầu. 
@@ -21,15 +22,15 @@ Trong hướng dẫn toàn diện này, chúng ta sẽ khám phá cách hoạt �
 
 Spec Kit là **bộ công cụ nguồn mở** do GitHub phát triển cho phép **Phát triển theo hướng đặc tả** - một phương pháp trong đó các thông số kỹ thuật không chỉ là tài liệu mà còn là các tạo phẩm thực thi hướng dẫn và tạo mã. 
 
-Quy trình phát triển truyền thống trông như thế này: ``` 
+Quy trình phát triển truyền thống trông như thế này: ```` 
 Yêu cầu → Thiết kế → Thực hiện → Kiểm tra → Triển khai 
 (tài liệu) (tài liệu) (mã) (kiểm tra) (prod) 
-``` 
+````` 
 
-Spec Kit thay đổi nó thành: ``` 
+Spec Kit thay đổi nó thành: ````` 
 Thông số kỹ thuật → Triển khai → Kiểm tra → Triển khai 
 (có thể thực thi) (mã) (kiểm tra) (prod) 
-``` 
+````` 
 
 Thông số kỹ thuật trở thành **nguồn của sự thật** - sống, thở và được kết nối trực tiếp với cơ sở mã. 
 
@@ -68,18 +69,18 @@ Thay vì "viết mã rung cảm" - đưa ra lời nhắc về AI và hy vọng �
 
 ### Bước 1: Cài đặt Chỉ định CLI 
 
-``` bash 
+````` bash 
 # Cài đặt bằng uv 
 cài đặt công cụ uv chỉ định-cli \ 
 --từ git+https://github.com/github/spec-kit.git@latest 
 
 # Xác minh cài đặt 
 chỉ định --version 
-``` 
+````` 
 
 ### Bước 2: Khởi tạo Project 
 
-``` bash 
+````` bash 
 # Tạo một dự án mới với spec-kit 
 chỉ định init my-awesome-app --integration copilot 
 
@@ -92,28 +93,28 @@ cd ứng dụng tuyệt vời của tôi
 # │ └── mẫu/ 
 # ├── SPEC.md 
 # └── README.md 
-``` 
+````` 
 
 ### Bước 3: Thiết lập nguyên tắc dự án 
 
-Khởi chạy tác nhân mã hóa của bạn trong thư mục dự án và sử dụng lệnh `/speckit.constitution`: ``` bash 
+Khởi chạy tác nhân mã hóa của bạn trong thư mục dự án và sử dụng lệnh ``/speckit.constitution``: ````` bash 
 # Trong tác nhân mã hóa AI của bạn: /speckit.constitution Tạo các nguyên tắc tập trung vào: - Tiêu chuẩn chất lượng mã 
 - Yêu cầu kiểm tra 
 - Điểm chuẩn hiệu suất 
 - Nguyên tắc bảo mật 
 - Kỳ vọng về tài liệu 
-``` 
+````` 
 
-Điều này tạo ra một tệp `constitution.md` chi phối tất cả các quyết định phát triển tiếp theo. 
+Điều này tạo ra một tệp ````constitution.md```` chi phối tất cả các quyết định phát triển tiếp theo. 
 
 ### Bước 4: Viết thông số kỹ thuật đầu tiên của bạn 
 
-Sử dụng lệnh `/speckit.specify` để mô tả những gì bạn muốn xây dựng: ``` bash 
+Sử dụng lệnh ``/speckit.specify`` để mô tả những gì bạn muốn xây dựng: ````` bash 
 /speckit.specify Xây dựng ứng dụng tổ chức ảnh với các tính năng sau: - Người dùng có thể tạo album được nhóm theo ngày 
 - Album có thể được sắp xếp lại bằng cách kéo và thả 
 - Ảnhs hỗ trợ chỉnh sửa siêu dữ liệu 
 - Album được chia sẻ với sự cộng tác 
-``` 
+````` 
 
 Thông số kỹ thuật được lưu dưới dạng tài liệu có cấu trúc mà các tác nhân AI có thể sử dụng. 
 
@@ -121,7 +122,7 @@ Thông số kỹ thuật được lưu dưới dạng tài liệu có cấu trú
 
 ### Quy trình phát triển dựa trên thông số kỹ thuật 
 
-``` 
+````` 
 ┌────────────────────────────── ───────────────────────────────┐ 
 │ Quy trình làm việc của Bộ công cụ đặc biệt │ 
 ├────────────────────────────── ───────────────────────────────┤ 
@@ -145,11 +146,11 @@ Thông số kỹ thuật được lưu dưới dạng tài liệu có cấu trú
 │ └─ Vận chuyển đến nơi sản xuất │ 
 │ │ 
 └────────────────────────────── ───────────────────────────────┘ 
-``` 
+````` 
 
 ### Định dạng thông số 
 
-Thông số kỹ thuật tuân theo một định dạng có cấu trúc: ``` đánh dấu 
+Thông số kỹ thuật tuân theo một định dạng có cấu trúc: ````` đánh dấu 
 # Thông số: Trình quản lý album ảnh 
 
 ## Tóm tắt 
@@ -171,14 +172,14 @@ Một ứng dụng web để sắp xếp ảnh thành album theo ngày tháng.
 - [] Kéo và thả hoạt động trên máy tính để bàn và thiết bị di động 
 - [] Đồng bộ album được chia sẻ trên các thiết bị 
 - [ ] Hiệu suất: <100ms cho 1000 ảnh 
-``` 
+````` 
 
 ### Tích hợp tác nhân AI 
 
 Spec Kit hoạt động với nhiều tác nhân mã hóa AI: | Đại lý | Phương pháp tích hợp | 
 |-------|-------------------| 
-| Phi công phụ GitHub | `/speckit.*` lệnh gạch chéo | 
-| Codex CLI | lệnh `$speckit-*` | 
+| Phi công phụ GitHub | ````/speckit.*```` lệnh gạch chéo | 
+| Codex CLI | lệnh ````$speckit-*```` | 
 | Mã Claude | Mẫu nhắc nhở đại lý | 
 | Song Tử CLI | Cuộc gọi chức năng tùy chỉnh | 
 | Mã mở | Định nghĩa kỹ năng | 
@@ -187,7 +188,7 @@ Spec Kit hoạt động với nhiều tác nhân mã hóa AI: | Đại lý | Ph�
 
 ### Ví dụ 1: Xây dựng REST API 
 
-``` bash 
+````` bash 
 # Xác định thông số kỹ thuật 
 /speckit.specify Xây dựng API REST cho nền tảng blog với: - Hoạt động CRUD cho bài viết 
 - Xác thực người dùng với JWT 
@@ -200,11 +201,11 @@ Spec Kit hoạt động với nhiều tác nhân mã hóa AI: | Đại lý | Ph�
 
 # Xác thực theo thông số kỹ thuật 
 /speckit.validate 
-``` 
+````` 
 
 ### Ví dụ 2: Tạo ứng dụng di động 
 
-``` bash 
+````` bash 
 # Xác định thông số kỹ thuật 
 /speckit.specify Xây dựng ứng dụng di động theo dõi hoạt động thể chất với: - Ghi nhật ký tập luyện với thư viện bài tập 
 - Biểu đồ tiến độ và thống kê 
@@ -214,11 +215,11 @@ Spec Kit hoạt động với nhiều tác nhân mã hóa AI: | Đại lý | Ph�
 
 # Tạo triển khai 
 /speckit.create --framework rung 
-``` 
+````` 
 
 ### Ví dụ 3: Kiến trúc microservices 
 
-``` bash 
+````` bash 
 # Xác định thông số kỹ thuật 
 /speckit.specify Thiết kế kiến trúc vi dịch vụ cho: - Dịch vụ người dùng (xác thực, hồ sơ) 
 - Dịch vụ đặt hàng (đặt hàng, thanh toán) 
@@ -229,15 +230,15 @@ Spec Kit hoạt động với nhiều tác nhân mã hóa AI: | Đại lý | Ph�
 # Tạo triển khai 
 /speckit.plan --vi dịch vụ kiến trúc 
 /speckit.create --framework kubernetes 
-``` 
+````` 
 
 ## Gói: Thiết lập dựa trên vai trò 
 
 Spec Kit bao gồm các gói được cấu hình sẵn cho các vai trò khác nhau trong nhóm: ### Nhà phát triểnGói 
 
-Tối ưu hóa cho các nhà phát triển cá nhân: ``` bash 
+Tối ưu hóa cho các nhà phát triển cá nhân: ````` bash 
 chỉ định nhà phát triển init --bundle 
-``` 
+````` 
 
 Bao gồm: - Quy trình làm việc đơn giản hóa 
 - Vòng phản hồi nhanh 
@@ -245,9 +246,9 @@ Bao gồm: - Quy trình làm việc đơn giản hóa
 
 ### Nhóm nhóm 
 
-Được thiết kế để hợp tác phát triển: ``` bash 
+Được thiết kế để hợp tác phát triển: ````` bash 
 chỉ định nhóm init --bundle 
-``` 
+````` 
 
 Bao gồm: - Cổng xét duyệt mã 
 - Quy tắc bảo vệ chi nhánh 
@@ -255,9 +256,9 @@ Bao gồm: - Cổng xét duyệt mã
 
 ### Gói doanh nghiệp 
 
-Đối với các tổ chức lớn: ``` bash 
+Đối với các tổ chức lớn: ````` bash 
 chỉ định init --bundle doanh nghiệp 
-``` 
+````` 
 
 Bao gồm: - Mẫu tuân thủ 
 - Đường mòn kiểm toán 
@@ -268,17 +269,17 @@ Bao gồm: - Mẫu tuân thủ
 
 ### Hệ thống mở rộng 
 
-Spec Kit hỗ trợ các tiện ích mở rộng cho quy trình làm việc tùy chỉnh: ``` bash 
+Spec Kit hỗ trợ các tiện ích mở rộng cho quy trình làm việc tùy chỉnh: ````` bash 
 # Cài đặt tiện ích mở rộng 
 chỉ định cài đặt tiện ích mở rộng github/spec-kit-extension-ci 
 
 # Tạo mẫu tùy chỉnh 
 chỉ định mẫu tạo my-custom-spec 
-``` 
+````` 
 
 ### Cài đặt trước tùy chỉnh 
 
-Xác định cài đặt trước thông số kỹ thuật của riêng bạn: ```yaml 
+Xác định cài đặt trước thông số kỹ thuật của riêng bạn: `````yaml 
 # .spec-kit/presets.yaml 
 cài đặt trước: ứng dụng web: khuôn khổ: phản ứng 
 tiểu bang: zustand 
@@ -289,17 +290,17 @@ bộ đệm: redis
 ứng dụng di động: khuôn khổ: rung động 
 tiểu bang: riverpod 
 thử nghiệm: tích hợp_test 
-``` 
+````` 
 
 ### Phát hiện trôi dạt 
 
-Spec Kit tự động phát hiện khi triển khai sai lệch so với thông số kỹ thuật: ``` bash 
+Spec Kit tự động phát hiện khi triển khai sai lệch so với thông số kỹ thuật: ````` bash 
 # Kiểm tra độ lệch thông số kỹ thuật 
 chỉ định kiểm tra độ trôi 
 
 # Xem báo cáo trôi dạt 
 chỉ định báo cáo trôi dạt --output html 
-``` 
+````` 
 
 Các báo cáo bao gồm: - Thiếu tính năng từ thông số kỹ thuật 
 - Các tính năng không được dùng nữa không có trong thông số kỹ thuật 
@@ -341,7 +342,7 @@ Các báo cáo bao gồm: - Thiếu tính năng từ thông số kỹ thuật
 
 ### Tích hợp với CI/CD 
 
-```yaml 
+`````yaml 
 # .github/workflows/spec-validate.yml 
 Tên: Xác thực thông số kỹ thuật 
 trên: [pull_request] 
@@ -354,7 +355,7 @@ chạy: cài đặt công cụ uv chỉ định-cli
 chạy: chỉ định kiểm tra trôi 
 - name: Chạy thử nghiệm dựa trên thông số kỹ thuật 
 chạy: chỉ định kiểm tra --from-spec 
-``` 
+```` 
 
 ### Hợp tác nhóm 
 
@@ -424,7 +425,7 @@ Với sự hỗ trợ từ GitHub và sự chấp nhận nhanh chóng của cộ
 - [Tài liệu chính thức của Spec Kit](https://github.github.io/spec-kit/) 
 - [Tuyên ngôn phát triển dựa trên thông số kỹ thuật](https://github.com/github/spec-kit/blob/main/docs/manifesto.md) 
 
---- 
+* * *
 
 💬 Tham gia Telegram của chúng tôinhóm thảo luận: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
@@ -453,7 +454,7 @@ Với sự hỗ trợ từ GitHub và sự chấp nhận nhanh chóng của cộ
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -463,7 +464,7 @@ Với sự hỗ trợ từ GitHub và sự chấp nhận nhanh chóng của cộ
 - [codebase-memory-mcp-high-performance-code-intelligence](spec-kit-github-spec-driven-development-toolkit)
 - [prompts-chat](spec-kit-github-spec-driven-development-toolkit)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

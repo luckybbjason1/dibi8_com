@@ -27,6 +27,7 @@ aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
 
+
 # Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)
 
 
@@ -150,7 +151,7 @@ OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 [OpenRouter 통�
 
 "범용 최고" LLM 게이트웨이는 없습니다. "2절 결정 트리 당신 행에 매칭되는" 게이트웨이만 있습니다. 그걸 골라 출시하고, 월 추론 청구서가 $5,000을 넘기면 재평가하세요.
 
----
+* * *
 
 *위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.*
 
@@ -216,12 +217,12 @@ Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -231,7 +232,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 - [ai-engineering-from-scratch](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

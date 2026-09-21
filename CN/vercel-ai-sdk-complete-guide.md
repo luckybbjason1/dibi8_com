@@ -8,6 +8,7 @@ date: 2026-07-17T00:00:00+00:00
 lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg
 ---
 
+
 ## TL;DR
 
 Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub. This comprehensive guide covers installation, streaming responses, tool calling, provider integration, and production deployment patterns for building chat interfaces, AI assistants, and generative UI applications.
@@ -34,7 +35,7 @@ The AI SDK follows a layered architecture: 1. **Core Layer**: Provider-agnostic 
 3. **UI Layer**: React components for streaming chat interfaces
 4. **Middleware Layer**: Server-side helpers for route handlers and API endpoints
 
-```typescript
+````typescript
 // Provider-agnostic API
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
@@ -43,34 +44,34 @@ const { text } = await generateText({
   model: openai('gpt-4o'),
   prompt: 'Write a poem about artificial intelligence',
 });
-```
+`````
 
 ## Installation Guide
 
 ### Basic Installation
 
-```bash
+`````bash
 npm install ai
 # Or with specific provider
 npm install ai @ai-sdk/openai @ai-sdk/anthropic
-```
+`````
 
 ### Next.js Project Setup
 
-```bash
+`````bash
 npx create-next-app@latest my-ai-app --typescript
 cd my-ai-app
 npm install ai @ai-sdk/openai
-```
+`````
 
-Create `.env.local`: ```
+Create ``.env.local``: `````
 OPENAI_API_KEY=sk-your-key-here
 ANTHROPIC_API_KEY=sk-ant-your-key-here
-```
+`````
 
 ### Verify Installation
 
-```typescript
+`````typescript
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
@@ -85,13 +86,13 @@ async function main() {
 }
 
 main();
-```
+`````
 
 ## Core APIs
 
 ### Text Generation
 
-The simplest way to interact with LLMs: ```typescript
+The simplest way to interact with LLMs: `````typescript
 import { generateText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 
@@ -104,11 +105,11 @@ const { text, toolCalls, toolResults, usage } = await generateText({
 
 console.log(text);
 console.log('Tokens used:', usage.totalTokens);
-```
+`````
 
 ### Chat Completions
 
-Build conversational interfaces with message history: ```typescript
+Build conversational interfaces with message history: `````typescript
 import { streamText } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
@@ -125,11 +126,11 @@ const result = streamText({
 for await (const textPart of result.textStream) {
   process.stdout.write(textPart);
 }
-```
+`````
 
 ### Embedding Generation
 
-Create vector representations for semantic search: ```typescript
+Create vector representations for semantic search: `````typescript
 import { embed } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
@@ -138,13 +139,13 @@ const { embedding } = await embed({
   value: 'Machine learning is a subset of artificial intelligence',
 });
 
-console.log(`Embedding dimension: ${embedding.length}`);
+console.log(````Embedding dimension: ${embedding.length}````);
 // Output: Embedding dimension: 1536
-```
+`````
 
 ### Structured Outputs
 
-Generate typed JSON responses: ```typescript
+Generate typed JSON responses: `````typescript
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
@@ -160,13 +161,13 @@ const movie = await generateObject({
 });
 
 console.log(movie.object.title); // Example: "Dune: Part Two"
-```
+`````
 
 ## Streaming Responses
 
 ### Text Stream
 
-Real-time token streaming for chat interfaces: ```typescript
+Real-time token streaming for chat interfaces: `````typescript
 import { streamText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 
@@ -184,11 +185,11 @@ const fullText = result.textStream;
 for await (const chunk of fullText) {
   console.log(chunk);
 }
-```
+`````
 
 ### Data Stream
 
-Send custom structured data alongside text: ```typescript
+Send custom structured data alongside text: `````typescript
 import { streamResponse } from 'ai';
 
 export async function POST(request: Request) {
@@ -214,11 +215,11 @@ export async function POST(request: Request) {
     },
   );
 }
-```
+`````
 
 ### Client-Side Streaming Component
 
-```tsx
+`````tsx
 'use client';
 
 import { useChat } from '@ai-sdk/react';
@@ -238,7 +239,7 @@ export default function Chat() {
     <div className="chat-container">
       <div className="messages">
         {messages.map((m) => (
-          <div key={m.id} className={`message ${m.role}`}>
+          <div key={m.id} className={````message ${m.role}````}>
             <strong>{m.role === 'user' ? 'You' : 'AI'}:</strong>
             <p>{m.content}</p>
           </div>
@@ -258,13 +259,13 @@ export default function Chat() {
     </div>
   );
 }
-```
+`````
 
 ## Tool Calling
 
 ### Defining Tools
 
-Define tools that the model can call: ```typescript
+Define tools that the model can call: ````typescript
 import { tool } from 'ai';
 import { z } from 'zod';
 
@@ -295,7 +296,7 @@ const result = await generateText({
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [vercel-ai-sdk-edge-compute](vercel-ai-sdk-complete-guide)
@@ -304,5 +305,5 @@ const result = await generateText({
 - [vercel-ai-sdk-edge-compute](vercel-ai-sdk-complete-guide)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

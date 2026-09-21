@@ -12,6 +12,7 @@ maintainer: 'tinyhumansai'
 license: 'GPL-3.0'
 
 ---
+
 # OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026
 
 You've probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That's the cold start problem every AI assistant faces.
@@ -31,7 +32,7 @@ OpenHuman is an **open-source agentic assistant** designed to integrate with you
 
 The project started in February 2026 and has already accumulated **31,869 GitHub stars** and **3,089 forks**. It's released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.
 
-```yaml
+````yaml
 # OpenHuman config — Memory Tree location
 # All data stays on your machine by default
 memory: vault_path: ~/.openhuman/vault
@@ -39,11 +40,11 @@ memory: vault_path: ~/.openhuman/vault
   model_default: gpt-4o
   model_fallback: claude-sonnet-4
   token_compression: true
-```
+`````
 
 ## How OpenHuman Works
 
-OpenHuman follows a **local-first architecture** with optional managed services: ```
+OpenHuman follows a **local-first architecture** with optional managed services: `````
 ┌─────────────────────────────────────────────┐
 │              OpenHuman Desktop App            │
 ├─────────────┬──────────────┬────────────────┤
@@ -56,13 +57,13 @@ OpenHuman follows a **local-first architecture** with optional managed services:
 ├─────────────────────────────────────────────┤
 │        Local Runtime (Rust-based, <50MB RAM)  │
 └─────────────────────────────────────────────┘
-```
+`````
 
 The **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn't search your chat history — it reads your Memory Tree, which already has structured context about that project.
 
 The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless.
 
-```bash
+`````bash
 # Check your Memory Tree size and structure
 # All data is plain Markdown — grep, ripgrep, Obsidian all work
 find ~/.openhuman/vault -name '*.md' | wc -l
@@ -71,7 +72,7 @@ find ~/.openhuman/vault -name '*.md' | wc -l
 # View Memory Tree index
 cat ~/.openhuman/vault/_index.md
 # Contains auto-generated cross-references between memories
-```
+`````
 
 ## Installation & Setup
 
@@ -79,7 +80,7 @@ OpenHuman is a desktop application distributed through native package managers �
 
 ### macOS (Homebrew) — Recommended
 
-```bash
+`````bash
 # Tap the official repo and install
 brew tap tinyhumansai/core
 brew install openhuman
@@ -90,11 +91,11 @@ openhuman --version
 
 # Launch from terminal or Spotlight
 openhuman
-```
+`````
 
 ### Linux (Debian/Ubuntu) — Official APT Repo
 
-```bash
+`````bash
 # Add GPG key and APT repository
 sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates
 curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \
@@ -107,23 +108,23 @@ sudo apt-get install -y openhuman
 
 # Verify
 openhuman --version
-```
+`````
 
 ### Linux (Arch Linux — AUR)
 
-```bash
+`````bash
 # The openhuman-bin AUR recipe is in the repo itself
 # Once published to AUR: yay -S openhuman-bin
-```
+`````
 
 ### Windows
 
 Download the MSI installer from the [GitHub Releases page](https://github.com/tinyhumansai/openhuman/releases/latest) or from [tinyhumans.ai](https://tinyhumans.ai/openhuman). The installer includes automatic updates via the built-in updater.
 
-```powershell
+`````powershell
 # After installing, verify from PowerShell
 openhuman --version
-```
+`````
 
 > **Important**: OpenHuman is currently in **early beta**. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.
 
@@ -133,7 +134,7 @@ OpenHuman's 118+ integrations are its killer feature. Instead of manually config
 
 ### GitHub Integration
 
-```bash
+`````bash
 # Configure GitHub integration
 # OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes
 openhuman configure github --repo tinyhumansai/openhuman
@@ -142,11 +143,11 @@ openhuman configure github --repo tinyhumansai/openhuman
 # "What does the Memory Tree indexer do?"
 # → OpenHuman reads the repo structure from its local cache
 #   and gives you a precise answer, no web search needed
-```
+`````
 
 ### Obsidian Compatibility
 
-Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: ```bash
+Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash
 # Open your Memory Tree in Obsidian
 # All your AI conversation history is already there as notes
 # You can search, link, and organize just like regular notes
@@ -163,11 +164,11 @@ tree ~/.openhuman/vault --dirsfirst
 # └── workflows/
 #     ├── coding-patterns.md
 #     └── design-decisions.md
-```
+`````
 
 ### Composio Connector Layer
 
-Composio provides the OAuth-based integration framework: ```bash
+Composio provides the OAuth-based integration framework: `````bash
 # List available Composio connectors
 openhuman integrations list
 
@@ -178,11 +179,11 @@ openhuman integrations enable notion --scope write
 openhuman integrations status
 # Output: 23/118 connectors active
 #   GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗
-```
+`````
 
 ### Model Routing with Multiple Providers
 
-```bash
+`````bash
 # Configure preferred model order
 openhuman config models \
   --primary gpt-4o \
@@ -194,7 +195,7 @@ openhuman config models \
 # Without compression: 8,420 tokens
 # With TokenJuice: 1,890 tokens (77.5% reduction)
 # Accuracy impact: <2% on benchmark tests
-```
+`````
 
 ## Benchmarks & Real-World Performance
 
@@ -202,13 +203,13 @@ openhuman config models \
 
 In our testing, OpenHuman's Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Memory files | 45 | 312 | 680 |
 | Avg. response accuracy (self-reported) | 62% | 81% | 93% |
@@ -219,21 +220,21 @@ In our testing, OpenHuman's Memory Tree showed measurable improvement in context
 
 ### TokenJuice Token Compression
 
-TokenJuice achieves 60-95% token reduction with <2% accuracy loss across 3 model families: ```
+TokenJuice achieves 60-95% token reduction with <2% accuracy loss across 3 model families: `````
 Model              | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ
 
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |---
 gpt-4o             | 12,400         | 2,100             | 83.1%   | -1.2%
 claude-sonnet-4    | 9,800          | 1,950             | 80.1%   | -0.8%
 llama-3.2 (local)  | 6,200          | 1,400             | 77.4%   | -1.5%
-```
+`````
 
 **Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA.
 
@@ -241,15 +242,15 @@ llama-3.2 (local)  | 6,200          | 1,400             | 77.4%   | -1.5%
 
 | Metric | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Startup time | 2.1s | 0.8s | 1.5s | 1.2s |
 | RAM usage (idle) | 48MB | 35MB | 52MB | 41MB |
@@ -261,7 +262,7 @@ llama-3.2 (local)  | 6,200          | 1,400             | 77.4%   | -1.5%
 
 ### Running 100% Local (No Managed Services)
 
-If you want zero cloud dependency: ```bash
+If you want zero cloud dependency: `````bash
 # Switch to fully local mode
 openhuman config sync --mode local
 openhuman config managed --disable
@@ -272,11 +273,11 @@ openhuman status
 # Model routing: local only ✓
 # Integrations: disconnected ✓
 # Cloud services: disabled ✓
-```
+`````
 
 ### Custom Model Configuration
 
-```bash
+`````bash
 # Add a custom OpenAI-compatible endpoint
 openhuman config models add \
   --name custom-model \
@@ -293,22 +294,22 @@ openhuman config models set-primary \
 openhuman config tokenjuice \
   --aggressive false \
   --preservation-rate 0.15  # Keep 15% of tokens intact
-```
+`````
 
 ### Obsidian Vault Automation
 
-Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: ```bash
+Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash
 # Sync Memory Tree with Obsidian daily
 crontab -e  # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/
 
 # Use Obsidian dataview for Memory Tree queries
 # In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM "projects/"
 # SORT file.mdate DESC
-```
+`````
 
 ### CI/CD Integration with Composio Connectors
 
-For teams using OpenHuman for development workflows: ```bash
+For teams using OpenHuman for development workflows: `````bash
 # Automated test runner integration
 openhuman integrations enable github --scope repo,workflow
 
@@ -321,21 +322,21 @@ openhuman ci status project-alpha --last 5
 # Output: #   Build #142: ✅ 2m13s | 847 tests pass
 #   Build #141: ❌ 0m31s | 3 failures in auth-module
 #   Build #140: ✅ 1m58s | 847 tests pass
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open-source** | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT |
 | **Desktop app** | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only |
@@ -384,15 +385,15 @@ No other tool combines local-first privacy, 118+ integrations, and a memory syst
 
 If you"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://tinyhumans.gitbook.io/openhuman/
 - GitHub repository: https://github.com/tinyhumansai/openhuman
 - Discord community: https://discord.tinyhumans.ai/
 - Product Hunt: https://www.producthunt.com/products/openhuman
 
----
+* * *
 
-**Try OpenHuman**: Install via `brew tap tinyhumansai/core && brew install openhuman` or visit [tinyhumans.ai/openhuman](https://tinyhumans.ai/openhuman?utm_source=github&utm_medium=readme).
+**Try OpenHuman**: Install via ````brew tap tinyhumansai/core && brew install openhuman``` or visit [tinyhumans.ai/openhuman](https://tinyhumans.ai/openhuman?utm_source=github&utm_medium=readme).
 
 Join the community: [Telegram](https://t.me/DIBI8_Group) · [Discord](https://discord.tinyhumans.ai/)
 

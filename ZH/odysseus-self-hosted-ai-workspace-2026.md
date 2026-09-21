@@ -32,6 +32,7 @@ faqs: - q: 'Odysseus 必须有 GPU 才能运行吗？'
     a: '默认的 Docker Compose 只绑定 127.0.0.1。如需局域网访问，在 .env 中设置 APP_BIND=0.0.0.0 并保持 AUTH_ENABLED=true。公网访问务必在前端加反向代理（Nginx、Caddy）并启用 TLS。官方明确建议：在未开启认证的情况下不要对外暴露 0.0.0.0 端口。'
   - q: '可以在手机上使用 Odysseus 吗？'
     a: '可以。Odysseus 是一个渐进式 Web 应用（PWA），完全响应式设计。在 iOS 或 Android 上点击"添加到主屏幕"可获得接近原生 App 的体验。Cookbook 和 Agent 功能在手机上同样可用，但 GPU 密集型的本地模型推理仍需桌面/服务器环境。'---
+
 # Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南
 
 
@@ -55,18 +56,18 @@ Odysseus 于 2026 年 5 月 31 日在 GitHub 上线，到 6 月 8 日已突破 6
 
 ## 5 分钟快速启动（Docker）
 
-```bash
+````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 cp .env.example .env          # 可选，但建议保留明确的默认配置
 docker compose up -d --build
-```
+`````
 
 打开 **http://localhost:7000**。首次启动时，Odysseus 会在 Docker 日志中打印临时管理员密码：
 
-```bash
+`````bash
 docker compose logs odysseus | grep "Admin password"
-```
+`````
 
 登录后在设置中修改密码，然后添加第一个模型服务器（本地 Ollama 或 OpenAI API Key）。
 
@@ -74,29 +75,29 @@ docker compose logs odysseus | grep "Admin password"
 
 Apple Silicon 用户建议使用原生安装而非 Docker（Docker 无法访问 Metal GPU）：
 
-```bash
+`````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python setup.py
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
-```
+`````
 
 Apple Silicon 一键启动：
 
-```bash
+`````bash
 ./start-macos.sh        # 绑定到 127.0.0.1:7860
-```
+`````
 
-系统要求：Python 3.11+。Cookbook 后台下载模型需要 `tmux`。
+系统要求：Python 3.11+。Cookbook 后台下载模型需要 ``tmux``。
 
 ## Cookbook 功能深度解析
 
 Cookbook 是 Odysseus 最具差异化的功能：
 
 1. 检测你的 GPU 型号和可用 VRAM
-2. 用 `llmfit` 的适配算法对模型库打分（VRAM × 量化精度 × 上下文长度）
+2. 用 ``llmfit`` 的适配算法对模型库打分（VRAM × 量化精度 × 上下文长度）
 3. 点击**下载并运行**——后台自动拉取模型、启动对应 runtime（FP8/AWQ 用 vLLM，GGUF 用 llama.cpp），并自动注册到模型列表
 
 对于不想单独管理 Ollama 的用户，Cookbook 实际上可以完全替代它，同时提供更智能的模型选择建议。
@@ -107,11 +108,11 @@ Cookbook 是 Odysseus 最具差异化的功能：
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 自部署 | ✅ | ✅ | ❌ |
 | 智能体 + MCP 工具 | ✅ | 部分 | ✅ |
@@ -124,13 +125,13 @@ Cookbook 是 Odysseus 最具差异化的功能：
 
 ## 注意事项
 
-Odysseus 目前是 1.0 版本，上线不到两周，难免存在不完善之处：Linux 上 Cookbook 部分 runtime 需要手动 `tmux` 进行后台任务；CalDAV 同步对重复性日程事件有已知边界问题；移动端 PWA 性能因浏览器而异。不过 Issue 跟踪活跃，维护者响应及时。
+Odysseus 目前是 1.0 版本，上线不到两周，难免存在不完善之处：Linux 上 Cookbook 部分 runtime 需要手动 ````tmux```` 进行后台任务；CalDAV 同步对重复性日程事件有已知边界问题；移动端 PWA 性能因浏览器而异。不过 Issue 跟踪活跃，维护者响应及时。
 
 对于生产级智能体部署，LangGraph、CrewAI 等经过更多实战检验的框架仍更可靠。Odysseus 更适合定位为**个人 AI 工作台**——强大、灵活、隐私安全——而非企业级自动化平台。
 
 ## 总结
 
-如果你想在自己的硬件上获得媲美 ChatGPT 的体验，同时不想支付月费、不想数据上云，Odysseus 是目前最完整的开源选项。9 天 6.3 万 star 的背后，是真实的社区认可，而非虚假热度。克隆仓库，`docker compose up`，5 分钟内即可拥有一个完整运行的 AI 工作台。
+如果你想在自己的硬件上获得媲美 ChatGPT 的体验，同时不想支付月费、不想数据上云，Odysseus 是目前最完整的开源选项。9 天 6.3 万 star 的背后，是真实的社区认可，而非虚假热度。克隆仓库，````docker compose up```，5 分钟内即可拥有一个完整运行的 AI 工作台。
 
 **GitHub：** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
 
@@ -197,12 +198,12 @@ Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](odysseus-self-hosted-ai-workspace-2026)
@@ -211,6 +212,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](odysseus-self-hosted-ai-workspace-2026)
 - [ai-engineering-from-scratch](odysseus-self-hosted-ai-workspace-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -30,6 +30,7 @@ faq: - q: "MCP는 무엇이고 2026년에 왜 중요한가요?"
     a: "세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-project MCP config(.cursor/mcp.json, .claude/mcp.json) 사용해 전역 30개 로드 방지. (3) 시작 시간 감사 — 500ms 이상 초기화 서버는 모든 agent 세션을 늦춤. MCP spec이 강제하지 않음; 당신의 규율이 강제."
 ---
 
+
 {{</* resource-info */>}}
 
 # MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리
@@ -40,17 +41,17 @@ faq: - q: "MCP는 무엇이고 2026년에 왜 중요한가요?"
 
 ## ⚡ TL;DR — 2분 읽기
 
-> **생태계 규모**: 1000+ 공개 MCP 서버, 3개 transport 모드(stdio, HTTP/SSE, OAuth-bridge). Spec 버전 `2025-06`이 현재 표준.
+> **생태계 규모**: 1000+ 공개 MCP 서버, 3개 transport 모드(stdio, HTTP/SSE, OAuth-bridge). Spec 버전 ```2025-06````이 현재 표준.
 >
-> **실제 사용**: 대부분 개발자가 5-10개 핵심 서버 + per-project `mcp.json`로 프로젝트별 추가.
+> **실제 사용**: 대부분 개발자가 5-10개 핵심 서버 + per-project ````mcp.json````로 프로젝트별 추가.
 >
-> **AI 코딩 Top 5**: `filesystem`, `git`, `github`, `postgres`, `playwright`.
+> **AI 코딩 Top 5**: ````filesystem````, ````git````, ````github````, ````postgres````, ````playwright````.
 >
 > **결정 원칙**: stdio > HTTP > OAuth, 이 선호 순서. Anthropic 유지 > 활성 커뮤니티 > 보관됨.
 >
 > **무작정 설치 금지**: 모든 커뮤니티 MCP 서버는 당신의 로컬 권한으로 실행되는 코드.
 
----
+* * *
 
 ## 세 가지 Transport 모드
 
@@ -93,7 +94,7 @@ MCP 서버가 OAuth 흐름을 orchestrate해서 세션당 scoped 자격증명 �
 
 ## 선정 결정 트리
 
-```
+`````
 데이터/액션이 로컬 머신에 있을 수 있나?
 │
 ├── Yes → stdio MCP 서버 선호
@@ -108,7 +109,7 @@ MCP 서버가 OAuth 흐름을 orchestrate해서 세션당 scoped 자격증명 �
           │   └── Yes → OAuth bridge 사용
           │   └── No  → HTTP/SSE + PAT 사용
           ├── 감사: 토큰 scope 최소? 신뢰할 인프라? Rate limit 문서화?
-```
+`````
 
 최단 버전: **stdio > HTTP > OAuth. Anthropic 유지 > 활성 커뮤니티 > 보관됨. 설치 전 소스 읽기.**
 
@@ -117,22 +118,22 @@ MCP 서버가 OAuth 흐름을 orchestrate해서 세션당 scoped 자격증명 �
 설치하는 모든 MCP 서버는 완전한 로컬 권한으로 코드 실행. 
 
 ### 2026 실제 공격 패턴
-- **Typosquatting**: 가짜 `github-mcp-server-v2`가 토큰 유출. 진짜는 `@modelcontextprotocol/server-github`.
+- **Typosquatting**: 가짜 ````github-mcp-server-v2````가 토큰 유출. 진짜는 ````@modelcontextprotocol/server-github````.
 - **공급망 주입**: 인기 커뮤니티 서버 maintainer 권한 이전 후 telemetry 추가로 파일 경로 유출, 5000 유저 영향.
 - **과도한 scope 토큰**: full-access PAT로 GitHub 서버 설치 + prompt injection으로 리포 삭제.
-- **Fetched 콘텐츠 prompt injection**: `fetch` 서버가 악성 markdown 끌어와 `~/.ssh/id_rsa` 유출.
+- **Fetched 콘텐츠 prompt injection**: ````fetch```` 서버가 악성 markdown 끌어와 ````~/.ssh/id_rsa```` 유출.
 
 ### 방어 체크리스트
 1. **Fine-grained 토큰 사용**. Full-access PAT 절대 부여 X.
 2. **설치 전 감사**. 5분이 breach를 막음.
 3. **버전 고정**. 자동 업그레이드 X.
-4. **Sandbox**. 민감한 서버는 컨테이너 또는 `firejail`.
+4. **Sandbox**. 민감한 서버는 컨테이너 또는 ````firejail````.
 5. **에이전트 로그 모니터**.
 
 ## 발견 도구
-- **`mcp.so`** — 가장 종합적인 커뮤니티 registry
-- **`smithery.ai`** — 고큐레이션 + 원클릭 설치
-- **`glama.ai/mcp/servers`** — 엔터프라이즈 친화적
+- **````mcp.so````** — 가장 종합적인 커뮤니티 registry
+- **````smithery.ai````** — 고큐레이션 + 원클릭 설치
+- **````glama.ai/mcp/servers```** — 엔터프라이즈 친화적
 
 Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers).
 
@@ -151,7 +152,7 @@ Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://githu
 
 **해결은 선택이지 풍부가 아님**. 핵심 stdio 5개 + 리포당 프로젝트별 2-3개 + 새 설치 전 감사 + MCP 서버를 ergonomic한 보안 관련 코드로 취급. 다음 18개월 동안 확장되는 워크플로우.
 
----
+* * *
 
 **참조**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **참조 repo 합계 stars**: 60K+
 
@@ -217,12 +218,12 @@ MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 represents an impo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -232,7 +233,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](mcp-servers-2026-rankings-selection-guide)
 - [cursor-vs-claude-code](mcp-servers-2026-rankings-selection-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

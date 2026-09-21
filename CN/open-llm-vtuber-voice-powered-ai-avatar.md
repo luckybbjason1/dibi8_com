@@ -10,25 +10,26 @@ github_repo: "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber"
 license: MIT
 featureImage: /articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg/images/articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg
 ---
+
 # Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free
 
 
----
+* * *
 ## TL;DR
 
 Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. It brings AI companionship to life with voice-powered interactions that feel real. With 10K+ stars and support for 10+ LLM providers, it's the most popular open-source AI avatar solution available.
 
 | Metric | Open-LLM-VTuber | Replika | Character.ai | Local-only |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Voice Interaction | ✓ | ✓ | ✗ | ✗ |
 | Live2D Character | ✓ | ✗ | ✗ | ✗ |
@@ -36,7 +37,7 @@ Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Liv
 | Privacy | Full local | Cloud | Cloud | Full local |
 
 
----
+* * *
 ## What It Is
 
 Open-LLM-VTuber solves the "screen-bound AI" problem.
@@ -53,11 +54,11 @@ It transforms any LLM into a voice-powered avatar with Live2D character renderin
 - Configurable avatars and voice models
 - Real-time voice interruption for natural conversation flow
 
----
+* * *
 
 ## How It Works (30 Seconds)
 
-```
+````
 You speak into microphone
          ↓
 Speech-to-text (Whisper)
@@ -69,7 +70,7 @@ Text-to-speech (your chosen voice)
 Live2D character animates + speaks
          ↓
 You hear and see the response
-```
+`````
 
 Open-LLM-VTuber works as a pipeline: **Layer 1 — Input:** Your voice enters through the microphone. Whisper (OpenAI's speech recognition) converts it to text in real-time.
 
@@ -77,11 +78,11 @@ Open-LLM-VTuber works as a pipeline: **Layer 1 — Input:** Your voice enters th
 
 **Layer 3 — Output:** The LLM's response goes through text-to-speech (your choice of voice model), then plays back through speakers. The Live2D character animates to match the conversation.
 
----
+* * *
 
 ## Quickstart (5 Minutes)
 
-Install Open-LLM-VTuber via Python: ```bash
+Install Open-LLM-VTuber via Python: `````bash
 # Clone the repository
 git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git
 cd Open-LLM-VTuber
@@ -94,14 +95,14 @@ export OPENAI_API_KEY=your-key-here
 
 # Start the application
 python run.py
-```
+`````
 
-Or using Docker for easy setup: ```bash
+Or using Docker for easy setup: `````bash
 docker compose up -d
 # Access at http://localhost:8501
-```
+`````
 
----
+* * *
 
 ## When to Use / When to Skip
 
@@ -116,7 +117,7 @@ docker compose up -d
 - Need mobile app support (currently desktop only)
 - Want a polished consumer app (this is developer-focused)
 
----
+* * *
 
 ## Benchmarks
 
@@ -126,13 +127,13 @@ Open-LLM-VTuber achieves real-time voice interaction with sub-2-second latency �
 
 | Metric | Open-LLM-VTuber | Replika | Character.ai |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Voice Latency | 1.5-3s | 2-4s | N/A |
 | Character Animation | Live2D | 2D only | None |
@@ -141,11 +142,11 @@ Open-LLM-VTuber achieves real-time voice interaction with sub-2-second latency �
 
 *Source: [Community tests](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/discussions)*
 
----
+* * *
 
 ## Python API
 
-For developers who want to customize Open-LLM-VTuber: ```python
+For developers who want to customize Open-LLM-VTuber: `````python
 from open_llm_vtuber import AvatarClient
 
 # Initialize with your LLM
@@ -166,11 +167,11 @@ client.set_avatar("custom-model", expression="happy")
 # Get conversation history
 history = client.get_history()
 print(f"Last {len(history)} messages")
-```
+`````
 
 The Python API allows full control over avatar configuration, voice models, LLM backends, and conversation management.
 
----
+* * *
 
 ## Integration with Major LLMs
 
@@ -193,7 +194,7 @@ Open-LLM-VTuber works with virtually every AI model: ### Cloud APIs
 
 ### Voice Model Configuration
 
-```bash
+`````bash
 # List available voice models
 open_llm_vtuber voice list
 
@@ -208,13 +209,13 @@ open_llm_vtuber voice test "Hello, this is a test."
 
 # Configure voice speed
 open_llm_vtuber config set voice.output.speed 1.2
-```
+`````
 
----
+* * *
 
 ## Setup with Local LLM
 
-For fully private interaction, set up with local LLM: ```bash
+For fully private interaction, set up with local LLM: `````bash
 # Install Ollama (local LLM runner)
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -227,9 +228,9 @@ open_llm_vtuber config set llm.model llama3
 
 # Start interaction
 python run.py
-```
+`````
 
-Or use vLLM for faster local inference: ```bash
+Or use vLLM for faster local inference: `````bash
 # Install vLLM
 pip install vllm
 
@@ -239,15 +240,15 @@ python -m vllm.entrypoints.api_server --model meta-llama/Meta-Llama-3-8B --host 
 # Configure Open-LLM-VTuber
 open_llm_vtuber config set llm.provider vllm
 open_llm_vtuber config set llm.api_url http://localhost:8000
-```
+`````
 
----
+* * *
 
 ## When to Use Advanced Features
 
 ### Multi-Agent Conversations
 
-```python
+`````python
 # Create multiple agents with different personalities
 agent1 = AvatarClient(llm="claude-3", avatar="anime-girl")
 agent2 = AvatarClient(llm="gpt-4", avatar="cyberpunk-man")
@@ -255,11 +256,11 @@ agent2 = AvatarClient(llm="gpt-4", avatar="cyberpunk-man")
 # Have them converse
 result = agent1.speak("Agent2, what do you think about AI companions?")
 print(agent2.get_last_response())
-```
+`````
 
 ### Custom Avatar Models
 
-Open-LLM-VTuber supports custom Live2D avatar models: ```bash
+Open-LLM-VTuber supports custom Live2D avatar models: `````bash
 # Import your own Live2D model
 open_llm_vtuber import --avatar ./my-avatar/model.json
 
@@ -268,17 +269,17 @@ open_llm_vtuber preview --avatar ./my-avatar
 
 # Deploy the avatar
 open_llm_vtuber deploy --avatar ./my-avatar --voice tts-1
-```
+`````
 
 Custom avatars can be sourced from: - Live2D Cubism SDK models
 - Community avatar marketplace
 - Your own 3D character designs
 
----
+* * *
 
 ## Configuration Guide
 
-Open-LLM-VTuber uses a YAML configuration file for setup: ```yaml
+Open-LLM-VTuber uses a YAML configuration file for setup: `````yaml
 # ~/.config/open_llm_vtuber/config.yaml
 llm: provider: "openai"  # openai, anthropic, ollama, vllm
   model: "gpt-4"
@@ -296,11 +297,11 @@ avatar: model: "live2d-model-1"
   expressions: - "happy"
     - "thinking"
     - "surprised"
-```
+`````
 
 ### Configuration Options
 
-```bash
+`````bash
 # View current configuration
 open_llm_vtuber config show
 
@@ -317,13 +318,13 @@ open_llm_vtuber test --voice-input
 
 # Test avatar rendering
 open_llm_vtuber test --avatar-preview
-```
+`````
 
----
+* * *
 
 ## Advanced Features
 
-For power users, Open-LLM-VTuber supports custom Python scripts: ```python
+For power users, Open-LLM-VTuber supports custom Python scripts: `````python
 # Custom emotion detection
 import open_llm_vtuber as vtb
 
@@ -341,9 +342,9 @@ vtb.register_response_callback(on_llm_response)
 
 # Start with emotion detection
 vtb.start(emotion_detection=True)
-```
+`````
 
-You can also create custom voice profiles: ```python
+You can also create custom voice profiles: `````python
 # Create custom voice profile
 voice_profile = vtb.VoiceProfile(
     name="my-custom-voice",
@@ -356,13 +357,13 @@ voice_profile = vtb.VoiceProfile(
 # Save and use the profile
 voice_profile.save()
 vtb.set_voice(voice_profile.name)
-```
+`````
 
----
+* * *
 
 ## Troubleshooting
 
-Common issues and fixes: ```bash
+Common issues and fixes: `````bash
 # Check system requirements
 open_llm_vtuber doctor
 
@@ -377,25 +378,25 @@ open_llm_vtuber test --speaker
 
 # Reset configuration
 open_llm_vtuber reset-config
-```
+`````
 
 If voice input doesn't work: 1. Check microphone is selected in system audio settings
 2. Verify microphone permissions for the application
-3. Test with `open_llm_vtuber test --mic`
+3. Test with ````open_llm_vtuber test --mic````
 4. Adjust microphone sensitivity in config.yaml
 
----
+* * *
 
 ## Production Deployment
 
-For team or public deployment, Open-LLM-VTuber supports Docker-based scaling: ```bash
+For team or public deployment, Open-LLM-VTuber supports Docker-based scaling: `````bash
 # Deploy with Docker Compose
 docker-compose up -d --scale avatar=3
 
 # Load balanced across 3 instances
 # Access via nginx reverse proxy
 # Use Redis for session management
-```
+`````
 
 Production features: - Horizontal scaling with Docker Swarm or Kubernetes
 - Redis-backed session persistence
@@ -403,21 +404,21 @@ Production features: - Horizontal scaling with Docker Swarm or Kubernetes
 - SSL/TLS termination at proxy level
 - Prometheus metrics for monitoring
 
----
+* * *
 
 ## Compared to Alternatives
 
 | Feature | Open-LLM-VTuber | Replika | Character.ai | Local-only AI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Voice Interaction | ✓ | ✓ | ✗ | ✗ |
 | Live2D Character | ✓ | ✗ | ✗ | ✗ |
@@ -428,7 +429,7 @@ Production features: - Horizontal scaling with Docker Swarm or Kubernetes
 | Custom Avatars | ✓ | ✗ | ✗ | ✗ |
 | Price | Free | $10/mo | Free | Free |
 
----
+* * *
 
 ## Limitations / Honest Assessment
 
@@ -439,7 +440,7 @@ Open-LLM-VTuber is not for everyone: - **Desktop only**: No mobile app (Windows,
 
 It's built for **tech enthusiasts and developers** who want voice-powered AI avatars they can customize and control.
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -461,7 +462,7 @@ Open-LLM-VTuber itself is free and open-source. Costs depend on your LLM choice:
 ### Q6: Can I customize the avatar appearance?
 Yes. You can import custom Live2D models, change expressions, adjust voice tone, and configure personality prompts.
 
----
+* * *
 
 ## Sources & Further Reading
 
@@ -470,7 +471,7 @@ Yes. You can import custom Live2D models, change expressions, adjust voice tone,
 - Live2D models: [Live2D Official](https://www.live2d.com/en/learn/)
 - Community discussions: [GitHub Discussions](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/discussions)
 
----
+* * *
 
 ## Conclusion: Bring Your AI to Life
 
@@ -478,13 +479,13 @@ Open-LLM-VTuber solves the "screen-bound AI" problem. It transforms any LLM into
 
 **Quick Start One-Liner:**
 
-```bash
+`````bash
 git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git && cd Open-LLM-VTuber && pip install -r requirements.txt && python run.py
-```
+````
 
 This clones, installs dependencies, and launches the VTuber in one command. It works on Windows, macOS, and Linux.
 
----
+* * *
 
 Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it"s the most complete open-source AI avatar platform available today.
 
@@ -521,7 +522,7 @@ Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -531,6 +532,6 @@ Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open
 - [impeccable-ai-design-language-harness-quality-ui](open-llm-vtuber-voice-powered-ai-avatar)
 - [cc-switch-all-in-one-ai-coding-agent-manager](open-llm-vtuber-voice-powered-ai-avatar)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -35,6 +35,7 @@ faq: - q: "What is MCP and why does it matter in 2026?"
   - q: "Is MCP going to be replaced by something else soon?"
     a: "Unlikely in 2026-2027. MCP has cross-vendor adoption (Anthropic, OpenAI's reference implementations, Google's Gemini), an open spec, and >1000 public servers. The next layer above MCP — agent-to-agent protocols, capability discovery — is still emerging. MCP is the integration layer; expect it to remain stable for at least 18-24 months."
 ---
+
 {{</* resource-info */>}}
 
 # MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones
@@ -47,25 +48,25 @@ This guide is the answer to that second question. It's not a comprehensive regis
 
 ## ⚡ TL;DR — Two-Minute Read
 
-> **The ecosystem**: 1000+ public MCP servers across 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version `2025-06` is current standard.
+> **The ecosystem**: 1000+ public MCP servers across 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` is current standard.
 >
-> **Real-world usage**: Most developers install 5-10 core servers and rely on per-project `mcp.json` for project-specific additions. Global installs of 20+ servers slow agent startup and create security surface.
+> **Real-world usage**: Most developers install 5-10 core servers and rely on per-project ````mcp.json```` for project-specific additions. Global installs of 20+ servers slow agent startup and create security surface.
 >
-> **Top 5 for AI coding**: `filesystem`, `git`, `github`, `postgres`, `playwright`. These handle 80% of agent workflows for typical developers.
+> **Top 5 for AI coding**: ````filesystem````, ````git````, ````github````, ````postgres````, ````playwright````. These handle 80% of agent workflows for typical developers.
 >
 > **Decision principle**: stdio over HTTP whenever possible. Local servers are faster, leak fewer credentials, and survive offline sessions. Use HTTP only when the data lives outside your machine and you can't replicate it locally.
 >
 > **Don't blindly install**: every community MCP server is code running with your local permissions. Audit the source, prefer servers with active maintainers, and never grant credentials you wouldn't paste in plain text.
 
 
----
+* * *
 ## What MCP Actually Is in 2026
 
-The Model Context Protocol is a JSON-RPC-based spec for connecting AI agents to external tools. It's deliberately simple: an MCP server exposes `tools`, `resources`, and `prompts`. An MCP client (Claude Code, Cursor, your agent of choice) calls those tools when the model decides it needs external action.
+The Model Context Protocol is a JSON-RPC-based spec for connecting AI agents to external tools. It's deliberately simple: an MCP server exposes ````tools````, ````resources````, and ````prompts````. An MCP client (Claude Code, Cursor, your agent of choice) calls those tools when the model decides it needs external action.
 
-What changed in 2026: - The `2025-06` spec added OAuth flows, capability discovery improvements, and explicit streaming support
+What changed in 2026: - The ````2025-06```` spec added OAuth flows, capability discovery improvements, and explicit streaming support
 - Adoption crossed vendor boundaries: OpenAI's reference clients, Google's Gemini CLI, and most independent agents now speak MCP
-- Registry consolidation: three major registries (`smithery.ai`, `mcp.so`, `glama.ai/mcp/servers`) emerged as the primary discovery surfaces
+- Registry consolidation: three major registries (````smithery.ai````, ````mcp.so````, ````glama.ai/mcp/servers````) emerged as the primary discovery surfaces
 - Cloud platforms (Vercel, Cloudflare, Render) added "deploy MCP server" as a first-class primitive
 
 The protocol's stability is the main reason 1000+ servers exist. If you wrote an MCP server in early 2025, it still works in mid-2026 with minor client-side updates. That stability is what makes the ecosystem investable for both maintainers and consumers.
@@ -117,21 +118,21 @@ Used by: - Multi-tenant SaaS where each user needs their own credentials
 
 ## Top 30 MCP Servers Worth Installing in 2026
 
-Ranked by usage volume in the major registries cross-referenced with our own audit of which servers professional developers actually keep in their `.claude/mcp.json` after 3+ months. Tier 1 = install these by default. Tier 2 = install when the workflow demands. Tier 3 = niche but excellent.
+Ranked by usage volume in the major registries cross-referenced with our own audit of which servers professional developers actually keep in their ````.claude/mcp.json```` after 3+ months. Tier 1 = install these by default. Tier 2 = install when the workflow demands. Tier 3 = niche but excellent.
 
 ### Tier 1: The Universal Defaults (Install Globally)
 
 | Server | Transport | Maintainer | Use Case | Risk Profile |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **filesystem** | stdio | Anthropic | Read/write/list files in scoped directories | Low (scope-restricted) |
 | **git** | stdio | Anthropic | Inspect repos, diff, blame, log | Low (read-mostly) |
@@ -145,15 +146,15 @@ These five are the bedrock. If you install nothing else, install these. They're 
 
 | Server | Transport | Maintainer | Use Case | Risk Profile |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **postgres** | stdio | Community | Query Postgres databases | High (DB access) |
 | **sqlite** | stdio | Community | Query SQLite files | Low |
@@ -173,11 +174,11 @@ Install based on what the project needs. A backend project might need postgres +
 
 | Server | Transport | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **kubernetes** | stdio | Kubectl wrapper for cluster inspection |
 | **terraform** | stdio | Infrastructure state queries |
@@ -198,7 +199,7 @@ If your workflow involves these tools daily, the corresponding MCP server is alm
 
 ## The Decision Tree for Picking MCP Servers
 
-Use this when evaluating a new server (whether from registry, GitHub trending, or a teammate's recommendation): ```
+Use this when evaluating a new server (whether from registry, GitHub trending, or a teammate's recommendation): `````
 Can the data/action live on my local machine?
 │
 ├── YES → Prefer stdio MCP server
@@ -221,7 +222,7 @@ Can the data/action live on my local machine?
           │   - Server runs in trustworthy infra (vendor's own, not random fork)?
           │   - Rate-limits documented?
           │   If yes: install. If no: skip or self-host.
-```
+`````
 
 The shortest version: **stdio > HTTP > OAuth, in that preference order. Anthropic-maintained > active community > archived. Read the source before installing.**
 
@@ -231,26 +232,26 @@ Every MCP server you install runs code with your full local permissions. This is
 
 ### Real attack patterns we've seen in 2026
 
-- **Typosquatting**: a community server named `github-mcp-server-v2` that exfiltrates tokens. The real one is `@modelcontextprotocol/server-github`.
+- **Typosquatting**: a community server named ````github-mcp-server-v2```` that exfiltrates tokens. The real one is ````@modelcontextprotocol/server-github````.
 - **Supply chain injection**: a popular community server's maintainer transferred ownership; new owner added telemetry that leaked file paths. Caught within a week but exposed ~5000 users.
 - **Over-scoped tokens**: GitHub server installed with a full-access PAT instead of fine-grained token; an agent prompt injection let the model delete repos.
-- **Prompt injection via fetched content**: `fetch` server pulled a malicious markdown file that contained instructions to read `~/.ssh/id_rsa` and post it elsewhere via another tool call.
+- **Prompt injection via fetched content**: ````fetch```` server pulled a malicious markdown file that contained instructions to read ````~/.ssh/id_rsa```` and post it elsewhere via another tool call.
 
 ### Defense checklist
 
 1. **Use fine-grained tokens.** Never give an MCP server a full-access PAT or root credentials.
-2. **Audit before installing.** `npm view` / GitHub source / changelog review. Five minutes saves you breaches.
+2. **Audit before installing.** ````npm view```` / GitHub source / changelog review. Five minutes saves you breaches.
 3. **Pin versions.** Don't auto-upgrade community servers. Read changelogs before bumping.
-4. **Sandbox where possible.** Run sensitive MCP servers in a container or with `firejail`.
+4. **Sandbox where possible.** Run sensitive MCP servers in a container or with ````firejail````.
 5. **Monitor agent logs.** If an agent suddenly calls 30 tools when you asked for one, something's wrong.
 
 The MCP spec doesn't enforce security. Your discipline does.
 
 ## How to Find the Server You Need
 
-Three primary discovery surfaces in 2026: - **`mcp.so`** — The most comprehensive community registry. Good filtering. Includes both stdio and HTTP servers.
-- **`smithery.ai`** — Higher-curation registry with one-click install flows. Slightly biased toward HTTP/cloud-hosted.
-- **`glama.ai/mcp/servers`** — Strong on enterprise-friendly servers and HTTP/OAuth-bridged options.
+Three primary discovery surfaces in 2026: - **````mcp.so````** — The most comprehensive community registry. Good filtering. Includes both stdio and HTTP servers.
+- **````smithery.ai````** — Higher-curation registry with one-click install flows. Slightly biased toward HTTP/cloud-hosted.
+- **````glama.ai/mcp/servers```** — Strong on enterprise-friendly servers and HTTP/OAuth-bridged options.
 
 For Anthropic-maintained reference servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers).
 
@@ -272,7 +273,7 @@ The mistake we see most: developers install 30+ MCP servers because they're free
 The cure is selection, not abundance. Pick your five core stdio servers, add 2-3 project-specific ones per repo, audit before installing anything new, and treat MCP servers as security-relevant code that happens to be ergonomic. That"s the workflow that scales for the next 18 months until the next protocol arrives.
 
 
----
+* * *
 **Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars (ecosystem total)**: 60K+ across reference repos
 
 
@@ -301,7 +302,7 @@ The cure is selection, not abundance. Pick your five core stdio servers, add 2-3
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -311,7 +312,7 @@ The cure is selection, not abundance. Pick your five core stdio servers, add 2-3
 - [claude-code-vs-aider](mcp-servers-2026-rankings-selection-guide)
 - [cursor-vs-claude-code](mcp-servers-2026-rankings-selection-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/-
 ---
+
 {</* resource-info */>}
 
 ## Introduction: This Is Not Just Another Tool Upgrade
@@ -21,12 +22,12 @@ For developers, this creates two simultaneous realities: **the capability ceilin
 This post unpacks the ecosystem shift, teaches you how to plug into it practically, and shows you how to maintain technical sovereignty while riding the wave.
 
 
----
+* * *
 ## Part 1: Claude Code Skills—From Toy to Infrastructure
 
 ### 1.1 How the Skills Market Exploded
 
-Before April 2026, Claude Code "skills" were a niche feature. You dropped markdown files into `~/.claude/skills/`, and Claude would reference them when relevant. Useful, but not transformative.
+Before April 2026, Claude Code "skills" were a niche feature. You dropped markdown files into ```~/.claude/skills/````, and Claude would reference them when relevant. Useful, but not transformative.
 
 Two events changed everything.
 
@@ -38,7 +39,7 @@ The packaging granularity matters. A "plugin" now bundles: skills + MCP servers 
 
 ### 1.2 Installing a Skill Takes 10 Seconds
 
-```bash
+`````bash
 # Clone Karpathy's skills into your local skill library
 gh repo clone andrej-karpathy/skills ~/.claude/skills/karpathy
 
@@ -48,7 +49,7 @@ ls ~/.claude/skills/karpathy
 # Use inside Claude Code
 claude
 > run the profiling skill on this Go module
-```
+`````
 
 A skill file is structured markdown with four sections: - **Triggers** — natural language patterns that activate the skill
 - **Context injection** — files, env vars, or data to load
@@ -67,7 +68,7 @@ Skills encode best practices into reusable modules—muscle memory for your AI a
 **The implication:** A new engineer installs your team's skill pack, and Claude immediately writes code to your standards. Documentation becomes executable.
 
 
----
+* * *
 ## Part 2: MCP—The USB-C of AI Tooling
 
 ### 2.1 What Model Context Protocol Actually Does
@@ -82,11 +83,11 @@ The MCP world: tools self-describe their capabilities (like USB-C—plug in, neg
 
 An MCP server—running locally or remotely—exposes three interaction primitives to the AI: | Primitive | Purpose | Example |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Resources** | Read-only data the AI can reference | Database schemas, API docs, design files |
 | **Tools** | Functions the AI can invoke | Run shell commands, call APIs, read/write files |
@@ -104,7 +105,7 @@ As of this writing, official and community-maintained MCP servers cover: - **Dev
 
 **The critical insight:** MCP is turning AI from "a chatbot in a sidebar" into "an execution layer that operates your entire technology stack."
 
----
+* * *
 
 ## Part 3: The Open-Source Alternatives Are Getting Good
 
@@ -120,7 +121,7 @@ These weren't isolated incidents. They crystallized a fear that had been buildin
 
 Hermes Agent's pitch is straightforward: **simple defaults, MCP-compatible, local-model-friendly.**
 
-```python
+`````python
 from hermes import Agent, Skill
 
 # Works with local models—no cloud required
@@ -129,7 +130,7 @@ agent.load_skill("git-workflow")
 
 # Execute a complex refactoring task
 agent.run("Refactor the auth module to use JWT tokens")
-```
+`````
 
 Compared to LangGraph's heavy orchestration, Hermes feels like "enhanced scripting"—gentle learning curve, but high capability ceiling. It's the Python of AI agents: not the flashiest, but you can ship with it immediately.
 
@@ -137,7 +138,7 @@ Compared to LangGraph's heavy orchestration, Hermes feels like "enhanced scripti
 
 OpenCode's positioning is deliberately confrontational: **no vendor lock-in, no model lock-in, fully self-hostable.**
 
-```bash
+`````bash
 # Install
 pip install opencode
 
@@ -146,7 +147,7 @@ opencode config --model ollama/llama3:70b
 
 # Launch agent mode on your project
 opencode agent --project ./my-app
-```
+`````
 
 Switching from Claude to GPT to a local 70B parameter model is a one-line config change. OpenCode handles the MCP negotiation, context window management, and tool calling uniformly.
 
@@ -154,11 +155,11 @@ Switching from Claude to GPT to a local 70B parameter model is a one-line config
 
 | Dimension | Claude Code / Codex | OpenCode / Hermes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Model choice | Vendor-locked | Any model, including local |
 | Data privacy | Code sent to cloud | Fully local execution |
@@ -169,13 +170,13 @@ Switching from Claude to GPT to a local 70B parameter model is a one-line config
 
 **The honest truth:** Closed-source still wins on raw reasoning power for complex tasks. But the gap is narrowing fast, and the total cost of ownership equation increasingly favors self-hosted for routine work.
 
----
+* * *
 
 ## Part 4: Building a Lock-in-Resistant AI Coding Workflow
 
 ### 4.1 The Layered Architecture
 
-```
+`````
 ┌─────────────────────────────────────┐
 │  Layer 3: AI Agent (replaceable)    │  ← Claude, OpenCode, Codex, Gemini
 ├─────────────────────────────────────┤
@@ -183,7 +184,7 @@ Switching from Claude to GPT to a local 70B parameter model is a one-line config
 ├─────────────────────────────────────┤
 │  Layer 1: Toolchain (persistent)    │  ← Git, databases, cloud APIs
 └─────────────────────────────────────┘
-```
+`````
 
 **The principle:** Your escape hatch is the MCP layer. Swap the agent above, and your toolchain integrations stay intact.
 
@@ -191,17 +192,17 @@ Switching from Claude to GPT to a local 70B parameter model is a one-line config
 
 **Step 1: Install the MCP CLI**
 
-```bash
+`````bash
 # Via npm
 npm install -g @anthropics/mcp-cli
 
 # Or via Python
 pip install mcp-cli
-```
+`````
 
 **Step 2: Register your core MCP servers**
 
-```bash
+`````bash
 # GitHub MCP server (code operations)
 mcp server add github --command npx -y @modelcontextprotocol/server-github
 
@@ -210,11 +211,11 @@ mcp server add postgres --command uvx mcp-server-postgres
 
 # Filesystem MCP server (local file access)
 mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
-```
+`````
 
 **Step 3: Configure your agent to use MCP**
 
-For Claude Code, edit `~/.claude/config.json`: ```json
+For Claude Code, edit ``~/.claude/config.json``: `````json
 {
   "mcpServers": {
     "github": {
@@ -227,22 +228,22 @@ For Claude Code, edit `~/.claude/config.json`: ```json
     }
   }
 }
-```
+`````
 
-For OpenCode, in `opencode.yaml`: ```yaml
+For OpenCode, in ``opencode.yaml``: `````yaml
 mcp: servers: - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: postgres
       command: uvx mcp-server-postgres postgresql://localhost/mydb
-```
+`````
 
 **Step 4: Write a team skill**
 
-Create `team-standard.md`: ```markdown
----
+Create ``team-standard.md``: `````markdown
+* * *
 skill: team-standard
 version: "1.0"
----
+* * *
 
 # Team Coding Standards
 
@@ -252,7 +253,7 @@ version: "1.0"
 - Types/Interfaces: PascalCase
 
 ## Error handling pattern
-All async functions must use try/catch with requestId tracing: ```typescript
+All async functions must use try/catch with requestId tracing: `````typescript
 const requestId = crypto.randomUUID();
 try {
   await riskyOperation();
@@ -260,24 +261,24 @@ try {
   logger.error({ requestId, error: err.message });
   throw new AppError("OPERATION_FAILED", { requestId });
 }
-```
+`````
 
 ## Testing requirements
 - Every exported function needs at least one unit test
 - Use vitest + @testing-library
-```
+`````
 
-Drop this into `~/.claude/skills/` or your Hermes skills directory. Done.
+Drop this into ````~/.claude/skills/```` or your Hermes skills directory. Done.
 
----
+* * *
 
 ## Part 5: What Happens Next—12-Month Predictions
 
 ### 5.1 Skills Become the New Package Management
 
-`npm install`, `pip install`, `cargo add` manage code dependencies. Skills manage **behavioral dependencies**—how your AI should act when working with specific frameworks, APIs, or team conventions.
+````npm install````, ````pip install````, ````cargo add```` manage code dependencies. Skills manage **behavioral dependencies**—how your AI should act when working with specific frameworks, APIs, or team conventions.
 
-By end of 2026, I expect mainstream language ecosystems to support `skills.yaml` files, version-locked and sharable just like `package.json`.
+By end of 2026, I expect mainstream language ecosystems to support ````skills.yaml```` files, version-locked and sharable just like ````package.json```.
 
 ### 5.2 The Rise of "Agent Stores"
 
@@ -298,7 +299,7 @@ Expect to see: - Skills execution logging with tamper-proof audit trails
 - Agent behavior replay and forensic analysis
 - Insurance products covering "AI agent errors"
 
----
+* * *
 
 ## Part 6: Actionable Advice by Developer Archetype
 
@@ -320,10 +321,10 @@ Expect to see: - Skills execution logging with tamper-proof audit trails
 2. **Establish an AI tool policy.** What data can leave your network? What must stay local? Write it down.
 3. **Experiment with hybrid architecture.** Frontier closed-source models for complex reasoning tasks, open-source local models for bulk routine work.
 
----
+* * *
 
 -
----
+* * *
 
 ## Recommended Self-Hosting Infrastructure
 
@@ -341,7 +342,7 @@ The real lock-in isn't technical—it's habit. The teams that thrive will be the
 
 **Stay migratable. That"s the only moat that matters.**
 
----
+* * *
 
 ## Further Reading
 
@@ -352,7 +353,7 @@ The real lock-in isn't technical—it's habit. The teams that thrive will be the
 - [Andrej Karpathy Skills Repository](https://github.com/andrej-karpathy/skills)
 - [MCP Servers Registry](https://mcp-servers.io)
 
----
+* * *
 
 *Keywords intentionally placed: AI coding agent comparison 2026, Claude Code skills marketplace, Model Context Protocol tutorial, open source AI code assistant, OpenCode setup guide, Hermes Agent vs Claude Code, avoid AI vendor lock-in, local LLM coding assistant, MCP server configuration, AI developer productivity tools*
 

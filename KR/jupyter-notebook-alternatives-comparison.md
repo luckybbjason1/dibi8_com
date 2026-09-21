@@ -22,6 +22,7 @@ aliases:
   - /posts/jupyter-notebook-alternatives-comparison/
 ---
 
+
 # 2024년 최고의 Jupyter Notebook 대안 비교: JupyterLab vs Google Colab vs Deepnote vs Hex
 
 
@@ -95,8 +96,8 @@ Hex의 가장 큰 차별점은 DAG(유향 비순환 그래프) 기반 실행 모
 
 모든 4개 도구는 표준 .ipynb 파일 형식을 지원합니다. JupyterLab은 완전한 하위 호환성을 제공하며, Google Colab은 GitHub나 Drive에서 직접 .ipynb 파일을 임포트할 수 있습니다. Deepnote와 Hex 역시 파일 업로드 방식으로 기존 노트북을 불러오며, 일부 매직 커맨드나 환경변수는 각 플랫폼에 맞게 수정이 필요합니다.
 
-마이그레이션 시 유의사항은 다음과 같습니다: - **셀 매직 커맨드**: `%env`, `%writefile` 등의 동작이 클라우드 환경에서 다를 수 있습니다
-- **패키지 설치**: `!pip install` 대신 환경 설정 패널을 활용하세요
+마이그레이션 시 유의사항은 다음과 같습니다: - **셀 매직 커맨드**: ```%env````, ````%writefile```` 등의 동작이 클라우드 환경에서 다를 수 있습니다
+- **패키지 설치**: ````!pip install``` 대신 환경 설정 패널을 활용하세요
 - **파일 경로**: 로컬 파일 시스템 참조를 클라우드 스토리지 경로로 변경해야 합니다
 - **API 키 관리**: 하드코딩된 키 대신 각 플랫폼의 시크릿 관리 기능을 사용하세요
 
@@ -126,7 +127,7 @@ Hex가 비기술 사용자 친화성에서 더 뛰어납니다. Hex의 앱 빌�
 
 2024년 데이터 사이언스 노트북 생태계는 JupyterLab(로컬 커스터마이징), Google Colab(큐브드 GPU 접근성), Deepnote(팀 협업 분석), Hex(데이터 앱 개발)의 4강 구도를 보입니다. 프로젝트의 협업 수준, 컴퓨팅 자원 요구사항, 예산, 데이터 프라이버시 요건을 종합적으로 고려하여 최적의 도구를 선택하시기 바랍니다.
 
----
+* * *
 
 ## 추천 인프라
 
@@ -198,7 +199,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

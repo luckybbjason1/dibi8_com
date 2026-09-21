@@ -24,6 +24,7 @@ aliases:
   - /posts/openhands/
 - /resources/llm-frameworks/openhands-architecture-ai-programmer-agent/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -51,13 +52,13 @@ The architecture has two main components: **Controller Node**: A Python server t
 
 ![OpenHands Architecture](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/system_architecture_overview.png)
 
-The agent loop follows this pattern: ```
+The agent loop follows this pattern: ````
 1. OBSERVE: Read task description, repository state, previous action results
 2. THINK: LLM generates a plan (which file to edit, what command to run)
 3. ACT: Execute the planned action (read_file, write_file, run_cmd, etc.)
 4. OBSERVE: Capture the result (output, errors, test results)
 5. REPEAT: Iterate until the task is complete or max iterations reached
-```
+`````
 
 This loop typically runs 30-50 LLM calls per task. The memory condenser (added in v1.5) summarizes older context to keep the context window focused, improving latency and reducing token consumption on long tasks.
 
@@ -72,7 +73,7 @@ Before installing OpenHands, ensure you have: - **Docker Desktop** installed and
 
 ### Option 1: CLI Installation with uv (Recommended)
 
-The fastest way to get OpenHands running is through the uv-based CLI installer: ```bash
+The fastest way to get OpenHands running is through the uv-based CLI installer: `````bash
 # Install uv if you don't have it
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -81,19 +82,19 @@ uv tool install openhands --python 3.12
 
 # Launch the GUI server
 openhands serve
-```
+`````
 
-The server starts at `http://localhost:3000`. Open your browser, select your LLM provider, enter your API key, and you are ready to assign tasks.
+The server starts at ````http://localhost:3000````. Open your browser, select your LLM provider, enter your API key, and you are ready to assign tasks.
 
 ![OpenHands Web UI](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/screenshot.png)
 
-To upgrade later: ```bash
+To upgrade later: `````bash
 uv tool upgrade openhands --python 3.12
-```
+`````
 
 ### Option 2: Docker Direct Run
 
-If you prefer Docker without installing Python tools: ```bash
+If you prefer Docker without installing Python tools: `````bash
 # Pull the latest image
 docker pull ghcr.io/openhands/openhands:latest
 
@@ -103,93 +104,93 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
-The `--mount-cwd` flag mounts your current working directory into the sandbox: ```bash
+The ``--mount-cwd`` flag mounts your current working directory into the sandbox: `````bash
 openhands serve --mount-cwd
-```
+`````
 
-For GPU-accelerated local models: ```bash
+For GPU-accelerated local models: `````bash
 openhands serve --gpu
-```
+`````
 
 ### Option 3: pip Installation
 
-```bash
+`````bash
 pip install openhands-ai
 
 # Start the web UI
 openhands serve
-```
+`````
 
 ### Windows Setup Notes
 
-On Windows, run all commands inside WSL2 (Ubuntu): ```powershell
+On Windows, run all commands inside WSL2 (Ubuntu): `````powershell
 # In PowerShell as Administrator
 wsl --install -d Ubuntu
 wsl -d Ubuntu
-```
+`````
 
-Then inside WSL: ```bash
+Then inside WSL: `````bash
 # Install Docker Desktop for Windows first, then: uv tool install openhands --python 3.12
 openhands serve
-```
+`````
 
 ## Configuration & First Task
 
 ### Setting Up Your LLM Provider
 
 After launching OpenHands, configure your model in the Settings panel (gear icon): 1. **Select Provider**: Anthropic (Claude), OpenAI (GPT), Google (Gemini), or Local
-2. **Select Model**: `anthropic/claude-sonnet-4-20250514` is recommended for best results
+2. **Select Model**: ````anthropic/claude-sonnet-4-20250514```` is recommended for best results
 3. **Enter API Key**: Paste your provider's API key
 4. **Save Changes**
 
-For advanced configuration, toggle the Advanced settings to set a custom model with the LiteLLM prefix format: ```
+For advanced configuration, toggle the Advanced settings to set a custom model with the LiteLLM prefix format: `````
 anthropic/claude-sonnet-4-5-20250929
 openai/gpt-5-2025-08-07
 gemini/gemini-3-pro-preview
 deepseek/deepseek-chat
-```
+`````
 
 ### Using a Local Model (Ollama)
 
-For teams that need air-gapped deployments: ```bash
+For teams that need air-gapped deployments: `````bash
 # Start Ollama with a capable coding model
 ollama run qwen3-coder:32b
 
 # In OpenHands settings, set: # Custom Model: openai/qwen3-coder:32b
 # Base URL: http://host.docker.internal:11434/v1
 # API Key: ollama (any value works)
-```
+`````
 
 ### Running Your First Task
 
-With the UI open at `localhost:3000`: 1. Enter a task in the chat box: "Add a docstring to the main function in app.py"
+With the UI open at ````localhost:3000````: 1. Enter a task in the chat box: "Add a docstring to the main function in app.py"
 2. The agent will spawn a sandbox, read the file, write the docstring, and confirm the change
 3. Review the diff before accepting
 
-For GitHub issue resolution: ```
+For GitHub issue resolution: `````
 Fix the authentication bug described in issue #42.
 Clone the repo, reproduce the error, implement the fix, and run the test suite.
-```
+`````
 
 ## Integration with VS Code, GitHub, Docker, and CI/CD
 
 ### VS Code Integration via Agent Control Plane (ACP)
 
-OpenHands v1.5+ includes the Agent Control Plane for IDE integration: ```bash
+OpenHands v1.5+ includes the Agent Control Plane for IDE integration: `````bash
 # Install the OpenHands VS Code extension
 # Search "OpenHands" in the VS Code Extensions marketplace
 
 # Configure the extension to connect to your local OpenHands server
 # Settings > OpenHands > Server URL: http://localhost:3000
-```
+`````
 
 The ACP protocol allows VS Code to send tasks directly to OpenHands and receive structured edits back as diff patches.
 
 ### GitHub Integration
 
-Connect OpenHands to your GitHub repositories for automated issue resolution: ```bash
+Connect OpenHands to your GitHub repositories for automated issue resolution: `````bash
 # Set a fine-grained GitHub PAT (Personal Access Token)
 export GITHUB_TOKEN=ghp_your_token_here
 
@@ -199,7 +200,7 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e GITHUB_TOKEN=$GITHUB_TOKEN \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 In the UI, paste a GitHub issue URL and OpenHands will: 1. Clone the repository
 2. Read the issue description
@@ -210,18 +211,18 @@ In the UI, paste a GitHub issue URL and OpenHands will: 1. Clone the repository
 
 ### GitLab Integration
 
-GitLab support (added in v1.5) works similarly: ```bash
+GitLab support (added in v1.5) works similarly: `````bash
 export GITLAB_TOKEN=glpat-your-token
 docker run -it --rm \
   -p 3000:3000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e GITLAB_TOKEN=$GITLAB_TOKEN \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 ### Docker Compose for Production
 
-For persistent deployments, use Docker Compose: ```yaml
+For persistent deployments, use Docker Compose: `````yaml
 version: "3.8"
 services: openhands: image: ghcr.io/openhands/openhands:latest
     ports: - "3000:3000"
@@ -234,15 +235,15 @@ services: openhands: image: ghcr.io/openhands/openhands:latest
       - LOG_LEVEL=info
     restart: unless-stopped
     security_opt: - no-new-privileges:true
-```
+`````
 
-Deploy: ```bash
+Deploy: `````bash
 docker-compose up -d
-```
+`````
 
 ### Headless Mode for CI/CD Pipelines
 
-Headless mode runs OpenHands without the interactive UI, ideal for automation: ```bash
+Headless mode runs OpenHands without the interactive UI, ideal for automation: `````bash
 # Run a task headlessly
 openhands --headless -t "Write unit tests for the auth module"
 
@@ -251,9 +252,9 @@ openhands --headless -f task.txt
 
 # JSON output for pipeline parsing
 openhands --headless --json -t "Fix the API endpoint in routes.py" > output.jsonl
-```
+`````
 
-Example GitHub Actions workflow: ```yaml
+Example GitHub Actions workflow: `````yaml
 name: OpenHands Auto-Fix
 on: issues: types: [labeled]
 jobs: fix: if: github.event.label.name == 'auto-fix'
@@ -268,11 +269,11 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl
-```
+`````
 
 ### MCP Server Integration
 
-OpenHands supports Model Context Protocol (MCP) servers for extended capabilities: ```json
+OpenHands supports Model Context Protocol (MCP) servers for extended capabilities: `````json
 {
   "mcpServers": {
     "fetch": {
@@ -285,7 +286,7 @@ OpenHands supports Model Context Protocol (MCP) servers for extended capabilitie
     }
   }
 }
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -295,11 +296,11 @@ SWE-bench Verified tests agents on 500 real GitHub issues. Higher scores mean th
 
 | Agent + Model | SWE-bench Verified | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenHands + Claude Opus 4.6 | ~72% | Best open-source framework result |
 | OpenHands + Claude Sonnet 4.6 | ~67% | Recommended cost/quality balance |
@@ -313,13 +314,13 @@ SWE-bench Verified tests agents on 500 real GitHub issues. Higher scores mean th
 
 For a typical SWE-bench task consuming ~55K tokens: | Model | Cost per Attempt | Success Rate | Cost per Success |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Opus 4.7 | ~$1.50 | 87.6% | ~$1.71 |
 | GPT-5.3-Codex | ~$0.90 | 85.0% | ~$1.06 |
@@ -345,45 +346,45 @@ AMD, Apple, Google, and Netflix have all deployed OpenHands internally for autom
 
 Running an autonomous code execution agent requires careful security setup: **1. Sandbox Network Isolation**
 
-```yaml
+`````yaml
 environment: - SANDBOX_NETWORK_DISABLED=true
-```
+`````
 
 This prevents sandbox containers from making outbound requests. Enable selectively only for tasks that need to install packages.
 
 **2. Docker Socket Security**
 
-The Docker socket mount is effectively root access. Mitigate with: ```bash
+The Docker socket mount is effectively root access. Mitigate with: `````bash
 docker run --security-opt no-new-privileges \
   --cap-drop ALL \
   --cap-add SYS_ADMIN \
   -v /var/run/docker.sock:/var/run/docker.sock \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 **3. Fine-Grained GitHub PATs**
 
-Never use org-wide tokens. Scope PATs to specific repositories: ```bash
+Never use org-wide tokens. Scope PATs to specific repositories: `````bash
 # Create a fine-grained PAT at GitHub > Settings > Developer settings
 # Select only: Contents (read/write), Issues (read), Pull Requests (write)
-```
+`````
 
 **4. Secret Management**
 
-Mount secrets as read-only volumes instead of environment variables: ```yaml
+Mount secrets as read-only volumes instead of environment variables: `````yaml
 volumes: - /var/run/docker.sock:/var/run/docker.sock
   - /opt/secrets:/secrets:ro
 environment: - LLM_API_KEY_FILE=/secrets/anthropic_key
-```
+`````
 
 ### Multi-Agent Delegation
 
-For large features, enable multi-agent mode: ```bash
+For large features, enable multi-agent mode: `````bash
 # In config.toml or via environment variables
 [agent]
 enable_multi_agent = true
 max_subagents = 3
-```
+`````
 
 A parent agent decomposes "Build a REST API with authentication" into: - Sub-agent 1: Implement the API endpoints
 - Sub-agent 2: Write the authentication middleware
@@ -391,19 +392,19 @@ A parent agent decomposes "Build a REST API with authentication" into: - Sub-age
 
 ### Memory Condenser Tuning
 
-For long-running tasks, adjust the memory condenser: ```toml
+For long-running tasks, adjust the memory condenser: `````toml
 [llm]
 enable_condenser = true
 condenser_max_history = 240  # Summarize after 240 events (default: 240)
-```
+`````
 
 ### Monitoring and Logging
 
-Enable structured JSON logging for observability: ```bash
+Enable structured JSON logging for observability: `````bash
 openhands --headless --json -t "Your task" 2>&1 | tee openhands.log
-```
+`````
 
-Parse the log for metrics: ```bash
+Parse the log for metrics: `````bash
 # Count LLM calls
 jq 'select(.type == "llm")' openhands.log | wc -l
 
@@ -412,11 +413,11 @@ jq 'select(.type == "error")' openhands.log
 
 # Calculate task duration
 jq 'select(.type == "finish") | .timestamp' openhands.log
-```
+`````
 
 ### Scaling with Kubernetes
 
-For team deployments, the community maintains a Helm chart: ```bash
+For team deployments, the community maintains a Helm chart: `````bash
 # Add the OpenHands Helm repository
 helm repo add openhands https://charts.openhands.dev
 helm repo update
@@ -427,21 +428,21 @@ helm install openhands openhands/openhands \
   --set llm.model=anthropic/claude-sonnet-4-20250514 \
   --set sandbox.networkDisabled=true \
   --set replicas=2
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | OpenHands | Claude Code | Aider | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT (open source) | Proprietary (closed) | Apache-2.0 (open source) | Proprietary (closed) |
 | **GitHub Stars** | 74,200 | N/A | 39,000 | N/A |
@@ -486,7 +487,7 @@ A modern CPU, 4GB RAM, and Docker Desktop are the minimum requirements. For loca
 
 ### Can I run OpenHands completely offline?
 
-Yes, with a local model via Ollama, vLLM, or LM Studio. Set the base URL to your local endpoint (e.g., `http://localhost:11434/v1`) and use any value for the API key. Performance will be 20-30% behind frontier APIs on complex tasks, but it works for routine bug fixes and refactors.
+Yes, with a local model via Ollama, vLLM, or LM Studio. Set the base URL to your local endpoint (e.g., ````http://localhost:11434/v1````) and use any value for the API key. Performance will be 20-30% behind frontier APIs on complex tasks, but it works for routine bug fixes and refactors.
 
 ### How does OpenHands compare to Devin?
 
@@ -494,11 +495,11 @@ Devin ($20-500/mo) is easier to set up (2-minute signup) but locks you into Cogn
 
 ### Is my code safe with OpenHands?
 
-Code runs inside Docker sandbox containers that are destroyed after each task. The sandbox has no network access if `SANDBOX_NETWORK_DISABLED=true` is set. However, mounting the Docker socket gives the controller significant host access, so run OpenHands on a dedicated machine or VM, not your production laptop.
+Code runs inside Docker sandbox containers that are destroyed after each task. The sandbox has no network access if ````SANDBOX_NETWORK_DISABLED=true```` is set. However, mounting the Docker socket gives the controller significant host access, so run OpenHands on a dedicated machine or VM, not your production laptop.
 
 ### Can I use OpenHands with my existing CI/CD pipeline?
 
-Yes, via headless mode. The `--headless --json` flags produce structured JSONL output that any CI system can parse. A typical GitHub Actions workflow clones the repo, runs OpenHands on labeled issues, and creates PRs from the generated diffs.
+Yes, via headless mode. The ````--headless --json```` flags produce structured JSONL output that any CI system can parse. A typical GitHub Actions workflow clones the repo, runs OpenHands on labeled issues, and creates PRs from the generated diffs.
 
 ### What models work best with OpenHands?
 
@@ -506,7 +507,7 @@ Claude Sonnet 4.6 offers the best balance of cost and quality for most tasks. Cl
 
 ### How do I debug when OpenHands gets stuck in a loop?
 
-Check the event log in the UI for repeated failed actions. Common fixes: (1) provide more specific instructions, (2) switch to a stronger model, (3) break the task into smaller subtasks, or (4) increase the `max_iterations` limit in settings.
+Check the event log in the UI for repeated failed actions. Common fixes: (1) provide more specific instructions, (2) switch to a stronger model, (3) break the task into smaller subtasks, or (4) increase the ````max_iterations```` limit in settings.
 
 ## Conclusion
 
@@ -515,9 +516,9 @@ OpenHands is the most capable open-source AI software engineering agent availabl
 The setup takes 10-15 minutes: install via uv or Docker, configure your LLM provider, and start assigning tasks. For production use, enable sandbox network isolation, use fine-grained GitHub PATs, and deploy headless mode for CI/CD integration.
 
 **Next steps:**
-1. Clone the repository: `git clone https://github.com/OpenHands/OpenHands.git`
-2. Install via `uv tool install openhands --python 3.12`
-3. Launch with `openhands serve` and connect at `localhost:3000`
+1. Clone the repository: ````git clone https://github.com/OpenHands/OpenHands.git````
+2. Install via ````uv tool install openhands --python 3.12````
+3. Launch with ````openhands serve```` and connect at ````localhost:3000```
 4. Join the community on Slack for support and feature updates
 
 
@@ -541,7 +542,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Agent Control Plane Docs](https://docs.openhands.dev/openhands/usage/key-features) — VS Code integration and multi-agent setup
 
 
----
+* * *
 *This guide is independently maintained and updated regularly. Last verified: May 2026.*
 
 
@@ -571,7 +572,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](openhands)
@@ -580,7 +581,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-08-trending-ai-agents](openhands)
 - [2026-06-15-trending-ai-agents](openhands)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

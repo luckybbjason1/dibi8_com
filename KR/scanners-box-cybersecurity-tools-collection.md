@@ -37,6 +37,7 @@ faqs: - q: 'Scanners-Box란 무엇인가요?'
     a: '이러한 도구는 승인된 보안 테스트에 한해서만 합법이며, 명시적인 서면 허가 없이 시스템을 대상으로 사용하는 것은 불법이며 비윤리적입니다. 관련 법률로는 미국 컴퓨터 사기 및 남용 방지법(CFAA), 영국 컴퓨터 오용법, 중국 사이버보안법, EU GDPR 등이 있으므로, 테스트 전에 반드시 서면 승인을 받고 범위를 정의하십시오.'
 ---
 
+
 {</* resource-info */>}
 
 ## Scanners-Box란?
@@ -48,7 +49,7 @@ faqs: - q: 'Scanners-Box란 무엇인가요?'
 **도구 수**: 200+  
 **카테고리**: 15+
 
----
+* * *
 
 ## 도구 카테고리 개요
 
@@ -70,7 +71,7 @@ faqs: - q: 'Scanners-Box란 무엇인가요?'
 | **위협 인텔리전스** | 3+ | threat-intelligence, VirusTotal, ThreatBook |
 | **학습 리소스** | 20+ | sec-wiki, FreeBuf, Web Hacking 101 |
 
----
+* * *
 
 ## 주요 도구 심층 분석
 
@@ -93,13 +94,13 @@ faqs: - q: 'Scanners-Box란 무엇인가요?'
 - 6가지 데이터베이스 유형 지원
 - WAF 우회용 변조 스크립트
 
-```bash
+````bash
 # 기본 사용법
 sqlmap -u "http://target.com/page.php?id=1" --dbs
 
 # 특정 테이블 덤프
 sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
-```
+`````
 
 ### 3. 퍼징 프레임워크
 
@@ -116,7 +117,7 @@ sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
 ### 4. 포트 스캐닝
 
 **Nmap** — 네트워크 스캐너의 왕
-```bash
+`````bash
 # 기본 스캔
 nmap -sV -sC target.com
 
@@ -125,7 +126,7 @@ nmap -p- -sV --script=vuln target.com
 
 # 공격적 스캔
 nmap -A target.com
-```
+`````
 
 **masscan** — 가장 빠른 인터넷 포트 스캐너
 - 6분 만에 전체 인터넷 스캔
@@ -145,7 +146,7 @@ nmap -A target.com
 - 세션 쿠키 캡처
 - 이중 인증 우회
 
----
+* * *
 
 ## 보안 학습 리소스
 
@@ -167,7 +168,7 @@ nmap -A target.com
 - **Node.js 웹 보안 문제**
 - **Python 보안 시리즈**
 
----
+* * *
 
 ## 취약점 타겟 연습
 
@@ -181,7 +182,7 @@ nmap -A target.com
 | **DVWA** | 매우 취약한 웹 애플리케이션 | GitHub |
 | **WebGoat** | OWASP 웹 보안 연습 | GitHub |
 
----
+* * *
 
 ## 책임 있는 공개
 
@@ -200,49 +201,49 @@ nmap -A target.com
 4. 발견 사항을 즉시 보고하세요
 5. 테스트 후 데이터를 삭제하세요
 
----
+* * *
 
 ## 도구 선택 가이드
 
 ### 웹 애플리케이션 테스트
-```
+`````
 정찰: amass, subfinder, theHarvester
 스캐닝: Nmap, masscan, whatweb
 취약점: sqlmap, XSS 스캐너, dirsearch
 공격: Burp Suite, 사용자 지정 스크립트
 보고: Dradis, Faraday
-```
+`````
 
 ### 네트워크 침투 테스트
-```
+`````
 발견: Nmap, masscan, nbtscan
 열거: enum4linux, snmp-check
 취약점: OpenVAS, Nessus
 공격: Metasploit, Cobalt Strike
 후 공격: PowerShell Empire, Mimikatz
-```
+`````
 
 ### 레드팀 작전
-```
+`````
 초기 접근: SET, gophish, evilginx2
 지속성: 사용자 지정 임플란트, 예약된 작업
 권한 상승: PowerUp, BeRoot
 측면 이동: Pass-the-hash, Kerberoasting
 데이터 유출: DNS 터널링, HTTPS C2
-```
+````
 
----
+* * *
 
 ## 관련 기사
 
 - [Agent Reach: AI 에이전트 인터넷 접근](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI 기반 보안 자동화
 - [Free Claude Code: 오픈소스 AI 코딩](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) — 안전한 코딩 관행
 
----
+* * *
 
 *면책 조항: 본 문서는 교육 목적으로만 제공됩니다. 모든 도구는 책임감 있게 사용해야 하며, 소유하고 있거나 명시적 테스트 허가를 받은 시스템에만 사용해야 합니다. 작성자와 dibi8.com은 제공된 정보의 오용에 대해 책임을 지지 않습니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -314,7 +315,7 @@ Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수 rep
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

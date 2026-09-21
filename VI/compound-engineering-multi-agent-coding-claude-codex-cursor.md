@@ -11,6 +11,7 @@ license: 'MIT"
 featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
 ---
 
+
 # Compound Engineering: Plugin Điều phối Đa Agent — Hướng dẫn 2026
 
 Compound Engineering (hơn 20.000 sao) là một plugin điều phối đa agent, phối hợp các agent lập trình AI (Claude Code, Codex, Cursor) thông qua vòng lặp lập kế hoạch — rà soát — tích lũy kiến thức có cấu trúc. Triết lý của nó rất đơn giản: lập kế hoạch kỹ lưỡng trước khi viết mã, rà soát cẩn thận, và ghi lại những bài học để các công việc sau này trở nên dễ dàng hơn.
@@ -19,16 +20,16 @@ Compound Engineering (hơn 20.000 sao) là một plugin điều phối đa agent
 
 ## Compound Engineering là gì?
 
-Compound Engineering là một bộ sưu tập 9 lệnh chuyên biệt, biến agent lập trình AI của bạn từ một công cụ tạo mã đơn thuần thành một đối tác kỹ thuật có kỷ luật. Mỗi lệnh nhắm vào một giai đoạn cụ thể của vòng đời phát triển: ```
+Compound Engineering là một bộ sưu tập 9 lệnh chuyên biệt, biến agent lập trình AI của bạn từ một công cụ tạo mã đơn thuần thành một đối tác kỹ thuật có kỷ luật. Mỗi lệnh nhắm vào một giai đoạn cụ thể của vòng đời phát triển: ````
 Phát triển Truyền thống: Ý tưởng → Mã → Sửa lỗi → Lặp lại (nợ kỹ thuật tích lũy)
 
 Compound Engineering: Chiến lược → Động não → Brainstorm → Lập kế hoạch → Thực thi → Rà soát → Tích lũy → Lặp lại (nợ kỹ thuật giảm)
-```
+`````
 
 Điểm mấu chốt là **80% giá trị kỹ thuật đến từ lập kế hoạch và rà soát**, chứ không phải từ thực thi. Các công cụ lập trình AI truyền thống bỏ qua bước lập kế hoạch và nhảy thẳng vào viết mã, cho ra kết quả nhanh nhưng tích lũy nợ kỹ thuật. Compound Engineering buộc agent phải suy nghĩ trước khi gõ.
 
-Plugin hoạt động trên nhiều công cụ lập trình AI: - **Claude Code**: Cài đặt qua kho plugin (`/plugin marketplace add EveryInc/compound-engineering-plugin`)
-- **Cursor**: Cài đặt qua kho plugin (`/add-plugin compound-engineering`)
+Plugin hoạt động trên nhiều công cụ lập trình AI: - **Claude Code**: Cài đặt qua kho plugin (````/plugin marketplace add EveryInc/compound-engineering-plugin````)
+- **Cursor**: Cài đặt qua kho plugin (````/add-plugin compound-engineering````)
 - **Codex**: Thiết lập ba bước với đăng ký kho, cài đặt agent và kích hoạt plugin
 
 Mỗi agent chia sẻ cùng một bộ lệnh và cơ sở kiến thức, nên chuyển đổi giữa các công cụ không làm mất ngữ cảnh. Đối với triển khai đa agent có thể mở rộng, [HTStack](https://my.htstack.com/aff.php?aff=27187) cung cấp cơ sở hạ tầng hỗ trợ nhiều phiên bản agent.
@@ -39,17 +40,17 @@ Phát triển truyền thống tích lũy nợ kỹ thuật — mỗi tính năn
 
 Compound Engineering đảo ngược điều này: | Giai đoạn | Lệnh | Mục đích |
 |-----------|------|----------|
-| Chiến lược | `/ce-strategy` | Xác định vấn đề mục tiêu, phương pháp, chân dung người dùng, chỉ số đo lường của sản phẩm |
-| Động não | `/ce-ideate` | Tạo ra và đánh giá các ý tưởng tổng quan trước khi cam kết |
-| Brainstorm | `/ce-brainstorm` | Hỏi đáp tương tác để viết yêu cầu trước khi lập kế hoạch |
-| Lập kế hoạch | `/ce-plan` | Chuyển đổi yêu cầu thành kế hoạch triển khai chi tiết |
-| Thực thi | `/ce-work` | Thực thi kế hoạch với worktree và theo dõi nhiệm vụ |
-| Rà soát | `/ce-code-review` | Rà soát mã đa agent trước khi hợp nhất |
-| Tích lũy | `/ce-compound` | Ghi lại bài học để công việc tương lai dễ dàng hơn |
-| Nhịp độ | `/ce-product-pulse` | Báo cáo theo cửa sổ thời gian về các chỉ số trải nghiệm người dùng |
-| Gỡ lỗi | `/ce-debug` | Tái tạo lỗi một cách có hệ thống và truy tìm nguyên nhân gốc |
+| Chiến lược | ````/ce-strategy```` | Xác định vấn đề mục tiêu, phương pháp, chân dung người dùng, chỉ số đo lường của sản phẩm |
+| Động não | ````/ce-ideate```` | Tạo ra và đánh giá các ý tưởng tổng quan trước khi cam kết |
+| Brainstorm | ````/ce-brainstorm```` | Hỏi đáp tương tác để viết yêu cầu trước khi lập kế hoạch |
+| Lập kế hoạch | ````/ce-plan```` | Chuyển đổi yêu cầu thành kế hoạch triển khai chi tiết |
+| Thực thi | ````/ce-work```` | Thực thi kế hoạch với worktree và theo dõi nhiệm vụ |
+| Rà soát | ````/ce-code-review```` | Rà soát mã đa agent trước khi hợp nhất |
+| Tích lũy | ````/ce-compound```` | Ghi lại bài học để công việc tương lai dễ dàng hơn |
+| Nhịp độ | ````/ce-product-pulse```` | Báo cáo theo cửa sổ thời gian về các chỉ số trải nghiệm người dùng |
+| Gỡ lỗi | ````/ce-debug```` | Tái tạo lỗi một cách có hệ thống và truy tìm nguyên nhân gốc |
 
-```
+`````
 Vòng lặp Compound: ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐
 │ Chiến lược │───▶│ Brainstorm│───▶│  Lập kế │───▶│  Thực thi│
 └─────────┘     └─────────┘     └─────────┘     └─────────┘
@@ -65,7 +66,7 @@ Vòng lặp Compound: ┌─────────┐     ┌─────�
      │                     │  (Học hỏi)  │
      │                     └──────┬──────┘
      └────────────────────────────┘
-```
+`````
 
 Mỗi chu kỳ tích lũy thêm: brainstorm làm sắc nét kế hoạch, kế hoạch thông tin cho các kế hoạch tương lai, rà soát phát hiện nhiều vấn đề hơn, và các mẫu được ghi lại. Kết quả là cơ sở mã ngày càng dễ làm việc theo thời gian thay vì khó hơn.
 
@@ -73,25 +74,25 @@ Mỗi chu kỳ tích lũy thêm: brainstorm làm sắc nét kế hoạch, kế h
 
 ### Claude Code
 
-```bash
+`````bash
 # Thêm kho plugin
 /plugin marketplace add EveryInc/compound-engineering-plugin
 
 # Cài đặt plugin
 /plugin install compound-engineering
-```
+`````
 
 ### Cursor
 
-Trong chat Agent của Cursor, cài đặt từ kho plugin: ```bash
+Trong chat Agent của Cursor, cài đặt từ kho plugin: `````bash
 /add-plugin compound-engineering
-```
+`````
 
 Hoặc tìm kiếm "compound engineering" trong kho plugin của Cursor.
 
 ### Codex
 
-Thiết lập ba bước: ```bash
+Thiết lập ba bước: `````bash
 # Bước 1: Đăng ký kho
 codex plugin marketplace add EveryInc/compound-engineering-plugin
 
@@ -101,27 +102,27 @@ bunx @every-env/compound-plugin install compound-engineering --to codex
 # Bước 3: Cài đặt qua Codex TUI
 # Khởi động codex, chạy /plugins, tìm kho Compound Engineering,
 # chọn plugin compound-engineering, chọn Install, sau đó khởi động lại Codex
-```
+`````
 
-Sau khi cài đặt, xác nhận plugin đang hoạt động bằng cách chạy: ```bash
+Sau khi cài đặt, xác nhận plugin đang hoạt động bằng cách chạy: `````bash
 /ce-strategy --help
 # Sẽ hiển thị các tùy chọn cấu hình chiến lược
-```
+`````
 
 ### Cấu hình Ban đầu
 
-Bắt đầu với lệnh chiến lược để xác định hướng đi cho dự án của bạn: ```bash
+Bắt đầu với lệnh chiến lược để xác định hướng đi cho dự án của bạn: `````bash
 /ce-strategy
 # wizard tương tác: xác định vấn đề mục tiêu, phương pháp, chân dung người dùng, chỉ số chính, tracks
-```
+`````
 
-Điều này tạo ra `STRATEGY.md` — một neo bền vững mà tất cả các lệnh sau đọc làm nền tảng. Các lựa chọn chiến lược chảy vào việc hình thành tính năng, ưu tiên hóa và triển khai.
+Điều này tạo ra ````STRATEGY.md```` — một neo bền vững mà tất cả các lệnh sau đọc làm nền tảng. Các lựa chọn chiến lược chảy vào việc hình thành tính năng, ưu tiên hóa và triển khai.
 
 ## Cách Compound Engineering Hoạt động
 
 ### Lớp Chiến lược
 
-`STRATEGY.md` đóng vai trò là nguồn sự thật duy nhất cho hướng đi của dự án: ```markdown
+``STRATEGY.md`` đóng vai trò là nguồn sự thật duy nhất cho hướng đi của dự án: `````markdown
 # STRATEGY.md
 
 ## Vấn đề Mục tiêu
@@ -138,41 +139,41 @@ Bắt đầu với lệnh chiến lược để xác định hướng đi cho d�
 
 ## Tracks
 [Tracks phát triển hiện tại]
-```
+`````
 
 Mỗi brainstorm, kế hoạch và rà soát đều tham chiếu đến file này. Điều này đảm bảo sự gắn kết nhất quán giữa mục tiêu kinh doanh và quyết định kỹ thuật.
 
 ### Giai đoạn Brainstorm
 
-`/ce-brainstorm` khởi động một phiên hỏi đáp tương tác: ```bash
+``/ce-brainstorm`` khởi động một phiên hỏi đáp tương tác: `````bash
 /ce-brainstorm "Thêm xác thực người dùng với OAuth2"
-```
+`````
 
 Agent đặt câu hỏi làm rõ, đề xuất phương pháp và viết một tài liệu yêu cầu có quy mô phù hợp. Điều này thay thế cho mẫu phổ biến là nhảy thẳng vào viết mã với yêu cầu mơ hồ.
 
 Tính năng chính của brainstorm: - **Tương tác**: Agent đặt câu hỏi theo dõi để thu hẹp phạm vi
 - **Yêu cầu đầu tiên**: Tạo tài liệu yêu cầu có cấu trúc trước khi lập kế hoạch
-- **Có ngữ cảnh**: Đọc `STRATEGY.md` để phù hợp với hướng dự án
+- **Có ngữ cảnh**: Đọc ````STRATEGY.md```` để phù hợp với hướng dự án
 - **Quy mô phù hợp**: Ngăn chặn kỹ thuật quá mức bằng cách hạn chế phạm vi
 
 ### Giai đoạn Lập kế hoạch
 
-`/ce-plan` chuyển đổi yêu cầu brainstorm thành kế hoạch triển khai chi tiết: ```bash
+``/ce-plan`` chuyển đổi yêu cầu brainstorm thành kế hoạch triển khai chi tiết: `````bash
 /ce-plan docs/brainstorm-auth.md
-```
+`````
 
 Kế hoạch bao gồm: - Chia nhỏ tính năng thành các nhiệm vụ riêng biệt
 - Phân tích phụ thuộc giữa các nhiệm vụ
 - Nhận diện rủi ro
 - Ước tính thời gian
 
-Kế hoạch được lưu dưới dạng tài liệu bền vững mà `/ce-work` sử dụng làm hướng dẫn thực thi.
+Kế hoạch được lưu dưới dạng tài liệu bền vững mà ````/ce-work```` sử dụng làm hướng dẫn thực thi.
 
 ### Giai đoạn Thực thi
 
-`/ce-work` thực thi kế hoạch với theo dõi nhiệm vụ tích hợp: ```bash
+``/ce-work`` thực thi kế hoạch với theo dõi nhiệm vụ tích hợp: `````bash
 /ce-work plan-auth.md
-```
+`````
 
 Tính năng: - **Cách ly worktree**: Mỗi nhiệm vụ sử dụng một git worktree riêng cho phát triển song song
 - **Theo dõi nhiệm vụ**: Tiến độ được theo dõi qua checklist trong tài liệu kế hoạch
@@ -181,9 +182,9 @@ Tính năng: - **Cách ly worktree**: Mỗi nhiệm vụ sử dụng một git w
 
 ### Giai đoạn Rà soát
 
-`/ce-code-review` thực hiện rà soát mã đa agent: ```bash
+``/ce-code-review`` thực hiện rà soát mã đa agent: `````bash
 /ce-code-review feature-auth
-```
+`````
 
 Quá trình rà soát kiểm tra: - Chất lượng mã và tính nhất quán phong cách
 - Rủi ro bảo mật
@@ -195,11 +196,11 @@ Nhiều agent có thể rà soát đồng thời — plugin có thể gọi các
 
 ### Giai đoạn Tích lũy
 
-`/ce-compound` ghi lại các bài học: ```bash
+``/ce-compound`` ghi lại các bài học: `````bash
 /ce-compound "Bài học triển khai OAuth2"
-```
+`````
 
-Điều này tạo ra các artifacts kiến thức mà các agent sau đọc trong quá trình brainstorm và lập kế hoạch: ```markdown
+Điều này tạo ra các artifacts kiến thức mà các agent sau đọc trong quá trình brainstorm và lập kế hoạch: `````markdown
 # Ghi chú Compound: Triển khai OAuth2
 
 ## Bài học Rút ra
@@ -207,7 +208,7 @@ Nhiều agent có thể rà soát đồng thời — plugin có thể gọi các
 - [Những gì không hoạt động]
 - [Các mẫu cần tái sử dụng]
 - [Các mẫu cần tránh]
-```
+`````
 
 Những ghi chú này tích lũy qua vòng đời dự án, làm cho mỗi lần lặp agent tiếp theo thông minh hơn.
 
@@ -243,7 +244,7 @@ Các nhóm sử dụng Compound Engineering báo cáo giảm measurable trong n�
 
 ### So sánh Quy trình
 
-Phát triển điển hình có và không có Compound Engineering: ```
+Phát triển điển hình có và không có Compound Engineering: `````
 Không có Compound Engineering: Người dùng: "Thêm xác thực người dùng"
   Agent → Viết mã auth → Tìm thấy lỗi → Sửa lỗi → More lỗi → Lặp lại
   Kết quả: 3-5 lần lặp, lịch sử commit lộn xộn, quyết định không được ghi lại
@@ -255,13 +256,13 @@ Có Compound Engineering: Người dùng: /ce-strategy → Xác định yêu c�
   Người dùng: /ce-code-review → Rà soát đa agent phát hiện vấn đề sớm
   Người dùng: /ce-compound → Bài học được ghi lại cho tham chiếu tương lai
   Kết quả: 1-2 lần lặp, lịch sử commit sạch, quyết định được ghi lại
-```
+`````
 
 ### Hiệu quả Chi phí
 
 Đối với một nhiệm vụ phát triển điển hình, khởi tạo môi trường agent của bạn trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) để có hosting đáng tin cậy.
 
-```
+`````
 Không có Compound Engineering: - Gọi API agent: ~15 (chu kỳ code + sửa)
   - Chi phí API trung bình: $0,12
   - Thời gian nhà phát triển: 45 phút (debug, rà soát)
@@ -272,30 +273,30 @@ Có Compound Engineering: - Gọi API agent: ~25 (lập kế hoạch + thực th
   
 Kết quả ròng: $0,08 chi phí API nhiều hơn, 30 phút thời gian nhà phát triển ít hơn,
 ít lỗi hơn trong production, bài học được ghi lại cho công việc tương lai.
-```
+`````
 
 ## Sử dụng Nâng cao / Củng cố Production
 
 ### Ghi chú Compound Tùy chỉnh
 
-Tạo cơ sở kiến thức theo dự án: ```bash
+Tạo cơ sở kiến thức theo dự án: `````bash
 # Viết ghi chú compound tùy chỉnh
 /ce-compound "Bài học migration database từ Q2"
 
 # Đọc ghi chú compound hiện có
 /ce-strategy --show-compound-notes
-```
+`````
 
 Ghi chú compound được tổ chức theo chủ đề và có thể được tham chiếu trong các phiên brainstorm một cách tự động.
 
 ### Báo cáo Nhịp độ Sản phẩm
 
-`/ce-product-pulse` tạo báo cáo theo cửa sổ thời gian: ```bash
+``/ce-product-pulse`` tạo báo cáo theo cửa sổ thời gian: `````bash
 # Tạo báo cáo pulse 7 ngày
 /ce-product-pulse --window 7d
 
 # Báo cáo lưu tại docs/pulse-reports/pulse-2026-06-14.md
-```
+`````
 
 Báo cáo bao gồm: - Thống kê sử dụng
 - Tỷ lệ lỗi
@@ -306,9 +307,9 @@ Những báo cáo này quay lại lớp chiến lược, tạo ra một vòng l�
 
 ### Chế độ Gỡ lỗi
 
-`/ce-debug` cung cấp gỡ lỗi có hệ thống: ```bash
+``/ce-debug`` cung cấp gỡ lỗi có hệ thống: `````bash
 /ce-debug "Người dùng báo cáo hết giờ đăng nhập trên thiết bị di động"
-```
+`````
 
 Quá trình gỡ lỗi: 1. Tái tạo lỗi trong môi trường có kiểm soát
 2. Truy tìm nguyên nhân gốc thông qua cơ sở mã
@@ -319,7 +320,7 @@ Quá trình gỡ lỗi: 1. Tái tạo lỗi trong môi trường có kiểm soá
 
 ### Tích hợp với CI/CD
 
-Compound Engineering tích hợp với pipeline CI/CD: ```yaml
+Compound Engineering tích hợp với pipeline CI/CD: `````yaml
 # .github/workflows/compound-engineering.yml
 jobs: review: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
@@ -331,11 +332,11 @@ jobs: review: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: review-report
           path: review-report.md
-```
+`````
 
 ### Cấu hình Rà soát Đa Agent
 
-Cấu hình nhiều người rà soát cho các chiều khác nhau: ```json
+Cấu hình nhiều người rà soát cho các chiều khác nhau: `````json
 // .compound-engineering/review-config.json
 {
   "reviewers": [
@@ -358,7 +359,7 @@ Cấu hình nhiều người rà soát cho các chiều khác nhau: ```json
   "auto_trigger": true,
   "fail_on_critical": true
 }
-```
+`````
 
 ## Hạn chế / Đánh giá Trung thực
 
@@ -374,7 +375,7 @@ Dự án được EveryInc bảo trì chủ động với các bản cập nhậ
 
 **Q: Tôi có cần tất cả 9 lệnh cho mọi dự án không?**
 
-A: Không. Quy trình cốt lõi cho hầu hết các dự án sử dụng 5 lệnh: `strategy`, `brainstorm`, `plan`, `work` và `review`. Lệnh `compound` là tùy chọn nhưng được khuyến nghị mạnh cho các dự án dài hạn. `ideate`, `debug` và `pulse` là theo tình huống.
+A: Không. Quy trình cốt lõi cho hầu hết các dự án sử dụng 5 lệnh: ````strategy````, ````brainstorm````, ````plan````, ````work```` và ````review````. Lệnh ````compound```` là tùy chọn nhưng được khuyến nghị mạnh cho các dự án dài hạn. ````ideate````, ````debug```` và ````pulse```` là theo tình huống.
 
 **Q: Compound Engineering có hoạt động với công cụ lập trình không phải AI không?**
 
@@ -382,7 +383,7 @@ A: Các lệnh được thiết kế cụ thể cho agent lập trình AI. Phư�
 
 **Q: Compound Engineering xử lý các dự án refactor lớn như thế nào?**
 
-A: `/ce-work` sử dụng git worktree cho thực thi nhiệm vụ song song, lý tưởng cho refactor lớn. Mỗi nhiệm vụ trong kế hoạch có worktree riêng, cho phép phát triển song song mà không xung đột. Giai đoạn rà soát phát hiện vấn đề tích hợp trước khi hợp nhất.
+A: ````/ce-work```` sử dụng git worktree cho thực thi nhiệm vụ song song, lý tưởng cho refactor lớn. Mỗi nhiệm vụ trong kế hoạch có worktree riêng, cho phép phát triển song song mà không xung đột. Giai đoạn rà soát phát hiện vấn đề tích hợp trước khi hợp nhất.
 
 **Q: Compound Engineering có miễn phí cho mục đích thương mại không?**
 
@@ -390,7 +391,7 @@ A: Có, Compound Engineering được cấp phép theo MIT. Không có hạn ch�
 
 **Q: Tôi có thể tùy chỉnh mẫu brainstorm và lập kế hoạch không?**
 
-A: Có. Kết quả brainstorm và lập kế hoạch được tạo ra từ các template lưu trong `.compound-engineering/`. Bạn có thể tùy chỉnh các template này để phù hợp với quy ước của nhóm và yêu cầu dự án.
+A: Có. Kết quả brainstorm và lập kế hoạch được tạo ra từ các template lưu trong ````.compound-engineering/````. Bạn có thể tùy chỉnh các template này để phù hợp với quy ước của nhóm và yêu cầu dự án.
 
 **Q: Rà soát đa agent hoạt động như thế nào?**
 
@@ -402,12 +403,12 @@ Compound Engineering giải quyết một khoảng trống cơ bản trong phát
 
 Giá trị cốt lõi rất đơn giản: đầu tư thời gian ngay từ đầu vào lập kế hoạch và rà soát, và tiết kiệm đáng kể thời gian sau đó thông qua ít lỗi hơn, dễ debugging hơn và kiến thức được ghi lại.
 
-**Hãy thử Compound Engineering ngay hôm nay** — cài đặt qua `/plugin marketplace add EveryInc/compound-engineering-plugin` cho Claude Code, hoặc `/add-plugin compound-engineering` cho Cursor.
+**Hãy thử Compound Engineering ngay hôm nay** — cài đặt qua ````/plugin marketplace add EveryInc/compound-engineering-plugin```` cho Claude Code, hoặc ````/add-plugin compound-engineering``` cho Cursor.
 
 Thêm về quy trình đa agent: - [ECC: Tối ưu Hiệu năng Agent Harness](/vi/resources/dev-utils/ecc-agent-harness-performance-optimization/) — tối ưu hiệu năng agent cùng lúc với quy trình có cấu trúc
 - [Impeccable: Ngôn ngữ Thiết kế AI](/vi/resources/ai-tools/impeccable-ai-design-language-harness-quality-ui/) — thêm chất lượng thiết kế vào quy trình compound engineering của bạn
 
----
+* * *
 
 **Nguồn & Đọc Thêm**: - Repository GitHub: https://github.com/EveryInc/compound-engineering-plugin
 - Bài viết triết lý: https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents
@@ -415,7 +416,7 @@ Thêm về quy trình đa agent: - [ECC: Tối ưu Hiệu năng Agent Harness](/
 
 **Tham gia cộng đồng của chúng tôi**: https://t.me/DIBI8_Group
 
----
+* * *
 
 **Tiết lộ**: Bài viết này chứa các liên kết liên kết. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua liên kết của chúng tôi, không phát sinh chi phí thêm cho bạn.
 
@@ -445,7 +446,7 @@ Thêm về quy trình đa agent: - [ECC: Tối ưu Hiệu năng Agent Harness](/
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -455,7 +456,7 @@ Thêm về quy trình đa agent: - [ECC: Tối ưu Hiệu năng Agent Harness](/
 - [gemini-cli-vs-claude-code](compound-engineering-multi-agent-coding-claude-codex-cursor)
 - [cc-switch-all-in-one-ai-coding-agent-manager](compound-engineering-multi-agent-coding-claude-codex-cursor)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

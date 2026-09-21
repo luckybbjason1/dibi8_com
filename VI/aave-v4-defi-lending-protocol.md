@@ -1,11 +1,6 @@
-# AAVE v4 2026: Giao Thức Cho Vay DeFi Quản Lý 15 Tỷ USD — Hướng Dẫn Tích Hợp Smart Contract
-Cho vay phi tập trung đã trở thành cột mốc của DeFi hiện đại, và AAVE đang đứng đầu trong cuộc cách mạng này. Với tổng giá trị bị khóa vượt quá 15 tỷ đô la trên nhiều chuỗi, AAVE là giao thức cho vay lớn nhất và được thử nghiệm kỹ lưỡng nhất trong hệ sinh thái tiền điện tử. Việc ra mắt AAVE v4 vào cuối năm 2025 đã mang lại những cải tiến kiến trúc quan trọng, làm cho nó trở nên hiệu quả hơn, an toàn hơn và thuận tiện cho nhà phát triển hơn bao giờ hết.
-
-Đối với các nhà phát triển xây dựng ứng dụng DeFi, bot giao dịch, thu thập lợi nhuận hoặc công cụ quản lý danh mục đầu tư, việc hiểu cách tích hợp với AAVE là rất quan trọng. Hướng dẫn này cung cấp một hướng dẫn toàn diện về AAVE v4, bao gồm mọi thứ từ các hoạt động cơ bản như cho vay và cung cấp vốn đến các tính năng nâng cao như cho vay nhanh, chế độ cách ly và đồng ổn định GHO. Dù bạn đang viết hợp đồng thông minh Solidity hay xây dựng giao diện người dùng phía trước, bạn sẽ tìm thấy các ví dụ mã thực tế và góc nhìn kiến trúc để tăng tốc quá trình tích hợp của mình.
-
-
 ---
 ---
+
 ## AAVE là Gì?
 
 AAVE là một giao thức thanh khoản nguồn mở, không giữ tài sản giúp người dùng cung cấp và vay các tài sản tiền điện tử. Ban đầu được ra mắt dưới dạng ETHLend vào năm 2017 và tái định vị thương hiệu thành AAVE vào năm 2018, giao thức này đã phát triển qua nhiều phiên bản chính. Phiên bản AAVE v3 được ra mắt vào năm 2023 với khả năng cửa hàng chuỗi liên kết, và AAVE v4 xuất hiện vào cuối năm 2025 với kiến trúc linh hoạt, hiệu quả vốn cải thiện và hỗ trợ tinh thể lỏng tài khoản nội tại.
@@ -19,8 +14,8 @@ AAVE v4 giới thiệu một số sáng tạo kiến trúc: - **Kiến trúc b�
 - **GHO thị trường tiền tệ nội tại** với việc phát hành trực tiếp đối lập bảo đảm
 - **Kiểm tra hợp đồng thông minh tích hợp** cho giao dịch không tốn khí và phục hồi xã hội
 
----
----
+* * *
+* * *
 ## Hiểu cấu trúc AAVE v4
 
 Trước khi đi vào code, cần hiểu các thành phần kiến trúc cơ bản của AAVE v4.
@@ -37,37 +32,37 @@ Trước khi đi vào code, cần hiểu các thành phần kiến trúc cơ b�
 
 **Module Rủi ro.** Một thành phần mới trong phiên bản 4, bao gồm các tham số rủi ro, cấu hình bảo đảm và logic chế độ cách ly. Sự tách biệt này cho phép quản trị viên cập nhật các thiết lập về rủi ro mà không cần sửa đổi hợp đồng pool cơ bản.
 
----
----
+* * *
+* * *
 ## Thiết lập Môi Trường Phát Triển
 
 Để tích hợp với AAVE v4, bạn cần một môi trường phát triển được cấu hình đúng.
 
 ### Cài Đặt Dự Án Hardhat
 
-```bash
+````bash
 mkdir aave-integration && cd aave-integration
 npm init -y
 npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
 npx hardhat init
-```
+`````
 
 ### Cài Đặt Các Trình Truy Cập AAVE
 
-```bash
+`````bash
 npm install @aave/core-v4 @aave/periphery-v4
 npm install ethers dotenv
-```
+`````
 
 ### Cấu Hình Môi Trường
 
-```bash
+`````bash
 # .env
 ETHEREUM_RPC=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
 PRIVATE_KEY=your_private_key
-```
+`````
 
-```javascript
+`````javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config();
@@ -87,19 +82,19 @@ module.exports = {
     },
   },
 };
-```
+`````
 
----
----
+* * *
+* * *
 ## Hợp đồng Thông minh Trung tâm
 
-Giao diện chính để tương tác với AAVE v4 là hợp đồng `IPool`. Tất cả các hoạt động cung cấp, vay và trả nợ đều đi qua hợp đồng này.
+Giao diện chính để tương tác với AAVE v4 là hợp đồng ````IPool````. Tất cả các hoạt động cung cấp, vay và trả nợ đều đi qua hợp đồng này.
 
 ### Cung cấp Tài sản vào AAVE
 
 Khi bạn cung cấp tài sản vào AAVE, bạn sẽ gửi các token ERC-20 vào bể và nhận lại aTokens. Các aTokens này tự động tích lũy lãi suất.
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
@@ -127,13 +122,13 @@ contract AaveSupplier {
         pool.supply(asset, amount, msg.sender, 0);
     }
 }
-```
+`````
 
 ### Vay Tài sản
 
 Vay yêu cầu người dùng phải có đủ tài sản bảo đảm. Số tiền vay tối đa được xác định bởi yếu tố bảo đảm của các tài sản đã cung cấp.
 
-```solidity
+`````solidity
 contract AaveBorrower {
     IPool public immutable pool;
     
@@ -160,11 +155,11 @@ contract AaveBorrower {
         pool.repay(asset, amount, interestRateMode, msg.sender);
     }
 }
-```
+`````
 
 ### Rút Trở Lại Tài sản đã Cung cấp
 
-```solidity
+`````solidity
 function withdrawAsset(
     address asset,
     uint256 amount // sử dụng type(uint256).max để rút toàn bộ
@@ -172,15 +167,15 @@ function withdrawAsset(
     // Rút aTokens và nhận lại tài sản gốc
     pool.withdraw(asset, amount, msg.sender);
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Đọc Thông Tin Tài Khoản Người Dùng
 
 AAVE cung cấp một hợp đồng cung cấp dữ liệu người dùng mà tích hợp thông tin cụ thể về người dùng bao gồm yếu tố sức khỏe, số dư vay có sẵn và phân giải bảo đảm.
 
-```solidity
+`````solidity
 import {IPoolDataProvider} from '@aave/core-v4/contracts/interfaces/IPoolDataProvider.sol';
 
 contract AaveDataReader {
@@ -217,13 +212,13 @@ contract AaveDataReader {
         return dataProvider.getReserveConfigurationData(asset);
     }
 }
-```
+`````
 
 ### Kết Nối JavaScript với ethers.js
 
 Đối với tích hợp phía trước-end và lập trình, ethers.js cung cấp một giao diện thuận tiện.
 
-```javascript
+`````javascript
 const { ethers } = require('ethers');
 require('dotenv').config();
 
@@ -251,17 +246,17 @@ async function getUserAccountData(userAddress) {
   console.log('Health Factor:', ethers.formatUnits(data.healthFactor, 18));
   return data;
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Làm việc với Vay Flash
 
 Vay flash là khoản vay không thế chấp phải được vay và trả trong một giao dịch khối duy nhất. AAVE đã tiên phong về vay flash trong DeFi, và phiên bản v4 đơn giản hóa việc triển khai bằng cách sử dụng giao diện thống nhất.
 
 ### Hợp đồng Nhận Vay Flash
 
-```solidity
+`````solidity
 import {IFlashLoanSimpleReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanSimpleReceiver.sol';
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
@@ -310,13 +305,13 @@ contract FlashLoanArbitrage is IFlashLoanSimpleReceiver {
         return true;
     }
 }
-```
+`````
 
 ### Vay Flash Nhiều Asset
 
 Đối với các chiến lược nâng cao yêu cầu nhiều asset, sử dụng giao diện vay flash đầy đủ.
 
-```solidity
+`````solidity
 import {IFlashLoanReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanReceiver.sol';
 
 contract MultiAssetFlashLoan is IFlashLoanReceiver {
@@ -357,17 +352,17 @@ contract MultiAssetFlashLoan is IFlashLoanReceiver {
         return true;
     }
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Mode Tách Bạch và Quản Lý Rủi Ro
 
 AAVE v4 đã cải thiện chế độ tách bạch, cho phép vay đối với các tài sản bảo đảm cụ thể với giới hạn rủi ro được giới hạn. Điều này rất quan trọng để tích hợp an toàn các tài sản dài hạn.
 
 ### Cung cấp trong Chế Độ Tách Bạch
 
-```solidity
+`````solidity
 contract IsolationModeSupplier {
     IPool public immutable pool;
     
@@ -401,11 +396,11 @@ contract IsolationModeSupplier {
         return pool.getReserveData(asset).isolationModeTotalDebt;
     }
 }
-```
+`````
 
 ### Kiểm Tra Giới Hạn Chế Độ Tách Bạch
 
-```javascript
+`````javascript
 async function checkIsolationModeConstraints(userAddress, asset) {
   const reserveData = await pool.getReserveData(asset);
   const userConfig = await pool.getUserConfiguration(userAddress);
@@ -420,17 +415,17 @@ async function checkIsolationModeConstraints(userAddress, asset) {
   console.log('Tài Sản Bảo Đảm Của Người Dùng:', 
     ethers.formatUnits(userReserveConfig.currentATokenBalance, 18));
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Liên Kết GHO Stablecoin
 
 GHO là stablecoin bản địa của AAVE, được phát hành dựa trên tài sản bảo đảm thông qua giao thức AAVE. Trong v4, việc liên kết GHO là nguyên thủy trong cấu trúc bể.
 
 ### Phát Hành GHO Dựa Trên Tài Sản Bảo Đảm
 
-```solidity
+`````solidity
 import {IGhoToken} from '@aave/gho-core/contracts/gho/interfaces/IGhoToken.sol';
 
 contract GhoMinter {
@@ -471,11 +466,11 @@ contract GhoMinter {
         return gho.getDiscountPercent(user);
     }
 }
-```
+`````
 
 ### Mô Hình Facilitator GHO
 
-```solidity
+`````solidity
 import {IGhoFacilitator} from '@aave/gho-core/contracts/gho/interfaces/IGhoFacilitator.sol';
 
 contract CustomGhoFacilitator is IGhoFacilitator {
@@ -503,17 +498,17 @@ contract CustomGhoFacilitator is IGhoFacilitator {
         // IMPLEMENTATION CHO PHÂN CHIA PHÍ VÀO QUỸ
     }
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Cổng Liên Kênh và Hoạt Động của Bộ Kết Nối
 
 AAVE v4 sử dụng Chainlink CCIP để chuyển đổi thanh khoản giữa các chuỗi, cho phép người dùng di chuyển vị trí của họ giữa các mạng một cách mượt mà.
 
 ### Di Chuyển aTokens qua Các Chuỗi
 
-```solidity
+`````solidity
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 
 contract AaveCrossChainBridge {
@@ -554,15 +549,15 @@ contract AaveCrossChainBridge {
         return address(0); // Chi tiết triển khai
     }
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Thí Hành Bot Phá Hủy
 
 Phá hủy là một cơ chế quan trọng để duy trì tính toàn vẹn của giao thức. Xây dựng một bot phá hủy có thể mang lại lợi nhuận đồng thời góp phần cải thiện sức khỏe của giao thức.
 
-```solidity
+`````solidity
 contract AaveLiquidator {
     IPool public immutable pool;
     
@@ -607,11 +602,11 @@ contract AaveLiquidator {
         return (healthFactor < 1e18, healthFactor);
     }
 }
-```
+`````
 
 ### Thí Hành.Scanner JavaScript Phá Hủy
 
-```javascript
+`````javascript
 async function scanForLiquidations(usersToCheck) {
   const liquidatableUsers = [];
   
@@ -627,24 +622,24 @@ async function scanForLiquidations(usersToCheck) {
           totalCollateral: ethers.formatUnits(data.totalCollateralBase, 8),
           totalDebt: ethers.formatUnits(data.totalDebtBase, 8),
         });
-        console.log(`Phá hủy có thể: ${user} HF: ${healthFactor}`);
+        console.log(````Phá hủy có thể: ${user} HF: ${healthFactor}````);
       }
     } catch (error) {
-      console.error(`Lỗi kiểm tra ${user}:`, error.message);
+      console.error(````Lỗi kiểm tra ${user}:````, error.message);
     }
   }
   
   return liquidatableUsers;
 }
-```
+`````
 
----
----
+* * *
+* * *
 ## Liên Kết Frontend với React
 
 Blockchain interactions trong các giao diện người dùng DeFi hiện đại thường sử dụng wagmi và viem.
 
-```typescript
+`````typescript
 // hooks/useAave.ts
 import { useContractWrite, usePrepareContractWrite } from 'wagmi';
 import { parseUnits } from 'viem';
@@ -670,18 +665,18 @@ export function useSupplyAsset(asset: string, amount: string, decimals: number) 
     abi: POOL_ABI,
     functionName: 'supply',
     args: [
-      asset as `0x${string}`,
+      asset as ````0x${string}````,
       parseUnits(amount, decimals),
-      '0xYourAddress' as `0x${string}`,
+      '0xYourAddress' as ````0x${string}````,
       0,
     ],
   });
 
   return useContractWrite(config);
 }
-```
+`````
 
-```tsx
+`````tsx
 // components/SupplyButton.tsx
 import { useSupplyAsset } from '../hooks/useAave';
 
@@ -698,10 +693,10 @@ export function SupplyButton({ asset, amount }: { asset: string; amount: string 
     </button>
   );
 }
-```
+````
 
----
----
+* * *
+* * *
 ## Câu Hỏi Thường Gặp
 
 ### Tỷ Suất Đảm Bảo Miễn Phí Borrrow trên AAVE v4 là bao nhiêu?
@@ -728,8 +723,8 @@ GHO là stablecoin bản địa của AAVE, được cố định theo đô la M
 
 Có, AAVE v4 được triển khai trên nhiều mạng Layer 2 bao gồm Arbitrum, Optimism, Base và Polygon. Các mẫu tích hợp gần như giống nhau giữa các chuỗi, nhưng bạn nên sử dụng địa chỉ hợp đồng phù hợp và điểm kết nối RPC cho mỗi mạng. Triển khai Layer 2 thường cung cấp chi phí gas thấp hơn đáng kể trong khi vẫn duy trì cùng một bảo mật thông qua cấu trúc rollup.
 
----
----
+* * *
+* * *
 ## Kết luận
 
 AAVE v4 là kết quả của nhiều năm đổi mới DeFi, tích hợp cơ chế cho vay mạnh mẽ cùng với các cải tiến kiến trúc hiện đại. Thiết kế linh hoạt, quản lý rủi ro được nâng cao thông qua chế độ tách biệt, tích hợp native GHO stablecoin và khả năng liên chuỗi làm cho nó trở thành lựa chọn hàng đầu cho các nhà phát triển xây dựng ứng dụng tài chính trên Ethereum và hơn thế.

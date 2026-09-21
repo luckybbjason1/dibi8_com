@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/auto-gpt-autonomous-agent-2026/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：开创一切的智能体 —— 以及它为何回归
@@ -53,7 +54,7 @@ Auto-GPT 使用**双层内存**：短期上下文（与 LLM 的对话窗口）�
 
 ### 第一步：环境准备
 
-```bash
+````bash
 python --version
 # Expected: Python 3.10.x or higher
 
@@ -62,11 +63,11 @@ git --version
 
 # Docker（可选，用于沙箱执行）
 docker --version
-```
+`````
 
 ### 第二步：克隆并安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/Significant-Gravitas/AutoGPT.git
 cd AutoGPT
@@ -77,19 +78,19 @@ pip install -e .
 # 或使用安装脚本（推荐）
 ./setup.sh
 # 这会安装依赖、配置默认路径并验证环境
-```
+`````
 
 ### 第三步：配置环境变量
 
-```bash
+`````bash
 # 复制示例配置
 cp .env.example .env
 
 # 使用你的 API 密钥编辑 .env
 nano .env
-```
+`````
 
-```bash
+`````bash
 # .env —— 最低所需配置
 # OpenAI（默认）
 OPENAI_API_KEY=sk-your-openai-key-here
@@ -112,11 +113,11 @@ DOCKER_CONTAINER_NAME=autogpt-sandbox
 # 智能体设置
 CONTINUOUS_MODE=True
 CONTINUOUS_LIMIT=50  # 每次运行最大迭代次数
-```
+`````
 
 ### 第四步：运行 Auto-GPT
 
-```bash
+`````bash
 # 交互模式 —— 智能体在每一步请求确认
 autogpt
 
@@ -128,13 +129,13 @@ autogpt --goal "Research the top 5 Python web frameworks in 2026 and write a com
 
 # 使用本地模型
 autogpt --llm ollama --model llama3.2
-```
+`````
 
 首次运行时，Auto-GPT 会初始化内存数据库并下载所需的浏览器驱动。这大约需要 **90 秒** —— 相比 2024 年版本的 **8 分钟以上**，这要归功于并行化初始化。
 
 ### 第五步：验证安装
 
-```bash
+`````bash
 # 健康检查命令
 autogpt --version
 # Expected: autogpt 0.6.x
@@ -142,7 +143,7 @@ autogpt --version
 # 测试工具注册表
 autogpt --test-tools
 # Expected output: All 12 default tools loaded successfully
-```
+`````
 
 对于生产 VPS 部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 提供 $200 额度来启动预装 Docker 的专用 Droplet —— 非常适合运行带完整沙箱的 Auto-GPT。
 
@@ -152,7 +153,7 @@ autogpt --test-tools
 
 智能体协议是一种基于 JSON 的消息格式，用于标准化 Auto-GPT 智能体的通信方式。在此之前，多智能体系统很脆弱 —— 智能体会误解彼此的输出或丢失上下文。
 
-```json
+`````json
 {
   "protocol_version": "2.1",
   "message_type": "task_delegate",
@@ -170,11 +171,11 @@ autogpt --test-tools
   },
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 ### 多智能体设置
 
-```python
+`````python
 # multi_agent_demo.py
 from autogpt.agent import Agent
 from autogpt.protocol import AgentProtocol
@@ -213,11 +214,11 @@ result = orchestrator.run(
 )
 
 print(result.final_output)
-```
+`````
 
 ### 智能体委托实战
 
-```python
+`````python
 # 智能体可以动态地将子任务委托给其他智能体
 class ResearchAgent(Agent): def handle_task(self, task): if task.complexity > 0.7: # 将写作委托给 writer 智能体
             return self.protocol.delegate(
@@ -226,13 +227,13 @@ class ResearchAgent(Agent): def handle_task(self, task): if task.complexity > 0.
                 context=self.gather_sources()
             )
         return self.execute(task)
-```
+`````
 
 ## 网页浏览、文件操作与工具使用
 
 ### 使用 Playwright 进行网页浏览
 
-```python
+`````python
 # Auto-GPT 自动处理 JavaScript 渲染页面
 # 并提取结构化数据
 
@@ -258,11 +259,11 @@ search_result = browser.search(
 )
 
 for r in search_result.results: print(f"{r.title}: {r.url}")
-```
+`````
 
 ### 文件操作
 
-```python
+`````python
 from autogpt.tools import FileOpsTool
 
 file_tool = FileOpsTool(sandbox_dir="./workspace")
@@ -276,11 +277,11 @@ file_tool.write("output/report.md", "# Analysis Results\n\n...")
 # 分析代码
 analysis = file_tool.analyze_code("src/app.py")
 print(f"Lines: {analysis.line_count}, Functions: {analysis.function_count}")
-```
+`````
 
 ### 沙箱代码执行
 
-```python
+`````python
 # 代码在隔离的 Docker 容器中运行
 from autogpt.tools import CodeExecuteTool
 
@@ -301,11 +302,11 @@ print(result.stdout)
 
 # 执行失败会被捕获并报告
 if result.error: print(f"Error: {result.error}")
-```
+`````
 
 ### 自定义工具注册
 
-```python
+`````python
 # 注册你自己的工具
 from autogpt.tools import ToolRegistry
 
@@ -324,7 +325,7 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 # 现在智能体可以根据目标自动使用这个工具
 # LLM 根据描述决定何时调用它
-```
+`````
 
 ## 基准测试：Auto-GPT 与现代智能体框架对比
 
@@ -332,15 +333,15 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 | 框架 | 首次安装 | 首次运行智能体 | Docker 就绪 | 星数（2026年5月）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Auto-GPT** | **< 9 分钟** | **< 12 分钟** | ✅ 内置 | **172,000** |
 | CrewAI | ~15 分钟 | ~20 分钟 | 手动配置 | 28,000 |
@@ -356,15 +357,15 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 | 任务 | Auto-GPT | CrewAI | LangGraph | AutoGen |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 研究 + 报告（网页搜索 + 写作） | **92%** | 85% | 78% | 88% |
 | 代码生成 + 测试（编写 + 执行） | **89%** | 82% | 91% | 86% |
@@ -386,7 +387,7 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 ### 基础 Docker 配置
 
-```dockerfile
+`````dockerfile
 # Dockerfile.autogpt
 FROM python:3.11-slim
 
@@ -406,9 +407,9 @@ COPY . .
 
 # 以连续模式运行，使用目标文件
 CMD ["autogpt", "--continuous", "--goal-file", "/app/goals/main.json"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -441,9 +442,9 @@ services: autogpt: build: context: .
     read_only: true
     tmpfs: - /tmp
 
-volumes: chroma_data: redis_data: ```
+volumes: chroma_data: redis_data: `````
 
-```bash
+`````bash
 # 部署整个栈
 docker-compose up -d
 
@@ -452,11 +453,11 @@ docker-compose logs -f autogpt
 
 # 停止所有服务
 docker-compose down
-```
+`````
 
 ### Kubernetes 部署
 
-```yaml
+`````yaml
 # autogpt-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -477,13 +478,13 @@ spec: replicas: 1
             cpu: "500m"
           limits: memory: "2Gi"
             cpu: "2000m"
-```
+`````
 
 ## 高级配置与自定义
 
 ### 自定义智能体角色
 
-```python
+`````python
 # 定义专用智能体行为
 from autogpt.agent import AgentConfig
 
@@ -502,11 +503,11 @@ config = AgentConfig(
 
 agent = Agent(config=config)
 result = agent.run("Audit the auth module in src/auth.py")
-```
+`````
 
 ### LLM 后端切换
 
-```python
+`````python
 # 无需更改智能体代码即可切换 LLM 提供商
 from autogpt.llm import LLMManager
 
@@ -521,11 +522,11 @@ llm = LLMManager.create(provider="ollama", model="llama3.2", base_url="http://lo
 
 # 无论后端如何，智能体工作方式相同
 agent = Agent(llm=llm)
-```
+`````
 
 ### 插件系统
 
-```python
+`````python
 # Auto-GPT 支持插件来扩展功能
 # 将插件放在 plugins/ 目录中
 
@@ -537,21 +538,21 @@ class CustomLogger(Plugin): def on_agent_start(self, agent): print(f"[{agent.nam
     def on_step_complete(self, agent, step, result): with open("agent_log.txt", "a") as f: f.write(f"[{agent.name}] Step {step}: {result.summary}\n")
 
     def on_agent_finish(self, agent, result): print(f"[{agent.name}] Agent finished. Final output length: {len(result.final_output)}")
-```
+`````
 
 ## 替代品对比
 
 | 功能 | **Auto-GPT** | CrewAI | LangGraph | Microsoft AutoGen |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub 星数** | **172,000** | 28,000 | 12,500 | 35,000 |
 | **设置时间（2026）** | **< 9 分钟** | ~15 分钟 | ~20 分钟 | ~18 分钟 |
@@ -594,11 +595,11 @@ Auto-GPT 很强大，但它不是魔法。在将生产工作负载押注于它�
 
 ### 使用 OpenAI 模型运行 Auto-GPT 需要多少费用？
 
-一次典型的 50 次迭代研究任务使用 GPT-4o 花费在 **$0.30 到 $1.50** 之间，具体取决于浏览的网页复杂度和处理的文件。对于连续运行，预算 **$15–$60/天**。使用 ollama 和本地模型可将此降低到电力和硬件成本。始终设置 `CONTINUOUS_LIMIT` 来限制花费。
+一次典型的 50 次迭代研究任务使用 GPT-4o 花费在 **$0.30 到 $1.50** 之间，具体取决于浏览的网页复杂度和处理的文件。对于连续运行，预算 **$15–$60/天**。使用 ollama 和本地模型可将此降低到电力和硬件成本。始终设置 ````CONTINUOUS_LIMIT```` 来限制花费。
 
 ### Auto-GPT 可以完全离线运行吗？
 
-**可以**，如果你通过 [ollama](dibi8-internal-link) 或类似工具使用本地 LLM。除网页浏览外所有工具都离线工作 —— 文件操作、代码执行和内存搜索不需要互联网连接。网页浏览显然需要连接。将 `OLLAMA_BASE_URL` 设置为指向你的本地实例。
+**可以**，如果你通过 [ollama](dibi8-internal-link) 或类似工具使用本地 LLM。除网页浏览外所有工具都离线工作 —— 文件操作、代码执行和内存搜索不需要互联网连接。网页浏览显然需要连接。将 ````OLLAMA_BASE_URL```` 设置为指向你的本地实例。
 
 ### Auto-GPT 与带插件的 ChatGPT 相比如何？
 
@@ -606,15 +607,15 @@ ChatGPT 插件是用户发起且单轮的。Auto-GPT 是自主的且多步的。
 
 ### Auto-GPT 在我的机器上运行安全吗？
 
-**基本安全，配置正确的话。** 始终将 `EXECUTE_LOCAL_COMMANDS=False`（默认值）。使用 Docker 沙箱执行代码。Auto-GPT 在配置的工作区目录中运行文件操作。切勿使用 `sudo` 或以 root 运行。2026 版本已接受安全审计并默认限制潜在危险操作。
+**基本安全，配置正确的话。** 始终将 ````EXECUTE_LOCAL_COMMANDS=False````（默认值）。使用 Docker 沙箱执行代码。Auto-GPT 在配置的工作区目录中运行文件操作。切勿使用 ````sudo```` 或以 root 运行。2026 版本已接受安全审计并默认限制潜在危险操作。
 
 ### 我可以将 Auto-GPT 与我自己的自定义工具一起使用吗？
 
-**可以。** 插件系统和 `@ToolRegistry.register` 装饰器允许你将任何 Python 函数添加为智能体工具。LLM 根据描述自动发现和使用注册的工具。你可以注册 API 调用、数据库查询、自定义算法或硬件接口。
+**可以。** 插件系统和 ````@ToolRegistry.register```` 装饰器允许你将任何 Python 函数添加为智能体工具。LLM 根据描述自动发现和使用注册的工具。你可以注册 API 调用、数据库查询、自定义算法或硬件接口。
 
 ### Auto-GPT 可以运行的最大迭代次数是多少？
 
-没有硬性限制，但实际限制存在。在 `.env` 文件中设置 `CONTINUOUS_LIMIT` —— 大多数任务推荐 **25–100**。超过 100 次迭代后，上下文窗口压力增加，智能体可能丢失原始目标轨迹。混合内存系统可扩展此限制但不能完全消除。
+没有硬性限制，但实际限制存在。在 ````.env```` 文件中设置 ````CONTINUOUS_LIMIT``` —— 大多数任务推荐 **25–100**。超过 100 次迭代后，上下文窗口压力增加，智能体可能丢失原始目标轨迹。混合内存系统可扩展此限制但不能完全消除。
 
 ## 结论：Auto-GPT 回来了 —— 值得你花时间
 
@@ -654,7 +655,7 @@ ChatGPT 插件是用户发起且单轮的。Auto-GPT 是自主的且多步的。
 本文包含联盟营销链接。如果你通过本文中的链接注册服务（如 DigitalOcean 或 Nbility），dibi8.com 可能会获得佣金，而你无需额外付费。我们只推荐我们使用且真正认可的工具。Auto-GPT 本身在 MIT 下免费开源 —— 与 Significant-Gravitas 组织不存在联盟营销关系。
 
 
----
+* * *
 *发表于 dibi8.com —— AI 源代码中心。最后更新：2026-05-19*
 
 
@@ -691,7 +692,7 @@ Explore more articles in this category: 1. [12 Factor Agents Production Llm Soft
 3. [2026 Local First Ai Stack Production Architecture](/zh/2026-local-first-ai-stack-production-architecture)
 
 
----
+* * *
 ## Frequently Asked Questions (FAQ)
 
 **问：AI Agent和传统自动化有什么区别？**

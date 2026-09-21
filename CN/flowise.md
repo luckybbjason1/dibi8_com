@@ -24,6 +24,7 @@ aliases:
   - /posts/flowise/
 - /resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -70,7 +71,7 @@ You have four ways to install Flowise. Each fits a different environment and ski
 
 Requires Node.js v18.15.0 or v20+. This is the fastest path from install to a running canvas.
 
-```bash
+````bash
 # Install Flowise globally
 npm install -g flowise
 
@@ -79,30 +80,30 @@ npm install -g flowise@3.1.2
 
 # Start Flowise
 npx flowise start
-```
+`````
 
-Open `http://localhost:3000` in your browser. The first boot creates a SQLite database at `~/.flowise` automatically.
+Open ````http://localhost:3000```` in your browser. The first boot creates a SQLite database at ````~/.flowise```` automatically.
 
 ### Option 2: Docker (Recommended for Production)
 
 This is the most reliable deployment path. Flowise provides official images on Docker Hub with multi-arch support.
 
-```bash
+`````bash
 # Pull and run the official image
 docker run -d -p 3000:3000 \
   --name flowise \
   -e FLOWISE_USERNAME=admin \
   -e FLOWISE_PASSWORD=secure-password \
   flowiseai/flowise:latest
-```
+`````
 
-Visit `http://localhost:3000` and log in with the credentials you set.
+Visit ````http://localhost:3000```` and log in with the credentials you set.
 
 ### Option 3: Docker Compose (Production-Ready with Database)
 
 For persistent deployments, use Docker Compose with PostgreSQL and volume mounts.
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: flowise: image: flowiseai/flowise:latest
@@ -130,17 +131,17 @@ services: flowise: image: flowiseai/flowise:latest
     volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: flowise_data: postgres_data: ```
+volumes: flowise_data: postgres_data: `````
 
-Start with: ```bash
+Start with: `````bash
 docker compose up -d
-```
+`````
 
 ### Option 4: Deploy to DigitalOcean Droplet
 
 For a cloud-hosted instance on a reliable VPS, deploy Flowise to DigitalOcean in minutes.
 
-```bash
+`````bash
 # On a fresh Ubuntu 24.04 droplet (2 vCPU / 2GB RAM / $12/month)
 apt update && apt install -y docker.io docker-compose
 
@@ -153,9 +154,9 @@ cp .env.example .env
 
 # Edit .env with your settings
 nano .env
-```
+`````
 
-Example `.env` for DigitalOcean deployment: ```bash
+Example ``.env`` for DigitalOcean deployment: `````bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -166,11 +167,11 @@ FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=your-secure-password-here
 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
-```
+`````
 
-Start the service: ```bash
+Start the service: `````bash
 docker compose up -d
-```
+`````
 
 *Affiliate Disclosure: The DigitalOcean link above is an affiliate link. We may earn a commission at no extra cost to you. We only recommend infrastructure we would use ourselves.*
 
@@ -178,38 +179,38 @@ docker compose up -d
 
 | Variable | Description | Default |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `PORT` | HTTP server port | 3000 |
-| `DATABASE_TYPE` | Database engine (sqlite, postgres) | sqlite |
-| `DATABASE_PATH` | SQLite file path | ~/.flowise |
-| `FLOWISE_USERNAME` | Admin username | — |
-| `FLOWISE_PASSWORD` | Admin password | — |
-| `JWT_AUTH_TOKEN_SECRET` | Access token secret | auto-generated |
-| `JWT_REFRESH_TOKEN_SECRET` | Refresh token secret | auto-generated |
-| `BLOB_STORAGE_PATH` | File upload storage path | ~/.flowise/storage |
-| `DISABLE_FLOWISE_TELEMETRY` | Disable anonymous telemetry | false |
+| ````PORT```` | HTTP server port | 3000 |
+| ````DATABASE_TYPE```` | Database engine (sqlite, postgres) | sqlite |
+| ````DATABASE_PATH```` | SQLite file path | ~/.flowise |
+| ````FLOWISE_USERNAME```` | Admin username | — |
+| ````FLOWISE_PASSWORD```` | Admin password | — |
+| ````JWT_AUTH_TOKEN_SECRET```` | Access token secret | auto-generated |
+| ````JWT_REFRESH_TOKEN_SECRET```` | Refresh token secret | auto-generated |
+| ````BLOB_STORAGE_PATH```` | File upload storage path | ~/.flowise/storage |
+| ````DISABLE_FLOWISE_TELEMETRY```` | Disable anonymous telemetry | false |
 
 ## Integration with Popular Tools
 
 ### OpenAI Integration
 
-Most users start with OpenAI models. Configure the API key in Flowise UI under Credentials, then use `ChatOpenAI` nodes in your flows.
+Most users start with OpenAI models. Configure the API key in Flowise UI under Credentials, then use ````ChatOpenAI```` nodes in your flows.
 
-```bash
+`````bash
 # Add OpenAI API key as environment variable (optional but recommended)
 export OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
 ### Ollama (Local LLMs)
 
 Running local models with Ollama eliminates API costs and keeps data on-premise. This setup is ideal for privacy-sensitive deployments.
 
-```yaml
+`````yaml
 # docker-compose-ollama.yml
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
@@ -224,29 +225,29 @@ services: ollama: image: ollama/ollama:latest
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: ```
+volumes: ollama_data: `````
 
-Pull a model and start using it: ```bash
+Pull a model and start using it: `````bash
 # Pull a lightweight model for testing
 docker exec -it ollama ollama pull qwen2:7b
 
 # Or pull Llama 3
 docker exec -it ollama ollama pull llama3.1:8b
-```
+`````
 
-In the Flowise canvas, select `ChatOllama` node and set the model name to `qwen2:7b` or `llama3.1:8b`.
+In the Flowise canvas, select ````ChatOllama```` node and set the model name to ````qwen2:7b```` or ````llama3.1:8b````.
 
 ### Chroma Vector Store (RAG Setup)
 
 For production RAG pipelines, Chroma provides a lightweight vector database that works seamlessly with Flowise.
 
-```yaml
+`````yaml
 # Add to docker-compose.yml
   chroma: image: chromadb/chroma:latest
     ports: - "8000:8000"
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
-```
+`````
 
 Build a RAG pipeline in Flowise: 1. Drag a **PDF Loader** or **Text File** node
 2. Connect to a **Text Splitter** node (set chunk size to 1000, overlap to 200)
@@ -260,20 +261,20 @@ Build a RAG pipeline in Flowise: 1. Drag a **PDF Loader** or **Text File** node
 
 For high-throughput RAG with hybrid search, Qdrant outperforms in-memory stores.
 
-```yaml
+`````yaml
 # Add Qdrant to your compose file
   qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
       - "6334:6334"
     volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
-```
+`````
 
-In Flowise, use the `Qdrant` vector store node with host `http://qdrant:6333`.
+In Flowise, use the ````Qdrant```` vector store node with host ````http://qdrant:6333````.
 
 ### Weaviate (Enterprise Vector Database)
 
-```yaml
+`````yaml
   weaviate: image: semitechnologies/weaviate:latest
     ports: - "8080:8080"
     environment: QUERY_DEFAULTS_LIMIT: 25
@@ -281,13 +282,13 @@ In Flowise, use the `Qdrant` vector store node with host `http://qdrant:6333`.
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
-```
+`````
 
 ### API Deployment
 
 Every flow automatically exposes a REST API. Export your chatflow and integrate it anywhere.
 
-```bash
+`````bash
 # Test your deployed flow with curl
 curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   -H "Content-Type: application/json" \
@@ -297,9 +298,9 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
       "sessionId": "user_001"
     }
   }'
-```
+`````
 
-Response: ```json
+Response: `````json
 {
   "text": "Based on our documentation, the return policy allows returns within 30 days of purchase with the original receipt.",
   "sourceDocuments": [
@@ -309,9 +310,9 @@ Response: ```json
     }
   ]
 }
-```
+`````
 
-Python SDK example: ```python
+Python SDK example: `````python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
@@ -324,7 +325,7 @@ def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json
 
 answer = ask("What are your shipping options?")
 print(answer)
-```
+`````
 
 ### Embedding in Websites
 
@@ -333,7 +334,7 @@ Flowise generates a JavaScript embed snippet for any chatflow. The widget suppor
 ![Flowise Embed Widget](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
 *Customizable embed chat widget with theming options — deploy to any website with one script tag*
 
-Paste this into any HTML page: ```html
+Paste this into any HTML page: `````html
 import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
@@ -355,17 +356,17 @@ title: "Support Assistant"
     }
   });
 </script>
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 Flowise performance characteristics based on community reports and our own testing: | Metric | Value | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start (Docker) | 3-5 seconds | On 2 vCPU VPS |
 | First response latency | 1.5-3s | With GPT-4o, depends on prompt |
@@ -381,15 +382,15 @@ Flowise performance characteristics based on community reports and our own testi
 
 | Feature | Flowise | Dify | n8n | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ |
 | License | MIT | Apache-2.0 | Fair-code | MIT |
@@ -419,7 +420,7 @@ Flowise performance characteristics based on community reports and our own testi
 
 ### Security Checklist
 
-Before exposing Flowise to the internet, complete these steps: ```bash
+Before exposing Flowise to the internet, complete these steps: `````bash
 # 1. Enable authentication (REQUIRED)
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -451,13 +452,13 @@ DISABLE_FLOWISE_TELEMETRY=true
 
 # 5. Set CORS for embed widgets
 CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
-```
+`````
 
 ### Scaling with Queue Mode
 
 For high-traffic deployments, Flowise supports queue-based processing with Redis workers.
 
-```yaml
+`````yaml
 # docker-compose-queue.yml
 version: '3.8'
 services: redis: image: redis:alpine
@@ -474,15 +475,15 @@ services: redis: image: redis:alpine
     environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
-```
+`````
 
-Scale workers horizontally: ```bash
+Scale workers horizontally: `````bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
-```
+`````
 
 ### Backup Strategy
 
-```bash
+`````bash
 # Backup SQLite database
 docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise
 docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz
@@ -492,11 +493,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > flowise-db-$(date +%Y%
 
 # Automated daily backup via cron (add to crontab)
 0 2 * * * /usr/local/bin/backup-flowise.sh >> /var/log/flowise-backup.log 2>&1
-```
+`````
 
 ### Monitoring with Docker
 
-```bash
+`````bash
 # View real-time logs
 docker compose logs -f flowise
 
@@ -505,7 +506,7 @@ docker stats flowise
 
 # Health check endpoint
 curl http://localhost:3000/api/v1/ping
-```
+`````
 
 ## Limitations / Honest Assessment
 
@@ -525,11 +526,11 @@ Flowise is not the right tool for every AI project. Here is what it does NOT do 
 
 ### How do I install Flowise on a server without Node.js?
 
-Use Docker. The official `flowiseai/flowise` image bundles all dependencies. A single `docker run` command gets you running without installing Node.js, pnpm, or any build tools on the host.
+Use Docker. The official ````flowiseai/flowise```` image bundles all dependencies. A single ````docker run```` command gets you running without installing Node.js, pnpm, or any build tools on the host.
 
 ### Can Flowise work with local LLMs like Llama or Qwen?
 
-Yes. Flowise has native integration with Ollama. Start an Ollama container (or local instance), pull any GGUF model, then select the `ChatOllama` node in the Flowise canvas. Your data never leaves your server — no API keys required.
+Yes. Flowise has native integration with Ollama. Start an Ollama container (or local instance), pull any GGUF model, then select the ````ChatOllama```` node in the Flowise canvas. Your data never leaves your server — no API keys required.
 
 ### How does Flowise compare to Dify for building RAG chatbots?
 
@@ -545,25 +546,25 @@ A $5/month VPS with 1 vCPU and 1 GB RAM handles small-to-medium workloads with S
 
 ### Can I export a Flowise chatbot as an API?
 
-Every chatflow and agentflow automatically gets a REST API endpoint at `/api/v1/prediction/{flow-id}`. The UI generates curl, Python, and JavaScript code snippets. You can also export an embeddable chat widget with one click.
+Every chatflow and agentflow automatically gets a REST API endpoint at ````/api/v1/prediction/{flow-id}````. The UI generates curl, Python, and JavaScript code snippets. You can also export an embeddable chat widget with one click.
 
 ### How do I upgrade Flowise to a new version?
 
-For Docker deployments, pull the latest image and restart: ```bash
+For Docker deployments, pull the latest image and restart: `````bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
-```
+`````
 
-For NPM installations, run `npm update -g flowise`. Always back up your `~/.flowise` directory before upgrading.
+For NPM installations, run ````npm update -g flowise````. Always back up your ````~/.flowise```` directory before upgrading.
 
 ## Conclusion
 
 Flowise removes the barrier between idea and deployed AI agent. With 52,948 GitHub stars, MIT licensing, and a visual canvas that maps directly to LangChain's component model, it is the pragmatic choice for developers who want to ship LLM-powered chatbots and RAG systems without writing boilerplate code.
 
-Start with `npx flowise start` for a local prototype. Move to Docker Compose with PostgreSQL for production. Connect Ollama for fully private, API-key-free deployments. And when you need to scale, add Redis queue workers and horizontal worker replicas.
+Start with ````npx flowise start```` for a local prototype. Move to Docker Compose with PostgreSQL for production. Connect Ollama for fully private, API-key-free deployments. And when you need to scale, add Redis queue workers and horizontal worker replicas.
 
 **Action items for this week:**
-1. Deploy Flowise locally with Docker (`docker run -p 3000:3000 flowiseai/flowise`)
+1. Deploy Flowise locally with Docker (````docker run -p 3000:3000 flowiseai/flowise```)
 2. Build your first RAG pipeline with a PDF loader, text splitter, and Chroma vector store
 3. Export the REST API and embed the chat widget on a test page
 4. Join the [FlowiseAI Telegram group](https://t.me/flowiseai) for community support and weekly tips
@@ -617,7 +618,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](flowise)
@@ -627,7 +628,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ai-engineering-from-scratch](flowise)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

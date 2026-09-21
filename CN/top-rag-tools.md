@@ -5,6 +5,7 @@ layout: simple
 date: 2026-06-28T00:00:00+08:00
 lastmod: 2026-06-28T00:00:00+08:00
 ---
+
 # Top RAG Tools for AI Knowledge Bases
 
 ## Top RAG Tools for AI Knowledge Bases
@@ -92,7 +93,7 @@ Top RAG Tools for AI Knowledge Bases represents an important step forward in AI-
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -188,15 +189,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
@@ -204,4 +205,4 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 | **LangGraph** | Stateful agents | High | Growing | ✅ Yes |
 
 
----
+* * *

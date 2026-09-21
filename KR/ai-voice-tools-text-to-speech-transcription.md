@@ -7,6 +7,7 @@ aliases:
   - /posts/ai-voice-tools-text-to-speech-transcription/
 ---
 
+
 # 2025년 최고의 AI 음성 도구: 텍스트 음성 변환 및 음성 텍스트 변환 비교
 
 
@@ -105,10 +106,10 @@ AI 음성 클로닝 기술의 악용 사례가 2024년부터 급증했다. 보�
 
 ### Whisper 로컬 설치
 
-```bash
+````bash
 pip install openai-whisper
 whisper audio.mp4 --model large-v3 --language Korean
-```
+````
 
 위 명령으로 로컬에서 한국어 음성을 텍스트로 변환할 수 있다.
 
@@ -134,11 +135,11 @@ whisper audio.mp4 --model large-v3 --language Korean
 
 대부분의 상용 TTS 서비스에서 상업적 사용이 가능하지만, 요금제에 따라 조건이 다르다. ElevenLabs의 Creator 플랜($22/월) 이상부터 상업 사용이 허용되며, Play.ht는 Professional 플랜부터 제공한다. Whisper로 생성한 음성은 MIT 라이선스로 자유롭게 사용 가능하다. 각 서비스의 최신 이용약관을 반드시 확인한다.
 
----
+* * *
 
 *본 기사는 2025년 5월 기준의 정보를 바탕으로 작성되었습니다. AI 도구의 기능과 가격은 수시로 변경되므로 각 공식 웹사이트에서 최신 정보를 확인하시기 바랍니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -209,7 +210,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

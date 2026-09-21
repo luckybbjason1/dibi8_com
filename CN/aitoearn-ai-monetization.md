@@ -33,6 +33,7 @@ faqs: - q: 'What is AiToEarn?'
   - q: 'Can AiToEarn be self-hosted, and how do you install it?'
     a: 'Yes, AiToEarn is self-hostable. You clone the GitHub repository, run npm install, copy .env.example to .env and add your API keys, then run npm run dev. The app then runs locally at http://localhost:3000.'
 ---
+
 {</* resource-info */>}
 
 ![AiToEarn mobile app — create content for 12+ social platforms](/images/articles/aitoearn-ai-monetization/app.png)
@@ -48,7 +49,7 @@ faqs: - q: 'What is AiToEarn?'
 **License**: AGPL-3.0
 
 
----
+* * *
 ## Core Features
 
 ### 📝 Content Factory
@@ -66,11 +67,11 @@ Supports auto-publishing to: - **Blog Platforms**: WordPress, Ghost, Notion
 ### 💰 Multiple Monetization Methods
 | Monetization | Description | Revenue Potential |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Subscriptions** | Paid members unlock premium content | $5-50/month/user |
 | **Ad Revenue** | Integrate Google AdSense, Media.net | $0.5-5/1000 impressions |
@@ -79,10 +80,10 @@ Supports auto-publishing to: - **Blog Platforms**: WordPress, Ghost, Notion
 | **API Billing** | Package your AI workflow as an API | $0.01-0.1/call |
 
 
----
+* * *
 ## Technical Architecture
 
-```
+````
 AiToEarn
 ├── Frontend (Next.js 14 + Tailwind)
 ├── Backend (NestJS + Prisma)
@@ -99,13 +100,13 @@ AiToEarn
     ├── Stripe Subscriptions
     ├── PayPal Payments
     └── Auto Affiliate Link Insertion
-```
+`````
 
----
+* * *
 
 ## Quick Start
 
-```bash
+`````bash
 # Clone repo
 git clone https://github.com/yikart/AiToEarn.git
 cd AiToEarn
@@ -119,15 +120,15 @@ cp .env.example .env
 
 # Start dev server
 npm run dev
-```
+`````
 
-Visit `http://localhost:3000` to get started.
+Visit ````http://localhost:3000```` to get started.
 
----
+* * *
 
 ## Example: AI Blog Automation
 
-```typescript
+`````typescript
 // Create automation workflow
 const workflow = await aite.createWorkflow({
   name: "Daily Tech News",
@@ -149,53 +150,53 @@ const workflow = await aite.createWorkflow({
 
 // Start workflow
 await workflow.start();
-```
+````
 
 > Configure once, run automatically long-term. Your AI content factory operates 24/7.
 
----
+* * *
 
 ## Real User Cases
 
 | User | Niche | Monthly Output | Monthly Revenue |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | @techblogger_us | Tech Reviews | 90 articles | $1,200 |
 | @design_daily | Design Resources | 300 AI images | $800 |
 | @code_snippets | Programming Tutorials | 150 code templates | $2,500 |
 | @travel_ai | Travel Guides | 60 guides | $600 |
 
----
+* * *
 
 ## Comparison with Competitors
 
 | Platform | Open Source | Multi-Model | Multi-Platform | Monetization | Self-Hosted |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Jasper | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Copy.ai | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Buffer | ❌ | ❌ | ✅ | ❌ | ❌ |
 | **AiToEarn** | **✅** | **✅** | **✅** | **✅** | **✅** |
 
----
+* * *
 
 ## Summary
 
@@ -205,7 +206,7 @@ For developers, bloggers, and freelancers looking to build passive income stream
 
 > 💡 Want more AI tools and open-source projects? Follow [dibi8.com](https://dibi8.com) for weekly curated picks.
 
----
+* * *
 
 ## Recommended Tools
 
@@ -284,7 +285,7 @@ AiToEarn: Open-Source AI Content Monetization — Turn Your GPT Conversations in
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -316,15 +317,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

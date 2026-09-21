@@ -32,6 +32,7 @@ faqs: - q: 'What is Open Design and how is it different from Claude Design?'
     a: 'You need Node.js 18.0 or higher, npm 9.0 or higher (or pnpm/yarn), and Git, plus at least 4GB of available RAM for AI model operations and 2GB of disk space for dependencies and cached models.'
   - q: 'Does Open Design cost anything to use?'
     a: 'The tool itself is free and open-source under the MIT license, with no subscription or per-seat fees. The only cost is the AI provider API usage you consume, so you pay only for the actual calls you make to providers like Anthropic, OpenAI, or Google.'---
+
 {</* resource-info */>}
 
 # Open Design: The Ultimate Local-First AI Design Tool Replacing Claude Design
@@ -78,9 +79,9 @@ One of Open Design's standout features is its library of **71 pre-configured, pr
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | Material Design 3 | Mobile/Web | Android applications, cross-platform UI |
 | Apple Human Interface | iOS/macOS | Native Apple ecosystem applications |
@@ -139,28 +140,28 @@ Before installing, ensure your system meets these requirements: - **Node.js** 18
 
 ### Step 1: Clone the Repository
 
-```bash
+````bash
 git clone https://github.com/nexu-io/open-design.git
 cd open-design
-```
+`````
 
 ### Step 2: Install Dependencies
 
-Open Design uses a monorepo structure. Install all packages with: ```bash
+Open Design uses a monorepo structure. Install all packages with: `````bash
 npm install
 # or
 pnpm install
 # or
 yarn install
-```
+`````
 
 ### Step 3: Configure Environment Variables
 
-Copy the example environment file and customize it: ```bash
+Copy the example environment file and customize it: `````bash
 cp .env.example .env
-```
+`````
 
-Edit `.env` to add your AI provider API keys. You only need to configure the providers you plan to use: ```env
+Edit ``.env`` to add your AI provider API keys. You only need to configure the providers you plan to use: `````env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -173,39 +174,39 @@ GEMINI_API_KEY=your-gemini-key
 # Optional: Custom model endpoints
 CUSTOM_MODEL_URL=https://your-model-endpoint.com
 CUSTOM_MODEL_API_KEY=your-custom-key
-```
+`````
 
 ### Step 4: Build the Project
 
-```bash
+`````bash
 npm run build
-```
+`````
 
 This compiles the TypeScript sources and bundles the design system assets.
 
 ### Step 5: Initialize Design Systems
 
-Download the 71 brand-grade design systems: ```bash
+Download the 71 brand-grade design systems: `````bash
 npm run init:design-systems
-```
+`````
 
 This command fetches and caches all design system definitions locally, enabling offline usage.
 
 ### Step 6: Launch Open Design
 
-Start the local development server: ```bash
+Start the local development server: `````bash
 npm run dev
-```
+`````
 
-The interface will be available at `http://localhost:3000`. Open your browser and you're ready to start generating designs.
+The interface will be available at ````http://localhost:3000````. Open your browser and you're ready to start generating designs.
 
 ### Step 7: Configure Your AI Assistant (Optional)
 
-If you're using Open Design with an external AI assistant like Claude Code or Cursor, install the companion plugin: ```bash
+If you're using Open Design with an external AI assistant like Claude Code or Cursor, install the companion plugin: `````bash
 npm run install:cursor-plugin
 # or
 npm run install:claude-plugin
-```
+````
 
 These plugins add Open Design commands directly to your editor's command palette.
 
@@ -213,11 +214,11 @@ These plugins add Open Design commands directly to your editor's command palette
 
 | Feature | Open Design | Claude Design |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Pricing** | Free, open-source | Paid subscription |
 | **Deployment** | Local-first, offline capable | Cloud-only |
@@ -294,11 +295,11 @@ With **39,107 stars** and growing, the project has clearly resonated with develo
 For more insights on AI-powered development tools, check out our related articles on [dibi8.com](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/), [local-first development workflows](/resources/llm-frameworks/anythingllm-architecture-local-rag/), and [open-source alternatives to proprietary AI tools](/resources/llm-frameworks/top-10-open-source-ai-tools-2026/).
 
 
----
+* * *
 *Have you used Open Design in your projects? Share your experience in the comments below or reach out to the dibi8 Tech Team for collaboration opportunities.*
 
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.

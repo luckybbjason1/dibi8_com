@@ -24,6 +24,7 @@ aliases:
   - /posts/multi-modal-content-pipeline/
 ---
 
+
 2026년 크리에이터 경제는 멀티모달 콘텐츠로 운영 — AI 공동 진행 팟캐스트, 생성된 비주얼 위 AI 내레이션의 짧은 비디오, AI 일러스트 헤더 이미지의 블로그 글, 안정적 AI 음성으로 읽는 오디오북. SaaS 스택 방식은 월 $200-500 비용 (ElevenLabs + Midjourney + Descript + Pictory + 십여 가지 다른 것). 이 컬렉션은 **셀프호스트 5컴포넌트 대안 $30-80/월** 조립 — SaaS 제공자와 같은 모델 사용, 시간당 빌린 GPU에서.
 
 ## TL;DR — 한눈에 보는 스택
@@ -50,7 +51,7 @@ SaaS 등가물 비교: ElevenLabs ($22) + Midjourney ($30) + Descript ($24) + Pi
 
 ## 2. 아키텍처 — 크리에이터 파이프라인
 
-```
+````
    스크립트 / 아웃라인 (당신, 또는 LLM 생성)
             │
             ▼
@@ -77,28 +78,28 @@ SaaS 등가물 비교: ElevenLabs ($22) + Midjourney ($30) + Descript ($24) + Pi
                      │
                      ▼
               MP4 / WAV / PNG 출력
-```
+`````
 
 분담: ChatTTS와 SD WebUI는 "단발" 생성 커버. ComfyUI는 어떤 멀티 스텝 파이프라인이든 커버 (특히 비디오). FFmpeg는 지루하지만 필수 접착제. faster-whisper는 "오디오 입력" 측 (녹음 인터뷰 전사)과 "오디오 출력" 측 (자막 파일 자동 생성) 처리.
 
 ## 3. 컴포넌트 1 — faster-whisper (오디오 → 텍스트)
 
-**역할**: 인터뷰, 팟캐스트, 비디오 사운드트랙 전사. 모든 비디오 출력에 대해 `.srt` 자막 파일 생성.
+**역할**: 인터뷰, 팟캐스트, 비디오 사운드트랙 전사. 모든 비디오 출력에 대해 ````.srt```` 자막 파일 생성.
 
 **왜 openai-whisper보다 faster-whisper**: CTranslate2 백엔드 통해 같은 하드웨어에서 4× 빠름, 거의 동일한 정확도. 2026 프로덕션 전사의 사실상 선택.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v3", device="cuda", compute_type="float16")
 segments, info = model.transcribe("input.mp3", beam_size=5)
 
 for segment in segments: print(f"[{segment.start:.2f} → {segment.end:.2f}] {segment.text}")
-```
+`````
 
 **비용**: 셀프호스트 시 $0. RTX 3060에서 ~5× 실시간, RTX 4090에서 ~30× 실시간.
 
@@ -140,7 +141,7 @@ prosody 토큰 참조와 안정 스피커 패턴 포함 전체 셋업: [ChatTTS 
 
 **역할**: 최종 결과물 조립. 오디오 + 비디오 결합. 자막 추가. 타겟 크기로 압축. 모든 비디오 크리에이터 표준 이슈.
 
-**90% 시간 사용할 3 명령**: ```bash
+**90% 시간 사용할 3 명령**: `````bash
 # 내레이션 오디오 + b-roll 비디오 결합
 ffmpeg -i visuals.mp4 -i narration.wav -c:v copy -c:a aac final.mp4
 
@@ -149,7 +150,7 @@ ffmpeg -i final.mp4 -vf "subtitles=captions.srt" final-with-subs.mp4
 
 # YouTube용 압축 (타겟 5 MB/분)
 ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload.mp4
-```
+`````
 
 심층 가이드 불필요 — FFmpeg는 온라인에 백만 가이드. 이 3 명령 학습; 필요할 때까지 나머지 학습 연기.
 
@@ -159,9 +160,9 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 2. **Docker + Python venv 기초 설치** (15분)
 3. **ComfyUI + ComfyUI Manager** (30분) — 모든 비주얼 작업의 일꾼
 4. **ChatTTS** (15분) — 안정 스피커 3-5개 사전 생성, 임베딩 저장
-5. **faster-whisper** (10분) — `pip install`, 샘플 오디오로 테스트
+5. **faster-whisper** (10분) — ````pip install````, 샘플 오디오로 테스트
 6. **SD WebUI** (15분) — ComfyUI 단독에 이미 익숙하면 옵션
-7. **FFmpeg** (5분) — `apt install ffmpeg`
+7. **FFmpeg** (5분) — ````apt install ffmpeg```
 8. **첫 실제 파이프라인** (90분) — 30초 테스트 비디오 생성: 스크립트 → ChatTTS 내레이션 → ComfyUI 5 이미지 패널 → FFmpeg 조립 → faster-whisper 자막
 
 3-4시간 후 주별 반복 가능한 작동 멀티모달 파이프라인 보유.
@@ -197,7 +198,7 @@ SaaS 등가물 비교: ElevenLabs Creator ($22) + Midjourney Standard ($30) + De
 
 생산할 때 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} 임대, 안 할 때 종료. 활성 콘텐츠 프로덕션 하루 ~2시간 넘으면 수학이 SaaS를 이김.
 
----
+* * *
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 [지식 베이스 스택](/kr/collections/knowledge-base-stack/) dev 측. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 스크립트 생성 비용 측 커버. [AI Agent 도구 체인](/kr/collections/ai-agent-tool-chain/) 에이전트가 이 파이프라인 자율 구동하게.*
 
@@ -263,7 +264,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

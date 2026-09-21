@@ -37,24 +37,25 @@ faqs: - q: 'What is llms.txt and why does it matter for SEO in 2026?'
   - q: 'In what order should I apply these AI-SEO and GEO tools?'
     a: 'Start with the GEO layer — generate llms.txt and an AI-crawler-aware robots.txt — since most sites skip this. Then add the classic on-page layer: meta tags, Schema.org JSON-LD, and hreflang for multi-language sites. Finish with the share layer by previewing your Open Graph card.'
 ---
+
 # AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Traditional SEO + Generative Engine Optimization
 
 
-SEO in 2026 is two jobs, not one. **Classic search** (Google, Bing) still rewards clean meta tags, structured data, and correct hreflang. But **generative engines** (ChatGPT, Claude, Perplexity, Google AI Overviews) are a new surface — and they read your site through `llms.txt` and decide whether to crawl you via AI-specific robots rules. This collection assembles **6 free, browser-based tools** that cover both halves. No signup, no backend, copy-paste ready.
+SEO in 2026 is two jobs, not one. **Classic search** (Google, Bing) still rewards clean meta tags, structured data, and correct hreflang. But **generative engines** (ChatGPT, Claude, Perplexity, Google AI Overviews) are a new surface — and they read your site through ```llms.txt```` and decide whether to crawl you via AI-specific robots rules. This collection assembles **6 free, browser-based tools** that cover both halves. No signup, no backend, copy-paste ready.
 
 ## TL;DR — The AI-SEO Stack at a Glance
 
 | # | Tool | Layer | Role | Open it |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **llms.txt Generator** | GEO | The "robots.txt for AI" — tell ChatGPT/Claude/Perplexity crawlers how to read your site | [Open tool](/tools/llms-txt-generator/) |
 | 2 | **robots.txt Generator** | GEO + Classic | Standard crawl rules **+ AI-crawler controls** (GPTBot, ClaudeBot, PerplexityBot, CCBot, Google-Extended) | [Open tool](/tools/robots-txt-generator/) |
@@ -65,7 +66,7 @@ SEO in 2026 is two jobs, not one. **Classic search** (Google, Bing) still reward
 
 ## The Assembly Order
 
-**Start with the GEO layer (1 + 2)** — this is what most sites haven't done yet, and it's where dibi8's edge is. Generate an `llms.txt` so AI crawlers understand your structure, and a `robots.txt` that *explicitly* allows (or blocks) GPTBot/ClaudeBot/PerplexityBot. In 2026, being citable by AI search is the new "ranking on page 1."
+**Start with the GEO layer (1 + 2)** — this is what most sites haven't done yet, and it's where dibi8's edge is. Generate an ````llms.txt```` so AI crawlers understand your structure, and a ````robots.txt``` that *explicitly* allows (or blocks) GPTBot/ClaudeBot/PerplexityBot. In 2026, being citable by AI search is the new "ranking on page 1."
 
 **Then the classic on-page layer (3 + 4 + 5)** — meta tags for the snippet, Schema.org JSON-LD for rich results (and AI engines increasingly parse JSON-LD for facts), hreflang if you're multi-language. These are table stakes that still move rankings.
 
@@ -146,18 +147,18 @@ AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Traditional SEO + Generative E
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](ai-seo-geo-toolkit-stack)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](ai-seo-geo-toolkit-stack)
 - [prompts-chat](ai-seo-geo-toolkit-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

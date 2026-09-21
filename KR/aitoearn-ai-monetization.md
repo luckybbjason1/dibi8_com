@@ -28,6 +28,7 @@ faqs: - q: 'AiToEarn이란 무엇인가요?'
     a: '네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소를 클론하고 npm install을 실행한 뒤, .env.example을 .env로 복사하고 API 키를 입력한 다음 npm run dev를 실행합니다. 그러면 앱이 http://localhost:3000에서 로컬로 실행됩니다.'
 ---
 
+
 {</* resource-info */>}
 
 ![AiToEarn 모바일 — 12+ 소셜 플랫폼에 분배](/images/articles/aitoearn-ai-monetization/app.png)
@@ -42,7 +43,7 @@ faqs: - q: 'AiToEarn이란 무엇인가요?'
 **언어**: TypeScript / Node.js
 **라이선스**: AGPL-3.0
 
----
+* * *
 
 ## 핵심 기능
 
@@ -67,11 +68,11 @@ faqs: - q: 'AiToEarn이란 무엇인가요?'
 | **유료 다운로드** | 코드 템플릿, 프롬프트 팩, 디자인 에셋 | $1-20/회 |
 | **API 과금** | AI 워크플로우를 API로 패키징 | 호출당 $0.01-0.1 |
 
----
+* * *
 
 ## 기술 아키텍처
 
-```
+````
 AiToEarn
 ├── 프론트엔드 (Next.js 14 + Tailwind)
 ├── 백엔드 (NestJS + Prisma)
@@ -88,13 +89,13 @@ AiToEarn
     ├── Stripe 구독
     ├── PayPal 결제
     └── 제휴 링크 자동 삽입
-```
+`````
 
----
+* * *
 
 ## 빠른 시작
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/yikart/AiToEarn.git
 cd AiToEarn
@@ -108,15 +109,15 @@ cp .env.example .env
 
 # 개발 서버 시작
 npm run dev
-```
+`````
 
-`http://localhost:3000`에 접속하여 시작하세요.
+````http://localhost:3000````에 접속하여 시작하세요.
 
----
+* * *
 
 ## 사용 예시: AI 블로그 자동화
 
-```typescript
+`````typescript
 // 자동화 워크플로우 생성
 const workflow = await aite.createWorkflow({
   name: "매일의 기술 뉴스",
@@ -138,11 +139,11 @@ const workflow = await aite.createWorkflow({
 
 // 워크플로우 시작
 await workflow.start();
-```
+````
 
 > 한 번 설정하면 장기간 자동 실행됩니다. AI 콘텐츠 팩토리가 24/7 가동합니다.
 
----
+* * *
 
 ## 실제 사용자 사례
 
@@ -153,7 +154,7 @@ await workflow.start();
 | @code_snippets | 프로그래밍 튜토리얼 | 150개 코드 템플릿 | $2,500 |
 | @travel_ai | 여행 가이드 | 60개 가이드 | $600 |
 
----
+* * *
 
 ## 경쟁사와 비교
 
@@ -164,7 +165,7 @@ await workflow.start();
 | Buffer | ❌ | ❌ | ✅ | ❌ | ❌ |
 | **AiToEarn** | **✅** | **✅** | **✅** | **✅** | **✅** |
 
----
+* * *
 
 ## 요약
 
@@ -174,7 +175,7 @@ AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임�
 
 > 💡 더 많은 AI 도구와 오픈소스 프로젝트를 원하시나요? 매주 선별된 추천을 위해 [dibi8.com](https://dibi8.com)을 팔로우하세요.
 
----
+* * *
 
 ## 추천 도구
 
@@ -253,7 +254,7 @@ AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

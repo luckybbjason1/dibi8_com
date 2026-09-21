@@ -23,6 +23,7 @@ tags: ["claude-code", "ai-coding-agent", "terminal-coding", "anthropic", "claude
 aliases:
   - /posts/claude-code/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -52,13 +53,13 @@ Key architectural components: - **Context Engine**: Ingests up to 1 million toke
 
 | Concept | Description |
 |
----
+* * *
 |
----
+* * *
 |
-| `CLAUDE.md` | Project-level configuration file that defines coding standards, conventions, and custom instructions |
-| Plan Mode (`/plan`) | Claude outlines all intended changes before touching disk, giving you approval control |
-| Slash Commands | Reusable workflow shortcuts like `/init`, `/desktop`, `/mcp`, and `/bug` |
+| ```CLAUDE.md```` | Project-level configuration file that defines coding standards, conventions, and custom instructions |
+| Plan Mode (````/plan````) | Claude outlines all intended changes before touching disk, giving you approval control |
+| Slash Commands | Reusable workflow shortcuts like ````/init````, ````/desktop````, ````/mcp````, and ````/bug```` |
 | MCP Integration | Connect external tools via the Model Context Protocol for database queries, API calls, and more |
 
 ## Installation & Setup
@@ -67,7 +68,7 @@ Claude Code installs in under 60 seconds on macOS, Linux, and Windows (via WSL o
 
 ### macOS and Linux (Recommended Installer)
 
-```bash
+`````bash
 # Install via the official installer (auto-updates in background)
 curl -fsSL https://claude.ai/install.sh | bash
 
@@ -76,51 +77,51 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Check installation
 claude --version
-```
+`````
 
 ### Windows PowerShell
 
-```powershell
+`````powershell
 # Install via the PowerShell installer
 irm https://claude.ai/install.ps1 | iex
 
 # Verify installation
 claude --version
-```
+`````
 
 ### Homebrew (macOS/Linux — Manual Updates)
 
-```bash
+`````bash
 # Install via Homebrew (does not auto-update)
 brew install claude-code
 
 # Update manually when needed
 brew upgrade claude-code
-```
+`````
 
 ### VS Code Extension
 
-```bash
+`````bash
 # Install from the VS Code marketplace
 # Open Extensions panel (Cmd+Shift+X / Ctrl+Shift+X)
 # Search "Claude Code" and install
 # The extension connects to the same session running in your terminal
-```
+`````
 
 ### Authentication
 
-```bash
+`````bash
 # Log in with your Anthropic account
 claude auth login
 
 # This opens a browser window. Claude Code requires a paid subscription: # - Claude Pro: $20/month
 # - Claude Max: $100/month (5x usage)
 # - Claude Max 20x: $200/month (20x usage)
-```
+`````
 
 ### First Session
 
-```bash
+`````bash
 # Navigate to your project
 cd /path/to/your-project
 
@@ -129,7 +130,7 @@ claude
 
 # Ask it to orient itself
 What does this project do? Walk me through the architecture.
-```
+`````
 
 ## Integration with Popular Tools
 
@@ -137,40 +138,40 @@ What does this project do? Walk me through the architecture.
 
 The Claude Code extension embeds the CLI session inside your editor sidebar. Install it from the marketplace, authenticate once, and switch between terminal and IDE without losing context.
 
-```json
+`````json
 // .vscode/settings.json — Recommended settings for Claude Code
 {
   "claude.code.enableInlineCompletion": false,
   "claude.code.autoApproveEdits": false,
   "claude.code.defaultModel": "claude-opus-4-6"
 }
-```
+`````
 
 ### Cursor
 
 Since Cursor is a VS Code fork, Claude Code runs in Cursor's integrated terminal. The two tools complement each other: Cursor handles inline autocomplete and visual diffs, while Claude Code manages multi-file refactors and autonomous task execution.
 
-```bash
+`````bash
 # In Cursor's integrated terminal, simply run: cd your-project
 claude
 
 # Both tools operate on the same filesystem without conflict
-```
+`````
 
 ### GitHub Integration
 
-Tag `@claude` on GitHub pull requests or issues to trigger Claude Code analysis. The agent reads the PR diff, leaves review comments, and can suggest fixes.
+Tag ````@claude```` on GitHub pull requests or issues to trigger Claude Code analysis. The agent reads the PR diff, leaves review comments, and can suggest fixes.
 
-```bash
+`````bash
 # Enable the GitHub integration
 claude auth login --github
 
 # In a PR comment, tag: @claude please review this change for security issues
-```
+`````
 
 ### GitLab CI/CD Pipeline
 
-```yaml
+`````yaml
 # .gitlab-ci.yml — Run Claude Code for automated code review
 stages: - review
 
@@ -181,15 +182,15 @@ claude_review: stage: review
     - claude auth login --token $CLAUDE_API_TOKEN
   script: - claude review --diff HEAD~1 --output review.json
   artifacts: reports: codequality: review.json
-```
+`````
 
 ### JetBrains IDEs
 
 Install the Claude Code plugin from the JetBrains Marketplace. It works with WebStorm, IntelliJ, PyCharm, GoLand, and all other JetBrains products.
 
-```bash
+`````bash
 # Inside any JetBrains IDE: # Settings → Plugins → Marketplace → Search "Claude Code" → Install → Restart
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -199,13 +200,13 @@ SWE-bench Verified is the gold-standard benchmark for AI coding agents, measurin
 
 | Agent / Model | SWE-bench Verified | Date | Source |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code + Opus 4.6 | **80.8%** | Mar 2026 | Anthropic |
 | Claude Code + Opus 4.5 | 64.3% | Dec 2025 | SWE-bench leaderboard |
@@ -217,13 +218,13 @@ SWE-bench Verified is the gold-standard benchmark for AI coding agents, measurin
 
 Terminal-Bench measures real-world terminal task completion accuracy: | Agent | Model | Accuracy | Rank |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Codex CLI | GPT-5.5 | **82.0%** | #7 |
 | Claude Code | Opus 4.6 | **58.0%** | #51 |
@@ -234,13 +235,13 @@ Terminal-Bench measures real-world terminal task completion accuracy: | Agent | 
 
 Based on aggregated developer reports from Q1 2026: | Metric | Claude Code | Aider | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Avg. Time to First Commit | 4.2 min | 6.1 min | 3.8 min |
 | Multi-File Refactor Success | 78% | 62% | 71% |
@@ -251,9 +252,9 @@ Based on aggregated developer reports from Q1 2026: | Metric | Claude Code | Aid
 
 ### CLAUDE.md Configuration
 
-The `CLAUDE.md` file is your project's instruction manual for Claude Code. Place it in your repository root.
+The ````CLAUDE.md```` file is your project's instruction manual for Claude Code. Place it in your repository root.
 
-```markdown
+`````markdown
 # CLAUDE.md — Project Configuration for Claude Code
 
 ## Coding Standards
@@ -263,25 +264,25 @@ The `CLAUDE.md` file is your project's instruction manual for Claude Code. Place
 - Prefer async/await over Promise chains
 
 ## Testing
-- Run `npm test` before committing any changes
+- Run ````npm test```` before committing any changes
 - New features require unit tests with >80% coverage
 - Use Vitest for unit tests, Playwright for E2E
 
 ## Git Workflow
 - Use conventional commits (feat:, fix:, docs:, refactor:)
 - Create a new branch for each task; do not commit to main
-- Run `npm run lint` before each commit
+- Run ````npm run lint```` before each commit
 
 ## Architecture
 - /src/components — React components (PascalCase files)
 - /src/lib — Utility functions (camelCase files)
 - /src/api — Route handlers
 - /tests — Mirror the src structure
-```
+`````
 
 ### Security Sandboxing
 
-Claude Code executes shell commands with your user permissions. For production environments, use sandboxing: ```bash
+Claude Code executes shell commands with your user permissions. For production environments, use sandboxing: `````bash
 # Run Claude Code in a Docker sandbox
 docker run -it --rm \
   -v $(pwd):/workspace \
@@ -290,11 +291,11 @@ docker run -it --rm \
   --tmpfs /tmp \
   node:22-slim \
   bash -c "curl -fsSL https://claude.ai/install.sh | bash && /root/.local/bin/claude"
-```
+`````
 
 ### Permission Control with Lifecycle Hooks
 
-```json
+`````json
 // ~/.claude/settings.json — Global permission rules
 {
   "permissions": {
@@ -312,11 +313,11 @@ docker run -it --rm \
     "PostToolUse": "/home/dev/.claude/hooks/post-tool.sh"
   }
 }
-```
+`````
 
 ### MCP Server Configuration
 
-```json
+`````json
 // mcp.json — Connect external tools
 {
   "mcpServers": {
@@ -334,11 +335,11 @@ docker run -it --rm \
     }
   }
 }
-```
+`````
 
 ### Monitoring Token Usage
 
-```bash
+`````bash
 # Check current session token consumption
 claude status
 
@@ -347,7 +348,7 @@ claude status
 # Output tokens: 28,441
 # Estimated cost: $0.42
 # Rate limit: 4,200/5,000 requests remaining
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -355,15 +356,15 @@ claude status
 
 | Feature | Claude Code | Aider | OpenHands | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 125,050 | 32,800 | 73,913 | 83,000 |
 | **License** | Anthropic Terms | Apache-2.0 | MIT | Apache-2.0 |
@@ -445,7 +446,7 @@ A: Claude Code is language-agnostic because it operates at the filesystem and sh
 A: The large context window lets Claude Code load entire repositories — or substantial portions of them — without truncation. This matters for cross-file refactoring, understanding monorepo architectures, and debugging issues that span multiple modules. In practice, repositories under 500K lines of code fit comfortably within the context window.
 
 **Q: Is Claude Code safe for production codebases?**
-A: Claude Code executes shell commands with your user permissions, which carries inherent risk. For production environments, run it in a Docker sandbox, configure lifecycle hooks to intercept dangerous commands, and always use Plan Mode (`/plan`) to review changes before execution. Never run Claude Code with sudo or on untrusted repositories without sandboxing.
+A: Claude Code executes shell commands with your user permissions, which carries inherent risk. For production environments, run it in a Docker sandbox, configure lifecycle hooks to intercept dangerous commands, and always use Plan Mode (````/plan````) to review changes before execution. Never run Claude Code with sudo or on untrusted repositories without sandboxing.
 
 **Q: Can I use Claude Code alongside Cursor or VS Code?**
 A: Yes. Many developers run both: Cursor handles the daily editing loop with inline autocomplete, while Claude Code manages large autonomous refactors in a terminal pane. They operate on the same Git repository without conflict, though concurrent edits to the same files can cause merge conflicts.
@@ -457,10 +458,10 @@ Claude Code represents the most capable terminal-native AI coding agent availabl
 For teams already standardized on Anthropic models, Claude Code is the natural choice. For developers needing model flexibility or zero subscription cost, Aider and OpenHands are strong open-source alternatives. For ChatGPT subscribers who want the fastest terminal agent, Codex CLI delivers competitive results at no additional cost.
 
 **Action items to get started:**
-1. Install Claude Code with `curl -fsSL https://claude.ai/install.sh | bash`
-2. Authenticate with `claude auth login` and subscribe to Claude Pro ($20/month)
-3. Create a `CLAUDE.md` file in your primary project with coding standards
-4. Run `claude` in your project directory and ask it to walk through the architecture
+1. Install Claude Code with ````curl -fsSL https://claude.ai/install.sh | bash````
+2. Authenticate with ````claude auth login```` and subscribe to Claude Pro ($20/month)
+3. Create a ````CLAUDE.md```` file in your primary project with coding standards
+4. Run ````claude``` in your project directory and ask it to walk through the architecture
 5. Join the [dibi8 Telegram group](https://t.me/dibi8channel) to share tips and ask questions
 
 
@@ -487,7 +488,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Claude Code Desktop App Download](https://claude.com/download)
 
 
----
+* * *
 *Disclaimer: This article contains no affiliate links. All pricing and benchmark data reflect publicly available information as of May 2026. Verify current pricing on official vendor websites before making purchase decisions.*
 
 
@@ -517,7 +518,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code)
@@ -526,7 +527,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [claude-code-vs-aider](claude-code)
 - [cursor-vs-claude-code](claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

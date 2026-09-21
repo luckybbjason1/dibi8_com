@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/superagent-ai-agent-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction: Khoảng Cách Triển Khai Không Ai Nói Đến
@@ -36,7 +37,7 @@ Bạn xây dựng một AI Agent bằng Python. Nó chạy tốt trên laptop. T
 
 > **Yêu cầu tiên quyết:** Python 3.10+, Node.js 18+ (cho web UI), và API key OpenAI hoặc tương đương.
 
----
+* * *
 
 ## What Is Superagent?
 
@@ -44,11 +45,11 @@ Superagent là một **framework mã nguồn mở để xây dựng, quản lý,
 
 Không giống như các nền tảng no-code đồ sộ, Superagent luôn đặt developer lên hàng đầu. Bạn viết code Python để định nghĩa hành vi Agent, chọn LLM provider, kết nối vector store như Pinecone hoặc Weaviate, và expose mọi thứ qua các API endpoint tự động được tạo ra. Framework xử lý phần boilerplate để bạn tập trung vào logic Agent.
 
----
+* * *
 
 ## How Superagent Works
 
-Kiến trúc của Superagent tuân theo **mô hình pipeline 5 lớp**: ```
+Kiến trúc của Superagent tuân theo **mô hình pipeline 5 lớp**: ````
 ┌─────────────────────────────────────────────────────────────┐
 │                    Ứng dụng Client                            │
 │         (SDK / REST API / WebSocket / CLI)                    │
@@ -73,7 +74,7 @@ Kiến trúc của Superagent tuân theo **mô hình pipeline 5 lớp**: ```
 │                  Nhà cung cấp Mô hình                         │
 │    OpenAI • Anthropic • Cohere • Local (Ollama)              │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 Các thành phần cốt lõi: 1. **Agents** — Đơn vị suy luận. Mỗi Agent được gắn với một LLM, một tập tool, và backend memory.
 2. **Tools** — Các hàm mà Agent có thể gọi (tìm kiếm web, gọi API, thực thi code, truy vấn database).
@@ -81,21 +82,21 @@ Các thành phần cốt lõi: 1. **Agents** — Đơn vị suy luận. Mỗi Ag
 4. **Workflows** — Tự động hóa nhiều bước chuỗi các Agent, tool, và logic điều kiện.
 5. **API** — REST endpoint tự động được tạo với tài liệu OpenAPI cho mọi Agent và workflow bạn tạo.
 
----
+* * *
 
 ## Installation & Setup: Từ Zero đến Agent Chạy trong 5 Phút
 
 ### Bước 1: Cài đặt CLI và SDK
 
-```bash
+`````bash
 npm install -g superagent-cli
 
 # Xác minh cài đặt
 superagent --version
 # Output: superagent/0.4.2 linux-x64 node-v20.12.0
-```
+`````
 
-CLI là con đường nhanh nhất để triển khai. Ngoài ra, cài đặt Python SDK nếu bạn thích điều khiển bằng code: ```bash
+CLI là con đường nhanh nhất để triển khai. Ngoài ra, cài đặt Python SDK nếu bạn thích điều khiển bằng code: `````bash
 # Cài đặt Python SDK
 pip install superagent-py
 
@@ -103,11 +104,11 @@ pip install superagent-py
 git clone https://github.com/superagent-ai/superagent.git
 cd superagent/libs/superagent-py
 pip install -e .
-```
+`````
 
 ### Bước 2: Cấu hình Biến Môi trường
 
-```bash
+`````bash
 # Tạo file .env trong thư mục project
 cat > .env << EOF
 OPENAI_API_KEY=sk-your-openai-key-here
@@ -121,11 +122,11 @@ PINECONE_ENVIRONMENT=us-east-1
 # Tùy chọn: Phát triển local với Ollama
 OLLAMA_BASE_URL=http://localhost:11434
 EOF
-```
+`````
 
 ### Bước 3: Triển khai Agent Đầu tiên
 
-```bash
+`````bash
 # Đăng nhập vào Superagent Cloud (hoặc instance tự host)
 superagent login
 
@@ -137,17 +138,17 @@ superagent init --template qa-agent
 
 # Triển khai lên production
 superagent deploy
-```
+`````
 
-Sau `superagent deploy`, bạn nhận được một API endpoint live: ```
+Sau ``superagent deploy``, bạn nhận được một API endpoint live: `````
 ✅ Agent triển khai thành công!
 🔗 API Endpoint: https://api.superagent.sh/v1/agents/ag_01hwxyz123
 📖 Tài liệu: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs
-```
+`````
 
 ### Bước 4: Kiểm thử Agent đã triển khai
 
-```bash
+`````bash
 # Truy vấn Agent qua curl
 curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   -H "Authorization: Bearer $SUPERAGENT_API_KEY" \
@@ -156,24 +157,24 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
     "input": "What are the key features of Superagent?",
     "enableStreaming": false
   }"
-```
+`````
 
-Phản hồi bao gồm câu trả lờ được tạo, trích dẫn nguồn nếu RAG được bật, và metadata thực thi: ```json
+Phản hồi bao gồm câu trả lờ được tạo, trích dẫn nguồn nếu RAG được bật, và metadata thực thi: `````json
 {
   "output": "Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.",
   "intermediate_steps": [],
   "total_tokens": 142,
   "total_cost": 0.0021
 }
-```
+`````
 
----
+* * *
 
 ## Integration with Mainstream Tools
 
 ### OpenAI / Anthropic / Cohere
 
-Superagent hỗ trợ mọi API tương thích OpenAI ngay từ đầu. Chuyển đổi giữa các provider chỉ là thay đổi cấu hình: ```python
+Superagent hỗ trợ mọi API tương thích OpenAI ngay từ đầu. Chuyển đổi giữa các provider chỉ là thay đổi cấu hình: `````python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -192,11 +193,11 @@ agent_claude = client.agent.create(
     llm_model="claude-3-5-sonnet-20241022",
     api_key=os.getenv("ANTHROPIC_API_KEY")
 )
-```
+`````
 
 ### Tích hợp LangChain
 
-Superagent có thể tiếp nhận mọi LangChain tool hoặc chain, giúp việc migration trở nên đơn giản: ```python
+Superagent có thể tiếp nhận mọi LangChain tool hoặc chain, giúp việc migration trở nên đơn giản: `````python
 from langchain.tools import DuckDuckGoSearchRun
 from superagent.client import Superagent
 
@@ -211,11 +212,11 @@ agent = client.agent.create(
         "langchain_tool": search  # Truyền trực tiếp LangChain tool
     }]
 )
-```
+`````
 
 ### Pinecone / Weaviate Vector Database
 
-Kết nối vector store hiện có cho workflow RAG: ```python
+Kết nối vector store hiện có cho workflow RAG: `````python
 import os
 from superagent.client import Superagent
 
@@ -242,11 +243,11 @@ datasource_weaviate = client.datasource.create(
         "class_name": "Document"
     }
 )
-```
+`````
 
 ### Tích hợp Backend FastAPI / Express.js
 
-Nhúng Superagent vào backend hiện có: ```python
+Nhúng Superagent vào backend hiện có: `````python
 # Ví dụ tích hợp FastAPI
 from fastapi import FastAPI
 from superagent.client import Superagent
@@ -262,11 +263,11 @@ async def ask_question(question: str): response = await client.agent.invoke(
         enable_streaming=True
     )
     return {"answer": response.output}
-```
+`````
 
 ### Triển khai Docker
 
-Để tự host, sử dụng Docker image chính thức: ```bash
+Để tự host, sử dụng Docker image chính thức: `````bash
 # Pull image chính thức
 docker pull superagentai/superagent:latest
 
@@ -281,9 +282,9 @@ docker run -d \
 
 # Xác minh container đang chạy
 docker ps | grep superagent
-```
+`````
 
-Để triển khai production, hãy sử dụng [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) với Docker Compose: ```yaml
+Để triển khai production, hãy sử dụng [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) với Docker Compose: `````yaml
 # docker-compose.yml cho production
 version: "3.8"
 services: superagent: image: superagentai/superagent:latest
@@ -302,9 +303,9 @@ services: superagent: image: superagentai/superagent:latest
   redis: image: redis:7-alpine
     volumes: - redisdata:/data
 
-volumes: pgdata: redisdata: ```
+volumes: pgdata: redisdata: `````
 
----
+* * *
 
 ## Benchmarks and Real-World Use Cases
 
@@ -334,13 +335,13 @@ Mô hình định giá của Superagent dựa trên mức sử dụng. Tính đ�
 
 **Trường hợp 3 — Pipeline Tạo Nội dung:** Một agency marketing chuỗi ba Agent Superagent——nghiên cứu, viết, và review——thành workflow tạo bản thảo blog. Sản lượng tăng từ **4 bài/tuần lên 15**, thờ gian chỉnh sửa giảm 40%.
 
----
+* * *
 
 ## Advanced Usage and Production Hardening
 
 ### Phát triển Tool Tùy chỉnh
 
-Xây dựng tool chuyên biệt theo lĩnh vực mà Agent của bạn có thể gọi: ```python
+Xây dựng tool chuyên biệt theo lĩnh vực mà Agent của bạn có thể gọi: `````python
 from superagent.client import Superagent
 import requests
 
@@ -360,11 +361,11 @@ client.tool.create(
     description="Get the current stock price for a given ticker symbol",
     function=get_stock_price
 )
-```
+`````
 
 ### Chiến lược Quản lý Memory
 
-Superagent hỗ trợ nhiều backend memory. Chọn dựa trên use case: ```python
+Superagent hỗ trợ nhiều backend memory. Chọn dựa trên use case: `````python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -386,11 +387,11 @@ agent = client.agent.create(
     name="Multi-User Agent",
     memory={"type": "redis", "ttl": 3600}  # TTL 1 giờ
 )
-```
+`````
 
 ### Tự động hóa Workflow
 
-Chuỗi nhiều Agent thành workflow đa bước: ```python
+Chuỗi nhiều Agent thành workflow đa bước: `````python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -423,11 +424,11 @@ result = client.workflow.invoke(
     inputs={"topic": "AI Agent Deployment Best Practices"}
 )
 print(result.steps[-1].output)  # Bài đăng đã chỉnh sửa cuối cùng
-```
+`````
 
 ### Xác thực và Giới hạn Tốc độ
 
-Đối với API production, thực thi kiểm soát truy cập: ```python
+Đối với API production, thực thi kiểm soát truy cập: `````python
 # Cấu hình xác thực API key
 superagent config set auth.type=api_key
 superagent config set auth.rate_limit=100/minute
@@ -435,11 +436,11 @@ superagent config set auth.rate_limit=100/minute
 # Bật ghi log yêu cầu cho audit trail
 superagent config set logging.level=info
 superagent config set logging.retention=30d
-```
+`````
 
 ### Health Check và Giám sát
 
-```bash
+`````bash
 # Health endpoint tích hợp
 curl https://your-superagent-instance.com/health
 
@@ -447,9 +448,9 @@ curl https://your-superagent-instance.com/health
 
 # Prometheus metrics endpoint (khi bật)
 curl https://your-superagent-instance.com/metrics
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
@@ -479,7 +480,7 @@ curl https://your-superagent-instance.com/metrics
 - Chọn **AutoGen** nếu pattern hội thoại đa agent là nhu cầu chính
 - Chọn **CrewAI** nếu bạn thích abstraction agent dựa trên vai trò vớ ít ceremony hơn
 
----
+* * *
 
 ## Limitations: Đánh Giá Trung Thực
 
@@ -493,7 +494,7 @@ curl https://your-superagent-instance.com/metrics
 
 **5. Giá có thể tăng ở quy mô lớn.** Mô hình tính phí theo token cho Guard/Verify/Redact sẽ tích lũy. Ứng dụng high-traffic xử lý hàng triệu token mỗi ngày nên tính toán chi phí kỹ lưỡng trước khi cam kết.
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -503,11 +504,11 @@ LangChain là thư viện để tạo ứng dụng LLM. Superagent là framework
 
 ### Tôi có thể dùng Superagent với model local như Llama hoặc Mistral không?
 
-Có. Mọi model được expose qua API tương thích OpenAI đều hoạt động, bao gồm [Ollama](https://ollama.com), [vLLM](https://github.com/vllm-project/vllm), và [LM Studio](https://lmstudio.ai). Đặt `base_url` đến endpoint server suy luận local của bạn.
+Có. Mọi model được expose qua API tương thích OpenAI đều hoạt động, bao gồm [Ollama](https://ollama.com), [vLLM](https://github.com/vllm-project/vllm), và [LM Studio](https://lmstudio.ai). Đặt ````base_url```` đến endpoint server suy luận local của bạn.
 
 ### Superagent có phù hợp cho workload production không?
 
-Có, với cấu hình đúng. Sử dụng triển khai Docker vớ backend PostgreSQL và Redis, cấu hình rate limiting, bật health check, và monitor endpoint `/metrics`. Các team chạy 10,000+ request/ngày báo cáo hiệu năng ổn định.
+Có, với cấu hình đúng. Sử dụng triển khai Docker vớ backend PostgreSQL và Redis, cấu hình rate limiting, bật health check, và monitor endpoint ````/metrics````. Các team chạy 10,000+ request/ngày báo cáo hiệu năng ổn định.
 
 ### Pipeline RAG xử lý cập nhật tài liệu như thế nào?
 
@@ -515,17 +516,17 @@ Superagent phát hiện thay đổi tài liệu qua job đồng bộ datasource.
 
 ### Tôi có thể tự host Superagent mà không dùng Cloud không?
 
-Hoàn toàn được. Toàn bộ stack là mã nguồn mở dưới giấy phép MIT. Tự host cần Docker, PostgreSQL, và Redis. CLI hoạt động vớ instance tự host——chỉ cần trỏ nó bằng `superagent config set api.url=https://your-instance.com`.
+Hoàn toàn được. Toàn bộ stack là mã nguồn mở dưới giấy phép MIT. Tự host cần Docker, PostgreSQL, và Redis. CLI hoạt động vớ instance tự host——chỉ cần trỏ nó bằng ````superagent config set api.url=https://your-instance.com````.
 
 ### Superagent có hỗ trợ xử lý tài liệu đa ngôn ngữ không?
 
-Có. Pipeline chunking và embedding hỗ trợ văn bản Unicode mọi ngôn ngữ. Đối vớ RAG trên tài liệu không phải tiếng Anh, hãy đảm bảo model embedding (ví dụ: `text-embedding-3-large`) hỗ trợ ngôn ngữ đích.
+Có. Pipeline chunking và embedding hỗ trợ văn bản Unicode mọi ngôn ngữ. Đối vớ RAG trên tài liệu không phải tiếng Anh, hãy đảm bảo model embedding (ví dụ: ````text-embedding-3-large```) hỗ trợ ngôn ngữ đích.
 
 ### Các vector database nào được hỗ trợ?
 
 Tính đến v0.4.x: Pinecone, Weaviate, Qdrant, Chroma, và PostgreSQL vớ pgvector. Hỗ trợ Milvus và Redis Vector nằm trong [roadmap](https://github.com/superagent-ai/superagent/issues).
 
----
+* * *
 
 ## Conclusion: Hãy Ship Agent của Bạn Ngay Hôm Nay
 
@@ -535,7 +536,7 @@ Bắt đầu vớ phần setup 5 phút trong bài này, kết nối vector datab
 
 > **Tham gia thảo luận:** Chia sẻ kinh nghiệm triển khai Superagent của bạn trong [nhóm Telegram](https://t.me/dibi8ai_vi) của chúng tôi——chúng tôi giải quyết vấn đề, chia sẻ config, và review kiến trúc agent hàng tuần.
 
----
+* * *
 
 ## Sources & Further Reading
 
@@ -547,7 +548,7 @@ Bắt đầu vớ phần setup 5 phút trong bài này, kết nối vector datab
 - [OpenAI API Reference](https://platform.openai.com/docs)
 - [LangChain Documentation](https://python.langchain.com)
 
----
+* * *
 
 
 
@@ -588,7 +589,7 @@ Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [Digi
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -598,7 +599,7 @@ Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [Digi
 - [9router-smart-llm-proxy-token-saver-free-coding](superagent-ai-agent-framework)
 - [ai-engineering-from-scratch](superagent-ai-agent-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -25,6 +25,7 @@ faq: - q: "为什么回测中的过拟合检测如此困难？"
     a: "不能。ML 策略往往拟合得更狠，因为它们参数更多。防御方法是一样的：walk-forward 验证、参数正则化（L1/L2），以及把 OOS 表现  1.5，要怀疑过拟合。> 2.0 几乎可以确定过拟合。我们最近 moss-trade-bot 的运行显示 Train PF 2.08 / OOS PF 0.94——比值 2.21，教科书级过拟合。健康策略的比值通常低于 1.3。"
 ---
 
+
 {{</* resource-info */>}}
 
 # 回测过拟合：5 种典型模式与真实 PF/Sharpe 数据
@@ -46,7 +47,7 @@ faq: - q: "为什么回测中的过拟合检测如此困难？"
 > **防御手段**：walk-forward、参数敏感性扫描、部署前 OOS 关卡。
 
 
----
+* * *
 ## 为什么这事很重要
 
 通过回测的"优化器输出"策略，在实盘中失败的比例高得惊人。原因不是市场状态变化（虽然这确实存在），而是优化器找到了噪声中的模式，这些模式没有泛化能力。把失败模式整理出来，就能在投入资金之前先发现它们。
@@ -80,13 +81,13 @@ faq: - q: "为什么回测中的过拟合检测如此困难？"
 **定义**：参数每变动 1 个单位，策略结果就出现不连续的恶化。
 
 **示例扫描**（lookback 参数）：
-```
+````
 lookback=12: PF 1.42
 lookback=13: PF 1.55
 lookback=14: PF 2.08  ← 优化器选择
 lookback=15: PF 0.91
 lookback=16: PF 0.87
-```
+````
 
 14 和 15 之间的"悬崖"无任何经济学解释 = 优化器在噪声中找到了局部极大值。
 
@@ -122,11 +123,11 @@ lookback=16: PF 0.87
 
 | 比值 | 解读 | 行动 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | < 1.0 | OOS 优于训练 | 可疑——重查数据泄漏 |
 | 1.0 - 1.3 | 健康 | 谨慎推进，先做模拟盘 |
@@ -165,7 +166,7 @@ lookback=16: PF 0.87
 我们最近 moss-trade-bot 的进化结果就是教科书过拟合（比值 2.21）。这不是工具的失败——这是*没有 OOS 门控的进化*的失败。修复办法不是更好的优化器，而是更严格的验证关卡。
 
 
----
+* * *
 **相关阅读**：[Moss Trade Bot Factory 2026 评测](https://dibi8.com/zh/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python 回测框架](https://dibi8.com/zh/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI 交易框架](https://dibi8.com/zh/resources/ai-trading/jesse-ai-trading-framework/)
 
 
@@ -230,12 +231,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -245,7 +246,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [temporal-ai-workflow-orchestration](backtest-overfit-5-patterns-2026)
 - [cleanlab-11k-star-ai-data-cleaning](backtest-overfit-5-patterns-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

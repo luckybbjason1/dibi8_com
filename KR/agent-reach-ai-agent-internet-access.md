@@ -36,6 +36,7 @@ faqs: - q: 'Agent Reach는 무엇이며 어떤 일을 하나요?'
     a: 'Agent Reach는 Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI 및 MCP 호환 에이전트 전반과 함께 작동합니다. 각 플랫폼은 독립적이고 교체 가능한 채널 파일로 구현되어 있어, 종속(lock-in) 없이 어떤 플랫폼이든 그 기반 도구를 교체할 수 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 문제: AI 에이전트는 인터넷에 "눈먼" 상태
@@ -59,15 +60,15 @@ Claude Code, Cursor, OpenAI Codex CLI와 같은 AI 에이전트는 코드 작성
 
 ### 한 줄 설치
 
-```
+````
 帮我安装 Agent Reach：https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md
-```
+`````
 
-이것뿐입니다. 에이전트가 나머지 모든 것을 처리합니다: 1. pip을 통해 `agent-reach` CLI 설치
+이것뿐입니다. 에이전트가 나머지 모든 것을 처리합니다: 1. pip을 통해 ````agent-reach```` CLI 설치
 2. 시스템 종속성 자동 감지 및 설치(Node.js, gh CLI, mcporter)
 3. Exa MCP를 통해 검색 엔진 구성(무료, API 키 불필요)
 4. SKILL.md 등록으로 에이전트가 각 플랫폼에 어떤 도구를 사용할지 알 수 있게 함
-5. `agent-reach doctor` 실행으로 모든 것이 작동하는지 확인
+5. ````agent-reach doctor```` 실행으로 모든 것이 작동하는지 확인
 
 ### 지원 플랫폼
 
@@ -76,7 +77,7 @@ Claude Code, Cursor, OpenAI Codex CLI와 같은 AI 에이전트는 코드 작성
 | **웹** | 모든 웹페이지 읽기 | 구성 불필요 |
 | **YouTube** | 자막 추출 + 검색 | 구성 불필요 |
 | **RSS** | 모든 피드 파싱 | 구성 불필요 |
-| **GitHub** | 저장소 읽기, 검색, Issue 생성 | `gh auth login` |
+| **GitHub** | 저장소 읽기, 검색, Issue 생성 | ````gh auth login```` |
 | **Twitter/X** | 트윗 읽기, 검색, 타임라인 | Cookie보내기 |
 | **Reddit** | 게시물 검색, 댓글 읽기 | Cookie 로그인 |
 | **Bilibili** | 자막 + 검색 | 서버용 프록시 |
@@ -92,7 +93,7 @@ Claude Code, Cursor, OpenAI Codex CLI와 같은 AI 에이전트는 코드 작성
 
 ### 아키텍처: 플러그형 설계
 
-각 플랫폼은 독립적인 채널로 구현됩니다: ```
+각 플랫폼은 독립적인 채널로 구현됩니다: `````
 channels/
 ├── web.py          → Jina Reader(무료, 키 불필요)
 ├── twitter.py      → twitter-cli(쿠키 기반)
@@ -106,16 +107,16 @@ channels/
 ├── wechat.py       → Exa + Camoufox
 ├── rss.py          → feedparser
 └── exa_search.py   → mcporter MCP
-```
+`````
 
 특정 도구가 마음에 안 드시나요? 채널 파일을 교체하세요. 아키텍처는 잠금이 아닌 교체를 위해 설계되었습니다.
 
 ### 보안 고려사항
 
-Agent Reach는 보안을 중시합니다: - **로컬 자격 증명 저장**: Cookie와 토큰은 `~/.agent-reach/config.yaml`에 600 권한으로 유지됨
+Agent Reach는 보안을 중시합니다: - **로컬 자격 증명 저장**: Cookie와 토큰은 ````~/.agent-reach/config.yaml````에 600 권한으로 유지됨
 - **완전 오픈소스**: 모든 코드와 종속성은 감사 가능
-- **안전 모드**: `agent-reach install --safe`는 변경 사항을 미리 보여주지만 적용하지 않음
-- **드라이 런**: `agent-reach install --dry-run`은 정확히 무엇이 일어날지 보여줌
+- **안전 모드**: ````agent-reach install --safe````는 변경 사항을 미리 보여주지만 적용하지 않음
+- **드라이 런**: ````agent-reach install --dry-run````은 정확히 무엇이 일어날지 보여줌
 - **전용 계정 권장**: Cookie 기반 플랫폼은 전용 계정을 사용하여 금지 위험 완화
 
 ### 실제 사용 사례
@@ -137,14 +138,14 @@ Agent Reach는 보안을 중시합니다: - **로컬 자격 증명 저장**: Coo
 
 ## 시작하기
 
-```bash
+`````bash
 # npx를 통한 한 줄 설치
 npx skills add Panniantong/Agent-Reach
 
 # 또는 수동 클론
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
-```
+````
 
 Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI 및 모든 MCP 호환 에이전트와 호환됩니다.
 
@@ -158,7 +159,7 @@ Agent Reach는 AI 에이전트 기능에 대한 사고방식의 전환을 대표
 **라이선스**: MIT  
 **Stars**: AI 에이전트 커뮤니티에서 빠르게 성장 중
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -230,7 +231,7 @@ Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다 represent
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

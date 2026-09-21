@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/vimax-agentic-video-generation-multi-agent-2026/
 ---
 
+
 ## 2025년 AI 영상을 막아세운 세 가지 한계
 
 2024–2025년 사이 대중에게 인지된 AI 영상 생성 도구들 — Sora, Runway Gen-3, Pika, Luma Dream Machine, OpenSora — 은 모두 똑같은 세 가지 한계를 공유했다: 1. **짧은 클립만 가능.** 5~10초가 사실상 천장이었다. 그 이상으로 가면 일관성이 무너졌다.
@@ -32,11 +33,11 @@ aliases:
 
 소셜 미디어용 짧은 클립이라면 이 한계는 그럭저럭 참을 만했다. 하지만 AI로 실제로 *이야기를 들려주려는* 사람 — 설명 영상, 교육 콘텐츠, 브랜드 내러티브 — 입장에서는, 사용자가 "2번 신이 1번 신에서 자연스럽게 이어졌으면 좋겠다"고 말하는 순간 파이프라인이 그냥 깨졌다.
 
-홍콩과학기술대 데이터사이언스랩(HKUDS)이 만든 **[ViMax](https://github.com/HKUDS/ViMax)**(GitHub: `HKUDS/ViMax`, 2026년 5월 기준 **7,100+ stars**)는 영상 생성을 *원샷 생성 문제*가 아니라 *멀티 에이전트 오케스트레이션 문제*로 다뤄서 이 한계를 깨려고 시도한 첫 번째 본격 오픈소스 프로젝트다.
+홍콩과학기술대 데이터사이언스랩(HKUDS)이 만든 **[ViMax](https://github.com/HKUDS/ViMax)**(GitHub: ```HKUDS/ViMax````, 2026년 5월 기준 **7,100+ stars**)는 영상 생성을 *원샷 생성 문제*가 아니라 *멀티 에이전트 오케스트레이션 문제*로 다뤄서 이 한계를 깨려고 시도한 첫 번째 본격 오픈소스 프로젝트다.
 
 태그라인이 매우 직설적이다: **"Director, Screenwriter, Producer, and Video Generator All-in-One."**
 
----
+* * *
 
 ## 네 개의 에이전트 역할
 
@@ -54,11 +55,11 @@ ViMax의 아키텍처적 베팅은 분명하다 — 현실의 영상 제작은 �
 
 각 역할은 자기만의 프롬프트, 자기만의 컨텍스트 윈도우, 자기만의 결정론적 출력 계약을 가진 별개의 LLM 에이전트다 — [12-Factor Agents](/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) factor 10("작고, 초점이 좁은 에이전트")의 교과서적 응용.
 
----
+* * *
 
 ## 기술 스택
 
-- **언어**: Python 3.12, `uv`로 관리.
+- **언어**: Python 3.12, ````uv````로 관리.
 - **멀티 에이전트 프레임워크**: 자체 오케스트레이션 레이어.
 - **지원 챗 모델**: Google Gemini 2.5 Flash Lite (via OpenRouter), MiniMax-M2.7 (1M 컨텍스트), MiniMax-M2.5 (204K 컨텍스트). long context window가 중요한 이유는 명확하다 — Screenwriter 에이전트는 대본 전체를 워킹 메모리에 들고 있어야 한다.
 - **이미지 생성**: Google Nanobana API.
@@ -67,34 +68,34 @@ ViMax의 아키텍처적 베팅은 분명하다 — 현실의 영상 제작은 �
 
 픽셀 수준 생성을 상용 API(Veo, Nanobana)에 위임한 결정은 정직하다. 오픈소스 영상 모델은 아직 최전선 상용 모델의 비주얼 퀄리티를 따라잡지 못했고, 그걸 모르는 척하면 데모가 망가진다. ViMax의 기여는 *오케스트레이션*이다 — 픽셀 엔진은 알아서 가져와라.
 
----
+* * *
 
 ## 빠른 설치
 
-```bash
+`````bash
 git clone https://github.com/HKUDS/ViMax.git
 cd ViMax
 uv sync
-```
+`````
 
 의존성 설치는 이게 전부다. 챗 모델(Gemini라면 OpenRouter)용 API 키 하나, 그리고 영상·이미지 생성을 위한 Google Veo + Nanobana API 키가 필요하다.
 
 ### Idea-to-Video 워크플로
 
-```python
+`````python
 idea = "If a cat and a dog are best friends, what would happen when they meet a new cat?"
 user_requirement = "For children, do not exceed 3 scenes."
 style = "Cartoon"
 # Run: python main_idea2video.py
-```
+`````
 
 Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷을 설계한다. Producer가 레퍼런스를 고르고 일관성을 강제한다. Video Generator가 각 신을 렌더링하고 조립한다.
 
 ### Script-to-Video 워크플로
 
-이미 대본이 있는 사용자라면 `main_script2video.py`가 대본을 그대로 받아 Screenwriter 단계를 스킵한다. 나머지 세 에이전트는 그대로 돌아간다.
+이미 대본이 있는 사용자라면 ````main_script2video.py```가 대본을 그대로 받아 Screenwriter 단계를 스킵한다. 나머지 세 에이전트는 그대로 돌아간다.
 
----
+* * *
 
 ## Sora·Runway·OpenSora와 어떻게 다른가
 
@@ -110,7 +111,7 @@ Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷
 
 정직한 반박을 하자면 — 컷 하나 단위 픽셀 퀄리티는 Sora와 Runway가 눈에 띄게 더 낫다. ViMax가 이기는 영역은 *컷 사이의 일관성*이다. 10초짜리 테크 데모가 필요하다면 Sora가 이긴다. 90초짜리 설명 영상에서 4번 신의 강아지가 1번 신과 똑같은 강아지여야 한다면, 당신이 원하는 건 ViMax의 오케스트레이션이다.
 
----
+* * *
 
 ## ViMax가 *아닌* 것
 
@@ -120,7 +121,7 @@ Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷
 - **README에 성능 벤치마크가 없다.** ViMax는 *정성적* 강점(일관성, 길이, 내러티브)을 마케팅한다. 정량적 ablation은 아직 공개되지 않았다.
 - **Google API 의존성.** Veo와 Nanobana는 무료도 오픈도 아니다. 비용을 계획에 넣어라.
 
----
+* * *
 
 ## 실전 활용 케이스
 
@@ -132,7 +133,7 @@ ViMax의 에이전트 파이프라인이 실제로 차이를 만드는 지점들
 
 이 각각의 케이스에서 ViMax *없이* 가능한 대안은 비싼 사람 제작이거나, 이야기를 지속할 수 없는 짧은 클립 AI 도구뿐이다.
 
----
+* * *
 
 ## 2026년 AI 영상 지형에서 ViMax의 자리
 
@@ -142,7 +143,7 @@ ViMax와 함께 묶으면 좋은 것들: - **이미지 생성기** — 이미 Na
 
 ViMax + Supertonic + 오픈소스 이미지 생성기 — 이 조합이 2026년이 도달한 "영화를 묘사하면 영화가 나오는, 그것도 대부분 사용자 통제하에 있는" 파이프라인에 가장 가깝다.
 
----
+* * *
 
 ## 누가 ViMax를 써야 하나
 
@@ -157,7 +158,7 @@ ViMax + Supertonic + 오픈소스 이미지 생성기 — 이 조합이 2026년�
 - 연구실급 Python 툴링이 불편하다.
 - 완전한 엔드 투 엔드 셀프 호스팅이 필요하다 (오픈 영상 모델 한 사이클만 더 기다려라).
 
----
+* * *
 
 ## 결론
 
@@ -167,7 +168,7 @@ MIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 star
 
 대본을 가지고 영상을 만들어본 적이 있다면, ViMax는 마침내 *실제 작업이 진행되는 방식과 매핑되는* AI 워크플로다.
 
----
+* * *
 
 **GitHub**: [HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **라이선스**: MIT · **Stars**: 7.1K+ · **저자**: 홍콩과학기술대 데이터사이언스랩(HKUDS) · **상태**: 활발한 개발 중, 태그된 릴리스 아직 없음
 
@@ -233,12 +234,12 @@ ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -248,7 +249,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [hkuds-ai-trader](vimax-agentic-video-generation-multi-agent-2026)
 - [agency-agents-complete-ai-agency-framework](vimax-agentic-video-generation-multi-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

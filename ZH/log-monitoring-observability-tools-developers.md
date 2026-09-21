@@ -7,6 +7,7 @@ aliases:
   - /posts/log-monitoring-observability-tools-developers/-
 ---
 
+
 {</* resource-info */>}
 
 应用出问题时，日志是开发者定位根因的第一线索。但当系统从单体架构演进为数十个微服务，日志量从每天MB级膨胀到TB级，传统的SSH到服务器看日志的方式已完全不适用。可观测性（Observability）应运而生，它不仅是"监控"的升级版，更是一种理解分布式系统的思维方式。
@@ -27,9 +28,9 @@ aliases:
 
 **结构化日志优先**。使用JSON格式而非纯文本，让日志系统能自动解析字段。例如：
 
-```json
+````json
 {"timestamp":"2025-01-15T08:30:00Z","level":"error","service":"payment","trace_id":"abc123","user_id":"456","message":"charge failed","error":"card_declined"}
-```
+`````
 
 **合理使用日志级别**：DEBUG用于开发调试，INFO记录关键业务流程，WARN表示需要注意但非错误的情况，ERROR表示需要处理的异常，FATAL表示服务即将退出。
 
@@ -45,7 +46,7 @@ aliases:
 
 查询时使用LogQL语言，语法类似PromQL：
 
-```logql
+`````logql
 # 查看payment服务的错误日志
 {app="payment", env="prod"} |= "error"
 
@@ -54,7 +55,7 @@ sum by (level) (rate({app="api"} |= "error" [1m]))
 
 # 正则过滤 + JSON解析
 {app="gateway"} |~ "5\\d{2}" | json | status_code = "500"
-```
+`````
 
 ### 适用场景
 
@@ -62,7 +63,7 @@ Loki与[Grafana](https://grafana.com)仪表盘天然集成，如果你已经在�
 
 Docker一键启动Loki + Grafana + Promtail：
 
-```yaml
+`````yaml
 # docker-compose.yml 简化版
 services: loki: image: grafana/loki:latest
     ports: ["3100:3100"]
@@ -70,7 +71,7 @@ services: loki: image: grafana/loki:latest
     volumes: ["/var/log:/var/log:ro", "./promtail.yml:/etc/promtail/config.yml"]
   grafana: image: grafana/grafana:latest
     ports: ["3000:3000"]
-```
+`````
 
 ## ELK Stack：经典的全面方案
 
@@ -122,11 +123,11 @@ New Relic的界面以开发者为中心设计，学习曲线比Datadog更平缓�
 
 | 数据类型 | 工具 | 功能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 指标 | **Prometheus** | 时序数据库 + 抓取器 + 告警规则 |
 | 仪表盘 | **Grafana** | 可视化 + 告警通知 |
@@ -138,7 +139,7 @@ New Relic的界面以开发者为中心设计，学习曲线比Datadog更平缓�
 
 用Docker Compose部署完整开源栈：
 
-```yaml
+`````yaml
 services: prometheus: image: prom/prometheus
     volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml"]
     ports: ["9090:9090"]
@@ -148,7 +149,7 @@ services: prometheus: image: prom/prometheus
     ports: ["3100:3100"]
   jaeger: image: jaegertracing/all-in-one
     ports: ["16686:16686", "14268:14268"]
-```
+`````
 
 ## 新兴轻量级工具
 
@@ -189,17 +190,17 @@ services: prometheus: image: prom/prometheus
 
 | 工具 | 开源 | 自托管 | SaaS | 最佳场景 | 月费参考 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Grafana Loki | 是 | 是 | Grafana Cloud | 已有Grafana生态，预算有限 | 免费起 |
 | Elastic Stack | 是（SSPL） | 是 | Elastic Cloud | 全文搜索、复杂查询 | $95/月起 |
@@ -232,7 +233,7 @@ OpenTelemetry是CNCF的开放标准，提供统一的API和SDK来采集指标、
 自托管的优势是数据完全可控、长期成本可能更低、无供应商锁定；劣势是需要运维人力和基础设施。SaaS的优势是零运维、快速启动、自动扩容；劣势是数据出境合规风险和持续订阅费用。建议：数据敏感行业（金融、政务）选自托管；初创团队和追求速度的团队选SaaS；可以先从SaaS开始，规模扩大后再评估自托管。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -306,7 +307,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -318,7 +319,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -329,4 +330,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

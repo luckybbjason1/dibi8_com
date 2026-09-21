@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/ollama-local-llm-guide/-
 ---
+
 {</* resource-info */>}
 
 Every request you send to OpenAI or Anthropic travels across the internet, hits someone else's server, and potentially gets logged for training purposes. For many developers and organizations, that is unacceptable. Healthcare companies cannot send patient data to external APIs. Financial institutions face regulatory restrictions. Individual developers simply want control over their AI stack.
@@ -31,7 +32,7 @@ Ollama solves this problem elegantly. Launched in 2023, Ollama has become the mo
 
 Ollama is a free, open-source tool for running large language models on your own hardware. It packages models, weights, and configuration into a single distributable format called a Modelfile, then serves them through a command-line interface and REST API.
 
-Think of Ollama as Docker for LLMs. Just as `docker pull nginx` fetches and runs a web server, `ollama pull llama3.1` fetches and runs a language model. The abstraction hides the complexity of model configuration, GPU drivers, and inference optimization.
+Think of Ollama as Docker for LLMs. Just as ```docker pull nginx```` fetches and runs a web server, ````ollama pull llama3.1```` fetches and runs a language model. The abstraction hides the complexity of model configuration, GPU drivers, and inference optimization.
 
 ### Why Run LLMs Locally?
 
@@ -45,11 +46,11 @@ Running models locally offers several advantages over cloud APIs: - **Privacy**:
 
 | Factor | Ollama (Local) | Cloud APIs (OpenAI/Claude) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Privacy** | Complete data control | Data sent to third parties |
 | **Cost** | Hardware + electricity only | Per-token pricing |
@@ -67,9 +68,9 @@ Ollama supports macOS, Windows, Linux, and Docker. Installation takes under two 
 
 ### Installing on macOS
 
-```bash
+`````bash
 brew install ollama
-```
+`````
 
 Or download the installer from [ollama.com](https://ollama.com). macOS supports both CPU and GPU (Apple Silicon Metal) inference automatically.
 
@@ -79,81 +80,81 @@ Download the installer from [ollama.com/download](https://ollama.com/download). 
 
 ### Installing on Linux
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
-```
+`````
 
 The script detects your GPU and installs appropriate drivers. For NVIDIA GPUs, ensure CUDA 11.8+ is installed. AMD GPU support requires ROCm on Linux.
 
 ### Running with Docker
 
-```bash
+`````bash
 docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-```
+`````
 
-For GPU support, add the appropriate runtime flag: ```bash
+For GPU support, add the appropriate runtime flag: `````bash
 # NVIDIA
 docker run --gpus all -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
 # AMD (Linux only)
 docker run --device /dev/kfd --device /dev/dri -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-```
+`````
 
 ### Verifying Installation
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.5.x
 
 ollama list
 # Should show installed models (empty on fresh install)
-```
+`````
 
 ## Getting Started: Your First Local LLM
 
 ### Pulling Your First Model
 
-```bash
+`````bash
 ollama pull llama3.1:8b
-```
+`````
 
 This downloads the 8-billion-parameter Llama 3.1 model (approximately 4.7 GB). The model is downloaded in chunks and cached locally. Subsequent pulls only fetch updates.
 
 Other popular starter models: | Model | Command | Size | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Llama 3.1 8B** | `ollama pull llama3.1:8b` | 4.7 GB | General purpose, chat |
-| **Llama 3.2 3B** | `ollama pull llama3.2:3b` | 2.0 GB | Fast inference, edge devices |
-| **Mistral 7B** | `ollama pull mistral` | 4.1 GB | Reasoning, instruction following |
-| **Phi-4** | `ollama pull phi4` | 9.1 GB | Microsoft model, strong coding |
-| **Qwen 2.5 7B** | `ollama pull qwen2.5:7b` | 4.7 GB | Multilingual, coding |
+| **Llama 3.1 8B** | ````ollama pull llama3.1:8b```` | 4.7 GB | General purpose, chat |
+| **Llama 3.2 3B** | ````ollama pull llama3.2:3b```` | 2.0 GB | Fast inference, edge devices |
+| **Mistral 7B** | ````ollama pull mistral```` | 4.1 GB | Reasoning, instruction following |
+| **Phi-4** | ````ollama pull phi4```` | 9.1 GB | Microsoft model, strong coding |
+| **Qwen 2.5 7B** | ````ollama pull qwen2.5:7b```` | 4.7 GB | Multilingual, coding |
 
 ### Running Models Interactively
 
-```bash
+`````bash
 ollama run llama3.1:8b
-```
+`````
 
-This drops you into a chat session. Type your message, press Enter, and the model responds. Type `/bye` to exit.
+This drops you into a chat session. Type your message, press Enter, and the model responds. Type ````/bye```` to exit.
 
 ### Using the REST API
 
-Ollama exposes a REST API on port 11434: ```bash
+Ollama exposes a REST API on port 11434: `````bash
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.1:8b",
   "prompt": "Why is the sky blue?",
   "stream": false
 }'
-```
+`````
 
-Chat completion endpoint (OpenAI-compatible): ```bash
+Chat completion endpoint (OpenAI-compatible): `````bash
 curl http://localhost:11434/api/chat -d '{
   "model": "llama3.1:8b",
   "messages": [
@@ -161,16 +162,16 @@ curl http://localhost:11434/api/chat -d '{
   ],
   "stream": false
 }'
-```
+`````
 
 ### Model List and Management Commands
 
-```bash
+`````bash
 ollama list           # Show installed models
 ollama rm llama3.1:8b # Remove a model
 ollama show llama3.1  # Show model details
 ollama ps             # Show running models
-```
+`````
 
 ## Top Ollama Models in 2025
 
@@ -208,13 +209,13 @@ For coding-specific tasks, CodeLlama (based on Llama) and StarCoder 2 offer spec
 
 | Model Size | Minimum RAM | Recommended RAM | GPU VRAM (Q4) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1B - 3B | 4 GB | 8 GB | 2-3 GB |
 | 7B - 8B | 8 GB | 16 GB | 4-6 GB |
@@ -226,7 +227,7 @@ Ollama runs models entirely in memory. If you lack sufficient RAM, the system wi
 
 ### GPU Acceleration Setup
 
-**NVIDIA**: Install CUDA 11.8 or later. Ollama automatically detects and uses NVIDIA GPUs. Verify with `nvidia-smi`.
+**NVIDIA**: Install CUDA 11.8 or later. Ollama automatically detects and uses NVIDIA GPUs. Verify with ````nvidia-smi````.
 
 **Apple Silicon**: M1/M2/M3 Macs use Metal for GPU acceleration automatically. No additional setup required. A MacBook Pro with 36GB unified memory can run 13B models comfortably.
 
@@ -243,13 +244,13 @@ If you lack a GPU: - Use smaller models (3B parameters work well on CPU)
 
 Ollama models use GGUF format with various quantization levels. Understanding them helps you balance quality against resource usage: | Quantization | Size vs FP16 | Quality Loss | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Q4_K_M** | ~25% | Minimal | Best balance, recommended default |
 | **Q5_K_M** | ~31% | Very small | Better quality, slightly slower |
@@ -257,13 +258,13 @@ Ollama models use GGUF format with various quantization levels. Understanding th
 | **Q8_0** | ~50% | None detectable | Maximum quality, largest size |
 | **FP16** | 100% | None | Full precision, reference quality |
 
-Ollama defaults to Q4_K_M, which offers the best quality-to-size ratio for most applications. You can specify different quantizations by pulling specific model tags like `llama3.1:8b-q5_k_m`.
+Ollama defaults to Q4_K_M, which offers the best quality-to-size ratio for most applications. You can specify different quantizations by pulling specific model tags like ````llama3.1:8b-q5_k_m````.
 
 ## Ollama for Developers
 
 ### REST API Full Reference
 
-Ollama provides a comprehensive REST API: ```bash
+Ollama provides a comprehensive REST API: `````bash
 # Generate (completion)
 POST /api/generate
 
@@ -284,15 +285,15 @@ DELETE /api/delete
 
 # Pull model
 POST /api/pull
-```
+`````
 
 ### Python Integration (ollama-python)
 
-The official Python client simplifies integration: ```bash
+The official Python client simplifies integration: `````bash
 pip install ollama
-```
+`````
 
-```python
+`````python
 import ollama
 
 # Chat completion
@@ -308,15 +309,15 @@ for chunk in ollama.chat(model='llama3.1:8b', messages=messages, stream=True): p
 # Generate
 response = ollama.generate(model='llama3.1:8b', prompt='Write a haiku about coding')
 print(response[response])
-```
+`````
 
 ### JavaScript/TypeScript Integration
 
-```bash
+`````bash
 npm install ollama
-```
+`````
 
-```javascript
+`````javascript
 import ollama from 'ollama';
 
 const response = await ollama.chat({
@@ -324,11 +325,11 @@ const response = await ollama.chat({
   messages: [{ role: 'user', content: 'Hello!' }]
 });
 console.log(response.message.content);
-```
+`````
 
 ### LangChain + Ollama Integration
 
-LangChain integrates with Ollama seamlessly: ```python
+LangChain integrates with Ollama seamlessly: `````python
 from langchain_ollama import OllamaLLM, ChatOllama
 
 # Use Ollama with LangChain
@@ -337,26 +338,26 @@ result = llm.invoke("What is machine learning?")
 
 # Chat interface
 chat = ChatOllama(model="llama3.1:8b")
-```
+`````
 
 ### OpenAI-Compatible API Endpoint
 
-Ollama provides an OpenAI-compatible endpoint at `/v1/chat/completions`, allowing you to use Ollama with any OpenAI-compatible client: ```bash
+Ollama provides an OpenAI-compatible endpoint at ``/v1/chat/completions``, allowing you to use Ollama with any OpenAI-compatible client: `````bash
 curl http://localhost:11434/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "llama3.1:8b",
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
-```
+`````
 
-This compatibility means tools built for OpenAI (including LangChain, AutoGen, and many others) work with Ollama with zero code changes — just change the `base_url`.
+This compatibility means tools built for OpenAI (including LangChain, AutoGen, and many others) work with Ollama with zero code changes — just change the ````base_url````.
 
 ## Advanced Ollama Features
 
 ### Custom Modelfile Creation
 
-A Modelfile defines how Ollama runs a model. Create custom behavior: ```dockerfile
+A Modelfile defines how Ollama runs a model. Create custom behavior: `````dockerfile
 FROM llama3.1:8b
 
 # System prompt
@@ -369,27 +370,27 @@ PARAMETER top_k 40
 
 # License
 LICENSE "MIT"
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 ollama create my-coder -f Modelfile
 ollama run my-coder
-```
+`````
 
 ### Creating Custom Models with System Prompts
 
-Custom models are useful for role-specific applications: ```dockerfile
+Custom models are useful for role-specific applications: `````dockerfile
 FROM mistral
 SYSTEM """You are a medical research assistant. Provide evidence-based answers and cite sources when possible. Never provide medical advice to individuals."""
 PARAMETER temperature 0.3
-```
+`````
 
 ### Multi-Model Serving
 
-Ollama can serve multiple models simultaneously. Each model loads into memory on first use and stays resident. Monitor memory usage with `ollama ps`: ```bash
+Ollama can serve multiple models simultaneously. Each model loads into memory on first use and stays resident. Monitor memory usage with ``ollama ps``: `````bash
 ollama run llama3.1:8b &
 ollama run codellama:7b &
-```
+`````
 
 ### Concurrent Request Handling
 
@@ -403,7 +404,7 @@ Unlike stateless API calls, Ollama's interactive chat maintains conversation con
 
 ### Docker Compose Setup
 
-```yaml
+`````yaml
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
     ports: - "11434:11434"
@@ -411,11 +412,11 @@ services: ollama: image: ollama/ollama:latest
     deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-volumes: ollama-data: ```
+volumes: ollama-data: `````
 
 ### Load Balancing Multiple Instances
 
-For high-availability deployments, run multiple Ollama instances: ```yaml
+For high-availability deployments, run multiple Ollama instances: `````yaml
 services: ollama-1: image: ollama/ollama
     volumes: - shared-ollama:/root/.ollama
     runtime: nvidia
@@ -425,11 +426,11 @@ services: ollama-1: image: ollama/ollama
   nginx: image: nginx:alpine
     ports: - "11434:80"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf
-```
+`````
 
 ### Monitoring and Logging
 
-Monitor Ollama with standard tools: ```bash
+Monitor Ollama with standard tools: `````bash
 # GPU utilization
 watch -n 1 nvidia-smi
 
@@ -438,13 +439,13 @@ docker logs -f ollama
 
 # Custom metrics via API
 curl http://localhost:11434/api/tags | jq '.models[] | {name, size}'
-```
+`````
 
 For production monitoring, instrument your application code with Prometheus metrics tracking request latency, token throughput, and error rates.
 
 ### Security Best Practices
 
-- **Bind to localhost only**: Ollama binds to `127.0.0.1:11434` by default. Do not expose port 11434 to the internet without authentication
+- **Bind to localhost only**: Ollama binds to ````127.0.0.1:11434```` by default. Do not expose port 11434 to the internet without authentication
 - **Use a reverse proxy**: Put Nginx or Caddy in front with SSL termination and rate limiting
 - **Network isolation**: Run Ollama in a private network segment accessible only by your application servers
 - **Model verification**: Only pull models from official Ollama registries or sources you trust
@@ -470,15 +471,15 @@ GPT4All targets desktop users with a focus on privacy and ease of use. It includ
 
 | Tool | Best For | GUI | API | Docker |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Ollama** | Developers, production APIs | No | Yes | Yes |
 | **LM Studio** | GUI users, experimentation | Yes | Limited | No |
@@ -490,7 +491,7 @@ GPT4All targets desktop users with a focus on privacy and ease of use. It includ
 
 ### Slow Inference Fixes
 
-If inference is slower than expected: 1. **Check GPU usage**: Run `nvidia-smi` (NVIDIA) or `ollama ps` to verify GPU acceleration is active
+If inference is slower than expected: 1. **Check GPU usage**: Run ````nvidia-smi```` (NVIDIA) or ````ollama ps```` to verify GPU acceleration is active
 2. **Verify quantization**: Ensure you are running a quantized model, not FP16
 3. **Reduce context size**: Shorter prompts process faster
 4. **Check CPU throttling**: On laptops, power settings may throttle performance
@@ -498,7 +499,7 @@ If inference is slower than expected: 1. **Check GPU usage**: Run `nvidia-smi` (
 
 ### Model Download Failures
 
-If `ollama pull` fails: 1. Check internet connectivity
+If ````ollama pull```` fails: 1. Check internet connectivity
 2. Verify disk space: Models require significant storage
 3. Try a different mirror or CDN
 4. For large models, ensure stable connection (resumable downloads usually work)
@@ -513,11 +514,11 @@ OOM errors mean your hardware cannot fit the model: 1. **Use a smaller model**: 
 
 ### Network and Proxy Configuration
 
-If running behind a corporate proxy: ```bash
+If running behind a corporate proxy: `````bash
 export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=http://proxy.company.com:8080
 ollama pull llama3.1:8b
-```
+`````
 
 For Docker deployments, configure proxy settings in the daemon.json or pass proxy environment variables to the container.
 
@@ -537,7 +538,7 @@ Yes, Ollama runs on CPU-only systems. Inference will be slower — typically 5-2
 
 ### How do I use Ollama with LangChain?
 
-LangChain integrates with Ollama through the `langchain-ollama` package or the OpenAI-compatible API. Install with `pip install langchain-ollama`, then use `ChatOllama` or `OllamaLLM` classes pointing to your local Ollama instance. Alternatively, use any LangChain OpenAI-compatible client and set `base_url` to `http://localhost:11434/v1`.
+LangChain integrates with Ollama through the ````langchain-ollama```` package or the OpenAI-compatible API. Install with ````pip install langchain-ollama````, then use ````ChatOllama```` or ````OllamaLLM```` classes pointing to your local Ollama instance. Alternatively, use any LangChain OpenAI-compatible client and set ````base_url```` to ````http://localhost:11434/v1````.
 
 ### Which Ollama model is best for coding?
 
@@ -545,7 +546,7 @@ The best coding models on Ollama are **CodeLlama 7B/13B** (specialized for code)
 
 ## Conclusion
 
-Ollama removes the friction from running large language models locally. What once required manually downloading multi-gigabyte weight files, configuring CUDA drivers, and writing custom inference code now takes a single command: `ollama run llama3.1`.
+Ollama removes the friction from running large language models locally. What once required manually downloading multi-gigabyte weight files, configuring CUDA drivers, and writing custom inference code now takes a single command: ````ollama run llama3.1```.
 
 For developers building privacy-sensitive applications, Ollama provides a complete local AI stack. For teams looking to reduce API costs, it offers a viable alternative to cloud LLM providers. For researchers and hobbyists, it puts state-of-the-art models within reach of consumer hardware.
 
@@ -556,7 +557,7 @@ The future of AI infrastructure is hybrid — some workloads in the cloud, some 
 Download Ollama at [ollama.com](https://ollama.com), explore the model library, and join the growing community of developers running AI on their own terms.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -613,4 +614,4 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
----
+* * *

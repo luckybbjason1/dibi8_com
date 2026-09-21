@@ -23,6 +23,7 @@ tags: ["instructor"]
 aliases:
   - /posts/instructor-structured-llm-output/-
 ---
+
 {{</* resource-info */>}}
 
 *Last updated: May 19, 2026*
@@ -32,28 +33,28 @@ If you've ever tried to get a Large Language Model to consistently output valid 
 Instructor is a Python library that patches the OpenAI client (and 10+ other LLM providers) to guarantee structured, type-safe, validated outputs using **Pydantic models**. It transforms the wild west of LLM text generation into a predictable, software-engineered process. With 11,000+ GitHub stars, MIT license, and a thriving community, Instructor has become the de facto standard for structured LLM output in Python. This guide covers everything from basic setup to advanced multi-provider patterns in 2026.
 
 
----
+* * *
 ## What Is Instructor and Why Does It Matter?
 
-Instructor, created by **Jason Liu** (`jxnl`), is a lightweight Python library that sits on top of your existing LLM client and enforces structured output through Pydantic model validation. Instead of receiving raw text from an LLM and praying it parses correctly, you define a Pydantic schema and Instructor ensures every response conforms to that schema — or automatically retries with a corrected prompt.
+Instructor, created by **Jason Liu** (```jxnl````), is a lightweight Python library that sits on top of your existing LLM client and enforces structured output through Pydantic model validation. Instead of receiving raw text from an LLM and praying it parses correctly, you define a Pydantic schema and Instructor ensures every response conforms to that schema — or automatically retries with a corrected prompt.
 
-The problem Instructor solves is fundamental: LLMs generate text, but applications need data. Every developer who has shipped an LLM feature to production has experienced the 2 AM pager when `json.loads()` crashes because the model added "Here's your result:" before the JSON object. Instructor eliminates this entire class of errors.
+The problem Instructor solves is fundamental: LLMs generate text, but applications need data. Every developer who has shipped an LLM feature to production has experienced the 2 AM pager when ````json.loads()```` crashes because the model added "Here's your result:" before the JSON object. Instructor eliminates this entire class of errors.
 
-```bash
+`````bash
 # Install Instructor
 pip install instructor
 
 # Install your preferred LLM client (OpenAI shown)
 pip install openai
-```
+`````
 
 
----
+* * *
 ## Core Concept: Patching the OpenAI Client
 
 Instructor's magic happens through **client patching**. Instead of calling OpenAI's API directly, you create a patched client that intercepts responses, validates them against your Pydantic model, and handles failures automatically.
 
-```python
+`````python
 import instructor
 from openai import OpenAI
 from pydantic import BaseModel
@@ -93,17 +94,17 @@ print(profile)
 # Access typed fields directly
 print(f"Name: {profile.name}, Age: {profile.age}")
 print(f"Email valid: {'@' in profile.email}")
-```
+`````
 
-Notice how `response_model=UserProfile` tells Instructor to validate the LLM's output against our schema. The result is a fully typed Pydantic object — not a raw string or untyped dictionary.
+Notice how ````response_model=UserProfile```` tells Instructor to validate the LLM's output against our schema. The result is a fully typed Pydantic object — not a raw string or untyped dictionary.
 
----
+* * *
 
 ## Handling Validation Failures with Automatic Retry
 
 What happens when the LLM produces invalid output? Instructor's default behavior is to **re-ask** the model with feedback about what went wrong, creating a self-correcting loop.
 
-```python
+`````python
 from pydantic import BaseModel, Field, field_validator
 
 class ValidatedProduct(BaseModel): name: str = Field(description="Product name, max 50 characters")
@@ -139,15 +140,15 @@ product = parse_product(
 print(product)
 # ValidatedProduct(name='Wireless Bluetooth Headphones', 
 #                  price=79.99, category=electronics)
-```
+`````
 
----
+* * *
 
 ## Nested Models and Complex Schemas
 
 Real-world applications need more than flat structures. Instructor handles arbitrarily nested Pydantic models with ease.
 
-```python
+`````python
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
@@ -197,9 +198,9 @@ Please gift wrap the laptop.
 print(f"Customer: {order.customer_name}")
 print(f"Shipping to: {order.shipping_address.city}")
 print(f"Order total: ${order.grand_total:.2f}")
-```
+`````
 
-```python
+`````python
 # Optional fields with default values are handled gracefully
 from pydantic import BaseModel
 from typing import Optional
@@ -222,15 +223,15 @@ print(f"Event: {event.name}")
 print(f"Starts: {event.start_time}")
 print(f"Location: {event.location}")  # Conference Room B
 print(f"Description: '{event.description}'")  # Uses default empty string
-```
+`````
 
----
+* * *
 
 ## Multi-Provider Support: Beyond OpenAI
 
 Instructor doesn't lock you into OpenAI. It supports 10+ LLM providers with the same API, making vendor switching effortless.
 
-```python
+`````python
 # --- Anthropic Claude ---
 import anthropic
 import instructor
@@ -270,9 +271,9 @@ result = cohere_client.chat(
     message="Extract: David is 42, likes golf and fishing"
 )
 print(result)
-```
+`````
 
-```python
+`````python
 # Model configuration with system prompts and temperature
 class CodeReview(BaseModel): quality_score: int  # 1-10
     issues_found: list[str]
@@ -296,15 +297,15 @@ review = client.chat.completions.create(
 )
 print(f"Quality: {review.quality_score}/10")
 print(f"Safe to merge: {review.is_safe_to_merge}")
-```
+`````
 
----
+* * *
 
 ## Batch Processing for High-Volume Applications
 
 When processing thousands of items, individual API calls are too slow. Instructor supports batch processing with asyncio for concurrent execution.
 
-```python
+`````python
 import asyncio
 import instructor
 from openai import AsyncOpenAI
@@ -342,15 +343,15 @@ texts = [
 results = asyncio.run(analyze_batch(texts))
 positive = sum(1 for r in results if r.sentiment == "positive")
 print(f"Positive: {positive}/{len(results)}")
-```
+`````
 
----
+* * *
 
 ## Streaming Structured Output
 
 For real-time applications, Instructor supports streaming partial results as they arrive from the LLM.
 
-```python
+`````python
 from typing import Iterable
 from pydantic import BaseModel
 
@@ -372,17 +373,17 @@ def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.c
 for partial in stream_article("renewable energy trends 2026"): print(f"Title: {partial.title}")
     print(f"Sections so far: {len(partial.sections)}")
     print("
----
+* * *
 ")
-```
+`````
 
----
+* * *
 
 ## Built-in Retry with Re-asking
 
 Instructor's retry system doesn't just repeat the request — it provides the LLM with specific feedback about what failed validation, enabling self-correction.
 
-```python
+`````python
 from pydantic import BaseModel, field_validator
 
 class StrictDateRange(BaseModel): start_date: str = Field(description="YYYY-MM-DD format")
@@ -417,15 +418,15 @@ try: result = extract_date_range(
     )
     print(result)
 except Exception as e: print(f"Failed after max retries: {e}")
-```
+`````
 
----
+* * *
 
 ## Using Literals for Constrained Classification
 
-For classification tasks, use Python's `Literal` type to constrain outputs to specific values.
+For classification tasks, use Python's ````Literal```` type to constrain outputs to specific values.
 
-```python
+`````python
 from typing import Literal
 
 class SupportTicket(BaseModel): customer_query: str
@@ -459,9 +460,9 @@ ticket = classify_ticket(
 )
 print(f"Category: {ticket.category}")  # Always "billing"
 print(f"Priority: {ticket.priority}")  # Always one of the 4 values
-```
+`````
 
-```python
+`````python
 # Extracting structured data from long documents
 from pydantic import BaseModel
 
@@ -491,13 +492,13 @@ extraction = client.chat.completions.create(
 print(f"Title: {extraction.title}")
 print(f"Entities found: {extraction.entities}")
 print(f"Total facts: {len(extraction.facts)}")
-```
+`````
 
----
+* * *
 
 ## Integration with FastAPI for Production APIs
 
-Instructor shines in API development. Here's a complete FastAPI endpoint with structured LLM output: ```python
+Instructor shines in API development. Here's a complete FastAPI endpoint with structured LLM output: `````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -535,15 +536,15 @@ async def extract_entities(request: ExtractionRequest): """Extract structured en
     except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # Run with: uvicorn main:app --reload
-```
+`````
 
----
+* * *
 
 ## Advanced: Function Calling Alternative
 
 Instructor can replace OpenAI's function calling with more powerful Pydantic-based schemas.
 
-```python
+`````python
 from typing import Type
 
 class SearchQuery(BaseModel): """Generated search query with parameters"""
@@ -568,15 +569,15 @@ query = generate_search(
 print(query.keywords)  # ['wireless earbuds', bluetooth]
 print(query.filters)   # {max_price: 100}
 print(query.sort_by)   # date
-```
+`````
 
----
+* * *
 
 ## Error Handling and Logging
 
 Production systems need visibility into Instructor's retry behavior. Configure logging for debugging.
 
-```python
+`````python
 import logging
 import instructor
 
@@ -602,15 +603,15 @@ result = client.chat.completions.create(
     max_retries=3,
     messages=[{"role": "user", "content": "Extract: Jane, age 25, likes art"}]
 )
-```
+`````
 
----
+* * *
 
 ## Frequently Asked Questions
 
 ### What LLM providers does Instructor support?
 
-Instructor supports **OpenAI** (GPT-4, GPT-4o, GPT-3.5), **Anthropic** (Claude 3/3.5/4 Sonnet, Opus, Haiku), **Google** (Gemini 1.5/2.0/2.5 Pro, Flash), **Cohere**, **Mistral**, **Groq**, **Ollama** (local models), **Azure OpenAI**, **AWS Bedrock**, **Fireworks AI**, and **Together AI**. The same `response_model` API works identically across all providers.
+Instructor supports **OpenAI** (GPT-4, GPT-4o, GPT-3.5), **Anthropic** (Claude 3/3.5/4 Sonnet, Opus, Haiku), **Google** (Gemini 1.5/2.0/2.5 Pro, Flash), **Cohere**, **Mistral**, **Groq**, **Ollama** (local models), **Azure OpenAI**, **AWS Bedrock**, **Fireworks AI**, and **Together AI**. The same ````response_model```` API works identically across all providers.
 
 ### How is Instructor different from OpenAI's JSON mode?
 
@@ -622,21 +623,21 @@ Yes. Instructor works with any model accessible through a supported client libra
 
 ### What is the performance overhead of Instructor?
 
-Instructor adds minimal overhead — typically **10-50ms** per call for Pydantic validation. The retry mechanism adds latency only when validation fails (which should be < 5% of calls with capable models). For high-throughput applications, use `gpt-4o-mini` or local models with async batch processing. The overhead is negligible compared to the LLM API latency itself (typically 500ms-5s).
+Instructor adds minimal overhead — typically **10-50ms** per call for Pydantic validation. The retry mechanism adds latency only when validation fails (which should be < 5% of calls with capable models). For high-throughput applications, use ````gpt-4o-mini```` or local models with async batch processing. The overhead is negligible compared to the LLM API latency itself (typically 500ms-5s).
 
 ### How does the retry/re-asking mechanism work?
 
-When validation fails, Instructor catches the Pydantic `ValidationError`, extracts the specific error messages (e.g., "age must be a positive integer"), and sends a new request to the LLM that includes: the original prompt, the incorrect response, and the validation error details. This creates a self-correcting loop that resolves most issues in 1-2 retries. You control the maximum retries via the `max_retries` parameter.
+When validation fails, Instructor catches the Pydantic ````ValidationError````, extracts the specific error messages (e.g., "age must be a positive integer"), and sends a new request to the LLM that includes: the original prompt, the incorrect response, and the validation error details. This creates a self-correcting loop that resolves most issues in 1-2 retries. You control the maximum retries via the ````max_retries```` parameter.
 
 ### Can I use Instructor with async/await patterns?
 
-Yes. Instructor fully supports async through `AsyncOpenAI`, `AsyncAnthropic`, and other async clients. Use `await client.chat.completions.create()` for single calls or batch with `asyncio.gather()` for concurrent processing. Streaming is also supported in async mode via `create_partial()`.
+Yes. Instructor fully supports async through ````AsyncOpenAI````, ````AsyncAnthropic````, and other async clients. Use ````await client.chat.completions.create()```` for single calls or batch with ````asyncio.gather()```` for concurrent processing. Streaming is also supported in async mode via ````create_partial()````.
 
 ### Is Instructor suitable for enterprise production deployments?
 
 Absolutely. Instructor's 11,000+ GitHub stars, MIT license, active maintenance, and Pydantic-based architecture make it enterprise-ready. It integrates cleanly with FastAPI, monitoring systems (Datadog, Prometheus), and structured logging. The validation layer adds reliability that raw LLM APIs cannot match. Many Fortune 500 companies use Instructor in production data pipelines.
 
----
+* * *
 
 
 
@@ -653,7 +654,7 @@ Instructor transforms LLMs from unpredictable text generators into reliable stru
 
 The library's multi-provider support means you're never locked into a single LLM vendor. Its seamless integration with FastAPI, async patterns, and streaming makes it suitable for everything from background batch jobs to real-time APIs. With 11,000+ stars and an active community, Instructor has earned its place as an essential tool in the modern AI developer's toolkit.
 
-If you're still parsing raw LLM outputs with `json.loads()` and crossing your fingers, it"s time to upgrade. Install Instructor today and experience what it means to have **100% valid JSON, 100% of the time**.
+If you're still parsing raw LLM outputs with ````json.loads()``` and crossing your fingers, it"s time to upgrade. Install Instructor today and experience what it means to have **100% valid JSON, 100% of the time**.
 
 
 {

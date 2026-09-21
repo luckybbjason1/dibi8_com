@@ -35,6 +35,7 @@ faqs: - q: 'Anthropic Financial Services 에이전트는 어떤 금융 워크플
     a: 'Managed Agents는 자체 VPC 내부에 배포할 수 있어 어떤 데이터도 인프라 밖으로 나가지 않으며, 모든 에이전트 작업은 완전한 보관 연속성(chain-of-custody) 기록과 함께 감사 로그로 남고, 접근은 Okta 또는 Azure AD 같은 엔터프라이즈 ID 공급자를 통해 통제됩니다. 어떤 에이전트 출력도 클라이언트에 직접 전달되지 않으며, 모든 것이 FINRA 및 SEC 감독 요건을 충족하기 위해 사람의 최종 승인을 위한 대기열에 들어갑니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Anthropic Financial Services：금융팀이 AI로 분석을 자동화하고 ROI를 300% 높이는 방법
@@ -48,7 +49,7 @@ Anthropic Financial Services는 Claude AI 위에 구축된 **명명된 엔드투
 - **사모펀드**: 밸류에이션 리뷰, GP 패키지 수집, LP 리포팅
 - **자산관리**: KYC 스크리닝, 온보딩 자동화, 명세서 감사
 
-모든 것은 두 가지 형태로 제공됩니다: **Claude Cowork 플러그인**(즉시 설치하여 사용) 또는 **Claude Managed Agent 템플릿**(`v1/agents`를 통해 자체 워크플로우 엔진 뒤에 배포)입니다.
+모든 것은 두 가지 형태로 제공됩니다: **Claude Cowork 플러그인**(즉시 설치하여 사용) 또는 **Claude Managed Agent 템플릿**(```v1/agents````를 통해 자체 워크플로우 엔진 뒤에 배포)입니다.
 
 ## 핵심 기능 및 역량
 
@@ -69,7 +70,7 @@ Anthropic Financial Services는 Claude AI 위에 구축된 **명명된 엔드투
 
 ### 2. 수직 스킬 플러그인
 
-각 수직 플러그인은 기본 스킬, 슬래시 명령, 데이터 커넥터를 번들링합니다. 예를 들어, 투자은행 플러그인은 `/comps`, `/dcf`, `/earnings` 및 시장 데이터 제공업체 커넥터를 제공합니다. 전체 에이전트가 필요 없는 경우 플러그인만 설치하세요.
+각 수직 플러그인은 기본 스킬, 슬래시 명령, 데이터 커넥터를 번들링합니다. 예를 들어, 투자은행 플러그인은 ````/comps````, ````/dcf````, ````/earnings```` 및 시장 데이터 제공업체 커넥터를 제공합니다. 전체 에이전트가 필요 없는 경우 플러그인만 설치하세요.
 
 ### 3. 파트너 통합
 
@@ -77,7 +78,7 @@ Anthropic Financial Services는 Claude AI 위에 구축된 **명명된 엔드투
 
 ### 4. 관리 에이전트 요리책
 
-엔터프라이즈 배포를 위해 `managed-agent-cookbooks/` 디렉토리에는 다음이 포함됩니다: - `agent.yaml` 구성
+엔터프라이즈 배포를 위해 ````managed-agent-cookbooks/```` 디렉토리에는 다음이 포함됩니다: - ````agent.yaml```` 구성
 - 리프 워커 서브에이전트 정의
 - 스티어링 이벤트 예제
 - 에이전트별 보안 노트
@@ -86,19 +87,19 @@ Anthropic Financial Services는 Claude AI 위에 구축된 **명명된 엔드투
 
 ### 옵션 A: Claude Cowork 플러그인(가장 쉬움)
 
-```bash
+`````bash
 # Claude Desktop 또는 Claude Code를 통해 설치
 claude plugin install anthropic/financial-services
-```
+`````
 
-설치 후 자연어로 모든 에이전트를 활성화합니다: ```
+설치 후 자연어로 모든 에이전트를 활성화합니다: `````
 "Tesla 인수 대상으로 Pitch Agent 실행"
 "이 온보딩 PDF에 대해 KYC Screener 실행"
-```
+`````
 
 ### 옵션 B: 관리 에이전트 API(엔터프라이즈)
 
-```yaml
+`````yaml
 # Pitch Agent용 agent.yaml 예제
 name: pitch-agent
 version: 1.0.0
@@ -110,15 +111,15 @@ skills: - comps-analysis
   - lbo-modeling
 connectors: - lseg-market-data
   - sp-global-capiq
-```
+`````
 
-Claude Managed Agents API를 통해 배포: ```bash
+Claude Managed Agents API를 통해 배포: `````bash
 curl -X POST https://api.anthropic.com/v1/agents   -H "x-api-key: $ANTHROPIC_API_KEY"   -d @agent.yaml
-```
+`````
 
 ## 코드 예제: 커스텀 KYC Screener
 
-```python
+`````python
 from anthropic_financial import KYCAgent
 
 agent = KYCAgent(
@@ -137,7 +138,7 @@ results = agent.screen(
 # 출력: 플래그된 결함, 리스크 점수, 인간 검토 단계
 print(results.summary)
 print(results.flagged_items)
-```
+````
 
 ## 실제 사용 사례
 
@@ -184,7 +185,7 @@ Anthropic Financial Services는 단순한 AI 실험이 아닙니다. Claude의 �
 
 > **면책 조항**: 이 저장소의 어떤 내용도 투자, 법률, 세무 또는 회계 조언을 구성하지 않습니다. 모든 출력은 인간 승인을 위해 준비됩니다.
 
----
+* * *
 
 *Anthropic Financial Services를 사용해 보셨나요? 아래에 댓글을 남겨 경험을 공유해 주세요.*
 
@@ -236,7 +237,7 @@ Pitch Agent는 단순한 템플릿 채우기 도구가 아닙니다. 다단계 �
 
 이 단계적 접근 방식은 위험을 최소화하면서 AI 지원 워크플로우에 대한 내부 신뢰를 구축합니다.
 
----
+* * *
 
 ## 추천 도구
 

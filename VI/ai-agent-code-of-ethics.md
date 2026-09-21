@@ -39,6 +39,7 @@ faqs: - q: 'Đạo đức AI agent khác gì với đạo đức chatbot?'
     a: 'Phần lớn đều cưỡng chế được bằng mã. Cấp quyền tối thiểu là thông tin xác thực giới hạn phạm vi và danh sách trắng; khả năng kiểm toán là ghi log có cấu trúc cho mọi lệnh gọi công cụ; tính đảo ngược là cổng phê duyệt phân tầng rủi ro cộng hoàn tác/idempotent; tự chủ có giới hạn là trần tốc độ và chi tiêu; an toàn khi lỗi là ngưỡng tin cậy và nút dừng khẩn. Chỉ có ý định đằng sau — quyết định hành động nào là rủi ro cao — mới cần phán đoán của con người. Đạo đức không cưỡng chế được chỉ là trang trí."
 ---
 
+
 # Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành
 
 
@@ -159,7 +160,7 @@ Vài mỏ neo thực tiễn: - **Chạy agent trên hạ tầng cô lập, dùng
 
 Đạo đức cho agent tự hành không phải một tuyên bố bạn công bố. Nó là một tập biện pháp kiểm soát bạn phát hành. Agent tuân theo bảy quy tắc này không kém năng lực hơn — nó là loại agent có năng lực duy nhất mà một tổ chức có thể đặt tên mình vào một cách có trách nhiệm.
 
----
+* * *
 
 *Bộ quy tắc đạo đức này được phát hành theo giấy phép CC-BY-4.0 — hãy tự do chuyển thể nó vào tài liệu quản trị agent của riêng bạn. Nếu đội của bạn đang phát hành agent tự hành trong năm 2026, thời điểm đúng để gắn những biện pháp kiểm soát này là trước lần chạy production đầu tiên, không phải sau sự cố đầu tiên.*
 
@@ -189,7 +190,7 @@ Vài mỏ neo thực tiễn: - **Chạy agent trên hạ tầng cô lập, dùng
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -199,7 +200,7 @@ Vài mỏ neo thực tiễn: - **Chạy agent trên hạ tầng cô lập, dùng
 - [2026-06-01-trending-ai-agents](ai-agent-code-of-ethics)
 - [2026-06-08-trending-ai-agents](ai-agent-code-of-ethics)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

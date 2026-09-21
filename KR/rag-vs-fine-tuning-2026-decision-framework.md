@@ -32,6 +32,7 @@ faq: - q: "2026년에 RAG가 파인튜닝보다 유리한 경우는?"
     a: "1만 chunks 미만: 전문 검색 (FTS5, MeiliSearch)으로 충분하고 10배 단순하다. 5만 chunks 이상: 벡터 DB의 복잡성이 정당화된다. 1만-5만의 회색 지대 — 먼저 FTS를 시도하고, 검색 품질이 precision@5 80% 이하로 떨어질 때만 벡터로 전환."
 ---
 
+
 {{</* resource-info */>}}
 
 # RAG vs 파인튜닝 2026: 데이터 기반 의사결정 프레임워크
@@ -52,13 +53,13 @@ RAG vs 파인튜닝 논쟁은 3년치 상충하는 조언을 누적해왔다. 20
 >
 > **손익분기점**: 안정된 지식 + 월 100만+ 쿼리에서 파인튜닝이 RAG를 경제적으로 이긴다.
 
----
+* * *
 
 ## 2024년 이후 무엇이 바뀌었나
 
 세 가지 힘이 계산을 바꾸었다: 1. **컨텍스트 윈도우 확대**: Gemini 2.5 Pro와 Claude Sonnet 4.6이 100만 토큰에 도달. < 20만 토큰 코퍼스라면 컨텍스트에 통째로 넣고 RAG를 건너뛸 수 있다. 2024년에는 상상도 못한 일이다.
 
-2. **Embedding 품질의 극적 향상**: `text-embedding-3-large` (OpenAI), Voyage-3, BGE-M3 — 2024년 embedding으로 고전했던 어수선한 엔터프라이즈 코퍼스에서 precision@5 80%+ 달성.
+2. **Embedding 품질의 극적 향상**: ```text-embedding-3-large```` (OpenAI), Voyage-3, BGE-M3 — 2024년 embedding으로 고전했던 어수선한 엔터프라이즈 코퍼스에서 precision@5 80%+ 달성.
 
 3. **오픈소스 파인튜닝 저비용화**: LoRA + Unsloth + 일반 GPU (RTX 4090, 단일 H100)로 파인튜닝 비용이 $5K-50K에서 $50-200으로 떨어졌다. "파인튜닝은 비싸다"라는 주장은 시대에 뒤떨어졌다.
 
@@ -70,14 +71,14 @@ RAG vs 파인튜닝 논쟁은 3년치 상충하는 조언을 누적해왔다. 20
 - 지연 예산이 200-400ms 검색 + LLM을 허용
 - 재훈련 없이 사실을 업데이트해야 함
 
-### RAG 실제 비용 (2026 Q2 가격): ```
+### RAG 실제 비용 (2026 Q2 가격): `````
 Embedding 조회: $0.0001/쿼리
 검색 + 리랭크: $0.0003/쿼리
 LLM 생성: $0.003-0.015/쿼리 (모델에 따라)
                    ─────────
 합계: 약 $0.005/쿼리 (Claude Sonnet)
                    약 $0.001/쿼리 (GPT-4o-mini)
-```
+`````
 
 월 10만 쿼리 기준: 컴퓨팅 $100-500 + 벡터 DB 호스팅 $20-100.
 
@@ -95,7 +96,7 @@ LLM 생성: $0.003-0.015/쿼리 (모델에 따라)
 - 월 100만+ 쿼리로 선행 비용 정당화 가능
 - 성능 특성을 고정하고 싶을 때 (API 변경 서프라이즈 회피)
 
-### 파인튜닝 실제 비용 (2026): ```
+### 파인튜닝 실제 비용 (2026): `````
 LoRA 파인튜닝 (Llama 3.3 70B): 하드웨어: 단일 H100 ($2/시간 × 약 10시간)    = $20
   데이터 준비: 엔지니어 1-2일                     = 약 $1K 인건비
   스토리지: LoRA adapter 약 100MB              = 미미함
@@ -103,13 +104,13 @@ LoRA 파인튜닝 (Llama 3.3 70B): 하드웨어: 단일 H100 ($2/시간 × 약 1
   선행 비용: 약 $50 컴퓨팅 + 인건비
 
 추론 (셀프 호스팅): 1K 토큰 생성당: 약 $0.0001 (자가 GPU 상각 기준)
-```
+`````
 
 API 대비: $0.003-0.015/1K 토큰. 고볼륨에서 손익분기.
 
 ## 의사결정 트리
 
-```
+`````
 시작
   │
   ├─ 지식이 주 단위 이상 업데이트?
@@ -131,7 +132,7 @@ API 대비: $0.003-0.015/1K 토큰. 고볼륨에서 손익분기.
   ├─ 월 > 100만 쿼리?
   │   ├─ 예 → 파인튜닝 (비용 우위)
   │   └─ 아니오 → RAG (운영 간단)
-```
+````
 
 ## 하이브리드: 파인튜닝 + RAG
 
@@ -186,7 +187,7 @@ RAG / 파인튜닝 호스팅용: - **{{< aff "digitalocean" "footer-cta" "Digita
 
 2026년 대부분의 프로덕션 시스템: RAG로 시작하고, 스타일/볼륨이 정당화될 때 파인튜닝을 추가하라. 하이브리드는 점점 디폴트가 된다 — 누군가가 그렇게 계획해서가 아니라, 각 레이어가 서로 다른 실제 문제를 해결하기 때문이다.
 
----
+* * *
 
 **관련 글**: [MCP 서버 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent 메모리 시스템 2026](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents 가이드](https://dibi8.com/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
 
@@ -252,12 +253,12 @@ RAG vs 파인튜닝 2026: 실제 비용 수치로 보는 데이터 기반 의사
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -267,7 +268,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](rag-vs-fine-tuning-2026-decision-framework)
 - [ai-engineering-from-scratch](rag-vs-fine-tuning-2026-decision-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

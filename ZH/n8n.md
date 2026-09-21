@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
@@ -60,11 +61,11 @@ n8n 采用基于节点的执行引擎，工作流以有向图的形式组织。�
 
 | 模式 | 适用场景 | 吞吐量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 普通模式 | 开发环境，<1000 次执行/天 | ~23 请求/秒 |
 | 队列模式 (Redis) | 生产环境，>1000 次执行/天 | ~162 请求/秒 |
@@ -76,7 +77,7 @@ n8n 采用基于节点的执行引擎，工作流以有向图的形式组织。�
 
 ### 前置条件
 
-```bash
+````bash
 # 推荐 Ubuntu 22.04 LTS
 # 最低配置: 2 vCPU, 4 GB 内存, 20 GB SSD
 # 推荐配置: 4 vCPU, 8 GB 内存, 50 GB SSD
@@ -88,11 +89,11 @@ sudo sh get-docker.sh
 # 安装 Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-```
+`````
 
 ### 基础 Docker Compose（开发环境）
 
-```yaml
+`````yaml
 # docker-compose.dev.yml
 version: '3.8'
 
@@ -108,18 +109,18 @@ services: n8n: image: n8nio/n8n:latest
       - TZ=UTC
     volumes: - n8n_data:/home/node/.n8n
 
-volumes: n8n_data: ```
+volumes: n8n_data: `````
 
 启动命令：
 
-```bash
+`````bash
 docker-compose -f docker-compose.dev.yml up -d
 # 访问 http://localhost:5678
-```
+`````
 
 ### 生产环境 Docker Compose（含 PostgreSQL）
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -156,20 +157,20 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-环境变量文件 `.env`：
+环境变量文件 ````.env````：
 
-```bash
+`````bash
 # .env
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 N8N_HOST=automation.yourdomain.com
-```
+`````
 
 ### 高吞吐队列模式
 
-```yaml
+`````yaml
 # docker-compose.queue.yml
 version: '3.8'
 
@@ -238,11 +239,11 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
 部署命令：
 
-```bash
+`````bash
 # 生成密钥
 openssl rand -base64 32 > .postgres_password
 openssl rand -base64 32 > .redis_password
@@ -260,11 +261,11 @@ docker-compose -f docker-compose.queue.yml up -d
 # 验证
 docker-compose ps
 docker-compose logs -f n8n-main
-```
+`````
 
 ### Nginx 反向代理与 SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/n8n
 server {
     listen 80;
@@ -297,24 +298,24 @@ server {
         proxy_read_timeout 300;
     }
 }
-```
+`````
 
 启用配置：
 
-```bash
+`````bash
 sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
 # 获取 SSL 证书
 sudo certbot --nginx -d automation.yourdomain.com
-```
+`````
 
 ## 与 Claude Code、OpenAI、Slack、Discord 和 Telegram 集成
 
 ### OpenAI 聊天模型节点
 
-```javascript
+`````javascript
 // n8n 中的 OpenAI Chat Model 配置
 {
   "nodes": [
@@ -340,19 +341,19 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
 在 n8n UI 中添加凭据：
 
-```bash
+`````bash
 # 导航到 Settings > Credentials > Add Credential
 # 选择 "OpenAI API"
 # 粘贴从 https://platform.openai.com/api-keys 获取的 API 密钥
-```
+`````
 
 ### Anthropic Claude 聊天模型节点
 
-```javascript
+`````javascript
 // Anthropic Claude Chat Model 配置
 {
   "nodes": [
@@ -374,11 +375,11 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
 ### Slack 通知工作流
 
-```json
+`````json
 {
   "name": "AI Summary to Slack",
   "nodes": [
@@ -434,11 +435,11 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   }
 }
-```
+`````
 
 ### Telegram 机器人 Webhook
 
-```javascript
+`````javascript
 // Telegram 触发节点配置
 {
   "nodes": [
@@ -471,20 +472,20 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
 ### Discord 机器人集成
 
-```bash
+`````bash
 # 1. 在 https://discord.com/developers/applications 创建 Discord 应用
 # 2. 创建机器人用户并复制令牌
 # 3. 在 n8n 中: Settings > Credentials > Add Credential > Discord Bot API
 # 4. 粘贴机器人令牌
 
 # 工作流: Discord 消息触发 -> AI 处理 -> Discord 回复
-```
+`````
 
-```json
+`````json
 {
   "nodes": [
     {
@@ -504,7 +505,7 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -515,13 +516,13 @@ sudo certbot --nginx -d automation.yourdomain.com
 
 | 指标 | 普通模式 | 队列模式 | 队列 + 4 工作进程 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 吞吐量 | ~23 请求/秒 | ~162 请求/秒 | ~400+ 请求/秒 |
 | 失败率 | 高负载下 2-5% | 0% | 0% |
@@ -535,13 +536,13 @@ sudo certbot --nginx -d automation.yourdomain.com
 
 | 每月工作负载 | Zapier 费用 | n8n 自托管 | 节省比例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1,000 个任务 | $19.99 | ~$12 (VPS) | 40% |
 | 10,000 次执行 | $49 | ~$12 (VPS) | 75% |
@@ -561,7 +562,7 @@ sudo certbot --nginx -d automation.yourdomain.com
 
 ### 安全检查清单
 
-```bash
+`````bash
 # 1. 使用强加密密钥
 export N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 
@@ -587,11 +588,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 # 7. 在工作进程容器中禁用编辑器
 # （工作进程使用 command: worker，不暴露 UI）
-```
+`````
 
 ### 数据库优化
 
-```sql
+`````sql
 -- n8n 生产环境 PostgreSQL 优化
 ALTER SYSTEM SET shared_buffers = 512MB;
 ALTER SYSTEM SET effective_cache_size = 2GB;
@@ -608,11 +609,11 @@ CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_execution_entity_startedat
 
 -- 重载配置
 SELECT pg_reload_conf();
-```
+`````
 
 ### 使用 Prometheus 和 Grafana 监控
 
-```yaml
+`````yaml
 # 添加到 docker-compose.queue.yml
   prometheus: image: prom/prometheus:latest
     restart: unless-stopped
@@ -629,20 +630,20 @@ SELECT pg_reload_conf();
     volumes: - grafana_data:/var/lib/grafana
     networks: - n8n_network
     ports: - "127.0.0.1:3000:3000"
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml
 global: scrape_interval: 15s
 
 scrape_configs: - job_name: n8n
     static_configs: - targets: ['n8n-main:5678']
     metrics_path: /metrics
-```
+`````
 
 ### 日志轮转
 
-```bash
+`````bash
 # /etc/logrotate.d/n8n
 /opt/n8n/logs/*.log {
     daily
@@ -656,11 +657,11 @@ scrape_configs: - job_name: n8n
         docker restart n8n-main
     endscript
 }
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # backup-n8n.sh - 通过 cron 每日运行
 
@@ -680,28 +681,28 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 
 # 同步到 S3（可选）
 # aws s3 sync $BACKUP_DIR s3://your-backup-bucket/n8n/
-```
+`````
 
 添加到 crontab：
 
-```bash
+`````bash
 # 每天凌晨 2 点运行备份
 0 2 * * * /opt/n8n/backup-n8n.sh >> /var/log/n8n-backup.log 2>&1
-```
+`````
 
 ## 与替代品对比
 
 | 特性 | n8n | Dify | Flowise | Make |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | Sustainable Use License | Dify OSL | Apache-2.0 | 专有软件 |
 | **GitHub 星标** | 188,782 | 85,000+ | 35,000+ | N/A (闭源) |
@@ -753,7 +754,7 @@ n8n 使用按执行次数计费（一次工作流运行 = 一次执行，与步�
 
 ### 如何将 n8n 更新到最新版本？
 
-```bash
+`````bash
 # 拉取最新镜像
 docker-compose pull
 
@@ -762,7 +763,7 @@ docker-compose up -d
 
 # 验证版本
 docker-compose exec n8n-main n8n --version
-```
+`````
 
 主要版本升级前务必备份数据库。在 https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md 查看破坏性变更。
 
@@ -772,7 +773,7 @@ docker-compose exec n8n-main n8n --version
 
 ### 如何排查故障工作流？
 
-在 n8n UI 中查看执行日志（Settings > Executions）。使用 `N8N_LOG_LEVEL=debug` 启用调试日志。对于 Webhook 问题，验证 `WEBHOOK_URL` 是否与公网域名匹配。对于数据库错误，检查 PostgreSQL 连接池限制。常用排查命令：`docker-compose logs -f n8n-main | grep ERROR`。
+在 n8n UI 中查看执行日志（Settings > Executions）。使用 ````N8N_LOG_LEVEL=debug```` 启用调试日志。对于 Webhook 问题，验证 ````WEBHOOK_URL```` 是否与公网域名匹配。对于数据库错误，检查 PostgreSQL 连接池限制。常用排查命令：````docker-compose logs -f n8n-main | grep ERROR```。
 
 ### n8n 支持哪些数据库？
 
@@ -841,7 +842,7 @@ n8n 以远低于商业平台的成本提供 AI 能力加持的工作流自动化
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](n8n)
@@ -851,7 +852,7 @@ n8n 以远低于商业平台的成本提供 AI 能力加持的工作流自动化
 - [n8n-vs-make-com-2026](n8n)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

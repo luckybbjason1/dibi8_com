@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 ---
 
+
 # open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026
 
 ![open-notebook logo](https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png)
@@ -37,25 +38,25 @@ Tính năng chính: - **Ingest tài liệu** — Upload PDF, markdown, text file
 
 ### Docker Compose (Khuyến nghị)
 
-```bash
+````bash
 git clone https://github.com/lfnovo/open-notebook.git
 cd open-notebook
 cp .env.example .env
 # Edit .env với API key
 docker compose up -d
 # http://localhost:3000
-```
+`````
 
 ### Local Development
 
-```bash
+`````bash
 git clone https://github.com/lfnovo/open-notebook.git
 cd open-notebook
 cd backend && pip install -r requirements.txt
 cd ../frontend && npm install && cd ..
 cd backend && uvicorn api.main:app --reload &
 cd frontend && npm run dev &
-```
+`````
 
 ## Integration with 15+ AI Providers
 
@@ -83,11 +84,11 @@ Testing trên 50 tài liệu: | Configuration | Top-3 Accuracy | Citation Accura
 
 ### Use Case: Nghiên cứu học thuật
 
-```bash
+`````bash
 for pdf in research/*.pdf; do
   curl -X POST http://localhost:3000/api/documents -F "file=@$pdf"
 done
-```
+`````
 
 200+ papers phân tích trong vài giờ, có trích dẫn đúng.
 
@@ -95,20 +96,20 @@ done
 
 ### Custom Document Processing
 
-```python
+`````python
 chunking_strategies = {
     "pdf": {"strategy": "semantic", "chunk_size": 1000, "overlap": 200},
     "markdown": {"strategy": "heading-based", "chunk_size": 2000},
     "code": {"strategy": "function-based", "chunk_size": 500},
 }
-```
+`````
 
 ### Vector Database Scaling
 
-```bash
+`````bash
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage qdrant/qdrant:latest
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -138,7 +139,7 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 **Q: Có hỗ trợ local/offline models không?**
 
-A: Có. Set `AI_PROVIDER=ollama` trong `.env`, chạy everything local với llama3.2, qwen2.5, nomic-embed-text. Không cần API key.
+A: Có. Set ````AI_PROVIDER=ollama```` trong ````.env````, chạy everything local với llama3.2, qwen2.5, nomic-embed-text. Không cần API key.
 
 **Q: Support vector databases nào?**
 
@@ -146,7 +147,7 @@ A: Qdrant(recommended), Weaviate, Supabase/pgvector. Qdrant cho performance tố
 
 **Q: Dùng OpenRouter được không?**
 
-A: Có. `AI_PROVIDER=openrouter` + API key. 50+ models qua single API, tốt cho cost optimization.
+A: Có. ````AI_PROVIDER=openrouter```` + API key. 50+ models qua single API, tốt cho cost optimization.
 
 **Q: Self-hosted có secure không?**
 
@@ -170,7 +171,7 @@ open-notebook chứng minh personal AI research assistant không cần sống tr
 
 Dù là researcher, engineer, hay người цен privacy, open-notebook cung cấp tools build RAG knowledge base chạy trên hạ tầng riêng.
 
-Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18). Xem [LangChain RAG architecture](dibi8-internal-link) và [vector database comparison](dibi8-internal-link). Thử open-notebook hôm nay — `docker compose up`, upload PDF, đặt câu hỏi.
+Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18). Xem [LangChain RAG architecture](dibi8-internal-link) và [vector database comparison](dibi8-internal-link). Thử open-notebook hôm nay — ````docker compose up```, upload PDF, đặt câu hỏi.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 
@@ -236,12 +237,12 @@ open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -251,6 +252,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [nvidia-cosmos-world-models-platform-2026](open-notebook-open-source-notebooklm-alternative-15-ai-providers)
 - [12-factor-agents](open-notebook-open-source-notebooklm-alternative-15-ai-providers)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

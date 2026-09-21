@@ -19,6 +19,7 @@ faqs: - q: 'nanochat 是什么？谁开发的？'
   - q: 'nanochat 使用什么训练数据？'
     a: 'nanochat 在 FineWeb（高质量网页文本数据集）上预训练，然后在 SmolTalk（用户-助手对话）、多选题和工具使用数据上进行监督微调。分词器也从同一数据集从零训练。不需要任何专有数据集。'---
 
+
 ![nanochat 2026: Andrej Karpathy LLM 训练管道 — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 
 2025年10月，Andrej Karpathy 发布了 [nanochat](https://github.com/karpathy/nanochat)，宗旨简单明了："花100美元能买到的最好 ChatGPT"。到 2026 年 6 月已积累 **54,700 个 GitHub Star**，成为开源社区阅读量最大的 LLM 训练教程。
@@ -42,11 +43,11 @@ nanochat 不是对现有模型的封装，不是部署工具。它是完整的�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 8× H100 (SXM5) | ~$24 | 2 小时 | ~$48 |
 | 8× A100 (80GB) | ~$16 | 4 小时 | ~$64 |
@@ -56,7 +57,7 @@ nanochat 不是对现有模型的封装，不是部署工具。它是完整的�
 
 ## 关键训练命令
 
-```bash
+````bash
 # 训练分词器
 python tokenize_dataset.py --dataset fineweb --vocab-size 32768
 
@@ -71,7 +72,7 @@ torchrun --nproc_per_node=8 train_sft.py \
 
 # 启动推理服务器
 python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
-```
+````
 
 ## 适用人群
 
@@ -149,12 +150,12 @@ nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
@@ -163,7 +164,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [wandb-ml-experiment-tracking-platform-2026](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
 - [2026-06-22-trending-ai-agents](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -192,13 +193,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -225,13 +226,13 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -260,15 +261,15 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

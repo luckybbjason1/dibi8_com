@@ -28,6 +28,7 @@ faq: - q: "2026년에 가장 좋은 벡터 DB는?"
     a: "100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # 2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus
@@ -97,24 +98,24 @@ faq: - q: "2026년에 가장 좋은 벡터 DB는?"
 - 쿼리 레이턴시 < 1ms
 - 파일 외 메모리 오버헤드 없음
 
-먼저 이것부터 해보세요: ```python
+먼저 이것부터 해보세요: ````python
 import sqlite3
 conn = sqlite3.connect("docs.db")
 conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 # 문서 삽입, MATCH 연산자로 쿼리
-```
+`````
 
 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요해지면 그때 벡터 DB로 전환합니다.
 
 ## 세 가지 중 선택하기
 
-```
+`````
 단일 노드, 단순 RAG, 소규모 팀 → Qdrant
 하이브리드 검색 필요 (벡터 + 키워드 + 필터) → Weaviate
 다중 노드, 십억 이상의 벡터 → Milvus
 이미 Postgres 있음 → pgvector (벡터 100만 이하)
 문서 < 1만 → SQLite FTS5
-```
+````
 
 ## 추천 인프라
 
@@ -129,7 +130,7 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 
 진짜 교훈: 대부분의 팀은 검색 계층을 과도하게 설계합니다. 가장 단순하게 작동하는 것부터 시작하고, 실제 천장이 측정될 때 업그레이드하세요. 벡터 DB의 복잡도는 단순 도구의 한계를 넘어서야만 정당화됩니다.
 
----
+* * *
 
 **관련 글**: [2026 RAG vs Fine-Tuning 의사결정 프레임워크](https://dibi8.com/kr/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [벡터 데이터베이스 비교](https://dibi8.com/kr/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 서버 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -195,12 +196,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -210,7 +211,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cognee-ai-memory-platform](vector-db-2026-qdrant-weaviate-milvus)
 - [flowise](vector-db-2026-qdrant-weaviate-milvus)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

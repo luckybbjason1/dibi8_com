@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/aider/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -46,9 +47,9 @@ Aider의 아키텍처는 세 가지 핵심 개념을 중심으로 구축되었�
 
 **아키텍트 모드:** 복잡한 변경의 경우 Aider는 계획과 실행을 분리한다. 추론 모델(o3 또는 Claude Opus 등)이 아키텍처 계획을 초안하고, 빠른 편집 모델(GPT-4.1 등)이 파일 변경을 실행한다. 이 이중 모델 접근 방식은 일상적인 편집에서 40-60%의 비용을 절감하면서 복잡한 리팩토링에서도 높은 품질을 유지한다.
 
-```bash
+````bash
 aider --model o3 --editor-model gpt-4.1 --architect
-```
+`````
 
 ## 설치 및 설정
 
@@ -56,7 +57,7 @@ Aider 시작은 5분이면 충분하다. Python 3.8-3.13과 최소 하나의 LLM
 
 **1단계 — Aider 설치:**
 
-```bash
+`````bash
 # aider-install 사용 (권장)
 python -m pip install aider-install
 aider-install
@@ -70,11 +71,11 @@ curl -LsSf https://aider.chat/install.sh | sh
 
 # Windows 원라이너
 powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
-```
+`````
 
 **2단계 — API 키 구성:**
 
-```bash
+`````bash
 # Claude (Anthropic)
 export ANTHROPIC_API_KEY=sk-ant-api03-your-key
 
@@ -89,11 +90,11 @@ export GEMINI_API_KEY=your-key
 
 # 또는 프로젝트 루트에 .env 파일 사용
 echo "ANTHROPIC_API_KEY=sk-ant-api03-your-key" > .env
-```
+`````
 
 **3단계 — 코딩 시작:**
 
-```bash
+`````bash
 cd /to/your/project
 
 # Claude Sonnet 사용
@@ -108,44 +109,44 @@ aider --model deepseek --api-key deepseek=sk-your-key
 # Ollama 로컬 모델 사용
 ollama pull qwen2.5-coder:32b
 aider --model ollama/qwen2.5-coder:32b
-```
+`````
 
 **Docker 대안:**
 
-```bash
+`````bash
 docker run -it --rm \
   -v $(pwd):/app \
   -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
   paulgauthier/aider \
   --model sonnet
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### VS Code
 
-Aider는 VS Code 확장이 필요 없다. 프로젝트 터미널에서 Aider를 시작한 다음 VS Code에서 평소처럼 파일을 편집하면 된다. Aider는 git 저장소를 감시하고 변경 사항을 자동으로 커밋한다. 더 급박한 워크플로우를 위해 `--watch-files` 플래그를 사용한다: ```bash
+Aider는 VS Code 확장이 필요 없다. 프로젝트 터미널에서 Aider를 시작한 다음 VS Code에서 평소처럼 파일을 편집하면 된다. Aider는 git 저장소를 감시하고 변경 사항을 자동으로 커밋한다. 더 급박한 워크플로우를 위해 ``--watch-files`` 플래그를 사용한다: `````bash
 # 터미널 1: aider 시작
 aider --model sonnet --watch-files
 
 # VS Code에서: "// AI: 이것을 async/await으로 리팩토링"과 같은 AI 주석 추가
 # Aider가 주석을 감지하고 변경을 수행한 다음 커밋
-```
+`````
 
 ### Vim / Neovim
 
-Aider는 Vim 워크플로우에 자연스럽게 맞는다. tmux 분할 화면에서 에디터와 나란히 실행한다: ```bash
+Aider는 Vim 워크플로우에 자연스럽게 맞는다. tmux 분할 화면에서 에디터와 나란히 실행한다: `````bash
 # tmux 구성: aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
 tmux send-keys -t aider-vim.0 'vim .' C-m
 tmux send-keys -t aider-vim.1 'aider --model sonnet" C-m
 tmux attach -t aider-vim
-```
+`````
 
 ### Git 및 GitHub
 
-Aider의 git 통합은 독보적인 기능이다. 모든 AI 보조 편집이 별도의 커밋이 된다: ```bash
+Aider의 git 통합은 독보적인 기능이다. 모든 AI 보조 편집이 별도의 커밋이 된다: `````bash
 # aider 세션 내에서
 > /add src/auth.js src/middleware.js
 > auth 미들웨어에 JWT 토큰 검증 추가
@@ -159,21 +160,21 @@ git diff HEAD~3..HEAD  # 마지막 3개 AI 커밋 검토
 
 # GitHub에 푸시
 git push origin main
-```
+`````
 
 ### GitLab CI/CD 통합
 
-```yaml
+`````yaml
 # .gitlab-ci.yml - AI 코드 리뷰 파이프라인
 ai-review: image: python:3.12
   before_script: - pip install aider-chat
   script: - aider --model sonnet --message "이 MR의 보안 문제 검토" --no-auto-commits
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-```
+`````
 
 ### Pre-commit 훅
 
-```yaml
+`````yaml
 # .pre-commit-config.yaml
 repos: - repo: local
     hooks: - id: aider-lint
@@ -181,7 +182,7 @@ repos: - repo: local
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
         pass_filenames: false
-```
+`````
 
 ## 벤치마크 / 실전 활용 사례
 
@@ -221,44 +222,44 @@ Aider는 실제 코딩 작업에서도 자체 벤치마크를 수행한다: | �
 
 ### 보안: 파일 접근 제한
 
-```bash
+`````bash
 # 특정 디렉토리만 편집 허용
 aider --model sonnet --read-only src/ --edit docs/
 
 # .aiderignore 파일 사용
 echo "*.secret" > .aiderignore
 echo "config/prod.yml" >> .aiderignore
-```
+`````
 
 ### 비용 절감을 위한 프롬프트 캐싱
 
-Aider는 Anthropic Claude 및 OpenAI 모델에 대한 프롬프트 캐싱을 지원하여 다중 턴 대화에서 API 비용을 40-60% 절감한다: ```bash
+Aider는 Anthropic Claude 및 OpenAI 모델에 대한 프롬프트 캐싱을 지원하여 다중 턴 대화에서 API 비용을 40-60% 절감한다: `````bash
 # 캐싱을 지원하는 모델은 자동으로 프롬프트 캐싱을 사용
 aider --model sonnet --cache-prompts
 
 # 캐시 통계 확인
 # 출력에서 "Cache hit"을 찾아 절감을 확인
-```
+`````
 
 ### 커스텀 모델 별칭
 
-```bash
+`````bash
 # ~/.aider.conf.yml
 model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
-```
+`````
 
-사용법: ```bash
+사용법: `````bash
 aider --model fast    # gpt-4.1 사용
 aider --model smart   # claude-sonnet-4 사용
 aider --model cheap   # DeepSeek 사용
-```
+`````
 
 ### 린팅 및 테스트 통합
 
-```bash
+`````bash
 # 각 편집 후 자동 린팅 실행
 aider --model sonnet --lint-cmd "npm run lint"
 
@@ -267,11 +268,11 @@ aider --model sonnet --test-cmd "npm test" --auto-test
 
 # 테스트 통과 시에만 커밋
 aider --model sonnet --test-cmd "pytest" --auto-test --test-first
-```
+`````
 
 ### YAML 설정 파일
 
-```yaml
+`````yaml
 # ~/.aider.conf.yml
 model: sonnet
 editor: nvim
@@ -281,17 +282,17 @@ lint-cmd: "npm run lint"
 test-cmd: "npm test"
 cache-prompts: true
 show-model-warnings: false
-```
+`````
 
 ### 분석을 통한 모니터링
 
-```bash
+`````bash
 # 비용 추적을 위한 분석 로그 설정
 export AIDER_ANALYTICS_LOG=/var/log/aider/analytics.jsonl
 
 # 프로젝트별 비용 추적
 aider --model sonnet --analytics-log ./logs/aider.jsonl
-```
+`````
 
 ## 대안과의 비교
 
@@ -358,13 +359,13 @@ A: Aider 자체는 물의 오픈소스 소프트웨어이다. LLM API 사용료�
 A: 예 — 이것이 Aider의 핵심 설계 원칙이다. Aider는 터미널에서 실행되고 git 저장소를 조작한다. VS Code, Vim, Neovim, Emacs, Sublime Text 또는 기타 에디터를 동시에 사용할 수 있다. Aider가 수행한 변경 사항은 에디터의 파일 감시기에 즉시 표시된다.
 
 **Q: Aider를 프로덕션 코드베이스에서 사용필 수 있나?**
-A: Aider는 모든 변경 사항을 설명이 포함된 git 커밋으로 만들어 어떤 편집이든 검토하고 되돌릴 수 있다. 그러나 main에 병합하기 전에 항상 AI 생성 코드를 검토해야 한다. `git diff`로 변경 사항을 검사하고 `--auto-test`로 테스트 스위트를 실행하고, GitHub/GitLab에서 브랜치 보호를 활성화한다.
+A: Aider는 모든 변경 사항을 설명이 포함된 git 커밋으로 만들어 어떤 편집이든 검토하고 되돌릴 수 있다. 그러나 main에 병합하기 전에 항상 AI 생성 코드를 검토해야 한다. ````git diff````로 변경 사항을 검사하고 ````--auto-test````로 테스트 스위트를 실행하고, GitHub/GitLab에서 브랜치 보호를 활성화한다.
 
 **Q: Aider와 가장 잘 작동하는 LLM 모델은 무엇인가?**
 A: Aider 다국어 리더보드에 따륩면, GPT-5 (high)가 88.0%로 최고 점수를 기록했고, Claude Sonnet 4가 약 84%, Gemini 2.5 Pro가 83.1%를 기록했다. 비용에 민감한 작업의 경우 DeepSeek V3.2 Reasoner가 74.2%와 실행당 $1.30으로 최고의 가성비를 제공한다.
 
 **Q: Aider가 인터넷 연결 없이 작동할 수 있나?**
-A: 예, Ollama 또는 LM Studio를 통한 로컬 모델을 사용하는 경우. 모델을 로컬에 설치(`ollama pull qwen2.5-coder:32b`)한 다음 `aider --model ollama/qwen2.5-coder:32b`를 실행한다. 복잡한 다중 파일 편집의 경우 로컬 모델은 클라우드 API보다 느리고 기능이 제한적이다.
+A: 예, Ollama 또는 LM Studio를 통한 로컬 모델을 사용하는 경우. 모델을 로컬에 설치(````ollama pull qwen2.5-coder:32b````)한 다음 ````aider --model ollama/qwen2.5-coder:32b````를 실행한다. 복잡한 다중 파일 편집의 경우 로컬 모델은 클라우드 API보다 느리고 기능이 제한적이다.
 
 **Q: Aider와 GitHub Copilot의 차이점은 무엇인가?**
 A: Copilot은 IDE에서 인라인 자동 완성을 제공한다. Aider는 대화형 에이전트로, 다중 파일 편집을 수행하고 이를 git에 커밋한다. 둘은 서로 보완된다 — 많은 개발자가 일상적인 자동 완성에는 Copilot을, 대규모 리팩토링 및 기능 구현에는 Aider를 사용한다. Copilot은 $10-19/월, Aider는 물 + API 사용료이다.
@@ -378,11 +379,11 @@ Aider는 2026년에 사용할 수 있는 가장 유연하고 비용 효율적인
 
 **시작을 위한 실행 항목:**
 
-1. `curl -LsSf https://aider.chat/install.sh | sh`로 Aider 설치
-2. `ANTHROPIC_API_KEY` 또는 `OPENAI_API_KEY` 설정
-3. 프로젝트 디렉토리에서 `aider --model sonnet` 실행
-4. `/add`로 파일을 추가하고, 자연어로 원하는 것을 설명
-5. 푸시 전 `git log`로 자동 커밋 검토
+1. ````curl -LsSf https://aider.chat/install.sh | sh````로 Aider 설치
+2. ````ANTHROPIC_API_KEY```` 또는 ````OPENAI_API_KEY```` 설정
+3. 프로젝트 디렉토리에서 ````aider --model sonnet```` 실행
+4. ````/add````로 파일을 추가하고, 자연어로 원하는 것을 설명
+5. 푸시 전 ````git log```로 자동 커밋 검토
 
 팁을 공유하고, 도움을 받고, 새로운 릴리스 업데이트를 받으려면 [Discord](https://discord.gg/Y7X7bhMQFV) 또는 [Telegram](https://t.me/dibi8opensource) 커뮤니티에 가입하라.
 
@@ -437,7 +438,7 @@ Aider는 2026년에 사용할 수 있는 가장 유연하고 비용 효율적인
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -447,7 +448,7 @@ Aider는 2026년에 사용할 수 있는 가장 유연하고 비용 효율적인
 - [claude-code-vs-aider](aider)
 - [egonex-understand-anything-interactive-knowledge-graph-ai](aider)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

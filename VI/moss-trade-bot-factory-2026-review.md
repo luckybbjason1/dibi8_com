@@ -36,6 +36,7 @@ faq: - q: "moss-trade-bot-factory có an toàn để cài đặt không?"
     a: "Giới hạn dữ liệu BTC 304 ngày v1.0.26: grid chủ đạo mean-revert + 2-3x leverage là dương duy nhất (+4.36%). Trend-following + 5-10x leverage thua -8% đến -20% cùng cửa sổ. Đây là regime-specific — BTC 2025-07 đến 2026-04 là thị trường choppy. Cùng logic grid sẽ thua trong thị trường trending mạnh."
 ---
 
+
 {{</* resource-info */>}}
 
 # Moss Trade Bot Factory 2026 Review: AI Agent Workbench Quant — Tại Sao Backtest Đẹp Lại Lừa Bạn
@@ -46,13 +47,13 @@ Nếu bạn từng mở video YouTube "Tôi kiếm $50k với AI trading bot c�
 
 **Khoảng cách giữa fantasy in-sample và reality out-of-sample — đó là chủ đề của review này.**
 
-Moss Trade Bot Factory (`moss-trade-bot-skills` v1.0.26, MIT-0) là AI agent open-source chuyển mô tả phong cách trading bằng ngôn ngữ tự nhiên ("Livermore trend-following, leverage bảo thủ, chiến lược breakout") thành 30+ tham số Hyperliquid perp được parameterize đầy đủ, chạy backtest local trên dữ liệu CSV shipped, và optional evolve tham số qua LLM reflection. Sau hai ngày test thực chiến — bao gồm audit security, fix bug Sharpe-annualization, so sánh 5 strategy, evolution mode, và validation 70/30 train/OOS nghiêm ngặt — verdict nuanced hơn cả fan lẫn skeptic sẽ nói.
+Moss Trade Bot Factory (```moss-trade-bot-skills```` v1.0.26, MIT-0) là AI agent open-source chuyển mô tả phong cách trading bằng ngôn ngữ tự nhiên ("Livermore trend-following, leverage bảo thủ, chiến lược breakout") thành 30+ tham số Hyperliquid perp được parameterize đầy đủ, chạy backtest local trên dữ liệu CSV shipped, và optional evolve tham số qua LLM reflection. Sau hai ngày test thực chiến — bao gồm audit security, fix bug Sharpe-annualization, so sánh 5 strategy, evolution mode, và validation 70/30 train/OOS nghiêm ngặt — verdict nuanced hơn cả fan lẫn skeptic sẽ nói.
 
 ## ⚡ TL;DR — 90 giây verdict
 
 > **Là gì**: Skill CLI open-source chuyển mô tả chiến lược ngôn ngữ tự nhiên thành 30+ tham số Hyperliquid perp, chạy backtest độ chính xác Decimal trên dữ liệu CSV shipped, và cung cấp loop evolution driven bằng LLM reflection.
 >
-> **Không phải gì**: Hệ thống live trading (không có explicit `--platform-url` bind với ai.moss.site). Không phải paper-trading sandbox theo nghĩa truyền thống — backtest là replay lịch sử, không phải emulation thị trường real-time.
+> **Không phải gì**: Hệ thống live trading (không có explicit ````--platform-url```` bind với ai.moss.site). Không phải paper-trading sandbox theo nghĩa truyền thống — backtest là replay lịch sử, không phải emulation thị trường real-time.
 >
 > **Phù hợp với**: Quant learner muốn thấy backtest internals cấp công nghiệp (Decimal arithmetic, modeling depth book 20-level, accounting liquidation). Strategy designer so sánh template rule-based với params natural-language LLM-generated.
 >
@@ -60,19 +61,19 @@ Moss Trade Bot Factory (`moss-trade-bot-skills` v1.0.26, MIT-0) là AI agent ope
 >
 > **Open-source posture**: License MIT-0, không có eval/exec, HMAC-signed platform calls không bao giờ upload secret, không access wallet private key. Funnel là moss.site (platform AI trading thương mại), nhưng pipeline backtest local chạy entirely offline.
 
----
+* * *
 
 ## Moss Trade Bot Factory là gì (và không phải gì)
 
-Project ở [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) dưới GitHub org `moss-site` (Moss AI, [moss.site](https://moss.site), founded 2025-07). Tính đến v1.0.26 (released 2026-05-25) có 98 stars, 14 forks, 101 commits, 3 contributors (slowfirary 79 commits, fei-moss 14, lokix006 1).
+Project ở [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) dưới GitHub org ````moss-site```` (Moss AI, [moss.site](https://moss.site), founded 2025-07). Tính đến v1.0.26 (released 2026-05-25) có 98 stars, 14 forks, 101 commits, 3 contributors (slowfirary 79 commits, fei-moss 14, lokix006 1).
 
-Về mặt cơ học, skill làm việc qua ba giai đoạn: 1. **Parse**: Input ngôn ngữ tự nhiên ("BTC conservative grid cho 90 ngày qua") được parse bởi agent thành `params.json` có cấu trúc covering 30+ tham số tactical và personality — năm signal weights (trend / momentum / mean-revert / volume / volatility), leverage, threshold entry/exit, multipliers stop và target dựa ATR, params regime-switching, và hơn nữa.
+Về mặt cơ học, skill làm việc qua ba giai đoạn: 1. **Parse**: Input ngôn ngữ tự nhiên ("BTC conservative grid cho 90 ngày qua") được parse bởi agent thành ````params.json```` có cấu trúc covering 30+ tham số tactical và personality — năm signal weights (trend / momentum / mean-revert / volume / volatility), leverage, threshold entry/exit, multipliers stop và target dựa ATR, params regime-switching, và hơn nữa.
 
-2. **Replay**: Engine backtest đọc dữ liệu CSV Hyperliquid shipped (bar 15m, 43 symbols, coverage 148–304 ngày) và replay trades dùng: - Accounting độ chính xác Decimal (aligned với backend Go `shopspring/decimal` của Moss platform)
+2. **Replay**: Engine backtest đọc dữ liệu CSV Hyperliquid shipped (bar 15m, 43 symbols, coverage 148–304 ngày) và replay trades dùng: - Accounting độ chính xác Decimal (aligned với backend Go ````shopspring/decimal```` của Moss platform)
    - Templates depth book đóng băng 20-level cho modeling slippage thực tế
    - Accounting liquidation explicit qua detection maintenance margin breach
    - Mô phỏng cross-margin (single contract, không phải multi-asset portfolio margin)
-   - Funding rate settlement tại hourly intervals (rate cố định `0.0000125`, không phải funding lịch sử thực)
+   - Funding rate settlement tại hourly intervals (rate cố định ````0.0000125````, không phải funding lịch sử thực)
 
 3. **Reflect & Evolve** (tùy chọn): Split window backtest thành segments (default 4000 bars ≈ 41.7 ngày mỗi segment), chạy baseline trên mỗi segment, rồi invoke LLM agent đọc segment-level summaries (exit reasons, win/loss averages, market context) và produce per-segment parameter schedule drift-bounded ±30% từ baseline. Personality params (signal weights, leverage, long_bias) bị lock.
 
@@ -82,43 +83,43 @@ Pitch không quite landing là loop evolution. Sẽ đến đó.
 
 ## Engine Backtest Thực Sự Hoạt Động Thế Nào
 
-Đối với bất kỳ ai đánh giá quant tools, internals engine quan trọng hơn marketing. Ba điều stand out trong `scripts/core/backtest.py`: ### 1. Look-Ahead Bias Defense (Mostly Good)
+Đối với bất kỳ ai đánh giá quant tools, internals engine quan trọng hơn marketing. Ba điều stand out trong ````scripts/core/backtest.py````: ### 1. Look-Ahead Bias Defense (Mostly Good)
 
-Loop replay feed strategy bars `range(last_fed_idx + 1, end_idx)` — strictly stopping trước close bar evaluation. Mark price cho execution synthesized là `open + (close-open)/15`, mô phỏng phút đầu tiên của bar 15m kế tiếp. Đúng về nguyên tắc nhưng assume linear price progression trong bar, sai trong regimes high-volatility. Không phải bug, nhưng approximation đã biết.
+Loop replay feed strategy bars ````range(last_fed_idx + 1, end_idx)```` — strictly stopping trước close bar evaluation. Mark price cho execution synthesized là ````open + (close-open)/15````, mô phỏng phút đầu tiên của bar 15m kế tiếp. Đúng về nguyên tắc nhưng assume linear price progression trong bar, sai trong regimes high-volatility. Không phải bug, nhưng approximation đã biết.
 
 ### 2. Liquidation Modeling (Correct)
 
-Maintenance margin breach được check chống bar high (cho shorts) và bar low (cho longs) trên mỗi replay step. Position force-closed tại liquidation price nếu breach. Field `blowup_count` trong results tracks bao nhiêu lần strategy bị wipe — across cả năm chiến lược chúng tôi test trên 304 ngày BTC data, blowup count là 0, confirming leverage caps và ATR stops thực sự trigger.
+Maintenance margin breach được check chống bar high (cho shorts) và bar low (cho longs) trên mỗi replay step. Position force-closed tại liquidation price nếu breach. Field ````blowup_count```` trong results tracks bao nhiêu lần strategy bị wipe — across cả năm chiến lược chúng tôi test trên 304 ngày BTC data, blowup count là 0, confirming leverage caps và ATR stops thực sự trigger.
 
 ### 3. Bug Sharpe Annualization
 
-`backtest.py:828` original: ```python
+``backtest.py:828`` original: `````python
 sharpe = (valid_returns.mean() / valid_returns.std(ddof=0) * np.sqrt(8760)) ...
-```
+`````
 
-Ở đây `8760` là hằng số annualization hourly-bar (`365 × 24`). Nhưng `equity` stepped tại 15-minute intervals (xem `equity_points.append` tại line 735). Hằng số đúng là `35040` = `365 × 24 × 4`. Hằng số gốc match Moss platform's Go backend cho verify parity, nhưng cho bất kỳ local backtest comparison hoặc absolute Sharpe interpretation, **tất cả default Sharpe values bị bias thấp khoảng 2x**.
+Ở đây ````8760```` là hằng số annualization hourly-bar (````365 × 24````). Nhưng ````equity```` stepped tại 15-minute intervals (xem ````equity_points.append```` tại line 735). Hằng số đúng là ````35040```` = ````365 × 24 × 4````. Hằng số gốc match Moss platform's Go backend cho verify parity, nhưng cho bất kỳ local backtest comparison hoặc absolute Sharpe interpretation, **tất cả default Sharpe values bị bias thấp khoảng 2x**.
 
-Fix dễ: ```python
+Fix dễ: `````python
 ANNUALIZATION_FACTOR = 35040  # 15m bars per year
 sharpe = (valid_returns.mean() / valid_returns.std(ddof=0) * np.sqrt(ANNUALIZATION_FACTOR)) ...
-```
+`````
 
-Nếu bạn plan upload backtests lên moss.site cho verification, giữ `8760`. Nếu bạn học quant hoặc so sánh strategies locally, dùng `35040`.
+Nếu bạn plan upload backtests lên moss.site cho verification, giữ ````8760````. Nếu bạn học quant hoặc so sánh strategies locally, dùng ````35040````.
 
 ## Installation: 10 Phút End-to-End
 
-Đây là AI agent skill duy nhất chúng tôi cài đặt mà không có một cuộc đánh nhau env-var nào. Workflow standard: ```bash
+Đây là AI agent skill duy nhất chúng tôi cài đặt mà không có một cuộc đánh nhau env-var nào. Workflow standard: `````bash
 git clone --depth 1 --branch v1.0.26 https://github.com/moss-site/moss-trade-bot-skills.git
 cd moss-trade-bot-skills/moss-trade-bot-factory/scripts
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-```
+`````
 
-Dependencies tối thiểu: `pandas≥2.0`, `numpy≥1.24`, `ccxt≥4.0`. First run của `dataset_catalog.py` triggers one-time download ~100MB historical CSV data từ GitHub Release Asset (không từ moss.site — họ pin data bằng SHA256 lên tagged release cho reproducibility). Sau đó, everything chạy offline.
+Dependencies tối thiểu: ````pandas≥2.0````, ````numpy≥1.24````, ````ccxt≥4.0````. First run của ````dataset_catalog.py```` triggers one-time download ~100MB historical CSV data từ GitHub Release Asset (không từ moss.site — họ pin data bằng SHA256 lên tagged release cho reproducibility). Sau đó, everything chạy offline.
 
-Để list available symbols: ```bash
+Để list available symbols: `````bash
 python3 dataset_catalog.py --list --timeframe 15m
-```
+`````
 
 Output covers 43 Hyperliquid symbols: BTC (304 ngày), ETH/SOL/ADA/AAVE etc. (148 ngày), plus tokenized stocks (TSLA, NVDA, MSTR) và commodities (GOLD, SILVER, BRENTOIL, SP500).
 
@@ -189,7 +190,7 @@ Skill bản thân free (MIT-0). Funnel là moss.site, where bạn có thể: - B
 
 Chúng tôi không test platform side. README disclaims đây là research và educational tool, và chúng tôi giữ vậy. Nếu bạn muốn live-trade, sẽ cần own Hyperliquid wallet, real USDC, và patience to ignore Train-only backtest metrics.
 
-Org chạy clear funnel mode (6 repos, 1 với stars, rest support infrastructure: `moss-og-pass-nft` cho membership, `moss-bounty-x402-client` cho payments, `Hyperliquid-copy-trade` cho execution). Không evil — standard open-core distribution — nhưng đáng biết khi skill defaults `ai.moss.site` cho every platform-touching command.
+Org chạy clear funnel mode (6 repos, 1 với stars, rest support infrastructure: ````moss-og-pass-nft```` cho membership, ````moss-bounty-x402-client```` cho payments, ````Hyperliquid-copy-trade```` cho execution). Không evil — standard open-core distribution — nhưng đáng biết khi skill defaults ````ai.moss.site```` cho every platform-touching command.
 
 ## Khi Skill Này Là Right Tool
 
@@ -207,8 +208,8 @@ Skip it nếu: - Bạn muốn live-trade without learning OOS validation rigor
 
 Sau hai ngày intensive testing: - **Sharpe annualization bug** (covered above). Fixable trong one line.
 - **No built-in train/test split**. Bạn sẽ cần write own CSV slicer và result comparator. Chúng tôi có ở [archive 95至尊交易员记忆 của chúng tôi](https://github.com/luckybbjason1/home-hermes/tree/main/95%E8%87%B3%E5%B0%8A%E4%BA%A4%E6%98%93%E5%91%98%E8%AE%B0%E5%BF%86).
-- **Regime detection labels can be wrong**. Seg 4 labeled SIDEWAYS nhưng BTC dropped -19.6% during that window. Regime detector trong `core/regime.py` deserves own audit.
-- **Funding rate là fixed constant** (`0.0000125` per hour). Real Hyperliquid funding fluctuates. Long-duration positions sẽ see backtest-vs-live divergence here.
+- **Regime detection labels can be wrong**. Seg 4 labeled SIDEWAYS nhưng BTC dropped -19.6% during that window. Regime detector trong ````core/regime.py```` deserves own audit.
+- **Funding rate là fixed constant** (````0.0000125``` per hour). Real Hyperliquid funding fluctuates. Long-duration positions sẽ see backtest-vs-live divergence here.
 - **No multi-asset cross-margin**. Single-contract cross-margin only. Portfolio strategies cần custom work.
 
 ## Recommended Infrastructure cho Self-Hosting
@@ -228,7 +229,7 @@ Install it, fix Sharpe bug, run five hand-crafted strategies để see how engin
 
 Bots aren"t going to teach bạn to be honest about your edge. Bạn phải do that yourself.
 
----
+* * *
 
 **GitHub**: [moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) · **License**: MIT-0 · **Latest**: v1.0.26 (2026-05-25) · **Stars**: 98 · **Maintainer**: moss-site / Moss AI ([moss.site](https://moss.site))
 
@@ -258,7 +259,7 @@ Bots aren"t going to teach bạn to be honest about your edge. Bạn phải do t
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -268,7 +269,7 @@ Bots aren"t going to teach bạn to be honest about your edge. Bạn phải do t
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](moss-trade-bot-factory-2026-review)
 - [codebase-memory-mcp-high-performance-code-intelligence](moss-trade-bot-factory-2026-review)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

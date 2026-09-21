@@ -34,6 +34,7 @@ faqs: - q: 'Open Design이란 무엇이며 Claude Design과 어떻게 다른가�
     a: '이 도구 자체는 MIT 라이선스 하에 무료 오픈소스로 제공되며, 구독료나 사용자 수에 따른 요금이 없습니다. 유일한 비용은 실제로 소비하는 AI 제공업체의 API 사용량으로, Anthropic, OpenAI, Google 등의 제공업체에 실제로 발생한 호출에 대해서만 비용을 지불합니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Open Design: Claude Design을 대체하는 궁극의 로컬 우선 AI 디자인 도구
@@ -135,28 +136,28 @@ Open Design을 머신에서 실행하는 것은 간단합니다. 완전한 설�
 
 ### 1단계: 저장소 클론
 
-```bash
+````bash
 git clone https://github.com/nexu-io/open-design.git
 cd open-design
-```
+`````
 
 ### 2단계: 의존성 설치
 
-Open Design은 모노레포 구조를 사용합니다. 다음으로 모든 패키지를 설치하세요: ```bash
+Open Design은 모노레포 구조를 사용합니다. 다음으로 모든 패키지를 설치하세요: `````bash
 npm install
 # 또는
 pnpm install
 # 또는
 yarn install
-```
+`````
 
 ### 3단계: 환경 변수 구성
 
-예제 환경 파일을 복사하고 사용자화하세요: ```bash
+예제 환경 파일을 복사하고 사용자화하세요: `````bash
 cp .env.example .env
-```
+`````
 
-사용할 AI 제공업체 API 키를 추가하기 위해 `.env`를 편집하세요. 사용할 제공업체만 구성하면 됩니다: ```env
+사용할 AI 제공업체 API 키를 추가하기 위해 ``.env``를 편집하세요. 사용할 제공업체만 구성하면 됩니다: `````env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -169,39 +170,39 @@ GEMINI_API_KEY=your-gemini-key
 # 선택사항: 사용자 정의 모델 엔드포인트
 CUSTOM_MODEL_URL=https://your-model-endpoint.com
 CUSTOM_MODEL_API_KEY=your-custom-key
-```
+`````
 
 ### 4단계: 프로젝트 빌드
 
-```bash
+`````bash
 npm run build
-```
+`````
 
 이것은 TypeScript 소스를 컴파일하고 디자인 시스템 자산을 번들링합니다.
 
 ### 5단계: 디자인 시스템 초기화
 
-71개의 브랜드급 디자인 시스템을 다운로드하세요: ```bash
+71개의 브랜드급 디자인 시스템을 다운로드하세요: `````bash
 npm run init:design-systems
-```
+`````
 
 이 명령은 오프라인 사용을 위해 로컬로 모든 디자인 시스템 정의를 가져와 캐시합니다.
 
 ### 6단계: Open Design 실행
 
-로컬 개발 서버를 시작하세요: ```bash
+로컬 개발 서버를 시작하세요: `````bash
 npm run dev
-```
+`````
 
-인터페이스는 `http://localhost:3000`에서 사용 가능합니다. 브라우저를 열고 디자인 생성을 시작하세요.
+인터페이스는 ````http://localhost:3000````에서 사용 가능합니다. 브라우저를 열고 디자인 생성을 시작하세요.
 
 ### 7단계: AI 어시스턴트 구성 (선택사항)
 
-Claude Code 또는 Cursor와 같은 외부 AI 어시스턴트와 함께 Open Design을 사용하는 경우 동반 플러그인을 설치하세요: ```bash
+Claude Code 또는 Cursor와 같은 외부 AI 어시스턴트와 함께 Open Design을 사용하는 경우 동반 플러그인을 설치하세요: `````bash
 npm run install:cursor-plugin
 # 또는
 npm run install:claude-plugin
-```
+````
 
 이러한 플러그인은 Open Design 명령을 에디터의 명령 팔레트에 직접 추가합니다.
 
@@ -283,11 +284,11 @@ Open Design은 기술 팀이 창의적 자동화에 접근하는 방식의 중�
 
 AI 기반 개발 도구에 대한 더 많은 인사이트를 위해 dibi8의 관련 기사들을 확인하세요: [AI 코딩 어시스턴트 2026](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/), [로컬 우선 아키텍처 가이드](/resources/llm-frameworks/anythingllm-architecture-local-rag/), 그리고 [독점 AI 도구의 오픈소스 대안](/resources/llm-frameworks/top-10-open-source-ai-tools-2026/).
 
----
+* * *
 
 *프로젝트에서 Open Design을 사용해 보셨나요? 아래 댓글에서 경험을 공유하거나 협업 기회를 위해 dibi8 Tech Team에 연락해 주세요.*
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 

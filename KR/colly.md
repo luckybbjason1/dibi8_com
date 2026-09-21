@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/colly/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -32,7 +33,7 @@ Python은 10년 넘게 웹 스크래핑을 지배해왔다. Scrapy, BeautifulSou
 
 ## Colly란?
 
-**Colly**는 우아하고 번개처럼 빠른 Go 웹 스크래핑 및 크롤링 프레임워크다. 깔끔한 콜백 기반 API를 제공하며 HTTP 요청, HTML 파싱, 쿠키 관리, 속도 제한, 병렬 실행을 단일 `Collector` 객체 뒤에서 모두 처리한다. 프레임워크는 정적 바이너리로 컴파일되며 런타임 의존성이 전혀 없어 DevOps 친화적인 스크래핑 파이프라인에 최적의 선택이다.
+**Colly**는 우아하고 번개처럼 빠른 Go 웹 스크래핑 및 크롤링 프레임워크다. 깔끔한 콜백 기반 API를 제공하며 HTTP 요청, HTML 파싱, 쿠키 관리, 속도 제한, 병렬 실행을 단일 ```Collector```` 객체 뒤에서 모두 처리한다. 프레임워크는 정적 바이너리로 컴파일되며 런타임 의존성이 전혀 없어 DevOps 친화적인 스크래핑 파이프라인에 최적의 선택이다.
 
 ## Colly 작동 방식
 
@@ -40,14 +41,14 @@ Python은 10년 넘게 웹 스크래핑을 지배해왔다. Scrapy, BeautifulSou
 
 ![Colly gopher mascot](https://go-colly.org/img/colly_gopher.png)
 
-Colly의 아키텍처는 **Collector**를 중심으로 구축됐다. 이는 전체 스크래핑 라이프사이클을 관리하는 상태 저장 오케스트레이터다. 데이터 흐름은 다음과 같다: 1. **Collector**가 `Visit()`을 통해 시작 URL을 수신
+Colly의 아키텍처는 **Collector**를 중심으로 구축됐다. 이는 전체 스크래핑 라이프사이클을 관리하는 상태 저장 오케스트레이터다. 데이터 흐름은 다음과 같다: 1. **Collector**가 ````Visit()````을 통해 시작 URL을 수신
 2. **HTTP 백엔드**가 설정된 타임아웃, 프록시, 헤더로 요청을 실행
-3. **응답**이 등록된 콜백(`OnHTML`, `OnResponse`, `OnError`)을 트리거
+3. **응답**이 등록된 콜백(````OnHTML````, ````OnResponse````, ````OnError````)을 트리거
 4. **HTMLElement**가 goquery 스타일 선택자로 DOM을 파싱
 5. **큐**가 재귀 크롤링을 위한 URL 스케줄링을 처리
 6. **스토리지 백엔드**가 쿠키, 세션, 캐싱을 관리
 
-```
+`````
 ┌─────────────┐    HTTP GET     ┌──────────────┐
 │  Collector  │ ──────────────> │  대상 사이트  │
 │  (상태)      │ <────────────── │              │
@@ -63,7 +64,7 @@ Colly의 아키텍처는 **Collector**를 중심으로 구축됐다. 이는 전�
 ┌─────────────┐
 │     큐      │ ──> 다음 URL 방문
 └─────────────┘
-```
+`````
 
 컬렉터 패턴은 코드를 체계적으로 유지한다. 특정 HTML 요소에 대한 핸들러를 등록하고 Colly가 동시성, 재시도, 예의를 자동으로 관리하도록 한다.
 
@@ -72,11 +73,11 @@ Colly의 아키텍처는 **Collector**를 중심으로 구축됐다. 이는 전�
 ### 사전 요구사항
 
 - Go 1.21+ 설치
-- 작동하는 Go 모듈(`go mod init`)
+- 작동하는 Go 모듈(````go mod init````)
 
 ### Colly 설치
 
-```bash
+`````bash
 # 프로젝트 초기화
 mkdir colly-scraper && cd colly-scraper
 go mod init github.com/youruser/colly-scraper
@@ -86,11 +87,11 @@ go get github.com/gocolly/colly/v2
 
 # 설치 확인
 go list -m github.com/gocolly/colly/v2
-```
+`````
 
 ### 첫 번째 스크래퍼
 
-```go
+`````go
 package main
 
 import (
@@ -118,15 +119,15 @@ func main() {
 
 	c.Visit("https://go-colly.org/")
 }
-```
+`````
 
-실행: ```bash
+실행: `````bash
 go run main.go
-```
+`````
 
 ### Docker 설정
 
-```dockerfile
+`````dockerfile
 FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
@@ -139,30 +140,30 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /app/scraper .
 CMD ["./scraper"]
-```
+`````
 
-```bash
+`````bash
 # 빌드 및 실행
 docker build -t colly-scraper .
 docker run --rm colly-scraper
-```
+`````
 
 ### Docker Compose with Redis 캐시
 
-```yaml
+`````yaml
 version: '3.8'
 services: scraper: build: .
     depends_on: - redis
     environment: - REDIS_URL=redis:6379
   redis: image: redis:7-alpine
     volumes: - redis-data:/data
-  volumes: redis-data: ```
+  volumes: redis-data: `````
 
 ## 인기 도구와의 통합
 
 ### Redis 캐싱 백엔드
 
-대규모 크롤링 시 Redis 캐시로 중복 요청을 방지: ```go
+대규모 크롤링 시 Redis 캐시로 중복 요청을 방지: `````go
 package main
 
 import (
@@ -194,13 +195,13 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### Webshare 프록시 로테이션
 
 대규모 스크래핑 시 프록시 로테이션으로 IP 차단을 방지한다. [Webshare](https://www.webshare.io/)는 Colly와 원활하게 통합되는 레지덴셜 프록시를 제공한다.
 
-```go
+`````go
 package main
 
 import (
@@ -231,11 +232,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### goquery 고급 DOM 탐색
 
-Colly의 내장 `HTMLElement`는 대부분의 경우를 커버하지만 goquery로 복잡한 DOM 탐색이 가능하다: ```go
+Colly의 내장 ``HTMLElement``는 대부분의 경우를 커버하지만 goquery로 복잡한 DOM 탐색이 가능하다: `````go
 package main
 
 import (
@@ -266,11 +267,11 @@ func main() {
 
 	c.Visit("https://news.ycombinator.com")
 }
-```
+`````
 
 ### chromedp JavaScript 렌더링 페이지 처리
 
-Colly는 JavaScript를 실행하지 않는다. SPA의 경우 chromedp와 함께 사용: ```go
+Colly는 JavaScript를 실행하지 않는다. SPA의 경우 chromedp와 함께 사용: `````go
 package main
 
 import (
@@ -309,13 +310,13 @@ func main() {
 	// 렌더링된 HTML 파싱...
 	fmt.Println("렌더링 길이:", len(htmlContent))
 }
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
 ### 처리량 벤치마크
 
-AWS `c6i.xlarge`(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페이지를 스크래핑하는 제어 벤치마크를 수행했다: | 도구 | 시간 (1000페이지) | 메모리 사용 | 요청/초 | 바이너리 크기 |
+AWS ````c6i.xlarge````(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페이지를 스크래핑하는 제어 벤치마크를 수행했다: | 도구 | 시간 (1000페이지) | 메모리 사용 | 요청/초 | 바이너리 크기 |
 |------|------------------|------------|---------|-------------|
 | **Colly** (병렬) | ~7초 | 25 MB | ~1,200 | 12 MB |
 | **Colly** (동기) | ~52초 | 20 MB | ~19 | 12 MB |
@@ -343,7 +344,7 @@ colly benchmark 주요 관찰: 1. **Colly 병렬 모드**가 고루틴을 활용
 
 ### 속도 제한 및 크롤링 예의
 
-```go
+`````go
 package main
 
 import (
@@ -370,11 +371,11 @@ func main() {
 
 	c.Visit("https://example.com/products")
 }
-```
+`````
 
 ### Redis 큐 기반 분산 크롤링
 
-```go
+`````go
 package main
 
 import (
@@ -407,11 +408,11 @@ func main() {
 	q.AddURL("https://example.com/start")
 	q.Run(c)
 }
-```
+`````
 
 ### 커스텀 HTTP 백엔드와 타임아웃
 
-```go
+`````go
 package main
 
 import (
@@ -444,11 +445,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### 구조체 태그로 구조화된 데이터 추출
 
-```go
+`````go
 package main
 
 import (
@@ -458,9 +459,9 @@ import (
 )
 
 type Product struct {
-	Name  string `selector:"h1.product-title"`
-	Price string `selector:"span.price"`
-	SKU   string `selector:"meta[itemprop=sku]" attr:"content"`
+	Name  string ````selector:"h1.product-title"````
+	Price string ````selector:"span.price"````
+	SKU   string ````selector:"meta[itemprop=sku]" attr:"content"````
 }
 
 func main() {
@@ -475,7 +476,7 @@ func main() {
 
 	c.Visit("https://shop.example.com/item/123")
 }
-```
+`````
 
 ## 대안과의 비교
 
@@ -523,15 +524,15 @@ Colly는 원시 처리량(1,000+ vs ~300 req/sec)과 메모리 효율성(천 페
 
 ### 여러 머신에서 Colly를 어떻게 확장하나?
 
-Redis 기반 큐(`colly/queue`)를 사용해 여러 워커 간 URL을 분배한다. 각 워커는 Colly 인스턴스를 실행해 공유 큐에서 소비하고 결과를 중앙 데이터베이스에 기록한다. Kubernetes에서 HPA를 추가해 탄력적인 용량을 확보한다.
+Redis 기반 큐(````colly/queue````)를 사용해 여러 워커 간 URL을 분배한다. 각 워커는 Colly 인스턴스를 실행해 공유 큐에서 소비하고 결과를 중앙 데이터베이스에 기록한다. Kubernetes에서 HPA를 추가해 탄력적인 용량을 확보한다.
 
 ### Colly와 가장 잘 작동하는 프록시 제공업체는?
 
-모든 HTTP 프록시는 `colly/proxy`로 작동한다. [Webshare](https://www.webshare.io/)는 Colly의 `RoundRobinProxySwitcher`와 깔끔하게 통합되는 로테이션 IP 풀을 제공하는 레지덴셜 프록시를 제공한다. Bright Data와 Oxylabs는 전담 지원을 갖춘 엔터프라이즈 대안이다.
+모든 HTTP 프록시는 ````colly/proxy````로 작동한다. [Webshare](https://www.webshare.io/)는 Colly의 ````RoundRobinProxySwitcher````와 깔끔하게 통합되는 로테이션 IP 풀을 제공하는 레지덴셜 프록시를 제공한다. Bright Data와 Oxylabs는 전담 지원을 갖춘 엔터프라이즈 대안이다.
 
 ### 스크래핑 시 차단을 어떻게 피하나?
 
-여러 기술을 조합한다: Colly 확장으로 User-Agent 로테이션, 랜덤 지연 추가(`LimitRule`의 `RandomDelay`), `robots.txt` 준수, 레지덴셜 프록시 사용, 시간에 따라 요청 분산. 대상 사이트의 용량을 초과하지 말고 — 429 오류 시 백오프하며 응답 코드를 모니터링한다.
+여러 기술을 조합한다: Colly 확장으로 User-Agent 로테이션, 랜덤 지연 추가(````LimitRule````의 ````RandomDelay````), ````robots.txt```` 준수, 레지덴셜 프록시 사용, 시간에 따라 요청 분산. 대상 사이트의 용량을 초과하지 말고 — 429 오류 시 백오프하며 응답 코드를 모니터링한다.
 
 ### Colly가 수백만 페이지 크롤링에 적합한가?
 
@@ -539,14 +540,14 @@ Redis 기반 큐(`colly/queue`)를 사용해 여러 워커 간 URL을 분배한�
 
 ### Colly 스크래퍼를 어떻게 디버깅하나?
 
-`colly.Debugger(&debug.LogDebugger{})`로 디버그 로깅을 활성화해 모든 요청/응답을 추적한다. `OnError` 콜백으로 실패한 요청을 캡처하고 기록한다. 복잡한 문제의 경우 요청/응답 덤프 기능이 있는 커스텀 HTTP 백엔드를 연결한다.
+````colly.Debugger(&debug.LogDebugger{})````로 디버그 로깅을 활성화해 모든 요청/응답을 추적한다. ````OnError```` 콜백으로 실패한 요청을 캡처하고 기록한다. 복잡한 문제의 경우 요청/응답 덤프 기능이 있는 커스텀 HTTP 백엔드를 연결한다.
 
 ## 결론
 
 Colly는 Go 개발자가 스크래핑 프레임워크에 기대하는 것을 정확히 제공한다: 속도, 단순함, 단일 바이너리 배포 스토리. **GitHub Stars 25,302개**와 **초당 1,000+ 요청**으로 처리량과 메모리 효율성에서 Python 및 Node.js 대안을 능가한다. 콜백 API는 직관적이고 Redis 통합은 진정한 분산 크롤링을 가능하게 하며 프록시 지원은 규모에서 차단 없이 작동하게 한다.
 
 **시작을 위한 액션 아이템:**
-1. [Colly GitHub 저장소](https://github.com/gocolly/colly)를 클론하고 `_examples/` 폴이더 실행
+1. [Colly GitHub 저장소](https://github.com/gocolly/colly)를 클론하고 ````_examples/``` 폴이더 실행
 2. 위의 5분 설정으로 첫 스크래퍼 빌드
 3. 1만 페이지 이상 확장하기 전에 Redis 캐싱과 프록시 로테이션 추가
 4. Go 스크래핑 토론과 프로덕션 팁을 위해 [dibi8 Telegram 그룹](https://t.me/dibi8_channel) 참여

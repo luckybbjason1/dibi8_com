@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 ---
 
+
 ## はじめに
 
 Google NotebookLM は、すぐにでも使える最も有用な AI 搭載ナレッジマネジメントツールの一つへと急速に発展しました。ドキュメントやソースをアップロードすることで、ユーザーは AI アシスタントが推論を行い、質問に答え、要約や学習ガイド、詳細な分析に統合できるプライベートな「ノートブック」を作成できます。これは本質的に、箱組み（out of the box）で使用できる RAG システムです。
@@ -32,7 +33,7 @@ Qiaomu Anything to NotebookLM は、15 種類以上の異なるソースから�
 ツールキットは主に2つの操作モードを中心に構築されています：
 
 1. **Claude Code スキルモード** — Claude Code で自然言語を使用して変換をトリガーします。「機械学習に関するこの YouTube ビデオを NotebookLM のソースに変換して。」スキルがパイプライン全体を処理します。
-2. **Python パッケージモード** — バッチ処理、スケジュール設定、より大きなデータパイプラインへの統合のために `qiaomu-notebooklm` Python パッケージをプログラム的に使用します。
+2. **Python パッケージモード** — バッチ処理、スケジュール設定、より大きなデータパイプラインへの統合のために ```qiaomu-notebooklm```` Python パッケージをプログラム的に使用します。
 
 **機能画像：**
 
@@ -63,7 +64,7 @@ Qiaomu Anything to NotebookLM は、15 種類以上の異なるソースから�
 
 ツールは適切な抽出戦略を使用してソースからコンテンツを抽出します：
 
-```python
+`````python
 # パッケージをインストール
 pip install qiaomu-notebooklm
 
@@ -78,13 +79,13 @@ result = converter.convert(
     output_format="notebooklm"
 )
 print(f"{result.word_count} 語を NotebookLM フォーマットに変換しました")
-```
+`````
 
 ### 2. テキスト処理とクリーニング
 
 抽出されたコンテンツはクリーニングされ、重複が削除され、構造化されます。ツールはナビゲーション要素、広告、フッター、およびその他の非コンテンツ要素を削除します：
 
-```python
+`````python
 # 前処理オプション付きの高コンバーター
 result = converter.convert(
     source_url="https://example.com/article",
@@ -97,13 +98,13 @@ result = converter.convert(
         "language": "en"
     }
 )
-```
+`````
 
 ### 3. NotebookLM フォーマット
 
 処理されたコンテンツは、Google NotebookLM が取り込むことができる構造にフォーマットされます。通常、これは構造化された Markdown または PDF ファイルの生成を意味します：
 
-```python
+`````python
 # NotebookLM 互換フォーマットにエクスポート
 converter.export(
     result,
@@ -116,13 +117,13 @@ import os
 for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
     size = os.path.getsize(filepath)
     print(f"{f}: {size / 1024:.1f} KB")
-```
+`````
 
 ### 4. NotebookLM へのアップロード
 
 オプションで、ツールは利用可能な場合、API を介して変換されたコンテンツを直接 Google NotebookLM にアップロードできます：
 
-```python
+`````python
 # NotebookLM にアップロード
 notebooklm = converter.connect_notebooklm(
     google_account="your_email@gmail.com"
@@ -137,13 +138,13 @@ notebook = notebooklm.create_notebook(
 # ソースをアップロード
 notebook.upload_source("./notebooklm_sources/youtube_tutorial.md")
 notebook.upload_source("./notebooklm_sources/paper_abstract.pdf")
-```
+`````
 
 ## インストール
 
 ### Python パッケージインストール
 
-```bash
+`````bash
 # pip でインストール
 pip install qiaomu-notebooklm
 
@@ -152,13 +153,13 @@ python -c "import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)"
 
 # すべてのオプション依存関係とともにインストール
 pip install qiaomu-notebooklm[all]
-```
+`````
 
 ### Git クローンインストール
 
 最新の開発バージョン用：
 
-```bash
+`````bash
 # リポジトリをクローン
 git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git
 cd qiaomu-anything-to-notebooklm
@@ -168,13 +169,13 @@ pip install -e .
 
 # 開発依存関係をインストール
 pip install -r requirements-dev.txt
-```
+`````
 
 ### Claude Code スキルインストール
 
 Claude Code スキルとして使用するには、スキル設定を Claude Code 設定に追加します：
 
-```bash
+`````bash
 # Claude Code 設定ディレクトリ内
 mkdir -p ~/.claude/skills
 
@@ -183,7 +184,7 @@ cp -r qiaomu-notebooklm/claude-code-skill/ ~/.claude/skills/
 
 # Claude Code を再起動
 claude --reload-skills
-```
+`````
 
 ## 統合パターン
 
@@ -191,7 +192,7 @@ claude --reload-skills
 
 大量のコンテンツコレクションを処理する場合：
 
-```python
+`````python
 # URL リストを一括処理
 urls = [
     "https://youtube.com/watch?v=video1",
@@ -210,13 +211,13 @@ results = converter.batch_convert(
 
 for url, result in results.items(): status = "成功" if result.success else "失敗"
     print(f"[{status}] {url}: {result.word_count} 語変換済み")
-```
+`````
 
 ### スケジュール変換
 
 スケジュールされたコンテンツ取り込みを設定します：
 
-```python
+`````python
 import schedule
 import time
 from datetime import datetime
@@ -246,13 +247,13 @@ schedule.every().day.at("06:00").do(daily_content_sync)
 
 while True: schedule.run_pending()
     time.sleep(60)
-```
+`````
 
 ### ペイウォール回避
 
 Qiaomu の最も特徴的な機能の一つが、ペイウォール付きコンテンツにアクセスする能力です：
 
-```python
+`````python
 # ペイウォールを回避して記事コンテンツを抽出
 result = converter.convert(
     source_url="https://premium-article.example.com/breaking-news",
@@ -268,7 +269,7 @@ result = converter.convert(
 # 2. アーカイブサービス照会
 # 3. テキストのみのフォールバック
 # 4. プロキシベースアクセス（WebShare 経由）
-```
+`````
 
 ![Qiaomu 変換パイプライン](https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/conversion-pipeline.png)
 
@@ -301,7 +302,7 @@ result = converter.convert(
 
 まだサポートされていないコンテンツソース用のカスタム抽出プラグインを書くことができます：
 
-```python
+`````python
 from qiaomu_notebooklm.plugins import BaseExtractor
 
 @BaseExtractor.register("my_custom_source")
@@ -324,13 +325,13 @@ result = converter.convert(
     source_url="https://custom-source.example.com/article",
     extractor="my_custom_source"
 )
-```
+`````
 
 ### 多ノートブック管理
 
 単一のスクリプトから複数の NotebookLM ノートブックを管理します：
 
-```python
+`````python
 notebooklm = converter.connect_notebooklm()
 
 # プロジェクト固有のノートブックを作成
@@ -353,13 +354,13 @@ for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebo
     for url in urls: result = converter.convert(url, output_format="notebooklm")
         notebook.upload_source(result.file_path)
         print(f"{notebook_name} にソースを追加: {url}")
-```
+`````
 
 ### ナレッジグラフ生成
 
 変換されたコンテンツから構造化されたナレッジを生成します：
 
-```python
+`````python
 from qiaomu_notebooklm import KnowledgeExtractor
 
 extractor = KnowledgeExtractor()
@@ -376,7 +377,7 @@ knowledge_graph.save("./knowledge_graph.json")
 # グラフをクエリ
 entities = knowledge_graph.get_entities_by_type("Person")
 print(f"{len(entities)} 個のエンティティが見つかりました: {[e.name for e in entities]}")
-```
+`````
 
 ## 代替案との比較
 
@@ -412,7 +413,7 @@ Qiaomu は強力なツールですが、いくつかの制限事項に留意す�
 
 ### 1. Qiaomu Anything to NotebookLM のインストール方法は？
 
-`pip install qiaomu-notebooklm` を実行して Python パッケージをインストールします。最新バージョンの場合は、`git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git` でリポジトリをクローンし、ソースからインストールします。
+````pip install qiaomu-notebooklm```` を実行して Python パッケージをインストールします。最新バージョンの場合は、````git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git```` でリポジトリをクローンし、ソースからインストールします。
 
 ### 2. どのようなコンテンツソースをサポートしていますか？
 
@@ -448,9 +449,9 @@ YouTube チュートリアルを学習ノートブックに自動的に変換し
 
 今日インストールして、自動ナレッジパイプラインの構築を開始しましょう：
 
-```bash
+`````bash
 pip install qiaomu-notebooklm
-```
+````
 
 [CTA：任意のコンテンツを NotebookLM のナレッジベースに変換。[始める](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) | [例を見る](https://github.com/joeseesun/qiaomu-anything-to-notebooklm/tree/main/examples)]
 
@@ -525,12 +526,12 @@ Qiaomu Anything to NotebookLM：任意コンテンツソースを Google Noteboo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -540,7 +541,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-01-trending-ai-agents](qiaomu-anything-to-notebooklm)
 - [2026-06-08-trending-ai-agents](qiaomu-anything-to-notebooklm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

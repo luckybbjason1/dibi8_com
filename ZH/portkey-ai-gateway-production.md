@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/portkey-ai-gateway-production/-
 ---
 
+
 {{</* resource-info */>}}
 
 在生产环境中管理多个大语言模型（LLM）提供商是一场噩梦。每个提供商都有自己的API格式、认证方案、速率限制和故障模式。你的应用代码中充斥着针对OpenAI、Anthropic、Google、Azure以及每月涌现的数十个新提供商的条件逻辑。**Portkey AI Gateway** 应运而生 —— 这款开源LLM网关将200+模型统一在单一API之后，提供负载均衡、故障转移路由、消费追踪、请求缓存和企业级可观测性。
@@ -33,7 +34,7 @@ aliases:
 > **快速开始**：Portkey AI Gateway采用MIT许可证开源，拥有14,000+ GitHub星标。你可以选择自托管或使用托管云服务。准备好了吗？让我们开始吧。
 
 
----
+* * *
 ## 什么是Portkey AI Gateway？
 
 Portkey AI Gateway是一款开源AI网关，位于你的应用和LLM提供商之间。可以将其视为专为AI工作负载设计的智能反向代理。它统一了来自OpenAI、Anthropic、Google、Azure、Cohere、Mistral等20+提供商的200+模型的API接口，让你的代码只需要使用一种语言。
@@ -52,7 +53,7 @@ Portkey AI Gateway是一款开源AI网关，位于你的应用和LLM提供商之
 无论你是运行单个模型的初创公司，还是管理数十个提供商的企业，Portkey都能提供你所需的基础设施层来将AI应用投入生产。
 
 
----
+* * *
 ## 架构概述和部署选项
 
 Portkey AI Gateway提供两种部署模式：**云（托管）** 和 **自托管**。该架构围绕一个轻量级、高性能的网关服务器构建，该服务器拦截LLM请求，应用你配置的策略，并将其路由到相应的提供商。
@@ -67,18 +68,18 @@ Portkey AI Gateway提供两种部署模式：**云（托管）** 和 **自托管
 
 **使用Docker部署：**
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/Portkey-AI/gateway.git
 cd gateway
 
 # 使用Docker运行
 docker run -p 8787:8787 -e PORTKEY_GATEWAY_API_KEY=your-gateway-key portkeyai/gateway:latest
-```
+`````
 
 **使用Docker Compose部署：**
 
-```yaml
+`````yaml
 version: '3.8'
 services: portkey-gateway: image: portkeyai/gateway:latest
     ports: - "8787:8787"
@@ -87,11 +88,11 @@ services: portkey-gateway: image: portkeyai/gateway:latest
       - CACHE_TTL=3600
     volumes: - ./config:/app/config
     restart: unless-stopped
-```
+`````
 
 **部署到Kubernetes：**
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: portkey-gateway
@@ -104,7 +105,7 @@ spec: replicas: 3
         env: - name: PORTKEY_GATEWAY_API_KEY
           valueFrom: secretKeyRef: name: portkey-secrets
               key: gateway-api-key
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: portkey-gateway-service
@@ -112,11 +113,11 @@ spec: selector: app: portkey-gateway
   ports: - port: 80
     targetPort: 8787
   type: ClusterIP
-```
+`````
 
 对于生产部署，我们建议使用Kubernetes并至少3个副本以确保高可用性。如果你需要一个可靠的云平台来托管你的集群，[DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0) 提供了一个开发者友好的托管Kubernetes服务，与Portkey完美搭配。
 
----
+* * *
 
 ## 配置提供商和API密钥
 
@@ -124,9 +125,9 @@ spec: selector: app: portkey-gateway
 
 ### 设置提供商
 
-创建 `providers.yaml` 配置文件：
+创建 ````providers.yaml```` 配置文件：
 
-```yaml
+`````yaml
 providers: openai-primary: type: openai
     api_key: ${OPENAI_API_KEY}
     organization: ${OPENAI_ORG_ID}
@@ -146,11 +147,11 @@ providers: openai-primary: type: openai
   mistral-local: type: mistral
     api_key: ${MISTRAL_API_KEY}
     base_url: http://mistral-service:8000/v1
-```
+`````
 
 ### 加载配置
 
-```bash
+`````bash
 # 设置环境变量
 export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-ant-..."
@@ -161,9 +162,9 @@ docker run -p 8787:8787 \
   -e PORTKEY_GATEWAY_API_KEY=$GATEWAY_API_KEY \
   -v $(pwd)/providers.yaml:/app/config/providers.yaml \
   portkeyai/gateway:latest
-```
+`````
 
----
+* * *
 
 ## 统一API：一个端点对接200+模型
 
@@ -171,7 +172,7 @@ Portkey的核心价值在于其统一API。无论你调用的是哪个模型或�
 
 ### 基础对话补全请求
 
-```bash
+`````bash
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
   -H "Content-Type: application/json" \
@@ -183,11 +184,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
       {"role": "user", "content": "用简单的术语解释量子计算。"}
     ]
   }'
-```
+`````
 
 ### 即时切换提供商
 
-```bash
+`````bash
 # 相同的请求，不同的提供商 —— 只需更改model/provider字段
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -200,11 +201,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     ],
     "max_tokens": 1024
   }'
-```
+`````
 
 ### Python SDK示例
 
-```python
+`````python
 from portkey_ai import Portkey
 
 # 初始化客户端
@@ -222,11 +223,11 @@ response = portkey.chat.completions.create(
     ]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 流式响应
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(api_key="your-gateway-api-key")
@@ -238,9 +239,9 @@ stream = portkey.chat.completions.create(
 )
 
 for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
----
+* * *
 
 ## 负载均衡和故障转移路由
 
@@ -250,7 +251,7 @@ for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].d
 
 在多个API密钥或提供商之间均匀分配流量：
 
-```yaml
+`````yaml
 # config/load-balance.yaml
 strategies: gpt4-pool: type: load_balance
     providers: - provider: openai-primary
@@ -259,22 +260,22 @@ strategies: gpt4-pool: type: load_balance
         weight: 1
       - provider: openai-backup
         weight: 1
-```
+`````
 
-```python
+`````python
 # 使用负载均衡池
 response = portkey.chat.completions.create(
     model="gpt-4o",
     config="gpt4-pool",  # 引用策略
     messages=[{"role": "user", "content": "你好！"}]
 )
-```
+`````
 
 ### 优先级故障转移路由
 
 定义自动故障切换的链路：
 
-```yaml
+`````yaml
 strategies: production-fallback: type: fallback
     targets: - provider: azure-gpt4
         timeout: 10
@@ -288,9 +289,9 @@ strategies: production-fallback: type: fallback
       - provider: google-gemini
         model: gemini-2.5-pro
         timeout: 20
-```
+`````
 
-```bash
+`````bash
 # 网关按顺序尝试每个目标直到成功
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -299,13 +300,13 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     "config": "production-fallback",
     "messages": [{"role": "user", "content": "关键业务查询"}]
   }'
-```
+`````
 
 ### 基于请求属性的条件路由
 
 根据内容、用户或其他请求属性路由请求：
 
-```yaml
+`````yaml
 strategies: smart-router: type: conditional
     rules: - condition: "request.messages[0].content.length > 4000"
         target: provider: anthropic-primary
@@ -316,9 +317,9 @@ strategies: smart-router: type: conditional
       - condition: "default"
         target: provider: azure-gpt4
           model: gpt-4o-mini
-```
+`````
 
----
+* * *
 
 ## 请求缓存：降低成本和延迟
 
@@ -326,15 +327,15 @@ LLM API调用既昂贵又缓慢。Portkey的语义缓存存储响应并为类似
 
 ### 启用缓存
 
-```yaml
+`````yaml
 cache: enabled: true
   mode: semantic  # 或 "exact" 用于精确匹配缓存
   ttl: 3600       # 缓存生存时间（秒）
   max_size: 10000 # 最大缓存条目数
   similarity_threshold: 0.95  # 语义缓存的相似度阈值
-```
+`````
 
-```python
+`````python
 # 首次调用命中提供商并缓存结果
 response1 = portkey.chat.completions.create(
     model="gpt-4o",
@@ -348,17 +349,17 @@ response2 = portkey.chat.completions.create(
     messages=[{"role": "user", "content": "给我解释一下Kubernetes"}],
     cache=True
 )
-```
+`````
 
 ### 缓存统计和失效
 
-```bash
+`````bash
 # 检查缓存指标
 curl http://localhost:8787/v1/admin/cache/stats \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # 使特定缓存条目失效
 curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -367,9 +368,9 @@ curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
     "pattern": "kubernetes",
     "provider": "openai-primary"
   }'
-```
+`````
 
----
+* * *
 
 ## 消费追踪和成本可观测性
 
@@ -377,7 +378,7 @@ curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
 
 ### 成本追踪设置
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(
@@ -399,25 +400,25 @@ response = portkey.chat.completions.create(
 print(f"输入token: {response.usage.prompt_tokens}")
 print(f"输出token: {response.usage.completion_tokens}")
 print(f"总成本: ${response.usage.estimated_cost}")
-```
+`````
 
 ### 查询消费分析
 
-```bash
+`````bash
 # 按提供商获取消费报告
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=provider" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # 按用户获取消费报告
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=user_id" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
 ### 预算告警
 
-```yaml
+`````yaml
 alerts: daily-budget: type: budget
     threshold: 500  # 美元
     period: daily
@@ -431,9 +432,9 @@ alerts: daily-budget: type: budget
     window: 1h
     channels: - type: pagerduty
         integration_key: your-pd-key
-```
+`````
 
----
+* * *
 
 ## 提示词管理和版本控制
 
@@ -441,7 +442,7 @@ alerts: daily-budget: type: budget
 
 ### 创建托管提示词
 
-```python
+`````python
 from portkey_ai import Portkey
 
 portkey = Portkey(api_key="your-gateway-api-key")
@@ -460,11 +461,11 @@ prompt = portkey.prompts.deploy(
         "max_tokens": 50
     }
 )
-```
+`````
 
 ### 使用变量渲染提示词
 
-```python
+`````python
 # 渲染并执行托管提示词
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -475,11 +476,11 @@ response = portkey.prompts.render(
 
 print(response.choices[0].message.content)
 # 输出: "计费"
-```
+`````
 
 ### A/B测试提示词
 
-```python
+`````python
 # 在提示词版本之间运行A/B测试
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -487,9 +488,9 @@ response = portkey.prompts.render(
     test_version="1.3.0-beta",  # 50% 流量
     variables={"ticket_content": "上传照片时应用崩溃"}
 )
-```
+`````
 
----
+* * *
 
 ## 安全防护和内容安全
 
@@ -497,7 +498,7 @@ Portkey的安全防护系统允许你在请求和响应上强制执行内容策�
 
 ### 配置安全防护
 
-```yaml
+`````yaml
 guardrails: input-validation: - type: keyword_filter
       blocklist: ["password", "ssn", "credit_card", "secret_key"]
       action: block
@@ -514,20 +515,20 @@ guardrails: input-validation: - type: keyword_filter
     - type: response_format
       required_schema: type: json_object
       action: retry
-```
+`````
 
-```python
+`````python
 # 对请求应用安全防护
 response = portkey.chat.completions.create(
     model="gpt-4o",
     messages=[{"role": "user", "content": "用户输入内容"}],
     guardrails=["input-validation", "output-validation"]
 )
-```
+`````
 
 ### 自定义安全防护函数
 
-```python
+`````python
 from portkey_ai import Portkey
 import json
 
@@ -540,9 +541,9 @@ def custom_validator(request, response): """自定义业务逻辑验证。"""
     except json.JSONDecodeError: return False, "响应必须是有效的JSON"
 
 portkey.guardrails.register("confidence-check", custom_validator)
-```
+`````
 
----
+* * *
 
 ## 可观测性：日志记录、指标和链路追踪
 
@@ -550,13 +551,13 @@ portkey.guardrails.register("confidence-check", custom_validator)
 
 ### 请求日志
 
-```bash
+`````bash
 # 查询最近的请求日志
 curl "http://localhost:8787/v1/admin/logs?limit=100&status=error" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```python
+`````python
 # 为每个请求启用详细日志记录
 response = portkey.chat.completions.create(
     model="gpt-4o",
@@ -567,40 +568,40 @@ response = portkey.chat.completions.create(
         "user_id": "user-456"
     }
 )
-```
+`````
 
 ### OpenTelemetry集成
 
-```yaml
+`````yaml
 observability: tracing: enabled: true
     exporter: otlp
     endpoint: http://jaeger-collector:4317
   metrics: enabled: true
     exporter: prometheus
     port: 9090
-```
+`````
 
 ### Prometheus指标
 
-网关在 `/metrics` 暴露Prometheus兼容指标：
+网关在 ````/metrics```` 暴露Prometheus兼容指标：
 
-```bash
+`````bash
 # 抓取指标
 curl http://localhost:8787/metrics
-```
+`````
 
 关键指标包括：
-- `portkey_requests_total` — 按提供商、模型、状态统计的总请求数
-- `portkey_request_duration_seconds` — 请求延迟直方图
-- `portkey_tokens_total` — 按类型（输入/输出）和模型的token使用量
-- `portkey_cache_hits_total` — 缓存命中/未命中计数
-- `portkey_spend_total` — 估算支出（美元）
+- ````portkey_requests_total```` — 按提供商、模型、状态统计的总请求数
+- ````portkey_request_duration_seconds```` — 请求延迟直方图
+- ````portkey_tokens_total```` — 按类型（输入/输出）和模型的token使用量
+- ````portkey_cache_hits_total```` — 缓存命中/未命中计数
+- ````portkey_spend_total```` — 估算支出（美元）
 
 ### Grafana仪表板
 
-导入Portkey的官方Grafana仪表板（ID: `portkey-ai-gateway`）以获得开箱即用的可视化：
+导入Portkey的官方Grafana仪表板（ID: ````portkey-ai-gateway````）以获得开箱即用的可视化：
 
-```json
+`````json
 {
   "dashboard": {
     "title": "Portkey AI Gateway 概览",
@@ -632,9 +633,9 @@ curl http://localhost:8787/metrics
     ]
   }
 }
-```
+`````
 
----
+* * *
 
 ## 生产部署清单
 
@@ -642,7 +643,7 @@ curl http://localhost:8787/metrics
 
 ### 基础设施
 
-```yaml
+`````yaml
 # 使用Redis缓存和PostgreSQL日志的生产级docker-compose
 version: '3.8'
 services: gateway: image: portkeyai/gateway:latest
@@ -665,17 +666,17 @@ services: gateway: image: portkeyai/gateway:latest
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes: - postgres-data:/var/lib/postgresql/data
 
-volumes: redis-data: postgres-data: ```
+volumes: redis-data: postgres-data: `````
 
 ### 安全清单
 
 | 项目 | 状态 | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API密钥轮换 | 必需 | 每月轮换网关密钥 |
 | TLS终止 | 必需 | 使用反向代理或负载均衡器 |
@@ -686,15 +687,15 @@ volumes: redis-data: postgres-data: ```
 
 ### 健康检查
 
-```bash
+`````bash
 # 网关健康端点
 curl http://localhost:8787/health
 
 # 预期响应
 {"status": "healthy", "version": "2.5.0", "uptime": 86400}
-```
+`````
 
-```yaml
+`````yaml
 # Kubernetes存活和就绪探针
 livenessProbe: httpGet: path: /health
     port: 8787
@@ -705,9 +706,9 @@ readinessProbe: httpGet: path: /ready
     port: 8787
   initialDelaySeconds: 5
   periodSeconds: 5
-```
+`````
 
----
+* * *
 
 ## 常见问题：Portkey AI Gateway
 
@@ -733,9 +734,9 @@ Portkey提供两种缓存模式：**精确匹配**（相同请求返回缓存响
 
 ### 我可以将Portkey与现有的OpenAI SDK代码一起使用吗？
 
-是的。Portkey提供与OpenAI SDK的即插即用兼容性。只需将 `base_url` 更改为你的网关端点并使用你的Portkey API密钥：
+是的。Portkey提供与OpenAI SDK的即插即用兼容性。只需将 ````base_url```` 更改为你的网关端点并使用你的Portkey API密钥：
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -745,9 +746,9 @@ client = openai.OpenAI(
 
 # 你现有的代码无需更改即可工作
 response = client.chat.completions.create(...)
-```
+````
 
----
+* * *
 
 
 
@@ -768,7 +769,7 @@ Portkey AI Gateway将管理多个LLM提供商的复杂性转化为一个已解�
 
 从Docker快速开始，配置你的提供商，设置带故障转移路由的负载均衡，启用缓存，并连接你的可观测性堆栈。不到一小时，你就将拥有一个处理200+模型并具有完整可观测性的生产级LLM网关。
 
----
+* * *
 
 *发布日期：2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
 
@@ -834,12 +835,12 @@ Portkey AI Gateway 2026: 管理200+模型的LLM网关与可观测性 — 生产�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -849,7 +850,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](portkey-ai-gateway-production)
 - [2026-06-15-trending-ai-agents](portkey-ai-gateway-production)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

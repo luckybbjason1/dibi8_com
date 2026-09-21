@@ -36,6 +36,7 @@ faq: - q: "Lỗi đa tác tử phổ biến nhất là gì?"
     a: "Có, khi nhiệm vụ thực sự vượt quá một cửa sổ ngữ cảnh hoặc cần kiểm chứng độc lập — nhưng chính năm lỗi này là lý do bạn không nên với tới nó theo phản xạ. Một tác tử đơn lẻ được prompt tốt luôn thắng một pipeline năm tác tử đầy lỗi. Hãy dùng điều phối khi vấn đề là thật (bao phủ toàn diện, làm việc song song độc lập, rà soát đối kháng), và khi làm vậy hãy cài sẵn các bước kiểm chứng và điều kiện dừng để ngăn các kiểu lỗi này. Sự phức tạp bạn không kiểm chứng được còn tệ hơn sự đơn giản mà bạn kiểm chứng được."
 ---
 
+
 # Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)
 
 
@@ -51,7 +52,7 @@ faq: - q: "Lỗi đa tác tử phổ biến nhất là gì?"
 
 **Nguyên nhân gốc.** Một subagent trả về một *bản tóm tắt* — mô tả về những gì nó định làm, không phải bằng chứng đã kiểm chứng về những gì nó đã làm. "Tất cả test đều pass" có thể nghĩa là nó đã chạy test, hoặc có thể nghĩa là nó tin rằng test sẽ pass. Orchestrator đã coi văn xuôi như sự thật cơ sở.
 
-**Cách khắc phục.** Kiểm chứng dựa trên hiện vật, không bao giờ dựa trên bản tóm tắt. Sau khi một subagent tuyên bố một thay đổi, orchestrator đọc `git diff` thực tế, kiểm tra mã thoát của lệnh test, hoặc đọc lại file. Chúng tôi học bài này bằng cách trả giá đắt — và đó là lý do vì sao, khi chúng tôi [viết một bài viết 4 ngôn ngữ bằng subagent dịch thuật](/vi/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/), chúng tôi chạy `npm run build` như sự thật cơ sở thay vì tin vào câu "YAML hợp lệ: có" của tác tử. Bản tóm tắt là một lời tuyên bố. Lệnh build là bằng chứng.
+**Cách khắc phục.** Kiểm chứng dựa trên hiện vật, không bao giờ dựa trên bản tóm tắt. Sau khi một subagent tuyên bố một thay đổi, orchestrator đọc ```git diff```` thực tế, kiểm tra mã thoát của lệnh test, hoặc đọc lại file. Chúng tôi học bài này bằng cách trả giá đắt — và đó là lý do vì sao, khi chúng tôi [viết một bài viết 4 ngôn ngữ bằng subagent dịch thuật](/vi/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/), chúng tôi chạy ````npm run build```` như sự thật cơ sở thay vì tin vào câu "YAML hợp lệ: có" của tác tử. Bản tóm tắt là một lời tuyên bố. Lệnh build là bằng chứng.
 
 ## Lỗi 2: Rò rỉ ngữ cảnh
 
@@ -59,7 +60,7 @@ faq: - q: "Lỗi đa tác tử phổ biến nhất là gì?"
 
 **Nguyên nhân gốc.** Cả hai tác tử cùng ghi vào một file, hoặc mỗi con giả định một trạng thái working-tree mà con kia đã thay đổi bên dưới nó. Việc các bên ghi song song cùng chia sẻ một working tree là một race condition kèm thêm vài bước phức tạp.
 
-**Cách khắc phục.** Phạm vi tách biệt và cô lập bằng worktree. Giới hạn tác tử A vào `/auth/`, tác tử B vào `/payments/`, không chồng lấn chút nào. Khi các tác tử thực hiện chỉnh sửa đáng kể, hãy giao cho mỗi con một git worktree riêng để chúng làm việc trên các checkout độc lập rồi bạn merge một cách có chủ đích về sau. Đừng bao giờ để hai bên ghi cùng chia sẻ một cây.
+**Cách khắc phục.** Phạm vi tách biệt và cô lập bằng worktree. Giới hạn tác tử A vào ````/auth/````, tác tử B vào ````/payments/````, không chồng lấn chút nào. Khi các tác tử thực hiện chỉnh sửa đáng kể, hãy giao cho mỗi con một git worktree riêng để chúng làm việc trên các checkout độc lập rồi bạn merge một cách có chủ đích về sau. Đừng bao giờ để hai bên ghi cùng chia sẻ một cây.
 
 ## Lỗi 3: Fan-out mất kiểm soát
 
@@ -83,7 +84,7 @@ faq: - q: "Lỗi đa tác tử phổ biến nhất là gì?"
 
 **Nguyên nhân gốc.** Worktree được tạo để cô lập nhưng không bao giờ được đối xử như tài nguyên có phạm vi. Không dọn dẹp khi hoàn tất; không có quyền sở hữu rõ ràng về việc cây nào là chuẩn.
 
-**Cách khắc phục.** Hãy coi mỗi worktree như một tài nguyên có vòng đời. Tự động dọn khi một tác tử không có thay đổi gì. Khi có thay đổi, hãy rà soát-và-merge hoặc loại bỏ một cách tường minh — đừng để nó lủng lẳng. Và đừng bao giờ để một tác tử ở hạ nguồn đọc worktree của tác tử khác như sự thật cơ sở; trạng thái chuẩn là cây chính, hết chuyện. (Chúng tôi đã đích thân dọn một worktree mồ côi giữa pipeline — đó là một lệnh `git worktree remove` mất năm giây mà tiết kiệm cả tiếng đồng hồ kiểu "tại sao file này lại sai.")
+**Cách khắc phục.** Hãy coi mỗi worktree như một tài nguyên có vòng đời. Tự động dọn khi một tác tử không có thay đổi gì. Khi có thay đổi, hãy rà soát-và-merge hoặc loại bỏ một cách tường minh — đừng để nó lủng lẳng. Và đừng bao giờ để một tác tử ở hạ nguồn đọc worktree của tác tử khác như sự thật cơ sở; trạng thái chuẩn là cây chính, hết chuyện. (Chúng tôi đã đích thân dọn một worktree mồ côi giữa pipeline — đó là một lệnh ````git worktree remove``` mất năm giây mà tiết kiệm cả tiếng đồng hồ kiểu "tại sao file này lại sai.")
 
 ## Nguyên lý
 
@@ -134,7 +135,7 @@ Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -144,7 +145,7 @@ Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng
 - [claude-code-vs-aider](multi-agent-pipeline-postmortem-5-failures-2026)
 - [cursor-vs-claude-code](multi-agent-pipeline-postmortem-5-failures-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

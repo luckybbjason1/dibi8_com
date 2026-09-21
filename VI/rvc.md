@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/rvc/
 ---
 
+
 {{</* resource-info */>}}
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
@@ -44,7 +45,7 @@ Kiến trúc của RVC kết hợp bốn mô đun cốt lõi: **Trích xuất Đ
 
 **Mô hình Âm học** — Được xây dựng trên VITS (Variational Inference with adversarial learning for end-to-end Text-to-Speech), một VAE có điều kiện được tăng cường với normalizing flows. VITS tạo ra âm thanh chất lượng cao thông qua huấn luyện đối kháng giữa bộ tạo và các bộ phân biệt đa chu kỳ.
 
-**Mô đun Truy xuất** — Đổi mới đặc trưng của RVC. Trong quá trình huấn luyện, các đặc trưng nội dung được lập chỉ mục trong cơ sở dữ liệu vector Faiss. Trong quá trình suy luận, các đặc trưng nguồn được thay thế bằng K láng giềng gần nhất từ tập huấn luyện (K=8 theo mặc định), giảm đáng kể rò rỉ âm sắc từ ngườ nói nguồn. Tham số `index_rate` (α, thường là 0.3) điều khiển tỷ lệ pha trộn giữa các đặc trưng được truy xuất và đặc trưng nguồn.
+**Mô đun Truy xuất** — Đổi mới đặc trưng của RVC. Trong quá trình huấn luyện, các đặc trưng nội dung được lập chỉ mục trong cơ sở dữ liệu vector Faiss. Trong quá trình suy luận, các đặc trưng nguồn được thay thế bằng K láng giềng gần nhất từ tập huấn luyện (K=8 theo mặc định), giảm đáng kể rò rỉ âm sắc từ ngườ nói nguồn. Tham số ```index_rate```` (α, thường là 0.3) điều khiển tỷ lệ pha trộn giữa các đặc trưng được truy xuất và đặc trưng nguồn.
 
 ![Sơ đồ Kiến trúc RVC](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/raw/main/docs/rvc_arch.png)
 
@@ -62,7 +63,7 @@ RVC chạy trên Linux, macOS và Windows. Để huấn luyện, cần có GPU N
 
 ### Phương pháp 1: Triển khai Docker (Khuyến nghị cho Production)
 
-Dockerfile chính thức sử dụng CUDA 11.6.2 trên Ubuntu 20.04 với Python 3.9: ```bash
+Dockerfile chính thức sử dụng CUDA 11.6.2 trên Ubuntu 20.04 với Python 3.9: `````bash
 # Clone repository
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -77,9 +78,9 @@ docker run -d --name rvc \
   -v $(pwd)/weights:/app/weights \
   -v $(pwd)/opt:/app/opt \
   rvc-webui:latest
-```
+`````
 
-Ngườ dùng docker-compose: ```yaml
+Ngườ dùng docker-compose: `````yaml
 version: '3.8'
 
 services: rvc: build: .
@@ -94,19 +95,19 @@ services: rvc: build: .
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # Khởi động với docker-compose
 docker-compose up -d
 
 # Kiểm tra log
 docker-compose logs -f rvc
-```
+`````
 
 ### Phương pháp 2: Thiết lập Python Cục bộ
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -128,11 +129,11 @@ wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_v2/f0G40k.pth -P assets/pretrained_v2/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -P assets/hubert/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt -P assets/rmvpe/
-```
+`````
 
 ### Phương pháp 3: Thiết lập GPU AMD (ROCm)
 
-```bash
+`````bash
 # Cài đặt phụ thuộc ROCm (Ubuntu/Debian)
 sudo apt install rocm-hip-sdk rocm-opencl-sdk
 
@@ -146,16 +147,16 @@ sudo usermod -aG video $USER
 
 # Cài đặt yêu cầu đặc biệt cho AMD
 pip install -r requirements-amd.txt
-```
+`````
 
 ### Khởi động WebUI
 
-```bash
+`````bash
 # Khởi động giao diện web Gradio
 python infer-web.py
 
 # WebUI sẽ có tại http://localhost:7865
-```
+`````
 
 ## Pipeline Huấn luyện
 
@@ -166,24 +167,24 @@ RVC yêu cầu âm thanh sạch, đơn âm. Để có kết quả tốt nhất: 
 - **Nội dung:** Một ngườ nói duy nhất, tiếng ồn nền tối thiểu, không có nhạc hoặc vang
 - **Im lặng:** Loại bỏ các đoạn im lặng dài (> 3 giây)
 
-Sử dụng UVR5 (đã tích hợp) để tách nguồn: ```bash
+Sử dụng UVR5 (đã tích hợp) để tách nguồn: `````bash
 # Tách giọng khỏi nhạc nền
 python tools/uvr5/uvr5_cli.py \
   --input_path ./raw_audio/song_with_music.wav \
   --output_path ./dataset/ \
   --model_name "HP2-人声vocals+非人声instrumentals"
-```
+`````
 
 ### Bước 2: Tiền xử lý và Trích xuất Đặc trưng
 
-Trong tab **Train** của WebUI: 1. Đặt **Experiment Name** (ví dụ: `my_voice_v2`)
+Trong tab **Train** của WebUI: 1. Đặt **Experiment Name** (ví dụ: ````my_voice_v2````)
 2. Đặt **Target Sampling Rate** thành 40kHz (khuyến nghị)
 3. Đặt **RVC Version** thành v2
-4. Đặt **Model Architecture** thành `rmvpe_gpu`
+4. Đặt **Model Architecture** thành ````rmvpe_gpu````
 5. Đặt **Dataset Path** đến thư mục âm thanh của bạn
 6. Nhấp **One-Click Training**
 
-Hoặc qua dòng lệnh: ```bash
+Hoặc qua dòng lệnh: `````bash
 # Bước 1: Tiền xử lý (resample, slice, xóa im lặng)
 python trainset_preprocess_pipeline_print.py \
   ./dataset/my_voice \
@@ -207,25 +208,25 @@ python train_nsf_sim_cache_sid_load_pretrain.py \
   --pretrained_G assets/pretrained_v2/f0G40k.pth \
   --pretrained_D assets/pretrained_v2/f0D40k.pth \
   --gpu 0
-```
+`````
 
 ### Bước 3: Xây dựng Chỉ mục Đặc trưng
 
-```bash
+`````bash
 # Tạo chỉ mục Faiss để truy xuất
 python tools/infer/train_index.py \
   --model_name my_voice_v2 \
   --sample_rate 40000
-```
+`````
 
-Vị trí đầu ra huấn luyện: ```
+Vị trí đầu ra huấn luyện: `````
 logs/
 └── my_voice_v2/
     ├── added_IVF512_Flat_nprobe_1.index   # Chỉ mục truy xuất Faiss
     ├── G_*.pth                             # Checkpoint Generator
     ├── D_*.pth                             # Checkpoint Discriminator
     └── config.json                         # Cấu hình mô hình
-```
+`````
 
 ![Tab Huấn luyện RVC WebUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/docs/en/training_tab.png)
 
@@ -243,7 +244,7 @@ logs/
 
 ### Tích hợp 1: GPT-SoVITS (Pipeline TTS + RVC)
 
-GPT-SoVITS tạo lờ nói từ văn bản; RVC chuyển đổi thành giọng mục tiêu. Kết hợp lại tạo thành pipeline nhân bản văn bản-thành-giọng nói hoàn chỉnh: ```python
+GPT-SoVITS tạo lờ nói từ văn bản; RVC chuyển đổi thành giọng mục tiêu. Kết hợp lại tạo thành pipeline nhân bản văn bản-thành-giọng nói hoàn chỉnh: `````python
 # gpt_sovits_rvc_pipeline.py
 import requests
 
@@ -271,11 +272,11 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str): """GPT-SoVITS
     })
     
     return rvc_response.json()["output_path"]
-```
+`````
 
 ### Tích hợp 2: Coqui TTS
 
-```python
+`````python
 # coqui_rvc_bridge.py
 from TTS.api import TTS
 import requests
@@ -299,11 +300,11 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # Tạo với Coq
     
     with open(output_path, "wb") as f: f.write(response.content)
     return output_path
-```
+`````
 
 ### Tích hợp 3: demucs (Tách Nguồn Nâng cao)
 
-Để tách giọng production-grade trước khi huấn luyện: ```bash
+Để tách giọng production-grade trước khi huấn luyện: `````bash
 # Cài đặt demucs
 pip install demucs
 
@@ -312,13 +313,13 @@ demucs --two-stems=vocals --mp3 --mp3-bitrate 320 input_song.mp3
 
 # Sử dụng track giọng đã tách cho huấn luyện RVC
 mv separated/htdemucs/input_song/vocals.wav ./dataset/clean_voice.wav
-```
+`````
 
 ### Tích hợp 4: GUI Chuyển đổi Giọng Thờ gian Thực
 
 RVC bao gồm GUI chuyển đổi giọng thờ gian thực cho ứng dụng trực tiếp: ![RVC Real-time GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
 
-```bash
+`````bash
 # Khởi động GUI thờ gian thực
 python gui_v1.py
 
@@ -329,9 +330,9 @@ python gui_v1.py --dml
 # - Crossfade: 0.05s
 # - Thờ gian thêm: 2.5s
 # - Trình trích xuất cao độ: fcpe (nhanh nhất) hoặc rmvpe (chất lượng tốt nhất)
-```
+`````
 
-Cấu hình streaming (90ms độ trễ end-to-end với ASIO): ```python
+Cấu hình streaming (90ms độ trễ end-to-end với ASIO): `````python
 # gui_config.py ví dụ
 config = {
     "block_time": 0.1,        # Khối 100ms để giảm độ trễ
@@ -344,18 +345,18 @@ config = {
     "I_noise_reduce": True,
     "O_noise_reduce": False
 }
-```
+`````
 
 ### Tích hợp 5: API Server (FastAPI)
 
-RVC cung cấp REST API dựa trên FastAPI cho các triển khai production: ```bash
+RVC cung cấp REST API dựa trên FastAPI cho các triển khai production: `````bash
 # Khởi động API server
 python api_240604.py
 
 # API sẽ có tại http://localhost:7865
-```
+`````
 
-```python
+`````python
 # Ví dụ client API cho suy luận
 import requests
 
@@ -379,7 +380,7 @@ with open("input_audio.wav", "rb") as f: response = requests.post(
     )
 
 with open("converted_output.wav", "wb") as f: f.write(response.content)
-```
+`````
 
 ## Benchmark / Trường hợp Sử dụng Thực tế
 
@@ -410,7 +411,7 @@ with open("converted_output.wav", "wb") as f: f.write(response.content)
 
 ### Các Yếu tố Bảo mật
 
-```python
+`````python
 # api_production.py — Trình bao bọc API được củng cố
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -430,11 +431,11 @@ async def secure_convert(
 ): verify_token(credentials)
     # ... logic chuyển đổi
     return {"output_url": signed_url}
-```
+`````
 
 ### Quản lý Mô hình
 
-```bash
+`````bash
 # Tổ chức nhiều mô hình giọng nói
 models/
 ├── celeb_voice_a/
@@ -449,9 +450,9 @@ models/
     ├── model.pth
     ├── index.faiss
     └── config.json
-```
+`````
 
-```python
+`````python
 # Bộ tải mô hình động cho triển khai đa tenant
 import os
 import glob
@@ -464,11 +465,11 @@ def list_available_models(models_dir="./models"): """Liệt kê tất cả các 
                       glob.glob(os.path.join(model_dir, "*.index"))
         if pth_files and index_files: models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
     return models
-```
+`````
 
 ### Giám sát và Ghi log
 
-```python
+`````python
 # monitoring.py — Metrics tương thích Prometheus
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -487,17 +488,17 @@ def monitored_convert(audio_path, model_name): start = time.time()
 
 # Khởi động endpoint metrics
 start_http_server(9090)
-```
+`````
 
 ### Xuất ONNX để Suy luận Nhanh hơn
 
-```bash
+`````bash
 # Xuất mô hình đã huấn luyện sang ONNX để suy luận độc lập CPU/GPU
 python tools/export_onnx.py \
   --checkpoint_path ./logs/my_voice_v2/G_12000.pth \
   --output_path ./models/my_voice_v2/model.onnx \
   --sample_rate 40000
-```
+`````
 
 ## So sánh với Các Lựa chọn Thay thế
 
@@ -555,7 +556,7 @@ RVC v2 thay đổi bộ mã hóa nội dung từ đặc trưng 256 chiều của
 Điều chỉnh tham số **index_rate**. Giá trị cao hơn (0.7–1.0) tăng sự phụ thuộc vào chỉ mục truy xuất, lấy nhiều đặc trưng hơn từ tập huấn luyện và ít hơn từ nguồn. Bắt đầu với 0.75 và điều chỉnh dựa trên chất lượng đầu ra. Nếu giọng nghe nhân tạo, giảm xuống 0.3–0.5.
 
 ### Có thể sử dụng RVC để đổi giọng thờ gian thực trong Discord/Zoom/Game không?
-Có, thông qua GUI thờ gian thực của RVC (`gui_v1.py`). Định tuyến micro qua cáp âm thanh ảo (VB-Cable trên Windows, BlackHole trên macOS, hoặc PulseAudio trên Linux), đặt RVC làm thiết bị đầu vào, và cấu hình ứng dụng của bạn để sử dụng đầu ra cáp ảo. Với driver ASIO và GPU hiện đại, độ trễ duy trì dưới 100ms.
+Có, thông qua GUI thờ gian thực của RVC (````gui_v1.py```). Định tuyến micro qua cáp âm thanh ảo (VB-Cable trên Windows, BlackHole trên macOS, hoặc PulseAudio trên Linux), đặt RVC làm thiết bị đầu vào, và cấu hình ứng dụng của bạn để sử dụng đầu ra cáp ảo. Với driver ASIO và GPU hiện đại, độ trễ duy trì dưới 100ms.
 
 ### RVC hỗ trợ những định dạng file nào?
 RVC hỗ trợ WAV, MP3, FLAC, OGG, và M4A cho đầu vào. Đầu ra luôn là WAV ở tần số lấy mẫu mục tiêu (32kHz, 40kHz, hoặc 48kHz). Để có chất lượng tốt nhất, sử dụng WAV hoặc FLAC không nén cho đầu vào và tránh mã hóa lại file MP3 nhiều lần.
@@ -625,7 +626,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -635,6 +636,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](rvc)
 - [moneyprinterturbo-one-click-ai-video-generator](rvc)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

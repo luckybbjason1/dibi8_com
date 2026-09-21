@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/appwrite-backend-as-service/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：Firebase 制造的 85 亿美元难题
@@ -33,13 +34,13 @@ Appwrite 是一个自托管的后端服务器，以 Docker 堆栈的形式打包
 - **实时功能** — 基于 WebSocket 的数据库和认证事件实时订阅
 - **消息推送** — 推送通知、短信和邮件（1.5+ 版本新增）
 
-一条 `docker compose up` 命令即可为你提供完整的后端 API，支持 Web、Flutter、Android、iOS 和服务端 Node.js/Python/PHP 的多平台 SDK。
+一条 ```docker compose up```` 命令即可为你提供完整的后端 API，支持 Web、Flutter、Android、iOS 和服务端 Node.js/Python/PHP 的多平台 SDK。
 
 ## Appwrite 的工作原理：架构概览
 
 Appwrite 采用模块化的微服务架构，使用 Docker 容器化部署：
 
-```
+`````
 ┌─────────────────────────────────────────────────────┐
 │                    Appwrite 技术栈                   │
 ├─────────────┬─────────────┬─────────────┬───────────┤
@@ -52,7 +53,7 @@ Appwrite 采用模块化的微服务架构，使用 Docker 容器化部署：
 ├─────────────┴─────────────┴─────────────┴───────────┤
 │              Docker Compose / Swarm / K8s            │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 关键架构决策：
 
@@ -72,17 +73,17 @@ Appwrite 采用模块化的微服务架构，使用 Docker 容器化部署：
 
 ### 步骤 1：下载 Compose 文件
 
-```bash
+`````bash
 mkdir ~/appwrite && cd ~/appwrite
 
 # 下载官方 compose 文件 (v1.6.x)
 curl -o docker-compose.yml https://raw.githubusercontent.com/appwrite/appwrite/1.6.1/docker-compose.yml
 curl -o .env https://raw.githubusercontent.com/appwrite/appwrite/1.6.1/.env
-```
+`````
 
 ### 步骤 2：配置环境变量
 
-```bash
+`````bash
 # 编辑 .env 中的关键变量
 sed -i 's/_APP_ENV=production/_APP_ENV=production/' .env
 sed -i 's/_APP_CONSOLE_WHITELIST_ROOT=enabled/_APP_CONSOLE_WHITELIST_ROOT=enabled/' .env
@@ -90,36 +91,36 @@ sed -i 's/_APP_CONSOLE_WHITELIST_ROOT=enabled/_APP_CONSOLE_WHITELIST_ROOT=enable
 # 设置你的域名（测试时可用 localhost）
 sed -i 's|_APP_DOMAIN=localhost|_APP_DOMAIN=api.yourdomain.com|' .env
 sed -i 's|_APP_OPTIONS_ABUSE=enabled|_APP_OPTIONS_ABUSE=enabled|' .env
-```
+`````
 
 如需在 [DigitalOcean 云服务器](https://m.do.co/c/eca87ac14ee0) 上进行生产环境 SSL 配置：
 
-```bash
+`````bash
 # 首先将域名指向云服务器 IP
 export _APP_DOMAIN=api.yourdomain.com
 export _APP_ENV=production
 export _APP_OPTIONS_FORCE_HTTPS=enabled
-```
+`````
 
 ### 步骤 3：启动技术栈
 
-```bash
+`````bash
 docker compose up -d --remove-orphans
 
 # 检查所有服务是否健康
 watch docker compose ps
-```
+`````
 
-60 秒内，所有 12 个容器应显示 `healthy`。在 `http://localhost`（或你的域名）访问控制台。
+60 秒内，所有 12 个容器应显示 ````healthy````。在 ````http://localhost````（或你的域名）访问控制台。
 
 ### 步骤 4：创建你的第一个项目
 
-```bash
+`````bash
 # 注册 root 用户（第一个注册用户自动成为管理员）
 curl -X POST http://localhost/v1/account \
   -H "Content-Type: application/json" \
   -d '{"userId":"unique()","email":"admin@example.com","password":"SecurePass123!","name":"Admin User"}'
-```
+`````
 
 进入控制台，创建一个项目，并记下 **项目 ID** — 所有 SDK 调用都需要它。
 
@@ -129,13 +130,13 @@ curl -X POST http://localhost/v1/account \
 
 安装 SDK：
 
-```bash
+`````bash
 npm install appwrite@16.1.0
-```
+`````
 
 初始化客户端并创建文档：
 
-```javascript
+`````javascript
 import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
@@ -157,15 +158,15 @@ const doc = await databases.createDocument(
   { title: 'Hello Appwrite', status: active, priority: 3 }
 );
 console.log('Document ID:', doc.$id);
-```
+`````
 
 ### Python SDK（服务端）
 
-```bash
+`````bash
 pip install appwrite==6.1.0
-```
+`````
 
-```python
+`````python
 from appwrite.client import Client
 from appwrite.services.databases import Databases
 from appwrite.id import ID
@@ -193,16 +194,16 @@ results = databases.list_documents(
     queries=['equal("status", "active")', 'greaterThan("score", 90)', 'limit(10)']
 )
 print(f"Found {results[total]} matching documents")
-```
+`````
 
 ### Flutter SDK
 
-```yaml
+`````yaml
 # pubspec.yaml
 dependencies: appwrite: ^15.0.0
-```
+`````
 
-```dart
+`````dart
 import 'package:appwrite/appwrite.dart';
 
 class AppwriteService {
@@ -235,23 +236,23 @@ class AppwriteService {
     );
   }
 }
-```
+`````
 
 ### n8n 工作流自动化
 
 Appwrite 有官方社区节点。安装方法：
 
-```bash
+`````bash
 cd ~/.n8n/custom && npm install n8n-nodes-appwrite
 # 重启 n8n
-```
+`````
 
 在工作流中，使用 Appwrite 节点来：
 1. **触发器**：监控集合中的新文档（通过轮询或 Webhook）
 2. **动作**：Stripe 付款后创建用户
 3. **查询**：根据条件获取文档用于报表
 
-```json
+`````json
 {
   "nodes": [{
     "parameters": {
@@ -268,13 +269,13 @@ cd ~/.n8n/custom && npm install n8n-nodes-appwrite
     "typeVersion": 1
   }]
 }
-```
+`````
 
 ## 云函数：无锁定版无服务器
 
 Appwrite 函数支持 15+ 运行时。以下是由数据库事件触发的 Node.js 函数示例：
 
-```javascript
+`````javascript
 // src/main.js
 import { Client, Databases, Messaging } from 'node-appwrite';
 
@@ -293,29 +294,29 @@ export default async ({ req, res, log, error }) => {
   const userId = eventData.userId;
   const total = eventData.total;
 
-  log(`Processing order ${orderId} for user ${userId}`);
+  log(````Processing order ${orderId} for user ${userId}````);
 
   try {
     // 发送推送通知
     await messaging.createPush(
       ID.unique(),
       'Order Confirmed',
-      `Your order #${orderId.slice(-6)} for $${total} is confirmed.`,
+      ````Your order #${orderId.slice(-6)} for $${total} is confirmed.````,
       [],
       [userId]
     );
 
     return res.json({ success: true, orderId });
   } catch (err) {
-    error(`Failed: ${err.message}`);
+    error(````Failed: ${err.message}````);
     return res.json({ success: false, error: err.message }, 500);
   }
 };
-```
+`````
 
 通过 CLI 部署：
 
-```bash
+`````bash
 # 安装 Appwrite CLI
 npm install -g appwrite-cli@6.2.0
 
@@ -324,7 +325,7 @@ appwrite login --endpoint https://api.yourdomain.com/v1 --project your-project-i
 
 # 部署函数
 appwrite push function --id order-processor --source ./order-processor
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -332,13 +333,13 @@ appwrite push function --id order-processor --source ./order-processor
 
 | 操作 | Appwrite 1.6.1 | Firebase (US-Central) | Supabase (Small) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 认证注册 (邮箱) | **~45ms** | ~120ms | ~80ms |
 | 数据库创建文档 | **~18ms** | ~35ms | ~25ms |
@@ -356,7 +357,7 @@ appwrite push function --id order-processor --source ./order-processor
 
 ### 1. 启用 Redis 会话缓存
 
-```bash
+`````bash
 # 在 docker-compose.yml 的 services 下添加
 redis: image: redis:7-alpine
   restart: unless-stopped
@@ -365,11 +366,11 @@ redis: image: redis:7-alpine
 # 添加到 .env
 _APP_REDIS_HOST=redis
 _APP_REDIS_PORT=6379
-```
+`````
 
 ### 2. 数据库备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh — 通过 cron 每 6 小时运行一次
 BACKUP_DIR=/backups/appwrite
@@ -388,11 +389,11 @@ aws s3 sync $BACKUP_DIR s3://your-backup-bucket/appwrite/ --delete
 
 # 只保留最近 7 天
 find $BACKUP_DIR -mtime +7 -delete
-```
+`````
 
 ### 3. 基于角色的访问控制 (RBAC)
 
-```javascript
+`````javascript
 // 授予基于团队的权限
 await databases.createDocument(
   'prod-db',
@@ -406,22 +407,22 @@ await databases.createDocument(
     Permission.create(Role.users())
   ]
 );
-```
+`````
 
 ### 4. 使用 Prometheus 监控
 
-Appwrite 在 `/_metrics` 端点暴露 Prometheus 可抓取的指标：
+Appwrite 在 ````/_metrics```` 端点暴露 Prometheus 可抓取的指标：
 
-```yaml
+`````yaml
 # prometheus.yml
 scrape_configs: - job_name: appwrite
     static_configs: - targets: ['appwrite:80']
     metrics_path: '/_metrics'
-```
+`````
 
 ### 5. Docker Swarm 水平扩展
 
-```bash
+`````bash
 # 初始化 swarm
 docker swarm init
 
@@ -430,23 +431,23 @@ docker stack deploy -c docker-compose.yml appwrite
 
 # 扩展函数执行器
 docker service scale appwrite_appwrite-executor=5
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Appwrite 1.6 | Firebase | Supabase | Nhost | PocketBase |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 自托管 | **Yes (Docker)** | No | Yes | Yes (K8s) | Yes (单二进制) |
 | 开源协议 | **BSD-3-Clause** | 商业专有 | Apache-2.0 | Apache-2.0 | MIT |
@@ -479,7 +480,7 @@ Appwrite 最强的定位是：适合想要 **即插即用 Firebase 替代方案*
 Appwrite 默认使用 MinIO 进行兼容 S3 的对象存储。生产环境建议配置为使用你自己的兼容 S3 后端（AWS S3、Wasabi、DigitalOcean Spaces）。20MB 以上的文件自动分块。在项目设置中启用压缩和加密。如需 CDN，在 Appwrite 域名前放置 Cloudflare 或 Fastly。
 
 **Q: Appwrite 适合企业/多租户 SaaS 吗？**
-Appwrite 支持每个实例多个项目，每个项目有自己的数据库、存储和认证。使用按项目范围限定的 API 密钥。对于真正的多租户，可以为每个租户运行一个 Appwrite 实例，或使用带有 `tenant_id` 字段的集合级权限。通过团队实现的 RBAC 适用于内部企业应用。
+Appwrite 支持每个实例多个项目，每个项目有自己的数据库、存储和认证。使用按项目范围限定的 API 密钥。对于真正的多租户，可以为每个租户运行一个 Appwrite 实例，或使用带有 ````tenant_id```` 字段的集合级权限。通过团队实现的 RBAC 适用于内部企业应用。
 
 **Q: 与托管后端相比，托管费用如何？**
 $48/月的 DigitalOcean 云服务器（4 vCPU / 8GB）可轻松处理约 5,000 日活跃用户。备份和监控额外 $20/月。50,000 DAU 时，需要 $160/月的集群（8 vCPU / 16GB + Redis + 副本）。这**比同等规模的 Firebase 或 AWS Amplify 账单便宜 3-5 倍**。
@@ -488,7 +489,7 @@ $48/月的 DigitalOcean 云服务器（4 vCPU / 8GB）可轻松处理约 5,000 �
 不能直接集成。Appwrite 管理自己的 MariaDB（或 MongoDB）实例。要集成现有数据，可以使用 Appwrite 函数作为桥梁：编写查询外部数据库的函数并通过 Appwrite API 暴露结果。或者使用 ETL 管道定期同步数据。原生外部数据库支持在 2.x 路线图中。
 
 **Q: 如何更新 Appwrite 而不丢失数据？**
-升级前始终备份。阅读目标版本的迁移指南。标准流程是：`docker compose pull` → `docker compose up -d` → 如有需要运行迁移工具。先在预发布环境测试升级。切勿跳过主版本 — 依次升级 1.4 → 1.5 → 1.6。
+升级前始终备份。阅读目标版本的迁移指南。标准流程是：````docker compose pull```` → ````docker compose up -d```` → 如有需要运行迁移工具。先在预发布环境测试升级。切勿跳过主版本 — 依次升级 1.4 → 1.5 → 1.6。
 
 
 
@@ -505,7 +506,7 @@ $48/月的 DigitalOcean 云服务器（4 vCPU / 8GB）可轻松处理约 5,000 �
 
 Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个完全由你控制的 Docker 堆栈中提供认证、数据库、存储、云函数和实时订阅功能。对于厌倦了云账单惊喜和供应商锁定的团队来说，它是务实的选择。
 
-通过 [HTStack 一键 Appwrite 安装程序](https://my.htstack.com/aff.php?aff=27187) 开始，或在 [DigitalOcean 云服务器](https://m.do.co/c/eca87ac14ee0) 上运行 `docker compose up -d`。你的后端将在咖啡变凉之前上线。
+通过 [HTStack 一键 Appwrite 安装程序](https://my.htstack.com/aff.php?aff=27187) 开始，或在 [DigitalOcean 云服务器](https://m.do.co/c/eca87ac14ee0) 上运行 ````docker compose up -d```。你的后端将在咖啡变凉之前上线。
 
 **下一篇阅读**： [n8n 工作流自动化](dibi8-internal-link), [Supabase vs Appwrite 深入对比](dibi8-internal-link)
 
@@ -522,7 +523,7 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 本文包含指向 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买托管服务，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐用于自己基础设施的服务。所有基准测试均在付费实例上独立进行。
 
 
----
+* * *
 *文章发布：2026-05-19 | 分类：dev-utils | 工具：Appwrite 1.6.1*
 *加入 dibi8 开发者社区：[English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
@@ -553,7 +554,7 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](appwrite-backend-as-service)
@@ -562,5 +563,5 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 - [mattpocock-skills-ai-agent-framework-guide](appwrite-backend-as-service)
 - [nanochat-karpathy-100-chatgpt-single-gpu](appwrite-backend-as-service)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

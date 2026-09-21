@@ -34,6 +34,7 @@ faqs: - q: 'Firecrawl은 어떻게 설치하나요?'
     a: '소스 코드는 AGPL-3.0로 무료이며 오픈소스이고, 공식 SDK와 UI 컴포넌트는 MIT입니다. 호스팅형 클라우드 API는 무료 티어와 더 높은 사용량을 위한 유료 요금제를 제공합니다. 셀프 호스팅하는 경우 실행에 드는 인프라 비용은 직접 부담합니다.'
 ---
 
+
 # Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드
 
 
@@ -51,13 +52,13 @@ faqs: - q: 'Firecrawl은 어떻게 설치하나요?'
 
 Firecrawl은 웹사이트를 대규모로 검색·스크래핑·크롤링하기 위한 웹 데이터 API로, 명확하게 LLM이 바로 쓸 수 있는 출력을 만들어 내는 것을 목표로 합니다. 원시 HTML을 그대로 돌려주는 대신, 까다로운 부분 — JavaScript 렌더링, 프록시, 안티봇 대응, 콘텐츠 정리 — 을 알아서 처리하고 마크다운이나 구조화 JSON을 건네줍니다.
 
-제공 방식은 두 가지입니다. 호스팅형 클라우드 API(주소 `api.firecrawl.dev`, 가입 후 API 키 발급)와 Docker로 직접 셀프 호스팅할 수 있는 완전 오픈소스 버전입니다. 핵심 코드는 AGPL-3.0 라이선스이고, 공식 SDK와 UI 컴포넌트는 MIT 라이선스입니다. GitHub stars 127,000개 이상에 Firecrawl 팀의 활발한 유지보수까지 더해져, 프로덕션 AI 데이터 파이프라인을 위한 든든한 선택지입니다.
+제공 방식은 두 가지입니다. 호스팅형 클라우드 API(주소 ```api.firecrawl.dev````, 가입 후 API 키 발급)와 Docker로 직접 셀프 호스팅할 수 있는 완전 오픈소스 버전입니다. 핵심 코드는 AGPL-3.0 라이선스이고, 공식 SDK와 UI 컴포넌트는 MIT 라이선스입니다. GitHub stars 127,000개 이상에 Firecrawl 팀의 활발한 유지보수까지 더해져, 프로덕션 AI 데이터 파이프라인을 위한 든든한 선택지입니다.
 
 ## Firecrawl의 동작 방식
 
-Firecrawl은 각각 하나의 일만 처리하는 소수의 엔드포인트를 제공합니다. Bearer API 키(`fc-...` 형식)로 인증한 뒤, 필요한 것을 호출하면 됩니다: 1. **Scrape(스크래핑)** — 단일 URL을 마크다운, HTML, 스크린샷, 또는 구조화 JSON으로 변환합니다. Firecrawl이 JavaScript를 렌더링하고 군더더기를 제거해 줍니다.
+Firecrawl은 각각 하나의 일만 처리하는 소수의 엔드포인트를 제공합니다. Bearer API 키(````fc-...```` 형식)로 인증한 뒤, 필요한 것을 호출하면 됩니다: 1. **Scrape(스크래핑)** — 단일 URL을 마크다운, HTML, 스크린샷, 또는 구조화 JSON으로 변환합니다. Firecrawl이 JavaScript를 렌더링하고 군더더기를 제거해 줍니다.
 
-2. **Crawl(크롤링)** — URL 하나만 주면 Firecrawl이 `robots.txt`를 준수하면서 사이트 내 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 크롤링은 비동기로 진행됩니다. 작업을 시작한 뒤 결과를 폴링합니다.
+2. **Crawl(크롤링)** — URL 하나만 주면 Firecrawl이 ````robots.txt````를 준수하면서 사이트 내 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 크롤링은 비동기로 진행됩니다. 작업을 시작한 뒤 결과를 폴링합니다.
 
 3. **Map(매핑)** — 사이트의 모든 URL을 즉시 반환합니다. 크롤링 계획을 세우거나 사이트맵을 만들 때 유용합니다.
 
@@ -65,7 +66,7 @@ Firecrawl은 각각 하나의 일만 처리하는 소수의 엔드포인트를 �
 
 5. **Interact & Extract(상호작용 및 추출)** — 스크래핑 전에 페이지에서 동작(클릭, 스크롤, 입력)을 수행하고, 직접 정의한 스키마에 맞춰 구조화 데이터를 뽑아냅니다.
 
-Node SDK로 가장 간단한 스크래핑을 하면 이렇게 됩니다: ```typescript
+Node SDK로 가장 간단한 스크래핑을 하면 이렇게 됩니다: `````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
@@ -75,7 +76,7 @@ const doc = await app.scrape('https://example.com', {
 });
 
 console.log(doc.markdown);
-```
+`````
 
 Firecrawl은 큰 커뮤니티가 뒷받침하는 성숙한 오픈소스 프로젝트이며, 이는 GitHub의 127k+ stars 수에서 잘 드러납니다.
 
@@ -89,50 +90,50 @@ Firecrawl은 큰 커뮤니티가 뒷받침하는 성숙한 오픈소스 프로�
 
 ### Node.js SDK
 
-```bash
+`````bash
 npm install firecrawl
-```
+`````
 
-```typescript
+`````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
-```
+`````
 
 ### Python SDK
 
-```bash
+`````bash
 pip install firecrawl-py
-```
+`````
 
-```python
+`````python
 from firecrawl import Firecrawl
 
 app = Firecrawl(api_key="fc-YOUR_API_KEY")
-```
+`````
 
 ### Docker로 셀프 호스팅하기
 
-Firecrawl을 자체 인프라에서 돌리고 싶다면, 저장소를 클론하고 함께 제공되는 Docker Compose 설정을 사용하세요: ```bash
+Firecrawl을 자체 인프라에서 돌리고 싶다면, 저장소를 클론하고 함께 제공되는 Docker Compose 설정을 사용하세요: `````bash
 git clone https://github.com/firecrawl/firecrawl.git
 cd firecrawl
 docker compose up
-```
+`````
 
-이렇게 하면 API와 워커가 함께 뜹니다. API는 기본적으로 `3002` 포트를 수신하므로 `http://localhost:3002`로 접근할 수 있습니다. SDK를 셀프 호스팅 인스턴스로 향하게 하려면 API 주소만 설정하면 됩니다: ```typescript
+이렇게 하면 API와 워커가 함께 뜹니다. API는 기본적으로 ``3002`` 포트를 수신하므로 ``http://localhost:3002``로 접근할 수 있습니다. SDK를 셀프 호스팅 인스턴스로 향하게 하려면 API 주소만 설정하면 됩니다: `````typescript
 const app = new Firecrawl({
   apiKey: 'fc-YOUR_API_KEY',
   apiUrl: 'http://localhost:3002',
 });
-```
+`````
 
 ### 구성
 
-셀프 호스팅은 환경 변수로 구성합니다. 제공된 템플릿을 복사해 편집하세요: ```bash
+셀프 호스팅은 환경 변수로 구성합니다. 제공된 템플릿을 복사해 편집하세요: `````bash
 cp apps/api/.env.example apps/api/.env
-```
+`````
 
-흔히 설정하는 키로는 `PORT`, `NUM_WORKERS_PER_QUEUE`, 그리고 프록시·렌더링용 선택 통합 항목이 있습니다. 전체 목록은 저장소의 셀프 호스팅 가이드를 참고하세요. 호스팅형 API를 쓰면 이 모든 과정을 건너뛸 수 있습니다 — 반드시 설정해야 할 것은 API 키뿐입니다.
+흔히 설정하는 키로는 ````PORT````, ````NUM_WORKERS_PER_QUEUE````, 그리고 프록시·렌더링용 선택 통합 항목이 있습니다. 전체 목록은 저장소의 셀프 호스팅 가이드를 참고하세요. 호스팅형 API를 쓰면 이 모든 과정을 건너뛸 수 있습니다 — 반드시 설정해야 할 것은 API 키뿐입니다.
 
 ## 핵심 사용법
 
@@ -140,7 +141,7 @@ cp apps/api/.env.example apps/api/.env
 
 ### 단일 페이지 스크래핑
 
-```typescript
+`````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
@@ -150,11 +151,11 @@ const doc = await app.scrape('https://example.com', {
 });
 
 console.log(doc.markdown);
-```
+`````
 
 ### 사이트 전체 크롤링
 
-`crawl`은 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 페이지 수에 상한을 두거나 탐색 깊이를 제한할 수 있습니다: ```typescript
+``crawl``은 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 페이지 수에 상한을 두거나 탐색 깊이를 제한할 수 있습니다: `````typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
   scrapeOptions: { formats: [markdown] },
@@ -163,11 +164,11 @@ const result = await app.crawl('https://example.com', {
 for (const page of result.data) {
   console.log(page.metadata?.sourceURL, page.markdown?.slice(0, 80));
 }
-```
+`````
 
 ### 구조화 데이터 추출
 
-JSON 스키마를 전달하면 Firecrawl은 원시 텍스트 대신 타입이 지정된 데이터를 반환합니다 — 제목, 가격 등 고정된 필드를 뽑아낼 때 이상적입니다: ```typescript
+JSON 스키마를 전달하면 Firecrawl은 원시 텍스트 대신 타입이 지정된 데이터를 반환합니다 — 제목, 가격 등 고정된 필드를 뽑아낼 때 이상적입니다: `````typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
     type: json,
@@ -182,7 +183,7 @@ const doc = await app.scrape('https://example.com', {
 });
 
 console.log(doc.json);
-```
+`````
 
 자세한 내용은 [공식 문서](https://docs.firecrawl.dev)를 확인하세요.
 
@@ -192,7 +193,7 @@ Firecrawl은 본질적으로 얇은 SDK를 곁들인 HTTP API에 불과하므로
 
 ### 서버 라우트에서 사용하기
 
-전형적인 패턴은 스크래핑을 자신의 엔드포인트 뒤에 감싸는 것입니다: ```typescript
+전형적인 패턴은 스크래핑을 자신의 엔드포인트 뒤에 감싸는 것입니다: `````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
@@ -201,11 +202,11 @@ export async function scrapeHandler(url: string) {
   const doc = await app.scrape(url, { formats: [markdown] });
   return doc.markdown;
 }
-```
+`````
 
 ### CI/CD에서 예약 크롤링 실행
 
-반복 작업이라면 GitHub Actions, GitLab CI, 또는 임의의 스케줄러에서 Firecrawl을 실행하세요. 다음은 push마다 한 페이지를 스크래핑해 마크다운으로 저장하는 간단한 GitHub Actions 워크플로입니다: ```yaml
+반복 작업이라면 GitHub Actions, GitLab CI, 또는 임의의 스케줄러에서 Firecrawl을 실행하세요. 다음은 push마다 한 페이지를 스크래핑해 마크다운으로 저장하는 간단한 GitHub Actions 워크플로입니다: `````yaml
 name: Firecrawl Scraper
 
 on: push: branches: [ main ]
@@ -224,7 +225,7 @@ jobs: scrape: runs-on: ubuntu-latest
       - name: Run scraper
         env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: node scrape.js > output.json
-```
+`````
 
 이렇게 하면 스크래핑 작업이 자동화되고 재현 가능해지며, API 키는 코드가 아니라 저장소 secrets에 보관됩니다.
 
@@ -245,11 +246,11 @@ Firecrawl은 다양한 프로덕션 시나리오에서 쓰입니다. 아래 수�
 팀들은 일정에 맞춰 상품·가격 페이지를 크롤링해 카탈로그와 가격 비교 데이터를 최신으로 유지합니다. JavaScript 렌더링 덕분에 단일 페이지 애플리케이션(SPA) 형태의 매장도 별도 브라우저 자동화를 작성하지 않고 처리됩니다.
 
 #### 대규모 SEO 및 콘텐츠 감사
-에이전시는 대형 사이트를 크롤링해 페이지를 집계하고, 깨진 링크를 찾고, 오래된 콘텐츠를 표시합니다. 여기서는 `map` 엔드포인트가 유용합니다 — 더 깊은 크롤링에 착수하기 전에 전체 URL 목록을 먼저 확보할 수 있습니다.
+에이전시는 대형 사이트를 크롤링해 페이지를 집계하고, 깨진 링크를 찾고, 오래된 콘텐츠를 표시합니다. 여기서는 ````map```` 엔드포인트가 유용합니다 — 더 깊은 크롤링에 착수하기 전에 전체 URL 목록을 먼저 확보할 수 있습니다.
 
 ### 성능 참고
 
-호스팅형 API의 처리량은 요금제의 동시성 한도, 그리고 대상 사이트 자체의 속도 제한과 안티봇 대응에 따라 달라집니다. 셀프 호스팅은 `NUM_WORKERS_PER_QUEUE`로 동시성을 조절할 수 있게 해 주지만, 그 대신 프록시와 렌더링 인프라를 직접 떠안아야 합니다. 경험칙으로, 크롤링 작업은 100밀리초 미만의 실시간 요청 계층으로 다루기보다 '분당 페이지 수' 단위로 계획하세요.
+호스팅형 API의 처리량은 요금제의 동시성 한도, 그리고 대상 사이트 자체의 속도 제한과 안티봇 대응에 따라 달라집니다. 셀프 호스팅은 ````NUM_WORKERS_PER_QUEUE````로 동시성을 조절할 수 있게 해 주지만, 그 대신 프록시와 렌더링 인프라를 직접 떠안아야 합니다. 경험칙으로, 크롤링 작업은 100밀리초 미만의 실시간 요청 계층으로 다루기보다 '분당 페이지 수' 단위로 계획하세요.
 
 ![firecrawl contributors, via dibi8.com](https://contrib.rocks/image?repo=firecrawl/firecrawl)
 
@@ -287,7 +288,7 @@ Firecrawl은 강력하지만 모든 작업에 맞는 것은 아닙니다: 1. **�
 
 4. **호스팅 요금제의 비용과 할당량**: 클라우드 API는 사용량 기반 과금입니다. 대규모 크롤링은 크레딧을 빠르게 소모하므로, 초대용량이라면 호스팅 비용을 셀프 호스팅의 운영 비용과 비교해야 합니다.
 
-5. **컴플라이언스는 여전히 당신의 몫**: Firecrawl은 스크래핑을 쉽게 만들어 주지만, 무엇을 스크래핑해도 되는지는 판단해 주지 않습니다. `robots.txt`, 서비스 약관, 데이터 보호 규정을 준수하는 것은 당신의 책임입니다.
+5. **컴플라이언스는 여전히 당신의 몫**: Firecrawl은 스크래핑을 쉽게 만들어 주지만, 무엇을 스크래핑해도 되는지는 판단해 주지 않습니다. ````robots.txt```, 서비스 약관, 데이터 보호 규정을 준수하는 것은 당신의 책임입니다.
 
 이러한 트레이드오프 때문에, Firecrawl을 도입하기 전에 사용 사례를 신중히 평가할 가치가 있습니다.
 
@@ -300,7 +301,7 @@ Firecrawl은 열린 웹을 'LLM이 실제로 쓸 수 있는 데이터"로 바꾸
 - 오픈소스 AI 도구 소식을 가장 먼저 받으려면 [dibi8 영어 Telegram 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
 - 다음 읽을거리: [dibi8의 관련 가이드](dibi8-internal-link).
 
----
+* * *
 
 **출처 및 더 읽을거리**: - GitHub 저장소: https://github.com/firecrawl/firecrawl
 - 공식 문서: https://docs.firecrawl.dev

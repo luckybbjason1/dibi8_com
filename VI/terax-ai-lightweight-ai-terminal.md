@@ -38,6 +38,7 @@ faqs: - q: 'Terax AI là gì?'
     a: 'Terax được build từ mã nguồn: cài đặt Rust (stable) và Node.js 20+ kèm pnpm, clone repository bằng git, chạy pnpm install, sau đó dùng pnpm tauri dev để phát triển hoặc pnpm tauri build để tạo bản phân phối chính thức. Hiện chưa có file cài đặt prebuilt chính thức nào được cung cấp.'
 ---
 
+
 {</* resource-info */>}
 
 # Terax AI: Trình Giả Lập Terminal AI Nhẹ Hiểu Bạn
@@ -60,11 +61,11 @@ Khác với các terminal phụ thuộc đám mây yêu cầu tài khoản và g
 
 ### Chuyển Đổi Ngôn Ngữ Tự Nhiên Thành Lệnh Shell
 
-Ngừng ghi nhớ các cờ `find`, `awk` hay `sed` khó hiểu. Chỉ cần mô tả bằng tiếng Anh đơn giản những gì bạn muốn hoàn thành, và Terax sẽ chuyển đổi thành lệnh Shell chính xác. Dù bạn cần "tìm tất cả tệp `.log` được sửa đổi trong 24 giờ qua và nén chúng" hay "hiển thị các commit git từ tuần trước kèm diff", Terax tạo ra các lệnh chính xác, nhận thức ngữ cảnh ngay lập tức.
+Ngừng ghi nhớ các cờ ```find````, ````awk```` hay ````sed```` khó hiểu. Chỉ cần mô tả bằng tiếng Anh đơn giản những gì bạn muốn hoàn thành, và Terax sẽ chuyển đổi thành lệnh Shell chính xác. Dù bạn cần "tìm tất cả tệp ````.log```` được sửa đổi trong 24 giờ qua và nén chúng" hay "hiển thị các commit git từ tuần trước kèm diff", Terax tạo ra các lệnh chính xác, nhận thức ngữ cảnh ngay lập tức.
 
 ### Hỗ Trợ AI Nội Tuyến (Giải Thích, Debug, Đề Xuất)
 
-Terax không chỉ tạo lệnh — nó còn giúp bạn hiểu chúng. Di chuột qua bất kỳ lệnh nào để nhận giải thích do AI cung cấp về những gì lệnh đó làm. Khi một lệnh thất bại, Terax phân tích đầu ra lỗi và đề xuất cách khắc phục. Bảng điều khiển AI hỗ trợ quy trình làm việc đa tác nhân, diff chỉnh sửa, nhập liệu bằng giọng nói, và thậm chí bộ nhớ dự án thông qua các tệp cấu hình `TERAX.md`.
+Terax không chỉ tạo lệnh — nó còn giúp bạn hiểu chúng. Di chuột qua bất kỳ lệnh nào để nhận giải thích do AI cung cấp về những gì lệnh đó làm. Khi một lệnh thất bại, Terax phân tích đầu ra lỗi và đề xuất cách khắc phục. Bảng điều khiển AI hỗ trợ quy trình làm việc đa tác nhân, diff chỉnh sửa, nhập liệu bằng giọng nói, và thậm chí bộ nhớ dự án thông qua các tệp cấu hình ````TERAX.md````.
 
 ### Tự Động Hoàn Thành Thông Minh Với Nhận Thức Ngữ Cảnh
 
@@ -97,7 +98,7 @@ Trước khi build từ source, hãy đảm bảo bạn đã cài đặt: - **Ru
 
 ### Clone Và Build
 
-```bash
+`````bash
 # Clone kho lưu trữ
 git clone https://github.com/crynta/terax-ai.git
 cd terax-ai
@@ -110,24 +111,24 @@ pnpm tauri dev
 
 # Build gói production
 pnpm tauri build
-```
+`````
 
 ### Cấu Hình AI
 
 1. Mở **Cài đặt → AI** bên trong Terax.
 2. Chọn nhà cung cấp ưa thích: OpenAI, Anthropic, Google, Groq, xAI, Cerebras, hoặc bất kỳ endpoint tương thích OpenAI nào.
 3. Dán khóa API của bạn. Để vận hành hoàn toàn offline, hãy trỏ Terax đến endpoint suy luận local **LM Studio** của bạn.
-4. Khóa được ghi vào chuỗi khóa OS qua `keyring` — chúng không bao giờ chạm vào đĩa hoặc `localStorage`.
+4. Khóa được ghi vào chuỗi khóa OS qua ````keyring```` — chúng không bao giờ chạm vào đĩa hoặc ````localStorage````.
 
 ### Chạy Kiểm Tra
 
-```bash
+`````bash
 # Kiểm tra kiểu frontend
 pnpm exec tsc --noEmit
 
 # Lint Rust
 cd src-tauri && cargo clippy
-```
+`````
 
 ## So Sánh: Terax AI Với Các Lựa Chọn Thay Thế
 
@@ -154,11 +155,11 @@ Các nhà phát triển mới thường vật lộn với đường cong học t
 
 ### Debug Các Pipeline Phức Tạp
 
-Khi một pipeline đa giai đoạn `grep | sed | awk` thất bại thầm lặng, chẩn đoán lỗi của Terax xác định chính xác vấn đề. AI phân tích stderr, đề xuất các phiên bản đã sửa, và giải thích tại sao bản gốc thất bại — tiết kiệm hàng giờ debug thủ công.
+Khi một pipeline đa giai đoạn ````grep | sed | awk```` thất bại thầm lặng, chẩn đoán lỗi của Terax xác định chính xác vấn đề. AI phân tích stderr, đề xuất các phiên bản đã sửa, và giải thích tại sao bản gốc thất bại — tiết kiệm hàng giờ debug thủ công.
 
 ### DevOps Và Quản Lý Hạ Tầng
 
-Các quản trị viên hệ thống quản lý cluster Kubernetes, container Docker và tài nguyên đám mây có thể sử dụng ngôn ngữ tự nhiên để tạo các lệnh `kubectl`, `docker` và AWS CLI phức tạp. Bảng điều khiển AI duy trì ngữ cảnh dự án thông qua `TERAX.md`, khiến các thao tác lặp lại trở nên thông minh hơn.
+Các quản trị viên hệ thống quản lý cluster Kubernetes, container Docker và tài nguyên đám mây có thể sử dụng ngôn ngữ tự nhiên để tạo các lệnh ````kubectl````, ````docker```` và AWS CLI phức tạp. Bảng điều khiển AI duy trì ngữ cảnh dự án thông qua ````TERAX.md````, khiến các thao tác lặp lại trở nên thông minh hơn.
 
 ### Quy Trình Phát Triển Đa Nền Tảng
 
@@ -170,7 +171,7 @@ Các tổ chức có yêu cầu quyền riêng tư dữ liệu nghiêm ngặt c�
 
 ## Tìm Hiểu Sâu Về Kiến Trúc Kỹ Thuật
 
-Để hiểu điều gì làm cho Terax đặc biệt, cần phải nhìn vào bên trong. Kiến trúc được phân lớp một cách có chủ đích để đảm bảo hiệu năng và khả năng mở rộng: **Lớp Backend Rust** — Quản lý PTY (Pseudo Terminal) cốt lõi chạy trên Rust thông qua `portable-pty`, cung cấp tích hợp shell ở tốc độ gốc mà không có sự phình to bộ nhớ của các terminal Electron hay Java. Mô hình sở hữu (ownership) của Rust loại bỏ toàn bộ một lớp lỗi bộ nhớ không an toàn thường gặp ở các trình giả lập terminal truyền thống.
+Để hiểu điều gì làm cho Terax đặc biệt, cần phải nhìn vào bên trong. Kiến trúc được phân lớp một cách có chủ đích để đảm bảo hiệu năng và khả năng mở rộng: **Lớp Backend Rust** — Quản lý PTY (Pseudo Terminal) cốt lõi chạy trên Rust thông qua ````portable-pty````, cung cấp tích hợp shell ở tốc độ gốc mà không có sự phình to bộ nhớ của các terminal Electron hay Java. Mô hình sở hữu (ownership) của Rust loại bỏ toàn bộ một lớp lỗi bộ nhớ không an toàn thường gặp ở các trình giả lập terminal truyền thống.
 
 **Framework Tauri 2** — Không giống Electron buộc phải đóng gói toàn bộ một phiên bản Chromium (100+ MB), Tauri 2 sử dụng WebView gốc của hệ điều hành. Trên macOS đó là WKWebView, trên Windows là WebView2, và trên Linux là WebKitGTK. Chỉ riêng lựa chọn kiến trúc này đã giải thích được kích thước gói ~7 MB.
 
@@ -184,7 +185,7 @@ Các tổ chức có yêu cầu quyền riêng tư dữ liệu nghiêm ngặt c�
 
 **Lập trình viên junior** muốn học lệnh shell mà không cần ghi nhớ các trang man. Giao diện ngôn ngữ tự nhiên làm giảm đáng kể rào cản để đạt được thành thạo CLI.
 
-**Kỹ sư senior** quản lý nhiều môi trường đám mây và pipeline triển khai phức tạp. Bảng điều khiển AI với bộ nhớ dự án cụ thể `TERAX.md` trở thành một trợ lý nhận thức ngữ cảnh vô giá.
+**Kỹ sư senior** quản lý nhiều môi trường đám mây và pipeline triển khai phức tạp. Bảng điều khiển AI với bộ nhớ dự án cụ thể ````TERAX.md```` trở thành một trợ lý nhận thức ngữ cảnh vô giá.
 
 **Các nhóm có ý thức bảo mật** trong lĩnh vực tài chính, y tế hoặc chính phủ, nơi mã nguồn không thể rời khỏi cơ sở. Tích hợp LM Studio cho phép hỗ trợ AI hoàn toàn cách ly với mạng ngoài.
 
@@ -216,7 +217,7 @@ Các tổ chức có yêu cầu quyền riêng tư dữ liệu nghiêm ngặt c�
 
 ## Mẹo Bắt Đầu Sử Dụng
 
-Để tận dụng tối đa Terax AI ngay từ ngày đầu tiên: 1. **Tạo tệp `TERAX.md`** trong thư mục gốc dự án của bạn với ngữ cảnh về tech stack, quy ước và các lệnh thường dùng. AI sẽ tham khảo tệp này để đưa ra các đề xuất phù hợp hơn.
+Để tận dụng tối đa Terax AI ngay từ ngày đầu tiên: 1. **Tạo tệp ````TERAX.md````** trong thư mục gốc dự án của bạn với ngữ cảnh về tech stack, quy ước và các lệnh thường dùng. AI sẽ tham khảo tệp này để đưa ra các đề xuất phù hợp hơn.
 2. **Cấu hình nhiều nhà cung cấp AI** — Thiết lập cả nhà cung cấp đám mây (cho suy luận phức tạp) và LM Studio (cho truy vấn nhanh, ngoại tuyến) để bạn có thể chuyển đổi dựa trên tác vụ.
 3. **Bật script tích hợp shell** — Cho phép Terax chèn script khởi tạo vào cấu hình shell của bạn để có khả năng nhận thức ngữ cảnh phong phú nhất.
 4. **Khám phá phím tắt** — Terax hỗ trợ nhiều phím tắt để chuyển tab, bật/tắt bảng AI và điều hướng trình quản lý tệp, giúp tăng tốc đáng kể quy trình làm việc.
@@ -228,7 +229,7 @@ Các tổ chức có yêu cầu quyền riêng tư dữ liệu nghiêm ngặt c�
 
 Dự án Terax đang được phát triển tích cực với lộ trình minh bạch có sẵn trên GitHub. Các tính năng sắp tới bao gồm điều phối đa tác nhân nâng cao, tích hợp IDE sâu hơn, hỗ trợ plugin cho các nhà cung cấp AI tùy chỉnh, và các phiên terminal cộng tác cho lập trình theo cặp. Các maintainer phản hồi nhanh chóng với phản hồi cộng đồng, các vấn đề thường nhận được phản hồi trong vòng 48 giờ.
 
-Đóng góp rất đơn giản: cơ sở mã được tổ chức tốt với sự phân tách rõ ràng giữa backend Rust (`src-tauri/`) và frontend React (`src/`). Dù bạn muốn thêm chủ đề mới, cải thiện script tích hợp shell, hay triển khai adapter nhà cung cấp AI mới, đều có nhãn good-first-issue để giúp ngưới mới bắt đầu.
+Đóng góp rất đơn giản: cơ sở mã được tổ chức tốt với sự phân tách rõ ràng giữa backend Rust (````src-tauri/````) và frontend React (````src/```). Dù bạn muốn thêm chủ đề mới, cải thiện script tích hợp shell, hay triển khai adapter nhà cung cấp AI mới, đều có nhãn good-first-issue để giúp ngưới mới bắt đầu.
 
 ## Kết Luận
 
@@ -242,7 +243,7 @@ Sẵn sàng nâng cấp trải nghiệm terminal của bạn?
 
 🌐 **Khám phá thêm công cụ và thông tin chi tiết cho nhà phát triển:** [dibi8.com](https://dibi8.com)
 
----
+* * *
 
 *Các bài viết liên quan từ dibi8 Tech Team:*
 - [Top 10 Công Cụ AI Mã Nguồn Mở Cho Nhà Phát Triển Năm 2026](https://dibi8.com/vi/blog/top-10-open-source-ai-tools-2026)
@@ -251,7 +252,7 @@ Sẵn sàng nâng cấp trải nghiệm terminal của bạn?
 
 > **Về dibi8** — dibi8 là một blog công nghệ tập trung vào năng suất lập trình viên, công cụ mã nguồn mở và đổi mới công nghệ. Chúng tôi cam kết khám phá và chia sẻ các công cụ chất lượng và thực tiễn tốt nhất có thể thực sự nâng cao hiệu quả phát triển.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

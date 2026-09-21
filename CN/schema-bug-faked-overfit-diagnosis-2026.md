@@ -31,6 +31,7 @@ faq: - q: "What is schema drift and why does it fake backtest results?"
   - q: "What's the new 'Seven Donts list after this?"
     a: "Expanded from 7 to 13. The new entries: don't trust experiments without schema validation, don't make calls on datasets under 200 trading days, don't accept PF > 3 with under 30 trades, don't ship strategies without cross-asset validation, don't ignore stdev/mean ratio (over 1 = noise), don't report PF without per-segment decomposition, don't accept reports without IS/OOS ratio."
 ---
+
 {{</* resource-info */>}}
 
 # Schema Bug Faked My Overfit Diagnosis
@@ -47,13 +48,13 @@ This is the postmortem. The strategy isn't where the bug is. The bug is in how w
 
 > **Original conclusion**: Textbook overfit on BTC 304d (PF 2.08 → 0.94, ratio 2.21).
 >
-> **Real finding**: Schema field mismatch. `evolved_final_params.json` used `leverage` / `tp_atr_mult` field names; current schema uses `base_leverage` / `tp_rr_ratio`. `from_dict()` silently dropped them. Actual run used default 10x leverage, not the evolved 2x.
+> **Real finding**: Schema field mismatch. ```evolved_final_params.json```` used ````leverage```` / ````tp_atr_mult```` field names; current schema uses ````base_leverage```` / ````tp_rr_ratio````. ````from_dict()```` silently dropped them. Actual run used default 10x leverage, not the evolved 2x.
 >
 > **Corrected result**: PF 1.494 / 1.478, ratio 1.01. Boringly stable. Not overfit.
 >
 > **But also**: Cross-asset test still shows break-even at best. DOT walk-forward IS/OOS ratio 6.47 — actual textbook overfit hiding in a "lucky segment" story.
 >
-> **Meta-lesson**: Validate parameter loading before trusting backtest output. Five seconds of `print(vars(params))` would have saved seven experiments.
+> **Meta-lesson**: Validate parameter loading before trusting backtest output. Five seconds of ````print(vars(params))```` would have saved seven experiments.
 
 ## The Original "Discovery"
 
@@ -83,30 +84,30 @@ Same parameters, same asset, different time windows giving opposite patterns. Ei
 
 ## The Schema Drift
 
-In Python's typical `dataclass.from_dict()` pattern, unknown fields are silently dropped. Pydantic does it too unless you set strict mode.
+In Python's typical ````dataclass.from_dict()```` pattern, unknown fields are silently dropped. Pydantic does it too unless you set strict mode.
 
-The evolved configuration file contained: ```json
+The evolved configuration file contained: `````json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
   "tp_atr_mult": 2.5,
   ...
 }
-```
+`````
 
-The runtime `DecisionParams` schema expected: ```python
+The runtime ``DecisionParams`` schema expected: `````python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
 tp_rr_ratio: float = ...
-```
+`````
 
-`leverage` → silently dropped → `base_leverage` defaults to **10.0**.
-`tp_atr_mult` → silently dropped → `tp_rr_ratio` defaults to its own value.
+````leverage```` → silently dropped → ````base_leverage```` defaults to **10.0**.
+````tp_atr_mult```` → silently dropped → ````tp_rr_ratio```` defaults to its own value.
 
 The "evolved 2x leverage with symmetric 2.5/2.5 ATR multipliers" we thought we were running was actually "default 10x leverage with whatever the default tp_rr_ratio is."
 
-Five seconds of `print(vars(params))` after `from_dict()` would have shown this. We didn't do it.
+Five seconds of ````print(vars(params))```` after ````from_dict()```` would have shown this. We didn't do it.
 
 ## The Corrected Numbers
 
@@ -124,13 +125,13 @@ The corrected results are stable on BTC 304d, but cross-asset testing tells a le
 
 Eight crypto pairs, same 148-day window, same corrected parameters: | Asset | Train PF | OOS PF | Ratio |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ETH | 1.154 | 0.697 | 1.66 |
 | BNB | 1.512 | 0.213 | 7.10 |
@@ -148,7 +149,7 @@ A walk-forward test confirmed: Segment 1 as in-sample, Segments 2-5 as out-of-sa
 
 ## The Defenses
 
-Three layers, in order of effort/value: **1. Strict deserialization.** Make your parameter loader reject unknown fields. In Python: ```python
+Three layers, in order of effort/value: **1. Strict deserialization.** Make your parameter loader reject unknown fields. In Python: `````python
 @dataclass(frozen=True, kw_only=True)
 class DecisionParams: base_leverage: float = 10.0
     # ...
@@ -158,15 +159,15 @@ class DecisionParams: base_leverage: float = 10.0
         unknown = set(d.keys()) - valid
         if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
-```
+`````
 
-The original `from_dict()` filtered to valid fields *without raising* on unknown fields. One missing `raise` cost seven experiments.
+The original ````from_dict()```` filtered to valid fields *without raising* on unknown fields. One missing ````raise```` cost seven experiments.
 
-**2. Print effective params before backtest.** Three lines: ```python
+**2. Print effective params before backtest.** Three lines: `````python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
-```
+````
 
 **3. Pin parameter file schema version.** When the framework's schema changes, old parameter files should fail loudly, not silently degrade.
 
@@ -195,7 +196,7 @@ For walk-forward + multi-asset experiment scaffolding: - **{{< aff "digitalocean
 *Affiliate links — same price, supports dibi8.com.*
 
 
----
+* * *
 **Related**: [Moss Trade Bot Factory 2026 Review](https://dibi8.com/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtest OVERFIT 5 Patterns 2026](https://dibi8.com/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python Backtesting](https://dibi8.com/resources/ai-trading/backtrader-python-backtesting/)
 
 
@@ -261,7 +262,7 @@ Schema Bug Faked My Overfit Diagnosis: The Backtest Postmortem Nobody Talks Abou
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

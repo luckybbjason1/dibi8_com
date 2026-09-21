@@ -11,11 +11,12 @@ license: MIT
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
 
+
 ## Introduction
 
 새로운 코드베이스를 클론합니다. 200개의 파일에 걸쳐 50,000줄의 코드가 있습니다. VS Code를 열고 파일 트리를 바라봅니다. 어디서부터 시작해야 할까요?
 
-대부분의 개발자들은 먼저 `grep`을 사용합니다. 그 다음은 `ripgrep`을 사용합니다. 그런 다음 가장 많이 참조되는 10개의 파일을 열고 아키텍처를 머릿속으로 맞춰보려고 합니다. 작은 프로젝트에는 효과가 있습니다. 하지만 규모가 있는 프로젝트에서는 매우 힘듭니다.
+대부분의 개발자들은 먼저 ```grep````을 사용합니다. 그 다음은 ````ripgrep````을 사용합니다. 그런 다음 가장 많이 참조되는 10개의 파일을 열고 아키텍처를 머릿속으로 맞춰보려고 합니다. 작은 프로젝트에는 효과가 있습니다. 하지만 규모가 있는 프로젝트에서는 매우 힘듭니다.
 
 Understand-Anything는 근본적으로 다른 일을 합니다. 그것은 모든 코드베이스를 대화형 지식 그래프로 변환합니다 — 파일, 클래스, 함수에 대한 노드; 의존성과 관계에 대한 엣지. 당신은 코드에 대해 탐색하고, 검색하고, 질문할 수 있습니다. 정규표현식으로가 아니라, 자연어로.
 
@@ -31,19 +32,19 @@ Understand-Anything는 Egonex-AI에서 개발한 오픈 소스 도구로, 모든
 
 그 결과는 인간과 AI 에이전트가 모두 탐색할 수 있는 시각적 + 쿼리 가능한 코드 표현입니다. Claude Code는 이를 탐색할 수 있습니다. Codex는 이를 기반으로 추론할 수 있습니다. Cursor는 이를 참조할 수 있습니다. 이 그래프는 개발자와 AI 어시스턴트 간의 공유된 이해 층으로 기능합니다.
 
-```bash
+`````bash
 # Install via npm (TypeScript-based CLI)
 npm install -g understand-anything
 
 # Or use via Docker
 docker run -v $(pwd):/code ghcr.io/egonex-ai/understand-anything:latest /code
-```
+`````
 
 이 도구는 Claude Code, Codex, Cursor, Copilot, Gemini CLI, OpenCode 및 기타 AI 코딩 에이전트와 함께 작동하여 AI 코딩 도구 체인을 위한 범용 지식 계층을 만듭니다.
 
 ## How Understand-Anything Works
 
-파이프라인에는 세 단계가 있습니다: 구문 분석, 그래프 구성, 그리고 인덱싱: ```
+파이프라인에는 세 단계가 있습니다: 구문 분석, 그래프 구성, 그리고 인덱싱: `````
 Source Code (all languages)
         │
         ▼
@@ -68,9 +69,9 @@ Source Code (all languages)
          ▼
    Knowledge Graph
   (explore + query)
-```
+`````
 
-각 언어는 해당 언어의 고유 AST로 파싱됩니다(Python은 `ast`, TypeScript는 `typescript` 컴파일러 API 등). 그래프는 시각화와 빠른 쿼리 모두에 최적화된 컴팩트한 형식으로 저장됩니다.
+각 언어는 해당 언어의 고유 AST로 파싱됩니다(Python은 ````ast````, TypeScript는 ````typescript```` 컴파일러 API 등). 그래프는 시각화와 빠른 쿼리 모두에 최적화된 컴팩트한 형식으로 저장됩니다.
 
 인덱싱 계층은 의미 검색을 위해 벡터 임베딩을 추가하여 전체 코드베이스에서 '인증을 처리하는 모든 함수 찾기' 유형의 쿼리를 가능하게 합니다.
 
@@ -78,17 +79,17 @@ Source Code (all languages)
 
 ### Quick Install
 
-```bash
+`````bash
 # npm installation (recommended)
 npm install -g understand-anything
 
 # Verify
 understand-anything --version
-```
+`````
 
 ### Docker Installation
 
-```bash
+`````bash
 # Pull latest image
 docker pull ghcr.io/egonex-ai/understand-anything:latest
 
@@ -96,35 +97,35 @@ docker pull ghcr.io/egonex-ai/understand-anything:latest
 docker run --rm -v $(pwd):/code \
   ghcr.io/egonex-ai/understand-anything:latest \
   /code --output ./knowledge-graph.json
-```
+`````
 
 ### From Source
 
-```bash
+`````bash
 git clone https://github.com/Egonex-AI/Understand-Anything.git
 cd Understand-Anything
 npm install
 npm run build
 npm link  # global install
-```
+`````
 
 ### Python Wrapper
 
-```bash
+`````bash
 pip install understand-anything-python
-```
+`````
 
-```python
+`````python
 from understand_anything import CodebaseAnalyzer
 
 analyzer = CodebaseAnalyzer("/path/to/codebase")
 analyzer.build_graph()
 analyzer.export_graph("graph.json")
-```
+`````
 
 ### Configuration
 
-```json
+`````json
 {
   "include": ["src/**/*.{ts,tsx,js,jsx}", "tests/**/*"],
   "exclude": ["node_modules", "dist", "*.test.*"],
@@ -133,49 +134,49 @@ analyzer.export_graph("graph.json")
   "max_file_size": 50000,
   "max_depth": 5
 }
-```
+`````
 
 ## Integration with Mainstream Tools
 
 ### Claude Code Integration
 
-```bash
+`````bash
 # Add knowledge graph to Claude Code context
 understand-anything analyze ./src --format claude-code
 
 # Claude Code automatically loads the graph for context-aware responses
-```
+`````
 
 ### Cursor IDE Plugin
 
-```bash
+`````bash
 # Install the Cursor extension
 # Settings → Extensions → Understand-Anything
 # Point to your project root
 
 # Cursor will show the knowledge graph sidebar
 # Click any node to navigate to the source
-```
+`````
 
 ### GitHub Copilot Extension
 
-```bash
+`````bash
 # Generate a .copilot context file
 understand-anything analyze ./src --format copilot
 
 # Creates .github/copilot-instructions.md with
 # graph-derived context for Copilot
-```
+`````
 
 ### VS Code Extension
 
-```bash
+`````bash
 # Install from marketplace
 # vscode-marketplace: egonex.understand-anything
 
 # Or CLI install
 npx @egonex/vscode-extension install
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -201,7 +202,7 @@ npx @egonex/vscode-extension install
 
 ### Use Case: Onboarding New Developers
 
-15명의 개발자로 구성된 팀이 50,000줄의 TypeScript 프로젝트에 합류했습니다. Understand-Anything 사용 전에는 코드 읽기에 2주가 걸렸습니다. 사용 후: ```bash
+15명의 개발자로 구성된 팀이 50,000줄의 TypeScript 프로젝트에 합류했습니다. Understand-Anything 사용 전에는 코드 읽기에 2주가 걸렸습니다. 사용 후: `````bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
@@ -209,19 +210,19 @@ understand-anything analyze ./src --onboarding
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
-```
+`````
 
 신규 개발자 온보딩 시간이 14일에서 3일로 단축되었습니다. 인터랙티브 그래프를 통해 개발자들은 자신만의 속도로 코드베이스를 탐색할 수 있습니다.
 
 ### Use Case: Legacy Code Refactoring
 
-```bash
+`````bash
 # Find all files that reference deprecated API
 understand-anything query "deprecated authentication endpoints"
 
 # Returns: 23 files, 47 references
 # With full dependency chains
-```
+`````
 
 그래프는 스프레드시트와 grep이 완전히 놓치는 숨겨진 결합을 보여준다.
 
@@ -229,7 +230,7 @@ understand-anything query "deprecated authentication endpoints"
 
 ### Custom Language Support
 
-```typescript
+`````typescript
 // Add support for a new language
 import { LanguagePlugin } from 'understand-anything';
 
@@ -248,11 +249,11 @@ class MyLangPlugin implements LanguagePlugin {
 
 // 플러그인 등록
 registerPlugin(new MyLangPlugin());
-```
+`````
 
 ### Graph Query Language (GQL)
 
-```bash
+`````bash
 # Find all functions called by more than 5 other functions
 understand-anything gql "func where call_count > 5 order by call_count desc"
 
@@ -261,11 +262,11 @@ understand-anything gql "file where incoming_refs == 0"
 
 # Find circular dependencies
 understand-anything gql "cycle where type == 'import'"
-```
+`````
 
 ### CI/CD Integration
 
-```yaml
+`````yaml
 # .github/workflows/graph-check.yml
 name: Knowledge Graph CI
 on: [pull_request]
@@ -287,7 +288,7 @@ on: [pull_request]
 
 ### Performance Tuning
 
-```bash
+`````bash
 # Use incremental analysis (fastest for dev workflows)
 understand-anything analyze ./src --incremental
 
@@ -299,11 +300,11 @@ understand-anything analyze ./src --workers 8
 
 # Memory-efficient mode (for constrained environments)
 understand-anything analyze ./src --low-memory
-```
+`````
 
 ### Export Formats
 
-```bash
+`````bash
 # JSON (programmatic access)
 understand-anything analyze ./src --format json -o graph.json
 
@@ -317,7 +318,7 @@ understand-anything analyze ./src --format mermaid -o graph.mmd
 # HTML (interactive viewer)
 understand-anything analyze ./src --format html -o graph.html
 # Opens in browser with zoom, pan, search
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -340,11 +341,11 @@ Understand-Anything은 인터랙티브 시각화, 자연어 질의, 광범위한
 
 Understand-Anything는 강력하지만 솔직한 한계가 있습니다: 1. **생성된 코드는 분석되지 않습니다.** 동적 코드(eval, exec, 런타임 생성 클래스)는 그래프에 나타나지 않습니다. 이것은 정적 분석의 근본적인 한계이며, 아무 도구도 이를 완벽하게 해결하지 못합니다.
 
-2. **서드파티 라이브러리는 별도의 분석이 필요합니다.** 그래프는 코드베이스에 초점을 맞춥니다. 의존성을 포함하려면 `node_modules`, `vendor/` 또는 그에 상응하는 것을 별도로 분석해야 합니다.
+2. **서드파티 라이브러리는 별도의 분석이 필요합니다.** 그래프는 코드베이스에 초점을 맞춥니다. 의존성을 포함하려면 ````node_modules````, ````vendor/```` 또는 그에 상응하는 것을 별도로 분석해야 합니다.
 
-3. **대규모 모노레포는 조정이 필요합니다.** 50,000개 이상의 파일은 최적의 성능을 위해 `--workers` 및 `--low-memory` 플래그가 필요할 수 있습니다. 기본 설정은 최대 10,000개의 파일까지의 프로젝트에서 잘 작동합니다.
+3. **대규모 모노레포는 조정이 필요합니다.** 50,000개 이상의 파일은 최적의 성능을 위해 ````--workers```` 및 ````--low-memory```` 플래그가 필요할 수 있습니다. 기본 설정은 최대 10,000개의 파일까지의 프로젝트에서 잘 작동합니다.
 
-4. **비표준 파일 확장자.** 인식되지 않는 확장자를 가진 파일은 제대로 파싱되지 않을 수 있습니다. 패턴을 지정하려면 `include` 설정을 사용하세요.
+4. **비표준 파일 확장자.** 인식되지 않는 확장자를 가진 파일은 제대로 파싱되지 않을 수 있습니다. 패턴을 지정하려면 ````include```` 설정을 사용하세요.
 
 5. **실시간 협업.** 그래프는 지속적으로 업데이트되지 않고 필요에 따라 계산됩니다. 변경 사항은 재분석이 필요하며(증분 모드는 이 비용을 최소화합니다).
 
@@ -372,15 +373,15 @@ Understand-Anything는 강력하지만 솔직한 한계가 있습니다: 1. **�
 
 **Q: 모노레포에서도 작동하나요?**
 
-네. Understand-Anything는 모노레포를 기본적으로 처리합니다. `--root` 플래그를 모노레포 루트로 설정하고 포함할 패키지를 지정하세요. 패키지 간 의존성 감지는 자동으로 작동합니다.
+네. Understand-Anything는 모노레포를 기본적으로 처리합니다. ````--root```` 플래그를 모노레포 루트로 설정하고 포함할 패키지를 지정하세요. 패키지 간 의존성 감지는 자동으로 작동합니다.
 
 **질문: 최대 코드베이스 크기는 얼마인가요?**
 
-50만 파일과 5천만 줄의 코드까지 코드베이스로 테스트되었습니다. 성능은 하드웨어에 따라 다릅니다 — 최신 노트북은 10,000 파일을 편안하게 처리할 수 있습니다. 더 큰 프로젝트의 경우 `--workers` 및 `--low-memory` 플래그를 사용하세요.
+50만 파일과 5천만 줄의 코드까지 코드베이스로 테스트되었습니다. 성능은 하드웨어에 따라 다릅니다 — 최신 노트북은 10,000 파일을 편안하게 처리할 수 있습니다. 더 큰 프로젝트의 경우 ````--workers```` 및 ````--low-memory```` 플래그를 사용하세요.
 
 **Q: 웹 인터페이스가 있나요?**
 
-네. `--format html` 내보내기는 확대, 이동, 검색 및 클릭하여 탐색 기능이 있는 완전히 인터랙티브한 웹 뷰어를 생성합니다. 서버가 필요하지 않으며 — 이것은 정적 HTML 파일입니다.
+네. ````--format html```` 내보내기는 확대, 이동, 검색 및 클릭하여 탐색 기능이 있는 완전히 인터랙티브한 웹 뷰어를 생성합니다. 서버가 필요하지 않으며 — 이것은 정적 HTML 파일입니다.
 
 ## Conclusion
 
@@ -390,13 +391,13 @@ Claude Code, Codex, Cursor, Copilot, Gemini CLI와 함께 작동한다는 사실
 
 한 달에 60,000개 이상의 스타는 단순한 과장이 아닙니다. 이는 개발자들이 코드베이스를 탐색하는 것이 전화번호부를 읽는 것처럼 느껴지기보다는 지도를 탐험하는 것처럼 느껴야 한다고 깨닫고 있다는 뜻입니다.
 
-다음 프로젝트에서 사용해 보세요. 레포를 복제하고 `understand-anything analyze .`를 실행하면 그래프가 나타납니다. 이 도구 없이 어떻게 온보딩했는지 의문이 들 것입니다.
+다음 프로젝트에서 사용해 보세요. 레포를 복제하고 ````understand-anything analyze .```를 실행하면 그래프가 나타납니다. 이 도구 없이 어떻게 온보딩했는지 의문이 들 것입니다.
 
 **행동 촉구**: 오늘 Try Understand-Anything을 시도해보세요. 코드 시각화와 AI 지원 개발 워크플로우에 대해 논의하려면 [dibi8 텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
 
 AI 코딩 도구에 대해 더 알고 싶다면, [Claude Code 숙련](dibi8-claude-code-mastery)과 [Cursor IDE 최적화](dibi8-cursor-optimization)에 대한 가이드를 확인하세요.
 
----
+* * *
 
 **출처 및 추가 자료**: - 공식 문서: https://github.com/Egonex-AI/Understand-Anything
 - GitHub 저장소: https://github.com/Egonex-AI/Understand-Anything
@@ -436,7 +437,7 @@ AI 코딩 도구에 대해 더 알고 싶다면, [Claude Code 숙련](dibi8-clau
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -446,7 +447,7 @@ AI 코딩 도구에 대해 더 알고 싶다면, [Claude Code 숙련](dibi8-clau
 - [claude-code-vs-aider](understand-anything-interactive-knowledge-graphs-codebases)
 - [cursor-vs-claude-code](understand-anything-interactive-knowledge-graphs-codebases)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

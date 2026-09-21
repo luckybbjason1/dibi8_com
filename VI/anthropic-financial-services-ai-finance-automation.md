@@ -37,6 +37,7 @@ faqs: - q: 'Các tác nhân (agent) Anthropic Financial Services có thể tự 
     a: 'Managed Agents có thể được triển khai bên trong VPC của riêng bạn nên không dữ liệu nào rời khỏi hạ tầng của bạn, mọi hành động của tác nhân đều được ghi nhật ký kiểm toán với hồ sơ chuỗi lưu ký (chain-of-custody) đầy đủ, và quyền truy cập được kiểm soát thông qua các nhà cung cấp danh tính doanh nghiệp như Okta hoặc Azure AD. Không có kết quả nào của tác nhân được gửi thẳng đến khách hàng—mọi thứ đều xếp hàng chờ con người ký duyệt để đáp ứng các yêu cầu giám sát của FINRA và SEC.'
 ---
 
+
 {</* resource-info */>}
 
 # Anthropic Financial Services：Các đội ngũ tài chính tự động hóa phân tích bằng AI và tăng ROI 300% như thế nào
@@ -50,7 +51,7 @@ Anthropic Financial Services là một bộ sưu tập **các tác nhân quy tr�
 - **Private Equity**: Đánh giá định giá, tiếp nhận gói GP, báo cáo LP
 - **Quản lý tài sản**: Sàng lọc KYC, tự động hóa onboarding, kiểm toán báo cáo
 
-Mọi thứ đều được cung cấp dưới hai hình thức: dưới dạng **plugin Claude Cowork** (cài đặt và sử dụng ngay lập tức) hoặc dưới dạng **mẫu Claude Managed Agent** (triển khai phía sau công cụ quy trình làm việc của riêng bạn qua `/v1/agents`).
+Mọi thứ đều được cung cấp dưới hai hình thức: dưới dạng **plugin Claude Cowork** (cài đặt và sử dụng ngay lập tức) hoặc dưới dạng **mẫu Claude Managed Agent** (triển khai phía sau công cụ quy trình làm việc của riêng bạn qua ```/v1/agents````).
 
 ## Các tính năng và khả năng cốt lõi
 
@@ -71,7 +72,7 @@ Kho lưu trữ bao gồm các tác nhân được xây dựng cho mục đích c
 
 ### 2. Plugin kỹ năng theo chiều dọc
 
-Mỗi plugin theo chiều dọc gói các kỹ năng cơ bản, lệnh gạch chéo và bộ kết nối dữ liệu. Ví dụ, plugin Ngân hàng đầu tư cung cấp `/comps`, `/dcf`, `/earnings` và các bộ kết nối nhà cung cấp dữ liệu thị trường. Chỉ cài đặt plugin nếu bạn không cần một tác nhân đầy đủ.
+Mỗi plugin theo chiều dọc gói các kỹ năng cơ bản, lệnh gạch chéo và bộ kết nối dữ liệu. Ví dụ, plugin Ngân hàng đầu tư cung cấp ````/comps````, ````/dcf````, ````/earnings```` và các bộ kết nối nhà cung cấp dữ liệu thị trường. Chỉ cài đặt plugin nếu bạn không cần một tác nhân đầy đủ.
 
 ### 3. Tích hợp đối tác
 
@@ -79,7 +80,7 @@ Kho lưu trữ bao gồm các **plugin do đối tác xây dựng** từ LSEG (N
 
 ### 4. Sổ tay tác nhân được quản lý
 
-Để triển khai doanh nghiệp, thư mục `managed-agent-cookbooks/` chứa: - Cấu hình `agent.yaml`
+Để triển khai doanh nghiệp, thư mục ````managed-agent-cookbooks/```` chứa: - Cấu hình ````agent.yaml````
 - Định nghĩa tác nhân con leaf-worker
 - Ví dụ sự kiện điều hướng
 - Ghi chú bảo mật cho mỗi tác nhân
@@ -88,19 +89,19 @@ Kho lưu trữ bao gồm các **plugin do đối tác xây dựng** từ LSEG (N
 
 ### Tùy chọn A: Plugin Claude Cowork (Dễ nhất)
 
-```bash
+`````bash
 # Cài đặt qua Claude Desktop hoặc Claude Code
 claude plugin install anthropic/financial-services
-```
+`````
 
-Sau khi cài đặt, kích hoạt bất kỳ tác nhân nào bằng ngôn ngữ tự nhiên: ```
+Sau khi cài đặt, kích hoạt bất kỳ tác nhân nào bằng ngôn ngữ tự nhiên: `````
 "Chạy Pitch Agent cho mục tiêu mua lại Tesla"
 "Chạy KYC Screener trên PDF onboarding này"
-```
+`````
 
 ### Tùy chọn B: API Managed Agent (Doanh nghiệp)
 
-```yaml
+`````yaml
 # Ví dụ agent.yaml cho Pitch Agent
 name: pitch-agent
 version: 1.0.0
@@ -112,15 +113,15 @@ skills: - comps-analysis
   - lbo-modeling
 connectors: - lseg-market-data
   - sp-global-capiq
-```
+`````
 
-Triển khai qua Claude Managed Agents API: ```bash
+Triển khai qua Claude Managed Agents API: `````bash
 curl -X POST https://api.anthropic.com/v1/agents   -H "x-api-key: $ANTHROPIC_API_KEY"   -d @agent.yaml
-```
+`````
 
 ## Ví dụ mã: KYC Screener tùy chỉnh
 
-```python
+`````python
 from anthropic_financial import KYCAgent
 
 agent = KYCAgent(
@@ -139,7 +140,7 @@ results = agent.screen(
 # Đầu ra: lỗ hổng được gắn cờ, điểm rủi ro và giai đoạn xem xét của con người
 print(results.summary)
 print(results.flagged_items)
-```
+````
 
 ## Các trường hợp sử dụng thực tế
 
@@ -186,7 +187,7 @@ Anthropic Financial Services không chỉ là một thử nghiệm AI khác — 
 
 > **Tuyên bố miễn trừ trách nhiệm**: Không có gì trong kho lưu trữ này cấu thành lời khuyên đầu tư, pháp lý, thuế hoặc kế toán. Mọi đầu ra đều được chuẩn bị để con người phê duyệt.
 
----
+* * *
 
 *Bạn đã thử Anthropic Financial Services chưa? Để lại bình luận bên dưới và chia sẻ trải nghiệm của bạn.*
 
@@ -238,7 +239,7 @@ Kho lưu trữ đang phát triển tích cực. Các tính năng sắp tới tr�
 
 Phương pháp theo giai đoạn này giảm thiểu rủi ro đồng thời xây dựng niềm tin nội bộ vào các quy trình làm việc được hỗ trợ bởi AI.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

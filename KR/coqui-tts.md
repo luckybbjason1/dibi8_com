@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/coqui-tts/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -62,7 +63,7 @@ Coqui TTS는 합성 파이프라인을 **텍스트-스펙트로그램 모델**, 
 
 **전제 조건:** Python 3.9+, CUDA 11.8+ (선택 사항, GPU용), 최소 4GB RAM, XTTS v2용 8GB VRAM 권장.
 
-PyPI를 통해 2분 이내 설치: ```bash
+PyPI를 통해 2분 이내 설치: ````bash
 python -m venv coqui-env
 source coqui-env/bin/activate
 
@@ -71,18 +72,18 @@ pip install coqui-tts
 
 # 설치 확인
 tts --list_models | head -20
-```
+`````
 
-커뮤니티 포크의 최신 개발 버전 설치: ```bash
+커뮤니티 포크의 최신 개발 버전 설치: `````bash
 pip install coqui-tts --upgrade
 
 # 또는 소스에서 설치
 git clone https://github.com/idiap/coqui-ai-TTS.git
 cd coqui-ai-TTS
 pip install -e .
-```
+`````
 
-espeak-ng 설치 — 음소 기반 모델에 필요(많은 비영어 언어에 필수): ```bash
+espeak-ng 설치 — 음소 기반 모델에 필요(많은 비영어 언어에 필수): `````bash
 # Ubuntu / Debian
 sudo apt-get install espeak-ng
 
@@ -91,11 +92,11 @@ brew install espeak
 
 # 확인
 espeak-ng --version
-```
+`````
 
 **Docker 설치 — 프로덕션 배포 가장 빠른 경로:**
 
-```bash
+`````bash
 # 공식 GPU 이미지 가져오기
 docker pull ghcr.io/coqui-ai/tts:latest
 
@@ -110,11 +111,11 @@ docker run -d --name coqui-tts \
   ghcr.io/coqui-ai/tts \
   --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
   --use_cuda true
-```
+`````
 
 **빠른 합성 테스트:**
 
-```bash
+`````bash
 # 사용 가능한 모든 모델 나열
 tts --list_models
 
@@ -129,13 +130,13 @@ tts --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
     --speaker_wav reference_voice.wav \
     --language_idx zh \
     --out_path chinese_output.wav
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### Python API — 기본 합성
 
-```python
+`````python
 import torch
 from TTS.api import TTS
 
@@ -151,11 +152,11 @@ wav = tts.tts(
     speaker="Ana Florence",
     language="en"
 )
-```
+`````
 
 ### Python API — 음성 복제
 
-```python
+`````python
 # 6초 참조 오디오에서 음성 복제
 tts.tts_to_file(
     text="This cloned voice will sound like your reference speaker.",
@@ -171,11 +172,11 @@ tts.tts_to_file(
     language="en",
     file_path="batch_cloned.wav"
 )
-```
+`````
 
 ### REST API 서버
 
-```bash
+`````bash
 # 내장 서버 시작 (프로덕션용 아님, nginx 뒤의 gunicorn 사용)
 tts-server \
     --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
@@ -195,11 +196,11 @@ curl -X POST "http://localhost:5002/v1/audio/speech" \
         "response_format": "wav"
     }' \
     --output openai_compat.wav
-```
+`````
 
 ### Flask 통합
 
-```python
+`````python
 from flask import Flask, request, send_file
 from TTS.api import TTS
 import torch
@@ -226,11 +227,11 @@ def synthesize(): data = request.get_json()
     return send_file(buffer, mimetype="audio/wav")
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
-```
+`````
 
 ### Docker Compose 프로덕션 배포
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -255,11 +256,11 @@ services: coqui-tts: build: .
     ports: - "80:80"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on: - coqui-tts
-```
+`````
 
 ### Coqui TTS용 Dockerfile
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -282,11 +283,11 @@ RUN python3 warm_up.py
 
 EXPOSE 5002
 CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5002", "--timeout", "120", "server:app"]
-```
+`````
 
 ### 음성 변환 통합
 
-```python
+`````python
 # 소스 화자를 타겟 화자로 변환
 tts = TTS("voice_conversion_models/multilingual/vctk/freevc24").to("cuda")
 
@@ -295,7 +296,7 @@ tts.voice_conversion_to_file(
     target_wav="target_voice.wav",
     file_path="converted_voice.wav"
 )
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -321,7 +322,7 @@ NVIDIA A10 (24GB VRAM), CUDA 12.1, PyTorch 2.2 환경에서 제어된 벤치마�
 
 **실제 프로덕션 배포 지표 (하루 5000건 요청 처리):**
 
-```
+`````
 하드웨어: 2x NVIDIA A10G (AWS g5.2xlarge)
 로드 밸런서: nginx 라운드 로빈
 컨테이너: Docker + gunicorn (GPU당 4개 워커)
@@ -329,13 +330,13 @@ NVIDIA A10 (24GB VRAM), CUDA 12.1, PyTorch 2.2 환경에서 제어된 벤치마�
 처리량: GPU당 초당 12건
 오류율: 0.03% (500자 초과 입력에서 OOM)
 가동 시간: 30일간 99.7%
-```
+`````
 
 ## 고급 사용법 / 프로덕션 강화
 
 ### 모델 웜업 스크립트
 
-컨테이너 시작 후 첫 추론은 CUDA 커널 컴파일을 트리거해 5-10초 지연을 추가한다. 이를 ENTRYPOINT에 통합하라: ```python
+컨테이너 시작 후 첫 추론은 CUDA 커널 컴파일을 트리거해 5-10초 지연을 추가한다. 이를 ENTRYPOINT에 통합하라: `````python
 # warm_up.py
 import os
 from TTS.api import TTS
@@ -347,11 +348,11 @@ if torch.cuda.is_available(): tts = tts.to("cuda")
 # JIT 컴파일 트리거
 _ = tts.tts(text="warm up", speaker_wav=None, language="en")
 print("[warmup] CUDA 커널 컴파일 완료, 모델 준비됨")
-```
+`````
 
 ### ONNX + FP16 메모리 최적화
 
-```python
+`````python
 # PyTorch 모델을 ONNX로 변환하여 2배 속도 향상
 import torch
 from TTS.api import TTS
@@ -364,11 +365,11 @@ tts = TTS("tts_models/en/ljspeech/tacotron2-DDC").to("cuda")
 # FP16 추론 활성화
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.benchmark = True
-```
+`````
 
 ### 배치 추론으로 처리량 향상
 
-```python
+`````python
 from concurrent.futures import ThreadPoolExecutor
 import queue
 
@@ -389,11 +390,11 @@ def batch_worker(text_queue, result_queue): """배치 방식으로 텍스트를 
 
 # 사용법
 with ThreadPoolExecutor(max_workers=2) as executor: executor.submit(batch_worker, text_q, result_q)
-```
+`````
 
 ### XTTS v2 사용자 지정 데이터 파인튜닝
 
-```bash
+`````bash
 # LJSpeech 형식으로 데이터셋 준비: # metadata.csv: audio_file|text|speaker_name
 # wavs/*.wav: 22050 Hz, 모노, 16비트
 
@@ -408,11 +409,11 @@ python TTS/bin/train_tts.py \
     --epochs 10
 
 # 예상 훈련 시간: RTX 4090에서 1시간 데이터 기준 12-24시간
-```
+`````
 
 ### Prometheus 모니터링
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 
 # 지표
@@ -428,7 +429,7 @@ def synthesize(): with TTS_LATENCY.time(): try: # ... 합성 로직
             TTS_REQUESTS.labels(language=lang).inc()
         except Exception as e: TTS_ERRORS.labels(error_type=type(e).__name__).inc()
             raise
-```
+`````
 
 ## 대안과의 비교
 
@@ -464,7 +465,7 @@ Coqui TTS는 모든 작업에 적합한 도구가 아니다. 실무에서 배운
 - **장문 텍스트 메모리 팽창** — 500자 이상의 입력은 16GB GPU에서 OOM을 유발할 수 있다. 문장 단위 청킹을 구현하고 요청당 300자로 제한하라.
 - **중국어 품질 격차** — XTTS v2가 중국어를 지원하지만, ChatTTS와 같은 네이티브 모델이 더 자연스러운 보통화 운율을 생성한다. Coqui의 강점은 폭이지 개별 언어의 완벽함이 아니다.
 - **내장 배치 API 없음** — 공식 Python API는 한 번에 하나의 텍스트만 처리한다. 고처리량 시나리오에서는 직접 배치 계층을 구현해야 한다.
-- **서버가 프로덕션 수준 아님** — 내장 `tts-server`는 Flask 개발 서버를 사용한다. 프로덕션에서는 항상 gunicorn + nginx 뒤에 배포하라.
+- **서버가 프로덕션 수준 아님** — 내장 ````tts-server````는 Flask 개발 서버를 사용한다. 프로덕션에서는 항상 gunicorn + nginx 뒤에 배포하라.
 
 ## 자주 묻는 질문
 
@@ -490,11 +491,11 @@ VITS는 속도에 최적화된 엔드투엔드 단일 화자 모델이다(GPU에
 
 **Q6: Coqui TTS는 스트리밍 출력을 지원하는가?**
 
-예 — XTTS v2는 200ms 미만의 첫 청크 지연으로 스트리밍 추론을 지원한다. Python API에서 `stream=True`를 전달하여 활성화하라. REST 서버는 아직 네이티브로 청크 전송 인코딩을 지원하지 않는다.
+예 — XTTS v2는 200ms 미만의 첫 청크 지연으로 스트리밍 추론을 지원한다. Python API에서 ````stream=True````를 전달하여 활성화하라. REST 서버는 아직 네이티브로 청크 전송 인코딩을 지원하지 않는다.
 
 **Q7: 나만의 음성 데이터셋으로 파인튜닝할 수 있는가?**
 
-예. 데이터를 LJSpeech 형식(22050Hz WAV + metadata.csv)으로 준비하고 `TTS/tts/recipes/`의 훈련 레시피를 사용하라. RTX 4090에서 XTTS v2를 1시간의 깨끗한 음성으로 파인튜닝하는 데 12-24시간이 소요되며, 제로샷 복제보다 화자 매칭이 눈에 띄게 개선된다.
+예. 데이터를 LJSpeech 형식(22050Hz WAV + metadata.csv)으로 준비하고 ````TTS/tts/recipes/```의 훈련 레시피를 사용하라. RTX 4090에서 XTTS v2를 1시간의 깨끗한 음성으로 파인튜닝하는 데 12-24시간이 소요되며, 제로샷 복제보다 화자 매칭이 눈에 띄게 개선된다.
 
 **Q8: 긴 텍스트 입력은 어떻게 처리하는가?**
 
@@ -561,7 +562,7 @@ Coqui TTS는 2026년 현재까지 가장 다재다능한 오픈소스 TTS 툴킷
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -571,6 +572,6 @@ Coqui TTS는 2026년 현재까지 가장 다재다능한 오픈소스 TTS 툴킷
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](coqui-tts)
 - [moneyprinterturbo-one-click-ai-video-generator](coqui-tts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

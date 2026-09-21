@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/chroma-vector-database-python/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么你的 RAG 流水线需要更好的向量存储
@@ -22,7 +23,7 @@ aliases:
 
 截至 2026 年 5 月，Chroma 的 GitHub 星数已突破 **18", "000**，发布的 **v0.6.x** 版本支持持久化存储、元数据过滤和查询引擎，在超过 100 万向量的数据集上实现了比暴力搜索快 **50 倍**的检索速度。该项目由 Chroma 团队维护，采用 **Apache-2.0** 许可证，是 [LangChain"](dibi8-internal-link) 和 [LlamaIndex](dibi8-internal-link) 快速入门指南中的默认向量存储。
 
-本指南将带你从 `pip install` 到生产级 RAG 部署，全程不超过 30 分钟。无需向量数据库经验。
+本指南将带你从 ```pip install```` 到生产级 RAG 部署，全程不超过 30 分钟。无需向量数据库经验。
 
 ## 什么是 Chroma？（一句话定义）
 
@@ -35,10 +36,10 @@ Chroma 是一个开源的、原生嵌入向量数据库，提供 Python 优先�
 Chroma 的架构刻意保持简洁。理解三个核心概念即可掌握 80% 的内容：
 
 ### 集合（Collections）
-**集合**是相关文档及其嵌入的容器。类似于 SQL 中的表，但无模式且原生支持向量。每类文档对应一个集合（例如 `legal_docs`、`product_manuals`、`support_tickets`）。
+**集合**是相关文档及其嵌入的容器。类似于 SQL 中的表，但无模式且原生支持向量。每类文档对应一个集合（例如 ````legal_docs````、````product_manuals````、````support_tickets````）。
 
 ### 嵌入（Embeddings）
-你添加的每个文档都会通过嵌入模型转换为向量（浮点数数组，通常为 384–1536 维）。Chroma 可以使用默认模型（如 `all-MiniLM-L6-v2`）自动生成嵌入，也可以接受来自 OpenAI、Cohere 或任何自定义模型的预计算向量。
+你添加的每个文档都会通过嵌入模型转换为向量（浮点数数组，通常为 384–1536 维）。Chroma 可以使用默认模型（如 ````all-MiniLM-L6-v2````）自动生成嵌入，也可以接受来自 OpenAI、Cohere 或任何自定义模型的预计算向量。
 
 ### 向量相似度查询
 当你发起查询时，Chroma 将你的文本转换到相同的向量空间中，然后使用 **HNSW（Hierarchical Navigable Small World）**索引在亚毫秒时间内找到最近邻。HNSW 索引正是实现比暴力余弦相似度快 **50 倍**的关键。
@@ -46,16 +47,16 @@ Chroma 的架构刻意保持简洁。理解三个核心概念即可掌握 80% �
 ### 存储模式
 | 模式 | 持久化 | 适用场景 | 性能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `:memory:` | 无 | 测试、CI/CD | 最快 |
-| `./chroma_db` | 磁盘 | 本地开发、小型生产 | 快 |
+| ````:memory:```` | 无 | 测试、CI/CD | 最快 |
+| ````./chroma_db```` | 磁盘 | 本地开发、小型生产 | 快 |
 | Docker 卷 | 持久化容器 | 自托管生产环境 | 快 |
 | S3/GCS 备份 | 云端备份 | 灾难恢复 | N/A |
 
@@ -63,7 +64,7 @@ Chroma 的架构刻意保持简洁。理解三个核心概念即可掌握 80% �
 
 ### 第一步：安装 Chroma
 
-```bash
+`````bash
 pip install chromadb
 
 # 指定嵌入后端
@@ -72,31 +73,31 @@ pip install chromadb[sentence-transformers]
 # 验证安装
 python -c "import chromadb; print(chromadb.__version__)"
 # Expected: 0.6.x or higher
-```
+`````
 
 ### 第二步：运行 Chroma（三种方式）
 
 **方式 A：内存模式（测试最快）**
 
-```python
+`````python
 import chromadb
 
 # 纯内存模式 —— 进程退出后数据消失
 client = chromadb.Client()
-```
+`````
 
 **方式 B：持久化本地存储**
 
-```python
+`````python
 import chromadb
 
 # 数据保存到 ./chroma_db 目录
 client = chromadb.PersistentClient(path="./chroma_db")
-```
+`````
 
 **方式 C：Docker（生产环境推荐）**
 
-```bash
+`````bash
 # Docker 中运行 Chroma 服务器
 docker run -d \
   --name chroma \
@@ -107,13 +108,13 @@ docker run -d \
 # 从 Python 连接
 import chromadb
 client = chromadb.HttpClient(host="localhost", port=8000)
-```
+`````
 
 对于生产 VPS 部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 提供 $200 额度，可快速创建预装 Docker 的专用 Droplet —— 非常适合 alongside 你的 RAG API 托管 Chroma。
 
 ### 第三步：创建集合并添加文档
 
-```python
+`````python
 import chromadb
 
 client = chromadb.PersistentClient(path="./chroma_db")
@@ -145,11 +146,11 @@ collection.add(
 
 print(f"Collection count: {collection.count()}")
 # Output: Collection count: 4
-```
+`````
 
 ### 第四步：查询集合
 
-```python
+`````python
 # 简单相似度搜索
 results = collection.query(
     query_texts=["What is a vector database?"],
@@ -168,11 +169,11 @@ results = collection.query(
 
 print(results["documents"])
 # Output: [["HNSW indexing enables fast approximate nearest neighbor search."]]
-```
+`````
 
 ### 第五步：更新与删除
 
-```python
+`````python
 # 更新文档
 collection.update(
     ids=["doc_1"],
@@ -185,7 +186,7 @@ collection.delete(ids=["doc_4"])
 
 print(f"Collection count after delete: {collection.count()}")
 # Output: Collection count after delete: 3
-```
+`````
 
 ## 与 LangChain、LlamaIndex 及其他框架集成
 
@@ -193,11 +194,11 @@ print(f"Collection count after delete: {collection.count()}")
 
 Chroma 是 LangChain 快速入门中的默认向量存储。集成只需 3 行代码：
 
-```bash
+`````bash
 pip install langchain-chroma langchain-openai
-```
+`````
 
-```python
+`````python
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.documents import Document
@@ -222,15 +223,15 @@ vector_store.add_documents(docs)
 # 搜索
 results = vector_store.similarity_search("How do I use LangChain with Chroma?", k=2)
 for doc in results: print(doc.page_content)
-```
+`````
 
 ### LlamaIndex 集成
 
-```bash
+`````bash
 pip install llama-index-vector-stores-chroma
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import StorageContext, VectorStoreIndex
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -257,11 +258,11 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine()
 response = query_engine.query("What vector database should I use with LlamaIndex?")
 print(response)
-```
+`````
 
 ### OpenAI 嵌入集成
 
-```python
+`````python
 from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 # 直接使用 OpenAI 嵌入模型
@@ -284,11 +285,11 @@ results = collection.query(
     query_texts=["Tell me about OpenAI vectors"],
     n_results=1
 )
-```
+`````
 
 ### Sentence Transformers（本地运行，无需 API 密钥）
 
-```python
+`````python
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
 # 完全本地运行 —— 无 API 调用，无限流
@@ -305,11 +306,11 @@ collection.add(
     documents=["Local embeddings are free and privacy-preserving."],
     ids=["local_1"]
 )
-```
+`````
 
 ### FastAPI 集成模式
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import chromadb
@@ -337,7 +338,7 @@ def search_docs(request: QueryRequest): try: results = collection.query(
 def health(): return {"status": "ok", "count": collection.count()}
 
 # Run: uvicorn main:app --reload
-```
+`````
 
 ## 基准测试与真实案例
 
@@ -347,15 +348,15 @@ def health(): return {"status": "ok", "count": collection.count()}
 
 | 数据集规模 | 朴素（numpy） | Chroma（HNSW） | 加速比 | Chroma 内存占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1,000 向量 | 12ms | 0.8ms | **15x** | 45MB |
 | 10,000 向量 | 180ms | 1.2ms | **150x** | 120MB |
@@ -370,13 +371,13 @@ def health(): return {"status": "ok", "count": collection.count()}
 
 | 公司/项目 | 规模 | 用例 | 结果 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 法律 AI 创业公司 | 200 万案件文档 | 语义判例搜索 | 查询时间：4.2s → 89ms |
 | 电商平台 | 50 万商品描述 | 商品推荐 | 点击率提升 23% |
@@ -391,7 +392,7 @@ Chroma 使用 SQLite 存储元数据和文档，HNSW 索引作为独立的二进
 
 ### 自定义嵌入维度
 
-```python
+`````python
 # 来自任意模型的预计算嵌入（如 OpenAI text-embedding-3-large）
 import numpy as np
 
@@ -407,11 +408,11 @@ collection.add(
     documents=["Doc with custom embedding", "Another doc"],
     ids=["custom_1", "custom_2"]
 )
-```
+`````
 
 ### 元数据过滤深入
 
-```python
+`````python
 # 复杂元数据查询
 collection.add(
     documents=["Advanced filtering example"],
@@ -443,11 +444,11 @@ results = collection.query(
     },
     n_results=5
 )
-```
+`````
 
 ### 多租户集合
 
-```python
+`````python
 # 每个用户/租户一个集合 —— 天然隔离
 def get_user_collection(user_id: str): return client.get_or_create_collection(f"user_{user_id}_docs")
 
@@ -457,11 +458,11 @@ user_b = get_user_collection("bob")
 
 user_a.add(documents=["Alice's private document"], ids=["alice_1"])
 user_b.add(documents=["Bob"s private document"], ids=["bob_1"])
-```
+`````
 
 ### 生产环境 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -475,18 +476,18 @@ services: chroma: image: chromadb/chroma:0.6.0
     deploy: resources: limits: memory: 8G
         reservations: memory: 2G
 
-volumes: chroma_data: ```
+volumes: chroma_data: `````
 
 部署命令：
 
-```bash
+`````bash
 docker-compose up -d
 # Chroma API 地址：http://localhost:8000
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 # Chroma 将所有数据存储在持久化目录中
 # 使用标准工具即可备份
 
@@ -494,21 +495,21 @@ tar -czf chroma_backup_$(date +%Y%m%d).tar.gz ./chroma_data/
 
 # 恢复只需解压到相同路径
 tar -xzf chroma_backup_20260519.tar.gz
-```
+`````
 
 ## 替代品对比
 
 | 功能 | **Chroma** | Pinecone | Weaviate | pgvector（PostgreSQL）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **自托管** | ✅ 免费 | ❌ 仅云端 | ✅ Docker | ✅ 扩展 |
 | **设置时间** | **< 2 分钟** | ~15 分钟（API 密钥） | ~10 分钟 | ~30 分钟 |
@@ -555,7 +556,7 @@ Chroma 并非适用于每个向量搜索问题。以下是你需要了解的：
 
 ### Chroma 可以在无网络环境下使用吗？
 
-**可以。** 如果你使用预下载模型的 `SentenceTransformerEmbeddingFunction`，Chroma 可以完全离线运行。无需 API 密钥，无需云端调用，无需遥测（使用 `ANONYMIZED_TELEMETRY=FALSE` 禁用）。这使其非常适合隔离网络环境。
+**可以。** 如果你使用预下载模型的 ````SentenceTransformerEmbeddingFunction````，Chroma 可以完全离线运行。无需 API 密钥，无需云端调用，无需遥测（使用 ````ANONYMIZED_TELEMETRY=FALSE```` 禁用）。这使其非常适合隔离网络环境。
 
 ### Chroma 与用 NumPy 做向量搜索相比如何？
 
@@ -567,7 +568,7 @@ NumPy 暴力搜索适用于少于 1,000 个向量。在 10,000 个向量时，Ch
 
 ### 可以从 Pinecone 或其他向量数据库迁移到 Chroma 吗？
 
-**可以。** 迁移模式是：从当前数据库导出向量 + 元数据 → 使用 `collection.add()` 批量插入 Chroma（使用预计算嵌入）。大多数用户可以用一个脚本完成迁移。Chroma 的集合结构与 Pinecone 的命名空间概念相似。
+**可以。** 迁移模式是：从当前数据库导出向量 + 元数据 → 使用 ````collection.add()```` 批量插入 Chroma（使用预计算嵌入）。大多数用户可以用一个脚本完成迁移。Chroma 的集合结构与 Pinecone 的命名空间概念相似。
 
 ### Chroma 支持多模态嵌入（图像、音频）吗？
 
@@ -577,7 +578,7 @@ Chroma 存储向量 —— 它不关心向量是如何生成的。你可以存�
 
 Chroma 填补了 AI 工具链中的关键空白：一个优先考虑开发者体验且不牺牲性能的向量数据库。2026 年，**v0.6.x** 版本提供持久化存储、HNSW 索引和与所有主流 RAG 框架的原生集成，Chroma 是构建语义搜索和检索增强生成的 Python 开发者的务实之选。
 
-相比未索引搜索 **50 倍的速度提升**不是营销话术 —— 它是可测量、可复现的，今天只需运行 `pip install chromadb` 即可获得。无论你是在原型聊天机器人还是部署生产级 RAG API，Chroma 都能以更少配置、更多实际代码帮你达成目标。
+相比未索引搜索 **50 倍的速度提升**不是营销话术 —— 它是可测量、可复现的，今天只需运行 ````pip install chromadb``` 即可获得。无论你是在原型聊天机器人还是部署生产级 RAG API，Chroma 都能以更少配置、更多实际代码帮你达成目标。
 
 **准备好部署了吗？** 在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上用 Docker 快速启动 VPS，10 分钟内让 Chroma 在生产环境运行。
 
@@ -608,7 +609,7 @@ Chroma 填补了 AI 工具链中的关键空白：一个优先考虑开发者体
 本文包含联盟营销链接。如果你通过本文中的链接注册服务（如 DigitalOcean），dibi8.com 可能会获得佣金，而你无需额外付费。我们只推荐我们使用且真正认可的工具。Chroma 本身在 Apache-2.0 下免费开源 —— 与 Chroma 项目不存在联盟营销关系。
 
 
----
+* * *
 *发表于 dibi8.com —— AI 源代码中心。最后更新：2026-05-19*
 
 
@@ -645,7 +646,7 @@ Explore more articles in this category: 1. [Arize Ai Observability Llm](/zh/ariz
 3. [Haystack Rag Pipeline Framework](/zh/haystack-rag-pipeline-framework)
 
 
----
+* * *
 ## Frequently Asked Questions (FAQ)
 
 **问：LangChain和LlamaIndex哪个更好？**

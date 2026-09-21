@@ -30,6 +30,7 @@ faqs: - q: 'TabPFN 是什么？'
     a: 'TabPFN 最适合行数不超过 10,000、特征数少于 100 的数据集，推理时建议使用 GPU（CPU 模式可用但速度较慢）。目前仅支持分类任务，回归功能正在开发中。'
   - q: '如何在 Python 中安装和使用 TabPFN？'
     a: '通过 ''pip install tabpfn'' 安装后，从 tabpfn 包中导入 TabPFNClassifier，依次调用 clf.fit(X_train, y_train) 和 clf.predict(X_test) 即可。它会自动识别特征类型，并处理缺失值和类别型特征。'---
+
 {</* resource-info */>}
 
 ## TabPFN 是什么？
@@ -49,11 +50,11 @@ faqs: - q: 'TabPFN 是什么？'
 
 | 步骤 | 时间 | 专业知识 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据预处理 | 2-4 小时 | 数据科学家 |
 | 特征工程 | 3-6 小时 | 领域专家 |
@@ -66,11 +67,11 @@ faqs: - q: 'TabPFN 是什么？'
 
 | 步骤 | 时间 | 专业知识 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 加载数据 | 1 分钟 | 任何人 |
 | 运行 TabPFN | 1-10 秒 | 任何人 |
@@ -78,7 +79,7 @@ faqs: - q: 'TabPFN 是什么？'
 | **总计** | **~2 分钟** | **无需专业知识** |
 
 
----
+* * *
 ## TabPFN 如何工作
 
 ### 基础模型方法
@@ -96,7 +97,7 @@ TabPFN 在**数百万个合成表格数据集**上训练，学习跨以下方面
 3. **无超参数**: 消除网格搜索和调优
 4. **快速推理**: 秒级出结果，而非小时
 
----
+* * *
 
 ## 性能基准测试
 
@@ -104,13 +105,13 @@ TabPFN 在**数百万个合成表格数据集**上训练，学习跨以下方面
 
 | 数据集 | 随机森林 | XGBoost | TabPFN |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Adult Income | 85.2% | 86.8% | **87.9%** |
 | Cover Type | 72.1% | 78.4% | **81.2%** |
@@ -122,29 +123,29 @@ TabPFN 在**数百万个合成表格数据集**上训练，学习跨以下方面
 
 | 方法 | 训练时间 | 推理时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Auto-sklearn | 1-4 小时 | 1 秒 |
 | FLAML | 10-30 分钟 | 0.1 秒 |
 | **TabPFN** | **0 秒** | **0.5-2 秒** |
 
----
+* * *
 
 ## 快速开始
 
 ### 安装
 
-```bash
+````bash
 pip install tabpfn
-```
+`````
 
 ### 基本用法
 
-```python
+`````python
 from tabpfn import TabPFNClassifier
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -164,11 +165,11 @@ y_prob = clf.predict_proba(X_test)
 # 评估
 accuracy = (y_pred == y_test).mean()
 print(f"准确率: {accuracy:.4f}")
-```
+`````
 
 ### 高级功能
 
-```python
+`````python
 # 自动处理缺失值
 clf = TabPFNClassifier()
 clf.fit(X_train_with_nans, y_train)
@@ -184,9 +185,9 @@ y = df['target']
 
 clf = TabPFNClassifier()
 clf.fit(X, y)  # 自动检测特征类型
-```
+`````
 
----
+* * *
 
 ## 使用场景
 
@@ -211,7 +212,7 @@ clf.fit(X, y)  # 自动检测特征类型
 - 调查数据处理
 - 基因组数据分类
 
----
+* * *
 
 ## 架构深入解析
 
@@ -219,9 +220,9 @@ clf.fit(X, y)  # 自动检测特征类型
 
 TabPFN 将 **transformer 架构**（在 NLP 中流行）适配到表格数据：
 
-```
+`````
 输入特征 → 嵌入层 → Transformer 块 → 输出
-```
+````
 
 与 NLP transformer 的关键区别：
 - **特征特定嵌入** 用于混合数据类型
@@ -235,24 +236,24 @@ TabPFN 将 **transformer 架构**（在 NLP 中流行）适配到表格数据：
 3. **元学习** 使模型能够适应新数据集
 4. **结果**: 单一模型处理多样化的表格任务
 
----
+* * *
 
 ## 局限性
 
 | 局限性 | 详情 | 解决方法 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据集大小 | 最适合 <10,000 行 | 使用采样或集成 |
 | 特征数量 | 最适合 <100 个特征 | 先进行特征选择 |
 | 需要 GPU | 推理需要 GPU | 使用 CPU 模式（较慢） |
 | 仅分类 | 目前仅分类 | 回归功能正在开发中 |
 
----
+* * *
 
 ## 相关文章
 
@@ -260,11 +261,11 @@ TabPFN 将 **transformer 架构**（在 NLP 中流行）适配到表格数据：
 - [Polymarket Agents: AI 交易机器人](/zh/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — AI 在金融领域
 - [OpenClaw 42 个用例](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 代理应用
 
----
+* * *
 
 *免责声明: 本文介绍一个开源 AI 项目。TabPFN 是一个研究工具，在生产部署之前应在您的特定用例上进行验证。*
 
----
+* * *
 
 ## 推荐工具
 
@@ -338,7 +339,7 @@ TabPFN: 表格数据基础模型 — 结构化数据的 AI 突破 represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

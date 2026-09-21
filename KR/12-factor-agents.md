@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 ---
 
+
 ## 소개
 
 대형 언어 모델은 간단한 채팅 인터페이스에서 의사 결정을 내리고, 코드를 실행하고, 외부 API와 상호작용하며, 인간과 협력하는 복잡한 자율 에이전트로 빠르게 진화했습니다. 그러나 이러한 시스템이 복잡해질수록 일관된 아키텍처 기반의 부재가 점점 더 고통스럽게 느껴집니다. LLM 애플리케이션을 빌드하는 팀은 초기 클라우드 애플리케이션을 괴롭혔던 것과 같은 구조적 과제에 직면합니다: 취약한 구성, 불투명한 동작, 일관되지 않은 관찰 가능성, 그리고 재현하기 어려운 배포.
@@ -41,13 +42,13 @@ featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main
 
 각 에이전트에 대한 단일 코드베이스를 버전 컨트롤에서 추적하세요. 코드가 여러 저장소에 분산된 전통적인 마이크로서비스 아키텍처와 달리, 12-Factor Agents는 각 별도의 에이전트(여러 LLM 호출을 오케스트레이션하더라도)가 단일하고 조화로운 코드베이스로 표현되어야 한다고 권장합니다. 이렇게 하면 구성, 프롬프트 템플릿, 도구 정의 및 비즈니스 로직이 밀접하게 결합되어 추론하기 쉬워집니다.
 
-```
+````
 # 새로운 12-팩터 에이전트 프로젝트 초기화
 npx create-12-factor-agent my-agent
 
 # 또는 uvx로
 uvx create-12-factor-agent my-agent
-```
+`````
 
 ### 2. 종속성
 
@@ -57,13 +58,13 @@ uvx create-12-factor-agent my-agent
 
 구성을 환경에 저장하세요. 에이전트 구성 - API 키, 모델 엔드포인트, 온도 설정, 가드레일 임계값 -은 절대 hardcode되어서는 안 됩니다. 환경 변수 또는 시크릿 관리자를 사용하세요. 이 원칙은 에이전트가 종종 민감한 외부 서비스와 사용자 데이터에 접근하기 때문에 특히 중요합니다.
 
-```bash
+`````bash
 # 에이전트를 위한 환경 변수 설정
 export OPENAI_API_KEY="sk-..."
 export REDIS_URL="redis://localhost:6379"
 export GUARDRAIL_THRESHOLD="0.85"
 export HUMAN_APPROVAL_ENDPOINT="https://approval.example.com/queue"
-```
+`````
 
 ### 4. 백킹 서비스
 
@@ -73,13 +74,13 @@ export HUMAN_APPROVAL_ENDPOINT="https://approval.example.com/queue"
 
 빌드와 실행 단계를 엄격히 분리하세요. 빌드 단계에서는 에이전트 코드, 종속성, 프롬프트 템플릿, 도구 정의를 릴리스 아티팩트에 조립합니다. 실행 단계에서는 해당 릴리스를 어떤 환경에서든 실행합니다. 이 분리도구는 재현성에 중요합니다: 동일한 릴리스는 개발, 스테이징 또는 프로덕션에서 실행할 때 동일하게 동작해야 합니다.
 
-```bash
+`````bash
 # 빌드 단계: 에이전트 패키징
 npx create-12-factor-agent build --output dist/agent-release.tar.gz
 
 # 실행 단계: 릴리스 배포
 docker run --env-file .env agent-release:latest
-```
+`````
 
 ### 6. 프로세스
 
@@ -89,10 +90,10 @@ docker run --env-file .env agent-release:latest
 
 포트를 바인딩하여 서비스를 노출하세요. HTTP API, WebSocket 엔드포인트 또는 이벤트 리스너를 노출하는 에이전트는 프레임워크 관리 reverse proxy에 의존하지 않고 명시적으로 포트에 바인딩해야 합니다. 이는 운영자에게 네트워킹, 라우팅 및 부하 분산에 대한 완전한 제어를 제공합니다.
 
-```bash
+`````bash
 # 특정 포트에서 에이전트 서버 실행
 python agent_server.py --port 8080 --host 0.0.0.0
-```
+`````
 
 ### 8. 동시성
 
@@ -106,11 +107,11 @@ python agent_server.py --port 8080 --host 0.0.0.0
 
 개발, 스테이징 및 프로덕션을 가능한 한 유사하게 유지하세요. LLM 에이전트에서 버그의 가장 큰 원인은 개발 및 프로덕션 환경 간의 격차입니다. 프레임워크는 모든 환경에서 동일한 모델 제공업체, 동일한 프롬프트 템플릿 및 동일한 백킹 서비스를 사용할 것을 권장합니다. 구성 차이만 다릅니다.
 
-```bash
+`````bash
 # 환경 간 동일한 설정 사용
 npx create-12-factor-agent init --env staging
 npx create-12-factor-agent init --env production
-```
+`````
 
 ### 11. 로그
 
@@ -120,17 +121,17 @@ npx create-12-factor-agent init --env production
 
 관리/운영 프로세스를 one-off 프로세스로 실행하세요. 데이터베이스 마이그레이션, 프롬프트 템플릿 업데이트, 모델 제공업체 구성 변경, audit log 내보내기 같은 관리 작업은 릴리스에 첨부된 one-off 프로세스로 실행되어야 합니다. 이렇게 하면 관리 작업이 프레임워크의 배포 모델과 일관되게 유지됩니다.
 
-```bash
+`````bash
 # one-off 프로세스로 관리 작업 실행
 npx create-12-factor-agent admin:migrate --env production
 npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv
-```
+`````
 
 ## 동작 방식
 
-12-Factor Agents 프레임워크는 CLI 도구와 아키텍처 관념의 조합으로 동작합니다. 주요 진입점은 `create-12-factor-agent` CLI로, 권장 디렉토리 구조, 구성 관리 및 관찰 가능성 hook을 사용하여 프로젝트를 scaffold합니다.
+12-Factor Agents 프레임워크는 CLI 도구와 아키텍처 관념의 조합으로 동작합니다. 주요 진입점은 ````create-12-factor-agent```` CLI로, 권장 디렉토리 구조, 구성 관리 및 관찰 가능성 hook을 사용하여 프로젝트를 scaffold합니다.
 
-일반적인 작업 흐름은 다음과 같습니다: ```bash
+일반적인 작업 흐름은 다음과 같습니다: `````bash
 # 1단계: 새 에이전트 프로젝트 scaffold
 npx create-12-factor-agent finance-bot
 
@@ -144,7 +145,7 @@ cd finance-bot
 # - services/      (백킹 서비스 통합)
 # - tests/         (테스트 유틸리티)
 # - docker-compose.yml (로컬 개발 환경)
-```
+`````
 
 생성된 프로젝트는 계층 아키텍처를 사용합니다. 하단 레이어에서, 백킹 서비스는 환경의 구성에 연결됩니다. 그 위에 도구 및 서비스 레이어가 에이전트의 기능을 제공합니다. 최상단에서, 프롬프트 템플릿은 이러한 기능을 조화로운 에이전트 동작으로 오케스트레이션합니다.
 
@@ -152,25 +153,25 @@ cd finance-bot
 
 ## 설치 및 설정
 
-원칙 기반 프레임워크로서, 12-Factor Agents는 전통적인 `pip install` 또는 `npm install`이 필요하지 않습니다. 대신 두 가지 CLI 도구 중 하나를 사용하여 프로젝트 scaffold를 생성합니다: ```bash
+원칙 기반 프레임워크로서, 12-Factor Agents는 전통적인 ``pip install`` 또는 ``npm install``이 필요하지 않습니다. 대신 두 가지 CLI 도구 중 하나를 사용하여 프로젝트 scaffold를 생성합니다: `````bash
 # 방법 1: npx 사용(Node.js)
 npx create-12-factor-agent
 
 # 방법 2: uvx 사용(Python, uv 패키지 관리자 필요)
 uvx create-12-factor-agent
-```
+`````
 
-두 도구 모두 권장 프로젝트 구조가 있는 새 디렉토리, 필요한 모든 환경 변수를 나열한 `.env.example` 파일, Dockerfile, 그리고 사용자화할 기본 에이전트 구현을 생성합니다.
+두 도구 모두 권장 프로젝트 구조가 있는 새 디렉토리, 필요한 모든 환경 변수를 나열한 ````.env.example```` 파일, Dockerfile, 그리고 사용자화할 기본 에이전트 구현을 생성합니다.
 
-```bash
+`````bash
 # 아직 설치하지 않았다면 uv 설치
 pip install uv
 
 # 새 에이전트 프로젝트 생성
 uvx create-12-factor-agent --name my-agent --template production
-```
+`````
 
-scaffold 없이 처음부터 시작하고 싶은 팀을 위해, 프레임워크 문서는 프로덕션 등급 에이전트 구현에 필요한 모든 것이 무엇인지에 대한 완전한 체크리스트를 제공합니다: ```bash
+scaffold 없이 처음부터 시작하고 싶은 팀을 위해, 프레임워크 문서는 프로덕션 등급 에이전트 구현에 필요한 모든 것이 무엇인지에 대한 완전한 체크리스트를 제공합니다: `````bash
 # 체크리스트 검증 스크립트
 # 에이전트가 12-팩터 원칙을 따르는지 확인
 cat > verify-12factor.sh << 'EOF'
@@ -183,7 +184,7 @@ echo "검증 완료."
 EOF
 chmod +x verify-12factor.sh
 ./verify-12factor.sh
-```
+`````
 
 ## 통합 패턴
 
@@ -193,7 +194,7 @@ chmod +x verify-12factor.sh
 
 프레임워크는 human-in-the-loop 작업 흐름을 first-class로 지원합니다. 에이전트가 human 승인이 필요한 작업을 encountering하면, 일시 중지하고 구성된 승인 엔드포인트에 요청을 posting합니다. human은 대시보드에서 요청을 review하고, 승인하거나 거부하며, 에이전트는 재개합니다.
 
-```bash
+`````bash
 # 환경에서 human 승인 구성
 export HUMAN_APPROVAL_SERVICE="https://approval.example.com"
 export HUMAN_APPROVAL_TIMEOUT="300"
@@ -201,11 +202,11 @@ export HUMAN_APPROVAL_RETRIES="3"
 
 # human-in-the-loop를 활성화하여 에이전트 실행
 npx create-12-factor-agent run --enable-hil
-```
+`````
 
 ### 관찰 가능성 통합
 
-모든 에이전트 프로세스는 구조화된 로그, 메트릭 및 trace를 emission합니다. 프레임워크는 표준 관찰 가능성 백엔드와 통합됩니다: ```bash
+모든 에이전트 프로세스는 구조화된 로그, 메트릭 및 trace를 emission합니다. 프레임워크는 표준 관찰 가능성 백엔드와 통합됩니다: `````bash
 # 분산 트레이싱을 위한 OpenTelemetry 구성
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -213,13 +214,13 @@ export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
 
 # telemetry를 활성화하여 실행
 npx create-12-factor-agent run --telemetry enabled
-```
+`````
 
 ### 다중 에이전트 오케스트레이션
 
 복잡한 작업의 경우, 프레임워크는 각각이 12-팩터 원칙을 따르는 여러 에이전트를 orchestrate하는 것을 지원합니다. supervisor 에이전트는 worker 에이전트에 하위 작업을 delegating하고, 결과를 수집하여 최종 응답을 synthesis합니다.
 
-```bash
+`````bash
 # 다중 에이전트 구성 정의
 cat > agents.yaml << 'EOF'
 supervisor: model: gpt-4o
@@ -231,7 +232,7 @@ workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [data_analysis, chart_generation]
 EOF
-```
+`````
 
 ## 벤치마크 및 채택
 
@@ -255,7 +256,7 @@ EOF
 
 ### 사용자 정의 도구 레지스트리
 
-12-Factor Agents는 에이전트 코드와 별도로 버전을 지정, 테스트 및 배포할 수 있는 사용자 정의 도구 레지스트리를 지원합니다: ```bash
+12-Factor Agents는 에이전트 코드와 별도로 버전을 지정, 테스트 및 배포할 수 있는 사용자 정의 도구 레지스트리를 지원합니다: `````bash
 # 사용자 정의 도구 등록
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -265,11 +266,11 @@ npx create-12-factor-agent tools:register \
 npx create-12-factor-agent tools:test \
   --registry ./tools/registry.yaml \
   --output ./test-results
-```
+`````
 
 ### 프롬프트 템플릿 버전 관리
 
-프롬프트 템플릿은 버전 관리되고 테스트해야 하는 first-class 아티팩트로 간주됩니다. 프레임워크는 프롬프트 버전 관리 scheme을 권장합니다: ```bash
+프롬프트 템플릿은 버전 관리되고 테스트해야 하는 first-class 아티팩트로 간주됩니다. 프레임워크는 프롬프트 버전 관리 scheme을 권장합니다: `````bash
 # 프롬프트 템플릿 버전 관리
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -280,11 +281,11 @@ npx create-12-factor-agent prompts:version \
 npx create-12-factor-agent prompts:rollback \
   --name "finance-summary" \
   --to-version v2.0.3
-```
+`````
 
 ###レート 제한 및 가드레일
 
-프로덕션 에이전트는 비용 초과 및 남용을 방지하기 위해 견고한 rate limiting이 필요합니다. 프레임워크에는 built-in rate limiting이 포함되어 있습니다: ```bash
+프로덕션 에이전트는 비용 초과 및 남용을 방지하기 위해 견고한 rate limiting이 필요합니다. 프레임워크에는 built-in rate limiting이 포함되어 있습니다: `````bash
 #レート 제한 구성
 cat > rate-limits.yaml << 'EOF'
 global: requests_per_minute: 60
@@ -296,17 +297,17 @@ EOF
 
 #レート 제한 적용
 npx create-12-factor-agent run --rate-limits rate-limits.yaml
-```
+`````
 
 ### 감사 로그
 
-규제 산업에서는 audit log가 에이전트가 내리는 모든 결정을 추적합니다: ```bash
+규제 산업에서는 audit log가 에이전트가 내리는 모든 결정을 추적합니다: `````bash
 # 포괄적인 감사 log 활성화
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
 
 npx create-12-factor-agent run --audit-logging enabled
-```
+`````
 
 ## 대안과의 비교
 
@@ -334,7 +335,7 @@ DSPy는 완전히 다른 접근 방식을 취하며, 프롬프트와 chain-of-th
 
 **가파른 개념적 학습 곡선.** 12개 팩터 각각이 LLM 컨텍스트에서 왜 중요한지 이해하려면 읽기와 성찰이 필요합니다. 새로운 팀은 한번에 12개 팩터 모두를 채택하는 것을 overwhelming하게 느낄 수 있습니다. 권장 접근 방식은 팩터 1, 2, 3, 10(코드베이스, 종속성, 구성 및 개발/프로덕션 일관성)에서 시작하고 시간이 지남에 따라 나머지를 layering하는 것입니다.
 
-**공식 SDK 없음.** 경쟁 프레임워크와 달리, 12개 팩터 모두를 구현하는 공식 software development kit는 없습니다. `create-12-factor-agent` CLI는 공식 제품이 아니라 커뮤니티 도구입니다. 이는 scaffold를 특정 stack에 적응해야 할 수 있음을 의미합니다.
+**공식 SDK 없음.** 경쟁 프레임워크와 달리, 12개 팩터 모두를 구현하는 공식 software development kit는 없습니다. ````create-12-factor-agent``` CLI는 공식 제품이 아니라 커뮤니티 도구입니다. 이는 scaffold를 특정 stack에 적응해야 할 수 있음을 의미합니다.
 
 **특정 LLM 제공업체에 대한 네이티브 지원 제한.** 프레임워크는 설계상 provider-agnostic하며, 이는 기능이지만 단일 모델 제공업체의 고유 기능에 대한 깊은 통합을 제공하지도 않음을 의미합니다.
 
@@ -414,7 +415,7 @@ LLM 에이전트를 시작하거나 기존 시스템을 확장하든, 12-팩터 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -424,7 +425,7 @@ LLM 에이전트를 시작하거나 기존 시스템을 확장하든, 12-팩터 
 - [12-factor-agents-production-llm-software-2026](12-factor-agents)
 - [1m-context-window-llm-2026-real-test](12-factor-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

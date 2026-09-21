@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/voicecraft/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -69,7 +70,7 @@ VoiceCraft giới thiệu **RealEdit**, bộ dữ liệu benchmark gồm 310 ví
 
 Docker là con đường nhanh nhất đến môi trường VoiceCraft hoạt động. Dockerfile chính thức xử lý mọi phụ thuộc bao gồm EnCodec, Montreal Forced Aligner (MFA) và CUDA binding.
 
-```bash
+````bash
 # 1. Clone repository
 git clone https://github.com/jasonppy/VoiceCraft.git
 cd VoiceCraft
@@ -86,15 +87,15 @@ docker logs jupyter | grep "127.0.0.1:8888"
 
 # 5. Xác minh GPU trong container
 docker exec -it jupyter nvidia-smi
-```
+`````
 
-Container expose Jupyter Lab trên cổng 8888 và Gradio UI trên cổng 7860. Mở `inference_tts.ipynb` hoặc `inference_speech_editing.ipynb` để chạy inference.
+Container expose Jupyter Lab trên cổng 8888 và Gradio UI trên cổng 7860. Mở ````inference_tts.ipynb```` hoặc ````inference_speech_editing.ipynb```` để chạy inference.
 
 ### Tùy chọn 2: Môi trường Conda (Phát triển local)
 
 Để phát triển và fine-tune mô hình, môi trường Conda local cung cấp linh hoạt hơn.
 
-```bash
+`````bash
 # Tạo và kích hoạt môi trường
 conda create -n voicecraft python=3.9.16
 conda activate voicecraft
@@ -127,11 +128,11 @@ mfa model download acoustic english_us_arpa
 
 # Jupyter kernel (tùy chọn)
 conda install -n voicecraft ipykernel --no-deps --force-reinstall
-```
+`````
 
 ### Tùy chọn 3: Gradio Local UI
 
-Để có giao diện trình duyệt mà không cần notebook: ```bash
+Để có giao diện trình duyệt mà không cần notebook: `````bash
 # Phụ thuộc hệ thống bổ sung cho Gradio
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -141,9 +142,9 @@ pip install -r gradio_requirements.txt
 
 # Khởi động Gradio server
 python gradio_app.py
-```
+`````
 
-Truy cập UI web tại `http://127.0.0.1:7860`.
+Truy cập UI web tại ````http://127.0.0.1:7860````.
 
 ### Yêu cầu phần cứng
 
@@ -153,13 +154,13 @@ Truy cập UI web tại `http://127.0.0.1:7860`.
 | Inference nhanh (330M) | 8 GB | 16 GB VRAM | 16 GB |
 | Gradio UI | 8 GB | 16 GB VRAM | 16 GB |
 
-Tối ưu hóa `kvcache` đánh đổi một chút chất lượng để giảm đáng kể bộ nhớ, cho phép GPU 8 GB chạy inference.
+Tối ưu hóa ````kvcache```` đánh đổi một chút chất lượng để giảm đáng kể bộ nhớ, cho phép GPU 8 GB chạy inference.
 
 ## Tích hợp với các công cụ phổ biến
 
 ### VoiceCraft + Gradio Web UI
 
-Giao diện Gradio tích hợp cung cấp cách dễ nhất để thử nghiệm: ```bash
+Giao diện Gradio tích hợp cung cấp cách dễ nhất để thử nghiệm: `````bash
 # Khởi động Gradio với cài đặt mặc định
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
@@ -168,13 +169,13 @@ python gradio_app.py \
   --model-path "./pretrained_models/giga330M.pth" \
   --codec-model "encodec_16khz" \
   --share  # Tạo URL công khai
-```
+`````
 
 Gradio UI hỗ trợ ba chế độ: **Chế độ TTS** (nhân bản giọng zero-shot), **Chế độ Edit** (chỉnh sửa giọng nói), và **Chế độ Long TTS** (tạo chuỗi chunk cho văn bản dài).
 
 ### VoiceCraft + Jupyter Notebook
 
-Để truy cập lập trình, sử dụng Jupyter notebook: ```python
+Để truy cập lập trình, sử dụng Jupyter notebook: `````python
 # inference_tts.ipynb — Ví dụ zero-shot TTS
 from voicecraft import VoiceCraft
 
@@ -197,11 +198,11 @@ output = model.tts(
     temperature=1.0
 )
 output.save("output_tts.wav")
-```
+`````
 
 ### VoiceCraft + Dòng lệnh
 
-Cho xử lý hàng loạt và scripting: ```bash
+Cho xử lý hàng loạt và scripting: `````bash
 # TTS inference qua CLI
 python tts_demo.py \
   --audio_path "demo/pam.wav" \
@@ -218,11 +219,11 @@ python speech_editing_demo.py \
   --edited_transcript "edited text here" \
   --model_name "giga830M" \
   --output_path "edited_output.wav"
-```
+`````
 
 ### VoiceCraft + Docker API
 
-Để triển khai production, gói VoiceCraft trong REST API: ```dockerfile
+Để triển khai production, gói VoiceCraft trong REST API: `````dockerfile
 # Dockerfile.api — Wrapper API production
 FROM voicecraft:latest
 
@@ -235,9 +236,9 @@ RUN pip install -r requirements-api.txt
 EXPOSE 8000
 
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
-```python
+`````python
 # api.py — FastAPI wrapper cho VoiceCraft
 from fastapi import FastAPI, UploadFile, File
 from voicecraft import VoiceCraft
@@ -260,11 +261,11 @@ async def tts(
         top_k=40
     )
     return {"output": output.serialize()}
-```
+`````
 
 ### VoiceCraft + HuggingFace Hub
 
-Tải trực tiếp mô hình pretrained từ HuggingFace: ```python
+Tải trực tiếp mô hình pretrained từ HuggingFace: `````python
 from huggingface_hub import hf_hub_download
 
 # Tải trọng số mô hình
@@ -278,7 +279,7 @@ model_path = hf_hub_download(
 # Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)
 from modelscope import snapshot_download
 model_dir = snapshot_download('AI-ModelScope/VoiceCraft")
-```
+`````
 
 ## Benchmark / Use case thực tế
 
@@ -321,7 +322,7 @@ Trên bộ dữ liệu RealEdit (310 ví dụ chỉnh sửa thực tế), VoiceC
 
 ### Tối ưu bộ nhớ với KV Cache
 
-Cho GPU VRAM hạn chế, bật key-value cache: ```python
+Cho GPU VRAM hạn chế, bật key-value cache: `````python
 # Bật kvcache cho GPU 8GB
 output = model.tts(
     target_text=target_text,
@@ -331,11 +332,11 @@ output = model.tts(
     kvcache=True,  # Giảm VRAM ~60%
     batch_size=1
 )
-```
+`````
 
 ### Top-k Sampling (Cập nhật tháng 3/2025)
 
-Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: ```python
+Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: `````python
 # Khuyến nghị: top-k=40 cho chất lượng tốt nhất
 output = model.tts(
     target_text=target_text,
@@ -344,11 +345,11 @@ output = model.tts(
     top_k=40,
     temperature=1.0
 )
-```
+`````
 
 ### Fine-tune trên dữ liệu tùy chỉnh
 
-Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained: ```bash
+Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained: `````bash
 # Chuẩn bị bộ dữ liệu
 conda activate voicecraft
 cd ./data
@@ -364,11 +365,11 @@ python phonemize_encodec_encode_hf.py \
 # Bắt đầu fine-tune
 cd ../z_scripts
 bash e830M_ft.sh  # Fine-tune mô hình 830M
-```
+`````
 
 ### Giám sát và logging
 
-```python
+`````python
 import logging
 from torch.utils.tensorboard import SummaryWriter
 
@@ -380,7 +381,7 @@ logger = logging.getLogger("voicecraft")
 writer = SummaryWriter(log_dir="./runs/voicecraft-ft")
 writer.add_scalar("loss/train", loss.item(), global_step)
 writer.add_scalar("mos/validation", val_mos, global_step)
-```
+`````
 
 ### Bảo mật và an toàn
 
@@ -451,7 +452,7 @@ Code VoiceCraft theo CC BY-NC-SA 4.0 và trọng số mô hình theo Coqui Publi
 
 **Q3: Tôi cần GPU gì để chạy VoiceCraft?**
 
-Mô hình 830M cần 32 GB VRAM (A100, V100 hoặc RTX 4090 + chia sẻ RAM hệ thống). Mô hình 330M chạy trên GPU 16 GB, và với `kvcache=True`, inference có thể thực hiện trên card 8 GB. CPU-only inference mất 7+ phút cho mỗi câu trên Ryzen 8 lõi so với 35 giây trên GPU.
+Mô hình 830M cần 32 GB VRAM (A100, V100 hoặc RTX 4090 + chia sẻ RAM hệ thống). Mô hình 330M chạy trên GPU 16 GB, và với ````kvcache=True```, inference có thể thực hiện trên card 8 GB. CPU-only inference mất 7+ phút cho mỗi câu trên Ryzen 8 lõi so với 35 giây trên GPU.
 
 **Q4: VoiceCraft so với GPT-SoVITS trong nhân bản giọng như thế nào?**
 
@@ -529,7 +530,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -539,6 +540,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](voicecraft)
 - [moneyprinterturbo-one-click-ai-video-generator](voicecraft)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

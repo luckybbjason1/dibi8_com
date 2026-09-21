@@ -28,6 +28,7 @@ faq: - q: "GEO là gì và khác SEO ở đâu?"
     a: "Nhanh hơn SEO. AI Overviews crawl + index trong vài ngày so với vài tháng. Việc bổ sung FAQ schema thường xuất hiện trong các trích dẫn AI trong 1-2 tuần. Viết lại toàn bộ nội dung để dễ được trích dẫn mất 2-4 tuần mới hiện trong câu trả lời."
 ---
 
+
 {{</* resource-info */>}}
 
 # Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến
@@ -61,15 +62,15 @@ Các tín hiệu mà engine AI cân nhắc: 1. **Khối trả lời nguyên tử
 ### 1. FAQ schema (ROI cao nhất)
 Thêm FAQ JSON-LD vào mọi trang có nhiều Q&A. Mỗi Q&A trở thành câu trả lời nguyên tử có thể trích dẫn trực tiếp.
 
-Triển khai: ```yaml
+Triển khai: ````yaml
 # Hugo frontmatter
 faq: - q: "What is X?"
     a: "X is..."
   - q: "How does X work?"
     a: "..."
-```
+`````
 
-Template Hugo sinh ra `<script type="application/ld+json">` với FAQPage schema. AI Overviews rất thích.
+Template Hugo sinh ra ````<script type="application/ld+json">```` với FAQPage schema. AI Overviews rất thích.
 
 ### 2. Khối trả lời nguyên tử
 Cấu trúc mỗi phần sao cho đoạn đầu tiên **trả lời trực tiếp một câu hỏi**. Đừng chôn vùi điểm chính.
@@ -89,14 +90,14 @@ Tốt: > "Hơn 60% developer chuyên nghiệp mà chúng tôi phỏng vấn dùn
 Site đa ngôn ngữ được trích dẫn trong engine AI phù hợp với ngôn ngữ đó. dibi8.com chạy en/zh/kr/vi — mỗi ngôn ngữ có một bể trích dẫn riêng.
 
 ### 5. llms.txt
-Đặt tại `/llms.txt`: ```
+Đặt tại ``/llms.txt``: `````
 # dibi8.com - Open-source AI tools curation
 > Curated rankings of AI coding agents, LLM frameworks, MCP servers, developer utilities. Tested 2026 workloads.
 
 ## Most cited
 - /resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/
 - /resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
-```
+`````
 
 Công sức tối thiểu, lợi ích tùy chọn khi các trình thu thập AI áp dụng tiêu chuẩn.
 
@@ -109,7 +110,7 @@ Công sức tối thiểu, lợi ích tùy chọn khi các trình thu thập AI 
 ## Đo lường tác động GEO
 
 Ba chỉ số cần theo dõi: 1. **Sự xuất hiện trong trích dẫn AI** (dùng báo cáo "AI Overviews" của Google Search Console khi có)
-2. **Lưu lượng giới thiệu trực tiếp từ engine AI** — theo dõi UTM từ `?utm_source=perplexity` v.v.
+2. **Lưu lượng giới thiệu trực tiếp từ engine AI** — theo dõi UTM từ ````?utm_source=perplexity``` v.v.
 3. **Số lần đề cập thương hiệu trong nội dung được AI trích dẫn** — định kỳ tìm "dibi8" trên Perplexity/ChatGPT
 
 ## Hạ tầng được khuyến nghị
@@ -125,7 +126,7 @@ GEO là thật và các kỹ thuật đều hiệu quả. FAQ schema là động
 
 Bắt đầu với FAQ schema trên top 10 trang. Đo tỷ lệ trích dẫn sau 2 tuần. Mở rộng sang nhiều trang hơn khi thấy có cải thiện. Lợi nhuận kép là có thật — những người tiên phong trong GEO được trích dẫn nhiều một cách bất đối xứng.
 
----
+* * *
 
 **Liên quan**: [Bảng xếp hạng MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [So tài AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/)
 
@@ -191,12 +192,12 @@ Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ dữ liệ
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -205,6 +206,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

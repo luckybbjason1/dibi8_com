@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/jesse-ai-trading-framework/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么大多数交易机器人在生产环境中失败
@@ -37,7 +38,7 @@ Jesse是一个**高级Python加密货币交易框架**，专注于量化策略�
 - **内置指标**: 30+ (SMA, EMA, RSI, MACD, 布林带, 随机指标, ATR等)
 - **支持的交易所**: Binance, Bitfinex, Coinbase Pro, Bybit
 
-Jesse的定位介于 `ta-lib` 包装器之类的轻量级库和TradingView Pine Script之类的重型商业平台之间。你既能获得完整的Python灵活性，又拥有生产级的执行基础设施。
+Jesse的定位介于 ```ta-lib```` 包装器之类的轻量级库和TradingView Pine Script之类的重型商业平台之间。你既能获得完整的Python灵活性，又拥有生产级的执行基础设施。
 
 ## Jesse的工作原理：架构与核心概念
 
@@ -47,10 +48,10 @@ Jesse采用模块化流水线架构。在编写第一个策略之前，理解以
 Jesse从支持的交易所获取历史OHLCV数据，并存储在本地数据库中（推荐PostgreSQL，也可用SQLite）。你也可以导入自定义CSV数据。数据模块自动处理时间周期重采样和缓存。
 
 ### 2. 指标模块
-该框架包含30+内置技术指标。每个指标都实现为NumPy加速函数，确保即使在大型数据集上回测也能快速运行。你还可以使用 `numpy` 或 `pandas` 接口编写自定义指标。
+该框架包含30+内置技术指标。每个指标都实现为NumPy加速函数，确保即使在大型数据集上回测也能快速运行。你还可以使用 ````numpy```` 或 ````pandas```` 接口编写自定义指标。
 
 ### 3. 策略模块
-Jesse中的策略是继承自 `Strategy` 的Python类。你在 `should_long()`、`should_short()`、`go_long()`、`go_short()` 和 `update_position()` 方法中定义入场/出场逻辑。这种面向对象的设计让策略逻辑保持清晰且可测试。
+Jesse中的策略是继承自 ````Strategy```` 的Python类。你在 ````should_long()````、````should_short()````、````go_long()````、````go_short()```` 和 ````update_position()```` 方法中定义入场/出场逻辑。这种面向对象的设计让策略逻辑保持清晰且可测试。
 
 ### 4. 回测模块
 Jesse的回测引擎使用历史数据模拟交易，并采用贴近现实的假设：滑点、交易手续费和部分成交。结果包括权益曲线、回撤分析、夏普比率、胜率和逐笔交易日志。
@@ -60,39 +61,39 @@ Jesse的回测引擎使用历史数据模拟交易，并采用贴近现实的假
 
 以下是高层数据流：
 
-```
+`````
 交易所API → 数据模块 → 策略逻辑 → 风险管理器 → 订单执行器 → 交易所API
                                     ↑
                               指标模块
-```
+`````
 
 ## 安装与配置：5分钟内从零到回测
 
-Jesse需要Python 3.10+、PostgreSQL（推荐）或SQLite以及 `pip`。在干净的机器上完整安装仅需不到5分钟。
+Jesse需要Python 3.10+、PostgreSQL（推荐）或SQLite以及 ````pip````。在干净的机器上完整安装仅需不到5分钟。
 
 ### 第一步：安装Jesse
 
-```bash
+`````bash
 python3 -m venv jesse-env
 source jesse-env/bin/activate
 
 # 安装Jesse
 pip install jesse==1.7.2
-```
+`````
 
 ### 第二步：初始化新项目
 
-```bash
+`````bash
 # 创建项目目录
 mkdir my-trading-bot && cd my-trading-bot
 
 # 初始化Jesse（创建config、routes、strategies文件夹）
 jesse init
-```
+`````
 
-运行 `jesse init` 后，你的项目结构如下：
+运行 ````jesse init```` 后，你的项目结构如下：
 
-```
+`````
 my-trading-bot/
 ├── config.py          # 交易所API密钥、数据库、通知配置
 ├── routes.py          # 交易对和时间周期
@@ -100,13 +101,13 @@ my-trading-bot/
 │   └── __init__.py
 ├── storage/           # 数据库和日志
 └── requirements.txt
-```
+`````
 
 ### 第三步：配置数据库
 
-编辑 `config.py` 设置数据库连接：
+编辑 ````config.py```` 设置数据库连接：
 
-```python
+`````python
 # config.py — 数据库配置
 DATABASES = {
     default: {
@@ -118,24 +119,24 @@ DATABASES = {
         password: your_secure_password
     }
 }
-```
+`````
 
 使用SQLite快速测试：
 
-```python
+`````python
 DATABASES = {
     default: {
         driver: sqlite,
         path: 'storage/jesse.db'
     }
 }
-```
+`````
 
 ### 第四步：定义交易路由
 
-编辑 `routes.py` 指定机器人将交易哪些交易对和时间周期：
+编辑 ````routes.py```` 指定机器人将交易哪些交易对和时间周期：
 
-```python
+`````python
 # routes.py — 定义交易对
 from jesse.enums import timeframes
 
@@ -147,20 +148,20 @@ routes = [
 extra_candles = [
     {exchange: Binance, symbol: 'BTC-USDT', timeframe: 4h},
 ]
-```
+`````
 
 ### 第五步：获取历史数据
 
-```bash
+`````bash
 # 从Binance下载1年的1小时BTC-USDT K线数据
 jesse import-candles Binance BTC-USDT 2025-01-01
-```
+`````
 
 ### 第六步：创建你的第一个策略
 
-创建 `strategies/SimpleMA/__init__.py`：
+创建 ````strategies/SimpleMA/__init__.py````：
 
-```python
+`````python
 # strategies/SimpleMA/__init__.py
 from jesse.strategies import Strategy
 import jesse.indicators as ta
@@ -182,18 +183,18 @@ class SimpleMA(Strategy): def __init__(self): super().__init__()
     def update_position(self): # 当价格跌破SMA时平仓
         sma = ta.sma(self.candles, self.period)
         if self.close < sma: self.liquidate()
-```
+`````
 
 ### 第七步：运行回测
 
-```bash
+`````bash
 # 运行routes中定义周期的回测
 jesse backtest 2025-01-01 2025-12-31
-```
+`````
 
 你将看到如下输出：
 
-```
+`````
 Loading candles...
 Executing backtest...
 =====================================
@@ -203,7 +204,7 @@ Net Profit: 23.7%
 Max Drawdown: -8.2%
 Sharpe Ratio: 1.34
 =====================================
-```
+`````
 
 ## 主流工具集成
 
@@ -211,7 +212,7 @@ Jesse能与Python量化交易生态 cleanly 集成。以下是最常见的集成
 
 ### 1. NumPy & Pandas 自定义指标
 
-```python
+`````python
 # 使用NumPy的自定义指标
 import numpy as np
 import jesse.indicators as ta
@@ -221,11 +222,11 @@ def custom_zscore(candles, period=20): closes = np.array([c[2] for c in candles[
 
 class ZScoreStrategy(Strategy): def should_long(self): z = custom_zscore(self.candles, 20)
         return z < -2.0  # 价格低于均值2个标准差时买入
-```
+`````
 
 ### 2. scikit-learn 机器学习信号生成
 
-```python
+`````python
 # 使用sklearn的ML增强策略
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
@@ -243,11 +244,11 @@ class MLStrategy(Strategy): def __init__(self): super().__init__()
         features = [rsi, sma20/sma50, atr/self.close]
         prediction = self.model.predict([features])
         return prediction[0] == 1
-```
+`````
 
 ### 3. Telegram通知
 
-```python
+`````python
 # config.py — Telegram通知设置
 NOTIFICATIONS = {
     enabled: True,
@@ -256,11 +257,11 @@ NOTIFICATIONS = {
     telegram_chat_id: YOUR_CHAT_ID,
     events: [order_executed, trade_completed, error]
 }
-```
+`````
 
 ### 4. Docker部署
 
-```dockerfile
+`````dockerfile
 # Jesse部署的Dockerfile
 FROM python:3.11-slim
 
@@ -270,9 +271,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["jesse", "run"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: postgres: image: postgres:16
@@ -288,11 +289,11 @@ services: postgres: image: postgres:16
       - ./config.py:/app/config.py
       - ./routes.py:/app/routes.py
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### 5. Prometheus & Grafana监控
 
-```python
+`````python
 # metrics.py — 导出Prometheus指标
 from prometheus_client import Counter, Gauge, start_http_server
 
@@ -302,7 +303,7 @@ pnl_current = Gauge(jesse_pnl_percent, 'Current P&L percentage')
 
 # 在9090端口启动指标服务器
 start_http_server(9090)
-```
+`````
 
 ## 基准测试与真实案例
 
@@ -312,13 +313,13 @@ start_http_server(9090)
 
 | 指标 | SMA(20/50) | EMA(12/26) | SMA + RSI过滤 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 总交易次数 | 142 | 189 | 98 |
 | 胜率 | 58.5% | 54.0% | 67.3% |
@@ -331,11 +332,11 @@ start_http_server(9090)
 
 | 操作 | 1年1小时K线 | 3年1小时K线 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据导入 | 8秒 | 22秒 |
 | 回测（简单MA） | 1.2秒 | 3.8秒 |
@@ -361,7 +362,7 @@ start_http_server(9090)
 
 ### 1. 风险管理配置
 
-```python
+`````python
 # config.py — 风险管理设置
 RISK_MANAGEMENT = {
     max_risk_per_trade: 0.02,      # 单笔交易最大风险2%
@@ -369,11 +370,11 @@ RISK_MANAGEMENT = {
     daily_loss_limit: 0.05,        # 日亏损限制5%
     position_size_limit: 0.25,     # 单个仓位最大25%
 }
-```
+`````
 
 ### 2. 多时间周期分析
 
-```python
+`````python
 # 多时间周期策略示例
 class MultiTFStrategy(Strategy): def prepare(self): # 获取4小时K线用于趋势判断
         self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
@@ -383,11 +384,11 @@ class MultiTFStrategy(Strategy): def prepare(self): # 获取4小时K线用于趋
 
         # 仅在4小时趋势向上且1小时显示动能时做多
         return self.close_4h > h4_sma50 and self.close > h1_sma20
-```
+`````
 
 ### 3. 自定义止损与止盈
 
-```python
+`````python
 # 高级出场逻辑
 class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         stop_loss = entry * 0.97       # 3%止损
@@ -397,38 +398,38 @@ class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         self.buy = qty, entry
         self.stop_loss = qty, stop_loss
         self.take_profit = qty, take_profit
-```
+`````
 
 ### 4. 模拟交易（实盘前的最后一步）
 
-```bash
+`````bash
 # 在模拟交易模式下运行（使用实时数据模拟订单）
 jesse run --paper
 
 # 实时监控日志
 tail -f storage/logs/live-trading.log
-```
+`````
 
 ### 5. 审计数据库备份
 
-```bash
+`````bash
 # 每日备份定时任务
 0 2 * * * pg_dump jesse_db | gzip > /backups/jesse_$(date +\%F).sql.gz
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Jesse | Freqtrade | Hummingbot | TradingView |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT | GPLv3 | Apache 2.0 | 商业软件 |
 | **语言** | Python | Python | Python | Pine Script |
@@ -478,7 +479,7 @@ Jesse专为加密货币市场设计。虽然理论上可以通过编写自定义
 
 ### Jesse支持AI或机器学习策略吗？
 
-是的。Jesse策略是纯Python代码，因此你可以导入任何ML库 —— scikit-learn、XGBoost、PyTorch、TensorFlow —— 并在 `should_long()` 或 `should_short()` 中使用模型预测。如需专门的AI交易信号生成，你也可以集成 [Minara](https://minara.ai/r/OSXG4X)。
+是的。Jesse策略是纯Python代码，因此你可以导入任何ML库 —— scikit-learn、XGBoost、PyTorch、TensorFlow —— 并在 ````should_long()```` 或 ````should_short()```` 中使用模型预测。如需专门的AI交易信号生成，你也可以集成 [Minara](https://minara.ai/r/OSXG4X)。
 
 ### Jesse适合高频交易吗？
 
@@ -488,7 +489,7 @@ Jesse专为加密货币市场设计。虽然理论上可以通过编写自定义
 
 切勿将API密钥提交到版本控制。使用环境变量：
 
-```python
+`````python
 # config.py — 安全的API密钥处理
 import os
 
@@ -499,9 +500,9 @@ EXCHANGES = {
         sandbox: False
     }
 }
-```
+`````
 
-在生产环境中通过 `.env` 文件或Docker secrets加载密钥。
+在生产环境中通过 ````.env```` 文件或Docker secrets加载密钥。
 
 ## 结论：从回测到实盘交易
 
@@ -509,7 +510,7 @@ Jesse填补了Python交易生态系统中的关键空白。它不是最容易学
 
 如果你认真对待算法加密货币交易，路径很明确：今天安装Jesse，下午运行第一次回测，在投入真金白银之前先用模拟交易跑两周。30+内置指标、逼真的回测引擎和实盘交易基础设施，让你相比临时脚本拥有真正的优势。
 
-准备好了吗？获取你的 [Binance API密钥](https://www.bsmkweb.cc/register?ref=DIBI8)，用 `pip install jesse==1.7.2` 安装Jesse，然后运行第一次回测。加入6,200+开发者社区，共建开源量化交易的未来。
+准备好了吗？获取你的 [Binance API密钥](https://www.bsmkweb.cc/register?ref=DIBI8)，用 ````pip install jesse==1.7.2``` 安装Jesse，然后运行第一次回测。加入6,200+开发者社区，共建开源量化交易的未来。
 
 **加入我们的Telegram群组与算法交易者交流:** [t.me/dibi8ai](https://t.me/dibi8ai) — 分享策略、获取帮助、获取最新量化交易工具动态。
 
@@ -534,7 +535,7 @@ Jesse填补了Python交易生态系统中的关键空白。它不是最容易学
 6. Binance API文档: https://binance-docs.github.io/apidocs/
 
 
----
+* * *
 *联盟营销披露: 本文包含指向Binance、OKX、Minara、DigitalOcean和HTStack的联盟链接。如果你通过这些链接注册，dibi8.com可能会获得佣金，且不会向你收取额外费用。我们只推荐亲自测试或深入研究的工具。*
 
 
@@ -600,11 +601,11 @@ Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -614,7 +615,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [agent-reach-internet-access-ai-agents](jesse-ai-trading-framework)
 - [microsoft-markitdown-file-to-markdown-converter-cli](jesse-ai-trading-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

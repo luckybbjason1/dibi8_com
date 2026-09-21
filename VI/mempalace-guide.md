@@ -28,6 +28,7 @@ faqs: - q: 'Làm thế nào để thêm bộ nhớ lâu dài vào Claude Code?'
     a: 'Có. MemPalace là mã nguồn mở theo giấy phép MIT và hoàn toàn miễn phí $0, không có phí API hay phí đăng ký, khác với Pinecone vốn tính phí theo gói đăng ký hoặc theo mức sử dụng.'
 ---
 
+
 {</* resource-info */>}
 
 # Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)
@@ -48,7 +49,7 @@ Nếu bạn muốn con AI nhớ lịch sử dự án, có vài đường để �
 
 ### Cách kết nối qua chuẩn MCP
 
-MemPalace nhả ra một server chuẩn Model Context Protocol (MCP). Bạn chỉ cần sửa file `claude_code_config.json` chỉ thẳng tới `http://localhost:8787/mcp` và cấp quyền. Kể từ giờ, hễ bạn dặn Claude 'Nhớ kỹ kiến trúc này', nó sẽ tự động chép vào kho dữ liệu vector siêu tốc của MemPalace.
+MemPalace nhả ra một server chuẩn Model Context Protocol (MCP). Bạn chỉ cần sửa file ```claude_code_config.json```` chỉ thẳng tới ````http://localhost:8787/mcp``` và cấp quyền. Kể từ giờ, hễ bạn dặn Claude 'Nhớ kỹ kiến trúc này', nó sẽ tự động chép vào kho dữ liệu vector siêu tốc của MemPalace.
 
 ## FAQ
 
@@ -58,7 +59,7 @@ A: Bật MemPalace chạy local và vứt cái link MCP của nó cho Claude Cod
 **Q: Làm sao để Claude Code không quên dữ liệu khi tắt máy?**
 A: Vì MemPalace ghi thẳng dữ liệu xuống đĩa cứng bằng SQLite/ChromaDB, nên dù bạn có khởi động lại máy tính hay mở một tab terminal mới toanh, trí nhớ của AI vẫn nguyên vẹn không sứt mẻ.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -131,7 +132,7 @@ Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hư
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

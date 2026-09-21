@@ -28,6 +28,7 @@ faq: - q: "2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?"
     a: "워크플로 로드 + 생성: 30분. 직접 워크플로 구축: 1-2일. 프로덕션용 노드 마스터: 2-3주. 학습 곡선은 초반에 가파르지만 보상이 큽니다 — 워크플로는 재사용·공유·재현이 가능합니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # ComfyUI 워크플로 2026: 셋업 + 프로덕션 템플릿 5종
@@ -49,19 +50,19 @@ faq: - q: "2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?"
 ## 셋업 (1시간)
 
 ### 1단계: 설치 (15분)
-```bash
+````bash
 # Clone + venv 셋업
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python main.py
-```
+`````
 
-브라우저가 `http://localhost:8188`에서 열립니다.
+브라우저가 ````http://localhost:8188````에서 열립니다.
 
 ### 2단계: 모델 다운로드 (30분)
-`ComfyUI/models/checkpoints/`에 넣으세요: - **SDXL base + refiner** (가장 범용적, 총 ~13GB)
+````ComfyUI/models/checkpoints/````에 넣으세요: - **SDXL base + refiner** (가장 범용적, 총 ~13GB)
 - **Flux.1 Schnell** (빠른 프로토타이핑, ~24GB)
 - **SD 3.5 Large** (최고 수준의 사진 사실감, ~17GB)
 
@@ -69,7 +70,7 @@ python main.py
 - ControlNet 모델 (OpenPose, Depth, Canny — 각 ~1.5GB)
 
 ### 3단계: 첫 생성 (15분)
-- `ComfyUI/workflows/`에서 기본 워크플로를 드래그
+- ````ComfyUI/workflows/````에서 기본 워크플로를 드래그
 - SDXL 체크포인트 로드
 - 프롬프트 입력
 - Queue prompt
@@ -107,7 +108,7 @@ python main.py
 
 ## 워크플로 공유
 
-위 5개 템플릿은 모두 `.json`으로 저장 가능합니다. ComfyUI 캔버스에 드래그해서 로드. git이나 Discord로 팀과 공유하세요.
+위 5개 템플릿은 모두 ````.json```으로 저장 가능합니다. ComfyUI 캔버스에 드래그해서 로드. git이나 Discord로 팀과 공유하세요.
 
 커뮤니티는 수천 개의 워크플로를 다음에 공개합니다: - ComfyUI 서브레딧
 - OpenArt.ai 워크플로 라이브러리
@@ -128,7 +129,7 @@ ComfyUI의 학습 곡선은 진짜지만 보상도 진짜입니다. 재사용 �
 
 위의 5개 템플릿부터 시작하세요. 커스터마이즈하세요. 공유하세요. 재사용 가능한 워크플로의 복리 효과는 2주차 이후에 나타납니다 — 코드를 짜는 것보다 노드를 조합하는 게 더 빠르다는 사실을 깨닫게 될 때.
 
----
+* * *
 
 **관련 문서**: [Stable Diffusion WebUI 셋업](https://dibi8.com/kr/resources/ai-tools/stable-diffusion-webui/) · [2026 최고의 AI 이미지 생성 도구](https://dibi8.com/kr/resources/ai-tools/ai-image-generation-tools-2025/) · [2026 로컬 퍼스트 AI 스택](https://dibi8.com/kr/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
@@ -194,12 +195,12 @@ ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종 repres
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -208,6 +209,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

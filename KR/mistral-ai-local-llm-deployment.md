@@ -13,15 +13,16 @@ aliases:
   - /kr/posts/mistral-ai-local-llm-deployment/
 ---
 
+
 {{</* resource-info */>}}
 
 대규모 언어 모델(LLM)을 로컬에서 실행하는 것은 틈새 실험에서 프로덕션 필수 사항으로 전환되었습니다. 기업은 데이터 주권, 예측 가능한 지연 시간 및 공급업체 종속으로부터의 자유가 필요합니다. **8x7B 전문가 혼합(MoE)** 아키텍처를 주도하는 Mistral AI 모델 제품군은 액세스 가능한 하드웨어에서 실행할 수 있을 만큼 효율적인 동시에 GPT-4급 성능을 제공합니다.
 
-이 종합 가이드에서는 공식 `mistral-inference` 엔진, 고처리량 서빙용 vLLM, CPU 추론용 GGUF 양자화, 그리고 함수 호출, 미세 조정 및 API 서버 배포를 포함한 전체 도구 생태계를 사용하여 프로덕션급 Mistral 모델을 로컬로 배포하는 방법을 배우게 됩니다.
+이 종합 가이드에서는 공식 ```mistral-inference```` 엔진, 고처리량 서빙용 vLLM, CPU 추론용 GGUF 양자화, 그리고 함수 호출, 미세 조정 및 API 서버 배포를 포함한 전체 도구 생태계를 사용하여 프로덕션급 Mistral 모델을 로컬로 배포하는 방법을 배우게 됩니다.
 
 > **빠른 시작**: Mistral의 추론 엔진은 Apache-2.0 라이선스 하에 오픈소스이며 9,500개 이상의 GitHub 스타를 보유하고 있습니다. 단일 GPU 배포부터 다중 노드 클러스터까지 모든 것을 다룹니다.
 
----
+* * *
 
 ## Mistral의 모델 아키텍처 이해
 
@@ -52,7 +53,7 @@ NVIDIA와의 파트너십을 통해 출시된 120억 개의 매개변수를 가�
 
 80개 이상의 프로그래밍 언어로 훈련된 코드 생성에 특화된 220억 개 매개변수 모델입니다. 중간 채우기(FIM) 완성 및 리포지토리 수준 컨텍스트 이해를 지원합니다.
 
----
+* * *
 
 ## 하드웨어 요구 사항 및 계획
 
@@ -70,37 +71,37 @@ NVIDIA와의 파트너십을 통해 출시된 120억 개의 매개변수를 가�
 ### 권장 하드웨어 구성
 
 **단일 GPU 배포 (Mistral 7B / Nemo):**
-```
+`````
 - GPU: NVIDIA RTX 4090 (24GB) 또는 A6000 (48GB)
 - RAM: 32GB 시스템 메모리
 - 저장소: 50GB NVMe SSD
 - OS: Ubuntu 22.04 LTS
-```
+`````
 
 **다중 GPU 배포 (Mixtral 8x7B):**
-```
+`````
 - GPU: 2x NVIDIA A100 80GB 또는 4x RTX 4090
 - RAM: 128GB 시스템 메모리
 - 저장소: 100GB NVMe SSD
 - 인터커넥트: 다중 GPU 선호 NVLink
-```
+`````
 
 **CPU 전용 배포 (GGUF 양자화):**
-```
+`````
 - CPU: 16+ 코어 (AMD Ryzen 9 또는 Intel Xeon)
 - RAM: 64GB+ (모델 의존적)
 - 저장소: 50GB NVMe SSD
-```
+`````
 
 클우드 GPU 인스턴스의 경우 [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367)는 LLM 추론 워크로드에 최적화된 경쟁력 있는 GPU 서버 옵션을 제공합니다.
 
----
+* * *
 
 ## 설치 및 환경 설정
 
 ### 시스템 종속성
 
-```bash
+`````bash
 # 시스템 패키지 업데이트
 sudo apt update && sudo apt upgrade -y
 
@@ -113,11 +114,11 @@ sudo apt install -y cuda-toolkit-12-4
 # CUDA 설치 확인
 nvcc --version
 nvidia-smi
-```
+`````
 
 ### Python 환경
 
-```bash
+`````bash
 # 전용 환경 생성
 python3 -m venv ~/mistral-env
 source ~/mistral-env/bin/activate
@@ -133,11 +134,11 @@ pip install vllm
 
 # 선택 사항: CPU 추론용 GGUF 지원
 pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
-```
+`````
 
 ### 모델 가중치 다운로드
 
-```bash
+`````bash
 # huggingface-cli 설치
 pip install huggingface-hub
 
@@ -158,17 +159,17 @@ huggingface-cli download mistralai/Mixtral-8x7B-Instruct-v0.1 \
 huggingface-cli download mistralai/Mistral-Nemo-Instruct-2407 \
   --local-dir ~/models/mistral-nemo \
   --local-dir-use-symlinks False
-```
+`````
 
----
+* * *
 
 ## mistral-inference로 추론 실행
 
-공식 `mistral-inference` 패키지는 Mistral 모델을 로컬에서 실행하는 가장 간단한 방법을 전체 기능 지원과 함께 제공합니다.
+공식 ````mistral-inference```` 패키지는 Mistral 모델을 로컬에서 실행하는 가장 간단한 방법을 전체 기능 지원과 함께 제공합니다.
 
 ### 기본 추론 스크립트
 
-```python
+`````python
 from mistral_inference.model import Transformer
 from mistral_inference.generate import generate
 from mistral_inference.tokenizer import Tokenizer
@@ -197,11 +198,11 @@ result = generate(
 )
 
 print(result[0].text)
-```
+`````
 
 ### 다른 정밀도 수준으로 실행
 
-```python
+`````python
 # BF16으로 로드 (기본값, 권장)
 model_bf16 = Transformer.from_folder(model_path, device="cuda", dtype="bfloat16")
 
@@ -213,11 +214,11 @@ model_int8 = Transformer.from_folder(model_path, device="cuda", load_in_8bit=Tru
 
 # CPU 추론 (느리지만 GPU 불필요)
 model_cpu = Transformer.from_folder(model_path, device="cpu", dtype="float32")
-```
+`````
 
 ### 처리량을 위한 배치 추론
 
-```python
+`````python
 from mistral_inference.generate import generate
 
 # 여러 프롬프트 준비
@@ -244,9 +245,9 @@ results = generate(
 )
 
 for i, result in enumerate(results): print(f"응답 {i+1}: {result.text}\n")
-```
+`````
 
----
+* * *
 
 ## vLLM을 이용한 프로덕션 배포
 
@@ -254,7 +255,7 @@ for i, result in enumerate(results): print(f"응답 {i+1}: {result.text}\n")
 
 ### vLLM 서버 시작
 
-```bash
+`````bash
 # Mistral 7B 단일 GPU 배포
 python -m vllm.entrypoints.openai.api_server \
   --model mistralai/Mistral-7B-Instruct-v0.3 \
@@ -263,9 +264,9 @@ python -m vllm.entrypoints.openai.api_server \
   --max-model-len 32768 \
   --gpu-memory-utilization 0.85 \
   --port 8000
-```
+`````
 
-```bash
+`````bash
 # Mixtral 8x7B 다중 GPU 배포
 python -m vllm.entrypoints.openai.api_server \
   --model mistralai/Mixtral-8x7B-Instruct-v0.1 \
@@ -274,9 +275,9 @@ python -m vllm.entrypoints.openai.api_server \
   --max-model-len 32768 \
   --gpu-memory-utilization 0.90 \
   --port 8000
-```
+`````
 
-```bash
+`````bash
 # 최대 처리량을 위한 4 GPU 배포
 python -m vllm.entrypoints.openai.api_server \
   --model mistralai/Mixtral-8x7B-Instruct-v0.1 \
@@ -286,11 +287,11 @@ python -m vllm.entrypoints.openai.api_server \
   --max-num-seqs 256 \
   --max-model-len 32768 \
   --port 8000
-```
+`````
 
 ### API 서버 구성
 
-재현 가능한 배포를 위해 `vllm-config.yaml` 생성: ```yaml
+재현 가능한 배포를 위해 ``vllm-config.yaml`` 생성: `````yaml
 model: mistralai/Mistral-7B-Instruct-v0.3
 dtype: bfloat16
 tensor_parallel_size: 1
@@ -312,17 +313,17 @@ uvicorn_log_level: info
 # 연속 사전 채우기 활성화
 enable_chunked_prefill: true
 max_num_batched_tokens: 4096
-```
+`````
 
-```bash
+`````bash
 # 구성 파일로 시작
 python -m vllm.entrypoints.openai.api_server \
   --config vllm-config.yaml
-```
+`````
 
 ### API 호출
 
-```bash
+`````bash
 # 채팅 완성 엔드포인트
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -335,9 +336,9 @@ curl http://localhost:8000/v1/chat/completions \
     "temperature": 0.2,
     "max_tokens": 512
   }'
-```
+`````
 
-```python
+`````python
 # Python 클라이언트
 from openai import OpenAI
 
@@ -355,9 +356,9 @@ response = client.chat.completions.create(
 )
 
 for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
----
+* * *
 
 ## CPU 추론을 위한 GGUF 양자화
 
@@ -365,7 +366,7 @@ GPU 리소스를 사용할 수 없을 때, GGUF 양자화는 많은 사용 사�
 
 ### GGUF 형식으로 변환
 
-```bash
+`````bash
 # llama.cpp 변환 도구 설치
 git clone https://github.com/ggerganov/llama.cpp.git
 cd llama.cpp
@@ -382,11 +383,11 @@ python convert_hf_to_gguf.py \
   ~/models/mixtral-8x7b-instruct \
   --outfile ~/models/mixtral-8x7b-instruct-q4.gguf \
   --outtype q4_k_m
-```
+`````
 
 ### llama.cpp 서버로 GGUF 실행
 
-```bash
+`````bash
 # Q4 양자화 모델로 서버 시작
 ./server \
   -m ~/models/mistral-7b-instruct-q4.gguf \
@@ -395,9 +396,9 @@ python convert_hf_to_gguf.py \
   -t 16 \
   --host 0.0.0.0 \
   --port 8080
-```
+`````
 
-```bash
+`````bash
 # GPU 오프로딩 (일부 레이어는 GPU, 나머지는 CPU)
 ./server \
   -m ~/models/mistral-7b-instruct-q4.gguf \
@@ -406,11 +407,11 @@ python convert_hf_to_gguf.py \
   -t 8 \
   --host 0.0.0.0 \
   --port 8080
-```
+`````
 
 ### GGUF 서버 API 액세스
 
-```bash
+`````bash
 # 완성 엔드포인트
 curl http://localhost:8080/completion \
   -H "Content-Type: application/json" \
@@ -420,9 +421,9 @@ curl http://localhost:8080/completion \
     "temperature": 0.7,
     "stop": ["</s>"]
   }"
-```
+`````
 
----
+* * *
 
 ## 함수 호출 및 도구 사용
 
@@ -430,7 +431,7 @@ Mistral Instruct 모델은 함수 호출을 지원하여 외부 도구 및 API�
 
 ### 도구 정의
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="local")
@@ -488,11 +489,11 @@ response = client.chat.completions.create(
 if response.choices[0].message.tool_calls: tool_call = response.choices[0].message.tool_calls[0]
     print(f"함수: {tool_call.function.name}")
     print(f"인수: {tool_call.function.arguments}")
-```
+`````
 
 ### 도구 호출 실행 및 대화 계속
 
-```python
+`````python
 import json
 
 # 도구 실행 (예시 구현)
@@ -517,9 +518,9 @@ final_response = client.chat.completions.create(
     messages=messages
 )
 print(final_response.choices[0].message.content)
-```
+`````
 
----
+* * *
 
 ## 커스텀 도메인을 위한 미세 조정
 
@@ -527,16 +528,16 @@ print(final_response.choices[0].message.content)
 
 ### 훈련 데이터 준비
 
-```jsonl
+`````jsonl
 # training_data.jsonl
 {"messages": [{"role": "user", "content": "분류: 환불 요청"}, {"role": "assistant", "content": "카테고리: 청구"}]}
 {"messages": [{"role": "user", "content": "분류: 로그인 시 앱 충돌"}, {"role": "assistant", "content": "카테고리: 기술"}]}
 {"messages": [{"role": "user", "content": "분류: 다크 모드 추가"}, {"role": "assistant", "content": "카테고리: 기능 요청"}]}
-```
+`````
 
 ### PEFT/LoRA로 미세 조정
 
-```python
+`````python
 from transformers import (
     AutoModelForCausalLM, 
     AutoTokenizer, 
@@ -616,11 +617,11 @@ trainer.train()
 
 # 어댑터 저장
 model.save_pretrained("./mistral-lora-adapter")
-```
+`````
 
 ### 병합 및 미세 조정된 모델 배포
 
-```python
+`````python
 from peft import PeftModel
 
 # 기본 모델 로드
@@ -637,24 +638,24 @@ merged_model = merged_model.merge_and_unload()
 # 병합된 모델 저장
 merged_model.save_pretrained("./mistral-finetuned-merged")
 tokenizer.save_pretrained("./mistral-finetuned-merged")
-```
+`````
 
----
+* * *
 
 ## 모니터링 및 프로덕션 운영
 
 ### 상태 확인 엔드포인트
 
-```bash
+`````bash
 # vLLM 상태 확인
 curl http://localhost:8000/health
 
 # 예상: {"status": "healthy"}
-```
+`````
 
 ### Prometheus 메트릭
 
-```bash
+`````bash
 # vLLM이 Prometheus 메트릭을 노출합니다
 curl http://localhost:8000/metrics
 
@@ -662,11 +663,11 @@ curl http://localhost:8000/metrics
 # - vllm:gpu_cache_usage_perc
 # - vllm:time_to_first_token_seconds
 # - vllm:time_per_output_token_seconds
-```
+`````
 
 ### Kubernetes 배포
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: mistral-vllm
@@ -693,7 +694,7 @@ spec: replicas: 1
       volumes: - name: model-cache
         persistentVolumeClaim: claimName: model-cache-pvc
       nodeSelector: accelerator: nvidia-gpu
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: mistral-vllm-service
@@ -701,9 +702,9 @@ spec: selector: app: mistral-vllm
   ports: - port: 80
     targetPort: 8000
   type: ClusterIP
-```
+`````
 
----
+* * *
 
 ## FAQ: Mistral AI 로컬 배포
 
@@ -721,7 +722,7 @@ Mixtral 8x7B는 토큰당 약 13B 매개변수만 활성화합니다(8개 중 2�
 
 ### mistral-inference와 vLLM의 차이점은 무엇인가요?
 
-`mistral-inference`는 함수 호출 및 토큰화와 같은 Mistral 특정 기능에 대한 전체 지원을 갖춘 Mistral의 공식 추론 엔진입니다. **vLLM**은 PagedAttention 및 연속 배칭으로 처리량을 최적화하는 범용 추론 엔진입니다. 개발 및 기능 완성도에는 `mistral-inference`를 사용하고, 높은 동시성이 필요한 프로덕션 서빙에는 **vLLM**을 사용하세요.
+````mistral-inference````는 함수 호출 및 토큰화와 같은 Mistral 특정 기능에 대한 전체 지원을 갖춘 Mistral의 공식 추론 엔진입니다. **vLLM**은 PagedAttention 및 연속 배칭으로 처리량을 최적화하는 범용 추론 엔진입니다. 개발 및 기능 완성도에는 ````mistral-inference````를 사용하고, 높은 동시성이 필요한 프로덕션 서빙에는 **vLLM**을 사용하세요.
 
 ### 제한된 GPU 메모리에서 미세 조정을 어떻게 하나요?
 
@@ -731,7 +732,7 @@ LoRA 어댑터를 사용한 매개변수 효율적 미세 조정(PEFT)을 사용
 
 단일 요청의 경우 로컬 배포는 외부 서버에 대한 네트워크 왕복이 없기 때문에 클라우드 API보다 지연 시간이 낮은 경우가 많습니다. 배치 처리량의 경우 잘 구성된 vLLM 배포는 초당 수백 개의 토큰을 처리할 수 있습니다. 주요 트레이드오프는 하드웨어 비용 대 토큰당 API 가격입니다.
 
----
+* * *
 
 
 
@@ -746,11 +747,11 @@ LoRA 어댑터를 사용한 매개변수 효율적 미세 조정(PEFT)을 사용
 
 Mistral AI 모델을 로컬로 배포하면 AI 인프라에 대한 완전한 제어권을 갖게 됩니다. 8x7B 전문가 혼합 아키텍처는 매개변수당 탁월한 성능을 제공하는 반면, 더 넓은 Mistral 생태계 — 효율성을 위한 Nemo, 최대 기능을 위한 Large, 코드를 위한 Codestral — 는 거의 모든 프로덕션 사용 사례를 커버합니다.
 
-실험을 위해 `mistral-inference`로 시작하고, 프로덕션 서빙을 위해 vLLM으로 확장하며, GPU 리소스가 제한될 때는 GGUF 양자화를 활용하세요. 함수 호출 지원, 미세 조정 기능 및 활발한 오픈소스 생태계를 갖춘 Mistral은 로컬로 배포 가능한 LLM의 최첨단을 대표합니다.
+실험을 위해 ````mistral-inference```로 시작하고, 프로덕션 서빙을 위해 vLLM으로 확장하며, GPU 리소스가 제한될 때는 GGUF 양자화를 활용하세요. 함수 호출 지원, 미세 조정 기능 및 활발한 오픈소스 생태계를 갖춘 Mistral은 로컬로 배포 가능한 LLM의 최첨단을 대표합니다.
 
 배포를 호스팅하기 위한 클라우드 GPU 리소스의 경우, 비용 효율적이고 고성능의 추론 인프라를 위해 [虎网云 GPU 서버](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367)를 고려하세요.
 
----
+* * *
 
 *게시일: 2026-05-19 | Mistral AI | [GitHub: mistralai/mistral-inference](https://github.com/mistralai/mistral-inference)*
 
@@ -780,7 +781,7 @@ Mistral AI 모델을 로컬로 배포하면 AI 인프라에 대한 완전한 제
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -790,6 +791,6 @@ Mistral AI 모델을 로컬로 배포하면 AI 인프라에 대한 완전한 제
 - [2026-06-08-trending-ai-agents](mistral-ai-local-llm-deployment)
 - [2026-06-15-trending-ai-agents](mistral-ai-local-llm-deployment)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
+
 # Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More
 
 
@@ -55,13 +56,13 @@ Automated quality tools reduce pull request review time by eliminating style deb
 
 ### Setting Up ESLint 9 (Flat Config)
 
-ESLint 9, released in April 2024, introduced the flat config format (`eslint.config.js`) which replaces the legacy `.eslintrc` files. Flat config is more explicit, easier to debug, and supports JavaScript configuration natively.
+ESLint 9, released in April 2024, introduced the flat config format (```eslint.config.js````) which replaces the legacy ````.eslintrc```` files. Flat config is more explicit, easier to debug, and supports JavaScript configuration natively.
 
-Install ESLint 9: ```bash
+Install ESLint 9: `````bash
 npm install --save-dev eslint @eslint/js
-```
+`````
 
-Create `eslint.config.js`: ```javascript
+Create ``eslint.config.js``: `````javascript
 import js from '@eslint/js';
 
 export default [
@@ -83,35 +84,35 @@ export default [
     },
   },
 ];
-```
+`````
 
-Run ESLint: ```bash
+Run ESLint: `````bash
 npx eslint .
-```
+`````
 
 ### Recommended Rules and Configurations
 
-Start with `js.configs.recommended` and add rules incrementally. Common additions include: | Rule | Purpose | Severity |
+Start with ````js.configs.recommended```` and add rules incrementally. Common additions include: | Rule | Purpose | Severity |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `no-unused-vars` | Catch declared but unused variables | Error |
-| `no-undef` | Catch undeclared variables | Error |
-| `eqeqeq` | Require strict equality (`===`) | Error |
-| `curly` | Require braces for all control statements | Warn |
-| `no-throw-literal` | Require Error objects for throw | Error |
+| ````no-unused-vars```` | Catch declared but unused variables | Error |
+| ````no-undef```` | Catch undeclared variables | Error |
+| ````eqeqeq```` | Require strict equality (````===````) | Error |
+| ````curly```` | Require braces for all control statements | Warn |
+| ````no-throw-literal```` | Require Error objects for throw | Error |
 
 ### Integrating With TypeScript (@typescript-eslint)
 
-For TypeScript projects, add the TypeScript parser and plugin: ```bash
+For TypeScript projects, add the TypeScript parser and plugin: `````bash
 npm install --save-dev typescript-eslint
-```
+`````
 
-Update `eslint.config.js`: ```javascript
+Update ``eslint.config.js``: `````javascript
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
@@ -128,17 +129,17 @@ export default [
     },
   },
 ];
-```
+`````
 
 ### Popular Shareable Configs: Airbnb, Standard, XO
 
-Several organizations publish shareable ESLint configurations: - **Airbnb** (`eslint-config-airbnb`) — The most popular preset, enforcing 400+ rules. Comprehensive but strict.
-- **Standard** (`eslint-config-standard`) — Enforces the JavaScript Standard Style. No semicolons, 2-space indentation.
-- **XO** (`eslint-config-xo`) — Opinionated with sensible defaults. Good middle ground between Airbnb and minimal.
+Several organizations publish shareable ESLint configurations: - **Airbnb** (````eslint-config-airbnb````) — The most popular preset, enforcing 400+ rules. Comprehensive but strict.
+- **Standard** (````eslint-config-standard````) — Enforces the JavaScript Standard Style. No semicolons, 2-space indentation.
+- **XO** (````eslint-config-xo````) — Opinionated with sensible defaults. Good middle ground between Airbnb and minimal.
 
 ### ESLint Stylistic for Formatting Rules
 
-ESLint Stylistic (`@stylistic/eslint-plugin`) provides formatting rules extracted from the core ESLint project. Use it for projects that want linting and basic formatting in a single tool: ```javascript
+ESLint Stylistic (``@stylistic/eslint-plugin``) provides formatting rules extracted from the core ESLint project. Use it for projects that want linting and basic formatting in a single tool: `````javascript
 import stylistic from '@stylistic/eslint-plugin';
 
 export default [
@@ -153,7 +154,7 @@ export default [
     },
   },
 ];
-```
+`````
 
 ## JavaScript/TypeScript: Prettier Setup
 
@@ -163,11 +164,11 @@ export default [
 
 ### Installing and Configuring .prettierrc
 
-Install Prettier: ```bash
+Install Prettier: `````bash
 npm install --save-dev --save-exact prettier
-```
+`````
 
-Create `.prettierrc`: ```json
+Create ``.prettierrc``: `````json
 {
   "semi": true,
   "singleQuote": true,
@@ -175,52 +176,52 @@ Create `.prettierrc`: ```json
   "trailingComma": "es5",
   "printWidth": 100
 }
-```
+`````
 
-Create `.prettierignore`: ```
+Create ``.prettierignore``: `````
 node_modules
 dist
 build
 coverage
 *.min.js
-```
+`````
 
 ### Prettier vs ESLint: Complementary, Not Competing
 
 ESLint and Prettier have overlapping territory — both can enforce formatting. The recommended approach is: - **ESLint** handles code quality rules (correctness, best practices)
 - **Prettier** handles formatting rules (indentation, quotes, line breaks)
 
-Use `eslint-config-prettier` to disable ESLint rules that conflict with Prettier: ```bash
+Use ``eslint-config-prettier`` to disable ESLint rules that conflict with Prettier: `````bash
 npm install --save-dev eslint-config-prettier
-```
+`````
 
-Add to `eslint.config.js`: ```javascript
+Add to ``eslint.config.js``: `````javascript
 import prettier from 'eslint-config-prettier';
 
 export default [
   // ... other configs
   prettier,
 ];
-```
+`````
 
 ### Editor Integration (VS Code, Vim, JetBrains)
 
-Install the Prettier extension for your editor and enable "Format on Save." In VS Code, add to `settings.json`: ```json
+Install the Prettier extension for your editor and enable "Format on Save." In VS Code, add to ``settings.json``: `````json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
 }
-```
+`````
 
 ## ESLint + Prettier: Complete Integration
 
 ### Step-by-Step Setup for New Projects
 
-1. Install dependencies: ```bash
+1. Install dependencies: `````bash
 npm install --save-dev eslint prettier eslint-config-prettier typescript-eslint
-```
+`````
 
-2. Create `eslint.config.js`: ```javascript
+2. Create ``eslint.config.js``: `````javascript
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-config-prettier';
@@ -240,11 +241,11 @@ export default [
   },
   prettier,
 ];
-```
+`````
 
-3. Create `.prettierrc` with your formatting preferences.
+3. Create ````.prettierrc```` with your formatting preferences.
 
-4. Add package.json scripts: ```json
+4. Add package.json scripts: `````json
 {
   "scripts": {
     "lint": "eslint .",
@@ -253,18 +254,18 @@ export default [
     "format:check": "prettier --check ."
   }
 }
-```
+`````
 
 ### Migrating From ESLint Legacy Config to Flat Config
 
-To migrate from `.eslintrc.json` to `eslint.config.js`: 1. Run `npx @eslint/migrate-config .eslintrc.json` to generate a starter flat config
+To migrate from ````.eslintrc.json```` to ````eslint.config.js````: 1. Run ````npx @eslint/migrate-config .eslintrc.json```` to generate a starter flat config
 2. Review and adjust the generated file
-3. Rename or delete `.eslintrc.json`
-4. Test with `npx eslint .`
+3. Rename or delete ````.eslintrc.json````
+4. Test with ````npx eslint .````
 
 ### CI/CD Integration for Automated Checks
 
-Add a GitHub Actions workflow: ```yaml
+Add a GitHub Actions workflow: `````yaml
 name: Code Quality
 on: [pull_request]
 jobs: lint-and-format: runs-on: ubuntu-latest
@@ -275,7 +276,7 @@ jobs: lint-and-format: runs-on: ubuntu-latest
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
-```
+`````
 
 ## Python: Black — The Uncompromising Formatter
 
@@ -285,16 +286,16 @@ jobs: lint-and-format: runs-on: ubuntu-latest
 
 ### Installation and Basic Usage
 
-```bash
+`````bash
 pip install black
 black .
-```
+`````
 
-Black formats all Python files in place. Use `black --check .` in CI to verify formatting without modifying files.
+Black formats all Python files in place. Use ````black --check .```` in CI to verify formatting without modifying files.
 
 ### pyproject.toml Configuration
 
-```toml
+`````toml
 [tool.black]
 line-length = 88
 target-version = [py311]
@@ -304,18 +305,18 @@ extend-exclude = '''
   migrations
 )/
 '''
-```
+`````
 
 ### Black With Jupyter Notebooks
 
-Black supports Jupyter notebooks via the `black[jupyter]` extra: ```bash
+Black supports Jupyter notebooks via the ``black[jupyter]`` extra: `````bash
 pip install "black[jupyter]"
 black notebook.ipynb
-```
+`````
 
 ### Limitations and When to Use Alternatives
 
-Black's strictness is its strength and weakness. It will not format docstrings (use `docformatter`), sort imports (use `isort` or `ruff`), or handle specific team conventions. For teams needing more flexibility, Ruff's formatter provides Black-compatible output with additional options.
+Black's strictness is its strength and weakness. It will not format docstrings (use ````docformatter````), sort imports (use ````isort```` or ````ruff````), or handle specific team conventions. For teams needing more flexibility, Ruff's formatter provides Black-compatible output with additional options.
 
 ## Python: Ruff — The Ultra-Fast All-in-One Linter
 
@@ -329,11 +330,11 @@ The consolidation argument alone is compelling. Instead of configuring Flake8, B
 
 Ruff's Rust implementation delivers extraordinary performance. Benchmarks on a typical Django codebase show: | Tool | Time | Files/sec |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Flake8 | 12.4s | 180 |
 | Pylint | 45.2s | 49 |
@@ -343,16 +344,16 @@ This speed enables running Ruff on every file save without noticeable delay. It 
 
 ### Replacing Black With Ruff Format
 
-Ruff's formatter produces Black-compatible output in most cases. To switch: ```bash
+Ruff's formatter produces Black-compatible output in most cases. To switch: `````bash
 pip install ruff
 ruff format .       # Replaces black .
 ruff check .        # Replaces flake8
 ruff check --fix .  # Auto-fix issues
-```
+`````
 
 ### Complete pyproject.toml Configuration
 
-```toml
+`````toml
 [tool.ruff]
 target-version = "py311"
 line-length = 88
@@ -377,36 +378,36 @@ convention = "google"
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-```
+`````
 
 ### Migration Guide From Flake8/Black to Ruff
 
 1. Remove Flake8, Black, isort, and related plugins from your dependencies
-2. Install Ruff: `pip install ruff`
-3. Convert `.flake8` and `pyproject.toml` Black config to Ruff equivalents
-4. Run `ruff check .` and address any new violations Ruff detects
+2. Install Ruff: ````pip install ruff````
+3. Convert ````.flake8```` and ````pyproject.toml```` Black config to Ruff equivalents
+4. Run ````ruff check .```` and address any new violations Ruff detects
 5. Update pre-commit hooks and CI pipelines
-6. Run `ruff format .` to verify formatting matches expectations
+6. Run ````ruff format .```` to verify formatting matches expectations
 
 ## Go: gofmt and golangci-lint
 
 ### Built-In Formatting With gofmt
 
-Go includes `gofmt` in the standard toolchain. Every Go installation has it. Unlike other languages where formatting tools are third-party additions, Go treats formatting as a language feature. The Go proverb is explicit: "Gofmt's style is no one's favorite, yet gofmt is everyone's favorite."
+Go includes ````gofmt```` in the standard toolchain. Every Go installation has it. Unlike other languages where formatting tools are third-party additions, Go treats formatting as a language feature. The Go proverb is explicit: "Gofmt's style is no one's favorite, yet gofmt is everyone's favorite."
 
-Format Go code: ```bash
+Format Go code: `````bash
 gofmt -w .
-```
+`````
 
 Most Go editors run gofmt on save by default.
 
 ### golangci-lint for Comprehensive Linting
 
-While gofmt handles formatting, linting requires [golangci-lint](https://golangci-lint.run), a meta-linter that runs 30+ individual linters in parallel: ```bash
+While gofmt handles formatting, linting requires [golangci-lint](https://golangci-lint.run), a meta-linter that runs 30+ individual linters in parallel: `````bash
 golangci-lint run
-```
+`````
 
-Create `.golangci.yml`: ```yaml
+Create ``.golangci.yml``: `````yaml
 linters: enable: - errcheck
     - gosimple
     - govet
@@ -415,47 +416,47 @@ linters: enable: - errcheck
     - unused
     - gocritic
     - gosec
-```
+`````
 
 ### Configuration and CI Integration
 
-Add to GitHub Actions: ```yaml
+Add to GitHub Actions: `````yaml
 - name: golangci-lint
   uses: golangci/golangci-lint-action@v6
   with: version: latest
-```
+`````
 
 ## Rust: rustfmt and Clippy
 
 ### rustfmt for Consistent Formatting
 
-Rust's official formatter, `rustfmt`, is installed with Rustup: ```bash
+Rust's official formatter, ``rustfmt``, is installed with Rustup: `````bash
 rustfmt src/**/*.rs
-```
+`````
 
-Configure in `rustfmt.toml`: ```toml
+Configure in ``rustfmt.toml``: `````toml
 max_width = 100
 tab_spaces = 4
 edition = "2021"
-```
+`````
 
 ### Clippy Linting and Code Suggestions
 
-[Clippy](https://doc.rust-lang.org/clippy) is Rust's linter with over 650 lints ranging from style suggestions to performance improvements and bug detection: ```bash
+[Clippy](https://doc.rust-lang.org/clippy) is Rust's linter with over 650 lints ranging from style suggestions to performance improvements and bug detection: `````bash
 cargo clippy
-```
+`````
 
-Enable all lints for maximum checking: ```bash
+Enable all lints for maximum checking: `````bash
 cargo clippy -- -W clippy::all -W clippy::pedantic
-```
+`````
 
 ### Cargo Integration
 
-Both `rustfmt` and `clippy` integrate directly with Cargo. Add aliases to `.cargo/config.toml`: ```toml
+Both ``rustfmt`` and ``clippy`` integrate directly with Cargo. Add aliases to ``.cargo/config.toml``: `````toml
 [alias]
 lint = "clippy -- -W clippy::all"
 checkfmt = "fmt -- --check"
-```
+`````
 
 ## Pre-Commit Hooks: Automating Code Quality
 
@@ -463,14 +464,14 @@ checkfmt = "fmt -- --check"
 
 The [pre-commit](https://pre-commit.com) framework manages Git pre-commit hooks across languages. It installs hooks that run automatically before each commit, blocking the commit if checks fail. This catches issues before they enter the repository.
 
-Install pre-commit: ```bash
+Install pre-commit: `````bash
 pip install pre-commit
 pre-commit install
-```
+`````
 
 ### Setting Up .pre-commit-config.yaml
 
-Create `.pre-commit-config.yaml`: ```yaml
+Create ``.pre-commit-config.yaml``: `````yaml
 repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks: - id: trailing-whitespace
@@ -494,23 +495,23 @@ repos: - repo: https://github.com/pre-commit/pre-commit-hooks
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks: - id: prettier
-```
+`````
 
-Run against all files: ```bash
+Run against all files: `````bash
 pre-commit run --all-files
-```
+`````
 
 ### Popular Hooks: Trailing Whitespace, End-of-File Fixer
 
-The `pre-commit-hooks` repository provides language-agnostic checks that every project should use: - `trailing-whitespace` — Removes trailing whitespace
-- `end-of-file-fixer` — Ensures files end with exactly one newline
-- `check-yaml` — Validates YAML syntax
-- `check-added-large-files` — Prevents committing files over a size threshold
-- `check-merge-conflict` — Blocks commits with unresolved merge conflict markers
+The ````pre-commit-hooks```` repository provides language-agnostic checks that every project should use: - ````trailing-whitespace```` — Removes trailing whitespace
+- ````end-of-file-fixer```` — Ensures files end with exactly one newline
+- ````check-yaml```` — Validates YAML syntax
+- ````check-added-large-files```` — Prevents committing files over a size threshold
+- ````check-merge-conflict```` — Blocks commits with unresolved merge conflict markers
 
 ### Custom Hooks for Project-Specific Needs
 
-You can define custom hooks for project-specific checks: ```yaml
+You can define custom hooks for project-specific checks: `````yaml
 repos: - repo: local
     hooks: - id: run-tests
         name: Run unit tests
@@ -519,25 +520,25 @@ repos: - repo: local
         types: [python]
         pass_filenames: false
         always_run: true
-```
+`````
 
 ### Husky for JavaScript/TypeScript Projects
 
-[Husky](https://github.com/typicode/husky) simplifies Git hooks for JavaScript projects. Install and configure: ```bash
+[Husky](https://github.com/typicode/husky) simplifies Git hooks for JavaScript projects. Install and configure: `````bash
 npx husky-init && npm install
-```
+`````
 
-Edit `.husky/pre-commit`: ```bash
+Edit ``.husky/pre-commit``: `````bash
 npm run lint
 npm run format:check
 npm test
-```
+`````
 
 ## CI/CD Integration for Code Quality
 
 ### GitHub Actions Workflow for Linting
 
-A comprehensive quality workflow: ```yaml
+A comprehensive quality workflow: `````yaml
 name: Quality Checks
 on: [pull_request, push]
 jobs: javascript: runs-on: ubuntu-latest
@@ -556,11 +557,11 @@ jobs: javascript: runs-on: ubuntu-latest
       - run: pip install ruff
       - run: ruff check .
       - run: ruff format --check .
-```
+`````
 
 ### GitLab CI Pipeline for Formatting Checks
 
-```yaml
+`````yaml
 stages: - quality
 
 lint-js: stage: quality
@@ -574,7 +575,7 @@ lint-python: stage: quality
   script: - pip install ruff
     - ruff check .
     - ruff format --check .
-```
+`````
 
 ### Failing Builds on Lint Errors
 
@@ -588,21 +589,21 @@ Tools like [reviewdog](https://github.com/reviewdog/reviewdog) post lint results
 
 | Language | Formatter | Linter | Pre-Commit Hook | Config File |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| JavaScript/TypeScript | Prettier | ESLint 9 | `mirrors-prettier`, `mirrors-eslint` | `eslint.config.js`, `.prettierrc` |
-| Python | Ruff format | Ruff | `ruff-pre-commit` | `pyproject.toml` |
-| Go | gofmt | golangci-lint | Custom (local) | `.golangci.yml` |
-| Rust | rustfmt | Clippy | Custom (cargo) | `rustfmt.toml` |
-| Multi-language | — | — | `pre-commit-hooks` | `.pre-commit-config.yaml` |
+| JavaScript/TypeScript | Prettier | ESLint 9 | ````mirrors-prettier````, ````mirrors-eslint```` | ````eslint.config.js````, ````.prettierrc```` |
+| Python | Ruff format | Ruff | ````ruff-pre-commit```` | ````pyproject.toml```` |
+| Go | gofmt | golangci-lint | Custom (local) | ````.golangci.yml```` |
+| Rust | rustfmt | Clippy | Custom (cargo) | ````rustfmt.toml```` |
+| Multi-language | — | — | ````pre-commit-hooks```` | ````.pre-commit-config.yaml```` |
 
 ## Conclusion
 
@@ -614,7 +615,7 @@ The tools covered in this guide — ESLint 9 with flat config, Prettier, Ruff re
 
 ### Should I use ESLint and Prettier together?
 
-Yes. ESLint handles code quality (correctness, best practices) while Prettier handles formatting (indentation, line breaks, quotes). They are complementary. Use `eslint-config-prettier` to disable ESLint's formatting rules and prevent conflicts. Configure your editor to run both on save.
+Yes. ESLint handles code quality (correctness, best practices) while Prettier handles formatting (indentation, line breaks, quotes). They are complementary. Use ````eslint-config-prettier```` to disable ESLint's formatting rules and prevent conflicts. Configure your editor to run both on save.
 
 ### Is Ruff better than Black for Python?
 
@@ -622,7 +623,7 @@ Ruff is faster and more comprehensive than Black. It replaces Black (formatting)
 
 ### How do I set up pre-commit hooks?
 
-Install the pre-commit framework: `pip install pre-commit`. Create a `.pre-commit-config.yaml` file with your hooks. Run `pre-commit install` to activate the hooks in your Git repository. Run `pre-commit run --all-files` to test the configuration against existing files. For JavaScript projects, Husky provides a simpler alternative.
+Install the pre-commit framework: ````pip install pre-commit````. Create a ````.pre-commit-config.yaml```` file with your hooks. Run ````pre-commit install```` to activate the hooks in your Git repository. Run ````pre-commit run --all-files```` to test the configuration against existing files. For JavaScript projects, Husky provides a simpler alternative.
 
 ### Can I use one tool for multiple programming languages?
 
@@ -630,10 +631,10 @@ Prettier handles JavaScript, TypeScript, JSON, CSS, HTML, Markdown, YAML, and mo
 
 ### How do I enforce code quality in CI/CD pipelines?
 
-Add lint and format check steps to your CI pipeline. Use exit codes to fail the build when violations are found. For GitHub Actions, the `pull_request` trigger runs checks on every PR. Combine with branch protection rules that require status checks to pass before merging. Tools like reviewdog can post results as PR comments for better visibility.
+Add lint and format check steps to your CI pipeline. Use exit codes to fail the build when violations are found. For GitHub Actions, the ````pull_request``` trigger runs checks on every PR. Combine with branch protection rules that require status checks to pass before merging. Tools like reviewdog can post results as PR comments for better visibility.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -667,4 +668,4 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
   }
 }
 </script>
----
+* * *

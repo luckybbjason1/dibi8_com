@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/docmost-team-docs-collaboration/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么你的团队需要自托管 Notion 替代方案
@@ -34,9 +35,9 @@ Docmost 使用现代的三层架构，将应用服务器、数据库和实时协
 
 | 层级 | 技术 |
 |
----
+* * *
 |
----
+* * *
 |
 | **后端** | Node.js / NestJS (TypeScript) |
 | **前端** | React 块编辑器 |
@@ -52,7 +53,7 @@ Docmost 使用现代的三层架构，将应用服务器、数据库和实时协
 **页面** —— 主要内容单元。页面支持嵌套子页面，创建任意深度的树形结构。
 **块** —— 内容原子。Docmost 页面中的所有内容都是块：段落、标题、代码块、表格、标注、嵌入、图表。
 
-Docmost 的块编辑器支持斜杠命令 (`/heading`, `/code`, `/table`)、Markdown 快捷方式 (输入 `##` 生成 H2) 和拖拽重新排序块。编辑器体验刻意接近 Notion，降低团队切换的采用摩擦。
+Docmost 的块编辑器支持斜杠命令 (```/heading````, ````/code````, ````/table````)、Markdown 快捷方式 (输入 ````##```` 生成 H2) 和拖拽重新排序块。编辑器体验刻意接近 Notion，降低团队切换的采用摩擦。
 
 社区版 (AGPL-3.0) 包含所有核心协作功能。企业版增加 SAML 2.0 / OIDC / LDAP 认证、TOTP 多因素认证、AI 智能回答、页面级权限、Confluence 导入和审计日志，价格为 **$3.50/座位/月** (最少 10 个座位)。
 
@@ -62,7 +63,7 @@ Docmost 需要 **PostgreSQL 和 Redis** —— 两者都可以通过单个 Docke
 
 ### 步骤 1：创建 Docker Compose 文件
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: docmost: image: docmost/docmost:0.8.2
@@ -90,13 +91,13 @@ services: docmost: image: docmost/docmost:0.8.2
     restart: unless-stopped
     volumes: - redis_data:/data
 
-volumes: docmost_data: postgres_data: redis_data: ```
+volumes: docmost_data: postgres_data: redis_data: `````
 
 这定义了三个服务：端口 3000 上的 Docmost 应用、用于持久存储的 PostgreSQL 16 和用于实时协作状态的 Redis 7.2。
 
 ### 步骤 2：启动服务栈
 
-```bash
+`````bash
 # 创建并启动所有容器
 docker compose up -d
 
@@ -106,22 +107,22 @@ docker logs -f docmost_db
 # 等待 "database system is ready to accept connections"
 # 然后检查 Docmost 日志
 docker logs -f docmost
-```
+`````
 
-首次启动时，Docmost 将运行数据库迁移。这需要 15-30 秒。你将看到迁移进度消息，后面跟着 `Application is running on: http://[::]:3000`。
+首次启动时，Docmost 将运行数据库迁移。这需要 15-30 秒。你将看到迁移进度消息，后面跟着 ````Application is running on: http://[::]:3000````。
 
 ### 步骤 3：完成设置向导
 
-```bash
+`````bash
 # 访问 Web UI
 curl -s http://localhost:3000 | head -20
-```
+`````
 
-在浏览器中访问 `http://your-server-ip:3000`。首次访问时，Docmost 会呈现一个设置向导，你在其中创建管理员工作区、管理员账户和基本设置。没有默认凭据 —— 你在首次启动时定义所有内容。
+在浏览器中访问 ````http://your-server-ip:3000````。首次访问时，Docmost 会呈现一个设置向导，你在其中创建管理员工作区、管理员账户和基本设置。没有默认凭据 —— 你在首次启动时定义所有内容。
 
 ### 步骤 4：Nginx 反向代理 + SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/docmost
 upstream docmost {
     server 127.0.0.1:3000;
@@ -162,13 +163,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-`Upgrade` 和 `Connection` 头至关重要 —— Docmost 使用 WebSocket 进行实时协作。没有这些头，实时光标同步和同时编辑将无法工作。
+````Upgrade```` 和 ````Connection```` 头至关重要 —— Docmost 使用 WebSocket 进行实时协作。没有这些头，实时光标同步和同时编辑将无法工作。
 
 ### 环境变量参考
 
-```bash
+`````bash
 # 核心配置
 APP_URL=https://docs.yourdomain.com        # 必须与公网 URL 匹配
 APP_SECRET=your-super-secret-key           # 用以下命令生成: openssl rand -hex 32
@@ -193,7 +194,7 @@ AWS_S3_ENDPOINT=https://s3.amazonaws.com
 
 # 可选: 禁用用户注册 (仅邀请)
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 ## 实践中的实时协作
 
@@ -205,7 +206,7 @@ Docmost 的招牌功能是同时多用户编辑。以下是它在实际中的工
 4. **光标** 实时可见，按用户着色。
 5. **页面历史** 自动保存。每次编辑都会创建一个可恢复的修订版本。
 
-```javascript
+`````javascript
 // Docmost 底层使用 Yjs (CRDT 库) 进行 OT
 // WebSocket 消息格式如下: {
   "type": "doc:update",
@@ -214,7 +215,7 @@ Docmost 的招牌功能是同时多用户编辑。以下是它在实际中的工
   "clientId": "user-uuid",
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 这是支撑 Figma 和 Notion 的底层技术。区别在于：Docmost 在你自己的设施上运行它。
 
@@ -222,25 +223,25 @@ Docmost 的招牌功能是同时多用户编辑。以下是它在实际中的工
 
 Docmost 支持在编辑器内直接创建内联图表：
 
-```markdown
+`````markdown
 # 图表的斜杠命令
 /drawio     - 内联打开 Draw.io 编辑器
 /mermaid    - Mermaid 图表块
 /excalidraw - Excalidraw 手绘块
 
 # 页面中的 Mermaid 图表示例
-```mermaid
+`````mermaid
 graph TD
     A[用户请求] --> B{认证检查}
     B -->|有效| C[处理请求]
     B -->|无效| D[返回 401]
     C --> E[返回响应]
-```
-```
+`````
+`````
 
-支持的嵌入包括 Airtable、Loom、Miro、Figma、YouTube 等。完整列表在编辑器的 `/embed` 斜杠命令中。
+支持的嵌入包括 Airtable、Loom、Miro、Figma、YouTube 等。完整列表在编辑器的 ````/embed```` 斜杠命令中。
 
-文件附件存储在本地 (在 `docmost_data` 卷中) 或 S3 兼容存储上。默认上传限制为每个文件 50MB，可通过 `MAX_FILE_SIZE` 环境变量配置。
+文件附件存储在本地 (在 ````docmost_data```` 卷中) 或 S3 兼容存储上。默认上传限制为每个文件 50MB，可通过 ````MAX_FILE_SIZE```` 环境变量配置。
 
 ## 基准测试与真实性能
 
@@ -248,9 +249,9 @@ graph TD
 
 | 指标 | 数值 |
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动时间 | 2.8 秒 |
 | 页面加载（平均） | 150ms |
@@ -271,7 +272,7 @@ graph TD
 
 ### GitHub Actions: 自动发布文档
 
-```yaml
+`````yaml
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
@@ -292,13 +293,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d @payload.json
-```
+`````
 
 Docmost 暴露 REST API 用于程序化内容管理 (企业版)。在 设置 → API 中生成 API 密钥。API 支持对空间、页面和评论的增删改查。
 
 ### 备份自动化
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-docmost.sh
 
@@ -321,20 +322,20 @@ docker exec docmost_redis cat /data/dump.rdb \
 
 # 只保留 14 天
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
 ### Prometheus 监控
 
-```yaml
+`````yaml
 # 在 docker-compose.yml 中添加监控
   postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
     environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
     ports: - "9187:9187"
-```
+`````
 
 ### 健康检查端点
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-docmost.sh
 
@@ -348,18 +349,18 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "正常: Docmost 运行健康"
 fi
-```
+`````
 
-添加到 cron 自动健康监控: `*/5 * * * * /opt/scripts/health-check-docmost.sh`
+添加到 cron 自动健康监控: ````*/5 * * * * /opt/scripts/health-check-docmost.sh````
 
 ## 生产环境加固
 
 ### 启用仅邀请注册
 
-```yaml
+`````yaml
 # docker-compose.yml 环境变量
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 使用此设置后，只有现有工作区管理员可以通过电子邮件邀请新用户。对于暴露在公网的实例至关重要。
 
@@ -367,7 +368,7 @@ ALLOW_PUBLIC_SIGNUP=false
 
 对于 50 人以上的团队，通过 PgBouncer 添加连接池：
 
-```yaml
+`````yaml
 # 添加到 docker-compose.yml
   pgbouncer: image: pgbouncer/pgbouncer:1.22
     environment: DATABASES_HOST: db
@@ -378,13 +379,13 @@ ALLOW_PUBLIC_SIGNUP=false
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
     ports: - "6432:6432"
-```
+`````
 
-更新 Docmost 的 `DATABASE_URL` 指向 `pgbouncer:6432` 而不是 `db:5432`。
+更新 Docmost 的 ````DATABASE_URL```` 指向 ````pgbouncer:6432```` 而不是 ````db:5432````。
 
 ### Web 应用防火墙规则
 
-```nginx
+`````nginx
 # 在 Nginx 中添加类 WAF 保护
 # 登录尝试的速率限制
 limit_req_zone $binary_remote_addr zone=login:10m rate=5r/m;
@@ -393,23 +394,23 @@ location /auth/login {
     limit_req zone=login burst=3 nodelay;
     proxy_pass http://docmost;
 }
-```
+`````
 
 ## 对比：Docmost 与替代方案
 
 | 特性 | Docmost | Notion | Confluence | BookStack | Outline |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | AGPL-3.0 (社区版) | 专有 | 专有 | MIT | BSL 1.1 |
 | **自托管** | 是 (Docker) | 否 | 是 (复杂) | 是 (Docker) | 是 (复杂) |
@@ -459,7 +460,7 @@ Docmost 企业版包含 Notion (导出为 Markdown + CSV) 和 Confluence (导出
 
 ### Docmost 如何处理备份？
 
-备份两件事：PostgreSQL 数据库 (所有内容、元数据、用户账户) 和文件存储卷 (上传的附件)。使用 Docker 时，`pg_dump` 加上 docmost_data 卷的 `docker volume backup` 就足够了。对于 Redis，协作状态是临时的 —— 重启会清除活动会话，但不影响已保存的页面内容。
+备份两件事：PostgreSQL 数据库 (所有内容、元数据、用户账户) 和文件存储卷 (上传的附件)。使用 Docker 时，````pg_dump```` 加上 docmost_data 卷的 ````docker volume backup```` 就足够了。对于 Redis，协作状态是临时的 —— 重启会清除活动会话，但不影响已保存的页面内容。
 
 ### 有移动应用吗？
 
@@ -475,7 +476,7 @@ Docmost 企业版包含 Notion (导出为 Markdown + CSV) 和 Confluence (导出
 
 ### 如何更新 Docmost？
 
-使用 Docker Compose：拉取最新镜像，更新 docker-compose.yml 中的标签，然后运行 `docker compose up -d`。Docmost 在启动时自动运行数据库迁移。更新前始终备份 PostgreSQL。如果在负载均衡器后运行多个副本，更新通常 60 秒内完成且零停机。
+使用 Docker Compose：拉取最新镜像，更新 docker-compose.yml 中的标签，然后运行 ````docker compose up -d```。Docmost 在启动时自动运行数据库迁移。更新前始终备份 PostgreSQL。如果在负载均衡器后运行多个副本，更新通常 60 秒内完成且零停机。
 
 ## 结论：Docmost 是否已准备好迎接你的团队？
 
@@ -488,7 +489,7 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 加入 dibi8.com 社区：[Telegram 群组](https://t.me/dibi8opensource)，每天与 5,000+ 开发者讨论开源工具、部署技巧和故障排除。
 
 
----
+* * *
 ## 来源与延伸阅读
 
 - [Docmost 官方文档](https://docmost.com/docs/)
@@ -497,7 +498,7 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 - [Docmost 社区版 vs 企业版对比](https://wz-it.com/en/blog/docmost-community-vs-enterprise-edition/)
 - [Docmost Docker 部署指南](https://lowcloud.io/en/blog/self-host-docmost-with-docker-and-traefik)
 
----
+* * *
 
 ## 推荐部署与基础设施
 
@@ -538,7 +539,7 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -548,6 +549,6 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](docmost-team-docs-collaboration)
 - [moneyprinterturbo-one-click-ai-video-generator](docmost-team-docs-collaboration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

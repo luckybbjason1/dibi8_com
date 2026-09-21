@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/baetyl-edge-ai-computing-platform/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：12 万亿美元的边缘 AI 缺口
@@ -28,8 +29,8 @@ Baetyl 是 LF Edge 旗下的开源边缘计算框架，将云计算、数据和�
 
 Baetyl v2（当前稳定版：v2.4.3，2024 年 10 月发布）架构为两个互补系统：
 
-- **边缘计算框架** (`baetyl/baetyl`)：在边缘节点的 Kubernetes/K3s 上运行，通过系统服务（baetyl-init、baetyl-core、baetyl-function）管理和部署所有应用。
-- **云端管理套件** (`baetyl/baetyl-cloud`)：部署在云端的 Kubernetes 上，提供用于节点管理、应用部署、配置和批量预配的 RESTful API。
+- **边缘计算框架** (```baetyl/baetyl````)：在边缘节点的 Kubernetes/K3s 上运行，通过系统服务（baetyl-init、baetyl-core、baetyl-function）管理和部署所有应用。
+- **云端管理套件** (````baetyl/baetyl-cloud````)：部署在云端的 Kubernetes 上，提供用于节点管理、应用部署、配置和批量预配的 RESTful API。
 
 边缘框架支持 Linux/amd64、Linux/arm64 和 Linux/armv7。对于资源受限的设备，推荐使用 K3s（轻量级 Kubernetes），最低要求 **1GB 内存和 1 核 CPU**。
 
@@ -37,26 +38,26 @@ Baetyl v2（当前稳定版：v2.4.3，2024 年 10 月发布）架构为两个�
 
 Baetyl 的 v2 架构使用受 Kubernetes 控制器和 IoT 设备影子启发的声明式基于影子的同步模型：
 
-```
+`````
 云端 (Kubernetes)                      边缘端 (K3s/Kubernetes)
 +
----
+* * *
 +              +
----
+* * *
 +
 |  baetyl-cloud       |  Report    |  baetyl-init        |
 |  (管理 API)         | <
----
+* * *
 > |  (一次性设置)       |
 |                     |  Desire    |                     |
 |  - 节点注册         |              |  baetyl-core        |
 |  - 应用部署         | <
----
+* * *
 > |  - 本地节点管理     |
 |  - 配置管理         |   同步      |  - 云同步           |
 |  - 批量预配         |              |  - 应用引擎         |
 +
----
+* * *
 +              |                     |
        |                             |  baetyl-function    |
        |   HTTPS/WSS                 |  - 函数代理         |
@@ -66,17 +67,17 @@ Baetyl 的 v2 架构使用受 Kubernetes 控制器和 IoT 设备影子启发的�
                                      |  - MQTT 代理        |
                                      |  - 流处理器         |
                                      +
----
+* * *
 +
-```
+`````
 
 影子同步通过两个字段工作：**Report**（边缘关于自身的报告）和 **Desire**（云端希望边缘变成的状态）。当你在云端更新应用规范时，baetyl-core 检测到 Desire 变化，拉取新容器镜像，并在本地重新部署。即使在间歇性连接下也能实现可靠的 OTA 更新。
 
 **关键系统应用：**
 
-- `baetyl-init`：激活边缘节点到云端并初始化 baetyl-core，完成后退出。
-- `baetyl-core`：管理本地节点状态，通过 Report/Desire 影子与云同步，并通过嵌入式引擎部署应用。
-- `baetyl-function`：所有函数运行时服务的代理，函数调用通过此模块路由。
+- ````baetyl-init````：激活边缘节点到云端并初始化 baetyl-core，完成后退出。
+- ````baetyl-core````：管理本地节点状态，通过 Report/Desire 影子与云同步，并通过嵌入式引擎部署应用。
+- ````baetyl-function````：所有函数运行时服务的代理，函数调用通过此模块路由。
 
 ## 安装与配置：15 分钟完成边缘 + 云端
 
@@ -97,18 +98,18 @@ Baetyl 的 v2 架构使用受 Kubernetes 控制器和 IoT 设备影子启发的�
 
 ### 步骤 1：在边缘节点安装 K3s
 
-```bash
+`````bash
 curl -sfL https://get.k3s.io | sh -
 
 # 验证
 sudo kubectl get nodes
 # NAME      STATUS   ROLES                  AGE   VERSION
 # edge-01   Ready    control-plane,master   30s   v1.30.5+k3s1
-```
+`````
 
 ### 步骤 2：部署 baetyl-cloud（云端管理）
 
-```bash
+`````bash
 # 克隆云端管理仓库
 git clone https://github.com/baetyl/baetyl-cloud.git
 cd baetyl-cloud
@@ -136,11 +137,11 @@ helm install baetyl-cloud ./baetyl-cloud/
 kubectl get pod
 # NAME                            READY   STATUS    RESTARTS   AGE
 # baetyl-cloud-57cd9597bd-z62kb   1/1     Running   0          97s
-```
+`````
 
 ### 步骤 3：创建并激活边缘节点
 
-```bash
+`````bash
 # 通过云 API 创建节点
 curl -d '{"name":"edge-prod-01"}' \
   -H "Content-Type: application/json" \
@@ -153,11 +154,11 @@ curl http://localhost:30004/v1/nodes/edge-prod-01/init
 # 在边缘设备上执行激活
 curl -skfL 'https://CLOUD_IP:30003/v1/active/setup.sh?token=YOUR_TOKEN' \
   -o setup.sh && sh setup.sh
-```
+`````
 
 ### 步骤 4：验证边缘节点状态
 
-```bash
+`````bash
 # 在边缘节点上，检查系统应用
 kubectl get pods -n baetyl-edge
 # NAME                              READY   STATUS      RESTARTS   AGE
@@ -167,7 +168,7 @@ kubectl get pods -n baetyl-edge
 # 在云端验证节点在线
 curl http://localhost:30004/v1/nodes/edge-prod-01
 # "ready": true 表示激活成功
-```
+`````
 
 ## 与 4 种主流协议集成
 
@@ -177,7 +178,7 @@ Baetyl 通过内置协议适配器连接到多样化的 IoT 生态系统：
 
 baetyl-broker 模块提供边缘端 MQTT 代理，在设备、云和本地应用之间路由消息：
 
-```yaml
+`````yaml
 # MQTT 代理应用配置
 name: mqtt-app
 version: v1
@@ -190,17 +191,17 @@ services: - name: broker
 volumes: - name: broker-conf
     config: name: broker-conf
       version: v1
-```
+`````
 
 测试连接：
-```bash
+`````bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
-```
+`````
 
 **2. 工业传感器的 Modbus RTU/TCP**
 
-```yaml
+`````yaml
 # Modbus 设备连接器配置
 name: modbus-app
 services: - name: modbus-connector
@@ -214,11 +215,11 @@ services: - name: modbus-connector
               address: 0
               quantity: 2
               type: float
-```
+`````
 
 **3. 楼宇自动化的 BACnet**
 
-```yaml
+`````yaml
 # HVAC 系统的 BACnet 连接器
 name: bacnet-app
 services: - name: bacnet-connector
@@ -228,13 +229,13 @@ services: - name: bacnet-connector
           objects: - type: analog-input
               instance: 0
               property: present-value
-```
+`````
 
 **4. eKuiper 流处理集成**
 
 Baetyl v2.4.3+ 将 eKuiper（原名 EMQ X Kuiper）集成为可选系统应用，用于边缘流处理：
 
-```bash
+`````bash
 # 创建/更新节点时启用 eKuiper
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -244,7 +245,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   }'
 
 # eKuiper 将自动连接 baetyl-broker 作为流处理的输入源
-```
+`````
 
 ## 基准测试 / 真实边缘 AI 部署
 
@@ -252,11 +253,11 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 | 指标 | 云端 (AWS g4dn) | Baetyl 边缘 (Jetson Nano) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 网络往返 | 120-280ms | **0ms** (本地) |
 | 模型加载时间 | 1.2s (冷启动) | **800ms** (缓存) |
@@ -272,7 +273,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 **部署 AI 推理服务：**
 
-```yaml
+`````yaml
 # 边缘端 PyTorch 图像分类模型
 name: ai-inference-app
 version: v1
@@ -287,20 +288,20 @@ services: - name: defect-detector
         mountPath: /models
 volumes: - name: model-cache
     hostPath: path: /opt/baetyl/models
-```
+`````
 
 **GPU 监控与共享：**
 
 baetyl-core 可实时监控 GPU 内存使用、温度和能耗。多个应用可以共享 GPU 资源：
 
-```yaml
+`````yaml
 # GPU 资源配置
 resources: limits: nvidia.com/gpu.shared: 0.5  # 在应用间共享 GPU
-```
+`````
 
 **OTA 更新滚动策略：**
 
-```bash
+`````bash
 # 灰度发布新版本模型到部分节点
 curl -X POST http://cloud:30004/v1/apps \
   -H "Content-Type: application/json" \
@@ -318,11 +319,11 @@ curl http://cloud:30004/v1/nodes/edge-prod-01/report
 # 灰度验证后全量发布
 curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
   -d '{"selector": {"node-group": "production"}}'
-```
+`````
 
 **边缘端 SQLite 数据库：**
 
-```bash
+`````bash
 # 部署 SQLite 用于边缘本地数据缓存
 cat > sqlite-app.yml << EOF
 name: local-cache
@@ -335,11 +336,11 @@ volumes: - name: data
 EOF
 
 baetyl apply -f sqlite-app.yml
-```
+`````
 
 **安全：边缘与云端之间的 mTLS：**
 
-```bash
+`````bash
 # 为边缘-云通信生成证书
 openssl req -x509 -newkey rsa:4096 -keyout edge-key.pem \
   -out edge-cert.pem -days 365 -nodes \
@@ -355,21 +356,21 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
       "key.pem": "'$(base64 -w0 edge-key.pem)'"
     }
   }'
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | Baetyl v2.4 | KubeEdge v1.18 | EdgeX Foundry 3.1 | Azure IoT Edge |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 许可证 | **Apache-2.0** | Apache-2.0 | Apache-2.0 | 专有 |
 | Kubernetes 原生 | **是 (K3s/K8s)** | 是 (K8s) | 否 (Docker) | 否 (Docker) |
@@ -421,7 +422,7 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
 
 **问：我能否不使用云端管理套件部署 Baetyl？**
 
-答：可以，但会失去集中管理和 OTA 更新。你可以使用本地 Kubernetes 清单或 `baetyl apply` CLI 直接将应用部署到边缘节点。这种独立模式适用于单节点部署或禁止云连接的高安全环境。
+答：可以，但会失去集中管理和 OTA 更新。你可以使用本地 Kubernetes 清单或 ````baetyl apply``` CLI 直接将应用部署到边缘节点。这种独立模式适用于单节点部署或禁止云连接的高安全环境。
 
 ## 结论：将 AI 带到数据所在之处
 
@@ -519,12 +520,12 @@ Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 202
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](baetyl-edge-ai-computing-platform)
@@ -533,6 +534,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

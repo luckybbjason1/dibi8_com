@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/claude-code/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu
@@ -53,9 +54,9 @@ Các thành phần kiến trúc chính: - **Công cụ Ngữ cảnh**: Thu thậ
 
 | Khái Niệm | Mô Tả |
 |---------|-------------|
-| `CLAUDE.md` | File cấu hình cấp dự án xác định tiêu chuẩn lập trình, quy ước, và hướng dẫn tùy chỉnh |
-| Chế độ Kế hoạch (`/plan`) | Claude phác thảo tất cả thay đổi dự kiến trước khi chạm đến đĩa, cho phép bạn kiểm soát phê duyệt |
-| Lệnh Gạch chéo | Phím tắt quy trình làm việc có thể tái sử dụng như `/init`, `/desktop`, `/mcp`, và `/bug` |
+| ```CLAUDE.md```` | File cấu hình cấp dự án xác định tiêu chuẩn lập trình, quy ước, và hướng dẫn tùy chỉnh |
+| Chế độ Kế hoạch (````/plan````) | Claude phác thảo tất cả thay đổi dự kiến trước khi chạm đến đĩa, cho phép bạn kiểm soát phê duyệt |
+| Lệnh Gạch chéo | Phím tắt quy trình làm việc có thể tái sử dụng như ````/init````, ````/desktop````, ````/mcp````, và ````/bug```` |
 | Tích hợp MCP | Kết nối công cụ bên ngoài qua Giao thức Ngữ cảnh Mô hình cho truy vấn cơ sở dữ liệu, gọi API, v.v. |
 
 ## Cài Đặt và Thiết Lập
@@ -64,7 +65,7 @@ Claude Code cài đặt trong vòng 60 giây trên macOS, Linux, và Windows (qu
 
 ### macOS và Linux (Trình Cài Đặt Khuyến Nghị)
 
-```bash
+`````bash
 # Cài đặt qua trình cài đặt chính thức (tự động cập nhật nền)
 curl -fsSL https://claude.ai/install.sh | bash
 
@@ -73,51 +74,51 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Kiểm tra cài đặt
 claude --version
-```
+`````
 
 ### Windows PowerShell
 
-```powershell
+`````powershell
 # Cài đặt qua trình cài đặt PowerShell
 irm https://claude.ai/install.ps1 | iex
 
 # Xác minh cài đặt
 claude --version
-```
+`````
 
 ### Homebrew (macOS/Linux — Cập Nhật Thủ Công)
 
-```bash
+`````bash
 # Cài đặt qua Homebrew (không tự động cập nhật)
 brew install claude-code
 
 # Cập nhật thủ công khi cần
 brew upgrade claude-code
-```
+`````
 
 ### Tiện Ích VS Code
 
-```bash
+`````bash
 # Cài đặt từ chợ VS Code
 # Mở bảng Extensions (Cmd+Shift+X / Ctrl+Shift+X)
 # Tìm "Claude Code" và cài đặt
 # Tiện ích kết nối với cùng phiên đang chạy trong terminal
-```
+`````
 
 ### Xác Thực
 
-```bash
+`````bash
 # Đăng nhập bằng tài khoản Anthropic
 claude auth login
 
 # Cửa sổ trình duyệt mở ra. Claude Code yêu cầu đăng ký trả phí: # - Claude Pro: $20/tháng
 # - Claude Max: $100/tháng (5x lượng sử dụng)
 # - Claude Max 20x: $200/tháng (20x lượng sử dụng)
-```
+`````
 
 ### Phiên Đầu Tiên
 
-```bash
+`````bash
 # Di chuyển đến dự án
 cd /path/to/your-project
 
@@ -126,7 +127,7 @@ claude
 
 # Yêu cầu nó làm quen với cấu trúc dự án
 What does this project do? Walk me through the architecture.
-```
+`````
 
 ## Tích Hợp Với Các Công Cụ Phổ Biến
 
@@ -134,40 +135,40 @@ What does this project do? Walk me through the architecture.
 
 Tiện ích Claude Code nhúng phiên CLI vào thanh bên trình biên tập. Cài đặt từ chợ, xác thực một lần, và chuyển đổi giữa terminal và IDE mà không mất ngữ cảnh.
 
-```json
+`````json
 // .vscode/settings.json — Cài đặt khuyến nghị cho Claude Code
 {
   "claude.code.enableInlineCompletion": false,
   "claude.code.autoApproveEdits": false,
   "claude.code.defaultModel": "claude-opus-4-6"
 }
-```
+`````
 
 ### Cursor
 
 Vì Cursor là bản phân nhánh VS Code, Claude Code chạy trong terminal tích hợp của Cursor. Hai công cụ bổ sung cho nhau: Cursor xử lý tự động hoàn thành nội dòng và diff trực quan, Claude Code quản lý tái cấu trúc đa file và thực thi tác vụ tự động.
 
-```bash
+`````bash
 # Trong terminal tích hợp của Cursor, đơn giản chạy: cd your-project
 claude
 
 # Cả hai công cụ hoạt động trên cùng hệ thống file mà không xung đột
-```
+`````
 
 ### Tích Hợp GitHub
 
-Gắn thẻ `@claude` trên pull request hoặc issue GitHub để kích hoạt phân tích Claude Code. Tác nhân đọc diff PR, để lại bình luận xem xét, và có thể đề xuất sửa chữa.
+Gắn thẻ ````@claude```` trên pull request hoặc issue GitHub để kích hoạt phân tích Claude Code. Tác nhân đọc diff PR, để lại bình luận xem xét, và có thể đề xuất sửa chữa.
 
-```bash
+`````bash
 # Kích hoạt tích hợp GitHub
 claude auth login --github
 
 # Trong bình luận PR, gắn thẻ: @claude please review this change for security issues
-```
+`````
 
 ### Pipeline GitLab CI/CD
 
-```yaml
+`````yaml
 # .gitlab-ci.yml — Chạy Claude Code để xem xét code tự động
 stages: - review
 
@@ -178,15 +179,15 @@ claude_review: stage: review
     - claude auth login --token $CLAUDE_API_TOKEN
   script: - claude review --diff HEAD~1 --output review.json
   artifacts: reports: codequality: review.json
-```
+`````
 
 ### JetBrains IDE
 
 Cài đặt plugin Claude Code từ JetBrains Marketplace. Hoạt động với WebStorm, IntelliJ, PyCharm, GoLand, và tất cả sản phẩm JetBrains khác.
 
-```bash
+`````bash
 # Bên trong bất kỳ JetBrains IDE: # Cài đặt → Plugins → Marketplace → Tìm "Claude Code" → Cài đặt → Khởi động lại
-```
+`````
 
 ## Benchmark / Trường Hợp Sử Dụng Thực Tế
 
@@ -224,9 +225,9 @@ Dựa trên báo cáo nhà phát triển tổng hợp từ Q1 2026: | Chỉ Số
 
 ### Cấu Hình CLAUDE.md
 
-File `CLAUDE.md` là sách hướng dẫn dự án cho Claude Code. Đặt nó ở thư mục gốc repository.
+File ````CLAUDE.md```` là sách hướng dẫn dự án cho Claude Code. Đặt nó ở thư mục gốc repository.
 
-```markdown
+`````markdown
 # CLAUDE.md — Cấu hình Dự án cho Claude Code
 
 ## Tiêu Chuẩn Lập Trình
@@ -236,25 +237,25 @@ File `CLAUDE.md` là sách hướng dẫn dự án cho Claude Code. Đặt nó �
 - Ưu tiên async/await thay vì chuỗi Promise
 
 ## Kiểm Thử
-- Chạy `npm test` trước khi commit thay đổi
+- Chạy ````npm test```` trước khi commit thay đổi
 - Tính năng mới yêu cầu kiểm thử đơn vị với độ phủ >80%
 - Dùng Vitest cho kiểm thử đơn vị, Playwright cho E2E
 
 ## Quy Trình Git
 - Sử dụng conventional commits (feat:, fix:, docs:, refactor:)
 - Tạo nhánh mới cho mỗi tác vụ; không commit trực tiếp lên main
-- Chạy `npm run lint` trước mỗi lần commit
+- Chạy ````npm run lint```` trước mỗi lần commit
 
 ## Kiến Trúc
 - /src/components — Component React (tên file PascalCase)
 - /src/lib — Hàm tiện ích (tên file camelCase)
 - /src/api — Bộ xử lý route
 - /tests — Phản chiếu cấu trúc src
-```
+`````
 
 ### Sandbox Bảo Mật
 
-Claude Code thực thi lệnh shell với quyền ngườ dùng của bạn, mang rủi ro tiềm ẩn. Với môi trường production, sử dụng sandbox: ```bash
+Claude Code thực thi lệnh shell với quyền ngườ dùng của bạn, mang rủi ro tiềm ẩn. Với môi trường production, sử dụng sandbox: `````bash
 # Chạy Claude Code trong Docker sandbox
 docker run -it --rm \
   -v $(pwd):/workspace \
@@ -263,11 +264,11 @@ docker run -it --rm \
   --tmpfs /tmp \
   node:22-slim \
   bash -c "curl -fsSL https://claude.ai/install.sh | bash && /root/.local/bin/claude"
-```
+`````
 
 ### Kiểm Soát Quyền với Móc Vòng Đởi
 
-```json
+`````json
 // ~/.claude/settings.json — Quy tắc quyền toàn cục
 {
   "permissions": {
@@ -285,11 +286,11 @@ docker run -it --rm \
     "PostToolUse": "/home/dev/.claude/hooks/post-tool.sh"
   }
 }
-```
+`````
 
 ### Cấu Hình Máy Chủ MCP
 
-```json
+`````json
 // mcp.json — Kết nối công cụ bên ngoài
 {
   "mcpServers": {
@@ -307,11 +308,11 @@ docker run -it --rm \
     }
   }
 }
-```
+`````
 
 ### Giám Sát Lượng Token Sử Dụng
 
-```bash
+`````bash
 # Kiểm tra tiêu thụ token phiên hiện tại
 claude status
 
@@ -320,7 +321,7 @@ claude status
 # Output tokens: 28,441
 # Estimated cost: $0.42
 # Rate limit: 4,200/5,000 requests remaining
-```
+`````
 
 ## So Sánh Với Các Phương Án Thay Thế
 
@@ -408,7 +409,7 @@ A: Claude Code không phụ thuộc ngôn ngữ vì nó hoạt động ở cấp
 A: Cửa sổ ngữ cảnh lớn cho phép Claude Code tải toàn bộ repository — hoặc phần lớn của nó — mà không bị cắt xén. Điều này quan trọng cho tái cấu trúc đa file, hiểu kiến trúc monorepo, và gỡ lỗi vấn đề trải dài nhiều module. Trong thực tế, repository dưới 500K dòng code vừa vặn thoải mái trong cửa sổ ngữ cảnh.
 
 **Q: Claude Code có an toàn cho codebase production không?**
-A: Claude Code thực thi lệnh shell với quyền ngườ dùng của bạn, mang rủi ro tiềm ẩn. Với môi trường production, chạy trong Docker sandbox, cấu hình móc vòng đởi để chặn lệnh nguy hiểm, và luôn sử dụng Chế độ Kế hoạch (`/plan`) để xem xét thay đổi trước khi thực thi. Không bao giờ chạy Claude Code với sudo hoặc trên repository không đáng tin mà không có sandbox.
+A: Claude Code thực thi lệnh shell với quyền ngườ dùng của bạn, mang rủi ro tiềm ẩn. Với môi trường production, chạy trong Docker sandbox, cấu hình móc vòng đởi để chặn lệnh nguy hiểm, và luôn sử dụng Chế độ Kế hoạch (````/plan````) để xem xét thay đổi trước khi thực thi. Không bao giờ chạy Claude Code với sudo hoặc trên repository không đáng tin mà không có sandbox.
 
 **Q: Tôi có thể dùng Claude Code cùng Cursor hoặc VS Code không?**
 A: Có. Nhiều nhà phát triển chạy cả hai: Cursor xử lý vòng lặp chỉnh sửa hàng ngày với tự động hoàn thành nội dòng, Claude Code quản lý tái cấu trúc tự động lớn trong khung terminal. Chúng hoạt động trên cùng Git repository mà không xung đột, mặc dù chỉnh sửa đồng thờ cùng file có thể gây xung đột hợp nhất.
@@ -420,10 +421,10 @@ Claude Code đại diện cho tác nhân lập trình AI dựa trên terminal m�
 Với các nhóm đã chuẩn hóa mô hình Anthropic, Claude Code là lựa chọn tự nhiên. Với nhà phát triển cần linh hoạt mô hình hoặc chi phí đăng ký bằng không, Aider và OpenHands là những lựa chọn thay thế mã nguồn mở mạnh mẽ. Với ngườ đăng ký ChatGPT muốn tác nhân terminal nhanh nhất, Codex CLI mang lại kết quả cạnh tranh không phát sinh thêm chi phí.
 
 **Các hành động để bắt đầu:**
-1. Cài đặt Claude Code bằng `curl -fsSL https://claude.ai/install.sh | bash`
-2. Xác thực bằng `claude auth login` và đăng ký Claude Pro ($20/tháng)
-3. Tạo file `CLAUDE.md` trong dự án chính với tiêu chuẩn lập trình
-4. Chạy `claude` trong thư mục dự án và yêu cầu nó phân tích kiến trúc
+1. Cài đặt Claude Code bằng ````curl -fsSL https://claude.ai/install.sh | bash````
+2. Xác thực bằng ````claude auth login```` và đăng ký Claude Pro ($20/tháng)
+3. Tạo file ````CLAUDE.md```` trong dự án chính với tiêu chuẩn lập trình
+4. Chạy ````claude``` trong thư mục dự án và yêu cầu nó phân tích kiến trúc
 5. Tham gia [nhóm Telegram dibi8](https://t.me/dibi8channel) để chia sẻ mẹo và đặt câu hỏi
 
 
@@ -449,7 +450,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Trang Giá Anthropic](https://www.anthropic.com/pricing)
 - [Tải Ứng dụng Desktop Claude Code](https://claude.com/download)
 
----
+* * *
 
 *Tuyên bố miễn trừ: Bài viết này không chứa liên kết liên kết. Mọi dữ liệu giá và benchmark phản ánh thông tin công khai tính đến tháng 5 năm 2026. Xác minh giá hiện tại trên trang web nhà cung cấp chính thức trước khi đưa ra quyết định mua hàng.*
 
@@ -479,7 +480,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -489,7 +490,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [claude-code-vs-aider](claude-code)
 - [cursor-vs-claude-code](claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

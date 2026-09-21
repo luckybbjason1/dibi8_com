@@ -26,6 +26,7 @@ tags: ["llm gateway", "portkey", "litellm", "openrouter", "对比"]
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/-
 ---
+
 # Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、价格与自托管全对比）
 
 
@@ -47,9 +48,9 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 
 | 你的情况 | 推荐 |
 |
----
+* * *
 |
----
+* * *
 |
 | 企业级，合规重，需要 SOC2 / HIPAA | **Portkey** |
 | 想自托管、零 vendor 抽成、有运维团队 | **LiteLLM** |
@@ -119,13 +120,13 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 
 | 指标 | Portkey | LiteLLM | OpenRouter |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub stars | 11.8k | **47.8k** | N/A（闭源服务）|
 | 许可证 | MIT | 开源核心（企业版独立）| 商业 |
@@ -172,7 +173,7 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 没有"全场景最佳" LLM 网关。只有"匹配你第 2 节决策树那一行"的网关。挑那个，发版，等月推理账单超 $5,000 再重新评估。
 
 
----
+* * *
 *想零成本测试上面三家？开一个 $6/月的 [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) 跑 LiteLLM，把现有 OpenAI SDK base URL 改过去，0 代码改动就能拥有完整 fallback 选项。*
 
 
@@ -238,11 +239,11 @@ Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -252,7 +253,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 - [ai-engineering-from-scratch](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

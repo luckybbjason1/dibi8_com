@@ -33,6 +33,7 @@ faqs: - q: 'Is JustHireMe free and open source?'
   - q: 'What technology stack is JustHireMe built on?'
     a: 'The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.'
 ---
+
 {</* resource-info */>}
 
 ## 问题：找工作就是一份全职工作
@@ -110,9 +111,9 @@ HR 看得出来是模板还是用心写的。
 
 | 层级 | 技术 |
 |
----
+* * *
 |
----
+* * *
 |
 | 桌面端 | Tauri 2 + React 19 + TypeScript |
 | 后端 | Python 3.13 + FastAPI + WebSockets |
@@ -124,7 +125,7 @@ HR 看得出来是模板还是用心写的。
 
 ## 安装使用
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/vasu-devs/JustHireMe.git
 cd JustHireMe
@@ -137,7 +138,7 @@ npm run dev
 
 # 启动桌面应用
 npm run tauri dev
-```
+````
 
 ## 使用流程
 
@@ -171,13 +172,13 @@ npm run tauri dev
 - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
 
----
+* * *
 **项目地址**：[github.com/vasu-devs/JustHireMe](https://github.com/vasu-devs/JustHireMe)
 
 **Stars**：471 ⭐ | **Forks**：91 | **语言**：Python 47.3%, TypeScript 27.5%
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -258,7 +259,7 @@ JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an i
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

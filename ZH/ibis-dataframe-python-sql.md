@@ -9,6 +9,7 @@ aliases:
   - /zh/posts/ibis-dataframe-python-sql/-
 ---
 
+
 {{</* resource-info */>}}
 
 在数据分析领域不断演进的格局中，Python 开发者长期面临一个令人沮丧的困境：应该选择**pandas**以获得直观的 DataFrame API，还是编写原生 **SQL** 以在大型数据集上获得更优的性能？到了 2026 年，这种权衡已不再必要。**Ibis** 应运而生 —— 一个可移植的开源 Python 库，提供熟悉的 DataFrame API，同时将表达式编译为高性能 SQL，在 20 多个后端上执行。凭借超过 12,000 个 GitHub Star 和 Apache-2.0 许可证，Ibis 正在改变数据工程师和数据科学家与数据库交互的方式。
@@ -18,14 +19,14 @@ aliases:
 在本综合指南中，我们将探索 Ibis 的所有功能：从安装和基本查询到高级模式和实际基准测试。读完本文，您将明白为什么 Ibis 正成为拒绝在生产力和性能之间妥协的数据从业者的默认选择。
 
 
----
+* * *
 ## 什么是 Ibis？数据分析的新范式
 
 Ibis 是由 **Wes McKinney**（pandas 的原作者）创建的 Python DataFrame 库。与完全在内存中运行的 pandas 不同，Ibis 采用了一种根本不同的方法：它提供了一个**可编译为 SQL 的 DataFrame API**。这意味着您编写的代码外观和感觉都像 pandas，但 Ibis 会将这些表达式转换为优化的 SQL 查询，直接在您的数据库引擎中运行。
 
 结果如何？您获得了两全其美的优势：Python 的 ergonomics 与现代 SQL 查询引擎的原始强大功能相结合。不再需要仅仅为了计算聚合就将数百万行数据拉入内存。不再需要在 Python 和 SQL 方言之间来回切换上下文。Ibis 将您的数据工作流统一在一个优雅、可移植的接口之下。
 
-```python
+````python
 # Ibis 对任何 pandas 用户来说都很熟悉
 import ibis
 
@@ -41,19 +42,19 @@ result = (
 
 # 执行查询 — 在 DuckDB 内部运行，不在 Python 内存中
 print(result.execute())
-```
+`````
 
 在幕后，Ibis 将上述表达式编译为优化的 SQL 查询，将所有计算推送到后端，并仅返回最终的聚合结果。这种架构使 Ibis 能够处理足以使 pandas 进程崩溃的数据集。
 
 
----
+* * *
 ## 为什么 Ibis 在 2026 年至关重要
 
 2026 年的数据格局比以往任何时候都更加分散。组织在由多个系统组成的混合环境中运行分析：本地 DuckDB 用于开发，PostgreSQL 用于事务数据，BigQuery 用于数据仓库，Snowflake 用于企业分析，ClickHouse 用于实时工作负载。从历史上看，每个系统都需要学习不同的 SDK、不同的 SQL 方言和不同的心智模型。
 
 Ibis 优雅地解决了这种碎片化问题。其统一的 DataFrame API 在所有支持的后端上完全相同地工作。您为 DuckDB 编写的代码可以在 BigQuery 或 Snowflake 上 unchanged 地运行。这种可移植性不仅仅是一种便利 —— 对于需要在不重新编写分析管道的情况下在不同环境之间切换的团队来说，它是一个游戏规则改变者。
 
-```python
+`````python
 # 相同的代码在所有后端上都能运行
 query = (
     t.select("customer_id", "order_date", "amount")
@@ -75,17 +76,17 @@ result_local = query.execute()
 # 在 BigQuery 上运行完全相同的查询
 con_bq = ibis.bigquery.connect(project_id="my-project")
 result_cloud = query.execute()
-```
+`````
 
 除了可移植性之外，Ibis 还解决了困扰 pandas 工作流的**性能瓶颈**。由于 Ibis 将计算推送到后端查询引擎，它永远不会在 Python 内存中物化中间结果。聚合、连接、窗口函数和筛选都在数据库内部执行 —— 这正是它们应该在的地方。
 
----
+* * *
 
 ## 安装 Ibis 和后端依赖
 
 开始使用 Ibis 非常简单。核心库非常轻量，您只需要安装所需的后端额外组件。
 
-```bash
+`````bash
 # 安装 Ibis 核心
 pip install ibis-framework
 
@@ -99,28 +100,28 @@ pip install "ibis-framework[clickhouse]"
 
 # 一次安装多个后端
 pip install "ibis-framework[duckdb,postgres,bigquery]"
-```
+`````
 
 对于 conda 用户：
 
-```bash
+`````bash
 conda install -c conda-forge ibis-framework
 conda install -c conda-forge ibis-duckdb ibis-postgres
-```
+`````
 
 安装完成后，验证一切正常：
 
-```python
+`````python
 import ibis
 print(ibis.__version__)
 
 # 列出可用的后端
 print(ibis.util.backend_entry_points())
-```
+`````
 
 Ibis 目前支持 20 多个后端，包括 DuckDB、PostgreSQL、MySQL、SQLite、BigQuery、Snowflake、ClickHouse、Trino、PySpark、DataFusion 等。后端生态系统随着每次发布都在不断扩展。
 
----
+* * *
 
 ## 连接 20 多个 SQL 后端
 
@@ -128,7 +129,7 @@ Ibis 的标志性优势之一是能够连接到几乎任何数据系统。让我
 
 ### DuckDB（本地分析推荐）
 
-```python
+`````python
 import ibis
 
 # 内存数据库
@@ -145,11 +146,11 @@ con.read_csv("customers.csv", table_name="customers")
 
 t = con.table("events")
 print(t.count().execute())
-```
+`````
 
 ### PostgreSQL
 
-```python
+`````python
 import ibis
 
 con = ibis.postgres.connect(
@@ -162,11 +163,11 @@ con = ibis.postgres.connect(
 
 t = con.table("sales")
 print(t.schema())
-```
+`````
 
 ### BigQuery
 
-```python
+`````python
 import ibis
 
 con = ibis.bigquery.connect(
@@ -176,11 +177,11 @@ con = ibis.bigquery.connect(
 
 t = con.table("user_events")
 result = t.filter(t.event_date >= "2026-01-01").execute()
-```
+`````
 
 ### Snowflake
 
-```python
+`````python
 import ibis
 
 con = ibis.snowflake.connect(
@@ -193,28 +194,28 @@ con = ibis.snowflake.connect(
 )
 
 t = con.table("transactions")
-```
+`````
 
 ### SQLite
 
-```python
+`````python
 import ibis
 
 con = ibis.sqlite.connect("sample.db")
 t = con.table("employees")
-```
+`````
 
 所有后端的连接 API 都是一致的。一旦您建立了连接并获得了表引用，无论底层是什么，Ibis 表达式 API 的工作方式都是完全相同的。
 
----
+* * *
 
 ## Ibis DataFrame API：熟悉而强大
 
-如果您使用过 pandas，Ibis API 会立即让您感到熟悉。Ibis 提供了您期望的所有核心 DataFrame 操作：`select`、`filter`、`group_by`、`aggregate`、`order_by`、`limit`、`join` 等等。
+如果您使用过 pandas，Ibis API 会立即让您感到熟悉。Ibis 提供了您期望的所有核心 DataFrame 操作：````select````、````filter````、````group_by````、````aggregate````、````order_by````、````limit````、````join```` 等等。
 
 ### 选择和筛选
 
-```python
+`````python
 import ibis
 
 con = ibis.duckdb.connect()
@@ -237,11 +238,11 @@ enriched = t.mutate(
     value_squared=t.value * t.value,
     is_high_value=t.value > 100
 )
-```
+`````
 
 ### 聚合和分组
 
-```python
+`````python
 # 基本聚合
 stats = t.aggregate(
     count=t.user_id.count(),
@@ -261,11 +262,11 @@ by_category = (
      )
      .order_by(ibis.desc("total"))
 )
-```
+`````
 
 ### 连接操作
 
-```python
+`````python
 users = con.table("users")
 orders = con.table("orders")
 
@@ -291,11 +292,11 @@ reporting = users.inner_join(
     users.name.name("employee"),
     managers.name.name("manager")
 )
-```
+`````
 
 ### 窗口函数
 
-```python
+`````python
 # 累计求和
 running = t.mutate(
     running_total=t.value.sum().over(
@@ -316,15 +317,15 @@ moving = t.mutate(
         ibis.window(order_by=t.timestamp, preceding=1, following=1)
     )
 )
-```
+`````
 
----
+* * *
 
 ## 惰性求值和 SQL 编译
 
-Ibis 最强大的功能之一是其**惰性求值模型**。当您编写 Ibis 表达式时，不会立即发生任何计算。相反，Ibis 会构建查询的内部表示 —— 抽象语法树（AST） —— 然后仅在您调用 `.execute()` 时才将其优化并编译为 SQL。
+Ibis 最强大的功能之一是其**惰性求值模型**。当您编写 Ibis 表达式时，不会立即发生任何计算。相反，Ibis 会构建查询的内部表示 —— 抽象语法树（AST） —— 然后仅在您调用 ````.execute()```` 时才将其优化并编译为 SQL。
 
-```python
+`````python
 import ibis
 
 con = ibis.duckdb.connect("sales.db")
@@ -341,22 +342,22 @@ expr = (
 
 # 检查编译后的 SQL，无需执行
 print(expr.sql())
-```
+`````
 
 输出显示 Ibis 将执行的确切 SQL：
 
-```sql
+`````sql
 SELECT "category", SUM("amount") AS "total"
 FROM "transactions"
 WHERE "amount" > 100
 GROUP BY "category"
 ORDER BY "total" DESC
 LIMIT 5
-```
+`````
 
 这种惰性方法使 Ibis 能够执行复杂的查询优化。它可以将筛选条件下推到源端，消除不必要的列，合并冗余操作，并利用底层 SQL 引擎的全部优化能力。
 
-```python
+`````python
 # 链式多个操作 —— Ibis 优化整个管道
 pipeline = (
     t.filter(t.status == "completed")
@@ -380,11 +381,11 @@ print(pipeline.sql())
 
 # 现在才执行查询
 results = pipeline.execute()
-```
+`````
 
 在执行前检查编译后的 SQL 对于调试、查询调优和学习 SQL 来说非常宝贵。它架起了 Python 风格数据操作和以 SQL 为先的分析平台之间的桥梁。
 
----
+* * *
 
 ## Ibis 的高级查询模式
 
@@ -392,7 +393,7 @@ Ibis 支持超越基本 CRUD 操作的复杂分析模式。让我们探索一些
 
 ### 自定义表达式和字面量
 
-```python
+`````python
 import ibis
 import ibis.selectors as s
 
@@ -416,11 +417,11 @@ categorized = t.mutate(
         .else_("Bronze")
         .end()
 )
-```
+`````
 
 ### 复杂子查询
 
-```python
+`````python
 # 查找高于平均消费的用户
 avg_spend = t.amount.mean()
 above_avg = t.filter(t.amount > avg_spend)
@@ -431,11 +432,11 @@ from ibis import window, row_number
 w = window(group_by=t.category, order_by=ibis.desc(t.revenue))
 ranked = t.mutate(rn=row_number().over(w))
 top3 = ranked.filter(ranked.rn <= 3)
-```
+`````
 
 ### 用户定义函数（UDF）
 
-```python
+`````python
 # 定义在 DuckDB 中运行的 Python UDF
 @ibis.udf.scalar.python
 def format_currency(value: float) -> str: return f"${value:,.2f}"
@@ -443,11 +444,11 @@ def format_currency(value: float) -> str: return f"${value:,.2f}"
 applied = t.mutate(
     formatted=format_currency(t.amount)
 )
-```
+`````
 
-### 使用 `_` 引用的交互式操作
+### 使用 ````_```` 引用的交互式操作
 
-```python
+`````python
 # 下划线（_）在管道中引用当前表
 result = (
     t.filter(_.amount > 100)
@@ -456,15 +457,15 @@ result = (
      .filter(_.total > 10000)
      .order_by(_.total.desc())
 )
-```
+`````
 
----
+* * *
 
 ## 性能基准测试：Ibis 与 pandas 的对比
 
 随着数据集规模的增长，Ibis 和 pandas 之间的性能差异变得显著。让我们通过一个具体基准测试来比较这两个库。
 
-```python
+`````python
 import ibis
 import pandas as pd
 import numpy as np
@@ -516,13 +517,13 @@ result_ibis = (
 ibis_time = time.time() - start
 print(f"Ibis + DuckDB: {ibis_time:.2f}s")
 print(f"加速比: {pandas_time / ibis_time:.1f}x")
-```
+`````
 
 在典型硬件上，Ibis + DuckDB 组合执行此查询的速度比 pandas 快 **10-15 倍**，且内存使用量显著降低。pandas 必须将所有 1000 万行加载到 RAM 中，为筛选和分组分配中间数组，并在 Python 中执行所有计算。相比之下，Ibis 将所有内容推送到 DuckDB 优化的 C++ 查询引擎，仅在 Python 中物化小型聚合结果。
 
 对于更大的数据集 —— 数亿甚至数十亿行 —— 差距进一步扩大。pandas 通常会耗尽内存并崩溃，而 Ibis 通过 BigQuery、Snowflake 或 ClickHouse 继续执行，毫无压力。
 
----
+* * *
 
 ## Ibis 与 SQLAlchemy 与 pandas：何时使用什么
 
@@ -530,13 +531,13 @@ print(f"加速比: {pandas_time / ibis_time:.1f}x")
 
 | 特性 | pandas | SQLAlchemy | Ibis |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API 风格 | DataFrame | SQL/ORM | DataFrame |
 | 执行方式 | 内存 Python | Python 转 SQL | Python 转 SQL |
@@ -552,7 +553,7 @@ print(f"加速比: {pandas_time / ibis_time:.1f}x")
 
 **使用 Ibis**：当您想要任何规模下类似 pandas 的体验，需要使用相同代码查询多个数据库后端，或想要带有优化 SQL 编译的惰性求值时。Ibis 是 DataFrame ergonomics 与数据库性能相遇的分析工作负载的最佳选择。
 
-```python
+`````python
 # Ibis 代码比等效的 SQLAlchemy 分析代码更简洁
 # Ibis: result = (
     t.group_by("category")
@@ -562,9 +563,9 @@ print(f"加速比: {pandas_time / ibis_time:.1f}x")
 ).execute()
 
 # 等效的 SQLAlchemy 分析查询需要更多样板代码
-```
+`````
 
----
+* * *
 
 ## 常见问题解答（FAQ）
 
@@ -572,20 +573,20 @@ print(f"加速比: {pandas_time / ibis_time:.1f}x")
 
 不会，Ibis 与 pandas 是互补关系，而非直接替代。Ibis 擅长查询远程数据库和处理超出可用内存的大型数据集。pandas 仍然非常适合小型到中型内存数据集，并提供更丰富的统计和可视化工具生态系统。许多工作流使用 Ibis 来完成繁重的任务（大规模筛选、连接、聚合），然后将较小的结果传递给 pandas 进行最终分析或绘图。
 
-```python
+`````python
 # 混合工作流：Ibis 处理大数据，pandas 进行分析
 large_result = ibis_query.execute()  # 返回 pandas DataFrame
 small_summary = large_result.describe()  # pandas 用于快速统计
-```
+`````
 
 ### 我可以看到 Ibis 生成的 SQL 吗？
 
-当然可以。您可以随时使用 Ibis 表达式上的 `.sql()` 方法来检查编译后的 SQL。这对于调试、性能调优和学习 SQL 非常有用。
+当然可以。您可以随时使用 Ibis 表达式上的 ````.sql()```` 方法来检查编译后的 SQL。这对于调试、性能调优和学习 SQL 非常有用。
 
-```python
+`````python
 expr = t.group_by("category").aggregate(total=t.amount.sum())
 print(expr.sql())
-```
+`````
 
 ### Ibis 适合生产级 ETL 管道吗？
 
@@ -595,21 +596,21 @@ print(expr.sql())
 
 Ibis 自动抽象掉方言差异。当您编写 Ibis 表达式时，库会处理向 PostgreSQL 语法、BigQuery 语法、Snowflake 语法或您的目标后端所需的任何方言的转换。您编写一段 Python 代码，Ibis 负责其余部分。
 
-```python
+`````python
 # 同一表达式为每个后端编译为不同的 SQL
 expr = t.mutate(year=t.date.year(), month=t.date.month())
 
 # PostgreSQL: EXTRACT(YEAR FROM "date")
-# BigQuery: EXTRACT(YEAR FROM `date`)
+# BigQuery: EXTRACT(YEAR FROM ````date````)
 # DuckDB: EXTRACT(YEAR FROM "date")
 # Ibis 自动处理所有这些
-```
+`````
 
 ### pandas 用户的学习曲线如何？
 
-对于 pandas 用户来说，学习曲线出奇地平缓。大多数核心操作 —— `filter`、`select`、`group_by`、`aggregate`、`order_by`、`mutate`、`join` —— 使用熟悉的名称和语义。主要需要调整的是理解惰性求值：表达式在您调用 `.execute()` 之前不会执行。大多数有经验的 pandas 用户在几个小时内就能熟练使用 Ibis。
+对于 pandas 用户来说，学习曲线出奇地平缓。大多数核心操作 —— ````filter````、````select````、````group_by````、````aggregate````、````order_by````、````mutate````、````join```` —— 使用熟悉的名称和语义。主要需要调整的是理解惰性求值：表达式在您调用 ````.execute()``` 之前不会执行。大多数有经验的 pandas 用户在几个小时内就能熟练使用 Ibis。
 
----
+* * *
 
 
 
@@ -692,7 +693,7 @@ ibis-dataframe-python-sql represents an important step forward in AI-powered dev
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

@@ -26,6 +26,7 @@ faqs: - q: "Does container work on Intel Macs?"
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
 
+
 # Apple's Container: Docker-Like Experience on Mac with 37K Stars
 
 title: "Apple Container: Trải nghiệm giống Docker trên Mac với 37K sao"
@@ -103,7 +104,7 @@ Apple's Container: Docker-Like Experience on Mac with 37K Stars represents an im
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -140,7 +141,7 @@ A robust trading system consists of multiple components: ### Core Components
 5. **Portfolio Manager**: Position tracking and P&L
 6. **Monitoring**: Alerts and dashboards
 
-```python
+````python
 class TradingSystem: def __init__(self, config): self.data_feed = DataFeed(config['feed'])
         self.strategy = Strategy(config['strategy'])
         self.risk_manager = RiskManager(config['risk'])
@@ -151,7 +152,7 @@ class TradingSystem: def __init__(self, config): self.data_feed = DataFeed(confi
             positions = self.risk_manager.check_positions(signals)
             await self.executor.execute(positions)
             await asyncio.sleep(0.1)  # Tick interval
-```
+`````
 
 ### Data Sources
 
@@ -168,7 +169,7 @@ A robust trading system consists of multiple components: ### Core Components
 5. **Portfolio Manager**: Position tracking and P&L
 6. **Monitoring**: Alerts and dashboards
 
-```python
+`````python
 class TradingSystem: def __init__(self, config): self.data_feed = DataFeed(config['feed'])
         self.strategy = Strategy(config['strategy'])
         self.risk_manager = RiskManager(config['risk'])
@@ -179,7 +180,7 @@ class TradingSystem: def __init__(self, config): self.data_feed = DataFeed(confi
             positions = self.risk_manager.check_positions(signals)
             await self.executor.execute(positions)
             await asyncio.sleep(0.1)  # Tick interval
-```
+`````
 
 ### Data Sources
 
@@ -196,7 +197,7 @@ A robust trading system consists of multiple components: ### Core Components
 5. **Portfolio Manager**: Position tracking and P&L
 6. **Monitoring**: Alerts and dashboards
 
-```python
+`````python
 class TradingSystem: def __init__(self, config): self.data_feed = DataFeed(config['feed'])
         self.strategy = Strategy(config['strategy'])
         self.risk_manager = RiskManager(config['risk'])
@@ -207,7 +208,7 @@ class TradingSystem: def __init__(self, config): self.data_feed = DataFeed(confi
             positions = self.risk_manager.check_positions(signals)
             await self.executor.execute(positions)
             await asyncio.sleep(0.1)  # Tick interval
-```
+````
 
 ### Data Sources
 

@@ -38,6 +38,7 @@ faqs: - q: 'Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인�
     a: '다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.'
 ---
 
+
 # Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로
 
 
@@ -50,7 +51,7 @@ faqs: - q: 'Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인�
 | # | 구성 요소 | 계층 | 역할 | 심층 가이드 |
 |---|---|---|---|---|
 | 1 | **5가지 서브에이전트 패턴** | 기초 | 다섯 가지 워크플로: 병렬 팬아웃, 워크트리 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션 | [서브에이전트 패턴](/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) |
-| 2 | **커스텀 에이전트 작성** | 구축 | `.claude/agents/*.md` 작성법 — 프런트매터, 시스템 프롬프트, 도구 허용 목록 | [커스텀 에이전트 작성](/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
+| 2 | **커스텀 에이전트 작성** | 구축 | ```.claude/agents/*.md```` 작성법 — 프런트매터, 시스템 프롬프트, 도구 허용 목록 | [커스텀 에이전트 작성](/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
 | 3 | **서브에이전트 vs MCP vs 스킬** | 결정 | 3축 프레임워크 — 지식(스킬), 컨텍스트(서브에이전트), 능력(MCP) | [서브에이전트 vs MCP vs 스킬](/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) |
 | 4 | **스킬 작성** | 구축 | Claude가 관련 있을 때만 로드하는 절차를 패키징 — SKILL.md, 점진적 공개 | [스킬 작성](/kr/resources/llm-frameworks/claude-code-skill-authoring-guide-2026/) |
 | 5 | **오케스트레이션 사후 분석** | 회피 | 파이프라인이 실패하는 5가지 방식: 신뢰의 함정, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 잘림, 고아가 된 워크트리 | [파이프라인 사후 분석](/kr/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/) |
@@ -60,7 +61,7 @@ faqs: - q: 'Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인�
 
 **다섯 가지 패턴(1)부터 시작하세요.** 무언가 커스텀한 것을 만들기 전에, 애초에 *언제* 서브에이전트를 띄워야 하는지를 체득하세요. 병렬 리서치 팬아웃은 진입 마찰이 가장 낮은 출발점이며 그 이득이 즉각적입니다. 그 밑바탕에 깔린 원리는 다른 모든 것을 관통합니다. 당신의 부모 대화는 희소한 자원이며, 서브에이전트는 그것을 고갈시키지 않고 지출하는 방법입니다.
 
-**그다음 커스텀 에이전트 작성법(2)을 배우세요.** 패턴을 알게 되면, 그것을 코드로 굳히세요. 커스텀 에이전트는 실행 가능한 제도적 지식입니다 — 당신의 리뷰 체크리스트, 보안 게이트, 또는 마이그레이션 감사자를 버전 관리되는 `.md` 파일로 만든 것이죠. 성패를 가르는 디테일은 `description`(라우팅 신호)과 도구 허용 목록입니다(최소 권한 원칙은 리뷰어가 검토하기로 되어 있던 코드를 "친절하게" 편집하는 것을 막아줍니다).
+**그다음 커스텀 에이전트 작성법(2)을 배우세요.** 패턴을 알게 되면, 그것을 코드로 굳히세요. 커스텀 에이전트는 실행 가능한 제도적 지식입니다 — 당신의 리뷰 체크리스트, 보안 게이트, 또는 마이그레이션 감사자를 버전 관리되는 ````.md```` 파일로 만든 것이죠. 성패를 가르는 디테일은 ````description```(라우팅 신호)과 도구 허용 목록입니다(최소 권한 원칙은 리뷰어가 검토하기로 되어 있던 코드를 "친절하게" 편집하는 것을 막아줍니다).
 
 **한 걸음 물러나 의사결정 프레임워크(3)를 보세요.** 이것이 핵심 주춧돌입니다. 또 다른 에이전트를 만들기 전에 자문하세요: 내가 부족한 것이 *지식*인가(→ 스킬을 작성), *컨텍스트*인가(→ 서브에이전트를 띄움), 아니면 *능력*인가(→ MCP 서버를 구축)? 대부분의 팀은 마크다운 파일 한 장이면 점심 전에 똑같은 결과를 낼 수 있는데도 MCP 서버에 과하게 손을 뻗습니다.
 
@@ -150,12 +151,12 @@ Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -165,7 +166,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](claude-code-subagent-mastery-stack)
 - [codebase-memory-mcp-deep-code-intelligence](claude-code-subagent-mastery-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

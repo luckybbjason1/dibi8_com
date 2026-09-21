@@ -23,6 +23,7 @@ tags: ["continue.dev", "ai-code-assistant", "vs-code", "jetbrains", "open-source
 aliases:
   - /posts/continue/-
 ---
+
 {{</* resource-info */>}}
 
 ![Continue.dev Banner](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
@@ -37,9 +38,9 @@ Every developer who has used GitHub Copilot knows the productivity boost of AI-a
 
 Key facts at a glance: | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | 33,277+ |
 | Contributors | 473+ |
@@ -55,7 +56,7 @@ Key facts at a glance: | Metric | Value |
 
 Continue.dev operates as an IDE extension that intercepts editor context and routes it to configurable LLM backends. The architecture has three layers: **IDE Layer** — The extension embeds a chat panel, inline autocomplete engine, and agent executor directly into VS Code or JetBrains. It reads file contents, terminal output, and project structure via the IDE's native APIs.
 
-**Configuration Layer** — A single `config.yaml` (or legacy `config.json`) file defines which models handle which tasks. Continue uses "model roles" to assign different LLMs to chat, autocomplete, edit, and agent operations. This means you can use a fast local 1.5B model for tab completion while routing complex reasoning to Claude Sonnet.
+**Configuration Layer** — A single ```config.yaml```` (or legacy ````config.json````) file defines which models handle which tasks. Continue uses "model roles" to assign different LLMs to chat, autocomplete, edit, and agent operations. This means you can use a fast local 1.5B model for tab completion while routing complex reasoning to Claude Sonnet.
 
 **LLM Backend Layer** — Continue speaks standard HTTP APIs. It works with OpenAI-compatible endpoints, Anthropic's native API, Ollama's local server, or any proxy. No vendor lock-in: swap providers by changing a YAML key.
 
@@ -67,34 +68,34 @@ The 2026 release adds a **CI/Checks layer** — async agents that run on every P
 
 ### VS Code (≤2 minutes)
 
-```bash
+`````bash
 # Method 1: Marketplace search
 # Open VS Code → Extensions (Ctrl+Shift+X) → Search "Continue" → Install
 
 # Method 2: Direct install link
 # Click Continue in the VS Code marketplace
-```
+`````
 
-After installation, open the Continue sidebar with `Ctrl+L` (or `Cmd+L` on macOS).
+After installation, open the Continue sidebar with ````Ctrl+L```` (or ````Cmd+L```` on macOS).
 
 ### JetBrains IDEs (≤3 minutes)
 
-```bash
+`````bash
 # Open JetBrains IDE (IntelliJ IDEA, PyCharm, etc.)
 # File → Settings → Plugins → Marketplace
 # Search "Continue" → Install → Restart IDE
-```
+`````
 
 ### Verify Installation
 
-Open the Continue chat panel and check the version: ```bash
+Open the Continue chat panel and check the version: `````bash
 # VS Code: Open sidebar (Ctrl+L) → gear icon → shows version v1.2.22
 # Expected: Orange "C" icon visible in the left sidebar
-```
+`````
 
 ### First Model Setup (config.yaml)
 
-Create your global configuration file: ```bash
+Create your global configuration file: `````bash
 # macOS / Linux
 mkdir -p ~/.continue
 cat > ~/.continue/config.yaml << EOF
@@ -118,19 +119,19 @@ models: - name: Claude Sonnet
 EOF
 
 # Windows: %USERPROFILE%\.continue\config.yaml
-```
+`````
 
 **Set API keys as environment variables:**
 
-```bash
+`````bash
 # Add to ~/.bashrc or ~/.zshrc
 export ANTHROPIC_API_KEY="sk-ant-xxxxx"
 export OPENAI_API_KEY="sk-xxxxx"
-```
+`````
 
 ### Local LLM Setup with Ollama
 
-```bash
+`````bash
 # Step 1: Install Ollama
 # macOS: brew install ollama
 # Linux: curl -fsSL https://ollama.com/install.sh | sh
@@ -142,9 +143,9 @@ ollama pull nomic-embed-text       # Embeddings for @codebase
 
 # Step 3: Start Ollama server (default: http://localhost:11434)
 ollama serve
-```
+`````
 
-Add to `config.yaml`: ```yaml
+Add to ``config.yaml``: `````yaml
 models: - name: Qwen Coder 7B
     provider: ollama
     model: qwen2.5-coder:7b
@@ -164,11 +165,11 @@ models: - name: Qwen Coder 7B
     model: nomic-embed-text
     apiBase: http://localhost:11434
     roles: [embed]
-```
+`````
 
 ### Docker Setup for Team Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile.continue-ci
 FROM node:20-slim
 
@@ -179,9 +180,9 @@ ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
 
 # Run Continue checks in CI
 CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml for team Ollama + Continue
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
@@ -191,13 +192,13 @@ services: ollama: image: ollama/ollama:latest
               count: 1
               capabilities: [gpu]
 
-volumes: ollama-data: ```
+volumes: ollama-data: `````
 
 ## Integration with VS Code, Ollama, OpenAI, Anthropic, and JetBrains
 
 ### VS Code: Multi-Model Workflow
 
-Continue.dev's killer feature in VS Code is using **different models for different tasks**. Here's a production-grade config: ```yaml
+Continue.dev's killer feature in VS Code is using **different models for different tasks**. Here's a production-grade config: `````yaml
 # ~/.continue/config.yaml — Production VS Code setup
 name: Production VS Code
 version: 1.0.0
@@ -244,23 +245,23 @@ rules: - name: TypeScript Standards
     rule: |
       Use strict TypeScript. Prefer interfaces over types.
       Use async/await, never callbacks. Handle all errors explicitly.
-```
+`````
 
 ### Ollama: Full Offline Mode
 
-```bash
+`````bash
 # Verify Ollama is running
 curl http://localhost:11434/api/tags
 
 # Expected output: list of available models
 # {"models":[{"name":"qwen2.5-coder:7b",...}]}
-```
+`````
 
 With the Ollama config above, all code processing stays on your machine. No network calls, no data leaving localhost. This is the setup used by financial and healthcare teams with compliance requirements. It is the most popular choice for teams searching for an **open source coding assistant** with full data sovereignty.
 
 ### Anthropic Claude Integration
 
-```yaml
+`````yaml
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
@@ -268,13 +269,13 @@ models: - name: Claude Opus
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
-```
+`````
 
 Claude models support MCP tool use natively — enabling Continue's Agent mode to call external tools.
 
 ### OpenAI Integration
 
-```yaml
+`````yaml
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
@@ -287,26 +288,26 @@ models: - name: GPT-4o
     apiKey: ${{ secrets.OPENAI_API_KEY }}
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
-```
+`````
 
 ### JetBrains: Full-Feature Setup
 
-Continue in JetBrains supports the same `config.yaml`. Place it at: ```bash
+Continue in JetBrains supports the same ``config.yaml``. Place it at: `````bash
 # Global (all projects)
 # macOS: ~/.continue/config.yaml
 # Windows: %USERPROFILE%\.continue\config.yaml
 
 # Project-specific
 # <project-root>/.continue/config.yaml
-```
+`````
 
-JetBrains shortcuts: - `Cmd/Ctrl + J` — Open Continue chat
-- `Tab` — Accept autocomplete
-- `Cmd/Ctrl + Shift + L` — Toggle inline edit
+JetBrains shortcuts: - ````Cmd/Ctrl + J```` — Open Continue chat
+- ````Tab```` — Accept autocomplete
+- ````Cmd/Ctrl + Shift + L```` — Toggle inline edit
 
 ### MCP (Model Context Protocol) Integration
 
-Continue.dev supports MCP servers for tool use. Add to `config.yaml`: ```yaml
+Continue.dev supports MCP servers for tool use. Add to ``config.yaml``: `````yaml
 mcpServers: - name: filesystem
     command: npx
     args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
@@ -319,7 +320,7 @@ mcpServers: - name: filesystem
   - name: postgres
     command: npx
     args: ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -327,15 +328,15 @@ mcpServers: - name: filesystem
 
 | Metric | Continue.dev + Claude | Continue.dev + Ollama | GitHub Copilot | Cursor Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Code acceptance rate | 68% | 52% | 72% | 75% |
 | Avg. response time (chat) | 2.1s | 0.8s (local) | 1.4s | 1.2s |
@@ -355,7 +356,7 @@ A European fintech team of 12 developers switched from Copilot Business to Conti
 
 ### Use Case: Solo Full-Stack Developer
 
-Developer running a mix of local and cloud models: ```yaml
+Developer running a mix of local and cloud models: `````yaml
 # Optimized cost-performance config
 models: - name: Claude Haiku
     provider: anthropic
@@ -367,7 +368,7 @@ models: - name: Claude Haiku
     provider: ollama
     model: qwen2.5-coder:7b
     roles: [autocomplete, edit]  # Free
-```
+`````
 
 Monthly API bill: **$3-8** for 40 hours of coding. Zero subscription fees.
 
@@ -375,7 +376,7 @@ Monthly API bill: **$3-8** for 40 hours of coding. Zero subscription fees.
 
 ### Agent Mode for Autonomous Workflows
 
-Continue.dev's 2026 Agent mode can autonomously plan and execute multi-step tasks: ```yaml
+Continue.dev's 2026 Agent mode can autonomously plan and execute multi-step tasks: `````yaml
 # Enable Agent mode with tool policies
 models: - name: Claude Sonnet Agent
     provider: anthropic
@@ -384,13 +385,13 @@ models: - name: Claude Sonnet Agent
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
-```
+`````
 
 Agent workflow: describe a task → AI analyzes codebase → creates plan → executes file changes → runs terminal commands → verifies results. Tool policies can be set to "Ask First", "Automatic", or "Excluded" per tool.
 
 ### Custom Rules for Code Quality
 
-```yaml
+`````yaml
 # ~/.continue/rules/typescript.yaml
 name: TypeScript Rules
 version: 1.0.0
@@ -399,32 +400,32 @@ schema: v1
 rules: - pattern: "**/*.ts"
     rule: |
       1. Use strict TypeScript (noImplicitAny, strictNullChecks)
-      2. Prefer `interface` over `type` for object shapes
+      2. Prefer ````interface```` over ````type```` for object shapes
       3. Always handle Promise rejections with try/catch
       4. Use dependency injection, avoid global state
       5. Functions must be under 50 lines
-```
+`````
 
 ### Context Providers for Deeper Understanding
 
-Continue's `@` commands give the AI precise context: ```
+Continue's ``@`` commands give the AI precise context: `````
 @codebase    — Semantic search across entire project
 @docs        — Reference external documentation sites
 @terminal    — Include last command output
 @file        — Reference specific files
 @web         — Search the web for latest info
 @github      — Pull in issues and PRs
-```
+`````
 
-Example in chat: ```
+Example in chat: `````
 > @codebase explain how authentication middleware works in this project
 > @docs https://docs.nestjs.com/security/authentication
 > Refactor the login handler using the pattern from the docs
-```
+`````
 
 ### Security: Secrets Management
 
-```yaml
+`````yaml
 # Never hardcode API keys. Use environment substitution: models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
@@ -432,24 +433,24 @@ Example in chat: ```
 
 # For CI/CD, use your runner's secret store: # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
 # GitLab CI: $ANTHROPIC_API_KEY (CI/CD variable)
-```
+`````
 
 ### Monitoring Usage
 
-```bash
+`````bash
 # Track API costs per model
 # Add to your shell profile: export CONTINUE_LOG_LEVEL=debug
 
 # Logs are written to: # macOS: ~/Library/Logs/Continue/
 # Linux: ~/.config/Continue/logs/
 # Windows: %APPDATA%\Continue\logs\
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Continue.dev | GitHub Copilot | Cursor | Tabby |
 |
----
+* * *
 |: ---
 :|: ---
 :|: ---
@@ -482,7 +483,7 @@ Example in chat: ```
 
 Continue.dev is not the right tool for every developer. Here are the honest limitations: **1. Autocomplete instability.** The tab completion feature has known reliability issues across versions. It works well with specific models (Codestral, Qwen 2.5 Coder) but can glitch or fail silently with others. If autocomplete is your primary need, Copilot or Tabby are more reliable.
 
-**2. Manual configuration overhead.** Every model switch requires editing `config.yaml`. Compare to Copilot where you install and it just works. Continue rewards tinkerers and punishes those who want zero configuration.
+**2. Manual configuration overhead.** Every model switch requires editing ````config.yaml````. Compare to Copilot where you install and it just works. Continue rewards tinkerers and punishes those who want zero configuration.
 
 **3. No built-in models.** You bring your own API keys and pay per usage. There is no bundled free tier of compute — unlike Cursor's free plan with 2,000 completions. For heavy cloud LLM users, costs can exceed subscription alternatives.
 
@@ -496,7 +497,7 @@ Continue.dev is not the right tool for every developer. Here are the honest limi
 
 ### Does Continue.dev work completely offline?
 
-Yes, when configured with Ollama or LM Studio running local models. All code processing happens on your machine with no network calls. The only limitation is that web search (`@web`) and cloud-based context providers obviously require connectivity. For fully air-gapped environments, Continue.dev is one of the few AI coding assistants that works at all.
+Yes, when configured with Ollama or LM Studio running local models. All code processing happens on your machine with no network calls. The only limitation is that web search (````@web````) and cloud-based context providers obviously require connectivity. For fully air-gapped environments, Continue.dev is one of the few AI coding assistants that works at all.
 
 ### How does Continue.dev compare to GitHub Copilot for daily coding?
 
@@ -513,7 +514,7 @@ Yes. The Apache-2.0 license permits commercial use, modification, and distributi
 ### How do I migrate from Copilot to Continue.dev?
 
 1. Install Continue extension (do not uninstall Copilot yet)
-2. Configure your preferred models in `~/.continue/config.yaml`
+2. Configure your preferred models in ````~/.continue/config.yaml````
 3. Run both side-by-side for 1-2 weeks to compare
 4. Disable Copilot autocomplete in VS Code settings, keep Continue
 5. Cancel Copilot subscription when comfortable
@@ -522,7 +523,7 @@ The migration typically takes 3-5 days of active use to get config.yaml tuned. M
 
 ### What is the difference between config.yaml and config.json?
 
-Continue.dev moved from JSON to YAML as the recommended format in 2025. `config.yaml` supports the full feature set including the new rules system, hub imports, and better readability. `config.json` still works for backward compatibility but lacks newer features. New setups should use YAML exclusively.
+Continue.dev moved from JSON to YAML as the recommended format in 2025. ````config.yaml```` supports the full feature set including the new rules system, hub imports, and better readability. ````config.json```` still works for backward compatibility but lacks newer features. New setups should use YAML exclusively.
 
 ## Conclusion
 
@@ -530,7 +531,7 @@ Continue.dev stands alone as the only open-source AI code assistant that combine
 
 **Action items:**
 1. Install Continue.dev from the VS Code marketplace (2 minutes)
-2. Configure your first model in `~/.continue/config.yaml` (10 minutes)
+2. Configure your first model in ````~/.continue/config.yaml``` (10 minutes)
 3. Set up Ollama with Qwen 2.5 Coder for free local autocomplete
 4. Join the Continue community on GitHub Discussions for configuration tips
 
@@ -584,7 +585,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](continue)
@@ -594,7 +595,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [codebase-memory-mcp-deep-code-intelligence](continue)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

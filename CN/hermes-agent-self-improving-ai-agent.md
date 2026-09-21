@@ -39,6 +39,7 @@ faqs: - q: 'What makes Hermes Agent different from tools like Claude Code, Curso
   - q: 'How do you install Hermes Agent and configure an LLM provider?'
     a: 'On Linux, macOS, or WSL2 you can install with a one-line curl script piped to bash, or clone the repo and run `./setup-hermes.sh`. You then set a provider with commands like `hermes config set provider openai` and `hermes config set model gpt-4o`, or use a local model via `hermes config set provider ollama`.'
 ---
+
 {</* resource-info */>}
 
 ## The Problem: Most AI Agents Forget You
@@ -64,9 +65,9 @@ Unlike other agents that are static tools, Hermes Agent: - **Creates skills from
 
 ### 1. Built-in Learning Loop
 
-Hermes Agent's core innovation is its **self-improvement cycle**: ```
+Hermes Agent's core innovation is its **self-improvement cycle**: ````
 Experience → Reflection → Skill Creation → Practice → Improvement
-```
+`````
 
 When you complete a task with Hermes, it: 1. **Analyzes** what worked and what didn't
 2. **Extracts** reusable patterns
@@ -80,9 +81,9 @@ Over time, this creates a **personal skill library** that's unique to you.
 
 Hermes Agent comes with a comprehensive toolset: | Tool Category | Examples |
 |
----
+* * *
 |
----
+* * *
 |
 | **File Operations** | Read, write, search, diff, patch |
 | **Terminal** | Execute commands, shell sessions, background jobs |
@@ -100,9 +101,9 @@ Skills are Hermes Agent's secret weapon. They're **reusable procedure files** th
 - **Pitfalls** — common mistakes to avoid
 - **Verification steps** — how to confirm success
 
-Example skill structure: ```yaml
+Example skill structure: `````yaml
 
----
+* * *
 name: "hugo-blog-deploy"
 trigger: "deploy hugo blog"
 steps: 1. "Run hugo --minify --cleanDestinationDir"
@@ -112,7 +113,7 @@ steps: 1. "Run hugo --minify --cleanDestinationDir"
 pitfalls: - "Future dates prevent building"
   - "Cloudflare cache may show stale content"
 verification: - "curl -s https://site.com | grep title"
-```
+`````
 
 Skills can be: - **Created automatically** from successful task completions
 - **Downloaded from Skills Hub** — community-contributed skills
@@ -138,18 +139,18 @@ This memory persists across sessions, so Hermes **remembers you** even after you
 
 Hermes Agent isn't just a CLI tool — it's a **multi-platform messaging bot**: | Platform | Setup | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Telegram** | `hermes gateway setup` | Mobile AI assistant |
-| **Discord** | `hermes gateway setup` | Team collaboration |
-| **Slack** | `hermes gateway setup` | Workplace integration |
-| **WhatsApp** | `hermes gateway setup` | Personal assistant |
-| **Signal** | `hermes gateway setup` | Privacy-focused |
-| **Email** | `hermes gateway setup` | Async workflows |
+| **Telegram** | ````hermes gateway setup```` | Mobile AI assistant |
+| **Discord** | ````hermes gateway setup```` | Team collaboration |
+| **Slack** | ````hermes gateway setup```` | Workplace integration |
+| **WhatsApp** | ````hermes gateway setup```` | Personal assistant |
+| **Signal** | ````hermes gateway setup```` | Privacy-focused |
+| **Email** | ````hermes gateway setup```` | Async workflows |
 
 Once configured, you can chat with Hermes from any of these platforms using the same commands and skills.
 
@@ -164,7 +165,7 @@ This makes Hermes infinitely extensible — if you can build an MCP server, Herm
 
 ### 7. Cron Scheduling
 
-Hermes Agent can run **scheduled tasks** via its built-in cron system: ```bash
+Hermes Agent can run **scheduled tasks** via its built-in cron system: `````bash
 # Run a skill every day at 9 AM
 hermes cron add --skill "daily-report" --schedule "0 9 * * *"
 
@@ -173,7 +174,7 @@ hermes cron add --skill "backup-database" --schedule "0 2 * * 0"
 
 # List all scheduled jobs
 hermes cron list
-```
+`````
 
 Perfect for automation workflows that need to run on a schedule.
 
@@ -188,7 +189,7 @@ Hermes Agent takes security seriously: - **Command approval** — risky commands
 
 ### Installation
 
-```bash
+`````bash
 # One-line install (Linux, macOS, WSL2)
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 
@@ -196,18 +197,18 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 git clone https://github.com/NousResearch/hermes-agent.git
 cd hermes-agent
 ./setup-hermes.sh
-```
+`````
 
 ### First Conversation
 
-```bash
+`````bash
 source ~/.bashrc    # reload shell
 hermes              # start chatting
-```
+`````
 
 ### Configure Providers
 
-```bash
+`````bash
 # Set your preferred LLM provider
 hermes config set provider openai
 hermes config set model gpt-4o
@@ -215,11 +216,11 @@ hermes config set model gpt-4o
 # Or use local models
 hermes config set provider ollama
 hermes config set model llama3.1
-```
+`````
 
 ### Useful Commands
 
-```bash
+`````bash
 # Start fresh conversation
 /new
 
@@ -240,11 +241,11 @@ hermes config set model llama3.1
 
 # Compress context to save tokens
 /compress
-```
+`````
 
 ## Architecture
 
-Hermes Agent is built with a modular architecture: ```
+Hermes Agent is built with a modular architecture: `````
 Hermes Agent
 ├── CLI Interface (terminal UI)
 ├── Messaging Gateway (Telegram, Discord, etc.)
@@ -255,7 +256,7 @@ Hermes Agent
 ├── MCP Client (external integrations)
 ├── Cron Scheduler (automated tasks)
 └── Security Layer (approval, isolation)
-```
+````
 
 The entire system is written in **Python** (28M+ lines) with TypeScript components for the web interface.
 
@@ -283,15 +284,15 @@ The entire system is written in **Python** (28M+ lines) with TypeScript componen
 
 | Feature | Hermes Agent | Claude Code | Cursor | GitHub Copilot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Self-learning** | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | **Persistent memory** | ✅ Yes | ❌ No | ❌ No | ❌ No |
@@ -311,7 +312,7 @@ The entire system is written in **Python** (28M+ lines) with TypeScript componen
 
 
 
----
+* * *
 ## Related Articles
 
 - [AI Tools Directory 2024](/resources/dev-utils/ai-tools-directory/) - 200+ tools
@@ -340,7 +341,7 @@ Have you tried Hermes Agent? What's your experience with self-improving AI agent
 - [Free Claude Code: Use Claude Code CLI for Free with Any AI Provider](/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [42 Real-World OpenClaw Use Cases: How People Use AI Agents in Daily Life](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.

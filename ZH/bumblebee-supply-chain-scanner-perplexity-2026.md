@@ -26,6 +26,7 @@ faqs: - q: 'Bumblebee 是什么？它能扫描哪些内容？'
   - q: '如何安装和使用 Bumblebee？'
     a: '运行 go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1 安装。日常检查运行 bumblebee scan --profile baseline > inventory.ndjson。针对特定漏洞快速排查运行 bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only --max-duration 10m。'---
 
+
 ![Bumblebee 2026: Perplexity AI 供应链扫描器 — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 
 2026年5月22日，Perplexity AI 开源了 [Bumblebee](https://github.com/perplexityai/bumblebee)——这是他们安全团队内部用于审计开发者笔记本电脑供应链风险的工具。不到一周就获得了 1,500+ GitHub Star 和 112 个 Fork。核心问题只有一个：**当某个漏洞通报点名了受损的包、版本或扩展，你的机器上有没有它？**
@@ -38,11 +39,11 @@ faqs: - q: 'Bumblebee 是什么？它能扫描哪些内容？'
 
 ## 只读保证
 
-这个工具的核心约束是**永远不执行任何命令**。没有 `npm ls`，没有 `pip check`，没有 `go list`。供应链攻击越来越多地针对检查阶段本身——恶意的 `postinstall` 或投毒的元数据端点能把一次例行审计变成利用。Bumblebee 完全绕开这个风险，只读取磁盘上的元数据文件：`package.json`、`package-lock.json`、`go.sum`、`requirements.txt`、`Gemfile.lock`、扩展清单和 MCP 配置 JSON。
+这个工具的核心约束是**永远不执行任何命令**。没有 ``npm ls``，没有 ``pip check``，没有 ``go list``。供应链攻击越来越多地针对检查阶段本身——恶意的 ``postinstall`` 或投毒的元数据端点能把一次例行审计变成利用。Bumblebee 完全绕开这个风险，只读取磁盘上的元数据文件：``package.json``、``package-lock.json``、``go.sum``、``requirements.txt``、``Gemfile.lock``、扩展清单和 MCP 配置 JSON。
 
 ## 三种扫描模式
 
-```bash
+````bash
 # 日常全局检查
 bumblebee scan --profile baseline > inventory.ndjson
 
@@ -55,7 +56,7 @@ bumblebee scan --profile deep \
   --exposure-catalog ./catalog.json \
   --findings-only \
   --max-duration 10m
-```
+`````
 
 ## MCP 配置支持
 
@@ -65,13 +66,13 @@ bumblebee scan --profile deep \
 |
 ---
 |
----
+* * *
 |
-| `~/.claude.json` | Claude CLI |
-| `claude_desktop_config.json` | Claude Desktop |
-| `mcp_settings.json` | Cline / Roo Code |
-| `.mcp.json` / `mcp.json` | 通用 MCP |
-| `~/.gemini/settings.json` | Gemini CLI |
+| ````~/.claude.json```` | Claude CLI |
+| ````claude_desktop_config.json```` | Claude Desktop |
+| ````mcp_settings.json```` | Cline / Roo Code |
+| ````.mcp.json```` / ````mcp.json```` | 通用 MCP |
+| ````~/.gemini/settings.json```` | Gemini CLI |
 
 对每个 MCP 服务器条目，Bumblebee 记录包名、版本和来源注册表。执行暴露扫描时，MCP 包与普通依赖一并检查——目前没有其他工具做到这一点。
 
@@ -79,9 +80,9 @@ bumblebee scan --profile deep \
 
 Bumblebee 用 Go 1.25 编写，**不引入任何标准库以外的依赖**。最终产物是单个静态链接二进制，无 glibc 依赖，可通过 MDM 分发到整个开发者机队，无需管理运行时环境。
 
-```bash
+`````bash
 go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
-```
+`````
 
 ## 关联工具
 
@@ -91,7 +92,7 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 
 ## 总结
 
-如果你使用 Claude Desktop、Cursor 或任何 MCP 工具，定期运行 `bumblebee scan --profile baseline` 应该成为你的习惯。它是迄今为止唯一一个同时覆盖全局包、编辑器扩展和 MCP 配置的供应链扫描器。
+如果你使用 Claude Desktop、Cursor 或任何 MCP 工具，定期运行 ````bumblebee scan --profile baseline``` 应该成为你的习惯。它是迄今为止唯一一个同时覆盖全局包、编辑器扩展和 MCP 配置的供应链扫描器。
 
 **GitHub：** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
 
@@ -158,12 +159,12 @@ Bumblebee 2026：Perplexity AI 开源内部供应链扫描器，覆盖 MCP 配�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](bumblebee-supply-chain-scanner-perplexity-2026)
@@ -172,7 +173,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](bumblebee-supply-chain-scanner-perplexity-2026)
 - [codebase-memory-mcp-deep-code-intelligence](bumblebee-supply-chain-scanner-perplexity-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -229,15 +230,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

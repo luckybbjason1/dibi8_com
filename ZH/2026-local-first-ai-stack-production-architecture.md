@@ -23,6 +23,7 @@ tags: ["hub article", "local-first-ai", "production-ai", "self-hosted-ai", "ai-a
 aliases:
   - /zh/posts/2026-local-first-ai-stack-production-architecture/-
 ---
+
 # 2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）
 
 
@@ -40,7 +41,7 @@ aliases:
 2026 年真正变了的不是本地 AI 突然变得多强——它一直在稳步进步。真正变了的，是**那一套"把本地 AI 真正交付给付费用户"所需要的开源拼图**终于咬合到位。本文就是这套栈的参考架构：7 层结构、14 个具体开源工具，以及它们如何组装。
 
 
----
+* * *
 ## 信条
 
 本地优先 AI 栈围绕三条承诺构建：
@@ -53,11 +54,11 @@ aliases:
 
 | 层级 | 功能 | 参考工具 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 7 — 方法论 | 如何思考代理本身 | [12-Factor Agents](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) |
 | 6 — 语音 / 音频 I/O | 无云的语音输入输出 | [Supertonic](https://dibi8.com/zh/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/) |
@@ -70,7 +71,7 @@ aliases:
 再加上贯穿所有层级的**连接组织**：**[MCP — Model Context Protocol](https://dibi8.com/zh/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)**——每一层之间彼此对话的标准协议。
 
 
----
+* * *
 ## 第 1 层 — 本地 LLM 运行时
 
 地基。没有可用的本地模型，其它所有层都会退化成云代理。
@@ -85,7 +86,7 @@ aliases:
 
 对 2026 年的大多数团队来说，**生产用 vLLM + 开发用 Ollama** 是最务实的切分。ds4 作为模型选择很有意思——给那些想要 DeepSeek 级推理、又不想直接跑上游 DeepSeek 引发授权模糊的团队留了一条路。
 
----
+* * *
 
 ## 第 2 层 — 代理运行时 / CLI
 
@@ -99,17 +100,17 @@ aliases:
 
 绝大多数非玩具规模的团队最后都会**三个一起跑**——不同代理干不同活。这就引出了配置散乱的问题，由 **[CC Switch](https://dibi8.com/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)**（74K+ stars）来收口——它给你一个跨这三者、再加上 Claude Code 和 Gemini CLI 的统一控制中心。没有 CC Switch，你每周要花一小时去对账 5 个不同的 MCP 配置和 API key 文件。
 
----
+* * *
 
 ## 第 3 层 — 符号智能
 
-当代理需要理解你的代码时，朴素的 `grep` + `Read` 会烧 token。烧很多 token。这一层是大多数团队上线之后才发现的——通常是在收到第一个月账单的那天。
+当代理需要理解你的代码时，朴素的 ```grep```` + ````Read```` 会烧 token。烧很多 token。这一层是大多数团队上线之后才发现的——通常是在收到第一个月账单的那天。
 
 **[CodeGraph](https://dibi8.com/zh/resources/dev-utils/codegraph-pre-indexed-knowledge-graph-2026/)**（20K+ stars）就是开源界给出的答案：把你代码库的符号、调用关系、framework 路由预索引成一个知识图谱，可通过 MCP 在毫秒级查询。公开数据：每 session 省约 35% token、工具调用减少约 70%。
 
 CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域数据，都应该有一个预索引的查询表面，而不是每个 session 现推**。客户记录、产品目录、工单历史——它们每一个都值得有自己的 CodeGraph 风格的索引。
 
----
+* * *
 
 ## 第 4 层 — 成本控制 / 路由
 
@@ -119,7 +120,7 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 如果你需要更复杂的路由能力（A/B 测试、预算强制、fallback 链），更重的网关比如 LiteLLM 或 Portkey 也行，详见 [我们的 LLM Gateway 横评](https://dibi8.com/zh/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/)。
 
----
+* * *
 
 ## 第 5 层 — 记忆与状态
 
@@ -132,7 +133,7 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 两者都遵循同一种架构模式：用向量库做语义召回、用结构化 KV 层存事实和决策、再用一个 MCP server 把这两层暴露给任何代理运行时去查。12-Factor 的第 3 条原则"拥有你的上下文窗口"（factor 3）在这里完全适用——记忆是你拼装上下文的一部分。
 
----
+* * *
 
 ## 第 6 层 — 语音和音频 I/O
 
@@ -142,7 +143,7 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 至于 ASR（语音输入），Whisper.cpp 仍然是长跑型开源默认选项。Supertonic + Whisper.cpp + 本地 LLM 这套组合，是 2026 年第一套能在对话级延迟下完整本地化跑通的语音代理栈。
 
----
+* * *
 
 ## 第 7 层 — 方法论
 
@@ -157,7 +158,7 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 我们写过 [十二条原则的完整逐条解读](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)——这是我们两年前就希望有人递到我们手里的那篇文档。
 
----
+* * *
 
 ## 层与层如何组合：一次真实请求
 
@@ -165,16 +166,16 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 1. **第 2 层（代理运行时）** 收到用户消息。
 2. **第 5 层（记忆）** 被查询——代理对这次 LDAP/SSO 迁移项目还记得什么？把相关的历史决策注入上下文。
-3. **第 3 层（符号智能）** 通过 MCP 被查询——"哪些符号匹配 `LDAP` 或者调用了 `ldap_authenticate`？" CodeGraph 在 200ms 内给出答案。
-4. **第 4 层（成本控制）** 选模型——`rtk` 先把规划 prompt 路由到便宜的本地模型。
-5. **第 1 层（本地 LLM 运行时）** 执行规划。如果规划超出本地模型能力，`rtk` 升级到前沿模型。
+3. **第 3 层（符号智能）** 通过 MCP 被查询——"哪些符号匹配 ````LDAP```` 或者调用了 ````ldap_authenticate````？" CodeGraph 在 200ms 内给出答案。
+4. **第 4 层（成本控制）** 选模型——````rtk```` 先把规划 prompt 路由到便宜的本地模型。
+5. **第 1 层（本地 LLM 运行时）** 执行规划。如果规划超出本地模型能力，````rtk``` 升级到前沿模型。
 6. **第 2 层** 开始循环：对 CodeGraph 标出的每个文件，跑一个编辑子任务。每个子任务都是一个小而聚焦的代理（Factor 10）。
 7. **第 6 层**（如果在语音模式下）：完成时 Supertonic 播报"重构完成，修改 17 个文件，0 个测试失败。"
 8. **第 5 层** 把这次的结果存档，留给下一个 session。
 
 每一层都可替换。连接组织——MCP——是每一层共同使用的标准。
 
----
+* * *
 
 ## 一条现实的落地路径
 
@@ -206,7 +207,7 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 **产出**：一套完整可本地化的栈。前沿能力你仍然会调云模型——但你不再**依赖**它们。
 
----
+* * *
 
 ## 2026 年还缺什么
 
@@ -220,7 +221,7 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 这几个缺口正是开源社区下一轮势头会扑过去的地方。
 
----
+* * *
 
 ## 结论
 
@@ -235,21 +236,21 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 
 如果你今天就要开始，这周装上 rtk 和 CC Switch，把 12-Factor Agents 读完，月底之前在你用得最多的仓库上加上 CodeGraph。其它的，从这里自然延伸出来。
 
----
+* * *
 
 **全栈速览** — 收藏这张表：
 
 | # | 层级 | 工具 | Stars | 协议 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | LLM 运行时 | [本地 LLM Runner 横评](https://dibi8.com/zh/resources/llm-frameworks/local-llm-runner-comparison-2026/) / [ds4](https://dibi8.com/zh/resources/llm-frameworks/ds4-open-source-deepseek-alternative-2026/) | 各异 | Mixed OSS |
 | 2 | 代理运行时 | [OpenCode](https://dibi8.com/zh/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/) / [Hermes](https://dibi8.com/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) / [Codex CLI](https://dibi8.com/zh/resources/llm-frameworks/openai-codex-cli-terminal-ai-coding-agent-2026/) | 各 100K+ | OSS |
@@ -323,12 +324,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -338,7 +339,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents](2026-local-first-ai-stack-production-architecture)
 - [cc-switch-unified-ai-cli-control-center](2026-local-first-ai-stack-production-architecture)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

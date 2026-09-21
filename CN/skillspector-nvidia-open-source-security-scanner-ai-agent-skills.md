@@ -13,6 +13,7 @@ tags: ["security", "ai-agents", "scanner", "vulnerability-detection", "claude-co
   license: Apache-2.0---
 
 
+
 # SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills
 
 **SkillSpector** is a security scanning tool specifically designed for AI agent skills — the modular plugins and extensions that power frameworks like Claude Code, GitHub Copilot, Codex CLI, and Gemini CLI. Developed by NVIDIA with **10,273 GitHub stars**, it addresses the growing security concerns around installing unvetted agent skills in production environments.
@@ -44,7 +45,7 @@ The tool provides: - **Automated vulnerability scanning** for AI agent skill fil
 
 ### Option 1: Pip Installation
 
-```bash
+````bash
 # Install SkillSpector from PyPI
 pip install skillspector
 
@@ -53,11 +54,11 @@ skillspector --version
 
 # Download the latest skill database
 skillspector update-db
-```
+`````
 
 ### Option 2: From Source
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/NVIDIA/SkillSpector.git
 cd SkillSpector
@@ -71,11 +72,11 @@ pip install -e .
 
 # Initialize the scanner
 skillspector init --download-database
-```
+`````
 
 ### Option 3: Docker Deployment
 
-```bash
+`````bash
 # Pull the official image
 docker pull nvcr.io/nvidia/skillspector:latest
 
@@ -92,7 +93,7 @@ docker run -d \
   -v ${PWD}/reports:/app/reports \
   nvcr.io/nvidia/skillspector:latest \
   daemon --interval 3600
-```
+````
 
 ## Scanning Capabilities
 
@@ -174,7 +175,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
@@ -183,7 +184,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 - [cursor-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -214,15 +215,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

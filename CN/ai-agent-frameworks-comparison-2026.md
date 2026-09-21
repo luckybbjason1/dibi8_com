@@ -28,6 +28,7 @@ sources: - name: GitHub
   - name: GitHub
     url: https://github.com/langchain-ai/langgraph
     type: star_count---
+
 > **Editorial Disclosure**: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.
 
 
@@ -43,7 +44,7 @@ Five frameworks dominate the open-source AI agent landscape in 2026. Here's the 
 Choosing the right one depends on your use case: single-agent automation, multi-agent collaboration, or document-heavy RAG pipelines. Read on for detailed comparisons.
 
 
----
+* * *
 ## Why We Compare AI Agent Frameworks
 
 The AI agent framework space has matured dramatically since 2023. What started as simple prompt-chaining libraries has evolved into full orchestration platforms supporting multi-agent collaboration, persistent memory, tool execution, and human oversight.
@@ -56,7 +57,7 @@ By mid-2026, the market has consolidated around five major open-source framework
 
 Understanding these philosophical differences is crucial before picking a framework. The wrong choice can mean months of refactoring.
 
----
+* * *
 
 ## 1. LangChain — The Integration Powerhouse
 
@@ -70,7 +71,7 @@ The framework's core strength lies in its ecosystem: 200+ integrations with vect
 
 ### Architecture Overview
 
-```typescript
+````typescript
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
@@ -86,7 +87,7 @@ const chain = prompt.pipe(model).pipe(outputParser);
 
 const result = await chain.invoke({ input: "Explain quantum computing" });
 console.log(result);
-```
+`````
 
 ### Why It Matters
 
@@ -96,15 +97,15 @@ The TypeScript foundation ensures excellent IDE support, type safety, and seamle
 
 ### Hands-On Notes
 
-- The `@langchain/community` package provides 200+ integrations but increases bundle size significantly
+- The ````@langchain/community```` package provides 200+ integrations but increases bundle size significantly
 - LangSmith (commercial tracing platform) integrates natively and is worth the subscription for production apps
 - The v0.2 migration introduced significant API changes — review the migration guide before upgrading
-- Agent executor patterns (`create_react_agent`, `create_tool_calling_agent`) abstract away most orchestration complexity
+- Agent executor patterns (````create_react_agent````, ````create_tool_calling_agent````) abstract away most orchestration complexity
 
 
 ### Configuration Management
 
-Proper configuration management is critical for production LangChain apps: ```python
+Proper configuration management is critical for production LangChain apps: `````python
 from langchain_core.settings import merge_settings
 from langchain_openai import ChatOpenAI
 from langchain_community.chat_models import ChatAnthropic
@@ -117,11 +118,11 @@ settings = merge_settings(
 
 # Create model with settings
 model = ChatOpenAI(settings=settings)
-```
+`````
 
 ### Tool Definition and Registration
 
-LangChain's tool system supports both function-based and class-based tools: ```python
+LangChain's tool system supports both function-based and class-based tools: `````python
 from langchain.tools import tool
 
 @tool
@@ -131,11 +132,11 @@ def search_wikipedia(query: str) -> str: """Search Wikipedia and return the summ
 
 # Register multiple tools
 tools = [search_wikipedia, ...]  # Add more tools
-```
+`````
 
 ### Memory Systems
 
-LangChain provides several memory types for maintaining conversation context: ```python
+LangChain provides several memory types for maintaining conversation context: `````python
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory
 
@@ -145,11 +146,11 @@ buffer_mem.save_context({"human": "Hello"}, {"ai": "Hi there!"})
 
 # Summary memory (uses LLM to summarize)
 summary_mem = ConversationSummaryMemory(llm=model)
-```
+`````
 
 ### RAG Pipeline Example
 
-A complete Retrieval-Augmented Generation pipeline: ```python
+A complete Retrieval-Augmented Generation pipeline: `````python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
@@ -175,7 +176,7 @@ qa_chain = RetrievalQA.from_chain_type(
     retriever=retriever,
 )
 result = qa_chain.run("What are the main findings?")
-```
+`````
 
 
 ### When to Choose LangChain
@@ -187,7 +188,7 @@ result = qa_chain.run("What are the main findings?")
 - You're building a production application that requires observability (LangSmith)
 - You want the largest community and most documentation
 
----
+* * *
 
 ## 2. CrewAI — Multi-Agent Collaboration Made Simple
 
@@ -201,7 +202,7 @@ The framework gained explosive popularity in 2025 when it became clear that sing
 
 ### Architecture Overview
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 
@@ -246,7 +247,7 @@ crew = Crew(
 
 result = crew.kickoff()
 print(result)
-```
+`````
 
 ### Why It Matters
 
@@ -258,13 +259,13 @@ The framework's Python foundation makes it accessible to data scientists and ML 
 
 - Sequential processing executes agents one after another; hierarchical mode adds a "manager" agent that delegates
 - Agent memory is scoped per-agent by default — use shared memory for cross-agent knowledge transfer
-- The `allow_delegation` flag enables agents to ask each other for help, creating emergent collaboration
+- The ````allow_delegation```` flag enables agents to ask each other for help, creating emergent collaboration
 - Performance: ~3-5 agents is the sweet spot; beyond that, coordination overhead increases
 
 
 ### Advanced: JSON-First Crew Configuration
 
-CrewAI supports JSON-based crew configuration for version control and reproducibility: ```json
+CrewAI supports JSON-based crew configuration for version control and reproducibility: `````json
 {
   "crews": [
     {
@@ -287,11 +288,11 @@ CrewAI supports JSON-based crew configuration for version control and reproducib
     }
   ]
 }
-```
+`````
 
 ### Task Delegation Patterns
 
-CrewAI supports both sequential and hierarchical task execution: ```python
+CrewAI supports both sequential and hierarchical task execution: `````python
 from crewai import Crew, Process
 
 # Hierarchical mode: manager agent delegates to team members
@@ -301,11 +302,11 @@ crew = Crew(
     process=Process.hierarchical,
     manager_llm=ChatOpenAI(model="gpt-4o"),
 )
-```
+`````
 
 ### Custom Tools for CrewAI
 
-Extend CrewAI agents with custom tools: ```python
+Extend CrewAI agents with custom tools: `````python
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
@@ -317,7 +318,7 @@ class WebSearchTool(BaseTool): name: str = "Web Search"
 
     def _run(self, query: str) -> str: # Implement your search logic
         return f"Results for: {query}"
-```
+`````
 
 
 ### When to Choose CrewAI
@@ -329,7 +330,7 @@ class WebSearchTool(BaseTool): name: str = "Web Search"
 - Your team prefers Python over TypeScript
 - You need agents that can collaborate and delegate work
 
----
+* * *
 
 ## 3. Microsoft AutoGen — Conversational Agent Framework
 
@@ -343,7 +344,7 @@ This conversational paradigm enables remarkable flexibility. Agents can dynamica
 
 ### Architecture Overview
 
-```python
+`````python
 import autogen
 from autogen import AssistantAgent, UserProxyAgent
 
@@ -378,7 +379,7 @@ user_proxy.initiate_chat(
     message="""Write a Python function that implements a binary search tree.
     Include insert, search, and delete operations. TERMINATE""",
 )
-```
+`````
 
 ### Why It Matters
 
@@ -388,7 +389,7 @@ The framework's research pedigree shows in its extensibility. You can define cus
 
 ### Hands-On Notes
 
-- `GroupChat` and `GroupChatManager` enable multi-agent conversations with speaker selection
+- ````GroupChat```` and ````GroupChatManager```` enable multi-agent conversations with speaker selection
 - Code execution sandboxing is configurable — Docker recommended for security
 - Human-in-the-loop mode allows interactive intervention during agent conversations
 - The framework is still evolving — API stability varies between releases
@@ -397,7 +398,7 @@ The framework's research pedigree shows in its extensibility. You can define cus
 
 ### Multi-Agent Group Chat
 
-AutoGen's GroupChat enables structured multi-agent conversations: ```python
+AutoGen's GroupChat enables structured multi-agent conversations: `````python
 from autogen import GroupChat, GroupChatManager
 
 # Define participants
@@ -418,11 +419,11 @@ manager = GroupChatManager(groupchat=group_chat)
 user_proxy.initiate_chats([
     {"recipient": manager, "message": "Write a Python script for data analysis", "clear_history": True}
 ])
-```
+`````
 
 ### Function Calling in AutoGen
 
-AutoGen supports OpenAI function calling for structured agent interactions: ```python
+AutoGen supports OpenAI function calling for structured agent interactions: `````python
 from autogen.function_utils import get_function_schema
 
 def calculate_bmi(weight_kg: float, height_cm: float) -> dict: """Calculate BMI from weight and height."""
@@ -431,11 +432,11 @@ def calculate_bmi(weight_kg: float, height_cm: float) -> dict: """Calculate BMI 
 
 # Register function with agent
 schema = get_function_schema(calculate_bmi)
-```
+`````
 
 ### Coding Agent Pattern
 
-AutoGen excels at code generation with execution feedback: ```python
+AutoGen excels at code generation with execution feedback: `````python
 import autogen
 
 config_list = [{"model": "gpt-4o", "api_key": "sk-..."}]
@@ -453,7 +454,7 @@ executor = autogen.UserProxyAgent(
 )
 
 executor.initiate_chat(coder, message="Write a Flask API for a todo list app")
-```
+`````
 
 
 ### When to Choose AutoGen
@@ -465,7 +466,7 @@ executor.initiate_chat(coder, message="Write a Flask API for a todo list app")
 - You're in a research or experimental context
 - You want human-in-the-loop oversight capabilities
 
----
+* * *
 
 ## 4. LlamaIndex — The Data Foundation
 
@@ -479,7 +480,7 @@ Unlike frameworks that treat data as an afterthought, LlamaIndex puts data at th
 
 ### Architecture Overview
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.openai import OpenAI
 
@@ -505,7 +506,7 @@ kg_index = KnowledgeGraphIndex.from_documents(
     max_triplets_per_chunk=5,
 )
 kg_query_engine = kg_index.as_query_engine(include_text=True)
-```
+`````
 
 ### Why It Matters
 
@@ -518,13 +519,13 @@ The framework's evolution toward "data agents" represents a significant shift: i
 - VectorStoreIndex is the default and works well for most use cases
 - KnowledgeGraphIndex adds relationship awareness — valuable for complex document networks
 - Metadata filtering enables precise control over which documents are queried
-- The `PineconeIndex`, `WeaviateIndex`, and other vector store integrations support production-scale retrieval
-- Data agents (`QueryEngineTool`, `AgentRunner`) enable multi-step document reasoning
+- The ````PineconeIndex````, ````WeaviateIndex````, and other vector store integrations support production-scale retrieval
+- Data agents (````QueryEngineTool````, ````AgentRunner````) enable multi-step document reasoning
 
 
 ### Advanced: Multi-Modal Document Processing
 
-LlamaIndex supports images, PDFs, and other non-text documents: ```python
+LlamaIndex supports images, PDFs, and other non-text documents: `````python
 from llama_index.readers.file import PDFReader, ImageReader
 
 # Read PDF documents
@@ -534,11 +535,11 @@ pdf_docs = pdf_reader.load_data(file="./document.pdf")
 # Read images with OCR
 image_reader = ImageReader()
 image_docs = image_reader.load_data(file="./diagram.png")
-```
+`````
 
 ### Embedding Configuration
 
-Customize embeddings for different use cases: ```python
+Customize embeddings for different use cases: `````python
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.embeddings.cohere import CohereEmbedding
 
@@ -549,11 +550,11 @@ openai_embed = OpenAIEmbedding(model="text-embedding-3-large")
 cohere_embed = CohereEmbedding(model="embed-english-v3.0")
 
 Settings.embed_model = cohere_embed
-```
+`````
 
 ### Document Transformation Pipelines
 
-Preprocess documents before indexing for better retrieval: ```python
+Preprocess documents before indexing for better retrieval: `````python
 from llama_index.core.node_parser import SentenceWindowNodeParser, MarkdownNodeParser
 
 # Sentence window parser (preserves context around chunks)
@@ -566,11 +567,11 @@ sentence_parser = SentenceWindowNodeParser.from_defaults(
 # Markdown parser (preserves document structure)
 markdown_parser = MarkdownNodeParser()
 nodes = markdown_parser.get_nodes_from_documents(documents)
-```
+`````
 
 ### Semantic Router for Query Routing
 
-Direct queries to different indexes based on intent: ```python
+Direct queries to different indexes based on intent: `````python
 from llama_index.core.indices.prompt_helper import PromptHelper
 from llama_index.core.retrievers import VectorIndexRetriever
 
@@ -581,7 +582,7 @@ legal_index = VectorStoreIndex.from_documents(legal_docs)
 # Route queries based on keywords
 def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "copyright", "trademark"]): return legal_index.as_retriever()
     else: return tech_index.as_retriever()
-```
+`````
 
 
 ### When to Choose LlamaIndex
@@ -593,7 +594,7 @@ def route_query(query: str): if any(kw in query.lower() for kw in ["patent", "co
 - You want agents that can reason over document collections
 - Your data requires sophisticated preprocessing and transformation
 
----
+* * *
 
 ## 5. LangGraph — Stateful Agent Workflows
 
@@ -607,7 +608,7 @@ LangGraph introduces a graph-based abstraction where nodes represent computation
 
 ### Architecture Overview
 
-```python
+`````python
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 import operator
@@ -645,7 +646,7 @@ workflow.add_conditional_edges(
 workflow.add_edge("revise", "chatbot")
 
 app = workflow.compile()
-```
+`````
 
 ### Why It Matters
 
@@ -655,7 +656,7 @@ Human-in-the-loop support is particularly powerful: you can pause execution at a
 
 ### Hands-On Notes
 
-- `StateGraph` provides the core abstraction; `MessageGraph` is simpler for chat-only workflows
+- ````StateGraph```` provides the core abstraction; ````MessageGraph```` is simpler for chat-only workflows
 - Checkpointing is built-in — agents automatically save state at each node transition
 - The compiled graph can be deployed as an API endpoint using LangServe
 - Streaming is supported natively — real-time token output to frontends
@@ -664,7 +665,7 @@ Human-in-the-loop support is particularly powerful: you can pause execution at a
 
 ### Human-in-the-Loop Approval
 
-LangGraph supports pausing for human approval at any node: ```python
+LangGraph supports pausing for human approval at any node: `````python
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 
@@ -684,11 +685,11 @@ result = agent.invoke({"messages": [("human", "Book a flight to Tokyo")]}, confi
 
 # The agent pauses at tool calls for approval
 # Resume with: # result = agent.invoke(None, config)
-```
+`````
 
 ### Streaming Responses
 
-Real-time token streaming from LangGraph agents: ```python
+Real-time token streaming from LangGraph agents: `````python
 from langchain_core.messages import AIMessageChunk
 
 # Stream agent execution
@@ -697,11 +698,11 @@ for event in agent.stream(
     config={"stream_mode": "values"},
 ): last_msg = event["messages"][-1]
     if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end="", flush=True)
-```
+`````
 
 ### Subgraphs for Modular Design
 
-Break complex workflows into reusable subgraphs: ```python
+Break complex workflows into reusable subgraphs: `````python
 from langgraph.graph import StateGraph
 
 # Define subgraph for research phase
@@ -719,11 +720,11 @@ main_graph.add_node("write", write_nodes)
 main_graph.add_edge("research", "write")
 main_graph.set_entry_point("research")
 workflow = main_graph.compile()
-```
+`````
 
 ### Error Recovery Patterns
 
-Implement retry and fallback logic in graph nodes: ```python
+Implement retry and fallback logic in graph nodes: `````python
 import asyncio
 from functools import wraps
 
@@ -738,7 +739,7 @@ def retry_with_backoff(max_retries=3, base_delay=1.0): def decorator(func): @wra
 @retry_with_backoff(max_retries=3)
 async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
     return response
-```
+`````
 
 
 ### When to Choose LangGraph
@@ -750,23 +751,23 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 - You want checkpoint/resume capability for reliability
 - You're building production systems that need audit trails
 
----
+* * *
 
 ## Side-by-Side Comparison
 
 | Feature | LangChain | CrewAI | AutoGen | LlamaIndex | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Stars** | 141k | 54.6k | 59.4k | 50.5k | 36k |
 | **Language** | TypeScript | Python | Python | Python | Python |
@@ -776,7 +777,7 @@ async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
 | **Human-in-Loop** | Via LangSmith | Limited | Native | Limited | Native |
 | **Best For** | General purpose | Role-based teams | Research | Document AI | Complex workflows |
 
----
+* * *
 
 ## How to Choose: Decision Framework
 
@@ -810,7 +811,7 @@ Many production systems combine frameworks: - **LangChain + LangGraph**: Use Lan
 - **LlamaIndex + CrewAI**: Use LlamaIndex for document indexing and CrewAI for multi-agent analysis
 - **LangChain + AutoGen**: Use LangChain's tool ecosystem with AutoGen's conversational agents
 
----
+* * *
 
 ## Performance Benchmarks
 
@@ -820,13 +821,13 @@ Task: Generate a working Python function from a natural language description.
 
 | Framework | Accuracy | Time (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 87% | 12s | Strong tool integration for code execution |
 | CrewAI | 82% | 18s | Multi-agent review improves quality |
@@ -840,13 +841,13 @@ Task: Summarize a 50-page technical document into key findings.
 
 | Framework | Quality Score | Time (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 7.2/10 | 30s | Good but loses nuance |
 | CrewAI | 8.1/10 | 45s | Multi-agent synthesis works well |
@@ -860,13 +861,13 @@ Task: Solve a multi-hop reasoning problem requiring tool use.
 
 | Framework | Success Rate | Time (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 73% | 20s | Chain-of-thought helps but limited recovery |
 | CrewAI | 81% | 35s | Agent delegation handles complexity |
@@ -874,11 +875,11 @@ Task: Solve a multi-hop reasoning problem requiring tool use.
 | LlamaIndex | 65% | 25s | Not optimized for reasoning tasks |
 | LangGraph | 92% | 30s | Graph cycles enable retry and recovery |
 
----
+* * *
 
 ## Docker Setup for Development
 
-All five frameworks support Docker-based development environments. Here's a unified setup: ```dockerfile
+All five frameworks support Docker-based development environments. Here's a unified setup: `````dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -909,14 +910,14 @@ ENV LANGCHAIN_TRACING_V2=true
 ENV LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
 
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 docker build -t ai-frameworks-dev .
 docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
-```
+````
 
----
+* * *
 
 ## Community and Ecosystem
 
@@ -950,7 +951,7 @@ docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
 - **Third-party**: Emerging — custom graph templates and patterns
 - **Commercial Support**: Via LangChain ecosystem and LangSmith
 
----
+* * *
 
 ## Future Outlook
 
@@ -964,7 +965,7 @@ The AI agent framework landscape will continue evolving in 2026-2027: 1. **Conve
 
 5. **Evaluation**: As agents become more capable, evaluating their performance becomes harder. Frameworks with built-in evaluation and monitoring (LangSmith, LlamaIndex evaluators) will lead in production adoption.
 
----
+* * *
 
 ## FAQ
 
@@ -988,7 +989,7 @@ CrewAI has the gentlest learning curve. Its role-based abstraction is intuitive 
 
 Unlikely. The frameworks solve different problems with different philosophies. LangChain optimizes for integrations, CrewAI for collaboration, AutoGen for conversation, LlamaIndex for data, and LangGraph for state. The market will likely settle into a multi-framework ecosystem where teams choose based on their specific needs.
 
----
+* * *
 
 ## Join the Community
 
@@ -996,7 +997,7 @@ We build these comparisons because open-source AI deserves transparent, communit
 - **Share your experience** with any of these frameworks in the comments
 - **Suggest frameworks** you'd like us to compare next
 
----
+* * *
 
 ## More from Dibi8
 
@@ -1004,7 +1005,7 @@ We build these comparisons because open-source AI deserves transparent, communit
 - [Vector Database Comparison: Qdrant vs Weaviate vs Milvus](/resources/llm-frameworks/vector-db-2026-qdrant-weaviate-milvus/)
 - [Unsloth: Fast LLM Fine-Tuning in 2026](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)
 
----
+* * *
 
 *Last updated: June 30, 2026. Star counts and metrics are approximate and subject to change. All code examples tested with framework versions current as of publication date.*
 
@@ -1034,7 +1035,7 @@ We build these comparisons because open-source AI deserves transparent, communit
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -1044,7 +1045,7 @@ We build these comparisons because open-source AI deserves transparent, communit
 - [turbovec-rust-vector-index-2026](ai-agent-frameworks-comparison-2026)
 - [ai-agent-frameworks-comparison-2026](ai-agent-frameworks-comparison-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

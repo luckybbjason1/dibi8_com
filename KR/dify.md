@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 대부분의 팀은 어려운 방식으로 AI 챗봇을 배포합니다. Flask 라우트를 OpenAI API에 연결하고, JSON 파일에서 프롬프트 템플릿을 수작업으로 작성하며, 임베딩 모델, 벡터 저장소, 청킹 로직으로부터 처음부터 RAG 파이프라인을 구축합니다. 세 달 후 프로토타입은 유지보수가 불가능해지고, 개발자 없이는 제품 관리자가 프롬프트를 업데이트할 수 없으며, 지식베이스 동기화는 조용히 실패하는 크론 작업이 됩니다.
@@ -87,26 +88,26 @@ Dify의 워크플로 엔진은 병렬 처리를 지원하는 DAG(방향성 비�
 
 ### 1단계 — Dify 클론
 
-GitHub에서 최신 릴리스를 클론합니다: ```bash
+GitHub에서 최신 릴리스를 클론합니다: ````bash
 git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
-```
+`````
 
 이 명령은 최신 안정 태그(현재 v1.14.2)를 체크아웃합니다.
 
 ### 2단계 — 환경 구성
 
-```bash
+`````bash
 cd dify/docker
 cp .env.example .env
-```
+`````
 
-`.env`를 편집하여 보안 비밀 키를 설정합니다: ```bash
+``.env``를 편집하여 보안 비밀 키를 설정합니다: `````bash
 # 암호학적으로 보안된 비밀 생성
 SECRET=$(openssl rand -hex 32)
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/" .env
-```
+`````
 
-`.env`에서 검토해야 할 주요 변수: ```bash
+``.env``에서 검토해야 할 주요 변수: `````bash
 # 핵심 설정
 CONSOLE_API_URL=http://localhost:5001
 CONSOLE_WEB_URL=http://localhost:3000
@@ -130,45 +131,45 @@ REDIS_DB=0
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=http://weaviate:8080
 WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
-```
+`````
 
 ### 3단계 — Dify 시작
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
-이 명령은 11개의 컨테이너를 시작합니다: 5개의 핵심 서비스와 6개의 의존성. 모든 것이 정상 실행 중인지 확인합니다: ```bash
+이 명령은 11개의 컨테이너를 시작합니다: 5개의 핵심 서비스와 6개의 의존성. 모든 것이 정상 실행 중인지 확인합니다: `````bash
 docker compose ps
-```
+`````
 
-모든 컨테이너가 `Up (healthy)` 상태인지 확인해야 합니다. API 서비스가 데이터베이스 마이그레이션을 실행하므로 첫 시작은 60-90초가 소요됩니다.
+모든 컨테이너가 ````Up (healthy)```` 상태인지 확인해야 합니다. API 서비스가 데이터베이스 마이그레이션을 실행하므로 첫 시작은 60-90초가 소요됩니다.
 
 ### 4단계 — 관리자 계정 초기화
 
-브라우저를 열고 다음 주소로 이동합니다: ```
+브라우저를 열고 다음 주소로 이동합니다: `````
 http://localhost/install
-```
+`````
 
-이메일과 비밀번호로 설정 마법사를 완료합니다. 설정 후 다음 주소에서 로그인합니다: ```
+이메일과 비밀번호로 설정 마법사를 완료합니다. 설정 후 다음 주소에서 로그인합니다: `````
 http://localhost
-```
+`````
 
 ### 5단계 — 첫 번째 모덿 공급자 추가
 
 **설정 → 모덿 공급자**로 이동하여 최소한 하나의 공급자에 대한 API 키를 추가합니다. OpenAI의 경우: 1. 공급자 목록에서 "OpenAI"를 선택합니다
-2. API 키(`sk-...`)를 붙여넣습니다
+2. API 키(````sk-...````)를 붙여넣습니다
 3. "저장"을 클릭합니다
 
-Ollama를 사용한 로컬 개발: 1. Ollama가 로컬에서 실행 중인지 확인합니다(`ollama serve`)
+Ollama를 사용한 로컬 개발: 1. Ollama가 로컬에서 실행 중인지 확인합니다(````ollama serve````)
 2. 공급자 목록에서 "Ollama"를 선택합니다
-3. 기본 URL을 `http://host.docker.internal:11434`로 설정합니다
-4. 다운로드된 모덿(예: `llama3.1:8b`)을 선택합니다
+3. 기본 URL을 ````http://host.docker.internal:11434````로 설정합니다
+4. 다운로드된 모덿(예: ````llama3.1:8b````)을 선택합니다
 
-```bash
+`````bash
 # 테스트용 경량 모덿 가져오기
 ollama pull llama3.1:8b
-```
+`````
 
 이제 Dify 인스턴스가 AI 애플리케이션을 구축할 준비가 되었습니다.
 
@@ -182,7 +183,7 @@ ollama pull llama3.1:8b
 4. 드롭다운에서 모덿(GPT-4o, Claude Sonnet 등)을 선택합니다
 5. **게시**를 클릭합니다
 
-API를 통해 앱에 접근합니다: ```bash
+API를 통해 앱에 접근합니다: `````bash
 curl -X POST 'http://localhost/v1/chat-messages' \
   -H 'Authorization: Bearer YOUR_APP_API_KEY' \
   -H 'Content-Type: application/json' \
@@ -193,70 +194,70 @@ curl -X POST 'http://localhost/v1/chat-messages' \
     "conversation_id": "",
     "user": "user-123"
   }"
-```
+`````
 
 ### Ollama (로컬 LLM)
 
-격리된 네트워크나 비용에 민감한 환경을 위해 Ollama 통합을 통해 로컬 모덿을 실행할 수 있습니다: ```bash
+격리된 네트워크나 비용에 민감한 환경을 위해 Ollama 통합을 통해 로컬 모덿을 실행할 수 있습니다: `````bash
 # Ollama 시작
 ollama serve
 
 # 모딜 가져오기
 ollama pull llama3.1:8b
 ollama pull qwen2.5:14b
-```
+`````
 
 Dify에서 **설정 → 모덿 공급자 → Ollama**로 이동하여 구성합니다: | 필드 | 값 |
 |------|-----|
-| 모덿 이름 | `llama3.1:8b` |
-| 기본 URL | `http://host.docker.internal:11434` |
+| 모덿 이름 | ````llama3.1:8b```` |
+| 기본 URL | ````http://host.docker.internal:11434```` |
 
 개발에는 로컬 모덿을 사용하고, 프로덕션에서는 애플리케이션 로직을 변경하지 않고 클라우드 모덿으로 전환합니다.
 
 ### Qdrant 벡터 저장소
 
-대규모에서 더 나은 성능을 위해 Weaviate를 Qdrant로 교체합니다: ```bash
+대규모에서 더 나은 성능을 위해 Weaviate를 Qdrant로 교체합니다: `````bash
 cd dify/docker
 cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env
-```
+`````
 
-`envs/vectorstores/qdrant.env` 편집: ```bash
+``envs/vectorstores/qdrant.env`` 편집: `````bash
 VECTOR_STORE=qdrant
 QDRANT_URL=http://qdrant:6333
 QDRANT_API_KEY=your-api-key
 QDRANT_CLIENT_TIMEOUT=20
-```
+`````
 
-`docker-compose.override.yaml`에 Qdrant 추가: ```yaml
+``docker-compose.override.yaml``에 Qdrant 추가: `````yaml
 services: qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
     volumes: - qdrant_data:/qdrant/storage
     environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
-Dify 재시작: ```bash
+Dify 재시작: `````bash
 docker compose down
 docker compose up -d
-```
+`````
 
 ### Weaviate
 
-Weaviate는 기본 벡터 저장소로 즉시 작동합니다. 프로덕션용으로는 외부 Weaviate 클러스터를 사용합니다: ```bash
+Weaviate는 기본 벡터 저장소로 즉시 작동합니다. 프로덕션용으로는 외부 Weaviate 클러스터를 사용합니다: `````bash
 # .env에서
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
 WEAVIATE_API_KEY=your-api-key
-```
+`````
 
 ### Claude Code 통합
 
 Dify 앱을 MCP(Model Context Protocol) 서버로 납출하고 Claude Code에 연결합니다: 1. Dify 앱에서 **API 접근 → MCP 서버**로 이동합니다
 2. MCP 게시를 활성화합니다
 3. MCP 서버 URL을 복사합니다
-4. Claude Code에서 실행: ```bash
+4. Claude Code에서 실행: `````bash
 claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
-```
+`````
 
 이제 Dify 워크플로가 Claude Code 대화에서 직접 호출할 수 있습니다.
 
@@ -301,12 +302,12 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 ### 환경 격리
 
-프로덕션에는 절대 기본 `.env` 값을 사용하지 마세요. 환경별 구성을 생성합니다: ```bash
+프로덕션에는 절대 기본 ``.env`` 값을 사용하지 마세요. 환경별 구성을 생성합니다: `````bash
 # 프로덕션 환경
 cp .env .env.production
-```
+`````
 
-프로덕션을 위한 중요한 변경 사항: ```bash
+프로덕션을 위한 중요한 변경 사항: `````bash
 # 보안
 SECRET_KEY=$(openssl rand -hex 48)
 CONSOLE_API_URL=https://dify.yourcompany.com
@@ -331,11 +332,11 @@ S3_BUCKET_NAME=dify-prod-uploads
 S3_ACCESS_KEY=AKIA...
 S3_SECRET_KEY=...
 S3_REGION=us-east-1
-```
+`````
 
 ### SSL이 있는 리버스 프록시
 
-Nginx 또는 Traefik을 사용하여 TLS 종료: ```nginx
+Nginx 또는 Traefik을 사용하여 TLS 종료: `````nginx
 server {
     listen 443 ssl http2;
     server_name dify.yourcompany.com;
@@ -357,11 +358,11 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### 모니터링 및 관측 가능성
 
-Dify는 API 서비스를 통해 메트릭을 노출합니다. 프로덕션 모니터링을 위해 설정합니다: ```yaml
+Dify는 API 서비스를 통해 메트릭을 노출합니다. 프로덕션 모니터링을 위해 설정합니다: `````yaml
 # docker-compose.monitoring.yaml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -374,7 +375,7 @@ services: prometheus: image: prom/prometheus:latest
   node-exporter: image: prom/node-exporter:latest
     ports: - "9100:9100"
 
-volumes: grafana_data: ```
+volumes: grafana_data: `````
 
 추적해야 할 주요 메트릭: | 메트릭 | 경고 임계값 | 위험 임계값 |
 |--------|------------|------------|
@@ -386,7 +387,7 @@ volumes: grafana_data: ```
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # backup-dify.sh — cron을 통해 매일 실행
 
@@ -404,17 +405,17 @@ tar czf $BACKUP_DIR/dify_uploads_$DATE.tar.gz /var/lib/docker/volumes/dify_uploa
 
 # S3에 업로드 (선택 사항)
 aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
-```
+`````
 
 ### 워커 확장
 
-대용량 문서 처리를 위해 Celery 워커를 수평 확장합니다: ```bash
+대용량 문서 처리를 위해 Celery 워커를 수평 확장합니다: `````bash
 # docker-compose.override.yaml
 services: worker: deploy: replicas: 3
     environment: - CELERY_WORKER_CONCURRENCY=8
 
   worker-beat: deploy: replicas: 1  # 정확히 1개의 비트 인스턴스 유지
-```
+`````
 
 ## 대안과의 비교
 
@@ -464,20 +465,20 @@ Dify는 에이전트 노드를 지원하지만, 공유 상태와 동적 계획�
 ## 자주 묻는 질문
 
 **질문: 클라우드 VPS에 Dify를 설치하려면 어떻게 해야 하나요?**
-설치 과정은 로컬 설치와 동일합니다. 최소 4GB RAM의 VPS를 프로비저닝하고(DigitalOcean, Hetzner 또는 AWS Lightsail이 적합), Docker와 Docker Compose를 설치한 후, 저장소를 클론하고 `docker compose up -d`를 실행합니다. 원클릭 배포를 위해 [DigitalOcean Dify Marketplace 앱](https://www.digitalocean.com)을 사용할 수 있습니다.
+설치 과정은 로컬 설치와 동일합니다. 최소 4GB RAM의 VPS를 프로비저닝하고(DigitalOcean, Hetzner 또는 AWS Lightsail이 적합), Docker와 Docker Compose를 설치한 후, 저장소를 클론하고 ````docker compose up -d````를 실행합니다. 원클릭 배포를 위해 [DigitalOcean Dify Marketplace 앱](https://www.digitalocean.com)을 사용할 수 있습니다.
 
 **질문: Dify를 완전히 오프라인으로 실행할 수 있나요?**
 예. Ollama를 모덿 공급자로 구성하고 Llama 3.1, Qwen 2.5 또는 Mistral과 같은 로컬 모덿을 실행하세요. 모든 Dify 서비스는 Docker 낶에서 실행되며 외부 의존성이 필요하지 않습니다. 유일한 제한은 인터넷 접근 없이는 클라우드 LLM API를 사용할 수 없다는 것입니다.
 
 **질문: Dify를 새 버전으로 업그레이드하려면 어떻게 해야 하나요?**
-```bash
+`````bash
 cd dify/docker
 docker compose down
 git fetch --tags
 git checkout $(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)
 docker compose pull
 docker compose up -d
-```
+````
 업그레이드 전에 릴리스 노트에서 주요 변경 사항과 새로 필요한 환경 변수를 확인하세요.
 
 **질문: Dify의 챗봇과 에이전트 앱 유형의 차이점은 무엇인가요?**
@@ -559,7 +560,7 @@ Dify는 순수 프레임워크와 단순 챗봇 빌더가 놓치는 격차를 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -569,7 +570,7 @@ Dify는 순수 프레임워크와 단순 챗봇 빌더가 놓치는 격차를 �
 - [langflow-visual-llm-workflow-builder-2026](dify)
 - [ai-engineering-from-scratch](dify)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,21 +24,22 @@ aliases:
   - /kr/posts/cogvideo/
 ---
 
+
 {{</* resource-info */>}}
 
 > Zhipu AI의 오픈소스 확산 트랜스포머로 텍스트와 이미지를 영화 같은 비디오로 변환하세요. 30분 안에 제로에서 프로덕션까지.
 
----
+* * *
 
 ## 소개
 
 2024-2025년에 텍스트-비디오 생성은 연구 주제에서 프로덕션 도구로 발전했습니다. 오픈소스 모델은 이제 상업용 API와 품질에서 경쟁하면서 소비자용 GPU에서 실행됩니다. 문제는: 대부분의 저장소가 흩어진 문서와 함께 알몸 모델 가중치로 배송된다는 것입니다. 비디오를 생성하는 대신 추론 스크립트, VRAM 최적화 플래그, 미세 조정 파이프라인을 조립하는 데 수 시간을 소비합니다.
 
-Zhipu AI의 CogVideo는 다르게 접근합니다. 12.7K GitHub 스타, 36명의 기여자, 활발한 릴리스를 통해 사전 학습된 2B 및 5B 매개변수 모델, Diffusers 파이프라인 통합, SAT 기반 미세 조정, ComfyUI 노드, 비디오를 효율적인 잠재 표현으로 압축하는 3D 인과적 VAE를 포함한 완전한 툴킷을 제공합니다. 이 가이드는 `pip install`부터 양자화 추론 및 LoRA 미세 조정이 포함된 프로덕션 배포까지 모든 것을 다룹니다.
+Zhipu AI의 CogVideo는 다르게 접근합니다. 12.7K GitHub 스타, 36명의 기여자, 활발한 릴리스를 통해 사전 학습된 2B 및 5B 매개변수 모델, Diffusers 파이프라인 통합, SAT 기반 미세 조정, ComfyUI 노드, 비디오를 효율적인 잠재 표현으로 압축하는 3D 인과적 VAE를 포함한 완전한 툴킷을 제공합니다. 이 가이드는 ```pip install````부터 양자화 추론 및 LoRA 미세 조정이 포함된 프로덕션 배포까지 모든 것을 다룹니다.
 
 ![CogVideo web demo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/web_demo.png)
 
----
+* * *
 
 ## CogVideo란?
 
@@ -46,7 +47,7 @@ Zhipu AI의 CogVideo는 다르게 접근합니다. 12.7K GitHub 스타, 36명의
 
 CogVideo는 Zhipu AI가 개발한 오픈소스 텍스트-비디오 및 이미지-비디오 생성 프레임워크로, 3D 인과적 VAE와 전문가 트랜스포머 아키텍처를 기반으로 합니다. CogVideoX 시리즈(2024)는 ICLR 2023에 발표된 원래 CogVideo 모델을 계승하여, 텍스트 프롬프트나 정지 이미지에서 6초 길이의 720p 비디오를 생성하는 5B 매개변수 모델을 제공합니다.
 
----
+* * *
 
 ## CogVideo 작동 방식
 
@@ -56,7 +57,7 @@ CogVideoX는 세 가지 구성 요소 파이프라인을 사용합니다: 1. **T
 2. **3D 인과적 VAE**: 비디오를 공간 및 시간적으로 잠재 공간으로 압축 — 모델 변형에 따라 4배 공간 압축 및 4-8배 시간 압축
 3. **전문가 트랜스포머 (DiT)**: 50단계 추론 과정에서 잠재 비디오 표현을 디노이징하는 3D 전체 어텐션을 갖춘 확산 트랜스포머
 
-아키텍처 흐름: `텍스트 프롬프트 → T5 인코더 → 잠재 텍스트 임베딩 → DiT 디노이징 → 3D VAE 디코더 → MP4 비디오`
+아키텍처 흐름: ````텍스트 프롬프트 → T5 인코더 → 잠재 텍스트 임베딩 → DiT 디노이징 → 3D VAE 디코더 → MP4 비디오````
 
 ![CogVideoX architecture overview](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cogvideox/pipeline.png)
 
@@ -70,7 +71,7 @@ CogVideoX는 세 가지 구성 요소 파이프라인을 사용합니다: 1. **T
 | CogVideoX1.5-5B | 5B | 1360 x 768 | 161 (10초) | 10 GB 최소 | 7 GB |
 | CogVideoX1.5-5B-I2V | 5B | 768 x 1360 | 49 (6초) | 4 GB 최소 | 3.6 GB |
 
----
+* * *
 
 ## 설치 및 설정
 
@@ -83,44 +84,44 @@ CogVideoX는 세 가지 구성 요소 파이프라인을 사용합니다: 1. **T
 
 ### 방법 1: pip 설치 (권장, 5분 이내)
 
-1단계 — 가상 환경 생성: ```bash
+1단계 — 가상 환경 생성: `````bash
 python3.11 -m venv cogvideo_env
 source cogvideo_env/bin/activate
-```
+`````
 
-2단계 — 저장소 클론 및 종속성 설치: ```bash
+2단계 — 저장소 클론 및 종속성 설치: `````bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo
 pip install -r requirements.txt
-```
+`````
 
-`requirements.txt`는 PyTorch, Diffusers, Transformers, Accelerate 및 SAT 툴킷을 설치합니다: ```
+``requirements.txt``는 PyTorch, Diffusers, Transformers, Accelerate 및 SAT 툴킷을 설치합니다: `````
 torch>=2.3.0
 diffusers>=0.30.0
 transformers>=4.40.0
 accelerate>=0.30.0
 sentencepiece
 opencv-python
-```
+`````
 
-3단계 — 설치 확인: ```python
+3단계 — 설치 확인: `````python
 import torch
 from diffusers import CogVideoXPipeline
 
 print(f"PyTorch version: {torch.__version__}")
 print(f"CUDA available: {torch.cuda.is_available()}")
 print(f"CUDA version: {torch.version.cuda}")
-```
+`````
 
-예상 출력: ```
+예상 출력: `````
 PyTorch version: 2.5.1+cu121
 CUDA available: True
 CUDA version: 12.1
-```
+`````
 
 ### 방법 2: Docker 배포 (프로덕션)
 
-재현 가능한 배포 및 다중 GPU 추론을 위해 사전 빌드된 Docker 이미지를 사용합니다: ```dockerfile
+재현 가능한 배포 및 다중 GPU 추론을 위해 사전 빌드된 Docker 이미지를 사용합니다: `````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -138,9 +139,9 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 7860
 
 CMD ["python3", "-m", "inference.cli_demo"]
-```
+`````
 
-빌드 및 실행: ```bash
+빌드 및 실행: `````bash
 docker build -t cogvideo:latest .
 docker run --gpus all -it --rm \
   -v $(pwd)/output:/app/output \
@@ -148,36 +149,36 @@ docker run --gpus all -it --rm \
   cogvideo:latest \
   --prompt "A serene mountain lake at sunrise" \
   --model_path THUDM/CogVideoX-5B
-```
+`````
 
-다중 GPU 추론의 경우 `from_pretrained()`에 `device_map="balanced"`를 추가하고 `enable_model_cpu_offload()`를 제거합니다: ```python
+다중 GPU 추론의 경우 ``from_pretrained()``에 ``device_map="balanced"``를 추가하고 ``enable_model_cpu_offload()``를 제거합니다: `````python
 pipe = CogVideoXPipeline.from_pretrained(
     "THUDM/CogVideoX-5B",
     torch_dtype=torch.bfloat16,
     device_map="balanced"
 )
-```
+`````
 
 ### 방법 3: SAT 프레임워크 (연구 및 미세 조정)
 
-Swiss Army Transformer (SAT) 프레임워크는 Zhipu AI의 학습 툴킷입니다. 미세 조정 및 연구를 위해 설치합니다: ```bash
+Swiss Army Transformer (SAT) 프레임워크는 Zhipu AI의 학습 툴킷입니다. 미세 조정 및 연구를 위해 설치합니다: `````bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo/sat
 pip install -e .
-```
+`````
 
-SAT 설치 확인: ```python
+SAT 설치 확인: `````python
 from sat import get_args
 print("SAT framework loaded successfully")
-```
+`````
 
----
+* * *
 
 ## 인기 도구와의 통합
 
 ### Hugging Face Diffusers (초보자 권장)
 
-Diffusers 파이프라인은 비디오를 생성하는 가장 빠른 방법입니다. 완전한 텍스트-비디오 스크립트: ```python
+Diffusers 파이프라인은 비디오를 생성하는 가장 빠른 방법입니다. 완전한 텍스트-비디오 스크립트: `````python
 import torch
 from diffusers import CogVideoXPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video
@@ -212,9 +213,9 @@ video = pipe(
 
 # 5. 저장
 export_to_video(video, "output.mp4", fps=8)
-```
+`````
 
-CogVideoX1.5-5B-I2V를 사용한 이미지-비디오: ```python
+CogVideoX1.5-5B-I2V를 사용한 이미지-비디오: `````python
 import torch
 from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video, load_image
@@ -244,22 +245,22 @@ video = pipe(
 ).frames[0]
 
 export_to_video(video, "output_i2v.mp4", fps=8)
-```
+`````
 
 ### ComfyUI 노드 기반 워크플로우
 
-ComfyUI-CogVideoXWrapper는 시각적 노드 기반 워크플로우를 활성화합니다. 설치: ```bash
+ComfyUI-CogVideoXWrapper는 시각적 노드 기반 워크플로우를 활성화합니다. 설치: `````bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-CogVideoXWrapper.git
 cd ComfyUI-CogVideoXWrapper
 pip install -r requirements.txt
-```
+`````
 
 ComfyUI를 재시작하고 CogVideoX 워크플로우를 로드합니다. 래퍼는 I2V 및 비디오-비디오를 포함한 모든 모델 변형을 지원합니다.
 
 ### SAT 프레임워크 미세 조정
 
-사용자 지정 스타일과 개념을 위해 LoRA를 사용하여 SAT로 미세 조정합니다: `sat/configs/sft.yaml` 구성: ```yaml
+사용자 지정 스타일과 개념을 위해 LoRA를 사용하여 SAT로 미세 조정합니다: ``sat/configs/sft.yaml`` 구성: `````yaml
 model_parallel_size: 1
 experiment_name: lora-custom-style
 mode: finetune
@@ -272,41 +273,41 @@ train_data: ["your_train_data_path"]
 valid_data: ["your_val_data_path"]
 deepseed: bf16: enabled: False  # 5B용 True
   fp16: enabled: True   # 5B용 False
-```
+`````
 
-단일 GPU에서 미세 조정 실행: ```bash
+단일 GPU에서 미세 조정 실행: `````bash
 cd CogVideo/sat
 bash finetune_single_gpu.sh
-```
+`````
 
-SAT LoRA 가중치를 Hugging Face 형식으로 변환: ```bash
+SAT LoRA 가중치를 Hugging Face 형식으로 변환: `````bash
 python tools/export_sat_lora_weight.py \
   --sat_pt_path ckpts/lora-custom-style/1000/mp_rank_00_model_states.pt \
   --lora_save_directory ./hf_lora_weights/
-```
+`````
 
-추론에서 미세 조정된 가중치 로드: ```python
+추론에서 미세 조정된 가중치 로드: `````python
 pipe.load_lora_weights(
     "./hf_lora_weights/",
     weight_name="pytorch_lora_weights.safetensors",
     adapter_name="custom_style"
 )
 pipe.fuse_lora(components=["transformer"], lora_scale=1.0)
-```
+`````
 
 ### 프롬프트 최적화 파이프라인
 
-CogVideoX는 길고 설명적인 프롬프트로 학습됩니다. 짧은 프롬프트는 품질이 낮습니다. 프롬프트 변환 스크립트 사용: ```bash
+CogVideoX는 길고 설명적인 프롬프트로 학습됩니다. 짧은 프롬프트는 품질이 낮습니다. 프롬프트 변환 스크립트 사용: `````bash
 python inference/convert_demo.py \
   --prompt "A girl riding a bike" \
   --type "t2v"
-```
+`````
 
-이 스크립트는 간단한 프롬프트를 상세 설명으로 확장하기 위해 대규모 언어 모델(GLM-4 Plus 또는 GPT-4o)을 호출합니다. 변환 예시: **입력:** `"A girl riding a bike"`
+이 스크립트는 간단한 프롬프트를 상세 설명으로 확장하기 위해 대규모 언어 모델(GLM-4 Plus 또는 GPT-4o)을 호출합니다. 변환 예시: **입력:** ````"A girl riding a bike"````
 
-**출력:** `"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."`
+**출력:** ````"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."````
 
-프로그래밍 방식 사용: ```python
+프로그래밍 방식 사용: `````python
 from inference.convert_demo import convert_prompt
 
 optimized_prompt = convert_prompt(
@@ -315,15 +316,15 @@ optimized_prompt = convert_prompt(
     type="t2v"
 )
 print(optimized_prompt)
-```
+`````
 
 ### TorchAO를 사용한 양자화 추론
 
-제한된 VRAM 배포의 경우 diffusers-torchao를 통해 INT8 양자화를 사용합니다: ```bash
+제한된 VRAM 배포의 경우 diffusers-torchao를 통해 INT8 양자화를 사용합니다: `````bash
 pip install torchao
-```
+`````
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXPipeline
 from torchao.quantization import quantize_, int8_weight_only
@@ -344,11 +345,11 @@ video = pipe(
     num_inference_steps=50,
     num_frames=49,
 ).frames[0]
-```
+`````
 
 양자화는 CogVideoX-5B의 VRAM을 10GB에서 약 7GB로 줄이면서 품질 저하가 최소화됩니다.
 
----
+* * *
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -384,13 +385,13 @@ video = pipe(
 
 **소셜 미디어 마케팅**: 마케팅 팀은 프롬프트 최적화된 일괄 생성을 사용하여 16GB VRAM 공유 GPU 서버에서 A/B 테스트를 위해 매일 50개 이상의 짧은 비디오 변형을 생성합니다.
 
----
+* * *
 
 ## 고급 사용법 / 프로덕션 강화
 
 ### 다중 GPU 병렬 추론
 
-높은 처리량 배포의 경우 여러 GPU에 분산: ```python
+높은 처리량 배포의 경우 여러 GPU에 분산: `````python
 import torch
 from diffusers import CogVideoXPipeline
 
@@ -400,13 +401,13 @@ pipe = CogVideoXPipeline.from_pretrained(
     device_map="balanced"  # GPU 간 자동 분산
 )
 # device_map과 함께 enable_model_cpu_offload()를 호출하지 마세요
-```
+`````
 
 다중 GPU는 CogVideoX-5B의 GPU당 메모리를 약 24GB BF16으로 줄입니다.
 
 ### FastAPI를 사용한 API 서버
 
-추론을 프로덕션 API로 래핑: ```python
+추론을 프로덕션 API로 래핑: `````python
 from fastapi import FastAPI
 from pydantic import BaseModel
 import torch
@@ -446,11 +447,11 @@ async def generate_video(req: GenerateRequest): video = pipe(
     export_to_video(video, output_path, fps=8)
 
     return {"video_url": f"/videos/{output_id}.mp4", "status": "complete"}
-```
+`````
 
-실행: ```bash
+실행: `````bash
 uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
-```
+`````
 
 ### VRAM 최적화 체크리스트
 
@@ -463,7 +464,7 @@ GPU에 따라 순서대로 이 최적화를 적용합니다: 1. **VAE 슬라이�
 
 ### Prometheus로 모니터링
 
-프로덕션에서 추론 메트릭 추적: ```python
+프로덕션에서 추론 메트릭 추적: `````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -480,9 +481,9 @@ def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
     vram = torch.cuda.max_memory_allocated()
     VRAM_USAGE.observe(vram)
     return result
-```
+`````
 
----
+* * *
 
 ## 대안과의 비교
 
@@ -510,7 +511,7 @@ def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
 
 **Open-Sora를 선택할 때**: 연구 유연성과 매우 긴 비디오 생성(최대 16초)을 위해 선택하지만 시각적 품질이 낮습니다.
 
----
+* * *
 
 ## 한계 / 솔직한 평가
 
@@ -526,7 +527,7 @@ CogVideoX에는 커밋하기 전에 알아야 할 명확한 제약이 있습니�
 
 6. **상업용 비디오 API 없음**: Runway나 Kling과 달리 CogVideoX는 자체 호스팅 전용입니다. GPU 인프라, 확장 및 대기열을 직접 관리해야 합니다.
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -536,7 +537,7 @@ A: CogVideoX-2B는 Diffusers + 순차 CPU 오프로드로 5GB VRAM에서 실행�
 
 **Q: 50단계 이상의 추론 속도를 높이려면 어떻게 해야 하나요?**
 
-A: CogVideoXDPMScheduler와 `timestep_spacing="trailing"`을 사용하고 단계를 25-30으로 줄이세요. Video-BLADE 단계 증류는 CogVideoX-5B에서 8.89배 가속을 달성합니다.
+A: CogVideoXDPMScheduler와 ````timestep_spacing="trailing"````을 사용하고 단계를 25-30으로 줄이세요. Video-BLADE 단계 증류는 CogVideoX-5B에서 8.89배 가속을 달성합니다.
 
 **Q: 내 데이터셋에서 CogVideoX를 미세 조정할 수 있나요?**
 
@@ -552,17 +553,17 @@ A: 상업용 API는 더 쉬운 접근성과 더 높은 피크 품질을 제공�
 
 **Q: CogVideoX는 어떤 파일 형식을 출력하나요?**
 
-A: Diffusers 파이프라인은 PyTorch 텐서를 출력합니다. `export_to_video()`를 사용하여 8-16 FPS의 H.264 인코딩 MP4로 저장합니다.
+A: Diffusers 파이프라인은 PyTorch 텐서를 출력합니다. ````export_to_video()````를 사용하여 8-16 FPS의 H.264 인코딩 MP4로 저장합니다.
 
-```bash
+`````bash
 ffmpeg -i output.mp4 -c:v libx265 -crf 23 output_h265.mp4
-```
+`````
 
 **Q: 비기술 사용자를 위한 Web UI가 있나요?**
 
 A: 네, 여러 옵션이 있습니다. 공식 Hugging Face Space는 설정 없는 온라인 추론을 제공합니다. ComfyUI와 CogVideoXWrapper 노드로 로컬 사용이 가능합니다.
 
----
+* * *
 
 ## 결론
 
@@ -570,17 +571,17 @@ CogVideoX는 오픈소스 배포의 유연성과 함께 프로덕션급 텍스�
 
 **오늘 시작하기 위한 실행 항목:**
 
-1. 저장소 클론: `git clone https://github.com/zai-org/CogVideo.git`
-2. 종속성 설치: `pip install -r requirements.txt`
-3. 첫 생성 실행: `python inference/cli_demo.py --prompt "Your prompt here" --model_path THUDM/CogVideoX-5B`
-4. `convert_demo.py`로 프롬프트 최적화
+1. 저장소 클론: ````git clone https://github.com/zai-org/CogVideo.git````
+2. 종속성 설치: ````pip install -r requirements.txt````
+3. 첫 생성 실행: ````python inference/cli_demo.py --prompt "Your prompt here" --model_path THUDM/CogVideoX-5B````
+4. ````convert_demo.py```로 프롬프트 최적화
 5. [Discord](https://github.com/zai-org/CogVideo#-join-our-community) 커뮤니티 참여
 
 프로덕션 배포는 Docker 설정으로 시작하여 FastAPI 래핑을 추가하고 Prometheus로 모니터링합니다.
 
 **매일 AI 소스 코드 업데이트를 위한 Telegram 그룹 참여:** [@dibi8source](https://t.me/dibi8source)
 
----
+* * *
 
 
 
@@ -633,7 +634,7 @@ CogVideoX는 오픈소스 배포의 유연성과 함께 프로덕션급 텍스�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -642,6 +643,6 @@ CogVideoX는 오픈소스 배포의 유연성과 함께 프로덕션급 텍스�
 - [comfyui-workflows-complete-guide](cogvideo)
 - [comfyui-workflows-complete-guide](cogvideo)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

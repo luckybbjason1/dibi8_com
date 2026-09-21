@@ -5,6 +5,7 @@ license: 'MIT'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
+
 # ECC：Agent Harness 性能优化 — 2026 指南
 
 ECC（21.2 万+星标）是一个 Agent Harness 性能优化系统，可减少上下文窗口用量并加快 AI 编码代理的响应速度。它通过统一的技能和 MCP 服务器层，与 Claude Code、Codex、Opencode、Cursor 以及 20 多种其他工具配合工作。
@@ -15,11 +16,11 @@ ECC（21.2 万+星标）是一个 Agent Harness 性能优化系统，可减少�
 
 ECC 位于你的 AI 编码代理（Claude Code、Codex CLI、Cursor 等）和底层模型之间。它拦截工具输出、响应 token 和上下文数据——然后应用压缩、缓存和选择性过滤，减少代理需要处理的数据量。
 
-```
+````
 用户 → 代理（Claude Code）→ ECC 中间件 → 模型（Sonnet/Opus）
                     ↑
            性能优化层
-```
+`````
 
 该系统通过三个主要机制运行：
 
@@ -35,14 +36,14 @@ ECC 使用 JavaScript/TypeScript 编写，采用 MIT 许可证，可自由用于
 
 ECC 的优化流水线在代理和模型之间数据流动时实时运行。流程如下：
 
-```bash
+`````bash
 # ECC 在工具输出到达 LLM 上下文之前对其进行拦截
 Claude Code → exec("ls -la /tmp") → [原始输出：15KB]
                     ↓
             ECC 压缩层
                     ↓
           [压缩后输出：2.3KB] → LLM 上下文
-```
+`````
 
 压缩比取决于输出类型：
 
@@ -53,7 +54,7 @@ Claude Code → exec("ls -la /tmp") → [原始输出：15KB]
 
 ECC 通过正则表达式 token 过滤、语义去重和可配置的压缩配置组合来实现这一效果。每种配置针对特定的输出类型，并且可以按项目调优。
 
-```
+`````
 ECC 压缩流程：
 ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
 │  代理     │────▶│  ECC      │────▶│  压缩引擎  │────▶│  模型     │
@@ -62,43 +63,43 @@ ECC 压缩流程：
                     配置：终端
                     过滤：ANSI 代码
                     减少：85%
-```
+`````
 
 ## 安装与配置
 
 ECC 支持多种安装方法，具体取决于你的工作流：
 
-```bash
+`````bash
 # 方法 1：Git 克隆 + npm（推荐以获得完整功能）
 git clone https://github.com/affaan-m/ECC.git
 cd ECC
 npm install
-```
+`````
 
-```bash
+`````bash
 # 方法 2：npm 全局安装（轻量级）
 npm install -g ecc-universal
-```
+`````
 
-```bash
+`````bash
 # 方法 3：Anthropic 市场插件
 # 在 Claude Code 市场中搜索 "ecc@ecc"
 # 安装后插件会自动注册
-```
+`````
 
-```bash
+`````bash
 # 安装后：如果使用 Codex CLI，同步 ECC 到 Codex
 npm install && bash scripts/sync-ecc-to-codex.sh
-```
+`````
 
 安装后，验证是否成功：
 
-```bash
+`````bash
 ecc --version
 # 应显示已安装的版本号
-```
+`````
 
-对于 Claude Code 集成，ECC 注册为技能层。对于 Cursor，它作为扩展运行。对于兼容 MCP 的代理，内置服务器（`ecc-mcp-server`）可直接连接。
+对于 Claude Code 集成，ECC 注册为技能层。对于 Cursor，它作为扩展运行。对于兼容 MCP 的代理，内置服务器（````ecc-mcp-server````）可直接连接。
 
 ## 与流行工具的集成
 
@@ -106,25 +107,25 @@ ecc --version
 
 ECC 通过其市场插件系统与 Claude Code 原生集成。安装后，它会自动拦截工具输出：
 
-```bash
+`````bash
 # 启用 ECC 压缩的 Claude Code
 claude "解释我上一个命令的错误"
 # ECC 将错误输出从约 8KB 压缩到约 1.2KB 后再发送给模型
-```
+`````
 
-市场标识符为 `ecc@ecc`（为适应 Claude Code 命名空间限制而缩短）。
+市场标识符为 ````ecc@ecc````（为适应 Claude Code 命名空间限制而缩短）。
 
 ### Codex CLI
 
 对于 OpenAI 的 Codex，ECC 提供了一个同步脚本来配置压缩层：
 
-```bash
+`````bash
 # 先安装 Codex CLI
 npm install -g opencode
 
 # 将 ECC 同步到 Codex
 bash scripts/sync-ecc-to-codex.sh
-```
+`````
 
 ### Cursor IDE
 
@@ -134,7 +135,7 @@ ECC 作为 Cursor 扩展运行。在 Cursor 设置中启用 ECC 技能层。该�
 
 对于 CI/CD 集成，[WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 提供可靠的代理网络，可与 ECC 的 MCP 服务器配合使用，在多个区域实现分布式优化。
 
-```json
+`````json
 // .cursor/mcp.json 或等效配置
 {
   "mcpServers": {
@@ -144,13 +145,13 @@ ECC 作为 Cursor 扩展运行。在 Cursor 设置中启用 ECC 技能层。该�
     }
   }
 }
-```
+`````
 
 ### GitLab CI / GitHub Actions
 
 ECC 可集成到 CI 流水线中以降低 token 成本：
 
-```yaml
+`````yaml
 # .github/workflows/ecc-optimization.yml
 jobs: optimize: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
@@ -158,7 +159,7 @@ jobs: optimize: runs-on: ubuntu-latest
         run: npm install -g ecc-universal
       - name: 运行 ECC 优化
         run: ecc --target . --output optimized-output.json
-```
+`````
 
 ## 基准测试 / 实际使用案例
 
@@ -168,13 +169,13 @@ jobs: optimize: runs-on: ubuntu-latest
 
 | 输出类型 | ECC 之前 | ECC 之后 | 减少幅度 |
 |
----
+* * *
 |
----
+* * *
 :|
----
+* * *
 :|
----
+* * *
 :|
 | npm install 输出 | 14.2 KB | 2.1 KB | 85% |
 | git diff（大型 PR）| 28.7 KB | 8.4 KB | 71% |
@@ -189,7 +190,7 @@ jobs: optimize: runs-on: ubuntu-latest
 
 对于一个典型的开发者会话，你可以在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上启动一个优化的开发环境，以使用任意代理运行 ECC。以下是生产环境的设置：
 
-```
+`````
 ECC 之前：
   - 45 次工具执行 × 平均 12KB 输出 = 处理 540KB
   - 工具输出消耗约 3,200 个 token
@@ -202,7 +203,7 @@ ECC 之后：
 
 每月节省（每天 5 次会话，22 天）：$3.63/月
 每年节省：$43.56/年
-```
+`````
 
 ### 企业案例研究
 
@@ -214,7 +215,7 @@ ECC 之后：
 
 ECC 允许创建项目特定的压缩配置：
 
-```json
+`````json
 // .ecc-profile.json
 {
   "name": "my-project",
@@ -231,31 +232,31 @@ ECC 允许创建项目特定的压缩配置：
   },
   "sensitivity": "balanced"
 }
-```
+`````
 
 ### 调试模式
 
 要查看 ECC 压缩了什么以及压缩了多少：
 
-```bash
+`````bash
 # 启用详细日志
 export ECC_DEBUG=1
 claude "检查我的代码"
 # 显示每次被拦截的工具输出的压缩统计
-```
+`````
 
-```
+`````
 [EC] 工具输出被拦截：exec("find . -name *.js")
 [EC] 原始大小：24.3 KB → 压缩后：3.1 KB（减少 87%）
 [EC] 已过滤：186 行（node_modules、.git、测试固定文件）
 [EC] 已保留：34 行（源文件）
-```
+`````
 
 ### 性能调优
 
 ECC 的性能可通过环境变量进行配置：
 
-```bash
+`````bash
 # 最大压缩（激进过滤，可能遗漏边缘情况）
 export ECC_COMPRESSION=aggressive
 
@@ -264,9 +265,9 @@ export ECC_COMPRESSION=balanced
 
 # 最小压缩（保留大部分数据，仅移除噪声）
 export ECC_COMPRESSION=conservative
-```
+`````
 
-对于生产环境，`balanced` 模式在压缩和数据完整性之间提供最佳平衡。`aggressive` 模式推荐用于 CI 环境，其中你主要只需要错误检测。
+对于生产环境，````balanced```` 模式在压缩和数据完整性之间提供最佳平衡。````aggressive```` 模式推荐用于 CI 环境，其中你主要只需要错误检测。
 
 ECC 可以部署在 [HTStack](https://my.htstack.com/aff.php?aff=27187) 上，供需要多区域可用性和专属支持的企业团队使用。
 
@@ -274,13 +275,13 @@ ECC 可以部署在 [HTStack](https://my.htstack.com/aff.php?aff=27187) 上，�
 
 ECC 可以作为 Docker 化服务运行，用于多代理环境：
 
-```bash
+`````bash
 docker run -d \
   --name ecc-service \
   -p 8080:8080 \
   -v $(pwd)/.ecc-profile.json:/app/.ecc-profile.json \
   affaanm/ecc:latest
-```
+`````
 
 代理通过端口 8080 上的 MCP 协议连接。Docker 镜像包含完整的 ECC 引擎和所有压缩配置。
 
@@ -288,15 +289,15 @@ docker run -d \
 
 | 功能 | ECC | headroom | Claude Code 内置 | 无优化 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Token 减少 | 平均 73% | 60-95% | 无 | 0% |
 | 多代理支持 | 20+ 工具 | 库 + 代理 | 仅 Claude Code | N/A |
@@ -314,7 +315,7 @@ ECC 的关键差异化在于其**统一的技能层**，可跨所有主要编码
 ECC 是一个年轻的项目（2026 年推出），势头强劲但存在一些已知局限性：
 
 - **压缩伪影**：在激进模式下，压缩过滤器偶尔会移除模型后续需要的上下文。这在平衡模式下很少见（约 2% 的会话报告需要未压缩数据）。
-- **仅市场 Claude 集成**：市场插件（`ecc@ecc`）是最无缝的集成路径。手动安装需要额外的配置。
+- **仅市场 Claude 集成**：市场插件（````ecc@ecc````）是最无缝的集成路径。手动安装需要额外的配置。
 - **JavaScript 生态系统**：项目使用 JavaScript/TypeScript 构建。基于 Python 的代理通过 MCP 服务器工作，但原生 Python 绑定尚不存在。
 - **无 GPU 加速**：压缩在 CPU 上运行。对于超大数据输出（>100KB），压缩可能增加 50-200ms 的延迟。
 - **学习曲线**：自定义压缩配置需要了解正则表达式模式和 ECC 的内部过滤系统。
@@ -333,7 +334,7 @@ ECC 是一个年轻的项目（2026 年推出），势头强劲但存在一些�
 
 **问：我可以在团队项目中使用 ECC 吗？**
 
-答：ECC 支持通过 `.ecc-profile.json` 进行项目级配置。团队可以在仓库中共享压缩配置，确保所有开发者的 token 优化一致。市场插件在打开项目时会自动加载仓库的 ECC 配置。
+答：ECC 支持通过 ````.ecc-profile.json```` 进行项目级配置。团队可以在仓库中共享压缩配置，确保所有开发者的 token 优化一致。市场插件在打开项目时会自动加载仓库的 ECC 配置。
 
 **问：ECC 与 Claude Code 内置的上下文管理相比如何？**
 
@@ -345,7 +346,7 @@ ECC 是一个年轻的项目（2026 年推出），势头强劲但存在一些�
 
 **问：安全性方面如何？ECC 会拦截敏感数据吗？**
 
-答：ECC 仅处理通过代理工具管道流动的数据。它不会拦截击键、剪贴板内容或代理操作之外的网络流量。压缩配置可以排除敏感文件模式（如 `.env`、`*.key`）不被处理。
+答：ECC 仅处理通过代理工具管道流动的数据。它不会拦截击键、剪贴板内容或代理操作之外的网络流量。压缩配置可以排除敏感文件模式（如 ````.env````、````*.key````）不被处理。
 
 ## 结论
 
@@ -353,7 +354,7 @@ ECC 代表了一种实用的方法来解决每个 AI 编码代理用户都面临
 
 核心价值主张很简单：减少代理处理的数据量，同时不丢失它需要的信息。73% 的平均 token 减少量转化为约 3 倍的有效上下文、更低的 API 成本和更快的响应时间。
 
-**立即尝试 ECC** — 使用 `npm install -g ecc-universal` 安装并感受差异。市场插件（`ecc@ecc`）是 Claude Code 用户最简单的路径。
+**立即尝试 ECC** — 使用 ````npm install -g ecc-universal```` 安装并感受差异。市场插件（````ecc@ecc```）是 Claude Code 用户最简单的路径。
 
 了解更多代理优化内容：
 - [Headroom：Token 压缩代理](/zh/resources/llm-frameworks/headroom-token-compression-proxy-library-mcp-server/) — 替代的压缩方案
@@ -371,7 +372,7 @@ ECC 代表了一种实用的方法来解决每个 AI 编码代理用户都面临
 **加入我们的社区**：https://t.me/DIBI8_Group
 
 
----
+* * *
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
 
 
@@ -437,11 +438,11 @@ ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 �
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -451,7 +452,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ecc-agent-harness-performance-optimization)
 - [cursor-vs-claude-code](ecc-agent-harness-performance-optimization)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -482,15 +483,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

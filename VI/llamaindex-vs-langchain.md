@@ -22,6 +22,7 @@ aliases:
   - /posts/llamaindex-vs-langchain/
 ---
 
+
 {</* resource-info */>}
 
 Khi xây dựng ứng dụng dựa trên large language models, hai cái tên xuất hiện nhiều nhất trong cộng đồng developer là LangChain và LlamaIndex. Cả hai đều là frameworks mã nguồn mở miễn phí, hỗ trợ Python và JavaScript, và có cộng đồng hàng chục nghìn developers trên GitHub. Tuy nhiên, triết lý thiết kế, điểm mạnh và trường hợp sử dụng lý tưởng của chúng khác biệt đáng kể. Bài viết này đi sâu vào từng khía cạnh — từ kiến trúc core đến hiệu suất benchmark — giúp bạn đưa ra quyết định dựa trên dữ liệu thực tế thay vì quan điểm chủ quan.
@@ -176,7 +177,7 @@ LlamaIndex hỗ trợ xây dựng knowledge graph từ tài liệu không có c�
 Câu trả lờilà **có**, và đây là một pattern phổ biến trong production. Mô hình tích hợp thường thấy nhất là: - **LlamaIndex làm backend RAG**: xử lý ingestion, indexing và retrieval
 - **LangChain làm lớp orchestration**: quản lý agents, tools và luồng xử lý phức tạp
 
-```python
+````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
@@ -193,7 +194,7 @@ qa_chain = RetrievalQA.from_chain_type(
     retriever=retriever,
     return_source_documents=True
 )
-```
+````
 
 ### Lợi Ích Củ Cách Tiếp Cận Kết Hợp
 
@@ -258,7 +259,7 @@ Hiệu suất phụ thuộc vào use case cụ thể. Theo benchmarks cộng đ�
 
 LangChain cung cấp **LangSmith** — nền tảng enterprise-grade cho observability, evaluation và collaboration. LlamaIndex cung cấp **LlamaCloud** với các tính năng parsing và hosting. Cả hai đều có gói enterprise với SLA và hỗ trợ chuyên dụng. Lựa chọn tốt nhất phụ thuộc vào nhu cầu cụ thể: nếu cần monitoring toàn diện, chọn LangChain; nếu cần xử lý tài liệu enterprise quy mô lớn, LlamaIndex có edge.
 
----
+* * *
 
 **Tài liệu tham khảo:**
 
@@ -268,7 +269,7 @@ LangChain cung cấp **LangSmith** — nền tảng enterprise-grade cho observa
 - [LangChain GitHub Repository](https://github.com/langchain-ai/langchain)
 - [RAG Benchmark Studies on arXiv](https://arxiv.org)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

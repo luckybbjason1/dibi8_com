@@ -32,6 +32,7 @@ faqs: - q: 'Pixelle-Video란 무엇인가요?'
   - q: 'Pixelle-Video는 기본 영상 생성 외에 어떤 기능이 있나요?'
     a: '세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴먼 아바타는 사진 한 장을 한국어·중국어·영어 립싱크가 지원되는 토킹헤드 영상으로 변환합니다. Image-to-Video는 정지 이미지를 동영상으로 만들어 줍니다. Motion Transfer는 참조 영상의 움직임을 정지 이미지에 적용합니다.'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -82,7 +83,7 @@ faqs: - q: 'Pixelle-Video란 무엇인가요?'
 
 🔗 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
+* * *
 
 ## 핵심 기능
 
@@ -99,7 +100,7 @@ faqs: - q: 'Pixelle-Video란 무엇인가요?'
 | **다양한 AI 모델** | GPT, 통의천문, DeepSeek, Ollama 등 |
 | **ComfyUI 아키텍처** | 모듈식 설계, 모든 기능 커스터마이징 가능 |
 
----
+* * *
 
 ## 비디오 생성 파이프라인
 
@@ -107,7 +108,7 @@ Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제�
 
 각 단계는 유연한 커스터마이징을 지원 — AI 모델, 오디오 엔진, 비주얼 스타일 등을 개인화하여 선택할 수 있습니다.
 
----
+* * *
 
 ## 확장 모듈
 
@@ -120,7 +121,7 @@ Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제�
 ### 💃 모션 전이
 참조 비디오와 이미지를 업로드하여 모션을 이미지에 전이 — 사진 속 인물이 춤추게 만들기.
 
----
+* * *
 
 ## 지원 AI 모델
 
@@ -144,26 +145,26 @@ Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제�
 - ChatTTS
 - 사용자 정의 ComfyUI TTS 워크플로
 
----
+* * *
 
 ## 빠른 시작
 
 ### 1. 저장소 클론
 
-```bash
+````bash
 git clone https://github.com/AIDC-AI/Pixelle-Video.git
 cd Pixelle-Video
-```
+`````
 
 ### 2. 의존성 설치
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
 ### 3. API 키 구성
 
-`config.json`을 편집하여 API 키 입력: ```json
+``config.json``을 편집하여 API 키 입력: `````json
 {
   "llm": {
     "api_key": "당신의 API 키",
@@ -174,15 +175,15 @@ pip install -r requirements.txt
     "comfyui_url": "http://127.0.0.1:8188"
   }
 }
-```
+`````
 
 ### 4. Web UI 시작
 
-```bash
+`````bash
 python webui.py
-```
+`````
 
-브라우저에서 `http://localhost:7860` 열기
+브라우저에서 ````http://localhost:7860``` 열기
 
 ### 5. 첫 번째 비디오 생성
 
@@ -192,7 +193,7 @@ python webui.py
 4. "비디오 생성" 클릭
 5. 2-5분 대기 후 완성된 비디오 획득
 
----
+* * *
 
 ## 사용 시나리오
 
@@ -205,7 +206,7 @@ python webui.py
 | **뉴스 코멘터리** | "2026년 AI 트렌드" |
 | **책/영화 리뷰** | "『아토믹 해빗』의 교훈" |
 
----
+* * *
 
 ## 비디오 스타일 예시
 
@@ -219,7 +220,7 @@ Pixelle-Video는 다양한 비디오 스타일을 지원합니다: - 🌄 **다�
 - 📜 **소설 해설** — 소설 리뷰, 인물 분석
 - 🧬 **지식 과학** — 의학 상식, 건강 지식
 
----
+* * *
 
 ## 기술 아키텍처
 
@@ -229,7 +230,7 @@ Pixelle-Video는 **ComfyUI** 아키텍처 기반: - **모듈식 워크플로** �
 - **Web UI** — Gradio 기반의 사용하기 쉬운 인터페이스
 - **배치 처리** — 여러 비디오 동시 생성
 
----
+* * *
 
 ## 성능 및 비용
 
@@ -243,7 +244,7 @@ Pixelle-Video는 **ComfyUI** 아키텍처 기반: - **모듈식 워크플로** �
 - 이미지: RunningHub (로컬 GPU 불필요)
 - TTS: Edge-TTS (무료, 다국어)
 
----
+* * *
 
 ## 다른 도구와 비교
 
@@ -258,7 +259,7 @@ Pixelle-Video는 **ComfyUI** 아키텍처 기반: - **모듈식 워크플로** �
 | **디지털 휴먼** | ✅ | ✅ | ✅ | ❌ |
 | **모션 전이** | ✅ | ❌ | ❌ | ❌ |
 
----
+* * *
 
 ## 최적의 결과를 위한 팁
 
@@ -268,14 +269,14 @@ Pixelle-Video는 **ComfyUI** 아키텍처 기반: - **모듈식 워크플로** �
 4. **음성 미리듣기** — 전체 비디오 생성 전 TTS 미리듣기
 5. **배치 생성** — 3-5개 버전 동시 생성 후 최고 선택
 
----
+* * *
 
 ## 관련 기사
 
 - [Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) — 무료 AI 코딩 어시스턴트
 - [Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI 에이전트 인터넷 연결 도구
 
----
+* * *
 
 ## 결론
 
@@ -287,10 +288,10 @@ ComfyUI 기반 아키텍처는 단순한 블랙박스가 아닙니다 — 각 �
 
 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
+* * *
 
 
----
+* * *
 
 ## 추천 도구
 

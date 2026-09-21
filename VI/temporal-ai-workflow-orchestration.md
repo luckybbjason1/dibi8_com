@@ -10,11 +10,12 @@ draft: false
 slug: temporal-ai-workflow-orchestration
 ---
 
+
 ## TL;DR
 
 Temporal là nền tảng durable execution giúp xây dựng AI workflow đáng tin cậy một cách dễ dàng. Thay vì vật lộn với Kubernetes CronJob, dead-letter queue và logic retry thủ công, bạn viết hàm Python được decorate thành activity và workflow của Temporal. Temporal đảm bảo exactly-once execution, tự động retry với exponential backoff và full observability ngay từ đầu.
 
----
+* * *
 
 ## Temporal Là Gì?
 
@@ -27,9 +28,9 @@ Cho tác vụ AI, điều này có nghĩa là: - Gọi suy luận LLM thất b�
 
 ### Vấn Đề Với Orchestration AI Truyền Thống
 
-Xét pipeline AI điển hình: ```
+Xét pipeline AI điển hình: ````
 [Load Data] → [Preprocess] → [Embed Documents] → [Index in Vector DB] → [Test Retrieval] → [Notify Team]
-```
+`````
 
 Với công cụ truyền thống (Airflow, Celery, cron script), mỗi bước yêu cầu: - Custom error handling cho network timeout
 - Manual checkpointing để resume khi failure
@@ -49,13 +50,13 @@ Temporal loại bỏ tất cả cái này bằng cách làm cho Python code củ
 | Interactive debugging | ✅(web UI + CLI) | ⚠️(limited) | ❌ | ❌ |
 | Tích hợp ML-friendly | ✅(native) | ⚠️(plugin) | ❌ | ❌ |
 
----
+* * *
 
 ## Bắt Đầu
 
 ### Bước 1: Cài Đặt Temporal Stack
 
-```bash
+`````bash
 # Option A: Docker Compose(đề xuất cho local dev)
 git clone https://github.com/temporalio/docker-compose.git
 cd docker-compose
@@ -66,7 +67,7 @@ docker compose up -d
 
 # Verify server đang chạy
 temporal cluster health
-```
+`````
 
 Docker Compose default setup bao gồm: - Temporal Server(gRPC API + history)
 - Temporal UI(localhost:8233)
@@ -75,13 +76,13 @@ Docker Compose default setup bao gồm: - Temporal Server(gRPC API + history)
 
 ### Bước 2: Cài Đặt Python SDK
 
-```bash
+`````bash
 pip install temporalio
-```
+`````
 
 ### Bước 3: Workflow Đầu Tiên Của Bạn
 
-```python
+`````python
 import asyncio
 from temporalio import worker, workflow, activity
 from temporalio.client import Client
@@ -157,11 +158,11 @@ class MLTrainingPipeline: @workflow.run
         )
         
         return deployment
-```
+`````
 
 ### Bước 4: Chạy Worker Và Client
 
-```python
+`````python
 # worker.py
 import asyncio
 from temporalio.worker import Worker
@@ -177,9 +178,9 @@ async def main(): worker = Worker(
     await worker.run()
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
-```python
+`````python
 # client.py
 import asyncio
 from temporalio.client import Client
@@ -199,15 +200,15 @@ async def main(): client = await Client.connect("localhost:7233")
     print(f"Pipeline result: {result}")
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## Mẫu Workflow Cho AI
 
 ### Mẫu 1: LLM Chain Với Fallback
 
-Chain nhiều LLM call với automatic fallback xuống model rẻ hơn: ```python
+Chain nhiều LLM call với automatic fallback xuống model rẻ hơn: `````python
 from temporalio import workflow, activity
 import asyncio
 
@@ -252,11 +253,11 @@ class ResilientLLMChain: @workflow.run
                 model_used = "local-llama"
         
         return {"response": result, "model_used": model_used, "fallback_chain": True}
-```
+`````
 
 ### Mẫu 2: Async Multi-Agent Orchestration
 
-Chạy nhiều AI agent song song, rồi aggregate kết quả: ```python
+Chạy nhiều AI agent song song, rồi aggregate kết quả: `````python
 from temporalio import workflow, activity
 from temporalio.exceptions import TimeoutError
 
@@ -297,11 +298,11 @@ class MultiAgentResearch: @workflow.run
         )
         
         return final_report
-```
+`````
 
 ### Mẫu 3: ML Training Với Checkpoint Recovery
 
-Tự động resume training từ checkpoint cuối cùng sau bất kỳ failure nào: ```python
+Tự động resume training từ checkpoint cuối cùng sau bất kỳ failure nào: `````python
 @activity.defn
 async def save_checkpoint(epoch: int, model_state: dict) -> str: """Save training checkpoint vào persistent storage."""
     checkpoint_path = f"s3://my-bucket/checkpoints/epoch_{epoch}.pt"
@@ -352,11 +353,11 @@ class ResumableTraining: @workflow.run
                 workflow.set_memo({"last_checkpoint": cp_path})
         
         return {"final_state": model_state, "total_epochs": total_epochs}
-```
+`````
 
 ### Mẫu 4: Streaming LLM Output
 
-Xử lý streaming response từ LLM trong workflow: ```python
+Xử lý streaming response từ LLM trong workflow: `````python
 @activity.defn
 async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]: """Stream token từ LLM và trả về dưới dạng list."""
     tokens = []
@@ -383,15 +384,15 @@ class StreamingChat: @workflow.run
         ]
         
         return {"response": response, "history": updated_history}
-```
+`````
 
----
+* * *
 
 ## Tính Năng Nâng Cao Cho AI Workflow
 
 ### Signal-Based Workflow Control
 
-Signal workflow từ bên ngoài để cancel, update priority hoặc inject data mới: ```python
+Signal workflow từ bên ngoài để cancel, update priority hoặc inject data mới: `````python
 @workflow.defn
 class PriorityWorkflow: def __init__(self): self.priority = "normal"
         self.cancel_requested = False
@@ -411,11 +412,11 @@ class PriorityWorkflow: def __init__(self): self.priority = "normal"
             await asyncio.sleep(0.1)
         
         return {"status": "cancelled", "partial_result": result}
-```
+`````
 
 ### Child Workflow Cho Modular Design
 
-Break complex pipeline thành nested child workflow: ```python
+Break complex pipeline thành nested child workflow: `````python
 @workflow.defn
 class DataPreparation: @workflow.run
     async def run(self, raw_data: dict) -> dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
@@ -437,11 +438,11 @@ class FullMLPipeline: @workflow.run
         )
         
         return eval_results
-```
+`````
 
 ### Querying Workflow State
 
-Inspect running workflow mà không stop chúng: ```python
+Inspect running workflow mà không stop chúng: `````python
 from temporalio.client import Client
 
 client = await Client.connect("localhost:7233")
@@ -453,11 +454,11 @@ print(f"Current state: {state}")
 info = await handle.describe()
 print(f"Status: {info.status}")
 print(f"Start time: {info.start_time}")
-```
+`````
 
 ### Workflow Timeout Và Schedule
 
-```python
+`````python
 await workflow.execute_activity(
     slow_activity,
     arg1, arg2,
@@ -478,22 +479,22 @@ schedule = await client.schedule.create(
         retry_policy=RetryPolicy(max_attempts=3)
     )
 )
-```
+`````
 
----
+* * *
 
 ## Monitoring Và Debugging
 
 ### Temporal Web UI
 
-Truy cập built-in web UI tại `http://localhost:8233` để: - Xem tất cả workflow đang chạy và đã hoàn thành
+Truy cập built-in web UI tại ````http://localhost:8233```` để: - Xem tất cả workflow đang chạy và đã hoàn thành
 - Inspect input/output data cho mỗi activity
 - Replay workflow history step-by-step
 - Search workflow theo ID, status hoặc custom attribute
 
 ### CLI Debugging
 
-```bash
+`````bash
 # Liệt kê tất cả workflow
 temporal workflow list --namespace default
 
@@ -508,11 +509,11 @@ temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClo
 
 # Terminate workflow đang chạy
 temporal workflow terminate --workflow-id training-job-001 --reason "User requested"
-```
+`````
 
 ### Structured Logging
 
-```python
+`````python
 import structlog
 from temporalio import activity
 
@@ -531,27 +532,27 @@ async def train_with_logging(model_config: dict) -> dict: logger.info("training_
     
     logger.info("training_complete", final_loss=loss)
     return {"final_loss": loss}
-```
+`````
 
 Log xuất hiện trong Temporal UI và có thể export đến Elasticsearch, Datadog hoặc SIEM bất kỳ.
 
----
+* * *
 
 ## Tối Ưu Chi Phí
 
 ### Activity Heartbeat Cho Long-Running Job
 
-Ngăn waste compute bằng cách báo progress: ```python
+Ngăn waste compute bằng cách báo progress: `````python
 @activity.defn
 async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f"Epoch {epoch}/100 complete")
         loss = train_one_epoch(config)
     
     return {"final_loss": loss}
-```
+`````
 
 ### Right-Sizing Worker Resource
 
-```python
+`````python
 worker = Worker(
     client,
     task_queue="ml-workers",
@@ -560,7 +561,7 @@ worker = Worker(
     max_concurrent_activities=50,
     max_concurrent_workflow_tasks=100,
 )
-```
+`````
 
 ### So Sánh Chi Phí
 
@@ -571,7 +572,7 @@ worker = Worker(
 | Temporal Cloud | $200(compute) + $0 ops | Không |
 | Self-hosted Temporal | $150(2 VM nhỏ) + 5 hrs/tháng maintenance | Thấp |
 
----
+* * *
 
 ## Hướng Phát Triển Tương Lai
 
@@ -598,7 +599,7 @@ Temporal đang tích cực xây dựng tính năng AI-specific: 1. **Native LLM 
 - Team bạn thích visual DAG editor — xem Apache Airflow
 - Bạn đã invested vào AWS Step Functions — native integration có thể đơn giản hơn
 
----
+* * *
 
 ## Cập Nhật Cộng Đồng
 
@@ -609,20 +610,20 @@ Landscape workflow orchestration tiếp tục evolving. Trong 2026, development 
 
 Cộng đồng Temporal đã phát triển lên hơn 50,000 GitHub star, với contribution active từ company xây dựng production AI system. Ecosystem bao gồm connector cho ML framework phổ biến, monitoring integration và template repository cho common AI workflow pattern.
 
----
+* * *
 
 ## FAQ
 
 ### Q: Temporal xử lý LLM rate limiting thế nào?
 
-Dùng Temporal's retry policy với exponential backoff. Cấu hình `initial_interval`, `maximum_interval` và `backoff_coefficient` để implement polite retry strategy: ```python
+Dùng Temporal's retry policy với exponential backoff. Cấu hình ``initial_interval``, ``maximum_interval`` và ``backoff_coefficient`` để implement polite retry strategy: `````python
 retry=RetryPolicy(
     initial_interval=timedelta(seconds=1),
     maximum_interval=timedelta(minutes=5),
     backoff_coefficient=2.0,
     maximum_attempts=5
 )
-```
+````
 
 Điều này naturally throttle request khi rate limit hit, khác với naive retry loop hammer API.
 
@@ -642,7 +643,7 @@ Workflow Temporal có thể chạy indefinitely — không có hard timeout. Wor
 
 Có. Temporal worker có thể chạy ở mọi nơi — EC2, GKE, EKS hoặc thậm chí serverless container. Deploy Temporal worker alongside Modal function hoặc RunPod instance. Key insight: Temporal quản lý workflow coordination, còn GPU compute thực sự happen ở chỗ cheapest.
 
----
+* * *
 
 ## Nguồn Tham Khảo
 
@@ -652,7 +653,7 @@ Có. Temporal worker có thể chạy ở mọi nơi — EC2, GKE, EKS hoặc th
 - [Xây Dựng ML Pipeline Resilient Với Temporal — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal)
 - [So Sánh Workflow Orchestrator Cho AI — ML Infrastructure Report 2026](https://mlinfra.report/workflow-comparison-2026)
 
----
+* * *
 
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
 
@@ -682,7 +683,7 @@ Có. Temporal worker có thể chạy ở mọi nơi — EC2, GKE, EKS hoặc th
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -692,6 +693,6 @@ Có. Temporal worker có thể chạy ở mọi nơi — EC2, GKE, EKS hoặc th
 - [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration)
 - [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

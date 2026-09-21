@@ -24,6 +24,7 @@ aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---
 
+
 [AUTOMATIC1111](/kr/resources/ai-tools/stable-diffusion-webui-2026/)이 "AI 이미지 생성의 Photoshop"이라면 (타이핑하면 이미지 나옴), **ComfyUI**는 **"생성형 AI를 위한 Blender 노드 에디터"** — 워크플로우를 노드의 방향성 그래프로 구축, 모든 모델, 샘플러, 조건화 단계, 후처리에 명시적 제어. 114k GitHub 별, GPL-3.0, 2024-2026 출시된 거의 모든 생성형 AI 모델 패밀리 지원: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (이미지/비디오/3D), PixArt, AuraFlow, LTX-Video.
 
 2026 현실: AI 이미지, 비디오, 멀티모달 파이프라인 진지한 모두가 ComfyUI 실행. 캐주얼 크리에이터는 A1111. 둘 다 맞음 — 다른 멘탈 모델용 다른 도구.
@@ -63,20 +64,20 @@ ComfyUI의 스마트 메모리 관리가 A1111보다 훨씬 좋음. 같은 GPU�
 
 ## 3. 빠른 설치 (10분)
 
-```bash
+````bash
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 pip install -r requirements.txt
 python main.py
 # UI가 http://localhost:8188에서 열림
-```
+`````
 
 또는 단독 Windows 휴대용 빌드 사용 (원클릭 런처).
 
-설치 후 첫 작업: **ComfyUI Manager** 설치 ("확장 스토어"에 가장 가까운 것): ```bash
+설치 후 첫 작업: **ComfyUI Manager** 설치 ("확장 스토어"에 가장 가까운 것): `````bash
 cd custom_nodes
 git clone https://github.com/ltdrdata/ComfyUI-Manager
-```
+`````
 
 ComfyUI 재시작. Manager가 모델 다운로드, 커스텀 노드 설치, 워크플로우 관리 처리.
 
@@ -123,7 +124,7 @@ ComfyUI는 최신 비디오와 3D 모델이 day-1 작동하는 유일한 주류 
 
 ## 8. 프로덕션 셀프호스트 패턴
 
-"AI 미디어 생성 API" 배포: ```
+"AI 미디어 생성 API" 배포: `````
    GPU 인스턴스 (24 GB VRAM 권장)
             │  Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}에
             ▼
@@ -133,9 +134,9 @@ ComfyUI는 최신 비디오와 3D 모델이 day-1 작동하는 유일한 주류 
    래퍼 서비스: - POST /run로 워크플로우 JSON + 오버라이드 params
    - job_id 반환, WebSocket으로 진행 스트림
    - 최종 출력 S3에 저장
-```
+`````
 
-ComfyUI가 워크플로우 JSON 받는 `POST /prompt` 엔드포인트 노출. 위에 얇은 auth + queue 레이어 구축하면 셀프호스트 Midjourney 대체 API.
+ComfyUI가 워크플로우 JSON 받는 ````POST /prompt```` 엔드포인트 노출. 위에 얇은 auth + queue 레이어 구축하면 셀프호스트 Midjourney 대체 API.
 
 ## 9. ComfyUI vs A1111 vs SwarmUI
 
@@ -150,9 +151,9 @@ ComfyUI가 워크플로우 JSON 받는 `POST /prompt` 엔드포인트 노출. �
 ## 10. 함정
 
 1. **ComfyUI Manager 건너뛰기** — "이 노드 어떻게 찾지" 모든 문제가 Manager 설치로 사라짐
-2. **수동 모델 파일 배치** — 모델은 특정 서브디렉토리에 (`models/checkpoints/`, `models/loras/` 등). Manager가 자동 처리; 수동은 오류 prone
+2. **수동 모델 파일 배치** — 모델은 특정 서브디렉토리에 (````models/checkpoints/````, ````models/loras/```` 등). Manager가 자동 처리; 수동은 오류 prone
 3. **이해 못 하는 워크플로우 로드** — Reddit 워크플로우는 200+ 노드 가능. 간단한 것 시작하고 수정
-4. **메모리 관리 설정 무시** — 작은 GPU에서 `--lowvram` / `--medvram`이 "작동"과 "OOM" 차이
+4. **메모리 관리 설정 무시** — 작은 GPU에서 ````--lowvram```` / ````--medvram```이 "작동"과 "OOM" 차이
 5. **워크플로우에 버전 관리 없음** — 코드와 함께 워크플로우 JSON git. 미래의 당신이 현재의 당신에 감사
 
 ## TL;DR
@@ -161,7 +162,7 @@ ComfyUI = **노드 기반 AI 미디어 생성 워크플로우 엔진, 단일 이
 
 ComfyUI + ComfyUI Manager 설치 (총 ~15분), OpenArt 커뮤니티 워크플로우를 캔버스에 떨어뜨리고, 생성형 AI를 방향성 그래프로 A1111이 결코 할 수 없는 방식으로 이해.
 
----
+* * *
 
 *dibi8의 멀티모달 콘텐츠 스택 일부 — [캐주얼 사용용 Stable Diffusion WebUI](/kr/resources/ai-tools/stable-diffusion-webui-2026/)와 [음성용 ChatTTS](/kr/resources/ai-tools/chattts-dialogue-tts-2026/) 페어. 전체 크리에이터 스택은 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
 
@@ -227,12 +228,12 @@ ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -242,6 +243,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [comfyui-workflows-complete-guide](comfyui-node-based-ai-image-2026)
 - [langflow-visual-llm-workflow-builder-2026](comfyui-node-based-ai-image-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

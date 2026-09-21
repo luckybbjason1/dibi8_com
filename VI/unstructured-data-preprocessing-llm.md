@@ -24,13 +24,14 @@ aliases:
   - /vi/posts/unstructured-data-preprocessing-llm/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Bí Mật Tồi Tệ Đằng Sau Mọi Pipeline RAG
 
 Pipeline Retrieval-Augmented Generation (RAG) của bạn chỉ tốt bằng dữ liệu bạn cung cấp. Bạn có thể sở hữu mô hình embedding tốt nhất, cơ sở dữ liệu vector đắt nhất, và LLM tiên tiến nhất — nhưng nếu tài liệu nguồn của bạn là PDF thô với bảng biểu bị hỏng, hình ảnh scan với OCR lộn xộn, hoặc slide PowerPoint với các hộp văn bản ẩn, độ chính xác truy xuất của bạn sẽ bị ảnh hưởng.
 
-Tôi đã học được điều này một cách khó khăn. Một dự án khách hàng đưa **12,000 hợp đồng PDF** vào hệ thống RAG dựa trên Pinecone. Cách tiếp cận `pdftotext` đơn giản tạo ra các chunk như "`Trang 1 trong 47THỎA THUẬN BẢO MẬT`" — tiêu đề trang hòa trộn với văn bản chính, các hàng bảng nối thành các khối không đọc được, và chú thích chân trang chèn giữa câu. Độ chính xác truy xuất: **34%**. Sau khi chuyển sang Unstructured.io với phân vùng và chunking phù hợp: **89%**.
+Tôi đã học được điều này một cách khó khăn. Một dự án khách hàng đưa **12,000 hợp đồng PDF** vào hệ thống RAG dựa trên Pinecone. Cách tiếp cận ```pdftotext```` đơn giản tạo ra các chunk như "````Trang 1 trong 47THỎA THUẬN BẢO MẬT````" — tiêu đề trang hòa trộn với văn bản chính, các hàng bảng nối thành các khối không đọc được, và chú thích chân trang chèn giữa câu. Độ chính xác truy xuất: **34%**. Sau khi chuyển sang Unstructured.io với phân vùng và chunking phù hợp: **89%**.
 
 Khoảng cách đó — từ 34% lên 89% — là lý do Unstructured.io quan trọng. Ra mắt năm 2022 và hiện tại đã đạt **v0.17.0** (tháng 4/2026), dự án đã tích lũy **10,500+ GitHub Stars** theo giấy phép Apache-2.0. Đây là tiêu chuẩn thực tế để chuyển đổi các tài liệu thế giới thực lộn xộn thành các phần tử có cấu trúc sạch sẽ mà LLM có thể sử dụng.
 
@@ -46,24 +47,24 @@ Pipeline của Unstructured gồm ba giai đoạn riêng biệt: **Partitioning 
 
 ### Partitioning: Chia Tài Liệu Thành Các Phần Tử
 
-Hàm `partition` là lõi của Unstructured. Nó tự động phát hiện loại file và định tuyến đến các bộ phân tích chuyên biệt: | Chiến lược Partition | Tốc độ | Độ chính xác | Phù hợp cho |
+Hàm ````partition```` là lõi của Unstructured. Nó tự động phát hiện loại file và định tuyến đến các bộ phân tích chuyên biệt: | Chiến lược Partition | Tốc độ | Độ chính xác | Phù hợp cho |
 |---------------------|--------|-------------|-------------|
-| `auto` | Trung bình | Cao | Sử dụng chung, nhiều loại tài liệu |
-| `fast` | Nhanh | Trung bình | PDF văn bản đơn giản, xử lý hàng loạt |
-| `hi_res` | Chậm | Cao nhất | Layout phức tạp, bảng biểu, tài liệu scan |
-| `ocr_only` | Chậm nhất | Phụ thuộc OCR | PDF dạng hình ảnh, tài liệu scan |
+| ````auto```` | Trung bình | Cao | Sử dụng chung, nhiều loại tài liệu |
+| ````fast```` | Nhanh | Trung bình | PDF văn bản đơn giản, xử lý hàng loạt |
+| ````hi_res```` | Chậm | Cao nhất | Layout phức tạp, bảng biểu, tài liệu scan |
+| ````ocr_only```` | Chậm nhất | Phụ thuộc OCR | PDF dạng hình ảnh, tài liệu scan |
 
-Chiến lược `hi_res` sử dụng **mô hình transformer hiểu tài liệu** (mặc định: `detectron2` hoặc `yolox`) để nhận diện các vùng như tiêu đề, văn bản chính, header, footer, và bảng biểu trước khi trích xuất. Điều này cho phép chuyển đổi bảng thành HTML và phát hiện thứ tự đọc.
+Chiến lược ````hi_res```` sử dụng **mô hình transformer hiểu tài liệu** (mặc định: ````detectron2```` hoặc ````yolox````) để nhận diện các vùng như tiêu đề, văn bản chính, header, footer, và bảng biểu trước khi trích xuất. Điều này cho phép chuyển đổi bảng thành HTML và phát hiện thứ tự đọc.
 
 ### Các Loại Phần Tử: Bảo Toàn Cấu Trúc
 
-Unstructured xuất 20+ loại phần tử. Quan trọng nhất cho công việc LLM: - `NarrativeText` — đoạn văn bản chính
-- `Title` — tiêu đề tài liệu và phần
-- `ListItem` — danh sách gạch đầu dòng và đánh số
-- `Table` — dữ liệu bảng (có thể xuất ra HTML)
-- `Header` / `Footer` — thường được lọc bỏ
-- `Image` — hình ảnh nhúng (tùy chọn trích xuất chú thích)
-- `FigureCaption` — chú thích liên quan đến hình ảnh
+Unstructured xuất 20+ loại phần tử. Quan trọng nhất cho công việc LLM: - ````NarrativeText```` — đoạn văn bản chính
+- ````Title```` — tiêu đề tài liệu và phần
+- ````ListItem```` — danh sách gạch đầu dòng và đánh số
+- ````Table```` — dữ liệu bảng (có thể xuất ra HTML)
+- ````Header```` / ````Footer```` — thường được lọc bỏ
+- ````Image```` — hình ảnh nhúng (tùy chọn trích xuất chú thích)
+- ````FigureCaption```` — chú thích liên quan đến hình ảnh
 
 Mỗi phần tử mang metadata: số trang, tọa độ, loại file, ngôn ngữ phát hiện, phần cha, và các trường tùy chỉnh.
 
@@ -71,9 +72,9 @@ Mỗi phần tử mang metadata: số trang, tọa độ, loại file, ngôn ng�
 
 Các phần tử thô quá nhỏ (từ đơn) hoặc quá lớn (cả trang). Các chiến lược chunking của Unstructured kết hợp và chia các phần tử một cách thông minh: | Chiến lược Chunking | Hành vi | Phù hợp cho |
 |-------------------|---------|-------------|
-| `basic` | Kích thước cố định với overlap | Pipeline đơn giản, số token dự đoán được |
-| `by_title` | Tôn trọng ranh giới phần | Giữ tính liên kết ngữ nghĩa |
-| `by_similarity` | Phân cụm ngữ nghĩa | Tài liệu dài có sự chuyển đổi chủ đề |
+| ````basic```` | Kích thước cố định với overlap | Pipeline đơn giản, số token dự đoán được |
+| ````by_title```` | Tôn trọng ranh giới phần | Giữ tính liên kết ngữ nghĩa |
+| ````by_similarity```` | Phân cụm ngữ nghĩa | Tài liệu dài có sự chuyển đổi chủ đề |
 
 ## Cài Đặt & Thiết Lập: Khởi Động 5 Phút
 
@@ -81,7 +82,7 @@ Unstructured hỗ trợ cả sử dụng thư viện (Python import) và API t�
 
 ### Tùy Chọn A: Thư Viện Python (Phát Triển)
 
-```bash
+`````bash
 python -m venv venv_unstructured
 source venv_unstructured/bin/activate
 
@@ -90,21 +91,21 @@ pip install "unstructured[pdf]==0.17.0"
 
 # Hỗ trợ đầy đủ các loại tài liệu (cài đặt lớn hơn)
 pip install "unstructured[all-docs]==0.17.0"
-```
+`````
 
-Tùy chọn `[pdf]` cài `pdf2image`, `pdfplumber`, và `pikepdf`. Tùy chọn `[all-docs]` thêm DOCX, PPTX, XLSX, MSG, EML, EPUB, và các phụ thuộc OCR bao gồm `tesseract`.
+Tùy chọn ````[pdf]```` cài ````pdf2image````, ````pdfplumber````, và ````pikepdf````. Tùy chọn ````[all-docs]```` thêm DOCX, PPTX, XLSX, MSG, EML, EPUB, và các phụ thuộc OCR bao gồm ````tesseract````.
 
-Xác minh cài đặt: ```python
+Xác minh cài đặt: `````python
 from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"Đã trích xuất {len(elements)} phần tử")
 for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
-```
+`````
 
 ### Tùy Chọn B: API Tự Host Qua Docker (Production)
 
-```bash
+`````bash
 # Pull image đã build sẵn
 docker pull downloads.unstructured.io/unstructured-io/unstructured-api:latest
 
@@ -117,20 +118,20 @@ docker run -d \
 
 # Kiểm tra health
 curl http://localhost:8000/healthcheck
-```
+`````
 
-Môi trường chỉ CPU (rẻ hơn, chậm hơn với PDF phức tạp): ```bash
+Môi trường chỉ CPU (rẻ hơn, chậm hơn với PDF phức tạp): `````bash
 docker run -d \
   --name unstructured-api-cpu \
   -p 8000:8000 \
   downloads.unstructured.io/unstructured-io/unstructured-api-cpu:latest
-```
+`````
 
 Nếu bạn cần máy chủ cloud đáng tin cậy để host, [GPU droplets của DigitalOcean](https://m.do.co/c/eca87ac14ee0) phù hợp cho pipeline hi_res.
 
 ### Gửi Tài Liệu Đến API
 
-```python
+`````python
 import requests
 
 with open("annual_report.pdf", "rb") as f: response = requests.post(
@@ -148,7 +149,7 @@ with open("annual_report.pdf", "rb") as f: response = requests.post(
 
 elements = response.json()
 print(f"Nhận được {len(elements)} chunks")
-```
+`````
 
 ## Tích Hợp Với LangChain, LlamaIndex & Các Vector Store
 
@@ -156,7 +157,7 @@ Unstructured tích hợp sẵn với các framework điều phối LLM chính.
 
 ### Loader LangChain
 
-```python
+`````python
 from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
@@ -181,11 +182,11 @@ vectorstore = Chroma.from_documents(
     documents=documents,
     embedding=OpenAIEmbeddings(),
 )
-```
+`````
 
 ### Tích Hợp LlamaIndex
 
-```python
+`````python
 from llama_index.readers.unstructured import UnstructuredReader
 from llama_index.core import VectorStoreIndex
 
@@ -205,11 +206,11 @@ query_engine = index.as_query_engine()
 
 response = query_engine.query("Các rủi ro chính được đề cập trong phần 3 là gì?")
 print(response)
-```
+`````
 
 ### Tích Hợp Chroma Trực Tiếp (Không Framework)
 
-```python
+`````python
 import chromadb
 from unstructured.chunking.title import chunk_by_title
 from unstructured.partition.pdf import partition_pdf
@@ -242,7 +243,7 @@ for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
             "type": chunk.category,
         }]
     )
-```
+`````
 
 ## Benchmarks & Các Trường Hợp Sử Dụng Thực Tế
 
@@ -271,30 +272,30 @@ Benchmarks trên **Intel i7 8-core, 32GB RAM, không GPU**: | Tài liệu | Kíc
 | PPTX 30 slide | 5.4 MB | auto | 4.1s | 128 |
 | DOCX 85 trang | 1.2 MB | auto | 2.8s | 312 |
 
-Với **GPU acceleration** (NVIDIA T4 qua Docker API), partitioning `hi_res` cho cùng PDF 10 trang giảm xuống **2.1s** — tăng tốc khoảng **4x**.
+Với **GPU acceleration** (NVIDIA T4 qua Docker API), partitioning ````hi_res```` cho cùng PDF 10 trang giảm xuống **2.1s** — tăng tốc khoảng **4x**.
 
 ### Tác Động Chất Lượng Chunking Lên RAG
 
 Tôi chạy thử nghiệm kiểm soát trên 50 hợp đồng pháp lý (trung bình 15 trang mỗi hợp đồng), đo độ chính xác truy xuất top-3: | Phương pháp tiền xử lý | Chất lượng chunk TB | RAG Top-3 Accuracy |
 |-----------------------|-------------------|-------------------|
-| `pdftotext` thô + split | 0.31 | 34% |
+| ````pdftotext```` thô + split | 0.31 | 34% |
 | PyPDF2 + character split | 0.38 | 41% |
-| Unstructured `fast` + basic chunk | 0.67 | 72% |
-| Unstructured `hi_res` + by_title | 0.89 | 89% |
+| Unstructured ````fast```` + basic chunk | 0.67 | 72% |
+| Unstructured ````hi_res```` + by_title | 0.89 | 89% |
 
 Chất lượng chunk được đánh giá theo thang 0-1: tính liên kết ngữ nghĩa, bảo toàn ranh giới (không chia giữa câu), và độ phong phú metadata. **Độ chính xác 89% với hi_res** đại diện cho ngưỡng thực tế hiện tại của document RAG mà không cần curation của con ngườI.
 
 ### Các Case Study Production
 
-**Phân tích tài liệu pháp lý** (100K+ trang/tháng): Một startup tuân thủ sử dụng Unstructured API trong Kubernetes, xử lý các hồ sơ SEC. Họ báo cáo **uptime 99.7%**, xử lý ~50 tài liệu/phút mỗi pod với chiến lược `fast` cho PDF văn bản và `hi_res` cho phụ lục scan.
+**Phân tích tài liệu pháp lý** (100K+ trang/tháng): Một startup tuân thủ sử dụng Unstructured API trong Kubernetes, xử lý các hồ sơ SEC. Họ báo cáo **uptime 99.7%**, xử lý ~50 tài liệu/phút mỗi pod với chiến lược ````fast```` cho PDF văn bản và ````hi_res```` cho phụ lục scan.
 
-**Thu thập hồ sơ y tế**: Một công ty AI y tế trích xuất văn bản từ tài liệu PDF hỗn hợp + fax scan. OCR + `hi_res` xử lý **94% tài liệu** mà không cần can thiệp thủ công; 6% còn lại là fax chất lượng thấp được gắn cờ để xem xét bởi con ngườI.
+**Thu thập hồ sơ y tế**: Một công ty AI y tế trích xuất văn bản từ tài liệu PDF hỗn hợp + fax scan. OCR + ````hi_res```` xử lý **94% tài liệu** mà không cần can thiệp thủ công; 6% còn lại là fax chất lượng thấp được gắn cờ để xem xét bởi con ngườI.
 
 ## Sử Dụng Nâng Cao & Củng Cố Production
 
 ### Pipeline Hậu Xử Lý Tùy Chỉnh
 
-```python
+`````python
 from unstructured.partition.pdf import partition_pdf
 from unstructured.chunking.title import chunk_by_title
 from unstructured.cleaners.core import clean
@@ -332,11 +333,11 @@ chunks = chunk_by_title(
 )
 
 print(f"{len(elements)} thô → {len(filtered)} đã lọc → {len(chunks)} chunks")
-```
+`````
 
 ### Xử Lý Hàng Loạt Với Worker Đồng ThờI
 
-```python
+`````python
 import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
@@ -365,11 +366,11 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results =
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"Đã xử lý thành công: {success}/{len(results)} file")
-```
+`````
 
 ### Chiến Lược Cache Cho Xử Lý Lặp Lại
 
-Cho phát triển RAG lặp lại, partition một lần và cache: ```python
+Cho phát triển RAG lặp lại, partition một lần và cache: `````python
 import json
 import hashlib
 from pathlib import Path
@@ -384,11 +385,11 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
     return elements
-```
+`````
 
 ### Triển Khai Trên Kubernetes
 
-```yaml
+`````yaml
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -402,14 +403,14 @@ spec: replicas: 3
         resources: limits: nvidia.com/gpu: 1
             memory: "8Gi"
           requests: memory: "4Gi"
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: unstructured-api
 spec: selector: app: unstructured-api
   ports: - port: 80
     targetPort: 8000
-```
+`````
 
 Nếu bạn tự host, [Kubernetes cluster của DigitalOcean](https://m.do.co/c/eca87ac14ee0) với GPU nodes là lựa chọn tiết kiệm chi phí so với các API quản lý.
 
@@ -444,13 +445,13 @@ Nếu bạn tự host, [Kubernetes cluster của DigitalOcean](https://m.do.co/c
 
 Unstructured không phải phép màu. Đây là những gì sẽ làm bạn vướng mắc trong production: **1. Chất lượng OCR phụ thuộc vào chất lượng đầu vào.** Tài liệu scan độ phân giải thấp (dưới 150 DPI) tạo ra văn bản hỏng bất kể pipeline nào. Tiền xử lý với tăng cường hình ảnh nếu nguồn liệu của bạn kém.
 
-**2. `hi_res` chậm nếu không có GPU.** Mô hình `detectron2` mặc định chạy trên CPU ở 3-5 trang/phút cho layout phức tạp. Dự trù GPU acceleration hoặc dùng chiến lược `fast` cho PDF văn bản hàng loạt.
+**2. ````hi_res```` chậm nếu không có GPU.** Mô hình ````detectron2```` mặc định chạy trên CPU ở 3-5 trang/phút cho layout phức tạp. Dự trù GPU acceleration hoặc dùng chiến lược ````fast```` cho PDF văn bản hàng loạt.
 
 **3. Trích xuất bảng tốt, không hoàn hảo.** Bảng phức tạp với cell merge, header lồng nhau, hoặc row span có thể mất độ trung thành cấu trúc. Output HTML capture ~**85% bảng chính xác** trong các thử nghiệm của chúng tôi.
 
-**4. Sử dụng memory tăng vọt với tài liệu lớn.** PDF 200 trang với hình ảnh có thể tiêu thụ 4-6GB RAM trong `hi_res` partitioning. Dùng `max_partition` và xử lý theo batch cho file lớn.
+**4. Sử dụng memory tăng vọt với tài liệu lớn.** PDF 200 trang với hình ảnh có thể tiêu thụ 4-6GB RAM trong ````hi_res```` partitioning. Dùng ````max_partition```` và xử lý theo batch cho file lớn.
 
-**5. Dấu chân cài đặt nặng.** Extra `[all-docs]` pull ~2GB phụ thuộc bao gồm PyTorch, Detectron2, và Tesseract. Dùng Docker trong production để cô lập.
+**5. Dấu chân cài đặt nặng.** Extra ````[all-docs]```` pull ~2GB phụ thuộc bao gồm PyTorch, Detectron2, và Tesseract. Dùng Docker trong production để cô lập.
 
 **6. Không phải bộ chuyển đổi định dạng.** Unstructured trích xuất *nội dung*, không phải style. Nếu bạn cần chuyển đổi PDF-to-DOCX với định dạng được bảo toàn, dùng công cụ khác.
 
@@ -462,31 +463,31 @@ Unstructured hỗ trợ 25+ định dạng bao gồm PDF, DOCX, PPTX, XLSX, HTML
 
 ### Nên dùng thư viện Python hay Docker API?
 
-Dùng thư viện Python cho phát triển, tạo prototype, và workflow tài liệu đơn lẻ. Chuyển sang Docker API cho production — cung cấp cách ly tài nguyên tốt hơn, mở rộng ngang qua Kubernetes, và GPU acceleration cho chiến lược `hi_res`. API cũng đơn giản hóa triển khai vì không cần quản lý môi trường Python.
+Dùng thư viện Python cho phát triển, tạo prototype, và workflow tài liệu đơn lẻ. Chuyển sang Docker API cho production — cung cấp cách ly tài nguyên tốt hơn, mở rộng ngang qua Kubernetes, và GPU acceleration cho chiến lược ````hi_res````. API cũng đơn giản hóa triển khai vì không cần quản lý môi trường Python.
 
 ### Chunking với overlap hoạt động như thế nào?
 
-Khi bạn đặt `overlap=200`, Unstructured sao chép 200 ký tự cuối của mỗi chunk vào đầu chunk tiếp theo. Điều này ngăn mất ngữ cảnh ở ranh giới chunk — quan trọng cho RAG vì câu bị chia qua các chunk trở nên không thể trả lờI. Chiến lược `by_title` thêm vào đảm bảo các chunk không bao giờ chia qua ranh giới phần trừ khi một phần đơn vượt quá `max_characters`.
+Khi bạn đặt ````overlap=200````, Unstructured sao chép 200 ký tự cuối của mỗi chunk vào đầu chunk tiếp theo. Điều này ngăn mất ngữ cảnh ở ranh giới chunk — quan trọng cho RAG vì câu bị chia qua các chunk trở nên không thể trả lờI. Chiến lược ````by_title```` thêm vào đảm bảo các chunk không bao giờ chia qua ranh giới phần trừ khi một phần đơn vượt quá ````max_characters````.
 
 ### Có thể chạy Unstructured không cần internet không?
 
-Có. Docker image và thư viện Python hoàn toàn tự chứa sau lần tải xuống đầu tiên. Chiến lược `hi_res` tải trọng số mô hình (Detectron2/YOLOX) ở lần sử dụng đầu tiên — cache chúng trong image triển khai. Không cần API key hay cuộc gọi cloud cho vận hành cục bộ.
+Có. Docker image và thư viện Python hoàn toàn tự chứa sau lần tải xuống đầu tiên. Chiến lược ````hi_res```` tải trọng số mô hình (Detectron2/YOLOX) ở lần sử dụng đầu tiên — cache chúng trong image triển khai. Không cần API key hay cuộc gọi cloud cho vận hành cục bộ.
 
-### Sự khác biệt giữa `fast` và `hi_res` partitioning là gì?
+### Sự khác biệt giữa ````fast```` và ````hi_res```` partitioning là gì?
 
-`fast` sử dụng trích xuất văn bản dựa trên quy tắc (pdfplumber, python-docx) và phù hợp cho tài liệu văn bản nhiều với layout đơn giản. `hi_res` chạy mô hình hiểu tài liệu trực quan để phát hiện vùng, bảng, và thứ tự đọc — cần thiết cho layout phức tạp, tài liệu scan, và trích xuất bảng chính xác. Kỳ vọng `hi_res` chậm hơn 5-10x trên CPU, hoặc dùng GPU acceleration để thu hẹp khoảng cách.
+````fast```` sử dụng trích xuất văn bản dựa trên quy tắc (pdfplumber, python-docx) và phù hợp cho tài liệu văn bản nhiều với layout đơn giản. ````hi_res```` chạy mô hình hiểu tài liệu trực quan để phát hiện vùng, bảng, và thứ tự đọc — cần thiết cho layout phức tạp, tài liệu scan, và trích xuất bảng chính xác. Kỳ vọng ````hi_res```` chậm hơn 5-10x trên CPU, hoặc dùng GPU acceleration để thu hẹp khoảng cách.
 
 ### Làm sao xử lý tài liệu phân tích thất bại?
 
-Bọc các lệnh gọi partition trong try/except và triển khai chuỗi fallback: thử `hi_res` trước, fallback về `fast`, rồi `ocr_only` cho tài liệu dạng hình ảnh. Ghi log thất bại với hash file để xem xét thủ công. Trong production, chúng tôi thấy **tỷ lệ thất bại 2-4%** cho file bị hỏng hoặc được bảo vệ bằng mật khẩu — lập kế hoạch cho hàng đợi dead-letter.
+Bọc các lệnh gọi partition trong try/except và triển khai chuỗi fallback: thử ````hi_res```` trước, fallback về ````fast````, rồi ````ocr_only```` cho tài liệu dạng hình ảnh. Ghi log thất bại với hash file để xem xét thủ công. Trong production, chúng tôi thấy **tỷ lệ thất bại 2-4%** cho file bị hỏng hoặc được bảo vệ bằng mật khẩu — lập kế hoạch cho hàng đợi dead-letter.
 
 ### Unstructured có hỗ trợ tài liệu không phải tiếng Anh không?
 
-Có. Thư viện tự động phát hiện 50+ ngôn ngữ. OCR hỗ trợ bất kỳ ngôn ngữ nào Tesseract hỗ trợ (100+ bao gồm tiếng Trung, Nhật, Hàn, Ả Rập, và Hindi). Đặt `languages=["eng", "vie"]` để gợi ý ngôn ngữ cụ thể cho độ chính xác OCR tốt hơn.
+Có. Thư viện tự động phát hiện 50+ ngôn ngữ. OCR hỗ trợ bất kỳ ngôn ngữ nào Tesseract hỗ trợ (100+ bao gồm tiếng Trung, Nhật, Hàn, Ả Rập, và Hindi). Đặt ````languages=["eng", "vie"]```` để gợi ý ngôn ngữ cụ thể cho độ chính xác OCR tốt hơn.
 
-## Kết Luận: Bắt Đầu Với `fast`, Nâng Cấp Lên `hi_res`
+## Kết Luận: Bắt Đầu Với ````fast````, Nâng Cấp Lên ````hi_res````
 
-Unstructured.io giải quyết vấn đề bị đánh giá thấp nhất trong pipeline LLM: chuyển đổi tài liệu thực tế thành dữ liệu có thể sử dụng. Lộ trình rõ ràng — bắt đầu với `fast` partitioning cho PDF văn bản, thêm `by_title` chunking cho RAG, và nâng cấp lên `hi_res` + GPU khi cần bảng và layout phức tạp.
+Unstructured.io giải quyết vấn đề bị đánh giá thấp nhất trong pipeline LLM: chuyển đổi tài liệu thực tế thành dữ liệu có thể sử dụng. Lộ trình rõ ràng — bắt đầu với ````fast```` partitioning cho PDF văn bản, thêm ````by_title```` chunking cho RAG, và nâng cấp lên ````hi_res``` + GPU khi cần bảng và layout phức tạp.
 
 **10,500+ Stars** và giấy phép Apache-2.0 làm cho nó trở thành lựa chọn an toàn, được cộng đồng hỗ trợ. API tự host giữ bạn kiểm soát dữ liệu — tài liệu không rờI khỏi hạ tầng của bạn.
 
@@ -515,7 +516,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Unstructured Platform (Doanh nghiệp)](https://unstructured.io/platform)
 - Liên quan: [LangChain](dibi8-internal-link), [LlamaIndex](dibi8-internal-link), [Tối ưu hóa Pipeline RAG](dibi8-internal-link)
 
----
+* * *
 
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa liên kết tiếp thị của DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Unstructured.io là mã nguồn mở và miễn phí sử dụng; chúng tôi không có quan hệ thương mại với Unstructured-IO. Các ý kiến dựa trên thử nghiệm thực tế.*
 
@@ -545,7 +546,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -555,6 +556,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](unstructured-data-preprocessing-llm)
 - [ai-engineering-from-scratch](unstructured-data-preprocessing-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

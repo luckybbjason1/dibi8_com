@@ -40,26 +40,27 @@ featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 
 ---
 
+
 ## Why PII Detection Matters More Than Ever
 
 사용자 데이터를 처리하는 모든 조직은 동일하게 증가하는 도전에 직면합니다: **민감한 정보가 어디에 있는지 알고 이를 보호하는 것**. 고객 지원 채팅에서의 신용카드 번호. 인사(HR) 문서에 있는 사회보장번호. 의료 이미지에 있는 환자 이름. 마케팅 데이터베이스에 있는 이메일 주소.
 
 수동 검토는 대규모로는 불가능합니다. 적절한 도구가 없으면 자동화된 탐지는 오류가 발생하기 쉽습니다. 또한 규제 요구 사항 — GDPR, HIPAA, CCPA, PCI-DSS — 은 조직이 모든 데이터 유형과 형식에서 개인 식별 정보를 식별하고 보호할 수 있음을 증명해야 한다고 요구합니다.
 
-**[Microsoft Presidio](https://github.com/microsoft/presidio)** (GitHub: `microsoft/presidio`, **9,397+ 별**)는 이 문제에 대해 가장 널리 채택된 오픈 소스 솔루션입니다. 2019년에 Microsoft에서 처음 공개된 이후, 텍스트, 이미지, 구조화된 데이터, 의료 이미지를 처리할 수 있는 성숙하고 실무에서 검증된 프레임워크로 성장했으며, 모두 관대한 MIT 라이선스 하에 제공됩니다.
+**[Microsoft Presidio](https://github.com/microsoft/presidio)** (GitHub: ```microsoft/presidio````, **9,397+ 별**)는 이 문제에 대해 가장 널리 채택된 오픈 소스 솔루션입니다. 2019년에 Microsoft에서 처음 공개된 이후, 텍스트, 이미지, 구조화된 데이터, 의료 이미지를 처리할 수 있는 성숙하고 실무에서 검증된 프레임워크로 성장했으며, 모두 관대한 MIT 라이선스 하에 제공됩니다.
 
 Presidio는 텍스트, 이미지, 구조화된 데이터에서 민감 정보를 빠르게 식별하고 익명화하는 **모듈**을 제공합니다. 이는 컨텍스트를 인식하며, 플러그인 가능하고 특정 비즈니스 요구에 맞게 커스터마이즈할 수 있습니다.
 
 ## Presidio Architecture
 
-프레시디오(Presidio)는 각각 다른 데이터 유형과 처리 단계를 다루는 네 가지 주요 구성 요소로 구성되어 있습니다: ```
+프레시디오(Presidio)는 각각 다른 데이터 유형과 처리 단계를 다루는 네 가지 주요 구성 요소로 구성되어 있습니다: `````
 presidio/
 ├── presidio-analyzer/     # PII detection in text (NER + regex + rules)
 ├── presidio-anonymizer/   # PII redaction/transformation in text
 ├── presidio-image-redactor/ # PII redaction in images (incl. DICOM)
 ├── presidio-structured/   # PII detection in tabular data (CSV, Excel)
 └── docs/                  # Full documentation and samples
-```
+`````
 
 ### Presidio Analyzer — The Detection Engine
 
@@ -77,8 +78,8 @@ presidio/
 
 PII가 감지되면, 익명화 도구는 변환을 적용합니다: | Transformation | What It Does | Use Case |
 |---------------|-------------|----------|
-| **Redact** | Replace with placeholder (e.g., `[PHONE_NUMBER]`) | General-purpose masking |
-| **Mask** | Hide part of the value (e.g., `***-**-1234`) | Partial obfuscation |
+| **Redact** | Replace with placeholder (e.g., ````[PHONE_NUMBER]````) | General-purpose masking |
+| **Mask** | Hide part of the value (e.g., ````***-**-1234````) | Partial obfuscation |
 | **Hash** | Replace with cryptographic hash | Analytics-friendly anonymization |
 | **Replace** | Substitute with configurable value | Domain-specific replacement |
 | **Encrypt** | Encrypt the value with a key | Reversible anonymization |
@@ -101,34 +102,34 @@ PII가 감지되면, 익명화 도구는 변환을 적용합니다: | Transforma
 
 Presidio는 pip, Docker 또는 소스에서 설치할 수 있습니다: ### Using pip
 
-```bash
+`````bash
 pip install presidio-analyzer presidio-anonymizer
 pip install presidio-image-redactor
 pip install presidio-structured
-```
+`````
 
 ### Using Docker
 
-```bash
+`````bash
 docker pull mcr.microsoft.com/presidio-analyzer:latest
 docker pull mcr.microsoft.com/presidio-anonymizer:latest
 docker pull mcr.microsoft.com/presidio-image-redactor:latest
-```
+`````
 
 ### From Source
 
-```bash
+`````bash
 git clone https://github.com/microsoft/presidio.git
 cd presidio
 pip install -e presidio-analyzer
 pip install -e presidio-anonymizer
-```
+`````
 
 ## Basic Usage Examples
 
 ### Text PII Detection
 
-```python
+`````python
 from presidio_analyzer import AnalyzerEngine
 
 analyzer = AnalyzerEngine()
@@ -139,17 +140,17 @@ results = analyzer.analyze(text=text, language=en)
 for result in results: print(f"Entity: {result.entity_type}, "
           f"Score: {result.score:.2f}, "
           f"Position: {result.start}-{result.end}")
-```
+`````
 
-출력: ```
+출력: `````
 Entity: PERSON, Score: 0.85, Position: 0-10
 Entity: PHONE_NUMBER, Score: 0.95, Position: 26-38
 Entity: EMAIL_ADDRESS, Score: 0.99, Position: 57-73
-```
+`````
 
 ### Text PII Anonymization
 
-```python
+`````python
 from presidio_anonymizer import AnonymizerEngine
 
 anonymizer = AnonymizerEngine()
@@ -166,11 +167,11 @@ anonymized = anonymizer.anonymize(
 
 print(anonymized.text)
 # "XXX Smith's SSN is *************** and his email is [HASH]"
-```
+`````
 
 ### Image PII Redaction
 
-```python
+`````python
 from presidio_image_redactor import ImageRedactorEngine
 
 redactor = ImageRedactorEngine()
@@ -183,11 +184,11 @@ redacted_image = redactor.redact_from_image(
 
 # Save the redacted image
 redacted_image.save("redacted_document.png")
-```
+`````
 
 ### Structured Data Anonymization
 
-```python
+`````python
 import pandas as pd
 from presidio_structured import StructuredAnalyzerEngine
 
@@ -197,11 +198,11 @@ analyzer = StructuredAnalyzerEngine()
 results = analyzer.analyze(df=df, columns=["name", "email", "phone"])
 
 # Results contain PII detections per column with confidence scores
-```
+`````
 
 ## Custom Recognizers
 
-프레시디오의 가장 강력한 기능 중 하나는 도메인별 데이터에 대해 맞춤형 PII 식별자를 정의할 수 있는 능력입니다: ```python
+프레시디오의 가장 강력한 기능 중 하나는 도메인별 데이터에 대해 맞춤형 PII 식별자를 정의할 수 있는 능력입니다: `````python
 from presidio_analyzer import AnalyzerEngine
 from presidio_analyzer.recognizer_registry import RecognizerRegistry
 from presidio_analyzer.nlp_engine import NlpEngineProvider
@@ -221,7 +222,7 @@ registry.add_recognizer(EmployeeIdRecognizer())
 
 analyzer = AnalyzerEngine(registry=registry)
 results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
-```
+`````
 
 맞춤 인식기는 다음을 활용할 수 있습니다: - **정규식 패턴**으로 구조화된 데이터 형식
 - **문맥 키워드** (예: "SSN:" 접두사)
@@ -232,16 +233,16 @@ results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
 
 프레시디오(Presidio)는 여러 배포 패턴을 지원합니다: ### REST API (Docker)
 
-```bash
+`````bash
 docker run -d -p 5002:5002 mcr.microsoft.com/presidio-analyzer:latest
 docker run -d -p 5001:5001 mcr.microsoft.com/presidio-anonymizer:latest
-```
+`````
 
-분석기는 `POST /analyze`를 제공하고, 익명화기는 `POST /anonymize`를 제공합니다. 두 기능 모두 텍스트, 언어, 엔터티 유형 사양을 포함한 JSON 페이로드를 받습니다.
+분석기는 ````POST /analyze````를 제공하고, 익명화기는 ````POST /anonymize````를 제공합니다. 두 기능 모두 텍스트, 언어, 엔터티 유형 사양을 포함한 JSON 페이로드를 받습니다.
 
 ### Docker Compose Deployment
 
-다중 구성 요소 배포의 경우, 모든 Presidio 서비스를 함께 실행하려면 Docker Compose를 사용하세요: ```yaml
+다중 구성 요소 배포의 경우, 모든 Presidio 서비스를 함께 실행하려면 Docker Compose를 사용하세요: `````yaml
 version: '3.8'
 services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
     ports: - "5002:5002"
@@ -256,9 +257,9 @@ services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
     ports: - "5003:5003"
     environment: - PORT=5003
     depends_on: - analyzer
-```
+`````
 
-`docker compose up -d`로 배포하고 각 구성 요소의 해당 포트에서 접속하세요.
+````docker compose up -d````로 배포하고 각 구성 요소의 해당 포트에서 접속하세요.
 
 ### Kubernetes
 
@@ -320,7 +321,7 @@ Presidio는 개인정보 보호 규정에서 요구하는 데이터 주체 접�
 
 ## Custom NER Model Integration
 
-Presidio는 기본 NER 모델을 도메인별 대체 모델로 교체하는 것을 지원합니다: ```python
+Presidio는 기본 NER 모델을 도메인별 대체 모델로 교체하는 것을 지원합니다: `````python
 from presidio_analyzer.nlp_engine import SpacyNlpEngine
 
 # Load a custom spaCy model
@@ -337,7 +338,7 @@ transformer_nlp = TransformersNlpEngine(
 )
 
 analyzer = AnalyzerEngine(nlp_engine=transformer_nlp)
-```
+`````
 
 도메인 특화 모델은 의료 코드, 법률 용어, 금융 상품과 같은 전문 엔티티에 대한 감지 정확도를 크게 향상시킵니다. 트랜스포머 모델을 조직의 데이터에 맞춰 세밀하게 조정하고 Presidio에 바로 연결하세요.
 
@@ -369,7 +370,7 @@ analyzer = AnalyzerEngine(nlp_engine=transformer_nlp)
 
 ## Getting Started
 
-Presidio를 사용하는 가장 빠른 방법: ```bash
+Presidio를 사용하는 가장 빠른 방법: `````bash
 # Install all components
 pip install presidio-analyzer presidio-anonymizer presidio-image-redactor presidio-structured
 
@@ -383,12 +384,12 @@ results = analyzer.analyze(
 )
 for r in results: print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')
 "
-```
+`````
 
-또는 Docker를 통해 프로덕션 준비가 된 API로 배포하십시오: ```bash
+또는 Docker를 통해 프로덕션 준비가 된 API로 배포하십시오: `````bash
 docker run -d -p 5002:5002 --name presidio-analyzer mcr.microsoft.com/presidio-analyzer:latest
 curl -X POST http://localhost:5002/analyze   -H "Content-Type: application/json"   -d '{"text":"John Smith lives in New York", "language":"en"}'
-```
+````
 
 ## Conclusion
 
@@ -398,7 +399,7 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
 
 인프라의 경우, 간단한 자체 호스팅 배포를 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)을 고려하거나 GPU 가속 NER 추론을 위해 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 고려하세요. 웹 스크래핑 및 데이터 수집을 위한 신뢰할 수 있는 프록시가 필요하신가요? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f)가 네트워킹 계층을 제공합니다. 데이터 처리 거래를 찾고 계신가요? 독점 혜택을 위해 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) 및 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8)을 확인하세요. 마케팅 자동화를 위해 [PromoOhLy](https://www.promoohubly.com/join/12190433)가 강력한 퍼널 도구를 제공합니다.
 
----
+* * *
 
 **출처:** [Presidio GitHub](https://github.com/microsoft/presidio) · [문서](https://microsoft.github.io/presidio) · [데모](https://aka.ms/presidio-demo) · [OpenSSF 배지](https://www.bestpractices.dev/projects/6076)
 
@@ -432,7 +433,7 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -440,6 +441,6 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
 - [knowledge-work-plugins](microsoft-presidio-pii-detection-redaction-sdk)
 - [microsoft-markitdown-file-to-markdown-converter-cli](microsoft-presidio-pii-detection-redaction-sdk)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

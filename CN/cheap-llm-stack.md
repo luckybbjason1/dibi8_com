@@ -26,6 +26,7 @@ tags: ["cheap llm", "free tier", "cost optimization", "stack", "collection"]
 aliases:
   - /posts/cheap-llm-stack/
 ---
+
 # The Cheap LLM Stack 2026: How to Run Production AI on $0-15/Month Using Free Tiers and Token Compression
 
 
@@ -37,15 +38,15 @@ The trick isn't any single tool — it's the orchestration. Free tiers cap reque
 
 | # | Component | Cost | Role | Deep dive |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **Ollama** (local) | $0 | Heavy/sensitive workloads on your hardware | [Ollama guide](/resources/llm-frameworks/ollama/) |
 | 2 | **DeepSeek API** | $2-8/mo | Cheap inference for hard tasks ($0.27/M input vs $3 Claude) | [DeepSeek vs OpenAI](/resources/llm-frameworks/deepseek-ds4-vs-openai-api.md) |
@@ -67,7 +68,7 @@ Stack the three — local fallback + cheap API + free tier rotation + compressio
 
 ## 2. Architecture — The Smart Router Pattern
 
-```
+````
    Your app
        │
        ▼
@@ -80,7 +81,7 @@ Stack the three — local fallback + cheap API + free tier rotation + compressio
        ├─► Gemini free tier     (1k req/day, easy tasks)
        │
        └─► OpenRouter free      (rotating community models, experiments)
-```
+`````
 
 Each provider has a "specialty zone." 9Router (or a 10-line Python wrapper if you don't want another service) inspects the task and routes accordingly.
 
@@ -118,11 +119,11 @@ Full setup + when to *not* use DeepSeek: [DeepSeek-V4 vs OpenAI API comparison](
 
 **The catch**: Google logs your prompts for "model improvement" on free tier — don't send proprietary code or PII.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 npm install -g @google/gemini-cli
 gemini auth login  # opens browser, uses your Google account
 gemini "explain this regex: /^[a-z]+$/i"
-```
+`````
 
 Or hit the API directly via Gemini REST endpoints — same 1,000/day budget.
 
@@ -134,12 +135,12 @@ Companion overview of Gemini vs Perplexity vs ChatGPT free tiers and where each 
 
 **The mechanism**: Semantic dedup. If you send the same 2,000-token system prompt 50 times today, RTK recognizes it on call #2 and ships a pointer instead of the full text.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 docker run -d --name rtk -p 8765:8765 \
   ghcr.io/rtk-ai/rtk:latest
-```
+`````
 
-Then change your API base URL from `https://api.deepseek.com/v1` to `http://localhost:8765/v1/deepseek`. Done.
+Then change your API base URL from ````https://api.deepseek.com/v1```` to ````http://localhost:8765/v1/deepseek````. Done.
 
 Full deep dive on how RTK works + benchmarks: [RTK Rust CLI proxy + token saver](/resources/llm-frameworks/rtk-rust-cli-proxy-ai-token-saver/).
 
@@ -151,11 +152,11 @@ Full deep dive on how RTK works + benchmarks: [RTK Rust CLI proxy + token saver]
 
 **Bonus**: 9Router includes its own RTK compression layer for premium providers, plus auto-fallback when a free tier hits its daily cap.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=ollama,deepseek,gemini,openrouter \
   ghcr.io/rtk-ai/9router:latest
-```
+`````
 
 Full configuration + free-tier coding combo recipes: [9Router smart proxy guide](/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/).
 
@@ -163,11 +164,11 @@ Full configuration + free-tier coding combo recipes: [9Router smart proxy guide]
 
 A workable default routing config for solo devs: | Task type | Provider | Why |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Inline code completion | **Ollama** (Qwen 3 Coder 14B local) | Latency matters more than quality |
 | Code generation (function-scope) | **DeepSeek-V4 via RTK** | Quality matters, compress to save |
@@ -200,7 +201,7 @@ A workable default routing config for solo devs: | Task type | Provider | Why |
 
 1. **Ollama** (15 min) — Install, pull Llama 3.2 3B + Qwen 3 Coder 14B
 2. **DeepSeek account** (5 min) — Sign up, get API key, top up $10
-3. **Gemini CLI** (5 min) — `npm i -g @google/gemini-cli`, auth with Google
+3. **Gemini CLI** (5 min) — ````npm i -g @google/gemini-cli```, auth with Google
 4. **RTK proxy** (10 min) — Docker run, point at DeepSeek
 5. **9Router** (10 min) — Docker run, configure 4 providers
 6. **Test routing** (15 min) — Send 5 different task types, verify each hits expected provider
@@ -227,7 +228,7 @@ The point: this stack is *not* the ceiling. It"s the floor that lets you scale s
 Stack pays for itself if you currently spend $30+/mo on any AI SaaS. Spin it up on your laptop (no VPS needed for cheap-LLM specifically — though a {{< aff "digitalocean" "footer-cta" "$6/mo DigitalOcean droplet" >}} helps if you want it always-on for a team).
 
 
----
+* * *
 *Pair this collection with [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) if you want the full coding stack — they share Ollama + 9Router + RTK as a foundation.*
 
 
@@ -257,7 +258,7 @@ Stack pays for itself if you currently spend $30+/mo on any AI SaaS. Spin it up 
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](cheap-llm-stack)
@@ -266,7 +267,7 @@ Stack pays for itself if you currently spend $30+/mo on any AI SaaS. Spin it up 
 - [12-factor-agents-production-llm-software-2026](cheap-llm-stack)
 - [12-factor-agents](cheap-llm-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

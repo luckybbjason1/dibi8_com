@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/activepieces-workflow-automation/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Vấn đề $2,340/năm với tự động hóa workflow
@@ -57,7 +58,7 @@ Activepieces tuân theo kiến trúc ba tầng module: 1. **Frontend (Angular)**
 
 ### Flow Engine
 
-Khi một flow thực thi, engine xử lý các bước tuần tự: ```typescript
+Khi một flow thực thi, engine xử lý các bước tuần tự: ````typescript
 // Mô hình thực thi flow khái niệm
 interface FlowRun {
   id: string;
@@ -68,9 +69,9 @@ interface FlowRun {
 
 // Mỗi bước giải quyết đầu vào, thực thi piece action,
 // và lưu trữ đầu ra để các bước downstream tham chiếu
-```
+`````
 
-Các bước có thể tham chiếu đầu ra từ các bước trước đó qua cú pháp templating `{{step_name.property}}`, tương tự Handlebars. Engine hỗ trợ branching (`if/else`), loops (`for each`), và sub-flows.
+Các bước có thể tham chiếu đầu ra từ các bước trước đó qua cú pháp templating ````{{step_name.property}}````, tương tự Handlebars. Engine hỗ trợ branching (````if/else````), loops (````for each````), và sub-flows.
 
 ### Pieces: Hệ thống Plugin
 
@@ -90,7 +91,7 @@ Pieces có thể là chính thức (do đội Activepieces duy trì), do cộng 
 
 ### Tùy chọn A: Docker Compose (Khuyến nghị)
 
-```bash
+`````bash
 git clone https://github.com/activepieces/activepieces.git
 cd activepieces
 
@@ -99,26 +100,26 @@ cp packages/server/api/.env.example .env
 
 # 3. Khởi động tất cả services
 docker compose -f docker-compose.yml up -d
-```
+`````
 
-Sau khi containers khởi động, truy cập `http://localhost:8080` và hoàn thành wizard thiết lập ban đầu.
+Sau khi containers khởi động, truy cập ````http://localhost:8080```` và hoàn thành wizard thiết lập ban đầu.
 
 ### Tùy chọn B: Cài đặt one-line trên VPS mới
 
-Để triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187), sử dụng trình cài đặt tự động: ```bash
+Để triển khai production trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187), sử dụng trình cài đặt tự động: `````bash
 # Tải và chạy script thiết lập
 curl -sSL https://cdn.activepieces.com/install.sh | bash
 
 # Script sẽ hỏi: # - Tên miền (tùy chọn, cho HTTPS)
 # - Email (cho chứng chỉ SSL qua Let's Encrypt)
 # - Email và mật khẩu admin
-```
+`````
 
 Script này cài đặt Docker, kéo Activepieces, cấu hình Nginx làm reverse proxy, và thiết lập SSL tự động.
 
 ### Tùy chọn C: Docker thủ công với cấu hình tùy chỉnh
 
-```bash
+`````bash
 # docker-compose.yml cho production
 version: "3.8"
 services: activepieces: image: activepieces/activepieces:0.46.0
@@ -150,29 +151,29 @@ services: activepieces: image: activepieces/activepieces:0.46.0
     restart: unless-stopped
     volumes: - redisdata:/data
 
-volumes: pgdata: redisdata: ```
+volumes: pgdata: redisdata: `````
 
-Triển khai với `docker compose up -d`. Nền tảng sẵn sàng sau khoảng 60 giây.
+Triển khai với ````docker compose up -d````. Nền tảng sẵn sàng sau khoảng 60 giây.
 
 ### Tham chiếu biến môi trường
 
 | Biến | Bắt buộc | Mô tả |
 |------|----------|-------|
-| `AP_ENCRYPTION_KEY` | Có | Khóa AES-256 để mã hóa credentials |
-| `AP_JWT_SECRET` | Có | Secret để ký token xác thực |
-| `AP_POSTGRES_*` | Có | Chi tiết kết nối PostgreSQL |
-| `AP_REDIS_URL` | Có | URL kết nối Redis |
-| `AP_FRONTEND_URL` | Có | URL công khai của instance |
-| `AP_TELEMETRY` | Không | Đặt `false` để tắt dữ liệu sử dụng ẩn danh |
-| `AP_EXECUTION_MODE` | Không | `SANDBOXED` (mặc định) hoặc `UNSANDBOXED` |
+| ````AP_ENCRYPTION_KEY```` | Có | Khóa AES-256 để mã hóa credentials |
+| ````AP_JWT_SECRET```` | Có | Secret để ký token xác thực |
+| ````AP_POSTGRES_*```` | Có | Chi tiết kết nối PostgreSQL |
+| ````AP_REDIS_URL```` | Có | URL kết nối Redis |
+| ````AP_FRONTEND_URL```` | Có | URL công khai của instance |
+| ````AP_TELEMETRY```` | Không | Đặt ````false```` để tắt dữ liệu sử dụng ẩn danh |
+| ````AP_EXECUTION_MODE```` | Không | ````SANDBOXED```` (mặc định) hoặc ````UNSANDBOXED```` |
 
 ### Đăng nhập lần đầu
 
-```bash
+`````bash
 # Sau lần khởi động đầu, log sẽ hiển thị URL admin mặc định
 docker logs activepieces 2>&1 | grep "first sign up"
 # Output: Truy cập http://localhost:8080/sign-up để tạo tài khoản admin đầu tiên
-```
+`````
 
 Truy cập URL, tạo tài khoản admin, và bạn đã vào được builder.
 
@@ -191,7 +192,7 @@ Activepieces duy trì các tích hợp chính thức cho các dịch vụ phổ 
 
 ### Kết nối Slack: Hướng dẫn từng bước
 
-```bash
+`````bash
 # Bước 1: Trong builder, click "New Connection" và chọn Slack
 # Bước 2: Chọn xác thực "OAuth2"
 # Bước 3: Tạo Slack app tại https://api.slack.com/apps
@@ -199,13 +200,13 @@ Activepieces duy trì các tích hợp chính thức cho các dịch vụ phổ 
 #    - Đặt redirect URL: https://your-instance.com/redirect
 # Bước 4: Copy Client ID và Secret vào Activepieces
 # Bước 5: Ủy quyền — Activepieces tự động xử lý OAuth flow
-```
+`````
 
 Sau khi kết nối, bạn có thể gửi tin nhắn, đọc danh sách kênh, và phản ứng với Slack events như triggers.
 
 ### AI Actions với OpenAI
 
-Activepieces v0.46.0 bao gồm piece OpenAI tích hợp sẵn hỗ trợ GPT-4o, GPT-4.1, và GPT-4.1-mini: ```yaml
+Activepieces v0.46.0 bao gồm piece OpenAI tích hợp sẵn hỗ trợ GPT-4o, GPT-4.1, và GPT-4.1-mini: `````yaml
 # Ví dụ: Flow đánh giá lead với AI
 Trigger: Webhook ("Lead form mới được submit")
   → Bước 1: Trích xuất dữ liệu form (tên, email, công ty, tin nhắn)
@@ -218,13 +219,13 @@ Trigger: Webhook ("Lead form mới được submit")
        Nếu "hot" → Tạo task ưu tiên cao trong HubSpot
        Nếu "warm" → Thêm vào email nurture sequence
        Nếu "cold" → Ghi log để review hàng tháng
-```
+`````
 
 Piece OpenAI hỗ trợ prompt tùy chỉnh, kiểm soát temperature (0.0–2.0), giới hạn max token, và JSON mode cho output có cấu trúc.
 
 ### Webhook Triggers
 
-```bash
+`````bash
 # Mỗi flow với webhook trigger nhận một URL duy nhất
 curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
   -H "Content-Type: application/json" \
@@ -233,19 +234,19 @@ curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
     "amount": 149.00,
     "customer_id": "cust_88291"
   }'
-```
+`````
 
 Webhook triggers hỗ trợ cấu hình response tùy chỉnh, vì vậy bạn có thể trả về 200 OK ngay lập tức hoặc đợi flow hoàn thành.
 
 ### Scheduled Flows
 
-```yaml
+`````yaml
 # Cú pháp Cron cho tự động hóa định kỳ
 Schedule: "0 9 * * 1"  # Mỗi thứ Hai lúc 9:00 AM
   → Kéo metrics hàng tuần từ Google Analytics
   → Định dạng thành báo cáo markdown
   → Đăng lên kênh Slack #weekly-reports
-```
+`````
 
 Activepieces sử dụng bộ lập lịch công việc dựa trên BullMQ với Redis, đảm bảo thực thi cron đáng tin cậy ngay cả khi containers khởi động lại.
 
@@ -284,7 +285,7 @@ Kiểm thử trên VPS 4 vCPU / 8 GB RAM (Ubuntu 24.04): | Khối lượng công
 
 ### Chạy phía sau Reverse Proxy
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/activepieces
 server {
     listen 443 ssl http2;
@@ -305,11 +306,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### Chiến lược backup
 
-```bash
+`````bash
 #!/bin/bash
 # backup-activepieces.sh — chạy qua cron hàng ngày
 DATE=$(date +%Y%m%d_%H%M%S)
@@ -325,22 +326,22 @@ docker cp activepieces-redis:/data/dump.rdb "$BACKUP_DIR/redis_$DATE.rdb"
 # Chỉ giữ 14 ngày gần nhất
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
-```
+`````
 
 ### Giám sát với Health Checks
 
-```bash
+`````bash
 # Thêm vào docker-compose.yml
   activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-```
+`````
 
 ### Phát triển Piece tùy chỉnh
 
-```typescript
+`````typescript
 // my-api-piece/index.ts
 import { createPiece, PieceAuth } from '@activepieces/pieces-framework';
 import { sendNotification } from './lib/actions/send-notification';
@@ -356,17 +357,17 @@ export const myApiPiece = createPiece({
   actions: [sendNotification],
   triggers: [],
 });
-```
+`````
 
 Build và publish piece của bạn lên private npm registry, sau đó cài đặt qua admin panel của Activepieces.
 
 ### Bảo mật Sandbox Mode
 
-Theo mặc định, thực thi flow chạy trong các container sandboxed bị cô lập. Để bảo mật tối đa trong production: ```yaml
+Theo mặc định, thực thi flow chạy trong các container sandboxed bị cô lập. Để bảo mật tối đa trong production: `````yaml
 environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # MB mỗi lần thực thi
   - AP_SANDBOX_TIMEOUT_SECONDS=120
-```
+`````
 
 Điều này đảm bảo một flow bị lỗi không thể làm cạn kiệt tài nguyên server.
 
@@ -410,13 +411,13 @@ Không có công cụ di chuyển tự động, nhưng việc ánh xạ khá đ�
 
 **Q: Làm sao để cập nhật instance self-hosted của tôi?**
 
-```bash
+`````bash
 # Kéo image mới nhất và khởi động lại
 cd /opt/activepieces
 docker compose pull
 docker compose up -d
 # Database migrations chạy tự động khi khởi động
-```
+`````
 
 Luôn backup database trước khi nâng cấp phiên bản chính. Dự án tuân theo semantic versioning, và bản vá (0.46.1) an toàn để áp dụng tự động.
 
@@ -442,7 +443,7 @@ Activepieces mang lại những gì các đội kỹ sư thực sự cần: **m�
 
 Với thiết lập Docker 5 phút, hệ sinh thái piece TypeScript đang phát triển, và giấy phép MIT không áp đặt giới hạn nào, gần như không có lý do gì để tiếp tục trả tiền thuê SaaS cho việc điều hướng API.
 
-**Triển khai ngay hôm nay**: Khởi tạo VPS trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($24/tháng cho 4 GB) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187), chạy `docker compose up`, và xây dựng flow đầu tiên trong vòng 10 phút.
+**Triển khai ngay hôm nay**: Khởi tạo VPS trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($24/tháng cho 4 GB) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187), chạy ````docker compose up```, và xây dựng flow đầu tiên trong vòng 10 phút.
 
 Để có hosting quản lý với hỗ trợ ưu tiên, hãy xem [ưu đãi trên AppSumo](https://appsumo.com/s/106nifb/) cho các gói cloud Activepieces.
 
@@ -467,7 +468,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [n8n](dibi8-internal-link) — Công cụ tự động hóa workflow mã nguồn mở khác
 - [Hướng dẫn self-hosting](dibi8-internal-link) — Các thực hành tốt nhất về self-hosting trên dibi8.com
 
----
+* * *
 
 *Công bố liên kết liên kết: Bài viết này chứa các liên kết liên kết đến DigitalOcean, HTStack và AppSumo. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com sẽ nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả các khuyến nghị đều dựa trên kiểm thử thực tế, không phải khả năng có liên kết liên kết.*
 
@@ -497,7 +498,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -507,6 +508,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [paddleocr-81k-star-ocr-engine](activepieces-workflow-automation)
 - [markitdown-universal-file-to-markdown-converter](activepieces-workflow-automation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

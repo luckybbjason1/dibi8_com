@@ -23,6 +23,7 @@ tags: ["puppeteer", "browser-automation", "headless-chrome", "web-scraping", "do
 aliases:
   - /posts/puppeteer/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -35,7 +36,7 @@ This puppeteer tutorial walks through a complete browser automation setup — fr
 
 Puppeteer is a Node.js library that provides a programmatic API to control Chrome, Chromium, and Firefox over the Chrome DevTools Protocol (CDP) and WebDriver BiDi. It runs headless by default, making it suitable for server environments, but can drive visible ("headful") browser windows when debugging is needed. The project shipped its first public release in 2017 and has since grown into an ecosystem that spans web scraping, PDF generation, screenshot automation, accessibility testing, and CI/CD pipelines.
 
-The `puppeteer` package bundles Chromium automatically on install, while `puppeteer-core` omits the browser download — a distinction that matters in Docker and other constrained environments where you bring your own Chrome binary.
+The ```puppeteer```` package bundles Chromium automatically on install, while ````puppeteer-core```` omits the browser download — a distinction that matters in Docker and other constrained environments where you bring your own Chrome binary.
 
 ## How Puppeteer Works
 
@@ -43,7 +44,7 @@ The `puppeteer` package bundles Chromium automatically on install, while `puppet
 
 ![Puppeteer GitHub repository showing 94,300 stars](https://github.com/puppeteer/puppeteer/raw/main/docs/images/puppeteer-logo.png)
 
-Puppeteer communicates with the browser over a WebSocket connection. When you call `puppeteer.launch()`, the library starts a Chrome or Firefox process with remote debugging enabled on a local port, then connects to it via the DevTools Protocol. This direct connection avoids the HTTP round-trips that older WebDriver-based tools incur.
+Puppeteer communicates with the browser over a WebSocket connection. When you call ````puppeteer.launch()````, the library starts a Chrome or Firefox process with remote debugging enabled on a local port, then connects to it via the DevTools Protocol. This direct connection avoids the HTTP round-trips that older WebDriver-based tools incur.
 
 **Key architectural concepts:**
 
@@ -58,15 +59,15 @@ Starting with v25.0.0 (May 2026), Puppeteer moved to ESM-only modules and bumped
 
 A local Puppeteer install takes under three minutes on a machine with Node.js 22+.
 
-```bash
+`````bash
 # Install with bundled Chromium
 npm install puppeteer
 
 # Or use puppeteer-core if you manage Chrome separately
 npm install puppeteer-core
-```
+`````
 
-**Verify the installation** with a minimal script: ```javascript
+**Verify the installation** with a minimal script: `````javascript
 // quickstart.mjs — verify Puppeteer launches correctly
 import puppeteer from puppeteer;
 
@@ -74,16 +75,16 @@ const browser = await puppeteer.launch();
 const page = await browser.newPage();
 await page.goto('https://example.com');
 const title = await page.title();
-console.log(`Page title: ${title}`);
+console.log(````Page title: ${title}````);
 await browser.close();
-```
+`````
 
-Run it: ```bash
+Run it: `````bash
 node quickstart.mjs
 # Expected output: Page title: Example Domain
-```
+`````
 
-For environments where you manage Chrome independently — Docker, AWS Lambda, or systems with pre-installed Chromium — use `puppeteer-core` and set the `executablePath`: ```javascript
+For environments where you manage Chrome independently — Docker, AWS Lambda, or systems with pre-installed Chromium — use ``puppeteer-core`` and set the ``executablePath``: `````javascript
 import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
@@ -91,7 +92,7 @@ const browser = await puppeteer.launch({
   headless: new,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
-```
+`````
 
 ## Docker Deployment
 
@@ -99,7 +100,7 @@ Running Puppeteer in Docker eliminates the "works on my machine" problem and mak
 
 **Production Dockerfile:**
 
-```dockerfile
+`````dockerfile
 # Dockerfile — Node.js 22 with Chromium for Puppeteer
 FROM node:22-slim
 
@@ -146,18 +147,18 @@ COPY src/ ./src/
 USER pptruser
 
 CMD ["node", "src/index.mjs"]
-```
+`````
 
 **Build and run:**
 
-```bash
+`````bash
 docker build -t puppeteer-app .
 docker run --rm -v $(pwd)/output:/home/pptruser/app/output puppeteer-app
-```
+`````
 
 **docker-compose.yml for local development:**
 
-```yaml
+`````yaml
 version: '3.8'
 services: puppeteer: build: .
     volumes: - ./src:/home/pptruser/app/src
@@ -167,9 +168,9 @@ services: puppeteer: build: .
     shm_size: 2gb
     deploy: resources: limits: memory: 4G
         reservations: memory: 1G
-```
+`````
 
-The `shm_size` setting is critical. Chrome uses `/dev/shm` for shared memory, and the default 64MB in Docker containers causes crashes on large pages. Setting it to 2GB prevents "Aw, snap" errors in headless mode.
+The ````shm_size```` setting is critical. Chrome uses ````/dev/shm```` for shared memory, and the default 64MB in Docker containers causes crashes on large pages. Setting it to 2GB prevents "Aw, snap" errors in headless mode.
 
 ![Puppeteer Docker container running Chrome headless](https://user-images.githubusercontent.com/3165635/222661775-8d1f4f3a-75f1-4c9d-9c3d-3c5f53b5c1f0.png)
 
@@ -179,7 +180,7 @@ The `shm_size` setting is critical. Chrome uses `/dev/shm` for shared memory, an
 
 ### Web Scraping with Dynamic Content
 
-Modern SPAs load content after the initial HTML response. Puppeteer waits for selectors before extracting data: ```javascript
+Modern SPAs load content after the initial HTML response. Puppeteer waits for selectors before extracting data: `````javascript
 // scraper.mjs — extract data from a JavaScript-rendered page
 import puppeteer from puppeteer;
 
@@ -207,13 +208,13 @@ const quotes = await page.evaluate(() => {
   }));
 });
 
-console.log(`Scraped ${quotes.length} quotes`);
+console.log(````Scraped ${quotes.length} quotes````);
 await browser.close();
-```
+`````
 
 ### Screenshot and PDF Generation
 
-Puppeteer excels at rendering visual artifacts from HTML — a common requirement for invoicing, reporting, and Open Graph image generation: ```javascript
+Puppeteer excels at rendering visual artifacts from HTML — a common requirement for invoicing, reporting, and Open Graph image generation: `````javascript
 // screenshot.mjs — full-page capture and PDF export
 import puppeteer from puppeteer;
 import fs from fs;
@@ -244,11 +245,11 @@ await page.pdf({
 
 console.log('Screenshot and PDF saved to', OUTPUT_DIR);
 await browser.close();
-```
+`````
 
 ### Network Interception and Request Blocking
 
-Blocking unnecessary resources cuts page load time by 40–60% in scraping scenarios: ```javascript
+Blocking unnecessary resources cuts page load time by 40–60% in scraping scenarios: `````javascript
 // blocker.mjs — block images and CSS for faster scraping
 import puppeteer from puppeteer;
 
@@ -268,16 +269,16 @@ page.on(request, (req) => {
 
 const start = Date.now();
 await page.goto('https://example.com', { waitUntil: networkidle2 });
-console.log(`Loaded in ${Date.now() - start}ms (resources blocked)`);
+console.log(````Loaded in ${Date.now() - start}ms (resources blocked)````);
 
 await browser.close();
-```
+`````
 
 ## Integration with Popular Tools
 
 ### GitHub Actions
 
-Automate screenshot capture or regression tests on every push: ```yaml
+Automate screenshot capture or regression tests on every push: `````yaml
 # .github/workflows/puppeteer.yml
 name: Puppeteer CI
 on: push: branches: [main]
@@ -303,11 +304,11 @@ jobs: puppeteer: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: screenshots
           path: output/*.png
-```
+`````
 
 ### Jest Testing Framework
 
-```javascript
+`````javascript
 // jest.config.js
 module.exports = {
   testEnvironment: node,
@@ -317,9 +318,9 @@ module.exports = {
     'ts-jest': { useESM: true }
   }
 };
-```
+`````
 
-```javascript
+`````javascript
 // homepage.test.mjs — Jest + Puppeteer integration
 import puppeteer from puppeteer;
 
@@ -351,11 +352,11 @@ describe(Homepage, () => {
     expect(Date.now() - start).toBeLessThan(3000);
   });
 });
-```
+`````
 
 ### TypeScript Setup
 
-```json
+`````json
 // tsconfig.json
 {
   "compilerOptions": {
@@ -369,9 +370,9 @@ describe(Homepage, () => {
   },
   "include": ["src/**/*"]
 }
-```
+`````
 
-```typescript
+`````typescript
 // src/scraper.ts — TypeScript with Puppeteer
 import puppeteer, { Browser, Page } from puppeteer;
 
@@ -400,12 +401,12 @@ async function scrapeProducts(url: string): Promise<Product[]> {
 }
 
 const results = await scrapeProducts('https://example.com/products');
-console.log(`Found ${results.length} products`);
-```
+console.log(````Found ${results.length} products````);
+`````
 
 ### Mocha Test Runner
 
-```javascript
+`````javascript
 // .mocharc.cjs
 module.exports = {
   extension: [mjs],
@@ -413,9 +414,9 @@ module.exports = {
   timeout: 30000,
   exit: true
 };
-```
+`````
 
-```javascript
+`````javascript
 // test/scraper.test.mjs — Mocha + Puppeteer
 import puppeteer from puppeteer;
 import assert from assert;
@@ -441,21 +442,21 @@ describe('Scraper Suite', function() {
     await page.close();
   });
 });
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 Independent benchmarks show Puppeteer holding a strong position for Chrome-centric workloads: | Metric | Puppeteer | Selenium | Playwright | Cypress |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Avg. action latency | < 1s | 3–5s | 1–2s | 1–2s |
 | Setup time | 10–15 min | 2–4 hours | 15–30 min | 15–30 min |
@@ -466,7 +467,7 @@ Independent benchmarks show Puppeteer holding a strong position for Chrome-centr
 
 **When to choose Puppeteer over alternatives:**
 
-- **PDF generation and screenshot pipelines**: Puppeteer's `page.pdf()` and `page.screenshot()` are the most mature APIs in the browser automation space.
+- **PDF generation and screenshot pipelines**: Puppeteer's ````page.pdf()```` and ````page.screenshot()```` are the most mature APIs in the browser automation space.
 - **Chrome DevTools Protocol access**: For teams building developer tools, performance profilers, or coverage reporters, direct CDP access is a requirement only Puppeteer satisfies natively.
 - **Web scraping at scale**: When combined with a worker queue like Bull or RabbitMQ, Puppeteer processes thousands of URLs per hour with minimal overhead.
 - **Existing Node.js infrastructure**: If your backend is already TypeScript/JavaScript, adding Puppeteer introduces no new runtime or language.
@@ -475,7 +476,7 @@ Independent benchmarks show Puppeteer holding a strong position for Chrome-centr
 
 ### Browser Pool Management
 
-Launching one browser per request is wasteful. A connection pool reuses browser instances: ```javascript
+Launching one browser per request is wasteful. A connection pool reuses browser instances: `````javascript
 // pool.mjs — reusable browser pool with max concurrency
 import puppeteer from puppeteer;
 
@@ -531,11 +532,11 @@ await page.goto('https://example.com');
 // ... work ...
 await page.close();
 pool.release(browser);
-```
+`````
 
 ### Graceful Error Handling and Retries
 
-Production scraping encounters network timeouts, bot detection, and transient failures. Wrap page navigation with exponential backoff: ```javascript
+Production scraping encounters network timeouts, bot detection, and transient failures. Wrap page navigation with exponential backoff: `````javascript
 // retry.mjs — resilient navigation with exponential backoff
 async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -548,16 +549,16 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
     } catch (err) {
       if (attempt === maxRetries) throw err;
       const delay = Math.pow(2, attempt) * 1000;
-      console.log(`Attempt ${attempt} failed, retrying in ${delay}ms...`);
+      console.log(````Attempt ${attempt} failed, retrying in ${delay}ms...````);
       await new Promise(r => setTimeout(r, delay));
     }
   }
 }
-```
+`````
 
 ### Health Monitoring
 
-In long-running services, monitor browser process health and restart crashed instances: ```javascript
+In long-running services, monitor browser process health and restart crashed instances: `````javascript
 // health.mjs — basic health check for browser processes
 async function isBrowserHealthy(browser) {
   try {
@@ -580,21 +581,21 @@ setInterval(async () => {
     }
   }
 }, 60000);
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Puppeteer | Selenium | Playwright | Cypress |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Languages** | JavaScript, TypeScript | Java, Python, C#, JS, Ruby | JS/TS, Python, Java, .NET | JavaScript, TypeScript |
 | **Browser Support** | Chrome, Chromium, Firefox | All major + mobile (Appium) | Chromium, Firefox, WebKit | Chromium, Edge, Firefox |
@@ -602,7 +603,7 @@ setInterval(async () => {
 | **Execution Speed** | Very fast (< 1s/action) | Slow (3–5s/action) | Fast (1–2s/action) | Fast (1–2s/action) |
 | **Built-in Test Runner** | No (uses Jest/Mocha) | No (uses external) | Yes (playwright test) | Yes |
 | **Parallel Execution** | Manual setup | Selenium Grid | Built-in workers | Cypress Cloud (paid) |
-| **PDF Generation** | Native (`page.pdf`) | Third-party | Native | Third-party plugins |
+| **PDF Generation** | Native (````page.pdf````) | Third-party | Native | Third-party plugins |
 | **Mobile Emulation** | Chrome device emulation | Full (via Appium) | Viewport simulation | None |
 | **Community / GitHub Stars** | 94,300 | 34,000 | 78,000 | 48,000 |
 | **License** | Apache-2.0 | Apache-2.0 | Apache-2.0 | MIT |
@@ -612,18 +613,18 @@ setInterval(async () => {
 
 ## Limitations / Honest Assessment
 
-Puppeteer is not the right tool for every browser automation task. Consider these constraints before committing: - **JavaScript-only**: Puppeteer is a Node.js library. Teams using Python, Java, or Go must use `pyppeteer` (unofficial, lagging) or switch to Selenium/Playwright.
+Puppeteer is not the right tool for every browser automation task. Consider these constraints before committing: - **JavaScript-only**: Puppeteer is a Node.js library. Teams using Python, Java, or Go must use ````pyppeteer```` (unofficial, lagging) or switch to Selenium/Playwright.
 - **Limited cross-browser support**: While Firefox support exists via WebDriver BiDi, it is less mature than Chrome automation. Safari and WebKit are not supported. If cross-browser testing is a hard requirement, Playwright covers all three rendering engines natively.
 - **No built-in test runner**: Unlike Cypress or Playwright, Puppeteer does not ship with assertions, test organization, or reporters. You bring your own Jest, Mocha, or Vitest setup.
 - **Manual parallelization**: Parallel test execution requires manual browser pool management or external orchestration. Playwright's built-in worker model is simpler for large test suites.
 - **Memory footprint**: Each Chrome instance consumes 200–400MB of RAM. Scraping thousands of pages concurrently requires significant infrastructure or a cluster-based approach.
-- **Bot detection**: Modern websites use Cloudflare, DataDome, and PerimeterX to detect headless browsers. Puppeteer alone does not bypass these systems — additional tools like `puppeteer-extra-plugin-stealth` are necessary and their effectiveness varies.
+- **Bot detection**: Modern websites use Cloudflare, DataDome, and PerimeterX to detect headless browsers. Puppeteer alone does not bypass these systems — additional tools like ````puppeteer-extra-plugin-stealth```` are necessary and their effectiveness varies.
 
 ## Frequently Asked Questions
 
-### What is the difference between `puppeteer` and `puppeteer-core`?
+### What is the difference between ````puppeteer```` and ````puppeteer-core````?
 
-The `puppeteer` package bundles Chromium and downloads it on install. The `puppeteer-core` package contains only the JavaScript API and expects you to provide a Chrome or Chromium executable via the `executablePath` launch option. Use `puppeteer-core` in Docker, CI/CD pipelines, and environments where you manage the browser binary separately.
+The ````puppeteer```` package bundles Chromium and downloads it on install. The ````puppeteer-core```` package contains only the JavaScript API and expects you to provide a Chrome or Chromium executable via the ````executablePath```` launch option. Use ````puppeteer-core```` in Docker, CI/CD pipelines, and environments where you manage the browser binary separately.
 
 ### Does Puppeteer support Firefox?
 
@@ -631,15 +632,15 @@ Yes, since 2023 Puppeteer supports Firefox through the WebDriver BiDi protocol. 
 
 ### How do I run Puppeteer in Docker without root privileges?
 
-Create a dedicated non-root user in your Dockerfile, assign it to the `audio` and `video` groups, and run Chrome with `--no-sandbox` and `--disable-setuid-sandbox` flags. The example Dockerfile in this guide demonstrates the full setup. Note that `--no-sandbox` reduces process isolation, which is an acceptable trade-off in containerized environments where the container itself provides the security boundary.
+Create a dedicated non-root user in your Dockerfile, assign it to the ````audio```` and ````video```` groups, and run Chrome with ````--no-sandbox```` and ````--disable-setuid-sandbox```` flags. The example Dockerfile in this guide demonstrates the full setup. Note that ````--no-sandbox```` reduces process isolation, which is an acceptable trade-off in containerized environments where the container itself provides the security boundary.
 
 ### What is the minimum Node.js version for Puppeteer 25?
 
-Puppeteer v25.0.0 and later require Node.js 22 or higher. The project moved to ESM-only modules in this release, dropping CommonJS (`require()`) support. If you are on Node.js 18 or 20, upgrade before installing Puppeteer 25, or pin to Puppeteer 24.x which supports Node.js 18+.
+Puppeteer v25.0.0 and later require Node.js 22 or higher. The project moved to ESM-only modules in this release, dropping CommonJS (````require()````) support. If you are on Node.js 18 or 20, upgrade before installing Puppeteer 25, or pin to Puppeteer 24.x which supports Node.js 18+.
 
 ### How can I reduce memory usage in production Puppeteer deployments?
 
-Use a browser pool to limit concurrent Chrome instances, block unnecessary resources (images, CSS, fonts) via request interception, close pages immediately after use, and set the `--disable-dev-shm-usage` flag to use `/tmp` instead of `/dev/shm` for shared memory. In Docker, increase `shm_size` to at least 2GB to prevent renderer process crashes.
+Use a browser pool to limit concurrent Chrome instances, block unnecessary resources (images, CSS, fonts) via request interception, close pages immediately after use, and set the ````--disable-dev-shm-usage```` flag to use ````/tmp```` instead of ````/dev/shm```` for shared memory. In Docker, increase ````shm_size``` to at least 2GB to prevent renderer process crashes.
 
 ### Is Puppeteer suitable for large-scale web scraping?
 
@@ -707,7 +708,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [obscura-rust-headless-browser-ai-agents-web-scraping](puppeteer)
@@ -717,5 +718,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](puppeteer)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

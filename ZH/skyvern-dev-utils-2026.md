@@ -33,6 +33,7 @@ faqs: - q: '我该如何安装 Skyvern-AI/skyvern？'
   - q: '在哪里可以找到更多关于使用 Skyvern-AI/skyvern 的信息？'
     a: '可查阅官网  和 GitHub README，二者都深入介绍了安装、API 和示例工作流。'---
 
+
 {{< resource-info >}}
 
 ## 引言
@@ -71,63 +72,63 @@ Skyvern 把几个部件组合起来，将一条自然语言指令转化为可靠
 
 如果你熟悉 Python，安装 Skyvern 很简单。你需要 Python 3.11+ 以及至少一个 LLM API key。
 
-### 使用 `pip`
+### 使用 ``pip``
 
 安装完整版本，其中包含本地 UI 和服务器：
 
-```bash
+````bash
 pip install "skyvern[all]"
-```
+`````
 
 如果你只需要从自己的代码里调用 Skyvern 的 SDK，更轻量的安装就够了：
 
-```bash
+`````bash
 pip install skyvern
-```
+`````
 
 ### 快速开始
 
 安装完成后，搭好可用环境最快的方式是内置的 quickstart 命令。它会引导你配置 LLM 提供方，然后启动以 SQLite 为后端的本地服务器和 Web UI：
 
-```bash
+`````bash
 skyvern quickstart
-```
+`````
 
 如果你更倾向于用 Postgres 作后端，加上对应参数即可：
 
-```bash
+`````bash
 skyvern quickstart --postgres
-```
+`````
 
 你也可以分别单独启动各个部件：
 
-```bash
+`````bash
 skyvern run server   # 仅 API 服务器
 skyvern run ui       # 仅 Web UI
-```
+`````
 
 ### 配置
 
-Skyvern 至少需要一个 LLM API key，它会从项目里的 `.env` 文件读取。以 OpenAI 为例，最简配置如下：
+Skyvern 至少需要一个 LLM API key，它会从项目里的 ``.env`` 文件读取。以 OpenAI 为例，最简配置如下：
 
-```bash
+`````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
-quickstart 命令可以交互式地帮你生成这个文件。Skyvern 默认把数据存放在本地 SQLite 数据库 `~/.skyvern/` 中。
+quickstart 命令可以交互式地帮你生成这个文件。Skyvern 默认把数据存放在本地 SQLite 数据库 ``~/.skyvern/`` 中。
 
 ### 常见错误与解决
 
-首次运行常见的一个问题是：服务器起来了，但每个任务都失败，因为没有启用任何 LLM 提供方。如果你看到关于模型缺失或被禁用的报错，请确认对应的 `ENABLE_*` 开关和 API key 在 `.env` 里都已存在，例如：
+首次运行常见的一个问题是：服务器起来了，但每个任务都失败，因为没有启用任何 LLM 提供方。如果你看到关于模型缺失或被禁用的报错，请确认对应的 ``ENABLE_*`` 开关和 API key 在 ``.env`` 里都已存在，例如：
 
-```bash
+`````bash
 ENABLE_ANTHROPIC=true
 ANTHROPIC_API_KEY=sk-ant-your-key-here
-```
+`````
 
-编辑 `.env` 后请重启服务器，让新的值生效。
+编辑 ``.env`` 后请重启服务器，让新的值生效。
 
 ## 核心用法
 
@@ -135,9 +136,9 @@ Skyvern 以「从自然语言提示词运行智能体任务」为核心。下面
 
 ### 示例 1：运行一个任务
 
-最简单的流程是初始化一个本地 Skyvern 客户端，再用提示词调用 `run_task`。智能体会打开浏览器、完成目标并返回结果：
+最简单的流程是初始化一个本地 Skyvern 客户端，再用提示词调用 ``run_task``。智能体会打开浏览器、完成目标并返回结果：
 
-```python
+`````python
 import asyncio
 from skyvern import Skyvern
 
@@ -148,13 +149,13 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-```
+`````
 
 ### 示例 2：结构化数据提取
 
-如果你想要干净的结构化输出而非自由文本，可以传入 `data_extraction_schema`。Skyvern 会返回符合你 schema 的提取字段：
+如果你想要干净的结构化输出而非自由文本，可以传入 ``data_extraction_schema``。Skyvern 会返回符合你 schema 的提取字段：
 
-```python
+`````python
 import asyncio
 from skyvern import Skyvern
 
@@ -180,13 +181,13 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-```
+`````
 
 ### 示例 3：页面级命令
 
-如果需要更精细的控制，你可以直接驱动浏览器，逐条下达 AI 命令——`act` 用于执行动作，`extract` 用于读取数据，`validate` 用于检查条件：
+如果需要更精细的控制，你可以直接驱动浏览器，逐条下达 AI 命令——``act`` 用于执行动作，``extract`` 用于读取数据，``validate`` 用于检查条件：
 
-```python
+`````python
 import asyncio
 from skyvern import Skyvern
 
@@ -200,9 +201,9 @@ async def main(): skyvern = Skyvern.local()
     print(data)
 
 asyncio.run(main())
-```
+`````
 
-这些示例覆盖了主要入口：用高层的 `run_task` 完成端到端目标、用基于 schema 的提取拿到干净数据，以及在需要逐步操控时使用页面级命令。
+这些示例覆盖了主要入口：用高层的 ``run_task`` 完成端到端目标、用基于 schema 的提取拿到干净数据，以及在需要逐步操控时使用页面级命令。
 
 - **Image**: ![](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_screenshot.png)
 - **Stars**: 21,803
@@ -217,9 +218,9 @@ Skyvern 能不费多少周折地融入现有的 Python 代码库，因为它的 
 
 ### 从 Web 服务调用 Skyvern
 
-由于 `run_task` 是异步的，它能很自然地嵌入异步 Web 框架。下面把它接进一个 FastAPI 端点，按需触发任务：
+由于 ``run_task`` 是异步的，它能很自然地嵌入异步 Web 框架。下面把它接进一个 FastAPI 端点，按需触发任务：
 
-```python
+`````python
 from fastapi import FastAPI
 from skyvern import Skyvern
 
@@ -231,19 +232,19 @@ async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
-```
+`````
 
 ### 通过环境变量配置
 
-在生产环境里，把凭证和提供方选择放进环境变量、而不是写死在代码里更为清爽。Skyvern 会在启动时读取它们，所以 `.env` 文件是管理这些配置的天然之地：
+在生产环境里，把凭证和提供方选择放进环境变量、而不是写死在代码里更为清爽。Skyvern 会在启动时读取它们，所以 ``.env`` 文件是管理这些配置的天然之地：
 
-```bash
+`````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=your_api_key_here
-```
+`````
 
-```python
+`````python
 from dotenv import load_dotenv
 from skyvern import Skyvern
 
@@ -251,7 +252,7 @@ load_dotenv()
 
 # Skyvern picks up the LLM provider settings from the environment
 skyvern = Skyvern.local()
-```
+`````
 
 把配置放在环境里，你就能在本地、预发和生产之间迁移同一份代码而无需改动一行。
 
@@ -287,11 +288,11 @@ Skyvern 面向的是那些「跨众多不同网站的可靠性比纯速度更重
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **星标数**            | 21,803                         | ~31,000                   | ~75,000                     |
 | **技术路线**          | AI 智能体（LLM + 视觉）        | 基于选择器的脚本          | 基于选择器的脚本            |
@@ -328,13 +329,13 @@ Skyvern 在高韧性浏览器自动化上是把好工具，但也有实实在在
 
 ## 结语
 
-Skyvern-AI/skyvern 是一款用 AI 自动化浏览器工作流的能干工具，星标已超 21,800 颗，且维护活跃。如果你的自动化必须挺过布局变化、或要在众多你无法掌控的网站上运行，它的「LLM 加视觉」路线相比基于选择器的脚本是一次实打实的升级。去 GitHub 仓库，跑一句 `skyvern quickstart`，用你自己的提示词试试看。
+Skyvern-AI/skyvern 是一款用 AI 自动化浏览器工作流的能干工具，星标已超 21,800 颗，且维护活跃。如果你的自动化必须挺过布局变化、或要在众多你无法掌控的网站上运行，它的「LLM 加视觉」路线相比基于选择器的脚本是一次实打实的升级。去 GitHub 仓库，跑一句 ````skyvern quickstart```，用你自己的提示词试试看。
 
 - 加入 [dibi8 英文 Telegram 群](https://t.me/DIBI8_Group/2)，获取开源 AI 工具的第一手分享。
 - 继续阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/Skyvern-AI/skyvern
 - 官方文档 / README：https://github.com/Skyvern-AI/skyvern#readme
@@ -407,6 +408,6 @@ Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

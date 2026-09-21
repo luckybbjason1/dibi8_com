@@ -7,6 +7,7 @@ aliases:
   - /posts/llamaindex-vs-langchain/-
 ---
 
+
 {</* resource-info */>}
 
 如果你在2025年着手构建一个LLM应用，几乎不可避免会在LangChain和LlamaIndex之间做选择。这两个框架占据了Python LLM生态的头两把交椅：LangChain GitHub星标超过95,000，LlamaIndex接近39,000。但它们的设计哲学和最佳适用场景截然不同。本文通过8个维度的深度对比，帮你做出最合技术决策。
@@ -50,7 +51,7 @@ LlamaIndex（前称GPT Index）从诞生之初就围绕一个核心命题：**�
 - **数据连接器最丰富**：支持500+数据源，包括Notion、Slack、Salesforce等SaaS平台
 - **高级索引策略**：树形索引、关键词索引、知识图谱索引、分层摘要索引
 - **查询引擎智能**：自动路由、查询重写、多步骤检索、响应合成
-- **工作流系统**：2024年底发布的`Workflow`系统提供了事件驱动的异步编排能力
+- **工作流系统**：2024年底发布的```Workflow````系统提供了事件驱动的异步编排能力
 
 ### LlamaIndex最适合的场景
 
@@ -65,11 +66,11 @@ LlamaIndex（前称GPT Index）从诞生之初就围绕一个核心命题：**�
 
 | 维度 | LangChain | LlamaIndex |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 核心抽象 | Chain（链式调用） | Index（索引）+ Query Engine（查询引擎） |
 | 控制粒度 | 细粒度，需手动组装 | 粗粒度，高层API开箱即用 |
@@ -78,14 +79,14 @@ LlamaIndex（前称GPT Index）从诞生之初就围绕一个核心命题：**�
 
 ### 2. 文档处理与索引
 
-这是LlamaIndex的传统强项。其`IngestionPipeline`支持：
+这是LlamaIndex的传统强项。其````IngestionPipeline````支持：
 
-- **文档解析**：`LlamaParse`专业级PDF解析（表格、图表、手写体）
+- **文档解析**：````LlamaParse````专业级PDF解析（表格、图表、手写体）
 - **自动元数据提取**：为每个节点自动生成标题、关键词、摘要
 - **多模态处理**：原生支持图片内容的理解和索引
 - **增量更新**：高效处理数据源的变更，无需全量重建索引
 
-LangChain的文档处理更基础，主要通过`Document Loader`和`Text Splitter`完成。虽然够用，但在复杂文档场景下需要大量自定义。
+LangChain的文档处理更基础，主要通过````Document Loader````和````Text Splitter````完成。虽然够用，但在复杂文档场景下需要大量自定义。
 
 ### 3. 检索策略与查询优化
 
@@ -93,11 +94,11 @@ LlamaIndex在检索层面提供了企业级的策略库：
 
 | 检索策略 | LlamaIndex | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 向量相似度检索 | ✅ 原生支持 | ✅ 通过Vector Store |
 | 关键词/稀疏检索 | ✅ BM25混合检索 | ✅ 需集成 |
@@ -108,9 +109,9 @@ LlamaIndex在检索层面提供了企业级的策略库：
 
 ### 4. Agent与工具支持
 
-LangChain在Agent领域优势明显。其`ReAct`、`Plan-and-Execute`、`Structured Chat`等多种Agent模式已经相当成熟。工具调用的灵活性和调试体验也更佳。
+LangChain在Agent领域优势明显。其````ReAct````、````Plan-and-Execute````、````Structured Chat````等多种Agent模式已经相当成熟。工具调用的灵活性和调试体验也更佳。
 
-LlamaIndex的Agent系统（`OpenAIAgent`、`ReActAgent`）起步较晚，但通过与Function Calling的深度集成，在简单场景下也足够好用。
+LlamaIndex的Agent系统（````OpenAIAgent````、````ReActAgent````）起步较晚，但通过与Function Calling的深度集成，在简单场景下也足够好用。
 
 ### 5. 性能基准对比
 
@@ -118,11 +119,11 @@ LlamaIndex的Agent系统（`OpenAIAgent`、`ReActAgent`）起步较晚，但通�
 
 | 指标 | LlamaIndex | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 检索召回率@5 | 0.82-0.88 | 0.74-0.81 |
 | 端到端延迟 | 中等 | 较低（更轻量） |
@@ -141,19 +142,19 @@ LlamaIndex的社区更聚焦于RAG和数据处理领域，在这个细分赛道�
 
 ### 7. 学习曲线
 
-LangChain概念多、组件多，初学者容易被`Chain`、`Agent`、`Tool`、`Memory`等概念淹没。官方文档虽然全面，但组织方式对新手不够友好。
+LangChain概念多、组件多，初学者容易被````Chain````、````Agent````、````Tool````、````Memory````等概念淹没。官方文档虽然全面，但组织方式对新手不够友好。
 
-LlamaIndex的RAG场景上手更直观：`加载文档 → 创建索引 → 发起查询`三步就能出结果。但如果要深入自定义索引策略，学习曲线同样陡峭。
+LlamaIndex的RAG场景上手更直观：````加载文档 → 创建索引 → 发起查询````三步就能出结果。但如果要深入自定义索引策略，学习曲线同样陡峭。
 
 ### 8. 企业级特性
 
 | 企业特性 | LlamaIndex | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 云端托管 | LlamaCloud | LangSmith Cloud |
 | 数据连接器 | 500+（含SaaS） | 100+（以文件为主） |
@@ -185,7 +186,7 @@ LlamaIndex的RAG场景上手更直观：`加载文档 → 创建索引 → 发�
 
 最常见的混合模式是：用LlamaIndex处理数据摄取和检索，用LangChain负责Agent编排和工具调用。
 
-```python
+`````python
 # LlamaIndex负责检索
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -200,7 +201,7 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 llm = ChatOpenAI(model="gpt-4o")
 # 将LlamaIndex检索器包装为LangChain工具
 # 继续构建Agent...
-```
+`````
 
 这种模式结合了两者的长处：LlamaIndex的高质量检索 + LangChain的灵活编排。
 
@@ -208,14 +209,14 @@ llm = ChatOpenAI(model="gpt-4o")
 
 **LangChain 0.3+ 重要更新**：
 
-- `langchain-core`与供应商包彻底分离，安装体积减少60%
-- `LangGraph`成为官方推荐的多Agent方案
-- `init_chat_model()`统一了多供应商模型初始化
+- ````langchain-core````与供应商包彻底分离，安装体积减少60%
+- ````LangGraph````成为官方推荐的多Agent方案
+- ````init_chat_model()````统一了多供应商模型初始化
 
 **LlamaIndex v0.12+ 重要更新**：
 
-- `Workflow`系统正式版发布，事件驱动架构支持复杂异步流水线
-- `LlamaParse`成为独立产品，PDF解析精度达到行业领先
+- ````Workflow````系统正式版发布，事件驱动架构支持复杂异步流水线
+- ````LlamaParse````成为独立产品，PDF解析精度达到行业领先
 - 多模态RAG的原生支持大幅增强
 
 ## 常见问题（FAQ）
@@ -226,7 +227,7 @@ llm = ChatOpenAI(model="gpt-4o")
 
 ### LlamaIndex和LangChain可以一起用吗？
 
-完全可以。两者在架构层面没有冲突。常见的集成模式是：LlamaIndex负责文档处理和向量检索，LangChain负责提示词管理、模型调用和Agent编排。LlamaIndex官方提供了`llama-index-integrations`包，支持与LangChain组件的互操作。
+完全可以。两者在架构层面没有冲突。常见的集成模式是：LlamaIndex负责文档处理和向量检索，LangChain负责提示词管理、模型调用和Agent编排。LlamaIndex官方提供了````llama-index-integrations```包，支持与LangChain组件的互操作。
 
 ### 哪个框架性能更好？
 
@@ -254,7 +255,7 @@ LangChain通过LangSmith提供了业界领先的观测平台，在调试和性�
 更多参考资源：[LangChain官方文档](https://python.langchain.com)、[LlamaIndex官方文档](https://docs.llamaindex.ai)、[LangChain GitHub](https://github.com/langchain-ai/langchain)、[LlamaIndex GitHub](https://github.com/run-llama/llama_index)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -328,7 +329,7 @@ LlamaIndex vs LangChain对比2025：哪个LLM框架更适合你？ represents an
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -372,15 +373,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -30,6 +30,7 @@ faqs: - q: 'Toprank 是什么？它与 SEO SaaS 工具有何不同？'
     a: 'Toprank 通过一次性安装脚本完成初始配置，此后每当仓库发布新版本时，技能会自动更新。无需监控包管理器或手动查阅更新日志，团队所有成员都会保持使用同一版本的技能，不存在 lockfile 冲突问题。'
   - q: 'Toprank 最适合哪类用户？'
     a: 'Toprank 面向以下群体：在 CLI 中自动化审计工作的技术型 SEO 专员、将营销基础设施与应用代码一起维护的增长工程师、使用版本控制 playbook 管理大量客户账户的代理机构，以及无力承担每月 $500+ SaaS 订阅费、但仍需要专业级 SEO 和广告管理能力的创业公司创始人。'---
+
 {</* resource-info */>}
 
 # Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎
@@ -84,9 +85,9 @@ Toprank 的 ADS 模块整合了 Google Ads、Meta Ads、TikTok Ads 等主流平�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | 开源免费 | ✅ 完全开源 | ❌ 动辄月费数百美元 |
 | AI原生 | ✅ 基于Claude Code构建 | ❌ 后期嫁接AI功能 |
@@ -98,7 +99,7 @@ Toprank 的 ADS 模块整合了 Google Ads、Meta Ads、TikTok Ads 等主流平�
 
 Toprank 的安装与配置极为简单：
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/ToprankAI/toprank.git
 cd toprank
@@ -112,7 +113,7 @@ cp .env.example .env
 
 # 启动服务
 npm run dev
-```
+````
 
 ## 适用人群
 
@@ -129,7 +130,7 @@ npm run dev
 如果你正在寻找一款**开源、免费、AI驱动、全链路覆盖**的营销增长工具，Toprank 值得你立刻尝试。
 
 
----
+* * *
 **立即体验 Toprank：**
 - GitHub: [https://github.com/ToprankAI/toprank](https://github.com/ToprankAI/toprank)
 - 文档: [https://docs.toprank.ai](https://docs.toprank.ai)
@@ -137,7 +138,7 @@ npm run dev
 
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -211,7 +212,7 @@ Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎 represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -269,15 +270,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -10,6 +10,7 @@ github_repo: "https://github.com/ollama/ollama"
 license: MIT
 featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
 ---
+
 ![Ollama - Local LLM inference made simple](https://opengraph.github.com/github/ollama/ollama)
 
 # LLM Inference Cost Optimization: Run Any Model for Pennies — The 2026 Definitive Guide
@@ -26,13 +27,13 @@ This is not a tutorial. This is what I learned after testing every major inferen
 
 Let's be honest about pricing. Here's what you actually pay per million tokens for the most common models: | Model | Input ($/M tokens) | Output ($/M tokens) | Cost per 1K tokens |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI GPT-4o | $2.50 | $10.00 | $0.0065 avg |
 | Claude 3.5 Sonnet | $3.00 | $15.00 | $0.0090 avg |
@@ -46,9 +47,9 @@ But local inference isn't "free" in the way people think. You trade money for ha
 
 ## Method 1: Ollama — The Easiest Way to Run LLMs Locally
 
-Ollama made local LLM inference as simple as `docker run`. You download one binary, run one command, and suddenly you're running Llama 3 or Mistral on your own machine.
+Ollama made local LLM inference as simple as ```docker run````. You download one binary, run one command, and suddenly you're running Llama 3 or Mistral on your own machine.
 
-```bash
+`````bash
 # Install Ollama (official)
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -56,7 +57,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama run llama3.2
 ollama run mistral-nemo
 ollama run codestral
-```
+`````
 
 That's it. Three commands. No Python, no Dockerfiles, no CUDA toolkit headaches.
 
@@ -66,25 +67,25 @@ Ollama works on macOS (Apple Silicon), Linux, and Windows. It automatically pick
 
 Here's where most people lose money: they don't use quantization.
 
-```bash
+`````bash
 # Run a quantized model (8-bit, still great quality)
 ollama run llama3.2:8b-q8_0
 
 # Run a heavily quantized model (4-bit, smaller, faster)
 ollama run llama3.2:8b-q4_0
-```
+`````
 
-To see available quantized models for any Ollama model: ```bash
+To see available quantized models for any Ollama model: `````bash
 # List all available quantized variants
 ollama list | grep llama3
 
 # Check model info (size, quantization level)
 ollama info llama3.2:8b-q4_0
-```
+`````
 
 This gives you a clear picture of what models are available and their sizes before committing to a download.
 
-The `-q4_0` and `-q8_0` suffixes tell Ollama to use quantized weights. A 16-bit model takes ~16GB VRAM. The same model in 4-bit takes ~4.5GB. Speed increases because less memory = faster inference. Quality loss? Minimal for most use cases.
+The ````-q4_0```` and ````-q8_0```` suffixes tell Ollama to use quantized weights. A 16-bit model takes ~16GB VRAM. The same model in 4-bit takes ~4.5GB. Speed increases because less memory = faster inference. Quality loss? Minimal for most use cases.
 
 **Real observation:** I tested GPT-3.5 quality on Q4 quantized Llama 3.2 vs the original. For code generation and summarization, the difference was barely noticeable. For creative writing, the quantized version was slightly less nuanced. But here's the confession: I can't always tell the difference, and that means most users can't either.
 
@@ -96,7 +97,7 @@ Ollama is designed for simplicity, not throughput. If you're running 100 concurr
 
 If you're serving LLMs to multiple users or handling heavy API traffic, vLLM is the answer. It uses PagedAttention — a clever memory management technique that reduces memory fragmentation and enables batch processing.
 
-```bash
+`````bash
 # Install vLLM
 pip install vllm
 
@@ -116,7 +117,7 @@ vllm serve meta-llama/Llama-3.2-3B-Instruct \
   --tensor-parallel-size 1 \
   --gpu-memory-utilization 0.95 \
   --max-num-batched-tokens 8192
-```
+`````
 
 vLLM's killer feature is that it exposes an OpenAI-compatible API endpoint. Your existing code that talks to OpenAI's API works with vLLM with zero changes. Just change the base URL and API key.
 
@@ -124,13 +125,13 @@ vLLM's killer feature is that it exposes an OpenAI-compatible API endpoint. Your
 
 From testing on a single RTX 4090 (24GB VRAM): | Model | vLLM throughput | Ollama throughput | Speedup |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.2 3B | 285 tok/s | 142 tok/s | 2.0x faster |
 | Llama 3.2 8B | 148 tok/s | 67 tok/s | 2.2x faster |
@@ -148,7 +149,7 @@ If you're the only user, vLLM's startup overhead isn't worth it. It takes longer
 
 llama.cpp is the Swiss army knife of local LLM inference. Written in C/C++, it runs on literally anything — from a MacBook Pro to a Raspberry Pi 4. No Python, no GPU drivers, no dependencies.
 
-```bash
+`````bash
 # Build llama.cpp from source
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp && make
@@ -158,15 +159,15 @@ cd llama.cpp && make
 
 # Run with GPU offload (if you have a GPU)
 ./main -m models/llama-3.2-3b.Q4_K_M.gguf -ngl 32
-```
+`````
 
-To download GGUF models directly (no conversion needed): ```bash
+To download GGUF models directly (no conversion needed): `````bash
 # Download any GGUF model from HuggingFace
 wget https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf
 
 # Or use the llama.cpp download helper
 curl -L https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf -o model.gguf
-```
+`````
 
 llama.cpp's strength is flexibility. You can run any GGUF-quantized model on any hardware. The quantization formats (Q4_K_M, Q5_K_M, Q8_0) give you fine-grained control over the speed/quality tradeoff.
 
@@ -174,22 +175,22 @@ llama.cpp's strength is flexibility. You can run any GGUF-quantized model on any
 
 | Format | Size (3B model) | Quality | Speed | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Q8_0 | 3.6 GB | Near-original | Fast | High-quality output |
 | Q5_K_M | 2.3 GB | Very good | Fast | Balanced |
 | Q4_K_M | 1.8 GB | Good | Faster | Everyday use |
 | Q3_K_M | 1.4 GB | Decent | Fastest | Edge devices |
 
-To convert a HuggingFace model to GGUF for llama.cpp: ```bash
+To convert a HuggingFace model to GGUF for llama.cpp: `````bash
 # Convert any HF model to GGUF format
 python convert-hf-to-gguf.py models/meta-llama/Llama-3.2-3B --outtype f16
 
@@ -198,7 +199,7 @@ python quantize models/meta-llama/Llama-3.2-3B/f16.gguf models/meta-llama/Llama-
 
 # Verify the quantized model
 ./llama-quantize models/meta-llama/Llama-3.2-3B/f16.gguf models/meta-llama/Llama-3.2-3B/q4_k_m.gguf Q4_K_M
-```
+`````
 
 **The confession:** I used to think quantization was "for people who can't afford better." After benchmarking, I found Q4_K_M was within 2% of Q8_0 on practical tasks. The 50% speed increase and 50% less VRAM usage made it the clear winner for 90% of use cases.
 
@@ -215,20 +216,20 @@ python quantize models/meta-llama/Llama-3.2-3B/f16.gguf models/meta-llama/Llama-
 
 Here's what I actually use in production: a hybrid strategy that minimizes cost while maximizing quality.
 
-```bash
+`````bash
 # Step 1: Use quantized local models for 95% of requests
 ollama run llama3.2:8b-q4_0
 
 # Step 2: Route complex queries to API
 # If local model confidence score < threshold, escalate to API
 # (Implemented as a simple Python routing layer)
-```
+`````
 
 The routing logic: - **Simple questions** (code generation, summarization, formatting) → local quantized model (free)
 - **Complex reasoning** (multi-step analysis, creative writing) → API call (paid)
 - **New/unknown topics** → API call, then fine-tune local model later
 
-```python
+`````python
 # Simple routing layer (Python example)
 # Uses local model for most requests, escalates to API for complex ones
 
@@ -262,7 +263,7 @@ def generate_response(question): strategy = smart_route(question)
             messages=[{"role": "user", "content": question}]
         )
         return resp.choices[0].message.content
-```
+`````
 
 This approach reduced my monthly API costs from $47 to $3.20 — a **93% reduction** for minimal quality loss.
 
@@ -270,17 +271,17 @@ This approach reduced my monthly API costs from $47 to $3.20 — a **93% reducti
 
 | Month | Total Requests | Local | API | API Cost | Savings |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | March (baseline) | 12,400 | 0 | 12,400 | $47.32 | — |
 | April | 15,200 | 8,100 | 7,100 | $27.08 | 43% |
@@ -293,13 +294,13 @@ The pattern is clear: as I fine-tuned my routing rules, more requests went local
 
 If you have a GPU, how you use it matters more than which inference engine you choose.
 
-```python
+`````python
 # vLLM GPU optimization settings
 # In production config (config.yaml): gpu_memory_utilization: 0.95      # Use 95% of GPU VRAM
 max_model_len: 8192                 # Context window size
 swap_space: 4                       # CPU swap for overflow (GB)
 num_scheduler_steps: 16             # Batch scheduling frequency
-```
+`````
 
 Key GPU optimization parameters: - **GPU memory utilization** — higher = more batches in memory = more throughput
 - **Context window** — larger = more memory per request = fewer concurrent requests
@@ -309,7 +310,7 @@ Key GPU optimization parameters: - **GPU memory utilization** — higher = more 
 
 ### CPU-Only Fallback
 
-If you don't have a GPU, here's how to make CPU inference bearable: ```bash
+If you don't have a GPU, here's how to make CPU inference bearable: `````bash
 # Use llama.cpp with multi-threading (uses all CPU cores)
 ./main -m model.gguf -t 8 -ngl 0  # 8 threads, 0 GPU layers
 
@@ -319,9 +320,9 @@ OLLAMA_NUM_GPU=0 ollama run llama3.2:8b-q4_0
 # Use IOPARALLEL mode for text generation
 # (useful on CPUs — parallelizes token sampling)
 OMP_NUM_THREADS=8 python inference.py --parallel io
-```
+`````
 
-To measure actual inference speed on your hardware: ```bash
+To measure actual inference speed on your hardware: `````bash
 # Benchmark llama.cpp on your hardware
 ./bench -m model.gguf -n 128 -t 8
 
@@ -330,7 +331,7 @@ ollama run llama3.2:8b-q4_0 "Write 128 tokens explaining quantization"
 
 # Monitor GPU memory during inference
 nvidia-smi --query-gpu=memory.used,memory.free --format=csv -l 1
-```
+`````
 
 CPU inference of a 7B model gives ~5-10 tokens/second on a modern 16-core CPU. It's not real-time, but it's usable for non-interactive tasks (batch processing, offline analysis).
 
@@ -340,13 +341,13 @@ The most overlooked cost optimization: **use smaller models for simple tasks.**
 
 | Task | Model | Cost (API) | Cost (Local Q4) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Code completion | CodeLlama-7B | $0.004/req | $0.0001/req |
 | Text summarization | Llama-3.2-3B | $0.002/req | $0.00005/req |
@@ -357,7 +358,7 @@ The most overlooked cost optimization: **use smaller models for simple tasks.**
 - 8B model vs 70B model = 8.75x less VRAM
 - Both run locally, both are free after hardware cost
 
-To find the right model size for your task: ```bash
+To find the right model size for your task: `````bash
 # Use Ollama to test different models side by side
 ollama run codestral "Write a Python function to reverse a linked list"
 ollama run llama3.2:8b-q4_0 "Write a Python function to reverse a linked list"
@@ -372,21 +373,21 @@ client = OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
 models = [m for m in client.models.list().data if m.id != 'embedding']
 for m in models: print(f'{m.id}')
 "
-```
+`````
 
 ## Comparison: All 4 Methods Side by Side
 
 | Feature | Ollama | vLLM | llama.cpp | Hybrid |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Setup time | < 2 min | 5-10 min | 10-15 min | 30 min |
 | GPU required | Optional | Strongly recommended | Optional | Recommended |
@@ -413,14 +414,14 @@ I need to be honest about what cost optimization CANNOT fix: 1. **Quality ceilin
 ## Frequently Asked Questions
 
 **Q: What's the cheapest way to run Llama 3 locally?**
-A: Ollama with Q4 quantization (`ollama run llama3.2:8b-q4_0`). It takes under 2 minutes to set up, uses ~4.5GB VRAM, and runs on any machine with a GPU or even modern CPU.
+A: Ollama with Q4 quantization (````ollama run llama3.2:8b-q4_0````). It takes under 2 minutes to set up, uses ~4.5GB VRAM, and runs on any machine with a GPU or even modern CPU.
 
-```bash
+`````bash
 # Quick-start: install and run in one command
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2:8b-q4_0
 ollama run llama3.2:8b-q4_0
-```
+`````
 
 **Q: Can I run LLM inference without a GPU?**
 A: Yes. llama.cpp is optimized for CPU inference. On a 16-core CPU, expect 5-10 tokens/second for a 7B model. It's usable for batch processing but not interactive chat.
@@ -431,7 +432,7 @@ A: From my real data: 92% cost reduction after 3 months of hybrid approach. Base
 **Q: Is quantization worth it? Does it really not hurt quality?**
 A: Q4 quantization loses roughly 2% quality compared to full precision on standard benchmarks. In practice, for code generation and summarization, the difference is barely noticeable. For creative writing, you might notice it. But 93% cost savings for 2% quality loss is a good trade for most teams.
 
-```python
+`````python
 # Benchmark your quantized model vs full precision
 # Run the same prompt through both and compare outputs
 import subprocess
@@ -444,7 +445,7 @@ def benchmark_q4(prompt): result = subprocess.run(
 
 # Run same prompt through Q8 and compare
 # Difference in token count < 2% = negligible
-```
+````
 
 **Q: What's the best model for local inference in 2026?**
 A: For coding: CodeLlama-7B-Q4. For general purpose: Llama 3.2 8B-Q4. For reasoning: Mixtral 8x7B-Q4. For mobile/edge: Qwen2.5-3B-Q4. The key is matching model size to task complexity.
@@ -502,7 +503,7 @@ Join the discussion: [Telegram Group](https://t.me/DIBI8_Group)
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](llm-inference-cost-optimization-guide-2026)
@@ -512,5 +513,5 @@ Join the discussion: [Telegram Group](https://t.me/DIBI8_Group)
 - [mineru-document-parsing-engine](llm-inference-cost-optimization-guide-2026)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

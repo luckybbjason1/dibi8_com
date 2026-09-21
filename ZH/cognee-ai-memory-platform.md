@@ -15,6 +15,7 @@ featureImage: /images/articles/mem0-56k-stars-ai-agent-memory-performan.jpg
 ---
 
 
+
 <<<<<<< HEAD
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
@@ -80,7 +81,7 @@ Cognee 在 MIT 许可下完全Open Source，旨在与任何 AI 框架集成 - La
 
 ＃＃＃ 安装
 
-```bash
+````bash
 # Install Cognee
 pip install cognee
 
@@ -88,11 +89,11 @@ pip install cognee
 git 克隆 https://github.com/topotetes/cognee.git
 cd科尼
 pip install -e 。
-```
+`````
 
 ### 基本内存设置
 
-```python
+`````python
 import cognee
 from cognee.infrastructure.databases.graph import Neo4jGraphEngine
 
@@ -116,11 +117,11 @@ url ="螺栓：//本地主机：7687"，
 results = wait cognee.query("谁在 TechCorp 工作？")
 打印（结果）
 # 输出: [{'entity': 'Alice', 'role': '高级工程师', 'company': 'TechCorp'}]
-```
+`````
 
 ### 构建记忆增强聊天机器人
 
-```python
+`````python
 from langchain_community.chat_models import ChatAnthropic
 from langchain.prompts import ChatPromptTemplate
 import cognee
@@ -185,11 +186,11 @@ f"助理回复：{response.content}"
 
 返回响应内容
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ### 高级：多源知识摄取
 
-```python
+`````python
 import cognee
 from cognee.infrastructure.ingestion import DocumentIngestionPipeline
 
@@ -226,11 +227,11 @@ from cognee.infrastructure.ingestion import DocumentIngestionPipeline
 "显示有关 2024 年产品发布的所有信息"，
 来源=["pdf"、"sql"、"api"、"对话"]
 )
-```
+`````
 
 ### 知识图可视化
 
-```python
+`````python
 import cognee
 
 # 获取完整的知识图谱
@@ -246,7 +247,7 @@ alice_graph = 等待 cognee.get_subgraph(
 最大节点数=50
 )
 alice_graph.export（格式="点"，路径="./alice_network.dot"）
-```
+`````
 
 ## 架构深度探究
 
@@ -254,7 +255,7 @@ alice_graph.export（格式="点"，路径="./alice_network.dot"）
 
 Cognee 实现了受认知科学启发的三层内存架构：
 
-```
+`````
 ┌─────────────────────────────────────────┐
 │          Semantic Memory Layer           │
 │  (Facts, concepts, knowledge graphs)     │
@@ -265,11 +266,11 @@ Cognee 实现了受认知科学启发的三层内存架构：
 │        Procedural Memory Layer           │
 │  (Learned skills, patterns, preferences)  │
 └─────────────────────────────────────────┘
-```
+`````
 
 ### 知识提取管道
 
-```python
+`````python
 class KnowledgeExtractor: def extract(self, text: str) -> KnowledgeGraph: # Step 1: Entity recognition
         entities = self._recognize_entities(text)
 <<<<<<< HEAD
@@ -299,11 +300,11 @@ rel.confidence = self._score_relationship_confidence(rel)
 # 第 4 步：与现有图合并
 返回 self._merge_with_graph(实体，关系)
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
-```
+`````
 
 ### 临时内存管理
 
-```python
+`````python
 class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_days
 <<<<<<< HEAD
     
@@ -317,7 +318,7 @@ class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_da
         
         # Prune expired memories
         return [m for m in consolidated if m.status != "expired"]
-```
+`````
 
 
 ## Advanced Memory Management
@@ -336,7 +337,7 @@ elif 年龄.天数 > self.ttl * 0.8: 内存状态="老化"
 
 # 修剪过期的记忆
 如果 m.status != "expired"，则返回 [m 表示合并中的 m]
-```
+`````
 
 ## 高级内存管理
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
@@ -345,7 +346,7 @@ elif 年龄.天数 > self.ttl * 0.8: 内存状态="老化"
 
 随着智能体积累知识，应该巩固相关记忆以提高检索质量：
 
-```python
+`````python
 from cognee.memory import MemoryConsolidator
 
 合并器 = 内存合并器(
@@ -359,13 +360,13 @@ solidity_strategy="semantic_merge"
 old_than_days=30,
 输出目录="./consolidated_memory"
 )
-```
+`````
 
 ### 记忆衰退和遗忘
 
 true正的智慧包括知道要忘记什么：
 
-```python
+`````python
 from cognee.memory import MemoryDecay
 
 衰减 = 记忆衰减（
@@ -378,13 +379,13 @@ Decay_function ="指数"
 等待衰减。应用（user_id ="alice"）
 # 超过 90 天的记忆失去 50% 的影响力
 # 超过 180 天的记忆失去 75% 的影响力
-```
+`````
 
 ### 跨用户知识共享
 
 在维护隐私的同时实现代理之间的知识共享：
 
-```python
+`````python
 from cognee.knowledge import KnowledgeShare
 
 分享 = 知识分享(
@@ -399,13 +400,13 @@ source_agents=["agent-1", "agent-2"],
 target_agents=["agent-3", "agent-4"],
 knowledge_types=["best_practices", "common_patterns"]
 )
-```
+`````
 
 ### 内存验证
 
 验证存储记忆的准确性：
 
-```python
+`````python
 from cognee.verify import MemoryVerifier
 
 验证器 = 内存验证器(
@@ -423,13 +424,13 @@ verify_model ="克劳德-sonnet-4-20250514"，
 如果内存置信度 < 0.7：
 print(f"低置信度：{memory.text}")
 print(f"建议的操作：{memory.recommended_action}")
-```
+`````
 
 ## 集成示例
 
 ###浪链整合
 
-```python
+`````python
 from langchain.memory import ConversationBufferMemory
 from cognee.langchain import CogneeMemoryAdapter
 
@@ -444,11 +445,11 @@ user_id ="用户123"，
 memory_key="聊天记录",
 聊天内存=cognee_内存
 )
-```
+`````
 
 ### CrewAI 集成
 
-```python
+`````python
 from crewai import Agent, Task, Crew
 from cognee.crewai import CogneeMemoryPlugin
 
@@ -467,11 +468,11 @@ memory_plugin = CogneeMemoryPlugin(user_id="crew-1")
 内存=内存_插件，
 ),
 ]
-```
+`````
 
 ### FastAPI 集成
 
-```python
+`````python
 from fastapi import FastAPI
 from cognee.fastapi import CogneeMiddleware
 
@@ -483,7 +484,7 @@ app.add_middleware(CogneeMiddleware, user_id_header="X-User-ID")
 # 每个用户自动管理内存
 响应 = 等待 process_message(request.message)
 返回{"响应"：响应}
-```
+````
 
 ## 与替代方案的比较
 
@@ -491,12 +492,12 @@ app.add_middleware(CogneeMiddleware, user_id_header="X-User-ID")
 |---
 
 |-
----
+* * *
 
 |---
 
 |-
----
+* * *
 
 |---
 
@@ -576,7 +577,7 @@ Cognee 的增长反映了向持久、具有推理能力的人工智能系统的�
 - [Cognee 自述文件](https://github.com/topotetes/cognee/blob/main/README.md)
 
 
----
+* * *
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -646,11 +647,11 @@ Cognee：26K+ Star 开源人工智能内存平台 represents an important step f
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -660,7 +661,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-29-trending-ai-agents](cognee-ai-memory-platform)
 - [2026-07-06-trending-ai-agents](cognee-ai-memory-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -668,15 +669,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

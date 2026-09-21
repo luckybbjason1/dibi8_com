@@ -27,6 +27,7 @@ faq: - q: "What is GEO and how does it differ from SEO?"
   - q: "How quickly do GEO optimizations show results?"
     a: "Faster than SEO. AI Overviews crawl + index in days vs months. FAQ schema additions typically appear in AI citations within 1-2 weeks. Full content rewrites for citability take 2-4 weeks to show in answers."
 ---
+
 {{</* resource-info */>}}
 
 # GEO / AI Overviews Optimization 2026: Practical Guide
@@ -60,15 +61,15 @@ Signals AI engines weight: 1. **Atomic answer blocks** — a paragraph that dire
 ### 1. FAQ schema (highest ROI)
 Add FAQ JSON-LD to every page with multiple Q&A. Each Q&A becomes a directly citable atomic answer.
 
-Implementation: ```yaml
+Implementation: ````yaml
 # Hugo frontmatter
 faq: - q: "What is X?"
     a: "X is..."
   - q: "How does X work?"
     a: "..."
-```
+`````
 
-Hugo template generates `<script type="application/ld+json">` with FAQPage schema. AI Overviews loves it.
+Hugo template generates ````<script type="application/ld+json">```` with FAQPage schema. AI Overviews loves it.
 
 ### 2. Atomic answer blocks
 Structure each section so the first paragraph **directly answers a question**. Don't bury the lede.
@@ -88,14 +89,14 @@ Good: > "60%+ of professional developers we interviewed use Claude Code daily in
 Multilingual sites get cited in language-appropriate AI engines. dibi8.com runs en/zh/kr/vi — each language gets its own citation pool.
 
 ### 5. llms.txt
-Drop at `/llms.txt`: ```
+Drop at ``/llms.txt``: `````
 # dibi8.com - Open-source AI tools curation
 > Curated rankings of AI coding agents, LLM frameworks, MCP servers, developer utilities. Tested 2026 workloads.
 
 ## Most cited
 - /resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/
 - /resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
-```
+`````
 
 Minimal effort, optional upside as AI crawlers adopt the standard.
 
@@ -108,7 +109,7 @@ Minimal effort, optional upside as AI crawlers adopt the standard.
 ## Measuring GEO Impact
 
 Three metrics to track: 1. **AI citation appearance** (use Google Search Console "AI Overviews" report, when available)
-2. **Direct AI-engine referral traffic** — track UTM from `?utm_source=perplexity` etc
+2. **Direct AI-engine referral traffic** — track UTM from ````?utm_source=perplexity``` etc
 3. **Brand mention volume in AI-cited content** — search "dibi8" on Perplexity/ChatGPT periodically
 
 ## Recommended Infrastructure
@@ -125,7 +126,7 @@ GEO is real and the techniques work. FAQ schema is the single highest-ROI move. 
 Start with FAQ schema on your top 10 pages. Measure citation rates after 2 weeks. Expand to more pages once you see uplift. The compound returns are real — early movers in GEO get cited disproportionately.
 
 
----
+* * *
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/)
 
 
@@ -191,11 +192,11 @@ GEO / AI Overviews Optimization 2026: A Practical Guide from Real Site Data repr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -204,7 +205,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -212,15 +213,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

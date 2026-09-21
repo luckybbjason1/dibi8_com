@@ -13,6 +13,7 @@ tags: ["stock-analysis", "llm", "quantitative-trading", "ai-agent", "multi-marke
   license: MIT---
 
 
+
 # Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence
 
 **Daily Stock Analysis** is an open-source, LLM-driven stock analysis system that provides multi-market intelligence with real-time news aggregation, automated decision dashboards, and intelligent notification systems. With **48,278 GitHub stars**, it has become one of the most popular quantitative trading tools for retail investors seeking institutional-grade analysis.
@@ -45,7 +46,7 @@ The platform supports multiple markets and data sources: - **US Markets**: NYSE,
 
 ### Option 1: Docker Deployment (Easiest)
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -59,11 +60,11 @@ docker compose up -d
 
 # Check status
 docker compose ps
-```
+`````
 
 ### Option 2: Manual Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -86,11 +87,11 @@ cp config.example.yaml config.yaml
 
 # Run the first analysis
 python main.py --market us --date $(date +%Y-%m-%d)
-```
+`````
 
 ### Option 3: Local LLM Setup (Free)
 
-For users who want to avoid API costs entirely: ```bash
+For users who want to avoid API costs entirely: `````bash
 # Install Ollama for local LLM inference
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -106,13 +107,13 @@ EOF
 
 # Run analysis with zero API costs
 python main.py --market a_shares --date $(date +%Y-%m-%d)
-```
+`````
 
 ## Market Data Integration
 
 ### AKShare Integration (Free A-Share Data)
 
-AKShare provides free access to Chinese market data without any API key: ```python
+AKShare provides free access to Chinese market data without any API key: `````python
 import akshare as ak
 
 # Get daily A-share market data
@@ -131,11 +132,11 @@ hist_df = ak.stock_zh_a_hist(
 # Get sector performance
 sector_df = ak.stock_board_industry_name_em()
 print(sector_df)
-```
+`````
 
 ### Tushare Integration (Premium A-Share Data)
 
-For more comprehensive A-share data including fundamentals: ```python
+For more comprehensive A-share data including fundamentals: `````python
 import tushare as ts
 
 # Initialize with your API token
@@ -160,11 +161,11 @@ holder_df = pro.stock_holder_top10(
     ts_code="000001.SZ",
     ann_date="20260331"
 )
-```
+`````
 
 ### US Market Data
 
-```python
+`````python
 import yfinance as yf
 
 # Get US stock data
@@ -180,11 +181,11 @@ recommendations = ticker.recommendations
 # Get news sentiment
 news = ticker.news
 for item in news: print(f"{item[title]}: {item[providerPublishTime]}")
-```
+`````
 
 ### Cryptocurrency Data
 
-```python
+`````python
 import ccxt
 
 # Connect to exchange
@@ -202,13 +203,13 @@ print(f"Volume: {ticker[quoteVolume]}")
 order_book = exchange.fetch_order_book('ETH/USDT')
 print(f"Bid: {order_book[bids][0][0]}")
 print(f"Ask: {order_book[asks][0][0]}")
-```
+`````
 
 ## LLM-Powered Analysis
 
 ### Sentiment Analysis Pipeline
 
-The core of Daily Stock Analysis is its LLM-powered sentiment analysis pipeline: ```python
+The core of Daily Stock Analysis is its LLM-powered sentiment analysis pipeline: `````python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -240,11 +241,11 @@ print(f"Overall Sentiment: {analysis.sentiment}")
 print(f"Confidence: {analysis.confidence:.1%}")
 print(f"Key Factors: {', '.join.analysis.key_factors)}")
 print(f"Risk Level: {analysis.risk_level}")
-```
+`````
 
 ### Custom Analysis Prompts
 
-You can customize the LLM analysis prompts for different use cases: ```python
+You can customize the LLM analysis prompts for different use cases: `````python
 # Technical analysis prompt
 tech_prompt = """
 Analyze the following stock technical indicators and provide: 1. Trend direction (bullish/bearish/neutral)
@@ -274,11 +275,11 @@ combined = llm.analyze(
     fundamental_data=fundamental_data,
     news_data=news_data
 )
-```
+`````
 
 ### Multi-Market Comparative Analysis
 
-Compare stocks across different markets simultaneously: ```python
+Compare stocks across different markets simultaneously: `````python
 # Compare US tech stocks
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -292,18 +293,18 @@ a_share_sectors = llm.compare_sectors(
     market="a_shares",
     time_period="1m"
 )
-```
+`````
 
 ## Dashboard Configuration
 
 ### Web Dashboard Setup
 
-Daily Stock Analysis includes a built-in web dashboard: ```bash
+Daily Stock Analysis includes a built-in web dashboard: `````bash
 # Start the dashboard server
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # Access at http://localhost:8080
-```
+`````
 
 The dashboard provides: - Real-time market overview with heat maps
 - Individual stock analysis with interactive charts
@@ -313,7 +314,7 @@ The dashboard provides: - Real-time market overview with heat maps
 
 ### Dashboard Customization
 
-```yaml
+`````yaml
 # dashboard_config.yaml
 dashboard: refresh_interval: 300  # 5 minutes
   default_market: "a_shares"
@@ -329,11 +330,11 @@ dashboard: refresh_interval: 300  # 5 minutes
   alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
-```
+`````
 
 ### Exporting Reports
 
-```bash
+`````bash
 # Generate daily report in PDF
 python report_generator.py --format pdf --output daily_report.pdf
 
@@ -342,13 +343,13 @@ python report_generator.py --format html --output daily_report.html
 
 # Export analysis data as CSV
 python report_generator.py --format csv --output analysis_data.csv
-```
+`````
 
 ## Automated Scheduling
 
 ### Cron Job Setup
 
-Schedule automatic analysis runs: ```bash
+Schedule automatic analysis runs: `````bash
 # Edit crontab
 crontab -e
 
@@ -360,11 +361,11 @@ crontab -e
 
 # Weekly comprehensive report on Sunday
 0 9 * * 0 cd /path/to/daily_stock_analysis && python weekly_report.py
-```
+`````
 
 ### Systemd Service
 
-For persistent background operation: ```ini
+For persistent background operation: `````ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=Daily Stock Analysis Service
@@ -380,20 +381,20 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-```bash
+`````bash
 # Enable and start the service
 sudo systemctl enable daily-stock-analysis
 sudo systemctl start daily-stock-analysis
 sudo systemctl status daily-stock-analysis
-```
+`````
 
 ## Notification System
 
 ### Telegram Notifications
 
-```bash
+`````bash
 # Configure Telegram bot
 python notify.py --setup telegram \
   --bot-token "${TELEGRAM_BOT_TOKEN}" \
@@ -402,11 +403,11 @@ python notify.py --setup telegram \
 # Send test notification
 python notify.py --send "Daily analysis complete for AAPL" \
   --channel telegram
-```
+`````
 
 ### Email Notifications
 
-```python
+`````python
 from daily_stock_analysis.notify import Notifier
 
 # Configure email notifier
@@ -425,11 +426,11 @@ notifier.send_email(
     body=analysis_report,
     attach_pdf=True
 )
-```
+`````
 
 ### Custom Webhook Notifications
 
-```python
+`````python
 # Send to custom webhook (e.g., Slack, Discord)
 notifier.send_webhook(
     url="https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
@@ -446,7 +447,7 @@ notifier.send_webhook(
         ]
     }
 )
-```
+````
 
 ## Comparison: Daily Stock Analysis vs Alternatives
 
@@ -526,7 +527,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
@@ -535,7 +536,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 - [ai-engineering-from-scratch](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

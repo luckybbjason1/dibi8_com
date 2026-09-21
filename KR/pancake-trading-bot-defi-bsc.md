@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/pancake-trading-bot-defi-bsc/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: DeFi 자동화에서 42억 달러의 교훈
@@ -36,20 +37,20 @@ aliases:
 
 ## PancakeSwap이란 무엇이며 왜 자동화해야 하는가?
 
-**PancakeSwap은 Binance Smart Chain(BSC)에서 가장 큰 탈중앙화 거래소(DEX)로, **12,800개 이상의 유동성 페어**에서 하루 120만 건 이상의 거래를 처리한다.** Uniswap이 개척한 자동 마켓 메이커(AMM) 메커니즘을 기반으로, PancakeSwap은 전통적인 오더북 없이 자산을 가격 책정하기 위해 일정한 곡선(`x * y = k`)을 사용한다.
+**PancakeSwap은 Binance Smart Chain(BSC)에서 가장 큰 탈중앙화 거래소(DEX)로, **12,800개 이상의 유동성 페어**에서 하루 120만 건 이상의 거래를 처리한다.** Uniswap이 개척한 자동 마켓 메이커(AMM) 메커니즘을 기반으로, PancakeSwap은 전통적인 오더북 없이 자산을 가격 책정하기 위해 일정한 곡선(```x * y = k````)을 사용한다.
 
 DeFi 시장은 24/7 운영되며 기회는 수 초간만 지속되므로 자동화가 중요하다. 수동 트레이딩으로는 포착할 수 없다: - PancakeSwap과 중앙화 거래소 간 **차익 거래 갭**(일반적으로 0.1-0.5%, 30초 이내에 종료)
 - 변동성이 큰 풀에서의 **유동성 리밸런싱**(비영구적 손실 헤지)
 - **새 풀 런칭**(트렌디한 토큰의 선점优势)
 - **수익 농사 최적화**(자동 복리, 풀 호핑)
 
-PancakeSwap 코어 컨트랙트(`pancake-swap-core`, **2,500+ GitHub stars**, GPL-3.0)는 CertiK, SlowMist, PeckShield에서 감사를 받았다 — DeFi에서 가장 검증된 스마트 컨트랙트 중 하나이다.
+PancakeSwap 코어 컨트랙트(````pancake-swap-core````, **2,500+ GitHub stars**, GPL-3.0)는 CertiK, SlowMist, PeckShield에서 감사를 받았다 — DeFi에서 가장 검증된 스마트 컨트랙트 중 하나이다.
 
 ## PancakeSwap AMM 작동 방식: 핵심 개념
 
 봇 개발을 위해서는 AMM 메커니즘을 이해하는 것이 필수적이다. 난막 뒤에서 일어나는 일은 다음과 같다: ### 일정한 곡선 공식
 
-예비 자산이 `x`(토큰 A)와 `y`(토큰 B)인 모든 유동성 풀에 대해 불변성이 유지된다: ```python
+예비 자산이 ``x``(토큰 A)와 ``y``(토큰 B)인 모든 유동성 풀에 대해 불변성이 유지된다: `````python
 x * y = k
 
 # Price of token A in terms of token B
@@ -57,7 +58,7 @@ price_a = y / x
 
 # When a swap occurs: (x + dx) * (y - dy) = k
 # After 0.25% fee: dx * 0.9975 is what actually enters the pool
-```
+`````
 
 이 공식은 더 큰 거래가 더 나은 실행(가격 영향)을 의미한다는 것이다. 봇은 어떤 트랜잭션도 제출하기 전에 이를 계산해야 한다.
 
@@ -70,7 +71,7 @@ PancakeSwap은 두 가지 라우터 버전을 운영한다: - **Router V2**: 0.2
 
 ### 슬리피지 및 최소 출력
 
-```python
+`````python
 # Slippage calculation for a swap
 def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=0.005): """Calculate minimum output with 0.5% slippage tolerance."""
     amount_in_with_fee = amount_in * 9975 // 10000  # 0.25% fee
@@ -79,7 +80,7 @@ def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=
     expected_output = numerator // denominator
     min_output = int(expected_output * (1 - slippage_tolerance))
     return min_output
-```
+`````
 
 항상 고정된 비율이 아닌 풀 깊이를 기준으로 슬리피지를 설정하라. 깊은 풀(>100만 달러 TVL)은 0.3-0.5%를 사용할 수 있다. 새로운 풀은 2-5%가 필요할 수 있다.
 
@@ -87,7 +88,7 @@ def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=
 
 ### 단계 1: BSC RPC 엔드포인트 가져오기
 
-BSC 노드에 연결해야 한다. 옵션: ```bash
+BSC 노드에 연결해야 한다. 옵션: `````bash
 # Option A: Public endpoint (rate-limited, NOT for production)
 BSC_RPC = "https://bsc-dataseed.binance.org/"
 
@@ -96,23 +97,23 @@ BSC_RPC = "https://docs.chainstack.com/"  # Get your endpoint from Chainstack
 
 # Option C: Self-hosted geth node (maximum reliability)
 # geth --config ./config.toml --datadir ./node --http
-```
+`````
 
 프로덕션 봇의 경우 유료 RPC 공급자를 사용하라. 퍼블릭 엔드포인트는 요청을 제한하고 트랜잭션을 드롭할 수 있다.
 
 ### 단계 2: 종속성 설치
 
-```bash
+`````bash
 python -m venv pancakeswap-bot-env
 source pancakeswap-bot-env/bin/activate
 
 pip install --upgrade pip
 pip install web3==7.6.0 python-dotenv==1.0.1 requests==2.32.3 eth-account==0.13.4
-```
+`````
 
 ### 단계 3: 프로젝트 구조
 
-```
+`````
 pancake-bot/
 ├── .env                    # Private keys (never commit)
 ├── config.py               # Contract addresses, RPC URLs
@@ -138,11 +139,11 @@ pancake-bot/
 │   ├── price.py            # Price calculations
 │   └── alerts.py           # Telegram/Discord alerts
 └── main.py                 # Entry point
-```
+`````
 
 ### 단계 4: 설정 파일
 
-```python
+`````python
 # config.py — all contract addresses and settings
 import os
 from dotenv import load_dotenv
@@ -172,11 +173,11 @@ GAS_LIMIT_APPROVE = 100000
 DEFAULT_SLIPPAGE = 0.005  # 0.5%
 MAX_GAS_PRICE_GWEI = 5
 MIN_PROFIT_BNB = 0.001    # Minimum profit to execute
-```
+`````
 
 ### 단계 5: Web3 클라이언트 설정
 
-```python
+`````python
 # bot/client.py — Web3 connection with retry logic
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
@@ -213,13 +214,13 @@ class BSCClient: def __init__(self): self.w3 = Web3(Web3.HTTPProvider(config.BSC
 
 client = BSCClient()
 print(f"BNB Balance: {client.get_balance():.4f} BNB")
-```
+`````
 
 ## 핵심 스왑 기능 구축
 
 ### 토큰 승인
 
-스왑하기 전에 라우터는 토큰을 지출할 수 있는 승인이 필요하다: ```python
+스왑하기 전에 라우터는 토큰을 지출할 수 있는 승인이 필요하다: `````python
 # bot/swap.py — swap execution with full safety checks
 from web3 import Web3
 import config
@@ -260,11 +261,11 @@ class PancakeSwapBot: def __init__(self, client): self.client = client
 
         print(f"Approval tx: {tx_hash.hex()} — Status: {receipt[status]}")
         return receipt["status"] == 1
-```
+`````
 
 ### 스왑 실행
 
-```python
+`````python
     def swap_exact_tokens_for_tokens(
         self,
         amount_in_wei,
@@ -335,13 +336,13 @@ class PancakeSwapBot: def __init__(self, client): self.client = client
         signed = self.w3.eth.account.sign_transaction(tx, config.PRIVATE_KEY)
         tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction)
         return self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
-```
+`````
 
 ## 유동성 풀 모니터링 및 가격 추적
 
 ### 실시간 풀 데이터
 
-```python
+`````python
 # bot/monitor.py — pool monitoring and price tracking
 import json
 from web3 import Web3
@@ -410,11 +411,11 @@ class PoolMonitor: def __init__(self, client): self.client = client
             "price_impact": price_impact,
             "is_safe": price_impact < 0.01
         }
-```
+`````
 
 ### 연속 풀 감시기
 
-```python
+`````python
     def watch_pool(self, token_a, token_b, callback, interval=12): """Watch pool and call callback on significant changes."""
         import time
         last_price = None
@@ -430,7 +431,7 @@ class PoolMonitor: def __init__(self, client): self.client = client
                     })
                 last_price = current_price
             time.sleep(interval)
-```
+`````
 
 ## MEV 보호 및 보안 강화
 
@@ -438,7 +439,7 @@ MEV(Maximal Extractable Value) 공격은 2025년 단일 해에 DeFi 트레이더
 
 ### 슬리피지 기반 보호
 
-```python
+`````python
 # utils/gas.py — gas optimization and MEV protection
 import random
 
@@ -478,11 +479,11 @@ class MEVProtection: def __init__(self, client): self.client = client
         tx_dict["gasPrice"] = base_gas + jitter
         tx_dict["deadline"] = self.w3.eth.get_block("latest")["timestamp"] + 60
         return tx_dict
-```
+`````
 
 ### 프라이빗 RPC 엔드포인트 (BSC의 Flashbots 대안)
 
-```python
+`````python
 class PrivateTransactionSender: """Send transactions via private mempool to avoid sandwich attacks."""
 
     def __init__(self, client): self.client = client
@@ -504,13 +505,13 @@ class PrivateTransactionSender: """Send transactions via private mempool to avoi
                 continue
 
         return self.client.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
-```
+`````
 
 ## 자동화 전략: 세 가지 검증된 접근법
 
 ### 전략 1: 단순 모멘텀 돌파
 
-```python
+`````python
 # strategies/momentum.py — momentum breakout strategy
 import time
 from datetime import datetime
@@ -565,11 +566,11 @@ class MomentumStrategy: def __init__(self, bot, monitor, config_overrides=None):
                     if receipt["status"] == 1: position = 0
 
             time.sleep(12)
-```
+`````
 
 ### 전략 2: PancakeSwap-Binance 차익 거래
 
-```python
+`````python
 # strategies/arbitrage.py — cross-market arbitrage
 import requests
 
@@ -615,11 +616,11 @@ class ArbitrageStrategy: def __init__(self, bot, monitor): self.bot = bot
         print(f"Arbitrage found: {opportunity}")
         if opportunity["direction"] == "BUY_PANCAKE_SELL_BINANCE": receipt = self.bot.swap_bnb_for_tokens(0.1, config.BUSD)
             if receipt["status"] == 1: print("PancakeSwap buy executed — sell on Binance via API")
-```
+`````
 
 ### 전략 3: 수익 농사 자동 복리
 
-```python
+`````python
 # strategies/yield_optimizer.py — auto-compound CAKE rewards
 import time
 import json
@@ -670,7 +671,7 @@ class YieldOptimizer: def __init__(self, client, bot): self.client = client
             print(f"Pending CAKE: {pending:.4f}")
             if pending >= self.min_cake_to_harvest: self.compound(pid)
             time.sleep(self.compound_interval)
-```
+`````
 
 ## 벤치마크 / 실제 결과: 2026년 Q1
 
@@ -702,7 +703,7 @@ class YieldOptimizer: def __init__(self, client, bot): self.client = client
 
 ### 다중 페어용 비동기 Web3
 
-```python
+`````python
 import asyncio
 from web3 import AsyncWeb3
 
@@ -718,11 +719,11 @@ class AsyncBSCBot: def __init__(self, rpc_url): self.w3 = AsyncWeb3(AsyncWeb3.As
             "price": pool["price"],
             "opportunity": self.evaluate(pair, pool)
         }
-```
+`````
 
 ### 중요 이벤트용 Telegram 알림
 
-```python
+`````python
 # utils/alerts.py
 import requests
 
@@ -737,11 +738,11 @@ class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = 
             json={"chat_id": self.chat_id, "text": text},
             timeout=5
         )
-```
+`````
 
 ### 분석용 데이터베이스 로깅
 
-```python
+`````python
 import sqlite3
 from datetime import datetime
 
@@ -766,7 +767,7 @@ class TradeLogger: def __init__(self, db_path="trades.db"): self.conn = sqlite3.
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (datetime.now().isoformat(), strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash))
         self.conn.commit()
-```
+`````
 
 ## 비교: PancakeSwap 봇 vs 대안
 
@@ -813,7 +814,7 @@ PancakeSwap 봇을 구축하는 것은 수익성이 있지만 쉽지 않다. 가
 
 ### BSC 테스트넷에서 먼저 실행할 수 있는가?
 
-물론이다. BSC 테스트넷은 `https://data-seed-prebsc-1-s1.binance.org:8545/`를 RPC로 사용한다. [faucet](https://testnet.bnbchain.org/faucet-smart)에서 테스트 BNB를 받으라. 실제 자본을 배포하기 전에 테스트넷에서 최소 **2주** 동안 각 전략을 검증하라. [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)로 테스트넷 계정을 설정하여 연습하라.
+물론이다. BSC 테스트넷은 ````https://data-seed-prebsc-1-s1.binance.org:8545/````를 RPC로 사용한다. [faucet](https://testnet.bnbchain.org/faucet-smart)에서 테스트 BNB를 받으라. 실제 자본을 배포하기 전에 테스트넷에서 최소 **2주** 동안 각 전략을 검증하라. [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)로 테스트넷 계정을 설정하여 연습하라.
 
 ### MEV 샌드위치 공격을 어떻게 방지하는가?
 
@@ -825,7 +826,7 @@ PancakeSwap 봇을 구축하는 것은 수익성이 있지만 쉽지 않다. 가
 
 ### 실패한 트랜잭션을 어떻게 처리하는가?
 
-논스 관리자와 재시도 로직을 구현하라: ```python
+논스 관리자와 재시도 로직을 구현하라: `````python
 class NonceManager: def __init__(self, w3, address): self.w3 = w3
         self.address = address
         self._nonce = w3.eth.get_transaction_count(address)
@@ -835,7 +836,7 @@ class NonceManager: def __init__(self, w3, address): self.w3 = w3
         return nonce
 
     def reset(self): self._nonce = self.w3.eth.get_transaction_count(self.address)
-```
+````
 
 실패한 트랜잭션 후에는 항상 논스를 재설정하여 "nonce too high" 오류를 피하라.
 
@@ -903,7 +904,7 @@ DeFi 개발자 커뮤니티에 참여하라: **t.me/dibi8defi**
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -913,7 +914,7 @@ DeFi 개발자 커뮤니티에 참여하라: **t.me/dibi8defi**
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](pancake-trading-bot-defi-bsc)
 - [ray-distributed-ai-framework-complete-guide](pancake-trading-bot-defi-bsc)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

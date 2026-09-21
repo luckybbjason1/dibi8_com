@@ -12,13 +12,14 @@ aliases:
   - /kr/posts/trino-distributed-sql-query/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 데이터 웨어하우스가 페타바이트에 질식할 때
 
 2024년, 싱가포르의 한 중견 핀테크 기업은 Snowflake 청구서가 **월 $47,000**에 달하는 것을 목격했다 — S3 데이터 레이크에 대한 임시 분석 쿼리 비용만. 12명 엔지니어로 구성된 데이터 팀은 실제 쿼리 작성보다 비용 최적화에 더 많은 시간을 쏟았다. 2025년 3월, 그들은 세 대의 베어 메탈 서버에서 자체 호스팅 Trino 클러스터로 마이그레이션했다. 쿼리 비용은 **82% 감소**했다. 상위 20개 대시보드의 쿼리 지연 시간은 평균 **4.2초에서 1.1초로 개선**되었다.
 
-이것은 고유한 사례가 아니다. 2026년 5월 기준으로 Trino(구 PrestoSQL)는 **Netflix, Airbnb, Uber, Lyft, Goldman Sachs**의 분석을 지원하고 있다. `trinodb` 조직 하에 **약 11,000개의 GitHub Star**를 보유하고 있으며, 2026년 초에 버전 **464+**가 릴리스되었다. Trino는 기가바이트에서 페타바이트에 이르는 모든 크기의 데이터 소스에 대해 인터랙티브 분석 쿼리를 실행하도록 설계된 분산 SQL 쿼리 엔진이다.
+이것은 고유한 사례가 아니다. 2026년 5월 기준으로 Trino(구 PrestoSQL)는 **Netflix, Airbnb, Uber, Lyft, Goldman Sachs**의 분석을 지원하고 있다. ```trinodb```` 조직 하에 **약 11,000개의 GitHub Star**를 보유하고 있으며, 2026년 초에 버전 **464+**가 릴리스되었다. Trino는 기가바이트에서 페타바이트에 이르는 모든 크기의 데이터 소스에 대해 인터랙티브 분석 쿼리를 실행하도록 설계된 분산 SQL 쿼리 엔진이다.
 
 이 가이드는 프로덕션용 Trino 클러스터 설정, 커넥터 구성, 성능 튜닝, 정직한 벤치마크를 안내한다. 데이터 레이크하우스를 구축하든 비싼 관리형 웨어하우스를 대체하든, 30분 이내에 작동하는 클러스터를 갖게 될 것이다.
 
@@ -33,7 +34,7 @@ aliases:
 
 ## Trino 작동 방식: 아키텍처 심층 분석
 
-Trino는 **Coordinator-Worker 아키텍처**를 따를며 명확한 역할 분리가 있다: ```
+Trino는 **Coordinator-Worker 아키텍처**를 따를며 명확한 역할 분리가 있다: `````
 ┌─────────────────────────────────────────────────────────────┐
 │                        클라이언트 (CLI / JDBC)               │
 └───────────────────────┬─────────────────────────────────────┘
@@ -56,7 +57,7 @@ Trino는 **Coordinator-Worker 아키텍처**를 따를며 명확한 역할 분�
 │ │ 연산자    │ │ │ │ 연산자    │ │ │ │ 연산자    │ │
 │ └──────────┘ │ │ └──────────┘ │ │ └──────────┘ │
 └──────────────┘ └──────────────┘ └──────────────┘
-```
+`````
 
 쿼리 수명주기는 다음 단계를 따른다: 1. **클리이언트가 SQL 제출** → Coordinator가 HTTP REST API를 통해 쿼리 수신
 2. **파싱 및 분석** → SQL이 AST로 파싱되고 카탈로그 메타데이터에 대해 확인
@@ -80,24 +81,24 @@ S3의 100억 행 테이블에 대한 단일 쿼리는 **수천 개의 스플릿*
 
 ### 단계 1: Trino Server 다운로드
 
-```bash
+`````bash
 export TRINO_VERSION=464
 wget https://repo1.maven.org/maven2/io/trino/trino-server/${TRINO_VERSION}/trino-server-${TRINO_VERSION}.tar.gz
 tar -xzf trino-server-${TRINO_VERSION}.tar.gz
 cd trino-server-${TRINO_VERSION}
-```
+`````
 
 ### 단계 2: 필요한 디렉터리 생성
 
-```bash
+`````bash
 sudo mkdir -p /var/trino/data
 sudo mkdir -p /etc/trino
 export JAVA_HOME=/usr/lib/jvm/java-22-openjdk-amd64
-```
+`````
 
 ### 단계 3: Coordinator 구성
 
-Coordinator 노드에서 `/etc/trino/config.properties` 생성: ```properties
+Coordinator 노드에서 ``/etc/trino/config.properties`` 생성: `````properties
 # /etc/trino/config.properties — Coordinator 노드
 coordinator=true
 node-scheduler.include-coordinator=false
@@ -106,16 +107,16 @@ query.max-memory=50GB
 query.max-memory-per-node=5GB
 query.max-total-memory-per-node=6GB
 discovery.uri=http://trino-coordinator:8080
-```
+`````
 
-`/etc/trino/node.properties` 생성: ```properties
+``/etc/trino/node.properties`` 생성: `````properties
 # /etc/trino/node.properties
 node.environment=production
 node.id=trino-coordinator-01
 node.data-dir=/var/trino/data
-```
+`````
 
-`/etc/trino/jvm.config` 생성: ```bash
+``/etc/trino/jvm.config`` 생성: `````bash
 # /etc/trino/jvm.config
 -server
 -Xmx16G
@@ -125,11 +126,11 @@ node.data-dir=/var/trino/data
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:OnOutOfMemoryError=kill -9 %p
 -Djdk.attach.allowAttachSelf=true
-```
+`````
 
 ### 단계 4: Worker 구성
 
-각 Worker 노드에서 `/etc/trino/config.properties` 생성: ```properties
+각 Worker 노드에서 ``/etc/trino/config.properties`` 생성: `````properties
 # /etc/trino/config.properties — Worker 노드
 coordinator=false
 http-server.http.port=8080
@@ -137,13 +138,13 @@ query.max-memory=50GB
 query.max-memory-per-node=5GB
 query.max-total-memory-per-node=6GB
 discovery.uri=http://trino-coordinator:8080
-```
+`````
 
-Coordinator와 동일한 `node.properties`와 `jvm.config`를 사용하되, Worker마다 `node.id`를 고유한 값으로 변경한다 (예: `trino-worker-01`, `trino-worker-02`).
+Coordinator와 동일한 ````node.properties````와 ````jvm.config````를 사용하되, Worker마다 ````node.id````를 고유한 값으로 변경한다 (예: ````trino-worker-01````, ````trino-worker-02````).
 
 ### 단계 5: Catalog 추가 (S3 + Iceberg)
 
-`/etc/trino/catalog/iceberg.properties` 생성: ```properties
+``/etc/trino/catalog/iceberg.properties`` 생성: `````properties
 # /etc/trino/catalog/iceberg.properties
 connector.name=iceberg
 hive.s3.aws-access-key=YOUR_ACCESS_KEY
@@ -152,19 +153,19 @@ hive.s3.endpoint=https://s3.us-east-1.amazonaws.com
 hive.s3.region=us-east-1
 iceberg.catalog.type=glue
 iceberg.file-format=PARQUET
-```
+`````
 
-테스트 중 로컬 파일 시스템 Catalog 사용: ```properties
+테스트 중 로컬 파일 시스템 Catalog 사용: `````properties
 # /etc/trino/catalog/local.properties
 connector.name=iceberg
 iceberg.catalog.type=file_system
 iceberg.file-format=PARQUET
 hive.metastore.uri=thrift://localhost:9083
-```
+`````
 
 ### 단계 6: 클러스터 시작
 
-```bash
+`````bash
 # Coordinator 시작
 bin/launcher start
 
@@ -173,17 +174,17 @@ bin/launcher start
 
 # 클러스터 상태 확인
 ./trino --server http://trino-coordinator:8080 --execute "SELECT * FROM system.runtime.nodes"
-```
+`````
 
-모든 노드가 표시되는 예상 출력: ```
+모든 노드가 표시되는 예상 출력: `````
 http://trino-coordinator:8080    trino-coordinator-01    coordinator    true       active
 http://trino-worker-01:8080     trino-worker-01         worker         false      active
 http://trino-worker-02:8080     trino-worker-02         worker         false      active
-```
+`````
 
 ### 단계 7: 첫 번째 쿼리 실행
 
-```bash
+`````bash
 # Trino CLI 설치
 wget https://repo1.maven.org/maven2/io/trino/trino-cli/${TRINO_VERSION}/trino-cli-${TRINO_VERSION}-executable.jar
 chmod +x trino-cli-${TRINO_VERSION}-executable.jar
@@ -194,24 +195,24 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
   --catalog iceberg \
   --schema default \
   --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL 7 DAY"
-```
+`````
 
 ## 주요 데이터 도구와의 통합
 
 ### 통합 1: Apache Superset (BI 대시보드)
 
-Superset은 PyHive SQLAlchemy 방언을 통해 Trino에 연결한다: ```bash
+Superset은 PyHive SQLAlchemy 방언을 통해 Trino에 연결한다: `````bash
 # Superset용 Trino 드라이버 설치
 pip install trino[sqlalchemy]
-```
+`````
 
-Superset에서 데이터베이스를 추가할 때 이 연결 문자열 사용: ```
+Superset에서 데이터베이스를 추가할 때 이 연결 문자열 사용: `````
 trino://trino-coordinator:8080/iceberg/default
-```
+`````
 
 ### 통합 2: dbt (데이터 변환)
 
-`~/.dbt/profiles.yml` 구성: ```yaml
+``~/.dbt/profiles.yml`` 구성: `````yaml
 my_trino_project: target: dev
   outputs: dev: type: trino
       method: none
@@ -221,15 +222,15 @@ my_trino_project: target: dev
       catalog: iceberg
       schema: analytics
       threads: 8
-```
+`````
 
-dbt 모델 실행: ```bash
+dbt 모델 실행: `````bash
 dbt run --profiles-dir ~/.dbt --project-dir ./my_project
-```
+`````
 
 ### 통합 3: Apache Airflow (오케스트레이션)
 
-DAG에서 `TrinoOperator` 사용: ```python
+DAG에서 ``TrinoOperator`` 사용: `````python
 from airflow.providers.trino.operators.trino import TrinoOperator
 from airflow import DAG
 from datetime import datetime
@@ -245,19 +246,19 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
         """,
         trino_conn_id="trino_default",
     )
-```
+`````
 
 ### 통합 4: Apache Kafka (스트리밍 분석)
 
-`/etc/trino/catalog/kafka.properties` 생성: ```properties
+``/etc/trino/catalog/kafka.properties`` 생성: `````properties
 connector.name=kafka
 kafka.table-names=events,orders,user_activity
 kafka.default-schema=default
 kafka.nodes=kafka-01:9092,kafka-02:9092,kafka-03:9092
 kafka.table-description-dir=/etc/trino/kafka/
-```
+`````
 
-SQL로 Kafka 토픽을 직접 쿼리: ```sql
+SQL로 Kafka 토픽을 직접 쿼리: `````sql
 -- 실시간 Kafka 스트림 쿼리
 SELECT
     _message,
@@ -268,19 +269,19 @@ SELECT
 FROM kafka.default.events
 WHERE _offset > 1000000
 LIMIT 100;
-```
+`````
 
 ### 통합 5: PostgreSQL (운영 데이터 페더레이션)
 
-`/etc/trino/catalog/postgres.properties` 생성: ```properties
+``/etc/trino/catalog/postgres.properties`` 생성: `````properties
 connector.name=postgresql
 connection-url=jdbc:postgresql://postgres:5432/production
 connection-user=trino_reader
 connection-password=${ENV:POSTGRES_PASSWORD}
 case-insensitive-name-matching=true
-```
+`````
 
-단일 쿼리로 PostgreSQL과 S3 데이터를 페더레이션: ```sql
+단일 쿼리로 PostgreSQL과 S3 데이터를 페더레이션: `````sql
 SELECT
     u.id,
     u.email,
@@ -291,7 +292,7 @@ WHERE u.created_at > DATE '2026-01-01'
 GROUP BY 1, 2
 ORDER BY 3 DESC
 LIMIT 100;
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -332,7 +333,7 @@ Trino는 **지연 평가**, **스트리밍 결과**, **효율적인 브로드캐
 
 ### EXPLAIN ANALYZE로 쿼리 튜닝
 
-Trino는 상세한 쿼리 플랜을 제공한다. 최적화 전에 항상 확인하라: ```sql
+Trino는 상세한 쿼리 플랜을 제공한다. 최적화 전에 항상 확인하라: `````sql
 EXPLAIN ANALYZE
 SELECT
     region,
@@ -342,7 +343,7 @@ FROM orders o
 JOIN customers c ON o.customer_id = c.id
 WHERE o.order_date > DATE '2026-01-01'
 GROUP BY region;
-```
+`````
 
 출력에서 다음 일반적인 문제를 찾아라: - **동시 조인** vs **재분할 조인** — 작은 차원 테이블에 대해 브로드캐스트 조인을 목표로 하라
 - **술어 푸시다운 없는 테이블 스캔** — 파티션 프루닝이 활성 상태인지 확인하라
@@ -350,7 +351,7 @@ GROUP BY region;
 
 ### 리소스 그룹 (프로덕션급 격리)
 
-`/etc/trino/resource-groups.json` 생성: ```json
+``/etc/trino/resource-groups.json`` 생성: `````json
 {
   "rootGroups": [
     {
@@ -391,58 +392,58 @@ GROUP BY region;
     {"source": "superset", "group": "global.dashboard"}
   ]
 }
-```
+`````
 
-`config.properties`에서 참조: ```properties
+``config.properties``에서 참조: `````properties
 resource-groups.config-file=/etc/trino/resource-groups.json
-```
+`````
 
 ### 교환 스필링 활성화 (메모리 보호)
 
-사용 가능한 메모리를 초과하는 쿼리를 위해 디스크 스필링을 활성화: ```properties
+사용 가능한 메모리를 초과하는 쿼리를 위해 디스크 스필링을 활성화: `````properties
 # /etc/trino/config.properties
 spill-enabled=true
 spiller-spill-path=/var/trino/spill
 memory-revoking-threshold=0.8
 memory-revoking-target=0.5
-```
+`````
 
 ### 인증 및 SSL (프로덕션 보안)
 
-LDAP 또는 파일 기반으로 비밀번호 인증 활성화: ```properties
+LDAP 또는 파일 기반으로 비밀번호 인증 활성화: `````properties
 # /etc/trino/config.properties
 http-server.authentication.type=PASSWORD
 http-server.https.enabled=true
 http-server.https.port=8443
 http-server.https.keystore.path=/etc/trino/keystore.jks
 http-server.https.keystore.key=changeit
-```
+`````
 
-`/etc/trino/password-authenticator.properties` 생성: ```properties
+``/etc/trino/password-authenticator.properties`` 생성: `````properties
 password-authenticator.name=file
 file.password-file=/etc/trino/password.db
-```
+`````
 
-비밀번호 해시 생성: ```bash
+비밀번호 해시 생성: `````bash
 # trino-password-authenticator 플러그인 설치 후: java -cp trino-server-464/plugin/password-authenticators/* \
   io.trino.plugin.password.file.EncryptPassword \
   --password 'your-secure-password'
-```
+`````
 
 ### JMX + Prometheus로 모니터링
 
-런타임 메트릭을 위해 JMX 카탈로그 활성화: ```properties
+런타임 메트릭을 위해 JMX 카탈로그 활성화: `````properties
 # /etc/trino/catalog/jmx.properties
 connector.name=jmx
-```
+`````
 
-런타임 메트릭을 직접 쿼리: ```sql
+런타임 메트릭을 직접 쿼리: `````sql
 -- 활성 쿼리
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
 -- 쿼리당 메모리 사용량
 SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = RUNNING;
-```
+````
 
 ## 대안과의 비교
 
@@ -562,7 +563,7 @@ Trino는 규모에 맞는 분산 SQL 분석을 위한 가장 성숙한 오픈소
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -570,6 +571,6 @@ Trino는 규모에 맞는 분산 SQL 분석을 위한 가장 성숙한 오픈소
 - [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](trino-distributed-sql-query)
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](trino-distributed-sql-query)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

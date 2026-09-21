@@ -5,6 +5,7 @@ description: "构建 AI 知识库的最佳 RAG（检索增强生成）工具 —
 layout: simple
 date: 2026-06-28T00:00:00+08:00
 lastmod: 2026-06-28T00:00:00+08:00---
+
 # AI 知识库最佳 RAG 工具
 
 slug: top-rag-tools
@@ -123,46 +124,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
-|
-| **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
-| **Learning Curve** | Medium | Low | Medium |
-| **Community** | Large | Growing | Medium |
-| **Production Ready** | Yes | Yes | Yes |
-| **Cost** | Open source | Open source | Open source |
-
-### When to Use Each
-
-**LangChain** is ideal for: - Complex agent workflows
-- Multi-step reasoning tasks
-- Integration with external tools
-- Production-grade applications
-
-**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
-- Data indexing and querying
-- Enterprise knowledge bases
-- Semantic search implementations
-
-**Haystack** shines in: - Document understanding pipelines
-- Question answering systems
-- Search engine integration
-- NLP task orchestration
-
-When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
-|
----
-|
----
-|
----
-|
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -189,13 +157,13 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -222,13 +190,46 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
+|
+| **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
+| **Learning Curve** | Medium | Low | Medium |
+| **Community** | Large | Growing | Medium |
+| **Production Ready** | Yes | Yes | Yes |
+| **Cost** | Open source | Open source | Open source |
+
+### When to Use Each
+
+**LangChain** is ideal for: - Complex agent workflows
+- Multi-step reasoning tasks
+- Integration with external tools
+- Production-grade applications
+
+**LlamaIndex** excels at: - Retrieval-Augmented Generation (RAG)
+- Data indexing and querying
+- Enterprise knowledge bases
+- Semantic search implementations
+
+**Haystack** shines in: - Document understanding pipelines
+- Question answering systems
+- Search engine integration
+- NLP task orchestration
+
+When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |
@@ -257,15 +258,15 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
@@ -273,4 +274,4 @@ When choosing an LLM framework, consider these factors: | Factor | LangChain | L
 | **LangGraph** | Stateful agents | High | Growing | ✅ Yes |
 
 
----
+* * *

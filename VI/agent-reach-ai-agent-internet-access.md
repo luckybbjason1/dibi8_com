@@ -37,6 +37,7 @@ faqs: - q: 'Agent Reach là gì và nó làm được gì?'
     a: 'Agent Reach hoạt động với Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI, và bất kỳ agent nào tương thích MCP. Mỗi nền tảng được triển khai dưới dạng một tệp channel độc lập, có thể thay thế, nên bạn có thể thay công cụ nền tảng bên dưới cho bất kỳ nền tảng nào mà không bị khóa (lock-in).'
 ---
 
+
 {</* resource-info */>}
 
 ## Vấn Đề: AI Agent "Mù" Trước Internet
@@ -60,15 +61,15 @@ Triết lý dự án rất đơn giản: **Agent Reach là scaffolding, không p
 
 ### Cài Đặt Một Dòng
 
-```
+````
 帮我安装 Agent Reach：https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md
-```
+`````
 
-Chỉ vậy thôi. Agent sẽ tự xử lý mọi thứ còn lại: 1. Cài đặt CLI `agent-reach` qua pip
+Chỉ vậy thôi. Agent sẽ tự xử lý mọi thứ còn lại: 1. Cài đặt CLI ````agent-reach```` qua pip
 2. Phát hiện và cài đặt các phụ thuộc hệ thống (Node.js, gh CLI, mcporter)
 3. Cấu hình công cụ tìm kiếm qua Exa MCP (miễn phí, không cần API key)
 4. Đăng ký SKILL.md để agent biết công cụ nào sử dụng cho từng nền tảng
-5. Chạy `agent-reach doctor` để xác minh mọi thứ hoạt động
+5. Chạy ````agent-reach doctor```` để xác minh mọi thứ hoạt động
 
 ### Các Nền Tảng Được Hỗ Trợ
 
@@ -77,7 +78,7 @@ Chỉ vậy thôi. Agent sẽ tự xử lý mọi thứ còn lại: 1. Cài đ�
 | **Web** | Đọc bất kỳ trang web nào | Không cần |
 | **YouTube** | Trích xuất phụ đề + tìm kiếm | Không cần |
 | **RSS** | Phân tích bất kỳ nguồn nào | Không cần |
-| **GitHub** | Đọc repo, tìm kiếm, tạo issue | `gh auth login` |
+| **GitHub** | Đọc repo, tìm kiếm, tạo issue | ````gh auth login```` |
 | **Twitter/X** | Đọc tweet, tìm kiếm, timeline | Xuất cookie |
 | **Reddit** | Tìm kiếm bài, đọc bình luận | Đăng nhập cookie |
 | **Bilibili** | Phụ đề + tìm kiếm | Proxy cho máy chủ |
@@ -93,7 +94,7 @@ Chỉ vậy thôi. Agent sẽ tự xử lý mọi thứ còn lại: 1. Cài đ�
 
 ### Kiến Trúc: Thiết Kế Cắm Rút
 
-Mỗi nền tảng được triển khai như một kênh độc lập: ```
+Mỗi nền tảng được triển khai như một kênh độc lập: `````
 channels/
 ├── web.py          → Jina Reader (miễn phí, không cần key)
 ├── twitter.py      → twitter-cli (dựa trên cookie)
@@ -107,16 +108,16 @@ channels/
 ├── wechat.py       → Exa + Camoufox
 ├── rss.py          → feedparser
 └── exa_search.py   → mcporter MCP
-```
+`````
 
 Không thích một công cụ cụ thể? Hoán đổi file kênh. Kiến trúc được thiết kế để thay thế, không phải khóa chặt.
 
 ### Cân Nhắc Bảo Mật
 
-Agent Reach coi trọng bảo mật: - **Lưu trữ thông tin xác thực cục bộ**: Cookie và token ở trong `~/.agent-reach/config.yaml` với quyền 600
+Agent Reach coi trọng bảo mật: - **Lưu trữ thông tin xác thực cục bộ**: Cookie và token ở trong ````~/.agent-reach/config.yaml```` với quyền 600
 - **Mã nguồn mở hoàn toàn**: Tất cả mã và phụ thuộc đều có thể kiểm toán
-- **Chế độ an toàn**: `agent-reach install --safe` xem trước thay đổi nhưng không áp dụng
-- **Chạy thử**: `agent-reach install --dry-run` hiển thị chính xác điều gì sẽ xảy ra
+- **Chế độ an toàn**: ````agent-reach install --safe```` xem trước thay đổi nhưng không áp dụng
+- **Chạy thử**: ````agent-reach install --dry-run```` hiển thị chính xác điều gì sẽ xảy ra
 - **Khuyến nghị tài khoản dành riêng**: Sử dụng tài khoản dùng một lần cho các nền tảng dựa trên cookie để giảm thiểu rủi ro cấm
 
 ### Sử Dụng Thực Tế
@@ -138,14 +139,14 @@ Khoảng cách nhân lực an ninh mạng đạt 4,8 triệu vị trí chưa đ�
 
 ## Bắt Đầu
 
-```bash
+`````bash
 # Cài đặt một dòng qua npx
 npx skills add Panniantong/Agent-Reach
 
 # Hoặc clone thủ công
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
-```
+````
 
 Tương thích với Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI và bất kỳ agent tương thích MCP nào.
 
@@ -159,7 +160,7 @@ Dự án đang được duy trì tích cực, hoàn toàn miễn phí, và đư�
 **Giấy phép**: MIT  
 **Stars**: Đang tăng trưởng nhanh trong cộng đồng AI Agent
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
@@ -232,7 +233,7 @@ Agent Reach: Trao Siêu Năng Lực Internet cho AI Agent của Bạn represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

@@ -41,6 +41,7 @@ faqs: - q: 'What is OpenMontage?'
     a: 'OpenMontage implements production-grade quality gates: pre-compose validation (blocks renders that violate delivery promises or have critical slideshow risk), post-render self-review (ffprobe validation, frame extraction at 4 positions for black-frame detection, audio level analysis for silence/clipping, delivery promise verification), and a 6-dimension slideshow risk scoring system. Every provider selection is logged with alternatives considered, confidence scores, and reasoning. Budget controls include cost estimation before execution, per-action approval thresholds, and configurable spend caps.'
 featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
+
 ## The Problem With Current AI Video Tools
 
 Every AI video tool that reached mainstream awareness in 2025 — Sora, Runway Gen-4, Pika, Luma Dream Machine, Kling — shares the same fundamental limitation: they are **single-prompt-to-clip generators**. You type a description, wait 60 seconds, and receive a 5-to-30-second video fragment with no script, no narrative structure, no synchronized audio, and no quality validation.
@@ -55,23 +56,23 @@ The gap between "generate a clip" and "produce a video" is enormous. It requires
 
 No single AI model does all of this. But a system that orchestrates multiple specialized tools through a structured production pipeline can.
 
-**[OpenMontage](https://github.com/calesthio/OpenMontage)** (GitHub: `calesthio/OpenMontage`, **8,273+ stars** as of June 2026) is the world\'s first open-source, agentic video production system designed to fill this exact gap. It provides 12 production pipelines, 52 tools, and 500+ agent skills that turn any AI coding assistant into a full video production studio.
+**[OpenMontage](https://github.com/calesthio/OpenMontage)** (GitHub: ```calesthio/OpenMontage````, **8,273+ stars** as of June 2026) is the world\'s first open-source, agentic video production system designed to fill this exact gap. It provides 12 production pipelines, 52 tools, and 500+ agent skills that turn any AI coding assistant into a full video production studio.
 
 ## How OpenMontage Works
 
 OpenMontage uses an **agent-first architecture**. There is no central orchestrator program. Your AI coding assistant — Claude Code, Cursor, Copilot, Windsurf, or Codex — IS the orchestrator.
 
-The system works through three layers of knowledge: ```
+The system works through three layers of knowledge: `````
 Layer 1: tools/ + pipeline_defs/     "What exists" — executable capabilities + orchestration
 Layer 2: skills/                      "How to use it" — OpenMontage conventions and quality bars
 Layer 3: .agents/skills/              "How it works" — external technology knowledge packs
-```
+`````
 
 You describe what you want in plain language. The agent reads the pipeline manifest (YAML) to understand available stages, tools, and review criteria. It reads stage director skills (Markdown) to learn how to execute each stage. It calls Python tools for scored provider selection, self-reviews using reviewer skills, checkpoints state in JSON, and presents creative decisions for your approval at every stage.
 
-The complete production flow: ```
+The complete production flow: `````
 research → proposal → script → scene_plan → assets → edit → compose
-```
+`````
 
 Each stage has a dedicated director skill — a Markdown instruction file that teaches the agent exactly how to execute that stage. The agent reads the skill, uses the tools, self-reviews, checkpoints state, and asks for human approval at creative decision points.
 
@@ -81,11 +82,11 @@ Web research is a first-class stage. Before writing a single word of script, the
 
 Each pipeline is a complete production workflow from idea to finished video: | Pipeline | What It Produces | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Animated Explainer** | AI-generated explainer with research, narration, visuals, music | Educational content, tutorials, topic breakdowns |
 | **Animation** | Motion graphics, kinetic typography, animated sequences | Social media, product demos, abstract concepts |
@@ -104,13 +105,13 @@ Every pipeline follows the same structured flow: research → proposal → scrip
 
 ## Zero-API-Key Production
 
-You do not need paid API keys to make real videos. Out of the box, `make setup` gives you: | Capability | Free Tool | What It Does |
+You do not need paid API keys to make real videos. Out of the box, ````make setup```` gives you: | Capability | Free Tool | What It Does |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Narration** | Piper TTS | Free offline text-to-speech — real human-sounding narration |
 | **Open footage** | Archive.org + NASA + Wikimedia Commons | Free/open archival footage, educational media, documentary texture |
@@ -125,11 +126,11 @@ Two free production paths are available immediately: 1. **Image-based video:** P
 
 For the real-footage path, prompt for a **documentary montage**, **tone poem**, or **stock-footage collage**, and explicitly say **use real footage only**.
 
-Example prompts that work with zero API keys: ```
+Example prompts that work with zero API keys: `````
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
 ## With Paid API Keys: Expanded Capabilities
 
@@ -137,11 +138,11 @@ Adding API keys unlocks higher-quality assets. Here is the provider landscape: #
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Kling** | Cloud API | High quality, fast |
 | **Runway Gen-4** | Cloud API | Cinematic quality, Gen-3 Alpha Turbo / Gen-4 Turbo / Gen-4 Aleph |
@@ -159,11 +160,11 @@ Adding API keys unlocks higher-quality assets. Here is the provider landscape: #
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **FLUX** | Cloud API | State-of-the-art quality |
 | **Google Imagen** | Cloud API | Imagen 4 — high-quality, multiple aspect ratios |
@@ -176,11 +177,11 @@ Adding API keys unlocks higher-quality assets. Here is the provider landscape: #
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **ElevenLabs** | Cloud API | Premium voice quality |
 | **Google TTS** | Cloud API | 700+ voices, 50+ languages — best for localization |
@@ -191,11 +192,11 @@ Adding API keys unlocks higher-quality assets. Here is the provider landscape: #
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Suno AI** | Cloud API | Full song generation with vocals, lyrics, any genre. Up to 8 minutes. |
 | **ElevenLabs Music** | Cloud API | AI music generation |
@@ -221,9 +222,9 @@ After every render, the runtime runs ffprobe validation, extracts frames at 4 po
 
 Every tool selection (video generation, image generation, TTS, music) runs through a 7-dimension scoring engine: | Dimension | Weight |
 |
----
+* * *
 |
----
+* * *
 |
 | Task Fit | 30% |
 | Output Quality | 20% |
@@ -240,7 +241,7 @@ The winning provider and its score are logged in the decision trail with all alt
 - **Estimate** before execution — see what it will cost
 - **Reserve** budget — lock funds before the call
 - **Reconcile** after — record actual spend
-- **Configurable modes** — `observe` (track only), `warn` (log overruns), `cap` (hard limit)
+- **Configurable modes** — ````observe```` (track only), ````warn```` (log overruns), ````cap```` (hard limit)
 - **Per-action approval** — pause for confirmation above a threshold (default: $0.50)
 - **Total budget cap** — default $10, fully configurable
 
@@ -248,7 +249,7 @@ No surprise bills. The agent tells you what it will cost before it spends.
 
 ## Architecture Overview
 
-```
+`````
 OpenMontage/
 ├── tools/              # 48 Python tools (the agent\'s hands)
 │   ├── video/          # 13 video gen tools + compose, stitch, trim
@@ -271,25 +272,25 @@ OpenMontage/
 ├── remotion-composer/  # React/Remotion video composition engine
 ├── lib/                # Core infrastructure (config, checkpoints, pipeline loader)
 └── tests/              # Contract tests, QA integration tests, eval harness
-```
+`````
 
-The system uses three knowledge layers. Layer 1 (`tools/` + `pipeline_defs/`) tells the agent what exists. Layer 2 (`skills/`) tells it how to use OpenMontage\'s conventions and quality bars. Layer 3 (`.agents/skills/`) provides deep technology knowledge for external tools and providers.
+The system uses three knowledge layers. Layer 1 (````tools/```` + ````pipeline_defs/````) tells the agent what exists. Layer 2 (````skills/````) tells it how to use OpenMontage\'s conventions and quality bars. Layer 3 (````.agents/skills/````) provides deep technology knowledge for external tools and providers.
 
 ## Agent Compatibility
 
 OpenMontage works with any AI coding assistant that can read files and execute Python. Dedicated instruction files are included for: | Platform | Config File |
 |
----
+* * *
 |
----
+* * *
 |
-| **Claude Code** | `CLAUDE.md` |
-| **Cursor** | `CURSOR.md` + `.cursor/rules/` |
-| **GitHub Copilot** | `COPILOT.md` + `.github/copilot-instructions.md` |
-| **Codex** | `CODEX.md` |
-| **Windsurf** | `.windsurfrules` |
+| **Claude Code** | ````CLAUDE.md```` |
+| **Cursor** | ````CURSOR.md```` + ````.cursor/rules/```` |
+| **GitHub Copilot** | ````COPILOT.md```` + ````.github/copilot-instructions.md```` |
+| **Codex** | ````CODEX.md```` |
+| **Windsurf** | ````.windsurfrules```` |
 
-All platform files point to the shared `AGENT_GUIDE.md` (operating guide and agent contract) and `PROJECT_CONTEXT.md` (architecture reference).
+All platform files point to the shared ````AGENT_GUIDE.md```` (operating guide and agent contract) and ````PROJECT_CONTEXT.md```` (architecture reference).
 
 Local LLM support via Ollama and LM Studio is coming soon, which would enable running the full production pipeline without any cloud LLM.
 
@@ -298,37 +299,37 @@ Local LLM support via Ollama and LM Studio is coming soon, which would enable ru
 ### Prerequisites
 
 - **Python 3.10+** — [python.org](https://www.python.org/downloads/)
-- **FFmpeg** — `brew install ffmpeg` / `sudo apt install ffmpeg`
+- **FFmpeg** — ````brew install ffmpeg```` / ````sudo apt install ffmpeg````
 - **Node.js 18+** — [nodejs.org](https://nodejs.org/)
 - **An AI coding assistant** — Claude Code, Cursor, Copilot, Windsurf, or Codex
 
 ### Install
 
-```bash
+`````bash
 git clone https://github.com/calesthio/OpenMontage.git
 cd OpenMontage
 make setup
-```
+`````
 
-Open the project in your AI coding assistant and tell it what you want: ```
+Open the project in your AI coding assistant and tell it what you want: `````
 "Make a 60-second animated explainer about how neural networks learn"
-```
+`````
 
-Or for the real-footage path: ```
+Or for the real-footage path: `````
 "Make a 75-second documentary montage about city life in the rain. Use real footage only, no narration, elegiac tone, with music."
-```
+`````
 
 The agent researches your topic with live web search, generates AI images, writes and narrates the script with voice direction, finds royalty-free background music automatically, burns in word-level subtitles, and renders the final video. Before you see anything, the system runs a multi-point self-review — ffprobe validation, frame sampling, audio level analysis, delivery promise verification, and subtitle checks.
 
-If you have a GPU, you can unlock free local video generation: ```bash
+If you have a GPU, you can unlock free local video generation: `````bash
 make install-gpu
 # Then add to .env: # VIDEO_GEN_LOCAL_ENABLED=true
 # VIDEO_GEN_LOCAL_MODEL=wan2.1-1.3b  # or wan2.1-14b, hunyuan-1.5, ltx2-local, cogvideo-5b
-```
+`````
 
 ### Optional API Keys
 
-Every API key is optional. Add what you have: ```bash
+Every API key is optional. Add what you have: `````bash
 # Image + video gateway: FAL_KEY=your-key               # FLUX images + Google Veo, Kling, MiniMax video + Recraft
 
 # Free stock media: PEXELS_API_KEY=your-key        # Free stock footage and images
@@ -340,21 +341,21 @@ UNSPLASH_ACCESS_KEY=your-key   # Free stock images
 # Voice & images: ELEVENLABS_API_KEY=your-key    # Premium TTS, AI music, sound effects
 OPENAI_API_KEY=your-key        # OpenAI TTS, DALL-E 3 images
 GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
-```
+`````
 
 ## Comparison: OpenMontage vs. Competitors
 
 | Feature | OpenMontage | Sora | Runway | Pika |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Full production pipeline** | Yes (12 pipelines) | No | No | No |
 | **Script writing** | Automated with web research | Manual | Manual | Manual |
@@ -371,41 +372,41 @@ OpenMontage is not a video generation model. It is a production orchestration sy
 
 ## Prompt Gallery
 
-Here are tested prompts organized by complexity and output type. Each prompt triggers a full production pipeline through your AI coding assistant: ```text
+Here are tested prompts organized by complexity and output type. Each prompt triggers a full production pipeline through your AI coding assistant: `````text
 # Beginner — zero keys needed
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
-```text
+`````text
 # Intermediate — needs one image provider (~$0.15-$0.50)
 "Create a 30-second Ghibli-style animated video of a magical floating library in the clouds at golden hour"
 "Make a 30-second anime-style animation of an underwater temple with bioluminescent coral"
 "Create an animated explainer about how CRISPR gene editing works, using AI-generated visuals"
-```
+`````
 
-```text
+`````text
 # Advanced — full setup (~$1-$3)
 "Create a cinematic 30-second trailer for a sci-fi concept: humanity receives a warning from 1000 years in the future"
 "Make a 90-second animated explainer about quantum computing for middle school students, with a fun narrator voice and custom soundtrack"
-```
+`````
 
-```text
+`````text
 # Reference-driven — start from an existing video
 "Here\'s a YouTube Short I love. Make me something like this, but about CRISPR for high school students."
 "Analyze this Reel and give me 3 original variants I could make for my own product launch."
 "I like the pacing and hook in this video. Keep that energy, but turn it into a 45-second explainer about black holes."
-```
+`````
 
-```text
+`````text
 # Real-footage documentary path
 "Make a 90-second documentary montage about what a city feels like at 4am. Use real footage only, no narration, elegiac tone."
 "Create a 60-second Adam-Curtis-style archival collage about 1950s consumer optimism. Prefer Archive.org and Wikimedia footage."
 "Cut together a dreamlike montage about coming home in the rain using real stock footage only. Music yes, narration no."
-```
+`````
 
-For more tested prompts with expected costs and output examples, see the Prompt Gallery in the repository, or run `make demo` to render zero-key demo videos instantly.
+For more tested prompts with expected costs and output examples, see the Prompt Gallery in the repository, or run ````make demo```` to render zero-key demo videos instantly.
 
 ## Use Cases
 
@@ -445,7 +446,7 @@ OpenMontage is impressive but not magic. Several limitations are worth understan
 
 ## Quality Gate Configuration
 
-OpenMontage\'s quality system can be customized through environment variables and configuration files: ```bash
+OpenMontage\'s quality system can be customized through environment variables and configuration files: `````bash
 # .env quality gate settings
 SLIDESHOW_RISK_THRESHOLD=0.7
 PRE_COMPOSE_VALIDATION=true
@@ -454,9 +455,9 @@ AUDIO_LEVEL_MIN=-30
 AUDIO_LEVEL_MAX=-3
 MAX_STILL_IMAGE_RATIO=0.3
 MIN_VIDEO_DURATION_SECONDS=10
-```
+`````
 
-```json
+`````json
 // .openmontage/config.json — pipeline quality overrides
 {
   "quality_gates": {
@@ -471,15 +472,15 @@ MIN_VIDEO_DURATION_SECONDS=10
     "per_action_approval_threshold": 0.50
   }
 }
-```
+`````
 
 These settings control when the system blocks renders, flags risks, and requires human approval. Adjust thresholds based on your quality requirements and budget constraints.
 
 ## Getting Started
 
-The fastest way to try OpenMontage: 1. Clone the repository: `git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup`
+The fastest way to try OpenMontage: 1. Clone the repository: ````git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup````
 2. Open in Claude Code or Cursor
-3. Prompt: `"Make a 45-second animated explainer about why the sky is blue"`
+3. Prompt: ````"Make a 45-second animated explainer about why the sky is blue"```
 4. Watch the agent research, write a script, generate assets, compose, and validate
 5. Review the output — every creative decision is logged with reasoning
 
@@ -494,7 +495,7 @@ With 12 pipelines, 52 tools, 500+ agent skills, and zero-cost production capabil
 For self-hosted infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187) for reliable GPU-enabled hosting. For web scraping and proxy needs, [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) provides the infrastructure layer. Looking for deals on AI tools and crypto services? Check [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) and [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) for exclusive offers. For affiliate marketing and funnel tools, [PromoOhLy](https://www.promoohubly.com/join/12190433) provides automation.
 
 
----
+* * *
 **Sources:** [OpenMontage GitHub](https://github.com/calesthio/OpenMontage) · [Agent Guide](https://github.com/calesthio/OpenMontage/blob/main/AGENT_GUIDE.md) · [Providers Documentation](https://github.com/calesthio/OpenMontage/blob/main/docs/PROVIDERS.md)
 
 **Join the community:** [GitHub Discussions](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
@@ -528,7 +529,7 @@ For self-hosted infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](openmontage-agentic-video-production-system)
@@ -537,7 +538,7 @@ For self-hosted infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87a
 - [codebase-memory-mcp-high-performance-code-intelligence](openmontage-agentic-video-production-system)
 - [prompts-chat](openmontage-agentic-video-production-system)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

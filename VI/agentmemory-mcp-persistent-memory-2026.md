@@ -22,6 +22,7 @@ aliases:
   - /posts/agentmemory-mcp-persistent-memory-2026/
 ---
 
+
 {</* resource-info */>}
 
 ## Vấn Đề: Mỗi Phiên Mới Là Ngày Đầu Tiên Đi Làm
@@ -36,7 +37,7 @@ Xuất hiện **rohitg00/agentmemory**, một lớp bộ nhớ liên tục mã n
 
 Bài hướng dẫn này giải thích tại sao agent hay quên, agentmemory sửa lỗi như thế nào, và các bước chính xác để triển khai ngay hôm nay.
 
----
+* * *
 
 ## Tại Sao Cửa Sổ Ngữ Cảnh Là Cái Bẫy
 
@@ -52,7 +53,7 @@ Và chi phí ẩn lớn nhất không phải tiền bạc—mà là **ô nhiễm
 
 Với đội nhóm, nỗi đau nhân lên. Một kỹ sư mới onboard dự án không có bộ nhớ agent chia sẻ đồng nghĩa 4-6 tuần dạy lại quy ước chỉ tồn tại trong kiến thức bộ lạc. Với hồ sơ bộ nhớ chia sẻ, các nhóm báo cáo **onboarding nhanh hơn 2-3 lần** vì agent đã biết chuẩn nhóm, anti-pattern, và lịch sử kiến trúc.
 
----
+* * *
 
 ## Kiến Trúc: Pipeline Củng Cố Bộ Nhớ Bốn Tầng
 
@@ -68,11 +69,11 @@ Một chỉ mục vector dựa trên SQLite (qua sqlite-vec) chứa ~100 tương
 
 ### Tầng 3: Bộ Nhớ Dài Hạn (Long-term Memory) — Đồ Thị Tri Thức
 
-Bộ phận chịu tải chính. agentmemory lưu các sự kiện cốt lõi dưới dạng **đồ thị tri thức** bộ ba thực thể-quan hệ-thực thể: ```
+Bộ phận chịu tải chính. agentmemory lưu các sự kiện cốt lõi dưới dạng **đồ thị tri thức** bộ ba thực thể-quan hệ-thực thể: ````
 (DuAnA) --[su_dung_framework]--> (React)
 (DuAnA) --[quy_uoc]--> (Hook đặt tên useXxx)
 (DuAnA) --[giai_phap]--> (Sửa Issue #442)
-```
+`````
 
 Cấu trúc đồ thị đặc biệt phù hợp với **suy luận thời gian**—trả lời câu hỏi kiểu "Tại sao chúng ta bỏ Redux ba tháng trước?" Bộ benchmark LongMemEval, trở thành tiêu chuẩn ngành cho hệ thống bộ nhớ vào đầu 2026, đã xác nhận cách tiếp cận này.
 
@@ -84,7 +85,7 @@ Tầng điều hành cao nhất. Mỗi mục bộ nhớ mang điểm tin cậy 0
 
 Đây không chỉ là ghi chép. Đó là **cơ chế quên**—hệ thống chủ động cắt tỉa nhiễu điểm thấp để giữ đồ thị tri thức sạch và nhanh.
 
----
+* * *
 
 ## MCP: "USB-C cho AI" Làm Mọi Thứ Hoạt Động
 
@@ -92,7 +93,7 @@ Lợi thế chiến lược thực sự của agentmemory không phải thuật 
 
 ### MCP Hoạt Động Như Thế Nào
 
-```
+`````
 ┌─────────────┐      JSON-RPC      ┌──────────────────┐
 │  MCP Client │  ◄──────────────►  │   MCP Server     │
 │(Claude Code)│    (stdio/SSE)     │ (agentmemory)    │
@@ -103,7 +104,7 @@ Lợi thế chiến lược thực sự của agentmemory không phải thuật 
                                     │ +Vector │
                                     │ +Graph  │
                                     └─────────┘
-```
+`````
 
 MCP dùng kiến trúc client-server đơn giản: - **Host**: Ứng dụng AI (Claude Code, Cursor, v.v.)
 - **Client**: Lớp giao tiếp bên trong host
@@ -115,11 +116,11 @@ Server expose **công cụ** (hàm LLM có thể gọi), **tài nguyên** (dữ 
 
 agentmemory expose bề mặt công cụ chi tiết—mỗi công cụ chỉ làm đúng một việc: | Công cụ | Chức năng | Khi nào kích hoạt |
 |---------|-----------|-------------------|
-| `memory_add` | Ghi bộ nhớ mới | Sau quyết định kiến trúc |
-| `memory_search` | Truy xuất ngữ nghĩa | Người dùng hỏi "auth xử lý thế nào?" |
-| `memory_update` | Điều chỉnh độ tin cậy | Người dùng sửa bộ nhớ lỗi thời |
-| `memory_graph_query` | Tra quan hệ | "Module nào phụ thuộc API này?" |
-| `memory_consolidate` | Chạy củng cố | Kết thúc phiên |
+| ````memory_add```` | Ghi bộ nhớ mới | Sau quyết định kiến trúc |
+| ````memory_search```` | Truy xuất ngữ nghĩa | Người dùng hỏi "auth xử lý thế nào?" |
+| ````memory_update```` | Điều chỉnh độ tin cậy | Người dùng sửa bộ nhớ lỗi thời |
+| ````memory_graph_query```` | Tra quan hệ | "Module nào phụ thuộc API này?" |
+| ````memory_consolidate```` | Chạy củng cố | Kết thúc phiên |
 
 ### Cách Mạng Tool Search
 
@@ -127,7 +128,7 @@ Một nâng cấp MCP lớn đầu 2026 đã thay đổi cuộc chơi. Trước 
 
 Với người dùng agentmemory, điều này nghĩa là có thể expose toàn bộ 50 công cụ mà không trả thuế cửa sổ ngữ cảnh.
 
----
+* * *
 
 ## Hướng Dẫn Triển Khai: 5 Phút Đến Bộ Nhớ Liên Tục
 
@@ -139,7 +140,7 @@ Với người dùng agentmemory, điều này nghĩa là có thể expose toàn
 
 ### Bước 1: Cài đặt agentmemory
 
-```bash
+`````bash
 git clone https://github.com/rohitg00/agentmemory.git
 cd agentmemory
 npm install
@@ -147,11 +148,11 @@ npm run build
 
 # Kiểm tra server khởi động
 node dist/mcp-server.js --stdio
-```
+`````
 
 ### Bước 2: Cấu Hình MCP Client
 
-Sửa file cấu hình MCP (với Claude Code, thường là `~/.claude/mcp.json`): ```json
+Sửa file cấu hình MCP (với Claude Code, thường là ``~/.claude/mcp.json``): `````json
 {
   "mcpServers": {
     "agentmemory": {
@@ -167,23 +168,23 @@ Sửa file cấu hình MCP (với Claude Code, thường là `~/.claude/mcp.json
     }
   }
 }
-```
+`````
 
 ### Bước 3: Kiểm Tra Tính Bền Vững Bộ Nhớ
 
-Trong Claude Code, nhập: ```
+Trong Claude Code, nhập: `````
 Nhớ nhé: tất cả React Hook trong dự án này phải dùng quy ước đặt tên useXxx. Không dùng gạch dưới.
-```
+`````
 
-Đóng Claude Code. Mở lại. Hỏi: ```
+Đóng Claude Code. Mở lại. Hỏi: `````
 Quy ước đặt tên Hook của dự án chúng ta là gì?
-```
+`````
 
 Nếu cấu hình đúng, Claude sẽ trả lời chính xác quy tắc vừa lưu—**bộ nhớ đã sống sót qua ranh giới phiên**.
 
 ### Bước 4: Tự Động Củng Cố (Tùy Chọn)
 
-Thêm vào `~/.claude/settings.json`: ```json
+Thêm vào ``~/.claude/settings.json``: `````json
 {
   "hooks": {
     "SessionEnd": {
@@ -193,11 +194,11 @@ Thêm vào `~/.claude/settings.json`: ```json
     }
   }
 }
-```
+`````
 
 Việc này kích hoạt cập nhật đồ thị và tính toán lại độ tin cậy tự động ở cuối mỗi phiên.
 
----
+* * *
 
 ## Triển Khai Nhóm: Từ Bộ Nhớ Cá Nhân Đến Tri Thức Tổ Chức
 
@@ -205,20 +206,20 @@ Việc này kích hoạt cập nhật đồ thị và tính toán lại độ ti
 
 Thiết lập nhóm đơn giản nhất: coi cơ sở dữ liệu SQLite như một artifact chia sẻ.
 
-```bash
+`````bash
 # Clone repo bộ nhớ chia sẻ của nhóm
 git clone git@github.com:yourteam/agentmemory-core.git
 cd agentmemory-core
 
 # Chỉnh config MCP của mỗi thành viên trỏ đến DB chung
 # Trong ~/.claude/mcp.json: # "AGENTMEMORY_DB_PATH": "~/workspace/agentmemory-core/memory.db"
-```
+`````
 
 Khi Kỹ sư A cập nhật "giải pháp module auth," agent của mọi thành viên đều thấy trong lần truy xuất tiếp theo.
 
 ### Lựa Chọn B: MCP Server Tập Trung (Khuyến Nghị Cho Nhóm 10+ Người)
 
-Triển khai một instance chung: ```bash
+Triển khai một instance chung: `````bash
 # Trên server chia sẻ
 npx agentmemory-server --port 3000 --transport sse
 
@@ -230,7 +231,7 @@ npx agentmemory-server --port 3000 --transport sse
     }
   }
 }
-```
+````
 
 Lợi ích: - **Đồng bộ thời gian thực**: viết một lần, đọc mọi nơi tức thì
 - **Audit trail**: ai thay đổi bộ nhớ nào và khi nào
@@ -242,7 +243,7 @@ Các nhóm dùng bộ nhớ agent chia sẻ báo cáo: - **Onboarding nhanh hơn
 - **Giảm 80%** lặp lại giải thích cùng quy ước
 - Điểm nhất quán phong cách code (đo theo lint rule nhóm) tăng từ 62% lên **89%**
 
----
+* * *
 
 ## So Sánh Với Các Giải Pháp Khác
 
@@ -260,7 +261,7 @@ Các nhóm dùng bộ nhớ agent chia sẻ báo cáo: - **Onboarding nhanh hơn
 - **Nhóm lớn/doanh nghiệp**: mem0 (21 tích hợp framework) hoặc Cloudflare Agent Memory (SLA quản lý)
 - **Suy luận thời gian nặng**: Zep/Graphiti (LongMemEval 63.8% vs. mem0 49.0%)
 
----
+* * *
 
 ## Hạn Chế và Cảnh Báo Trung Thực
 
@@ -280,7 +281,7 @@ Test trên M3 MacBook Pro: - Truy xuất từ thư viện 10K mục: **< 50ms**
 - Củng cố cuối phiên (100 lượt trò chuyện): **~800ms**
 - Tăng trưởng lưu trữ: ~5KB mỗi lượt trò chuyện (bao gồm chỉ mục vector)
 
----
+* * *
 
 ## Kết Luận
 
@@ -290,7 +291,7 @@ Cược của agentmemory vào MCP đặc biệt thông minh. Thay vì xây SDK 
 
 Nếu chưa cấu hình bộ nhớ liên tục, hôm nay là ngày đó.
 
----
+* * *
 
 ## Tài Liệu Tham Khảo
 
@@ -300,7 +301,7 @@ Nếu chưa cấu hình bộ nhớ liên tục, hôm nay là ngày đó.
 - [Thông báo Cloudflare Agent Memory](https://blog.cloudflare.com/...)
 - [Tài liệu MCP Connector Claude Code](https://docs.anthropic.com/...)
 
----
+* * *
 
 *Viết ngày 17 tháng 5 năm 2026. Số sao và phiên bản MCP spec nhạy cảm với thời gian; hãy kiểm chứng với nguồn chính thức trước khi trích dẫn.*
 

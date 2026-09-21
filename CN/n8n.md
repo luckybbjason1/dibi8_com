@@ -24,6 +24,7 @@ aliases:
   - /posts/n8n/
 - /resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/-
 ---
+
 {{</* resource-info */>}}
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
@@ -59,11 +60,11 @@ n8n uses a node-based execution engine where workflows are directed graphs. Each
 
 | Mode | Use Case | Throughput |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Regular | Development, <1,000 execs/day | ~23 req/s |
 | Queue (Redis) | Production, >1,000 execs/day | ~162 req/s |
@@ -75,7 +76,7 @@ The queue mode delivers a 7x performance improvement by separating the web UI fr
 
 ### Prerequisites
 
-```bash
+````bash
 # Ubuntu 22.04 LTS recommended
 # Minimum: 2 vCPU, 4 GB RAM, 20 GB SSD
 # Recommended: 4 vCPU, 8 GB RAM, 50 GB SSD
@@ -87,11 +88,11 @@ sudo sh get-docker.sh
 # Install Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-```
+`````
 
 ### Basic Docker Compose (Development)
 
-```yaml
+`````yaml
 # docker-compose.dev.yml
 version: '3.8'
 
@@ -107,16 +108,16 @@ services: n8n: image: n8nio/n8n:latest
       - TZ=UTC
     volumes: - n8n_data:/home/node/.n8n
 
-volumes: n8n_data: ```
+volumes: n8n_data: `````
 
-Start with: ```bash
+Start with: `````bash
 docker-compose -f docker-compose.dev.yml up -d
 # Access at http://localhost:5678
-```
+`````
 
 ### Production Docker Compose with PostgreSQL
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -153,18 +154,18 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-Environment variables in `.env`: ```bash
+Environment variables in ``.env``: `````bash
 # .env
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 N8N_HOST=automation.yourdomain.com
-```
+`````
 
 ### Queue Mode for High Throughput
 
-```yaml
+`````yaml
 # docker-compose.queue.yml
 version: '3.8'
 
@@ -233,9 +234,9 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-Deploy: ```bash
+Deploy: `````bash
 # Generate secrets
 openssl rand -base64 32 > .postgres_password
 openssl rand -base64 32 > .redis_password
@@ -253,11 +254,11 @@ docker-compose -f docker-compose.queue.yml up -d
 # Verify
 docker-compose ps
 docker-compose logs -f n8n-main
-```
+`````
 
 ### Nginx Reverse Proxy with SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/n8n
 server {
     listen 80;
@@ -290,22 +291,22 @@ server {
         proxy_read_timeout 300;
     }
 }
-```
+`````
 
-Enable: ```bash
+Enable: `````bash
 sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
 # Obtain SSL certificate
 sudo certbot --nginx -d automation.yourdomain.com
-```
+`````
 
 ## Integration with Claude Code, OpenAI, Slack, Discord, and Telegram
 
 ### OpenAI Chat Model Node
 
-```javascript
+`````javascript
 // OpenAI Chat Model configuration in n8n
 {
   "nodes": [
@@ -331,17 +332,17 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
-Add the credential in n8n UI: ```bash
+Add the credential in n8n UI: `````bash
 # Navigate to Settings > Credentials > Add Credential
 # Select "OpenAI API"
 # Paste your API key from https://platform.openai.com/api-keys
-```
+`````
 
 ### Anthropic Claude Chat Model Node
 
-```javascript
+`````javascript
 // Anthropic Claude Chat Model configuration
 {
   "nodes": [
@@ -363,11 +364,11 @@ Add the credential in n8n UI: ```bash
     }
   ]
 }
-```
+`````
 
 ### Slack Notification Workflow
 
-```json
+`````json
 {
   "name": "AI Summary to Slack",
   "nodes": [
@@ -423,11 +424,11 @@ Add the credential in n8n UI: ```bash
     }
   }
 }
-```
+`````
 
 ### Telegram Bot Webhook
 
-```javascript
+`````javascript
 // Telegram trigger node configuration
 {
   "nodes": [
@@ -460,20 +461,20 @@ Add the credential in n8n UI: ```bash
     }
   ]
 }
-```
+`````
 
 ### Discord Bot Integration
 
-```bash
+`````bash
 # 1. Create a Discord application at https://discord.com/developers/applications
 # 2. Create a bot user and copy the token
 # 3. In n8n: Settings > Credentials > Add Credential > Discord Bot API
 # 4. Paste the bot token
 
 # Workflow: Discord message trigger -> AI processing -> Discord response
-```
+`````
 
-```json
+`````json
 {
   "nodes": [
     {
@@ -493,7 +494,7 @@ Add the credential in n8n UI: ```bash
     }
   ]
 }
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -504,13 +505,13 @@ Add the credential in n8n UI: ```bash
 
 | Metric | Regular Mode | Queue Mode | Queue + 4 Workers |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Throughput | ~23 req/s | ~162 req/s | ~400+ req/s |
 | Failure Rate | 2-5% under load | 0% | 0% |
@@ -524,13 +525,13 @@ Add the credential in n8n UI: ```bash
 
 | Monthly Workloads | Zapier Cost | n8n Self-Hosted | Savings |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1,000 tasks | $19.99 | ~$12 (VPS) | 40% |
 | 10,000 executions | $49 | ~$12 (VPS) | 75% |
@@ -550,7 +551,7 @@ Add the credential in n8n UI: ```bash
 
 ### Security Checklist
 
-```bash
+`````bash
 # 1. Use strong encryption key
 export N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 
@@ -576,11 +577,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 # 7. Disable editor in worker containers
 # (Workers use command: worker, no UI exposed)
-```
+`````
 
 ### Database Optimization
 
-```sql
+`````sql
 -- PostgreSQL tuning for n8n production
 ALTER SYSTEM SET shared_buffers = 512MB;
 ALTER SYSTEM SET effective_cache_size = 2GB;
@@ -597,11 +598,11 @@ CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_execution_entity_startedat
 
 -- Reload configuration
 SELECT pg_reload_conf();
-```
+`````
 
 ### Monitoring with Prometheus and Grafana
 
-```yaml
+`````yaml
 # Add to docker-compose.queue.yml
   prometheus: image: prom/prometheus:latest
     restart: unless-stopped
@@ -618,20 +619,20 @@ SELECT pg_reload_conf();
     volumes: - grafana_data:/var/lib/grafana
     networks: - n8n_network
     ports: - "127.0.0.1:3000:3000"
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml
 global: scrape_interval: 15s
 
 scrape_configs: - job_name: n8n
     static_configs: - targets: [n8n-main:5678]
     metrics_path: /metrics
-```
+`````
 
 ### Log Rotation
 
-```bash
+`````bash
 # /etc/logrotate.d/n8n
 /opt/n8n/logs/*.log {
     daily
@@ -645,11 +646,11 @@ scrape_configs: - job_name: n8n
         docker restart n8n-main
     endscript
 }
-```
+`````
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # backup-n8n.sh - Run daily via cron
 
@@ -669,26 +670,26 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 
 # Sync to S3 (optional)
 # aws s3 sync $BACKUP_DIR s3://your-backup-bucket/n8n/
-```
+`````
 
-Add to crontab: ```bash
+Add to crontab: `````bash
 # Run backup daily at 2 AM
 0 2 * * * /opt/n8n/backup-n8n.sh >> /var/log/n8n-backup.log 2>&1
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | n8n | Dify | Flowise | Make |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | Sustainable Use License | Dify OSL | Apache-2.0 | Proprietary |
 | **GitHub Stars** | 188,782 | 85,000+ | 35,000+ | N/A (closed) |
@@ -740,7 +741,7 @@ Yes. A self-hosted n8n instance on your internal network can run workflows using
 
 ### How do I update n8n to the latest version?
 
-```bash
+`````bash
 # Pull latest image
 docker-compose pull
 
@@ -749,7 +750,7 @@ docker-compose up -d
 
 # Verify version
 docker-compose exec n8n-main n8n --version
-```
+`````
 
 Always back up your database before major version upgrades. Review the changelog at https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md for breaking changes.
 
@@ -759,7 +760,7 @@ Yes, with queue mode enabled. n8n supports LDAP/SAML SSO, role-based access cont
 
 ### How do I troubleshoot failing workflows?
 
-Check execution logs in the n8n UI (Settings > Executions). Enable debug logging with `N8N_LOG_LEVEL=debug`. For webhook issues, verify `WEBHOOK_URL` matches your public domain. For database errors, check PostgreSQL connection pool limits. Common fix: `docker-compose logs -f n8n-main | grep ERROR`.
+Check execution logs in the n8n UI (Settings > Executions). Enable debug logging with ````N8N_LOG_LEVEL=debug````. For webhook issues, verify ````WEBHOOK_URL```` matches your public domain. For database errors, check PostgreSQL connection pool limits. Common fix: ````docker-compose logs -f n8n-main | grep ERROR```.
 
 ### What databases does n8n support?
 
@@ -826,7 +827,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [n8n-ai-automation-complete-guide](n8n)
@@ -836,7 +837,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [n8n-vs-make-com-2026](n8n)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

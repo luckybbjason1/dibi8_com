@@ -11,6 +11,7 @@ tags: ["snapshot", "dao", "governance", "voting", "off-chain", "eip-712", "ipfs"
 aliases:
   - /posts/snapshot-dao-governance-voting/-
 ---
+
 {{</* resource-info */>}}
 
 **Date:** 2026-05-19  
@@ -20,11 +21,11 @@ aliases:
 **GitHub:** [snapshot-labs/snapshot](https://github.com/snapshot-labs/snapshot) — ⭐ 9,500 stars, MIT License
 
 
----
+* * *
 > Interested in trading governance tokens? Register on [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) to get started with DAO token trading.
 
 
----
+* * *
 ## 1. Introduction: Why DAO Governance Matters in 2026
 
 Decentralized Autonomous Organizations (DAOs) have fundamentally transformed how communities make collective decisions. By 2026, DAOs manage over $50 billion in treasury assets across DeFi protocols, NFT projects, infrastructure networks, and investment collectives. However, on-chain voting on networks like Ethereum remains prohibitively expensive during high congestion periods, with single votes costing $5–$50 in gas fees. This financial barrier disenfranchises smaller token holders and undermines the democratic ethos of decentralization.
@@ -35,13 +36,13 @@ Unlike on-chain voting systems that execute every vote as a blockchain transacti
 
 This comprehensive guide explores Snapshot's architecture, voting strategies, delegation mechanisms, SDK integration, and real-world implementation patterns for developers and DAO operators in 2026.
 
----
+* * *
 
 ## 2. Core Architecture: How Snapshot Enables Gas-Free Voting
 
 ### 2.1 The Off-Chain Voting Paradigm
 
-Snapshot's revolutionary approach rests on separating **vote signaling** from **vote execution**. Traditional on-chain governance requires every participant to submit a transaction, paying gas fees proportional to network congestion. Snapshot inverts this model: ```typescript
+Snapshot's revolutionary approach rests on separating **vote signaling** from **vote execution**. Traditional on-chain governance requires every participant to submit a transaction, paying gas fees proportional to network congestion. Snapshot inverts this model: ````typescript
 // Traditional on-chain voting (expensive)
 // Each voter pays gas for this transaction
 await governorContract.castVote(
@@ -49,9 +50,9 @@ await governorContract.castVote(
   support,       // 0=against, 1=for, 2=abstain
   { value: 0, gasPrice: 50000000000 } // ~$5-50 in gas
 );
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot off-chain voting (gas-free)
 // User signs a message with their wallet — zero gas cost
 const voteMessage = {
@@ -70,13 +71,13 @@ const signature = await signer.signTypedData(
   types,
   voteMessage
 );
-```
+`````
 
 The signed message is broadcast to Snapshot's hub and pinned to IPFS, creating a permanent, verifiable record without any blockchain transaction.
 
 ### 2.2 IPFS-Backed Data Storage
 
-All Snapshot data — proposals, votes, and spaces — is stored on the **InterPlanetary File System (IPFS)**, ensuring censorship resistance and permanence: ```json
+All Snapshot data — proposals, votes, and spaces — is stored on the **InterPlanetary File System (IPFS)**, ensuring censorship resistance and permanence: `````json
 {
   "proposal": {
     "id": "QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz",
@@ -100,25 +101,25 @@ All Snapshot data — proposals, votes, and spaces — is stored on the **InterP
     "votes": 1847
   }
 }
-```
+`````
 
-The `snapshot` field specifies the Ethereum block number at which token balances are counted, preventing flash loan attacks and ensuring fair vote weight calculation.
+The ````snapshot```` field specifies the Ethereum block number at which token balances are counted, preventing flash loan attacks and ensuring fair vote weight calculation.
 
----
+* * *
 ## 3. Setting Up a DAO Space on Snapshot
 
 ### 3.1 Creating Your Space
 
-Any project can create a governance space on Snapshot. The process involves ENS domain configuration and strategy selection: ```bash
+Any project can create a governance space on Snapshot. The process involves ENS domain configuration and strategy selection: `````bash
 # Step 1: Ensure you own an ENS domain
 # Your space ID will be your ENS name (e.g., mydao.eth)
 
 # Step 2: Set ENS text records
 # Set snapshot record to point to your space settings
 ens records set mydao.eth text snapshot "ipfs://Qm..."
-```
+`````
 
-```typescript
+`````typescript
 // Step 3: Configure space settings via Snapshot API
 import snapshot from '@snapshot-labs/snapshot.js';
 
@@ -169,20 +170,20 @@ await snapshot.utils.subgraphRequest(
     }
   }
 );
-```
+`````
 
 ### 3.2 Space Verification
 
-After configuration, verify your space is accessible: ```bash
+After configuration, verify your space is accessible: `````bash
 # Query space via GraphQL
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { space(id: "mydao.eth") { id name about network symbol strategies { name params } } }"
   }'
-```
+`````
 
-```python
+`````python
 # Python verification script
 import requests
 
@@ -234,9 +235,9 @@ def verify_snapshot_space(space_id: str) -> dict: """Verify Snapshot space confi
 
 # Verify
 space = verify_snapshot_space("mydao.eth")
-```
+`````
 
----
+* * *
 
 ## 4. Voting Strategies: Flexible Token-Weighted Governance
 
@@ -244,22 +245,22 @@ space = verify_snapshot_space("mydao.eth")
 
 Snapshot supports 50+ voting strategies that determine how voting power is calculated. The most commonly used strategies include: | Strategy | Use Case | Example DAOs |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `erc20-balance-of` | Simple token balance | Uniswap, Aave |
-| `erc721` | NFT ownership | Bored Ape Yacht Club |
-| `contract-call` | Custom logic via smart contract | Compound |
-| ` delegation` | Delegated voting power | Gitcoin |
-| `whitelist` | Pre-approved voters | Investment DAOs |
-| `snapshot-multichain` | Multi-chain token balances | Across Protocol |
+| ````erc20-balance-of```` | Simple token balance | Uniswap, Aave |
+| ````erc721```` | NFT ownership | Bored Ape Yacht Club |
+| ````contract-call```` | Custom logic via smart contract | Compound |
+| ```` delegation```` | Delegated voting power | Gitcoin |
+| ````whitelist```` | Pre-approved voters | Investment DAOs |
+| ````snapshot-multichain```` | Multi-chain token balances | Across Protocol |
 
 ### 4.2 Configuring Custom Strategies
 
-```typescript
+`````typescript
 // Multi-strategy configuration for complex DAOs
 const advancedStrategies = [
   // Strategy 1: Base governance token
@@ -329,12 +330,12 @@ const votingPower = await getVotingPower(
   advancedStrategies,
   18945231
 );
-console.log(`Voting power: ${votingPower} tokens`);
-```
+console.log(````Voting power: ${votingPower} tokens````);
+`````
 
 ### 4.3 Quadratic Voting Strategy
 
-For DAOs seeking more democratic outcomes, Snapshot supports quadratic voting: ```json
+For DAOs seeking more democratic outcomes, Snapshot supports quadratic voting: `````json
 {
   "strategy": {
     "name": "quadratic-balance-of",
@@ -346,17 +347,17 @@ For DAOs seeking more democratic outcomes, Snapshot supports quadratic voting: `
     }
   }
 }
-```
+`````
 
 With quadratic voting, a user with 10,000 tokens has 100 voting power (√10,000), while a user with 100 tokens has 10 voting power (√100) — reducing the influence of whale holders.
 
----
+* * *
 
 ## 5. Delegation: Representative Democracy in DAOs
 
 ### 5.1 How Delegation Works
 
-Delegation allows token holders to assign their voting power to trusted representatives, increasing participation rates and enabling governance specialization: ```solidity
+Delegation allows token holders to assign their voting power to trusted representatives, increasing participation rates and enabling governance specialization: `````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -379,9 +380,9 @@ interface IVotingDelegate {
         uint256 blockNumber
     ) external view returns (uint96);
 }
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot delegation setup
 import Snapshot from '@snapshot-labs/snapshot.js';
 
@@ -417,12 +418,12 @@ const txHash = await delegateVotingPower(
   "uniswap.eth"             // Space-specific delegation
 );
 
-console.log(`Delegation recorded: ${txHash}`);
-```
+console.log(````Delegation recorded: ${txHash}````);
+`````
 
 ### 5.2 Delegation Dashboard Query
 
-```graphql
+`````graphql
 # Query current delegations for a space
 query GetDelegations($space: String!, $delegate: String!) {
   delegations(
@@ -440,32 +441,32 @@ query GetDelegations($space: String!, $delegate: String!) {
     timestamp
   }
 }
-```
+`````
 
-```bash
+`````bash
 # Execute delegation query
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { delegations(where: {space: "uniswap.eth", delegate: "0x2775b1c75658Be0F640272CCb8c72ac986009e38"}) { delegator timestamp } }"
   }'
-```
+`````
 
----
+* * *
 
 ## 6. Programmatic Integration: Snapshot SDK
 
 ### 6.1 Installation and Setup
 
-```bash
+`````bash
 # Install Snapshot.js SDK
 npm install @snapshot-labs/snapshot.js ethers
 
 # Or with yarn
 yarn add @snapshot-labs/snapshot.js ethers
-```
+`````
 
-```typescript
+`````typescript
 // Initialize Snapshot client
 import snapshot from '@snapshot-labs/snapshot.js';
 import { Wallet } from ethers;
@@ -476,11 +477,11 @@ const client = new snapshot.Client712(hub);
 // Setup provider and signer
 const provider = new ethers.JsonRpcProvider('https://eth.llamarpc.com');
 const signer = new Wallet(process.env.PRIVATE_KEY, provider);
-```
+`````
 
 ### 6.2 Creating Proposals Programmatically
 
-```typescript
+`````typescript
 // Create a governance proposal via SDK
 async function createProposal(
   signer: any,
@@ -491,7 +492,7 @@ async function createProposal(
     space: "mydao.eth",
     type: "single-choice",        // "single-choice" | "approval" | "quadratic" | "ranked-choice" | "weighted"
     title: "Q2 2026 Treasury Allocation Proposal",
-    body: `## Summary
+    body: ````## Summary
 
 This proposal allocates treasury funds for Q2 2026 operations.
 
@@ -509,7 +510,7 @@ If passed, the treasury multi-sig will execute transfers within 7 days.
 ## References
 
 - [Treasury Report Q1 2026](https://mydao.xyz/treasury/q1-2026)
-- [Budget Spreadsheet](https://mydao.xyz/budget/q2-2026)`,
+- [Budget Spreadsheet](https://mydao.xyz/budget/q2-2026)````,
     choices: ["For", "Against", "Abstain"],
     start: Math.floor(Date.now() / 1000) + 86400,    // Start in 24h
     end: Math.floor(Date.now() / 1000) + 259200,      // End in 72h
@@ -535,12 +536,12 @@ const proposalId = await createProposal(
   "mydao.eth"
 );
 
-console.log(`Proposal created: ${proposalId}`);
-```
+console.log(````Proposal created: ${proposalId}````);
+`````
 
 ### 6.3 Casting Votes via API
 
-```typescript
+`````typescript
 // Submit a vote programmatically
 async function castVote(
   signer: any,
@@ -577,19 +578,19 @@ const voteReceipt = await castVote(
   "Supporting this proposal because the budget allocation aligns with our strategic priorities outlined in the roadmap."
 );
 
-console.log(`Vote recorded: ${voteReceipt}`);
-```
+console.log(````Vote recorded: ${voteReceipt}````);
+`````
 
 ### 6.4 Batch Vote Queries
 
-```typescript
+`````typescript
 // Query all votes for a proposal
 async function getProposalVotes(
   proposalId: string,
   first: number = 100,
   skip: number = 0
 ): Promise<any[]> {
-  const query = `
+  const query = ````
     query GetVotes($proposal: String!, $first: Int!, $skip: Int!) {
       votes(
         where: { proposal: $proposal }
@@ -608,7 +609,7 @@ async function getProposalVotes(
         ipfs
       }
     }
-  `;
+  ````;
 
   const response = await fetch('https://hub.snapshot.org/graphql', {
     method: POST,
@@ -647,18 +648,18 @@ async function getVoteStats(proposalId: string): Promise<any> {
 
 // Usage
 const stats = await getVoteStats("QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz");
-console.log(`Total voters: ${stats.totalVotes}`);
-console.log(`Total VP: ${stats.totalVotingPower}`);
+console.log(````Total voters: ${stats.totalVotes}````);
+console.log(````Total VP: ${stats.totalVotingPower}````);
 console.log("Results:", stats.results);
-```
+`````
 
----
+* * *
 
 ## 7. Multi-Chain and Cross-Platform Integration
 
 ### 7.1 Multi-Chain Voting Strategies
 
-Snapshot supports voting across multiple blockchains simultaneously: ```typescript
+Snapshot supports voting across multiple blockchains simultaneously: `````typescript
 // Multi-chain strategy: aggregate tokens across networks
 const multichainStrategies = [
   {
@@ -700,11 +701,11 @@ const scores = await snapshot.utils.getScores(
 );
 
 console.log("Cross-chain voting power:", scores);
-```
+`````
 
 ### 7.2 Webhook Notifications
 
-```typescript
+`````typescript
 // Set up webhook for proposal events
 import express from express;
 
@@ -716,13 +717,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created': console.log(`New proposal: ${event.id}`);
+    case 'proposal/created': console.log(````New proposal: ${event.id}````);
       notifyDiscord(event);
       break;
-    case 'proposal/end': console.log(`Voting ended: ${event.id}`);
+    case 'proposal/end': console.log(````Voting ended: ${event.id}````);
       tallyResults(event);
       break;
-    case vote: console.log(`New vote on ${event.proposal.id}`);
+    case vote: console.log(````New vote on ${event.proposal.id}````);
       updateLeaderboard(event);
       break;
   }
@@ -734,8 +735,8 @@ function notifyDiscord(proposal: any) {
   // Send notification to Discord webhook
   const message = {
     embeds: [{
-      title: `📋 New Proposal: ${proposal.title}`,
-      url: `https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}`,
+      title: ````📋 New Proposal: ${proposal.title}````,
+      url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
       description: proposal.body.substring(0, 200) + '...',
       fields: [
         { name: Space, value: proposal.space.name, inline: true },
@@ -754,15 +755,15 @@ function notifyDiscord(proposal: any) {
 }
 
 app.listen(3000, () => console.log('Webhook server listening on port 3000'));
-```
+`````
 
----
+* * *
 
 ## 8. Real-World Use Cases and Best Practices
 
 ### 8.1 Protocol Parameter Changes
 
-DeFi protocols use Snapshot to vote on critical parameters: ```typescript
+DeFi protocols use Snapshot to vote on critical parameters: `````typescript
 // Aave-style risk parameter proposal
 interface RiskParameterProposal {
   asset: string;              // Token address
@@ -781,11 +782,11 @@ const aaveProposal: RiskParameterProposal = {
   justification: "Reduce risk exposure due to market volatility",
   riskAnalysis: "https://gauntlet.network/analyses/aave-weth-2026-05"
 };
-```
+`````
 
 ### 8.2 Treasury Management
 
-```typescript
+`````typescript
 // Treasury allocation voting categories
 interface TreasuryProposal {
   totalAllocation: bigint;
@@ -815,11 +816,11 @@ const treasuryVote: TreasuryProposal = {
     interval: 30 * 86400    // Monthly releases
   }
 };
-```
+`````
 
 ### 8.3 Security Best Practices
 
-```yaml
+`````yaml
 # snapshot-security-checklist.yml
 space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
@@ -838,9 +839,9 @@ space_security: admin_keys: - use_multisig: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
-```
+`````
 
----
+* * *
 
 ## 9. Frequently Asked Questions (FAQ)
 
@@ -854,7 +855,7 @@ Snapshot votes are cryptographically secure. Each vote is signed with the voter'
 
 ### 9.3 How are voting power and token balances calculated?
 
-Voting power is determined by **strategies** configured for each space. The most common strategy is `erc20-balance-of`, which checks the voter's token balance at a specific block number (the `snapshot` block). This prevents: - **Flash loan attacks**: Tokens borrowed in the same transaction cannot be used for voting
+Voting power is determined by **strategies** configured for each space. The most common strategy is ````erc20-balance-of````, which checks the voter's token balance at a specific block number (the ````snapshot``` block). This prevents: - **Flash loan attacks**: Tokens borrowed in the same transaction cannot be used for voting
 - **Double voting**: The same tokens cannot be moved and voted again
 - **Last-minute accumulation**: Users cannot buy tokens after a proposal is created to influence the vote
 
@@ -877,7 +878,7 @@ Snapshot provides multiple integration options: - **Snapshot.js SDK**: Full-feat
 
 The most common integration pattern is using the GraphQL API to display governance data in your frontend, combined with the SDK for vote submission. All integrations require an Ethereum-compatible wallet connection (MetaMask, WalletConnect, etc.).
 
----
+* * *
 
 
 
@@ -896,11 +897,11 @@ As DAOs evolve toward greater automation, we expect to see deeper integration be
 
 For developers building the next generation of governance tools, Snapshot's MIT-licensed codebase, active developer community, and modular architecture provide an ideal foundation. Whether you're launching a new DeFi protocol, managing an NFT community, or building infrastructure for decentralized organizations, Snapshot offers the flexibility, security, and scalability required for modern DAO governance.
 
----
+* * *
 
 > **Start trading governance tokens today!** Register on [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) to buy, sell, and stake tokens from leading DAOs like Uniswap, Aave, and Compound.
 
----
+* * *
 
 **License:** MIT  
 **Maintainer:** [Snapshot Labs](https://github.com/snapshot-labs)  

@@ -26,6 +26,7 @@ faqs: - q: 'Làm thế nào để khắc phục lỗi ''Connection Refused'' c�
     a: 'Các cơ sở dữ liệu vector nhúng mặc định (LanceDB/Chroma) gặp vấn đề khóa file khi ghi đồng thời với tần suất cao, gây ra lỗi SQLITE_BUSY hoặc lỗi khóa ghi khi nhiều người dùng tải lên các tệp PDF lớn vào cùng một workspace. Trong môi trường sản xuất với nhiều nhân viên, hãy chuyển Vector DB sang một instance Qdrant hoặc Milvus độc lập.'
 ---
 
+
 {</* resource-info */>}
 
 # Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?
@@ -61,7 +62,7 @@ Nếu bạn tính cày các dự án **thương mại hóa LLM private**, chọn
 
 Trong RAG, nếu cắt chữ (Chunking) ngu, thì thứ moi lên được từ database chỉ là một đống rác cụt lủn. AnythingLLM triển khai một đường ống parse tài liệu cực kỳ cứng cựa.
 
-```javascript
+````javascript
 // Đoạn mã lõi trích từ: server/utils/vectorDbProviders/lancedb/index.js (Logic băm Vector)
 const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
 
@@ -87,15 +88,15 @@ async function processDocument(documentText, workspaceConfig) {
   await LanceDB.insert(workspaceConfig.namespace, embeddings);
   return chunks.length;
 }
-```
+`````
 
-**Bóc tách chuyên sâu**: Đoạn code này bộc lộ sự tinh tế của AnythingLLM. Việc kẹp `RecursiveCharacterTextSplitter` với lượng `chunkOverlap` khủng lên tới 200 token đảm bảo rằng các logic liên kết chéo đoạn văn (Ví dụ: Nếu... thì...) không bị bốc hơi do cắt cụt chữ. Việc băm chữ có tính gối đầu (overlap) này là yếu tố sống còn để giữ cho IQ của con LLM local không bị tuột luốt.
+**Bóc tách chuyên sâu**: Đoạn code này bộc lộ sự tinh tế của AnythingLLM. Việc kẹp ````RecursiveCharacterTextSplitter```` với lượng ````chunkOverlap```` khủng lên tới 200 token đảm bảo rằng các logic liên kết chéo đoạn văn (Ví dụ: Nếu... thì...) không bị bốc hơi do cắt cụt chữ. Việc băm chữ có tính gối đầu (overlap) này là yếu tố sống còn để giữ cho IQ của con LLM local không bị tuột luốt.
 
 ### 2. Giao Tiếp Frontend-Backend: Chảy Dữ Liệu Qua Server-Sent Events (SSE)
 
 Xài LLM mà bắt user ngâm mỏ chờ đến khi gen xong toàn bộ câu trả lời thì trải nghiệm người dùng rớt xuống đáy xã hội. AnythingLLM dùng SSE để tạo hiệu ứng gõ máy chữ mượt như bôi mỡ.
 
-```javascript
+`````javascript
 // Logic lõi backend trả về streaming (Express.js Route)
 app.post('/api/workspace/:slug/chat', async (request, response) => {
   // Setup HTTP header, thiết lập kết nối SSE sống dai (persistent connection)
@@ -110,29 +111,29 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
     for await (const chunk of stream) {
       // Ép các cục data theo format chuẩn của SSE và đẩy thẳng về Frontend
       // Giữ cho connection liên tục đập nhịp để né lỗi Gateway Timeout
-      response.write(`data: ${JSON.stringify({ text: chunk })}\n\n`);
+      response.write(````data: ${JSON.stringify({ text: chunk })}\n\n````);
     }
     
-    response.write(`data: [DONE]\n\n`);
+    response.write(````data: [DONE]\n\n````);
     response.end();
   } catch (error) {
     // [Bắt bug chốt sổ]: Có lỗi giữa chừng khi đang stream thì bắt buộc phải gọi response.end() bằng tay
-    response.write(`data: ${JSON.stringify({ error: "Streaming failed" })}\n\n`);
+    response.write(````data: ${JSON.stringify({ error: "Streaming failed" })}\n\n````);
     response.end();
   }
 });
-```
+`````
 
 **Bóc tách chuyên sâu**: Thay vì xài WebSocket lằng nhằng nặng nề, AnythingLLM chọn SSE - giao thức truyền dữ liệu một chiều siêu nhẹ. Đây là một nước cờ kiến trúc cực gắt, vì khi đem đi deploy ở mạng nội bộ doanh nghiệp (thường bị kẹp qua mấy lớp Nginx Reverse Proxy), tỷ lệ đâm thủng cực cao và gần như miễn nhiễm với trò chặn giao thức WebSocket của hệ thống tường lửa (Firewall).
 
 ## Thực Chiến Engineering: Những Cái Bẫy "Tử Thần" Khi Deploy Private
 
 Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server private, cấm tuyệt đối không được giẫm phải 2 quả mìn sau: 1. **Cạm bẫy 1: Cách Ly Mạng Docker & Lỗi Connection Refused Của Ollama**
-   - **Triệu chứng**: AnythingLLM (đang chạy phè phè trong Docker container) điên cuồng văng lỗi `Connection Refused` do không chọc được vào service Ollama nằm trên máy Host.
-   - **Cách fix**: Nhớ cho kỹ, ở trong container Docker, `localhost` là chính bản thân cái container đó chứ không phải máy Host! Bạn bắt buộc phải trỏ cái cấu hình LLM của AnythingLLM sang `http://host.docker.internal:11434`. Chưa hết, lúc khởi động Ollama nhớ phải chích thêm biến môi trường `OLLAMA_HOST=0.0.0.0` để nó chịu mở cửa cho network interface khác chui vào.
+   - **Triệu chứng**: AnythingLLM (đang chạy phè phè trong Docker container) điên cuồng văng lỗi ````Connection Refused```` do không chọc được vào service Ollama nằm trên máy Host.
+   - **Cách fix**: Nhớ cho kỹ, ở trong container Docker, ````localhost```` là chính bản thân cái container đó chứ không phải máy Host! Bạn bắt buộc phải trỏ cái cấu hình LLM của AnythingLLM sang ````http://host.docker.internal:11434````. Chưa hết, lúc khởi động Ollama nhớ phải chích thêm biến môi trường ````OLLAMA_HOST=0.0.0.0```` để nó chịu mở cửa cho network interface khác chui vào.
 
 2. **Cạm bẫy 2: Khóa File (File Locking) IO Của Ổ Đĩa Do LanceDB**
-   - **Triệu chứng**: Khi nhiều nhân viên thi nhau up PDF khủng lên cùng một Workspace, database ré lên lỗi `SQLITE_BUSY` hoặc bị khóa ghi (Write lock).
+   - **Triệu chứng**: Khi nhiều nhân viên thi nhau up PDF khủng lên cùng một Workspace, database ré lên lỗi ````SQLITE_BUSY``` hoặc bị khóa ghi (Write lock).
    - **Cách fix**: Vector DB dạng nhúng (embedded) mặc định như LanceDB/Chroma rất hay bị lỗi khóa file nếu có quá nhiều luồng ghi cùng lúc. Nếu vác đi chém gió ở doanh nghiệp có vài chục người xài, nhớ vào setting đổi ngay Vector DB sang một instance độc lập của Qdrant hoặc Milvus kẻo sập tiệm.
 
 ## Vòng Lặp Thương Mại: Định Luật Bán "Bảo Mật Tuyệt Đối" Giá Cắt Cổ Cho B2B
@@ -145,7 +146,7 @@ Khi thi triển tuyệt kĩ **kết hợp Ollama và AnythingLLM** lên server p
 
 **Tổng kết**: AnythingLLM dùng cái vỏ Frontend lộng lẫy và phân quyền cực gắt của mình để che đậy đi cái sự khô khan, tàn bạo của cái máy cày RAG bên dưới. Master được nó, bạn có thể đóng gói đám model lạnh lẽo và Vector DB ngầm thành một thứ tài sản kỹ thuật số thượng hạng, đặt chễm chệ trên bàn làm việc của các sếp bự B2B và khiến họ vui vẻ ký séc cái rụp.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

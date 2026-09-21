@@ -27,6 +27,7 @@ aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
+
 Nếu bạn xây agent LLM đơn giản và thấy nó quên mọi thứ khi process restart, mất nửa tiến độ khi một tool call timeout, hoặc lặng lẽ làm hỏng trạng thái khi hai event xảy ra đồng thời — bạn đụng tường mà **LangGraph** thiết kế để phá vỡ.
 
 LangGraph là **framework orchestration cấp thấp của team LangChain cho agent có trạng thái dài hạn**. Khi LangChain cung cấp component ("đây là wrapper LLM, đây là tool, tự kết hợp") và CrewAI cung cấp trừu tượng vai trò cấp cao ("đây là agent researcher, đây là writer"), LangGraph nằm giữa: state machine dựa graph nơi bạn mô hình hóa rõ ràng node (hàm / agent), edge (chuyển tiếp), và state object bền vững. Thực thi bền vững + human-in-loop + theo dõi state là mối quan tâm hạng nhất, không phải suy nghĩ sau.
@@ -35,7 +36,7 @@ LangGraph là **framework orchestration cấp thấp của team LangChain cho ag
 
 ## 1. LangGraph Thực Sự Là Gì (và Không Là Gì)
 
-**Là**: Runtime agent dựa graph nơi bạn định nghĩa `node` (hàm Python/TS, thường chứa LLM call), `edge` (chuyển tiếp xác định hoặc LLM quyết định), và `state` object tồn tại qua toàn workflow.
+**Là**: Runtime agent dựa graph nơi bạn định nghĩa ```node```` (hàm Python/TS, thường chứa LLM call), ````edge```` (chuyển tiếp xác định hoặc LLM quyết định), và ````state```` object tồn tại qua toàn workflow.
 
 **Không là**: - Drop-in thay thế cho LangChain (bổ sung; nhiều LangGraph node wrap component LangChain)
 - Tool no-code (developer-first, Python hoặc TypeScript)
@@ -49,18 +50,18 @@ Ba mode thất bại giết agent production khi không quản lý trạng thái
 2. **Tool call đồng thời** → đột biến state interleave không thể dự đoán, agent kết thúc ở state không hợp lệ
 3. **Workflow nhiều giờ** → process bị kill bởi idle timeout của cloud provider, không có điểm resume
 
-`Checkpointer` của LangGraph (backed bởi Postgres, Redis, hoặc in-memory) snapshot state sau mỗi node execution. Crash? Restart từ checkpoint cuối. Cần inject feedback từ người? Pause ở checkpoint, sửa state, resume. Cần debug? Replay checkpoint nào đó xác định.
+````Checkpointer```` của LangGraph (backed bởi Postgres, Redis, hoặc in-memory) snapshot state sau mỗi node execution. Crash? Restart từ checkpoint cuối. Cần inject feedback từ người? Pause ở checkpoint, sửa state, resume. Cần debug? Replay checkpoint nào đó xác định.
 
 Đây là bug khiến bạn nói "Lẽ ra dùng LangGraph" — thường sau tuần 3 cố gắng làm custom solution hoạt động.
 
 ## 3. Cài Nhanh (5 phút)
 
-```bash
+`````bash
 pip install -U langgraph langchain langchain-openai
 # Hoặc với Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres
-```
+`````
 
-Agent có trạng thái tối thiểu — đếm tới 5 với state đã checkpoint sống sót qua restart process: ```python
+Agent có trạng thái tối thiểu — đếm tới 5 với state đã checkpoint sống sót qua restart process: `````python
 from typing import TypedDict
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
@@ -82,34 +83,34 @@ app = graph.compile(checkpointer=MemorySaver())
 config = {"configurable": {"thread_id": "demo-1"}}
 result = app.invoke({"counter": 0}, config=config)
 print(result)  # {counter: 5}
-```
+`````
 
-Đổi `MemorySaver()` thành `PostgresSaver(connection_string)` và cùng graph sống sót qua container restart.
+Đổi ````MemorySaver()```` thành ````PostgresSaver(connection_string)```` và cùng graph sống sót qua container restart.
 
 ## 4. 4 Tính Năng Killer Bạn Sẽ Dùng Thực Sự
 
-### Thực Thi Bền Vững (`Checkpointer`)
-Mọi giá trị return của node được snapshot. Process chết? Resume từ `thread_id` và `checkpoint_id`. Riêng cái này đáng để áp dụng LangGraph cho bất kỳ agent chạy > 5 phút.
+### Thực Thi Bền Vững (````Checkpointer````)
+Mọi giá trị return của node được snapshot. Process chết? Resume từ ````thread_id```` và ````checkpoint_id````. Riêng cái này đáng để áp dụng LangGraph cho bất kỳ agent chạy > 5 phút.
 
-### Human-in-the-Loop (`interrupt`)
+### Human-in-the-Loop (````interrupt````)
 Đánh dấu node là interruptible. Workflow pause, surface state lên UI, đợi input từ người, resume. Cách duy nhất tỉnh táo để xây workflow "AI đề xuất thay đổi, người phê duyệt".
 
-```python
+`````python
 from langgraph.types import interrupt
 
 def approval_gate(state): user_decision = interrupt({"proposed_action": state["plan"]})
     return {"approved": user_decision}
-```
+`````
 
-### Layer Memory (`add_messages`)
-Memory ngắn hạn (trong thread) và dài hạn (qua thread) tích hợp. Dùng `add_messages` reducer cho state hội thoại, hoặc cắm [mem0](/vi/resources/llm-frameworks/mem0/) qua [AgentMemory MCP](/vi/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) cho recall ngữ nghĩa qua thread.
+### Layer Memory (````add_messages````)
+Memory ngắn hạn (trong thread) và dài hạn (qua thread) tích hợp. Dùng ````add_messages```` reducer cho state hội thoại, hoặc cắm [mem0](/vi/resources/llm-frameworks/mem0/) qua [AgentMemory MCP](/vi/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) cho recall ngữ nghĩa qua thread.
 
 ### Tích Hợp LangSmith
 Mọi node execution, mọi state transition, mọi LLM call xuất hiện trong trace viewer LangSmith. Debug visual "vì sao agent đi nhánh đó?" — vô giá cho graph phức tạp.
 
 ## 5. Pattern Triển Khai Production
 
-Pattern 4 thành phần mà hầu hết team định cư: ```
+Pattern 4 thành phần mà hầu hết team định cư: `````
 ┌──────────────────────────┐
 │  App / FastAPI của bạn    │
 │  (LangGraph SDK or REST)  │
@@ -130,7 +131,7 @@ Pattern 4 thành phần mà hầu hết team định cư: ```
 ┌──────────────────────────┐
 │  LangSmith (or self-host) │  ← observability
 └──────────────────────────┘
-```
+`````
 
 Deploy production tiêu chuẩn: container hóa app LangGraph, trỏ vào managed Postgres cho checkpoint, cấu hình LangSmith cho trace. Tier stateless dùng {{< aff "digitalocean" "langgraph-vps" "DigitalOcean App Platform" >}}; workload nghiêm túc lấy {{< aff "htstack" "langgraph-vps-hk" "HTStack VPS Hong Kong" >}} (tối thiểu 8 GB) + DO Managed Postgres cho ghi state độ trễ thấp.
 
@@ -154,23 +155,23 @@ Tóm tắt thành thật từ team production 2026: **LangGraph thắng về dur
 
 **Sinh nghiên cứu / báo cáo**: Workflow research nhiều bước (search → extract → synthesize → write) nơi mỗi giai đoạn tạo artifact bền vững. Failure resume ở checkpoint tốt cuối.
 
-**Tự động hóa workflow với phê duyệt người**: AI lên kế hoạch action, hệ thống pause ở `interrupt`, surface kế hoạch tới user, chỉ resume khi đã phê duyệt.
+**Tự động hóa workflow với phê duyệt người**: AI lên kế hoạch action, hệ thống pause ở ````interrupt````, surface kế hoạch tới user, chỉ resume khi đã phê duyệt.
 
-**Sản phẩm agent multi-tenant**: Mỗi customer được `thread_id`, state cô lập hoàn toàn, có thể replay session bất kỳ customer cho debug.
+**Sản phẩm agent multi-tenant**: Mỗi customer được ````thread_id````, state cô lập hoàn toàn, có thể replay session bất kỳ customer cho debug.
 
 ## 8. Cạm Bẫy (Cái bạn sẽ đụng ngày 3)
 
 1. **Thiết kế quá nhiều node mịn** — mỗi node = một checkpoint write. Graph 50-node chạy chậm. Hợp các op liên quan vào node đơn
 2. **Quên reducer** — update state không reducer bị *thay thế*, không *merge*. Nguồn bug #1 cho user mới
-3. **Bỏ qua `interrupt` cho action write** — agent thực hiện action không thể đảo ngược (gửi email, charge card) mà không có human-in-loop checkpoint SẼ làm điều xấu cuối cùng
+3. **Bỏ qua ````interrupt```` cho action write** — agent thực hiện action không thể đảo ngược (gửi email, charge card) mà không có human-in-loop checkpoint SẼ làm điều xấu cuối cùng
 4. **Không dùng LangSmith từ ngày 1** — debug graph 20-node từ print statement là khổ. Wire LangSmith trước khi có vấn đề
 5. **Coi state LangGraph như database tự do** — giữ state gọn. Tham chiếu object lớn bằng ID, lưu blob thực ở S3 / Postgres
 
 ## 9. Migration: LangChain Agent → LangGraph
 
-Nếu có pipeline `AgentExecutor` hoặc `create_react_agent` LangChain hoạt động, migration sang LangGraph là cơ học: 1. Định nghĩa state TypedDict (mirror cái bạn hiện chuyền giữa step)
+Nếu có pipeline ````AgentExecutor```` hoặc ````create_react_agent```` LangChain hoạt động, migration sang LangGraph là cơ học: 1. Định nghĩa state TypedDict (mirror cái bạn hiện chuyền giữa step)
 2. Wrap mỗi tool/step LangChain làm node LangGraph
-3. Thêm `Checkpointer` (bắt đầu `MemorySaver`, đổi Postgres sau)
+3. Thêm ````Checkpointer```` (bắt đầu ````MemorySaver````, đổi Postgres sau)
 4. Thêm edge mô hình hóa flow control trước đây ngầm trong code LangChain
 
 Phần thưởng: thực thi bền vững + human-in-loop + replay debug, hầu hết component LangChain không động.
@@ -178,7 +179,7 @@ Phần thưởng: thực thi bền vững + human-in-loop + replay debug, hầu 
 ## 10. Khi *Không* Dùng LangGraph
 
 - **LLM call một lượt không trạng thái** — quá mức, chỉ dùng LLM SDK
-- **RAG đơn giản (retrieve → answer)** — chain `RetrievalQA` của LangChain là một dòng và ổn
+- **RAG đơn giản (retrieve → answer)** — chain ````RetrievalQA``` của LangChain là một dòng và ổn
 - **Chatbot hội thoại thuần** — LangChain + message store đơn giản hơn
 - **Team không kinh nghiệm Python** — trừu tượng dựa vai trò của CrewAI dễ tiếp cận hơn
 
@@ -188,7 +189,7 @@ LangGraph = **runtime agent có trạng thái dựa graph** cho workload product
 
 Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} với Postgres, chạy ví dụ ở mục 3, và bạn sẽ thấy vì sao team chạy agent thực ở production hấp dẫn đây.
 
----
+* * *
 
 *Muốn thấy LangGraph trong context lớn hơn? Xem [bộ sưu tập AI Agent Tool Chain](/vi/collections/) (sắp ra mắt) để xem nó vừa với MCP server, AgentMemory, sandbox thực thi code thế nào.*
 
@@ -218,7 +219,7 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} với Postg
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -228,7 +229,7 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} với Postg
 - [langgraph-vs-crewai](langgraph-stateful-agent-orchestration-2026)
 - [temporal-ai-workflow-orchestration](langgraph-stateful-agent-orchestration-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

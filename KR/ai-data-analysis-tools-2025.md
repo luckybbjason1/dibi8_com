@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-data-analysis-tools-2025/
 ---
 
+
 # 2025년 최고의 AI 데이터 분석 도구: ChatGPT, Julius, Tableau AI 등
 
 
@@ -191,7 +192,7 @@ Julius AI(월 15건 묣질)와 Google BigQuery($300 묣질 크레딧)가 가장 
 - [Google Cloud: BigQuery](https://cloud.google.com/bigquery)
 - [arXiv: Opportunities and Challenges in AI-Driven Data Analysis](https://arxiv.org/abs/2401.00001)
 
----
+* * *
 
 ## 추천 도구
 
@@ -262,7 +263,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

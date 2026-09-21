@@ -27,6 +27,7 @@ aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---
 
+
 # 국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업
 
 
@@ -60,7 +61,7 @@ aliases:
 
 ## 2. 아키텍처 — 홍콩 브리지 패턴
 
-```
+````
    ┌─────────────────────────────────────┐
    │ 홍콩 VPS (HTStack)                  │
    │                                     │
@@ -91,7 +92,7 @@ aliases:
    │ │   (GDPR 호환, EU + 중국)        │ │
    │ └─────────────────────────────────┘ │
    └─────────────────────────────────────┘
-```
+`````
 
 HK VPS는 브리지: 중국과 글로벌 양쪽에 낮은 레이턴시, 분석에 중립 관할, 결제 카드가 양 방향 모두 작동.
 
@@ -101,12 +102,12 @@ HK VPS는 브리지: 중국과 글로벌 양쪽에 낮은 레이턴시, 분석�
 
 **셀프호스트가 여기서 중요한 이유**: Zapier의 "task당" 가격이 국경 간 워크플로우 처벌 — 모든 번역, 플랫폼 변형, 분석 체크가 "task". 셀프호스트 VPS의 n8n = $6 인프라로 무제한 task.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker run -d --name n8n -p 5678:5678 \
   -v ~/.n8n:/home/node/.n8n \
   -e WEBHOOK_URL=https://n8n.yourdomain.com \
   n8nio/n8n
-```
+`````
 
 **임포트 가치 있는 워크플로우 템플릿**: "RSS → 번역 → 5 플랫폼", "Calendly 예약 → CRM → 이메일 시퀀스", "GitHub 릴리스 → 크로스플랫폼 출시 공지".
 
@@ -118,11 +119,11 @@ docker run -d --name n8n -p 5678:5678 \
 
 **왜 LlamaIndex / AutoGen보다 이거**: 성숙한 i18n primitive (PromptTemplate이 locale 인식 날짜/통화 포맷 처리), 가장 많은 프로바이더 통합 (100+), 그리고 국경 간 task용 사전 빌드 도구 (번역 API, 스크래핑, 캘린더)의 가장 큰 생태계.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install langchain langchain-community langchain-openai
-```
+`````
 
-특히 다국어 에이전트는 `langchain-community` 패키지가 DeepL, Google Translate 커넥터 + 미래 아랍어 확장을 위한 RTL 렌더링 처리 prompt 템플릿 제공.
+특히 다국어 에이전트는 ````langchain-community```` 패키지가 DeepL, Google Translate 커넥터 + 미래 아랍어 확장을 위한 RTL 렌더링 처리 prompt 템플릿 제공.
 
 LangChain 전체 셋업 + 에이전트 레시피: [LangChain 프로덕션 가이드](/kr/resources/llm-frameworks/langchain/).
 
@@ -146,9 +147,9 @@ LangChain 전체 셋업 + 에이전트 레시피: [LangChain 프로덕션 가이
 - 홍콩에서 셀프호스트 가능 = 본토 AND EU에서 차단 안 됨
 - ~80% 데이터 캡처율 vs GA ~60% (광고 차단기 필터링 없음)
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/compose.yml up -d
-```
+`````
 
 전환 어트리뷰션용 이벤트 추적 포함 전체 셋업: [Plausible vs GA — 프라이버시 우선 분석](/kr/resources/ai-tools/plausible-analytics-privacy-google/).
 
@@ -160,10 +161,10 @@ docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/comp
 - **같은 task에서 Claude보다 20× 저렴** — 3+ dev에서 수학 진지해짐
 - **DeepSeek가 RMB 결제 받음** — 재무에 USD 카드 충전 설득 불필요
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 npm install -g @opencode-ai/opencode
 opencode --provider deepseek --api-key $DEEPSEEK_KEY
-```
+`````
 
 팀 간 MCP server 공유 포함 전체 셋업: [OpenCode 오픈소스 가이드](/kr/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/).
 
@@ -187,10 +188,10 @@ dibi8.com 자체를 정확히 이 이유로 {{< aff "htstack" "stack-vps" "HTSta
 
 **Trade-off**: OpenRouter는 직접 프로바이더 연결 대비 100-150ms 레이턴시 추가 — 오프라인 콘텐츠 생성에 괜찮, 실시간 채팅엔 별로.
 
-**빠른 설치**: openrouter.ai 가입, 암호화폐 충전, OpenAI 호환 클라이언트로 사용: ```python
+**빠른 설치**: openrouter.ai 가입, 암호화폐 충전, OpenAI 호환 클라이언트로 사용: `````python
 from openai import OpenAI
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="sk-or-...")
-```
+````
 
 OpenRouter 전체 가이드 + 직접이 OpenRouter 이길 때: [OpenRouter 통합 LLM API 게이트웨이 2026](/kr/resources/llm-frameworks/openrouter-unified-llm-api-gateway/) 또는 [Portkey vs LiteLLM vs OpenRouter 비교](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
@@ -244,7 +245,7 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 
 국경 간 특화 승리: 결제 마찰 없음, GDPR/중국 데이터법 위반 없음, USD Cursor $80/시트 없음, GA 차단 없음, Cloudflare-vs-중국 문제 없음. {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}} 띄우고 1주차에 컴포넌트 1-4 먼저, 2주차에 5-7 추가.
 
----
+* * *
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) dev 측, [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 비용 극단 추론용.*
 
@@ -274,7 +275,7 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -284,7 +285,7 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 - [2026-06-08-trending-ai-agents](cross-border-ai-marketing-stack)
 - [2026-06-15-trending-ai-agents](cross-border-ai-marketing-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

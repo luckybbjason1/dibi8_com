@@ -24,6 +24,7 @@ aliases:
   - /posts/local-llm-runner-comparison-2026/
 ---
 
+
 2026년 "로컬에서 LLM 실행" 답이 명확한 스위트 스폿 가진 4가지 진지한 선택으로 파편화. 이게 우리가 진작 있었으면 했던 hub 글 — **Ollama** (137k 별, 기본), **LM Studio** (가장 예쁜 UI, 비코더에게 가장 쉬움), **llama.cpp** (112k 별, 대부분 다른 도구 안에 있는 C/C++ 엔진), **vLLM** (80.7k 별, 프로덕션 처리량 왕) 의 정면 대결.
 
 60초만 있으면 2절 읽고 행 따라 픽. 나머지는 팀이 "왜 이거?" 물을 때.
@@ -52,23 +53,23 @@ aliases:
 
 ## 3. Ollama — 솔로 dev 기본
 
-**소개**: 한 설치 명령. `ollama run llama3.2`. 5분 안에 채팅 중. 내부적으로 llama.cpp 위에 구축 — Ollama는 "좋은 UX와 모델 카탈로그 가진 llama.cpp".
+**소개**: 한 설치 명령. ```ollama run llama3.2````. 5분 안에 채팅 중. 내부적으로 llama.cpp 위에 구축 — Ollama는 "좋은 UX와 모델 카탈로그 가진 llama.cpp".
 
 **실제 수치**: - **GitHub 별**: 137k (네 가지 중 가장 별 많음)
 - **License**: MIT
 - **처리량**: M2 / RTX 3060에서 7B 모델 ~20-25 tok/초 (단일 사용자 chat 좋음, 서빙엔 아님)
 - **하드웨어**: NVIDIA, AMD (ROCm), Apple Silicon (Metal). CPU 폴백 ok
-- **킬러 기능**: `ollama.com/library`에 거대한 모델 카탈로그 — 양자화 GGUF 모델 한 명령으로 풀
+- **킬러 기능**: ````ollama.com/library````에 거대한 모델 카탈로그 — 양자화 GGUF 모델 한 명령으로 풀
 
 **Ollama 이기는 곳**: 솔로 dev 코딩 에이전트 (Continue / OpenCode와 페어), 단일 사용자 chat, 프로토타이핑. 우리 [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/)과 [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 컬렉션의 기본 정확히 5분 셋업 곡선 때문.
 
 **Ollama 안 이기는 곳**: 멀티 사용자 서빙 (Ollama 기본 요청 순차 큐). 10+ 동시 사용자엔 vLLM 전환.
 
-```bash
+`````bash
 # 설치 + 30초 안에 모델 실행
 curl -fsSL https://ollama.com/install.sh | sh
 ollama run qwen3-coder:14b
-```
+`````
 
 ## 4. LM Studio — 비코더용 데스크톱 앱
 
@@ -76,7 +77,7 @@ ollama run qwen3-coder:14b
 
 **실제**: - **License**: 클로즈드 소스 프리웨어 (개인 사용 무료; 상업 라이선스 필요)
 - **엔진**: 밑에 llama.cpp 사용 (같은 GGUF 모델 포맷)
-- **킬러 기능**: 시각 모델 브라우저, 대화 기록 있는 chat UI, 드래그-드롭 통한 로컬 파일 RAG, OpenAI 호환 API 서버 (원클릭 "start server" → `http://localhost:1234/v1` 노출)
+- **킬러 기능**: 시각 모델 브라우저, 대화 기록 있는 chat UI, 드래그-드롭 통한 로컬 파일 RAG, OpenAI 호환 API 서버 (원클릭 "start server" → ````http://localhost:1234/v1```` 노출)
 - **하드웨어**: 같은 llama.cpp 커버리지 — NVIDIA, AMD, Apple Silicon (Metal 최적화), CPU 폴백
 
 **LM Studio 이기는 곳**: 데이터 분석가 / PM / 임원이 터미널 배우지 않고 로컬 모델과 chat 원함. 또는 Ollama / vLLM 통해 앱에 통합 전 모델 테스트할 정돈된 데스크톱 UI 원함.
@@ -93,7 +94,7 @@ ollama run qwen3-coder:14b
 - **License**: MIT
 - **하드웨어**: 말 그대로 모든 것 — Apple Metal (최고 M-시리즈 지원, NEON/Accelerate 통해 최적화), NVIDIA CUDA, AMD HIP, Intel/AMD CPU (AVX/AVX2/AVX512), Vulkan, SYCL, 브라우저의 WebGPU, RISC-V, ARM
 - **양자화**: GGUF 포맷, 1.5-bit ~ 8-bit, 사용 가능한 가장 넓은 양자화 옵션
-- **킬러 기능**: CPU+GPU 하이브리드 추론 (VRAM보다 큰 모델을 GPU와 시스템 RAM에 분할), 문법 제약 출력, `llama-server` OpenAI 호환 API
+- **킬러 기능**: CPU+GPU 하이브리드 추론 (VRAM보다 큰 모델을 GPU와 시스템 RAM에 분할), 문법 제약 출력, ````llama-server```` OpenAI 호환 API
 
 **llama.cpp 이기는 곳**: - 이상한 하드웨어 (Raspberry Pi 5, RISC-V SBC, WebGPU 통한 브라우저)
 - VRAM보다 큰 모델 (CPU+GPU 분할)
@@ -102,12 +103,12 @@ ollama run qwen3-coder:14b
 
 **llama.cpp 안 이기는 곳**: C++ 컴파일 플래그 읽기 즐기지 않음. 대부분 사용자는 Ollama / LM Studio 래퍼 원함.
 
-```bash
+`````bash
 # 컴파일과 실행
 git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp && make -j
 ./llama-cli -m model.gguf -p "Hello"
-```
+`````
 
 ## 6. vLLM — 프로덕션 처리량 왕
 
@@ -123,12 +124,12 @@ cd llama.cpp && make -j
 
 **vLLM 안 이기는 곳**: 솔로 dev 로컬 chat (Ollama가 더 빠른 셋업). CPU 전용 하드웨어 (vLLM CPU에서 작동하지만 llama.cpp처럼 최적화 안 됨).
 
-```bash
+`````bash
 # 빠른 설치 + 서브
 pip install vllm
 vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000
 # OpenAI SDK로 http://localhost:8000/v1 hit
-```
+`````
 
 ## 7. 정면 대결 — 숫자 테이블
 
@@ -155,7 +156,7 @@ vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000
 
 **시나리오 C — 마케팅 VP가 문서와 chat 원함**: LM Studio. RAG 인터페이스에 PDF 드래그 앤 드롭. 훈련 0 필요. 실제로 엔지니어링 필요한 사용 사례 위해 엔지니어링 시간 저장.
 
-**시나리오 D — Raspberry Pi 5에서 Qwen 3 14B 실행**: llama.cpp 직접. Ollama 작동할 수 있지만 llama.cpp의 ARM 최적화와 `--n-gpu-layers 0` 순수 CPU가 가장 많이 짜냄.
+**시나리오 D — Raspberry Pi 5에서 Qwen 3 14B 실행**: llama.cpp 직접. Ollama 작동할 수 있지만 llama.cpp의 ARM 최적화와 ````--n-gpu-layers 0``` 순수 CPU가 가장 많이 짜냄.
 
 **시나리오 E — 멀티모달 AI 콘텐츠 파이프라인**: [멀티모달 콘텐츠 파이프라인](/kr/collections/multi-modal-content-pipeline/)에서 로컬 폴백용 Ollama 사용. 동시 생성 작업이 Ollama 직렬 큐 초과하면 vLLM으로 승급.
 
@@ -189,7 +190,7 @@ Ollama는 llama.cpp 위에 구축. LM Studio는 llama.cpp 위에 구축. 그래�
 
 범용 최고 로컬 LLM 러너 없음. 2절의 본인 행과 매치하는 것 있음. 그것 픽, 출시, 동시 사용자 수가 10 넘으면 재평가 (Ollama → vLLM 신호).
 
----
+* * *
 
 *동반 콘텐츠: [저렴한 LLM 스택 컬렉션](/kr/collections/cheap-llm-stack/)은 기본 로컬 러너로 Ollama 사용. [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 모두 로컬 추론에 Ollama 타고 있음. 여러 러너 앞 게이트웨이 레이어용 [Portkey vs LiteLLM vs OpenRouter](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).*
 
@@ -219,7 +220,7 @@ Ollama는 llama.cpp 위에 구축. LM Studio는 llama.cpp 위에 구축. 그래�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -229,7 +230,7 @@ Ollama는 llama.cpp 위에 구축. LM Studio는 llama.cpp 위에 구축. 그래�
 - [ollama-vs-vllm](local-llm-runner-comparison-2026)
 - [llm-inference-cost-optimization-guide-2026](local-llm-runner-comparison-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

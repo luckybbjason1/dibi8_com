@@ -12,6 +12,7 @@ github_repo: https://github.com/voicebox-ai/voicebox
 license: MIT
 ---
 
+
 # VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở
 
 **VoiceBox** là một studio giọng nói AI mã nguồn mở toàn diện, cho phép nhân bản giọng nói, tạo giọng nói và chép văn bản — tất cả chạy cục bộ trên máy của bạn. Với **33.745 sao GitHub** và cộng đồng phát triển sôi động, nó đã trở thành giải pháp được ưa chuộng cho nhà phát triển, người sáng tạo nội dung và người dùng chú trọng quyền riêng tư cần AI giọng nói mạnh mẽ mà không dựa vào API đám mây.
@@ -54,7 +55,7 @@ VoiceBox hỗ trợ nhiều cấu hình phần cứng: **Tăng tốc GPU (Khuy�
 
 ### Tùy Chọn 1: Cài Đặt Nhanh Với Pip
 
-```bash
+````bash
 # Cài đặt VoiceBox từ PyPI
 pip install voicebox-ai
 
@@ -63,11 +64,11 @@ voicebox --version
 
 # Khởi tạo ứng dụng
 voicebox init --model qwen3-tts
-```
+`````
 
 ### Tùy Chọn 2: Từ Mã Nguồn (Tính Năng Mới Nhất)
 
-```bash
+`````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/jamiepine/voicebox.git
 cd voicebox
@@ -84,11 +85,11 @@ pip install -e .
 
 # Tải xuống mô hình giọng nói mặc định
 voicebox download-models --all
-```
+`````
 
 ### Tùy Chọn 3: Triển Khai Docker
 
-```bash
+`````bash
 # Kéo hình ảnh chính thức
 docker pull jamiepine/voicebox:latest
 
@@ -108,11 +109,11 @@ docker run -d \
   -v ${HOME}/voicebox-data:/data \
   -e VOICEBOX_MODEL=qwen3-tts \
   jamiepine/voicebox:latest
-```
+`````
 
 ### Tùy Chọn 4: Cài Đặt Windows
 
-```powershell
+`````powershell
 # Cài đặt Python 3.11+ từ Microsoft Store
 # Sau đó cài đặt VoiceBox
 pip install voicebox-ai
@@ -122,13 +123,13 @@ pip install voicebox-ai
 
 # Khởi tạo VoiceBox
 voicebox init --gpu cuda
-```
+`````
 
 ## Nhân Bản Giọng Nói
 
 ### Ghi Mẫu Âm Thanh
 
-Để nhân bản giọng, bạn cần ít nhất 3 giây âm thanh rõ ràng. Để có kết quả tốt nhất, hãy cung cấp 30-60 giây giọng nói: ```bash
+Để nhân bản giọng, bạn cần ít nhất 3 giây âm thanh rõ ràng. Để có kết quả tốt nhất, hãy cung cấp 30-60 giây giọng nói: `````bash
 # Ghi âm thanh bằng trình ghi âm tích hợp
 voicebox record --output sample.wav --duration 30
 
@@ -136,11 +137,11 @@ voicebox record --output sample.wav --duration 30
 voicebox clone --audio my_voice_sample.mp3 --name "my-voice"
 
 # VoiceBox tự động xử lý âm thanh và trích xuất đặc điểm giọng
-```
+`````
 
 ### Pipeline Xử Lý Giọng Nói
 
-Pipeline nhân bản giọng bao gồm nhiều giai đoạn: ```python
+Pipeline nhân bản giọng bao gồm nhiều giai đoạn: `````python
 from voicebox.engine import VoiceCloner
 from voicebox.audio import AudioProcessor
 
@@ -170,11 +171,11 @@ output = voice_model.synthesize(
     emotion="neutral"
 )
 voice_model.save(output, "test_output.wav")
-```
+`````
 
 ### Tham Số Giọng Nói Nâng Cao
 
-VoiceBox cung cấp kiểm soát chi tiết عن tổng hợp giọng nói: ```bash
+VoiceBox cung cấp kiểm soát chi tiết عن tổng hợp giọng nói: `````bash
 # Kiểm soát tốc độ nói
 voicebox synthesize --input script.txt --output speech.wav --speed 0.8
 
@@ -192,11 +193,11 @@ voicebox synthesize \
   --pitch +100 \
   --emotion confident \
   --clarity high
-```
+`````
 
 ### Hỗ Trợ Đa Giọng
 
-Bạn có thể tạo và quản lý nhiều bản nhân bản giọng đồng thời: ```python
+Bạn có thể tạo và quản lý nhiều bản nhân bản giọng đồng thời: `````python
 from voicebox.engine import VoiceManager
 
 manager = VoiceManager()
@@ -217,7 +218,7 @@ hybrid = manager.blend_voices(
     weight_b=0.3
 )
 output = hybrid.synthesize("Đầu ra giọng trộn")
-```
+`````
 
 ## Chế Độ Chép Văn Bản
 
@@ -225,7 +226,7 @@ Chế độ chép của VoiceBox cung cấp phiên âm giọng-nói-thành-chữ
 
 ### Thiết Lập Chép Toàn Hệ Thống
 
-```bash
+`````bash
 # Kích hoạt chép toàn hệ thống
 voicebox dictation --enable
 
@@ -237,11 +238,11 @@ voicebox dictation --language en
 
 # Cấu hình phím nóng
 voicebox dictation --hotkey "ctrl+space"
-```
+`````
 
 ### Sử Dụng API Chép
 
-```python
+`````python
 from voicebox.dictation import DictationEngine
 
 # Khởi tạo engine chép
@@ -269,11 +270,11 @@ result = await engine.listen_session(
 print(f"Đã phiên âm: {result.text}")
 print(f"Độ tin cậy: {result.confidence:.2%}")
 print(f"Số từ: {result.word_count}")
-```
+`````
 
 ### Chép Đa Ngôn Ngữ
 
-VoiceBox hỗ trợ chép đa ngôn ngữ đồng thời với phát hiện ngôn ngữ tự động: ```bash
+VoiceBox hỗ trợ chép đa ngôn ngữ đồng thời với phát hiện ngôn ngữ tự động: `````bash
 # Kích hoạt phát hiện tự động
 voicebox dictation --auto-detect
 
@@ -282,13 +283,13 @@ voicebox dictation --languages en,zh,ko,ja,es,fr,de
 
 # Đặt ngôn ngữ chính (để chính xác hơn)
 voicebox dictation --primary-language en
-```
+`````
 
 ## API Chuyển Văn Bản Thành Giọng
 
 VoiceBox cung cấp REST API đầy đủ cho việc tạo chuyển văn bản thành giọng programmatically: ### TTS Cơ Bản
 
-```bash
+`````bash
 # Chuyển đổi văn bản thành giọng đơn giản
 curl -X POST "https://your-voicebox/api/v1/tts" \
   -H "Content-Type: application/json" \
@@ -299,21 +300,21 @@ curl -X POST "https://your-voicebox/api/v1/tts" \
     "output_format": "wav"
   }' \
   --output speech.wav
-```
+`````
 
 ### TTS Trực Tiếp
 
-Dành cho ứng dụng phát âm thanh thời gian thực: ```bash
+Dành cho ứng dụng phát âm thanh thời gian thực: `````bash
 # Phát âm thanh theo chunk
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
   -d '{"text": "Âm thanh này sẽ được phát trực tiếp...", "voice": "cloned-voice"}" \
   --output - | aplay
-```
+`````
 
 ### Xử Lý Hàng Loạt
 
-Xử lý nhiều văn bản đồng thời: ```python
+Xử lý nhiều văn bản đồng thời: `````python
 from voicebox.api import VoiceBoxClient
 
 client = VoiceBoxClient("https://your-voicebox")
@@ -332,7 +333,7 @@ results = await client.tts.batch(
 )
 
 for i, result in enumerate(results): print(f"Đã tạo: speech_{i}.mp3 ({result.duration:.1f}s)")
-```
+````
 
 ## Yêu Cầu Phần Cứng Và Hiệu Suất
 
@@ -372,7 +373,7 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -382,6 +383,6 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 - [2026-06-08-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 - [2026-06-15-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

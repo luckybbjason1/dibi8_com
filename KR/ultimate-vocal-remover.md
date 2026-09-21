@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/ultimate-vocal-remover/
 ---
 
+
 {{</* resource-info */>}}
 
 보컬을 반주 트랙에서 분리하는 작업은 예전에는 고가의 DAW 플러그인, 수동 EQ 조작, 또는 오디오 엔지니어 외주가 필요했다. 2026년 기준으로 오픈소스 딥러닝 모델은 일반 소비자용 하드웨어에서 60초 이내에 이 작업을 처리한다. **Ultimate Vocal Remover(UVR)**는 24,700개 이상의 GitHub 스타, Tkinter 기반 GUI, VR-Net, MDX-Net, MDX23C, Demucs 등의 최신 아키텍처 지원으로 이 분야를 선도하고 있다. 본 가이드는 세 가지 주요 플랫폼의 설치, 모델 선택 전략, 배치 처리 워크플로우, 그리고 RVC 및 GPT-SoVITS과의 통합을 다룬다.
@@ -45,7 +46,7 @@ UVR은 여러 AI 아키텍처를 지원한다: - **VR Architecture** — tsurume
 
 UVR은 단일 모놀리식 모델을 구현하는 것이 아니다. 대신 **모델 오케스트레이션 레이어**로 작동하여 통합 인터페이스 뒤에서 다양한 PyTorch 기반 분리 엔진을 로드하고 실행한다.
 
-```
+````
 입력 오디오 (MP3/WAV/FLAC)
     |
     v
@@ -62,7 +63,7 @@ UVR은 단일 모놀리식 모델을 구현하는 것이 아니다. 대신 **모
 [후처리] → WAV 출력
     |-- Vocals.wav
     |-- Instrumental.wav
-```
+`````
 
 각 모델은 오디오를 다르게 처리한다: **VR Architecture**는 오디오를 단시간 푸리에 변환(STFT) 스펙트로그램으로 변환하고, 학습된 마스크를 적용하여 보컬 주파수를 분리한 다음, 역 STFT를 통해 파형을 재구성한다. 이 접근 방식은 빠르지만 반주 트랙에 보컬 아티팩트가 남을 수 있다.
 
@@ -80,22 +81,22 @@ UVR v5.6은 Windows 10 이상을 위한 독립 설치 프로그램을 제공한�
 
 **1단계: 설치 프로그램 다운로드**
 
-```powershell
+`````powershell
 # 공식 릴리스 페이지에서 UVR v5.6 다운로드
 # 64비트 Windows (Nvidia GPU용 CUDA 지원)
 # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_v5.6.0_setup.exe
 
 # AMD Radeon / Intel Arc GPU의 경우 DirectML 빌드 사용: # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/UVR_1_15_25_22_30_BETA_full.exe
-```
+`````
 
 **2단계: C:\ 드라이브에 설치**
 
-```powershell
+`````powershell
 # 중요: C:\ 드라이브에만 설치
 # 보조 드라이브에 설치하면 런타임 불안정성 발생
 # 관리자 권한으로 설치 프로그램 실행
 .\UVR_v5.6.0_setup.exe
-```
+`````
 
 **3단계: 첫 실행 및 모델 다운로드**
 
@@ -103,20 +104,20 @@ UVR v5.6은 Windows 10 이상을 위한 독립 설치 프로그램을 제공한�
 
 **Windows 시스템 요구사항:**
 
-```yaml
+`````yaml
 OS: Windows 10 64비트 이상
 CPU: Intel/AMD 64비트 (Pentium/Celeron 지원 안 됨)
 RAM: 최소 8GB, 권장 16GB
 GPU: 최소 Nvidia GTX 1060 6GB, 권장 RTX 3060 8GB+
 저장공간: 15GB 여유 (SSD 강력 권장)
 참고: Intel Pentium 및 Celeron CPU는 지원되지 않음
-```
+`````
 
 ### macOS 설치
 
 UVR은 Intel 및 Apple Silicon Mac 모두에서 macOS Big Sur 이상을 지원한다.
 
-```bash
+`````bash
 # 1단계: 아키텍처용 DMG 다운로드
 # Apple Silicon (M1/M2/M3): # https://github.com/Anjok07/ultimatevocalremovergui/releases/download/v5.6/Ultimate_Vocal_Remover_v5_6_MacOS_arm64.dmg
 
@@ -130,11 +131,11 @@ sudo xattr -rd com.apple.quarantine "/Applications/Ultimate Vocal Remover.app"
 
 # 4단계: UVR이 성공적으로 열린 후 Gatekeeper 재활성화
 sudo spctl --master-enable
-```
+`````
 
 **수동 설치 (macOS):**
 
-```bash
+`````bash
 # 소스에서 실행을 선호하는 개발자용
 brew install python@3.10 ffmpeg
 pip3 install -r requirements.txt
@@ -146,7 +147,7 @@ cp /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packag
 # FFmpeg 바이너리 다운로드 후 애플리케이션 디렉터리에 배치
 # Time-Stretch/Pitch-Shift 기능용 Rubber Band 다운로드
 python3 UVR.py
-```
+`````
 
 macOS에서 첫 실행은 Python이 백그라운드에서 의존성을 컴파일하므로 5~10분이 소요될 수 있다.
 
@@ -156,7 +157,7 @@ Linux 설치는 가상 환경을 사용하여 UVR의 의존성을 시스템 Pyth
 
 **Debian 기반 시스템 (Ubuntu, Mint, Pop!_OS):**
 
-```bash
+`````bash
 # 1단계: 시스템 의존성 설치
 sudo apt update && sudo apt upgrade -y
 sudo apt-get install -y ffmpeg python3-pip python3-tk python3-venv
@@ -174,11 +175,11 @@ pip install -r requirements.txt
 
 # 5단계: UVR 실행
 python UVR.py
-```
+`````
 
 **Arch 기반 시스템 (EndeavourOS, Manjaro):**
 
-```bash
+`````bash
 sudo pacman -Syu
 sudo pacman -S ffmpeg python-pip tk python-virtualenv
 
@@ -188,11 +189,11 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python UVR.py
-```
+`````
 
 **헤드리스 / 서버 배포 (Docker):**
 
-```dockerfile
+`````dockerfile
 # UVR 헤드리스 처리용 Dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 
@@ -213,18 +214,18 @@ os.makedirs(models, exist_ok=True)
 "
 
 ENTRYPOINT ["venv/bin/python", "separate.py"]
-```
+`````
 
-```bash
+`````bash
 # 빌드 및 실행
 docker build -t uvr-gpu .
 docker run --gpus all -v $(pwd)/input:/input -v $(pwd)/output:/output uvr-gpu \
     --input /input/song.mp3 --output /output --model MDX-Net
-```
+`````
 
 ### requirements.txt 주요 의존성
 
-```text
+`````text
 altgraph==0.17.3
 audioread==3.0.0
 einops==0.6.0
@@ -243,7 +244,7 @@ torch
 onnxruntime
 onnxruntime-gpu
 numpy==1.23.5
-```
+`````
 
 ## 모델 선택 및 설정
 
@@ -253,16 +254,16 @@ UVR에는 수십 개의 사전 훈련된 모델이 포함되어 있다. 올바�
 
 | 모델 | 아키텍처 | 최적 사용처 | 속도 | VRAM |
 |------|---------|------------|------|------|
-| `MDX-Net Main` | MDX-Net | 일반 보컬 제거 | 중간 | 6GB |
-| `MDX23C` | MDX23C | 복잡한 믹스, 고품질 | 느림 | 8GB |
-| `VR-DeEcho` | VR-Net | 디노이즈 + 보컬 제거 | 빠름 | 4GB |
-| `UVR-MDX-NET Inst Main` | MDX-Net | 반주 추출 | 중간 | 6GB |
-| `Demucs v4` | Demucs | 4-스템 분리 | 느림 | 8GB |
-| `UVR-BVE` | VR-Net | 블리드/보컬 제거 | 빠름 | 4GB |
+| ````MDX-Net Main```` | MDX-Net | 일반 보컬 제거 | 중간 | 6GB |
+| ````MDX23C```` | MDX23C | 복잡한 믹스, 고품질 | 느림 | 8GB |
+| ````VR-DeEcho```` | VR-Net | 디노이즈 + 보컬 제거 | 빠름 | 4GB |
+| ````UVR-MDX-NET Inst Main```` | MDX-Net | 반주 추출 | 중간 | 6GB |
+| ````Demucs v4```` | Demucs | 4-스템 분리 | 느림 | 8GB |
+| ````UVR-BVE```` | VR-Net | 블리드/보컬 제거 | 빠름 | 4GB |
 
 ### 모델 선택 전략
 
-```yaml
+`````yaml
 # 모델 선택 결정 흐름
 트랙이 일반 팝/락 곡인가?
   예 → MDX-Net Main (속도와 품질의 최적 균형)
@@ -271,11 +272,11 @@ UVR에는 수십 개의 사전 훈련된 모델이 포함되어 있다. 올바�
           아니오 → 군중 소리가 있는 라이브 녹음인가?
                   예 → VR-DeEcho (내장 노이즈 제거)
                   아니오 → Demucs v4 (전체 4-스템 분리)
-```
+`````
 
 ### 최대 품질 권장 설정
 
-```python
+`````python
 # UVR 설정 → "MDX-Net 모델 선택"
 # 처리 방법: "MDX-Net"
 # 세그먼트 크기: 256 (낮을수록 더 많은 VRAM, 더 나은 품질)
@@ -295,11 +296,11 @@ UVR에는 수십 개의 사전 훈련된 모델이 포함되어 있다. 올바�
 오버랩: 0.25
 배치 크기: 1
 5-10배 느린 처리 예상
-```
+`````
 
 ### 배치 처리 설정
 
-```bash
+`````bash
 # GUI를 통한 전체 폴더 처리: # 1. "Input" 클릭 → 폴더 선택
 # 2. "Batch Processing" 체크박스 활성화
 # 3. 출력 폴더 설정
@@ -314,13 +315,13 @@ tracks/
   track1/Vocals_track1.wav
   track2/Instrumental_track2.wav
   track2/Vocals_track2.wav
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### RVC(Retrieval-based Voice Conversion)와의 통합
 
-UVR + RVC은 AI 보컬 커버 제작을 위한 인기 파이프라인이다: ```bash
+UVR + RVC은 AI 보컬 커버 제작을 위한 인기 파이프라인이다: `````bash
 # 파이프라인: 원곡 → UVR → 보컬만 → RVC → AI 보컬 커버
 #         원곡 → UVR → 반주 → 최종 믹스
 
@@ -336,11 +337,11 @@ python infer-web.py --input Vocals.wav --model weights/MyVoice.pth --pitch 0
 ffmpeg -i RVC_Converted_Vocals.wav -i UVR_Instrumental.wav \
        -filter_complex "[0:a][1:a]amix=inputs=2:duration=longest" \
        -ac 2 -ar 44100 Final_Cover.wav
-```
+`````
 
 ### GPT-SoVITS와의 통합
 
-```python
+`````python
 # GPT-SoVITS는 보이스 클론을 위해 깨끗한 보컬 입력이 필요함
 # 훈련 데이터 전처리에 UVR 사용
 
@@ -353,22 +354,22 @@ python slice_audio.py --input UVR_Vocals/ --output slices/ --threshold -34
 
 # 3단계: 슬라이스를 SoVITS 훈련에 사용
 python webui.py --voice_slices slices/
-```
+`````
 
 ### demucs CLI와의 통합
 
-UVR은 낶部적으로 Demucs를 사용하지만 CLI 버전을 체인으로 연결할 수도 있다: ```bash
+UVR은 낶部적으로 Demucs를 사용하지만 CLI 버전을 체인으로 연결할 수도 있다: `````bash
 # demucs를 직접 사용하여 4-스템 분리
 demucs --mp3 --two-stems=vocals input.mp3
 
 # 그런 다음 UVR을 사용하여 추가 보컬 정리
 # UVR은 demucs 출력을 처리하여 더 세밀한 보컬/반주 분리 수행
 python separate.py --input demucs_vocals.wav --model VR-DeEcho --output cleaned/
-```
+`````
 
 ### FFmpeg 후처리 파이프라인
 
-```bash
+`````bash
 # UVR 출력을 여러 형식으로 변환
 for file in UVR_Output/*.wav; do
     base=$(basename "$file" .wav)
@@ -382,7 +383,7 @@ for file in UVR_Output/*.wav; do
     # 스트리밍용 OGG
     ffmpeg -i "$file" -codec:a libvorbis -q:a 6 "${base}.ogg"
 done
-```
+`````
 
 ## 벤치마크 및 실제 성능
 
@@ -416,7 +417,7 @@ done
 
 ### GPU 메모리 관리
 
-```python
+`````python
 # "CUDA out of memory" 오류가 발생하는 경우: # 옵션 1: GUI에서 세그먼트 크기 줄이기
 # 설정 → Segment Size → 256에서 128 또는 64로 낮추기
 
@@ -434,11 +435,11 @@ python separate.py \
 # 옵션 4: 다른 GPU 애플리케이션 닫기
 # UVR은 처리 중 배타적 VRAM 접근이 필요함
 # 브라우저, 게임, 기타 CUDA 애플리케이션 종료
-```
+`````
 
 ### 모델 관리 및 저장
 
-```bash
+`````bash
 # UVR은 애플리케이션 디렉터리에 모델을 저장함
 # Windows: C:\Users\<사용자>\AppData\Local\Programs\Ultimate Vocal Remover\models\
 # macOS: /Applications/Ultimate Vocal Remover.app/Contents/models/
@@ -449,11 +450,11 @@ rsync -avz --progress models/ user@new-server:/opt/uvr/models/
 
 # 모델은 50MB에서 500MB 각각
 # 전체 모델 세트: 약 8GB 다운로드, 디스크 약 12GB
-```
+`````
 
 ### 자동화된 워크플로우 스크립트
 
-```python
+`````python
 #!/usr/bin/env python3
 """프로덕션 워크플로우용 UVR 배치 처리 스크립트."""
 
@@ -503,11 +504,11 @@ def main(): os.makedirs(OUTPUT_DIR, exist_ok=True)
     logger.info(f"완료: {success_count}/{len(results)}개 파일 처리됨")
 
 if __name__ == "__main__": main()
-```
+`````
 
 ### 모니터링 및 로깅
 
-```python
+`````python
 # UVR은 GUI를 통해 처리 로그를 기록: # 설정 버튼 → 오류 로그 → 세부 정보 보기
 
 # 헤드리스 배포의 경우 로깅으로 래핑: import sys
@@ -526,7 +527,7 @@ logging.basicConfig(
 
 # 처리 중 GPU 사용량 모니터링
 watch -n 1 nvidia-smi
-```
+`````
 
 ## 대안과의 비교
 
@@ -573,7 +574,7 @@ UVR은 **음악 보컬 분리**를 위해 특별히 설계되었다. 모든 오�
 MDX23C는 SDR 벤치마크에서 지속적으로 가장 높은 점수를 기록한다(MUSDB18에서 9.42 보컬 SDR). 대부분의 팝/락 트랙에서는 MDX-Net Main이 품질과 속도의 최적 균형을 제공한다. 전체 앨범을 처리하기 전에 30초 클립으로 여러 모델을 테스트하라.
 
 **질문: FLAC, M4A 또는 OGG 파일은 어떻게 처리하나요?**
-FFmpeg을 설치하고 시스템 PATH에서 사용 가능한지 확인하라. UVR은 모든 비-WAV 형식의 백엔드 디코더로 FFmpeg을 사용한다. Linux에서는 `sudo apt install ffmpeg`, macOS에서는 `brew install ffmpeg`. Windows 설치 프로그램은 FFmpeg을 자동으로 번들링한다.
+FFmpeg을 설치하고 시스템 PATH에서 사용 가능한지 확인하라. UVR은 모든 비-WAV 형식의 백엔드 디코더로 FFmpeg을 사용한다. Linux에서는 ````sudo apt install ffmpeg````, macOS에서는 ````brew install ffmpeg```. Windows 설치 프로그램은 FFmpeg을 자동으로 번들링한다.
 
 **질문: UVR 출력을 상업적 릴리스에 사용할 수 있나요?**
 UVR 소프트웨어와 그 모델은 모두 MIT 라이선스로 상업적 사용을 허용한다. 하지만 저작권법은 여전히 원본 자료에 적용된다. 저작권이 있는 노래에서 보컬을 제거핼다고 해서 결과 반주를 배포할 권리가 생기는 것은 아니다. 상업적 라이선스 문제는 법률 자문을 구하라.
@@ -643,13 +644,13 @@ Ultimate Vocal Remover는 CLI 전용 라이브러리가 할 수 없는 공백을
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](ultimate-vocal-remover)
 - [wandb-ml-experiment-tracking-platform-2026](ultimate-vocal-remover)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

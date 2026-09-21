@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
 ---
 
+
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
 ![W&B Sweeps](https://opengraph.github.com/github/wandb/wandb/tree/main/wandb/sweeps)
@@ -27,7 +28,7 @@ featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screens
 
 Weights & Biases는 전체 실험 수명 주기를 아우르는 엔드투엔드 ML 개발 플랫폼입니다. 핵심은 로거입니다. 훈련 스크립트에 추가하는 경량 라이브러리로, 메트릭, 구성, 아티팩트 및 모델 체크포인트까지 자동으로 추적합니다. 로깅 외에도 W&B는 실행을 시각화하고, 실험을 나란히 비교하고, 팀과 결과를 공유하며, 훈련부터 배포까지 모델을 관리할 수 있는 웹 대시보드를 제공합니다.
 
-```
+````
 ┌───────────────────────────────────────────────┐
 │           W&B Platform Architecture            │
 ├───────────────────────────────────────────────┤
@@ -51,13 +52,13 @@ Weights & Biases는 전체 실험 수명 주기를 아우르는 엔드투엔드 
 │    ├─ PyTorch Lightning, FastAI               │
 │    └─ Ray Tune, Optuna, Ax                    │
 └───────────────────────────────────────────────┘
-```
+`````
 
 ## W&B 동작 원리
 
 W&B는 훈련 루프를 계측(instrumenting)하여 작동합니다. 런을 초기화하고, 각 단계에서 메트릭을 기록하면 W&B가 실시간으로 클라우드 대시보드로 데이터를 전송합니다. SDK는 오버헤드가 최소화되도록 설계되었습니다. 메트릭 하나를 기록하는 데 약 0.1ms가 소요되며, 네트워크 호출은 배치 처리되고 압축되어 대역폭 사용량을 줄입니다.
 
-```python
+`````python
 import wandb
 
 # Initialize a new run with your configuration
@@ -74,7 +75,7 @@ wandb.init(
 for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch)
         # Log metrics — W&B handles the rest
         wandb.log({"train_loss": loss, "lr": config.learning_rate})
-```
+`````
 
 플랫폼은 세 가지 유형의 추적 데이터를 구분합니다. **메트릭**(시간에 따라 기록되는 손실과 정확도 같은 스칼라 값), **아티팩트**(데이터세트와 모델 체크포인트 같은 버전 관리된 파일), **미디어**(대시보드에서 직접 시각화되는 이미지, 오디오, 텍스트 샘플)입니다.
 
@@ -82,31 +83,31 @@ for epoch in range(config.epochs): for batch in train_dataloader: loss = model.t
 
 **옵션 1: pip install (표준)**
 
-```bash
+`````bash
 pip install wandb
-```
+`````
 
 **옵션 2: W&B 인증**
 
-```bash
+`````bash
 wandb login
 # Paste your API key from https://wandb.ai/authorize
-```
+`````
 
 **옵션 3: Docker**
 
-```bash
+`````bash
 docker pull wandb/launch
 docker run -e WANDB_API_KEY=$WANDB_API_KEY \
   -v /path/to/code:/app wandb/launch python train.py
-```
+`````
 
 **옵션 4: Hugging Face 통합**
 
-```bash
+`````bash
 pip install wandb transformers
 # W&B is pre-configured for Hugging Face Trainer
-```
+`````
 
 ## PyTorch, Hugging Face, Ray Tune 통합
 
@@ -114,7 +115,7 @@ W&B는 사실상 모든 인기 ML 프레임워크와 통합됩니다. 다음은 
 
 **PyTorch Lightning**
 
-```python
+`````python
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import WandbCallback
 
@@ -125,11 +126,11 @@ class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): lo
 # W&B callback auto-logs everything
 trainer = pl.Trainer(callbacks=[WandbCallback()])
 trainer.fit(model)
-```
+`````
 
 **Hugging Face Transformers**
 
-```python
+`````python
 from transformers import Trainer, TrainingArguments
 import wandb
 
@@ -146,11 +147,11 @@ trainer = Trainer(
     train_dataset=dataset,
 )
 trainer.train()
-```
+`````
 
 **초매개변수 스윕을 위한 Ray Tune**
 
-```python
+`````python
 import ray
 from ray import tune
 import wandb
@@ -171,7 +172,7 @@ sweep = tune.run(
     metric="score",
     mode="max",
 )
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -183,7 +184,7 @@ W&B의 로깅 성능은 다양한 훈련 규모에서 벤치마킹되었습니�
 | LLM 파인튜닝 (70억 파라미터) | 3.5% | <50 MB/run | <5초 |
 | 분산 훈련 (8 GPU) | 4.0% | <100 MB/run | <3초 |
 
-실제 사용 예시: ```python
+실제 사용 예시: `````python
 # Log a confusion matrix as a W&B table
 import numpy as np
 import wandb
@@ -201,13 +202,13 @@ wandb.log({
 artifact = wandb.Artifact("training_data", type="dataset")
 artifact.add_file("dataset.csv")
 wandb.log_artifact(artifact)
-```
+`````
 
 ## 고급 사용법 / 프로덕션 Hardenning
 
 **아티팩트 버전 관리 및 계보**
 
-```python
+`````python
 # Log a model checkpoint as an artifact
 model_artifact = wandb.Artifact("best_model", type="model")
 model_artifact.add(model, "model.pt")
@@ -219,11 +220,11 @@ wandb.log_artifact(model_artifact, aliases=["best", "v1.0"])
 run = wandb.init()
 art = run.use_artifact("project/model:v1", type="model")
 path = art.download()
-```
+`````
 
 **맞춤형 보고서 및 대시보드**
 
-```python
+`````python
 # Create a report with custom panels
 report = wandb.Report(
     title="Experiment Results",
@@ -239,11 +240,11 @@ report = wandb.Report(
     ]
 )
 report.save("experiment-report")
-```
+`````
 
 **스윕 구성**
 
-```yaml
+`````yaml
 # sweeps.yaml
 name: nlp-sweep
 program: train.py
@@ -255,16 +256,16 @@ parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4]
     max: 0.1
 command: - python
   - train.py
-```
+`````
 
-스윕 실행: ```bash
+스윕 실행: `````bash
 wandb sweep sweeps.yaml
 wandb agent $SWEEP_ID
-```
+`````
 
 **배포를 위한 모델 레지스트리**
 
-```python
+`````python
 # Log model to the registry
 run.log_model(
     path="./fine_tuned_model",
@@ -276,11 +277,11 @@ run.log_model(
 api = wandb.Api()
 model = api.model("my-nlp-model:staging")
 model.change_alias("production")
-```
+`````
 
 **맞춤형 훈련 루프를 위한 W&B SDK**
 
-```python
+`````python
 import wandb
 import torch
 from torch.optim import AdamW
@@ -314,11 +315,11 @@ for epoch in range(config.epochs): model.train()
         "epoch_loss_avg": epoch_loss / len(train_loader),
         "epoch": epoch,
     })
-```
+`````
 
 **데이터세트 워크플로우를 위한 아티팩트 버전 관리**
 
-```python
+`````python
 # Create and log a dataset artifact
 dataset_artifact = wandb.Artifact(
     name="cleaned_dataset",
@@ -338,7 +339,7 @@ wandb.log_artifact(dataset_artifact, aliases=["latest", "v1.2"])
 run = wandb.init()
 clean_data = run.use_artifact("project/cleaned_dataset:v1.2", type="dataset")
 data_path = clean_data.download()
-```
+`````
 
 ## 대체 솔루션 비교
 
@@ -362,7 +363,7 @@ data_path = clean_data.download()
 W&B는 가장 정교한 ML 추적 플랫폼이지만, 몇 가지 트레이드오프가 있습니다: 1. **클라우드 우선 모델**: W&B의 무료 티어는 클라우드 플랫폼 사용이 필요합니다. 온프레미스 배포가 필요한 팀을 위해 자체 호스팅 W&B Enterprise를 제공하지만, 무료 티어에서는 자체 호스팅을 지원하지 않습니다. 조직 내 모든 데이터를 인프라 내부에 유지해야 하는 경우 문제가 될 수 있습니다.
 2. **무료 티어 제한**: 무료 티어는 팀 멤버 1명으로 제한됩니다. 대형 연구 팀의 경우 특히 대형 모델 아티팩트에 필요한 추가 저장량을 고려할 때 유료 플랜의 초기 비용이 상당히 높습니다.
 3. **고급 기능의 학습 곡선**: 기본 로깅은 간단하지만, 스윕, 아티팩트 버전 관리, 맞춤형 보고서 등의 기능은 W&B의 데이터 모델을 이해해야 합니다. 신규 사용자는 플랫폼의 전체 기능을 익숙하게 되기까지 1~2시간이 필요할 수 있습니다.
-4. **제한된 오프라인 기능**: 훈련 환경에서 인터넷 연결이 intermittent한 경우 W&B는 연결이 복구될 때 데이터를 동기화합니다. 다만 SDK는 완전히 연결이 끊긴 환경을 위해 `wandb.init(mode="offline")`를 지원하며, 나중에 수동 동기화가 가능합니다.
+4. **제한된 오프라인 기능**: 훈련 환경에서 인터넷 연결이 intermittent한 경우 W&B는 연결이 복구될 때 데이터를 동기화합니다. 다만 SDK는 완전히 연결이 끊긴 환경을 위해 ````wandb.init(mode="offline")````를 지원하며, 나중에 수동 동기화가 가능합니다.
 5. **벤더 락인 위험**: W&B는 표준 형식(JSON, CSV)으로 데이터를 내보내지만, 수백 번의 실험을 W&B에.Commit한 후 다른 플랫폼으로 마이그레이션하는 것은 시간이 많이 걸릴 수 있습니다.
 
 ## 자주 묻는 질문
@@ -373,7 +374,7 @@ W&B는 가장 정교한 ML 추적 플랫폼이지만, 몇 가지 트레이드오
 
 **Q: Jupyter Notebook에서 W&B를 사용할 수 있나요?**
 
-물론입니다. W&B는 Jupyter Notebook에서 원활하게 작동합니다. 노트북 셀의 상단에 `wandb.init()`으로 런을 초기화하면, 이후의 모든 `wandb.log()` 호출이 대시보드로 스트리밍됩니다. `wandb.jupyter`를 사용하면 Jupyter 위젯과 자동으로 통합됩니다.
+물론입니다. W&B는 Jupyter Notebook에서 원활하게 작동합니다. 노트북 셀의 상단에 ````wandb.init()````으로 런을 초기화하면, 이후의 모든 ````wandb.log()```` 호출이 대시보드로 스트리밍됩니다. ````wandb.jupyter````를 사용하면 Jupyter 위젯과 자동으로 통합됩니다.
 
 **Q: W&B는 대형 모델 아티팩트를 어떻게 처리하나요?**
 
@@ -391,7 +392,7 @@ W&B는 모든 실행, 아티팩트, 보고서가 기본적으로 공유되는 �
 
 Weights & Biases는 ML 팀이 실험 추적을 접근하는 방식을 혁신했습니다. 실시간 로깅, 직관적인 시각화, 강력한 협업 기능을 결합한 W&B는 모델 훈련의 혼란을 구조화되고 재현 가능한 워크플로우로 변환합니다. 70억 파라미터 LLM을 파인튜닝하든 작은 초매개변수 스윕을 실행하든, W&B는 더 빠른 결정을 내리는 데 필요한 가시성을 제공합니다.
 
-PyTorch, Hugging Face, Ray Tune와의 심층 통합 덕분에 단 한 줄의 코드(`report_to="wandb"`)로 실험 추적을 시작할 수 있습니다. 규모 있는 ML 애플리케이션을 구축하는 팀의 경우, [DigitalOcean](https://m.do.co/c/oa14d5f0wx4f)은 W&B의 추적 인프라와 잘 어울리는 합리적인 가격의 GPU 인스턴스를 제공합니다.
+PyTorch, Hugging Face, Ray Tune와의 심층 통합 덕분에 단 한 줄의 코드(````report_to="wandb"```)로 실험 추적을 시작할 수 있습니다. 규모 있는 ML 애플리케이션을 구축하는 팀의 경우, [DigitalOcean](https://m.do.co/c/oa14d5f0wx4f)은 W&B의 추적 인프라와 잘 어울리는 합리적인 가격의 GPU 인스턴스를 제공합니다.
 
 ML 파이프라인을 배포하는 팀의 경우: [WebShare](https://webshare.io/?referral_code=oa14d5f0wx4f)는 분산 훈련 워크플로우를 위한 안정적인 프록시 인프라를 제공합니다.
 
@@ -405,7 +406,7 @@ AI 금융 팀의 경우: [OKX](https://promoohubly.com)는 포괄적인 시장 �
 
 ML 도구, 실험 추적, MLOps 관행에 대한 지속적인 토론을 위해 [Telegram](https://t.me/DIBI8_Group)의 DIBI8 커뮤니티에 가입하세요.
 
----
+* * *
 
 **소스 및 더 읽을거리**: - W&B 문서: https://docs.wandb.ai/
 - W&B GitHub 저장소: https://github.com/wandb/wandb
@@ -442,7 +443,7 @@ ML 도구, 실험 추적, MLOps 관행에 대한 지속적인 토론을 위해 [
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -452,6 +453,6 @@ ML 도구, 실험 추적, MLOps 관행에 대한 지속적인 토론을 위해 [
 - [9router-smart-llm-proxy-token-saver-free-coding](wandb-ml-experiment-tracking-platform-2026)
 - [ai-engineering-from-scratch](wandb-ml-experiment-tracking-platform-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

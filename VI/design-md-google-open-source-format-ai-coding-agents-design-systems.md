@@ -11,6 +11,7 @@ license: Apache-2.0
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 
+
 # DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống thiết kế của Google qua định dạng mã nguồn mở
 
 
@@ -30,7 +31,7 @@ Khi bạn yêu cầu một đại lý lập trình AI xây dựng một trang đ
 
 DESIGN.md là một tệp markdown phục vụ như nguồn thông tin chính duy nhất về nhận diện hình ảnh của một dự án. Nó được thiết kế để các tác nhân lập trình AI (Claude, ChatGPT, Codex, Cursor, v.v.) đọc được, giúp họ tạo giao diện người dùng phù hợp với thương hiệu của bạn một cách nhất quán — mà không cần bạn phải giải thích lại hệ thống thiết kế của mình mỗi lần.
 
-Định dạng có hai lớp bổ trợ cho nhau: ```
+Định dạng có hai lớp bổ trợ cho nhau: ````
 ┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
@@ -40,39 +41,39 @@ DESIGN.md là một tệp markdown phục vụ như nguồn thông tin chính du
 │  ---                                           │
 │                                                  │
 │  ## Colors                                     │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
-│  ```                                           │
+│  `````                                           │
 │  <!-- Prose -->                                │
 │  A warm paper-and-ink system with a single     │
 │  vermilion accent for diagrams only.           │
 │                                                  │
 │  ## Typography                                 │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Spacing                                    │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Do's and Don'ts                            │
 │  - **Do** use the accent color only in charts  │
 │  - **Don't** add gradients or glass effects    │
 │                                                  │
 └──────────────────────────────────────────────────┘
-```
+`````
 
-Các token YAML cung cấp các giá trị có thể đọc bằng máy. Phần văn bản cung cấp *ngữ cảnh* có thể đọc cho con người — giải thích tại sao một màu là `#F4F0E4` (giấy xerox ấm, không bao giờ trắng tinh) thay vì chỉ nêu mã hex. Sự khác biệt này là điều làm cho DESIGN.md khác biệt cơ bản so với một tệp JSON token thiết kế.
+Các token YAML cung cấp các giá trị có thể đọc bằng máy. Phần văn bản cung cấp *ngữ cảnh* có thể đọc cho con người — giải thích tại sao một màu là ````#F4F0E4```` (giấy xerox ấm, không bao giờ trắng tinh) thay vì chỉ nêu mã hex. Sự khác biệt này là điều làm cho DESIGN.md khác biệt cơ bản so với một tệp JSON token thiết kế.
 
 ## Tại Sao Văn Xuôi Quan Trọng Hơn Các Token
 
@@ -84,7 +85,7 @@ DESIGN.md chính thức hóa nguyên tắc này. Các token là ngữ cảnh, kh
 
 ## Cách Nó Hoạt Động Ở Bên Trong
 
-Kho lưu trữ DESIGN.md được cấu trúc như một monorepo Bun với Turbo để điều phối: ```
+Kho lưu trữ DESIGN.md được cấu trúc như một monorepo Bun với Turbo để điều phối: `````
 design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
@@ -97,11 +98,11 @@ design.md/
 ├── turbo.json                  # Turbo build orchestration
 ├── tsconfig.base.json          # Shared TypeScript config
 └── PHILOSOPHY.md               # Design philosophy manifesto
-```
+`````
 
-Công cụ CLI (`@google/design.md`) cung cấp: - **Linting**: Xác thực các tệp DESIGN.md theo lược đồ đặc tả
+Công cụ CLI (````@google/design.md````) cung cấp: - **Linting**: Xác thực các tệp DESIGN.md theo lược đồ đặc tả
 - **Trích xuất token**: Phân tích các khối YAML thành dữ liệu có cấu trúc
-- **Tích hợp agent**: Được đóng gói dưới dạng định nghĩa `.agents/skills/` cho Claude, ChatGPT và các agent lập trình khác
+- **Tích hợp agent**: Được đóng gói dưới dạng định nghĩa ````.agents/skills/```` cho Claude, ChatGPT và các agent lập trình khác
 
 Trình kiểm tra mã đảm bảo rằng các phần bắt buộc (tên, màu sắc, kiểu chữ, khoảng cách, bo góc, thành phần) có mặt trong khi vẫn cho phép các phần tùy chỉnh tùy ý cho chuyển động, biểu tượng, độ cao, và các kích thước thiết kế khác cụ thể cho từng dự án.
 
@@ -109,57 +110,57 @@ Trình kiểm tra mã đảm bảo rằng các phần bắt buộc (tên, màu s
 
 ### 1. Cài đặt CLI
 
-```bash
+`````bash
 bun install -g @google/design.md
-```
+`````
 
-Hoặc sử dụng trực tiếp với npx: ```bash
+Hoặc sử dụng trực tiếp với npx: `````bash
 npx @google/design.md lint DESIGN.md
-```
+`````
 
 ### 2. Tạo Tập Tin DESIGN.md Đầu Tiên Của Bạn
 
-Bắt đầu với cấu trúc tối thiểu cần thiết: ```markdown
----
+Bắt đầu với cấu trúc tối thiểu cần thiết: `````markdown
+* * *
 name: My Project Design
----
+* * *
 
 ## Màu sắc
 
-```yaml
+`````yaml
 colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
-```
+`````
 
 Một hệ thống xanh lam và trắng sạch sẽ cho một sản phẩm SaaS chuyên nghiệp.
 
 ## Kiểu chữ
 
-```yaml
+`````yaml
 typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
-```
+`````
 
 Hệ thống kiểu chữ cho một gia đình nhằm đảm bảo tính nhất quán.
 
 ## Khoảng cách
 
-```yaml
+`````yaml
 spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
-```
+`````
 
 Lưới cơ bản 4px, 8px cho các phần tử lớn hơn.
-```
+`````
 
 ### 3. Gửi nó đến các đại lý lập trình của bạn
 
-Thêm DESIGN.md vào kho lưu trữ dự án của bạn. Khi làm việc với bất kỳ tác nhân lập trình nào, hãy tham chiếu tệp này trong lời nhắc hệ thống của bạn: ```
+Thêm DESIGN.md vào kho lưu trữ dự án của bạn. Khi làm việc với bất kỳ tác nhân lập trình nào, hãy tham chiếu tệp này trong lời nhắc hệ thống của bạn: `````
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
-```
+`````
 
 Đại lý bây giờ sẽ nhất quán áp dụng hệ thống thiết kế của bạn trên mọi thế hệ.
 
@@ -169,7 +170,7 @@ Kho lưu trữ bao gồm một số tệp DESIGN.md mẫu minh họa các phươ
 
 **Hệ thống Thiết kế Chuyển động**: Định nghĩa các hằng số thời gian cho phản hồi giao diện người dùng (120ms cho di chuột/nhấn, 250ms cho chuyển đổi nội dung) với đường cong làm mềm cơ học. Văn bản nhấn mạnh “Không gì bật lại, không gì vượt quá, không gì lưu lại” — mang đến cho người dùng một thẩm mỹ thời gian rõ ràng.
 
-**Kích thước Thiết kế Tùy chỉnh**: Định dạng chấp nhận bất kỳ tên phần nào. Một nhóm định nghĩa các token `motion` dưới dạng đường cong hoạt hình CSS; nhóm khác sử dụng hằng số thời gian miền âm thanh được đo bằng các khối bộ đệm. Đặc tả chuẩn hóa nơi sự nhất quán có ích và để lại sự linh hoạt nơi nó quan trọng hơn.
+**Kích thước Thiết kế Tùy chỉnh**: Định dạng chấp nhận bất kỳ tên phần nào. Một nhóm định nghĩa các token ````motion```` dưới dạng đường cong hoạt hình CSS; nhóm khác sử dụng hằng số thời gian miền âm thanh được đo bằng các khối bộ đệm. Đặc tả chuẩn hóa nơi sự nhất quán có ích và để lại sự linh hoạt nơi nó quan trọng hơn.
 
 ## Tại sao điều này quan trọng đối với phát triển có sự hỗ trợ của AI
 
@@ -204,7 +205,7 @@ DESIGN.md được phát triển bởi Google Labs Code và đã thu hút sự c
 - **18 issues** and **17 pull requests** showing active development
 - **4 published tags** with semantic versioning
 
-Định dạng này đã truyền cảm hứng cho các dự án phái sinh và tích hợp trong toàn bộ hệ sinh thái các tác nhân lập trình AI. Nhiều định nghĩa kỹ năng của tác nhân đã xuất hiện, và thư mục `.agents/skills/` cung cấp các cấu hình sẵn sàng sử dụng cho các tác nhân lập trình phổ biến.
+Định dạng này đã truyền cảm hứng cho các dự án phái sinh và tích hợp trong toàn bộ hệ sinh thái các tác nhân lập trình AI. Nhiều định nghĩa kỹ năng của tác nhân đã xuất hiện, và thư mục ````.agents/skills/``` cung cấp các cấu hình sẵn sàng sử dụng cho các tác nhân lập trình phổ biến.
 
 ## Kết luận
 
@@ -224,7 +225,7 @@ Hãy xem các hướng dẫn nội bộ về So sánh Đại lý Lập trình AI
 
 Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để thảo luận hàng ngày về các công cụ AI, tiện ích phát triển và các dự án mã nguồn mở.
 
----
+* * *
 
 **Nguồn & Tài liệu Tham khảo**: - Kho chính thức: https://github.com/google-labs-code/design.md
 - Triết lý DESIGN.md: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
@@ -260,7 +261,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -270,7 +271,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - [personal-ai-infrastructure-daniel-miessler](design-md-google-open-source-format-ai-coding-agents-design-systems)
 - [prompts-chat](design-md-google-open-source-format-ai-coding-agents-design-systems)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

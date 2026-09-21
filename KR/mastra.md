@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/mastra/
 ---
 
+
 {{</* resource-info */>}}
 
 대부분의 AI 프레임워크는 Python용으로 만들어졌습니다. 기술 스택이 TypeScript와 Node.js를 기반으로 한다면 두 가지 선택지밖에 없었습니다: 언어 간 브리징을 하거나, 떨어지는 개발자 경험을 감수하는 것입니다. Gatsby 팀이 Mastra를 출시하면서 상황이 바뀌었습니다 — TypeScript 네이티브 AI 에이전트 구축 프레임워크로, 2026년 5월 기준 **24,050개의 GitHub Star**를 달성했으며 현재 Replit, PayPal, Sanity 등에서 프로덕션 환경에 사용되고 있습니다. 이 글에서는 Mastra 설치부터 첫 에이전트 구축, 그리고 Observational Memory가 기존 RAG 접근법 대비 Token 비용을 4-10배 어떻게 절감하는지에 대한 모든 것을 다룹니다.
@@ -34,14 +35,14 @@ Mastra는 AI 기반 애플리케이션과 에이전트를 구축하기 위한 �
 
 ![Mastra Logo](https://raw.githubusercontent.com/mastra-ai/mastra/main/docs/public/logo.png)
 
-핵심 개념은 간단합니다: 에이전트는 도구 접근 권한을 가진 개방형 대화 작업을 처리하고, 워크플로우는 결정론적 다단계 프로세스를 관리하며, RAG는 응답을 데이터에 기반시키고, 메모리는 대화 간 문맥을 유지하며, 평가는 품질을 측정합니다. 6가지 원시 요소 모두 `@mastra/core`에 포함되어 일관된 Zod 타입 API로 함께 작동합니다.
+핵심 개념은 간단합니다: 에이전트는 도구 접근 권한을 가진 개방형 대화 작업을 처리하고, 워크플로우는 결정론적 다단계 프로세스를 관리하며, RAG는 응답을 데이터에 기반시키고, 메모리는 대화 간 문맥을 유지하며, 평가는 품질을 측정합니다. 6가지 원시 요소 모두 ```@mastra/core````에 포함되어 일관된 Zod 타입 API로 함께 작동합니다.
 
 ![Mastra Studio — 에이전트, 워크플로우, 메모리를 디버깅하는 로컬 개발 UI](https://www.firecrawl.dev/images/blog/mastra-tutorial/workflow-graph.webp)
 
 ## Mastra의 작동 방식 — 아키텍처와 핵심 개념
 
 Mastra의 아키텍처는 프로덕션 AI 시스템에 실제로 필요한 6가지 구성 요소를 중심으로 설계되었습니다: ### 에이전트 (Agents)
-에이전트는 주요 행위자입니다. 지시사항, 모델, 도구 접근 권한을 제공하면 에이전트가 어떤 것을 호출할지, 언제 멈출지, 어떻게 응답할지 스스로 결정합니다. `.generate()`는 완전한 응답을 위해, `.stream()`은 실시간 Token 스트리밍을 제공합니다 — 이는 응답이 점진적으로 표시되는 채팅 UI에 필수적입니다.
+에이전트는 주요 행위자입니다. 지시사항, 모델, 도구 접근 권한을 제공하면 에이전트가 어떤 것을 호출할지, 언제 멈출지, 어떻게 응답할지 스스로 결정합니다. ````.generate()````는 완전한 응답을 위해, ````.stream()````은 실시간 Token 스트리밍을 제공합니다 — 이는 응답이 점진적으로 표시되는 채팅 UI에 필수적입니다.
 
 ### 워크플로우 (Workflows)
 워크플로우는 XState 기반으로 명시적 제어가 필요한 다단계 작업의 결정론적 오케스트레이션을 제공합니다. 분기, 병렬 실행, 반복, 그리고 실행을 일시 중지한 후 승인을 받으면 재개하는 휴인더루프(human-in-the-loop) 패턴을 지원합니다.
@@ -58,7 +59,7 @@ Mastra의 RAG 파이프라인은 문서 청킹, 임베딩 생성, 벡터 저장,
 ### 평가 (Evals)
 평가 프레임워크는 모델 기반 평가, 규칙 기반, 통계적 방법을 통해 에이전트 품질을 추적합니다. 관련성, 충실도, 독성, 톤 일관성, 커스텀 메트릭을 평가할 수 있습니다.
 
-```typescript
+`````typescript
 // Mastra 핵심 아키텍처 — 6가지 원시 요소를 한 설정에
 import { Mastra } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -75,7 +76,7 @@ const mastra = new Mastra({
   vectorStore: new PgVector(connectionString),
   telemetry: otel,
 });
-```
+`````
 
 ## 설치 및 설정 — 5분 이내
 
@@ -83,7 +84,7 @@ Mastra는 Node.js 22.13.0 이상이 필요합니다. 권장 방법은 CLI 마법
 
 ### 단계 1: 새 프로젝트 생성
 
-```bash
+`````bash
 # 인터랙티브 CLI로 새 Mastra 프로젝트 스캐폴드
 npm create mastra@latest
 
@@ -91,11 +92,11 @@ npm create mastra@latest
 # - 구성 요소 (에이전트, 워크플로우, RAG, 메모리)
 # - LLM 제공자 (OpenAI, Anthropic, Google 등)
 # - 예제 코드 포함 여부
-```
+`````
 
 ### 단계 2: 수동 설치 (대안)
 
-기존 프로젝트에 Mastra를 추가하려는 경우: ```bash
+기존 프로젝트에 Mastra를 추가하려는 경우: `````bash
 # 스키마 검증용 Zod와 함께 핵심 패키지 설치
 npm install @mastra/core@latest zod@^4
 
@@ -104,19 +105,19 @@ npm install @ai-sdk/openai
 
 # 선택적: 벡터 저장소, 메모리, 배포 패키지
 npm install @mastra/pg @mastra/memory @mastra/deployer-vercel
-```
+`````
 
 ### 단계 3: 환경 설정
 
-```bash
+`````bash
 # .env — Mastra가 런타임에 자동 로드
 OPENAI_API_KEY=sk-xxxx
 DATABASE_URL=postgresql://user:pass@localhost:5432/mastra
-```
+`````
 
 ### 단계 4: 프로젝트 구조
 
-```
+`````
 my-mastra-project/
 ├── src/
 │   └── mastra/
@@ -130,17 +131,17 @@ my-mastra-project/
 ├── .env
 ├── package.json
 └── tsconfig.json
-```
+`````
 
 ### 단계 5: Mastra Studio 실행
 
-```bash
+`````bash
 # localhost:4111에서 로컬 개발 UI 시작
 npx mastra dev
 
 # Studio를 통해 에이전트와 채팅, 도구 호출 검사,
 # 메모리 상태 보기, 워크플로우 시각화, 프롬프트 반복 가능
-```
+`````
 
 ![Mastra Changelog Digest 워크플로우 — INPUT → SCRAPE → EXTRACT → OUTPUT 파이프라인](https://www.firecrawl.dev/images/blog/mastra-tutorial/changelog-pipeline.webp)
 
@@ -148,7 +149,7 @@ npx mastra dev
 
 ### 도구가 있는 기본 에이전트
 
-```typescript
+`````typescript
 // src/mastra/agents/support.ts
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -174,7 +175,7 @@ services: mastra: build: .
       POSTGRES_DB: mastra
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## 대안과의 비교
 
@@ -218,7 +219,7 @@ Mastra는 모든 상황에 맞는 도구가 아닙니다. 이 프레임워크가
 LangChain은 ConversationBufferMemory, ConversationSummaryMemory, 벡터 기반 검색을 제공합니다. 이들은 전체 컨텍스트 윈도우를 소비하거나 프롬프트 캐시를 무효화하는 벡터 검색에 의존합니다. Mastra의 Observational Memory는 문맥을 캐시 가능한 관찰로 압축하여 4-10배 비용 절감을 달성하면서 LongMemEval 벤치마크에서 더 높은 점수(84.23% vs RAG의 80.05%)를 기록합니다.
 
 **Q: DigitalOcean이나 AWS에서 Vercel이 아닌 Mastra를 배포할 수 있나요?**
-네. Mastra는 완전히 오픈소스이며 모든 Node.js 런타임에 배포할 수 있습니다. `mastra build`로 빌드한 후 DigitalOcean App Platform, AWS ECS, Google Cloud Run 또는 Docker 호스트에서 출력을 실행하세요. Vercel과 Cloudflare Workers 배포기는 선택 사항입니다.
+네. Mastra는 완전히 오픈소스이며 모든 Node.js 런타임에 배포할 수 있습니다. ````mastra build````로 빌드한 후 DigitalOcean App Platform, AWS ECS, Google Cloud Run 또는 Docker 호스트에서 출력을 실행하세요. Vercel과 Cloudflare Workers 배포기는 선택 사항입니다.
 
 **Q: Mastra는 어떤 LLM 제공자를 지원하나요?**
 Mastra는 Vercel AI SDK를 통해 40개 이상의 제공자를 지원합니다: OpenAI, Anthropic, Google, Mistral, Cohere, xAI, DeepSeek, Fireworks, Together 등. 제공자 전환은 코드 한 줄 변경으로 가능합니다.
@@ -236,10 +237,10 @@ Mastra 인스턴스를 생성할 때 메모리 인스턴스를 전달하세요. 
 
 Mastra는 AI 프레임워크 환경에서 명확한 간극을 메웁니다 — JavaScript 개발자가 생태계를 떠나지 않고 에이전트를 구축할 수 있는 프로덕션급 TypeScript 네이티브 툴킷입니다. Observational Memory의 4-10배 Token 비용 절감은 마케팅 과장이 아닙니다. LongMemEval 벤치마크로 검증된 측정 가능한 프로덕션 이점입니다. 프레임워크의 DX 점수 9/10과 5분 미만의 설정 시간은 TypeScript 팀이 아이디어에서 배포된 에이전트까지 가는 가장 빠른 경로를 제공합니다.
 
-Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에 AI 기능을 구축하고 있다면 Mastra는 진지한 평가를 받을 가치가 있습니다. `npm create mastra@latest`로 시작하여 워크플로우를 구축하고 Token 비용 차이를 직접 측정해 보세요.
+Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에 AI 기능을 구축하고 있다면 Mastra는 진지한 평가를 받을 가치가 있습니다. ````npm create mastra@latest````로 시작하여 워크플로우를 구축하고 Token 비용 차이를 직접 측정해 보세요.
 
 **실행 항목:**
-1. Mastra 저장소를 클론하고 빠른 시작을 실행하세요: `npm create mastra@latest`
+1. Mastra 저장소를 클론하고 빠른 시작을 실행하세요: ````npm create mastra@latest```
 2. [Mastra Discord 커뮤니티](https://discord.gg/mastra)에 가입하세요 (5,500+ 멤버)
 3. [공식 문서](https://mastra.ai/docs)를 살펴 보세요
 4. 업데이트를 위해 [Mastra GitHub 저장소](https://github.com/mastra-ai/mastra)를 팔로우하세요
@@ -299,7 +300,7 @@ Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -309,7 +310,7 @@ Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에
 - [9router-smart-llm-proxy-token-saver-free-coding](mastra)
 - [ai-engineering-from-scratch](mastra)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -13,6 +13,7 @@ tech_stack: - C
   - Python
 featureImage: /images/articles/free-llm-api-resources-ai-development.png
 stars: 27851---
+
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 
 {{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
@@ -63,7 +64,7 @@ The C/Rust indexing engine processes code 10-50x faster than pure Python alterna
 
 ### Quick Start with Docker
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/DeusData/codebase-memory-mcp.git
 cd codebase-memory-mcp
@@ -76,11 +77,11 @@ docker run -d \
   -v $(pwd)/data:/app/data \
   -e INDEX_PATH=/app/data/my-project \
   codebase-memory
-```
+`````
 
 ### Indexing a Codebase
 
-```python
+`````python
 from codebase_memory import Indexer
 
 # Initialize indexer
@@ -99,11 +100,11 @@ print(f"Indexed {results[files]} files, {results[tokens]} tokens")
 query = "How does the authentication flow work?"
 similar = indexer.search(query, top_k=5)
 for doc in similar: print(f"[{doc[score]:.2f}] {doc[path]}: {doc[snippet][:100]}")
-```
+`````
 
 ### MCP Server Configuration
 
-```json
+`````json
 {
   "mcpServers": {
     "codebase-memory": {
@@ -120,11 +121,11 @@ for doc in similar: print(f"[{doc[score]:.2f}] {doc[path]}: {doc[snippet][:100]}
     }
   }
 }
-```
+`````
 
 ### Using with Claude Desktop
 
-```json
+`````json
 {
   "mcpServers": {
     "codebase-memory": {
@@ -137,13 +138,13 @@ for doc in similar: print(f"[{doc[score]:.2f}] {doc[path]}: {doc[snippet][:100]}
     }
   }
 }
-```
+`````
 
 ## Architecture Deep Dive
 
 ### Hybrid C/Rust + Python Design
 
-The architecture separates compute-intensive indexing from protocol handling: ```
+The architecture separates compute-intensive indexing from protocol handling: `````
 ┌─────────────────────────────────────────────┐
 │              MCP Client (Claude, etc.)        │
 └──────────────────┬──────────────────────────┘
@@ -163,11 +164,11 @@ The architecture separates compute-intensive indexing from protocol handling: ``
 │  │ (Rust)   │  │ (C)      │  │ (Rust)   │  │
 │  └──────────┘  └──────────┘  └──────────┘  │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ### Incremental Indexing
 
-```rust
+`````rust
 // Rust incremental indexer
 pub struct IncrementalIndexer {
     file_hashes: HashMap<PathBuf, String>,
@@ -205,11 +206,11 @@ impl IncrementalIndexer {
         })
     }
 }
-```
+`````
 
 ### Vector Search Pipeline
 
-```python
+`````python
 class SearchPipeline: def __init__(self, vector_store, reranker=None): self.store = vector_store
         self.reranker = reranker
     
@@ -234,7 +235,7 @@ class SearchPipeline: def __init__(self, vector_store, reranker=None): self.stor
             })
         
         return results
-```
+`````
 
 
 ## Advanced Usage: Custom Indexing Rules
@@ -243,7 +244,7 @@ For specialized codebases, you can define custom indexing rules to improve relev
 
 ### Custom Language Parsers
 
-You can extend the indexer with custom parsers for domain-specific languages: ```python
+You can extend the indexer with custom parsers for domain-specific languages: `````python
 from codebase_memory.parsers import BaseParser, register_parser
 
 @register_parser("mylang")
@@ -256,11 +257,11 @@ class MyLangParser(BaseParser): def parse(self, file_path): with open(file_path)
                 "line": content[:match.start()].count("\n") + 1,
             })
         return segments
-```
+`````
 
 ### Semantic Filtering
 
-Exclude unnecessary files and focus on relevant code: ```python
+Exclude unnecessary files and focus on relevant code: `````python
 indexer = Indexer(
     codebase_path="./project",
     exclude_patterns=[
@@ -276,11 +277,11 @@ indexer = Indexer(
         "**/src/**",
     ]
 )
-```
+`````
 
 ### Custom Embedding Models
 
-Use domain-specific embedding models for better semantic understanding: ```python
+Use domain-specific embedding models for better semantic understanding: `````python
 from sentence_transformers import SentenceTransformer
 
 code_model = SentenceTransformer("Salesforce/codet5p-220m-paraphrase")
@@ -290,11 +291,11 @@ indexer = Indexer(
     embedding_model=code_model,
     embedding_dimension=220,
 )
-```
+`````
 
 ### Multi-Repository Indexing
 
-Index multiple repositories into a single knowledge base: ```python
+Index multiple repositories into a single knowledge base: `````python
 repositories = [
     "/home/user/project-alpha",
     "/home/user/project-beta",
@@ -308,37 +309,37 @@ multi_indexer = MultiRepoIndexer(
 )
 
 results = multi_indexer.search("authentication flow")
-```
+`````
 
 ## Real-World Use Cases
 
 ### Onboarding New Developers
 
-New team members can ask natural language questions about the codebase: ```
+New team members can ask natural language questions about the codebase: `````
 Q: How does the user authentication flow work?
 A: Authentication flows through: 1. JWT token generation in auth/middleware.ts (line 45-89)
    2. Token validation in api/routes/login.ts (line 12-34)
    3. Session storage in redis/session.ts (line 78-102)
-```
+`````
 
 ### Code Review Assistance
 
-Check for potential issues before merging pull requests: ```bash
+Check for potential issues before merging pull requests: `````bash
 mcp call codebase-memory security-audit --path ./src/api
 mcp call codebase-memory api-review --diff ./pr-123.diff
 mcp call codebase-memory changelog --since v2.0.0
-```
+`````
 
 ### Technical Documentation Generation
 
-```python
+`````python
 docs = indexer.generate_documentation(
     format="markdown",
     include_examples=True,
     include_diagrams=True,
     output_dir="./docs"
 )
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -346,13 +347,13 @@ docs = indexer.generate_documentation(
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Protocol | MCP | Proprietary | Proprietary | LSP |
 | Indexing Speed | ~15s/100K lines | ~2min/100K lines | N/A (cloud) | ~30s/100K lines |
@@ -392,11 +393,11 @@ This analysis is based on publicly available information from the Codebase Memor
 
 ### Q: What embedding models are supported?
 
-A: Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is `all-MiniLM-L6-v2` for speed, but you can swap in larger models like `all-mpnet-base-v2` for better accuracy, or domain-specific models for specialized codebases.
+A: Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is ````all-MiniLM-L6-v2```` for speed, but you can swap in larger models like ````all-mpnet-base-v2```` for better accuracy, or domain-specific models for specialized codebases.
 
 ### Q: Can I use it with my own vector database?
 
-A: Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the `VectorStore` interface.
+A: Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the ````VectorStore```` interface.
 
 ### Q: How does it handle private repositories?
 
@@ -429,7 +430,7 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 - [Codebase Memory MCP README](https://github.com/DeusData/codebase-memory-mcp/blob/main/README.md)
 
 
----
+* * *
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
 
 
@@ -439,11 +440,11 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
   "mainEntity": [
     {
       "question": "What embedding models are supported?",
-      "answer": "Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is `all-MiniLM-L6-v2` for speed, but you can swap in larger models like `all-mpnet-base-v2` for better accuracy, or domain-specific models for specialized codebases."
+      "answer": "Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is ````all-MiniLM-L6-v2```` for speed, but you can swap in larger models like ````all-mpnet-base-v2```` for better accuracy, or domain-specific models for specialized codebases."
     },
     {
       "question": "Can I use it with my own vector database?",
-      "answer": "Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the `VectorStore` interface."
+      "answer": "Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the ````VectorStore``` interface."
     },
     {
       "question": "How does it handle private repositories?",
@@ -487,7 +488,7 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](codebase-memory-mcp-deep-code-intelligence)
@@ -496,6 +497,6 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 - [headroom-token-compression-proxy-library-mcp-server](codebase-memory-mcp-deep-code-intelligence)
 - [codebase-memory-mcp-deep-code-intelligence](codebase-memory-mcp-deep-code-intelligence)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

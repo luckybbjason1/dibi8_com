@@ -13,6 +13,7 @@ tech_stack: - Python
   - Bash
 featureImage: /images/articles/free-llm-api-resources-ai-development.png
 stars: 8000---
+
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 
 {{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
@@ -57,7 +58,7 @@ Unlike commercial pentesting platforms, Strix AI is fully open-source. Every fin
 
 ### Installation
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/usestrix/strix.git
 cd strix
@@ -71,11 +72,11 @@ pip install -e .
 # Verify installation
 strix --version
 # Output: Strix AI v2.4.1
-```
+`````
 
 ### Running Your First Scan
 
-```bash
+`````bash
 # Quick scan of a web application
 strix scan --target https://example.com --profile quick
 
@@ -84,11 +85,11 @@ strix scan --target https://example.com --profile full
 
 # API-focused scan
 strix scan --target https://api.example.com --profile api
-```
+`````
 
 ### Configuration
 
-```yaml
+`````yaml
 # strix_config.yaml
 scanner: max_depth: 5
   concurrent_requests: 10
@@ -113,11 +114,11 @@ output: format: - html
     - pdf
     - json
   directory: ./reports
-```
+`````
 
 ### Advanced Scanning
 
-```bash
+`````bash
 # Scan with custom rules
 strix scan --target https://example.com \
   --rules ./custom-rules.yaml \
@@ -133,11 +134,11 @@ strix scan --target https://api.example.com \
 strix scan --target 192.168.1.0/24 \
   --profile infrastructure \
   --services ssh,http,https,dns,smtp
-```
+`````
 
 ### Python API
 
-```python
+`````python
 from strix import Scanner, ReportGenerator
 
 # Initialize scanner
@@ -159,13 +160,13 @@ print(f"Critical: {results.critical_count}")
 print(f"High: {results.high_count}")
 print(f"Medium: {results.medium_count}")
 print(f"Low: {results.low_count}")
-```
+`````
 
 ## Architecture Deep Dive
 
 ### Agent Orchestration
 
-Strix AI uses a hierarchical agent architecture where specialized agents communicate through a shared message bus: ```python
+Strix AI uses a hierarchical agent architecture where specialized agents communicate through a shared message bus: `````python
 class AgentBus: """Shared message bus for agent communication"""
     def __init__(self): self.topics = {}
         self.handlers = {}
@@ -180,11 +181,11 @@ bus = AgentBus()
 bus.subscribe("recon.complete", vuln_scanner.on_recon_complete)
 bus.subscribe("vuln.found", exploit_agent.on_vulnerability)
 bus.subscribe("exploit.confirmed", report_agent.on_exploit_result)
-```
+`````
 
 ### Vulnerability Analysis Pipeline
 
-```python
+`````python
 class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vulnerability type
         vtype = self._classify(finding)
         
@@ -211,11 +212,11 @@ class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vuln
             'evidence': finding.evidence,
             'remediation': self._suggest_remediation(vtype),
         }
-```
+`````
 
 ### AI-Powered False Positive Filter
 
-```python
+`````python
 class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
     
     def filter(self, findings): filtered = []
@@ -230,14 +231,14 @@ class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
             if response.probability < 30: filtered.append(finding)
         
         return filtered
-```
+`````
 
 
 ## Advanced Scanning Techniques
 
 ### Custom Vulnerability Rules
 
-Define custom detection rules for your specific application: ```yaml
+Define custom detection rules for your specific application: `````yaml
 # custom-rules.yaml
 rules: - name: "Custom SQL Injection"
     description: "Detects SQL injection in custom API endpoints"
@@ -252,11 +253,11 @@ rules: - name: "Custom SQL Injection"
     severity: high
     endpoints: - "/api/v1/config"
       - "/debug"
-```
+`````
 
 ### Authentication Testing
 
-Test various authentication mechanisms: ```bash
+Test various authentication mechanisms: `````bash
 # JWT token testing
 strix scan --target https://api.example.com   --auth-type jwt   --jwt-algorithms RS256,HS256   --jwt-exploit "none-algorithm"   --jwt-exploit "key-injection"
 
@@ -265,11 +266,11 @@ strix scan --target https://app.example.com   --auth-type oauth2   --oauth-flows
 
 # Session fixation testing
 strix scan --target https://app.example.com   --auth-type session   --session-attacks fixation,hijacking,regeneration
-```
+`````
 
 ### API Security Testing
 
-Comprehensive API security assessment: ```bash
+Comprehensive API security assessment: `````bash
 # OpenAPI-based testing
 strix scan --target https://api.example.com   --openapi ./openapi.yaml   --profile api-comprehensive
 
@@ -278,11 +279,11 @@ strix scan --target https://api.example.com/graphql   --profile graphql   --grap
 
 # WebSocket testing
 strix scan --target wss://ws.example.com   --profile websocket   --websocket-messages ./test-messages.json
-```
+`````
 
 ### Continuous Security Monitoring
 
-Set up continuous monitoring with CI/CD integration: ```yaml
+Set up continuous monitoring with CI/CD integration: `````yaml
 # .github/workflows/strix-security.yml
 name: Security Scan
 on: push: branches: [main]
@@ -298,31 +299,31 @@ jobs: security: runs-on: ubuntu-latest
       - name: Upload SARIF to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with: sarif_file: strix-report.sarif
-```
+`````
 
 ## Reporting and Compliance
 
 ### Executive Reports
 
-Generate board-ready security reports: ```bash
+Generate board-ready security reports: `````bash
 strix report --format executive   --include risk_matrix   --include remediation_timeline   --include compliance_status   --output executive-report.pdf
-```
+`````
 
 ### Compliance Mapping
 
-Map findings to compliance frameworks: ```bash
+Map findings to compliance frameworks: `````bash
 strix compliance --framework SOC2   --framework ISO27001   --framework PCI-DSS   --framework HIPAA   --output compliance-report.json
-```
+`````
 
 ### Remediation Tracking
 
-Track and manage remediation efforts: ```bash
+Track and manage remediation efforts: `````bash
 # Create remediation tickets
 strix remediate --project JIRA   --assignee team-backend   --priority high
 
 # Track progress
 strix remediate --track   --dashboard http://localhost:9090
-```
+````
 
 ## Comparison with Alternatives
 
@@ -330,13 +331,13 @@ strix remediate --track   --dashboard http://localhost:9090
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | AI Analysis | Yes | No | No | No |
 | False Positive Rate | Low (85% reduction) | Medium | High | High |
@@ -413,7 +414,7 @@ A: Strix AI supports HTML, PDF, JSON, and SARIF (Static Analysis Results Interch
 - [Strix AI README](https://github.com/usestrix/strix/blob/main/README.md)
 
 
----
+* * *
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
 
 
@@ -471,7 +472,7 @@ A: Strix AI supports HTML, PDF, JSON, and SARIF (Static Analysis Results Interch
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [semgrep-15k-star-sast-security-scanner](strix-ai-open-source-penetration-testing)
@@ -480,6 +481,6 @@ A: Strix AI supports HTML, PDF, JSON, and SARIF (Static Analysis Results Interch
 - [strix-ai-open-source-penetration-testing](strix-ai-open-source-penetration-testing)
 - [skillspector-nvidia-open-source-security-scanner-ai-agent-skills](strix-ai-open-source-penetration-testing)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

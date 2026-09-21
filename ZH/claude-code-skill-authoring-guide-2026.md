@@ -23,6 +23,7 @@ faq: - q: "skill 放在哪里？一个 SKILL.md 最少需要什么？"
   - q: "我什么时候该写子代理而不是 skill？"
     a: "当你需要教会一个在当前对话中运行的流程时，写 skill。当工作需要自己独立的上下文窗口时——大量探索、并行研究、或会拖垮父代理的独立审查——写子代理。两者可以组合：一个子代理可以在隔离运行时加载某个 skill 来遵循你的方法论。扩展决策框架里的经验法则是——skill 改变行为，子代理保护上下文，MCP server 增加能力。"
 ---
+
 # Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）
 
 
@@ -30,22 +31,22 @@ faq: - q: "skill 放在哪里？一个 SKILL.md 最少需要什么？"
 
 在 [子代理 vs MCP vs Skill](/zh/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) 一文中，我们画出了三轴地图：skill 拨动**知识**轴，子代理拨动**上下文**轴，MCP server 拨动**能力**轴。此后我们针对子代理这条轴发布了深度指南——[编写自定义代理](/zh/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) 和 [编排的失败模式](/zh/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/)。本指南补齐这套三件套：如何编写 **skill** 本身。
 
-skill 是三者中最被低估的，因为它看起来太简单了——"不就是一个 markdown 文件吗"。但一个编写精良的 skill，决定了知识究竟是*在你需要时就在那里*，还是塞进一个臃肿到每个 prompt 都要拖着 4000 个 token 规则（而当前任务根本用不上）的 `CLAUDE.md`。我们将讲解 SKILL.md 结构、决定一切的触发 description、用来保持轻量的渐进式披露、两个实战范例，以及那些让 skill 永远不触发的坑。
+skill 是三者中最被低估的，因为它看起来太简单了——"不就是一个 markdown 文件吗"。但一个编写精良的 skill，决定了知识究竟是*在你需要时就在那里*，还是塞进一个臃肿到每个 prompt 都要拖着 4000 个 token 规则（而当前任务根本用不上）的 ```CLAUDE.md````。我们将讲解 SKILL.md 结构、决定一切的触发 description、用来保持轻量的渐进式披露、两个实战范例，以及那些让 skill 永远不触发的坑。
 
 ## Skill 到底是什么
 
 一个 skill 是一个**目录**，而不只是一个文件：
 
-```
+`````
 .claude/skills/cut-release/
   SKILL.md            # frontmatter + instructions
   references/
     versioning.md     # heavy detail, loaded on demand
   scripts/
     bump-version.sh    # an executable the skill can run
-```
+`````
 
-`SKILL.md` 是入口点。它的 frontmatter 声明了 skill 的身份，并且——关键在于——*何时该加载*。正文存放流程。支持文件（参考、模板、脚本）放在旁边，只在需要时才被拉入。skill 放在 `.claude/skills/`（项目级，与团队共享）或 `~/.claude/skills/`（用户级，作用于你机器上的每个项目）。
+````SKILL.md```` 是入口点。它的 frontmatter 声明了 skill 的身份，并且——关键在于——*何时该加载*。正文存放流程。支持文件（参考、模板、脚本）放在旁边，只在需要时才被拉入。skill 放在 ````.claude/skills/````（项目级，与团队共享）或 ````~/.claude/skills/````（用户级，作用于你机器上的每个项目）。
 
 ## Skill vs CLAUDE.md：加载时机的问题
 
@@ -58,26 +59,26 @@ skill 是三者中最被低估的，因为它看起来太简单了——"不就�
 
 ## Frontmatter：name 和 description
 
-```markdown
+`````markdown
 
----
+* * *
 name: cut-release
 description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
 
----
+* * *
 You are helping cut a release. Follow these steps in order...
-```
+`````
 
-### `name`
+### ````name````
 
 kebab-case，要有描述性。这是 skill 的身份标识。
 
-### `description`——决定一切的触发信号
+### ````description````——决定一切的触发信号
 
 Claude 读取各个 skill 的 description 来做路由：它扫描这些 description，判断哪个 skill 匹配当前任务，然后加载那个 skill 的正文。所以 description 不是一个标签——它是一个**何时触发的条件**。把它塞满具体的触发词：
 
-> ❌ `description: Release helper.`
-> ✅ `description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.`
+> ❌ ````description: Release helper.````
+> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
 
 第一个永远不会触发，因为真实任务里没有任何东西匹配 "release helper"。第二个则在用户一说出 "let's ship 2.4.0" 的瞬间就触发。如果你的 skill 存在却从不激活，元凶必定是 description——每一次都是。
 
@@ -87,7 +88,7 @@ Claude 读取各个 skill 的 description 来做路由：它扫描这些 descrip
 
 1. **要写成流程，而非散文。** 让模型按顺序执行的编号步骤，胜过一段段铺陈背景的文字。"1. 在 package.json 里提升版本号。2. 从上一个 tag 以来的提交重新生成 changelog。3. ……"
 2. **把前置条件和坑就地写明。** "打 tag 之前，确认 main 上的 CI 是绿的"——就是这类人类会知道该检查的事。
-3. **指向重型细节，别内联它。** 如果版本控制策略有 800 字，把它放进 `references/versioning.md`，然后写"版本提升规则见 references/versioning.md"。这就是渐进式披露，下一节讲。
+3. **指向重型细节，别内联它。** 如果版本控制策略有 800 字，把它放进 ````references/versioning.md````，然后写"版本提升规则见 references/versioning.md"。这就是渐进式披露，下一节讲。
 
 ## 渐进式披露：让 SKILL.md 保持轻量
 
@@ -95,23 +96,23 @@ Claude 读取各个 skill 的 description 来做路由：它扫描这些 descrip
 
 为什么重要：description 和概览必须加载成本低，因为它们要被扫描以做路由。那份长达 2000 字的详细规格，只有在 skill 真正被启用、任务确实需要那种深度时，才该进入上下文。一个把所有内容都内联的 skill 就背离了初衷——你又回到了 CLAUDE.md 式的臃肿，只不过换了种触发方式而已。
 
-```markdown
+`````markdown
 ## Steps
 1. Bump version (see references/versioning.md for the semver rules)
 2. Run scripts/changelog.sh to generate the draft
 3. ...
-```
+`````
 
-Claude 只在真正需要这些规则时才读取 `references/versioning.md`，而非每次加载都读。
+Claude 只在真正需要这些规则时才读取 ````references/versioning.md````，而非每次加载都读。
 
 ## 实战范例：一个发布清单 skill
 
-```markdown
+`````markdown
 
----
+* * *
 name: cut-release
 description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
----
+* * *
 
 You are cutting a release. Do NOT skip the precondition check.
 
@@ -124,17 +125,17 @@ Steps: 1. Determine the new version (semver; see references/versioning.md).
 5. After merge: tag, push the tag, publish.
 
 Report which step you stopped at if anything blocks.
-```
+`````
 
 前置条件和那句"报告你停在哪一步"，正是让它达到生产级水准的东西——不只是步骤，而是一个细心的人会施加的护栏。
 
 ## 实战范例：一个领域手册 skill
 
-```markdown
----
+`````markdown
+* * *
 name: debug-flaky-test
 description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
----
+* * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
 
@@ -143,7 +144,7 @@ You are diagnosing a flaky test. Flakiness is almost always one of: shared state
 2. Check for unawaited async, real timers, and fixed sleeps.
 3. Check for shared mutable state between tests.
 4. Only after locating the cause, propose the fix. Do not "add a retry."
-```
+`````
 
 注意其中嵌入的领域知识（四种常见成因）——那是机构经验，被打包好，让任何人都能触发那位资深工程师的思维清单。
 
@@ -151,7 +152,7 @@ You are diagnosing a flaky test. Flakiness is almost always one of: shared state
 
 - **含糊的 description。** skill 存在却从不触发。加入具体的触发短语——用户在需要它时实际会打出来的词。
 - **什么都往 CLAUDE.md 塞。** 情境性流程把每个 prompt 都撑臃肿了。把它们挪进 skill。
-- **内联重型细节。** 一个 2000 字的 SKILL.md。用渐进式披露——指向 `references/`。
+- **内联重型细节。** 一个 2000 字的 SKILL.md。用渐进式披露——指向 ````references/```。
 - **写成散文而非流程。** 一个读起来像论文的 skill。把步骤编号。
 - **没有护栏。** 步骤没有前置条件或停止条件。加入一个细心的人会做的检查。
 
@@ -242,12 +243,12 @@ Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -257,7 +258,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-skill-authoring-guide-2026)
 - [cursor-vs-claude-code](claude-code-skill-authoring-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -288,15 +289,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

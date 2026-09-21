@@ -24,9 +24,10 @@ aliases:
   - /zh/posts/traefik/-
 ---
 
+
 {{</* resource-info */>}}
 
-在容器化环境中管理入口流量是一个持续的难题。每次新的微服务启动时，都需要有人更新反向代理配置、重新加载服务，并祈祷不会出问题。手动编辑 Nginx 配置文件、运行 `nginx -s reload` 然后验证路由是否正常工作 —— 这套流程在部署频率较低的时代或许可行，但在如今每天部署数十次甚至上百次的 DevOps 环境中，这种手动方式根本无法持续。配置错误导致的服务中断、证书过期未及时更新、新服务上线等待人工配置路由 —— 这些问题在快速增长的技术团队中屡见不鲜。
+在容器化环境中管理入口流量是一个持续的难题。每次新的微服务启动时，都需要有人更新反向代理配置、重新加载服务，并祈祷不会出问题。手动编辑 Nginx 配置文件、运行 ```nginx -s reload```` 然后验证路由是否正常工作 —— 这套流程在部署频率较低的时代或许可行，但在如今每天部署数十次甚至上百次的 DevOps 环境中，这种手动方式根本无法持续。配置错误导致的服务中断、证书过期未及时更新、新服务上线等待人工配置路由 —— 这些问题在快速增长的技术团队中屡见不鲜。
 
 [Traefik](https://github.com/traefik/traefik) 这款为云原生基础设施构建的开源边缘路由器通过监听容器编排器并自动更新路由解决了这个问题 —— 无需配置重载、无需停机、无需人工干预。它的设计哲学很简单：让反向代理感知你的基础设施，而不是让人去感知反向代理的需求。
 
@@ -44,7 +45,7 @@ Traefik 的架构将配置分为两层：**静态配置**（启动时加载，�
 
 ### 架构概览
 
-```
+`````
 ┌─────────────────────────────────────────────────────────┐
 │                      客户端                              │
 └─────────────────────────────────────────────────────────┘
@@ -75,20 +76,20 @@ Traefik 的架构将配置分为两层：**静态配置**（启动时加载，�
          │  服务   │  │  服务   │  │  服务   │
          │   A    │  │   B    │  │   C    │
          └────────┘  └────────┘  └────────┘
-```
+`````
 
 ### 核心概念
 
 | 组件 | 功能 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| EntryPoint | 监听传入流量的端口 | `:80`, `:443`, `:8080` |
-| Router | 根据规则匹配请求 | `Host("api.example.com")` |
+| EntryPoint | 监听传入流量的端口 | ````:80````, ````:443````, ````:8080```` |
+| Router | 根据规则匹配请求 | ````Host("api.example.com")```` |
 | Middleware | 修改请求/响应 | BasicAuth, RateLimit, RedirectScheme |
 | Service | 转发到上游后端 | 跨 3 个副本的负载均衡 |
 | Provider | 从编排器发现服务 | Docker, Kubernetes CRD, Consul |
@@ -101,17 +102,17 @@ Traefik 的架构将配置分为两层：**静态配置**（启动时加载，�
 
 创建专用目录和主 Traefik 配置：
 
-```bash
+`````bash
 mkdir -p ~/traefik/{data,configs}
 cd ~/traefik
 touch data/acme.json && chmod 600 data/acme.json
-```
+`````
 
-`acme.json` 文件用于存储 Let's Encrypt 证书。它必须具有严格的权限（`600`），否则 Let's Encrypt 将拒绝写入。这个文件是 Traefik 边沿路由器设置中证书持久化的核心组件，在生产环境中务必确保其备份策略到位。
+````acme.json```` 文件用于存储 Let's Encrypt 证书。它必须具有严格的权限（````600````），否则 Let's Encrypt 将拒绝写入。这个文件是 Traefik 边沿路由器设置中证书持久化的核心组件，在生产环境中务必确保其备份策略到位。
 
-**`docker-compose.yml`** — Traefik v3.x 生产级配置：
+**````docker-compose.yml````** — Traefik v3.x 生产级配置：
 
-```yaml
+`````yaml
 services: traefik: image: traefik:v3.2
     container_name: traefik
     restart: unless-stopped
@@ -127,7 +128,7 @@ services: traefik: image: traefik:v3.2
       - ./configs:/configs:ro
       - ./data/logs:/logs
     labels: - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.yourdomain.com`)"
+      - "traefik.http.routers.traefik.rule=Host(````traefik.yourdomain.com````)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - "traefik.http.routers.traefik.service=api@internal"
@@ -139,24 +140,24 @@ services: traefik: image: traefik:v3.2
     restart: unless-stopped
     networks: - proxy
     labels: - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.yourdomain.com`)"
+      - "traefik.http.routers.whoami.rule=Host(````whoami.yourdomain.com````)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
       - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
       - "traefik.http.services.whoami.loadbalancer.server.port=80"
 
 networks: proxy: external: true
-```
+`````
 
 先创建网络：
 
-```bash
+`````bash
 docker network create proxy
 docker compose up -d
-```
+`````
 
-**`data/traefik.yml`** — 静态配置：
+**````data/traefik.yml````** — 静态配置：
 
-```yaml
+`````yaml
 global: sendAnonymousUsage: false
 
 api: dashboard: true
@@ -189,26 +190,26 @@ accessLog: format: json
 metrics: prometheus: addEntryPointsLabels: true
     addRoutersLabels: true
     addServicesLabels: true
-```
+`````
 
-在 `https://traefik.yourdomain.com` 访问仪表板。基本认证凭据为 `admin` / `admin`（在生产环境中使用 `htpasswd -nb admin yourpassword` 修改 `basicauth.users` 标签）。
+在 ````https://traefik.yourdomain.com```` 访问仪表板。基本认证凭据为 ````admin```` / ````admin````（在生产环境中使用 ````htpasswd -nb admin yourpassword```` 修改 ````basicauth.users```` 标签）。
 
 ### 二进制安装（Linux）
 
 对于非 Docker 环境，Traefik 提供单个静态二进制文件：
 
-```bash
+`````bash
 wget https://github.com/traefik/traefik/releases/download/v3.2.0/traefik_v3.2.0_linux_amd64.tar.gz
 tar -xzf traefik_v3.2.0_linux_amd64.tar.gz
 sudo mv traefik /usr/local/bin/
 sudo chmod +x /usr/local/bin/traefik
-```
+`````
 
 ### Kubernetes Helm 安装
 
 对于 Traefik Kubernetes 部署，Helm 是在集群上安装 ingress 控制器的标准方式：
 
-```bash
+`````bash
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
 kubectl create namespace traefik
@@ -219,15 +220,15 @@ helm install traefik traefik/traefik \
   --set certResolvers.letsencrypt.acme.email=admin@yourdomain.com \
   --set certResolvers.letsencrypt.acme.storage=/data/acme.json \
   --set certResolvers.letsencrypt.acme.tlsChallenge=true
-```
+`````
 
 验证部署：
 
-```bash
+`````bash
 kubectl get pods -n traefik
 kubectl port-forward -n traefik svc/traefik 9000:9000
 # 访问 http://localhost:9000/dashboard/
-```
+`````
 
 ## 与 Docker、Kubernetes、Consul 和 Docker Compose 集成
 
@@ -235,11 +236,11 @@ kubectl port-forward -n traefik svc/traefik 9000:9000
 
 Docker 提供者是 Traefik 的杀手锏功能。任何带有 Traefik 标签的容器都会自动注册：
 
-```yaml
+`````yaml
 services: api: image: myapp/api:latest
     networks: - proxy
     labels: - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`api.example.com`) && PathPrefix(`/v2`)"
+      - "traefik.http.routers.api.rule=Host(````api.example.com````) && PathPrefix(````/v2````)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.routers.api.middlewares=api-ratelimit,api-cors"
@@ -250,25 +251,25 @@ services: api: image: myapp/api:latest
       - "traefik.http.services.api.loadbalancer.server.port=8080"
       - "traefik.http.services.api.loadbalancer.healthcheck.path=/health"
       - "traefik.http.services.api.loadbalancer.healthcheck.interval=10s"
-```
+`````
 
 关键 Docker 标签说明：
-- `traefik.enable=true` — 必需，因为设置了 `exposedByDefault: false`，这确保只有明确标记的服务才会被暴露
-- `traefik.http.routers.<name>.rule` — 路由规则（Host, PathPrefix, Headers 等），定义了哪些请求应该被路由到这个服务
-- `traefik.http.middlewares.*` — 应用的转换，如添加请求头、启用压缩、设置速率限制等
-- `traefik.http.services.*.loadbalancer.server.port` — 转发到的容器端口，Traefik 默认使用容器暴露的第一个端口，因此显式指定端口是最佳实践
+- ````traefik.enable=true```` — 必需，因为设置了 ````exposedByDefault: false````，这确保只有明确标记的服务才会被暴露
+- ````traefik.http.routers.<name>.rule```` — 路由规则（Host, PathPrefix, Headers 等），定义了哪些请求应该被路由到这个服务
+- ````traefik.http.middlewares.*```` — 应用的转换，如添加请求头、启用压缩、设置速率限制等
+- ````traefik.http.services.*.loadbalancer.server.port```` — 转发到的容器端口，Traefik 默认使用容器暴露的第一个端口，因此显式指定端口是最佳实践
 
 ### Kubernetes IngressRoute（CRD）
 
-Traefik 的原生 `IngressRoute` CRD 比标准 Kubernetes `Ingress` 提供更多控制：
+Traefik 的原生 ````IngressRoute```` CRD 比标准 Kubernetes ````Ingress```` 提供更多控制：
 
-```yaml
+`````yaml
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata: name: api-route
   namespace: production
 spec: entryPoints: - websecure
-  routes: - match: Host(`api.example.com`) && PathPrefix(`/v2`)
+  routes: - match: Host(````api.example.com````) && PathPrefix(````/v2````)
       kind: Rule
       middlewares: - name: rate-limit
         - name: strip-prefix
@@ -276,16 +277,16 @@ spec: entryPoints: - websecure
           port: 8080
           healthCheck: path: /health
             intervalSeconds: 10
-    - match: Host(`api.example.com`) && PathPrefix(`/v1`)
+    - match: Host(````api.example.com````) && PathPrefix(````/v1````)
       kind: Rule
       services: - name: api-v1-service
           port: 8080
   tls: certResolver: letsencrypt
-```
+`````
 
 单独创建中间件：
 
-```yaml
+`````yaml
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata: name: rate-limit
@@ -293,53 +294,53 @@ metadata: name: rate-limit
 spec: rateLimit: average: 100
     burst: 50
 
----
+* * *
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata: name: strip-prefix
   namespace: production
 spec: stripPrefix: prefixes: - /v2
-```
+`````
 
 ### Consul 服务发现
 
 对于 HashiCorp Consul 环境，Traefik 可以从目录中发现服务：
 
-```yaml
+`````yaml
 # traefik.yml 片段
 providers: consulCatalog: prefix: "traefik"
     exposedByDefault: false
     refreshInterval: "5s"
     endpoint: address: "127.0.0.1:8500"
       token: "your-consul-token"
-```
+`````
 
 在 Consul 中注册带有 Traefik 标签的服务：
 
-```bash
+`````bash
 curl -X PUT http://localhost:8500/v1/agent/service/register \
   -d '{
     "Name": "payments-api",
-    "Tags": ["traefik.enable=true", "traefik.http.routers.payments.rule=Host(`payments.example.com`)"],
+    "Tags": ["traefik.enable=true", "traefik.http.routers.payments.rule=Host(````payments.example.com````)"],
     "Port": 8080,
     "Check": {
       "HTTP": "http://localhost:8080/health",
       "Interval": "10s"
     }
   }'
-```
+`````
 
 ### Docker Compose 集成模式
 
-对于多项目设置，将 Traefik 放在专用的 `docker-compose.yml` 中，并通过外部 `proxy` 网络连接应用堆栈：
+对于多项目设置，将 Traefik 放在专用的 ````docker-compose.yml```` 中，并通过外部 ````proxy```` 网络连接应用堆栈：
 
-```yaml
+`````yaml
 # ~/projects/api/docker-compose.yml
 services: app: image: myapi:latest
     networks: - proxy
       - internal
     labels: - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`api.example.com`)"
+      - "traefik.http.routers.api.rule=Host(````api.example.com````)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.services.api.loadbalancer.server.port=3000"
@@ -351,13 +352,13 @@ services: app: image: myapi:latest
 
 networks: proxy: external: true
   internal: driver: bridge
-```
+`````
 
 无需触碰 Traefik 即可部署：
 
-```bash
+`````bash
 cd ~/projects/api && docker compose up -d
-```
+`````
 
 ## 基准测试和实际应用案例
 
@@ -367,17 +368,17 @@ cd ~/projects/api && docker compose up -d
 
 | 指标 | Nginx | HAProxy | Traefik v3.2 | Traefik v3.2 + FastProxy | Caddy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 每秒请求数 | 25,367 | 24,263 | 18,291 | **20,795** | 13,573 |
 | 平均延迟 (ms) | 3.93 | 4.12 | 5.60 | **4.86** | 7.45 |
@@ -388,9 +389,9 @@ cd ~/projects/api && docker compose up -d
 
 Traefik 的实验性 **FastProxy** 引擎（在 v3.2 中引入）相比标准引擎提供了约 50% 的吞吐量提升。通过以下方式启用：
 
-```yaml
+`````yaml
 experimental: fastProxy: {}
-```
+`````
 
 需要注意的是，FastProxy 目前不支持 HTTP/2 后端，且分布式追踪和 OpenTelemetry 语义约定指标功能尚未支持。在选择启用此实验性功能前，请确保你的后端服务使用 HTTP/1.1 协议。
 
@@ -400,38 +401,38 @@ experimental: fastProxy: {}
 
 2. **家庭实验室和自托管**：Docker Compose + Traefik 是自托管社区中的主流堆栈。自动 Let's Encrypt 证书结合基于标签的简单配置，使添加新服务成为复制粘贴操作。社区用户普遍认为 Traefik 的学习曲线比 Nginx 平缓，尤其是对于那些不熟悉复杂配置语法的新手来说。
 
-3. **多租户 SaaS 平台**：使用 `HostRegexp` 规则，SaaS 平台自动将 `{tenant}.app.example.com` 路由到正确的命名空间或服务。当新客户注册时，系统自动创建 DNS 记录并部署新实例，Traefik 立即开始路由流量，整个过程完全自动化：
+3. **多租户 SaaS 平台**：使用 ````HostRegexp```` 规则，SaaS 平台自动将 ````{tenant}.app.example.com```` 路由到正确的命名空间或服务。当新客户注册时，系统自动创建 DNS 记录并部署新实例，Traefik 立即开始路由流量，整个过程完全自动化：
 
-```yaml
-- "traefik.http.routers.app.rule=HostRegexp(`{tenant:[a-z0-9-]+}.app.example.com`)"
+`````yaml
+- "traefik.http.routers.app.rule=HostRegexp(````{tenant:[a-z0-9-]+}.app.example.com````)"
 - "traefik.http.routers.app.service=app-service"
-```
+`````
 
 ## 高级用法和生产环境加固
 
 ### 安全检查清单
 
 1. **禁用默认暴露** — 仅显式注册容器：
-```yaml
+`````yaml
 providers: docker: exposedByDefault: false
-```
+`````
 
 2. **以只读模式运行，禁止新特权**：
-```yaml
+`````yaml
 security_opt: - no-new-privileges:true
 read_only: true
-```
+`````
 
-3. **保护 Docker 套接字** — 使用套接字代理代替直接挂载 `/var/run/docker.sock`：
-```yaml
+3. **保护 Docker 套接字** — 使用套接字代理代替直接挂载 ````/var/run/docker.sock````：
+`````yaml
 services: socket-proxy: image: tecnativa/docker-socket-proxy
     environment: - CONTAINERS=1
       - SERVICES=1
     volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
-```
+`````
 
 4. **全局添加安全请求头**：
-```yaml
+`````yaml
 # configs/security.yml
 http: middlewares: security-headers: headers: frameDeny: true
         sslRedirect: true
@@ -442,13 +443,13 @@ http: middlewares: security-headers: headers: frameDeny: true
         stsSeconds: 31536000
         customResponseHeaders: X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
           Permissions-Policy: "camera=(), microphone=(), geolocation=()"
-```
+`````
 
 ### 速率限制和熔断器
 
 在生产环境中，速率限制和熔断是保护后端服务的关键机制。以下配置示例展示了如何在 Traefik 中同时启用这两种功能：
 
-```yaml
+`````yaml
 http: middlewares: api-ratelimit: rateLimit: average: 100
         burst: 50
         period: 1m
@@ -457,15 +458,15 @@ http: middlewares: api-ratelimit: rateLimit: average: 100
         checkPeriod: "10s"
         fallbackDuration: "10s"
         recoveryDuration: "10s"
-```
+`````
 
 速率限制 middleware 可以基于客户端 IP 或请求头进行流量控制，而熔断器则在后端延迟超过阈值时自动切断流量，防止级联故障影响整个系统。
 
 ### 可观测性：Prometheus + Grafana
 
-在 `traefik.yml` 中启用 Prometheus 指标：
+在 ````traefik.yml```` 中启用 Prometheus 指标：
 
-```yaml
+`````yaml
 metrics: prometheus: addEntryPointsLabels: true
     addRoutersLabels: true
     addServicesLabels: true
@@ -480,19 +481,19 @@ metrics: prometheus: addEntryPointsLabels: true
       - 2.5
       - 5.0
       - 10.0
-```
+`````
 
 Prometheus 抓取配置：
 
-```yaml
+`````yaml
 scrape_configs: - job_name: traefik
     scrape_interval: 15s
     static_configs: - targets: ['traefik:8080']
-```
+`````
 
-在 Grafana 中导入官方 Traefik 仪表板（ID: `17346`）。这个仪表板提供了请求速率、错误率、响应延迟和证书过期时间的可视化面板。对于生产环境，建议将这些指标与告警系统集成，以便在异常发生时及时通知运维团队。需要监控的关键指标包括：
+在 Grafana 中导入官方 Traefik 仪表板（ID: ````17346````）。这个仪表板提供了请求速率、错误率、响应延迟和证书过期时间的可视化面板。对于生产环境，建议将这些指标与告警系统集成，以便在异常发生时及时通知运维团队。需要监控的关键指标包括：
 
-```promql
+`````promql
 # 按路由器统计请求速率
 rate(traefik_router_requests_total[5m])
 
@@ -504,16 +505,16 @@ histogram_quantile(0.95, rate(traefik_service_request_duration_seconds_bucket[5m
 
 # 证书过期时间（少于7天时告警）
 traefik_tls_certs_not_after - time() < 7 * 86400
-```
+`````
 
 ![Traefik Grafana Dashboard](https://grafana.com/api/dashboards/17346/images/14185/image)
 *官方 Traefik Grafana 仪表板（ID 17346）可视化请求速率、错误率和响应延迟。*
 
 ### 单节点之外的扩展
 
-对于高可用性架构，建议在 Layer 4 负载均衡器后运行多个 Traefik 副本，并将共享的 `acme.json` 文件挂载到每个实例上。这种架构确保了即使某个 Traefik 实例出现故障，流量也可以被其他健康实例继续处理。建议至少运行 3 个副本，并配置 pod 反亲和性以确保它们分布在不同节点上。以下是 Docker Swarm 模式的配置示例：
+对于高可用性架构，建议在 Layer 4 负载均衡器后运行多个 Traefik 副本，并将共享的 ````acme.json```` 文件挂载到每个实例上。这种架构确保了即使某个 Traefik 实例出现故障，流量也可以被其他健康实例继续处理。建议至少运行 3 个副本，并配置 pod 反亲和性以确保它们分布在不同节点上。以下是 Docker Swarm 模式的配置示例：
 
-```yaml
+`````yaml
 # docker-compose.yml (Swarm 模式)
 services: traefik: image: traefik:v3.2
     deploy: replicas: 3
@@ -526,7 +527,7 @@ services: traefik: image: traefik:v3.2
       - target: 443
         published: 443
         mode: host
-```
+`````
 
 在生产环境中，还应配置健康检查探针和监控告警，以便在 Traefik 实例出现故障时及时收到通知并进行处理。
 
@@ -534,15 +535,15 @@ services: traefik: image: traefik:v3.2
 
 | 功能 | Traefik | Nginx | HAProxy | Caddy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **自动服务发现** | 支持（Docker、K8s、Consul） | 不支持（需重载） | 不支持（需重载） | 部分支持（通过配置） |
 | **不停机配置重载** | 支持（完全动态） | 支持（信号触发） | 支持（软重载） | 支持 |
@@ -575,27 +576,27 @@ Traefik 并非适合所有场景。以下是其不擅长的地方：
 
 ### 添加新服务时 Traefik 需要重启吗？
 
-不需要。Traefik 监听 Docker 套接字或 Kubernetes API 并实时更新路由。带有 Traefik 标签的新容器在几秒内被检测到，流量立即被路由。这是相比传统代理的主要优势。例如，当你运行 `docker compose up -d` 启动一个新的 Web 应用时，Traefik 会在几秒钟内自动为其创建路由规则和 TLS 证书，无需任何手动操作。
+不需要。Traefik 监听 Docker 套接字或 Kubernetes API 并实时更新路由。带有 Traefik 标签的新容器在几秒内被检测到，流量立即被路由。这是相比传统代理的主要优势。例如，当你运行 ````docker compose up -d```` 启动一个新的 Web 应用时，Traefik 会在几秒钟内自动为其创建路由规则和 TLS 证书，无需任何手动操作。
 
 ### Traefik 可以与多个 Docker Compose 项目一起使用吗？
 
-可以。创建一个外部 Docker 网络（`docker network create proxy`），并将 Traefik 和所有应用服务连接到它。每个项目可以定义自己的 `docker-compose.yml` 并带有 Traefik 标签 —— 只要它们共享网络，Traefik 就会自动发现它们。这种模式非常适合微服务架构，其中每个团队管理自己的代码仓库和部署流程，而 Traefik 作为集中式的边缘路由器统一管理入口流量。
+可以。创建一个外部 Docker 网络（````docker network create proxy````），并将 Traefik 和所有应用服务连接到它。每个项目可以定义自己的 ````docker-compose.yml```` 并带有 Traefik 标签 —— 只要它们共享网络，Traefik 就会自动发现它们。这种模式非常适合微服务架构，其中每个团队管理自己的代码仓库和部署流程，而 Traefik 作为集中式的边缘路由器统一管理入口流量。
 
 ### Traefik 如何处理 Let's Encrypt 速率限制？
 
-Traefik 将证书存储在 `acme.json` 文件中，仅在证书缺失或即将过期时才请求新证书。对于频繁重新创建容器的环境，请将 `acme.json` 作为持久卷挂载。Let's Encrypt 生产环境限制为每周每个注册域名 50 张证书。建议在初始测试时使用 Let's Encrypt 的 Staging 环境，以避免在生产环境中触发速率限制。测试通过后，再切换到生产环境获取真实证书。
+Traefik 将证书存储在 ````acme.json```` 文件中，仅在证书缺失或即将过期时才请求新证书。对于频繁重新创建容器的环境，请将 ````acme.json```` 作为持久卷挂载。Let's Encrypt 生产环境限制为每周每个注册域名 50 张证书。建议在初始测试时使用 Let's Encrypt 的 Staging 环境，以避免在生产环境中触发速率限制。测试通过后，再切换到生产环境获取真实证书。
 
 ### Traefik 仪表板暴露出去安全吗？
 
-仅在添加认证后安全。仪表板显示完整的路由配置，包括后端服务。在暴露之前，务必应用 BasicAuth、ForwardAuth（到 Authelia/Authentik）或 IP 白名单中间件。切勿在生产环境使用 `--api.insecure=true`。
+仅在添加认证后安全。仪表板显示完整的路由配置，包括后端服务。在暴露之前，务必应用 BasicAuth、ForwardAuth（到 Authelia/Authentik）或 IP 白名单中间件。切勿在生产环境使用 ````--api.insecure=true````。
 
 ### 标准 Ingress 和 Traefik 的 IngressRoute 有什么区别？
 
-标准 Kubernetes `Ingress` 是通用资源，路由选项有限，只能处理基本的 HTTP 路由规则。Traefik 的 `IngressRoute` CRD 是专为 Traefik 设计的自定义资源，它增加了中间件链、TCP/UDP 路由、加权负载均衡、流量镜像和直接 TLS 选项配置 —— 全部无需注解。这意味着你可以将认证、压缩、请求头修改等操作直接定义在路由配置中，而不需要依赖外部工具或 Ingress 注解。对于需要高级路由功能的团队来说，IngressRoute 是更好的选择。
+标准 Kubernetes ````Ingress```` 是通用资源，路由选项有限，只能处理基本的 HTTP 路由规则。Traefik 的 ````IngressRoute```` CRD 是专为 Traefik 设计的自定义资源，它增加了中间件链、TCP/UDP 路由、加权负载均衡、流量镜像和直接 TLS 选项配置 —— 全部无需注解。这意味着你可以将认证、压缩、请求头修改等操作直接定义在路由配置中，而不需要依赖外部工具或 Ingress 注解。对于需要高级路由功能的团队来说，IngressRoute 是更好的选择。
 
 ### 可以不停机从 Traefik v2 迁移到 v3 吗？
 
-Traefik v3 在 CRD 版本（`traefik.containo.us` → `traefik.io`）中引入了破坏性变更，并移除了一些已弃用的提供者。计划进行蓝绿迁移：将 v3 与 v2 并排部署，逐步转移流量，并在停用 v2 之前更新 CRD。Traefik 文档提供了详细的迁移指南。
+Traefik v3 在 CRD 版本（````traefik.containo.us```` → ````traefik.io````）中引入了破坏性变更，并移除了一些已弃用的提供者。计划进行蓝绿迁移：将 v3 与 v2 并排部署，逐步转移流量，并在停用 v2 之前更新 CRD。Traefik 文档提供了详细的迁移指南。
 
 ## 结论
 
@@ -606,7 +607,7 @@ Traefik 凭借其在容器化环境中解决动态服务发现这一实际运维
 对于在生产基础设施上托管 Traefik，[DigitalOcean](https://www.digitalocean.com/) 提供了一个简单的平台，其托管 Kubernetes 和负载均衡器与 Traefik 干净集成。对于具有竞争力的价格的专用服务器部署，考虑 [HTStack](https://htstack.com/) —— 这是运行基于 Docker 的工作负载并具有对边缘路由完全控制的性价比替代方案。
 
 **后续步骤：**
-1. 克隆官方仓库：`git clone https://github.com/traefik/traefik.git`
+1. 克隆官方仓库：````git clone https://github.com/traefik/traefik.git```
 2. 部署本指南中的 Docker Compose 设置
 3. 使用 Traefik 标签添加你的第一个服务
 4. 加入 [Traefik 社区](https://community.traefik.io/)获取支持
@@ -614,7 +615,7 @@ Traefik 凭借其在容器化环境中解决动态服务发现这一实际运维
 💬 **加入我们的 [Telegram 群组](https://t.me/dibi8tech) 讨论本指南并获取帮助** —— 分享你的 Traefik 配置、提出问题，并与其他运行生产边缘路由器的开发者联系。
 
 
----
+* * *
 *披露声明：本文包含 DigitalOcean 和 HTStack 的联盟链接（affiliate links）。这些是根据其 Docker/Kubernetes 兼容性和定价推荐的 Traefik 托管服务。联盟链接有助于支持免费深度技术指南的创建。*
 
 
@@ -666,7 +667,7 @@ Traefik 凭借其在容器化环境中解决动态服务发现这一实际运维
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](traefik)
@@ -675,6 +676,6 @@ Traefik 凭借其在容器化环境中解决动态服务发现这一实际运维
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](traefik)
 - [moneyprinterturbo-one-click-ai-video-generator](traefik)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

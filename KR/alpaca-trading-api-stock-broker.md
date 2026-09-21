@@ -12,17 +12,18 @@ aliases:
   - /kr/posts/alpaca-trading-api-stock-broker/
 ---
 
+
 {{</* resource-info */>}}
 
 > 📌 **제휴 공개**: 본 문서에는 제휴 링크가 포함되어 있습니다. 당사의 링크를 통해 가입하시면 추가 비용 없이 당사에 커미션이 지급될 수 있습니다. 당사의 리뷰는 독립적이며 철저한 연구를 기반으로 합니다.
 > 
 > 🚀 **AI 기반 트레이딩 체험하기**:[Minara 가입하기](https://minara.ai/r/OSXG4X) —— 코딩 없이 자동화된 트레이딩 전략을 구축, 백테스트, 배포할 수 있는 AI 트레이딩 플랫폼.
 
----
+* * *
 
 **발행일:** 2026-05-19 | **카테고리:** AI 트레이딩 | **읽는 시간:** 15분
 
----
+* * *
 
 ## Alpaca Trading API란?
 
@@ -45,7 +46,7 @@ Alpaca를 진정으로 차별화하는 것은 그 **커미션 없는 모델**입
 | **소수 주식 거래** | 지원 — 금액 기준 투자 |
 | **증거금 이율** | 6.25% |
 
----
+* * *
 
 ## 알고리즘 트레이딩에 Alpaca를 선택하는 이유
 
@@ -63,7 +64,7 @@ Alpaca의 모의 투자 환경은 단순화된 데모가 아닙니다——실�
 
 2025년 Aite-Novarica Group 연구에 따른다면, 실전 배포 전 최소 90일간의 모의 테스트를 거친 알고리즘 전략은 실전 트레이딩 첫 해에 **23% 낮은 최대 낙폭**을 보였습니다.
 
----
+* * *
 
 ## 시작하기: 계정 설정 및 API 키
 
@@ -73,20 +74,20 @@ Alpaca의 모의 투자 환경은 단순화된 데모가 아닙니다——실�
 
 ### 2단계: API 키 생성
 
-계정이 승인되면 Paper Trading 섹션으로 이동하여 첫 번째 API 키를 생성하세요: ```python
+계정이 승인되면 Paper Trading 섹션으로 이동하여 첫 번째 API 키를 생성하세요: ````python
 # API 자격 증명은 다음과 같이 보입니다: API_KEY = PKABCDEF1234567890EXAMPLE
 API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example
 BASE_URL = 'https://paper-api.alpaca.markets'  # 모의 투자 엔드포인트
-```
+`````
 
-```javascript
+`````javascript
 // JavaScript/Node.js 자격 증명 설정
 const API_KEY = PKABCDEF1234567890EXAMPLE;
 const API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example;
 const BASE_URL = 'https://paper-api.alpaca.markets';
-```
+`````
 
-비밀 키를 안전하게 보관하세요——버전 관리에 커밋하지 마세요. 환경 변수나 비밀 관리자를 사용하세요: ```python
+비밀 키를 안전하게 보관하세요——버전 관리에 커밋하지 마세요. 환경 변수나 비밀 관리자를 사용하세요: `````python
 # 환경 변수를 사용한 안전한 자격 증명 관리
 import os
 from alpaca_trade_api import REST
@@ -96,17 +97,17 @@ api = REST(
     secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
-```
+`````
 
-```bash
+`````bash
 # .env 파일 (.gitignore에 추가하세요!)
 ALPACA_API_KEY=PKABCDEF1234567890EXAMPLE
 ALPACA_SECRET_KEY=abcdefghijklmnopqrstuvwxyz1234567890example
-```
+`````
 
 ### 3단계: SDK 설치
 
-```bash
+`````bash
 # Python SDK
 pip install alpaca-trade-api
 
@@ -115,15 +116,15 @@ npm install @alpacahq/alpaca-trade-api
 
 # Go SDK
 go get github.com/alpacahq/alpaca-trade-api-go/v3/alpaca
-```
+`````
 
----
+* * *
 
 ## 핵심 트레이딩 작업
 
 ### 첫 번째 주문 제출하기
 
-Alpaca는 시장가, 지정가, 스톱, 스톱 지정가, 트레일링 스톱 등 여러 주문 유형을 지원합니다. 각 유형의 사용 방법은 다음과 같습니다: ```python
+Alpaca는 시장가, 지정가, 스톱, 스톱 지정가, 트레일링 스톱 등 여러 주문 유형을 지원합니다. 각 유형의 사용 방법은 다음과 같습니다: `````python
 from alpaca_trade_api import REST
 import os
 
@@ -142,9 +143,9 @@ market_order = api.submit_order(
     time_in_force=day
 )
 print(f"시장가 주문 제출됨: {market_order.id}")
-```
+`````
 
-```python
+`````python
 # 지정가 주문 —— 지정된 가격 또는 더 나은 가격에서만 실행
 limit_order = api.submit_order(
     symbol=TSLA,
@@ -155,9 +156,9 @@ limit_order = api.submit_order(
     time_in_force=gtc  # 취소 전까지 유효
 )
 print(f"지정가 주문 제출됨: {limit_order.id}")
-```
+`````
 
-```python
+`````python
 # 손절 주문 —— 가격이 손절가에 도달하면 시장가 매도가 트리거됨
 stop_order = api.submit_order(
     symbol=MSFT,
@@ -167,9 +168,9 @@ stop_order = api.submit_order(
     stop_price=380.00,
     time_in_force=day
 )
-```
+`````
 
-```python
+`````python
 # 스톱 지정가 주문 —— 스톱 트리거와 지정가 실행을 결합
 stop_limit_order = api.submit_order(
     symbol=GOOGL,
@@ -180,9 +181,9 @@ stop_limit_order = api.submit_order(
     limit_price=164.50,
     time_in_force=day
 )
-```
+`````
 
-```python
+`````python
 # 트레일링 스톱 주문 —— 스톱 가격이 설정된 거리로 시장을 따라감
 trailing_stop = api.submit_order(
     symbol=AMZN,
@@ -192,11 +193,11 @@ trailing_stop = api.submit_order(
     trail_percent=5.0,  # 5% 추적 거리
     time_in_force=gtc
 )
-```
+`````
 
 ### 소수 주식 거래
 
-Alpaca의 대표 기능 중 하나는 **소수 주식 거래**로, 주식 전체가 아닌 정확한 달러 금액으로 투자할 수 있게 합니다: ```python
+Alpaca의 대표 기능 중 하나는 **소수 주식 거래**로, 주식 전체가 아닌 정확한 달러 금액으로 투자할 수 있게 합니다: `````python
 # $500 어치의 Apple 주식 매수 —— 주가와 관계없이
 fractional_order = api.submit_order(
     symbol=AAPL,
@@ -205,9 +206,9 @@ fractional_order = api.submit_order(
     type=market,
     time_in_force=day
 )
-```
+`````
 
-```python
+`````python
 # 정확한 달러 배분으로 균형 잡힌 포트폴리오 구축
 portfolio = {
     VTI: 2000.00,   # 미국 전체 주식 시장
@@ -224,11 +225,11 @@ for symbol, amount in portfolio.items(): order = api.submit_order(
         time_in_force=day
     )
     print(f"${amount}의 {symbol} 주문 완료")
-```
+`````
 
 ### 연장 거래 시간 (24/5)
 
-Alpaca는 **주 5일, 24시간 거래**를 지원하여 정규 거래 시간(미 동부 시간 오전 9:30 – 오후 4:00) 외에도 거래할 수 있습니다: ```python
+Alpaca는 **주 5일, 24시간 거래**를 지원하여 정규 거래 시간(미 동부 시간 오전 9:30 – 오후 4:00) 외에도 거래할 수 있습니다: `````python
 # 연장 시간 실행을 위한 주문 제출
 extended_hours_order = api.submit_order(
     symbol=SPY,
@@ -239,9 +240,9 @@ extended_hours_order = api.submit_order(
     time_in_force=day,
     extended_hours=True  # 프리마켓(오전 4:00)과 애프터아워즈(오후 8:00) 활성화
 )
-```
+`````
 
-```python
+`````python
 # 종목의 거래 가능 시간 확인
 from alpaca_trade_api import REST
 
@@ -251,15 +252,15 @@ clock = api.get_clock()
 print(f"시장이 {열림 if clock.is_open else 닫힘}")
 print(f"다음 개장: {clock.next_open}")
 print(f"다음 폐장: {clock.next_close}")
-```
+`````
 
----
+* * *
 
 ## WebSocket을 이용한 실시간 시장 데이터 스트리밍
 
 ### WebSocket 데이터 스트림 설정
 
-Alpaca의 WebSocket API는 거래, 호가, 분봉의 실시간 스트리밍을 제공합니다. 이는 시장 이벤트에 실시간으로 반응하는 전략에 필수적입니다: ```python
+Alpaca의 WebSocket API는 거래, 호가, 분봉의 실시간 스트리밍을 제공합니다. 이는 시장 이벤트에 실시간으로 반응하는 전략에 필수적입니다: `````python
 import asyncio
 from alpaca_trade_api.stream import Stream
 
@@ -286,9 +287,9 @@ stream.subscribe_bars(handle_bar, SPY, QQQ)
 # 스트림 실행
 print("WebSocket 스트림 시작...")
 stream.run()
-```
+`````
 
-```python
+`````python
 # WebSocket 스트림을 위한 비동기 컨텍스트 매니저 패턴
 import asyncio
 from alpaca_trade_api.stream import Stream
@@ -308,9 +309,9 @@ async def run_streaming_strategy(): stream = Stream(
     await stream._run_forever()
 
 # asyncio.run(run_streaming_strategy())
-```
+`````
 
-```javascript
+`````javascript
 // Node.js WebSocket 스트리밍
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 
@@ -328,19 +329,19 @@ client.onConnect(() => {
 });
 
 client.onStockTrade((subject, data) => {
-    console.log(`체결: ${data.sym} @ $${data.p} x ${data.s}`);
+    console.log(````체결: ${data.sym} @ $${data.p} x ${data.s}````);
 });
 
 client.connect();
-```
+`````
 
----
+* * *
 
 ## 포트폴리오 관리 및 계좌 작업
 
 ### 포지션 및 계좌 정보 확인
 
-```python
+`````python
 from alpaca_trade_api import REST
 import pandas as pd
 
@@ -354,46 +355,46 @@ print(f"현금: ${account.cash}")
 print(f"구매력: ${account.buying_power}")
 print(f"자본: ${account.equity}")
 print(f"데이트레이드 횟수: {account.daytrade_count}")
-```
+`````
 
-```python
+`````python
 # 현재 모든 포지션 목록
 positions = api.list_positions()
 print(f"포지션 수: {len(positions)}")
 
 for pos in positions: print(f"{pos.symbol}: {pos.qty}주 @ ${pos.avg_entry_price}")
     print(f"  현재: ${pos.current_price} | 손익: ${pos.unrealized_pl} ({pos.unrealized_plpc}%)")
-```
+`````
 
-```python
+`````python
 # 특정 종목의 포지션 가져오기
 aapl_position = api.get_position(AAPL)
 print(f"AAPL 포지션: {aapl_position.qty}주")
 print(f"시장 가치: ${aapl_position.market_value}")
 print(f"미실현 손익: ${aapl_position.unrealized_pl}")
-```
+`````
 
 ### 주문 관리
 
-```python
+`````python
 # 모든 미체결 주문 목록
 open_orders = api.list_orders(status=open)
 for order in open_orders: print(f"주문 {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
-```
+`````
 
-```python
+`````python
 # 특정 주문 취소
 api.cancel_order(ORDER_ID_HERE)
 print("주문이 취소됨")
-```
+`````
 
-```python
+`````python
 # 모든 미체결 주문 취소
 api.cancel_all_orders()
 print("모든 주문이 취소됨")
-```
+`````
 
-```python
+`````python
 # 주문 내역 (체결된 주문) 가져오기
 closed_orders = api.list_orders(
     status=closed,
@@ -402,15 +403,15 @@ closed_orders = api.list_orders(
 )
 
 for order in closed_orders: print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
-```
+`````
 
----
+* * *
 
 ## 역사적 데이터와 백테스팅
 
 ### 역사적 봉 데이터 가져오기
 
-```python
+`````python
 from alpaca_trade_api import REST
 from datetime import datetime, timedelta
 
@@ -430,9 +431,9 @@ bars = api.get_bars(
 
 print(f"{len(bars)}개의 봉 데이터를 가져옴")
 print(bars.head())
-```
+`````
 
-```python
+`````python
 # 일중 전략을 위한 분봉 가져오기
 minute_bars = api.get_bars(
     SPY,
@@ -452,9 +453,9 @@ minute_bars.loc[minute_bars[SMA_20] > minute_bars[SMA_50], signal] = 1
 minute_bars.loc[minute_bars[SMA_20] < minute_bars[SMA_50], signal] = -1
 
 print(minute_bars[[close, SMA_20, SMA_50, signal]].tail(10))
-```
+`````
 
-```python
+`````python
 # 여러 종목을 효율적으로 가져오기
 import pandas as pd
 
@@ -478,13 +479,13 @@ print(prices_df.head())
 returns = prices_df.pct_change().dropna()
 print("\n일일 수익률:")
 print(returns.head())
-```
+`````
 
----
+* * *
 
 ## 완전한 트레이딩 전략 구축
 
-다음은 지금까지 설명한 모든 것을 결합한 완전한 **모멘텀 기반 트레이딩 봇**입니다: ```python
+다음은 지금까지 설명한 모든 것을 결합한 완전한 **모멘텀 기반 트레이딩 봇**입니다: `````python
 """
 Alpaca 모멘텀 트레이딩 봇
 전략: 가격이 거래량 확인과 함께 20기간 SMA 위로 돌파하면 매수
@@ -573,15 +574,15 @@ class MomentumTrader: def __init__(self): self.api = REST(key_id=API_KEY, secret
 
 if __name__ == __main__: trader = MomentumTrader()
     trader.run()
-```
+`````
 
----
+* * *
 
 ## 고급 기능 및 모범 사례
 
 ### 고급 주문 유형 사용 (OCO, IOC)
 
-Alpaca Elite를 사용하면 정교한 주문 유형에 접근할 수 있습니다: ```python
+Alpaca Elite를 사용하면 정교한 주문 유형에 접근할 수 있습니다: `````python
 # 원 캔슬스 아더(OCO) 브래킷 주문
 bracket_order = api.submit_order(
     symbol=TSLA,
@@ -594,9 +595,9 @@ bracket_order = api.submit_order(
     take_profit=dict(limit_price=220.00),
     stop_loss=dict(stop_price=185.00, limit_price=184.50)
 )
-```
+`````
 
-```python
+`````python
 # 즉시 체결 또는 취소(IOC) 주문
 ioc_order = api.submit_order(
     symbol=SPY,
@@ -606,11 +607,11 @@ ioc_order = api.submit_order(
     limit_price=520.00,
     time_in_force=ioc  # 즉시 체결되지 않으면 취소
 )
-```
+`````
 
 ### 이벤트 기반 트레이딩을 위한 웹훅
 
-```python
+`````python
 # 외부 신호를 위한 Flask 웹훅 핸들러
 from flask import Flask, request, jsonify
 from alpaca_trade_api import REST
@@ -645,9 +646,9 @@ def handle_trading_signal(): data = request.json
     return jsonify({status: unknown_signal}), 400
 
 if __name__ == __main__: app.run(host='0.0.0.0", port=5000)
-```
+````
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -675,7 +676,7 @@ Alpaca는 공정한 사용을 보장하기 위해 속도 제한을 시행합니�
 
 Alpaca와 Interactive Brokers는 서로 다른 사용 사례를 제공합니다. Alpaca는 현대적이고 커미션 없는 API를 쉽게 설정하고자 하는 개발자와 알고리즘 트레이더에게 이상적입니다. Interactive Brokers는 글로벌 시장, 선물, 외환, 고급 포트폴리오 분석에 접근해야 하는 전문 트레이더에 더 적합합니다. 많은 트레이더가 둘 다 사용합니다: 미국 주식 전략에는 Alpaca, 글로벌 다자산 트레이딩에는 IBKR.
 
----
+* * *
 
 
 
@@ -694,7 +695,7 @@ Alpaca와 Interactive Brokers는 서로 다른 사용 사례를 제공합니다.
 
 코딩 없이 자동 트레이딩으로의 여정을 가속화하고자 하는 트레이더에게는 Alpaca를 **[Minara](https://minara.ai/r/OSXG4X)** 와 함께 사용할 것을 권장합니다——시각적으로 전략을 구축, 백테스트, 배포할 수 있는 AI 기반 트레이딩 플랫폼입니다. [지금 Minara에 가입](https://minara.ai/r/OSXG4X)하여 AI가 트레이딩 워크플로우를 어떻게 변화시킬 수 있는지 경험필세요.
 
----
+* * *
 
 *최종 업데이트: 2026-05-19 | Alpaca API 버전: v2*
 
@@ -724,7 +725,7 @@ Alpaca와 Interactive Brokers는 서로 다른 사용 사례를 제공합니다.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -734,7 +735,7 @@ Alpaca와 Interactive Brokers는 서로 다른 사용 사례를 제공합니다.
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](alpaca-trading-api-stock-broker)
 - [llm-inference-cost-optimization-guide-2026](alpaca-trading-api-stock-broker)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

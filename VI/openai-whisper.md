@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/openai-whisper/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -60,7 +61,7 @@ Whisper theo kiến trúc Transformer encoder-decoder. Đầu vào âm thanh đ�
 
 ### Cài đặt Python
 
-```bash
+````bash
 python -m venv whisper-env
 source whisper-env/bin/activate  # Linux/macOS
 # whisper-env\Scripts\activate  # Windows
@@ -70,11 +71,11 @@ pip install -U openai-whisper
 
 # Xác minh cài đặt
 whisper --version
-```
+`````
 
 ### Phụ thuộc hệ thống
 
-FFmpeg là bắt buộc cho tiền xử lý âm thanh: ```bash
+FFmpeg là bắt buộc cho tiền xử lý âm thanh: `````bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -83,11 +84,11 @@ brew install ffmpeg
 
 # Xác minh
 ffmpeg -version | head -1
-```
+`````
 
 ### Tăng tốc GPU (CUDA)
 
-```bash
+`````bash
 # Kiểm tra CUDA khả dụng
 python -c "import torch; print(torch.cuda.is_available())"
 
@@ -96,11 +97,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # Chỉ dùng CPU để suy luận
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
+`````
 
 ### Triển khai Docker
 
-```bash
+`````bash
 # Pull và chạy image chính thức
 docker pull openai/whisper:latest
 
@@ -121,11 +122,11 @@ docker run --rm \
   /audio/podcast.mp3 \
   --model base \
   --device cpu
-```
+`````
 
 ### Phiên âm đầu tiên nhanh chóng
 
-```python
+`````python
 import whisper
 
 # Tải mô hình (tải xuống lần chạy đầu tiên)
@@ -137,11 +138,11 @@ print(result["text"])
 
 # Lấy các phân đoạn có dấu thờ gian
 for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
-```
+`````
 
 ### Ví dụ sử dụng CLI
 
-```bash
+`````bash
 # Phiên âm cơ bản
 whisper audio.mp3 --model medium --language en
 
@@ -153,7 +154,7 @@ whisper french_interview.mp3 --model large-v3 --task translate
 
 # Tự động phát hiện ngôn ngữ
 whisper unknown.mp3 --model base --task transcribe
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
@@ -161,11 +162,11 @@ whisper unknown.mp3 --model base --task transcribe
 
 WhisperX bọc faster-whisper và bổ sung căn chỉnh cấp âm vị và phân tách ngườ nói. Đây là công cụ lựa chọn cho bản phiên âm cuộc họp và xử lý phỏng vấn.
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -206,17 +207,17 @@ for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     end = segment["end"]
     text = segment["text"]
     print(f"[{start:.2f}s - {end:.2f}s] {speaker}: {text}")
-```
+`````
 
 ### faster-whisper (Suy luận production)
 
 faster-whisper tái triển khai Whisper bằng CTranslate2, mang lại tốc độ nhanh hơn 4-8 lần với hỗ trợ lượng tử hóa. Đây là lựa chọn mặc định cho API production.
 
-```bash
+`````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # Tải với lượng tử hóa để giảm bộ nhớ
@@ -245,11 +246,11 @@ segments, info = model.transcribe(
 print(f"Ngôn ngữ phát hiện: {info.language} (xác suất: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ### Tích hợp LibreTranslate (Pipeline dịch)
 
-```python
+`````python
 import whisper
 import requests
 
@@ -270,11 +271,11 @@ def translate(text, source="ja", target="en"): response = requests.post(
 english_text = translate(japanese_text)
 print(f"JA: {japanese_text}")
 print(f"EN: {english_text}")
-```
+`````
 
 ### FastAPI Server phiên âm real-time
 
-```python
+`````python
 from fastapi import FastAPI, UploadFile, File
 from faster_whisper import WhisperModel
 import tempfile
@@ -310,13 +311,13 @@ async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporary
         "language_probability": info.language_probability,
         "segments": results
     }
-```
+`````
 
-Chạy với: `uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2`
+Chạy với: ````uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2````
 
 ### Tích hợp giám sát Prometheus
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -342,7 +343,7 @@ def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time(
 
 # Khởi động server metrics trên cổng 9090
 start_http_server(9090)
-```
+`````
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
@@ -387,7 +388,7 @@ start_http_server(9090)
 
 ### Lượng tử hóa mô hình để giảm bộ nhớ
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # Lượng tử hóa INT8 — nhanh gấp 2 lần, giảm 50% VRAM
@@ -398,11 +399,11 @@ model_hybrid = WhisperModel("large-v3", device="cuda", compute_type="int8_float1
 
 # CPU với INT8
 model_cpu = WhisperModel("medium", device="cpu", compute_type="int8", cpu_threads=8)
-```
+`````
 
 ### Pipeline xử lý hàng loạt
 
-```python
+`````python
 import os
 from concurrent.futures import ThreadPoolExecutor
 from faster_whisper import WhisperModel
@@ -426,11 +427,11 @@ files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith
 with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"Đã xử lý {len(results)} file")
-```
+`````
 
 ### Cân bằng tải NGINX (Đa GPU)
 
-```nginx
+`````nginx
 upstream whisper_backend {
     least_conn;
     server 10.0.1.10:8000 weight=1;  # GPU 0
@@ -447,11 +448,11 @@ server {
         client_max_body_size 500M;
     }
 }
-```
+`````
 
 ### Endpoint kiểm tra sức khỏe
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from faster_whisper import WhisperModel
 import torch
@@ -468,11 +469,11 @@ async def health(): gpu_available = torch.cuda.is_available()
         "gpu_memory_gb": gpu_memory / (1024**3),
         "model_loaded": model is not None
     }
-```
+`````
 
 ### Hàng đợi Redis cho xử lý bất đồng bộ
 
-```python
+`````python
 import redis
 import json
 from faster_whisper import WhisperModel
@@ -494,7 +495,7 @@ def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
         time.sleep(0.1)
 
 if __name__ == "__main__": worker()
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -540,11 +541,11 @@ Có. Tất cả các mô hình trừ large-v3 đều chạy tốt trên CPU hi�
 
 ### 3. Tôi nên chọn kích thước mô hình nào?
 
-Bắt đầu với `base` cho tác vụ tiếng Anh nhanh, `small` cho sử dụng đa ngôn ngữ hàng ngày, `medium` cho độ chính xác chuyên nghiệp, và `large-v3` khi độ chính xác tối đa không thể thỏa hiệp. Mô hình `turbo` là điểm tối ưu cho các workload production nhạy cảm về độ trễ.
+Bắt đầu với ````base```` cho tác vụ tiếng Anh nhanh, ````small```` cho sử dụng đa ngôn ngữ hàng ngày, ````medium```` cho độ chính xác chuyên nghiệp, và ````large-v3```` khi độ chính xác tối đa không thể thỏa hiệp. Mô hình ````turbo```` là điểm tối ưu cho các workload production nhạy cảm về độ trễ.
 
 ### 4. Làm sao để xử lý file âm thanh dài hiệu quả?
 
-Sử dụng faster-whisper với `vad_filter=True` để bỏ qua phân đoạn im lặng. Với file dài hơn 1 giờ, chia thành các khối và xử lý song song. WhisperX xử lý file dài nguyên bản và ổn định hơn Whisper cơ bản trên âm thanh 3+ giờ.
+Sử dụng faster-whisper với ````vad_filter=True```` để bỏ qua phân đoạn im lặng. Với file dài hơn 1 giờ, chia thành các khối và xử lý song song. WhisperX xử lý file dài nguyên bản và ổn định hơn Whisper cơ bản trên âm thanh 3+ giờ.
 
 ### 5. Whisper có miễn phí cho sử dụng thương mại không?
 
@@ -560,10 +561,10 @@ Một NVIDIA A100 (80 GB) có thể chạy 4 instance large-v3 với float16, x�
 
 ## Kết luận
 
-OpenAI Whisper vẫn là lựa chọn thực tế cho nhận dạng giọng nói production trong năm 2026. 99.800 sao GitHub phản ánh không chỉ sự phổ biến mà còn là sự trưởng thành của hệ sinh thái: faster-whisper cung cấp tốc độ, WhisperX cung cấp phân tách ngườ nói, và mô hình cốt lõi mang lại độ chính xác trên 99 ngôn ngữ. Bắt đầu với `faster-whisper` và mô hình `medium`, thêm `WhisperX` khi cần nhãn ngườ nói, và lượng tử hóa INT8 khi VRAM bị hạn chế.
+OpenAI Whisper vẫn là lựa chọn thực tế cho nhận dạng giọng nói production trong năm 2026. 99.800 sao GitHub phản ánh không chỉ sự phổ biến mà còn là sự trưởng thành của hệ sinh thái: faster-whisper cung cấp tốc độ, WhisperX cung cấp phân tách ngườ nói, và mô hình cốt lõi mang lại độ chính xác trên 99 ngôn ngữ. Bắt đầu với ````faster-whisper```` và mô hình ````medium````, thêm ````WhisperX```` khi cần nhãn ngườ nói, và lượng tử hóa INT8 khi VRAM bị hạn chế.
 
 **Các bước tiếp theo:**
-- Clone repo: `git clone https://github.com/openai/whisper`
+- Clone repo: ````git clone https://github.com/openai/whisper```
 - Tham gia cộng đồng phát triển dibi8 trên Telegram để nhận mẹo triển khai
 - Benchmark faster-whisper trên dữ liệu âm thanh của riêng bạn trước khi cam kết kích thước mô hình
 
@@ -613,7 +614,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -623,6 +624,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](openai-whisper)
 - [moneyprinterturbo-one-click-ai-video-generator](openai-whisper)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

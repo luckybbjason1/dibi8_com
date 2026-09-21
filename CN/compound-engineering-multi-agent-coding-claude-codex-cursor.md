@@ -10,6 +10,7 @@ github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
 license: 'MIT'
 featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
 ---
+
 # Compound Engineering: Multi-Agent Orchestration Plugin — 2026 Guide
 
 Compound Engineering (20,000+ stars) is a multi-agent orchestration plugin that coordinates AI coding agents (Claude Code, Codex, Cursor) through a structured planning-review-compound loop. Its philosophy is simple: plan thoroughly before writing code, review meticulously, and document learnings so future work gets easier.
@@ -18,16 +19,16 @@ Compound Engineering (20,000+ stars) is a multi-agent orchestration plugin that 
 
 ## What Is Compound Engineering?
 
-Compound Engineering is a collection of 9 specialized commands that turn your AI coding agent from a simple code generator into a disciplined engineering partner. Each command targets a specific phase of the development lifecycle: ```
+Compound Engineering is a collection of 9 specialized commands that turn your AI coding agent from a simple code generator into a disciplined engineering partner. Each command targets a specific phase of the development lifecycle: ````
 Traditional Development: Idea → Code → Fix Bugs → Repeat (tech debt accumulates)
 
 Compound Engineering: Strategy → Ideate → Brainstorm → Plan → Work → Review → Compound → Repeat (tech debt decreases)
-```
+`````
 
 The core insight is that **80% of engineering value comes from planning and review**, not execution. Traditional AI coding tools skip straight to writing code, which produces quick results that accumulate technical debt. Compound Engineering forces the agent to think before it types.
 
-The plugin works across multiple AI coding tools: - **Claude Code**: Installs via the marketplace (`/plugin marketplace add EveryInc/compound-engineering-plugin`)
-- **Cursor**: Installs via the plugin marketplace (`/add-plugin compound-engineering`)
+The plugin works across multiple AI coding tools: - **Claude Code**: Installs via the marketplace (````/plugin marketplace add EveryInc/compound-engineering-plugin````)
+- **Cursor**: Installs via the plugin marketplace (````/add-plugin compound-engineering````)
 - **Codex**: Three-step setup with marketplace registration, agent installation, and plugin enablement
 
 Each agent shares the same command set and knowledge base, so switching between tools doesn't lose context. For scalable multi-agent deployment, [HTStack](https://my.htstack.com/aff.php?aff=27187) provides infrastructure supporting multiple agent instances.
@@ -38,23 +39,23 @@ Traditional development accumulates technical debt — every feature adds comple
 
 Compound Engineering inverts this: | Phase | Command | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Strategy | `/ce-strategy` | Define the product's target problem, approach, persona, metrics |
-| Ideate | `/ce-ideate` | Generate and evaluate big-picture ideas before committing |
-| Brainstorm | `/ce-brainstorm` | Interactive Q&A to write requirements before planning |
-| Plan | `/ce-plan` | Turn requirements into detailed implementation plans |
-| Work | `/ce-work` | Execute plans with worktrees and task tracking |
-| Review | `/ce-code-review` | Multi-agent code review before merging |
-| Compound | `/ce-compound` | Document learnings to make future work easier |
-| Pulse | `/ce-product-pulse` | Time-windowed report on user experience metrics |
-| Debug | `/ce-debug` | Systematically reproduce failures and trace root causes |
+| Strategy | ````/ce-strategy```` | Define the product's target problem, approach, persona, metrics |
+| Ideate | ````/ce-ideate```` | Generate and evaluate big-picture ideas before committing |
+| Brainstorm | ````/ce-brainstorm```` | Interactive Q&A to write requirements before planning |
+| Plan | ````/ce-plan```` | Turn requirements into detailed implementation plans |
+| Work | ````/ce-work```` | Execute plans with worktrees and task tracking |
+| Review | ````/ce-code-review```` | Multi-agent code review before merging |
+| Compound | ````/ce-compound```` | Document learnings to make future work easier |
+| Pulse | ````/ce-product-pulse```` | Time-windowed report on user experience metrics |
+| Debug | ````/ce-debug```` | Systematically reproduce failures and trace root causes |
 
-```
+`````
 Compound Loop: ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐
 │ Strategy │────▶│ Brainstorm│────▶│  Plan   │────▶│  Work   │
 └─────────┘     └─────────┘     └─────────┘     └─────────┘
@@ -70,7 +71,7 @@ Compound Loop: ┌─────────┐     ┌────────
      │                     │  (Learn)    │
      │                     └──────┬──────┘
      └────────────────────────────┘
-```
+`````
 
 Each cycle compounds: brainstorms sharpen plans, plans inform future plans, reviews catch more issues, and patterns get documented. The result is a codebase that gets easier to work with over time instead of harder.
 
@@ -78,25 +79,25 @@ Each cycle compounds: brainstorms sharpen plans, plans inform future plans, revi
 
 ### Claude Code
 
-```bash
+`````bash
 # Add the marketplace
 /plugin marketplace add EveryInc/compound-engineering-plugin
 
 # Install the plugin
 /plugin install compound-engineering
-```
+`````
 
 ### Cursor
 
-In Cursor Agent chat, install from the plugin marketplace: ```bash
+In Cursor Agent chat, install from the plugin marketplace: `````bash
 /add-plugin compound-engineering
-```
+`````
 
 Or search for "compound engineering" in the Cursor plugin marketplace.
 
 ### Codex
 
-Three-step setup: ```bash
+Three-step setup: `````bash
 # Step 1: Register the marketplace
 codex plugin marketplace add EveryInc/compound-engineering-plugin
 
@@ -106,27 +107,27 @@ bunx @every-env/compound-plugin install compound-engineering --to codex
 # Step 3: Install via Codex TUI
 # Launch codex, run /plugins, find the Compound Engineering marketplace,
 # select compound-engineering plugin, choose Install, then restart Codex
-```
+`````
 
-After installation, verify the plugin is active by running: ```bash
+After installation, verify the plugin is active by running: `````bash
 /ce-strategy --help
 # Should display strategy configuration options
-```
+`````
 
 ### Initial Configuration
 
-Start with the strategy command to define your project's direction: ```bash
+Start with the strategy command to define your project's direction: `````bash
 /ce-strategy
 # Interactive wizard: define target problem, approach, persona, key metrics, tracks
-```
+`````
 
-This writes `STRATEGY.md` — a durable anchor that all subsequent commands read as grounding. Strategy choices flow into feature conception, prioritization, and implementation.
+This writes ````STRATEGY.md```` — a durable anchor that all subsequent commands read as grounding. Strategy choices flow into feature conception, prioritization, and implementation.
 
 ## How Compound Engineering Works
 
 ### The Strategy Layer
 
-`STRATEGY.md` serves as the single source of truth for your project's direction: ```markdown
+``STRATEGY.md`` serves as the single source of truth for your project's direction: `````markdown
 # STRATEGY.md
 
 ## Target Problem
@@ -143,41 +144,41 @@ This writes `STRATEGY.md` — a durable anchor that all subsequent commands read
 
 ## Tracks
 [Current development tracks]
-```
+`````
 
 Every brainstorm, plan, and review references this file. This ensures consistent alignment between business objectives and engineering decisions.
 
 ### The Brainstorm Phase
 
-`/ce-brainstorm` initiates an interactive Q&A session: ```bash
+``/ce-brainstorm`` initiates an interactive Q&A session: `````bash
 /ce-brainstorm "Add user authentication with OAuth2"
-```
+`````
 
 The agent asks clarifying questions, proposes approaches, and writes a right-sized requirements document. This replaces the common pattern of jumping straight into code with vague requirements.
 
 Key features of brainstorm: - **Interactive**: The agent asks follow-up questions to narrow scope
 - **Requirements-first**: Produces a structured requirements doc before planning
-- **Context-aware**: Reads `STRATEGY.md` to align with project direction
+- **Context-aware**: Reads ````STRATEGY.md```` to align with project direction
 - **Right-sized**: Prevents over-engineering by constraining scope
 
 ### The Planning Phase
 
-`/ce-plan` converts brainstormed requirements into a detailed implementation plan: ```bash
+``/ce-plan`` converts brainstormed requirements into a detailed implementation plan: `````bash
 /ce-plan docs/brainstorm-auth.md
-```
+`````
 
 The plan includes: - Feature breakdown into discrete tasks
 - Dependency analysis between tasks
 - Risk identification
 - Timeline estimation
 
-The plan is saved as a durable document that `/ce-work` uses as its execution guide.
+The plan is saved as a durable document that ````/ce-work```` uses as its execution guide.
 
 ### The Work Phase
 
-`/ce-work` executes the plan with built-in task tracking: ```bash
+``/ce-work`` executes the plan with built-in task tracking: `````bash
 /ce-work plan-auth.md
-```
+`````
 
 Features: - **Worktree isolation**: Each task uses a separate git worktree for parallel development
 - **Task tracking**: Progress tracked via checklist in the plan document
@@ -186,9 +187,9 @@ Features: - **Worktree isolation**: Each task uses a separate git worktree for p
 
 ### The Review Phase
 
-`/ce-code-review` performs multi-agent code review: ```bash
+``/ce-code-review`` performs multi-agent code review: `````bash
 /ce-code-review feature-auth
-```
+`````
 
 The review checks: - Code quality and style consistency
 - Security vulnerabilities
@@ -200,11 +201,11 @@ Multiple agents can review simultaneously — the plugin can invoke separate age
 
 ### The Compound Phase
 
-`/ce-compound` documents learnings: ```bash
+``/ce-compound`` documents learnings: `````bash
 /ce-compound "OAuth2 implementation learnings"
-```
+`````
 
-This creates knowledge artifacts that subsequent agents read during brainstorm and planning: ```markdown
+This creates knowledge artifacts that subsequent agents read during brainstorm and planning: `````markdown
 # Compound Notes: OAuth2 Implementation
 
 ## Lessons Learned
@@ -212,7 +213,7 @@ This creates knowledge artifacts that subsequent agents read during brainstorm a
 - [What didn't work]
 - [Patterns to reuse]
 - [Patterns to avoid]
-```
+`````
 
 These notes accumulate over the project lifecycle, making each successive agent iteration smarter.
 
@@ -220,15 +221,15 @@ These notes accumulate over the project lifecycle, making each successive agent 
 
 | Feature | Compound Engineering | AutoGPT | Aider | Claude Code built-in |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Commands | 9 | Generic | Basic | None |
 | Planning phase | ✅ Structured | ❌ | ❌ | ❌ |
@@ -250,13 +251,13 @@ Compound Engineering's key differentiator is its **structured workflow** — it 
 
 Teams using Compound Engineering report measurable reductions in technical debt: | Metric | Before Compound Eng. | After Compound Eng. | Change |
 |
----
+* * *
 |
----
+* * *
 :|
----
+* * *
 :|
----
+* * *
 :|
 | Code review issues per PR | 12.4 | 3.2 | -74% |
 | Rework rate (code rewritten) | 18% | 6% | -67% |
@@ -266,7 +267,7 @@ Teams using Compound Engineering report measurable reductions in technical debt:
 
 ### Workflow Comparison
 
-Typical development with and without Compound Engineering: ```
+Typical development with and without Compound Engineering: `````
 Without Compound Engineering: User: "Add user authentication"
   Agent → Writes auth code → Bugs found → Fix bugs → More bugs → Repeat
   Result: 3-5 iterations, messy commit history, undocumented decisions
@@ -278,13 +279,13 @@ With Compound Engineering: User: /ce-strategy → Define auth requirements
   User: /ce-code-review → Multi-agent review catches issues early
   User: /ce-compound → Learnings documented for future reference
   Result: 1-2 iterations, clean commit history, documented decisions
-```
+`````
 
 ### Cost Efficiency
 
 For a typical development task, spin up your agent environment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for reliable hosting.
 
-```
+`````
 Without Compound Engineering: - Agent API calls: ~15 (code + fix cycles)
   - Average API cost: $0.12
   - Developer time: 45 minutes (debugging, reviewing)
@@ -295,30 +296,30 @@ With Compound Engineering: - Agent API calls: ~25 (planning + work + review)
   
 Net result: $0.08 more in API costs, 30 minutes less developer time,
 fewer bugs in production, documented learnings for future work.
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Custom Compound Notes
 
-Create project-specific knowledge bases: ```bash
+Create project-specific knowledge bases: `````bash
 # Write custom compound notes
 /ce-compound "Database migration lessons from Q2"
 
 # Read existing compound notes
 /ce-strategy --show-compound-notes
-```
+`````
 
 Compound notes are organized by topic and can be referenced during brainstorm sessions automatically.
 
 ### Product Pulse Reports
 
-`/ce-product-pulse` generates time-windowed reports: ```bash
+``/ce-product-pulse`` generates time-windowed reports: `````bash
 # Generate a 7-day pulse report
 /ce-product-pulse --window 7d
 
 # Report saved to docs/pulse-reports/pulse-2026-06-14.md
-```
+`````
 
 Reports include: - Usage statistics
 - Error rates
@@ -329,9 +330,9 @@ These reports feed back into the strategy layer, creating a data-driven feedback
 
 ### Debug Mode
 
-`/ce-debug` provides systematic debugging: ```bash
+``/ce-debug`` provides systematic debugging: `````bash
 /ce-debug "Users report login timeout on mobile"
-```
+`````
 
 The debug process: 1. Reproduce the failure in a controlled environment
 2. Trace the root cause through the codebase
@@ -342,7 +343,7 @@ This replaces the common pattern of random code changes with systematic root cau
 
 ### Integration with CI/CD
 
-Compound Engineering integrates with CI/CD pipelines: ```yaml
+Compound Engineering integrates with CI/CD pipelines: `````yaml
 # .github/workflows/compound-engineering.yml
 jobs: review: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
@@ -354,11 +355,11 @@ jobs: review: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: review-report
           path: review-report.md
-```
+`````
 
 ### Multi-Agent Review Configuration
 
-Configure multiple reviewers for different dimensions: ```json
+Configure multiple reviewers for different dimensions: `````json
 // .compound-engineering/review-config.json
 {
   "reviewers": [
@@ -381,7 +382,7 @@ Configure multiple reviewers for different dimensions: ```json
   "auto_trigger": true,
   "fail_on_critical": true
 }
-```
+`````
 
 ## Limitations / Honest Assessment
 
@@ -397,7 +398,7 @@ The project is actively maintained by EveryInc with regular updates and new comm
 
 **Q: Do I need all 9 commands for every project?**
 
-A: No. The core workflow for most projects uses 5 commands: `strategy`, `brainstorm`, `plan`, `work`, and `review`. The `compound` command is optional but highly recommended for long-term projects. `ideate`, `debug`, and `pulse` are situation-specific.
+A: No. The core workflow for most projects uses 5 commands: ````strategy````, ````brainstorm````, ````plan````, ````work````, and ````review````. The ````compound```` command is optional but highly recommended for long-term projects. ````ideate````, ````debug````, and ````pulse```` are situation-specific.
 
 **Q: Can Compound Engineering work with non-AI coding tools?**
 
@@ -405,7 +406,7 @@ A: The commands are designed specifically for AI coding agents. The planning and
 
 **Q: How does Compound Engineering handle large refactoring projects?**
 
-A: `/ce-work` uses git worktrees for parallel task execution, which is ideal for large refactoring. Each task in the plan gets its own worktree, allowing parallel development without conflicts. The review phase catches integration issues before merging.
+A: ````/ce-work```` uses git worktrees for parallel task execution, which is ideal for large refactoring. Each task in the plan gets its own worktree, allowing parallel development without conflicts. The review phase catches integration issues before merging.
 
 **Q: Is Compound Engineering free for commercial use?**
 
@@ -413,7 +414,7 @@ A: Yes, Compound Engineering is licensed under MIT. There are no usage restricti
 
 **Q: Can I customize the brainstorm and planning templates?**
 
-A: Yes. The brainstorm and planning outputs are generated from templates stored in `.compound-engineering/`. You can customize these templates to match your team"s conventions and project requirements.
+A: Yes. The brainstorm and planning outputs are generated from templates stored in ````.compound-engineering/````. You can customize these templates to match your team"s conventions and project requirements.
 
 **Q: How does the multi-agent review work?**
 
@@ -425,13 +426,13 @@ Compound Engineering addresses a fundamental gap in AI-assisted development: the
 
 The core value proposition is simple: invest time upfront in planning and review, and save significantly more time later through fewer bugs, easier debugging, and documented knowledge.
 
-**Try Compound Engineering today** — install via `/plugin marketplace add EveryInc/compound-engineering-plugin` for Claude Code, or `/add-plugin compound-engineering` for Cursor.
+**Try Compound Engineering today** — install via ````/plugin marketplace add EveryInc/compound-engineering-plugin```` for Claude Code, or ````/add-plugin compound-engineering``` for Cursor.
 
 For more on multi-agent workflows: - [ECC: Agent Harness Performance Optimization](/resources/dev-utils/ecc-agent-harness-performance-optimization/) — optimize agent performance alongside structured workflows
 - [Impeccable: AI Design Language](/resources/ai-tools/impeccable-ai-design-language-harness-quality-ui/) — add design quality to your compound engineering process
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/EveryInc/compound-engineering-plugin
 - Philosophy article: https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents
 - Story behind the project: https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it
@@ -439,7 +440,7 @@ For more on multi-agent workflows: - [ECC: Agent Harness Performance Optimizatio
 **Join our community**: https://t.me/DIBI8_Group
 
 
----
+* * *
 **Disclosure**: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.
 
 
@@ -468,7 +469,7 @@ For more on multi-agent workflows: - [ECC: Agent Harness Performance Optimizatio
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -478,7 +479,7 @@ For more on multi-agent workflows: - [ECC: Agent Harness Performance Optimizatio
 - [prompts-chat](compound-engineering-multi-agent-coding-claude-codex-cursor)
 - [llm-inference-cost-optimization-guide-2026](compound-engineering-multi-agent-coding-claude-codex-cursor)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

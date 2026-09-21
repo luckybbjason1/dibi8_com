@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/langchain-complete-guide/
 ---
 
+
 {{</* resource-info */>}}
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
@@ -45,25 +46,25 @@ LangChain la framework Python va TypeScript ma nguon mo de xay dung ung dung duo
 
 Kien truc cua LangChain tach biet moi quan tam thanh nam lop: 1. **Model I/O** — Cac giao dien chuan hoa cho chat models, LLMs, va embeddings. Chuyen tu OpenAI GPT-4o sang Anthropic Claude 3.5 Sonnet chi bang cach thay doi mot dong import.
 2. **Retrieval** — Document loaders, text splitters, embedding models, va vector stores tao thanh pipeline RAG. Tai PDF, HTML, hoac trang Notion, chia nho, embedding, va truy van theo ng nghia.
-3. **Agents** — API `create_agent` (LangChain 1.0+) dieu phoi viec chon cong cu, vong lap suy luan, va phe duyet con nguoi trong vong lap. Agents quyet dinh goi cong cu nao, theo thu tu nao, va khi nao dung lai.
+3. **Agents** — API ```create_agent```` (LangChain 1.0+) dieu phoi viec chon cong cu, vong lap suy luan, va phe duyet con nguoi trong vong lap. Agents quyet dinh goi cong cu nao, theo thu tu nao, va khi nao dung lai.
 4. **Chains** — Cac workflow co the ket hop ma lien ket cac component theo trinh tu. Mot chuoi RetrievalQA ket noi retriever voi LLM de tra loi cau hoi tren tai lieu.
 5. **Quan sat (Observability)** — LangSmith truy vet moi lan goi, do luong do tre, luong token su dung, va chi phi. Traces ghi lai dau vao, dau ra, va cac buoc trung gian de gỡ loi.
 
-```
+`````
 Truy van nguoi dung → Agent/Chain → [Goi cong cu → Goi LLM → Truy xuat] → Phan hoi
                 ↓
             LangSmith (truy vet, metrics, danh gia)
-```
+`````
 
 ![LangChain RAG Flow](https://python.langchain.com/assets/images/rag_indexing-6b1e22092b4c169a9075d080d71a5e95.png)
 
 ### Cac khai niem cot loi
 
-**Giao dien Runnable.** Moi component trong LangChain trien khai giao thuc `Runnable` voi cac phuong thuc `.invoke()`, `.batch()`, va `.stream()`. Giao dien thong nhat nay cho phep ban xu ly mot single prompt, mot chuoi muoi component, hoac mot do thi da-agent mot cach dong nhat.
+**Giao dien Runnable.** Moi component trong LangChain trien khai giao thuc ````Runnable```` voi cac phuong thuc ````.invoke()````, ````.batch()````, va ````.stream()````. Giao dien thong nhat nay cho phep ban xu ly mot single prompt, mot chuoi muoi component, hoac mot do thi da-agent mot cach dong nhat.
 
-**Content Blocks.** LangChain 1.0 gioi thieu `.content_blocks` tren messages — mot dinh dang thong nhat cho van ban, hinh anh, goi cong cu, va traces suy luan tren tat ca cac nha cung cap. Khong con phan tich cu phap message theo nha cung cap.
+**Content Blocks.** LangChain 1.0 gioi thieu ````.content_blocks```` tren messages — mot dinh dang thong nhat cho van ban, hinh anh, goi cong cu, va traces suy luan tren tat ca cac nha cung cap. Khong con phan tich cu phap message theo nha cung cap.
 
-**Model Profiles.** Cac chat model lo ra kha nang thong qua thuoc tinh `.profile`, cho phep phat hien tinh nang dong. Code cua ban co the kiem tra xem model co ho tro goi cong cu hoac vision truoc khi thu.
+**Model Profiles.** Cac chat model lo ra kha nang thong qua thuoc tinh ````.profile````, cho phep phat hien tinh nang dong. Code cua ban co the kiem tra xem model co ho tro goi cong cu hoac vision truoc khi thu.
 
 ## Cai dat va thiet lap
 
@@ -71,7 +72,7 @@ Truy van nguoi dung → Agent/Chain → [Goi cong cu → Goi LLM → Truy xuat] 
 
 LangChain duoc cai dat qua pip trong vong duoi 60 giay. Python 3.10+ la bat buoc tu phien ban 1.0.
 
-```bash
+`````bash
 # Cai dat framework cot loi
 pip install langchain-core==1.4.0 langchain
 
@@ -89,11 +90,11 @@ pip install langgraph
 
 # Cai dat LangSmith cho kha nang quan sat
 pip install langsmith
-```
+`````
 
 ### Xac minh cai dat
 
-```python
+`````python
 import langchain_core
 print(langchain_core.__version__)
 # Output: 1.4.0
@@ -106,22 +107,22 @@ openai_model = ChatOpenAI(model="gpt-4o", temperature=0)
 anthropic_model = ChatAnthropic(model="claude-3-5-sonnet-20241022")
 
 print("LangChain installed successfully with OpenAI and Anthropic providers")
-```
+`````
 
 ### Cau hinh moi truong
 
-```bash
+`````bash
 # File .env
 OPENAI_API_KEY=sk-proj-xxxxx
 ANTHROPIC_API_KEY=sk-ant-xxxxx
 LANGSMITH_API_KEY=ls-xxxxx
 LANGSMITH_TRACING=true
 LANGSMITH_PROJECT=production-agents
-```
+`````
 
 ### Thiet lap Docker (Khuyen nghi cho Production)
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -150,9 +151,9 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
-```
+`````
 
-```txt
+`````txt
 # requirements.txt
 langchain-core==1.4.0
 langchain==1.3.0
@@ -166,9 +167,9 @@ pydantic==2.10.0
 python-dotenv==1.0.0
 redis==5.2.0
 httpx==0.28.0
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -191,11 +192,11 @@ services: app: build: .
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes: redis_data: chroma_data: ```
+volumes: redis_data: chroma_data: `````
 
 ### Build va chay
 
-```bash
+`````bash
 # Build image
 docker build -t langchain-production-app .
 
@@ -204,13 +205,13 @@ docker-compose up -d
 
 # Kiem tra trien khai
 curl http://localhost:8000/health
-```
+`````
 
 ## Tich hop voi OpenAI, Anthropic, Ollama, va Vector Stores
 
 ### Tich hop OpenAI GPT-4o
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -237,11 +238,11 @@ response = chain.invoke({
     "question": "Explain backpropagation in 3 sentences."
 })
 print(response.content)
-```
+`````
 
 ### Tich hop Anthropic Claude
 
-```python
+`````python
 from langchain_anthropic import ChatAnthropic
 
 claude = ChatAnthropic(
@@ -258,11 +259,11 @@ response = claude_chain.invoke({
     "question": "What is the CAP theorem?"
 })
 print(response.content)
-```
+`````
 
 ### Model cuc bo Ollama
 
-```python
+`````python
 from langchain_ollama import ChatOllama
 
 local_model = ChatOllama(
@@ -273,11 +274,11 @@ local_model = ChatOllama(
 
 response = local_model.invoke("Explain quantum computing simply.")
 print(response.content)
-```
+`````
 
 ### Pipeline RAG voi Chroma Vector Store
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -314,11 +315,11 @@ qa_chain = RetrievalQA.from_chain_type(
 # Truy van
 result = qa_chain.invoke({"query": "What are the key findings?"})
 print(result["result"])
-```
+`````
 
 ### Agent voi cong cu
 
-```python
+`````python
 from langchain import hub
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.tools import tool
@@ -347,7 +348,7 @@ result = agent_executor.invoke({
     "input": "What is 1250 * 37 and search for deployment docs?"
 })
 print(result["output"])
-```
+`````
 
 ## Benchmarks / Truong hop su dung thuc te
 
@@ -379,7 +380,7 @@ LangChain doi toc do truy xuat tho lay tinh linh hoat dieu phoi. Haystack dan da
 
 LangGraph mo rong LangChain voi dieu phoi agent dua tren do thi. No ho tro chu trinh, phan nhanh, va con nguoi trong vong lap — thiet yeu cho cac agent production can cong phe duyet.
 
-```python
+`````python
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated, Sequence
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
@@ -425,13 +426,13 @@ workflow.add_edge("reject", END)
 app = workflow.compile()
 result = app.invoke({"messages": [HumanMessage(content="Delete all user records from the database.")]})
 print(result["messages"][-1].content)
-```
+`````
 
 ### Xu ly loi va thu lai
 
 Cac agent production that bai. Xu ly mot cach thanh lich.
 
-```python
+`````python
 from langchain_core.runnables import RunnableConfig
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -448,11 +449,11 @@ def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return
 # Su dung
 config = RunnableConfig(tags=["production", "customer-facing"])
 result = invoke_with_retry(qa_chain, {"query": "What are the terms?"}, config)
-```
+`````
 
 ### Gioi han toc do va kiem soat chi phi
 
-```python
+`````python
 from langchain_core.rate_limiters import InMemoryRateLimiter
 import time
 
@@ -474,11 +475,11 @@ from langchain.callbacks import get_openai_callback
 
 with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
-```
+`````
 
 ### Giam sat voi LangSmith
 
-```python
+`````python
 import os
 
 # Bat tracing
@@ -502,11 +503,11 @@ results = evaluate(
     data="my-dataset-name",
     evaluators=[accuracy_evaluator],
 )
-```
+`````
 
 ### Trien khai Kubernetes
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -536,7 +537,7 @@ spec: replicas: 3
             port: 8000
           initialDelaySeconds: 5
           periodSeconds: 10
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: langchain-service
@@ -545,18 +546,18 @@ spec: selector: app: langchain-app
       port: 80
       targetPort: 8000
   type: ClusterIP
-```
+`````
 
-```bash
+`````bash
 # Trien khai len Kubernetes
 kubectl apply -f k8s-deployment.yaml
 kubectl get pods -l app=langchain-app
 kubectl logs -f deployment/langchain-app
-```
+`````
 
 ### Redis caching cho cac truy van thuong xuyen
 
-```python
+`````python
 import redis
 import json
 import hashlib
@@ -579,7 +580,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
     return result
-```
+`````
 
 ![LangChain Integration Map](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/social_share.png)
 
@@ -609,7 +610,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
 
 **Duong cong hoc tap doc hon cho cac truong hop don gian.** Mot ung dung "chat voi PDF" co ban yeu cau hieu ve loaders, splitters, embeddings, vector stores, va chains. Cac cong cu nhu RAGFlow hoac Verba cung cap con duong nhanh hon cho nguoi khong phai developer.
 
-**Su phat trien nhanh tao ra phien ban drift.** Mac du co cam ket LTS 1.0, he sinh thai van phat trien nhanh. Cac tich hop cong dong (`langchain-community`) co the gioi thieu cac thay doi pha vo trong phien ban minor. Co dinh phien ban chinh xac trong production.
+**Su phat trien nhanh tao ra phien ban drift.** Mac du co cam ket LTS 1.0, he sinh thai van phat trien nhanh. Cac tich hop cong dong (````langchain-community````) co the gioi thieu cac thay doi pha vo trong phien ban minor. Co dinh phien ban chinh xac trong production.
 
 **Chi phi LangSmith ty le theo muc su dung.** Tier mien phi bao gom 5.000 traces hang thang — du cho prototype nhung khong du cho production. Mot team 5 nguoi xu ly 100.000 traces hang thang tra khoang $220/thang chi cho LangSmith, chua ke chi phi API LLM.
 
@@ -625,7 +626,7 @@ LangChain la framework cot loi de xay dung ung dung LLM voi chains, prompts, va 
 
 ### Lam the nao de chuyen doi giua cac nha cung cap LLM trong LangChain?
 
-Thay doi import lop model. Giao dien `BaseChatModel` chuan hoa cua LangChain co nghia la code viet cho OpenAI hoat dong voi Anthropic, Google, Ollama, hoac bat ky nha cung cap nao duoc ho tro chi voi thay doi toi thieu. Thuoc tinh `.content_blocks` trong 1.0+ chuan hoa dinh dang message tren tat ca cac nha cung cap, loai bo ma phan tich cu phap theo nha cung cap.
+Thay doi import lop model. Giao dien ````BaseChatModel```` chuan hoa cua LangChain co nghia la code viet cho OpenAI hoat dong voi Anthropic, Google, Ollama, hoac bat ky nha cung cap nao duoc ho tro chi voi thay doi toi thieu. Thuoc tinh ````.content_blocks```` trong 1.0+ chuan hoa dinh dang message tren tat ca cac nha cung cap, loai bo ma phan tich cu phap theo nha cung cap.
 
 ### LangChain co mien phi cho thuong mai khong?
 
@@ -637,7 +638,7 @@ Cho cac trien khai production, su dung container Docker voi may chu WSGI/ASGI (U
 
 ### LangChain xu ly loi va thu lai nhu the nao?
 
-LangChain cung cap logic thu lai built-in voi exponential backoff thong qua tham so `max_retries` tren cac lop model. Cho production, boc cac duong dan quan trong bang Tenacity de kiem soat chinh sach thu lai mot cach chi tiet. Su dung xu ly ngoai le co cau truc de phan biet giua loi co the thu lai (gioi han toc do, timeout) va loi cuoi cung (dau vao khong hop le, loi xac thuc). Ghi tat ca cac that bai vao LangSmith de phan tich sau su co.
+LangChain cung cap logic thu lai built-in voi exponential backoff thong qua tham so ````max_retries```` tren cac lop model. Cho production, boc cac duong dan quan trong bang Tenacity de kiem soat chinh sach thu lai mot cach chi tiet. Su dung xu ly ngoai le co cau truc de phan biet giua loi co the thu lai (gioi han toc do, timeout) va loi cuoi cung (dau vao khong hop le, loi xac thuc). Ghi tat ca cac that bai vao LangSmith de phan tich sau su co.
 
 ### Toi co the tu host LangSmith khong?
 
@@ -645,7 +646,7 @@ LangSmith tu host chi co san tren cac goi Enterprise voi gia tuy chinh. Cho cac 
 
 ### Lam the nao de mo rong LangChain agents xu ly 1.000+ nguoi dung dong thoi?
 
-Mo rong theo chieu ngang bang cach chay nhieu instance container phia sau mot bo can bang tai. Su dung cac mau bat dong bo (`ainvoke`, `astream`) de toi da hoa thong luong tren moi worker. Trien khai Redis caching cho cac truy van thuong duoc hoi. Thiet lap connection pooling cho co so du lieu va API ben ngoai. Giam sat luong token su dung va chi phi moi yeu cau qua LangSmith. Xem xet su dung he thong hang doi (Celery, RQ) cho cac tac vu agent chay lau thay vi cac yeu cau HTTP dong bo.
+Mo rong theo chieu ngang bang cach chay nhieu instance container phia sau mot bo can bang tai. Su dung cac mau bat dong bo (````ainvoke````, ````astream```) de toi da hoa thong luong tren moi worker. Trien khai Redis caching cho cac truy van thuong duoc hoi. Thiet lap connection pooling cho co so du lieu va API ben ngoai. Giam sat luong token su dung va chi phi moi yeu cau qua LangSmith. Xem xet su dung he thong hang doi (Celery, RQ) cho cac tac vu agent chay lau thay vi cac yeu cau HTTP dong bo.
 
 ## Ket luan
 
@@ -706,7 +707,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -716,7 +717,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](langchain)
 - [ai-engineering-from-scratch](langchain)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

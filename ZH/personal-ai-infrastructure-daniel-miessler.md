@@ -11,6 +11,7 @@ license: 'MIT'
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
+
 # Personal AI Infrastructure：为人类打造的 Agentic AI 设置 — 2026 指南
 
 Daniel Miessler 的个人 AI 基础设施（PAI）（15,000+ 星标）是一个"生活操作系统"，将 AI 策略、执行和反思融合到一个统一平台中。凭借 45 个技能、171 个工作流、37 个钩子和 Algorithm v6.3.0，PAI 将 AI 从一个简单的工具转变为一个智能伙伴，它知道你是谁以及你正在努力实现什么。
@@ -23,7 +24,7 @@ PAI 不是一个聊天机器人，不是一个代码生成器，也不是一个�
 
 PAI 有三个层：
 
-```
+````
 ┌─────────────────────────────────────┐
 │         PAI（操作系统）              │
 │  技能、记忆、算法、Telos              │
@@ -37,11 +38,11 @@ PAI 有三个层：
 │  你的 AI 的声音和个性                │
 │  命名、选择语音、由 TELOS 驱动       │
 └─────────────────────────────────────┘
-```
+`````
 
 **PAI** — 操作系统本身。技能、记忆、算法、你的 Telos、你的身份文件。
 
-**Pulse** — `localhost:31337` 上的生活仪表盘。你可以查看你的状态、目标和工作的地方。
+**Pulse** — ````localhost:31337```` 上的生活仪表盘。你可以查看你的状态、目标和工作的地方。
 
 **DA** — 你的数字助理。你与之交谈的声音和个性。
 
@@ -51,7 +52,7 @@ PAI 有三个层：
 
 PAI 的核心是一个定制算法，通过七阶段循环驱动从当前状态到理想状态的转变：
 
-```
+`````
 当前状态 ──▶ 观察 ──▶ 思考 ──▶ 规划
     ▲                         │
     │                         ▼
@@ -60,17 +61,17 @@ PAI 的核心是一个定制算法，通过七阶段循环驱动从当前状态�
     └───────────────── 验证   │
                  │             │
                  └──────── 学习 ←┘
-```
+`````
 
 每个阶段有特定的用途：
 
 | 阶段 | 目的 | 输出 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **观察** | 收集关于当前状态的事实 | 状态文档 |
 | **思考** | 使用第一性原理分析 | 根本原因分析 |
@@ -86,7 +87,7 @@ PAI 的核心是一个定制算法，通过七阶段循环驱动从当前状态�
 
 PAI 包含一个基于 Sonnet 的模式分类器，可为每个提示选择合适的处理模式：
 
-```
+`````
 模式分类：
 ┌────────────┬───────────────┐
 │ 模式       │ 描述          │
@@ -106,7 +107,7 @@ PAI 包含一个基于 Sonnet 的模式分类器，可为每个提示选择合�
 │ E4     │ 多阶段项目          │
 │ E5     │ 人生级别项目        │
 └────────┴─────────────────────┘
-```
+`````
 
 分类器决定一个提示是否需要最小响应、标准 LLM 处理或完整的七阶段算法。这防止了将计算浪费在简单查询上，同时确保复杂任务获得全面处理。
 
@@ -114,19 +115,19 @@ PAI 包含一个基于 Sonnet 的模式分类器，可为每个提示选择合�
 
 PAI v5.0.0（最新主要版本）是一个完全重写——不是增量升级。一行安装：
 
-```bash
+`````bash
 curl -sSL https://ourpai.ai/install.sh | bash
-```
+`````
 
 安装后：
 
-```bash
+`````bash
 # 启动 Pulse 守护进程
 pulse start
 
 # 访问生活仪表盘
 open http://localhost:31337
-```
+`````
 
 仪表盘提供实时可见性：
 
@@ -140,9 +141,9 @@ open http://localhost:31337
 
 PAI 以一场面试开始，塑造你的数字助理：
 
-```bash
+`````bash
 /interview
-```
+`````
 
 面试引导你完成：
 
@@ -158,14 +159,14 @@ TELOS（Τέλος）是最重要的配置。它捕获你的根本目的，并�
 
 PAI 使用身份文件为你的 DA 提供上下文：
 
-```
+`````
 ~/.pai/
 ├── PRINCIPAL_IDENTITY.md    # 你是谁
 ├── DA_IDENTITY.md           # 你的数字助理的个性
 ├── TELOS.md                 # 你的人生目标
 ├── CONTAINMENT_ZONES/       # 隐私隔离规则
 └── SKILLS/                  # 自定义技能目录
-```
+`````
 
 ### 从 v4.x 升级
 
@@ -175,7 +176,7 @@ PAI 使用身份文件为你的 DA 提供上下文：
 
 PAI 包含 45 个内置技能，按类别组织：
 
-```
+`````
 技能分类：
 ┌──────────────────────┬───────┐
 │ 分类                 │ 数量  │
@@ -187,7 +188,7 @@ PAI 包含 45 个内置技能，按类别组织：
 │ 自动化技能           │   5   │
 │ 反思技能             │   4   │
 └──────────────────────┴───────┘
-```
+`````
 
 ### 思维技能
 
@@ -207,7 +208,7 @@ PAI 的思维技能是其最独特的特性。这些不是通用提示——它�
 
 PAI 偏向于确定性的代码执行而非纯提示：
 
-```
+`````
 技能层级（确定性 > 基于提示）：
 1. 代码（确定性）← 最优选
 2. 运行代码的 CLI
@@ -215,13 +216,13 @@ PAI 偏向于确定性的代码执行而非纯提示：
 4. 在流程之间路由的 SKILL.md
 
 "提示包裹代码；代码不包裹提示。"
-```
+`````
 
 ### ISA — 理想状态工件
 
 ISA 是一个用于阐述"理想状态"的通用原语：
 
-```markdown
+`````markdown
 # ISA 文档结构
 
 1. 问题 — 我们在解决什么？
@@ -236,7 +237,7 @@ ISA 是一个用于阐述"理想状态"的通用原语：
 10. 决策 — 关键架构选择
 11. 变更日志 — 版本历史
 12. 验证 — 最终验证
-```
+`````
 
 PAI 中的每个主要项目都以 ISA 开始。这强制在执行之前保持清晰。
 
@@ -244,7 +245,7 @@ PAI 中的每个主要项目都以 ISA 开始。这强制在执行之前保持�
 
 ### Pulse 守护进程
 
-Pulse 是驱动 `localhost:31337` 上生活仪表盘的统一守护进程。它提供：
+Pulse 是驱动 ````localhost:31337```` 上生活仪表盘的统一守护进程。它提供：
 
 - **语音集成** — 用于免提交互的语音输入/输出
 - **钩子** — 基于事件、时间或上下面的自动化触发器
@@ -255,7 +256,7 @@ Pulse 是驱动 `localhost:31337` 上生活仪表盘的统一守护进程。它�
 
 Pulse 仪表盘有 22 个路由：
 
-```
+`````
 Pulse 仪表盘路由：
 ┌────────────────────────────────────────────────────┐
 │ 仪表盘 │ 当前状态 │ 理想状态 │ 策略                │
@@ -264,26 +265,26 @@ Pulse 仪表盘路由：
 │ 设置   │ 身份     │ TELOS    │ 隔离区域            │
 │ 报告   │ 审计     │ 备份     │ 恢复                │
 └────────────────────────────────────────────────────┘
-```
+`````
 
 ### 171 个工作流
 
 工作流是预构建的技能序列，用于自动化常见模式：
 
-```
+`````
 工作流示例：
 - research-workflow：收集来源 → 分析 → 综合
 - code-review：读取代码 → 测试 → 审查 → 文档
 - decision-framework：定义问题 → 收集选项 → 评估 → 决策
 - project-init：头脑风暴 → ISA → 规划 → 执行
 - daily-standup：回顾进度 → 更新状态 → 规划下一步
-```
+`````
 
 ### 37 个钩子
 
 钩子自动化对特定触发器的响应：
 
-```json
+`````json
 // 钩子示例
 {
   "trigger": "git-commit",
@@ -293,13 +294,13 @@ Pulse 仪表盘路由：
     "template": "commit-template.md"
   }
 }
-```
+`````
 
 ### 隔离区域
 
 PAI 通过隔离区域提供结构化隐私。每个区域隔离数据和 AI 交互：
 
-```json
+`````json
 // 隔离区域配置
 {
   "zones": [
@@ -323,7 +324,7 @@ PAI 通过隔离区域提供结构化隐私。每个区域隔离数据和 AI 交
     }
   ]
 }
-```
+`````
 
 ## 与其他工具的集成
 
@@ -331,11 +332,11 @@ PAI 与更广泛的 AI 生态系统集成：
 
 | 工具 | 集成方式 | 方向 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 技能层 | PAI → Claude |
 | Cursor | 身份文件 | PAI → Cursor |
@@ -350,13 +351,13 @@ PAI 与更广泛的 AI 生态系统集成：
 
 PAI 将其知识库与 Obsidian 同步：
 
-```bash
+`````bash
 # 将 PAI 数据同步到 Obsidian 保险库
 pulse sync --target obsidian --vault ~/Obsidian
 
 # 将 Obsidian 笔记导入 PAI
 pulse import --source obsidian --vault ~/Obsidian
-```
+`````
 
 这创建了一个跨 PAI 会话保留的持久知识库。
 
@@ -364,13 +365,13 @@ pulse import --source obsidian --vault ~/Obsidian
 
 PAI 在 GitHub 中跟踪项目：
 
-```bash
+`````bash
 # 创建 PAI 管理的 GitHub 仓库
 pulse project --create --github my-new-project
 
 # 将当前状态同步到 GitHub 问题
 pulse sync --target github --issues
-```
+`````
 
 ## 基准测试 / 实际使用案例
 
@@ -380,13 +381,13 @@ pulse sync --target github --issues
 
 | 指标 | 没有 PAI | 有 PAI | 改进 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 决策重新评估率 | 40% | 8% | -80% |
 | 从问题到解决方案的时间 | 3.2 天 | 0.8 天 | -75% |
@@ -398,7 +399,7 @@ pulse sync --target github --issues
 
 使用 PAI 的典型一天：
 
-```bash
+`````bash
 # 早晨：每日站会
 pulse standup
 
@@ -413,19 +414,19 @@ pulse standup
 # 晚上：反思
 pulse reflect --today
 # PAI 将每日学习成果编译为 TELOS 更新
-```
+`````
 
 ### 成本比较
 
 | 方案 | 月度成本 | 节省时间 | 捕获知识 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 纯 AI 工具 | $50-200 | 低 | 无 |
 | PAI + AI 工具 | $50-200 | 高 | 完整 |
@@ -439,17 +440,17 @@ PAI 的价值不在于降低 AI 成本——而在于大幅提高每一笔 AI �
 
 创建你自己的技能：
 
-```bash
+`````bash
 # 从模板生成新技能
 pulse skill create my-custom-skill --template thinking
 
 # 编辑技能
 pulse skill edit my-custom-skill
-```
+`````
 
 技能遵循 SKILL.md 约定：
 
-```markdown
+`````markdown
 # 我的自定义技能
 
 ## 描述
@@ -466,11 +467,11 @@ pulse skill edit my-custom-skill
 
 ## 示例
 使用示例
-```
+`````
 
 ### 高级 Pulse 配置
 
-```bash
+`````bash
 # 配置 Pulse 钩子
 pulse hooks create --trigger git-push --action notify --config '{"channels": ["telegram"]}'
 
@@ -479,19 +480,19 @@ pulse cron add --schedule "0 9 * * *" --action "pulse standup" --name "morning-r
 
 # 启用语音模式
 pulse voice enable --model whisper --language en
-```
+`````
 
 ### 企业部署
 
 用于团队或组织用途：
 
-```bash
+`````bash
 # 创建团队 PAI 实例
 pulse team create --name my-org --members 10
 
 # 在远程服务器上部署
 pulse deploy --target remote --host pai.myorg.com --port 31337
-```
+`````
 
 ## 局限性 / 诚实评估
 
@@ -538,7 +539,7 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 
 核心见解——AI 工具需要结构、记忆和身份才能真正有用——既简单又深刻。PAI 开箱即用地提供了这种基础设施。
 
-**立即尝试 PAI** — `curl -sSL https://ourpai.ai/install.sh | bash` 并开始面试。
+**立即尝试 PAI** — ````curl -sSL https://ourpai.ai/install.sh | bash``` 并开始面试。
 
 了解更多个人 AI 设置内容：
 - [ECC：Agent Harness 性能优化](/zh/resources/dev-utils/ecc-agent-harness-performance-optimization/) — 优化你的 AI 代理性能
@@ -546,7 +547,7 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/danielmiessler/Personal_AI_Infrastructure
 - 博客文章：https://danielmiessler.com/blog/personal-ai-infrastructure
@@ -556,7 +557,7 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 **加入我们的社区**：https://t.me/DIBI8_Group
 
 
----
+* * *
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
 
 
@@ -621,12 +622,12 @@ Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agentic AI 设�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -636,7 +637,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](personal-ai-infrastructure-daniel-miessler)
 - [personal-ai-infrastructure-daniel-miessler](personal-ai-infrastructure-daniel-miessler)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -33,6 +33,7 @@ faqs: - q: '什么是 9Router，它是如何工作的？'
     a: '任何支持自定义 OpenAI 兼容 API 端点的工具都可以通过 http://localhost:20128/v1 连接到 9Router。受支持的工具包括 Claude Code、OpenAI Codex CLI、Cursor IDE、GitHub Copilot、Cline、Continue、Roo Code、Antigravity、Droid、Kilo Code 和 OpenCode。'
   - q: '我能否以零月费使用 9Router 进行 AI 编程？'
     a: '可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。'---
+
 {</* resource-info */>}
 
 AI编程助手革命为开发者带来了前所未有的困境：我们通过Claude Code、OpenAI Codex、Cursor和GitHub Copilot等工具获得了世界级的语言模型访问权限——但同时管理多个平台上的订阅、配额和速率限制正变得日益昂贵和令人沮丧。许多开发者发现自己两周内就耗尽了Claude Pro的月度配额，然后在冲刺截止日期面前只能面对速率限制的墙壁。
@@ -41,7 +42,7 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 
 ## 什么是9Router以及它是如何工作的？
 
-9Router是一个本地托管的中间件服务（默认运行在`localhost:20128`），位于您的AI编程工具和底层模型提供商之间。您的工具不再直接向Claude、OpenAI或任何单一提供商发送API请求，而是与9Router通信——然后由它智能决定将请求路由到哪个后端提供商。
+9Router是一个本地托管的中间件服务（默认运行在``localhost:20128``），位于您的AI编程工具和底层模型提供商之间。您的工具不再直接向Claude、OpenAI或任何单一提供商发送API请求，而是与9Router通信——然后由它智能决定将请求路由到哪个后端提供商。
 
 这种架构为您带来三大优势：
 
@@ -53,7 +54,7 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 
 ### 🚀 RTK令牌压缩引擎
 
-工具输出通常占您总提示预算的30-50%。当Claude Code在大型代码库中运行`git diff`、`ls -R`或`grep`时，它会向模型发送数百万字节的文本——其中大部分是无关噪音。
+工具输出通常占您总提示预算的30-50%。当Claude Code在大型代码库中运行``git diff``、``ls -R``或``grep``时，它会向模型发送数百万字节的文本——其中大部分是无关噪音。
 
 9Router内置的RTK集成功能自动检测这些工具输出并应用智能的无损压缩过滤器：
 
@@ -66,10 +67,10 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 
 至关重要的是，如果任何过滤器失败或产生比原始文本更差的输出，RTK会静默回退到未修改的文本。错误永远不会破坏您的请求。压缩在任何格式转换**之前**运行，因此它适用于所有支持的格式（OpenAI、Claude、Gem尼、Cursor、Kiro、OpenAI Responses）。
 
-```
+````
 不使用RTK：向LLM发送47K令牌
 使用RTK：向LLM发送28K令牌（节省40%·相同质量的答案）
-```
+`````
 
 在实际应用中，开发者报告每个请求都能看到20-40%的令牌节省——有效地将每个订阅的使用寿命延长了数天甚至数周。
 
@@ -83,12 +84,12 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 
 这可以说是9Router的核心杀手锏。您可以定义"组合"——不同定价层级的有序模型列表——然后9Router自动相应地路由请求：
 
-```
+`````
 组合："my-coding-stack"
   1. cc/claude-opus-4-6        → 您的Claude Code Pro订阅
   2. glm/glm-4.7               → 便宜备用（每百万令牌$0.6）
   3. kr/claude-sonnet-4.5      → Kiro AI免费紧急备用
-```
+`````
 
 当Opus配额耗尽（或发生错误）时，9Router立即过渡到GLM。如果GLM也耗尽，则下降到Kiro的无限免费层级。您永远不会遇到墙。
 
@@ -98,11 +99,11 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 订阅版 | Claude Code、Codex、Copilot、Cursor | $10-$200/月 | 5小时滚动 + 每周/每月 |
 | 廉价版 | GLM-5.1、MiniMax M2.7、Kimi K2.5 | $0.2-$0.6/百万令牌 | 每日/滚动/固定月度 |
@@ -130,7 +131,7 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 
 9Router充当通用适配器，支持几乎所有流行的AI编程工具：
 
-- **Claude Code**（`~/.claude/config.json`中使用自定义API基本地址）
+- **Claude Code**（````~/.claude/config.json````中使用自定义API基本地址）
 - **OpenAI Codex CLI**（环境变量覆盖）
 - **Cursor IDE**（自定义OpenAI端点设置）
 - **GitHub Copilot**
@@ -143,13 +144,13 @@ AI编程助手革命为开发者带来了前所未有的困境：我们通过Cla
 - **Kilo Code**
 - **OpenCode**
 
-任何支持自定义OpenAI兼容API端点的工具都可以连接到9Router。该服务在`http://localhost:20128/v1`上暴露标准OpenAI兼容接口。
+任何支持自定义OpenAI兼容API端点的工具都可以连接到9Router。该服务在````http://localhost:20128/v1````上暴露标准OpenAI兼容接口。
 
 ## 入门：安装和设置
 
 ### 快速开始：本地主机（大多数用户推荐）
 
-```bash
+`````bash
 # 克隆并安装
 git clone https://github.com/decolua/9router.git
 cd 9router
@@ -164,15 +165,15 @@ export NODE_ENV="production"
 
 # 启动服务器
 npm run start
-```
+`````
 
-启动后，打开`http://localhost:20128`访问网页仪表板。从此处连接您的第一个提供商。
+启动后，打开````http://localhost:20128````访问网页仪表板。从此处连接您的第一个提供商。
 
 ### Docker部署
 
 对于生产或多设备设置，Docker使部署变得简单：
 
-```bash
+`````bash
 docker build -t 9router .
 
 docker run -d \
@@ -182,7 +183,7 @@ docker run -d \
   -v 9router-data:/app/data \
   -v 9router-usage:/root/.9router \
   9router
-```
+`````
 
 ### 连接您的第一个提供商
 
@@ -190,29 +191,29 @@ docker run -d \
 
 1. **在仪表板中连接Kiro AI**（使用AWS Builder ID、Google或GitHub OAuth——不需要API密钥）
 2. **连接OpenCode Free**（零认证、直通代理，模型自动获取）
-3. **创建名为`free-dev`的组合**，包含以下模型：
-   - `kr/claude-sonnet-4.5`（通过Kiro的Claude Sonnet 4.5——免费无限）
-   - `kr/glm-5`（通过Kiro的GLM-5——免费无限）
-   - `vertex/gemini-3.1-pro-preview`（Google Cloud——$300免费信用额度）
+3. **创建名为````free-dev````的组合**，包含以下模型：
+   - ````kr/claude-sonnet-4.5````（通过Kiro的Claude Sonnet 4.5——免费无限）
+   - ````kr/glm-5````（通过Kiro的GLM-5——免费无限）
+   - ````vertex/gemini-3.1-pro-preview````（Google Cloud——$300免费信用额度）
 
-然后将您首选的工具配置为指向`http://localhost:20128/v1`并使用您的仪表板API密钥：
+然后将您首选的工具配置为指向````http://localhost:20128/v1````并使用您的仪表板API密钥：
 
-```json
+`````json
 {
   "anthropic_api_base": "http://localhost:20128/v1",
   "anthropic_api_key": "your-9router-api-key"
 }
-```
+`````
 
 ### 配置Cursor IDE
 
 在Cursor设置→模型→高级中：
 
-```
+`````
 OpenAI API基本地址：http://localhost:20128/v1
 OpenAI API密钥：[从9Router仪表板复制]
 模型：cc/claude-opus-4-7
-```
+`````
 
 现在Cursor的每个模型调用都流经9Router的路由智能。
 
@@ -223,18 +224,18 @@ OpenAI API密钥：[从9Router仪表板复制]
 您每月为Claude Pro支付$20。如果没有9Router，一旦配额耗尽，编码就会停止直到重置。
 
 使用9Router的"maximize-claude"组合：
-- 主用：`cc/claude-opus-4-7`（充分利用订阅）
-- 备用：`glm/glm-5.1`（$0.6/百万令牌，每天上午10点重置）
-- 紧急：`kr/claude-sonnet-4.5`（Kiro免费备用）
+- 主用：````cc/claude-opus-4-7````（充分利用订阅）
+- 备用：````glm/glm-5.1````（$0.6/百万令牌，每天上午10点重置）
+- 紧急：````kr/claude-sonnet-4.5````（Kiro免费备用）
 
 结果：由于RTK节省20-40%令牌，您的$20订阅持续更长时间；即使到期，您也有无缝备用方案。 cheap层级的总有效成本仅增加约$5——远低于升级到Claude Max（$200/月）。
 
 ### 场景B：完全零月度预算
 
 完全使用免费模型开始：
-- `gc/gemini-3-flash`（Google每月180K免费查询）
-- `kr/claude-sonnet-4.5`（Kiro免费无限）
-- `oc/<auto>`（OpenCode Free，无需认证）
+- ````gc/gemini-3-flash````（Google每月180K免费查询）
+- ````kr/claude-sonnet-4.5````（Kiro免费无限）
+- ````oc/<auto>````（OpenCode Free，无需认证）
 
 结合RTK压缩，这套配置以真正的零月度成本提供生产级模型响应。
 
@@ -270,13 +271,13 @@ OpenAI API密钥：[从9Router仪表板复制]
 
 | 功能 | 9Router | 直接提供商访问 | 其他代理工具 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 智能回退路由 | ✅ 自动3+层级 | ❌ 单提供商 | 部分支持 |
 | 令牌压缩（RTK） | ✅ 内置 | ❌ 无 | 罕见 |
@@ -309,13 +310,13 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 - **代理**：完整HTTP透传，支持可配置的上游代理
 
 环境变量提供了对部署的细致控制：
-- `JWT_SECRET`：生产中请更改
-- `REQUIRE_API_KEY`：强制在`/v1/*`路线上使用bearer token认证
-- `ENABLE_REQUEST_LOGS`：启用调试级别的请求/响应日志记录
-- `AUTH_COOKIE_SECURE`：在HTTPS反向代理后面强制Secure cookie标志
-- `HTTP_PROXY` / `HTTPS_PROXY`：通过企业代理路由上游请求
+- ````JWT_SECRET````：生产中请更改
+- ````REQUIRE_API_KEY````：强制在````/v1/*````路线上使用bearer token认证
+- ````ENABLE_REQUEST_LOGS````：启用调试级别的请求/响应日志记录
+- ````AUTH_COOKIE_SECURE````：在HTTPS反向代理后面强制Secure cookie标志
+- ````HTTP_PROXY```` / ````HTTPS_PROXY````：通过企业代理路由上游请求
 
-该服务默认监听端口`20128`，除存储在`${DATA_DIR}`中的JSON文件外，不需要外部依赖或数据库。
+该服务默认监听端口````20128````，除存储在````${DATA_DIR}```中的JSON文件外，不需要外部依赖或数据库。
 
 ## 总结
 
@@ -329,7 +330,7 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 **网站**：[9router.com](https://9router.com)
 
 
----
+* * *
 ## 相关文章
 
 
@@ -339,7 +340,7 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 - [Addy Osmani的Agent技能：生产级AI编程代理](/resources/llm-frameworks/agent-skills-production-grade-ai-coding.zh/)
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -412,7 +413,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -444,15 +445,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

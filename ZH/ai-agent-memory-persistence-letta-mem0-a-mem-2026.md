@@ -23,6 +23,7 @@ faq: - q: "为什么 AI Agent 需要持久化记忆？"
     a: "对于面向真实用户的生产级 Agent：值得，差异显著。「记得你」和「从零开始」之间的体验差距很大。对于一次性任务或简单工作流：不值得。"
 ---
 
+
 {{</* resource-info */>}}
 
 # AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM
@@ -67,13 +68,13 @@ faq: - q: "为什么 AI Agent 需要持久化记忆？"
 
 | 记忆框架 | Session 2 | Session 5 | Session 10 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Letta | 95% | 90% | 85% |
 | Mem0 | 92% | 80% | 65% |
@@ -86,13 +87,13 @@ faq: - q: "为什么 AI Agent 需要持久化记忆？"
 
 | | Letta | Mem0 | A-MEM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | p95 额外延迟 | 180ms | 80ms | 120ms |
 
@@ -102,13 +103,13 @@ faq: - q: "为什么 AI Agent 需要持久化记忆？"
 
 | | Letta | Mem0 | A-MEM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 跑通集成所需时间 | 1-2 小时 | 20 分钟 | 30-45 分钟 |
 
@@ -139,7 +140,7 @@ faq: - q: "为什么 AI Agent 需要持久化记忆？"
 ## 实际接入
 
 以 Mem0（最简）为例，给现有 Agent 加记忆：
-```python
+````python
 from mem0 import Memory
 m = Memory()
 m.add("User prefers TypeScript over JavaScript", user_id="alice")
@@ -148,9 +149,9 @@ m.add("User's project uses pnpm not npm", user_id="alice")
 # Later session
 relevant = m.search("What package manager?", user_id="alice")
 # Returns: "User's project uses pnpm not npm"
-```
+`````
 
-把 `relevant` 注入 Agent 上下文。就这么简单。
+把 ````relevant``` 注入 Agent 上下文。就这么简单。
 
 Letta 集成更重，但能拿到更完整的分层能力。
 
@@ -178,7 +179,7 @@ Letta 集成更重，但能拿到更完整的分层能力。
 简单场景下，MCP memory server 已经够用，不要过度工程化。只有当记忆质量真正成为产品差异化点时，专用记忆框架的复杂度才值得投入。
 
 
----
+* * *
 **相关阅读**：[AI Agent 记忆系统 2026](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026 排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [开源 AI Agent 框架 Top 10](https://dibi8.com/zh/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
 
@@ -244,11 +245,11 @@ AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM 实测对比 represents a
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -258,7 +259,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [academic-research-skills](ai-agent-memory-persistence-letta-mem0-a-mem-2026)
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](ai-agent-memory-persistence-letta-mem0-a-mem-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

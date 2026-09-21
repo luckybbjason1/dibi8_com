@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/netdata/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -56,24 +57,24 @@ Netdata 的架构采用边缘优先、分布式模型。每个节点运行独立
 
 最快的安装方式：
 
-```bash
+````bash
 # 使用默认配置安装 Netdatacurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash
-```
+`````
 
 验证安装：
 
-```bash
+`````bash
 sudo systemctl status netdata
 # Active: active (running) since ...
-```
+`````
 
-在 `http://localhost:19999` 访问本地仪表板。
+在 ````http://localhost:19999```` 访问本地仪表板。
 
 ### Docker 部署
 
 容器化环境部署：
 
-```bash
+`````bash
 docker run -d --name=netdata \
   -p 19999:19999 \
   -v /proc:/host/proc:ro \
@@ -82,11 +83,11 @@ docker run -d --name=netdata \
   --cap-add SYS_PTRACE \
   --security-opt apparmor=unconfined \
   netdata/netdata:latest
-```
+`````
 
 ### Docker Compose (生产级)
 
-```yaml
+`````yaml
 version: '3.8'
 services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
@@ -106,13 +107,13 @@ services: netdata: image: netdata/netdata:v2.5.0
     environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes: netdata-config: netdata-lib: netdata-cache: ```
+volumes: netdata-config: netdata-lib: netdata-cache: `````
 
 ![Netdata 系统监控界面](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
 ### Kubernetes Helm 安装
 
-```bash
+`````bash
 # 添加 Netdata Helm 仓库
 helm repo add netdata https://netdata.github.io/helmchart/
 helm repo update
@@ -121,27 +122,27 @@ helm repo update
 helm install netdata netdata/netdata \
   --namespace monitoring \
   --create-namespace
-```
+`````
 
 验证 Pod：
 
-```bash
+`````bash
 kubectl get pods -n monitoring
 # NAME                    READY   STATUS
 # netdata-parent-0        1/1     Running
 # netdata-child-xxx       1/1     Running
-```
+`````
 
 ### 生成当前配置
 
 下载运行中的配置以进行自定义：
 
-```bash
+`````bash
 # 下载当前生效配置
 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
 # 或使用 edit-config 脚本
 sudo /etc/netdata/edit-config netdata.conf
-```
+`````
 
 ## 与主流工具集成
 
@@ -149,11 +150,11 @@ sudo /etc/netdata/edit-config netdata.conf
 
 将 Netdata 指标导出到 Prometheus 以实现长期存储和 PromQL 查询：
 
-```bash
+`````bash
 sudo /etc/netdata/edit-config exporting.conf
-```
+`````
 
-```conf
+`````conf
 [prometheus:remote_write]
     enabled = yes
     destination = prometheus:9090
@@ -162,19 +163,19 @@ sudo /etc/netdata/edit-config exporting.conf
     prefix = netdata
     send charts matching = *
     send hosts matching = *
-```
+`````
 
 重启 Netdata：
 
-```bash
+`````bash
 sudo systemctl restart netdata
-```
+`````
 
 ### Grafana 仪表板
 
 虽然 Netdata 内置仪表板，许多团队更喜欢使用 Grafana 进行集中可视化。在 Grafana 中将 Netdata 添加为 Prometheus 数据源：
 
-```yaml
+`````yaml
 # Grafana 中的 datasource.yaml
 apiVersion: 1
 datasources: - name: Netdata-Prometheus
@@ -183,13 +184,13 @@ datasources: - name: Netdata-Prometheus
     access: proxy
     isDefault: false
     jsonData: timeInterval: "1s"
-```
+`````
 
 ### Kubernetes DaemonSet (高级)
 
 在每个 K8s 节点上获得完整的宿主机级可见性：
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata: name: netdata
@@ -218,13 +219,13 @@ spec: selector: matchLabels: app: netdata
           hostPath: path: /sys
         - name: docker-sock
           hostPath: path: /var/run/docker.sock
-```
+`````
 
 ### PostgreSQL 监控
 
-在 `go.d/postgres.conf` 中启用 PostgreSQL 采集器：
+在 ````go.d/postgres.conf```` 中启用 PostgreSQL 采集器：
 
-```yaml
+`````yaml
 jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
     collect: - database_statistics
@@ -232,21 +233,21 @@ jobs: - name: local
       - index_statistics
       - replication_statistics
     timeout: 2
-```
+`````
 
 测试采集器：
 
-```bash
+`````bash
 sudo /etc/netdata/edit-config go.d/postgres.conf
 # 重启以生效
 sudo systemctl restart netdata
-```
+`````
 
 ### Nginx 监控
 
 监控 Nginx stub_status 和访问日志：
 
-```yaml
+`````yaml
 # /etc/netdata/go.d/nginx.conf
 jobs: - name: local
     url: http://localhost/stub_status
@@ -254,7 +255,7 @@ jobs: - name: local
   - name: access_log
     path: /var/log/nginx/access.log
     parser: type: ltsv
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -264,13 +265,13 @@ jobs: - name: local
 
 | 场景 | Netdata | Prometheus + Node Exporter | Zabbix Agent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU 开销 (%) | 1–5% | 5–15% | 10–20% |
 | 每节点内存 | 100–150 MB | 200–500 MB | 150–300 MB |
@@ -306,7 +307,7 @@ Netdata 的父子流式架构可水平扩展：
 
 **最小资源占用 (生产子节点)：**
 
-```conf
+`````conf
 [global]
     # 以最低优先级运行，避免影响应用程序
     process scheduling policy = batch
@@ -345,11 +346,11 @@ Netdata 的父子流式架构可水平扩展：
     idlejitter = no
     debugfs = no
     systemd-journal = no
-```
+`````
 
 **带分层存储的 Parent 节点 (中心监控)：**
 
-```conf
+`````conf
 [db]
     mode = dbengine
     storage tiers = 3
@@ -386,13 +387,13 @@ Netdata 的父子流式架构可水平扩展：
     bind to = *
     # 限制内部网络访问
     allow connections from = 10.* 192.168.* 172.16.* 172.17.*
-```
+`````
 
 ### 流式传输配置：stream.conf
 
-子节点配置 (`/etc/netdata/stream.conf`)：
+子节点配置 (````/etc/netdata/stream.conf````)：
 
-```conf
+`````conf
 [stream]
     enabled = yes
     destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
@@ -403,55 +404,55 @@ Netdata 的父子流式架构可水平扩展：
     buffer size bytes = 1048576
     reconnect delay seconds = 5
     initial clock resync iterations = 60
-```
+`````
 
-Parent 节点配置 (`/etc/netdata/stream.conf`)：
+Parent 节点配置 (````/etc/netdata/stream.conf````)：
 
-```conf
+`````conf
 [API_KEY]
     enabled = yes
     default memory mode = dbengine
     health enabled by default = yes
-```
+`````
 
 ### 安全加固
 
 为 Web 界面启用 TLS：
 
-```conf
+`````conf
 [web]
     tls version = 1.3
     ssl key = /etc/netdata/ssl/key.pem
     ssl certificate = /etc/netdata/ssl/cert.pem
     # 要求所有连接使用 TLS
     bind to = *=dashboard|registry|badges|management|streaming|netdata.conf|readable|writable
-```
+`````
 
 ### 监控 Netdata 自身
 
 跟踪 Agent 自身的资源使用情况：
 
-```bash
+`````bash
 # 查看内部指标
 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog'
 
 # 检查 dbengine 统计
 curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Netdata | Prometheus | Datadog | Zabbix |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 采集间隔 | 1 秒 | 15–60 秒 | 15 秒 | 30–60 秒 |
 | Agent 内存 | 100–150 MB | 200–500 MB | 200–400 MB | 150–300 MB |
@@ -502,11 +503,11 @@ Netdata 在实时、按节点可见性和零配置方面表现出色。Prometheu
 
 **Q: 如何备份 Netdata 的数据库和配置？**
 
-配置位于 `/etc/netdata/`，可用 Git、Ansible、Puppet 等进行版本控制。`/var/cache/netdata/` 中的 dbengine 数据库具有自修复能力，无需手动备份 —— 流式传输到多个 Parent 节点可提供自然冗余。对于关键环境，运行 active-active Parent 对。
+配置位于 ````/etc/netdata/````，可用 Git、Ansible、Puppet 等进行版本控制。````/var/cache/netdata/```` 中的 dbengine 数据库具有自修复能力，无需手动备份 —— 流式传输到多个 Parent 节点可提供自然冗余。对于关键环境，运行 active-active Parent 对。
 
 **Q: Netdata 是否支持自定义应用指标？**
 
-支持。使用内置 StatsD 服务器 (8125 端口)、OpenMetrics 端点，或用 Python 或 Go 编写自定义采集器。`go.d.plugin` 框架支持以最少的模板代码构建新采集器。
+支持。使用内置 StatsD 服务器 (8125 端口)、OpenMetrics 端点，或用 Python 或 Go 编写自定义采集器。````go.d.plugin```` 框架支持以最少的模板代码构建新采集器。
 
 ## 结论
 
@@ -517,7 +518,7 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 1. 今天就在你最关键的服务器上运行一行命令安装
 2. 在你的 Kubernetes 集群上部署 Helm chart
 3. 为生产加固配置父子流式传输
-4. 使用上述配置根据你的资源限制调优 `netdata.conf`
+4. 使用上述配置根据你的资源限制调优 ````netdata.conf```
 
 加入 [Netdata Telegram 社区](https://t.me/netdata)，与 5,000+ 工程师获取实时支持和交流。
 
@@ -574,7 +575,7 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](netdata)
@@ -584,7 +585,7 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](netdata)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

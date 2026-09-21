@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
 ---
 
+
 # TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전 가이드
 
 ## 들어가며
@@ -53,7 +54,7 @@ TradingAgents는 Python 3.10+에서 실행됩니다. 저장소를 클론하고 �
 
 TradingAgents를 예약된 프로덕션 작업으로 돌리려면 항상 켜져 있는 머신이 필요합니다 — [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 하나 띄우거나(신규 계정 무료 크레딧), 아시아에서 저지연 접속이 필요하면 [HTStack](https://my.htstack.com/aff.php?aff=27187)의 홍콩 VPS(dibi8.com을 호스팅하는 것과 같은 IDC)를 쓰세요.
 
-```bash
+````bash
 # 1. 클론
 git clone https://github.com/TauricResearch/TradingAgents.git
 cd TradingAgents
@@ -63,33 +64,33 @@ conda create -n tradingagents python=3.10 -y && conda activate tradingagents
 
 # 3. 의존성 설치
 pip install -r requirements.txt
-```
+`````
 
-conda 대신 순수 virtualenv가 좋다면? 둘 다 됩니다: ```bash
+conda 대신 순수 virtualenv가 좋다면? 둘 다 됩니다: `````bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-```
+`````
 
-필수 API 키 두 개를 환경 변수로 설정합니다: ```bash
+필수 API 키 두 개를 환경 변수로 설정합니다: `````bash
 export OPENAI_API_KEY=sk-your-key-here
 export FINNHUB_API_KEY=your-finnhub-key   # 무료 등급으로 테스트 가능
-```
+`````
 
-또는 매 셸마다 export하지 않도록 로컬 `.env`에 보관합니다: ```bash
+또는 매 셸마다 export하지 않도록 로컬 ``.env``에 보관합니다: `````bash
 # .env  (이 파일은 절대 커밋하지 마세요)
 OPENAI_API_KEY=sk-your-key-here
 FINNHUB_API_KEY=your-finnhub-key
-```
+`````
 
-`KeyError: 'FINNHUB_API_KEY"`가 보이면 현재 셸에 변수가 export되지 않은 것입니다. LLM 호출이 429를 반환하면 OpenAI 쪽에서 레이트 리밋이 걸린 것이니 — 속도를 늦추거나 설정에서 모델을 바꾸세요(아래).
+````KeyError: 'FINNHUB_API_KEY"````가 보이면 현재 셸에 변수가 export되지 않은 것입니다. LLM 호출이 429를 반환하면 OpenAI 쪽에서 레이트 리밋이 걸린 것이니 — 속도를 늦추거나 설정에서 모델을 바꾸세요(아래).
 
 ## 핵심 사용법
 
-가장 빠른 길은 대화형 CLI로, 종목과 날짜를 입력받아 각 에이전트의 추론을 스트리밍합니다: ```bash
+가장 빠른 길은 대화형 CLI로, 종목과 날짜를 입력받아 각 에이전트의 추론을 스트리밍합니다: `````bash
 python -m cli.main
-```
+`````
 
-자동화에는 `TradingAgentsGraph` API로 Python에서 구동합니다. 종목과 날짜를 넘기면 에이전트 상태와 최종 결정을 돌려받습니다: ```python
+자동화에는 ``TradingAgentsGraph`` API로 Python에서 구동합니다. 종목과 날짜를 넘기면 에이전트 상태와 최종 결정을 돌려받습니다: `````python
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.default_config import DEFAULT_CONFIG
 
@@ -97,9 +98,9 @@ ta = TradingAgentsGraph(debug=True, config=DEFAULT_CONFIG.copy())
 # 특정 날짜 기준 NVDA 분석 (point-in-time, 미래 참조 없음)
 _, decision = ta.propagate("NVDA", "2024-05-10")
 print(decision)   # -> BUY / SELL / HOLD + 근거
-```
+`````
 
-비용과 깊이는 설정으로 제어합니다. TradingAgents는 작업을 "딥 싱킹" 모델(무거운 추론)과 "퀵 싱킹" 모델(저렴, 고빈도 호출)로 나눕니다: ```python
+비용과 깊이는 설정으로 제어합니다. TradingAgents는 작업을 "딥 싱킹" 모델(무거운 추론)과 "퀵 싱킹" 모델(저렴, 고빈도 호출)로 나눕니다: `````python
 config = DEFAULT_CONFIG.copy()
 config["llm_provider"] = "openai"
 config["deep_think_llm"] = "gpt-4o"        # 토론 / 어려운 추론용
@@ -107,48 +108,48 @@ config["quick_think_llm"] = "gpt-4o-mini"  # 일상적 에이전트 단계용
 config["max_debate_rounds"] = 2            # 라운드가 많을수록 깊지만 비쌈
 config["online_tools"] = True              # 실시간 데이터 vs 캐시
 ta = TradingAgentsGraph(debug=True, config=config)
-```
+`````
 
-학습 단계에서는 `max_debate_rounds`를 낮게 두세요 — 라운드가 하나 늘 때마다 에이전트 팀 전체의 LLM 호출이 배가됩니다.
+학습 단계에서는 ````max_debate_rounds````를 낮게 두세요 — 라운드가 하나 늘 때마다 에이전트 팀 전체의 LLM 호출이 배가됩니다.
 
-어떤 분석가를 돌릴지도 선택할 수 있어, 펀더멘털과 뉴스만 필요할 때 비용을 줄입니다: ```python
+어떤 분석가를 돌릴지도 선택할 수 있어, 펀더멘털과 뉴스만 필요할 때 비용을 줄입니다: `````python
 config["selected_analysts"] = ["fundamentals", "news"]  # 센티먼트 + 기술적 건너뛰기
 ta = TradingAgentsGraph(debug=True, config=config)
-```
+`````
 
-관심 종목 리스트를 스크리닝하려면 같은 날짜로 여러 종목을 루프 호출합니다: ```python
+관심 종목 리스트를 스크리닝하려면 같은 날짜로 여러 종목을 루프 호출합니다: `````python
 watchlist = ["NVDA", "AAPL", "TSLA"]
 for ticker in watchlist: _, decision = ta.propagate(ticker, "2024-05-10")
     print(f"{ticker}: {decision.splitlines()[0]}")   # 첫 줄 = 결정
-```
+`````
 
-반환된 상태에는 전체 토론이 담겨 있어 *무엇*뿐 아니라 *왜*를 들여다볼 수 있습니다: ```python
+반환된 상태에는 전체 토론이 담겨 있어 *무엇*뿐 아니라 *왜*를 들여다볼 수 있습니다: `````python
 final_state, decision = ta.propagate("NVDA", "2024-05-10")
 print(final_state["investment_debate_state"]["bull_history"])   # 강세 논거
 print(final_state["investment_debate_state"]["bear_history"])   # 약세 논거
 print(final_state["final_trade_decision"])                       # 최종 근거
-```
+`````
 
 ## 통합
 
-결정 단계가 BUY/SELL/HOLD와 근거를 반환하는 Python 호출일 뿐이므로, TradingAgents는 파이프라인의 리서치 절반에 들어갑니다. 그것은 **직접 주문을 넣지 않습니다** — 출력을 당신의 실행 또는 로깅 레이어에 연결합니다: ```python
+결정 단계가 BUY/SELL/HOLD와 근거를 반환하는 Python 호출일 뿐이므로, TradingAgents는 파이프라인의 리서치 절반에 들어갑니다. 그것은 **직접 주문을 넣지 않습니다** — 출력을 당신의 실행 또는 로깅 레이어에 연결합니다: `````python
 _, decision = ta.propagate("AAPL", "2024-06-01")
 if "BUY" in decision: log_signal("AAPL", "BUY", source="tradingagents")
     # 여기서 브로커 / 모의투자 레이어로 전달
-```
+`````
 
 데이터 레이어도 플러그형입니다: 펀더멘털·뉴스는 FinnHub, 기술적 지표는 가격/지표 도구, 센티먼트는 소셜 소스.
 
-매 장 시작마다 결정을 재생성하려면 cron으로 스크립트를 감쌉니다: ```bash
+매 장 시작마다 결정을 재생성하려면 cron으로 스크립트를 감쌉니다: `````bash
 # 평일 08:00에 관심 종목 스크리닝 실행
 0 8 * * 1-5 cd /opt/TradingAgents && /opt/.venv/bin/python screen_watchlist.py >> /var/log/ta.log 2>&1
-```
+`````
 
-OpenAI에 묶이지 않습니다 — 같은 설정으로 딥/퀵 모델을 다른 제공자로 향하게 하세요: ```python
+OpenAI에 묶이지 않습니다 — 같은 설정으로 딥/퀵 모델을 다른 제공자로 향하게 하세요: `````python
 config["llm_provider"] = "anthropic"
 config["deep_think_llm"] = "claude-sonnet-4-6"
 config["quick_think_llm"] = "claude-haiku-4-5"
-```
+`````
 
 ## 벤치마크 & 실사용
 
@@ -158,19 +159,19 @@ TradingAgents는 리서치 테스트베드로 쓰입니다: 과거 날짜를 재
 
 *리스크 팀이 포트폴리오 매니저가 승인하기 전 모든 트레이딩 플랜을 스트레스 테스트합니다 (출처: TauricResearch/TradingAgents, via dibi8 분석)*
 
-완료된 실행은 결정과 추론 흐름을 반환합니다 — 대략 이렇게: ```text
+완료된 실행은 결정과 추론 흐름을 반환합니다 — 대략 이렇게: `````text
 FINAL TRANSACTION PROPOSAL: BUY
 Rationale: 펀더멘털 분석가가 데이터센터 매출 가속을 지적;
 강세 논거(마진 확대)가 2라운드에 걸쳐 약세 논거(밸류에이션)를 압도;
 리스크 팀: 중립 입장, 포지션 보수적. 포트폴리오 매니저: 승인.
-```
+`````
 
-토론 기록이 보존되므로, 모델을 바꾸거나 토론 라운드를 더할 때 결정이 어떻게 변하는지 비교할 수 있습니다: ```python
+토론 기록이 보존되므로, 모델을 바꾸거나 토론 라운드를 더할 때 결정이 어떻게 변하는지 비교할 수 있습니다: `````python
 for rounds in (1, 3): config["max_debate_rounds"] = rounds
     ta = TradingAgentsGraph(config=config)
     _, d = ta.propagate("NVDA", "2024-05-10")
     print(rounds, "rounds ->", d.splitlines()[0])
-```
+`````
 
 ## 대안과의 비교
 
@@ -214,7 +215,7 @@ AI 기반 암호화폐 전략을 다룬다면 [Minara](https://minara.ai/r/OSXG4
 두 개: LLM 제공자 키(기본 OPENAI_API_KEY)와 금융 데이터용 FINNHUB_API_KEY. FinnHub 무료 등급으로 테스트에 충분합니다.
 
 **한 번 분석에 LLM 호출이 얼마나 드나요?**
-`max_debate_rounds`와 선택한 모델에 따라 다릅니다. 종목·날짜마다 분석가 → 리서처 → 트레이더 → 리스크 파이프라인 전체가 돌므로, 학습 단계에서는 토론 라운드를 낮추고 저렴한 퀵 싱킹 모델을 쓰세요.
+````max_debate_rounds```와 선택한 모델에 따라 다릅니다. 종목·날짜마다 분석가 → 리서처 → 트레이더 → 리스크 파이프라인 전체가 돌므로, 학습 단계에서는 토론 라운드를 낮추고 저렴한 퀵 싱킹 모델을 쓰세요.
 
 **ChatGPT에 "NVDA 사야 하나"라고 묻는 것과 뭐가 다른가요?**
 TradingAgents는 구조화된 다관점 추론을 강제합니다 — 별도의 분석가, 명시적 강세/약세 토론, 리스크 리뷰 — 그리고 하나의 검증되지 않은 답이 아니라 전체 기록을 반환합니다.
@@ -227,7 +228,7 @@ TradingAgents는 2026년, LLM 에이전트 팀이 어떻게 트레이딩 결정�
 - 함께 읽기: [dibi8의 관련 가이드](dibi8-internal-link).
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 리서치 머신을 띄우고 오늘 밤 첫 분석을 실행하세요.
 
----
+* * *
 
 **출처 & 더 읽을거리**: - GitHub 저장소: https://github.com/TauricResearch/TradingAgents
 - 공식 문서 / README: https://github.com/TauricResearch/TradingAgents#readme
@@ -260,7 +261,7 @@ TradingAgents는 2026년, LLM 에이전트 팀이 어떻게 트레이딩 결정�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -270,7 +271,7 @@ TradingAgents는 2026년, LLM 에이전트 팀이 어떻게 트레이딩 결정�
 - [12-factor-agents](tradingagents-llm-multi-agent-trading-framework-2026)
 - [1m-context-window-llm-2026-real-test](tradingagents-llm-multi-agent-trading-framework-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

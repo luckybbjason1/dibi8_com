@@ -11,6 +11,7 @@ maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -62,7 +63,7 @@ DeepSeek Harness는 세 가지 계층 아키텍처를 사용합니다: 1. **코�
 2. **플러그인 계층** — 런타임에 로드되는 커스텀 코드
 3. **통합 계층** — Claude Code, Codex, Cursor 등에 연결
 
-```typescript
+````typescript
 // 예시: 간단한 DSH 플러그인
 import { Plugin } from 'deepseek-harness';
 
@@ -75,7 +76,7 @@ export class MyPlugin extends Plugin {
     return { success: true };
   }
 }
-```
+`````
 
 플러그인은 다음을 할 수 있습니다: - 에이전트 생명주기 이벤트에 훅
 - CLI에 새 명령 추가
@@ -90,52 +91,52 @@ export class MyPlugin extends Plugin {
 - AI 코딩 에이전트 (Claude Code, Codex CLI, Cursor, 또는 OpenCode)
 
 ### 방법 1: npm (권장)
-```bash
+`````bash
 npm install -g deepseek-harness
 dsh init
-```
+`````
 
 ### 방법 2: pip
-```bash
+`````bash
 pip install deepseek-harness
 dsh init
-```
+`````
 
 ### 방법 3: 소스에서
-```bash
+`````bash
 git clone https://github.com/deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm run build
 pnpm dsh web
-```
+`````
 
-**참고:** DeepSeek Harness는 소스 빌드에 `pnpm`이 필요합니다. `npm install -g pnpm`으로 설치하세요.
+**참고:** DeepSeek Harness는 소스 빌드에 ````pnpm````이 필요합니다. ````npm install -g pnpm````으로 설치하세요.
 
 ### 빠른 시작: 웹 UI
-```bash
+`````bash
 npx @deepseek-ai/dsh web
-```
+`````
 이는 기본 포트 3080에서 로컬 웹 인터페이스를 시작하고 기본 브라우저에서 엽니다. 구성 없이 바로 플러그인 빌드를 시작할 수 있습니다.
 
-SSH 서버나 헤드리스 환경의 경우: ```bash
+SSH 서버나 헤드리스 환경의 경우: `````bash
 npx @deepseek-ai/dsh web --no-open
 # 그런 다음 포워딩 포트로 접근
 ssh -L 3080:localhost:3080 user@server
-```
+`````
 
 ## 첫 번째 플러그인 빌드
 
 커밋 후 코드 변경을 요약하는 플러그인을 만들어 보겠습니다.
 
 ### 단계 1: 플러그인 초기화
-```bash
+`````bash
 dsh create-plugin summarize-commits
 cd summarize-commits
-```
+`````
 
 ### 단계 2: 플러그인 코드 작성
-```typescript
+`````typescript
 import { Plugin, PluginContext } from 'deepseek-harness';
 import { execSync } from 'child_process';
 
@@ -147,32 +148,32 @@ export class SummarizeCommitsPlugin extends Plugin {
     const diff = execSync('git diff HEAD~1 HEAD --stat').toString();
     const commit = execSync('git log -1 --pretty=%B').toString();
     
-    const prompt = `
+    const prompt = ````
 이 git 커밋을 한 문장으로 요약: ${commit}
 
 변경된 파일: ${diff}
-`;
+````;
     
     return { prompt };
   }
 }
-```
+`````
 
 ### 단계 3: 플러그인 등록
-```bash
+`````bash
 dsh plugin add ./summarize-commits
 dsh plugin list  # 설치 확인
-```
+`````
 
 ### 단계 4: 플러그인 테스트
-```bash
+`````bash
 dsh run summarize-commits --dry-run
-```
+`````
 
 ## 통합 가이드
 
 ### Claude Code 통합
-```yaml
+`````yaml
 # ~/.claude/settings.json
 {
   "plugins": [
@@ -183,10 +184,10 @@ dsh run summarize-commits --dry-run
     }
   ]
 }
-```
+`````
 
 ### Cursor 통합
-```json
+`````json
 // .cursorrc
 {
   "dsh": {
@@ -194,40 +195,40 @@ dsh run summarize-commits --dry-run
     "pluginsDir": "~/.dsh/plugins"
   }
 }
-```
+`````
 
 ### 어떤 에이전트에서도 사용
-```bash
+`````bash
 # 하네스 시작
 dsh web
 
 # 또는 CLI 직접 사용
 dsh run my-plugin --arg value
-```
+`````
 
 ## 고급 플러그인 패턴
 
 ### 비동기 작업
-```typescript
+`````typescript
 async execute(context: PluginContext): Promise<PluginResult> {
   const data = await fetchAPI('/external-endpoint');
   return { success: true, data };
 }
-```
+`````
 
 ### 상태 영속성
-```typescript
+`````typescript
 const state = await context.storage.get('my-state');
 await context.storage.set('my-state', { key: 'value' });
-```
+`````
 
 ### 이벤트 훅
-```typescript
+`````typescript
 this.on('before:commit', async (ctx) => {
   // 커밋 전 체크 실행
   await this.validateSecurity(ctx);
 });
-```
+`````
 
 ## 보안 고려사항
 
@@ -236,10 +237,10 @@ this.on('before:commit', async (ctx) => {
 3. **비밀번호 스캐닝** — pre-commit 플러그인으로 비밀번호 스캐너 통합
 4. **플러그인 감사** — 설치 전 서드파티 플러그인 검토
 
-```bash
+`````bash
 # 플러그인 보안 스캔
 dsh security scan --deep ./plugins
-```
+`````
 
 ## Cordis 프레임워크: 내부 구조
 
@@ -254,7 +255,7 @@ Cordis 프레임워크는 다음을 가능하게 합니다: - **시간 여행 �
 ## 성능 튜닝
 
 고볼륨 환경에서 플러그인 성능 최적화: ### 캐싱 전략
-```typescript
+`````typescript
 const cache = new LRUMap({
   max: 1000,
   ttl: '10m'
@@ -267,10 +268,10 @@ if (cached) return cached;
 const result = await expensiveOperation();
 cache.set(key, result);
 return result;
-```
+`````
 
 ### 동시성 제어
-```typescript
+`````typescript
 import { Semaphore } from 'deepseek-harness/utils';
 
 const sem = new Semaphore(5); // 최대 5개의 동시 작업
@@ -283,34 +284,34 @@ async execute(context) {
     sem.release();
   }
 }
-```
+`````
 
 ## 문제 해결
 
 ### 일반 문제 1: 플러그인 로드 안 됨
-```bash
+`````bash
 # 플러그인 등록 확인
 dsh plugin list
 
 # 플러그인 로그 보기
 dsh logs --plugin my-plugin --tail 50
-```
+`````
 
 ### 일반 문제 2: 포트 이미 사용 중
-포트 3080이 점유된 경우: ```bash
+포트 3080이 점유된 경우: `````bash
 npx @deepseek-ai/dsh web --port 3081
-```
+`````
 
 ### 일반 문제 3: TypeScript 컴파일 오류
-```bash
+`````bash
 # 캐시 지우고 재빌드
 rm -rf node_modules/.cache
 pnpm run clean
 pnpm run build
-```
+`````
 
 ### 일반 문제 4: 긴 세션에서 메모리 누수
-플러그인 구성에서 메모리 제한 활성화: ```typescript
+플러그인 구성에서 메모리 제한 활성화: `````typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -318,7 +319,7 @@ export default {
     gcInterval: '5m"
   }
 };
-```
+`````
 
 ## 커뮤니티 & 생태계
 
@@ -334,14 +335,14 @@ https://marketplace.deepseek.ai에서 커뮤니티 플러그인 탐색: - **GitH
 3. 테스트와 함께 PR 제출
 4. Discord 커뮤니티 가입
 
-```bash
+`````bash
 # 개발 설정
 git clone git@github.com:deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm test  # 테스트 스위트 실행
 pnpm dev    # 개발 모드 시작
-```
+`````
 
 ## 대체안과 비교
 
@@ -376,7 +377,7 @@ Agent Skills는 스킬 패턴의 특정 구현입니다. DSH는 Agent Skills를 
 예, 여러 대형 회사가 프로덕션에서 DSH를 사용하고 있습니다. 플러그인 시스템은 안정적이지만 항상 스테이징에서 먼저 플러그인을 테스트하십시오.
 
 ### Q: 플러그인 종속성을 어떻게 처리합니까?
-DSH는 플러그인 종속성에 npm/pnpm을 사용합니다. 각 플러그인은 자체 package.json을 선언합니다. `dsh plugin deps <name>`을 실행하여 목록을 보고 설치합니다.
+DSH는 플러그인 종속성에 npm/pnpm을 사용합니다. 각 플러그인은 자체 package.json을 선언합니다. ````dsh plugin deps <name>```을 실행하여 목록을 보고 설치합니다.
 
 ### Q: 팀과 플러그인을 공유할 수 있습니까?
 예. 사설 npm 레지스트리에 게시하거나 플러그인 디렉토리를 직접 공유할 수 있습니다. DSH는 공개 및 사설 플러그인 소스를 모두 지원합니다.
@@ -391,7 +392,7 @@ DeepSeek Harness는 우리가 AI 코딩 도구에 대해 생각하는 방식의 
 
 첫 번째로 어떤 플러그인을 만들고 싶으신가요? 댓글이나 GitHub 이슈에 아이디어를 공유하십시오!
 
----
+* * *
 
 **출처 및 추가 읽기:**
 - 공식 문서: https://deepseek-harness.github.io/deepseek-harness/

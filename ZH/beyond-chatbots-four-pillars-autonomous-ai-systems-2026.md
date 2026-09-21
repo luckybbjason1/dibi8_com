@@ -32,6 +32,7 @@ faqs: - q: '什么是 Local Deep Research，它的准确率有多高？'
     a: '这四条原则被写入一个 CLAUDE.md 文件中，分别是：编码前先思考（陈述假设，在臆断前先发问）、简单优先（构建最小可行方案）、外科手术式改动（只动必须动的部分，并与现有风格保持一致），以及目标驱动的执行（预先定义清晰的成功标准）。它们充当认知防护，抵御 LLM 的过度自信。'
   - q: '自主 AI 系统的四大支柱如何协同运作？'
     a: 'agent 首先使用 Local Deep Research 生成一份经过验证、带引用的报告，然后通过 MCP tool calls 使用 InsForge 配置完整的后端（数据库、edge functions、存储、认证），接着遵循 Agent Skills 的 spec-to-ship 工作流构建前端，并在整个过程中应用受 Karpathy 启发的行为护栏，以防止过度工程化和错误假设。每个支柱各自应对自主开发中一种独特的失败模式。'---
+
 # 超越聊天机器人：2026年自主AI系统的四大支柱
 
 {</* resource-info */>}
@@ -54,11 +55,11 @@ This isn't 渐进式改进. It's 架构演进. And four open-source projects rev
 - **多源情报整合**: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — 每个来源都经过索引和交叉引用
 - **零知识加密**: User data isolated per-database, 即使是服务器管理员也无法读取你的内容
 
-The 其架构设计值得深入研究: ```
+The 其架构设计值得深入研究: ````
 User Query -> Strategy Selector -> Question Generator 
     -> Parallel Search (academic + web + documents) 
     -> Analysis Loop -> Report Synthesis -> Multi-format Export
-```
+`````
 
 What's novel is the **迭代研究循环**. Instead of 单次查询响应, the system generates 子问题, searches across diverse sources, analyzes results, and iterates until 置信度阈值 are met. This 模拟人类专家的研究方式: hypothesize, investigate, evaluate, refine.
 
@@ -85,14 +86,14 @@ The key innovation is **双重接口支持**: 1. **MCP服务器** — 可自托�
 
 This means an AI agent doesn't just generate code — it can 配置自己的数据库架构, configure authentication, deploy edge functions, set up storage buckets, and even route its own API calls through the model gateway. 端到端自主化.
 
-The SDK is elegantly simple: ```javascript
+The SDK is elegantly simple: `````javascript
 import { createClient } from '@insforge/sdk';
 
 const client = createClient({
   baseUrl: 'https://your-app.region.insforge.app',
   anonKey: 'your-anon-key-here'
 });
-```
+`````
 
 Everything from database CRUD to auth flows to AI operations is available through this unified client. For a coding agent, this 将通常需要DevOps工程师完成的繁琐流程简化为单一的API调用.
 
@@ -110,19 +111,19 @@ The 七个斜杠命令框架映射到完整的开发生命周期: ||Command|Phas
 ||
 ---
 |
----
+* * *
 |
----
+* * *
 ||
-||`/spec`|Define|先规范后代码——需求优先||
-||`/plan`|Plan|小而原子化的任务——化解复杂性||
-||`/build`|Build|一次只做一片增量——渐进式交付||
-||`/test`|Verify|测试是证明——不是装饰品||
-||`/review`|Review|改善代码健康度——持续精进||
-||`/code-simplify`|Simplify|清晰胜过巧妙——可读性取胜||
-||`/ship`|Ship|更快就是更安全——增量发布||
+||````/spec````|Define|先规范后代码——需求优先||
+||````/plan````|Plan|小而原子化的任务——化解复杂性||
+||````/build````|Build|一次只做一片增量——渐进式交付||
+||````/test````|Verify|测试是证明——不是装饰品||
+||````/review````|Review|改善代码健康度——持续精进||
+||````/code-simplify````|Simplify|清晰胜过巧妙——可读性取胜||
+||````/ship````|Ship|更快就是更安全——增量发布||
 
-But the real magic is **上下文感知的自动发现**. When designing an API, the `api-and-interface-design` skill activates automatically. Building UI? `frontend-ui-engineering` triggers. The agent understands its task and loads the appropriate expertise.
+But the real magic is **上下文感知的自动发现**. When designing an API, the ````api-and-interface-design```` skill activates automatically. Building UI? ````frontend-ui-engineering```` triggers. The agent understands its task and loads the appropriate expertise.
 
 This transforms AI coding from "write code that happens to work" to "follow proven engineering workflows that produce maintainable results."
 
@@ -132,7 +133,7 @@ This transforms AI coding from "write code that happens to work" to "follow prov
 
 如果底层行为存在问题，最好的工程框架也会失效。 Andrej Karpathy identified LLM编码失败中的一个规律: > "The models make 代替你做出错误假设 and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."
 
-This project distills Karpathy's observations into four behavioral principles embedded in a `CLAUDE.md` file: **1. Think Before Coding** — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.
+This project distills Karpathy's observations into four behavioral principles embedded in a ````CLAUDE.md```` file: **1. Think Before Coding** — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.
 
 **2. Simplicity First** — Minimum viable solution. No speculative features. No abstractions for single-use code. If 200 lines could be 50, rewrite it. The test: "Would a senior engineer say this is overcomplicated?"
 
@@ -148,7 +149,7 @@ The breakthrough moment comes when you connect all four pillars into a single wo
 
 2. **Platform** (InsForge): The agent provisions the entire backend — PostgreSQL for market data, edge functions for real-time updates, storage for historical charts, auth for user accounts, model gateway for analysis APIs. All via MCP tool calls.
 
-3. **Engineering** (Agent Skills): The agent builds the frontend following the `/spec → /plan → /build → /test → /review → /ship` workflow. Context-aware skills activate as needed — `frontend-ui-engineering` for the dashboard, `data-visualization` for charting, `api-integration` for real-time websockets.
+3. **Engineering** (Agent Skills): The agent builds the frontend following the ````/spec → /plan → /build → /test → /review → /ship```` workflow. Context-aware skills activate as needed — ````frontend-ui-engineering```` for the dashboard, ````data-visualization```` for charting, ````api-integration```` for real-time websockets.
 
 4. **Wisdom** (Karpathy Skills): Throughout this process, the behavioral guardrails prevent classic LLM mistakes — no overengineered abstractions, no touching unrelated code, explicit assumption-stating before every architectural decision, verifiable success criteria instead of vague "make it work" targets.
 
@@ -169,17 +170,17 @@ Together, these four open-source projects form the first complete stack for genu
 
 ## Getting Started
 
-All four projects are open-source and free: - **Local Deep Research**: `pip install local-deep-research` or Docker Compose
-- **InsForge**: `npm install @insforge/sdk` (cloud) or self-hosted MCP server
-- **Agent Skills**: Claude Code marketplace plugin or `.cursor/rules/`
-- **Karpathy Skills**: Single `CLAUDE.md` file merge
+All four projects are open-source and free: - **Local Deep Research**: ````pip install local-deep-research```` or Docker Compose
+- **InsForge**: ````npm install @insforge/sdk```` (cloud) or self-hosted MCP server
+- **Agent Skills**: Claude Code marketplace plugin or ````.cursor/rules/````
+- **Karpathy Skills**: Single ````CLAUDE.md``` file merge
 
 你不需要同时采用所有四项。 从解决你最大短板的项目开始。 But once you experience the 协同效应 — 研究指导架构, 架构指导实施, 技能约束实施过程, 智慧贯穿始终 — it's 一旦体验过就再也回不去单打独斗了。
 
 The future of software development isn't humans replacing AI or AI replacing humans. It's humans orchestrating AI systems that combine deep intelligence, robust infrastructure, engineering discipline, and practical wisdom. And those systems are already here.
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -260,7 +261,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

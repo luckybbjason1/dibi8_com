@@ -7,6 +7,7 @@ aliases:
   - /posts/ai-search-tools-perplexity-gemini-chatgpt/
 ---
 
+
 # AI 검색 도구 비교: Perplexity vs Google Gemini vs ChatGPT Search 2025
 
 
@@ -164,7 +165,7 @@ n
 - [Microsoft Copilot](https://copilot.microsoft.com)
 - [arXiv: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
 
----
+* * *
 
 ## 추천 도구
 
@@ -235,7 +236,7 @@ AI 검색 도구 비교: Perplexity vs Google Gemini vs ChatGPT Search 2025 repr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

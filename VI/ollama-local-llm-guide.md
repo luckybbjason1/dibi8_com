@@ -22,6 +22,7 @@ aliases:
   - /posts/ollama-local-llm-guide/
 ---
 
+
 {</* resource-info */>}
 
 Khi các công ty ngày càng lo ngại về bảo mật dữ liệu và chi phí API LLM không ngừng tăng, chạy large language models trên phần cứng local đã chuyển từ một thú vui kỹ thuật sang giải pháp production thực tế. **Ollama** là công cụ làm điều này trở nên đơn giản nhất — chỉ cần một câu lệnh, bạn có thể chạy Llama 3, Mistral, Qwen và hàng chục models khác hoàn toàn offline. Với hơn 90.000 stars trên GitHub (tháng 5/2025) và cộng đồng phát triển năng động, Ollama đã trở thành tiêu chuẩn de facto cho việc triển khai LLM local. Bài hướng dẫn này bao gồm mọi khía cạnh — từ cài đặt đầu tiên đến tối ưu production.
@@ -30,7 +31,7 @@ Khi các công ty ngày càng lo ngại về bảo mật dữ liệu và chi ph�
 
 ### Giới Thiệu Ollama
 
-Ollama là một công cụ mã nguồn mở cho phép chạy các large language models trực tiếp trên máy tính cá nhân hoặc server riêng. Được phát triển bởi Jeffrey Morgan và team, Ollama cung cấp: - **One-command model deployment**: tải và chạy models chỉ với `ollama run`
+Ollama là một công cụ mã nguồn mở cho phép chạy các large language models trực tiếp trên máy tính cá nhân hoặc server riêng. Được phát triển bởi Jeffrey Morgan và team, Ollama cung cấp: - **One-command model deployment**: tải và chạy models chỉ với ```ollama run````
 - **Cross-platform**: hỗ trợ macOS, Windows, Linux và Docker
 - **REST API**: tương thích OpenAI API cho dễ dàng tích hợp
 - **Model library**: hàng trăm models có sẵn, từ 1B đến 70B+ parameters
@@ -62,7 +63,7 @@ Ollama là một công cụ mã nguồn mở cho phép chạy các large languag
 
 ### Cài Đặt Trên macOS
 
-```bash
+`````bash
 # Cách 1: Download từ website
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -71,18 +72,18 @@ brew install ollama
 
 # Khởi động service
 ollama serve
-```
+`````
 
 ### Cài Đặt Trên Windows
 
 1. Tải installer từ [ollama.com/download](https://ollama.com/download)
-2. Chạy file `.exe` và làm theo hướng dẫn
+2. Chạy file ````.exe```` và làm theo hướng dẫn
 3. Ollama tự động khởi động cùng Windows
 4. Mở PowerShell hoặc Command Prompt để sử dụng
 
 ### Cài Đặt Trên Linux
 
-```bash
+`````bash
 # Script cài đặt tự động
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -94,11 +95,11 @@ chmod +x /usr/local/bin/ollama
 # Tạo systemd service
 sudo useradd -r -s /bin/false -U -m -d /usr/share/ollama ollama
 sudo systemctl enable ollama
-```
+`````
 
 ### Chạy Với Docker
 
-```bash
+`````bash
 # Pull và chạy container
 docker run -d -v ollama:/root/.ollama -p 11434:11434 \
   --name ollama ollama/ollama
@@ -109,23 +110,23 @@ docker exec -it ollama ollama run llama3.1
 # Với GPU NVIDIA
 docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 \
   --name ollama ollama/ollama
-```
+`````
 
 ### Kiểm Tra Cài Đặt
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.3.x
 
 ollama list
 # Hiển thị danh sách models đã tải
-```
+`````
 
 ## Bắt Đầu: LLM Local Đầu Tiên Củ Bạn
 
 ### Tải Model (ollama pull)
 
-```bash
+`````bash
 # Tải Llama 3.1 8B — model phổ biến nhất, chạy tốt trên hầu hết hardware
 ollama pull llama3.1:8b
 
@@ -134,11 +135,11 @@ ollama pull mistral:7b
 
 # Tải model nhỏ cho testing (1B parameters)
 ollama pull qwen2.5:1.5b
-```
+`````
 
 ### Chạy Models Tương Tác
 
-```bash
+`````bash
 # Chạy ở chế độ chat
 ollama run llama3.1:8b
 
@@ -146,11 +147,11 @@ ollama run llama3.1:8b
 Tôi là Llama, một AI assistant được tạo bởi Meta...
 
 # Thoát: gõ /bye hoặc Ctrl+D
-```
+`````
 
 ### Sử Dụng REST API
 
-```bash
+`````bash
 # Gọi API trực tiếp
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.1:8b",
@@ -163,9 +164,9 @@ curl http://localhost:11434/v1/chat/completions -d '{
   "model": "llama3.1:8b",
   "messages": [{"role": "user", "content": "Hello!"}]
 }'
-```
+`````
 
-```python
+`````python
 import requests
 
 response = requests.post("http://localhost:11434/api/generate", json={
@@ -174,11 +175,11 @@ response = requests.post("http://localhost:11434/api/generate", json={
     "stream": False
 })
 print(response.json()["response"])
-```
+`````
 
 ### Quản Lý Models
 
-```bash
+`````bash
 # Liệt kê models đã tải
 ollama list
 
@@ -190,7 +191,7 @@ ollama cp llama3.1:8b my-custom-llama
 
 # Hiển thị thông tin model
 ollama show llama3.1:8b
-```
+`````
 
 ## Top Các Models Ollama Tốt Nhất 2025
 
@@ -246,12 +247,12 @@ Qwen 2.5 là một trong những model mã nguồn mở mạnh nhất 2025, đ�
 
 ### GPU Acceleration
 
-```bash
+`````bash
 # Kiểm tra GPU được detect
 ollama ps
 # NAME            ID              SIZE    PROCESSOR
 # llama3.1:8b     ...             5.5GB   100% GPU
-```
+`````
 
 **NVIDIA**: Ollama tự động sử dụng CUDA nếu có. Cài đặt NVIDIA drivers mới nhất.
 
@@ -283,7 +284,7 @@ Mặc định Ollama dùng Q4_K_M — đây là sweet spot giữa quality và sp
 
 ### Python Integration (ollama-python)
 
-```python
+`````python
 import ollama
 
 # Chat với model
@@ -312,15 +313,15 @@ for chunk in ollama.chat(
     messages=[{"role": "user", "content": "Kể một câu chuyện"}],
     stream=True
 ): print(chunk["message"]["content"], end="", flush=True)
-```
+`````
 
 ### JavaScript/TypeScript Integration
 
-```bash
+`````bash
 npm install ollama
-```
+`````
 
-```javascript
+`````javascript
 import ollama from 'ollama'
 
 const response = await ollama.chat({
@@ -328,11 +329,11 @@ const response = await ollama.chat({
   messages: [{ role: 'user', content: 'Why is the sky blue?' }]
 })
 console.log(response.message.content)
-```
+`````
 
 ### LangChain + Ollama Integration
 
-```python
+`````python
 from langchain_ollama import OllamaLLM, ChatOllama
 
 # Sử dụng với LangChain
@@ -350,11 +351,11 @@ prompt = ChatPromptTemplate.from_messages([
 
 chain = prompt | llm
 response = chain.invoke({"question": "Giải thích RAG"})
-```
+`````
 
 ### OpenAI-Compatible API Endpoint
 
-Ollama cung cấp endpoint `/v1/chat/completions` tương thích hoàn toàn với OpenAI API: ```python
+Ollama cung cấp endpoint ``/v1/chat/completions`` tương thích hoàn toàn với OpenAI API: `````python
 from openai import OpenAI
 
 client = OpenAI(
@@ -370,7 +371,7 @@ response = client.chat.completions.create(
     ]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 Tính năng này cho phép bạn thay thế OpenAI API bằng Ollama mà không cần sửa code ứng dụng.
 
@@ -378,7 +379,7 @@ Tính năng này cho phép bạn thay thế OpenAI API bằng Ollama mà không 
 
 ### Tạo Custom Modelfile
 
-Modelfile là Dockerfile cho Ollama — định nghĩa model, system prompt và parameters: ```dockerfile
+Modelfile là Dockerfile cho Ollama — định nghĩa model, system prompt và parameters: `````dockerfile
 FROM llama3.1:8b
 
 SYSTEM """Bạn là một lập trình viên Python senior với 10 năm kinh nghiệm.
@@ -388,19 +389,19 @@ Giải thích code bằng tiếng Việt."""
 PARAMETER temperature 0.3
 PARAMETER top_p 0.8
 PARAMETER num_ctx 8192
-```
+`````
 
-```bash
+`````bash
 # Tạo custom model
 ollama create python-expert -f ./Modelfile
 
 # Chạy custom model
 ollama run python-expert
-```
+`````
 
 ### Tạo Models Với System Prompts
 
-```bash
+`````bash
 # Tạo model chuyên về pháp luật Việt Nam
 cat > Modelfile << 'EOF'
 FROM qwen2.5:7b
@@ -411,11 +412,11 @@ Luôn trích dẫn điều khoản cụ thể."""
 EOF
 
 ollama create legal-assistant -f Modelfile
-```
+`````
 
 ### Multi-Model Serving
 
-```bash
+`````bash
 # Chạy nhiều models đồng thờion cùng một Ollama instance
 ollama run llama3.1:8b &
 ollama run mistral:7b &
@@ -423,7 +424,7 @@ ollama run codellama:7b &
 
 # Kiểm tra models đang chạy
 ollama ps
-```
+`````
 
 ### Xử Lý Requests Đồng Thờivà Bộ Nhớ
 
@@ -431,20 +432,20 @@ Ollama tự động quản lý: - **Concurrent requests**: xử lý nhiều requ
 - **Keep-alive**: giữ model trong memory để giảm thờigian khởi động
 - **Context persistence**: duy trì ngữ cảnh qua nhiều API calls
 
-```python
+`````python
 # Đặt keep-alive để giữ model trong memory
 ollama.generate(
     model="llama3.1:8b",
     prompt="Hello",
     keep_alive="30m"  # Giữ model 30 phút
 )
-```
+`````
 
 ## Ollama Trong Production
 
 ### Docker Compose Setup
 
-```yaml
+`````yaml
 version: '3.8"
 services: ollama: image: ollama/ollama:latest
     volumes: - ollama-data:/root/.ollama
@@ -457,22 +458,22 @@ services: ollama: image: ollama/ollama:latest
     environment: - OLLAMA_HOST=http://ollama:11434
     depends_on: - ollama
 
-volumes: ollama-data: ```
+volumes: ollama-data: `````
 
 ### Load Balancing Nhiều Instances
 
-```bash
+`````bash
 # Chạy nhiều Ollama instances trên các ports khác nhau
 OLLAMA_HOST=0.0.0.0:11434 ollama serve &
 OLLAMA_HOST=0.0.0.0:11435 ollama serve &
 OLLAMA_HOST=0.0.0.0:11436 ollama serve &
 
 # Dùng nginx hoặc HAProxy để load balance
-```
+`````
 
 ### Monitoring Và Logging
 
-```bash
+`````bash
 # Xem logs
 journalctl -u ollama -f
 
@@ -482,7 +483,7 @@ docker logs -f ollama
 # Kiểm tra GPU usage
 nvidia-smi
 watch -n 1 nvidia-smi
-```
+`````
 
 ### Bảo Mật Tốt Nhất
 
@@ -524,14 +525,14 @@ watch -n 1 nvidia-smi
 
 | Nguyên nhân | Giải pháp |
 |---|---|
-| Không dùng GPU | Kiểm tra `ollama ps`, đảm bảo hiển thị GPU |
+| Không dùng GPU | Kiểm tra ````ollama ps````, đảm bảo hiển thị GPU |
 | Model quá lớn | Dùng model nhỏ hơn hoặc quantization thấp hơn |
-| Context quá dài | Giảm `num_ctx` trong Modelfile |
+| Context quá dài | Giảm ````num_ctx```` trong Modelfile |
 | RAM không đủ | Đóng ứng dụng khác, thêm swap |
 
 ### Tải Model Thất Bại
 
-```bash
+`````bash
 # Kiểm tra kết nối internet
 ping ollama.com
 
@@ -541,11 +542,11 @@ ollama pull llama3.1:8b
 
 # Tải thủ công từ Hugging Face
 # Convert bằng ollama create
-```
+`````
 
 ### Lỗi Out Of Memory
 
-```bash
+`````bash
 # Giảm context size
 PARAMETER num_ctx 2048  # mặc định là 2048, giảm xuống 1024
 
@@ -557,11 +558,11 @@ sudo fallocate -l 8G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-```
+`````
 
 ### Cấu Hình Network Và Proxy
 
-```bash
+`````bash
 # Cấu hình proxy cho Ollama
 export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=http://proxy.company.com:8080
@@ -569,7 +570,7 @@ export NO_PROXY=localhost,127.0.0.1
 
 # Chạy Ollama trên custom host/port
 OLLAMA_HOST=0.0.0.0:8080 ollama serve
-```
+`````
 
 ## FAQ — Các Câu Hỏi Thường Gặp
 
@@ -591,12 +592,12 @@ Ollama chạy trên cả Apple Silicon M1-M3 với hiệu suất rất tốt nh�
 
 ### Làm thế nào tích hợp Ollama với LangChain?
 
-LangChain có integration native với Ollama qua `langchain-ollama` package: ```python
+LangChain có integration native với Ollama qua ``langchain-ollama`` package: `````python
 from langchain_ollama import ChatOllama
 llm = ChatOllama(model="llama3.1:8b")
-```
+`````
 
-Hoặc sử dụng OpenAI-compatible endpoint với base URL `http://localhost:11434/v1`. Cả hai cách đều hỗ trợ đầy đủ features của LangChain bao gồm chains, agents và streaming.
+Hoặc sử dụng OpenAI-compatible endpoint với base URL ````http://localhost:11434/v1````. Cả hai cách đều hỗ trợ đầy đủ features của LangChain bao gồm chains, agents và streaming.
 
 ### Model Ollama nào tốt nhất cho coding?
 
@@ -613,7 +614,7 @@ Ollama đã biến việc chạy large language models locally từ một thách
 ### Checklist Để Bắt Đầu
 
 - [ ] Cài đặt Ollama từ [ollama.com](https://ollama.com)
-- [ ] Chạy `ollama run llama3.1:8b` để test
+- [ ] Chạy ````ollama run llama3.1:8b``` để test
 - [ ] Thử REST API với curl hoặc Python
 - [ ] Tích hợp với ứng dụng LangChain của bạn
 - [ ] Tạo custom Modelfile cho use case cụ thể
@@ -622,7 +623,7 @@ Ollama đã biến việc chạy large language models locally từ một thách
 
 Chạy LLM local không chỉ là về bảo mật và chi phí — đó là về việc kiểm soát hoàn toàn công nghệ AI của bạn. Với Ollama, sức mạnh của large language models nằm ngay trên máy tính của bạn.
 
----
+* * *
 
 **Tài liệu tham khảo:**
 
@@ -632,7 +633,7 @@ Chạy LLM local không chỉ là về bảo mật và chi phí — đó là v�
 - [LangChain Ollama Integration](https://python.langchain.com/docs/integrations/chat/ollama)
 - [Hugging Face Model Hub](https://huggingface.co)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

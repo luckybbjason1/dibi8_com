@@ -34,6 +34,7 @@ faq: - q: "이미 Claude Code subagent를 쓰고 있다면 LangGraph나 CrewAI�
     a: "네. LangGraph, CrewAI, AutoGen은 모두 모델 비종속적이라 — 그 뒤에서 Claude, GPT, Gemini, 또는 로컬 모델을 돌릴 수 있습니다. Claude Agent SDK(2025년 말 Claude Code SDK에서 이름이 바뀌었으며, 현재 Python과 TypeScript 패키지로 모두 제공)는 설계상 Claude 전용으로, 모델 유연성을 내주는 대신 네이티브 안전 기능과 확장 사고를 얻습니다. 따라서 멀티 벤더 유연성이 반드시 필요한 요건이라면 비종속 프레임워크 중 하나를 택하고, Claude에 전부 올인하며 가장 긴밀한 통합을 원한다면 Agent SDK가 네이티브 경로입니다."
 ---
 
+
 # Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (2026): 언제 독립 프레임워크로 넘어가야 하는가
 
 
@@ -74,11 +75,11 @@ faq: - q: "이미 Claude Code subagent를 쓰고 있다면 LangGraph나 CrewAI�
 ## Claude Code subagent로 이미 충분한 경우
 
 당신의 필요가 다음 중 하나라면 넘어가지 마라. 내장 subagent가 새 인프라 없이 오늘 그것을 커버한다: - **병렬 연구 fan-out.** 에이전트 다섯이 각각 다른 서브시스템을 읽고 결과를 합친다. 가장 ROI가 높은 subagent 패턴이며 공짜다.
-- **전문가 위임.** 자체 도구 허용 목록과 시스템 프롬프트를 가진 `security-auditor`나 `code-reviewer` 커스텀 에이전트.
+- **전문가 위임.** 자체 도구 허용 목록과 시스템 프롬프트를 가진 ```security-auditor````나 ````code-reviewer```` 커스텀 에이전트.
 - **컨텍스트 보호.** 30개 파일에 걸친 탐색을 떼어내어 부모 대화의 작업 기억을 어지럽히지 않게 한다.
 - **개발 작업을 위한 파이프라인 오케스트레이션.** 찾기 → 검증 → 종합으로, 각 단계가 위임된 워커.
 
-구체적 증거: **dibi8 자체의 다국어 파이프라인.** 여기서 읽는 모든 기사는 영어, 중국어, 한국어, 베트남어로, 병렬 Claude Code 번역 subagent가 생산한다 — 언어당 하나씩 fan-out하고, 결과는 `npm run build`라는 기준점에 대해 검증한다. 우리는 의도적으로 LangGraph에 *손대지 않았다*. checkpointing할 지속 상태도, 사람 승인 게이트도, 멀티 벤더 요건도 없다. 내장 subagent는 점심 전에 결과를 내놓는다. 프레임워크였다면 순수한 오버헤드였을 것이다.
+구체적 증거: **dibi8 자체의 다국어 파이프라인.** 여기서 읽는 모든 기사는 영어, 중국어, 한국어, 베트남어로, 병렬 Claude Code 번역 subagent가 생산한다 — 언어당 하나씩 fan-out하고, 결과는 ````npm run build```라는 기준점에 대해 검증한다. 우리는 의도적으로 LangGraph에 *손대지 않았다*. checkpointing할 지속 상태도, 사람 승인 게이트도, 멀티 벤더 요건도 없다. 내장 subagent는 점심 전에 결과를 내놓는다. 프레임워크였다면 순수한 오버헤드였을 것이다.
 
 ## 언제 독립 프레임워크로 넘어가야 하는가
 
@@ -183,12 +184,12 @@ Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (2026): 언제 독립 프
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -198,7 +199,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 - [cursor-vs-claude-code](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

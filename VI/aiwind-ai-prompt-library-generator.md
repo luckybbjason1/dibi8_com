@@ -33,6 +33,7 @@ faqs: - q: 'AiWind có miễn phí không?'
   - q: 'AiWind so sánh với PromptHero, Lexica và Civitai như thế nào?'
     a: 'AiWind nổi bật nhờ truy cập hoàn toàn miễn phí, hỗ trợ tiếng Trung mạnh mẽ và phủ sóng hơn 10 mô hình, trong khi Lexica chỉ hỗ trợ khoảng 3 mô hình và Civitai tập trung chủ yếu vào Stable Diffusion. AiWind, PromptHero và Civitai đều hỗ trợ cộng đồng đóng góp prompt, còn Lexica thì không.'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -111,67 +112,67 @@ Hầu hết người viết prompt như nói: "Vẽ một cô gái đẹp". Như
 
 ### 1. Chân dung chân thực — Siêu mẫu tóc vàng Dubai đêm
 
-```
+````
 Siêu mẫu tóc vàng Dubai đêm
 Từ khóa: dubai, night, blonde
 Phong cách: Nhiếp ảnh thời trang, chân dung đêm
 Áp dụng: GPT-Image 2, Midjourney
-```
+`````
 
 **Hiệu quả**: Người mẫu tóc vàng trước cảnh đêm Dubai, ánh đèn thành phố làm nền, tạo cảm giác tạp chí thời trang cao cấp.
 
 ### 2. Ảnh ẩm thực đẹp — Nguyên liệu lơ lửng 8K
 
-```
+`````
 Nguyên liệu lơ lửng 8K ảnh ẩm thực đẹp
 Từ khóa: food, 8k, suspended
 Phong cách: Nhiếp ảnh ẩm thực thương mại, bố cục lơ lửng
 Áp dụng: Nanobanana, Stable Diffusion
-```
+`````
 
 **Hiệu quả**: Nguyên liệu lơ lửng giữa không trung, giọt nước bắn tung, chất lượng siêu nét 8K, phù hợp menu nhà hàng và quảng cáo.
 
 ### 3. 3D Render — Chàng trai nắng phong cách Pixar
 
-```
+`````
 Chàng trai nắng phong cách Pixar
 Từ khóa: pixar, disney, 3d
 Phong cách: Nhân vật hoạt hình 3D, phong cách Pixar
 Áp dụng: GPT-Image 2, Flux
-```
+`````
 
 **Hiệu quả**: Ánh nắng chiếu lên mặt chàng trai, da có tán xạ bề mặt dưới, mắt có phản chiếu highlight, chất lượng nhân vật điển hình Pixar.
 
 ### 4. Siêu thực — Tên lửa phóng từ bóng đèn
 
-```
+`````
 Tên lửa phóng từ bóng đèn
 Từ khóa: surreal, rocket, lightbulb
 Phong cách: Chủ nghĩa siêu thực, nghệ thuật khái niệm
 Áp dụng: Midjourney, Stable Diffusion
-```
+`````
 
 **Hiệu quả**: Tên lửa phóng từ bóng đèn, mảnh vỡ thủy tinh bay tứ tán, sáng tạo đầy ý tưởng, phù hợp poster và bìa.
 
 ### 5. Phong cách Trung Hoa — Mỹ nữ đồ sứ Hanfu
 
-```
+`````
 Mỹ nữ đồ sứ Hanfu
 Từ khóa: hanfu, chinese, traditional
 Phong cách: Công bút họa truyền thống Trung Quốc, tranh mỹ nữ
 Áp dụng: Nanobanana, Hunyuan
-```
+`````
 
 **Hiệu quả**: Mỹ nữ mặc Hanfu, cầm bình sứ, nền có yếu tố sơn thủy, công bút tinh tế, màu sắc trang nhã.
 
 ### 6. Ảnh thời trang đẹp — Bìa Vogue săn mồi hắc ám
 
-```
+`````
 Bìa Vogue săn mồi hắc ám
 Từ khóa: vogue, editorial, predatory
 Phong cách: Editorial thời trang cao cấp, mỹ học hắc ám
 Áp dụng: GPT-Image 2, Midjourney
-```
+`````
 
 **Hiệu quả**: Ánh mắt người mẫu sắc lạnh, trang điểm hắc ám, bố cục tham khảo bìa Vogue, chất lượng cao cấp.
 
@@ -190,7 +191,7 @@ Nhấn vào bất kỳ prompt nào để xem: - Prompt tiếng Anh đầy đủ
 
 ### Bước 3: Sao chép sử dụng
 
-Sao chép prompt vào công cụ tạo hình ảnh AI của bạn: ```
+Sao chép prompt vào công cụ tạo hình ảnh AI của bạn: `````
 # Ví dụ Midjourney
 /imagine prompt: Siêu mẫu tóc vàng Dubai đêm, dubai night blonde, 
 fashion photography, golden hour lighting, 
@@ -201,7 +202,7 @@ Prompt tích cực: dubai night blonde supermodel, fashion photography,
 golden hour, editorial, 8k, ultra detailed, 
 best quality, masterpiece
 Prompt tiêu cực: blurry, low quality, distorted face, extra limbs
-```
+`````
 
 ### Bước 4: Đóng góp chia sẻ
 
@@ -211,7 +212,7 @@ Nếu bạn có prompt xuất sắc, hãy đóng góp cho AiWind để giúp c�
 
 ### 1. Prompt có cấu trúc
 
-```
+`````
 [Chủ thể] + [Phong cách] + [Ánh sáng] + [Bố cục] + [Từ chất lượng]
 
 Ví dụ: Chủ thể: Siêu mẫu tóc vàng đứng trước cảnh đêm Dubai
@@ -219,23 +220,23 @@ Phong cách: Nhiếp ảnh thời trang, phong cách editorial Vogue
 Ánh sáng: Giờ vàng, ánh đèn thành phố làm nền
 Bố cục: Cận cảnh, quy tắc một phần ba
 Chất lượng: 8K, siêu nét, chất lượng tốt nhất, kiệt tác
-```
+`````
 
 ### 2. Điều chỉnh trọng số (Stable Diffusion)
 
-```
+`````
 (Siêu mẫu tóc vàng:1.3) có nghĩa là tăng trọng số
 [Cảnh đêm:0.8] có nghĩa là giảm trọng số
-```
+`````
 
 ### 3. Prompt tiêu cực
 
-```
+`````
  blurry, lowres, bad anatomy, bad hands, text, error, 
  missing fingers, extra digit, fewer digits, cropped, 
  worst quality, low quality, normal quality, 
  jpeg artifacts, signature, watermark, username
-```
+````
 
 ### 4. Tinh chỉnh tham số
 
@@ -278,7 +279,7 @@ Nếu bạn luôn cảm thấy "thiếu gì đó" khi tạo hình ảnh bằng A
 - [TabPFN: Mô Hình Cơ Sở Cho Dữ Liệu Bảng](/vi/resources/ai-tools/tabpfn-foundation-model-tabular-data/)
 - [Hermes Agent: AI Agent Tự Cải Thiện](/vi/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

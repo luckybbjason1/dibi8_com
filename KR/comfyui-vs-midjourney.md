@@ -26,6 +26,7 @@ faqs: - q: 'Midjourney의 가장 좋은 무료 오픈소스 대안은 무엇인�
     a: 'ComfyUI는 100% 오프라인 로컬 환경에서 실행되므로 생성된 에셋이 내 기기 밖으로 나가지 않으며, 모델에 제한이 없습니다. 반면 Midjourney는 에셋을 공개 클라우드 서버에 저장하고 프롬프트와 금지어를 엄격하게 검열합니다.'
 ---
 
+
 {</* resource-info */>}
 
 # 미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유
@@ -60,7 +61,7 @@ A: ComfyUI의 최적화는 경이로운 수준입니다. 4GB VRAM에서도 기�
 **Q: Mac에서도 ComfyUI를 쓸 수 있나요?**
 A: 네! Apple Silicon(M1/M2/M3)은 PyTorch MPS 백엔드를 통해 네이티브로 지원됩니다. 통합 메모리가 큰 MacBook Pro라면 아주 훌륭한 성능을 발휘합니다.
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -132,7 +133,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

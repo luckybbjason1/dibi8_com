@@ -10,11 +10,12 @@ draft: false
 slug: sglang-structured-generation-llm
 ---
 
+
 ## TL;DR
 
 SGLang(Structured Generation Language)은 대규모 언어 모델을 배포하고 서빙하기 위한 오픈소스 풀스택 라이브러리입니다. RadixAttention 시스템을 통해 요청 간 프리픽스 캐싱을 구현하고, 구문 기반 제약 디코딩으로 구조화된 출력을 보장하며, ReAct 및 도구 호출과 같은 복잡한 추론 패턴에 대한 네이티브 지원을 제공합니다. 구조화된 출력 작업에서 vLLM보다 25배 높은 처리량을 제공하며, 단일 또는 멀티 GPU 설정에서 1B에서 700억 파라미터 모델까지 서빙할 수 있습니다.
 
----
+* * *
 
 ## SGLang이란?
 
@@ -29,13 +30,13 @@ SGLang(Structured Generation Language)은 대규모 언어 모델을 배포하�
 
 SGLang은 이 세 가지를 모두 네이티브로 해결합니다. RadixAttention 시스템은 요청 간 공유되는 KV 캐시 라디스 트리를 구축하고, 제약 디코딩 엔진은 생성 시 구조화된 출력을 보장합니다 — 사후가 아닌.
 
----
+* * *
 
 ## 시작하기
 
 ### 단계 1: SGLang 설치
 
-```bash
+````bash
 # Python 라이브러리 설치
 pip install sglang
 
@@ -44,11 +45,11 @@ docker pull sglang/sglang:latest
 docker run --gpus all -p 30000:30000 sglang/sglang:latest \
   --model-path meta-llama/Llama-3.2-8B-Instruct \
   --host 0.0.0.0 --port 30000
-```
+`````
 
 ### 단계 2: 서버 시작
 
-```bash
+`````bash
 # 하나의 GPU에서 모델 서빙
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B-Instruct \
@@ -65,11 +66,11 @@ python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq \
   --port 30000
-```
+`````
 
 ### 단계 3: 첫 번째 요청
 
-```bash
+`````bash
 curl http://localhost:30000/generate \
   -H "Content-Type: application/json" \
   -d '{
@@ -79,22 +80,22 @@ curl http://localhost:30000/generate \
       "temperature": 0
     }
   }'
-```
+`````
 
-응답: ```json
+응답: `````json
 {
   "text": "프랑스의 수도는 파리입니다.",
   "meta": {"prompt_tokens": 12, "completion_tokens": 8}
 }
-```
+`````
 
----
+* * *
 
 ## 구조화된 생성
 
 ### JSON 스키마 강제
 
-모든 Pydantic 스키마와 일치하는 유효한 JSON 생성: ```python
+모든 Pydantic 스키마와 일치하는 유효한 JSON 생성: `````python
 import sglang as sgl
 from pydantic import BaseModel, Field
 from typing import List, Optional
@@ -125,11 +126,11 @@ result = program.run(
 
 review = ProductReview.model_validate_json(result["json_output"])
 print(f"제품: {review.product_name}, 점수: {review.rating}/5")
-```
+`````
 
 ### 정규식 제약 생성
 
-출력이 특정 패턴과 일치하도록 강제: ```python
+출력이 특정 패턴과 일치하도록 강제: `````python
 @sgl.program
 def email_extractor(state, text: str): state += sgl.user("이 텍스트에서 모든 이메일 주소를 추출하세요:")
     state += sgl.assistant(
@@ -146,19 +147,19 @@ result = program.run(
 )
 print(result["emails"])
 # 출력: "support@example.com, sales@example.com, billing@company.org."
-```
+`````
 
 ### SQL 쿼리 생성
 
-구문 보장이 있는 실행 가능한 SQL 생성: ```python
+구문 보장이 있는 실행 가능한 SQL 생성: `````python
 from pydantic import BaseModel
 
 class SQLQuery(BaseModel): query: str = Field(description="유효한 SQL SELECT 문")
     explanation: str = Field(description="이 쿼리의 역할")
     estimated_rows: Optional[int] = Field(description="예상 행 수")
-```
+`````
 
----
+* * *
 
 ## 성능 최적화
 
@@ -166,7 +167,7 @@ class SQLQuery(BaseModel): query: str = Field(description="유효한 SQL SELECT 
 
 SGLang의 특징 기능: 공통 프리픽스를 가진 요청 간 계산을 자동으로 공유합니다.
 
-```python
+`````python
 import sglang as sgl
 
 @sgl.program
@@ -182,26 +183,26 @@ r1 = chatbot().run("오늘 날씨가 어때?")
 
 # 두 번째 요청이 동일한 시스템 프롬프트 + 대화 기록 사용: # 새 user message에 대한 어텐션만 계산
 r2 = chatbot().run("더 알려줘")
-```
+`````
 
 벤치마크 결과는 **3-10배 처리량 향상**을 보여줍니다 — 시스템 프롬프트와 대화 기록이 요청 간 공유되는 채팅 앱의 경우.
 
 ### 연속 배치
 
-전통적 배치 추론이 배치 내 모든 요청이 완료될 때까지 기다리는 것과 달리, SGLang은 슬롯이 비워지는 즉시 새 요청을 시작하는 연속 배치를 사용합니다: ```bash
+전통적 배치 추론이 배치 내 모든 요청이 완료될 때까지 기다리는 것과 달리, SGLang은 슬롯이 비워지는 즉시 새 요청을 시작하는 연속 배치를 사용합니다: `````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.85 \
   --context-length 8192
-```
+`````
 
-핵심 파라미터: - `--mem-fraction-static`: GPU 메모리 중 KV 캐시에 할당할 비율(0.85 = 85%)
-- `--context-length`: 최대 컨텍스트 윈도우 크기
-- `--scheduler-latency-bound`: 새 요청 스케줄링 전 최대 대기 시간
+핵심 파라미터: - ````--mem-fraction-static````: GPU 메모리 중 KV 캐시에 할당할 비율(0.85 = 85%)
+- ````--context-length````: 최대 컨텍스트 윈도우 크기
+- ````--scheduler-latency-bound````: 새 요청 스케줄링 전 최대 대기 시간
 
 ### 멀티 GPU 배포
 
-```bash
+`````bash
 # 70B 모델용 4x A100-80GB
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-70B-Instruct \
@@ -212,15 +213,15 @@ python -m sglang.launch_server \
 # GPU 사용량 확인
 nvidia-smi
 # 활성 추론 중 각 GPU가 ~95% 사용률 표시
-```
+`````
 
----
+* * *
 
 ## 고급 사용 사례
 
 ### 패턴 1: 다단계 추론(ReAct)
 
-단일 SGLang 프로그램에서 ReAct 추론 구현: ```python
+단일 SGLang 프로그램에서 ReAct 추론 구현: `````python
 @sgl.program
 def react_agent(state, question: str): state += sgl.user(f"도구를 사용하여 단계별로 이 질문에 답하세요:\n{question}")
     
@@ -236,11 +237,11 @@ def react_agent(state, question: str): state += sgl.user(f"도구를 사용하�
         state += sgl.user(f"\n관찰: {obs}")
     
     state += sgl.assistant(sgl.gen("final_answer", max_tokens=500))
-```
+`````
 
 ### 패턴 2: 병렬 문서 분석
 
-수백 개의 문서를 동시에 처리: ```python
+수백 개의 문서를 동시에 처리: `````python
 @sgl.program
 def document_summarizer(state, doc: str): state += sgl.user(f"다음 문서를 3개 불릿 포인트로 요약:\n{doc}")
     state += sgl.assistant(sgl.gen("summary", max_tokens=256))
@@ -250,11 +251,11 @@ results = sgl.compile(
     [document_summarizer(doc) for doc in documents[:100]],
     scheduler_policy="lookahead"
 )
-```
+`````
 
 ### 패턴 3: 구조화된 출력으로 스트리밍
 
-토큰 단위로 구조화된 응답 스트리밍: ```python
+토큰 단위로 구조화된 응답 스트리밍: `````python
 from sglang import RuntimeClient
 
 client = RuntimeClient("http://localhost:30000")
@@ -272,11 +273,11 @@ stream = client.generate({
 })
 
 for chunk in stream: if chunk["event_type"] == "text": print(chunk["text"], end="", flush=True)
-```
+`````
 
 ### 패턴 4: 함수 호출 파이프라인
 
-완전한 함수 호출 에이전트 구축: ```python
+완전한 함수 호출 에이전트 구축: `````python
 from pydantic import BaseModel
 from typing import Literal
 
@@ -286,11 +287,11 @@ class WeatherRequest(BaseModel): city: str
 @sgl.program
 def function_caller(state, user_input: str): state += sgl.user(user_input)
     state += sgl.assistant(sgl.gen("function_call", max_tokens=256))
-```
+`````
 
 ### 패턴 4: 함수 호출 파이프라인
 
-완전한 함수 호출 에이전트를 구축하세요: ```python
+완전한 함수 호출 에이전트를 구축하세요: `````python
 from pydantic import BaseModel
 from typing import Literal
 
@@ -300,11 +301,11 @@ class WeatherRequest(BaseModel): city: str
 @sgl.program
 def function_caller(state, user_input: str): state += sgl.user(user_input)
     state += sgl.assistant(sgl.gen("function_call", max_tokens=256))
-```
+`````
 
 함수 호출은 LLM이 JSON 구조로 특정 작업을 실행할 수 있게 합니다. 검색, 계산, 데이터베이스 쿼리 등 다양한 도구를 연결할 수 있으며, 응답이 항상 유효한 스키마를 따르므로 프론트엔드에서 추가 검증이 필요 없습니다.
 
----
+* * *
 
 ## 비교: SGLang vs 대체方案
 
@@ -328,43 +329,43 @@ def function_caller(state, user_input: str): state += sgl.user(user_input)
 
 SGLang의 네이티브 제약 디코딩은 최소한의 지연 시간 오버헤드로 완벽한 유효성을 달성합니다.
 
----
+* * *
 
 ## 모니터링 및 관찰 가능성
 
 ### 빌트인 메트릭
 
-SGLang은 `/metrics`에서 Prometheus 호환 메트릭을 노출합니다: ```
+SGLang은 ``/metrics``에서 Prometheus 호환 메트릭을 노출합니다: `````
 # HELP sglang_request_latency_seconds 요청 처리 지연 시간
 sglang_request_latency_seconds_bucket{le="0.5"} 1250
 sglang_request_latency_seconds_bucket{le="1.0"} 2890
 sglang_gpu_cache_hit_rate 0.847
 sglang_active_requests 23
-```
+`````
 
 ### 헬스 체크 엔드포인트
 
-```bash
+`````bash
 curl http://localhost:30000/health
 # 반환: {"status": "ok", "gpu_memory_usage": "72%", "active_requests": 15}
-```
+`````
 
----
+* * *
 
 ## 문제 해결
 
 ### 문제 1: CUDA Out Of Memory
 
-```
+`````
 RuntimeError: CUDA out of memory. Tried to allocate X GiB.
-```
+`````
 
-**해결**: `--mem-fraction-static` 감소 또는 `--max-running-requests` 증가: ```bash
+**해결**: ``--mem-fraction-static`` 감소 또는 ``--max-running-requests`` 증가: `````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --mem-fraction-static 0.75 \
   --max-running-requests 32
-```
+`````
 
 ### 문제 2: 제약 디코딩이 무효한 출력 생성
 
@@ -375,17 +376,17 @@ JSON 스키마 강제가 작동하지 않는 경우: **확인 1**: 모델이 제
 
 서버 시작 후 첫 번째 요청에는 모델 로드 시간이 포함됩니다(30-120초, 모델 크기에 따라 다름).
 
-**해결**: `keep_warm` 사용 또는 서버 미리 데우기: ```bash
+**해결**: ``keep_warm`` 사용 또는 서버 미리 데우기: `````bash
 curl -X POST http://localhost:30000/generate \
   -H "Content-Type: application/json" \
   -d '{"text": "warmup", "sampling_params": {"max_new_tokens": 1}}'
-```
+`````
 
 ### 문제 4: RadixCache 미스
 
 프리픽스 캐싱이 성능을 개선하지 않는 경우: **확인**: 요청이 동일한 프리픽스 토큰을 공유하는지 확인. 공백 차이, 다른 시스템 프롬프트 또는 재배열된 대화 기록은 캐시 미스를 유발합니다.
 
----
+* * *
 
 ## 미래 방향
 
@@ -411,7 +412,7 @@ curl -X POST http://localhost:30000/generate \
 - vLLM에 깊이 투자했고 구조화된 생성이 필요 없는 경우 — vLLM은 기본 처리량에 뛰어남
 - 실시간 오디오/비디오 추론이 필요한 경우 — Whisper.cpp 또는 MediaPipe와 같은 전문 엔진이 더 적합
 
----
+* * *
 
 ## 커뮤니티 업데이트
 
@@ -426,7 +427,7 @@ SGLang은 2026년 폭발적인 성장을 경험했습니다: - **GitHub star**: 
 
 두 도구 모두 훌륭하지만 다른 사용 사례에 최적화되어 있습니다. SGLang은 구조화된 출력, RadixAttention 프리픽스 캐싱, ReAct 추론에 특화되어 있습니다. 반면 vLLM은 기본 토큰 생성 처리량과 PagedAttention 메모리 관리에서 뛰어납니다. 많은 팀이 둘을 함께 사용합니다 — SGLang으로 구조화된 생성을 처리하고 vLLM으로 일반 텍스트 완성을 서빙합니다.
 
----
+* * *
 
 ## FAQ
 
@@ -436,19 +437,19 @@ SGLang의 제약 디코딩은 토크나이저 수준에서 작동하여 샘플�
 
 ### Q: SGLang에서 양자화된 모델을 사용할 수 있나요?
 
-예. SGLang은 AWQ, GPTQ, INT8 및 FP8 양자화를 네이티브로 지원합니다: ```bash
+예. SGLang은 AWQ, GPTQ, INT8 및 FP8 양자화를 네이티브로 지원합니다: `````bash
 python -m sglang.launch_server \
   --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \
   --quantization awq
-```
+`````
 
 양자화된 모델은 일반적으로 전체 정밀도 품질의 80-90%를 50-60% 메모리 사용량으로 달성하여 동일한 하드웨어에서 더 큰 모델을 허용합니다.
 
 ### Q: SGLang은 스트리밍 응답을 지원하나요?
 
-예. 샘플링 매개변수에서 `"stream": true`를 사용하여 스트리밍을 활성화합니다. 토큰은 Server-Sent Events(SSE)로 클라이언트에 전송됩니다. Python SDK는 또한 스트리밍을 위한 비동기 생성기도 제공합니다: ```python
+예. 샘플링 매개변수에서 ``"stream": true``를 사용하여 스트리밍을 활성화합니다. 토큰은 Server-Sent Events(SSE)로 클라이언트에 전송됩니다. Python SDK는 또한 스트리밍을 위한 비동기 생성기도 제공합니다: `````python
 async for event in program.run_async(stream=True): print(event.delta, end="", flush=True)
-```
+`````
 
 ### Q: SGLang이 서빙할 수 있는 최대 모델 크기는 어떻게 되나요?
 
@@ -456,17 +457,17 @@ SGLang은 10억에서 4,000억 이상의 파라미터를 지원하는 모델을 
 
 ### Q: 속도 제한 및 요청 큐잉은 어떻게 처리하나요?
 
-SGLang에는 빌트인 속도 제한이 있습니다: ```bash
+SGLang에는 빌트인 속도 제한이 있습니다: `````bash
 python -m sglang.launch_server \
   --model-path meta-llama/Llama-3.2-8B \
   --rate-limit-requests 100 \
   --rate-limit-tokens 50000 \
   --scheduler-policy lookahead
-```
+`````
 
-제한을 초과하는 요청은 큐에 쌓이고 사용 가능한 용량이 처리됩니다. `lookahead` 스케줄러는 지연 시간 분산을 최소화하도록 순서를 최적화합니다.
+제한을 초과하는 요청은 큐에 쌓이고 사용 가능한 용량이 처리됩니다. ````lookahead``` 스케줄러는 지연 시간 분산을 최소화하도록 순서를 최적화합니다.
 
----
+* * *
 
 ## 출처
 
@@ -476,7 +477,7 @@ python -m sglang.launch_server \
 - [LLM 서빙 엔진 벤치마킹 — ML 인프라 보고서 2026년 2분기](https://mlinfra.report/serving-benchmarks-q2-2026)
 - [제약 디코딩 조사 — ACL 2026 Workshop](https://aclanthology.org/2026.constrained-decoding/)
 
----
+* * *
 
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
 
@@ -506,7 +507,7 @@ python -m sglang.launch_server \
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -516,6 +517,6 @@ python -m sglang.launch_server \
 - [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm)
 - [sglang-structured-generation-llm](sglang-structured-generation-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -32,6 +32,7 @@ faqs: - q: '如何安装 gpt-researcher？'
     a: '克隆仓库并运行 `docker-compose up --build`。这会在 `localhost:8000` 启动 FastAPI 服务端，在 `localhost:3000` 启动前端。你也可以只启动服务端：`python -m uvicorn main:app --reload`。'
   - q: 'conduct_research() 和 write_report() 是同步的吗？'
     a: '不是。两者都是异步方法。要在 async 函数内用 `await` 调用，并用 `asyncio.run()` 运行该函数。'---
+
 # GPT Researcher：自主深度研究报告智能体——2026 实战指南
 
 
@@ -39,7 +40,7 @@ faqs: - q: '如何安装 gpt-researcher？'
 
 ## 引言
 
-只要你用大语言模型（LLM）做过开发，多半都撞过同一堵墙：把一个问题变成一份资料扎实、有据可查的报告，是又慢又费人力的活儿。`assafelovic/gpt-researcher` 把这个环节自动化了。它是一个自主智能体，能联网搜索（也能读你本地的文件）、收集来源，并从一句查询出发写出一份带引用的研究报告。本指南将带你安装它、用 Python 跑起来，并把它接入真实工作流。
+只要你用大语言模型（LLM）做过开发，多半都撞过同一堵墙：把一个问题变成一份资料扎实、有据可查的报告，是又慢又费人力的活儿。``assafelovic/gpt-researcher`` 把这个环节自动化了。它是一个自主智能体，能联网搜索（也能读你本地的文件）、收集来源，并从一句查询出发写出一份带引用的研究报告。本指南将带你安装它、用 Python 跑起来，并把它接入真实工作流。
 
 ![gpt-researcher 概览，via dibi8.com"](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
 
@@ -49,7 +50,7 @@ faqs: - q: '如何安装 gpt-researcher？'
 
 GPT Researcher 把自己定位为「首个面向联网与本地研究、可处理任意任务的开源深度研究智能体」。你给它一句查询，它会规划研究路径、执行多轮搜索、阅读并筛选结果，最后综合成一份带引用的报告。
 
-该项目在 GitHub 上拥有超过 27,000 颗星，由 `assafelovic` 以 Apache-2.0 许可维护，默认分支为 `master`。
+该项目在 GitHub 上拥有超过 27,000 颗星，由 ``assafelovic`` 以 Apache-2.0 许可维护，默认分支为 ``master``。
 
 ## GPT Researcher 的工作原理
 
@@ -77,56 +78,56 @@ GPT Researcher 把自己定位为「首个面向联网与本地研究、可处�
 
 先确认已安装 Python：
 
-```sh
+````sh
 python3 --version
-```
+`````
 
 然后安装该包：
 
-```sh
+`````sh
 pip install gpt-researcher
-```
+`````
 
 ### 通过 .env 配置 API 密钥
 
-GPT Researcher 需要一个 LLM（默认 OpenAI）和一个搜索检索器（默认 Tavily）。在项目根目录创建 `.env` 文件，填入两个密钥：
+GPT Researcher 需要一个 LLM（默认 OpenAI）和一个搜索检索器（默认 Tavily）。在项目根目录创建 ``.env`` 文件，填入两个密钥：
 
-```plaintext
+`````plaintext
 OPENAI_API_KEY=your_openai_key_here
 TAVILY_API_KEY=your_tavily_key_here
-```
+`````
 
-如果你指向的是兼容 OpenAI 的自定义端点，还要设置 `OPENAI_BASE_URL`。首次运行最常见的错误就是缺少密钥——若遇到鉴权或「API key not found」之类的报错，请检查 `.env` 文件是否存在、是否在调用研究器之前被正确加载。
+如果你指向的是兼容 OpenAI 的自定义端点，还要设置 ``OPENAI_BASE_URL``。首次运行最常见的错误就是缺少密钥——若遇到鉴权或「API key not found」之类的报错，请检查 ``.env`` 文件是否存在、是否在调用研究器之前被正确加载。
 
 ### 使用 Docker（含前端的完整应用）
 
 要运行完整应用——FastAPI 服务端加 Web 界面——克隆仓库并使用 Docker Compose：
 
-```sh
+`````sh
 git clone https://github.com/assafelovic/gpt-researcher.git
 cd gpt-researcher
 docker-compose up --build
-```
+`````
 
-默认情况下，这会在 `localhost:8000` 启动 Python 服务端，在 `localhost:3000` 启动前端。
+默认情况下，这会在 ``localhost:8000`` 启动 Python 服务端，在 ``localhost:3000`` 启动前端。
 
 ### 不用 Docker 直接启动服务端
 
 你也可以直接启动 FastAPI 服务端：
 
-```sh
+`````sh
 python -m uvicorn main:app --reload
-```
+`````
 
-然后在浏览器中打开 `http://localhost:8000`。
+然后在浏览器中打开 ``http://localhost:8000``。
 
 ## 核心用法
 
-Python API 围绕 `GPTResearcher` 类构建。研究和撰写报告都是**异步**的，因此要在 async 函数内用 `await` 调用。
+Python API 围绕 ``GPTResearcher`` 类构建。研究和撰写报告都是**异步**的，因此要在 async 函数内用 ``await`` 调用。
 
 ### 示例 1：一份基础研究报告
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -139,13 +140,13 @@ async def main(): query = "why is Nvidia stock going up?"
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 ### 示例 2：选择报告类型
 
-`GPTResearcher` 接受一个 `report_type` 参数，让你不再只拿到默认的研究报告，而是可以要一份简短摘要、资源清单，或篇幅更长的详细报告：
+``GPTResearcher`` 接受一个 ``report_type`` 参数，让你不再只拿到默认的研究报告，而是可以要一份简短摘要、资源清单，或篇幅更长的详细报告：
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -158,13 +159,13 @@ async def main(): researcher = GPTResearcher(
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 ### 示例 3：查看收集到的来源
 
 研究跑完后，你可以取出智能体所用的底层上下文和来源 URL——这对审核或自建引用清单很有用：
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -179,7 +180,7 @@ async def main(): researcher = GPTResearcher(query="How does AI impact society?"
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 这些示例只是起点。由于 LLM 和检索器都通过配置设定，同一份代码无需改动即可跑在不同的提供商上。
 
@@ -191,9 +192,9 @@ GPT Researcher 能轻松嵌入现有的 Python 工作流，因为它本质上就
 
 你并不会被锁死在 OpenAI 或 Tavily 上。默认 LLM 是 OpenAI、默认检索器是 Tavily，但两者都可通过环境变量和配置文件更换。例如，要把默认的联网搜索与基于 MCP 的来源结合，可设置检索器列表：
 
-```sh
+`````sh
 export RETRIEVER=tavily,mcp
-```
+`````
 
 这种混合配置让智能体既能从通用网络搜索取材，也能通过模型上下文协议（MCP）接入专门的数据源。
 
@@ -201,7 +202,7 @@ export RETRIEVER=tavily,mcp
 
 由于这套 API 只需两次 await 调用，你可以把 GPT Researcher 直接放进 Jupyter notebook、后台任务，或一个 FastAPI 端点里：
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -211,7 +212,7 @@ async def research(topic: str) -> str: researcher = GPTResearcher(query=topic)
 
 report = asyncio.run(research("current trends in AI ethics"))
 print(report)
-```
+`````
 
 面对更复杂的流水线，该仓库还附带了一套基于 LangGraph 和 AG2 构建的多智能体方案，由多个专职智能体协同来产出更长的报告。
 
@@ -241,12 +242,12 @@ GPT Researcher 属于「自主研究智能体」这一类。与其编造竞品�
 |
 ---
 |
----
+* * *
 |
 | **星标** | 27,473 |
 | **语言** | Python |
 | **许可** | Apache-2.0 |
-| **维护者** | Assaf Elovic（`assafelovic`） |
+| **维护者** | Assaf Elovic（````assafelovic````） |
 | **定位** | 联网 + 本地深度研究，输出带引用的报告 |
 | **默认分支** | master |
 | **LLM 提供商** | 默认 OpenAI；可经环境变量/配置更换 |
@@ -274,7 +275,7 @@ GPT Researcher 很能干，但要清楚它的取舍：
 
 ## 结语
 
-`assafelovic/gpt-researcher` 通过编排规划、联网搜索、抓取与 LLM 撰写，把一句查询变成一份有来源、有结构的报告，而这一切都藏在一套小巧的异步 API 背后。凭借 27,000+ 星标、Apache-2.0 许可、可配置的 LLM/检索器技术栈以及自带的 Web 应用，它是研究自动化里一块实用的基石。下一步：设好你的两个 API 密钥，拿一个真实问题跑一遍基础 Python 示例，并在扩大规模前先查看来源。
+````assafelovic/gpt-researcher``` 通过编排规划、联网搜索、抓取与 LLM 撰写，把一句查询变成一份有来源、有结构的报告，而这一切都藏在一套小巧的异步 API 背后。凭借 27,000+ 星标、Apache-2.0 许可、可配置的 LLM/检索器技术栈以及自带的 Web 应用，它是研究自动化里一块实用的基石。下一步：设好你的两个 API 密钥，拿一个真实问题跑一遍基础 Python 示例，并在扩大规模前先查看来源。
 
 大规模抓取需要轮换代理——[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 是业界常用之选。
 
@@ -282,7 +283,7 @@ GPT Researcher 很能干，但要清楚它的取舍：
 - 延伸阅读：[dibi8 相关指南](dibi8-internal-link)。
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/assafelovic/gpt-researcher
 - 官方文档 / README：https://github.com/assafelovic/gpt-researcher#readme
@@ -355,7 +356,7 @@ GPT Researcher：自主深度研究报告智能体——2026 实战指南 repres
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -386,15 +387,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

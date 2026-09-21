@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -71,7 +72,7 @@ Flowise는 네 가지 설치 방법을 제공합니다. 각 방법은 다른 환
 
 Node.js v18.15.0 또는 v20+가 필요합니다. 설치부터 실행까지 가장 빠른 경로입니다.
 
-```bash
+````bash
 # Flowise 전역 설치
 npm install -g flowise
 
@@ -80,30 +81,30 @@ npm install -g flowise@3.1.2
 
 # Flowise 시작
 npx flowise start
-```
+`````
 
-브라우저에서 `http://localhost:3000`을 엽니다. 첫 실행 시 `~/.flowise`에 SQLite 데이터베이스가 자동으로 생성됩니다.
+브라우저에서 ````http://localhost:3000````을 엽니다. 첫 실행 시 ````~/.flowise````에 SQLite 데이터베이스가 자동으로 생성됩니다.
 
 ### 방법 2: Docker (프로덕션 환경 권장)
 
 가장 안정적인 배포 방법입니다. Flowise는 Docker Hub에서 멀티 아키텍처 공식 이미지를 제공합니다.
 
-```bash
+`````bash
 # 공식 이미지 Pull 및 실행
 docker run -d -p 3000:3000 \
   --name flowise \
   -e FLOWISE_USERNAME=admin \
   -e FLOWISE_PASSWORD=secure-password \
   flowiseai/flowise:latest
-```
+`````
 
-`http://localhost:3000`에 접속하여 설정한 자격 증명으로 로그인합니다.
+````http://localhost:3000````에 접속하여 설정한 자격 증명으로 로그인합니다.
 
 ### 방법 3: Docker Compose (PostgreSQL 포함 프로덕션 준비)
 
 영속적인 배포를 위해 Docker Compose와 PostgreSQL, 볼륨 마운트를 함께 사용합니다.
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: flowise: image: flowiseai/flowise:latest
@@ -131,17 +132,17 @@ services: flowise: image: flowiseai/flowise:latest
     volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: flowise_data: postgres_data: ```
+volumes: flowise_data: postgres_data: `````
 
-시작 명령: ```bash
+시작 명령: `````bash
 docker compose up -d
-```
+`````
 
 ### 방법 4: DigitalOcean Droplet에 배포
 
 신뢰할 수 있는 클라우드 VPS에서 Flowise를 호스팅하려면 DigitalOcean에 몇 분 안에 배포할 수 있습니다.
 
-```bash
+`````bash
 # 새 Ubuntu 24.04 Droplet에서 (2 vCPU / 2GB RAM / $12/월)
 apt update && apt install -y docker.io docker-compose
 
@@ -154,9 +155,9 @@ cp .env.example .env
 
 # 설정 파일 편집
 nano .env
-```
+`````
 
-DigitalOcean 배포용 `.env` 예시: ```bash
+DigitalOcean 배포용 ``.env`` 예시: `````bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -167,42 +168,42 @@ FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=your-secure-password-here
 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
-```
+`````
 
-서비스 시작: ```bash
+서비스 시작: `````bash
 docker compose up -d
-```
+`````
 
 ### 환경 변수 참조표
 
 | 변수 | 설명 | 기본값 |
 |------|------|--------|
-| `PORT` | HTTP 서버 포트 | 3000 |
-| `DATABASE_TYPE` | 데이터베이스 엔진 (sqlite, postgres) | sqlite |
-| `DATABASE_PATH` | SQLite 파일 경로 | ~/.flowise |
-| `FLOWISE_USERNAME` | 관리자 사용자 이름 | — |
-| `FLOWISE_PASSWORD` | 관리자 비밀번호 | — |
-| `JWT_AUTH_TOKEN_SECRET` | 액세스 토큰 시크릿 | 자동 생성 |
-| `JWT_REFRESH_TOKEN_SECRET` | 리프레시 토큰 시크릿 | 자동 생성 |
-| `BLOB_STORAGE_PATH` | 파일 업로드 저장 경로 | ~/.flowise/storage |
-| `DISABLE_FLOWISE_TELEMETRY` | 익명 원격 분석 비활성화 | false |
+| ````PORT```` | HTTP 서버 포트 | 3000 |
+| ````DATABASE_TYPE```` | 데이터베이스 엔진 (sqlite, postgres) | sqlite |
+| ````DATABASE_PATH```` | SQLite 파일 경로 | ~/.flowise |
+| ````FLOWISE_USERNAME```` | 관리자 사용자 이름 | — |
+| ````FLOWISE_PASSWORD```` | 관리자 비밀번호 | — |
+| ````JWT_AUTH_TOKEN_SECRET```` | 액세스 토큰 시크릿 | 자동 생성 |
+| ````JWT_REFRESH_TOKEN_SECRET```` | 리프레시 토큰 시크릿 | 자동 생성 |
+| ````BLOB_STORAGE_PATH```` | 파일 업로드 저장 경로 | ~/.flowise/storage |
+| ````DISABLE_FLOWISE_TELEMETRY```` | 익명 원격 분석 비활성화 | false |
 
 ## 인기 도구와의 통합
 
 ### OpenAI 통합
 
-대부분의 사용자는 OpenAI 모델로 시작합니다. Flowise UI의 Credentials에서 API Key를 설정한 후 플로우에서 `ChatOpenAI` 노드를 사용하세요.
+대부분의 사용자는 OpenAI 모델로 시작합니다. Flowise UI의 Credentials에서 API Key를 설정한 후 플로우에서 ````ChatOpenAI```` 노드를 사용하세요.
 
-```bash
+`````bash
 # 선택 사항: OpenAI API Key를 환경 변수로 설정
 export OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
 ### Ollama (로컬 LLM)
 
 Ollama로 로컬 모델을 실행하면 API 비용을 없애고 데이터를 서버 내에 유지할 수 있습니다. 이 설정은 개인 정보에 민감한 배포에 이상적입니다.
 
-```yaml
+`````yaml
 # docker-compose-ollama.yml
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
@@ -217,29 +218,29 @@ services: ollama: image: ollama/ollama:latest
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: ```
+volumes: ollama_data: `````
 
-모델 Pull 및 사용 시작: ```bash
+모델 Pull 및 사용 시작: `````bash
 # 가벼운 테스트 모델 Pull
 docker exec -it ollama ollama pull qwen2:7b
 
 # 또는 Llama 3 Pull
 docker exec -it ollama ollama pull llama3.1:8b
-```
+`````
 
-Flowise 캔버스에서 `ChatOllama` 노드를 선택하고 모델 이름을 `qwen2:7b` 또는 `llama3.1:8b`로 설정합니다.
+Flowise 캔버스에서 ````ChatOllama```` 노드를 선택하고 모델 이름을 ````qwen2:7b```` 또는 ````llama3.1:8b````로 설정합니다.
 
 ### Chroma 벡터 스토어 (RAG 설정)
 
 프로덕션급 RAG 파이프라인을 위해 Chroma는 Flowise와 원활하게 작동하는 가벼운 벡터 데이터베이스를 제공합니다.
 
-```yaml
+`````yaml
 # docker-compose.yml에 추가
   chroma: image: chromadb/chroma:latest
     ports: - "8000:8000"
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
-```
+`````
 
 Flowise에서 RAG 파이프라인 구축: 1. **PDF Loader** 또는 **Text File** 노드를 드래그
 2. **Text Splitter** 노드에 연결 (chunk size 1000, overlap 200 설정)
@@ -253,20 +254,20 @@ Flowise에서 RAG 파이프라인 구축: 1. **PDF Loader** 또는 **Text File**
 
 하이브리드 검색이 필요한 고처리량 RAG의 경우 Qdrant가 메모리 내 저장소보다 뛰어난 성능을 제공합니다.
 
-```yaml
+`````yaml
 # Compose 파일에 Qdrant 추가
   qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
       - "6334:6334"
     volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
-```
+`````
 
-Flowise에서 `Qdrant` 벡터 스토어 노드를 사용하고 host를 `http://qdrant:6333`로 설정합니다.
+Flowise에서 ````Qdrant```` 벡터 스토어 노드를 사용하고 host를 ````http://qdrant:6333````로 설정합니다.
 
 ### Weaviate (엔터프라이즈 벡터 데이터베이스)
 
-```yaml
+`````yaml
   weaviate: image: semitechnologies/weaviate:latest
     ports: - "8080:8080"
     environment: QUERY_DEFAULTS_LIMIT: 25
@@ -274,13 +275,13 @@ Flowise에서 `Qdrant` 벡터 스토어 노드를 사용하고 host를 `http://q
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
-```
+`````
 
 ### API 배포
 
 모든 플로우는 자동으로 REST API를 노출합니다. 챗플로우를 낳추출하여 어디에나 통합할 수 있습니다.
 
-```bash
+`````bash
 # curl로 배포된 플로우 테스트
 curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   -H "Content-Type: application/json" \
@@ -290,9 +291,9 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
       "sessionId": "user_001"
     }
   }'
-```
+`````
 
-응답: ```json
+응답: `````json
 {
   "text": "문서에 따른 반품 정책은 구매 후 30일 이내에 원본 영수증과 함께 반품이 가능합니다.",
   "sourceDocuments": [
@@ -302,9 +303,9 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
     }
   ]
 }
-```
+`````
 
-Python SDK 예시: ```python
+Python SDK 예시: `````python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
@@ -317,7 +318,7 @@ def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json
 
 answer = ask("배송 옵션은 무엇인가요?")
 print(answer)
-```
+`````
 
 ### 웹사이트 임베딩
 
@@ -326,7 +327,7 @@ Flowise는 모든 챗플로우에 대해 JavaScript 임베드 코드를 생성�
 ![Flowise 임베드 위젯](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
 *커스텀 테마가 적용된 임베드 채팅 위젯 —— 하나의 script 태그로 임의의 웹사이트에 배포*
 
-```html
+`````html
 import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
@@ -348,7 +349,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
     }
   });
 </script>
-```
+`````
 
 ## 벤치마크 / 실전 활용 사례
 
@@ -396,7 +397,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
 
 ### 보안 체크리스트
 
-Flowise를 인터넷에 노출하기 전에 다음 단계를 완료하세요: ```bash
+Flowise를 인터넷에 노출하기 전에 다음 단계를 완료하세요: `````bash
 # 1. 인증 활성화 (필수)
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -428,13 +429,13 @@ DISABLE_FLOWISE_TELEMETRY=true
 
 # 5. 임베드 위젯용 CORS 설정
 CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
-```
+`````
 
 ### 큐 모드 확장
 
 고트래픽 배포를 위해 Flowise는 Redis 워커를 통한 큐 기반 처리를 지원합니다.
 
-```yaml
+`````yaml
 # docker-compose-queue.yml
 version: '3.8"
 services: redis: image: redis:alpine
@@ -451,15 +452,15 @@ services: redis: image: redis:alpine
     environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
-```
+`````
 
-워커 수평 확장: ```bash
+워커 수평 확장: `````bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
-```
+`````
 
 ### 백업 전략
 
-```bash
+`````bash
 # SQLite 데이터베이스 백업
 docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise
 docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz
@@ -469,11 +470,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > flowise-db-$(date +%Y%
 
 # cron을 통한 일일 자동 백업 (crontab에 추가)
 0 2 * * * /usr/local/bin/backup-flowise.sh >> /var/log/flowise-backup.log 2>&1
-```
+`````
 
 ### Docker 모니터링
 
-```bash
+`````bash
 # 실시간 로그 확인
 docker compose logs -f flowise
 
@@ -482,7 +483,7 @@ docker stats flowise
 
 # 헬스 체크 엔드포인트
 curl http://localhost:3000/api/v1/ping
-```
+`````
 
 ## 한계 / 솔직한 평가
 
@@ -502,11 +503,11 @@ Flowise는 모든 AI 프로젝트에 적합한 도구가 아닙니다. 다음은
 
 ### Node.js가 없는 서버에 Flowise를 어떻게 설치하나요?
 
-Docker를 사용하세요. 공식 `flowiseai/flowise` 이미지는 모든 의존성을 포함합니다. 단일 `docker run` 명령으로 실행할 수 있으며, 호스트에 Node.js, pnpm 또는 빌드 도구를 설치할 필요가 없습니다.
+Docker를 사용하세요. 공식 ````flowiseai/flowise```` 이미지는 모든 의존성을 포함합니다. 단일 ````docker run```` 명령으로 실행할 수 있으며, 호스트에 Node.js, pnpm 또는 빌드 도구를 설치할 필요가 없습니다.
 
 ### Flowise가 Llama나 Qwen 같은 로컬 LLM과 함께 작동하나요?
 
-예. Flowise는 Ollama와 기본 통합됩니다. Ollama 컨테이너(또는 로컬 인스턴스)를 시작하고 원하는 GGUF 모델을 Pull한 후 Flowise 캔버스에서 `ChatOllama` 노드를 선택하세요. 데이터가 서버를 벗어나지 않으며 API Key가 필요 없습니다.
+예. Flowise는 Ollama와 기본 통합됩니다. Ollama 컨테이너(또는 로컬 인스턴스)를 시작하고 원하는 GGUF 모델을 Pull한 후 Flowise 캔버스에서 ````ChatOllama```` 노드를 선택하세요. 데이터가 서버를 벗어나지 않으며 API Key가 필요 없습니다.
 
 ### RAG 챗봇 구축 시 Flowise와 Dify 중 어떤 것을 선택해야 하나요?
 
@@ -522,16 +523,16 @@ SQLite와 함께 $5/월 VPS(1 vCPU / 1 GB RAM)가 중소 규모 워크로드를 
 
 ### Flowise 챗봇을 API로 낯출 수 있나요?
 
-모든 Chatflow와 Agentflow는 `/api/v1/prediction/{flow-id}` 경로에서 자동으로 REST API 엔드포인트를 얻습니다. UI는 curl, Python, JavaScript 코드 스니펫을 생성합니다. 또한 원클릭으로 임베드 가능한 채팅 위젯을 낯출 수 있습니다.
+모든 Chatflow와 Agentflow는 ````/api/v1/prediction/{flow-id}```` 경로에서 자동으로 REST API 엔드포인트를 얻습니다. UI는 curl, Python, JavaScript 코드 스니펫을 생성합니다. 또한 원클릭으로 임베드 가능한 채팅 위젯을 낯출 수 있습니다.
 
 ### Flowise를 새 버전으로 어떻게 업그레이드하나요?
 
-Docker 배포: 최신 이미지를 Pull하고 재시작합니다: ```bash
+Docker 배포: 최신 이미지를 Pull하고 재시작합니다: `````bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
-```
+`````
 
-NPM 설치: `npm update -g flowise`를 실행합니다. 업그레이드 전 항상 `~/.flowise` 디렉터리를 백업하세요.
+NPM 설치: ````npm update -g flowise````를 실행합니다. 업그레이드 전 항상 ````~/.flowise```` 디렉터리를 백업하세요.
 
 *일부 링크는 제휴 링크입니다. 커미션을 받을 수 있지만 추가 비용은 발생하지 않습니다. 우리가 실제로 사용하는 도구만을 추천합니다.*
 
@@ -539,10 +540,10 @@ NPM 설치: `npm update -g flowise`를 실행합니다. 업그레이드 전 항�
 
 Flowise는 아이디어와 배포된 AI Agent 사이의 장벽을 제거합니다. 52,948개의 GitHub Stars, MIT 라이선스, LangChain의 구성 요소 모델과 직접 매핑되는 시각적 캔버스를 통해, 상용구 코드를 작성하지 않고도 LLM 기반 챗봇과 RAG 시스템을 배포하려는 개발자에게 실용적인 선택입니다.
 
-`npx flowise start`로 로컬 프로토타입을 시작하세요. Docker Compose와 PostgreSQL로 프로덕션으로 전환하세요. Ollama를 연결하여 완전히 사적이고 API Key 없는 배포를 구현하세요. 확장이 필요할 때는 Redis 큐 워커와 수평 워커 복제본을 추가하세요.
+````npx flowise start````로 로컬 프로토타입을 시작하세요. Docker Compose와 PostgreSQL로 프로덕션으로 전환하세요. Ollama를 연결하여 완전히 사적이고 API Key 없는 배포를 구현하세요. 확장이 필요할 때는 Redis 큐 워커와 수평 워커 복제본을 추가하세요.
 
 **이번 주 액션 아이템:**
-1. Docker로 Flowise를 로컬에 배포 (`docker run -p 3000:3000 flowiseai/flowise`)
+1. Docker로 Flowise를 로컬에 배포 (````docker run -p 3000:3000 flowiseai/flowise```)
 2. PDF 로더, 텍스트 분할기, Chroma 벡터 스토어로 첫 RAG 파이프라인 구축
 3. REST API를 낯출고 테스트 페이지에 채팅 위젯 임베드
 4. [FlowiseAI Telegram 그룹](https://t.me/flowiseai)에 가입하여 커뮤니티 지원과 주간 팁 받기
@@ -595,7 +596,7 @@ Flowise는 아이디어와 배포된 AI Agent 사이의 장벽을 제거합니�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -605,7 +606,7 @@ Flowise는 아이디어와 배포된 AI Agent 사이의 장벽을 제거합니�
 - [9router-smart-llm-proxy-token-saver-free-coding](flowise)
 - [ai-engineering-from-scratch](flowise)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

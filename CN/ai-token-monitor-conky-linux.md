@@ -32,6 +32,7 @@ faqs: - q: 'Does the AI Token Monitor work on macOS or Windows?'
     a: 'Yes. In api_fetcher.py, add a block that calls your service API and writes to the cache dict with keys ok (bool), label (display string), and optionally pct (float 0-1). Then add the service name to the SERVICES list in conky_ai.py with its reset_h value.'
   - q: 'Why does Grok show "耗尽" (depleted) even when my account has credits?'
     a: 'The Grok check calls GET /v1/models — it returns 200 if authenticated and credits available, 403 if credits are exhausted. A 403 from xAI specifically means account balance is zero. If you have credits but see 403, verify the API key is correct in ~/.config/.ai_monitor_keys.'---
+
 {{< resource-info >}}
 
 ## The Problem: Juggling Six AI Services and Never Knowing Which One Is Out
@@ -42,25 +43,25 @@ The result: you hit a rate limit mid-task, spend five minutes switching browser 
 
 **AI Token Monitor** solves this with a persistent desktop widget that shows every service's status at a glance — without leaving your editor.
 
-```
+````
 ● Claude  ░░░░░░░░░  No balance
 ● Gemini  ░░░░░░░░░  Quota full
 ● Grok    ░░░░░░░░░  Depleted
 ● Kimi    █████████  22.4M left
 ● Codex   ─────────  18:42:01
 ● Kilo    ─────────  18:42:01
-```
+`````
 
 ## How It Works
 
-The monitor has two components: **`api_fetcher.py`** — a background script (cron every 5 min) that polls each service API and writes results to `~/token-monitor/api_cache.json`.
+The monitor has two components: **``api_fetcher.py``** — a background script (cron every 5 min) that polls each service API and writes results to ``~/token-monitor/api_cache.json``.
 
-**`conky_ai.py`** — reads the cache every 30 seconds and outputs Conky-formatted text with inline `${color}` tags. Conky renders this as the desktop widget.
+**``conky_ai.py``** — reads the cache every 30 seconds and outputs Conky-formatted text with inline ``${color}`` tags. Conky renders this as the desktop widget.
 
-```
+`````
 api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky display
    (cron/5m)         (JSON cache)        (30s poll)       (always on)
-```
+`````
 
 This architecture means API failures never freeze your desktop. The cache always has the last known state.
 
@@ -70,19 +71,19 @@ The key feature is the **blood-bar style quota display** — a row of Unicode bl
 |
 ---
 |
----
+* * *
 |
-| `█████████` green | Above 50% quota |
-| `████░░░░░` orange | 20–50% remaining |
-| `█░░░░░░░░` red | Below 20% |
-| `░░░░░░░░░` red | Exhausted / no balance |
-| `─────────` gray | No API key configured |
+| ````█████████```` green | Above 50% quota |
+| ````████░░░░░```` orange | 20–50% remaining |
+| ````█░░░░░░░░```` red | Below 20% |
+| ````░░░░░░░░░```` red | Exhausted / no balance |
+| ````─────────```` gray | No API key configured |
 
-The bar is 9 characters wide. Each `█` represents ~11% of quota.
+The bar is 9 characters wide. Each ````█```` represents ~11% of quota.
 
 ## Installation
 
-```bash
+`````bash
 # 1. Clone
 git clone https://github.com/luckybbjason1/ai-token-monitor
 cd ai-token-monitor
@@ -95,39 +96,39 @@ nano ~/.config/.ai_monitor_keys
 
 # 4. Restart Conky
 pkill conky && conky --daemonize --pause=1
-```
+`````
 
-The installer automatically: - Copies scripts to `~/token-monitor/`
-- Adds `${execpi 30 python3 ~/token-monitor/conky_ai.py}` to your Conky config
-- Sets up the cron job for `api_fetcher.py`
+The installer automatically: - Copies scripts to ````~/token-monitor/````
+- Adds ````${execpi 30 python3 ~/token-monitor/conky_ai.py}```` to your Conky config
+- Sets up the cron job for ````api_fetcher.py````
 
 ## Supported Services and API Methods
 
 | Service | API Endpoint | What We Detect |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Kimi** (Moonshot) | `GET /v1/users/me` | Exact token quota remaining |
-| **Claude** (Anthropic) | `POST /v1/messages` | Rate-limit headers per window |
-| **Gemini** (Google) | `POST .../generateContent` | 429 = quota exceeded |
-| **Grok** (xAI) | `GET /v1/models` | 403 = balance exhausted |
+| **Kimi** (Moonshot) | ````GET /v1/users/me```` | Exact token quota remaining |
+| **Claude** (Anthropic) | ````POST /v1/messages```` | Rate-limit headers per window |
+| **Gemini** (Google) | ````POST .../generateContent```` | 429 = quota exceeded |
+| **Grok** (xAI) | ````GET /v1/models```` | 403 = balance exhausted |
 | Codex / Kilo | — | Countdown to midnight UTC+8 |
 
 For services without quota APIs (Codex, Kilo), the monitor shows a countdown to the standard daily reset at midnight UTC+8.
 
 ## Security Design
 
-API keys are stored in `~/.config/.ai_monitor_keys` with `chmod 600`. The file is excluded from git. Keys are never echoed to terminal or written to log files — the fetcher reads them once at startup and they stay in memory only for the duration of the HTTP call.
+API keys are stored in ````~/.config/.ai_monitor_keys```` with ````chmod 600````. The file is excluded from git. Keys are never echoed to terminal or written to log files — the fetcher reads them once at startup and they stay in memory only for the duration of the HTTP call.
 
-For the cautious: review `api_fetcher.py` before installing. It makes only GET/POST requests to official API endpoints with your own keys. No data is sent anywhere except the respective AI service.
+For the cautious: review ````api_fetcher.py```` before installing. It makes only GET/POST requests to official API endpoints with your own keys. No data is sent anywhere except the respective AI service.
 
 ## Adding Custom Services
 
-Open `api_fetcher.py` and add a block after the existing services: ```python
+Open ``api_fetcher.py`` and add a block after the existing services: `````python
 # ── Your Service ─────────────────────────────────
 key = keys.get(yourservice)
 if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
@@ -142,9 +143,9 @@ if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
             }
         else: cache[YourService] = {ok: False, label: 'API Error'}
     except Exception: pass
-```
+`````
 
-Then add `{name: YourService, reset_h: 24}` to the `SERVICES` list in `conky_ai.py`.
+Then add ````{name: YourService, reset_h: 24}```` to the ````SERVICES```` list in ````conky_ai.py```.
 
 ## Related Tools on dibi8
 
@@ -223,12 +224,12 @@ AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desk
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](ai-token-monitor-conky-linux)
@@ -237,6 +238,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [moneyprinterturbo-one-click-ai-video-generator](ai-token-monitor-conky-linux)
 - [pm-skills-68-product-management-skills-ai-agents](ai-token-monitor-conky-linux)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

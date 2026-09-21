@@ -39,26 +39,27 @@ faqs: - q: 'Microsoft Presidio là gì?'
 featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 ---
 
+
 ## Why PII Detection Matters More Than Ever
 
 Mọi tổ chức xử lý dữ liệu người dùng đều đối mặt với cùng một thách thức ngày càng tăng: **biết thông tin nhạy cảm nằm ở đâu và bảo vệ nó**. Số thẻ tín dụng trong các cuộc trò chuyện hỗ trợ khách hàng. Số an sinh xã hội trong tài liệu nhân sự. Tên bệnh nhân trong hình ảnh y tế. Địa chỉ email trong cơ sở dữ liệu marketing.
 
 Việc xem xét thủ công là không khả thi khi mở rộng quy mô. Việc phát hiện tự động dễ mắc lỗi nếu không có công cụ phù hợp. Và các yêu cầu quy định — GDPR, HIPAA, CCPA, PCI-DSS — đòi hỏi các tổ chức chứng minh rằng họ có thể nhận diện và bảo vệ thông tin cá nhân có thể nhận dạng được (PII) trên mọi loại dữ liệu và định dạng.
 
-**[Microsoft Presidio](https://github.com/microsoft/presidio)** (GitHub: `microsoft/presidio`, **9,397+ sao**) là giải pháp mã nguồn mở được áp dụng rộng rãi nhất cho vấn đề này. Ban đầu được Microsoft phát hành vào năm 2019, nó đã phát triển thành một framework trưởng thành, được kiểm thử trong sản xuất, xử lý văn bản, hình ảnh, dữ liệu có cấu trúc và hình ảnh y tế — tất cả đều theo giấy phép MIT.
+**[Microsoft Presidio](https://github.com/microsoft/presidio)** (GitHub: ```microsoft/presidio````, **9,397+ sao**) là giải pháp mã nguồn mở được áp dụng rộng rãi nhất cho vấn đề này. Ban đầu được Microsoft phát hành vào năm 2019, nó đã phát triển thành một framework trưởng thành, được kiểm thử trong sản xuất, xử lý văn bản, hình ảnh, dữ liệu có cấu trúc và hình ảnh y tế — tất cả đều theo giấy phép MIT.
 
 Presidio cung cấp **các mô-đun nhận dạng nhanh và ẩn danh** cho các thực thể riêng tư trong văn bản, hình ảnh và dữ liệu cấu trúc. Nó nhận biết ngữ cảnh, có thể cắm thêm và tùy chỉnh theo nhu cầu kinh doanh cụ thể.
 
 ## Presidio Architecture
 
-Presidio được tổ chức thành bốn thành phần chính, mỗi thành phần xử lý một loại dữ liệu và giai đoạn xử lý khác nhau: ```
+Presidio được tổ chức thành bốn thành phần chính, mỗi thành phần xử lý một loại dữ liệu và giai đoạn xử lý khác nhau: `````
 presidio/
 ├── presidio-analyzer/     # PII detection in text (NER + regex + rules)
 ├── presidio-anonymizer/   # PII redaction/transformation in text
 ├── presidio-image-redactor/ # PII redaction in images (incl. DICOM)
 ├── presidio-structured/   # PII detection in tabular data (CSV, Excel)
 └── docs/                  # Full documentation and samples
-```
+`````
 
 ### Presidio Analyzer — The Detection Engine
 
@@ -76,8 +77,8 @@ Trình Phân Tích hỗ trợ nhiều ngôn ngữ và có thể được mở r�
 
 Khi PII được phát hiện, Anonymizer sẽ áp dụng các chuyển đổi: | Transformation | What It Does | Use Case |
 |---------------|-------------|----------|
-| **Redact** | Replace with placeholder (e.g., `[PHONE_NUMBER]`) | General-purpose masking |
-| **Mask** | Hide part of the value (e.g., `***-**-1234`) | Partial obfuscation |
+| **Redact** | Replace with placeholder (e.g., ````[PHONE_NUMBER]````) | General-purpose masking |
+| **Mask** | Hide part of the value (e.g., ````***-**-1234````) | Partial obfuscation |
 | **Hash** | Replace with cryptographic hash | Analytics-friendly anonymization |
 | **Replace** | Substitute with configurable value | Domain-specific replacement |
 | **Encrypt** | Encrypt the value with a key | Reversible anonymization |
@@ -100,34 +101,34 @@ Thành phần Cấu trúc phát hiện PII trong các định dạng dữ liệu
 
 Presidio có thể được cài đặt thông qua pip, Docker hoặc từ mã nguồn: ### Using pip
 
-```bash
+`````bash
 pip install presidio-analyzer presidio-anonymizer
 pip install presidio-image-redactor
 pip install presidio-structured
-```
+`````
 
 ### Using Docker
 
-```bash
+`````bash
 docker pull mcr.microsoft.com/presidio-analyzer:latest
 docker pull mcr.microsoft.com/presidio-anonymizer:latest
 docker pull mcr.microsoft.com/presidio-image-redactor:latest
-```
+`````
 
 ### From Source
 
-```bash
+`````bash
 git clone https://github.com/microsoft/presidio.git
 cd presidio
 pip install -e presidio-analyzer
 pip install -e presidio-anonymizer
-```
+`````
 
 ## Basic Usage Examples
 
 ### Text PII Detection
 
-```python
+`````python
 from presidio_analyzer import AnalyzerEngine
 
 analyzer = AnalyzerEngine()
@@ -138,17 +139,17 @@ results = analyzer.analyze(text=text, language=en)
 for result in results: print(f"Entity: {result.entity_type}, "
           f"Score: {result.score:.2f}, "
           f"Position: {result.start}-{result.end}")
-```
+`````
 
-Đầu ra: ```
+Đầu ra: `````
 Entity: PERSON, Score: 0.85, Position: 0-10
 Entity: PHONE_NUMBER, Score: 0.95, Position: 26-38
 Entity: EMAIL_ADDRESS, Score: 0.99, Position: 57-73
-```
+`````
 
 ### Text PII Anonymization
 
-```python
+`````python
 from presidio_anonymizer import AnonymizerEngine
 
 anonymizer = AnonymizerEngine()
@@ -165,11 +166,11 @@ anonymized = anonymizer.anonymize(
 
 print(anonymized.text)
 # "XXX Smith's SSN is *************** and his email is [HASH]"
-```
+`````
 
 ### Image PII Redaction
 
-```python
+`````python
 from presidio_image_redactor import ImageRedactorEngine
 
 redactor = ImageRedactorEngine()
@@ -182,11 +183,11 @@ redacted_image = redactor.redact_from_image(
 
 # Save the redacted image
 redacted_image.save("redacted_document.png")
-```
+`````
 
 ### Structured Data Anonymization
 
-```python
+`````python
 import pandas as pd
 from presidio_structured import StructuredAnalyzerEngine
 
@@ -196,11 +197,11 @@ analyzer = StructuredAnalyzerEngine()
 results = analyzer.analyze(df=df, columns=["name", "email", "phone"])
 
 # Results contain PII detections per column with confidence scores
-```
+`````
 
 ## Custom Recognizers
 
-Một trong những tính năng mạnh mẽ nhất của Presidio là khả năng định nghĩa các bộ nhận diện PII tùy chỉnh cho dữ liệu theo lĩnh vực cụ thể: ```python
+Một trong những tính năng mạnh mẽ nhất của Presidio là khả năng định nghĩa các bộ nhận diện PII tùy chỉnh cho dữ liệu theo lĩnh vực cụ thể: `````python
 from presidio_analyzer import AnalyzerEngine
 from presidio_analyzer.recognizer_registry import RecognizerRegistry
 from presidio_analyzer.nlp_engine import NlpEngineProvider
@@ -220,7 +221,7 @@ registry.add_recognizer(EmployeeIdRecognizer())
 
 analyzer = AnalyzerEngine(registry=registry)
 results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
-```
+`````
 
 Các bộ nhận dạng tùy chỉnh có thể tận dụng: - **Mẫu Regex** cho các định dạng dữ liệu có cấu trúc
 - **Từ khóa theo ngữ cảnh** (ví dụ: tiền tố "SSN:")
@@ -231,16 +232,16 @@ Các bộ nhận dạng tùy chỉnh có thể tận dụng: - **Mẫu Regex** c
 
 Presidio hỗ trợ nhiều mẫu triển khai: ### REST API (Docker)
 
-```bash
+`````bash
 docker run -d -p 5002:5002 mcr.microsoft.com/presidio-analyzer:latest
 docker run -d -p 5001:5001 mcr.microsoft.com/presidio-anonymizer:latest
-```
+`````
 
-Trình Phân Tích cung cấp `POST /analyze` và Trình Ẩn Danh cung cấp `POST /anonymize`. Cả hai đều chấp nhận payload JSON với văn bản, ngôn ngữ và các chỉ định loại thực thể.
+Trình Phân Tích cung cấp ````POST /analyze```` và Trình Ẩn Danh cung cấp ````POST /anonymize````. Cả hai đều chấp nhận payload JSON với văn bản, ngôn ngữ và các chỉ định loại thực thể.
 
 ### Docker Compose Deployment
 
-Đối với các triển khai nhiều thành phần, sử dụng Docker Compose để chạy tất cả các dịch vụ Presidio cùng nhau: ```yaml
+Đối với các triển khai nhiều thành phần, sử dụng Docker Compose để chạy tất cả các dịch vụ Presidio cùng nhau: `````yaml
 version: '3.8'
 services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
     ports: - "5002:5002"
@@ -255,9 +256,9 @@ services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
     ports: - "5003:5003"
     environment: - PORT=5003
     depends_on: - analyzer
-```
+`````
 
-Triển khai với `docker compose up -d` và truy cập tất cả các thành phần tại các cổng tương ứng của chúng.
+Triển khai với ````docker compose up -d```` và truy cập tất cả các thành phần tại các cổng tương ứng của chúng.
 
 ### Kubernetes
 
@@ -319,7 +320,7 @@ Presidio cung cấp cơ sở kỹ thuật cho các yêu cầu truy cập dữ li
 
 ## Custom NER Model Integration
 
-Presidio hỗ trợ thay đổi các mô hình NER mặc định sang các mô hình chuyên ngành: ```python
+Presidio hỗ trợ thay đổi các mô hình NER mặc định sang các mô hình chuyên ngành: `````python
 from presidio_analyzer.nlp_engine import SpacyNlpEngine
 
 # Load a custom spaCy model
@@ -336,7 +337,7 @@ transformer_nlp = TransformersNlpEngine(
 )
 
 analyzer = AnalyzerEngine(nlp_engine=transformer_nlp)
-```
+`````
 
 Các mô hình chuyên ngành cải thiện đáng kể độ chính xác phát hiện cho các thực thể chuyên biệt như mã y tế, thuật ngữ pháp lý hoặc công cụ tài chính. Tinh chỉnh một mô hình transformer trên dữ liệu của tổ chức bạn và tích hợp trực tiếp vào Presidio.
 
@@ -368,7 +369,7 @@ Presidio rất tuyệt nhưng không phải là giải pháp hoàn hảo: 1. **�
 
 ## Getting Started
 
-Con đường nhanh nhất để sử dụng Presidio: ```bash
+Con đường nhanh nhất để sử dụng Presidio: `````bash
 # Install all components
 pip install presidio-analyzer presidio-anonymizer presidio-image-redactor presidio-structured
 
@@ -382,12 +383,12 @@ results = analyzer.analyze(
 )
 for r in results: print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')
 "
-```
+`````
 
-Hoặc triển khai qua Docker để có một API sẵn sàng cho môi trường sản xuất: ```bash
+Hoặc triển khai qua Docker để có một API sẵn sàng cho môi trường sản xuất: `````bash
 docker run -d -p 5002:5002 --name presidio-analyzer mcr.microsoft.com/presidio-analyzer:latest
 curl -X POST http://localhost:5002/analyze   -H "Content-Type: application/json"   -d '{"text":"John Smith lives in New York", "language":"en"}'
-```
+````
 
 ## Conclusion
 
@@ -397,7 +398,7 @@ Dù bạn đang xây dựng các luồng tuân thủ GDPR, ẩn danh dữ liệu
 
 Đối với hạ tầng, hãy xem xét [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho các triển khai tự lưu trữ đơn giản hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho suy luận NER tăng tốc GPU. Cần proxy đáng tin cậy để thu thập dữ liệu và cào web? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cung cấp lớp mạng. Tìm kiếm các ưu đãi xử lý dữ liệu? Hãy xem [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) và [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) để nhận các ưu đãi độc quyền. Đối với tự động hóa tiếp thị, [PromoOhLy](https://www.promoohubly.com/join/12190433) cung cấp các công cụ bán hàng mạnh mẽ.
 
----
+* * *
 
 **Nguồn:** [Presidio GitHub](https://github.com/microsoft/presidio) · [Tài liệu](https://microsoft.github.io/presidio) · [Bản demo](https://aka.ms/presidio-demo) · [Huy hiệu OpenSSF](https://www.bestpractices.dev/projects/6076)
 
@@ -431,7 +432,7 @@ Dù bạn đang xây dựng các luồng tuân thủ GDPR, ẩn danh dữ liệu
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -439,6 +440,6 @@ Dù bạn đang xây dựng các luồng tuân thủ GDPR, ẩn danh dữ liệu
 - [markitdown-universal-file-to-markdown-converter](microsoft-presidio-pii-detection-redaction-sdk)
 - [ai-engineering-from-scratch](microsoft-presidio-pii-detection-redaction-sdk)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

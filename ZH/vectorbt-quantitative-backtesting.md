@@ -12,13 +12,14 @@ aliases:
   - /zh/posts/vectorbt-quantitative-backtesting/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么你的回测太慢了
 
 如果你曾经花 20 分钟等待一个基于 pandas 的回测完成遍历 50 个品种 10 年的 OHLCV 数据，你并不孤单。2025 年一项量化金融调查发现，**73% 的散户量化交易者花在等待回测上的时间比分析结果还多**。像 Zipline 或 Backtrader 这样的事件驱动回测器在真实性方面表现出色，但当你需要测试数千种参数组合时，速度会慢到让人抓狂。
 
-VectorBT 登场了 —— 这是一个将回测重新构想为向量化计算问题的 Python 库。通过利用 **NumPy 数组和 Numba JIT 编译**，VectorBT 在单核 CPU 上每秒处理 **超过 100 万笔交易**。GitHub 仓库 `polakowo/vectorbt` 已累积 **8", "900+ Star**，由 Oleg Polakowo 在 Apache-2.0 许可证下维护。截至 2026 年 5 月的 v0.27.2 版本，它支持 Python 3.9+，并与 pandas、Plotly 和 scikit-learn 无缝集成。
+VectorBT 登场了 —— 这是一个将回测重新构想为向量化计算问题的 Python 库。通过利用 **NumPy 数组和 Numba JIT 编译**，VectorBT 在单核 CPU 上每秒处理 **超过 100 万笔交易**。GitHub 仓库 ```polakowo/vectorbt```` 已累积 **8", "900+ Star**，由 Oleg Polakowo 在 Apache-2.0 许可证下维护。截至 2026 年 5 月的 v0.27.2 版本，它支持 Python 3.9+，并与 pandas、Plotly 和 scikit-learn 无缝集成。
 
 本文涵盖所有内容：安装、核心概念、真实代码示例、生产级加固以及诚实的局限性评估。无论你是在测试一个简单的均线交叉策略，还是运行完整的滚动优化管道，VectorBT 都会改变你对回测速度的认知。
 
@@ -32,17 +33,17 @@ VectorBT 的速度来自三个架构决策：
 
 ### NumPy 优先的数据表示
 
-所有价格数据都以 NumPy ndarray 形式存在。100 个资产 10 年日频数据的 DataFrame 变成形状为 `(2", "520", "100)` 的二维数组 —— 每年约 252 个交易日。在热路径中不会发生逐行迭代。
+所有价格数据都以 NumPy ndarray 形式存在。100 个资产 10 年日频数据的 DataFrame 变成形状为 ````(2", "520", "100)```` 的二维数组 —— 每年约 252 个交易日。在热路径中不会发生逐行迭代。
 
 ### Numba JIT 编译
 
-关键路径函数使用 Numba 的 `@njit` 装饰，在运行时将 Python 编译为机器码。一个在原始 pandas 中需要 12 秒的均线交叉策略，在 VectorBT 中仅需 **0.03 秒**。
+关键路径函数使用 Numba 的 ````@njit```` 装饰，在运行时将 Python 编译为机器码。一个在原始 pandas 中需要 12 秒的均线交叉策略，在 VectorBT 中仅需 **0.03 秒**。
 
 ### 参数网格广播
 
-VectorBT 的 `vbt` 模块可以自动将信号生成函数广播到参数组合。测试 50 个窗口大小 × 10 个资产 × 2 条入场规则不需要嵌套 for 循环 —— 它变成单次张量运算。
+VectorBT 的 ````vbt```` 模块可以自动将信号生成函数广播到参数组合。测试 50 个窗口大小 × 10 个资产 × 2 条入场规则不需要嵌套 for 循环 —— 它变成单次张量运算。
 
-```python
+`````python
 import vectorbt as vbt
 import numpy as np
 import pandas as pd
@@ -54,30 +55,30 @@ price = vbt.YFData.download(
 
 print(f"Data shape: {price.shape}")  # (2", "210", ") — 日线收盘价
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
-```
+`````
 
 ## 安装与配置：5 分钟内搞定
 
 VectorBT 可通过 pip 干净地安装。基础包包含 Numba、NumPy 和 pandas 集成。可选依赖增加了 yfinance 数据获取和 Plotly 图表功能。
 
-```bash
+`````bash
 # 基础安装
 pip install vectorbt
 
 # 安装所有可选依赖（推荐）
 pip install "vectorbt[all"]"
-```
+`````
 
 验证安装：
 
-```python
+`````python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 或更高
-```
+`````
 
 为了可复现性，固定你的环境：
 
-```bash
+`````bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -85,19 +86,19 @@ numpy==1.26.4
 pandas==2.2.3
 yfinance==0.2.54
 plotly==5.24.1
-```
+`````
 
-macOS 上的常见安装问题：Numba 需要 `llvmlite`，后者需要 Xcode Command Line Tools：
+macOS 上的常见安装问题：Numba 需要 ````llvmlite````，后者需要 Xcode Command Line Tools：
 
-```bash
+`````bash
 xcode-select --install  # 如果 Numba 安装失败，先运行这个
-```
+`````
 
 ## 你的第一个回测：均线交叉策略
 
 让我们构建最简单的可行策略：当 20 日均线向上穿越 50 日均线时做多，反向穿越时平仓。
 
-```python
+`````python
 import vectorbt as vbt
 import pandas as pd
 
@@ -129,7 +130,7 @@ portfolio = vbt.Portfolio.from_signals(
 # 结果
 print(portfolio.total_return())
 print(portfolio.sharpe_ratio())
-```
+`````
 
 三个资产六年数据在 **2 秒内** 完成回测。同样的回测在 Backtrader 中大约需要 **90 秒**。
 
@@ -137,7 +138,7 @@ print(portfolio.sharpe_ratio())
 
 当你进行参数扫描时，VectorBT 的真正威力才会显现。让我们测试 5 到 200 的均线窗口：
 
-```python
+`````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -166,15 +167,15 @@ portfolio = vbt.Portfolio.from_signals(
 best_idx = portfolio.sharpe_ratio().idxmax()
 print(f"Best params: {best_idx}")
 print(f"Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}")
-```
+`````
 
 这个包含 **180 种参数组合** 的网格在 M2 MacBook Air 上约 **3.5 秒** 内完成评估。即 **每秒 50 种组合**。
 
 ## 滚动分析：稳健的策略验证
 
-在单一时段上回测会导致过拟合。滚动分析（Walk-Forward Analysis, WFA）将数据划分为样本内训练和样本外测试窗口。VectorBT 通过日期切片的 `Portfolio.from_signals` 实现此功能：
+在单一时段上回测会导致过拟合。滚动分析（Walk-Forward Analysis, WFA）将数据划分为样本内训练和样本外测试窗口。VectorBT 通过日期切片的 ````Portfolio.from_signals```` 实现此功能：
 
-```python
+`````python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -231,7 +232,7 @@ for i in range(n_splits): # 定义训练/测试窗口
 
 results_df = pd.DataFrame(results)
 print(results_df[["test_sharpe", "test_return"]].mean())
-```
+`````
 
 样本外平均夏普比率低于 0.5 表明策略不够稳健 —— 无论样本内表现如何。
 
@@ -239,7 +240,7 @@ print(results_df[["test_sharpe", "test_return"]].mean())
 
 VectorBT 与 scikit-learn 自然配合实现 ML 驱动信号。训练分类器预测次日方向，然后将预测结果输入 VectorBT 进行现实执行模拟：
 
-```python
+`````python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -295,13 +296,13 @@ ml_portfolio = vbt.Portfolio.from_signals(
 print(f"ML Strategy Return: {ml_portfolio.total_return():.2%}")
 print(f"ML Strategy Sharpe: {ml_portfolio.sharpe_ratio():.2f}")
 print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}")
-```
+`````
 
 ## 投资组合优化
 
 VectorBT PRO（付费版本，$299/年）通过马科维茨均值方差和 Black-Litterman 模型增加投资组合级优化。开源版本仍支持多资产加权：
 
-```python
+`````python
 import vectorbt as vbt
 import numpy as np
 
@@ -333,7 +334,7 @@ portfolio = vbt.Portfolio.from_holding(
 print(f"\nCAGR: {portfolio.total_return() ** (1/4) - 1:.2%}")
 print(f"Sharpe: {portfolio.sharpe_ratio():.2f}")
 print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
-```
+`````
 
 对于主要交易所的实盘交易，通过 API 连接你的账户。Binance 为加密货币算法交易提供深度流动性和低手续费 —— [点击注册](https://www.bsmkweb.cc/register?ref=DIBI8)。对于衍生品和高级订单类型，[OKX](https://www.promoohubly.com/join/12190433) 提供机构级 API。
 
@@ -341,15 +342,15 @@ print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
 
 | 场景 | VectorBT | Backtrader | Zipline | pandas 循环 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 均线交叉（3 资产，6 年） | **1.8s** | 92s | 45s | 340s |
 | 网格搜索（180 参数） | **3.5s** | N/A | 810s | 6,200s |
@@ -368,9 +369,9 @@ print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
 
 ### 自定义指标
 
-VectorBT 的 `IndicatorFactory` 可以将任何函数转换为向量化指标：
+VectorBT 的 ````IndicatorFactory```` 可以将任何函数转换为向量化指标：
 
-```python
+`````python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
@@ -395,11 +396,11 @@ CustomMomentum = vbt.IF(
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
 cm = CustomMomentum.run(price, period=[7, 14, 30])
 print(cm.momentum)
-```
+`````
 
 ### 风险管理：止损和止盈
 
-```python
+`````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
@@ -420,13 +421,13 @@ portfolio = vbt.Portfolio.from_signals(
 print(f"Return: {portfolio.total_return():.2%}")
 print(f"Win rate: {portfolio.trades.win_rate():.2%}")
 print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
-```
+`````
 
 ### 并行执行
 
 VectorBT 的张量运算已经能充分利用单核。对于多核扩展，将参数网格拆分到多个进程中：
 
-```python
+`````python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
@@ -444,21 +445,21 @@ params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.re
 chunks = np.array_split(params, 4)
 
 with Pool(4) as p: results = p.map(run_chunk, chunks)
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | VectorBT | Backtrader | Zipline | QuantConnect (Lean) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 执行模型 | 向量化 | 事件驱动 | 事件驱动 | 事件驱动 |
 | 速度（交易/秒） | **100 万+** | ~500 | ~1,000 | ~5,000（云端） |
@@ -486,7 +487,7 @@ VectorBT 并非万能解决方案。以下是它做不到的事情：
 
 2. **向量化近似。** 向量化模型默认以同一根 K 线的收盘价成交。真实滑点和市场冲击是近似的，而非逐笔模拟。高频策略会看到失真结果。
 
-3. **大网格内存爆炸。** 5D 参数网格，每个维度 50 个值，会产生 3.12 亿种组合。这会迅速耗尽内存。使用 `chunk_size` 参数或 PRO 的磁盘支持数组。
+3. **大网格内存爆炸。** 5D 参数网格，每个维度 50 个值，会产生 3.12 亿种组合。这会迅速耗尽内存。使用 ````chunk_size```` 参数或 PRO 的磁盘支持数组。
 
 4. **单资产为主。** 虽然可以处理多资产再平衡逻辑，但不如 PyPortfolioOpt 等专用投资组合优化器顺手。
 
@@ -518,7 +519,7 @@ VectorBT 通常比原始 pandas 循环快 **50-200 倍**，因为它完全避免
 
 **VectorBT 支持做空吗？**
 
-支持。在 `Portfolio.from_signals` 中设置 `direction="short"`，或使用 `direction="both"` 进行多空配对交易策略。做空包含保证金和借入成本建模。
+支持。在 ````Portfolio.from_signals```` 中设置 ````direction="short"````，或使用 ````direction="both"``` 进行多空配对交易策略。做空包含保证金和借入成本建模。
 
 **如何开始使用加密货币数据？**
 
@@ -606,4 +607,4 @@ VectorBT 消除了从想法到验证之间的摩擦。当 180 种组合的参数
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

@@ -10,6 +10,7 @@ github_repo: "https://github.com/supermemoryai/supermemory"
 license: MIT
 featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
 ---
+
 # 超级记忆：用于构建记住一切的 LLM 应用的最快开源 AI 内存 API
 
 {
@@ -74,12 +75,12 @@ Supermemory：构建具有全持久记忆能力的 LLM 应用的最快开源 AI 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [dify-vs-flowise-2026](supermemory-open-source-ai-memory-api)
@@ -88,7 +89,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [turbovec-rust-vector-index-2026](supermemory-open-source-ai-memory-api)
 - [ai-agent-frameworks-comparison-2026](supermemory-open-source-ai-memory-api)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -184,15 +185,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

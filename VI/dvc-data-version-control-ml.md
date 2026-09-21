@@ -24,11 +24,12 @@ aliases:
   - /vi/posts/dvc-data-version-control-ml/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Dataset Đã Phá Vỡ Git Repository
 
-Năm ngoái, một team computer vision tại startup AI vừa phải đã commit trực tiếp dataset ảnh 47 GB vào Git repository. Trong vòng hai tuần, thờigian `git clone` vượt quá 3 giờ, CI runner crash vì đầy ổ đĩa, và onboarding engineer mới trở thành cơn ác mộng kéo dài cả ngày. Repository đã trở thành một khối khổng lồ không thể maintain — không phải vì code tệ, mà vì Git không bao giờ được thiết kế cho dữ liệu.
+Năm ngoái, một team computer vision tại startup AI vừa phải đã commit trực tiếp dataset ảnh 47 GB vào Git repository. Trong vòng hai tuần, thờigian ```git clone```` vượt quá 3 giờ, CI runner crash vì đầy ổ đĩa, và onboarding engineer mới trở thành cơn ác mộng kéo dài cả ngày. Repository đã trở thành một khối khổng lồ không thể maintain — không phải vì code tệ, mà vì Git không bao giờ được thiết kế cho dữ liệu.
 
 Câu chuyện này lặp lại ở các team ML trên toàn thế giới. Git xuất sắc với source code nhưng thất bại thảm hại khi version dataset, model weights, và experiment artifacts. Kết quả? Các team mất khả năng tái tạo (reproducibility), lãng phí compute trên các experiment trùng lặp, và đấu tranh để trả lờicâu hỏi cơ bản: **"Chính xác dữ liệu nào đã tạo ra model này?"**
 
@@ -42,42 +43,42 @@ Trong hướng dẫn này, bạn sẽ cài đặt DVC, cấu hình cloud storage
 
 Khác với Git LFS hay version control truyền thống, DVC xử lý được **dataset multi-TB**, deduplicate storage giữa các phiên bản, và tích hợp native với workflow ML dựa trên Python. Công cụ được viết 100% Python (không có dependency compiled cho core usage) và chạy trên Linux, macOS, và Windows.
 
-Các khả năng chính: - **Version dữ liệu**: Track dataset và model với các lệnh kiểu Git `add`, `push`, `pull`, `checkout`
+Các khả năng chính: - **Version dữ liệu**: Track dataset và model với các lệnh kiểu Git ````add````, ````push````, ````pull````, ````checkout````
 - **Remote storage**: Lưu dữ liệu trên S3, GCS, Azure Blob, HDFS, SSH, hoặc local path
-- **Định nghĩa pipeline**: Định nghĩa workflow ML dưới dạng DAG trong `dvc.yaml`
+- **Định nghĩa pipeline**: Định nghĩa workflow ML dưới dạng DAG trong ````dvc.yaml````
 - **Experiment tracking**: So sánh metrics, parameters, và plots giữa các lần chạy experiment
-- **Tái tạo được**: Chạy lại experiment từ bất kỳ Git commit nào với `dvc repro`
+- **Tái tạo được**: Chạy lại experiment từ bất kỳ Git commit nào với ````dvc repro````
 
 ## DVC hoạt động như thế nào: Kiến trúc & Khái niệm lõi
 
 DVC hoạt động như một lớp mỏng giữa Git và data storage. Hiểu ba khái niệm lõi sẽ giải thích toàn bộ kiến trúc: ### 1. File Pointer (.dvc)
 
-Khi bạn chạy `dvc add data/dataset.csv`, DVC tính MD5 hash của file, di chuyển nó vào local cache (`.dvc/cache`), và tạo một file metadata nhỏ `dataset.csv.dvc`. File `.dvc` này chứa hash và size — đó là thứ duy nhất được commit vào Git: ```
+Khi bạn chạy ``dvc add data/dataset.csv``, DVC tính MD5 hash của file, di chuyển nó vào local cache (``.dvc/cache``), và tạo một file metadata nhỏ ``dataset.csv.dvc``. File ``.dvc`` này chứa hash và size — đó là thứ duy nhất được commit vào Git: `````
 # data/dataset.csv.dvc — được track bởi Git (~100 bytes)
 outs: - md5: a1b2c3d4e5f6...
   size: 104857600
   hash: md5
   path: dataset.csv
-```
+`````
 
-Dataset thực tế 100 MB sống trong `.dvc/cache` và có thể được push lên remote storage. Sự tách biệt này là mẹo cơ bản: **Git track metadata, DVC track dữ liệu.**
+Dataset thực tế 100 MB sống trong ````.dvc/cache```` và có thể được push lên remote storage. Sự tách biệt này là mẹo cơ bản: **Git track metadata, DVC track dữ liệu.**
 
 ### 2. Cache & Remote Storage
 
-DVC duy trì content-addressable cache local (`.dvc/cache`). Các file được lưu bởi MD5 hash, cho phép tự động deduplication — các file giống nhau giữa các phiên bản chỉ được lưu một lần. Bạn cấu hình remote storage để chia sẻ dữ liệu trong team: ```bash
+DVC duy trì content-addressable cache local (``.dvc/cache``). Các file được lưu bởi MD5 hash, cho phép tự động deduplication — các file giống nhau giữa các phiên bản chỉ được lưu một lần. Bạn cấu hình remote storage để chia sẻ dữ liệu trong team: `````bash
 # Cấu trúc cache local
 .dvc/cache/
   files/
     md5/
       a1/
         b2c3d4e5f6...  # nội dung file thực tế
-```
+`````
 
-Remote storage tuân theo cùng cấu trúc, khiến `dvc push` và `dvc pull` trở thành các thao tác đồng bộ đơn giản.
+Remote storage tuân theo cùng cấu trúc, khiến ````dvc push```` và ````dvc pull```` trở thành các thao tác đồng bộ đơn giản.
 
 ### 3. Pipeline (dvc.yaml)
 
-Pipeline DVC định nghĩa các workflow ML có thể tái tạo dưới dạng directed acyclic graph (DAG). Mỗi stage có dependencies, outputs, và một command: ```yaml
+Pipeline DVC định nghĩa các workflow ML có thể tái tạo dưới dạng directed acyclic graph (DAG). Mỗi stage có dependencies, outputs, và một command: `````yaml
 # dvc.yaml — định nghĩa pipeline
 stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output data/processed.csv
     deps: - src/preprocess.py
@@ -90,13 +91,13 @@ stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output dat
     outs: - models/model.pkl
     params: - train.epochs
       - train.lr
-```
+`````
 
 DVC track stage dependencies và chỉ re-run các stage khi input thay đổi — tương tự Makefile nhưng với content-aware hashing và full reproducibility.
 
 ## Cài đặt & Thiết lập: Dưới 5 phút
 
-DVC yêu cầu Python 3.9+ và Git. Cài đặt bằng pip: ```bash
+DVC yêu cầu Python 3.9+ và Git. Cài đặt bằng pip: `````bash
 # Core DVC (cài đặt tối thiểu)
 pip install dvc
 
@@ -106,29 +107,29 @@ pip install "dvc[gs]"      # Google Cloud Storage
 pip install "dvc[azure]"   # Azure Blob Storage
 pip install "dvc[ssh]"     # SSH/SFTP
 pip install "dvc[all]"     # Tất cả remote backends
-```
+`````
 
-Xác minh cài đặt: ```bash
+Xác minh cài đặt: `````bash
 dvc --version
 # dvc version 3.67.1
-```
+`````
 
-Khởi tạo DVC trong Git repository hiện có: ```bash
+Khởi tạo DVC trong Git repository hiện có: `````bash
 cd my-ml-project
 git init          # nếu chưa là Git repo
 dvc init          # tạo thư mục .dvc/ và .dvcignore
 git add .dvc
 git commit -m "Initialize DVC"
-```
+`````
 
-Lệnh `dvc init` tạo ra: - `.dvc/` — Thư mục cấu hình và cache DVC
-- `.dvc/.gitignore` — ngăn cache file bị Git track
-- `.dvc/config` — File cấu hình DVC local
-- `.dvcignore` — Pattern loại trừ khỏi DVC tracking
+Lệnh ````dvc init```` tạo ra: - ````.dvc/```` — Thư mục cấu hình và cache DVC
+- ````.dvc/.gitignore```` — ngăn cache file bị Git track
+- ````.dvc/config```` — File cấu hình DVC local
+- ````.dvcignore```` — Pattern loại trừ khỏi DVC tracking
 
 ## Track Dữ liệu: Dataset Đầu Tiên Củ Bạn
 
-Thêm dataset vào DVC tracking: ```bash
+Thêm dataset vào DVC tracking: `````bash
 # Thêm một file
 dvc add data/training_data.csv
 
@@ -140,21 +141,21 @@ ls data/
 # training_data.csv
 # training_data.csv.dvc   <- Cái này commit vào Git
 # .gitignore               <- DVC thêm data vào gitignore
-```
+`````
 
-File `.dvc` là file YAML nhỏ mà Git xử lý hiệu quả. Commit nó: ```bash
+File ``.dvc`` là file YAML nhỏ mà Git xử lý hiệu quả. Commit nó: `````bash
 git add data/training_data.csv.dvc data/.gitignore
 git commit -m "Track training dataset with DVC"
-```
+`````
 
-Để lấy dữ liệu trên máy khác hoặc sau khi clone: ```bash
+Để lấy dữ liệu trên máy khác hoặc sau khi clone: `````bash
 # Pull dữ liệu từ remote (sau khi cấu hình remote storage)
 dvc pull
 
 # Hoặc checkout một phiên bản cụ thể
 git checkout v1.0
 dvc checkout   # khôi phục file dữ liệu khớp với .dvc pointers
-```
+`````
 
 ## Cấu Hình Remote Storage: S3, GCS, Azure
 
@@ -162,7 +163,7 @@ Remote storage cho phép team collaboration bằng cách cung cấp vị trí d�
 
 ### Amazon S3
 
-```bash
+`````bash
 # Thêm S3 làm default remote
 dvc remote add -d myremote s3://my-bucket/dvc-storage
 
@@ -171,30 +172,30 @@ dvc remote add -d myremote s3://my-bucket/dvc-storage --profile production
 
 # Đặt region
 dvc remote modify myremote region us-east-1
-```
+`````
 
 ### Google Cloud Storage (GCS)
 
-```bash
+`````bash
 # Thêm GCS remote
 dvc remote add -d myremote gs://my-bucket/dvc-storage
 
 # Với service account
 dvc remote modify myremote credentialpath /path/to/service-account.json
-```
+`````
 
 ### Azure Blob Storage
 
-```bash
+`````bash
 # Thêm Azure remote
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # Đặt account name và key
 dvc remote modify myremote account_name myaccount
 dvc remote modify myremote account_key mykey
-```
+`````
 
-Sau khi cấu hình, push dữ liệu lên remote: ```bash
+Sau khi cấu hình, push dữ liệu lên remote: `````bash
 # Push tất cả dữ liệu đã track lên remote
 dvc push
 
@@ -203,13 +204,13 @@ dvc pull
 
 # Fetch dữ liệu cho target cụ thể
 dvc pull data/training_data.csv
-```
+`````
 
 Để triển khai production trên cloud VPS, [DigitalOcean Spaces](https://m.do.co/c/eca87ac14ee0) cung cấp object storage tương thích S3 từ $5/tháng — lựa chọn tiết kiệm chi phí cho các team mới bắt đầu với DVC.
 
 ## Định Nghĩa ML Pipeline
 
-Pipeline DVC biến các training script ad-hoc thành workflow có thể tái tạo. Đây là pipeline hoàn chỉnh cho một ML project điển hình: ```yaml
+Pipeline DVC biến các training script ad-hoc thành workflow có thể tái tạo. Đây là pipeline hoàn chỉnh cho một ML project điển hình: `````yaml
 # dvc.yaml
 stages: prepare: cmd: python src/prepare.py --config params.yaml
     deps: - src/prepare.py
@@ -236,9 +237,9 @@ stages: prepare: cmd: python src/prepare.py --config params.yaml
       - data/features/
     metrics: - metrics.json: cache: false
     plots: - plots/roc_curve.csv
-```
+`````
 
-Chạy pipeline: ```bash
+Chạy pipeline: `````bash
 # Chạy tất cả stages (chỉ re-run stages thay đổi)
 dvc repro
 
@@ -247,9 +248,9 @@ dvc repro train
 
 # Visualize pipeline
 dvc dag
-```
+`````
 
-Parameters được định nghĩa trong `params.yaml`: ```yaml
+Parameters được định nghĩa trong ``params.yaml``: `````yaml
 # params.yaml
 prepare: split: 0.2
   seed: 42
@@ -258,11 +259,11 @@ train: lr: 0.001
   epochs: 50
   batch_size: 32
   model_type: resnet50
-```
+`````
 
 ## Experiment Tracking
 
-DVC cung cấp experiment tracking nhẹ không cần external database: ```bash
+DVC cung cấp experiment tracking nhẹ không cần external database: `````bash
 # Chạy experiment với parameters đã chỉnh sửa
 dvc exp run --set-param train.lr=0.01
 
@@ -271,9 +272,9 @@ dvc exp run --set-param train.lr=0.1,0.01,0.001
 
 # Liệt kê tất cả experiments
 dvc exp show
-```
+`````
 
-So sánh kết quả experiment: ```bash
+So sánh kết quả experiment: `````bash
 # Hiển thị bảng experiment với metrics
 dvc exp show --no-timestamp --precision 4
 
@@ -282,9 +283,9 @@ dvc exp apply exp-abc123
 
 # Push experiments lên remote
 dvc exp push origin exp-abc123
-```
+`````
 
-Để visualize metrics, DVC có thể generate plots: ```yaml
+Để visualize metrics, DVC có thể generate plots: `````yaml
 # dvc.yaml (phần plots)
 plots: - plots/loss.csv: x: step
       y: loss
@@ -292,12 +293,12 @@ plots: - plots/loss.csv: x: step
   - plots/accuracy.csv: x: step
       y: accuracy
       title: Validation Accuracy
-```
+`````
 
-```bash
+`````bash
 # Generate và xem plots
 dvc plots show
-```
+`````
 
 ## Tích hợp CI/CD: GitHub Actions & GitLab CI
 
@@ -305,7 +306,7 @@ DVC tích hợp native với CI/CD platforms cho automated pipeline runs và mod
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline
 on: [push]
@@ -337,11 +338,11 @@ jobs: train: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: metrics
           path: metrics.json
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - data
   - train
@@ -371,7 +372,7 @@ evaluate_model: stage: evaluate
   dependencies: - train_model
   script: - dvc repro evaluate
     - cat metrics.json
-```
+`````
 
 ## Benchmark & Use Cases Thực tế
 
@@ -388,14 +389,14 @@ DVC đã được thử nghiệm trong thực tế tại các tổ chức từ s
 
 | Thao tác | Dataset 1 GB | Dataset 50 GB | Dataset 1 TB |
 |----------|-------------|---------------|--------------|
-| `dvc add` (local SSD) | 2.1s | 45s | 18 phút |
-| `dvc push` (lên S3) | 8s | 3.2 phút | 52 phút |
-| `dvc pull` (từ S3) | 5s | 2.1 phút | 38 phút |
-| `dvc checkout` (switch version) | 0.3s | 2.1s | 8.5s |
+| ````dvc add```` (local SSD) | 2.1s | 45s | 18 phút |
+| ````dvc push```` (lên S3) | 8s | 3.2 phút | 52 phút |
+| ````dvc pull```` (từ S3) | 5s | 2.1 phút | 38 phút |
+| ````dvc checkout```` (switch version) | 0.3s | 2.1s | 8.5s |
 
 *Benchmark chạy trên c5.2xlarge (8 vCPU, 16 GB RAM) với network 10 Gbps đến S3 us-east-1. Thờigian là trung bình 3 lần chạy.*
 
-Con số nổi bật là `dvc checkout` chỉ 0.3s cho 1 GB — DVC sử dụng hardlinks và reflinks khi khả dụng, khiến version switch gần như tức thì bất kể kích thước dataset.
+Con số nổi bật là ````dvc checkout```` chỉ 0.3s cho 1 GB — DVC sử dụng hardlinks và reflinks khi khả dụng, khiến version switch gần như tức thì bất kể kích thước dataset.
 
 ### Use Cases Thực tế
 
@@ -409,7 +410,7 @@ Con số nổi bật là `dvc checkout` chỉ 0.3s cho 1 GB — DVC sử dụng 
 
 ### Tối ưu Storage
 
-Bật automatic garbage collection để reclaim space từ old cache versions: ```bash
+Bật automatic garbage collection để reclaim space từ old cache versions: `````bash
 # Chỉ giữ files được tham chiếu bởi current Git workspace
 dvc gc --workspace
 
@@ -418,11 +419,11 @@ dvc gc --all-branches --all-tags
 
 # Preview những gì sẽ bị xóa (dry run)
 dvc gc --workspace --dry
-```
+`````
 
 ### Multiple Remotes cho Các Môi Trường Khác nhau
 
-```bash
+`````bash
 # Production remote (read-only cho hầu hết users)
 dvc remote add production s3://prod-bucket/dvc-storage
 
@@ -431,11 +432,11 @@ dvc remote add -d dev s3://dev-bucket/dvc-storage
 
 # Push lên remote cụ thể
 dvc push --remote production
-```
+`````
 
 ### Import Dữ liệu Từ External Sources
 
-```bash
+`````bash
 # Import data không copy (track external URLs)
 dvc import-url s3://external-bucket/dataset.csv data/dataset.csv
 
@@ -444,11 +445,11 @@ dvc import-url --rev v1.0 https://github.com/user/repo/data.csv
 
 # Update imported data
 dvc update data/dataset.csv
-```
+`````
 
 ### Tối ưu Large File với Symlinks/Hardlinks
 
-```bash
+`````bash
 # Dùng reflinks (copy-on-write) — nhanh nhất, không duplicate space
 dvc config cache.type reflink,hardlink,copy
 
@@ -457,18 +458,18 @@ dvc cache dir --show
 
 # Check cache health
 dvc fsck
-```
+`````
 
 ### Bảo vệ Dữ liệu Nhạy cảm
 
-```bash
+`````bash
 # Dùng .dvcignore để exclude sensitive files
 echo "secrets/" >> .dvcignore
 echo "*.key" >> .dvcignore
 
 # Encrypt remote storage at rest (S3 SSE)
 dvc remote modify myremote sse AES256
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -516,11 +517,11 @@ Có. DVC stream data theo chunks và không load toàn bộ file vào memory. C�
 Git LFS lưu large files trên server riêng nhưng vẫn track file versions qua Git commits. DVC tách biệt data khỏi Git hoàn toàn — chỉ tiny pointer files vào Git, trong khi data sống trên S3, GCS, hoặc remote. DVC cũng cung cấp pipeline definitions và experiment tracking mà Git LFS không có.
 
 **Q: DVC có hoạt động với Jupyter Notebook không?**
-Có. Dùng `dvc.api` để đọc datasets trực tiếp từ DVC remotes bên trong notebooks mà không cần manual `dvc pull`: ```python
+Có. Dùng ``dvc.api`` để đọc datasets trực tiếp từ DVC remotes bên trong notebooks mà không cần manual ``dvc pull``: `````python
 import dvc.api
 
 with dvc.api.open('data/dataset.csv", remote=myremote) as f: df = pd.read_csv(f)
-```
+`````
 
 **Q: Tôi có thể dùng DVC với private Git repository không?**
 Tuyệt đối. DVC hoạt động với mọi Git repository — GitHub, GitLab, Bitbucket, hoặc self-hosted Git. DVC remote storage độc lập với Git hosting và có thể là bất kỳ S3-compatible store nào.
@@ -532,9 +533,9 @@ DVC lưu files bằng content hash (MD5). Nếu hai phiên bản dataset chia s�
 Rồi. DVC v3.x ổn định từ 2023 và được dùng bởi các doanh nghiệp bao gồm Shell, IBM, và Microsoft Research. Giấy phép Apache-2.0 cho phép sử dụng thương mại không hạn chế.
 
 **Q: DVC có thể track data trên local NAS hoặc shared drive không?**
-Có. Dùng local remote cho network-attached storage: ```bash
+Có. Dùng local remote cho network-attached storage: `````bash
 dvc remote add -d myremote /mnt/shared-nas/dvc-storage
-```
+`````
 
 ## Kết luận: Bắt Đầu Version Dữ Liệu Ngay Hôm Nay
 
@@ -542,12 +543,12 @@ Nếu bạn từng mất dấu dataset nào đã tạo ra một model, lãng ph�
 
 Với **15,600+ Stars**, bản release v3.67.1 ổn định, và deep Git integration, DVC đã khẳng định vị thế là tiêu chuẩn cho ML data versioning. Setup mất dưới 5 phút, các lệnh mirror Git chính xác, và learning curve tối thiểu cho bất kỳ ai đã dùng version control.
 
-Bắt đầu ngay: ```bash
+Bắt đầu ngay: `````bash
 pip install dvc
 cd your-ml-project
 dvc init
 dvc add your-dataset.csv
-```
+````
 
 Tham gia cộng đồng DVC trên [Discord](https://dvc.org/chat) và follow project trên [GitHub](https://github.com/iterative/dvc) để cập nhật.
 
@@ -605,7 +606,7 @@ Bài viết này chứa liên kết affiliate cho [DigitalOcean](https://m.do.co
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -615,6 +616,6 @@ Bài viết này chứa liên kết affiliate cho [DigitalOcean](https://m.do.co
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](dvc-data-version-control-ml)
 - [ai-engineering-from-scratch](dvc-data-version-control-ml)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

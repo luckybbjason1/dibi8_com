@@ -23,6 +23,7 @@ faq: - q: "2026 年哪款向量数据库最好？"
     a: "100 万向量 @ 768 维：约 3GB 内存。1000 万向量：约 30GB。大部分生产负载在单台 32GB VM 上跑得很舒服。超过 1 亿向量就要规划分片部署了。"
 ---
 
+
 {{</* resource-info */>}}
 
 # 2026 向量数据库选型：Qdrant vs Weaviate vs Milvus
@@ -54,13 +55,13 @@ faq: - q: "2026 年哪款向量数据库最好？"
 
 | 负载类型 | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 纯相似度（top 10） | 8 | 12 | 14 |
 | 带过滤的相似度 | 15 | 10 | 22 |
@@ -72,13 +73,13 @@ faq: - q: "2026 年哪款向量数据库最好？"
 
 | | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QPS | 2400 | 1800 | 1200 |
 
@@ -88,13 +89,13 @@ faq: - q: "2026 年哪款向量数据库最好？"
 
 | | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 内存占用 | 14GB | 18GB | 22GB |
 
@@ -104,13 +105,13 @@ faq: - q: "2026 年哪款向量数据库最好？"
 
 | | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Docker compose 起服务 | 5 分钟 | 10 分钟 | 20 分钟 |
 | 生产环境调优 | 1-2 小时 | 2-4 小时 | 4-8 小时 |
@@ -128,24 +129,24 @@ faq: - q: "2026 年哪款向量数据库最好？"
 
 先试试这个：
 
-```python
+````python
 import sqlite3
 conn = sqlite3.connect("docs.db")
 conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 # 插入文档，用 MATCH 操作符查询
-```
+`````
 
 文档量超过 5 万，或者真的需要语义相似（不是关键词），再切换到向量数据库。
 
 ## 三家如何取舍
 
-```
+`````
 单机、简单 RAG、小团队 → Qdrant
 需要混合检索（向量 + 关键词 + 过滤） → Weaviate
 多节点、十亿级以上向量 → Milvus
 本来就有 Postgres → pgvector（100 万向量以内）
 文档量 < 1 万 → SQLite FTS5
-```
+````
 
 ## 推荐的基础设施
 
@@ -163,7 +164,7 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 真正的教训是：大多数团队都把检索层过度设计了。先从最简单能跑通的方案开始，等你测出真实瓶颈再升级。向量数据库的复杂度，只在简单工具到达天花板之后才值得引入。
 
 
----
+* * *
 **相关阅读**：[2026 RAG vs Fine-Tuning 决策框架](https://dibi8.com/zh/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [向量数据库对比](https://dibi8.com/zh/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 服务器排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -229,11 +230,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -243,7 +244,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cognee-ai-memory-platform](vector-db-2026-qdrant-weaviate-milvus)
 - [flowise](vector-db-2026-qdrant-weaviate-milvus)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -272,13 +273,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |

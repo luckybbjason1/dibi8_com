@@ -22,9 +22,10 @@ aliases:
   - /posts/git-workflow-team-collaboration-tools/
 ---
 
+
 {</* resource-info */>}
 
-Git đã trở thành hệ thống quản lý phiên bản phổ biến nhất trong ngành phát triển phần mềm, với hơn 93% lập trình viên sử dụng hàng ngày (theo Stack Overflow Survey 2024). Tuy nhiên, việc chỉ biết `git commit` và `git push` là chưa đủ. Để một nhóm phát triển hoạt động hiệu quả, cần một quy trình Git rõ ràng, các công cụ hợp tác phù hợp, và văn hóa code review lành mạnh.
+Git đã trở thành hệ thống quản lý phiên bản phổ biến nhất trong ngành phát triển phần mềm, với hơn 93% lập trình viên sử dụng hàng ngày (theo Stack Overflow Survey 2024). Tuy nhiên, việc chỉ biết ```git commit```` và ````git push```` là chưa đủ. Để một nhóm phát triển hoạt động hiệu quả, cần một quy trình Git rõ ràng, các công cụ hợp tác phù hợp, và văn hóa code review lành mạnh.
 
 ## Tại Sao Quy Trình Git Lại Quan Trọng?
 
@@ -54,11 +55,11 @@ Nhóm nhỏ (2-5 ngườ) thường cần ít quy tắc hơn và ưu tiên tốc
 
 ### Các Nhánh Chính trong GitFlow
 
-GitFlow, được đề xuất bởi Vincent Driessen năm 2010, định nghĩa 5 loại branch chính: - **`main`**: Chứa code production-ready
-- **`develop`**: Tích hợp tính năng đang phát triển
-- **`feature/*`**: Branch cho từng tính năng mới (tách từ develop, merge vào develop)
-- **`release/*`**: Chuẩn bị cho release mới (tách từ develop, merge vào main và develop)
-- **`hotfix/*`**: Sửa lỗi khẩn cấp trên production (tách từ main, merge vào main và develop)
+GitFlow, được đề xuất bởi Vincent Driessen năm 2010, định nghĩa 5 loại branch chính: - **````main````**: Chứa code production-ready
+- **````develop````**: Tích hợp tính năng đang phát triển
+- **````feature/*````**: Branch cho từng tính năng mới (tách từ develop, merge vào develop)
+- **````release/*````**: Chuẩn bị cho release mới (tách từ develop, merge vào main và develop)
+- **````hotfix/*````**: Sửa lỗi khẩn cấp trên production (tách từ main, merge vào main và develop)
 
 ### Quản Lý Release và Hotfix
 
@@ -66,7 +67,7 @@ GitFlow phù hợp với phần mềm có version cố định (ví dụ: deskto
 
 ### Công Cụ: git-flow CLI Extension
 
-Cài đặt git-flow giúp tự động hóa việc tạo và merge các branch: ```bash
+Cài đặt git-flow giúp tự động hóa việc tạo và merge các branch: `````bash
 # macOS
 brew install git-flow-avh
 
@@ -75,7 +76,7 @@ git flow feature start login-system
 
 # Hoàn thành feature
 git flow feature finish login-system
-```
+`````
 
 ### Phù Hợp với: Versioned Software, Libraries, Mobile Apps
 
@@ -85,14 +86,14 @@ GitFlow lý tưởng cho các dự án cần duy trì nhiều version song song,
 
 ### Quy Trình Branch-per-Feature
 
-GitHub Flow là chiến lược đơn giản nhất, chỉ sử dụng 2 branch chính: 1. `main` — luôn ở trạng thái deployable
-2. `feature-*` hoặc `username/feature-name` — branch cho từng tính năng
+GitHub Flow là chiến lược đơn giản nhất, chỉ sử dụng 2 branch chính: 1. ````main```` — luôn ở trạng thái deployable
+2. ````feature-*```` hoặc ````username/feature-name```` — branch cho từng tính năng
 
-Quy trình làm việc: 1. Tạo branch từ `main`
+Quy trình làm việc: 1. Tạo branch từ ````main````
 2. Commit code
 3. Mở Pull Request
 4. Review và discuss
-5. Merge vào `main` sau khi CI pass và được approve
+5. Merge vào ````main```` sau khi CI pass và được approve
 6. Deploy ngay
 
 ### Quy Trình Pull Request
@@ -104,14 +105,14 @@ Pull Request (PR) là trung tâm của GitHub Flow. Mỗi thay đổi phải th�
 
 ### Required Reviews và Branch Protection
 
-Nên cấu hình branch protection rules cho `main`: - Require pull request reviews (ít nhất 1 reviewer)
+Nên cấu hình branch protection rules cho ````main````: - Require pull request reviews (ít nhất 1 reviewer)
 - Require status checks to pass (CI/tests)
 - Require branches to be up to date before merging
 - Restrict pushes that create files larger than 100MB
 
 ### Tích Hợp CI/CD với GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/ci.yml
 name: CI
 on: pull_request
@@ -121,7 +122,7 @@ jobs: test: runs-on: ubuntu-latest
         run: npm test
       - name: Lint check
         run: npm run lint
-```
+`````
 
 ### Phù Hợp với: Nhóm Nhờđến Vừa, SaaS Products
 
@@ -131,14 +132,14 @@ GitHub Flow là lựa chọn phổ biến nhất cho các team làm việc với
 
 ### Nguyên Tắc Cốt Lõi: Main Branch Luôn Deployable
 
-Trunk-Based Development (TBD) là chiến lược mà tất cả developers commit trực tiếp vào `main` branch (hoặc "trunk"). Không có branch develop hay feature branch dài hạn. Nguyên tắc duy nhất: `main` luôn ở trạng thái có thể deploy.
+Trunk-Based Development (TBD) là chiến lược mà tất cả developers commit trực tiếp vào ````main```` branch (hoặc "trunk"). Không có branch develop hay feature branch dài hạn. Nguyên tắc duy nhất: ````main```` luôn ở trạng thái có thể deploy.
 
 ### Feature Flags Thay vì Feature Branches
 
-Thay vì tách branch cho tính năng mới, TBD sử dụng feature flags (hay feature toggles) để ẩn/hiện tính năng trong code: ```python
+Thay vì tách branch cho tính năng mới, TBD sử dụng feature flags (hay feature toggles) để ẩn/hiện tính năng trong code: `````python
 if feature_flags.is_enabled("new_payment_gateway"): process_with_new_gateway()
 else: process_with_old_gateway()
-```
+`````
 
 Các công cụ feature flags phổ biến: LaunchDarkly, Unleash (open-source), Flagsmith, và PostHog.
 
@@ -154,7 +155,7 @@ TBD đòi hỏi team có CI/CD pipeline mạnh, comprehensive automated tests, v
 
 ### Pull Request Templates và Checklists
 
-Tạo file `pull_request_template.md` trong repository để đảm bảo mỗi PR đều có thông tin đầy đủ: ```markdown
+Tạo file ``pull_request_template.md`` trong repository để đảm bảo mỗi PR đều có thông tin đầy đủ: `````markdown
 ## Mô tả
 - [ ] Mô tả rõ ràng thay đổi
 - [ ] Liên kết đến issue liên quan
@@ -168,12 +169,12 @@ Tạo file `pull_request_template.md` trong repository để đảm bảo mỗi 
 - [ ] Code tuân thủ style guide
 - [ ] Không có console.log/debug code
 - [ ] Documentation đã cập nhật
-```
+`````
 
 ### Chiến Lược Phân Công Review
 
 - **Round-robin**: Tự động assign reviewer theo vòng
-- **Code owner**: Designate owner cho từng phần codebase (sử dụng `CODEOWNERS` file)
+- **Code owner**: Designate owner cho từng phần codebase (sử dụng ````CODEOWNERS```` file)
 - **Expert pairing**: Giao cho ngườicó chuyên môn về module đang thay đổi
 - **Optional review**: Cho thay đổi nhỏ, risk thấp
 
@@ -217,27 +218,27 @@ Bitbucket là lựa chọn tự nhiên cho các team đã sử dụng Jira và C
 
 ### Quy Cách Conventional Commits
 
-Conventional Commits là quy ước định dạng commit message giúp tự động hóa changelog và versioning: ```
+Conventional Commits là quy ước định dạng commit message giúp tự động hóa changelog và versioning: `````
 <type>(<scope>): <subject>
 
 <body>
 
 <footer>
-```
+`````
 
-Các type phổ biến: - `feat`: Tính năng mới
-- `fix`: Sửa lỗi
-- `docs`: Thay đổi documentation
-- `style`: Formatting, không ảnh hưởng logic
-- `refactor`: Tái cấu trúc code
-- `test`: Thêm/sửa tests
-- `chore`: Cập nhật dependencies, config
+Các type phổ biến: - ````feat````: Tính năng mới
+- ````fix````: Sửa lỗi
+- ````docs````: Thay đổi documentation
+- ````style````: Formatting, không ảnh hưởng logic
+- ````refactor````: Tái cấu trúc code
+- ````test````: Thêm/sửa tests
+- ````chore````: Cập nhật dependencies, config
 
-Ví dụ: `feat(auth): add OAuth2 login with Google`
+Ví dụ: ````feat(auth): add OAuth2 login with Google````
 
 ### Pre-Commit Hooks
 
-Husky (cho JS/TS) và pre-commit (cho Python) giúp chạy checks trước mỗi lần commit: ```json
+Husky (cho JS/TS) và pre-commit (cho Python) giúp chạy checks trước mỗi lần commit: `````json
 // package.json
 {
   "husky": {
@@ -250,7 +251,7 @@ Husky (cho JS/TS) và pre-commit (cho Python) giúp chạy checks trước mỗi
     "*.{js,ts}": ["eslint --fix", "prettier --write"]
   }
 }
-```
+`````
 
 ### Signed Commits cho Bảo Mật
 
@@ -258,7 +259,7 @@ Signed commits sử dụng GPG để xác minh danh tính ngườicommit. GitHub
 
 ### Tự Động Tạo Changelog từ Commits
 
-Sử dụng tools như `standard-version` hay `semantic-release` để tự động tạo changelog và bump version dựa trên conventional commits.
+Sử dụng tools như ````standard-version```` hay ````semantic-release```` để tự động tạo changelog và bump version dựa trên conventional commits.
 
 ## Xử Lý Merge Conflicts và Rebase
 
@@ -266,24 +267,24 @@ Sử dụng tools như `standard-version` hay `semantic-release` để tự đ�
 
 | Tình huống | Lệnh phù hợp | Lý do |
 |------------|-------------|-------|
-| Cập nhật feature branch | `git rebase main` | Giữ lịch sử linear, sạch sẽ |
-| Merge feature vào main | `git merge --no-ff` | Giữ context của feature |
-| Clean up commit history | `git rebase -i` | Gộp commits nhỏ thành một |
+| Cập nhật feature branch | ````git rebase main```` | Giữ lịch sử linear, sạch sẽ |
+| Merge feature vào main | ````git merge --no-ff```` | Giữ context của feature |
+| Clean up commit history | ````git rebase -i```` | Gộp commits nhỏ thành một |
 | Merge PR trên GitHub | "Squash and merge" | Giữ main branch clean |
 
 ### Interactive Rebase Workflow
 
-```bash
+`````bash
 # Gộp 3 commits cuối thành 1
 git rebase -i HEAD~3
 
 # Trong editor, thay đổi: # pick → squash (hoặc s) cho commits muốn gộp
 # pick → reword (hoặc r) để sửa message
-```
+`````
 
 ### Cách Giữ Feature Branch Luôn Cập Nhật
 
-```bash
+`````bash
 # Cách 1: Rebase (ưu tiên cho branch cá nhân)
 git fetch origin
 git rebase origin/main
@@ -291,7 +292,7 @@ git rebase origin/main
 # Cách 2: Merge (cho shared branch)
 git fetch origin
 git merge origin/main
-```
+`````
 
 ## Git GUI Tools cho Nhóm
 
@@ -321,11 +322,11 @@ Monorepo — lưu nhiều project trong một repository — ngày càng phổ b
 
 ### Sparse Checkout và Partial Clone
 
-Git 2.25+ hỗ trợ sparse checkout cho phép chỉ checkout một phần repository: ```bash
+Git 2.25+ hỗ trợ sparse checkout cho phép chỉ checkout một phần repository: `````bash
 git sparse-checkout set packages/frontend packages/shared
-```
+`````
 
-Partial clone (`git clone --filter=blob:none`) giúp clone nhanh hơn bằng cách không tải blobs không cần thiết.
+Partial clone (````git clone --filter=blob:none````) giúp clone nhanh hơn bằng cách không tải blobs không cần thiết.
 
 ### Khi Nào Chọn Monorepo vs Polyrepo
 
@@ -351,7 +352,7 @@ Audit workflow hiện tại: thờigian merge trung bình, tần suất conflict
 
 ### Bước 3: Thiết Lập Branch Protection Rules
 
-Trên GitHub: Settings → Branches → Add rule cho `main`: - Require a pull request before merging
+Trên GitHub: Settings → Branches → Add rule cho ````main````: - Require a pull request before merging
 - Require approvals: 1-2
 - Require status checks to pass
 - Include administrators
@@ -367,7 +368,7 @@ Pipeline tối thiểu cho mỗi PR: 1. Checkout code
 
 ### Bước 5: Tài Liệu và Đào Tạo Nhóm
 
-Viết `CONTRIBUTING.md` mô tả quy trình, conventions, và expectations. Tổ chức workshop ngắn để đảm bảo cả nhóm hiểu và đồng thuận.
+Viết ````CONTRIBUTING.md```` mô tả quy trình, conventions, và expectations. Tổ chức workshop ngắn để đảm bảo cả nhóm hiểu và đồng thuận.
 
 ## FAQ
 
@@ -387,21 +388,21 @@ Dùng **GitHub Flow** nếu: - Bạn phát triển web application/SaaS với co
 
 ### Làm Thế Nào Để Xử Lý Merge Conflicts trong Git?
 
-Bước 1: Pull latest changes từ main: `git fetch origin`
+Bước 1: Pull latest changes từ main: ````git fetch origin````
 
-Bước 2: Rebase feature branch: `git rebase origin/main`
+Bước 2: Rebase feature branch: ````git rebase origin/main````
 
-Bước 3: Khi gặp conflict, Git sẽ đánh dấu các file cần resolve: ```
+Bước 3: Khi gặp conflict, Git sẽ đánh dấu các file cần resolve: `````
 <<<<<<< HEAD
 // Code từ main
 =======
 // Code từ feature branch
 >>>>>>> feature-branch
-```
+`````
 
 Bước 4: Edit file, giữ phần code đúng, xóa conflict markers
 
-Bước 5: `git add <file>` và `git rebase --continue`
+Bước 5: ````git add <file>```` và ````git rebase --continue```
 
 Sử dụng Git GUI như Fork hay GitKraken giúp resolve conflict trực quan hơn.
 
@@ -430,7 +431,7 @@ Bắt đầu đơn giản với GitHub Flow, thiết lập branch protection, t�
 
 Tài nguyên tham khảo thêm: [git-scm.com](https://git-scm.com), [docs.github.com](https://docs.github.com), [www.conventionalcommits.org](https://www.conventionalcommits.org), và [trunkbaseddevelopment.com](https://trunkbaseddevelopment.com).
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

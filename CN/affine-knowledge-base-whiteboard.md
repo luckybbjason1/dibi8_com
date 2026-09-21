@@ -23,6 +23,7 @@ tags: ["affine", "knowledge-base", "whiteboard", "self-hosted", "docker", "notio
 aliases:
   - /posts/affine-knowledge-base-whiteboard/-
 ---
+
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -57,12 +58,12 @@ AFFiNE's architecture is a three-layer stack: **Layer 1: OctoBase (Rust CRDT Eng
 
 For self-hosted deployments, the stack adds PostgreSQL (application data), Redis (caching and session management), and the AFFiNE server container (Node.js API and WebSocket sync).
 
-```yaml
+````yaml
 # - AFFiNE server (web + API + sync)
 # - PostgreSQL 16 (persistent data)
 # - Redis 7 (cache + sessions)
 # - Optional: object storage for blob files
-```
+`````
 
 **Why CRDTs matter for real-time collaboration:** Traditional operational transformation (OT) requires a central server to serialize all edits. When that server goes down, collaboration stops. CRDTs distribute the state across all clients. Each client holds the full document and can merge edits from any other client independently. AFFiNE's OctoBase engine uses a hybrid approach: Yjs-style CRDTs for document content and vector clocks for structural operations like block moves. The result is that three teammates can edit the same whiteboard on a cross-country flight and have everything merge cleanly when they land.
 
@@ -72,13 +73,13 @@ The default port is **3010**. The first user who registers becomes the admin aut
 
 AFFiNE's official Docker Compose setup is the recommended deployment method. It handles database migrations, persistent storage, and service dependencies automatically.
 
-**Step 1:** Create a directory and download the official compose file: ```bash
+**Step 1:** Create a directory and download the official compose file: `````bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
-```
+`````
 
-**Step 2:** Edit the environment file with your credentials: ```bash
+**Step 2:** Edit the environment file with your credentials: `````bash
 # Edit .env file
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -91,26 +92,26 @@ UPLOAD_LOCATION=./storage
 REDIS_DATA_LOCATION=./redis
 CONFIG_LOCATION=./config
 EOF
-```
+`````
 
-**Step 3:** Launch the stack: ```bash
+**Step 3:** Launch the stack: `````bash
 docker compose up -d
 # Pulls: affineteams/affine-graphql, postgres:16, redis:7.2
 # Runs automatic DB migrations
 # Creates admin account from .env on first boot
-```
+`````
 
-**Step 4:** Verify all containers are healthy: ```bash
+**Step 4:** Verify all containers are healthy: `````bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
 affine-postgres Up 10 seconds   5432/tcp
 affine-redis    Up 10 seconds   6379/tcp
-```
+`````
 
-**Step 5:** Open `http://localhost:3010` in your browser. Log in with the credentials from your `.env` file.
+**Step 5:** Open ````http://localhost:3010```` in your browser. Log in with the credentials from your ````.env```` file.
 
-```bash
+`````bash
 # To stop the stack
 docker compose down
 
@@ -119,11 +120,11 @@ docker compose down
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 docker compose pull
 docker compose up -d
-```
+`````
 
 **Behind a reverse proxy (production):**
 
-```nginx
+`````nginx
 # Nginx snippet for AFFiNE
 server {
     listen 443 ssl http2;
@@ -138,9 +139,9 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
-The `Upgrade` and `Connection` headers are critical — they enable WebSocket-based real-time collaboration.
+The ````Upgrade```` and ````Connection```` headers are critical — they enable WebSocket-based real-time collaboration.
 
 **For a cloud deployment,** [DigitalOcean](https://m.do.co/c/eca87ac14ee0) provides $200 free credit for new accounts, which is more than enough to run AFFiNE on a 2-CPU droplet with managed PostgreSQL. A 2 vCPU / 4GB RAM droplet ($24/month) comfortably handles teams of 20-25 users with room for growth. For larger teams, scale PostgreSQL independently using DigitalOcean's managed database service, which provides automated backups, point-in-time recovery, and connection pooling out of the box.
 
@@ -148,17 +149,17 @@ The `Upgrade` and `Connection` headers are critical — they enable WebSocket-ba
 
 AFFiNE connects to your existing toolchain through its plugin system and API: **1. CalDAV Calendar Integration**
 
-AFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from **Settings > Integrations > CalDAV**: ```bash
+AFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from **Settings > Integrations > CalDAV**: `````bash
 # Test CalDAV connectivity
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
   -H "Content-Type: text/xml" \
   -d '<?xml version="1.0"?><d:propfind xmlns:d="DAV:"><d:prop><d:displayname/></d:prop></d:propfind>'
-```
+`````
 
 **2. AI Assistant Configuration (OpenAI API)**
 
-The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM: ```bash
+The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM: `````bash
 # In AFFiNE admin panel > Settings > AI
 # Provider URL: http://your-ollama:11434/v1
 # API Key: sk-ollama (or your key)
@@ -167,11 +168,11 @@ The AI assistant can be pointed to any OpenAI-compatible endpoint, including loc
 # Or use OpenAI directly
 # Provider URL: https://api.openai.com/v1
 # Model: gpt-4o-mini
-```
+`````
 
 **3. REST API for External Automation**
 
-```bash
+`````bash
 # Export workspace data via API
 curl -H "Authorization: Bearer $AFFINE_TOKEN" \
   http://localhost:3010/api/workspaces
@@ -181,28 +182,28 @@ curl -X POST http://localhost:3010/api/docs \
   -H "Authorization: Bearer $AFFINE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"Sprint Retrospective","content":"<blocks>...</blocks>"}'
-```
+`````
 
 **4. Git Sync for Developer Workflows**
 
-Use AFFiNE's export feature combined with `git` for version-controlled documentation: ```bash
+Use AFFiNE's export feature combined with ``git`` for version-controlled documentation: `````bash
 #!/bin/bash
 # daily-backup.sh - cron this every night
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
 git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%d)"
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 AFFiNE's performance characteristics matter for production deployment: | Metric | AFFiNE Self-Hosted | Notion Cloud | Miro Cloud |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | First Contentful Paint | **1.2s** (local) | 2.8s | 3.1s |
 | Sync Latency (same LAN) | **<50ms** | 180-400ms | 200-500ms |
@@ -220,7 +221,7 @@ AFFiNE's performance characteristics matter for production deployment: | Metric 
 
 **Enable HTTPS with Let's Encrypt:**
 
-```bash
+`````bash
 # Using Caddy as a reverse proxy
 cat > Caddyfile << EOF
 affine.yourdomain.com {
@@ -228,11 +229,11 @@ affine.yourdomain.com {
     tls admin@yourdomain.com
 }
 EOF
-```
+`````
 
 **Backup Strategy:**
 
-```bash
+`````bash
 # Automated daily backups
 cat > backup-affine.sh << EOF
 #!/bin/bash
@@ -251,11 +252,11 @@ EOF
 chmod +x backup-affine.sh
 # Run at 2 AM daily
 echo "0 2 * * * /root/backup-affine.sh" | crontab -
-```
+`````
 
 **Configure SMTP for Invites:**
 
-```bash
+`````bash
 # config/affine.js or via admin UI
 {
   "mailer": {
@@ -269,11 +270,11 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     "from": "AFFiNE <affine@yourdomain.com>"
   }
 }
-```
+`````
 
 **OAuth Authentication (Google):**
 
-```bash
+`````bash
 # In config/affine.js
 {
   "auth": {
@@ -287,31 +288,31 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     }
   }
 }
-```
+`````
 
 **Database Connection Pool Tuning:**
 
-```yaml
+`````yaml
 # Add to docker-compose.yml for high-load scenarios
 environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | AFFiNE v0.26 | Notion | Miro | Obsidian |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open Source | **Yes (MPL-2.0)** | No | No | No |
 | Self-Hostable | **Yes** | No | No | No (sync is cloud) |
@@ -350,7 +351,7 @@ A: AFFiNE uses CRDTs (Yjs-based) for conflict resolution. When two users edit th
 
 **Q: Can I import my existing Notion workspace into AFFiNE?**
 
-A: Yes. AFFiNE supports Notion `.zip` exports. Go to **Import > Notion** and upload your exported zip. Page hierarchy, text content, and images transfer correctly. Database views convert to AFFiNE database tables, though complex Notion formulas may need manual adjustment.
+A: Yes. AFFiNE supports Notion ````.zip``` exports. Go to **Import > Notion** and upload your exported zip. Page hierarchy, text content, and images transfer correctly. Database views convert to AFFiNE database tables, though complex Notion formulas may need manual adjustment.
 
 **Q: What are the hardware requirements for self-hosting AFFiNE for a 20-person team?**
 
@@ -423,7 +424,7 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [mempalace-open-source-ai-memory-system](affine-knowledge-base-whiteboard)
@@ -433,5 +434,5 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 - [paddleocr-81k-star-ocr-engine](affine-knowledge-base-whiteboard)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

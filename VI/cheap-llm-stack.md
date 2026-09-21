@@ -27,6 +27,7 @@ aliases:
   - /posts/cheap-llm-stack/
 ---
 
+
 # Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằng Free Tier + Nén Token
 
 
@@ -58,7 +59,7 @@ Stack ba cái — fallback local + API rẻ + xoay free tier + nén — biên gi
 
 ## 2. Kiến Trúc — Pattern Smart Router
 
-```
+````
    App bạn
        │
        ▼
@@ -71,7 +72,7 @@ Stack ba cái — fallback local + API rẻ + xoay free tier + nén — biên gi
        ├─► Gemini free tier     (1k req/ngày, task dễ)
        │
        └─► OpenRouter free      (model cộng đồng rotation, thử nghiệm)
-```
+`````
 
 Mỗi provider có "vùng chuyên môn." 9Router (hoặc wrapper Python 10 dòng nếu không muốn thêm service) kiểm tra task rồi route.
 
@@ -109,11 +110,11 @@ Setup đầy đủ + khi nào *không* dùng DeepSeek: [So sánh DeepSeek-V4 vs 
 
 **Lưu ý**: Google log prompt cho "cải thiện model" ở free tier — đừng gửi code độc quyền hoặc PII.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 npm install -g @google/gemini-cli
 gemini auth login  # mở trình duyệt, dùng tài khoản Google
 gemini "giải thích regex này: /^[a-z]+$/i"
-```
+`````
 
 Hoặc gọi trực tiếp endpoint Gemini REST — cùng ngân sách 1,000/ngày.
 
@@ -125,12 +126,12 @@ Tổng quan đi kèm về Gemini vs Perplexity vs ChatGPT free tier và mỗi c�
 
 **Cơ chế**: Dedup ngữ nghĩa. Nếu bạn gửi cùng system prompt 2,000 token 50 lần hôm nay, RTK nhận biết từ call #2 và gửi pointer thay vì full text.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker run -d --name rtk -p 8765:8765 \
   ghcr.io/rtk-ai/rtk:latest
-```
+`````
 
-Sau đó đổi API base URL từ `https://api.deepseek.com/v1` thành `http://localhost:8765/v1/deepseek`. Xong.
+Sau đó đổi API base URL từ ````https://api.deepseek.com/v1```` thành ````http://localhost:8765/v1/deepseek````. Xong.
 
 Đào sâu cách RTK hoạt động + benchmark: [Proxy RTK Rust CLI + token saver](/vi/resources/llm-frameworks/rtk-rust-cli-proxy-ai-token-saver/).
 
@@ -142,11 +143,11 @@ Sau đó đổi API base URL từ `https://api.deepseek.com/v1` thành `http://l
 
 **Bonus**: 9Router gồm layer nén RTK riêng cho premium provider, cộng auto-fallback khi free tier đụng cap hàng ngày.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=ollama,deepseek,gemini,openrouter \
   ghcr.io/rtk-ai/9router:latest
-```
+`````
 
 Cấu hình đầy đủ + công thức combo coding free tier: [Hướng dẫn 9Router smart proxy](/vi/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/).
 
@@ -185,7 +186,7 @@ Config routing mặc định khả thi cho solo dev: | Loại task | Provider | 
 
 1. **Ollama** (15 phút) — Cài, pull Llama 3.2 3B + Qwen 3 Coder 14B
 2. **Tài khoản DeepSeek** (5 phút) — Đăng ký, nhận API key, nạp $10
-3. **Gemini CLI** (5 phút) — `npm i -g @google/gemini-cli`, auth Google
+3. **Gemini CLI** (5 phút) — ````npm i -g @google/gemini-cli```, auth Google
 4. **Proxy RTK** (10 phút) — Docker run, trỏ DeepSeek
 5. **9Router** (10 phút) — Docker run, cấu hình 4 provider
 6. **Test routing** (15 phút) — Gửi 5 loại task khác nhau, xác minh mỗi cái đi đúng provider
@@ -211,7 +212,7 @@ Stack $0-15 hoạt động đến khi đụng bất kỳ điều nào: - **Yêu 
 
 Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất kỳ. Chạy trên laptop được (LLM rẻ không cần VPS cụ thể — nhưng {{< aff "digitalocean" "footer-cta" "droplet DigitalOcean $6/tháng" >}} giúp nếu muốn always-on cho team).
 
----
+* * *
 
 *Ghép bộ sưu tập này với [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho stack coding đầy đủ — chúng chia sẻ Ollama + 9Router + RTK làm nền tảng.*
 
@@ -241,7 +242,7 @@ Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất k�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -251,7 +252,7 @@ Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất k�
 - [12-factor-agents-production-llm-software-2026](cheap-llm-stack)
 - [12-factor-agents](cheap-llm-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -34,6 +34,7 @@ faqs: - q: 'What is Pixelle-Video?'
   - q: 'What can Pixelle-Video do beyond basic video generation?'
     a: 'It includes three extension modules: a Digital Human Avatar that turns a photo into a lip-synced talking-head video in Korean, Chinese, or English; Image-to-Video that animates static images; and Motion Transfer that maps motion from a reference video onto a still image.'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -84,14 +85,14 @@ faqs: - q: 'What is Pixelle-Video?'
 🔗 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
 
----
+* * *
 ## Key Features
 
 | Feature | Description |
 |
----
+* * *
 |
----
+* * *
 |
 | **Fully Automatic** | Input topic → get complete video |
 | **AI Smart Script** | AI writes narration, no manual scripting needed |
@@ -105,14 +106,14 @@ faqs: - q: 'What is Pixelle-Video?'
 | **ComfyUI Architecture** | Modular design, customizable workflows |
 
 
----
+* * *
 ## Video Generation Pipeline
 
 Pixelle-Video uses a modular design with a clear workflow: **Text Input → Script Generation → Image Planning → Frame Processing → Video Synthesis**
 
 Each stage supports flexible customization — choose different AI models, audio engines, visual styles to meet personalized creation needs.
 
----
+* * *
 
 ## Extended Modules
 
@@ -125,7 +126,7 @@ Transform static images into dynamic videos using AI video generation models.
 ### 💃 Motion Transfer
 Upload a reference video and image to transfer motions — like making a photo dance following video movements.
 
----
+* * *
 
 ## Supported AI Models
 
@@ -149,26 +150,26 @@ Upload a reference video and image to transfer motions — like making a photo d
 - ChatTTS
 - Custom ComfyUI TTS workflows
 
----
+* * *
 
 ## Quick Start
 
 ### 1. Clone Repository
 
-```bash
+````bash
 git clone https://github.com/AIDC-AI/Pixelle-Video.git
 cd Pixelle-Video
-```
+`````
 
 ### 2. Install Dependencies
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
 ### 3. Configure API Keys
 
-Edit `config.json` with your API keys: ```json
+Edit ``config.json`` with your API keys: `````json
 {
   "llm": {
     "api_key": "your-api-key",
@@ -179,15 +180,15 @@ Edit `config.json` with your API keys: ```json
     "comfyui_url": "http://127.0.0.1:8188"
   }
 }
-```
+`````
 
 ### 4. Launch Web UI
 
-```bash
+`````bash
 python webui.py
-```
+`````
 
-Open `http://localhost:7860` in your browser.
+Open ````http://localhost:7860``` in your browser.
 
 ### 5. Generate Your First Video
 
@@ -197,15 +198,15 @@ Open `http://localhost:7860` in your browser.
 4. Click "Generate Video"
 5. Wait 2-5 minutes for the complete video
 
----
+* * *
 
 ## Use Cases
 
 | Scenario | Example Topic |
 |
----
+* * *
 |
----
+* * *
 |
 | **Knowledge Sharing** | "10 Python tricks beginners should know" |
 | **Product Review** | "iPhone 16 vs Samsung S24 comparison" |
@@ -214,7 +215,7 @@ Open `http://localhost:7860` in your browser.
 | **News Commentary** | "AI trends in 2026" |
 | **Book/Movie Review** | "Lessons from 'Atomic Habits'" |
 
----
+* * *
 
 ## Video Style Examples
 
@@ -228,7 +229,7 @@ Pixelle-Video supports multiple video styles: - 🌄 **Documentary Style** — T
 - 📜 **Fiction Commentary** — Novel reviews, character analysis
 - 🧬 **Health & Wellness** — Medical tips, wellness advice
 
----
+* * *
 
 ## Technical Architecture
 
@@ -238,19 +239,19 @@ Pixelle-Video is built on **ComfyUI** architecture: - **Modular Workflows** — 
 - **Web UI** — Gradio-based interface for easy use
 - **Batch Processing** — Generate multiple videos simultaneously
 
----
+* * *
 
 ## Performance & Cost
 
 | Option | Cost | Speed | Quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Local Deployment** | Free (GPU required) | Fast | High |
 | **RunningHub Cloud** | Pay-per-use | Instant | High |
@@ -260,21 +261,21 @@ Recommended setup for beginners: - LLM: DeepSeek API (cheap, good quality)
 - Image: RunningHub (no local GPU needed)
 - TTS: Edge-TTS (free, multi-language)
 
----
+* * *
 
 ## Comparison with Other Tools
 
 | Feature | Pixelle-Video | HeyGen | Synthesia | Pictory |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | ✅ | ❌ | ❌ | ❌ |
 | **Free Tier** | ✅ | Limited | Limited | Limited |
@@ -285,7 +286,7 @@ Recommended setup for beginners: - LLM: DeepSeek API (cheap, good quality)
 | **Digital Human** | ✅ | ✅ | ✅ | ❌ |
 | **Motion Transfer** | ✅ | ❌ | ❌ | ❌ |
 
----
+* * *
 
 ## Tips for Best Results
 
@@ -295,14 +296,14 @@ Recommended setup for beginners: - LLM: DeepSeek API (cheap, good quality)
 4. **Voice Preview** — Always preview TTS before generating full video
 5. **Batch Generation** — Generate 3-5 variants and pick the best
 
----
+* * *
 
 ## Related Articles
 
 - [Free Claude Code: Use Claude Code CLI for Free with Any AI Provider](/resources/ai-tools/free-claude-code-open-source-proxy/) — Free AI coding assistant
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI agent with internet access
 
----
+* * *
 
 ## Conclusion
 
@@ -314,11 +315,11 @@ The ComfyUI-based architecture means it"s not just a black-box tool — you can 
 
 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
+* * *
 
 
 -
----
+* * *
 
 ## Recommended Tools
 

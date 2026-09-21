@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/devtoys/
 ---
 
+
 {{</* resource-info */>}}
 
 ![DevToys Logo](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/logo/Logo.png)
@@ -42,7 +43,7 @@ Mọi lập trình viên đều đã trải qua tình huống này: bạn cần 
 
 ### Tổng Quan Kiến Trúc
 
-DevToys theo kiến trúc modular dựa trên plugin. Ứng dụng core cung cấp shell, UI framework và engine Smart Detection. Các công cụ riêng lẻ được đóng gói dưới dạng extension đăng ký với host: ```
+DevToys theo kiến trúc modular dựa trên plugin. Ứng dụng core cung cấp shell, UI framework và engine Smart Detection. Các công cụ riêng lẻ được đóng gói dưới dạng extension đăng ký với host: ````
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -57,7 +58,7 @@ DevToys theo kiến trúc modular dựa trên plugin. Ứng dụng core cung c�
 └─────────────────────────────────────────┘
          │ Windows │ macOS │ Linux │
          └─────────┴───────┴───────┘
-```
+`````
 
 ### Các Khái Niệm Cốt Lõi
 
@@ -75,9 +76,9 @@ Cách nhanh nhất để cài đặt DevToys trên Windows là thông qua WinGet
 
 **Qua WinGet (khuyến nghị):**
 
-```powershell
+`````powershell
 winget install DevToys-app.DevToys
-```
+`````
 
 **Qua Microsoft Store:**
 
@@ -85,34 +86,34 @@ Tìm kiếm "DevToys" trong ứng dụng Microsoft Store, hoặc truy cập tr�
 
 **Qua Chocolatey:**
 
-```powershell
+`````powershell
 choco install devtoys
-```
+`````
 
 **Cài đặt thủ công với installer cổ điển:**
 
-```powershell
+`````powershell
 # Tải xuống trình cài đặt x64
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64.exe" -OutFile "devtoys_installer.exe"
 
 # Chạy trình cài đặt
 .\devtoys_installer.exe /SILENT
-```
+`````
 
 **ZIP Portable (không cần cài đặt):**
 
-```powershell
+`````powershell
 # Tải xuống và giải nén
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64_portable.zip" -OutFile "devtoys.zip"
 Expand-Archive -Path "devtoys.zip" -DestinationPath "C:\Tools\DevToys"
 
 # Khởi chạy trực tiếp
 C:\Tools\DevToys\DevToys.exe
-```
+`````
 
 ### macOS
 
-```bash
+`````bash
 # Tải xuống DMG macOS
 curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_macos.dmg"
 
@@ -120,15 +121,15 @@ curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download
 hdiutil attach devtoys.dmg
 cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
-```
+`````
 
-Hoặc cài đặt qua Homebrew (nếu có trong tap): ```bash
+Hoặc cài đặt qua Homebrew (nếu có trong tap): `````bash
 brew install --cask devtoys
-```
+`````
 
 ### Linux (Debian/Ubuntu)
 
-```bash
+`````bash
 # Tải xuống gói .deb
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64.deb
 
@@ -137,19 +138,19 @@ sudo dpkg -i devtoys_linux_x64.deb
 
 # Sửa lỗi dependency nếu có
 sudo apt-get install -f
-```
+`````
 
 **ZIP Portable cho Linux:**
 
-```bash
+`````bash
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64_portable.zip
 unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 ~/devtoys/DevToys
-```
+`````
 
 ### Cài Đặt DevToys CLI
 
-CLI được phân phối riêng biệt và hữu ích cho môi trường headless và CI pipeline: ```bash
+CLI được phân phối riêng biệt và hữu ích cho môi trường headless và CI pipeline: `````bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -158,29 +159,29 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 
 # Linux
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
-```
+`````
 
-Sau khi cài đặt, xác minh CLI hoạt động: ```bash
+Sau khi cài đặt, xác minh CLI hoạt động: `````bash
 devtoys --version
 # Output: DevToys CLI 2.0.9.0
-```
+`````
 
 ### Khởi Chạy Đầu Tiên & Cấu Hình
 
-Khi khởi chạy lần đầu, DevToys mở ra với sidebar chủ đề tối liệt kê tất cả 30+ công cụ. Mở **Settings** để cấu hình: ```yaml
+Khi khởi chạy lần đầu, DevToys mở ra với sidebar chủ đề tối liệt kê tất cả 30+ công cụ. Mở **Settings** để cấu hình: `````yaml
 # Cài đặt khuyến nghị cho production workflow
 Smart Detection: Enabled      # Tự động gợi ý công cụ từ clipboard
 Theme: System default        # Hoặc ép Dark/Light
 Language: English             # Hỗ trợ 14+ ngôn ngữ
 Check for updates: Weekly     # Hoặc tắt trong môi trường air-gapped
 Telemetry: Disabled          # DevToys mặc định không có telemetry
-```
+`````
 
 ## Tích Hợp Với Các Công Cụ Phổ Biến
 
 ### VS Code
 
-Mặc dù DevToys chạy như một ứng dụng độc lập, bạn có thể khởi chạy nó trực tiếp từ VS Code bằng keybinding. Thêm đoạn này vào `keybindings.json`: ```json
+Mặc dù DevToys chạy như một ứng dụng độc lập, bạn có thể khởi chạy nó trực tiếp từ VS Code bằng keybinding. Thêm đoạn này vào ``keybindings.json``: `````json
 [
   {
     "key": "ctrl+alt+d",
@@ -189,13 +190,13 @@ Mặc dù DevToys chạy như một ứng dụng độc lập, bạn có thể k
     "when": "editorTextFocus"
   }
 ]
-```
+`````
 
 Để có trải nghiệm tích hợp hoàn toàn, hãy cài đặt extension **DevToys for VSCode** từ marketplace, nó nhúng một tập con công cụ trực tiếp trong sidebar trình soạn thảo.
 
 ### PowerShell / Terminal
 
-DevToys hỗ trợ deep link đến từng công cụ thông qua tham số dòng lệnh. Điều này hữu ích cho scripting và alias: ```powershell
+DevToys hỗ trợ deep link đến từng công cụ thông qua tham số dòng lệnh. Điều này hữu ích cho scripting và alias: `````powershell
 # Mở trực tiếp các công cụ cụ thể
 start devtoys:?tool=jsonformat     # JSON Formatter
 start devtoys:?tool=jsonyaml       # JSON <> YAML Converter
@@ -207,11 +208,11 @@ start devtoys:?tool=uuid           # UUID Generator
 start devtoys:?tool=url            # URL Encoder/Decoder
 start devtoys:?tool=markdown       # Markdown Preview
 start devtoys:?tool=diff           # Text Comparer
-```
+`````
 
 ### CI/CD Pipelines (GitHub Actions)
 
-DevToys CLI tích hợp sạch sẽ vào CI workflow. Dưới đây là ví dụ GitHub Actions để validate file JSON trong repository: ```yaml
+DevToys CLI tích hợp sạch sẽ vào CI workflow. Dưới đây là ví dụ GitHub Actions để validate file JSON trong repository: `````yaml
 name: Validate JSON
 on: [push, pull_request]
 jobs: validate: runs-on: ubuntu-latest
@@ -226,11 +227,11 @@ jobs: validate: runs-on: ubuntu-latest
       - name: Validate all JSON files
         run: |
           find . -name "*.json" -exec devtoys json validate {} \;
-```
+`````
 
 ### Docker (Không Chính Thức)
 
-Cho workflow containerized, bạn có thể wrap DevToys CLI trong một image nhẹ: ```dockerfile
+Cho workflow containerized, bạn có thể wrap DevToys CLI trong một image nhẹ: `````dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -240,12 +241,12 @@ RUN apt-get update && apt-get install -y wget unzip \
     && apt-get remove -y wget unzip && apt-get autoremove -y
 
 ENTRYPOINT ["/app/devtoys"]
-```
+`````
 
-Build và chạy: ```bash
+Build và chạy: `````bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
-```
+`````
 
 ## Benchmarks / Trường Hợp Sử Dụng Thực Tế
 
@@ -286,22 +287,22 @@ DevToys hoạt động hoàn toàn ngoại tuyến — không bao giờ cần k�
 
 ### Cấu Hình Smart Detection
 
-Tinh chỉnh Smart Detection để tránh false positives: ```yaml
+Tinh chỉnh Smart Detection để tránh false positives: `````yaml
 # Settings > Smart Detection
 Behavior: "Always ask"        # Tùy chọn: Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # Điều chỉnh ngưỡng phát hiện
 Excluded tools: # Vô hiệu hóa phát hiện cho công cụ cụ thể
   - "Lorem Ipsum Generator"
   - "Password Generator"
-```
+`````
 
 ### Phát Triển Extension
 
-Tạo công cụ tùy chỉnh bằng DevToys SDK. Cài đặt gói NuGet SDK: ```bash
+Tạo công cụ tùy chỉnh bằng DevToys SDK. Cài đặt gói NuGet SDK: `````bash
 dotnet add package DevToys.Sdk --version 2.0.0
-```
+`````
 
-Một extension tối thiểu implement interface `IGuiTool`: ```csharp
+Một extension tối thiểu implement interface ``IGuiTool``: `````csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -333,17 +334,17 @@ internal sealed class MyCustomTool : IGuiTool
         // Xử lý đầu vào Smart Detection
     }
 }
-```
+`````
 
 ### Giám Sát Sử Dụng Trong Nhóm
 
-Mặc dù DevToys không có telemetry tích hợp, bạn có thể theo dõi công cụ nào nhóm sử dụng nhiều nhất bằng cách wrap CLI với một script logging: ```bash
+Mặc dù DevToys không có telemetry tích hợp, bạn có thể theo dõi công cụ nào nhóm sử dụng nhiều nhất bằng cách wrap CLI với một script logging: `````bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
 echo "$(date '+%Y-%m-%d %H:%M:%S") | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE"
 /devtoys "$@"
-```
+`````
 
 ![DevToys Microsoft Store Rating](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/ms-store-rate.png)
 
@@ -405,7 +406,7 @@ Không. DevToys hoạt động hoàn toàn ngoại tuyến. Không có dữ li�
 
 ### Smart Detection hoạt động như thế nào?
 
-Smart Detection giám sát clipboard và phân tích nội dung được sao chép bằng heuristic pattern matching. Khi bạn sao chép token JWT (có cấu trúc đặc trưng `header.payload.signature`), DevToys sẽ làm nổi bật công cụ JWT Decoder. Bạn có thể cấu hình hành vi — tự động mở công cụ, hiển thị gợi ý, hoặc vô hiệu hóa hoàn toàn — trong bảng Settings.
+Smart Detection giám sát clipboard và phân tích nội dung được sao chép bằng heuristic pattern matching. Khi bạn sao chép token JWT (có cấu trúc đặc trưng ````header.payload.signature````), DevToys sẽ làm nổi bật công cụ JWT Decoder. Bạn có thể cấu hình hành vi — tự động mở công cụ, hiển thị gợi ý, hoặc vô hiệu hóa hoàn toàn — trong bảng Settings.
 
 ### Tôi có thể sử dụng DevToys trong CI/CD pipeline không?
 
@@ -417,7 +418,7 @@ DevToys 2.0 là bản viết lại từ đầu mang tính đa nền tảng (trư
 
 ### Làm thế nào để xây dựng extension tùy chỉnh cho DevToys?
 
-Cài đặt gói NuGet DevToys.Sdk trong thư viện lớp .NET, implement interface `IGuiTool`, và đóng gói extension dưới dạng gói NuGet. Các extension có thể được phân phối trên nuget.org hoặc cài đặt thủ công từ Extension Manager bên trong DevToys. Tài liệu đầy đủ có tại [devtoys.app/doc](https://devtoys.app/doc).
+Cài đặt gói NuGet DevToys.Sdk trong thư viện lớp .NET, implement interface ````IGuiTool```, và đóng gói extension dưới dạng gói NuGet. Các extension có thể được phân phối trên nuget.org hoặc cài đặt thủ công từ Extension Manager bên trong DevToys. Tài liệu đầy đủ có tại [devtoys.app/doc](https://devtoys.app/doc).
 
 ### Tôi có thể nhận trợ giúp hoặc báo cáo lỗi ở đâu?
 

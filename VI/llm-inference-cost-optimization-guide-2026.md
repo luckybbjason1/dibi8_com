@@ -11,6 +11,7 @@ license: MIT
 featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
 ---
 
+
 ![Ollama - Inference LLM cục bộ trở nên đơn giản](https://opengraph.github.com/github/ollama/ollama)
 
 # Tối Ưu Chi Phí Inference LLM: Hướng Dẫn Toàn Diện 2026 — Chạy Mọi Mô Hình Với Giá Rẻ
@@ -39,9 +40,9 @@ Sự khác biệt không chỉ là 10%. Nó là **100 lần**.\n\nNhưng inferen
 
 ## Phương Pháp 1: Ollama — Cách Dễ Nhất Để Chạy LLM Cục Bộ
 
-Ollama biến inference LLM cục bộ đơn giản như `docker run`. Bạn tải một binary duy nhất, chạy một lệnh, và đột nhiên bạn đang chạy Llama 3 hoặc Mistral trên máy của riêng mình.
+Ollama biến inference LLM cục bộ đơn giản như ```docker run````. Bạn tải một binary duy nhất, chạy một lệnh, và đột nhiên bạn đang chạy Llama 3 hoặc Mistral trên máy của riêng mình.
 
-```bash
+`````bash
 # Cài đặt Ollama (chính thức)
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -49,7 +50,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama run llama3.2
 ollama run mistral-nemo
 ollama run codestral
-```
+`````
 
 Chỉ vậy thôi. Ba lệnh. Không cần Python, không Dockerfile, không đau đầu với CUDA toolkit.
 
@@ -59,25 +60,25 @@ Ollama hoạt động trên macOS (Apple Silicon), Linux, và Windows. Nó tự 
 
 Đây là nơi hầu hết mọi người mất tiền: họ không dùng quantization.
 
-```bash
+`````bash
 # Chạy mô hình quantized (8-bit, chất lượng vẫn tốt)
 ollama run llama3.2:8b-q8_0
 
 # Chạy mô hình quantized mạnh (4-bit, nhỏ hơn, nhanh hơn)
 ollama run llama3.2:8b-q4_0
-```
+`````
 
-Để xem các biến thể quantized có sẵn cho bất kỳ mô hình Ollama nào: ```bash
+Để xem các biến thể quantized có sẵn cho bất kỳ mô hình Ollama nào: `````bash
 # Liệt kê tất cả biến thể quantized có sẵn
 ollama list | grep llama3
 
 # Kiểm tra thông tin mô hình (kích thước, mức quantization)
 ollama info llama3.2:8b-q4_0
-```
+`````
 
 Điều này cho bạn bức tranh rõ ràng về những mô hình nào có sẵn và kích thước của chúng trước khi quyết định tải về.
 
-Các hậu tố `-q4_0` và `-q8_0` bảo Ollama dùng trọng số quantized. Mô hình 16-bit cần ~16GB VRAM. Cùng mô hình đó ở 4-bit chỉ cần ~4.5GB. Tốc độ tăng vì bộ nhớ ít hơn = inference nhanh hơn. Mất mát chất lượng? Tối thiểu cho hầu hết các trường hợp sử dụng.
+Các hậu tố ````-q4_0```` và ````-q8_0```` bảo Ollama dùng trọng số quantized. Mô hình 16-bit cần ~16GB VRAM. Cùng mô hình đó ở 4-bit chỉ cần ~4.5GB. Tốc độ tăng vì bộ nhớ ít hơn = inference nhanh hơn. Mất mát chất lượng? Tối thiểu cho hầu hết các trường hợp sử dụng.
 
 **Quan sát thực tế:** Tôi đã thử nghiệm chất lượng GPT-3.5 trên Llama 3.2 quantized Q4 so với bản gốc. Cho code generation và summarization, sự khác biệt hầu như không nhận ra. Cho creative writing, phiên bản quantized kém tinh tế hơn một chút. Nhưng đây là lời thú nhận: tôi không phải lúc nào cũng phân biệt được, và điều đó có nghĩa là hầu hết người dùng cũng không thể.
 
@@ -91,7 +92,7 @@ VUI.AI và Zalo đang tích hợp các giải pháp inference LLM cục bộ b�
 
 Nếu bạn đang phục vụ LLM cho nhiều người dùng hoặc xử lý lưu lượng API nặng, vLLM là câu trả lời. Nó dùng PagedAttention — một kỹ thuật quản lý bộ nhớ thông minh giúp giảm fragmentation và cho phép batch processing.
 
-```bash
+`````bash
 # Cài đặt vLLM
 pip install vllm
 
@@ -111,7 +112,7 @@ vllm serve meta-llama/Llama-3.2-3B-Instruct \
   --tensor-parallel-size 1 \
   --gpu-memory-utilization 0.95 \
   --max-num-batched-tokens 8192
-```
+`````
 
 Tính năng nổi bật của vLLM là nó expose một endpoint API tương thích OpenAI. Code hiện tại của bạn nói chuyện với API của OpenAI sẽ hoạt động với vLLM mà không cần thay đổi. Chỉ cần đổi base URL và API key.
 
@@ -137,7 +138,7 @@ Nếu bạn là người dùng duy nhất, overhead khởi tạo của vLLM khô
 
 llama.cpp là con dao Thụy Sĩ của inference LLM cục bộ. Viết bằng C/C++, nó chạy trên mọi thứ — từ MacBook Pro đến Raspberry Pi 4. Không Python, không driver GPU, không dependency.
 
-```bash
+`````bash
 # Build llama.cpp từ source
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp && make
@@ -147,15 +148,15 @@ cd llama.cpp && make
 
 # Chạy với GPU offload (nếu có GPU)
 ./main -m models/llama-3.2-3b.Q4_K_M.gguf -ngl 32
-```
+`````
 
-Để tải GGUF models trực tiếp (không cần convert): ```bash
+Để tải GGUF models trực tiếp (không cần convert): `````bash
 # Tải bất kỳ GGUF model từ HuggingFace
 wget https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf
 
 # Hoặc dùng helper download của llama.cpp
 curl -L https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf -o model.gguf
-```
+`````
 
 Điểm mạnh của llama.cpp là tính linh hoạt. Bạn có thể chạy bất kỳ mô hình quantized GGUF nào trên mọi phần cứng. Các định dạng quantization (Q4_K_M, Q5_K_M, Q8_0) cho bạn kiểm soát tinh tế hơn về tradeoff tốc độ/chất lượng.
 
@@ -168,7 +169,7 @@ curl -L https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main
 || Q4_K_M | 1.8 GB | Tốt | Nhanh hơn | Sử dụng hàng ngày |
 || Q3_K_M | 1.4 GB | Khá | Nhanh nhất | Thiết bị edge |
 
-Để convert HuggingFace model sang GGUF cho llama.cpp: ```bash
+Để convert HuggingFace model sang GGUF cho llama.cpp: `````bash
 # Convert bất kỳ HF model sang định dạng GGUF
 python convert-hf-to-gguf.py models/meta-llama/Llama-3.2-3B --outtype f16
 
@@ -177,7 +178,7 @@ python quantize models/meta-llama/Llama-3.2-3B/f16.gguf models/meta-llama/Llama-
 
 # Verify mô hình quantized
 ./llama-quantize models/meta-llama/Llama-3.2-3B/f16.gguf models/meta-llama/Llama-3.2-3B/q4_k_m.gguf Q4_K_M
-```
+`````
 
 **Lời thú nhận:** Tôi từng nghĩ quantization là "dành cho những người không đủ khả năng mua bản tốt hơn." Sau benchmark, tôi thấy Q4_K_M chỉ kém Q8_0 khoảng 2% trên các tác vụ thực tế. Tăng 50% tốc độ và giảm 50% VRAM làm nó trở thành người chiến thắng rõ ràng cho 90% trường hợp sử dụng.
 
@@ -196,20 +197,20 @@ Tại Việt Nam, các doanh nghiệp sử dụng Zalo Bot kết hợp llama.cpp
 
 Đây là những gì tôi thực sự dùng trong production: một chiến lược lai giúp tối thiểu chi phí trong khi tối đa hóa chất lượng.
 
-```bash
+`````bash
 # Bước 1: Dùng mô hình cục bộ quantized cho 95% requests
 ollama run llama3.2:8b-q4_0
 
 # Bước 2: Route queries phức tạp sang API
 # Nếu confidence score của mô hình cục bộ < threshold, escalate lên API
 # (Implement như một Python routing layer đơn giản)
-```
+`````
 
 Logic routing: - **Câu hỏi đơn giản** (code generation, summarization, formatting) → mô hình cục bộ quantized (miễn phí)
 - **Reasoning phức tạp** (phân tích đa bước, creative writing) → gọi API (trả phí)
 - **Chủ đề mới/chưa biết** → gọi API, sau đó fine-tune mô hình cục bộ sau
 
-```python
+`````python
 # Layer routing đơn giản (ví dụ Python)
 # Dùng mô hình cục bộ cho hầu hết requests, escalate lên API cho những cái phức tạp
 
@@ -243,7 +244,7 @@ def generate_response(question): strategy = smart_route(question)
             messages=[{"role": "user", "content": question}]
         )
         return resp.choices[0].message.content
-```
+`````
 
 Cách tiếp cận này giảm chi phí API hàng tháng của tôi từ $47 xuống $3.20 — **giảm 93%** với mất mát chất lượng tối thiểu.
 
@@ -266,13 +267,13 @@ Mẫu rất rõ ràng: khi tôi fine-tune các rules routing, nhiều request h�
 
 Nếu bạn có GPU, cách bạn sử dụng nó quan trọng hơn engine inference bạn chọn.
 
-```python
+`````python
 # Cài đặt tối ưu GPU cho vLLM
 # Trong config production (config.yaml): gpu_memory_utilization: 0.95      # Dùng 95% VRAM GPU
 max_model_len: 8192                 # Kích thước context window
 swap_space: 4                       # CPU swap cho overflow (GB)
 num_scheduler_steps: 16             # Tần suất batch scheduling
-```
+`````
 
 Các tham số tối ưu GPU chính: - **GPU memory utilization** — cao hơn = nhiều batch trong bộ nhớ = nhiều throughput hơn
 - **Context window** — lớn hơn = nhiều memory per request = ít concurrent requests hơn
@@ -282,7 +283,7 @@ Các tham số tối ưu GPU chính: - **GPU memory utilization** — cao hơn =
 
 ### Fallback Chỉ CPU
 
-Nếu bạn không có GPU, đây là cách làm cho inference trên CPU dễ chịu hơn: ```bash
+Nếu bạn không có GPU, đây là cách làm cho inference trên CPU dễ chịu hơn: `````bash
 # Dùng llama.cpp với multi-threading (dùng tất cả CPU cores)
 ./main -m model.gguf -t 8 -ngl 0  # 8 threads, 0 GPU layers
 
@@ -292,9 +293,9 @@ OLLAMA_NUM_GPU=0 ollama run llama3.2:8b-q4_0
 # Chế độ IOPARALLEL cho text generation
 # (hữu ích trên CPU — song song hóa token sampling)
 OMP_NUM_THREADS=8 python inference.py --parallel io
-```
+`````
 
-Để đo tốc độ inference thực tế trên phần cứng của bạn: ```bash
+Để đo tốc độ inference thực tế trên phần cứng của bạn: `````bash
 # Benchmark llama.cpp trên phần cứng của bạn
 ./bench -m model.gguf -n 128 -t 8
 
@@ -303,7 +304,7 @@ ollama run llama3.2:8b-q4_0 "Viết 128 token giải thích về quantization"
 
 # Theo dõi GPU memory trong lúc inference
 nvidia-smi --query-gpu=memory.used,memory.free --format=csv -l 1
-```
+`````
 
 Inference CPU của mô hình 7B cho ~5-10 tokens/giây trên CPU 16-core hiện đại. Không phải real-time, nhưng usable cho non-interactive tasks (batch processing, phân tích offline).
 
@@ -322,7 +323,7 @@ Tối ưu chi phí bị bỏ qua nhất: **dùng mô hình nhỏ hơn cho các t
 - Mô hình 8B vs 70B = 8.75x ít VRAM hơn
 - Cả hai đều chạy local, cả hai đều miễn phí sau chi phí phần cứng
 
-Để tìm size mô hình phù hợp cho tác vụ của bạn: ```bash
+Để tìm size mô hình phù hợp cho tác vụ của bạn: `````bash
 # Dùng Ollama để test các mô hình khác nhau cạnh nhau
 ollama run codestral "Viết hàm Python đảo ngược linked list"
 ollama run llama3.2:8b-q4_0 "Viết hàm Python đảo ngược linked list"
@@ -337,7 +338,7 @@ client = OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
 models = [m for m in client.models.list().data if m.id != 'embedding']
 for m in models: print(f'{m.id}")
 "
-```
+`````
 
 ## So Sánh: Tất Cả 4 Phương Pháp Trong Một Bảng
 
@@ -370,16 +371,16 @@ Tại Việt Nam, nhiều doanh nghiệp sử dụng Zalo Bot kết hợp với 
 ## Câu Hỏi Thường Gặp
 
 **Q: Cách rẻ nhất để chạy Llama 3 local là gì?**
-A: Ollama với quantization Q4 (`ollama run llama3.2:8b-q4_0`). Setup dưới 2 phút, dùng ~4.5GB VRAM, chạy trên mọi máy có GPU hoặc thậm chí CPU hiện đại.
+A: Ollama với quantization Q4 (````ollama run llama3.2:8b-q4_0````). Setup dưới 2 phút, dùng ~4.5GB VRAM, chạy trên mọi máy có GPU hoặc thậm chí CPU hiện đại.
 
 Nhiều doanh nghiệp Việt Nam đang thử nghiệm kết hợp Ollama local với VUI.AI API để xây dựng hệ thống AI nội bộ giảm chi phí đáng kể.
 
-```bash
+`````bash
 # Quick-start: cài đặt và chạy trong một lệnh
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2:8b-q4_0
 ollama run llama3.2:8b-q4_0
-```
+`````
 
 **Q: Tôi có thể chạy LLM inference không có GPU không?**
 A: Có. llama.cpp được tối ưu cho CPU inference. Trên CPU 16-core, expect 5-10 tokens/giây cho mô hình 7B. Usable cho batch processing nhưng không phải interactive chat.
@@ -390,7 +391,7 @@ A: Từ dữ liệu thực tế của tôi: giảm 92% chi phí sau 3 tháng hyb
 **Q: Quantization có đáng không? Nó thực sự không làm giảm chất lượng?**
 A: Quantization Q4 mất khoảng 2% chất lượng so với full precision trên standard benchmarks. Trong thực tế, cho code generation và summarization, sự khác biệt hầu như không nhận ra. Cho creative writing, bạn có thể nhận ra. Nhưng tiết kiệm 93% chi phí cho 2% mất mát chất lượng là tradeoff tốt cho hầu hết teams.
 
-```python
+`````python
 # Benchmark mô hình quantized của bạn vs full precision
 # Chạy cùng prompt qua cả hai và so sánh outputs
 import subprocess
@@ -403,7 +404,7 @@ def benchmark_q4(prompt): result = subprocess.run(
 
 # Chạy cùng prompt qua Q8 và so sánh
 # Chênh lệch token count < 2% = không đáng kể
-```
+````
 
 **Q: Mô hình nào tốt nhất cho local inference năm 2026?**
 A: Cho coding: CodeLlama-7B-Q4. Cho general purpose: Llama 3.2 8B-Q4. Cho reasoning: Mixtral 8x7B-Q4. Cho mobile/edge: Qwen2.5-3B-Q4. Chìa khóa là match size mô hình với độ phức tạp tác vụ.
@@ -460,7 +461,7 @@ Tham gia thảo luận: [Telegram Group](https://t.me/DIBI8_Group)
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -470,6 +471,6 @@ Tham gia thảo luận: [Telegram Group](https://t.me/DIBI8_Group)
 - [llm-inference-cost-optimization-guide-2026](llm-inference-cost-optimization-guide-2026)
 - [ollama-vs-vllm](llm-inference-cost-optimization-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

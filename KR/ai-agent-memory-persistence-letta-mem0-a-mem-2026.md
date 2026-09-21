@@ -28,6 +28,7 @@ faq: - q: "AI Agent에 영속 메모리가 왜 필요한가요?"
     a: "실사용자를 응대하는 프로덕션 Agent 대부분에서: 네, 실질적으로 가치 있습니다. '당신을 기억한다'와 '처음부터 시작한다' 사이의 품질 격차는 큽니다. 일회성 작업이나 단순 워크플로에는: 복잡도를 감당할 가치가 없습니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM
@@ -114,7 +115,7 @@ faq: - q: "AI Agent에 영속 메모리가 왜 필요한가요?"
 
 ## 구현 현실
 
-Mem0(가장 단순)으로 기존 Agent에 메모리 추가하기: ```python
+Mem0(가장 단순)으로 기존 Agent에 메모리 추가하기: ````python
 from mem0 import Memory
 m = Memory()
 m.add("User prefers TypeScript over JavaScript", user_id="alice")
@@ -123,9 +124,9 @@ m.add("User's project uses pnpm not npm", user_id="alice")
 # Later session
 relevant = m.search("What package manager?", user_id="alice")
 # Returns: "User's project uses pnpm not npm"
-```
+`````
 
-`relevant`을 Agent 컨텍스트에 주입. 끝.
+````relevant```을 Agent 컨텍스트에 주입. 끝.
 
 Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 
@@ -150,7 +151,7 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 
 단순한 경우엔 MCP memory server로 충분합니다. 과한 설계는 금물. 전용 메모리 프레임워크의 복잡도는 메모리 품질이 실제 제품 차별화 요소일 때만 가치 있습니다.
 
----
+* * *
 
 **관련 글**: [AI Agent 메모리 시스템 2026](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [오픈소스 AI Agent 프레임워크 Top 10](https://dibi8.com/kr/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
@@ -216,12 +217,12 @@ AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교 represen
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -231,7 +232,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [academic-research-skills](ai-agent-memory-persistence-letta-mem0-a-mem-2026)
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](ai-agent-memory-persistence-letta-mem0-a-mem-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

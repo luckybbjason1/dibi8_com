@@ -38,6 +38,7 @@ faqs: - q: 'What is Scanners-Box?'
   - q: 'Are penetration testing tools like those in Scanners-Box legal to use?'
     a: 'These tools are legal only for authorized security testing; using them against systems without explicit written permission is illegal and unethical. Relevant laws include the US Computer Fraud and Abuse Act (CFAA), the UK Computer Misuse Act, China''s Cybersecurity Law, and the EU GDPR, so always obtain written authorization and define scope before testing.'
 ---
+
 {</* resource-info */>}
 
 ## What is Scanners-Box?
@@ -50,16 +51,16 @@ faqs: - q: 'What is Scanners-Box?'
 **Categories**: 15+
 
 
----
+* * *
 ## Tool Categories Overview
 
 | Category | Tool Count | Examples |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Subdomain Enumeration** | 15+ | subDomainsBrute, amass, subfinder, OneForAll |
 | **Database & SQL Injection** | 10+ | sqlmap, jsql-injection, SQLiScanner, NoSQLAttack |
@@ -78,7 +79,7 @@ faqs: - q: 'What is Scanners-Box?'
 | **Learning Resources** | 20+ | sec-wiki, FreeBuf, Web Hacking 101 |
 
 
----
+* * *
 ## Featured Tools Deep Dive
 
 ### 1. Subdomain Enumeration
@@ -100,13 +101,13 @@ faqs: - q: 'What is Scanners-Box?'
 - Support for 6 database types
 - Tamper scripts for WAF bypass
 
-```bash
+````bash
 # Basic usage
 sqlmap -u "http://target.com/page.php?id=1" --dbs
 
 # Dump specific table
 sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
-```
+`````
 
 ### 3. Fuzzing Frameworks
 
@@ -123,7 +124,7 @@ sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
 ### 4. Port Scanning
 
 **Nmap** — The network scanner king
-```bash
+`````bash
 # Basic scan
 nmap -sV -sC target.com
 
@@ -132,7 +133,7 @@ nmap -p- -sV --script=vuln target.com
 
 # Aggressive scan
 nmap -A target.com
-```
+`````
 
 **masscan** — Fastest Internet port scanner
 - Scan entire Internet in 6 minutes
@@ -152,7 +153,7 @@ nmap -A target.com
 - Session cookie capture
 - Bypass two-factor authentication
 
----
+* * *
 
 ## Security Learning Resources
 
@@ -174,17 +175,17 @@ nmap -A target.com
 - **Node.js Web security issues**
 - **Python security series**
 
----
+* * *
 
 ## Vulnerable Targets for Practice
 
 | Platform | Description | Link |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **vulfocus** | Docker-based vulnerability platform | GitHub |
 | **vulhub** | Pre-built vulnerable environments | GitHub |
@@ -194,7 +195,7 @@ nmap -A target.com
 | **DVWA** | Damn Vulnerable Web Application | GitHub |
 | **WebGoat** | OWASP Web security practice | GitHub |
 
----
+* * *
 
 ## Responsible Disclosure
 
@@ -213,49 +214,49 @@ nmap -A target.com
 4. Report findings promptly
 5. Destroy data after testing
 
----
+* * *
 
 ## Tool Selection Guide
 
 ### Web Application Testing
-```
+`````
 Reconnaissance: amass, subfinder, theHarvester
 Scanning: Nmap, masscan, whatweb
 Vulnerability: sqlmap, XSS scanners, dirsearch
 Exploitation: Burp Suite, custom scripts
 Reporting: Dradis, Faraday
-```
+`````
 
 ### Network Penetration Testing
-```
+`````
 Discovery: Nmap, masscan, nbtscan
 Enumeration: enum4linux, snmp-check
 Vulnerability: OpenVAS, Nessus
 Exploitation: Metasploit, Cobalt Strike
 Post-exploitation: PowerShell Empire, Mimikatz
-```
+`````
 
 ### Red Team Operations
-```
+`````
 Initial Access: SET, gophish, evilginx2
 Persistence: Custom implants, scheduled tasks
 Privilege Escalation: PowerUp, BeRoot
 Lateral Movement: Pass-the-hash, Kerberoasting
 Exfiltration: DNS tunneling, HTTPS C2
-```
+````
 
----
+* * *
 
 ## Related Articles
 
 - [Agent Reach: AI Agent Internet Access](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI-powered security automation
 - [Free Claude Code: Open Source AI Coding](/resources/ai-tools/free-claude-code-open-source-proxy/) — Secure coding practices
 
----
+* * *
 
 *Disclaimer: This article is for educational purposes only. All tools should be used responsibly and only on systems you own or have explicit permission to test. The author and dibi8.com are not responsible for any misuse of the information provided.*
 
----
+* * *
 
 ## Recommended Tools
 
@@ -350,7 +351,7 @@ Scanners-Box: 200+ Cybersecurity Tools Collection for Security Professionals rep
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

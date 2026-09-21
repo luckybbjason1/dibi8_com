@@ -23,6 +23,7 @@ tags: ["rvc", "voice-conversion", "ai-voice-cloning", "vits", "speech-synthesis"
 aliases:
   - /posts/rvc/-
 ---
+
 {{</* resource-info */>}}
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
@@ -43,7 +44,7 @@ RVC's architecture combines four core modules: **Content Feature Extraction** �
 
 **Acoustic Modeling** — Built on VITS (Variational Inference with adversarial learning for end-to-end Text-to-Speech), a conditional VAE augmented with normalizing flows. VITS generates high-fidelity audio through adversarial training between a generator and multi-period discriminators.
 
-**Retrieval Module** — RVC's signature innovation. During training, content features are indexed in a Faiss vector database. During inference, source features are replaced with top-K nearest neighbors from the training set (K=8 by default), dramatically reducing timbre leakage from the source speaker. An `index_rate` parameter (α, typically 0.3) controls the blend between retrieved and source features.
+**Retrieval Module** — RVC's signature innovation. During training, content features are indexed in a Faiss vector database. During inference, source features are replaced with top-K nearest neighbors from the training set (K=8 by default), dramatically reducing timbre leakage from the source speaker. An ```index_rate```` parameter (α, typically 0.3) controls the blend between retrieved and source features.
 
 ![RVC Architecture Diagram](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/raw/main/docs/rvc_arch.png)
 
@@ -61,7 +62,7 @@ RVC runs on Linux, macOS, and Windows. For training, an NVIDIA GPU with at least
 
 ### Method 1: Docker Deployment (Recommended for Production)
 
-The official Dockerfile uses CUDA 11.6.2 on Ubuntu 20.04 with Python 3.9: ```bash
+The official Dockerfile uses CUDA 11.6.2 on Ubuntu 20.04 with Python 3.9: `````bash
 # Clone the repository
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -76,9 +77,9 @@ docker run -d --name rvc \
   -v $(pwd)/weights:/app/weights \
   -v $(pwd)/opt:/app/opt \
   rvc-webui:latest
-```
+`````
 
-For docker-compose users: ```yaml
+For docker-compose users: `````yaml
 version: '3.8'
 
 services: rvc: build: .
@@ -93,19 +94,19 @@ services: rvc: build: .
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # Start with docker-compose
 docker-compose up -d
 
 # Check logs
 docker-compose logs -f rvc
-```
+`````
 
 ### Method 2: Local Python Setup
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -127,11 +128,11 @@ wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_v2/f0G40k.pth -P assets/pretrained_v2/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -P assets/hubert/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt -P assets/rmvpe/
-```
+`````
 
 ### Method 3: AMD GPU Setup (ROCm)
 
-```bash
+`````bash
 # Install ROCm dependencies (Ubuntu/Debian)
 sudo apt install rocm-hip-sdk rocm-opencl-sdk
 
@@ -145,16 +146,16 @@ sudo usermod -aG video $USER
 
 # Install AMD-specific requirements
 pip install -r requirements-amd.txt
-```
+`````
 
 ### Starting the WebUI
 
-```bash
+`````bash
 # Start the Gradio web interface
 python infer-web.py
 
 # The WebUI will be available at http://localhost:7865
-```
+`````
 
 ## Training Pipeline
 
@@ -165,24 +166,24 @@ RVC requires clean, monophonic audio. For best results: - **Duration:** 10–30 
 - **Content:** Single speaker, minimal background noise, no music or reverb
 - **Silence:** Remove long silent segments (> 3 seconds)
 
-Use UVR5 (included) for source separation: ```bash
+Use UVR5 (included) for source separation: `````bash
 # Separate vocals from background music
 python tools/uvr5/uvr5_cli.py \
   --input_path ./raw_audio/song_with_music.wav \
   --output_path ./dataset/ \
   --model_name "HP2-人声vocals+非人声instrumentals"
-```
+`````
 
 ### Step 2: Preprocess and Extract Features
 
-In the WebUI **Train** tab: 1. Set **Experiment Name** (e.g., `my_voice_v2`)
+In the WebUI **Train** tab: 1. Set **Experiment Name** (e.g., ````my_voice_v2````)
 2. Set **Target Sampling Rate** to 40kHz (recommended)
 3. Set **RVC Version** to v2
-4. Set **Model Architecture** to `rmvpe_gpu`
+4. Set **Model Architecture** to ````rmvpe_gpu````
 5. Set **Dataset Path** to your audio folder
 6. Click **One-Click Training**
 
-Or via the command line: ```bash
+Or via the command line: `````bash
 # Step 1: Preprocess (resample, slice, remove silence)
 python trainset_preprocess_pipeline_print.py \
   ./dataset/my_voice \
@@ -206,25 +207,25 @@ python train_nsf_sim_cache_sid_load_pretrain.py \
   --pretrained_G assets/pretrained_v2/f0G40k.pth \
   --pretrained_D assets/pretrained_v2/f0D40k.pth \
   --gpu 0
-```
+`````
 
 ### Step 3: Build the Feature Index
 
-```bash
+`````bash
 # Generate the Faiss index for retrieval
 python tools/infer/train_index.py \
   --model_name my_voice_v2 \
   --sample_rate 40000
-```
+`````
 
-Training output locations: ```
+Training output locations: `````
 logs/
 └── my_voice_v2/
     ├── added_IVF512_Flat_nprobe_1.index   # Faiss retrieval index
     ├── G_*.pth                             # Generator checkpoints
     ├── D_*.pth                             # Discriminator checkpoints
     └── config.json                         # Model configuration
-```
+`````
 
 ![RVC WebUI Training Tab](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/docs/en/training_tab.png)
 
@@ -232,15 +233,15 @@ logs/
 
 | Hardware | Dataset Size | Epochs | Training Time | Output Quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 3090 (24GB) | 10 min audio | 200 | ~18 min | Excellent |
 | RTX 4090 (24GB) | 10 min audio | 200 | ~12 min | Excellent |
@@ -252,7 +253,7 @@ logs/
 
 ### Integration 1: GPT-SoVITS (TTS + RVC Pipeline)
 
-GPT-SoVITS generates speech from text; RVC converts it to a target voice. Together they form a complete text-to-speech cloning pipeline: ```python
+GPT-SoVITS generates speech from text; RVC converts it to a target voice. Together they form a complete text-to-speech cloning pipeline: `````python
 # gpt_sovits_rvc_pipeline.py
 import subprocess
 import requests
@@ -289,11 +290,11 @@ result = tts_then_convert(
     rvc_model="my_voice_v2"
 )
 print(f"Converted audio saved to: {result}")
-```
+`````
 
 ### Integration 2: Coqui TTS
 
-```python
+`````python
 # coqui_rvc_bridge.py
 from TTS.api import TTS
 import requests
@@ -322,11 +323,11 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # Generate with C
     
     with open(output_path, "wb") as f: f.write(response.content)
     return output_path
-```
+`````
 
 ### Integration 3: demucs (Advanced Source Separation)
 
-For production-grade vocal isolation before training: ```bash
+For production-grade vocal isolation before training: `````bash
 # Install demucs
 pip install demucs
 
@@ -335,13 +336,13 @@ demucs --two-stems=vocals --mp3 --mp3-bitrate 320 input_song.mp3
 
 # Use the separated vocal track for RVC training
 mv separated/htdemucs/input_song/vocals.wav ./dataset/clean_voice.wav
-```
+`````
 
 ### Integration 4: Real-Time Voice Conversion GUI
 
 ![RVC Real-time GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
 
-RVC includes a real-time voice conversion GUI for live applications: ```bash
+RVC includes a real-time voice conversion GUI for live applications: `````bash
 # Start the real-time GUI
 python gui_v1.py
 
@@ -352,9 +353,9 @@ python gui_v1.py --dml
 # - Crossfade: 0.05s
 # - Extra time: 2.5s
 # - Pitch extractor: fcpe (fastest) or rmvpe (best quality)
-```
+`````
 
-Configuration for streaming (90ms end-to-end latency with ASIO): ```python
+Configuration for streaming (90ms end-to-end latency with ASIO): `````python
 # gui_config.py example
 config = {
     "block_time": 0.1,        # 100ms blocks for lower latency
@@ -367,18 +368,18 @@ config = {
     "I_noise_reduce": True,
     "O_noise_reduce": False
 }
-```
+`````
 
 ### Integration 5: API Server (FastAPI)
 
-RVC provides a FastAPI-based REST API for production deployments: ```bash
+RVC provides a FastAPI-based REST API for production deployments: `````bash
 # Start the API server
 python api_240604.py
 
 # The API will be available at http://localhost:7865
-```
+`````
 
-```python
+`````python
 # Client example for API inference
 import requests
 
@@ -402,7 +403,7 @@ with open("input_audio.wav", "rb") as f: response = requests.post(
     )
 
 with open("converted_output.wav", "wb") as f: f.write(response.content)
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -410,15 +411,15 @@ with open("converted_output.wav", "wb") as f: f.write(response.content)
 
 | Metric | RVC v2 | So-VITS-SVC 4.1 | GPT-SoVITS (SVC) | DDSP-SVC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Speaker Similarity (cosine) | 0.85 | 0.79 | 0.82 | 0.71 |
 | PESQ (quality, /4.5) | 3.6 | 3.3 | 3.4 | 2.8 |
@@ -443,7 +444,7 @@ with open("converted_output.wav", "wb") as f: f.write(response.content)
 
 ### Security Considerations
 
-```python
+`````python
 # api_production.py — Hardened API wrapper
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -463,11 +464,11 @@ async def secure_convert(
 ): verify_token(credentials)
     # ... conversion logic
     return {"output_url": signed_url}
-```
+`````
 
 ### Model Management
 
-```bash
+`````bash
 # Organize multiple voice models
 models/
 ├── celeb_voice_a/
@@ -482,9 +483,9 @@ models/
     ├── model.pth
     ├── index.faiss
     └── config.json
-```
+`````
 
-```python
+`````python
 # Dynamic model loader for multi-tenant deployments
 import os
 import glob
@@ -501,11 +502,11 @@ def list_available_models(models_dir="./models"): """List all available voice mo
                 "index": index_files[0]
             })
     return models
-```
+`````
 
 ### Monitoring and Logging
 
-```python
+`````python
 # monitoring.py — Prometheus-compatible metrics
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -524,31 +525,31 @@ def monitored_convert(audio_path, model_name): start = time.time()
 
 # Start metrics endpoint
 start_http_server(9090)
-```
+`````
 
 ### ONNX Export for Faster Inference
 
-```bash
+`````bash
 # Export trained model to ONNX for CPU/GPU-agnostic inference
 python tools/export_onnx.py \
   --checkpoint_path ./logs/my_voice_v2/G_12000.pth \
   --output_path ./models/my_voice_v2/model.onnx \
   --sample_rate 40000
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | RVC v2 | GPT-SoVITS | So-VITS-SVC 4.1 | DDSP-SVC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Purpose** | Voice Conversion | TTS + Voice Cloning | Singing Voice Conversion | Singing Voice Conversion |
 | **Training Time** (10min data) | ~18 min (RTX 3090) | ~45 min | ~2 hours | ~15 min |
@@ -602,7 +603,7 @@ RVC v2 changes the content encoder from 9-layer HuBERT with 256-dimensional feat
 Adjust the **index_rate** parameter. A higher value (0.7–1.0) increases reliance on the retrieval index, pulling more features from the training set and less from the source. Start with 0.75 and adjust based on output quality. If the voice sounds artificial, lower it to 0.3–0.5.
 
 ### Can I use RVC for real-time voice changing in Discord/Zoom/Game?
-Yes, through the RVC real-time GUI (`gui_v1.py`). Route your microphone through a virtual audio cable (VB-Cable on Windows, BlackHole on macOS, or PulseAudio on Linux), set RVC as the input device, and configure your application to use the virtual cable output. With ASIO drivers and a modern GPU, latency stays under 100ms.
+Yes, through the RVC real-time GUI (````gui_v1.py```). Route your microphone through a virtual audio cable (VB-Cable on Windows, BlackHole on macOS, or PulseAudio on Linux), set RVC as the input device, and configure your application to use the virtual cable output. With ASIO drivers and a modern GPU, latency stays under 100ms.
 
 ### What file formats does RVC support?
 RVC supports WAV, MP3, FLAC, OGG, and M4A for input. Output is always WAV at the target sampling rate (32kHz, 40kHz, or 48kHz). For best quality, use lossless WAV or FLAC as input and avoid re-encoding MP3 files multiple times.
@@ -673,7 +674,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](rvc)
@@ -683,5 +684,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [llm-inference-cost-optimization-guide-2026](rvc)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

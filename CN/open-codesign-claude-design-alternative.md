@@ -34,6 +34,7 @@ faqs: - q: 'Is Open Codesign free and what does it cost to use?'
     a: 'Unlike Claude Design (Anthropic-only, cloud-only) and v0 by Vercel (GPT-4o, cloud-only, Vercel-optimized), Open Codesign is MIT-licensed, runs locally on the desktop, supports 20+ models via BYOK, and exports framework-agnostic HTML, PDF, PPTX, ZIP, and Markdown.'
   - q: 'What is the DESIGN.md file in Open Codesign?'
     a: 'DESIGN.md is a markdown file where you define your design system, such as brand colors, typography, and spacing tokens. Placed in your workspace, every generation automatically inherits these tokens so the model maintains brand coherence instead of drifting across turns.'---
+
 {</* resource-info */>}
 
 # Open Codesign: The Open-Source Claude Design Alternative with 5,790+ Stars
@@ -50,7 +51,7 @@ In this comprehensive guide, we explore what makes Open Codesign special, how to
 
 Open Codesign is an **MIT-licensed desktop application** built on Electron, React 19, Vite 6, and Tailwind CSS v4. At its core, it bridges the gap between natural language and production-ready design artifacts. Type a prompt like *"a modern SaaS landing page with glassmorphism hero section, pricing cards, and a footer with newsletter signup"* — and within seconds, Open Codesign generates a fully interactive HTML prototype with hover states, responsive breakpoints, and empty states already wired up.
 
-But Open Codesign is far more than a simple code generator. With the release of **v0.2.0** (Agentic Design), the tool has evolved into a genuine **local design agent** complete with workspace-backed sessions, permissioned tool access, and persistent design memory through `DESIGN.md` files. Every design becomes a session with JSONL history stored in a local workspace folder, meaning your iterations are never lost and your design decisions are always inspectable.
+But Open Codesign is far more than a simple code generator. With the release of **v0.2.0** (Agentic Design), the tool has evolved into a genuine **local design agent** complete with workspace-backed sessions, permissioned tool access, and persistent design memory through ```DESIGN.md```` files. Every design becomes a session with JSONL history stored in a local workspace folder, meaning your iterations are never lost and your design decisions are always inspectable.
 
 ### Why the Open Source Approach Matters
 
@@ -63,16 +64,16 @@ The AI design tool space is dominated by closed-source platforms that operate on
 Open Codesign addresses every one of these concerns. Because it is local-first and BYOK (Bring Your Own Key), you maintain complete control over your data, your model choices, and your budget. The MIT license means you can fork it, modify it, self-host it internally, or even build commercial products on top of it — no questions asked.
 
 
----
+* * *
 ## Core Features: Multi-Model Support, Local-First, and BYOK
 
 ### Multi-Model Architecture: Freedom to Choose
 
 One of Open Codesign's most compelling differentiators is its **unified provider model**. Unlike Claude Design (Anthropic-only) or v0 by Vercel (GPT-4o primarily), Open Codesign supports **20+ models** across a diverse ecosystem of providers: | Provider | Supported Models |
 |
----
+* * *
 |
----
+* * *
 |
 | **Anthropic** | Claude 3.5 Sonnet, Claude 3 Opus, Claude Code configurations |
 | **OpenAI** | GPT-4o, GPT-4 Turbo, Codex models via API or ChatGPT Plus subscription |
@@ -89,34 +90,34 @@ For users who already subscribe to **ChatGPT Plus, Pro, or Team**, Open Codesign
 
 ### Local-First Architecture: Your Data Stays Yours
 
-Every design session in Open Codesign is stored locally on disk. The v0.2.0 workspace model creates a dedicated folder for each project containing: - `session.jsonl` — complete conversation and tool-call history
-- `DESIGN.md` — shared design-system memory (brand tokens, color decisions, typography rules)
+Every design session in Open Codesign is stored locally on disk. The v0.2.0 workspace model creates a dedicated folder for each project containing: - ````session.jsonl```` — complete conversation and tool-call history
+- ````DESIGN.md```` — shared design-system memory (brand tokens, color decisions, typography rules)
 - Generated artifact files (HTML, CSS, JS) in their native formats
 - Version snapshots for instant rollback
 
 This architecture delivers tangible benefits: 1. **True offline capability**: Start a design on a plane, finish it in a cabin with no Wi-Fi.
 2. **Infinite version history**: SQLite-backed session storage means every iteration is preserved without arbitrary limits.
 3. **Zero server dependency**: The application runs entirely on your machine. There is no backend service that can go down, change terms, or get acquired.
-4. **Git-friendly**: Because designs are plain files in a folder, you can `git init` any project and treat your design history like source code.
+4. **Git-friendly**: Because designs are plain files in a folder, you can ````git init```` any project and treat your design history like source code.
 
 ### BYOK: Bring Your Own Key
 
 The BYOK model is straightforward: Open Codesign is a free application. You only pay for the LLM tokens you consume through your existing provider accounts. This creates a radically transparent cost structure compared to subscription-based design tools.
 
-Setting up a provider takes under 60 seconds. For existing Claude Code or Codex CLI users, the **one-click import** feature is magical — Open Codesign detects your existing `~/.config/claude/config.toml` or Codex provider configurations and imports all settings automatically. No copy-paste, no manual API key entry, no room for typos.
+Setting up a provider takes under 60 seconds. For existing Claude Code or Codex CLI users, the **one-click import** feature is magical — Open Codesign detects your existing ````~/.config/claude/config.toml```` or Codex provider configurations and imports all settings automatically. No copy-paste, no manual API key entry, no room for typos.
 
-API keys are stored in `~/.config/open-codesign/config.toml` with `0600` file permissions, following the same security conventions as Claude Code, the `gh` CLI, and SSH private keys. Keys are never transmitted anywhere except directly to your chosen provider's API endpoint.
+API keys are stored in ````~/.config/open-codesign/config.toml```` with ````0600```` file permissions, following the same security conventions as Claude Code, the ````gh```` CLI, and SSH private keys. Keys are never transmitted anywhere except directly to your chosen provider's API endpoint.
 
----
+* * *
 
 ## Setup and Configuration Guide
 
 ### Installation
 
-Open Codesign distributes binaries through multiple channels: - **macOS**: `.dmg` installer or Homebrew (`brew install open-codesign`)
-- **Windows**: `.exe` installer or winget (`winget install OpenCoworkAI.open-codesign`)
-- **Linux**: `.AppImage` or Scoop package
-- **Source**: Clone and build with `pnpm install && pnpm build`
+Open Codesign distributes binaries through multiple channels: - **macOS**: ````.dmg```` installer or Homebrew (````brew install open-codesign````)
+- **Windows**: ````.exe```` installer or winget (````winget install OpenCoworkAI.open-codesign````)
+- **Linux**: ````.AppImage```` or Scoop package
+- **Source**: Clone and build with ````pnpm install && pnpm build````
 
 The application launches into a clean, four-tab Settings interface covering Models, Appearance, Storage, and Advanced preferences.
 
@@ -146,32 +147,32 @@ The application launches into a clean, four-tab Settings interface covering Mode
 
 #### Option D: Local Ollama
 
-1. Ensure Ollama is running locally (`ollama serve`)
+1. Ensure Ollama is running locally (````ollama serve````)
 2. Open Settings → Models → Add Provider → Ollama
-3. Open Codesign auto-detects `http://localhost:11434`
-4. Select your pulled model (e.g., `llama3.2`, `qwen2.5`, `mistral`)
+3. Open Codesign auto-detects ````http://localhost:11434````
+4. Select your pulled model (e.g., ````llama3.2````, ````qwen2.5````, ````mistral````)
 
 ### Setting Up Your Workspace
 
 Once a provider is configured, the main interface presents the **Hub** — a gallery of 15 built-in demos and your recent designs. Clicking "New Design" creates a workspace-backed session. Before generating, you can optionally: - Select one or more **design skills** (slide decks, dashboards, landing pages, SVG charts, glassmorphism, editorial typography, heroes, pricing, footers, chat UIs, data tables, calendars)
-- Attach a `DESIGN.md` file to establish brand tokens
+- Attach a ````DESIGN.md```` file to establish brand tokens
 - Choose output format preferences (HTML, React component, or PPTX)
 
----
+* * *
 
 ## Comparison with Claude Design, Figma AI, and v0.dev
 
 | Feature | **Open Codesign** | Claude Design | v0 by Vercel | Figma AI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT (Open Source) | Closed Source | Closed Source | Closed Source |
 | **Platform** | Desktop (Electron) | Web Only | Web Only | Web + Desktop |
@@ -198,7 +199,7 @@ Vercel's v0 excels at React component generation but requires a Vercel account, 
 
 Figma AI integrates AI features into an existing design platform. While powerful for traditional UI design workflows, it does not offer the prompt-to-prototype immediacy of Open Codesign, lacks multi-model flexibility, and cannot operate offline. Open Codesign complements Figma rather than replacing it — use Open Codesign for rapid ideation and Figma for high-fidelity pixel-perfect refinement.
 
----
+* * *
 
 ## Design System and Prototyping Capabilities
 
@@ -221,7 +222,7 @@ Before writing a single line of CSS, the model reasons through which skills fit 
 
 ### DESIGN.md: Shared Memory for Design Systems
 
-The `DESIGN.md` file is one of Open Codesign's most innovative features. Rather than forcing the model to remember brand decisions across turns (which leads to drift), you write your design system into a markdown file: ```markdown
+The ``DESIGN.md`` file is one of Open Codesign's most innovative features. Rather than forcing the model to remember brand decisions across turns (which leads to drift), you write your design system into a markdown file: `````markdown
 # Acme Corp Design System
 
 ## Colors
@@ -236,7 +237,7 @@ The `DESIGN.md` file is one of Open Codesign's most innovative features. Rather 
 ## Spacing
 - Base unit: 4px
 - Section padding: 64px vertical
-```
+`````
 
 Place this file in your workspace, and every generation automatically inherits these tokens. The model reasons about coherence against this document, not against its training data. This makes Open Codesign uniquely powerful for agencies and product teams managing multiple brands.
 
@@ -244,20 +245,20 @@ Place this file in your workspace, and every generation automatically inherits t
 
 Open Codesign includes **true responsive preview frames** for phone, tablet, and desktop. Switch between breakpoints with one click while the design maintains its iframe state. This is invaluable for catching mobile layout issues early in the prototyping phase.
 
----
+* * *
 
 ## Code Examples and Prompts
 
 ### Example 1: SaaS Landing Page
 
 **Prompt:**
-```
+`````
 Create a landing page for a developer-focused API monitoring tool called "Pulse". 
 Include: a dark hero with animated gradient background, three feature cards with 
 Lucide icons, a code snippet showing JSON response, a pricing section with three 
 tiers, and a footer with GitHub and Twitter links. Use the glassmorphism skill 
 for the feature cards.
-```
+`````
 
 **What Open Codesign generates:**
 - A fully responsive HTML file with inline CSS
@@ -270,28 +271,28 @@ for the feature cards.
 ### Example 2: Investor Pitch Deck
 
 **Prompt:**
-```
+`````
 Generate a 6-slide pitch deck for a seed-stage fintech startup. Slide 1: title 
 with large typography. Slide 2: the problem (3 bullet points with icons). Slide 3: solution screenshot placeholder. Slide 4: traction metrics (ARR, users, growth rate). 
 Slide 5: business model canvas. Slide 6: team photos placeholder and contact. 
 Export as PPTX.
-```
+`````
 
-**Result:** A downloadable `.pptx` file with master slide layouts, editable text boxes, and placeholder images — ready for customization in PowerPoint, Keynote, or Google Slides.
+**Result:** A downloadable ````.pptx```` file with master slide layouts, editable text boxes, and placeholder images — ready for customization in PowerPoint, Keynote, or Google Slides.
 
 ### Example 3: Comment-Driven Refinement
 
 After generating a dashboard, click any element in the preview and drop a pin: **Comment:**
-```
+`````
 Make this KPI card use the accent color instead of gray, increase the metric 
 font size to 32px, and add a small upward trend arrow with +12% label.
-```
+`````
 
 The model rewrites **only that region**, preserving the rest of the layout. This pin-and-comment workflow eliminates the frustration of full regeneration for minor tweaks.
 
 ### Example 4: AI-Tuned Sliders
 
-After generation, Open Codesign surfaces **AI-emitted tweak parameters** in a dedicated panel: ```javascript
+After generation, Open Codesign surfaces **AI-emitted tweak parameters** in a dedicated panel: `````javascript
 // Generated tweak schema
 {
   "heroBackground": { "type": "color", "value": "#0F172A" },
@@ -299,11 +300,11 @@ After generation, Open Codesign surfaces **AI-emitted tweak parameters** in a de
   "headingFont": { "type": "select", "options": ["Inter", "Geist", "Manrope"], "value": "Inter" },
   "sectionGap": { "type": "range", "min": 24, "max": 128, "value": 64 }
 }
-```
+`````
 
 Adjust the sliders and the preview updates in real time — no new prompt required.
 
----
+* * *
 
 ## Use Cases for Developers and Designers
 
@@ -317,7 +318,7 @@ Adjust the sliders and the preview updates in real time — no new prompt requir
 ### For Product Designers
 
 - **Ideation acceleration**: Explore 10 layout directions in the time it previously took to sketch one.
-- **Design system documentation**: Use `DESIGN.md` to codify and evolve living design systems.
+- **Design system documentation**: Use ````DESIGN.md``` to codify and evolve living design systems.
 - **Stakeholder presentations**: Generate PPTX slide decks directly from product briefs.
 - **Accessibility testing**: Generated HTML includes semantic markup and ARIA labels by default.
 
@@ -333,7 +334,7 @@ Adjust the sliders and the preview updates in real time — no new prompt requir
 - **Cost control**: BYOK means no per-seat SaaS subscription — just existing API contracts.
 - **Auditability**: Every design decision is stored in plaintext session files, satisfying compliance requirements.
 
----
+* * *
 
 ## Conclusion
 
@@ -345,11 +346,11 @@ For teams already invested in Claude Code or Codex, the one-click import makes a
 
 If you have not yet explored Open Codesign, the setup takes less than 90 seconds. Your next prototype is one prompt away — and this time, it truly belongs to you.
 
----
+* * *
 
 
 -
----
+* * *
 
 ## Recommended Infrastructure for Self-Hosting
 

@@ -10,6 +10,7 @@ github_repo: "https://github.com/google-labs-code/design.md"
 license: Apache-2.0
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+
 # DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式
 
 
@@ -29,7 +30,7 @@ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来
 
 该格式有两个互补的层次：
 
-```
+````
 ┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
@@ -39,39 +40,39 @@ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来
 │  ---                                           │
 │                                                  │
 │  ## Colors                                     │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
-│  ```                                           │
+│  `````                                           │
 │  <!-- Prose -->                                │
 │  A warm paper-and-ink system with a single     │
 │  vermilion accent for diagrams only.           │
 │                                                  │
 │  ## Typography                                 │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Spacing                                    │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Do's and Don'ts                            │
 │  - **Do** use the accent color only in charts  │
 │  - **Don't** add gradients or glass effects    │
 │                                                  │
 └──────────────────────────────────────────────────┘
-```
+`````
 
-YAML 令牌提供可被机器读取的数值。散文提供可被人类理解的*上下文*——解释为什么一个颜色是 `#F4F0E4`（暖色复印纸，从不纯白），而不仅仅是说明十六进制代码。这种区别正是使 DESIGN.md 与设计令牌 JSON 文件根本不同的原因。
+YAML 令牌提供可被机器读取的数值。散文提供可被人类理解的*上下文*——解释为什么一个颜色是 ````#F4F0E4````（暖色复印纸，从不纯白），而不仅仅是说明十六进制代码。这种区别正是使 DESIGN.md 与设计令牌 JSON 文件根本不同的原因。
 
 ## 为什么散文比代币更重要
 
@@ -87,7 +88,7 @@ DESIGN.md 将这一原则形式化。令牌是上下文，而不是指令。文�
 
 DESIGN.md 仓库被构建为一个使用 Turbo 进行编排的 Bun 单体仓库：
 
-```
+`````
 design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
@@ -100,12 +101,12 @@ design.md/
 ├── turbo.json                  # Turbo build orchestration
 ├── tsconfig.base.json          # Shared TypeScript config
 └── PHILOSOPHY.md               # Design philosophy manifesto
-```
+`````
 
-CLI 工具（`@google/design.md`）提供：
+CLI 工具（````@google/design.md````）提供：
 - **Linting（代码检查）**：根据规范模式验证 DESIGN.md 文件
 - **令牌提取**：将 YAML 块解析为结构化数据
-- **代理整合**：作为 Claude、ChatGPT 和其他编程代理的 `.agents/skills/` 定义提供
+- **代理整合**：作为 Claude、ChatGPT 和其他编程代理的 ````.agents/skills/```` 定义提供
 
 该代码检查器强制要求存在必需的部分（名称、颜色、排版、间距、圆角、组件），同时允许为运动、图标、层次以及每个项目特定的其他设计维度添加任意自定义部分。
 
@@ -113,62 +114,62 @@ CLI 工具（`@google/design.md`）提供：
 
 ### 1. 安装 CLI
 
-```bash
+`````bash
 bun install -g @google/design.md
-```
+`````
 
 或者直接使用 npx：
 
-```bash
+`````bash
 npx @google/design.md lint DESIGN.md
-```
+`````
 
 ### 2. 创建你的第一个 DESIGN.md
 
 从最基本的必要结构开始：
 
-```markdown
+`````markdown
 
----
+* * *
 name: My Project Design
 
----
+* * *
 ## Colors
 
-```yaml
+`````yaml
 colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
-```
+`````
 
 A clean blue-and-white system for a professional SaaS product.
 
 ## Typography
 
-```yaml
+`````yaml
 typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
-```
+`````
 
 Single-family typography system for consistency.
 
 ## Spacing
 
-```yaml
+`````yaml
 spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
-```
+`````
 
 4px base grid, 8px for larger elements.
-```
+`````
 
 ### 3. Ship It to Your Coding Agents
 
-Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: ```
+Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: `````
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
-```
+`````
 
 The agent will now consistently apply your design system across every generation.
 
@@ -178,7 +179,7 @@ The repository includes several example DESIGN.md files demonstrating different 
 
 **Motion Design System**: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes "Nothing bounces, nothing overshoots, nothing lingers" — giving agents a clear temporal aesthetic.
 
-**Custom Design Dimensions**: The format accepts any section name. One team defines `motion` tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.
+**Custom Design Dimensions**: The format accepts any section name. One team defines ````motion```` tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.
 
 ## Why This Matters for AI-Assisted Development
 
@@ -213,7 +214,7 @@ DESIGN.md is developed by Google Labs Code and has attracted significant attenti
 - **18 issues** and **17 pull requests** showing active development
 - **4 published tags** with semantic versioning
 
-The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the `.agents/skills/` directory provides ready-to-use configurations for popular coding agents.
+The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.
 
 ## Conclusion
 
@@ -233,7 +234,7 @@ Check out internal guides on AI Coding Agent Comparison and Developer Tooling Be
 
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discussions on AI tools, dev utilities, and open-source projects.
 
----
+* * *
 **Sources & Further Reading**: - Official repository: https://github.com/google-labs-code/design.md
 - DESIGN.md philosophy: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
 - CLI toolkit: https://github.com/google-labs-code/design.md/tree/main/packages/cli
@@ -305,12 +306,12 @@ DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 rep
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -320,7 +321,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [personal-ai-infrastructure-daniel-miessler](design-md-google-open-source-format-ai-coding-agents-design-systems)
 - [prompts-chat](design-md-google-open-source-format-ai-coding-agents-design-systems)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

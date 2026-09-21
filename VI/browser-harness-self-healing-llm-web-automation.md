@@ -31,6 +31,7 @@ faqs: - q: 'Browser Harness là gì?'
     a: 'Các hạn chế của nó là chi phí (các lệnh gọi LLM API phát sinh phí, mặc dù có thể dùng các mô hình cục bộ), tốc độ (nó chậm hơn so với tự động hóa truyền thống vì mô hình cần thời gian để suy luận), độ an toàn (cần có các rào chắn nghiêm ngặt để ngăn thao tác sai), và những CAPTCHA phức tạp mà vẫn có thể cần đến con người.'
 ---
 
+
 {</* resource-info */>}
 
 ## Vấn đề: Web crawler truyền thống đã chết, kỷ nguyên AI cần mô hình mới
@@ -61,25 +62,25 @@ Slogan cốt lõi: **"Self-healing harness that enables LLMs to complete any tas
 
 ### 1. Tự phục hồi (Self-Healing)
 
-Tự động hóa truyền thống: ```python
+Tự động hóa truyền thống: ````python
 # Selector mong manh, trang thay đổi là die
 button = driver.find_element(By.CSS_SELECTOR, "#submit-btn")
 button.click()
-```
+`````
 
-Browser Harness: ```python
+Browser Harness: `````python
 # LLM hiểu ngữ nghĩa trang, tự tìm nút đúng
 # Dù id thay đổi cũng hiểu qua ngữ cảnh
 result = harness.execute("Nhấn nút gửi")
 # Nếu không tìm thấy nút, LLM phân tích trang và đề xuất phương án thay thế
-```
+`````
 
 **Cơ chế tự phục hồi**: - Thao tác thất bại → Chụp màn hình phân tích → LLM chẩn đoán → Tạo chiến lược mới → Thử lại
 - Lặp cho đến khi thành công hoặc xác nhận không thể hoàn thành
 
 ### 2. Hiểu ngữ nghĩa (Semantic Understanding)
 
-Browser Harness không phụ thuộc CSS selector mà để LLM **hiểu nội dung trang**: ```python
+Browser Harness không phụ thuộc CSS selector mà để LLM **hiểu nội dung trang**: `````python
 # Nói LLM mục tiêu, không phải bước
 harness.execute("Tìm tai nghe không dây trên Amazon, sắp xếp theo đánh giá, chọn kết quả đầu tiên thêm vào giỏ")
 
@@ -89,11 +90,11 @@ harness.execute("Tìm tai nghe không dây trên Amazon, sắp xếp theo đánh
 # 4. Chọn "Customer Reviews"
 # 5. Tìm sản phẩm đầu tiên
 # 6. Nhấn "Add to Cart"
-```
+`````
 
 ### 3. Lập kế hoạch đa bước
 
-```python
+`````python
 from browser_harness import Harness
 
 harness = Harness(model="gpt-4o")
@@ -118,11 +119,11 @@ result = harness.execute(task)
 # 8. Chọn vé không hành lý
 # 9. Điền thông tin hành khách
 # 10. Gửi đơn hàng
-```
+`````
 
 ### 4. Nhận thức thị giác (Visual Perception)
 
-Browser Harness gửi ảnh chụp màn hình cho LLM, cho phép mô hình "nhìn thấy" web: ```python
+Browser Harness gửi ảnh chụp màn hình cho LLM, cho phép mô hình "nhìn thấy" web: `````python
 # Phân tích ảnh chụp màn hình
 screenshot = harness.screenshot()
 analysis = harness.llm.analyze_image(screenshot, 
@@ -132,7 +133,7 @@ analysis = harness.llm.analyze_image(screenshot,
 #  - Ô nhập mật khẩu (type=password)
 #  - Hộp kiểm Ghi nhớ tôi
 #  - Nút đăng nhập"
-```
+`````
 
 ### 5. So sánh với công cụ hiện có
 
@@ -147,7 +148,7 @@ analysis = harness.llm.analyze_image(screenshot,
 
 ## Thiết kế kiến trúc
 
-```
+`````
 Browser Harness
 ├── LLM Core (GPT-4o / Claude / Local LLM)
 ├── Browser Controller (Playwright / Selenium)
@@ -164,22 +165,22 @@ Browser Harness
     ├── URL Whitelist
     ├── Action Limits
     └── Human-in-the-Loop
-```
+`````
 
 ## Cài đặt và sử dụng
 
 ### Cài đặt
 
-```bash
+`````bash
 pip install browser-harness
 
 # Cài đặt phụ thuộc trình duyệt
 playwright install
-```
+`````
 
 ### Cách dùng cơ bản
 
-```python
+`````python
 from browser_harness import Harness
 
 # Khởi tạo
@@ -201,11 +202,11 @@ task = """
 """
 result = harness.execute(task)
 print(result)  # "Số Stars hiện tại: 11251"
-```
+`````
 
 ### Cấu hình nâng cao
 
-```python
+`````python
 from browser_harness import Harness, Config
 
 config = Config(
@@ -220,13 +221,13 @@ config = Config(
 )
 
 harness = Harness(model="gpt-4o", config=config)
-```
+`````
 
 ## Kịch bản ứng dụng thực tế
 
 ### Kịch bản 1: Kiểm thử tự động
 
-```python
+`````python
 # Để LLM kiểm thử website của bạn
 test_cases = [
     "Đăng ký người dùng mới, xác minh nhận email xác nhận",
@@ -236,11 +237,11 @@ test_cases = [
 
 for test in test_cases: result = harness.execute(test)
     assert result.success, f"Kiểm thử thất bại: {test}"
-```
+`````
 
 ### Kịch bản 2: Thu thập dữ liệu
 
-```python
+`````python
 # Crawler thông minh, tự thích ứng thay đổi website
 data = harness.execute("""
 Truy cập example.com/products,
@@ -250,11 +251,11 @@ trích xuất tất cả sản phẩm: - Tên
 - Tình trạng tồn kho
 Lưu dạng JSON
 """)
-```
+`````
 
 ### Kịch bản 3: Tự động hóa văn phòng
 
-```python
+`````python
 # Tự động xử lý tác vụ web hàng ngày
 harness.execute("""
 1. Đăng nhập hệ thống bồi thường công ty
@@ -263,18 +264,18 @@ harness.execute("""
 4. Điền người phê duyệt
 5. Gửi đơn
 """)
-```
+`````
 
 ### Kịch bản 4: Giám sát đối thủ
 
-```python
+`````python
 # Kiểm tra giá đối thủ mỗi ngày
 harness.execute("""
 Truy cập amazon.com, tìm kiếm từ khóa sản phẩm cốt lõi của chúng ta,
 ghi lại giá và đánh giá của 10 kết quả đầu,
 tạo báo cáo so sánh
 """)
-```
+````
 
 ## So sánh với dự án tương tự
 
@@ -312,7 +313,7 @@ Nếu bạn đã chán việc sửa script crawler bị crash hàng tuần, Brow
 - [Hermes Agent: AI Agent Tự Cải Thiện](/vi/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 - [Agent Reach: Trao Siêu Năng Lực Internet Cho AI Agent](/vi/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

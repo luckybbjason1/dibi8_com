@@ -12,12 +12,13 @@ tags: ["eigenlayer"]
 aliases:
   - /posts/eigenlayer-restaking-defi/-
 ---
+
 {{</* resource-info */>}}
 
 > **Affiliate Disclosure**: This article contains affiliate links to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) and [Minara](https://minara.ai/r/OSXG4X). We may earn a commission when you register through these links — at no extra cost to you.
 
 
----
+* * *
 ## What Is EigenLayer and Why Does It Matter?
 
 EigenLayer is the most significant innovation in Ethereum's staking economy since proof-of-stake itself. Launched as a restaking protocol on Ethereum mainnet, EigenLayer enables ETH stakers to reuse their staked ETH to secure additional decentralized services — called Actively Validated Services (AVS) — beyond just Ethereum consensus. As of May 2026, EigenLayer has surpassed **$20 billion in Total Value Locked (TVL)**, making it one of the largest DeFi protocols by secured capital.
@@ -28,7 +29,7 @@ The core idea is elegant yet powerful: instead of every new protocol needing to 
 
 Restaking on EigenLayer works by allowing Ethereum validators to opt-in to securing additional protocols. When a validator restakes their ETH, they subject themselves to additional slashing conditions defined by each AVS they choose to validate.
 
-The lifecycle of a restaked position follows these steps: ```bash
+The lifecycle of a restaked position follows these steps: ````bash
 # Step 1: Stake ETH on Ethereum beacon chain
 # Minimum 32 ETH for solo validators, or use liquid staking tokens (LSTs)
 
@@ -41,9 +42,9 @@ curl -X POST https://api.eigenlayer.com/restake \
     "amount": "1000000000000000000",
     "staker": "0xYourAddress..."
   }'
-```
+`````
 
-```solidity
+`````solidity
 // Step 3: EigenLayer Strategy Manager deposits into underlying strategy
 // File: StrategyManager.sol (simplified)
 function depositIntoStrategy(
@@ -59,9 +60,9 @@ function depositIntoStrategy(
     _addShares(msg.sender, strategy, shares);
     return shares;
 }
-```
+`````
 
-```solidity
+`````solidity
 // Step 4: Staker delegates to an operator
 // Operators run AVS validation software
 function delegateTo(
@@ -76,9 +77,9 @@ function delegateTo(
         approverSignatureAndExpiry
     );
 }
-```
+`````
 
-```solidity
+`````solidity
 // Step 5: Operator opts into AVS slashing conditions
 // AVS contracts define custom validation and slashing logic
 interface IAVSRegistry {
@@ -99,7 +100,7 @@ function optInToEigenDA(bytes memory blsPublicKey) external {
         blsSignature
     );
 }
-```
+`````
 
 ## Actively Validated Services (AVS): The Application Layer
 
@@ -109,7 +110,7 @@ AVSs are the protocols and services that leverage EigenLayer's shared security. 
 
 EigenDA is the most prominent AVS built on EigenLayer. It provides a high-throughput, low-cost data availability solution for Ethereum rollups, serving as a decentralized alternative to centralized data availability solutions.
 
-```go
+`````go
 // EigenDA disperser client - dispersing a blob to EigenDA
 package main
 
@@ -152,9 +153,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
 
     return reply.GetResult(), nil
 }
-```
+`````
 
-```python
+`````python
 # EigenDA retrieval client - verifying blob availability
 import asyncio
 import grpc
@@ -174,7 +175,7 @@ async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grp
             "KZG proof verification failed"
         
         return response.blob
-```
+`````
 
 ## Building Your First AVS: Complete Developer Setup
 
@@ -182,7 +183,7 @@ This section provides a step-by-step guide to building an AVS on EigenLayer. We'
 
 ### Prerequisites
 
-```bash
+`````bash
 # Required tools
 node --version  # >= 18.0.0
 foundry --version  # Forge 0.2.0+
@@ -192,11 +193,11 @@ go version  # >= 1.21
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 git clone https://github.com/Layr-Labs/eigenlayer-middleware.git
 cd eigenlayer-middleware && forge install && cd ..
-```
+`````
 
 ### Step 1: AVS Contract Architecture
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
@@ -274,11 +275,11 @@ contract PriceOracleAVS is BLSSignatureChecker, OperatorStateRetriever {
         emit PriceUpdated(assetId, proposedPrice, uint32(block.number));
     }
 }
-```
+`````
 
 ### Step 2: Operator Node Implementation
 
-```go
+`````go
 // operator/price_task_generator.go
 package operator
 
@@ -394,11 +395,11 @@ func (g *PriceTaskGenerator) calculateResponseDigest(
     )
     return sha256.Sum256([]byte(data))
 }
-```
+`````
 
 ### Step 3: Aggregator Service
 
-```go
+`````go
 // aggregator/aggregator.go
 package aggregator
 
@@ -518,11 +519,11 @@ func (a *PriceAggregator) tryAggregateResponses(state *TaskState) error {
     
     return nil // Not enough quorum yet
 }
-```
+`````
 
 ### Step 4: Deployment Script
 
-```bash
+`````bash
 #!/bin/bash
 # deploy_avs.sh - Deploy PriceOracle AVS to mainnet
 
@@ -570,9 +571,9 @@ echo "=== Deployment Complete ==="
 echo "Registry Coordinator: $REGISTRY_COORDINATOR"
 echo "Stake Registry: $STAKE_REGISTRY"
 echo "PriceOracle AVS: $AVS_CONTRACT"
-```
+`````
 
-```solidity
+`````solidity
 // script/DeployPriceOracleAVS.s.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
@@ -627,13 +628,13 @@ contract DeployAVS is Script {
         console.log("PriceOracleAVS deployed at:", address(priceOracleAVS));
     }
 }
-```
+`````
 
 ## Slashing Conditions and Risk Management
 
 One of the critical aspects of EigenLayer is the slashing mechanism. When operators opt into an AVS, they agree to additional slashing conditions beyond those of Ethereum consensus.
 
-```solidity
+`````solidity
 // Custom slashing condition for PriceOracle AVS
 interface ISlasher {
     function freezeOperator(address operator) external;
@@ -686,9 +687,9 @@ contract PriceOracleSlashing {
         emit OperatorSlashed(operator, slashAmount, "DIVERGENT_RESPONSE");
     }
 }
-```
+`````
 
-```go
+`````go
 // Monitoring operator health and detecting slashable events
 package monitoring
 
@@ -739,13 +740,13 @@ func (m *SlashMonitor) checkForSlashableEvents(ctx context.Context) {
         }
     }
 }
-```
+`````
 
 ## Rewards Distribution Mechanism
 
 EigenLayer's rewards distribution allows AVS developers to incentivize operators for their validation work.
 
-```solidity
+`````solidity
 // Rewards distribution contract for PriceOracle AVS
 contract PriceOracleRewards is IRewardsCoordinator {
     
@@ -805,13 +806,13 @@ contract PriceOracleRewards is IRewardsCoordinator {
         emit RewardsClaimed(msg.sender, amount);
     }
 }
-```
+`````
 
 ## Liquid Restaking Tokens (LRT) Integration
 
 For users who don't want to run their own validator infrastructure, Liquid Restaking Tokens provide an accessible entry point.
 
-```typescript
+`````typescript
 // TypeScript SDK for LRT interactions
 import { ethers, Contract } from ethers;
 import { EigenLayerSDK } from '@eigenlayer/sdk';
@@ -832,8 +833,8 @@ async function depositForLRT(stethAmount: bigint) {
   });
   
   const receipt = await tx.wait();
-  console.log(`Deposited ${stethAmount} stETH, received ezETH`);
-  console.log(`Transaction: ${receipt.hash}`);
+  console.log(````Deposited ${stethAmount} stETH, received ezETH````);
+  console.log(````Transaction: ${receipt.hash}````);
   
   // Query underlying AVS exposure
   const avsExposure = await renzo.getAVSExposure(walletAddress);
@@ -845,14 +846,14 @@ async function aggregateLRTYield() {
   const portfolio = await sdk.getLRTPortfolio(walletAddress);
   
   for (const position of portfolio.positions) {
-    console.log(`\n${position.lrtSymbol}:`);
-    console.log(`  Balance: ${position.balance}`);
-    console.log(`  Underlying ETH: ${position.underlyingETH}`);
-    console.log(`  30d Yield: ${position.thirtyDayYield}%`);
-    console.log(`  AVS Exposure: ${position.avsAllocations.map(a => a.avsName).join(', ')}`);
+    console.log(````\n${position.lrtSymbol}:````);
+    console.log(````  Balance: ${position.balance}````);
+    console.log(````  Underlying ETH: ${position.underlyingETH}````);
+    console.log(````  30d Yield: ${position.thirtyDayYield}%````);
+    console.log(````  AVS Exposure: ${position.avsAllocations.map(a => a.avsName).join(', ')}````);
   }
 }
-```
+`````
 
 ## FAQ: Frequently Asked Questions About EigenLayer
 
@@ -862,7 +863,7 @@ A: For native restaking, you need a full validator's worth of 32 ETH. However, E
 
 **Q2: How do slashing risks work when restaking across multiple AVSs?**
 
-A: Each AVS defines its own slashing conditions, and your staked ETH is subject to all conditions of every AVS you validate for simultaneously. The maximum slashable amount is capped per AVS, but multiple AVS commitments compound your risk exposure. The `Slasher` contract enforces conditions programmatically — common slashable offenses include downtime, attesting to invalid state transitions, and signing conflicting messages.
+A: Each AVS defines its own slashing conditions, and your staked ETH is subject to all conditions of every AVS you validate for simultaneously. The maximum slashable amount is capped per AVS, but multiple AVS commitments compound your risk exposure. The ````Slasher```` contract enforces conditions programmatically — common slashable offenses include downtime, attesting to invalid state transitions, and signing conflicting messages.
 
 **Q3: What is the difference between EigenDA and other data availability solutions?**
 
@@ -870,7 +871,7 @@ A: EigenDA is a decentralized data availability layer secured by Ethereum's stak
 
 **Q4: How are AVS rewards calculated and distributed?**
 
-A: Each AVS operates its own rewards program, typically funded by protocol fees or inflationary token emissions. Rewards are distributed proportionally based on: (1) the amount of stake delegated to each operator, (2) the operator's performance score (uptime, correct responses), and (3) the AVS-specific reward rate. The `RewardsCoordinator` contract handles claim distribution, and operators typically charge a delegation fee (5-15%) on rewards earned by their delegators.
+A: Each AVS operates its own rewards program, typically funded by protocol fees or inflationary token emissions. Rewards are distributed proportionally based on: (1) the amount of stake delegated to each operator, (2) the operator's performance score (uptime, correct responses), and (3) the AVS-specific reward rate. The ````RewardsCoordinator```` contract handles claim distribution, and operators typically charge a delegation fee (5-15%) on rewards earned by their delegators.
 
 **Q5: Can I withdraw my restaked ETH at any time?**
 
@@ -878,13 +879,13 @@ A: No — EigenLayer enforces an undelegation and withdrawal delay of approximat
 
 **Q6: What programming languages and frameworks are used to build AVSs?**
 
-A: The smart contract layer uses Solidity (Foundry framework). Operator nodes are typically built in Go using the EigenSDK. BLS signature aggregation requires the `eigen-crypto` library. The reference EigenDA implementation uses Go for the disperser/retriever services and Rust for the node client. Docker and Kubernetes are standard for production deployments.
+A: The smart contract layer uses Solidity (Foundry framework). Operator nodes are typically built in Go using the EigenSDK. BLS signature aggregation requires the ````eigen-crypto```` library. The reference EigenDA implementation uses Go for the disperser/retriever services and Rust for the node client. Docker and Kubernetes are standard for production deployments.
 
 **Q7: How does operator selection and delegation work?**
 
-A: Stakers browse registered operators in the `DelegationManager` and delegate their restaked position to an operator of choice. Operators must register with BLS public keys and minimum stake requirements. When selecting an operator, consider: commission rate (5-15%), AVS coverage (which AVSs they validate), historical performance (uptime %), and restaked amount (higher is generally more secure). You can redelegate instantly without unstaking.
+A: Stakers browse registered operators in the ````DelegationManager```` and delegate their restaked position to an operator of choice. Operators must register with BLS public keys and minimum stake requirements. When selecting an operator, consider: commission rate (5-15%), AVS coverage (which AVSs they validate), historical performance (uptime %), and restaked amount (higher is generally more secure). You can redelegate instantly without unstaking.
 
----
+* * *
 
 ## Recommended Hosting & Infrastructure
 
@@ -895,7 +896,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 
 ## Getting Started: Your EigenLayer Checklist
 
-```bash
+`````bash
 # 1. Set up development environment
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 cd eigenlayer-contracts && forge install
@@ -918,9 +919,9 @@ go run main.go --config config.yaml
 # 6. Monitor operations
 make telemetry
 # Opens Grafana dashboard at http://localhost:3000
-```
+````
 
----
+* * *
 
 *Disclaimer: This guide is for educational purposes only. Restaking involves significant smart contract risk, slashing risk, and protocol risk. Always conduct your own research before deploying capital or code. DYOR — Do Your Own Research.*
 
@@ -929,7 +930,7 @@ make telemetry
 - Explore automated AVS deployment with [Minara](https://minara.ai/r/OSXG4X)
 - Follow us on Telegram for the latest EigenLayer alpha: **@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | Built for DeFi developers, traders, and researchers.*
 

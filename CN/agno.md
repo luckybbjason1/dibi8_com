@@ -23,6 +23,7 @@ tags: ["agno", "ai-agent", "python-sdk", "multi-agent", "open-source", "lightwei
 aliases:
   - /posts/agno/-
 ---
+
 {{</* resource-info */>}}
 
 Choosing an AI agent framework in 2026 feels like navigating a minefield. Over the past 18 months, dozens of libraries have emerged promising to "simplify" agent development, yet most introduce more abstraction than value. Teams report spending weeks learning graph-based orchestration semantics only to discover their use case needed nothing more than a lightweight tool-calling loop. Agno (formerly Phidata) cuts through this noise with a runtime-first philosophy: build agents fast, serve them as services, and own your entire stack. With **40,233 GitHub stars**, **452 contributors**, and a fresh Apache-2.0 license, it has become the go-to framework for Python teams shipping production agent systems. This guide — a practical **agno tutorial** for 2026 — walks through **agno setup**, architecture, real code examples, benchmarks in the **agno vs crewai** debate, and the hard truths about where this **lightweight ai framework** falls short.
@@ -39,7 +40,7 @@ Agno's value proposition is simple: you build agents with plain Python classes, 
 
 ### Architecture Overview
 
-Agno's architecture separates concerns into three distinct layers, each replaceable independently: ```
+Agno's architecture separates concerns into three distinct layers, each replaceable independently: ````
 ┌─────────────────────────────────────────────────────────────┐
 │                    Control Plane (AgentOS UI)                │
 │         Chat · Trace Inspection · Session Management         │
@@ -53,7 +54,7 @@ Agno's architecture separates concerns into three distinct layers, each replacea
 │              Model Providers (23+ supported)                 │
 │  OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok ... │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ![Agno AgentOS Dashboard](https://mintcdn.com/agno-v2/8V9aTUOgPNSFLOye/images/demo-os.png)
 
@@ -77,7 +78,7 @@ Following this **agno setup** guide, you'll have a working agent in under two mi
 
 ### Step 1: Create Virtual Environment
 
-```bash
+`````bash
 # Using uv (recommended)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv --python 3.12
@@ -86,11 +87,11 @@ source .venv/bin/activate
 # Or using standard venv
 python3 -m venv ~/.venvs/agno
 source ~/.venvs/agno/bin/activate
-```
+`````
 
 ### Step 2: Install Agno
 
-```bash
+`````bash
 # Minimal install
 uv pip install -U agno
 
@@ -99,18 +100,18 @@ uv pip install -U agno openai
 
 # Full install with common tools
 uv pip install -U agno openai duckduckgo-search chromadb
-```
+`````
 
 ### Step 3: Verify Installation
 
-```bash
+`````bash
 python -c "import agno; print(agno.__version__)"
 # Expected: 2.6.8 or newer
-```
+`````
 
 ### Step 4: Run Your First Agent
 
-Create `basic_agent.py`: ```python
+Create ``basic_agent.py``: `````python
 from agno.agent import Agent
 
 agent = Agent(
@@ -120,12 +121,12 @@ agent = Agent(
 )
 
 agent.print_response("Explain the difference between asyncio and threading in Python.", stream=True)
-```
+`````
 
-```bash
+`````bash
 export OPENAI_API_KEY="sk-your-key-here"
 python basic_agent.py
-```
+`````
 
 That's it — a working agent in 10 lines of Python. No YAML configs, no graph definitions, no ceremony.
 
@@ -133,7 +134,7 @@ That's it — a working agent in 10 lines of Python. No YAML configs, no graph d
 
 ### OpenAI Integration
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 
@@ -145,11 +146,11 @@ agent = Agent(
 )
 
 agent.print_response("Latest news in quantum computing", stream=True)
-```
+`````
 
 ### Anthropic Claude Integration
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 
@@ -160,11 +161,11 @@ agent = Agent(
 )
 
 agent.print_response("Analyze the EV market in Southeast Asia.", stream=True)
-```
+`````
 
 ### Ollama Integration (Local Models)
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.ollama import Ollama
 
@@ -175,9 +176,9 @@ agent = Agent(
 )
 
 agent.print_response("Explain recursion with a Python example.", stream=True)
-```
+`````
 
-```bash
+`````bash
 # Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -186,11 +187,11 @@ ollama pull qwen3
 
 # Run
 python ollama_agent.py
-```
+`````
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -201,9 +202,9 @@ COPY . .
 EXPOSE 8000
 
 CMD ["python", "workbench.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: agentos: build: .
@@ -212,11 +213,11 @@ services: agentos: build: .
       - AGNO_ENV=production
     volumes: - ./data:/app/data
     restart: unless-stopped
-```
+`````
 
 ### AWS Deployment (ECS with Fargate)
 
-```bash
+`````bash
 # Build and push to ECR
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 
@@ -231,7 +232,7 @@ aws ecs create-service \
   --task-definition agno-task:1 \
   --desired-count 2 \
   --launch-type FARGATE
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -243,15 +244,15 @@ This **ai agent tutorial** includes real numbers. Agno's lightweight design show
 
 | Metric | Agno | CrewAI | AutoGen | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Agent initialization | ~3 μs | ~12 ms | ~45 ms | ~150 ms |
 | Memory per agent | ~6.5 KiB | ~320 KiB | ~1.2 MiB | ~2.8 MiB |
@@ -276,7 +277,7 @@ These numbers matter at scale. A service running 1,000 concurrent agent sessions
 
 ### Multi-Agent Systems
 
-Agno teams let you compose agent groups without graph definitions: ```python
+Agno teams let you compose agent groups without graph definitions: `````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -305,11 +306,11 @@ team = Team(
 )
 
 team.print_response("Write an article about renewable energy trends in 2026.", stream=True)
-```
+`````
 
 ### Agentic RAG with Knowledge Base
 
-```python
+`````python
 from agno.agent import Agent
 from agno.knowledge.embedder.google import GeminiEmbedder
 from agno.knowledge.knowledge import Knowledge
@@ -337,11 +338,11 @@ agent = Agent(
 )
 
 agent.print_response("What is Agno?", stream=True)
-```
+`````
 
 ### Production Service with Session Storage
 
-```python
+`````python
 from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.os import AgentOS
@@ -360,9 +361,9 @@ workbench = Agent(
 # Serve as API
 AgentOS.agent = workbench
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
-```bash
+`````bash
 # Start the service
 python workbench.py
 
@@ -370,11 +371,11 @@ python workbench.py
 curl -X POST http://localhost:8000/v1/agents/workbench/run \
   -H "Content-Type: application/json" \
   -d '{"message": "Organize my downloads folder", "session_id": "user-123"}'
-```
+`````
 
 ### Security & Monitoring
 
-```python
+`````python
 from agno.agent import Agent
 from agno.os import AgentOS
 
@@ -391,21 +392,21 @@ agent = Agent(
 # OpenTelemetry tracing (auto-configured in AgentOS)
 AgentOS.agent = agent
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Agno | CrewAI | AutoGen | LangChain + LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 40,233 | 51,000+ | 58,000+ | 96,000+ / 31,000+ |
 | **License** | Apache-2.0 | MIT | MIT (Code) / CC-BY-4.0 (Docs) | MIT |
@@ -449,11 +450,11 @@ Agno prioritizes runtime overhead and service packaging — you get a FastAPI ba
 
 ### Can I run Agno with local models only?
 
-Yes. Agno integrates with Ollama, LM Studio, and any OpenAI-compatible local endpoint. The `Ollama` model provider lets you run entirely offline with models like Llama 3, Qwen3, or Mistral. No API keys or cloud dependencies are required for local deployments.
+Yes. Agno integrates with Ollama, LM Studio, and any OpenAI-compatible local endpoint. The ````Ollama```` model provider lets you run entirely offline with models like Llama 3, Qwen3, or Mistral. No API keys or cloud dependencies are required for local deployments.
 
 ### What databases does Agno support for session storage?
 
-Agno supports SQLite, PostgreSQL, MySQL, and LanceDB for session storage and memory. The `SqliteDb`, `PostgresDb`, and `LanceDb` classes handle session read/write automatically — no manual SQL required. Vector databases supported include ChromaDB, LanceDB, and pgvector for RAG knowledge bases.
+Agno supports SQLite, PostgreSQL, MySQL, and LanceDB for session storage and memory. The ````SqliteDb````, ````PostgresDb````, and ````LanceDb```` classes handle session read/write automatically — no manual SQL required. Vector databases supported include ChromaDB, LanceDB, and pgvector for RAG knowledge bases.
 
 ### Is Agno suitable for enterprise deployments?
 
@@ -461,7 +462,7 @@ Yes, with caveats. Agno's AgentOS runtime includes RBAC, human approval loops, a
 
 ### How do I migrate from Phidata to Agno?
 
-The migration involves updating package imports from `phidata` to `agno` and adapting to the 2.x API changes. The Agno team provides a [migration guide](https://docs.agno.com/migration) covering common patterns. Key changes include the `Agent` class replacing `PhiAgent`, the `Team` class replacing `PhiTeam`, and the AgentOS runtime being a separate module. Most migrations take a few hours for medium-sized codebases.
+The migration involves updating package imports from ````phidata```` to ````agno```` and adapting to the 2.x API changes. The Agno team provides a [migration guide](https://docs.agno.com/migration) covering common patterns. Key changes include the ````Agent```` class replacing ````PhiAgent````, the ````Team```` class replacing ````PhiTeam```, and the AgentOS runtime being a separate module. Most migrations take a few hours for medium-sized codebases.
 
 ### Can I use Agno without the AgentOS runtime?
 
@@ -498,7 +499,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Agno vs CrewAI Detailed Comparison](https://respan.ai/market-map/compare/agno-vs-crewai) — Feature-by-feature analysis with community reviews
 
 
----
+* * *
 *This article contains affiliate links. If you sign up for services through these links, dibi8.com may receive a commission at no extra cost to you.*
 
 
@@ -528,7 +529,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ollama-vs-lm-studio](agno)
@@ -537,7 +538,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ollama-vs-vllm](agno)
 - [ollama-vs-lm-studio](agno)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

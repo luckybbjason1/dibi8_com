@@ -26,6 +26,7 @@ tags: ["stable diffusion", "sdxl", "image generation", "automatic1111", "open-so
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+
 # Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generation — Complete Guide
 
 
@@ -39,7 +40,7 @@ This is the "I want to generate images locally without paying $20/mo to Midjourn
 - **GitHub**: 163k stars, 7,689+ commits, latest v1.10.1
 - **License**: AGPL-3.0 (be aware for SaaS deployments)
 - **Models**: SD 1.5, SD 2.x, SSD-1B, Alt-Diffusion natively; SDXL via extensions; SD3 / Flux via forks
-- **Hardware**: 4 GB VRAM minimum (reports of 2 GB working with `--lowvram`)
+- **Hardware**: 4 GB VRAM minimum (reports of 2 GB working with ```--lowvram````)
 - **Forks worth knowing**: Forge (faster, SDXL/Flux focus), SD.Next (rolling release)
 
 ## 1. Why A1111 Is Still the Default in 2026
@@ -55,13 +56,13 @@ If you're new to local image generation: start here. Migrate to ComfyUI when you
 
 | GPU | SD 1.5 (512×768) | SDXL (1024×1024) | Flux (1024×1024) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 4 GB (GTX 1650 / 3050) | ~15s/image | ~60s (with --lowvram) | Not practical |
 | 8 GB (RTX 3060 / 4060) | ~5s | ~12s | ~30s (--medvram) |
@@ -72,15 +73,15 @@ For cloud usage, $0.30-0.50/hr GPU instances on Vast.ai or {{< aff "digitalocean
 
 ## 3. Quick Install (15 minutes)
 
-**Linux/macOS**: ```bash
+**Linux/macOS**: `````bash
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 cd stable-diffusion-webui
 ./webui.sh  # auto-installs Python deps, downloads default model
-```
+`````
 
-**Windows**: Download the latest release zip, extract, run `webui-user.bat`.
+**Windows**: Download the latest release zip, extract, run ````webui-user.bat````.
 
-First run downloads ~4 GB (default SD 1.5 model) + ~2 GB Python deps. Open browser to `http://localhost:7860`.
+First run downloads ~4 GB (default SD 1.5 model) + ~2 GB Python deps. Open browser to ````http://localhost:7860````.
 
 ## 4. The 80/20 Settings
 
@@ -88,7 +89,7 @@ For "just make me a good image" workflow: - **Sampler**: DPM++ 2M Karras or Eule
 - **Steps**: 20-30 (above 30 = diminishing returns)
 - **CFG Scale**: 7 (lower = more creative, higher = more literal)
 - **Resolution**: 512×768 for SD 1.5, 1024×1024 for SDXL
-- **Negative prompt baseline**: `bad anatomy, blurry, low quality, watermark, text, signature`
+- **Negative prompt baseline**: ````bad anatomy, blurry, low quality, watermark, text, signature````
 
 For high quality: enable Hires fix (2× upscale + denoise 0.4-0.5) at the cost of 2× generation time.
 
@@ -97,7 +98,7 @@ For high quality: enable Hires fix (2× upscale + denoise 0.4-0.5) at the cost o
 Top picks from the 500+ Extensions tab: - **ControlNet** — pose / depth / canny / scribble conditioning. Single most useful extension
 - **ADetailer** — auto-fix faces and hands (the two failure modes of base SD)
 - **Regional Prompter** — different prompts for different parts of the image
-- **Dynamic Prompts** — wildcard syntax `{red|blue|green} car`
+- **Dynamic Prompts** — wildcard syntax ````{red|blue|green} car````
 - **Civitai Helper** — manage models downloaded from Civitai
 - **sd-webui-prompt-history** — recover prompts from past generations
 
@@ -105,9 +106,9 @@ Install via Extensions tab → Install from URL → paste GitHub URL → Apply a
 
 ## 6. LoRA / Embedding / ControlNet Workflow
 
-The three customization mechanisms: - **LoRA** (Low-Rank Adaptation) — small files (~150 MB) that adapt the base model toward a specific style or subject. Drop into `models/Lora/`, reference in prompt: `<lora:style_name:0.8>`
-- **Textual Inversion / Embeddings** — even smaller (~30 KB), single-concept additions. Drop in `embeddings/`, just type the trigger word in prompt
-- **ControlNet** — condition generation on pose / depth / line art / etc. Models go in `models/ControlNet/`
+The three customization mechanisms: - **LoRA** (Low-Rank Adaptation) — small files (~150 MB) that adapt the base model toward a specific style or subject. Drop into ````models/Lora/````, reference in prompt: ````<lora:style_name:0.8>````
+- **Textual Inversion / Embeddings** — even smaller (~30 KB), single-concept additions. Drop in ````embeddings/````, just type the trigger word in prompt
+- **ControlNet** — condition generation on pose / depth / line art / etc. Models go in ````models/ControlNet/````
 
 Civitai is the de-facto hub for community LoRAs and checkpoints. The Civitai Helper extension auto-syncs your local files with their metadata.
 
@@ -123,7 +124,7 @@ For a 2026 setup that uses SDXL day-to-day: A1111 mainline works. For Flux-first
 
 ## 8. Production Self-Host Pattern
 
-For a "personal image API" deploy: ```
+For a "personal image API" deploy: `````
    {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}} (RTX 6000 Ada at $0.50/hr or rent on Vast.ai)
             │
             ▼
@@ -134,7 +135,7 @@ For a "personal image API" deploy: ```
             │
             ▼
    Your app / agent calls /sdapi/v1/txt2img
-```
+````
 
 Cost example: 8 hours/day usage × $0.50/hr × 30 days = $120/mo for unlimited generation, vs Midjourney at $30/mo for 200 fast hours. Break-even at ~moderate usage.
 
@@ -142,9 +143,9 @@ Cost example: 8 hours/day usage × $0.50/hr × 30 days = $120/mo for unlimited g
 
 | Pick | When |
 |
----
+* * *
 |
----
+* * *
 |
 | **A1111 mainline** | Default, SD 1.x/SDXL focus, biggest extension ecosystem |
 | **Forge** | Same UI as A1111 but 30-75% faster, SDXL/Flux ready, smaller VRAM footprint |
@@ -160,7 +161,7 @@ AUTOMATIC1111 SD WebUI = **default self-hosted image generation for solo creator
 Spin up a GPU instance, run section 3's install, and 15 minutes later you have local image generation that breaks even with Midjourney at any meaningful volume.
 
 
----
+* * *
 *Part of dibi8's multi-modal content stack — see also [ComfyUI for node-based workflows](/resources/ai-tools/comfyui-node-based-ai-image-2026/) and the upcoming Multi-Modal Content Pipeline collection.*
 
 
@@ -226,11 +227,11 @@ Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generat
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -240,6 +241,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [moneyprinterturbo-one-click-ai-video-generator](stable-diffusion-webui-2026)
 - [2026-05-25-trending-ai-agents](stable-diffusion-webui-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

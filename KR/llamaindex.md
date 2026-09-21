@@ -24,13 +24,14 @@ aliases:
   - /kr/posts/llamaindex/
 ---
 
+
 {{</* resource-info */>}}
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)
 
 ## 소개
 
-대부분의 RAG 튜토리얼은 Jupyter Notebook에서 멈춘다. PDF를 로드하고, `VectorStoreIndex.from_documents()`를 호출하고, 괜찮은 답변을 얻으면 작업이 끝났다고 생각한다. 그런 다음 배포를 시도한다——임베딩 단계가 시작할 때 40분이 걸리고, 컨테이너가 인덱스가 지속되지 않아서 충돌하며, 사용자가 불만을 제기한 답변에 대해 실제로 어떤 문서가 검색되었는지 전혀 알 수 없다.
+대부분의 RAG 튜토리얼은 Jupyter Notebook에서 멈춘다. PDF를 로드하고, ```VectorStoreIndex.from_documents()````를 호출하고, 괜찮은 답변을 얻으면 작업이 끝났다고 생각한다. 그런 다음 배포를 시도한다——임베딩 단계가 시작할 때 40분이 걸리고, 컨테이너가 인덱스가 지속되지 않아서 충돌하며, 사용자가 불만을 제기한 답변에 대해 실제로 어떤 문서가 검색되었는지 전혀 알 수 없다.
 
 LlamaIndex는 프로덕션 RAG 시스템을 구축하는 팀들의 선호 데이터 프레임워크로 자리 잡았다. **49,517개의 GitHub Stars**, **1,866명의 기여자**, 그리고 2026년 5월 0.14.22 버전을 출시하는 릴리스 속도는 이 프로젝트가 빠르게 발전하고 있음을 보여준다. 이 가이드는 Docker 배포부터 쿼리 라우팅, 모니터링 및 강화까지 프로덕션급 RAG 파이프라인 구축을 다룬다. **llamaindex vs langchain**을 평가하든, 실제 배포 시나리오를 다루는 **llamaindex 튜토리얼**이 필요하든, 이 문서는 풀스택 지침을 제공한다.
 
@@ -44,10 +45,10 @@ LlamaIndex는 프로덕션 RAG 시스템을 구축하는 팀들의 선호 데이
 
 ### 핵심 아키텍처
 
-LlamaIndex는 책임을 네 가지 계층으로 분리한다: 1. **데이터 로딩** — `SimpleDirectoryReader`와 160개 이상의 LlamaHub 커넥터가 PDF, 데이터베이스, API 및 클라우드 스토리지를 `Document` 객체로 파싱한다.
-2. **인덱싱** — 문서는 `Node`로 분할된다. 임베딩은 인덱스(`VectorStoreIndex`, `SummaryIndex`, `TreeIndex`, `KnowledgeGraphIndex`)로 입력된다.
-3. **쿼리** — `QueryEngine`, `ChatEngine`, `RouterQueryEngine`이 검색, 후처리 및 응답 합성을 처리한다.
-4. **에이전트 및 워크플로우** — 이벤트 기반 `Workflow` 클래스와 에이전트 도구가 인간 개입 기능과 함께 다단계 추론을 가능하게 한다.
+LlamaIndex는 책임을 네 가지 계층으로 분리한다: 1. **데이터 로딩** — ````SimpleDirectoryReader````와 160개 이상의 LlamaHub 커넥터가 PDF, 데이터베이스, API 및 클라우드 스토리지를 ````Document```` 객체로 파싱한다.
+2. **인덱싱** — 문서는 ````Node````로 분할된다. 임베딩은 인덱스(````VectorStoreIndex````, ````SummaryIndex````, ````TreeIndex````, ````KnowledgeGraphIndex````)로 입력된다.
+3. **쿼리** — ````QueryEngine````, ````ChatEngine````, ````RouterQueryEngine````이 검색, 후처리 및 응답 합성을 처리한다.
+4. **에이전트 및 워크플로우** — 이벤트 기반 ````Workflow```` 클래스와 에이전트 도구가 인간 개입 기능과 함께 다단계 추론을 가능하게 한다.
 
 ![RAG 아키텍처](https://cdn.hashnode.com/res/hashnode/image/upload/v1724944925051/e525c6cb-6a99-4eec-8b47-3dc827ddff25.png)
 
@@ -55,14 +56,14 @@ LlamaIndex는 책임을 네 가지 계층으로 분리한다: 1. **데이터 로
 
 - **원시 문서 대신 Node**: 인덱싱 전 청킹이 발생하여 사용 사례별로 중첩 및 크기를 조정할 수 있다.
 - **StorageContext 추상화**: 인덱스를 디스크, S3 또는 모든 벡터 스토어에 지속할 수 있으며 코드 변경이 필요 없다.
-- **구성 가능한 검색기**: 벡터 + 키워드 + 그래프 검색기가 `RouterQueryEngine`을 통해 결합된다.
-- **네이티브 비동기**: `.aquery()` 및 비동기 수집은 네이티브 기능이며 나중에 추가된 것이 아니다.
+- **구성 가능한 검색기**: 벡터 + 키워드 + 그래프 검색기가 ````RouterQueryEngine````을 통해 결합된다.
+- **네이티브 비동기**: ````.aquery()```` 및 비동기 수집은 네이티브 기능이며 나중에 추가된 것이 아니다.
 
 ## 설치 및 설정
 
 ### 기본 설치
 
-```bash
+`````bash
 # 가상 환경 생성
 python -m venv venv && source venv/bin/activate
 
@@ -73,22 +74,22 @@ pip install llama-index
 pip install llama-index-vector-stores-qdrant
 pip install llama-index-llms-openai
 pip install llama-index-embeddings-openai
-```
+`````
 
 ### 환경 설정
 
-```bash
+`````bash
 # .env 파일
 export OPENAI_API_KEY="sk-..."
 export OPENAI_EMBEDDING_MODEL="text-embedding-3-large"
 
 # 로컬 LLM용
 export OLLAMA_BASE_URL="http://localhost:11434"
-```
+`````
 
 ### 첫 번째 RAG 파이프라인
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
 # 문서 로드
@@ -103,11 +104,11 @@ query_engine = index.as_query_engine()
 # 쿼리
 response = query_engine.query("What are the key takeaways?")
 print(response)
-```
+`````
 
 ### 인덱스 지속화
 
-```python
+`````python
 import os
 from llama_index.core import StorageContext, load_index_from_storage
 
@@ -118,7 +119,7 @@ if not os.path.exists(PERSIST_DIR): documents = SimpleDirectoryReader("./data").
     index.storage_context.persist(persist_dir=PERSIST_DIR)
 else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
     index = load_index_from_storage(storage_context)
-```
+`````
 
 이 패턴은 매번 재시작할 때 임베딩을 다시 계산하지 않도록 방지한다. 10,000개 문서 코퍼스의 경우, 각 배포 시 6분 이상과 API 비용을 절약한다.
 
@@ -126,7 +127,7 @@ else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
 
 ### OpenAI / Anthropic
 
-```python
+`````python
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
@@ -136,11 +137,11 @@ Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-large")
 
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine()
-```
+`````
 
 ### Ollama (로컬 LLM)
 
-```python
+`````python
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core import Settings
@@ -150,11 +151,11 @@ Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine()
-```
+`````
 
 ### Qdrant (벡터 데이터베이스)
 
-```python
+`````python
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from llama_index.core import StorageContext
 import qdrant_client
@@ -164,11 +165,11 @@ vector_store = QdrantVectorStore(client=client, collection_name="my_docs")
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ### Weaviate
 
-```python
+`````python
 from llama_index.vector_stores.weaviate import WeaviateVectorStore
 import weaviate
 
@@ -177,11 +178,11 @@ vector_store = WeaviateVectorStore(weaviate_client=client, index_name="Documents
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ### Chroma
 
-```python
+`````python
 from llama_index.vector_stores.chroma import ChromaVectorStore
 import chromadb
 
@@ -191,7 +192,7 @@ vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -209,26 +210,26 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 ### 프로덕션 사용 사례
 
-- **기업 지식 기반**: 핀테크 회사가 `VectorStoreIndex` + Qdrant로 50만 개의 규제 PDF를 인덱싱하여 서브초 쿼리 지연 시간을 달성했다.
-- **다중 문서 Q&A**: 법률 팀이 벡터 검색(판례법)과 키워드 검색(정확한 법규 인용) 간에 쿼리를 라우팅하기 위해 `RouterQueryEngine`을 사용한다.
-- **지능형 연구 어시스턴트**: 도구 호출 에이전트의 `Workflow` 클래스가 다단계 연구, 웹 검색 및 인용 생성을 수행한다.
-- **메모리가 있는 챗봇**: `CondensePlusContextMode`가 있는 `ChatEngine`이 전문 문서 기반 다중 턴 대화를 처리한다.
+- **기업 지식 기반**: 핀테크 회사가 ````VectorStoreIndex```` + Qdrant로 50만 개의 규제 PDF를 인덱싱하여 서브초 쿼리 지연 시간을 달성했다.
+- **다중 문서 Q&A**: 법률 팀이 벡터 검색(판례법)과 키워드 검색(정확한 법규 인용) 간에 쿼리를 라우팅하기 위해 ````RouterQueryEngine````을 사용한다.
+- **지능형 연구 어시스턴트**: 도구 호출 에이전트의 ````Workflow```` 클래스가 다단계 연구, 웹 검색 및 인용 생성을 수행한다.
+- **메모리가 있는 챗봇**: ````CondensePlusContextMode````가 있는 ````ChatEngine````이 전문 문서 기반 다중 턴 대화를 처리한다.
 
 ### LlamaIndex 선택 시점
 
 | 시나리오 | 권장 접근법 |
 |---|---|
-| 문서 중심 Q&A | `VectorStoreIndex` + 쿼리 엔진 |
-| 여러 데이터 소스 | `RouterQueryEngine` + 다중 인덱스 |
-| 다중 턴 대화 | `ChatEngine` + 메모리 |
-| 복잡한 추론 | `Workflow` + 에이전트 도구 |
-| 구조화된 추출 | `PydanticProgram` 응답 모델 |
+| 문서 중심 Q&A | ````VectorStoreIndex```` + 쿼리 엔진 |
+| 여러 데이터 소스 | ````RouterQueryEngine```` + 다중 인덱스 |
+| 다중 턴 대화 | ````ChatEngine```` + 메모리 |
+| 복잡한 추론 | ````Workflow```` + 에이전트 도구 |
+| 구조화된 추출 | ````PydanticProgram```` 응답 모델 |
 
 ## 고급 사용법 / 프로덕션 강화
 
 ### 라우터 쿼리 엔진
 
-의도에 따라 쿼리를 다른 인덱스로 라우팅: ```python
+의도에 따라 쿼리를 다른 인덱스로 라우팅: `````python
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.query_engine import RouterQueryEngine
 from llama_index.core.selectors import PydanticSingleSelector
@@ -266,11 +267,11 @@ router_engine = RouterQueryEngine(
 )
 
 response = router_engine.query("Summarize the main points")
-```
+`````
 
 ### 커스텀 Node 후처리기
 
-```python
+`````python
 from llama_index.core.postprocessor import BaseNodePostprocessor
 from llama_index.core.schema import NodeWithScore, QueryBundle
 
@@ -285,11 +286,11 @@ class ScoreThresholdPostprocessor(BaseNodePostprocessor): def __init__(self, thr
 query_engine = index.as_query_engine(
     node_postprocessors=[ScoreThresholdPostprocessor(threshold=0.75)]
 )
-```
+`````
 
 ### 비동기 쿼리 파이프라인
 
-```python
+`````python
 import asyncio
 
 async def batch_queries(queries: list[str]) -> list[str]: tasks = [query_engine.aquery(q) for q in queries]
@@ -304,11 +305,11 @@ queries = [
 
 results = asyncio.run(batch_queries(queries))
 for q, r in zip(queries, results): print(f"Q: {q}\nA: {r}\n")
-```
+`````
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -320,9 +321,9 @@ COPY . .
 EXPOSE 8000
 
 CMD ["python", "app.py"]
-```
+`````
 
-```python
+`````python
 # app.py - FastAPI 서비스
 from fastapi import FastAPI
 from llama_index.core import StorageContext, load_index_from_storage
@@ -344,9 +345,9 @@ async def query_docs(request: QueryRequest): response = query_engine.query(reque
         "answer": str(response),
         "sources": [n.metadata for n in response.source_nodes],
     }
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: app: build: .
@@ -359,25 +360,25 @@ services: app: build: .
     ports: - "6333:6333"
     volumes: - qdrant_data:/qdrant/storage
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
 ### DigitalOcean 배포
 
 클릭 인프라의 프로덕션 배포를 위해 **DigitalOcean**은 간단한 경로를 제공한다. App Platform은 자동 HTTPS를 갖춘 Docker 컨테이너를 지원하며, 관리형 데이터베이스가 벡터 스토어 백엔드를 호스팅할 수 있다.
 
-Docker Compose 스택을 DigitalOcean Droplet에 배포: ```bash
+Docker Compose 스택을 DigitalOcean Droplet에 배포: `````bash
 # Droplet에서
 docker-compose up -d
 
 # 또는 doctl 사용
 doctl apps create --spec .do/app.yaml
-```
+`````
 
 *본 문서에는 DigitalOcean의 제휴 링크가 포함되어 있다. 추천 링크를 통해 가입하면 커미션을 받을 수 있으며, 이는 추가 비용 없이 제공된다.*
 
 ### 콜백을 사용한 모니터링
 
-```python
+`````python
 from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
 import tiktoken
 
@@ -390,19 +391,19 @@ Settings.callback_manager = CallbackManager([token_counter])
 # 쿼리 후
 print(f"LLM Tokens: {token_counter.total_llm_token_count}")
 print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
-```
+`````
 
 ### 프로덕션 체크리스트
 
 | 관심사 | 구현 방식 |
 |---|---|
-| 인덱스 지속화 | 빌드 시 `storage_context.persist()` 호출 |
+| 인덱스 지속화 | 빌드 시 ````storage_context.persist()```` 호출 |
 | 핫 리로드 | 시작 시 스토리지에서 로드 |
 | API 속도 제한 | FastAPI 미들웨어 추가 |
 | 입력 검증 | 모든 엔드포인트에 Pydantic 스키마 |
-| 출처 인용 | `source_nodes` 메타데이터 반환 |
-| 토큰 예산 | `TokenCountingHandler` 모니터링 |
-| 비동기 지원 | 동시 부하를 위해 `.aquery()` 사용 |
+| 출처 인용 | ````source_nodes```` 메타데이터 반환 |
+| 토큰 예산 | ````TokenCountingHandler```` 모니터링 |
+| 비동기 지원 | 동시 부하를 위해 ````.aquery()```` 사용 |
 | 비밀 관리 | 환경 변수 사용, 하드코딩 금지 |
 
 ## 대안과의 비교
@@ -414,7 +415,7 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 | **라이선스** | MIT | MIT | Apache-2.0 | Apache-2.0 |
 | **데이터 커넥터** | 160+ | 100+ | 30+ | 50+ |
 | **인덱스 유형** | 8+ (벡터, 트리, 그래프 등) | 기본 (FAISS, Chroma) | 커스텀 (문서 스토어) | 벡터 + 전문 검색 |
-| **쿼리 라우팅** | 네이티브 `RouterQueryEngine` | LangGraph / 수동 | 파이프라인 기반 | 워크플로우 기반 |
+| **쿼리 라우팅** | 네이티브 ````RouterQueryEngine```` | LangGraph / 수동 | 파이프라인 기반 | 워크플로우 기반 |
 | **검색 속도** | LangChain 대비 40% 빠름 | 기준선 | 경쟁력 있음 | 느림 (시각적 오버헤드) |
 | **에이전트 지원** | 워크플로우 + 도구 | LangGraph 에이전트 | 커스텀 에이전트 | 내장 에이전트 템플릿 |
 | **학습 곡선** | RAG에 부드러움 | 가파름 (고도 모듈화) | 중간 | 낮음 (시각적 UI) |
@@ -427,8 +428,8 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 **LlamaIndex가 적합하지 않은 분야**: 1. **복잡한 다중 에이전트 오케스트레이션**: LangGraph는 조걸 분기, 순환 및 병렬 실행을 위한 더 나은 추상화를 제공한다.
 2. **노코드 사용자**: RAGFlow의 시각적 빌더는 드래그 앤 드롭 인터페이스를 선호하는 팀에 더 적합하다.
 3. **복잡한 문서 파싱**: LlamaParse가 유료 서비스로 존재하지만, RAGFlow의 DeepDoc 파서가 복잡한 PDF(표, 레이아웃)를 더 효과적으로 처리한다.
-4. **비 Python 기술 스택**: TypeScript 지원이 존재하나(`llamaindex` npm 패키지), 기능 완성도가 Python에 뒤처진다.
-5. **소규모 리소스 환경**: 이 프레임워크는 많은 모듈을 임포트한다. 제한된 엣지 배포의 경우 `txtai`나 직접 API 호출이 더 나은 선택일 수 있다.
+4. **비 Python 기술 스택**: TypeScript 지원이 존재하나(````llamaindex```` npm 패키지), 기능 완성도가 Python에 뒤처진다.
+5. **소규모 리소스 환경**: 이 프레임워크는 많은 모듈을 임포트한다. 제한된 엣지 배포의 경우 ````txtai````나 직접 API 호출이 더 나은 선택일 수 있다.
 
 ## 자주 묻는 질문
 
@@ -438,23 +439,23 @@ LlamaIndex는 데이터 수집, 인덱싱 및 검색 최적화에 집중한다. 
 
 **Q2: LlamaIndex를 로컬 모델만으로 사용할 수 있나?**
 
-예. Ollama 통합은 Llama 3.2, Mistral, CodeLlama를 포함한 Ollama를 통해 사용 가능한 모든 모델을 지원한다. `OLLAMA_BASE_URL`을 설정하고 LLM으로 `Ollama`, 임베딩으로 `OllamaEmbedding`을 사용한다. 이는 모든 외부 API 의존성을 제거한다.
+예. Ollama 통합은 Llama 3.2, Mistral, CodeLlama를 포함한 Ollama를 통해 사용 가능한 모든 모델을 지원한다. ````OLLAMA_BASE_URL````을 설정하고 LLM으로 ````Ollama````, 임베딩으로 ````OllamaEmbedding````을 사용한다. 이는 모든 외부 API 의존성을 제거한다.
 
 **Q3: LlamaIndex를 수백만 개 문서로 확장하려면?**
 
-프로덕션 벡터 데이터베이스(Qdrant, Weaviate 또는 Pinecone)를 메모리 내 스토리지 대신 사용한다. 수집을 쿼리 서비스와 분리된 배치 작업으로 실행한다. 병렬 노드 파싱 및 배치 임베딩 생성이 있는 `IngestionPipeline`을 고려한다.
+프로덕션 벡터 데이터베이스(Qdrant, Weaviate 또는 Pinecone)를 메모리 내 스토리지 대신 사용한다. 수집을 쿼리 서비스와 분리된 배치 작업으로 실행한다. 병렬 노드 파싱 및 배치 임베딩 생성이 있는 ````IngestionPipeline````을 고려한다.
 
 **Q4: LlamaIndex는 스트리밍 응답을 지원하나?**
 
-예. `as_query_engine()`에 `streaming=True`를 전달하고 응답을 반복한다: ```python
+예. ``as_query_engine()``에 ``streaming=True``를 전달하고 응답을 반복한다: `````python
 query_engine = index.as_query_engine(streaming=True)
 response = query_engine.query("Explain the architecture")
 for token in response.response_gen: print(token, end="")
-```
+`````
 
 **Q5: RAG 파이프라인 품질을 어떻게 평가하나?**
 
-LlamaIndex는 내장 평가 모듈을 제공한다: ```python
+LlamaIndex는 내장 평가 모듈을 제공한다: `````python
 from llama_index.core.evaluation import FaithfulnessEvaluator, RelevancyEvaluator
 
 faith_eval = FaithfulnessEvaluator()
@@ -466,7 +467,7 @@ relevancy_result = relevancy_eval.evaluate(response=response, query="What is the
 
 print(f"Faithful: {faith_result.passing}")
 print(f"Relevant: {relevancy_result.passing}")
-```
+````
 
 **Q6: LlamaIndex는 상업용으로 물론 물인가?**
 
@@ -528,7 +529,7 @@ LlamaIndex는 프로덕션 RAG 시스템 구축을 간단하게 만들면서도 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -538,7 +539,7 @@ LlamaIndex는 프로덕션 RAG 시스템 구축을 간단하게 만들면서도 
 - [9router-smart-llm-proxy-token-saver-free-coding](llamaindex)
 - [ai-engineering-from-scratch](llamaindex)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

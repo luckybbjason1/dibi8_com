@@ -26,6 +26,7 @@ faqs: - q: 'NowPayments로 어떤 통화를 받을 수 있나요?'
     a: 'NowPayments는 전 세계 주문을 처리하는 이커머스 스토어, 해외 고객에게서 대금을 받는 프리랜서, 인게임 결제와 구독을 관리하는 게임 회사, 글로벌 기부금을 모으는 비영리 단체, SaaS 구독료와 라이선스 비용을 청구하는 소프트웨어 회사 등이 활용합니다.'
 ---
 
+
 # 모든 통화로 결제 수락 - NowPayments
 
 
@@ -92,7 +93,7 @@ NowPayments는 다음과 같은 보안을 우선시합니다: - 종단 간 암�
 
 원활하고 국경 없는 결제의 혜택을 이미 누리고 있는 수천 명의 판매자와 함께하세요.
 
----
+* * *
 
 ## 추천 도구
 
@@ -164,7 +165,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/affine-knowledge-base-whiteboard/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：2026 年的知识管理困境
@@ -42,12 +43,12 @@ AFFiNE 的架构分为三层：
 
 自托管部署额外使用 PostgreSQL（应用数据）、Redis（缓存和会话管理）和 AFFiNE 服务器容器（Node.js API + WebSocket 同步）。
 
-```yaml
+````yaml
 # - AFFiNE 服务器（Web + API + 同步）
 # - PostgreSQL 16（持久化数据）
 # - Redis 7（缓存 + 会话）
 # - 可选：对象存储用于 blob 文件
-```
+`````
 
 默认端口为 **3010**。第一个注册用户自动成为管理员。
 
@@ -57,15 +58,15 @@ AFFiNE 官方 Docker Compose 配置是推荐的部署方式，自动处理数据
 
 **第一步：** 创建目录并下载官方 compose 文件：
 
-```bash
+`````bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
-```
+`````
 
 **第二步：** 编辑环境变量文件：
 
-```bash
+`````bash
 # 编辑 .env 文件
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -78,30 +79,30 @@ UPLOAD_LOCATION=./storage
 REDIS_DATA_LOCATION=./redis
 CONFIG_LOCATION=./config
 EOF
-```
+`````
 
 **第三步：** 启动服务栈：
 
-```bash
+`````bash
 docker compose up -d
 # 拉取：affineteams/affine-graphql、postgres:16、redis:7.2
 # 自动执行数据库迁移
 # 首次启动时根据 .env 创建管理员账户
-```
+`````
 
 **第四步：** 验证所有容器运行正常：
 
-```bash
+`````bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
 affine-postgres Up 10 seconds   5432/tcp
 affine-redis    Up 10 seconds   6379/tcp
-```
+`````
 
-**第五步：** 浏览器打开 `http://localhost:3010`，使用 `.env` 中配置的凭据登录。
+**第五步：** 浏览器打开 ````http://localhost:3010````，使用 ````.env```` 中配置的凭据登录。
 
-```bash
+`````bash
 # 停止服务栈
 docker compose down
 
@@ -110,11 +111,11 @@ docker compose down
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 docker compose pull
 docker compose up -d
-```
+`````
 
 **生产环境使用反向代理：**
 
-```nginx
+`````nginx
 # Nginx 配置示例
 server {
     listen 443 ssl http2;
@@ -129,9 +130,9 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
-`Upgrade` 和 `Connection` 头部至关重要——它们启用基于 WebSocket 的实时协作功能。
+````Upgrade```` 和 ````Connection```` 头部至关重要——它们启用基于 WebSocket 的实时协作功能。
 
 **对于云部署，** [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 为新账户提供 $200 免费额度，足够在 2-CPU Droplet 上运行 AFFiNE 并搭配托管 PostgreSQL。[虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) 也提供高性能国内服务器方案，适合需要低延迟访问的团队。
 
@@ -143,19 +144,19 @@ AFFiNE 通过插件系统和 API 连接到你现有的工具链：
 
 AFFiNE v0.26+ 支持 CalDAV，可与外部日历同步任务和截止日期。在 **设置 > 集成 > CalDAV** 中配置：
 
-```bash
+`````bash
 # 测试 CalDAV 连通性
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
   -H "Content-Type: text/xml" \
   -d '<?xml version="1.0"?><d:propfind xmlns:d="DAV:"><d:prop><d:displayname/></d:prop></d:propfind>'
-```
+`````
 
 **2. AI 助手配置（OpenAI API）**
 
 AI 助手可以指向任何 OpenAI 兼容端点，包括通过 Ollama 或 LiteLLM 运行的本地模型：
 
-```bash
+`````bash
 # 在 AFFiNE 管理后台 > 设置 > AI
 # 提供商 URL: http://your-ollama:11434/v1
 # API 密钥: sk-ollama（或你的密钥）
@@ -164,11 +165,11 @@ AI 助手可以指向任何 OpenAI 兼容端点，包括通过 Ollama 或 LiteLL
 # 或直接调用 OpenAI
 # 提供商 URL: https://api.openai.com/v1
 # 模型: gpt-4o-mini
-```
+`````
 
 **3. REST API 用于外部自动化**
 
-```bash
+`````bash
 # 通过 API 导出工作区数据
 curl -H "Authorization: Bearer $AFFINE_TOKEN" \
   http://localhost:3010/api/workspaces
@@ -178,18 +179,18 @@ curl -X POST http://localhost:3010/api/docs \
   -H "Authorization: Bearer $AFFINE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"冲刺回顾","content":"<blocks>...</blocks>"}'
-```
+`````
 
 **4. Git 同步用于开发工作流**
 
-结合 AFFiNE 导出功能和 `git` 实现版本控制的文档管理：
+结合 AFFiNE 导出功能和 ````git```` 实现版本控制的文档管理：
 
-```bash
+`````bash
 #!/bin/bash
 # daily-backup.sh - 加入 crontab 每晚运行
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
 git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%d)"
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -197,13 +198,13 @@ AFFiNE 的性能特征对生产部署至关重要：
 
 | 指标 | AFFiNE 自托管 | Notion 云端 | Miro 云端 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 首次内容绘制 | **1.2s**（本地） | 2.8s | 3.1s |
 | 同步延迟（同一局域网） | **<50ms** | 180-400ms | 200-500ms |
@@ -219,7 +220,7 @@ AFFiNE 的性能特征对生产部署至关重要：
 
 **使用 Let's Encrypt 启用 HTTPS：**
 
-```bash
+`````bash
 # 使用 Caddy 作为反向代理
 cat > Caddyfile << EOF
 affine.yourdomain.com {
@@ -227,11 +228,11 @@ affine.yourdomain.com {
     tls admin@yourdomain.com
 }
 EOF
-```
+`````
 
 **备份策略：**
 
-```bash
+`````bash
 # 自动每日备份
 cat > backup-affine.sh << EOF
 #!/bin/bash
@@ -250,11 +251,11 @@ EOF
 chmod +x backup-affine.sh
 # 每天凌晨 2 点运行
 echo "0 2 * * * /root/backup-affine.sh" | crontab -
-```
+`````
 
 **配置 SMTP 发送邀请邮件：**
 
-```bash
+`````bash
 # config/affine.js 或通过管理后台
 {
   "mailer": {
@@ -268,11 +269,11 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     "from": "AFFiNE <affine@yourdomain.com>"
   }
 }
-```
+`````
 
 **OAuth 身份验证（Google）：**
 
-```bash
+`````bash
 # 在 config/affine.js 中
 {
   "auth": {
@@ -286,31 +287,31 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     }
   }
 }
-```
+`````
 
 **数据库连接池调优：**
 
-```yaml
+`````yaml
 # 在 docker-compose.yml 中添加高负载配置
 environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | AFFiNE v0.26 | Notion | Miro | Obsidian |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | **是 (MPL-2.0)** | 否 | 否 | 否 |
 | 可自托管 | **是** | 否 | 否 | 否（同步为云端） |
@@ -351,7 +352,7 @@ AFFiNE 并非完美。在全面投入前需了解以下限制：
 
 **问：我可以将现有的 Notion 工作区导入 AFFiNE 吗？**
 
-答：可以。AFFiNE 支持 Notion `.zip` 导出文件。进入 **导入 > Notion** 并上传导出的 zip 文件。页面层级、文本内容和图片都能正确迁移。数据库视图转换为 AFFiNE 数据库表，但复杂的 Notion 公式可能需要手动调整。
+答：可以。AFFiNE 支持 Notion ````.zip``` 导出文件。进入 **导入 > Notion** 并上传导出的 zip 文件。页面层级、文本内容和图片都能正确迁移。数据库视图转换为 AFFiNE 数据库表，但复杂的 Notion 公式可能需要手动调整。
 
 **问：20 人团队自托管 AFFiNE 的硬件要求是什么？**
 
@@ -460,12 +461,12 @@ AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](affine-knowledge-base-whiteboard)
@@ -474,6 +475,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [moneyprinterturbo-one-click-ai-video-generator](affine-knowledge-base-whiteboard)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](affine-knowledge-base-whiteboard)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

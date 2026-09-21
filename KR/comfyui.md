@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/ai-tools/comfyui-architecture-node-based-ai-image/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -60,17 +61,17 @@ ComfyUI의 아키텍처는 세 개의 계층으로 구분됩니다: 1. **프론�
 
 | 개념 | 설명 |
 |------|------|
-| **노드 (Node)** | 단일 작업 (예: `KSampler`, `Load Checkpoint`, `Save Image`) |
+| **노드 (Node)** | 단일 작업 (예: ```KSampler````, ````Load Checkpoint````, ````Save Image````) |
 | **연결 (Link)** | 타입이 지정된 데이터를 전달하는 유향 연결 (MODEL, LATENT, IMAGE, CONDITIONING) |
 | **워크플로우 (Workflow)** | 완전한 생성 파이프라인을 정의하는 JSON 그래프 |
 | **큐 (Queue)** | 워크플로우를 순서대로 실행하는 작업 스케줄러 |
 | **커스텀 노드 (Custom Node)** | ComfyUI의 노드 레지스트리를 확장하는 Python 클래스 |
 
-노드 시스템은 그래프 수준에서 타입 안전성을 강제합니다. `KSampler` 노드는 `MODEL` 입력을 기대하고 `LATENT` 텐서를 출력합니다. 문자열을 모델 슬롯에 연결하면 편집기가 실행 전에 타입 불일치를 강조 표시합니다.
+노드 시스템은 그래프 수준에서 타입 안전성을 강제합니다. ````KSampler```` 노드는 ````MODEL```` 입력을 기대하고 ````LATENT```` 텐서를 출력합니다. 문자열을 모델 슬롯에 연결하면 편집기가 실행 전에 타입 불일치를 강조 표시합니다.
 
 ### 워크플로우 직렬화
 
-모든 워크플로우는 JSON 파일입니다. 팀원과 공유하거나 Git으로 버전 관리하거나 API 서버로 POST 요청을 복 볼 수 있습니다: ```json
+모든 워크플로우는 JSON 파일입니다. 팀원과 공유하거나 Git으로 버전 관리하거나 API 서버로 POST 요청을 복 볼 수 있습니다: `````json
 {
   "1": {
     "inputs": {
@@ -88,7 +89,7 @@ ComfyUI의 아키텍처는 세 개의 계층으로 구분됩니다: 1. **프론�
     "_meta": { "title": "Positive Prompt" }
   }
 }
-```
+`````
 
 이 JSON 우선 접근 방식은 ComfyUI를 CI/CD 파이프라인과 자동화된 배치 처리에 독특하게 적합하게 만듭니다.
 
@@ -105,7 +106,7 @@ ComfyUI의 아키텍처는 세 개의 계층으로 구분됩니다: 1. **프론�
 
 ### 방법 1: 직접 설치 (5분)
 
-```bash
+`````bash
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 
@@ -121,22 +122,22 @@ pip install -r requirements.txt
 
 # 서버 시작
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
-브라우저에서 `http://localhost:8188`을 엽니다. 인터페이스가 기본 텍스트-투-이미지 워크플로우를 로드합니다.
+브라우저에서 ````http://localhost:8188````을 엽니다. 인터페이스가 기본 텍스트-투-이미지 워크플로우를 로드합니다.
 
 ### 방법 2: ComfyUI 데스크톱
 
-터미널 대신 설치 프로그램을 선호하는 사용자를 위해: ```bash
+터미널 대신 설치 프로그램을 선호하는 사용자를 위해: `````bash
 # 다음에서 최신 데스크톱 릴리스를 다운로드합니다: # https://github.com/Comfy-Org/ComfyUI-Desktop/releases
 
 # 데스크톱 앱은 Python, CUDA, 의존성 관리를 자동으로 처리합니다.
 # 첫 실행에 약 15분이 소요됩니다 (모델 다운로드 및 환경 설정).
-```
+`````
 
 ### 방법 3: Docker (프로덕션 권장)
 
-Docker 방식은 호스트 시스템을 깔끔하게 유지하고 배포를 재현 가능하게 만듭니다: ```bash
+Docker 방식은 호스트 시스템을 깔끔하게 유지하고 배포를 재현 가능하게 만듭니다: `````bash
 # GPU 패스스루 확인
 nvidia-smi
 docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
@@ -144,9 +145,9 @@ docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
 # 영구 저장소 디렉토리 생성
 mkdir -p comfyui-deploy/{models/checkpoints,models/loras,models/vae,models/controlnet,output,custom_nodes,workflows}
 cd comfyui-deploy
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -162,9 +163,9 @@ services: comfyui: image: ghcr.io/ai-dock/comfyui:latest-cuda
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # 서비스 시작
 docker compose up -d
 
@@ -173,11 +174,11 @@ docker compose logs -f comfyui
 
 # 컨테이너 내 GPU 사용률 확인
 docker exec comfyui nvidia-smi
-```
+`````
 
 ### 모델 설정
 
-모델을 적절한 디렉토리에 다운로드합니다: ```bash
+모델을 적절한 디렉토리에 다운로드합니다: `````bash
 # SDXL Base (6.9 GB)
 wget -P models/checkpoints \
   "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
@@ -193,15 +194,15 @@ wget -P models/vae \
 # ControlNet OpenPose
 wget -P models/controlnet \
   "https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors"
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Stable Diffusion & SDXL
 
-ComfyUI는 모든 주요 Stable Diffusion 변형을 기본적으로 지원합니다. 내장된 `CheckpointLoaderSimple` 노드는 구성 변경 없이 SD 1.5 및 SDXL 체크포인트를 모두 처리합니다.
+ComfyUI는 모든 주요 Stable Diffusion 변형을 기본적으로 지원합니다. 내장된 ````CheckpointLoaderSimple```` 노드는 구성 변경 없이 SD 1.5 및 SDXL 체크포인트를 모두 처리합니다.
 
-```python
+`````python
 # refiner 파이프라인이 있는 SDXL 로딩 구성
 CheckpointLoaderSimple: ckpt_name: "sd_xl_base_1.0.safetensors"
 
@@ -211,11 +212,11 @@ KSampler: seed: 42
   sampler_name: "dpmpp_2m"
   scheduler: "karras"
   denoise: 1.0
-```
+`````
 
 ### Flux
 
-Flux 모델은 최적화된 어텐션 구현을 통해 전용 노드로 통합됩니다: ```python
+Flux 모델은 최적화된 어텐션 구현을 통해 전용 노드로 통합됩니다: `````python
 # Flux 워크플로우 노드
 UNETLoader: unet_name: "flux1-dev.safetensors"
   weight_dtype: "fp8_e4m3fn"  # VRAM을 24GB에서 12GB로 감소
@@ -227,20 +228,20 @@ DualCLIPLoader: clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
 EmptySD3LatentImage: width: 1024
   height: 1024
   batch_size: 1
-```
+`````
 
 Flux 지원에는 Dev, Schnell 및 커뮤니티 파인튜닝이 포함됩니다. FP8 양자화는 최소한의 품질 손실로 VRAM 사용량을 약 50% 감소시킵니다.
 
 ### Wan 비디오 모델
 
-Wan 2.1/2.2 통합은 텍스트-투-비디오 및 이미지-투-비디오를 지원합니다: ```bash
+Wan 2.1/2.2 통합은 텍스트-투-비디오 및 이미지-투-비디오를 지원합니다: `````bash
 # Wan 커스텀 노드 설치
 cd custom_nodes
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 pip install -r ComfyUI-WanVideoWrapper/requirements.txt
-```
+`````
 
-```python
+`````python
 # Wan 텍스트-투-비디오 워크플로우
 WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   positive: "slow motion aerial shot of ocean waves"
@@ -248,11 +249,11 @@ WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   height: 720
   frames: 81
   steps: 30
-```
+`````
 
 ### ControlNet & LoRA
 
-ControlNet 및 LoRA 노드는 모델 레벨에서 통합되어 조합 가능한 조건 제어를 허용합니다: ```python
+ControlNet 및 LoRA 노드는 모델 레벨에서 통합되어 조합 가능한 조건 제어를 허용합니다: `````python
 # 강도 제어가 있는 다중 LoRA 적용
 LoraLoaderModelOnly: model: ["CheckpointLoader", 0]
   lora_name: "add_detail.safetensors"
@@ -264,11 +265,11 @@ ControlNetApplyAdvanced: positive: ["CLIPTextEncode", 0]
   strength: 1.0
   start_percent: 0.0
   end_percent: 0.8
-```
+`````
 
 ### API 통합
 
-모든 워크플로우는 REST API를 통해 실행할 수 있습니다: ```bash
+모든 워크플로우는 REST API를 통해 실행할 수 있습니다: `````bash
 # API를 통한 워크플로우 제출
 curl -X POST http://localhost:8188/prompt \
   -H "Content-Type: application/json" \
@@ -284,7 +285,7 @@ curl http://localhost:8188/queue
 
 # 생성된 이미지 가져오기
 curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&type=output
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -305,24 +306,24 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 
 ### 사례: 제품 사진 파이프라인
 
-전자상거래 팀이 매일 50장의 일관된 조명을 가진 제품 이미지를 생성합니다: ```python
+전자상거래 팀이 매일 50장의 일관된 조명을 가진 제품 이미지를 생성합니다: `````python
 # 공유 스타일 LoRA가 있는 배치 워크플로우
 LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
                     ↓
             LoadPromptList (50개 프롬프트)
                     ↓
             SaveImage (메타데이터 + 파일명 패턴 포함)
-```
+`````
 
 결과: 50장 이미지, 11분 소요 (SDXL, 1024x1024), 워크플로우 JSON을 다시 로드하면 완전히 재현 가능합니다.
 
 ### 사례: 비디오 생성 스튜디오
 
-콘텐츠 스튜디오가 숏폼 비디오 클립을 제작합니다: ```
+콘텐츠 스튜디오가 숏폼 비디오 클립을 제작합니다: `````
 텍스트 프롬프트 → WanVideoSampler → 프레임 보간 (RIFE) → 비디오 합성
                         ↓
             이미지 조건 제어 (선택적 이미지-투-비디오)
-```
+`````
 
 Wan 2.1 14B는 1280x720 해상도에서 81프레임을 생성하며 클립당 약 4분이 소요됩니다. 노드 구조를 통해 단일 로더 노드를 변경하여 Wan 변형 (1.3B 경량, 14B 품질) 간 전환이 가능합니다.
 
@@ -330,7 +331,7 @@ Wan 2.1 14B는 1280x720 해상도에서 81프레임을 생성하며 클립당 �
 
 ### 리버스 프록시 + SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/comfyui
 server {
     listen 443 ssl http2;
@@ -355,20 +356,20 @@ server {
         proxy_pass http://127.0.0.1:8188;
     }
 }
-```
+`````
 
 ### 인증
 
-```bash
+`````bash
 # localhost 전용 + API 키로 시작
 python main.py --listen 0.0.0.0 --port 8188 \
   --api-key "your-secure-api-key-here" \
   --disable-xformers
-```
+`````
 
 ### 커스텀 노드 개발
 
-```python
+`````python
 # custom_nodes/my_custom_node/nodes.py
 class MyUpscaleNode: """Real-ESRGAN을 사용한 간단한 4x 업스케일 노드."""
 
@@ -389,18 +390,18 @@ class MyUpscaleNode: """Real-ESRGAN을 사용한 간단한 4x 업스케일 노�
 
 NODE_CLASS_MAPPINGS = {"MyUpscaleNode": MyUpscaleNode}
 NODE_DISPLAY_NAME_MAPPINGS = {"MyUpscaleNode": "My Upscale (Real-ESRGAN)"}
-```
+`````
 
-```python
+`````python
 # custom_nodes/my_custom_node/__init__.py
 from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
-```
+`````
 
 ### 모니터링
 
-```bash
+`````bash
 # GPU 사용률 대시보드 (ComfyUI와 함께 실행)
 watch -n 1 nvidia-smi
 
@@ -409,11 +410,11 @@ curl -s http://localhost:8188/queue | jq '.queue_running | length'
 
 # 모델 저장소 디스크 공간 모니터링
 df -h models/ output/
-```
+`````
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # backup-comfyui.sh
 BACKUP_DIR="/backup/comfyui-$(date +%Y%m%d)"
@@ -432,7 +433,7 @@ rsync -av --progress output/ "$BACKUP_DIR/output/"
 # rsync -av --progress models/ "$BACKUP_DIR/models/"
 
 echo "백업 완료: $BACKUP_DIR"
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -477,7 +478,7 @@ SD 1.5는 6 GB VRAM에서 실행됩니다. SDXL은 1024x1024 생성에 8 GB가 �
 
 ### 커스텀 노드를 어떻게 설치하나요?
 
-ComfyUI Manager를 사용하세요 (`git clone https://github.com/Comfy-Org/ComfyUI-Manager.git` 을 `custom_nodes/`에 설치) 또는 저장소를 `custom_nodes/` 디렉토리에 수동으로 클론하세요. 설치 후 ComfyUI를 재시작하세요. Manager는 3000+ 커뮤니티 노드의 검색 가능한 브라우저와 원클릭 설치를 제공합니다.
+ComfyUI Manager를 사용하세요 (````git clone https://github.com/Comfy-Org/ComfyUI-Manager.git```` 을 ````custom_nodes/````에 설치) 또는 저장소를 ````custom_nodes/```` 디렉토리에 수동으로 클론하세요. 설치 후 ComfyUI를 재시작하세요. Manager는 3000+ 커뮤니티 노드의 검색 가능한 브라우저와 원클릭 설치를 제공합니다.
 
 ### ComfyUI는 상업적으로 묣로 사용할 수 있나요?
 
@@ -485,24 +486,24 @@ ComfyUI 자체는 GPL-3.0 라이선스로 상업적 사용을 허용하나, 배�
 
 ### ComfyUI를 안전하게 업그레이드하려면?
 
-```bash
+`````bash
 cd ComfyUI
 git pull origin master
 pip install -r requirements.txt
 # 서버 재시작
-```
+`````
 
-프로덕션 배포에서는 master 대신 특정 릴리스 태그를 고정하세요: `git checkout v0.21.1`. 커스텀 노드 호환성이 버전 간에 깨질 수 있으므로 업그레이드 전에 항상 워크플로우를 백업하세요.
+프로덕션 배포에서는 master 대신 특정 릴리스 태그를 고정하세요: ````git checkout v0.21.1````. 커스텀 노드 호환성이 버전 간에 깨질 수 있으므로 업그레이드 전에 항상 워크플로우를 백업하세요.
 
 ### 기존 AUTOMATIC1111 모델과 함께 사용할 수 있나요?
 
-예. 두 도구는 동일한 `.safetensors` 및 `.ckpt` 모델 형식을 사용합니다. ComfyUI의 모델 디렉토리를 기존 A1111 모델 폴터로 지정하거나 심볼릭 링크를 생성하세요: `ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints`.
+예. 두 도구는 동일한 ````.safetensors```` 및 ````.ckpt```` 모델 형식을 사용합니다. ComfyUI의 모델 디렉토리를 기존 A1111 모델 폴터로 지정하거나 심볼릭 링크를 생성하세요: ````ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints````.
 
 ## Conclusion
 
 ComfyUI는 확산 모델 워크플로우를 위한 가장 강력한 오픈소스 인터페이스입니다. 그 노드 기반 아키텍처는 초기의 단순성을 장기적 강력함과 교환합니다 — 한 번 워크플로우를 구축하면 버전 관리, 자동화, 확장이 가능합니다. GitHub에서 87,200개 이상의 Star는 편의성보다 제어력을 중시하는 커뮤니티를 반영합니다.
 
-프로덕션 환경에서는 Docker 설치를, 로컬 실험에는 데스크톱 설치 프로그램을 사용하세요. 즉시 ComfyUI Manager를 설치하세요 — 3000+ 커스텀 노드 생태계를 열어줍니다. `nvidia-smi`로 워크플로우를 벤치마킹하고 안정적인 조합을 찾으면 버전 태그를 고정하세요.
+프로덕션 환경에서는 Docker 설치를, 로컬 실험에는 데스크톱 설치 프로그램을 사용하세요. 즉시 ComfyUI Manager를 설치하세요 — 3000+ 커스텀 노드 생태계를 열어줍니다. ````nvidia-smi```로 워크플로우를 벤치마킹하고 안정적인 조합을 찾으면 버전 태그를 고정하세요.
 
 **실행 목록:**
 1. 저장소를 클론하고 Docker Compose 구성 실행
@@ -560,7 +561,7 @@ Telegram 커뮤니티에 참여하세요: **t.me/dibi8_comfyui** — 워크플�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -570,6 +571,6 @@ Telegram 커뮤니티에 참여하세요: **t.me/dibi8_comfyui** — 워크플�
 - [2026-06-08-trending-ai-agents](comfyui)
 - [2026-06-15-trending-ai-agents](comfyui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

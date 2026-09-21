@@ -10,11 +10,12 @@ github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 license: MIT
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
+
 ## Introduction
 
 You clone a new codebase. 50,000 lines of code across 200 files. You open VS Code and stare at the file tree. Where do you even start?
 
-Most developers reach for `grep`. Then `ripgrep`. Then they open the 10 most-referenced files and try to piece together the architecture mentally. It works — for small projects. For anything substantial, it's exhausting.
+Most developers reach for ```grep````. Then ````ripgrep````. Then they open the 10 most-referenced files and try to piece together the architecture mentally. It works — for small projects. For anything substantial, it's exhausting.
 
 Understand-Anything does something fundamentally different. It transforms any codebase into an interactive knowledge graph — nodes for files, classes, and functions; edges for dependencies and relationships. You can explore, search, and ask questions about the code. Not with regex. With natural language.
 
@@ -30,19 +31,19 @@ Understand-Anything is an open-source tool by Egonex-AI that converts any codeba
 
 The result is a visual + queryable representation of code that humans and AI agents can both navigate. Claude Code can traverse it. Codex can reason over it. Cursor can reference it. The graph serves as a shared understanding layer between developers and AI assistants.
 
-```bash
+`````bash
 # Install via npm (TypeScript-based CLI)
 npm install -g understand-anything
 
 # Or use via Docker
 docker run -v $(pwd):/code ghcr.io/egonex-ai/understand-anything:latest /code
-```
+`````
 
 The tool works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, OpenCode, and other AI coding agents — making it a universal knowledge layer for the AI coding toolchain.
 
 ## How Understand-Anything Works
 
-The pipeline has three stages: parsing, graph construction, and indexing: ```
+The pipeline has three stages: parsing, graph construction, and indexing: `````
 Source Code (all languages)
         │
         ▼
@@ -67,9 +68,9 @@ Source Code (all languages)
          ▼
    Knowledge Graph
   (explore + query)
-```
+`````
 
-Each language is parsed with its native AST (Python with `ast`, TypeScript with `typescript` compiler API, etc.). The graph is stored in a compact format optimized for both visualization and fast queries.
+Each language is parsed with its native AST (Python with ````ast````, TypeScript with ````typescript```` compiler API, etc.). The graph is stored in a compact format optimized for both visualization and fast queries.
 
 The indexing layer adds vector embeddings for semantic search — enabling "find all functions that handle authentication" type queries across the entire codebase.
 
@@ -77,17 +78,17 @@ The indexing layer adds vector embeddings for semantic search — enabling "find
 
 ### Quick Install
 
-```bash
+`````bash
 # npm installation (recommended)
 npm install -g understand-anything
 
 # Verify
 understand-anything --version
-```
+`````
 
 ### Docker Installation
 
-```bash
+`````bash
 # Pull latest image
 docker pull ghcr.io/egonex-ai/understand-anything:latest
 
@@ -95,35 +96,35 @@ docker pull ghcr.io/egonex-ai/understand-anything:latest
 docker run --rm -v $(pwd):/code \
   ghcr.io/egonex-ai/understand-anything:latest \
   /code --output ./knowledge-graph.json
-```
+`````
 
 ### From Source
 
-```bash
+`````bash
 git clone https://github.com/Egonex-AI/Understand-Anything.git
 cd Understand-Anything
 npm install
 npm run build
 npm link  # global install
-```
+`````
 
 ### Python Wrapper
 
-```bash
+`````bash
 pip install understand-anything-python
-```
+`````
 
-```python
+`````python
 from understand_anything import CodebaseAnalyzer
 
 analyzer = CodebaseAnalyzer("/path/to/codebase")
 analyzer.build_graph()
 analyzer.export_graph("graph.json")
-```
+`````
 
 ### Configuration
 
-```json
+`````json
 {
   "include": ["src/**/*.{ts,tsx,js,jsx}", "tests/**/*"],
   "exclude": ["node_modules", "dist", "*.test.*"],
@@ -132,49 +133,49 @@ analyzer.export_graph("graph.json")
   "max_file_size": 50000,
   "max_depth": 5
 }
-```
+`````
 
 ## Integration with Mainstream Tools
 
 ### Claude Code Integration
 
-```bash
+`````bash
 # Add knowledge graph to Claude Code context
 understand-anything analyze ./src --format claude-code
 
 # Claude Code automatically loads the graph for context-aware responses
-```
+`````
 
 ### Cursor IDE Plugin
 
-```bash
+`````bash
 # Install the Cursor extension
 # Settings → Extensions → Understand-Anything
 # Point to your project root
 
 # Cursor will show the knowledge graph sidebar
 # Click any node to navigate to the source
-```
+`````
 
 ### GitHub Copilot Extension
 
-```bash
+`````bash
 # Generate a .copilot context file
 understand-anything analyze ./src --format copilot
 
 # Creates .github/copilot-instructions.md with
 # graph-derived context for Copilot
-```
+`````
 
 ### VS Code Extension
 
-```bash
+`````bash
 # Install from marketplace
 # vscode-marketplace: egonex.understand-anything
 
 # Or CLI install
 npx @egonex/vscode-extension install
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -182,13 +183,13 @@ npx @egonex/vscode-extension install
 
 | Codebase Size | Files | Analysis Time | Graph Nodes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Small (CLI tool) | 50 | 2 seconds | 120 |
 | Medium (library) | 500 | 15 seconds | 1,200 |
@@ -201,11 +202,11 @@ Analysis time scales roughly linearly with file count. The graph construction is
 
 | Query Type | Response Time | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Structural (find imports) | <10ms | Graph traversal |
 | Semantic (natural language) | 50-200ms | Vector search + graph |
@@ -214,7 +215,7 @@ Analysis time scales roughly linearly with file count. The graph construction is
 
 ### Use Case: Onboarding New Developers
 
-A team of 15 developers joined a 50,000-line TypeScript project. Before Understand-Anything, onboarding took 2 weeks of reading code. After: ```bash
+A team of 15 developers joined a 50,000-line TypeScript project. Before Understand-Anything, onboarding took 2 weeks of reading code. After: `````bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
@@ -222,19 +223,19 @@ understand-anything analyze ./src --onboarding
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
-```
+`````
 
 New developer onboarding time reduced from 14 days to 3 days. The interactive graph lets them explore the codebase at their own pace.
 
 ### Use Case: Legacy Code Refactoring
 
-```bash
+`````bash
 # Find all files that reference deprecated API
 understand-anything query "deprecated authentication endpoints"
 
 # Returns: 23 files, 47 references
 # With full dependency chains
-```
+`````
 
 The graph reveals hidden coupling that spreadsheets and grep miss entirely.
 
@@ -242,7 +243,7 @@ The graph reveals hidden coupling that spreadsheets and grep miss entirely.
 
 ### Custom Language Support
 
-```typescript
+`````typescript
 // Add support for a new language
 import { LanguagePlugin } from 'understand-anything';
 
@@ -261,11 +262,11 @@ class MyLangPlugin implements LanguagePlugin {
 
 // Register plugin
 registerPlugin(new MyLangPlugin());
-```
+`````
 
 ### Graph Query Language (GQL)
 
-```bash
+`````bash
 # Find all functions called by more than 5 other functions
 understand-anything gql "func where call_count > 5 order by call_count desc"
 
@@ -274,11 +275,11 @@ understand-anything gql "file where incoming_refs == 0"
 
 # Find circular dependencies
 understand-anything gql "cycle where type == 'import'"
-```
+`````
 
 ### CI/CD Integration
 
-```yaml
+`````yaml
 # .github/workflows/graph-check.yml
 name: Knowledge Graph CI
 on: [pull_request]
@@ -297,11 +298,11 @@ jobs: analyze: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: graph-violations
           path: graph-violations.json
-```
+`````
 
 ### Performance Tuning
 
-```bash
+`````bash
 # Use incremental analysis (fastest for dev workflows)
 understand-anything analyze ./src --incremental
 
@@ -313,11 +314,11 @@ understand-anything analyze ./src --workers 8
 
 # Memory-efficient mode (for constrained environments)
 understand-anything analyze ./src --low-memory
-```
+`````
 
 ### Export Formats
 
-```bash
+`````bash
 # JSON (programmatic access)
 understand-anything analyze ./src --format json -o graph.json
 
@@ -331,21 +332,21 @@ understand-anything analyze ./src --format mermaid -o graph.mmd
 # HTML (interactive viewer)
 understand-anything analyze ./src --format html -o graph.html
 # Opens in browser with zoom, pan, search
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Understand-Anything | Code2Prompt | Sourcery | SonarQube |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Knowledge Graph | ✅ Interactive | ❌ Flat AST | ❌ | ❌ |
 | Natural Language Query | ✅ | ❌ | ❌ | ❌ |
@@ -364,11 +365,11 @@ Understand-Anything is the only tool that combines interactive visualization, na
 
 Understand-Anything is powerful but has honest limitations: 1. **Generated code is not analyzed.** Dynamic code (eval, exec, runtime-generated classes) won't appear in the graph. This is a fundamental limitation of static analysis — no tool solves this perfectly.
 
-2. **Third-party libraries need separate analysis.** The graph focuses on your codebase. To include dependencies, you need to analyze `node_modules`, `vendor/`, or equivalent separately.
+2. **Third-party libraries need separate analysis.** The graph focuses on your codebase. To include dependencies, you need to analyze ````node_modules````, ````vendor/````, or equivalent separately.
 
-3. **Large monorepos need tuning.** 50,000+ files may require `--workers` and `--low-memory` flags for optimal performance. Default settings work well for projects up to 10,000 files.
+3. **Large monorepos need tuning.** 50,000+ files may require ````--workers```` and ````--low-memory```` flags for optimal performance. Default settings work well for projects up to 10,000 files.
 
-4. **Non-standard file extensions.** Files without recognized extensions may not be parsed correctly. Use the `include` config to specify patterns.
+4. **Non-standard file extensions.** Files without recognized extensions may not be parsed correctly. Use the ````include```` config to specify patterns.
 
 5. **Real-time collaboration.** The graph is computed on-demand, not continuously updated. Changes require re-analysis (incremental mode minimizes this cost).
 
@@ -396,15 +397,15 @@ Yes. The GQL (Graph Query Language) supports structural queries, semantic search
 
 **Q: Does it work with monorepos?**
 
-Yes. Understand-Anything handles monorepos natively. Set the `--root` flag to the monorepo root and specify which packages to include. Cross-package dependency detection works automatically.
+Yes. Understand-Anything handles monorepos natively. Set the ````--root```` flag to the monorepo root and specify which packages to include. Cross-package dependency detection works automatically.
 
 **Q: What's the maximum codebase size?**
 
-Tested with codebases up to 500,000 files and 50 million lines of code. Performance depends on hardware — a modern laptop handles 10,000 files comfortably. For larger projects, use `--workers` and `--low-memory` flags.
+Tested with codebases up to 500,000 files and 50 million lines of code. Performance depends on hardware — a modern laptop handles 10,000 files comfortably. For larger projects, use ````--workers```` and ````--low-memory```` flags.
 
 **Q: Is there a web interface?**
 
-Yes. The `--format html` export generates a fully interactive web viewer with zoom, pan, search, and click-to-navigate functionality. No server required — it's a static HTML file.
+Yes. The ````--format html```` export generates a fully interactive web viewer with zoom, pan, search, and click-to-navigate functionality. No server required — it's a static HTML file.
 
 ## Conclusion
 
@@ -414,14 +415,14 @@ The fact that it works with Claude Code, Codex, Cursor, Copilot, and Gemini CLI 
 
 60,000+ stars in a month isn't just hype. It's developers realizing that navigating codebases should feel like exploring a map, not reading a phone book.
 
-Try it on your next project. Clone a repo, run `understand-anything analyze .`, and watch the graph appear. You'll wonder how you ever onboarded without it.
+Try it on your next project. Clone a repo, run ````understand-anything analyze .```, and watch the graph appear. You'll wonder how you ever onboarded without it.
 
 **行动号召**: Try Understand-Anything today. Join the [dibi8 Telegram group](https://t.me/DIBI8_Group/2) to discuss code visualization and AI-assisted development workflows.
 
 For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8-claude-code-mastery) and [Cursor IDE optimization](dibi8-cursor-optimization).
 
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://github.com/Egonex-AI/Understand-Anything
 - GitHub repository: https://github.com/Egonex-AI/Understand-Anything
 - Live demo: https://egonex.ai/understand-anything/demo
@@ -461,7 +462,7 @@ For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](understand-anything-interactive-knowledge-graphs-codebases)
@@ -470,7 +471,7 @@ For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8
 - [2026-06-15-trending-ai-agents](understand-anything-interactive-knowledge-graphs-codebases)
 - [2026-06-22-trending-ai-agents](understand-anything-interactive-knowledge-graphs-codebases)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

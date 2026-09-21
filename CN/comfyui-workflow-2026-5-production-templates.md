@@ -27,6 +27,7 @@ faq: - q: "Is ComfyUI better than Stable Diffusion WebUI in 2026?"
   - q: "How long to learn ComfyUI from scratch?"
     a: "Loading a workflow + generating: 30 minutes. Building your own workflow: 1-2 days. Mastering nodes for production: 2-3 weeks. The learning curve is steep first but pays off — workflows are reusable, sharable, and reproducible."
 ---
+
 {{</* resource-info */>}}
 
 # ComfyUI Workflow 2026: Setup + 5 Production Templates
@@ -48,19 +49,19 @@ ComfyUI became the default tool for serious AI image generation in 2026. Node-ba
 ## Setup (1 Hour)
 
 ### Step 1: Install (15 min)
-```bash
+````bash
 # Clone + setup venv
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python main.py
-```
+`````
 
-Browser opens at `http://localhost:8188`.
+Browser opens at ````http://localhost:8188````.
 
 ### Step 2: Download models (30 min)
-Drop into `ComfyUI/models/checkpoints/`: - **SDXL base + refiner** (most versatile, ~13GB total)
+Drop into ````ComfyUI/models/checkpoints/````: - **SDXL base + refiner** (most versatile, ~13GB total)
 - **Flux.1 Schnell** (fast prototyping, ~24GB)
 - **SD 3.5 Large** (best photorealism, ~17GB)
 
@@ -68,7 +69,7 @@ Optional but useful: - 2-3 LoRAs for your style (Civitai, search "2026 SDXL tren
 - ControlNet models (OpenPose, Depth, Canny — each ~1.5GB)
 
 ### Step 3: First generation (15 min)
-- Drag the default workflow from `ComfyUI/workflows/`
+- Drag the default workflow from ````ComfyUI/workflows/````
 - Load SDXL checkpoint
 - Type prompt
 - Queue prompt
@@ -106,7 +107,7 @@ Done. You're now generating. The hard part starts now: building reusable workflo
 
 ## Workflow Sharing
 
-All five templates are saveable as `.json`. Drag onto ComfyUI canvas to load. Share with team via git or Discord.
+All five templates are saveable as ````.json```. Drag onto ComfyUI canvas to load. Share with team via git or Discord.
 
 The community publishes thousands of workflows at: - ComfyUI subreddit
 - OpenArt.ai workflow library
@@ -128,7 +129,7 @@ ComfyUI's learning curve is real but the payoff is real. Once you have 5 reusabl
 Start with the 5 templates above. Customize. Share. The compound returns of reusable workflows show up after week 2 — when you realize you're combining nodes faster than you'd write code.
 
 
----
+* * *
 **Related**: [Stable Diffusion WebUI Setup](https://dibi8.com/resources/ai-tools/stable-diffusion-webui/) · [Top AI Image Generators 2026](https://dibi8.com/resources/ai-tools/ai-image-generation-tools-2025/) · [Local-First AI Stack 2026](https://dibi8.com/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
@@ -194,11 +195,11 @@ ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates represents 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -207,7 +208,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -215,15 +216,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

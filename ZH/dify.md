@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-
 ---
 
+
 {{</* resource-info */>}}
 
 大多数团队以艰难的方式交付 AI 聊天机器人。他们将 Flask 路由连接到 OpenAI API，在 JSON 文件中手工编写提示模板，并从零开始构建 RAG 管道——包括嵌入模型、向量存储和分块逻辑。三个月后，原型无法维护，产品经理无法在没有开发人员的情况下更新提示，知识库同步是一个静默失败的定时任务。
@@ -54,13 +55,13 @@ Dify 的架构将关注点分离到通过明确定义的 API 通信的离散服�
 
 | 服务 | 端口 | 技术 | 用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Web 前端 | 3000 | Next.js | 可视化构建器、仪表盘、管理界面 |
 | API 服务 | 5001 | Python Flask | REST API 端点、业务逻辑 |
@@ -74,11 +75,11 @@ Dify 的架构将关注点分离到通过明确定义的 API 通信的离散服�
 
 | 组件 | 默认 | 替代方案 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 元数据数据库 | PostgreSQL 15 | AWS RDS、Cloud SQL |
 | 缓存/队列 | Redis 7 | AWS ElastiCache、Redis Cloud |
@@ -97,11 +98,11 @@ Dify 的工作流引擎使用 DAG（有向无环图）执行模型，支持并�
 
 | 资源 | 最低配置 | 推荐配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | 2 核 | 4+ 核 |
 | 内存 | 4 GiB | 8 GiB |
@@ -113,30 +114,30 @@ Dify 的工作流引擎使用 DAG（有向无环图）执行模型，支持并�
 
 从 GitHub 克隆最新版本：
 
-```bash
+````bash
 git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
-```
+`````
 
 这将检出最新的稳定标签（截至撰写时为 v1.14.2）。
 
 ### 第二步 — 配置环境
 
-```bash
+`````bash
 cd dify/docker
 cp .env.example .env
-```
+`````
 
-编辑 `.env` 设置安全的密钥：
+编辑 ````.env```` 设置安全的密钥：
 
-```bash
+`````bash
 # 生成加密安全的密钥
 SECRET=$(openssl rand -hex 32)
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/" .env
-```
+`````
 
-`.env` 中需要检查的关键变量：
+````.env```` 中需要检查的关键变量：
 
-```bash
+`````bash
 # 核心设置
 CONSOLE_API_URL=http://localhost:5001
 CONSOLE_WEB_URL=http://localhost:3000
@@ -160,55 +161,55 @@ REDIS_DB=0
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=http://weaviate:8080
 WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
-```
+`````
 
 ### 第三步 — 启动 Dify
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
 这将启动 11 个容器：5 个核心服务和 6 个依赖项。验证一切正常运行：
 
-```bash
+`````bash
 docker compose ps
-```
+`````
 
-你应该看到所有容器处于 `Up (healthy)` 状态。首次启动需要 60-90 秒，因为 API 服务需要运行数据库迁移。
+你应该看到所有容器处于 ````Up (healthy)```` 状态。首次启动需要 60-90 秒，因为 API 服务需要运行数据库迁移。
 
 ### 第四步 — 初始化管理员账户
 
 打开浏览器并访问：
 
-```
+`````
 http://localhost/install
-```
+`````
 
 使用你的邮箱和密码完成设置向导。设置完成后，在以下地址登录：
 
-```
+`````
 http://localhost
-```
+`````
 
 ### 第五步 — 添加第一个模型提供商
 
 导航到 **设置 → 模型提供商** 并为至少一个提供商添加 API 密钥。对于 OpenAI：
 
 1. 从提供商列表中选择 "OpenAI"
-2. 粘贴你的 API 密钥（`sk-...`）
+2. 粘贴你的 API 密钥（````sk-...````）
 3. 点击 "保存"
 
 使用 Ollama 进行本地开发：
 
-1. 确保 Ollama 正在本地运行（`ollama serve`）
+1. 确保 Ollama 正在本地运行（````ollama serve````）
 2. 从提供商列表中选择 "Ollama"
-3. 将基础 URL 设置为 `http://host.docker.internal:11434`
-4. 选择已下载的模型（例如 `llama3.1:8b`）
+3. 将基础 URL 设置为 ````http://host.docker.internal:11434````
+4. 选择已下载的模型（例如 ````llama3.1:8b````）
 
-```bash
+`````bash
 # 拉取轻量级模型进行测试
 ollama pull llama3.1:8b
-```
+`````
 
 你的 Dify 实例现在已准备好构建 AI 应用程序。
 
@@ -226,7 +227,7 @@ ollama pull llama3.1:8b
 
 通过 API 访问应用：
 
-```bash
+`````bash
 curl -X POST 'http://localhost/v1/chat-messages' \
   -H 'Authorization: Bearer YOUR_APP_API_KEY' \
   -H 'Content-Type: application/json' \
@@ -237,31 +238,31 @@ curl -X POST 'http://localhost/v1/chat-messages' \
     "conversation_id": "",
     "user": "user-123"
   }'
-```
+`````
 
 ### Ollama（本地 LLM）
 
 对于隔离网络或成本敏感的环境，Ollama 集成让你可以运行本地模型：
 
-```bash
+`````bash
 # 启动 Ollama
 ollama serve
 
 # 拉取模型
 ollama pull llama3.1:8b
 ollama pull qwen2.5:14b
-```
+`````
 
 在 Dify 中，前往 **设置 → 模型提供商 → Ollama** 并配置：
 
 | 字段 | 值 |
 |
----
+* * *
 |
----
+* * *
 |
-| 模型名称 | `llama3.1:8b` |
-| 基础 URL | `http://host.docker.internal:11434` |
+| 模型名称 | ````llama3.1:8b```` |
+| 基础 URL | ````http://host.docker.internal:11434```` |
 
 使用本地模型进行开发，并在生产环境中切换到云模型，而无需更改应用逻辑。
 
@@ -269,47 +270,47 @@ ollama pull qwen2.5:14b
 
 用 Qdrant 替换 Weaviate 以获得更好的扩展性能：
 
-```bash
+`````bash
 cd dify/docker
 cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env
-```
+`````
 
-编辑 `envs/vectorstores/qdrant.env`：
+编辑 ````envs/vectorstores/qdrant.env````：
 
-```bash
+`````bash
 VECTOR_STORE=qdrant
 QDRANT_URL=http://qdrant:6333
 QDRANT_API_KEY=your-api-key
 QDRANT_CLIENT_TIMEOUT=20
-```
+`````
 
-将 Qdrant 添加到你的 `docker-compose.override.yaml`：
+将 Qdrant 添加到你的 ````docker-compose.override.yaml````：
 
-```yaml
+`````yaml
 services: qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
     volumes: - qdrant_data:/qdrant/storage
     environment: - QDRANT__SERVICE__API_KEY=your-api-key
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
 重启 Dify：
 
-```bash
+`````bash
 docker compose down
 docker compose up -d
-```
+`````
 
 ### Weaviate
 
 Weaviate 是默认的向量存储，开箱即用。对于生产环境，使用外部 Weaviate 集群：
 
-```bash
+`````bash
 # 在 .env 中
 VECTOR_STORE=weaviate
 WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
 WEAVIATE_API_KEY=your-api-key
-```
+`````
 
 ### Claude Code 集成
 
@@ -320,9 +321,9 @@ WEAVIATE_API_KEY=your-api-key
 3. 复制 MCP 服务器 URL
 4. 在 Claude Code 中运行：
 
-```bash
+`````bash
 claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
-```
+`````
 
 你的 Dify 工作流现在可以直接从 Claude Code 对话中调用。
 
@@ -334,13 +335,13 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 | 指标 | 1 CPU / 2 GB 内存 | 4 CPU / 8 GB 内存 | 8 CPU / 16 GB 内存 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QPS（无模型调用） | 3 req/s | 8 req/s | 11 req/s |
 | QPS（使用 GPT-4o） | 2 req/s | 5 req/s | 6 req/s |
@@ -353,13 +354,13 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 | 操作 | 100 份文档 | 1,000 份文档 | 10,000 份文档 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 上传 + 分块 | 30s | 4 分钟 | 35 分钟 |
 | 嵌入（OpenAI） | 45s | 6 分钟 | 50 分钟 |
@@ -369,13 +370,13 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 | 规模 | VPS 成本 | LLM 成本 | 总计 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开发 / 1 用户 | $20 | $5-10 | $25-30 |
 | 小团队 / 50 用户 | $40 | $50-100 | $90-140 |
@@ -393,16 +394,16 @@ claude config add mcp.dify http://localhost:5001/your-mcp-endpoint
 
 ### 环境隔离
 
-对于生产环境，切勿使用默认的 `.env` 值。创建特定于环境的配置：
+对于生产环境，切勿使用默认的 ````.env```` 值。创建特定于环境的配置：
 
-```bash
+`````bash
 # 生产环境
 cp .env .env.production
-```
+`````
 
 生产环境的关键更改：
 
-```bash
+`````bash
 # 安全
 SECRET_KEY=$(openssl rand -hex 48)
 CONSOLE_API_URL=https://dify.yourcompany.com
@@ -427,13 +428,13 @@ S3_BUCKET_NAME=dify-prod-uploads
 S3_ACCESS_KEY=AKIA...
 S3_SECRET_KEY=...
 S3_REGION=us-east-1
-```
+`````
 
 ### 反向代理与 SSL
 
 使用 Nginx 或 Traefik 进行 TLS 终止：
 
-```nginx
+`````nginx
 server {
     listen 443 ssl http2;
     server_name dify.yourcompany.com;
@@ -455,13 +456,13 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### 监控与可观测性
 
 Dify 通过 API 服务暴露指标。对于生产监控，设置：
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yaml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -474,17 +475,17 @@ services: prometheus: image: prom/prometheus:latest
   node-exporter: image: prom/node-exporter:latest
     ports: - "9100:9100"
 
-volumes: grafana_data: ```
+volumes: grafana_data: `````
 
 需要跟踪的关键指标：
 
 | 指标 | 警告阈值 | 严重阈值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API 响应时间 (P95) | > 2s | > 5s |
 | Worker 队列深度 | > 100 | > 500 |
@@ -494,7 +495,7 @@ volumes: grafana_data: ```
 
 ### 备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # backup-dify.sh — 通过 cron 每日运行
 
@@ -512,33 +513,33 @@ tar czf $BACKUP_DIR/dify_uploads_$DATE.tar.gz /var/lib/docker/volumes/dify_uploa
 
 # 上传到 S3（可选）
 aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
-```
+`````
 
 ### 扩展 Worker
 
 对于高容量文档处理，水平扩展 Celery worker：
 
-```bash
+`````bash
 # docker-compose.override.yaml
 services: worker: deploy: replicas: 3
     environment: - CELERY_WORKER_CONCURRENCY=8
 
   worker-beat: deploy: replicas: 1  # 保持恰好 1 个 beat 实例
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | Dify | Flowise | n8n | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 141,955 | 51,000 | 182,000 | 110,000 |
 | **许可证** | Apache-2.0 | MIT | Fair-code | MIT |
@@ -586,20 +587,20 @@ Dify 工作流以 AI 为中心。如果你的自动化主要在 Salesforce、Hub
 ## 常见问题解答
 
 **问：如何在云 VPS 上安装 Dify？**
-安装过程与本地安装相同。配置至少 4 GB 内存的 VPS（DigitalOcean、Hetzner 或 AWS Lightsail 均可），安装 Docker 和 Docker Compose，克隆仓库，然后运行 `docker compose up -d`。对于一键部署，可以使用 [DigitalOcean Dify Marketplace 应用](https://www.digitalocean.com)。
+安装过程与本地安装相同。配置至少 4 GB 内存的 VPS（DigitalOcean、Hetzner 或 AWS Lightsail 均可），安装 Docker 和 Docker Compose，克隆仓库，然后运行 ````docker compose up -d````。对于一键部署，可以使用 [DigitalOcean Dify Marketplace 应用](https://www.digitalocean.com)。
 
 **问：Dify 可以完全离线运行吗？**
 可以。将 Ollama 配置为你的模型提供商，并运行 Llama 3.1、Qwen 2.5 或 Mistral 等本地模型。所有 Dify 服务在 Docker 内运行，不需要外部依赖。唯一的限制是，没有互联网访问，你无法使用云 LLM API。
 
 **问：如何将 Dify 升级到新版本？**
-```bash
+`````bash
 cd dify/docker
 docker compose down
 git fetch --tags
 git checkout $(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)
 docker compose pull
 docker compose up -d
-```
+````
 升级前，请务必查看发布说明，了解破坏性变更和新要求的环璄变量。
 
 **问：Dify 的聊天助手和 Agent 应用类型有什么区别？**
@@ -686,7 +687,7 @@ Dify 填补了纯框架和简单聊天机器人构建器之间的空白。它为
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [dify-vs-flowise-2026](dify)
@@ -696,7 +697,7 @@ Dify 填补了纯框架和简单聊天机器人构建器之间的空白。它为
 - [12-factor-agents](dify)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

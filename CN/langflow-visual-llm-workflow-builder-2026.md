@@ -12,6 +12,7 @@ maintainer: 'langflow-ai'
 license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
 ---
+
 # Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026
 
 ![Langflow Badge](https://deepwiki.com/badge.svg){: .hero-image .rounded-lg .shadow-lg .mb-6 alt="Langflow: AI Source Code Hub Badge"}
@@ -44,8 +45,8 @@ Key architectural components include: *   **Canvas**: The main visual workspace 
 Langflow operates on a flow-based programming paradigm, where an application's logic is represented as a directed graph of independent processes (nodes) communicating via messages (data flowing through edges). This visual approach simplifies the construction of complex LLM applications that might otherwise involve many lines of imperative code.
 
 When you build a flow in Langflow: 1.  **Node Selection**: You drag and drop nodes from the sidebar onto the canvas. These nodes are categorized, for example, under "LLMs," "Chains," "Tools," "Agents," "Prompt Templates," "Document Loaders," and "Text Splitters."
-2.  **Configuration**: Each node has configurable parameters. For an "OpenAI Chat" node, you might specify the model name (e.g., `gpt-4o`), temperature, and API key. For a "Prompt Template" node, you define the template string with placeholders.
-3.  **Connection (Edges)**: You connect the output port of one node to the input port of another. For instance, the output of a "Prompt Template" node (a `PromptValue`) might connect to the `input` of an "LLM" node. The `output` of the LLM node (a `BaseMessage`) might then connect to a "Chain" or "Agent" that processes the response further.
+2.  **Configuration**: Each node has configurable parameters. For an "OpenAI Chat" node, you might specify the model name (e.g., ```gpt-4o````), temperature, and API key. For a "Prompt Template" node, you define the template string with placeholders.
+3.  **Connection (Edges)**: You connect the output port of one node to the input port of another. For instance, the output of a "Prompt Template" node (a ````PromptValue````) might connect to the ````input```` of an "LLM" node. The ````output```` of the LLM node (a ````BaseMessage````) might then connect to a "Chain" or "Agent" that processes the response further.
 4.  **Execution**: When a flow is "run" (either via the built-in chat interface or an API call), Langflow traverses the graph, executing nodes in the correct order based on their dependencies. Data flows from output ports to input ports, triggering subsequent node executions.
 
 Consider a simple Retrieval-Augmented Generation (RAG) flow: *   **Document Loader Node**: Loads data from a source (e.g., PDF, web page).
@@ -65,66 +66,66 @@ Getting Langflow up and running is designed to be straightforward, with Docker b
 ### Prerequisites
 
 *   Docker and Docker Compose (if using Docker)
-*   Python 3.9+ and `pip` (if installing locally)
+*   Python 3.9+ and ````pip```` (if installing locally)
 *   Git (to clone the repository)
 
 ### Option 1: Docker (Recommended for Quick Start)
 
 This method ensures all dependencies are managed within containers and avoids local environment conflicts.
 
-1.  **Clone the repository**: ```bash
+1.  **Clone the repository**: `````bash
     git clone https://github.com/langflow-ai/langflow.git
     cd langflow
-    ```
-2.  **Start with Docker Compose**: Langflow provides a `docker-compose.yml` file for easy setup.
-    ```bash
+    `````
+2.  **Start with Docker Compose**: Langflow provides a ````docker-compose.yml```` file for easy setup.
+    `````bash
     docker compose up -d
-    ```
-    This command will build the necessary images (if not already built) and start the Langflow backend and frontend services. The `-d` flag runs them in detached mode.
+    `````
+    This command will build the necessary images (if not already built) and start the Langflow backend and frontend services. The ````-d```` flag runs them in detached mode.
 
-3.  **Access Langflow**: Once the containers are up, Langflow will be accessible in your web browser at `http://localhost:7860`.
+3.  **Access Langflow**: Once the containers are up, Langflow will be accessible in your web browser at ````http://localhost:7860````.
     You'll be prompted to create an admin user on your first visit.
 
-4.  **Stopping Langflow**: ```bash
+4.  **Stopping Langflow**: `````bash
     docker compose down
-    ```
+    `````
 
 ### Option 2: Pip Installation (For Local Development and Custom Components)
 
 If you plan to develop custom components or integrate Langflow into an existing Python project, local installation is suitable.
 
-1.  **Create a virtual environment**: ```bash
+1.  **Create a virtual environment**: `````bash
     python -m venv venv
     source venv/bin/activate # On Windows: .\venv\Scripts\activate
-    ```
-2.  **Install Langflow**: ```bash
+    `````
+2.  **Install Langflow**: `````bash
     pip install langflow
-    ```
-    *Note: If you encounter issues with specific dependencies, it's often helpful to install `playwright` browser dependencies:*
-    `playwright install --with-deps`
+    `````
+    *Note: If you encounter issues with specific dependencies, it's often helpful to install ````playwright```` browser dependencies:*
+    ````playwright install --with-deps````
 
-3.  **Run Langflow**: ```bash
+3.  **Run Langflow**: `````bash
     langflow run --port 7860
-    ```
-    This command starts the Langflow server. Access it in your browser at `http://localhost:7860`.
+    `````
+    This command starts the Langflow server. Access it in your browser at ````http://localhost:7860````.
 
 ### Environment Variables
 
-Langflow requires API keys for various LLM providers. These are best managed using environment variables. Create a `.env` file in the root of your Langflow directory (or pass them directly to your Docker container/shell).
+Langflow requires API keys for various LLM providers. These are best managed using environment variables. Create a ````.env```` file in the root of your Langflow directory (or pass them directly to your Docker container/shell).
 
-```ini
+`````ini
 # .env example
 OPENAI_API_KEY=sk-YOUR_OPENAI_KEY
 ANTHROPIC_API_KEY=sk-ant-api03-YOUR_ANTHROPIC_KEY
 HUGGINGFACEHUB_API_TOKEN=hf_YOUR_HF_TOKEN
 # Optional: For database configuration
 DATABASE_URL=postgresql://user:password@host:port/database_name
-```
+`````
 
 **Common Setup Issues:**
-*   **Port Conflicts**: If `7860` is in use, Langflow might fail to start. Check available ports or specify a different one (e.g., `langflow run --port 8000`).
-*   **Missing API Keys**: LLM nodes will fail to initialize or execute without the correct API keys configured. Always double-check your `.env` file and ensure it's loaded.
-*   **Dependency Issues (Pip)**: Occasionally, specific library versions might conflict. Using a fresh virtual environment and installing `langflow` first often resolves these.
+*   **Port Conflicts**: If ````7860```` is in use, Langflow might fail to start. Check available ports or specify a different one (e.g., ````langflow run --port 8000````).
+*   **Missing API Keys**: LLM nodes will fail to initialize or execute without the correct API keys configured. Always double-check your ````.env```` file and ensure it's loaded.
+*   **Dependency Issues (Pip)**: Occasionally, specific library versions might conflict. Using a fresh virtual environment and installing ````langflow```` first often resolves these.
 
 For those looking to deploy Langflow to a cloud environment, setting up a Docker container on a virtual private server (VPS) is a common approach. Providers like [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offer straightforward droplet creation and Docker tooling, making it feasible to get a Langflow instance accessible publicly within minutes.
 
@@ -134,55 +135,55 @@ Langflow's strength lies in its deep integration with popular AI frameworks and 
 
 ### LangChain
 
-Langflow is built on top of LangChain. Every node in Langflow corresponds to a component or concept within the LangChain ecosystem (e.g., `LLM`, `PromptTemplate`, `Chain`, `Agent`, `Tool`, `DocumentLoader`, `VectorStore`). This means any flow you build in Langflow could theoretically be translated into LangChain Python code, albeit with more effort.
+Langflow is built on top of LangChain. Every node in Langflow corresponds to a component or concept within the LangChain ecosystem (e.g., ````LLM````, ````PromptTemplate````, ````Chain````, ````Agent````, ````Tool````, ````DocumentLoader````, ````VectorStore````). This means any flow you build in Langflow could theoretically be translated into LangChain Python code, albeit with more effort.
 
 **Example: A Simple LangChain Sequence in Langflow**
 1.  Drag a "Prompt Template" node.
-    *   Set `template`: "What is the capital of {country}?"
-    *   Add `country` as a variable.
+    *   Set ````template````: "What is the capital of {country}?"
+    *   Add ````country```` as a variable.
 2.  Drag an "OpenAI Chat" node.
-    *   Select `gpt-3.5-turbo` as the model.
-3.  Connect the `PromptValue` output of the Prompt Template to the `input` of the OpenAI Chat node.
-4.  Connect the `output` of the OpenAI Chat node to a "Chat Output" node.
+    *   Select ````gpt-3.5-turbo```` as the model.
+3.  Connect the ````PromptValue```` output of the Prompt Template to the ````input```` of the OpenAI Chat node.
+4.  Connect the ````output```` of the OpenAI Chat node to a "Chat Output" node.
 
-This visual setup directly mirrors a `chain = PromptTemplate(...) | ChatOpenAI(...)` in LangChain.
+This visual setup directly mirrors a ````chain = PromptTemplate(...) | ChatOpenAI(...)```` in LangChain.
 
 ### OpenAI
 
 OpenAI's models are central to many LLM applications, and Langflow provides direct nodes for interacting with them.
 
-**Using `ChatOpenAI` Node:**
-1.  Ensure your `OPENAI_API_KEY` is set in your `.env` file or environment.
+**Using ````ChatOpenAI```` Node:**
+1.  Ensure your ````OPENAI_API_KEY```` is set in your ````.env```` file or environment.
 2.  Drag an "OpenAI Chat" node onto the canvas.
-3.  Configure its parameters: *   `model_name`: `gpt-4o` (or `gpt-3.5-turbo`, etc.)
-    *   `temperature`: `0.7`
-    *   `max_tokens`: `512`
-    *   `streaming`: `True` (for real-time output)
-    *   You can also connect a `BaseMessage` list to its `input` for multi-turn conversations.
+3.  Configure its parameters: *   ````model_name````: ````gpt-4o```` (or ````gpt-3.5-turbo````, etc.)
+    *   ````temperature````: ````0.7````
+    *   ````max_tokens````: ````512````
+    *   ````streaming````: ````True```` (for real-time output)
+    *   You can also connect a ````BaseMessage```` list to its ````input```` for multi-turn conversations.
 
 ### Hugging Face
 
-Langflow integrates with the Hugging Face ecosystem, allowing access to a vast array of open-source models through `HuggingFaceHub` and local models via `HuggingFacePipeline`.
+Langflow integrates with the Hugging Face ecosystem, allowing access to a vast array of open-source models through ````HuggingFaceHub```` and local models via ````HuggingFacePipeline````.
 
-**Using `HuggingFaceHub` Node:**
-1.  Set your `HUGGINGFACEHUB_API_TOKEN` environment variable.
+**Using ````HuggingFaceHub```` Node:**
+1.  Set your ````HUGGINGFACEHUB_API_TOKEN```` environment variable.
 2.  Drag a "HuggingFace Hub" node.
-3.  Configure: *   `repo_id`: Specify the model repository, e.g., `google/flan-t5-large`.
-    *   `task`: `text2text-generation`
-    *   `temperature`: `0.7`
-    This allows you to leverage models hosted on the Hugging Face Hub directly within your flows. For local models or specific hardware acceleration, the `HuggingFace Pipeline` node is more appropriate.
+3.  Configure: *   ````repo_id````: Specify the model repository, e.g., ````google/flan-t5-large````.
+    *   ````task````: ````text2text-generation````
+    *   ````temperature````: ````0.7````
+    This allows you to leverage models hosted on the Hugging Face Hub directly within your flows. For local models or specific hardware acceleration, the ````HuggingFace Pipeline```` node is more appropriate.
 
 ### Anthropic
 
 Anthropic's Claude models are also easily integrated into Langflow flows.
 
-**Using `ChatAnthropic` Node:**
-1.  Ensure your `ANTHROPIC_API_KEY` is set.
+**Using ````ChatAnthropic```` Node:**
+1.  Ensure your ````ANTHROPIC_API_KEY```` is set.
 2.  Drag a "Chat Anthropic" node.
-3.  Configure: *   `model_name`: `claude-3-opus-20240229` (or `claude-3-sonnet-20240229`, etc.)
-    *   `temperature`: `0.7`
-    *   `max_tokens_to_sample`: `1024`
-    Similar to OpenAI, this node accepts `BaseMessage` inputs for conversational flows.
+3.  Configure: *   ````model_name````: ````claude-3-opus-20240229```` (or ````claude-3-sonnet-20240229````, etc.)
+    *   ````temperature````: ````0.7````
+    *   ````max_tokens_to_sample````: ````1024````
+    Similar to OpenAI, this node accepts ````BaseMessage```` inputs for conversational flows.
 
 These integrations highlight Langflow's flexibility, allowing developers to mix and match components from different providers and frameworks within a single visual workflow. This is crucial for comparing model performance or building hybrid AI applications.
 
@@ -218,14 +219,14 @@ Moving beyond local prototyping, Langflow offers features and considerations for
 One of Langflow's most powerful features is the ability to create custom components. This allows developers to integrate proprietary logic, specific data sources, or specialized tools not covered by the default nodes.
 
 **Steps to Create a Custom Component:**
-1.  **Create a Python file**: Place it in a directory accessible to Langflow (e.g., `custom_components/my_tool.py`).
-2.  **Define the component class**: Inherit from `CustomCustomComponent` (or `CustomComponent` for simpler cases) and use the `@component` decorator.
-3.  **Implement the `build` method**: This method defines the component's logic and returns the output.
+1.  **Create a Python file**: Place it in a directory accessible to Langflow (e.g., ````custom_components/my_tool.py````).
+2.  **Define the component class**: Inherit from ````CustomCustomComponent```` (or ````CustomComponent```` for simpler cases) and use the ````@component```` decorator.
+3.  **Implement the ````build```` method**: This method defines the component's logic and returns the output.
 4.  **Register the component**: Langflow automatically discovers components in specified directories.
 
 **Example: Custom Web Scraper Tool**
 
-```python
+`````python
 # custom_components/web_scraper.py
 from langflow import CustomCustomComponent
 from langflow.field_typing import Tool, Prompt
@@ -257,7 +258,7 @@ class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper To
                 description="Use this tool to scrape text content from a URL. Input should be a URL string.",
                 func=lambda u: scrape_webpage(u, selector)
             )
-        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: `pip install beautifulsoup4 requests`")
+        except ImportError: raise ImportError("Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````")
         except Exception as e: # Log the error and re-raise or return an informative message
             print(f"Error in WebScraperTool: {e}")
             return Tool(
@@ -265,8 +266,8 @@ class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper To
                 description="Web scraper tool failed.",
                 func=lambda u: f"Error scraping {u}: {e}"
             )
-```
-To enable this, ensure your `langflow` instance is aware of the `custom_components` directory, typically by setting the `LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS` environment variable or by placing them in the default `components` directory.
+`````
+To enable this, ensure your ````langflow```` instance is aware of the ````custom_components```` directory, typically by setting the ````LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS```` environment variable or by placing them in the default ````components```` directory.
 
 ### API Access and Deployment
 
@@ -275,10 +276,10 @@ Every saved flow in Langflow can be exposed as a REST API endpoint. This allows 
 **Accessing a Flow via API:**
 1.  Save your flow in the Langflow UI.
 2.  Go to the "Deploy" tab for that flow. You'll see the API endpoint URL.
-3.  You can then make `POST` requests to this endpoint.
+3.  You can then make ````POST```` requests to this endpoint.
 
-**Example `curl` request:**
-```bash
+**Example ````curl```` request:**
+`````bash
 curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
      -H "Content-Type: application/json" \
      -d '{
@@ -287,8 +288,8 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
            },
            "stream": false
          }'
-```
-Replace `{flow_id}` with the actual ID from your deployed flow. The `input` JSON structure depends on the input variables defined in your flow's "Input" nodes.
+`````
+Replace ````{flow_id}```` with the actual ID from your deployed flow. The ````input```` JSON structure depends on the input variables defined in your flow's "Input" nodes.
 
 For production deployment, consider: *   **Reverse Proxy**: Use Nginx or Caddy to proxy requests to Langflow, handle SSL termination, and potentially add rate limiting.
 *   **Process Manager**: Run Langflow with Gunicorn or Uvicorn for better process management and concurrency.
@@ -298,7 +299,7 @@ For production deployment, consider: *   **Reverse Proxy**: Use Nginx or Caddy t
 ### Monitoring and Logging
 
 In production, visibility into your application's health and performance is crucial.
-*   **Langflow Logs**: The Langflow backend prints logs to `stdout`/`stderr`. Configure your deployment environment to capture these logs (e.g., to a file, or forward to a centralized logging system like ELK stack, Grafana Loki).
+*   **Langflow Logs**: The Langflow backend prints logs to ````stdout````/````stderr````. Configure your deployment environment to capture these logs (e.g., to a file, or forward to a centralized logging system like ELK stack, Grafana Loki).
 *   **LLM Provider Logs**: Monitor your LLM provider dashboards for API usage, latency, and error rates.
 *   **Application Performance Monitoring (APM)**: Integrate with tools like Prometheus/Grafana, Datadog, or New Relic to monitor server resources, request latency, and error rates of your Langflow instance.
 
@@ -310,7 +311,7 @@ Langflow is one of several tools aiming to simplify LLM application development.
 | :--- | :--- | :--- | :--- | :--- |
 | **Visual Builder**     | Yes (Drag-and-drop node graph)               | Yes (Drag-and-drop node graph)              | No (Code-first, then UI for interaction)    | Yes (Canvas-based workflow)                 |
 | **Core Framework**     | LangChain                                    | LangChain                                   | LangChain, LlamaIndex, OpenAI Assistant API | RAG, Agents, Workflows (internal engine)    |
-| **Custom Components**  | Yes (Python code via `CustomComponent`)      | Yes (Python code via custom tools)          | Yes (Any Python code)                       | Yes (Tools, Functions, Prompt Variables)    |
+| **Custom Components**  | Yes (Python code via ````CustomComponent````)      | Yes (Python code via custom tools)          | Yes (Any Python code)                       | Yes (Tools, Functions, Prompt Variables)    |
 | **API Exposure**       | Yes (REST API for each flow)                 | Yes (REST API for each flow)                | Yes (Websocket, HTTP/REST via FastAPI)      | Yes (REST API, OpenAI-compatible API)       |
 | **Deployment Model**   | Self-host (Docker, Pip)                      | Self-host (Docker, npm)                     | Self-host (Python app)                      | Self-host (Docker), Managed Cloud           |
 | **Target Audience**    | Developers, Researchers (LangChain users)    | Developers, Non-technical users             | Developers (Python-first)                   | Developers, Product Managers                |
@@ -350,7 +351,7 @@ No, Langflow is built on top of LangChain. It provides a visual interface for co
 The recommended way to deploy Langflow is using Docker and Docker Compose, or by integrating it into a Kubernetes cluster. You can expose individual flows as REST API endpoints, allowing your frontend or other services to interact with them. A reverse proxy like Nginx is often used for SSL and domain management.
 
 ### Can I use my own custom Python code with Langflow?
-Yes, Langflow fully supports custom components. You can write your own Python classes that inherit from `CustomComponent` or `CustomCustomComponent`, defining custom logic, tools, or data loaders, and then expose them as nodes in the Langflow UI.
+Yes, Langflow fully supports custom components. You can write your own Python classes that inherit from ````CustomComponent```` or ````CustomCustomComponent````, defining custom logic, tools, or data loaders, and then expose them as nodes in the Langflow UI.
 
 ### What are the main differences between Langflow and FlowiseAI?
 Both Langflow and FlowiseAI offer visual builders for LLM workflows based on LangChain. Langflow often appeals more to developers due to its strong Python custom component integration and larger community, while FlowiseAI is sometimes seen as slightly more user-friendly for non-developers. Langflow also has a significantly larger GitHub star count.
@@ -364,12 +365,12 @@ While it has its limitations, particularly concerning version control for flows 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for more discussions on AI tools and frameworks.
 
 
----
+* * *
 ### Sources & Further Reading
 
 *   **Langflow GitHub Repository**: [https://github.com/langflow-ai/langflow](https://github.com/langflow-ai/langflow)
 *   **Langflow Official Documentation**: [https://docs.langflow.org/](https://docs.langflow.org/)
-*   **Langflow GitHub Discussions**: [https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions) (Check for specific issues like `Issue #1234: RAG performance optimization`)
+*   **Langflow GitHub Discussions**: [https://github.com/langflow-ai/langflow/discussions](https://github.com/langflow-ai/langflow/discussions) (Check for specific issues like ````Issue #1234: RAG performance optimization```)
 
 ### Internal Link Candidates: *   [LangChain Deep Dive](dibi8-internal-link-langchain-deep-dive)
 *   [Building RAG Applications](dibi8-internal-link-building-rag-applications)
@@ -377,9 +378,9 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for more dis
 *   [Introduction to AI Agents](dibi8-internal-link-introduction-to-ai-agents)
 
 
----
+* * *
 **Disclosure**: Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
----
+* * *
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -405,7 +406,7 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for more dis
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -415,7 +416,7 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for more dis
 - [9router-smart-llm-proxy-token-saver-free-coding](langflow-visual-llm-workflow-builder-2026)
 - [ai-engineering-from-scratch](langflow-visual-llm-workflow-builder-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

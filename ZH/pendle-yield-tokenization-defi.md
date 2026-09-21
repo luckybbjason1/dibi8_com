@@ -13,12 +13,13 @@ aliases:
   - /zh/posts/pendle-yield-tokenization-defi/-
 ---
 
+
 {{</* resource-info */>}}
 
 > **联盟营销披露**：本文包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 和 [OKX](https://www.promoohubly.com/join/12190433) 的联盟链接。您通过这些链接注册时，我们可能会赚取佣金 —— 对您不产生额外费用。
 
 
----
+* * *
 ## 什么是Pendle？为什么它改变了DeFi？
 
 Pendle是去中心化金融中首屈一指的收益代币化协议，使用户能够将收益性资产分离为两个不同的组成部分：**本金代币（PT）** 和 **收益代币（YT）**。这一突破性创新在以太坊上推出，现已跨多个链上线，重新定义了DeFi参与者与收益互动的方式。截至2026年5月，Pendle的**总锁仓价值（TVL）已超过50亿美元**，并支持**超过30种收益性资产**，使其成为加密生态系统中最为复杂的固定收益协议之一。
@@ -29,7 +30,7 @@ Pendle背后的核心洞察是收益和本金具有根本不同的风险和回�
 
 Pendle的核心是SY（标准化收益）代币标准，它将任何收益代币包装到一个统一接口中。当您将stETH等资产存入Pendle时，协议铸造SY-stETH，然后将其拆分为PT-stETH和YT-stETH。
 
-```solidity
+````solidity
 // Pendle 收益代币化流程
 // 文件: PendleRouter.sol（简化版）
 
@@ -85,9 +86,9 @@ contract PendleRouter is IPendleRouter {
         emit Tokenized(input.underlying, input.amountIn, amountPYOut);
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // Lido stETH的标准化收益代币（SY）实现
 // 文件: SYStETH.sol
 
@@ -147,9 +148,9 @@ contract SYStETH is SYBase {
         rewardAmounts[0] = yieldAccrued;
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // 本金代币（PT）合约
 // 文件: PTStETH.sol
 
@@ -200,9 +201,9 @@ contract PTStETH is PTBase {
         impliedApy = _calculateImpliedFromPrice(ptPrice, timeToMaturity);
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // 收益代币（YT）合约
 // 文件: YTStETH.sol
 
@@ -279,13 +280,13 @@ contract YTStETH is YTBase {
         }
     }
 }
-```
+`````
 
 ## Pendle AMM：像专业人士一样交易收益
 
 Pendle的专有AMM专为交易PT和YT而设计，使用专门的曲线来考虑资产接近到期日时的时间衰减。
 
-```solidity
+`````solidity
 // Pendle 市场 AMM
 // 文件: PendleMarket.sol
 
@@ -378,9 +379,9 @@ contract PendleMarket is IPendleMarket {
         amountOut -= fee;
     }
 }
-```
+`````
 
-```typescript
+`````typescript
 // Pendle交易的TypeScript SDK
 import { PendleSDK } from '@pendle/sdk-v2';
 import { ethers } from ethers;
@@ -416,7 +417,7 @@ async function swapPtForSy(
   );
   
   const receipt = await tx.wait();
-  console.log(`将 ${ptAmount} PT兑换为SY。交易: ${receipt.hash}`);
+  console.log(````将 ${ptAmount} PT兑换为SY。交易: ${receipt.hash}````);
   
   return receipt;
 }
@@ -443,7 +444,7 @@ async function addLiquidity(
   
   // 解析收到的LP代币
   const lpTokens = parseLPTokensFromReceipt(receipt);
-  console.log(`添加流动性。收到 ${lpTokens} LP代币`);
+  console.log(````添加流动性。收到 ${lpTokens} LP代币````);
   
   return lpTokens;
 }
@@ -460,13 +461,13 @@ async function getMarketImpliedApy(marketAddress: string) {
   const yearsToMaturity = timeToMaturity / (365.25 * 24 * 3600);
   const impliedApy = (1 / ptPrice) ** (1 / yearsToMaturity) - 1;
   
-  console.log(`PT价格: ${ptPrice}`);
-  console.log(`到期时间: ${yearsToMaturity.toFixed(2)} 年`);
-  console.log(`隐含APY: ${(impliedApy * 100).toFixed(2)}%`);
+  console.log(````PT价格: ${ptPrice}````);
+  console.log(````到期时间: ${yearsToMaturity.toFixed(2)} 年````);
+  console.log(````隐含APY: ${(impliedApy * 100).toFixed(2)}%````);
   
   return impliedApy;
 }
-```
+`````
 
 ## PT和YT策略：固定收益、收益投机等
 
@@ -474,7 +475,7 @@ Pendle解锁了多种复杂的策略，以满足不同的风险偏好和市场�
 
 ### 固定收益策略（购买PT）
 
-```solidity
+`````solidity
 // 策略：以折扣价购买PT获得固定收益
 // 示例：以0.95购买PT-stETH，1年到期时按1.0赎回
 // 固定收益 = (1 - 0.95) / 0.95 = 5.26%
@@ -544,11 +545,11 @@ contract FixedIncomeStrategy {
         emit FixedIncomeRedeemed(msg.sender, underlyingReceived, profit);
     }
 }
-```
+`````
 
 ### 杠杆收益策略（购买YT）
 
-```solidity
+`````solidity
 // 策略：通过YT做多收益，获得对质押收益的杠杆敞口
 // 如果ETH质押收益率平均为4%但您预期为6%，购买YT来获利
 
@@ -626,11 +627,11 @@ contract LeveragedYieldStrategy {
         emit YieldLongClosed(msg.sender, totalReceived, pnl);
     }
 }
-```
+`````
 
 ### 流动性提供策略
 
-```typescript
+`````typescript
 // LP策略：从PT/SY交易中获得费用 + PT部分的固定收益
 async function provideLiquidityStrategy(
   marketAddress: string,
@@ -657,8 +658,8 @@ async function provideLiquidityStrategy(
   );
   
   // 保留剩余YT用于收益敞口
-  console.log(`LP仓位: ${lpTokens} LP代币`);
-  console.log(`YT仓位: ${ytOut} YT代币（收益敞口）`);
+  console.log(````LP仓位: ${lpTokens} LP代币````);
+  console.log(````YT仓位: ${ytOut} YT代币（收益敞口）````);
   
   // 设置自动复利
   const autoCompounder = new PendleAutoCompounder({
@@ -671,13 +672,13 @@ async function provideLiquidityStrategy(
   
   return { lpTokens, ytOut, autoCompounder };
 }
-```
+`````
 
 ## 在Pendle上构建：开发者集成指南
 
 ### 读取Pendle市场数据
 
-```typescript
+`````typescript
 // 从Pendle获取全面的市场数据
 import { PendleMarketReader } from '@pendle/sdk-v2/market';
 
@@ -693,30 +694,30 @@ async function analyzePendleMarkets() {
   for (const market of markets) {
     const data = await reader.getMarketSnapshot(market.address);
     
-    console.log(`\n=== ${market.underlyingSymbol} (${data.expiryDate}) ===`);
-    console.log(`PT价格: ${data.ptPrice.toFixed(4)}`);
-    console.log(`YT价格: ${data.ytPrice.toFixed(4)}`);
-    console.log(`隐含APY: ${(data.impliedApy * 100).toFixed(2)}%`);
-    console.log(`底层APY: ${(data.underlyingApy * 100).toFixed(2)}%`);
-    console.log(`流动性: $${(data.liquidityUSD / 1e6).toFixed(2)}M`);
-    console.log(`24h交易量: $${(data.volume24h / 1e6).toFixed(2)}M`);
+    console.log(````\n=== ${market.underlyingSymbol} (${data.expiryDate}) ===````);
+    console.log(````PT价格: ${data.ptPrice.toFixed(4)}````);
+    console.log(````YT价格: ${data.ytPrice.toFixed(4)}````);
+    console.log(````隐含APY: ${(data.impliedApy * 100).toFixed(2)}%````);
+    console.log(````底层APY: ${(data.underlyingApy * 100).toFixed(2)}%````);
+    console.log(````流动性: $${(data.liquidityUSD / 1e6).toFixed(2)}M````);
+    console.log(````24h交易量: $${(data.volume24h / 1e6).toFixed(2)}M````);
     
     // 收益价差分析
     const yieldSpread = data.underlyingApy - data.impliedApy;
-    console.log(`收益价差: ${(yieldSpread * 100).toFixed(2)}%`);
+    console.log(````收益价差: ${(yieldSpread * 100).toFixed(2)}%````);
     
     if (yieldSpread > 0.01) {
-      console.log(`⚠️ 低估: 市场支付低于底层收益`);
+      console.log(````⚠️ 低估: 市场支付低于底层收益````);
     } else if (yieldSpread < -0.01) {
-      console.log(`🟢 高估: 市场支付高于底层收益`);
+      console.log(````🟢 高估: 市场支付高于底层收益````);
     }
   }
 }
-```
+`````
 
 ### Pendle Router集成
 
-```solidity
+`````solidity
 // 将Pendle集成到您的DeFi协议中
 contract MyDeFiProtocol {
     
@@ -780,9 +781,9 @@ contract MyDeFiProtocol {
         return 1e18 - discount;
     }
 }
-```
+`````
 
-```typescript
+`````typescript
 // SDK助手：计算最佳进出场点
 class PendleStrategyAnalyzer {
   
@@ -847,19 +848,19 @@ class PendleStrategyAnalyzer {
       ptReceived: ptAmount,
       redemptionValue,
       profit,
-      roi: `${roi}%`,
+      roi: ````${roi}%````,
       daysToMaturity,
-      apy: `${apy.toFixed(2)}%`,
+      apy: ````${apy.toFixed(2)}%````,
     };
   }
 }
-```
+`````
 
 ## 收益预言机与价格发现
 
 Pendle的PT价格可作为远期收益率的去中心化预言机 —— 这是DeFi固定收益市场的关键原语。
 
-```solidity
+`````solidity
 // 使用Pendle作为收益预言机
 contract PendleYieldOracle {
     
@@ -928,11 +929,11 @@ contract PendleYieldOracle {
         return result;
     }
 }
-```
+`````
 
 ## Pendle V2架构深入解析
 
-```solidity
+`````solidity
 // Pendle V2核心架构
 // 文件: PendleRouterBase.sol
 
@@ -1014,9 +1015,9 @@ abstract contract PendleRouterBase is IPendleRouter {
         }
     }
 }
-```
+`````
 
-```python
+`````python
 # 机构收益管理的Python SDK
 import asyncio
 from dataclasses import dataclass
@@ -1105,7 +1106,7 @@ class InstitutionalYieldManager: def __init__(self, rpc_url: str, wallet_key: st
         if spread > Decimal('0.02'): return "LONG_PT"
         elif spread < Decimal('-0.02'): return "LONG_YT"
         return "HOLD"
-```
+`````
 
 ## 常见问题解答（FAQ）
 
@@ -1115,7 +1116,7 @@ A：PT（本金代币）代表在到期时按1:1赎回底层资产的权利。�
 
 **Q2：Pendle的AMM与Uniswap或Curve有何不同？**
 
-A：Pendle的AMM使用专门为PT和YT资产设计的专门logit曲线。与恒定乘积AMM（Uniswap）或稳定交换（Curve）不同，Pendle的曲线考虑了PT的时间衰减性质 —— 随着到期日临近，PT价格在数学上保证收敛到1.0。`rateScalar`和`rateAnchor`参数控制曲线陡度，而隐含APY来自PT价格和到期时间。这种专门设计最小化了LP的无常损失，因为价格轨迹更可预测。
+A：Pendle的AMM使用专门为PT和YT资产设计的专门logit曲线。与恒定乘积AMM（Uniswap）或稳定交换（Curve）不同，Pendle的曲线考虑了PT的时间衰减性质 —— 随着到期日临近，PT价格在数学上保证收敛到1.0。````rateScalar````和````rateAnchor````参数控制曲线陡度，而隐含APY来自PT价格和到期时间。这种专门设计最小化了LP的无常损失，因为价格轨迹更可预测。
 
 **Q3：PT或YT到期时会发生什么？**
 
@@ -1135,9 +1136,9 @@ A：截至2026年5月，Pendle在以太坊、Arbitrum、Optimism和BNB Chain上�
 
 **Q7：购买PT时如何计算确切回报？**
 
-A：PT回报计算如下：`固定收益率% = (1 - PT_Price) / PT_Price`。年化APY：`APY = (1 / PT_Price)^(365 / days_to_maturity) - 1`。例如，PT定价0.95，180天到期：收益率 = (1 - 0.95) / 0.95 = 5.26%；APY = (1/0.95)^(365/180) - 1 ≈ 10.8%。如果您持有到期，这些回报是有保证的，使PT在传统金融中功能上等同于零息债券。
+A：PT回报计算如下：````固定收益率% = (1 - PT_Price) / PT_Price````。年化APY：````APY = (1 / PT_Price)^(365 / days_to_maturity) - 1````。例如，PT定价0.95，180天到期：收益率 = (1 - 0.95) / 0.95 = 5.26%；APY = (1/0.95)^(365/180) - 1 ≈ 10.8%。如果您持有到期，这些回报是有保证的，使PT在传统金融中功能上等同于零息债券。
 
----
+* * *
 
 ## 推荐部署与基础设施
 
@@ -1150,7 +1151,7 @@ A：PT回报计算如下：`固定收益率% = (1 - PT_Price) / PT_Price`。年�
 
 ## 快速开始：您的Pendle集成清单
 
-```bash
+`````bash
 # 1. 安装Pendle SDK
 npm install @pendle/sdk-v2 ethers
 
@@ -1171,9 +1172,9 @@ npx ts-node examples/claim-yield.ts    # 领取YT收益
 
 # 5. 运行测试
 npm test
-```
+`````
 
-```typescript
+`````typescript
 // 快速开始：完整的收益代币化工作流程
 import { PendleSDK, Market } from '@pendle/sdk-v2';
 
@@ -1194,7 +1195,7 @@ async function quickstart() {
     ethers.parseEther(10), // 10 stETH
     0 // 最小输出
   );
-  console.log(`收到 ${ptOut} PT + ${ytOut} YT`);
+  console.log(````收到 ${ptOut} PT + ${ytOut} YT````);
   
   // 3. 交易：将PT换为固定收益率锁定
   await market.swapExactPtForSy(
@@ -1205,14 +1206,14 @@ async function quickstart() {
   // 4. 监控：追踪收益累积
   setInterval(async () => {
     const accrued = await market.getAccruedYield(ytOut);
-    console.log(`累积收益: ${accrued}`);
+    console.log(````累积收益: ${accrued}````);
   }, 60000);
 }
 
 quickstart().catch(console.error);
-```
+````
 
----
+* * *
 
 *免责声明：本指南仅供教育目的。收益代币化涉及智能合约风险、市场风险和底层资产脱锚风险。在部署资金之前，请务必进行自己的研究。显示的收益率是估计值，不保证。DYOR —— 做好自己的研究。*
 
@@ -1221,7 +1222,7 @@ quickstart().catch(console.error);
 - 开设 [OKX](https://www.promoohubly.com/join/12190433) 账户进行高级DeFi交易
 - 关注我们的Telegram获取最新的Pendle资讯：**@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | 为DeFi开发者、交易者和研究人员而建。*
 

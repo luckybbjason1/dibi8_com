@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/hummingbot-crypto-trading-bot/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tại Sao Hầu Hết Bot Giao Dịch Đều Thất Bại
@@ -47,7 +48,7 @@ Phiên bản v2.0 mới nhất (phát hành tháng 3/2026) giới thiệu kiến
 
 ## Hummingbot Hoạt Động Như Thế Nào: Tổng Quan Kiến Trúc
 
-Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ ràng: ```
+Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ ràng: ````
 ┌─────────────────────────────────────────────────────┐
 │                   Tầng Chiến Lược                    │
 │  (Pure Market Making / Chênh Lệch Giá / Script)    │
@@ -61,7 +62,7 @@ Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ rà
 │                   Hạ Tầng                            │
 │  (Docker / Cấu Hình / Log / CSDL SQLite)           │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 **Vòng lặp lõi** hoạt động như sau: 1. **Strategy** định nghĩa tham số lệnh (spread, inventory skew, thờ gian refresh)
 2. **Connector** chuẩn hóa API của từng sàn thành một giao diện thống nhất
@@ -80,7 +81,7 @@ Kiến trúc của Hummingbot tuân theo sự phân tách trách nhiệm rõ rà
 
 ### Bước 1: Kéo Và Chạy Hummingbot
 
-```bash
+`````bash
 # Tạo thư mục cho file Hummingbot
 mkdir -p hummingbot_files/hummingbot_conf
 mkdir -p hummingbot_files/hummingbot_logs
@@ -95,9 +96,9 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data" \
   hummingbot/hummingbot:latest
-```
+`````
 
-Sau khi container khởi động, bạn sẽ thấy CLI của Hummingbot: ```
+Sau khi container khởi động, bạn sẽ thấy CLI của Hummingbot: `````
     ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
@@ -107,11 +108,11 @@ Sau khi container khởi động, bạn sẽ thấy CLI của Hummingbot: ```
     Enter "start" to start the current strategy
     
     >>>
-```
+`````
 
 ### Bước 2: Kết Nối Sàn Giao Dịch
 
-```bash
+`````bash
 # Trong CLI Hummingbot
 >>> connect binance
 
@@ -123,20 +124,20 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 
 # Kiểm tra kết nối
 >>> balance
-```
+`````
 
-```
+`````
 Updating balances, please wait...
 
  binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
-```
+`````
 
 ### Bước 3: Cấu Hình Chiến Lược Pure Market Making
 
-```bash
+`````bash
 # Tạo cấu hình chiến lược mới
 >>> create
 
@@ -155,19 +156,19 @@ How often do you want to cancel and replace orders (in seconds)? >>> 30
 
 # Đặt khối lượng lệnh
 What is the amount of BTC per order? >>> 0.001
-```
+`````
 
 ### Bước 4: Bắt Đầu Giao Dịch
 
-```bash
+`````bash
 # Xác nhận cấu hình
 >>> config
 
 # Khởi động chiến lược
 >>> start
-```
+`````
 
-```
+`````
 The pure_market_making strategy is starting.
 Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
@@ -175,11 +176,11 @@ Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
 Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
-```
+`````
 
 ### Bước 5: Chạy Nền (Detached Mode)
 
-```bash
+`````bash
 # Thoát Hummingbot nhưng giữ container chạy
 Ctrl+P then Ctrl+Q
 
@@ -193,7 +194,7 @@ docker run -d --name hummingbot \
 # Kiểm tra trạng thái
 docker attach hummingbot
 # Rồi detach lại bằng Ctrl+P, Ctrl+Q
-```
+`````
 
 ## Tích Hợp Với Sàn Giao Dịch Và Công Cụ
 
@@ -201,7 +202,7 @@ docker attach hummingbot
 
 Binance là connector phổ biến nhất, hỗ trợ cả spot và USD-M futures. Connector xử lý giới hạn tốc độ tự động — tuân theo giới hạn **1.200 request weight mỗi phút** của Binance với backoff thích ứng.
 
-```yaml
+`````yaml
 # conf/connectors/binance.yml
 connector: binance
 api_key: ${BINANCE_API_KEY}
@@ -209,19 +210,19 @@ api_secret: ${BINANCE_API_SECRET}
 rate_limit: adaptive
 timeout: 10
 use_futures: false
-```
+`````
 
 ### Coinbase Advanced Trade
 
-Coinbase sử dụng phương thức xác thực khác (JWT-based từ 2024). Connector Coinbase của Hummingbot xử lý việc ký JWT bên trong: ```bash
+Coinbase sử dụng phương thức xác thực khác (JWT-based từ 2024). Connector Coinbase của Hummingbot xử lý việc ký JWT bên trong: `````bash
 >>> connect coinbase_advanced_trade
 Enter your Coinbase API key (UUID format) >>> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
-```
+`````
 
 ### Hummingbot Gateway Cho Giao Dịch DEX
 
-Để giao dịch trên Uniswap, PancakeSwap và các DEX khác, bạn cần dịch vụ Gateway: ```bash
+Để giao dịch trên Uniswap, PancakeSwap và các DEX khác, bạn cần dịch vụ Gateway: `````bash
 # Kéo và chạy Gateway
 docker pull hummingbot/gateway:latest
 
@@ -232,9 +233,9 @@ docker run -d --name gateway \
 
 # Trong Hummingbot, kết nối Gateway
 >>> gateway connect uniswap_ethereum_mainnet
-```
+`````
 
-```yaml
+`````yaml
 # Cấu hình Gateway cho Uniswap trên Ethereum
 networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
@@ -242,11 +243,11 @@ networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
 connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
-```
+`````
 
 ### Thông Báo Telegram
 
-```yaml
+`````yaml
 # conf/telegram.yml
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
@@ -254,15 +255,15 @@ telegram_chat_id: "YOUR_CHAT_ID"
 notify_events: - order_filled
   - trade_completed
   - strategy_error
-```
+`````
 
 ### Xuất Dữ Liệu Sang Grafana
 
-Hummingbot ghi tất cả giao dịch vào SQLite. Bạn có thể xuất sang Prometheus/Grafana để trực quan hóa: ```bash
+Hummingbot ghi tất cả giao dịch vào SQLite. Bạn có thể xuất sang Prometheus/Grafana để trực quan hóa: `````bash
 # Ví dụ truy vấn sqlite
 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
   "SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;"
-```
+`````
 
 ## Benchmark & Các Trường Hợp Sử Dụng Thực Tế
 
@@ -277,7 +278,7 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 ### Case Study: Market Making BTC-USDT Trên Binance
 
-Một thành viên cộng đồng chia sẻ số liệu từ phiên chạy pure market making **30 ngày** trên BTC-USDT với vốn **$5.000**: ```
+Một thành viên cộng đồng chia sẻ số liệu từ phiên chạy pure market making **30 ngày** trên BTC-USDT với vốn **$5.000**: `````
 Tổng giao dịch đã thực hiện: 8,247
 Phí maker (0.02%): 0.412 BTC
 Spread capture (trung bình): 0.42%
@@ -286,7 +287,7 @@ PnL (trước phí): +2.14%/tháng
 PnL (sau phí): +1.72%/tháng
 Sharpe ratio: 1.34
 Max drawdown: 1.2%
-```
+`````
 
 ### Mức Sử Dụng Tài Nguyên
 
@@ -303,7 +304,7 @@ Những con số này khiến Hummingbot phù hợp với **VPS $5/tháng** cho 
 
 ### Chiến Lược Tùy Chỉnh Bằng Python
 
-Giao diện script strategy của Hummingbot v2.0 cho phép bạn viết logic bằng Python thuần: ```python
+Giao diện script strategy của Hummingbot v2.0 cho phép bạn viết logic bằng Python thuần: `````python
 # strategies/my_custom_mm.py
 from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
@@ -345,11 +346,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
     def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
-```
+`````
 
 ### Quản Lý Inventory Với RSI
 
-```python
+`````python
 # Thêm vào chiến lược để điều chỉnh inventory
     def calculate_inventory_skew(self): """Điều chỉnh kích thước lệnh dựa trên tỷ lệ inventory."""
         base_balance = self.connectors["binance"].get_balance("BTC")
@@ -368,11 +369,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
             self.sell_multiplier = Decimal("1.5")
         else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
-```
+`````
 
 ### Backtesting Với Dữ Liệu Lịch Sử
 
-```bash
+`````bash
 # Tải dữ liệu giao dịch lịch sử
 python scripts/download_historical_data.py \
   --exchange binance \
@@ -387,9 +388,9 @@ python scripts/backtest.py \
   --config conf/strategies/pmm_btc.yml \
   --data data/binance_BTC-USDT_1m.csv \
   --output results/btc_pmm_backtest.html
-```
+`````
 
-```
+`````
 Kết Quả Backtest (2026-01-01 đến 2026-03-31)
 ========================================
 Tổng giao dịch: 12,450
@@ -399,11 +400,11 @@ Max drawdown: -2.1%
 Thờ gian giao dịch TB: 18.4 phút
 Tỷ lệ thắng: 62.3%
 Profit factor: 1.48
-```
+`````
 
 ### Chế Độ Paper Trading
 
-Luôn kiểm tra bằng paper trading trước khi chạy thực: ```bash
+Luôn kiểm tra bằng paper trading trước khi chạy thực: `````bash
 # Bật paper trading trong cấu hình
 paper_trade_enabled: true
 paper_trade_account_balance: BTC: 1.0
@@ -412,11 +413,11 @@ paper_trade_account_balance: BTC: 1.0
 # Paper trades hiển thị với prefix [PAPER]
 >>> status
   Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
-```
+`````
 
 ### Docker Compose Cho Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -438,11 +439,11 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### Danh Sách Kiểm Tra Bảo Mật
 
-```bash
+`````bash
 # 1. Sử dụng API key với IP whitelist (Binance hỗ trợ)
 # 2. Bật hạn chế rút tiền trên API key
 # 3. Chạy trong Docker network cách ly
@@ -450,7 +451,7 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
 
 # Mã hóa cấu hình nhạy cảm
 openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -511,7 +512,7 @@ Các connector thông thường tương tác với API sàn tập trung qua REST
 
 ### Làm thế nào để cập nhật Hummingbot lên phiên bản mới?
 
-```bash
+`````bash
 # Kéo image mới nhất
 docker pull hummingbot/hummingbot:latest
 
@@ -523,13 +524,13 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   hummingbot/hummingbot:latest
-```
+`````
 
 Các cấu hình của bạn được lưu trữ trong các volume đã mount.
 
 ### Có thể dùng Hummingbot cho giao dịch futures/perpetual không?
 
-Có. Các connector Binance, Bybit và OKX hỗ trợ perpetual futures. Đặt tham số `domain` thành subdomain futures và cấu hình đòn bẩy cẩn thận. Bắt đầu với **đòn bẩy 1x-3x** cho đến khi bạn hiểu cơ chế funding rate.
+Có. Các connector Binance, Bybit và OKX hỗ trợ perpetual futures. Đặt tham số ````domain``` thành subdomain futures và cấu hình đòn bẩy cẩn thận. Bắt đầu với **đòn bẩy 1x-3x** cho đến khi bạn hiểu cơ chế funding rate.
 
 ## Kết Luận: Bắt Đầu Giao Dịch Thuật Toán Ngay Hôm Nay
 

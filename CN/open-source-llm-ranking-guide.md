@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/open-source-llm-ranking-guide/
 ---
+
 # Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More
 
 
@@ -182,17 +183,17 @@ Phi-3 Mini is Microsoft's answer to on-device AI. At 3.8B parameters, it runs co
 
 | Model | Size | MMLU | HumanEval | MT-Bench | Context |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.1 405B | 405B | 88.6 | 89.0 | 9.2 | 128K |
 | Llama 3 70B | 70B | 82.0 | 81.7 | 8.9 | 8K |
@@ -215,11 +216,11 @@ Phi-3 Mini is Microsoft's answer to on-device AI. At 3.8B parameters, it runs co
 
 Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | Throughput (t/s) | Time to First Token |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Llama 3.1 8B | ~120 | ~20ms |
 | Mistral 7B | ~140 | ~18ms |
@@ -232,13 +233,13 @@ Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | T
 
 | Model | FP16 VRAM | 4-bit Quantized | 8-bit Quantized |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 2B models | 4 GB | 1.5 GB | 2.5 GB |
 | 7B/8B models | 16 GB | 5 GB | 8 GB |
@@ -257,9 +258,9 @@ All major models released in 2024-2025 support at least 32K token contexts. Llam
 
 Select your model based on the primary task: | Use Case | Recommended Models |
 |
----
+* * *
 |
----
+* * *
 |
 | General chat | Llama 3.1 8B, Qwen2.5 7B, Gemma 2 9B |
 | Coding | DeepSeek Coder V2, CodeQwen, Codestral |
@@ -290,23 +291,23 @@ Llama 3 70B has the most mature ecosystem, tooling, and deployment options. Mist
 
 ### Hugging Face Hub
 
-The [Hugging Face Hub](https://huggingface.co/models) is the primary repository for open-source models. Search for model names (e.g., "meta-llama/Meta-Llama-3-8B-Instruct") to find official uploads. Download with: ```python
+The [Hugging Face Hub](https://huggingface.co/models) is the primary repository for open-source models. Search for model names (e.g., "meta-llama/Meta-Llama-3-8B-Instruct") to find official uploads. Download with: ````python
 from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
-```
+`````
 
 Some models (Llama, Gemma) require accepting a license agreement on Hugging Face before download.
 
 ### Ollama Model Library
 
-[Ollama](https://ollama.com/library) provides the easiest way to run models locally. Install Ollama, then: ```bash
+[Ollama](https://ollama.com/library) provides the easiest way to run models locally. Install Ollama, then: `````bash
 ollama run llama3.1        # Llama 3.1 8B
 ollama run mistral         # Mistral 7B
 ollama run qwen2.5         # Qwen2.5 7B
 ollama run phi3            # Phi-3 Mini
 ollama run gemma2          # Gemma 2 9B
 ollama run deepseek-coder  # DeepSeek Coder
-```
+````
 
 Ollama handles model download, quantization, and serving automatically.
 
@@ -367,7 +368,7 @@ Top open-source models like Llama 3.1 405B and DeepSeek V3 approach GPT-4o on ma
 Llama 3 70B requires 140 GB of VRAM in FP16 precision (two A100 80GB GPUs). With 4-bit quantization, it runs on a single A100 40GB or two RTX 4090s (24GB each). For CPU-only inference with llama.cpp, you need at least 40 GB of system RAM for the quantized model. Cloud options like RunPod and Together AI provide access without hardware ownership.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -424,4 +425,4 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
 
----
+* * *

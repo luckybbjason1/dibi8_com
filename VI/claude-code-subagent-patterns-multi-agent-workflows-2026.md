@@ -36,6 +36,7 @@ faq: - q: "Subagent trong Claude Code chính xác là gì, và khác gì với v
     a: "Mỗi lần gọi subagent tiêu thụ token như bất kỳ cuộc trò chuyện Claude nào khác. Chi phí xấp xỉ context đầy đủ của subagent (system prompt + schema công cụ + task prompt + suy nghĩ + báo cáo cuối). Trên gói Pro và Max, sử dụng subagent tính vào cùng quota sử dụng với phiên cha. Với người dùng API, chi phí là tính phí trực tiếp theo token. Tiết kiệm đến từ việc chuyển bớt khám phá đáng lẽ làm phình context cha — bạn trả cho subagent, nhưng phiên chính giữ được nhanh và tập trung."
 ---
 
+
 # Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)
 
 
@@ -53,11 +54,11 @@ Nếu bạn đã dùng Claude Code qua [CLI chính thức](https://docs.anthropi
 
 **Mẫu.** Khởi tạo ba subagent Explore song song, mỗi câu hỏi một cái. Mỗi cái chạy trong context sandbox riêng. Mỗi cái trả về báo cáo ngắn. Cha thấy ba đoạn ngắn gọn thay vì ba đống grep.
 
-```
+````
 Một thông điệp → 3 lời gọi Agent: - Agent("Tìm handler auth", subagent_type="Explore", prompt="...")
   - Agent("Map state management", subagent_type="Explore", prompt="...")
   - Agent("Tìm sử dụng fn Z deprecated", subagent_type="Explore", prompt="...")
-```
+`````
 
 **Mode thất bại tránh được.** Phình cửa sổ context. Phiên cha vẫn nhẹ và có thể chứa cuộc trò chuyện triển khai thực.
 
@@ -65,17 +66,17 @@ Một thông điệp → 3 lời gọi Agent: - Agent("Tìm handler auth", subag
 
 ## Mẫu 2: Cô Lập Worktree Cho Chỉnh Sửa Rủi Ro
 
-**Vấn đề.** Bạn muốn subagent thử một refactor, nhưng nếu nó đi lệch, bạn không muốn `git reset --hard` thủ công. Bạn cũng muốn subagent có thể chạy test mà không gây nhiễu với các thay đổi đang làm trong worktree chính.
+**Vấn đề.** Bạn muốn subagent thử một refactor, nhưng nếu nó đi lệch, bạn không muốn ````git reset --hard```` thủ công. Bạn cũng muốn subagent có thể chạy test mà không gây nhiễu với các thay đổi đang làm trong worktree chính.
 
 **Mẫu.** Dùng tham số cô lập worktree trong lời gọi Agent. Subagent hoạt động trong một git worktree tạm thời rẽ nhánh từ trạng thái hiện tại. Nếu nó tạo thay đổi, bạn nhận lại đường dẫn worktree và có thể review, cherry-pick, hoặc loại bỏ thoải mái. Nếu không thay đổi gì, worktree tự dọn.
 
-```
+`````
 Agent({
   description: "Thử refactor cấp controller",
   isolation: "worktree",
   prompt: "Refactor controllers/orders.rb để ..."
 })
-```
+`````
 
 **Mode thất bại tránh được.** Refactor làm dở dang làm ô nhiễm working tree trước khi bạn có cơ hội đánh giá.
 
@@ -85,15 +86,15 @@ Agent({
 
 **Vấn đề.** Code review, security audit, kiểm toán accessibility, và tối ưu SQL query — tất cả hưởng lợi từ tư duy tập trung khó duy trì khi bạn cũng đang viết feature. Claude tổng quát giỏi mọi việc này, nhưng prompt chuyên biệt làm tốt hơn.
 
-**Mẫu.** Dùng tham số `subagent_type` để ủy thác cho chuyên gia. Subagent `code-reviewer` đọc diff và báo cáo phát hiện kèm mức độ tin cậy. security-auditor đọc cùng diff với kính threat-modeling. Bạn ở trong phiên cha tiếp tục xây feature.
+**Mẫu.** Dùng tham số ````subagent_type```` để ủy thác cho chuyên gia. Subagent ````code-reviewer```` đọc diff và báo cáo phát hiện kèm mức độ tin cậy. security-auditor đọc cùng diff với kính threat-modeling. Bạn ở trong phiên cha tiếp tục xây feature.
 
-```
+`````
 Agent({
   description: "Code review độc lập",
   subagent_type: "code-reviewer",
   prompt: "Review thay đổi trên branch feat/..."
 })
-```
+`````
 
 **Mode thất bại tránh được.** Mù điểm "tôi viết nó nên chắc đúng". Một agent riêng không có context cuộc trò chuyện của bạn là thực sự độc lập.
 
@@ -117,11 +118,11 @@ Agent({
 
 **Mẫu.** Mã hóa checklist thành subagent tùy chỉnh trong repo của bạn. Ai cài Claude Code đều gọi được. Checklist trở thành thực thi được: nó sinh báo cáo cấu trúc đối với từng bước.
 
-```
+`````
 .claude/agents/migration-reviewer.md  # định nghĩa subagent tùy chỉnh
 .claude/agents/security-gate.md
 .claude/agents/perf-budget-checker.md
-```
+````
 
 Khi một thành viên team chạy orchestrator, nó có thể fan out cả ba: migration-reviewer audit SQL, security-gate audit auth touch, perf-budget-checker audit bất cứ gì chạm hot path request. Mỗi cái trả báo cáo cấu trúc. Orchestrator tổng hợp.
 
@@ -185,7 +186,7 @@ Trực giác "cứ gõ tiếp vào phiên chính" chết khó. Đè nén nó. Kh
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -195,7 +196,7 @@ Trực giác "cứ gõ tiếp vào phiên chính" chết khó. Đè nén nó. Kh
 - [claude-code-vs-aider](claude-code-subagent-patterns-multi-agent-workflows-2026)
 - [cursor-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

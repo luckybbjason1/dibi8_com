@@ -32,6 +32,7 @@ faqs: - q: 'Goose AI agent là gì?'
     a: 'Goose bao gồm chế độ phê duyệt (approval mode) hỏi trước khi thực thi các lệnh nguy hiểm, chế độ sandbox (sandbox mode) để chạy lệnh trong môi trường cô lập, nhật ký kiểm toán (audit log) để theo dõi mọi hành động, và giới hạn tốc độ (rate limiting) để ngăn lạm dụng API.'
 ---
 
+
 {</* resource-info */>}
 
 ## Goose là gì?
@@ -46,7 +47,7 @@ faqs: - q: 'Goose AI agent là gì?'
 GitHub: https://github.com/aaif-goose/goose  
 Stars: **44.261+** | Ngôn ngữ: Rust | Giấy phép: Apache-2.0
 
----
+* * *
 
 ## Điểm đặc biệt của Goose
 
@@ -79,67 +80,67 @@ Thông qua tiêu chuẩn mở **Model Context Protocol (MCP)**, Goose có thể 
 - 🐙 Thao tác GitHub
 - 📊 Công cụ phân tích dữ liệu
 
----
+* * *
 
 ## Cài đặt và sử dụng
 
 ### Ứng dụng desktop (khuyến nghị)
 
-```bash
+````bash
 # macOS (Homebrew)
 brew install goose
-```
+`````
 
 ### Cài đặt CLI
 
-```bash
+`````bash
 # Sử dụng script cài đặt
 curl -fsSL https:// goose-docs.ai/install.sh | bash
 
 # Hoặc sử dụng cargo
 cargo install goose-cli
-```
+`````
 
 ### Cấu hình đầu tiên
 
-```bash
+`````bash
 # Thiết lập nhà cung cấp LLM
 goose configure
-```
+`````
 
 ### Sử dụng cơ bản
 
-```bash
+`````bash
 # Bắt đầu phiên tương tác
 goose session
 
 # Thực thi nhiệm vụ đơn
 goose run "Viết cho tôi một Python scraper để crawl GitHub Trending"
-```
+`````
 
----
+* * *
 
 ## Kịch bản thực tế
 
 ### Kịch bản 1: Tự động review code
 
-```bash
+`````bash
 goose run "Review chất lượng code của PR này, tìm bug tiềm ẩn và vấn đề hiệu suất"
-```
+`````
 
 ### Kịch bản 2: Báo cáo phân tích dữ liệu
 
-```bash
+`````bash
 goose run "Phân tích sales_data.csv và tạo biểu đồ xu hướng bán hàng hàng tháng"
-```
+`````
 
 ### Kịch bản 3: Triển khai tự động
 
-```bash
+`````bash
 goose run "Triển khai ứng dụng này lên AWS, cấu hình load balancing và auto scaling"
-```
+````
 
----
+* * *
 
 ## So sánh với đối thủ
 
@@ -153,7 +154,7 @@ goose run "Triển khai ứng dụng này lên AWS, cấu hình load balancing v
 | CLI | ✅ | ✅ | ❌ | ❌ |
 | API | ✅ | ❌ | ❌ | ✅ |
 
----
+* * *
 
 ## Mô hình kinh doanh và cơ hội kiếm tiền
 
@@ -175,7 +176,7 @@ Dựa trên Goose cung cấp: - Tư vấn tự động hóa AI
 - Dịch vụ phát triển tùy chỉnh
 - Đào tạo và triển khai
 
----
+* * *
 
 ## Cộng đồng và hệ sinh thái
 
@@ -184,7 +185,7 @@ Dựa trên Goose cung cấp: - Tư vấn tự động hóa AI
 - **Linux Foundation**: https://aaif.io/
 - **Người đóng góp**: 4.500+ Forks, cộng đồng sôi động
 
----
+* * *
 
 ## Tóm tắt
 
@@ -203,7 +204,7 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026: ✅ **44K+ 
 
 **Bắt đầu ngay**: https://goose-docs.ai/docs/getting-started/installation
 
----
+* * *
 
 ## Related Articles
 
@@ -212,10 +213,10 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026: ✅ **44K+ 
 - [Agent Reach: Connect Your AI Agent to the Internet](/vi/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — Kết nối AI agent với internet
 - [42 Real-World OpenClaw Use Cases](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — Các trường hợp sử dụng AI agent thực tế
 
----
+* * *
 
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
@@ -289,7 +290,7 @@ Goose AI Agent：44K⭐Công cụ AI mã nguồn mở, tự động hóa mọi t
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

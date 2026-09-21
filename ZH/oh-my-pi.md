@@ -20,6 +20,7 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
+
 ## 快速概览
 
 Oh My Pi 将任何树莓派变成一个完全配置好的智能设备，提供自动化设置、预配置仪表板和一键式服务部署。拥有 12,554 颗星，它是 GitHub 上最受欢迎的树莓派自动化框架。
@@ -43,7 +44,7 @@ Oh My Pi 是一个面向树莓派设备的自动化设置框架。与其手动�
 - **网络扫描器**——自动设备发现和监控
 - **备份管理器**——带加密存储的计划备份
 
-```bash
+````bash
 # 在全新的 Raspberry Pi OS 上安装 Oh My Pi
 curl -sSL https://ohmypi.sh/install | sudo bash
 
@@ -51,7 +52,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 git clone https://github.com/can1357/oh-my-pi.git
 cd oh-my-pi
 sudo ./install.sh
-```
+`````
 
 ## Oh My Pi 如何工作
 
@@ -61,7 +62,7 @@ Oh My Pi 采用三阶段部署模型：
 2. **服务安装**——通过 Docker Compose 部署所选服务，附带合理的默认值
 3. **仪表板组装**——创建一个统一的 Web 仪表板来管理所有服务
 
-```bash
+`````bash
 # 第一阶段：系统配置
 sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
 
@@ -70,7 +71,7 @@ sudo omp install homeassistant grafana vaultwarden
 
 # 第三阶段：生成仪表板
 sudo omp dashboard --title "我的智能 Pi" --theme dark
-```
+`````
 
 配置阶段处理通常需要数小时的所有事情：静态 IP 配置、SSH 密钥设置、防火墙规则、日志轮转和自动更新。服务作为独立的 Docker 容器部署，持久化卷用于数据存储。
 
@@ -78,7 +79,7 @@ sudo omp dashboard --title "我的智能 Pi" --theme dark
 
 要求：树莓派 3B+ 或更新型号（推荐 Pi 4）、8GB+ microSD 卡、Raspberry Pi OS Lite（64 位）。
 
-```bash
+`````bash
 # 第一步：刷入 Raspberry Pi OS Lite
 # 从 https://www.raspberrypi.com/software/ 下载
 
@@ -91,13 +92,13 @@ sudo omp dashboard --title "我的智能 Pi" --theme dark
 # 第四步：SSH 登录并安装 Oh My Pi
 ssh pi@<pi-ip>
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+`````
 
 ### Docker 配置
 
 Oh My Pi 对所有服务部署使用 Docker Compose：
 
-```yaml
+`````yaml
 # 安装服务后生成的 docker-compose.yaml
 version: "3.9"
 services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
@@ -120,13 +121,13 @@ services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
     environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: `````
 
 ### 网络配置
 
 自动网络设置处理 DHCP 保留、DNS 转发和防火墙规则：
 
-```bash
+`````bash
 # 配置静态 IP
 sudo omp network static --ip 192.168.1.100 --gateway 192.168.1.1 --dns 8.8.8.8
 
@@ -135,7 +136,7 @@ sudo omp network dns --upstream 1.1.1.1 --local 127.0.0.1
 
 # 配置防火墙
 sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
-```
+`````
 
 ## 服务目录：详细分解
 
@@ -143,13 +144,13 @@ Oh My Pi 支持跨 6 个类别的 20+ 种服务：
 
 | 类别 | 服务 | 安装时间 | 资源占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **智能家居** | Home Assistant、Zigbee2MQTT | 5 分钟 | 512MB 内存 |
 | **网络** | AdGuard、Pi-hole、PiVPN | 3 分钟 | 128MB 内存 |
@@ -158,14 +159,14 @@ Oh My Pi 支持跨 6 个类别的 20+ 种服务：
 | **安全** | Vaultwarden、FileBrowser、Uptime Kuma | 3 分钟 | 256MB 内存 |
 | **监控** | Grafana、Prometheus、AlertManager | 6 分钟 | 512MB 内存 |
 
-```bash
+`````bash
 # 安装完整的智能家居设置
 sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 # 所有服务按协调顺序部署
 # Home Assistant 首先启动，然后 Zigbee2MQTT 连接，
 # AdGuard 处理 DNS，Grafana 监控一切
-```
+`````
 
 ## 与替代方案的比较
 
@@ -173,15 +174,15 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 | 特性 | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 星标数 | 12,554 | 18K+ | N/A | 3.2K |
 | 服务数量 | 20+ | 15+ | N/A | 1（仅媒体） |
@@ -200,7 +201,7 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 ### 编写自定义服务定义
 
-```yaml
+`````yaml
 # my-service.yaml — 自定义服务定义
 service: name: my-custom-app
   version: "1.0"
@@ -221,13 +222,13 @@ service: name: my-custom-app
   backup: enabled: true
     schedule: "0 2 * * *"  # 每天凌晨 2 点
     volumes: - myapp-data
-```
+`````
 
 ### 自动备份
 
 Oh My Pi 包含一个内置备份系统，支持加密存储：
 
-```bash
+`````bash
 # 配置备份目标
 sudo omp backup configure --remote s3 --bucket ohmypi-backups --region us-east-1
 
@@ -239,13 +240,13 @@ sudo omp backup restore --date 2026-06-14 --verify
 
 # 设置每日计划备份
 sudo omp backup schedule --frequency daily --retention 30
-```
+`````
 
 ### 远程访问和隧道
 
 通过自动 HTTPS 隧道从任何地方访问你的 Pi 服务：
 
-```bash
+`````bash
 # 设置 Cloudflare 隧道（免费，无需端口转发）
 sudo omp tunnel cloudflare --token <cloudflare-token>
 
@@ -254,13 +255,13 @@ sudo omp tunnel ngrok --authtoken <ngrok-token>
 
 # 使用 Caddy 配置反向代理（自动 HTTPS）
 sudo omp proxy caddy --domain mypi.local --ssl auto
-```
+`````
 
 ### 多 Pi 集群管理
 
 从单个仪表板管理多台 Pi：
 
-```bash
+`````bash
 # 将第二台 Pi 添加到集群
 sudo omp cluster add --host pi2.local --user pi --key ~/.ssh/id_ed25519
 
@@ -269,13 +270,13 @@ sudo omp cluster deploy --services homeassistant,grafana --nodes all
 
 # 查看集群健康状态
 sudo omp cluster health
-```
+`````
 
 ### SD 卡健康监控
 
 树莓派的 SD 卡可能在毫无预警的情况下失效。Oh My Pi 包含内置的类似 SMART 的监控：
 
-```bash
+`````bash
 # 检查 SD 卡健康状况
 sudo omp storage health
 
@@ -284,13 +285,13 @@ sudo omp storage alerts --enable --threshold 70
 
 # 设置自动健康检查
 sudo omp storage schedule --interval hourly
-```
+`````
 
 ### 电源监控和 UPS 集成
 
 为了实现不间断运行，Oh My Pi 支持 UPS 硬件监控和优雅关机：
 
-```bash
+`````bash
 # 配置 UPS 监控
 sudo omp ups configure --driver usb --shutdown-delay 300
 
@@ -299,11 +300,11 @@ sudo omp ups threshold --battery 20 --action shutdown
 
 # 监控电源事件
 sudo omp ups logs --tail 50
-```
+`````
 
 ### 资源监控和告警
 
-```bash
+`````bash
 # 设置资源阈值
 sudo omp monitor thresholds --cpu 90 --memory 85 --disk 80
 
@@ -312,7 +313,7 @@ sudo omp monitor alerts --channel telegram --token <bot-token> --chat <chat-id>
 
 # 查看资源历史记录
 sudo omp monitor history --period 7d --graph
-```
+`````
 
 ## 局限性：Oh My Pi 可能不适合的情况
 
@@ -328,14 +329,14 @@ sudo omp monitor history --period 7d --graph
 
 6. **有限的 ARM 特定优化**——虽然 Docker 镜像是多架构的，但一些为 x86 优化的镜像在 ARM 处理器上可能性能较低。部署前请始终验证镜像兼容性。
 
-```bash
+`````bash
 # 快速适用性检查
 # ✅ 智能家居中枢 → 适合
 # ✅ 媒体服务器 → 适合
 # ✅ 开发工作站 → 适合
 # ✅ 生产数据库服务器 → 不适合（使用专用硬件）
 # ✅ IoT 传感器项目 → 不适合（仅关注网络服务）
-```
+`````
 
 ## 常见问题
 
@@ -361,15 +362,15 @@ Web 仪表板是响应式的，可在移动浏览器上使用。专属应用尚�
 
 ### 如何更新已安装的服务？
 
-运行 `sudo omp update` 以检查服务更新并在可能的情况下实现零停机应用。更新系统支持大多数服务的滚动更新，并在更新后服务无法启动时自动回滚。
+运行 ````sudo omp update```` 以检查服务更新并在可能的情况下实现零停机应用。更新系统支持大多数服务的滚动更新，并在更新后服务无法启动时自动回滚。
 
 ### 我能在非树莓派板上使用 Oh My Pi 吗？
 
-可以。该框架支持任何安装了 Docker 的 ARM64 或 x86_64 Linux 机器。`omp provision` 命令会自动检测硬件并相应地调整资源限制。
+可以。该框架支持任何安装了 Docker 的 ARM64 或 x86_64 Linux 机器。````omp provision```` 命令会自动检测硬件并相应地调整资源限制。
 
 ### 有管理服务 Web 仪表板吗？
 
-有的。Oh My Pi 在安装后会生成一个统一的 Web 仪表板，地址为 `http://<pi-ip>:3001`。仪表板显示所有正在运行的服务、资源使用情况，并提供对各服务管理面板的一键访问。
+有的。Oh My Pi 在安装后会生成一个统一的 Web 仪表板，地址为 ````http://<pi-ip>:3001````。仪表板显示所有正在运行的服务、资源使用情况，并提供对各服务管理面板的一键访问。
 
 ## 结语
 
@@ -379,14 +380,14 @@ Oh My Pi 消除了树莓派使用中最令人沮丧的部分：配置、服务�
 
 **立即开始：**
 
-```bash
+`````bash
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+````
 
 **相关文章**：[智能家居指南](https://dibi8.com/) · [使用 Pi 进行边缘计算](https://dibi8.com/ai-tools/)
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/can1357/oh-my-pi
 - 树莓派文档：https://www.raspberrypi.com/documentation/
@@ -463,11 +464,11 @@ Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026 represen
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -477,6 +478,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [oh-my-pi](oh-my-pi)
 - [oh-my-pi](oh-my-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

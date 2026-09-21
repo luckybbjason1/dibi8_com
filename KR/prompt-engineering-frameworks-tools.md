@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/prompt-engineering-frameworks-tools/
 ---
 
+
 # 2025년 최고의 프롬프트 엔지니어링 프레임워크 및 도구 비교: PromptLayer, LangSmith, W&B Prompts
 
 
@@ -117,7 +118,7 @@ Helicone은 "1줄의 코드"로 통합되는 것을 목표로 하는 **LLM 관�
 
 ## LLM 파이프라인에 프롬프트 관리 통합하기
 
-프롬프트 관리 도구를 기존 LLM 파이프라인에 통합하는 과정은 간단합니다. 대부분의 도구가 Python SDK를 제공하며, 기존 코드에서 `openai.ChatCompletion.create()` 호출을 해당 SDK의 래퍼 함수로 교체하면 됩니다. LangSmith의 경우 LangChain과의 네이티브 통합으로 코드 수정이 거의 필요 없으며, Helicone은 API 엔드포인트 URL만 변경하는 방식으로 동작합니다.
+프롬프트 관리 도구를 기존 LLM 파이프라인에 통합하는 과정은 간단합니다. 대부분의 도구가 Python SDK를 제공하며, 기존 코드에서 ```openai.ChatCompletion.create()``` 호출을 해당 SDK의 래퍼 함수로 교체하면 됩니다. LangSmith의 경우 LangChain과의 네이티브 통합으로 코드 수정이 거의 필요 없으며, Helicone은 API 엔드포인트 URL만 변경하는 방식으로 동작합니다.
 
 ## 프롬프트 엔지니어링의 미래: 자동 프롬프팅과 그 너머
 
@@ -225,12 +226,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -240,7 +241,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents](prompt-engineering-frameworks-tools)
 - [1m-context-window-llm-2026-real-test](prompt-engineering-frameworks-tools)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

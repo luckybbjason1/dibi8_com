@@ -29,6 +29,7 @@ faqs: - q: '在本地运行 DeepSeek 真的比使用 GPT-4o API 更便宜吗？'
   - q: '相比云端 API，本地 LLM 推理在数据隐私方面有哪些优势？'
     a: '本地推理可以做到 100% 物理隔离（air-gapped），意味着你的数据永远不会离开你自己的基础设施。而使用像 OpenAI 这样的云端 API 时，你的请求数据会离开你的环境，并在提供商的服务器上被处理。'---
 
+
 {</* resource-info */>}
 
 # 彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API
@@ -136,7 +137,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -193,15 +194,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

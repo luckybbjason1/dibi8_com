@@ -24,11 +24,12 @@ aliases:
   - /vi/posts/meilisearch-fast-search-engine/
 ---
 
+
 {{</* resource-info */>}}
 
-## Giới Thiệu: Truy Vấn `LIKE` Cở Cơ Sở Dữ Liệu Đang Giết Chết UX Cở Bạn
+## Giới Thiệu: Truy Vấn ```LIKE```` Cở Cơ Sở Dữ Liệu Đang Giết Chết UX Cở Bạn
 
-Tìm kiếm là tương tác có lưu lượng cao nhất trên hầu hết các ứng dụng. Tuy nhiên", "**63% ứng dụng web vẫn sử dụng truy vấn `LIKE` của cơ sở dữ liệu** cho tìm kiếm trong năm 2026. Kết quả? Các truy vấn mất **300ms đến 3 giây** trên bộ dữ liệu hơn 100.000 hàng. Ngưởi dùng từ bỏ tìm kiếm sau 500ms. Bạn đang mất đi sự tương tác.
+Tìm kiếm là tương tác có lưu lượng cao nhất trên hầu hết các ứng dụng. Tuy nhiên", "**63% ứng dụng web vẫn sử dụng truy vấn ````LIKE```` của cơ sở dữ liệu** cho tìm kiếm trong năm 2026. Kết quả? Các truy vấn mất **300ms đến 3 giây** trên bộ dữ liệu hơn 100.000 hàng. Ngưởi dùng từ bỏ tìm kiếm sau 500ms. Bạn đang mất đi sự tương tác.
 
 Bạn đã nghe nói về Elasticsearch. Nó hoạt động", "nhưng cần **ít nhất 8GB RAM**", "điều chỉnh JVM", "và một đội vận hành chuyên dụng. Algolia nhanh nhưng chi phí **$1", "00 cho mỗi 1.000 lượt tìm kiếm** khi quy mô lớn. Bạn cần thứ gì đó triển khai trong vài phút", "chạy trên VPS $20", "và xử lý hàng triệu tài liệu dễ dàng.
 
@@ -82,7 +83,7 @@ Bạn có thể tùy chỉnh", "thêm hoặc xóa ranking rule qua API cài đ�
 ### Tìm Kiếm Phân Loại", "Lọc", "và Sắp Xếp
 
 Meilisearch hỗ trợ: - **Phân loại động** — yêu cầu số lượng phân loại cho bất kỳ thuộc tính có thể lọc nào
-- **Bộ lọc phức tạp** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
+- **Bộ lọc phức tạp** — ````price >= 10 AND (category = "shoes" OR in_stock = true)````
 - **Sắp xếp tại thởi điểm truy vấn** — sắp xếp theo bất kỳ thuộc tính có thể sắp xếp nào
 - **Tìm kiếm địa lý** — lọc và sắp xếp theo khoảng cách từ vĩ độ/kinh độ
 - **Đa ngưởi dùng** — tenant token cho cách ly ngưởi dùng an toàn (v1.12)
@@ -94,7 +95,7 @@ Meilisearch hỗ trợ: - **Phân loại động** — yêu cầu số lượng 
 
 Meilisearch khởi động nhanh hơn hầu hết mọi công cụ tìm kiếm. Bạn cần **Docker 24.0+** và **ít nhất 512MB RAM** (khuyến nghị 1GB).
 
-```bash
+`````bash
 docker run -d \
   --name meilisearch \
   --restart unless-stopped \
@@ -107,15 +108,15 @@ docker run -d \
 # Kiểm tra sức khỏe
 curl -s http://localhost:7700/health | jq .
 # Kỳ vọng: { "status": "available" }
-```
+`````
 
-**Lưu ý**: `MEILI_MASTER_KEY` phải ít nhất 16 byte cho production. Thay `your-secure-master-key-32-chars-long!!` bằng một secret thực.
+**Lưu ý**: ````MEILI_MASTER_KEY```` phải ít nhất 16 byte cho production. Thay ````your-secure-master-key-32-chars-long!!```` bằng một secret thực.
 
 ### Bước 2: Tạo Index và Thêm Tài Liệu
 
 Meilisearch sử dụng "index" thay vì "collection". Khác với Typesense", "**Meilisearch không yêu cầu schema được định nghĩa trước** — nó tự động phát hiện kiểu trường khi nhập tài liệu đầu tiên.
 
-```bash
+`````bash
 # Tạo index
 curl -s -X POST 'http://localhost:7700/indexes' \
   -H 'Content-Type: application/json' \
@@ -134,11 +135,11 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
     }", "{
       "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
     }"]' | jq .
-```
+`````
 
 ### Bước 3: Cấu Hình Trường Có Thể Tìm Kiếm và Lọc
 
-Nói cho Meilisearch biết trường nào để tìm kiếm và trường nào để dùng cho lọc: ```bash
+Nói cho Meilisearch biết trường nào để tìm kiếm và trường nào để dùng cho lọc: `````bash
 # Cập nhật cài đặt index
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -156,11 +157,11 @@ curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
       "exactness"
     ]
   }' | jq .
-```
+`````
 
 ### Bước 4: Tìm Kiếm với Chịu Lỗi Chính Tả
 
-```bash
+`````bash
 # Tìm kiếm với lỗi chính tả ("headphons" thay vì "headphones")
 curl -s -X POST 'http://localhost:7700/indexes/products/search' \
   -H 'Content-Type: application/json' \
@@ -172,28 +173,28 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "facets": ["category"],
     "limit": 10
   }' | jq .
-```
+`````
 
 Phản hồi bao gồm tài liệu phù hợp, số lượng phân loại theo danh mục, và các kết quả được highlight — tất cả trong **dưới 30ms**.
 
 ### Bước 5: Chờ Tác Vụ Lập Chỉ Mục
 
-Meilisearch xử lý việc thêm tài liệu không đồng bộ. Kiểm tra trạng thái tác vụ: ```bash
+Meilisearch xử lý việc thêm tài liệu không đồng bộ. Kiểm tra trạng thái tác vụ: `````bash
 # Kiểm tra tác vụ mới nhất
 curl -s 'http://localhost:7700/tasks?limit=1' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq '.results[0] | {uid, status, type, duration}'
 # Kỳ vọng: { "uid": 1, "status": "succeeded", "type": "documentAdditionOrUpdate", "duration": "PT0.234S" }
-```
+`````
 
 ## Tích Hợp với JavaScript, Python, PHP, Go và React
 
 ### SDK JavaScript/Node.js
 
-```bash
+`````bash
 npm install meilisearch
-```
+`````
 
-```javascript
+`````javascript
 const { MeiliSearch } = require(meilisearch);
 
 const client = new MeiliSearch({
@@ -213,24 +214,24 @@ async function search(query) {
     attributesToHighlight: [name, description]
   });
 
-  console.log(`Found ${results.estimatedTotalHits} hits`);
+  console.log(````Found ${results.estimatedTotalHits} hits````);
   console.log('Facets:', results.facetDistribution);
   
   results.hits.forEach(hit => {
-    console.log(`- ${hit.name} ($${hit.price}) [${hit._formatted.name}]`);
+    console.log(````- ${hit.name} ($${hit.price}) [${hit._formatted.name}]````);
   });
 }
 
 search(headphons); // lỗi chính tả được xử lý tự động
-```
+`````
 
 ### SDK Python
 
-```bash
+`````bash
 pip install meilisearch
-```
+`````
 
-```python
+`````python
 import meilisearch
 import os
 
@@ -256,15 +257,15 @@ results = index.search(
 print(f"Hits: {results[estimatedTotalHits]}")
 print(f"Facets: {results.get(facetDistribution, {})}")
 for hit in results[hits]: print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
-```
+`````
 
 ### Tích Hợp React InstantSearch
 
-Meilisearch cung cấp `meilisearch/instant-meilisearch` để tương thích với React InstantSearch: ```bash
+Meilisearch cung cấp ``meilisearch/instant-meilisearch`` để tương thích với React InstantSearch: `````bash
 npm install @meilisearch/instant-meilisearch react-instantsearch-dom
-```
+`````
 
-```jsx
+`````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList, Stats } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -306,15 +307,15 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-```
+`````
 
 ### SDK PHP
 
-```bash
+`````bash
 composer require meilisearch/meilisearch-php
-```
+`````
 
-```php
+`````php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -336,15 +337,15 @@ foreach ($results->getHits() as $hit) {
     echo "- {$hit[name]} \${$hit[price]}\n";
 }
 ?>
-```
+`````
 
 ### SDK Go
 
-```bash
+`````bash
 go get github.com/meilisearch/meilisearch-go
-```
+`````
 
-```go
+`````go
 package main
 
 import (
@@ -378,7 +379,7 @@ func main() {
         fmt.Printf("- %s ($%.0f)\n", doc["name"], doc["price"])
     }
 }
-```
+`````
 
 ## Đánh Giá Hiệu Suất & Các Trường Hợp Sử Dụng Thực Tế
 
@@ -402,7 +403,7 @@ Chúng tôi đã đánh giá Meilisearch 1.12 trên một **DigitalOcean droplet
 
 ### Tìm Kiếm AI (Meilisearch AI)
 
-Từ v1.10, Meilisearch hỗ trợ **vector search và hybrid search** qua cấu hình `embedders`: ```bash
+Từ v1.10, Meilisearch hỗ trợ **vector search và hybrid search** qua cấu hình ``embedders``: `````bash
 # Cấu hình embedder cho semantic search
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -426,7 +427,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "hybrid": { "semanticRatio": 0.5 },
     "limit": 5
   }' | jq '.hits[] | {name, _rankingScore}'
-```
+`````
 
 Điều này cho phép **semantic search** — tìm "headphones" khi ngưởi dùng tìm "comfortable audio device" — mà không cần cơ sở dữ liệu vector riêng.
 
@@ -444,7 +445,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 
 ### 1. Docker Compose cho Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -468,13 +469,13 @@ services: meilisearch: image: getmeili/meilisearch:v1.12
     volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes: meilisearch-data: caddy-data: ```
+volumes: meilisearch-data: caddy-data: `````
 
 Triển khai trên bất kỳ VPS nào. Cho một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho bạn **$200 tín dụng miễn phí** — đủ để chạy Meilisearch trong 11 tháng trên droplet 2GB.
 
 ### 2. Đa Ngưởi Dùng với Tenant Tokens
 
-Meilisearch 1.12 hỗ trợ đa ngưởi dùng bảo mật qua tenant tokens: ```javascript
+Meilisearch 1.12 hỗ trợ đa ngưởi dùng bảo mật qua tenant tokens: `````javascript
 const { MeiliSearch } = require(meilisearch);
 const crypto = require(crypto);
 
@@ -498,11 +499,11 @@ const token = client.generateTenantToken(
 
 console.log('Tenant token:', token);
 // Token này CHỈ có thể tìm kiếm tài liệu có user_id = 123
-```
+`````
 
 ### 3. Snapshot Đã Lên Lịch và Sao Lưu
 
-```bash
+`````bash
 # Kích hoạt dump (snapshot)
 curl -s -X POST 'http://localhost:7700/dumps' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq .
@@ -511,11 +512,11 @@ curl -s -X POST 'http://localhost:7700/dumps' \
 # Tải xuống từ /dumps/ sau khi task hoàn thành
 
 # Cho sao lưu tự động, thêm vào crontab: # 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
-```
+`````
 
 ### 4. Từ Đồng Nghĩa và Từ Dừng
 
-```bash
+`````bash
 # Cấu hình từ đồng nghĩa
 curl -s -X PUT 'http://localhost:7700/indexes/products/settings/synonyms' \
   -H 'Content-Type: application/json' \
@@ -531,11 +532,11 @@ curl -s -X PUT 'http://localhost:7700/indexes/products/settings/stop-words' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '["the", "a", "an", "and", "or"]' | jq .
-```
+`````
 
 ### 5. Giám Sát với Prometheus (Tích Hợp Chính Thức)
 
-Meilisearch cung cấp metrics Prometheus tự nhiên: ```bash
+Meilisearch cung cấp metrics Prometheus tự nhiên: `````bash
 # Kích hoạt metrics endpoint
 curl -s -X PATCH 'http://localhost:7700/experimental-features' \
   -H 'Content-Type: application/json' \
@@ -546,7 +547,7 @@ curl -s -X PATCH 'http://localhost:7700/experimental-features' \
 curl -s http://localhost:7700/metrics
 # meilisearch_search_requests_total{index="products"} 15420
 # meilisearch_http_requests_duration_seconds_sum 2.45
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -605,11 +606,11 @@ Trên máy chủ 16GB RAM, Meilisearch xử lý thoải mái **20-30 triệu tà
 
 ### Làm thế nào để nâng cấp Meilisearch không downtime?
 
-Meilisearch chưa hỗ trợ rolling upgrades zero-downtime. Cách tiếp cận khuyến nghị: (1) trigger dump qua endpoint `/dumps`, (2) khởi động container Meilisearch mới với phiên bản mới, (3) restore dump, (4) chuyển traffic. Cho production, chạy blue-green deployment với load balancer. Quá trình mất 5-15 phút tùy kích thước dataset.
+Meilisearch chưa hỗ trợ rolling upgrades zero-downtime. Cách tiếp cận khuyến nghị: (1) trigger dump qua endpoint ````/dumps````, (2) khởi động container Meilisearch mới với phiên bản mới, (3) restore dump, (4) chuyển traffic. Cho production, chạy blue-green deployment với load balancer. Quá trình mất 5-15 phút tùy kích thước dataset.
 
 ### Meilisearch có hỗ trợ tìm kiếm real-time cho nội dung do ngưởi dùng tạo không?
 
-Có. Tài liệu có thể tìm kiếm **trong vòng 1-2 giây** sau khi được thêm. Cho các ứng dụng UGC điển hình (bình luận, bài đăng, đánh giá), đây là real-time. Meilisearch xử lý tác vụ không đồng bộ qua internal queue. Bạn có thể kiểm tra trạng thái hoàn thành qua endpoint `/tasks/{taskUid}`. Cho các use case nhạy cảm về độ trễ, batch writes theo nhóm 100-1000 tài liệu để tối ưu throughput.
+Có. Tài liệu có thể tìm kiếm **trong vòng 1-2 giây** sau khi được thêm. Cho các ứng dụng UGC điển hình (bình luận, bài đăng, đánh giá), đây là real-time. Meilisearch xử lý tác vụ không đồng bộ qua internal queue. Bạn có thể kiểm tra trạng thái hoàn thành qua endpoint ````/tasks/{taskUid}````. Cho các use case nhạy cảm về độ trễ, batch writes theo nhóm 100-1000 tài liệu để tối ưu throughput.
 
 ### Meilisearch Cloud có đáng giá hơn tự lưu trữ không?
 
@@ -617,7 +618,7 @@ Meilisearch Cloud bắt đầu từ **$29/tháng** cho gói Developer (bao gồm
 
 ## Kết Luận: Triển Khai Tìm Kiếm Tức Thì Trong 3 Phút
 
-Meilisearch 1.12 là công cụ tìm kiếm cấp production dễ triển khai nhất năm 2026. Từ `docker run` đến kết quả tìm kiếm đầu tiên, toàn bộ quá trình mất **chưa đầy 3 phút**. Với giấy phép MIT, 10+ SDK, khả năng chịu lỗi chính tả tích hợp, và giờ là AI semantic search, nó loại bỏ mọi lý do để sử dụng truy vấn `LIKE` của cơ sở dữ liệu.
+Meilisearch 1.12 là công cụ tìm kiếm cấp production dễ triển khai nhất năm 2026. Từ ````docker run```` đến kết quả tìm kiếm đầu tiên, toàn bộ quá trình mất **chưa đầy 3 phút**. Với giấy phép MIT, 10+ SDK, khả năng chịu lỗi chính tả tích hợp, và giờ là AI semantic search, nó loại bỏ mọi lý do để sử dụng truy vấn ````LIKE``` của cơ sở dữ liệu.
 
 Cho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho đội đang trả Algolia $500+/tháng, VPS $18 chạy Meilisearch xử lý traffic tương đương. Cho developer di chuyển từ Elasticsearch, sự đơn giản vận hành sẽ cảm thấy như kỳ nghỉ.
 
@@ -644,7 +645,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So sánh: Meilisearch vs Typesense vs Elasticsearch](dibi8-internal-link)
 - [Best Practices Docker cho công cụ tìm kiếm](dibi8-internal-link)
 
----
+* * *
 
 *Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Meilisearch là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.*
 

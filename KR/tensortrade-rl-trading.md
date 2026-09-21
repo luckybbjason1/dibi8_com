@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/tensortrade-rl-trading/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 대부분의 트레이딩 봇이 실패하는 이유 (그리고 RL이 어떻게 게임을 바꾸는가)
@@ -54,7 +55,7 @@ TensorTrade의 아키텍처는 다섯 가지 핵심 추상화를 중심으로 �
 상품과 거래소에 걸쳐 보유 자산을 추적한다. 포트폴리오는 순자산을 계산하고, 보상을 산출하며, 포지션 제한을 시행한다.
 
 ### Environment 환경 (Gym)
-`TradingEnv` 클래스는 표준 `gym.Env` 인터페이스를 구현한다. 시장 데이터를 → 관찰값으로 변환하고, 액션을 수락 → 거래를 실행하고, 포트폴리오 수익률이나 샤프 비율을 기준으로 보상을 반환한다.
+```TradingEnv```` 클래스는 표준 ````gym.Env```` 인터페이스를 구현한다. 시장 데이터를 → 관찰값으로 변환하고, 액션을 수락 → 거래를 실행하고, 포트폴리오 수익률이나 샤프 비율을 기준으로 보상을 반환한다.
 
 ### Agent (에이전트)
 Gym 환경과 호환되는 모든 RL 알고리즘 — Stable Baselines3의 PPO, DQN, A2C 또는 커스텀 구현체.
@@ -67,18 +68,18 @@ TensorTrade는 Python 3.9+가 필요하며 가상 환경에서 실행하는 것�
 
 ### 단계 1: 환경 생성
 
-```bash
+`````bash
 python -m venv tensortrade-env
 source tensortrade-env/bin/activate  # Linux/Mac
 # tensortrade-env\Scripts\activate  # Windows
 
 # Upgrade pip
 pip install --upgrade pip
-```
+`````
 
 ### 단계 2: TensorTrade 및 종속성 설치
 
-```bash
+`````bash
 # Core framework
 pip install tensortrade==1.2.0
 
@@ -90,11 +91,11 @@ pip install ccxt==4.4.0 yfinance==0.2.54
 
 # Utilities
 pip install pandas==2.2.3 numpy==1.26.4
-```
+`````
 
 ### 단계 3: 설치 확인
 
-```python
+`````python
 import tensortrade
 import gymnasium as gym
 import stable_baselines3
@@ -102,17 +103,17 @@ import stable_baselines3
 print(f"TensorTrade version: {tensortrade.__version__}")
 print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
-```
+`````
 
-예상 출력: ```
+예상 출력: `````
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
-```
+`````
 
 ### 단계 4: 샘플 데이터 다운로드 및 첫 백테스트 실행
 
-```python
+`````python
 import pandas as pd
 import yfinance as yf
 from tensortrade.env.default import create
@@ -160,7 +161,7 @@ env = create(
 
 print(f"Observation space: {env.observation_space}")
 print(f"Action space: {env.action_space}")
-```
+`````
 
 이제 RL 훈련을 위한 완전한 기능을 갖춘 트레이딩 환경이 준비되었다.
 
@@ -168,7 +169,7 @@ print(f"Action space: {env.action_space}")
 
 TensorTrade의 진정한 힘은 검증된 RL 라이브러리에 연결하는 것에서 나온다. PPO 에이전트를 훈련하는 방법은 다음과 같다: ### PPO 에이전트 훈련
 
-```python
+`````python
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import EvalCallback
 
@@ -192,11 +193,11 @@ agent.learn(total_timesteps=100_000)
 
 # Save the trained model
 agent.save("ppo_btc_trader_v1")
-```
+`````
 
 ### Stream을 이용한 커스텀 특성 엔지니어링
 
-실제 트레이딩 에이전트는 원시 가격 이상의 것이 필요하다. TensorTrade의 `Stream` API로 기술적 지표를 계산할 수 있다: ```python
+실제 트레이딩 에이전트는 원시 가격 이상의 것이 필요하다. TensorTrade의 ``Stream`` API로 기술적 지표를 계산할 수 있다: `````python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -215,11 +216,11 @@ feed = DataFeed([
     Stream.source(list(macd_signal), dtype="float").rename("macd_signal"),
     Stream.source(list(df["Volume"]), dtype="float").rename("volume"),
 ])
-```
+`````
 
 ### Ray RLlib과의 통합
 
-여러 환경에서 분산 훈련을 위해: ```python
+여러 환경에서 분산 훈련을 위해: `````python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -241,11 +242,11 @@ tune.run(
     checkpoint_at_end=True,
     storage_path="~/ray_results"
 )
-```
+`````
 
 ### CCXT를 통한 라이브 데이터 통합
 
-```python
+`````python
 import ccxt
 
 # Connect to Binance via CCXT
@@ -264,7 +265,7 @@ ohlcv_df = pd.DataFrame(
 
 # Use in TensorTrade environment
 # Note: live trading requires additional risk management
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례: 2026년 Q1 결과
 
@@ -297,7 +298,7 @@ RL 에이전트의 모멘텀 신호를 기반으로 한 동적 리밸런싱 능�
 
 ### 커스텀 보상 함수
 
-기본 보상 스킴이 펀드의 목표와 일치하지 않을 수 있다. 소티노 비율 기반 보상: ```python
+기본 보상 스킴이 펀드의 목표와 일치하지 않을 수 있다. 소티노 비율 기반 보상: `````python
 import numpy as np
 
 class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
@@ -322,11 +323,11 @@ env = create(
     feed=feed,
     window_size=20,
 )
-```
+`````
 
 ### 다중 거래소 차익 거래 설정
 
-```python
+`````python
 from tensortrade.oms.exchanges import Exchange
 from tensortrade.oms.instruments import USD, BTC
 
@@ -348,11 +349,11 @@ btc_coinbase = Wallet(coinbase_exchange, 0 * BTC)
 multi_portfolio = Portfolio(USD, [
     binance_wallet, coinbase_wallet, btc_binance, btc_coinbase
 ])
-```
+`````
 
 ### 리스크 관리 추가: 켈리 기준을 활용한 포지션 사이징
 
-```python
+`````python
 class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
     def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
@@ -364,11 +365,11 @@ class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
         return kelly * self.kelly_fraction * portfolio.base_balance
-```
+`````
 
 ### 프로덕션 배포 체크리스트
 
-실제 자본으로 라이브 트레이딩 전: ```python
+실제 자본으로 라이브 트레이딩 전: `````python
 # 1. Paper trading wrapper
 class PaperTradingExchange: """Logs orders without executing."""
     def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
@@ -388,7 +389,7 @@ class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.0
 import datetime
 model_version = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 agent.save(f"models/ppo_prod_{model_version}.zip")
-```
+`````
 
 ## 대안과의 비교
 
@@ -415,7 +416,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 ## 한계 / 솔직한 평가
 
-TensorTrade는 유능한 프레임워크지만 마법의 돈 벌이 기계는 아니다. 실제 한계는 다음과 같다: 1. **시뮬레이션 간극**: 시뮬레이션 거래소는 슬리피지 없이 중간 가격으로 주문을 체결한다. 실제 시장은 스프레드, 지연, 부분 체결이 있다. 항상 보수적인 슬리피지 가정(`slippage=0.001` 최소)으로 스트레스 테스트를 수행하라.
+TensorTrade는 유능한 프레임워크지만 마법의 돈 벌이 기계는 아니다. 실제 한계는 다음과 같다: 1. **시뮬레이션 간극**: 시뮬레이션 거래소는 슬리피지 없이 중간 가격으로 주문을 체결한다. 실제 시장은 스프레드, 지연, 부분 체결이 있다. 항상 보수적인 슬리피지 가정(````slippage=0.001```` 최소)으로 스트레스 테스트를 수행하라.
 
 2. **과적합 리스크**: RL 에이전트가 가격 경로를 암기할 수 있다. 워크 포워드 검증을 사용하라 — 2024년 훈련, 2025년 검증, 2026년 테스트. 절대 테스트 세트에서 최적화하지 마라.
 
@@ -425,7 +426,7 @@ TensorTrade는 유능한 프레임워크지만 마법의 돈 벌이 기계는 �
 
 5. **내장 데이터 파이프라인 없음**: FinRL과 달리 TensorTrade는 사전 로드된 데이터셋을 포함하지 않는다. yfinance, CCXT 또는 독점 피드를 통해 자체 데이터를 가져와야 한다.
 
-6. **Gym API 마이그레이션**: 프로젝트는 `gym`에서 `gymnasium`으로 전환했다. 일부 이전 커뮤니티 예제는 여전히 사용 중단된 `gym` 네임스페이스를 참조한다.
+6. **Gym API 마이그레이션**: 프로젝트는 ````gym````에서 ````gymnasium````으로 전환했다. 일부 이전 커뮤니티 예제는 여전히 사용 중단된 ````gym``` 네임스페이스를 참조한다.
 
 ## 자주 묻는 질문
 
@@ -513,7 +514,7 @@ TensorTrade는 Python에서 강화학습 트레이딩을 위한 가장 프로덕
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -523,7 +524,7 @@ TensorTrade는 Python에서 강화학습 트레이딩을 위한 가장 프로덕
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](tensortrade-rl-trading)
 - [agent-reach-internet-access-ai-agents](tensortrade-rl-trading)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

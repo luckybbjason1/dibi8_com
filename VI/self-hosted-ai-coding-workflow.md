@@ -27,6 +27,7 @@ aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---
 
+
 Nếu bạn đang trả $20/tháng cho Cursor + $80/tháng cho Claude Code Pro + $19/tháng cho Copilot + $50/tháng cho Replit credits + $120/tháng cho OpenAI API top-up, chi tiêu AI coding hàng tháng của bạn là **$289/tháng**. 12 tháng là **$3,468** — cho công cụ bạn không sở hữu, không audit được, có thể bị rate-limit hoặc tắt mà không báo trước.
 
 Bộ sưu tập này lắp ráp **giải pháp self-host 7 thành phần** chạy trên **VPS $6/tháng** và match 90%+ tính năng SaaS. Chúng tôi đã xuất bản hướng dẫn sâu cho từng thành phần trong 90 ngày qua. Trang này là **hướng dẫn lắp ráp stack hoàn chỉnh** — cài gì, theo thứ tự nào, với config nào, cộng đường nâng cấp khi vượt tier $6.
@@ -55,7 +56,7 @@ Ba điều thay đổi giữa 2024 và 2026 làm AI coding self-host cuối cùn
 
 ## 2. Tổng Quan Kiến Trúc
 
-```
+````
                   ┌─────────────────────────────┐
                   │   Máy bạn / VPS ($6)        │
                   │                             │
@@ -82,7 +83,7 @@ Ba điều thay đổi giữa 2024 và 2026 làm AI coding self-host cuối cùn
 
       MCP servers (filesystem + git + memory + tavily-search)
       gắn vào OpenCode qua claude_desktop_config.json
-```
+`````
 
 Pattern: **OpenCode là não editor, LiteLLM là cảnh sát giao thông, 9Router nén, MCP servers expose thế giới.** Hoán đổi thành phần bất kỳ không động vào cái khác.
 
@@ -92,10 +93,10 @@ Pattern: **OpenCode là não editor, LiteLLM là cảnh sát giao thông, 9Route
 
 **Vì sao chọn**: Agent mã nguồn mở nói MCP native. Trên cùng task refactor (component React 400 dòng), OpenCode + DeepSeek-V4 = 18 giây, $0.007. Claude Code (Sonnet) = 12 giây, $0.14. Rẻ 20×, chậm 5%.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 npm install -g @opencode-ai/opencode
 opencode --version  # 1.x
-```
+`````
 
 Trỏ nó vào LiteLLM gateway (thành phần tiếp) qua config là xong.
 
@@ -107,11 +108,11 @@ Trỏ nó vào LiteLLM gateway (thành phần tiếp) qua config là xong.
 
 **Vì sao chọn**: 137k star. Cài single-binary. Llama 3.2 3B chạy 22 tok/sec trên M1 MacBook 5 tuổi 8GB RAM. Qwen 3 Coder 14B chạy thoải mái trên Mac M-series 16GB hoặc bất kỳ Linux 32GB nào.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull qwen3-coder:14b
 ollama serve  # expose :11434 API tương thích OpenAI
-```
+`````
 
 LiteLLM tự pick Ollama làm provider.
 
@@ -123,14 +124,14 @@ LiteLLM tự pick Ollama làm provider.
 
 **Vì sao chọn**: 47.8k star, gateway LLM nhiều star nhất. Latency P95 8ms ở 1k RPS. Miễn phí nếu self-host. So sánh chi tiết trong [hướng dẫn Portkey vs LiteLLM vs OpenRouter 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
-**Triển khai nhanh trên VPS 4GB** (đề xuất {{< aff "htstack" "stack-vps" "VPS Hong Kong của HTStack" >}} cho sub-30ms latency tới user Trung Quốc đại lục, hoặc {{< aff "digitalocean" "stack-droplet" "droplet DigitalOcean $6" >}} cho nơi khác): ```bash
+**Triển khai nhanh trên VPS 4GB** (đề xuất {{< aff "htstack" "stack-vps" "VPS Hong Kong của HTStack" >}} cho sub-30ms latency tới user Trung Quốc đại lục, hoặc {{< aff "digitalocean" "stack-droplet" "droplet DigitalOcean $6" >}} cho nơi khác): `````bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
   -e DEEPSEEK_API_KEY=$DEEPSEEK_KEY \
   -e ANTHROPIC_API_KEY=$CLAUDE_KEY \
   ghcr.io/berriai/litellm:main-stable
-```
+`````
 
 **Setup đầy đủ** với virtual key, theo dõi chi tiêu, rule fallback — xem [LiteLLM production gateway 2026](/vi/resources/llm-frameworks/litellm/).
 
@@ -140,26 +141,26 @@ docker run -d --name litellm -p 4000:4000 \
 
 **Vì sao điều này quan trọng**: Coding agent là kẻ tiêu thụ token bệnh hoạn — gửi toàn bộ codebase context mỗi turn. Ở $3/M input token trên Claude Sonnet, cộng dồn nhanh. RTK (Repetition-Token Compression) của 9Router là proxy duy nhất thiết kế đặc biệt cho workload này.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=anthropic,openai,gemini,deepseek \
   ghcr.io/rtk-ai/9router:latest
-```
+`````
 
-Trỏ endpoint premium provider của LiteLLM tới `localhost:9999` thay vì direct.
+Trỏ endpoint premium provider của LiteLLM tới ````localhost:9999```` thay vì direct.
 
 **Setup đầy đủ**: [hướng dẫn 9Router smart proxy](/vi/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/).
 
 ## 7. Thành Phần 5 — Memory Layer (mem0 + AgentMemory MCP)
 
-**Vai trò**: Memory ngữ nghĩa bền vững qua session coding. "Nhớ là chúng ta dùng Tailwind v4 và auth ở `src/lib/auth.ts`" — và agent thực sự nhớ thứ Hai tuần sau.
+**Vai trò**: Memory ngữ nghĩa bền vững qua session coding. "Nhớ là chúng ta dùng Tailwind v4 và auth ở ````src/lib/auth.ts````" — và agent thực sự nhớ thứ Hai tuần sau.
 
 **Vì sao chọn**: mem0 là layer memory ngữ nghĩa mã nguồn mở 30k+ star. AgentMemory là MCP server expose nó tới bất kỳ MCP host nào (OpenCode / Claude Desktop / Cursor).
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 npm install -g @mem0/mem0-mcp
 # Thêm vào MCP config của OpenCode: # { "agentmemory": { "command": "mem0-mcp", "args": [] } }
-```
+`````
 
 **Setup đầy đủ** với chọn model embedding và lựa chọn vector DB — xem [hướng dẫn AgentMemory MCP](/vi/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/).
 
@@ -167,11 +168,11 @@ npm install -g @mem0/mem0-mcp
 
 **Vai trò**: Cho agent mắt và tay. Đọc file project, kiểm tra lịch sử git, tìm web — tất cả qua protocol MCP.
 
-**Bộ tối thiểu**: - `modelcontextprotocol/server-filesystem` (Anthropic reference)
-- `modelcontextprotocol/server-git` (Anthropic reference)
-- `tavily-mcp` (kết quả tìm kiếm web đã format cho LLM)
+**Bộ tối thiểu**: - ````modelcontextprotocol/server-filesystem```` (Anthropic reference)
+- ````modelcontextprotocol/server-git```` (Anthropic reference)
+- ````tavily-mcp```` (kết quả tìm kiếm web đã format cho LLM)
 
-**Cài nhanh** (cả 3 thêm vào `claude_desktop_config.json` của OpenCode): ```json
+**Cài nhanh** (cả 3 thêm vào ``claude_desktop_config.json`` của OpenCode): `````json
 {
   "mcpServers": {
     "filesystem": {
@@ -189,7 +190,7 @@ npm install -g @mem0/mem0-mcp
     }
   }
 }
-```
+`````
 
 Tavily có tier miễn phí hào phóng (1,000 lượt tìm/tháng) đủ trong ngân sách $6.
 
@@ -199,7 +200,7 @@ Tavily có tier miễn phí hào phóng (1,000 lượt tìm/tháng) đủ trong 
 
 **Vai trò**: Khi bạn muốn dùng Claude Code native (không qua OpenCode) cho task cụ thể — hoặc nhảy sang Codex cho tốc độ Rust — CC Switch là swap 1-click. Một config, tất cả AI CLI chia sẻ MCP server.
 
-**Vì sao chọn**: App desktop Rust + Tauri 75k star nghĩa là bạn ngừng duy trì 5 file `~/.claude_desktop_config.json` riêng cho 5 CLI khác nhau.
+**Vì sao chọn**: App desktop Rust + Tauri 75k star nghĩa là bạn ngừng duy trì 5 file ````~/.claude_desktop_config.json```` riêng cho 5 CLI khác nhau.
 
 **Cài nhanh**: Tải từ [farion1231/cc-switch releases](https://github.com/farion1231/cc-switch/releases). Cấu hình từng CLI với một click.
 
@@ -208,12 +209,12 @@ Tavily có tier miễn phí hào phóng (1,000 lượt tìm/tháng) đủ trong 
 ## 10. Thứ Tự Lắp Ráp — Setup Day 1 (90 phút)
 
 Nếu bắt đầu từ đầu, làm theo thứ tự này: 1. **Khởi động hạ tầng** (15 phút) — Đặt {{< aff "digitalocean" "assembly-vps" "droplet DigitalOcean $6" >}}, cài Docker, mở port 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
-2. **Ollama trước** (10 phút) — Cài + pull `qwen3-coder:14b` (~9 GB). Xác nhận `curl localhost:11434/api/tags` hoạt động
-3. **LiteLLM thứ hai** (15 phút) — Docker run với env vars từ sec. 5. Xác nhận `curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"` liệt kê model Ollama
+2. **Ollama trước** (10 phút) — Cài + pull ````qwen3-coder:14b```` (~9 GB). Xác nhận ````curl localhost:11434/api/tags```` hoạt động
+3. **LiteLLM thứ hai** (15 phút) — Docker run với env vars từ sec. 5. Xác nhận ````curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"```` liệt kê model Ollama
 4. **9Router thứ ba** (10 phút) — Tùy chọn nhưng khuyến nghị. Thêm vào config premium provider của LiteLLM
-5. **OpenCode thứ tư** (15 phút) — Cài local, trỏ vào LiteLLM tại `https://your-vps:4000/v1`, test prompt cơ bản
+5. **OpenCode thứ tư** (15 phút) — Cài local, trỏ vào LiteLLM tại ````https://your-vps:4000/v1````, test prompt cơ bản
 6. **MCP servers thứ năm** (15 phút) — filesystem + git + tavily thêm vào config OpenCode. Test bằng cách hỏi "liệt kê file trong repo này"
-7. **mem0 + AgentMemory thứ sáu** (10 phút) — `npm i -g mem0-mcp`, thêm vào config, test bằng cách nói "nhớ là chúng ta dùng Tailwind v4"
+7. **mem0 + AgentMemory thứ sáu** (10 phút) — ````npm i -g mem0-mcp```, thêm vào config, test bằng cách nói "nhớ là chúng ta dùng Tailwind v4"
 8. **CC Switch cuối** (tùy chọn) — Chỉ khi muốn Claude Code / Codex native song song
 
 Bạn giờ có stack AI coding $6/tháng match 90% bundle SaaS $289/tháng.
@@ -258,7 +259,7 @@ Tổng: $6/tháng. Tổng: 90 phút lắp ráp. Tổng: vendor lock-in 0.
 
 Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn trong tuần 1. Khởi động {{< aff "digitalocean" "footer-cta" "droplet DigitalOcean $6" >}}, làm theo sec. 10, báo lại tuần sau.
 
----
+* * *
 
 *Đánh dấu trang này — chúng tôi cập nhật lựa chọn thành phần hàng quý khi có bản release mã nguồn mở mới. Cập nhật cuối: 2026-05-21.*
 
@@ -288,7 +289,7 @@ Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -298,7 +299,7 @@ Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn 
 - [2026-06-08-trending-ai-agents](self-hosted-ai-coding-workflow)
 - [2026-06-15-trending-ai-agents](self-hosted-ai-coding-workflow)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

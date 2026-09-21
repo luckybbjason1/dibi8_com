@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/video-retalking/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -62,11 +63,11 @@ VideoReTalking 采用三阶段架构，将表情、唇形同步和增强解耦�
 
 | 组件 | 最低配置 | 推荐配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | NVIDIA 8GB 显存 | NVIDIA RTX 3090 / 4090 (24GB) |
 | 内存 | 16 GB | 32 GB |
@@ -77,38 +78,38 @@ VideoReTalking 采用三阶段架构，将表情、唇形同步和增强解耦�
 
 ### 第一步：克隆仓库
 
-```bash
+````bash
 git clone https://github.com/OpenTalker/video-retalking.git
 cd video-retalking
-```
+`````
 
 ### 第二步：创建 Conda 环境
 
-```bash
+`````bash
 conda create -n video_retalking python=3.8 -y
 conda activate video_retalking
 conda install ffmpeg -y
-```
+`````
 
 ### 第三步：安装带 CUDA 的 PyTorch
 
-```bash
+`````bash
 # CUDA 11.1（项目默认）
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 
 # CUDA 12.1（现代 GPU，2026 年）
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### 第四步：安装依赖
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
 requirements.txt 安装以下关键包：
 
-```
+`````
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -119,13 +120,13 @@ librosa==0.9.2
 dlib==19.24.0
 gradio>=3.7.0
 numpy==1.23.4
-```
+`````
 
 ### 第五步：下载预训练模型
 
-从 [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) 下载预训练权重并解压到 `./checkpoints/`：
+从 [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) 下载预训练权重并解压到 ````./checkpoints/````：
 
-```bash
+`````bash
 # 目录结构应如下：
 # ./checkpoints/
 #   ├── 244000.pth          (D-Net 表情编辑)
@@ -133,20 +134,20 @@ numpy==1.23.4
 #   ├── GFPGANv1.3.pth      (GFPGAN 增强)
 #   ├── GPEN-BFR-512.pth    (GPEN 增强)
 #   └── ...
-```
+`````
 
 ### 第六步：验证安装
 
-```bash
+`````bash
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
-```
+`````
 
 GPU 系统上的预期输出：
 
-```
+`````
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
-```
+`````
 
 ## 与 TTS 和声音克隆工具的集成
 
@@ -154,7 +155,7 @@ Device: NVIDIA GeForce RTX 4090
 
 RVC 可在保留韵律的同时将一种声音转换为另一种。将其与 VideoReTalking 串联，实现声音替换的唇形同步输出：
 
-```bash
+`````bash
 # 第一步：使用 RVC 生成或转换音频
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -163,13 +164,13 @@ python inference.py \
   --face input_video.mp4 \
   --audio rvc_output.wav \
   --outfile output_rvc_synced.mp4
-```
+`````
 
 ### 与 GPT-SoVITS 集成
 
 GPT-SoVITS 可生成高质量的少样本声音克隆 TTS。工作流如下：
 
-```python
+`````python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -191,11 +192,11 @@ subprocess.run([
     "--exp_img", "neutral",
     "--up_face", "surprise"
 ])
-```
+`````
 
 ### 与 Coqui TTS 集成
 
-```bash
+`````bash
 # 安装 Coqui TTS
 pip install TTS
 
@@ -211,7 +212,7 @@ python inference.py \
   --face original_video.mp4 \
   --audio coqui_output.wav \
   --outfile coqui_synced.mp4
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -221,11 +222,11 @@ python inference.py \
 
 | 阶段 | 耗时 | 显存峰值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | D-Net（表情归一化） | 2.1s | 4.2 GB |
 | L-Net（唇形同步） | 3.8s | 3.8 GB |
@@ -239,15 +240,15 @@ VideoReTalking 在现代 GPU 上处理 512x512 分辨率视频的速度约为 **
 
 | 指标 | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LSE-C（唇形同步置信度） | 8.7 | 8.3 | 7.9 | 8.1 |
 | PSNR (dB) | 32.4 | 28.1 | 29.8 | 30.2 |
@@ -273,12 +274,12 @@ VideoReTalking 在现代 GPU 上处理 512x512 分辨率视频的速度约为 **
 
 VideoReTalking 内置了 Gradio 界面，支持浏览器操作：
 
-```bash
+`````bash
 # 启动 WebUI
 python webUI.py
-```
+`````
 
-WebUI 默认在 `http://localhost:7860` 启动。它支持：
+WebUI 默认在 ````http://localhost:7860```` 启动。它支持：
 
 - 拖放视频和音频上传
 - 表情模板选择（neutral、smile）
@@ -287,13 +288,13 @@ WebUI 默认在 `http://localhost:7860` 启动。它支持：
 
 在反向代理后远程访问：
 
-```bash
+`````bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
 
@@ -311,18 +312,18 @@ RUN mkdir -p checkpoints
 
 EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
-```
+`````
 
 构建并运行：
 
-```bash
+`````bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
-```
+`````
 
 ### 批处理脚本
 
-```python
+`````python
 #!/usr/bin/env python3
 # batch_process.py
 import os
@@ -346,11 +347,11 @@ for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.ste
         "--outfile", outname,
         "--exp_img", "neutral"
     ])
-```
+`````
 
 ### 监控与日志
 
-```python
+`````python
 # 带结构化日志的生产包装器
 import logging
 import time
@@ -376,12 +377,12 @@ def inference_with_monitoring(face_path, audio_path, output_path): start = time.
     
     logging.info(f"Processed {face_path} in {elapsed:.1f}s, "
                  f"VRAM: {vram_before:.1f}GB -> {vram_after:.1f}GB")
-```
+`````
 
 ### 安全注意事项
 
 - 在只读文件系统挂载模型权重的容器中运行
-- 使用 `CUDA_VISIBLE_DEVICES` 限制 GPU 访问以隔离工作负载
+- 使用 ````CUDA_VISIBLE_DEVICES```` 限制 GPU 访问以隔离工作负载
 - 在处理前验证输入文件格式以防止路径遍历攻击
 - 项目包含关于肖像权和合规性的详细免责声明
 
@@ -389,15 +390,15 @@ def inference_with_monitoring(face_path, audio_path, output_path): start = time.
 
 | 特性 | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 输入类型 | 视频 + 音频 | 视频 + 音频 | 图片 + 音频 | 视频 + 音频 |
 | 输出质量 | 高（含增强） | 中等 | 中高 | 高 |
@@ -457,8 +458,8 @@ VideoReTalking 为音频驱动唇形同步提供了一个实用的自托管解�
 **入门行动清单：**
 
 1. 克隆仓库并使用上述命令配置 conda 环境
-2. 将 2GB 的检查点包下载到 `./checkpoints/`
-3. 使用 `examples/` 中的示例文件运行快速推理命令
+2. 将 2GB 的检查点包下载到 ````./checkpoints/````
+3. 使用 ````examples/``` 中的示例文件运行快速推理命令
 4. 启动 Gradio WebUI 进行交互式实验
 5. 与 GPT-SoVITS 或 RVC 串联，构建完整的声音克隆 + 唇形同步流水线
 
@@ -550,17 +551,17 @@ VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 20
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/colly/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu
@@ -32,7 +33,7 @@ Python đã thống trị web scraping hơn một thập kỷ. Scrapy, Beautiful
 
 ## Colly Là Gì?
 
-**Colly** là một framework web scraping và crawling nhanh, thanh lịch cho Go. Nó cung cấp API dựa trên callback rõ ràng xử lý HTTP request, phân tích HTML, quản lý cookie, giới hạn tốc độ và thực thi song song — tất cả đều nằm sau một đối tượng `Collector`. Framework biên dịch thành binary tĩnh với zero runtime dependency, khiến nó trở thành lựa chọn hàng đầu cho pipeline scraping thân thiện với DevOps.
+**Colly** là một framework web scraping và crawling nhanh, thanh lịch cho Go. Nó cung cấp API dựa trên callback rõ ràng xử lý HTTP request, phân tích HTML, quản lý cookie, giới hạn tốc độ và thực thi song song — tất cả đều nằm sau một đối tượng ```Collector````. Framework biên dịch thành binary tĩnh với zero runtime dependency, khiến nó trở thành lựa chọn hàng đầu cho pipeline scraping thân thiện với DevOps.
 
 ## Colly Hoạt Động Như Thế Nào
 
@@ -40,14 +41,14 @@ Python đã thống trị web scraping hơn một thập kỷ. Scrapy, Beautiful
 
 ![Colly gopher mascot](https://go-colly.org/img/colly_gopher.png)
 
-Kiến trúc của Colly xoay quanh **Collector** — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. **Collector** nhận URL khởi đầu qua `Visit()`
+Kiến trúc của Colly xoay quanh **Collector** — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. **Collector** nhận URL khởi đầu qua ````Visit()````
 2. **HTTP Backend** gửi request với timeout, proxy và header đã cấu hình
-3. **Response** kích hoạt callback đã đăng ký (`OnHTML`, `OnResponse`, `OnError`)
+3. **Response** kích hoạt callback đã đăng ký (````OnHTML````, ````OnResponse````, ````OnError````)
 4. **HTMLElement** phân tích DOM sử dụng bộ chọn kiểu goquery
 5. **Queue** xử lý lập lịch URL cho crawling đệ quy
 6. **Storage Backend** quản lý cookie, session và caching
 
-```
+`````
 ┌─────────────┐    HTTP GET     ┌──────────────┐
 │  Collector  │ ──────────────> │ Trang web mục │
 │  (Trạng thái│ <────────────── │ tiêu          │
@@ -63,7 +64,7 @@ Kiến trúc của Colly xoay quanh **Collector** — một orchestrator có tr�
 ┌─────────────┐
 │     Queue   │ ──> Truy cập URL tiếp theo
 └─────────────┘
-```
+`````
 
 Mẫu Collector giữ code được tổ chức: bạn đăng ký handler cho các phần tử HTML cụ thể và để Colly tự động quản lý concurrency, retry và sự lịch sự.
 
@@ -72,11 +73,11 @@ Mẫu Collector giữ code được tổ chức: bạn đăng ký handler cho c�
 ### Yêu Cầu Trước
 
 - Go 1.21+ đã cài đặt
-- Một module Go hoạt động (`go mod init`)
+- Một module Go hoạt động (````go mod init````)
 
 ### Cài Đặt Colly
 
-```bash
+`````bash
 # Khởi tạo dự án
 mkdir colly-scraper && cd colly-scraper
 go mod init github.com/youruser/colly-scraper
@@ -86,11 +87,11 @@ go get github.com/gocolly/colly/v2
 
 # Xác minh cài đặt
 go list -m github.com/gocolly/colly/v2
-```
+`````
 
 ### Scraper Đầu Tiên Củ Bạn
 
-```go
+`````go
 package main
 
 import (
@@ -118,15 +119,15 @@ func main() {
 
 	c.Visit("https://go-colly.org/")
 }
-```
+`````
 
-Chạy: ```bash
+Chạy: `````bash
 go run main.go
-```
+`````
 
 ### Thiết Lập Docker
 
-```dockerfile
+`````dockerfile
 FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
@@ -139,30 +140,30 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /app/scraper .
 CMD ["./scraper"]
-```
+`````
 
-```bash
+`````bash
 # Build và chạy
 docker build -t colly-scraper .
 docker run --rm colly-scraper
-```
+`````
 
 ### Docker Compose với Redis Cache
 
-```yaml
+`````yaml
 version: '3.8"
 services: scraper: build: .
     depends_on: - redis
     environment: - REDIS_URL=redis:6379
   redis: image: redis:7-alpine
     volumes: - redis-data:/data
-  volumes: redis-data: ```
+  volumes: redis-data: `````
 
 ## Tích Hợp Với Công Cụ Phổ Biến
 
 ### Backend Cache Redis
 
-Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis: ```go
+Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis: `````go
 package main
 
 import (
@@ -194,13 +195,13 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### Proxy Rotation Với Webshare
 
 Khi scraping quy mô lớn, proxy rotation ngăn chặn IP bị chặn. [Webshare](https://www.webshare.io/) cung cấp proxy residential tích hợp liền mạch với Colly.
 
-```go
+`````go
 package main
 
 import (
@@ -231,11 +232,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### goquery Cho Duyệt DOM Nâng Cao
 
-`HTMLElement` tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: ```go
+``HTMLElement`` tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: `````go
 package main
 
 import (
@@ -266,11 +267,11 @@ func main() {
 
 	c.Visit("https://news.ycombinator.com")
 }
-```
+`````
 
 ### chromedp Cho Trang Render JavaScript
 
-Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp: ```go
+Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp: `````go
 package main
 
 import (
@@ -309,13 +310,13 @@ func main() {
 	// Phân tích HTML đã render...
 	fmt.Println("Độ dài render:", len(htmlContent))
 }
-```
+`````
 
 ## Benchmark / Trường Hợp Sử Dụng Thực Tế
 
 ### Benchmark Thông Lượng
 
-Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS `c6i.xlarge` (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary |
+Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS ````c6i.xlarge```` (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary |
 |---------|----------------------|--------|-------------|------------------|
 | **Colly** (song song) | ~7 giây | 25 MB | ~1,200 | 12 MB |
 | **Colly** (đồng bộ) | ~52 giây | 20 MB | ~19 | 12 MB |
@@ -343,7 +344,7 @@ Quan sát chính từ benchmark colly: 1. **Chế độ song song Colly** đạt
 
 ### Giới Hạn Tốc Độ và Sự Lịch Sự
 
-```go
+`````go
 package main
 
 import (
@@ -370,11 +371,11 @@ func main() {
 
 	c.Visit("https://example.com/products")
 }
-```
+`````
 
 ### Crawling Phân Tán Với Queue Redis
 
-```go
+`````go
 package main
 
 import (
@@ -407,11 +408,11 @@ func main() {
 	q.AddURL("https://example.com/start")
 	q.Run(c)
 }
-```
+`````
 
 ### HTTP Backend Tùy Chỉnh Với Timeout
 
-```go
+`````go
 package main
 
 import (
@@ -444,11 +445,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### Dữ Liệu Có Cấu Trúc Với Struct Tags
 
-```go
+`````go
 package main
 
 import (
@@ -458,9 +459,9 @@ import (
 )
 
 type Product struct {
-	Name  string `selector:"h1.product-title"`
-	Price string `selector:"span.price"`
-	SKU   string `selector:"meta[itemprop=sku]" attr:"content"`
+	Name  string ````selector:"h1.product-title"````
+	Price string ````selector:"span.price"````
+	SKU   string ````selector:"meta[itemprop=sku]" attr:"content"````
 }
 
 func main() {
@@ -475,7 +476,7 @@ func main() {
 
 	c.Visit("https://shop.example.com/item/123")
 }
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -523,15 +524,15 @@ Không — Colly không thực thi JavaScript một cách tự nhiên. Đối v�
 
 ### Làm thế nào scale Colly qua nhiều máy?
 
-Sử dụng queue hỗ trợ Redis (`colly/queue`) để phân phối URL cho worker. Mỗi worker chạy instance Colly, tiêu thụ từ queue chia sẻ và ghi kết quả vào database trung tâm. Thêm HPA trong Kubernetes cho capacity đàn hồi.
+Sử dụng queue hỗ trợ Redis (````colly/queue````) để phân phối URL cho worker. Mỗi worker chạy instance Colly, tiêu thụ từ queue chia sẻ và ghi kết quả vào database trung tâm. Thêm HPA trong Kubernetes cho capacity đàn hồi.
 
 ### Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?
 
-Mọi HTTP proxy đều hoạt động qua `colly/proxy`. [Webshare](https://www.webshare.io/) cung cấp proxy residential với pool IP xoay vòng tích hợp sạch sẽ với `RoundRobinProxySwitcher` của Colly. Bright Data và Oxylabs là lựa chọn enterprise với hỗ trợ chuyên dụng.
+Mọi HTTP proxy đều hoạt động qua ````colly/proxy````. [Webshare](https://www.webshare.io/) cung cấp proxy residential với pool IP xoay vòng tích hợp sạch sẽ với ````RoundRobinProxySwitcher```` của Colly. Bright Data và Oxylabs là lựa chọn enterprise với hỗ trợ chuyên dụng.
 
 ### Làm sao tránh bị chặn khi scraping?
 
-Kết hợp nhiều kỹ thuật: xoay vòng User-Agent qua Colly extension, thêm độ trễ ngẫu nhiên (`RandomDelay` trong `LimitRule`), tôn trọng `robots.txt`, dùng proxy residential, phân phối request theo thờ gian. Không bao giờ vượt quá capacity của trang đích — giám sát mã phản hồi và lùi lại khi gặp lỗi 429.
+Kết hợp nhiều kỹ thuật: xoay vòng User-Agent qua Colly extension, thêm độ trễ ngẫu nhiên (````RandomDelay```` trong ````LimitRule````), tôn trọng ````robots.txt````, dùng proxy residential, phân phối request theo thờ gian. Không bao giờ vượt quá capacity của trang đích — giám sát mã phản hồi và lùi lại khi gặp lỗi 429.
 
 ### Colly có phù hợp crawl hàng triệu trang?
 
@@ -539,14 +540,14 @@ Có, với kiến trúc phù hợp. Dùng Redis để loại bỏ trùng lặp U
 
 ### Làm thế nào debug scraper Colly?
 
-Bật debug logging với `colly.Debugger(&debug.LogDebugger{})` để theo dõi mọi request/response. Dùng callback `OnError` để bắt và log request thất bại. Đối với vấn đề phức tạp, attach custom HTTP backend với khả năng dump request/response.
+Bật debug logging với ````colly.Debugger(&debug.LogDebugger{})```` để theo dõi mọi request/response. Dùng callback ````OnError```` để bắt và log request thất bại. Đối với vấn đề phức tạp, attach custom HTTP backend với khả năng dump request/response.
 
 ## Kết Luận
 
 Colly cung cấp chính xác những gì developer Go cần từ một framework scraping: tốc độ, đơn giản và khả năng triển khai binary đơn. Với **25,302 GitHub Stars** và **1,000+ request mỗi giây**, nó vượt trội so với các lựa chọn Python và Node.js về thông lượng và hiệu quả bộ nhớ. API callback trực quan, tích hợp Redis cho phép crawling phân tán thực sự, và hỗ trợ proxy giữ bạn không bị chặn ở quy mô lớn.
 
 **Hành động để bắt đầu:**
-1. Clone [Colly GitHub repo](https://github.com/gocolly/colly) và chạy thư mục `_examples/`
+1. Clone [Colly GitHub repo](https://github.com/gocolly/colly) và chạy thư mục ````_examples/```
 2. Xây dựng scraper đầu tiên với thiết lập 5 phút ở trên
 3. Thêm Redis cache và proxy rotation trước khi mở rộng quá 10K trang
 4. Tham gia [nhóm Telegram dibi8](https://t.me/dibi8_channel) để thảo luận về Go scraping và chia sẻ mẹo production
@@ -600,7 +601,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -609,6 +610,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](colly)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](colly)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

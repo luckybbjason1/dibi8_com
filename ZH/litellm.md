@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
@@ -38,27 +39,27 @@ aliases:
 凭借 **22,500+ GitHub stars** 和 **1,500+ 贡献者**，LiteLLM 已成为想要网关级控制且无供应商锁定的团队的首选。本指南在 30 分钟内带你完成生产级配置——从 Docker 部署到虚拟密钥管理再到监控。
 
 
----
+* * *
 ## LiteLLM 是什么？
 
 LiteLLM 是一个开源 LLM 代理网关和 Python SDK，提供统一接口调用 100+ LLM API——OpenAI、Anthropic、Azure、Google Vertex AI、AWS Bedrock、Cohere、Ollama 等——使用单一 OpenAI 兼容 API 格式。
 
 两种模式：
 
-- **Python SDK** — 在代码中 `import litellm; completion(...)`，与提供商无关
-- **代理服务器** — 自托管 HTTP 网关，监听 `:4000`，任何 OpenAI SDK 客户端都可以指向它
+- **Python SDK** — 在代码中 ```import litellm; completion(...)````，与提供商无关
+- **代理服务器** — 自托管 HTTP 网关，监听 ````:4000````，任何 OpenAI SDK 客户端都可以指向它
 
-代理模式是大多数生产团队使用的。它增加了虚拟密钥、团队管理、预算控制、速率限制、缓存和可观测性——全部通过单个 `config.yaml` 文件配置。
+代理模式是大多数生产团队使用的。它增加了虚拟密钥、团队管理、预算控制、速率限制、缓存和可观测性——全部通过单个 ````config.yaml```` 文件配置。
 
 
----
+* * *
 ## LiteLLM 工作原理
 
 ![LiteLLM 架构图](images/litellm-architecture.png)
 
 **请求流程：**
 
-1. 你的应用发送 OpenAI 格式请求到 `http://litellm-proxy:4000/v1/chat/completions`
+1. 你的应用发送 OpenAI 格式请求到 ````http://litellm-proxy:4000/v1/chat/completions````
 2. LiteLLM 验证虚拟密钥，检查团队预算和速率限制
 3. 路由器根据配置策略（基于延迟、基于成本或简单负载均衡）选择最佳模型部署
 4. 如果主提供商返回 429/5xx，自动故障转移在毫秒级触发
@@ -69,18 +70,18 @@ LiteLLM 是一个开源 LLM 代理网关和 Python SDK，提供统一接口调�
 
 | 组件 | 用途 | 外部依赖 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 代理服务器 | HTTP API、路由、认证 | 无（Python/FastAPI） |
 | PostgreSQL | 虚拟密钥、消费日志、团队数据 | 生产必需 |
 | Redis | 限流协调、缓存 | 推荐 |
 | 管理后台 | 密钥/模型的 Web 仪表盘 | 内置 |
 
----
+* * *
 
 ## 安装与配置
 
@@ -92,7 +93,7 @@ LiteLLM 是一个开源 LLM 代理网关和 Python SDK，提供统一接口调�
 
 ### 步骤 1：下载 Docker Compose 模板
 
-```bash
+`````bash
 # 创建项目目录
 mkdir -p litellm-gateway && cd litellm-gateway
 
@@ -107,11 +108,11 @@ OPENAI_API_KEY="sk-your-openai-key"
 ANTHROPIC_API_KEY="sk-your-anthropic-key"
 DATABASE_URL="postgresql://llmproxy:dbpassword9090@db:5432/litellm"
 EOF
-```
+`````
 
 ### 步骤 2：创建 config.yaml
 
-```yaml
+`````yaml
 # litellm_config.yaml
 model_list: - model_name: gpt-4o
     litellm_params: model: openai/gpt-4o
@@ -168,11 +169,11 @@ litellm_settings: drop_params: true
   # 可观测性回调
   success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
 ### 步骤 3：启动服务栈
 
-```bash
+`````bash
 # 拉取并启动所有服务
 docker compose up -d
 
@@ -181,13 +182,13 @@ docker compose ps
 
 # 查看代理日志
 docker compose logs -f litellm
-```
+`````
 
-代理现在运行在 `http://localhost:4000`。管理后台在 `http://localhost:4000/ui/` — 用用户名 `admin` 和你的 `LITELLM_MASTER_KEY` 作为密码登录。
+代理现在运行在 ````http://localhost:4000````。管理后台在 ````http://localhost:4000/ui/```` — 用用户名 ````admin```` 和你的 ````LITELLM_MASTER_KEY```` 作为密码登录。
 
 ### 步骤 4：用请求测试
 
-```bash
+`````bash
 # 测试对话补全
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -205,15 +206,15 @@ curl http://localhost:4000/v1/embeddings \
     "model": "text-embedding",
     "input": ["LiteLLM 是一个 AI 网关"]
   }'
-```
+`````
 
----
+* * *
 
 ## 与主流工具集成
 
 ### OpenAI SDK (Python)
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(
@@ -226,11 +227,11 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "解释负载均衡"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### LangChain
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
@@ -241,11 +242,11 @@ llm = ChatOpenAI(
 
 result = llm.invoke("LLM 网关有哪些类型？")
 print(result.content)
-```
+`````
 
 ### Anthropic SDK (原生兼容)
 
-```python
+`````python
 from anthropic import Anthropic
 
 client = Anthropic(
@@ -259,19 +260,19 @@ response = client.messages.create(
     messages=[{"role": "user", "content": "比较 LiteLLM 和 OpenRouter"}]
 )
 print(response.content[0].text)
-```
+`````
 
 ### Ollama (本地模型)
 
-```yaml
+`````yaml
 # 添加到 litellm_config.yaml
 model_list: - model_name: local-llama
     litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
     model_info: mode: chat
-```
+`````
 
-```bash
+`````bash
 # 通过 LiteLLM 测试本地模型
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -280,26 +281,26 @@ curl http://localhost:4000/v1/chat/completions \
     "model": "local-llama",
     "messages": [{"role": "user", "content": "你好本地模型"}]
   }'
-```
+`````
 
 ### Cohere
 
-```yaml
+`````yaml
 model_list: - model_name: cohere-command
     litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 client = OpenAI(base_url="http://localhost:4000", api_key="sk-virtual-key")
 response = client.chat.completions.create(
     model="cohere-command",
     messages=[{"role": "user", "content": "总结一下"}]
 )
-```
+`````
 
----
+* * *
 
 ## 基准测试 / 真实用例
 
@@ -309,11 +310,11 @@ response = client.chat.completions.create(
 
 | 指标 | 使用 LiteLLM 前 | 使用 LiteLLM 后 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 维护的提供商 SDK | 4（OpenAI、Anthropic、Gemini、Ollama） | 1（OpenAI 兼容） |
 | API 密钥管理 | 共享密钥在环境变量中 | 每个团队/客户的虚拟密钥 |
@@ -325,13 +326,13 @@ response = client.chat.completions.create(
 
 | 负载 | 吞吐量 | P50 延迟 | P99 延迟 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 50 RPS 对话 (GPT-4o) | 稳定 | 45ms 开销 | 120ms 开销 |
 | 200 RPS 嵌入 | 稳定 | 12ms 开销 | 35ms 开销 |
@@ -340,7 +341,7 @@ response = client.chat.completions.create(
 
 **注意：** 网关开销不包含 LLM API 响应时间。LiteLLM 增加少量、可预测的延迟惩罚。对于每毫秒都重要的流程，将代理部署在与应用相同的 VPC 中。
 
----
+* * *
 
 ## 高级用法 / 生产加固
 
@@ -350,7 +351,7 @@ response = client.chat.completions.create(
 
 ![LiteLLM 管理后台](images/litellm-dashboard.png)
 
-```bash
+`````bash
 # 为 "前端团队" 创建虚拟密钥
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -376,19 +377,19 @@ curl -X POST http://localhost:4000/key/generate \
 #   "max_budget": 500.00,
 #   "models": ["gpt-4o", "gemini-flash"]
 # }
-```
+`````
 
 ### 提供商级预算上限
 
-```yaml
+`````yaml
 general_settings: provider_budget_config: openai: monthly_budget: 5000.00
     anthropic: monthly_budget: 3000.00
     gemini: monthly_budget: 1000.00
-```
+`````
 
 ### 基于延迟的路由
 
-```yaml
+`````yaml
 router_settings: routing_strategy: latency-based-routing
   routing_strategy_args: ttl: 60
   allowed_fails: 3
@@ -396,11 +397,11 @@ router_settings: routing_strategy: latency-based-routing
   num_retries: 2
   timeout: 90
   retry_after: 5
-```
+`````
 
 ### 安全检查清单
 
-```yaml
+`````yaml
 # 安全加固版 config.yaml
 general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
@@ -414,11 +415,11 @@ general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   # 静态加密密钥
   litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
-```
+`````
 
 ### Kubernetes / Helm 部署
 
-```bash
+`````bash
 # 添加 LiteLLM Helm 仓库
 helm pull oci://docker.litellm.ai/berriai/litellm-helm
 
@@ -431,19 +432,19 @@ helm install litellm-gateway ./litellm-helm \
   --set ingress.hosts[0].host=litellm.yourdomain.com \
   --set env.LITELLM_MASTER_KEY="sk-$(openssl rand -hex 16)" \
   --set env.DATABASE_URL="postgresql://user:pass@neon-host/litellm"
-```
+`````
 
 ### Prometheus + Grafana 监控
 
-```yaml
+`````yaml
 # 添加到 config.yaml
 litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
-在 `/metrics` 暴露的关键 Prometheus 指标：
+在 ````/metrics```` 暴露的关键 Prometheus 指标：
 
-```promql
+`````promql
 # 按模型的请求速率
 rate(litellm_request_total_requests[5m])
 
@@ -455,25 +456,25 @@ litellm_remaining_requests
 
 # 网关开销直方图
 histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
-```
+`````
 
 导入 [官方 Grafana 仪表盘](https://github.com/BerriAI/litellm/blob/main/examples/grafana/grafana_dashboard.json) 获取预构建面板，展示请求/秒、token 用量、每团队成本和延迟百分位。
 
----
+* * *
 
 ## 与替代方案对比
 
 | 功能 | LiteLLM | Portkey | OpenRouter | Helicone |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT（开源） | 闭源核心 + 开源 SDK | 闭源（托管） | 闭源（托管 + 自托管） |
 | **部署方式** | 自托管 / Docker / K8s | 云端 + 混合 | 仅托管 | 云端 + 自托管 |
@@ -493,7 +494,7 @@ histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
 - **OpenRouter** — 你想零基础设施工作立即访问 300+ 模型，5.5% 的信用手续费可接受。
 - **Helicone** — 可观测性是你的首要关注点；你需要详细的追踪和 LLM 调用的成本归属。
 
----
+* * *
 
 ## 局限性 / 客观评估
 
@@ -509,7 +510,7 @@ LiteLLM 不是每种情况的正确工具。以下是其短板：
 
 5. **企业 SSO 收费** — SAML/SSO、审计日志和高级护栏属于 LiteLLM Enterprise 功能。开源版仅处理虚拟密钥和基础预算。
 
----
+* * *
 
 ## 常见问题
 
@@ -519,7 +520,7 @@ LiteLLM 是自托管开源网关；OpenRouter 是托管多模型 API。LiteLLM �
 
 **Q: LiteLLM 可以与现有的 OpenAI SDK 代码一起使用吗？**
 
-可以——改两行：将 `base_url` 设为你的 LiteLLM 代理，`api_key` 设为虚拟密钥。其他一切保持不变。这是团队采用 LiteLLM 的主要原因；除配置外零代码更改。
+可以——改两行：将 ````base_url```` 设为你的 LiteLLM 代理，````api_key```` 设为虚拟密钥。其他一切保持不变。这是团队采用 LiteLLM 的主要原因；除配置外零代码更改。
 
 **Q: LiteLLM 需要什么数据库？**
 
@@ -527,7 +528,7 @@ LiteLLM 是自托管开源网关；OpenRouter 是托管多模型 API。LiteLLM �
 
 **Q: 故障转移机制如何工作？**
 
-你在 `config.yaml` 中定义故障转移链。如果模型返回 429、500 或超时，LiteLLM 在同一客户端请求内对链中的下一个模型重试请求。客户端看到单个响应；故障转移透明发生。
+你在 ````config.yaml```` 中定义故障转移链。如果模型返回 429、500 或超时，LiteLLM 在同一客户端请求内对链中的下一个模型重试请求。客户端看到单个响应；故障转移透明发生。
 
 **Q: LiteLLM 适合高流量生产使用吗？**
 
@@ -535,13 +536,13 @@ LiteLLM 是自托管开源网关；OpenRouter 是托管多模型 API。LiteLLM �
 
 **Q: 如何在生产中监控 LiteLLM？**
 
-在 `config.yaml` 中启用 Prometheus 回调，抓取 `/metrics` 端点，导入官方 Grafana 仪表盘。在 `litellm_requests_total_failed`（错误率）和 `litellm_remaining_requests`（预算耗尽）上设置告警。将 `success_callback` 接入 Langfuse 实现按请求追踪。
+在 ````config.yaml```` 中启用 Prometheus 回调，抓取 ````/metrics```` 端点，导入官方 Grafana 仪表盘。在 ````litellm_requests_total_failed````（错误率）和 ````litellm_remaining_requests````（预算耗尽）上设置告警。将 ````success_callback```` 接入 Langfuse 实现按请求追踪。
 
----
+* * *
 
 ## 结论
 
-LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 API 密钥、不透明的成本和手动故障转移。用单个 `config.yaml`，你获得统一的 OpenAI 兼容网关、带预算的虚拟密钥、自动故障转移和实时消费追踪。
+LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 API 密钥、不透明的成本和手动故障转移。用单个 ````config.yaml```，你获得统一的 OpenAI 兼容网关、带预算的虚拟密钥、自动故障转移和实时消费追踪。
 
 对于月 LLM API 消费 $5,000+ 且具备基础 DevOps 能力的团队，自托管 LiteLLM 通过降低加价费用和提高可靠性收回成本。从上面的 Docker Compose 配置开始，添加 Redis 缓存，然后在流量增长时通过 Helm 扩展到 Kubernetes。
 
@@ -554,7 +555,7 @@ LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 AP
 
 *本文含联盟营销链接。通过链接购买主机服务我们可能获得佣金——这不会影响价格或推荐。*
 
----
+* * *
 
 
 
@@ -642,12 +643,12 @@ LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -657,7 +658,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](litellm)
 - [nanochat-karpathy-100-chatgpt-single-gpu](litellm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

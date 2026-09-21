@@ -22,6 +22,7 @@ aliases:
   - /posts/rag-architecture-implementation-guide/
 ---
 
+
 {</* resource-info */>}
 
 Retrieval-Augmented Generation (RAG) đã trở thành kiến trúc tiêu chuẩn để xây dựng các ứng dụng AI có khả năng truy xuất thông tin chính xác từ dữ liệu riêng. Khác với việc fine-tune model trên toàn bộ tập dữ liệu, RAG cho phép LLM truy cập thông tin cập nhật mà không cần huấn luyện lại. Bài viết này hướng dẫn từng bước xây dựng hệ thống RAG production-ready, từ kiến trúc cơ bản đến các kỹ thuật nâng cao nhất năm 2025.
@@ -56,12 +57,12 @@ Trong thực tế, 80% các ứng dụng bắt đầu với RAG vì triển khai
 
 ### Pipeline Ingestion Tài Liệu
 
-Dữ liệu thô cần qua nhiều bước xử lý trước khi có thể truy vấn: ```
+Dữ liệu thô cần qua nhiều bước xử lý trước khi có thể truy vấn: ````
 [Documents] → [Parser] → [Splitter] → [Embedder] → [Vector DB]
    PDF       Extract     Chunking     Embedding     Storage
    Word      Text        Splitting    Model         Index
    HTML
-```
+`````
 
 ### Chiến Lược Chia Văn Bản (Chunking)
 
@@ -98,7 +99,7 @@ Context compression loại bỏ thông tin không liên quan từ retrieved chun
 
 ### Triển Khai Cơ Bản Với LangChain
 
-```python
+`````python
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
@@ -123,11 +124,11 @@ qa = RetrievalQA.from_chain_type(
 
 # 4. Query
 result = qa.run("Nội dung chính của tài liệu là gì?")
-```
+`````
 
 ### Triển Khai Cơ Bản Với LlamaIndex
 
-```python
+`````python
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.embeddings.openai import OpenAIEmbedding
 
@@ -135,7 +136,7 @@ documents = SimpleDirectoryReader("./data").load_data()
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine()
 response = query_engine.query("Câu hỏi của bạn")
-```
+`````
 
 ### Hạn Chế Củaa Naive RAG
 
@@ -154,7 +155,7 @@ Thay vì trực tiếp dùng query của ngườii dùng để tìm kiếm, hệ
 
 ### Hybrid Search (Dense + Sparse)
 
-Kết hợp cả vector search và keyword search để tận dụng ưu điểm của cả hai: ```python
+Kết hợp cả vector search và keyword search để tận dụng ưu điểm của cả hai: `````python
 # Kết hợp BM25 và vector search
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
 
@@ -165,11 +166,11 @@ ensemble = EnsembleRetriever(
     retrievers=[bm25_retriever, vector_retriever],
     weights=[0.5, 0.5]
 )
-```
+`````
 
 ### Contextual Compression Và Re-ranking
 
-```python
+`````python
 from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
 from langchain_cohere import CohereRerank
 
@@ -178,18 +179,18 @@ compression_retriever = ContextualCompressionRetriever(
     base_compressor=compressor,
     base_retriever=retriever
 )
-```
+`````
 
 ### Multi-Query Retrieval
 
-Tạo nhiều biến thể của câu hỏi gốc và truy xuất cho mỗi biến thể, sau đó gộp kết quả: ```python
+Tạo nhiều biến thể của câu hỏi gốc và truy xuất cho mỗi biến thể, sau đó gộp kết quả: `````python
 from langchain.retrievers.multi_query import MultiQueryRetriever
 
 multi_retriever = MultiQueryRetriever.from_llm(
     retriever=base_retriever,
     llm=ChatOpenAI()
 )
-```
+`````
 
 ### Parent Document Retrieval
 
@@ -246,11 +247,11 @@ Chọn embedding model dựa trên: | Use Case | Model Đề Xuất | Chi Phí |
 
 ### Bước 3: Tối Ưu Chiến Lược Chunking
 
-Thử nghiệm nhiều kích thước chunk và đánh giá: ```
+Thử nghiệm nhiều kích thước chunk và đánh giá: `````
 Kích thước chunk: 256, 512, 1024, 2048
 Overlap: 10%, 20%, 50%
 Phương pháp: fixed, recursive, semantic
-```
+`````
 
 Tổng cộng có thể có 36+ tổ hợp. Dùng RAGAS framework để tự động đánh giá và chọn tốt nhất.
 
@@ -300,7 +301,7 @@ Prompt engineering cho RAG thường bao gồm system prompt hướng dẫn mode
 
 ### RAGAS Framework
 
-RAGAS là framework tự động hóa việc đánh giá RAG [^4^](https://docs.ragas.io): ```python
+RAGAS là framework tự động hóa việc đánh giá RAG [^4^](https://docs.ragas.io): `````python
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision
 
@@ -308,7 +309,7 @@ result = evaluate(
     dataset=eval_dataset,
     metrics=[faithfulness, answer_relevancy, context_precision]
 )
-```
+`````
 
 ### Đánh Giá Bởi Ngườii Và Giám Sát Liên Tục
 
@@ -354,21 +355,21 @@ Thử nghiệm A/B với các kích thước chunk khác nhau. Kết quả thư�
 
 ### Sử Dụng Ollama Cho Embedding Và LLM
 
-```python
+`````python
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
 
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 llm = Ollama(model="llama3.1:8b")
-```
+`````
 
 ### BGE Embeddings (Mã Nguồn Mở)
 
-BGE-M3 là một trong những model embedding mã nguồn mở tốt nhất, hỗ trợ hơn 100 ngôn ngữ: ```python
+BGE-M3 là một trong những model embedding mã nguồn mở tốt nhất, hỗ trợ hơn 100 ngôn ngữ: `````python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('BAAI/bge-m3')
 embeddings = model.encode(sentences)
-```
+````
 
 ### Triển Khai RAG Hoàn Toàn Private
 
@@ -462,7 +463,7 @@ Hoàn toàn có. Bạn có thể dùng Ollama để chạy Llama 3.1, Qwen2.5 ho
 
 Agentic RAG sử dụng LLM như một "agent" thông minh có khả năng tự quyết định: khi nào cần truy xuất, truy xuất từ đâu, có cần dùng công cụ bổ sung không, và khi nào đã đủ thông tin để trả lờii. Thay vì pipeline cố định, Agentic RAG có luồng động thích ứng với từng câu hỏi.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

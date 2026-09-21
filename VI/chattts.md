@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -51,23 +52,23 @@ ChatTTS tuân theo pipeline ba giai đoạn: 1. **Tinh chỉnh văn bản**: Vă
 2. **Tạo token ngữ nghĩa**: Bộ giải mã tự hồi quy kiểu GPT tạo token ngữ nghĩa dựa trên văn bản đã tinh chỉnh và nhúng ngườ nói. Đây là bước sáng tạo cốt lõi nơi mô hình quyết định nhịp điệu, ngữ điệu và biểu cảm cảm xúc.
 3. **Giải mã âm thanh**: Token ngữ nghĩa được chuyển đổi thành dạng sóng âm thanh thô sử dụng vocoder được đào tạo trước (Vocos). Đầu ra là âm thanh mono 24kHz.
 
-```
+````
 Văn bản đầu vào → Bộ tinh chỉnh văn bản (LLM) → Token ngữ nghĩa (Bộ giải mã GPT) → Vocoder → Âm thanh 24kHz
                                       ↑
                                Nhúng ngườ nói (spk_emb)
-```
+`````
 
 ![Kiến trúc ChatTTS — Pipeline ba giai đoạn từ văn bản sang giọng nói với nhúng ngườ nói và điều khiển token ngữ điệu](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/chattts/architecture-diagram.png)
 
 ### Các khái niệm cốt lõi
 
-- **Nhúng ngườ nói (`spk_emb`)**: Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu.
-- **Token ngữ điệu**: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - `[laugh]` — chèn tiếng cườ
-  - `[uv_break]` — thêm khoảng nghỉ nhỏ
-  - `[lbreak]` — thêm khoảng nghỉ dài
+- **Nhúng ngườ nói (````spk_emb````)**: Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu.
+- **Token ngữ điệu**: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - ````[laugh]```` — chèn tiếng cườ
+  - ````[uv_break]```` — thêm khoảng nghỉ nhỏ
+  - ````[lbreak]```` — thêm khoảng nghỉ dài
 - **Tham số suy luận**: Temperature, top-P và top-K sampling điều khiển tính ngẫu nhiên và đa dạng của giọng nói được tạo.
 
-```python
+`````python
 import ChatTTS
 import torch
 
@@ -80,7 +81,7 @@ print(f"Kích thước nhúng ngườ nói: {rand_spk.shape}")
 
 # Lưu để sử dụng sau
 torch.save(rand_spk, "speaker_embedding.pt")
-```
+`````
 
 ## Cài đặt & Thiết lập
 
@@ -92,7 +93,7 @@ torch.save(rand_spk, "speaker_embedding.pt")
 
 ### Cài đặt từ PyPI (Bản ổn định)
 
-```bash
+`````bash
 # Tạo môi trường ảo
 conda create -n chattts python=3.11
 conda activate chattts
@@ -102,19 +103,19 @@ pip install ChatTTS
 
 # Cài đặt tùy chọn cho tăng tốc GPU
 pip install torchaudio
-```
+`````
 
 ### Cài đặt từ nguồn (Bản mới nhất)
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -e .
-```
+`````
 
 ### Thiết lập Docker
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
@@ -122,11 +123,11 @@ cd ChatTTS
 # Build và chạy bằng Docker
 docker build -t chattts .
 docker run --gpus all -p 8080:8080 chattts
-```
+`````
 
 ### Xác minh cài đặt
 
-```python
+`````python
 import ChatTTS
 print(f"Phiên bản ChatTTS: {ChatTTS.__version__}")
 
@@ -136,31 +137,31 @@ chat.load(compile=False)
 texts = ["Xin chào, đây là bản kiểm tra ChatTTS."]
 wavs = chat.infer(texts)
 print(f"Kích thước âm thanh: {wavs[0].shape}")
-```
+`````
 
 ### Khởi chạy WebUI
 
-```bash
+`````bash
 python examples/web/webui.py
-```
+`````
 
-Truy cập giao diện tại `http://localhost:7860`. WebUI hỗ trợ nhập văn bản, chọn ngườ nói, điều chỉnh nhiệt độ và phát âm thanh.
+Truy cập giao diện tại ````http://localhost:7860````. WebUI hỗ trợ nhập văn bản, chọn ngườ nói, điều chỉnh nhiệt độ và phát âm thanh.
 
 ### Suy luận qua dòng lệnh
 
-```bash
+`````bash
 python examples/cmd/run.py "Đoạn văn bản đầu tiên của bạn." "Đoạn văn bản thứ hai của bạn."
-```
+`````
 
-Đầu ra được lưu dưới dạng `./output_audio_n.mp3`.
+Đầu ra được lưu dưới dạng ````./output_audio_n.mp3````.
 
 ## Tích hợp với các công cụ phổ biến
 
 ### Máy chủ API tương thích OpenAI
 
-ChatTTS cung cấp API tương thích OpenAI tích hợp với mọi công cụ hỗ trợ endpoint `/v1/audio/speech`.
+ChatTTS cung cấp API tương thích OpenAI tích hợp với mọi công cụ hỗ trợ endpoint ````/v1/audio/speech````.
 
-```python
+`````python
 # openai_api_server.py — Endpoint ChatTTS tương thích OpenAI
 import ChatTTS
 import torch
@@ -190,15 +191,15 @@ async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.I
     torchaudio.save(buffer, torch.from_numpy(wavs[0]).unsqueeze(0), 24000, format="mp3")
     buffer.seek(0)
     return {"audio": base64.b64encode(buffer.read()).decode()}
-```
+`````
 
-Chạy máy chủ: ```bash
+Chạy máy chủ: `````bash
 uvicorn openai_api_server:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### Tích hợp LangChain / LLM
 
-```python
+`````python
 # Tích hợp ChatTTS vào pipeline agent LangChain
 from langchain.agents import Tool, AgentExecutor, create_react_agent
 from langchain_openai import ChatOpenAI
@@ -224,11 +225,11 @@ tools = [
 
 llm = ChatOpenAI(model="gpt-4o")
 agent = create_react_agent(llm, tools, prompt="Bạn là trợ lý giọng nói.")
-```
+`````
 
 ### Tùy chỉnh giao diện web Gradio
 
-```python
+`````python
 # Giao diện Gradio tùy chỉnh cho triển khai production
 import gradio as gr
 import ChatTTS
@@ -266,11 +267,11 @@ demo = gr.Interface(
 )
 
 demo.launch(server_name="0.0.0.0", server_port=7860)
-```
+`````
 
 ### Thiết lập streaming cho ứng dụng thờ gian thực
 
-```python
+`````python
 # Tạo âm thanh streaming cho hội thoại thờ gian thực
 import ChatTTS
 import numpy as np
@@ -290,11 +291,11 @@ class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
 
 streamer = StreamingTTS(chat)
 streamer.stream_and_play("Để tôi suy nghĩ một chút...")
-```
+`````
 
 ### Giám sát với Prometheus
 
-```python
+`````python
 # Thêm metrics Prometheus cho API ChatTTS
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
@@ -310,7 +311,7 @@ async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs
 
 @app.get("/metrics")
 async def metrics(): return Response(generate_latest(), media_type="text/plain")
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -344,7 +345,7 @@ Kiểm tra nghe kín với 6 ngườ tham gia đánh giá ChatTTS so với đố
 
 ### Trường hợp sử dụng: Trợ lý giọng nói LLM
 
-ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: ```python
+ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: `````python
 import ChatTTS
 import torchaudio
 import time
@@ -366,11 +367,11 @@ audio_path = assistant.synthesize_response(
     "Đây là câu hỏi thú vị! Để tôi nghĩ... [uv_break] "
     "Được, câu trả lờ phụ thuộc vào thiết lập của bạn."
 )
-```
+`````
 
 ### Trường hợp sử dụng: Tạo hội thoại đa ngườ nói
 
-ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói: ```python
+ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói: `````python
 import ChatTTS
 import torchaudio
 
@@ -390,21 +391,21 @@ dialogue = [
 for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
-```
+`````
 
 ## Sử dụng nâng cao / Củng cố Production
 
 ### Biên dịch Torch để tăng tốc
 
-Bật `torch.compile()` để tăng ~20% tốc độ suy luận trên GPU Ampere: ```python
+Bật ``torch.compile()`` để tăng ~20% tốc độ suy luận trên GPU Ampere: `````python
 import ChatTTS
 chat = ChatTTS.Chat()
 chat.load(compile=True)
-```
+`````
 
 ### Quản lý nhúng ngườ nói
 
-Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán: ```python
+Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán: `````python
 import ChatTTS
 import torch
 
@@ -420,11 +421,11 @@ for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
 # Tải ngườ nói hiện có
 spk_agent = torch.load("speakers/agent.pt")
 params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
-```
+`````
 
 ### Tối ưu bộ nhớ GPU
 
-Sử dụng độ chính xác hỗn hợp và xóa cache: ```python
+Sử dụng độ chính xác hỗn hợp và xóa cache: `````python
 import torch
 from ChatTTS import Chat
 
@@ -435,11 +436,11 @@ chat.load(compile=False)
 def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()
     return wavs
-```
+`````
 
 ### Endpoint kiểm tra sức khỏe
 
-```python
+`````python
 # health_check.py — Probe sức khỏe cho Kubernetes
 from fastapi import FastAPI, HTTPException
 import ChatTTS
@@ -458,11 +459,11 @@ def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="
 
 @app.get("/ready")
 def ready(): return {"status": "ready"}
-```
+`````
 
 ### Triển khai Kubernetes
 
-```yaml
+`````yaml
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -482,7 +483,7 @@ spec: replicas: 2
         readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -493,8 +494,8 @@ spec: replicas: 2
 | **VRAM tối thiểu** | 4 GB | 4 GB | 2 GB | 5 GB |
 | **RTF (RTX 4090)** | 0.30 | 0.25 | 0.08 | 0.45 |
 | **TTS hội thoại** | Có (thiết kế riêng) | Trung bình | Không | Trung bình |
-| **Điều khiển cườ** | Cấp token `[laugh]` | Không | Không | Hạn chế |
-| **Điều khiển dừng** | Cấp token `[uv_break]` | Không | Chỉ dấu câu | Hạn chế |
+| **Điều khiển cườ** | Cấp token ````[laugh]```` | Không | Không | Hạn chế |
+| **Điều khiển dừng** | Cấp token ````[uv_break]```` | Không | Chỉ dấu câu | Hạn chế |
 | **Âm thở** | Có | Không | Không | Không |
 | **Nhân bản giọng** | Nhúng ngườ nói | Clone 6 giây | Không | Prompt ngườ nói |
 | **Ngôn ngữ** | Trung, Anh | 17 ngôn ngữ | 6 ngôn ngữ | Đa ngôn ngữ |
@@ -536,7 +537,7 @@ Code AGPL-3.0, trọng sô CC BY-NC 4.0. Liên hệ open-source@2noise.com để
 Đặc tính cố hữu của mô hình tự hồi quy. Giảm temperature, dùng nhúng cố định, hoặc tạo nhiều mẫu.
 
 **Q: Làm thế nào điều khiển tiếng cườ và khoảng nghỉ?**
-Dùng token đặc biệt: `[laugh]`, `[uv_break]`, `[lbreak]`. Cũng có thể dùng `RefineTextParams`.
+Dùng token đặc biệt: ````[laugh]````, ````[uv_break]````, ````[lbreak]````. Cũng có thể dùng ````RefineTextParams````.
 
 **Q: ChatTTS có hỗ trợ nhân bản giọng không?**
 Có, qua nhúng ngườ nói. Tuy nhiên, zero-shot voice clone bằng vài giây audio vẫn đang trong lộ trình.
@@ -548,7 +549,7 @@ GPT-SoVITS tối ưu cho few-shot voice clone (1 phút audio). ChatTTS tối ưu
 Không có đường dẫn CPU thực tế. Nếu cần CPU, dùng MeloTTS.
 
 **Q: Làm thế nào triển khai ChatTTS trong Docker?**
-Build: `docker build -t chattts .`. Chạy: `docker run --gpus all -p 7860:7860 chattts`.
+Build: ````docker build -t chattts .````. Chạy: ````docker run --gpus all -p 7860:7860 chattts````.
 
 ## Kết luận
 
@@ -558,7 +559,7 @@ Với các team xây dựng trợ lý giọng nói LLM, cài đặt chattts rấ
 
 **Hành động:**
 1. Clone repository và chạy WebUI trên máy GPU
-2. Thử nghiệm token ngữ điệu (`[laugh]`, `[uv_break]`) trên tập dữ liệu hội thoại
+2. Thử nghiệm token ngữ điệu (````[laugh]````, ````[uv_break]```) trên tập dữ liệu hội thoại
 3. Triển khai API tương thích OpenAI để tích hợp pipeline LLM
 4. Tham gia Discord hoặc GitHub Discussions cho cập nhật streaming và điều khiển cảm xúc
 

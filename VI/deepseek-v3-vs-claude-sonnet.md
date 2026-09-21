@@ -18,6 +18,7 @@ faqs: - q: 'DeepSeek V3.5 có thực sự rẻ hơn Claude Sonnet 4.6 gấp 10 l
     a: 'Claude Sonnet 4.6 hỗ trợ tới 1M token (1.000.000) context ở biến thể [1M] — đủ chứa cả codebase trung bình hoặc 750K từ tài liệu. DeepSeek V3.5 giới hạn 128K token (khoảng 100K từ). Cho monorepo lớn, tài liệu pháp lý dài, Q&A trọn cuốn sách, Sonnet 1M ở đẳng cấp khác hẳn."
 ---
 
+
 # DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context
 
 
@@ -29,7 +30,7 @@ Dùng **DeepSeek V3.5** nếu: Nhạy cảm chi phí, chạy agentic loop lưu l
 
 Dùng **Claude Sonnet 4.6** nếu: Cần hiệu năng SWE-bench top, long-context (1M token), tool-use đáng tin, và bạn ship cho audience toàn cầu nói tiếng Anh nơi sự hoàn thiện của Anthropic là quan trọng.
 
----
+* * *
 
 ## So sánh song song
 
@@ -52,7 +53,7 @@ Dùng **Claude Sonnet 4.6** nếu: Cần hiệu năng SWE-bench top, long-contex
 | **Self-hosting** | Có (~8x H100 cho FP8) | Không |
 | **Tốt nhất cho** | Lưu lượng cao, nhạy giá, tiếng Trung, self-host | Coding agent, long-context, tool use |
 
----
+* * *
 
 ## Khi nào chọn DeepSeek V3.5
 
@@ -65,7 +66,7 @@ Corpus huấn luyện DeepSeek nặng tiếng Trung. Nó xử lý điển tích 
 ### Trường hợp 3: Self-hosting và chủ quyền dữ liệu
 Open weights nghĩa là bạn chạy DeepSeek trên phần cứng riêng, fine-tune với dữ liệu nội bộ, audit toàn bộ mô hình, không tốn token sau capex. Cho ngành quản chế (tài chính, y tế, chính phủ) hoặc công ty không muốn prompt đi ra API bên ngoài, DeepSeek là tùy chọn frontier-class duy nhất năm 2026.
 
----
+* * *
 
 ## Khi nào chọn Claude Sonnet 4.6
 
@@ -78,7 +79,7 @@ Sonnet 4.6 [1M] nuốt được cả codebase trung bình (~1M token ≈ 750K t�
 ### Trường hợp 3: Tool use trưởng thành và hệ sinh thái agent
 Anthropic đầu tư mạnh vào độ tin cậy tool use — gọi tool song song, output có cấu trúc, computer use, Claude Code CLI. Nếu bạn build một agent điều phối 10+ tool qua nhiều bước, lịch sử thực chiến của tool use Sonnet vững hơn DeepSeek rõ rệt.
 
----
+* * *
 
 ## Đào sâu giá
 
@@ -104,7 +105,7 @@ Anthropic đầu tư mạnh vào độ tin cậy tool use — gọi tool song so
 Theo chi phí thô: **DeepSeek V3.5** rẻ hơn 5-13x tùy chiến lược caching.
 Theo "chi phí cho mỗi lần trả lời đúng": **gần hơn con số tiêu đề gợi ý** — Sonnet thường giải trong 1 lần thứ DeepSeek cần 2-3 lần thử.
 
----
+* * *
 
 ## Benchmark hiệu năng
 
@@ -123,13 +124,13 @@ Theo "chi phí cho mỗi lần trả lời đúng": **gần hơn con số tiêu 
 
 → DeepSeek thắng ở chi phí, tiếng Trung, self-host. Sonnet thắng ở độ chính xác coding, long context, tool use.
 
----
+* * *
 
 ## Mẹo migration
 
 ### Claude Sonnet → DeepSeek V3.5
 - Đăng ký tại platform.deepseek.com hoặc dùng OpenRouter để thanh toán hợp nhất
-- API tương thích OpenAI — đổi `base_url` thành `https://api.deepseek.com/v1` và `model` thành `deepseek-chat` hoặc `deepseek-coder`
+- API tương thích OpenAI — đổi ```base_url```` thành ````https://api.deepseek.com/v1```` và ````model```` thành ````deepseek-chat```` hoặc ````deepseek-coder```
 - Thêm retry logic: DeepSeek đôi khi cần 2-3 lần thử cho lập luận khó, Sonnet thường trúng lần đầu
 - Chunking input > 100K token — context 128K của DeepSeek hơi chật, build lớp RAG nếu cần dài hơn
 - Giữ Sonnet làm fallback cho 10% request khó nhất (vẫn rẻ hơn tổng thể)
@@ -144,7 +145,7 @@ Theo "chi phí cho mỗi lần trả lời đúng": **gần hơn con số tiêu 
 ### Sandbox self-hosting
 Muốn dựng server inference DeepSeek riêng để test với Sonnet API trên workload thật? {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với GPU + $200 credit miễn phí" >}} cho bạn ~2 tháng cơ sở hạ tầng đánh giá song song. Chạy DeepSeek 7B distilled cục bộ trước để validate chiến lược prompt, rồi scale lên V3.5 full trên H100 thuê chỉ khi kinh tế ổn. Rẻ hơn đốt credit Sonnet trong giai đoạn lặp prompt.
 
----
+* * *
 
 ## Lựa chọn thay thế đáng thử
 
@@ -153,7 +154,7 @@ Nếu cả DeepSeek lẫn Sonnet đều không phù hợp: - **[Claude Code](htt
 - **[Continue.dev](https://dibi8.com/vi/resources/llm-frameworks/continue/)** — Extension VS Code miễn phí, BYO model (DeepSeek hoặc Sonnet)
 - **[cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code qua backend DeepSeek, giảm chi phí 60-80%
 
----
+* * *
 
 ## Góc nhìn dibi8
 
@@ -167,13 +168,13 @@ Nếu bạn build **sản phẩm tiếng Trung** → **DeepSeek V3.5**, không c
 
 Cho hầu hết indie dev năm 2026, nước đi khôn là **pattern router**: mặc định rẻ (DeepSeek) với fallback Sonnet cho 10-20% request khó nhất, route theo heuristic độ phức tạp. Công cụ như [cc-switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-claude-code-api-router/) và OpenRouter làm cấu hình này dễ ợt — bạn có kinh tế DeepSeek với chất lượng Sonnet ở những case thực sự quan trọng.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -217,7 +218,7 @@ Cho hầu hết indie dev năm 2026, nước đi khôn là **pattern router**: m
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -227,7 +228,7 @@ Cho hầu hết indie dev năm 2026, nước đi khôn là **pattern router**: m
 - [9router-smart-llm-proxy-token-saver-free-coding](deepseek-v3-vs-claude-sonnet)
 - [ai-engineering-from-scratch](deepseek-v3-vs-claude-sonnet)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

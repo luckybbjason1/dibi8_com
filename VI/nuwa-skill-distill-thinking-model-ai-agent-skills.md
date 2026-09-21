@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif'
 ---
 
+
 # Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南
 
-```
+````
 ┌──────────────────────────────────────────────┐
 │          Nuwa-Skill Pipeline                   │
 │                                                │
@@ -50,7 +51,7 @@ featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/asse
 │  │  (50+ compatible)       │                   │
 │  └─────────────────────────┘                   │
 └──────────────────────────────────────────────┘
-```
+`````
 
 Nuwa-Skill（女媧）是一套開創性的 AI Agent 技能框架，讓你將任何人的思維模型——從史蒂夫·賈伯斯到華倫·巴菲特，再到你最喜歡的政治節目主持人——提煉為可複用、可部署的 Agent 技能。擁有 23,500+ 顆 GitHub 星，它已成為 Agent Skills 生態系中最受歡迎的專案之一。
 
@@ -76,7 +77,7 @@ Nuwa-Skill 建立在開放的 [Agent Skills 協議](https://agentskills.io) 之�
 
 以下是提煉 Naval Ravikant 的結果：
 
-```
+`````
 User      ❯ 我想同時做自媒體、寫書和創業
 
 Naval     ❯ 你列出了三個願望。每個願望都是你與不快樂簽下的契約。
@@ -87,11 +88,11 @@ Naval     ❯ 你列出了三個願望。每個願望都是你與不快樂簽下
 
             不要從三選一。先成為一個，然後再成為另一個。
             串行複利，而非並行摩擦。
-```
+`````
 
 以及 Musk 談 SaaS 客戶獲取：
 
-```
+`````
 User      ❯ 我們的 SaaS 客戶獲取成本太高
 
 Musk      ❯ 別急著想如何降低。先算出物理極限。
@@ -101,7 +102,7 @@ Musk      ❯ 別急著想如何降低。先算出物理極限。
             現在——你實際的路徑比理論極限長多少倍？
             如果超過 3 倍，中間就有應該被刪掉的步驟。
             別優化漏斗。質疑漏斗是否應該存在。
-```
+`````
 
 ![Nuwa-Skill Hero](https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif)
 
@@ -121,7 +122,7 @@ Musk      ❯ 別急著想如何降低。先算出物理極限。
 
 每一層獨立分析：
 
-```yaml
+`````yaml
 # Nuwa 生成的範例 SKILL.md 結構
 name: "Steve Jobs"
 description: "Steve Jobs 思維模型——專注、簡潔、現實扭曲"
@@ -143,11 +144,11 @@ cognitive_layers: expression: tone: "直接、自信、有時尖銳"
   limitations: - "not suited for collaborative team-building contexts"
     - "decisions made with incomplete data"
     - "highly personality-dependent, hard to scale"
-```
+`````
 
 ### 第三步：SKILL.md 生成
 
-分析結果會被編譯為 `SKILL.md` 檔案，遵循 Agent Skills 協議規範。該檔案包含 YAML frontmatter 元資料和供 Agent 執行環境使用的結構化指令。
+分析結果會被編譯為 ````SKILL.md```` 檔案，遵循 Agent Skills 協議規範。該檔案包含 YAML frontmatter 元資料和供 Agent 執行環境使用的結構化指令。
 
 ### 第四步：部署
 
@@ -159,9 +160,9 @@ cognitive_layers: expression: tone: "直接、自信、有時尖銳"
 
 開啟任何相容的 Agent（Claude Code、Codex、Cursor、OpenClaw、Hermes、CodeBuddy、Workbuddy、Gemini CLI、OpenCode 等），然後告訴它：
 
-```
+`````
 Help me install this skill: https://github.com/alchaincyf/nuwa-skill
-```
+`````
 
 Agent 會自動偵測你的執行環境並將技能安裝到正確的目錄。
 
@@ -169,7 +170,7 @@ Agent 會自動偵測你的執行環境並將技能安裝到正確的目錄。
 
 使用 [vercel-labs/skills](https://github.com/vercel-labs/skills) 通用 CLI 工具，支援 55+ 執行環境：
 
-```bash
+`````bash
 # 將 Nuwa-Skill 安裝到預設執行環境
 npx skills add alchaincyf/nuwa-skill
 
@@ -178,40 +179,40 @@ npx skills add alchaincyf/nuwa-skill -a claude-code
 npx skills add alchaincyf/nuwa-skill -a codex
 npx skills add alchaincyf/nuwa-skill -a cursor
 npx skills add alchaincyf/nuwa-skill -a openclaw
-```
+`````
 
 ### 方法三：手動安裝
 
 適合想要自訂安裝的進階使用者：
 
-```bash
+`````bash
 # 複製到適當的執行環境技能目錄
 git clone https://github.com/alchaincyf/nuwa-skill ~/.claude/skills/nuwa-skill/
 git clone https://github.com/alchaincyf/nuwa-skill ~/.codex/skills/nuwa-skill/
 git clone https://github.com/alchaincyf/nuwa-skill ~/.cursor/skills/nuwa-skill/
 git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/nuwa-skill/
-```
+`````
 
 各執行環境的技能目錄：
 
 || 執行環境 | 安裝路徑 |
 ||---------|------------------|
-|| Claude Code | `~/.claude/skills/nuwa-skill/` |
-|| Codex CLI | `~/.codex/skills/nuwa-skill/` |
-|| Cursor | `~/.cursor/skills/nuwa-skill/` |
-|| OpenClaw | `~/.openclaw/workspace/skills/nuwa-skill/` |
-|| Hermes Agent | 執行 `tools/install_hermes_skill.py` |
-|| 其他執行環境 | 複製到其 `skills/` 目錄 |
+|| Claude Code | ````~/.claude/skills/nuwa-skill/```` |
+|| Codex CLI | ````~/.codex/skills/nuwa-skill/```` |
+|| Cursor | ````~/.cursor/skills/nuwa-skill/```` |
+|| OpenClaw | ````~/.openclaw/workspace/skills/nuwa-skill/```` |
+|| Hermes Agent | 執行 ````tools/install_hermes_skill.py```` |
+|| 其他執行環境 | 複製到其 ````skills/```` 目錄 |
 
 ### 方法四：僅參考使用
 
-即使你的執行環境不支援自動 Agent Skills 載入，你也可以將 `SKILL.md` 內容直接貼入對話中——它本質上只是帶有 YAML frontmatter 的 Markdown。
+即使你的執行環境不支援自動 Agent Skills 載入，你也可以將 ````SKILL.md```` 內容直接貼入對話中——它本質上只是帶有 YAML frontmatter 的 Markdown。
 
 ## 使用方法
 
 安裝完成後，你可以使用自然語言指令來使用 Nuwa-Skill：
 
-```
+`````
 # 建立提煉
 > Distill Paul Graham
 > Create a Zhang Xiaolong perspective Skill
@@ -221,13 +222,13 @@ git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/
 > Analyze this investment decision from Munger's perspective
 > How would Feynman explain quantum computing?
 > Switch to Naval, I'm纠结 about three things
-```
+`````
 
 ### 建立自訂提煉
 
 你可以透過提供人名和可選的額外脈絡，為任何人物建立技能：
 
-```yaml
+`````yaml
 # 範例：自訂提煉提示
 > Distill Linus Torvalds
 > Context: Focus on his technical decision-making and Linux development philosophy
@@ -236,48 +237,48 @@ git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/
 > Distill my manager
 > Context: She's great at prioritization and stakeholder management
 > Output: Capture her email writing patterns and meeting facilitation approach
-```
+`````
 
 ## 與 Agent 執行環境整合
 
 ### Claude Code
 
-```bash
+`````bash
 # 安裝完成後，Claude Code 會自動載入技能
 # 不需要額外的設定
 claude
 > distill Elon Musk
 > use Musk's framework to analyze this product decision
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # Codex 會自動偵測並載入技能
 # 若未自動偵測，請明確指定
 codex --skill nuwa-skill
 > distill Naval Ravikant
 > analyze my startup strategy from Naval's perspective
-```
+`````
 
 ### Cursor
 
-```
+`````
 # 在 Cursor 中，技能會作為斜線指令出現
 /distill [person name]
 
 # 或在對話中直接使用技能
 > Switch to the Steve Jobs thinking model
-```
+`````
 
 ### OpenClaw
 
-```bash
+`````bash
 # OpenClaw 會從其工作區目錄載入技能
 # Nuwa-Skill 會自動部署到那裡
 > Create a Jobs distillation
 > Apply it to this code review
-```
+`````
 
 ## 效能指標與應用場景
 
@@ -295,30 +296,30 @@ codex --skill nuwa-skill
 
 #### 1. 產品策略
 
-```
+`````
 User: "我們應該在生產力應用程式中加入社交功能嗎？"
 
 Jobs 模型: "你問錯了問題。真正的问题是：
 如果你除了其中一個功能外，移除所有功能，會發生什麼事？"
-```
+`````
 
 #### 2. 投資分析
 
-```
+`````
 User: "這個加密貨幣專案值得投資嗎？"
 
 Munger 模型: "讓我重新框架：創辦人的誘因是什麼？
 他們與股東利益一致嗎？讓我看看他們的實際投入。"
-```
+`````
 
 #### 3. 技術架構
 
-```
+`````
 User: "我們應該建構單體還是微服務？"
 
 Torvalds 模型: "我不在乎架構。我在乎的是
 程式碼能不能運作。從可行的開始。如果真的出問題了再重構。"
-```
+`````
 
 ## 進階用法
 
@@ -326,27 +327,27 @@ Torvalds 模型: "我不在乎架構。我在乎的是
 
 你可以透過添加特定指令來優化提煉：
 
-```
+`````
 > Distill Tim Cook but focus specifically on supply chain management
 > and operational excellence, not his public speaking style
 
 > Distill my PhD advisor with emphasis on their experimental design
 > methodology and paper review patterns
-```
+`````
 
 ### 組合多個提煉
 
-```
+`````
 > First, analyze this from Buffett's perspective on risk
 > Then, from Musk's perspective on first principles
 > Finally, synthesize both viewpoints
-```
+`````
 
 ### 匯出與分享
 
 生成的技能可以匯出和分享：
 
-```bash
+`````bash
 # 匯出技能
 cat ~/.claude/skills/nuwa-skill/SKILL.md > jobs-distilled.md
 
@@ -355,19 +356,19 @@ scp jobs-distilled.md team@example.com:~/skills/
 
 # 他們透過指向你的 URL 來安裝
 npx skills add https://your-server.com/jobs-distilled.md
-```
+`````
 
 ### 為個人用途建立技能
 
 除了知名人士，Nuwa-Skill 也可以捕捉任何你想保留思維模式的人：
 
-```
+`````
 > Distill my mentor Sarah — she's great at system design
 > and always asks "what breaks first?" when reviewing architecture
 
 > Distill the engineering team's decision-making patterns
 > from our last 10 architecture review meetings
-```
+`````
 
 ## 與替代方案比較
 
@@ -426,7 +427,7 @@ A：不能直接使用，因為 ChatGPT 不支援 Agent Skills 協議。不過�
 
 Nuwa-Skill 代表了 AI Agent 增強的新範式——它不問「我應該使用哪種模型」，而是問「我應該借用誰的思維」。透過將專家、歷史人物和導師的認知操作系統提煉為可複用、可部署的技能，它賦予你一項超能力：即時存取世界上最佳思維者的決策框架。
 
-Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限的提煉可能性。從史蒂夫·賈伯斯的产品哲學、華倫·巴菲特的投資經驗法則，到你經理的電子郵件模式，你需要的認知框架只需一個 `npx skills add` 就能取得。
+Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限的提煉可能性。從史蒂夫·賈伯斯的产品哲學、華倫·巴菲特的投資經驗法則，到你經理的電子郵件模式，你需要的認知框架只需一個 ````npx skills add``` 就能取得。
 
 **嘗試 Nuwa-Skill：** [github.com/alchaincyf/nuwa-skill](https://github.com/alchaincyf/nuwa-skill)
 
@@ -440,7 +441,7 @@ Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限�
 - Colleague-skill（前身為）：https://github.com/titanwings/colleague-skill
 - GitHub 儲存庫：https://github.com/alchaincyf/nuwa-skill
 
----
+* * *
 
 加入我們的社群，取得更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
@@ -508,12 +509,12 @@ Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -523,7 +524,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cc-switch-all-in-one-ai-coding-agent-manager](nuwa-skill-distill-thinking-model-ai-agent-skills)
 - [codebase-memory-mcp-high-performance-code-intelligence](nuwa-skill-distill-thinking-model-ai-agent-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

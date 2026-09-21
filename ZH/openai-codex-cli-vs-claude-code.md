@@ -16,6 +16,7 @@ faqs: - q: 'OpenAI Codex CLI 免费吗？'
     a: '可以，很多开发者就这么做。常见组合：Claude Code 跑需要 1M 上下文的大重构，Codex CLI 跑沙箱化的实验性任务（不想盯着）。两者不冲突 — 都读写同一个仓库，只是别同时改同一批文件。'
   - q: '企业用哪个更好？'
     a: '2026 年 Claude Code 的企业版故事更成熟 — Anthropic 提供 SOC 2 Type II、API 层 HIPAA、Claude Enterprise 私有 VPC 部署。OpenAI Codex CLI 更新（2025 年 11 月开源），接入标准 OpenAI 企业套餐，但 CLI 本身还没专门的企业层。监管行业目前 Claude Code 胜出；OpenAI 在快速追赶。'---
+
 # OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？
 
 
@@ -33,11 +34,11 @@ faqs: - q: 'OpenAI Codex CLI 免费吗？'
 
 | 特性 | OpenAI Codex CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **厂商** | OpenAI | Anthropic |
 | **发布时间** | 2025 年 11 月（开源） | 2025 年 2 月 |
@@ -53,11 +54,11 @@ faqs: - q: 'OpenAI Codex CLI 免费吗？'
 | **模型价格** | 约 $1.50/1M 输入，$10/1M 输出（gpt-5-codex） | 约 $3/1M 输入，$15/1M 输出（Sonnet 4.6） |
 | **企业版** | OpenAI Enterprise（无 CLI 专属层） | Claude Enterprise、SOC 2、HIPAA、私有 VPC |
 | **最佳代码库规模** | < 8 万行（400K 上下文） | < 25 万行（1M 上下文） |
-| **Hooks / 自定义命令** | `~/.codex/config.toml` 可配 | 一等公民（hooks、斜杠命令、agents） |
+| **Hooks / 自定义命令** | ```~/.codex/config.toml```` 可配 | 一等公民（hooks、斜杠命令、agents） |
 | **多文件编辑** | 有（沙箱确认） | 有（diff 预览 + 审批） |
 
 
----
+* * *
 ## 何时选 OpenAI Codex CLI
 
 ### 场景 1：完全开源可审计
@@ -69,7 +70,7 @@ Codex CLI 是 Apache 2.0 — 可以 clone 代码、读每一行、fork 出自己
 ### 场景 3：紧密整合 OpenAI 生态
 团队已经全 OpenAI（Assistants API、ChatGPT Enterprise、OpenAI o1 做规划），Codex CLI 接进来很顺。共享 API key、共享用量看板、共享速率限制。已经吃了 OpenAI 量价折扣的话净成本更低。
 
----
+* * *
 
 ## 何时选 Claude Code
 
@@ -82,7 +83,7 @@ Claude Code 的 1M token 上下文窗口是杀手锏。把 20 万行的 monorepo
 ### 场景 3：企业合规
 Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留、审计日志。监管行业（医疗、金融、公共部门），Claude Code 是今天能站住的选择。OpenAI 在平台层有同等能力，但 CLI 还没出专门的企业层。
 
----
+* * *
 
 ## 价格深挖
 
@@ -112,17 +113,17 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 每天重度用 $20 以内：**Claude Pro $20/月固定** 难以打败 — 成本可预期，不会有惊喜账单。
 无限制重度用：**Claude Max 20x $200/月** 在规模上跑赢等价 PAYG。
 
----
+* * *
 
 ## 性能基准（主观，来自日常使用）
 
 | 任务 | OpenAI Codex CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 单文件 bug 修复 | 8/10 | 9/10 |
 | 多文件重构（小仓库） | 8/10 | 9/10 |
@@ -137,30 +138,30 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 
 → Codex CLI 胜在沙箱安全和开源。Claude Code 胜在上下文密集任务、UX 精致度、企业合规。
 
----
+* * *
 
 ## 迁移建议
 
 ### Codex CLI → Claude Code
-- 安装：`npm i -g @anthropic-ai/claude-code`，然后 `claude` 启动
+- 安装：````npm i -g @anthropic-ai/claude-code````，然后 ````claude```` 启动
 - 带上 Anthropic API key 或登录 Pro/Max
-- Codex CLI 的 `~/.codex/config.toml` hooks → Claude Code 的 `~/.claude/settings.json` hooks
-- 沙箱确认跑改成 `--dangerously-skip-permissions`（只在一次性 VM 上用）
+- Codex CLI 的 ````~/.codex/config.toml```` hooks → Claude Code 的 ````~/.claude/settings.json```` hooks
+- 沙箱确认跑改成 ````--dangerously-skip-permissions````（只在一次性 VM 上用）
 - 重接 MCP server — Claude Code 原生支持 MCP，工具基本可以直接搬
 - 单 token 价格更贵但上下文窗口更大 — 开 Anthropic prompt caching 在重复读上回收 60-90%
 
 ### Claude Code → Codex CLI
-- 安装：`npm i -g @openai/codex`（或 `brew install codex`）
-- 环境变量设 `OPENAI_API_KEY`
-- 验证沙箱：`codex --sandbox` 应该报 Seatbelt/Landlock 已激活
-- 把 Claude Code hooks 映射到 `~/.codex/config.toml`
+- 安装：````npm i -g @openai/codex````（或 ````brew install codex````）
+- 环境变量设 ````OPENAI_API_KEY````
+- 验证沙箱：````codex --sandbox```` 应该报 Seatbelt/Landlock 已激活
+- 把 Claude Code hooks 映射到 ````~/.codex/config.toml```
 - 斜杠命令和 skills 不能 1:1 翻译 — 关键的重做成 shell 脚本，通过 Codex 的工具层调
 - 上下文窗口更小 — 每个任务要更纪律性地选加载哪些文件
 
 ### 自建沙箱
 想拿两个 CLI 在真实代码库上做决定？开个 {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet 拿 $200 免费额度" >}} — $12/月的常规 droplet 跑两个 CLI 都不吃力，还能保留一个隔离的 staging 环境跑无人值守 agent。两个月免费评估期，之后 $12/月。比维持两套本地环境便宜，决定后基础设施还能留着。
 
----
+* * *
 
 ## 值得一试的替代品
 
@@ -171,7 +172,7 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 - **[Claude Code vs Aider](https://dibi8.com/zh/vs/claude-code-vs-aider/)** — 开源 CLI agent 对比
 - **[cc-switch](https://dibi8.com/zh/resources/dev-utils/cc-switch-claude-code-api-router/)** — Claude Code 路由到更便宜的 provider，省 60-80%
 
----
+* * *
 
 ## dibi8 的看法
 
@@ -185,13 +186,13 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 
 2026 年大多数开发者的诚实建议：两个都试用一周，留下 UX 让你感觉像家的那个。
 
----
+* * *
 
 ## FAQ
 
 （通过 faqs frontmatter 渲染 — 行内可见 + JSON-LD 给 AIO）
 
----
+* * *
 
 ## 延伸阅读
 
@@ -272,12 +273,12 @@ OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？ represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -287,7 +288,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](openai-codex-cli-vs-claude-code)
 - [cursor-vs-claude-code](openai-codex-cli-vs-claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

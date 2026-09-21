@@ -9,6 +9,7 @@ license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -50,10 +51,10 @@ Este guia completo analisa as diferenças fundamentais, benchmarks de desempenho
 
 ### LangChain: Plataforma de Orquestração de Agentes
 
-Em outubro de 2025, o LangChain lançou a versão 1.0, completando sua transição de "biblioteca de chains" para "plataforma de engenharia de agentes". A API central foi simplificada para `create_agent`.
+Em outubro de 2025, o LangChain lançou a versão 1.0, completando sua transição de "biblioteca de chains" para "plataforma de engenharia de agentes". A API central foi simplificada para ```create_agent````.
 
 **Características Principais:**
-- API `create_agent` (crie um agente em 10 linhas)
+- API ````create_agent```` (crie um agente em 10 linhas)
 - LangGraph como runtime oficial de agentes
 - LangSmith para observabilidade
 - 40+ integrações de retriever
@@ -120,7 +121,7 @@ De acordo com testes independentes de junho de 2026: - **LlamaIndex**: Menor uso
 ### Consulta RAG Simples
 
 **LlamaIndex (Recomendado):**
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.ollama import Ollama
 
@@ -130,10 +131,10 @@ query_engine = index.as_query_engine(llm=Ollama(model="llama3.2"))
 
 response = query_engine.query("Qual é a arquitetura central do projeto?")
 print(response)
-```
+`````
 
 **LangChain:**
-```python
+`````python
 from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
@@ -149,12 +150,12 @@ qa = RetrievalQA.from_chain_type(llm=OllamaLLM(), retriever=vectorstore.as_retri
 
 response = qa.run("Qual é a arquitetura central do projeto?")
 print(response)
-```
+`````
 
 ### Criação de Agente
 
 **LangChain 1.0 (Recomendado):**
-```python
+`````python
 from langchain.agents import create_agent
 
 def get_weather(city: str) -> str: """Obter clima de uma cidade."""
@@ -170,10 +171,10 @@ result = agent.invoke({
     "messages": [{"role": "user", "content": "Como está o tempo em San Francisco?"}]
 })
 print(result)
-```
+`````
 
 **LangGraph (Mais Controle):**
-```python
+`````python
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
 
@@ -193,17 +194,17 @@ graph.add_conditional_edges("tool", should_continue, {"tool": "tool", "end": END
 
 app = graph.compile()
 result = app.invoke({"messages": [("user", "Clima em SF?")]})
-```
+`````
 
 ## Soluções de Deploy em Produção
 
 ### Opção 1: LlamaIndex + LangGraph Híbrido
 
-Esta é a solução de produção mais popular em 2026: ```
+Esta é a solução de produção mais popular em 2026: `````
 Requisição do Usuário → Recuperação LlamaIndex → Orquestração LangGraph → Geração do Modelo → Resposta
            ↑                                                              ↓
         Indexação de Documentos ←────────────────────── Revisão Humana
-```
+`````
 
 **Vantagens:**
 - LlamaIndex lida com recuperação eficiente de documentos
@@ -214,7 +215,7 @@ Requisição do Usuário → Recuperação LlamaIndex → Orquestração LangGra
 
 ### Opção 2: LangChain 1.0 Puro
 
-```python
+`````python
 from langchain.agents import create_agent
 from langchain.tools import Tool
 from langchain_community.vectorstores import Chroma
@@ -229,20 +230,20 @@ agent = create_agent(
     tools=[search_tool],
     memory=ChatMemoryBuffer(max_tokens=1000)
 )
-```
+`````
 
 **Vantagens:** Simples e rápido, ideal para protótipos e aplicações de pequeno/médio porte
 **Desvantagens:** Suporte limitado a workflows complexos
 
 ## Árvores de Decisão de Seleção
 
-```
+`````
 Qual é sua necessidade principal?
 ├─ Recuperação de documentos e RAG → LlamaIndex
 ├─ Orquestração complexa de agentes → LangGraph
 ├─ Prototipagem rápida → LangChain 1.0
 └─ Solução híbrida → LlamaIndex + LangGraph
-```
+`````
 
 ## Comunidade e Ecossistema
 
@@ -264,10 +265,10 @@ O cenário de frameworks LLM em 2026 está claro: 1. **LlamaIndex**: Escolha par
 
 Lembre-se: não existe "melhor" framework, apenas o framework "mais adequado" para seu cenário. Avalie suas necessidades, escolha a ferramenta correspondente e combine conforme necessário.
 
----
+* * *
 
 **P:** Qual a diferença entre LangChain 1.0 e versões anteriores?
-**R:** LangChain 1.0 reescreveu completamente a API de agentes usando `create_agent`. A estrutura de chains anterior foi movida para o pacote `langchain-classic` e não é mais recomendada para novos usuários.
+**R:** LangChain 1.0 reescreveu completamente a API de agentes usando ````create_agent````. A estrutura de chains anterior foi movida para o pacote ````langchain-classic``` e não é mais recomendada para novos usuários.
 
 **P:** Posso usar LlamaIndex em vez de LangChain?
 **R:** Não totalmente. LlamaIndex é mais forte em recuperação de documentos, mas LangChain tem funcionalidades mais completas em orquestração geral de agentes. A melhor prática é usar ambos combinados.
@@ -281,7 +282,7 @@ Lembre-se: não existe "melhor" framework, apenas o framework "mais adequado" pa
 **P:** Como escolher um banco de dados vetorial?
 **R:** LlamaIndex suporta Chroma, Qdrant, Weaviate, etc. Para novos projetos, comece com Chroma (grátis, fácil de usar) e migre para outras soluções quando necessário.
 
----
+* * *
 
 *Útil? Junte-se à comunidade Telegram para atualizações diárias de ferramentas IA: https://t.me/DIBI8_Group*
 

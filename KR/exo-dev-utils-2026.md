@@ -34,11 +34,12 @@ faqs: - q: 'exo는 어떻게 설치하나요?'
     a: '브라우저로 `http://localhost:52415`의 대시보드를 여세요. 발견된 모든 기기, 모델이 그 위에 분할된 방식, 실시간 처리량과 메모리 사용량을 보여줍니다.'
 ---
 
+
 {{< resource-info >}}
 
 ## 들어가며
 
-프런티어 모델은 덩치가 큽니다. 671B 파라미터 모델은 노트북 한 대에 도저히 들어가지 않고, 직접 돌리겠다고 클라우드 GPU를 충분히 빌리면 비용이 금방 불어납니다. `exo`는 다른 길을 택합니다. 이미 가지고 있는 기기들—Mac, 리눅스 머신, 심지어 휴대폰까지—을 하나의 클러스터로 엮은 뒤, 모델을 그 위에 나눠 올려 함께 추론을 돌립니다. GitHub 스타 45,000개를 넘기며, 「내가 통제하는 하드웨어에서 큰 모델을 돌린다」는 분야에서 가장 주목받는 프로젝트 중 하나가 되었습니다. 이 가이드에서는 exo를 설치하고, 대시보드를 열고, OpenAI·Claude·Ollama 호환 API로 exo와 대화하는 과정을 차근차근 살펴봅니다.
+프런티어 모델은 덩치가 큽니다. 671B 파라미터 모델은 노트북 한 대에 도저히 들어가지 않고, 직접 돌리겠다고 클라우드 GPU를 충분히 빌리면 비용이 금방 불어납니다. ```exo````는 다른 길을 택합니다. 이미 가지고 있는 기기들—Mac, 리눅스 머신, 심지어 휴대폰까지—을 하나의 클러스터로 엮은 뒤, 모델을 그 위에 나눠 올려 함께 추론을 돌립니다. GitHub 스타 45,000개를 넘기며, 「내가 통제하는 하드웨어에서 큰 모델을 돌린다」는 분야에서 가장 주목받는 프로젝트 중 하나가 되었습니다. 이 가이드에서는 exo를 설치하고, 대시보드를 열고, OpenAI·Claude·Ollama 호환 API로 exo와 대화하는 과정을 차근차근 살펴봅니다.
 
 ## exo란 무엇인가?
 
@@ -64,36 +65,36 @@ exo를 하루 종일 접근 가능하게 두고 싶다면(예: 사내 공용 엔
 
 Mac에서 가장 간편한 방법은 미리 빌드된 앱입니다. Homebrew로 설치하세요.
 
-```bash
+`````bash
 brew install --cask exo
-```
+`````
 
-또는 `https://assets.exolabs.net/EXO-latest.dmg`에서 최신 DMG를 직접 내려받으세요. 이 앱은 비교적 최신 버전의 macOS가 필요합니다.
+또는 ````https://assets.exolabs.net/EXO-latest.dmg````에서 최신 DMG를 직접 내려받으세요. 이 앱은 비교적 최신 버전의 macOS가 필요합니다.
 
 ### 소스에서 빌드 (macOS 또는 Linux)
 
-최신 코드를 돌리려면 저장소를 클론한 뒤 `uv`로 실행합니다. 먼저 `uv`, Node 18+, nightly 버전의 Rust 툴체인이 필요합니다(macOS에서는 Xcode, Homebrew, `macmon`도 필요).
+최신 코드를 돌리려면 저장소를 클론한 뒤 ````uv````로 실행합니다. 먼저 ````uv````, Node 18+, nightly 버전의 Rust 툴체인이 필요합니다(macOS에서는 Xcode, Homebrew, ````macmon````도 필요).
 
-```bash
+`````bash
 git clone https://github.com/exo-explore/exo
 cd exo/dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
 Nix를 사용한다면 사전 요구사항을 통째로 건너뛸 수 있습니다.
 
-```bash
+`````bash
 nix run .#exo
-```
+`````
 
 ### 흔한 오류와 해결
 
-첫 실행에서 자주 겪는 문제 중 하나는, 프런트엔드를 빌드한 적이 없어 대시보드가 뜨지 않는 경우입니다. 웹 UI는 `dashboard/` 디렉터리에서 컴파일되므로, 저장소를 클론한 뒤 빌드 없이 `uv run exo`를 실행했다면 먼저 대시보드를 다시 빌드하고 나서 실행하세요.
+첫 실행에서 자주 겪는 문제 중 하나는, 프런트엔드를 빌드한 적이 없어 대시보드가 뜨지 않는 경우입니다. 웹 UI는 ````dashboard/```` 디렉터리에서 컴파일되므로, 저장소를 클론한 뒤 빌드 없이 ````uv run exo````를 실행했다면 먼저 대시보드를 다시 빌드하고 나서 실행하세요.
 
-```bash
+`````bash
 cd dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
 설치 중 다른 문제가 생기면 저장소의 공식 README를 확인하세요.
 
@@ -108,22 +109,22 @@ exo를 설치하고 나면 작업 흐름이 시원할 만큼 짧습니다. 각 �
 
 클러스터에 넣고 싶은 모든 기기에서 exo를 실행하세요.
 
-```bash
+`````bash
 uv run exo
-```
+`````
 
 각 노드는 같은 네트워크에서 다른 노드를 자동으로 찾아냅니다—수동으로 등록할 게 없습니다. 유용한 플래그가 몇 개 있습니다.
 
-- `--no-worker`: 추론은 직접 수행하지 않는 코디네이터 전용 노드로 실행합니다.
-- `--legacy-daemon`: exo를 백그라운드 데몬으로 실행합니다.
+- ````--no-worker````: 추론은 직접 수행하지 않는 코디네이터 전용 노드로 실행합니다.
+- ````--legacy-daemon````: exo를 백그라운드 데몬으로 실행합니다.
 
 ### 클러스터 모니터링
 
-exo는 `52415` 포트에서 대시보드를 제공합니다. 브라우저로 여세요.
+exo는 ````52415```` 포트에서 대시보드를 제공합니다. 브라우저로 여세요.
 
-```sh
+`````sh
 http://localhost:52415
-```
+`````
 
 exo가 발견한 모든 기기, 현재 모델이 그 위에 어떻게 분할되어 있는지, 그리고 실시간 처리량과 메모리 사용량을 볼 수 있습니다.
 
@@ -131,13 +132,13 @@ exo가 발견한 모든 기기, 현재 모델이 그 위에 어떻게 분할되�
 
 exo는 OpenAI, Claude(Anthropic Messages), Ollama 형식과 호환되는 HTTP API를 제공하므로, 기존 클라이언트 코드를 대부분 그대로 쓸 수 있습니다. 스트리밍 채팅 요청은 다음과 같습니다.
 
-```bash
+`````bash
 curl -X POST http://localhost:52415/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}'
-```
+`````
 
-같은 엔드포인트가 `/v1/messages`의 Claude Messages API와 `/ollama/api/chat`의 Ollama API도 이해합니다.
+같은 엔드포인트가 ````/v1/messages````의 Claude Messages API와 ````/ollama/api/chat````의 Ollama API도 이해합니다.
 
 ### 정리
 
@@ -154,7 +155,7 @@ exo가 OpenAI, Claude, Ollama API를 말할 줄 알기 때문에, 대부분의 �
 
 OpenAI 호환 클라이언트를 로컬 exo 엔드포인트로 향하게 하면 그대로 동작합니다.
 
-```python
+`````python
 # 표준 OpenAI 클라이언트로 로컬 exo 클러스터에 접속
 from openai import OpenAI
 
@@ -168,13 +169,13 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Summarize the exo project in one sentence."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### Jupyter 노트북에서 사용
 
 같은 클라이언트가 노트북 안에서도 동작하므로, 클러스터를 상대로 빠르게 실험하기에 편리합니다.
 
-```python
+`````python
 # Jupyter 노트북에서 간단히 테스트
 from openai import OpenAI
 
@@ -185,7 +186,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "List three uses for a local AI cluster."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 모든 것이 표준 HTTP API를 통하므로, POST 요청을 보낼 수 있는 어떤 언어나 프레임워크와도 exo를 통합할 수 있습니다.
 
@@ -223,7 +224,7 @@ exo는 Apple Silicon Mac 여러 대로 이뤄진 클러스터에서 아주 큰 �
 
 [관련 오픈소스 도구](dibi8-internal-link) 소개도 함께 보세요.
 
-exo가 로컬에서 모델을 돌리는 유일한 방법은 아니며, 단일 머신 도구가 못 하는 매우 구체적인 문제—큰 모델 하나를 여러 기기에 펼치기—를 해결합니다. 아래 표는 흔한 대안 두 가지와의 차이를 대략 그려 봅니다. `ollama/ollama`(단일 머신 로컬 서빙)과 `ggml-org/llama.cpp`(많은 로컬 도구가 기반으로 삼는 추론 엔진)입니다.
+exo가 로컬에서 모델을 돌리는 유일한 방법은 아니며, 단일 머신 도구가 못 하는 매우 구체적인 문제—큰 모델 하나를 여러 기기에 펼치기—를 해결합니다. 아래 표는 흔한 대안 두 가지와의 차이를 대략 그려 봅니다. ````ollama/ollama````(단일 머신 로컬 서빙)과 ````ggml-org/llama.cpp````(많은 로컬 도구가 기반으로 삼는 추론 엔진)입니다.
 
 | 항목                  | exo-explore/exo                  | ollama/ollama                  | ggml-org/llama.cpp             |
 |----------------------|----------------------------------|--------------------------------|--------------------------------|
@@ -246,7 +247,7 @@ exo는 분명 쓸모 있지만, 빠르게 변하는 신생 프로젝트입니다
 
 2. **큰 모델 클러스터를 위해 만들어졌습니다.** 모델이 이미 한 머신에 들어간다면 exo의 분산 장치는 과합니다—단일 머신 도구가 더 단순할 것입니다.
 
-3. **소스 빌드에는 실제 사전 요구사항이 있습니다.** 소스에서 실행하려면 `uv`, Node, nightly Rust 툴체인, (macOS에서는) Xcode와 추가 도구가 필요합니다. macOS 앱은 이를 피할 수 있지만, 소스 사용자는 한 줄 설치보다 무거운 설정을 각오해야 합니다.
+3. **소스 빌드에는 실제 사전 요구사항이 있습니다.** 소스에서 실행하려면 ````uv```, Node, nightly Rust 툴체인, (macOS에서는) Xcode와 추가 도구가 필요합니다. macOS 앱은 이를 피할 수 있지만, 소스 사용자는 한 줄 설치보다 무거운 설정을 각오해야 합니다.
 
 4. **빠르게 변하는 코드베이스.** 활발히 개발 중인 프로젝트라 버전 간에 API와 동작이 바뀔 수 있습니다. 안정성이 필요하다면 검증된 커밋에 고정하세요.
 
@@ -261,7 +262,7 @@ exo-explore의 exo는 자신의 하드웨어에서 프런티어 AI를 돌릴 수
 - 오픈소스 AI 도구 소식을 가장 먼저 받으려면 [dibi8 영어 텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
 - 다음 읽을거리: [dibi8의 관련 가이드](dibi8-internal-link).
 
----
+* * *
 
 **Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme

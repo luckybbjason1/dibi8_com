@@ -34,6 +34,7 @@ faqs: - q: 'Làm sao để cài gpt-researcher?'
     a: 'Không. Cả hai đều là phương thức bất đồng bộ. Hãy gọi chúng bằng `await` bên trong một hàm async", "rồi chạy hàm đó bằng `asyncio.run()`."
 ---
 
+
 # GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu chuyên sâu — Hướng dẫn thực hành 2026
 
 
@@ -41,7 +42,7 @@ faqs: - q: 'Làm sao để cài gpt-researcher?'
 
 ## Giới thiệu
 
-Nếu bạn từng phát triển với các mô hình ngôn ngữ lớn (LLM)", "hẳn bạn đã đụng phải cùng một bức tường: biến một câu hỏi thành một báo cáo có nguồn rõ ràng và đúng sự thật là công việc chậm chạp", "tốn nhiều sức người. `assafelovic/gpt-researcher` tự động hóa vòng lặp đó. Đây là một tác nhân tự động: nó tìm kiếm trên web (và cả các tệp cục bộ của bạn)", "thu thập nguồn", "rồi viết một báo cáo nghiên cứu có trích dẫn — tất cả từ một câu truy vấn. Hướng dẫn này sẽ đưa bạn qua các bước cài đặt", "chạy nó từ Python", "và tích hợp vào một quy trình làm việc thực tế.
+Nếu bạn từng phát triển với các mô hình ngôn ngữ lớn (LLM)", "hẳn bạn đã đụng phải cùng một bức tường: biến một câu hỏi thành một báo cáo có nguồn rõ ràng và đúng sự thật là công việc chậm chạp", "tốn nhiều sức người. ```assafelovic/gpt-researcher```` tự động hóa vòng lặp đó. Đây là một tác nhân tự động: nó tìm kiếm trên web (và cả các tệp cục bộ của bạn)", "thu thập nguồn", "rồi viết một báo cáo nghiên cứu có trích dẫn — tất cả từ một câu truy vấn. Hướng dẫn này sẽ đưa bạn qua các bước cài đặt", "chạy nó từ Python", "và tích hợp vào một quy trình làm việc thực tế.
 
 ![Tổng quan gpt-researcher", "via dibi8.com"](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
 
@@ -51,7 +52,7 @@ Nếu bạn từng phát triển với các mô hình ngôn ngữ lớn (LLM)", 
 
 GPT Researcher tự mô tả mình là "tác nhân nghiên cứu chuyên sâu mã nguồn mở đầu tiên được thiết kế cho cả nghiên cứu web lẫn cục bộ trên mọi tác vụ". Bạn đưa cho nó một truy vấn; nó lập kế hoạch nghiên cứu, chạy nhiều lượt tìm kiếm, đọc và lọc kết quả, rồi tổng hợp thành một báo cáo có trích dẫn.
 
-Dự án có hơn 27.000 sao trên GitHub và do `assafelovic` duy trì theo giấy phép Apache-2.0. Nhánh mặc định là `master`.
+Dự án có hơn 27.000 sao trên GitHub và do ````assafelovic```` duy trì theo giấy phép Apache-2.0. Nhánh mặc định là ````master````.
 
 ## GPT Researcher hoạt động thế nào
 
@@ -75,48 +76,48 @@ Có hai cách phổ biến để chạy GPT Researcher: dùng như một gói Py
 
 ### Dùng pip (gói Python)
 
-Trước tiên hãy kiểm tra Python đã được cài đặt: ```sh
+Trước tiên hãy kiểm tra Python đã được cài đặt: `````sh
 python3 --version
-```
+`````
 
-Sau đó cài gói: ```sh
+Sau đó cài gói: `````sh
 pip install gpt-researcher
-```
+`````
 
 ### Khóa API qua .env
 
-GPT Researcher dùng một LLM (mặc định là OpenAI) và một bộ truy hồi tìm kiếm (mặc định là Tavily). Tạo tệp `.env` ở thư mục gốc dự án với cả hai khóa: ```plaintext
+GPT Researcher dùng một LLM (mặc định là OpenAI) và một bộ truy hồi tìm kiếm (mặc định là Tavily). Tạo tệp ``.env`` ở thư mục gốc dự án với cả hai khóa: `````plaintext
 OPENAI_API_KEY=your_openai_key_here
 TAVILY_API_KEY=your_tavily_key_here
-```
+`````
 
-Nếu bạn trỏ tới một điểm cuối tương thích OpenAI tùy chỉnh, hãy đặt thêm `OPENAI_BASE_URL`. Lỗi thường gặp nhất ở lần chạy đầu là thiếu khóa — nếu thấy lỗi xác thực hoặc "API key not found", hãy kiểm tra tệp `.env` có tồn tại và được nạp trước khi bạn gọi researcher hay không.
+Nếu bạn trỏ tới một điểm cuối tương thích OpenAI tùy chỉnh, hãy đặt thêm ````OPENAI_BASE_URL````. Lỗi thường gặp nhất ở lần chạy đầu là thiếu khóa — nếu thấy lỗi xác thực hoặc "API key not found", hãy kiểm tra tệp ````.env```` có tồn tại và được nạp trước khi bạn gọi researcher hay không.
 
 ### Dùng Docker (ứng dụng đầy đủ kèm giao diện)
 
-Để chạy ứng dụng hoàn chỉnh — máy chủ FastAPI cộng giao diện web — hãy clone kho và dùng Docker Compose: ```sh
+Để chạy ứng dụng hoàn chỉnh — máy chủ FastAPI cộng giao diện web — hãy clone kho và dùng Docker Compose: `````sh
 git clone https://github.com/assafelovic/gpt-researcher.git
 cd gpt-researcher
 docker-compose up --build
-```
+`````
 
-Theo mặc định, lệnh này khởi động máy chủ Python tại `localhost:8000` và giao diện tại `localhost:3000`.
+Theo mặc định, lệnh này khởi động máy chủ Python tại ````localhost:8000```` và giao diện tại ````localhost:3000````.
 
 ### Chạy máy chủ không cần Docker
 
-Bạn cũng có thể khởi động trực tiếp máy chủ FastAPI: ```sh
+Bạn cũng có thể khởi động trực tiếp máy chủ FastAPI: `````sh
 python -m uvicorn main:app --reload
-```
+`````
 
-Rồi mở `http://localhost:8000` trong trình duyệt.
+Rồi mở ````http://localhost:8000```` trong trình duyệt.
 
 ## Cách dùng cốt lõi
 
-API Python xoay quanh lớp `GPTResearcher`. Cả việc nghiên cứu lẫn viết báo cáo đều **bất đồng bộ**, nên bạn gọi chúng bằng `await` bên trong một hàm async.
+API Python xoay quanh lớp ````GPTResearcher````. Cả việc nghiên cứu lẫn viết báo cáo đều **bất đồng bộ**, nên bạn gọi chúng bằng ````await```` bên trong một hàm async.
 
 ### Ví dụ 1: Báo cáo nghiên cứu cơ bản
 
-```python
+`````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -129,11 +130,11 @@ async def main(): query = "why is Nvidia stock going up?"
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 ### Ví dụ 2: Chọn loại báo cáo
 
-`GPTResearcher` nhận tham số `report_type` để bạn yêu cầu một bản tóm tắt ngắn, một danh sách tài nguyên, hoặc một báo cáo chi tiết dài hơn thay vì báo cáo nghiên cứu mặc định: ```python
+``GPTResearcher`` nhận tham số ``report_type`` để bạn yêu cầu một bản tóm tắt ngắn, một danh sách tài nguyên, hoặc một báo cáo chi tiết dài hơn thay vì báo cáo nghiên cứu mặc định: `````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -146,11 +147,11 @@ async def main(): researcher = GPTResearcher(
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 ### Ví dụ 3: Kiểm tra các nguồn đã thu thập
 
-Sau khi nghiên cứu chạy xong, bạn có thể trích ra ngữ cảnh nền và các URL nguồn mà tác nhân đã dùng — hữu ích để kiểm tra hoặc tự xây danh sách trích dẫn riêng: ```python
+Sau khi nghiên cứu chạy xong, bạn có thể trích ra ngữ cảnh nền và các URL nguồn mà tác nhân đã dùng — hữu ích để kiểm tra hoặc tự xây danh sách trích dẫn riêng: `````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -165,7 +166,7 @@ async def main(): researcher = GPTResearcher(query="How does AI impact society?"
     print(report)
 
 asyncio.run(main())
-```
+`````
 
 Các ví dụ này chỉ là điểm khởi đầu. Vì LLM và bộ truy hồi được đặt qua cấu hình, cùng một đoạn mã có thể chạy với các nhà cung cấp khác nhau mà không cần thay đổi.
 
@@ -175,15 +176,15 @@ GPT Researcher dễ dàng hòa vào các quy trình Python sẵn có vì về b�
 
 ### Đổi nhà cung cấp LLM và bộ truy hồi
 
-Bạn không bị khóa cứng vào OpenAI hay Tavily. LLM mặc định là OpenAI và bộ truy hồi mặc định là Tavily, nhưng cả hai đều có thể đổi qua biến môi trường và tệp cấu hình. Ví dụ, để kết hợp tìm kiếm web mặc định với các nguồn dựa trên MCP, bạn đặt danh sách bộ truy hồi: ```sh
+Bạn không bị khóa cứng vào OpenAI hay Tavily. LLM mặc định là OpenAI và bộ truy hồi mặc định là Tavily, nhưng cả hai đều có thể đổi qua biến môi trường và tệp cấu hình. Ví dụ, để kết hợp tìm kiếm web mặc định với các nguồn dựa trên MCP, bạn đặt danh sách bộ truy hồi: `````sh
 export RETRIEVER=tavily,mcp
-```
+`````
 
 Thiết lập lai này cho phép tác nhân lấy dữ liệu từ cả tìm kiếm web tổng quát lẫn các nguồn dữ liệu chuyên biệt qua Giao thức Ngữ cảnh Mô hình (MCP).
 
 ### Dùng bên trong notebook hoặc dịch vụ
 
-Vì API chỉ gồm hai lệnh gọi await, bạn có thể đưa GPT Researcher vào một notebook Jupyter, một tác vụ nền, hoặc một điểm cuối FastAPI: ```python
+Vì API chỉ gồm hai lệnh gọi await, bạn có thể đưa GPT Researcher vào một notebook Jupyter, một tác vụ nền, hoặc một điểm cuối FastAPI: `````python
 import asyncio
 from gpt_researcher import GPTResearcher
 
@@ -193,7 +194,7 @@ async def research(topic: str) -> str: researcher = GPTResearcher(query=topic)
 
 report = asyncio.run(research("current trends in AI ethics"))
 print(report)
-```
+`````
 
 Với các pipeline phức tạp hơn, kho mã còn đi kèm một thiết lập đa tác nhân (multi-agent) dựng trên LangGraph và AG2, điều phối nhiều tác nhân chuyên biệt để tạo ra các báo cáo dài hơn.
 
@@ -220,7 +221,7 @@ GPT Researcher nằm trong nhóm "tác nhân nghiên cứu tự động". Thay v
 | **Sao** | 27.473 |
 | **Ngôn ngữ** | Python |
 | **Giấy phép** | Apache-2.0 |
-| **Người duy trì** | Assaf Elovic (`assafelovic`) |
+| **Người duy trì** | Assaf Elovic (````assafelovic````) |
 | **Trọng tâm** | Nghiên cứu chuyên sâu web + cục bộ, xuất báo cáo có trích dẫn |
 | **Nhánh mặc định** | master |
 | **Nhà cung cấp LLM** | Mặc định OpenAI; đổi được qua biến môi trường/cấu hình |
@@ -246,14 +247,14 @@ GPT Researcher có năng lực, nhưng hãy lưu ý các đánh đổi: 1. **Chi
 
 ## Kết luận
 
-`assafelovic/gpt-researcher` biến một câu truy vấn thành một báo cáo có nguồn, có cấu trúc bằng cách điều phối việc lập kế hoạch, tìm kiếm web, thu thập trang và viết bằng LLM — tất cả ẩn sau một API async nhỏ gọn. Với hơn 27.000 sao, giấy phép Apache-2.0, ngăn xếp LLM/bộ truy hồi cấu hình được và một ứng dụng web đi kèm, nó là một viên gạch thực dụng cho tự động hóa nghiên cứu. Bước tiếp theo: đặt hai khóa API của bạn, chạy ví dụ Python cơ bản trên một câu hỏi thực tế, và kiểm tra các nguồn trước khi mở rộng quy mô.
+````assafelovic/gpt-researcher``` biến một câu truy vấn thành một báo cáo có nguồn, có cấu trúc bằng cách điều phối việc lập kế hoạch, tìm kiếm web, thu thập trang và viết bằng LLM — tất cả ẩn sau một API async nhỏ gọn. Với hơn 27.000 sao, giấy phép Apache-2.0, ngăn xếp LLM/bộ truy hồi cấu hình được và một ứng dụng web đi kèm, nó là một viên gạch thực dụng cho tự động hóa nghiên cứu. Bước tiếp theo: đặt hai khóa API của bạn, chạy ví dụ Python cơ bản trên một câu hỏi thực tế, và kiểm tra các nguồn trước khi mở rộng quy mô.
 
 Việc thu thập dữ liệu quy mô lớn cần proxy xoay vòng — [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) là lựa chọn tiêu chuẩn.
 
 - Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để nhận tin về các công cụ AI mã nguồn mở.
 - Đọc tiếp: [các hướng dẫn liên quan trên dibi8](dibi8-internal-link).
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/assafelovic/gpt-researcher
 - Tài liệu / README chính thức: https://github.com/assafelovic/gpt-researcher#readme

@@ -10,9 +10,10 @@ github_repo: "https://github.com/microsoft/markitdown"
 license: MIT
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto
 ---
+
 th--.png
 
----
+* * *
 ## Introduction
 
 You have a PDF, a Word doc, a PowerPoint, an Excel spreadsheet — maybe even a scanned image with handwritten notes. You need the text inside. Not the formatting. Not the layout. Just the content, clean and structured, ready for an LLM to digest.
@@ -31,19 +32,19 @@ MarkItDown is a Python utility library and CLI tool developed by Microsoft's Aut
 
 The key insight: LLMs don't need pixel-perfect rendering. They need structured text. Markdown is the closest thing LLMs have to a native language — they've been trained on billions of Markdown documents and understand it natively. MarkItDown bridges the gap between "I have a file" and "I have text my LLM can reason about."
 
-```bash
+````bash
 pip install 'markitdown[all]'
-```
+`````
 
-That's the entire installation. The `[all]` extras bundle covers all supported file formats. Individual format extras are also available: ```bash
+That's the entire installation. The ``[all]`` extras bundle covers all supported file formats. Individual format extras are also available: `````bash
 pip install 'markitdown[pdf,docx,pptx]'
-```
+`````
 
 Install only what you need to keep dependencies lean.
 
 ## How MarkItDown Works
 
-MarkItDown uses a plugin-based architecture. Each file format has a dedicated extractor that handles format-specific parsing: ```
+MarkItDown uses a plugin-based architecture. Each file format has a dedicated extractor that handles format-specific parsing: `````
 Input File ──► Format Detector ──► Format-Specific Parser ──► Markdown Output
                 │                      │
                 │                  PDF → PyMuPDF
@@ -56,43 +57,43 @@ Input File ──► Format Detector ──► Format-Specific Parser ──► 
                 │                  YouTube → yt-dlp + transcript API
                 ▼
          Unsupported → Raw text fallback
-```
+`````
 
 The format detector examines file headers (magic bytes) and extensions to route to the correct parser. If neither matches, it falls back to treating the file as raw text — which handles obscure formats gracefully.
 
-Each parser extracts content semantically: tables become Markdown tables, headings become `#` markers, lists become `-` bullets. The output is clean, token-efficient Markdown that preserves document structure without visual noise.
+Each parser extracts content semantically: tables become Markdown tables, headings become ````#```` markers, lists become ````-```` bullets. The output is clean, token-efficient Markdown that preserves document structure without visual noise.
 
 ## Installation & Setup
 
 ### Quick Start (Recommended)
 
-```bash
+`````bash
 # Full installation with all format support
 pip install 'markitdown[all]'
 
 # Verify installation
 markitdown --version
-```
+`````
 
 ### Using uv (Fastest)
 
-```bash
+`````bash
 uv venv --python=3.12 .venv
 source .venv/bin/activate
 uv pip install 'markitdown[all]'
-```
+`````
 
 ### From Source (Development)
 
-```bash
+`````bash
 git clone git@github.com:microsoft/markitdown.git
 cd markitdown
 pip install -e 'packages/markitdown[all]'
-```
+`````
 
 ### Optional Dependencies
 
-Install specific format support to reduce dependencies: ```bash
+Install specific format support to reduce dependencies: `````bash
 # PDF support only
 pip install 'markitdown[pdf]'
 
@@ -101,50 +102,50 @@ pip install 'markitdown[docx,pptx,xlsx]'
 
 # Image + audio (includes OCR and speech recognition)
 pip install 'markitdown[images,audio]'
-```
+`````
 
 ### Docker Deployment
 
-```bash
+`````bash
 docker pull ghcr.io/microsoft/markitdown:latest
 docker run -v $(pwd):/data markitdown /data/document.pdf > output.md
-```
+`````
 
 ## Integration with Mainstream Tools
 
 ### LangChain Integration
 
-```python
+`````python
 from langchain_community.document_loaders import MarkItDownLoader
 
 loader = MarkItDownLoader("report.pdf")
 documents = loader.load()
 
 for doc in documents: print(doc.page_content[:500])
-```
+`````
 
 ### LlamaIndex Integration
 
-```python
+`````python
 from llama_index.readers.markitdown import MarkItDownReader
 
 reader = MarkItDownReader()
 documents = reader.load_data("presentation.pptx")
-```
+`````
 
 ### Unstructured.io Pipeline
 
-```python
+`````python
 from unstructured.partition.auto import partition
 
 # MarkItDown complements unstructured.io
 # Use MarkItDown for clean Markdown output,
 # unstructured for chunking and metadata extraction
-```
+`````
 
 ### Haystack Document Store
 
-```python
+`````python
 from haystack.document_stores import InMemoryDocumentStore
 from markitdown import MarkItDown
 
@@ -155,11 +156,11 @@ doc_store = InMemoryDocumentStore()
 doc_store.write_documents([
     {"content": result.text_content, "metadata": result.metadata}
 ])
-```
+`````
 
 ### Vector Database Pipeline (RAG)
 
-```python
+`````python
 from markitdown import MarkItDown
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -182,7 +183,7 @@ vectorstore = Chroma.from_texts(chunks, embeddings)
 
 # Query
 results = vectorstore.similarity_search("What are the API rate limits?")
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -214,7 +215,7 @@ Processing time scales approximately linearly with file size for PDFs. For Offic
 
 ### Real-World Use Case: Legal Document Analysis
 
-A law firm processes 200+ contracts monthly. Before MarkItDown, they used a combination of commercial APIs costing $0.05 per document. After switching: ```python
+A law firm processes 200+ contracts monthly. Before MarkItDown, they used a combination of commercial APIs costing $0.05 per document. After switching: `````python
 import glob
 from markitdown import MarkItDown
 
@@ -224,13 +225,13 @@ contract_dir = "/contracts/2026/"
 for filepath in glob.glob(f"{contract_dir}*.pdf"): result = md.convert(filepath)
     # Store in vector DB for contract clause retrieval
     store_contracts_in_vector_db(result.text_content, filepath)
-```
+`````
 
 Cost reduced from ~$10/month to $0. Processing time per document: under 2 seconds.
 
 ### Real-World Use Case: Research Paper Collection
 
-Academic researchers collect papers from arXiv, conference proceedings, and institutional repositories — all in different formats. MarkItDown normalizes everything: ```python
+Academic researchers collect papers from arXiv, conference proceedings, and institutional repositories — all in different formats. MarkItDown normalizes everything: `````python
 from markitdown import MarkItDown
 from pathlib import Path
 
@@ -240,13 +241,13 @@ md = MarkItDown()
 for paper in papers_dir.rglob("*"): if paper.suffix in ['.pdf', '.docx', '.pptx']: converted = md.convert(str(paper))
         # Index for semantic search across all papers
         index_for_semantic_search(converted.text_content, paper.stem)
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Custom Format Handlers
 
-Extend MarkItDown with custom parsers for proprietary formats: ```python
+Extend MarkItDown with custom parsers for proprietary formats: `````python
 from markitdown import MarkItDown
 from markitdown.perceptual import PerceptualMarkdownConverter
 
@@ -261,11 +262,11 @@ class CustomFormatConverter(PerceptualMarkdownConverter): """Custom handler for 
 # Register custom converter
 md = MarkItDown()
 md.register_converter(CustomFormatConverter())
-```
+`````
 
 ### Azure Content Understanding Integration
 
-MarkItDown integrates with Azure Content Understanding for AI-powered extraction: ```python
+MarkItDown integrates with Azure Content Understanding for AI-powered extraction: `````python
 from azure.ai.contentsynthesis import ContentUnderstandingClient
 from azure.identity import DefaultAzureCredential
 
@@ -276,11 +277,11 @@ client = ContentUnderstandingClient(
 # Use Azure's AI analyzers for enhanced extraction
 # Sentiment, key phrases, entity recognition
 # alongside MarkItDown's structural conversion
-```
+`````
 
 ### Batch Processing Pipeline
 
-```python
+`````python
 import concurrent.futures
 from markitdown import MarkItDown
 from pathlib import Path
@@ -295,11 +296,11 @@ def convert_single_file(filepath): md = MarkItDown()
 # Process 1000 files in parallel
 files = list(Path("/documents").rglob("*"))
 with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(convert_single_file, files))
-```
+`````
 
 ### Metadata Extraction
 
-MarkItDown preserves document metadata: ```python
+MarkItDown preserves document metadata: `````python
 from markitdown import MarkItDown
 
 md = MarkItDown()
@@ -310,17 +311,17 @@ print("Author:", result.metadata.get("author"))
 print("Created:", result.metadata.get("creation_date"))
 print("Keywords:", result.metadata.get("keywords"))
 print("Page Count:", result.metadata.get("page_count"))
-```
+`````
 
 ### Streaming Large Files
 
-For files larger than available memory, use streaming mode: ```python
+For files larger than available memory, use streaming mode: `````python
 from markitdown import MarkItDown
 
 md = MarkItDown()
 # Stream output to avoid loading entire file in memory
 with open("output.md", "w") as f: for chunk in md.convert_stream("large_document.pdf"): f.write(chunk)
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -332,7 +333,7 @@ with open("output.md", "w") as f: for chunk in md.convert_stream("large_document
 | Formats Supported | 20+ | 30+ | PDF only | Documents + Forms |
 | OCR Support | ✅ (Tesseract) | ✅ (EasyOCR) | ✅ | ✅ |
 | LLM Optimization | ✅ Native | ⚠️ Generic | ❌ | ❌ |
-| Installation | `pip install` | `pip install` + server | SDK | SDK + API |
+| Installation | ````pip install```` | ````pip install```` + server | SDK | SDK + API |
 | Offline Support | ✅ Full | Partial | ❌ | ❌ |
 | Python API | ✅ | ✅ | ✅ | ✅ |
 | Batch Processing | ✅ Built-in | ✅ Built-in | ❌ | ✅ |
@@ -349,7 +350,7 @@ MarkItDown is excellent at what it does — but it has honest limitations: 1. **
 
 3. **No real-time collaboration.** This is a batch processing tool, not a collaborative document editor.
 
-4. **Optional dependencies can be heavy.** The `[all]` extras bundle includes Tesseract, LibreOffice, and other system dependencies. For production deployments, install only what you need.
+4. **Optional dependencies can be heavy.** The ````[all]```` extras bundle includes Tesseract, LibreOffice, and other system dependencies. For production deployments, install only what you need.
 
 5. **YouTube transcript availability.** Not all YouTube videos have captions/transcripts. Videos without captions will fail silently.
 
@@ -371,7 +372,7 @@ Yes. MarkItDown is fully offline-capable. All parsing happens locally. The only 
 
 **Q: How does MarkItDown handle password-protected files?**
 
-Password-protected PDFs and encrypted Office documents are not supported. You'll need to decrypt them first using tools like `qpdf` for PDFs or `python-docx` with password parameters for Office files.
+Password-protected PDFs and encrypted Office documents are not supported. You'll need to decrypt them first using tools like ````qpdf```` for PDFs or ````python-docx```` with password parameters for Office files.
 
 **Q: Can MarkItDown extract tables from Excel/CSV files?**
 
@@ -379,7 +380,7 @@ Yes. Excel files (XLSX) are converted with table structure preserved as Markdown
 
 **Q: Does MarkItDown support batch processing?**
 
-Yes. While there's no built-in batch command, you can use Python's `concurrent.futures` or `multiprocessing` to process thousands of files in parallel. The tool is designed for batch workflows — each conversion is independent and stateless.
+Yes. While there's no built-in batch command, you can use Python's ````concurrent.futures```` or ````multiprocessing```` to process thousands of files in parallel. The tool is designed for batch workflows — each conversion is independent and stateless.
 
 **Q: How does MarkItDown compare to commercial PDF-to-Markdown services?**
 
@@ -397,7 +398,7 @@ It falls back to treating the file as raw text. This means the content will be e
 
 MarkItDown is the Swiss Army knife of file-to-text conversion for the AI age. Microsoft built it because they needed a single tool that handles everything — PDFs, Word docs, PowerPoint slides, Excel spreadsheets, images, audio — and outputs clean Markdown that LLMs understand natively.
 
-The beauty is in its simplicity: `pip install 'markitdown[all]'`, then `md.convert("anything.pdf")`. No configuration. No API keys. No rate limits. Just a Python tool that works.
+The beauty is in its simplicity: ````pip install 'markitdown[all]'````, then ````md.convert("anything.pdf")```. No configuration. No API keys. No rate limits. Just a Python tool that works.
 
 For anyone building RAG pipelines, document processing systems, or AI-powered knowledge bases, MarkItDown should be your first choice for file conversion. It's free, open-source, actively maintained by Microsoft, and trusted by 153,000+ developers.
 
@@ -406,7 +407,7 @@ For anyone building RAG pipelines, document processing systems, or AI-powered kn
 For more on document processing, check out our guides on [AI-powered search](dibi8-ai-search-pipeline) and [RAG optimization](dibi8-rag-best-practices).
 
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://github.com/microsoft/markitdown
 - GitHub repository: https://github.com/microsoft/markitdown
 - AutoGen team: https://github.com/microsoft/autogen
@@ -445,7 +446,7 @@ For more on document processing, check out our guides on [AI-powered search](dib
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [microsoft-markitdown-file-to-markdown-converter-cli](markitdown-universal-file-to-markdown-converter)
@@ -454,7 +455,7 @@ For more on document processing, check out our guides on [AI-powered search](dib
 - [2026-06-22-trending-ai-agents](markitdown-universal-file-to-markdown-converter)
 - [prompts-chat](markitdown-universal-file-to-markdown-converter)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

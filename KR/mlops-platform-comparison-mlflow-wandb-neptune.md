@@ -7,6 +7,7 @@ aliases:
   - /posts/mlops-platform-comparison-mlflow-wandb-neptune/
 ---
 
+
 # MLflow vs Weights & Biases vs Neptune: 2024년 MLOps 실험 추적 플랫폼 완벽 비교 가이드
 
 
@@ -30,7 +31,7 @@ MLflow는 4개의 모듈로 구성됩니다. **Tracking**은 메트릭, 파라�
 
 ### MLflow Tracking과 Model Registry
 
-Python 코드에서 `mlflow.log_param()`, `mlflow.log_metric()`, `mlflow.log_artifact()`를 호출하여 실험 데이터를 기록합니다. UI에서는 실험을 비교하고, 모델 버전을 관리하며, REST API를 통해 프로그래밍 방식의 접근도 가능합니다. Databricks 플랫폼과의 통합이 매우 긴장하여, Databricks를 이미 사용하는 팀에게는 추가 설정 없이 바로 활용할 수 있습니다.
+Python 코드에서 ```mlflow.log_param()````, ````mlflow.log_metric()````, ````mlflow.log_artifact()````를 호출하여 실험 데이터를 기록합니다. UI에서는 실험을 비교하고, 모델 버전을 관리하며, REST API를 통해 프로그래밍 방식의 접근도 가능합니다. Databricks 플랫폼과의 통합이 매우 긴장하여, Databricks를 이미 사용하는 팀에게는 추가 설정 없이 바로 활용할 수 있습니다.
 
 MLflow의 가장 큰 강점은 **유연성과 제로 라이선스 비용**입니다. 자체 서버에 배포하거나 Databricks의 관리형 서비스를 사용할 수 있으며, 기존 인프라와의 통합이 용이합니다. 단점은 UI가 상대적으로 기본적이며, 팀 협업 기능이 W&B나 Neptune에 비해 제한적이라는 점입니다.
 
@@ -54,11 +55,11 @@ W&B의 강점은 뛰어난 UX와 딥러닝 특화 기능입니다. 단점은 Saa
 
 ### Neptune의 핵심 특징
 
-Neptune은 **계층적 네임스페이스**를 통해 실험 메타데이터를 체계적으로 조직합니다. `model/training/loss`와 같은 경로로 메트릭을 구조화하여 대규모 실험(수천 개 이상) 관리에 최적화되어 있습니다. 온프레미스 배포가 완전히 지원되며, CI/CD 파이프라인과의 통합이 강력합니다. 커스텀 대시보드 생성과 강력한 쿼리 언어로 원하는 실험을 즉시 필터링할 수 있습니다.
+Neptune은 **계층적 네임스페이스**를 통해 실험 메타데이터를 체계적으로 조직합니다. ````model/training/loss````와 같은 경로로 메트릭을 구조화하여 대규모 실험(수천 개 이상) 관리에 최적화되어 있습니다. 온프레미스 배포가 완전히 지원되며, CI/CD 파이프라인과의 통합이 강력합니다. 커스텀 대시보드 생성과 강력한 쿼리 언어로 원하는 실험을 즉시 필터링할 수 있습니다.
 
 ### Neptune의 쿼리 언어와 모니터링
 
-Neptune의 NQL(Neptune Query Language)은 `metric_name > 0.85 AND tags CONTAINS 'production'`과 같은 조건으로 실험을 검색합니다. 자동화된 모델 승격 파이프라인과 드리프트 탐색 통합 기능도 제공합니다. 프로덕션 환경에서 수천 개의 실험을 체계적으로 관리해야 하는 팀에게 적합합니다.
+Neptune의 NQL(Neptune Query Language)은 ````metric_name > 0.85 AND tags CONTAINS 'production'````과 같은 조건으로 실험을 검색합니다. 자동화된 모델 승격 파이프라인과 드리프트 탐색 통합 기능도 제공합니다. 프로덕션 환경에서 수천 개의 실험을 체계적으로 관리해야 하는 팀에게 적합합니다.
 
 ## 플랫폼 상세 비교표
 
@@ -106,7 +107,7 @@ LLM 파인튜닝 프로젝트에서는 W&B Weave가 평가 메트릭(ROUGE, BLEU
 
 ## 각 플랫폼에서 첫 실험 설정하기
 
-세 플랫폼 모두 Python SDK 설치 후 5줄 내외의 코드로 첫 실험을 시작할 수 있습니다. MLflow는 `pip install mlflow` 후 `mlflow ui`로 로컬 서버를 실행합니다. W&B는 `pip install wandb` 후 `wandb login`으로 인증하고, Neptune은 `pip install neptune` 후 API 토큰으로 연결합니다.
+세 플랫폼 모두 Python SDK 설치 후 5줄 내외의 코드로 첫 실험을 시작할 수 있습니다. MLflow는 ````pip install mlflow```` 후 ````mlflow ui````로 로컬 서버를 실행합니다. W&B는 ````pip install wandb```` 후 ````wandb login````으로 인증하고, Neptune은 ````pip install neptune``` 후 API 토큰으로 연결합니다.
 
 통합의 용이성 면에서는 W&B가 가장 간단하며, MLflow는 추가 서버 설정이 필요하지만 완전한 제어가 가능합니다. Neptune은 두 플랫폼의 중간 지점으로, 빠른 시작과 온프레미스 옵션을 모두 제공합니다.
 
@@ -136,7 +137,7 @@ MLflow 2.12+는 LLM Tracing으로 프롬프트와 응답을 추적하고, Prompt
 
 2024년 MLOps 실험 추적 시장은 MLflow(유연성·묶인), W&B(협업·딥러닝), Neptune(프로덕션·메타데이터)의 3강 체제가 확립되어 있습니다. MLflow는 예산 제약이 있는 팀이나 Databricks 사용자에게, W&B는 딥러닝 연구 팀에게, Neptune은 대규모 프로덕션 환경의 거버넌스 요구가 있는 팀에게 각각 최적의 선택입니다. LLM 실험 추적이 중요해지는 2024년에는 W&B Weave와 MLflow Tracing의 경쟁이 주목됩니다.
 
----
+* * *
 
 ## 추천 인프라
 
@@ -208,7 +209,7 @@ MLflow vs Weights & Biases vs Neptune: 2024년 MLOps 실험 추적 플랫폼 완
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

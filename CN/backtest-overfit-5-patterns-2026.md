@@ -29,6 +29,7 @@ faq: - q: "Why is overfit detection so hard in backtests?"
   - q: "Can machine learning models avoid overfit better than rule-based strategies?"
     a: "No. ML strategies often overfit harder because they have more parameters. The defense is the same: walk-forward validation, parameter regularization (L1/L2), and the discipline to throw away models where OOS performance is  1.5, suspect overfit. If > 2.0, almost certain overfit. Our recent moss-trade-bot run showed Train PF 2.08 / OOS PF 0.94 — ratio 2.21 — textbook overfit. Healthy strategies show ratios under 1.3."
 ---
+
 {{</* resource-info */>}}
 
 # Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe Numbers
@@ -50,7 +51,7 @@ Most quant traders know overfit exists. Far fewer can tell you what it *looks li
 > **Defense**: walk-forward, parameter sensitivity sweep, OOS gate at deployment.
 
 
----
+* * *
 ## Why This Matters
 
 Optimizer-output strategies that "passed" backtesting fail in live trading at devastating rates. The reason isn't market regime change (though that exists). It's that the optimizer found patterns in noise that don't generalize. Cataloging the failure modes lets you detect them before risking capital.
@@ -83,13 +84,13 @@ Optimizer-output strategies that "passed" backtesting fail in live trading at de
 
 **Definition**: Strategy results discontinuously degrade when parameter changes by 1 unit.
 
-**Example sweep** (lookback parameter): ```
+**Example sweep** (lookback parameter): ````
 lookback=12: PF 1.42
 lookback=13: PF 1.55
 lookback=14: PF 2.08  ← optimizer choice
 lookback=15: PF 0.91
 lookback=16: PF 0.87
-```
+````
 
 The "cliff" between 14 and 15 with no economic explanation = optimizer found a local maximum in noise.
 
@@ -125,11 +126,11 @@ The "cliff" between 14 and 15 with no economic explanation = optimizer found a l
 
 | Ratio | Interpretation | Action |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | < 1.0 | OOS better than train | Suspicious — recheck data leakage |
 | 1.0 - 1.3 | Healthy | Proceed with caution, paper-trade first |
@@ -166,7 +167,7 @@ Overfit isn't one thing. It's five patterns, each with its own signature, each w
 Our recent moss-trade-bot evolution ended up textbook overfit (2.21 ratio). That's not a failure of the tool — it's a failure of *evolution without OOS gating*. The fix isn't a better optimizer; it's a stricter validation gate.
 
 
----
+* * *
 **Related**: [Moss Trade Bot Factory 2026 Review](https://dibi8.com/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python Backtesting](https://dibi8.com/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI Trading Framework](https://dibi8.com/resources/ai-trading/jesse-ai-trading-framework/)
 
 
@@ -231,12 +232,12 @@ Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe Numbers (2026) represen
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -246,7 +247,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [temporal-ai-workflow-orchestration](backtest-overfit-5-patterns-2026)
 - [cleanlab-11k-star-ai-data-cleaning](backtest-overfit-5-patterns-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

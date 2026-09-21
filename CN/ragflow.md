@@ -23,6 +23,7 @@ tags: ["ragflow", "rag-engine", "document-understanding", "docker-deployment", "
 aliases:
   - /posts/ragflow/-
 ---
+
 {{</* resource-info */>}}
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
@@ -67,11 +68,11 @@ Beyond simple question answering, RAGFlow's agent framework supports multi-step 
 
 | Service | Purpose | Default Backend |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Vector + Full-Text Store | Document indexing and search | Elasticsearch or Infinity |
 | Object Storage | File storage for uploaded documents | MinIO |
@@ -87,11 +88,11 @@ Beyond simple question answering, RAGFlow's agent framework supports multi-step 
 
 | Resource | Minimum | Recommended for Production |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | 4 cores (x86_64) | 8+ cores |
 | RAM | 16 GB | 32+ GB |
@@ -103,7 +104,7 @@ Beyond simple question answering, RAGFlow's agent framework supports multi-step 
 
 ### Pre-Deployment: System Tuning
 
-Before starting RAGFlow, ensure your kernel parameters are tuned for Elasticsearch: ```bash
+Before starting RAGFlow, ensure your kernel parameters are tuned for Elasticsearch: ````bash
 # Check current vm.max_map_count
 sysctl vm.max_map_count
 
@@ -112,25 +113,25 @@ sudo sysctl -w vm.max_map_count=262144
 
 # Persist across reboots
 echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
-```
+`````
 
 ### Step 1: Clone the Repository
 
-```bash
+`````bash
 git clone https://github.com/infiniflow/ragflow.git
 cd ragflow/docker
 git checkout -f v0.25.4
-```
+`````
 
 ### Step 2: Configure Environment Variables
 
-```bash
+`````bash
 # Edit the environment file
 cp .env .env.backup
 nano .env
-```
+`````
 
-Key variables to set: ```bash
+Key variables to set: `````bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -140,20 +141,20 @@ REDIS_PASSWORD=your_secure_redis_password
 
 # Choose your document engine: elasticsearch or infinity
 DOC_ENGINE=elasticsearch
-```
+`````
 
 ### Step 3: Launch with Docker Compose
 
-```bash
+`````bash
 # CPU-only deployment
 docker compose -f docker-compose.yml up -d
 
 # GPU-accelerated document parsing (NVIDIA)
 # sed -i '1i DEVICE=gpu' .env
 # docker compose -f docker-compose.yml up -d
-```
+`````
 
-Verify the deployment: ```bash
+Verify the deployment: `````bash
 # Watch the logs until you see the success message
 docker logs -f ragflow-server
 
@@ -163,29 +164,29 @@ docker logs -f ragflow-server
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
 # /_/ |_|/_/  |_|\____//_/    /_/ \____/ |__/|__/
 #  * Running on all addresses (0.0.0.0)
-```
+`````
 
 ### Step 4: Configure Your LLM Provider
 
-Edit `service_conf.yaml.template` to add your LLM API keys: ```yaml
+Edit ``service_conf.yaml.template`` to add your LLM API keys: `````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
-Supported LLM providers include OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, and local models via Ollama or vLLM. Restart the containers after configuration changes: ```bash
+Supported LLM providers include OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, and local models via Ollama or vLLM. Restart the containers after configuration changes: `````bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### Step 5: Access the Web UI
 
-Open your browser and navigate to `http://YOUR_SERVER_IP`. The default login is: ```
+Open your browser and navigate to ``http://YOUR_SERVER_IP``. The default login is: `````
 Email: admin@ragflow.io
 Password: (set during first login)
-```
+`````
 
 ![RAGFlow Web Interface](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/login.png)
 
@@ -193,38 +194,38 @@ Password: (set during first login)
 
 ### Ollama (Local LLMs)
 
-For air-gapped or privacy-sensitive deployments, connect RAGFlow to Ollama: ```yaml
+For air-gapped or privacy-sensitive deployments, connect RAGFlow to Ollama: `````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
-```
+`````
 
-Pull models in Ollama before using them: ```bash
+Pull models in Ollama before using them: `````bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
-```
+`````
 
 Configure the embedding model in the RAGFlow web UI under **Settings > Model Providers**.
 
 ### OpenAI (Cloud API)
 
-```yaml
+`````yaml
 user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
-Use environment variable substitution to avoid hardcoding secrets: ```bash
+Use environment variable substitution to avoid hardcoding secrets: `````bash
 # In .env
 OPENAI_API_KEY=sk-your-key
-```
+`````
 
 ### Elasticsearch to Infinity Migration
 
-Infinity is RAGFlow's converged context engine optimized for large-scale deployments. To switch: ```bash
+Infinity is RAGFlow's converged context engine optimized for large-scale deployments. To switch: `````bash
 # 1. Stop all containers and clear volumes
 docker compose -f docker-compose.yml down -v
 
@@ -233,23 +234,23 @@ sed -i 's/DOC_ENGINE=elasticsearch/DOC_ENGINE=infinity/' .env
 
 # 3. Restart
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 > **Warning:** This wipes existing data. Back up your datasets before migrating.
 
 ### Redis as External Cache
 
-For production deployments, use an external Redis cluster: ```yaml
+For production deployments, use an external Redis cluster: `````yaml
 # docker-compose.yml (excerpt)
 services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes: - redis_data:/data
     deploy: resources: limits: memory: 2G
-```
+`````
 
 ### Qdrant as Alternative Vector Store
 
-While RAGFlow uses Elasticsearch or Infinity natively, you can integrate Qdrant via the Python SDK for custom retrieval pipelines: ```python
+While RAGFlow uses Elasticsearch or Infinity natively, you can integrate Qdrant via the Python SDK for custom retrieval pipelines: `````python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -260,7 +261,7 @@ qdrant = QdrantClient(url="http://localhost:6333")
 # Custom hybrid retrieval combining RAGFlow chunks with Qdrant vectors
 chunks = ragflow.retrieve(dataset_id="ds_123", query="annual revenue 2025")
 vectors = qdrant.search(collection="financial_reports", vector=query_embedding, limit=5)
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -268,15 +269,15 @@ vectors = qdrant.search(collection="financial_reports", vector=query_embedding, 
 
 A 2026 benchmark by AI Multiple compared RAGFlow against other frameworks using 100 standardized queries with GPT-4.1-mini as the generation model: | Metric | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Answer Accuracy | 97% | 94% | 95% | 91% |
 | Avg. Retrieval Latency | 420ms | 380ms | 450ms | 510ms |
@@ -290,13 +291,13 @@ RAGFlow leads in accuracy and citation grounding due to DeepDoc's layout-aware p
 
 | Document Type | RAGFlow (DeepDoc) | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PDF with tables | Full structure preserved | Flat text | Flat text |
 | Scanned PDF (OCR) | Native support | Requires extension | Requires extension |
@@ -308,15 +309,15 @@ RAGFlow leads in accuracy and citation grounding due to DeepDoc's layout-aware p
 
 | Profile | Users | Documents | Hardware | Monthly Cloud Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Team (10 users) | 10 | 10,000 | 4 vCPU, 16 GB RAM | ~$80 (DigitalOcean) |
 | Department (100 users) | 100 | 100,000 | 8 vCPU, 32 GB RAM | ~$200 (DigitalOcean) |
@@ -328,7 +329,7 @@ RAGFlow leads in accuracy and citation grounding due to DeepDoc's layout-aware p
 
 ### Enable HTTPS with Reverse Proxy
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/ragflow
 server {
     listen 443 ssl http2;
@@ -346,11 +347,11 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### Enable GraphRAG for Multi-Hop Reasoning
 
-GraphRAG extracts knowledge graphs from documents, enabling cross-document reasoning: ```python
+GraphRAG extracts knowledge graphs from documents, enabling cross-document reasoning: `````python
 # Via the RAGFlow web UI or API
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -358,24 +359,24 @@ POST /api/datasets/{dataset_id}/chunks/graph
   "entity_types": ["PERSON", "ORGANIZATION", "PRODUCT", "EVENT"],
   "max_workers": 4
 }
-```
+`````
 
 GraphRAG is especially effective for legal documents, research papers, and financial reports where relationships between entities span multiple pages.
 
 ### Configure the Sandbox (Code Execution)
 
-RAGFlow's agent can execute Python and JavaScript code in a sandboxed environment. This requires gVisor: ```bash
+RAGFlow's agent can execute Python and JavaScript code in a sandboxed environment. This requires gVisor: `````bash
 # Install gVisor (required for sandbox)
 sudo apt-get install -y runsc
 
 # Enable in docker-compose.yml
 services: ragflow: environment: - ENABLE_SANDBOX=true
     devices: - /dev/kvm
-```
+`````
 
 ### Monitoring with Prometheus
 
-```yaml
+`````yaml
 # Add to docker-compose.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -385,18 +386,18 @@ services: prometheus: image: prom/prometheus:latest
   grafana: image: grafana/grafana:latest
     ports: - "3000:3000"
     volumes: - grafana_data:/var/lib/grafana
-```
+`````
 
-Key metrics to monitor: ```yaml
+Key metrics to monitor: `````yaml
 # prometheus.yml
 scrape_configs: - job_name: ragflow
     static_configs: - targets: [ragflow-server:9380]
     metrics_path: /metrics
-```
+`````
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/ragflow/backup.sh
 
@@ -416,21 +417,21 @@ docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio
 
 # Sync to remote storage
 rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 80,853 | 49,500 | 25,300 | 105,000 |
 | **License** | Apache-2.0 | MIT | Apache-2.0 | MIT |
@@ -474,7 +475,7 @@ For a production deployment serving 50+ users, use a server with at least 8 vCPU
 
 ### Can I use RAGFlow with local LLMs only?
 
-Yes. RAGFlow integrates with Ollama, vLLM, Xinference, and LocalAI. Configure the LLM provider in `service_conf.yaml.template` with the base URL of your local inference server. For embeddings, pull an embedding model through Ollama (such as `nomic-embed-text`) and configure it in the web UI under Model Providers.
+Yes. RAGFlow integrates with Ollama, vLLM, Xinference, and LocalAI. Configure the LLM provider in ````service_conf.yaml.template```` with the base URL of your local inference server. For embeddings, pull an embedding model through Ollama (such as ````nomic-embed-text````) and configure it in the web UI under Model Providers.
 
 ### How does RAGFlow handle scanned PDFs and images?
 
@@ -486,9 +487,9 @@ When self-hosted, all data remains on your infrastructure. Documents are stored 
 
 ### How do I upgrade RAGFlow to a new version?
 
-First, back up your MySQL database and Elasticsearch indices. Then pull the new Docker image, update the `RAGFLOW_IMAGE` variable in `.env`, and restart the containers. Always check the release notes for breaking changes between versions.
+First, back up your MySQL database and Elasticsearch indices. Then pull the new Docker image, update the ````RAGFLOW_IMAGE```` variable in ````.env````, and restart the containers. Always check the release notes for breaking changes between versions.
 
-```bash
+`````bash
 cd ragflow/docker
 git fetch --tags
 git checkout -f v0.25.4
@@ -496,11 +497,11 @@ git checkout -f v0.25.4
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml pull
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### Can I integrate RAGFlow into my existing application?
 
-Yes. RAGFlow exposes a full REST API and provides Python and JavaScript SDKs. You can create datasets, upload documents, start chat sessions, and retrieve answers programmatically. The API documentation is available at `/api/docs` on your RAGFlow instance.
+Yes. RAGFlow exposes a full REST API and provides Python and JavaScript SDKs. You can create datasets, upload documents, start chat sessions, and retrieve answers programmatically. The API documentation is available at ````/api/docs``` on your RAGFlow instance.
 
 ### What document formats does RAGFlow support?
 
@@ -598,4 +599,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

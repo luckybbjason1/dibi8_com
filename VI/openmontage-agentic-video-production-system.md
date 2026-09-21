@@ -42,6 +42,7 @@ faqs: - q: 'OpenMontage là gì?'
 featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
 
+
 ## The Problem With Current AI Video Tools
 
 Mọi công cụ video AI mà được đông đảo công chúng biết đến vào năm 2025 — Sora, Runway Gen-4, Pika, Luma Dream Machine, Kling — đều chia sẻ một hạn chế cơ bản giống nhau: chúng là **công cụ tạo video từ một lệnh duy nhất**. Bạn gõ một mô tả, chờ 60 giây, và nhận được một đoạn video dài 5 đến 30 giây mà không có kịch bản, không có cấu trúc kể chuyện, không có âm thanh đồng bộ, và không có kiểm duyệt chất lượng.
@@ -56,23 +57,23 @@ Khoảng cách giữa "tạo một đoạn clip" và "sản xuất một video" 
 
 Không có một mô hình AI nào làm tất cả những việc này. Nhưng một hệ thống điều phối nhiều công cụ chuyên biệt thông qua một quy trình sản xuất có cấu trúc thì có thể.
 
-**[OpenMontage](https://github.com/calesthio/OpenMontage)** (GitHub: `calesthio/OpenMontage`, **hơn 8.273 sao** tính đến tháng 6 năm 2026) là hệ thống sản xuất video tác nhân mã nguồn mở đầu tiên trên thế giới được thiết kế để lấp đầy chính khoảng trống này. Nó cung cấp 12 quy trình sản xuất, 52 công cụ và hơn 500 kỹ năng tác nhân biến bất kỳ trợ lý viết mã AI nào thành một studio sản xuất video toàn diện.
+**[OpenMontage](https://github.com/calesthio/OpenMontage)** (GitHub: ```calesthio/OpenMontage````, **hơn 8.273 sao** tính đến tháng 6 năm 2026) là hệ thống sản xuất video tác nhân mã nguồn mở đầu tiên trên thế giới được thiết kế để lấp đầy chính khoảng trống này. Nó cung cấp 12 quy trình sản xuất, 52 công cụ và hơn 500 kỹ năng tác nhân biến bất kỳ trợ lý viết mã AI nào thành một studio sản xuất video toàn diện.
 
 ## How OpenMontage Works
 
 OpenMontage sử dụng **kiến trúc ưu tiên tác nhân**. Không có chương trình điều phối trung tâm. Trợ lý lập trình AI của bạn — Claude Code, Cursor, Copilot, Windsurf hoặc Codex — CHÍNH LÀ bộ điều phối.
 
-Hệ thống hoạt động thông qua ba lớp kiến thức: ```
+Hệ thống hoạt động thông qua ba lớp kiến thức: `````
 Layer 1: tools/ + pipeline_defs/     "What exists" — executable capabilities + orchestration
 Layer 2: skills/                      "How to use it" — OpenMontage conventions and quality bars
 Layer 3: .agents/skills/              "How it works" — external technology knowledge packs
-```
+`````
 
 Bạn mô tả những gì bạn muốn bằng ngôn ngữ đơn giản. Đại lý đọc bản khai pipeline (YAML) để hiểu các giai đoạn, công cụ và tiêu chí đánh giá có sẵn. Nó đọc kỹ năng của giám đốc giai đoạn (Markdown) để học cách thực hiện từng giai đoạn. Nó gọi các công cụ Python để chọn nhà cung cấp có điểm số, tự đánh giá bằng kỹ năng người đánh giá, ghi lại trạng thái ở JSON và trình bày các quyết định sáng tạo để bạn phê duyệt ở mỗi giai đoạn.
 
-Quy trình sản xuất hoàn chỉnh: ```
+Quy trình sản xuất hoàn chỉnh: `````
 research → proposal → script → scene_plan → assets → edit → compose
-```
+`````
 
 Mỗi giai đoạn đều có một kỹ năng giám đốc riêng — một tệp hướng dẫn Markdown dạy cho tác nhân chính xác cách thực hiện giai đoạn đó. Tác nhân đọc kỹ năng, sử dụng các công cụ, tự đánh giá, kiểm tra trạng thái và yêu cầu sự phê duyệt của con người tại các điểm quyết định sáng tạo.
 
@@ -99,7 +100,7 @@ Mỗi quy trình làm việc đều tuân theo cùng một luồng cấu trúc: 
 
 ## Zero-API-Key Production
 
-Bạn không cần các khóa API trả phí để tạo video thực. Ngay khi cài đặt, `make setup` sẽ cung cấp cho bạn: | Capability | Free Tool | What It Does |
+Bạn không cần các khóa API trả phí để tạo video thực. Ngay khi cài đặt, ````make setup```` sẽ cung cấp cho bạn: | Capability | Free Tool | What It Does |
 |-----------|-----------|-------------|
 | **Narration** | Piper TTS | Free offline text-to-speech — real human-sounding narration |
 | **Open footage** | Archive.org + NASA + Wikimedia Commons | Free/open archival footage, educational media, documentary texture |
@@ -114,11 +115,11 @@ Hai con đường sản xuất miễn phí có sẵn ngay lập tức: 1. **Vide
 
 Đối với đường dẫn cảnh quay thực, hãy yêu cầu một **tập hợp phim tài liệu**, **bản nhạc theo chủ đề**, hoặc **collage cảnh quay có sẵn**, và nói rõ **chỉ sử dụng cảnh quay thực**.
 
-Ví dụ về các lệnh nhắc hoạt động mà không cần khóa API: ```
+Ví dụ về các lệnh nhắc hoạt động mà không cần khóa API: `````
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
 ## With Paid API Keys: Expanded Capabilities
 
@@ -201,7 +202,7 @@ Nhà cung cấp chiến thắng và điểm số của nó được ghi lại tr
 - **Ước tính** trước khi thực hiện — xem chi phí sẽ là bao nhiêu
 - **Dự trữ** ngân sách — khóa quỹ trước khi gọi
 - **Đối chiếu** sau — ghi lại chi tiêu thực tế
-- **Chế độ có thể cấu hình** — `observe` (chỉ theo dõi), `warn` (ghi nhật ký vượt quá), `cap` (giới hạn cứng)
+- **Chế độ có thể cấu hình** — ````observe```` (chỉ theo dõi), ````warn```` (ghi nhật ký vượt quá), ````cap```` (giới hạn cứng)
 - **Phê duyệt theo hành động** — tạm dừng để xác nhận vượt ngưỡng (mặc định: $0.50)
 - **Giới hạn tổng ngân sách** — mặc định $10, có thể cấu hình hoàn toàn
 
@@ -209,7 +210,7 @@ Không có hóa đơn bất ngờ. Đại lý sẽ cho bạn biết chi phí tr�
 
 ## Architecture Overview
 
-```
+`````
 OpenMontage/
 ├── tools/              # 48 Python tools (the agent\'s hands)
 │   ├── video/          # 13 video gen tools + compose, stitch, trim
@@ -232,21 +233,21 @@ OpenMontage/
 ├── remotion-composer/  # React/Remotion video composition engine
 ├── lib/                # Core infrastructure (config, checkpoints, pipeline loader)
 └── tests/              # Contract tests, QA integration tests, eval harness
-```
+`````
 
-Hệ thống sử dụng ba lớp kiến thức. Lớp 1 (`tools/` + `pipeline_defs/`) cho tác nhân biết những gì tồn tại. Lớp 2 (`skills/`) cho nó biết cách sử dụng các quy ước và tiêu chuẩn chất lượng của OpenMontage. Lớp 3 (`.agents/skills/`) cung cấp kiến thức công nghệ sâu về các công cụ và nhà cung cấp bên ngoài.
+Hệ thống sử dụng ba lớp kiến thức. Lớp 1 (````tools/```` + ````pipeline_defs/````) cho tác nhân biết những gì tồn tại. Lớp 2 (````skills/````) cho nó biết cách sử dụng các quy ước và tiêu chuẩn chất lượng của OpenMontage. Lớp 3 (````.agents/skills/````) cung cấp kiến thức công nghệ sâu về các công cụ và nhà cung cấp bên ngoài.
 
 ## Agent Compatibility
 
 OpenMontage hoạt động với bất kỳ trợ lý lập trình AI nào có thể đọc tệp và thực thi Python. Các tệp hướng dẫn chuyên dụng được bao gồm cho: | Platform | Config File |
 |----------|------------|
-| **Claude Code** | `CLAUDE.md` |
-| **Cursor** | `CURSOR.md` + `.cursor/rules/` |
-| **GitHub Copilot** | `COPILOT.md` + `.github/copilot-instructions.md` |
-| **Codex** | `CODEX.md` |
-| **Windsurf** | `.windsurfrules` |
+| **Claude Code** | ````CLAUDE.md```` |
+| **Cursor** | ````CURSOR.md```` + ````.cursor/rules/```` |
+| **GitHub Copilot** | ````COPILOT.md```` + ````.github/copilot-instructions.md```` |
+| **Codex** | ````CODEX.md```` |
+| **Windsurf** | ````.windsurfrules```` |
 
-Tất cả các tệp nền tảng đều trỏ đến `AGENT_GUIDE.md` chung (hướng dẫn vận hành và hợp đồng đại lý) và `PROJECT_CONTEXT.md` (tham chiếu kiến trúc).
+Tất cả các tệp nền tảng đều trỏ đến ````AGENT_GUIDE.md```` chung (hướng dẫn vận hành và hợp đồng đại lý) và ````PROJECT_CONTEXT.md```` (tham chiếu kiến trúc).
 
 Hỗ trợ LLM cục bộ qua Ollama và LM Studio sẽ sớm ra mắt, điều này sẽ cho phép chạy toàn bộ quy trình sản xuất mà không cần bất kỳ LLM đám mây nào.
 
@@ -255,37 +256,37 @@ Hỗ trợ LLM cục bộ qua Ollama và LM Studio sẽ sớm ra mắt, điều 
 ### Prerequisites
 
 - **Python 3.10+** — [python.org](https://www.python.org/downloads/)
-- **FFmpeg** — `brew install ffmpeg` / `sudo apt install ffmpeg`
+- **FFmpeg** — ````brew install ffmpeg```` / ````sudo apt install ffmpeg````
 - **Node.js 18+** — [nodejs.org](https://nodejs.org/)
 - **Một trợ lý lập trình AI** — Claude Code, Cursor, Copilot, Windsurf hoặc Codex
 
 ### Install
 
-```bash
+`````bash
 git clone https://github.com/calesthio/OpenMontage.git
 cd OpenMontage
 make setup
-```
+`````
 
-Mở dự án trong trợ lý lập trình AI của bạn và nói với nó những gì bạn muốn: ```
+Mở dự án trong trợ lý lập trình AI của bạn và nói với nó những gì bạn muốn: `````
 "Make a 60-second animated explainer about how neural networks learn"
-```
+`````
 
-Hoặc đối với đường dẫn hình ảnh thực: ```
+Hoặc đối với đường dẫn hình ảnh thực: `````
 "Make a 75-second documentary montage about city life in the rain. Use real footage only, no narration, elegiac tone, with music."
-```
+`````
 
 Đại lý nghiên cứu chủ đề của bạn bằng tìm kiếm web trực tiếp, tạo hình ảnh AI, viết và thuyết minh kịch bản với hướng dẫn giọng nói, tự động tìm nhạc nền không bản quyền, chèn phụ đề ở cấp độ từ, và xuất video cuối cùng. Trước khi bạn thấy bất cứ điều gì, hệ thống thực hiện một cuộc tự kiểm tra đa điểm — xác thực ffprobe, lấy mẫu khung hình, phân tích mức âm thanh, xác minh cam kết giao hàng và kiểm tra phụ đề.
 
-Nếu bạn có GPU, bạn có thể mở khóa tạo video cục bộ miễn phí: ```bash
+Nếu bạn có GPU, bạn có thể mở khóa tạo video cục bộ miễn phí: `````bash
 make install-gpu
 # Then add to .env: # VIDEO_GEN_LOCAL_ENABLED=true
 # VIDEO_GEN_LOCAL_MODEL=wan2.1-1.3b  # or wan2.1-14b, hunyuan-1.5, ltx2-local, cogvideo-5b
-```
+`````
 
 ### Optional API Keys
 
-Mỗi khóa API đều là tùy chọn. Thêm những gì bạn có: ```bash
+Mỗi khóa API đều là tùy chọn. Thêm những gì bạn có: `````bash
 # Image + video gateway: FAL_KEY=your-key               # FLUX images + Google Veo, Kling, MiniMax video + Recraft
 
 # Free stock media: PEXELS_API_KEY=your-key        # Free stock footage and images
@@ -297,7 +298,7 @@ UNSPLASH_ACCESS_KEY=your-key   # Free stock images
 # Voice & images: ELEVENLABS_API_KEY=your-key    # Premium TTS, AI music, sound effects
 OPENAI_API_KEY=your-key        # OpenAI TTS, DALL-E 3 images
 GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
-```
+`````
 
 ## Comparison: OpenMontage vs. Competitors
 
@@ -318,41 +319,41 @@ OpenMontage không phải là một mô hình tạo video. Đây là một hệ 
 
 ## Prompt Gallery
 
-Dưới đây là các câu lệnh đã được kiểm nghiệm, được sắp xếp theo độ phức tạp và loại đầu ra. Mỗi câu lệnh sẽ kích hoạt toàn bộ quy trình sản xuất thông qua trợ lý lập trình AI của bạn: ```text
+Dưới đây là các câu lệnh đã được kiểm nghiệm, được sắp xếp theo độ phức tạp và loại đầu ra. Mỗi câu lệnh sẽ kích hoạt toàn bộ quy trình sản xuất thông qua trợ lý lập trình AI của bạn: `````text
 # Beginner — zero keys needed
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
-```text
+`````text
 # Intermediate — needs one image provider (~$0.15-$0.50)
 "Create a 30-second Ghibli-style animated video of a magical floating library in the clouds at golden hour"
 "Make a 30-second anime-style animation of an underwater temple with bioluminescent coral"
 "Create an animated explainer about how CRISPR gene editing works, using AI-generated visuals"
-```
+`````
 
-```text
+`````text
 # Advanced — full setup (~$1-$3)
 "Create a cinematic 30-second trailer for a sci-fi concept: humanity receives a warning from 1000 years in the future"
 "Make a 90-second animated explainer about quantum computing for middle school students, with a fun narrator voice and custom soundtrack"
-```
+`````
 
-```text
+`````text
 # Reference-driven — start from an existing video
 "Here\'s a YouTube Short I love. Make me something like this, but about CRISPR for high school students."
 "Analyze this Reel and give me 3 original variants I could make for my own product launch."
 "I like the pacing and hook in this video. Keep that energy, but turn it into a 45-second explainer about black holes."
-```
+`````
 
-```text
+`````text
 # Real-footage documentary path
 "Make a 90-second documentary montage about what a city feels like at 4am. Use real footage only, no narration, elegiac tone."
 "Create a 60-second Adam-Curtis-style archival collage about 1950s consumer optimism. Prefer Archive.org and Wikimedia footage."
 "Cut together a dreamlike montage about coming home in the rain using real stock footage only. Music yes, narration no."
-```
+`````
 
-Để xem thêm các lời nhắc đã được kiểm tra với chi phí dự kiến và ví dụ đầu ra, hãy xem Thư viện Lời nhắc trong kho lưu trữ, hoặc chạy `make demo` để tạo video demo không cần khóa ngay lập tức.
+Để xem thêm các lời nhắc đã được kiểm tra với chi phí dự kiến và ví dụ đầu ra, hãy xem Thư viện Lời nhắc trong kho lưu trữ, hoặc chạy ````make demo```` để tạo video demo không cần khóa ngay lập tức.
 
 ## Use Cases
 
@@ -392,7 +393,7 @@ OpenMontage ấn tượng nhưng không phải là phép màu. Một số hạn 
 
 ## Quality Gate Configuration
 
-Hệ thống chất lượng của OpenMontage có thể được tùy chỉnh thông qua các biến môi trường và tệp cấu hình: ```bash
+Hệ thống chất lượng của OpenMontage có thể được tùy chỉnh thông qua các biến môi trường và tệp cấu hình: `````bash
 # .env quality gate settings
 SLIDESHOW_RISK_THRESHOLD=0.7
 PRE_COMPOSE_VALIDATION=true
@@ -401,9 +402,9 @@ AUDIO_LEVEL_MIN=-30
 AUDIO_LEVEL_MAX=-3
 MAX_STILL_IMAGE_RATIO=0.3
 MIN_VIDEO_DURATION_SECONDS=10
-```
+`````
 
-```json
+`````json
 // .openmontage/config.json — pipeline quality overrides
 {
   "quality_gates": {
@@ -418,15 +419,15 @@ MIN_VIDEO_DURATION_SECONDS=10
     "per_action_approval_threshold": 0.50
   }
 }
-```
+`````
 
 Các cài đặt này kiểm soát khi nào hệ thống chặn các bản render, đánh dấu các rủi ro và yêu cầu sự phê duyệt của con người. Điều chỉnh các ngưỡng dựa trên yêu cầu chất lượng và giới hạn ngân sách của bạn.
 
 ## Getting Started
 
-Cách nhanh nhất để thử OpenMontage: 1. Sao chép kho lưu trữ: `git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup`
+Cách nhanh nhất để thử OpenMontage: 1. Sao chép kho lưu trữ: ````git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup````
 2. Mở trong Claude Code hoặc Cursor
-3. Nhắc lệnh: `"Tạo một video giải thích hoạt hình dài 45 giây về lý do tại sao bầu trời có màu xanh"`
+3. Nhắc lệnh: ````"Tạo một video giải thích hoạt hình dài 45 giây về lý do tại sao bầu trời có màu xanh"```
 4. Xem tác nhân nghiên cứu, viết kịch bản, tạo tài nguyên, biên tập và xác thực
 5. Xem lại kết quả — mọi quyết định sáng tạo đều được ghi lại cùng một lý do
 
@@ -440,7 +441,7 @@ Với 12 đường ống, 52 công cụ, hơn 500 kỹ năng tác nhân và kh�
 
 Đối với hạ tầng tự lưu trữ, hãy xem xét [DigitalOcean](https://m.do.co/c/eca87ac14ee0) hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho việc lưu trữ hỗ trợ GPU đáng tin cậy. Đối với nhu cầu web scraping và proxy, [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cung cấp lớp hạ tầng. Tìm kiếm các ưu đãi cho công cụ AI và dịch vụ tiền điện tử? Hãy xem [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) và [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) để có các ưu đãi độc quyền. Đối với tiếp thị liên kết và công cụ xây dựng phễu, [PromoOhLy](https://www.promoohubly.com/join/12190433) cung cấp tự động hóa.
 
----
+* * *
 
 **Nguồn:** [OpenMontage GitHub](https://github.com/calesthio/OpenMontage) · [Hướng dẫn Agent](https://github.com/calesthio/OpenMontage/blob/main/AGENT_GUIDE.md) · [Tài liệu Nhà cung cấp](https://github.com/calesthio/OpenMontage/blob/main/docs/PROVIDERS.md)
 
@@ -474,7 +475,7 @@ Với 12 đường ống, 52 công cụ, hơn 500 kỹ năng tác nhân và kh�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -484,7 +485,7 @@ Với 12 đường ống, 52 công cụ, hơn 500 kỹ năng tác nhân và kh�
 - [2026-05-25-trending-ai-agents](openmontage-agentic-video-production-system)
 - [2026-06-01-trending-ai-agents](openmontage-agentic-video-production-system)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

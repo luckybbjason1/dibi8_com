@@ -26,21 +26,22 @@ tags: ["multi-modal", "content pipeline", "podcast", "video", "tts", "stack", "c
 aliases:
   - /posts/multi-modal-content-pipeline/-
 ---
+
 The 2026 creator economy runs on multi-modal content — podcasts with AI co-hosts, short-form video with AI narration over generated visuals, blog posts with AI-illustrated header images, audiobooks read by stable AI voices. The SaaS-stack way costs $200-500/month (ElevenLabs + Midjourney + Descript + Pictory + a dozen others). This collection assembles the **self-hosted 5-component alternative for $30-80/month** — using the same models the SaaS providers use, on a GPU you rent by the hour.
 
 ## TL;DR — The Stack at a Glance
 
 | # | Component | Modality | Role | Deep dive |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **faster-whisper** | Audio → Text | Transcribe / caption / subtitle generation | [faster-whisper guide](/resources/ai-tools/faster-whisper/) |
 | 2 | **ChatTTS** | Text → Audio | Dialogue-quality TTS with prosody control | [ChatTTS 2026](/resources/ai-tools/chattts-dialogue-tts-2026/) |
@@ -62,7 +63,7 @@ The unlock isn't any one tool; it's that they all speak workflow JSON and Python
 
 ## 2. Architecture — The Creator Pipeline
 
-```
+````
    Script / outline (you, or LLM-generated)
             │
             ▼
@@ -89,28 +90,28 @@ The unlock isn't any one tool; it's that they all speak workflow JSON and Python
                      │
                      ▼
               MP4 / WAV / PNG outputs
-```
+`````
 
 The split: ChatTTS and SD WebUI cover the "single-shot" generation. ComfyUI covers any multi-step pipeline (especially video). FFmpeg is the boring-but-essential glue. faster-whisper handles the "audio in" side (transcription of recorded interviews) and the "audio out" side (auto-generating subtitle files).
 
 ## 3. Component 1 — faster-whisper (Audio → Text)
 
-**The role**: Transcribe interviews, podcasts, video soundtracks. Generate `.srt` subtitle files for any video output.
+**The role**: Transcribe interviews, podcasts, video soundtracks. Generate ````.srt```` subtitle files for any video output.
 
 **Why faster-whisper over openai-whisper**: 4× faster on the same hardware via CTranslate2 backend, near-identical accuracy. The de-facto choice in 2026 for production transcription.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v3", device="cuda", compute_type="float16")
 segments, info = model.transcribe("input.mp3", beam_size=5)
 
 for segment in segments: print(f"[{segment.start:.2f} → {segment.end:.2f}] {segment.text}")
-```
+`````
 
 **Cost**: $0 if self-hosted. ~5× real-time on RTX 3060, ~30× real-time on RTX 4090.
 
@@ -152,7 +153,7 @@ Full guide: [ComfyUI node-based AI 2026](/resources/ai-tools/comfyui-node-based-
 
 **The role**: Assemble final deliverables. Combine audio + video. Add subtitles. Compress to target sizes. Standard issue across all video creators.
 
-**The 3 commands you'll use 90% of the time**: ```bash
+**The 3 commands you'll use 90% of the time**: `````bash
 # Combine narration audio + b-roll video
 ffmpeg -i visuals.mp4 -i narration.wav -c:v copy -c:a aac final.mp4
 
@@ -161,7 +162,7 @@ ffmpeg -i final.mp4 -vf "subtitles=captions.srt" final-with-subs.mp4
 
 # Compress for YouTube (target 5 MB/min)
 ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload.mp4
-```
+`````
 
 No deep-dive needed — FFmpeg has a million guides online. Learn these 3 commands; defer learning the rest until you need it.
 
@@ -171,9 +172,9 @@ No deep-dive needed — FFmpeg has a million guides online. Learn these 3 comman
 2. **Install Docker + Python venv basics** (15 min)
 3. **ComfyUI + ComfyUI Manager** (30 min) — Workhorse for all visual work
 4. **ChatTTS** (15 min) — Pre-generate 3-5 stable speakers, save embeddings
-5. **faster-whisper** (10 min) — `pip install`, test on a sample audio
+5. **faster-whisper** (10 min) — ````pip install````, test on a sample audio
 6. **SD WebUI** (15 min) — Optional if you're already comfortable with ComfyUI alone
-7. **FFmpeg** (5 min) — `apt install ffmpeg`
+7. **FFmpeg** (5 min) — ````apt install ffmpeg```
 8. **First real pipeline** (90 min) — Generate a 30-second test video: script → ChatTTS narration → ComfyUI 5 image panels → FFmpeg assembly → faster-whisper subtitles
 
 After 3-4 hours you have a working multi-modal pipeline you can iterate on weekly.
@@ -182,13 +183,13 @@ After 3-4 hours you have a working multi-modal pipeline you can iterate on weekl
 
 | Item | Hobby (4 hrs/day) | Producer (8 hrs/day) | Studio (always-on) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU (24 GB, Vast.ai/RunPod) | $25-35/mo | $50-80/mo | — |
 | Dedicated GPU (DO / HTStack) | — | — | $120-200/mo |
@@ -218,7 +219,7 @@ When you outgrow: - **>1 hour of TTS / day** — Switch ChatTTS hosting from Vas
 Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, shut it down when you don"t. The math beats SaaS as soon as you cross ~2 hours/day of active content production.
 
 
----
+* * *
 *Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) and [Knowledge Base Stack](/collections/knowledge-base-stack/) for the dev side. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the script-generation cost side. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for letting agents drive this pipeline autonomously.*
 
 
@@ -248,7 +249,7 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, s
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [moneyprinterturbo-one-click-ai-video-generator](multi-modal-content-pipeline)
@@ -256,6 +257,6 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, s
 - [moneyprinterturbo-one-click-ai-video-generator](multi-modal-content-pipeline)
 - [prompts-chat](multi-modal-content-pipeline)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

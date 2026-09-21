@@ -24,6 +24,7 @@ aliases:
   - /posts/langchain/
 - /resources/llm-frameworks/langchain-complete-guide/-
 ---
+
 {{</* resource-info */>}}
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
@@ -44,25 +45,25 @@ LangChain is an open-source Python and TypeScript framework for building applica
 
 LangChain's architecture separates concerns into five layers: 1. **Model I/O** — Standardized interfaces for chat models, LLMs, and embeddings. Switch from OpenAI GPT-4o to Anthropic Claude 3.5 Sonnet by changing one import.
 2. **Retrieval** — Document loaders, text splitters, embedding models, and vector stores form the RAG pipeline. Load PDFs, HTML, or Notion pages, chunk them, embed, and query semantically.
-3. **Agents** — The `create_agent` API (LangChain 1.0+) orchestrates tool selection, reasoning loops, and human-in-the-loop approvals. Agents decide which tools to call, in what order, and when to stop.
+3. **Agents** — The ```create_agent```` API (LangChain 1.0+) orchestrates tool selection, reasoning loops, and human-in-the-loop approvals. Agents decide which tools to call, in what order, and when to stop.
 4. **Chains** — Composable workflows that link components sequentially. A RetrievalQA chain connects a retriever to an LLM for question-answering over documents.
 5. **Observability** — LangSmith traces every call, measuring latency, token usage, and cost. Traces capture inputs, outputs, and intermediate steps for debugging.
 
-```
+`````
 User Query → Agent/Chain → [Tool Calls → LLM Calls → Retrieval] → Response
                 ↓
             LangSmith (traces, metrics, evaluation)
-```
+`````
 
 ![LangChain RAG Flow](https://python.langchain.com/assets/images/rag_indexing-6b1e22092b4c169a9075d080d71a5e95.png)
 
 ### Core Concepts
 
-**Runnable Interface.** Every component in LangChain implements the `Runnable` protocol with `.invoke()`, `.batch()`, and `.stream()` methods. This uniform interface lets you treat a single prompt, a chain of ten components, or a multi-agent graph identically.
+**Runnable Interface.** Every component in LangChain implements the ````Runnable```` protocol with ````.invoke()````, ````.batch()````, and ````.stream()```` methods. This uniform interface lets you treat a single prompt, a chain of ten components, or a multi-agent graph identically.
 
-**Content Blocks.** LangChain 1.0 introduced `.content_blocks` on messages — a unified format for text, images, tool calls, and reasoning traces across all providers. No more provider-specific message parsing.
+**Content Blocks.** LangChain 1.0 introduced ````.content_blocks```` on messages — a unified format for text, images, tool calls, and reasoning traces across all providers. No more provider-specific message parsing.
 
-**Model Profiles.** Chat models expose capabilities through a `.profile` attribute, enabling dynamic feature detection. Your code can check if a model supports tool calling or vision before attempting either.
+**Model Profiles.** Chat models expose capabilities through a ````.profile```` attribute, enabling dynamic feature detection. Your code can check if a model supports tool calling or vision before attempting either.
 
 ## Installation & Setup
 
@@ -70,7 +71,7 @@ User Query → Agent/Chain → [Tool Calls → LLM Calls → Retrieval] → Resp
 
 LangChain installs via pip in under 60 seconds. Python 3.10+ is required as of version 1.0.
 
-```bash
+`````bash
 # Install core framework
 pip install langchain-core==1.4.0 langchain
 
@@ -88,11 +89,11 @@ pip install langgraph
 
 # Install LangSmith for observability
 pip install langsmith
-```
+`````
 
 ### Verify Installation
 
-```python
+`````python
 import langchain_core
 print(langchain_core.__version__)
 # Output: 1.4.0
@@ -105,22 +106,22 @@ openai_model = ChatOpenAI(model="gpt-4o", temperature=0)
 anthropic_model = ChatAnthropic(model="claude-3-5-sonnet-20241022")
 
 print("LangChain installed successfully with OpenAI and Anthropic providers")
-```
+`````
 
 ### Environment Configuration
 
-```bash
+`````bash
 # .env file
 OPENAI_API_KEY=sk-proj-xxxxx
 ANTHROPIC_API_KEY=sk-ant-xxxxx
 LANGSMITH_API_KEY=ls-xxxxx
 LANGSMITH_TRACING=true
 LANGSMITH_PROJECT=production-agents
-```
+`````
 
 ### Docker Setup (Recommended for Production)
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -149,9 +150,9 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
-```
+`````
 
-```txt
+`````txt
 # requirements.txt
 langchain-core==1.4.0
 langchain==1.3.0
@@ -165,9 +166,9 @@ pydantic==2.10.0
 python-dotenv==1.0.0
 redis==5.2.0
 httpx==0.28.0
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -190,11 +191,11 @@ services: app: build: .
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes: redis_data: chroma_data: ```
+volumes: redis_data: chroma_data: `````
 
 ### Build and Run
 
-```bash
+`````bash
 # Build the image
 docker build -t langchain-production-app .
 
@@ -203,13 +204,13 @@ docker-compose up -d
 
 # Verify deployment
 curl http://localhost:8000/health
-```
+`````
 
 ## Integration with OpenAI, Anthropic, Ollama, and Vector Stores
 
 ### OpenAI GPT-4o Integration
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -236,11 +237,11 @@ response = chain.invoke({
     "question": "Explain backpropagation in 3 sentences."
 })
 print(response.content)
-```
+`````
 
 ### Anthropic Claude Integration
 
-```python
+`````python
 from langchain_anthropic import ChatAnthropic
 
 claude = ChatAnthropic(
@@ -257,11 +258,11 @@ response = claude_chain.invoke({
     "question": "What is the CAP theorem?"
 })
 print(response.content)
-```
+`````
 
 ### Ollama Local Models
 
-```python
+`````python
 from langchain_ollama import ChatOllama
 
 local_model = ChatOllama(
@@ -272,11 +273,11 @@ local_model = ChatOllama(
 
 response = local_model.invoke("Explain quantum computing simply.")
 print(response.content)
-```
+`````
 
 ### RAG Pipeline with Chroma Vector Store
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -313,11 +314,11 @@ qa_chain = RetrievalQA.from_chain_type(
 # Query
 result = qa_chain.invoke({"query": "What are the key findings?"})
 print(result["result"])
-```
+`````
 
 ### Agent with Tools
 
-```python
+`````python
 from langchain import hub
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.tools import tool
@@ -346,7 +347,7 @@ result = agent_executor.invoke({
     "input": "What is 1250 * 37 and search for deployment docs?"
 })
 print(result["output"])
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -354,15 +355,15 @@ print(result["output"])
 
 Benchmark data collected on AWS c5.4xlarge (16 vCPU, 32GB RAM) with gpt-3.5-turbo and sentence-transformers/all-mpnet-base-v2: | Metric | LangChain | LlamaIndex | Haystack | Semantic Kernel |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QPS (queries/sec) | 78.2 | 85.4 | 102.5 | 65.4 |
 | Memory Peak (MB) | 1,203 | 980 | 856 | 987 |
@@ -388,7 +389,7 @@ LangChain trades raw retrieval speed for orchestration flexibility. Haystack lea
 
 LangGraph extends LangChain with graph-based agent orchestration. It supports cycles, branching, and human-in-the-loop — essential for production agents that need approval gates.
 
-```python
+`````python
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated, Sequence
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
@@ -433,13 +434,13 @@ workflow.add_edge("reject", END)
 # Compile and run
 app = workflow.compile()
 result = app.invoke({"messages": [HumanMessage(content="Delete all user records from the database.")]})\nprint(result["messages"][-1].content)
-```
+`````
 
 ### Error Handling and Retries
 
 Production agents fail. Handle it gracefully.
 
-```python
+`````python
 from langchain_core.runnables import RunnableConfig
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -456,11 +457,11 @@ def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return
 # Usage
 config = RunnableConfig(tags=["production", "customer-facing"])
 result = invoke_with_retry(qa_chain, {"query": "What are the terms?"}, config)
-```
+`````
 
 ### Rate Limiting and Cost Controls
 
-```python
+`````python
 from langchain_core.rate_limiters import InMemoryRateLimiter
 import time
 
@@ -482,11 +483,11 @@ from langchain.callbacks import get_openai_callback
 
 with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
-```
+`````
 
 ### Monitoring with LangSmith
 
-```python
+`````python
 import os
 
 # Enable tracing
@@ -510,11 +511,11 @@ results = evaluate(
     data="my-dataset-name",
     evaluators=[accuracy_evaluator],
 )
-```
+`````
 
 ### Kubernetes Deployment
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -545,7 +546,7 @@ spec: replicas: 3
           initialDelaySeconds: 5
           periodSeconds: 10
 
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: langchain-service
@@ -554,18 +555,18 @@ spec: selector: app: langchain-app
       port: 80
       targetPort: 8000
   type: ClusterIP
-```
+`````
 
-```bash
+`````bash
 # Deploy to Kubernetes
 kubectl apply -f k8s-deployment.yaml
 kubectl get pods -l app=langchain-app
 kubectl logs -f deployment/langchain-app
-```
+`````
 
 ### Redis Caching for Frequent Queries
 
-```python
+`````python
 import redis
 import json
 import hashlib
@@ -588,21 +589,21 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
     return result
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | LangChain | LlamaIndex | Haystack | Semantic Kernel |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Focus** | Multi-step workflows, agent orchestration | Document indexing, retrieval optimization | Semantic search, RAG pipelines | Enterprise integration, Microsoft ecosystem |
 | **Language Support** | Python, TypeScript | Python, TypeScript | Python | C#, Python, Java |
@@ -626,7 +627,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
 
 **Steeper learning curve for simple use cases.** A basic "chat with PDF" app requires understanding loaders, splitters, embeddings, vector stores, and chains. Tools like RAGFlow or Verba offer faster paths for non-developers.
 
-**Rapid evolution creates version drift.** Despite the 1.0 LTS promise, the ecosystem moves fast. Community integrations (`langchain-community`) can introduce breaking changes on minor releases. Pin exact versions in production.
+**Rapid evolution creates version drift.** Despite the 1.0 LTS promise, the ecosystem moves fast. Community integrations (````langchain-community````) can introduce breaking changes on minor releases. Pin exact versions in production.
 
 **LangSmith costs scale with usage.** The free tier covers 5,000 traces monthly — enough for prototyping but not production. A 5-person team processing 100,000 traces monthly pays approximately $220/month for LangSmith alone, excluding LLM API costs.
 
@@ -642,7 +643,7 @@ LangChain is the core framework for building LLM applications with chains, promp
 
 ### How do I switch between LLM providers in LangChain?
 
-Change the model class import. LangChain's standardized `BaseChatModel` interface means code written for OpenAI works with Anthropic, Google, Ollama, or any supported provider with minimal changes. The `.content_blocks` property in 1.0+ standardizes message formats across all providers, eliminating provider-specific parsing code.
+Change the model class import. LangChain's standardized ````BaseChatModel```` interface means code written for OpenAI works with Anthropic, Google, Ollama, or any supported provider with minimal changes. The ````.content_blocks```` property in 1.0+ standardizes message formats across all providers, eliminating provider-specific parsing code.
 
 ### Is LangChain free for commercial use?
 
@@ -654,7 +655,7 @@ For production deployments, use Docker containers with a WSGI/ASGI server (Uvico
 
 ### How does LangChain handle errors and retries?
 
-LangChain provides built-in retry logic with exponential backoff through the `max_retries` parameter on model classes. For production, wrap critical paths with Tenacity for fine-grained control over retry policies. Use structured exception handling to distinguish between retriable errors (rate limits, timeouts) and terminal errors (invalid inputs, authentication failures). Log all failures to LangSmith for post-incident analysis.
+LangChain provides built-in retry logic with exponential backoff through the ````max_retries```` parameter on model classes. For production, wrap critical paths with Tenacity for fine-grained control over retry policies. Use structured exception handling to distinguish between retriable errors (rate limits, timeouts) and terminal errors (invalid inputs, authentication failures). Log all failures to LangSmith for post-incident analysis.
 
 ### Can I self-host LangSmith?
 
@@ -662,7 +663,7 @@ Self-hosted LangSmith is available only on Enterprise plans with custom pricing.
 
 ### How do I scale LangChain agents to handle 1000+ concurrent users?
 
-Scale horizontally by running multiple container instances behind a load balancer. Use async patterns (`ainvoke`, `astream`) to maximize throughput per worker. Implement Redis caching for frequently asked queries. Set up connection pooling for databases and external APIs. Monitor token usage and costs per request via LangSmith. Consider using a queue system (Celery, RQ) for long-running agent tasks rather than synchronous HTTP requests.
+Scale horizontally by running multiple container instances behind a load balancer. Use async patterns (````ainvoke````, ````astream```) to maximize throughput per worker. Implement Redis caching for frequently asked queries. Set up connection pooling for databases and external APIs. Monitor token usage and costs per request via LangSmith. Consider using a queue system (Celery, RQ) for long-running agent tasks rather than synchronous HTTP requests.
 
 ## Conclusion
 
@@ -726,7 +727,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](langchain)
@@ -735,7 +736,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](langchain)
 - [ai-engineering-from-scratch](langchain)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

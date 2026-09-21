@@ -29,6 +29,7 @@ faqs: - q: 'AI Token Monitor가 macOS나 Windows에서도 작동하나요?'
     a: 'Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.'
 ---
 
+
 {{< resource-info >}}
 
 ## 문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다
@@ -39,25 +40,25 @@ faqs: - q: 'AI Token Monitor가 macOS나 Windows에서도 작동하나요?'
 
 **AI Token Monitor**는 항상 보이는 데스크탑 위젯으로 이 문제를 해결합니다 — 편집기를 떠나지 않고도 모든 서비스 상태를 한눈에 확인할 수 있습니다.
 
-```
+````
 ● Claude  ░░░░░░░░░  무잔액
 ● Gemini  ░░░░░░░░░  쿼터소진
 ● Grok    ░░░░░░░░░  소진
 ● Kimi    █████████  22.4M 잔여
 ● Codex   ─────────  18:42:01
 ● Kilo    ─────────  18:42:01
-```
+`````
 
 ## 작동 방식
 
-모니터는 두 가지 컴포넌트로 구성됩니다: **`api_fetcher.py`** — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 `~/token-monitor/api_cache.json`에 씁니다.
+모니터는 두 가지 컴포넌트로 구성됩니다: **````api_fetcher.py````** — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 ````~/token-monitor/api_cache.json````에 씁니다.
 
-**`conky_ai.py`** — 30초마다 캐시를 읽고 Conky 인라인 `${color}` 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.
+**````conky_ai.py````** — 30초마다 캐시를 읽고 Conky 인라인 ````${color}```` 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.
 
-```
+`````
 api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 표시
   (cron/5분)        (JSON 캐시)        (30초 폴링)    (항상 표시)
-```
+`````
 
 이 아키텍처 덕분에 API 오류가 발생해도 데스크탑이 멈추지 않습니다. 캐시에는 항상 마지막으로 알려진 상태가 저장되어 있습니다.
 
@@ -65,17 +66,17 @@ api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 표시
 
 핵심 기능은 **HP 바 스타일 쿼터 시각화** — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다: | 색상 | 상태 |
 |------|------|
-| `█████████` 초록 | 쿼터 50% 이상 |
-| `████░░░░░` 주황 | 20~50% 잔여 |
-| `█░░░░░░░░` 빨강 | 20% 미만 |
-| `░░░░░░░░░` 빨강 | 소진 / 잔액 없음 |
-| `─────────` 회색 | API 키 미설정 |
+| ````█████████```` 초록 | 쿼터 50% 이상 |
+| ````████░░░░░```` 주황 | 20~50% 잔여 |
+| ````█░░░░░░░░```` 빨강 | 20% 미만 |
+| ````░░░░░░░░░```` 빨강 | 소진 / 잔액 없음 |
+| ````─────────```` 회색 | API 키 미설정 |
 
-진행 막대는 9글자 너비입니다. `█` 하나가 약 11% 쿼터를 나타냅니다.
+진행 막대는 9글자 너비입니다. ````█```` 하나가 약 11% 쿼터를 나타냅니다.
 
 ## 설치
 
-```bash
+`````bash
 # 1. 클론
 git clone https://github.com/luckybbjason1/ai-token-monitor
 cd ai-token-monitor
@@ -88,29 +89,29 @@ nano ~/.config/.ai_monitor_keys
 
 # 4. Conky 재시작
 pkill conky && conky --daemonize --pause=1
-```
+`````
 
-설치 스크립트가 자동으로: - 스크립트를 `~/token-monitor/`에 복사
-- Conky 설정에 `${execpi 30 python3 ~/token-monitor/conky_ai.py}` 추가
-- `api_fetcher.py`의 cron 작업 설정
+설치 스크립트가 자동으로: - 스크립트를 ````~/token-monitor/````에 복사
+- Conky 설정에 ````${execpi 30 python3 ~/token-monitor/conky_ai.py}```` 추가
+- ````api_fetcher.py````의 cron 작업 설정
 
 ## 지원 서비스 및 API 방식
 
 | 서비스 | API 엔드포인트 | 감지 항목 |
 |--------|-------------|-----------|
-| **Kimi** (Moonshot) | `GET /v1/users/me` | 정확한 잔여 토큰 쿼터 |
-| **Claude** (Anthropic) | `POST /v1/messages` | 레이트 리밋 헤더 |
-| **Gemini** (Google) | `POST .../generateContent` | 429 = 쿼터 소진 |
-| **Grok** (xAI) | `GET /v1/models` | 403 = 잔액 소진 |
+| **Kimi** (Moonshot) | ````GET /v1/users/me```` | 정확한 잔여 토큰 쿼터 |
+| **Claude** (Anthropic) | ````POST /v1/messages```` | 레이트 리밋 헤더 |
+| **Gemini** (Google) | ````POST .../generateContent```` | 429 = 쿼터 소진 |
+| **Grok** (xAI) | ````GET /v1/models```` | 403 = 잔액 소진 |
 | Codex / Kilo | — | UTC+8 자정까지 카운트다운 |
 
 ## 보안 설계
 
-API 키는 `~/.config/.ai_monitor_keys`에 `chmod 600` 권한으로 저장됩니다. `.gitignore`로 git에서 제외됩니다. 키는 터미널에 출력되거나 로그 파일에 기록되지 않습니다 — fetcher는 시작 시 한 번 읽고 HTTP 호출 동안만 메모리에 유지합니다.
+API 키는 ````~/.config/.ai_monitor_keys````에 ````chmod 600```` 권한으로 저장됩니다. ````.gitignore````로 git에서 제외됩니다. 키는 터미널에 출력되거나 로그 파일에 기록되지 않습니다 — fetcher는 시작 시 한 번 읽고 HTTP 호출 동안만 메모리에 유지합니다.
 
 ## 커스텀 서비스 추가
 
-`api_fetcher.py`에 블록을 추가하세요: ```python
+``api_fetcher.py``에 블록을 추가하세요: `````python
 # ── 커스텀 서비스 ─────────────────────────────────
 key = keys.get(yourservice)
 if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
@@ -125,9 +126,9 @@ if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
             }
         else: cache[YourService] = {ok: False, label: 'API 오류'}
     except Exception: pass
-```
+`````
 
-그런 다음 `conky_ai.py`의 `SERVICES` 목록에 `{name: YourService, reset_h: 24}`를 추가하세요.
+그런 다음 ````conky_ai.py````의 ````SERVICES```` 목록에 ````{name: YourService, reset_h: 24}```를 추가하세요.
 
 ## dibi8 관련 도구
 
@@ -205,12 +206,12 @@ AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](ai-token-monitor-conky-linux)
 - [ray-distributed-ai-framework-complete-guide](ai-token-monitor-conky-linux)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

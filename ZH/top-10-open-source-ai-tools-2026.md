@@ -34,6 +34,7 @@ faqs: - q: '2026 年 Midjourney 最好的开源替代方案是什么？'
   - q: 'AI 编码智能体如何在不调用 API 的情况下跨会话保留记忆？'
     a: 'MemPalace 充当一个 MCP（Model Context Protocol）服务器，为 Claude Code 等本地编码智能体提供永久记忆。由于它作为 MCP 服务器在本地运行，因此无需进行任何外部 API 调用即可提供持久化上下文。'---
 
+
 {</* resource-info */>}
 
 # 2026 年度霸榜：开发者必看的 10 大免费开源 AI 神器
@@ -183,7 +184,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -214,15 +215,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

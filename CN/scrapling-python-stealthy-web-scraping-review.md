@@ -35,13 +35,14 @@ faqs: - q: 'What is Scrapling in Python?'
   - q: 'Does Scrapling respect robots.txt by default?'
     a: 'No. The robots_txt_obey setting is opt-in, not on by default, so you must consciously enable it. This is a deliberate choice for users who own the sites they crawl, but forgetting to turn it on for a third-party site can create legal exposure.'
 ---
+
 # Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping
 
 {</* resource-info */>}
 
-There are roughly four eras of Python web scraping. `urllib` and a regex.
-Then `requests` plus `BeautifulSoup`. Then `Scrapy` for anything
-serious. Then `Playwright` once half the web went JavaScript-only and
+There are roughly four eras of Python web scraping. ```urllib```` and a regex.
+Then ````requests```` plus ````BeautifulSoup````. Then ````Scrapy```` for anything
+serious. Then ````Playwright```` once half the web went JavaScript-only and
 sent the previous three tools into the cliff face.
 
 [**Scrapling**](https://github.com/D4Vinci/Scrapling) is one of the
@@ -73,20 +74,20 @@ import.**
 ## The three-fetcher model
 
 This is the part of the design I find genuinely well thought out.
-Most scraping projects accumulate a hairball of `requests` for the
-fast pages, `Selenium` or `Playwright` for the JS-heavy ones, and
+Most scraping projects accumulate a hairball of ````requests```` for the
+fast pages, ````Selenium```` or ````Playwright```` for the JS-heavy ones, and
 some custom CDN-bypass for the protected ones. Scrapling separates
 those into three tiers with the same response shape: | Fetcher | Backend | When to use |
 | --- | --- | --- |
-| `Fetcher` | Plain HTTP, with TLS fingerprint impersonation | Static HTML; you don't need a real browser; you want it fast |
-| `StealthyFetcher` | Headless browser with anti-detection patches | Cloudflare/JS-protected pages where a real browser is required |
-| `DynamicFetcher` | Playwright/Chromium, full automation | SPA with complex auth, click flows, or JS-rendered data |
+| ````Fetcher```` | Plain HTTP, with TLS fingerprint impersonation | Static HTML; you don't need a real browser; you want it fast |
+| ````StealthyFetcher```` | Headless browser with anti-detection patches | Cloudflare/JS-protected pages where a real browser is required |
+| ````DynamicFetcher```` | Playwright/Chromium, full automation | SPA with complex auth, click flows, or JS-rendered data |
 
 In one Spider class you can mark different requests for different
-tiers. The README's example: ```python
+tiers. The README's example: `````python
 async def parse(self, response: Response): for link in response.css('a::attr(href)').getall(): if "protected" in link: yield Request(link, sid="stealth")
         else: yield Request(link, sid="fast", callback=self.parse)
-```
+`````
 
 The reason this matters: in a real crawl, only a fraction of pages
 need the heavy backend, but you usually end up paying browser
@@ -115,7 +116,7 @@ the table — Parsel (the engine Scrapy uses) is 2.04 ms vs Scrapling's
 isn't, at the parser layer.
 
 Where Scrapling probably *does* win in real workloads is the network
-layer — TLS fingerprint impersonation in `Fetcher` lets you skip the
+layer — TLS fingerprint impersonation in ````Fetcher```` lets you skip the
 "add Playwright just to get past basic JA3 fingerprinting" tax. That
 saves seconds per request, not microseconds.
 
@@ -138,44 +139,44 @@ maintains itself" feature.
 
 ## What's the simplest thing that works?
 
-Lifted directly from the docs, the absolute minimum is: ```python
+Lifted directly from the docs, the absolute minimum is: `````python
 from scrapling.fetchers import Fetcher, FetcherSession
 
 with FetcherSession(impersonate='chrome') as session: page = session.get('https://quotes.toscrape.com/', stealthy_headers=True)
     quotes = page.css('.quote .text::text').getall()
-```
+`````
 
 That's it. Three lines for "fetch and parse with Chrome's TLS
-fingerprint." The `impersonate='chrome'` parameter is the
+fingerprint." The ````impersonate='chrome'```` parameter is the
 curl_cffi-style fingerprint spoofing — useful when a target uses
 basic fingerprint-based bot detection.
 
-For Cloudflare-protected pages: ```python
+For Cloudflare-protected pages: `````python
 from scrapling.fetchers import StealthyFetcher
 
 page = StealthyFetcher.fetch('https://nopecha.com/demo/cloudflare')
 data = page.css('#padded_content a').getall()
-```
+`````
 
-Note that `StealthyFetcher` requires a separate browser install: ```bash
+Note that ``StealthyFetcher`` requires a separate browser install: `````bash
 pip install "scrapling[fetchers]"
 scrapling install
-```
+`````
 
-The `scrapling install` step pulls down patched Chromium binaries. On
+The ````scrapling install```` step pulls down patched Chromium binaries. On
 a fresh server that's a couple hundred MB of dependencies, which is
-worth knowing before you `pip install` it on a small VM.
+worth knowing before you ````pip install```` it on a small VM.
 
 ## Compared to the obvious alternatives
 
 | Need | Reach for |
 | --- | --- |
-| One-off script, simple HTML, learning | `requests` + `BeautifulSoup` |
-| Big crawl, well-defined pipeline, mature ecosystem | `Scrapy` |
-| Heavy JS app, complex auth flow, you control the browser | `Playwright` directly |
-| TLS fingerprinting, no browser overhead | `curl_cffi` |
-| Cloudflare/Turnstile-protected static-ish pages | `cloudscraper` or `Scrapling.StealthyFetcher` |
-| You want **all of the above** in one library | `Scrapling` |
+| One-off script, simple HTML, learning | ````requests```` + ````BeautifulSoup```` |
+| Big crawl, well-defined pipeline, mature ecosystem | ````Scrapy```` |
+| Heavy JS app, complex auth flow, you control the browser | ````Playwright```` directly |
+| TLS fingerprinting, no browser overhead | ````curl_cffi```` |
+| Cloudflare/Turnstile-protected static-ish pages | ````cloudscraper```` or ````Scrapling.StealthyFetcher```` |
+| You want **all of the above** in one library | ````Scrapling```` |
 
 The most honest thing I can say: if your project has a clear shape
 ("we're crawling 10M product pages on a known site"), use the tool
@@ -195,14 +196,14 @@ expect that what works today won't necessarily work next quarter. If
 your business depends on it, plan for ongoing maintenance, not "set
 it and forget it."
 
-**`robots_txt_obey` is opt-in, not default.** This is a deliberate
+**````robots_txt_obey```` is opt-in, not default.** This is a deliberate
 design choice (some users have legitimate reasons to bypass robots
 files — e.g. you own the site you're crawling) but it means you
 have to consciously turn it on. Forgetting to do so on a third-party
 site is a thing you'll regret in court before you regret it
 technically.
 
-**Stealth ≠ permission.** The library has a `LICENSE` and a
+**Stealth ≠ permission.** The library has a ````LICENSE```` and a
 disclaimer that's worth quoting: > "This library is provided for educational and research purposes
 > only. By using this library, you agree to comply with local and
 > international data scraping and privacy laws."
@@ -221,7 +222,7 @@ when not to use them.
 Three concrete cases I think Scrapling is well-suited for: 1. **Personal data export.** A service holds your data and won't
    provide a real export API. Scraping your own account with a real
    browser, slowly, with respect for their rate limits — Scrapling's
-   `DynamicSession` is good at this.
+   ````DynamicSession``` is good at this.
 
 2. **A small commercial crawl that hits two or three different
    protection levels.** You don't want to architect a Scrapy +
@@ -263,7 +264,7 @@ The full source and docs are at
 - [Python Context Managers: The Three Cases You Actually Need](/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) — Python best practices
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -309,4 +310,4 @@ For developers building or deploying open-source AI tools, we recommend: - **{{<
   }
 }
 </script>
----
+* * *

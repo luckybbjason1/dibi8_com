@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/stable-diffusion-webui/
 ---
 
+
 {{</* resource-info */>}}
 
 Stable Diffusion WebUI do AUTOMATIC1111 phát triển vẫn là giao diện mã nguồn mở được sử dụng rộng rãi nhất cho việc tạo ảnh AI cục bộ. Với **159,000+ GitHub stars**, nó tích lũy được cộng đồng lớn hơn bất kỳ giao diện cạnh tranh nào. Nếu bạn đang xây dựng pipeline tạo ảnh AI cục bộ, việc hiểu cách cài đặt, cấu hình và mở rộng công cụ này là kỹ năng thiết yếu.
@@ -35,7 +36,7 @@ Hướng dẫn này sẽ đi qua toàn bộ quá trình cài đặt Stable Diffu
 
 ## Stable Diffusion WebUI Là Gì?
 
-Stable Diffusion WebUI là giao diện dựa trên trình duyệt để chạy các mô hình Stable Diffusion cục bộ. Nó bao bọc pipeline suy luận bên dưới trong ứng dụng web dạng tab có thể truy cập tại `http://localhost:7860`, cung cấp điều khiển cho txt2img, img2img, inpainting, upscaling, model merging và training LoRA/DreamBooth —— tất cả mà không cần viết code.
+Stable Diffusion WebUI là giao diện dựa trên trình duyệt để chạy các mô hình Stable Diffusion cục bộ. Nó bao bọc pipeline suy luận bên dưới trong ứng dụng web dạng tab có thể truy cập tại ```http://localhost:7860````, cung cấp điều khiển cho txt2img, img2img, inpainting, upscaling, model merging và training LoRA/DreamBooth —— tất cả mà không cần viết code.
 
 Dự án được duy trì bởi AUTOMATIC1111 theo giấy phép AGPL-3.0. Phiên bản v1.10.1 (phát hành đầu 2025) đã cải thiện quá trình tinh chỉnh SDXL, tối ưu quản lý bộ nhớ cho GPU 8GB và thêm hỗ trợ native cho suy luận SD3 Medium. Hệ sinh thái mở rộng bao gồm hơn 1,000 plugin cộng đồng.
 
@@ -44,7 +45,7 @@ Dự án được duy trì bởi AUTOMATIC1111 theo giấy phép AGPL-3.0. Phiê
 Kiến trúc theo mẫu Python backend module hóa + Gradio frontend: ![WebUI Architecture Flow](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png)
 *Kiến trúc: Gradio frontend giao tiếp với Python backend module qua HTTP cục bộ*
 
-```
+`````
 Trình duyệt ngườI dùng (Gradio UI)
     |
     v
@@ -59,9 +60,9 @@ Python Backend (modules/)
     |
     v
 PyTorch + CUDA --- GPU (VRAM: 4-24GB)
-```
+`````
 
-Các khái niệm quan trọng cần hiểu trước khi cài đặt: - **Checkpoint**: File mô hình chính (`.safetensors` hoặc `.ckpt`) chứa trọng số diffusion đã huấn luyện. Mô hình SD 1.5 khoảng 4GB; SDXL khoảng 6-7GB.
+Các khái niệm quan trọng cần hiểu trước khi cài đặt: - **Checkpoint**: File mô hình chính (````.safetensors```` hoặc ````.ckpt````) chứa trọng số diffusion đã huấn luyện. Mô hình SD 1.5 khoảng 4GB; SDXL khoảng 6-7GB.
 - **VAE**: Xử lý bước encode/decode giữa không gian pixel và latent. VAE không khớp sẽ tạo ra đầu ra mờ hoặc xỉn màu.
 - **Sampler**: Thuật toán khử nhiễu dần dần. DPM++ 2M Karras là lựa chọn được khuyến nghị nhiều nhất.
 - **CFG Scale**: Điều khiển mức độ tuân thủ prompt. Giá trị 7-9 phù hợp với hầu hết trường hợp.
@@ -81,7 +82,7 @@ Các khái niệm quan trọng cần hiểu trước khi cài đặt: - **Checkp
 
 ### Cài Đặt Windows (Tự động)
 
-```batch
+`````batch
 :: Tải sd.webui.zip từ trang releases
 :: Giải nén tại C:\stable-diffusion-webui
 :: Chạy updater trước
@@ -90,11 +91,11 @@ update.bat
 
 :: KhởI chạy WebUI
 run.bat
-```
+`````
 
 ### Tham số dòng lệnh Windows
 
-Chỉnh sửa `webui-user.bat`: ```batch
+Chỉnh sửa ``webui-user.bat``: `````batch
 @echo off
 
 set PYTHON=python
@@ -109,11 +110,11 @@ set COMMANDLINE_ARGS=--xformers --autolaunch --update-check
 :: RTX 40-series thêm --xformers để tăng 20-30% tốc độ
 
 call webui.bat
-```
+`````
 
 ### Cài Đặt Linux (Thủ công)
 
-```bash
+`````bash
 # Cài dependencies (Ubuntu/Debian)
 sudo apt update && sudo apt install -y wget git python3 python3-venv libgl1 libglib2.0-0
 
@@ -129,11 +130,11 @@ pip install -r requirements.txt
 
 # KhởI chạy
 ./webui.sh --xformers --listen
-```
+`````
 
 ### Cài Đặt Docker (Khuyến nghị cho Production)
 
-```dockerfile
+`````dockerfile
 # Dockerfile.stable-diffusion-webui
 FROM nvidia/cuda:12.1.1-devel-ubuntu22.04
 
@@ -162,9 +163,9 @@ USER sduser
 EXPOSE 7860
 
 ENTRYPOINT ["bash", "-c", \". venv/bin/activate && python3 launch.py --listen --api --xformers"]
-```
+`````
 
-Build và chạy: ```bash
+Build và chạy: `````bash
 # Build image
 docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .
 
@@ -178,9 +179,9 @@ docker run -d \
   -v $(pwd)/extensions:/home/sduser/stable-diffusion-webui/extensions \
   -e NVIDIA_VISIBLE_DEVICES=all \
   sd-webui:latest
-```
+`````
 
-Docker Compose: ```yaml
+Docker Compose: `````yaml
 # docker-compose.yml
 version: '3.8"
 
@@ -198,17 +199,17 @@ services: stable-diffusion-webui: build: context: .
               count: all
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-Triển khai: ```bash
+Triển khai: `````bash
 docker-compose up -d
-```
+`````
 
 ### Cài Đặt trên Cloud GPU với Hostinger
 
 Nếu phần cứng cục bộ không đủ mạnh, [Hostinger VPS](https://www.hostinger.vn/vps-hosting) cung cấp máy chủ ảo với hiệu suất cao phù hợp cho việc chạy Stable Diffusion WebUI. Hostinger có giá cả cạnh tranh và hỗ trợ khách hàng bằng tiếng Việt.
 
-```bash
+`````bash
 # Trên Hostinger VPS (Ubuntu 22.04)
 sudo apt update && sudo apt install -y git wget
 
@@ -224,7 +225,7 @@ pip install -r requirements.txt
 
 # KhởI chạy
 python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:matkhau123
-```
+`````
 
 *Tuyên bố: Liên kết Hostinger là liên kết affiliate. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua các liên kết này —— không phát sinh chi phí thêm cho bạn và giúp hỗ trợ nội dung mã nguồn mở của chúng tôi.*
 
@@ -235,7 +236,7 @@ python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:matkhau123
 ControlNet cho phép tạo ảnh có kiểm soát cấu trúc: ![Giao diện ControlNet](https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png)
 *Panel mở rộng ControlNet trong tab txt2img của WebUI*
 
-```bash
+`````bash
 # Cài qua tab Extensions (khuyến nghị)
 # 1. Mở WebUI → Extensions → Available
 # 2. Click "Load from"
@@ -245,9 +246,9 @@ ControlNet cho phép tạo ảnh có kiểm soát cấu trúc: ![Giao diện Con
 
 # Hoặc cài thủ công: cd extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
-```
+`````
 
-Tải models ControlNet: ```bash
+Tải models ControlNet: `````bash
 # Models ControlNet cơ bản (SD 1.5)
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
@@ -255,25 +256,25 @@ wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/res
 
 # Models ControlNet SDXL
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors
-```
+`````
 
 ### Tích Hợp LoRA
 
-```bash
+`````bash
 # Tải LoRA vào thư mục models/Lora/
 wget -P models/Lora/ "https://civitai.com/api/download/models/12345"
-```
+`````
 
-Sử dụng LoRA trong prompt: ```
+Sử dụng LoRA trong prompt: `````
 <lora:add-detail-xl:1.0>, masterpiece, best quality, portrait of a warrior
 <lora:epiCRealismHelper:0.6>, photorealistic, 8k uhd
-```
+`````
 
-Cú pháp: `<lora:filename:weight>`, weight từ 0.0 đến 1.0.
+Cú pháp: ````<lora:filename:weight>````, weight từ 0.0 đến 1.0.
 
 ### Cầu Nối ComfyUI
 
-```bash
+`````bash
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 pip install -r requirements.txt
@@ -283,11 +284,11 @@ ln -s /path/to/stable-diffusion-webui/models/Stable-diffusion models/checkpoints
 ln -s /path/to/stable-diffusion-webui/models/Lora models/loras
 
 python main.py --port 8188
-```
+`````
 
 ### Danh Sách Extensions Thiết Yếu
 
-```bash
+`````bash
 cd extensions
 
 # Adetailer - sửa mặt/tay tự động
@@ -304,7 +305,7 @@ git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
 
 # System Info + Benchmark
 git clone https://github.com/vladmandic/sd-extension-system-info.git
-```
+`````
 
 ## Benchmark / Use Case Thực Tế
 
@@ -323,12 +324,12 @@ git clone https://github.com/vladmandic/sd-extension-system-info.git
 |----------|----------------|---------|
 | txt2img SD 1.5 @ 512x512 | ~4.5 GB | Chạy được trên mọi GPU hiện đại |
 | txt2img SDXL @ 1024x1024 | ~8.0 GB | Cần 8GB+ VRAM |
-| SDXL + 1x ControlNet | ~12.5 GB | Dùng `--medvram` cho card 8GB |
+| SDXL + 1x ControlNet | ~12.5 GB | Dùng ````--medvram```` cho card 8GB |
 | SDXL + Hi-Res Fix 2x | ~14.0 GB | Khuyến nghị Tiled VAE |
 
 ### Tham Số Tối Ưu Bộ Nhớ
 
-```bash
+`````bash
 # GPU 4GB: python3 launch.py --lowvram --precision full --no-half --xformers
 
 # GPU 6-8GB: python3 launch.py --medvram --xformers --opt-split-attention
@@ -336,13 +337,13 @@ git clone https://github.com/vladmandic/sd-extension-system-info.git
 # GPU 12GB+: python3 launch.py --xformers --opt-sdp-attention
 
 # GPU 24GB: python3 launch.py --xformers --opt-sdp-attention --no-half-vae
-```
+`````
 
 ## Sử Dụng Nâng Cao / Tối Ưu Production
 
 ### Tích Hợp API
 
-```python
+`````python
 import requests
 import base64
 
@@ -364,11 +365,11 @@ response = requests.post(url, json=payload)
 result = response.json()
 
 for i, img_data in enumerate(result[images]): with open(f"output_{i}.png", "wb") as f: f.write(base64.b64decode(img_data))
-```
+`````
 
 ### Script Xử Lý Hàng Loạt
 
-```python
+`````python
 import requests
 import csv
 import base64
@@ -391,11 +392,11 @@ def generate_image(prompt, filename, width=1024, height=1024): payload = {
 
 with open("prompts.csv", "r") as f: reader = csv.DictReader(f)
     for i, row in enumerate(reader): generate_image(row[prompt], f"output_{i:04d}.png")
-```
+`````
 
 ### Bảo Mật Production
 
-```bash
+`````bash
 # 1. Bật xác thực
 python3 launch.py --listen --gradio-auth admin:matkhau_manh
 
@@ -420,7 +421,7 @@ sudo ufw default deny incoming
 sudo ufw allow ssh
 sudo ufw allow 443/tcp
 sudo ufw enable
-```
+`````
 
 ## So Sánh với Các Lựa Chọn Khác
 
@@ -459,23 +460,23 @@ GPU NVIDIA tối thiểu 4GB VRAM cho SD 1.5 ở 512x512. SDXL 1024x1024 cần 8
 
 ### Cách cập nhật Stable Diffusion WebUI?
 
-Chạy `git pull` trong thư mục cài đặt, sau đó restart. Windows: double-click `update.bat`. Nếu extensions bị lỗi sau update, xóa thư mục `venv` để buộc cài lại dependencies.
+Chạy ````git pull```` trong thư mục cài đặt, sau đó restart. Windows: double-click ````update.bat````. Nếu extensions bị lỗi sau update, xóa thư mục ````venv```` để buộc cài lại dependencies.
 
 ### Có thể chạy không có GPU NVIDIA không?
 
-Có, nhưng hạn chế. GPU AMD hoạt động trên Linux qua ROCm. Apple Silicon Mac chạy qua MPS backend nhưng chậm hơn 3-5 lần. Chế độ CPU-only với `--use-cpu all` mất 5-10 phút cho một ảnh 512x512.
+Có, nhưng hạn chế. GPU AMD hoạt động trên Linux qua ROCm. Apple Silicon Mac chạy qua MPS backend nhưng chậm hơn 3-5 lần. Chế độ CPU-only với ````--use-cpu all```` mất 5-10 phút cho một ảnh 512x512.
 
 ### Tại sao ảnh tạo ra lại đen hoặc xanh lá?
 
-Vấn đề half-precision trên một số GPU/driver. Thêm `--precision full --no-half`. Riêng lỗi NaN ở VAE dùng `--no-half-vae`.
+Vấn đề half-precision trên một số GPU/driver. Thêm ````--precision full --no-half````. Riêng lỗi NaN ở VAE dùng ````--no-half-vae````.
 
 ### Cách khắc phục lỗi "CUDA out of memory"?
 
-Bật xFormers `--xformers` (giảm 20-30% VRAM). GPU 8GB dùng `--medvram`, 4-6GB dùng `--lowvram`. Cài Tiled VAE. Dùng model FP8/NF4 quantized giảm 50% VRAM.
+Bật xFormers ````--xformers```` (giảm 20-30% VRAM). GPU 8GB dùng ````--medvram````, 4-6GB dùng ````--lowvram````. Cài Tiled VAE. Dùng model FP8/NF4 quantized giảm 50% VRAM.
 
 ### Expose WebUI ra internet có an toàn không?
 
-Không —— nếu không có bảo mật bổ sung. `--listen` expose UI không cần auth. Luôn kết hợp `--gradio-auth` với HTTPS reverse proxy và firewall.
+Không —— nếu không có bảo mật bổ sung. ````--listen```` expose UI không cần auth. Luôn kết hợp ````--gradio-auth```` với HTTPS reverse proxy và firewall.
 
 ## Kết Luận
 
@@ -486,7 +487,7 @@ Stable Diffusion WebUI của AUTOMATIC1111 vẫn là điểm khởi đầu thự
 1. Xác nhận GPU có 8GB+ VRAM, cài WebUI bằng installer tự động hoặc Docker
 2. Cài ControlNet + 4 models cốt lõi
 3. Tải 2-3 checkpoint SDXL chất lượng và 5-10 LoRA adapter
-4. Cấu hình `--xformers` và flag VRAM phù hợp
+4. Cấu hình ````--xformers``` và flag VRAM phù hợp
 5. Thiết lập nginx reverse proxy nếu deploy ngoài localhost
 
 **Thảo luận hoặc nhận trợ giúp trong nhóm Telegram:** [t.me/dibi8opensource](https://t.me/dibi8opensource)
@@ -539,7 +540,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -549,6 +550,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [comfyui-workflows-complete-guide](stable-diffusion-webui)
 - [modal-serverless-gpu-compute](stable-diffusion-webui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

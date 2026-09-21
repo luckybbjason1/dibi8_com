@@ -7,6 +7,7 @@ aliases:
   - /posts/llamaindex-vs-langchain/
 ---
 
+
 {</* resource-info */>}
 
 LLM 애플리케이션 개발 프레임워크를 선택할 때 가장 많이 비교되는 두 도구가 있다. 바로 LangChain과 LlamaIndex다. 2025년 5월 기준 두 프레임워크 모두 GitHub에서 96,000개 이상의 Star를 보유하고 있으며, 각각 다른 철학과 강점을 가지고 있다. 이 글은 실제 사용례 중심으로 두 프레임워크를 심층 비교한다.
@@ -63,15 +64,15 @@ LlamaIndex는 "데이터 프레임워크 for LLM"을 자처한다. 외부 데이
 
 ### 아키텍처와 추상화 수준 비교
 
-LangChain은 `Runnable` 인터페이스를 기반으로 한 파이프라인 중심 아키텍처를 사용한다. 모든 컴포넌트는 `invoke`, `stream`, `batch` 메서드를 구현하며, `|` 연산자로 체이닝한다.
+LangChain은 ```Runnable```` 인터페이스를 기반으로 한 파이프라인 중심 아키텍처를 사용한다. 모든 컴포넌트는 ````invoke````, ````stream````, ````batch```` 메서드를 구현하며, ````|```` 연산자로 체이닝한다.
 
-LlamaIndex는 `QueryEngine`, `ChatEngine`이라는 고수준 추상화를 제공한다. 데이터 인덱싱부터 검색, 응답 생성까지 일관된 파이프라인을 구성하며, 낮은 수준의 커스터마이징도 지원한다.
+LlamaIndex는 ````QueryEngine````, ````ChatEngine````이라는 고수준 추상화를 제공한다. 데이터 인덱싱부터 검색, 응답 생성까지 일관된 파이프라인을 구성하며, 낮은 수준의 커스터마이징도 지원한다.
 
 ### 문서 처리 및 인덱싱 비교
 
-LlamaIndex는 문서 처리에서 명확한 우위를 보인다. `SimpleDirectoryReader`로 다양한 파일 형식을 자동 감지하고, `SentenceWindowNodeParser`, `HierarchicalNodeParser` 등 고급 파서를 제공한다. 자동 메타데이터 추출 기능은 2025년 0.12.x 버전에서 대폭 강화되었다.
+LlamaIndex는 문서 처리에서 명확한 우위를 보인다. ````SimpleDirectoryReader````로 다양한 파일 형식을 자동 감지하고, ````SentenceWindowNodeParser````, ````HierarchicalNodeParser```` 등 고급 파서를 제공한다. 자동 메타데이터 추출 기능은 2025년 0.12.x 버전에서 대폭 강화되었다.
 
-LangChain도 `PyPDFLoader`, `UnstructuredLoader` 등 다양한 로더를 제공하지만, 인덱싱과 검색 전략의 깊이는 LlamaIndex가 한 단계 앞선다.
+LangChain도 ````PyPDFLoader````, ````UnstructuredLoader```` 등 다양한 로더를 제공하지만, 인덱싱과 검색 전략의 깊이는 LlamaIndex가 한 단계 앞선다.
 
 ### 검색 전략 비교
 
@@ -94,14 +95,14 @@ LangChain도 `PyPDFLoader`, `UnstructuredLoader` 등 다양한 로더를 제공�
 
 다음 상황에서는 LlamaIndex가 더 적합한 선택이다: 1. **문서 기반 Q&A 시스템을 구축할 때** - PDF, 워드, 엑셀 등 다양한 문서를 자동으로 처리하고 정확한 답변을 생성한다
 2. **고급 RAG 파이프라인이 필요할 때** - 하이브리드 검색, 재순위화, 지식 그래프 등 최신 RAG 기법을 내장하고 있다
-3. **지식 그래프를 구축할 때** - `KnowledgeGraphIndex`로 자동으로 지식 그래프를 생성하고 쿼리할 수 있다
+3. **지식 그래프를 구축할 때** - ````KnowledgeGraphIndex````로 자동으로 지식 그래프를 생성하고 쿼리할 수 있다
 4. **멀티 모달 데이터를 검색할 때** - 이미지, 비디오, 오디오와 텍스트를 함께 인덱싱하고 검색한다
 
 ## 두 프레임워크를 함께 사용할 수 있을까?
 
 네, 가능하다. 실제로 가장 효과적인 접근법 중 하나는 **LlamaIndex를 RAG 백엔드로 사용하고, LangChain을 오케스트레이션 레이어로 사용하는 것**이다.
 
-```python
+`````python
 # LlamaIndex로 인덱스 구성
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -120,7 +121,7 @@ llama_tool = Tool(
 )
 
 agent = create_react_agent(llm, [llama_tool], prompt)
-```
+`````
 
 이 하이브리드 접근법은 두 프레임워크의 강점을 동시에 활용할 수 있다.
 
@@ -129,15 +130,15 @@ agent = create_react_agent(llm, [llama_tool], prompt)
 **LangChain 0.3+ 주요 변경사항:**
 
 - Pydantic v2 완전 마이그레이션
-- `langchain-core`의 안정화된 LCEL API
+- ````langchain-core````의 안정화된 LCEL API
 - LangGraph 0.2의 서브그래프, 체크포인터 개선
 - LangSmith GA 및 온프레미스 배포 지원
 
 **LlamaIndex v0.12+ 주요 변경사항:**
 
-- `Workflow` 기반의 새로운 에이전트 시스템
+- ````Workflow```` 기반의 새로운 에이전트 시스템
 - 멀티 모달 RAG의 대폭적인 개선
-- `LlamaCloud` 관리형 파싱 서비스 정식 출시
+- ````LlamaCloud``` 관리형 파싱 서비스 정식 출시
 - 속도 최적화: 인덱싱 속도 40% 개선
 
 ## 최종 판결: 어떤 것을 선택해야 할까?
@@ -154,7 +155,7 @@ agent = create_react_agent(llm, [llama_tool], prompt)
 - RAG와 에이전트가 모두 필요하다
 - 팀에 두 프레임워크 모두를 다룰 수 있는 인력이 있다
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -181,7 +182,7 @@ LangChain은 LangSmith라는 관리형 SaaS와 LangGraph Cloud를 통해 상용 
 - [LangChain GitHub 저장소](https://github.com/langchain-ai)
 - [RAG Survey Paper (arXiv)](https://arxiv.org)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -253,7 +254,7 @@ LlamaIndex vs LangChain 2025: 당신에게 맞는 LLM 프레임워크는? repres
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -22,6 +22,7 @@ aliases:
   - /posts/vector-database-comparison/
 ---
 
+
 {</* resource-info */>}
 
 Vector database đã trở thành thành phần không thể thiếu trong hầu hết các hệ thống AI hiện đại, đặc biệt là các ứng dụng Retrieval-Augmented Generation (RAG). Khác với cơ sở dữ liệu quan hệ truyền thống lưu trữ dữ liệu dạng bảng, vector database chuyên lưu trữ và tìm kiếm các embedding vector — những biểu diễn số học của văn bản, hình ảnh, âm thanh. Việc chọn đúng vector database có thể quyết định hiệu suất, chi phí và khả năng mở rộng của toàn bộ hệ thống AI. Bài viết này so sánh chi tiết bốn lựa chọn hàng đầu năm 2025: Pinecone, Weaviate, Chroma, và Milvus.
@@ -34,7 +35,7 @@ Embedding vector là một mảng số thực (thường có 384, 768, hoặc 15
 
 ### Tại Sao Cơ Sở Dữ Liệu Truyền Thống Không Đủ?
 
-Các database truyền thống như PostgreSQL, MySQL thiếu khả năng tìm kiếm theo độ tương đồng ngữ nghĩa. Truy vấn `SELECT * WHERE content LIKE '%keyword%"` không thể tìm được văn bản liên quan nếu không chứa đúng từ khóa. Vector database giải quyết vấn đề này bằng cách tìm kiếm theo ý nghĩa, không phải theo từ khóa.
+Các database truyền thống như PostgreSQL, MySQL thiếu khả năng tìm kiếm theo độ tương đồng ngữ nghĩa. Truy vấn ```SELECT * WHERE content LIKE '%keyword%"```` không thể tìm được văn bản liên quan nếu không chứa đúng từ khóa. Vector database giải quyết vấn đề này bằng cách tìm kiếm theo ý nghĩa, không phải theo từ khóa.
 
 ### Vai Trò Cứa Vector Database Trong Ứng Dụng RAG
 
@@ -76,7 +77,7 @@ Weaviate là vector search engine mã nguồn mở với thiết kế AI-native 
 
 ### Giao Diện GraphQL
 
-Weaviate cung cấp API GraphQL trực quan cho cả tìm kiếm vector và truy vấn dữ liệu: ```graphql
+Weaviate cung cấp API GraphQL trực quan cho cả tìm kiếm vector và truy vấn dữ liệu: `````graphql
 {
   Get {
     Article(
@@ -89,7 +90,7 @@ Weaviate cung cấp API GraphQL trực quan cho cả tìm kiếm vector và truy
     }
   }
 }
-```
+`````
 
 ### Tích Hợp Module AI
 
@@ -117,13 +118,13 @@ Chroma là vector database được thiết kế đặc biệt cho developer, v�
 
 ### API Python/JS Đơn Giản
 
-Chroma có API trực quan nhất trong số các vector database: ```python
+Chroma có API trực quan nhất trong số các vector database: `````python
 import chromadb
 client = chromadb.Client()
 collection = client.create_collection("my_docs")
 collection.add(documents=["Hello world"], ids=["doc1"])
 results = collection.query(query_texts=["Hi"], n_results=1)
-```
+`````
 
 ### Thiết Kế Local-First
 
@@ -218,7 +219,7 @@ Recall rate đo lường tỷ lệ kết quả thực sự gần nhất được
 
 ### Framework Quyết Định
 
-```
+`````
 Bạn cần vector database?
 ├── Prototype / Development?
 │   └── → Chroma (dễ nhất) hoặc Pinecone (nhanh nhất)
@@ -233,7 +234,7 @@ Bạn cần vector database?
 │   └── → Chroma (miễn phí) hoặc Milvus (mã nguồn mở)
 └── Không muốn quản lý hạ tầng?
     └── → Pinecone hoặc Zilliz Cloud
-```
+`````
 
 ### Startup/Prototype: Chroma Hoặc Pinecone
 
@@ -251,7 +252,7 @@ Nếu team không có DevOps để quản lý cơ sở hạ tầng, Pinecone ho�
 
 ### Tích Hợp LangChain
 
-Cả bốn database đều có integration native với LangChain: ```python
+Cả bốn database đều có integration native với LangChain: `````python
 from langchain.vectorstores import Pinecone, Weaviate, Chroma, Milvus
 
 # Pinecone
@@ -262,15 +263,15 @@ vectorstore = Chroma.from_documents(docs, embeddings, persist_directory="./chrom
 
 # Milvus
 vectorstore = Milvus.from_documents(docs, embeddings, connection_args={"host": "localhost", "port": "19530"})
-```
+`````
 
 ### Tích Hợp LlamaIndex
 
-```python
+`````python
 from llama_index.vector_stores import (
     PineconeVectorStore, ChromaVectorStore, MilvusVectorStore, WeaviateVectorStore
 )
-```
+````
 
 ## Các Vector Database Đáng Chú Ý Khác
 
@@ -312,7 +313,7 @@ Chroma là vector database local-first, miễn phí, dễ sử dụng, nhưng c�
 
 Theo benchmark, Milvus có hiệu suất tốt nhất với QPS cao nhất (12,500 QPS trên 1M vectors) và độ trễ thấp nhất (P50: 2.1ms). Pinecone đứng thứ hai về hiệu suất nhưng dẫn đầu về tính đơn giản. Chroma có hiệu suất thấp nhất nhưng phù hợp cho use case nhỏ.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

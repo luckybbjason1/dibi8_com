@@ -13,11 +13,12 @@ aliases:
   - /kr/posts/eigenlayer-restaking-defi/
 ---
 
+
 {{</* resource-info */>}}
 
 > **제휴 공개**: 본 문서에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 및 [Minara](https://minara.ai/r/OSXG4X) 제휴 링크가 포함되어 있습니다. 이 링크를 통해 등록하시면 커미션을 받을 수 있으며, 추가 비용은 발생하지 않습니다.
 
----
+* * *
 
 ## EigenLayer란 무엇이며 왜 중요한가?
 
@@ -29,7 +30,7 @@ EigenLayer는 지분 증명(PoS) 이후 이더리움 스테이킹 경제에서 �
 
 EigenLayer에서의 재스테이킹은 이더리움 검증자들이 추가 프로토콜 보안에 옵트인할 수 있게 합니다. 검증자가 재스테이킹할 때, 선택한 각 AVS에서 정의한 추가 슬래싱 조건에 자신을 노출시킵니다.
 
-재스테이킹 포지션의 라이프사이클은 다음 단계를 따릅니다: ```bash
+재스테이킹 포지션의 라이프사이클은 다음 단계를 따릅니다: ````bash
 # 1단계: 이더리움 비콘 체인에서 ETH 스테이킹
 # 단독 검증자는 32 ETH, 또는 유동성 스테이킹 토큰(LST) 사용
 
@@ -42,9 +43,9 @@ curl -X POST https://api.eigenlayer.com/restake \
     "amount": "1000000000000000000",
     "staker": "0x귀하의주소..."
   }'
-```
+`````
 
-```solidity
+`````solidity
 // 3단계: EigenLayer 전략 관리자가 기본 전략에 입금
 // 파일: StrategyManager.sol (단순화)
 function depositIntoStrategy(
@@ -60,9 +61,9 @@ function depositIntoStrategy(
     _addShares(msg.sender, strategy, shares);
     return shares;
 }
-```
+`````
 
-```solidity
+`````solidity
 // 4단계: 스테이커가 오퍼레이터에 위임
 // 오퍼레이터는 AVS 검증 소프트웨어를 실행
 function delegateTo(
@@ -77,9 +78,9 @@ function delegateTo(
         approverSignatureAndExpiry
     );
 }
-```
+`````
 
-```solidity
+`````solidity
 // 5단계: 오퍼레이터가 AVS 슬래싱 조건에 옵트인
 // AVS 계약이 커스텀 검증 및 슬래싱 로직 정의
 interface IAVSRegistry {
@@ -100,7 +101,7 @@ function optInToEigenDA(bytes memory blsPublicKey) external {
         blsSignature
     );
 }
-```
+`````
 
 ## 적극적 검증 서비스(AVS): 애플리케이션 레이어
 
@@ -110,7 +111,7 @@ AVS는 EigenLayer의 공유 보안을 활용하는 프로토콜과 서비스입�
 
 EigenDA는 EigenLayer 위에 구축된 가장 유명한 AVS입니다. 이더리움 롤업을 위한 고처리량, 저비용 데이터 가용성 솔루션을 제공하며, 중앙화된 데이터 가용성 솔루션에 대한 탈중앙화 대안 역할을 합니다.
 
-```go
+`````go
 // EigenDA disperser 클라이언트 - EigenDA에 blob 분산
 package main
 
@@ -153,9 +154,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
 
     return reply.GetResult(), nil
 }
-```
+`````
 
-```python
+`````python
 # EigenDA 검색 클라이언트 - blob 가용성 검증
 import asyncio
 import grpc
@@ -175,7 +176,7 @@ async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grp
             "KZG 증명 검증 실패"
         
         return response.blob
-```
+`````
 
 ## 첫 번째 AVS 구축하기: 완전한 개발자 설정
 
@@ -183,7 +184,7 @@ async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grp
 
 ### 전제 조건
 
-```bash
+`````bash
 # 필수 도구
 node --version  # >= 18.0.0
 foundry --version  # Forge 0.2.0+
@@ -193,11 +194,11 @@ go version  # >= 1.21
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 git clone https://github.com/Layr-Labs/eigenlayer-middleware.git
 cd eigenlayer-middleware && forge install && cd ..
-```
+`````
 
 ### 1단계: AVS 계약 아키텍처
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
@@ -275,11 +276,11 @@ contract PriceOracleAVS is BLSSignatureChecker, OperatorStateRetriever {
         emit PriceUpdated(assetId, proposedPrice, uint32(block.number));
     }
 }
-```
+`````
 
 ### 2단계: 오퍼레이터 노드 구현
 
-```go
+`````go
 // operator/price_task_generator.go
 package operator
 
@@ -367,11 +368,11 @@ func (g *PriceTaskGenerator) fetchAggregatedPrice(
     
     return calculateMedian(prices), nil
 }
-```
+`````
 
 ### 3단계: 집계기 서비스
 
-```go
+`````go
 // aggregator/aggregator.go
 package aggregator
 
@@ -432,11 +433,11 @@ func (a *PriceAggregator) ProcessSignedPriceResponse(
     // 집계 시도
     return a.tryAggregateResponses(taskState)
 }
-```
+`````
 
 ### 4단계: 배포 스크립트
 
-```bash
+`````bash
 #!/bin/bash
 # deploy_avs.sh - PriceOracle AVS를 메인넷에 배포
 
@@ -469,9 +470,9 @@ forge script script/DeployPriceOracleAVS.s.sol:DeployStakeRegistry \
 
 echo "=== 배포 완료 ==="
 echo "레지스트리 코디네이터: $REGISTRY_COORDINATOR"
-```
+`````
 
-```solidity
+`````solidity
 // script/DeployPriceOracleAVS.s.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
@@ -494,13 +495,13 @@ contract DeployAVS is Script {
         console.log("PriceOracleAVS 배포 위치:", address(priceOracleAVS));
     }
 }
-```
+`````
 
 ## 슬래싱 조건 및 리스크 관리
 
 EigenLayer의 핵심 측면 중 하나는 슬래싱 메커니즘입니다. 오퍼레이터가 AVS에 옵트인하면 이더리움 컨센서스를 넘어 추가 슬래싱 조건에 동의하게 됩니다.
 
-```solidity
+`````solidity
 // PriceOracle AVS용 커스텀 슬래싱 조건
 interface ISlasher {
     function freezeOperator(address operator) external;
@@ -546,9 +547,9 @@ contract PriceOracleSlashing {
         emit OperatorSlashed(operator, slashAmount, "DIVERGENT_RESPONSE");
     }
 }
-```
+`````
 
-```go
+`````go
 // 오퍼레이터 상태 모니터링 및 슬래시 가능 이벤트 감지
 package monitoring
 
@@ -575,13 +576,13 @@ func (m *SlashMonitor) StartMonitoring(ctx context.Context) {
         }
     }
 }
-```
+`````
 
 ## 보상 배분 메커니즘
 
 EigenLayer의 보상 배분은 AVS 개발자가 검증 작업에 대한 오퍼레이터 인센티브를 제공할 수 있게 합니다.
 
-```solidity
+`````solidity
 // PriceOracle AVS용 보상 배분 계약
 contract PriceOracleRewards is IRewardsCoordinator {
     
@@ -638,13 +639,13 @@ contract PriceOracleRewards is IRewardsCoordinator {
         emit RewardsClaimed(msg.sender, amount);
     }
 }
-```
+`````
 
 ## 유동성 재스테이킹 토큰(LRT) 통합
 
 자체 검증자 인프라를 실행하고 싶지 않은 사용자를 위해 유동성 재스테이킹 토큰은 접근 가능한 진입점을 제공합니다.
 
-```typescript
+`````typescript
 // LRT 상호작용용 TypeScript SDK
 import { ethers, Contract } from ethers;
 import { EigenLayerSDK } from '@eigenlayer/sdk';
@@ -665,8 +666,8 @@ async function depositForLRT(stethAmount: bigint) {
   });
   
   const receipt = await tx.wait();
-  console.log(`${stethAmount} stETH 입금 완료, ezETH 수령`);
-  console.log(`트랜잭션: ${receipt.hash}`);
+  console.log(````${stethAmount} stETH 입금 완료, ezETH 수령````);
+  console.log(````트랜잭션: ${receipt.hash}````);
   
   // 기본 AVS 노출 쿼리
   const avsExposure = await renzo.getAVSExposure(walletAddress);
@@ -678,13 +679,13 @@ async function aggregateLRTYield() {
   const portfolio = await sdk.getLRTPortfolio(walletAddress);
   
   for (const position of portfolio.positions) {
-    console.log(`\n${position.lrtSymbol}:`);
-    console.log(`  잔액: ${position.balance}`);
-    console.log(`  기본 ETH: ${position.underlyingETH}`);
-    console.log(`  30일 수익률: ${position.thirtyDayYield}%`);
+    console.log(````\n${position.lrtSymbol}:````);
+    console.log(````  잔액: ${position.balance}````);
+    console.log(````  기본 ETH: ${position.underlyingETH}````);
+    console.log(````  30일 수익률: ${position.thirtyDayYield}%````);
   }
 }
-```
+`````
 
 ## FAQ: EigenLayer에 대해 자주 묻는 질문
 
@@ -710,13 +711,13 @@ A: 아니요 — EigenLayer는 약 7일(이더리움 "활성화 지연" 에폭)�
 
 **Q6: AVS를 구축하려면 어떤 프로그래밍 언어와 프레임워크가 필요한가요?**
 
-A: 스마트 계약 레이어는 Solidity(Foundry 프레임워크)를 사용합니다. 오퍼레이터 노드는 일반적으로 EigenSDK를 사용한 Go로 구축됩니다. BLS 서명 집계에는 `eigen-crypto` 라이브러리가 필요합니다. 참조 EigenDA 구현은 분산자/검색기 서비스에 Go, 노드 클라이언트에 Rust를 사용합니다. Docker와 Kubernetes가 프로덕션 배포의 표준입니다.
+A: 스마트 계약 레이어는 Solidity(Foundry 프레임워크)를 사용합니다. 오퍼레이터 노드는 일반적으로 EigenSDK를 사용한 Go로 구축됩니다. BLS 서명 집계에는 ````eigen-crypto```` 라이브러리가 필요합니다. 참조 EigenDA 구현은 분산자/검색기 서비스에 Go, 노드 클라이언트에 Rust를 사용합니다. Docker와 Kubernetes가 프로덕션 배포의 표준입니다.
 
 **Q7: 오퍼레이터 선택과 위임은 어떻게 작동하나요?**
 
 A: 스테이커들은 DelegationManager에서 등록된 오퍼레이터를 탐색하고 원하는 오퍼레이터에게 재스테이킹 포지션을 위임합니다. 오퍼레이터는 BLS 공개 키와 최소 스테이크 요구사항으로 등록해야 합니다. 오퍼레이터 선택 시 고려사항: 커미션 비율(5-15%), AVS 커버리지(어떤 AVS를 검증하는지), 과거 성과(가동 시간 %), 재스테이킹 금액(높을수록 일반적으로 더 안전). 언스테이킹 없이 즉시 재위임할 수 있습니다.
 
----
+* * *
 
 
 
@@ -729,7 +730,7 @@ A: 스테이커들은 DelegationManager에서 등록된 오퍼레이터를 탐�
 
 ## 시작하기: EigenLayer 체크리스트
 
-```bash
+`````bash
 # 1. 개발 환경 설정
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 cd eigenlayer-contracts && forge install
@@ -752,9 +753,9 @@ go run main.go --config config.yaml
 # 6. 운영 모니터링
 make telemetry
 # http://localhost:3000에서 Grafana 대시보드 열기
-```
+````
 
----
+* * *
 
 *면책 조항: 본 가이드는 교육 목적만을 위한 것입니다. 재스테이킹에는 상당한 스마트 계약 리스크, 슬래싱 리스크, 프로토콜 리스크가 포함됩니다. 자금이나 코드를 배포하기 전에 항상 자체 연구를 수행하십시오. DYOR — Do Your Own Research(자체 연구 수행).*
 
@@ -763,7 +764,7 @@ make telemetry
 - [Minara](https://minara.ai/r/OSXG4X)로 자동화된 AVS 배포를 탐색하세요
 - 최신 EigenLayer 정보를 위해 Telegram을 팔로우하세요: **@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | DeFi 개발자, 트레이더, 연구원을 위해 제작되었습니다.*
 

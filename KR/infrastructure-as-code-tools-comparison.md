@@ -9,6 +9,7 @@ aliases:
   - /kr/posts/infrastructure-as-code-tools-comparison/
 ---
 
+
 # 2025년 인프라스트럭처 as 코드 도구 비교: Terraform", "Pulumi", "AWS CDK", "Crossplane
 
 
@@ -100,7 +101,7 @@ Ansible이 가장 직관적입니다. YAML 기반으로 학습 곡선이 낮고"
 
 **Terraform에서 Pulumi로 마이그레이션하는 방법은?**
 
-Pulumi는 `pulumi import` 명령어와 Terraform 상태 파일 변환 도구를 제공합니다. 기존 Terraform 상태를 읽어 Pulumi 리소스로 마이그레이션할 수 있습니다.
+Pulumi는 ```pulumi import``` 명령어와 Terraform 상태 파일 변환 도구를 제공합니다. 기존 Terraform 상태를 읽어 Pulumi 리소스로 마이그레이션할 수 있습니다.
 
 
 
@@ -182,7 +183,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

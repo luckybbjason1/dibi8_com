@@ -28,6 +28,7 @@ faqs: - q: 'Toprank란 무엇이며, SEO SaaS 툴과 어떻게 다른가요?'
     a: 'Toprank는 기존 CLI 워크플로우에서 감사를 자동화하려는 테크니컬 SEO 담당자, 애플리케이션 코드와 함께 마케팅 인프라를 운영하는 그로스 엔지니어, 버전 관리된 플레이북으로 다수의 고객 계정을 관리하는 대행사, 그리고 월 $500+ SaaS 스택 없이도 전문적인 SEO와 광고 관리가 필요한 스타트업 창업자를 위한 도구입니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI 마케팅 도구
@@ -106,7 +107,7 @@ Toprank는 웹사이트 연동 후 5분이면 바로 사용할 수 있습니다.
 
 지금 Toprank를 시작하고, AI 마케팅의 새로운 기준을 경험해 보세요.
 
----
+* * *
 
 ## 추천 도구
 
@@ -178,7 +179,7 @@ Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/best-ai-code-generators-2025/
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -151,11 +152,11 @@ Stack Overflow의 2024년 설문조사에 따른다면, 개발자의 43%가 AI �
 
 Python, JavaScript, TypeScript, Java에서 가장 성능이 우수하다. Rust, Go, C++ 등도 지원하지만 완성도는 상대적으로 낮다. COBOL, Fortran 같은 레거시 언어는 거의 지원되지 않는다. 구체적인 지원 언어 목록은 각 도구의 공식 문서를 확인한다.
 
----
+* * *
 
 *본 기사는 2025년 5월 기준의 정보를 바탕으로 작성되었습니다. AI 도구의 기능과 가격은 수시로 변경되므로 각 공식 웹사이트에서 최신 정보를 확인하시기 바랍니다.*
 
----
+* * *
 
 ## 추천 도구
 

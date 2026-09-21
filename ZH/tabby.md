@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/tabby/-
 ---
 
+
 {{</* resource-info */>}}
 
 GitHub Copilot 将你的专有代码发送到微软云端。对于处理敏感知识产权的团队——金融科技、医疗保健、国防、企业 SaaS——这是无法接受的。Tabby 是开源解决方案：一个完全在你自己硬件上运行的自托管 AI 编程助手，零外部数据泄露。凭借 33,530+ GitHub Stars 和活跃的发版节奏（v0.32.0 于 2026 年 1 月发布），Tabby 已从实验性项目成长为生产级的 Copilot 替代品。本指南涵盖完整的 Tabby 设置，从 Docker 部署到 IDE 集成和生产环境加固。
@@ -51,7 +52,7 @@ Tabby 由三个核心组件组成：
 
 #### NVIDIA GPU (CUDA)
 
-```bash
+````bash
 # 使用 CUDA 加速启动 Tabby
 docker run -d \
   --name tabby \
@@ -63,11 +64,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device cuda
-```
+`````
 
-对于启用 SELinux 的系统，在卷挂载中添加 `:Z` 标志：
+对于启用 SELinux 的系统，在卷挂载中添加 ````:Z```` 标志：
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   --gpus all \
@@ -78,11 +79,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device cuda
-```
+`````
 
 #### Apple Silicon (Metal)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   -p 8080:8080 \
@@ -92,11 +93,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device metal
-```
+`````
 
 #### AMD GPU (ROCm)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   --device /dev/kfd --device /dev/dri \
@@ -107,11 +108,11 @@ docker run -d \
   serve \
   --model StarCoder-1B \
   --device rocm
-```
+`````
 
 #### 仅 CPU（后备方案）
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   -p 8080:8080 \
@@ -120,11 +121,11 @@ docker run -d \
   serve \
   --model Qwen2.5-Coder-0.5B \
   --device cpu
-```
+`````
 
 ### 验证安装
 
-```bash
+`````bash
 # 检查服务器健康状态
 curl http://localhost:8080/v1/health
 
@@ -133,15 +134,15 @@ docker logs -f tabby
 
 # 打开管理面板
 open http://localhost:8080
-```
+`````
 
-首次启动时，Tabby 会将指定的模型权重下载到 `$HOME/.tabby`。根据带宽不同，这可能需要 2–10 分钟。管理面板将提示你创建管理员账户。
+首次启动时，Tabby 会将指定的模型权重下载到 ````$HOME/.tabby````。根据带宽不同，这可能需要 2–10 分钟。管理面板将提示你创建管理员账户。
 
 ### Docker Compose（生产就绪）
 
 对于持久化部署，使用 Docker Compose：
 
-```yaml
+`````yaml
 version: '3.8'
 services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
@@ -158,25 +159,25 @@ services: tabby: image: registry.tabbyml.com/tabbyml/tabby
       --chat-model Qwen2.5-Coder-7B-Instruct
       --device cuda
       --parallelism 4
-```
+`````
 
 生成安全的 JWT 密钥：
 
-```bash
+`````bash
 openssl rand -hex 32
-```
+`````
 
 部署：
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
 ### Homebrew（macOS 原生）
 
 如果你偏好不在 macOS 上使用 Docker：
 
-```bash
+`````bash
 # 通过 Homebrew 安装
 brew install tabbyml/tabby/tabby
 
@@ -188,7 +189,7 @@ tabby serve \
 
 # 验证
 curl http://localhost:8080/v1/health
-```
+`````
 
 ## 与 VS Code、JetBrains、Vim 和 Ollama 集成
 
@@ -197,21 +198,21 @@ curl http://localhost:8080/v1/health
 ### VS Code
 
 1. 打开扩展市场，搜索 **"Tabby"**，安装 TabbyML 的扩展。
-2. 打开设置（Ctrl+,），搜索 **"Tabby"**，将 Server Endpoint 设置为 `http://localhost:8080`。
+2. 打开设置（Ctrl+,），搜索 **"Tabby"**，将 Server Endpoint 设置为 ````http://localhost:8080````。
 3. 状态栏显示 Tabby 图标即表示连接成功。开始输入即可获得补全建议。
 
 ### JetBrains IDE（IntelliJ、PyCharm、GoLand）
 
 1. 打开 **设置 → 插件 → 市场**，搜索 **"Tabby"** 并安装。
 2. 重启 IDE。
-3. 导航到 **设置 → 工具 → Tabby**，输入服务器端点 URL（如 `http://localhost:8080`）。
+3. 导航到 **设置 → 工具 → Tabby**，输入服务器端点 URL（如 ````http://localhost:8080````）。
 4. 从 Tabby 管理面板生成 API 令牌并粘贴到 IDE 设置中。
 
 ### Vim / Neovim
 
-适用于配合 `nvim-cmp` 和 `cmp-tabby` 的 Neovim：
+适用于配合 ````nvim-cmp```` 和 ````cmp-tabby```` 的 Neovim：
 
-```lua
+`````lua
 -- 在你的 Neovim 配置中（如 init.lua）
 require(cmp).setup({
   sources = {
@@ -221,13 +222,13 @@ require(cmp).setup({
 
 -- 配置 Tabby 服务器地址
 vim.g.tabby_server_url = 'http://localhost:8080'
-```
+`````
 
 ### 使用 Ollama 作为后端
 
 Tabby 可以将推理委托给 Ollama，实现动态模型切换和多模型管理：
 
-```toml
+`````toml
 # ~/.tabby/config.toml
 [model.completion.http]
 kind = "ollama/completion"
@@ -239,21 +240,21 @@ prompt_template = "<PRE> {prefix} <SUF>{suffix} <MID>"
 kind = "openai/chat"
 model_name = "qwen2.5-coder:7b"
 api_endpoint = "http://localhost:11434/v1"
-```
+`````
 
 使用所需模型启动 Ollama：
 
-```bash
+`````bash
 ollama pull deepseek-coder:6.7b
 ollama pull qwen2.5-coder:7b
 ollama serve
-```
+`````
 
-然后不指定 `--model` 启动 Tabby（从 config.toml 读取）：
+然后不指定 ````--model```` 启动 Tabby（从 config.toml 读取）：
 
-```bash
+`````bash
 tabby serve --device cuda
-```
+`````
 
 此设置非常适合在 VRAM 有限的单 GPU 上运行多个模型——Ollama 动态处理模型加载和卸载。
 
@@ -263,17 +264,17 @@ Tabby 的性能高度依赖模型大小和硬件。以下数据来自社区基�
 
 | 模型 | 参数量 | GPU VRAM | 平均延迟 | 采纳率 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | 仅 CPU 环境、快速测试 |
 | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | 低资源配置 |
@@ -287,13 +288,13 @@ Tabby 的性能高度依赖模型大小和硬件。以下数据来自社区基�
 
 | 场景 | 硬件 | 推荐模型 | 月成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 个人开发者，笔记本 | M2/M3 MacBook 16GB | StarCoder2-3B | $0 |
 | 小团队（5-10 人） | RTX 4070 Ti, 16GB VRAM | Qwen2.5-Coder-7B | ~$50（电费） |
@@ -310,24 +311,24 @@ Tabby 的团队杀手级功能是仓库级上下文索引。它克隆并索引�
 
 通过管理面板添加仓库：
 
-```bash
+`````bash
 # 导航到 仓库 → 添加 Git URL
 # 支持 GitHub、GitLab 和自托管 Git 实例
-```
+`````
 
 或通过调度器 CLI 配置：
 
-```bash
+`````bash
 docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
-```
+`````
 
 ### 安全加固
 
-1. **更改默认 JWT 密钥**：将 `TABBY_WEBSERVER_JWT_TOKEN_SECRET` 设置为密码学安全的 32 字节十六进制字符串。
+1. **更改默认 JWT 密钥**：将 ````TABBY_WEBSERVER_JWT_TOKEN_SECRET```` 设置为密码学安全的 32 字节十六进制字符串。
 
 2. **在反向代理后运行**，启用 TLS 终止：
 
-```nginx
+`````nginx
 # Nginx 示例
 server {
     listen 443 ssl;
@@ -342,22 +343,22 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 3. **启用 LDAP/SSO 认证**（企业功能）用于团队访问控制。
 
 4. **对 Docker 容器设置资源限制**：
 
-```bash
+`````bash
 docker run -d \
   --memory=24g \
   --cpus=8 \
   # ... 其他参数
-```
+`````
 
 ### 性能调优
 
-```bash
+`````bash
 # 增加并行度以支持团队并发请求
 tabby serve \
   --model StarCoder2-3B \
@@ -369,11 +370,11 @@ tabby serve \
   --model StarCoder2-3B \
   --device cuda \
   --dtype float16
-```
+`````
 
 ### 监控
 
-```bash
+`````bash
 # 检查 API 健康状态
 curl http://localhost:8080/v1/health
 
@@ -382,21 +383,21 @@ docker stats tabby
 
 # 仅查看错误日志
 docker logs tabby 2>&1 | grep ERROR
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | Tabby | GitHub Copilot | Cursor | Codeium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **自托管** | 是 | 否 | 否 | 部分（企业版） |
 | **许可证** | Apache-2.0 | 专有 | 专有 | 专有 |
@@ -442,11 +443,11 @@ Tabby 并非在所有 Copilot 用例中都能直接替代。请注意以下权�
 
 ### Tabby 适合大型团队吗？
 
-配合适当的硬件（多 GPU 服务器）和 `--parallelism` 参数，Tabby 可扩展至 50+ 用户。管理面板支持用户管理、API 令牌轮换和使用分析。SSO/LDAP 集成需要企业许可证。
+配合适当的硬件（多 GPU 服务器）和 ````--parallelism```` 参数，Tabby 可扩展至 50+ 用户。管理面板支持用户管理、API 令牌轮换和使用分析。SSO/LDAP 集成需要企业许可证。
 
 ### 如何更新 Tabby？
 
-```bash
+`````bash
 # 拉取最新镜像
 docker pull registry.tabbyml.com/tabbyml/tabby
 
@@ -456,7 +457,7 @@ docker compose up -d
 
 # 验证新版本
 curl http://localhost:8080/v1/health
-```
+`````
 
 ## 结论
 
@@ -465,7 +466,7 @@ Tabby 填补了 AI 编程助手市场的关键空白：一个完全开源、自�
 **入门行动项：**
 
 1. 运行第 4 节的 Docker 命令，在本地启动 Tabby。
-2. 为你的编辑器安装 IDE 扩展并连接到 `http://localhost:8080`。
+2. 为你的编辑器安装 IDE 扩展并连接到 ````http://localhost:8080```。
 3. 在管理面板中索引一个测试仓库，体验 RAG 驱动的补全。
 4. 加入 [Telegram 社区](https://t.me/dibi8_ai_hub) 获取部署技巧和模型推荐。
 
@@ -557,12 +558,12 @@ Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](tabby)
@@ -571,7 +572,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](tabby)
 - [nanochat-karpathy-100-chatgpt-single-gpu](tabby)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

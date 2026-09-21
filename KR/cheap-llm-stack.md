@@ -27,6 +27,7 @@ aliases:
   - /posts/cheap-llm-stack/
 ---
 
+
 # 저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법
 
 
@@ -58,7 +59,7 @@ aliases:
 
 ## 2. 아키텍처 — 스마트 라우터 패턴
 
-```
+````
    당신 앱
        │
        ▼
@@ -71,7 +72,7 @@ aliases:
        ├─► Gemini 무료 티어     (1k req/day, 쉬운 작업)
        │
        └─► OpenRouter 무료     (로테이션 커뮤니티 모델, 실험)
-```
+`````
 
 각 프로바이더에 "전문 구역". 9Router(또는 새 서비스 싫으면 10줄 Python 래퍼)가 작업 검사 후 라우팅.
 
@@ -109,11 +110,11 @@ aliases:
 
 **주의**: 무료 티어에서 Google이 "모델 개선" 위해 prompt 로그 — 독점 코드 / PII 보내지 말 것.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 npm install -g @google/gemini-cli
 gemini auth login  # 브라우저 열림, Google 계정 사용
 gemini "이 regex 설명: /^[a-z]+$/i"
-```
+`````
 
 또는 Gemini REST endpoint 직접 호출 — 같은 1,000/day 예산.
 
@@ -125,12 +126,12 @@ gemini "이 regex 설명: /^[a-z]+$/i"
 
 **메커니즘**: 시맨틱 dedup. 같은 2,000 토큰 시스템 prompt를 오늘 50번 보내면 RTK가 콜 #2부터 인식하고 전체 텍스트 대신 포인터를 보냄.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker run -d --name rtk -p 8765:8765 \
   ghcr.io/rtk-ai/rtk:latest
-```
+`````
 
-API base URL을 `https://api.deepseek.com/v1`에서 `http://localhost:8765/v1/deepseek`로 변경. 끝.
+API base URL을 ````https://api.deepseek.com/v1````에서 ````http://localhost:8765/v1/deepseek````로 변경. 끝.
 
 RTK 작동 원리 + 벤치마크 전체: [RTK Rust CLI 프록시 + 토큰 세이버](/kr/resources/llm-frameworks/rtk-rust-cli-proxy-ai-token-saver/).
 
@@ -142,11 +143,11 @@ RTK 작동 원리 + 벤치마크 전체: [RTK Rust CLI 프록시 + 토큰 세이
 
 **보너스**: 9Router는 premium 프로바이더용 자체 RTK 압축 레이어 포함, 무료 티어 일일 캡 도달 시 자동 페일오버.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=ollama,deepseek,gemini,openrouter \
   ghcr.io/rtk-ai/9router:latest
-```
+`````
 
 전체 설정 + 무료 티어 코딩 콤보 레시피: [9Router 스마트 프록시 가이드](/kr/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/).
 
@@ -185,7 +186,7 @@ docker run -d --name 9router -p 9999:9999 \
 
 1. **Ollama** (15분) — 설치, Llama 3.2 3B + Qwen 3 Coder 14B 풀
 2. **DeepSeek 계정** (5분) — 가입, API key 받기, $10 충전
-3. **Gemini CLI** (5분) — `npm i -g @google/gemini-cli`, Google 인증
+3. **Gemini CLI** (5분) — ````npm i -g @google/gemini-cli```, Google 인증
 4. **RTK 프록시** (10분) — Docker run, DeepSeek 가리킴
 5. **9Router** (10분) — Docker run, 4 프로바이더 설정
 6. **라우팅 테스트** (15분) — 5종 다른 작업 발송, 각각 예상 프로바이더 명중 확인
@@ -211,7 +212,7 @@ $0-15 스택은 다음 중 하나 부딪힐 때까지: - **레이턴시 요구 <
 
 현재 AI SaaS에 $30+/월 쓰고 있으면 이 스택이 즉시 본전. 노트북에서 돌리면 됨 (저렴 LLM은 VPS 필수 아님 — 단, 팀 항상 켜기 원하면 {{< aff "digitalocean" "footer-cta" "$6/월 DigitalOcean droplet" >}} 도움).
 
----
+* * *
 
 *이 컬렉션을 [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 함께 — Ollama + 9Router + RTK 세 기초 컴포넌트 공유.*
 
@@ -277,12 +278,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -292,6 +293,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](cheap-llm-stack)
 - [ai-engineering-from-scratch](cheap-llm-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

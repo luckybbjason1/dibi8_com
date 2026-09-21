@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/docmost-team-docs-collaboration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 팀이 셀프 호스팅 Notion 대안이 필요한 이유
@@ -46,7 +47,7 @@ Docmost은 애플리케이션 서버, 데이터베이스 및 실시간 협업 �
 **페이지** —— 기본 콘텐츠 단위. 페이지는 중첩된 하위 페이지를 지원하여 임의의 깊이로 트리 구조를 만든다.
 **블록** —— 콘텐츠의 원자. Docmost 페이지의 모든 것은 블록이다: 단락, 제목, 코드 블록, 표, 콜아웃, 임베드, 다이어그램.
 
-Docmost의 블록 편집기는 슬래시 명령(` /heading`, `/code`, `/table`), Markdown 단축키(`##` 입력으로 H2 생성), 드래그앤드롭 블록 재정렬을 지원한다. 편집기 경험은 의도적으로 Notion에 가깝게 설계되어 팀 전환 시 도입 마찰을 줄인다.
+Docmost의 블록 편집기는 슬래시 명령(``` /heading````, ````/code````, ````/table````), Markdown 단축키(````##```` 입력으로 H2 생성), 드래그앤드롭 블록 재정렬을 지원한다. 편집기 경험은 의도적으로 Notion에 가깝게 설계되어 팀 전환 시 도입 마찰을 줄인다.
 
 Community 에디션(AGPL-3.0)은 모든 핵심 협업 기능을 포함한다. Enterprise 에디션은 SAML 2.0 / OIDC / LDAP 인증, TOTP를 통한 다중 요소 인증, AI 기반 답변, 페이지 수준 권한, Confluence 가져오기, 감사 로깅을 추가하며 가격은 **$3.50/좌석/월**(최소 10좌석)이다.
 
@@ -56,7 +57,7 @@ Docmost에는 **PostgreSQL과 Redis**가 필요하다 —— 둘 다 단일 Dock
 
 ### 단계 1: Docker Compose 파일 생성
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: docmost: image: docmost/docmost:0.8.2
@@ -84,13 +85,13 @@ services: docmost: image: docmost/docmost:0.8.2
     restart: unless-stopped
     volumes: - redis_data:/data
 
-volumes: docmost_data: postgres_data: redis_data: ```
+volumes: docmost_data: postgres_data: redis_data: `````
 
 이것은 세 가지 서비스를 정의한다: 포트 3000의 Docmost 애플리케이션, 지속적 저장소용 PostgreSQL 16, 실시간 협업 상태 및 캐싱용 Redis 7.2.
 
 ### 단계 2: 스택 실행
 
-```bash
+`````bash
 # 모든 컨테이너 생성 및 시작
 docker compose up -d
 
@@ -100,22 +101,22 @@ docker logs -f docmost_db
 # "database system is ready to accept connections" 대기
 # 그런 다음 Docmost 로그 확인
 docker logs -f docmost
-```
+`````
 
-첫 번째 부팅 시 Docmost가 데이터베이스 마이그레이션을 실행한다. 이 작업에는 15-30초가 소요된다. 마이그레이션 진행 메시지 뒤에 `Application is running on: http://[::]:3000`가 표시된다.
+첫 번째 부팅 시 Docmost가 데이터베이스 마이그레이션을 실행한다. 이 작업에는 15-30초가 소요된다. 마이그레이션 진행 메시지 뒤에 ````Application is running on: http://[::]:3000````가 표시된다.
 
 ### 단계 3: 설정 마법사 완료
 
-```bash
+`````bash
 # 웹 UI 접근
 curl -s http://localhost:3000 | head -20
-```
+`````
 
-브라우저에서 `http://your-server-ip:3000`으로 이동하라. 첫 번째 접근 시 Docmost는 관리자 워크스페이스, 관리자 사용자 계정, 기본 설정을 생성하는 설정 마법사를 제공한다. 기본 자격 증명이 없다 —— 모든 것을 첫 번째 부팅 중에 정의한다.
+브라우저에서 ````http://your-server-ip:3000````으로 이동하라. 첫 번째 접근 시 Docmost는 관리자 워크스페이스, 관리자 사용자 계정, 기본 설정을 생성하는 설정 마법사를 제공한다. 기본 자격 증명이 없다 —— 모든 것을 첫 번째 부팅 중에 정의한다.
 
 ### 단계 4: Nginx 리버스 프록시 + SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/docmost
 upstream docmost {
     server 127.0.0.1:3000;
@@ -156,13 +157,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-`Upgrade` 및 `Connection` 헤더가 중요하다 —— Docmost는 실시간 협업을 위해 WebSocket을 사용한다. 이 헤더 없이는 실시간 커서 동기화와 동시 편집이 작동하지 않는다.
+````Upgrade```` 및 ````Connection```` 헤더가 중요하다 —— Docmost는 실시간 협업을 위해 WebSocket을 사용한다. 이 헤더 없이는 실시간 커서 동기화와 동시 편집이 작동하지 않는다.
 
 ### 환경 변수 참조
 
-```bash
+`````bash
 # 핵심 구성
 APP_URL=https://docs.yourdomain.com        # 공개 URL과 일치해야 함
 APP_SECRET=your-super-secret-key           # openssl rand -hex 32로 생성
@@ -187,7 +188,7 @@ AWS_S3_ENDPOINT=https://s3.amazonaws.com
 
 # 선택 사항: 사용자 등록 비활성화 (초대 전용)
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 ## 실전에서의 실시간 협업
 
@@ -197,7 +198,7 @@ Docmost의 헤드라인 기능은 동시 다중 사용자 편집이다. 실제 �
 4. **커서**가 실시간으로 보이며 사용자별로 색상이 지정된다.
 5. **페이지 기록**이 자동으로 저장된다. 모든 편집은 복원할 수 있는 개정판을 생성한다.
 
-```javascript
+`````javascript
 // Docmost는 낮에는 Yjs(CRDT 라이브러리)를 사용한다
 // WebSocket 메시지는 다음과 같이 보인다: {
   "type": "doc:update",
@@ -206,31 +207,31 @@ Docmost의 헤드라인 기능은 동시 다중 사용자 편집이다. 실제 �
   "clientId": "user-uuid",
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 이것이 Figma와 Notion을 구동하는 동일한 기저 기술이다. 차이점: Docmost는 당신의 인프라에서 이를 실행한다.
 
 ## 다이어그램, 임베드 및 풍부한 콘텐츠
 
-Docmost는 편집기를 떠나지 않고 인라인 다이어그램을 지원한다: ```markdown
+Docmost는 편집기를 떠나지 않고 인라인 다이어그램을 지원한다: `````markdown
 # 다이어그램용 슬래시 명령
 /drawio     - 인라인 Draw.io 편집기 열기
 /mermaid    - Mermaid 다이어그램 블록
 /excalidraw - Excalidraw 스케치 블록
 
 # 페이지의 Mermaid 다이어그램 예시
-```mermaid
+`````mermaid
 graph TD
     A[사용자 요청] --> B{인증 확인}
     B -->|유효| C[요청 처리]
     B -->|무효| D[401 반환]
     C --> E[응답 반환]
-```
-```
+`````
+`````
 
-지원되는 임베드에는 Airtable, Loom, Miro, Figma, YouTube 등이 포함된다. 전체 목록은 편집기의 `/embed` 슬래시 명령에 있다.
+지원되는 임베드에는 Airtable, Loom, Miro, Figma, YouTube 등이 포함된다. 전체 목록은 편집기의 ````/embed```` 슬래시 명령에 있다.
 
-파일 첨부는 로컬(`docmost_data` 볼륨) 또는 S3 호환 스토리지에 저장된다. 기본 업로드 제한은 파일당 50MB이며 `MAX_FILE_SIZE` 환경 변수로 구성할 수 있다.
+파일 첨부는 로컬(````docmost_data```` 볼륨) 또는 S3 호환 스토리지에 저장된다. 기본 업로드 제한은 파일당 50MB이며 ````MAX_FILE_SIZE```` 환경 변수로 구성할 수 있다.
 
 ## 벤치마크 및 실제 성능
 
@@ -255,7 +256,7 @@ graph TD
 
 ### GitHub Actions: 자동 문서 게시
 
-```yaml
+`````yaml
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
@@ -276,13 +277,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d @payload.json
-```
+`````
 
 Docmost은 프로그래밍 방식 콘텐츠 관리를 위해 REST API를 노출한다(Enterprise 에디션). 설정 → API에서 API 키를 생성한다. API는 스페이스, 페이지, 댓글에 대한 CRUD를 지원한다.
 
 ### 백업 자동화
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-docmost.sh
 
@@ -305,20 +306,20 @@ docker exec docmost_redis cat /data/dump.rdb \
 
 # 14일만 유지
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
 ### Prometheus 모니터링
 
-```yaml
+`````yaml
 # docker-compose.yml에 모니터링 추가
   postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
     environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
     ports: - "9187:9187"
-```
+`````
 
 ### 헬스 체크 엔드포인트
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-docmost.sh
 
@@ -332,24 +333,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "정상: Docmost가 정상 작동 중"
 fi
-```
+`````
 
-cron에 자동 헬스 모니터링 추가: `*/5 * * * * /opt/scripts/health-check-docmost.sh`
+cron에 자동 헬스 모니터링 추가: ````*/5 * * * * /opt/scripts/health-check-docmost.sh````
 
 ## 프로덕션 강화
 
 ### 초대 전용 등록 활성화
 
-```yaml
+`````yaml
 # docker-compose.yml 환경 변수
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 이 설정을 사용하면 기존 워크스페이스 관리자만 이메일을 통해 새 사용자를 초대할 수 있다. 공개 인스턴스에 매우 중요하다.
 
 ### 데이터베이스 연결 풀링
 
-50명 이상의 사용자를 위한 팀의 경우 PgBouncer를 통해 연결 풀링을 추가하라: ```yaml
+50명 이상의 사용자를 위한 팀의 경우 PgBouncer를 통해 연결 풀링을 추가하라: `````yaml
 # docker-compose.yml에 추가
   pgbouncer: image: pgbouncer/pgbouncer:1.22
     environment: DATABASES_HOST: db
@@ -360,13 +361,13 @@ ALLOW_PUBLIC_SIGNUP=false
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
     ports: - "6432:6432"
-```
+`````
 
-Docmost의 `DATABASE_URL`을 `db:5432` 대신 `pgbouncer:6432`를 가리키도록 업데이트하라.
+Docmost의 ````DATABASE_URL````을 ````db:5432```` 대신 ````pgbouncer:6432````를 가리키도록 업데이트하라.
 
 ### 웹 애플리케이션 방화벽 규칙
 
-```nginx
+`````nginx
 # WAF 유사 보호를 위해 Nginx에 추가
 # 로그인 시도에 대한 속도 제한
 limit_req_zone $binary_remote_addr zone=login:10m rate=5r/m;
@@ -375,7 +376,7 @@ location /auth/login {
     limit_req zone=login burst=3 nodelay;
     proxy_pass http://docmost;
 }
-```
+`````
 
 ## 비교: Docmost와 대안들
 
@@ -427,7 +428,7 @@ Docmost Enterprise 에디션에는 Notion(Markdown + CSV로 낼부)과 Confluenc
 
 ### Docmost은 백업을 어떻게 처리하나요?
 
-두 가지를 백업하라: PostgreSQL 데이터베이스(모든 콘텐츠, 메타데이터, 사용자 계정)와 파일 스토리지 볼륨(업로드된 첨부 파일). Docker를 사용하면 `pg_dump`와 docmost_data 볼륨의 `docker volume backup`으로 충분하다. Redis의 경우 협업 상태는 임시적이다 —— 재시작하면 활성 세션이 지워지지만 저장된 페이지 콘텐츠에는 영향을 주지 않는다.
+두 가지를 백업하라: PostgreSQL 데이터베이스(모든 콘텐츠, 메타데이터, 사용자 계정)와 파일 스토리지 볼륨(업로드된 첨부 파일). Docker를 사용하면 ````pg_dump````와 docmost_data 볼륨의 ````docker volume backup````으로 충분하다. Redis의 경우 협업 상태는 임시적이다 —— 재시작하면 활성 세션이 지워지지만 저장된 페이지 콘텐츠에는 영향을 주지 않는다.
 
 ### 모바일 앱이 있나요?
 
@@ -443,7 +444,7 @@ Community 에디션(AGPL-3.0)에는 실시간 협업, 스페이스, 중첩 페�
 
 ### Docmost을 어떻게 업데이트하나요?
 
-Docker Compose로: 최신 이미지를 가져와 docker-compose.yml에서 태그를 업데이트하고 `docker compose up -d`를 실행한다. Docmost은 시작 시 자동으로 데이터베이스 마이그레이션을 실행한다. 업데이트 전에 항상 PostgreSQL을 백업하라. 부하 분산 장치 뒤에서 여러 복제본을 실행하는 경우 업데이트는 일반적으로 무중단으로 60초 이내에 완료된다.
+Docker Compose로: 최신 이미지를 가져와 docker-compose.yml에서 태그를 업데이트하고 ````docker compose up -d```를 실행한다. Docmost은 시작 시 자동으로 데이터베이스 마이그레이션을 실행한다. 업데이트 전에 항상 PostgreSQL을 백업하라. 부하 분산 장치 뒤에서 여러 복제본을 실행하는 경우 업데이트는 일반적으로 무중단으로 60초 이내에 완료된다.
 
 ## 결론: Docmost이 당신 팀을 위해 준비되었나요?
 
@@ -455,7 +456,7 @@ Docmost은 2026년에 사용할 수 있는 가장 매력적인 오픈소스 Noti
 
 dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매일 오픈소스 툴 토론, 배포 팁, 문제 해결을 나누는 [Telegram 그룹](https://t.me/dibi8opensource).
 
----
+* * *
 
 ## 출처 및 추가 자료
 
@@ -465,7 +466,7 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 - [Docmost Community vs Enterprise 비교](https://wz-it.com/en/blog/docmost-community-vs-enterprise-edition/)
 - [Docmost Docker 배포 가이드](https://lowcloud.io/en/blog/self-host-docmost-with-docker-and-traefik)
 
----
+* * *
 
 
 
@@ -506,7 +507,7 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -516,6 +517,6 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 - [bytedance-ui-tars-desktop-ai-agent-guide](docmost-team-docs-collaboration)
 - [mattpocock-skills-ai-agent-framework-guide](docmost-team-docs-collaboration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

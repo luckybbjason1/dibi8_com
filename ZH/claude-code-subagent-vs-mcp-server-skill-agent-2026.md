@@ -23,6 +23,7 @@ faq: - q: "skill、subagent 和 MCP server 之间一句话的区别是什么？"
   - q: "skill、subagent 和 MCP server 都能在 CI／无头（headless）模式下工作吗？"
     a: "都能，三者皆可。skill 和 subagent 是仓库里受版本控制的文件，所以 CI 会自动接管它们。MCP server 需要在 CI 环境中完成配置并可达（凭证放在 CI secrets 中、对服务有网络访问权）。无头的 -p 模式三者都支持；唯一实际的坑是确保你的 MCP server 鉴权在无人值守运行时无需交互式登录也能正常工作。"
 ---
+
 # Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2026）
 
 
@@ -44,7 +45,7 @@ faq: - q: "skill、subagent 和 MCP server 之间一句话的区别是什么？"
 
 ### Skill 移动「知识」轴
 
-skill 回答的是*「Claude 不了解我们具体的流程」*。你的发布流程、你的代码评审评分标准、你的事故响应手册——这些都是情境化的知识。你不想把它放进 `CLAUDE.md`（那会在每次交互时都载入，把基础上下文撑大）；你想让它只在任务需要时才载入。skill 就是一个带触发描述的 markdown 文件；当工作匹配上时，详细指令进入对话，否则就乖乖待在一边不碍事。
+skill 回答的是*「Claude 不了解我们具体的流程」*。你的发布流程、你的代码评审评分标准、你的事故响应手册——这些都是情境化的知识。你不想把它放进 ```CLAUDE.md````（那会在每次交互时都载入，把基础上下文撑大）；你想让它只在任务需要时才载入。skill 就是一个带触发描述的 markdown 文件；当工作匹配上时，详细指令进入对话，否则就乖乖待在一边不碍事。
 
 ### Subagent 移动「上下文」轴
 
@@ -75,9 +76,9 @@ MCP server 回答的是*「Claude 根本触达不了这个系统」*。你的 Po
 
 - **能力？** 读代码——Claude 本来就会。不需要 MCP server。
 - **上下文？** 审计整个代码库意味着要读几十个文件。那*会*把父上下文撑大。 → **Subagent。**
-- **流程？** 你想让审计遵循 OWASP 的具体检查清单。 → **Skill**（或者把检查清单烤进一个 `security-auditor` 自定义 agent 的系统提示里）。
+- **流程？** 你想让审计遵循 OWASP 的具体检查清单。 → **Skill**（或者把检查清单烤进一个 ````security-auditor```` 自定义 agent 的系统提示里）。
 
-**答案：**一个 `security-auditor` subagent，它的系统提示里编码了那张检查清单。一个产物，覆盖两条轴。不需要服务。
+**答案：**一个 ````security-auditor``` subagent，它的系统提示里编码了那张检查清单。一个产物，覆盖两条轴。不需要服务。
 
 ## 实战场景 2：「告诉我上个月哪些客户流失了」
 
@@ -190,12 +191,12 @@ Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-vs-mcp-server-skill-agent-2026)
@@ -204,7 +205,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 - [cursor-vs-claude-code](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -235,15 +236,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

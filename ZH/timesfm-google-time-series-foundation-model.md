@@ -5,6 +5,7 @@ slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png
 ---
 
+
 # TimesFM 2.5：Google 革命性的预测时间序列基础模型
 
  时间序列预测长期以来一直是数据科学中最具挑战性的问题之一。 从预测股票价格到预测天气模式，从销售预测到能源消耗估算——准确的预测可以成就企业，也可以毁掉企业。 
@@ -41,11 +42,11 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  | 特色 | 时代FM 2.0 | 时代FM 2.5 |
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 参数| 500M | 200M |
  | 上下文长度 | 2,048 | 2,048 16,000 |
@@ -71,7 +72,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  ### 选项 1：通过 PyPI 快速安装
 
- ````bash
+ `````bash
  # 使用 PyTorch 后端安装
  pip install timesfm[火炬]
 
@@ -80,13 +81,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  # 如果需要协变量支持 (XReg)
  pip 安装 timesfm[xreg]
- ````
+ ``````
 
  ### 选项 2：开发安装
 
  对于那些想要贡献或访问最新功能的人：
 
- ````bash
+ ``````bash
  # 克隆存储库
  git 克隆 https://github.com/google-research/timesfm.git
  光盘时代调频
@@ -99,7 +100,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  uv pip install -e .[火炬]
  # 或者对于 Flax 后端
  uv pip install -e .[亚麻]
- ````
+ ``````
 
  ### 后端选择
 
@@ -117,7 +118,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  ### 零样本预测
 
- ````蟒蛇
+ ``````蟒蛇
  将 numpy 导入为 np
  导入时间调频
 
@@ -134,13 +135,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  预测= model.forecast（历史数据，地平线= 12）
  print(f"预测形状：{forecast.shape}")
  print(f"预测值：{预测}")
- ````
+ ``````
 
  ### 使用分位数预测
 
 对于不确定性估计，启用连续分位数头：
 
- ````蟒蛇
+ ``````蟒蛇
  Forecast_with_uncertainty = model.forecast(
  历史数据，
  地平线=12，
@@ -151,11 +152,11 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  point_forecast = Forecast_with_uncertainty[:, :, 1] # 中位数
  lower_bound = Forecast_with_uncertainty[:, :, 0] # 第 10 个百分位数
  upper_bound = Forecast_with_uncertainty[:, :, 2] # 第 90 个百分位
- ````
+ ``````
 
  ### 使用 PyTorch 后端
 
- ````蟒蛇
+ ``````蟒蛇
  进口火炬
  导入时间调频
 
@@ -188,7 +189,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  np.sin(np.linspace(0, 20, 67)),
  ]
  ）
- ````
+ ``````
 
  ## 高级功能
 
@@ -196,7 +197,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  TimesFM 2.5 最强大的功能之一是使用低秩适应 (LoRA) 进行微调的能力：
 
- ````蟒蛇
+ ``````蟒蛇
  从变压器导入 AutoModelForSequenceClassification
  从 peft 导入 LoraConfig，get_peft_model
 
@@ -218,13 +219,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
 # 现在您可以对特定数据集进行微调
  # 与完全微调相比，这需要明显更少的参数
- ````
+ ``````
 
  ### XReg 的协变量支持
 
  对于有影响时间序列的外部变量的场景，TimesFM 2.5 支持协变量建模：
 
- ````蟒蛇
+ ``````蟒蛇
  # 安装 XReg 支持
  # pip 安装 timesfm[xreg]
 
@@ -249,13 +250,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  地平线=12，
  X_future=np.random.randn(12, 5)
  ）
- ````
+ ``````
 
  ### 批量预测
 
  同时对于多个时间序列：
 
- ````蟒蛇
+ ``````蟒蛇
  # 准备一批时间序列
  batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步
 
@@ -264,13 +265,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  # 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长
  print(f"批量预测形状：{forecasts.shape}")
- ````
+ ``````
 
  ### 批量预测
 
  同时对于多个时间序列：
 
- ````蟒蛇
+ ``````蟒蛇
  # 准备一批时间序列
  batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步
 
@@ -279,13 +280,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  # 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长
  print(f"批量预测形状：{forecasts.shape}")
- ````
+ ``````
 
  ### 批量预测
 
  同时对于多个时间序列：
 
- ````蟒蛇
+ ``````蟒蛇
  # 准备一批时间序列
  batch_data = np.random.randn(10, 1024) # 10 个系列，每个系列 1024 个时间步
 
@@ -294,13 +295,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  # 形状：(10, 24) - 10 个预测，每个预测 24 个时间步长
  print(f"批量预测形状：{forecasts.shape}")
- ````
+ ``````
 
  ### 流式推理
 
  对于实时预测应用：
 
-````蟒蛇
+``````蟒蛇
  # 初始化流媒体客户端
  Streaming_model = timesfm.StreamingTimesFM(
  model_path="google/timesfm-2.5-200m-flax"
@@ -311,7 +312,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  新数据 = get_next_time_step()
  预测=streaming_model.update_and_predict（new_data，地平线= 12）
  显示预测（预测）
- ````
+ ``````
 
  ## 性能基准
 
@@ -321,15 +322,15 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  | 数据集 | 时代FM 2.5 | 自动ARIMA | 先知| N-节拍 |
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | ETTh1 | 0.312 | 0.312 0.487 | 0.487 0.523 | 0.523 0.398 | 0.398
  | 电力 | 0.234 | 0.234 0.312 | 0.312 0.298 | 0.298 0.267 | 0.267
@@ -356,7 +357,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  对于企业规模的预测：
 
- ``sql
+ ````sql
  -- 在 BigQuery ML 中使用 TimesFM 模型
  创建模型 my_project.my_timesfm_model
  选项(model_type='TIMESFM') AS
@@ -364,8 +365,8 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  时间戳_列，
  值_列，
  EXTRACT(HOUR FROM timestamp_col) AS hour_of_day
- 来自`my_dataset.time_series_data`；
- ````
+ 来自````my_dataset.time_series_data````；
+ ``````
 
  ### Google 表格集成
 
@@ -380,7 +381,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  对于云部署：
 
-````蟒蛇
+``````蟒蛇
  从 google.cloud 导入 aiplatform
 
  # 将 TimesFM 模型部署到 Vertex AI
@@ -397,7 +398,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  ）
 
  端点.部署（模型=模型，machine_type =“n1-standard-4”）
- ````
+ ``````
 
  ## 实际应用
 
@@ -405,7 +406,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  零售公司可以使用 TimesFM 来预测未来的销售：
 
- ````蟒蛇
+ ``````蟒蛇
  将 pandas 导入为 pd
  导入时间调频
 
@@ -422,13 +423,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  预测 = model.forecast(historical_sales, Horizon=30)
  print(f"下个月预计销售额：{forecast.mean():.2f}")
- ````
+ ``````
 
  ### 应用2：能源需求预测
 
  公用事业公司可以预测电力需求：
 
- ````蟒蛇
+ ``````蟒蛇
  # 加载能耗数据
  energy_data = pd.read_csv("energy_conspiration.csv")
 
@@ -447,13 +448,13 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
  地平线=24，
  X_future=future_covariates.values
  ）
- ````
+ ``````
 
  ### 应用3：金融市场分析
 
  TimesFM 虽然不是财务建议，但可以帮助分析市场模式：
 
- ````蟒蛇
+ ``````蟒蛇
  # 股价预测
  stock_prices = pd.read_csv("stock_history.csv")["close"].values
 
@@ -466,7 +467,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
 # 预测所有股票
  预测 = model.forecast(batch_stocks, Horizon=30)
- ````
+ ``````
 
  ## 与传统方法的比较
 
@@ -474,11 +475,11 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  | 方面| 时代FM 2.5 | 华睿玛 |
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 设置时间| 分钟 | 小时-天 |
  | 参数调优 | 最小 | 广泛 |
@@ -491,11 +492,11 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  | 方面| 时代FM 2.5 | 先知|
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 基础模型| 是的 | 没有 |
  | 迁移学习 | 是的 | 没有 |
@@ -523,11 +524,11 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  | 方面| 时代FM 2.5 | 华睿玛 |
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 设置时间| 分钟 | 小时-天 |
  | 参数调优 | 最小 | 广泛 |
@@ -540,11 +541,11 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
 | 方面| 时代FM 2.5 | 先知|
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 基础模型| 是的 | 没有 |
  | 迁移学习 | 是的 | 没有 |
@@ -593,7 +594,7 @@ TimesFM（时间序列基础模型）是 Google Research 专门针对时间序�
 
  准备好彻底改变您的预测工作流程了吗？ 以下是如何开始：
 
-1. **安装**：`pip install timesfm[flax]`
+1. **安装**：````pip install timesfm[flax]```
  2. **加载模型**：使用 Hugging Face 中的预训练检查点
  3. **准备数据**：适当设置时间序列的格式
  4. **预测**：根据您想要的范围调用预测方法
@@ -636,7 +637,7 @@ TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围�
 对于任何使用时态数据的人来说，投入时间学习和部署 TimesFM 不仅是有益的，而且变得至关重要。 
 
 
----
+* * *
 **来源：**
  - [GitHub 存储库](https://github.com/google-research/timesfm)
  - [ICML 2024 论文](https://arxiv.org/abs/2310.10688)
@@ -713,6 +714,6 @@ TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型 represents 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

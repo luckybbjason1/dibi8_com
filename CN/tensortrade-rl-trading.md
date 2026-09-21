@@ -23,6 +23,7 @@ tags: ["tensortrade", "reinforcement learning", "algorithmic trading", "openai g
 aliases:
   - /posts/tensortrade-rl-trading/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Most Trading Bots Fail (And How RL Changes the Game)
@@ -53,7 +54,7 @@ Abstracts the execution layer. TensorTrade includes simulated exchanges for back
 Tracks holdings across instruments and exchanges. The portfolio computes net worth, calculates rewards, and enforces position limits.
 
 ### Environment (Gym)
-The `TradingEnv` class implements the standard `gym.Env` interface. It converts market data → observations, accepts actions → executes trades, and returns rewards based on portfolio returns or Sharpe ratio.
+The ```TradingEnv```` class implements the standard ````gym.Env```` interface. It converts market data → observations, accepts actions → executes trades, and returns rewards based on portfolio returns or Sharpe ratio.
 
 ### Agent
 Any RL algorithm compatible with Gym environments — Stable Baselines3's PPO, DQN, A2C, or custom implementations.
@@ -66,18 +67,18 @@ TensorTrade requires Python 3.9+ and plays best with a virtual environment.
 
 ### Step 1: Create Environment
 
-```bash
+`````bash
 python -m venv tensortrade-env
 source tensortrade-env/bin/activate  # Linux/Mac
 # tensortrade-env\Scripts\activate  # Windows
 
 # Upgrade pip
 pip install --upgrade pip
-```
+`````
 
 ### Step 2: Install TensorTrade + Dependencies
 
-```bash
+`````bash
 # Core framework
 pip install tensortrade==1.2.0
 
@@ -89,11 +90,11 @@ pip install ccxt==4.4.0 yfinance==0.2.54
 
 # Utilities
 pip install pandas==2.2.3 numpy==1.26.4
-```
+`````
 
 ### Step 3: Verify Installation
 
-```python
+`````python
 import tensortrade
 import gymnasium as gym
 import stable_baselines3
@@ -101,17 +102,17 @@ import stable_baselines3
 print(f"TensorTrade version: {tensortrade.__version__}")
 print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
-```
+`````
 
-Expected output: ```
+Expected output: `````
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
-```
+`````
 
 ### Step 4: Download Sample Data and Run First Backtest
 
-```python
+`````python
 import pandas as pd
 import yfinance as yf
 from tensortrade.env.default import create
@@ -159,7 +160,7 @@ env = create(
 
 print(f"Observation space: {env.observation_space}")
 print(f"Action space: {env.action_space}")
-```
+`````
 
 At this point you have a fully functional trading environment ready for RL training.
 
@@ -167,7 +168,7 @@ At this point you have a fully functional trading environment ready for RL train
 
 The real power of TensorTrade comes from plugging into battle-tested RL libraries. Here's how to train a PPO agent: ### Training a PPO Agent
 
-```python
+`````python
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import EvalCallback
 
@@ -191,11 +192,11 @@ agent.learn(total_timesteps=100_000)
 
 # Save the trained model
 agent.save("ppo_btc_trader_v1")
-```
+`````
 
 ### Custom Feature Engineering with Stream
 
-Real trading agents need more than raw prices. TensorTrade's `Stream` API lets you compute technical indicators: ```python
+Real trading agents need more than raw prices. TensorTrade's ``Stream`` API lets you compute technical indicators: `````python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -214,11 +215,11 @@ feed = DataFeed([
     Stream.source(list(macd_signal), dtype="float").rename("macd_signal"),
     Stream.source(list(df["Volume"]), dtype="float").rename("volume"),
 ])
-```
+`````
 
 ### Integration with Ray RLlib
 
-For distributed training across multiple environments: ```python
+For distributed training across multiple environments: `````python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -240,11 +241,11 @@ tune.run(
     checkpoint_at_end=True,
     storage_path="~/ray_results"
 )
-```
+`````
 
 ### Integrating with CCXT for Live Data
 
-```python
+`````python
 import ccxt
 
 # Connect to Binance via CCXT
@@ -263,23 +264,23 @@ ohlcv_df = pd.DataFrame(
 
 # Use in TensorTrade environment
 # Note: live trading requires additional risk management
-```
+`````
 
 ## Benchmarks / Real-World Use Cases: Q1 2026 Results
 
 We benchmarked TensorTrade against three common baselines using BTC-USD hourly data from January 2025 through March 2026: | Strategy | Total Return | Sharpe Ratio | Max Drawdown | Win Rate | Trades/Month |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Buy & Hold BTC | **+68.4%** | 1.42 | -22.1% | — | 0 |
 | PPO (default features) | **+54.2%** | 1.89 | -14.3% | 52% | 45 |
@@ -299,13 +300,13 @@ We benchmarked TensorTrade against three common baselines using BTC-USD hourly d
 
 Testing across BTC, ETH, and SOL (equal-weight portfolio): | Configuration | Annualized Return | Sharpe | Sortino |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Equal-weight buy & hold | +45.2% | 1.28 | 1.84 |
 | PPO multi-asset (TensorTrade) | **+58.7%** | **1.97** | **2.71** |
@@ -316,7 +317,7 @@ The RL agent's ability to dynamically rebalance based on momentum signals provid
 
 ### Custom Reward Functions
 
-The default reward schemes may not match your fund's objectives. Here's a Sortino-ratio-based reward: ```python
+The default reward schemes may not match your fund's objectives. Here's a Sortino-ratio-based reward: `````python
 import numpy as np
 
 class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
@@ -341,11 +342,11 @@ env = create(
     feed=feed,
     window_size=20,
 )
-```
+`````
 
 ### Multi-Exchange Arbitrage Setup
 
-```python
+`````python
 from tensortrade.oms.exchanges import Exchange
 from tensortrade.oms.instruments import USD, BTC
 
@@ -367,11 +368,11 @@ btc_coinbase = Wallet(coinbase_exchange, 0 * BTC)
 multi_portfolio = Portfolio(USD, [
     binance_wallet, coinbase_wallet, btc_binance, btc_coinbase
 ])
-```
+`````
 
 ### Adding Risk Management: Position Sizing with Kelly Criterion
 
-```python
+`````python
 class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
     def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
@@ -383,11 +384,11 @@ class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
         return kelly * self.kelly_fraction * portfolio.base_balance
-```
+`````
 
 ### Production Deployment Checklist
 
-Before going live with real capital: ```python
+Before going live with real capital: `````python
 # 1. Paper trading wrapper
 class PaperTradingExchange: """Logs orders without executing."""
     def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
@@ -407,23 +408,23 @@ class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.0
 import datetime
 model_version = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 agent.save(f"models/ppo_prod_{model_version}.zip")
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | TensorTrade | Backtrader | QuantConnect | FinRL | Gym Trading Env |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **RL-Native Design** | Yes (Gym-native) | No (requires wrapper) | Partial | Yes | Yes |
 | **Stable Baselines Integration** | Seamless | Via custom wrapper | No | Built-in | Manual setup |
@@ -446,7 +447,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 ## Limitations / Honest Assessment
 
-TensorTrade is a capable framework, but it is not a magic money machine. Here are the real limitations: 1. **Simulation gap**: The simulated exchange fills orders at mid-price with no slippage. Real markets have spread, latency, and partial fills. Always stress-test with conservative slippage assumptions (`slippage=0.001` minimum).
+TensorTrade is a capable framework, but it is not a magic money machine. Here are the real limitations: 1. **Simulation gap**: The simulated exchange fills orders at mid-price with no slippage. Real markets have spread, latency, and partial fills. Always stress-test with conservative slippage assumptions (````slippage=0.001```` minimum).
 
 2. **Overfitting risk**: RL agents can memorize price paths. Use walk-forward validation — train on 2024, validate on 2025, test on 2026. Never optimize on your test set.
 
@@ -456,7 +457,7 @@ TensorTrade is a capable framework, but it is not a magic money machine. Here ar
 
 5. **No built-in data pipeline**: Unlike FinRL, TensorTrade does not include pre-loaded datasets. You bring your own data via yfinance, CCXT, or proprietary feeds.
 
-6. **Gym API migration**: The project transitioned from `gym` to `gymnasium`. Some older community examples still reference the deprecated `gym` namespace.
+6. **Gym API migration**: The project transitioned from ````gym```` to ````gymnasium````. Some older community examples still reference the deprecated ````gym``` namespace.
 
 ## Frequently Asked Questions
 
@@ -545,7 +546,7 @@ This article contains affiliate links to Binance and OKX. If you register and tr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [hkuds-ai-trader](tensortrade-rl-trading)
@@ -555,7 +556,7 @@ This article contains affiliate links to Binance and OKX. If you register and tr
 - [agent-reach-internet-access-ai-agents](tensortrade-rl-trading)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

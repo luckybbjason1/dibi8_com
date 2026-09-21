@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/shellcheck/
 ---
 
+
 {{</* resource-info */>}}
 
 ShellCheck là tiêu chuẩn thực tế để phát hiện bug trong shell script trước khi triển khai production. Với 39,456+ sao GitHub và cộng đồng open-source tích cực, đây là công cụ phân tích tĩnh được áp dụng rộng rãi nhất cho các script bash, sh, dash và ksh. Hướng dẫn này đi qua cài đặt ShellCheck, tích hợp với editor và CI/CD pipeline, cũng như các phương pháp tăng cường production.
@@ -48,7 +49,7 @@ Dự án được viết bằng Haskell (96.4% codebase), phân phối theo gi�
 
 - **Xác thực cú pháp**: Bắt cấu trúc sai trước runtime
 - **Phân tích ngữ nghĩa**: Phát hiện biến không quote, code unreachable, và exit code bị che
-- **Kiểm tra portability**: Cảnh báo bashism trong script `/bin/sh` cần tuân thủ POSIX
+- **Kiểm tra portability**: Cảnh báo bashism trong script ```/bin/sh```` cần tuân thủ POSIX
 - **Kiểm toán bảo mật**: Nhận diện vector command injection và pattern eval không an toàn
 - **Thực thi style**: Đề xuất cấu trúc hiện đại thay thế cú pháp deprecated
 
@@ -58,11 +59,11 @@ ShellCheck vận hành như một pipeline phân tích đa tầng. Hiểu kiến
 
 ### Tổng quan kiến trúc
 
-```
+`````
 Source Script → Lexer → Parser (AST) → Analyzer → Reporter
                      ↓           ↓            ↓
                  Tokens    Syntax Tree    SC-Warnings
-```
+`````
 
 1. **Lexer**: Token hóa script thành identifiers, keywords, operators và literals
 2. **Parser**: Xây dựng AST từ token stream, xử lý các đặc thù grammar của shell
@@ -80,7 +81,7 @@ Mỗi phát hiện của ShellCheck mang một trong bốn mức độ nghiêm t
 
 ### Các nhóm kiểm tra chính
 
-- **SC1xxx**: Vấn đề cú pháp và parsing (ví dụ: SC1007 — dấu cách sau `=`)
+- **SC1xxx**: Vấn đề cú pháp và parsing (ví dụ: SC1007 — dấu cách sau ````=````)
 - **SC2xxx**: Cảnh báo ngữ nghĩa và portability (ví dụ: SC2086 — biến không quote)
 - **SC3xxx**: Ghi chú tương thích bash/dash/ksh
 - **SC4xxx**: Kiểm tra tùy chọn và quy tắc thử nghiệm
@@ -91,7 +92,7 @@ ShellCheck có mặt trên mọi nền tảng chính. Cài đặt mất dưới 
 
 ### Linux (APT / Debian / Ubuntu)
 
-```bash
+`````bash
 # Cập nhật package index
 sudo apt update
 
@@ -104,41 +105,41 @@ shellcheck --version
 # version: 0.11.0
 # license: GNU General Public License, version 3
 # website: https://www.shellcheck.net
-```
+`````
 
 ### Linux (DNF / Fedora / RHEL)
 
-```bash
+`````bash
 # Cài qua DNF
 sudo dnf install -y shellcheck
 
 # Kiểm tra phiên bản
 shellcheck --version
-```
+`````
 
 ### macOS (Homebrew)
 
-```bash
+`````bash
 # Cài qua Homebrew
 brew install shellcheck
 
 # Kiểm tra phiên bản
 shellcheck --version
-```
+`````
 
 ### Windows (qua Chocolatey)
 
-```powershell
+`````powershell
 # Cài qua Chocolatey (cửa sổ admin)
 choco install shellcheck
 
 # Kiểm tra phiên bản
 shellcheck --version
-```
+`````
 
 ### Docker (Độc lập nền tảng)
 
-```bash
+`````bash
 # Chạy ShellCheck qua Docker không cần cài đặt local
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
   /mnt/deploy.sh
@@ -150,11 +151,11 @@ docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
 # Khóa phiên bản cụ thể cho CI build tái lập
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:v0.11.0 \
   /mnt/deploy.sh
-```
+`````
 
 ### Build từ source (Haskell Stack)
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/koalaman/shellcheck.git
 cd shellcheck
@@ -165,17 +166,17 @@ stack install
 # Hoặc build với Cabal
 cabal update
 cabal install
-```
+`````
 
 ### Pre-commit hook
 
-```bash
+`````bash
 # Thêm vào .pre-commit-config.yaml
 repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
     hooks: - id: shellcheck
         args: ["--severity=warning"]
-```
+`````
 
 ## Tích hợp editor
 
@@ -183,9 +184,9 @@ ShellCheck phát huy sức mạnh khi phản hồi xuất hiện real-time khi b
 
 ### VS Code
 
-Cài đặt extension **ShellCheck** của Timon Wong (marketplace ID: `timonwong.shellcheck`).
+Cài đặt extension **ShellCheck** của Timon Wong (marketplace ID: ````timonwong.shellcheck````).
 
-```json
+`````json
 // settings.json
 {
   "shellcheck.executablePath": "shellcheck",
@@ -193,11 +194,11 @@ Cài đặt extension **ShellCheck** của Timon Wong (marketplace ID: `timonwon
   "shellcheck.severity": "warning",
   "shellcheck.run": "onType"
 }
-```
+`````
 
 ### Vim / Neovim
 
-Sử dụng ALE (Asynchronous Lint Engine): ```vim
+Sử dụng ALE (Asynchronous Lint Engine): `````vim
 " .vimrc hoặc init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -206,9 +207,9 @@ let g:ale_linters = {
 " Chạy khi lưu và khi đang gõ
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
-```
+`````
 
-Sử dụng native LSP trong Neovim: ```lua
+Sử dụng native LSP trong Neovim: `````lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -217,21 +218,21 @@ require(lspconfig).bashls.setup {
     }
   }
 }
-```
+`````
 
 ### Emacs
 
-```elisp
+`````elisp
 ;; init.el với Flycheck
 (add-hook 'sh-mode-hook #'flycheck-mode)
 (setq flycheck-shellcheck-severity "warning")
-```
+`````
 
 ### Sublime Text
 
 Cài đặt qua Package Control: **SublimeLinter-shellcheck**.
 
-```json
+`````json
 // SublimeLinter.sublime-settings
 {
   "linters": {
@@ -241,7 +242,7 @@ Cài đặt qua Package Control: **SublimeLinter-shellcheck**.
     }
   }
 }
-```
+`````
 
 ## Tích hợp CI/CD
 
@@ -249,7 +250,7 @@ Chạy ShellCheck trong CI ngăn chặn script có bug được merge. Dưới �
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/shellcheck.yml
 name: ShellCheck
 
@@ -265,9 +266,9 @@ jobs: shellcheck: runs-on: ubuntu-latest
         with: ignore_paths: >-
             ./vendor
             ./third_party
-```
+`````
 
-Cách thiết lập thủ công với phiên bản cố định: ```yaml
+Cách thiết lập thủ công với phiên bản cố định: `````yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
@@ -285,11 +286,11 @@ jobs: shellcheck: runs-on: ubuntu-latest
         run: |
           find . -name "*.sh" -type f -print0 | \
             xargs -0 shellcheck --severity=warning --format=tty
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - lint
 
@@ -298,11 +299,11 @@ shellcheck: stage: lint
   script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-```
+`````
 
 ### Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -332,18 +333,18 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ### CircleCI
 
-```yaml
+`````yaml
 # .circleci/config.yml
 version: 2.1
 orbs: shellcheck: circleci/shellcheck@3.2.0
 
 workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
-```
+`````
 
 ## Cấu hình và quản lý quy tắc
 
@@ -351,7 +352,7 @@ ShellCheck cung cấp nhiều cơ chế kiểm soát quy tắc chạy và cách 
 
 ### Chỉ thị inline
 
-```bash
+`````bash
 #!/bin/bash
 # shellcheck disable=SC2086
 echo $UNQUOTED_VAR  # Dòng này tắt SC2086
@@ -362,11 +363,11 @@ UNUSED_VAR="biến này được gán nhưng không dùng"
 # Bật lại sau khối code
 # shellcheck enable=SC2086
 echo "$PROPERLY_QUOTED"
-```
+`````
 
 ### File cấu hình (.shellcheckrc)
 
-```bash
+`````bash
 # .shellcheckrc — cấu hình cấp project
 # Đặt ở repo root hoặc $HOME/.shellcheckrc
 
@@ -384,21 +385,21 @@ enable=require-variable-braces,check-set-e-suppressed
 
 # Chỉ định external sources
 external-sources=true
-```
+`````
 
 ### Lọc mức độ nghiêm trọng
 
-```bash
+`````bash
 # Chỉ báo error và warning (bỏ info/style)
 shellcheck --severity=warning script.sh
 
 # Chỉ báo error
 shellcheck --severity=error script.sh
-```
+`````
 
 ### Định dạng output
 
-```bash
+`````bash
 # Terminal output mặc định
 shellcheck --format=tty script.sh
 
@@ -413,7 +414,7 @@ shellcheck --format=gcc script.sh
 
 # SARIF cho GitHub Security tab
 shellcheck --format=sarif script.sh > shellcheck.sarif
-```
+`````
 
 ## Benchmark và use case thực tế
 
@@ -430,7 +431,7 @@ Test trên CI runner tiêu chuẩn 2024 (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | Kíc
 
 ### Mức độ áp dụng thực tế
 
-- **GitHub Actions**: Action chính thức `ludeeus/action-shellcheck` chạy 500K+ lần/tháng
+- **GitHub Actions**: Action chính thức ````ludeeus/action-shellcheck```` chạy 500K+ lần/tháng
 - **Homebrew**: Lint tất cả 5,000+ formula script bằng ShellCheck
 - **Google Shell Style Guide**: Khuyến nghị ShellCheck cho mọi shell script
 - **NixOS**: Sử dụng ShellCheck trong package build pipeline
@@ -452,7 +453,7 @@ Cho team chạy ShellCheck ở quy mô lớn, các pattern này cải thiện đ
 
 ### Phân tích hàng loạt đa script
 
-```bash
+`````bash
 #!/bin/bash
 set -euo pipefail
 
@@ -470,11 +471,11 @@ find "${SCRIPT_DIRS[@]}" -name "*.sh" -type f -print0 | \
     xargs -0 shellcheck --severity="$SEVERITY" "${EXCLUDES[@]}"
 
 echo "Tất cả script đã pass ShellCheck ở mức: $SEVERITY"
-```
+`````
 
 ### Upload SARIF lên GitHub Security Dashboard
 
-```yaml
+`````yaml
 # .github/workflows/security-scan.yml
 name: Security Scan
 on: [push, pull_request]
@@ -493,11 +494,11 @@ jobs: scan: runs-on: ubuntu-latest
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with: sarif_file: shellcheck.sarif
-```
+`````
 
 ### Stage linting trong Dockerfile
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM koalaman/shellcheck:stable AS lint
 WORKDIR /scripts
@@ -507,11 +508,11 @@ RUN find . -name "*.sh" -exec shellcheck --severity=warning {} +
 FROM alpine:3.20 AS runtime
 COPY --from=lint /scripts/deploy.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/deploy.sh"]
-```
+`````
 
 ### Theo dõi ShellCheck trong CI
 
-Theo dõi số lượng lỗi ShellCheck như một team metric: ```bash
+Theo dõi số lượng lỗi ShellCheck như một team metric: `````bash
 #!/bin/bash
 # ci-metrics.sh — theo dõi số warning shellcheck theo thờI gian
 
@@ -519,11 +520,11 @@ WARNINGS=$(find . -name "*.sh" -exec shellcheck --severity=warning --format=json
     jq '. | length")
 
 echo "shellcheck_warnings $WARNINGS" >> metrics.txt
-```
+`````
 
 ## So sánh với các công cụ thay thế
 
-| Tính năng | ShellCheck | `bash -n` | shfmt | checkbashisms |
+| Tính năng | ShellCheck | ````bash -n```` | shfmt | checkbashisms |
 |---------|-----------|-----------|-------|---------------|
 | Độ sâu phân tích tĩnh | Ngữ nghĩa (AST) | Chỉ cú pháp | Parser/formatter | Pattern matching |
 | Số lượng lỗi | ~280+ kiểm tra | ~20 lỗi | 0 (formatter) | ~40 pattern |
@@ -539,7 +540,7 @@ echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ### Khi nào chọn công cụ nào
 
 - **ShellCheck**: Phân tích chất lượng và bảo mật shell script đa năng. Lựa chọn mặc định.
-- **`bash -n`**: Xác thực cú pháp bash nhanh khi không có lựa chọn khác.
+- **````bash -n````**: Xác thực cú pháp bash nhanh khi không có lựa chọn khác.
 - **shfmt**: Định dạng code và chuẩn hóa style. Bổ sung cho ShellCheck (không thay thế).
 - **checkbashisms**: Kiểm tra portability cho Debian. Dùng khi đóng gói Debian/Ubuntu.
 
@@ -549,15 +550,15 @@ ShellCheck không phải là giải pháp vạn năng. Hiểu rõ giới hạn g
 
 ### Những gì ShellCheck KHÔNG phát hiện
 
-- **Lỗi logic runtime**: Không thể xác định lệnh `curl` của bạn có trỏ đúng endpoint không
+- **Lỗi logic runtime**: Không thể xác định lệnh ````curl```` của bạn có trỏ đúng endpoint không
 - **Bug business logic**: Nó xác thực cú pháp, không xác thực script backup có sao lưu đúng thư mục không
 - **Vấn đề hiệu năng**: Vòng lặp vô hạn với cú pháp hợp lệ sẽ pass sạch sẽ
-- **Phân tích Turing-complete**: Một số hành vi động (ví dụ: `eval "$DYNAMIC_CMD"`) vốn không thể phân tích
+- **Phân tích Turing-complete**: Một số hành vi động (ví dụ: ````eval "$DYNAMIC_CMD"````) vốn không thể phân tích
 
 ### Khoảng trống nền tảng và môi trường
 
 - ShellCheck giả định các tiện ích Unix tiêu chuẩn. Script cho hệ thống embedded hoặc busybox có thể báo false positive
-- Một số quy tắc SC mang tính chủ quan. Team nên xem xét và tùy chỉnh `.shellcheckrc` thay vì áp dụng mù quáng mọi gợi ý
+- Một số quy tắc SC mang tính chủ quan. Team nên xem xét và tùy chỉnh ````.shellcheckrc```` thay vì áp dụng mù quáng mọi gợi ý
 - Không hỗ trợ script Windows native (PowerShell, CMD)
 
 ### Cân nhắc build và dependency
@@ -570,11 +571,11 @@ ShellCheck không phải là giải pháp vạn năng. Hiểu rõ giới hạn g
 
 ### ShellCheck hỗ trợ những shell nào?
 
-ShellCheck hỗ trợ bash, dash, sh, ksh và busybox sh. Không hỗ trợ PowerShell, zsh (một phần) và fish. Chỉ định shell đích bằng `--shell bash|sh|dash|ksh` hoặc qua shebang trong script.
+ShellCheck hỗ trợ bash, dash, sh, ksh và busybox sh. Không hỗ trợ PowerShell, zsh (một phần) và fish. Chỉ định shell đích bằng ````--shell bash|sh|dash|ksh```` hoặc qua shebang trong script.
 
 ### Làm sao tắt một cảnh báo ShellCheck cụ thể?
 
-Dùng chỉ thị inline: `# shellcheck disable=SC2086` ở dòng trước cảnh báo. Để tắt toàn project, thêm `disable=SC2086` vào `.shellcheckrc`. Mỗi kiểm tra có trang wiki tại `https://www.shellcheck.net/wiki/SC2086` giải thích lý do.
+Dùng chỉ thị inline: ````# shellcheck disable=SC2086```` ở dòng trước cảnh báo. Để tắt toàn project, thêm ````disable=SC2086```` vào ````.shellcheckrc````. Mỗi kiểm tra có trang wiki tại ````https://www.shellcheck.net/wiki/SC2086```` giải thích lý do.
 
 ### ShellCheck có tự động sửa script không?
 
@@ -582,7 +583,7 @@ Giao diện web tại [shellcheck.net](https://www.shellcheck.net) cung cấp g�
 
 ### Làm sao tích hợp ShellCheck với pre-commit hook?
 
-Thêm hook pre-commit chính thức từ `https://github.com/koalaman/shellcheck-precommit` vào `.pre-commit-config.yaml`. Đặt `args: ["--severity=warning"]` để chặn commit có warning, hoặc `args: ["--severity=error"]` để chỉ chặn error.
+Thêm hook pre-commit chính thức từ ````https://github.com/koalaman/shellcheck-precommit```` vào ````.pre-commit-config.yaml````. Đặt ````args: ["--severity=warning"]```` để chặn commit có warning, hoặc ````args: ["--severity=error"]```` để chỉ chặn error.
 
 ### ShellCheck có phù hợp kiểm toán bảo mật không?
 
@@ -594,15 +595,15 @@ Nhiều cảnh báo ShellCheck đề cập các trường hợp "hiện tại ch
 
 ### Làm sao chạy ShellCheck trong container Docker?
 
-Dùng image chính thức: `docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh`. Khóa vào `v0.11.0` hoặc phiên bản cụ thể khác cho CI build tái lập. Image dựa trên Alpine Linux, khoảng 15 MB.
+Dùng image chính thức: ````docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh````. Khóa vào ````v0.11.0```` hoặc phiên bản cụ thể khác cho CI build tái lập. Image dựa trên Alpine Linux, khoảng 15 MB.
 
 ## Kết luận
 
-ShellCheck là công cụ phân tích tĩnh shell script trưởng thành và được áp dụng rộng rãi nhất. Với 39,456+ sao GitHub, tích hợp CI/CD toàn diện và hỗ trợ mọi editor chính, ShellCheck xứng đáng có mặt trong toolchain của mọi developer. Bắt đầu với Docker one-liner để có phản hồi tức thì, thêm cấu hình project `.shellcheckrc` cho tính nhất quán team, và kết nối GitHub Actions để bắt bug trước khi merge.
+ShellCheck là công cụ phân tích tĩnh shell script trưởng thành và được áp dụng rộng rãi nhất. Với 39,456+ sao GitHub, tích hợp CI/CD toàn diện và hỗ trợ mọi editor chính, ShellCheck xứng đáng có mặt trong toolchain của mọi developer. Bắt đầu với Docker one-liner để có phản hồi tức thì, thêm cấu hình project ````.shellcheckrc```` cho tính nhất quán team, và kết nối GitHub Actions để bắt bug trước khi merge.
 
-Các hành động cho team bạn: 1. Chạy `shellcheck` trên top 5 script triển khai quan trọng nhất ngay hôm nay
+Các hành động cho team bạn: 1. Chạy ````shellcheck```` trên top 5 script triển khai quan trọng nhất ngay hôm nay
 2. Cài extension VS Code hoặc tích hợp Vim ALE để có phản hồi real-time
-3. Tạo `.shellcheckrc` ở repo root với các quy tắc project-specific
+3. Tạo ````.shellcheckrc``` ở repo root với các quy tắc project-specific
 4. Thiết lập workflow GitHub Actions để chặn merge có warning
 
 Tham gia [nhóm Telegram dibi8](https://t.me/dibi8) để thảo luận về developer tools, best practice CI/CD, và automation DevOps.
@@ -655,7 +656,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -665,6 +666,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [2026-06-15-trending-ai-agents](shellcheck)
 - [2026-06-22-trending-ai-agents](shellcheck)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

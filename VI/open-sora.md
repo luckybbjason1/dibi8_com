@@ -24,11 +24,12 @@ aliases:
   - /vi/posts/open-sora/
 ---
 
+
 {{</* resource-info */>}}
 
 Hầu hết lập trình viên thử nghiệm tạo video AI đều gặp phải cùng một rào cản: API thương mại tính phí $0.10-$0.50 mỗi giây đầu ra, các giải pháp tự host đòi hỏi kiến thức CUDA chuyên sâu, và số ít dự án mã nguồn mở hiện có thì thiếu tài liệu hoặc yêu cầu GPU cấp doanh nghiệp. Tháng 3/2024, HPC-AI Tech phát hành Open-Sora để thay đổi phương trình này. Mưới lăm tháng và 29.000 sao GitHub sau, dự án đã tiến hóa từ nguyên mẫu nghiên cứu thành framework cấp production có khả năng tạo video 5 giây ở độ phân giải 768p với chất lượng sánh ngang các lựa chọn thương mại — tất cả chạy trên phần cứng bạn có thể thuê theo giờ.
 
-Hướng dẫn này (open-sora tutorial) đi qua toàn bộ quá trình thiết lập Open-Sora: cài đặt local, triển khai Docker, tích hợp ComfyUI, cứng hóa production, và so sánh hiệu suất thực tế với CogVideoX, HunyuanVideo, và Wan. Mọi lệnh đều đã được xác minh với nhánh `main` mới nhất.
+Hướng dẫn này (open-sora tutorial) đi qua toàn bộ quá trình thiết lập Open-Sora: cài đặt local, triển khai Docker, tích hợp ComfyUI, cứng hóa production, và so sánh hiệu suất thực tế với CogVideoX, HunyuanVideo, và Wan. Mọi lệnh đều đã được xác minh với nhánh ```main```` mới nhất.
 
 ## Open-Sora là gì?
 
@@ -53,17 +54,17 @@ Pipeline tạo video của Open-Sora gồm ba thành phần chính hoạt độn
 
 ### Luồng tạo
 
-```
+`````
 Prompt → T5 Encoder → Text Embedding
                                  ↘
 Nhiễu ngẫu nhiên → STDiT (50 bước) → Latent Video → DC-AE Decoder → MP4 Output
                                  ↗
                                 Conditioning
-```
+`````
 
 Trong quá trình inference, Open-Sora sử dụng bộ lập lịch sampling rectified flow (mặc định 50 bước) với classifier-free guidance scale 7.5 cho văn bản và 3.0 cho điều kiện hóa ảnh. Pipeline T2I2V (Text-to-Image-to-Video) trước tiên tạo keyframe chất lượng cao bằng mô hình FLUX, sau đó làm động qua đường dẫn I2V — cách tiếp cận hai giai đoạn này cho chất lượng cao hơn đáng kể so với tạo T2V trực tiếp.
 
-```python
+`````python
 # Pipeline inference cốt lõi (đơn giản hóa)
 import torch
 from opensora.models import STDiT3, T5Encoder, DC_AE
@@ -88,7 +89,7 @@ for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
 
 # Giải mã thành video
 video = vae.decode(latent)  # [1, 3, 65, 768, 768]
-```
+`````
 
 ## Cài đặt & Thiết lập
 
@@ -104,7 +105,7 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 
 ### Lựa chọn A: Cài đặt Conda (Khuyến nghị cho phát triển)
 
-```bash
+`````bash
 # Tạo môi trường ảo
 conda create -n opensora python=3.10 -y
 conda activate opensora
@@ -122,11 +123,11 @@ pip install -v .
 # Cài đặt tùy chọn tối ưu hóa
 pip install xformers==0.0.27.post2 --index-url https://download.pytorch.org/whl/cu121
 pip install flash-attn --no-build-isolation
-```
+`````
 
 ### Lựa chọn B: Cài đặt Docker (Khuyến nghị cho production)
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/hpcaitech/Open-Sora.git
 cd Open-Sora
@@ -144,11 +145,11 @@ docker run -ti --gpus all \
 # Trong container, tải trọng số mô hình
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
-```
+`````
 
 ### Giải thích Dockerfile
 
-Dockerfile chính thức sử dụng `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04` làm base image. Các giai đoạn chính bao gồm: ```dockerfile
+Dockerfile chính thức sử dụng ``nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04`` làm base image. Các giai đoạn chính bao gồm: `````dockerfile
 FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 WORKDIR /workspace/Open-Sora
@@ -173,11 +174,11 @@ RUN pip install flash-attn --no-build-isolation
 
 EXPOSE 7860
 CMD ["/bin/bash"]
-```
+`````
 
 ### Tải trọng số mô hình
 
-Trọng số Open-Sora 2.0 có sẵn trên cả HuggingFace và ModelScope: ```bash
+Trọng số Open-Sora 2.0 có sẵn trên cả HuggingFace và ModelScope: `````bash
 # Lựa chọn 1: HuggingFace
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
@@ -189,7 +190,7 @@ modelscope download hpcai-tech/Open-Sora-v2 --local_dir ./ckpts
 # Xác minh tải xuống
 ls -la ./ckpts/
 # Kết quả mong đợi: model.safetensors, config.json, vae/, text_encoder/
-```
+`````
 
 Checkpoint 11B yêu cầu khoảng 22 GB dung lượng đĩa. Trọng số VAE và text encoder thêm khoảng 8 GB.
 
@@ -197,7 +198,7 @@ Checkpoint 11B yêu cầu khoảng 22 GB dung lượng đĩa. Trọng số VAE v
 
 ### Tích hợp ComfyUI
 
-Open-Sora tích hợp với ComfyUI thông qua node API chính thức hoặc node custom cộng đồng. Mặc dù Open-Sora chưa có node ComfyUI native, bạn có thể sử dụng qua phương pháp bridge: ```bash
+Open-Sora tích hợp với ComfyUI thông qua node API chính thức hoặc node custom cộng đồng. Mặc dù Open-Sora chưa có node ComfyUI native, bạn có thể sử dụng qua phương pháp bridge: `````bash
 # Cài đặt ComfyUI trong môi trường riêng
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -206,9 +207,9 @@ pip install -r requirements.txt
 # Tạo node custom cho Open-Sora
 mkdir -p custom_nodes/opensora-bridge
 cd custom_nodes/opensora-bridge
-```
+`````
 
-```python
+`````python
 # custom_nodes/opensora-bridge/opensora_node.py
 import subprocess
 import torch
@@ -254,11 +255,11 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "OpenSoraTextToVideo": "Open-Sora Text to Video",
 }
-```
+`````
 
 ### Tích hợp Stable Diffusion / FLUX
 
-Open-Sora 2.0 sử dụng FLUX làm backbone T2I cho pipeline T2I2V. Bạn có thể cấu hình mô hình T2I sử dụng: ```python
+Open-Sora 2.0 sử dụng FLUX làm backbone T2I cho pipeline T2I2V. Bạn có thể cấu hình mô hình T2I sử dụng: `````python
 # configs/diffusion/inference/t2i2v_768px.py
 # Cấu hình Text-to-Image-to-Video
 model = dict(
@@ -288,19 +289,19 @@ t2i_model = dict(
 num_sampling_steps = 50
 cfg_scale = 7.5
 cfg_channel = 3  # Image conditioning scale
-```
+`````
 
 ### Gradio Web UI
 
-Open-Sora bao gồm giao diện Gradio để tạo tương tác: ```bash
+Open-Sora bao gồm giao diện Gradio để tạo tương tác: `````bash
 # Cài đặt dependencies Gradio
 pip install gradio spaces
 
 # Khởi chạy web UI
 python gradio/app.py --model-type v2 --checkpoint ./ckpts
-```
+`````
 
-Truy cập UI tại `http://localhost:7860`. Giao diện hỗ trợ: - Tạo video từ văn bản với preview trực tiếp
+Truy cập UI tại ````http://localhost:7860````. Giao diện hỗ trợ: - Tạo video từ văn bản với preview trực tiếp
 - Tải ảnh lên và điều kiện hóa cho I2V
 - Điều chỉnh motion score (thang 1-7)
 - Chọn độ phân giải và số frame
@@ -308,7 +309,7 @@ Truy cập UI tại `http://localhost:7860`. Giao diện hỗ trợ: - Tạo vid
 
 ### Tích hợp ColossalAI cho huấn luyện phân tán
 
-Nếu bạn muốn fine-tune Open-Sora trên dữ liệu custom, ColossalAI cung cấp backbone huấn luyện phân tán: ```bash
+Nếu bạn muốn fine-tune Open-Sora trên dữ liệu custom, ColossalAI cung cấp backbone huấn luyện phân tán: `````bash
 # Cài đặt ColossalAI
 pip install colossalai
 
@@ -326,7 +327,7 @@ torchrun --nproc_per_node 8 --standalone \
     configs/diffusion/train/stage2_sp.py \
     --data-path /path/to/video/dataset \
     --sequence-parallel-size 4
-```
+`````
 
 ## Benchmarks / Trường hợp sử dụng thực tế
 
@@ -356,7 +357,7 @@ VBench là bộ đánh giá chuẩn cho tạo video, đo 16+ chiều về chất
 | 768x768 | 5 giây (65 frame) | 50 | ~240 giây | ~150 giây | ~55 giây |
 | 768x768 | 5 giây (65 frame) | 30 | ~145 giây | ~90 giây | ~33 giây |
 
-Thờ gian được đo với `offload=True` cho 256x256 và sequence parallelism cho 768x768. Flash Attention 3 giảm thêm 15-20% thờ gian.
+Thờ gian được đo với ````offload=True```` cho 256x256 và sequence parallelism cho 768x768. Flash Attention 3 giảm thêm 15-20% thờ gian.
 
 ### Kịch bản triển khai thực tế
 
@@ -373,7 +374,7 @@ Một phòng lab đại học fine-tune Open-Sora 2.0 trên bộ dữ liệu vid
 
 ### Kỹ thuật tối ưu bộ nhớ
 
-Cho GPU VRAM hạn chế, Open-Sora cung cấp nhiều chiến lược tối ưu: ```bash
+Cho GPU VRAM hạn chế, Open-Sora cung cấp nhiều chiến lược tối ưu: `````bash
 # 1. CPU Offloading (tiết kiệm ~40% VRAM, chậm 25%)
 torchrun --nproc_per_node 1 --standalone \
     scripts/diffusion/inference.py \
@@ -399,11 +400,11 @@ torchrun --nproc_per_node 1 --standalone \
     configs/diffusion/inference/t2i2v_256px.py \
     --prompt "raining, sea" \
     --mixed-precision bf16
-```
+`````
 
 ### Triển khai đa GPU với Tensor Parallelism
 
-```bash
+`````bash
 # Tensor parallelism cho tạo độ phân giải cao
 torchrun --nproc_per_node 8 --standalone \
     scripts/diffusion/inference.py \
@@ -411,11 +412,11 @@ torchrun --nproc_per_node 8 --standalone \
     --save-dir samples \
     --prompt "A soaring drone footage captures coastal cliffs" \
     --tp-size 4
-```
+`````
 
 ### Prompt engineering cho Open-Sora
 
-Mô hình phản hồi tốt nhất với prompt cấu trúc có mô tả cảnh rõ ràng: ```python
+Mô hình phản hồi tốt nhất với prompt cấu trúc có mô tả cảnh rõ ràng: `````python
 # Cấu trúc prompt hiệu quả
 prompt = """A cinematic wide shot of a golden retriever running along a sandy beach at sunset. 
 Ocean waves break in the background with warm golden hour lighting. 
@@ -425,11 +426,11 @@ High production value, anamorphic lens, shallow depth of field."""
 # Tránh: prompt mơ hồ hoặc trừu tượng
 # Kém: "a dog video"
 # Tốt: Chủ thể chi tiết + hành động + môi trường + ánh sáng + chuyển động camera
-```
+`````
 
 ### Docker Compose cho triển khai production
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -462,11 +463,11 @@ services: opensora: build: .
               count: 4
               capabilities: [gpu]
 
-volumes: huggingface_cache: ```
+volumes: huggingface_cache: `````
 
 ### Giám sát và logging
 
-```python
+`````python
 # production_monitor.py
 import torch
 import time
@@ -503,13 +504,13 @@ def generate_with_monitoring(prompt, config): process = psutil.Process()
 
 # Khởi động server metrics tại cổng 9090
 start_http_server(9090)
-```
+`````
 
 ### Các lưu ý bảo mật
 
 1. **Toàn vẹn trọng số mô hình**: Xác minh checksum SHA-256 của checkpoint đã tải với registry chính thức.
 2. **Làm sạch đầu vào**: Làm sạch mọi text prompt trước khi mã hóa để ngăn tấn công injection qua tokenizer T5.
-3. **Giới hạn tài nguyên**: Đặt `CUDA_VISIBLE_DEVICES` và giới hạn bộ nhớ Docker để ngăn quá trình tạo mất kiểm soát tiêu thụ toàn bộ tài nguyên GPU.
+3. **Giới hạn tài nguyên**: Đặt ````CUDA_VISIBLE_DEVICES```` và giới hạn bộ nhớ Docker để ngăn quá trình tạo mất kiểm soát tiêu thụ toàn bộ tài nguyên GPU.
 4. **Lọc nội dung**: Triển khai lọc đầu ra nếu cung cấp dịch vụ công khai. Mô hình không có bộ phân loại an toàn tích hợp.
 
 ## So sánh với các lựa chọn thay thế
@@ -554,7 +555,7 @@ Open-Sora là framework có năng lực, nhưng không phải công cụ phù h�
 
 ### Q1: Open-Sora có thể chạy trên GPU phổ thông như RTX 3060 hoặc RTX 4070 không?
 
-Mô hình 11B yêu cầu ít nhất 16GB VRAM để tạo 256px với lượng tử hóa INT8. RTX 3060 (12GB) sẽ không chạy được mô hình 11B, nhưng mô hình 724M (Open-Sora 1.0) có thể chạy trên card 8GB. Với RTX 4070 Ti Super (16GB), tạo 256px FP16 hoạt động với `--offload True`. Để chạy 768p, bạn cần RTX 4090 (24GB) hoặc nhiều GPU.
+Mô hình 11B yêu cầu ít nhất 16GB VRAM để tạo 256px với lượng tử hóa INT8. RTX 3060 (12GB) sẽ không chạy được mô hình 11B, nhưng mô hình 724M (Open-Sora 1.0) có thể chạy trên card 8GB. Với RTX 4070 Ti Super (16GB), tạo 256px FP16 hoạt động với ````--offload True````. Để chạy 768p, bạn cần RTX 4090 (24GB) hoặc nhiều GPU.
 
 ### Q2: Open-Sora so với Sora của OpenAI như thế nào?
 
@@ -570,7 +571,7 @@ T2V trực tiếp (text-to-video) tạo video từ text prompt trong một quá 
 
 ### Q5: Làm thế nào để triển khai Open-Sora như một dịch vụ API?
 
-Bọc pipeline inference trong ứng dụng FastAPI với hàng đợi worker GPU. Sử dụng Redis hoặc RabbitMQ để phân phối job, và chạy worker inference trên các node GPU. Ứng dụng Gradio đi kèm trong repository (`gradio/app.py`) cung cấp triển khai tham khảo. Cho production, thêm xác thực request, giới hạn rate, và caching đầu ra. Một boilerplate FastAPI đầy đủ có sẵn trong thư mục `examples/api_server/` của repository.
+Bọc pipeline inference trong ứng dụng FastAPI với hàng đợi worker GPU. Sử dụng Redis hoặc RabbitMQ để phân phối job, và chạy worker inference trên các node GPU. Ứng dụng Gradio đi kèm trong repository (````gradio/app.py````) cung cấp triển khai tham khảo. Cho production, thêm xác thực request, giới hạn rate, và caching đầu ra. Một boilerplate FastAPI đầy đủ có sẵn trong thư mục ````examples/api_server/```` của repository.
 
 ### Q6: Định dạng prompt nào hoạt động tốt nhất với Open-Sora?
 
@@ -588,7 +589,7 @@ Open-Sora 2.0 đại diện cho cột mốc trong tạo video mã nguồn mở: 
 
 **Các bước tiếp theo:**
 
-1. Clone repository: `git clone https://github.com/hpcaitech/Open-Sora.git`
+1. Clone repository: ````git clone https://github.com/hpcaitech/Open-Sora.git```
 2. Tham gia thảo luận cộng đồng trên GitHub Discussions để lấy tip fine-tuning
 3. Theo dõi dự án trên GitHub để nhận thông báo phát hành 1.4/2.1
 4. Chia sẻ kinh nghiệm triển khai của bạn trong cộng đồng Telegram dibi8: [https://t.me/dibi8tech](https://t.me/dibi8tech)
@@ -642,7 +643,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -652,6 +653,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [comfyui-workflows-complete-guide](open-sora)
 - [voicebox-open-source-ai-voice-studio](open-sora)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

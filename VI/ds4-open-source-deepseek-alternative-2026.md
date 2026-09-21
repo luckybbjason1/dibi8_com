@@ -35,6 +35,7 @@ faqs: - q: 'ds4 là gì và khác vLLM hay Ollama như thế nào?'
     a: 'Rồi. Một số team (Marsh McLennan, Replit infra) báo cáo ổn định production nhiều tháng. Bảo trì tích cực với release hàng tuần từ Q1 2026. Cân nhắc chính là độ phức tạp vận hành — như tất cả runtime LLM, ds4 cần năng lực SRE để triển khai production.'
 ---
 
+
 {{</* resource-info */>}}
 
 ## Quick Answer
@@ -43,7 +44,7 @@ faqs: - q: 'ds4 là gì và khác vLLM hay Ollama như thế nào?'
 
 **A:** ds4 là **runtime LLM mã nguồn mở được tối ưu hóa đặc biệt cho kiến trúc DeepSeek** (V3, V3.1, V4). License Apache-2.0, tương thích OpenAI API, **giảm 40% độ trễ và 2× throughput** so với vLLM trên workload DeepSeek. Chuyển nếu DeepSeek chiếm > 50% inference; giữ vLLM cho Llama/Mistral/Qwen. Sẵn sàng production tháng 5/2026 với báo cáo ổn định nhiều tháng từ Marsh McLennan + Replit infra.
 
----
+* * *
 
 ## Giới thiệu
 
@@ -68,20 +69,20 @@ ds4 DeepSeek 4 Flash local inference engine for Metal and CUDA. With 10,913 star
 
 At its core, ds4 solves a specific problem in the Dev Utils workflow. The architecture is designed around three principles: simplicity, composability, and production-readiness.
 
-```
+````
 [此处建议插入：项目架构图/核心模块关系图]
 Architecture: ds4 core components
 ├── CLI interface
 ├── API layer
 ├── Core engine
 └── Plugin/extension system
-```
+`````
 
 ## Cài đặt và Thiết lập
 
 Get ds4 running in under 5 minutes: **Option 1: Install via package manager**
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/antirez/ds4.git
 cd ds4
@@ -91,33 +92,33 @@ npm install  # or pip install -r requirements.txt, or cargo build
 
 # Verify installation
 ds4 --version
-```
+`````
 
 **Option 2: Docker (recommended for production)**
 
-```bash
+`````bash
 docker pull antirez/ds4
 docker run -it --rm ds4 --help
-```
+`````
 
 **Option 3: Binary download**
 
-```bash
+`````bash
 curl -fsSL https://raw.githubusercontent.com/antirez/ds4/main/install.sh | bash
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
 ### Claude Code Integration
 
-```bash
+`````bash
 # Add to your Claude Code project
 claude config set mcpServers.ds4 "https://github.com/antirez/ds4"
-```
+`````
 
 ### Cursor Integration
 
-```json
+`````json
 // .cursor/mcp.json
 {
   "mcpServers": {
@@ -127,11 +128,11 @@ claude config set mcpServers.ds4 "https://github.com/antirez/ds4"
     }
   }
 }
-```
+`````
 
 ### VS Code Integration
 
-```json
+`````json
 // .vscode/mcp.json
 {
   "servers": {
@@ -142,14 +143,14 @@ claude config set mcpServers.ds4 "https://github.com/antirez/ds4"
     }
   }
 }
-```
+`````
 
 ### GitHub Copilot Integration
 
-```bash
+`````bash
 # Configure Copilot to use ds4
 echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
-```
+`````
 
 ## Điểm chuẩn và trường hợp sử dụng thực tế
 
@@ -168,7 +169,7 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 
 ### Production Hardening Checklist
 
-```yaml
+`````yaml
 security: - enable_rate_limiting: true
   - max_requests_per_minute: 120
   - authentication: required
@@ -180,11 +181,11 @@ monitoring: - health_check_endpoint: /health
 scaling: - min_replicas: 2
   - max_replicas: 10
   - target_cpu_utilization: 70%
-```
+`````
 
 ### Environment-specific Configuration
 
-```bash
+`````bash
 # Development
 export DS4_ENV=dev
 export DS4_LOG_LEVEL=debug
@@ -197,7 +198,7 @@ export DS4_LOG_LEVEL=info
 export DS4_ENV=production
 export DS4_LOG_LEVEL=warn
 export DS4_RATE_LIMIT=1000
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -215,11 +216,11 @@ export DS4_RATE_LIMIT=1000
 
 **Q1: How do I install ds4 on a fresh machine?**
 
-A: The fastest path is the one-liner install script: `curl -fsSL ... | bash`. For production environments, use the Docker image for reproducibility.
+A: The fastest path is the one-liner install script: ````curl -fsSL ... | bash````. For production environments, use the Docker image for reproducibility.
 
 **Q2: Can I use ds4 with my existing Claude Code setup?**
 
-A: Yes. Add the MCP server configuration to your `.claude/mcp.json` or use the CLI command shown in the Integration section above.
+A: Yes. Add the MCP server configuration to your ````.claude/mcp.json``` or use the CLI command shown in the Integration section above.
 
 **Q3: What are the system requirements for running ds4 in production?**
 
@@ -241,12 +242,12 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 **Next step:** Clone the repo, run the 5-minute setup, and see the difference in your next deployment.
 
----
+* * *
 
 *Published on dibi8.com | Source: [antirez/ds4](https://github.com/antirez/ds4) | ⭐ 10,913*
 
 
----
+* * *
 
 ## Hạ tầng được đề xuất
 
@@ -257,7 +258,7 @@ Stack tối ưu hoàn chỉnh bao gồm chọn model: xem [Cheap LLM Stack colle
 
 *Bài viết chứa liên kết tiếp thị. Chúng tôi có thể nhận hoa hồng — không tốn thêm chi phí của bạn.*
 
----
+* * *
 
 ## Đọc thêm
 
@@ -329,12 +330,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -344,7 +345,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-05-25-trending-ai-agents](ds4-open-source-deepseek-alternative-2026)
 - [2026-06-01-trending-ai-agents](ds4-open-source-deepseek-alternative-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

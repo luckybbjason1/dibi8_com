@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/puppeteer/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -36,7 +37,7 @@ aliases:
 
 Puppeteer 是一个 Node.js 库，它提供了通过 Chrome DevTools Protocol (CDP) 和 WebDriver BiDi 以编程方式控制 Chrome、Chromium 和 Firefox 的 API。它默认以无头模式运行，适合服务器环境，但在需要调试时也可以驱动可见的（"headed"）浏览器窗口。该项目于 2017 年首次公开发布，此后发展成为一个涵盖网络爬虫、PDF 生成、截图自动化、可访问性测试和 CI/CD 管道的生态系统。
 
-`puppeteer` 包在安装时自动捆绑 Chromium，而 `puppeteer-core` 则省略了浏览器下载 —— 在 Docker 和其他受限环境中，这一区别很重要，因为你需要自带 Chrome 二进制文件。
+```puppeteer```` 包在安装时自动捆绑 Chromium，而 ````puppeteer-core```` 则省略了浏览器下载 —— 在 Docker 和其他受限环境中，这一区别很重要，因为你需要自带 Chrome 二进制文件。
 
 ## Puppeteer 的工作原理
 
@@ -44,7 +45,7 @@ Puppeteer 是一个 Node.js 库，它提供了通过 Chrome DevTools Protocol (C
 
 ![Puppeteer GitHub 仓库 94,300 stars](https://github.com/puppeteer/puppeteer/raw/main/docs/images/puppeteer-logo.png)
 
-Puppeteer 通过 WebSocket 连接与浏览器通信。当你调用 `puppeteer.launch()` 时，库会在本地端口上启动一个启用了远程调试的 Chrome 或 Firefox 进程，然后通过 DevTools Protocol 连接到它。这种直接连接避免了旧的基于 WebDriver 工具的 HTTP 往返开销。
+Puppeteer 通过 WebSocket 连接与浏览器通信。当你调用 ````puppeteer.launch()```` 时，库会在本地端口上启动一个启用了远程调试的 Chrome 或 Firefox 进程，然后通过 DevTools Protocol 连接到它。这种直接连接避免了旧的基于 WebDriver 工具的 HTTP 往返开销。
 
 **关键架构概念：**
 
@@ -59,17 +60,17 @@ Puppeteer 通过 WebSocket 连接与浏览器通信。当你调用 `puppeteer.la
 
 在装有 Node.js 22+ 的机器上，本地安装 Puppeteer 不到三分钟。
 
-```bash
+`````bash
 # 安装包含捆绑 Chromium 的版本
 npm install puppeteer
 
 # 或者如果你单独管理 Chrome，使用 puppeteer-core
 npm install puppeteer-core
-```
+`````
 
 **验证安装**，使用一个最小脚本：
 
-```javascript
+`````javascript
 // quickstart.mjs — 验证 Puppeteer 是否正确启动
 import puppeteer from puppeteer;
 
@@ -77,20 +78,20 @@ const browser = await puppeteer.launch();
 const page = await browser.newPage();
 await page.goto('https://example.com');
 const title = await page.title();
-console.log(`Page title: ${title}`);
+console.log(````Page title: ${title}````);
 await browser.close();
-```
+`````
 
 运行它：
 
-```bash
+`````bash
 node quickstart.mjs
 # 期望输出: Page title: Example Domain
-```
+`````
 
-对于你独立管理 Chrome 的环境 —— Docker、AWS Lambda 或预装 Chromium 的系统 —— 使用 `puppeteer-core` 并设置 `executablePath`：
+对于你独立管理 Chrome 的环境 —— Docker、AWS Lambda 或预装 Chromium 的系统 —— 使用 ````puppeteer-core```` 并设置 ````executablePath````：
 
-```javascript
+`````javascript
 import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
@@ -98,7 +99,7 @@ const browser = await puppeteer.launch({
   headless: new,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
-```
+`````
 
 ## Docker 部署
 
@@ -106,7 +107,7 @@ const browser = await puppeteer.launch({
 
 **生产级 Dockerfile：**
 
-```dockerfile
+`````dockerfile
 # Dockerfile — 用于 Puppeteer 的 Node.js 22 + Chromium 环境
 FROM node:22-slim
 
@@ -153,18 +154,18 @@ COPY src/ ./src/
 USER pptruser
 
 CMD ["node", "src/index.mjs"]
-```
+`````
 
 **构建和运行：**
 
-```bash
+`````bash
 docker build -t puppeteer-app .
 docker run --rm -v $(pwd)/output:/home/pptruser/app/output puppeteer-app
-```
+`````
 
 **本地开发的 docker-compose.yml：**
 
-```yaml
+`````yaml
 version: '3.8'
 services: puppeteer: build: .
     volumes: - ./src:/home/pptruser/app/src
@@ -174,9 +175,9 @@ services: puppeteer: build: .
     shm_size: 2gb
     deploy: resources: limits: memory: 4G
         reservations: memory: 1G
-```
+`````
 
-`shm_size` 设置至关重要。Chrome 使用 `/dev/shm` 作为共享内存，而 Docker 容器中的默认值 64MB 会在大页面上导致崩溃。将其设置为 2GB 可以防止无头模式下的 "Aw, snap" 错误。
+````shm_size```` 设置至关重要。Chrome 使用 ````/dev/shm```` 作为共享内存，而 Docker 容器中的默认值 64MB 会在大页面上导致崩溃。将其设置为 2GB 可以防止无头模式下的 "Aw, snap" 错误。
 
 ![Puppeteer Docker 容器运行 Chrome headless](https://user-images.githubusercontent.com/3165635/222661775-8d1f4f3a-75f1-4c9d-9c3d-3c5f53b5c1f0.png)
 
@@ -188,7 +189,7 @@ services: puppeteer: build: .
 
 现代 SPA 在初始 HTML 响应后加载内容。Puppeteer 在提取数据前等待选择器出现：
 
-```javascript
+`````javascript
 // scraper.mjs — 从 JavaScript 渲染的页面提取数据
 import puppeteer from puppeteer;
 
@@ -216,15 +217,15 @@ const quotes = await page.evaluate(() => {
   }));
 });
 
-console.log(`Scraped ${quotes.length} quotes`);
+console.log(````Scraped ${quotes.length} quotes````);
 await browser.close();
-```
+`````
 
 ### 截图和 PDF 生成
 
 Puppeteer 在从 HTML 渲染可视化产物方面表现出色 —— 这是发票、报告和 Open Graph 图片生成的常见需求：
 
-```javascript
+`````javascript
 // screenshot.mjs — 全页截图和 PDF 导出
 import puppeteer from puppeteer;
 import fs from fs;
@@ -255,13 +256,13 @@ await page.pdf({
 
 console.log('截图和 PDF 已保存到', OUTPUT_DIR);
 await browser.close();
-```
+`````
 
 ### 网络拦截和请求屏蔽
 
 屏蔽不必要的资源可以将爬虫场景中的页面加载时间缩短 40–60%：
 
-```javascript
+`````javascript
 // blocker.mjs — 屏蔽图片和 CSS 以加快抓取速度
 import puppeteer from puppeteer;
 
@@ -281,10 +282,10 @@ page.on(request, (req) => {
 
 const start = Date.now();
 await page.goto('https://example.com', { waitUntil: networkidle2 });
-console.log(`加载耗时 ${Date.now() - start}ms (资源已屏蔽)`);
+console.log(````加载耗时 ${Date.now() - start}ms (资源已屏蔽)````);
 
 await browser.close();
-```
+`````
 
 ## 与流行工具集成
 
@@ -292,7 +293,7 @@ await browser.close();
 
 在每次推送时自动捕获截图或运行回归测试：
 
-```yaml
+`````yaml
 # .github/workflows/puppeteer.yml
 name: Puppeteer CI
 on: push: branches: [main]
@@ -318,11 +319,11 @@ jobs: puppeteer: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: screenshots
           path: output/*.png
-```
+`````
 
 ### Jest 测试框架
 
-```javascript
+`````javascript
 // jest.config.js
 module.exports = {
   testEnvironment: node,
@@ -332,9 +333,9 @@ module.exports = {
     'ts-jest': { useESM: true }
   }
 };
-```
+`````
 
-```javascript
+`````javascript
 // homepage.test.mjs — Jest + Puppeteer 集成
 import puppeteer from puppeteer;
 
@@ -366,11 +367,11 @@ describe(Homepage, () => {
     expect(Date.now() - start).toBeLessThan(3000);
   });
 });
-```
+`````
 
 ### TypeScript 配置
 
-```json
+`````json
 // tsconfig.json
 {
   "compilerOptions": {
@@ -384,9 +385,9 @@ describe(Homepage, () => {
   },
   "include": ["src/**/*"]
 }
-```
+`````
 
-```typescript
+`````typescript
 // src/scraper.ts — 使用 TypeScript 的 Puppeteer
 import puppeteer, { Browser, Page } from puppeteer;
 
@@ -415,12 +416,12 @@ async function scrapeProducts(url: string): Promise<Product[]> {
 }
 
 const results = await scrapeProducts('https://example.com/products');
-console.log(`找到 ${results.length} 个产品`);
-```
+console.log(````找到 ${results.length} 个产品````);
+`````
 
 ### Mocha 测试运行器
 
-```javascript
+`````javascript
 // .mocharc.cjs
 module.exports = {
   extension: [mjs],
@@ -428,9 +429,9 @@ module.exports = {
   timeout: 30000,
   exit: true
 };
-```
+`````
 
-```javascript
+`````javascript
 // test/scraper.test.mjs — Mocha + Puppeteer
 import puppeteer from puppeteer;
 import assert from assert;
@@ -456,7 +457,7 @@ describe('Scraper Suite', function() {
     await page.close();
   });
 });
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -464,15 +465,15 @@ describe('Scraper Suite', function() {
 
 | 指标 | Puppeteer | Selenium | Playwright | Cypress |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 平均操作延迟 | < 1秒 | 3–5秒 | 1–2秒 | 1–2秒 |
 | 配置时间 | 10–15 分钟 | 2–4 小时 | 15–30 分钟 | 15–30 分钟 |
@@ -483,7 +484,7 @@ describe('Scraper Suite', function() {
 
 **何时选择 Puppeteer 而非替代品：**
 
-- **PDF 生成和截图管道**: Puppeteer 的 `page.pdf()` 和 `page.screenshot()` 是浏览器自动化领域中最成熟的 API。
+- **PDF 生成和截图管道**: Puppeteer 的 ````page.pdf()```` 和 ````page.screenshot()```` 是浏览器自动化领域中最成熟的 API。
 - **Chrome DevTools Protocol 访问**: 对于构建开发者工具、性能分析器或覆盖率报告器的团队，直接 CDP 访问是只有 Puppeteer 原生满足的需求。
 - **大规模网页抓取**: 当与 Bull 或 RabbitMQ 等工作队列结合时，Puppeteer 每小时可处理数千个 URL，开销极小。
 - **现有 Node.js 基础设施**: 如果你的后端已经是 TypeScript/JavaScript，引入 Puppeteer 不会增加新的运行时或语言。
@@ -494,7 +495,7 @@ describe('Scraper Suite', function() {
 
 为每个请求启动一个浏览器是浪费的。连接池可以复用浏览器实例：
 
-```javascript
+`````javascript
 // pool.mjs — 带最大并发限制的浏览器池
 import puppeteer from puppeteer;
 
@@ -550,13 +551,13 @@ await page.goto('https://example.com');
 // ... 工作 ...
 await page.close();
 pool.release(browser);
-```
+`````
 
 ### 优雅的错误处理和重试
 
 生产环境抓取会遇到网络超时、机器人检测和瞬态故障。用指数退避包裹页面导航：
 
-```javascript
+`````javascript
 // retry.mjs — 带指数退避的弹性导航
 async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -569,18 +570,18 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
     } catch (err) {
       if (attempt === maxRetries) throw err;
       const delay = Math.pow(2, attempt) * 1000;
-      console.log(`第 ${attempt} 次尝试失败，${delay}ms 后重试...`);
+      console.log(````第 ${attempt} 次尝试失败，${delay}ms 后重试...````);
       await new Promise(r => setTimeout(r, delay));
     }
   }
 }
-```
+`````
 
 ### 健康监控
 
 在长时间运行的服务中，监控浏览器进程健康状况并在崩溃时重启实例：
 
-```javascript
+`````javascript
 // health.mjs — 浏览器进程的基础健康检查
 async function isBrowserHealthy(browser) {
   try {
@@ -603,21 +604,21 @@ setInterval(async () => {
     }
   }
 }, 60000);
-```
+`````
 
 ## 与替代品对比
 
 | 特性 | Puppeteer | Selenium | Playwright | Cypress |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **主要语言** | JavaScript, TypeScript | Java, Python, C#, JS, Ruby | JS/TS, Python, Java, .NET | JavaScript, TypeScript |
 | **浏览器支持** | Chrome, Chromium, Firefox | 所有主流 + 移动端 (Appium) | Chromium, Firefox, WebKit | Chromium, Edge, Firefox |
@@ -625,7 +626,7 @@ setInterval(async () => {
 | **执行速度** | 非常快 (< 1秒/操作) | 慢 (3–5秒/操作) | 快 (1–2秒/操作) | 快 (1–2秒/操作) |
 | **内置测试运行器** | 无 (使用 Jest/Mocha) | 无 (使用外部工具) | 有 (playwright test) | 有 |
 | **并行执行** | 手动设置 | Selenium Grid | 内置 worker | Cypress Cloud (付费) |
-| **PDF 生成** | 原生 (`page.pdf`) | 第三方 | 原生 | 第三方插件 |
+| **PDF 生成** | 原生 (````page.pdf````) | 第三方 | 原生 | 第三方插件 |
 | **移动端模拟** | Chrome 设备模拟 | 完整 (通过 Appium) | 视口模拟 | 无 |
 | **社区 / GitHub Stars** | 94,300 | 34,000 | 78,000 | 48,000 |
 | **许可证** | Apache-2.0 | Apache-2.0 | Apache-2.0 | MIT |
@@ -637,18 +638,18 @@ setInterval(async () => {
 
 Puppeteer 并不是适合每个浏览器自动化任务的工具。在决定使用前，请考虑以下限制：
 
-- **仅限 JavaScript**: Puppeteer 是一个 Node.js 库。使用 Python、Java 或 Go 的团队必须使用 `pyppeteer`（非官方，滞后）或切换到 Selenium/Playwright。
+- **仅限 JavaScript**: Puppeteer 是一个 Node.js 库。使用 Python、Java 或 Go 的团队必须使用 ````pyppeteer````（非官方，滞后）或切换到 Selenium/Playwright。
 - **跨浏览器支持有限**: 虽然通过 WebDriver BiDi 支持 Firefox，但其成熟度不如 Chrome 自动化。Safari 和 WebKit 不受支持。如果跨浏览器测试是硬性要求，Playwright 原生覆盖所有三个渲染引擎。
 - **无内置测试运行器**: 与 Cypress 或 Playwright 不同，Puppeteer 不提供断言、测试组织或报告器。你需要自行引入 Jest、Mocha 或 Vitest。
 - **手动并行化**: 并行测试执行需要手动浏览器池管理或外部编排。Playwright 的内置 worker 模型对于大型测试套件更简单。
 - **内存占用**: 每个 Chrome 实例消耗 200–400MB 内存。同时抓取数千个页面需要大量基础设施或基于集群的方法。
-- **机器人检测**: 现代网站使用 Cloudflare、DataDome 和 PerimeterX 来检测无头浏览器。Puppeteer 本身无法绕过这些系统 —— 需要额外的工具如 `puppeteer-extra-plugin-stealth`，且其有效性各不相同。
+- **机器人检测**: 现代网站使用 Cloudflare、DataDome 和 PerimeterX 来检测无头浏览器。Puppeteer 本身无法绕过这些系统 —— 需要额外的工具如 ````puppeteer-extra-plugin-stealth````，且其有效性各不相同。
 
 ## 常见问题解答
 
-### `puppeteer` 和 `puppeteer-core` 有什么区别？
+### ````puppeteer```` 和 ````puppeteer-core```` 有什么区别？
 
-`puppeteer` 包捆绑了 Chromium，在安装时自动下载。`puppeteer-core` 包仅包含 JavaScript API，期望你通过 `executablePath` 启动选项提供 Chrome 或 Chromium 可执行文件。在 Docker、CI/CD 管道以及你单独管理浏览器二进制文件的环境中使用 `puppeteer-core`。
+````puppeteer```` 包捆绑了 Chromium，在安装时自动下载。````puppeteer-core```` 包仅包含 JavaScript API，期望你通过 ````executablePath```` 启动选项提供 Chrome 或 Chromium 可执行文件。在 Docker、CI/CD 管道以及你单独管理浏览器二进制文件的环境中使用 ````puppeteer-core````。
 
 ### Puppeteer 支持 Firefox 吗？
 
@@ -656,15 +657,15 @@ Puppeteer 并不是适合每个浏览器自动化任务的工具。在决定使�
 
 ### 如何在 Docker 中以非 root 权限运行 Puppeteer？
 
-在 Dockerfile 中创建专用的非 root 用户，将其分配到 `audio` 和 `video` 组，并使用 `--no-sandbox` 和 `--disable-setuid-sandbox` 标志运行 Chrome。本指南中的 Dockerfile 示例展示了完整设置。请注意，`--no-sandbox` 会降低进程隔离性，但在容器化环境中，这是可接受的权衡，因为容器本身提供了安全边界。
+在 Dockerfile 中创建专用的非 root 用户，将其分配到 ````audio```` 和 ````video```` 组，并使用 ````--no-sandbox```` 和 ````--disable-setuid-sandbox```` 标志运行 Chrome。本指南中的 Dockerfile 示例展示了完整设置。请注意，````--no-sandbox```` 会降低进程隔离性，但在容器化环境中，这是可接受的权衡，因为容器本身提供了安全边界。
 
 ### Puppeteer 25 的最低 Node.js 版本是多少？
 
-Puppeteer v25.0.0 及更高版本需要 Node.js 22 或更高版本。该项目在此版本中迁移为纯 ESM 模块，取消了对 CommonJS (`require()`) 的支持。如果你使用的是 Node.js 18 或 20，请在安装 Puppeteer 25 之前升级，或固定使用支持 Node.js 18+ 的 Puppeteer 24.x。
+Puppeteer v25.0.0 及更高版本需要 Node.js 22 或更高版本。该项目在此版本中迁移为纯 ESM 模块，取消了对 CommonJS (````require()````) 的支持。如果你使用的是 Node.js 18 或 20，请在安装 Puppeteer 25 之前升级，或固定使用支持 Node.js 18+ 的 Puppeteer 24.x。
 
 ### 如何在生产 Puppeteer 部署中减少内存使用？
 
-使用浏览器池限制并发 Chrome 实例数量，通过请求拦截屏蔽不必要的资源（图片、CSS、字体），使用后立即关闭页面，并设置 `--disable-dev-shm-usage` 标志以使用 `/tmp` 代替 `/dev/shm` 作为共享内存。在 Docker 中，将 `shm_size` 增加到至少 2GB 以防止渲染进程崩溃。
+使用浏览器池限制并发 Chrome 实例数量，通过请求拦截屏蔽不必要的资源（图片、CSS、字体），使用后立即关闭页面，并设置 ````--disable-dev-shm-usage```` 标志以使用 ````/tmp```` 代替 ````/dev/shm```` 作为共享内存。在 Docker 中，将 ````shm_size``` 增加到至少 2GB 以防止渲染进程崩溃。
 
 ### Puppeteer 适合大规模网页抓取吗？
 
@@ -734,7 +735,7 @@ Puppeteer 仍然是需要编程控制 Chrome 的团队的可靠选择。其 94,3
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [obscura-rust-headless-browser-ai-agents-web-scraping](puppeteer)
@@ -744,5 +745,5 @@ Puppeteer 仍然是需要编程控制 Chrome 的团队的可靠选择。其 94,3
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](puppeteer)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

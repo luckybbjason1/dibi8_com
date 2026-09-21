@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
 ---
 
+
 {</* resource-info */>}
 
 ## 서론: 이건 단순한 도구 업데이트가 아니다
@@ -34,13 +35,13 @@ aliases:
 
 개발자에게 이것은 두 가지 의미를 동시에 갖는다. **능력의 상한선이 사라졌다**는 것, 그리고 **벤더 종속의 리스크가 그 어느 때보다 현실적**이라는 것.
 
----
+* * *
 
 ## 1부: 클로드 코드 스킬 — 장난감에서 인프라로
 
 ### 1.1 스킬 마켓은 어떻게 폭발했나
 
-2026년 4월 이전, 클로드 코드의 "스킬"은 마이너한 기능이었다. `~/.claude/skills/` 디렉터리에 마크다운 파일을 몇 개 넣으면 클로드가 상황에 맞춰 참고하는 정도. 유용하지만 혁명적은 아니었다.
+2026년 4월 이전, 클로드 코드의 "스킬"은 마이너한 기능이었다. ```~/.claude/skills/```` 디렉터리에 마크다운 파일을 몇 개 넣으면 클로드가 상황에 맞춰 참고하는 정도. 유용하지만 혁명적은 아니었다.
 
 두 가지 사건이 모든 것을 바꿨다.
 
@@ -52,7 +53,7 @@ aliases:
 
 ### 1.2 스킬 설치는 10초면 충분
 
-```bash
+`````bash
 # 카파시의 스킬을 로컬 스킬 라이브러리에 클론
 gh repo clone andrej-karpathy/skills ~/.claude/skills/karpathy
 
@@ -62,7 +63,7 @@ ls ~/.claude/skills/karpathy
 # 클로드 코드 내부에서 사용
 claude
 > run the profiling skill on this Go module
-```
+`````
 
 스킬 파일은 구조화된 마크다운로, 네 가지 섹션으로 구성된다: - **트리거** — 스킬을 활성화하는 자연어 패턴
 - **컨텍스트 주입** — 로드할 파일, 환경 변수, 참조 데이터
@@ -80,7 +81,7 @@ claude
 
 **이것이 의미하는 바:** 신입 개발자가 팀의 스킬 팩을 설치하면, 클로드가 즉시 팀 표준에 맞는 코드를 작성한다. 문서가 실행 가능해지는 것이다.
 
----
+* * *
 
 ## 2부: MCP — AI 도구의 USB-C
 
@@ -112,7 +113,7 @@ MCP 서버—로컬이나 원격에서 실행—는 AI에 세 가지 상호작�
 
 **핵심 통찰:** MCP는 AI를 "사이드바의 챗봇"에서 "전체 기술 스택을 운용하는 실행 계층"으로 변모시키고 있다.
 
----
+* * *
 
 ## 3부: 오픈소스 대안의 급성장
 
@@ -128,7 +129,7 @@ MCP 서버—로컬이나 원격에서 실행—는 AI에 세 가지 상호작�
 
 헤르메스 에이전트의 피치는 직설적이다: **간단한 기본값, MCP 호환, 로컬 모델 친화적.**
 
-```python
+`````python
 from hermes import Agent, Skill
 
 # 로컬 모델로 동작—클라우드 불필요
@@ -137,7 +138,7 @@ agent.load_skill("git-workflow")
 
 # 복잡한 리팩토링 작업 실행
 agent.run("Refactor the auth module to use JWT tokens")
-```
+`````
 
 랭그래프의 무거운 오케스트레이션과 비교하면, 헤르메스는 "향상된 스크립팅"에 가깝다—완만한 학습 곡선이지만 높은 능력 상한선. AI 에이전트의 파이썬이다: 가장 화려하지는 않지만, 당장 제품을 출시할 수 있다.
 
@@ -145,7 +146,7 @@ agent.run("Refactor the auth module to use JWT tokens")
 
 오픈코드의 포지셔닝은 의도적으로 대립적이다: **벤더 종속 없음, 모델 종속 없음, 완전 자체 호스팅 가능.**
 
-```bash
+`````bash
 # 설치
 pip install opencode
 
@@ -154,7 +155,7 @@ opencode config --model ollama/llama3:70b
 
 # 프로젝트에서 에이전트 모드 실행
 opencode agent --project ./my-app
-```
+`````
 
 클로드에서 GPT로, 다시 로컬 70B 파라미터 모델로 바꾸는 것은 한 줄 설정 변경으로 충분하다. 오픈코드가 MCP 협상, 컨텍스트 윈도우 관리, 도구 호출을 균일하게 처리한다.
 
@@ -171,13 +172,13 @@ opencode agent --project ./my-app
 
 **솔직한 진실:** 복잡한 작업의 순수 추론 능력에서는 클로즈드 소스가 여전히 우위다. 하지만 격차는 빠르게 줄어들고 있고, 루틴 작업의 총 소유 비용 계산식은 점점 자체 호스팅에 유리하게 작용한다.
 
----
+* * *
 
 ## 4부: 종속에 강한 AI 코딩 워크플로우 구축하기
 
 ### 4.1 계층형 아키텍처
 
-```
+`````
 ┌─────────────────────────────────────┐
 │  레이어 3: AI 에이전트 (교체 가능)   │  ← 클로드, 오픈코드, 코덱스, 제미나이
 ├─────────────────────────────────────┤
@@ -185,7 +186,7 @@ opencode agent --project ./my-app
 ├─────────────────────────────────────┤
 │  레이어 1: 툴체인 (영속적)          │  ← 깃, 데이터베이스, 클라우드 API
 └─────────────────────────────────────┘
-```
+`````
 
 **원칙:** 탈출구는 MCP 계층이다. 상위 에이전트를 교체해도 툴체인 통합은 그대로 유지된다.
 
@@ -193,17 +194,17 @@ opencode agent --project ./my-app
 
 **단계 1: MCP CLI 설치**
 
-```bash
+`````bash
 # npm 경로
 npm install -g @anthropics/mcp-cli
 
 # 또는 파이썬
 pip install mcp-cli
-```
+`````
 
 **단계 2: 핵심 MCP 서버 등록**
 
-```bash
+`````bash
 # 깃허브 MCP 서버 (코드 조작)
 mcp server add github --command npx -y @modelcontextprotocol/server-github
 
@@ -212,11 +213,11 @@ mcp server add postgres --command uvx mcp-server-postgres
 
 # 파일시스템 MCP 서버 (로컬 파일 접근)
 mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
-```
+`````
 
 **단계 3: 에이전트가 MCP를 사용하도록 구성**
 
-클로드 코드의 경우, `~/.claude/config.json` 편집: ```json
+클로드 코드의 경우, ``~/.claude/config.json`` 편집: `````json
 {
   "mcpServers": {
     "github": {
@@ -229,22 +230,22 @@ mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
     }
   }
 }
-```
+`````
 
-오픈코드의 경우, `opencode.yaml`에: ```yaml
+오픈코드의 경우, ``opencode.yaml``에: `````yaml
 mcp: servers: - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: postgres
       command: uvx mcp-server-postgres postgresql://localhost/mydb
-```
+`````
 
 **단계 4: 팀 스킬 작성**
 
-`team-standard.md` 생성: ```markdown
----
+``team-standard.md`` 생성: `````markdown
+* * *
 skill: team-standard
 version: "1.0"
----
+* * *
 
 # 팀 코딩 표준
 
@@ -254,7 +255,7 @@ version: "1.0"
 - 타입/인터페이스: PascalCase
 
 ## 에러 처리 패턴
-모든 비동기 함수는 try/catch와 requestId 추적 필수: ```typescript
+모든 비동기 함수는 try/catch와 requestId 추적 필수: `````typescript
 const requestId = crypto.randomUUID();
 try {
   await riskyOperation();
@@ -262,24 +263,24 @@ try {
   logger.error({ requestId, error: err.message });
   throw new AppError("OPERATION_FAILED", { requestId });
 }
-```
+`````
 
 ## 테스트 요구사항
 - 모든 exported 함수는 최소 1개의 유닛 테스트 필요
 - vitest + @testing-library 사용
-```
+`````
 
-`~/.claude/skills/` 또는 헤르메스 스킬 디렉터리에 넣으면 완료.
+````~/.claude/skills/```` 또는 헤르메스 스킬 디렉터리에 넣으면 완료.
 
----
+* * *
 
 ## 5부: 향후 12개월 전망
 
 ### 5.1 스킬이 새로운 "패키지 관리"가 된다
 
-`npm install`, `pip install`, `cargo add`은 코드 의존성을 관리한다. 스킬은 **행동 의존성**을 관리한다—AI가 특정 프레임워크, API, 또는 팀 컨벤션과 작업할 때 어떻게 행동해야 하는지.
+````npm install````, ````pip install````, ````cargo add````은 코드 의존성을 관리한다. 스킬은 **행동 의존성**을 관리한다—AI가 특정 프레임워크, API, 또는 팀 컨벤션과 작업할 때 어떻게 행동해야 하는지.
 
-2026년 말까지, 주요 언어 생태계가 `skills.yaml` 파일을 지원할 것으로 예상된다—`package.json`처럼 버전 잠금하고 공유 가능한 형태로.
+2026년 말까지, 주요 언어 생태계가 ````skills.yaml```` 파일을 지원할 것으로 예상된다—````package.json```처럼 버전 잠금하고 공유 가능한 형태로.
 
 ### 5.2 "에이전트 스토어"의 등장
 
@@ -300,7 +301,7 @@ AI 에이전트가 프로덕션 시스템에 대한 실제 실행 권한을 갖�
 - 에이전트 행동 재생 및 포렌식 분석
 - "AI 에이전트 오류"를 커버하는 보험 상품
 
----
+* * *
 
 ## 6부: 개발자 유형별 실전 조언
 
@@ -322,9 +323,9 @@ AI 에이전트가 프로덕션 시스템에 대한 실제 실행 권한을 갖�
 2. **AI 도구 사용 정책을 수립하세요.** 어떤 데이터가 네트워크를 떠날 수 있고, 어떤 것은 로컬에 남아야 하는지 문서화하세요.
 3. **하이브리드 아키텍처를 실험하세요.** 복잡한 추론 작업에는 최첨단 클로즈드 모델을, 대량의 루틴 작업에는 오픈소스 로컬 모델을 사용하세요.
 
----
+* * *
 
----
+* * *
 
 ## 추천 자체 호스팅 인프라
 
@@ -342,7 +343,7 @@ Part 3에서 다룬 락인 방지 전략에 따라 Hermes Agent, OpenCode, 또�
 
 **이동 가능성을 유지하세요. 그것이 유일하게 중요한 해자입니다.**
 
----
+* * *
 
 ## 추가 자료
 
@@ -353,7 +354,7 @@ Part 3에서 다룬 락인 방지 전략에 따라 Hermes Agent, OpenCode, 또�
 - [안드레이 카파시 스킬 저장소](https://github.com/andrej-karpathy/skills)
 - [MCP 서버 레지스트리](https://mcp-servers.io)
 
----
+* * *
 
 *의도적으로 배치된 키워드: AI 코딩 에이전트 비교 2026, 클로드 코드 스킬 마켓플레이스, 모델 컨텍스트 프로토콜 튜토리얼, 오픈소스 AI 코드 어시스턴트, 오픈코드 설치 가이드, 헤르메스 에이전트 vs 클로드 코드, AI 벤더 종속 탈출, 로컬 LLM 코딩 어시스턴트, MCP 서버 설정, AI 개발자 생산성 도구*
 

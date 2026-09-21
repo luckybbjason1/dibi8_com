@@ -32,6 +32,7 @@ faqs: - q: 'AI-Trader của HKUDS là gì?'
     a: 'Hoàn toàn có thể. AI-Trader tích hợp công cụ backtest độ trung thực cao để mô phỏng lịch sử và chế độ giao dịch thử nghiệm (đặt mode: paper trong file cấu hình). Tài liệu dự án khuyến nghị luôn sử dụng chế độ giao dịch thử nghiệm trước khi triển khai vào giao dịch thực tế.'
 ---
 
+
 {</* resource-info */>}
 
 ## AI-Trader là gì?
@@ -70,7 +71,7 @@ Các bot giao dịch truyền thống là "gốc kịch bản" — chúng thực
 
 ### 3. Cốt lõi Học tăng cường
 
-AI-Trader sử dụng **Học tăng cường Sâu (DRL)** để tối ưu hóa chiến lược: ```python
+AI-Trader sử dụng **Học tăng cường Sâu (DRL)** để tối ưu hóa chiến lược: ````python
 # Vòng lặp huấn luyện đơn giản
 from ai_trader import TradingAgent, MarketEnv
 
@@ -86,11 +87,11 @@ agent.train(env, episodes=10000, batch_size=64)
 
 # Triển khai giao dịch thực (trước tiên là giao dịch giả lập!)
 agent.deploy(mode='paper', exchange='binance')
-```
+`````
 
 ### 4. Hợp tác Đa tác nhân
 
-Hệ thống sử dụng **kiến trúc đa tác nhân phân cấp**: ```
+Hệ thống sử dụng **kiến trúc đa tác nhân phân cấp**: `````
 ┌─────────────────────────────────────┐
 │      Tác nhân Quản lý Danh mục      │
 │    (Phân bổ vốn, cân bằng lại)     │
@@ -104,7 +105,7 @@ Hệ thống sử dụng **kiến trúc đa tác nhân phân cấp**: ```
 │Thị    │ │       │ │Tác    │
 │trường │ │       │ │nhân   │
 └────────┘ └───────┘ └────────┘
-```
+`````
 
 ## Tính năng Chính
 
@@ -128,7 +129,7 @@ Hệ thống sử dụng **kiến trúc đa tác nhân phân cấp**: ```
 
 ## Cài đặt
 
-```bash
+`````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -145,7 +146,7 @@ python backtest.py --strategy momentum --market crypto --assets BTC,ETH
 
 # Bắt đầu giao dịch giả lập
 python trade.py --mode paper --config config.yaml
-```
+````
 
 ## Hiệu suất Benchmark
 
@@ -178,10 +179,10 @@ Dựa trên kết quả backtest (2020-2025): | Chiến lược | Lợi nhuận 
 4. Theo dõi hiệu suất thường xuyên
 5. Giữ phần mềm được cập nhật
 
----
+* * *
 
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -263,7 +264,7 @@ AI-Trader: 14K⭐ Hệ thống Giao dịch AI Tự động Hoàn toàn, Để AI
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

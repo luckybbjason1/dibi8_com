@@ -24,6 +24,7 @@ aliases:
   - /posts/chattts/
 - /resources/llm-frameworks/chattts-architecture-autoregressive-voice/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -50,23 +51,23 @@ ChatTTS follows a three-stage pipeline: 1. **Text Refinement**: The input text i
 2. **Semantic Token Generation**: A GPT-style autoregressive decoder generates semantic tokens conditioned on the refined text and a speaker embedding. This is the core creative step where the model decides rhythm, intonation, and emotional expression.
 3. **Audio Decoding**: Semantic tokens are converted to raw audio waveforms using a pre-trained vocoder (Vocos). The output is 24kHz mono audio.
 
-```
+````
 Input Text → Text Refiner (LLM) → Semantic Tokens (GPT Decoder) → Vocoder → 24kHz Audio
                                       ↑
                                Speaker Embedding (spk_emb)
-```
+`````
 
 ![ChatTTS Architecture — Three-stage pipeline from text to speech with speaker embedding conditioning and prosodic token control](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/chattts/architecture-diagram.png)
 
 ### Core Concepts
 
-- **Speaker Embeddings (`spk_emb`)**: A tensor that encodes voice characteristics. You can sample random speakers, save embeddings for reuse, or extract them from reference audio.
-- **Prosodic Tokens**: Special tokens inserted into text to control expression: - `[laugh]` — adds laughter
-  - `[uv_break]` — adds a micro-pause
-  - `[lbreak]` — adds a longer pause
+- **Speaker Embeddings (````spk_emb````)**: A tensor that encodes voice characteristics. You can sample random speakers, save embeddings for reuse, or extract them from reference audio.
+- **Prosodic Tokens**: Special tokens inserted into text to control expression: - ````[laugh]```` — adds laughter
+  - ````[uv_break]```` — adds a micro-pause
+  - ````[lbreak]```` — adds a longer pause
 - **Inference Parameters**: Temperature, top-P, and top-K sampling control the randomness and diversity of generated speech.
 
-```python
+`````python
 import ChatTTS
 import torch
 
@@ -79,7 +80,7 @@ print(f"Speaker embedding shape: {rand_spk.shape}")
 
 # Save for later reuse
 torch.save(rand_spk, "speaker_embedding.pt")
-```
+`````
 
 ## Installation & Setup
 
@@ -91,7 +92,7 @@ torch.save(rand_spk, "speaker_embedding.pt")
 
 ### Install from PyPI (Stable)
 
-```bash
+`````bash
 # Create a virtual environment
 conda create -n chattts python=3.11
 conda activate chattts
@@ -101,19 +102,19 @@ pip install ChatTTS
 
 # Install optional dependencies for GPU acceleration
 pip install torchaudio
-```
+`````
 
 ### Install from Source (Latest)
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -e .
-```
+`````
 
 ### Docker Setup
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
@@ -121,11 +122,11 @@ cd ChatTTS
 # Build and run with Docker
 docker build -t chattts .
 docker run --gpus all -p 8080:8080 chattts
-```
+`````
 
 ### Verify Installation
 
-```python
+`````python
 import ChatTTS
 print(f"ChatTTS version: {ChatTTS.__version__}")
 
@@ -135,31 +136,31 @@ chat.load(compile=False)
 texts = ["Hello, this is a test of ChatTTS."]
 wavs = chat.infer(texts)
 print(f"Generated audio shape: {wavs[0].shape}")
-```
+`````
 
 ### Launch the WebUI
 
-```bash
+`````bash
 python examples/web/webui.py
-```
+`````
 
-Access the interface at `http://localhost:7860`. The WebUI supports text input, speaker selection, temperature adjustment, and audio playback.
+Access the interface at ````http://localhost:7860````. The WebUI supports text input, speaker selection, temperature adjustment, and audio playback.
 
 ### Command-Line Inference
 
-```bash
+`````bash
 python examples/cmd/run.py "Your first text here." "Your second text here."
-```
+`````
 
-Output is saved as `./output_audio_n.mp3`.
+Output is saved as ````./output_audio_n.mp3````.
 
 ## Integration with Popular Tools
 
 ### OpenAI-Compatible API Server
 
-ChatTTS provides an OpenAI-compatible API that integrates with any tool supporting the `/v1/audio/speech` endpoint.
+ChatTTS provides an OpenAI-compatible API that integrates with any tool supporting the ````/v1/audio/speech```` endpoint.
 
-```python
+`````python
 # openai_api_server.py — OpenAI-compatible ChatTTS endpoint
 import ChatTTS
 import torch
@@ -190,15 +191,15 @@ async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.I
     torchaudio.save(buffer, torch.from_numpy(wavs[0]).unsqueeze(0), 24000, format="mp3")
     buffer.seek(0)
     return {"audio": base64.b64encode(buffer.read()).decode()}
-```
+`````
 
-Run the server: ```bash
+Run the server: `````bash
 uvicorn openai_api_server:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### LangChain / LLM Integration
 
-```python
+`````python
 # Integrate ChatTTS into a LangChain agent pipeline
 from langchain.agents import Tool, AgentExecutor, create_react_agent
 from langchain_openai import ChatOpenAI
@@ -224,11 +225,11 @@ tools = [
 
 llm = ChatOpenAI(model="gpt-4o")
 agent = create_react_agent(llm, tools, prompt="You are a voice assistant.")
-```
+`````
 
 ### Gradio Web Interface Customization
 
-```python
+`````python
 # Custom Gradio UI for production deployment
 import gradio as gr
 import ChatTTS
@@ -266,11 +267,11 @@ demo = gr.Interface(
 )
 
 demo.launch(server_name="0.0.0.0", server_port=7860)
-```
+`````
 
 ### Streaming Setup for Real-Time Applications
 
-```python
+`````python
 # Streaming audio generation for real-time dialogue
 import ChatTTS
 import numpy as np
@@ -290,11 +291,11 @@ class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
 
 streamer = StreamingTTS(chat)
 streamer.stream_and_play("Hey, let me think about that for a second...")
-```
+`````
 
 ### Monitoring with Prometheus
 
-```python
+`````python
 # Add Prometheus metrics to ChatTTS API
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
@@ -311,7 +312,7 @@ async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs
 
 @app.get("/metrics")
 async def metrics(): return Response(generate_latest(), media_type="text/plain")
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -321,15 +322,15 @@ All benchmarks below were measured on an NVIDIA RTX 4090 with CUDA 12.4, no mode
 
 | Model | VRAM (30s audio) | RTF (RTX 4090) | Tokens/sec | CPU Inference |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ChatTTS v0.2.5 | 4 GB | 0.30 | ~7 semantic tok/s | Not recommended |
 | Coqui XTTS v2 | 4 GB | 0.25 | ~10 tok/s | No |
@@ -346,15 +347,15 @@ A blind listening test with 6 participants evaluated ChatTTS against competitors
 
 | Criterion | ChatTTS | Coqui XTTS v2 | MeloTTS | Bark |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Natural pauses | 5/6 votes | 1/6 votes | 2/6 votes | 3/6 votes |
 | Laughter quality | 6/6 votes | 0/6 votes | 0/6 votes | 2/6 votes |
@@ -365,7 +366,7 @@ A blind listening test with 6 participants evaluated ChatTTS against competitors
 
 ### Use Case: LLM Voice Assistant
 
-ChatTTS excels in LLM assistant pipelines where the model must read responses aloud with natural prosody. A typical integration generates a response in ~300ms end-to-end: ```python
+ChatTTS excels in LLM assistant pipelines where the model must read responses aloud with natural prosody. A typical integration generates a response in ~300ms end-to-end: `````python
 import ChatTTS
 import torchaudio
 import time
@@ -387,11 +388,11 @@ audio_path = assistant.synthesize_response(
     "That's an interesting question! Let me think... [uv_break] "
     "Okay, so the answer depends on your specific setup."
 )
-```
+`````
 
 ### Use Case: Multi-Speaker Dialogue Generation
 
-ChatTTS supports multi-speaker conversations by switching speaker embeddings: ```python
+ChatTTS supports multi-speaker conversations by switching speaker embeddings: `````python
 import ChatTTS
 import torchaudio
 
@@ -411,21 +412,21 @@ dialogue = [
 for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Torch Compilation for Speed
 
-Enable `torch.compile()` for a ~20% inference speedup on Ampere GPUs: ```python
+Enable ``torch.compile()`` for a ~20% inference speedup on Ampere GPUs: `````python
 import ChatTTS
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # Enable torch.compile on supported models
-```
+`````
 
 ### Speaker Embedding Management
 
-Save and load speaker embeddings for consistent voice profiles: ```python
+Save and load speaker embeddings for consistent voice profiles: `````python
 import ChatTTS
 import torch
 
@@ -441,11 +442,11 @@ for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
 # Load existing speaker
 spk_agent = torch.load("speakers/agent.pt")
 params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
-```
+`````
 
 ### GPU Memory Optimization
 
-For servers with limited VRAM, use mixed precision and clear caches: ```python
+For servers with limited VRAM, use mixed precision and clear caches: `````python
 import torch
 from ChatTTS import Chat
 
@@ -457,11 +458,11 @@ def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): # Mixed p
         wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()  # Free GPU memory
     return wavs
-```
+`````
 
 ### Health Check Endpoint
 
-```python
+`````python
 # health_check.py — Kubernetes-ready health probe
 from fastapi import FastAPI, HTTPException
 import ChatTTS
@@ -480,11 +481,11 @@ def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="
 
 @app.get("/ready")
 def ready(): return {"status": "ready"}
-```
+`````
 
 ### Kubernetes Deployment
 
-```yaml
+`````yaml
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -504,29 +505,29 @@ spec: replicas: 2
         readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | ChatTTS | Coqui TTS (XTTS v2) | MeloTTS | Bark (Suno) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 39.3k | 45.3k | 7.4k | 39.1k |
 | **License** | AGPL-3.0 | MPL-2.0 | MIT | MIT |
 | **Min VRAM** | 4 GB | 4 GB | 2 GB | 5 GB |
 | **RTF (RTX 4090)** | 0.30 | 0.25 | 0.08 | 0.45 |
 | **Conversational TTS** | Yes (designed for it) | Moderate | No | Moderate |
-| **Laughter Control** | Token-level `[laugh]` | No | No | Limited |
-| **Pause Control** | Token-level `[uv_break]` | No | Punctuation only | Limited |
+| **Laughter Control** | Token-level ````[laugh]```` | No | No | Limited |
+| **Pause Control** | Token-level ````[uv_break]```` | No | Punctuation only | Limited |
 | **Breath Sounds** | Yes | No | No | No |
 | **Voice Cloning** | Speaker embedding | 6s audio clone | No | Speaker prompt |
 | **Languages** | Chinese, English | 17 languages | 6 languages | Multilingual |
@@ -568,10 +569,10 @@ The ChatTTS code is licensed under AGPL-3.0, which requires derivative works to 
 This is an inherent property of autoregressive TTS models. The GPT-style decoder samples tokens probabilistically, and occasionally the sampled trajectory diverges into a different speaker region of the latent space. Mitigation: reduce temperature (try 0.2 instead of 0.3), use a fixed speaker embedding, or generate multiple samples and pick the best one.
 
 **Q: How do I control laughter and pauses?**
-ChatTTS supports special prosodic tokens in the input text: `[laugh]` inserts laughter, `[uv_break]` adds a micro-pause, and `[lbreak]` adds a longer pause. You can also set sentence-level controls via `RefineTextParams` with `prompt='[oral_2][laugh_0][break_6]'` where numbers indicate intensity levels.
+ChatTTS supports special prosodic tokens in the input text: ````[laugh]```` inserts laughter, ````[uv_break]```` adds a micro-pause, and ````[lbreak]```` adds a longer pause. You can also set sentence-level controls via ````RefineTextParams```` with ````prompt='[oral_2][laugh_0][break_6]'```` where numbers indicate intensity levels.
 
 **Q: Does ChatTTS support voice cloning?**
-Yes, via speaker embeddings. You can sample random speakers with `chat.sample_random_speaker()` or extract embeddings from reference audio. However, this is not the same as zero-shot voice cloning with a few seconds of audio — that capability is on the roadmap and not yet in the open-source release.
+Yes, via speaker embeddings. You can sample random speakers with ````chat.sample_random_speaker()```` or extract embeddings from reference audio. However, this is not the same as zero-shot voice cloning with a few seconds of audio — that capability is on the roadmap and not yet in the open-source release.
 
 **Q: What is the difference between ChatTTS and GPT-SoVITS?**
 GPT-SoVITS is optimized for few-shot voice cloning with as little as 1 minute of reference audio. It uses a VITS-based architecture and excels at replicating specific voices. ChatTTS is optimized for conversational TTS with natural prosody, laughter, and dialogue flow. Use GPT-SoVITS when you need to clone a voice; use ChatTTS when you need natural-sounding conversations.
@@ -580,15 +581,15 @@ GPT-SoVITS is optimized for few-shot voice cloning with as little as 1 minute of
 No practical CPU inference path exists for ChatTTS. The autoregressive decoder requires GPU acceleration for reasonable latency. If you need CPU inference, consider MeloTTS, which supports real-time CPU synthesis.
 
 **Q: How do I deploy ChatTTS in a Docker container?**
-Use the official Dockerfile in the repository or the example below: ```dockerfile
+Use the official Dockerfile in the repository or the example below: `````dockerfile
 FROM nvidia/cuda:12.1-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y python3-pip git
 RUN pip install ChatTTS torch torchaudio
 COPY . /app
 WORKDIR /app
 CMD ["python", "examples/web/webui.py"]
-```
-Build with `docker build -t chattts .` and run with `docker run --gpus all -p 7860:7860 chattts`.
+`````
+Build with ````docker build -t chattts .```` and run with ````docker run --gpus all -p 7860:7860 chattts````.
 
 ## Conclusion
 
@@ -598,7 +599,7 @@ For teams building LLM voice assistants, the chattts setup is straightforward �
 
 **Action items:**
 1. Clone the repository and run the WebUI on your GPU machine
-2. Experiment with prosodic tokens (`[laugh]`, `[uv_break]`) on your dialogue dataset
+2. Experiment with prosodic tokens (````[laugh]````, ````[uv_break]```) on your dialogue dataset
 3. Deploy the OpenAI-compatible API for integration with your LLM pipeline
 4. Join the community on Discord or GitHub Discussions for updates on streaming generation and emotion control
 
@@ -653,7 +654,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](chattts)
@@ -663,5 +664,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-22-trending-ai-agents](chattts)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

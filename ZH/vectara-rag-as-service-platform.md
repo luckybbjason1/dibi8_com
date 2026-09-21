@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/vectara-rag-as-service-platform/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction：为什么大多数 RAG 系统在生产环境中失败
@@ -36,10 +37,10 @@ aliases:
 
 本文涵盖 Vectara 平台的架构、API 集成模式、基准测试以及 2026 年的诚实局限性。
 
-> **前置要求：** Vectara 账户（有免费层），Python 3.10+，以及 `curl` 或 `requests` 用于 API 调用。
+> **前置要求：** Vectara 账户（有免费层），Python 3.10+，以及 ```curl```` 或 ````requests```` 用于 API 调用。
 
 
----
+* * *
 ## What Is Vectara?
 
 Vectara 是一个 **RAG-as-a-Service 平台**，通过托管 API 提供完整的检索增强生成管道。由前 Google AI 研究员在帕洛阿尔托创立，该平台处理文档摄取、嵌入、混合搜索、重排序、响应生成和幻觉检测——所有这些都无需你操作向量数据库、嵌入模型或推理基础设施。
@@ -47,12 +48,12 @@ Vectara 是一个 **RAG-as-a-Service 平台**，通过托管 API 提供完整的
 该平台的核心差异化在于**始终开启的治理**。幻觉检测、事实一致性检查、品牌策略执行和引用追踪直接嵌入生成管道中，而非作为可选的后处理步骤附加。这使得 Vectara 对受监管行业特别具有吸引力，在这些行业中准确性和可审计性是不可协商的。
 
 
----
+* * *
 ## How Vectara Works
 
 Vectara 的架构是一个**六阶段 RAG 管道**，通过统一 API 暴露：
 
-```
+`````
 ┌─────────────────────────────────────────────────────────────┐
 │  1. 摄取 (INGESTION)                                        │
 │     文档 → 文本提取 → 表格/图像解析                           │
@@ -84,7 +85,7 @@ Vectara 的架构是一个**六阶段 RAG 管道**，通过统一 API 暴露：
 │     HHEM 幻觉检查 → 事实一致性                               │
 │     → 策略执行 → 审计追踪                                    │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### 关键技术组件
 
@@ -96,13 +97,13 @@ Vectara 的架构是一个**六阶段 RAG 管道**，通过统一 API 暴露：
 
 **幻觉校正器。** 2025 年 5 月推出，该组件在内容到达用户之前主动校正幻觉内容，即使使用低于 7B 参数的 LLM，也能实现 **低于 1% 的幻觉率**。
 
----
+* * *
 
 ## Getting Started：从注册到首次查询，10 分钟
 
 ### 第一步：创建账户并获取 API 凭证
 
-```bash
+`````bash
 # 注册后，前往控制台获取凭证：
 # - Customer ID
 # - Corpus ID  
@@ -112,21 +113,21 @@ Vectara 的架构是一个**六阶段 RAG 管道**，通过统一 API 暴露：
 export VECTARA_CUSTOMER_ID="your-customer-id"
 export VECTARA_CORPUS_ID="your-corpus-id"
 export VECTARA_API_KEY="zwt-your-api-key"
-```
+`````
 
 ### 第二步：安装 Python SDK
 
-```bash
+`````bash
 # 安装官方 Vectara Python 客户端
 pip install vectara
 
 # 或直接通过 REST API 使用 requests
 pip install requests
-```
+`````
 
 ### 第三步：索引第一份文档
 
-```python
+`````python
 from vectara import VectaraClient
 
 # 初始化客户端
@@ -160,11 +161,11 @@ document = {
 
 client.index_document(corpus_id=corpus.corpus_id, document=document)
 print(f"Document indexed to corpus {corpus.corpus_id}")
-```
+`````
 
 ### 第四步：运行首次 RAG 查询
 
-```python
+`````python
 # RAG 查询
 response = client.query(
     corpus_id="your-corpus-id",
@@ -181,19 +182,19 @@ response = client.query(
 print("Answer:", response.summary)
 print("\nSources:")
 for idx, result in enumerate(response.search_results, 1): print(f"[{idx}] {result.text[:100]}... (score: {result.score:.3f})")
-```
+`````
 
 输出：
-```
+`````
 Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
 Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
-```
+`````
 
 ### 第五步：批量上传文档
 
-```python
+`````python
 import os
 from pathlib import Path
 
@@ -208,9 +209,9 @@ for pdf_file in pdf_dir.glob("*.pdf"): with open(pdf_file, "rb") as f: client.up
     print(f"Uploaded: {pdf_file.name}")
 
 print("Batch upload complete!")
-```
+`````
 
----
+* * *
 
 ## Integration with Mainstream Tools
 
@@ -218,7 +219,7 @@ print("Batch upload complete!")
 
 对于没有官方 SDK 的语言，直接使用 REST API：
 
-```bash
+`````bash
 # 查询端点
 curl -X POST "https://api.vectara.io/v1/query" \
   -H "x-api-key: ${VECTARA_API_KEY}" \
@@ -234,11 +235,11 @@ curl -X POST "https://api.vectara.io/v1/query" \
       }
     ]
   }'
-```
+`````
 
 ### Node.js / TypeScript 集成
 
-```typescript
+`````typescript
 import { VectaraClient } from "@vectara/sdk";
 
 const client = new VectaraClient({
@@ -269,13 +270,13 @@ app.post("/api/rag", async (req, res) => {
   const result = await askQuestion(req.body.question);
   res.json(result);
 });
-```
+`````
 
 ### 元数据过滤
 
 使用结构化元数据细化搜索结果：
 
-```python
+`````python
 # 按元数据字段过滤
 response = client.query(
     corpus_id="your-corpus-id",
@@ -292,13 +293,13 @@ response = client.query(
     metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin'",
     generate=True
 )
-```
+`````
 
 ### 多语言 RAG
 
 Vectara 的 Boomerang 模型原生处理跨语言检索：
 
-```python
+`````python
 # 用英语查询西班牙语文档
 response = client.query(
     corpus_id="your-corpus-id",
@@ -314,13 +315,13 @@ response = client.query(
     query="如何集成API？",
     response_lang="zho"
 )
-```
+`````
 
 ### 流式响应
 
 实时聊天界面使用流式传输：
 
-```python
+`````python
 import json
 
 # SSE 流式传输用于聊天应用
@@ -334,13 +335,13 @@ response = client.query(
 # 处理流式块
 for chunk in response: if chunk.type == "search_result": print(f"Source: {chunk.document_id}")
     elif chunk.type == "generation": print(chunk.text, end="", flush=True)  # 流式输出 token
-```
+`````
 
 ### 混合搜索配置
 
 调整关键词与语义搜索的平衡：
 
-```python
+`````python
 # 配置混合搜索权重
 response = client.query(
     corpus_id="your-corpus-id",
@@ -355,9 +356,9 @@ response = client.query(
     },
     generate=True
 )
-```
+`````
 
----
+* * *
 
 ## Benchmarks and Real-World Performance
 
@@ -365,13 +366,13 @@ response = client.query(
 
 | 基准测试 | Vectara (Mockingbird) | GPT-4 + 标准 RAG | 提升 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Bert-F1 (RAG 准确率) | **0.42** | 0.38 | +10.5% |
 | 幻觉率 (sub-7B LLM) | **< 1%** | 8-12% | **> 8 倍降低** |
@@ -383,11 +384,11 @@ response = client.query(
 
 | 指标 | 数值 | 对比 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 评估时间 (RTX 3090) | **0.6s** | RAGAS: ~35s |
 | 评估时间 (CPU) | **2.1s** | RAGAS: ~120s |
@@ -403,7 +404,7 @@ response = client.query(
 
 **案例 3 — 法律文件分析：** 一家律所摄取了 50,000 份案件档案和合同。律师助理报告，Vectara 的引用支持答案使他们能够在 **约 15 秒**内根据来源材料验证声明，而之前手动搜索需要约 4 分钟。
 
----
+* * *
 
 ## Advanced Usage and Production Hardening
 
@@ -411,7 +412,7 @@ response = client.query(
 
 针对领域特定应用微调结果排序：
 
-```python
+`````python
 # MMR 重排序获取多样化结果
 response = client.query(
     corpus_id="your-corpus-id",
@@ -435,13 +436,13 @@ response = client.query(
         }
     }
 )
-```
+`````
 
 ### 文档更新与版本控制
 
 处理文档变更而无需重新索引所有内容：
 
-```python
+`````python
 # 更新特定文档
 document_update = {
     "documentId": "api-guide-v2",
@@ -460,13 +461,13 @@ client.index_document(
     corpus_id="your-corpus-id",
     document=document_update
 )
-```
+`````
 
 ### 多语料库查询
 
 同时搜索多个文档集合：
 
-```python
+`````python
 response = client.query(
     query="authentication timeout",
     corpus_keys=[
@@ -476,13 +477,13 @@ response = client.query(
     ],
     generate=True
 )
-```
+`````
 
 ### 实现对话历史
 
 在多次交互中保持对话上下文：
 
-```python
+`````python
 # 存储对话历史
 conversation = []
 
@@ -503,11 +504,11 @@ def chat_turn(user_query: str) -> str: global conversation
     conversation.append({"role": "assistant", "text": response.summary})
     
     return response.summary
-```
+`````
 
 ### 监控与分析
 
-```python
+`````python
 # 获取语料库统计信息
 stats = client.get_corpus_stats(corpus_id="your-corpus-id")
 print(f"Documents: {stats.num_docs}")
@@ -523,23 +524,23 @@ analytics = client.get_query_analytics(
 print(f"Total queries: {analytics.total_queries}")
 print(f"Avg latency: {analytics.avg_latency_ms}ms")
 print(f"Hallucination rate: {analytics.hallucination_rate}%")
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
 | 特性 | Vectara | Pinecone | Weaviate | LlamaIndex |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **部署模式** | 全托管 SaaS | 托管 + 自建 | 自建 + 云 | 仅库 |
 | **包含嵌入模型** | Boomerang (专有) | 否 (自备) | 否 (自备) | 否 (自备) |
@@ -566,7 +567,7 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 - 选 **Weaviate** 如果你想要带 GraphQL 接口的自建方案
 - 选 **LlamaIndex** 如果你偏好用最大灵活性组装自己的 RAG 管道
 
----
+* * *
 
 ## Limitations: 诚实评估
 
@@ -580,7 +581,7 @@ print(f"Hallucination rate: {analytics.hallucination_rate}%")
 
 **5. 检索调优控制较少。** Vectara 的检索管道是一个黑盒。虽然你可以调整混合权重和重排序，但无法更换单个组件（例如使用自定义嵌入模型或不同的重排序器）。
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -610,9 +611,9 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 
 ### Vectara 如何处理文档更新和版本控制？
 
-当你使用相同的 `documentId` 重新索引文档时，Vectara 以原子方式用新版本替换旧版本。无停机时间，更新期间的查询看到一致的状态。平台还随时间追踪引用完整性，当源文档变更时标记可能需要更新的响应。
+当你使用相同的 ````documentId``` 重新索引文档时，Vectara 以原子方式用新版本替换旧版本。无停机时间，更新期间的查询看到一致的状态。平台还随时间追踪引用完整性，当源文档变更时标记可能需要更新的响应。
 
----
+* * *
 
 ## Conclusion：让 Vectara 处理 RAG 的繁重工作
 
@@ -622,7 +623,7 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 
 > **参与讨论：** 在我们的 [Telegram 群组](https://t.me/dibi8ai_zh) 分享你的 Vectara 部署结果——我们比较检索基准、分享语料库调优策略，每周评审摄取管道。
 
----
+* * *
 
 ## Sources & Further Reading
 
@@ -634,7 +635,7 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 - [Mockingbird LLM 基准测试](https://vectara.com/blog/mockingbird)
 - [Stanford HAI RAG 研究 2025](https://hai.stanford.edu)
 
----
+* * *
 
 
 
@@ -677,7 +678,7 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -687,6 +688,6 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 - [9router-smart-llm-proxy-token-saver-free-coding](vectara-rag-as-service-platform)
 - [ai-engineering-from-scratch](vectara-rag-as-service-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

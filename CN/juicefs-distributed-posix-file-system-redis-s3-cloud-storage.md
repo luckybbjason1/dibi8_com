@@ -10,6 +10,7 @@ github_repo: "https://github.com/juicedata/juicefs"
 license: 'Apache-2.0'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
 # JuiceFS: Cloud Storage, Local Speed
 
 Imagine your team needs to share massive datasets across 50+ workers for AI training. Each worker expects a standard Linux filesystem — but your data lives in S3. Mounting S3 as a local filesystem has been frustrating: slow, unreliable, or both. JuiceFS solves this by combining the best of both worlds.
@@ -22,7 +23,7 @@ With 13,900+ GitHub stars and backing from major cloud providers, JuiceFS has be
 
 JuiceFS splits file metadata from file data. This architectural decision is the key to its performance.
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    JuiceFS Client                     │
 │  ┌──────────────┐    ┌──────────────┐               │
@@ -35,7 +36,7 @@ JuiceFS splits file metadata from file data. This architectural decision is the 
 │  │   (mount -t juicefs juicefs /mnt)│               │
 │  └──────────────────────────────────┘               │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 Metadata operations (file lists, permissions, timestamps) go to Redis — a lightning-fast in-memory data store. File data (the actual content) goes to any S3-compatible object storage — infinite capacity, cheap storage. This separation means metadata is always fast, while data scales to petabytes.
 
@@ -47,7 +48,7 @@ A: Redis is ideal because metadata operations are tiny but incredibly frequent. 
 
 ## Installation and Quick Start
 
-Getting JuiceFS running takes minutes. Here is a complete setup using Redis for metadata and AWS S3 for storage: ```bash
+Getting JuiceFS running takes minutes. Here is a complete setup using Redis for metadata and AWS S3 for storage: `````bash
 # Install JuiceFS CLI
 curl -sSL https://d.juicefs.com/install | sh -
 
@@ -62,13 +63,13 @@ juicefs format \
 
 # Mount it locally
 juicefs mount mydata /mnt/juicefs
-```
+`````
 
-That is it. `/mnt/juicefs` now behaves exactly like a regular Linux filesystem. Run `ls`, `cp`, `python train.py`, or any standard tool — it all works seamlessly.
+That is it. ````/mnt/juicefs```` now behaves exactly like a regular Linux filesystem. Run ````ls````, ````cp````, ````python train.py````, or any standard tool — it all works seamlessly.
 
 ## Advanced Usage: Tiered Storage
 
-One of JuiceFS powerful features is tiered storage. Cold data moves to cheaper storage tiers automatically: ```bash
+One of JuiceFS powerful features is tiered storage. Cold data moves to cheaper storage tiers automatically: `````bash
 # Mount with tiered storage (S3 as cache backend)
 juicefs mount \
   --cache-size 10000 \
@@ -76,13 +77,13 @@ juicefs mount \
   --cache-compress \
   mydata \
   /mnt/juicefs
-```
+`````
 
 When the local cache fills up, the least recently used files are evicted. On next access, they are fetched from S3 transparently. This gives you the speed of SSDs for hot data with the capacity of S3 for cold data.
 
 ### Cache Configuration Options
 
-Fine-tune caching behavior for your specific workload: ```bash
+Fine-tune caching behavior for your specific workload: `````bash
 # 50GB memory cache + 100GB disk cache with compression
 juicefs mount \
   --read-only-false \
@@ -99,11 +100,11 @@ juicefs status mydata
 # Cache usage: 45.2GB / 150.0GB (30%)
 # Cache hit rate: 94.7%
 # Cache miss: 2.1K ops
-```
+`````
 
 ### Multi-Mount and Read-Write Collaboration
 
-Multiple JuiceFS clients can mount the same filesystem simultaneously for collaborative work: ```bash
+Multiple JuiceFS clients can mount the same filesystem simultaneously for collaborative work: `````bash
 # Worker 1: Mount and start training
 juicefs mount mydata /mnt/juicefs &
 python train.py --data /mnt/juicefs/dataset --workers 8
@@ -115,11 +116,11 @@ python evaluate.py --data /mnt/juicefs/dataset
 # Worker 3: Upload new data while training runs
 rsync -av ./new_data/ /mnt/juicefs/dataset/
 # Training workers see new data immediately
-```
+`````
 
 ### S3 Lifecycle Integration
 
-Combine JuiceFS with S3 lifecycle policies for automatic cost optimization: ```bash
+Combine JuiceFS with S3 lifecycle policies for automatic cost optimization: `````bash
 # Set S3 lifecycle rule via AWS CLI
 aws s3api put-bucket-lifecycle-configuration \
   --bucket my-bucket \
@@ -139,19 +140,19 @@ aws s3api put-bucket-lifecycle-configuration \
 
 # JuiceFS automatically handles tier transitions
 # Accessing a cold file triggers fetch from Glacier
-```
+`````
 
 ## Performance Benchmarks
 
 JuiceFS delivers impressive performance across different workload types: | Workload Type | JuiceFS | Local SSD | Cloud Storage (raw) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Sequential Read (MB/s) | 2,500+ | 3,000+ | 500-800 |
 | Random Read IOPS | 80,000+ | 100,000+ | 500-2,000 |
@@ -164,7 +165,7 @@ The numbers show that JuiceFS gets 90-95% of local SSD performance for sequentia
 
 ## Docker and Kubernetes Integration
 
-JuiceFS integrates natively with container orchestration. Here is a Kubernetes deployment: ```yaml
+JuiceFS integrates natively with container orchestration. Here is a Kubernetes deployment: `````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: ai-trainer
@@ -178,7 +179,7 @@ spec: replicas: 10
           volumeAttributes: volumeId: mydata
             mountPath: /mnt/juicefs
 
----
+* * *
 # Kubernetes PersistentVolume definition
 apiVersion: v1
 kind: PersistentVolume
@@ -189,13 +190,13 @@ spec: capacity: storage: 1000Gi
   csi: driver: csi.juicefs.com
     volumeHandle: mydata
     volumeAttributes: mountPath: /mnt/juicefs
-```
+`````
 
 This deploys 10 PyTorch training containers, all sharing the same JuiceFS volume. Changes made by one container are instantly visible to all others — no sync needed.
 
 ### Helm Chart Deployment
 
-For production Kubernetes clusters, use the official Helm chart: ```bash
+For production Kubernetes clusters, use the official Helm chart: `````bash
 # Add the JuiceFS Helm repository
 helm repo add juicefs https://charts.juicefs.com
 
@@ -209,7 +210,7 @@ helm install juicefs-csi-driver juicefs/juicefs-csi-driver \
   --set csi.driver.objectStore.accessKey=$AWS_ACCESS_KEY_ID \
   --set csi.driver.objectStore.secretKey=$AWS_SECRET_ACCESS_KEY \
   --namespace kube-system
-```
+`````
 
 ## Use Cases in 2026
 
@@ -221,7 +222,7 @@ Large language models require training on hundreds of terabytes of data. JuiceFS
 
 ### Big Data Analytics
 
-Spark, Flink, and Ray workers all benefit from a single shared filesystem: ```bash
+Spark, Flink, and Ray workers all benefit from a single shared filesystem: `````bash
 # Mount on every Spark worker
 juicefs mount mydata /mnt/juicefs
 
@@ -231,7 +232,7 @@ spark-submit \
   --conf spark.jars=hdfs://namenode/juicefs-spark-3.3.1.jar \
   --files "juicefs://mydata/parquet_data/" \
   analysis.py
-```
+`````
 
 ### Media Production
 
@@ -243,7 +244,7 @@ Video editing teams working with 4K/8K footage need simultaneous access to share
 
 As LLM pipelines grow more complex, the data layer becomes a critical bottleneck. JuiceFS addresses this in several ways: ### Dataset Versioning with Snapshots
 
-Track dataset versions across experiments using JuiceFS snapshot features: ```bash
+Track dataset versions across experiments using JuiceFS snapshot features: `````bash
 # Take a snapshot of current dataset
 juicefs snapshot mydata create v20260615
 
@@ -258,11 +259,11 @@ juicefs snapshot mydata list
 
 # Restore a specific snapshot
 juicefs snapshot mydata restore v20260610
-```
+`````
 
 ### Cross-Region Replication
 
-Share datasets across cloud regions using JuiceFS replication: ```bash
+Share datasets across cloud regions using JuiceFS replication: `````bash
 # Set up replication from primary to secondary region
 juicefs replication \
   --source redis://primary-region:6379/0 \
@@ -277,11 +278,11 @@ juicefs replication status
 # Source region: us-east-1 (active)
 # Target region: eu-west-1 (syncing, 99.2% complete)
 # Last sync: 3 minutes ago
-```
+`````
 
 ### Embedding Storage
 
-```python
+`````python
 from langchain.vectorstores import Chroma
 import juicefs_client
 
@@ -291,7 +292,7 @@ embedding_store = Chroma(
     persist_directory="/mnt/juicefs/vecs",
     embedding_function=OpenAIEmbeddings()
 )
-```
+`````
 
 **RAG Pipeline Data Lakes**: Keep your RAG data lake on JuiceFS for petabyte-scale document storage with sub-second metadata queries. This eliminates the ETL step between storage and ingestion.
 
@@ -299,13 +300,13 @@ embedding_store = Chroma(
 
 JuiceFS dramatically reduces storage costs compared to traditional approaches: | Approach | Cost per TB/month | Min IOPS | Scalability |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Dedicated SSD RAID | $150-300 | 100,000+ | Limited |
 | EFS (AWS) | $300-600 | 10,000 | High |
@@ -315,7 +316,7 @@ The secret sauce is the metadata/data split. Redis costs pennies per month for m
 
 ### Cost Calculator
 
-Estimate your JuiceFS storage costs: ```bash
+Estimate your JuiceFS storage costs: `````bash
 # Monthly cost calculator (bash script)
 #!/bin/bash
 S3_PRICE_PER_TB=23  # Standard S3
@@ -334,11 +335,11 @@ echo "S3 storage: $$S3_COST/tb/month"
 echo "Redis metadata: $${REDIS_COST}/month"
 echo "Local cache: $${CACHE_COST}/month"
 echo "Total estimated: $$(echo "$S3_COST + $REDIS_COST + $CACHE_COST" | bc)/month"
-```
+`````
 
 ### Migration from NFS
 
-Migrating existing NFS workloads to JuiceFS: ```bash
+Migrating existing NFS workloads to JuiceFS: `````bash
 # Step 1: Mount JuiceFS alongside NFS
 mount -t nfs nfs-server:/share /mnt/nfs
 juicefs mount mydata /mnt/juicefs
@@ -352,11 +353,11 @@ rsync -av --progress /mnt/nfs/ /mnt/juicefs/
 # Step 4: Verify and remove NFS
 df -h /mnt/juicefs
 du -sh /mnt/nfs /mnt/juicefs  # Compare sizes
-```
+`````
 
 ## Docker and Kubernetes Integration
 
-Running JuiceFS as a Docker container is straightforward for development and testing: ```bash
+Running JuiceFS as a Docker container is straightforward for development and testing: `````bash
 # Start Redis for metadata
 docker run -d --name juicefs-meta -p 6379:6379 redis:7-alpine
 
@@ -371,7 +372,7 @@ docker run -it --rm \
   --volume juicefs:/mnt/juicefs \
   -v /mnt/juicefs:/mnt/juicefs \
   ubuntu:22.04 /bin/bash
-```
+`````
 
 ## Limitations and Honest Assessment
 
@@ -418,7 +419,7 @@ A: There is no practical limit. Metadata is stored in Redis, which can handle bi
 
 **Q: How do I monitor JuiceFS health?**
 
-A: JuiceFS provides comprehensive metrics through Prometheus-compatible endpoints. Monitor Redis latency, S3 request rates, cache hit rates, and client connections. The `juicefs status` command gives a quick overview.
+A: JuiceFS provides comprehensive metrics through Prometheus-compatible endpoints. Monitor Redis latency, S3 request rates, cache hit rates, and client connections. The ````juicefs status``` command gives a quick overview.
 
 ## Conclusion
 
@@ -441,7 +442,7 @@ For more on cloud-native storage: - [Kubernetes Persistent Volumes](/resources/d
 **Join our community**: https://t.me/DIBI8_Group
 
 
----
+* * *
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -467,7 +468,7 @@ For more on cloud-native storage: - [Kubernetes Persistent Volumes](/resources/d
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -477,6 +478,6 @@ For more on cloud-native storage: - [Kubernetes Persistent Volumes](/resources/d
 - [9router-smart-llm-proxy-token-saver-free-coding](juicefs-distributed-posix-file-system-redis-s3-cloud-storage)
 - [ai-engineering-from-scratch](juicefs-distributed-posix-file-system-redis-s3-cloud-storage)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

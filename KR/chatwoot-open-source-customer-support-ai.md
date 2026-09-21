@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/chatwoot-open-source-customer-support-ai/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 왜 지원 도구 스택을 재검토해야 하는가
@@ -32,7 +33,7 @@ Chatwoot은 Vue.js SPA 프론트엔드와 백그라운드 작업 처리를 위�
 
 ### 아키텍처 개요
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │              (리버스 프록시 + SSL)                   │
@@ -49,7 +50,7 @@ Chatwoot은 Vue.js SPA 프론트엔드와 백그라운드 작업 처리를 위�
 │                 │ (데이터) │  │(캐시)   │  │(작업)  │ │
 │                 └─────────┘  └─────────┘  └──────┘ │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### 핵심 구성 요소
 
@@ -71,7 +72,7 @@ Chatwoot은 Vue.js SPA 프론트엔드와 백그라운드 작업 처리를 위�
 
 **자동화 규칙(Automation Rules)** — 대화 생성, 메시지 수신 또는 시간 기반 조건에서 트리거되는 "이면-저것" 워크플로우이다.
 
-**매크로(Macros)** — 상담원이 클릭 한 번으로 삽입할 수 있는 미리 정의된 응답 템플릿. `{{contact.name}}`과 같은 동적 변수를 지원한다.
+**매크로(Macros)** — 상담원이 클릭 한 번으로 삽입할 수 있는 미리 정의된 응답 템플릿. ````{{contact.name}}````과 같은 동적 변수를 지원한다.
 
 ## 설치 및 설정: 5분 만에 라이브 채팅 가동
 
@@ -86,7 +87,7 @@ Chatwoot은 Vue.js SPA 프론트엔드와 백그라운드 작업 처리를 위�
 
 ### 1단계: 클론 및 구성
 
-```bash
+`````bash
 # 공식 저장소 클론
 git clone https://github.com/chatwoot/chatwoot.git
 cd chatwoot
@@ -96,11 +97,11 @@ git checkout v4.0.1
 
 # 환경 변수 템플릿 복사
 cp .env.example .env
-```
+`````
 
 ### 2단계: 환경 변수 구성
 
-```bash
+`````bash
 # .env 파일 편집
 nano .env
 
@@ -127,11 +128,11 @@ MAILER_SENDER_EMAIL=noreply@yourdomain.com
 # AI 기능 활성화 (v4.0 신규)
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-openai-key
-```
+`````
 
 ### 3단계: Docker Compose 배포
 
-```bash
+`````bash
 # 프로덕션 Docker Compose 파일 사용
 docker compose -f docker-compose.production.yaml up -d
 
@@ -143,21 +144,21 @@ docker compose ps
 # chatwoot_worker     Up 30 seconds
 # chatwoot_postgres   Up 30 seconds  5432/tcp
 # chatwoot_redis      Up 30 seconds  6379/tcp
-```
+`````
 
 ### 4단계: 데이터베이스 설정
 
-```bash
+`````bash
 # 데이터베이스 마이그레이션 실행
 docker compose exec rails bundle exec rails db:chatwoot_prepare
 
 # 관리자 계정 생성
 docker compose exec rails bundle exec rails db:seed
-```
+`````
 
 ### 5단계: 리버스 프록시 및 SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/chatwoot
 server {
     listen 80;
@@ -185,18 +186,18 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
-```bash
+`````bash
 # 사이트 활성화
 sudo ln -s /etc/nginx/sites-available/chatwoot /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
 # Let's Encrypt으로 SSL 인증서 획득
 sudo certbot --nginx -d support.yourdomain.com
-```
+`````
 
-Chatwoot 인스턴스가 이제 `https://support.yourdomain.com`에서 라이브 상태이다. 기본 관리자 자격 증명으로 로그인하고 즉시 비밀번호를 변경하라.
+Chatwoot 인스턴스가 이제 ````https://support.yourdomain.com````에서 라이브 상태이다. 기본 관리자 자격 증명으로 로그인하고 즉시 비밀번호를 변경하라.
 
 ## AI 에이전트, CRM 및 메시징 플랫폼 통합
 
@@ -204,15 +205,15 @@ Chatwoot 인스턴스가 이제 `https://support.yourdomain.com`에서 라이브
 
 Chatwoot v4.0은 네이티브 AI 어시스턴트 훅을 도입했다. 더 이상 서드파티 브리지가 필요 없다.
 
-```bash
+`````bash
 # .env — AI 설정
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-key
 OPENAI_MODEL=gpt-4.1-mini  # 복잡한 쿼리에는 gpt-4.1
 AI_AUTO_REPLY_THRESHOLD=0.85  # 자동 응답 신뢰도 점수
-```
+`````
 
-```ruby
+`````ruby
 # config/ai_assistants.yml — 어시스턴트 동작 정의
 support_bot: name: "Support Assistant"
   model: gpt-4.1-mini
@@ -223,11 +224,11 @@ support_bot: name: "Support Assistant"
     3. Keep responses under 150 words
   handoff_keywords: ["refund", "chargeback", "legal", "complaint"]
   max_response_tokens: 200
-```
+`````
 
 ### 커스텀 AI 에이전트를 위한 웹훅 통합
 
-```bash
+`````bash
 # 웹훅 기반 AI 통합 생성
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
   -H "Content-Type: application/json" \
@@ -237,9 +238,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
     "subscriptions": ["message.created", "conversation.created"],
     "headers": {"X-Custom-Auth": "your-secret-token"}
   }'
-```
+`````
 
-```python
+`````python
 # ai_bridge.py — LangChain 통합을 위한 웹훅 핸들러 예제
 from flask import Flask, request, jsonify
 from langchain_openai import ChatOpenAI
@@ -265,11 +266,11 @@ def handle_chatwoot(): data = request.json
     # Chatwoot으로 응답 전송
     send_chatwoot_reply(conversation_id, response["result"])
     return jsonify({"status": "ok"})
-```
+`````
 
 ### CRM 통합
 
-```bash
+`````bash
 # HubSpot CRM — Chatwoot 앱 마켓플레이스에서 설치
 # 경로: 설정 > 애플리케이션 > HubSpot
 # 또는 API를 통해 구성: curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
@@ -280,11 +281,11 @@ def handle_chatwoot(): data = request.json
     "sync_contacts": true,
     "sync_deals": true
   }'
-```
+`````
 
 ### 다중 채널 구성
 
-```bash
+`````bash
 # Twilio를 통한 WhatsApp Business 채널 추가
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -301,9 +302,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
-```bash
+`````bash
 # Telegram Bot 채널 추가
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -317,11 +318,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
 ### 상담원 알림을 위한 Slack 통합
 
-```bash
+`````bash
 # 지원 팀 Slack 워크스페이스 연결
 # Chatwoot 대시보드: 설정 > 통합 > Slack
 # 승인하고 지원 알림용 채널 선택
@@ -329,7 +330,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 # 봇이 게시할 내용: # - 새 대화 알림
 # - 상담원 멘션 알림
 # - 에스컬레이션 알림
-```
+`````
 
 ## 벤치마크 및 실제 활용 사례
 
@@ -365,7 +366,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 ### 다중 워커를 통한 수평 확장
 
-```yaml
+`````yaml
 # docker-compose.scale.yaml — Sidekiq 워커 추가
 services: worker_default: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -C config/sidekiq.yml
@@ -375,28 +376,28 @@ services: worker_default: image: chatwoot/chatwoot:v4.0.1
   worker_high_priority: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -q high -q default -q low
     deploy: replicas: 2
-```
+`````
 
 ### 데이터베이스 읽기 복제본
 
-```ruby
+`````ruby
 # config/database.yml — 읽기 복제본 추가
 production: primary: <<: *default
     host: <%= ENV[POSTGRES_HOST] %>
   primary_replica: <<: *default
     host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
-```
+`````
 
-```bash
+`````bash
 # .env
 POSTGRES_REPLICA_HOST=postgres-replica.yourdomain.com
 DATABASE_REPLICA_ENABLED=true
-```
+`````
 
 ### 자동화된 백업
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/chatwoot-backup.sh
 
@@ -415,16 +416,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/chatwoot/"
 
 # 최근 14일만 유지
 find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron 작업 — 매일 오전 2시
 0 2 * * * /opt/scripts/chatwoot-backup.sh >> /var/log/chatwoot-backup.log 2>&1
-```
+`````
 
 ### Prometheus를 이용한 모니터링
 
-```bash
+`````bash
 # Chatwoot이 /metrics 엔드포인트를 노출
 # prometheus.yml에 추가
 
@@ -432,11 +433,11 @@ scrape_configs: - job_name: chatwoot
     static_configs: - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
 ### 속도 제한 및 보안 헤더
 
-```bash
+`````bash
 # .env에 API 속도 제한 추가
 RATE_LIMIT_ENABLED=true
 RATE_LIMIT_REQUESTS=100
@@ -447,7 +448,7 @@ add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Content-Security-Policy "default-src self" always;
-```
+`````
 
 ## 대안과 비교
 
@@ -494,7 +495,7 @@ Chatwoot이 모든 조직에 적합한 것은 아니다. 알아야 할 사항: *
 
 **버전 간 업그레이드 프로세스는 무엇인가요?**
 
-Chatwoot은 시맨틱 버저닝을 따른다. 마이너 업데이트(v4.0.0 → v4.0.1)는 일반적으로 데이터베이스 마이그레이션이 필요 없다. 메이저 업데이트(v3.x → v4.x)는 마이그레이션 실행이 필요하다. 표준 프로세스: ```bash
+Chatwoot은 시맨틱 버저닝을 따른다. 마이너 업데이트(v4.0.0 → v4.0.1)는 일반적으로 데이터베이스 마이그레이션이 필요 없다. 메이저 업데이트(v3.x → v4.x)는 마이그레이션 실행이 필요하다. 표준 프로세스: `````bash
 # 먼저 백업
 /opt/scripts/chatwoot-backup.sh
 
@@ -502,7 +503,7 @@ Chatwoot은 시맨틱 버저닝을 따른다. 마이너 업데이트(v4.0.0 → 
 docker compose pull
 docker compose up -d
 docker compose exec rails bundle exec rails db:migrate
-```
+````
 
 메이저 버전 업그레이드 전에 항상 릴리스 노트를 읽어라.
 
@@ -524,7 +525,7 @@ Chatwoot v4.0은 오픈소스 고객 지원의 중요한 성숙 단계를 대표
 
 **오픈소스 도구 논의를 위한 Telegram 그룹**: [t.me/dibi8ko](https://t.me/dibi8ko)
 
----
+* * *
 
 
 
@@ -546,7 +547,7 @@ Chatwoot v4.0은 오픈소스 고객 지원의 중요한 성숙 단계를 대표
 - [DigitalOcean Docker 배포 가이드](https://m.do.co/c/eca87ac14ee0) — VPS 설정 튜토리얼
 - [PostgreSQL 스트리밍 복제](https://www.postgresql.org/docs/current/warm-standby.html) — 읽기 복제본 설정
 
----
+* * *
 
 *본 문서에는 DigitalOcean 및 HTStack의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매할 경우 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 모든 추천은 실제 테스트와 실제 배포 경험에 기반합니다.*
 
@@ -576,7 +577,7 @@ Chatwoot v4.0은 오픈소스 고객 지원의 중요한 성숙 단계를 대표
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -586,7 +587,7 @@ Chatwoot v4.0은 오픈소스 고객 지원의 중요한 성숙 단계를 대표
 - [egonex-understand-anything-interactive-knowledge-graph-ai](chatwoot-open-source-customer-support-ai)
 - [bytedance-ui-tars-desktop-ai-agent-guide](chatwoot-open-source-customer-support-ai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

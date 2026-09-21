@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/openai-whisper/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -49,17 +50,17 @@ Whisper 采用编码器-解码器 Transformer 架构。音频输入被转换为�
 
 | 模型 | 参数量 | 英语 WER | 多语言 WER | 显存 (GPU) | 相对速度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | tiny  | 39M    | ~7.6%    | ~12%       | ~1 GB      | ~10x     |
 | base  | 74M    | ~5.0%    | ~10%       | ~1 GB      | ~7x      |
@@ -72,7 +73,7 @@ Whisper 采用编码器-解码器 Transformer 架构。音频输入被转换为�
 
 ### Python 安装
 
-```bash
+````bash
 python -m venv whisper-env
 source whisper-env/bin/activate  # Linux/macOS
 # whisper-env\Scripts\activate  # Windows
@@ -82,13 +83,13 @@ pip install -U openai-whisper
 
 # 验证安装
 whisper --version
-```
+`````
 
 ### 系统依赖
 
 FFmpeg 是音频预处理必需的：
 
-```bash
+`````bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -97,11 +98,11 @@ brew install ffmpeg
 
 # 验证
 ffmpeg -version | head -1
-```
+`````
 
 ### GPU 加速 (CUDA)
 
-```bash
+`````bash
 # 检查 CUDA 可用性
 python -c "import torch; print(torch.cuda.is_available())"
 
@@ -110,11 +111,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # 仅 CPU 推理
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 # 拉取并运行官方镜像
 docker pull openai/whisper:latest
 
@@ -135,11 +136,11 @@ docker run --rm \
   /audio/podcast.mp3 \
   --model base \
   --device cpu
-```
+`````
 
 ### 快速首次转录
 
-```python
+`````python
 import whisper
 
 # 加载模型（首次运行时下载）
@@ -151,11 +152,11 @@ print(result["text"])
 
 # 获取带时间戳的分段
 for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
-```
+`````
 
 ### CLI 使用示例
 
-```bash
+`````bash
 # 基本转录
 whisper audio.mp3 --model medium --language en
 
@@ -167,7 +168,7 @@ whisper french_interview.mp3 --model large-v3 --task translate
 
 # 自动检测语言
 whisper unknown.mp3 --model base --task transcribe
-```
+`````
 
 ## 与流行工具集成
 
@@ -175,11 +176,11 @@ whisper unknown.mp3 --model base --task transcribe
 
 WhisperX 封装了 faster-whisper，并添加了音素级对齐和说话人分离功能。它是会议记录和访谈处理的首选工具。
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -220,17 +221,17 @@ for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     end = segment["end"]
     text = segment["text"]
     print(f"[{start:.2f}s - {end:.2f}s] {speaker}: {text}")
-```
+`````
 
 ### faster-whisper（生产推理）
 
 faster-whisper 使用 CTranslate2 重新实现了 Whisper，提供 4-8 倍的速度提升和量化支持。它是生产 API 的默认选择。
 
-```bash
+`````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # 使用量化以降低显存
@@ -259,11 +260,11 @@ segments, info = model.transcribe(
 print(f"检测到的语言: {info.language} (概率: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ### LibreTranslate 集成（翻译流水线）
 
-```python
+`````python
 import whisper
 import requests
 
@@ -284,11 +285,11 @@ def translate(text, source="ja", target="en"): response = requests.post(
 english_text = translate(japanese_text)
 print(f"JA: {japanese_text}")
 print(f"EN: {english_text}")
-```
+`````
 
 ### FastAPI 实时转录服务器
 
-```python
+`````python
 from fastapi import FastAPI, UploadFile, File
 from faster_whisper import WhisperModel
 import tempfile
@@ -324,13 +325,13 @@ async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporary
         "language_probability": info.language_probability,
         "segments": results
     }
-```
+`````
 
-运行命令：`uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2`
+运行命令：````uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2````
 
 ### Prometheus 监控集成
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -356,7 +357,7 @@ def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time(
 
 # 在 9090 端口启动监控服务器
 start_http_server(9090)
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -366,15 +367,15 @@ start_http_server(9090)
 
 | 模型 / 引擎 | WER (clean) | WER (other) | 多语言 | 年份 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Whisper tiny | 7.6% | 12.0% | 12.0% | 2022 |
 | Whisper base | 5.0% | 8.1% | 10.0% | 2022 |
@@ -390,15 +391,15 @@ start_http_server(9090)
 
 | 引擎 | 模型 | 时间 | 显存 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI Whisper | large-v3 | ~90 分钟 | ~10 GB | 基线 |
 | faster-whisper | large-v3 | ~18 分钟 | ~6 GB | float16, 4-8 倍加速 |
@@ -411,15 +412,15 @@ start_http_server(9090)
 
 | 用例 | 推荐模型 | 引擎 | 硬件 | 日处理量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 播客转录 | large-v3 | faster-whisper | 1x A100 | 500+ 小时 |
 | 实时会议笔记 | turbo | faster-whisper | 1x RTX 4090 | 200+ 小时 |
@@ -431,7 +432,7 @@ start_http_server(9090)
 
 ### 模型量化以降低显存
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # INT8 量化 — 2 倍速度，减少 50% 显存
@@ -442,11 +443,11 @@ model_hybrid = WhisperModel("large-v3", device="cuda", compute_type="int8_float1
 
 # CPU 使用 INT8
 model_cpu = WhisperModel("medium", device="cpu", compute_type="int8", cpu_threads=8)
-```
+`````
 
 ### 批处理流水线
 
-```python
+`````python
 import os
 from concurrent.futures import ThreadPoolExecutor
 from faster_whisper import WhisperModel
@@ -470,11 +471,11 @@ files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith
 with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"已处理 {len(results)} 个文件")
-```
+`````
 
 ### NGINX 负载均衡 (多 GPU)
 
-```nginx
+`````nginx
 upstream whisper_backend {
     least_conn;
     server 10.0.1.10:8000 weight=1;  # GPU 0
@@ -491,11 +492,11 @@ server {
         client_max_body_size 500M;
     }
 }
-```
+`````
 
 ### 健康检查端点
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from faster_whisper import WhisperModel
 import torch
@@ -512,11 +513,11 @@ async def health(): gpu_available = torch.cuda.is_available()
         "gpu_memory_gb": gpu_memory / (1024**3),
         "model_loaded": model is not None
     }
-```
+`````
 
 ### Redis 队列异步处理
 
-```python
+`````python
 import redis
 import json
 from faster_whisper import WhisperModel
@@ -538,7 +539,7 @@ def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
         time.sleep(0.1)
 
 if __name__ == "__main__": worker()
-```
+`````
 
 ## 与替代品对比
 
@@ -546,15 +547,15 @@ if __name__ == "__main__": worker()
 
 | 功能 | OpenAI Whisper | WhisperX | faster-whisper | DeepSpeech |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 99,800 | 19,700 | 20,400 | 26,700 (已归档) |
 | **许可证** | MIT | BSD-2 | MIT | MPL-2.0 |
@@ -596,11 +597,11 @@ faster-whisper 使用 CTranslate2（C++ 推理引擎）重新实现了 Whisper�
 
 ### 3. 我应该选择哪个模型大小？
 
-英语快速任务从 `base` 开始，日常多语言使用 `small`，专业精度需求使用 `medium`，最高精度不可妥协时使用 `large-v3`。`turbo` 模型是延迟敏感生产工作负载的最佳平衡点。
+英语快速任务从 ````base```` 开始，日常多语言使用 ````small````，专业精度需求使用 ````medium````，最高精度不可妥协时使用 ````large-v3````。````turbo```` 模型是延迟敏感生产工作负载的最佳平衡点。
 
 ### 4. 如何高效处理长音频文件？
 
-使用 faster-whisper 的 `vad_filter=True` 跳过静音片段。超过 1 小时的文件，分块并行处理。WhisperX 原生处理长文件，在 3 小时以上音频上比基础 Whisper 更稳定。
+使用 faster-whisper 的 ````vad_filter=True```` 跳过静音片段。超过 1 小时的文件，分块并行处理。WhisperX 原生处理长文件，在 3 小时以上音频上比基础 Whisper 更稳定。
 
 ### 5. Whisper 可以免费商用吗？
 
@@ -616,10 +617,10 @@ Whisper large-v3 在英语上的 WER 与 Google Speech-to-Text 相当（LibriSpe
 
 ## 结论
 
-OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 个 GitHub stars 不仅反映了其受欢迎程度，更体现了生态系统的成熟度：faster-whisper 提供速度，WhisperX 提供说话人分离，核心模型在 99 种语言上提供高精度。以 `faster-whisper` 和 `medium` 模型起步，需要说话人标签时添加 `WhisperX`，显存紧张时使用 INT8 量化。
+OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 个 GitHub stars 不仅反映了其受欢迎程度，更体现了生态系统的成熟度：faster-whisper 提供速度，WhisperX 提供说话人分离，核心模型在 99 种语言上提供高精度。以 ````faster-whisper```` 和 ````medium```` 模型起步，需要说话人标签时添加 ````WhisperX````，显存紧张时使用 INT8 量化。
 
 **下一步：**
-- 克隆仓库：`git clone https://github.com/openai/whisper`
+- 克隆仓库：````git clone https://github.com/openai/whisper```
 - 加入 dibi8 开发者 Telegram 社区获取部署技巧
 - 在自己的音频数据上测试 faster-whisper，再确定模型大小
 
@@ -672,7 +673,7 @@ OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 �
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](openai-whisper)
@@ -682,5 +683,5 @@ OpenAI Whisper 在 2026 年仍然是生产语音识别的务实选择。99,800 �
 - [moneyprinterturbo-one-click-ai-video-generator](openai-whisper)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

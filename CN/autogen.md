@@ -24,6 +24,7 @@ aliases:
   - /posts/autogen/
 - /resources/llm-frameworks/autogen-multi-agent-framework/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -38,18 +39,18 @@ AutoGen is an open-source programming framework for building multi-agent AI appl
 
 AutoGen's architecture separates into four layers: | Layer | Purpose | Entry Point |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Core** | Event-driven runtime for agent messaging and state | `autogen-core` |
-| **AgentChat** | High-level conversational agents built on Core | `autogen-agentchat` |
-| **Extensions** | Integrations with OpenAI, Docker, MCP, gRPC | `autogen-ext` |
-| **Studio** | Web UI for prototyping without writing code | `autogenstudio` |
+| **Core** | Event-driven runtime for agent messaging and state | ```autogen-core```` |
+| **AgentChat** | High-level conversational agents built on Core | ````autogen-agentchat```` |
+| **Extensions** | Integrations with OpenAI, Docker, MCP, gRPC | ````autogen-ext```` |
+| **Studio** | Web UI for prototyping without writing code | ````autogenstudio```` |
 
-The mental model is message-passing between agents. An `AssistantAgent` generates plans and code. A `UserProxyAgent` executes code locally or in Docker and relays output back. A `GroupChatManager` routes messages among participants according to a selection strategy (round-robin, auto-select, or custom).
+The mental model is message-passing between agents. An ````AssistantAgent```` generates plans and code. A ````UserProxyAgent```` executes code locally or in Docker and relays output back. A ````GroupChatManager```` routes messages among participants according to a selection strategy (round-robin, auto-select, or custom).
 
 ![AutoGen architecture](https://raw.githubusercontent.com/microsoft/autogen/main/website/static/img/autogen_agentchat.png)
 
@@ -71,31 +72,31 @@ AutoGen requires **Python 3.10+**. The install path depends on which layer you n
 
 ### Basic Install (AgentChat)
 
-```bash
+`````bash
 # Create a virtual environment
 python -m venv .venv
 source .venv/bin/activate
 
 # Install AgentChat + OpenAI extension
 pip install -U "autogen-agentchat" "autogen-ext[openai]"
-```
+`````
 
 ### Full Install with All Extensions
 
-```bash
+`````bash
 pip install -U "autogen-agentchat" "autogen-ext[openai,azure,docker,mcp]"
-```
+`````
 
 ### Verify Installation
 
-```python
+`````python
 import autogen_agentchat
 print(autogen_agentchat.__version__)
-```
+`````
 
 ### Minimal "Hello World" Agent
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
@@ -112,16 +113,16 @@ async def main() -> None: agent = AssistantAgent(
     print(result.messages[-1].content)
 
 asyncio.run(main())
-```
+`````
 
-Run it: ```bash
+Run it: `````bash
 export OPENAI_API_KEY="sk-..."
 python hello_agent.py
-```
+`````
 
 ### Docker Setup (Recommended for Production)
 
-```bash
+`````bash
 # Pull the official image
 docker pull mcr.microsoft.com/autogen/python:latest
 
@@ -130,13 +131,13 @@ docker run -it \
   -e OPENAI_API_KEY="$OPENAI_API_KEY" \
   -v "$(pwd)/workspace:/workspace" \
   mcr.microsoft.com/autogen/python:latest
-```
+`````
 
 ## Integration with Popular Tools
 
 ### OpenAI / Azure OpenAI
 
-AutoGen's AgentChat uses `OpenAIChatCompletionClient` for both OpenAI and Azure endpoints: ```python
+AutoGen's AgentChat uses ``OpenAIChatCompletionClient`` for both OpenAI and Azure endpoints: `````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 # OpenAI direct
@@ -152,11 +153,11 @@ azure_client = OpenAIChatCompletionClient(
     api_key="YOUR_AZURE_KEY",
     api_version="2024-12-01-preview"
 )
-```
+`````
 
 ### Ollama (Local Models)
 
-```python
+`````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 local_client = OpenAIChatCompletionClient(
@@ -170,11 +171,11 @@ local_client = OpenAIChatCompletionClient(
         "family": "unknown"
     }
 )
-```
+`````
 
 ### Docker Code Execution
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 from autogen_agentchat.agents import CodeExecutorAgent
 
@@ -190,19 +191,19 @@ code_agent = CodeExecutorAgent(
     name="code_executor",
     code_executor=executor
 )
-```
+`````
 
 ### VS Code Extension
 
-The AutoGen VS Code extension provides inline debugging for agent conversations: ```bash
+The AutoGen VS Code extension provides inline debugging for agent conversations: `````bash
 # Install from marketplace (search "AutoGen")
 # Or via CLI
 code --install-extension microsoft.autogen
-```
+`````
 
 ### Model Context Protocol (MCP)
 
-AutoGen 0.5+ supports MCP servers for tool discovery: ```python
+AutoGen 0.5+ supports MCP servers for tool discovery: `````python
 from autogen_ext.tools.mcp import McpWorkbench
 
 workbench = McpWorkbench(
@@ -210,7 +211,7 @@ workbench = McpWorkbench(
 )
 
 # Tools from the MCP server become available to agents
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -218,15 +219,15 @@ workbench = McpWorkbench(
 
 Independent benchmarks from 2026 studies show how AutoGen performs on standardized agent tasks: | Benchmark | AutoGen | CrewAI | LangGraph | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SimpleQA Verified (F1) | 0.62 | **0.71** | 0.68 | CrewAI highest but 55-140% slower |
 | BIRD-SQL (Execution %) | 54.1 | 54.3 | **55.9** | LangGraph leads on NL2SQL |
@@ -244,13 +245,13 @@ Sources: [Open Agent Specification Technical Report](https://arxiv.org/html/2510
 
 Production cost estimates for a **10,000-decision/year** workload (community-reported, 2026): | Framework | Est. Annual Cost | Avg Latency (simple) | Avg Latency (complex) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangGraph | $220–$365 | 180ms | 1.2s |
 | CrewAI | $220–$365 | 220ms | 1.5s |
@@ -268,7 +269,7 @@ AutoGen outperforms alternatives in specific scenarios: - **Multi-agent research
 
 ### Group Chat with Custom Selector
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
@@ -310,11 +311,11 @@ async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
     for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
-```
+`````
 
 ### Selector-Based Group Chat (Dynamic Routing)
 
-```python
+`````python
 from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination
 
@@ -325,11 +326,11 @@ team = SelectorGroupChat(
     termination_condition=MaxMessageTermination(max_messages=15),
     allow_repeated_speaker=False  # Prevents same agent from speaking twice in a row
 )
-```
+`````
 
 ### Custom Tool Integration
 
-```python
+`````python
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
@@ -345,11 +346,11 @@ agent = AssistantAgent(
     tools=[search_tool],
     system_message="Use the search_knowledge_base tool to answer questions."
 )
-```
+`````
 
 ### State Persistence for Long-Running Workflows
 
-```python
+`````python
 from autogen_agentchat.teams import GroupChat
 from autogen_core import CancellationToken
 
@@ -364,11 +365,11 @@ with open("team_state.json", "w") as f: json.dump(state, f)
 with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
-```
+`````
 
 ### Security: Sandboxed Code Execution
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
@@ -385,11 +386,11 @@ with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCode
         code_executor=executor
     )
     # Agent runs all code inside the container
-```
+`````
 
 ### Monitoring with OpenTelemetry
 
-```python
+`````python
 from autogen_core import TRACE_LOGGER_NAME
 import logging
 
@@ -401,21 +402,21 @@ from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
 tracer = trace.get_tracer("autogen.production")
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | AutoGen | CrewAI | LangGraph | OpenAI Agents SDK |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 58,196 | ~47,700 | ~30,700 | ~25,500 |
 | **Architecture** | Message-passing / Conversation | Role-based crew | Directed state graph | Explicit handoff |
@@ -446,7 +447,7 @@ The **OpenAI Agents SDK** is vendor-locked but deeply integrated with OpenAI's A
 
 AutoGen is not the right tool for every job. Here is what it is NOT good for: 1. **High-throughput production APIs**: The conversational pattern generates 20+ LLM calls per task. At 1,000 requests/minute, your LLM bill and latency will be unacceptable. Use LangGraph for transactional workloads.
 
-2. **Simple linear pipelines**: If your workflow is "A does step 1, B does step 2, C does step 3" with no backtracking, CrewAI's `Process.sequential` is simpler and cheaper.
+2. **Simple linear pipelines**: If your workflow is "A does step 1, B does step 2, C does step 3" with no backtracking, CrewAI's ````Process.sequential```` is simpler and cheaper.
 
 3. **Non-Python teams**: While AutoGen has a .NET port, the ecosystem is Python-first. TypeScript and Java teams will find LangGraph (JS support) or Semantic Kernel (.NET) more natural.
 
@@ -462,11 +463,11 @@ Microsoft Agent Framework (MAF) is the next-generation evolution of AutoGen, GA'
 
 **Q: How do I run AutoGen with local models like Llama or Mistral?**
 
-Use Ollama or any OpenAI-compatible local server. Set `base_url` in `OpenAIChatCompletionClient` to your local endpoint (e.g., `http://localhost:11434/v1`). Provide a `model_info` dict so AutoGen knows the model's capabilities (vision, function calling, JSON output).
+Use Ollama or any OpenAI-compatible local server. Set ````base_url```` in ````OpenAIChatCompletionClient```` to your local endpoint (e.g., ````http://localhost:11434/v1````). Provide a ````model_info```` dict so AutoGen knows the model's capabilities (vision, function calling, JSON output).
 
 **Q: Can AutoGen agents execute code safely?**
 
-Yes, via `DockerCommandLineCodeExecutor`. All generated code runs inside a Docker container with configurable timeouts and bind mounts. Never use `LocalCommandLineCodeExecutor` for untrusted LLM-generated code in production.
+Yes, via ````DockerCommandLineCodeExecutor````. All generated code runs inside a Docker container with configurable timeouts and bind mounts. Never use ````LocalCommandLineCodeExecutor```` for untrusted LLM-generated code in production.
 
 **Q: How many agents can I put in a GroupChat?**
 
@@ -474,15 +475,15 @@ Practical limit is 5–8 agents. Beyond that, the conversation selector struggle
 
 **Q: Does AutoGen support streaming responses?**
 
-Yes, AgentChat supports streaming via `run_stream()`: ```python
+Yes, AgentChat supports streaming via ``run_stream()``: `````python
 async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
-```
+`````
 
 Streaming is per-message (not per-token), so the granularity is coarser than raw OpenAI streaming.
 
 **Q: How do I debug a multi-agent conversation gone wrong?**
 
-Enable verbose logging and save conversation states: ```python
+Enable verbose logging and save conversation states: `````python
 # Print every message as it happens
 team = RoundRobinGroupChat(
     participants=[agent1, agent2],
@@ -490,7 +491,7 @@ team = RoundRobinGroupChat(
 )
 result = await team.run(task="Debug task", max_turns=10)
 for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
-```
+`````
 
 ## Conclusion
 
@@ -500,7 +501,7 @@ That same flexibility becomes a liability at production scale. The 20+ LLM calls
 
 **Action items:**
 
-1. Install AutoGen AgentChat with `pip install "autogen-agentchat" "autogen-ext[openai]"`
+1. Install AutoGen AgentChat with ````pip install "autogen-agentchat" "autogen-ext[openai]"```
 2. Build a 3-agent GroupChat for your use case using the code examples above
 3. Measure token usage and latency against LangGraph and CrewAI with identical prompts
 4. Join the [AutoGen Discord](https://aka.ms/autogen-discord) for community support
@@ -555,7 +556,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](autogen)
@@ -565,7 +566,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ai-engineering-from-scratch](autogen)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

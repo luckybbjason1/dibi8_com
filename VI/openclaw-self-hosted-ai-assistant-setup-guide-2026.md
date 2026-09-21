@@ -22,6 +22,7 @@ aliases:
   - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
 ---
 
+
 {</* resource-info */>}
 
 ## 1. Tại Sao OpenClaw Bùng Nổ Trong Năm 2026?
@@ -50,7 +51,7 @@ Hầu hết các "trợ lý AI" trên thị trường thực chất chỉ là v�
 - **Phân phối tác vụ con (sub-agent)**: Công việc phức tạp tự động phân rã thành các tác vụ con, giao cho các sub-agent chuyên biệt xử lý song song
 - **Nhịp tim (heartbeat) và cron**: Theo chu kỳ định sẵn chủ động kiểm tra email, lịch, cảnh báo giám sát — thay vì chờ lệnh thụ động
 
----
+* * *
 
 ## 2. Phân Tích Kiến Trúc: Ba Tầng Lõi Của OpenClaw
 
@@ -67,7 +68,7 @@ Gateway là cửa ngõ vào của OpenClaw, đảm nhận: - Nhận tin nhắn t
 
 Tầng Agent là "bộ não" của OpenClaw, gồm ba thành phần lõi: #### SOUL.md — Neo Nhân Cách
 
-Đây là một trong những thiết kế độc đáo nhất của OpenClaw. Bạn định nghĩa tính cách, cách nói chuyện, chuyên môn và ranh giới quyết định của agent bằng văn bản thuần túy. Không phải kỹ thuật prompt engineering, mà là nhận thức bản thân liên tục: ```markdown
+Đây là một trong những thiết kế độc đáo nhất của OpenClaw. Bạn định nghĩa tính cách, cách nói chuyện, chuyên môn và ranh giới quyết định của agent bằng văn bản thuần túy. Không phải kỹ thuật prompt engineering, mà là nhận thức bản thân liên tục: ````markdown
 # SOUL.md — Bạn Là Ai
 
 ## Chế Độ Làm Việc
@@ -79,7 +80,7 @@ Khi làm việc luôn có một đối tượng tham khảo cụ thể — một
 
 ## Lập Trường
 Riêng tư không phải là quy tắc bắt buộc bạn phải giữ bí mật. Việc nhìn trộm dữ liệu người khác khiến bạn khó chịu về mặt nguyên tắc.
-```
+`````
 
 SOUL.md được tải vào ngữ cảnh mỗi khi phiên làm việc bắt đầu, đảm bảo "nhân cách" của agent nhất quán.
 
@@ -88,12 +89,12 @@ SOUL.md được tải vào ngữ cảnh mỗi khi phiên làm việc bắt đ�
 | Lớp | Nội dung lưu trữ | Cách lưu trữ lâu dài | Ứng dụng điển hình |
 |------|---------|-----------|---------|
 | Đồ thị tri thức | Sự kiện dự án, mối quan hệ, quyết định kỹ thuật | File Markdown cục bộ (phương pháp PARA) | Ngữ cảnh bền vững xuyên dự án |
-| Ghi chú hàng ngày | Tương tác trong ngày, việc cần làm, ý tưởng tạm | `memory/YYYY-MM-DD.md` | Ngữ cảnh ngắn hạn, tự động lưu trữ đêm |
-| Tri thức ngầm | Sở thích người dùng, thói quen giao tiếp, quy tắc cứng | `SOUL.md` + `USER.md` | Ràng buộc hành vi và cá nhân hóa |
+| Ghi chú hàng ngày | Tương tác trong ngày, việc cần làm, ý tưởng tạm | ````memory/YYYY-MM-DD.md```` | Ngữ cảnh ngắn hạn, tự động lưu trữ đêm |
+| Tri thức ngầm | Sở thích người dùng, thói quen giao tiếp, quy tắc cứng | ````SOUL.md```` + ````USER.md```` | Ràng buộc hành vi và cá nhân hóa |
 
 #### Chiến Lược Định Tuyến Mô Hình
 
-OpenClaw không bị khóa vào một mô hình duy nhất. Trong `openclaw.json` bạn cấu hình: - **Mô hình cục bộ** (Ollama / Docker Model Runner): Q&A thường ngày, thao tác rủi ro thấp
+OpenClaw không bị khóa vào một mô hình duy nhất. Trong ````openclaw.json```` bạn cấu hình: - **Mô hình cục bộ** (Ollama / Docker Model Runner): Q&A thường ngày, thao tác rủi ro thấp
 - **Mô hình đám mây** (Claude 4.6 / GPT-5.5): Suy luận phức tạp, đánh giá code, phân tích ngữ cảnh dài
 - **Chuyển đổi nhận thức chi phí**: Tự động chọn mô hình theo độ phức tạp tác vụ, giữ chi phí API hàng ngày trong khoảng $1–3
 
@@ -107,7 +108,7 @@ ClawHub là sổ đăng ký kỹ năng của OpenClaw, hiện có hơn 5.700 k�
 
 **Cảnh báo bảo mật**: Cisco đã công bố rủi ro tấn công chuỗi cung ứng trong hệ sinh thái skill OpenClaw vào Q1/2026. Trong môi trường production, phải kiểm tra từng skill bạn nhập, bật chế độ sandbox, và định kỳ xem xét phạm vi quyền của công cụ.
 
----
+* * *
 
 ## 3. Thực Chiến: Triển Khai Trợ Lý AI Riêng Từ Con Số 0
 
@@ -126,25 +127,25 @@ ClawHub là sổ đăng ký kỹ năng của OpenClaw, hiện có hơn 5.700 k�
 
 #### Bước 1: Chạy script cài đặt
 
-```bash
+`````bash
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
+`````
 
 Script tự động phát hiện môi trường, cài đặt phụ thuộc Node.js 24+, tải xuống nhị phân Gateway.
 
 #### Bước 2: Trình hướng dẫn cấu hình tương tác
 
-```bash
+`````bash
 openclaw onboard
-```
+`````
 
-Làm theo hướng dẫn để đặt: - Tên agent (ví dụ: `Home-Hermes`)
+Làm theo hướng dẫn để đặt: - Tên agent (ví dụ: ````Home-Hermes````)
 - LLM Provider (chọn Ollama hoặc OpenAI / Anthropic API)
 - Kênh ban đầu (nên chọn Telegram Bot vì dễ debug nhất)
 
 #### Bước 3: Cấu hình mô hình cục bộ (tùy chọn)
 
-Nếu dùng Ollama làm backend suy luận cục bộ: ```bash
+Nếu dùng Ollama làm backend suy luận cục bộ: `````bash
 # Cài đặt Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -153,9 +154,9 @@ ollama pull llama3:8b
 
 # Kiểm tra chạy
 ollama run llama3:8b "Xin chào, hãy giới thiệu bản thân"
-```
+`````
 
-Cấu hình định tuyến mô hình trong `~/.openclaw/openclaw.json`: ```json
+Cấu hình định tuyến mô hình trong ``~/.openclaw/openclaw.json``: `````json
 {
   "models": {
     "default": {
@@ -170,42 +171,42 @@ Cấu hình định tuyến mô hình trong `~/.openclaw/openclaw.json`: ```json
     }
   }
 }
-```
+`````
 
 ### 3.3 Kết Nối Telegram (Kênh Khuyến Nghị Cho Debug)
 
 1. Tạo Bot mới qua [@BotFather](https://t.me/botfather) và sao chép API Token
-2. Sửa `~/.openclaw/channels/telegram.json`: ```json
+2. Sửa ``~/.openclaw/channels/telegram.json``: `````json
 {
   "enabled": true,
   "botToken": "YOUR_BOT_TOKEN_HERE",
   "allowedUsers": ["your_telegram_user_id"]
 }
-```
+`````
 
-3. Khởi động lại Gateway: `openclaw gateway restart`
+3. Khởi động lại Gateway: ````openclaw gateway restart````
 4. Gửi tin nhắn thử nghiệm đến Bot để kiểm tra kết nối
 
 ### 3.4 Danh Sách Kiểm Tra Bảo Mật Production
 
 Trước khi đưa vào vận hành thực tế, bắt buộc phải hoàn thành các bước bảo mật sau: - [ ] **Ghép cặp DM**: Chỉ người dùng Telegram / WhatsApp đã ghép cặp mới được tương tác với agent
-- [ ] **Allowlist**: Liệt kê rõ ràng công cụ agent có thể gọi trong `tools.md`; chặn thao tác nguy hiểm (`rm -rf`, `DROP TABLE`)
-- [ ] **Chế độ sandbox**: Bật sandbox hệ thống file, giới hạn agent chỉ truy cập thư mục `~/workspace/`
+- [ ] **Allowlist**: Liệt kê rõ ràng công cụ agent có thể gọi trong ````tools.md````; chặn thao tác nguy hiểm (````rm -rf````, ````DROP TABLE````)
+- [ ] **Chế độ sandbox**: Bật sandbox hệ thống file, giới hạn agent chỉ truy cập thư mục ````~/workspace/````
 - [ ] **Giới hạn chi phí**: Đặt ngân sách gọi API hàng ngày/tháng cho mô hình đám mây, ngăn tác vụ heartbeat tiêu tốn quá mức
 - [ ] **Kiểm tra skill**: Xem xét từng skill bên thứ ba nhập từ ClawHub, kiểm tra phạm vi quyền yêu cầu
 
----
+* * *
 
 ## 4. Tình Huống Nâng Cao: Biến Trợ Lý AI Thành Người Làm Thực Sự
 
 ### 4.1 Phân Loại Hộp Thư Thông Minh (Inbox Triage)
 
-Cấu hình tác vụ heartbeat kiểm tra hộp thư Lark / Gmail mỗi 2 giờ: ```markdown
+Cấu hình tác vụ heartbeat kiểm tra hộp thư Lark / Gmail mỗi 2 giờ: `````markdown
 - Kiểm tra email chưa đọc, gắn nhãn mức độ khẩn (cao / trung bình / thấp)
 - Mức cao → Gửi tóm tắt ngay lập tức qua Telegram
 - Mức trung bình → Thêm vào việc cần làm hôm nay
 - Mức thấp / email marketing → Lưu trữ, dọn dẹp hàng loạt cuối tuần
-```
+````
 
 Hiệu quả thực tế: Thời gian xử lý email hàng ngày giảm từ 45 phút xuống 8 phút.
 
@@ -225,7 +226,7 @@ Kết hợp tích hợp Home Assistant, điều khiển bằng ngôn ngữ tự 
 | "Bật chế độ tiết kiệm" | Tắt đèn phòng không người → Điều hòa 18°C → Khởi động robot hút bụi |
 | "Tôi đi công tác đến thứ Sáu" | Kích hoạt an ninh → Mô phỏng có người bằng đèn ngẫu nhiên → Đóng van nước |
 
----
+* * *
 
 ## 5. So Sánh Chi Phí: Tự Lưu Trữ vs Dịch Vụ AI Đám Mây
 
@@ -240,7 +241,7 @@ Kết hợp tích hợp Home Assistant, điều khiển bằng ngôn ngữ tự 
 
 **Nhận định cốt lõi**: Nếu bạn đã có thiết bị nhàn rỗi (Mac Mini cũ, Raspberry Pi 5, mini PC N100), chi phí biên của tự lưu trữ gần như bằng 0. Ngay cả khi kết hợp mô hình đám mây cho tác vụ phức tạp, tổng chi phí hàng tháng thường không vượt quá $50.
 
----
+* * *
 
 ## 6. Triển Vọng Hệ Sinh Thái OpenClaw Năm 2026
 
@@ -263,7 +264,7 @@ Kết hợp tích hợp Home Assistant, điều khiển bằng ngôn ngữ tự 
 - **Cộng đồng lập trình viên Discord**: discord.gg/openclaw
 - **Bản tin hàng tuần về công cụ AI mã nguồn mở**: buildmvpfast.com/blog
 
----
+* * *
 
 ## 7. Câu Hỏi Thường Gặp FAQ
 
@@ -283,7 +284,7 @@ Mô hình cấp Llama 3 8B / Mistral 7B đã xử lý được hơn 80% tác v�
 
 Ba lớp bảo vệ: ① Triển khai cục bộ đảm bảo dữ liệu không rời khỏi máy; ② Allowlist giới hạn API bên ngoài mà agent có thể gọi; ③ Chế độ sandbox cách ly phạm vi truy cập hệ thống file. Với thao tác nhạy cảm (gửi email, chuyển tiền), nên bật chế độ "xác nhận của con người".
 
----
+* * *
 
 ## Kết Luận
 
@@ -291,7 +292,7 @@ Sự bùng nổ của OpenClaw không phải là một cơn sốt "AI hype" tho�
 
 Nếu bạn vẫn đang tìm kiếm một trợ lý AI đủ nghiêm túc, đủ cởi mở, và thực sự thuộc về bạn — hôm nay chính là ngày tốt nhất để triển khai nó.
 
----
+* * *
 
 *Bài viết được cập nhật lần cuối ngày 18 tháng 5 năm 2026. Chi tiết kỹ thuật có thể thay đổi theo phiên bản, vui lòng tham khảo [tài liệu chính thức OpenClaw](https://docs.openclaw.ai).*
 
@@ -299,7 +300,7 @@ Nếu bạn vẫn đang tìm kiếm một trợ lý AI đủ nghiêm túc, đủ
 - [Giao thức MCP: Tiêu chuẩn mới cho lời gọi công cụ AI Agent](https://modelcontextprotocol.io)
 - [Bản tin hàng tuần về công cụ AI mã nguồn mở 2026](https://buildmvpfast.com/blog)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Host OpenClaw
 

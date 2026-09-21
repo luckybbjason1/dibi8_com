@@ -30,6 +30,7 @@ faqs: - q: 'HKUDS 开发的 AI-Trader 是什么？'
     a: 'AI-Trader 将交易任务拆分给各专职 Agent：分析 Agent（技术面、基本面、情绪面）负责信息收集；决策 Agent 负责选择买入/卖出/持有；风险 Agent 负责监控组合风险并执行止损；执行 Agent 负责下单以及控制滑点。'
   - q: '我可以在不承担真实资金风险的情况下测试 AI-Trader 吗？'
     a: '可以。AI-Trader 内置高保真回测引擎用于历史模拟，同时提供模拟交易模式（在配置文件中设置 mode: paper）。项目文档建议在切换至实盘交易前务必先使用模拟交易模式进行验证。'---
+
 {</* resource-info */>}
 
 ## AI-Trader 是什么？
@@ -44,7 +45,7 @@ faqs: - q: 'HKUDS 开发的 AI-Trader 是什么？'
 |
 ---
 |
----
+* * *
 |
 | Stars | 14,311+ |
 | Forks | 2,418+ |
@@ -67,11 +68,11 @@ faqs: - q: 'HKUDS 开发的 AI-Trader 是什么？'
 
 | 市场 | 资产 | 策略类型 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 股票 | 美股、港股、A股 | 动量 + 均值回归 |
 | 加密货币 | BTC、ETH、山寨币 | 趋势跟踪 + 套利 |
@@ -82,7 +83,7 @@ faqs: - q: 'HKUDS 开发的 AI-Trader 是什么？'
 
 AI-Trader 使用**深度强化学习（DRL）**进行策略优化：
 
-```python
+````python
 # 简化训练循环
 from ai_trader import TradingAgent, MarketEnv
 
@@ -98,13 +99,13 @@ agent.train(env, episodes=10000, batch_size=64)
 
 # 部署到实盘交易（先用模拟盘！）
 agent.deploy(mode='paper', exchange='binance')
-```
+`````
 
 ### 4. 多智能体协作
 
 系统使用**分层多智能体架构**：
 
-```
+`````
 ┌─────────────────────────────────────┐
 │        投资组合管理代理              │
 │      （资金分配、再平衡）            │
@@ -116,7 +117,7 @@ agent.deploy(mode='paper', exchange='binance')
 │市场   │ │风险   │ │执行   │
 │分析   │ │管理   │ │代理   │
 └────────┘ └───────┘ └────────┘
-```
+`````
 
 ## 核心功能
 
@@ -140,7 +141,7 @@ agent.deploy(mode='paper', exchange='binance')
 
 ## 安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -157,11 +158,11 @@ python backtest.py --strategy momentum --market crypto --assets BTC,ETH
 
 # 启动模拟交易
 python trade.py --mode paper --config config.yaml
-```
+`````
 
 ## 配置示例
 
-```yaml
+`````yaml
 # config.yaml
 trading: mode: paper  # paper | live
   initial_capital: 100000  # 美元
@@ -180,7 +181,7 @@ agents: market_analyst: indicators: [rsi, macd, bollinger, ichimoku]
 
 risk: daily_loss_limit: 2000  # 美元
   correlation_threshold: 0.7
-```
+`````
 
 ## 性能基准
 
@@ -188,13 +189,13 @@ risk: daily_loss_limit: 2000  # 美元
 
 | 策略 | 年化收益 | 最大回撤 | 夏普比率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 动量策略 | 45.2% | 18.3% | 1.82 |
 | 均值回归 | 32.1% | 12.7% | 1.65 |
@@ -206,18 +207,18 @@ risk: daily_loss_limit: 2000  # 美元
 ## 架构深度解析
 
 ### 数据管道
-```
+`````
 市场数据 → 特征工程 → 代理感知 → 决策 → 执行
      ↓          ↓            ↓         ↓        ↓
   REST API   技术面      市场状态    动作     订单
   WebSocket  情绪面      投资组合    (买/卖)  管理
   链上数据   链上数据     风险水平    数量     确认
-```
+`````
 
 ### 代理通信协议
 代理通过**消息总线**使用标准化协议通信：
 
-```python
+`````python
 # 代理消息示例
 {
     "agent_id": "market_analyst_1",
@@ -233,7 +234,7 @@ risk: daily_loss_limit: 2000  # 美元
         "correlation_with_existing": 0.45
     }
 }
-```
+````
 
 ## 社区与资源
 
@@ -258,11 +259,11 @@ risk: daily_loss_limit: 2000  # 美元
 5. 保持软件更新
 
 
----
+* * *
 *最后更新：2026-05-08 | Stars：14,311+ | 协议：MIT*
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -342,7 +343,7 @@ AI-Trader：14K⭐全自动AI交易代理，让AI帮你24小时盯盘赚钱 repr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -374,15 +375,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

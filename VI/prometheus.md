@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/prometheus/
 ---
 
+
 # Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026
 
 
@@ -41,7 +42,7 @@ Prometheus là hệ thống giám sát mã nguồn mở và cơ sở dữ liệu
 
 ## Prometheus hoạt động như thế nào?
 
-Prometheus sử dụng **kiến trúc pull-based**. Thay vì các ứng dụng đẩy metrics đến bộ thu thập trung tâm, Prometheus chủ động scrape các HTTP endpoint theo khoảng thờ gian đã cấu hình. Thiết kế này đơn giản hóa service discovery, loại bỏ nhu cầu cài agent trên mọi host, và cung cấp khả năng phát hiện sức khỏe tích hợp —— nếu một target không phản hồi, metric `up` ngay lập tức báo cáo `0`.
+Prometheus sử dụng **kiến trúc pull-based**. Thay vì các ứng dụng đẩy metrics đến bộ thu thập trung tâm, Prometheus chủ động scrape các HTTP endpoint theo khoảng thờ gian đã cấu hình. Thiết kế này đơn giản hóa service discovery, loại bỏ nhu cầu cài agent trên mọi host, và cung cấp khả năng phát hiện sức khỏe tích hợp —— nếu một target không phản hồi, metric ```up```` ngay lập tức báo cáo ````0````.
 
 Các thành phần cốt lõi: | Thành phần | Vai trò |
 |---|---|
@@ -56,7 +57,7 @@ Các thành phần cốt lõi: | Thành phần | Vai trò |
 Luồng dữ liệu: Service Discovery nhận diện target, Scraper pull metrics qua HTTP, TSDB lưu trữ mẫu với nén, và Rule Engine đánh giá alerting và recording rules. Alertmanager xử lý định tuyến thông báo, trong khi HTTP API phục vụ truy vấn cho Grafana hoặc expression browser tích hợp.
 
 **Các quyết định thiết kế chính:**
-- **Pull thay vì push**: Target chỉ cần expose `/metrics`; không cần cấu hình agent
+- **Pull thay vì push**: Target chỉ cần expose ````/metrics````; không cần cấu hình agent
 - **Lưu trữ cục bộ**: Mỗi Prometheus server hoạt động độc lập theo mặc định
 - **Mô hình dữ liệu đa chiều**: Mỗi metric mang nhãn key-value cho phép truy vấn linh hoạt
 - **PromQL**: Ngôn ngữ truy vấn mạnh mẽ cho tổng hợp, tính tốc độ, và cảnh báo
@@ -66,16 +67,16 @@ Luồng dữ liệu: Service Discovery nhận diện target, Scraper pull metric
 ### Thiết lập Docker (Single Node, < 5 phút)
 
 Cách nhanh nhất để chạy Prometheus là Docker. Tạo thư mục dự án và hai file: **prometheus.yml:**
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: prometheus
     static_configs: - targets: ['localhost:9090']
-```
+`````
 
 **docker-compose.yml:**
-```yaml
+`````yaml
 version: '3.8'
 
 services: prometheus: image: prom/prometheus:v3.11.0
@@ -89,17 +90,17 @@ services: prometheus: image: prom/prometheus:v3.11.0
       - '--web.enable-lifecycle'
     restart: unless-stopped
 
-volumes: prometheus-data: ```
+volumes: prometheus-data: `````
 
-Khởi động stack: ```bash
+Khởi động stack: `````bash
 docker compose up -d
-```
+`````
 
-Truy cập UI tại `http://localhost:9090`. Flag `--web.enable-lifecycle` cho phép reload cấu hình qua `POST /-/reload` mà không cần khởi động lại container.
+Truy cập UI tại ````http://localhost:9090````. Flag ````--web.enable-lifecycle```` cho phép reload cấu hình qua ````POST /-/reload```` mà không cần khởi động lại container.
 
 ### Docker Full Stack: Prometheus + Grafana + Node Exporter + cAdvisor
 
-Để có stack giám sát đầy đủ, thêm Grafana để trực quan hóa và exporters cho metrics host/container: ```yaml
+Để có stack giám sát đầy đủ, thêm Grafana để trực quan hóa và exporters cho metrics host/container: `````yaml
 version: '3.8'
 
 services: prometheus: image: prom/prometheus:v3.11.0
@@ -138,10 +139,10 @@ services: prometheus: image: prom/prometheus:v3.11.0
     ports: - "8080:8080"
     restart: unless-stopped
 
-volumes: prometheus-data: grafana-data: ```
+volumes: prometheus-data: grafana-data: `````
 
 **prometheus.yml cập nhật cho full stack:**
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
@@ -153,11 +154,11 @@ scrape_configs: - job_name: prometheus
 
   - job_name: cadvisor
     static_configs: - targets: ['cadvisor:8080']
-```
+`````
 
 ### Triển khai Kubernetes với Helm
 
-Cho môi trường Kubernetes production, sử dụng Helm chart `kube-prometheus-stack`: ```bash
+Cho môi trường Kubernetes production, sử dụng Helm chart ``kube-prometheus-stack``: `````bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
@@ -169,21 +170,21 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage=50Gi \
   --set grafana.enabled=true \
   --set grafana.adminPassword='your-secure-password'
-```
+`````
 
-Xác minh triển khai: ```bash
+Xác minh triển khai: `````bash
 kubectl get pods -n monitoring
-```
+`````
 
-Port-forward để truy cập cục bộ: ```bash
+Port-forward để truy cập cục bộ: `````bash
 kubectl port-forward svc/prometheus-kube-prometheus-prometheus 9090:9090 -n monitoring
 kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring
 kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 9093:9093 -n monitoring
-```
+`````
 
 ### Giá trị Production cho Kubernetes
 
-```yaml
+`````yaml
 prometheus: prometheusSpec: resources: requests: memory: 2Gi
         cpu: 500m
       limits: memory: 4Gi
@@ -204,12 +205,12 @@ alertmanager: alertmanagerSpec: resources: requests: memory: 256Mi
 grafana: enabled: true
   persistence: enabled: true
     size: 10Gi
-```
+`````
 
-Áp dụng: ```bash
+Áp dụng: `````bash
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
   -n monitoring -f values-production.yaml
-```
+`````
 
 ## Tích hợp với Docker, Kubernetes, Grafana và Alertmanager
 
@@ -217,7 +218,7 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
 
 Grafana kết nối với Prometheus như một data source: 1. Vào Grafana → Configuration → Data Sources → Add Data Source
 2. Chọn **Prometheus**
-3. URL: `http://prometheus:9090` (Docker) hoặc `http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090` (K8s)
+3. URL: ````http://prometheus:9090```` (Docker) hoặc ````http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090```` (K8s)
 4. Nhấn **Save & Test**
 
 Import dashboard ID **1860** (Node Exporter Full) cho dashboard metrics host đầy đủ, hoặc ID **14282** cho metrics container cAdvisor.
@@ -226,7 +227,7 @@ Import dashboard ID **1860** (Node Exporter Full) cho dashboard metrics host đ�
 
 ### Prometheus + Alertmanager Alerting Rules
 
-Tạo `alert-rules.yml`: ```yaml
+Tạo ``alert-rules.yml``: `````yaml
 groups: - name: node-alerts
     rules: - alert: HighMemoryUsage
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
@@ -258,11 +259,11 @@ groups: - name: node-alerts
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} độ trễ yêu cầu cao"
           description: "Phân vị 95 độ trễ là {{ $value }} giây"
-```
+`````
 
 ### Cấu hình Alertmanager cho Slack
 
-Tạo `alertmanager.yml`: ```yaml
+Tạo ``alertmanager.yml``: `````yaml
 global: slack_api_url: YOUR_SLACK_WEBHOOK_URL
 
 route: receiver: 'slack-notifications'
@@ -276,11 +277,11 @@ receivers: - name: 'slack-notifications'
         send_resolved: true
         title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
         text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
-```
+`````
 
 ### Prometheus + Kubernetes Service Discovery
 
-Prometheus tự động phát hiện target Kubernetes: ```yaml
+Prometheus tự động phát hiện target Kubernetes: `````yaml
 scrape_configs: - job_name: 'kubernetes-pods'
     kubernetes_sd_configs: - role: pod
         namespaces: names: - default
@@ -293,48 +294,48 @@ scrape_configs: - job_name: 'kubernetes-pods'
         target_label: __address__
         regex: ([^:]+)(?::\d+)?;(\d+)
         replacement: $1:$2
-```
+`````
 
 ### Ví dụ truy vấn PromQL
 
 **Tính tốc độ yêu cầu mỗi giây:**
-```promql
+`````promql
 rate(http_requests_total[5m])
-```
+`````
 
 **Độ trễ phân vị 95:**
-```promql
+`````promql
 histogram_quantile(0.95, 
   sum(rate(http_request_duration_seconds_bucket[5m])) by (le)
 )
-```
+`````
 
 **Tỷ lệ sử dụng CPU:**
-```promql
+`````promql
 100 - (avg by(instance) (
   irate(node_cpu_seconds_total{mode="idle"}[5m])
 ) * 100)
-```
+`````
 
 **Sử dụng bộ nhớ (MB):**
-```promql
+`````promql
 (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1024 / 1024
-```
+`````
 
 **Tỷ lệ lỗi theo endpoint:**
-```promql
+`````promql
 sum(rate(http_requests_total{status=~"5.."}[5m])) by (handler) 
 / 
 sum(rate(http_requests_total[5m])) by (handler)
-```
+`````
 
 **Dự đoán đĩa đầy (trong 7 ngày?):**
-```promql
+`````promql
 predict_linear(
   node_filesystem_avail_bytes[1h], 
   7 * 24 * 3600
 ) < 0
-```
+`````
 
 ## Điểm chuẩn / Trường hợp sử dụng thực tế
 
@@ -369,23 +370,23 @@ Nguồn: Benchmark TSBS độc lập, 2025–2026. Prometheus đánh đổi thô
 
 ### Thực hành bảo mật tốt nhất
 
-1. **Bật Basic Authentication** (Prometheus v2.24+): ```yaml
+1. **Bật Basic Authentication** (Prometheus v2.24+): `````yaml
 basic_auth_users: admin: $2y$10$... # bcrypt hash
-```
+`````
 
-```bash
+`````bash
 htpasswd -nBC 10 "" | tr -d ':\n'
-```
+`````
 
 2. **Sử dụng TLS cho target scrape:**
-```yaml
+`````yaml
 scrape_configs: - job_name: 'secure-target"
     scheme: https
     tls_config: ca_file: /etc/prometheus/certs/ca.crt
       cert_file: /etc/prometheus/certs/client.crt
       key_file: /etc/prometheus/certs/client.key
       insecure_skip_verify: false
-```
+`````
 
 3. **Network policies** (Kubernetes) hạn chế pod nào có thể truy cập port 9090 của Prometheus.
 
@@ -400,16 +401,16 @@ scrape_configs: - job_name: 'secure-target"
 
 ### Tự giám sát Prometheus
 
-```promql
+`````promql
 prometheus_tsdb_head_series
 prometheus_tsdb_head_chunks
 prometheus_rule_evaluation_duration_seconds
 prometheus_notifications_dropped_total
-```
+`````
 
 ### Lưu trữ dài hạn với Thanos
 
-Thanos mở rộng Prometheus với object storage (S3, GCS, Azure Blob) cho retention dài hạn và querying toàn cục: ```yaml
+Thanos mở rộng Prometheus với object storage (S3, GCS, Azure Blob) cho retention dài hạn và querying toàn cục: `````yaml
 - name: thanos-sidecar
   image: quay.io/thanos/thanos:v0.37.0
   args: - sidecar
@@ -417,7 +418,7 @@ Thanos mở rộng Prometheus với object storage (S3, GCS, Azure Blob) cho ret
     - --objstore.config-file=/etc/thanos/objstore.yml
   volumeMounts: - name: prometheus-data
       mountPath: /prometheus
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -459,13 +460,13 @@ Prometheus không phải giải pháp giám sát vạn năng. Hãy lưu ý các 
 A: Prometheus thu thập và lưu trữ metrics; Grafana trực quan hóa chúng. Chúng là công cụ bổ sung, không phải đối thủ cạnh tranh.
 
 **Q: Làm thế nào để giám sát ứng dụng Python với Prometheus?**
-A: Sử dụng thư viện `prometheus-client` Python chính thức để expose endpoint `/metrics`, sau đó cấu hình Prometheus scrape nó.
+A: Sử dụng thư viện ````prometheus-client```` Python chính thức để expose endpoint ````/metrics````, sau đó cấu hình Prometheus scrape nó.
 
 **Q: Prometheus có thể xử lý high availability không?**
 A: Có, nhưng cần giải pháp bên ngoài. Chạy hai Prometheus instance giống hệt nhau scrape cùng target, dùng Thanos Querier hoặc Cortex để loại bỏ trùng lặp.
 
 **Q: Thờ gian retention tối đa cho dữ liệu Prometheus là bao nhiêu?**
-A: Cấu hình qua `--storage.tsdb.retention.time` (mặc định 15 ngày). Để giữ nhiều năm, dùng remote write đến Thanos, Mimir hoặc object storage.
+A: Cấu hình qua ````--storage.tsdb.retention.time```` (mặc định 15 ngày). Để giữ nhiều năm, dùng remote write đến Thanos, Mimir hoặc object storage.
 
 **Q: Prometheus so với giải pháp giám sát cloud như CloudWatch?**
 A: Prometheus cung cấp truy vấn linh hoạt hơn (PromQL vs CloudWatch Insights), dimensional labels, và không tính phí theo metric. CloudWatch tích hợp native với AWS và zero operational overhead.
@@ -481,7 +482,7 @@ A: Chỉ khi thiết bị expose HTTP endpoint và Prometheus server có thể t
 Prometheus vẫn là tiêu chuẩn vàng cho giám sát cloud-native năm 2026. Với 64,094 sao GitHub, sự hỗ trợ CNCF tích cực, và chu kỳ phát hành liên tục cải thiện hiệu suất, đây là khoản đầu tư an toàn dài hạn cho khả năng quan sát hạ tầng.
 
 **Các hành động:**
-1. Clone Helm chart `kube-prometheus-stack` và triển khai lên cluster staging
+1. Clone Helm chart ````kube-prometheus-stack``` và triển khai lên cluster staging
 2. Import Grafana dashboard 1860 cho tầm nhìn Node Exporter tức thì
 3. Viết ba alerting rule cho các dịch vụ quan trọng
 4. Tham gia [nhóm Telegram dibi8](https://t.me/dibi8) để cập nhật công cụ mã nguồn mở và mẹo triển khai
@@ -537,7 +538,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -547,6 +548,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](prometheus)
 - [moneyprinterturbo-one-click-ai-video-generator](prometheus)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

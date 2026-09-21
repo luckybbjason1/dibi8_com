@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/preset-superset-data-exploration/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：你的BI工具栈为什么成本过高
@@ -46,11 +47,11 @@ Superset的架构在展示层、元数据和查询执行之间保持清晰的分
 
 | 组件 | 用途 | 技术栈 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Superset应用服务器 | UI、API、查询编排 | Flask + React |
 | 元数据库 | 存储仪表板、图表、用户数据 | PostgreSQL / MySQL |
@@ -64,7 +65,7 @@ Superset的架构在展示层、元数据和查询执行之间保持清晰的分
 
 1. **数据库原生执行**：Superset从不导入你的数据。它生成优化的SQL并将计算推送到数据源。
 2. **语义层**：指标和维度可以定义一次并在多个图表中复用。
-3. **可扩展可视化**：使用`@superset-ui/core`框架以插件形式添加新图表类型。
+3. **可扩展可视化**：使用```@superset-ui/core````框架以插件形式添加新图表类型。
 
 ## 安装与配置
 
@@ -76,17 +77,17 @@ Superset的架构在展示层、元数据和查询执行之间保持清晰的分
 
 ### 第一步：克隆代码仓库
 
-```bash
+`````bash
 git clone https://github.com/apache/superset.git
 cd superset
 
 # 切换到最新的稳定版本（截至2025年5月为v5.0.0）
 git checkout 5.0.0
-```
+`````
 
 ### 第二步：使用Docker Compose启动
 
-```bash
+`````bash
 # 在后台模式启动所有服务
 docker compose -f docker-compose-image-tag.yml up -d
 
@@ -107,17 +108,17 @@ docker compose exec superset superset load-examples
 
 # 重启以应用所有更改
 docker compose restart superset
-```
+`````
 
 ### 第三步：访问界面
 
-打开浏览器访问 `http://localhost:8088`，使用上面设置的凭据登录。
+打开浏览器访问 ````http://localhost:8088````，使用上面设置的凭据登录。
 
 ### 使用Docker进行生产部署
 
 生产环境请使用托管数据库和外部Redis：
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: superset: image: apache/superset:5.0.0
     environment: - DATABASE_DB=superset
@@ -131,7 +132,7 @@ services: superset: image: apache/superset:5.0.0
     ports: - "8088:8088"
     deploy: replicas: 2
       resources: limits: memory: 2G
-```
+`````
 
 **自托管提示**：如需可靠的VPS来运行Superset，[DigitalOcean](https://m.do.co/c/eca87ac14ee0)提供每月12美元起的2 GB内存Droplet，支持一键Docker部署。使用我们的推荐链接可获得60天内200美元的额度。
 
@@ -141,63 +142,63 @@ services: superset: image: apache/superset:5.0.0
 
 最常见的设置是将Superset连接到现有的应用数据库或数据仓库：
 
-```python
+`````python
 # PostgreSQL的连接字符串格式
 postgresql://username:password@host:port/database?sslmode=require
 
 # MySQL的连接字符串格式
 mysql://username:password@host:port/database
-```
+`````
 
 在界面中，导航到**设置 > 数据库连接 > + 数据库**，粘贴你的SQLAlchemy URI。保存前测试连接。
 
 ### BigQuery
 
-```python
+`````python
 # BigQuery需要服务账号JSON密钥
 bigquery://project-id?credentials_path=/path/to/service-account.json
 
 # 或者内联密钥（生产环境不推荐）
 bigquery://project-id
-```
+`````
 
 在高级设置的**安全额外信息**字段中上传服务账号JSON。
 
 ### Snowflake
 
-```python
+`````python
 # Snowflake连接URI
 snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE
-```
+`````
 
-在`superset_config.py`中启用Snowflake SQL方言以获得更好的自动补全：
+在````superset_config.py````中启用Snowflake SQL方言以获得更好的自动补全：
 
-```python
+`````python
 # superset_config.py
 EXTRA_ALLOWED_DOMAIN_SHARDES = []
 DEFAULT_SQLLAB_LIMIT = 10000
-```
+`````
 
 ### Apache Druid
 
 Superset最初在Airbnb构建用于查询Druid。该集成仍然是一流的：
 
-```python
+`````python
 # 通过原生JSON API连接Druid
 druid://broker-host:8082/datasource/v2
 
 # 或者通过HTTP上的SQL
 druid://broker-host:8082/druid/v2/sql
-```
+`````
 
 ### DuckDB（v5.0新增）
 
 DuckDB支持在Superset 5.0.0中引入，无需单独服务器即可进行本地分析工作负载：
 
-```python
+`````python
 # DuckDB内存或文件基础
 duckdb:///path/to/local/database.db
-```
+`````
 
 这非常适合原型设计和最大约50 GB的小型数据集。
 
@@ -207,13 +208,13 @@ duckdb:///path/to/local/database.db
 
 | 指标 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 仪表板加载（已缓存） | 120毫秒 | 180毫秒 | 95毫秒 |
 | 仪表板加载（缓存未命中） | 3.2秒 | 4.1秒 | 1.8秒 |
@@ -241,7 +242,7 @@ Shopify在内部运营中使用Superset，为**2,000多名员工**提供**500多
 
 Superset支持基于用户属性过滤数据的行级安全策略：
 
-```python
+`````python
 # superset_config.py
 ROW_LEVEL_SECURITY_FILTERING = True
 
@@ -249,7 +250,7 @@ ROW_LEVEL_SECURITY_FILTERING = True
 # 表：orders
 # 过滤条件：region = '{{ current_username() }}'
 # 组：销售团队
-```
+`````
 
 这确保用户只能看到分配给其区域的数据，无需维护单独的仪表板。
 
@@ -257,12 +258,12 @@ ROW_LEVEL_SECURITY_FILTERING = True
 
 Superset 5.0.0包含用于React应用的稳定嵌入SDK：
 
-```bash
+`````bash
 # 安装嵌入SDK
 npm install @superset-ui/embedded-sdk
-```
+`````
 
-```typescript
+`````typescript
 // App.tsx
 import { embedDashboard } from "@superset-ui/embedded-sdk";
 
@@ -277,13 +278,13 @@ embedDashboard({
     hideTab: false,
   },
 });
-```
+`````
 
 ### 告警和报告
 
 为仪表板条件配置电子邮件或Slack告警：
 
-```python
+`````python
 # superset_config.py
 ALERT_REPORTS_NOTIFICATION_METHODS = ["email", "slack"]
 SLACK_API_TOKEN = "xoxb-your-slack-bot-token"
@@ -291,13 +292,13 @@ SMTP_HOST = "smtp.sendgrid.net"
 SMTP_PORT = 587
 SMTP_USER = "apikey"
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-```
+`````
 
 ### 自定义图表插件
 
 为内部使用构建专有图表类型：
 
-```bash
+`````bash
 # 搭建新图表插件
 npx @superset-ui/cli create-chart-plugin my-company-charts
 
@@ -307,39 +308,39 @@ npm run build
 
 # 复制到Superset的插件目录
 cp -r dist/* /app/superset/static/assets/my-company-charts/
-```
+`````
 
-在`superset_config.py`中注册：
+在````superset_config.py````中注册：
 
-```python
+`````python
 EXTRA_PLUGINS = ["my_company_charts"]
-```
+`````
 
 ### 备份策略
 
 你的元数据库包含所有仪表板、图表和用户定义。每天备份：
 
-```bash
+`````bash
 # 通过cron自动每日备份
 0 2 * * * pg_dump -h postgres-host -U superset superset > /backups/superset-$(date +\%Y\%m\%d).sql
 
 # 保留7天
 find /backups -name "superset-*.sql" -mtime +7 -delete
-```
+````
 
 ## 与替代品对比
 
 | 功能 | Apache Superset | Tableau | Metabase | Grafana |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 许可证 | Apache-2.0 | 专有 | AGPL / 商业 | AGPL |
 | 自托管 | 是 | 否（仅Server） | 是 | 是 |
@@ -412,7 +413,7 @@ Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型
 加入我们的数据工程师Telegram群组：**t.me/dibi8** —— 分享你的Superset仪表板、提问并获得5,000多名数据专业人士的帮助。
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -432,7 +433,7 @@ Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型
 - [dibi8: dbt 数据转换指南](dbt-data-transformation-dibi8-internal-link)
 - [dibi8: Apache Airflow 编排指南](apache-airflow-orchestration-dibi8-internal-link)
 
----
+* * *
 
 *联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。*
 
@@ -498,12 +499,12 @@ Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -513,6 +514,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](preset-superset-data-exploration)
 - [nanochat-karpathy-100-chatgpt-single-gpu](preset-superset-data-exploration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

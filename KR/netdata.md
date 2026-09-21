@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/netdata/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -54,21 +55,21 @@ Netdata의 아키텍처는 에지 우선 분산 모델을 따릅니다. 각 노�
 
 ### 원라인 설치 (Linux)
 
-가장 빠른 설치 방법: ```bash
+가장 빠른 설치 방법: ````bash
 # 모든 기본값으로 Netdata 설치
 curl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash
-```
+`````
 
-설치 확인: ```bash
+설치 확인: `````bash
 sudo systemctl status netdata
 # Active: active (running) since ...
-```
+`````
 
-`http://localhost:19999`에서 로컬 대시보드에 접속하세요.
+````http://localhost:19999````에서 로컬 대시보드에 접속하세요.
 
 ### Docker 배포
 
-컨테이너 환경을 위한 배포: ```bash
+컨테이너 환경을 위한 배포: `````bash
 docker run -d --name=netdata \
   -p 19999:19999 \
   -v /proc:/host/proc:ro \
@@ -77,11 +78,11 @@ docker run -d --name=netdata \
   --cap-add SYS_PTRACE \
   --security-opt apparmor=unconfined \
   netdata/netdata:latest
-```
+`````
 
 ### Docker Compose (프로덕션용)
 
-```yaml
+`````yaml
 version: '3.8'
 services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
@@ -101,13 +102,13 @@ services: netdata: image: netdata/netdata:v2.5.0
     environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes: netdata-config: netdata-lib: netdata-cache: ```
+volumes: netdata-config: netdata-lib: netdata-cache: `````
 
 ![Netdata 시스템 모니터링](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
 ### Kubernetes Helm 설치
 
-```bash
+`````bash
 # Netdata Helm 저장소 추가
 helm repo add netdata https://netdata.github.io/helmchart/
 helm repo update
@@ -116,33 +117,33 @@ helm repo update
 helm install netdata netdata/netdata \
   --namespace monitoring \
   --create-namespace
-```
+`````
 
-Pod 확인: ```bash
+Pod 확인: `````bash
 kubectl get pods -n monitoring
 # NAME                    READY   STATUS
 # netdata-parent-0        1/1     Running
 # netdata-child-xxx       1/1     Running
-```
+`````
 
 ### 현재 설정 생성
 
-실행 중인 설정을 다운로드하여 사용자 정의: ```bash
+실행 중인 설정을 다운로드하여 사용자 정의: `````bash
 # 현재 적용 중인 설정 다운로드
 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
 # 또는 edit-config 스크립트 사용
 sudo /etc/netdata/edit-config netdata.conf
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### Prometheus Remote Write
 
-장기 저장 및 PromQL 쿼리를 위해 Netdata 메트릭을 Prometheus로 낸볷: ```bash
+장기 저장 및 PromQL 쿼리를 위해 Netdata 메트릭을 Prometheus로 낸볷: `````bash
 sudo /etc/netdata/edit-config exporting.conf
-```
+`````
 
-```conf
+`````conf
 [prometheus:remote_write]
     enabled = yes
     destination = prometheus:9090
@@ -151,15 +152,15 @@ sudo /etc/netdata/edit-config exporting.conf
     prefix = netdata
     send charts matching = *
     send hosts matching = *
-```
+`````
 
-Netdata 재시작: ```bash
+Netdata 재시작: `````bash
 sudo systemctl restart netdata
-```
+`````
 
 ### Grafana 대시보드
 
-Netdata에 내장된 대시보드가 있지만, 많은 팀이 중앙 집중식 시각화를 위해 Grafana를 선호합니다. Grafana에서 Prometheus 데이터 소스로 Netdata를 추가: ```yaml
+Netdata에 내장된 대시보드가 있지만, 많은 팀이 중앙 집중식 시각화를 위해 Grafana를 선호합니다. Grafana에서 Prometheus 데이터 소스로 Netdata를 추가: `````yaml
 # Grafana의 datasource.yaml
 apiVersion: 1
 datasources: - name: Netdata-Prometheus
@@ -168,11 +169,11 @@ datasources: - name: Netdata-Prometheus
     access: proxy
     isDefault: false
     jsonData: timeInterval: "1s"
-```
+`````
 
 ### Kubernetes DaemonSet (고급)
 
-모든 K8s 노드에서 전체 호스트 수준 가시성 확보: ```yaml
+모든 K8s 노드에서 전체 호스트 수준 가시성 확보: `````yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata: name: netdata
@@ -201,11 +202,11 @@ spec: selector: matchLabels: app: netdata
           hostPath: path: /sys
         - name: docker-sock
           hostPath: path: /var/run/docker.sock
-```
+`````
 
 ### PostgreSQL 모니터링
 
-`go.d/postgres.conf`에서 PostgreSQL 수집기 활성화: ```yaml
+``go.d/postgres.conf``에서 PostgreSQL 수집기 활성화: `````yaml
 jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
     collect: - database_statistics
@@ -213,17 +214,17 @@ jobs: - name: local
       - index_statistics
       - replication_statistics
     timeout: 2
-```
+`````
 
-수집기 테스트: ```bash
+수집기 테스트: `````bash
 sudo /etc/netdata/edit-config go.d/postgres.conf
 # 적용을 위해 재시작
 sudo systemctl restart netdata
-```
+`````
 
 ### Nginx 모니터링
 
-Nginx stub_status 및 액세스 로그 모니터링: ```yaml
+Nginx stub_status 및 액세스 로그 모니터링: `````yaml
 # /etc/netdata/go.d/nginx.conf
 jobs: - name: local
     url: http://localhost/stub_status
@@ -231,7 +232,7 @@ jobs: - name: local
   - name: access_log
     path: /var/log/nginx/access.log
     parser: type: ltsv
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -269,7 +270,7 @@ Netdata의 부모-자식 스트리밍 아키텍처는 수평으로 확장됩니�
 
 **최소 공간 점유 (프로덕션 자식 노드):**
 
-```conf
+`````conf
 [global]
     # 애플리케이션에 영향을 주지 않도록 최저 우선순위로 실행
     process scheduling policy = batch
@@ -308,11 +309,11 @@ Netdata의 부모-자식 스트리밍 아키텍처는 수평으로 확장됩니�
     idlejitter = no
     debugfs = no
     systemd-journal = no
-```
+`````
 
 **계층화된 저장이 있는 Parent 노드 (중앙 모니터링):**
 
-```conf
+`````conf
 [db]
     mode = dbengine
     storage tiers = 3
@@ -349,11 +350,11 @@ Netdata의 부모-자식 스트리밍 아키텍처는 수평으로 확장됩니�
     bind to = *
     # 낶부 네트워크 접근 제한
     allow connections from = 10.* 192.168.* 172.16.* 172.17.*
-```
+`````
 
 ### 스트리밍 설정: stream.conf
 
-자식 노드 설정 (`/etc/netdata/stream.conf`): ```conf
+자식 노드 설정 (``/etc/netdata/stream.conf``): `````conf
 [stream]
     enabled = yes
     destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
@@ -364,35 +365,35 @@ Netdata의 부모-자식 스트리밍 아키텍처는 수평으로 확장됩니�
     buffer size bytes = 1048576
     reconnect delay seconds = 5
     initial clock resync iterations = 60
-```
+`````
 
-Parent 노드 설정 (`/etc/netdata/stream.conf`): ```conf
+Parent 노드 설정 (``/etc/netdata/stream.conf``): `````conf
 [API_KEY]
     enabled = yes
     default memory mode = dbengine
     health enabled by default = yes
-```
+`````
 
 ### 보안 강화
 
-Web 인터페이스에 TLS 활성화: ```conf
+Web 인터페이스에 TLS 활성화: `````conf
 [web]
     tls version = 1.3
     ssl key = /etc/netdata/ssl/key.pem
     ssl certificate = /etc/netdata/ssl/cert.pem
     # 모든 연결에 TLS 필요
     bind to = *=dashboard|registry|badges|management|streaming|netdata.conf|readable|writable
-```
+`````
 
 ### Netdata 자체 모니터링
 
-에이전트 자체의 리소스 사용량 추적: ```bash
+에이전트 자체의 리소스 사용량 추적: `````bash
 # 낶부 메트릭 보기
 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog'
 
 # dbengine 통계 확인
 curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats
-```
+`````
 
 ## 대안과의 비교
 
@@ -445,11 +446,11 @@ Netdata는 실시간 노드별 가시성과 제로 설정에서 뛰어납니다.
 
 **Q: Netdata의 데이터베이스와 설정을 어떻게 백업하나요?**
 
-설정은 `/etc/netdata/`에 있으며 Git, Ansible, Puppet 등으로 버전 관리할 수 있습니다. `/var/cache/netdata/`의 dbengine 데이터베이스는 자가 복구 기능이 있어 수동 백업이 필요 없습니다 — 여러 Parent 노드로의 스트리밍이 자연스러운 중복성을 제공합니다. 중요한 환경에서는 active-active Parent 쌍을 실행하세요.
+설정은 ````/etc/netdata/````에 있으며 Git, Ansible, Puppet 등으로 버전 관리할 수 있습니다. ````/var/cache/netdata/````의 dbengine 데이터베이스는 자가 복구 기능이 있어 수동 백업이 필요 없습니다 — 여러 Parent 노드로의 스트리밍이 자연스러운 중복성을 제공합니다. 중요한 환경에서는 active-active Parent 쌍을 실행하세요.
 
 **Q: Netdata는 사용자 정의 애플리케이션 메트릭을 지원하나요?**
 
-예. 내장 StatsD 서버 (8125 포트), OpenMetrics 엔드포인트를 사용하거나 Python 또는 Go로 사용자 정의 수집기를 작성하세요. `go.d.plugin` 프레임워크는 최소한의 상용구 코드로 새 수집기를 구축하는 것을 지원합니다.
+예. 내장 StatsD 서버 (8125 포트), OpenMetrics 엔드포인트를 사용하거나 Python 또는 Go로 사용자 정의 수집기를 작성하세요. ````go.d.plugin```` 프레임워크는 최소한의 상용구 코드로 새 수집기를 구축하는 것을 지원합니다.
 
 ## 결론
 
@@ -460,7 +461,7 @@ Netdata는 대부분의 모니터링 도구가 지키지 못하는 약속을 이
 1. 오늘 가장 중요한 서버에서 원라인 설치 명령 실행
 2. Kubernetes 클러스터에 Helm chart 배포
 3. 프로덕션 강화를 위해 부모-자식 스트리밍 설정
-4. 위의 설정을 사용하여 리소스 제한에 맞게 `netdata.conf` 튜닝
+4. 위의 설정을 사용하여 리소스 제한에 맞게 ````netdata.conf``` 튜닝
 
 [Netdata Telegram 커뮤니티](https://t.me/netdata)에 가입하여 5,000명 이상의 엔지니어와 실시간 지원 및 토론을 나눠보세요.
 
@@ -514,7 +515,7 @@ Netdata는 대부분의 모니터링 도구가 지키지 못하는 약속을 이
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -524,6 +525,6 @@ Netdata는 대부분의 모니터링 도구가 지키지 못하는 약속을 이
 - [apple-container](netdata)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](netdata)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

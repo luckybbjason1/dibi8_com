@@ -23,6 +23,7 @@ tags: ["lip-sync", "video-editing", "talking-head", "deepfake", "ffmpeg", "pytor
 aliases:
   - /posts/video-retalking/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -59,11 +60,11 @@ The **E-Net** (Enhancement Network) uses GFPGAN and GPEN face restoration models
 
 | Component | Minimum | Recommended |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | NVIDIA 8GB VRAM | NVIDIA RTX 3090 / 4090 (24GB) |
 | RAM | 16 GB | 32 GB |
@@ -74,36 +75,36 @@ CPU-only inference is supported but runs 10–15x slower. Apple Silicon (M1/M2) 
 
 ### Step 1: Clone the Repository
 
-```bash
+````bash
 git clone https://github.com/OpenTalker/video-retalking.git
 cd video-retalking
-```
+`````
 
 ### Step 2: Create Conda Environment
 
-```bash
+`````bash
 conda create -n video_retalking python=3.8 -y
 conda activate video_retalking
 conda install ffmpeg -y
-```
+`````
 
 ### Step 3: Install PyTorch with CUDA
 
-```bash
+`````bash
 # For CUDA 11.1 (original project default)
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 
 # For CUDA 12.1 (modern GPUs, 2026)
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Step 4: Install Dependencies
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
-The `requirements.txt` installs the following key packages: ```
+The ``requirements.txt`` installs the following key packages: `````
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -114,35 +115,35 @@ librosa==0.9.2
 dlib==19.24.0
 gradio>=3.7.0
 numpy==1.23.4
-```
+`````
 
 ### Step 5: Download Pre-trained Models
 
-Download the pre-trained checkpoints from [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) and extract them into `./checkpoints/`: ```bash
+Download the pre-trained checkpoints from [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) and extract them into ``./checkpoints/``: `````bash
 # Directory structure should look like: # ./checkpoints/
 #   ├── 244000.pth          (D-Net expression editing)
 #   ├── wav2lip.pth         (L-Net lip sync)
 #   ├── GFPGANv1.3.pth      (GFPGAN enhancer)
 #   ├── GPEN-BFR-512.pth    (GPEN enhancer)
 #   └── ...
-```
+`````
 
 ### Step 6: Verify Installation
 
-```bash
+`````bash
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
-```
+`````
 
-Expected output on a GPU system: ```
+Expected output on a GPU system: `````
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
-```
+`````
 
 ## Integration with TTS and Voice Cloning Tools
 
 ### Integration with RVC (Retrieval-based Voice Conversion)
 
-RVC converts one voice to another while preserving prosody. Chain it with VideoReTalking for voice-swapped lip-synced output: ```bash
+RVC converts one voice to another while preserving prosody. Chain it with VideoReTalking for voice-swapped lip-synced output: `````bash
 # Step 1: Generate or convert audio with RVC
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -151,11 +152,11 @@ python inference.py \
   --face input_video.mp4 \
   --audio rvc_output.wav \
   --outfile output_rvc_synced.mp4
-```
+`````
 
 ### Integration with GPT-SoVITS
 
-GPT-SoVITS generates high-quality TTS with few-shot voice cloning. The workflow: ```python
+GPT-SoVITS generates high-quality TTS with few-shot voice cloning. The workflow: `````python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -177,11 +178,11 @@ subprocess.run([
     "--exp_img", "neutral",
     "--up_face", "surprise"
 ])
-```
+`````
 
 ### Integration with Coqui TTS
 
-```bash
+`````bash
 # Install Coqui TTS
 pip install TTS
 
@@ -197,7 +198,7 @@ python inference.py \
   --face original_video.mp4 \
   --audio coqui_output.wav \
   --outfile coqui_synced.mp4
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -205,11 +206,11 @@ python inference.py \
 
 Tested on an NVIDIA RTX 4090 with a 10-second 512x512 input video: | Stage | Time | VRAM Peak |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | D-Net (expression normalization) | 2.1s | 4.2 GB |
 | L-Net (lip sync) | 3.8s | 3.8 GB |
@@ -223,15 +224,15 @@ VideoReTalking processes roughly **1 second of video per 1 second of GPU time** 
 
 | Metric | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LSE-C (lip-sync confidence) | 8.7 | 8.3 | 7.9 | 8.1 |
 | PSNR (dB) | 32.4 | 28.1 | 29.8 | 30.2 |
@@ -255,23 +256,23 @@ VideoReTalking processes roughly **1 second of video per 1 second of GPU time** 
 
 ### Gradio WebUI Setup
 
-VideoReTalking includes a built-in Gradio interface for browser-based usage: ```bash
+VideoReTalking includes a built-in Gradio interface for browser-based usage: `````bash
 # Launch the WebUI
 python webUI.py
-```
+`````
 
-The WebUI will start on `http://localhost:7860` by default. It supports: - Drag-and-drop video and audio upload
+The WebUI will start on ````http://localhost:7860```` by default. It supports: - Drag-and-drop video and audio upload
 - Expression template selection (neutral, smile)
 - Upper-face emotion control (surprise, angry)
 - Batch segment processing for long videos
 
-For remote access behind a reverse proxy: ```bash
+For remote access behind a reverse proxy: `````bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
-```
+`````
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
 
@@ -289,16 +290,16 @@ RUN mkdir -p checkpoints
 
 EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
-```
+`````
 
 ### Batch Processing Script
 
-```python
+`````python
 #!/usr/bin/env python3
 # batch_process.py
 import os
@@ -322,11 +323,11 @@ for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.ste
         "--outfile", outname,
         "--exp_img", "neutral"
     ])
-```
+`````
 
 ### Monitoring and Logging
 
-```python
+`````python
 # Production wrapper with structured logging
 import logging
 import time
@@ -352,12 +353,12 @@ def inference_with_monitoring(face_path, audio_path, output_path): start = time.
     
     logging.info(f"Processed {face_path} in {elapsed:.1f}s, "
                  f"VRAM: {vram_before:.1f}GB -> {vram_after:.1f}GB")
-```
+`````
 
 ### Security Considerations
 
 - Run inside a container with read-only filesystem mounts for model weights
-- Restrict GPU access with `CUDA_VISIBLE_DEVICES` to isolate workloads
+- Restrict GPU access with ````CUDA_VISIBLE_DEVICES```` to isolate workloads
 - Validate input file formats before processing to prevent path traversal
 - The project includes a comprehensive disclaimer about portrait rights and compliance
 
@@ -365,15 +366,15 @@ def inference_with_monitoring(face_path, audio_path, output_path): start = time.
 
 | Feature | VideoReTalking | Wav2Lip | SadTalker | GeneFace |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Input type | Video + Audio | Video + Audio | Image + Audio | Video + Audio |
 | Output quality | High (with enhancement) | Medium | Medium-High | High |
@@ -418,7 +419,7 @@ Yes. The lip-sync network is language-agnostic — it maps acoustic features to 
 
 ### Why is my output video blurry around the mouth?
 
-The default GFPGAN enhancer applies a moderate smoothing effect. Try switching to the GPEN enhancer by editing `inference.py` and changing the enhancer initialization. Alternatively, disable enhancement entirely for sharper (but potentially less consistent) output.
+The default GFPGAN enhancer applies a moderate smoothing effect. Try switching to the GPEN enhancer by editing ````inference.py```` and changing the enhancer initialization. Alternatively, disable enhancement entirely for sharper (but potentially less consistent) output.
 
 ### Can I fine-tune the models on my own dataset?
 
@@ -431,8 +432,8 @@ VideoReTalking offers a practical, self-hosted solution for audio-driven lip syn
 **Action items to get started:**
 
 1. Clone the repo and set up the conda environment using the commands above
-2. Download the 2GB checkpoint bundle into `./checkpoints/`
-3. Run the quick inference command with the sample files in `examples/`
+2. Download the 2GB checkpoint bundle into ````./checkpoints/````
+3. Run the quick inference command with the sample files in ````examples/```
 4. Launch the Gradio WebUI for interactive experimentation
 5. Chain with GPT-SoVITS or RVC for a complete voice-cloning + lip-sync pipeline
 
@@ -486,12 +487,12 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

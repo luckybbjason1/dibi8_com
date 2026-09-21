@@ -23,6 +23,7 @@ tags: ["video-generation", "diffusion-transformer", "tencent", "hunyuanvideo", "
 aliases:
   - /posts/hunyuan-video/-
 ---
+
 {{</* resource-info */>}}
 
 A video generation model that needs 60GB of VRAM for a 5-second clip at 720p is not a toy — it is infrastructure. Tencent's HunyuanVideo, a 13-billion-parameter diffusion transformer for video generation, has accumulated over 12,100 GitHub stars and become a go-to choice for teams that need cinematic-quality video synthesis on self-hosted hardware. This hunyuanvideo tutorial walks through the complete production setup: from a hunyuanvideo Docker deployment to FP8 quantization, multi-GPU parallel inference, ComfyUI integration, and the monitoring you need when serving video generation production workloads at scale.
@@ -53,7 +54,7 @@ The fastest path to a working HunyuanVideo instance is Docker. For teams that ne
 
 ### Docker Deployment (Recommended)
 
-```bash
+````bash
 # Pull the official CUDA 12 image
 docker pull hunyuanvideo/hunyuanvideo:cuda_12
 
@@ -66,11 +67,11 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host \
   -v /mnt/models:/models \
   -p 8081:8081 \
   hunyuanvideo/hunyuanvideo:cuda_12
-```
+`````
 
 ### Manual Installation on Ubuntu
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git
 cd HunyuanVideo
@@ -92,11 +93,11 @@ python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.
 
 # Install xDiT for multi-GPU parallel inference
 python -m pip install xfuser==0.4.0
-```
+`````
 
 ### Download Model Weights
 
-```bash
+`````bash
 # Install huggingface-cli
 pip install huggingface_hub
 
@@ -114,11 +115,11 @@ huggingface-cli download tencent/HunyuanVideo \
 huggingface-cli download tencent/HunyuanVideo \
   --include "*text_encoder*" \
   --local-dir ./ckpts
-```
+`````
 
 ### First Inference Run
 
-```bash
+`````bash
 conda activate hunyuan
 
 python sample_video.py \
@@ -129,27 +130,27 @@ python sample_video.py \
     --flow-reverse \
     --use-cpu-offload \
     --save-path ./results
-```
+`````
 
-The `--use-cpu-offload` flag is essential for GPUs with less than 80GB VRAM. It offloads model weights to system RAM when not in use, trading speed for memory.
+The ````--use-cpu-offload```` flag is essential for GPUs with less than 80GB VRAM. It offloads model weights to system RAM when not in use, trading speed for memory.
 
 ## Integration with Popular Tools
 
 ### ComfyUI (Native Nodes)
 
-ComfyUI added native HunyuanVideo support in early 2025. Download the repackaged model files from Comfy-Org: ```bash
+ComfyUI added native HunyuanVideo support in early 2025. Download the repackaged model files from Comfy-Org: `````bash
 # Model files go to ComfyUI/models/
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
 # - diffusion_models/hunyuan_video_720p_bf16.safetensors
 # - vae/hunyuan_video_vae_bf16.safetensors
-```
+`````
 
-Load the official workflow by dragging the JSON into ComfyUI. The key nodes are `HunyuanVideoSampler`, `HunyuanVideoDecode`, and `TextEncodeHunyuanVideo`.
+Load the official workflow by dragging the JSON into ComfyUI. The key nodes are ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, and ````TextEncodeHunyuanVideo````.
 
 ### Kijai's HunyuanVideoWrapper (Advanced)
 
-For FP8 inference, video-to-video, and image-to-video, use the community wrapper: ```bash
+For FP8 inference, video-to-video, and image-to-video, use the community wrapper: `````bash
 # Install via ComfyUI Manager or git
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -157,13 +158,13 @@ git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
 # Install dependencies
 cd ComfyUI-HunyuanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-Download the FP8 weights from `Kijai/HunyuanVideo_comfy` on Hugging Face and place them in `ComfyUI/models/diffusion_models/`.
+Download the FP8 weights from ````Kijai/HunyuanVideo_comfy```` on Hugging Face and place them in ````ComfyUI/models/diffusion_models/````.
 
 ### Diffusers Pipeline
 
-```python
+`````python
 from diffusers import HunyuanVideoPipeline
 import torch
 
@@ -195,24 +196,24 @@ frames[0].save(
     duration=67,
     loop=0
 )
-```
+`````
 
 ### Gradio API Server
 
-```bash
+`````bash
 # Start the Gradio server
 python gradio_server.py --flow-reverse
 
 # Or bind to all interfaces for remote access
 SERVER_NAME=0.0.0.0 SERVER_PORT=8081 \
   python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
-The Gradio UI exposes parameters for prompt, resolution, frame count, CFG scale, and seed. For programmatic access, inspect the network tab in your browser to find the `/run/predict` endpoint and replicate the JSON payload.
+The Gradio UI exposes parameters for prompt, resolution, frame count, CFG scale, and seed. For programmatic access, inspect the network tab in your browser to find the ````/run/predict```` endpoint and replicate the JSON payload.
 
 ### DigitalOcean GPU Droplets
 
-For teams without local GPU hardware, DigitalOcean GPU Droplets provide NVIDIA H100 and A100 instances on demand. Deploy HunyuanVideo with the following cloud-init: ```yaml
+For teams without local GPU hardware, DigitalOcean GPU Droplets provide NVIDIA H100 and A100 instances on demand. Deploy HunyuanVideo with the following cloud-init: `````yaml
 #cloud-config
 package_update: true
 packages: - docker.io
@@ -223,21 +224,21 @@ runcmd: - systemctl restart docker
       -p 8081:8081 -v /mnt/models:/models \
       hunyuanvideo/hunyuanvideo:cuda_12 \
       python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 Community benchmarks from RTX 4090 and datacenter GPU testing (March 2026): | Model | Params | VRAM (720p) | Gen Time (5s, RTX 4090) | Aesthetic Quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HunyuanVideo (original) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
@@ -259,7 +260,7 @@ Community benchmarks from RTX 4090 and datacenter GPU testing (March 2026): | Mo
 
 FP8 quantization converts FP32 weights to 8-bit floating-point format, reducing GPU memory usage by approximately 10GB with minimal quality degradation.
 
-```bash
+`````bash
 # Download FP8 weights and scale files
 huggingface-cli download tencent/HunyuanVideo \
   --include "mp_rank_00_model_states_fp8.pt" \
@@ -277,13 +278,13 @@ python sample_video.py \
     --use-cpu-offload \
     --use-fp8 \
     --save-path ./results
-```
+`````
 
-The `--use-fp8` flag activates the FP8 pipeline in `hyvideo/modules/fp8_optimization.py`. The E4M3 format (4 exponent bits, 3 mantissa bits) preserves enough precision for inference while cutting memory by ~40%.
+The ````--use-fp8```` flag activates the FP8 pipeline in ````hyvideo/modules/fp8_optimization.py````. The E4M3 format (4 exponent bits, 3 mantissa bits) preserves enough precision for inference while cutting memory by ~40%.
 
 ### Multi-GPU Parallel Inference with xDiT
 
-For production workloads, xDiT provides Unified Sequence Parallelism that scales across multiple GPUs: ```bash
+For production workloads, xDiT provides Unified Sequence Parallelism that scales across multiple GPUs: `````bash
 # 8-GPU parallel inference
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -295,26 +296,26 @@ torchrun --nproc_per_node=8 sample_video.py \
     --ulysses-degree 8 \
     --ring-degree 1 \
     --save-path ./results
-```
+`````
 
 Latency scaling on 1280x720, 129 frames, 50 steps: | GPUs | Latency (sec) | Speedup |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
 | 4 | 514 | 3.70x |
 | 8 | 338 | 5.64x |
 
-The `--ulysses-degree` and `--ring-degree` parameters control the parallelism strategy. Ulysses parallelism shards the attention computation; ring parallelism distributes across the sequence dimension. For most setups, maximize Ulysses first.
+The ````--ulysses-degree```` and ````--ring-degree```` parameters control the parallelism strategy. Ulysses parallelism shards the attention computation; ring parallelism distributes across the sequence dimension. For most setups, maximize Ulysses first.
 
 ### Production Gradio with Reverse Proxy
 
-```bash
+`````bash
 # Start with production settings
 SERVER_NAME=0.0.0.0 \
 SERVER_PORT=8081 \
@@ -324,9 +325,9 @@ python gradio_server.py \
   --use-fp8 \
   --max-queue-size 10 \
   --queue-timeout 300
-```
+`````
 
-Behind an Nginx reverse proxy with rate limiting: ```nginx
+Behind an Nginx reverse proxy with rate limiting: `````nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -349,11 +350,11 @@ server {
     limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m;
     limit_req zone=video burst=5 nodelay;
 }
-```
+`````
 
 ### Monitoring with Prometheus
 
-```python
+`````python
 # Add to gradio_server.py or wrap the inference call
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -369,7 +370,7 @@ def generate_video(prompt, height, width, frames, steps): inference_count.inc()
 
 # Start metrics server on port 9090
 start_http_server(9090)
-```
+`````
 
 ### Security Hardening
 
@@ -382,15 +383,15 @@ start_http_server(9090)
 
 | Feature | HunyuanVideo | Wan 2.2 | CogVideoX-5B | Open-Sora |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Parameters | 13B (8.3B in 1.5) | 14B | 5B | 1.1B - 7B |
 | Max resolution | 1080p (via SR) | 1080p | 720p | 720p |
@@ -453,7 +454,7 @@ A: The Tencent team maintains a Discord server and WeChat group linked from the 
 HunyuanVideo is a production-grade video generation framework that bridges the gap between closed-source commercial APIs and open-source accessibility. With the 1.5 release bringing 8.3B parameters, SSTA attention, and consumer-GPU compatibility, it has become a practical choice for studios and indie creators alike.
 
 Action items to get started today: 1. Clone the repo and run the Docker image on a GPU instance — the official CUDA 12 image is the fastest path.
-2. Download the FP8 weights and run your first 720p generation with `sample_video.py`.
+2. Download the FP8 weights and run your first 720p generation with ````sample_video.py```.
 3. Integrate with ComfyUI using Kijai's wrapper for visual workflow editing.
 4. Join the [dibi8 Telegram group](https://t.me/dibi8Channel) to discuss deployment strategies and share your generated videos with the community.
 
@@ -508,7 +509,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [nvidia-cosmos-world-models-platform-2026](hunyuan-video)
@@ -518,5 +519,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [comfyui-workflows-complete-guide](hunyuan-video)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

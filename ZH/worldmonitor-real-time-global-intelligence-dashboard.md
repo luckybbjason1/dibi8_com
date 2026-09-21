@@ -13,6 +13,7 @@ license: MIT---
 
 
 
+
 # WorldMonitor：实时全球情报仪表盘
 
 **WorldMonitor** 是一个开源的实时全球情报仪表盘，它将新闻、地缘政治事件和基础设施数据聚合到一个统一的态势感知界面中。凭借 **59,524 个 GitHub Stars**，它已成为商业平台（如 Palantir Gotham）在地缘政治监控和 OSINT 分析领域的首选开源替代方案。
@@ -56,7 +57,7 @@ WorldMonitor 是一个自托管的情报仪表盘，它将多个数据源整合�
 
 最快的入门方式是使用提供的 Docker Compose 配置：
 
-```bash
+````bash
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
 
@@ -65,15 +66,15 @@ cp config.example.yaml config.yaml
 
 # 启动所有服务
 docker compose up -d
-```
+`````
 
-这将启动应用服务器、PostgreSQL 数据库、Redis 缓存和 Web 前端。默认凭据设置在 `.env` 文件中——在生产使用前请立即更改它们。
+这将启动应用服务器、PostgreSQL 数据库、Redis 缓存和 Web 前端。默认凭据设置在 ``.env`` 文件中——在生产使用前请立即更改它们。
 
 ### 选项二：手动安装
 
 对于需要对部署进行精细控制的用户：
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
@@ -100,13 +101,13 @@ python manage.py runserver 0.0.0.0:8000
 
 # 启动前端（在单独的终端中）
 cd frontend && npm run start
-```
+`````
 
 ### 选项三：Kubernetes 部署
 
 适用于跨多个节点的生产规模部署：
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: worldmonitor
@@ -121,15 +122,15 @@ spec: replicas: 3
             cpu: "1000m"
           limits: memory: "4Gi"
             cpu: "2000m"
-```
+`````
 
 ## 配置深入解析
 
 ### 数据源配置
 
-WorldMonitor 支持多种数据源类型。在 `config.yaml` 中配置它们：
+WorldMonitor 支持多种数据源类型。在 ``config.yaml`` 中配置它们：
 
-```yaml
+`````yaml
 data_sources: rss_feeds: enabled: true
     sources: - name: "Reuters"
         url: "https://feeds.reuters.com/reuters/worldNews"
@@ -164,13 +165,13 @@ categories: ["conflict", "protest"]
           content: ".article-body"
           date: ".article-date"
         refresh_interval: 1800
-```
+`````
 
 ### AI 分析管道
 
 AI 驱动的分析引擎通过多个阶段处理传入的数据：
 
-```python
+`````python
 from worldmonitor.ai.pipeline import AnalysisPipeline
 from worldmonitor.ai.models import EventClassifier, CorrelationEngine
 
@@ -194,13 +195,13 @@ correlated = await pipeline.get_correlated_events(
     time_window="24h",
     event_types=["political", "economic"]
 )
-```
+`````
 
 ### 警报配置
 
 根据你的监控优先级设置自定义警报：
 
-```yaml
+`````yaml
 alerts: rules: - name: "重大冲突检测"
       conditions: - field: "event_type"
           operator: "eq"
@@ -238,7 +239,7 @@ alerts: rules: - name: "重大冲突检测"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
-```
+`````
 
 ## 核心功能详解
 
@@ -246,7 +247,7 @@ alerts: rules: - name: "重大冲突检测"
 
 WorldMonitor 的新闻聚合引擎从多种语言的 50 多个来源提取数据。系统使用智能去重避免从多个渠道报道同一故事，同时保留对重大事件的地域视角。
 
-```bash
+`````bash
 # 使用过滤器查询聚合新闻
 curl -X GET "https://your-worldmonitor/api/v1/news" \
   -H "Authorization: Bearer *** \
@@ -256,7 +257,7 @@ curl -X GET "https://your-worldmonitor/api/v1/news" \
 curl -X GET "https://your-worldmonitor/api/v1/news/deduplicated" \
   -H "Authorization: Bearer *** \
   -d "cluster_window=3600&language=en"
-```
+`````
 
 ### 地缘政治事件映射
 
@@ -278,7 +279,7 @@ curl -X GET "https://your-worldmonitor/api/v1/news/deduplicated" \
 
 专有相关性引擎识别表面上看似无关的事件之间的关系。例如，它可能检测到某个国家的政治声明与另一个国家的市场波动相关，或者 A 地区的基础设施中断先于 B 地区的类似事件发生。
 
-```python
+`````python
 from worldmonitor.correlation import CorrelationEngine
 
 engine = CorrelationEngine()
@@ -295,7 +296,7 @@ for corr in correlations: print(f"强度: {corr.strength:.2f}")
     print(f"类型: {corr.type}")
     print(f"事件: {corr.event_ids}")
     print(f"解释: {corr.explanation}")
-```
+`````
 
 ## API 参考
 
@@ -303,16 +304,16 @@ WorldMonitor 提供全面的 REST API 用于程序化访问：
 
 ### 认证
 
-```bash
+`````bash
 # 获取 API 令牌
 curl -X POST "https://your-worldmonitor/api/v1/auth/login" \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "${WM_PASSWORD}"}'
-```
+`````
 
 ### 新闻 API
 
-```bash
+`````bash
 # 列出最近的新闻（带分页）
 curl "https://your-worldmonitor/api/v1/news?page=1&per_page=50" \
   -H "Authorization: Bearer ***
@@ -324,11 +325,11 @@ curl "https://your-worldmonitor/api/v1/news?region=south_asia&date_from=2026-06-
 # 按关键词搜索
 curl "https://your-worldmonitor/api/v1/news/search?q=trade+sanctions" \
   -H "Authorization: Bearer ***
-```
+`````
 
 ### 事件 API
 
-```bash
+`````bash
 # 列用地缘政治事件
 curl "https://your-worldmonitor/api/v1/events?type=political&severity_gte=6" \
   -H "Authorization: Bearer ***
@@ -340,11 +341,11 @@ curl "https://your-worldmonitor/api/v1/events/EVT-2026-0625-001" \
 # 获取事件时间线
 curl "https://your-worldmonitor/api/v1/events/EVT-2026-0625-001/timeline" \
   -H "Authorization: Bearer ***
-```
+`````
 
 ### 警报 API
 
-```bash
+`````bash
 # 列出活跃警报
 curl "https://your-worldmonitor/api/v1/alerts?status=active" \
   -H "Authorization: Bearer ***
@@ -371,7 +372,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
       "recipients": ["team@example.com"]
     }
   }'
-```
+`````
 
 ## 部署选项
 
@@ -379,30 +380,30 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 
 对于个人记者或研究人员，单个 Docker Compose 部署在 4 核 VPS 上就足够了：
 
-```
+`````
 服务器：4 vCPU，8GB RAM，100GB SSD
 成本：约 $20/月（DigitalOcean / HTStack）
 容量：约 1,000 个事件/天，30 天保留
-```
+`````
 
 ### 团队部署
 
 对于 5-20 人的分析师团队，添加 Redis 集群和 PostgreSQL 只读副本：
 
-```
+`````
 应用服务器：3x 4 vCPU，16GB RAM（位于负载均衡器后面）
 数据库：PostgreSQL 主节点 + 2 个只读副本
 缓存：Redis 集群（3 个节点）
 存储：500GB SSD + S3 归档
 成本：约 $200/月
 容量：约 10,000 个事件/天，90 天保留
-```
+`````
 
 ### 企业/分布式
 
 适用于政府或大型组织部署：
 
-```
+`````
 具有数据主权控制的多区域部署
 跨 10+ 应用节点的横向扩展
 使用 Patroni 的 PostgreSQL 自动故障转移
@@ -410,7 +411,7 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
 与现有 SIEM/SOC 平台集成
 成本：定制定价
 容量：无限制，支持地理分布式数据采集
-```
+`````
 
 ## 与其他工具的集成
 
@@ -418,7 +419,7 @@ WorldMonitor 可与流行的情报和通信工具无缝集成：
 
 ### Slack 集成
 
-```bash
+`````bash
 # 安装 Slack 应用
 curl -X POST "https://your-worldmonitor/api/v1/integrations/slack" \
   -H "Authorization: Bearer *** \
@@ -428,11 +429,11 @@ curl -X POST "https://your-worldmonitor/api/v1/integrations/slack" \
     "alert_rules": ["major_conflict", "infrastructure_disruption"],
     "digest_frequency": "hourly"
   }'
-```
+`````
 
 ### Telegram 机器人
 
-```bash
+`````bash
 # 创建 Telegram 机器人集成
 curl -X POST "https://your-worldmonitor/api/v1/integrations/telegram" \
   -H "Authorization: Bearer *** \
@@ -442,11 +443,11 @@ curl -X POST "https://your-worldmonitor/api/v1/integrations/telegram" \
     "chat_id": "${TELEGRAM_CHAT_ID}",
     "alert_rules": ["all_high_severity"]
   }'
-```
+`````
 
 ### Grafana 仪表盘
 
-```bash
+`````bash
 # 导出指标到 Grafana
 curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
   -H "Authorization: Bearer *** \
@@ -455,11 +456,11 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
     "datasource": "prometheus",
     "dashboard_template": "worldmonitor-overview"
   }'
-```
+`````
 
 ### ELK Stack / Elasticsearch
 
-```yaml
+`````yaml
 # WorldMonitor Elasticsearch 输出配置
 output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
@@ -468,7 +469,7 @@ output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     template_overwrite: true
     bulk_size: 500
     flush_interval: 5
-```
+````
 
 ## 对比：WorldMonitor 与商业替代品
 
@@ -548,7 +549,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](worldmonitor-real-time-global-intelligence-dashboard)
@@ -557,6 +558,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 - [2026-06-15-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

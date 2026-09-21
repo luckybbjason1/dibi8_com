@@ -26,6 +26,7 @@ faqs: - q: 'Browser Harness란 무엇인가요?'
     a: '주요 한계는 비용(LLM API 호출에는 요금이 발생하지만 로컬 모델을 사용할 수 있음), 속도(모델이 추론하는 데 시간이 필요하기 때문에 기존 자동화보다 느림), 안전성(오작동을 방지하기 위해 엄격한 가드레일이 필요함), 그리고 여전히 사람이 필요할 수 있는 복잡한 CAPTCHA입니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 문제: 전통적인 크롤러는 죽었고, AI 시대에는 새로운 패러다임이 필요하다
@@ -56,25 +57,25 @@ faqs: - q: 'Browser Harness란 무엇인가요?'
 
 ### 1. 자가 치유(Self-Healing)
 
-전통적인 자동화: ```python
+전통적인 자동화: ````python
 # 취약한 선택기, 페이지가 변경되면 작동하지 않음
 button = driver.find_element(By.CSS_SELECTOR, "#submit-btn")
 button.click()
-```
+`````
 
-Browser Harness: ```python
+Browser Harness: `````python
 # LLM이 페이지 의미를 이해하고 올바른 버튼을 자동으로 찾음
 # ID가 변경되어도 맥락을 통해 이해 가능
 result = harness.execute("제출 버튼 클릭")
 # 버튼을 찾을 수 없으면 LLM이 페이지를 분석하고 대안을 제시
-```
+`````
 
 **자가 치유 메커니즘**: - 작업 실패 → 스크린샷 분석 → LLM 진단 → 새 전략 생성 → 재시도
 - 성공하거나 완료할 수 없음을 확인할 때까지 반복
 
 ### 2. 의미론적 이해(Semantic Understanding)
 
-Browser Harness는 CSS 선택기에 의존하지 않고 LLM이 **페이지 콘텐츠를 이해**하도록 합니다: ```python
+Browser Harness는 CSS 선택기에 의존하지 않고 LLM이 **페이지 콘텐츠를 이해**하도록 합니다: `````python
 # LLM에 목표를 알려주고 단계는 알려주지 않음
 harness.execute("Amazon에서 무선 이어폰을 검색하고, 평점순으로 정렬한 후 첫 번째 결과를 장바구니에 담아줘")
 
@@ -84,11 +85,11 @@ harness.execute("Amazon에서 무선 이어폰을 검색하고, 평점순으로 
 # 4. "Customer Reviews" 선택
 # 5. 첫 번째 상품 찾기
 # 6. "Add to Cart" 클릭
-```
+`````
 
 ### 3. 다단계 작업 계획
 
-```python
+`````python
 from browser_harness import Harness
 
 harness = Harness(model="gpt-4o")
@@ -113,11 +114,11 @@ result = harness.execute(task)
 # 8. 수하물 없는 운임 선택
 # 9. 승객 정보 입력
 # 10. 주문 제출
-```
+`````
 
 ### 4. 시각적 인식(Visual Perception)
 
-Browser Harness는 LLM에 페이지 스크린샷을 보내 웹페이지를 "보게" 합니다: ```python
+Browser Harness는 LLM에 페이지 스크린샷을 보내 웹페이지를 "보게" 합니다: `````python
 # 스크린샷 분석
 screenshot = harness.screenshot()
 analysis = harness.llm.analyze_image(screenshot, 
@@ -127,7 +128,7 @@ analysis = harness.llm.analyze_image(screenshot,
 #  - 비밀번호 입력 상자(type=password)
 #  - 나를 기억하기 체크박스
 #  - 로그인 버튼"
-```
+`````
 
 ### 5. 기존 도구와의 비교
 
@@ -142,7 +143,7 @@ analysis = harness.llm.analyze_image(screenshot,
 
 ## 아키텍처 설계
 
-```
+`````
 Browser Harness
 ├── LLM Core (GPT-4o / Claude / Local LLM)
 ├── Browser Controller (Playwright / Selenium)
@@ -159,22 +160,22 @@ Browser Harness
     ├── URL Whitelist
     ├── Action Limits
     └── Human-in-the-Loop
-```
+`````
 
 ## 설치 및 사용
 
 ### 설치
 
-```bash
+`````bash
 pip install browser-harness
 
 # 브라우저 의존성 설치
 playwright install
-```
+`````
 
 ### 기본 사용법
 
-```python
+`````python
 from browser_harness import Harness
 
 # 초기화
@@ -196,11 +197,11 @@ task = """
 """
 result = harness.execute(task)
 print(result)  # "현재 Stars: 11251"
-```
+`````
 
 ### 고급 구성
 
-```python
+`````python
 from browser_harness import Harness, Config
 
 config = Config(
@@ -215,13 +216,13 @@ config = Config(
 )
 
 harness = Harness(model="gpt-4o", config=config)
-```
+`````
 
 ## 실제 응용 시나리오
 
 ### 시나리오 1: 자동화 테스트
 
-```python
+`````python
 # LLM이 웹사이트를 테스트하도록 하기
 test_cases = [
     "새 사용자를 등록하고 확인 이메일을 수신했는지 검증",
@@ -231,11 +232,11 @@ test_cases = [
 
 for test in test_cases: result = harness.execute(test)
     assert result.success, f"테스트 실패: {test}"
-```
+`````
 
 ### 시나리오 2: 데이터 수집
 
-```python
+`````python
 # 지능형 크롤러, 웹사이트 변경에 자동 적응
 data = harness.execute("""
 example.com/products를 방문하여
@@ -245,11 +246,11 @@ example.com/products를 방문하여
 - 재고 상태
 JSON으로 저장
 """)
-```
+`````
 
 ### 시나리오 3: 업무 자동화
 
-```python
+`````python
 # 일상적인 웹 작업 자동 처리
 harness.execute("""
 1. 회사 비용 처리 시스템에 로그인
@@ -258,18 +259,18 @@ harness.execute("""
 4. 승인자 입력
 5. 신청 제출
 """)
-```
+`````
 
 ### 시나리오 4: 경쟁사 모니터링
 
-```python
+`````python
 # 매일 경쟁사 가격 확인
 harness.execute("""
 amazon.com을 방문하여 우리 핵심 제품 키워드를 검색하고,
 상위 10개 결과의 가격과 평점을 기록하고,
 비교 보고서를 생성
 """)
-```
+````
 
 ## 유사 프로젝트 비교
 
@@ -307,7 +308,7 @@ Browser Harness는 **웹 자동화의 새로운 패러다임**을 대표합니�
 - [Hermes Agent: 자기 개선하는 AI 에이전트](/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 - [Agent Reach: AI 에이전트에 인터넷 슈퍼파워 부여하기](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
 
----
+* * *
 
 ## 추천 도구
 
@@ -386,7 +387,7 @@ Browser Harness：让 LLM 自主操控浏览器的自愈型神器 represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -13,6 +13,7 @@ tech_stack: - Python
   - Docker
 featureImage: /images/articles/free-llm-api-resources-ai-development.png
 stars: 6000---
+
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 
 {{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
@@ -69,7 +70,7 @@ Cognee is fully open-source under the MIT license and designed to integrate with
 
 ### Installation
 
-```bash
+````bash
 # Install Cognee
 pip install cognee
 
@@ -77,11 +78,11 @@ pip install cognee
 git clone https://github.com/topoteretes/cognee.git
 cd cognee
 pip install -e .
-```
+`````
 
 ### Basic Memory Setup
 
-```python
+`````python
 import cognee
 from cognee.infrastructure.databases.graph import Neo4jGraphEngine
 
@@ -105,11 +106,11 @@ await cognee.add([
 results = await cognee.query("Who works at TechCorp?")
 print(results)
 # Output: [{'entity': 'Alice', 'role': 'senior engineer', 'company': 'TechCorp'}]
-```
+`````
 
 ### Building a Memory-Augmented Chatbot
 
-```python
+`````python
 from langchain_community.chat_models import ChatAnthropic
 from langchain.prompts import ChatPromptTemplate
 import cognee
@@ -146,11 +147,11 @@ async def chat_with_memory(user_id, message): memory = await get_memory_context(
     ])
     
     return response.content
-```
+`````
 
 ### Advanced: Multi-Source Knowledge Ingestion
 
-```python
+`````python
 import cognee
 from cognee.infrastructure.ingestion import DocumentIngestionPipeline
 
@@ -187,11 +188,11 @@ results = await cognee.query(
     "Show me all information about product launches in 2024",
     sources=["pdf", "sql", "api", "conversation"]
 )
-```
+`````
 
 ### Knowledge Graph Visualization
 
-```python
+`````python
 import cognee
 
 # Get the full knowledge graph
@@ -207,13 +208,13 @@ alice_graph = await cognee.get_subgraph(
     max_nodes=50
 )
 alice_graph.export(format="dot", path="./alice_network.dot")
-```
+`````
 
 ## Architecture Deep Dive
 
 ### Memory Layers
 
-Cognee implements a three-layer memory architecture inspired by cognitive science: ```
+Cognee implements a three-layer memory architecture inspired by cognitive science: `````
 ┌─────────────────────────────────────────┐
 │          Semantic Memory Layer           │
 │  (Facts, concepts, knowledge graphs)     │
@@ -224,11 +225,11 @@ Cognee implements a three-layer memory architecture inspired by cognitive scienc
 │        Procedural Memory Layer           │
 │  (Learned skills, patterns, preferences)  │
 └─────────────────────────────────────────┘
-```
+`````
 
 ### Knowledge Extraction Pipeline
 
-```python
+`````python
 class KnowledgeExtractor: def extract(self, text: str) -> KnowledgeGraph: # Step 1: Entity recognition
         entities = self._recognize_entities(text)
         
@@ -242,11 +243,11 @@ class KnowledgeExtractor: def extract(self, text: str) -> KnowledgeGraph: # Step
         
         # Step 4: Merge with existing graph
         return self._merge_with_graph(entities, relationships)
-```
+`````
 
 ### Temporal Memory Management
 
-```python
+`````python
 class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_days
     
     def manage(self, memories): # Mark memories for expiration
@@ -259,14 +260,14 @@ class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_da
         
         # Prune expired memories
         return [m for m in consolidated if m.status != "expired"]
-```
+`````
 
 
 ## Advanced Memory Management
 
 ### Memory Consolidation
 
-As agents accumulate knowledge, related memories should be consolidated to improve retrieval quality: ```python
+As agents accumulate knowledge, related memories should be consolidated to improve retrieval quality: `````python
 from cognee.memory import MemoryConsolidator
 
 consolidator = MemoryConsolidator(
@@ -280,11 +281,11 @@ await consolidator.consolidate(
     older_than_days=30,
     output_dir="./consolidated_memory"
 )
-```
+`````
 
 ### Memory Decay and Forgetting
 
-Real intelligence includes knowing what to forget: ```python
+Real intelligence includes knowing what to forget: `````python
 from cognee.memory import MemoryDecay
 
 decay = MemoryDecay(
@@ -297,11 +298,11 @@ decay = MemoryDecay(
 await decay.apply(user_id="alice")
 # Memories older than 90 days lose 50% influence
 # Memories older than 180 days lose 75% influence
-```
+`````
 
 ### Cross-User Knowledge Sharing
 
-Enable knowledge sharing between agents while maintaining privacy: ```python
+Enable knowledge sharing between agents while maintaining privacy: `````python
 from cognee.knowledge import KnowledgeShare
 
 share = KnowledgeShare(
@@ -316,11 +317,11 @@ await share.share(
     target_agents=["agent-3", "agent-4"],
     knowledge_types=["best_practices", "common_patterns"]
 )
-```
+`````
 
 ### Memory Verification
 
-Verify the accuracy of stored memories: ```python
+Verify the accuracy of stored memories: `````python
 from cognee.verify import MemoryVerifier
 
 verifier = MemoryVerifier(
@@ -336,13 +337,13 @@ recent = await verifier.verify_recent(
 
 for memory in recent: if memory.confidence < 0.7: print(f"Low confidence: {memory.text}")
         print(f"Suggested action: {memory.recommended_action}")
-```
+`````
 
 ## Integration Examples
 
 ### LangChain Integration
 
-```python
+`````python
 from langchain.memory import ConversationBufferMemory
 from cognee.langchain import CogneeMemoryAdapter
 
@@ -357,11 +358,11 @@ memory = ConversationBufferMemory(
     memory_key="chat_history",
     chat_memory=cognee_memory
 )
-```
+`````
 
 ### CrewAI Integration
 
-```python
+`````python
 from crewai import Agent, Task, Crew
 from cognee.crewai import CogneeMemoryPlugin
 
@@ -380,11 +381,11 @@ agents = [
         memory=memory_plugin,
     ),
 ]
-```
+`````
 
 ### FastAPI Integration
 
-```python
+`````python
 from fastapi import FastAPI
 from cognee.fastapi import CogneeMiddleware
 
@@ -395,7 +396,7 @@ app.add_middleware(CogneeMiddleware, user_id_header="X-User-ID")
 async def chat(request: ChatRequest): # Memory is automatically managed per user
     response = await process_message(request.message)
     return {"response": response}
-```
+````
 
 ## Comparison with Alternatives
 
@@ -403,13 +404,13 @@ async def chat(request: ChatRequest): # Memory is automatically managed per user
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Knowledge Graph | Yes | No | Partial | No |
 | Multi-Modal | Yes | No | No | Partial |
@@ -486,7 +487,7 @@ A: Yes. Cognee's ingestion pipeline supports both batch and streaming modes. You
 - [Cognee README](https://github.com/topoteretes/cognee/blob/main/README.md)
 
 
----
+* * *
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
 
 
@@ -544,7 +545,7 @@ A: Yes. Cognee's ingestion pipeline supports both batch and streaming modes. You
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](cognee-ai-memory-platform)
@@ -553,6 +554,6 @@ A: Yes. Cognee's ingestion pipeline supports both batch and streaming modes. You
 - [2026-06-29-trending-ai-agents](cognee-ai-memory-platform)
 - [2026-07-06-trending-ai-agents](cognee-ai-memory-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

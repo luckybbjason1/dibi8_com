@@ -32,6 +32,7 @@ faq: - q: "Caveman 会影响 AI 的思考质量吗?"
   - q: "免费吗?"
     a: "**完全免费。** Caveman 是开源项目，使用 MIT 许可证。
 ---
+
 "
 faqs: - q: 'Caveman 是什么？它与 Claude Code 有什么关系？'
     a: 'Caveman 是一个 Claude Code 技能插件，它让 Claude 以压缩、简洁的「原始人」风格回复——去掉废话、冠词和客套开场白。平均可将输出 token 减少 65%，同时不损失任何技术准确性。'
@@ -44,7 +45,7 @@ faqs: - q: 'Caveman 是什么？它与 Claude Code 有什么关系？'
   - q: 'Caveman 提供哪些强度等级和命令？'
     a: 'Caveman 共有三个等级：Lite（去除废话，保留语法）、Full（默认模式，省略冠词，使用片段句式）和 Ultra（最大电报式压缩）。此外还附带子命令，如 /caveman-commit、/caveman-review、/caveman-stats，以及 /caveman:compress，用于重写 CLAUDE.md 等记忆文件。'
 
----
+* * *
 {</* resource-info */>}
 
 # Caveman：让 Claude Code Token 消耗减少 65%，省钱又提速
@@ -56,7 +57,7 @@ faqs: - q: 'Caveman 是什么？它与 Claude Code 有什么关系？'
 这不是玩笑。这是经过真实 API 调用基准测试验证的数据。
 
 
----
+* * *
 ## 一、Caveman 是什么？
 
 **Caveman** 是由 Julius Brussee 开发的一款 Claude Code 技能，核心理念极其简单：
@@ -71,7 +72,7 @@ faqs: - q: 'Caveman 是什么？它与 Claude Code 有什么关系？'
 - **官网：** [getcaveman.dev](https://getcaveman.dev/)
 - **许可证：** MIT
 
----
+* * *
 ## 二、为什么你需要 Caveman？
 
 ### 1. Token 消耗平均减少 65%（实测数据）
@@ -80,13 +81,13 @@ Caveman 团队使用 Claude API 进行了真实基准测试，以下是部分结
 
 | 任务 | 正常模式 (Tokens) | Caveman 模式 (Tokens) | 节省比例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 解释 React 重渲染 Bug | 1,180 | 159 | **87%** |
 | 修复 Auth 中间件 Token 过期 | 704 | 121 | **83%** |
@@ -114,7 +115,7 @@ Caveman 只压缩"废话"，不压缩"干货"。所有技术信息、代码逻�
 
 如果你使用按 Token 计费的 AI 服务（如 Claude API、Cursor Pro 等），输出 Token 减少 65% 直接意味着账单减少。对于重度用户，这每月可能省下数十甚至数百美元。
 
----
+* * *
 
 ## 三、Caveman 是如何工作的？
 
@@ -126,15 +127,15 @@ Caveman 的核心机制是**输出压缩**（Output Compression）。它不影�
 
 | 等级 | 触发指令 | 效果 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Lite** | `/caveman lite` | 去掉填充词，保留语法。专业但无废话 |
-| **Full** | `/caveman full` | 默认模式。去掉冠词、碎片化表达，原始人风格 |
-| **Ultra** | `/caveman ultra` | 最大压缩。电报式表达，能缩写的全缩写 |
+| **Lite** | ```/caveman lite```` | 去掉填充词，保留语法。专业但无废话 |
+| **Full** | ````/caveman full```` | 默认模式。去掉冠词、碎片化表达，原始人风格 |
+| **Ultra** | ````/caveman ultra```` | 最大压缩。电报式表达，能缩写的全缩写 |
 
 等级一旦设置，会在整个会话中保持，直到你更改或会话结束。
 
@@ -144,17 +145,17 @@ Caveman 甚至提供了一个极具创意的**文言文模式**——用人类�
 
 | 等级 | 触发指令 | 效果 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Wenyan-Lite** | `/caveman wenyan-lite` | 半文言。语法完整，填充词消失 |
-| **Wenyan-Full** | `/caveman wenyan` | 全文言。极致古典简练 |
-| **Wenyan-Ultra** | `/caveman wenyan-ultra` | 极端模式。古代学者省钱版 |
+| **Wenyan-Lite** | ````/caveman wenyan-lite```` | 半文言。语法完整，填充词消失 |
+| **Wenyan-Full** | ````/caveman wenyan```` | 全文言。极致古典简练 |
+| **Wenyan-Ultra** | ````/caveman wenyan-ultra```` | 极端模式。古代学者省钱版 |
 
----
+* * *
 
 ## 四、支持哪些 AI 助手？
 
@@ -197,45 +198,45 @@ Caveman 的安装脚本能自动检测 **30+ 款 AI 编程助手**并为其安�
 
 你不需要手动为每个工具配置，一行命令搞定全部。
 
----
+* * *
 
 ## 五、安装与使用
 
 ### 一键安装
 
 **macOS / Linux / WSL / Git Bash：**
-```bash
+`````bash
 curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
-```
+`````
 
 **Windows (PowerShell)：**
-```powershell
+`````powershell
 irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | iex
-```
+`````
 
 安装脚本默认会：
 1. 为检测到的每个 AI 助手安装对应插件
 2. 配置 Claude Code 的 hooks + 状态栏 + 统计徽章
-3. 注册 `caveman-shrink` MCP 代理
+3. 注册 ````caveman-shrink```` MCP 代理
 
 ### 安装选项
 
 | 参数 | 效果 |
 |
----
+* * *
 |
----
+* * *
 |
-| `--all` | 完整安装：插件 + hooks + 状态栏 + MCP shrink + 当前目录的 per-repo 规则文件 |
-| `--minimal` | 仅安装插件/扩展，跳过 hooks 和 MCP shrink |
-| `--with-init` | 在当前仓库中放置常驻规则文件（Cursor / Windsurf / Cline / Copilot / AGENTS.md） |
-| `--list` | 打印完整的 AI 助手检测列表 |
+| ````--all```` | 完整安装：插件 + hooks + 状态栏 + MCP shrink + 当前目录的 per-repo 规则文件 |
+| ````--minimal```` | 仅安装插件/扩展，跳过 hooks 和 MCP shrink |
+| ````--with-init```` | 在当前仓库中放置常驻规则文件（Cursor / Windsurf / Cline / Copilot / AGENTS.md） |
+| ````--list```` | 打印完整的 AI 助手检测列表 |
 
 ### 使用方法
 
 安装后，在任意支持的 AI 助手中输入以下指令即可激活：
 
-- `/caveman` 或 Codex 的 `$caveman`
+- ````/caveman```` 或 Codex 的 ````$caveman````
 - "talk like caveman"
 - "caveman mode"
 - "less tokens please"
@@ -244,7 +245,7 @@ irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | i
 - "stop caveman"
 - "normal mode"
 
----
+* * *
 
 ## 六、Caveman 生态系统
 
@@ -252,11 +253,11 @@ Caveman 其实只是一个更大生态的入口。Julius Brussee 还开发了另
 
 | 项目 | 功能 | 一句话描述 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | [**caveman**](https://github.com/JuliusBrussee/caveman) | 输出压缩 | 压缩 AI "说"的话 |
 | [**cavemem**](https://github.com/JuliusBrussee/cavemem) | 跨助手持久记忆 | 压缩 AI "记住"的话 |
@@ -264,15 +265,15 @@ Caveman 其实只是一个更大生态的入口。Julius Brussee 还开发了另
 
 三者可以组合使用：**cavekit** 编排构建流程，**caveman** 压缩输出，**cavemem** 压缩记忆。每个工具都可以独立使用。
 
----
+* * *
 
 ## 七、进阶：caveman-shrink MCP 中间件
 
-对于使用 MCP（Model Context Protocol）服务器的用户，Caveman 还提供了一个强大的中间件 `caveman-shrink`：
+对于使用 MCP（Model Context Protocol）服务器的用户，Caveman 还提供了一个强大的中间件 ````caveman-shrink````：
 
-它是一个 stdio 代理，可以包装任何 MCP 服务器，拦截 `tools/list`、`prompts/list`、`resources/list` 响应，并压缩其中的 `description` 字段。代码、URL、路径、标识符保持字节级完全一致。
+它是一个 stdio 代理，可以包装任何 MCP 服务器，拦截 ````tools/list````、````prompts/list````、````resources/list```` 响应，并压缩其中的 ````description```` 字段。代码、URL、路径、标识符保持字节级完全一致。
 
-```json
+`````json
 {
   "mcpServers": {
     "fs-shrunk": {
@@ -281,11 +282,11 @@ Caveman 其实只是一个更大生态的入口。Julius Brussee 还开发了另
     }
   }
 }
-```
+`````
 
-已发布在 npm：[caveman-shrink](https://www.npmjs.com/package/caveman-shrink)。默认由 `install.sh` 自动注册（使用 `--minimal` 可跳过）。
+已发布在 npm：[caveman-shrink](https://www.npmjs.com/package/caveman-shrink)。默认由 ````install.sh```` 自动注册（使用 ````--minimal``` 可跳过）。
 
----
+* * *
 
 ## 八、真实场景对比
 
@@ -309,7 +310,7 @@ Caveman 其实只是一个更大生态的入口。Julius Brussee 还开发了另
 
 **结果：** 1,042 Tokens → 290 Tokens，节省 **72%**。
 
----
+* * *
 
 ## 九、常见问题
 
@@ -328,7 +329,7 @@ Caveman 其实只是一个更大生态的入口。Julius Brussee 还开发了另
 ### Q5: 免费吗？
 **完全免费。** Caveman 是开源项目，使用 MIT 许可证。
 
----
+* * *
 
 ## 十、总结
 
@@ -344,7 +345,7 @@ Caveman 是 2026 年 AI 编程助手领域最实用、最有趣的效率工具�
 
 如果你每天花大量时间与 AI 助手协作编程，Caveman 可能是你今年最值得安装的 5 分钟配置。
 
----
+* * *
 
 ## 相关链接
 
@@ -355,13 +356,13 @@ Caveman 是 2026 年 AI 编程助手领域最实用、最有趣的效率工具�
 - **科学论文：** [Brevity Constraints Reverse Performance Hierarchies in Language Models](https://arxiv.org/abs/2604.00025)
 - **NPM 中间件：** [caveman-shrink](https://www.npmjs.com/package/caveman-shrink)
 
----
+* * *
 
 > **"Less token, more speed, same brain."**
 >
 > 这就是 Caveman 的哲学。
 
----
+* * *
 
 ## 推荐工具
 
@@ -435,7 +436,7 @@ Caveman：让 Claude Code Token 消耗减少 65%，省钱又提速 represents an
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -467,15 +468,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

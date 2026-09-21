@@ -27,6 +27,7 @@ faq: - q: "What changed with Cursor's pricing in 2025?"
   - q: "Should I just switch to Claude Code or stay with Cursor?"
     a: "Pair them. Cursor for IDE editing + tab completion. Claude Code for agent loops + debugging. Total ~$220/month. Most professional developers run this stack — it's not 'either or'."
 ---
+
 {{</* resource-info */>}}
 
 # Cursor Cost-Saving Strategies 2026
@@ -55,7 +56,7 @@ Cursor's agent mode defaults to Opus 4.7 — best quality, highest cost. Switch 
 ### 2. Tighten context size
 The agent passes whole files to the model by default. For surgical edits, scope context to just the function or class you're editing.
 
-How: pin specific files to context, exclude rest. Cursor's `@files` syntax helps. Each unused token = wasted credit.
+How: pin specific files to context, exclude rest. Cursor's ```@files```` syntax helps. Each unused token = wasted credit.
 
 **Savings**: ~25%.
 
@@ -65,7 +66,7 @@ Tab completion at the $20 tier is essentially free. Lean on it for boilerplate, 
 **Strategy**: tab for inline edits, agent for multi-file work.
 
 ### 4. Disable auto-suggest in test files
-Tests get auto-completed by Cursor by default, burning credits on noise. Disable suggest in `**/*.test.{ts,js}` and `**/spec/**` — write tests manually, faster anyway.
+Tests get auto-completed by Cursor by default, burning credits on noise. Disable suggest in ````**/*.test.{ts,js}```` and ````**/spec/**``` — write tests manually, faster anyway.
 
 **Savings**: ~10%.
 
@@ -109,7 +110,7 @@ Cursor's pricing change wasn't fatal — it was a forcing function. The strategi
 For most professional developers, the right answer in 2026 isn't "abandon Cursor" — it's "pair Cursor with Claude Code, split work by tool strength." $220/month total beats either alone.
 
 
----
+* * *
 **Related**: [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [AI Coding Agent Monthly Bill 2026](https://dibi8.com/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
 
 
@@ -175,11 +176,11 @@ Cursor Cost-Saving Strategies 2026: After the Credit Pricing Change represents a
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -189,7 +190,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](cursor-cost-saving-strategies-2026)
 - [claude-4-opus-sonnet-review-2026](cursor-cost-saving-strategies-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -220,15 +221,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

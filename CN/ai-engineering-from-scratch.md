@@ -19,6 +19,7 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
     role: reference
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
+
 ## TL;DR
 
 AI Engineering From Scratch is a comprehensive, hands-on curriculum for building production-grade AI systems. With 32,771 stars, it covers the full stack: LLM fine-tuning, RAG pipelines, agent frameworks, vector databases, and cloud deployment. The project provides practical code examples, not theoretical abstractions.
@@ -37,7 +38,7 @@ The curriculum is organized into progressive modules: 1. **Foundations** — Lin
 6. **Agent Frameworks** — Tool use, planning, memory, and multi-agent orchestration
 7. **Production** — Deployment, monitoring, scaling, and cost optimization
 
-```bash
+````bash
 # Clone the repository
 curl -sL "https://github.com/rohitg00/ai-engineering-from-scratch/archive/refs/heads/main.zip" -o /tmp/ai-eng.zip
 unzip -q /tmp/ai-eng.zip -d /tmp
@@ -45,7 +46,7 @@ ls /tmp/ai-engineering-from-scratch-main/
 
 # Check the module structure
 find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
-```
+`````
 
 ## How It Works: The Learning Pipeline
 
@@ -54,7 +55,7 @@ The project follows a "build it, break it, fix it" methodology. Each module prov
 - **Real datasets** — Training on actual corpora, not toy examples
 - **Production deployment** — Final modules cover serving, monitoring, and scaling
 
-```bash
+`````bash
 # Typical module structure
 module-name/
 ├── README.md          # Theory and objectives
@@ -64,13 +65,13 @@ module-name/
 │   ├── train.py       # Training loop
 │   └── deploy.py      # Serving code
 └── tests/             # Unit and integration tests
-```
+`````
 
 The key pedagogical insight: you cannot effectively use an AI framework until you understand what it abstracts away. By implementing transformers from scratch, you develop intuition for why LoRA works, why RAG improves accuracy, and why agent planning matters.
 
 ## Installation & Setup
 
-The project requires Python 3.10+ and depends on standard ML libraries: ```bash
+The project requires Python 3.10+ and depends on standard ML libraries: `````bash
 # Clone the repository
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
@@ -85,35 +86,35 @@ pip install -r requirements.txt
 # Verify installation
 python3 -c "import torch; print(f'PyTorch {torch.__version__}')"
 python3 -c "import transformers; print(f'Transformers {transformers.__version__}')"
-```
+`````
 
 ### GPU Acceleration
 
-For fine-tuning and inference modules, GPU acceleration is recommended: ```bash
+For fine-tuning and inference modules, GPU acceleration is recommended: `````bash
 # Check CUDA availability
 python3 -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
 
 # Install CUDA-enabled PyTorch (if needed)
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Alternative: Run Without GPU
 
-All modules work on CPU, though fine-tuning and large-scale inference will be significantly slower: ```bash
+All modules work on CPU, though fine-tuning and large-scale inference will be significantly slower: `````bash
 # Force CPU mode
 export CUDA_VISIBLE_DEVICES=""
 python3 src/train.py --device cpu
-```
+`````
 
 ## Integration with Mainstream AI Tools
 
 AI Engineering From Scratch complements, rather than replaces, popular AI development tools: | Tool | Integration Point | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | Module 5 (RAG) | Build production RAG pipelines |
 | **LlamaIndex** | Module 5 (RAG) | Advanced indexing and retrieval |
@@ -122,7 +123,7 @@ AI Engineering From Scratch complements, rather than replaces, popular AI develo
 | **vLLM** | Module 7 (Production) | High-throughput serving |
 | **Ollama** | Module 3 (Transformers) | Local model testing |
 
-```bash
+`````bash
 # Example: Fine-tune a model with LoRA and deploy with vLLM
 # Step 1: Fine-tune (Module 4)
 python3 src/fine_tune.py --model meta-llama/Llama-3.1-8B --lora_rank 16
@@ -135,16 +136,16 @@ pip install vllm
 python3 -m vllm.entrypoints.api_server \
   --model ./lora_adapter_merged \
   --port 8000
-```
+`````
 
 ## Benchmarks: From-Scratch vs Framework-Only Learning
 
-Students who complete the full AI Engineering From Scratch curriculum demonstrate measurably better outcomes than those who learn through frameworks alone: ```
+Students who complete the full AI Engineering From Scratch curriculum demonstrate measurably better outcomes than those who learn through frameworks alone: `````
 Metric                      | Framework-Only | From-Scratch
 
----
+* * *
 |
----
+* * *
 |---
 Debugging Time (avg)        | 4.2 hours     | 1.1 hours
 Custom Architecture Design  | Rare          | Routine
@@ -152,7 +153,7 @@ Performance Optimization    | Surface-level | Deep understanding
 RAG Quality Improvement     | Template-based | Algorithmic
 Agent Failure Recovery      | Restart       | Root-cause analysis
 Production Deployment Rate  | 23%           | 67%
-```
+`````
 
 The benchmark data comes from tracking student outcomes over 18 months across 3 cohorts. The from-scratch cohort showed 3.8x faster debugging and nearly 3x higher production deployment rates.
 
@@ -160,7 +161,7 @@ The benchmark data comes from tracking student outcomes over 18 months across 3 
 
 When you've implemented backpropagation yourself, debugging a training loop isn't about guessing which PyTorch function misbehaved — it's about understanding the gradient flow. When you've built a vector database index from scratch, optimizing retrieval isn't about adjusting hyperparameters randomly — it's about understanding the trade-off between recall and latency.
 
-```python
+`````python
 # Example: Attention mechanism from scratch
 # This is what students implement in Module 3
 import torch
@@ -178,13 +179,13 @@ def attention_from_scratch(Q, K, V, mask=None): """Multi-head attention implemen
     output = torch.matmul(attention_weights, V)
     
     return output, attention_weights
-```
+`````
 
 ## Advanced Usage: Custom Training Strategies
 
 Beyond the provided modules, experienced practitioners use the repository as a foundation for custom training strategies: ### Quantization-Aware Fine-Tuning
 
-```bash
+`````bash
 # QLoRA with 4-bit quantization
 python3 src/qlora_train.py \
   --model meta-llama/Llama-3.1-8B \
@@ -194,11 +195,11 @@ python3 src/qlora_train.py \
   --dataset custom_dataset.jsonl \
   --epochs 3 \
   --batch_size 4
-```
+`````
 
 ### Multi-Stage RAG Optimization
 
-```python
+`````python
 # Stage 1: Chunk documents with optimal size
 from rag_pipeline import DocumentChunker
 
@@ -223,11 +224,11 @@ from reranker import CrossEncoderReranker
 reranker = CrossEncoderReranker("ms-marco-MiniLM-L-12-v2")
 results = index.search("your query here", top_k=20)
 reranked = reranker.rank("your query here", results)
-```
+`````
 
 ### Distributed Training Strategies
 
-For larger models, distributed training across multiple GPUs is essential: ```bash
+For larger models, distributed training across multiple GPUs is essential: `````bash
 # Multi-GPU training with DeepSpeed
 pip install deepspeed
 
@@ -240,20 +241,20 @@ deepspeed --num_gpus=4 src/train.py \
 
 # Monitor training with TensorBoard
 tensorboard --logdir ./runs/
-```
+`````
 
-```python
+`````python
 # FSDP (Fully Sharded Data Parallel) setup
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from torch.distributed.fsdp.wrap import size_based_auto_wrap_policy
 
 policy = size_based_auto_wrap_policy(min_params=1e8)
 model = FSDP(model, auto_wrap_policy=policy, cpu_offload=Offload(cpu=True))
-```
+`````
 
 ### Evaluation Framework
 
-Measuring model quality requires systematic evaluation: ```python
+Measuring model quality requires systematic evaluation: `````python
 # Automated evaluation pipeline
 from eval_framework import Evaluator
 
@@ -271,11 +272,11 @@ results = evaluator.evaluate(
 # Export results
 results.to_csv("evaluation_results.csv")
 results.plot_confusion_matrix()
-```
+`````
 
 ### Agent Memory Systems
 
-```python
+`````python
 # Implement persistent agent memory
 from agent_memory import EpisodicMemory, SemanticMemory
 
@@ -288,21 +289,21 @@ episodic.store(action="query", result="answer", timestamp="2026-06-15")
 # Retrieve relevant memories
 relevant = episodic.retrieve(context="previous conversation about RAG")
 similar_semantic = semantic.query("RAG optimization", top_k=5)
-```
+`````
 
 ## Comparison with Alternatives
 
 Many AI learning resources exist, but few match the depth and breadth of AI Engineering From Scratch: | Feature | AI Eng. From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stars | 32,771 | 24,000 | N/A (Platform) | N/A |
 | From-Scratch Implementation | Full | Partial | None | None |
@@ -327,14 +328,14 @@ AI Engineering From Scratch is comprehensive but has known gaps: 1. **GPU hardwa
 
 5. **Multimodal models** — The curriculum focuses on text. Vision-language models and audio models are not covered.
 
-```bash
+`````bash
 # Quick assessment: is this right for you?
 # ✅ You know Python basics → YES
 # ✅ You want to understand AI internals → YES
 # ✅ You want to build production AI systems → YES
 # ✅ You're a complete beginner to programming → NO (start with Python basics first)
 # ✅ You only need to call APIs, not build models → CONSIDER alternatives
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -372,16 +373,16 @@ For reliable cloud infrastructure, [host your experiments on DigitalOcean](https
 
 **Start building today:**
 
-```bash
+`````bash
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
 pip install -r requirements.txt
-```
+````
 
 **Internal links**: [Compare AI agent frameworks](https://dibi8.com/ai-tools/oh-my-pi) · [Learn prompt engineering](https://dibi8.com/dev-utils/taste-skill)
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/rohitg00/ai-engineering-from-scratch
 - PyTorch documentation: https://pytorch.org/docs/
 - Hugging Face Transformers: https://huggingface.co/docs/transformers
@@ -416,7 +417,7 @@ pip install -r requirements.txt
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](ai-engineering-from-scratch)
@@ -425,7 +426,7 @@ pip install -r requirements.txt
 - [9router-smart-llm-proxy-token-saver-free-coding](ai-engineering-from-scratch)
 - [ai-stack-builder](ai-engineering-from-scratch)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

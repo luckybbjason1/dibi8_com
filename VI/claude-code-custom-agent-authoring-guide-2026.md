@@ -23,7 +23,8 @@ tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agen
 aliases:
   - /posts/claude-code-custom-agent-authoring/
 faq: - q: "Các tệp định nghĩa custom agent nằm ở đâu, và chúng có định dạng gì?"
-    a: "Custom agent là các tệp Markdown có YAML frontmatter, được lưu trong .claude/agents/ ở dự án của bạn (hoặc ~/.claude/agents/ cho những agent bạn muốn dùng được trên mọi dự án). Tên tệp bỏ phần đuôi .md không phải là danh tính của agent — trường name trong frontmatter mới là. Frontmatter khai báo name, description, một danh sách tools tùy chọn, và một model tùy chọn; mọi thứ bên dưới dấu --- kết thúc chính là system prompt của agent."
+    a: "Custom agent là các tệp Markdown có YAML frontmatter, được lưu trong .claude/agents/ ở dự án của bạn (hoặc ~/.claude/agents/ cho những agent bạn muốn dùng được trên mọi dự án). Tên tệp bỏ phần đuôi .md không phải là danh tính của agent — trường name trong frontmatter mới là. Frontmatter khai báo name, description, một danh sách tools tùy chọn, và một model tùy chọn; mọi thứ bên dưới dấu ---
+ kết thúc chính là system prompt của agent."
   - q: "Sự khác biệt giữa trường description và phần thân system prompt là gì?"
     a: "Description là tín hiệu định tuyến: đó là thứ mà agent cha đọc khi quyết định có giao việc cho subagent này hay không, nên nó phải nói rõ KHI NÀO dùng agent, chứ không chỉ là nó là gì. Phần thân system prompt là tập chỉ dẫn mà subagent chạy theo một khi được gọi — vai trò, phương pháp, và hợp đồng đầu ra của nó. Một description xuất sắc đi kèm phần thân mơ hồ sẽ được gọi đúng lúc nhưng làm việc tầm thường; một phần thân xuất sắc đi kèm description mơ hồ sẽ làm việc tuyệt vời nhưng không bao giờ được kích hoạt."
   - q: "Tôi nên cho custom agent truy cập tất cả công cụ hay nên hạn chế chúng?"
@@ -41,7 +42,7 @@ faq: - q: "Các tệp định nghĩa custom agent nằm ở đâu, và chúng c�
 
 ## Giới thiệu
 
-Trong bài [Các Mẫu Subagent của Claude Code](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) chúng ta đã trình bày năm quy trình để tiêu xài cửa sổ ngữ cảnh một cách khôn ngoan — và mẫu thứ năm, **dàn dựng pipeline với custom agent**, là mẫu mà các đội hỏi nhiều nhất. "Mã hóa danh sách rà soát của bạn thành một subagent" nghe rất hay, cho đến khi bạn mở một tệp `.claude/agents/migration-reviewer.md` trống trơn và một con trỏ nhấp nháy.
+Trong bài [Các Mẫu Subagent của Claude Code](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) chúng ta đã trình bày năm quy trình để tiêu xài cửa sổ ngữ cảnh một cách khôn ngoan — và mẫu thứ năm, **dàn dựng pipeline với custom agent**, là mẫu mà các đội hỏi nhiều nhất. "Mã hóa danh sách rà soát của bạn thành một subagent" nghe rất hay, cho đến khi bạn mở một tệp ```.claude/agents/migration-reviewer.md```` trống trơn và một con trỏ nhấp nháy.
 
 Hướng dẫn này chính là cuốn cẩm nang còn thiếu đó. Chúng ta sẽ đi qua cấu tạo giải phẫu của một định nghĩa custom agent, mỗi trường frontmatter thực sự điều khiển điều gì, cách viết một system prompt tạo ra báo cáo có cấu trúc thay vì lan man dài dòng, vì sao danh sách công cụ quan trọng hơn vẻ ngoài của chúng, và hai ví dụ hoàn chỉnh, sẵn sàng đưa vào sản xuất mà bạn có thể sao chép ngay hôm nay. Rồi đến những cái bẫy — vì các kiểu thất bại ở đây rất tinh vi, và chúng khiến bạn mất lòng tin vào agent ngay lần đầu nó bỏ sót một điều hiển nhiên.
 
@@ -49,82 +50,82 @@ Nếu bạn chưa từng giao việc cho một subagent, hãy đọc [bài về 
 
 ## Cấu Tạo Giải Phẫu Của Một Custom Agent
 
-Một custom agent chỉ là một tệp Markdown duy nhất có YAML frontmatter. Nó nằm ở một trong hai nơi: - `.claude/agents/<name>.md` — phạm vi dự án, được quản lý phiên bản, chia sẻ với cả đội của bạn
-- `~/.claude/agents/<name>.md` — phạm vi người dùng, dùng được trên mọi dự án trên máy bạn
+Một custom agent chỉ là một tệp Markdown duy nhất có YAML frontmatter. Nó nằm ở một trong hai nơi: - ````.claude/agents/<name>.md```` — phạm vi dự án, được quản lý phiên bản, chia sẻ với cả đội của bạn
+- ````~/.claude/agents/<name>.md```` — phạm vi người dùng, dùng được trên mọi dự án trên máy bạn
 
-Cấu trúc cực kỳ đơn giản: ```markdown
----
+Cấu trúc cực kỳ đơn giản: `````markdown
+* * *
 name: migration-reviewer
 description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
 tools: Read, Grep, Glob
 model: sonnet
----
+* * *
 
 You are a database migration reviewer. Your job is to catch unsafe
 migrations before they reach production...
-```
+`````
 
-Mọi thứ phía trên dấu `---` kết thúc đều là cấu hình. Mọi thứ phía dưới nó là **system prompt** — nhân cách và tập chỉ dẫn mà subagent chạy theo. Đó là toàn bộ hợp đồng. Không có bước build, không có đăng ký, không có manifest plugin. Thả tệp vào, chạy `/agents` để xác nhận Claude Code đã nhận ra nó, và nó đã có thể được gọi.
+Mọi thứ phía trên dấu ````---```` kết thúc đều là cấu hình. Mọi thứ phía dưới nó là **system prompt** — nhân cách và tập chỉ dẫn mà subagent chạy theo. Đó là toàn bộ hợp đồng. Không có bước build, không có đăng ký, không có manifest plugin. Thả tệp vào, chạy ````/agents```` để xác nhận Claude Code đã nhận ra nó, và nó đã có thể được gọi.
 
 ## Các Trường Frontmatter
 
 Bốn trường làm hết mọi việc. Ba trong số đó là tùy chọn, nhưng các giá trị mặc định hiếm khi là điều bạn muốn cho một agent nghiêm túc.
 
-### `name` (bắt buộc)
+### ````name```` (bắt buộc)
 
-Danh tính của agent — đây là chuỗi mà agent cha truyền vào dưới dạng `subagent_type`. Hãy giữ nó ở dạng kebab-case và mang tính mô tả: dùng `security-auditor`, đừng dùng `agent2`. Tên tệp chỉ là bề mặt; trường `name` mới là nguồn chuẩn.
+Danh tính của agent — đây là chuỗi mà agent cha truyền vào dưới dạng ````subagent_type````. Hãy giữ nó ở dạng kebab-case và mang tính mô tả: dùng ````security-auditor````, đừng dùng ````agent2````. Tên tệp chỉ là bề mặt; trường ````name```` mới là nguồn chuẩn.
 
-### `description` (bắt buộc — và là trường người ta đánh giá thấp)
+### ````description```` (bắt buộc — và là trường người ta đánh giá thấp)
 
-Đây là **tín hiệu định tuyến**. Khi agent cha quyết định có giao việc hay không, nó đọc các description, chứ không phải system prompt. Vậy nên một description phải mã hóa *khi nào* nên tìm đến agent này, với các điều kiện kích hoạt cụ thể: > ❌ `description: A code reviewer.`
-> ✅ `description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.`
+Đây là **tín hiệu định tuyến**. Khi agent cha quyết định có giao việc hay không, nó đọc các description, chứ không phải system prompt. Vậy nên một description phải mã hóa *khi nào* nên tìm đến agent này, với các điều kiện kích hoạt cụ thể: > ❌ ````description: A code reviewer.````
+> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
 
 Từ "proactively" (chủ động) là chịu lực — nó thúc agent cha gọi mà không cần được yêu cầu rõ ràng. Nếu agent của bạn dường như chẳng bao giờ khởi động, gần như luôn là vì description.
 
-### `tools` (tùy chọn — nhưng cứ khai báo đi)
+### ````tools```` (tùy chọn — nhưng cứ khai báo đi)
 
 Một danh sách cho phép, phân tách bằng dấu phẩy. Bỏ qua nó và agent sẽ kế thừa mọi công cụ mà agent cha có. Chúng ta sẽ dành hẳn một mục để nói vì sao điều đó thường là sai.
 
-### `model` (tùy chọn)
+### ````model```` (tùy chọn)
 
-Ghim một bậc: `haiku` cho các lượt xử lý cơ học rẻ tiền, `sonnet` cho công việc rà soát cân bằng, `opus` cho suy luận sâu. Một agent kiểu linter chạy với khối lượng lớn đặt ở `haiku` sẽ giữ chi phí ở mức hợp lý; một trình kiểm toán bảo mật mà chỉ một lần bỏ sót đã đắt giá thì xứng đáng dùng `opus`.
+Ghim một bậc: ````haiku```` cho các lượt xử lý cơ học rẻ tiền, ````sonnet```` cho công việc rà soát cân bằng, ````opus```` cho suy luận sâu. Một agent kiểu linter chạy với khối lượng lớn đặt ở ````haiku```` sẽ giữ chi phí ở mức hợp lý; một trình kiểm toán bảo mật mà chỉ một lần bỏ sót đã đắt giá thì xứng đáng dùng ````opus````.
 
 ## Viết System Prompt
 
 Phần thân là nơi phần lớn agent thắng hay thua. Ba quy tắc tạo ra những công nhân đáng tin cậy: **1. Nêu vai trò và ranh giới ngay câu đầu tiên.** "You are a migration reviewer. You do not write code or apply fixes — you report findings." Nói cho agent biết nó *không* được làm gì cũng quan trọng như chính công việc.
 
-**2. Quy định hợp đồng đầu ra.** Prompt mơ hồ tạo ra văn xuôi; bạn muốn cấu trúc. Hãy viết nó ra rõ ràng: ```markdown
+**2. Quy định hợp đồng đầu ra.** Prompt mơ hồ tạo ra văn xuôi; bạn muốn cấu trúc. Hãy viết nó ra rõ ràng: `````markdown
 Report your findings as a list. For each issue: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM: one sentence
 - FIX: the concrete change
 End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
-```
+`````
 
 **3. Cho nó một danh sách kiểm tra, không phải một cảm giác.** "Rà soát về an toàn" là một điều ước. Hãy liệt kê chính xác từng thứ cần kiểm tra — agent sẽ đi qua danh sách của bạn một cách xác định, và đó chính là toàn bộ giá trị của việc mã hóa nó.
 
 ## Danh Sách Công Cụ: Đặc Quyền Tối Thiểu Cho Agent
 
-Đây là cái bẫy. Để trống `tools`, và "reviewer" của bạn kế thừa `Write`, `Edit`, và `Bash`. Lần đầu tiên nó tìm thấy một vấn đề, nó có thể "nhiệt tình" sửa luôn — làm biến đổi cây làm việc của bạn, chạy lệnh, và phá hủy chính sự độc lập đã khiến lần rà soát này đáng để yêu cầu.
+Đây là cái bẫy. Để trống ````tools````, và "reviewer" của bạn kế thừa ````Write````, ````Edit````, và ````Bash````. Lần đầu tiên nó tìm thấy một vấn đề, nó có thể "nhiệt tình" sửa luôn — làm biến đổi cây làm việc của bạn, chạy lệnh, và phá hủy chính sự độc lập đã khiến lần rà soát này đáng để yêu cầu.
 
 Giải pháp là đặc quyền tối thiểu. Hãy khớp công cụ với công việc: | Loại agent | Công cụ |
 | --- | --- |
-| Reviewer / kiểm toán | `Read, Grep, Glob` |
-| Nghiên cứu / thám hiểm | `Read, Grep, Glob, WebSearch, WebFetch` |
-| Trình chạy test | `Read, Grep, Glob, Bash` |
-| Trình sửa lỗi (hiếm, có chủ đích) | `Read, Edit, Bash` |
+| Reviewer / kiểm toán | ````Read, Grep, Glob```` |
+| Nghiên cứu / thám hiểm | ````Read, Grep, Glob, WebSearch, WebFetch```` |
+| Trình chạy test | ````Read, Grep, Glob, Bash```` |
+| Trình sửa lỗi (hiếm, có chủ đích) | ````Read, Edit, Bash```` |
 
 Một reviewer chỉ-đọc theo đúng nghĩa đen *không thể* nổi loạn. Chính sự dự đoán được đó là điều cho phép bạn tin báo cáo của nó mà không phải kiểm tra lại tất cả những gì nó chạm vào. (Nếu sau này bạn nối vào các hệ thống ngoài qua [MCP server](/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/), kỷ luật tương tự cũng áp dụng — chỉ cấp những công cụ MCP mà agent thực sự cần.)
 
 ## Ví Dụ Thực Tế: Một Trình Duyệt Migration
 
-```markdown
----
+`````markdown
+* * *
 name: migration-reviewer
 description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
 tools: Read, Grep, Glob
 model: sonnet
----
+* * *
 
 You are a database migration reviewer. You do NOT edit files or run
 migrations — you read the proposed migration and report risks.
@@ -139,19 +140,19 @@ Report findings as: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM / FIX
 End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
-```
+`````
 
-Hãy gọi nó từ agent cha bằng một yêu cầu tự nhiên — "rà soát migration trên nhánh này" — và vì description nêu đích danh `db/migrate/`, agent cha sẽ tự định tuyến tới đó.
+Hãy gọi nó từ agent cha bằng một yêu cầu tự nhiên — "rà soát migration trên nhánh này" — và vì description nêu đích danh ````db/migrate/````, agent cha sẽ tự định tuyến tới đó.
 
 ## Ví Dụ Thực Tế: Một Cổng Bảo Mật
 
-```markdown
----
+`````markdown
+* * *
 name: security-gate
 description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
 tools: Read, Grep, Glob
 model: opus
----
+* * *
 
 You are a security reviewer with a threat-modeling mindset. Assume the
 input is hostile. You report only — you never modify code.
@@ -164,15 +165,15 @@ For the diff, check: - Authn/authz: can this path be reached without the expecte
 For each finding give an EXPLOIT SKETCH (how an attacker triggers it),
 then the FIX. Default to flagging when uncertain — false positives are
 cheap, a missed auth hole is not.
-```
+`````
 
-Lưu ý bậc model `opus` và chỉ dẫn "default to flagging when uncertain" (khi không chắc chắn thì mặc định gắn cờ) — đối với một cổng bảo mật, bạn tinh chỉnh theo hướng hoang tưởng.
+Lưu ý bậc model ````opus```` và chỉ dẫn "default to flagging when uncertain" (khi không chắc chắn thì mặc định gắn cờ) — đối với một cổng bảo mật, bạn tinh chỉnh theo hướng hoang tưởng.
 
 ## Kiểm Thử Và Lặp Tinh Chỉnh Agent
 
-Đừng đưa lên một agent mà bạn chưa thử lừa nó. Dựng một [git worktree](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) hoặc một nhánh dùng-một-lần với một vấn đề *được cài cắm* — một migration thiếu `CONCURRENTLY`, một endpoint thiếu kiểm tra quyền sở hữu — rồi gọi agent.
+Đừng đưa lên một agent mà bạn chưa thử lừa nó. Dựng một [git worktree](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) hoặc một nhánh dùng-một-lần với một vấn đề *được cài cắm* — một migration thiếu ````CONCURRENTLY````, một endpoint thiếu kiểm tra quyền sở hữu — rồi gọi agent.
 
-Bạn đang kiểm thử hai điều độc lập với nhau: - **Nó có được kích hoạt** bởi một yêu cầu tự nhiên không? Nếu không, hãy sửa `description`.
+Bạn đang kiểm thử hai điều độc lập với nhau: - **Nó có được kích hoạt** bởi một yêu cầu tự nhiên không? Nếu không, hãy sửa ````description````.
 - **Nó có bắt được con bug cài cắm không?** Nếu không, hãy sửa danh sách kiểm tra trong system prompt.
 
 Hai điều này thất bại vì những lý do khác nhau, nên hãy lặp tinh chỉnh chúng riêng rẽ. Một bất ngờ thường gặp: agent hoạt động hoàn hảo khi bạn gọi đích danh nó nhưng chẳng bao giờ tự khởi động — đó luôn là vấn đề description, không bao giờ là vấn đề phần thân.
@@ -180,7 +181,7 @@ Hai điều này thất bại vì những lý do khác nhau, nên hãy lặp tin
 ## Những Lỗi Viết Agent Thường Gặp
 
 - **Description mơ hồ.** Agent làm việc tuyệt vời mà chẳng ai kích hoạt. Hãy thêm các đường dẫn tệp cụ thể và từ "proactively".
-- **Không có danh sách công cụ.** Reviewer của bạn sửa luôn đoạn code mà lẽ ra nó phải rà soát. Hãy khai báo `Read, Grep, Glob`.
+- **Không có danh sách công cụ.** Reviewer của bạn sửa luôn đoạn code mà lẽ ra nó phải rà soát. Hãy khai báo ````Read, Grep, Glob```.
 - **Đầu ra văn xuôi, không có hợp đồng.** Bạn nhận về ba đoạn ý kiến thay vì một danh sách phân loại theo mức độ. Hãy chỉ định chính xác định dạng báo cáo.
 - **Một siêu-agent khổng lồ.** Một agent "làm tất cả mọi thứ" chẳng qua chỉ là agent cha kèm thêm vài bước thừa. Hãy chia tách theo mối quan tâm — đó chính là [mẫu giao việc cho chuyên gia](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) đang làm việc cho bạn.
 - **Tạo xong rồi quên.** Agent là code. Một danh sách kiểm tra không được bảo trì sẽ mục rữa khi tech stack của bạn thay đổi. Hãy rà soát chúng mỗi quý.
@@ -236,7 +237,7 @@ Hãy bắt đầu với một cái — trình duyệt migration ở trên là ag
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -246,7 +247,7 @@ Hãy bắt đầu với một cái — trình duyệt migration ở trên là ag
 - [claude-code-vs-aider](claude-code-custom-agent-authoring-guide-2026)
 - [cursor-vs-claude-code](claude-code-custom-agent-authoring-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

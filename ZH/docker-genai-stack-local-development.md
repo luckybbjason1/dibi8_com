@@ -12,13 +12,14 @@ aliases:
   - /zh/posts/docker-genai-stack-local-development/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：GenAI 开发环境的噩梦
 
-你一定经历过。你想用 LangChain 快速搭建一个 RAG 应用原型，接入向量数据库，通过 Ollama 跑本地 LLM，再连上一个知识图谱 —— 结果花了三小时跟依赖冲突搏斗。PyTorch 要 CUDA 12.1，Neo4j 驱动却依赖另一个 `numpy` 版本。向量数据库需要特定的 `protobuf` 构建。你的 `pip install` 输出看起来像地狱来的堆栈跟踪。
+你一定经历过。你想用 LangChain 快速搭建一个 RAG 应用原型，接入向量数据库，通过 Ollama 跑本地 LLM，再连上一个知识图谱 —— 结果花了三小时跟依赖冲突搏斗。PyTorch 要 CUDA 12.1，Neo4j 驱动却依赖另一个 ```numpy```` 版本。向量数据库需要特定的 ````protobuf```` 构建。你的 ````pip install```` 输出看起来像地狱来的堆栈跟踪。
 
-Docker 看到了这个痛点。在 DockerCon 2024 上，他们发布了 **Docker GenAI Stack** —— 一个 `docker-compose.yml` 文件，5 分钟内启动完整的 GenAI 开发环境。截至 2026 年 5 月，这个项目已有 **约 5,500 GitHub Stars**，内置 **LangChain v0.3.x**，并预配置了 Neo4j、Ollama 和向量数据库的集成。整个 Stack 纯本地运行，零云依赖，你的 API 密钥留在本地环境，数据永不离开你的机器。
+Docker 看到了这个痛点。在 DockerCon 2024 上，他们发布了 **Docker GenAI Stack** —— 一个 ````docker-compose.yml```` 文件，5 分钟内启动完整的 GenAI 开发环境。截至 2026 年 5 月，这个项目已有 **约 5,500 GitHub Stars**，内置 **LangChain v0.3.x**，并预配置了 Neo4j、Ollama 和向量数据库的集成。整个 Stack 纯本地运行，零云依赖，你的 API 密钥留在本地环境，数据永不离开你的机器。
 
 本文将带你从零开始，搭建一个由知识图谱支持的完整 RAG 流水线 —— 全部在 Docker 容器中运行。涵盖安装、架构解析、真实基准测试、生产加固以及诚实的局限性分析。
 
@@ -30,13 +31,13 @@ Docker 看到了这个痛点。在 DockerCon 2024 上，他们发布了 **Docker
 
 架构遵循模块化流水线模式。每个服务是独立容器，通过 Docker 内部网络通信：
 
-```yaml
+`````yaml
 services: llm: # Ollama — 本地 LLM 推理
   database: # Neo4j — 知识图谱 + 向量搜索
   loader: # 文档摄入流水线
   bot: # LangChain 驱动的聊天界面
   pdf-frontend: # 可选的 PDF 交互 UI
-```
+`````
 
 **数据流经四个阶段：**
 
@@ -53,37 +54,37 @@ Neo4j 承担双重职责 —— 存储**知识图谱**（实体-关系结构）�
 
 **第一步 —— 克隆仓库：**
 
-```bash
+`````bash
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack
-```
+`````
 
 **第二步 —— 复制并配置环境变量：**
 
-```bash
+`````bash
 cp .env.example .env
-```
+`````
 
-编辑 `.env` 选择你的 LLM 和嵌入模型：
+编辑 ````.env```` 选择你的 LLM 和嵌入模型：
 
-```bash
+`````bash
 # .env —— Ollama 本地最小配置
 LLM=ollama
 EMBEDDING_MODEL=sentence_transformer
 OLLAMA_BASE_URL=http://llm:11434
 NEO4J_URI=neo4j://database:7687
 NEO4J_PASSWORD=password
-```
+`````
 
 **第三步 —— 启动 Stack：**
 
-```bash
+`````bash
 docker compose up --build
-```
+`````
 
 首次构建会拉取所有镜像并下载模型。泡杯咖啡 —— 在现代网络环境下约需 **3–5 分钟**。你会看到 Ollama 正在拉取默认模型（通常是 Llama 3.2 7B）：
 
-```
+`````
 [+] Running 6/6
  ⠿ Network genai-stack_default       Created
  ⠿ Container genai-stack-database-1  Started
@@ -91,11 +92,11 @@ docker compose up --build
  ⿿ Container genai-stack-loader-1    Started
  ⿿ Container genai-stack-bot-1       Started
  ⿿ Container genai-stack-pdf-frontend-1  Started
-```
+`````
 
 **第四步 —— 验证服务：**
 
-```bash
+`````bash
 # 检查所有容器健康状态
 docker compose ps
 
@@ -103,19 +104,19 @@ docker compose ps
 curl http://localhost:11434/api/tags
 
 # 期望输出：可用模型列表
-```
+`````
 
 **第五步 —— 打开聊天界面：**
 
-访问 `http://localhost:8501` 打开 Streamlit 聊天 UI，或 `http://localhost:8080` 打开 PDF 前端。Bot 服务在 8000 端口提供 API 访问。
+访问 ````http://localhost:8501```` 打开 Streamlit 聊天 UI，或 ````http://localhost:8080```` 打开 PDF 前端。Bot 服务在 8000 端口提供 API 访问。
 
 ## 与 LangChain、Neo4j 和 Ollama 的集成
 
 ### LangChain 集成
 
-该 Stack 使用 LangChain 的 `Neo4jVector` 和 `GraphCypherQAChain` 实现基于知识图谱的检索增强生成：
+该 Stack 使用 LangChain 的 ````Neo4jVector```` 和 ````GraphCypherQAChain```` 实现基于知识图谱的检索增强生成：
 
-```python
+`````python
 # 示例：使用 LangChain 查询知识图谱
 from langchain_community.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
@@ -137,36 +138,36 @@ chain = GraphCypherQAChain.from_llm(
 
 result = chain.invoke({"query": "What companies work in the AI sector?"})
 print(result[result])
-```
+`````
 
 ### Neo4j 知识图谱配置
 
 Stack 在 Neo4j 启动时自动创建向量索引。你可以查看和扩展图谱 schema：
 
-```bash
+`````bash
 # 访问 Neo4j Browser http://localhost:7474
 # 登录：neo4j / password
 
 # Cypher：查看向量索引
 SHOW INDEXES YIELD name, type, entityType
 WHERE type = VECTOR
-```
+`````
 
-```cypher
+`````cypher
 // 为文档创建自定义向量索引
 CREATE VECTOR INDEX document_embeddings FOR (d:Document)
 ON (d.embedding)
 OPTIONS {indexConfig: {
- `vector.dimensions`: 384,
- `vector.similarity_function`: cosine
+ ````vector.dimensions````: 384,
+ ````vector.similarity_function````: cosine
 }}
-```
+`````
 
 ### Ollama 模型管理
 
 无需重启 Stack 即可切换模型：
 
-```bash
+`````bash
 # 拉取不同模型
 docker compose exec llm ollama pull mistral:7b
 
@@ -175,20 +176,20 @@ docker compose exec llm ollama list
 
 # 运行推理测试
 docker compose exec llm ollama run llama3.2 "Explain Docker containers"
-```
+`````
 
 通过环境变量覆盖默认模型：
 
-```bash
+`````bash
 # 在 .env 或 docker-compose.override.yml 中
 OLLAMA_MODEL=mistral:7b docker compose up
-```
+`````
 
 ### 连接外部向量数据库
 
 虽然 Neo4j 原生处理向量存储，你可以通过修改 LangChain 向量存储初始化来替换为 Pinecone、Weaviate 或 pgvector：
 
-```python
+`````python
 # 将 Neo4jVector 替换为 Pinecone（需在 .env 中设置 PINECONE_API_KEY）
 from langchain_pinecone import PineconeVectorStore
 
@@ -197,7 +198,7 @@ vectorstore = PineconeVectorStore.from_documents(
     embedding=embeddings,
     index_name="genai-stack"
 )
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -205,13 +206,13 @@ vectorstore = PineconeVectorStore.from_documents(
 
 | 搭建方式 | 首次启动 | 重新构建 | 磁盘占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Docker GenAI Stack | **3–5 分钟** | **45 秒** | **约 8 GB** |
 | 手动 pip 安装 | 45–90 分钟 | 10–20 分钟 | 约 12 GB |
@@ -222,13 +223,13 @@ vectorstore = PineconeVectorStore.from_documents(
 
 | 服务 | 内存 | CPU | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama (llama3.2 7B) | **3.2 GB** | 0.8 核 | GPU 卸载后降至 800MB |
 | Neo4j Community | **1.8 GB** | 0.3 核 | 向量索引加载到内存 |
@@ -258,34 +259,34 @@ vectorstore = PineconeVectorStore.from_documents(
 
 启用 NVIDIA GPU 支持，推理速度提升 5–10 倍：
 
-```yaml
+`````yaml
 # docker-compose.override.yml
 services: llm: deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
-```bash
+`````bash
 # 验证 GPU 是否在使用
 nvidia-smi
 # Ollama 进程应出现，显存占用约 3GB
-```
+`````
 
 ### 数据持久化卷
 
 默认情况下，Neo4j 数据存储在 Docker volume 中。生产级持久化配置：
 
-```yaml
+`````yaml
 services: database: volumes: - ./neo4j-data:/data
       - ./neo4j-logs:/logs
       - ./neo4j-plugins:/plugins
-```
+`````
 
 ### 自定义文档加载器
 
 扩展 loader 服务以摄入你的数据源：
 
-```python
+`````python
 # loader/custom_loader.py
 from langchain_community.document_loaders import ConfluenceLoader
 
@@ -295,11 +296,11 @@ def load_confluence(): loader = ConfluenceLoader(
         api_key="your-api-key"
     )
     return loader.load(space_key="DEV")
-```
+`````
 
 ### Stack 安全加固
 
-```bash
+`````bash
 # 生成安全的 Neo4j 密码
 openssl rand -base64 32
 
@@ -309,22 +310,22 @@ NEO4J_AUTH=neo4j/YOUR_SECURE_PASSWORD_HERE
 # 将 Ollama 限制为仅内部网络访问
 # 从 docker-compose.yml 中移除 11434 端口映射
 # 通过容器网络访问：http://llm:11434
-```
+`````
 
 ### 部署到 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)
 
 团队共享实例或客户演示，Stack 在 **4 vCPU / 8GB RAM Droplet**（约 $48/月）上运行良好：
 
-```bash
+`````bash
 # 在 DigitalOcean Droplet（Ubuntu 24.04）上
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/docker/genai-stack.git
 cd genai-stack && docker compose up -d
-```
+`````
 
 添加反向代理与 HTTPS：
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/genai
 server {
     listen 443 ssl;
@@ -340,21 +341,21 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Docker GenAI Stack | LangChain Docker 模板 | Haystack Docker | LocalAI All-in-One |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **官方维护者** | Docker（已认证） | 社区 | deepset | LocalAI 社区 |
 | **知识图谱** | 内置 Neo4j | 手动配置 | 自定义 | 不包含 |
@@ -379,11 +380,11 @@ server {
 
 **内存消耗大。** Ollama + Neo4j + LangChain 同时运行至少占用 **5.5–6 GB 内存**。8GB 机器上会出现 swap 抖动，性能骤降。舒适开发建议 16GB 内存。
 
-**首次启动下载量大。** 初始 `docker compose up` 拉取约 6GB 镜像和模型。这是一次性成本，但在慢网络环境下需提前规划。
+**首次启动下载量大。** 初始 ````docker compose up```` 拉取约 6GB 镜像和模型。这是一次性成本，但在慢网络环境下需提前规划。
 
 **Neo4j Community 版。** Stack 使用 Neo4j Community，缺少基于角色的访问控制、集群和高级监控。企业版升级路径存在，但需要许可证。
 
-**模型选择 UI 有限。** 切换 Ollama 模型需要命令行操作或编辑 `.env`。Web UI 中没有运行时模型选择器。
+**模型选择 UI 有限。** 切换 Ollama 模型需要命令行操作或编辑 ````.env````。Web UI 中没有运行时模型选择器。
 
 **无内置认证。** Streamlit 和 PDF 前端没有登录系统。暴露到互联网需要添加带认证的反向代理（参见上方 Nginx 示例）。
 
@@ -391,11 +392,11 @@ server {
 
 **Q：可以使用 OpenAI GPT-4 替代 Ollama 吗？**
 
-可以。在 `.env` 中设置 `LLM=openai` 并添加你的 `OPENAI_API_KEY`。Stack 将使用 GPT-4 进行生成，同时继续使用 Neo4j 存储向量。这在开发阶段需要更快响应、但计划切换到本地模型用于生产时很有用。
+可以。在 ````.env```` 中设置 ````LLM=openai```` 并添加你的 ````OPENAI_API_KEY````。Stack 将使用 GPT-4 进行生成，同时继续使用 Neo4j 存储向量。这在开发阶段需要更快响应、但计划切换到本地模型用于生产时很有用。
 
 **Q：如何将自己的文档添加到知识图谱？**
 
-将 PDF 或文本文件放入 `data/` 目录，然后重启 loader 服务：`docker compose restart loader`。Loader 会监控此目录并在启动时处理新文件。生产环境中，通过自定义文档源扩展 loader（参见高级用法）。
+将 PDF 或文本文件放入 ````data/```` 目录，然后重启 loader 服务：````docker compose restart loader````。Loader 会监控此目录并在启动时处理新文件。生产环境中，通过自定义文档源扩展 loader（参见高级用法）。
 
 **Q：可以在 macOS 或 Windows 上运行吗？**
 
@@ -407,26 +408,26 @@ server {
 
 **Q：如何将 Stack 更新到新版？**
 
-拉取最新变更并重建：`git pull && docker compose up --build`。这会更新 LangChain 版本和 Stack 配置。Ollama 模型存储在其 volume 中，不会重新下载。更新前务必查看 [CHANGELOG](https://github.com/docker/genai-stack/blob/main/CHANGELOG.md) 了解破坏性变更。
+拉取最新变更并重建：````git pull && docker compose up --build````。这会更新 LangChain 版本和 Stack 配置。Ollama 模型存储在其 volume 中，不会重新下载。更新前务必查看 [CHANGELOG](https://github.com/docker/genai-stack/blob/main/CHANGELOG.md) 了解破坏性变更。
 
 **Q：可以部署到 Kubernetes 吗？**
 
-Compose 文件可通过 Kompose 转换（`kompose convert`），但需要手动配置持久卷、密钥和 ingress。生产 Kubernetes 部署建议考虑各组件的 Helm Chart（Neo4j Helm Chart、带 GPU operator 的 Ollama），而非 all-in-one 方案。
+Compose 文件可通过 Kompose 转换（````kompose convert````），但需要手动配置持久卷、密钥和 ingress。生产 Kubernetes 部署建议考虑各组件的 Helm Chart（Neo4j Helm Chart、带 GPU operator 的 Ollama），而非 all-in-one 方案。
 
 ## 结论：5 分钟开始构建
 
-Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一个 `docker compose up` 就给你 LangChain、Neo4j、Ollama 和向量数据库 —— 全部正确互联。知识图谱集成本身就让它值得选择，胜过更简单的 RAG 模板。
+Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一个 ````docker compose up```` 就给你 LangChain、Neo4j、Ollama 和向量数据库 —— 全部正确互联。知识图谱集成本身就让它值得选择，胜过更简单的 RAG 模板。
 
 团队开发时，在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上部署共享实例，让所有人针对同一数据工作。个人开发时，在现代笔记本（16GB 内存）上运行舒适。
 
-该 Stack 不会解决所有 GenAI 问题 —— 你仍需设计 prompt、评估检索质量、调优模型。但它让你在 5 分钟内跨过环境搭建的门槛，意味着你可以专注于构建而非调试 `pip` 冲突。
+该 Stack 不会解决所有 GenAI 问题 —— 你仍需设计 prompt、评估检索质量、调优模型。但它让你在 5 分钟内跨过环境搭建的门槛，意味着你可以专注于构建而非调试 ````pip```` 冲突。
 
-**准备好了吗？** 克隆仓库，复制 `.env`，运行 `docker compose up`。你的 RAG 流水线将在 `localhost:8501` 等待。
+**准备好了吗？** 克隆仓库，复制 ````.env````，运行 ````docker compose up````。你的 RAG 流水线将在 ````localhost:8501``` 等待。
 
 加入我们的开发者社区 Telegram：**@dibi8dev** —— 分享你的 GenAI Stack 配置，与 5000+ 开发者一起交流。
 
 
----
+* * *
 ## 来源与延伸阅读
 
 1. [Docker GenAI Stack GitHub 仓库](https://github.com/docker/genai-stack) — 官方源码与最新发布
@@ -436,7 +437,7 @@ Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一
 5. [Neo4j 向量搜索文档](https://neo4j.com/docs/cypher-manual/current/indexes/vector-indexes/) — 向量索引配置
 6. [Docker Compose 规范](https://docs.docker.com/compose/compose-file/) — 自定义 Stack 配置
 
----
+* * *
 
 ## 推荐部署与基础设施
 
@@ -513,12 +514,12 @@ Docker GenAI Stack: 一键 Docker Compose 启动 LangChain、向量数据库与 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -528,7 +529,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](docker-genai-stack-local-development)
 - [moneyprinterturbo-one-click-ai-video-generator](docker-genai-stack-local-development)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

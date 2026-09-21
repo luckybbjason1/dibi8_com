@@ -10,6 +10,7 @@ draft: false
 slug: vercel-ai-sdk-edge-compute
 -CN---
 
+
 ## TL;DR
 
 Vercel AI SDK 是一个为构建带流式支持的 AI 用户界面而设计的开源库，适用于所有主流框架。它为集成 LLM 提供商（OpenAI、Anthropic、Google）提供类型安全的 API、自动响应流式传输、React 内置 UI 组件，以及无缝部署到边缘运行时。核心优势：一个 SDK 处处可用——Next.js App Router、Remix、SvelteKit、Nuxt 或任何支持 fetch 的框架。
@@ -28,21 +29,21 @@ Vercel AI SDK 是抽象构建 AI 应用复杂性的开源库。其核心提供�
 
 传统 AI 应用遵循此模式：
 
-```
+````
 用户 → Web 服务器 → API 路由 → LLM 提供商 → 响应
-```
+`````
 
 每次跳转都增加延迟。Vercel 的 edge-first 方法消除中间环节：
 
-```
+`````
 用户 → 边缘函数 → LLM 提供商 → 流式响应
-```
+`````
 
 边缘函数在 Cloudflare Worker、Fastly Compute@Edge 或 Vercel Edge Function 上运行——地理分布的节点通常距用户仅 100-300ms。对于聊天应用，这意味着首个 token 在 500ms 内到达。
 
 ### 核心架构
 
-```typescript
+`````typescript
 // 提供商抽象层
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
@@ -57,17 +58,17 @@ const result = await streamText({
   messages: [{ role: "user", content: "你好！" }],
   system: "你是一个有帮助的助手。"
 });
-```
+`````
 
-无论调用 GPT-4o、Claude 3.5 Sonnet 还是 Gemini 1.5 Pro，`streamText` 函数行为完全一致。只需更改一行即可切换提供商。
+无论调用 GPT-4o、Claude 3.5 Sonnet 还是 Gemini 1.5 Pro，````streamText```` 函数行为完全一致。只需更改一行即可切换提供商。
 
 
----
+* * *
 ## 快速开始
 
 ### 第一步：安装依赖
 
-```bash
+`````bash
 # 用 TypeScript 创建新的 Next.js 项目
 npx create-next-app@latest my-ai-app --typescript --tailwind --app
 
@@ -77,13 +78,13 @@ cd my-ai-app
 npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
 # 可选：结构化输出
 npm install zod
-```
+`````
 
 ### 第二步：配置第一个聊天 API
 
-创建 `app/api/chat/route.ts`：
+创建 ````app/api/chat/route.ts````：
 
-```typescript
+`````typescript
 import { streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
@@ -98,23 +99,23 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o"),
     messages,
-    system: `你是一个有帮助的编程助手。
-    在相关时提供代码示例。`,
+    system: ````你是一个有帮助的编程助手。
+    在相关时提供代码示例。````,
     maxTokens: 2048,
     temperature: 0.7,
   });
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 就这样。一个文件，20 行代码，你就拥有了完全流式的聊天 API。
 
 ### 第三步：构建前端
 
-创建 `app/page.tsx`：
+创建 ````app/page.tsx````：
 
-```typescript
+`````typescript
 "use client";
 
 import { useChat } from "ai/react";
@@ -129,9 +130,9 @@ export default function Chat() {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`p-3 rounded-lg ${
+            className={````p-3 rounded-lg ${
               msg.role === "user" ? "bg-blue-100 ml-8" : "bg-gray-100 mr-8"
-            }`}
+            }````}
           >
             {msg.content}
           </div>
@@ -157,11 +158,11 @@ export default function Chat() {
     </div>
   );
 }
-```
+`````
 
-`useChat` hook 处理一切：状态管理、流式更新、错误处理和加载状态。
+````useChat```` hook 处理一切：状态管理、流式更新、错误处理和加载状态。
 
----
+* * *
 
 ## 高级模式
 
@@ -169,7 +170,7 @@ export default function Chat() {
 
 根据任务类型将请求路由到不同模型：
 
-```typescript
+`````typescript
 import { createOpenAI } from "@ai-sdk/openai";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
@@ -201,13 +202,13 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### 模式二：使用 Zod 的结构化输出
 
 验证并将 LLM 响应解析为类型化对象：
 
-```typescript
+`````typescript
 import { z } from "zod";
 import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
@@ -226,13 +227,13 @@ export async function POST(req: Request) {
   const { object } = await generateObject({
     model: openai("gpt-4o"),
     schema: ArticleSchema,
-    prompt: `分析这段文本并提取文章元数据: ${text}`,
+    prompt: ````分析这段文本并提取文章元数据: ${text}````,
     temperature: 0,
   });
 
   return Response.json(object);
 }
-```
+`````
 
 响应保证匹配 schema——TypeScript 类型从 schema 定义端到端流动到前端组件。
 
@@ -240,7 +241,7 @@ export async function POST(req: Request) {
 
 在单个路由中构建检索增强生成：
 
-```typescript
+`````typescript
 import { embed, embedMany, streamText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { cosineSimilarity } from "ai/embeddings";
@@ -282,21 +283,21 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o"),
     messages,
-    system: `仅使用以下上下文回答。如果上下文不包含相关信息，请说明。
+    system: ````仅使用以下上下文回答。如果上下文不包含相关信息，请说明。
     
     上下文: ${context.join("\n\n")}
-    `,
+    ````,
   });
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### 模式四：Agent 工具调用
 
 赋予 LLM 访问外部工具的能力：
 
-```typescript
+`````typescript
 import { streamText, tool } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
@@ -315,7 +316,7 @@ const result = streamText({
       }),
       execute: async ({ query, maxResults }) => {
         const response = await fetch(
-          `https://api.search.com/v1/search?q=${encodeURIComponent(query)}&limit=${maxResults}`
+          ````https://api.search.com/v1/search?q=${encodeURIComponent(query)}&limit=${maxResults}````
         );
         return response.json();
       },
@@ -324,18 +325,18 @@ const result = streamText({
       description: "执行数学计算"
       parameters: z.object({ expression: z.string().describe("数学表达式") }),
       execute: async ({ expression }) => {
-        try { return { result: Function(`return ${expression}`)() }; }
+        try { return { result: Function(````return ${expression}````)() }; }
         catch (e) { return { error: "无效表达式" }; }
       },
     }),
   },
   maxSteps: 5, // 允许最多 5 轮工具调用
 });
-```
+`````
 
 每个工具在服务端执行，保持 API 密钥安全，同时赋予 LLM 现实世界的能力。
 
----
+* * *
 
 ## UI 组件
 
@@ -343,11 +344,11 @@ const result = streamText({
 
 SDK 附带常见 AI 模式的 React 组件：
 
-```bash
+`````bash
 npm install @ai-sdk/react
-```
+`````
 
-```typescript
+`````typescript
 import { useChat } from "@ai-sdk/react";
 
 export function AIChat() {
@@ -361,7 +362,7 @@ export function AIChat() {
     <div className="ai-chat">
       <div className="space-y-2">
         {messages.map((m) => (
-          <div key={m.id} className={`p-2 rounded ${m.role === "user" ? "bg-blue-100" : "bg-gray-100"}`}>
+          <div key={m.id} className={````p-2 rounded ${m.role === "user" ? "bg-blue-100" : "bg-gray-100"}````}>
             {m.content}
           </div>
         ))}
@@ -374,15 +375,15 @@ export function AIChat() {
     </div>
   );
 }
-```
+`````
 
----
+* * *
 
 ## 部署
 
 ### 部署到 Vercel
 
-```bash
+`````bash
 # 安装 Vercel CLI
 npm i -g vercel
 
@@ -394,13 +395,13 @@ vercel env add OPENAI_API_KEY
 
 # 部署
 vercel deploy --prod
-```
+`````
 
 你的 API 路由自动部署到 Vercel 的边缘网络。无需 Docker、Kubernetes 或配置。
 
 ### 部署到 Cloudflare Worker
 
-```typescript
+`````typescript
 import { toEdgeAPI } from "ai";
 
 export const config = { runtime: "edge" };
@@ -412,13 +413,13 @@ export async function POST(req: Request) {
   });
   return toEdgeAPI(result.toDataStreamResponse());
 }
-```
+`````
 
-使用 `wrangler deploy` 部署。Cloudflare 的全球网络确保 sub-100ms 冷启动。
+使用 ````wrangler deploy```` 部署。Cloudflare 的全球网络确保 sub-100ms 冷启动。
 
 ### 使用 Docker 自托管
 
-```dockerfile
+`````dockerfile
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -432,9 +433,9 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 EXPOSE 3000
 CMD ["npm", "start"]
-```
+`````
 
----
+* * *
 
 ## 性能基准测试
 
@@ -442,11 +443,11 @@ CMD ["npm", "start"]
 
 | 配置 | 首 Token(p50) | 完整响应(p95) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Vercel Edge + GPT-4o | 320ms | 4.2s |
 | AWS Lambda + GPT-4o | 580ms | 5.8s |
@@ -459,9 +460,9 @@ CMD ["npm", "start"]
 
 | 提供商 | 每 1K 请求成本（平均 100 token） |
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-4o | $1.20 |
 | Claude Sonnet 4 | $0.80 |
@@ -470,19 +471,19 @@ CMD ["npm", "start"]
 
 使用多提供商路由模式自动选择满足质量要求的最低成本模型。
 
----
+* * *
 
 ## 常见问题排查
 
 ### 问题一：开发中的 CORS 错误
 
-```
+`````
 Access to fetch at 'http://localhost:30000/api/chat' blocked by CORS policy
-```
+`````
 
 **修复**：确保 API 路由返回正确的 CORS 头：
 
-```typescript
+`````typescript
 export async function POST(req: Request) {
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -491,43 +492,43 @@ export async function POST(req: Request) {
   };
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 }
-```
+`````
 
 ### 问题二：生产环境流式传输不工作
 
 如果前端一次性显示完整响应而非流式传输：
 
-**检查 1**：验证 API 路由返回 `ReadableStream`
-**检查 2**：确保你使用 `toDataStreamResponse()` 而非 `toTextStreamResponse()` 以获得完整保真度。
+**检查 1**：验证 API 路由返回 ````ReadableStream````
+**检查 2**：确保你使用 ````toDataStreamResponse()```` 而非 ````toTextStreamResponse()```` 以获得完整保真度。
 
 ### 问题三：边缘函数上的模型超时
 
 边缘函数有 60 秒超时限制。对于长运行模型：
 
-```typescript
+`````typescript
 const result = streamText({
   model: openai("o3-mini"),
   messages,
   maxTokens: 4096,
   timeout: 55000, // 55 秒（低于 60 秒边缘限制）
 });
-```
+`````
 
 对于更长的操作，卸载到基于队列的模式：提交请求、轮询完成、然后流式传输结果。
 
 ### 问题四：提供商模型的类型错误
 
-```
+`````
 Argument of type '"gpt-4-turbo"' is not assignable to parameter of type...
-```
+`````
 
 **修复**：确保你使用提供商版本正确的模型标识符：
 
-```bash
+`````bash
 npm update ai @ai-sdk/openai
-```
+`````
 
----
+* * *
 
 ## 未来方向
 
@@ -553,7 +554,7 @@ npm update ai @ai-sdk/openai
 - 你在构建没有 TypeScript 的非 React 应用——SDK 在 TS/React 中最出色
 - 你需要自定义推理服务——vLLM 或 TGI 用于自托管 GPU 集群
 
----
+* * *
 
 ## 社区动态
 
@@ -566,23 +567,23 @@ AI SDK 生态系统已显著成熟：
 
 SDK 的 GitHub 仓库已超过 30,000 star，npm 周下载量超过 500 万——使其成为 JavaScript 生态中最流行的 AI 开发 SDK。
 
----
+* * *
 
 ## FAQ
 
 ### Q: 我可以在不使用 Next.js 的情况下使用 Vercel AI SDK 吗？
 
-可以。虽然 SDK 与 Next.js 完美集成，但它适用于任何支持 Fetch API 的框架。Remix、SvelteKit、Nuxt、Astro、Express、Fastify 甚至 vanilla Node.js 都可以工作。`ai` 包是框架无关的——只有 React hooks（`@ai-sdk/react`）需要 React。
+可以。虽然 SDK 与 Next.js 完美集成，但它适用于任何支持 Fetch API 的框架。Remix、SvelteKit、Nuxt、Astro、Express、Fastify 甚至 vanilla Node.js 都可以工作。````ai```` 包是框架无关的——只有 React hooks（````@ai-sdk/react````）需要 React。
 
 ### Q: 流式传输在底层如何工作？
 
-SDK 使用通过 `ReadableStream` 的 Server-Sent Events（SSE）。当你调用 `streamText()` 时，它创建到 LLM 提供商的流式连接。每个 token 作为 SSE 事件发送到客户端，`useChat` hook 解析它并增量更新 UI。这就是 AI 聊天界面中"打字"效果的来源。
+SDK 使用通过 ````ReadableStream```` 的 Server-Sent Events（SSE）。当你调用 ````streamText()```` 时，它创建到 LLM 提供商的流式连接。每个 token 作为 SSE 事件发送到客户端，````useChat```` hook 解析它并增量更新 UI。这就是 AI 聊天界面中"打字"效果的来源。
 
 ### Q: 我可以缓存 LLM 响应以减少成本吗？
 
 可以。在 API 路由级别实现缓存：
 
-```typescript
+`````typescript
 const cachedChat = cache(async (messages: any[]) => {
   const hash = JSON.stringify(messages);
   const cached = await redis.get(hash);
@@ -591,7 +592,7 @@ const cachedChat = cache(async (messages: any[]) => {
   await redis.setex(hash, 3600, JSON.stringify(result));
   return result;
 });
-```
+`````
 
 缓存相同的对话数小时或数天，为重复查询节省 50-80% 的 API 成本。
 
@@ -603,7 +604,7 @@ const cachedChat = cache(async (messages: any[]) => {
 
 使用中间件保护 API 路由：
 
-```typescript
+`````typescript
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("auth-token");
   if (!token && request.nextUrl.pathname.startsWith("/api/chat")) {
@@ -611,11 +612,11 @@ export function middleware(request: NextRequest) {
   }
   return NextResponse.next();
 }
-```
+````
 
 对于生产应用，结合 JWT 认证和速率限制以防止滥用。
 
----
+* * *
 
 ## 参考资料
 
@@ -625,7 +626,7 @@ export function middleware(request: NextRequest) {
 - [AI 的边缘计算 — Cloudflare 研究 2026](https://developers.cloudflare.com/cloudflare-one/papers/edge-ai-2026)
 - [AI SDK 提供商对比矩阵](https://sdk.vercel.ai/docs/providers)
 
----
+* * *
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
@@ -655,7 +656,7 @@ export function middleware(request: NextRequest) {
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -665,6 +666,6 @@ export function middleware(request: NextRequest) {
 - [9router-smart-llm-proxy-token-saver-free-coding](vercel-ai-sdk-edge-compute)
 - [ai-engineering-from-scratch](vercel-ai-sdk-edge-compute)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

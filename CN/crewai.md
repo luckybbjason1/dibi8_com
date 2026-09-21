@@ -24,6 +24,7 @@ aliases:
   - /posts/crewai/
 - /resources/llm-frameworks/crewai-multi-agent-orchestration/-
 ---
+
 {{</* resource-info */>}}
 
 > How to install CrewAI, configure agent roles, wire tasks, and ship production-ready multi-agent systems in under 30 minutes.
@@ -44,18 +45,18 @@ CrewAI's architecture separates agent definition from orchestration logic: ![Cre
 
 | Component | Purpose | Config File |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Agent** | A role-based AI worker with goals, backstory, and tools | `agents.yaml` |
-| **Task** | A unit of work assigned to an agent with expected output | `tasks.yaml` |
-| **Crew** | A team of agents executing tasks via a defined process | `crew.py` |
-| **Flow** | An event-driven workflow chaining crews with state management | `flow.py` |
-| **Tool** | External capabilities (search, APIs, calculations) | `tools/` |
-| **Process** | Execution strategy: sequential, hierarchical, or parallel | `crew.py` |
+| **Agent** | A role-based AI worker with goals, backstory, and tools | ```agents.yaml```` |
+| **Task** | A unit of work assigned to an agent with expected output | ````tasks.yaml```` |
+| **Crew** | A team of agents executing tasks via a defined process | ````crew.py```` |
+| **Flow** | An event-driven workflow chaining crews with state management | ````flow.py```` |
+| **Tool** | External capabilities (search, APIs, calculations) | ````tools/```` |
+| **Process** | Execution strategy: sequential, hierarchical, or parallel | ````crew.py```` |
 
 ![CrewAI Architecture](https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png)
 
@@ -75,17 +76,17 @@ The diagram above shows CrewAI's dual-model architecture: **Crews** handle agent
 
 CrewAI requires Python 3.10–3.13 and an API key from at least one LLM provider.
 
-```bash
+`````bash
 # Check Python version
 python --version  # Must be 3.10, 3.11, 3.12, or 3.13
 
 # Install uv (recommended package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+`````
 
 ### Install CrewAI
 
-```bash
+`````bash
 # Install CrewAI core framework
 uv pip install crewai
 
@@ -94,11 +95,11 @@ uv pip install 'crewai[tools]'
 
 # Verify installation
 crewai version
-```
+`````
 
 ### Create a New Project
 
-```bash
+`````bash
 # Scaffold a new CrewAI project
 crewai create crew research_crew
 
@@ -107,9 +108,9 @@ cd research_crew
 
 # Install project dependencies
 crewai install
-```
+`````
 
-The generated project structure: ```
+The generated project structure: `````
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -126,26 +127,26 @@ research_crew/
         └── tools/
             ├── __init__.py
             └── custom_tool.py
-```
+`````
 
 ### Configure Environment Variables
 
-```bash
+`````bash
 # .env — add this file to .gitignore!
 OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
-```
+`````
 
-For local LLMs via Ollama (no API key needed): ```bash
+For local LLMs via Ollama (no API key needed): `````bash
 # Pull a local model
 ollama pull llama3.1
 
 # In agent config, use: ollama/llama3.1
-```
+`````
 
 ## Define Your First Agents
 
-Edit `src/research_crew/config/agents.yaml` to define role-based agents: ```yaml
+Edit ``src/research_crew/config/agents.yaml`` to define role-based agents: `````yaml
 # src/research_crew/config/agents.yaml
 
 researcher: role: >
@@ -184,29 +185,29 @@ editor: role: >
   llm: openai/gpt-4o-mini
   max_iter: 8
   verbose: true
-```
+`````
 
 Key configuration options per agent: | Parameter | Description | Example |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `role` | Agent's job title and function | `Senior Research Analyst` |
-| `goal` | What the agent aims to achieve | Research on `{topic}` |
-| `backstory` | Context shaping agent's behavior | Experience and personality |
-| `llm` | LLM model via LiteLLM | `openai/gpt-4o` |
-| `max_iter` | Max reasoning loops per task | `15` |
-| `verbose` | Print thought process to console | `true` |
-| `allow_delegation` | Can delegate to other agents | `false` |
+| ````role```` | Agent's job title and function | ````Senior Research Analyst```` |
+| ````goal```` | What the agent aims to achieve | Research on ````{topic}```` |
+| ````backstory```` | Context shaping agent's behavior | Experience and personality |
+| ````llm```` | LLM model via LiteLLM | ````openai/gpt-4o```` |
+| ````max_iter```` | Max reasoning loops per task | ````15```` |
+| ````verbose```` | Print thought process to console | ````true```` |
+| ````allow_delegation```` | Can delegate to other agents | ````false```` |
 
 ## Define Tasks and Wire the Crew
 
 ### Task Configuration
 
-Edit `src/research_crew/config/tasks.yaml`: ```yaml
+Edit ``src/research_crew/config/tasks.yaml``: `````yaml
 # src/research_crew/config/tasks.yaml
 
 research_task: description: >
@@ -238,11 +239,11 @@ editing_task: description: >
   agent: editor
   context: [writing_task]
   output_file: output/final_article.md
-```
+`````
 
 ### Crew Definition
 
-Wire agents and tasks in `src/research_crew/crew.py`: ```python
+Wire agents and tasks in ``src/research_crew/crew.py``: `````python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
@@ -293,11 +294,11 @@ class ResearchCrew: """Research crew for producing high-quality articles."""
             process=Process.sequential,
             verbose=True,
         )
-```
+`````
 
 ### Entry Point and Execution
 
-```python
+`````python
 # src/research_crew/main.py
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
@@ -312,17 +313,17 @@ def run(): """Run the research crew."""
     print(f"\nToken usage: {result.token_usage}")
 
 if __name__ == "__main__": run()
-```
+`````
 
-Run the crew: ```bash
+Run the crew: `````bash
 # Execute via CLI
 crewai run
 
 # Or run directly with Python
 python -m research_crew.main
-```
+`````
 
-Expected output: ```
+Expected output: `````
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -334,13 +335,13 @@ Expected output: ```
 ========== FINAL OUTPUT ==========
 [The complete edited article appears here]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
-```
+`````
 
 ## Advanced Usage: Flows, Tools, and Production Patterns
 
 ### Using CrewAI Flows for Complex Orchestration
 
-Flows provide event-driven orchestration with state management: ```python
+Flows provide event-driven orchestration with state management: `````python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
@@ -367,11 +368,11 @@ class ArticleFlow(Flow[ArticleState]): @start()
             with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
 if __name__ == "__main__": ArticleFlow().kickoff()
-```
+`````
 
 ### Creating Custom Tools
 
-```python
+`````python
 # src/research_crew/tools/custom_tool.py
 from crewai.tools import tool
 import requests
@@ -384,9 +385,9 @@ def web_search(query: str) -> str: """Search the web for information on a given 
         params={"q": query, "api_key": "${SERPER_API_KEY}"}
     )
     return response.json()["organic_results"][0]["snippet"]
-```
+`````
 
-Register the tool in your crew: ```python
+Register the tool in your crew: `````python
 # In crew.py, import and attach
 from research_crew.tools.custom_tool import web_search
 
@@ -396,11 +397,11 @@ def researcher(self) -> Agent: return Agent(
         tools=[web_search],  # Attach custom tool
         allow_delegation=False,
     )
-```
+`````
 
 ### Hierarchical Process with Manager Agent
 
-```python
+`````python
 @crew
 def crew(self) -> Crew: return Crew(
         agents=self.agents,
@@ -409,11 +410,11 @@ def crew(self) -> Crew: return Crew(
         manager_llm="openai/gpt-4o",
         verbose=True,
     )
-```
+`````
 
 ### Production Deployment with FastAPI
 
-```python
+`````python
 # api_server.py — Production deployment
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
@@ -442,7 +443,7 @@ def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     jobs[job_id]["result"] = result.raw
 
 # Run: uvicorn api_server:app --host 0.0.0.0 --port 8000
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -452,15 +453,15 @@ def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
 
 CrewAI's performance compared to other frameworks on a standard multi-agent research task: | Metric | CrewAI | AutoGen | LangGraph | Agno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Time to first working run | ~15 min | ~30 min | ~60 min | ~20 min |
 | Token cost (normalized) | 1.5–2x | 5–6x | 1x baseline | 1.2x |
@@ -482,25 +483,25 @@ CrewAI's performance compared to other frameworks on a standard multi-agent rese
 
 ### OpenAI / Anthropic / Google Gemini
 
-CrewAI uses LiteLLM for provider-agnostic model routing: ```yaml
+CrewAI uses LiteLLM for provider-agnostic model routing: `````yaml
 # agents.yaml — model selection per agent
 researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # or: openai/gpt-4o
   # or: gemini/gemini-2.0-flash
-```
+`````
 
 ### Ollama (Local LLMs)
 
-```yaml
+`````yaml
 researcher: role: Research Analyst
   llm: ollama/llama3.1
   # Requires: ollama pull llama3.1
-```
+`````
 
 ### LangChain Tools
 
-```python
+`````python
 # Using LangChain tools inside CrewAI
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -514,11 +515,11 @@ agent = Agent(
     tools=[wiki_tool],  # LangChain tool works directly
     verbose=True,
 )
-```
+`````
 
 ### LlamaIndex (RAG Integration)
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from crewai.tools import tool
 
@@ -529,11 +530,11 @@ def document_search(query: str) -> str: """Search internal documents for relevan
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
     return str(query_engine.query(query))
-```
+`````
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -547,30 +548,30 @@ RUN crewai install
 EXPOSE 8000
 
 CMD ["crewai", "run"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: crewai: build: .
     env_file: .env
     volumes: - ./output:/app/output
     ports: - "8000:8000"
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | CrewAI | AutoGen | LangGraph | Agno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Orchestration model | Role-based crew | Conversational agents | Stateful graph | Lightweight agent |
 | Time to prototype | 15 min (fastest) | 30 min | 60 min (steepest) | 20 min |
@@ -598,13 +599,13 @@ services: crewai: build: .
 ## Frequently Asked Questions
 
 **Q: What Python version does CrewAI require?**
-A: CrewAI requires Python 3.10 to 3.13. It does not support Python 3.9 or earlier. Use `pyenv` to manage multiple Python versions on your system.
+A: CrewAI requires Python 3.10 to 3.13. It does not support Python 3.9 or earlier. Use ````pyenv```` to manage multiple Python versions on your system.
 
 **Q: How do I install CrewAI with local LLM support?**
-A: Install CrewAI normally with `pip install crewai`, then install Ollama separately. In your agent config, set `llm: ollama/llama3.1` (or your preferred model). No API keys are needed for local inference.
+A: Install CrewAI normally with ````pip install crewai````, then install Ollama separately. In your agent config, set ````llm: ollama/llama3.1```` (or your preferred model). No API keys are needed for local inference.
 
 **Q: Can CrewAI work with non-OpenAI models?**
-A: Yes. CrewAI supports any LiteLLM-compatible model including Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral, and local models via Ollama. Use the format `provider/model-name` in your agent config.
+A: Yes. CrewAI supports any LiteLLM-compatible model including Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral, and local models via Ollama. Use the format ````provider/model-name```` in your agent config.
 
 **Q: What is the difference between CrewAI Crews and Flows?**
 A: Crews are teams of agents that collaborate on tasks through sequential, hierarchical, or parallel processes. Flows are event-driven workflows that chain multiple crews with conditional logic, state management via Pydantic models, and branching. Use Crews for single-workflow collaboration and Flows for multi-stage pipelines.
@@ -613,7 +614,7 @@ A: Crews are teams of agents that collaborate on tasks through sequential, hiera
 A: For a 3-agent crew with GPT-4o running 100 times/day, expect $100–$300/month in LLM API costs. Using cheaper models like GPT-4o-mini for simpler tasks (editing, formatting) can reduce costs by 40–60%. CrewAI itself is free and open-source (MIT license).
 
 **Q: How do I debug CrewAI agents that produce poor results?**
-A: Set `verbose: true` on agents to see their thought process. Use `max_iter` to limit reasoning loops. Add structured output schemas to enforce format. Review token usage metrics after each run. For persistent issues, simplify task descriptions and verify tool configurations.
+A: Set ````verbose: true```` on agents to see their thought process. Use ````max_iter```` to limit reasoning loops. Add structured output schemas to enforce format. Review token usage metrics after each run. For persistent issues, simplify task descriptions and verify tool configurations.
 
 **Q: Is CrewAI production-ready for enterprise use?**
 A: For small-to-medium production workloads, yes. CrewAI+ adds managed observability and deployment features starting at $99/month. For high-volume or audit-critical workloads, consider pairing CrewAI with custom checkpointing or evaluating LangGraph.
@@ -624,10 +625,10 @@ CrewAI delivers the fastest path from idea to working multi-agent system. Its ro
 
 **Action items to get started today:**
 
-1. Install CrewAI: `pip install crewai`
-2. Scaffold your first project: `crewai create crew my_project`
-3. Define 2–3 agents with distinct roles in `agents.yaml`
-4. Run your crew with `crewai run`
+1. Install CrewAI: ````pip install crewai````
+2. Scaffold your first project: ````crewai create crew my_project````
+3. Define 2–3 agents with distinct roles in ````agents.yaml````
+4. Run your crew with ````crewai run```
 5. Join the CrewAI community for support and advanced patterns
 
 Join the discussion on Telegram: [Join dibi8.com community](https://t.me/dibi8tech) for multi-agent AI tips and production deployment strategies.
@@ -681,7 +682,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [google-jax-complete-guide](crewai)
@@ -691,7 +692,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [cleanlab-11k-star-ai-data-cleaning](crewai)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

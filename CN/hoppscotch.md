@@ -23,6 +23,7 @@ tags: ["hoppscotch", "api-testing", "postman-alternative", "open-source", "docke
 aliases:
   - /posts/hoppscotch/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -48,8 +49,8 @@ Hoppscotch follows a modular monorepo architecture. The frontend is built with V
 - **Workspaces**: Team-scoped containers for collections, environments, and shared resources
 - **Collections**: Organized groups of API requests with folder hierarchies
 - **Environments**: Variable stores for development, staging, and production contexts
-- **Pre-request Scripts**: JavaScript snippets executed before each request via the `pw` object
-- **Tests**: Post-response assertions using the same `pw` scripting API
+- **Pre-request Scripts**: JavaScript snippets executed before each request via the ```pw```` object
+- **Tests**: Post-response assertions using the same ````pw```` scripting API
 - **Interceptors**: Browser extension or proxy-based request interception for localhost testing
 
 ## Installation & Setup
@@ -62,7 +63,7 @@ No installation required. Navigate to [hoppscotch.io](https://hoppscotch.io) and
 
 ### Method 2: Desktop App
 
-```bash
+`````bash
 # macOS (Homebrew)
 brew install --cask hoppscotch
 
@@ -71,11 +72,11 @@ winget install Hoppscotch.Hoppscotch
 
 # Linux (Flatpak)
 flatpak install flathub io.hoppscotch.Hoppscotch
-```
+`````
 
 ### Method 3: CLI Tool
 
-```bash
+`````bash
 # Install prerequisites (Debian/Ubuntu)
 sudo apt-get install -y python3 g++ build-essential
 
@@ -85,11 +86,11 @@ npm i -g @hoppscotch/cli
 # Verify installation
 hopp --version
 # Output: 0.31.2
-```
+`````
 
 ### Method 4: Docker Self-Hosting (Production)
 
-```bash
+`````bash
 # Pull the AIO image
 docker pull hoppscotch/hoppscotch:latest
 
@@ -120,11 +121,11 @@ docker run -d \
   --restart unless-stopped \
   --name hoppscotch \
   hoppscotch/hoppscotch:latest
-```
+`````
 
 ### Docker Compose (Recommended for Production)
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -153,9 +154,9 @@ services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
 volumes: postgres_data: driver: local
 
 networks: hoppscotch-net: driver: bridge
-```
+`````
 
-Deploy to start the stack: ```bash
+Deploy to start the stack: `````bash
 docker compose up -d
 
 # Verify all services are healthy
@@ -163,7 +164,7 @@ docker compose ps
 
 # View logs
 docker compose logs -f hoppscotch
-```
+`````
 
 For teams ready to deploy on a VPS, [DigitalOcean](https://m.do.co/c/dibi8) offers $200 in credits for new users — enough to run a Hoppscotch instance for several months on a 2 vCPU / 2 GB RAM droplet.
 
@@ -171,7 +172,7 @@ For teams ready to deploy on a VPS, [DigitalOcean](https://m.do.co/c/dibi8) offe
 
 ### GitHub Actions CI/CD Pipeline
 
-```yaml
+`````yaml
 # .github/workflows/api-tests.yml
 name: API Tests with Hoppscotch CLI
 
@@ -211,11 +212,11 @@ jobs: api-test: runs-on: ubuntu-latest
         if: always()
         with: name: api-test-results
           path: test-results.xml
-```
+`````
 
 ### Node.js Application Integration
 
-```javascript
+`````javascript
 // scripts/run-api-tests.js
 const { execSync } = require("child_process");
 const path = require("path");
@@ -226,23 +227,23 @@ const envPath = path.join(__dirname, "../environments");
 function runTests(environment) {
   const command = [
     "hopp test",
-    `"${collectionPath}/core-apis.json"`,
-    `-e "${envPath}/${environment}.json"`,
+    ````"${collectionPath}/core-apis.json"````,
+    ````-e "${envPath}/${environment}.json"````,
     "--reporter-junit",
-    `"reports/${environment}-results.xml"`,
+    ````"reports/${environment}-results.xml"````,
   ].join(" ");
 
-  console.log(`Running tests against ${environment}...`);
+  console.log(````Running tests against ${environment}...````);
   execSync(command, { stdio: "inherit" });
 }
 
 // Run against staging before production deploy
 runTests("staging");
-```
+`````
 
 ### Vue.js Frontend Proxy Configuration
 
-```javascript
+`````javascript
 // vite.config.js
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -259,11 +260,11 @@ export default defineConfig({
     },
   },
 });
-```
+`````
 
 ### Pre-Request Script for OAuth2 Token Refresh
 
-```javascript
+`````javascript
 // Hoppscotch pre-request script
 const token = pw.env.get("AUTH_TOKEN");
 const expiry = pw.env.get("TOKEN_EXPIRY");
@@ -286,12 +287,12 @@ if (!token || Date.now() > Number(expiry)) {
 }
 
 // Apply token to current request
-pw.headers.set("Authorization", `Bearer ${pw.env.get("AUTH_TOKEN")}`);
-```
+pw.headers.set("Authorization", ````Bearer ${pw.env.get("AUTH_TOKEN")}````);
+`````
 
 ### Post-Response Test Assertions
 
-```javascript
+`````javascript
 // Hoppscotch test script
 pw.test("Status code is 200", () => {
   pw.expect(pw.response.status).toBe(200);
@@ -310,7 +311,7 @@ pw.test("Response body contains user ID", () => {
 pw.test("Response time is acceptable", () => {
   pw.expect(pw.response.time).toBeLessThan(500);
 });
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -318,15 +319,15 @@ pw.test("Response time is acceptable", () => {
 
 | Metric | Hoppscotch | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start (web) | < 1s | 8–12s | 4–6s | 2–3s |
 | Desktop app size | ~8 MB | ~180 MB | ~120 MB | ~45 MB |
@@ -340,12 +341,12 @@ pw.test("Response time is acceptable", () => {
 - **Solo developers** use Hoppscotch web for quick API exploration without account creation
 - **5–20 person teams** self-host the Community Edition on internal infrastructure
 - **API-first startups** embed Hoppscotch collections in documentation via shared links
-- **CI/CD pipelines** run `hopp test` on every pull request to validate API contracts
+- **CI/CD pipelines** run ````hopp test```` on every pull request to validate API contracts
 - **Microservices teams** use environment variables to switch between 10+ internal services
 
 ### Load Testing via CLI
 
-```bash
+`````bash
 # Run a collection with concurrency settings
 hopp test load-test-collection.json \
   --iteration-count 100 \
@@ -359,13 +360,13 @@ hopp test api-collection.json \
 # Generate JUnit XML for Jenkins/GitLab integration
 hopp test api-collection.json \
   --reporter-junit junit-report.xml
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Security Configuration
 
-```bash
+`````bash
 # Generate cryptographically secure secrets
 JWT_SECRET=$(openssl rand -hex 64)
 REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
@@ -386,11 +387,11 @@ RATE_LIMIT_MAX=100
 # CORS (restrict to your domain)
 ALLOWED_ORIGINS=https://api.yourcompany.com
 EOF
-```
+`````
 
 ### Reverse Proxy with Nginx
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/hoppscotch
 server {
     listen 443 ssl http2;
@@ -424,11 +425,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### Monitoring with Prometheus
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 version: "3.8"
 
@@ -444,11 +445,11 @@ services: prometheus: image: prom/prometheus:latest
     networks: - hoppscotch-net
 
 volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
-```
+`````
 
 ### Database Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # backup-hoppscotch.sh - Run via cron daily
 
@@ -478,21 +479,21 @@ gzip "${BACKUP_DIR}/hoppscotch_${TIMESTAMP}.dump"
 find "${BACKUP_DIR}" -name "hoppscotch_*.dump.gz" -mtime +14 -delete
 
 echo "Backup completed: hoppscotch_${TIMESTAMP}.dump.gz"
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Hoppscotch | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open source | Yes (MIT) | No (proprietary) | Yes (Apache-2.0) | Yes (MIT) |
 | Self-hosted | Free (CE) | Enterprise only | Cloud only | N/A (local) |
@@ -501,7 +502,7 @@ echo "Backup completed: hoppscotch_${TIMESTAMP}.dump.gz"
 | GraphQL support | Yes (schema explorer) | Yes | Yes | Yes |
 | WebSocket support | Yes | Yes | Yes | Yes |
 | gRPC support | Planned | Yes | Yes | Yes |
-| CLI for CI/CD | Yes (`hopp test`) | Newman ($) | Yes (inso) | Yes (`bru`) |
+| CLI for CI/CD | Yes (````hopp test````) | Newman ($) | Yes (inso) | Yes (````bru````) |
 | Git-native collections | No (export/import) | No | No | Yes (by design) |
 | Team collaboration | Workspaces + real-time | Workspaces | Cloud sync | Git + PRs |
 | Pricing (team of 10) | $0 self-hosted | $140–$490/mo | $80–$450/mo | $0 |
@@ -532,7 +533,7 @@ Hoppscotch is not the right tool for every situation. Here is what to consider b
 Yes. The Community Edition is MIT-licensed and free for unlimited commercial use. You can self-host it internally without paying license fees. The Cloud version offers paid tiers for additional storage and enterprise features like SAML SSO.
 
 **Q2: Can I import my existing Postman collections?**
-Yes. Hoppscotch supports importing Postman collections (v2.1 format), OpenAPI specifications (3.0+), and cURL commands. Use the migration CLI tool: `npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json`.
+Yes. Hoppscotch supports importing Postman collections (v2.1 format), OpenAPI specifications (3.0+), and cURL commands. Use the migration CLI tool: ````npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json````.
 
 **Q3: How does Hoppscotch handle CORS for localhost APIs?**
 Install the Hoppscotch Browser Extension (available for Chrome and Firefox) or configure the built-in proxy server. Switch the interceptor mode in settings from "Proxy" to "Browser Extension" to bypass CORS restrictions for local development.
@@ -544,7 +545,7 @@ The Community Edition runs on a VPS with 1 vCPU, 1 GB RAM, and 10 GB storage. Fo
 The CLI (currently v0.31.2) follows pre-1.0 semantic versioning and receives regular updates. It supports JUnit reporting, iteration over CSV data, and environment variable injection. Multiple teams run it in GitHub Actions and GitLab CI without issues.
 
 **Q6: How do I back up my self-hosted Hoppscotch data?**
-Back up the PostgreSQL database using `pg_dump`. Schedule a daily cron job to export the database, compress it, and copy to remote storage. Collection exports in JSON format also serve as partial backups for individual workspaces.
+Back up the PostgreSQL database using ````pg_dump````. Schedule a daily cron job to export the database, compress it, and copy to remote storage. Collection exports in JSON format also serve as partial backups for individual workspaces.
 
 **Q7: Does Hoppscotch support real-time collaboration like Postman?**
 Yes. Team workspaces support real-time collaboration with conflict resolution, activity audit logs, and role-based access control. Changes sync instantly across browser and desktop sessions.
@@ -555,9 +556,9 @@ Hoppscotch has earned its 79,200 GitHub stars by building what developers actual
 
 **Next steps:**
 1. Open [hoppscotch.io](https://hoppscotch.io) and send your first request
-2. Clone the repository: `git clone https://github.com/hoppscotch/hoppscotch.git`
-3. Deploy self-hosted with `docker compose up -d`
-4. Install the CLI: `npm i -g @hoppscotch/cli`
+2. Clone the repository: ````git clone https://github.com/hoppscotch/hoppscotch.git````
+3. Deploy self-hosted with ````docker compose up -d````
+4. Install the CLI: ````npm i -g @hoppscotch/cli```
 
 Join our [Telegram group](https://t.me/dibi8channel) for weekly open-source tool recommendations and deployment guides.
 
@@ -613,7 +614,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-aider](hoppscotch)
@@ -623,5 +624,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [microsoft-markitdown-file-to-markdown-converter-cli](hoppscotch)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -19,6 +19,7 @@ description: "Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비
 
 ---
 
+
 ## Related Articles
 
 - [supabase-vs-firebase](supabase-vs-firebase)
@@ -27,6 +28,6 @@ description: "Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비
 - [claude-code-vs-cline](supabase-vs-firebase)
 - [cursor-vs-windsurf](supabase-vs-firebase)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -37,6 +37,7 @@ faqs: - q: '9Router là gì và nó hoạt động như thế nào?'
     a: 'Có. Bạn có thể xây dựng một combo chỉ dùng các nhà cung cấp miễn phí như Kiro AI (miễn phí không giới hạn qua AWS Builder ID, Google, hoặc GitHub OAuth, không cần API key), OpenCode Free (passthrough không cần xác thực), và Vertex AI ($300 tín dụng Google Cloud miễn phí). Kết hợp với nén RTK, giải pháp này mang lại phản hồi chất lượng production với chi phí đúng nghĩa $0 mỗi tháng.'
 ---
 
+
 {</* resource-info */>}
 
 Cuộc cách mạng trợ lý lập trình AI đã tạo ra một nghịch lý cho nhà phát triển: chúng ta có quyền truy cập chưa từng có vào các mô hình ngôn ngữ đẳng cấp thế giới thông qua các công cụ như Claude Code, OpenAI Codex, Cursor và GitHub Copilot — nhưng việc quản lý đăng ký, hạn ngạch và giới hạn tốc độ trên nhiều nền tảng ngày càng trở nên đắt đỏ và gây frustrate. Nhiều nhà phát hiện thấy mình đốt hết hạn ngạch hàng tháng của Claude Pro trong vòng hai tuần, chỉ để đối mặt với tường giới hạn tốc độ khi đang cố gắng đáp ứng deadline sprint.
@@ -45,17 +46,17 @@ Cuộc cách mạng trợ lý lập trình AI đã tạo ra một nghịch lý c
 
 ## 9Router là gì và hoạt động như thế nào?
 
-9Router là một dịch vụ trung gian chạy cục bộ (mặc định tại `localhost:20128`), đóng vai trò lớp trung gian giữa công cụ lập trình AI của bạn và nhà cung cấp mô hình backend. Thay vì gửi yêu cầu API trực tiếp đến Claude, OpenAI hoặc bất kỳ nhà cung cấp đơn lẻ nào, công cụ của bạn sẽ nói chuyện với 9Router — rồi 9Router quyết định thông minh xem yêu cầu nên được định tuyến đến nhà cung cấp backend nào.
+9Router là một dịch vụ trung gian chạy cục bộ (mặc định tại ```localhost:20128````), đóng vai trò lớp trung gian giữa công cụ lập trình AI của bạn và nhà cung cấp mô hình backend. Thay vì gửi yêu cầu API trực tiếp đến Claude, OpenAI hoặc bất kỳ nhà cung cấp đơn lẻ nào, công cụ của bạn sẽ nói chuyện với 9Router — rồi 9Router quyết định thông minh xem yêu cầu nên được định tuyến đến nhà cung cấp backend nào.
 
 Kiến trúc này mang lại ba lợi ích chính: 1. **Truy cập đa nhà cung cấp từ một nơi**: Cấu hình Claude, Gemini, GLM, MiniMax, Kiro, OpenCode, Vertex AI và 40+ nhà cung cấp khác trong một bảng điều khiển duy nhất. CLI tool của bạn gửi yêu cầu đến localhost; 9Router xử lý phần còn lại.
 2. **Fallback tự động**: Khi nhà cung cấp chính đạt giới hạn hạn ngạch hoặc gặp sự cố, 9Router chuyển tiếp mượt mà sang lớp tiếp theo — dù đó là nhà cung cấp backup giá rẻ hay tùy chọn hoàn toàn miễn phí. Không gián đoạn workflow.
-3. **Nén token trước khi rời khỏi máy**: Tích hợp với [RTK](https://github.com/rtk-ai/rtk) (~40K stars), 9Router tự động nén output từ công cụ (`git diff`, kết quả grep, danh sách thư mục, dump log...) **trước khi** chúng đến LLM. Chỉ riêng điều này đã tiết kiệm 20-40% token đầu vào mỗi yêu cầu.
+3. **Nén token trước khi rời khỏi máy**: Tích hợp với [RTK](https://github.com/rtk-ai/rtk) (~40K stars), 9Router tự động nén output từ công cụ (````git diff````, kết quả grep, danh sách thư mục, dump log...) **trước khi** chúng đến LLM. Chỉ riêng điều này đã tiết kiệm 20-40% token đầu vào mỗi yêu cầu.
 
 ## Các tính năng cốt lõi phân biệt 9Router
 
 ### 🚀 Động cơ nén token RTK
 
-Output từ công cụ thường chiếm 30-50% ngân sách prompt tổng thể của bạn. Khi Claude Code chạy `git diff`, `ls -R` hoặc `grep` trong codebase lớn, nó gửi hàng triệu byte văn bản đến mô hình — phần lớn là noise không liên quan.
+Output từ công cụ thường chiếm 30-50% ngân sách prompt tổng thể của bạn. Khi Claude Code chạy ````git diff````, ````ls -R```` hoặc ````grep```` trong codebase lớn, nó gửi hàng triệu byte văn bản đến mô hình — phần lớn là noise không liên quan.
 
 Tính năng RTK tích hợp sẵn của 9Router tự động phát hiện các output công cụ này và áp dụng các bộ lọc nén lossless thông minh: - **git-diff**: Rút gọn output diff xuống các dòng thay đổi thiết yếu
 - **git-status**: Nén trạng thái thành định dạng tóm tắt
@@ -66,10 +67,10 @@ Tính năng RTK tích hợp sẵn của 9Router tự động phát hiện các o
 
 Quan trọng hơn, nếu bất kỳ bộ lọc nào lỗi hoặc tạo output tệ hơn bản gốc, RTK tự động quay về bản text chưa sửa. Lỗi không bao giờ phá hỏng yêu cầu của bạn. Việc nén được chạy **trước** mọi format translation, nên nó hoạt động với mọi định dạng được hỗ trợ (OpenAI, Claude, Gemini, Cursor, Kiro, OpenAI Responses).
 
-```
+`````
 Không dùng RTK: Gửi 47K token đến LLM
 Dùng RTK: Gửi 28K token đến LLM   (tiết kiệm 40% · chất lượng answer như nhau)
-```
+`````
 
 Trong thực tế, nhiều nhà phát triển báo cáo tiết kiệm được 20-40% token trên mỗi yêu cầu — hiệu quả kéo dài vòng đời của mỗi đăng ký thêm vài ngày甚至 vài tuần.
 
@@ -81,12 +82,12 @@ Bên cạnh tối ưu hóa input, 9Router cũng giảm lượng content mà LLM 
 
 ### 🎯 Hệ thống Fallback 3 Tầng Thông Minh
 
-Đây có lẽ là tính năng sát thủ của 9Router. Bạn định nghĩa các "combo" — danh sách các model xếp hạng trên nhiều mức giá khác nhau — và 9Router tự động định tuyến yêu cầu tương ứng: ```
+Đây có lẽ là tính năng sát thủ của 9Router. Bạn định nghĩa các "combo" — danh sách các model xếp hạng trên nhiều mức giá khác nhau — và 9Router tự động định tuyến yêu cầu tương ứng: `````
 Combo: "my-coding-stack"
   1. cc/claude-opus-4-6        → Đăng ký Claude Code Pro của bạn
   2. glm/glm-4.7               → Backup giá rẻ ($0.6 per 1M token)
   3. kr/claude-sonnet-4.5      → Fallback khẩn cấp miễn phí qua Kiro AI
-```
+`````
 
 Khi hạn ngạch Opus hết (hoặc xảy ra error), 9Router ngay lập tức chuyển sang GLM. Nếu GLM cũng cạn, nó xuống layer miễn phí vô hạn của Kiro. Bạn không bao giờ đâm phải bức tường.
 
@@ -116,7 +117,7 @@ Cần load balancing hoặc redundancy across accounts? 9Router cho phép bạn 
 
 ## Các công cụ lập trình và IDE được hỗ trợ
 
-9Router đóng vai trò adapter universal, hỗ trợ hầu hết mọi công cụ lập trình AI phổ biến: - **Claude Code** (`~/.claude/config.json` với custom API base URL)
+9Router đóng vai trò adapter universal, hỗ trợ hầu hết mọi công cụ lập trình AI phổ biến: - **Claude Code** (````~/.claude/config.json```` với custom API base URL)
 - **OpenAI Codex CLI** (override environment variable)
 - **Cursor IDE** (cài đặt Custom OpenAI endpoint)
 - **GitHub Copilot**
@@ -129,13 +130,13 @@ Cần load balancing hoặc redundancy across accounts? 9Router cho phép bạn 
 - **Kilo Code**
 - **OpenCode**
 
-Mọi tool hỗ trợ custom OpenAI-compatible API endpoint đều có thể kết nối với 9Router. Service expose một giao diện standard OpenAI-compatible tại `http://localhost:20128/v1`.
+Mọi tool hỗ trợ custom OpenAI-compatible API endpoint đều có thể kết nối với 9Router. Service expose một giao diện standard OpenAI-compatible tại ````http://localhost:20128/v1````.
 
 ## Bắt đầu: Cài đặt và Thiết lập
 
 ### Quick Start: Localhost (Khuyến nghị cho đa số người dùng)
 
-```bash
+`````bash
 # Clone và cài đặt
 git clone https://github.com/decolua/9router.git
 cd 9router
@@ -150,13 +151,13 @@ export NODE_ENV="production"
 
 # Khởi động server
 npm run start
-```
+`````
 
-Sau khi khởi động, mở `http://localhost:20128` để truy cập bảng điều khiển web. Từ đây, kết nối provider đầu tiên của bạn.
+Sau khi khởi động, mở ````http://localhost:20128```` để truy cập bảng điều khiển web. Từ đây, kết nối provider đầu tiên của bạn.
 
 ### Deploy Docker
 
-Đối với production hoặc multi-device setup, Docker giúp việc deploy dễ dàng: ```bash
+Đối với production hoặc multi-device setup, Docker giúp việc deploy dễ dàng: `````bash
 docker build -t 9router .
 
 docker run -d \
@@ -166,30 +167,30 @@ docker run -d \
   -v 9router-data:/app/data \
   -v 9router-usage:/root/.9router \
   9router
-```
+`````
 
 ### Kết nối Provider Đầu tiên
 
 Hãy thiết lập một combo free-tier hoàn chỉnh — không cần phương thức thanh toán: 1. **Kết nối Kiro AI** trong dashboard (dùng AWS Builder ID, Google hoặc GitHub OAuth — không cần API key)
 2. **Kết nối OpenCode Free** (zero auth, passthrough proxy, models auto-fetch)
-3. **Tạo combo tên `free-dev`** với models: - `kr/claude-sonnet-4.5` (Claude Sonnet 4.5 qua Kiro — free unlimited)
-   - `kr/glm-5` (GLM-5 qua Kiro — free unlimited)
-   - `vertex/gemini-3.1-pro-preview` (Google Cloud — $300 free credits)
+3. **Tạo combo tên ````free-dev````** với models: - ````kr/claude-sonnet-4.5```` (Claude Sonnet 4.5 qua Kiro — free unlimited)
+   - ````kr/glm-5```` (GLM-5 qua Kiro — free unlimited)
+   - ````vertex/gemini-3.1-pro-preview```` (Google Cloud — $300 free credits)
 
-Sau đó cấu hình tool yêu thích của bạn trỏ đến `http://localhost:20128/v1` với dashboard API key của bạn: ```json
+Sau đó cấu hình tool yêu thích của bạn trỏ đến ``http://localhost:20128/v1`` với dashboard API key của bạn: `````json
 {
   "anthropic_api_base": "http://localhost:20128/v1",
   "anthropic_api_key": "your-9router-api-key"
 }
-```
+`````
 
 ### Cấu hình Cursor IDE
 
-Trong Cursor Settings → Models → Advanced: ```
+Trong Cursor Settings → Models → Advanced: `````
 OpenAI API Base URL: http://localhost:20128/v1
 OpenAI API Key: [copy từ 9Router dashboard]
 Model: cc/claude-opus-4-7
-```
+`````
 
 Giờ đây mọi model call từ Cursor đều đi qua routing intelligence của 9Router.
 
@@ -199,17 +200,17 @@ Giờ đây mọi model call từ Cursor đều đi qua routing intelligence c�
 
 Bạn trả $20/tháng cho Claude Pro. Không có 9Router, khi hạn ngạch hết, việc coding dừng lại cho đến khi reset.
 
-Với combo "maximize-claude" của 9Router: - Primary: `cc/claude-opus-4-7` (sử dụng full subscription)
-- Backup: `glm/glm-5.1` ($0.6/M token, reset hàng ngày lúc 10 AM)
-- Emergency: `kr/claude-sonnet-4.5` (Kiro free fallback)
+Với combo "maximize-claude" của 9Router: - Primary: ````cc/claude-opus-4-7```` (sử dụng full subscription)
+- Backup: ````glm/glm-5.1```` ($0.6/M token, reset hàng ngày lúc 10 AM)
+- Emergency: ````kr/claude-sonnet-4.5```` (Kiro free fallback)
 
 Kết quả: Vì RTK tiết kiệm 20-40% token, subscription $20 của bạn kéo dài hơn; khi hết hạn, bạn có backup mượt mà. Tổng chi phí hiệu dụng của tier giá rẻ chỉ tăng khoảng $5 — rẻ hơn nhiều so với upgrade lên Claude Max ($200/tháng).
 
 ### Scenario B: Ngân sách 0$ Hoàn Toàn
 
-Bắt đầu với 100% model miễn phí: - `gc/gemini-3-flash` (180K free queries/tháng từ Google)
-- `kr/claude-sonnet-4.5` (Kiro free unlimited)
-- `oc/<auto>` (OpenCode Free, không cần authentication)
+Bắt đầu với 100% model miễn phí: - ````gc/gemini-3-flash```` (180K free queries/tháng từ Google)
+- ````kr/claude-sonnet-4.5```` (Kiro free unlimited)
+- ````oc/<auto>```` (OpenCode Free, không cần authentication)
 
 Kết hợp với nén RTK, setup nàydeliver phản hồi model chất lượng production với đúng $0 chi phí hàng tháng.
 
@@ -270,13 +271,13 @@ Sự kết hợp của RTK token compression (~20-40% savings), Caveman mode out
 - **Auth**: OAuth 2.0 + PKCE, JWT session cookies, HMAC-signed API keys
 - **Proxy**: Full HTTP passthrough với configurable upstream proxies
 
-Environment variables cho granular control over deployment: - `JWT_SECRET`: Khuyến nghị thay đổi trong production
-- `REQUIRE_API_KEY`: Enforce bearer token auth trên `/v1/*` routes
-- `ENABLE_REQUEST_LOGS`: Enable debug-level request/response logging
-- `AUTH_COOKIE_SECURE`: Force Secure cookie flag behind HTTPS reverse proxy
-- `HTTP_PROXY` / `HTTPS_PROXY`: Route upstream requests qua corporate proxies
+Environment variables cho granular control over deployment: - ````JWT_SECRET````: Khuyến nghị thay đổi trong production
+- ````REQUIRE_API_KEY````: Enforce bearer token auth trên ````/v1/*```` routes
+- ````ENABLE_REQUEST_LOGS````: Enable debug-level request/response logging
+- ````AUTH_COOKIE_SECURE````: Force Secure cookie flag behind HTTPS reverse proxy
+- ````HTTP_PROXY```` / ````HTTPS_PROXY````: Route upstream requests qua corporate proxies
 
-Service lắng nghe trên port `20128` mặc định và không cần external dependencies hay databases ngoài JSON files stored in `${DATA_DIR}`.
+Service lắng nghe trên port ````20128```` mặc định và không cần external dependencies hay databases ngoài JSON files stored in ````${DATA_DIR}```.
 
 ## Những suy nghĩ cuối cùng
 
@@ -289,7 +290,7 @@ Miễn phí, open-source và có thể self-host trong vài phút. Xét xu hư�
 **Repository**: [github.com/decolua/9router](https://github.com/decolua/9router)
 **Website**: [9router.com](https://9router.com)
 
----
+* * *
 
 ## Bài viết Liên quan
 
@@ -299,7 +300,7 @@ Miễn phí, open-source và có thể self-host trong vài phút. Xét xu hư�
 
 - [Thêm Addy Osmani's Agent Skills: Production-grade AI Coding Agents](/resources/llm-frameworks/agent-skills-production-grade-ai-coding.vi/)
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

@@ -12,9 +12,10 @@ maintainer: 'colbymchenry'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/11434'
 ---
+
 # Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Codegraph Knowledge Graph Engine           │
 │                                                      │
@@ -35,7 +36,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/11434'
 │  │  Returns: relevant code snippets, not entire repo │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Codegraph: source code → knowledge graph → precise agent queries*
 
@@ -60,27 +61,27 @@ Built with Python, uses networkx for graph operations and local vector stores (C
 
 ### Stage 1: Installation
 
-```bash
+`````bash
 # Install Codegraph globally
 npm i -g @colbymchenry/codegraph
-```
+`````
 
 ### Stage 2: Indexing
 
-```bash
+`````bash
 # Index any project
 codegraph index /path/to/project --output ./codegraph-data
-```
+`````
 
 Codegraph parses source code, configuration files, and documentation to build a structured knowledge graph. It extracts function definitions, class hierarchies, imports, call chains, and file relationships.
 
 ### Stage 3: Querying
 
-```bash
+`````bash
 # Query the indexed graph
 codegraph query "How does the user login flow work?" \
   --data ./codegraph-data
-```
+`````
 
 The query engine returns relevant code snippets, not entire files. Results include the file path, symbol name, code snippet, and relevance score.
 
@@ -88,7 +89,7 @@ The query engine returns relevant code snippets, not entire files. Results inclu
 
 ### Quick Start
 
-```bash
+`````bash
 # Install Codegraph
 npm i -g @colbymchenry/codegraph
 
@@ -98,11 +99,11 @@ codegraph index /path/to/project --output ./codegraph-data
 # Query the index
 codegraph query "Where is the authentication middleware defined?" \
   --data ./codegraph-data
-```
+`````
 
 ### Integration with AI Agents
 
-```bash
+`````bash
 # For Claude Code: index before running
 codegraph index . --output ./cg-indices
 
@@ -112,7 +113,7 @@ export CODEGRAPH_INDEX=./codegraph-data
 
 # For Cursor: use codegraph plugin
 # Install from Cursor extensions marketplace
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -120,13 +121,13 @@ export CODEGRAPH_INDEX=./codegraph-data
 
 Testing on a 50K-line Node.js monorepo across 200 agent queries: | Configuration | Avg Tokens per Query | Total Monthly Tokens | Cost (OpenAI @ $10/M) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Full codebase scan | 18,420 | 3,684,000 | $36.84 |
 | Codegraph (top-5 results) | 7,890 | 1,578,000 | $15.78 |
@@ -137,11 +138,11 @@ Testing on a 50K-line Node.js monorepo across 200 agent queries: | Configuration
 
 | Query Type | Full Scan Accuracy | Codegraph Accuracy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Function definition | 78% | 94% |
 | Import resolution | 62% | 91% |
@@ -150,23 +151,23 @@ Testing on a 50K-line Node.js monorepo across 200 agent queries: | Configuration
 
 ### Real-World Use Case: Migration Project
 
-A team migrating from Express.js to FastAPI: ```bash
+A team migrating from Express.js to FastAPI: `````bash
 # Codegraph identifies all API endpoints
 codegraph query "List all Express.js routes and their handlers" \
   --data ./express-app
 
 # Result: 47 endpoints found in 12 files
 # vs scanning entire 50K-line codebase
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Incremental Indexing
 
-```bash
+`````bash
 # Re-index on file changes
 codegraph index ./project --output ./codegraph-data --watch
-```
+`````
 
 Watch mode automatically re-indexes changed files, keeping the graph in sync with your codebase. Typical re-index time for changed files is 2-5 seconds.
 
@@ -182,7 +183,7 @@ Codegraph supports multiple programming languages out of the box: - **Python** �
 
 ### Multi-Project Workspace
 
-```bash
+`````bash
 # Index multiple projects in a monorepo
 codegraph index ./packages/* --output ./codegraph-data \
   --project-name packages --merge
@@ -190,32 +191,32 @@ codegraph index ./packages/* --output ./codegraph-data \
 # Query across all projects
 codegraph query "Find all database models" \
   --data ./codegraph-data --filter project:auth-service
-```
+`````
 
 ### Graph Export and Visualization
 
-```bash
+`````bash
 # Export graph for visualization
 codegraph export --format graphml --output ./graph.graphml
 
 # Calculate graph statistics
 codegraph stats --data ./codegraph-data
 # Output: 12,847 nodes, 34,521 edges, avg_degree: 5.37
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Codegraph | ripgrep + LLM | AI search tools | CodeRabbit |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Token reduction | 40-60% | 0% | 20-30% | 30-40% |
 | Pre-indexing | Yes | No | No | No |
@@ -250,7 +251,7 @@ All indexing and querying happens 100% locally. No code, no index, and no querie
 
 ### Indexing Configuration
 
-Control which files are indexed and how aggressively: ```bash
+Control which files are indexed and how aggressively: `````bash
 # Index with file type filters
 codegraph index ./project --output ./codegraph-data \
   --include "*.py" "*.ts" "*.js" \
@@ -261,11 +262,11 @@ codegraph index ./project --output ./codegraph-data --max-file-size 2048000
 
 # Use a custom ignore file (same format as .gitignore)
 codegraph index ./project --output ./codegraph-data --ignore-file .codegraphignore
-```
+`````
 
 ### Codegraphignore Configuration
 
-Create a `.codegraphignore` file for persistent indexing exclusions: ```bash
+Create a ``.codegraphignore`` file for persistent indexing exclusions: `````bash
 # .codegraphignore example
 node_modules/
 dist/
@@ -276,11 +277,11 @@ __pycache__/
 .venv/
 vendor/
 tests/fixtures/
-```
+`````
 
 ### Agent-Specific Indexing Profiles
 
-Codegraph supports indexed profiles optimized for different agent workflows: ```bash
+Codegraph supports indexed profiles optimized for different agent workflows: `````bash
 # Claude Code optimized index (includes context window awareness)
 codegraph index . --output ./cg-claude \
   --profile claude-code --max-context-tokens 128000
@@ -292,11 +293,11 @@ codegraph index . --output ./cg-codex \
 # Cursor optimized index
 codegraph index . --output ./cg-cursor \
   --profile cursor --max-depth 5 --include-declarations true
-```
+`````
 
 ### Graph Query Language (GQL)
 
-Codegraph supports a query language for advanced graph operations: ```bash
+Codegraph supports a query language for advanced graph operations: `````bash
 # Find all functions that import a specific module
 codegraph query --gql "MATCH (f:Function)-[:IMPORTS]->(m:Module {name: 'react'}) RETURN f.name"
 
@@ -305,11 +306,11 @@ codegraph query --gql "MATCH p=(start:Function)-[:CALLS*1..5]->(end:Function) WH
 
 # Find all classes extending a base class
 codegraph query --gql "MATCH (c:Class)-[:EXTENDS*1..]->(b:Class {name: 'BaseModel'}) RETURN c.name"
-```
+`````
 
 ### Integration with Pre-commit Hooks
 
-Automatically re-index when code changes: ```bash
+Automatically re-index when code changes: `````bash
 # Add to .pre-commit-config.yaml
 # .pre-commit-hooks.yaml: # - id: codegraph-index
 #   name: codegraph index
@@ -320,11 +321,11 @@ Automatically re-index when code changes: ```bash
 # Run manual pre-commit index
 codegraph pre-commit --staged --output ./codegraph-data
 # Only re-indexes staged files, typically 1-3 seconds
-```
+`````
 
 ### API Usage for Programmatic Access
 
-Codegraph provides a programmatic API for building custom integrations: ```bash
+Codegraph provides a programmatic API for building custom integrations: `````bash
 # Start Codegraph as an API server
 codegraph server --host 0.0.0.0 --port 8080 --data ./codegraph-data
 
@@ -337,7 +338,7 @@ curl -X POST http://localhost:8080/query \
 curl -X POST http://localhost:8080/index \
   -H "Content-Type: application/json" \
   -d '{"path": "/path/to/new-project", "output": "./new-project-data"}'
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -361,12 +362,12 @@ A: Yes. Codegraph provides local graph queries that any agent (including local L
 
 A: Yes. Supports Python, TypeScript, JavaScript, Go, Rust, Java, C++, and any language with a parser or AST library.
 
-```bash
+`````bash
 # Generate HTML report of codebase structure
 codegraph report --format html --output ./codebase-report.html
 # Opens interactive visualization of codebase dependencies, call graphs, and file relationships
 # Can be opened in any browser. The HTML report includes interactive force-directed graphs, dependency trees, and file relationship heatmaps.
-```
+````
 
 Codegraph also supports exporting to Mermaid format for embedding in documentation tools like Notion, Confluence, and GitHub READMEs. This makes it easy to share architectural insights with team members who don't use the CLI tool directly.
 
@@ -419,7 +420,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [codegraph-pre-indexed-code-knowledge-graph-ai-agents](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
@@ -429,7 +430,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [last30days-skill-ai-agent-research-engine-social-media](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

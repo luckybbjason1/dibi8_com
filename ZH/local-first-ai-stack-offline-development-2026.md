@@ -23,6 +23,7 @@ faq: - q: "2026 年为什么要做完全离线？"
     a: "可以。常用模式：本地 Ollama 作为主力，遇到难任务再回退到商用 API。Aider 支持会话中途切换模型。大多数开发者采用混合模式——本地为默认，云端处理那 10-20% 真正需要的部分。"
 ---
 
+
 {{</* resource-info */>}}
 
 # 本地优先 AI 技术栈 2026：离线开发环境
@@ -54,45 +55,45 @@ faq: - q: "2026 年为什么要做完全离线？"
 ## 整套技术栈（4 个组件）
 
 ### 1. Ollama（LLM 运行时）
-```bash
+````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.3:70b-instruct-q4_K_M
 ollama pull deepseek-coder-v2:16b-lite-instruct-q4_K_M
-```
-加载两个模型——一个通用，一个专攻代码。Ollama 在 `localhost:11434` 提供服务。
+`````
+加载两个模型——一个通用，一个专攻代码。Ollama 在 ````localhost:11434```` 提供服务。
 
 ### 2. Aider（编码代理）
-```bash
+`````bash
 pip install aider-chat
 aider --model ollama/llama3.3:70b-instruct-q4_K_M
-```
+`````
 Aider 连接到本地 Ollama。现在你拥有了离线结对编程能力。
 
 ### 3. ChromaDB（本地 RAG）
-```bash
+`````bash
 pip install chromadb
 # 进程内使用，或作为服务运行
 chroma run --path ./chroma-data
-```
+`````
 向量数据库在本地运行。索引你的代码库 / 文档以实现语义搜索。
 
 ### 4. 本地嵌入（BGE-M3）
-```python
+`````python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("BAAI/bge-m3")
 # 在本地生成嵌入向量
-```
+````
 嵌入向量留在你的机器上。零外部调用。
 
 ## 硬件实情
 
 | 配置 | 能跑的模型 | 性能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Mac M3 Max 64GB | Llama 3.3 70B + DeepSeek Coder | 20-30 tok/秒 |
 | RTX 4090 24GB | Llama 3.3 70B Q4 | 25-30 tok/秒 |
@@ -155,7 +156,7 @@ model = SentenceTransformer("BAAI/bge-m3")
 正确的混合方案是：本地为默认 + 商用 API 兜底。大多数"本地优先"的开发者最终都会跑这套模式——既享受到大部分隐私收益，又能在需要时拿到云端质量。
 
 
----
+* * *
 **相关阅读**：[自建 LLM 2026：Ollama vs vLLM vs LocalAI](https://dibi8.com/zh/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Ollama 安装指南](https://dibi8.com/zh/resources/llm-frameworks/ollama/) · [2026 本地优先 AI 技术栈生产架构](https://dibi8.com/zh/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
@@ -221,11 +222,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -235,7 +236,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](local-first-ai-stack-offline-development-2026)
 - [ollama-vs-vllm](local-first-ai-stack-offline-development-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -264,13 +265,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |

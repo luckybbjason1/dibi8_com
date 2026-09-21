@@ -24,6 +24,7 @@ aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---
 
+
 Nếu [AUTOMATIC1111](/vi/resources/ai-tools/stable-diffusion-webui-2026/) là "Photoshop cho sinh ảnh AI" (bạn gõ, ảnh xảy ra), **ComfyUI** là **"node editor của Blender cho AI tạo sinh"** — bạn xây workflow như graph có hướng các node, với điều khiển rõ ràng trên mọi mô hình, sampler, bước điều kiện hóa, và hậu xử lý. 114k sao GitHub, GPL-3.0, hỗ trợ hầu như mọi họ mô hình AI tạo sinh ra mắt 2024-2026: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (hình ảnh / video / 3D), PixArt, AuraFlow, LTX-Video.
 
 Thực tế 2026: ai nghiêm túc về pipeline hình ảnh AI, video, hoặc đa phương thức chạy ComfyUI. Creator bình thường dùng A1111. Cả hai đều đúng — chúng là công cụ khác cho mô hình tinh thần khác.
@@ -63,20 +64,20 @@ Tùy chọn cloud: bật H100 trên Vast.ai $1.50/giờ hoặc GPU 24 GB trên {
 
 ## 3. Cài Nhanh (10 phút)
 
-```bash
+````bash
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 pip install -r requirements.txt
 python main.py
 # Mở UI tại http://localhost:8188
-```
+`````
 
 Hoặc dùng build portable Windows đứng riêng (launcher một click).
 
-Task đầu sau cài: cài **ComfyUI Manager** (gần nhất với "extension store"): ```bash
+Task đầu sau cài: cài **ComfyUI Manager** (gần nhất với "extension store"): `````bash
 cd custom_nodes
 git clone https://github.com/ltdrdata/ComfyUI-Manager
-```
+`````
 
 Restart ComfyUI. Manager xử lý tải mô hình, cài custom node, quản lý workflow.
 
@@ -123,7 +124,7 @@ Pipeline "text → ảnh → video → narration audio" cần 4 tool riêng ở 
 
 ## 8. Pattern Self-Host Production
 
-Cho triển khai "API sinh media AI": ```
+Cho triển khai "API sinh media AI": `````
    Instance GPU (24 GB VRAM khuyến nghị)
             │  trên Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}
             ▼
@@ -133,9 +134,9 @@ Cho triển khai "API sinh media AI": ```
    Service wrapper: - POST /run với workflow JSON + override params
    - Trả job_id, stream tiến độ qua WebSocket
    - Lưu đầu ra cuối tới S3
-```
+`````
 
-ComfyUI expose endpoint `POST /prompt` nhận workflow JSON. Xây layer auth + queue mỏng trên cùng và bạn có API thay thế Midjourney self-host.
+ComfyUI expose endpoint ````POST /prompt```` nhận workflow JSON. Xây layer auth + queue mỏng trên cùng và bạn có API thay thế Midjourney self-host.
 
 ## 9. ComfyUI vs A1111 vs SwarmUI
 
@@ -150,9 +151,9 @@ ComfyUI expose endpoint `POST /prompt` nhận workflow JSON. Xây layer auth + q
 ## 10. Cạm Bẫy
 
 1. **Bỏ qua ComfyUI Manager** — mọi vấn đề "tôi tìm node này thế nào" biến mất với Manager cài đặt
-2. **Đặt file mô hình thủ công** — mô hình vào subdir cụ thể (`models/checkpoints/`, `models/loras/`, v.v.). Manager xử tự động; làm tay dễ lỗi
+2. **Đặt file mô hình thủ công** — mô hình vào subdir cụ thể (````models/checkpoints/````, ````models/loras/````, v.v.). Manager xử tự động; làm tay dễ lỗi
 3. **Load workflow không hiểu** — workflow Reddit có thể 200+ node. Bắt đầu cái đơn giản và sửa
-4. **Bỏ qua cài đặt quản lý bộ nhớ** — `--lowvram` / `--medvram` là khác biệt giữa "hoạt động" và "OOM" trên GPU nhỏ hơn
+4. **Bỏ qua cài đặt quản lý bộ nhớ** — ````--lowvram```` / ````--medvram``` là khác biệt giữa "hoạt động" và "OOM" trên GPU nhỏ hơn
 5. **Không kiểm soát phiên bản trên workflow** — git workflow JSON cùng với code. Bạn tương lai sẽ cảm ơn bạn hiện tại
 
 ## TL;DR
@@ -161,7 +162,7 @@ ComfyUI = **engine workflow sinh media AI dựa node, mặc định 2026 cho b�
 
 Cài ComfyUI + ComfyUI Manager (~15 phút tổng), thả workflow cộng đồng từ OpenArt lên canvas, xem AI tạo sinh dưới dạng graph có hướng có ý nghĩa theo cách A1111 không bao giờ có thể.
 
----
+* * *
 
 *Một phần của stack nội dung đa phương thức dibi8 — pair với [Stable Diffusion WebUI cho sử dụng casual](/vi/resources/ai-tools/stable-diffusion-webui-2026/) và [ChatTTS cho giọng nói](/vi/resources/ai-tools/chattts-dialogue-tts-2026/). Xem bộ sưu tập Multi-Modal Content Pipeline sắp tới cho stack creator đầy đủ.*
 
@@ -227,12 +228,12 @@ ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh Dựa Node 114k Sao
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -242,6 +243,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [stable-diffusion-complete-guide](comfyui-node-based-ai-image-2026)
 - [comfyui-workflows-complete-guide](comfyui-node-based-ai-image-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

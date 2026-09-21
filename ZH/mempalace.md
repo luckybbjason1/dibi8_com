@@ -32,6 +32,7 @@ faqs: - q: 'MemPalace 是什么？它如何赋予 AI 记忆能力？'
   - q: 'MemPalace 能与 Claude Code 及其他 AI 工具配合使用吗？'
     a: '可以。MemPalace 原生提供多个插件，包括：面向 Claude Code 的 .claude-plugin 目录、面向 OpenAI Codex 的 .codex-plugin 目录、面向 MCP 兼容工具的 .agents/plugins 目录，以及对 Gemini CLI 和本地模型的支持。它开箱即暴露一个兼容 MCP 的端点，可用于持久化编程智能体的记忆。'---
 
+
 {</* resource-info */>}
 
 # MemPalace：让你的 AI 助手永远记得你是谁
@@ -65,7 +66,7 @@ faqs: - q: 'MemPalace 是什么？它如何赋予 AI 记忆能力？'
 |
 ---
 |
----
+* * *
 |
 | **长期记忆存储** | 自动提取对话中的关键信息，持久化到向量数据库 |
 | **智能记忆检索** | 根据当前查询语义，召回最相关的历史记忆片段 |
@@ -77,13 +78,13 @@ faqs: - q: 'MemPalace 是什么？它如何赋予 AI 记忆能力？'
 
 ### 1. 安装
 
-```bash
+````bash
 pip install mempalace
-```
+`````
 
 ### 2. 初始化记忆系统
 
-```python
+`````python
 from mempalace import Memory Palace
 
 # 初始化记忆宫殿
@@ -92,11 +93,11 @@ mp = MemoryPalace(
     embedding_model="BAAI/bge-small-en-v1.5",
     collection_name="user_001"
 )
-```
+`````
 
 ### 3. 存储记忆
 
-```python
+`````python
 # 从对话中提取并保存关键信息
 mp.remember(
     content="用户张三对乳糖不耐受，不能饮用含乳制品的咖啡。",
@@ -109,11 +110,11 @@ mp.remember(
     tags=["沟通风格", "偏好"],
     importance=0.8
 )
-```
+`````
 
 ### 4. 检索记忆
 
-```python
+`````python
 # 在新对话开始前，自动召回相关记忆
 memories = mp.recall(
     query="推荐一款适合用户的下午茶饮品",
@@ -122,11 +123,11 @@ memories = mp.recall(
 )
 
 for m in memories: print(f"[记忆召回] {m.content} (相关度: {m.score:.2f})")
-```
+`````
 
 ### 5. 注入系统提示
 
-```python
+`````python
 # 将召回的记忆注入到系统提示中，让 LLM "想起"用户
 system_prompt = f"""你是一位贴心的 AI 助手。以下是你对当前用户的已知信息：
 
@@ -135,7 +136,7 @@ system_prompt = f"""你是一位贴心的 AI 助手。以下是你对当前用�
 请基于以上背景，用用户偏好的风格回答问题。"""
 
 response = llm.chat(system=system_prompt, user="我想点杯喝的，有什么推荐？")
-```
+````
 
 ## 架构亮点
 
@@ -150,15 +151,15 @@ MemPalace 在设计上做了几个关键取舍：
 
 | 方案 | 开源 | 本地部署 | 记忆粒度 | Stars |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | MemPalace | ✅ | ✅ | 句子级 | 51K+ |
 | MemGPT | ✅ | ✅ | 会话级 | 12K+ |
@@ -180,15 +181,15 @@ MemPalace 用开源和免费的方式，把"AI 长期记忆"这一高门槛能�
 GitHub 仓库：[github.com/MemPalace/mempalace](https://github.com/MemPalace/mempalace) — 51,745 Stars 且持续增长。
 
 
----
+* * *
 ## Related Articles
 
 
 - [构建持久化 AI Agent：记忆、工具与规划](/resources/llm-frameworks/hello-agents-ai-agent-building-tutorial/)
 
----
+* * *
 -
----
+* * *
 
 ## 推荐工具
 
@@ -274,7 +275,7 @@ MemPalace vs Mem0：96.6% 召回率测评！2026年最强开源 AI 记忆系统 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -306,15 +307,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

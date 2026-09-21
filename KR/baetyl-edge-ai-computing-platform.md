@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/baetyl-edge-ai-computing-platform/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 12조 달러의 엣지 AI 격차
@@ -26,14 +27,14 @@ Baidu에서 원래 개발한 Linux Foundation Edge 프로젝트인 Baetyl(발음
 
 Baetyl은 LF Edge 산하의 오픈소스 엣지 컴퓨팅 프레임워크로, 클라우드 컴퓨팅, 데이터 및 서비스를 엣지 장치에 원활하게 확장합니다. Baidu Intelligent Edge(BIE) 팀에서 원래 개발했으며, 장치 연결, 메시지 라우팅, 원격 동기화, 함수 컴퓨팅, 비디오 캡처, AI 추론, 상태 보고 및 구성 OTA를 포함한 임시 오프라인, 저지연 컴퓨팅 서비스를 제공합니다.
 
-Baetyl v2(현재 안정 버전: v2.4.3, 2024년 10월 릴리스)는 두 개의 상호 보완적인 시스템으로 구성됩니다: - **엣지 컴퓨팅 프레임워크** (`baetyl/baetyl`): 엣지 노드의 Kubernetes/K3s에서 실행됩니다. 시스템 서비스(baetyl-init, baetyl-core, baetyl-function)를 통해 모든 애플리케이션을 관리하고 배포합니다.
-- **클우드 관리 스위트** (`baetyl/baetyl-cloud`): 클라우드의 Kubernetes에 배포됩니다. 노드 관리, 애플리케이션 배포, 구성 및 일괄 프로비저닝을 위한 RESTful API를 제공합니다.
+Baetyl v2(현재 안정 버전: v2.4.3, 2024년 10월 릴리스)는 두 개의 상호 보완적인 시스템으로 구성됩니다: - **엣지 컴퓨팅 프레임워크** (```baetyl/baetyl````): 엣지 노드의 Kubernetes/K3s에서 실행됩니다. 시스템 서비스(baetyl-init, baetyl-core, baetyl-function)를 통해 모든 애플리케이션을 관리하고 배포합니다.
+- **클우드 관리 스위트** (````baetyl/baetyl-cloud````): 클라우드의 Kubernetes에 배포됩니다. 노드 관리, 애플리케이션 배포, 구성 및 일괄 프로비저닝을 위한 RESTful API를 제공합니다.
 
 엣지 프레임워크는 Linux/amd64, Linux/arm64 및 Linux/armv7을 지원합니다. 리소스가 제한된 장치의 경우 최소 **1GB RAM 및 1 CPU 코어**가 필요한 K3s(경량 Kubernetes)가 권장됩니다.
 
 ## Baetyl의 작동 방식: 클라우드-엣지 아키텍처
 
-Baetyl의 v2 아키텍처는 Kubernetes 컨트롤러와 IoT 장치 섀도우에서 영감을 받은 선언적 섀도우 기반 동기화 모델을 사용합니다: ```
+Baetyl의 v2 아키텍처는 Kubernetes 컨트롤러와 IoT 장치 섀도우에서 영감을 받은 선언적 섀도우 기반 동기화 모델을 사용합니다: `````
 클우드 측 (Kubernetes)              엣지 측 (K3s/Kubernetes)
 +---------------------+              +---------------------+
 |  baetyl-cloud       |  Report    |  baetyl-init        |
@@ -52,15 +53,15 @@ Baetyl의 v2 아키텍처는 Kubernetes 컨트롤러와 IoT 장치 섀도우에�
                                      |  - MQTT 브로커      |
                                      |  - 스트림 프로세서  |
                                      +---------------------+
-```
+`````
 
 섀도우 동기화는 두 개의 필드를 통해 작동합니다: **Report**(엣지가 자신에 대해 보고하는 내용) 및 **Desire**(클우드가 엣지가 되기를 원하는 상태). 클라우드에서 애플리케이션 사양을 업데이트하면 baetyl-core가 Desire 변경을 감지하고, 새 컨테이너 이미지를 가져오고, 로컬로 재배포합니다. 이를 통해 간헐적인 연결에서도 안정적인 OTA 업데이트가 가능합니다.
 
 **주요 시스템 애플리케이션:**
 
-- `baetyl-init`: 엣지 노드를 클라우드에 활성화하고 baetyl-core를 초기화합니다. 완료 후 종료됩니다.
-- `baetyl-core`: 로컬 노드 상태를 관리하고, Report/Desire 섀도우를 통해 클라우드와 동기화하며, 임베디드 엔진을 통해 애플리케이션을 배포합니다.
-- `baetyl-function`: 모든 함수 런타임 서비스의 프록시입니다. 함수 호출은 이 모듈을 통해 라우팅됩니다.
+- ````baetyl-init````: 엣지 노드를 클라우드에 활성화하고 baetyl-core를 초기화합니다. 완료 후 종료됩니다.
+- ````baetyl-core````: 로컬 노드 상태를 관리하고, Report/Desire 섀도우를 통해 클라우드와 동기화하며, 임베디드 엔진을 통해 애플리케이션을 배포합니다.
+- ````baetyl-function````: 모든 함수 런타임 서비스의 프록시입니다. 함수 호출은 이 모듈을 통해 라우팅됩니다.
 
 ## 설치 및 설정: 15분 안에 엣지 + 클라우드
 
@@ -81,18 +82,18 @@ Baetyl의 v2 아키텍처는 Kubernetes 컨트롤러와 IoT 장치 섀도우에�
 
 ### 1단계: 엣지 노드에 K3s 설치
 
-```bash
+`````bash
 curl -sfL https://get.k3s.io | sh -
 
 # 확인
 sudo kubectl get nodes
 # NAME      STATUS   ROLES                  AGE   VERSION
 # edge-01   Ready    control-plane,master   30s   v1.30.5+k3s1
-```
+`````
 
 ### 2단계: baetyl-cloud 배포 (클우드 관리)
 
-```bash
+`````bash
 # 클라우드 관리 리포지토리 복제
 git clone https://github.com/baetyl/baetyl-cloud.git
 cd baetyl-cloud
@@ -120,11 +121,11 @@ helm install baetyl-cloud ./baetyl-cloud/
 kubectl get pod
 # NAME                            READY   STATUS    RESTARTS   AGE
 # baetyl-cloud-57cd9597bd-z62kb   1/1     Running   0          97s
-```
+`````
 
 ### 3단계: 엣지 노드 생성 및 활성화
 
-```bash
+`````bash
 # 클라우드 API를 통해 노드 생성
 curl -d '{"name":"edge-prod-01"}' \
   -H "Content-Type: application/json" \
@@ -137,11 +138,11 @@ curl http://localhost:30004/v1/nodes/edge-prod-01/init
 # 엣지 장치에서 활성화 실행
 curl -skfL 'https://CLOUD_IP:30003/v1/active/setup.sh?token=YOUR_TOKEN' \
   -o setup.sh && sh setup.sh
-```
+`````
 
 ### 4단계: 엣지 노드 상태 확인
 
-```bash
+`````bash
 # 엣지 노드에서 시스템 애플리케이션 확인
 kubectl get pods -n baetyl-edge
 # NAME                              READY   STATUS      RESTARTS   AGE
@@ -151,13 +152,13 @@ kubectl get pods -n baetyl-edge
 # 클라우드에서 노드 온라인 확인
 curl http://localhost:30004/v1/nodes/edge-prod-01
 # "ready": true는 성공적인 활성화를 나타냄
-```
+`````
 
 ## 4가지 주요 프로토콜과의 통합
 
 Baetyl은 내장 프로토콜 어댑터를 통해 다양한 IoT 에코시스템에 연결합니다: **1. MQTT 메시지 브로커**
 
-baetyl-broker 모듈은 장치, 클라우드 및 로컬 애플리케이션 간에 메시지를 라우팅하는 엣지 측 MQTT 브로커를 제공합니다: ```yaml
+baetyl-broker 모듈은 장치, 클라우드 및 로컬 애플리케이션 간에 메시지를 라우팅하는 엣지 측 MQTT 브로커를 제공합니다: `````yaml
 # MQTT 브로커 애플리케이션 구성
 name: mqtt-app
 version: v1
@@ -170,16 +171,16 @@ services: - name: broker
 volumes: - name: broker-conf
     config: name: broker-conf
       version: v1
-```
+`````
 
-연결 테스트: ```bash
+연결 테스트: `````bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
-```
+`````
 
 **2. 산업용 센서용 Modbus RTU/TCP**
 
-```yaml
+`````yaml
 # Modbus 장치 커넥터 구성
 name: modbus-app
 services: - name: modbus-connector
@@ -193,11 +194,11 @@ services: - name: modbus-connector
               address: 0
               quantity: 2
               type: float
-```
+`````
 
 **3. 빌딩 자동화용 BACnet**
 
-```yaml
+`````yaml
 # HVAC 시스템용 BACnet 커넥터
 name: bacnet-app
 services: - name: bacnet-connector
@@ -207,11 +208,11 @@ services: - name: bacnet-connector
           objects: - type: analog-input
               instance: 0
               property: present-value
-```
+`````
 
 **4. eKuiper 스트림 처리 통합**
 
-Baetyl v2.4.3+는 엣지 스트림 처리를 위해 eKuiper를 선택적 시스템 애플리케이션으로 통합합니다: ```bash
+Baetyl v2.4.3+는 엣지 스트림 처리를 위해 eKuiper를 선택적 시스템 애플리케이션으로 통합합니다: `````bash
 # 노드 생성/업데이트 시 eKuiper 활성화
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -222,7 +223,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 # eKuiper가 자동으로 baetyl-broker에 연결되어
 # 스트림 처리의 입력 소스로 사용
-```
+`````
 
 ## 벤치마크 / 실제 엣지 AI 배포
 
@@ -242,7 +243,7 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 **AI 추론 서비스 배포:**
 
-```yaml
+`````yaml
 # 엣지에서 PyTorch 이미지 분류 모델
 name: ai-inference-app
 version: v1
@@ -257,18 +258,18 @@ services: - name: defect-detector
         mountPath: /models
 volumes: - name: model-cache
     hostPath: path: /opt/baetyl/models
-```
+`````
 
 **GPU 모니터링 및 공유:**
 
-baetyl-core는 GPU 메모리 사용량, 온도 및 전력 소비를 실시간으로 모니터링할 수 있습니다. 여러 애플리케이션이 GPU 리소스를 공유할 수 있습니다: ```yaml
+baetyl-core는 GPU 메모리 사용량, 온도 및 전력 소비를 실시간으로 모니터링할 수 있습니다. 여러 애플리케이션이 GPU 리소스를 공유할 수 있습니다: `````yaml
 # GPU 리소스 구성
 resources: limits: nvidia.com/gpu.shared: 0.5  # 앱 간 GPU 공유
-```
+`````
 
 **OTA 업데이트 롤아웃 전략:**
 
-```bash
+`````bash
 # 치킨 버킷을 노드 하위 집합에 새 모델 버전 배포
 curl -X POST http://cloud:30004/v1/apps \
   -H "Content-Type: application/json" \
@@ -286,11 +287,11 @@ curl http://cloud:30004/v1/nodes/edge-prod-01/report
 # 치킨 검증 후 전체 배포
 curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
   -d '{"selector": {"node-group": "production"}}'
-```
+`````
 
 **SQLite를 사용한 엣지 데이터베이스:**
 
-```bash
+`````bash
 # 엣지에서 로컬 데이터 캐싱을 위한 SQLite 배포
 cat > sqlite-app.yml << EOF
 name: local-cache
@@ -303,11 +304,11 @@ volumes: - name: data
 EOF
 
 baetyl apply -f sqlite-app.yml
-```
+`````
 
 **보안: 엣지와 클라우드 간 mTLS:**
 
-```bash
+`````bash
 # 엣지-클우드 통신용 인증서 생성
 openssl req -x509 -newkey rsa:4096 -keyout edge-key.pem \
   -out edge-cert.pem -days 365 -nodes \
@@ -323,7 +324,7 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
       "key.pem": "'$(base64 -w0 edge-key.pem)'"
     }
   }"
-```
+`````
 
 ## 대안과 비교
 
@@ -379,7 +380,7 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
 
 **질문: 클라우드 관리 스위트 없이 Baetyl을 배포할 수 있나요?**
 
-답변: 예, 하지만 중앙 집중식 관리 및 OTA 업데이트를 잃게 됩니다. 로컬 Kubernetes 매니페스트 또는 `baetyl apply` CLI를 사용하여 애플리케이션을 엣지 노드에 직접 배포할 수 있습니다. 이 독립 실행 모드는 단일 노드 배포 또는 클라우드 연결이 금지된 고도로 안전한 환경에 유용합니다.
+답변: 예, 하지만 중앙 집중식 관리 및 OTA 업데이트를 잃게 됩니다. 로컬 Kubernetes 매니페스트 또는 ````baetyl apply``` CLI를 사용하여 애플리케이션을 엣지 노드에 직접 배포할 수 있습니다. 이 독립 실행 모드는 단일 노드 배포 또는 클라우드 연결이 금지된 고도로 안전한 환경에 유용합니다.
 
 ## 결론: AI를 데이터가 있는 곳으로 가져오세요
 
@@ -438,7 +439,7 @@ Baetyl은 클라우드 AI 학습과 엣지 AI 추론 사이의 격차를 해소�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -447,6 +448,6 @@ Baetyl은 클라우드 AI 학습과 엣지 AI 추론 사이의 격차를 해소�
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

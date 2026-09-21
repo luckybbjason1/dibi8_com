@@ -32,6 +32,7 @@ faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
     a: "Gemini 2.5 Pro와 Gemini CLI가 1M+ 토큰 컨텍스트(단연 최대). Claude Sonnet 4.6(또는 Opus 4.7)과 Claude Code 1.0이 1M 토큰 지원(1M-context tier). Cursor Pro 기본 200K. GPT-5와 Codex CLI 256K. 매우 큰 monorepo에는 Gemini CLI 컨텍스트 우위 진짜지만 tool-use 신뢰성 뒤짐."
 ---
 
+
 {{</* resource-info */>}}
 
 # AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI
@@ -54,7 +55,7 @@ faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
 >
 > **오픈소스 대안 중요**: Aider, Cline, Roo Code는 자신의 API key 가져올 의향 있는 비용 의식 개발자에게 viable.
 
----
+* * *
 
 ## 4개 도구 한눈
 
@@ -89,8 +90,8 @@ faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
 |---|---|---|---|---|
 | Claude Code | 2m 50s | 40/40 | 0 | 의미 검색 + ripgrep 올바르게 사용 |
 | Cursor Pro | 1m 12s | 40/40 | 0 | 내장 symbol-aware rename |
-| Codex CLI | 4m 30s | 38/40 | 2 | `.mdx` 놓침 |
-| Gemini CLI | 5m 45s | 35/40 | 5 | `.mdx` + 템플릿 문자열 놓침 |
+| Codex CLI | 4m 30s | 38/40 | 2 | ```.mdx```` 놓침 |
+| Gemini CLI | 5m 45s | 35/40 | 5 | ````.mdx```` + 템플릿 문자열 놓침 |
 
 **판정**: Cursor 속도 승. Claude Code 품질 매치.
 
@@ -167,7 +168,7 @@ faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
 
 ## 4개 모두 잘 못하는 것
 
-- **세션 간 프로젝트 메모리**: 4개 모두 어제 세션 컨텍스트 기억 못함. MCP `memory` 서버 도움, 채택률 낮음.
+- **세션 간 프로젝트 메모리**: 4개 모두 어제 세션 컨텍스트 기억 못함. MCP ````memory``` 서버 도움, 채택률 낮음.
 - **다중 리포 워크플로우**: 4개 모두 리포 스코프. 교차 리포 리팩토링 수동 오케스트레이션 필요.
 - **실시간 비용 투명성**: Cursor, Gemini 사용량 표시. Claude Code, Codex CLI 월말까지 숨김.
 - **시니어 코드 온보딩**: 4개 모두 컨텍스트가 코드에 없는 잘 문서화 안 된 엔터프라이즈 코드베이스 어려움.
@@ -193,7 +194,7 @@ AI 코딩 에이전트 전용 VPS 운영(팀 공유 MCP 서버, 코드 실행 sa
 
 가장 큰 실수: Hacker News가 말한다고 최신 릴리스 쫓는 개발자. **하이프로 전환 마**. 자신의 3 워크플로우 벤치마크 실행. **올바른 도구는 특정 작업을 측정 가능하게 빠르게 만드는 것이지 가장 큰 모델 아님**.
 
----
+* * *
 
 **관련**: [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/) · [MCP 서버 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -259,12 +260,12 @@ AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemin
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -274,7 +275,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout)
 - [cursor-vs-claude-code](ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

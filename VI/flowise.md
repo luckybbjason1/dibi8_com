@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -71,7 +72,7 @@ Flowise cung cấp bốn phương pháp cài đặt. Mỗi phương pháp phù h
 
 Yêu cầu Node.js v18.15.0 hoặc v20+. Đây là con đường nhanh nhất từ cài đặt đến canvas đang chạy.
 
-```bash
+````bash
 # Cài đặt Flowise toàn cục
 npm install -g flowise
 
@@ -80,30 +81,30 @@ npm install -g flowise@3.1.2
 
 # Khởi động Flowise
 npx flowise start
-```
+`````
 
-Mở `http://localhost:3000` trong trình duyệt. Lần khởi động đầu tiên sẽ tự động tạo database SQLite tại `~/.flowise`.
+Mở ````http://localhost:3000```` trong trình duyệt. Lần khởi động đầu tiên sẽ tự động tạo database SQLite tại ````~/.flowise````.
 
 ### Phương pháp 2: Docker (Khuyến nghị cho production)
 
 Đây là phương pháp triển khai đáng tin cậy nhất. Flowise cung cấp image chính thức trên Docker Hub với hỗ trợ đa kiến trúc.
 
-```bash
+`````bash
 # Pull và chạy image chính thức
 docker run -d -p 3000:3000 \
   --name flowise \
   -e FLOWISE_USERNAME=admin \
   -e FLOWISE_PASSWORD=secure-password \
   flowiseai/flowise:latest
-```
+`````
 
-Truy cập `http://localhost:3000` và đăng nhập bằng thông tin bạn đã đặt.
+Truy cập ````http://localhost:3000```` và đăng nhập bằng thông tin bạn đã đặt.
 
 ### Phương pháp 3: Docker Compose (Production với database)
 
 Đối với triển khai lâu dài, sử dụng Docker Compose với PostgreSQL và volume mount.
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: flowise: image: flowiseai/flowise:latest
@@ -131,17 +132,17 @@ services: flowise: image: flowiseai/flowise:latest
     volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: flowise_data: postgres_data: ```
+volumes: flowise_data: postgres_data: `````
 
-Khởi động: ```bash
+Khởi động: `````bash
 docker compose up -d
-```
+`````
 
 ### Phương pháp 4: Triển khai lên DigitalOcean Droplet
 
 Để có instance được lưu trữ trên cloud trên VPS đáng tin cậy, triển khai Flowise lên DigitalOcean chỉ trong vài phút.
 
-```bash
+`````bash
 # Trên máy chủ Ubuntu 24.04 mới (2 vCPU / 2GB RAM / $12/tháng)
 apt update && apt install -y docker.io docker-compose
 
@@ -154,9 +155,9 @@ cp .env.example .env
 
 # Chỉnh sửa file cấu hình
 nano .env
-```
+`````
 
-Ví dụ `.env` cho triển khai DigitalOcean: ```bash
+Ví dụ ``.env`` cho triển khai DigitalOcean: `````bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -167,11 +168,11 @@ FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=your-secure-password-here
 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
-```
+`````
 
-Khởi động dịch vụ: ```bash
+Khởi động dịch vụ: `````bash
 docker compose up -d
-```
+`````
 
 *Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.*
 
@@ -179,32 +180,32 @@ docker compose up -d
 
 | Biến | Mô tả | Mặc định |
 |------|--------|---------|
-| `PORT` | Cổng máy chủ HTTP | 3000 |
-| `DATABASE_TYPE` | Công cụ database (sqlite, postgres) | sqlite |
-| `DATABASE_PATH` | Đường dẫn file SQLite | ~/.flowise |
-| `FLOWISE_USERNAME` | Tên ngườ dùng admin | — |
-| `FLOWISE_PASSWORD` | Mật khẩu admin | — |
-| `JWT_AUTH_TOKEN_SECRET` | Secret token truy cập | tự động tạo |
-| `JWT_REFRESH_TOKEN_SECRET` | Secret token làm mới | tự động tạo |
-| `BLOB_STORAGE_PATH` | Đường dẫn lưu trữ file upload | ~/.flowise/storage |
-| `DISABLE_FLOWISE_TELEMETRY` | Tắt thu thập dữ liệu ẩn danh | false |
+| ````PORT```` | Cổng máy chủ HTTP | 3000 |
+| ````DATABASE_TYPE```` | Công cụ database (sqlite, postgres) | sqlite |
+| ````DATABASE_PATH```` | Đường dẫn file SQLite | ~/.flowise |
+| ````FLOWISE_USERNAME```` | Tên ngườ dùng admin | — |
+| ````FLOWISE_PASSWORD```` | Mật khẩu admin | — |
+| ````JWT_AUTH_TOKEN_SECRET```` | Secret token truy cập | tự động tạo |
+| ````JWT_REFRESH_TOKEN_SECRET```` | Secret token làm mới | tự động tạo |
+| ````BLOB_STORAGE_PATH```` | Đường dẫn lưu trữ file upload | ~/.flowise/storage |
+| ````DISABLE_FLOWISE_TELEMETRY```` | Tắt thu thập dữ liệu ẩn danh | false |
 
 ## Tích hợp với công cụ phổ biến
 
 ### Tích hợp OpenAI
 
-Hầu hết ngườ dùng bắt đầu với mô hình OpenAI. Cấu hình API key trong Flowise UI tại Credentials, sau đó sử dụng node `ChatOpenAI` trong flow.
+Hầu hết ngườ dùng bắt đầu với mô hình OpenAI. Cấu hình API key trong Flowise UI tại Credentials, sau đó sử dụng node ````ChatOpenAI```` trong flow.
 
-```bash
+`````bash
 # Thêm OpenAI API key dưới dạng biến môi trường (tùy chọn nhưng khuyến nghị)
 export OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
 ### Ollama (LLM cục bộ)
 
 Chạy mô hình local với Ollama loại bỏ chi phí API và giữ dữ liệu tại chỗ. Thiết lập này lý tưởng cho các triển khai nhạy cảm về quyền riêng tư.
 
-```yaml
+`````yaml
 # docker-compose-ollama.yml
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
@@ -219,29 +220,29 @@ services: ollama: image: ollama/ollama:latest
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: ```
+volumes: ollama_data: `````
 
-Pull mô hình và bắt đầu sử dụng: ```bash
+Pull mô hình và bắt đầu sử dụng: `````bash
 # Pull mô hình nhẹ để test
 docker exec -it ollama ollama pull qwen2:7b
 
 # Hoặc pull Llama 3
 docker exec -it ollama ollama pull llama3.1:8b
-```
+`````
 
-Trên canvas Flowise, chọn node `ChatOllama` và đặt tên mô hình thành `qwen2:7b` hoặc `llama3.1:8b`.
+Trên canvas Flowise, chọn node ````ChatOllama```` và đặt tên mô hình thành ````qwen2:7b```` hoặc ````llama3.1:8b````.
 
 ### Chroma Vector Store (Thiết lập RAG)
 
 Đối với pipeline RAG production-grade, Chroma cung cấp vector database nhẹ hoạt động liền mạch với Flowise.
 
-```yaml
+`````yaml
 # Thêm vào docker-compose.yml
   chroma: image: chromadb/chroma:latest
     ports: - "8000:8000"
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
-```
+`````
 
 Xây dựng pipeline RAG trong Flowise: 1. Kéo thả node **PDF Loader** hoặc **Text File**
 2. Kết nối với node **Text Splitter** (đặt chunk size 1000, overlap 200)
@@ -255,20 +256,20 @@ Xây dựng pipeline RAG trong Flowise: 1. Kéo thả node **PDF Loader** hoặc
 
 Đối với RAG có tìm kiếm hybrid thông lượng cao, Qdrant vượt trội hơn các store trong bộ nhớ.
 
-```yaml
+`````yaml
 # Thêm Qdrant vào compose file
   qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
       - "6334:6334"
     volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
-```
+`````
 
-Trong Flowise, sử dụng node vector store `Qdrant` với host `http://qdrant:6333`.
+Trong Flowise, sử dụng node vector store ````Qdrant```` với host ````http://qdrant:6333````.
 
 ### Weaviate (Vector Database doanh nghiệp)
 
-```yaml
+`````yaml
   weaviate: image: semitechnologies/weaviate:latest
     ports: - "8080:8080"
     environment: QUERY_DEFAULTS_LIMIT: 25
@@ -276,13 +277,13 @@ Trong Flowise, sử dụng node vector store `Qdrant` với host `http://qdrant:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
-```
+`````
 
 ### Triển khai API
 
 Mọi flow tự động hiển thị REST API. Export chatflow của bạn và tích hợp ở bất kỳ đâu.
 
-```bash
+`````bash
 # Test flow đã triển khai bằng curl
 curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   -H "Content-Type: application/json" \
@@ -292,9 +293,9 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
       "sessionId": "user_001"
     }
   }'
-```
+`````
 
-Phản hồi: ```json
+Phản hồi: `````json
 {
   "text": "Theo tài liệu của chúng tôi, chính sách đổi trả cho phép đổi trả trong vòng 30 ngày kể từ ngày mua với biên lai gốc.",
   "sourceDocuments": [
@@ -304,9 +305,9 @@ Phản hồi: ```json
     }
   ]
 }
-```
+`````
 
-Ví dụ Python SDK: ```python
+Ví dụ Python SDK: `````python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
@@ -319,14 +320,14 @@ def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json
 
 answer = ask("Các phương thức vận chuyển là gì?")
 print(answer)
-```
+`````
 
 ### Nhúng vào website
 
 Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào: ![Flowise Embed Widget](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
 *Widget chat nhúng với tùy chỉnh giao diện —— triển khai lên bất kỳ website nào chỉ với một thẻ script*
 
-```html
+`````html
 import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
@@ -348,7 +349,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
     }
   });
 </script>
-```
+`````
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
@@ -396,7 +397,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
 
 ### Danh sách kiểm tra bảo mật
 
-Trước khi đưa Flowise ra internet, hoàn thành các bước sau: ```bash
+Trước khi đưa Flowise ra internet, hoàn thành các bước sau: `````bash
 # 1. Bật xác thực (BẮT BUỘC)
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -428,13 +429,13 @@ DISABLE_FLOWISE_TELEMETRY=true
 
 # 5. Đặt CORS cho widget nhúng
 CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
-```
+`````
 
 ### Mở rộng với Queue Mode
 
 Đối với triển khai lưu lượng cao, Flowise hỗ trợ xử lý dựa trên hàng đợi với Redis worker.
 
-```yaml
+`````yaml
 # docker-compose-queue.yml
 version: '3.8"
 services: redis: image: redis:alpine
@@ -451,15 +452,15 @@ services: redis: image: redis:alpine
     environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
-```
+`````
 
-Mở rộng worker theo chiều ngang: ```bash
+Mở rộng worker theo chiều ngang: `````bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
-```
+`````
 
 ### Chiến lược sao lưu
 
-```bash
+`````bash
 # Sao lưu database SQLite
 docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise
 docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz
@@ -469,11 +470,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > flowise-db-$(date +%Y%
 
 # Tự động sao lưu hàng ngày qua cron (thêm vào crontab)
 0 2 * * * /usr/local/bin/backup-flowise.sh >> /var/log/flowise-backup.log 2>&1
-```
+`````
 
 ### Giám sát với Docker
 
-```bash
+`````bash
 # Xem log theo thờ gian thực
 docker compose logs -f flowise
 
@@ -482,7 +483,7 @@ docker stats flowise
 
 # Health check endpoint
 curl http://localhost:3000/api/v1/ping
-```
+`````
 
 ## Hạn chế / Đánh giá trung thực
 
@@ -502,11 +503,11 @@ Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là
 
 ### Cách cài đặt Flowise trên server không có Node.js?
 
-Sử dụng Docker. Image `flowiseai/flowise` chính thức đã đóng gói mọi dependency. Một lệnh `docker run` duy nhất là đủ, không cần cài Node.js, pnpm hay bất kỳ công cụ build nào trên host.
+Sử dụng Docker. Image ````flowiseai/flowise```` chính thức đã đóng gói mọi dependency. Một lệnh ````docker run```` duy nhất là đủ, không cần cài Node.js, pnpm hay bất kỳ công cụ build nào trên host.
 
 ### Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?
 
-Có. Flowise tích hợp gốc với Ollama. Khởi động container Ollama (hoặc instance local), pull bất kỳ mô hình GGUF nào, sau đó chọn node `ChatOllama` trên canvas Flowise. Dữ liệu của bạn không bao giờ rồi khỏi server —— không cần API key.
+Có. Flowise tích hợp gốc với Ollama. Khởi động container Ollama (hoặc instance local), pull bất kỳ mô hình GGUF nào, sau đó chọn node ````ChatOllama```` trên canvas Flowise. Dữ liệu của bạn không bao giờ rồi khỏi server —— không cần API key.
 
 ### Flowise vs Dify khi xây dựng chatbot RAG?
 
@@ -522,16 +523,16 @@ VPS $5/tháng với 1 vCPU và 1 GB RAM xử lý tốt khối lượng công vi�
 
 ### Có thể export chatbot Flowise dưới dạng API không?
 
-Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại `/api/v1/prediction/{flow-id}`. UI tạo snippet code curl, Python và JavaScript. Bạn cũng có thể export widget chat nhúng chỉ với một click.
+Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại ````/api/v1/prediction/{flow-id}````. UI tạo snippet code curl, Python và JavaScript. Bạn cũng có thể export widget chat nhúng chỉ với một click.
 
 ### Cách nâng cấp Flowise lên phiên bản mới?
 
-Triển khai Docker: Pull image mới nhất và khởi động lại: ```bash
+Triển khai Docker: Pull image mới nhất và khởi động lại: `````bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
-```
+`````
 
-Cài đặt NPM: Chạy `npm update -g flowise`. Luôn sao lưu thư mục `~/.flowise` trước khi nâng cấp.
+Cài đặt NPM: Chạy ````npm update -g flowise````. Luôn sao lưu thư mục ````~/.flowise```` trước khi nâng cấp.
 
 *Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.*
 
@@ -539,10 +540,10 @@ Cài đặt NPM: Chạy `npm update -g flowise`. Luôn sao lưu thư mục `~/.f
 
 Flowise loại bỏ rào cản giữa ý tưởng và triển khai AI agent. Với 52.948 GitHub Stars, giấy phép MIT, và canvas trực quan ánh xạ trực tiếp đến mô hình thành phần LangChain, đây là lựa chọn thực tế cho các developer muốn phát hành chatbot LLM và hệ thống RAG mà không viết code boilerplate.
 
-Bắt đầu với `npx flowise start` cho prototype local. Chuyển sang Docker Compose với PostgreSQL cho production. Kết nối Ollama cho các triển khai hoàn toàn private, không cần API key. Và khi cần mở rộng, thêm Redis queue worker và các worker replica theo chiều ngang.
+Bắt đầu với ````npx flowise start```` cho prototype local. Chuyển sang Docker Compose với PostgreSQL cho production. Kết nối Ollama cho các triển khai hoàn toàn private, không cần API key. Và khi cần mở rộng, thêm Redis queue worker và các worker replica theo chiều ngang.
 
 **Các việc cần làm tuần này:**
-1. Triển khai Flowise local với Docker (`docker run -p 3000:3000 flowiseai/flowise`)
+1. Triển khai Flowise local với Docker (````docker run -p 3000:3000 flowiseai/flowise```)
 2. Xây dựng pipeline RAG đầu tiên với PDF loader, text splitter và Chroma vector store
 3. Export REST API và nhúng chat widget vào trang test
 4. Tham gia [nhóm Telegram FlowiseAI](https://t.me/flowiseai) để được hỗ trợ cộng đồng và mẹo hàng tuần
@@ -595,7 +596,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -605,7 +606,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](flowise)
 - [ai-engineering-from-scratch](flowise)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

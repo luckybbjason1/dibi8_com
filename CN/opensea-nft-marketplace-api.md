@@ -11,6 +11,7 @@ tags: ["en", "zh", "ko", "vi"]
 aliases:
   - /posts/opensea-nft-marketplace-api/-
 ---
+
 {{</* resource-info */>}}
 
 The non-fungible token (NFT) ecosystem has matured significantly since its explosive growth in 2021. What began as a niche market for digital art has evolved into a multi-billion dollar infrastructure layer spanning gaming, real estate, identity, and decentralized finance. At the center of this transformation stands [OpenSea](https://opensea.io/), the world's largest NFT marketplace, and its powerful [OpenSea API](https://docs.opensea.io/reference/api-overview) that enables developers to build programmatic trading systems, analytics dashboards, and automated collection management tools.
@@ -18,7 +19,7 @@ The non-fungible token (NFT) ecosystem has matured significantly since its explo
 In this comprehensive 2026 guide, we will explore everything you need to know about the OpenSea API: from obtaining your API key and setting up the Python SDK to listing NFTs, executing trades, streaming real-time events via WebSocket, and handling rate limits in production environments. Whether you are building a trading bot, a portfolio tracker, or a marketplace aggregator, this guide provides the complete technical foundation.
 
 
----
+* * *
 ## What Is the OpenSea API?
 
 The OpenSea API is a RESTful and WebSocket-based programming interface that provides full access to the OpenSea NFT marketplace. It allows developers to query NFT collections, retrieve asset metadata, list items for sale, fulfill orders, track account activity, and subscribe to real-time event streams — all without manually interacting with the OpenSea website.
@@ -28,7 +29,7 @@ As of 2026, the OpenSea API supports multiple blockchain networks including Ethe
 The API follows modern REST conventions with JSON request/response formats, uses API key-based authentication, and implements standard HTTP status codes for error handling. For real-time applications, the WebSocket API provides event streaming for trades, listings, transfers, and collection updates with sub-second latency.
 
 
----
+* * *
 ## Getting Started: API Key Setup and Authentication
 
 Before making any API calls, you need to register for an API key through the OpenSea Developer Portal. The API key is required for all authenticated endpoints and determines your rate limit tier.
@@ -42,15 +43,15 @@ Visit the [OpenSea Developer Dashboard](https://docs.opensea.io/reference/api-ke
 Once approved, create a new API key from the dashboard. You will receive two credentials: - **API Key**: Used for identifying your application
 - **API Secret**: Used for signing certain authenticated requests
 
-Store these credentials securely in environment variables: ```bash
+Store these credentials securely in environment variables: ````bash
 # .env file
 OPENSEA_API_KEY=your_api_key_here
 OPENSEA_API_SECRET=your_api_secret_here
-```
+`````
 
 ### Step 3: Test Your Authentication
 
-Verify your API key is working with a simple health check: ```python
+Verify your API key is working with a simple health check: `````python
 import os
 import requests
 from dotenv import load_dotenv
@@ -74,11 +75,11 @@ response = requests.get(
 
 print(f"Status: {response.status_code}")
 print(f"Collections: {len(response.json()[collections])}")
-```
+`````
 
 ### Step 4: SDK Installation
 
-Install the official JavaScript SDK or a community Python wrapper: ```bash
+Install the official JavaScript SDK or a community Python wrapper: `````bash
 # Official JavaScript SDK
 npm install opensea-js
 
@@ -87,9 +88,9 @@ pip install opensea-api
 
 # Or use requests directly
 pip install requests python-dotenv
-```
+`````
 
----
+* * *
 
 ## OpenSea API Endpoints Overview
 
@@ -99,7 +100,7 @@ The OpenSea API is organized into logical endpoint groups covering every aspect 
 
 Collection endpoints provide comprehensive metadata about NFT collections, including floor prices, volume statistics, trait distributions, and social links.
 
-```python
+`````python
 def get_collection_details(collection_slug: str): """Fetch detailed information about an NFT collection."""
     endpoint = f"{BASE_URL}/collections/{collection_slug}"
     response = requests.get(endpoint, headers=headers)
@@ -118,13 +119,13 @@ def get_collection_details(collection_slug: str): """Fetch detailed information 
 # Example usage
 crypto_punks = get_collection_details("cryptopunks")
 print(f"CryptoPunks floor: {crypto_punks[floor_price]} ETH")
-```
+`````
 
 ### Asset Querying Endpoints
 
 Asset endpoints allow you to retrieve individual NFT metadata, ownership information, and listing status.
 
-```python
+`````python
 def get_asset_details(chain: str, address: str, token_id: str): """Retrieve metadata for a specific NFT asset."""
     endpoint = f"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}"
     response = requests.get(endpoint, headers=headers)
@@ -149,13 +150,13 @@ bored_ape = get_asset_details(
 )
 print(f"Asset: {bored_ape[name]}")
 print(f"Traits count: {len(bored_ape[traits])}")
-```
+`````
 
 ### Listing and Order Endpoints
 
 Listing endpoints manage the creation, retrieval, and cancellation of NFT sell orders. These are the core endpoints for programmatic trading.
 
-```python
+`````python
 def get_listings_by_collection(collection_slug: str, limit: int = 20): """Get active listings for a specific collection."""
     endpoint = f"{BASE_URL}/listings/collection/{collection_slug}/all"
     params = {"limit": limit}
@@ -178,13 +179,13 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20): """Get ac
 # Get cheapest listings
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
 for listing in sorted(listings, key=lambda x: float(x["price"])): print(f"Price: {listing[price]} | Token: {listing[token][identifier]}")
-```
+`````
 
 ### Account and Activity Endpoints
 
 Track wallet activity, owned assets, and historical events for any Ethereum address.
 
-```python
+`````python
 def get_account_events(account_address: str, event_type: str = "order", limit: int = 50): """Retrieve activity events for a specific account."""
     endpoint = f"{BASE_URL}/events/accounts/{account_address}"
     params = {
@@ -208,17 +209,17 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
 for event in events: print(f"{event[timestamp]}: {event[asset]} sold for {event[payment]}")
-```
+`````
 
----
+* * *
 
 ## Building a Python SDK Integration
 
-While the official OpenSea SDK is written in JavaScript/TypeScript, Python developers can build robust integrations using the `requests` library or community-maintained packages. Here is a production-ready Python SDK wrapper that handles authentication, pagination, error retries, and rate limiting.
+While the official OpenSea SDK is written in JavaScript/TypeScript, Python developers can build robust integrations using the ````requests```` library or community-maintained packages. Here is a production-ready Python SDK wrapper that handles authentication, pagination, error retries, and rate limiting.
 
 ### Complete Python SDK Class
 
-```python
+`````python
 import os
 import time
 import logging
@@ -328,9 +329,9 @@ sdk = OpenSeaAPI()
 stats = sdk.get_collection_stats("boredapeyachtclub")
 print(f"Floor: {stats[total][floor_price]}")
 print(f"Volume: {stats[total][volume]}")
-```
+`````
 
----
+* * *
 
 ## Listing, Buying, and Selling NFTs Programmatically
 
@@ -338,7 +339,7 @@ Programmatic trading is the most powerful feature of the OpenSea API. You can li
 
 ### Creating a Listing
 
-To list an NFT, you need to create a Seaport order. This requires signing the order with the owner's private key: ```python
+To list an NFT, you need to create a Seaport order. This requires signing the order with the owner's private key: `````python
 from web3 import Web3
 
 # Connect to Ethereum node
@@ -392,11 +393,11 @@ response = requests.post(
     json=listing_data
 )
 print(f"Listing created: {response.status_code}")
-```
+`````
 
 ### Fulfilling an Order (Buying an NFT)
 
-To purchase a listed NFT, retrieve the order and submit a fulfillment transaction: ```python
+To purchase a listed NFT, retrieve the order and submit a fulfillment transaction: `````python
 def fulfill_order(order_hash: str, buyer_address: str): """Fulfill an existing order to purchase an NFT."""
     # Get order details
     order_response = requests.get(
@@ -434,11 +435,11 @@ def fulfill_order(order_hash: str, buyer_address: str): """Fulfill an existing o
 # Buy the cheapest listed item
 cheapest = min(listings, key=lambda x: float(x["price"]))
 tx = fulfill_order(cheapest["order_hash"], "0xBuyerWalletAddress")
-```
+`````
 
 ### Batch Operations
 
-For high-frequency trading, use batch endpoints to process multiple operations: ```python
+For high-frequency trading, use batch endpoints to process multiple operations: `````python
 def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """Fetch multiple listings in a single request."""
     response = requests.post(
         f"{BASE_URL}/listings/batch",
@@ -451,9 +452,9 @@ def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """Fetch multip
 collections = ["boredapeyachtclub", "cryptopunks", "azuki"]
 requests_list = [{"collection": c, "limit": 5} for c in collections]
 batch_results = batch_get_listings(requests_list)
-```
+`````
 
----
+* * *
 
 ## Real-Time Event Streaming with WebSocket
 
@@ -461,7 +462,7 @@ The OpenSea WebSocket API enables real-time monitoring of marketplace events. Th
 
 ### WebSocket Connection Setup
 
-```python
+`````python
 import json
 import asyncio
 import websockets
@@ -529,11 +530,11 @@ async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.listen(handle_event)
 
 # asyncio.run(main())
-```
+`````
 
 ### Event Types Reference
 
-The WebSocket API supports multiple event types for different use cases: ```python
+The WebSocket API supports multiple event types for different use cases: `````python
 # Available event types
 EVENT_TYPES = {
     "item_listed": "New listing created",
@@ -546,9 +547,9 @@ EVENT_TYPES = {
     "item_metadata_updated": "NFT metadata refreshed",
     "item_transfer": "Token transferred"
 }
-```
+`````
 
----
+* * *
 
 ## Rate Limiting and Best Practices
 
@@ -558,13 +559,13 @@ Understanding rate limits is critical for production applications. Exceeding lim
 
 | Tier | Requests/Second | Burst Limit | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Free | 1 | 5 | Development, testing |
 | Developer | 10 | 50 | Small applications |
@@ -573,7 +574,7 @@ Understanding rate limits is critical for production applications. Exceeding lim
 
 ### Rate Limit Headers
 
-Every API response includes rate limit headers: ```python
+Every API response includes rate limit headers: `````python
 def check_rate_limits(response: requests.Response): """Extract and monitor rate limit status."""
     limit = response.headers.get("X-RateLimit-Limit")
     remaining = response.headers.get("X-RateLimit-Remaining")
@@ -594,11 +595,11 @@ def check_rate_limits(response: requests.Response): """Extract and monitor rate 
 # Apply to every request
 response = requests.get(f"{BASE_URL}/collections", headers=headers)
 limits = check_rate_limits(response)
-```
+`````
 
 ### Implementing Backoff Strategies
 
-```python
+`````python
 import random
 
 class AdaptiveRateLimiter: """Adaptive rate limiter with exponential backoff."""
@@ -634,11 +635,11 @@ for page in range(100): limiter.wait()
         limiter.on_success()
         process_assets(response.json())
     except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code)
-```
+`````
 
 ### Caching Strategies
 
-```python
+`````python
 from functools import lru_cache
 from datetime import datetime, timedelta
 
@@ -664,13 +665,13 @@ def get_cached_collection(slug: str): cached = collection_cache.get(slug)
     data = sdk.get_collection_stats(slug)
     collection_cache.set(slug, data)
     return data
-```
+`````
 
----
+* * *
 
 ## Building a Trading Bot: Complete Example
 
-Here is a complete example of an arbitrage-sniffing trading bot that monitors floor prices across collections: ```python
+Here is a complete example of an arbitrage-sniffing trading bot that monitors floor prices across collections: `````python
 import time
 from dataclasses import dataclass
 from typing import Callable
@@ -762,13 +763,13 @@ bot.add_collection("boredapeyachtclub", floor_threshold=30.0)
 bot.add_collection("azuki", floor_threshold=10.0)
 bot.on_opportunity(notify_discord)
 # bot.run(interval=60)
-```
+`````
 
----
+* * *
 
 ## Error Handling and Debugging
 
-Production applications require robust error handling. The OpenSea API returns structured error responses: ```python
+Production applications require robust error handling. The OpenSea API returns structured error responses: `````python
 class OpenSeaAPIError(Exception): """Custom exception for OpenSea API errors."""
     
     def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
@@ -801,9 +802,9 @@ def handle_api_error(response: requests.Response): """Parse and raise appropriat
 class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
         if not response.ok: handle_api_error(response)
         return response.json()
-```
+`````
 
----
+* * *
 
 ## FAQ: Frequently Asked Questions
 
@@ -813,7 +814,7 @@ Visit the [OpenSea Developer Dashboard](https://docs.opensea.io/reference/api-ke
 
 ### What are the rate limits for the OpenSea API?
 
-Rate limits depend on your API tier. Free tier allows 1 request per second with a burst of 5. Developer tier increases this to 10 RPS with burst of 50. Professional tier supports 40 RPS with burst of 200. Enterprise tiers offer 120+ RPS for high-frequency trading applications. Check the `X-RateLimit-*` headers in every response to monitor your usage.
+Rate limits depend on your API tier. Free tier allows 1 request per second with a burst of 5. Developer tier increases this to 10 RPS with burst of 50. Professional tier supports 40 RPS with burst of 200. Enterprise tiers offer 120+ RPS for high-frequency trading applications. Check the ````X-RateLimit-*```` headers in every response to monitor your usage.
 
 ### Can I buy and sell NFTs through the API?
 
@@ -821,21 +822,21 @@ Yes, the API supports full programmatic trading. You can create listings, accept
 
 ### Which blockchains does the OpenSea API support?
 
-As of 2026, the OpenSea API supports Ethereum mainnet, Polygon (PoS and zkEVM), Arbitrum One, Optimism, Base, Zora, and Sepolia testnet. Each chain has its own endpoint prefix (e.g., `/chain/ethereum/`, `/chain/polygon/`). Cross-chain aggregation endpoints allow querying across multiple networks simultaneously.
+As of 2026, the OpenSea API supports Ethereum mainnet, Polygon (PoS and zkEVM), Arbitrum One, Optimism, Base, Zora, and Sepolia testnet. Each chain has its own endpoint prefix (e.g., ````/chain/ethereum/````, ````/chain/polygon/````). Cross-chain aggregation endpoints allow querying across multiple networks simultaneously.
 
 ### Is there an official Python SDK for OpenSea?
 
-There is no official Python SDK from OpenSea. The official SDK is [opensea-js](https://github.com/ProjectOpenSea/opensea-js) (JavaScript/TypeScript). However, several community-maintained Python packages exist, and you can easily build your own integration using the `requests` library as demonstrated in this guide. The REST API is well-documented and follows standard conventions.
+There is no official Python SDK from OpenSea. The official SDK is [opensea-js](https://github.com/ProjectOpenSea/opensea-js) (JavaScript/TypeScript). However, several community-maintained Python packages exist, and you can easily build your own integration using the ````requests```` library as demonstrated in this guide. The REST API is well-documented and follows standard conventions.
 
 ### How do I stream real-time events?
 
-Use the WebSocket API at `wss://stream.opensea.io/socket`. Subscribe to event types like `item_listed`, `item_sold`, and `item_cancelled` with optional collection filters. The WebSocket connection requires your API key in the `X-API-KEY` header. Implement reconnection logic for production reliability.
+Use the WebSocket API at ````wss://stream.opensea.io/socket````. Subscribe to event types like ````item_listed````, ````item_sold````, and ````item_cancelled```` with optional collection filters. The WebSocket connection requires your API key in the ````X-API-KEY``` header. Implement reconnection logic for production reliability.
 
 ### What is the Seaport protocol?
 
 Seaport is OpenSea's decentralized NFT trading protocol. It is an open-source smart contract standard that handles order matching, fulfillment, and fee distribution. When you create or fulfill orders through the API, you are interacting with Seaport contracts on-chain. The protocol supports advanced features like criteria-based orders, partial fills, and bulk executions.
 
----
+* * *
 
 
 
@@ -859,7 +860,7 @@ Key takeaways from this guide: - **Authentication**: Obtain your API key from th
 
 Whether you are building a simple portfolio tracker or a high-frequency trading bot, the OpenSea API provides the infrastructure to interact with the world's largest NFT marketplace programmatically. Start with the examples in this guide, monitor your rate limits, and scale your application as your needs grow.
 
----
+* * *
 
 *This article was written on 2026-05-19. API specifications and rate limits are subject to change. Refer to the [official OpenSea documentation](https://docs.opensea.io/) for the latest updates.*
 

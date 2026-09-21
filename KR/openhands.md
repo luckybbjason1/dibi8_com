@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -52,13 +53,13 @@ OpenHands(이전 명칭 OpenDevin)는 Docker 컨테이너 난에 실행되는 �
 
 ![OpenHands 아키텍처](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/system_architecture_overview.png)
 
-에이전트 루프는 다음 패턴을 따릅니다: ```
+에이전트 루프는 다음 패턴을 따릅니다: ````
 1. OBSERVE: 작업 설명, 저장소 상태, 이전 작업 결과 읽기
 2. THINK: LLM이 계획 생성(어떤 파일을 편집할지, 어떤 명령을 실행할지)
 3. ACT: 계획된 작업 실행(read_file, write_file, run_cmd 등)
 4. OBSERVE: 결과 캡처(출력, 오류, 테스트 결과)
 5. REPEAT: 작업이 완료되거나 최대 반복 횟수에 도달할 때까지 반복
-```
+`````
 
 각 작업은 일반적으로 30-50회의 LLM 호출을 소모합니다. v1.5에 추가된 메모리 응축기(memory condenser)는 이전 컨텍스트를 요약하여 컨텍스트 윈도우를 집중시키고, 긴 작업에서 지연 시간과 토큰 소비를 줄입니다.
 
@@ -73,7 +74,7 @@ OpenHands를 설치하기 전에 다음이 준비되어야 합니다: - **Docker
 
 ### 방법 1: uv로 CLI 설치 (권장)
 
-OpenHands를 가장 빠르게 실행하는 방법은 uv 기반 CLI 설치기를 통하는 것입니다: ```bash
+OpenHands를 가장 빠르게 실행하는 방법은 uv 기반 CLI 설치기를 통하는 것입니다: `````bash
 # uv 설치 (아직 없는 경우)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -82,19 +83,19 @@ uv tool install openhands --python 3.12
 
 # GUI 서버 실행
 openhands serve
-```
+`````
 
-서버가 `http://localhost:3000`에서 시작됩니다. 브라우저를 열고 LLM 제공업체를 선택하고, API 키를 입력하면 작업 할당 준비가 완료됩니다.
+서버가 ````http://localhost:3000````에서 시작됩니다. 브라우저를 열고 LLM 제공업체를 선택하고, API 키를 입력하면 작업 할당 준비가 완료됩니다.
 
 ![OpenHands Web UI](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/screenshot.png)
 
-나중에 업그레이드하려면: ```bash
+나중에 업그레이드하려면: `````bash
 uv tool upgrade openhands --python 3.12
-```
+`````
 
 ### 방법 2: Docker 직접 실행
 
-Python 도구를 설치하지 않고 Docker를 선호하는 경우: ```bash
+Python 도구를 설치하지 않고 Docker를 선호하는 경우: `````bash
 # 최신 이미지 가져오기
 docker pull ghcr.io/openhands/openhands:latest
 
@@ -104,93 +105,93 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
-`--mount-cwd` 플래그는 현재 작업 디렉토리를 샌드박스에 마운트합니다: ```bash
+``--mount-cwd`` 플래그는 현재 작업 디렉토리를 샌드박스에 마운트합니다: `````bash
 openhands serve --mount-cwd
-```
+`````
 
-GPU 가속 로컬 모델의 경우: ```bash
+GPU 가속 로컬 모델의 경우: `````bash
 openhands serve --gpu
-```
+`````
 
 ### 방법 3: pip 설치
 
-```bash
+`````bash
 pip install openhands-ai
 
 # Web UI 시작
 openhands serve
-```
+`````
 
 ### Windows 설치 참고사항
 
-Windows에서는 모든 명령을 WSL2(Ubuntu) 난에서 실행해야 합니다: ```powershell
+Windows에서는 모든 명령을 WSL2(Ubuntu) 난에서 실행해야 합니다: `````powershell
 # PowerShell 관리자 권한에서
 wsl --install -d Ubuntu
 wsl -d Ubuntu
-```
+`````
 
-그리고 WSL 난에서: ```bash
+그리고 WSL 난에서: `````bash
 # 먼저 Docker Desktop for Windows 설치한 후: uv tool install openhands --python 3.12
 openhands serve
-```
+`````
 
 ## 구성 및 첫 작업
 
 ### LLM 제공업체 설정
 
 OpenHands를 실행한 후 설정 패널(기어 아이콘)에서 모델을 구성합니다: 1. **제공업체 선택**: Anthropic(Claude), OpenAI(GPT), Google(Gemini) 또는 로컬
-2. **모델 선택**: 최상의 결과를 위해 `anthropic/claude-sonnet-4-20250514` 권장
+2. **모델 선택**: 최상의 결과를 위해 ````anthropic/claude-sonnet-4-20250514```` 권장
 3. **API 키 입력**: 제공업체의 API 키 붙여넣기
 4. **변경사항 저장**
 
-고급 구성을 위해 고급 설정을 활성화하고 LiteLLM 접두사 형식으로 커스텀 모델을 설정할 수 있습니다: ```
+고급 구성을 위해 고급 설정을 활성화하고 LiteLLM 접두사 형식으로 커스텀 모델을 설정할 수 있습니다: `````
 anthropic/claude-sonnet-4-5-20250929
 openai/gpt-5-2025-08-07
 gemini/gemini-3-pro-preview
 deepseek/deepseek-chat
-```
+`````
 
 ### 로컬 모델 사용 (Ollama)
 
-오프라인 배포가 필요한 팀을 위한 방법: ```bash
+오프라인 배포가 필요한 팀을 위한 방법: `````bash
 # Ollama로 강력한 코딩 모델 시작
 ollama run qwen3-coder:32b
 
 # OpenHands 설정에서 구성: # 커스텀 모델: openai/qwen3-coder:32b
 # 기본 URL: http://host.docker.internal:11434/v1
 # API 키: ollama (아무 값이나 가능)
-```
+`````
 
 ### 첫 작업 실행
 
-`localhost:3000`에서 UI를 열고: 1. 채팅 상자에 작업 입력: "app.py의 main 함수에 docstring 추가"
+````localhost:3000````에서 UI를 열고: 1. 채팅 상자에 작업 입력: "app.py의 main 함수에 docstring 추가"
 2. 에이전트가 샌드박스를 생성하고, 파일을 읽고, docstring을 작성하고, 변경사항을 확인합니다
 3. 수락하기 전에 diff를 검토합니다
 
-GitHub 이슈 해결의 경우: ```
+GitHub 이슈 해결의 경우: `````
 이슈 #42에 설명된 인증 버그를 수정하세요.
 저장소를 클론하고, 오류를 재현하고, 수정을 구현하고, 테스트 스위트를 실행하세요.
-```
+`````
 
 ## VS Code, GitHub, Docker, CI/CD와의 통합
 
 ### ACP를 통한 VS Code 통합
 
-OpenHands v1.5+에는 IDE 통합을 위한 Agent Control Plane이 포함되어 있습니다: ```bash
+OpenHands v1.5+에는 IDE 통합을 위한 Agent Control Plane이 포함되어 있습니다: `````bash
 # OpenHands VS Code 확장 설치
 # VS Code 확장 마켓플레이스에서 "OpenHands" 검색
 
 # 로컬 OpenHands 서버에 연결하도록 확장 구성
 # 설정 > OpenHands > 서버 URL: http://localhost:3000
-```
+`````
 
 ACP 프로토콜을 통해 VS Code는 작업을 OpenHands에 직접 전송하고 diff 패치 형태로 구조화된 편집을 다시 받을 수 있습니다.
 
 ### GitHub 통합
 
-자동화된 이슈 해결을 위해 OpenHands를 GitHub 저장소에 연결합니다: ```bash
+자동화된 이슈 해결을 위해 OpenHands를 GitHub 저장소에 연결합니다: `````bash
 # 세분화된 GitHub PAT(개인 액세스 토큰) 설정
 export GITHUB_TOKEN=ghp_your_token_here
 
@@ -200,7 +201,7 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e GITHUB_TOKEN=$GITHUB_TOKEN \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 UI에서 GitHub 이슈 URL을 붙여넣으면 OpenHands가 다음을 수행합니다: 1. 저장소 클론
 2. 이슈 설명 읽기
@@ -211,18 +212,18 @@ UI에서 GitHub 이슈 URL을 붙여넣으면 OpenHands가 다음을 수행합�
 
 ### GitLab 통합
 
-GitLab 지원(v1.5 추가)은 유사한 방식으로 작동합니다: ```bash
+GitLab 지원(v1.5 추가)은 유사한 방식으로 작동합니다: `````bash
 export GITLAB_TOKEN=glpat-your-token
 docker run -it --rm \
   -p 3000:3000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e GITLAB_TOKEN=$GITLAB_TOKEN \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 ### 프로덕션용 Docker Compose
 
-지속적인 배포를 위해 Docker Compose를 사용합니다: ```yaml
+지속적인 배포를 위해 Docker Compose를 사용합니다: `````yaml
 version: "3.8"
 services: openhands: image: ghcr.io/openhands/openhands:latest
     ports: - "3000:3000"
@@ -235,15 +236,15 @@ services: openhands: image: ghcr.io/openhands/openhands:latest
       - LOG_LEVEL=info
     restart: unless-stopped
     security_opt: - no-new-privileges:true
-```
+`````
 
-배포: ```bash
+배포: `````bash
 docker-compose up -d
-```
+`````
 
 ### CI/CD 파이프라인 헤드리스 모드
 
-헤드리스 모드는 대화형 UI 없이 OpenHands를 실행하여 자동화에 적합합니다: ```bash
+헤드리스 모드는 대화형 UI 없이 OpenHands를 실행하여 자동화에 적합합니다: `````bash
 # 헤드리스 모드로 작업 실행
 openhands --headless -t "인증 모듈에 대한 단위 테스트 작성"
 
@@ -252,9 +253,9 @@ openhands --headless -f task.txt
 
 # 파이프라인 파싱용 JSON 출력
 openhands --headless --json -t "routes.py의 API 엔드포인트 수정" > output.jsonl
-```
+`````
 
-GitHub Actions 워크플로우 예시: ```yaml
+GitHub Actions 워크플로우 예시: `````yaml
 name: OpenHands 자동 수정
 on: issues: types: [labeled]
 jobs: fix: if: github.event.label.name == 'auto-fix'
@@ -269,11 +270,11 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl
-```
+`````
 
 ### MCP 서버 통합
 
-OpenHands는 확장 기능을 위해 Model Context Protocol(MCP) 서버를 지원합니다: ```json
+OpenHands는 확장 기능을 위해 Model Context Protocol(MCP) 서버를 지원합니다: `````json
 {
   "mcpServers": {
     "fetch": {
@@ -286,7 +287,7 @@ OpenHands는 확장 기능을 위해 Model Context Protocol(MCP) 서버를 지�
     }
   }
 }
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -332,45 +333,45 @@ AMD, Apple, Google, Netflix가 모두 자동화 유지보수 작업을 위해 Op
 
 자율 코드 실행 에이전트를 실행하려면 신중한 보안 설정이 필요합니다: **1. 샌드박스 네트워크 격리**
 
-```yaml
+`````yaml
 environment: - SANDBOX_NETWORK_DISABLED=true
-```
+`````
 
 이것은 샌드박스 컨테이너의 아웃바운드 요청을 차단합니다. 패키지 설치가 필요한 작업에서만 선택적으로 활성화하세요.
 
 **2. Docker 소켓 보안**
 
-Docker 소켓 마운트는 효과적으로 root 액세스와 동일합니다. 다음으로 완화합니다: ```bash
+Docker 소켓 마운트는 효과적으로 root 액세스와 동일합니다. 다음으로 완화합니다: `````bash
 docker run --security-opt no-new-privileges \
   --cap-drop ALL \
   --cap-add SYS_ADMIN \
   -v /var/run/docker.sock:/var/run/docker.sock \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 **3. 세분화된 GitHub PAT**
 
-조직 범위 토큰은 사용하지 마세요. PAT를 특정 저장소로 범위를 좁히세요: ```bash
+조직 범위 토큰은 사용하지 마세요. PAT를 특정 저장소로 범위를 좁히세요: `````bash
 # GitHub > 설정 > 개발자 설정에서 세분화된 PAT 생성
 # 다음만 선택: 콘텐츠(읽기/쓰기), 이슈(읽기), 풀 리퀘스트(쓰기)
-```
+`````
 
 **4. 비밀 관리**
 
-비밀을 환경 변수 대신 읽기 전용 볼륨으로 마운트합니다: ```yaml
+비밀을 환경 변수 대신 읽기 전용 볼륨으로 마운트합니다: `````yaml
 volumes: - /var/run/docker.sock:/var/run/docker.sock
   - /opt/secrets:/secrets:ro
 environment: - LLM_API_KEY_FILE=/secrets/anthropic_key
-```
+`````
 
 ### 멀티 에이전트 위임
 
-대규모 기능을 위해 멀티 에이전트 모드를 활성화합니다: ```bash
+대규모 기능을 위해 멀티 에이전트 모드를 활성화합니다: `````bash
 # config.toml 또는 환경 변수를 통해
 [agent]
 enable_multi_agent = true
 max_subagents = 3
-```
+`````
 
 상위 에이전트가 "인증이 포함된 REST API 구축"을 다음으로 분해합니다: - 하위 에이전트 1: API 엔드포인트 구현
 - 하위 에이전트 2: 인증 미들웨어 작성
@@ -378,19 +379,19 @@ max_subagents = 3
 
 ### 메모리 응축기 튜닝
 
-장기 실행 작업의 경우 메모리 응축기를 조정합니다: ```toml
+장기 실행 작업의 경우 메모리 응축기를 조정합니다: `````toml
 [llm]
 enable_condenser = true
 condenser_max_history = 240  # 240개 이벤트 후 요약 (기본값: 240)
-```
+`````
 
 ### 모니터링 및 로깅
 
-가시성을 위해 구조화된 JSON 로깅을 활성화합니다: ```bash
+가시성을 위해 구조화된 JSON 로깅을 활성화합니다: `````bash
 openhands --headless --json -t "작업" 2>&1 | tee openhands.log
-```
+`````
 
-지표를 위해 로그를 파싱합니다: ```bash
+지표를 위해 로그를 파싱합니다: `````bash
 # LLM 호출 횟수 계산
 jq 'select(.type == "llm")' openhands.log | wc -l
 
@@ -399,11 +400,11 @@ jq 'select(.type == "error")' openhands.log
 
 # 작업 소요 시간 계산
 jq 'select(.type == "finish") | .timestamp" openhands.log
-```
+`````
 
 ### Kubernetes 확장
 
-팀 배포를 위해 커뮤니티가 관리하는 Helm 차트를 사용합니다: ```bash
+팀 배포를 위해 커뮤니티가 관리하는 Helm 차트를 사용합니다: `````bash
 # OpenHands Helm 리포지토리 추가
 helm repo add openhands https://charts.openhands.dev
 helm repo update
@@ -414,7 +415,7 @@ helm install openhands openhands/openhands \
   --set llm.model=anthropic/claude-sonnet-4-20250514 \
   --set sandbox.networkDisabled=true \
   --set replicas=2
-```
+`````
 
 ## 대안과의 비교
 
@@ -463,7 +464,7 @@ OpenHands는 모든 상황에 적합한 도구가 아닙니다. 다음은 적합
 
 ### OpenHands를 완전히 오프라인으로 실행할 수 있나요?
 
-Ollama, vLLM, LM Studio를 통한 로컬 모델로 가능합니다. 기본 URL을 로컬 엔드포인트(예: `http://localhost:11434/v1`)로 설정하고 API 키는 아무 값이나 사용하세요. 복잡한 작업에서는 성능이 프런티어 API보다 20-30% 낮지만, 일상적인 버그 수정과 리팩토링은 가능합니다.
+Ollama, vLLM, LM Studio를 통한 로컬 모델로 가능합니다. 기본 URL을 로컬 엔드포인트(예: ````http://localhost:11434/v1````)로 설정하고 API 키는 아무 값이나 사용하세요. 복잡한 작업에서는 성능이 프런티어 API보다 20-30% 낮지만, 일상적인 버그 수정과 리팩토링은 가능합니다.
 
 ### OpenHands와 Devin을 어떻게 비교하나요?
 
@@ -471,11 +472,11 @@ Devin($20-500/월)은 설정이 더 쉽지만(2분 가입), Cognition의 모델�
 
 ### OpenHands에서 내 코드가 안전한가요?
 
-코드는 작업 완료 후 소멸되는 Docker 샌드박스 컨테이너에서 실행됩니다. `SANDBOX_NETWORK_DISABLED=true` 설정 시 샌드박스는 네트워크 액세스가 없습니다. 그러나 Docker 소켓 마운트는 컨트롤러에 상당한 호스트 액세스를 제공하므로, 프로덕션 노트북이 아닌 전용 머신이나 VM에서 OpenHands를 실행하세요.
+코드는 작업 완료 후 소멸되는 Docker 샌드박스 컨테이너에서 실행됩니다. ````SANDBOX_NETWORK_DISABLED=true```` 설정 시 샌드박스는 네트워크 액세스가 없습니다. 그러나 Docker 소켓 마운트는 컨트롤러에 상당한 호스트 액세스를 제공하므로, 프로덕션 노트북이 아닌 전용 머신이나 VM에서 OpenHands를 실행하세요.
 
 ### 기존 CI/CD 파이프라인과 OpenHands를 통합할 수 있나요?
 
-헤드리스 모드를 통해 가능합니다. `--headless --json` 플래그는 구조화된 JSONL 출력을 생성하여 모든 CI 시스템이 파싱할 수 있습니다. 일반적인 GitHub Actions 워크플로우는 저장소를 클론하고, 라벨링된 이슈에서 OpenHands를 실행하고, 생성된 diff에서 PR을 생성합니다.
+헤드리스 모드를 통해 가능합니다. ````--headless --json```` 플래그는 구조화된 JSONL 출력을 생성하여 모든 CI 시스템이 파싱할 수 있습니다. 일반적인 GitHub Actions 워크플로우는 저장소를 클론하고, 라벨링된 이슈에서 OpenHands를 실행하고, 생성된 diff에서 PR을 생성합니다.
 
 ### 어떤 모델이 OpenHands와 가장 잘 작동하나요?
 
@@ -483,7 +484,7 @@ Claude Sonnet 4.6은 대부분의 작업에서 비용과 품질의 최적 균형
 
 ### OpenHands가 루프에 갇혔을 때 어떻게 디버그하나요?
 
-UI의 이벤트 로그에서 반복적으로 실패한 작업을 확인하세요. 일반적인 수정 방법: (1) 더 구체적인 지침 제공, (2) 더 강력한 모델로 전환, (3) 작업을 더 작은 하위 작업으로 분할, (4) 설정에서 `max_iterations` 제한 증가.
+UI의 이벤트 로그에서 반복적으로 실패한 작업을 확인하세요. 일반적인 수정 방법: (1) 더 구체적인 지침 제공, (2) 더 강력한 모델로 전환, (3) 작업을 더 작은 하위 작업으로 분할, (4) 설정에서 ````max_iterations```` 제한 증가.
 
 ## 결론
 
@@ -492,9 +493,9 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 설치는 10-15분이 소요됩니다: uv 또는 Docker를 통해 설치하고, LLM 제공업체를 구성하고, 작업을 시작하세요. 프로덕션 사용을 위해 샌드박스 네트워크 격리를 활성화하고, 세분화된 GitHub PAT을 사용하고, CI/CD 통합을 위해 헤드리스 모드를 배포하세요.
 
 **다음 단계:**
-1. 저장소 클론: `git clone https://github.com/OpenHands/OpenHands.git`
-2. 설치: `uv tool install openhands --python 3.12`
-3. 실행: `openhands serve`로 시작하고 `localhost:3000`에서 연결
+1. 저장소 클론: ````git clone https://github.com/OpenHands/OpenHands.git````
+2. 설치: ````uv tool install openhands --python 3.12````
+3. 실행: ````openhands serve````로 시작하고 ````localhost:3000```에서 연결
 4. 지원과 기능 업데이트를 위해 Slack 커뮤니티 참여
 
 
@@ -517,7 +518,7 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 - [OpenHands 커뮤니티 포럼](https://github.com/OpenHands/OpenHands/discussions) — 질문 및 문제 해결
 - [Agent Control Plane 문서](https://docs.openhands.dev/openhands/usage/key-features) — VS Code 통합 및 멀티 에이전트 설정
 
----
+* * *
 
 *이 가이드는 독립적으로 유지관리되며 정기적으로 업데이트됩니다. 마지막 검증: 2026년 5월.*
 
@@ -547,7 +548,7 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -557,7 +558,7 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 - [12-factor-agents](openhands)
 - [2026-05-25-trending-ai-agents](openhands)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -12,9 +12,10 @@ maintainer: 'rohitg00'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 ---
+
 # AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              AgentMemory Architecture                  │
 │                                                      │
@@ -36,7 +37,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 │  │  "Last time you fixed the auth bug..."         │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *AgentMemory: sessions → memory storage → context-aware agent*
 
@@ -63,10 +64,10 @@ AgentMemory (22,063 GitHub stars) operates as an MCP server that provides persis
 
 ### Stage 1: MCP Server Setup
 
-```bash
+`````bash
 # Install AgentMemory globally
 npm install -g @agentmemory/agentmemory
-```
+`````
 
 ### Stage 2: Memory Extraction
 
@@ -85,13 +86,13 @@ When a new session starts, the agent queries the MCP server for relevant past co
 
 ### Install via npm
 
-```bash
+`````bash
 # Install the MCP server globally
 npm install -g @agentmemory/agentmemory
 
 # Verify installation
 npm list -g @agentmemory/agentmemory
-```
+`````
 
 ### Configure Agent Integration
 
@@ -108,7 +109,7 @@ AgentMemory supports multiple storage backends out of the box: - **ChromaDB** �
 
 ### Storage Backend Configuration
 
-Select a storage backend by setting the environment variable before starting the AgentMemory server: ```bash
+Select a storage backend by setting the environment variable before starting the AgentMemory server: `````bash
 # Use Qdrant as vector store
 export AGENTMEMORY_VECTOR_STORE=qdrant
 export QDRANT_HOST=localhost
@@ -123,13 +124,13 @@ export AGENTMEMORY_GRAPH_STORE=neo4j
 export NEO4J_URI=bolt://localhost:7687
 export NEO4J_USER=neo4j
 export NEO4J_PASSWORD=your_password
-```
+`````
 
 ### MCP Protocol Details
 
 AgentMemory implements the Model Context Protocol (MCP), which standardizes how AI agents interact with external tools and data sources. The MCP server exposes memory operations — store, retrieve, search, and delete — through a unified interface that any MCP-compatible agent can use.
 
-```bash
+`````bash
 # Start the AgentMemory MCP server
 agentmemory start --port 8080
 
@@ -138,11 +139,11 @@ agentmemory connect --endpoint http://localhost:8080
 
 # Check server health and connected agents
 agentmemory status
-```
+`````
 
 ### Memory Fact Schema
 
-Each memory fact has a structured schema with metadata: ```json
+Each memory fact has a structured schema with metadata: `````json
 {
   "fact_id": "f7a3b2c1",
   "type": "decision",
@@ -155,11 +156,11 @@ Each memory fact has a structured schema with metadata: ```json
   "tags": ["framework", "api", "decision"],
   "related_facts": ["f8b4c3d2", "f9c5d4e3"]
 }
-```
+`````
 
 ### Memory Query Examples
 
-Retrieve memory using natural language queries or structured filters: ```bash
+Retrieve memory using natural language queries or structured filters: `````bash
 # Natural language search
 agentmemory search "what architecture decisions were made?"
 
@@ -171,11 +172,11 @@ agentmemory search --since 2024-01-01 --until 2024-06-01
 
 # Retrieve related facts for a specific ID
 agentmemory get-related --fact-id f7a3b2c1 --max-depth 3
-```
+`````
 
 ### Memory Pruning Operations
 
-Manage memory growth with built-in pruning tools: ```bash
+Manage memory growth with built-in pruning tools: `````bash
 # Prune facts older than 90 days
 agentmemory prune --older-than 90d
 
@@ -185,7 +186,7 @@ echo 'cleanup_threshold_days: 90' >> ~/.agentmemory/config.yaml
 # View memory statistics
 agentmemory stats
 # Output: 1,247 facts stored, 48MB disk usage, avg_confidence: 0.87
-```
+`````
 
 ### Local vs. Remote Deployment
 
@@ -199,7 +200,7 @@ Supported agents include Claude Code, Codex CLI, OpenCode, Gemini CLI, Cursor, a
 
 ### Configuring Claude Code for AgentMemory
 
-Set up AgentMemory as a persistent memory tool for Claude Code: ```bash
+Set up AgentMemory as a persistent memory tool for Claude Code: `````bash
 # Set up Claude Code to use AgentMemory MCP server
 claude code --mcp-config ~/.claude/mcp-config.json
 
@@ -217,11 +218,11 @@ cat > ~/.claude/mcp-config.json << 'EOF'
   }
 }
 EOF
-```
+`````
 
 ### Configuring Codex CLI for AgentMemory
 
-```bash
+`````bash
 # Set up Codex to connect to AgentMemory
 codex config set memory.endpoint http://localhost:8080
 codex config set memory.auto_extract true
@@ -229,11 +230,11 @@ codex config set memory.auto_extract true
 # Verify connection
 codex test memory
 # Output: connected, 1247 facts loaded, retrieval_latency: 45ms
-```
+`````
 
 ### Multi-Session Memory Workflow
 
-Demonstrate how memory persists across sessions: ```bash
+Demonstrate how memory persists across sessions: `````bash
 # Session 1: Start working on a project
 agentmemory start --port 8080
 # Agent extracts: "Project uses PostgreSQL with Prisma ORM"
@@ -246,11 +247,11 @@ agentmemory search "database setup"
 # Session 3: Memory grows with new facts
 agentmemory stats
 # Output: 2,341 facts stored, 92MB disk usage
-```
+`````
 
 ### Export and Import Memory
 
-Transfer memory between machines or share with team members: ```bash
+Transfer memory between machines or share with team members: `````bash
 # Export memory as JSON
 agentmemory export --format json --output /tmp/agentmemory-backup.json
 
@@ -259,11 +260,11 @@ agentmemory export --format sqlite --output /tmp/agentmemory-backup.db
 
 # Import from backup
 agentmemory import --source /tmp/agentmemory-backup.json --target my-project
-```
+`````
 
 ### Custom Fact Extraction Rules
 
-Define custom extraction rules for domain-specific facts: ```yaml
+Define custom extraction rules for domain-specific facts: `````yaml
 # ~/.agentmemory/rules.yaml
 extraction_rules: - name: security_fixes
     pattern: ".*(fix|patch|resolve).*security.*"
@@ -282,11 +283,11 @@ extraction_rules: - name: security_fixes
     type: decision
     category: performance
     priority: high
-```
+`````
 
 ### Memory Conflict Resolution
 
-When multiple agents record conflicting facts, AgentMemory uses confidence scoring: ```bash
+When multiple agents record conflicting facts, AgentMemory uses confidence scoring: `````bash
 # Detect conflicting facts
 agentmemory conflicts --type decision --category framework
 # Output: # CONFLICT: framework selection
@@ -296,7 +297,7 @@ agentmemory conflicts --type decision --category framework
 
 # Resolve manually
 agentmemory resolve --keep fact_a --discard fact_b --reason "React was explicitly chosen"
-```
+`````
 
 For reliable hosting, deploy on [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplets for shared team memory, or [HTStack](https://my.htstack.com/aff.php?aff=27187) for Asia-Pacific low-latency. For trading automation, connect to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) or [OKX](https://www.promoohubly.com/join/12190433) APIs for real-time data feeds.
 
@@ -341,15 +342,15 @@ Over time, you may want to prune older facts to reduce storage and improve retri
 
 | Feature | AgentMemory | Cursor Memories | GitHub Copilot Chat | Custom RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Persistent memory | Yes | Yes (local only) | No | Yes |
 | Cross-session | Yes | No | No | Yes |
@@ -383,7 +384,7 @@ Memory retrieval speed depends on your storage backend. ChromaDB offers fast loc
 
 ### Monitoring Memory Health
 
-Monitor your memory store for health metrics and potential issues: ```bash
+Monitor your memory store for health metrics and potential issues: `````bash
 # Check memory store health
 agentmemory health
 # Output: OK, 1247 facts, 48MB, last_pruned: 2024-06-01
@@ -397,7 +398,7 @@ agentmemory analytics --queries --top 10
 # Check for orphaned facts with no references
 agentmemory orphan-check --threshold 0.3
 # Output: 23 orphaned facts found (confidence < 0.3)
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -415,7 +416,7 @@ A: Yes. AgentMemory is agent-agnostic and works with any agent that supports too
 
 **Q: How do I clean up old memory?**
 
-A: Use `agentmemory prune --older-than 90d` to remove facts older than 90 days. You can also set automatic pruning in config: `cleanup_threshold_days: 90`.
+A: Use ````agentmemory prune --older-than 90d```` to remove facts older than 90 days. You can also set automatic pruning in config: ````cleanup_threshold_days: 90```.
 
 **Q: Does it work for non-coding tasks?**
 
@@ -466,7 +467,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [codebase-memory-mcp-high-performance-code-intelligence](agentmemory-persistent-memory-ai-coding-agents)
@@ -476,7 +477,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [2026-06-08-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

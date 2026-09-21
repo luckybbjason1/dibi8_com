@@ -13,11 +13,12 @@ aliases:
   - /vi/posts/pendle-yield-tokenization-defi/
 ---
 
+
 {{</* resource-info */>}}
 
 > **Tuyên bố tiếp thị liên kết**: Bài viết này chứa các liên kết tiếp thị đến [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) và [OKX](https://www.promoohubly.com/join/12190433). Chúng tôi có thể nhận được hoa hồng khi bạn đăng ký qua các liên kết này — không phát sinh chi phí thêm cho bạn.
 
----
+* * *
 
 ## Pendle là gì và tại sao nó thay đổi DeFi?
 
@@ -29,7 +30,7 @@ Hiểu biết cốt lõi đằng sau Pendle là lợi nhuận và gốc có hồ
 
 Tại cốt lõi của Pendle là tiêu chuẩn token SY (Standardized Yield), bao bọc bất kỳ token sinh lợi nào thành một giao diện thống nhất. Khi bạn gửi tài sản như stETH vào Pendle, giao thức đúc SY-stETH, sau đó tách thành PT-stETH và YT-stETH.
 
-```solidity
+````solidity
 // Luồng Token hóa Lợi nhuận Pendle
 // Tệp: PendleRouter.sol (đơn giản hóa)
 
@@ -85,9 +86,9 @@ contract PendleRouter is IPendleRouter {
         emit Tokenized(input.underlying, input.amountIn, amountPYOut);
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // Triển khai Token Sinh lợi Chuẩn hóa (SY) cho Lido stETH
 // Tệp: SYStETH.sol
 
@@ -147,9 +148,9 @@ contract SYStETH is SYBase {
         rewardAmounts[0] = yieldAccrued;
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // Hợp đồng Token Gốc (PT)
 // Tệp: PTStETH.sol
 
@@ -200,9 +201,9 @@ contract PTStETH is PTBase {
         impliedApy = _calculateImpliedFromPrice(ptPrice, timeToMaturity);
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // Hợp đồng Token Lợi nhuận (YT)
 // Tệp: YTStETH.sol
 
@@ -279,13 +280,13 @@ contract YTStETH is YTBase {
         }
     }
 }
-```
+`````
 
 ## AMM Pendle: Giao dịch Lợi nhuận như Chuyên gia
 
 AMM độc quyền của Pendle được thiết kế đặc biệt để giao dịch PT và YT, sử dụng đường cong chuyên dụng tính đến khấu hao thờii gian khi tài sản đến gần đáo hạn.
 
-```solidity
+`````solidity
 // AMM Thị trường Pendle
 // Tệp: PendleMarket.sol
 
@@ -378,9 +379,9 @@ contract PendleMarket is IPendleMarket {
         amountOut -= fee;
     }
 }
-```
+`````
 
-```typescript
+`````typescript
 // SDK TypeScript cho giao dịch Pendle
 import { PendleSDK } from '@pendle/sdk-v2';
 import { ethers } from ethers;
@@ -416,7 +417,7 @@ async function swapPtForSy(
   );
   
   const receipt = await tx.wait();
-  console.log(`Đã hoán đổi ${ptAmount} PT lấy SY. TX: ${receipt.hash}`);
+  console.log(````Đã hoán đổi ${ptAmount} PT lấy SY. TX: ${receipt.hash}````);
   
   return receipt;
 }
@@ -443,7 +444,7 @@ async function addLiquidity(
   
   // Phân tích token LP nhận được
   const lpTokens = parseLPTokensFromReceipt(receipt);
-  console.log(`Đã thêm thanh khoản. Nhận ${lpTokens} token LP`);
+  console.log(````Đã thêm thanh khoản. Nhận ${lpTokens} token LP````);
   
   return lpTokens;
 }
@@ -460,13 +461,13 @@ async function getMarketImpliedApy(marketAddress: string) {
   const yearsToMaturity = timeToMaturity / (365.25 * 24 * 3600);
   const impliedApy = (1 / ptPrice) ** (1 / yearsToMaturity) - 1;
   
-  console.log(`Giá PT: ${ptPrice}`);
-  console.log(`Thờii gian đến đáo hạn: ${yearsToMaturity.toFixed(2)} năm`);
-  console.log(`APY ngầm định: ${(impliedApy * 100).toFixed(2)}%`);
+  console.log(````Giá PT: ${ptPrice}````);
+  console.log(````Thờii gian đến đáo hạn: ${yearsToMaturity.toFixed(2)} năm````);
+  console.log(````APY ngầm định: ${(impliedApy * 100).toFixed(2)}%````);
   
   return impliedApy;
 }
-```
+`````
 
 ## Các chiến lược PT và YT: Thu nhập Cố định, Đầu cơ Lợi nhuận, v.v.
 
@@ -474,7 +475,7 @@ Pendle mở khóa nhiều chiến lược tinh vi phục vụ các khẩu vị r
 
 ### Chiến lược Thu nhập Cố định (Mua PT)
 
-```solidity
+`````solidity
 // Chiến lược: Mua PT chiết khấu để có lợi nhuận cố định
 // Ví dụ: Mua PT-stETH ở 0.95, chuộc 1.0 khi đáo hạn trong 1 năm
 // Lợi nhuận cố định = (1 - 0.95) / 0.95 = 5.26%
@@ -544,11 +545,11 @@ contract FixedIncomeStrategy {
         emit FixedIncomeRedeemed(msg.sender, underlyingReceived, profit);
     }
 }
-```
+`````
 
 ### Chiến lược Lợi nhuận Đòn bẩy (Mua YT)
 
-```solidity
+`````solidity
 // Chiến lược: Mua YT để có đòn bẩy đối với lợi nhuận staking
 // Nếu lợi nhuận staking ETH trung bình 4% nhưng bạn kỳ vọng 6%, mua YT để lợi nhuận
 
@@ -626,11 +627,11 @@ contract LeveragedYieldStrategy {
         emit YieldLongClosed(msg.sender, totalReceived, pnl);
     }
 }
-```
+`````
 
 ### Chiến lược Cung cấp Thanh khoản
 
-```typescript
+`````typescript
 // Chiến lược LP: Kiếm phí từ giao dịch PT/SY + lợi nhuận cố định trên phần PT
 async function provideLiquidityStrategy(
   marketAddress: string,
@@ -657,8 +658,8 @@ async function provideLiquidityStrategy(
   );
   
   // Giữ YT còn lại để có đòn bẩy lợi nhuận
-  console.log(`Vị thế LP: ${lpTokens} token LP`);
-  console.log(`Vị thế YT: ${ytOut} token YT (đòn bẩy lợi nhuận)`);
+  console.log(````Vị thế LP: ${lpTokens} token LP````);
+  console.log(````Vị thế YT: ${ytOut} token YT (đòn bẩy lợi nhuận)````);
   
   // Thiết lập tự động tái đầu tư
   const autoCompounder = new PendleAutoCompounder({
@@ -671,13 +672,13 @@ async function provideLiquidityStrategy(
   
   return { lpTokens, ytOut, autoCompounder };
 }
-```
+`````
 
 ## Xây dựng trên Pendle: Hướng dẫn Tích hợp dành cho Nhà phát triển
 
 ### Đọc Dữ liệu Thị trường Pendle
 
-```typescript
+`````typescript
 // Tải dữ liệu thị trường toàn diện từ Pendle
 import { PendleMarketReader } from '@pendle/sdk-v2/market';
 
@@ -693,30 +694,30 @@ async function analyzePendleMarkets() {
   for (const market of markets) {
     const data = await reader.getMarketSnapshot(market.address);
     
-    console.log(`\n=== ${market.underlyingSymbol} (${data.expiryDate}) ===`);
-    console.log(`Giá PT: ${data.ptPrice.toFixed(4)}`);
-    console.log(`Giá YT: ${data.ytPrice.toFixed(4)}`);
-    console.log(`APY Ngầm định: ${(data.impliedApy * 100).toFixed(2)}%`);
-    console.log(`APY Cơ sở: ${(data.underlyingApy * 100).toFixed(2)}%`);
-    console.log(`Thanh khoản: $${(data.liquidityUSD / 1e6).toFixed(2)}M`);
-    console.log(`Khối lượng 24h: $${(data.volume24h / 1e6).toFixed(2)}M`);
+    console.log(````\n=== ${market.underlyingSymbol} (${data.expiryDate}) ===````);
+    console.log(````Giá PT: ${data.ptPrice.toFixed(4)}````);
+    console.log(````Giá YT: ${data.ytPrice.toFixed(4)}````);
+    console.log(````APY Ngầm định: ${(data.impliedApy * 100).toFixed(2)}%````);
+    console.log(````APY Cơ sở: ${(data.underlyingApy * 100).toFixed(2)}%````);
+    console.log(````Thanh khoản: $${(data.liquidityUSD / 1e6).toFixed(2)}M````);
+    console.log(````Khối lượng 24h: $${(data.volume24h / 1e6).toFixed(2)}M````);
     
     // Phân tích chênh lệch lợi nhuận
     const yieldSpread = data.underlyingApy - data.impliedApy;
-    console.log(`Chênh lệch Lợi nhuận: ${(yieldSpread * 100).toFixed(2)}%`);
+    console.log(````Chênh lệch Lợi nhuận: ${(yieldSpread * 100).toFixed(2)}%````);
     
     if (yieldSpread > 0.01) {
-      console.log(`⚠️  ĐỊNH GIÁ THẤP: Thị trường trả ít hơn lợi nhuận cơ sở`);
+      console.log(````⚠️  ĐỊNH GIÁ THẤP: Thị trường trả ít hơn lợi nhuận cơ sở````);
     } else if (yieldSpread < -0.01) {
-      console.log(`🟢 ĐỊNH GIÁ CAO: Thị trường trả nhiều hơn lợi nhuận cơ sở`);
+      console.log(````🟢 ĐỊNH GIÁ CAO: Thị trường trả nhiều hơn lợi nhuận cơ sở````);
     }
   }
 }
-```
+`````
 
 ### Tích hợp Pendle Router
 
-```solidity
+`````solidity
 // Tích hợp Pendle vào giao thức DeFi của bạn
 contract MyDeFiProtocol {
     
@@ -780,9 +781,9 @@ contract MyDeFiProtocol {
         return 1e18 - discount;
     }
 }
-```
+`````
 
-```typescript
+`````typescript
 // Trợ giúp SDK: Tính điểm vào/ra tối ưu
 class PendleStrategyAnalyzer {
   
@@ -847,19 +848,19 @@ class PendleStrategyAnalyzer {
       ptReceived: ptAmount,
       redemptionValue,
       profit,
-      roi: `${roi}%`,
+      roi: ````${roi}%````,
       daysToMaturity,
-      apy: `${apy.toFixed(2)}%`,
+      apy: ````${apy.toFixed(2)}%````,
     };
   }
 }
-```
+`````
 
 ## Oracle Lợi nhuận và Khám phá Giá
 
 Giá PT của Pendle đóng vai trò như một oracle phi tập trung cho tỷ lệ lợi nhuận tương lai — một nguyên thủ quan trọng cho các thị trường thu nhập cố định DeFi.
 
-```solidity
+`````solidity
 // Sử dụng Pendle làm oracle lợi nhuận
 contract PendleYieldOracle {
     
@@ -928,7 +929,7 @@ contract PendleYieldOracle {
         return result;
     }
 }
-```
+`````
 
 ## FAQ: Các câu hỏi thường gặp về Pendle
 
@@ -938,7 +939,7 @@ A: PT (Token Gốc) đại diện cho quyền chuộc 1 đơn vị tài sản c�
 
 **Q2: AMM của Pendle khác Uniswap hoặc Curve như thế nào?**
 
-A: AMM của Pendle sử dụng đường cong logit chuyên dụng được thiết kế riêng cho tài sản PT và YT. Không giống như AMM tích không đổi (Uniswap) hoặc stableswap (Curve), đường cong của Pendle tính đến bản chất suy giảm theo thờii gian của PT — khi đáo hạn gần, giá PT được đảm bảo toán học sẽ hội tụ về 1.0. Các tham số `rateScalar` và `rateAnchor` điều khiển độ dốc đường cong, trong khi APY ngầm định được suy ra từ giá PT và thờii gian đến đáo hạn. Thiết kế chuyên biệt này giảm thiểu tổn thất vĩnh viễn cho LP vì quỹ đạo giá dễ dự đoán hơn.
+A: AMM của Pendle sử dụng đường cong logit chuyên dụng được thiết kế riêng cho tài sản PT và YT. Không giống như AMM tích không đổi (Uniswap) hoặc stableswap (Curve), đường cong của Pendle tính đến bản chất suy giảm theo thờii gian của PT — khi đáo hạn gần, giá PT được đảm bảo toán học sẽ hội tụ về 1.0. Các tham số ````rateScalar```` và ````rateAnchor```` điều khiển độ dốc đường cong, trong khi APY ngầm định được suy ra từ giá PT và thờii gian đến đáo hạn. Thiết kế chuyên biệt này giảm thiểu tổn thất vĩnh viễn cho LP vì quỹ đạo giá dễ dự đoán hơn.
 
 **Q3: Điều gì xảy ra khi PT hoặc YT đạt đáo hạn?**
 
@@ -958,9 +959,9 @@ A: Tính đến tháng 5 năm 2026, Pendle hỗ trợ hơn 30 tài sản sinh l�
 
 **Q7: Tôi tính chính xác lợi nhuận khi mua PT như thế nào?**
 
-A: Lợi nhuận PT được tính như sau: `Lợi nhuận Cố định % = (1 - PT_Price) / PT_Price`. Đối với APY hàng năm: `APY = (1 / PT_Price)^(365 / days_to_maturity) - 1`. Ví dụ: PT giao dịch ở 0.95 với đáo hạn 180 ngày: lợi nhuận = (1 - 0.95) / 0.95 = 5.26%; APY = (1/0.95)^(365/180) - 1 ≈ 10.8%. Những lợi nhuận này được đảm bảo nếu bạn nắm giữ đến đáo hạn, khiến PT về chức năng tương đương trái phiếu chiết khấu trong tài chính truyền thống.
+A: Lợi nhuận PT được tính như sau: ````Lợi nhuận Cố định % = (1 - PT_Price) / PT_Price````. Đối với APY hàng năm: ````APY = (1 / PT_Price)^(365 / days_to_maturity) - 1````. Ví dụ: PT giao dịch ở 0.95 với đáo hạn 180 ngày: lợi nhuận = (1 - 0.95) / 0.95 = 5.26%; APY = (1/0.95)^(365/180) - 1 ≈ 10.8%. Những lợi nhuận này được đảm bảo nếu bạn nắm giữ đến đáo hạn, khiến PT về chức năng tương đương trái phiếu chiết khấu trong tài chính truyền thống.
 
----
+* * *
 
 
 
@@ -973,7 +974,7 @@ A: Lợi nhuận PT được tính như sau: `Lợi nhuận Cố định % = (1 
 
 ## Bắt đầu: Danh sách kiểm tra Tích hợp Pendle của bạn
 
-```bash
+`````bash
 # 1. Cài đặt SDK Pendle
 npm install @pendle/sdk-v2 ethers
 
@@ -994,9 +995,9 @@ npx ts-node examples/claim-yield.ts    # Nhận lợi nhuận YT
 
 # 5. Chạy kiểm tra
 npm test
-```
+`````
 
-```typescript
+`````typescript
 // Khởi động nhanh: Quy trình token hóa lợi nhuận hoàn chỉnh
 import { PendleSDK, Market } from '@pendle/sdk-v2';
 
@@ -1017,7 +1018,7 @@ async function quickstart() {
     ethers.parseEther(10), // 10 stETH
     0 // đầu ra tối thiểu
   );
-  console.log(`Nhận ${ptOut} PT + ${ytOut} YT`);
+  console.log(````Nhận ${ptOut} PT + ${ytOut} YT````);
   
   // 3. Giao dịch: Hoán đổi PT để khóa lợi nhuận cố định
   await market.swapExactPtForSy(
@@ -1028,14 +1029,14 @@ async function quickstart() {
   // 4. Theo dõi: Theo dõi tích lũy lợi nhuận
   setInterval(async () => {
     const accrued = await market.getAccruedYield(ytOut);
-    console.log(`Lợi nhuận tích lũy: ${accrued}`);
+    console.log(````Lợi nhuận tích lũy: ${accrued}````);
   }, 60000);
 }
 
 quickstart().catch(console.error);
-```
+````
 
----
+* * *
 
 *Tuyên bố từ chối trách nhiệm: Hướng dẫn này chỉ nhằm mục đích giáo dục. Token hóa lợi nhuận bao gồm rủi ro hợp đồng thông minh, rủi ro thị trường, và rủi ro depeg tài sản cơ sở. Luôn tiến hành nghiên cứu của riêng bạn trước khi triển khai vốn. Các tỷ lệ lợi nhuận được hiển thị là ước tính và không được đảm bảo. DYOR — Tự nghiên cứu của bạn.*
 
@@ -1044,7 +1045,7 @@ quickstart().catch(console.error);
 - Mở tài khoản [OKX](https://www.promoohubly.com/join/12190433) để giao dịch DeFi nâng cao
 - Theo dõi chúng tôi trên Telegram để cập nhật tin tức Pendle mới nhất: **@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | Được xây dựng cho nhà phát triển DeFi, trader, và nhà nghiên cứu.*
 

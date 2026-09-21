@@ -31,6 +31,7 @@ faq: - q: "Which OSS coding agent is best in 2026?"
   - q: "What's the learning curve for each?"
     a: "Aider: 15 minutes to productive (it's a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings + model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling."
 ---
+
 {{</* resource-info */>}}
 
 # Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison
@@ -52,7 +53,7 @@ Open-source AI coding agents matured fast in 2026. The three serious contenders 
 > **Best 2-tool combo for OSS-only users**: Aider (daily driver) + OpenHands (autonomous tasks).
 
 
----
+* * *
 ## What They Are
 
 ### Aider
@@ -76,15 +77,15 @@ Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Tas
 
 | Agent | Time | Success first try | Tokens | Cost (Sonnet 4.6) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Aider | 4m 30s | ✅ 3/3 | 78K | $0.39 |
 | Cline | 5m 50s | ✅ 2/3 (one needed retry) | 92K | $0.46 |
@@ -96,13 +97,13 @@ Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Tas
 
 | Agent | Time | Found | Missed |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Aider | 3m | 30/30 | 0 |
 | Cline | 4m | 30/30 | 0 |
@@ -114,11 +115,11 @@ Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Tas
 
 | Agent | Diagnosis | Fix quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Aider | ✅ Async race condition (correct first try) | Clean, well-commented |
 | Cline | ⚠️ Symptom-level (added retry rather than fix race) | Works but masks the bug |
@@ -130,11 +131,11 @@ Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Tas
 
 | Agent | Quality | Suggested refactor count |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Aider | Good — focused | 4 specific |
 | Cline | Good — slightly more thorough | 5 specific |
@@ -146,13 +147,13 @@ Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Tas
 
 | Agent | Tool coordination | Errors | Recovery |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Aider | ✅ Smooth across 3 tools | 1 (env var missing) | Manual fix needed |
 | Cline | ⚠️ Lost track between IDE actions + terminal | 3 | Multiple manual fixes |
@@ -162,14 +163,14 @@ Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Tas
 
 ## Cost Reality at Scale
 
-BYO API key with Sonnet 4.6 (most balanced model for these tools): ```
+BYO API key with Sonnet 4.6 (most balanced model for these tools): ````
 60 hours/month usage: Aider: ~$80-110  (most efficient context use)
   Cline: ~$95-140  (more verbose plans = more tokens)
   OpenHands: ~$120-180 (autonomous loops = more iterations)
 
 vs Claude Max: $200 unlimited
 vs Cursor Pro + API: $87 (much less agent work)
-```
+````
 
 The "cheaper than commercial" claim holds only if you: - Watch context size (don't pass entire repo to every call)
 - Use Sonnet not Opus for routine tasks
@@ -230,7 +231,7 @@ All three OSS coding agents are production-ready in 2026. The choice depends on 
 The commercial-vs-OSS choice isn't price (they're closer than marketing suggests). It's about control, polish, and how much time you spend on tool setup vs actual work. For solo developers and small teams who already use git well, OSS wins. For larger teams who need predictable support and uniform UX, commercial still wins.
 
 
----
+* * *
 **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [OpenCode Setup](https://dibi8.com/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
 
 
@@ -295,12 +296,12 @@ Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Coding Agent Comparison repre
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -310,7 +311,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison)
 - [claude-code-vs-cline](aider-cline-openhands-2026-honest-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

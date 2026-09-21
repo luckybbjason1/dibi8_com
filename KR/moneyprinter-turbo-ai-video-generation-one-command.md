@@ -8,6 +8,7 @@ tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
 
+
 # MoneyPrinterTurbo: AI로 동영상 자동 생성
 
 ## 서론
@@ -36,7 +37,7 @@ MoneyPrinterTurbo는 포괄적인 기능 세트를 제공합니다: - **AI 스�
 
 MoneyPrinterTurbo는 Python 3.10+에서 실행되며 동영상 렌더링을 위해 FFmpeg가 필요합니다: ### 필요 조건
 
-FFmpeg 먼저 설치하세요: ```bash
+FFmpeg 먼저 설치하세요: ````bash
 # Ubuntu/Debian
 sudo apt install ffmpeg
 
@@ -45,80 +46,80 @@ brew install ffmpeg
 
 # Windows (Chocolatey)
 choco install ffmpeg
-```
+`````
 
 ### 복제 및 설치
 
-```bash
+`````bash
 git clone https://github.com/HFrost665/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
 pip install -r requirements.txt
-```
+`````
 
 ### API 키 구성
 
-스크립트 생성을 위해 OpenAI 호환 API 키가 필요합니다: ```bash
+스크립트 생성을 위해 OpenAI 호환 API 키가 필요합니다: `````bash
 export OPENAI_API_KEY="your-api-key"
 export OPENAI_BASE_URL="https://api.openai.com/v1"
-```
+`````
 
-음성 생성을 위해 선호하는 TTS 백엔드를 구성하세요: ```bash
+음성 생성을 위해 선호하는 TTS 백엔드를 구성하세요: `````bash
 # Azure TTS
 export AZURE_SPEECH_KEY="your-azure-key"
 export AZURE_SPEECH_REGION="eastus"
 
 # OpenAI TTS
 export OPENAI_TTS_KEY="your-openai-key"
-```
+`````
 
 ## 첫 번째 동영상 생성
 
-CLI를 통해 동영상을 생성하는 가장 간단한 방법: ```bash
+CLI를 통해 동영상을 생성하는 가장 간단한 방법: `````bash
 python main.py \
   --topic "인공지능의 역사" \
   --language ko \
   --voice ko-KR-SunHiNeural \
   --resolution 1920x1080 \
   --output ./output
-```
+`````
 
 이 명령은 AI 역사에 대한 전체 동영상을 생성합니다.
 
 ### 스크립트 사용자 정의
 
-AI 생성 대신 직접 스크립트를 제공할 수 있습니다: ```bash
+AI 생성 대신 직접 스크립트를 제공할 수 있습니다: `````bash
 python main.py \
   --script ./my-script.txt \
   --language ko \
   --output ./output
-```
+`````
 
 ### 여러 동영상 일괄 생성
 
-텍스트 파일에서 주제 목록 처리: ```bash
+텍스트 파일에서 주제 목록 처리: `````bash
 python main.py \
   --topics-list ./topics.txt \
   --language ko \
   --output ./output
-```
+`````
 
-topics.txt: ```
+topics.txt: `````
 양자 컴퓨팅의 미래
 블록체인이 금융을 바꾸는 방법
 재생 에너지의 중요성
-```
+`````
 
 ## 웹 UI 사용
 
-MoneyPrinterTurbo는 `http://localhost:8501`에서 접근 가능한 웹 인터페이스도 제공합니다: ```bash
+MoneyPrinterTurbo는 ``http://localhost:8501``에서 접근 가능한 웹 인터페이스도 제공합니다: `````bash
 python main.py --ui
-```
+`````
 
 브라우저에서 http://localhost:8501을 열어보세요.
 
 ## API 프로그래밍 액세스
 
-```python
+`````python
 from moneyprinter import VideoGenerator
 
 generator = VideoGenerator(
@@ -135,11 +136,11 @@ result = generator.generate(
 )
 
 print(f"동영상 저장 위치: {result.video_path}")
-```
+`````
 
 ### API 엔드포인트
 
-```bash
+`````bash
 # 주제에서 동영상 생성
 curl -X POST http://localhost:8080/api/v1/generate \
   -H "Content-Type: application/json" \
@@ -150,37 +151,37 @@ curl http://localhost:8080/api/v1/status/{job-id}
 
 # 완료된 동영상 다운로드
 curl -O http://localhost:8080/api/v1/download/{job-id}
-```
+`````
 
 ## 고급 구성
 
 ### 사용자 정의 음성 모델
 
-```yaml
+`````yaml
 # config.yaml
 voices: custom: - name: "my-voice"
       language: "ko-KR"
       gender: "female"
       backend: "custom-tts"
-```
+`````
 
 ### 사용자 정의 음악 라이브러리
 
-```bash
+`````bash
 mkdir -p ./music/calm
 mkdir -p ./music/energetic
 python main.py --music ./music/calm/
-```
+`````
 
 ### 시각 스타일 프리셋
 
-```yaml
+`````yaml
 styles: cinematic: transition: "fade"
     font_family: "Georgia"
     font_size: 32
     subtitle_color: "#FFFFFF"
     background_style: "gradient"
-```
+`````
 
 ## 사용 사례
 
@@ -239,7 +240,7 @@ TikTok, Instagram Reels, YouTube Shorts를 위한 숏폼 콘텐츠 제작. 최�
 
 ## 콘텐츠 스케줄링 통합
 
-```python
+`````python
 import schedule
 import time
 from moneyprinter import VideoGenerator
@@ -251,7 +252,7 @@ schedule.every().day.at("08:00").do(generate_daily_video)
 
 while True: schedule.run_pending()
     time.sleep(60)
-```
+`````
 
 ## 한계
 
@@ -284,7 +285,7 @@ OpenAI GPT(스크립트 생성), Azure Cognitive Services TTS, OpenAI TTS를 지
 
 ### Q5: AI 생성 스크립트 생성 전 편집할 수 있나요?
 
-예. `--script` 플래그로 직접 스크립트 파일을 제공할 수 있습니다. `--topic`으로 초안을 생성한 후 검토하고 편집할 수 있습니다.
+예. ````--script```` 플래그로 직접 스크립트 파일을 제공할 수 있습니다. ````--topic```으로 초안을 생성한 후 검토하고 편집할 수 있습니다.
 
 ### Q6: 어떤 영상 형식이 지원되나요?
 
@@ -316,7 +317,7 @@ OpenAI GPT(스크립트 생성), Azure Cognitive Services TTS, OpenAI TTS를 지
 - DigitalOcean: https://m.do.co/c/eca87ac14ee0
 - HTStack: https://my.htstack.com/aff.php?aff=27187
 
----
+* * *
 
 DIBI8는 최고의 오픈소스 도구, AI 혁신, 개발자 리소스를 발견하는 관문입니다.
 
@@ -381,12 +382,12 @@ MoneyPrinterTurbo: AI로 동영상 자동 생성 represents an important step fo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -396,6 +397,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](moneyprinter-turbo-ai-video-generation-one-command)
 - [ai-engineering-from-scratch](moneyprinter-turbo-ai-video-generation-one-command)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

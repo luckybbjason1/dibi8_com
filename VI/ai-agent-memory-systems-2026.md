@@ -35,6 +35,7 @@ faqs: - q: 'Sự khác biệt giữa Mem0, agentmemory, Hindsight, MemPalace?'
     a: 'Có — nâng cấp thuật toán Mem0 tháng 4 2026 cho độ chính xác LoCoMo 92.5% với ~7K token/query so với ~26K token full-context. Giảm 73% token đồng thời độ chính xác cao hơn. Ở quy mô inference, đây là khác biệt mô hình kinh doanh, không phải cải tiến biên."
 ---
 
+
 # Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemory / Hindsight / MemPalace
 
 
@@ -84,7 +85,7 @@ Mem0 không thắng ở đột phá kỹ thuật — mà thắng ở khả năng
 
 - **21 tích hợp framework**: LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, Mastra, Vercel AI SDK, OpenAI Agents SDK, ElevenLabs, LiveKit...
 - **20 backend vector store**: Qdrant, Chroma, Weaviate, Milvus, PGVector, Redis, Elasticsearch, Pinecone, Azure AI Search...
-- **4 lớp phạm vi bộ nhớ**: `user_id` (toàn bộ phiên), `agent_id` (theo instance), `run_id` (theo cuộc trò chuyện), `app_id` (toàn tổ chức)
+- **4 lớp phạm vi bộ nhớ**: ```user_id```` (toàn bộ phiên), ````agent_id```` (theo instance), ````run_id```` (theo cuộc trò chuyện), ````app_id```` (toàn tổ chức)
 
 **Nâng cấp thuật toán tháng 4/2026**
 
@@ -97,17 +98,17 @@ Mem0 ra mắt thuật toán trích xuất phân cấp một lượt + hợp nh�
 So với giải pháp full-context ngốn ~26.000 token mỗi truy vấn, Mem0 chỉ cần **26% token** mà độ chính xác còn vượt trội. Con số này biến bộ nhớ agent từ "đắt đỏ" thành "kinh tế" ở quy mô lớn.
 
 **Bắt đầu nhanh:**
-```python
+`````python
 from mem0 import MemoryClient
 
 client = MemoryClient(api_key="your-key")
 client.add("Tôi thích Python hơn JavaScript cho data pipeline", user_id="dev-001")
 results = client.search("sở thích lập trình", user_id="dev-001")
-```
+`````
 
 **Phù hợp với ai**: Startup cần go-live nhanh, team dùng nhiều framework song song, môi trường TypeScript/Python hybrid.
 
----
+* * *
 
 ### agentmemory: Bộ Nhớ Riêng cho Coding Agent
 
@@ -127,7 +128,7 @@ Thay vì đổ tất cả ký ức vào cửa sổ context (đắt và nhiễu),
 
 **Phù hợp với ai**: Lập trình viên dùng Claude Code/Cursor cho dự án lớn, dài hạn.
 
----
+* * *
 
 ### Hindsight: Hệ Thống Sinh Học Học Thuật
 
@@ -149,15 +150,15 @@ Hindsight coi bộ nhớ là **hạ tầng suy luận hạng nhất**, không ph
 Virginia Tech Sanghani Center và Washington Post đã độc lập tái hiện và xác nhận Hindsight đạt **điểm cao nhất LongMemEval**.
 
 **API cố tình tối giản:**
-```python
+`````python
 client.retain("Alice chuyển từ team backend sang lead ML platform")
 client.recall("Ai đang lead ML platform?")
 client.reflect("Gần đây có thay đổi tổ chức nào?")
-```
+`````
 
 **Phù hợp với ai**: Team cần độ chính xác truy hồi tối đa, tổ chức có team DevOps/infrastructure riêng, ứng dụng yêu cầu cao về niềm tin người dùng.
 
----
+* * *
 
 ### MemPalace: Người Dẫn Đầu Cộng Đồng
 
@@ -174,7 +175,7 @@ MemPalace là hệ thống bộ nhớ mã nguồn mở có nhiều sao nhất Gi
 
 ## Cây Quyết Định: Bạn Nên Chọn Ai
 
-```
+`````
 Cần bộ nhớ production trong < 1 giờ?
   → Mem0 Cloud (managed)
 
@@ -192,7 +193,7 @@ Tối đa hóa recall accuracy, có team infrastructure?
 
 Đa kênh: voice + text + web?
   → Mem0 (bề mặt tích hợp rộng nhất)
-```
+`````
 
 ## 3 Cái Bẫy Production Phải Tránh
 
@@ -202,7 +203,7 @@ Tương đồng vector thuần túy thất bại trong scenario agent thực t�
 
 ### Bẫy 2: Bỏ Qua Cách Ly Phạm Vi Bộ Nhớ
 
-Trong ứng dụng multi-tenant, cấu hình sai cách ly có thể để lộ dữ liệu User A cho agent của User B. Mô hình 4 lớp scope của Mem0 (`user_id` × `agent_id` × `run_id` × `app_id`) là pattern production sạch nhất hiện nay, nhưng phải test kỹ composite query ở boundary case. Coi cách ly bộ nhớ nghiêm ngặt như row-level security database.
+Trong ứng dụng multi-tenant, cấu hình sai cách ly có thể để lộ dữ liệu User A cho agent của User B. Mô hình 4 lớp scope của Mem0 (````user_id```` × ````agent_id```` × ````run_id```` × ````app_id```) là pattern production sạch nhất hiện nay, nhưng phải test kỹ composite query ở boundary case. Coi cách ly bộ nhớ nghiêm ngặt như row-level security database.
 
 ### Bẫy 3: Tối Ưu Chi Phí Lưu Trữ, Bỏ Qua Chi Phí Truy Vấn
 
@@ -224,7 +225,7 @@ Câu hỏi giữa 2026 không phải "có nên thêm bộ nhớ lâu dài cho ag
 
 Việc cần làm ngay tuần này: kết nối một lớp bộ nhớ với coding agent bạn dùng hàng ngày. Sau một tuần, bạn sẽ thôi coi nó như chatbot và bắt đầu coi như đồng nghiệp thực sự nhớ những gì đã trao đổi hôm qua.
 
----
+* * *
 
 **Tài liệu tham khảo:**
 - Mem0 evaluation framework (mã nguồn mở): [github.com/mem0ai/memory-benchmarks](https://github.com/mem0ai/memory-benchmarks)
@@ -234,7 +235,7 @@ Việc cần làm ngay tuần này: kết nối một lớp bộ nhớ với cod
 
 *Xuất bản 2026-05-20. Số sao và dữ liệu tích hợp có tính thời điểm — vui lòng kiểm chứng tại repo chính thức trước khi đưa ra quyết định kiến trúc.*
 
----
+* * *
 
 ## Hạ tầng được đề xuất (self-hosting)
 
@@ -245,7 +246,7 @@ Stack memory + agent + model tối ưu chi phí hoàn chỉnh: [Cheap LLM Stack 
 
 *Bài viết chứa liên kết tiếp thị. Chúng tôi có thể nhận hoa hồng — không tốn thêm chi phí của bạn.*
 
----
+* * *
 
 ## Đọc thêm
 
@@ -282,7 +283,7 @@ Stack memory + agent + model tối ưu chi phí hoàn chỉnh: [Cheap LLM Stack 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -292,7 +293,7 @@ Stack memory + agent + model tối ưu chi phí hoàn chỉnh: [Cheap LLM Stack 
 - [headroom-token-compression-proxy-library-mcp-server](ai-agent-memory-systems-2026)
 - [codebase-memory-mcp-deep-code-intelligence](ai-agent-memory-systems-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 ---
 
+
 # AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源项目 — 2026 实用指南
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              AgentMemory 架构                          │
 │                                                      │
@@ -37,7 +38,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 │  │  "上次你修复了认证 bug..."                       │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *AgentMemory：会话 → 记忆存储 → 上下文感知的代理*
 
@@ -63,7 +64,7 @@ AgentMemory 是一个 **AI 编程代理的持久记忆系统**，使代理能够
 
 ### 阶段 1：记忆提取
 
-```bash
+`````bash
 # 初始化记忆存储
 agentmemory init --project ./my-project
 
@@ -77,11 +78,11 @@ claude-code
 # - facts.db (结构化事实)
 # - embeddings/ (向量存储)
 # - graph.db (知识图)
-```
+`````
 
 ### 阶段 2：记忆存储
 
-```python
+`````python
 # 记忆提取流水线
 from agentmemory import MemoryExtractor
 
@@ -102,11 +103,11 @@ extractor.extract_from_session(
 # - 提取了 47 个事实 (bug 修复、决策、模式)
 # - 存储了 12 个向量嵌入
 # - 知识图中有 89 条边
-```
+`````
 
 ### 阶段 3：记忆检索
 
-```python
+`````python
 # 为新会话检索相关记忆
 from agentmemory import MemoryRetriever
 
@@ -128,13 +129,13 @@ context = retriever.retrieve(
 #   {"type": "decision", "date": "2026-06-01", "summary": "选择 bcrypt 而非 argon2 进行密码哈希"},
 #   ...
 # ]
-```
+`````
 
 ## 安装与设置
 
 ### 快速入门
 
-```bash
+`````bash
 pip install agentmemory
 
 # 为项目初始化
@@ -145,11 +146,11 @@ agentmemory run \
   --agent claude-code \
   --project ./my-app \
   --session-dir ./sessions
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 docker run -d \
   --name agentmemory \
   -v $(pwd)/project:/project \
@@ -161,11 +162,11 @@ docker run -d \
 curl -X POST http://localhost:9090/query \
   -H "Content-Type: application/json" \
   -d '{"query": "What bugs were fixed last week?", "top_k": 5}' | jq
-```
+`````
 
 ### 记忆存储选项
 
-```python
+`````python
 # 选择你的存储后端
 config = {
     "vector_store": "chromadb",  # "chromadb" | "qdrant" | "weaviate" | "sqlite"
@@ -181,7 +182,7 @@ agentmemory init --vector-store qdrant --qdrant-url http://qdrant:6333
 
 # Neo4j (图密集型用例)
 agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687
-```
+`````
 
 ## 与 Claude Code、Codex CLI、OpenCode 和 Gemini CLI 集成
 
@@ -189,7 +190,7 @@ AgentMemory 作为支持工具调用的任何代理的钩子/中间件进行集�
 
 ### Claude Code
 
-```bash
+`````bash
 # AgentMemory Claude Code 插件
 agentmemory install claude-code
 
@@ -197,27 +198,27 @@ agentmemory install claude-code
 # 1. 开始时检索相关记忆
 # 2. 会话期间存储新事实
 # 3. 会话结束时更新记忆
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # 设置记忆项目
 export AGENTMEMORY_PROJECT=./my-project
 # Codex CLI 在每个会话前读取记忆
 # 并在完成后存储结果
-```
+`````
 
 ### OpenCode
 
-```bash
+`````bash
 # OpenCode 插件
 agentmemory install opencode
 
 # 记忆上下文作为工具调用注入：
 # agentmemory.query("auth-related changes")
 # 将相关的过去上下文作为结构化数据返回
-```
+`````
 
 为了可靠的托管，在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) Droplet 上部署以实现团队共享记忆，或在 [HTStack](https://my.htstack.com/aff.php?aff=27187) 部署以获得亚太地区的低延迟。
 
@@ -229,13 +230,13 @@ agentmemory install opencode
 
 | 指标 | 无记忆 | 使用 AgentMemory | 提升 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 上下文召回准确率 | 58% | 89% | +53% |
 | 完成 bug 修复时间 | 42 分钟 | 28 分钟 | -33% |
@@ -248,9 +249,9 @@ agentmemory install opencode
 
 | 距上次会话时间 | 准确率 |
 |
----
+* * *
 |
----
+* * *
 |
 | 同一天 | 96% |
 | 1 周 | 91% |
@@ -262,7 +263,7 @@ agentmemory install opencode
 
 一个 5 人开发团队使用 AgentMemory：
 
-```bash
+`````bash
 # 开发者 A 在周一修复了认证 bug
 # 开发者 B 在周二接手同一任务
 # AgentMemory 检索 A 的修复和上下文
@@ -277,13 +278,13 @@ agentmemory query \
 # - 根本原因：过期的 JWT token
 # - 解决方案：添加 token 刷新中间件
 # - 相关文件：middleware/auth.py, services/jwt.js
-```
+`````
 
 ## 高级用法 / 生产加固
 
 ### 自定义记忆模式
 
-```python
+`````python
 # 为项目定义自定义记忆模式
 from agentmemory import SchemaBuilder
 
@@ -303,11 +304,11 @@ schema.add_relationship(
     target="architecture_decision",
     relation="affects"
 )
-```
+`````
 
 ### 团队记忆同步
 
-```bash
+`````bash
 # 通过远程存储跨团队成员同步记忆
 agentmemory sync \
   --remote git@github.com:myorg/agentmemory-data.git \
@@ -316,11 +317,11 @@ agentmemory sync \
 
 # 每个开发者在会话前拉取最新记忆
 agentmemory pull --project ./my-app
-```
+`````
 
 ### 记忆分析
 
-```bash
+`````bash
 # 查看记忆统计信息
 agentmemory stats --project ./my-app
 
@@ -333,21 +334,21 @@ agentmemory stats --project ./my-app
 
 # 导出记忆进行分析
 agentmemory export --format json --output ./memory-report.json
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | AgentMemory | Cursor Memories | GitHub Copilot Chat | 自定义 RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 持久记忆 | 是 | 是（仅限本地） | 否 | 是 |
 | 跨会话 | 是 | 否 | 否 | 是 |
@@ -363,13 +364,13 @@ agentmemory export --format json --output ./memory-report.json
 
 | 方面 | AgentMemory | 无记忆代理 | 手动上下文传递 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 上下文保留 | 跨会话持久 | 会话结束即遗忘 | 需要手动复制粘贴 |
 | 信息检索速度 | 毫秒级语义搜索 | N/A | 分钟级手动查找 |
@@ -385,7 +386,7 @@ AgentMemory 不适合所有人：
 1. **小型个人项目** — 如果你是唯一的开发者且在一次会话中工作，记忆提供的价值有限。代理处理小型代码库的速度足够快，不需要记忆。
 2. **对隐私敏感的代码** — 记忆在本地存储代码模式和决策。对于企业代码库，你需要审计提取和存储的事实。项目包含隐私控制，但请仔细审查模式。
 3. **冷启动期** — 记忆需要时间构建。新项目从空记忆开始，需要 10-20 个会话后系统才变得有用。为此预留准备期。
-4. **记忆漂移** — 随着时间的推移，过时的事实可能会混淆代理。实施定期记忆清理（建议每月使用 `agentmemory prune --older-than 90d`）。
+4. **记忆漂移** — 随着时间的推移，过时的事实可能会混淆代理。实施定期记忆清理（建议每月使用 ````agentmemory prune --older-than 90d````）。
 5. **向量数据库复杂性** — 对于拥有多个代理的生产部署，管理 ChromaDB/Qdrant/Neo4j 会增加运维开销。简单设置从 SQLite 开始。
 
 ## 常见问题
@@ -404,7 +405,7 @@ AgentMemory 不适合所有人：
 
 **问：我如何清理旧记忆？**
 
-答：使用 `agentmemory prune --older-than 90d` 移除超过 90 天的事实。你也可以在配置中设置自动清理：`cleanup_threshold_days: 90`。
+答：使用 ````agentmemory prune --older-than 90d```` 移除超过 90 天的事实。你也可以在配置中设置自动清理：````cleanup_threshold_days: 90```。
 
 **问：它是否适用于非编码任务？**
 
@@ -499,12 +500,12 @@ AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [codebase-memory-mcp-high-performance-code-intelligence](agentmemory-persistent-memory-ai-coding-agents)
@@ -513,7 +514,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-01-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 - [2026-06-08-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

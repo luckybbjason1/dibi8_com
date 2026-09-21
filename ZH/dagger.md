@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/dagger/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -47,7 +48,7 @@ Dagger 的架构由四层组成：
 3. **Dagger 引擎** — 基于 BuildKit 的容器运行时，执行流水线图。
 4. **容器运行时** — Docker、Podman 或任何托管引擎的 OCI 兼容运行时。
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │  流水线代码 (Go/Python/TS)                                   │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐                 │
@@ -72,28 +73,28 @@ Dagger 的架构由四层组成：
 ┌─────────────────────────────────────────────────────────────┐
 │  Docker / Podman / OCI 运行时                               │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### 执行模型
 
 当你运行 Dagger 流水线时，SDK 将函数调用转换为操作的有向无环图（DAG）。DAG 中的每个节点代表一个容器操作：拉取镜像、复制文件、运行命令或导出制品。Dagger 引擎自动并行调度这些操作，并缓存每个中间结果。
 
-```
+`````
 # 示例 DAG 执行流程
 拉取基础镜像 ──┬── 安装依赖 ──┬── 运行测试 ──┬── 导出二进制文件
                │               │               │
                └── 缓存命中?跳过  └── 缓存命中?   └── 缓存命中?
-```
+`````
 
 ### 核心概念
 
 | 概念 | 描述 |
 |
----
+* * *
 |
----
+* * *
 |
-| **模块** | 在 `dagger.json` 清单中定义的可复用 Dagger 函数包 |
+| **模块** | 在 ````dagger.json```` 清单中定义的可复用 Dagger 函数包 |
 | **函数** | 接受输入并产生输出的类型化、沙箱化操作 |
 | **目录** | 在函数之间传递的内容寻址文件系统树 |
 | **容器** | 通过 API 操作的 OCI 容器镜像或运行中的容器 |
@@ -111,18 +112,18 @@ Dagger 的架构由四层组成：
 
 **macOS (Homebrew)：**
 
-```bash
+`````bash
 # 通过 Homebrew tap 安装
 brew install dagger/tap/dagger
 
 # 验证安装
 dagger version
 # 预期输出: dagger v0.19.7 (registry.dagger.io/engine:v0.19.7)
-```
+`````
 
 **Linux：**
 
-```bash
+`````bash
 # 使用官方安装脚本安装
 curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
 
@@ -132,22 +133,22 @@ curl -fsSL https://dl.dagger.io/dagger/install.sh | \
 
 # 验证
 dagger version
-```
+`````
 
 **Windows：**
 
-```powershell
+`````powershell
 # 通过 scoop 安装
 scoop bucket add dagger https://github.com/dagger/scoop-bucket
 scoop install dagger
 
 # 验证
 dagger version
-```
+`````
 
 ### 初始化你的第一个项目
 
-```bash
+`````bash
 # 创建新的 Dagger 模块
 dagger init --sdk=python --source=./dagger my-pipeline
 
@@ -162,11 +163,11 @@ dagger init --sdk=typescript --source=./dagger my-pipeline
 # │   └── src/main.py (或 main.go, 或 index.ts)
 # ├── dagger.json
 # └── .gitignore
-```
+`````
 
 ### 快速本地测试
 
-```python
+`````python
 # dagger/src/main.py — 最小化 Dagger 流水线
 import dagger
 from dagger import dag, function, object_type
@@ -177,15 +178,15 @@ class MyPipeline: @function
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
-```
+`````
 
-```bash
+`````bash
 # 本地运行函数
 dagger call hello --name="Dagger"
 
 # 输出：
 # Hello, Dagger!
-```
+`````
 
 ## 与 Docker、Go、Python 和 TypeScript 集成
 
@@ -193,7 +194,7 @@ dagger call hello --name="Dagger"
 
 Dagger 原生操作 Docker 生态系统中的容器。以下是一个完整的构建、打标签和推送 Docker 镜像的流水线：
 
-```python
+`````python
 # dagger/src/main.py — 构建并推送 Docker 镜像
 import dagger
 from dagger import dag, function, object_type, Directory
@@ -217,9 +218,9 @@ class CiPipeline: @function
             .publish(f"{registry}/{repository}:{tag}")
 
         return digest
-```
+`````
 
-```bash
+`````bash
 # 运行构建并推送函数
 dagger call build-and-push \
   --source=. \
@@ -228,11 +229,11 @@ dagger call build-and-push \
   --password=env:GITHUB_TOKEN \
   --repository=my-org/my-app \
   --tag=v1.2.3
-```
+`````
 
 ### Go SDK — 完整 CI 流水线
 
-```go
+`````go
 // dagger/main.go — 包含测试的 Go CI 流水线
 dagger "dagger.io/dagger"
 
@@ -268,16 +269,16 @@ func (m *CiPipeline) Run(ctx context.Context, source *dagger.Directory) (*dagger
     // 提取构建的二进制文件
     return binary.File("/src/bin/myapp"), nil
 }
-```
+`````
 
-```bash
+`````bash
 # 从项目根目录运行 Go 流水线
 dagger call run --source=. -o ./bin/myapp
-```
+`````
 
 ### Python SDK — 使用服务进行集成测试
 
-```python
+`````python
 # dagger/src/main.py — 使用 PostgreSQL 服务进行集成测试
 import dagger
 from dagger import dag, function, object_type, Directory, Service
@@ -308,11 +309,11 @@ class TestPipeline: @function
         )
 
         return test_result
-```
+`````
 
 ### TypeScript SDK — 多平台构建
 
-```typescript
+`````typescript
 // dagger/src/index.ts — 多平台容器构建
 import { dag, function, objectType, Directory } from "@dagger.io/dagger";
 
@@ -327,14 +328,14 @@ class BuildPipeline {
             platforms.map(async (platform) => {
                 return await image
                     .platform(platform)
-                    .publish(`ghcr.io/my-org/my-app:${platform.replace("/", "-")}`);
+                    .publish(````ghcr.io/my-org/my-app:${platform.replace("/", "-")}````);
             })
         );
 
         return digests;
     }
 }
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -344,15 +345,15 @@ Dagger 的内容寻址缓存在传统 CI 系统上提供了显著的速度提升
 
 | 场景 | GitHub Actions | GitLab CI | Dagger (本地缓存) | Dagger (共享缓存) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷构建 | 4分12秒 | 3分48秒 | 4分05秒 | 4分05秒 |
 | 第2次运行（无代码变更） | 3分55秒 | 3分30秒 | 8秒 | 8秒 |
@@ -379,22 +380,22 @@ Daggerverse ([daggerverse.dev](https://daggerverse.dev)) 是一个可复用模�
 - 安全扫描：Trivy、Snyk、SLSA 验证
 - 测试：k6 负载测试、Playwright 浏览器测试
 
-```bash
+`````bash
 # 从 Daggerverse 安装并使用模块
 dagger -m github.com/kpenfound/blueprints/go call build \
   --source=. --args=./cmd/myapp
 
 # 列出已安装的模块
 dagger module use github.com/Dudesons/daggerverse/node
-```
+`````
 
 ## 高级用法 / 生产环境加固
 
 ### 密钥管理
 
-永远不要以纯文本字符串传递密钥。Dagger 的 `Secret` 类型确保敏感值在日志和追踪中被遮盖：
+永远不要以纯文本字符串传递密钥。Dagger 的 ````Secret```` 类型确保敏感值在日志和追踪中被遮盖：
 
-```python
+`````python
 import dagger
 from dagger import dag, function, object_type, Secret
 
@@ -416,20 +417,20 @@ class SecurePipeline: @function
             ])
             .stdout()
         )
-```
+`````
 
-```bash
+`````bash
 # 从环境变量传递密钥
 dagger call deploy \
   --kubeconfig=file:$HOME/.kube/config \
   --image-digest=ghcr.io/my-org/my-app@sha256:abc123...
-```
+`````
 
 ### 并行执行模式
 
 Dagger 自动并行化独立操作。显式构建流水线以最大化并行性：
 
-```python
+`````python
 import asyncio
 from dagger import dag, function, object_type, Directory
 
@@ -463,13 +464,13 @@ class ParallelPipeline: @function
             .with_workdir("/src")
             .with_exec(["trivy", "fs", "--scanners=vuln", "."])
             .stdout()
-```
+`````
 
 ### 使用 OpenTelemetry 进行监控
 
 Dagger 为每个操作发出 OpenTelemetry 追踪。导出到后端以实现流水线可观测性：
 
-```bash
+`````bash
 # 导出 OTel 到 Jaeger
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
@@ -477,11 +478,11 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 dagger call run --source=. --otel-export=auto
 
 # 在 Jaeger UI 查看追踪 http://localhost:16686
-```
+`````
 
 ### CI 集成 — GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/dagger.yml
 name: Dagger CI
 
@@ -497,11 +498,11 @@ jobs: ci: runs-on: ubuntu-latest
           module: .
           args: run --source=.
         env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+`````
 
 ### CI 集成 — GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: [build]
 
@@ -514,11 +515,11 @@ dagger:build: stage: build
   script: - dagger call run --source=.
   cache: key: dagger-cache
     paths: - .dagger-cache/
-```
+`````
 
 ### CI 集成 — Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -537,24 +538,24 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Dagger | GitHub Actions | GitLab CI | Jenkins |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **流水线定义** | Go/Python/TypeScript 代码 | YAML 工作流 | YAML `.gitlab-ci.yml` | Groovy/Java DSL |
-| **本地执行** | 原生 — 与 CI 完全一致 | 不支持（act 是部分支持） | 有限 (`gitlab-runner exec`) | 完全支持 |
+| **流水线定义** | Go/Python/TypeScript 代码 | YAML 工作流 | YAML ````.gitlab-ci.yml```` | Groovy/Java DSL |
+| **本地执行** | 原生 — 与 CI 完全一致 | 不支持（act 是部分支持） | 有限 (````gitlab-runner exec````) | 完全支持 |
 | **缓存粒度** | 操作级（内容寻址） | 键值 + Docker 层缓存 | 键值 + 缓存层 | 插件依赖 |
 | **厂商锁定** | 无 — 可在任何 CI 上运行 | 编排仅限 GitHub | 编排仅限 GitLab | 无（自托管） |
 | **学习曲线** | 中等（需要 Go/TS/Py） | 低（YAML + 市场） | 低-中（YAML + DSL） | 高（Groovy 复杂性） |
@@ -616,7 +617,7 @@ Dagger 在操作级别使用内容寻址缓存，比 Docker 层缓存更细粒�
 适合，但有注意事项。Dagger 的内容寻址缓存在 monorepo 中效果很好，因为未变更的包会被完全跳过。然而，对于非常大的仓库（10GB+），初始 DAG 构建和文件扫描可能较慢。Dagger 团队正在 v0.20.x 发布周期中积极优化 monorepo 性能。
 
 **Q: 如何将现有的 GitHub Actions 工作流迁移到 Dagger？**
-增量迁移。一次移植一个任务 —— 通常是先移植构建或测试任务。保持 GitHub Actions 工作流作为编排层，用 `dagger call` 调用替换单独的步骤。这种混合方法让你在维护现有 CI 基础设施的同时验证 Dagger。随着时间推移，将剩余任务整合到 Dagger 函数中。
+增量迁移。一次移植一个任务 —— 通常是先移植构建或测试任务。保持 GitHub Actions 工作流作为编排层，用 ````dagger call```` 调用替换单独的步骤。这种混合方法让你在维护现有 CI 基础设施的同时验证 Dagger。随着时间推移，将剩余任务整合到 Dagger 函数中。
 
 **Q: Dagger 支持哪些容器运行时？**
 Dagger 需要 Linux 容器运行时：Docker Engine 24.0+、Podman 4.0+、containerd 或任何 OCI 兼容的运行时。在 macOS 和 Windows 上，需要 Docker Desktop 或 Podman Desktop。Rootless Docker 和 Podman 在参考文档中有一些配置注意事项。
@@ -632,8 +633,8 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 
 ### 行动项
 
-1. 安装 Dagger CLI：`brew install dagger/tap/dagger`
-2. 运行快速入门：`dagger init --sdk=python --source=./dagger my-pipeline`
+1. 安装 Dagger CLI：````brew install dagger/tap/dagger````
+2. 运行快速入门：````dagger init --sdk=python --source=./dagger my-pipeline```
 3. 先移植你的构建任务 —— 保持现有 CI 作为触发层
 4. 加入 [Discord](https://discord.com/invite/dagger-io) 上的 Dagger 社区获取支持
 5. 探索 [Daggerverse](https://daggerverse.dev) 寻找可复用模块
@@ -692,7 +693,7 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](dagger)
@@ -702,5 +703,5 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 - [moneyprinterturbo-one-click-ai-video-generator](dagger)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

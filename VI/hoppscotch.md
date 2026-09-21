@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/hoppscotch/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -49,8 +50,8 @@ Hoppscotch tuân theo kiến trúc monorepo mô-đun. Frontend được xây d�
 - **Workspaces**: Container phạm vi nhóm chứa collections, environments và tài nguyên chia sẻ
 - **Collections**: Các nhóm yêu cầu API được tổ chức với hệ thống thư mục phân cấp
 - **Environments**: Kho lưu trữ biến cho các giai đoạn phát triển, staging và production
-- **Pre-request Scripts**: Đoạn mã JavaScript thực thi trước mỗi yêu cầu thông qua đối tượng `pw`
-- **Tests**: Các xác nhận sau phản hồi sử dụng cùng API scripting `pw`
+- **Pre-request Scripts**: Đoạn mã JavaScript thực thi trước mỗi yêu cầu thông qua đối tượng ```pw````
+- **Tests**: Các xác nhận sau phản hồi sử dụng cùng API scripting ````pw````
 - **Interceptors**: Trình chặn yêu cầu dựa trên tiện ích trình duyệt hoặc proxy để kiểm thử localhost
 
 ## Cài đặt và thiết lập
@@ -63,7 +64,7 @@ Không cần cài đặt. Truy cập [hoppscotch.io](https://hoppscotch.io) và 
 
 ### Phương pháp 2: Ứng dụng Desktop
 
-```bash
+`````bash
 # macOS (Homebrew)
 brew install --cask hoppscotch
 
@@ -72,11 +73,11 @@ winget install Hoppscotch.Hoppscotch
 
 # Linux (Flatpak)
 flatpak install flathub io.hoppscotch.Hoppscotch
-```
+`````
 
 ### Phương pháp 3: Công cụ CLI
 
-```bash
+`````bash
 # Cài đặt các gói phụ thuộc (Debian/Ubuntu)
 sudo apt-get install -y python3 g++ build-essential
 
@@ -86,11 +87,11 @@ npm i -g @hoppscotch/cli
 # Xác minh cài đặt
 hopp --version
 # Output: 0.31.2
-```
+`````
 
 ### Phương pháp 4: Tự lưu trữ bằng Docker (Production)
 
-```bash
+`````bash
 # Pull image AIO
 docker pull hoppscotch/hoppscotch:latest
 
@@ -121,11 +122,11 @@ docker run -d \
   --restart unless-stopped \
   --name hoppscotch \
   hoppscotch/hoppscotch:latest
-```
+`````
 
 ### Docker Compose (Khuyến nghị cho Production)
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -154,9 +155,9 @@ services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
 volumes: postgres_data: driver: local
 
 networks: hoppscotch-net: driver: bridge
-```
+`````
 
-Triển khai để khởi động stack: ```bash
+Triển khai để khởi động stack: `````bash
 docker compose up -d
 
 # Xác minh tất cả dịch vụ đều khỏe mạnh
@@ -164,7 +165,7 @@ docker compose ps
 
 # Xem logs
 docker compose logs -f hoppscotch
-```
+`````
 
 Với các nhóm sẵn sàng triển khai trên VPS, [DigitalOcean](https://m.do.co/c/dibi8) cung cấp $200 tín dụng cho ngườ dùng mới — đủ để chạy instance Hoppscotch trong vài tháng trên Droplet 2 vCPU / 2 GB RAM.
 
@@ -172,7 +173,7 @@ Với các nhóm sẵn sàng triển khai trên VPS, [DigitalOcean](https://m.do
 
 ### Pipeline CI/CD với GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/api-tests.yml
 name: Kiểm thử API với Hoppscotch CLI
 
@@ -212,11 +213,11 @@ jobs: api-test: runs-on: ubuntu-latest
         if: always()
         with: name: api-test-results
           path: test-results.xml
-```
+`````
 
 ### Tích hợp ứng dụng Node.js
 
-```javascript
+`````javascript
 // scripts/run-api-tests.js
 const { execSync } = require("child_process");
 const path = require("path");
@@ -227,23 +228,23 @@ const envPath = path.join(__dirname, "../environments");
 function runTests(environment) {
   const command = [
     "hopp test",
-    `"${collectionPath}/core-apis.json"`,
-    `-e "${envPath}/${environment}.json"`,
+    ````"${collectionPath}/core-apis.json"````,
+    ````-e "${envPath}/${environment}.json"````,
     "--reporter-junit",
-    `"reports/${environment}-results.xml"`,
+    ````"reports/${environment}-results.xml"````,
   ].join(" ");
 
-  console.log(`Đang chạy kiểm thử cho ${environment}...`);
+  console.log(````Đang chạy kiểm thử cho ${environment}...````);
   execSync(command, { stdio: "inherit" });
 }
 
 // Chạy với staging trước khi deploy production
 runTests("staging");
-```
+`````
 
 ### Cấu hình proxy Vue.js frontend
 
-```javascript
+`````javascript
 // vite.config.js
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -260,11 +261,11 @@ export default defineConfig({
     },
   },
 });
-```
+`````
 
 ### Pre-request script làm mới OAuth2 token
 
-```javascript
+`````javascript
 // Hoppscotch pre-request script
 const token = pw.env.get("AUTH_TOKEN");
 const expiry = pw.env.get("TOKEN_EXPIRY");
@@ -287,12 +288,12 @@ if (!token || Date.now() > Number(expiry)) {
 }
 
 // Áp dụng token vào yêu cầu hiện tại
-pw.headers.set("Authorization", `Bearer ${pw.env.get("AUTH_TOKEN")}`);
-```
+pw.headers.set("Authorization", ````Bearer ${pw.env.get("AUTH_TOKEN")}````);
+`````
 
 ### Test assertions sau phản hồi
 
-```javascript
+`````javascript
 // Hoppscotch test script
 pw.test("Mã trạng thái là 200", () => {
   pw.expect(pw.response.status).toBe(200);
@@ -311,7 +312,7 @@ pw.test("Phản hồi chứa user ID", () => {
 pw.test("Thờ gian phản hồi chấp nhận được", () => {
   pw.expect(pw.response.time).toBeLessThan(500);
 });
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -331,12 +332,12 @@ pw.test("Thờ gian phản hồi chấp nhận được", () => {
 - **Lập trình viên cá nhân** sử dụng Hoppscotch web để khám phá API nhanh không cần tạo tài khoản
 - **Nhóm 5–20 ngườ** tự lưu trữ Community Edition trên hạ tầng nội bộ
 - **Startup API-first** nhúng Hoppscotch collections vào tài liệu qua liên kết chia sẻ
-- **Pipeline CI/CD** chạy `hopp test` trên mỗi pull request để xác thực hợp đồng API
+- **Pipeline CI/CD** chạy ````hopp test```` trên mỗi pull request để xác thực hợp đồng API
 - **Nhóm microservices** sử dụng biến môi trường để chuyển đổi giữa 10+ dịch vụ nội bộ
 
 ### Kiểm thử tải qua CLI
 
-```bash
+`````bash
 # Chạy collection với cài đặt đồng thờ
 hopp test load-test-collection.json \
   --iteration-count 100 \
@@ -350,13 +351,13 @@ hopp test api-collection.json \
 # Tạo JUnit XML cho tích hợp Jenkins/GitLab
 hopp test api-collection.json \
   --reporter-junit junit-report.xml
-```
+`````
 
 ## Sử dụng nâng cao / Củng cố production
 
 ### Cấu hình bảo mật
 
-```bash
+`````bash
 # Tạo secret mã hóa an toàn
 JWT_SECRET=$(openssl rand -hex 64)
 REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
@@ -377,11 +378,11 @@ RATE_LIMIT_MAX=100
 # CORS (giới hạn theo domain)
 ALLOWED_ORIGINS=https://api.yourcompany.com
 EOF
-```
+`````
 
 ### Reverse proxy với Nginx
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/hoppscotch
 server {
     listen 443 ssl http2;
@@ -415,11 +416,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### Giám sát với Prometheus
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 version: "3.8"
 
@@ -435,11 +436,11 @@ services: prometheus: image: prom/prometheus:latest
     networks: - hoppscotch-net
 
 volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
-```
+`````
 
 ### Chiến lược sao lưu cơ sở dữ liệu
 
-```bash
+`````bash
 #!/bin/bash
 # backup-hoppscotch.sh - Chạy qua cron hàng ngày
 
@@ -469,7 +470,7 @@ gzip "${BACKUP_DIR}/hoppscotch_${TIMESTAMP}.dump"
 find "${BACKUP_DIR}" -name "hoppscotch_*.dump.gz" -mtime +14 -delete
 
 echo "Sao lưu hoàn tất: hoppscotch_${TIMESTAMP}.dump.gz"
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -482,7 +483,7 @@ echo "Sao lưu hoàn tất: hoppscotch_${TIMESTAMP}.dump.gz"
 | Hỗ trợ GraphQL | Có (schema explorer) | Có | Có | Có |
 | Hỗ trợ WebSocket | Có | Có | Có | Có |
 | Hỗ trợ gRPC | Đang lập kế hoạch | Có | Có | Có |
-| CLI cho CI/CD | Có (`hopp test`) | Newman (trả phí) | Có (inso) | Có (`bru`) |
+| CLI cho CI/CD | Có (````hopp test````) | Newman (trả phí) | Có (inso) | Có (````bru````) |
 | Collections Git-native | Không (xuất/nhập) | Không | Không | Có (thiết kế cốt lõi) |
 | Hợp tác nhóm | Workspaces + real-time | Workspaces | Cloud sync | Git + PRs |
 | Giá nhóm 10 ngườ | $0 tự lưu trữ | $140–$490/tháng | $80–$450/tháng | $0 |
@@ -515,7 +516,7 @@ Hoppscotch không phải là công cụ phù hợp cho mọi tình huống. Dư�
 Có. Community Edition được cấp phép MIT và miễn phí không giới hạn cho mục đích thương mại. Bạn có thể tự lưu trữ nội bộ mà không cần phí cấp phép. Phiên bản Cloud cung cấp các gói trả phí cho lưu trữ bổ sung và tính năng doanh nghiệp như SAML SSO.
 
 **Q2: Tôi có thể nhập collection Postman hiện có không?**
-Có. Hoppscotch hỗ trợ nhập collection Postman (định dạng v2.1), thông số kỹ thuật OpenAPI (3.0+) và lệnh cURL. Sử dụng công cụ CLI di chuyển: `npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json`.
+Có. Hoppscotch hỗ trợ nhập collection Postman (định dạng v2.1), thông số kỹ thuật OpenAPI (3.0+) và lệnh cURL. Sử dụng công cụ CLI di chuyển: ````npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json````.
 
 **Q3: Hoppscotch xử lý CORS cho API localhost như thế nào?**
 Cài đặt tiện ích mở rộng trình duyệt Hoppscotch (có sẵn cho Chrome và Firefox) hoặc cấu hình máy chủ proxy tích hợp. Chuyển chế độ interceptor trong cài đặt từ "Proxy" sang "Browser Extension" để vượt qua giới hạn CORS cho phát triển local.
@@ -527,7 +528,7 @@ Community Edition chạy trên VPS với 1 vCPU, 1 GB RAM và 10 GB lưu trữ. 
 CLI (hiện tại v0.31.2) tuân theo semantic versioning pre-1.0 và nhận cập nhật thường xuyên. Hỗ trợ báo cáo JUnit, lặp qua dữ liệu CSV và injection biến môi trường. Nhiều nhóm đang chạy thành công trên GitHub Actions và GitLab CI.
 
 **Q6: Làm thế nào để sao lưu dữ liệu Hoppscotch tự lưu trữ?**
-Sao lưu cơ sở dữ liệu PostgreSQL bằng `pg_dump`. Lập lịch công việc cron hàng ngày để xuất cơ sở dữ liệu, nén và sao chép sang bộ nhớ từ xa. Xuất collection dạng JSON cũng có thể dùng làm bản sao lưu một phần cho workspace.
+Sao lưu cơ sở dữ liệu PostgreSQL bằng ````pg_dump````. Lập lịch công việc cron hàng ngày để xuất cơ sở dữ liệu, nén và sao chép sang bộ nhớ từ xa. Xuất collection dạng JSON cũng có thể dùng làm bản sao lưu một phần cho workspace.
 
 **Q7: Hoppscotch có hỗ trợ hợp tác real-time như Postman không?**
 Có. Team workspace hỗ trợ hợp tác real-time với giải quyết xung đột, audit log hoạt động và kiểm soát truy cập dựa trên vai trò. Thay đổi được đồng bộ tức thì qua các phiên trình duyệt và desktop.
@@ -538,9 +539,9 @@ Hoppscotch đã đáng giá 79,200 sao GitHub bằng cách xây dựng điều m
 
 **Các bước tiếp theo:**
 1. Mở [hoppscotch.io](https://hoppscotch.io) và gửi yêu cầu đầu tiên
-2. Clone repository: `git clone https://github.com/hoppscotch/hoppscotch.git`
-3. Triển khai tự lưu trữ với `docker compose up -d`
-4. Cài đặt CLI: `npm i -g @hoppscotch/cli`
+2. Clone repository: ````git clone https://github.com/hoppscotch/hoppscotch.git````
+3. Triển khai tự lưu trữ với ````docker compose up -d````
+4. Cài đặt CLI: ````npm i -g @hoppscotch/cli```
 
 Tham gia [nhóm Telegram](https://t.me/dibi8channel) của chúng tôi để nhận đề xuất công cụ mã nguồn mở hàng tuần và hướng dẫn triển khai.
 
@@ -595,7 +596,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -605,6 +606,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [claude-code-vs-aider](hoppscotch)
 - [microsoft-markitdown-file-to-markdown-converter-cli](hoppscotch)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

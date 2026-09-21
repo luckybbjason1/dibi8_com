@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/directus-headless-cms-ai-content/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 2026년에도 CMS가 여전히 병목 현상인 이유
@@ -49,7 +50,7 @@ Directus는 기존 SQL 데이터베이스(PostgreSQL, MySQL, SQLite, Oracle, MS 
 
 ## Directus 작동 방식: 아키텍처 개요
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │                        Directus 스택                         │
 ├─────────────────┬──────────────────┬────────────────────────┤
@@ -65,11 +66,11 @@ Directus는 기존 SQL 데이터베이스(PostgreSQL, MySQL, SQLite, Oracle, MS 
 ├─────────────────┴──────────────────┴────────────────────────┤
 │              Docker Compose / Kubernetes                     │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 주요 아키텍처 결정: - **데이터베이스 우선**: Directus는 데이터베이스를 추상화하지 않는다 — 향상시킨다. 모든 컬렉션은 테이블에 1:1 매핑된다. 마이그레이션은 표준 SQL이다.
 - **상태 비저장 API 서버**: 수평 확장은 간단하다 — 로드 밸런서 뒤에 더 많은 API 컨테이너 레플리카를 추가하면 된다.
-- **파일 스토리지 추상화**: S3, Google Cloud Storage, Azure Blob, 로컬 디스크용 어댑터. URL 파라미터를 통한 이미지 변환(예: `?width=800&height=600&fit=cover`).
+- **파일 스토리지 추상화**: S3, Google Cloud Storage, Azure Blob, 로컬 디스크용 어댑터. URL 파라미터를 통한 이미지 변환(예: ````?width=800&height=600&fit=cover````).
 - **확장 시스템**: 커스텀 엔드포인트, 훅(이벤트 기반), 인터페이스(커스텀 UI 컴포넌트), 디스플레이, 대시보드 패널 — 모두 핫 리로드된다.
 - **실시간**: 라이브 데이터 업데이트를 위한 WebSocket 기반 구독(v11+).
 
@@ -83,7 +84,7 @@ Directus는 기존 SQL 데이터베이스(PostgreSQL, MySQL, SQLite, Oracle, MS 
 
 ### 단계 1: Docker Compose로 시작
 
-```bash
+`````bash
 mkdir ~/directus && cd ~/directus
 
 # compose 파일 생성
@@ -119,23 +120,23 @@ services: directus: image: directus/directus:11.3.0
     volumes: - redis-data:/data
 
 volumes: pg-data: redis-data: EOF
-```
+`````
 
 ### 단계 2: 스택 시작
 
-```bash
+`````bash
 docker compose up -d
 
 # 초기화를 기다린 후 상태 확인
 curl -s http://localhost:8055/server/health | jq .
 # 예상 출력: {"status":"ok","release":"11.3.0"}
-```
+`````
 
-관리 패널은 `http://localhost:8055`에서 접근할 수 있다. compose 파일의 관리자 자격 증명으로 로그인하세요.
+관리 패널은 ````http://localhost:8055````에서 접근할 수 있다. compose 파일의 관리자 자격 증명으로 로그인하세요.
 
 ### 단계 3: 프로덕션 환경 구성
 
-```bash
+`````bash
 # 프로덕션용 .env 파일
 cat > .env << EOF
 # 보안
@@ -177,15 +178,15 @@ EMAIL_SMTP_PASSWORD=your-sendgrid-key
 EXTENSIONS_PATH=./extensions
 EXTENSIONS_AUTO_RELOAD=true
 EOF
-```
+`````
 
 [DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)에서 프로덕션 배포 시 SSL이 적용된 역방향 프록시(Traefik 또는 Nginx) 뒤에 배치하세요.
 
 ### 단계 4: 첫 번째 컬렉션 생성
 
-관리 UI를 통해: 설정 → 데이터 모델 → 컬렉션 생성 → `articles`.
+관리 UI를 통해: 설정 → 데이터 모델 → 컬렉션 생성 → ````articles````.
 
-또는 API를 통해: ```bash
+또는 API를 통해: `````bash
 # REST API로 컬렉션 생성
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -205,13 +206,13 @@ curl -X POST http://localhost:8055/collections \
       { "field": "hero_image", "type": "uuid", "meta": { "special": ["file"] }, "schema": {} }
     ]
   }'
-```
+`````
 
 ## REST 및 GraphQL API 사용법
 
 ### REST API 예제
 
-```bash
+`````bash
 # 필터링과 필드 선택으로 모든 게시된 아티클 읽기
 curl -s "http://localhost:8055/items/articles?filter[status][_eq]=published&fields=id,title,seo_score,published_at&sort=-published_at&limit=10" \
   -H "Authorization: Bearer <token>" | jq .
@@ -235,11 +236,11 @@ curl -s "http://localhost:8055/items/articles?aggregate[avg]=seo_score&groupBy=s
 # 깊은 관계 쿼리: 작성자 정보와 이미지 변환이 있는 아티클
 curl -s "http://localhost:8055/items/articles?fields=id,title,author.name,author.email,hero_image.id,hero_image.filename_disk&filter[status][_eq]=published" \
   -H "Authorization: Bearer <token>" | jq .
-```
+`````
 
 ### GraphQL API
 
-```bash
+`````bash
 # 스키마 내성
 curl -X POST http://localhost:8055/graphql \
   -H "Content-Type: application/json" \
@@ -260,15 +261,15 @@ curl -X POST http://localhost:8055/graphql \
   -d '{
     "query": "mutation { create_articles_item(data: { title: \"GraphQL 가이드\", content: \"내용은 여기...\", status: \"draft\", seo_score: 90 }) { id title } }"
   }' | jq .
-```
+`````
 
 ### JavaScript SDK
 
-```bash
+`````bash
 npm install @directus/sdk@18.0.0
-```
+`````
 
-```javascript
+`````javascript
 import { createDirectus, rest, readItems, createItem, staticToken } from '@directus/sdk';
 
 const client = createDirectus('http://localhost:8055')
@@ -284,7 +285,7 @@ const articles = await client.request(
     fields: [id, title, seo_score, published_at]
   })
 );
-console.log(`${articles.length}개의 아티클을 찾았습니다`);
+console.log(````${articles.length}개의 아티클을 찾았습니다````);
 
 // 아티클 생성
 const newArticle = await client.request(
@@ -297,13 +298,13 @@ const newArticle = await client.request(
   })
 );
 console.log('생성됨:', newArticle.id);
-```
+`````
 
 ## AI 콘텐츠 워크플로우: Directus를 LLM에 연결하기
 
 Directus Flows + 확장 기능은 외부 도구 없이 AI 기반 콘텐츠 파이프라인을 가능하게 한다. 완전한 AI 콘텐츠 워크플로우는 다음과 같다: ### 단계 1: AI 초안 생성 Flow 생성
 
-```bash
+`````bash
 # ai_flag=true로 아티클이 생성될 때 트리거되는 Flow를 API로 생성
 curl -X POST http://localhost:8055/flows \
   -H "Content-Type: application/json" \
@@ -315,11 +316,11 @@ curl -X POST http://localhost:8055/flows \
     "accountability": "all",
     "options": { "type": "filter", "scope": ["items.create.articles"] }
   }'
-```
+`````
 
 ### 단계 2: AI 처리를 위한 Webhook 확장
 
-```javascript
+`````javascript
 // extensions/hooks/ai-content/index.js
 import { defineHook } from '@directus/extensions-sdk';
 
@@ -333,7 +334,7 @@ export default defineHook(({ filter, action }) => {
         model: 'gpt-4o',
         messages: [
           { role: system, content: 'You are a technical content writer.' },
-          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: user, content: ````Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).```` }
         ],
         response_format: { type: json_object },
         max_tokens: 2000
@@ -362,11 +363,11 @@ export default defineHook(({ filter, action }) => {
     }
   });
 });
-```
+`````
 
 ### 단계 3: 확장 배포
 
-```bash
+`````bash
 # 확장 빌드 및 배포
 cd extensions/hooks/ai-content
 npm install
@@ -374,11 +375,11 @@ npm run build
 
 # Directus가 핫 리로드한다
 cp -r dist/* /directus/extensions/hooks/ai-content/
-```
+`````
 
 ### 단계 4: AI 생성 콘텐츠 쿼리
 
-```javascript
+`````javascript
 // 리뷰 대기 중인 아티클 가져오기
 const pendingReview = await client.request(
   readItems(articles, {
@@ -399,7 +400,7 @@ await client.request(
     published_at: new Date().toISOString()
   })
 );
-```
+`````
 
 ## 벤치마크 / 실전 활용 사례
 
@@ -421,7 +422,7 @@ await client.request(
 
 ### 1. 읽기 집약적 워크로드를 위한 읽기 레플리카
 
-```bash
+`````bash
 # 읽기 레플리카로 API 수평 확장
 version: "3"
 services: directus-api-1: image: directus/directus:11.3.0
@@ -437,11 +438,11 @@ services: directus-api-1: image: directus/directus:11.3.0
   nginx: image: nginx:alpine
     ports: - "8055:8055"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf
-```
+`````
 
 ### 2. 자동 백업
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh — cron을 통해 매일 실행
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -460,11 +461,11 @@ aws s3 sync $BACKUP_DIR s3://backup-bucket/directus/ --delete
 
 # 14일 보관
 find $BACKUP_DIR -mtime +14 -delete
-```
+`````
 
 ### 3. 커스텀 API 엔드포인트
 
-```javascript
+`````javascript
 // extensions/endpoints/stats/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -485,19 +486,19 @@ export default defineEndpoint((router, { services, database }) => {
   });
 
   router.get('/seo-report', async (req, res) => {
-    const result = await database.raw(`
+    const result = await database.raw(````
       SELECT status, AVG(seo_score) as avg_score, COUNT(*) as count
       FROM articles
       GROUP BY status
-    `);
+    ````);
     res.json(result.rows);
   });
 });
-```
+`````
 
 ### 4. 필드 수준 권한
 
-```javascript
+`````javascript
 // 편집자 역할에 SEO 필드는 읽기 전용, 콘텐츠는 전체 접근 권한 부여
 const rolePermissions = {
   collection: articles,
@@ -517,33 +518,33 @@ const adminPermissions = {
   fields: ['*'], // 모든 필드
   validation: null
 };
-```
+`````
 
 ### 5. Prometheus 모니터링
 
-Directus는 `/server/health` 엔드포인트를 통해 메트릭을 노출하고 Prometheus를 위해 확장할 수 있다: ```javascript
+Directus는 ``/server/health`` 엔드포인트를 통해 메트릭을 노출하고 Prometheus를 위해 확장할 수 있다: `````javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
 export default defineEndpoint((router, { database }) => {
   router.get('/metrics', async (_req, res) => {
-    const metrics = await database.raw(`
+    const metrics = await database.raw(````
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
       WHERE schemaname = public
-    `);
+    ````);
 
     let output = '';
     metrics.rows.forEach(row => {
-      output += `directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n`;
-      output += `directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n`;
+      output += ````directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n````;
+      output += ````directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n````;
     });
 
     res.setHeader('Content-Type', 'text/plain");
     res.send(output);
   });
 });
-```
+`````
 
 ## 대안과의 비교
 
@@ -576,10 +577,10 @@ Directus는 **데이터베이스 우선**이라는 점에서 차별화된다: �
 ## 자주 묻는 질문
 
 **Q: 기존 데이터베이스와 Directus를 함께 사용할 수 있나요?**
-예 — 이것이 Directus의 킬러 기능이다. 기존 PostgreSQL, MySQL 또는 SQLite 데이터베이스를 Directus에 연결하면 스키마를 내성하고 즉시 API를 생성한다. 기존 애플리케이션은 변경 없이 계속 작동한다. Directus는 데이터 구조를 건드리지 않고 자체 메타데이터 테이블(`directus_*`)만 추가한다. 이는 레거시 애플리케이션에 CMS 인터페이스를 추가하는 데 이상적이다.
+예 — 이것이 Directus의 킬러 기능이다. 기존 PostgreSQL, MySQL 또는 SQLite 데이터베이스를 Directus에 연결하면 스키마를 내성하고 즉시 API를 생성한다. 기존 애플리케이션은 변경 없이 계속 작동한다. Directus는 데이터 구조를 건드리지 않고 자체 메타데이터 테이블(````directus_*````)만 추가한다. 이는 레거시 애플리케이션에 CMS 인터페이스를 추가하는 데 이상적이다.
 
 **Q: 콘텐츠 버전 관리는 어떻게 작동하나요?**
-Directus는 "버전으로 저장"을 누를 때마다 콘텐츠의 스냅샷을 저장한다. 버전을 나란히 비교하고, 이전 버전으로 되돌리고, 버전을 미래 게시로 예약할 수 있다. 버전은 `directus_revisions` 테이블에 저장된다. 이는 데이터 모델 설정에서 버전 관리가 활성화된 모든 컬렉션에 작동한다.
+Directus는 "버전으로 저장"을 누를 때마다 콘텐츠의 스냅샷을 저장한다. 버전을 나란히 비교하고, 이전 버전으로 되돌리고, 버전을 미래 게시로 예약할 수 있다. 버전은 ````directus_revisions``` 테이블에 저장된다. 이는 데이터 모델 설정에서 버전 관리가 활성화된 모든 컬렉션에 작동한다.
 
 **Q: Directus는 고트래픽 애플리케이션을 처리할 수 있나요?**
 예, 적절한 아키텍처와 함께. API 서버는 상태 비저장 — 로드 밸런서 뒤에 컨테이너 레플리카를 추가하여 수평 확장한다. 캐싱과 세션에는 Redis를 사용한다. 읽기 집약적 워크로드에는 PostgreSQL 읽기 레플리카를 사용한다. 단일 4 vCPU / 8GB 인스턴스는 캐시된 읽기에 대해 약 2,000 요청/초를 처리한다. 파일 제공은 CDN을 통해 이루어져야 한다.
@@ -626,7 +627,7 @@ Docker를 사용하여 [DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)�
 **제휴 고지**
 이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 및 [HTStack](https://my.htstack.com/aff.php?aff=27187)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 호스팅을 구매하면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다. 우리는 자사 인프라에 사용하는 서비스만 추천합니다. 모든 벤치마크는 유료 인스턴스에서 독립적으로 수행되었습니다.
 
----
+* * *
 *게시일: 2026-05-19 | 카테고리: dev-utils | 도구: Directus 11.3.0*
 *dibi8 개발자 커뮤니티 참여: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
@@ -656,7 +657,7 @@ Docker를 사용하여 [DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -666,6 +667,6 @@ Docker를 사용하여 [DigitalOcean 드롭릿](https://m.do.co/c/eca87ac14ee0)�
 - [llm-inference-cost-optimization-guide-2026](directus-headless-cms-ai-content)
 - [12-factor-agents](directus-headless-cms-ai-content)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

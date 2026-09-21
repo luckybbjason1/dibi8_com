@@ -26,6 +26,7 @@ faqs: - q: 'Có giải pháp thay thế Vercel v0 dạng tự lưu trữ và mã
     a: 'Open Codesign cho phép xuất tùy chỉnh cho React, Vue, Svelte và HTML thuần túy, trong khi Vercel v0 chủ yếu hướng đến Next.js và Tailwind.'
 ---
 
+
 {</* resource-info */>}
 
 # Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign
@@ -56,7 +57,7 @@ A: Có! Open Codesign sinh ra là để làm việc đó. Bạn tải nguyên so
 **Q: Tool nào miễn phí thay thế Vercel v0 ngon nhất? (Free alternative to v0 by Vercel)**
 A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat, bên phải xem web), nhưng hoàn toàn miễn phí và đách bắt bạn phải deploy web lên server của Vercel mới chạy được.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -136,7 +137,7 @@ Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng O
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -27,6 +27,7 @@ aliases:
   - /posts/ai-agent-tool-chain/-
 ---
 
+
 "AI agent" 在 2025 年停止做研究话题，在 2026 年成为生产工程类别。在交付真正自主 agent 的团队 —— 熬过重启的客服 bot、跨百文件重构的编程 agent、跑数小时的研究 agent —— 都汇聚到一个惊人一致的 stack。这个合集组装它。
 
 **6 组件，$20-60/月自托管。** 如果你专门搭编程 agent，配 [自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/)；本合集聚焦自主 agent 模式（长跑、多步、带工具）。
@@ -35,22 +36,22 @@ aliases:
 
 | # | 组件 | 角色 | 为什么 | 深度指南 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **LangGraph** | 有状态 agent 编排（大脑）| 持久化执行、human-in-loop、熬过崩溃 | [LangGraph 生产 2026](/zh/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/) |
 | 2 | **MCP servers**（filesystem / git / search / 领域特定）| 工具 & 上下文层（手和眼）| 标准化 agent-世界协议，19,700+ 可用 | [MCP Server 注册中心 2026](/zh/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) |
 | 3 | **mem0 + AgentMemory MCP** | 持久化语义记忆（长期记忆）| 跨 session 回忆、事实提取、衰减 | [AgentMemory MCP](/zh/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) |
 | 4 | **OpenClaw** | 多 agent 协调（团队）| sub-agent 编排、委派、并行执行 | [OpenClaw 自托管](/zh/resources/llm-frameworks/openclaw-self-hosted-ai-assistant-setup-guide-2026/) |
 | 5 | **Hermes Agent** | 自改进 agent 循环（学习层）| agent 跨运行自动改进 prompt 和工具使用 | [Hermes Agent 指南](/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) |
-| 6 | **e2b 沙箱**（via `e2b-sandbox-mcp`）| 代码执行沙箱（安全游乐场）| 不拥有 VM 跑不可信代码，MCP 暴露 |（看 [MCP Server 注册中心](/zh/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) §6）|
+| 6 | **e2b 沙箱**（via ```e2b-sandbox-mcp````）| 代码执行沙箱（安全游乐场）| 不拥有 VM 跑不可信代码，MCP 暴露 |（看 [MCP Server 注册中心](/zh/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) §6）|
 
 **月成本总计**：单干 agent dev **$20-30/月** • 小团队或生产原型 **$40-60/月** • 多 agent 并发生产规模 ~$200/月
 
@@ -68,7 +69,7 @@ aliases:
 
 ## 2. 架构总览
 
-```
+`````
                 ┌──────────────────────────────────────┐
                 │   用户 / 外部触发                     │
                 └─────────────────┬────────────────────┘
@@ -97,7 +98,7 @@ aliases:
    可选层：
    - OpenClaw 并行编排多个 LangGraph agent
    - Hermes Agent 观察结果并随时间重写 prompt
-```
+`````
 
 心智模型：**LangGraph 是决定下一步做什么的大脑。MCP servers 是做事的手。mem0 是大脑记住的东西。OpenClaw 把它扩展到团队。Hermes 让团队随运行变聪明。**
 
@@ -108,13 +109,13 @@ aliases:
 **为什么选它**：32.6k stars，v1.2.1，LangChain 团队出。唯一广泛采用的 "agent 熬过 deploy" 是默认而非附加的框架。
 
 **快装**：
-```bash
+`````bash
 pip install -U langgraph langgraph-checkpoint-postgres
-```
+`````
 
-定义 agent 为图（规划 → 工具 → 批评 → 循环）。配 `PostgresSaver` 编译。带 `thread_id` 跑。runtime 处理其他。
+定义 agent 为图（规划 → 工具 → 批评 → 循环）。配 ````PostgresSaver```` 编译。带 ````thread_id```` 跑。runtime 处理其他。
 
-**完整设置**（4 杀手特性 / 生产部署模式 / 从 LangChain `AgentExecutor` 迁移）：[LangGraph 有状态 agent 编排 2026](/zh/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/)。
+**完整设置**（4 杀手特性 / 生产部署模式 / 从 LangChain ````AgentExecutor```` 迁移）：[LangGraph 有状态 agent 编排 2026](/zh/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/)。
 
 ## 4. 组件 2 —— MCP Servers（工具 & 上下文）
 
@@ -123,10 +124,10 @@ pip install -U langgraph langgraph-checkpoint-postgres
 **为什么这关键**：MCP 出现前（2025 早期），每个 agent 框架重新实现相同 20 个工具（filesystem / 网搜 / 代码执行），互不通用。今天你接好 Anthropic 7 reference + 3-5 个专用，agent 就有超能力，不用写工具代码。
 
 **自主 agent 最小 MCP 集**：
-- `modelcontextprotocol/server-filesystem`（读项目文件）
-- `modelcontextprotocol/server-git`（看 git 状态）
-- `tavily-mcp` 或 `brave-search-mcp-server`（网搜）
-- `e2b-sandbox-mcp`（沙箱代码执行 —— 见组件 6）
+- ````modelcontextprotocol/server-filesystem````（读项目文件）
+- ````modelcontextprotocol/server-git````（看 git 状态）
+- ````tavily-mcp```` 或 ````brave-search-mcp-server````（网搜）
+- ````e2b-sandbox-mcp````（沙箱代码执行 —— 见组件 6）
 - 1-2 个领域特定（Postgres MCP / Slack MCP / Stripe MCP）
 
 **完整 19,700+ MCP server 菜单 + 挑选清单**：[MCP Server 注册中心完全指南 2026](/zh/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/)。
@@ -140,11 +141,11 @@ pip install -U langgraph langgraph-checkpoint-postgres
 - **AgentMemory MCP** 把 mem0 暴露给任意 MCP 感知 host（你的 LangGraph node / Claude Desktop / OpenCode）
 
 **快装**：
-```bash
+`````bash
 docker run -d --name mem0 -p 8765:8765 mem0ai/mem0-server:latest
 npm install -g @mem0/mem0-mcp
 # 然后把 agentmemory 加到 LangGraph 的 MCP toolset
-```
+`````
 
 **完整设置**：[AgentMemory MCP 持久化记忆 2026](/zh/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/)。
 
@@ -155,12 +156,12 @@ npm install -g @mem0/mem0-mcp
 **为什么选它而不是 CrewAI**：OpenClaw 自托管、MCP 原生、与 LangGraph 干净集成（每个"专家 agent"自己可以是一个 LangGraph）。CrewAI 不错但云优先，难和自定义状态机组合。
 
 **快装**：
-```bash
+`````bash
 docker run -d --name openclaw \
   -p 7050:7050 \
   -v ~/.openclaw:/data \
   ghcr.io/openclaw/openclaw:latest
-```
+`````
 
 **完整设置**（含 sub-agent 委派模式 + 用例库）：[OpenClaw 自托管 AI 助手设置指南 2026](/zh/resources/llm-frameworks/openclaw-self-hosted-ai-assistant-setup-guide-2026/) 和 [awesome OpenClaw 用例](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) 参考。
 
@@ -171,10 +172,10 @@ docker run -d --name openclaw \
 **为什么这重要**：静态 agent prompt 衰减 —— v1 有效的随你代码库演化、领域转移、新工具出现而失效。Hermes Agent 是唯一专为自改进 agent 循环广泛采用的开源框架。
 
 **快装**：
-```bash
+`````bash
 pip install hermes-agent
 # 接成 LangGraph 工作流的 "post-run observer"
-```
+`````
 
 模式：Hermes 看 LangGraph trace log（via LangSmith 导出），关联结果质量分和 prompt 版本，生成新 prompt 候选，A/B 测试。
 
@@ -184,10 +185,10 @@ pip install hermes-agent
 
 **角色**：agent 决定跑 Python / shell / Node 代码时（数据分析 / 代码生成 / 研究工作流常见），e2b 提供隔离云沙箱让不可信代码不触你基础设施。
 
-**为什么 MCP 暴露的 e2b 胜过原生 e2b SDK**：`e2b-sandbox-mcp` server 让"在沙箱跑代码"变成你 LangGraph agent 的单一工具调用 —— 和 filesystem 读或网搜同样接口。
+**为什么 MCP 暴露的 e2b 胜过原生 e2b SDK**：````e2b-sandbox-mcp```` server 让"在沙箱跑代码"变成你 LangGraph agent 的单一工具调用 —— 和 filesystem 读或网搜同样接口。
 
 **快装**（加到 MCP config 里和其他一起）：
-```json
+`````json
 {
   "mcpServers": {
     "e2b-sandbox": {
@@ -197,7 +198,7 @@ pip install hermes-agent
     }
   }
 }
-```
+`````
 
 **成本**：e2b 有免费层（50 沙箱小时/月）。超出后 $0.000014/CPU-秒 —— 典型 agent 负载便宜。
 
@@ -206,7 +207,7 @@ pip install hermes-agent
 ## 9. Day 1 组装顺序（3 小时）
 
 1. **开 VPS + Postgres**（20 分）—— {{< aff "digitalocean" "agent-vps" "DigitalOcean $24/月 droplet（8 GB）" >}} + 托管 Postgres（$15/月）
-2. **装 LangGraph + checkpointer**（15 分）—— `pip install`，写 30 行 hello-world 有状态 agent，验证它熬过 `kill -9` 后恢复
+2. **装 LangGraph + checkpointer**（15 分）—— ````pip install````，写 30 行 hello-world 有状态 agent，验证它熬过 ````kill -9``` 后恢复
 3. **加 MCP servers**（30 分）—— filesystem + git + tavily + e2b-sandbox 加到你 LangGraph node 的 MCP config
 4. **加 mem0 + AgentMemory MCP**（20 分）—— Docker run mem0，agentmemory 加到 MCP toolset
 5. **测第一个有用 agent**（45 分）—— "研究 → 摘要 → 写到文件" 管线，熬过重启，用 3 个工具，持久化记忆
@@ -219,13 +220,13 @@ pip install hermes-agent
 
 | 项 | 单干 agent dev | 团队原型 | 生产（3 agent 并发）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | VPS | $24（8 GB）| $48（16 GB）| $120（32 GB + 副本）|
 | 托管 Postgres | $15 | $30 | $60 |
@@ -264,7 +265,7 @@ pip install hermes-agent
 开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/月 droplet" >}}，跟第 9 节做，你有熬过重启 / 记住上下文 / 安全跑代码 / 随时间自改进的 agent —— 跑在你自己拥有的基础设施上，比单座 Cursor 还便宜。
 
 
----
+* * *
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给编程 agent 专属 stack。[知识库 Stack](/zh/collections/knowledge-base-stack/) 给你的 agent 一个 Glean 等价 RAG 后端。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖成本侧。*
 
 
@@ -330,11 +331,11 @@ AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent represents an 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -344,7 +345,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](ai-agent-tool-chain)
 - [codebase-memory-mcp-deep-code-intelligence](ai-agent-tool-chain)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

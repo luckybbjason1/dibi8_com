@@ -23,6 +23,7 @@ tags: ["shellcheck", "bash", "static-analysis", "linting", "shell-script", "devo
 aliases:
   - /posts/shellcheck/-
 ---
+
 {{</* resource-info */>}}
 
 ShellCheck is the de facto standard for catching bugs in shell scripts before they hit production. With 39,456+ GitHub stars and a maintained open-source community, it is the most widely adopted static analysis tool for bash, sh, dash, and ksh scripts. This guide walks through installing ShellCheck, integrating it with editors and CI/CD pipelines, and hardening it for production use.
@@ -47,7 +48,7 @@ The project is written in Haskell (96.4% of the codebase), distributed under the
 
 - **Syntax validation**: Catches malformed constructs before runtime
 - **Semantic analysis**: Detects unquoted variables, unreachable code, and masked exit codes
-- **Portability checking**: Flags bashisms in `/bin/sh` scripts intended for POSIX compliance
+- **Portability checking**: Flags bashisms in ```/bin/sh```` scripts intended for POSIX compliance
 - **Security auditing**: Identifies command injection vectors and unsafe eval patterns
 - **Style enforcement**: Suggests modern constructs over deprecated syntax
 
@@ -57,11 +58,11 @@ ShellCheck operates as a multi-stage analysis pipeline. Understanding this archi
 
 ### Architecture Overview
 
-```
+`````
 Source Script → Lexer → Parser (AST) → Analyzer → Reporter
                      ↓           ↓            ↓
                  Tokens    Syntax Tree    SC-Warnings
-```
+`````
 
 1. **Lexer**: Tokenizes the shell script into identifiers, keywords, operators, and literals
 2. **Parser**: Builds an AST from the token stream, handling shell-specific grammar quirks
@@ -72,11 +73,11 @@ Source Script → Lexer → Parser (AST) → Analyzer → Reporter
 
 Every ShellCheck finding carries one of four severity levels: | Level | Exit Code Impact | Example |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Error | Non-zero exit | Syntax error, undefined variable |
 | Warning | Non-zero exit | Unquoted variable (SC2086) |
@@ -85,7 +86,7 @@ Every ShellCheck finding carries one of four severity levels: | Level | Exit Cod
 
 ### Core Check Categories
 
-- **SC1xxx**: Syntax and parsing issues (e.g., SC1007 — space after `=`)
+- **SC1xxx**: Syntax and parsing issues (e.g., SC1007 — space after ````=````)
 - **SC2xxx**: Semantic and portability warnings (e.g., SC2086 — unquoted variable)
 - **SC3xxx**: Bash/dash/ksh-specific compatibility notes
 - **SC4xxx**: Optional checks and experimental rules
@@ -96,7 +97,7 @@ ShellCheck is available on every major platform. Installation takes under two mi
 
 ### Linux (APT / Debian / Ubuntu)
 
-```bash
+`````bash
 # Update package index
 sudo apt update
 
@@ -109,41 +110,41 @@ shellcheck --version
 # version: 0.11.0
 # license: GNU General Public License, version 3
 # website: https://www.shellcheck.net
-```
+`````
 
 ### Linux (DNF / Fedora / RHEL)
 
-```bash
+`````bash
 # Install via DNF
 sudo dnf install -y shellcheck
 
 # Verify
 shellcheck --version
-```
+`````
 
 ### macOS (Homebrew)
 
-```bash
+`````bash
 # Install via Homebrew
 brew install shellcheck
 
 # Verify
 shellcheck --version
-```
+`````
 
 ### Windows (via Chocolatey)
 
-```powershell
+`````powershell
 # Install via Chocolatey (administrator prompt)
 choco install shellcheck
 
 # Verify
 shellcheck --version
-```
+`````
 
 ### Docker (Platform-Independent)
 
-```bash
+`````bash
 # Run ShellCheck via Docker without local installation
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
   /mnt/deploy.sh
@@ -155,11 +156,11 @@ docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
 # Pin to a specific version for reproducible CI builds
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:v0.11.0 \
   /mnt/deploy.sh
-```
+`````
 
 ### Building from Source (Haskell Stack)
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/koalaman/shellcheck.git
 cd shellcheck
@@ -170,17 +171,17 @@ stack install
 # Or build with Cabal
 cabal update
 cabal install
-```
+`````
 
 ### Pre-commit Hook
 
-```bash
+`````bash
 # Add to your .pre-commit-config.yaml
 repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
     hooks: - id: shellcheck
         args: ["--severity=warning"]
-```
+`````
 
 ## Editor Integration
 
@@ -188,9 +189,9 @@ ShellCheck shines when feedback appears in real-time as you type. Every major ed
 
 ### VS Code
 
-Install the **ShellCheck** extension by Timon Wong (marketplace ID: `timonwong.shellcheck`).
+Install the **ShellCheck** extension by Timon Wong (marketplace ID: ````timonwong.shellcheck````).
 
-```json
+`````json
 // settings.json
 {
   "shellcheck.executablePath": "shellcheck",
@@ -198,11 +199,11 @@ Install the **ShellCheck** extension by Timon Wong (marketplace ID: `timonwong.s
   "shellcheck.severity": "warning",
   "shellcheck.run": "onType"
 }
-```
+`````
 
 ### Vim / Neovim
 
-Using ALE (Asynchronous Lint Engine): ```vim
+Using ALE (Asynchronous Lint Engine): `````vim
 " .vimrc or init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -211,9 +212,9 @@ let g:ale_linters = {
 " Run on save and while typing
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
-```
+`````
 
-Using native LSP in Neovim with bash-language-server: ```lua
+Using native LSP in Neovim with bash-language-server: `````lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -222,21 +223,21 @@ require(lspconfig).bashls.setup {
     }
   }
 }
-```
+`````
 
 ### Emacs
 
-```elisp
+`````elisp
 ;; init.el with Flycheck
 (add-hook 'sh-mode-hook #'flycheck-mode)
 (setq flycheck-shellcheck-severity "warning")
-```
+`````
 
 ### Sublime Text
 
 Install via Package Control: **SublimeLinter-shellcheck**.
 
-```json
+`````json
 // SublimeLinter.sublime-settings
 {
   "linters": {
@@ -246,7 +247,7 @@ Install via Package Control: **SublimeLinter-shellcheck**.
     }
   }
 }
-```
+`````
 
 ## CI/CD Integration
 
@@ -254,7 +255,7 @@ Running ShellCheck in CI prevents buggy scripts from merging. Below are ready-to
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/shellcheck.yml
 name: ShellCheck
 
@@ -270,9 +271,9 @@ jobs: shellcheck: runs-on: ubuntu-latest
         with: ignore_paths: >-
             ./vendor
             ./third_party
-```
+`````
 
-Alternative: manual setup with pinned version: ```yaml
+Alternative: manual setup with pinned version: `````yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
@@ -290,11 +291,11 @@ jobs: shellcheck: runs-on: ubuntu-latest
         run: |
           find . -name "*.sh" -type f -print0 | \
             xargs -0 shellcheck --severity=warning --format=tty
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - lint
 
@@ -303,11 +304,11 @@ shellcheck: stage: lint
   script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-```
+`````
 
 ### Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -337,18 +338,18 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ### CircleCI
 
-```yaml
+`````yaml
 # .circleci/config.yml
 version: 2.1
 orbs: shellcheck: circleci/shellcheck@3.2.0
 
 workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
-```
+`````
 
 ## Configuration and Rule Management
 
@@ -356,7 +357,7 @@ ShellCheck provides multiple mechanisms for controlling which checks run and how
 
 ### Inline Directives
 
-```bash
+`````bash
 #!/bin/bash
 # shellcheck disable=SC2086
 echo $UNQUOTED_VAR  # This line disables SC2086
@@ -367,11 +368,11 @@ UNUSED_VAR="this is assigned but not used"
 # Re-enable after a block
 # shellcheck enable=SC2086
 echo "$PROPERLY_QUOTED"
-```
+`````
 
 ### Configuration File (.shellcheckrc)
 
-```bash
+`````bash
 # .shellcheckrc — project-level configuration
 # Place in repo root or $HOME/.shellcheckrc
 
@@ -389,21 +390,21 @@ enable=require-variable-braces,check-set-e-suppressed
 
 # Specify external sources (for sourced files)
 external-sources=true
-```
+`````
 
 ### Severity Filtering
 
-```bash
+`````bash
 # Only report errors and warnings (no info/style)
 shellcheck --severity=warning script.sh
 
 # Only report errors
 shellcheck --severity=error script.sh
-```
+`````
 
 ### Output Formats
 
-```bash
+`````bash
 # Human-readable terminal output (default)
 shellcheck --format=tty script.sh
 
@@ -418,7 +419,7 @@ shellcheck --format=gcc script.sh
 
 # SARIF output for GitHub Security tab integration
 shellcheck --format=sarif script.sh > shellcheck.sarif
-```
+`````
 
 ## Benchmarks and Real-World Use Cases
 
@@ -428,13 +429,13 @@ ShellCheck adoption spans individual developers to enterprise CI/CD pipelines. B
 
 Tested on a 2024-standard CI runner (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | Script Size | Lines | Analysis Time | Memory Used |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Small | 50 | 0.05s | 12 MB |
 | Medium | 500 | 0.3s | 28 MB |
@@ -443,7 +444,7 @@ Tested on a 2024-standard CI runner (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | Script S
 
 ### Real-World Adoption
 
-- **GitHub Actions**: Official `ludeeus/action-shellcheck` runs 500K+ monthly executions
+- **GitHub Actions**: Official ````ludeeus/action-shellcheck```` runs 500K+ monthly executions
 - **Homebrew**: Linted all 5,000+ formula shell scripts with ShellCheck
 - **Google's Shell Style Guide**: Recommends ShellCheck for all shell scripts
 - **NixOS**: Uses ShellCheck in the official package build pipeline
@@ -453,11 +454,11 @@ Tested on a 2024-standard CI runner (Ubuntu 24.04, 2 vCPU, 4 GB RAM): | Script S
 
 | Check Code | Description | Detection Rate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SC2086 | Unquoted variable | 34.2% |
 | SC2164 | cd without checking return | 18.7% |
@@ -471,7 +472,7 @@ For teams running ShellCheck at scale, these patterns improve reliability and ma
 
 ### Multi-Script Batch Analysis
 
-```bash
+`````bash
 #!/bin/bash
 set -euo pipefail
 
@@ -489,11 +490,11 @@ find "${SCRIPT_DIRS[@]}" -name "*.sh" -type f -print0 | \
     xargs -0 shellcheck --severity="$SEVERITY" "${EXCLUDES[@]}"
 
 echo "All scripts passed ShellCheck at severity: $SEVERITY"
-```
+`````
 
 ### SARIF Upload for GitHub Security Dashboard
 
-```yaml
+`````yaml
 # .github/workflows/security-scan.yml
 name: Security Scan
 on: [push, pull_request]
@@ -512,11 +513,11 @@ jobs: scan: runs-on: ubuntu-latest
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with: sarif_file: shellcheck.sarif
-```
+`````
 
 ### Dockerfile Linting Stage
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM koalaman/shellcheck:stable AS lint
 WORKDIR /scripts
@@ -526,11 +527,11 @@ RUN find . -name "*.sh" -exec shellcheck --severity=warning {} +
 FROM alpine:3.20 AS runtime
 COPY --from=lint /scripts/deploy.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/deploy.sh"]
-```
+`````
 
 ### Monitoring ShellCheck in CI
 
-Track ShellCheck failures as a team metric: ```bash
+Track ShellCheck failures as a team metric: `````bash
 #!/bin/bash
 # ci-metrics.sh — track shellcheck warning count over time
 
@@ -538,21 +539,21 @@ WARNINGS=$(find . -name "*.sh" -exec shellcheck --severity=warning --format=json
     jq '. | length')
 
 echo "shellcheck_warnings $WARNINGS" >> metrics.txt
-```
+`````
 
 ## Comparison with Alternatives
 
-| Feature | ShellCheck | `bash -n` | shfmt | checkbashisms |
+| Feature | ShellCheck | ````bash -n```` | shfmt | checkbashisms |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Static analysis depth | Semantic (AST-based) | Syntax only | Parser/formatter | Pattern matching |
 | Error count | ~280+ checks | ~20 errors | 0 (formatter) | ~40 patterns |
@@ -568,7 +569,7 @@ echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ### When to Choose Each Tool
 
 - **ShellCheck**: General-purpose shell script quality and security auditing. The default choice.
-- **`bash -n`**: Quick syntax validation for bash scripts when nothing else is available.
+- **````bash -n````**: Quick syntax validation for bash scripts when nothing else is available.
 - **shfmt**: Code formatting and style normalization. Complements ShellCheck (not a replacement).
 - **checkbashisms**: Debian-specific portability checking. Use when packaging for Debian/Ubuntu.
 
@@ -578,15 +579,15 @@ ShellCheck is not a silver bullet. Understanding its boundaries prevents false c
 
 ### What ShellCheck Does NOT Catch
 
-- **Runtime logic errors**: It cannot determine if your `curl` command targets the correct endpoint
+- **Runtime logic errors**: It cannot determine if your ````curl```` command targets the correct endpoint
 - **Business logic bugs**: It validates syntax, not whether your backup script backs up the right directory
 - **Performance issues**: Infinite loops with valid syntax pass cleanly
-- **Turing-complete analysis**: Some dynamic behavior (e.g., `eval "$DYNAMIC_CMD"`) is inherently unanalyzable
+- **Turing-complete analysis**: Some dynamic behavior (e.g., ````eval "$DYNAMIC_CMD"````) is inherently unanalyzable
 
 ### Platform and Environment Gaps
 
 - ShellCheck assumes standard Unix utilities. Scripts targeting embedded systems or busybox environments may trigger false positives
-- Some SC rules are opinionated. Teams should review and customize `.shellcheckrc` rather than blindly applying all suggestions
+- Some SC rules are opinionated. Teams should review and customize ````.shellcheckrc```` rather than blindly applying all suggestions
 - Windows-native scripts (PowerShell, CMD) are not supported
 
 ### Build and Dependency Considerations
@@ -599,11 +600,11 @@ ShellCheck is not a silver bullet. Understanding its boundaries prevents false c
 
 ### What shells does ShellCheck support?
 
-ShellCheck supports bash, dash, sh, ksh, and busybox sh. It does not support PowerShell, zsh (partial), or fish. Specify the target shell with `--shell bash|sh|dash|ksh` or via the shebang line in your script.
+ShellCheck supports bash, dash, sh, ksh, and busybox sh. It does not support PowerShell, zsh (partial), or fish. Specify the target shell with ````--shell bash|sh|dash|ksh```` or via the shebang line in your script.
 
 ### How do I suppress a specific ShellCheck warning?
 
-Use inline directives: `# shellcheck disable=SC2086` on the line before the warning. For project-wide suppression, add `disable=SC2086` to your `.shellcheckrc` file. Each check has a wiki page at `https://www.shellcheck.net/wiki/SC2086` explaining the rationale.
+Use inline directives: ````# shellcheck disable=SC2086```` on the line before the warning. For project-wide suppression, add ````disable=SC2086```` to your ````.shellcheckrc```` file. Each check has a wiki page at ````https://www.shellcheck.net/wiki/SC2086```` explaining the rationale.
 
 ### Can ShellCheck automatically fix my scripts?
 
@@ -611,7 +612,7 @@ The web interface at [shellcheck.net](https://www.shellcheck.net) offers auto-fi
 
 ### How do I integrate ShellCheck with pre-commit hooks?
 
-Add the official pre-commit hook from `https://github.com/koalaman/shellcheck-precommit` to your `.pre-commit-config.yaml`. Set `args: ["--severity=warning"]` to block commits with warnings, or `args: ["--severity=error"]` to only block errors.
+Add the official pre-commit hook from ````https://github.com/koalaman/shellcheck-precommit```` to your ````.pre-commit-config.yaml````. Set ````args: ["--severity=warning"]```` to block commits with warnings, or ````args: ["--severity=error"]```` to only block errors.
 
 ### Is ShellCheck suitable for security auditing?
 
@@ -623,15 +624,15 @@ Many ShellCheck warnings address "works now, breaks later" scenarios. An unquote
 
 ### How do I run ShellCheck in a Docker container?
 
-Use the official image: `docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh`. Pin to `v0.11.0` or another specific version for reproducible CI builds. The image is based on Alpine Linux and weighs approximately 15 MB.
+Use the official image: ````docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh````. Pin to ````v0.11.0```` or another specific version for reproducible CI builds. The image is based on Alpine Linux and weighs approximately 15 MB.
 
 ## Conclusion
 
-ShellCheck is the most mature and widely adopted static analysis tool for shell scripts. With 39,456+ GitHub stars, comprehensive CI/CD integrations, and support for every major editor, it belongs in every developer toolchain. Start with the Docker one-liner for immediate feedback, add the `.shellcheckrc` project config for team consistency, and wire it into GitHub Actions to catch bugs before they merge.
+ShellCheck is the most mature and widely adopted static analysis tool for shell scripts. With 39,456+ GitHub stars, comprehensive CI/CD integrations, and support for every major editor, it belongs in every developer toolchain. Start with the Docker one-liner for immediate feedback, add the ````.shellcheckrc```` project config for team consistency, and wire it into GitHub Actions to catch bugs before they merge.
 
-Action items for your team: 1. Run `shellcheck` on your top 5 most critical deployment scripts today
+Action items for your team: 1. Run ````shellcheck```` on your top 5 most critical deployment scripts today
 2. Add the VS Code extension or Vim ALE integration for real-time feedback
-3. Create a `.shellcheckrc` in your repository root with project-specific rules
+3. Create a ````.shellcheckrc``` in your repository root with project-specific rules
 4. Set up the GitHub Actions workflow to block merges on warnings
 
 Join the [dibi8 Telegram group](https://t.me/dibi8) for discussions on developer tools, CI/CD best practices, and DevOps automation.
@@ -685,7 +686,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](shellcheck)
@@ -695,5 +696,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-22-trending-ai-agents](shellcheck)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -28,6 +28,7 @@ faq: - q: "Các lập trường chính sách AI Coding chính của doanh nghi�
     a: "Phụ thuộc bối cảnh. Đối với công việc Web SaaS thuần túy: cho phép kèm kiểm toán nhẹ gần như luôn đúng. Đối với công việc bị quản chế ở y tế/tài chính: tier doanh nghiệp có DPA + sử dụng hạn chế là tiêu chuẩn. Đối với quốc phòng/mật: cấm AI đám mây, chỉ cho phép cục bộ. Chính sách lệch tạo ra rủi ro tuân thủ hoặc thất thoát năng suất."
 ---
 
+
 {{</* resource-info */>}}
 
 # Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệp
@@ -106,7 +107,7 @@ AI có thể "nhả" lại mã GPL vào codebase độc quyền của bạn, có
 
 ## Cách chọn chính sách
 
-```
+````
 Bạn ở ngành bị quản chế (tài chính, y tế, pháp lý)?
 ├── Có → Phe 2: tier doanh nghiệp kèm DPA
 └── Không → tiếp tục
@@ -114,7 +115,7 @@ Bạn ở ngành bị quản chế (tài chính, y tế, pháp lý)?
 Bạn xử lý công việc mật hoặc quốc phòng?
 ├── Có → Phe 3: cấm AI đám mây
 └── Không → Phe 1: cho phép kèm kiểm toán
-```
+````
 
 Hậu quả của lệch chính sách: - Cho phép khi đáng lẽ phải hạn chế: vi phạm tuân thủ, bị quản lý xử lý
 - Hạn chế khi đáng lẽ cho phép: thất thoát năng suất, khó giữ chân nhân tài
@@ -145,7 +146,7 @@ Năm 2026 không tồn tại một chính sách AI Coding "đúng" duy nhất. C
 
 Kết cục tệ nhất là không có chính sách nào — lập trình viên dù sao cũng sẽ dùng công cụ AI. Thà chủ động đặt lập trường có guardrail còn hơn để shadow AI chạy không giám sát.
 
----
+* * *
 
 **Liên quan**: [Đấu trường AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/) · [LLM tự host 2026](https://dibi8.com/vi/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
 
@@ -211,12 +212,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -226,7 +227,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](ai-coding-ethics-corporate-policy-guide-2026)
 - [claude-4-opus-sonnet-review-2026](ai-coding-ethics-corporate-policy-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

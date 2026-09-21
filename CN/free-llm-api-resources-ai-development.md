@@ -32,6 +32,7 @@ faqs: - q: 'What is the fastest free LLM inference provider?'
   - q: 'Are free LLM API tiers suitable for production use?'
     a: 'Free tiers can work for low-traffic applications, fallback providers, and cost-sensitive or community projects, but they carry rate limits and terms that may change. For high-traffic production you should use them with care or pair them with paid options.'
 ---
+
 {</* resource-info */>}
 
 ## What is Free LLM API Resources?
@@ -44,20 +45,20 @@ faqs: - q: 'What is the fastest free LLM inference provider?'
 **License**: CC0-1.0 (Public Domain)
 
 
----
+* * *
 ## The Problem: AI API Costs
 
 ### Current Pricing (2026)
 
 | Provider | Model | Input Cost | Output Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI | GPT-4o | $5/M tokens | $15/M tokens |
 | Anthropic | Claude 3.5 | $3/M tokens | $15/M tokens |
@@ -70,13 +71,13 @@ faqs: - q: 'What is the fastest free LLM inference provider?'
 
 | Provider | Free Tier | Rate Limit | Models |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Groq | 100% free | 20 req/min | Llama 3, Mixtral |
 | Together AI | $5 credit | 60 req/min | Various OSS |
@@ -85,7 +86,7 @@ faqs: - q: 'What is the fastest free LLM inference provider?'
 | LM Studio | Local | Unlimited | Self-hosted |
 
 
----
+* * *
 ## Featured Free Providers
 
 ### 1. Groq — Fastest Inference
@@ -98,7 +99,7 @@ faqs: - q: 'What is the fastest free LLM inference provider?'
 - Mixtral 8x7B
 - Gemma 7B
 
-```python
+````python
 import requests
 
 # Groq API (free tier)
@@ -111,7 +112,7 @@ response = requests.post(
     }
 )
 print(response.json()["choices"][0]["message"]["content"])
-```
+`````
 
 ### 2. Together AI — $5 Free Credit
 
@@ -120,7 +121,7 @@ print(response.json()["choices"][0]["message"]["content"])
 **Models**: 100+ open source models
 **Features**: Fine-tuning, embeddings
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -133,7 +134,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Explain quantum computing"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 3. Ollama — Run Locally
 
@@ -142,7 +143,7 @@ print(response.choices[0].message.content)
 **Privacy**: 100% private
 **Models**: Pull from Ollama library
 
-```bash
+`````bash
 # Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -157,7 +158,7 @@ curl http://localhost:11434/api/generate -d '{
   "model": "llama3",
   "prompt": "Why is the sky blue?"
 }'
-```
+`````
 
 ### 4. LM Studio — GUI + API
 
@@ -166,7 +167,7 @@ curl http://localhost:11434/api/generate -d '{
 **Features**: GUI model browser, API server
 **Best for**: Testing models, development
 
-```python
+`````python
 # LM Studio local API
 import openai
 
@@ -179,7 +180,7 @@ response = client.chat.completions.create(
     model="local-model",
     messages=[{"role": "user", "content": "Hello!"}]
 )
-```
+`````
 
 ### 5. Fireworks AI — Fast OSS Models
 
@@ -188,23 +189,23 @@ response = client.chat.completions.create(
 **Speed**: Optimized inference
 **Models**: Llama, Mixtral, CodeLlama
 
----
+* * *
 
 ## Comparison Table
 
 | Provider | Cost | Speed | Privacy | Ease of Use | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Groq | Free | ⚡⚡⚡ | ❌ | ⭐⭐⭐ | Production apps |
 | Together | $5 credit | ⚡⚡ | ❌ | ⭐⭐⭐ | Experimentation |
@@ -212,7 +213,7 @@ response = client.chat.completions.create(
 | LM Studio | Free | ⚡ | ✅ | ⭐⭐⭐ | Development |
 | Fireworks | Trial | ⚡⚡ | ❌ | ⭐⭐ | Fast inference |
 
----
+* * *
 
 ## Use Cases
 
@@ -240,13 +241,13 @@ response = client.chat.completions.create(
 - Cost-sensitive projects
 - Community tools
 
----
+* * *
 
 ## How to Choose
 
 ### Decision Tree
 
-```
+`````
 Need API access?
 ├── Yes → Need high speed?
 │   ├── Yes → Groq (fastest)
@@ -254,25 +255,25 @@ Need API access?
 ├── No → Need privacy?
 │   ├── Yes → Ollama/LM Studio (local)
 │   └── No → Consider paid options
-```
+````
 
 ### Rate Limits Matter
 
 | Provider | Requests/min | Tokens/min | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Groq | 20 | 6,000 | Generous for dev |
 | Together | 60 | 12,000 | Good for testing |
 | Ollama | Unlimited | Hardware limit | Your hardware = limit |
 
----
+* * *
 
 ## Community & Updates
 
@@ -290,7 +291,7 @@ The repository is community-maintained: 1. **Star** the repo to support
 - **Join** discussions for tips
 - **Follow** @cheahjs on GitHub
 
----
+* * *
 
 ## Related Articles
 
@@ -298,11 +299,11 @@ The repository is community-maintained: 1. **Star** the repo to support
 - [TabPFN: Foundation Model for Tabular Data](/resources/ai-tools/tabpfn-foundation-model-tabular-data/) — AI for data science
 - [OpenClaw 42 Use Cases](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI agent applications
 
----
+* * *
 
 *Disclaimer: Free tiers have rate limits and may change. Always check the provider's current terms. This is a community resource, not affiliated with any API provider.*
 
----
+* * *
 
 ## Recommended Tools
 
@@ -382,7 +383,7 @@ Free LLM API Resources: Access AI Models Without Breaking the Bank represents an
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

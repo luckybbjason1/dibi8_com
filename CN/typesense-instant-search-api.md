@@ -23,13 +23,14 @@ tags: ["]
 aliases:
   - /posts/typesense-instant-search-api/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results
 
 In 2026", "users expect search results to appear **before they finish typing**. If your application takes more than 100ms to return search results", "you are losing engagement. A study by Akamai found that a **100ms delay in search response drops conversion rates by 7%**. For a site handling 1 million searches per day", "that is 70", "000 lost interactions — per day.
 
-Most teams start with database `LIKE` queries. It works for 1", "000 rows. At 100", "000 rows", "queries take **500ms–2s**. At 1 million rows", "your database CPU pegs at 100% and your users leave. You need a dedicated search engine.
+Most teams start with database ```LIKE```` queries. It works for 1", "000 rows. At 100", "000 rows", "queries take **500ms–2s**. At 1 million rows", "your database CPU pegs at 100% and your users leave. You need a dedicated search engine.
 
 Enter **Typesense** — an open-source", "typo-tolerant search engine designed for **sub-50ms instant search**. Version 27.1 (released April 2026) handles over **1 million searches per day** on a single modest server. It is GPL-3.0 licensed", "has **23", "200+ GitHub stars**", "and offers SDKs for JavaScript", "Python", "Ruby", "Go", "PHP", "and more. This guide walks you through a production-ready", "self-hosted Typesense deployment in under 5 minutes.
 
@@ -39,9 +40,9 @@ Enter **Typesense** — an open-source", "typo-tolerant search engine designed f
 
 Key facts: | Attribute | Detail |
 |
----
+* * *
 |
----
+* * *
 |
 | **Latest Version** | 27.1 (April 2026) |
 | **GitHub Stars** | 23", "200+ |
@@ -67,7 +68,7 @@ Typesense uses **Levenshtein distance** to handle typos automatically. By defaul
 ### Faceting", "Filtering", "and Geo-Search
 
 Typesense supports: - **Faceted search** — dynamic count aggregation per category
-- **Numeric range filters** — `price:>=10&&<=100`
+- **Numeric range filters** — ````price:>=10&&<=100````
 - **Geolocation search** — find results within X km of lat/lng
 - **Sorting** — by relevance", "numeric fields", "or geolocation distance
 - **Filtering** — boolean combinations of any indexed field
@@ -84,7 +85,7 @@ Typesense uses scoped API keys for multi-tenant applications. Each API key can r
 
 The fastest way to run Typesense is Docker. You need **Docker 24.0+** and at least **512MB RAM** (2GB recommended for production).
 
-```bash
+`````bash
 mkdir -p /tmp/typesense-data
 
 # Generate API key
@@ -101,16 +102,16 @@ docker run -d \
   --data-dir /data \
   --api-key=$TYPESENSE_API_KEY \
   --enable-cors
-```
+`````
 
-Verify the container is running: ```bash
+Verify the container is running: `````bash
 curl -s "http://localhost:8108/health" | jq .
 # Expected: { "ok": true }
-```
+`````
 
 ### Step 2: Create Your First Collection
 
-A collection in Typesense is like a table in SQL or an index in Elasticsearch. Define a schema and index documents: ```bash
+A collection in Typesense is like a table in SQL or an index in Elasticsearch. Define a schema and index documents: `````bash
 # Define schema for an e-commerce product catalog
 curl -s "http://localhost:8108/collections" \
   -X POST \
@@ -121,11 +122,11 @@ curl -s "http://localhost:8108/collections" \
       { "name": "name", "type": "string", "facet": false }", "{ "name": "description", "type": "string", "facet": false }", "{ "name": "price", "type": "float", "facet": true", "sort": true }", "{ "name": "category", "type": "string", "facet": true }", "{ "name": "rating", "type": "float", "facet": true", "sort": true }", "{ "name": "in_stock", "type": "bool", "facet": true }", "{ "name": "location", "type": "geopoint" }"],
     "default_sorting_field": "rating"
   }' | jq .
-```
+`````
 
 ### Step 3: Index Sample Documents
 
-```bash
+`````bash
 # Import documents using the import endpoint
 curl -s "http://localhost:8108/collections/products/documents/import?action=create" \
   -X POST \
@@ -137,11 +138,11 @@ curl -s "http://localhost:8108/collections/products/documents/import?action=crea
   {"name": "Running Shoes", "description": "Lightweight running shoes for marathon training", "price": 89.50, "category": "Sports", "rating": 4.2, "in_stock": false, "location": [51.5074, -0.1278]}
   {"name": "Yoga Mat", "description": "Non-slip eco-friendly yoga mat", "price": 29.99, "category": "Sports", "rating": 4.8, "in_stock": true, "location": [48.8566, 2.3522]}
   '
-```
+`````
 
 ### Step 4: Search
 
-```bash
+`````bash
 # Search with typo tolerance
 curl -s "http://localhost:8108/collections/products/documents/search?\
 q=headphons&\
@@ -152,7 +153,7 @@ facet_by=category&\
 page=1&\
 per_page=10" \
   -H "X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY" | jq .
-```
+`````
 
 Notice: we searched for **"headphons"** (typo) and Typesense still returned "Wireless Bluetooth Headphones". The response includes facet counts per category automatically.
 
@@ -160,11 +161,11 @@ Notice: we searched for **"headphons"** (typo) and Typesense still returned "Wir
 
 ### JavaScript/Node.js SDK
 
-```bash
+`````bash
 npm install typesense
-```
+`````
 
-```javascript
+`````javascript
 const Typesense = require(typesense);
 
 const client = new Typesense.Client({
@@ -185,22 +186,22 @@ async function searchProducts(query) {
       per_page: 10
     });
   
-  console.log(`Found ${results.found} results`);
+  console.log(````Found ${results.found} results````);
   results.hits.forEach(hit => {
-    console.log(`- ${hit.document.name} ($${hit.document.price})`);
+    console.log(````- ${hit.document.name} ($${hit.document.price})````);
   });
 }
 
 searchProducts(headphons); // typo still works
-```
+`````
 
 ### Python SDK
 
-```bash
+`````bash
 pip install typesense
-```
+`````
 
-```python
+`````python
 import typesense
 import os
 
@@ -221,15 +222,15 @@ results = client.collections[products].documents.search({
 
 print(f"Total: {results[found]}")
 for hit in results[hits]: print(f"  {hit[document][name]} - ${hit[document][price]}")
-```
+`````
 
 ### React InstantSearch Integration
 
-For React applications, use `typesense-instantsearch-adapter` to connect Typesense with Algolia's InstantSearch UI components: ```bash
+For React applications, use ``typesense-instantsearch-adapter`` to connect Typesense with Algolia's InstantSearch UI components: `````bash
 npm install typesense-instantsearch-adapter react-instantsearch-dom
-```
+`````
 
-```jsx
+`````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom';
 import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter';
@@ -268,11 +269,11 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-```
+`````
 
 ### Ruby SDK
 
-```ruby
+`````ruby
 require typesense
 
 client = Typesense::Client.new(
@@ -290,11 +291,11 @@ results = client.collections[products].documents.search(
 
 puts "Found #{results[found]} results"
 results[hits].each { |hit| puts "- #{hit[document][name]}" }
-```
+`````
 
 ### Go SDK
 
-```go
+`````go
 package main
 
 import (
@@ -328,7 +329,7 @@ func main() {
         fmt.Printf("- %s ($%.2f)\n", doc["name"], doc["price"])
     }
 }
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -338,9 +339,9 @@ We benchmarked Typesense 27.1 on a **DigitalOcean droplet** with 2 vCPUs and 4GB
 
 | Metric | Result |
 |
----
+* * *
 |
----
+* * *
 |
 | **Index Build Time** | 38 seconds (1.2M docs) |
 | **Average Query Latency (p50)** | **12ms** |
@@ -357,11 +358,11 @@ Those are **real numbers** on a $24/month VPS. For production, scale vertically 
 
 | Company | Scale | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Grammarly** | 30M+ users | Document search with typo tolerance |
 | **Dovetail** | Enterprise | Customer research data search |
@@ -371,17 +372,17 @@ Those are **real numbers** on a $24/month VPS. For production, scale vertically 
 
 ### Resource Planning Formula
 
-Use this formula to estimate your RAM needs: ```
+Use this formula to estimate your RAM needs: `````
 RAM (GB) ≈ (Number of Documents × Average Document Size × 3) / 1GB
-```
+`````
 
-The `×3` multiplier accounts for the in-memory inverted index overhead. A 1KB document typically needs ~3KB of RAM in Typesense.
+The ````×3```` multiplier accounts for the in-memory inverted index overhead. A 1KB document typically needs ~3KB of RAM in Typesense.
 
 ## Advanced Usage / Production Hardening
 
 ### 1. Enable HTTPS with Reverse Proxy
 
-Never expose Typesense directly to the internet. Use Nginx or Caddy: ```nginx
+Never expose Typesense directly to the internet. Use Nginx or Caddy: `````nginx
 # /etc/nginx/sites-available/typesense
 server {
     listen 443 ssl http2;
@@ -397,11 +398,11 @@ server {
         proxy_read_timeout 30s;
     }
 }
-```
+`````
 
 ### 2. Docker Compose for Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -426,13 +427,13 @@ services: typesense: image: typesense/typesense:27.1
     volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes: typesense-data: caddy-data: ```
+volumes: typesense-data: caddy-data: `````
 
 Deploy this on any VPS. If you need a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $200 free credit for new users — enough to run Typesense for 8 months on a 4GB droplet.
 
 ### 3. Scoped API Keys for Multi-Tenancy
 
-```javascript
+`````javascript
 // Generate a scoped API key that only sees Electronics category
 const typesense = require(typesense);
 
@@ -450,11 +451,11 @@ const scopedKey = client.keys().generateScopedSearchKey(
 
 console.log('Scoped key for Electronics:', scopedKey);
 // This key can ONLY search Electronics products
-```
+`````
 
 ### 4. Clustering for High Availability
 
-Typesense uses Raft consensus for clustering. A 3-node cluster tolerates 1 node failure: ```bash
+Typesense uses Raft consensus for clustering. A 3-node cluster tolerates 1 node failure: `````bash
 # Node 1
 docker run -d -p 8108:8108 \
   -v typesense-data:/data \
@@ -466,11 +467,11 @@ docker run -d -p 8108:8108 \
   --peering-port=8107
 
 # Node 2 and 3: same command, update --nodes with all IPs
-```
+`````
 
 ### 5. Synonyms and Query Curation
 
-```bash
+`````bash
 # Create synonym: "laptop" = "notebook"
 curl -s "http://localhost:8108/collections/products/synonyms" \
   -X POST \
@@ -487,21 +488,21 @@ curl -s "http://localhost:8108/collections/products/overrides" \
     "rule": {"query": "deals", "match": "contains"},
     "includes": [{"id": "123", "position": 1}]
   }'
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | **Typesense** | Elasticsearch | Meilisearch | Algolia |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | GPL-3.0 | SSPL/Elastic | MIT | Proprietary |
 | **GitHub Stars** | **23,200+** | 72,000+ | **51,000+** | N/A (closed) |
@@ -527,7 +528,7 @@ Typesense is not a universal database. Here are its real limitations: 1. **RAM d
 
 2. **Schema enforcement**: Typesense requires you to define field types upfront. Unlike Meilisearch (which auto-detects), you must plan your schema. This is stricter but prevents runtime type errors.
 
-3. **No nested object search**: Typesense flattens nested objects. Deep nested queries (e.g., `reviews.user.name`) require denormalization or string serialization.
+3. **No nested object search**: Typesense flattens nested objects. Deep nested queries (e.g., ````reviews.user.name````) require denormalization or string serialization.
 
 4. **Limited analytics**: Typesense does not include built-in search analytics. You must integrate with external tools (e.g., [n8n](dibi8-internal-link) or custom logging) to track popular queries.
 
@@ -547,11 +548,11 @@ Yes. A single Typesense node with 4 vCPUs and 8GB RAM can sustain **1M+ searches
 
 ### What happens if Typesense runs out of RAM?
 
-Typesense will **refuse new write operations** when memory is exhausted. Read queries continue to work. Monitor memory usage with the `/health` endpoint and the `system_memory_used_bytes` metric. Set up alerts at 80% RAM usage. Scale vertically (more RAM) or shard across clusters.
+Typesense will **refuse new write operations** when memory is exhausted. Read queries continue to work. Monitor memory usage with the ````/health```` endpoint and the ````system_memory_used_bytes```` metric. Set up alerts at 80% RAM usage. Scale vertically (more RAM) or shard across clusters.
 
 ### How do I migrate from Algolia to Typesense?
 
-Use the `typesense-cli` migration tool or write a simple script: export Algolia records via their API, transform to Typesense schema format, and bulk-import using `/collections/{name}/documents/import`. Most Algolia InstantSearch UI components work with Typesense via the `typesense-instantsearch-adapter`. Migration typically takes 2-4 hours for a medium-sized project.
+Use the ````typesense-cli```` migration tool or write a simple script: export Algolia records via their API, transform to Typesense schema format, and bulk-import using ````/collections/{name}/documents/import````. Most Algolia InstantSearch UI components work with Typesense via the ````typesense-instantsearch-adapter````. Migration typically takes 2-4 hours for a medium-sized project.
 
 ### Does Typesense support real-time indexing?
 
@@ -565,7 +566,7 @@ Typesense Cloud starts at **$29/month** for the Starter plan (includes HA, backu
 
 Typesense 27.1 is the fastest path to production-grade instant search. From Docker launch to first search result, you are looking at **under 5 minutes** of setup time. With sub-50ms query latency, built-in typo tolerance, and a clean REST API, it eliminates the complexity that plagues Elasticsearch deployments.
 
-For a new project, start with the Docker setup in this guide. For existing applications migrating from database `LIKE` queries, the performance improvement will be **100x or more**. For teams currently paying Algolia $500+/month, self-hosted Typesense on a $24 VPS handles the same load.
+For a new project, start with the Docker setup in this guide. For existing applications migrating from database ````LIKE``` queries, the performance improvement will be **100x or more**. For teams currently paying Algolia $500+/month, self-hosted Typesense on a $24 VPS handles the same load.
 
 Self-hosting? Grab a VPS from [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($200 free credit) and deploy Typesense in minutes. The credit covers 8+ months of hosting.
 
@@ -591,7 +592,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Docker Best Practices for Search Engines](dibi8-internal-link)
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Typesense is free, open-source software — hosting costs are the only expense.*
 
 
@@ -619,4 +620,4 @@ Before you deploy any of the tools above into production, you'll need solid infr
   }
 }
 </script>
----
+* * *

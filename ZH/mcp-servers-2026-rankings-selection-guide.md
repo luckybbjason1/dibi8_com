@@ -36,6 +36,7 @@ faq: - q: "什么是 MCP？为什么 2026 年这么重要？"
     a: "2026-2027 不太可能。MCP 跨 vendor adoption（Anthropic、OpenAI 参考实现、Google Gemini），open spec，1000+ 公开服务器。MCP 之上的下一层 — agent-to-agent 协议、能力发现 — 仍在演进。MCP 是集成层；预计至少 18-24 月内保持稳定。"
 ---
 
+
 {{</* resource-info */>}}
 
 # MCP 服务器 2026: 100+ 生态地图 + 选型决策树
@@ -48,27 +49,27 @@ faq: - q: "什么是 MCP？为什么 2026 年这么重要？"
 
 ## ⚡ TL;DR — 两分钟读完
 
-> **生态规模**：1000+ 公开 MCP 服务器，3 种 transport 模式（stdio、HTTP/SSE、OAuth-bridge）。Spec 版本 `2025-06` 是当前标准。
+> **生态规模**：1000+ 公开 MCP 服务器，3 种 transport 模式（stdio、HTTP/SSE、OAuth-bridge）。Spec 版本 ```2025-06```` 是当前标准。
 >
-> **实际使用**：大多数开发者装 5-10 个核心服务器 + 依赖 per-project `mcp.json` 加项目专属。全局装 20+ 服务器会拖慢 agent 启动并扩大安全面。
+> **实际使用**：大多数开发者装 5-10 个核心服务器 + 依赖 per-project ````mcp.json```` 加项目专属。全局装 20+ 服务器会拖慢 agent 启动并扩大安全面。
 >
-> **AI 编码 Top 5**：`filesystem`, `git`, `github`, `postgres`, `playwright`。处理典型开发者 80% 工作流。
+> **AI 编码 Top 5**：````filesystem````, ````git````, ````github````, ````postgres````, ````playwright````。处理典型开发者 80% 工作流。
 >
 > **决策原则**：stdio 永远优于 HTTP。本地服务器更快、漏更少凭证、能离线。HTTP 只在数据非本地且无法复制到本地时使用。
 >
 > **不要无脑装**：每个社区 MCP 服务器都是用你本地权限运行的代码。审核源码、优先活跃维护者、永不给你不愿明文复制粘贴的凭证。
 
 
----
+* * *
 ## MCP 在 2026 年实际是什么
 
-Model Context Protocol 是基于 JSON-RPC 的规范，用来连接 AI agent 到外部工具。它故意简单：MCP 服务器暴露 `tools`、`resources`、`prompts`。MCP 客户端（Claude Code、Cursor、你选的 agent）在模型决定需要外部动作时调用这些工具。
+Model Context Protocol 是基于 JSON-RPC 的规范，用来连接 AI agent 到外部工具。它故意简单：MCP 服务器暴露 ````tools````、````resources````、````prompts````。MCP 客户端（Claude Code、Cursor、你选的 agent）在模型决定需要外部动作时调用这些工具。
 
 2026 年变化：
 
-- `2025-06` spec 加了 OAuth 流程、能力发现改进、显式 streaming 支持
+- ````2025-06```` spec 加了 OAuth 流程、能力发现改进、显式 streaming 支持
 - 跨 vendor adoption：OpenAI 参考客户端、Google Gemini CLI、大多数独立 agent 都说 MCP
-- 注册表整合：三大注册表（`smithery.ai`、`mcp.so`、`glama.ai/mcp/servers`）成为主要发现入口
+- 注册表整合：三大注册表（````smithery.ai````、````mcp.so````、````glama.ai/mcp/servers````）成为主要发现入口
 - 云平台（Vercel、Cloudflare、Render）把"部署 MCP 服务器"做成 first-class primitive
 
 协议的稳定性是 1000+ 服务器存在的主要原因。2025 年初写的 MCP 服务器在 2026 年中仍然能用，客户端只需小幅更新。这种稳定性让生态对维护者和消费者都值得投资。
@@ -126,21 +127,21 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 
 ## 2026 值得安装的 Top 30 MCP 服务器
 
-按主流注册表使用量交叉参考我们自己的审计（3+ 月后仍在专业开发者 `.claude/mcp.json` 的服务器）。Tier 1 = 默认装。Tier 2 = 工作流需要时装。Tier 3 = 小众但优秀。
+按主流注册表使用量交叉参考我们自己的审计（3+ 月后仍在专业开发者 ````.claude/mcp.json```` 的服务器）。Tier 1 = 默认装。Tier 2 = 工作流需要时装。Tier 3 = 小众但优秀。
 
 ### Tier 1：通用默认（全局装）
 
 | 服务器 | Transport | 维护者 | 用途 | 风险评级 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **filesystem** | stdio | Anthropic | 读写列在 scoped 目录的文件 | 低（scope 限制） |
 | **git** | stdio | Anthropic | 检查仓库、diff、blame、log | 低（read-mostly） |
@@ -154,15 +155,15 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 
 | 服务器 | Transport | 维护者 | 用途 | 风险评级 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **postgres** | stdio | 社区 | 查 Postgres 数据库 | 高（DB 访问） |
 | **sqlite** | stdio | 社区 | 查 SQLite 文件 | 低 |
@@ -182,11 +183,11 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 
 | 服务器 | Transport | 用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **kubernetes** | stdio | Kubectl wrapper 用于集群检查 |
 | **terraform** | stdio | 基础设施状态查询 |
@@ -209,7 +210,7 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 
 新服务器评估时用这个（不管从注册表、GitHub trending 还是队友推荐）：
 
-```
+`````
 数据/动作能在本地机器上吗？
 │
 ├── 是 → 优先 stdio MCP 服务器
@@ -234,7 +235,7 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
           │   - 服务器跑在可信 infra（vendor 自己的，非随机 fork）？
           │   - Rate-limit 文档化？
           │   是：装。否：跳过或自建。
-```
+`````
 
 最短版：**stdio > HTTP > OAuth，按这个偏好顺序。Anthropic 维护 > 活跃社区 > 已归档。装前读源码。**
 
@@ -244,17 +245,17 @@ MCP 服务器编排 OAuth 流程为每个 session 颁发 scoped 凭证。最新�
 
 ### 2026 见过的真实攻击模式
 
-- **Typosquatting**：社区服务器叫 `github-mcp-server-v2` 偷 token。真的是 `@modelcontextprotocol/server-github`。
+- **Typosquatting**：社区服务器叫 ````github-mcp-server-v2```` 偷 token。真的是 ````@modelcontextprotocol/server-github````。
 - **供应链注入**：流行社区服务器维护者转移所有权；新主人加了 telemetry 泄漏文件路径。一周内被发现但影响约 5000 用户。
 - **过度 scope token**：GitHub 服务器装时用 full-access PAT 而非 fine-grained token；prompt injection 让模型删了仓库。
-- **通过 fetched 内容做 prompt injection**：`fetch` 服务器拉了恶意 markdown，内含指令读 `~/.ssh/id_rsa` 通过另一个工具调用 post 出去。
+- **通过 fetched 内容做 prompt injection**：````fetch```` 服务器拉了恶意 markdown，内含指令读 ````~/.ssh/id_rsa```` 通过另一个工具调用 post 出去。
 
 ### 防御 checklist
 
 1. **用 fine-grained tokens**。永不给 MCP 服务器 full-access PAT 或 root 凭证。
-2. **装前审计**。`npm view` / GitHub 源码 / changelog 检查。五分钟省你 breach。
+2. **装前审计**。````npm view```` / GitHub 源码 / changelog 检查。五分钟省你 breach。
 3. **锁版本**。别自动升级社区服务器。升前读 changelog。
-4. **Sandbox**。敏感 MCP 服务器在容器或 `firejail` 里跑。
+4. **Sandbox**。敏感 MCP 服务器在容器或 ````firejail```` 里跑。
 5. **监控 agent log**。如果 agent 突然一个请求调 30 个工具，肯定有问题。
 
 MCP spec 不强制安全。你的纪律强制。
@@ -263,9 +264,9 @@ MCP spec 不强制安全。你的纪律强制。
 
 2026 三大发现入口：
 
-- **`mcp.so`** — 最全社区注册表。过滤好。stdio 和 HTTP 服务器都有。
-- **`smithery.ai`** — 高策展注册表，一键装流程。略偏 HTTP/cloud-hosted。
-- **`glama.ai/mcp/servers`** — 企业友好服务器和 HTTP/OAuth-bridged 选项强。
+- **````mcp.so````** — 最全社区注册表。过滤好。stdio 和 HTTP 服务器都有。
+- **````smithery.ai````** — 高策展注册表，一键装流程。略偏 HTTP/cloud-hosted。
+- **````glama.ai/mcp/servers```** — 企业友好服务器和 HTTP/OAuth-bridged 选项强。
 
 Anthropic 维护参考服务器：[github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)。
 
@@ -289,7 +290,7 @@ Anthropic 维护参考服务器：[github.com/modelcontextprotocol/servers](http
 **解药是筛选，不是丰富**。挑你五个核心 stdio 服务器，每仓库加 2-3 个项目专项的，装新服务器前审计，把 MCP 服务器当成恰好符合人体工学的安全相关代码。这是接下来 18 个月可扩展的工作流，直到下一个协议来。
 
 
----
+* * *
 **参考**：[github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**：MCP 2025-06 · **Stars**（生态合计）：参考仓库累计 60K+
 
 
@@ -354,12 +355,12 @@ MCP 服务器 2026: 100+ 生态地图 + 选型决策树 represents an important 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -369,7 +370,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cc-switch-all-in-one-ai-coding-agent-manager](mcp-servers-2026-rankings-selection-guide)
 - [claude-code-vs-aider](mcp-servers-2026-rankings-selection-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

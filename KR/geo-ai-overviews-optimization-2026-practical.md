@@ -28,6 +28,7 @@ faq: - q: "GEO란 무엇이며 SEO와 어떻게 다른가요?"
     a: "SEO보다 빠릅니다. AI Overviews는 며칠 단위로 크롤링 + 인덱싱합니다(SEO는 몇 달). FAQ schema 추가는 보통 1-2주 내에 AI 인용에 나타납니다. 인용 가능성을 위한 전면 콘텐츠 재작성은 답변에 반영되기까지 2-4주가 걸립니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # GEO / AI Overviews 최적화 2026: 실전 가이드
@@ -61,15 +62,15 @@ AI 엔진이 가중치를 두는 신호: 1. **원자적 답변 블록** — 하�
 ### 1. FAQ schema (최고 ROI)
 여러 Q&A가 있는 모든 페이지에 FAQ JSON-LD를 추가하세요. 각 Q&A는 직접 인용 가능한 원자적 답변이 됩니다.
 
-구현: ```yaml
+구현: ````yaml
 # Hugo frontmatter
 faq: - q: "What is X?"
     a: "X is..."
   - q: "How does X work?"
     a: "..."
-```
+`````
 
-Hugo 템플릿이 FAQPage schema가 포함된 `<script type="application/ld+json">`를 생성합니다. AI Overviews가 좋아합니다.
+Hugo 템플릿이 FAQPage schema가 포함된 ````<script type="application/ld+json">````를 생성합니다. AI Overviews가 좋아합니다.
 
 ### 2. 원자적 답변 블록
 각 섹션의 첫 단락이 **질문에 직접 답하도록** 구성하세요. 핵심을 묻어두지 마세요.
@@ -89,14 +90,14 @@ Hugo 템플릿이 FAQPage schema가 포함된 `<script type="application/ld+json
 다국어 사이트는 해당 언어의 AI 엔진에서 인용됩니다. dibi8.com은 en/zh/kr/vi로 운영됩니다 — 각 언어는 자체 인용 풀을 가집니다.
 
 ### 5. llms.txt
-`/llms.txt`에 배포: ```
+``/llms.txt``에 배포: `````
 # dibi8.com - Open-source AI tools curation
 > Curated rankings of AI coding agents, LLM frameworks, MCP servers, developer utilities. Tested 2026 workloads.
 
 ## Most cited
 - /resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/
 - /resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
-```
+`````
 
 최소한의 노력, AI 크롤러가 표준을 채택함에 따라 옵션 이득.
 
@@ -109,7 +110,7 @@ Hugo 템플릿이 FAQPage schema가 포함된 `<script type="application/ld+json
 ## GEO 영향 측정
 
 추적할 세 가지 지표: 1. **AI 인용 노출**(가능한 경우 Google Search Console "AI Overviews" 리포트 사용)
-2. **AI 엔진에서의 직접 유입 트래픽** — `?utm_source=perplexity` 등 UTM 추적
+2. **AI 엔진에서의 직접 유입 트래픽** — ````?utm_source=perplexity``` 등 UTM 추적
 3. **AI 인용 콘텐츠 내 브랜드 언급량** — Perplexity/ChatGPT에서 정기적으로 "dibi8" 검색
 
 ## 권장 인프라
@@ -125,7 +126,7 @@ GEO는 실재하며 기법들은 작동합니다. FAQ schema는 단일 최고 RO
 
 상위 10개 페이지에 FAQ schema부터 시작하세요. 2주 후 인용률을 측정하세요. 상승이 보이면 더 많은 페이지로 확장하세요. 복리 수익은 실재합니다 — GEO의 얼리 무버는 불균형적으로 인용됩니다.
 
----
+* * *
 
 **관련 읽을거리**: [MCP Servers 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Coding 2026-Q2 슛아웃](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/)
 
@@ -191,12 +192,12 @@ GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -205,7 +206,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

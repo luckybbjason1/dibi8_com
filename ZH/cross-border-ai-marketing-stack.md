@@ -8,6 +8,7 @@ tags: ["跨境", "出海", "ai 营销", "stack", "合集"]
 aliases:
   - /posts/cross-border-ai-marketing-stack/-
 ---
+
 # 跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案
 
 
@@ -19,15 +20,15 @@ aliases:
 
 | # | 组件 | 角色 | 为什么选 | 深度指南 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **n8n** | 多语言内容分发到 Reddit/X/HN/Discord 自动化 | 自托管 = 没按任务计费，JSON workflow 可移植 | [n8n 自托管](/zh/resources/llm-frameworks/n8n/) |
 | 2 | **LangChain** | 多语言 agent 工作流（中→英/日/韩/越 内容生成）| i18n 原语成熟 + 100+ LLM provider 集成 | [LangChain 指南](/zh/resources/llm-frameworks/langchain/) |
@@ -53,7 +54,7 @@ aliases:
 
 ## 2. 架构 —— 香港桥接模式
 
-```
+````
    ┌─────────────────────────────────────┐
    │ 香港 VPS（HTStack）                  │
    │                                     │
@@ -84,7 +85,7 @@ aliases:
    │ │  （GDPR 合规，欧盟 + 中国都通） │ │
    │ └─────────────────────────────────┘ │
    └─────────────────────────────────────┘
-```
+`````
 
 HK VPS 是桥：对中国和全球都低延迟、分析的中立司法管辖、支付卡两边一般都能用。
 
@@ -95,12 +96,12 @@ HK VPS 是桥：对中国和全球都低延迟、分析的中立司法管辖、�
 **为什么自托管在这里关键**：Zapier 的"按任务计费"惩罚跨境工作流 —— 每次翻译、每个平台变体、每次分析检查都是一个"任务"。n8n 自托管 VPS = 无限任务花 $6 基础设施。
 
 **快装**：
-```bash
+`````bash
 docker run -d --name n8n -p 5678:5678 \
   -v ~/.n8n:/home/node/.n8n \
   -e WEBHOOK_URL=https://n8n.yourdomain.com \
   n8nio/n8n
-```
+`````
 
 **值得 import 的 workflow 模板**："RSS → 翻译 → 5 平台"、"Calendly 预约 → CRM → 邮件序列"、"GitHub release → 跨平台发版通告"。
 
@@ -113,11 +114,11 @@ docker run -d --name n8n -p 5678:5678 \
 **为什么选它而不是 LlamaIndex / AutoGen**：i18n 原语成熟（PromptTemplate 处理 locale 感知的日期/货币格式化）、provider 集成最多（100+）、agent 框架预建工具生态最大（翻译 API / scraping / 日历）。
 
 **快装**：
-```bash
+`````bash
 pip install langchain langchain-community langchain-openai
-```
+`````
 
-跨境多语 agent 专门用 `langchain-community`，自带 DeepL / Google Translate 连接器，加上能处理从右到左的 prompt 模板，为未来阿拉伯语扩张备好。
+跨境多语 agent 专门用 ````langchain-community````，自带 DeepL / Google Translate 连接器，加上能处理从右到左的 prompt 模板，为未来阿拉伯语扩张备好。
 
 LangChain 完整设置 + agent 配方：[LangChain 生产指南](/zh/resources/llm-frameworks/langchain/)。
 
@@ -144,9 +145,9 @@ LangChain 完整设置 + agent 配方：[LangChain 生产指南](/zh/resources/l
 - 数据捕获率 ~80% vs GA ~60%（没广告屏蔽器过滤）
 
 **快装**：
-```bash
+`````bash
 docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/compose.yml up -d
-```
+`````
 
 完整设置含转化归因事件：[Plausible vs GA —— 隐私优先分析](/zh/resources/ai-tools/plausible-analytics-privacy-google/)。
 
@@ -160,10 +161,10 @@ docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/comp
 - **DeepSeek 收人民币付款** —— 不用劝财务给 USD 卡充值
 
 **快装**：
-```bash
+`````bash
 npm install -g @opencode-ai/opencode
 opencode --provider deepseek --api-key $DEEPSEEK_KEY
-```
+`````
 
 完整设置含团队共享 MCP server：[OpenCode 开源指南](/zh/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)。
 
@@ -189,10 +190,10 @@ dibi8.com 自己就跑在 {{< aff "htstack" "stack-vps" "HTStack 的香港 VPS" 
 **Trade-off**：OpenRouter 比直连 provider 多 100-150ms 延迟 —— 离线内容生成够用，实时 chat 不太行。
 
 **快装**：openrouter.ai 注册，crypto 充值，通过 OpenAI 兼容 client 用：
-```python
+`````python
 from openai import OpenAI
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="sk-or-...")
-```
+````
 
 OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 网关 2026](/zh/resources/llm-frameworks/openrouter-unified-llm-api-gateway/) 或 [Portkey vs LiteLLM vs OpenRouter 对比](/zh/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/)。
 
@@ -214,13 +215,13 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 
 | 项 | 单干 founder | 3 人团 | 10 人团 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HTStack VPS | $10 | $20（8 GB）| $50（16 GB + 副本）|
 | n8n | $0（自托管）| $0 | $0 |
@@ -258,7 +259,7 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 跨境专属胜利：无支付摩擦、无 GDPR / 中国数据法违规、不用 $80/座 USD Cursor、GA 不被挡、Cloudflare-vs-中国问题不存在。开一个 {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}}，第 1 周先搭组件 1-4，第 2 周加 5-7。
 
 
----
+* * *
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给 dev 侧，[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 给极致成本推理。*
 
 
@@ -324,11 +325,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -338,7 +339,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](cross-border-ai-marketing-stack)
 - [2026-06-15-trending-ai-agents](cross-border-ai-marketing-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

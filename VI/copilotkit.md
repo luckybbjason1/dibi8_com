@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/copilotkit/
 ---
 
+
 {{</* resource-info */>}}
 
 CopilotKit là frontend stack mã nguồn mở biến mọi ứng dụng React hoặc Angular thành sản phẩm AI-native. Với **31.536 GitHub Stars**, hơn 3.300 forks, và khoản Series A 27 triệu USD (tháng 5/2026), nó đã trở thành lựa chọn mặc định cho các team triển khai AI assistant trong ứng dụng — có thể đọc trạng thái ứng dụng, kích hoạt tác vụ frontend, và render component UI generative bên trong giao diện chat.
@@ -32,23 +33,23 @@ Bài hướng dẫn này đi qua toàn bộ quá trình thiết lập CopilotKit
 
 ![CopilotKit Logo](https://raw.githubusercontent.com/CopilotKit/CopilotKit/main/docs/static/img/logo.png)
 
----
+* * *
 
 ## CopilotKit là gì?
 
-**CopilotKit** là frontend framework để xây dựng AI copilot trong ứng dụng và trải nghiệm generative UI. Nó cung cấp các React component có sẵn (`CopilotSidebar`, `CopilotChat`, `CopilotPopup`), hooks có kiểu (`useCopilotReadable`, `useCopilotAction`), và runtime có thể plug-in để kết nối với OpenAI, LangChain, LangGraph, Groq, hoặc backend agent tùy chỉnh.
+**CopilotKit** là frontend framework để xây dựng AI copilot trong ứng dụng và trải nghiệm generative UI. Nó cung cấp các React component có sẵn (```CopilotSidebar````, ````CopilotChat````, ````CopilotPopup````), hooks có kiểu (````useCopilotReadable````, ````useCopilotAction````), và runtime có thể plug-in để kết nối với OpenAI, LangChain, LangGraph, Groq, hoặc backend agent tùy chỉnh.
 
 Dự án được duy trì bởi CopilotKit Inc., cấp phép MIT, và đã huy động được 27 triệu USD tài trợ. Đội ngũ ~25 kỹ sư phát hành bản cập nhật hàng tuần và duy trì giao thức mở AG-UI — một tiêu chuẩn wire cho agent-to-frontend communication hiện được Google, Microsoft, Amazon, LangChain, và Mastra hỗ trợ.
 
----
+* * *
 
 ## CopilotKit hoạt động như thế nào?
 
 CopilotKit nằm giữa ứng dụng frontend và backend LLM hoặc agent. Nó xử lý streaming chat, tool calling, state synchronization, và generative UI rendering thông qua kiến trúc 3 lớp rõ ràng: | Lớp | Trách nhiệm | File chính |
 |---|---|---|
-| **UI Components** | Render chat sidebar, popup, hoặc inline chat | `CopilotSidebar`, `CopilotChat`, `CopilotPopup` |
-| **React Hooks** | Expose state và actions cho LLM | `useCopilotReadable`, `useCopilotAction` |
-| **Copilot Runtime** | Route requests đến backend LLM/agent | `app/api/copilotkit/route.ts` |
+| **UI Components** | Render chat sidebar, popup, hoặc inline chat | ````CopilotSidebar````, ````CopilotChat````, ````CopilotPopup```` |
+| **React Hooks** | Expose state và actions cho LLM | ````useCopilotReadable````, ````useCopilotAction```` |
+| **Copilot Runtime** | Route requests đến backend LLM/agent | ````app/api/copilotkit/route.ts```` |
 
 ![Sơ đồ kiến trúc CopilotKit](https://docs.copilotkit.ai/assets/images/copilotkit-architecture.png)
 
@@ -60,7 +61,7 @@ CopilotKit nằm giữa ứng dụng frontend và backend LLM hoặc agent. Nó 
 - **Generative UI** — React components render bên trong chat như phản hồi cho tool calls (weather cards, task items, data tables).
 - **AG-UI Protocol** — Một open wire format cho agent-to-frontend communication. CopilotKit là reference implementation.
 
----
+* * *
 
 ## Cài đặt và Thiết lập
 
@@ -72,7 +73,7 @@ CopilotKit nằm giữa ứng dụng frontend và backend LLM hoặc agent. Nó 
 
 ### Bước 1: Cài đặt Packages
 
-```bash
+`````bash
 # React core + UI components + runtime
 npm install @copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime
 
@@ -81,20 +82,20 @@ npm install @copilotkit/runtime-langchain
 
 # Adapter Groq (tùy chọn)
 npm install @copilotkit/runtime groq-sdk
-```
+`````
 
 ### Bước 2: Thêm Biến Môi trường
 
-```bash
+`````bash
 # .env.local
 OPENAI_API_KEY=sk-your-openai-key
 GROQ_API_KEY=gsk-your-groq-key
 COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # Tùy chọn, cho tính năng cloud
-```
+`````
 
 ### Bước 3: Tạo Runtime Endpoint
 
-Tạo `app/api/copilotkit/route.ts` trong project Next.js: ```typescript
+Tạo ``app/api/copilotkit/route.ts`` trong project Next.js: `````typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -120,11 +121,11 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### Bước 4: Wrap Ứng dụng với Provider
 
-Cập nhật root layout hoặc page component: ```tsx
+Cập nhật root layout hoặc page component: `````tsx
 // app/layout.tsx hoặc app/page.tsx
 "use client";
 
@@ -148,23 +149,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </CopilotKit>
   );
 }
-```
+`````
 
 ### Bước 5: Chạy Dev Server
 
-```bash
+`````bash
 npm run dev
 # Mở http://localhost:3000
 # Click nút copilot — AI assistant đã hoạt động
-```
+`````
 
----
+* * *
 
 ## Tích hợp với LangChain, LangGraph và OpenAI
 
 ### OpenAI Adapter (Đơn giản nhất)
 
-OpenAI adapter là con đường nhanh nhất đến production. Kết nối trực tiếp đến GPT-4o mà không cần backend infrastructure bổ sung: ```typescript
+OpenAI adapter là con đường nhanh nhất đến production. Kết nối trực tiếp đến GPT-4o mà không cần backend infrastructure bổ sung: `````typescript
 // app/api/copilotkit/route.ts — Phiên bản OpenAI
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -180,11 +181,11 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### LangChain Adapter
 
-Cho các team đã đầu tư vào LangChain, sử dụng LangChain adapter để cắm custom chains, retrievers, và agents: ```typescript
+Cho các team đã đầu tư vào LangChain, sử dụng LangChain adapter để cắm custom chains, retrievers, và agents: `````typescript
 // app/api/copilotkit/route.ts — Phiên bản LangChain
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -207,11 +208,11 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### LangGraph Agent (Nâng cao)
 
-Cho các agent multi-step có trạng thái, kết nối đến LangGraph backend: ```typescript
+Cho các agent multi-step có trạng thái, kết nối đến LangGraph backend: `````typescript
 // app/api/copilotkit/route.ts — Phiên bản LangGraph
 import {
   CopilotRuntime,
@@ -237,11 +238,11 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### Groq Adapter (Inference Nhanh)
 
-Cho phản hồi độ trễ thấp với Llama models qua Groq: ```typescript
+Cho phản hồi độ trễ thấp với Llama models qua Groq: `````typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -265,15 +266,15 @@ export const POST = async (req: NextRequest) => {
   });
   return handleRequest(req);
 };
-```
+`````
 
----
+* * *
 
 ## Ví dụ TSX Thực tế: Task Manager Copilot
 
 Dưới đây là task manager hoàn chỉnh, sẵn sàng production với tích hợp CopilotKit. AI có thể đọc task, thêm task mới, đánh dấu hoàn thành, và render task cards bên trong chat.
 
-```tsx
+`````tsx
 // app/components/TaskManager.tsx
 "use client";
 
@@ -306,11 +307,11 @@ services: app: build: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### Cấu hình theo Môi trường
 
-```typescript
+`````typescript
 // lib/copilot-config.ts
 export const copilotConfig = {
   runtimeUrl: process.env.NEXT_PUBLIC_COPILOT_RUNTIME_URL || "/api/copilotkit",
@@ -319,11 +320,11 @@ export const copilotConfig = {
   temperature: parseFloat(process.env.COPILOT_TEMPERATURE || "0.7"),
   threadRetention: parseInt(process.env.COPILOT_THREAD_RETENTION || "3"), // ngày
 };
-```
+`````
 
 ### Rate Limiting & Bảo mật
 
-```typescript
+`````typescript
 // middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -345,11 +346,11 @@ export async function middleware(req: NextRequest) {
   }
   return NextResponse.next();
 }
-```
+`````
 
 ### Giám sát với LangSmith
 
-```typescript
+`````typescript
 // Thêm LangSmith tracing vào runtime
 import { Client } from "langsmith";
 
@@ -374,9 +375,9 @@ const runtime = new CopilotRuntime({
     },
   ],
 });
-```
+`````
 
----
+* * *
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -404,7 +405,7 @@ const runtime = new CopilotRuntime({
 
 ![Bảng so sánh CopilotKit](https://docs.copilotkit.ai/assets/images/copilotkit-comparison.png)
 
----
+* * *
 
 ## Hạn chế / Đánh giá Trung thực
 
@@ -420,7 +421,7 @@ CopilotKit không phải công cụ phù hợp cho mọi dự án. Đây là nh�
 
 6. **Dependency LangGraph cho advanced agents.** Agent multi-step phức tạp đòi hỏi kiến thức LangGraph. Built-in agent đáp ứng chat cơ bản nhưng không đáp ứng workflow phức tạp.
 
----
+* * *
 
 ## Câu hỏi Thường gặp
 
@@ -430,7 +431,7 @@ Integration cơ bản với OpenAI mất 10-15 phút: cài ba packages, tạo m�
 
 ### CopilotKit có hoạt động mà không cần Next.js?
 
-Có. CopilotKit hoạt động với mọi ứng dụng React 18+. Runtime endpoint có thể được host riêng (Express, Fastify, hoặc bất kỳ Node server nào). Package `@copilotkit/react-core` không có dependency Next.js.
+Có. CopilotKit hoạt động với mọi ứng dụng React 18+. Runtime endpoint có thể được host riêng (Express, Fastify, hoặc bất kỳ Node server nào). Package ````@copilotkit/react-core```` không có dependency Next.js.
 
 ### CopilotKit hỗ trợ những LLM provider nào?
 
@@ -446,13 +447,13 @@ Vercel AI SDK là streaming và chat UI toolkit. CopilotKit là copilot embeddin
 
 ### CopilotKit có hỗ trợ multi-agent systems?
 
-Có. Copilot Runtime có thể route requests đến nhiều agents. Sử dụng cấu hình `agents` trong `CopilotRuntime` để đăng ký LangGraph agents, và chuyển đổi giữa chúng tại runtime bằng prop `agentId`.
+Có. Copilot Runtime có thể route requests đến nhiều agents. Sử dụng cấu hình ````agents```` trong ````CopilotRuntime```` để đăng ký LangGraph agents, và chuyển đổi giữa chúng tại runtime bằng prop ````agentId```.
 
 ### Giao thức AG-UI là gì?
 
 AG-UI là open wire protocol cho agent-to-frontend communication, được CopilotKit tạo ra. Nó chuẩn hóa streaming chat, tool calls, và state sharing. Tính đến 2026, Google, Microsoft, Amazon, LangChain, và Mastra đều hỗ trợ AG-UI.
 
----
+* * *
 
 ## Kết luận
 
@@ -467,7 +468,7 @@ CopilotKit lấp đầy một khoảng trống cụ thể: nhúng AI copilots b�
 
 **Thảo luận bài viết này và nhận trợ giúp trong nhóm Telegram:** [t.me/dibi8opensource](https://t.me/dibi8opensource) — chia sẻ project CopilotKit, đặt câu hỏi, và kết nối với developer khác đang triển khai AI copilots.
 
----
+* * *
 
 
 
@@ -491,7 +492,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Dev.to: LangGraph + CopilotKit Agent System](https://dev.to/ayushgupta/building-a-production-ready-composable-ai-agent-system-with-copilotkit-and-langgraph-141f)
 - [Đánh giá Mọi AI Chat UI Library 2026](https://dev.to/alexander_lukashov/i-evaluated-every-ai-chat-ui-library-in-2026-heres-what-i-found-and-what-i-built-4p10)
 
----
+* * *
 
 **Tuyên bố:** Bài viết này chứa liên kết affiliate của DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Mọi ý kiến và benchmark đều độc lập. DigitalOcean cung cấp $200 tín dụng miễn phí cho ngườ dùng mới để thử deploy CopilotKit.
 
@@ -521,7 +522,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -531,7 +532,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [docker-genai-stack-local-development](copilotkit)
 - [langchain-complete-guide](copilotkit)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

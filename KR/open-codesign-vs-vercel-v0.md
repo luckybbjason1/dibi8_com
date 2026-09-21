@@ -26,6 +26,7 @@ faqs: - q: 'Vercel v0의 셀프 호스팅 오픈소스 대안이 있나요?'
     a: 'Open Codesign은 React, Vue, Svelte, 그리고 순수 HTML에 대한 커스터마이즈 가능한 출력을 지원하는 반면, Vercel v0는 Next.js와 Tailwind에 크게 치우쳐 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Vercel v0의 완벽한 오픈소스 대체재: Open Codesign으로 로컬에서 UI 찍어내기
@@ -56,7 +57,7 @@ A: 네. Open Codesign이 바로 그 선두주자입니다. 프론트엔드를 �
 **Q: Vercel v0를 대체할 최고의 무료 툴은 무엇인가요? (Free alternative to v0 by Vercel)**
 A: Open Codesign은 v0와 가장 유사한 사용자 경험(프롬프트 입력 -> 실시간 미리보기)을 제공하면서도 100% 무료이며, Vercel 플랫폼에 종속되지 않는 깨끗한 코드를 뱉어냅니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -135,7 +136,7 @@ Vercel v0의 완벽한 오픈소스 대체재: Open Codesign으로 로컬에서 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

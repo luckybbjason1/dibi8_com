@@ -31,6 +31,7 @@ faqs: - q: 'Can you mine Bitcoin-Classic (BTCC) with a regular CPU?'
   - q: 'Is Bitcoin-Classic (BTCC) a good investment?'
     a: 'No. BTCC currently has near-zero market cap and liquidity, no major exchange support, and only a tiny community (around 18-23 GitHub stars). It is best treated as an educational and experimental project, not an investment.'
 ---
+
 # Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinary People Mine with CPU
 
 {</* resource-info */>}
@@ -46,7 +47,7 @@ faqs: - q: 'Can you mine Bitcoin-Classic (BTCC) with a regular CPU?'
 **Explorer**: https://explorer.bitcoin-classic.net/
 
 
----
+* * *
 ## Vision: Let Everyone Mine
 
 > "Today almost everyone has heard of Bitcoin, but very few have actually obtained Bitcoin through mining."
@@ -56,16 +57,16 @@ Bitcoin-Classic's core idea is to **restore the early Bitcoin mining experience*
 BTCC tries to bring back that experience through **lower difficulty, CPU-friendly mining, and a graphical interface**.
 
 
----
+* * *
 ## Core Technical Parameters
 
 ### Consensus
 
 | Parameter | Description |
 |
----
+* * *
 |
----
+* * *
 |
 | **Consensus** | SHA-256 Proof-of-Work (PoW) |
 | **Mining** | CPU / GPU (low-difficulty friendly) |
@@ -76,9 +77,9 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 
 | Parameter | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | **Total Supply** | 21,000,000 BTCC |
 | **Block Time** | 10 minutes |
@@ -91,15 +92,15 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 
 | Block Height | Reward |
 |
----
+* * *
 |
----
+* * *
 |
 | 0 ~ 209,999 | 50 BTCC |
 | 210,000 ~ 419,999 | 25 BTCC |
 | 420,000 ~ 629,999 | 12.5 BTCC |
 
----
+* * *
 
 ## Key Features
 
@@ -108,11 +109,11 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 3. **Lightweight Wallet** — Built-in wallet with real-time balance display.
 4. **Block Explorer** — https://explorer.bitcoin-classic.net/
 
----
+* * *
 
 ## Quick Start
 
-```
+````
 1. Download Bitcoin-Classic-Setup.exe
    → https://github.com/Marcus-Vane/Bitcoin-Classic/releases
 
@@ -125,9 +126,9 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 5. Click "Start Mining"
 
 6. Switch to miner wallet (top-right) to view balance
-```
+````
 
----
+* * *
 
 ## Security Notes
 
@@ -137,17 +138,17 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 - Never send it to anyone
 - It is the only proof of ownership
 
----
+* * *
 
 ## Comparison with Bitcoin
 
 | Dimension | Bitcoin (BTC) | Bitcoin-Classic (BTCC) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Launch | 2009 | 2026 |
 | Consensus | SHA-256 PoW | SHA-256 PoW |
@@ -158,7 +159,7 @@ BTCC tries to bring back that experience through **lower difficulty, CPU-friendl
 | Ecosystem | Mature (exchanges, DeFi) | Early (wallet + explorer) |
 | Investment Value | High liquidity | Experimental |
 
----
+* * *
 
 ## Summary
 
@@ -177,7 +178,7 @@ But it faces real challenges: - Only 18 GitHub Stars (tiny community)
 
 > 💡 Want more blockchain and crypto tools? Follow [dibi8.com](https://dibi8.com) for weekly curated open-source projects.
 
----
+* * *
 
 ## Recommended Tools
 
@@ -253,7 +254,7 @@ Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinary People Mine with CPU r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -23,11 +23,12 @@ tags: ["]
 aliases:
   - /posts/meilisearch-fast-search-engine/-
 ---
+
 {{</* resource-info */>}}
 
-## Introduction: Your Database's `LIKE` Query Is Killing Your UX
+## Introduction: Your Database's ```LIKE```` Query Is Killing Your UX
 
-Search is the highest-traffic interaction on most applications. Yet", "**63% of web applications still use database `LIKE` queries** for search in 2026. The result? Queries that take **300ms to 3 seconds** on datasets over 100", "000 rows. Users abandon searches after 500ms. You are bleeding engagement.
+Search is the highest-traffic interaction on most applications. Yet", "**63% of web applications still use database ````LIKE```` queries** for search in 2026. The result? Queries that take **300ms to 3 seconds** on datasets over 100", "000 rows. Users abandon searches after 500ms. You are bleeding engagement.
 
 You have heard of Elasticsearch. It works", "but it needs **8GB RAM minimum**", "JVM tuning", "and a dedicated ops team. Algolia is fast but costs **$1.00 per 1", "000 searches** at scale. You need something that deploys in minutes", "runs on a $20 VPS", "and handles millions of documents without breaking a sweat.
 
@@ -39,9 +40,9 @@ Enter **Meilisearch** — an open-source search engine written in Rust", "with *
 
 Key facts: | Attribute | Detail |
 |
----
+* * *
 |
----
+* * *
 |
 | **Latest Version** | 1.12 (March 2026) |
 | **GitHub Stars** | 51", "300+ |
@@ -85,7 +86,7 @@ You can customize", "add", "or remove ranking rules via the settings API.
 ### Faceting", "Filtering", "and Sorting
 
 Meilisearch supports: - **Dynamic faceting** — request facet counts for any filterable attribute
-- **Complex filters** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
+- **Complex filters** — ````price >= 10 AND (category = "shoes" OR in_stock = true)````
 - **Sort at query time** — sort by any sortable attribute
 - **Geo-search** — filter and sort by distance from lat/lng
 - **Multi-tenancy** — tenant tokens for secure multi-user isolation (v1.12)
@@ -97,7 +98,7 @@ Meilisearch supports: - **Dynamic faceting** — request facet counts for any fi
 
 Meilisearch starts faster than almost any search engine. You need **Docker 24.0+** and **512MB RAM minimum** (1GB recommended).
 
-```bash
+`````bash
 docker run -d \
   --name meilisearch \
   --restart unless-stopped \
@@ -110,15 +111,15 @@ docker run -d \
 # Verify health
 curl -s http://localhost:7700/health | jq .
 # Expected: { "status": "available" }
-```
+`````
 
-**Note**: The `MEILI_MASTER_KEY` must be at least 16 bytes for production. Replace `your-secure-master-key-32-chars-long!!` with a real secret.
+**Note**: The ````MEILI_MASTER_KEY```` must be at least 16 bytes for production. Replace ````your-secure-master-key-32-chars-long!!```` with a real secret.
 
 ### Step 2: Create an Index and Add Documents
 
 Meilisearch uses "indexes" instead of "collections." Unlike Typesense", "**Meilisearch does not require a predefined schema** — it auto-detects field types on first document ingestion.
 
-```bash
+`````bash
 # Create index
 curl -s -X POST 'http://localhost:7700/indexes' \
   -H 'Content-Type: application/json' \
@@ -137,11 +138,11 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
     }", "{
       "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
     }"]' | jq .
-```
+`````
 
 ### Step 3: Configure Searchable and Filterable Fields
 
-Tell Meilisearch which fields to search and which to use for filtering: ```bash
+Tell Meilisearch which fields to search and which to use for filtering: `````bash
 # Update index settings
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -159,11 +160,11 @@ curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
       "exactness"
     ]
   }' | jq .
-```
+`````
 
 ### Step 4: Search with Typo Tolerance
 
-```bash
+`````bash
 # Search with typo ("headphons" instead of "headphones")
 curl -s -X POST 'http://localhost:7700/indexes/products/search' \
   -H 'Content-Type: application/json' \
@@ -175,28 +176,28 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "facets": ["category"],
     "limit": 10
   }' | jq .
-```
+`````
 
 Response includes matching documents, facet counts per category, and highlighted matches — all in **under 30ms**.
 
 ### Step 5: Wait for Indexing Task
 
-Meilisearch processes document additions asynchronously. Check task status: ```bash
+Meilisearch processes document additions asynchronously. Check task status: `````bash
 # Check latest task
 curl -s 'http://localhost:7700/tasks?limit=1' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq '.results[0] | {uid, status, type, duration}'
 # Expected: { "uid": 1, "status": "succeeded", "type": "documentAdditionOrUpdate", "duration": "PT0.234S" }
-```
+`````
 
 ## Integration with JavaScript, Python, PHP, Go & React
 
 ### JavaScript/Node.js SDK
 
-```bash
+`````bash
 npm install meilisearch
-```
+`````
 
-```javascript
+`````javascript
 const { MeiliSearch } = require(meilisearch);
 
 const client = new MeiliSearch({
@@ -216,24 +217,24 @@ async function search(query) {
     attributesToHighlight: [name, description]
   });
 
-  console.log(`Found ${results.estimatedTotalHits} hits`);
+  console.log(````Found ${results.estimatedTotalHits} hits````);
   console.log('Facets:', results.facetDistribution);
   
   results.hits.forEach(hit => {
-    console.log(`- ${hit.name} ($${hit.price}) [${hit._formatted.name}]`);
+    console.log(````- ${hit.name} ($${hit.price}) [${hit._formatted.name}]````);
   });
 }
 
 search(headphons); // typo handled automatically
-```
+`````
 
 ### Python SDK
 
-```bash
+`````bash
 pip install meilisearch
-```
+`````
 
-```python
+`````python
 import meilisearch
 import os
 
@@ -259,15 +260,15 @@ results = index.search(
 print(f"Hits: {results[estimatedTotalHits]}")
 print(f"Facets: {results.get(facetDistribution, {})}")
 for hit in results[hits]: print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
-```
+`````
 
 ### React InstantSearch Integration
 
-Meilisearch provides `meilisearch/instant-meilisearch` for React InstantSearch compatibility: ```bash
+Meilisearch provides ``meilisearch/instant-meilisearch`` for React InstantSearch compatibility: `````bash
 npm install @meilisearch/instant-meilisearch react-instantsearch-dom
-```
+`````
 
-```jsx
+`````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList, Stats } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -309,15 +310,15 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-```
+`````
 
 ### PHP SDK
 
-```bash
+`````bash
 composer require meilisearch/meilisearch-php
-```
+`````
 
-```php
+`````php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -339,15 +340,15 @@ foreach ($results->getHits() as $hit) {
     echo "- {$hit[name]} \${$hit[price]}\n";
 }
 ?>
-```
+`````
 
 ### Go SDK
 
-```bash
+`````bash
 go get github.com/meilisearch/meilisearch-go
-```
+`````
 
-```go
+`````go
 package main
 
 import (
@@ -381,7 +382,7 @@ func main() {
         fmt.Printf("- %s ($%.0f)\n", doc["name"], doc["price"])
     }
 }
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -391,9 +392,9 @@ We benchmarked Meilisearch 1.12 on a **DigitalOcean droplet** with 2 vCPUs and 2
 
 | Metric | Result |
 |
----
+* * *
 |
----
+* * *
 |
 | **Index Build Time** | 52 seconds (2.5M docs) |
 | **Average Query Latency (p50)** | **9ms** |
@@ -409,7 +410,7 @@ These numbers are on an **$18/month VPS**. Meilisearch's memory-mapped approach 
 
 ### AI-Powered Search (Meilisearch AI)
 
-Since v1.10, Meilisearch supports **vector search and hybrid search** via the `embedders` configuration: ```bash
+Since v1.10, Meilisearch supports **vector search and hybrid search** via the ``embedders`` configuration: `````bash
 # Configure an embedder for semantic search
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -433,7 +434,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "hybrid": { "semanticRatio": 0.5 },
     "limit": 5
   }' | jq '.hits[] | {name, _rankingScore}'
-```
+`````
 
 This enables **semantic search** — finding "headphones" when the user searches for "comfortable audio device" — without a separate vector database.
 
@@ -441,11 +442,11 @@ This enables **semantic search** — finding "headphones" when the user searches
 
 | Company | Scale | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Louis Vuitton** | Luxury retail | Product search with typo tolerance |
 | **Elementary OS** | Open source | AppCenter package search |
@@ -457,7 +458,7 @@ This enables **semantic search** — finding "headphones" when the user searches
 
 ### 1. Docker Compose for Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -481,13 +482,13 @@ services: meilisearch: image: getmeili/meilisearch:v1.12
     volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes: meilisearch-data: caddy-data: ```
+volumes: meilisearch-data: caddy-data: `````
 
 Deploy this on any VPS. For a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) gives you **$200 free credit** — enough to run Meilisearch for 11 months on a 2GB droplet.
 
 ### 2. Multi-Tenancy with Tenant Tokens
 
-Meilisearch 1.12 supports secure multi-tenancy via tenant tokens: ```javascript
+Meilisearch 1.12 supports secure multi-tenancy via tenant tokens: `````javascript
 const { MeiliSearch } = require(meilisearch);
 const crypto = require(crypto);
 
@@ -511,11 +512,11 @@ const token = client.generateTenantToken(
 
 console.log('Tenant token:', token);
 // This token can ONLY search documents where user_id = 123
-```
+`````
 
 ### 3. Scheduled Snapshots and Backups
 
-```bash
+`````bash
 # Trigger a dump (snapshot)
 curl -s -X POST 'http://localhost:7700/dumps' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq .
@@ -524,11 +525,11 @@ curl -s -X POST 'http://localhost:7700/dumps' \
 # Download from /dumps/ after task completes
 
 # For automated backups, add to crontab: # 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
-```
+`````
 
 ### 4. Synonyms and Stop Words
 
-```bash
+`````bash
 # Configure synonyms
 curl -s -X PUT 'http://localhost:7700/indexes/products/settings/synonyms' \
   -H 'Content-Type: application/json' \
@@ -544,11 +545,11 @@ curl -s -X PUT 'http://localhost:7700/indexes/products/settings/stop-words' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '["the", "a", "an", "and", "or"]' | jq .
-```
+`````
 
 ### 5. Monitoring with Prometheus (Official Integration)
 
-Meilisearch exposes Prometheus metrics natively: ```bash
+Meilisearch exposes Prometheus metrics natively: `````bash
 # Enable metrics endpoint
 curl -s -X PATCH 'http://localhost:7700/experimental-features' \
   -H 'Content-Type: application/json' \
@@ -559,21 +560,21 @@ curl -s -X PATCH 'http://localhost:7700/experimental-features' \
 curl -s http://localhost:7700/metrics
 # meilisearch_search_requests_total{index="products"} 15420
 # meilisearch_http_requests_duration_seconds_sum 2.45
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | **Meilisearch** | Typesense | Elasticsearch | Algolia |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT | GPL-3.0 | SSPL/Elastic | Proprietary |
 | **GitHub Stars** | **51,300+** | 23,200+ | 72,000+ | N/A (closed) |
@@ -628,11 +629,11 @@ On a server with 16GB RAM, Meilisearch comfortably handles **20-30 million docum
 
 ### How do I upgrade Meilisearch without downtime?
 
-Meilisearch does not support zero-downtime rolling upgrades yet. The recommended approach: (1) trigger a dump via the `/dumps` endpoint, (2) start a new Meilisearch container with the new version, (3) restore the dump, (4) switch traffic. For production, run a blue-green deployment with a load balancer. The process takes 5-15 minutes depending on dataset size.
+Meilisearch does not support zero-downtime rolling upgrades yet. The recommended approach: (1) trigger a dump via the ````/dumps```` endpoint, (2) start a new Meilisearch container with the new version, (3) restore the dump, (4) switch traffic. For production, run a blue-green deployment with a load balancer. The process takes 5-15 minutes depending on dataset size.
 
 ### Does Meilisearch support real-time search for user-generated content?
 
-Yes. Documents are searchable **within 1-2 seconds** of being added. For typical UGC applications (comments, posts, reviews), this is effectively real-time. Meilisearch processes tasks asynchronously via an internal queue. You can check a task's completion status via the `/tasks/{taskUid}` endpoint. For latency-critical use cases, batch writes in groups of 100-1000 documents for optimal throughput.
+Yes. Documents are searchable **within 1-2 seconds** of being added. For typical UGC applications (comments, posts, reviews), this is effectively real-time. Meilisearch processes tasks asynchronously via an internal queue. You can check a task's completion status via the ````/tasks/{taskUid}```` endpoint. For latency-critical use cases, batch writes in groups of 100-1000 documents for optimal throughput.
 
 ### Is Meilisearch Cloud worth the cost over self-hosting?
 
@@ -640,7 +641,7 @@ Meilisearch Cloud starts at **$29/month** for the Developer plan (includes autom
 
 ## Conclusion: Deploy Instant Search in 3 Minutes
 
-Meilisearch 1.12 is the easiest production-grade search engine to deploy in 2026. From `docker run` to first search result, the entire process takes **under 3 minutes**. With MIT licensing, 10+ SDKs, built-in typo tolerance, and now AI-powered semantic search, it eliminates every excuse for using database `LIKE` queries.
+Meilisearch 1.12 is the easiest production-grade search engine to deploy in 2026. From ````docker run```` to first search result, the entire process takes **under 3 minutes**. With MIT licensing, 10+ SDKs, built-in typo tolerance, and now AI-powered semantic search, it eliminates every excuse for using database ````LIKE``` queries.
 
 For new projects, start with the Docker setup in this guide. For teams paying Algolia $500+/month, an $18 VPS running Meilisearch handles equivalent traffic. For developers migrating from Elasticsearch, the operational simplicity will feel like a vacation.
 
@@ -668,7 +669,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Docker Best Practices for Search Engines](dibi8-internal-link)
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Meilisearch is free, open-source software — hosting costs are the only expense.*
 
 
@@ -696,4 +697,4 @@ Before you deploy any of the tools above into production, you'll need solid infr
   }
 }
 </script>
----
+* * *

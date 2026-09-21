@@ -33,6 +33,7 @@ faqs: - q: 'Local Deep Research (LDR) là gì?'
     a: 'LDR cung cấp các trích dẫn có độ trung thực cao, đính kèm danh mục tài liệu tham khảo cho mọi khẳng định mà nó đưa ra để bạn có thể kiểm chứng nguồn tài liệu ngay lập tức. Nó cũng thực hiện tổng hợp lặp đi lặp lại, xác định các khoảng trống và chạy các tìm kiếm tiếp theo thay vì dựa vào một câu trả lời hời hợt duy nhất.'
 ---
 
+
 {</* resource-info */>}
 
 Hầu hết các trợ lý AI đều ưu tiên "chat", nghĩa là chúng đưa ra câu trả lời nhanh dựa trên dữ liệu đã được huấn luyện trước. Nhưng nếu bạn cần một phương pháp **ưu tiên nghiên cứu (research-first)** có khả năng quét web, các bài báo học thuật và tài liệu địa phương của bạn để tổng hợp thành một báo cáo chuyên sâu thì sao? Và nếu bạn muốn thực hiện việc đó với **quyền riêng tư 100%** thì sao?
@@ -67,13 +68,13 @@ Một trong những điểm yếu lớn nhất của AI là sự tin cậy. LDR 
 
 ### Triển khai nhanh (Docker)
 
-```bash
+````bash
 # Chạy SearXNG
 docker run -d -p 8080:8080 --name searxng searxng/searxng
 
 # Chạy Local Deep Research
 docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research
-```
+````
 
 ## 💡 Mẹo của Sư phụ: Chiến lược "Đào sâu"
 
@@ -83,12 +84,12 @@ Khi sử dụng LDR, đừng chỉ hỏi một câu duy nhất. Hãy sử dụng
 
 Local Deep Research không chỉ là một công cụ; đó là một sự thay đổi tư duy về cách chúng ta tương tác với thông tin trong kỷ nguyên AI. Nếu bạn đã mệt mỏi với những câu trả lời AI hời hợt và lo lắng về quyền riêng tư dữ liệu, đã đến lúc chuyển hoạt động nghiên cứu của bạn về môi trường địa phương.
 
----
+* * *
 
 ### Tài nguyên liên quan
 - [Làm chủ Python Context Managers](/vi/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) — Tối ưu hóa các script AI địa phương của bạn.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
@@ -161,7 +162,7 @@ Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên Local Tối Thư
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

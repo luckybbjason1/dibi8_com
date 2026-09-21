@@ -23,6 +23,7 @@ tags: ["mastra", "typescript", "ai-framework", "agents", "llm", "mastra-tutorial
 aliases:
   - /posts/mastra/-
 ---
+
 {{</* resource-info */>}}
 
 Most AI frameworks are built for Python. If your stack runs on TypeScript and Node.js, you either bridge languages or accept a sub-par developer experience. That changed when the Gatsby team launched Mastra — a TypeScript-native framework for building AI agents that reached **24,050 GitHub stars** by May 2026 and is now used in production at Replit, PayPal, and Sanity. This article covers everything you need to install Mastra, build your first agent, and understand how its Observational Memory reduces token costs by 4-10x compared to traditional RAG approaches.
@@ -33,14 +34,14 @@ Mastra is an open-source TypeScript framework for building AI-powered applicatio
 
 ![Mastra Logo](https://raw.githubusercontent.com/mastra-ai/mastra/main/docs/public/logo.png)
 
-The core idea is simple: agents handle open-ended conversational tasks with tool access, workflows manage deterministic multi-step processes, RAG grounds responses in your data, memory persists context across conversations, and evals measure quality. All six primitives ship in `@mastra/core` and work together through consistent Zod-typed APIs.
+The core idea is simple: agents handle open-ended conversational tasks with tool access, workflows manage deterministic multi-step processes, RAG grounds responses in your data, memory persists context across conversations, and evals measure quality. All six primitives ship in ```@mastra/core```` and work together through consistent Zod-typed APIs.
 
 ![Mastra Studio — Local development UI for debugging agents, workflows, and memory](https://www.firecrawl.dev/images/blog/mastra-tutorial/workflow-graph.webp)
 
 ## How Mastra Works — Architecture and Core Concepts
 
 Mastra's architecture revolves around six building blocks that mirror what production AI systems actually need: ### Agents
-Agents are the primary actors. You give them instructions, a model, and access to tools. They decide what to call, when to stop, and how to respond. Agents expose `.generate()` for complete responses and `.stream()` for real-time token streaming — essential for chat UIs where users expect to see responses form progressively.
+Agents are the primary actors. You give them instructions, a model, and access to tools. They decide what to call, when to stop, and how to respond. Agents expose ````.generate()```` for complete responses and ````.stream()```` for real-time token streaming — essential for chat UIs where users expect to see responses form progressively.
 
 ### Workflows
 Workflows provide deterministic orchestration for multi-step operations where you need explicit control. Built on XState, they support branching, parallel execution, loops, and human-in-the-loop patterns where execution pauses for approval before resuming.
@@ -57,7 +58,7 @@ Tools are typed functions defined with Zod schemas that agents can invoke. They 
 ### Evals
 Evaluation frameworks track agent quality through model-graded, rule-based, and statistical methods. You can assess relevance, faithfulness, toxicity, tone consistency, and define custom metrics.
 
-```typescript
+`````typescript
 // Core Mastra architecture — all six primitives in one setup
 import { Mastra } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -74,7 +75,7 @@ const mastra = new Mastra({
   vectorStore: new PgVector(connectionString),
   telemetry: otel,
 });
-```
+`````
 
 ## Installation and Setup — Under 5 Minutes
 
@@ -82,7 +83,7 @@ Mastra requires Node.js 22.13.0 or later. The recommended path is the CLI wizard
 
 ### Step 1: Create a New Project
 
-```bash
+`````bash
 # Scaffold a new Mastra project with the interactive CLI
 npm create mastra@latest
 
@@ -90,11 +91,11 @@ npm create mastra@latest
 # - Components (agents, workflows, RAG, memory)
 # - LLM provider (OpenAI, Anthropic, Google, etc.)
 # - Whether to include example code
-```
+`````
 
 ### Step 2: Manual Installation (Alternative)
 
-If you prefer to add Mastra to an existing project: ```bash
+If you prefer to add Mastra to an existing project: `````bash
 # Install core package with Zod for schema validation
 npm install @mastra/core@latest zod@^4
 
@@ -103,19 +104,19 @@ npm install @ai-sdk/openai
 
 # Optional: vector store, memory, and deployer packages
 npm install @mastra/pg @mastra/memory @mastra/deployer-vercel
-```
+`````
 
 ### Step 3: Environment Setup
 
-```bash
+`````bash
 # .env — Mastra loads these automatically at runtime
 OPENAI_API_KEY=sk-xxxx
 DATABASE_URL=postgresql://user:pass@localhost:5432/mastra
-```
+`````
 
 ### Step 4: Project Structure
 
-```
+`````
 my-mastra-project/
 ├── src/
 │   └── mastra/
@@ -129,17 +130,17 @@ my-mastra-project/
 ├── .env
 ├── package.json
 └── tsconfig.json
-```
+`````
 
 ### Step 5: Launch Mastra Studio
 
-```bash
+`````bash
 # Start the local development UI at localhost:4111
 npx mastra dev
 
 # Studio lets you chat with agents, inspect tool calls,
 # view memory state, visualize workflows, and iterate on prompts
-```
+`````
 
 ![Mastra Changelog Digest Workflow — showing the INPUT → SCRAPE → EXTRACT → OUTPUT pipeline](https://www.firecrawl.dev/images/blog/mastra-tutorial/changelog-pipeline.webp)
 
@@ -147,7 +148,7 @@ npx mastra dev
 
 ### Basic Agent with Tools
 
-```typescript
+`````typescript
 // src/mastra/agents/support.ts
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
@@ -169,21 +170,21 @@ const searchTool = createTool({
       POSTGRES_DB: mastra
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## Comparison with Alternatives
 
 | Feature | Mastra | LangChain | CrewAI | Vercel AI SDK |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Language** | TypeScript (99.2%) | Python (also JS) | Python | TypeScript |
 | **GitHub Stars** | 24,050 | 117,000 | 39,200 | N/A (part of Vercel) |
@@ -223,7 +224,7 @@ Yes, Mastra is TypeScript-native. Basic familiarity with TypeScript, async/await
 LangChain provides ConversationBufferMemory, ConversationSummaryMemory, and vector-based retrieval. These work but either consume full context window or rely on vector search that invalidates prompt caches. Mastra's Observational Memory compresses context into cacheable observations, achieving 4-10x cost reduction while scoring higher on LongMemEval benchmarks (84.23% vs 80.05% for RAG).
 
 **Q: Can I deploy Mastra on DigitalOcean or AWS instead of Vercel?**
-Yes. Mastra is fully open-source and deploys to any Node.js runtime. Build with `mastra build`, then run the output on DigitalOcean App Platform, AWS ECS, Google Cloud Run, or any Docker host. Deployers exist for Vercel and Cloudflare Workers, but they are optional.
+Yes. Mastra is fully open-source and deploys to any Node.js runtime. Build with ````mastra build````, then run the output on DigitalOcean App Platform, AWS ECS, Google Cloud Run, or any Docker host. Deployers exist for Vercel and Cloudflare Workers, but they are optional.
 
 **Q: What LLM providers does Mastra support?**
 Mastra supports 40+ providers through the Vercel AI SDK: OpenAI, Anthropic, Google, Mistral, Cohere, xAI, DeepSeek, Fireworks, Together, and many more. Switching providers is a one-line code change.
@@ -241,10 +242,10 @@ Pass a memory instance when creating the Mastra instance. The agent automaticall
 
 Mastra fills a clear gap in the AI framework landscape — a production-grade, TypeScript-native toolkit that lets JavaScript developers build agents without leaving their ecosystem. The 4-10x token cost reduction from Observational Memory is not marketing hype; it is a measurable production advantage backed by LongMemEval benchmarks. The framework's DX score of 9/10 and sub-5-minute setup time make it the fastest path from idea to deployed agent for TypeScript teams.
 
-If you are building AI features into a Next.js application, Node.js service, or any TypeScript project, Mastra deserves a serious evaluation. Start with `npm create mastra@latest`, build a workflow, and measure the token cost difference for yourself.
+If you are building AI features into a Next.js application, Node.js service, or any TypeScript project, Mastra deserves a serious evaluation. Start with ````npm create mastra@latest````, build a workflow, and measure the token cost difference for yourself.
 
 **Action items:**
-1. Clone the Mastra repo and run the quickstart: `npm create mastra@latest`
+1. Clone the Mastra repo and run the quickstart: ````npm create mastra@latest```
 2. Join the [Mastra Discord community](https://discord.gg/mastra) (5,500+ members)
 3. Explore the [official documentation](https://mastra.ai/docs)
 4. Follow the [Mastra GitHub repository](https://github.com/mastra-ai/mastra) for updates
@@ -305,7 +306,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](mastra)
@@ -315,7 +316,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ai-engineering-from-scratch](mastra)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

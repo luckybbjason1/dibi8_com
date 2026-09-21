@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/mlflow-experiment-tracking-production/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 추적되지 않는 실험의 혼란
@@ -28,7 +29,7 @@ MLflow는 2018년 Databricks에서 생성되어 Linux Foundation 산하로 오�
 
 MLflow는 **머신러닝 라이프사이클 관리를 위한 오픈소스 플랫폼**으로, 실험 추적, 모델 포장, 모델 레지스트리, 모델 서빙을 포함한다. Python 라이브러리, 독립 실행형 서버, 또는 Docker 컨테이너로 실행되며 — Kubernetes, 클라우드 제공업체, 또는 특정 ML 프레임워크에 대한 의존성이 없다.
 
-인프라 팀이 설정해야 하는 무거운 MLOps 플랫폼과 달리, MLflow는 `pip install mlflow`로 설치되고 한 줄의 코드로 실험 추적을 시작한다. 이러한 낮은 진입 장벽으로 인해 가장 널리 채택된 오픈소스 ML 라이프사이클 도구가 되었으며, 2026년 초 기준 PyPI에서 **2억 5천만 회 이상 다운로드**되었다.
+인프라 팀이 설정해야 하는 무거운 MLOps 플랫폼과 달리, MLflow는 ```pip install mlflow````로 설치되고 한 줄의 코드로 실험 추적을 시작한다. 이러한 낮은 진입 장벽으로 인해 가장 널리 채택된 오픈소스 ML 라이프사이클 도구가 되었으며, 2026년 초 기준 PyPI에서 **2억 5천만 회 이상 다운로드**되었다.
 
 ## MLflow 작동 방식: 핵심 컴포넌트
 
@@ -40,7 +41,7 @@ MLflow는 ML 라이프사이클의 별개 단계를 해결하는 네 가지 컴�
 
 **MLflow Projects**은 MLproject 파일로 재현 가능한 형식으로 ML 코드를 패키징하며, 진입점, 파라미터, 종속성 및 실행 환경을 정의한다.
 
-```python
+`````python
 # 하나의 다이어그램으로 보는 완전한 MLflow 아키텍처: # 1. Tracking Server (REST API + UI)
 #    ├── Backend Store: PostgreSQL / MySQL / SQLite
 #    └── Artifact Store: S3 / GCS / Azure / Local
@@ -55,13 +56,13 @@ MLflow는 ML 라이프사이클의 별개 단계를 해결하는 네 가지 컴�
 #
 # 4. Model Serving
 #    └── REST endpoint: /invocations
-```
+`````
 
 ## 설치 및 설정: 5분 안에 첫 번째 실험 실행
 
 ### 로컬 설정 (단일 머신)
 
-```bash
+`````bash
 # MLflow 설치
 pip install mlflow==2.22.0
 
@@ -72,9 +73,9 @@ mlflow server \
   --default-artifact-root ~/mlflow-tracking/artifacts \
   --host 0.0.0.0 \
   --port 5000
-```
+`````
 
-```bash
+`````bash
 # 별도의 터미널에서 첫 번째 추적 실험 실행
 python -c "
 import mlflow
@@ -88,18 +89,18 @@ with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
     mlflow.log_metric(f1_score, 0.93)
     print(f'Run ID: {mlflow.active_run().info.run_id}')
 "
-```
+`````
 
-`http://localhost:5000`을 방문하면 — 실험이 MLflow UI에 파라미터, 메트릭 및 실행 기록이 완전히 추적된 상태로 표시된다.
+````http://localhost:5000````을 방문하면 — 실험이 MLflow UI에 파라미터, 메트릭 및 실행 기록이 완전히 추적된 상태로 표시된다.
 
 ### PostgreSQL 및 S3를 사용한 프로덕션 설정
 
-```bash
+`````bash
 # 데이터베이스 및 클라우드 지원 설치
 pip install mlflow[extras]==2.22.0 psycopg2-binary boto3
-```
+`````
 
-```bash
+`````bash
 # PostgreSQL 및 S3로 추적 서버 시작
 export MLFLOW_S3_ENDPOINT_URL=https://s3.amazonaws.com
 export AWS_ACCESS_KEY_ID=your-key
@@ -110,11 +111,11 @@ mlflow server \
   --default-artifact-root s3://your-bucket/mlflow-artifacts \
   --host 0.0.0.0 \
   --port 5000
-```
+`````
 
 ### Docker 배포 (팀에 권장)
 
-```bash
+`````bash
 # docker-compose.yml — 완전한 MLflow 스택
 version: '3.8'
 services: postgres: image: postgres:16
@@ -133,19 +134,19 @@ services: postgres: image: postgres:16
     ports: - "5000:5000"
     depends_on: - postgres
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
-```bash
+`````bash
 # 전체 스택 시작
 docker-compose up -d
 
 # 추적 서버가 실행 중인지 확인
 curl http://localhost:5000/api/2.0/mlflow/experiments/list
-```
+`````
 
 ### DigitalOcean Droplet 배포
 
-전용 프로덕션 추적 서버용: ```bash
+전용 프로덕션 추적 서버용: `````bash
 # Droplet을 생성하고 MLflow 설치
 ssh root@your-droplet-ip << EOF
 apt update && apt install -y python3-pip
@@ -169,7 +170,7 @@ SERVICEDEF
 
 systemctl enable mlflow && systemctl start mlflow
 EOF
-```
+`````
 
 [DigitalOcean에 배포](https://m.do.co/c/eca87ac14ee0) — $200 크레딧을 받아 MLflow 추적 서버와 실험 인프라를 두 달 동안 물론 실행하라.
 
@@ -177,7 +178,7 @@ EOF
 
 ### 기본 실험 추적
 
-```python
+`````python
 # tracking_example.py — MLflow로 실험 기록
 import mlflow
 import mlflow.sklearn
@@ -239,16 +240,16 @@ if __name__ == __main__: configs = [
         (500, None, 0.02),
     ]
     for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
-```
+`````
 
-```bash
+`````bash
 # 실험 스위프 실행
 python tracking_example.py
-```
+`````
 
 ### Autologging: 노력 없는 추적
 
-```python
+`````python
 # autolog_example.py — scikit-learn 자동 로깅
 import mlflow
 from sklearn.ensemble import RandomForestClassifier
@@ -267,11 +268,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 with mlflow.start_run(): clf = RandomForestClassifier(n_estimators=100, random_state=42)
     clf.fit(X_train, y_train)
     # 수동 로깅 불필요 — autolog가 모든 것을 캡처
-```
+`````
 
 ### 딥러닝 실험 추적
 
-```python
+`````python
 # pytorch_tracking.py — MLflow로 PyTorch 훈련 추적
 import mlflow
 import torch
@@ -330,11 +331,11 @@ def train_model(epochs, lr, batch_size): with mlflow.start_run(): mlflow.log_par
         mlflow.pytorch.log_model(model, model)
 
 if __name__ == __main__: train_model(epochs=5, lr=0.001, batch_size=64)
-```
+`````
 
 ## 모델 레지스트리: 모델 라이프사이클 관리
 
-```python
+`````python
 # registry_example.py — 모델 버전 및 단계 관리
 import mlflow
 from mlflow.tracking import MlflowClient
@@ -370,9 +371,9 @@ client.set_model_version_tag(
     key=reviewed_by,
     value='ml-lead@company.com'
 )
-```
+`````
 
-```bash
+`````bash
 # 모델의 모든 버전 나열
 mlflow models list-versions -m wine-classifier
 
@@ -380,9 +381,9 @@ mlflow models list-versions -m wine-classifier
 #   1        Production  Initial production model
 #   2        Staging     Wine classifier with 94.4% accuracy...
 #   3        None        Experimental architecture
-```
+`````
 
-```python
+`````python
 # 추론을 위해 특정 모델 버전 로드
 import mlflow.pyfunc
 
@@ -394,19 +395,19 @@ model = mlflow.pyfunc.load_model(
 model_v2 = mlflow.pyfunc.load_model(
     model_uri='models:/wine-classifier/2'
 )
-```
+`````
 
 ## 모델 서빙: REST API를 통해 배포
 
-```bash
+`````bash
 # MLflow 내장 서버로 로컬 모델 서빙
 mlflow models serve \
   -m models:/wine-classifier/Production \
   -p 5001 \
   --env-manager local
-```
+`````
 
-```bash
+`````bash
 # 엔드포인트 테스트
 curl -X POST http://localhost:5001/invocations \
   -H "Content-Type: application/json" \
@@ -418,19 +419,19 @@ curl -X POST http://localhost:5001/invocations \
   }'
 
 # 응답: {"predictions": [0, 1]}
-```
+`````
 
 ### Docker로 프로덕션 서빙
 
-```bash
+`````bash
 # 모델용 Docker 이미지 빌드
 mlflow models build-docker \
   -m models:/wine-classifier/Production \
   -n wine-classifier-serving:v1.0 \
   --enable-mlserver
-```
+`````
 
-```bash
+`````bash
 # 서빙 컨테이너 실행
 docker run -p 5001:8080 wine-classifier-serving:v1.0
 
@@ -438,11 +439,11 @@ docker run -p 5001:8080 wine-classifier-serving:v1.0
 curl -X POST http://localhost:5001/invocations \
   -H "Content-Type: application/json" \
   -d '{"inputs": [[14.23, 1.71, 2.43, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0]]}'
-```
+`````
 
 ### 클라우드 배포
 
-```python
+`````python
 # deploy_sagemaker.py — AWS SageMaker에 배포
 import mlflow.sagemaker
 
@@ -453,9 +454,9 @@ mlflow.sagemaker.deploy(
     instance_type='ml.m5.large',
     region_name='us-east-1'
 )
-```
+`````
 
-```python
+`````python
 # deploy_azure.py — Azure ML에 배포
 from azureml.core import Workspace
 import mlflow.azureml
@@ -470,7 +471,7 @@ mlflow.azureml.deploy(
     },
     service_name='wine-classifier-aci'
 )
-```
+`````
 
 ## 벤치마크: 대규모 성능
 
@@ -509,7 +510,7 @@ mlflow.azureml.deploy(
 
 ### HTTP Basic Auth로 인증
 
-```python
+`````python
 # auth_server.py — 기본 인증이 있는 MLflow 서버
 from flask import Flask, request, Response
 import mlflow.server
@@ -532,9 +533,9 @@ def require_auth(): if not check_auth(): return Response('Authentication require
 
 # 인증 프록시 뒤에 MLflow 마운트
 # 또는 nginx 리버스 프록시와 기본 인증 사용
-```
+`````
 
-```nginx
+`````nginx
 # nginx.conf — 기본 인증이 있는 리버스 프록시
 server {
     listen 80;
@@ -548,11 +549,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### 오래된 실험 자동 정리
 
-```python
+`````python
 # cleanup.py — 저장소 관리를 위해 오래된 실행 삭제
 from mlflow.tracking import MlflowClient
 from datetime import datetime, timedelta
@@ -571,17 +572,17 @@ for exp in experiments: runs = client.search_runs(
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 
 print(f'Cleanup completed. Deleted {len(runs)} old runs.')
-```
+`````
 
-```bash
+`````bash
 # cron을 통해 주간 정리 실행
 crontab -e
 # 추가: 0 2 * * 0 /usr/bin/python3 /opt/mlflow/cleanup.py >> /var/log/mlflow-cleanup.log 2>&1
-```
+`````
 
 ### CI/CD와 통합
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Training Pipeline
 on: push: branches: [main]
@@ -604,7 +605,7 @@ jobs: train: runs-on: ubuntu-latest
       - name: Notify team
         run: |
           echo "Model trained and registered. Review at $MLFLOW_TRACKING_URI"
-```
+`````
 
 ## 대안과의 비교
 
@@ -644,13 +645,13 @@ MLflow는 훌륭하지만 만능은 아니다: **내장 파이프라인 오케�
 ## 자주 묻는 질문
 
 **Q: MLflow는 실험 데이터를 어떻게 저장하는가?**
-A: MLflow는 메타데이터(실험, 실행, 파라미터, 메트릭)를 위한 **백엔드 스토어**와 파일(모델, 플롯, 데이터셋)을 위한 **아티팩트 스토어**를 사용한다. 백엔드 스토어는 SQLite(개발), PostgreSQL/MySQL(프로덕션), 또는 파일 스토어가 될 수 있다. 아티팩트 스토어는 로컬 파일 시스템, S3, GCS, Azure Blob, 또는 HDFS가 될 수 있다. 둘 다 `mlflow server`를 시작할 때 구성된다.
+A: MLflow는 메타데이터(실험, 실행, 파라미터, 메트릭)를 위한 **백엔드 스토어**와 파일(모델, 플롯, 데이터셋)을 위한 **아티팩트 스토어**를 사용한다. 백엔드 스토어는 SQLite(개발), PostgreSQL/MySQL(프로덕션), 또는 파일 스토어가 될 수 있다. 아티팩트 스토어는 로컬 파일 시스템, S3, GCS, Azure Blob, 또는 HDFS가 될 수 있다. 둘 다 ````mlflow server````를 시작할 때 구성된다.
 
 **Q: 추적 서버 없이 MLflow를 사용할 수 있는가?**
-A: 예. MLflow는 **로컬 모드**에서 실험을 로컬 `mlruns/` 디렉토리에 기록한다. 이것은 개인 개발에 적합하다. 추적 URI를 설정하지 않고 `mlflow.start_run()`만 사용하면 된다 — 모든 것이 로컬에 기록되며 `mlflow ui`로 결과를 볼 수 있다.
+A: 예. MLflow는 **로컬 모드**에서 실험을 로컬 ````mlruns/```` 디렉토리에 기록한다. 이것은 개인 개발에 적합하다. 추적 URI를 설정하지 않고 ````mlflow.start_run()````만 사용하면 된다 — 모든 것이 로컬에 기록되며 ````mlflow ui````로 결과를 볼 수 있다.
 
 **Q: 로컬 SQLite에서 PostgreSQL로 어떻게 마이그레이션하는가?**
-A: MLflow는 데이터베이스 마이그레이션 유틸리티를 제공한다. 먼저 두 데이터베이스에 모두 접근할 수 있는지 확인하라. 그런 다음 `mlflow db upgrade postgresql://user:pass@host/db`를 사용하여 PostgreSQL 스키마를 초기화한다. 기존 실행 데이터를 마이그레이션하려면 `mlflow experiments csv`로 낸출하고 재가입하거나, `pgloader`와 같은 데이터베이스 마이그레이션 도구를 사용하여 SQLite에서 PostgreSQL로 직접 전송한다.
+A: MLflow는 데이터베이스 마이그레이션 유틸리티를 제공한다. 먼저 두 데이터베이스에 모두 접근할 수 있는지 확인하라. 그런 다음 ````mlflow db upgrade postgresql://user:pass@host/db````를 사용하여 PostgreSQL 스키마를 초기화한다. 기존 실행 데이터를 마이그레이션하려면 ````mlflow experiments csv````로 낸출하고 재가입하거나, ````pgloader````와 같은 데이터베이스 마이그레이션 도구를 사용하여 SQLite에서 PostgreSQL로 직접 전송한다.
 
 **Q: 모델 로깅과 모델 등록의 차이점은 무엇인가?**
 A: **모델 로깅**은 특정 실행에 모델 아티팩트를 저장하는 것이다 — 해당 실험 실행에 연결되며 실행 ID를 통해 검색할 수 있다. **모델 등록**은 모델 레지스트리에 추가하는 것으로, 이는 모든 실험과 독립적인 별도의 버전 관리 카탈로그이다. 등록된 모델은 단계별로 전환(Staging, Production, Archived)될 수 있고 이름과 버전으로 로드할 수 있어 프로덕션 배포를 위한 권장 경로이다.
@@ -659,13 +660,13 @@ A: **모델 로깅**은 특정 실행에 모델 아티팩트를 저장하는 것
 A: 클러스터에서 컨테이너로 MLflow를 배포한다. 백엔드에는 PostgreSQL StatefulSet을, 아티팩트에는 S3/GCS를 사용한다. 인증이 있는 Ingress를 통해 추적 서버를 노출한다. MLflow 서버 자체는 상태 비저장이며 여러 복제본을 Service 뒤에서 실행하여 고가용성을 얻을 수 있다. 자세한 매니페스트는 [Kubernetes](dibi8-internal-link) 배포 가이드를 참조하라.
 
 **Q: Python 외의 언어에서도 MLflow로 실험을 추적할 수 있는가?**
-A: 예. MLflow에는 **R** (`mlflow` R 패키지)과 **Java/Scala** (Java 클라이언트 라이브러리)에 대한 공식 클라이언트가 있다. **Julia**, **C#**, **Go**용 커뮤니티 클라이언트도 있다. REST API는 완벽하게 문서화되어 있으며 HTTP 요청을 할 수 있는 모든 언어에서 사용할 수 있다. 그러나 Python SDK는 autologging을 포함하여 가장 완전한 기능 세트를 갖추고 있다.
+A: 예. MLflow에는 **R** (````mlflow```` R 패키지)과 **Java/Scala** (Java 클라이언트 라이브러리)에 대한 공식 클라이언트가 있다. **Julia**, **C#**, **Go**용 커뮤니티 클라이언트도 있다. REST API는 완벽하게 문서화되어 있으며 HTTP 요청을 할 수 있는 모든 언어에서 사용할 수 있다. 그러나 Python SDK는 autologging을 포함하여 가장 완전한 기능 세트를 갖추고 있다.
 
 ## 결론: 오늘부터 모든 실험 추적 시작하기
 
 MLflow는 ML 라이프사이클 관리를 위한 가장 실용적인 오픈소스 솔루션으로 남아 있다. 제로 프릭션 설정, 프레임워크에 구애받지 않는 설계, 강력한 모델 레지스트리의 조합은 인프라 오버헤드 없이 실험 재현성을 원하는 팀의 기본 선택이 되게 한다. v2.22.0 (2026년 4월)은 LLM 프레임워크에 대한 개선된 autologging, 향상된 아티팩트 스트리밍, 새로워진 UI를 가져와 MLflow를 채택하기에 그 어느 때보다 좋은 시점이 되었다.
 
-프로덕션급 실험 추적으로 가는 길은 한 줄에서 시작된다: `mlflow.start_run()`. 파라미터를 기록하고, 메트릭을 기록하고, 최고의 모델을 등록하라. 3개월 후, 누군가 "어떤 모델을 출시해야 합니까?"라고 물을 때, 모델 레지스트리에서 완전한 계보와 재현성을 갖춘 답을 갖게 될 것이다.
+프로덕션급 실험 추적으로 가는 길은 한 줄에서 시작된다: ````mlflow.start_run()```. 파라미터를 기록하고, 메트릭을 기록하고, 최고의 모델을 등록하라. 3개월 후, 누군가 "어떤 모델을 출시해야 합니까?"라고 물을 때, 모델 레지스트리에서 완전한 계보와 재현성을 갖춘 답을 갖게 될 것이다.
 
 배포 준비가 되었는가? [DigitalOcean에서 $200 크레딧을 받아](https://m.do.co/c/eca87ac14ee0) MLflow 추적 서버를 호스팅하고 오늘부터 재현 가능한 ML을 출시하라. 대규모로 MLflow를 실행하는 팀의 팁을 위해 [Telegram 그룹](https://t.me/dibi8tech)에 참여하라.
 
@@ -719,7 +720,7 @@ MLflow는 ML 라이프사이클 관리를 위한 가장 실용적인 오픈소�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -729,6 +730,6 @@ MLflow는 ML 라이프사이클 관리를 위한 가장 실용적인 오픈소�
 - [cleanlab-11k-star-ai-data-cleaning](mlflow-experiment-tracking-production)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](mlflow-experiment-tracking-production)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

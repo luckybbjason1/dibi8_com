@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/zerion-wallet-portfolio-tracker/-
 ---
 
+
 {{</* resource-info */>}}
 
 **日期：** 2026-05-19  
@@ -33,7 +34,7 @@ aliases:
 **联盟披露：** *本文包含联盟链接。如果您通过我们的合作伙伴链接注册，我们可能会获得佣金 —— 无需您额外付费。我们的编辑观点保持独立。*
 
 
----
+* * *
 ## 简介：2026 年 DeFi 投资组合追踪的重要性
 
 去中心化金融（DeFi）已从一个小众实验演变为一个数万亿美元的生态系统。随着数千个协议分布在 10 多个区块链上，管理您的加密资产变得越来越复杂。**Zerion** —— 由 [zeriontech](https://github.com/zeriontech) 开发的开源 DeFi 投资组合追踪器，已成为超过 100 万用户管理超过 **50 亿美元追踪资产** 的首选解决方案。
@@ -43,7 +44,7 @@ aliases:
 **👉 准备好开始交易了吗？[立即在 Binance 注册](https://www.bsmkweb.cc/register?ref=DIBI8)，享受市场上最低的手续费。**
 
 
----
+* * *
 ## Zerion 是什么？了解核心架构
 
 Zerion 是一个 **DeFi 投资组合聚合器**，旨在为用户提供其链上资产的完整视图。与传统仅支持一两个链的投资组合追踪器不同，Zerion 集成了 **以太坊、Polygon、Arbitrum、Optimism、Base、BNB Chain、Avalanche、Fantom、Gnosis** 等 —— 使其成为最全面的追踪解决方案之一。
@@ -56,7 +57,7 @@ Zerion 是一个 **DeFi 投资组合聚合器**，旨在为用户提供其链上
 - 带有地板价数据的 NFT 持仓
 - 包含 Gas 费用的完整交易历史
 
----
+* * *
 
 ## 快速入门指南：首次设置 Zerion
 
@@ -64,15 +65,15 @@ Zerion 是一个 **DeFi 投资组合聚合器**，旨在为用户提供其链上
 
 ### 第一步 — 访问 Zerion 网页应用
 
-```bash
+````bash
 # 无需安装 — Zerion 是一个基于网页的 dApp
 # 官方网址：https://app.zerion.io
 # 连接钱包前务必验证 SSL 证书
-```
+`````
 
 ### 第二步 — 连接您的钱包
 
-```javascript
+`````javascript
 // Zerion 支持的钱包连接器
 const supportedWallets = [
   "MetaMask",
@@ -82,20 +83,20 @@ const supportedWallets = [
   "Zerion Wallet",
   "Ledger（通过 WalletConnect）"
 ];
-```
+`````
 
 ### 第三步 — 签署认证消息
 
-```javascript
+`````javascript
 // 示例：签署认证消息（只读）
 const message = "Sign this message to authenticate with Zerion\nNonce: 123456";
 const signature = await signer.signMessage(message);
 // 这是一个只读操作 —— 不执行任何交易
-```
+`````
 
 ### 第四步 — 查看您的投资组合仪表板
 
-```bash
+`````bash
 # 您的投资组合仪表板显示：
 # - 投资组合总价值（美元等值）
 # - 24 小时变化（%）和绝对值（$）
@@ -103,9 +104,9 @@ const signature = await signer.signMessage(message);
 # - 按协议分配的资产
 # - 最近交易
 # - 收益机会
-```
+`````
 
----
+* * *
 
 ## 深入了解：多链钱包追踪
 
@@ -113,7 +114,7 @@ Zerion 的突出功能之一是能够同时在 **10 多个区块链** 上聚合�
 
 ### 支持的网络（2026 年）
 
-```yaml
+`````yaml
 # Zerion 支持的网络完整列表
 ethereum: chain_id: 1
   type: "Layer 1"
@@ -142,18 +143,18 @@ bnb_chain: chain_id: 56
 avalanche: chain_id: 43114
   type: "Layer 1（子网）"
   features: ["C-Chain 支持", "DeFi 仓位"]
-```
+`````
 
 ### 查看跨链余额
 
-```javascript
+`````javascript
 // Zerion API：获取多链投资组合
 const fetchPortfolio = async (address) => {
   const response = await fetch(
-    `https://api.zerion.io/v1/wallets/${address}/portfolio`,
+    ````https://api.zerion.io/v1/wallets/${address}/portfolio````,
     {
       headers: {
-        "Authorization": `Basic ${API_KEY}`,
+        "Authorization": ````Basic ${API_KEY}````,
         "Accept": "application/json"
       }
     }
@@ -161,9 +162,9 @@ const fetchPortfolio = async (address) => {
   const data = await response.json();
   return data;  // 返回：{ total_value, chain_breakdown, assets, positions }
 };
-```
+`````
 
----
+* * *
 
 ## 收益追踪：监控您的 DeFi 回报
 
@@ -171,7 +172,7 @@ Zerion 的收益追踪模块监控您在借贷协议、流动性池和质押合�
 
 ### 支持的收益协议
 
-```python
+`````python
 # Zerion 追踪这些协议的仓位
 yield_protocols = {
     "借贷": ["Aave", "Compound", "Morpho", "Radiant"],
@@ -179,11 +180,11 @@ yield_protocols = {
     "质押": ["Lido", "Rocket Pool", "Frax Ether", "Coinbase Staked ETH"],
     "金库": ["Yearn Finance", "Beefy Finance", "Convex Finance"]
 }
-```
+`````
 
 ### 计算净收益
 
-```javascript
+`````javascript
 // 示例：从 Aave 仓位计算净收益
 const calculateNetYield = (position) => {
   const supplyAPY = position.supply_apy;        // 例如：3.45%
@@ -199,20 +200,20 @@ const calculateNetYield = (position) => {
     health_factor: position.health_factor
   };
 };
-```
+`````
 
----
+* * *
 
 ## NFT 投资组合管理
 
 Zerion 不仅支持同质化代币，还提供全面的 **NFT 投资组合追踪**，包含地板价数据、稀有度评分和收藏品分析。
 
-```javascript
+`````javascript
 // Zerion API：获取 NFT 持仓
 const fetchNFTs = async (address) => {
   const response = await fetch(
-    `https://api.zerion.io/v1/wallets/${address}/nft-positions`,
-    { headers: { "Authorization": `Basic ${API_KEY}` } }
+    ````https://api.zerion.io/v1/wallets/${address}/nft-positions````,
+    { headers: { "Authorization": ````Basic ${API_KEY}```` } }
   );
   const { data } = await response.json();
   
@@ -224,15 +225,15 @@ const fetchNFTs = async (address) => {
     estimated_value: nft.estimated_price
   }));
 };
-```
+`````
 
----
+* * *
 
 ## 交易历史与分析
 
 Zerion 提供完整的交易历史记录，附带详细的元数据。
 
-```javascript
+`````javascript
 // Zerion API：带过滤器的交易历史查询
 const fetchTransactions = async (address, filters) => {
   const queryParams = new URLSearchParams({
@@ -245,21 +246,21 @@ const fetchTransactions = async (address, filters) => {
   });
   
   const response = await fetch(
-    `https://api.zerion.io/v1/wallets/${address}/transactions?${queryParams}`,
-    { headers: { "Authorization": `Basic ${API_KEY}` } }
+    ````https://api.zerion.io/v1/wallets/${address}/transactions?${queryParams}````,
+    { headers: { "Authorization": ````Basic ${API_KEY}```` } }
   );
   
   return await response.json();
 };
-```
+`````
 
----
+* * *
 
 ## 开发者 API：使用 Zerion 构建应用
 
 Zerion 提供强大的 **REST API**，开发者可用它来集成投资组合数据到自己的应用中。
 
-```bash
+`````bash
 # Zerion API 使用基本认证
 API_KEY=$(echo -n 'YOUR_API_KEY:' | base64)
 
@@ -267,16 +268,16 @@ API_KEY=$(echo -n 'YOUR_API_KEY:' | base64)
 curl -X GET "https://api.zerion.io/v1/wallets/0x.../portfolio" \
   -H "Authorization: Basic ${API_KEY}" \
   -H "Accept: application/json"
-```
+`````
 
-```javascript
+`````javascript
 // 获取代币实时价格
 const getTokenPrice = async (tokenAddress, chain = "ethereum") => {
   const response = await fetch(
-    `https://api.zerion.io/v1/fungibles/${tokenAddress}?currency=usd`,
+    ````https://api.zerion.io/v1/fungibles/${tokenAddress}?currency=usd````,
     {
       headers: {
-        "Authorization": `Basic ${btoa(API_KEY + ":")}`,
+        "Authorization": ````Basic ${btoa(API_KEY + ":")}````,
         "Accept": "application/json"
       }
     }
@@ -289,9 +290,9 @@ const getTokenPrice = async (tokenAddress, chain = "ethereum") => {
     market_cap: data.attributes.market_data.market_cap
   };
 };
-```
+`````
 
-```javascript
+`````javascript
 // 订阅实时投资组合更新
 const ws = new WebSocket("wss://api.zerion.io/v1/ws");
 
@@ -309,15 +310,15 @@ ws.onopen = () => {
     }
   }));
 };
-```
+`````
 
----
+* * *
 
 ## 移动应用：随时随地的 DeFi
 
 Zerion 的移动应用（iOS 和 Android）将网页仪表板的全部功能带到您的口袋中。
 
-```bash
+`````bash
 # iOS：https://apps.apple.com/app/zerion-wallet/id1456732565
 # Android：https://play.google.com/store/apps/details?id=io.zerion.android
 # 功能包括：
@@ -326,21 +327,21 @@ Zerion 的移动应用（iOS 和 Android）将网页仪表板的全部功能带�
 # - 内置兑换功能（0x API）
 # - NFT 画廊与 AR 预览
 # - 追踪任何地址的观察列表
-```
+`````
 
----
+* * *
 
 ## 安全最佳实践
 
-```bash
+`````bash
 # 1. 始终确认网址为 https://app.zerion.io
 # 2. 绝不分享您的私钥或助记词
 # 3. 大额投资组合使用硬件钱包
 # 4. 定期撤销不必要的代币授权
 # 5. 在相关交易所账户启用 2FA
-```
+````
 
----
+* * *
 
 ## 常见问题解答（FAQ）
 
@@ -368,7 +369,7 @@ A：Zerion 网页应用是连接外部钱包的投资组合追踪器。Zerion �
 **Q8：Zerion 与 DeBank 相比如何？**
 A：两者都是领先的 DeFi 投资组合追踪器。Zerion 提供更精致的用户界面、更好的移动体验和 MIT 许可证下的开源组件。许多高级用户同时使用两者互补。
 
----
+* * *
 
 
 
@@ -387,7 +388,7 @@ A：两者都是领先的 DeFi 投资组合追踪器。Zerion 提供更精致的
 
 **准备好探索 DeFi 交易世界了吗？[在 Binance 注册](https://www.bsmkweb.cc/register?ref=DIBI8) —— 全球领先的加密货币交易所，最低交易费用和最深流动性。**
 
----
+* * *
 
 *免责声明：本文仅供信息参考，不构成财务建议。加密货币投资存在重大风险。在做出投资决策前，请务必进行自己的研究。本文包含联盟链接 —— 当您使用我们的合作伙伴链接时，我们可能会获得补偿，对您不产生额外费用。*
 
@@ -453,12 +454,12 @@ zerion-wallet-portfolio-tracker represents an important step forward in AI-power
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -466,7 +467,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [zerion-wallet-portfolio-tracker](zerion-wallet-portfolio-tracker)
 - [zerion-wallet-portfolio-tracker](zerion-wallet-portfolio-tracker)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -497,15 +498,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/hunyuan-video/
 ---
 
+
 {{</* resource-info */>}}
 
 720p에서 5초짜리 클립을 생성하는데 60GB VRAM이 필요한 비디오 생성 모델은 장난감이 아니라 인프라다. 텐센트의 HunyuanVideo는 130억 파라미터의 디퓨전 트랜스포머 비디오 생성 모델로, GitHub에서 12,100개 이상의 스타를 획득했으며 자체 호스팅 하드웨어에서 영화급 비디오 합성이 필요한 팀들의 필수 선택이 되었다. 이 가이드는 완전한 프로덕션 구축을 다룬다: 작동하는 Docker 배포부터 FP8 양자화, 다중 GPU 병렬 추론, ComfyUI 통합, 그리고 대규모 서비스에 필요한 모니터링까지.
@@ -54,7 +55,7 @@ HunyuanVideo는 텐센트가 개발한 대규모 비디오 생성 모델을 위�
 
 ### Docker 배포 (권장)
 
-```bash
+````bash
 # 공식 CUDA 12 이미지 Pull
 docker pull hunyuanvideo/hunyuanvideo:cuda_12
 
@@ -67,11 +68,11 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host \
   -v /mnt/models:/models \
   -p 8081:8081 \
   hunyuanvideo/hunyuanvideo:cuda_12
-```
+`````
 
 ### Ubuntu 수동 설치
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git
 cd HunyuanVideo
@@ -93,11 +94,11 @@ python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.
 
 # 다중 GPU 병렬 추론을 위한 xDiT 설치
 python -m pip install xfuser==0.4.0
-```
+`````
 
 ### 사전학습 모델 가중치 다운로드
 
-```bash
+`````bash
 # huggingface-cli 설치
 pip install huggingface_hub
 
@@ -115,11 +116,11 @@ huggingface-cli download tencent/HunyuanVideo \
 huggingface-cli download tencent/HunyuanVideo \
   --include "*text_encoder*" \
   --local-dir ./ckpts
-```
+`````
 
 ### 첫 번째 추론 실행
 
-```bash
+`````bash
 conda activate hunyuan
 
 python sample_video.py \
@@ -130,27 +131,27 @@ python sample_video.py \
     --flow-reverse \
     --use-cpu-offload \
     --save-path ./results
-```
+`````
 
-80GB 미만 VRAM의 GPU에서는 `--use-cpu-offload` 플래그가 필수적이다. 사용하지 않을 때 모델 가중치를 시스템 RAM으로 오프로드하여 속도를 희생하며 메모리를 확보한다.
+80GB 미만 VRAM의 GPU에서는 ````--use-cpu-offload```` 플래그가 필수적이다. 사용하지 않을 때 모델 가중치를 시스템 RAM으로 오프로드하여 속도를 희생하며 메모리를 확보한다.
 
 ## 인기 도구와의 통합
 
 ### ComfyUI (네이티브 노드)
 
-ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comfy-Org에서 재패키징된 모델 파일을 다운로드하라: ```bash
+ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comfy-Org에서 재패키징된 모델 파일을 다운로드하라: `````bash
 # 모델 파일을 ComfyUI/models/ 경로에 배치
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
 # - diffusion_models/hunyuan_video_720p_bf16.safetensors
 # - vae/hunyuan_video_vae_bf16.safetensors
-```
+`````
 
-공식 워크플로우 JSON을 ComfyUI로 드래그하여 로드하라. 핵심 노드는 `HunyuanVideoSampler`, `HunyuanVideoDecode`, `TextEncodeHunyuanVideo`이다.
+공식 워크플로우 JSON을 ComfyUI로 드래그하여 로드하라. 핵심 노드는 ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, ````TextEncodeHunyuanVideo````이다.
 
 ### Kijai의 HunyuanVideoWrapper (고급)
 
-FP8 추론, 비디오 투 비디오, 이미지 투 비디오를 위해서는 커뮤니티 래퍼를 사용하라: ```bash
+FP8 추론, 비디오 투 비디오, 이미지 투 비디오를 위해서는 커뮤니티 래퍼를 사용하라: `````bash
 # ComfyUI 관리자 또는 git으로 설치
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -158,13 +159,13 @@ git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
 # 의존성 설치
 cd ComfyUI-HunyuanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-Hugging Face의 `Kijai/HunyuanVideo_comfy`에서 FP8 가중치를 다운로드하여 `ComfyUI/models/diffusion_models/`에 배치하라.
+Hugging Face의 ````Kijai/HunyuanVideo_comfy````에서 FP8 가중치를 다운로드하여 ````ComfyUI/models/diffusion_models/````에 배치하라.
 
 ### Diffusers 파이프라인
 
-```python
+`````python
 from diffusers import HunyuanVideoPipeline
 import torch
 
@@ -196,24 +197,24 @@ frames[0].save(
     duration=67,
     loop=0
 )
-```
+`````
 
 ### Gradio API 서버
 
-```bash
+`````bash
 # Gradio 서버 시작
 python gradio_server.py --flow-reverse
 
 # 또는 모든 인터페이스에 바인딩하여 원격 접근 허용
 SERVER_NAME=0.0.0.0 SERVER_PORT=8081 \
   python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
-Gradio UI는 프롬프트, 해상도, 프레임 수, CFG 스케일, 시드 등의 파라미터를 노출한다. 프로그래매틱 접근을 위해 브라우저에서 `/run/predict` 엔드포인트를 찾아 JSON 페이로드를 복제하라.
+Gradio UI는 프롬프트, 해상도, 프레임 수, CFG 스케일, 시드 등의 파라미터를 노출한다. 프로그래매틱 접근을 위해 브라우저에서 ````/run/predict```` 엔드포인트를 찾아 JSON 페이로드를 복제하라.
 
 ### DigitalOcean GPU Droplets
 
-로컬 GPU 하드웨어가 없는 팀을 위해 DigitalOcean GPU Droplets는 온디맨드로 NVIDIA H100 및 A100 인스턴스를 제공한다: ```yaml
+로컬 GPU 하드웨어가 없는 팀을 위해 DigitalOcean GPU Droplets는 온디맨드로 NVIDIA H100 및 A100 인스턴스를 제공한다: `````yaml
 #cloud-config
 package_update: true
 packages: - docker.io
@@ -224,7 +225,7 @@ runcmd: - systemctl restart docker
       -p 8081:8081 -v /mnt/models:/models \
       hunyuanvideo/hunyuanvideo:cuda_12 \
       python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -250,7 +251,7 @@ RTX 4090 및 데이터센터 GPU 테스트의 커뮤니티 벤치마크 (2026년
 
 FP8 양자화는 FP32 가중치를 8비트 부동소수점 형식으로 변환하여 최소한의 품질 저하로 약 10GB GPU 메모리 사용량을 줄인다.
 
-```bash
+`````bash
 # FP8 가중치 및 스케일 파일 다운로드
 huggingface-cli download tencent/HunyuanVideo \
   --include "mp_rank_00_model_states_fp8.pt" \
@@ -268,13 +269,13 @@ python sample_video.py \
     --use-cpu-offload \
     --use-fp8 \
     --save-path ./results
-```
+`````
 
-`--use-fp8` 플래그는 `hyvideo/modules/fp8_optimization.py`에서 FP8 파이프라인을 활성화한다. E4M3 형식(지수 4비트, 가수 3비트)은 메모리를 약 40% 절감하면서 추론에 충분한 정밀도를 유지한다.
+````--use-fp8```` 플래그는 ````hyvideo/modules/fp8_optimization.py````에서 FP8 파이프라인을 활성화한다. E4M3 형식(지수 4비트, 가수 3비트)은 메모리를 약 40% 절감하면서 추론에 충분한 정밀도를 유지한다.
 
 ### xDiT를 활용한 다중 GPU 병렬 추론
 
-프로덕션 워크로드의 경우 xDiT는 여러 GPU에서 확장되는 Unified Sequence Parallelism을 제공한다: ```bash
+프로덕션 워크로드의 경우 xDiT는 여러 GPU에서 확장되는 Unified Sequence Parallelism을 제공한다: `````bash
 # 8 GPU 병렬 추론
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -286,7 +287,7 @@ torchrun --nproc_per_node=8 sample_video.py \
     --ulysses-degree 8 \
     --ring-degree 1 \
     --save-path ./results
-```
+`````
 
 1280x720, 129 프레임, 50 스텝의 지연 시간 확장: | GPU 수 | 지연 시간 (초) | 스피드업 |
 |---|---|---|
@@ -295,11 +296,11 @@ torchrun --nproc_per_node=8 sample_video.py \
 | 4 | 514 | 3.70x |
 | 8 | 338 | 5.64x |
 
-`--ulysses-degree`와 `--ring-degree` 파라미터는 병렬 전략을 제어한다. 대부분의 설정에서는 Ulysses를 먼저 최대화하라.
+````--ulysses-degree````와 ````--ring-degree```` 파라미터는 병렬 전략을 제어한다. 대부분의 설정에서는 Ulysses를 먼저 최대화하라.
 
 ### 리버스 프록시가 있는 프로덕션 Gradio
 
-```bash
+`````bash
 # 프로덕션 설정으로 시작
 SERVER_NAME=0.0.0.0 \
 SERVER_PORT=8081 \
@@ -309,9 +310,9 @@ python gradio_server.py \
   --use-fp8 \
   --max-queue-size 10 \
   --queue-timeout 300
-```
+`````
 
-속도 제한이 있는 Nginx 리버스 프록시 뒤에서: ```nginx
+속도 제한이 있는 Nginx 리버스 프록시 뒤에서: `````nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -334,11 +335,11 @@ server {
     limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m;
     limit_req zone=video burst=5 nodelay;
 }
-```
+`````
 
 ### Prometheus로 모니터링
 
-```python
+`````python
 # gradio_server.py에 추가 또는 추론 호출 래핑
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -354,7 +355,7 @@ def generate_video(prompt, height, width, frames, steps): inference_count.inc()
 
 # 9090 포트에서 메트릭 서버 시작
 start_http_server(9090)
-```
+`````
 
 ### 보안 하드닝
 
@@ -428,7 +429,7 @@ A: 텐센트 팀은 GitHub README에 Discord 서버와 WeChat 그룹 링크를 �
 HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격차를 메우는 프로덕션급 비디오 생성 프레임워크이다. 1.5 릴리스로 83억 파라미터, SSTA 어텐션, 소비자 GPU 호환성을 갖추면서 스튜디오와 독립 크리에이터 모두에게 실용적인 선택이 되었다.
 
 오늘 시작하기 위한 액션 아이템: 1. 저장소를 클론하고 GPU 인스턴스에서 Docker 이미지를 실행하라 — 공식 CUDA 12 이미지가 가장 빠른 경로이다.
-2. FP8 가중치를 다운로드하고 `sample_video.py`로 첫 720p 생성을 실행하라.
+2. FP8 가중치를 다운로드하고 ````sample_video.py```로 첫 720p 생성을 실행하라.
 3. Kijai의 래퍼로 ComfyUI와 통합하여 시각적 워크플로우 편집을 하라.
 4. [dibi8 Telegram 그룹](https://t.me/dibi8Channel)에 가입하여 배포 전략을 논의하고 커뮤니티와 생성된 비디오를 공유하라.
 
@@ -482,7 +483,7 @@ HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -492,6 +493,6 @@ HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격�
 - [comfyui-workflows-complete-guide](hunyuan-video)
 - [comfyui-workflows-complete-guide](hunyuan-video)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

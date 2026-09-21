@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 ---
 
+
 # CloakBrowser: 通过所有机器人检测的隐身 Chromium 浏览器 — 25,000 星的抓取利器 — 2026 实用指南
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              CloakBrowser 反检测                       │
 │                                                      │
@@ -38,7 +39,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 │  │         反检测浏览器                            │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *CloakBrowser: 即插即用的 Playwright 替代品，通过所有机器人检测测试*
 
@@ -53,7 +54,7 @@ CloakBrowser 是一个 **在源码级别修补的隐身 Chromium 浏览器引擎
 核心功能：
 - **源码级修补** — 在构建时修改 Chromium，而非运行时 hack
 - **30/30 检测测试通过** — 通过主要机器人检测系统（Cloudflare、Datadome、PerimeterX 等）
-- **即插即用 Playwright 替代品** — 用一行代码替换 `playwright.chromium.launch()`
+- **即插即用 Playwright 替代品** — 用一行代码替换 ````playwright.chromium.launch()````
 - **TLS 指纹随机化** — 像真实浏览器一样轮换 TLS 指纹
 - **WebRTC 泄露防护** — 防止通过 WebRTC 泄露 IP
 - **无头检测绕过** — 隐藏所有无头浏览器签名
@@ -67,7 +68,7 @@ CloakBrowser 是一个 **在源码级别修补的隐身 Chromium 浏览器引擎
 
 CloakBrowser 在 Chromium 构建时应用修补：
 
-```bash
+`````bash
 # 从源码构建 CloakBrowser
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser
@@ -87,11 +88,11 @@ cd CloakBrowser
 # - 语言检测
 # - 插件枚举
 # - 字体枚举
-```
+`````
 
 ### 阶段 2：运行时集成
 
-```python
+`````python
 # 用 CloakBrowser 替换 Playwright 的 Chromium
 from playwright.sync_api import sync_playwright
 
@@ -103,11 +104,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     page.goto("https://example.com")
     print(page.title())
     browser.close()
-```
+`````
 
 ### 阶段 3：隐身配置
 
-```python
+`````python
 # 高级隐身配置
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -124,13 +125,13 @@ browser = p.chromium.launch(
 import os
 os.environ["CLOAK_RANDOMIZE_FINGERPRINT"] = "true"
 os.environ["CLOAK_PROXY_ROTATION"] = "true"
-```
+`````
 
 ## 安装与设置
 
 ### 快速入门（Python）
 
-```bash
+`````bash
 # 安装 CloakBrowser
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser && ./build.sh
@@ -141,11 +142,11 @@ playwright install chromium
 
 # 使用 CloakBrowser 运行
 python stealth_scrape.py
-```
+`````
 
 ### Node.js 设置
 
-```bash
+`````bash
 # 安装 CloakBrowser
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser && ./build.sh
@@ -159,11 +160,11 @@ const { chromium } = require('playwright');
 const browser = await chromium.launch({
   executablePath: './cloak-browser/chrome',
 });
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 # 在 Docker 中构建和运行
 docker build -t cloak-browser .
 
@@ -173,11 +174,11 @@ docker run -d \
   -v $(pwd)/output:/output \
   -e CLOAK_PROXY=http://proxy:8080 \
   cloak-browser:latest
-```
+`````
 
 ### 代理集成
 
-```python
+`````python
 # CloakBrowser 配合代理轮换
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -199,7 +200,7 @@ for url in urls: proxy = get_proxy()
     page = browser.new_page(proxy=proxy)
     page.goto(url)
     # 抓取...
-```
+`````
 
 为了可靠的代理基础设施，使用 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 数据中心代理，[ProxyShard](https://www.proxyshard.com/?ref=11457) 住宅代理，或在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 上部署以实现自托管抓取。
 
@@ -209,11 +210,11 @@ for url in urls: proxy = get_proxy()
 
 | 检测系统 | 标准 Chromium | CloakBrowser |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cloudflare Turnstile | 已封禁 | 通过 ✅ |
 | Datadome | 已封禁 | 通过 ✅ |
@@ -229,11 +230,11 @@ for url in urls: proxy = get_proxy()
 
 | 类别 | 标准 Chromium | CloakBrowser |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 无头检测 | 失败 (8/8) | 通过 (8/8) |
 | WebRTC 泄露 | 泄露 IP | 无泄露 (0/0) |
@@ -248,7 +249,7 @@ for url in urls: proxy = get_proxy()
 
 ### 真实用例 1：电商价格监控
 
-```python
+`````python
 # 监控 50 个电商网站的价格
 from playwright.sync_api import sync_playwright
 import time
@@ -270,11 +271,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     browser.close()
 
 # 结果：50 个网站中 48 个通过，2 个被阻断（手动验证码）
-```
+`````
 
 ### 真实用例 2：SEO 工具数据采集
 
-```python
+`````python
 # 从搜索引擎采集 SEO 数据
 page = browser.new_page()
 
@@ -289,13 +290,13 @@ for query in seo_queries: ua = random.choice(user_agents)
     page.goto(f"https://google.com/search?q={query}")
     results = page.locator(".g").all()
     print(f"查询: {query}, 结果: {len(results)}")
-```
+`````
 
 ## 高级用法 / 生产加固
 
 ### 指纹随机化
 
-```python
+`````python
 # 启用自动指纹轮换
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -321,11 +322,11 @@ fingerprint = {
 
 # 应用自定义指纹
 os.environ["CLOAK_FINGERPRINT"] = json.dumps(fingerprint)
-```
+`````
 
 ### 会话管理
 
-```python
+`````python
 # 在请求间维护会话 cookie
 context = browser.new_context()
 
@@ -334,11 +335,11 @@ context.storage_state(path="./cookies.json")
 
 # 下次运行时恢复 cookie
 context = browser.new_context(storage_state="./cookies.json")
-```
+`````
 
 ### 无头模式
 
-```python
+`````python
 # CloakBrowser 在无头和有头模式下均有效
 # 无头模式：用于服务器部署
 browser = p.chromium.launch(
@@ -351,21 +352,21 @@ browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
     headless=False,
 )
-```
+````
 
 ## 与替代方案对比
 
 | 功能 | CloakBrowser | Stealth-Puppeteer | undetected-chromedriver | 商业工具 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 源码级修补 | 是 | 运行时 hack | 运行时 hack | 基于云 |
 | 机器人检测测试通过数 | 30/30 | 5-10/30 | 8-12/30 | 15-20/30 |
@@ -381,13 +382,13 @@ browser = p.chromium.launch(
 
 | 方面 | CloakBrowser | 传统无头浏览器 | 运行时 hack 方法 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 指纹一致性 | 源码级真实 | 完全暴露 | 部分修补 |
 | 检测通过率 | 30/30 | 0/30 | 5-12/30 |
@@ -518,12 +519,12 @@ CloakBrowser: 通过所有机器人检测测试的隐身 Chromium 浏览器 — 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [obscura-rust-headless-browser-ai-agents-web-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping)
@@ -532,7 +533,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [agent-reach-internet-access-ai-agents](cloakbrowser-stealth-chromium-bot-detection-scraping)
 - [roboflow-supervision](cloakbrowser-stealth-chromium-bot-detection-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

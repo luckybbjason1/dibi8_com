@@ -33,6 +33,7 @@ faqs: - q: 'Ladybird 浏览器是什么？'
     a: '目前约 73% 的浏览器使用 Google 的 Chromium 引擎，使 Google 对网络标准拥有强大的影响力。独立引擎能够增加多样性、降低单点故障风险，并实现真正的隐私保护——无遥测、无企业追踪。'
   - q: '如何安装或体验 Ladybird？'
     a: '你需要通过克隆 GitHub 仓库来从源码构建 Ladybird，安装必要依赖（Ubuntu/Debian 上为 build-essential、cmake、ninja-build），然后使用 CMake 和 Ninja 完成编译，最后运行 ./bin/Ladybird。此外也提供了一个实验性的 Docker 镜像供选择。'---
+
 {</* resource-info */>}
 
 ## Ladybird 是什么？
@@ -52,13 +53,13 @@ faqs: - q: 'Ladybird 浏览器是什么？'
 
 | 浏览器 | 引擎 | 市场份额 | 企业控制 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Chrome | Blink (Chromium) | 65% | Google |
 | Edge | Blink (Chromium) | 5% | Microsoft |
@@ -78,7 +79,7 @@ faqs: - q: 'Ladybird 浏览器是什么？'
 5. **自由**: 企业利益 vs 用户利益
 
 
----
+* * *
 ## Ladybird 的方法
 
 ### 从头构建
@@ -92,7 +93,7 @@ Ladybird 不分支 Chromium 或 Firefox。它构建一切：
 
 ### 架构
 
-```
+````
 用户请求
     ↓
 网络层 (LibHTTP)
@@ -102,9 +103,9 @@ HTML 解析器 (LibWeb)
 DOM 树 → CSS 解析器 → 样式计算
     ↓
 布局引擎 → 渲染 → 显示
-```
+`````
 
----
+* * *
 
 ## 关键特性
 
@@ -132,7 +133,7 @@ DOM 树 → CSS 解析器 → 样式计算
 - 快速启动时间
 - 高效渲染
 
----
+* * *
 
 ## 开发状态
 
@@ -140,11 +141,11 @@ DOM 树 → CSS 解析器 → 样式计算
 
 | 特性 | 状态 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 基础 HTML/CSS | ✅ | 大多数网站可渲染 |
 | JavaScript | ✅ | ES2026 支持 |
@@ -164,13 +165,13 @@ DOM 树 → CSS 解析器 → 样式计算
 - **100+ 贡献者**
 - **每日提交**
 
----
+* * *
 
 ## 如何尝试 Ladybird
 
 ### 从源码构建
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/LadybirdBrowser/ladybird.git
 cd ladybird
@@ -185,16 +186,16 @@ ninja
 
 # 运行
 ./bin/Ladybird
-```
+`````
 
 ### Docker (实验性)
 
-```bash
+`````bash
 docker pull ladybird/browser
 docker run -it ladybird/browser
-```
+````
 
----
+* * *
 
 ## 为什么 Ladybird 很重要
 
@@ -216,7 +217,7 @@ docker run -it ladybird/browser
 - **创新**: 竞争驱动进步
 - **弹性**: 无单点故障
 
----
+* * *
 
 ## 与其他浏览器比较
 
@@ -224,11 +225,11 @@ docker run -it ladybird/browser
 
 | 方面 | Ladybird | Chrome |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 引擎 | LibWeb (新) | Blink (Chromium) |
 | 大小 | ~50MB | ~200MB |
@@ -240,18 +241,18 @@ docker run -it ladybird/browser
 
 | 方面 | Ladybird | Firefox |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 引擎 | LibWeb (新) | Gecko (遗留) |
 | 年龄 | 2 年 | 20+ 年 |
 | 现代性 | 全新开始 | 技术债务 |
 | 资金 | 社区 | Mozilla Corp |
 
----
+* * *
 
 ## Ladybird 背后的团队
 
@@ -267,7 +268,7 @@ docker run -it ladybird/browser
 - 志愿者驱动
 - 透明治理
 
----
+* * *
 
 ## 相关文章
 
@@ -275,11 +276,11 @@ docker run -it ladybird/browser
 - [Free Claude Code: 开源 AI 编码](/zh/resources/ai-tools/free-claude-code-open-source-proxy/) — 开发者工具
 - [Polymarket Agents: AI 交易机器人](/zh/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — AI 在金融领域
 
----
+* * *
 
 *免责声明: Ladybird 正在积极开发中，尚未准备好日常使用。本文介绍了一个对抗浏览器垄断的重要开源项目。*
 
----
+* * *
 
 ## 推荐工具
 
@@ -353,7 +354,7 @@ Ladybird: 真正独立的浏览器 — 浏览器独立的新时代 represents an
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

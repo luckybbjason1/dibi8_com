@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/-
 ---
 
+
 {</* resource-info */>}
 
 ## 引言：为什么 Crawl4AI 在 2026 年引爆开发者社区
@@ -41,21 +42,21 @@ Crawl4AI 的核心价值主张很直接：**把任意网站转化为干净、LLM
 - Docker 生产部署与性能调优
 
 
----
+* * *
 ## 一、Crawl4AI 是什么？AI 时代的数据采集基础设施
 
 ### 1.1 项目定位与核心特性
 
-Crawl4AI（GitHub: `unclecode/crawl4ai`）是一个基于 Python 的异步网页爬虫框架，底层使用 Playwright 驱动浏览器。它与传统爬虫的最大区别在于**输出形态**：不是原始 HTML 或需要二次清洗的 DOM 树，而是**经过噪声过滤的 Markdown**——恰好是 LLM 上下文窗口最高效的输入格式。
+Crawl4AI（GitHub: ```unclecode/crawl4ai````）是一个基于 Python 的异步网页爬虫框架，底层使用 Playwright 驱动浏览器。它与传统爬虫的最大区别在于**输出形态**：不是原始 HTML 或需要二次清洗的 DOM 树，而是**经过噪声过滤的 Markdown**——恰好是 LLM 上下文窗口最高效的输入格式。
 
 | 特性 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **LLM-Ready Markdown** | 自动去除导航栏、广告、Cookie Banner，输出结构化 Markdown |
-| **异步并行** | `AsyncWebCrawler` 支持多 URL 并发，适合大规模采集 |
+| **异步并行** | ````AsyncWebCrawler```` 支持多 URL 并发，适合大规模采集 |
 | **JavaScript 渲染** | Playwright 驱动，完美处理 React/Vue 等动态站点 |
 | **LLM 结构化提取** | 通过 Pydantic Schema + 自然语言指令，让 LLM 自动提取字段 |
 | **深度爬取** | BFS/DFS 策略，支持站点级递归抓取 |
@@ -70,35 +71,35 @@ Crawl4AI（GitHub: `unclecode/crawl4ai`）是一个基于 Python 的异步网页
 - **合规敏感团队**：数据不出境，本地运行，无第三方 SaaS 依赖
 
 
----
+* * *
 ## 二、5 分钟上手：安装、首次爬取与 Markdown 输出
 
 ### 2.1 环境准备与安装
 
 Crawl4AI 支持 pip 和 Docker 两种安装方式。如果你已有 Python 3.9+ 环境，推荐 pip：
 
-```bash
+`````bash
 pip install crawl4ai
 playwright install chromium
-```
+`````
 
 若需同步版本（基于 Selenium）：
 
-```bash
+`````bash
 pip install crawl4ai[sync]
-```
+`````
 
 Docker 一键部署（适合生产或隔离环境）：
 
-```bash
+`````bash
 docker pull unclecode/crawl4ai:latest
-```
+`````
 
 ### 2.2 最简示例：异步爬取单页
 
 以下 10 行代码完成一次完整的爬取并输出 Markdown：
 
-```python
+`````python
 import asyncio
 from crawl4ai import AsyncWebCrawler
 
@@ -106,27 +107,27 @@ async def main(): async with AsyncWebCrawler() as crawler: result = await crawle
         print(result.markdown[:1000])
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 **输出示例**（已自动过滤导航和广告）：
 
-```markdown
+`````markdown
 # Crawl4AI: Open-Source LLM-Friendly Web Crawler
 
 Crawl4AI turns the web into clean, LLM ready Markdown for RAG, agents, and data pipelines...
-```
+`````
 
 ### 2.3 命令行快速体验
 
 不想写脚本？直接用 CLI：
 
-```bash
+`````bash
 crwl https://example.com -o markdown
-```
+`````
 
-支持输出格式：`markdown`、`html`、`json`、`links`、`screenshot`。
+支持输出格式：````markdown````、````html````、````json````、````links````、````screenshot````。
 
----
+* * *
 
 ## 三、核心进阶：LLM 结构化数据提取实战
 
@@ -136,17 +137,17 @@ Crawl4AI 最性感的功能，是让 LLM 代替你写 CSS 选择器。你只需�
 
 首先定义 Pydantic Schema：
 
-```python
+`````python
 from pydantic import BaseModel, Field
 
 class OpenAIModelFee(BaseModel): model_name: str = Field(..., description="模型名称")
     input_fee: str = Field(..., description="输入 Token 单价")
     output_fee: str = Field(..., description="输出 Token 单价")
-```
+`````
 
-然后配置 `LLMExtractionStrategy`：
+然后配置 ````LLMExtractionStrategy````：
 
-```python
+`````python
 import os
 import asyncio
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
@@ -178,20 +179,20 @@ async def main(): browser_config = BrowserConfig(verbose=True)
         print(result.extracted_content)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 **关键参数说明**：
 
-- `provider`：支持 `openai/gpt-4o`、`anthropic/claude-sonnet`、`groq/deepseek-r1-distill-llama-70b`、`ollama/llama3` 等
-- `schema`：Pydantic 模型的 JSON Schema，约束 LLM 输出结构
-- `instruction`：自然语言指令，相当于给 LLM 的「岗位说明书」
-- `input_format="markdown"`：将页面转为 Markdown 后送入 LLM，显著减少 Token 消耗
+- ````provider````：支持 ````openai/gpt-4o````、````anthropic/claude-sonnet````、````groq/deepseek-r1-distill-llama-70b````、````ollama/llama3```` 等
+- ````schema````：Pydantic 模型的 JSON Schema，约束 LLM 输出结构
+- ````instruction````：自然语言指令，相当于给 LLM 的「岗位说明书」
+- ````input_format="markdown"````：将页面转为 Markdown 后送入 LLM，显著减少 Token 消耗
 
 ### 3.2 接入国产模型：DeepSeek + Crawl4AI
 
 如果你希望使用 DeepSeek-R1 或本地模型降低成本：
 
-```python
+`````python
 extraction_strategy = LLMExtractionStrategy(
     provider="groq/deepseek-r1-distill-llama-70b",
     api_token=os.getenv(GROQ_API_KEY),
@@ -201,17 +202,17 @@ extraction_strategy = LLMExtractionStrategy(
     input_format="markdown",
     verbose=True
 )
-```
+`````
 
 通过 GroqCloud 或本地 Ollama 部署，可实现**零美元页面级提取**（仅需自付 LLM 推理成本）。
 
----
+* * *
 
 ## 四、深度爬取与内容过滤：从单页到整站
 
 ### 4.1 BFS 深度爬取：抓取站点两层结构
 
-```python
+`````python
 import asyncio
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
@@ -232,24 +233,24 @@ async def main(): config = CrawlerRunConfig(
         for r in results[:3]: print(f"URL: {r.url} | 深度: {r.metadata.get(depth, 0)}")
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ### 4.2 BM25 内容过滤：只保留与查询相关的片段
 
 在 RAG 场景中，你往往不需要整篇文章，而是与问题相关的段落。Crawl4AI 内置 BM25 过滤器：
 
-```python
+`````python
 from crawl4ai.content_filter import BM25ContentFilter
 
 filter = BM25ContentFilter(
     query="异步爬虫配置方法",
     threshold=0.1  # 相似度阈值
 )
-```
+`````
 
 此过滤器会在爬取后，仅保留与查询高相关的文本块，大幅减少 Embedding 和存储成本。
 
----
+* * *
 
 ## 五、横向对比：Crawl4AI vs Firecrawl vs ScrapeGraphAI vs Scrapy
 
@@ -257,15 +258,15 @@ filter = BM25ContentFilter(
 
 | 维度 | Crawl4AI | Firecrawl | ScrapeGraphAI | Scrapy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 63k+ | 78k+ | 23k+ | 50k+ |
 | **部署方式** | 自托管 / Docker | SaaS API / 开源 | 开源 Python 库 | 开源框架 |
@@ -283,7 +284,7 @@ filter = BM25ContentFilter(
 - **选 ScrapeGraphAI 如果**：你的核心需求是「用自然语言描述 + 图遍历自动发现关联数据」。
 - **选 Scrapy 如果**：你在做百万级页面分布式爬取，需要 middleware 管道、去重队列、多后端存储等工业化能力。
 
----
+* * *
 
 ## 六、生产环境部署与性能调优
 
@@ -291,25 +292,25 @@ filter = BM25ContentFilter(
 
 Crawl4AI 官方提供带 JWT 认证的 Docker 镜像，可直接作为内部 API 部署：
 
-```bash
+`````bash
 docker run -p 8000:8000 \
   -e CRAWL4AI_API_TOKEN=your_secret \
   unclecode/crawl4ai:latest
-```
+`````
 
 然后你的其他服务可通过 HTTP 调用：
 
-```bash
+`````bash
 curl -X POST http://localhost:8000/crawl \
   -H "Authorization: Bearer your_secret" \
   -d '{"url": "https://example.com", "output_format": "markdown"}'
-```
+`````
 
 ### 6.2 并发与代理配置
 
 生产环境建议开启异步并发池，并配置代理避免被封：
 
-```python
+`````python
 browser_config = BrowserConfig(
     headless=True,
     proxy_config={
@@ -319,24 +320,24 @@ browser_config = BrowserConfig(
     },
     verbose=True
 )
-```
+`````
 
 ### 6.3 常见问题与解决
 
 | 问题 | 原因 | 解决 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 页面内容为空 | 单页应用（SPA）未渲染完成 | 增加 `wait_until="networkidle"` 或延迟 |
+| 页面内容为空 | 单页应用（SPA）未渲染完成 | 增加 ````wait_until="networkidle"```` 或延迟 |
 | 被反爬拦截 | User-Agent / 指纹检测 | 开启 Stealth Mode，使用住宅代理 |
 | LLM 提取超时 | 页面过大，Token 过多 | 先用 CSS 选择器缩小范围，再送 LLM |
-| Playwright 安装失败 | Chromium 下载被墙 | 使用 `PLAYWRIGHT_BROWSERS_PATH=0` 或国内镜像 |
+| Playwright 安装失败 | Chromium 下载被墙 | 使用 ````PLAYWRIGHT_BROWSERS_PATH=0``` 或国内镜像 |
 
----
+* * *
 
 
 
@@ -364,7 +365,7 @@ Crawl4AI 不是银弹，但它在「LLM 时代的数据采集」这个细分领�
 3. 接入 LLM 提取，对比 CSS 方案与 LLM 方案的准确率差异
 4. 根据第 5 节的选型表，决定是否需要迁移到 Firecrawl 或混合使用
 
----
+* * *
 
 **参考与资源**
 
@@ -373,7 +374,7 @@ Crawl4AI 不是银弹，但它在「LLM 时代的数据采集」这个细分领�
 - [Firecrawl vs Crawl4AI 深度对比（2026）](https://www.pkgpulse.com/guides/crawl4ai-vs-firecrawl-vs-apify-ai-web-scraping-2026)
 - [Best Open-Source Web Crawlers 2026](https://www.firecrawl.dev/blog/best-open-source-web-crawler)
 
----
+* * *
 
 *本文发布于 2026-05-19，数据基于 GitHub、官方文档及公开评测。Crawl4AI 版本迭代较快，建议阅读时核对最新文档。*
 
@@ -439,12 +440,12 @@ Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -454,7 +455,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-15-trending-ai-agents](crawl4ai-tutorial-llm-ready-web-scraping-2026)
 - [2026-06-22-trending-ai-agents](crawl4ai-tutorial-llm-ready-web-scraping-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -485,15 +486,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

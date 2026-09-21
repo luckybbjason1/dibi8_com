@@ -25,6 +25,7 @@ tags: ["chattts", "tts", "voice", "dialogue", "open-source"]
 aliases:
   - /posts/chattts-dialogue-tts-2026/-
 ---
+
 Most open-source TTS in 2026 still sounds like "1990s GPS narrator with extra reverb." **ChatTTS** is the first widely-adopted exception — a 39.3k-star generative speech model specifically trained for **dialogue**, not narration, with token-level control over laughter, pauses, interjections, and prosody that finally crosses the "doesn't make you wince" threshold.
 
 If you're building voice agents, AI podcasts, multi-character TTS for games, or any voice product where flat narration kills the experience — ChatTTS is the default open-source pick in 2026.
@@ -44,7 +45,7 @@ The legacy split: - **Concatenative TTS** (festival, etc.) — mechanical, no pr
 - **Neural TTS** (Tacotron / FastSpeech / VITS) — fluid but monotone, optimized for narration
 - **Commercial APIs** (ElevenLabs / OpenAI TTS) — natural but $0.18-0.50/1000 chars and closed
 
-ChatTTS sits in a new fourth category: **autoregressive generative TTS with explicit prosodic control tokens**. You don't just type text — you can mark up `[laugh]`, `[uv_break]` (umm), `[lbreak]` (long pause), and the model produces a vocal performance, not just speech.
+ChatTTS sits in a new fourth category: **autoregressive generative TTS with explicit prosodic control tokens**. You don't just type text — you can mark up ```[laugh]````, ````[uv_break]```` (umm), ````[lbreak]```` (long pause), and the model produces a vocal performance, not just speech.
 
 For dialogue use cases (voice agents, AI podcasts, NPC dialogue in games), this is the difference between "obvious robot" and "could be a real person on a bad phone line." For narration, classical neural TTS is still often better.
 
@@ -52,11 +53,11 @@ For dialogue use cases (voice agents, AI podcasts, NPC dialogue in games), this 
 
 | Hardware | 30s clip generation time | Practical use |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 4 GB GPU (GTX 1650 / 3050) | ~25 sec | Hobby, single-clip |
 | 8 GB GPU (RTX 3060 / 4060) | ~10 sec | Solo dev, batch jobs |
@@ -68,14 +69,14 @@ For self-hosted production, the entry point is a $0.30-0.50/hr GPU cloud (Vast.a
 
 ## 3. Quick Install (10 minutes on a GPU machine)
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -r requirements.txt
 # Or via pip: pip install ChatTTS
-```
+`````
 
-Hello world: ```python
+Hello world: `````python
 import ChatTTS
 import torchaudio
 import torch
@@ -87,7 +88,7 @@ texts = ["Hello, this is a dialogue TTS test [uv_break] does it sound natural?"]
 wavs = chat.infer(texts)
 
 torchaudio.save("out.wav", torch.from_numpy(wavs[0]), 24000)
-```
+`````
 
 First run downloads ~2 GB of model weights. Subsequent runs are instant.
 
@@ -95,28 +96,28 @@ First run downloads ~2 GB of model weights. Subsequent runs are instant.
 
 The reason ChatTTS feels alive — these tags work mid-text: | Tag | Effect |
 |
----
+* * *
 |
----
+* * *
 |
-| `[laugh]` | Inserts laughter |
-| `[laugh_0]` to `[laugh_2]` | Laughter intensity levels |
-| `[uv_break]` | Umm-style filler pause |
-| `[lbreak]` | Longer pause (sentence-style) |
-| `[oral_0]` to `[oral_9]` | Conversational style intensity (higher = more casual) |
-| `[speed_0]` to `[speed_9]` | Speech speed (5 = normal) |
-| `[break_0]` to `[break_7]` | Discrete pause durations |
+| ````[laugh]```` | Inserts laughter |
+| ````[laugh_0]```` to ````[laugh_2]```` | Laughter intensity levels |
+| ````[uv_break]```` | Umm-style filler pause |
+| ````[lbreak]```` | Longer pause (sentence-style) |
+| ````[oral_0]```` to ````[oral_9]```` | Conversational style intensity (higher = more casual) |
+| ````[speed_0]```` to ````[speed_9]```` | Speech speed (5 = normal) |
+| ````[break_0]```` to ````[break_7]```` | Discrete pause durations |
 
-Example: ```python
+Example: `````python
 text = "So I told him [uv_break] there's no way that's true [laugh] [lbreak] but he kept insisting."
 wavs = chat.infer([text])
-```
+`````
 
 This is what closes the "robot vs human" gap. Use sparingly; over-tagging sounds rehearsed.
 
 ## 5. Multi-Speaker — Stable Voices Across Sessions
 
-ChatTTS generates a different "speaker" each invocation by default. For consistent characters (NPC voice, persistent agent personality), seed a speaker once and reuse: ```python
+ChatTTS generates a different "speaker" each invocation by default. For consistent characters (NPC voice, persistent agent personality), seed a speaker once and reuse: `````python
 # Generate and save a stable speaker
 rand_spk = chat.sample_random_speaker()
 torch.save(rand_spk, "speaker_alice.pt")
@@ -125,7 +126,7 @@ torch.save(rand_spk, "speaker_alice.pt")
 spk = torch.load("speaker_alice.pt")
 params_infer_code = ChatTTS.Chat.InferCodeParams(spk_emb=spk)
 wavs = chat.infer(texts, params_infer_code=params_infer_code)
-```
+`````
 
 Pattern: pre-generate 5-10 distinct speaker embeddings during setup. Pick the one matching each character. Voice stays stable across the entire production.
 
@@ -142,7 +143,7 @@ This is the only friction point on adoption. If your product directly monetizes 
 
 ## 7. Production Pattern
 
-For agent voice / podcast pipeline: ```
+For agent voice / podcast pipeline: `````
    Text input (from LLM agent / script generator)
             │
             ▼
@@ -156,7 +157,7 @@ For agent voice / podcast pipeline: ```
             │
             ▼
    Optional post-processing (loudness normalize, denoise)
-```
+`````
 
 Stand it up on a GPU-equipped {{< aff "htstack" "chattts-vps-hk" "HTStack Hong Kong VPS with GPU" >}} or a Vast.ai instance, expose via FastAPI, and your stack has voice for ~$0.001 per minute generated (vs ElevenLabs at ~$0.30/min).
 
@@ -164,9 +165,9 @@ Stand it up on a GPU-equipped {{< aff "htstack" "chattts-vps-hk" "HTStack Hong K
 
 | Use case | Pick |
 |
----
+* * *
 |
----
+* * *
 |
 | Dialogue / multi-character / agent voice | **ChatTTS** |
 | Audiobook narration (single voice, long-form) | Coqui XTTS-v2 or commercial |
@@ -177,8 +178,8 @@ Stand it up on a GPU-equipped {{< aff "htstack" "chattts-vps-hk" "HTStack Hong K
 
 ## 9. Pitfalls
 
-1. **Over-tagging prosody** — sprinkling `[laugh]` and `[uv_break]` everywhere sounds rehearsed. Less is more
-2. **Forgetting to seed speakers** — every call without `spk_emb` is a different voice. Always pre-generate
+1. **Over-tagging prosody** — sprinkling ````[laugh]```` and ````[uv_break]```` everywhere sounds rehearsed. Less is more
+2. **Forgetting to seed speakers** — every call without ````spk_emb``` is a different voice. Always pre-generate
 3. **Running on CPU and complaining about speed** — RTF is 30-100× worse without GPU. Just rent a GPU
 4. **Ignoring the NC license** — using ChatTTS for paid voice products is a legal risk
 
@@ -189,7 +190,7 @@ ChatTTS = **first open-source TTS that handles dialogue convincingly**. 39.3k st
 Spin up a GPU instance, run the 10-line install in section 3, and you'll hear in 5 minutes why this displaced every other open-source TTS in the discussion.
 
 
----
+* * *
 *Part of dibi8's multi-modal content stack — see the upcoming Multi-Modal Content Pipeline collection for ChatTTS + Whisper + Stable Diffusion + ComfyUI as a full audio/visual creator pipeline.*
 
 
@@ -255,11 +256,11 @@ ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with Laughter, Pauses, and Tok
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -269,7 +270,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-15-trending-ai-agents](chattts-dialogue-tts-2026)
 - [2026-06-22-trending-ai-agents](chattts-dialogue-tts-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

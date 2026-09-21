@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/voicecraft/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -43,13 +44,13 @@ aliases:
 
 | 模型 | 参数量 | 适用场景 | 最大时长 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | giga330M | 3.3亿 | 质量与速度平衡 | 16 秒 |
 | giga830M | 8.3亿 | 最高质量 | 30+ 秒 |
@@ -68,7 +69,7 @@ VoiceCraft 引入了 **RealEdit**，一个包含 310 个真实世界语音编辑
 
 Docker 是搭建 VoiceCraft 环境最快的途径。官方 Dockerfile 处理了所有依赖，包括 EnCodec、Montreal Forced Aligner (MFA) 和 CUDA 绑定。
 
-```bash
+````bash
 # 1. 克隆仓库
 git clone https://github.com/jasonppy/VoiceCraft.git
 cd VoiceCraft
@@ -86,15 +87,15 @@ docker logs jupyter | grep "127.0.0.1:8888"
 
 # 5. 在容器内验证 GPU
 docker exec -it jupyter nvidia-smi
-```
+`````
 
-容器在 8888 端口暴露 Jupyter Lab，在 7860 端口暴露 Gradio UI。打开 `inference_tts.ipynb` 或 `inference_speech_editing.ipynb` 即可运行推理。
+容器在 8888 端口暴露 Jupyter Lab，在 7860 端口暴露 Gradio UI。打开 ````inference_tts.ipynb```` 或 ````inference_speech_editing.ipynb```` 即可运行推理。
 
 ### 方案二：Conda 环境（本地开发）
 
 对于模型开发和微调，本地 Conda 环境提供更大的灵活性。
 
-```bash
+`````bash
 # 创建并激活环境
 conda create -n voicecraft python=3.9.16
 conda activate voicecraft
@@ -127,13 +128,13 @@ mfa model download acoustic english_us_arpa
 
 # Jupyter 内核（可选）
 conda install -n voicecraft ipykernel --no-deps --force-reinstall
-```
+`````
 
 ### 方案三：Gradio 本地界面
 
 无需 Notebook 的浏览器界面：
 
-```bash
+`````bash
 # Gradio 额外系统依赖
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -143,27 +144,27 @@ pip install -r gradio_requirements.txt
 
 # 启动 Gradio 服务
 python gradio_app.py
-```
+`````
 
-在浏览器中访问 `http://127.0.0.1:7860`。
+在浏览器中访问 ````http://127.0.0.1:7860````。
 
 ### 硬件需求
 
 | 配置 | 最低 GPU | 推荐 GPU | 内存 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 完整推理 (830M) | 8 GB (kvcache) | 32 GB VRAM | 32 GB |
 | 快速推理 (330M) | 8 GB | 16 GB VRAM | 16 GB |
 | Gradio 界面 | 8 GB | 16 GB VRAM | 16 GB |
 
-`kvcache` 优化以轻微质量损失换取显著内存降低，使 8 GB GPU 也能运行推理。
+````kvcache```` 优化以轻微质量损失换取显著内存降低，使 8 GB GPU 也能运行推理。
 
 ## 与流行工具集成
 
@@ -171,7 +172,7 @@ python gradio_app.py
 
 内置的 Gradio 界面是最简单的实验方式：
 
-```bash
+`````bash
 # 使用默认设置启动 Gradio
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
@@ -180,7 +181,7 @@ python gradio_app.py \
   --model-path "./pretrained_models/giga330M.pth" \
   --codec-model "encodec_16khz" \
   --share  # 创建公网 URL
-```
+`````
 
 Gradio UI 支持三种模式：**TTS 模式**（零样本语音克隆）、**编辑模式**（语音编辑）和 **长文本 TTS 模式**（长文本分块生成）。
 
@@ -188,7 +189,7 @@ Gradio UI 支持三种模式：**TTS 模式**（零样本语音克隆）、**编
 
 程序化访问可使用 Jupyter notebook：
 
-```python
+`````python
 # inference_tts.ipynb — 零样本 TTS 示例
 from voicecraft import VoiceCraft
 
@@ -211,13 +212,13 @@ output = model.tts(
     temperature=1.0
 )
 output.save("output_tts.wav")
-```
+`````
 
 ### VoiceCraft + 命令行
 
 批量处理和脚本化：
 
-```bash
+`````bash
 # 通过 CLI 进行 TTS 推理
 python tts_demo.py \
   --audio_path "demo/pam.wav" \
@@ -234,13 +235,13 @@ python speech_editing_demo.py \
   --edited_transcript "edited text here" \
   --model_name "giga830M" \
   --output_path "edited_output.wav"
-```
+`````
 
 ### VoiceCraft + Docker API
 
 生产部署方案，将 VoiceCraft 包装为 REST API：
 
-```dockerfile
+`````dockerfile
 # Dockerfile.api — 生产级 API 封装
 FROM voicecraft:latest
 
@@ -253,9 +254,9 @@ RUN pip install -r requirements-api.txt
 EXPOSE 8000
 
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
-```python
+`````python
 # api.py — VoiceCraft 的 FastAPI 封装
 from fastapi import FastAPI, UploadFile, File
 from voicecraft import VoiceCraft
@@ -278,13 +279,13 @@ async def tts(
         top_k=40
     )
     return {"output": output.serialize()}
-```
+`````
 
 ### VoiceCraft + HuggingFace Hub
 
 直接从 HuggingFace 下载预训练模型：
 
-```python
+`````python
 from huggingface_hub import hf_hub_download
 
 # 下载模型权重
@@ -298,7 +299,7 @@ model_path = hf_hub_download(
 # 中国大陆用户也可通过 ModelScope 下载
 from modelscope import snapshot_download
 model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -308,17 +309,17 @@ ACL 2024 论文中的人工评估结果，对比了 VoiceCraft 与 VALL-E、XTTS
 
 | 模型 | WER | SIM | 可懂度 MOS | 自然度 MOS | 说话人相似度 MOS |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** |
 | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 |
@@ -335,13 +336,13 @@ VoiceCraft 在说话人相似度（SIM 0.55）和所有人评 MOS 指标上均�
 
 | 模型 | WER | 可懂度 MOS | 自然度 MOS |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **VoiceCraft** | 6.1 | **4.11** | **4.03** |
 | FluentSpeech | 4.5 | 3.97 | 3.81 |
@@ -353,13 +354,13 @@ VoiceCraft 在说话人相似度（SIM 0.55）和所有人评 MOS 指标上均�
 
 | 应用场景 | 参考音频 | 输出质量 | 设置时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 播客编辑 | 5 秒主持人声音 | 自然度 MOS 4.03 | < 2 分钟 |
 | 有声书克隆 | 5 秒朗读者声音 | 相似度 SIM 0.55 | < 2 分钟 |
@@ -375,7 +376,7 @@ VoiceCraft 在说话人相似度（SIM 0.55）和所有人评 MOS 指标上均�
 
 对于显存有限的 GPU，启用键值缓存：
 
-```python
+`````python
 # 为 8GB GPU 启用 kvcache
 output = model.tts(
     target_text=target_text,
@@ -385,13 +386,13 @@ output = model.tts(
     kvcache=True,  # 减少约 60% 显存占用
     batch_size=1
 )
-```
+`````
 
 ### Top-k 采样（2025年3月更新）
 
 默认采样策略从 top-p=1.0 更新为 top-k=40，显著提升了输出质量：
 
-```python
+`````python
 # 推荐：top-k=40 获得最佳质量
 output = model.tts(
     target_text=target_text,
@@ -400,13 +401,13 @@ output = model.tts(
     top_k=40,
     temperature=1.0
 )
-```
+`````
 
 ### 自定义数据微调
 
 针对特定领域的声线，对预训练模型进行微调：
 
-```bash
+`````bash
 # 准备数据集
 conda activate voicecraft
 cd ./data
@@ -422,11 +423,11 @@ python phonemize_encodec_encode_hf.py \
 # 开始微调
 cd ../z_scripts
 bash e830M_ft.sh  # 微调 830M 模型
-```
+`````
 
 ### 监控与日志
 
-```python
+`````python
 import logging
 from torch.utils.tensorboard import SummaryWriter
 
@@ -438,7 +439,7 @@ logger = logging.getLogger("voicecraft")
 writer = SummaryWriter(log_dir="./runs/voicecraft-ft")
 writer.add_scalar("loss/train", loss.item(), global_step)
 writer.add_scalar("mos/validation", val_mos, global_step)
-```
+`````
 
 ### 安全与伦理考量
 
@@ -453,15 +454,15 @@ VoiceCraft 的许可证（代码 CC BY-NC-SA 4.0，权重 Coqui Public Model Lic
 
 | 特性 | VoiceCraft | GPT-SoVITS | Coqui TTS (XTTS v2) | VALL-E |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 8,500 | 57,000 | 35,000* | N/A（仅论文） |
 | **参数量** | 3.3亿 / 8.3亿 | 约 10 亿 | 4.67 亿 | 10 亿 |
@@ -523,7 +524,7 @@ VoiceCraft 代码使用 CC BY-NC-SA 4.0，模型权重使用 Coqui Public Model 
 
 **Q3：运行 VoiceCraft 需要什么 GPU？**
 
-830M 模型需要 32 GB 显存（A100、V100 或 RTX 4090 + 系统内存共享）。330M 模型可在 16 GB GPU 上运行，开启 `kvcache=True` 后 8 GB 显卡也能推理。纯 CPU 推理在 8 核 Ryzen 上需 7 分钟以上，而 GPU 仅需 35 秒。
+830M 模型需要 32 GB 显存（A100、V100 或 RTX 4090 + 系统内存共享）。330M 模型可在 16 GB GPU 上运行，开启 ````kvcache=True``` 后 8 GB 显卡也能推理。纯 CPU 推理在 8 核 Ryzen 上需 7 分钟以上，而 GPU 仅需 35 秒。
 
 **Q4：VoiceCraft 与 GPT-SoVITS 在语音克隆方面如何比较？**
 
@@ -604,7 +605,7 @@ VoiceCraft 填补了大多数 TTS 工具忽视的空白：编辑现有语音，�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](voicecraft)
@@ -614,5 +615,5 @@ VoiceCraft 填补了大多数 TTS 工具忽视的空白：编辑现有语音，�
 - [moneyprinterturbo-one-click-ai-video-generator](voicecraft)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

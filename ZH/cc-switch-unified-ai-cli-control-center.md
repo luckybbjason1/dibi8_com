@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 ---
 
+
 # cc-switch: 统一 6+ AI 编码代理的跨平台桌面 CLI 控制中心 — 2026 实战指南
 
 ![cc-switch 主界面](https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png)
@@ -39,7 +40,7 @@ cc-switch 运行在三个架构层上：
 
 3. **预设系统** — 存储完整配置档案：哪些代理处于活动状态、默认模型选择、token 限制、温度设置、自定义系统提示词和代理配置。预设可以通过 GitHub Gist 共享，或从 ccswitch.io 的社区画廊导入。
 
-```
+````
 ┌─────────────────────────────────────────┐
 │          cc-switch 桌面应用               │
 │  (Tauri v2 + Rust 后端 + WebView2)       │
@@ -50,11 +51,11 @@ cc-switch 运行在三个架构层上：
 │  Claude Code │ Codex CLI │ OpenCode     │
 │  OpenClaw    │ Gemini CLI │ Hermes Agent│
 └─────────────────────────────────────────┘
-```
+`````
 
 *cc-switch 架构：三层同时管理多个 AI 编码代理*
 
-代理注册层查询 `$PATH` 和常见安装目录（`~/.claude`、`~/.codex`、`~/.opencode` 等）自动检测已安装的代理。会话管理器挂钩到每个代理进程，跟踪 stdin/stdout 的会话元数据。预设系统将全部配置序列化为 JSON，版本控制且可导出。
+代理注册层查询 ````$PATH```` 和常见安装目录（````~/.claude````、````~/.codex````、````~/.opencode```` 等）自动检测已安装的代理。会话管理器挂钩到每个代理进程，跟踪 stdin/stdout 的会话元数据。预设系统将全部配置序列化为 JSON，版本控制且可导出。
 
 ## Installation & Setup
 
@@ -62,7 +63,7 @@ cc-switch 以单个 Tauri 二进制文件提供。不需要 Node.js、npm 或 ya
 
 ### 方法 1：下载预构建二进制（推荐）
 
-```bash
+`````bash
 # macOS (Apple Silicon)
 curl -L -o cc-switch.pkg https://github.com/farion1231/cc-switch/releases/latest/download/cc-switch-aarch64-darwin.tar.gz
 tar -xzf cc-switch-aarch64-darwin.tar.gz
@@ -75,18 +76,18 @@ sudo cp cc-switch /usr/local/bin/
 
 # Windows（从发布页面下载）
 # cc-switch-x86_64-pc-windows-msvc.exe
-```
+`````
 
 ### 方法 2：通过 Homebrew 安装（macOS / Linux）
 
-```bash
+`````bash
 brew install farion1231/tap/cc-switch
 cc-switch --version  # 验证安装
-```
+`````
 
 ### 方法 3：从源码构建
 
-```bash
+`````bash
 git clone https://github.com/farion1231/cc-switch.git
 cd cc-switch
 # 安装 Rust 工具链
@@ -95,20 +96,20 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install tauri-cli
 # 构建
 cargo tauri build
-```
+`````
 
 ### 首次启动设置
 
 启动后，cc-switch 扫描系统以查找已安装的 AI 编码代理：
 
-```bash
+`````bash
 $ cc-switch --scan-agents
 Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
   [✓] OpenCode       v0.8.1    ~/.local/bin/opencode
   [✓] Codex CLI      v0.3.7    ~/.codex/bin/codex
   [ ] Gemini CLI     Not found
   [✓] Hermes Agent   v0.5.0    ~/.hermes/bin/hermes
-```
+`````
 
 点击"添加代理"手动指定路径，如果自动检测遗漏了的话。"添加代理"对话框接受：
 - 代理名称（自由文本）
@@ -120,14 +121,14 @@ Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
 
 cc-switch 通过 CLI 命令拦截和环境变量注入与每个代理集成。当你点击"切换到 Claude Code"时，cc-switch 执行以下操作：
 
-1. 设置 `CLAUDE_CODE_SESSION=cc-switch-active` 环境变量
-2. 应用所选预设的模型配置（例如 `claude-sonnet-4-20250514`，token 限制 128K）
+1. 设置 ````CLAUDE_CODE_SESSION=cc-switch-active```` 环境变量
+2. 应用所选预设的模型配置（例如 ````claude-sonnet-4-20250514````，token 限制 128K）
 3. 在代理 CLI 预启动的情况下打开新的终端窗口或标签页
 4. 记录会话元数据用于跨代理比较
 
 ### 每代理配置示例
 
-```yaml
+`````yaml
 # cc-switch presets/claude-pro.yaml
 agent: claude-code
 preset_name: "claude-pro"
@@ -138,11 +139,11 @@ system_prompt: "You are an expert Python developer focused on clean, tested code
 proxy: "http://localhost:8080"  # 使用 WebShare 获取可靠代理
 env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
   CLAUDE_CODE_TELEMETRY: "disabled"
-```
+`````
 
 ### 使用键盘快捷键切换代理
 
-```bash
+`````bash
 # 设置全局键盘快捷键（通过 cc-switch 设置）
 # ⌘+1 → Claude Code
 # ⌘+2 → Codex CLI
@@ -154,9 +155,9 @@ env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
 # 从 CLI 直接切换代理：
 cc-switch switch claude-code
 cc-switch switch opencode --preset claude-pro
-```
+`````
 
-这种集成意味着你不再需要 `export ANTHROPIC_API_KEY=***` 或手动编辑代理配置文件。所有环境变量注入都在 cc-switch 层完成。
+这种集成意味着你不再需要 ````export ANTHROPIC_API_KEY=***```` 或手动编辑代理配置文件。所有环境变量注入都在 cc-switch 层完成。
 
 对于自托管设置，我使用 [HTStack](https://my.htstack.com/aff.php?aff=27187) 获取可靠的低延迟网络，使用 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 作为代理服务器，当代理需要获取外部包时。
 
@@ -166,13 +167,13 @@ cc-switch switch opencode --preset claude-pro
 
 | 指标 | 无 cc-switch | 有 cc-switch | 改进 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 代理切换时间 | 45-90 秒 | 2-3 秒 | 30-45 倍更快 |
 | 每日配置编辑次数 | 每个代理 8-12 次（总计 40-60） | 0（全部由 cc-switch 管理） | 减少 100% |
@@ -183,7 +184,7 @@ cc-switch switch opencode --preset claude-pro
 
 一家中型初创公司的开发者使用 cc-switch 对同一代码库在 Claude Code 和 Codex CLI 之间进行每日 A/B 测试：
 
-```bash
+`````bash
 # 设置 A/B 测试工作流程
 mkdir ab-test-repo && cd ab-test-repo
 git init
@@ -199,18 +200,18 @@ cc-switch switch codex-cli --preset codex-ab
 # 比较差异
 git diff HEAD..claude-branch --stat
 git diff HEAD..codex-branch --stat
-```
+`````
 
 ### 实际用例 2：结对编程时热切换
 
-```bash
+`````bash
 # 在 Claude Code 中处理 React 组件
 # 同事切换到 Gemini CLI 进行 TypeScript 审查
 # 无需关闭终端，无需编辑配置——⌘+4 即可
 
 cc-switch switch gemini-cli --preset ts-review
 # Gemini CLI 打开带有 TypeScript 专用系统提示词
-```
+`````
 
 会话管理器保留两个代理的状态。切换回来时，前一个代理的终端完全和你离开时一样。
 
@@ -220,7 +221,7 @@ cc-switch switch gemini-cli --preset ts-review
 
 cc-switch v3.16+ 添加了自定义代理支持。你可以在预设文件中定义自定义 AI 代理（超出内置的 Claude、OpenAI、Google）：
 
-```yaml
+`````yaml
 # presets/custom-llm.yaml
 agent: open-code
 provider: "custom-llm"
@@ -228,11 +229,11 @@ base_url: "https://your-api.example.com/v1"
 api_key_env: "CUSTOM_LLM_KEY"
 model: "your-custom-model"
 max_tokens: 65536
-```
+`````
 
 ### 通过 GitHub 共享预设
 
-```bash
+`````bash
 # 将当前预设导出为 gist
 cc-switch preset export --gist --preset my-workspace
 
@@ -241,20 +242,20 @@ cc-switch preset import --url https://github.com/user/repo/blob/main/presets.yam
 
 # 跨机器同步预设
 cc-switch preset sync --remote github --repo my-org/cc-switch-presets
-```
+`````
 
 ### 基于 Docker 的代理环境
 
 对于生产一致性，cc-switch 支持在 Docker 容器中启动代理：
 
-```bash
+`````bash
 # 创建 Docker 代理环境
 cc-switch docker create --name claude-pro --image python:3.12-slim
 # 在容器中安装 Claude Code
 docker exec claude-pro pip install anthropic-cli
 # 从 cc-switch 运行代理
 cc-switch switch claude-code --docker claude-pro
-```
+`````
 
 这在使用 CI/CD 管道时非常有用，其中需要可重现的代理行为，而无需主机环境漂移。
 
@@ -262,15 +263,15 @@ cc-switch switch claude-code --docker claude-pro
 
 | 功能 | cc-switch | Claude Code CLI | Codex CLI | Gemini CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 跨平台 | macOS, Linux, Windows | macOS, Linux | macOS, Linux | macOS, Linux |
 | 多代理支持 | 6+ 代理统一 | 仅 Claude | 仅 Codex | 仅 Gemini |
@@ -310,11 +311,11 @@ A：cc-switch 设计为带有 GUI 的桌面应用程序。它需要显示服务�
 
 **Q：我可以在团队成员之间共享预设吗？**
 
-A：可以。cc-switch 支持通过 GitHub Gist 导出预设，或者你可以将预设 YAML 文件提交到共享存储库。使用 `cc-switch preset sync --remote github --repo your-team/repo` 进行自动同步。
+A：可以。cc-switch 支持通过 GitHub Gist 导出预设，或者你可以将预设 YAML 文件提交到共享存储库。使用 ````cc-switch preset sync --remote github --repo your-team/repo```` 进行自动同步。
 
 **Q：cc-switch 如何处理 API 密钥安全？**
 
-A：API 密钥存储在游戏环境变量或平台原生密钥库（macOS Keychain、Linux Secret Service、Windows 凭据管理器）中。cc-switch 在预设文件中从不存储明文 API 密钥。使用 `${env.ANTHROPIC_API_KEY}` 语法引用环境变量。
+A：API 密钥存储在游戏环境变量或平台原生密钥库（macOS Keychain、Linux Secret Service、Windows 凭据管理器）中。cc-switch 在预设文件中从不存储明文 API 密钥。使用 ````${env.ANTHROPIC_API_KEY}``` 语法引用环境变量。
 
 **Q：cc-switch 可以免费用于商业用途吗？**
 
@@ -401,12 +402,12 @@ cc-switch: 统一 6+ AI 编码代理的跨平台桌面 CLI 控制中心 — 2026
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [obscura-rust-headless-browser-ai-agents-web-scraping](cc-switch-unified-ai-cli-control-center)
@@ -415,7 +416,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [nuwa-skill-distill-thinking-model-ai-agent-skills](cc-switch-unified-ai-cli-control-center)
 - [obscura-rust-headless-browser-ai-agents-web-scraping](cc-switch-unified-ai-cli-control-center)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -446,15 +447,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

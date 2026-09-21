@@ -33,6 +33,7 @@ faqs: - q: 'PageIndex là gì và nó khác với RAG truyền thống như th�
     a: 'PageIndex được thiết kế cho các tài liệu chuyên môn dài, nơi cấu trúc đóng vai trò quan trọng và cần có trích dẫn có thể giải thích được, chẳng hạn như báo cáo tài chính và bản cáo bạch, hợp đồng pháp lý và án lệ, tài liệu y khoa và báo cáo thử nghiệm lâm sàng, cùng các tài liệu kỹ thuật như tài liệu tham khảo API và sổ tay vận hành.'
 ---
 
+
 {</* resource-info */>}
 
 ![PageIndex — banner chính thức](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -51,7 +52,7 @@ faqs: - q: 'PageIndex là gì và nó khác với RAG truyền thống như th�
 GitHub: https://github.com/VectifyAI/PageIndex  
 Stars: **29.202+** | Ngôn ngữ: Python | Giấy phép: Apache-2.0
 
----
+* * *
 
 ## Tại sao RAG truyền thống không đủ tốt?
 
@@ -71,13 +72,13 @@ PageIndex mô phỏng cách **chuyên gia con người** đọc tài liệu: 1. 
 2. Suy luận nên đi đến chương nào dựa trên câu hỏi
 3. Tìm kiếm sâu trong chương liên quan
 
----
+* * *
 
 ## Nguyên lý công nghệ cốt lõi
 
 ### 1. Tạo cấu trúc cây tài liệu
 
-PageIndex chuyển đổi PDF thành cấu trúc cây phân cấp: ```json
+PageIndex chuyển đổi PDF thành cấu trúc cây phân cấp: ````json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -99,7 +100,7 @@ PageIndex chuyển đổi PDF thành cấu trúc cây phân cấp: ```json
     }
   ]
 }
-```
+`````
 
 ### 2. Tìm kiếm cây dựa trên suy luận
 
@@ -115,52 +116,52 @@ PageIndex lấy cảm hứng từ AlphaGo, sử dụng **thuật toán tìm ki�
 - **Đánh giá** — LLM đánh giá mức độ liên quan của nút
 - **Lan truyền ngược** — Cập nhật trọng số nút
 
----
+* * *
 
 ## Bắt đầu nhanh
 
 ### Cài đặt
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/VectifyAI/PageIndex.git
 cd PageIndex
 
 # Cài đặt dependencies
 pip3 install --upgrade -r requirements.txt
-```
+`````
 
 ### Cấu hình API Key
 
-```bash
+`````bash
 # Tạo file .env
 echo "OPENAI_API_KEY=your_openai_key_here" > .env
-```
+`````
 
 ### Tạo cây tài liệu
 
-```bash
+`````bash
 # Tạo cấu trúc cây PageIndex cho PDF
 python3 run_pageindex.py --pdf_path /path/to/your/document.pdf
-```
+`````
 
 ### Tham số tùy chọn
 
-```bash
+`````bash
 --model                  # Mô hình LLM (mặc định: gpt-4o-2024-11-20)
 --toc-check-pages       # Số trang kiểm tra mục lục (mặc định: 20)
 --max-pages-per-node    # Số trang tối đa mỗi nút (mặc định: 10)
 --max-tokens-per-node   # Số token tối đa mỗi nút (mặc định: 20000)
 --if-add-node-summary   # Thêm tóm tắt nút (mặc định: yes)
-```
+`````
 
----
+* * *
 
 ## Ví dụ thực tế
 
 ### Ví dụ 1: Phân tích tài liệu tài chính
 
-```python
+`````python
 from pageindex import PageIndex
 
 # Tải cây tài liệu
@@ -177,11 +178,11 @@ print(result.answer)
 
 print(result.sources)
 # [{"page": 45, "section": "Financial Results", "node_id": "0012"}]
-```
+`````
 
 ### Ví dụ 2: Xem xét hợp đồng pháp lý
 
-```python
+`````python
 # Tải tài liệu hợp đồng
 pi = PageIndex(tree_path="contract.pdf.json")
 
@@ -191,11 +192,11 @@ result = pi.query(
 )
 
 # PageIndex sẽ tự động định vị chương liên quan
-```
+`````
 
 ### Ví dụ 3: Nghiên cứu bài báo học thuật
 
-```python
+`````python
 # Tải bài báo
 pi = PageIndex(tree_path="paper.pdf.json")
 
@@ -205,9 +206,9 @@ result = pi.query(
 )
 
 # PageIndex sẽ duyệt cấu trúc cây để tìm thông tin liên quan
-```
+`````
 
----
+* * *
 
 ## So sánh với đối thủ
 
@@ -221,7 +222,7 @@ result = pi.query(
 | Tài liệu chuyên nghiệp | ✅ Xuất sắc | ⚠️ Bình thường | ⚠️ Bình thường | ⚠️ Bình thường |
 | Độ chính xác | ✅ 98.7% | ~75% | ~80% | ~78% |
 
----
+* * *
 
 ## Mô hình kinh doanh và cơ hội kiếm tiền
 
@@ -245,7 +246,7 @@ Cung cấp liên quan đến PageIndex: - **Tư vấn kỹ thuật**
 - **Phát triển tùy chỉnh**
 - **Dịch vụ đào tạo**
 
----
+* * *
 
 ## Hiệu suất benchmark
 
@@ -259,17 +260,17 @@ Cung cấp liên quan đến PageIndex: - **Tư vấn kỹ thuật**
 
 PageIndex đạt **state-of-the-art** trong Q&A tài liệu tài chính, chứng minh ưu thế của tìm kiếm dựa trên suy luận.
 
----
+* * *
 
 ## Tùy chọn triển khai
 
 ### 1. Tự lưu trữ (mã nguồn mở)
 
-```bash
+`````bash
 git clone https://github.com/VectifyAI/PageIndex.git
 pip3 install -r requirements.txt
 python3 run_pageindex.py --pdf_path your.pdf
-```
+````
 
 Phù hợp: Đội ngũ kỹ thuật, kịch bản nhạy cảm với dữ liệu
 
@@ -287,7 +288,7 @@ Phù hợp: Khởi động nhanh, môi trường production
 - Đường ống OCR tùy chỉnh
 - Hỗ trợ chuyên dụng
 
----
+* * *
 
 ## Cộng đồng và tài nguyên
 
@@ -297,7 +298,7 @@ Phù hợp: Khởi động nhanh, môi trường production
 - **Discord**: https://discord.com/invite/VuXuf29EUj
 - **API**: https://pageindex.ai/developer
 
----
+* * *
 
 ## Tóm tắt
 
@@ -316,7 +317,7 @@ PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG: �
 
 **Bắt đầu ngay**: https://github.com/VectifyAI/PageIndex
 
----
+* * *
 
 ## Related Articles
 
@@ -325,10 +326,10 @@ PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG: �
 - [Agent Reach: Kết nối AI Agent của bạn với Internet](/vi/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — Kết nối AI với internet
 - [42 Real-World OpenClaw Use Cases: Cách mọi người sử dụng AI Agent trong cuộc sống hàng ngày](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — Trường hợp sử dụng AI Agent
 
----
+* * *
 
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

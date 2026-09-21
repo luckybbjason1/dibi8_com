@@ -28,6 +28,7 @@ faqs: - q: 'HKUDS가 개발한 AI-Trader란 무엇인가요?'
     a: '네, 가능합니다. AI-Trader에는 과거 데이터를 활용한 고정밀 백테스팅 엔진과 페이퍼 트레이딩 모드(설정 파일에서 mode: paper로 지정)가 내장되어 있습니다. 프로젝트 문서에서는 실거래 배포 전에 반드시 페이퍼 트레이딩을 먼저 사용하도록 권장하고 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## AI-Trader란?
@@ -66,7 +67,7 @@ faqs: - q: 'HKUDS가 개발한 AI-Trader란 무엇인가요?'
 
 ### 3. 강화학습 코어
 
-AI-Trader는 전략 최적화를 위해 **심층 강화학습(DRL)**을 사용합니다: ```python
+AI-Trader는 전략 최적화를 위해 **심층 강화학습(DRL)**을 사용합니다: ````python
 # 간소화된 훈련 루프
 from ai_trader import TradingAgent, MarketEnv
 
@@ -82,11 +83,11 @@ agent.train(env, episodes=10000, batch_size=64)
 
 # 실전 트레이딩 배포 (먼저 모의 트레이딩!)
 agent.deploy(mode='paper', exchange='binance')
-```
+`````
 
 ### 4. 다중 에이전트 협업
 
-시스템은 **계층적 다중 에이전트 아키텍처**를 사용합니다: ```
+시스템은 **계층적 다중 에이전트 아키텍처**를 사용합니다: `````
 ┌─────────────────────────────────────┐
 │      포트폴리오 관리 에이전트        │
 │    (자본 배분, 리밸런싱)           │
@@ -98,7 +99,7 @@ agent.deploy(mode='paper', exchange='binance')
 │시장   │ │리스크 │ │실행   │
 │분석   │ │관리   │ │에이전트│
 └────────┘ └───────┘ └────────┘
-```
+`````
 
 ## 핵심 기능
 
@@ -122,7 +123,7 @@ agent.deploy(mode='paper', exchange='binance')
 
 ## 설치
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -139,7 +140,7 @@ python backtest.py --strategy momentum --market crypto --assets BTC,ETH
 
 # 모의 트레이딩 시작
 python trade.py --mode paper --config config.yaml
-```
+````
 
 ## 성능 벤치마크
 
@@ -172,10 +173,10 @@ python trade.py --mode paper --config config.yaml
 4. 성과 정기 모니터링
 5. 소프트웨어 최신 상태 유지
 
----
+* * *
 
 
----
+* * *
 
 ## 추천 도구
 
@@ -256,7 +257,7 @@ AI-Trader: 14K⭐ 완전 자동화 AI 트레이딩 에이전트, AI가 24시간 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

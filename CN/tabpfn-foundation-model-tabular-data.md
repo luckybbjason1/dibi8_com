@@ -35,6 +35,7 @@ faqs: - q: 'What is TabPFN?'
   - q: 'How do I install and use TabPFN in Python?'
     a: 'Install it with ''pip install tabpfn'', then import TabPFNClassifier from the tabpfn package and call clf.fit(X_train, y_train) followed by clf.predict(X_test). It automatically detects feature types and handles missing values and categorical features.'
 ---
+
 {</* resource-info */>}
 
 ## What is TabPFN?
@@ -47,18 +48,18 @@ faqs: - q: 'What is TabPFN?'
 **License**: Apache-2.0
 
 
----
+* * *
 ## The Problem with Traditional Tabular ML
 
 ### Current Workflow (Painful)
 
 | Step | Time | Expertise |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Data preprocessing | 2-4 hours | Data scientist |
 | Feature engineering | 3-6 hours | Domain expert |
@@ -71,11 +72,11 @@ faqs: - q: 'What is TabPFN?'
 
 | Step | Time | Expertise |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Load data | 1 minute | Anyone |
 | Run TabPFN | 1-10 seconds | Anyone |
@@ -83,7 +84,7 @@ faqs: - q: 'What is TabPFN?'
 | **Total** | **~2 minutes** | **No expertise** |
 
 
----
+* * *
 ## How TabPFN Works
 
 ### Foundation Model Approach
@@ -100,7 +101,7 @@ TabPFN is trained on **millions of synthetic tabular datasets**, learning patter
 3. **No Hyperparameters**: Eliminates grid search and tuning
 4. **Fast Inference**: Results in seconds, not hours
 
----
+* * *
 
 ## Performance Benchmarks
 
@@ -108,13 +109,13 @@ TabPFN is trained on **millions of synthetic tabular datasets**, learning patter
 
 | Dataset | Random Forest | XGBoost | TabPFN |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Adult Income | 85.2% | 86.8% | **87.9%** |
 | Cover Type | 72.1% | 78.4% | **81.2%** |
@@ -126,29 +127,29 @@ TabPFN is trained on **millions of synthetic tabular datasets**, learning patter
 
 | Method | Training Time | Inference Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Auto-sklearn | 1-4 hours | 1 second |
 | FLAML | 10-30 minutes | 0.1 seconds |
 | **TabPFN** | **0 seconds** | **0.5-2 seconds** |
 
----
+* * *
 
 ## Quick Start
 
 ### Installation
 
-```bash
+````bash
 pip install tabpfn
-```
+`````
 
 ### Basic Usage
 
-```python
+`````python
 from tabpfn import TabPFNClassifier
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -168,11 +169,11 @@ y_prob = clf.predict_proba(X_test)
 # Evaluate
 accuracy = (y_pred == y_test).mean()
 print(f"Accuracy: {accuracy:.4f}")
-```
+`````
 
 ### Advanced Features
 
-```python
+`````python
 # Handle missing values automatically
 clf = TabPFNClassifier()
 clf.fit(X_train_with_nans, y_train)
@@ -188,9 +189,9 @@ y = df[target]
 
 clf = TabPFNClassifier()
 clf.fit(X, y)  # Automatically detects feature types
-```
+`````
 
----
+* * *
 
 ## Use Cases
 
@@ -215,15 +216,15 @@ clf.fit(X, y)  # Automatically detects feature types
 - Survey data processing
 - Genomic data classification
 
----
+* * *
 
 ## Architecture Deep Dive
 
 ### Transformer for Tables
 
-TabPFN adapts the **transformer architecture** (popular in NLP) for tabular data: ```
+TabPFN adapts the **transformer architecture** (popular in NLP) for tabular data: `````
 Input Features → Embedding Layer → Transformer Blocks → Output
-```
+````
 
 Key differences from NLP transformers: - **Feature-specific embeddings** for mixed data types
 - **Attention mechanism** optimized for column relationships
@@ -236,24 +237,24 @@ Key differences from NLP transformers: - **Feature-specific embeddings** for mix
 3. **Meta-learning** enables adaptation to new datasets
 4. **Result**: Single model handles diverse tabular tasks
 
----
+* * *
 
 ## Limitations
 
 | Limitation | Details | Workaround |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Dataset size | Best for <10,000 rows | Use sampling or ensembles |
 | Feature count | Best for <100 features | Feature selection first |
 | GPU required | Needs GPU for inference | Use CPU mode (slower) |
 | Classification only | Currently classification | Regression in development |
 
----
+* * *
 
 ## Related Articles
 
@@ -261,11 +262,11 @@ Key differences from NLP transformers: - **Feature-specific embeddings** for mix
 - [Polymarket Agents: AI Trading Bots](/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — AI in finance
 - [OpenClaw 42 Use Cases](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI agent applications
 
----
+* * *
 
 *Disclaimer: This article introduces an open-source AI project. TabPFN is a research tool and should be validated on your specific use case before production deployment.*
 
----
+* * *
 
 ## Recommended Tools
 
@@ -345,7 +346,7 @@ TabPFN: Foundation Model for Tabular Data — AI Breakthrough for Structured rep
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -354,15 +355,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

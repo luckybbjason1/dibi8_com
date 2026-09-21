@@ -26,6 +26,7 @@ aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---
 
+
 2026년 대부분 오픈소스 TTS는 여전히 "90년대 GPS 내레이터에 리버브 추가" 같습니다. **ChatTTS**는 첫 번째 널리 채택된 예외 — 39.3k 별의 생성형 음성 모델, **대화** 전용 훈련 (내레이션 아님), 웃음 / 일시정지 / 삽입어 / prosody의 토큰 레벨 제어로 마침내 "찡그리지 않게 하는" 임계점 통과.
 
 음성 에이전트, AI 팟캐스트, 게임 멀티 캐릭터 TTS, 또는 평탄한 내레이션이 경험을 죽이는 음성 제품 구축 중이라면 — ChatTTS가 2026년 오픈소스 기본 픽.
@@ -45,7 +46,7 @@ aliases:
 - **신경 TTS** (Tacotron / FastSpeech / VITS) — 유창하지만 단조, 내레이션 최적화
 - **상업 API** (ElevenLabs / OpenAI TTS) — 자연스럽지만 $0.18-0.50/1000자, 폐쇄
 
-ChatTTS는 새로운 4번째 카테고리: **명시적 prosody 제어 토큰을 가진 자기회귀 생성 TTS**. 텍스트만 입력 안 하고 — `[laugh]`, `[uv_break]` (음), `[lbreak]` (긴 일시정지) 마크업 가능, 모델은 음성 공연을 만들지 단순 말소리만 만들지 않음.
+ChatTTS는 새로운 4번째 카테고리: **명시적 prosody 제어 토큰을 가진 자기회귀 생성 TTS**. 텍스트만 입력 안 하고 — ```[laugh]````, ````[uv_break]```` (음), ````[lbreak]```` (긴 일시정지) 마크업 가능, 모델은 음성 공연을 만들지 단순 말소리만 만들지 않음.
 
 대화 사용 사례 (음성 에이전트, AI 팟캐스트, 게임 NPC 대화), 이게 "명백한 로봇"과 "나쁜 전화선의 진짜 사람일 수 있음" 사이 차이. 내레이션에는 고전 신경 TTS가 종종 여전히 더 나음.
 
@@ -63,14 +64,14 @@ ChatTTS는 새로운 4번째 카테고리: **명시적 prosody 제어 토큰을 
 
 ## 3. 빠른 설치 (GPU 머신 10분)
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -r requirements.txt
 # 또는 pip: pip install ChatTTS
-```
+`````
 
-Hello world: ```python
+Hello world: `````python
 import ChatTTS
 import torchaudio
 import torch
@@ -82,7 +83,7 @@ texts = ["안녕하세요, 대화 TTS 테스트입니다 [uv_break] 자연스럽
 wavs = chat.infer(texts)
 
 torchaudio.save("out.wav", torch.from_numpy(wavs[0]), 24000)
-```
+`````
 
 첫 실행이 ~2 GB 모델 가중치 다운로드. 이후 실행은 즉시.
 
@@ -90,24 +91,24 @@ torchaudio.save("out.wav", torch.from_numpy(wavs[0]), 24000)
 
 ChatTTS가 살아있게 느껴지는 이유 — 이 태그들이 텍스트 중간에 작동: | 태그 | 효과 |
 |---|---|
-| `[laugh]` | 웃음 삽입 |
-| `[laugh_0]` ~ `[laugh_2]` | 웃음 강도 레벨 |
-| `[uv_break]` | 음-스타일 채움 일시정지 |
-| `[lbreak]` | 더 긴 일시정지 (문장 스타일) |
-| `[oral_0]` ~ `[oral_9]` | 대화 스타일 강도 (높을수록 캐주얼) |
-| `[speed_0]` ~ `[speed_9]` | 말 속도 (5 = 보통) |
-| `[break_0]` ~ `[break_7]` | 이산 일시정지 지속시간 |
+| ````[laugh]```` | 웃음 삽입 |
+| ````[laugh_0]```` ~ ````[laugh_2]```` | 웃음 강도 레벨 |
+| ````[uv_break]```` | 음-스타일 채움 일시정지 |
+| ````[lbreak]```` | 더 긴 일시정지 (문장 스타일) |
+| ````[oral_0]```` ~ ````[oral_9]```` | 대화 스타일 강도 (높을수록 캐주얼) |
+| ````[speed_0]```` ~ ````[speed_9]```` | 말 속도 (5 = 보통) |
+| ````[break_0]```` ~ ````[break_7]```` | 이산 일시정지 지속시간 |
 
-예시: ```python
+예시: `````python
 text = "그래서 그에게 말했어 [uv_break] 그건 진짜일 리 없다고 [laugh] [lbreak] 하지만 그는 우겼지."
 wavs = chat.infer([text])
-```
+`````
 
 이게 "로봇 vs 인간" 갭을 닫는 것. 아껴서 사용; 과도한 태그는 연습한 것처럼 들림.
 
 ## 5. 멀티 스피커 — 세션 간 안정 음성
 
-ChatTTS는 기본적으로 호출마다 다른 "스피커" 생성. 일관된 캐릭터 (NPC 음성, 영구 에이전트 인격)를 위해 한 번 시드하고 재사용: ```python
+ChatTTS는 기본적으로 호출마다 다른 "스피커" 생성. 일관된 캐릭터 (NPC 음성, 영구 에이전트 인격)를 위해 한 번 시드하고 재사용: `````python
 # 안정 스피커 생성 및 저장
 rand_spk = chat.sample_random_speaker()
 torch.save(rand_spk, "speaker_alice.pt")
@@ -116,7 +117,7 @@ torch.save(rand_spk, "speaker_alice.pt")
 spk = torch.load("speaker_alice.pt")
 params_infer_code = ChatTTS.Chat.InferCodeParams(spk_emb=spk)
 wavs = chat.infer(texts, params_infer_code=params_infer_code)
-```
+`````
 
 패턴: 셋업 중 5-10개 다른 스피커 임베딩 사전 생성. 각 캐릭터에 매칭되는 거 선택. 전체 프로덕션에서 음성 안정.
 
@@ -133,7 +134,7 @@ wavs = chat.infer(texts, params_infer_code=params_infer_code)
 
 ## 7. 프로덕션 패턴
 
-에이전트 음성 / 팟캐스트 파이프라인: ```
+에이전트 음성 / 팟캐스트 파이프라인: `````
    텍스트 입력 (LLM 에이전트 / 스크립트 생성기에서)
             │
             ▼
@@ -147,7 +148,7 @@ wavs = chat.infer(texts, params_infer_code=params_infer_code)
             │
             ▼
    선택적 후처리 (음량 정규화, 노이즈 제거)
-```
+`````
 
 GPU 장착 {{< aff "htstack" "chattts-vps-hk" "HTStack 홍콩 GPU VPS" >}} 또는 Vast.ai 인스턴스에서 띄우고, FastAPI로 노출, 스택이 분당 생성 ~$0.001 (vs ElevenLabs ~$0.30/분).
 
@@ -164,8 +165,8 @@ GPU 장착 {{< aff "htstack" "chattts-vps-hk" "HTStack 홍콩 GPU VPS" >}} 또�
 
 ## 9. 함정
 
-1. **prosody 과태깅** — 어디나 `[laugh]`와 `[uv_break]` 뿌리기 연습한 것처럼 들림. 적을수록 많음
-2. **스피커 시드 잊기** — `spk_emb` 없는 모든 호출은 다른 음성. 항상 사전 생성
+1. **prosody 과태깅** — 어디나 ````[laugh]````와 ````[uv_break]```` 뿌리기 연습한 것처럼 들림. 적을수록 많음
+2. **스피커 시드 잊기** — ````spk_emb``` 없는 모든 호출은 다른 음성. 항상 사전 생성
 3. **CPU에서 실행하고 속도 불평** — GPU 없으면 RTF 30-100× 나쁨. 그냥 GPU 빌려
 4. **NC 라이선스 무시** — 유료 음성 제품에 ChatTTS 사용은 법적 위험
 
@@ -175,7 +176,7 @@ ChatTTS = **대화를 설득력 있게 처리하는 첫 오픈소스 TTS**. 39.3
 
 GPU 인스턴스 띄우고, 3절의 10줄 설치 실행, 5분 안에 왜 이게 대화의 다른 모든 오픈소스 TTS를 대체했는지 듣게 됨.
 
----
+* * *
 
 *dibi8의 멀티모달 콘텐츠 스택 일부 — ChatTTS + Whisper + Stable Diffusion + ComfyUI를 전체 오디오/비주얼 크리에이터 파이프라인으로 다루는 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
 
@@ -241,12 +242,12 @@ ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -256,6 +257,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [microsoft-markitdown-file-to-markdown-converter-cli](chattts-dialogue-tts-2026)
 - [nanochat-karpathy-100-chatgpt-single-gpu](chattts-dialogue-tts-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

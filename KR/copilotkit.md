@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/copilotkit/
 ---
 
+
 {{</* resource-info */>}}
 
 CopilotKit은 모든 React 또는 Angular 애플리케이션을 AI 네이티브 제품으로 전환하는 오픈소스 프론트엔드 스택입니다. **31,536개의 GitHub Stars**, 3,300개 이상의 Fork, 그리고 2026년 5월 완료된 2,700만 달러 Series A 투자를 보유한 CopilotKit은 애플리케이션 상태를 읽고 프론트엔드 작업을 트리거하며 채팅 인터페이스 내에서 생성형 UI 컴포넌트를 렌더링하는 인앱 AI 어시스턴트를 제공하는 팀의 기본 선택이 되었습니다.
@@ -32,23 +33,23 @@ CopilotKit은 모든 React 또는 Angular 애플리케이션을 AI 네이티브 
 
 ![CopilotKit Logo](https://raw.githubusercontent.com/CopilotKit/CopilotKit/main/docs/static/img/logo.png)
 
----
+* * *
 
 ## CopilotKit이란?
 
-**CopilotKit**은 인앱 AI Copilot과 생성형 UI 경험을 구축하기 위한 프론트엔드 프레임워크입니다. 사전 제작된 React 컴포넌트(`CopilotSidebar`, `CopilotChat`, `CopilotPopup`), 타입이 지정된 Hooks(`useCopilotReadable`, `useCopilotAction`), 그리고 OpenAI, LangChain, LangGraph, Groq 또는 모든 사용자 정의 에이전트 백엔드에 연결할 수 있는 플러그형 런타임을 제공합니다.
+**CopilotKit**은 인앱 AI Copilot과 생성형 UI 경험을 구축하기 위한 프론트엔드 프레임워크입니다. 사전 제작된 React 컴포넌트(```CopilotSidebar````, ````CopilotChat````, ````CopilotPopup````), 타입이 지정된 Hooks(````useCopilotReadable````, ````useCopilotAction````), 그리고 OpenAI, LangChain, LangGraph, Groq 또는 모든 사용자 정의 에이전트 백엔드에 연결할 수 있는 플러그형 런타임을 제공합니다.
 
 이 프로젝트는 CopilotKit Inc.에서 관리하며 MIT 라이선스를 따륩니다. 지금까지 2,700만 달러의 자금을 조달했습니다. 약 25명의 엔지니어로 구성된 팀은 주간 릴리스를 발표하고 AG-UI 개방형 프로토콜을 유지 관리합니다. AG-UI는 Google, Microsoft, Amazon, LangChain, Mastra가 지원하는 에이전트-프론트엔드 통신의 와이어 표준입니다.
 
----
+* * *
 
 ## CopilotKit 작동 방식
 
 CopilotKit은 프론트엔드 애플리케이션과 LLM 또는 에이전트 백엔드 사이에 위치합니다. 깔끔한 3계층 아키텍처를 통해 스트리밍 채팅, 도구 호출, 상태 동기화 및 생성형 UI 렌더링을 처리합니다: | 계층 | 책임 | 주요 파일 |
 |---|---|---|
-| **UI 컴포넌트** | 채팅 사이드바, 팝업 또는 인라인 채팅 렌더링 | `CopilotSidebar`, `CopilotChat`, `CopilotPopup` |
-| **React Hooks** | 상태와 작업을 LLM에 노출 | `useCopilotReadable`, `useCopilotAction` |
-| **Copilot 런타임** | 요청을 LLM/에이전트 백엔드로 라우팅 | `app/api/copilotkit/route.ts` |
+| **UI 컴포넌트** | 채팅 사이드바, 팝업 또는 인라인 채팅 렌더링 | ````CopilotSidebar````, ````CopilotChat````, ````CopilotPopup```` |
+| **React Hooks** | 상태와 작업을 LLM에 노출 | ````useCopilotReadable````, ````useCopilotAction```` |
+| **Copilot 런타임** | 요청을 LLM/에이전트 백엔드로 라우팅 | ````app/api/copilotkit/route.ts```` |
 
 ![CopilotKit 아키텍처 다이어그램](https://docs.copilotkit.ai/assets/images/copilotkit-architecture.png)
 
@@ -60,7 +61,7 @@ CopilotKit은 프론트엔드 애플리케이션과 LLM 또는 에이전트 백�
 - **생성형 UI** — 채팅 난에 렌더링되는 React 컴포넌트로, 도구 호출에 대한 응답입니다(날씨 카드, 작업 항목, 데이터 테이블).
 - **AG-UI 프로토콜** — 에이전트-프론트엔드 통신을 위한 개방형 와이어 형식입니다. CopilotKit은 참조 구현입니다.
 
----
+* * *
 
 ## 설치 및 설정
 
@@ -72,7 +73,7 @@ CopilotKit은 프론트엔드 애플리케이션과 LLM 또는 에이전트 백�
 
 ### 1단계: 패키지 설치
 
-```bash
+`````bash
 # React 코어 + UI 컴포넌트 + 런타임
 npm install @copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime
 
@@ -81,20 +82,20 @@ npm install @copilotkit/runtime-langchain
 
 # Groq 어댑터 (선택 사항)
 npm install @copilotkit/runtime groq-sdk
-```
+`````
 
 ### 2단계: 환경 변수 추가
 
-```bash
+`````bash
 # .env.local
 OPENAI_API_KEY=sk-your-openai-key
 GROQ_API_KEY=gsk-your-groq-key
 COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # 선택 사항, 클라우드 기능용
-```
+`````
 
 ### 3단계: 런타임 엔드포인트 생성
 
-Next.js 프로젝트에서 `app/api/copilotkit/route.ts`를 생성합니다: ```typescript
+Next.js 프로젝트에서 ``app/api/copilotkit/route.ts``를 생성합니다: `````typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -120,11 +121,11 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### 4단계: Provider로 앱 감싸기
 
-루트 레이아웃 또는 페이지 컴포넌트를 업데이트합니다: ```tsx
+루트 레이아웃 또는 페이지 컴포넌트를 업데이트합니다: `````tsx
 // app/layout.tsx 또는 app/page.tsx
 "use client";
 
@@ -148,23 +149,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </CopilotKit>
   );
 }
-```
+`````
 
 ### 5단계: 개발 서버 실행
 
-```bash
+`````bash
 npm run dev
 # http://localhost:3000 열기
 # Copilot 버튼 클릭 — AI 어시스턴트가 활성화되었습니다
-```
+`````
 
----
+* * *
 
 ## LangChain, LangGraph, OpenAI와의 통합
 
 ### OpenAI 어댑터 (가장 간단함)
 
-OpenAI 어댑터는 프로덕션으로 가장 빠른 경로입니다. 추가 백엔드 인프라 없이 GPT-4o에 직접 연결합니다: ```typescript
+OpenAI 어댑터는 프로덕션으로 가장 빠른 경로입니다. 추가 백엔드 인프라 없이 GPT-4o에 직접 연결합니다: `````typescript
 // app/api/copilotkit/route.ts — OpenAI 버전
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -180,11 +181,11 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### LangChain 어댑터
 
-이미 LangChain에 투자한 팀을 위해 LangChain 어댑터를 사용하여 사용자 정의 체인, 검색기 및 에이전트를 연결합니다: ```typescript
+이미 LangChain에 투자한 팀을 위해 LangChain 어댑터를 사용하여 사용자 정의 체인, 검색기 및 에이전트를 연결합니다: `````typescript
 // app/api/copilotkit/route.ts — LangChain 버전
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -207,11 +208,11 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### LangGraph 에이전트 (고급)
 
-상태를 유지하는 다단계 에이전트를 위해 LangGraph 백엔드에 연결합니다: ```typescript
+상태를 유지하는 다단계 에이전트를 위해 LangGraph 백엔드에 연결합니다: `````typescript
 // app/api/copilotkit/route.ts — LangGraph 버전
 import {
   CopilotRuntime,
@@ -237,11 +238,11 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### Groq 어댑터 (빠른 추론)
 
-Groq를 통해 Llama 모델로 낮은 지연 시간 응답을 얻습니다: ```typescript
+Groq를 통해 Llama 모델로 낮은 지연 시간 응답을 얻습니다: `````typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -265,15 +266,15 @@ export const POST = async (req: NextRequest) => {
   });
   return handleRequest(req);
 };
-```
+`````
 
----
+* * *
 
 ## 실전 TSX 예제: 작업 관리 Copilot
 
 다음은 CopilotKit 통합이 완료된 프로덕션 준비가 된 작업 관리자입니다. AI는 작업을 읽고, 새 작업을 추가하고, 완료로 표시하고, 채팅 내에서 작업 카드를 렌더링할 수 있습니다.
 
-```tsx
+`````tsx
 // app/components/TaskManager.tsx
 "use client";
 
@@ -311,11 +312,11 @@ services: app: build: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### 환경 기반 구성
 
-```typescript
+`````typescript
 // lib/copilot-config.ts
 export const copilotConfig = {
   runtimeUrl: process.env.NEXT_PUBLIC_COPILOT_RUNTIME_URL || "/api/copilotkit",
@@ -324,11 +325,11 @@ export const copilotConfig = {
   temperature: parseFloat(process.env.COPILOT_TEMPERATURE || "0.7"),
   threadRetention: parseInt(process.env.COPILOT_THREAD_RETENTION || "3"), // 일
 };
-```
+`````
 
 ### 속도 제한 및 보안
 
-```typescript
+`````typescript
 // middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -350,11 +351,11 @@ export async function middleware(req: NextRequest) {
   }
   return NextResponse.next();
 }
-```
+`````
 
 ### LangSmith로 모니터링
 
-```typescript
+`````typescript
 // LangSmith 추적을 런타임에 추가
 import { Client } from "langsmith";
 
@@ -379,9 +380,9 @@ const runtime = new CopilotRuntime({
     },
   ],
 });
-```
+`````
 
----
+* * *
 
 ## 대안과의 비교
 
@@ -409,7 +410,7 @@ const runtime = new CopilotRuntime({
 
 ![CopilotKit 비교표](https://docs.copilotkit.ai/assets/images/copilotkit-comparison.png)
 
----
+* * *
 
 ## 한계 / 솔직한 평가
 
@@ -425,7 +426,7 @@ CopilotKit이 모든 프로젝트에 적합한 것은 아닙니다. 다음은 �
 
 6. **고급 에이전트는 LangGraph에 의존.** 복잡한 다단계 에이전트는 LangGraph 지식이 필요합니다. 내장 에이전트는 기본 채팅을 다루지만 복잡한 워크플로는 다루지 않습니다.
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -435,7 +436,7 @@ OpenAI를 사용한 기본 통합은 10-15분이면 됩니다: 세 개의 패키
 
 ### CopilotKit을 Next.js 없이 사용할 수 있나요?
 
-네. CopilotKit은 React 18+ 애플리케이션과 함께 작동합니다. 런타임 엔드포인트는 별도로 호스팅할 수 있습니다(Express, Fastify 또는 모든 Node 서버). `@copilotkit/react-core` 패키지에는 Next.js 의존성이 없습니다.
+네. CopilotKit은 React 18+ 애플리케이션과 함께 작동합니다. 런타임 엔드포인트는 별도로 호스팅할 수 있습니다(Express, Fastify 또는 모든 Node 서버). ````@copilotkit/react-core```` 패키지에는 Next.js 의존성이 없습니다.
 
 ### CopilotKit은 어떤 LLM 제공업체를 지원하나요?
 
@@ -451,13 +452,13 @@ Vercel AI SDK는 스트리밍 및 채팅 UI 툴킷입니다. CopilotKit은 타�
 
 ### CopilotKit은 다중 에이전트 시스템을 지원하나요?
 
-예. Copilot 런타임은 요청을 여러 에이전트로 라우팅할 수 있습니다. `CopilotRuntime`의 `agents` 구성을 사용하여 LangGraph 에이전트를 등록하고, 런타임에 `agentId` 속성을 사용하여 전환합니다.
+예. Copilot 런타임은 요청을 여러 에이전트로 라우팅할 수 있습니다. ````CopilotRuntime````의 ````agents```` 구성을 사용하여 LangGraph 에이전트를 등록하고, 런타임에 ````agentId``` 속성을 사용하여 전환합니다.
 
 ### AG-UI 프로토콜이란 무엇인가요?
 
 AG-UI는 CopilotKit이 만든 에이전트-프론트엔드 통신을 위한 개방형 와이어 프로토콜입니다. 스트리밍 채팅, 도구 호출 및 상태 공유를 표준화합니다. 2026년 현재 Google, Microsoft, Amazon, LangChain, Mastra가 모두 AG-UI를 지원합니다.
 
----
+* * *
 
 ## 결론
 
@@ -472,7 +473,7 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 
 **Telegram 그룹에서 이 기사를 논의하고 도움을 받으세요:** [t.me/dibi8opensource](https://t.me/dibi8opensource) — CopilotKit 빌드를 공유하고, 질문하고, AI Copilot을 제공하는 다른 개발자들과 연결하세요.
 
----
+* * *
 
 
 
@@ -496,7 +497,7 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 - [Dev.to: LangGraph + CopilotKit 에이전트 시스템](https://dev.to/ayushgupta/building-a-production-ready-composable-ai-agent-system-with-copilotkit-and-langgraph-141f)
 - [2026년 AI 채팅 UI 라이브러리 전체 평가](https://dev.to/alexander_lukashov/i-evaluated-every-ai-chat-ui-library-in-2026-heres-what-i-found-and-what-i-built-4p10)
 
----
+* * *
 
 **고지 사항:** 이 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다. 모든 의견과 벤치마크는 독립적으로 수행되었습니다. DigitalOcean은 신규 사용자가 CopilotKit 배포를 시도할 수 있도록 $200의 묶은 크레딧을 제공합니다.
 
@@ -526,7 +527,7 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -536,7 +537,7 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 - [docker-genai-stack-local-development](copilotkit)
 - [langchain-complete-guide](copilotkit)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

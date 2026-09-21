@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/directus-headless-cms-ai-content/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao CMS của bạn vẫn là điểm nghẽn trong năm 2026
@@ -49,7 +50,7 @@ Không giống các nền tảng CMS truyền thống sở hữu cấu trúc d�
 
 ## Directus hoạt động như thế nào: Tổng quan kiến trúc
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │                        Directus Stack                        │
 ├─────────────────┬──────────────────┬────────────────────────┤
@@ -65,11 +66,11 @@ Không giống các nền tảng CMS truyền thống sở hữu cấu trúc d�
 ├─────────────────┴──────────────────┴────────────────────────┤
 │              Docker Compose / Kubernetes                     │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 Các quyết định kiến trúc chính: - **Database-first**: Directus không trừu tượng hóa database — nó nâng cao nó. Mỗi collection ánh xạ 1:1 với một bảng. Migrations là SQL chuẩn.
 - **Stateless API server**: Mở rộng ngang là tầm thường — chỉ cần thêm các container replica API phía sau load balancer.
-- **File storage abstraction**: Adapters cho S3, Google Cloud Storage, Azure Blob, và local disk. Biến đổi ảnh qua tham số URL (ví dụ: `?width=800&height=600&fit=cover`).
+- **File storage abstraction**: Adapters cho S3, Google Cloud Storage, Azure Blob, và local disk. Biến đổi ảnh qua tham số URL (ví dụ: ````?width=800&height=600&fit=cover````).
 - **Hệ thống Extensions**: Endpoint tùy chỉnh, hooks (event-driven), interfaces (UI components tùy chỉnh), displays, và dashboard panels — tất cả hot-reloaded.
 - **Real-time**: Subscriptions dựa trên WebSocket cho cập nhật dữ liệu trực tiếp (v11+).
 
@@ -83,7 +84,7 @@ Các quyết định kiến trúc chính: - **Database-first**: Directus không 
 
 ### Bước 1: Khởi động với Docker Compose
 
-```bash
+`````bash
 mkdir ~/directus && cd ~/directus
 
 # Tạo file compose
@@ -119,23 +120,23 @@ services: directus: image: directus/directus:11.3.0
     volumes: - redis-data:/data
 
 volumes: pg-data: redis-data: EOF
-```
+`````
 
 ### Bước 2: Khởi động Stack
 
-```bash
+`````bash
 docker compose up -d
 
 # Đợi khởi tạo, sau đó kiểm tra
 curl -s http://localhost:8055/server/health | jq .
 # Kết quả mong đợi: {"status":"ok","release":"11.3.0"}
-```
+`````
 
-Truy cập admin panel tại `http://localhost:8055`. Đăng nhập với thông tin admin từ compose file.
+Truy cập admin panel tại ````http://localhost:8055````. Đăng nhập với thông tin admin từ compose file.
 
 ### Bước 3: Cấu hình cho Production
 
-```bash
+`````bash
 # File .env cho production
 cat > .env << EOF
 # Bảo mật
@@ -177,15 +178,15 @@ EMAIL_SMTP_PASSWORD=your-sendgrid-key
 EXTENSIONS_PATH=./extensions
 EXTENSIONS_AUTO_RELOAD=true
 EOF
-```
+`````
 
 Cho triển khai production trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0), đặt phía sau reverse proxy (Traefik hoặc Nginx) với SSL.
 
 ### Bước 4: Tạo Collection Đầu tiên
 
-Qua admin UI: Settings → Data Model → Create Collection → `articles`.
+Qua admin UI: Settings → Data Model → Create Collection → ````articles````.
 
-Hoặc qua API: ```bash
+Hoặc qua API: `````bash
 # Tạo collection qua REST API
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -205,13 +206,13 @@ curl -X POST http://localhost:8055/collections \
       { "field": "hero_image", "type": "uuid", "meta": { "special": ["file"] }, "schema": {} }
     ]
   }'
-```
+`````
 
 ## Sử dụng REST và GraphQL API
 
 ### Ví dụ REST API
 
-```bash
+`````bash
 # Đọc tất cả articles đã xuất bản với lọc và chọn trường
 curl -s "http://localhost:8055/items/articles?filter[status][_eq]=published&fields=id,title,seo_score,published_at&sort=-published_at&limit=10" \
   -H "Authorization: Bearer <token>" | jq .
@@ -235,11 +236,11 @@ curl -s "http://localhost:8055/items/articles?aggregate[avg]=seo_score&groupBy=s
 # Truy vấn quan hệ sâu: articles với thông tin tác giả và biến đổi ảnh
 curl -s "http://localhost:8055/items/articles?fields=id,title,author.name,author.email,hero_image.id,hero_image.filename_disk&filter[status][_eq]=published" \
   -H "Authorization: Bearer <token>" | jq .
-```
+`````
 
 ### GraphQL API
 
-```bash
+`````bash
 # Introspect schema
 curl -X POST http://localhost:8055/graphql \
   -H "Content-Type: application/json" \
@@ -260,15 +261,15 @@ curl -X POST http://localhost:8055/graphql \
   -d '{
     "query": "mutation { create_articles_item(data: { title: \"Hướng dẫn GraphQL\", content: \"Nội dung ở đây...\", status: \"draft\", seo_score: 90 }) { id title } }"
   }' | jq .
-```
+`````
 
 ### JavaScript SDK
 
-```bash
+`````bash
 npm install @directus/sdk@18.0.0
-```
+`````
 
-```javascript
+`````javascript
 import { createDirectus, rest, readItems, createItem, staticToken } from '@directus/sdk';
 
 const client = createDirectus('http://localhost:8055')
@@ -284,7 +285,7 @@ const articles = await client.request(
     fields: [id, title, seo_score, published_at]
   })
 );
-console.log(`Tìm thấy ${articles.length} articles`);
+console.log(````Tìm thấy ${articles.length} articles````);
 
 // Tạo article
 const newArticle = await client.request(
@@ -297,13 +298,13 @@ const newArticle = await client.request(
   })
 );
 console.log('Đã tạo:', newArticle.id);
-```
+`````
 
 ## AI Content Workflows: Kết nối Directus với LLMs
 
 Directus Flows + Extensions cho phép pipeline nội dung AI-powered mà không cần công cụ bên ngoài. Đây là workflow AI content hoàn chỉnh: ### Bước 1: Tạo Flow cho AI Draft Generation
 
-```bash
+`````bash
 # Tạo Flow qua API kích hoạt khi article được tạo với ai_flag=true
 curl -X POST http://localhost:8055/flows \
   -H "Content-Type: application/json" \
@@ -315,11 +316,11 @@ curl -X POST http://localhost:8055/flows \
     "accountability": "all",
     "options": { "type": "filter", "scope": ["items.create.articles"] }
   }'
-```
+`````
 
 ### Bước 2: Webhook Extension cho AI Processing
 
-```javascript
+`````javascript
 // extensions/hooks/ai-content/index.js
 import { defineHook } from '@directus/extensions-sdk';
 
@@ -333,7 +334,7 @@ export default defineHook(({ filter, action }) => {
         model: 'gpt-4o',
         messages: [
           { role: system, content: 'You are a technical content writer.' },
-          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: user, content: ````Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).```` }
         ],
         response_format: { type: json_object },
         max_tokens: 2000
@@ -362,11 +363,11 @@ export default defineHook(({ filter, action }) => {
     }
   });
 });
-```
+`````
 
 ### Bước 3: Deploy Extension
 
-```bash
+`````bash
 # Build và deploy extension
 cd extensions/hooks/ai-content
 npm install
@@ -374,11 +375,11 @@ npm run build
 
 # Extension được hot-reload bởi Directus
 cp -r dist/* /directus/extensions/hooks/ai-content/
-```
+`````
 
 ### Bước 4: Truy vấn AI-Generated Content
 
-```javascript
+`````javascript
 // Lấy articles đang chờ review
 const pendingReview = await client.request(
   readItems(articles, {
@@ -399,7 +400,7 @@ await client.request(
     published_at: new Date().toISOString()
   })
 );
-```
+`````
 
 ## Benchmark / Use Case Thực tế
 
@@ -421,7 +422,7 @@ Tôi đã test Directus 11.3.0 trên [DigitalOcean droplet](https://m.do.co/c/ec
 
 ### 1. Read Replicas cho Workload Đọc Nhiều
 
-```bash
+`````bash
 # Scale API theo chiều ngang với read replicas
 version: "3"
 services: directus-api-1: image: directus/directus:11.3.0
@@ -437,11 +438,11 @@ services: directus-api-1: image: directus/directus:11.3.0
   nginx: image: nginx:alpine
     ports: - "8055:8055"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf
-```
+`````
 
 ### 2. Backups Tự động
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh — chạy qua cron hàng ngày
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -460,11 +461,11 @@ aws s3 sync $BACKUP_DIR s3://backup-bucket/directus/ --delete
 
 # Giữ lại 14 ngày
 find $BACKUP_DIR -mtime +14 -delete
-```
+`````
 
 ### 3. Custom API Endpoints
 
-```javascript
+`````javascript
 // extensions/endpoints/stats/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -485,19 +486,19 @@ export default defineEndpoint((router, { services, database }) => {
   });
 
   router.get('/seo-report', async (req, res) => {
-    const result = await database.raw(`
+    const result = await database.raw(````
       SELECT status, AVG(seo_score) as avg_score, COUNT(*) as count
       FROM articles
       GROUP BY status
-    `);
+    ````);
     res.json(result.rows);
   });
 });
-```
+`````
 
 ### 4. Quyền Cấp độ Trường
 
-```javascript
+`````javascript
 // Cấp editor role read-only trên SEO fields, full access cho content
 const rolePermissions = {
   collection: articles,
@@ -517,33 +518,33 @@ const adminPermissions = {
   fields: ['*'], // Tất cả fields
   validation: null
 };
-```
+`````
 
 ### 5. Giám sát với Prometheus
 
-Directus expose metrics qua endpoint `/server/health` và có thể mở rộng cho Prometheus: ```javascript
+Directus expose metrics qua endpoint ``/server/health`` và có thể mở rộng cho Prometheus: `````javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
 export default defineEndpoint((router, { database }) => {
   router.get('/metrics', async (_req, res) => {
-    const metrics = await database.raw(`
+    const metrics = await database.raw(````
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
       WHERE schemaname = public
-    `);
+    ````);
 
     let output = '';
     metrics.rows.forEach(row => {
-      output += `directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n`;
-      output += `directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n`;
+      output += ````directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n````;
+      output += ````directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n````;
     });
 
     res.setHeader('Content-Type', 'text/plain");
     res.send(output);
   });
 });
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -576,10 +577,10 @@ Directus khác biệt bởi việc **database-first**: bạn sở hữu schema, 
 ## Câu hỏi Thường gặp
 
 **Q: Tôi có thể dùng Directus với database hiện có không?**
-Có — đây là tính năng killer của Directus. Chỉ Directus vào bất kỳ database PostgreSQL, MySQL, hoặc SQLite hiện có, và nó sẽ introspect schema và tạo API ngay lập tức. Các ứng dụng hiện tại tiếp tục hoạt động không thay đổi. Directus chỉ thêm bảng metadata (`directus_*`) mà không chạm vào cấu trúc dữ liệu của bạn. Điều này làm cho nó lý tưởng để thêm giao diện CMS cho các ứng dụng legacy.
+Có — đây là tính năng killer của Directus. Chỉ Directus vào bất kỳ database PostgreSQL, MySQL, hoặc SQLite hiện có, và nó sẽ introspect schema và tạo API ngay lập tức. Các ứng dụng hiện tại tiếp tục hoạt động không thay đổi. Directus chỉ thêm bảng metadata (````directus_*````) mà không chạm vào cấu trúc dữ liệu của bạn. Điều này làm cho nó lý tưởng để thêm giao diện CMS cho các ứng dụng legacy.
 
 **Q: Content versioning hoạt động như thế nào?**
-Directus lưu snapshot của nội dung mỗi khi bạn nhấn "Save as Version." Bạn có thể so sánh các phiên bản cạnh nhau, revert về bất kỳ phiên bản trước đó, và lên lịch phiên bản để xuất bản trong tương lai. Các phiên bản được lưu trong bảng `directus_revisions`. Điều này hoạt động cho tất cả collections có versioning được bật trong cài đặt data model.
+Directus lưu snapshot của nội dung mỗi khi bạn nhấn "Save as Version." Bạn có thể so sánh các phiên bản cạnh nhau, revert về bất kỳ phiên bản trước đó, và lên lịch phiên bản để xuất bản trong tương lai. Các phiên bản được lưu trong bảng ````directus_revisions```. Điều này hoạt động cho tất cả collections có versioning được bật trong cài đặt data model.
 
 **Q: Directus có xử lý ứng dụng traffic cao không?**
 Có, với kiến trúc phù hợp. API server là stateless — scale ngang bằng cách thêm container replicas phía sau load balancer. Dùng Redis cho caching và sessions. Dùng PostgreSQL read replicas cho workload đọc nhiều. Một instance 4 vCPU / 8GB xử lý ~2.000 requests/giây cho cached reads. Phục vụ file nên đi qua CDN.
@@ -626,7 +627,7 @@ Triển khai trên [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) chỉ 
 **Công bố Liên kết Liên kết**
 Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và [HTStack](https://my.htstack.com/aff.php?aff=27187). Nếu bạn mua hosting qua các liên kết này, dibi8.com nhận được hoa hồng mà không tăng chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ chúng tôi sử dụng cho chính hạ tầng của mình. Tất cả benchmarks được thực hiện độc lập trên các instance trả phí.
 
----
+* * *
 *Bài viết đăng: 2026-05-19 | Danh mục: dev-utils | Công cụ: Directus 11.3.0*
 *Tham gia cộng đồng dibi8: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
@@ -656,7 +657,7 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -666,6 +667,6 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 - [llm-inference-cost-optimization-guide-2026](directus-headless-cms-ai-content)
 - [12-factor-agents](directus-headless-cms-ai-content)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

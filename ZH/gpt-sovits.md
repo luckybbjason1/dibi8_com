@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/gpt-sovits/-
 ---
 
+
 {{</* resource-info */>}}
 
 > 用5秒音频克隆任意声音。1分钟数据微调。20分钟内完成生产部署。本指南带你完成全流程配置。
@@ -30,11 +31,11 @@ aliases:
 
 GPT-SoVITS 采用将语言理解与音频波形生成分离的两阶段流水线：
 
-```
+````
 文本输入 → BERT文本编码器 → GPT模型 (330M参数) → 语义Token
                                                   ↓
 参考音频 → HuBERT编码器 → SoVITS模型 (77M参数) → 声码器 → 48kHz音频
-```
+`````
 
 **阶段1 — GPT（文本到语义）：** 一个330M参数的GPT模型将音素序列转换为离散语义token。BERT嵌入提供语言上下文，确保准确的发音和韵律预测。
 
@@ -44,11 +45,11 @@ GPT-SoVITS 采用将语言理解与音频波形生成分离的两阶段流水线
 
 | 组件 | 功能 | 参数量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT模型 | 语义token预测 | 330M |
 | SoVITS生成器 | 波形合成 | 77M |
@@ -61,11 +62,11 @@ GPT-SoVITS 采用将语言理解与音频波形生成分离的两阶段流水线
 
 | 版本 | 关键改进 | 预训练数据量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | V1 | 初始版本 | 2,000小时 |
 | V2 | +韩语、+粤语、优化前端 | 5,000小时 |
@@ -77,13 +78,13 @@ GPT-SoVITS 采用将语言理解与音频波形生成分离的两阶段流水线
 
 ### 流水线数据流
 
-完整的训练和推理流水线遵循以下流程: ```
+完整的训练和推理流水线遵循以下流程: `````
 原始音频 → UVR5分离 → 音频切片 → ASR转录 → 文本标注
                                                           ↓
 预训练GPT + SoVITS ← 微调(1分钟数据) ← 格式化数据集
                                                           ↓
 推理: 参考音频 + 文本 → GPT(语义Token) → SoVITS → 48kHz音频
-```
+`````
 
 ![GPT-SoVITS WebUI界面截图，显示完整的训练和推理界面](https://www.nite07.com/en/posts/gpt-sovits/webui.png)
 
@@ -93,11 +94,11 @@ GPT-SoVITS 采用将语言理解与音频波形生成分离的两阶段流水线
 
 | 组件 | 最低配置 | 推荐配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | NVIDIA GTX 1060 (6GB) | RTX 4060 Ti 或更高 |
 | VRAM | 6 GB | 8+ GB (fp16) |
@@ -106,7 +107,7 @@ GPT-SoVITS 采用将语言理解与音频波形生成分离的两阶段流水线
 
 ### 方式A: Conda 安装 (Linux / macOS)
 
-```bash
+`````bash
 # 步骤1: 创建并激活环境
 conda create -n GPTSoVits python=3.10 -y
 conda activate GPTSoVits
@@ -121,20 +122,20 @@ cd GPT-SoVITS
 # 步骤4: 安装依赖
 pip install -r extra-req.txt --no-deps
 pip install -r requirements.txt
-```
+`````
 
 ### 方式B: Windows 整合包
 
-```powershell
+`````powershell
 # 从 HuggingFace 下载整合包
 # 解压后运行: conda create -n GPTSoVits python=3.10
 conda activate GPTSoVits
 pwsh -F install.ps1 -Device CU126 -Source HF
-```
+`````
 
 ### 方式C: Docker 部署 (推荐用于生产)
 
-```bash
+`````bash
 # 克隆并进入项目目录
 git clone https://github.com/RVC-Boss/GPT-SoVITS.git
 cd GPT-SoVITS
@@ -147,11 +148,11 @@ bash docker_build.sh --cuda 12.8
 
 # 或使用 Docker Hub 预构建镜像
 docker compose run --service-ports GPT-SoVITS-CU128
-```
+`````
 
 ### Docker Compose 配置
 
-```yaml
+`````yaml
 # docker-compose.override.yaml 用于生产
 services: GPT-SoVITS-CU128: shm_size: 16g
     environment: - is_half=true
@@ -162,11 +163,11 @@ services: GPT-SoVITS-CU128: shm_size: 16g
     deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
 ### 预训练模型配置
 
-```bash
+`````bash
 # 下载预训练模型 (运行一次)
 mkdir -p GPT_SoVITS/pretrained_models
 
@@ -178,11 +179,11 @@ mkdir -p GPT_SoVITS/pretrained_models
 
 # 下载 UVR5 权重用于人声分离
 # 放入: tools/uvr5/uvr5_weights/
-```
+`````
 
 ### 启动 WebUI
 
-```bash
+`````bash
 # 标准启动 (默认端口 9874)
 python webui.py
 
@@ -191,7 +192,7 @@ python webui.py zh
 
 # 仅启动推理 API 服务器
 python api_v2.py
-```
+`````
 
 ## 与流行工具集成
 
@@ -199,7 +200,7 @@ python api_v2.py
 
 ComfyUI节点让GPT-SoVITS可以在视觉工作流中生成语音：
 
-```bash
+`````bash
 # 安装 ComfyUI-GPT-SoVITS 节点
 cd ComfyUI/custom_nodes
 git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
@@ -208,7 +209,7 @@ git clone https://github.com/yaolidi/ComfyUI-GPT-SoVITS.git
 pip install -r ComfyUI-GPT-SoVITS/requirements.txt
 
 # 将训练好的 .pth 和 .ckpt 模型放入: # ComfyUI/models/GPT-SoVITS/
-```
+`````
 
 该节点将GPT-SoVITS推理暴露为ComfyUI节点，输入包括参考音频、文本和模型选择。
 
@@ -216,7 +217,7 @@ pip install -r ComfyUI-GPT-SoVITS/requirements.txt
 
 RVC和GPT-SoVITS共享同一个生态系统。使用RVC进行实时语音转换，GPT-SoVITS进行高质量TTS：
 
-```python
+`````python
 # 流水线: GPT-SoVITS TTS → RVC 语音转换
 import requests
 import subprocess
@@ -242,13 +243,13 @@ rvc_cmd = [
     "--output", "final_output.wav"
 ]
 subprocess.run(rvc_cmd)
-```
+`````
 
 ### 与 MeloTTS 集成
 
 MeloTTS处理多语言文本预处理，然后由GPT-SoVITS合成：
 
-```python
+`````python
 from melo.api import TTS
 import requests
 
@@ -264,20 +265,20 @@ response = requests.post("http://localhost:9880/tts", json={
     "prompt_text": "原始提示文本",
     "prompt_lang": "zh"
 })
-```
+`````
 
 ### REST API 集成
 
-内置的 `api_v2.py` 提供完整的REST API用于生产：
+内置的 ````api_v2.py```` 提供完整的REST API用于生产：
 
-```bash
+`````bash
 # 启动 API 服务器
 python api_v2.py -a 0.0.0.0 -p 9880
 
 # 在 http://localhost:9880/docs 查看 API 文档
-```
+`````
 
-```python
+`````python
 # Python 客户端示例
 import requests
 
@@ -311,11 +312,11 @@ synthesize(
     "这是参考转录文本。",
     "/output/cloned.wav"
 )
-```
+`````
 
 ### OpenAI 兼容 API 包装器
 
-```bash
+`````bash
 # 使用社区 OpenAI 兼容包装器
 git clone https://github.com/enihsyou/GPT-SoVITS-2-OpenAI.git
 cd GPT-SoVITS-2-OpenAI
@@ -327,7 +328,7 @@ cp config.yaml.example config.yaml
 
 docker compose up -d
 # 现在服务在 http://localhost:5000/v1/audio/speech
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -335,13 +336,13 @@ docker compose up -d
 
 | 硬件 | 版本 | RTF (实时系数) | 1400字推理时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4090 | V2 ProPlus | 0.014 | 3.36秒 |
 | RTX 4060 Ti | V2 ProPlus | 0.028 | ~7秒 |
@@ -356,13 +357,13 @@ RTF < 1 表示生成速度超过实时速度。GPT-SoVITS V2 ProPlus 在 RTX 409
 
 | 模型 | MOS (平均意见分) | 所需训练数据 | 参数量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 人类语音 | 4.5+ | N/A | N/A |
 | GPT-SoVITS V4 | ~4.0 (估算) | 5秒零样本 / 1分钟微调 | 407M总计 |
@@ -386,15 +387,15 @@ RTF < 1 表示生成速度超过实时速度。GPT-SoVITS V2 ProPlus 在 RTX 409
 
 | 数据量 | GPU | 步数 | SoVITS训练时间 | GPT训练时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1分钟 | RTX 4090 | 300 | ~5分钟 | ~10分钟 |
 | 5分钟 | RTX 4090 | 300 | ~8分钟 | ~15分钟 |
@@ -407,7 +408,7 @@ RTF < 1 表示生成速度超过实时速度。GPT-SoVITS V2 ProPlus 在 RTX 409
 
 ### GPU内存优化
 
-```bash
+`````bash
 # 启用半精度 (fp16) 减少50%显存占用
 export is_half=true
 
@@ -416,11 +417,11 @@ python webui.py --device cuda --half_precision --offload_text_encoder
 
 # 低显存配置使用CPU推理版本
 git clone https://github.com/baicai-1145/GPT-SoVITS-CPUFast.git
-```
+`````
 
 ### 边缘部署模型量化
 
-```python
+`````python
 # 导出为ONNX加速推理
 python GPT_SoVITS/onnx_export.py \
     --gpt_model GPT_SoVITS/GPT_weights/your_model.ckpt \
@@ -432,11 +433,11 @@ python GPT_SoVITS/onnx_export.py \
     --onnx=./onnx_models/gpt_model.onnx \
     --saveEngine=./trt_models/gpt_model.trt \
     --fp16
-```
+`````
 
 ### API限流与监控
 
-```python
+`````python
 # api_v2.py 生产环境包装器，带限流
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -465,11 +466,11 @@ app.add_middleware(
     allow_methods=["POST"],
     allow_headers=["*"],
 )
-```
+`````
 
 ### 批处理流水线
 
-```bash
+`````bash
 #!/bin/bash
 # batch_synthesize.sh — 批量处理文本文件
 
@@ -496,17 +497,17 @@ for txt_file in "$INPUT_DIR"/*.txt; do
     
     echo "已生成: $OUTPUT_DIR/${filename}.wav"
 done
-```
+`````
 
 ### 生产安全检查清单
 
 1. **API认证**：内置API无认证。放置在带API密钥验证的nginx反向代理后。
-2. **输入消毒**：验证 `ref_audio_path` 防止路径遍历攻击。
-3. **资源限制**：设置 `ulimit` 和Docker内存限制防止OOM崩溃。
+2. **输入消毒**：验证 ````ref_audio_path```` 防止路径遍历攻击。
+3. **资源限制**：设置 ````ulimit```` 和Docker内存限制防止OOM崩溃。
 4. **模型访问控制**：将训练好的模型存放在独立卷中并限制权限。
 5. **HTTPS终止**：使用反向代理处理TLS——切勿将API服务器直接暴露到互联网。
 
-```nginx
+`````nginx
 # nginx 反向代理配置
 server {
     listen 443 ssl;
@@ -528,21 +529,21 @@ server {
         proxy_pass_request_body off;
     }
 }
-```
+`````
 
 ## 与替代品对比
 
 | 特性 | GPT-SoVITS | Coqui XTTS v2 | Bark | F5-TTS |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT (可商用) | CPML (非商用) | MIT (可商用) | CC-BY-NC 4.0 |
 | **星标数** | 57,500+ | 4,200+ | 37,000+ | 10,800+ |
@@ -591,7 +592,7 @@ server {
 RTX 4060 Ti (8GB) 是大多数用户的最佳选择——推理RTF为0.028且支持fp16微调。生产部署推荐RTX 4090 (RTF 0.014) 或A100/H100服务器GPU。避免低于6GB显存的显卡。
 
 **Q4: 如何在不同模型版本 (V2, V3, V4) 之间切换？**
-通过WebUI下拉菜单或API配置选择版本。使用新版本时，用 `git pull` 更新代码，从HuggingFace下载对应预训练模型并放入 `GPT_SoVITS/pretrained_models/`。`tts_infer.yaml` 文件控制版本选择。
+通过WebUI下拉菜单或API配置选择版本。使用新版本时，用 ````git pull```` 更新代码，从HuggingFace下载对应预训练模型并放入 ````GPT_SoVITS/pretrained_models/````。````tts_infer.yaml```` 文件控制版本选择。
 
 **Q5: 生成的声音为什么有金属感或沉闷？**
 这是V3中的已知问题，由非整数倍上采样引起。升级到V4，修复金属音伪影并输出原生48kHz音频。同时验证参考音频是否干净——背景噪音和压缩伪影会传播到输出。
@@ -600,17 +601,17 @@ RTX 4060 Ti (8GB) 是大多数用户的最佳选择——推理RTF为0.028且支
 在nginx或HAProxy后运行多个API实例，每个实例绑定不同端口。使用共享网络卷存放模型。自动扩展可使用Kubernetes容器化并配合GPU节点池。
 
 **Q7: 可以不使用Docker运行GPT-SoVITS吗？**
-可以。Conda安装路径完全受支持。确保已安装FFmpeg并满足 `requirements.txt` 中所有Python依赖。WebUI和API在Docker外工作方式完全相同。
+可以。Conda安装路径完全受支持。确保已安装FFmpeg并满足 ````requirements.txt```` 中所有Python依赖。WebUI和API在Docker外工作方式完全相同。
 
 ## 结论
 
 GPT-SoVITS以最少的数据需求、MIT许可证和成熟的部署生态提供了生产级语音克隆。消费级GPU上0.014的RTF使实时应用成为可能，而完整的WebUI工具链降低了入门门槛。对于2026年构建语音产品的团队来说，这是最实用的开源基础。
 
 **今日部署行动清单：**
-1. 克隆 `https://github.com/RVC-Boss/GPT-SoVITS` 并运行Docker配置
+1. 克隆 ````https://github.com/RVC-Boss/GPT-SoVITS```` 并运行Docker配置
 2. 下载预训练模型（V2 ProPlus速度最佳）
 3. 录制5秒参考音频并通过WebUI测试零样本推理
-4. 用认证层包装 `api_v2.py` 端点
+4. 用认证层包装 ````api_v2.py``` 端点
 5. 加入 [dibi8.com Telegram群组](https://t.me/dibi8tech) 获取部署支持和社区讨论
 
 
@@ -664,7 +665,7 @@ GPT-SoVITS以最少的数据需求、MIT许可证和成熟的部署生态提供�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](gpt-sovits)
@@ -674,5 +675,5 @@ GPT-SoVITS以最少的数据需求、MIT许可证和成熟的部署生态提供�
 - [microsoft-markitdown-file-to-markdown-converter-cli](gpt-sovits)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

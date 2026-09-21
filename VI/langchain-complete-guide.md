@@ -22,6 +22,7 @@ aliases:
   - /posts/langchain-complete-guide/
 ---
 
+
 {</* resource-info */>}
 
 Khi large language models (LLMs) như GPT-4, Claude 3.5 và Llama 3.1 ngày càng trở nên phổ biến, các nhà phát triển đối mặt với một thách thức thực tế: làm sao kết nối mô hình ngôn ngữ với dữ liệu bên ngoài, công cụ và quy trình làm việc phức tạp? LangChain ra đờinhằm giải quyết đúng vấn đề này. Đến tháng 5 năm 2025, framework này đã đạt hơn 95.000 stars trên GitHub và trở thành lựa chọn hàng đầu cho việc xây dựng ứng dụng AI production-grade. Bài viết này sẽ đưa bạn từ những khái niệm cơ bản nhất đến các pattern nâng cao, cùng với hướng dẫn triển khai thực tế.
@@ -121,22 +122,22 @@ LangSmith (có gói miễn phí với 5.000 traces/tháng) giải quyết vấn 
 
 ### Cài Đặt Môi Trường
 
-```bash
+````bash
 pip install langchain langchain-openai langchain-community
 pip install chromadb  # vector store
 pip install langsmith # optional, for tracing
-```
+`````
 
-Thiết lập API keys: ```python
+Thiết lập API keys: `````python
 import os
 os.environ["OPENAI_API_KEY"] = "your-key"
 os.environ["LANGSMITH_API_KEY"] = "your-key"  # optional
 os.environ["LANGSMITH_TRACING"] = "true"
-```
+`````
 
 ### Xây Dựng Simple LLM Chain
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
@@ -152,11 +153,11 @@ response = chain.invoke({
     "question": "Giải thích overfitting là gì?"
 })
 print(response.content)
-```
+`````
 
 ### Thêm RAG Với Document Loading
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -181,11 +182,11 @@ qa_chain = RetrievalQA.from_chain_type(
 )
 
 result = qa_chain.invoke({"query": "Nội dung chính của tài liệu là gì?"})
-```
+`````
 
 ### Tạo ReAct Agent Với Công Cụ
 
-```python
+`````python
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain.tools import Tool
 from langchain import hub
@@ -212,13 +213,13 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 agent_executor.invoke({
     "input": "Tính tổng dân số Việt Nam (99 triệu) và Thái Lan (70 triệu)"
 })
-```
+`````
 
 ## Advanced LangChain Patterns
 
 ### Multi-Step Reasoning Chains
 
-Với **LangChain Expression Language (LCEL)**, bạn có thể xây dựng pipeline phức tạp bằng cách kết hợp các thành phần bằng toán tử `|` (pipe), tương tự Unix pipes: ```python
+Với **LangChain Expression Language (LCEL)**, bạn có thể xây dựng pipeline phức tạp bằng cách kết hợp các thành phần bằng toán tử ``|`` (pipe), tương tự Unix pipes: `````python
 from langchain_core.runnables import RunnablePassthrough
 
 chain = (
@@ -227,34 +228,34 @@ chain = (
     | llm
     | output_parser
 )
-```
+`````
 
 LCEL tự động hỗ trợ streaming, async execution và batch processing mà không cần cấu hình thêm.
 
 ### Streaming và Async Execution
 
-LangChain hỗ trợ streaming responses để hiển thị output từng phần thay vì chờ hoàn chỉnh: ```python
+LangChain hỗ trợ streaming responses để hiển thị output từng phần thay vì chờ hoàn chỉnh: `````python
 async for chunk in chain.astream({"question": "Viết một bài thơ về mùa xuân"}): print(chunk.content, end="", flush=True)
-```
+`````
 
 ### Error Handling và Fallbacks
 
-Production applications cần xử lý lỗi graceful. LangChain cung cấp **RunnableWithFallbacks**: ```python
+Production applications cần xử lý lỗi graceful. LangChain cung cấp **RunnableWithFallbacks**: `````python
 from langchain_core.runnables import RunnableWithFallbacks
 
 primary = ChatOpenAI(model="gpt-4o")
 fallback = ChatOpenAI(model="gpt-4o-mini")
 
 model_with_fallback = primary.with_fallbacks([fallback])
-```
+`````
 
 ## LangChain Trong Production: Best Practices
 
 ### Tối Ưu Hiệu Suất
 
-- **Sử dụng batch processing**: gọi `batch()` thay vì nhiều lần `invoke()` riêng lẻ
-- **Caching**: lưu cache kết quả LLM calls với `InMemoryCache` hoặc `RedisCache`
-- **Parallel execution**: dùng `RunnableParallel` để chạy nhiều retrieval đồng thờ
+- **Sử dụng batch processing**: gọi ````batch()```` thay vì nhiều lần ````invoke()```` riêng lẻ
+- **Caching**: lưu cache kết quả LLM calls với ````InMemoryCache```` hoặc ````RedisCache````
+- **Parallel execution**: dùng ````RunnableParallel```` để chạy nhiều retrieval đồng thờ
 
 ### Bảo Mật và Phòng Thủ Prompt Injection
 
@@ -265,14 +266,14 @@ Prompt injection là một trong những rủi ro bảo mật nghiêm trọng nh
 
 ### Triển Khai Với Docker và Cloud
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
 LangChain applications thường được triển khai dưới dạng FastAPI/Flask API, containerized với Docker, và chạy trên Kubernetes hoặc các nền tảng serverless như AWS Lambda, Google Cloud Run.
 
@@ -304,7 +305,7 @@ Chọn **LangChain** nếu bạn cần xây dựng ứng dụng LLM đa dạng v
 
 ### LangChain có hoạt động với local LLMs như Ollama không?
 
-Có, LangChain hỗ trợ tích hợp với Ollama, LM Studio, vLLM và nhiều local LLM servers khác thông qua các lớp wrapper như `OllamaLLM` và `ChatOllama`. Điều này cho phép bạn phát triển và test ứng dụng hoàn toàn miễn phí trên máy local trước khi triển khai với commercial APIs.
+Có, LangChain hỗ trợ tích hợp với Ollama, LM Studio, vLLM và nhiều local LLM servers khác thông qua các lớp wrapper như ````OllamaLLM```` và ````ChatOllama```. Điều này cho phép bạn phát triển và test ứng dụng hoàn toàn miễn phí trên máy local trước khi triển khai với commercial APIs.
 
 ### LangChain có hỗ trợ JavaScript/TypeScript không?
 
@@ -322,7 +323,7 @@ LangChain đã khẳng định vị thế là framework hàng đầu cho việc 
 
 Bắt đầu bằng một ứng dụng RAG đơn giản, sau đó từ từ thêm agents, memory và monitoring — đây là con đường hiệu quả nhất để làm chủ LangChain trong năm 2025.
 
----
+* * *
 
 **Tài liệu tham khảo:**
 
@@ -332,7 +333,7 @@ Bắt đầu bằng một ứng dụng RAG đơn giản, sau đó từ từ thê
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph)
 - [Hugging Face Models Hub](https://huggingface.co)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

@@ -23,11 +23,12 @@ tags: ["whisperx", "asr", "speech-recognition", "speaker-diarization", "word-tim
 aliases:
   - /posts/whisperx/-
 ---
+
 {{</* resource-info */>}}
 
 Transcribing audio is easy. Getting **word-level timestamps accurate to sub-100ms** and knowing **exactly who spoke each word** is hard. OpenAI Whisper gives you segment-level timestamps that drift by seconds. For podcast editing, video subtitling, meeting transcripts, and legal depositions, that level of precision is unusable.
 
-Enter **WhisperX** — a 22,000-star open-source toolkit that wraps `faster-whisper` with forced phoneme alignment via wav2vec2 and speaker diarization via pyannote.audio. The result: 70x realtime transcription with word-level timestamps and multi-speaker labels. Accepted at INTERSPEECH 2023 and battle-tested in production pipelines worldwide.
+Enter **WhisperX** — a 22,000-star open-source toolkit that wraps ```faster-whisper```` with forced phoneme alignment via wav2vec2 and speaker diarization via pyannote.audio. The result: 70x realtime transcription with word-level timestamps and multi-speaker labels. Accepted at INTERSPEECH 2023 and battle-tested in production pipelines worldwide.
 
 This guide walks through a complete WhisperX tutorial covering installation, a full WhisperX Docker setup, Python API integration, production hardening, and honest benchmarks in a WhisperX vs Whisper comparison with faster-whisper and DeepSpeech.
 
@@ -41,7 +42,7 @@ Unlike Whisper's segment-level timestamps (which drift by 1-3 seconds), WhisperX
 
 ## How WhisperX Works
 
-WhisperX operates as a three-stage pipeline, with each stage producing incrementally richer output: ```
+WhisperX operates as a three-stage pipeline, with each stage producing incrementally richer output: `````
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
 │  Stage 1: ASR   │ →  │ Stage 2: Align   │ →  │ Stage 3: Diarize │
 │  (faster-whisper)│    │ (wav2vec2 forced)│    │ (pyannote.audio) │
@@ -49,9 +50,9 @@ WhisperX operates as a three-stage pipeline, with each stage producing increment
          │                       │                       │
     Segment text           Word timestamps         Speaker labels
     (no timestamps)        (sub-100ms)             (per word)
-```
+`````
 
-**Stage 1 — Transcription.** Uses `faster-whisper` (via CTranslate2) for batched inference. VAD preprocessing from pyannote strips silent segments, reducing hallucinations and enabling batching without WER degradation. Output: text segments without timestamps.
+**Stage 1 — Transcription.** Uses ````faster-whisper```` (via CTranslate2) for batched inference. VAD preprocessing from pyannote strips silent segments, reducing hallucinations and enabling batching without WER degradation. Output: text segments without timestamps.
 
 **Stage 2 — Alignment.** Runs the transcript through a language-specific wav2vec2 phoneme alignment model. This maps each recognized word to its exact position in the audio via forced alignment. Output: segments with word-level start/end timestamps.
 
@@ -69,15 +70,15 @@ WhisperX requires Python 3.10+, PyTorch 2.7.1+ with CUDA 12.8, and ffmpeg. GPU i
 
 | Hardware | Transcription | + Alignment | + Diarization | VRAM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4090 (FP16) | 72x RTF | 60x | 30x | 24 GB |
 | RTX 4070 (FP16) | 50x | 40x | 22x | 12 GB |
@@ -87,7 +88,7 @@ WhisperX requires Python 3.10+, PyTorch 2.7.1+ with CUDA 12.8, and ffmpeg. GPU i
 
 ### Method 1: PyPI Install (Recommended)
 
-```bash
+`````bash
 # Install CUDA 12.8 toolkit first (Linux)
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 
@@ -96,21 +97,21 @@ pip install whisperx
 
 # Verify installation
 whisperx --version
-```
+`````
 
 ### Method 2: uv Install (Fastest)
 
-```bash
+`````bash
 # Using Astral uv for instant tool execution
 uvx whisperx --help
 
 # Or install from GitHub for latest features
 uvx git+https://github.com/m-bain/whisperX.git
-```
+`````
 
 ### Method 3: Docker Install (Production)
 
-```bash
+`````bash
 # Pull pre-built image with all dependencies
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
@@ -132,11 +133,11 @@ EOF
 docker build -f Dockerfile.whisperx -t whisperx:latest .
 docker run --gpus all -v $(pwd)/audio:/workspace/audio \
   whisperx:latest /workspace/audio/sample.wav --model large-v2
-```
+`````
 
 ### Hugging Face Token Setup (Required for Diarization)
 
-Speaker diarization requires accepting the pyannote model license: ```bash
+Speaker diarization requires accepting the pyannote model license: `````bash
 # 1. Create a Hugging Face account at https://huggingface.co
 # 2. Generate a read token at https://huggingface.co/settings/tokens
 # 3. Accept the license for: #    - pyannote/speaker-diarization-community-1
@@ -147,13 +148,13 @@ export HF_TOKEN="hf_your_token_here"
 
 # Pass via CLI
 whisperx audio.wav --diarize --hf_token $HF_TOKEN
-```
+`````
 
 ## Integration with Popular Tools
 
 ### faster-whisper
 
-WhisperX uses `faster-whisper` as its default ASR backend via CTranslate2. You can configure beam size and compute type for speed/accuracy tradeoffs: ```python
+WhisperX uses ``faster-whisper`` as its default ASR backend via CTranslate2. You can configure beam size and compute type for speed/accuracy tradeoffs: `````python
 import whisperx
 
 # Load model with faster-whisper backend
@@ -168,11 +169,11 @@ model = whisperx.load_model(
         "patience": 2.0,
     }
 )
-```
+`````
 
 ### pyannote.audio
 
-Diarization uses pyannote.audio 3.1+ models. The `DiarizationPipeline` wraps pyannote with WhisperX-specific speaker assignment: ```python
+Diarization uses pyannote.audio 3.1+ models. The ``DiarizationPipeline`` wraps pyannote with WhisperX-specific speaker assignment: `````python
 from whisperx.diarize import DiarizationPipeline
 
 # Initialize diarization with pyannote backend
@@ -191,21 +192,21 @@ diarize_segments = diarize_model(
 
 # Assign speakers to words
 result = whisperx.assign_word_speakers(diarize_segments, result)
-```
+`````
 
 ### OpenAI Whisper
 
-WhisperX loads OpenAI's Whisper weights but converts them to CTranslate2 format for 4x faster inference. Use the `--model` flag to select any Whisper variant: ```bash
+WhisperX loads OpenAI's Whisper weights but converts them to CTranslate2 format for 4x faster inference. Use the ``--model`` flag to select any Whisper variant: `````bash
 # Model size options: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
 # For 8GB VRAM GPUs, use INT8 quantization
 whisperx audio.wav --model large-v2 --compute_type int8
-```
+`````
 
 ### Docker Compose Production Stack
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -234,11 +235,11 @@ services: whisperx: build: context: .
   # Optional: Redis queue for batch jobs
   redis: image: redis:7-alpine
     ports: - "6379:6379"
-```
+`````
 
 ### FastAPI Service Wrapper
 
-```python
+`````python
 # api.py - Production-ready WhisperX API
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
@@ -298,9 +299,9 @@ async def transcribe(
 
 @app.get("/health")
 async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
-```
+`````
 
-Run the API: ```bash
+Run the API: `````bash
 # Install dependencies
 pip install fastapi uvicorn python-multipart
 
@@ -310,7 +311,7 @@ uvicorn api:app --host 0.0.0.0 --port 8000 --workers 1
 # Test with curl
 curl -X POST "http://localhost:8000/transcribe?diarize=true" \
   -F "file=@interview.wav"
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -318,15 +319,15 @@ curl -X POST "http://localhost:8000/transcribe?diarize=true" \
 
 Tested on AMD RX 7700 XT with CUDA 12.8: | Model | OpenAI Whisper | faster-whisper | WhisperX (full) | Speedup vs Whisper |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | tiny | ~12 min | ~1.5 min | ~2 min | 6x |
 | base | ~20 min | ~2.5 min | ~3.5 min | 5.7x |
@@ -340,15 +341,15 @@ WhisperX adds ~30-40% overhead over faster-whisper due to alignment and diarizat
 
 From the WhisperX paper (Bain et al., INTERSPEECH 2023) tested on TEDLIUM, AMI, and Switchboard corpora: | Metric | Whisper | wav2vec2 | WhisperX | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | -7% vs Whisper |
 | Word Seg. Precision | 62% | 71% | **89%** | +18% vs wav2vec2 |
@@ -357,13 +358,13 @@ From the WhisperX paper (Bain et al., INTERSPEECH 2023) tested on TEDLIUM, AMI, 
 
 Real-world WER from independent studies (2024-2025): | Scenario | Whisper WER | WhisperX WER | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Studio quality, 1 speaker | 5.2% | **4.8%** | Clean podcast audio |
 | Multi-speaker meetings (AMI) | 12.1% | **8.8%** | 3-4 speakers |
@@ -376,7 +377,7 @@ Real-world WER from independent studies (2024-2025): | Scenario | Whisper WER | 
 
 **Legal deposition analysis.** A litigation support firm uses WhisperX to transcribe 8-hour depositions with speaker attribution. The word-level alignment lets attorneys click any transcript line and jump to the exact moment in audio/video. Diarization accuracy is ~90% for 2-3 speakers in formal settings.
 
-**Video subtitling.** A media company generates SRT files for 50+ languages. WhisperX's VAD preprocessing eliminates hallucinations on silent gaps, and the `--highlight_words` flag produces karaoke-style word-by-word subtitles.
+**Video subtitling.** A media company generates SRT files for 50+ languages. WhisperX's VAD preprocessing eliminates hallucinations on silent gaps, and the ````--highlight_words```` flag produces karaoke-style word-by-word subtitles.
 
 **Meeting transcription.** Integrated with a Slack bot, WhisperX processes uploaded audio files and returns threaded transcripts with speaker labels. INT8 quantization on an RTX 3060 handles 10+ meetings per hour.
 
@@ -384,7 +385,7 @@ Real-world WER from independent studies (2024-2025): | Scenario | Whisper WER | 
 
 ### Memory-Constrained Deployment
 
-For GPUs with limited VRAM: ```bash
+For GPUs with limited VRAM: `````bash
 # INT8 quantization: 30-40% VRAM reduction, minimal accuracy loss
 whisperx audio.wav \
   --model large-v2 \
@@ -397,11 +398,11 @@ whisperx audio.wav \
   --model base \
   --compute_type int8 \
   --device cpu
-```
+`````
 
 ### Model Caching for Container Environments
 
-```bash
+`````bash
 # Pre-download models to avoid cold-start latency
 python3 << PYEOF
 import whisperx
@@ -425,11 +426,11 @@ PYEOF
 
 # Mount cache in Docker
 # -v /host/cache:/root/.cache:rw
-```
+`````
 
 ### Monitoring & Logging
 
-```python
+`````python
 # monitoring.py - Prometheus metrics for WhisperX
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -470,16 +471,16 @@ def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.tim
 
 # Expose metrics on port 9090
 start_http_server(9090)
-```
+`````
 
 ### Security Considerations
 
-1. **Token management.** Store `HF_TOKEN` in a secrets manager (AWS Secrets Manager, Vault), never in code or environment files.
+1. **Token management.** Store ````HF_TOKEN```` in a secrets manager (AWS Secrets Manager, Vault), never in code or environment files.
 2. **Input validation.** Sanitize uploaded filenames. Process audio in isolated temp directories.
 3. **Rate limiting.** Implement per-user rate limits to prevent GPU resource exhaustion.
 4. **Model isolation.** Run WhisperX in a dedicated container with read-only root filesystem.
 
-```bash
+`````bash
 # Secure Docker run
 docker run --gpus all \
   --read-only \
@@ -488,11 +489,11 @@ docker run --gpus all \
   --cap-drop ALL \
   -e HF_TOKEN_FILE=/run/secrets/hf_token \
   whisperx:latest audio.wav --diarize
-```
+`````
 
 ### Scaling with Kubernetes
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -520,21 +521,21 @@ spec: replicas: 2
       - name: audio-input
         nfs: server: 10.0.0.5
           path: /shared/audio
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Word-level timestamps** | Yes (<80ms) | No (segment only) | No (segment only) | No |
 | **Speaker diarization** | Yes (per word) | No | No | No |
@@ -562,7 +563,7 @@ spec: replicas: 2
 
 **Overlapping speech is problematic.** When two speakers talk simultaneously, WhisperX (and Whisper) assigns all speech to one speaker. The pyannote diarization model detects overlaps but cannot separate intertwined audio streams. For heavy crosstalk scenarios, expect 20-30% speaker error.
 
-**Diarization requires known speaker counts for best accuracy.** While pyannote can auto-detect speaker count, accuracy drops from ~90% (known count) to ~75% (auto-detect) on 4+ speaker recordings. Pass `--min_speakers` and `--max_speakers` when possible.
+**Diarization requires known speaker counts for best accuracy.** While pyannote can auto-detect speaker count, accuracy drops from ~90% (known count) to ~75% (auto-detect) on 4+ speaker recordings. Pass ````--min_speakers```` and ````--max_speakers```` when possible.
 
 **Language-specific alignment models needed.** Word-level alignment requires a phoneme model for each language. WhisperX auto-selects models for 20+ languages, but low-resource languages may lack quality aligners. Test on your target language before committing.
 
@@ -578,7 +579,7 @@ WhisperX timestamps have a mean absolute error of 40-80ms on clean speech, measu
 
 **Q2: Can I use WhisperX without speaker diarization?**
 
-Yes — diarization is completely optional. Run without `--diarize` to get word-level timestamps only. The alignment stage runs regardless, so you still get sub-100ms word timestamps. This cuts processing time by ~40%.
+Yes — diarization is completely optional. Run without ````--diarize```` to get word-level timestamps only. The alignment stage runs regardless, so you still get sub-100ms word timestamps. This cuts processing time by ~40%.
 
 **Q3: What GPU do I need for production deployment?**
 
@@ -586,7 +587,7 @@ An RTX 3060 (8GB VRAM) with INT8 quantization handles the large-v2 model comfort
 
 **Q4: How do I handle long audio files (2+ hours)?**
 
-WhisperX automatically segments long audio using VAD. No manual chunking required. For 4+ hour files, increase `--batch_size` if VRAM allows, or reduce to 4 for memory-constrained systems. The VAD stage ensures no words are cut mid-sentence.
+WhisperX automatically segments long audio using VAD. No manual chunking required. For 4+ hour files, increase ````--batch_size```` if VRAM allows, or reduce to 4 for memory-constrained systems. The VAD stage ensures no words are cut mid-sentence.
 
 **Q5: Can I fine-tune WhisperX on my own data?**
 
@@ -594,7 +595,7 @@ You can fine-tune the underlying Whisper model using OpenAI's training scripts, 
 
 **Q6: Why do I need a Hugging Face token?**
 
-The pyannote.audio speaker diarization model (`speaker-diarization-community-1`) is hosted on Hugging Face and requires accepting a license agreement. The token proves you have accepted the terms. It is free and takes 2 minutes to set up. No token is needed if you skip diarization.
+The pyannote.audio speaker diarization model (````speaker-diarization-community-1```) is hosted on Hugging Face and requires accepting a license agreement. The token proves you have accepted the terms. It is free and takes 2 minutes to set up. No token is needed if you skip diarization.
 
 ## Conclusion
 
@@ -655,7 +656,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](whisperx)
@@ -665,5 +666,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](whisperx)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

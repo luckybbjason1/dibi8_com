@@ -7,9 +7,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
 
+
 # paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │           paperclip 에이전트 워크플레이스              │
 │                                                      │
@@ -23,7 +24,7 @@ featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/do
 │  │   작업 큐  │  메모리  │  라우팅        │          │
 │  └──────────────────────────────────────┘          │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *paperclip 아키텍처: 멀티 에이전트 조정 플랫폼*
 
@@ -44,29 +45,29 @@ paperclip은 **오픈소스 에이전트 워크플레이스 플랫폼**으로, �
 
 ### Docker Compose (추천)
 
-```bash
+`````bash
 git clone https://github.com/paperclipai/paperclip.git
 cd paperclip
 cp .env.example .env
 # .env에 API 키 설정
 docker compose up -d
 # http://localhost:3000
-```
+`````
 
 ### 수동 설치
 
-```bash
+`````bash
 git clone https://github.com/paperclipai/paperclip.git
 cd paperclip
 pip install -r backend/requirements.txt
 cd frontend && npm install && cd ..
 python backend/main.py &
 npm run dev --prefix frontend
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, OpenCode, Custom Agents
 
-```yaml
+`````yaml
 # 내장 에이전트 템플릿
 templates: coder: model: claude-sonnet-4-20250514
     tools: [fs, terminal, git]
@@ -76,14 +77,14 @@ templates: coder: model: claude-sonnet-4-20250514
     tools: [web_search, file_read]
   deployer: model: claude-haiku-4-20250514
     tools: [fs, terminal]
-```
+`````
 
-외부 에이전트 연결: ```bash
+외부 에이전트 연결: `````bash
 paperclip agent register \
   --name "my-codex" \
   --type "openai-compatible" \
   --endpoint "http://localhost:4000/v1"
-```
+`````
 
 셀프호스팅 인프라에는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 안정적 연결, [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 데이터센터 프록시 권장.
 
@@ -97,13 +98,13 @@ paperclip agent register \
 
 ### Use Case 1: 코드베이스 마이그레이션
 
-```bash
+`````bash
 paperclip workspace create rails-to-fastapi
 paperclip task assign researcher "Rails routes 분석"
 paperclip task assign coder "FastAPI 엔드포인트 구현"
 paperclip task assign reviewer "API 계약 검증"
 paperclip run pipeline
-```
+`````
 
 2주 작업이 3일 완료, 94% 테스트 통과율.
 
@@ -111,7 +112,7 @@ paperclip run pipeline
 
 ### 커스텀 에이전트 워크플로우
 
-```yaml
+`````yaml
 # workflows/code-review.yaml
 workflow: name: "full-code-review"
   steps: - agent: linter
@@ -126,14 +127,14 @@ workflow: name: "full-code-review"
     - agent: summarizer
       task: "PR 요약 생성"
       input: "review_comments"
-```
+`````
 
 ### 퍼덕션 스토리지
 
-```bash
+`````bash
 paperclip storage configure --type postgres --host db.internal --database paperclip
 paperclip vector-store configure --type qdrant --host vector.internal --port 6333
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -166,7 +167,7 @@ A: 아니요. 오케스트레이션 레이어입니다. 기존 에이전트(Clau
 
 **Q: Ollama나 vLLM의 로컬 모델과 사용 가능한가요?**
 
-A: 예. 모든 OpenAI 호환 API 엔드포인트 지원. Ollama(`http://localhost:11434/v1`)와 vLLM(`http://localhost:8000/v1`) 모두 사용 가능.
+A: 예. 모든 OpenAI 호환 API 엔드포인트 지원. Ollama(````http://localhost:11434/v1````)와 vLLM(````http://localhost:8000/v1````) 모두 사용 가능.
 
 **Q: API 키 보안은 어떻게 처리하나요?**
 
@@ -194,7 +195,7 @@ paperclip은 여러 AI 에이전트 조정이 관리 레이어 없이 혼란스�
 
 하루에 2개 이상의 AI 에이전트를 다룬다면, paperclip은 칸반 보드, 대화 기록, 배포 파이프라인을 제공하여 혼란을管理工作流으로 전환합니다. 셀프호스팅 옵션은 벤더 종속성 없이 데이터가 인프라를 벗어나지 않음을 의미합니다.
 
-[dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 paperclip 설정과 에이전트 템플릿을 논의하세요. [cc-switch 통합 CLI](dibi8-internal-link) 및 [Langflow 시각적 워크플로우](dibi8-internal-link) 가이드도 확인하세요. 오늘 paperclip을 시도해보세요 — `docker compose up`, 에이전트 두 개 추가하고 첫 멀티에이전트 파이프라인을 실행해보세요.
+[dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 paperclip 설정과 에이전트 템플릿을 논의하세요. [cc-switch 통합 CLI](dibi8-internal-link) 및 [Langflow 시각적 워크플로우](dibi8-internal-link) 가이드도 확인하세요. 오늘 paperclip을 시도해보세요 — ````docker compose up```, 에이전트 두 개 추가하고 첫 멀티에이전트 파이프라인을 실행해보세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 
@@ -260,12 +261,12 @@ paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -275,7 +276,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 - [2026-06-15-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

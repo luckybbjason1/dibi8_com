@@ -9,28 +9,29 @@ Instructor là một thư viện Python sửa đổi khách hàng OpenAI (và h�
 
 ---
 
----
+
+* * *
 ## Instructor và Tại Sao Nó Quan Trọng?
 
-Instructor, do **Jason Liu** (`jxnl`) tạo ra, là một thư viện Python nhẹ nhàng nằm trên khách hàng LLM hiện có của bạn và áp dụng kiểm định cấu trúc thông qua việc xác nhận mô hình Pydantic. Thay vì nhận được văn bản gốc từ LLM và cầu nguyện nó được phân tích đúng đắn, bạn định nghĩa một schema Pydantic và Instructor đảm bảo mỗi phản hồi tuân theo schema đó — hoặc tự động thử lại với một yêu cầu được sửa đổi.
+Instructor, do **Jason Liu** (```jxnl````) tạo ra, là một thư viện Python nhẹ nhàng nằm trên khách hàng LLM hiện có của bạn và áp dụng kiểm định cấu trúc thông qua việc xác nhận mô hình Pydantic. Thay vì nhận được văn bản gốc từ LLM và cầu nguyện nó được phân tích đúng đắn, bạn định nghĩa một schema Pydantic và Instructor đảm bảo mỗi phản hồi tuân theo schema đó — hoặc tự động thử lại với một yêu cầu được sửa đổi.
 
-Vấn đề mà Instructor giải quyết là căn bản: LLMs tạo ra văn bản, nhưng ứng dụng cần dữ liệu. Mỗi nhà phát triển đã từng tung một tính năng LLM vào sản xuất đều trải qua cuộc gọi pager lúc 2 giờ sáng khi `json.loads()` gặp sự cố vì mô hình thêm "Here's your result:" trước đối tượng JSON. Instructor loại bỏ cả lớp lỗi này.
+Vấn đề mà Instructor giải quyết là căn bản: LLMs tạo ra văn bản, nhưng ứng dụng cần dữ liệu. Mỗi nhà phát triển đã từng tung một tính năng LLM vào sản xuất đều trải qua cuộc gọi pager lúc 2 giờ sáng khi ````json.loads()```` gặp sự cố vì mô hình thêm "Here's your result:" trước đối tượng JSON. Instructor loại bỏ cả lớp lỗi này.
 
-```bash
+`````bash
 # Cài đặt Instructor
 pip install instructor
 
 # Cài đặt khách hàng LLM yêu thích của bạn (OpenAI được hiển thị)
 pip install openai
-```
+`````
 
----
----
+* * *
+* * *
 ## Khái niệm Cốt Lõi: Đánh Gía Khách Hàng OpenAI
 
 Học viên sử dụng phép **đánh giá khách hàng** để làm magie. Thay vì gọi trực tiếp API của OpenAI, bạn tạo một khách hàng được đánh giá mà nó chặn các phản hồi, kiểm tra chúng theo mô hình Pydantic của bạn và xử lý lỗi tự động.
 
-```python
+`````python
 import instructor
 from openai import OpenAI
 from pydantic import BaseModel
@@ -71,17 +72,17 @@ print(profile)
 # Truy cập các trường đã định kiểu trực tiếp
 print(f"Tên: {profile.name}, Tuổi: {profile.age}")
 print(f"Email hợp lệ: {'@' in profile.email}")
-```
+`````
 
-Lưu ý cách `response_model=UserProfile` cho Học viên biết phải kiểm tra đầu ra của mô hình LLM theo mô hình của bạn. Kết quả là một đối tượng Pydantic đã định kiểu hoàn toàn — không phải chuỗi gốc hay từ điển chưa được định kiểu.
+Lưu ý cách ````response_model=UserProfile```` cho Học viên biết phải kiểm tra đầu ra của mô hình LLM theo mô hình của bạn. Kết quả là một đối tượng Pydantic đã định kiểu hoàn toàn — không phải chuỗi gốc hay từ điển chưa được định kiểu.
 
----
----
+* * *
+* * *
 ## Xử Lý Lỗi Kiểm Tra Tự Động
 
 Khi mô hình LLM sản xuất ra kết quả không hợp lệ, hành vi mặc định của Instructor là **đưa lại** yêu cầu cho mô hình với phản hồi về những gì đã sai, tạo ra một vòng lặp tự sửa chữa.
 
-```python
+`````python
 from pydantic import BaseModel, Field, field_validator
 
 class ValidatedProduct(BaseModel): name: str = Field(description="Tên sản phẩm, tối đa 50 ký tự")
@@ -116,15 +117,15 @@ product = parse_product(
 print(product)
 # ValidatedProduct(name='Tai nghe Bluetooth không dây', 
 #                  price=79.99, category='electronics')
-```
+`````
 
----
----
+* * *
+* * *
 ## Mô hình Trinh luân và Schema Phức tạp
 
 Các ứng dụng thực tế cần hơn những cấu trúc phẳng. Instructor xử lý dễ dàng các mô hình Pydantic được lồng nhau một cách linh hoạt.
 
-```python
+`````python
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
@@ -174,9 +175,9 @@ Please gift wrap the laptop.
 print(f"Customer: {order.customer_name}")
 print(f"Shipping to: {order.shipping_address.city}")
 print(f"Order total: ${order.grand_total:.2f}")
-```
+`````
 
-```python
+`````python
 # Các trường tùy chọn có giá trị mặc định được xử lý một cách trơn tru
 from pydantic import BaseModel
 from typing import Optional
@@ -200,17 +201,17 @@ print(f"Event: {event.name}")
 print(f"Starts: {event.start_time}")
 print(f"Location: {event.location}")  # Conference Room B
 print(f"Description: '{event.description}'")  # Sử dụng chuỗi trống rỗng mặc định
-```
+`````
 
----
----
+* * *
+* * *
 ## Hỗ Trợ Nhiều Nhà Cung Cấp:超越我的知识库，请提供翻译。
----
+* * *
 ## Xử Lý Lô Cho Các Ứng Dụng Có VOLUME Cao
 
 Khi xử lý hàng nghìn mục, các gọi API riêng lẻ quá chậm. Instructor hỗ trợ xử lý lô với asyncio để thực thi đồng thời.
 
-```python
+`````python
 import asyncio
 import instructor
 from openai import AsyncOpenAI
@@ -248,15 +249,15 @@ texts = [
 results = asyncio.run(analyze_batch(texts))
 positive = sum(1 for r in results if r.sentiment == "positive")
 print(f"Positive: {positive}/{len(results)}")
-```
+`````
 
----
----
+* * *
+* * *
 ## Xuất Bản Kết Quả Đa Dạng Hóa Theo Thời Gian Thực
 
 Cho ứng dụng thời gian thực, Instructor hỗ trợ việc truyền tải kết quả phần tử một cách liên tục khi chúng đến từ LLM.
 
-```python
+`````python
 from typing import Iterable
 from pydantic import BaseModel
 
@@ -278,15 +279,15 @@ def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.c
 for partial in stream_article("trends về năng lượng tái tạo 2026"): print(f"Tiêu đề: {partial.title}")
     print(f"Số phần đã có: {len(partial.sections)}")
     print("---")
-```
+`````
 
----
----
+* * *
+* * *
 ## Thử Lại Nội Built-in với Việc Nhắc Lại
 
 Hệ thống retry của giáo viên không chỉ lặp lại yêu cầu — nó cung cấp cho LLM phản hồi cụ thể về những gì đã thất bại trong việc kiểm tra, cho phép tự sửa chữa.
 
-```python
+`````python
 from pydantic import BaseModel, field_validator
 
 class StrictDateRange(BaseModel): start_date: str = Field(description="Định dạng YYYY-MM-DD")
@@ -321,15 +322,15 @@ try: result = extract_date_range(
     )
     print(result)
 except Exception as e: print(f"Thất bại sau số lần retry tối đa: {e}")
-```
+`````
 
----
----
+* * *
+* * *
 ## Sử Dụng Literal cho Phân Loại Giới Hạn
 
-Đối với các tác vụ phân loại, sử dụng kiểu `Literal` của Python để giới hạn đầu ra chỉ đến những giá trị cụ thể.
+Đối với các tác vụ phân loại, sử dụng kiểu ````Literal```` của Python để giới hạn đầu ra chỉ đến những giá trị cụ thể.
 
-```python
+`````python
 from typing import Literal
 
 class SupportTicket(BaseModel): customer_query: str
@@ -363,9 +364,9 @@ ticket = classify_ticket(
 )
 print(f"Loại: {ticket.category}")  # Luôn luôn là "billing"
 print(f"Khẩn cấp: {ticket.priority}")  # Luôn một trong bốn giá trị
-```
+`````
 
-```python
+`````python
 # Trích xuất thông tin cấu trúc từ các tài liệu dài
 from pydantic import BaseModel
 
@@ -395,13 +396,13 @@ extraction = client.chat.completions.create(
 print(f"Tiêu đề: {extraction.title}")
 print(f"Các đối tượng tìm thấy: {extraction.entities}")
 print(f"Số lượng thông tin: {len(extraction.facts)}")
-```
+`````
 
----
----
+* * *
+* * *
 ## Kết hợp với FastAPI cho API Sản xuất
 
-Instructor tỏa sáng trong phát triển API. Dưới đây là một điểm cuối hoàn chỉnh của FastAPI với đầu ra LLM được cấu trúc: ```python
+Instructor tỏa sáng trong phát triển API. Dưới đây là một điểm cuối hoàn chỉnh của FastAPI với đầu ra LLM được cấu trúc: `````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -439,15 +440,15 @@ async def extract_entities(request: ExtractionRequest): """Trích xuất các en
     except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # Chạy với: uvicorn main:app --reload
-```
+`````
 
----
----
+* * *
+* * *
 ## Nâng Cao: Thay thế Gọi Hàm của OpenAI bằng Phương Án Pydantic
 
 Instructor có thể thay thế gọi hàm của OpenAI bằng các phương án mạnh mẽ hơn dựa trên schemas Pydantic.
 
-```python
+`````python
 from typing import Type
 
 class SearchQuery(BaseModel): """Tạo câu hỏi tìm kiếm với các tham số"""
@@ -472,15 +473,15 @@ query = generate_search(
 print(query.keywords)  # ['wireless earbuds', 'bluetooth']
 print(query.filters)   # {'max_price': '100'}
 print(query.sort_by)   # 'date'
-```
+`````
 
----
----
+* * *
+* * *
 ## Xử Lý Lỗi và Ghi Nhật Ký
 
 Hệ thống sản xuất cần có khả năng theo dõi hành vi thử lại của Instructor. Cấu hình ghi nhật ký để hỗ trợ việc debug.
 
-```python
+`````python
 import logging
 import instructor
 
@@ -506,15 +507,15 @@ result = client.chat.completions.create(
     max_retries=3,
     messages=[{"role": "user", "content": "Extract: Jane, age 25, likes art"}]
 )
-```
+`````
 
----
----
+* * *
+* * *
 ## Câu Hỏi Thường Gặp
 
 ### Instructor Hỗ Trợ Các Nhà Cung Cấp LLM Nào?
 
-Instructor hỗ trợ **OpenAI** (GPT-4, GPT-4o, GPT-3.5), **Anthropic** (Claude 3/3.5/4 Sonnet, Opus, Haiku), **Google** (Gemini 1.5/2.0/2.5 Pro, Flash), **Cohere**, **Mistral**, **Groq**, **Ollama** (mô hình địa phương), **Azure OpenAI**, **AWS Bedrock**, **Fireworks AI**, và **Together AI**. API `response_model` hoạt động giống nhau trên tất cả các nhà cung cấp.
+Instructor hỗ trợ **OpenAI** (GPT-4, GPT-4o, GPT-3.5), **Anthropic** (Claude 3/3.5/4 Sonnet, Opus, Haiku), **Google** (Gemini 1.5/2.0/2.5 Pro, Flash), **Cohere**, **Mistral**, **Groq**, **Ollama** (mô hình địa phương), **Azure OpenAI**, **AWS Bedrock**, **Fireworks AI**, và **Together AI**. API ````response_model```` hoạt động giống nhau trên tất cả các nhà cung cấp.
 
 ### Instructor Độc Đáo Hơn So Với Chế Độ JSON Của OpenAI?
 
@@ -526,31 +527,31 @@ Có. Instructor hoạt động với bất kỳ mô hình nào có thể truy c�
 
 ### Chi Phí Khó Khê Của Instructor Là Bao Nhiêu?
 
-Instructor thêm chi phí nhỏ — thường là **10-50ms** mỗi lần gọi cho xác thực Pydantic. Cơ chế thử lại chỉ tăng độ trễ khi xác thực thất bại (điều này nên dưới 5% các lần gọi với mô hình có khả năng). Đối với ứng dụng có lưu lượng cao, sử dụng `gpt-4o-mini` hoặc các mô hình địa phương với xử lý lô đồng bộ. Chi phí này nhỏ so với độ trễ của API LLM chính nó (thông thường là 500ms-5s).
+Instructor thêm chi phí nhỏ — thường là **10-50ms** mỗi lần gọi cho xác thực Pydantic. Cơ chế thử lại chỉ tăng độ trễ khi xác thực thất bại (điều này nên dưới 5% các lần gọi với mô hình có khả năng). Đối với ứng dụng có lưu lượng cao, sử dụng ````gpt-4o-mini```` hoặc các mô hình địa phương với xử lý lô đồng bộ. Chi phí này nhỏ so với độ trễ của API LLM chính nó (thông thường là 500ms-5s).
 
 ### Cơ Chế Thử Lại/Trả Lời Lại Làm Thế Nào?
 
-Khi xác thực thất bại, Instructor bắt lỗi Pydantic `ValidationError`, rút ra các thông báo lỗi cụ thể (ví dụ: "tuổi phải là số nguyên dương"), và gửi yêu cầu mới đến mô hình LLM bao gồm: câu hỏi gốc, phản hồi sai, và chi tiết lỗi xác thực. Điều này tạo thành vòng lặp tự điều chỉnh giải quyết hầu hết các vấn đề trong 1-2 lần thử lại. Bạn kiểm soát số lần thử tối đa thông qua tham số `max_retries`.
+Khi xác thực thất bại, Instructor bắt lỗi Pydantic ````ValidationError````, rút ra các thông báo lỗi cụ thể (ví dụ: "tuổi phải là số nguyên dương"), và gửi yêu cầu mới đến mô hình LLM bao gồm: câu hỏi gốc, phản hồi sai, và chi tiết lỗi xác thực. Điều này tạo thành vòng lặp tự điều chỉnh giải quyết hầu hết các vấn đề trong 1-2 lần thử lại. Bạn kiểm soát số lần thử tối đa thông qua tham số ````max_retries````.
 
 ### Tôi Có Thể Sử Dụng Instructor Với Các.Pattern Async/Await Không?
 
-Có. Instructor hỗ trợ hoàn toàn async thông qua `AsyncOpenAI`, `AsyncAnthropic`, và các khách hàng async khác. Sử dụng `await client.chat.completions.create()` cho các gọi đơn lẻ hoặc sử dụng `asyncio.gather()` cho xử lý đồng thời. Chuỗi dữ liệu cũng được hỗ trợ trong chế độ async thông qua `create_partial()`.
+Có. Instructor hỗ trợ hoàn toàn async thông qua ````AsyncOpenAI````, ````AsyncAnthropic````, và các khách hàng async khác. Sử dụng ````await client.chat.completions.create()```` cho các gọi đơn lẻ hoặc sử dụng ````asyncio.gather()```` cho xử lý đồng thời. Chuỗi dữ liệu cũng được hỗ trợ trong chế độ async thông qua ````create_partial()````.
 
 ### Instructor Có Hợp Phù Cho Triển Khai Sản Xuất Doanh Nghiệp Không?
 
 Tuyệt đối. Với hơn 11,000 ngôi sao trên GitHub, giấy phép MIT, việc bảo trì tích cực và kiến trúc dựa trên Pydantic, Instructor phù hợp cho triển khai doanh nghiệp. Nó tích hợp dễ dàng với FastAPI, hệ thống giám sát (Datadog, Prometheus) và ghi log cấu trúc. Layer xác thực thêm độ tin cậy mà các API LLM nguyên bản không thể so sánh được. Nhiều công ty Fortune 500 sử dụng Instructor trong các luồng dữ liệu sản xuất.
 
----
----
+* * *
+* * *
 ## Kết luận
 
 Instructor chuyển đổi LLM từ các nhà tạo ra văn bản không dự đoán được thành nguồn dữ liệu có cấu trúc đáng tin cậy. Bằng cách kết hợp sức mạnh của việc xác nhận Pydantic với thuật toán thử lại thông minh, nó giải quyết vấn đề số 1 đang gặp phải trong triển khai sản xuất LLM: sự nhất quán của đầu ra. Dù bạn đang rút ra các đối tượng từ tài liệu, phân loại vé hỗ trợ, hay xây dựng hệ thống đại diện phức tạp có nhiều bước, Instructor cung cấp an toàn kiểu và độ tin cậy mà các ứng dụng chuyên nghiệp yêu cầu.
 
 Hỗ trợ đa nhà cung cấp của thư viện nghĩa là bạn không bị mắc kẹt với một nhà cung cấp LLM duy nhất. Sự tích hợp liền mạch với FastAPI, mô hình async, và streaming làm cho nó phù hợp cho mọi thứ từ việc chạy lô nền đến API thời gian thực. Với hơn 11.000 ngôi sao và cộng đồng hoạt động, Instructor đã giành được vị trí của mình như một công cụ không thể thiếu trong bộ dụng cụ phát triển AI hiện đại.
 
-Nếu bạn vẫn đang phân tích đầu ra gốc từ LLM bằng `json.loads()` và hy vọng vào may mắn, thì đến lúc nâng cấp rồi. Cài đặt Instructor ngay hôm nay và trải nghiệm ý nghĩa của việc có **100% JSON hợp lệ, 100% thời gian**.
+Nếu bạn vẫn đang phân tích đầu ra gốc từ LLM bằng ````json.loads()``` và hy vọng vào may mắn, thì đến lúc nâng cấp rồi. Cài đặt Instructor ngay hôm nay và trải nghiệm ý nghĩa của việc có **100% JSON hợp lệ, 100% thời gian**.
 
----
+* * *
 
 {
   "@context": "https://schema.org",

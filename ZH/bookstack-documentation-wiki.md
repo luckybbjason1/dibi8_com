@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/bookstack-documentation-wiki/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：每个团队都面临的文档混乱
@@ -34,9 +35,9 @@ BookStack 运行在经典的 PHP/LAMP 技术栈上，这使得任何部署过 PH
 
 | 层级 | 技术 |
 |
----
+* * *
 |
----
+* * *
 |
 | **后端** | PHP 8.2+ / Laravel 11.x |
 | **数据库** | MySQL 8.0+ 或 MariaDB 10.6+ |
@@ -60,7 +61,7 @@ BookStack 使用基于角色的权限系统。你可以定义角色（如"编辑
 
 ### 步骤 1：创建 Docker Compose 文件
 
-```yaml
+````yaml
 version: '3.8'
 
 services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
@@ -89,13 +90,13 @@ services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
       - MYSQL_PASSWORD=your_secure_db_password
     volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
-```
+`````
 
 此 compose 文件定义了两个服务：端口 6875 上的 BookStack 应用和用于持久化的 MariaDB 数据库。
 
 ### 步骤 2：启动服务栈
 
-```bash
+`````bash
 # 创建数据目录
 mkdir -p bookstack_app_data bookstack_db_data
 
@@ -107,23 +108,23 @@ sleep 45
 
 # 检查日志确认启动
 docker logs bookstack
-```
+`````
 
-你应该看到 Laravel 引导消息，后面跟着 PHP-FPM 的 `NOTICE: ready to handle connections`。如果数据库连接失败，请检查 DB_HOST 是否与 `bookstack_db` 服务名匹配，以及凭据是否正确。
+你应该看到 Laravel 引导消息，后面跟着 PHP-FPM 的 ````NOTICE: ready to handle connections````。如果数据库连接失败，请检查 DB_HOST 是否与 ````bookstack_db```` 服务名匹配，以及凭据是否正确。
 
 ### 步骤 3：访问和配置
 
-```bash
+`````bash
 # 首次启动的默认凭据
 # 用户名: admin@admin.com
 # 密码: password
-```
+`````
 
-访问 `http://your-server-ip:6875` 并登录。**立即更改管理员密码**（设置 → 用户）。然后将 APP_URL 配置为使用 HTTPS —— BookStack 在邮件通知和导出中生成绝对 URL，所以从开始就把 APP_URL 设置正确可以避免后续出现断链。
+访问 ````http://your-server-ip:6875```` 并登录。**立即更改管理员密码**（设置 → 用户）。然后将 APP_URL 配置为使用 HTTPS —— BookStack 在邮件通知和导出中生成绝对 URL，所以从开始就把 APP_URL 设置正确可以避免后续出现断链。
 
 ### 步骤 4：Nginx 反向代理 + SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/bookstack
 server {
     listen 443 ssl http2;
@@ -146,15 +147,15 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-启用站点并用 Certbot 获取证书后，更新 docker-compose.yml 中的 `APP_URL` 为 `https://docs.yourdomain.com` 并重启容器。
+启用站点并用 Certbot 获取证书后，更新 docker-compose.yml 中的 ````APP_URL```` 为 ````https://docs.yourdomain.com```` 并重启容器。
 
 ### 手动安装 (Ubuntu 24.04 LTS)
 
 如果你更喜欢裸机部署：
 
-```bash
+`````bash
 # 安装依赖
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -182,7 +183,7 @@ php artisan migrate
 chown -R www-data:www-data /var/www/BookStack
 chmod -R 755 /var/www/BookStack
 chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache
-```
+`````
 
 手动安装给你更多控制权，但需要单独管理 PHP、Web 服务器和 MySQL。对于生产环境，Docker 是推荐路径。
 
@@ -192,7 +193,7 @@ BookStack 支持多种认证后端。对于企业部署，LDAP 或 SAML 集成�
 
 ### LDAP 认证 (Active Directory / OpenLDAP)
 
-```bash
+`````bash
 # 添加到 .env 文件
 AUTH_METHOD=ldap
 LDAP_SERVER=ldap.company.com
@@ -205,13 +206,13 @@ LDAP_TLS=true
 LDAP_ID_ATTRIBUTE=uid
 LDAP_DISPLAY_NAME_ATTRIBUTE=cn
 LDAP_EMAIL_ATTRIBUTE=mail
-```
+`````
 
 重启容器后，BookStack 将对你的 LDAP 目录进行用户认证。用户在首次登录时自动创建，无需手动创建账号。
 
 ### SAML 2.0 (用于 Okta, Azure AD, OneLogin)
 
-```bash
+`````bash
 # .env 中的 SAML 配置
 AUTH_METHOD=saml2
 SAML2_NAME=SSO
@@ -221,7 +222,7 @@ SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name
 SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata
 SAML2_IDP_SSO=https://your-idp.example.com/sso
 SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
-```
+`````
 
 ## 图片管理与内容编辑
 
@@ -229,13 +230,13 @@ BookStack 内置两种编辑器。**WYSIWYG 编辑器**（基于 TinyMCE）是�
 
 上传图片非常简单：
 
-```markdown
+`````markdown
 # Markdown 模式下 —— 图片上传到 BookStack 的图库
 ![替代文本](uploaded-image-name.png)
 
 # 图片库可从编辑器工具栏访问
 # 所有上传的图片存储在 bookstack_app_data 卷中
-```
+`````
 
 BookStack 还支持通过 Draw.io 集成嵌入图表。插入图表时，BookStack 会同时存储 Draw.io 的 XML 源文件和渲染后的图片，因此你可以在之后重新编辑图表而不会丢失源文件。
 
@@ -245,9 +246,9 @@ BookStack 还支持通过 Draw.io 集成嵌入图表。插入图表时，BookSta
 
 | 指标 | 数值 |
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动时间 | 3.2 秒 |
 | 页面加载（平均） | 180ms |
@@ -267,7 +268,7 @@ BookStack 还支持通过 Draw.io 集成嵌入图表。插入图表时，BookSta
 
 ### GitHub Actions: 自动化文档发布
 
-```yaml
+`````yaml
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
@@ -284,13 +285,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'"$(cat docs/api.html | base64 -w 0)"'"}' \
             "https://docs.yourdomain.com/api/pages/42"
-```
+`````
 
 BookStack 暴露 REST API 用于程序化内容管理。在 设置 → API 中生成 API Token。API 支持对书架、书籍、章节和页面的增删改查操作，以及图片上传和搜索。
 
 ### 备份自动化
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-bookstack.sh
 
@@ -306,24 +307,24 @@ tar czf "$BACKUP_DIR/bookstack_app_$DATE.tar.gz" -C /path/to ./bookstack_app_dat
 
 # 只保留最近 14 天
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
-添加到 cron 每日备份：`0 3 * * * /opt/scripts/backup-bookstack.sh`
+添加到 cron 每日备份：````0 3 * * * /opt/scripts/backup-bookstack.sh````
 
 ### Prometheus 监控
 
-```yaml
+`````yaml
 # 在 docker-compose.yml 中添加监控
   node-exporter: image: prom/node-exporter:v1.7.0
     volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
     command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
-```
+`````
 
 ### 健康检查脚本
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-bookstack.sh
 
@@ -337,24 +338,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "正常: BookStack 运行健康"
 fi
-```
+`````
 
-添加到 cron 自动健康检查: `*/5 * * * * /opt/scripts/health-check-bookstack.sh`
+添加到 cron 自动健康检查: ````*/5 * * * * /opt/scripts/health-check-bookstack.sh````
 
 ## 高级用法：生产环境加固
 
 ### 启用仅 HTTPS Cookie
 
-```bash
+`````bash
 # .env 文件中
 SESSION_SECURE_COOKIE=true
-```
+`````
 
 这确保会话 Cookie 仅通过 HTTPS 连接传输。如果你的 BookStack 实例暴露在公网上，这一点至关重要。
 
 ### 通过模块系统自定义主题 (v26.03+)
 
-```bash
+`````bash
 # 创建自定义模块目录
 mkdir -p /config/www/themes/my_theme/modules/welcome_module
 
@@ -378,13 +379,13 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 # views/welcome.blade.php
 Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
-```
+`````
 
-使用以下命令安装模块：`php artisan bookstack:install-module /path/to/module.zip`
+使用以下命令安装模块：````php artisan bookstack:install-module /path/to/module.zip````
 
 ### 页面内容过滤控制
 
-```bash
+`````bash
 # .env 中（v25.12.4+ 新增）
 # 选项：false、true 或逗号分隔的过滤器名称列表
 APP_CONTENT_FILTERING=default
@@ -392,23 +393,23 @@ APP_CONTENT_FILTERING=default
 # 可用过滤器：script, form, iframe, object, embed, style, css_expression
 # 禁用 style 过滤（如需内联样式）：
 APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
-```
+`````
 
 ## 对比：BookStack 与替代方案
 
 | 特性 | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 |
 | **技术栈** | PHP / Laravel | Node.js | PHP (无 DB) | PHP | Node.js |
@@ -455,7 +456,7 @@ BookStack 并非适合所有文档用例。以下是它不擅长的方面：
 
 ### 如何更新 BookStack？
 
-使用 Docker 更新只需一行：更改 docker-compose.yml 中的镜像标签并运行 `docker compose up -d`。手动安装时，拉取最新版本，运行 `git pull` 或下载新版本的发布包，然后运行 `php artisan migrate` 并清除缓存。更新前务必备份数据库 —— BookStack 每月发布安全补丁。
+使用 Docker 更新只需一行：更改 docker-compose.yml 中的镜像标签并运行 ````docker compose up -d````。手动安装时，拉取最新版本，运行 ````git pull```` 或下载新版本的发布包，然后运行 ````php artisan migrate```` 并清除缓存。更新前务必备份数据库 —— BookStack 每月发布安全补丁。
 
 ### BookStack 支持双因素认证吗？
 
@@ -467,11 +468,11 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 
 ### LinuxServer.io 镜像和官方镜像有什么区别？
 
-`lscr.io/linuxserver/bookstack` 镜像是社区维护的，广泛使用。它抽象了 PHP-FPM 和 Nginx 配置，使其成为在 Docker 中运行 BookStack 最简单的方式。BookStack 维护者没有提供官方 Docker 镜像 —— LinuxServer 镜像是事实上的标准。
+````lscr.io/linuxserver/bookstack```` 镜像是社区维护的，广泛使用。它抽象了 PHP-FPM 和 Nginx 配置，使其成为在 Docker 中运行 BookStack 最简单的方式。BookStack 维护者没有提供官方 Docker 镜像 —— LinuxServer 镜像是事实上的标准。
 
 ### 备份如何工作？
 
-备份两件事：MySQL/MariaDB 数据库（所有内容和元数据）和 `/config/www/files` 目录（上传的图片和附件）。使用上面展示的 Docker 部署方式，两者都在命名卷中。简单的 `mysqldump` 加上应用数据卷的 `tar` 归档就足够了。每季度测试一次恢复流程。
+备份两件事：MySQL/MariaDB 数据库（所有内容和元数据）和 ````/config/www/files```` 目录（上传的图片和附件）。使用上面展示的 Docker 部署方式，两者都在命名卷中。简单的 ````mysqldump```` 加上应用数据卷的 ````tar``` 归档就足够了。每季度测试一次恢复流程。
 
 ## 结论：2026 年你应该使用 BookStack 吗？
 
@@ -482,7 +483,7 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 加入 dibi8.com 社区：[Telegram 群组](https://t.me/dibi8opensource)，每天与 5,000+ 开发者讨论开源工具、部署技巧和故障排除。
 
 
----
+* * *
 ## 来源与延伸阅读
 
 - [BookStack 官方文档](https://www.bookstackapp.com/docs/)
@@ -492,7 +493,7 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 - [LinuxServer.io BookStack Docker 镜像](https://docs.linuxserver.io/images/docker-bookstack/)
 - [BookStack vs Wiki.js 对比](https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/)
 
----
+* * *
 
 ## 推荐部署与基础设施
 
@@ -533,7 +534,7 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -543,6 +544,6 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](bookstack-documentation-wiki)
 - [2026-06-22-trending-ai-agents](bookstack-documentation-wiki)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

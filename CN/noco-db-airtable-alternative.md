@@ -23,6 +23,7 @@ tags: ["nocodb", "airtable-alternative", "open-source", "database", "spreadsheet
 aliases:
   - /posts/noco-db-airtable-alternative/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: When Spreadsheets Hit the Wall
@@ -52,7 +53,7 @@ NocoDB follows a **database-first architecture**. It does not store your busines
 - **Meta Database** — Lightweight SQLite database (default) or dedicated PostgreSQL/MySQL instance storing project metadata, view configurations, user permissions, and webhook settings
 - **REST/GraphQL API Layer** — Auto-generated endpoints for every table, with Swagger documentation
 
-When a user edits a cell in the grid view, NocoDB translates that action into a parameterized SQL `UPDATE` statement executed directly against your database. When they create a Kanban view, NocoDB stores the view configuration in its meta database while the underlying data never moves.
+When a user edits a cell in the grid view, NocoDB translates that action into a parameterized SQL ```UPDATE```` statement executed directly against your database. When they create a Kanban view, NocoDB stores the view configuration in its meta database while the underlying data never moves.
 
 This separation is key: your data stays in your database. NocoDB is just a smart lens.
 
@@ -60,7 +61,7 @@ This separation is key: your data stays in your database. NocoDB is just a smart
 
 ### Option 1: Docker (Recommended for Development)
 
-The fastest way to get NocoDB running locally: ```bash
+The fastest way to get NocoDB running locally: `````bash
 # Create a directory for NocoDB data
 mkdir -p ~/nocodb-data && cd ~/nocodb-data
 
@@ -70,13 +71,13 @@ docker run -d \
   -p 8080:8080 \
   -v "$(pwd)/nocodb:/usr/app/data" \
   nocodb/nocodb:latest
-```
+`````
 
-Visit `http://localhost:8080` and sign up with an admin email and password. Done.
+Visit ````http://localhost:8080```` and sign up with an admin email and password. Done.
 
 ### Option 2: Docker Compose with Existing PostgreSQL
 
-For production, connect NocoDB to an existing PostgreSQL database: ```bash
+For production, connect NocoDB to an existing PostgreSQL database: `````bash
 # docker-compose.yml
 version: "3.8"
 
@@ -88,15 +89,15 @@ services: nocodb: image: nocodb/nocodb:0.260.7
       - NC_PUBLIC_URL=https://nocodb.yourcompany.com
     volumes: - ./nocodb-data:/usr/app/data
     restart: unless-stopped
-```
+`````
 
-Start with: ```bash
+Start with: `````bash
 docker-compose up -d
-```
+`````
 
 ### Option 3: Deploy on DigitalOcean (Production)
 
-For a production VPS deployment, [spin up a $6/month Droplet on DigitalOcean](https://m.do.co/c/eca87ac14ee0) and run: ```bash
+For a production VPS deployment, [spin up a $6/month Droplet on DigitalOcean](https://m.do.co/c/eca87ac14ee0) and run: `````bash
 # Update system
 sudo apt update && sudo apt upgrade -y
 
@@ -114,13 +115,13 @@ docker run -d \
   -v /opt/nocodb:/usr/app/data \
   --restart unless-stopped \
   nocodb/nocodb:0.260.7
-```
+`````
 
 ### Adding Your First Data Source
 
 After logging into the NocoDB UI: 1. Click **"Add New Base"** → **"Connect to Data Source"**
 2. Select **PostgreSQL** (or MySQL/SQLite)
-3. Enter connection details: ```yaml
+3. Enter connection details: `````yaml
 # Example connection for a PostgreSQL database
 Host: db.yourcompany.com
 Port: 5432
@@ -128,7 +129,7 @@ Username: app_readwrite
 Password: **********
 Database: production_app
 SSL: Require
-```
+`````
 
 NocoDB introspects the schema in ~10 seconds and presents all tables as interactive spreadsheet views.
 
@@ -136,7 +137,7 @@ NocoDB introspects the schema in ~10 seconds and presents all tables as interact
 
 ### REST API Auto-Generation
 
-Every table automatically gets a full REST API. Click **"API"** on any table to see the Swagger docs: ```bash
+Every table automatically gets a full REST API. Click **"API"** on any table to see the Swagger docs: `````bash
 # List all records in the "customers" table
 curl -X GET "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
   -H "xc-token: YOUR_API_TOKEN" \
@@ -160,13 +161,13 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
     "id": 42,
     "Status": "Churned"
   }'
-```
+`````
 
 ### Webhook Automations
 
 Trigger external workflows on data changes: 1. Go to **Base** → **Automation** → **Webhooks**
 2. Click **"Add Webhook"**
-3. Configure the trigger: ```json
+3. Configure the trigger: `````json
 {
   "title": "Notify Slack on New Order",
   "event": "after.insert",
@@ -182,24 +183,24 @@ Trigger external workflows on data changes: 1. Go to **Base** → **Automation**
     }
   }
 }
-```
+`````
 
 ### n8n Integration
 
-NocoDB works seamlessly with [n8n workflow automation](n8n-workflow-automation-dibi8-internal-link): ```bash
+NocoDB works seamlessly with [n8n workflow automation](n8n-workflow-automation-dibi8-internal-link): `````bash
 # n8n NocoDB node credentials
 Host: https://nocodb.yourcompany.com
 API Token: noco_xxxxxxxxxxxx
 Base ID: your-base-id
-```
+`````
 
 ### Metabase / BI Integration
 
-Since your data stays in PostgreSQL, connect Metabase directly to the same database for analytics while NocoDB handles the operational editing layer: ```yaml
+Since your data stays in PostgreSQL, connect Metabase directly to the same database for analytics while NocoDB handles the operational editing layer: `````yaml
 # Metabase connects to the same PostgreSQL database
 # NocoDB handles data entry, Metabase handles dashboards
 # Both read from the same source of truth
-```
+`````
 
 ### Sync to Airtable (Migration Path)
 
@@ -214,11 +215,11 @@ Moving from Airtable? Export as CSV, import into NocoDB: 1. **Airtable** → **D
 
 | Metric | NocoDB (Self-Hosted) | Airtable Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Records per base | **Unlimited** | 50,000 |
 | File attachments | **Limited by disk** | 20 GB |
@@ -245,7 +246,7 @@ Based on community reports and load testing: - **Startup CRM**: 150,000 customer
 
 ### 1. HTTPS with Nginx Reverse Proxy
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/nocodb
 server {
     listen 443 ssl http2;
@@ -265,16 +266,16 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-```
+`````
 
-Enable and restart: ```bash
+Enable and restart: `````bash
 sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl restart nginx
-```
+`````
 
 ### 2. Environment Variable Security
 
-```bash
+`````bash
 # Create a secrets file
 sudo mkdir -p /opt/nocodb
 sudo tee /opt/nocodb/.env > /dev/null << EOF
@@ -286,7 +287,7 @@ NC_PUBLIC_URL=https://nocodb.yourcompany.com
 EOF
 
 sudo chmod 600 /opt/nocodb/.env
-```
+`````
 
 ### 3. Role-Based Access Control
 
@@ -301,7 +302,7 @@ Set **column-level permissions** to hide sensitive fields (e.g., salary, SSN) fr
 
 ### 4. Database Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/backup/nocodb-backup.sh
 
@@ -318,15 +319,15 @@ aws s3 sync /backups/ s3://yourcompany-backups/nocodb/
 
 # Keep only 7 days
 find /backups -name "*.sql" -mtime +7 -delete
-```
+`````
 
-Add to crontab: ```bash
+Add to crontab: `````bash
 0 2 * * * /opt/backup/nocodb-backup.sh >> /var/log/nocodb-backup.log 2>&1
-```
+`````
 
 ### 5. Monitoring with Prometheus
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v2.51.0
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -336,21 +337,21 @@ services: prometheus: image: prom/prometheus:v2.51.0
     ports: - "3000:3000"
     volumes: - grafana-data:/var/lib/grafana
 
-volumes: grafana-data: ```
+volumes: grafana-data: `````
 
 ## Comparison with Alternatives
 
 | Feature | NocoDB | Airtable | Baserow | Teable |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | AGPL-3.0 | Proprietary | MIT | AGPL-3.0 |
 | **Self-hosted** | Yes | No | Yes | Yes |
@@ -393,7 +394,7 @@ Yes. A single NocoDB instance can connect to multiple data sources. You can have
 
 ### How does NocoDB handle schema changes in the underlying database?
 
-NocoDB syncs schema changes automatically. If you add a column via `ALTER TABLE` in PostgreSQL, click **"Sync Now"** in the base settings, and the new column appears in NocoDB within seconds. Existing views are preserved; you simply add the new field to whichever views need it.
+NocoDB syncs schema changes automatically. If you add a column via ````ALTER TABLE```` in PostgreSQL, click **"Sync Now"** in the base settings, and the new column appears in NocoDB within seconds. Existing views are preserved; you simply add the new field to whichever views need it.
 
 ### Can I use NocoDB as a backend for a customer-facing application?
 
@@ -413,7 +414,7 @@ Yes, but with caveats. Multiple users can edit the same base simultaneously, and
 
 ### Is there a way to run NocoDB without Docker?
 
-Yes. NocoDB provides standalone executables for Linux, macOS, and Windows. Download the latest binary from the GitHub releases page, make it executable, and run `./nocodb`. However, Docker remains the recommended deployment method for production due to easier updates and dependency management.
+Yes. NocoDB provides standalone executables for Linux, macOS, and Windows. Download the latest binary from the GitHub releases page, make it executable, and run ````./nocodb````. However, Docker remains the recommended deployment method for production due to easier updates and dependency management.
 
 ## Conclusion: Your Data, Your Rules
 
@@ -421,14 +422,14 @@ NocoDB fills a specific gap: giving non-technical teams the usability of Airtabl
 
 If you are paying Airtable $200+/month and have a PostgreSQL or MySQL database already running, NocoDB pays for itself in the first month. The Docker setup takes 5 minutes. The migration from Airtable is a weekend project. The freedom of owning your data is permanent.
 
-**Start now**: [Deploy NocoDB on DigitalOcean](https://m.do.co/c/eca87ac14ee0) with a $6 Droplet, or run `docker run nocodb/nocodb:latest` locally to explore before committing.
+**Start now**: [Deploy NocoDB on DigitalOcean](https://m.do.co/c/eca87ac14ee0) with a $6 Droplet, or run ````docker run nocodb/nocodb:latest``` locally to explore before committing.
 
 **Join the community**: [NocoDB Discord](https://discord.gg/5ZjDgHEG5H) | [GitHub Discussions](https://github.com/nocodb/nocodb/discussions)
 
 **Related tools**: [n8n Workflow Automation](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI Setup Guide](metabase-bi-setup-dibi8-internal-link)
 
 
----
+* * *
 ## Recommended Hosting & Infrastructure
 
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -446,7 +447,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [PostgreSQL Official Documentation](https://www.postgresql.org/docs/)
 - [Deploy Docker on Ubuntu — DigitalOcean Docs](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
 
----
+* * *
 
 *This article may contain affiliate links. If you sign up for DigitalOcean through our referral link, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
 
@@ -476,7 +477,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -486,6 +487,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [qdrant-vector-database-rust](noco-db-airtable-alternative)
 - [vector-database-comparison](noco-db-airtable-alternative)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

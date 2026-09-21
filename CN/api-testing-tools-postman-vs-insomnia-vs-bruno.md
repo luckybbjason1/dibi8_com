@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
 ---
+
 # Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025
 
 
@@ -69,11 +70,11 @@ Postman's team workspaces enable real-time collaboration on collections. Comment
 
 Postman's pricing has evolved significantly: | Plan | Price | Key Limitations |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Free | $0 | 3 team members, limited shared requests, no SAML |
 | Basic | $14/user/month | Up to 10 team members, basic collaboration |
@@ -114,7 +115,7 @@ This approach treats API collections as code. Reviewers see API changes in Git d
 
 ### Git-Friendly Collection Format (Bru Files)
 
-A Bru file is human-readable plain text. Here is a simple example: ```
+A Bru file is human-readable plain text. Here is a simple example: ````
 meta {
   name: Get User
   type: http
@@ -139,7 +140,7 @@ tests {
   expect(res.status).to.equal(200);
   expect(res.body).to.have.property('id');
 }
-```
+`````
 
 This format is simple enough to edit by hand, structured enough to parse programmatically, and readable enough to review in GitHub's diff view.
 
@@ -153,7 +154,7 @@ Bruno is released under the MIT license. The [GitHub repository](https://github.
 
 ### Scripting With JavaScript and CLI Support
 
-Bruno uses JavaScript for scripting assertions, pre-request logic, and post-response processing. This is familiar to most developers and more flexible than proprietary scripting languages. The Bruno CLI (`bru run`) enables collection execution in CI/CD pipelines, making API testing part of your automated deployment process.
+Bruno uses JavaScript for scripting assertions, pre-request logic, and post-response processing. This is familiar to most developers and more flexible than proprietary scripting languages. The Bruno CLI (````bru run````) enables collection execution in CI/CD pipelines, making API testing part of your automated deployment process.
 
 ## Head-to-Head Comparison
 
@@ -161,13 +162,13 @@ Bruno uses JavaScript for scripting assertions, pre-request logic, and post-resp
 
 | Feature | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | REST API testing | Yes | Yes | Yes |
 | GraphQL support | Yes | Yes | No (planned) |
@@ -175,7 +176,7 @@ Bruno uses JavaScript for scripting assertions, pre-request logic, and post-resp
 | WebSocket support | Yes | Yes | No |
 | Collection format | JSON (proprietary) | JSON (proprietary) | Bru (plain text) |
 | Git-friendly collections | Export only | Export only | Native |
-| CLI for CI/CD | Newman | Inso | Built-in (`bru`) |
+| CLI for CI/CD | Newman | Inso | Built-in (````bru````) |
 | Offline mode | Limited | Yes | Full |
 | Cloud sync | Required for teams | Optional | Not available |
 | Open source | No | No | Yes (MIT) |
@@ -189,13 +190,13 @@ Bruno uses JavaScript for scripting assertions, pre-request logic, and post-resp
 
 | Plan | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Free tier | 3 users, limited | Unlimited personal use | Fully free (open source) |
 | Paid tier | $14-29/user/month | $8/user/month | $19/user/month (Golden Edition) |
@@ -232,7 +233,7 @@ Git-friendly collections solve this by making API definitions part of the code r
 
 ### Bruno's Approach: Collections as Code
 
-Bruno is purpose-built for this workflow. Bru files live in a `collections/` directory inside your repository. Changes are reviewed, approved, and merged alongside code changes. The CLI runs collections in CI without additional export steps.
+Bruno is purpose-built for this workflow. Bru files live in a ````collections/```` directory inside your repository. Changes are reviewed, approved, and merged alongside code changes. The CLI runs collections in CI without additional export steps.
 
 ### Postman's Export and Version Control Workaround
 
@@ -246,16 +247,16 @@ With Bruno, API changes appear in Git diffs as readable text. Reviewers see exac
 
 ### Bruno CLI for CI/CD Pipelines
 
-The Bruno CLI installs via npm (`npm install -g @usebruno/cli`) and runs collections with a single command: ```bash
+The Bruno CLI installs via npm (``npm install -g @usebruno/cli``) and runs collections with a single command: `````bash
 bru run collection-name --env production
-```
+`````
 
-Output formats include JUnit XML and HTML reports, integrating directly with CI dashboards. A GitHub Actions example: ```yaml
+Output formats include JUnit XML and HTML reports, integrating directly with CI dashboards. A GitHub Actions example: `````yaml
 - name: Run API Tests
   run: |
     npm install -g @usebruno/cli
     bru run collections/ --env staging --output results.xml
-```
+`````
 
 ### Newman (Postman CLI) for Test Automation
 
@@ -291,27 +292,27 @@ If you rarely test APIs and want minimal context switching, the Thunder Client o
 
 ### Exporting From Postman to Bruno/Insomnia
 
-Bruno includes a Postman collection importer. Export your Postman collection as JSON v2.1, then use Bruno's import dialog or CLI command: ```bash
+Bruno includes a Postman collection importer. Export your Postman collection as JSON v2.1, then use Bruno's import dialog or CLI command: `````bash
 bru import collection postman-export.json
-```
+`````
 
 The importer handles requests, headers, environment variables, and basic test scripts. Complex Postman-specific scripts may need manual adjustment.
 
 ### Converting Collections and Environments
 
-Environment variables export from Postman as JSON and can be converted to Bruno's environment format using the CLI or manual editing. The variable substitution syntax (`{{variableName}}`) is identical between both tools, so no changes are needed in request definitions.
+Environment variables export from Postman as JSON and can be converted to Bruno's environment format using the CLI or manual editing. The variable substitution syntax (````{{variableName}}````) is identical between both tools, so no changes are needed in request definitions.
 
 ### Maintaining Test Scripts During Migration
 
-Postman's test scripts use the `pm.*` API for assertions and variable access. Bruno uses standard JavaScript with Chai assertions. A typical Postman test: ```javascript
+Postman's test scripts use the ``pm.*`` API for assertions and variable access. Bruno uses standard JavaScript with Chai assertions. A typical Postman test: `````javascript
 pm.test("Status is 200", () => {
   pm.response.to.have.status(200);
 });
-```
+`````
 
-Becomes in Bruno: ```javascript
+Becomes in Bruno: `````javascript
 expect(res.status).to.equal(200);
-```
+`````
 
 The conversion is mechanical and can be automated with a simple script for large collections.
 
@@ -331,14 +332,14 @@ Bruno works fully offline with no account creation required. Insomnia works offl
 
 ### How do I migrate from Postman to Bruno?
 
-Export your Postman collections as JSON v2.1, then use Bruno's import feature or the CLI `bru import` command. Environment variables export separately and convert to Bruno"s format. Review test scripts and convert `pm.*` syntax to standard JavaScript assertions.
+Export your Postman collections as JSON v2.1, then use Bruno's import feature or the CLI ````bru import```` command. Environment variables export separately and convert to Bruno"s format. Review test scripts and convert ````pm.*``` syntax to standard JavaScript assertions.
 
 ### Which API client supports GraphQL and gRPC?
 
 Postman and Insomnia both support GraphQL and gRPC natively. Bruno currently focuses on REST API testing with GraphQL support planned. For WebSocket testing, Postman and Insomnia both offer native support. If multi-protocol testing is essential, Insomnia provides the best balance of features and performance.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -372,4 +373,4 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
   }
 }
 </script>
----
+* * *

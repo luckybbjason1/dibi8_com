@@ -28,3 +28,4 @@ faq:
   - q: "Which is better for reading whole codebases?"
     a: "For ingesting + summarizing: both work well. For finding specific bugs across files: Gemini's needle in haystack performance is more consistent. For multi-step reasoning across files: Claude wins despite shorter effective context."
 ---
+

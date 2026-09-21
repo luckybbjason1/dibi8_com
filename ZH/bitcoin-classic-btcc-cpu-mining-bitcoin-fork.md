@@ -30,6 +30,7 @@ faqs: - q: '普通 CPU 可以挖 Bitcoin-Classic（BTCC）吗？'
     a: '从 GitHub releases 页面下载 Bitcoin-Classic-Setup.exe 并安装，首次启动时等待区块链同步完成，创建新钱包，然后点击「Start Mining」使用内置图形化矿工即可。无需命令行操作。'
   - q: 'Bitcoin-Classic（BTCC）是个好的投资标的吗？'
     a: '不是。BTCC 目前市值和流动性几乎为零，没有主流交易所支持，社区规模极小（GitHub 仅约 18-23 个 star）。它最适合作为教育和实验性项目，而非投资标的。'---
+
 # Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版
 
 {</* resource-info */>}
@@ -55,16 +56,16 @@ Bitcoin-Classic 的核心理念是**还原早期比特币的挖矿体验**。在
 BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，让普通人重新体验挖矿的乐趣和成就感。
 
 
----
+* * *
 ## 核心技术参数
 
 ### 共识机制
 
 | 参数 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **共识算法** | SHA-256 工作量证明 (PoW) |
 | **挖矿方式** | CPU / GPU（低难度友好） |
@@ -75,9 +76,9 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 
 | 参数 | 数值 |
 |
----
+* * *
 |
----
+* * *
 |
 | **总量** | 21,000,000 BTCC |
 | **区块时间** | 10 分钟 / 区块 |
@@ -90,9 +91,9 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 
 | 区块高度 | 区块奖励 |
 |
----
+* * *
 |
----
+* * *
 |
 | 0 ~ 209,999 | 50 BTCC |
 | 210,000 ~ 419,999 | 25 BTCC |
@@ -101,7 +102,7 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 
 > 这与比特币的减半机制完全一致。
 
----
+* * *
 
 ## 核心功能
 
@@ -117,11 +118,11 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 ### 4. 区块链浏览器
 官方提供在线浏览器 https://explorer.bitcoin-classic.net/，可查询区块、交易、地址余额。
 
----
+* * *
 
 ## 快速开始
 
-```
+````
 1. 下载 Bitcoin-Classic-Setup.exe
    → https://github.com/Marcus-Vane/Bitcoin-Classic/releases
 
@@ -134,9 +135,9 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 5. 点击"Start Mining"开始挖矿
 
 6. 挖矿开始后自动创建矿机钱包，右上角切换即可查看余额
-```
+`````
 
----
+* * *
 
 ## 安全注意事项
 
@@ -146,17 +147,17 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 - 不要发送给任何人
 - 这是钱包资产的唯一所有权证明
 
----
+* * *
 
 ## 与比特币对比
 
 | 维度 | Bitcoin (BTC) | Bitcoin-Classic (BTCC) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 发布时间 | 2009 | 2026 |
 | 共识算法 | SHA-256 PoW | SHA-256 PoW |
@@ -167,7 +168,7 @@ BTCC 试图通过**降低难度、支持 CPU 挖矿、提供图形化界面**，
 | 生态成熟度 | 成熟（交易所、支付、DeFi） | 早期（仅钱包+浏览器） |
 | 投资价值 | 高流动性 | 实验性质 |
 
----
+* * *
 
 ## 总结
 
@@ -187,7 +188,7 @@ Bitcoin-Classic 是一个**教育性质和体验性质**很强的项目。它让
 
 > 💡 想了解更多区块链和加密工具？关注 [dibi8.com](https://dibi8.com) 获取每周精选开源项目。
 
----
+* * *
 
 ## 推荐工具
 
@@ -261,7 +262,7 @@ Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版 repre
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -274,7 +275,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -285,4 +286,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

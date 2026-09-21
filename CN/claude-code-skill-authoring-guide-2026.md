@@ -35,6 +35,7 @@ faq: - q: "Where do skills live and what's the minimum a SKILL.md needs?"
   - q: "When should I write a subagent instead of a skill?"
     a: "Write a skill when you need to teach a procedure that runs in the current conversation. Write a subagent when the work needs its own context window — heavy exploration, parallel research, or independent review that would otherwise bloat the parent. They compose: a subagent can load a skill to follow your methodology while running in isolation. The rule of thumb from the extension-decision framework — skill changes behavior, subagent protects context, MCP server adds capability."
 ---
+
 # Claude Code Skill Authoring: How to Package Procedures Claude Loads Only When Relevant (2026)
 
 
@@ -42,20 +43,20 @@ faq: - q: "Where do skills live and what's the minimum a SKILL.md needs?"
 
 In [Subagent vs MCP vs Skill](/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) we drew the three-axis map: skills move the **knowledge** axis, subagents move **context**, MCP servers move **capability**. We've since published deep guides on the subagent axis — [authoring custom agents](/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) and the [orchestration failure modes](/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/). This guide completes the trio: how to author the **skill** itself.
 
-Skills are the most underrated of the three because they look trivial — "it's just a markdown file." But a well-authored skill is the difference between knowledge that's *there when you need it* and a `CLAUDE.md` so bloated that every prompt drags 4,000 tokens of rules nobody's task needs right now. We'll cover the SKILL.md structure, the trigger description that decides everything, progressive disclosure for keeping it light, two worked examples, and the mistakes that make skills never fire.
+Skills are the most underrated of the three because they look trivial — "it's just a markdown file." But a well-authored skill is the difference between knowledge that's *there when you need it* and a ```CLAUDE.md```` so bloated that every prompt drags 4,000 tokens of rules nobody's task needs right now. We'll cover the SKILL.md structure, the trigger description that decides everything, progressive disclosure for keeping it light, two worked examples, and the mistakes that make skills never fire.
 
 ## What a Skill Actually Is
 
-A skill is a **directory**, not just a file: ```
+A skill is a **directory**, not just a file: `````
 .claude/skills/cut-release/
   SKILL.md            # frontmatter + instructions
   references/
     versioning.md     # heavy detail, loaded on demand
   scripts/
     bump-version.sh    # an executable the skill can run
-```
+`````
 
-The `SKILL.md` is the entry point. Its frontmatter declares the skill's identity and — critically — *when it should load*. The body holds the procedure. Supporting files (references, templates, scripts) live alongside and get pulled in only when needed. Skills live in `.claude/skills/` (project, shared with the team) or `~/.claude/skills/` (user, every project on your machine).
+The ````SKILL.md```` is the entry point. Its frontmatter declares the skill's identity and — critically — *when it should load*. The body holds the procedure. Supporting files (references, templates, scripts) live alongside and get pulled in only when needed. Skills live in ````.claude/skills/```` (project, shared with the team) or ````~/.claude/skills/```` (user, every project on your machine).
 
 ## Skill vs CLAUDE.md: The Loading Question
 
@@ -68,24 +69,24 @@ The test: *would this instruction apply to a random prompt about anything?* If y
 
 ## The Frontmatter: Name and Description
 
-```markdown
+`````markdown
 
----
+* * *
 name: cut-release
 description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
 
----
+* * *
 You are helping cut a release. Follow these steps in order...
-```
+`````
 
-### `name`
+### ````name````
 
 Kebab-case, descriptive. This is the skill's identity.
 
-### `description` — the trigger signal that decides everything
+### ````description```` — the trigger signal that decides everything
 
-Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ `description: Release helper.`
-> ✅ `description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.`
+Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ ````description: Release helper.````
+> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
 
 The first never fires because nothing in a real task matches "release helper." The second fires the moment the user says "let's ship 2.4.0." If your skill exists but never activates, the description is the culprit — every time.
 
@@ -93,7 +94,7 @@ The first never fires because nothing in a real task matches "release helper." T
 
 The body is the instructions Claude follows once the skill loads. Three rules: 1. **Be a procedure, not prose.** Numbered steps the model executes in order beat paragraphs of context. "1. Bump the version in package.json. 2. Regenerate the changelog from commits since the last tag. 3. ..." 
 2. **State preconditions and gotchas inline.** "Before tagging, confirm CI is green on main" — the kind of thing a human would know to check.
-3. **Point to heavy detail, don't inline it.** If the versioning policy is 800 words, put it in `references/versioning.md` and write "for the version-bump rules, read references/versioning.md." That's progressive disclosure, next.
+3. **Point to heavy detail, don't inline it.** If the versioning policy is 800 words, put it in ````references/versioning.md```` and write "for the version-bump rules, read references/versioning.md." That's progressive disclosure, next.
 
 ## Progressive Disclosure: Keep SKILL.md Light
 
@@ -101,23 +102,23 @@ The power move in skill authoring. SKILL.md should be **small** — the trigger 
 
 Why it matters: the description and overview need to be cheap, because they're scanned for routing. The detailed 2,000-word spec only belongs in context once the skill is actually engaged and the task needs that depth. A skill that inlines everything defeats the purpose — you're back to CLAUDE.md-style bloat, just triggered differently.
 
-```markdown
+`````markdown
 ## Steps
 1. Bump version (see references/versioning.md for the semver rules)
 2. Run scripts/changelog.sh to generate the draft
 3. ...
-```
+`````
 
-Claude reads `references/versioning.md` only when it actually needs the rules, not on every load.
+Claude reads ````references/versioning.md```` only when it actually needs the rules, not on every load.
 
 ## Worked Example: A Release Checklist Skill
 
-```markdown
+`````markdown
 
----
+* * *
 name: cut-release
 description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
----
+* * *
 
 You are cutting a release. Do NOT skip the precondition check.
 
@@ -130,17 +131,17 @@ Steps: 1. Determine the new version (semver; see references/versioning.md).
 5. After merge: tag, push the tag, publish.
 
 Report which step you stopped at if anything blocks.
-```
+`````
 
 The precondition and the "report where you stopped" line are what make it production-grade — not just steps, but the guardrails a careful human applies.
 
 ## Worked Example: A Domain Playbook Skill
 
-```markdown
----
+`````markdown
+* * *
 name: debug-flaky-test
 description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
----
+* * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
 
@@ -149,7 +150,7 @@ You are diagnosing a flaky test. Flakiness is almost always one of: shared state
 2. Check for unawaited async, real timers, and fixed sleeps.
 3. Check for shared mutable state between tests.
 4. Only after locating the cause, propose the fix. Do not "add a retry."
-```
+`````
 
 Note the embedded domain knowledge (the four usual causes) — that's institutional expertise, packaged so anyone triggers the senior engineer's mental checklist.
 
@@ -157,7 +158,7 @@ Note the embedded domain knowledge (the four usual causes) — that's institutio
 
 - **Vague description.** The skill exists but never fires. Add concrete trigger phrases — the words a user actually types when they need it.
 - **Everything in CLAUDE.md.** Situational procedures bloating every prompt. Move them to skills.
-- **Inlining heavy detail.** A 2,000-word SKILL.md. Use progressive disclosure — point to `references/`.
+- **Inlining heavy detail.** A 2,000-word SKILL.md. Use progressive disclosure — point to ````references/```.
 - **Prose instead of procedure.** A skill that reads like an essay. Number the steps.
 - **No guardrails.** Steps with no preconditions or stop conditions. Add the checks a careful human would make.
 
@@ -210,7 +211,7 @@ Skills are the cheapest, most underrated extension point — a directory with a 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ Skills are the cheapest, most underrated extension point — a directory with a 
 - [claude-code-vs-aider](claude-code-skill-authoring-guide-2026)
 - [cursor-vs-claude-code](claude-code-skill-authoring-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

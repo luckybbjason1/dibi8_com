@@ -23,6 +23,7 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
+
 ## 快速概览
 
 Taste Skill 为你的 AI 代理装上了"设计大脑"。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。
@@ -39,7 +40,7 @@ Taste Skill 是一套可移植的 Agent 技能集合，专为升级 AI 生成的
 - **MOTION_INTENSITY（1-10）：** 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画
 - **VISUAL_DENSITY（1-10）：** 信息密度——低值适合宽敞布局，高值适合密集的数据面板
 
-```bash
+````bash
 # 一次性安装全部技能
 npx skills add https://github.com/Leonxlnx/taste-skill
 
@@ -48,7 +49,7 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 # 锁定到 v1（原始行为）
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend-v1"
-```
+`````
 
 默认技能现在是 **v2（实验性）**，对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。
 
@@ -56,27 +57,27 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 
 Taste Skill 采用三层架构运行：
 
-1. **实现类技能**——这些技能输出可直接投入生产环境的代码。旗舰级 `design-taste-frontend` 技能会读取你的项目需求，推断出设计语言，调整三个参数，并生成严格遵守防重复规则的代码。
+1. **实现类技能**——这些技能输出可直接投入生产环境的代码。旗舰级 ````design-taste-frontend```` 技能会读取你的项目需求，推断出设计语言，调整三个参数，并生成严格遵守防重复规则的代码。
 
-2. **图像生成类技能**——这些技能产出参考图板（而非代码）。`imagegen-frontend-web` 生成网站设计方案，`imagegen-frontend-mobile` 创建移动端流程，`brandkit` 则生成品牌识别图板。将这些参考图交给 Codex 或 ChatGPT Images 进行后续实现。
+2. **图像生成类技能**——这些技能产出参考图板（而非代码）。````imagegen-frontend-web```` 生成网站设计方案，````imagegen-frontend-mobile```` 创建移动端流程，````brandkit```` 则生成品牌识别图板。将这些参考图交给 Codex 或 ChatGPT Images 进行后续实现。
 
-3. **风格变体**——具体的视觉方向：`minimalist-ui`（Notion/Linear 风格）、`industrial-brutalist-ui`（瑞士排版、强烈对比）、`high-end-visual-design`（精致、沉稳、高端 UI）以及 `stitch-design-taste`（兼容 Google Stitch）。
+3. **风格变体**——具体的视觉方向：````minimalist-ui````（Notion/Linear 风格）、````industrial-brutalist-ui````（瑞士排版、强烈对比）、````high-end-visual-design````（精致、沉稳、高端 UI）以及 ````stitch-design-taste````（兼容 Google Stitch）。
 
-```bash
+`````bash
 # 图像优先管线：先生成参考图，再生成代码
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "image-to-code"
 
 # image-to-code 工作流提示词示例
 # "遵循技能：生成图片，然后分析，最后编写代码"
-```
+`````
 
-图像优先管线特别强大：先用 ChatGPT Images 或 Codex 图像模式生成参考图板，然后将渲染结果连同 `image-to-code` 技能一起交给编程 Agent 进行实现。
+图像优先管线特别强大：先用 ChatGPT Images 或 Codex 图像模式生成参考图板，然后将渲染结果连同 ````image-to-code```` 技能一起交给编程 Agent 进行实现。
 
 ## 安装与配置
 
-安装过程不到 30 秒。Taste Skill 使用 Vercel Labs 的 `npx skills` CLI，它会扫描仓库的 `skills/` 文件夹并将 SKILL.md 文件安装到你的项目中。
+安装过程不到 30 秒。Taste Skill 使用 Vercel Labs 的 ````npx skills```` CLI，它会扫描仓库的 ````skills/```` 文件夹并将 SKILL.md 文件安装到你的项目中。
 
-```bash
+`````bash
 # 第一步：安装全部技能
 npx skills add https://github.com/Leonxlnx/taste-skill
 
@@ -85,36 +86,36 @@ ls ~/.hermes/skills/ | grep taste
 
 # 第三步：在你的 Agent 对话中使用
 # 技能会在被引用时自动加载
-```
+`````
 
 ### 升级到 v2
 
 如果你已安装 v1 并希望尝试实验性的 v2：
 
-```bash
+`````bash
 # 重新运行安装——安装名称未改变
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
 
 # 查看 v1→v2 的差异
 curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50
-```
+`````
 
 ### 手动安装
 
 你也可以将任意 SKILL.md 直接复制到你的项目中，或粘贴到 ChatGPT/Codex 对话里使用：
 
-```bash
+`````bash
 # 克隆以便手动访问
 curl -sL "https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip" -o /tmp/taste-skill.zip
 unzip -q /tmp/taste-skill.zip -d /tmp
 ls /tmp/taste-skill-main/skills/
-```
+`````
 
 ### 查看可用技能
 
 安装完成后，可以查看有哪些技能可用：
 
-```bash
+`````bash
 # 列出所有已安装的技能
 npx skills list | grep taste
 
@@ -125,7 +126,7 @@ grep '^version:' ~/.hermes/skills/design-taste-frontend/SKILL.md 2>/dev/null || 
 
 # 阅读 v2 更新日志
 curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md" | head -30
-```
+`````
 
 ## 与主流编程 Agent 的集成
 
@@ -133,20 +134,20 @@ Taste Skill 是框架无关的，可与所有主流 AI 编程 Agent 配合使用
 
 | Agent | 集成方式 | 推荐技能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Codex** | `npx skills add` + CLI | `gpt-taste`（更严格的变体） |
-| **Cursor** | 将 SKILL.md 粘贴到 `.cursorrules` | `design-taste-frontend` |
-| **Claude Code** | 通过 `.claude/skills/` 加载 | `design-taste-frontend` |
-| **ChatGPT** | 将 SKILL.md 粘贴到对话中 | `imagegen-frontend-web` |
-| **Gemini** | 将 SKILL.md 粘贴到对话中 | `design-taste-frontend` |
-| **OpenCode** | 加载 SKILL.md | `redesign-existing-projects` |
+| **Codex** | ````npx skills add```` + CLI | ````gpt-taste````（更严格的变体） |
+| **Cursor** | 将 SKILL.md 粘贴到 ````.cursorrules```` | ````design-taste-frontend```` |
+| **Claude Code** | 通过 ````.claude/skills/```` 加载 | ````design-taste-frontend```` |
+| **ChatGPT** | 将 SKILL.md 粘贴到对话中 | ````imagegen-frontend-web```` |
+| **Gemini** | 将 SKILL.md 粘贴到对话中 | ````design-taste-frontend```` |
+| **OpenCode** | 加载 SKILL.md | ````redesign-existing-projects```` |
 
-```bash
+`````bash
 # Cursor 集成：添加到 .cursorrules
 cat >> .cursorrules << 'EOF'
 # Taste Skill v2 — 反平庸前端规则
@@ -158,18 +159,18 @@ EOF
 mkdir -p ~/.claude/skills/taste-skill
 curl -sL "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md" \
   > ~/.claude/skills/taste-skill/SKILL.md
-```
+`````
 
 ## 基准测试：Taste Skill 与普通 AI 输出的差异
 
 Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度上量化衡量：
 
-```
+`````
 指标              | 普通 AI 输出 | Taste Skill v2
 
----
+* * *
 |
----
+* * *
 |---
 布局变化度        | 1-2         | 7-9
 重复率            | 高          | 接近零
@@ -177,7 +178,7 @@ Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度�
 排版层级          | 2 级        | 4+ 级
 视觉密度          | 均匀        | 自适应
 从设计到代码时间  | 2-3 小时    | 30-45 分钟
-```
+`````
 
 上述基准测试来自两组共 50+ 个生成落地页的对比：一组使用默认 AI 提示词，另一组使用 Taste Skill v2 并将三个参数调至中高档位。
 
@@ -190,7 +191,7 @@ Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度�
 - **有目的的动效**服务于导航而非装饰
 - **情境化视觉密度**——英雄区域留白充足，数据面板信息密集
 
-```bash
+`````bash
 # 验证你的生成输出是否通过了品味检查
 # Taste Skill 在 SKILL.md 中包含了一份预飞检查清单
 # 关键检查项：
@@ -198,7 +199,7 @@ Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度�
 # - 至少 3 级排版
 # - 至少一处有意为之的非对称设计
 # - 动效必须服务于功能而非装饰
-```
+`````
 
 ## 进阶用法：自定义三个参数
 
@@ -206,7 +207,7 @@ Taste Skill 的真正威力在于将三个参数调整到与你项目的视觉�
 
 ### 设计变化度（低 → 高）
 
-```yaml
+`````yaml
 # 低变化度（1-3）：清爽、居中、传统
 # 适用场景：企业官网、仪表盘、文档站
 DESIGN_VARIANCE: 2
@@ -218,11 +219,11 @@ DESIGN_VARIANCE: 5
 # 高变化度（7-10）：非对称、大胆、编辑风格
 # 适用场景：创意机构、艺术作品集、品牌站
 DESIGN_VARIANCE: 9
-```
+`````
 
 ### 动效强度
 
-```yaml
+`````yaml
 # 低（1-3）：微妙的悬停效果，无滚动动画
 MOTION_INTENSITY: 2
 
@@ -231,11 +232,11 @@ MOTION_INTENSITY: 5
 
 # 高（7-10）：磁性光标、滚动驱动的变换、GSAP 时间轴
 MOTION_INTENSITY: 9
-```
+`````
 
 ### 视觉密度
 
-```yaml
+`````yaml
 # 宽敞（1-3）：大内边距、单栏聚焦
 VISUAL_DENSITY: 2
 
@@ -244,11 +245,11 @@ VISUAL_DENSITY: 5
 
 # 密集（7-10）：仪表盘风格、多列、最大化每屏信息量
 VISUAL_DENSITY: 9
-```
+`````
 
 ### 组合参数打造特定风格
 
-```yaml
+`````yaml
 # 高端 SaaS 落地页
 DESIGN_VARIANCE: 6
 MOTION_INTENSITY: 5
@@ -268,13 +269,13 @@ VISUAL_DENSITY: 9
 DESIGN_VARIANCE: 4
 MOTION_INTENSITY: 3
 VISUAL_DENSITY: 5
-```
+`````
 
 ### 真实世界的参数配置示例
 
 不同类型的项目从不同的参数组合中获益。以下是 Taste Skill 自身示例中经过验证的配置：
 
-```yaml
+`````yaml
 # 带磁性滚动动画的个人作品集
 DESIGN_VARIANCE: 8
 MOTION_INTENSITY: 9
@@ -294,7 +295,7 @@ VISUAL_DENSITY: 6
 DESIGN_VARIANCE: 9
 MOTION_INTENSITY: 7
 VISUAL_DENSITY: 4
-```
+`````
 
 这些配置经过了 44,000+ 星标所代表的社区反馈测试。关键在于根据你的项目信息密度和品牌个性来匹配参数设置。
 
@@ -304,15 +305,15 @@ Taste Skill 并非 GitHub 上唯一的设计强化技能。以下是它与最接
 
 | 特性 | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 星标数 | 44,229 | 8,400 | 12,300 | N/A（SaaS） |
 | 框架无关 | 是 | 部分 | 否 | 否 |
@@ -330,7 +331,7 @@ Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你�
 
 1. **复杂的后端逻辑**——Taste Skill 专注于前端设计。它不会为你的 API、数据库架构或认证流程做架构设计。
 
-2. **从零开始的品牌识别**——如果你需要一个完整的品牌体系（Logo、配色方案、字体选择），Taste Skill 假设你已经有了设计方向。可以使用 `brandkit` 生成参考图板，但最终的品牌决策由你自己掌控。
+2. **从零开始的品牌识别**——如果你需要一个完整的品牌体系（Logo、配色方案、字体选择），Taste Skill 假设你已经有了设计方向。可以使用 ````brandkit```` 生成参考图板，但最终的品牌决策由你自己掌控。
 
 3. **非标准组件库**——Taste Skill 从第一性原则生成 CSS。如果你需要严格遵循 Material Design、Ant Design 或 Tailwind UI 的组件规范，输出可能无法完全匹配你的设计系统。
 
@@ -338,14 +339,14 @@ Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你�
 
 5. **移动端响应式的边缘案例**——技能会生成响应式布局，但复杂的移动端交互（滑动手势、双指缩放、原生应用桥接）仍需手动实现。
 
-```bash
+`````bash
 # 快速自查：你的项目是否需要 Taste Skill？
 # ✅ 落地页、作品集、SaaS 站点 → 需要
 # ✅ 重新设计 AI 生成的 UI → 需要
 # ✅ 后端 API、数据库架构 → 不需要
 # ✅ 原生移动应用（Swift/Kotlin）→ 部分需要
 # ✅ 复杂数据可视化 → 部分需要（配合 D3 技能）
-```
+`````
 
 ## 常见问题
 
@@ -359,11 +360,11 @@ Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你�
 
 ### v1 和 v2 有什么区别？
 
-v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 代码骨架和重设计审核协议。v1 被保留给那些依赖原始行为的的项目。可通过 `--skill "design-taste-frontend-v1"` 显式安装 v1。
+v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 代码骨架和重设计审核协议。v1 被保留给那些依赖原始行为的的项目。可通过 ````--skill "design-taste-frontend-v1"```` 显式安装 v1。
 
 ### 我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？
 
-可以。你可以将任意 SKILL.md 复制到你的项目中、粘贴到 ChatGPT/Codex 对话中，或将其用作 Cursor `.cursorrules` 指令。`npx skills add` 命令只是更方便的选择，并非必需。
+可以。你可以将任意 SKILL.md 复制到你的项目中、粘贴到 ChatGPT/Codex 对话中，或将其用作 Cursor ````.cursorrules```` 指令。````npx skills add```` 命令只是更方便的选择，并非必需。
 
 ### Taste Skill 免费吗？
 
@@ -371,7 +372,7 @@ v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 
 
 ### 我应该选择哪个技能变体？
 
-从 `design-taste-frontend`（v2）开始，这是最安全的通用默认选项。对于更严格的 GPT/Codex 导向规则，使用 `gpt-taste`。对于图像优先的工作流，使用 `image-to-code`。对于改进现有代码库，使用 `redesign-existing-projects`。
+从 ````design-taste-frontend````（v2）开始，这是最安全的通用默认选项。对于更严格的 GPT/Codex 导向规则，使用 ````gpt-taste````。对于图像优先的工作流，使用 ````image-to-code````。对于改进现有代码库，使用 ````redesign-existing-projects````。
 
 ### Taste Skill 是否兼容 Next.js 或 Astro？
 
@@ -395,14 +396,14 @@ Taste Skill 代表了 AI Agent 在前端设计领域的根本性转变。它不�
 
 **立即试用：**
 
-```bash
+`````bash
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
-```
+````
 
 **相关文章**：[了解 AI 编程 Agent](https://dibi8.com/ai-tools/oh-my-pi) · [比较开发工具](https://dibi8.com/dev-utils/)
 
 
----
+* * *
 **来源与延伸阅读**：
 - 官方网站：https://tasteskill.dev
 - GitHub 仓库：https://github.com/Leonxlnx/taste-skill
@@ -481,11 +482,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -495,7 +496,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](taste-skill)
 - [2026-06-15-trending-ai-agents](taste-skill)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -526,15 +527,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

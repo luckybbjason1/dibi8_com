@@ -34,11 +34,12 @@ faqs: - q: 'Làm sao để cài exo?'
     a: 'Mở bảng điều khiển trong trình duyệt tại `http://localhost:52415`. Nó hiển thị mọi thiết bị được phát hiện, cách mô hình được chia trên chúng, cùng thông lượng và mức dùng bộ nhớ theo thời gian thực.'
 ---
 
+
 {{< resource-info >}}
 
 ## Giới thiệu
 
-Các mô hình tiên phong rất đồ sộ. Một mô hình 671 tỉ tham số không thể nhét vừa vào một chiếc laptop, còn nếu tự thuê đủ GPU đám mây để chạy thì chi phí leo thang rất nhanh. `exo` chọn một hướng đi khác: nó ghép các thiết bị bạn đã có—Mac, máy Linux, thậm chí điện thoại—thành một cụm duy nhất, rồi chia mô hình ra trên các thiết bị đó để chúng cùng nhau suy luận. Với hơn 45.000 sao trên GitHub, nó đã trở thành một trong những dự án được theo dõi nhiều nhất cho việc chạy mô hình lớn trên phần cứng do chính bạn kiểm soát. Hướng dẫn này sẽ đưa bạn đi qua việc cài đặt exo, mở bảng điều khiển, và trò chuyện với nó qua API tương thích OpenAI, Claude và Ollama.
+Các mô hình tiên phong rất đồ sộ. Một mô hình 671 tỉ tham số không thể nhét vừa vào một chiếc laptop, còn nếu tự thuê đủ GPU đám mây để chạy thì chi phí leo thang rất nhanh. ```exo```` chọn một hướng đi khác: nó ghép các thiết bị bạn đã có—Mac, máy Linux, thậm chí điện thoại—thành một cụm duy nhất, rồi chia mô hình ra trên các thiết bị đó để chúng cùng nhau suy luận. Với hơn 45.000 sao trên GitHub, nó đã trở thành một trong những dự án được theo dõi nhiều nhất cho việc chạy mô hình lớn trên phần cứng do chính bạn kiểm soát. Hướng dẫn này sẽ đưa bạn đi qua việc cài đặt exo, mở bảng điều khiển, và trò chuyện với nó qua API tương thích OpenAI, Claude và Ollama.
 
 ## exo là gì?
 
@@ -60,30 +61,30 @@ Nếu bạn muốn exo luôn sẵn sàng truy cập suốt ngày đêm (chẳng 
 
 ### Ứng dụng macOS (dễ nhất)
 
-Cách đơn giản nhất trên Mac là dùng ứng dụng đã dựng sẵn. Cài bằng Homebrew: ```bash
+Cách đơn giản nhất trên Mac là dùng ứng dụng đã dựng sẵn. Cài bằng Homebrew: `````bash
 brew install --cask exo
-```
+`````
 
-Hoặc tải trực tiếp bản DMG mới nhất từ `https://assets.exolabs.net/EXO-latest.dmg`. Ứng dụng yêu cầu một bản macOS tương đối mới.
+Hoặc tải trực tiếp bản DMG mới nhất từ ````https://assets.exolabs.net/EXO-latest.dmg````. Ứng dụng yêu cầu một bản macOS tương đối mới.
 
 ### Dựng từ mã nguồn (macOS hoặc Linux)
 
-Để chạy mã mới nhất, hãy clone kho và khởi động bằng `uv`. Trước tiên bạn cần cài `uv`, Node 18+ và bộ công cụ Rust phiên bản nightly (trên macOS còn cần Xcode, Homebrew và `macmon`): ```bash
+Để chạy mã mới nhất, hãy clone kho và khởi động bằng ``uv``. Trước tiên bạn cần cài ``uv``, Node 18+ và bộ công cụ Rust phiên bản nightly (trên macOS còn cần Xcode, Homebrew và ``macmon``): `````bash
 git clone https://github.com/exo-explore/exo
 cd exo/dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
-Nếu bạn dùng Nix, có thể bỏ qua hoàn toàn các yêu cầu tiên quyết: ```bash
+Nếu bạn dùng Nix, có thể bỏ qua hoàn toàn các yêu cầu tiên quyết: `````bash
 nix run .#exo
-```
+`````
 
 ### Lỗi thường gặp và cách khắc phục
 
-Một trục trặc hay gặp ở lần chạy đầu là bảng điều khiển không tải được vì phần giao diện chưa bao giờ được dựng. Giao diện web được biên dịch từ thư mục `dashboard/`, nên nếu bạn clone kho rồi chạy `uv run exo` mà chưa dựng nó, hãy dựng lại bảng điều khiển trước khi khởi động: ```bash
+Một trục trặc hay gặp ở lần chạy đầu là bảng điều khiển không tải được vì phần giao diện chưa bao giờ được dựng. Giao diện web được biên dịch từ thư mục ``dashboard/``, nên nếu bạn clone kho rồi chạy ``uv run exo`` mà chưa dựng nó, hãy dựng lại bảng điều khiển trước khi khởi động: `````bash
 cd dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
 Nếu gặp vấn đề khác trong lúc cài đặt, hãy xem tệp README chính thức trong kho.
 
@@ -96,30 +97,30 @@ Sau khi cài exo xong, quy trình ngắn gọn đến mức dễ chịu: khởi 
 
 ### Khởi động một nút
 
-Chạy exo trên mọi thiết bị bạn muốn đưa vào cụm: ```bash
+Chạy exo trên mọi thiết bị bạn muốn đưa vào cụm: `````bash
 uv run exo
-```
+`````
 
-Mỗi nút tự động tìm ra các nút khác trong cùng mạng—không cần đăng ký thủ công. Vài cờ tiện dụng: - `--no-worker`: chạy nút chỉ làm điều phối, bản thân nó không thực hiện suy luận.
-- `--legacy-daemon`: chạy exo dưới dạng tiến trình nền (daemon).
+Mỗi nút tự động tìm ra các nút khác trong cùng mạng—không cần đăng ký thủ công. Vài cờ tiện dụng: - ````--no-worker````: chạy nút chỉ làm điều phối, bản thân nó không thực hiện suy luận.
+- ````--legacy-daemon````: chạy exo dưới dạng tiến trình nền (daemon).
 
 ### Giám sát cụm
 
-exo phục vụ một bảng điều khiển ở cổng `52415`. Mở nó trong trình duyệt: ```sh
+exo phục vụ một bảng điều khiển ở cổng ``52415``. Mở nó trong trình duyệt: `````sh
 http://localhost:52415
-```
+`````
 
 Bạn sẽ thấy mọi thiết bị mà exo đã phát hiện, mô hình hiện tại được chia trên chúng ra sao, cùng thông lượng và mức dùng bộ nhớ theo thời gian thực.
 
 ### Gọi mô hình
 
-exo cung cấp một API HTTP tương thích với các định dạng OpenAI, Claude (Anthropic Messages) và Ollama, nên hầu hết mã client sẵn có dùng được mà không phải sửa. Một yêu cầu chat dạng streaming trông như sau: ```bash
+exo cung cấp một API HTTP tương thích với các định dạng OpenAI, Claude (Anthropic Messages) và Ollama, nên hầu hết mã client sẵn có dùng được mà không phải sửa. Một yêu cầu chat dạng streaming trông như sau: `````bash
 curl -X POST http://localhost:52415/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}"
-```
+`````
 
-Cùng điểm cuối đó cũng hiểu Claude Messages API tại `/v1/messages` và Ollama API tại `/ollama/api/chat`.
+Cùng điểm cuối đó cũng hiểu Claude Messages API tại ````/v1/messages```` và Ollama API tại ````/ollama/api/chat````.
 
 ### Kết luận
 
@@ -134,7 +135,7 @@ Vì exo "nói" được API của OpenAI, Claude và Ollama, nó hòa vào hầu
 
 ### Tái sử dụng client OpenAI sẵn có
 
-Trỏ bất kỳ client tương thích OpenAI nào tới điểm cuối exo cục bộ và nó chạy ngay: ```python
+Trỏ bất kỳ client tương thích OpenAI nào tới điểm cuối exo cục bộ và nó chạy ngay: `````python
 # Nói chuyện với cụm exo cục bộ bằng client OpenAI chuẩn
 from openai import OpenAI
 
@@ -148,11 +149,11 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Summarize the exo project in one sentence."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### Dùng trong Jupyter notebook
 
-Cùng một client cũng chạy được trong notebook, rất tiện để thử nghiệm nhanh với cụm: ```python
+Cùng một client cũng chạy được trong notebook, rất tiện để thử nghiệm nhanh với cụm: `````python
 # Thử nhanh trong Jupyter notebook
 from openai import OpenAI
 
@@ -163,7 +164,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "List three uses for a local AI cluster."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 Vì mọi thứ đều đi qua một API HTTP chuẩn, bạn có thể tích hợp exo với bất kỳ ngôn ngữ hay framework nào có thể gửi một yêu cầu POST.
 
@@ -199,7 +200,7 @@ exo đã được trình diễn chạy những mô hình rất lớn trên các 
 
 Xem thêm bài viết của chúng tôi về [các công cụ mã nguồn mở liên quan](dibi8-internal-link).
 
-exo không phải cách duy nhất để chạy mô hình tại chỗ, và nó giải quyết một bài toán rất cụ thể—trải một mô hình lớn ra nhiều thiết bị—mà các công cụ một-máy không làm được. Bảng dưới đây phác họa nó so với hai lựa chọn phổ biến: `ollama/ollama` (phục vụ cục bộ trên một máy) và `ggml-org/llama.cpp` (động cơ suy luận mà nhiều công cụ cục bộ xây dựng dựa trên).
+exo không phải cách duy nhất để chạy mô hình tại chỗ, và nó giải quyết một bài toán rất cụ thể—trải một mô hình lớn ra nhiều thiết bị—mà các công cụ một-máy không làm được. Bảng dưới đây phác họa nó so với hai lựa chọn phổ biến: ````ollama/ollama```` (phục vụ cục bộ trên một máy) và ````ggml-org/llama.cpp```` (động cơ suy luận mà nhiều công cụ cục bộ xây dựng dựa trên).
 
 | Tính năng             | exo-explore/exo                  | ollama/ollama                  | ggml-org/llama.cpp             |
 |----------------------|----------------------------------|--------------------------------|--------------------------------|
@@ -220,7 +221,7 @@ exo thực sự hữu ích, nhưng đây là một dự án còn trẻ và biế
 
 2. **Nó sinh ra cho cụm mô hình lớn.** Nếu mô hình của bạn đã vừa một máy, bộ máy phân tán của exo là thừa thãi—một công cụ một-máy sẽ đơn giản hơn.
 
-3. **Dựng từ nguồn có yêu cầu tiên quyết thật sự.** Chạy từ nguồn cần `uv`, Node, bộ công cụ Rust nightly và (trên macOS) Xcode cùng các công cụ phụ. Ứng dụng macOS tránh được điều này, nhưng người dùng bản nguồn nên chuẩn bị cho một quá trình thiết lập nặng hơn so với cài một dòng.
+3. **Dựng từ nguồn có yêu cầu tiên quyết thật sự.** Chạy từ nguồn cần ````uv```, Node, bộ công cụ Rust nightly và (trên macOS) Xcode cùng các công cụ phụ. Ứng dụng macOS tránh được điều này, nhưng người dùng bản nguồn nên chuẩn bị cho một quá trình thiết lập nặng hơn so với cài một dòng.
 
 4. **Mã nguồn biến đổi nhanh.** Là một dự án đang phát triển sôi nổi, API và hành vi có thể thay đổi giữa các phiên bản. Hãy ghim vào một commit đã biết là ổn nếu bạn cần sự ổn định.
 
@@ -235,7 +236,7 @@ exo của exo-explore là một công cụ hấp dẫn để chạy AI tiên pho
 - Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để nhận tin về các công cụ AI mã nguồn mở.
 - Đọc tiếp: [các hướng dẫn liên quan trên dibi8](dibi8-internal-link).
 
----
+* * *
 
 **Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme

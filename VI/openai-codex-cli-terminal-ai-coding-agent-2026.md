@@ -22,6 +22,7 @@ aliases:
   - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
 ---
 
+
 {</* resource-info */>}
 
 ## 1. OpenAI Codex CLI Là Gì Và Tại Sao Developer Đang Chuyển Sang Năm 2026
@@ -39,7 +40,7 @@ OpenAI Codex CLI nằm ở trung tâm cuộc chuyển dịch này. Với **hơn 
 
 Nếu bạn vẫn copy-paste đoạn code từ tab trình duyệt, công cụ này sẽ cấu trúc lại căn bản cách bạn viết phần mềm.
 
----
+* * *
 
 ## 2. Cài Đặt Zero-to-Production Trong Dưới Năm Phút
 
@@ -53,56 +54,56 @@ Nếu bạn vẫn copy-paste đoạn code từ tab trình duyệt, công cụ n�
 
 **Tùy chọn A: npm (đa nền tảng)**
 
-```bash
+````bash
 npm install -g @openai/codex
 codex --version
-```
+`````
 
 **Tùy chọn B: Homebrew (binary native macOS)**
 
-```bash
+`````bash
 brew update
 brew install --cask codex
 codex --version
-```
+`````
 
 **Tùy chọn C: Script cài đặt một dòng**
 
-```bash
+`````bash
 curl -sSL https://releases.openai.com/codex/install.sh | bash
-```
+`````
 
 ### Xác Thực
 
-```bash
+`````bash
 codex login
-```
+`````
 
 Trình duyệt mặc định mở luồng ủy quyền OpenAI. Đăng nhập bằng tài khoản ChatGPT, phê duyệt request OAuth, và quay lại terminal. Không quản lý API key. Không bảng điều khiển thanh toán riêng. Sử dụng của bạn được tính vào hạn mức gói ChatGPT.
 
-Đối với team yêu cầu chế độ API-key (phổ biến trong môi trường doanh nghiệp khi subscription chung không đủ): ```bash
+Đối với team yêu cầu chế độ API-key (phổ biến trong môi trường doanh nghiệp khi subscription chung không đủ): `````bash
 export OPENAI_API_KEY="sk-..."
 codex
-```
+`````
 
-Hoặc lưu vĩnh viễn trong `~/.codex/config.toml`: ```toml
+Hoặc lưu vĩnh viễn trong ``~/.codex/config.toml``: `````toml
 preferred_auth_method = "apikey"
-```
+`````
 
 ### Task Đầu Tiên: Kiểm Tra Smoke Test Chuẩn
 
-Điều hướng đến bất kỳ repo nào và phát hành task có giới hạn: ```bash
+Điều hướng đến bất kỳ repo nào và phát hành task có giới hạn: `````bash
 cd ~/projects/your-repo
 codex "Thêm unit test cho hàm parseDate trong src/utils/date.ts. Bao phủ input hợp lệ, edge case, và format không hợp lệ. Chạy bộ test và xác nhận tất cả test pass."
-```
+`````
 
 Theo dõi Codex: 1. Quét repo để xác định framework test (Jest, Vitest, Mocha, pytest, v.v.)
-2. Đọc implementation của `parseDate`
+2. Đọc implementation của ````parseDate````
 3. Tạo file test với các case có ý nghĩa
 4. Thực thi các test
 5. Trình bày diff và xin phê duyệt trước khi ghi vào đĩa
 
----
+* * *
 
 ## 3. Chuyển Đổi Mô Hình Tư Duy: Từ Gõ Code Sang Chỉ Đạo Agent
 
@@ -115,7 +116,7 @@ Sự thích ứng quan trọng nhất khi sử dụng Codex CLI là thay đổi 
 | **Mục tiêu** | Cần xây hoặc sửa cái gì | "Triển khai middleware xác thực dựa trên JWT" |
 | **Ngữ cảnh** | File, framework, hay quy ước nào quan trọng | "Dùng Go + Gin. Kết nối DB ở db/conn.go. Tuân theo pattern xử lý lỗi hiện tại." |
 | **Ràng buộc** | Quy tắc không được vi phạm | "Không phá vỡ hợp đồng REST API hiện có. Mọi hàm mới phải có unit test." |
-| **Xác minh** | Cách chứng minh task hoàn thành | "Chạy `go test ./...`. Tất cả test pass. Cung cấp lệnh curl để test luồng đăng nhập và refresh." |
+| **Xác minh** | Cách chứng minh task hoàn thành | "Chạy ````go test ./...````. Tất cả test pass. Cung cấp lệnh curl để test luồng đăng nhập và refresh." |
 
 **Prompt yếu:** "Viết một hàm đăng nhập."
 
@@ -135,30 +136,30 @@ Codex sẽ tạo scaffold cấu trúc package, viết handler, kết nối lớp
 | **Read Only** | Tự động cho phép | Cấm | Cấm | Khám phá codebase, onboarding, kiểm toán |
 | **Full Access** | Tự động cho phép | Tự động cho phép | Tự động cho phép | Container CI/CD, VM cô lập, tự động hóa đáng tin |
 
-Cờ khởi chạy: ```bash
+Cờ khởi chạy: `````bash
 codex --sandbox read-only              # Phân tích thuần; rủi ro biến đổi bằng 0
 codex --sandbox workspace-write        # Có thể sửa file; lệnh không tin cậy vẫn cần phê duyệt
 codex --full-auto                      # Tự động phê duyệt; sandbox vẫn hoạt động
 codex --yolo                           # Tắt cả sandbox VÀ phê duyệt. CHỈ trong môi trường cô lập.
-```
+`````
 
-**Lưu ý an toàn quan trọng:** `--yolo` (dạng dài: `--dangerously-bypass-approvals-and-sandbox`) chỉ dành riêng cho container dùng-rồi-bỏ, CI runner, và VM sandbox. Không bao giờ chạy nó đối với repo production trên máy local của bạn.
+**Lưu ý an toàn quan trọng:** ````--yolo```` (dạng dài: ````--dangerously-bypass-approvals-and-sandbox````) chỉ dành riêng cho container dùng-rồi-bỏ, CI runner, và VM sandbox. Không bao giờ chạy nó đối với repo production trên máy local của bạn.
 
----
+* * *
 
 ## 4. AGENTS.md: File Duy Nhất Quyết Định Chất Lượng Code
 
-Codex CLI tự động phát hiện và đọc file `AGENTS.md` trước mỗi task. Hãy nghĩ về điều này như tài liệu onboarding bạn sẽ giao cho một kỹ sư người mới—chỉ là đồng đội mới của bạn đọc nó trong vài mili-giây và tuân theo với khả năng nhớ hoàn hảo.
+Codex CLI tự động phát hiện và đọc file ````AGENTS.md```` trước mỗi task. Hãy nghĩ về điều này như tài liệu onboarding bạn sẽ giao cho một kỹ sư người mới—chỉ là đồng đội mới của bạn đọc nó trong vài mili-giây và tuân theo với khả năng nhớ hoàn hảo.
 
 ### Template AGENTS.md Sẵn Sàng Production
 
-```markdown
+`````markdown
 # AGENTS.md — Hướng Dẫn Trợ Lý Kỹ Thuật AI
 
 ## Bố Cục Repository
-- `src/` — Logic nghiệp vụ; tất cả handler, service, model domain
-- `tests/` — Cấu trúc gương của `src/`; một file test cho mỗi file source
-- `migrations/` — Migration DB quản lý bằng Alembic; không bao giờ sửa thủ công
+- ````src/```` — Logic nghiệp vụ; tất cả handler, service, model domain
+- ````tests/```` — Cấu trúc gương của ````src/````; một file test cho mỗi file source
+- ````migrations/```` — Migration DB quản lý bằng Alembic; không bao giờ sửa thủ công
 
 ## Stack Công Nghệ & Tiêu Chuẩn
 - Runtime: Python 3.11+
@@ -167,21 +168,21 @@ Codex CLI tự động phát hiện và đọc file `AGENTS.md` trước mỗi t
 - Type Hints: Bắt buộc trên mọi signature hàm và thuộc tính class công khai
 
 ## Yêu Cầu Test
-- Lệnh: `pytest tests/`
+- Lệnh: ````pytest tests/````
 - Ngưỡng coverage: 85% cho feature mới
-- Test async: Phải dùng `pytest-asyncio` với `@pytest.mark.asyncio`
+- Test async: Phải dùng ````pytest-asyncio```` với ````@pytest.mark.asyncio````
 
 ## Git & CI
-- Format commit: `[Type] Mô tả ngắn` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
-- Không push trực tiếp lên `main`; mọi thay đổi qua PR với ít nhất một review
+- Format commit: ````[Type] Mô tả ngắn```` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
+- Không push trực tiếp lên ````main````; mọi thay đổi qua PR với ít nhất một review
 - Kiểm tra trước merge: lint → typecheck → test → build
-```
+`````
 
 ### Cấu Hình Phân Cấp Cho Monorepo
 
-Đặt `AGENTS.md` cấp gốc cho quy ước toàn cục. Thêm file `AGENTS.md` lồng nhau bên trong subdirectory (ví dụ: `src/ml/`, `src/api/`) cho quy tắc đặc thù module. Codex merge các cấu hình với ưu tiên dựa trên độ gần—file gần hơn ghi đè file xa.
+Đặt ````AGENTS.md```` cấp gốc cho quy ước toàn cục. Thêm file ````AGENTS.md```` lồng nhau bên trong subdirectory (ví dụ: ````src/ml/````, ````src/api/````) cho quy tắc đặc thù module. Codex merge các cấu hình với ưu tiên dựa trên độ gần—file gần hơn ghi đè file xa.
 
----
+* * *
 
 ## 5. Phát Triển Song Song Đa Agent: Một Người, Nhiều Đồng Đội AI
 
@@ -193,16 +194,16 @@ Codex CLI sau tháng 4/2026 giới thiệu **Subagents**—các agent chuyên bi
 |---|---|---|
 | **Explorer** | Lập bản đồ cấu trúc repo, xác định dependency, định vị file liên quan | Tự gắn vào task phức tạp |
 | **Worker** | Triển khai thay đổi code, tạo file, sửa logic | Agent chính mặc định |
-| **Reviewer** | Kiểm toán thay đổi về tính đúng, bảo mật, tuân thủ style | `/review` hoặc hook trước merge |
+| **Reviewer** | Kiểm toán thay đổi về tính đúng, bảo mật, tuân thủ style | ````/review```` hoặc hook trước merge |
 | **Tester** | Tạo test case, xác minh coverage, tái tạo bug được báo cáo | Yêu cầu rõ trong prompt |
 
 ### Workflow Song Song Thực Tế
 
 Hãy tưởng tượng thêm feature "giảm giá thân thiết" vào backend e-commerce. Thay vì tuần tự, bạn song song hóa trên ba bề mặt: **Terminal 1 — Triển khai (CLI):**
 
-```bash
-codex "Thêm `loyalty_discount(price, customer_tier)` vào pricing.py. Tier: bronze(0%), silver(5%), gold(10%). Từ chối tier không xác định bằng ValueError. Không sửa hàm khác."
-```
+`````bash
+codex "Thêm ````loyalty_discount(price, customer_tier)```` vào pricing.py. Tier: bronze(0%), silver(5%), gold(10%). Từ chối tier không xác định bằng ValueError. Không sửa hàm khác."
+`````
 
 **Cloud 2 — Tạo test (chatgpt.com/codex):**
 
@@ -214,7 +215,7 @@ codex "Thêm `loyalty_discount(price, customer_tier)` vào pricing.py. Tier: bro
 
 Cả ba task tiến triển đồng thời. Khi implementation đến, test xác thực nó, và tài liệu đã live. Không có thời gian chờ người giữa các giai đoạn tuần tự.
 
----
+* * *
 
 ## 6. MCP & Skills: Mở Rộng Codex Vượt Khỏi Code
 
@@ -225,25 +226,25 @@ MCP đã trở thành adapter phổ quát cho công cụ AI năm 2026. Codex CLI
 - **Notion / Confluence / Wiki nội bộ** — Kéo quy tắc nghiệp vụ và spec feature vào phiên coding
 - **Datadog / Sentry / CloudWatch** — Tiếp nhận error trace để tự chẩn đoán và vá sự cố production
 
-Tham chiếu lệnh: ```bash
+Tham chiếu lệnh: `````bash
 codex /mcp          # Liệt kê MCP server và tool đã cấu hình
 codex /apps         # Duyệt và kích hoạt connector ứng dụng có sẵn
-```
+`````
 
 ### Catalog Skills: Tự Động Hóa Workflow Tái Sử Dụng
 
 Pattern prompt lặp lại nên được đóng gói thành **Skills**—các tập hướng dẫn có thể chia sẻ, có phiên bản.
 
-```bash
+`````bash
 $skill-creator      # Trình hướng dẫn tương tác để soạn skill mới
-```
+`````
 
 Skills tuân theo chuẩn Agent Skills mở, làm cho chúng có thể chuyển giữa Codex CLI, Claude Code, và GitHub Copilot. Ứng dụng skill điển hình: - Tạo PR localization (trích string → dịch → mở PR)
 - Checklist kiểm toán bảo mật (quét SQL injection, XSS, rò rỉ secret)
 - Soạn release note từ lịch sử commit
 - Script migration (Python 2→3, Flask→FastAPI, JavaScript→TypeScript)
 
----
+* * *
 
 ## 7. Kiến Trúc Bảo Mật: Tại Sao Doanh Nghiệp Phê Duyệt Codex CLI
 
@@ -259,11 +260,11 @@ Cho ngành nghề được điều chỉnh, các kiểm soát doanh nghiệp b�
 - **RBAC Workspaces**: Tách phạm vi admin và user với ngưỡng phê duyệt khác nhau
 - **Context Compaction**: Tự động nén lịch sử phiên chạy dài để ngăn dữ liệu nhạy cảm tồn đọng trong context window
 
----
+* * *
 
 ## 8. Lựa Chọn Mô Hình: GPT-5.3-Codex vs GPT-5.3-Codex-Spark
 
-Codex CLI mặc định dùng `gpt-5.3-codex`, mô hình flagship tối ưu coding của OpenAI. Một biến thể thứ hai, **Spark**, được giới thiệu đầu 2026 cho workflow nhạy độ trễ.
+Codex CLI mặc định dùng ````gpt-5.3-codex````, mô hình flagship tối ưu coding của OpenAI. Một biến thể thứ hai, **Spark**, được giới thiệu đầu 2026 cho workflow nhạy độ trễ.
 
 | Mô hình | Điểm mạnh | Trường hợp lý tưởng | Khả dụng |
 |---|---|---|---|
@@ -272,20 +273,20 @@ Codex CLI mặc định dùng `gpt-5.3-codex`, mô hình flagship tối ưu codi
 
 Spark được đồng kỹ thuật với Cerebras trên chip wafer-scale WSE-3—mô hình production OpenAI đầu tiên không chạy trên silicon NVIDIA. Nó tối thiểu hóa các sửa đổi target theo mặc định và không tự động chạy test, nên phù hợp nhất cho vòng lặp phản hồi chặt thay vì task chân trời dài tự trị.
 
-Chuyển mô hình theo thời gian thực: ```bash
+Chuyển mô hình theo thời gian thực: `````bash
 codex -m gpt-5.3-codex
 codex -m gpt-5.3-codex-spark
 /model                    # Menu mô hình tương tác trong phiên
-```
+`````
 
-Điều chỉnh nỗ lực suy luận theo loại task: ```toml
+Điều chỉnh nỗ lực suy luận theo loại task: `````toml
 # ~/.codex/config.toml
 model_reasoning_effort = "high"      # Kiến trúc, debug, kiểm toán
 model_reasoning_effort = "medium"    # Coding hàng ngày, test, refactor (mặc định)
 model_reasoning_effort = "low"       # Format, đổi tên, truy vấn đơn giản
-```
+`````
 
----
+* * *
 
 ## 9. Codex CLI vs Claude Code: Khung Quyết Định Không Thiên Vị
 
@@ -307,71 +308,71 @@ Cả hai công cụ thống trị không gian AI coding terminal năm 2026. Lự
 - **Thêm Claude Code** khi bạn thường xuyên làm việc với repo vượt 50.000 file, cần ngữ cảnh multi-modal (screenshot UI, spec PDF), hoặc cần độ chặt review code sâu nhất có thể.
 - **Dùng cả hai.** Nhiều senior engineer chạy Codex cho prototype nhanh và sửa nhanh, sau đó chuyển sang Claude cho refactor quy mô lớn và thay đổi kiến trúc. Công cụ phục vụ bạn; bạn không phục vụ công cụ.
 
----
+* * *
 
 ## 10. Mười Template Prompt Đã Được Kiểm Chứng Bạn Có Thể Copy Hôm Nay
 
 ### 1. Onboarding developer mới
 
-```bash
+`````bash
 codex "Giải thích kiến trúc của dự án này, lập bản đồ đồ thị phụ thuộc của các module chính, và cho tôi biết ba file nào một thành viên team mới nên đọc đầu tiên"
-```
+`````
 
 ### 2. Loại bỏ dead code
 
-```bash
+`````bash
 codex "Tìm tất cả import không sử dụng và hàm không thể đến được trong src/, loại bỏ chúng, và đảm bảo bộ test vẫn pass"
-```
+`````
 
 ### 3. Hiện đại hóa dependency
 
-```bash
+`````bash
 codex "Nâng cấp React từ 18 lên 19. Xử lý mọi breaking change, chạy bộ test, sửa các thất bại, và cập nhật ghi chú migration trong CHANGELOG.md"
-```
+`````
 
 ### 4. Tối ưu truy vấn database
 
-```bash
+`````bash
 codex "Phân tích api/routes.py cho pattern truy vấn N+1. Thay thế chúng bằng eager loading (joinload hoặc selectinload). Cung cấp con số benchmark trước/sau."
-```
+`````
 
 ### 5. Quét lỗ hổng bảo mật
 
-```bash
+`````bash
 codex "Kiểm toán mọi API endpoint về việc thiếu xác thực hoặc xác thực input. Với mỗi lỗ hổng tìm thấy, cung cấp sửa chữa và test regression."
-```
+`````
 
 ### 6. Tạo tài liệu
 
-```bash
+`````bash
 codex "Tạo docstring kiểu Google cho mọi hàm công khai và cập nhật mục API Reference trong README.md"
-```
+`````
 
 ### 7. Port giữa các ngôn ngữ
 
-```bash
+`````bash
 codex "Dịch scripts/data_processor.py sang TypeScript tương đương. Giữ nguyên mọi logic, xử lý lỗi, và hành vi async."
-```
+`````
 
 ### 8. Tạo pipeline CI/CD
 
-```bash
+`````bash
 codex "Tạo workflow GitHub Actions: lint + test + typecheck trên PR; build Docker image và push lên GHCR khi merge vào main"
-```
+`````
 
 ### 9. Chẩn đoán sự cố production
 
-```bash
+`````bash
 codex "Log lỗi này vừa lên Sentry. Giải thích nguyên nhân gốc, định vị code gây lỗi, và đề xuất sửa chữa tối thiểu: [paste stack trace]"
-```
+`````
 
 ### 10. Tự review trước commit
 
-```bash
+`````bash
 codex /review --uncommitted
-```
+`````
 
----
+* * *
 
 ## 11. Lộ Trình Làm Chủ 30-60-90 Ngày
 
@@ -380,7 +381,7 @@ codex /review --uncommitted
 - [ ] Cài Codex CLI trong 3+ dự án khác nhau
 - [ ] Viết AGENTS.md v1 cho mỗi dự án
 - [ ] Hoàn thành 15+ task end-to-end dùng chế độ Auto và Read-Only
-- [ ] Tích hợp `/review` vào nghi thức trước commit
+- [ ] Tích hợp ````/review``` vào nghi thức trước commit
 - [ ] Tài liệu hóa 5 pattern prompt hoạt động tốt cho codebase của bạn
 
 ### Ngày 31–60: Mở Rộng Toolkit
@@ -399,7 +400,7 @@ codex /review --uncommitted
 - [ ] Đo metric năng suất (thời gian-đến-PR, tỷ lệ regression bug, coverage test)
 - [ ] Đánh giá Claude Code có thêm giá trị đo lường được như công cụ phụ không
 
----
+* * *
 
 ## 12. Câu Hỏi Thường Gặp
 
@@ -418,7 +419,7 @@ A: Python và JavaScript/TypeScript là hạng nhất. Go, Rust, Java, C/C++, Ru
 **Q: Windows có được hỗ trợ không?**
 A: CLI chạy trên Windows qua WSL2. Ứng dụng desktop Windows native ra mắt tháng 4/2026.
 
----
+* * *
 
 ## Kết Luận: Terminal Là IDE Mới Của Bạn
 
@@ -428,7 +429,7 @@ Cài hôm nay. Phát hành một task thực sự trước khi đi ngủ. Đến
 
 Kỷ nguyên vibe coding không phải đang đến. Nó đã ở đây. Và Codex CLI là lời mời gia nhập của bạn.
 
----
+* * *
 
 **Đọc thêm:**
 - [OpenAI Codex CLI trên GitHub](https://github.com/openai/codex)

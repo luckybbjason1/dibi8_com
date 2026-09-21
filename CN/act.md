@@ -24,21 +24,22 @@ aliases:
   - /posts/act/
 image: "https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png"
 ---
+
 {{</* resource-info */>}}
 
 ![act logo](https://raw.githubusercontent.com/nektos/act/master/img/act-logo.png)
 
 ## Introduction
 
-Every developer who has written a GitHub Actions workflow knows the pain: you make a change to `.github/workflows/ci.yml`, commit, push, wait 3-5 minutes for the runner to pick it up, only to watch it fail on step 4 because of a missing environment variable or a typo in a shell command. The feedback loop is slow, burns through your GitHub Actions minutes, and clutters your commit history with "fix CI" messages. In 2026, with CI/CD pipelines governing every deployment, this inefficiency is no longer acceptable. [act](https://github.com/nektos/act), a command-line tool built in Go by Casey Lee and the nektos organization, solves this by running GitHub Actions workflows locally inside Docker containers — matching GitHub's environment variables, filesystem layout, and runner behavior. With 70,410 stars on GitHub and a thriving ecosystem of integrations, act has become the standard tool for local CI/CD development.
+Every developer who has written a GitHub Actions workflow knows the pain: you make a change to ```.github/workflows/ci.yml````, commit, push, wait 3-5 minutes for the runner to pick it up, only to watch it fail on step 4 because of a missing environment variable or a typo in a shell command. The feedback loop is slow, burns through your GitHub Actions minutes, and clutters your commit history with "fix CI" messages. In 2026, with CI/CD pipelines governing every deployment, this inefficiency is no longer acceptable. [act](https://github.com/nektos/act), a command-line tool built in Go by Casey Lee and the nektos organization, solves this by running GitHub Actions workflows locally inside Docker containers — matching GitHub's environment variables, filesystem layout, and runner behavior. With 70,410 stars on GitHub and a thriving ecosystem of integrations, act has become the standard tool for local CI/CD development.
 
 ## What Is act?
 
-act is a CLI tool that reads GitHub Actions workflow files from `.github/workflows/` and executes them locally using Docker containers, faithfully reproducing the GitHub Actions runtime environment on your machine. This tutorial walks through the complete act setup — from installation to production hardening — so you can validate every workflow change before pushing to GitHub.
+act is a CLI tool that reads GitHub Actions workflow files from ````.github/workflows/```` and executes them locally using Docker containers, faithfully reproducing the GitHub Actions runtime environment on your machine. This tutorial walks through the complete act setup — from installation to production hardening — so you can validate every workflow change before pushing to GitHub.
 
 ## How act Works
 
-act operates as a local GitHub Actions runner simulator. When you run `act` in a repository, it performs the following steps: 1. **Workflow Discovery**: Scans `.github/workflows/` for YAML workflow files
+act operates as a local GitHub Actions runner simulator. When you run ````act```` in a repository, it performs the following steps: 1. **Workflow Discovery**: Scans ````.github/workflows/```` for YAML workflow files
 2. **Event Parsing**: Determines which workflows to trigger based on the event type (push, pull_request, etc.)
 3. **Dependency Resolution**: Builds a directed acyclic graph (DAG) of job dependencies
 4. **Image Preparation**: Pulls or builds Docker images for the specified runners
@@ -47,19 +48,19 @@ act operates as a local GitHub Actions runner simulator. When you run `act` in a
 
 ![act architecture diagram](https://raw.githubusercontent.com/nektos/act/master/img/act-quickstart-2.gif)
 
-The tool uses the Docker Engine API directly, which means any Docker-compatible container runtime works as a backend. The environment variables (`GITHUB_SHA`, `GITHUB_REF`, `GITHUB_REPOSITORY`, etc.) and filesystem structure (`/github/workspace`, `/github/event.json`, `/github/home`) are configured to match what GitHub provides on its hosted runners.
+The tool uses the Docker Engine API directly, which means any Docker-compatible container runtime works as a backend. The environment variables (````GITHUB_SHA````, ````GITHUB_REF````, ````GITHUB_REPOSITORY````, etc.) and filesystem structure (````/github/workspace````, ````/github/event.json````, ````/github/home````) are configured to match what GitHub provides on its hosted runners.
 
 ### Runner Image Sizes
 
 act offers three image tiers for balancing fidelity against disk space: | Image Size | Download | Disk Space | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Micro | ~50 MB | <200 MB | Node.js only, quick smoke tests |
 | Medium | ~200 MB | ~500 MB | Essential tools, good for most workflows |
@@ -67,24 +68,24 @@ act offers three image tiers for balancing fidelity against disk space: | Image 
 
 ![act runner image sizes comparison](https://nektosact.com/usage/runners.html.assets/runner-images-table.png)
 
-The default Medium image (`catthehacker/ubuntu:act-latest`) includes Python, Node.js, Go, Ruby, Java, .NET, and common build tools. The Large images (`catthehacker/ubuntu:full-*`) are filesystem dumps of actual GitHub-hosted runners and provide the closest parity.
+The default Medium image (````catthehacker/ubuntu:act-latest````) includes Python, Node.js, Go, Ruby, Java, .NET, and common build tools. The Large images (````catthehacker/ubuntu:full-*````) are filesystem dumps of actual GitHub-hosted runners and provide the closest parity.
 
 ## Installation & Setup
 
 act installs in under 60 seconds on any platform with Docker available. Choose your method: ### macOS (Homebrew)
 
-```bash
+`````bash
 # Install act via Homebrew
 brew install act
 
 # Verify installation
 act --version
 # act version 0.2.88
-```
+`````
 
 ### Linux (Bash Script)
 
-```bash
+`````bash
 # One-line installer (requires bash and curl)
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 
@@ -92,11 +93,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 wget https://github.com/nektos/act/releases/download/v0.2.88/act_Linux_x86_64.tar.gz
 tar xzf act_Linux_x86_64.tar.gz
 sudo mv act /usr/local/bin/
-```
+`````
 
 ### Windows (Chocolatey / Scoop / WinGet)
 
-```powershell
+`````powershell
 # Chocolatey
 choco install act-cli
 
@@ -105,52 +106,52 @@ scoop install act
 
 # WinGet
 winget install nektos.act
-```
+`````
 
 ### GitHub CLI Extension
 
-```bash
+`````bash
 # Install as gh CLI extension
 gh extension install https://github.com/nektos/gh-act
 
 # Run via gh
 gh act
-```
+`````
 
 ### Build from Source (Go 1.20+)
 
-```bash
+`````bash
 git clone https://github.com/nektos/act.git
 cd act/
 make build
 sudo make install
-```
+`````
 
 ### Post-Installation Setup
 
-On first run, act prompts you to select a default image size: ```bash
+On first run, act prompts you to select a default image size: `````bash
 # First run — select default runner image
 act
 ? Please choose the default image you want to use with act: - Large size image: ~17GB download, ~75GB disk space, closest to GitHub runners
   - Medium size image: ~500MB, includes essential tools (RECOMMENDED)
   - Micro size image: <200MB, Node.js only
-```
+`````
 
-This creates `~/.actrc` with your default configuration: ```bash
+This creates ``~/.actrc`` with your default configuration: `````bash
 # ~/.actrc — default configuration
 cat ~/.actrc
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
-```
+`````
 
 ### Docker Prerequisites
 
-act requires Docker Engine API. Before running: ```bash
+act requires Docker Engine API. Before running: `````bash
 # Verify Docker is running
 docker info
 
 # Verify Docker API is accessible
 docker version
-```
+`````
 
 **Note:** Podman is not officially supported (issue #303). For rootless setups or alternatives, use Docker Desktop, Rancher Desktop, or Colima on macOS.
 
@@ -158,7 +159,7 @@ docker version
 
 ### Docker Integration
 
-act uses Docker as its execution engine. Every workflow job runs in an isolated container: ```bash
+act uses Docker as its execution engine. Every workflow job runs in an isolated container: `````bash
 # Run with a custom runner image
 act -P ubuntu-latest=node:20-slim
 
@@ -168,9 +169,9 @@ act
 
 # Use container architecture flag for Apple Silicon
 act --container-architecture linux/amd64
-```
+`````
 
-Docker-in-Docker (DinD) workflows are supported by mounting the host Docker socket: ```yaml
+Docker-in-Docker (DinD) workflows are supported by mounting the host Docker socket: `````yaml
 # .github/workflows/dind-test.yml
 name: Docker Build Test
 on: push
@@ -178,17 +179,17 @@ jobs: build: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -t myapp:latest .
-```
+`````
 
 ### VS Code Extension (GitHub Local Actions)
 
-The [GitHub Local Actions](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions) VS Code extension provides a GUI for act: ```bash
+The [GitHub Local Actions](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions) VS Code extension provides a GUI for act: `````bash
 # Install the extension from VS Code marketplace
 # Press Cmd+Shift+P → "Extensions: Install Extensions" → Search "GitHub Local Actions"
-```
+`````
 
 After installing the extension: - Open the Act panel from the sidebar
-- View all workflows in `.github/workflows/`
+- View all workflows in ````.github/workflows/````
 - Click any workflow to run it locally
 - See real-time logs in the integrated terminal
 
@@ -196,17 +197,17 @@ After installing the extension: - Open the Act panel from the sidebar
 
 ### GitHub Enterprise Support
 
-act supports private GitHub Enterprise Server instances: ```bash
+act supports private GitHub Enterprise Server instances: `````bash
 # Run against GitHub Enterprise Server
 act --github-instance github.company.com
 
 # With authentication
 act --github-instance github.company.com -s GITHUB_TOKEN=ghp_xxxxxxxx
-```
+`````
 
 ### Replacing Make with act
 
-Many teams use act as a local task runner, replacing Makefiles with GitHub Actions workflows: ```yaml
+Many teams use act as a local task runner, replacing Makefiles with GitHub Actions workflows: `````yaml
 # .github/workflows/tasks.yml
 name: Local Tasks
 on: workflow_dispatch
@@ -222,14 +223,14 @@ jobs: lint: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
       - name: Build
         run: npm run build
-```
+`````
 
-```bash
+`````bash
 # Run tasks locally instead of make
 act -j lint
 act -j test
 act -j build
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -237,13 +238,13 @@ act -j build
 
 | Scenario | Push-to-GitHub | Local with act | Time Saved |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Fix typo in workflow | 3-5 min | 15-30 sec | 90% |
 | Debug failing test | 5-10 min (multiple pushes) | 30-60 sec per iteration | 85% |
@@ -261,13 +262,13 @@ A mid-sized engineering team (25 developers) running 200 workflow pushes per day
 
 | Image | First Pull | Cold Start | Warm Start |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Micro (node:16-slim) | ~10 sec | 5 sec | 2 sec |
 | Medium (catthehacker/ubuntu:act-latest) | ~45 sec | 15 sec | 5 sec |
@@ -277,7 +278,7 @@ A mid-sized engineering team (25 developers) running 200 workflow pushes per day
 
 ### Secrets Management
 
-Never commit secrets to test them. act provides multiple secure patterns: ```bash
+Never commit secrets to test them. act provides multiple secure patterns: `````bash
 # Option 1: Interactive prompt (recommended for manual runs)
 act -s MY_SECRET
 
@@ -295,16 +296,16 @@ act --secret-file .secrets
 
 # Option 4: For GITHUB_TOKEN (read-only PAT recommended)
 act -s GITHUB_TOKEN=ghp_xxxxxxxxxxxx
-```
+`````
 
-Add `.secrets` to `.gitignore` immediately: ```bash
+Add ``.secrets`` to ``.gitignore`` immediately: `````bash
 echo ".secrets" >> .gitignore
 echo "*.secrets" >> .gitignore
-```
+`````
 
 ### Repository Variables (vars context)
 
-GitHub's `vars` context is supported for repository-level configuration: ```bash
+GitHub's ``vars`` context is supported for repository-level configuration: `````bash
 # Set variables
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
@@ -314,11 +315,11 @@ DEPLOY_ENV=staging
 API_VERSION=v2
 EOF
 act --var-file .variables
-```
+`````
 
 ### Simulating Events with Payload Files
 
-Test workflows that depend on event data by providing JSON payload files: ```bash
+Test workflows that depend on event data by providing JSON payload files: `````bash
 # Simulate pull_request event
 cat > pull-request.json << EOF
 {
@@ -330,17 +331,17 @@ cat > pull-request.json << EOF
 }
 EOF
 act pull_request -e pull-request.json
-```
+`````
 
-```bash
+`````bash
 # Simulate push with tag
 cat > tag-push.json << EOF
 { "ref": "refs/tags/v1.2.3" }
 EOF
 act push -e tag-push.json
-```
+`````
 
-```bash
+`````bash
 # Simulate workflow_dispatch with inputs
 cat > workflow-inputs.json << EOF
 {
@@ -351,11 +352,11 @@ cat > workflow-inputs.json << EOF
 }
 EOF
 act workflow_dispatch -e workflow-inputs.json
-```
+`````
 
 ### Dry-Run Mode
 
-Validate workflow syntax and see execution plan without running: ```bash
+Validate workflow syntax and see execution plan without running: `````bash
 # List all jobs that would run
 act -l
 
@@ -364,11 +365,11 @@ act -n
 
 # Verbose dry run
 act -n -v
-```
+`````
 
 ### Configuration File (.actrc)
 
-Project-specific configuration via `.actrc`: ```bash
+Project-specific configuration via ``.actrc``: `````bash
 # .actrc in project root
 cat > .actrc << EOF
 --container-architecture linux/amd64
@@ -377,16 +378,16 @@ cat > .actrc << EOF
 --env-file .env
 --secret-file .secrets
 EOF
-```
+`````
 
 Configuration precedence (highest to lowest): 1. CLI arguments
-2. `./.actrc` (project root)
-3. `~/.actrc` (home directory)
-4. `$XDG_CONFIG_HOME/act/actrc`
+2. ````./.actrc```` (project root)
+3. ````~/.actrc```` (home directory)
+4. ````$XDG_CONFIG_HOME/act/actrc````
 
 ### Skipping Jobs/Steps for Local Runs
 
-Mark steps that should not run locally: ```yaml
+Mark steps that should not run locally: `````yaml
 # In your workflow file
 jobs: deploy: if: ${{ !github.event.act }}  # Skip deploy job locally
     runs-on: ubuntu-latest
@@ -398,48 +399,48 @@ jobs: deploy: if: ${{ !github.event.act }}  # Skip deploy job locally
         run: |
           curl -X POST -H 'Content-type: application/json' \
             --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
-```
+`````
 
-Pass the act flag via event: ```bash
+Pass the act flag via event: `````bash
 cat > event.json << EOF
 { "act": true }
 EOF
 act -e event.json
-```
+`````
 
 ### Artifact Collection
 
-Collect workflow artifacts locally: ```bash
+Collect workflow artifacts locally: `````bash
 # Specify artifact server path
 act --artifact-server-path /tmp/artifacts
 
 # Artifacts will be saved to /tmp/artifacts/<workflow>/<artifact-name>/
 ls -la /tmp/artifacts/
-```
+`````
 
 ### Offline Mode
 
-For air-gapped or low-bandwidth environments: ```bash
+For air-gapped or low-bandwidth environments: `````bash
 # Pre-pull images
 act --action-offline-mode
 
 # This reuses locally cached action repositories and Docker images
 # without fetching from GitHub or Docker Hub
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | act | GitHub Actions Runner | Drone CI | Jenkins |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Local execution** | Native (Docker) | Possible (complex setup) | Docker-based | Requires Java + plugins |
 | **GitHub parity** | High (same YAML syntax) | Full (official runner) | Medium (different syntax) | Low (plugin-dependent) |
@@ -460,15 +461,15 @@ act --action-offline-mode
 
 ## Limitations / Honest Assessment
 
-act is a development and debugging tool, not a production CI/CD replacement. Understand these constraints before adoption: 1. **Linux runners only**: Windows (`windows-latest`) and macOS (`macos-latest`) runners are unsupported for containerized execution. The `-self-hosted` flag can run jobs directly on macOS/Windows hosts, but this bypasses container isolation and does not match GitHub's runner environment.
+act is a development and debugging tool, not a production CI/CD replacement. Understand these constraints before adoption: 1. **Linux runners only**: Windows (````windows-latest````) and macOS (````macos-latest````) runners are unsupported for containerized execution. The ````-self-hosted```` flag can run jobs directly on macOS/Windows hosts, but this bypasses container isolation and does not match GitHub's runner environment.
 
-2. **Incomplete default images**: The Medium runner image does not include every tool pre-installed on GitHub-hosted runners. Software like `swift`, `gcloud`, or specific Android SDK components may need manual installation steps in your workflow.
+2. **Incomplete default images**: The Medium runner image does not include every tool pre-installed on GitHub-hosted runners. Software like ````swift````, ````gcloud````, or specific Android SDK components may need manual installation steps in your workflow.
 
 3. **Docker-in-Docker limitations**: Running Docker commands inside act containers works via socket mounting, but nested container scenarios and Kubernetes-in-Docker require additional configuration.
 
-4. **Services not fully supported**: Docker Compose `services` in job definitions have limited support (issue #173). Databases and caches may need external orchestration.
+4. **Services not fully supported**: Docker Compose ````services```` in job definitions have limited support (issue #173). Databases and caches may need external orchestration.
 
-5. **Network and caching differences**: GitHub Actions caching (`actions/cache`) and service containers behave differently locally. Cache hits/misses and network latency will not match production exactly.
+5. **Network and caching differences**: GitHub Actions caching (````actions/cache````) and service containers behave differently locally. Cache hits/misses and network latency will not match production exactly.
 
 6. **No GitHub-hosted action marketplace parity**: Some composite actions or actions that depend on GitHub's internal APIs may fail locally.
 
@@ -478,31 +479,31 @@ act is a development and debugging tool, not a production CI/CD replacement. Und
 
 ### Q1: Does act require an internet connection?
 
-For the first run, yes — act needs to pull Docker images and clone action repositories from GitHub. After that, you can use `--action-offline-mode` to work with cached images and actions. Pre-pull your images with `docker pull` before going offline.
+For the first run, yes — act needs to pull Docker images and clone action repositories from GitHub. After that, you can use ````--action-offline-mode```` to work with cached images and actions. Pre-pull your images with ````docker pull```` before going offline.
 
 ### Q2: How do I run only a specific job from a workflow?
 
-Use the `-j` flag followed by the job ID defined in your workflow YAML: ```bash
+Use the ``-j`` flag followed by the job ID defined in your workflow YAML: `````bash
 # Run only the "test" job
 act -j test
 
 # Run a job from a specific workflow file
 act -j lint -W .github/workflows/checks.yml
-```
+`````
 
 ### Q3: Can I use act with private GitHub repositories or GitHub Enterprise?
 
-Yes. For private repos, provide a personal access token via `-s GITHUB_TOKEN`. For GitHub Enterprise Server, use `--github-instance`: ```bash
+Yes. For private repos, provide a personal access token via ``-s GITHUB_TOKEN``. For GitHub Enterprise Server, use ``--github-instance``: `````bash
 act --github-instance github.mycompany.com -s GITHUB_TOKEN=ghp_xxx
-```
+`````
 
 ### Q4: Why does my workflow fail with "MODULE_NOT_FOUND"?
 
-This error occurs when using local actions (e.g., `uses: ./`) without proper checkout. Ensure your repository name matches the checkout path. If your repo is named `my-project`, your checkout step should include `path: "my-project"`.
+This error occurs when using local actions (e.g., ````uses: ./````) without proper checkout. Ensure your repository name matches the checkout path. If your repo is named ````my-project````, your checkout step should include ````path: "my-project"````.
 
 ### Q5: How do I debug a failing step?
 
-Run act with verbose logging (`-v`) and preserve the container for inspection: ```bash
+Run act with verbose logging (``-v``) and preserve the container for inspection: `````bash
 # Verbose output
 act -v
 
@@ -511,7 +512,7 @@ act -j test -v
 
 # The container name is printed in logs; inspect it after failure
 docker exec -it <container-name> /bin/bash
-```
+`````
 
 ### Q6: Is act suitable for running production CI/CD pipelines?
 
@@ -519,7 +520,7 @@ No. act is designed for local development and debugging. For production CI/CD, u
 
 ### Q7: How do I update act to the latest version?
 
-Use the same package manager you installed it with: ```bash
+Use the same package manager you installed it with: `````bash
 # Homebrew
 brew upgrade act
 
@@ -531,17 +532,17 @@ scoop update act
 
 # Bash script (re-run installer)
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
-```
+`````
 
 ## Conclusion
 
-With 70,410 stars and a release cadence that keeps pace with GitHub Actions updates, act has earned its place in every developer's toolkit. The ability to validate workflows locally before pushing eliminates the costly feedback loop of commit-push-wait-fail-fix cycles. Install it in under a minute, configure your `.actrc`, and start treating your CI/CD definitions as first-class code that you can test on your machine.
+With 70,410 stars and a release cadence that keeps pace with GitHub Actions updates, act has earned its place in every developer's toolkit. The ability to validate workflows locally before pushing eliminates the costly feedback loop of commit-push-wait-fail-fix cycles. Install it in under a minute, configure your ````.actrc````, and start treating your CI/CD definitions as first-class code that you can test on your machine.
 
 **Action items:**
 1. Install act using your preferred package manager
-2. Run `act -l` in a repository with workflows to see available jobs
-3. Create a `.actrc` file with your default runner configuration
-4. Set up a `.secrets` file (and add it to `.gitignore`) for local secret management
+2. Run ````act -l```` in a repository with workflows to see available jobs
+3. Create a ````.actrc```` file with your default runner configuration
+4. Set up a ````.secrets```` file (and add it to ````.gitignore```) for local secret management
 5. Share this guide with your team to standardize local CI/CD development
 
 Join the [dibi8 developer community on Telegram](https://t.me/dibi8) to discuss act setups, share workflow optimizations, and get help from engineers using act in production environments.
@@ -593,7 +594,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](act)
@@ -603,5 +604,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-22-trending-ai-agents](act)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

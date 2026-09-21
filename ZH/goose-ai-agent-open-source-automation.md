@@ -30,6 +30,7 @@ faqs: - q: 'Goose AI agent 是什么？'
     a: '是的，Goose 是开源的，托管在 GitHub 上 github.com/block/goose，拥有 44K+ stars。它基于 Apache 2.0 license 发布。'
   - q: 'Goose 包含哪些安全特性？'
     a: 'Goose 包含一个在执行危险命令前会先询问的审批模式（approval mode），一个在隔离环境中运行命令的沙箱模式（sandbox mode），一个用于追踪所有操作的审计日志（audit log），以及防止 API 滥用的速率限制（rate limiting）。'---
+
 {</* resource-info */>}
 
 ## Goose 是什么？
@@ -54,9 +55,9 @@ Goose 的定位是**通用 AI Agent**，不限于编程：
 
 | 场景 | 能力 |
 |
----
+* * *
 |
----
+* * *
 |
 | 编程开发 | 写代码、调试、测试、重构 |
 | 数据分析 | 处理 CSV、生成图表、写报告 |
@@ -91,43 +92,43 @@ Goose 不绑定任何一家 AI 公司：
 - 以及更多...
 
 
----
+* * *
 ## 安装与使用
 
 ### 桌面应用（推荐）
 
-```bash
+````bash
 # macOS (Homebrew)
 brew install goose
 
 # 或直接下载
 # https://goose-docs.ai/docs/getting-started/installation
-```
+`````
 
 ### CLI 安装
 
-```bash
+`````bash
 # 使用 install script
 curl -fsSL https:// goose-docs.ai/install.sh | bash
 
 # 或使用 cargo
 cargo install goose-cli
-```
+`````
 
 ### 首次配置
 
-```bash
+`````bash
 # 设置 LLM 提供商
 goose configure
 
 # 选择 provider: openai / anthropic / ollama 等
 # 输入 API Key
 # 完成！
-```
+`````
 
 ### 基本使用
 
-```bash
+`````bash
 # 启动交互式会话
 goose session
 
@@ -136,17 +137,17 @@ goose run "帮我写一个 Python 爬虫，抓取 GitHub Trending"
 
 # 使用特定扩展
 goose run --extension browser "搜索最新的 AI 工具"
-```
+`````
 
----
+* * *
 
 ## 实战场景
 
 ### 场景 1：自动代码审查
 
-```bash
+`````bash
 goose run "审查这个 PR 的代码质量，找出潜在 bug 和性能问题"
-```
+`````
 
 Goose 会：
 1. 读取 PR 的 diff
@@ -156,9 +157,9 @@ Goose 会：
 
 ### 场景 2：数据分析报告
 
-```bash
+`````bash
 goose run "分析 sales_data.csv，生成月度销售趋势图表"
-```
+`````
 
 Goose 会：
 1. 读取 CSV 文件
@@ -168,9 +169,9 @@ Goose 会：
 
 ### 场景 3：自动化部署
 
-```bash
+`````bash
 goose run "部署这个应用到 AWS，配置负载均衡和自动扩缩容"
-```
+````
 
 Goose 会：
 1. 读取项目配置
@@ -178,21 +179,21 @@ Goose 会：
 3. 执行部署命令
 4. 验证部署状态
 
----
+* * *
 
 ## 与竞品对比
 
 | 特性 | Goose | Claude Code | Cursor | GitHub Copilot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open Source | ✅ | ❌ | ❌ | ❌ |
 | 免费 | ✅ | 需 API | 付费 | 付费 |
@@ -205,7 +206,7 @@ Goose 会：
 
 **Goose 的优势**：Open Source免费、多提供商、可扩展、通用型。
 
----
+* * *
 
 ## 商业模式与赚钱机会
 
@@ -230,7 +231,7 @@ Goose 的 Apache-2.0 协议允许商业使用：
 - 定制开发服务
 - 培训与实施
 
----
+* * *
 
 ## 社区与生态
 
@@ -239,7 +240,7 @@ Goose 的 Apache-2.0 协议允许商业使用：
 - **Linux Foundation**: https://aaif.io/
 - **贡献者**: 4,500+ Forks，活跃社区
 
----
+* * *
 
 ## 总结
 
@@ -260,7 +261,7 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 
 **立即开始**：https://goose-docs.ai/docs/getting-started/installation
 
----
+* * *
 
 ## Related Articles
 
@@ -269,11 +270,11 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 - [Agent Reach: Connect Your AI Agent to the Internet](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — 让 AI Agent 连接互联网
 - [42 Real-World OpenClaw Use Cases](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 代理真实用例
 
----
+* * *
 
 
 -
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -348,7 +349,7 @@ Goose AI Agent：44K⭐Open Source神器，让 AI 替你写代码、做研究、
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -380,15 +381,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

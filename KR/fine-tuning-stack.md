@@ -24,6 +24,7 @@ aliases:
   - /posts/fine-tuning-stack/
 ---
 
+
 2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 **5컴포넌트 파이프라인** 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.
 
 도메인 특화 모델 구축, 오픈 웨이트 베이스 모델 instruction-tuning, DPO/GRPO 정렬, 또는 프로덕션 파인튜닝 파이프라인 실행 중이라면 — 이 스택.
@@ -54,7 +55,7 @@ aliases:
 
 ## 2. 아키텍처 — 실험-프로덕션 파이프라인
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ 데이터셋 (JSONL: prompt/response 또는 messages)  │
    │  → HuggingFace datasets 라이브러리               │
@@ -84,7 +85,7 @@ aliases:
    │  → 머지된 모델 HuggingFace Hub에 push            │
    │  → LiteLLM 게이트웨이 뒤 vLLM이 모델 서빙        │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 분할이 이걸 작동시키는 것 — Unsloth의 빠른 반복은 "무엇이 작동하는가" 탐색, Axolotl의 견고함은 "이제 스케일" 프로덕션 실행.
 
@@ -94,9 +95,9 @@ aliases:
 
 **Unsloth가 여기서 이기는 이유**: HF TRL보다 2× 빠름 = 달러당 2× 실험. 70% 적은 VRAM = A100 필요 대신 $1500 RTX 4090에서 실험. [Unsloth 심층 가이드](/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) 참조.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install unsloth
-```
+`````
 
 **패턴**: Vast.ai에 RTX 4090 임대 ($0.40-0.60/시간) 또는 RunPod, 주말에 10-20 실험 실행, 위닝 레시피 발견, 팀 리뷰용 노트북에 캡처.
 
@@ -106,9 +107,9 @@ pip install unsloth
 
 **Axolotl이 여기서 이기는 이유**: 박스 밖에서 작동하는 멀티 노드 분산 훈련, 가장 넓은 방법 지원 (DPO/GRPO/KTO/ORPO/GDPO), 재현성용 config-as-code. [Axolotl 심층 가이드](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 참조.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install axolotl
-```
+`````
 
 **패턴**: Unsloth 위닝 레시피에서 하이퍼파라미터 가져옴 → Axolotl YAML 작성 → 8× H100 클러스터에서 실행 (Vast.ai ~$15-25/시간)으로 최종 6-12시간 프로덕션 실행 → 최종 가중치 HF Hub에 push.
 
@@ -118,12 +119,12 @@ pip install axolotl
 
 **왜 명백한 픽인가**: HF가 AI 데이터셋 배포 레이어 이김 (코드의 GitHub처럼, 모델 + 데이터셋의 HF Hub). 모든 파인튜닝 도구가 네이티브 통합.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install datasets
 huggingface-cli login
-```
+`````
 
-**패턴**: ```python
+**패턴**: `````python
 from datasets import load_dataset, Dataset
 
 # 로컬 준비 + push
@@ -132,7 +133,7 @@ data.push_to_hub("yourname/my-finetune-dataset", private=True)
 
 # 팀원 로드
 data = load_dataset("yourname/my-finetune-dataset")
-```
+`````
 
 민감한 데이터 (의료 / 금융 / 독점)는 HF Hub의 **프라이빗 데이터셋** — 액세스 제어됨.
 
@@ -140,11 +141,11 @@ data = load_dataset("yourname/my-finetune-dataset")
 
 **역할**: 위닝 레시피 찾기 위해 50 실험 실행할 때 비교 방법 필요. W&B가 사실상 선택 — 손실 곡선, eval 점수, 하이퍼파라미터, 하드웨어 활용 자동 로그.
 
-**빠른 설치** (env var 통해 Unsloth와 Axolotl 모두 작동): ```bash
+**빠른 설치** (env var 통해 Unsloth와 Axolotl 모두 작동): `````bash
 pip install wandb
 wandb login
 export WANDB_PROJECT="my-finetune-project"
-```
+`````
 
 이제 모든 Unsloth / Axolotl 훈련 실행이 W&B 대시보드에 자동 로그.
 
@@ -156,21 +157,21 @@ export WANDB_PROJECT="my-finetune-project"
 
 vLLM이 프로덕션 멀티 사용자 서빙에서 Ollama / LM Studio / llama.cpp 이기는 이유 전체는 [로컬 LLM 러너 비교](/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/) 참조.
 
-**빠른 설치 + 파인튜닝 모델 서브**: ```bash
+**빠른 설치 + 파인튜닝 모델 서브**: `````bash
 pip install vllm
 vllm serve yourname/my-finetuned-llama \
   --enable-lora \
   --lora-modules my-lora=path/to/lora_weights \
   --port 8000
-```
+`````
 
 [LiteLLM 게이트웨이](/kr/resources/llm-frameworks/litellm/) 뒤에서 auth + rate limiting + 고객별 가상 키 = 본인 소유 인프라의 프로덕션 준비 멀티테넌트 LLM API.
 
 ## 8. Day 1 파이프라인 셋업 (3-4시간)
 
-1. **JSONL 포맷 데이터셋** (다양함) — `train.jsonl`과 `eval.jsonl` 준비, HF Hub 프라이빗에 push
+1. **JSONL 포맷 데이터셋** (다양함) — ````train.jsonl````과 ````eval.jsonl```` 준비, HF Hub 프라이빗에 push
 2. **RTX 4090 GPU 임대** (10분) — 실험 단계용 Vast.ai 또는 {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}}
-3. **Unsloth + W&B 설치** (10분) — `pip install unsloth wandb`
+3. **Unsloth + W&B 설치** (10분) — ````pip install unsloth wandb```
 4. **첫 QLoRA 실행** (60분) — Unsloth 가이드 3절, Llama 3.2 8B 1 epoch 파인튜닝, W&B 로그 나타남 확인
 5. **5-10 짧은 실험 반복** (~반나절) — 학습률, LoRA rank, 데이터셋 슬라이스 변경. 최고 eval 점수 레시피 찾기
 6. **레시피를 Axolotl YAML로 번역** (30분) — 같은 하이퍼파라미터 YAML 포맷, git commit
@@ -213,7 +214,7 @@ vllm serve yourname/my-finetuned-llama \
 
 실험용 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} 임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.
 
----
+* * *
 
 *동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 배포 후 추론 비용 측 커버. [AI 에이전트 도구 체인](/kr/collections/ai-agent-tool-chain/) 자동 파인튜닝 루프. [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 일부 케이스에서 RAG가 파인튜닝 대안.*
 
@@ -279,12 +280,12 @@ Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -294,6 +295,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](fine-tuning-stack)
 - [ai-engineering-from-scratch](fine-tuning-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -31,6 +31,7 @@ faqs: - q: 'What is PageIndex and how is it different from traditional RAG?'
   - q: 'What kinds of documents is PageIndex best suited for?'
     a: 'PageIndex is designed for long, professional documents where structure matters and explainable citations are needed, such as financial reports and prospectuses, legal contracts and case law, medical literature and clinical trial reports, and technical documentation like API references and operation manuals.'
 ---
+
 {</* resource-info */>}
 
 ![PageIndex official hero banner](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -50,16 +51,16 @@ GitHub: https://github.com/VectifyAI/PageIndex
 Stars: **29,202+** | Language: Python | License: Apache-2.0
 
 
----
+* * *
 ## Why Traditional RAG Isn't Good Enough
 
 ### Problems with Traditional Vector RAG
 
 | Problem | Explanation |
 |
----
+* * *
 |
----
+* * *
 |
 | **Similarity ≠ Relevance** | Vector search finds semantically similar content, but not necessarily truly relevant results |
 | **Chunking Destroys Structure** | Forced chunking cuts through document logical structure |
@@ -74,12 +75,12 @@ PageIndex mimics how **human experts** read documents: 1. First look at the tabl
 3. Deep dive into relevant chapters
 
 
----
+* * *
 ## Core Technical Principles
 
 ### 1. Document Tree Structure Generation
 
-PageIndex converts PDFs into hierarchical tree structures: ```json
+PageIndex converts PDFs into hierarchical tree structures: ````json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -101,7 +102,7 @@ PageIndex converts PDFs into hierarchical tree structures: ```json
     }
   ]
 }
-```
+`````
 
 ### 2. Reasoning-Driven Tree Search
 
@@ -117,19 +118,19 @@ PageIndex draws inspiration from AlphaGo, using **tree search algorithms**: - **
 - **Evaluation** — LLM evaluates node relevance
 - **Backpropagation** — Update node weights
 
----
+* * *
 
 ## Quick Start
 
 ### Installation
 
-```bash
+`````bash
 pip install pageindex
-```
+`````
 
 ### Basic Usage
 
-```python
+`````python
 from pageindex import PageIndex
 
 # Initialize
@@ -142,11 +143,11 @@ pi.load_pdf("financial_report.pdf")
 result = pi.query("What are the main risks mentioned in Q3?")
 print(result.answer)
 print(result.sources)  # Citation sources
-```
+`````
 
 ### Advanced Configuration
 
-```python
+`````python
 # Custom LLM
 pi = PageIndex(
     llm="gpt-4",
@@ -161,9 +162,9 @@ results = pi.batch_query([
     "What are the risk factors?",
     "What is the cash flow situation?"
 ])
-```
+`````
 
----
+* * *
 
 ## Performance Benchmarks
 
@@ -171,11 +172,11 @@ results = pi.batch_query([
 
 | Model | Accuracy | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **PageIndex + GPT-4** | **98.7%** | SOTA |
 | PageIndex + Claude-3 | 97.2% | Excellent |
@@ -186,11 +187,11 @@ results = pi.batch_query([
 
 | Metric | PageIndex | Traditional Vector RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Indexing Speed | 3x faster | Requires embedding computation |
 | Storage Cost | 90% reduction | Vector storage is expensive |
@@ -198,7 +199,7 @@ results = pi.batch_query([
 | Explainability | ✅ Citation sources | ❌ Black box |
 | Long Document Support | ✅ Native | ❌ Requires chunking |
 
----
+* * *
 
 ## Use Cases
 
@@ -226,11 +227,11 @@ results = pi.batch_query([
 - Operation manuals
 - Technical specifications
 
----
+* * *
 
 ## Architecture Design
 
-```
+`````
 ┌─────────────────────────────────────────┐
 │           User Query                     │
 └──────────────┬──────────────────────────┘
@@ -266,9 +267,9 @@ results = pi.batch_query([
 │  - Answer structuring                    │
 │  - Citation addition                     │
 └─────────────────────────────────────────┘
-```
+````
 
----
+* * *
 
 ## Community & Ecosystem
 
@@ -282,7 +283,7 @@ results = pi.batch_query([
 - **PageIndex Hub**: Community-contributed document templates
 - **PageIndex CLI**: Command-line tool for batch processing
 
----
+* * *
 
 ## Summary
 
@@ -293,7 +294,7 @@ PageIndex represents a paradigm shift in document retrieval: - **No vector datab
 
 For scenarios requiring processing large volumes of professional documents (finance, law, medicine), PageIndex is an option worth prioritizing.
 
----
+* * *
 
 ## Related Articles
 
@@ -301,7 +302,7 @@ For scenarios requiring processing large volumes of professional documents (fina
 - [Scanners-Box: 200+ Cybersecurity Tools Collection](/resources/dev-utils/scanners-box-cybersecurity-tools-collection/)
 - [Goose AI Agent: Open-Source AI Agent for Coding, Research & Automation](/resources/llm-frameworks/goose-ai-agent-open-source-automation/)
 
----
+* * *
 
 ## Recommended Infrastructure for Self-Hosting
 
@@ -377,7 +378,7 @@ PageIndex：29K⭐Vectorless RAG System — Document Retrieval Without Vector Da
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

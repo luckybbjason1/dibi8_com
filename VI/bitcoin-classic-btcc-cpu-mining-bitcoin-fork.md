@@ -32,6 +32,7 @@ faqs: - q: 'Bạn có thể đào Bitcoin-Classic (BTCC) bằng CPU thông thư�
     a: 'Không. BTCC hiện có vốn hóa thị trường và thanh khoản gần như bằng không, không được hỗ trợ bởi các sàn giao dịch lớn, và cộng đồng rất nhỏ (chỉ khoảng 18-23 GitHub stars). Dự án này phù hợp nhất cho mục đích học tập và thử nghiệm, không nên coi là khoản đầu tư.'
 ---
 
+
 # Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU
 
 {</* resource-info */>}
@@ -46,7 +47,7 @@ faqs: - q: 'Bạn có thể đào Bitcoin-Classic (BTCC) bằng CPU thông thư�
 **Giấy phép**: MIT
 **Trình khám phá**: https://explorer.bitcoin-classic.net/
 
----
+* * *
 
 ## Tầm Nhìn: Ai Cũng Có Thể Đào
 
@@ -56,7 +57,7 @@ faqs: - q: 'Bạn có thể đào Bitcoin-Classic (BTCC) bằng CPU thông thư�
 
 BTCC cố gắng mang lại trải nghiệm đó thông qua **độ khó thấp, đào thân thiện với CPU và giao diện đồ họa**.
 
----
+* * *
 
 ## Thông Số Kỹ Thuật Cốt Lõi
 
@@ -88,7 +89,7 @@ BTCC cố gắng mang lại trải nghiệm đó thông qua **độ khó thấp,
 | 210.000 ~ 419.999 | 25 BTCC |
 | 420.000 ~ 629.999 | 12,5 BTCC |
 
----
+* * *
 
 ## Tính Năng Cốt Lõi
 
@@ -104,11 +105,11 @@ Tích hợp chức năng ví, tạo ví tự động bắt đầu đào, hiển 
 ### 4. Trình Khám Phá Blockchain
 https://explorer.bitcoin-classic.net/ — tra cứu khối, giao dịch, số dư địa chỉ.
 
----
+* * *
 
 ## Bắt Đầu Nhanh
 
-```
+````
 1. Tải Bitcoin-Classic-Setup.exe
    → https://github.com/Marcus-Vane/Bitcoin-Classic/releases
 
@@ -121,9 +122,9 @@ https://explorer.bitcoin-classic.net/ — tra cứu khối, giao dịch, số d�
 5. Nhấp "Start Mining" bắt đầu đào
 
 6. Sau khi đào, ví đào tự động tạo, chuyển sang góc trên bên phải để xem số dư
-```
+````
 
----
+* * *
 
 ## Lưu Ý Bảo Mật
 
@@ -133,7 +134,7 @@ https://explorer.bitcoin-classic.net/ — tra cứu khối, giao dịch, số d�
 - Không bao giờ gửi cho bất kỳ ai
 - Đây là bằng chứng duy nhất về quyền sở hữu tài sản ví
 
----
+* * *
 
 ## So Sánh Với Bitcoin
 
@@ -148,7 +149,7 @@ https://explorer.bitcoin-classic.net/ — tra cứu khối, giao dịch, số d�
 | Hệ sinh thái | Trưởng thành (sàn, DeFi) | Sơ khai (ví + trình khám phá) |
 | Giá trị đầu tư | Thanh khoản cao | Thử nghiệm |
 
----
+* * *
 
 ## Tóm Tắt
 
@@ -166,7 +167,7 @@ Tuy nhiên nó cũng đối mặt với thách thức thực tế: - Chỉ 18 Gi
 
 > 💡 Muốn biết thêm công cụ blockchain và tiền mã hóa? Theo dõi [dibi8.com](https://dibi8.com) để nhận các dự án mã nguồn mở được chọn lọc hàng tuần.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -239,7 +240,7 @@ Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằ
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

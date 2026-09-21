@@ -44,6 +44,7 @@ featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agen
 
 
 
+
 ## The Problem With Current AI Video Tools
 
 每一个在2025年进入主流认知的AI视频工具——Sora、Runway Gen-4、Pika、Luma Dream Machine、Kling——都存在相同的基本限制：它们都是**单提示生成短视频**。你输入一个描述，等待60秒，就会收到一个5到30秒的视频片段，没有剧本、没有叙事结构、没有同步音频，也没有质量验证。
@@ -60,7 +61,7 @@ featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agen
 
 没有单一的人工智能模型能够完成所有这些任务。但一个通过结构化生产流程协调多种专用工具的系统可以做到。
 
-**[OpenMontage](https://github.com/calesthio/OpenMontage)**（GitHub：`calesthio/OpenMontage`，截至2026年6月拥有**8,273+颗星**）是世界上第一个开源的、具自主智能的视频制作系统，专为填补这一具体空白而设计。它提供12条制作流程、52种工具，以及500+智能体技能，将任何AI编程助手转变为完整的视频制作工作室。
+**[OpenMontage](https://github.com/calesthio/OpenMontage)**（GitHub：```calesthio/OpenMontage````，截至2026年6月拥有**8,273+颗星**）是世界上第一个开源的、具自主智能的视频制作系统，专为填补这一具体空白而设计。它提供12条制作流程、52种工具，以及500+智能体技能，将任何AI编程助手转变为完整的视频制作工作室。
 
 ## How OpenMontage Works
 
@@ -68,19 +69,19 @@ OpenMontage 使用 **以代理为先的架构**。没有中央协调程序。你
 
 该系统通过三层知识来运行：
 
-```
+`````
 Layer 1: tools/ + pipeline_defs/     "What exists" — executable capabilities + orchestration
 Layer 2: skills/                      "How to use it" — OpenMontage conventions and quality bars
 Layer 3: .agents/skills/              "How it works" — external technology knowledge packs
-```
+`````
 
 你用简单语言描述你的需求。代理会读取管道清单（YAML）以了解可用的阶段、工具和评审标准。它会读取阶段主管技能（Markdown）以学习如何执行每个阶段。它调用 Python 工具进行评分提供者选择，用评审者技能进行自我评审，将状态记录在 JSON 中，并在每个阶段向你展示创意决策以供批准。
 
 完整的生产流程：
 
-```
+`````
 research → proposal → script → scene_plan → assets → edit → compose
-```
+`````
 
 每个阶段都有一个专门的指令技能——一个 Markdown 指令文件，教导代理如何准确执行该阶段。代理会阅读技能、使用工具、自我审查、检查状态，并在创造性决策点请求人工批准。
 
@@ -92,11 +93,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 | Pipeline | What It Produces | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Animated Explainer** | AI-generated explainer with research, narration, visuals, music | Educational content, tutorials, topic breakdowns |
 | **Animation** | Motion graphics, kinetic typography, animated sequences | Social media, product demos, abstract concepts |
@@ -115,15 +116,15 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 ## Zero-API-Key Production
 
-你不需要付费的 API 密钥就可以制作真实视频。开箱即用，`make setup` 会为你提供：
+你不需要付费的 API 密钥就可以制作真实视频。开箱即用，````make setup```` 会为你提供：
 
 | Capability | Free Tool | What It Does |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Narration** | Piper TTS | Free offline text-to-speech — real human-sounding narration |
 | **Open footage** | Archive.org + NASA + Wikimedia Commons | Free/open archival footage, educational media, documentary texture |
@@ -142,11 +143,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 适用于零 API 密钥的示例提示：
 
-```
+`````
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
 ## With Paid API Keys: Expanded Capabilities
 
@@ -156,11 +157,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Kling** | Cloud API | High quality, fast |
 | **Runway Gen-4** | Cloud API | Cinematic quality, Gen-3 Alpha Turbo / Gen-4 Turbo / Gen-4 Aleph |
@@ -178,11 +179,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **FLUX** | Cloud API | State-of-the-art quality |
 | **Google Imagen** | Cloud API | Imagen 4 — high-quality, multiple aspect ratios |
@@ -195,11 +196,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **ElevenLabs** | Cloud API | Premium voice quality |
 | **Google TTS** | Cloud API | 700+ voices, 50+ languages — best for localization |
@@ -210,11 +211,11 @@ research → proposal → script → scene_plan → assets → edit → compose
 
 | Provider | Type | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Suno AI** | Cloud API | Full song generation with vocals, lyrics, any genre. Up to 8 minutes. |
 | **ElevenLabs Music** | Cloud API | AI music generation |
@@ -242,9 +243,9 @@ OpenMontage 将视频制作视为真正的工程——在每个阶段都有质�
 
 | Dimension | Weight |
 |
----
+* * *
 |
----
+* * *
 |
 | Task Fit | 30% |
 | Output Quality | 20% |
@@ -261,7 +262,7 @@ OpenMontage 将视频制作视为真正的工程——在每个阶段都有质�
 - **执行前估算** — 查看成本  
 - **预留**预算 — 呼叫前锁定资金  
 - **执行后对账** — 记录实际开支  
-- **可配置模式** — `observe`（仅跟踪）、`warn`（记录超支）、`cap`（硬性上限）  
+- **可配置模式** — ````observe````（仅跟踪）、````warn````（记录超支）、````cap````（硬性上限）  
 - **每操作审批** — 超过阈值暂停等待确认（默认：$0.50）  
 - **总预算上限** — 默认$10，完全可配置
 
@@ -269,7 +270,7 @@ OpenMontage 将视频制作视为真正的工程——在每个阶段都有质�
 
 ## Architecture Overview
 
-```
+`````
 OpenMontage/
 ├── tools/              # 48 Python tools (the agent\'s hands)
 │   ├── video/          # 13 video gen tools + compose, stitch, trim
@@ -292,9 +293,9 @@ OpenMontage/
 ├── remotion-composer/  # React/Remotion video composition engine
 ├── lib/                # Core infrastructure (config, checkpoints, pipeline loader)
 └── tests/              # Contract tests, QA integration tests, eval harness
-```
+`````
 
-该系统使用三个知识层。层 1（`tools/` + `pipeline_defs/`）告诉代理存在什么。层 2（`skills/`）告诉它如何使用 OpenMontage 的规范和质量标准。层 3（`.agents/skills/`）为外部工具和提供者提供深入的技术知识。
+该系统使用三个知识层。层 1（````tools/```` + ````pipeline_defs/````）告诉代理存在什么。层 2（````skills/````）告诉它如何使用 OpenMontage 的规范和质量标准。层 3（````.agents/skills/````）为外部工具和提供者提供深入的技术知识。
 
 ## Agent Compatibility
 
@@ -302,17 +303,17 @@ OpenMontage 可与任何可以读取文件并执行 Python 的 AI 编码助手�
 
 | Platform | Config File |
 |
----
+* * *
 |
----
+* * *
 |
-| **Claude Code** | `CLAUDE.md` |
-| **Cursor** | `CURSOR.md` + `.cursor/rules/` |
-| **GitHub Copilot** | `COPILOT.md` + `.github/copilot-instructions.md` |
-| **Codex** | `CODEX.md` |
-| **Windsurf** | `.windsurfrules` |
+| **Claude Code** | ````CLAUDE.md```` |
+| **Cursor** | ````CURSOR.md```` + ````.cursor/rules/```` |
+| **GitHub Copilot** | ````COPILOT.md```` + ````.github/copilot-instructions.md```` |
+| **Codex** | ````CODEX.md```` |
+| **Windsurf** | ````.windsurfrules```` |
 
-所有平台文件都指向共享的 `AGENT_GUIDE.md`（操作指南和代理合同）和 `PROJECT_CONTEXT.md`（架构参考）。
+所有平台文件都指向共享的 ````AGENT_GUIDE.md````（操作指南和代理合同）和 ````PROJECT_CONTEXT.md````（架构参考）。
 
 通过 Ollama 和 LM Studio 的本地 LLM 支持即将到来，这将能够在没有任何云 LLM 的情况下运行完整的生产流程。
 
@@ -321,45 +322,45 @@ OpenMontage 可与任何可以读取文件并执行 Python 的 AI 编码助手�
 ### Prerequisites
 
 - **Python 3.10+** — [python.org](https://www.python.org/downloads/)
-- **FFmpeg** — `brew install ffmpeg` / `sudo apt install ffmpeg`
+- **FFmpeg** — ````brew install ffmpeg```` / ````sudo apt install ffmpeg````
 - **Node.js 18+** — [nodejs.org](https://nodejs.org/)
 - **一个 AI 编程助手** — Claude Code、Cursor、Copilot、Windsurf 或 Codex
 
 ### Install
 
-```bash
+`````bash
 git clone https://github.com/calesthio/OpenMontage.git
 cd OpenMontage
 make setup
-```
+`````
 
 在你的 AI 编程助手中打开项目，并告诉它你想要什么：
 
-```
+`````
 "Make a 60-second animated explainer about how neural networks learn"
-```
+`````
 
 或者对于真实视频路径：
 
-```
+`````
 "Make a 75-second documentary montage about city life in the rain. Use real footage only, no narration, elegiac tone, with music."
-```
+`````
 
 该代理通过实时网络搜索研究你的主题，生成AI图像，撰写并用语音指导进行解说，自动查找免版税背景音乐，嵌入逐字字幕，并渲染最终视频。在你看到任何内容之前，系统会运行多点自检——包括ffprobe验证、帧采样、音频电平分析、交付承诺验证以及字幕检查。
 
 如果你有GPU，你可以解锁免费的本地视频生成：
 
-```bash
+`````bash
 make install-gpu
 # Then add to .env: # VIDEO_GEN_LOCAL_ENABLED=true
 # VIDEO_GEN_LOCAL_MODEL=wan2.1-1.3b  # or wan2.1-14b, hunyuan-1.5, ltx2-local, cogvideo-5b
-```
+`````
 
 ### Optional API Keys
 
 每个 API 密钥都是可选的。请添加您已有的：
 
-```bash
+`````bash
 # Image + video gateway: FAL_KEY=your-key               # FLUX images + Google Veo, Kling, MiniMax video + Recraft
 
 # Free stock media: PEXELS_API_KEY=your-key        # Free stock footage and images
@@ -371,21 +372,21 @@ UNSPLASH_ACCESS_KEY=your-key   # Free stock images
 # Voice & images: ELEVENLABS_API_KEY=your-key    # Premium TTS, AI music, sound effects
 OPENAI_API_KEY=your-key        # OpenAI TTS, DALL-E 3 images
 GOOGLE_API_KEY=your-key        # Google Imagen images, Google TTS (700+ voices)
-```
+`````
 
 ## Comparison: OpenMontage vs. Competitors
 
 | Feature | OpenMontage | Sora | Runway | Pika |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Full production pipeline** | Yes (12 pipelines) | No | No | No |
 | **Script writing** | Automated with web research | Manual | Manual | Manual |
@@ -404,41 +405,41 @@ OpenMontage 不是一个视频生成模型。它是一个制作协调系统，�
 
 以下是按复杂性和输出类型整理的经过测试的提示。每个提示都会通过您的 AI 编码助手触发完整的生产流程：
 
-```text
+`````text
 # Beginner — zero keys needed
 "Make a 45-second animated explainer about why the sky is blue"
 "Create a 60-second video about the history of the internet, with narration and captions"
 "Make a data-driven explainer about coffee consumption around the world"
-```
+`````
 
-```text
+`````text
 # Intermediate — needs one image provider (~$0.15-$0.50)
 "Create a 30-second Ghibli-style animated video of a magical floating library in the clouds at golden hour"
 "Make a 30-second anime-style animation of an underwater temple with bioluminescent coral"
 "Create an animated explainer about how CRISPR gene editing works, using AI-generated visuals"
-```
+`````
 
-```text
+`````text
 # Advanced — full setup (~$1-$3)
 "Create a cinematic 30-second trailer for a sci-fi concept: humanity receives a warning from 1000 years in the future"
 "Make a 90-second animated explainer about quantum computing for middle school students, with a fun narrator voice and custom soundtrack"
-```
+`````
 
-```text
+`````text
 # Reference-driven — start from an existing video
 "Here\'s a YouTube Short I love. Make me something like this, but about CRISPR for high school students."
 "Analyze this Reel and give me 3 original variants I could make for my own product launch."
 "I like the pacing and hook in this video. Keep that energy, but turn it into a 45-second explainer about black holes."
-```
+`````
 
-```text
+`````text
 # Real-footage documentary path
 "Make a 90-second documentary montage about what a city feels like at 4am. Use real footage only, no narration, elegiac tone."
 "Create a 60-second Adam-Curtis-style archival collage about 1950s consumer optimism. Prefer Archive.org and Wikimedia footage."
 "Cut together a dreamlike montage about coming home in the rain using real stock footage only. Music yes, narration no."
-```
+`````
 
-有关更多经过测试的提示及预期成本和输出示例，请参见仓库中的 Prompt Gallery，或运行 `make demo` 即可立即渲染零键演示视频。
+有关更多经过测试的提示及预期成本和输出示例，请参见仓库中的 Prompt Gallery，或运行 ````make demo```` 即可立即渲染零键演示视频。
 
 ## Use Cases
 
@@ -482,7 +483,7 @@ OpenMontage 很令人印象深刻，但并不是魔法。有几个限制值得�
 
 OpenMontage 的质量系统可以通过环境变量和配置文件进行自定义：
 
-```bash
+`````bash
 # .env quality gate settings
 SLIDESHOW_RISK_THRESHOLD=0.7
 PRE_COMPOSE_VALIDATION=true
@@ -491,9 +492,9 @@ AUDIO_LEVEL_MIN=-30
 AUDIO_LEVEL_MAX=-3
 MAX_STILL_IMAGE_RATIO=0.3
 MIN_VIDEO_DURATION_SECONDS=10
-```
+`````
 
-```json
+`````json
 // .openmontage/config.json — pipeline quality overrides
 {
   "quality_gates": {
@@ -508,7 +509,7 @@ MIN_VIDEO_DURATION_SECONDS=10
     "per_action_approval_threshold": 0.50
   }
 }
-```
+`````
 
 这些设置控制系统何时阻止渲染、标记风险以及需要人工审批。根据您的质量要求和预算限制调整阈值。
 
@@ -516,9 +517,9 @@ MIN_VIDEO_DURATION_SECONDS=10
 
 尝试 OpenMontage 的最快方法：
 
-1. 克隆仓库：`git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup`
+1. 克隆仓库：````git clone https://github.com/calesthio/OpenMontage && cd OpenMontage && make setup````
 2. 在 Claude Code 或 Cursor 中打开
-3. 提示：`"制作一个关于天空为什么是蓝色的45秒动画解释视频"`
+3. 提示：````"制作一个关于天空为什么是蓝色的45秒动画解释视频"```
 4. 观看智能体进行研究、撰写脚本、生成素材、组合和验证
 5. 审查输出——每一个创意决策都会记录理由
 
@@ -533,7 +534,7 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 对于自托管基础设施，可以考虑 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 或 [HTStack](https://my.htstack.com/aff.php?aff=27187) 提供可靠的支持 GPU 的主机服务。对于网页抓取和代理需求，[WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 提供基础设施层。想要寻找 AI 工具和加密服务的优惠？请查看 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) 和 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) 获取独家优惠。对于联盟营销和漏斗工具，[PromoOhLy](https://www.promoohubly.com/join/12190433) 提供自动化服务。
 
 
----
+* * *
 **来源:** [OpenMontage GitHub](https://github.com/calesthio/OpenMontage) · [代理指南](https://github.com/calesthio/OpenMontage/blob/main/AGENT_GUIDE.md) · [提供者文档](https://github.com/calesthio/OpenMontage/blob/main/docs/PROVIDERS.md)
 
 **加入社区：** [GitHub 讨论](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
@@ -567,7 +568,7 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](openmontage-agentic-video-production-system)
@@ -576,7 +577,7 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 - [bytedance-ui-tars-desktop-ai-agent-guide](openmontage-agentic-video-production-system)
 - [egonex-understand-anything-interactive-knowledge-graph-ai](openmontage-agentic-video-production-system)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

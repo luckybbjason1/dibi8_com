@@ -32,6 +32,7 @@ faqs: - q: 'What is nanochat and who built it?'
     a: 'Ollama and vLLM are inference runtimes — you load an existing pretrained model and serve it. nanochat is a training framework — it trains a model from raw text data, from the very first token. Think of Ollama as the car, and nanochat as the factory that builds the engine. The repo also includes an inference server and chat UI so you can talk to your trained model, but training is the core purpose.'
   - q: 'Can I finetune an existing model with nanochat instead of training from scratch?'
     a: 'The primary path in nanochat is full pretraining from scratch on FineWeb followed by supervised finetuning. However, the pipeline is explicitly designed to be "maximally forkable" — the modular structure makes it straightforward to replace the pretraining data loader with a starting checkpoint and proceed with just the SFT stage on your own data. Community forks have demonstrated this pattern.'---
+
 ![nanochat 2026: Andrej Karpathy LLM Training Pipeline — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 
 In October 2025, Andrej Karpathy announced [nanochat](https://github.com/karpathy/nanochat) with a simple premise: "The best ChatGPT that $100 can buy." By June 2026 it has accumulated **54,700 GitHub stars** and become the most-read LLM training tutorial in the open-source community. If you want to understand how ChatGPT works from the inside — and build your own version — nanochat is where you start.
@@ -53,11 +54,11 @@ The advertised $100 assumes you rent a cloud GPU node. In 2026 prices: | Config 
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 8× H100 (SXM5) | ~$24 | 2 hours | ~$48 |
 | 8× A100 (80GB) | ~$16 | 4 hours | ~$64 |
@@ -73,19 +74,19 @@ You can rent these nodes from Lambda Labs, CoreWeave, vast.ai, or RunPod. The na
 
 Most LLM toolkits delegate tokenization to Python bindings around a C library (sentencepiece) or a pre-trained vocabulary (tiktoken). nanochat trains its own BPE tokenizer from scratch on the pretraining corpus. The implementation is in Rust for throughput — tokenizing FineWeb at full dataset scale in Python would take hours.
 
-Training the tokenizer is a separate command: ```bash
+Training the tokenizer is a separate command: ````bash
 python tokenize_dataset.py --dataset fineweb --vocab-size 32768
-```
+`````
 
 ### Pretraining (PyTorch)
 
 The model is a standard decoder-only Transformer: multi-head self-attention, pre-RMSNorm, SwiGLU activations, RoPE positional embeddings. The default config is ~120M parameters (roughly GPT-2 medium), trainable to higher capacities by adjusting depth and width hyperparameters.
 
-```bash
+`````bash
 # Single-node 8-GPU pretraining
 torchrun --nproc_per_node=8 train_pretrain.py \
   --config configs/pretrain_fineweb_120m.yaml
-```
+`````
 
 Key optimizations: FlashAttention-2 (40% speedup over vanilla attention), BF16 mixed precision (2× memory efficiency vs FP32), gradient checkpointing for long sequences, and DDP data parallelism across all 8 GPUs.
 
@@ -93,11 +94,11 @@ Key optimizations: FlashAttention-2 (40% speedup over vanilla attention), BF16 m
 
 After pretraining, you finetune on the SmolTalk dataset, which contains ~1M high-quality user-assistant conversations. The SFT stage takes less than 30 minutes on the same 8-GPU node.
 
-```bash
+`````bash
 torchrun --nproc_per_node=8 train_sft.py \
   --pretrain-checkpoint checkpoints/pretrain_final.pt \
   --config configs/sft_smoltalk.yaml
-```
+`````
 
 Tool-use data is included in the SFT stage, training the model to emit structured function-call JSON that downstream applications can parse.
 
@@ -107,9 +108,9 @@ After each training stage, nanochat runs the CORE benchmark automatically — a 
 
 ### Inference Server
 
-The inference server implements the OpenAI `/v1/chat/completions` endpoint: ```bash
+The inference server implements the OpenAI ``/v1/chat/completions`` endpoint: `````bash
 python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
-```
+````
 
 This means any tool built for the OpenAI API — Open WebUI, Cursor, Codestral clients — can point at your nanochat model with no modification.
 
@@ -209,12 +210,12 @@ nanochat 2026: Andrej Karpathy'"s Open-Source "ChatGPT for $100" — Full LLM Pi
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
@@ -223,7 +224,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [wandb-ml-experiment-tracking-platform-2026](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
 - [2026-05-25-trending-ai-agents](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

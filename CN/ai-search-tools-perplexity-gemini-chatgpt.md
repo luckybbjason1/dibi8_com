@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/ai-search-tools-perplexity-gemini-chatgpt/
 ---
+
 # AI Search Tools Compared: Perplexity vs Google Gemini vs ChatGPT Search 2025
 
 
@@ -130,19 +131,19 @@ Grok excels for journalists, social media managers, and researchers tracking rea
 
 | Feature | Perplexity AI | Google Gemini | ChatGPT Search | Microsoft Copilot | You.com | Grok |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Base Model** | GPT-4o, Claude 3.5, Sonar | Gemini 2.0 Flash | GPT-4o Search | GPT-4o | GPT-4o, Claude, Llama 3 | Grok 3 |
 | **Primary Search Index** | Bing + proprietary | Google Index | Bing + OpenAI crawlers | Bing Index | Bing + proprietary | X (Twitter) + web |
@@ -319,7 +320,7 @@ Traditional search ranks documents by relevance and presents them as a list. RAG
 Yes. Perplexity, Google Gemini, Microsoft Copilot, and You.com all offer capable free tiers. ChatGPT Search offers limited free access with rate caps. Grok requires a paid X Premium+ subscription. Running multiple free engines is a common strategy to cross-verify answers and access different strengths.
 
 
----
+* * *
 ## Recommended Tools
 
 For developers exploring or deploying the tools above, we recommend: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, ideal for self-hosting AI/dev tools.
@@ -352,4 +353,4 @@ For developers exploring or deploying the tools above, we recommend: - **[Digita
   }
 }
 </script>
----
+* * *

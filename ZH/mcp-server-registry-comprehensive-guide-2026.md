@@ -25,6 +25,7 @@ tags: ["mcp", "model context protocol", "注册中心", "hub文章"]
 aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/-
 ---
+
 # MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个
 
 
@@ -46,9 +47,9 @@ aliases:
 
 | 你想要… | 第一站 |
 |
----
+* * *
 |
----
+* * *
 |
 | 用一个久经考验的基础款（文件系统/抓取/git）| **Anthropic 官方款**（第 3 节）|
 | 按类别浏览（数据库/浏览器/云）| **awesome-mcp-servers**（第 4 节）|
@@ -65,11 +66,11 @@ aliases:
 
 | Server | 做什么 | 典型用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Everything** | demo server，把所有 MCP primitive 都展示一遍（tools / resources / prompts）| 协议作者的 reference 阅读材料 |
 | **Fetch** | HTTP/HTTPS 抓取 + html→markdown 转换 | LLM 按需读任意 URL |
@@ -90,17 +91,17 @@ aliases:
 
 [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) 是事实标准的社区目录：**87.3k 星 / 10.5k fork / 1.6k PR**。server 按 ~40 个类别分组。下面是 2026 AI 开发工作流里最重要的几类：
 
-- **Aggregators** —— 把多个 MCP server 组合在一个端点后面（`1mcp/agent` / `a2asearch-mcp`）
-- **Browser Automation** —— `playwright-mcp` / `browsermcp/mcp` / `real-browser-mcp`
-- **Cloud Platforms** —— `terraform-mcp-server` / `aws-mcp-server` / `k8s-mcp-server` / `localstack-mcp-server`
-- **Code Execution** —— `e2b-sandbox-mcp`（云沙箱）/ `piston-mcp`（多语言 runner）/ `pydantic-ai/mcp-run-python`
-- **Coding Agents** —— `codemcp` / `claude-concilium` / `any-cli-mcp-server`
+- **Aggregators** —— 把多个 MCP server 组合在一个端点后面（```1mcp/agent```` / ````a2asearch-mcp````）
+- **Browser Automation** —— ````playwright-mcp```` / ````browsermcp/mcp```` / ````real-browser-mcp````
+- **Cloud Platforms** —— ````terraform-mcp-server```` / ````aws-mcp-server```` / ````k8s-mcp-server```` / ````localstack-mcp-server````
+- **Code Execution** —— ````e2b-sandbox-mcp````（云沙箱）/ ````piston-mcp````（多语言 runner）/ ````pydantic-ai/mcp-run-python````
+- **Coding Agents** —— ````codemcp```` / ````claude-concilium```` / ````any-cli-mcp-server````
 - **Databases** —— Postgres / MySQL / MongoDB / Redis / SQLite / ClickHouse / Snowflake 连接器全有开源 MCP server
 - **Communication** —— Slack（Zencoder）/ Discord / Teams / Telegram / 邮件（IMAP/SMTP）
-- **Knowledge & Memory** —— `mem0-mcp` / `letta-mcp` / 向量库集成（Pinecone / Weaviate / Chroma）
-- **Search** —— `brave-search-mcp-server` / `tavily-mcp` / `exa-mcp` / `perplexity-mcp`
+- **Knowledge & Memory** —— ````mem0-mcp```` / ````letta-mcp```` / 向量库集成（Pinecone / Weaviate / Chroma）
+- **Search** —— ````brave-search-mcp-server```` / ````tavily-mcp```` / ````exa-mcp```` / ````perplexity-mcp````
 
-**使用方法**：不要顺序读。Ctrl-F 你的问题领域（`postgres` / `kubernetes` / `stripe`），看前 2-3 个结果，核对星数和最后提交日期。**列表不是按星数排序**，是按维护者判断 —— 自己再验证。
+**使用方法**：不要顺序读。Ctrl-F 你的问题领域（````postgres```` / ````kubernetes```` / ````stripe````），看前 2-3 个结果，核对星数和最后提交日期。**列表不是按星数排序**，是按维护者判断 —— 自己再验证。
 
 ## 5. Smithery vs mcp.so —— 两大注册中心平台
 
@@ -111,7 +112,7 @@ aliases:
 - **模式**：注册中心 + 托管 runtime + CLI 安装器
 - **server 数**：~5000（精选，比 mcp.so 少但质量更高）
 - **价格**：免费列表、免费浏览、免费安装。托管 server 可能按使用量计费
-- **杀手特性**：`npx -y @smithery/cli@latest install <server>` 一行命令装到 Claude Desktop / Cursor / Continue 的配置里，不用手动编辑 JSON
+- **杀手特性**：````npx -y @smithery/cli@latest install <server>```` 一行命令装到 Claude Desktop / Cursor / Continue 的配置里，不用手动编辑 JSON
 - **缺点**：暂无创作者变现 —— 开发者写热门 server 也赚不到钱
 
 ### mcp.so
@@ -133,33 +134,33 @@ aliases:
 按社区星数、集成覆盖度、近期提交活跃度评出：
 
 **Filesystem & Code**
-- `modelcontextprotocol/server-filesystem`（官方）—— 沙箱文件系统
-- `cyanheads/git-mcp-server` —— 超出官方 Git server 范围的 Git 操作
-- `tools-mcp/codemap-mcp` —— 语义代码导航
+- ````modelcontextprotocol/server-filesystem````（官方）—— 沙箱文件系统
+- ````cyanheads/git-mcp-server```` —— 超出官方 Git server 范围的 Git 操作
+- ````tools-mcp/codemap-mcp```` —— 语义代码导航
 
 **Browser & Web**
-- `microsoft/playwright-mcp` —— E2E 测试场景 + 复杂页面交互最佳
-- `browsermcp/mcp` —— 轻量，复用你已经登录的浏览器 session
-- `tavily-mcp` —— 给 LLM 消费预格式化好的搜索结果
+- ````microsoft/playwright-mcp```` —— E2E 测试场景 + 复杂页面交互最佳
+- ````browsermcp/mcp```` —— 轻量，复用你已经登录的浏览器 session
+- ````tavily-mcp```` —— 给 LLM 消费预格式化好的搜索结果
 
 **Database**
-- `postgres-mcp-server` —— schema introspection + 安全查询执行
-- `mongodb-mcp` —— MongoDB 官方维护
-- `redis-mcp` —— KV + pub/sub 给 agent 协同用
+- ````postgres-mcp-server```` —— schema introspection + 安全查询执行
+- ````mongodb-mcp```` —— MongoDB 官方维护
+- ````redis-mcp```` —— KV + pub/sub 给 agent 协同用
 
 **Memory & Knowledge**
-- `mem0-mcp` —— 持久化语义内存层（连接 mem0 SaaS）
-- `letta-mcp` —— agent 状态框架
-- `pinecone-mcp` —— 向量库
+- ````mem0-mcp```` —— 持久化语义内存层（连接 mem0 SaaS）
+- ````letta-mcp```` —— agent 状态框架
+- ````pinecone-mcp```` —— 向量库
 
 **Cloud Ops**
-- `aws-mcp-server` —— IAM 范围内的 AWS API 访问
-- `k8s-mcp-server` —— kubectl 等价 + 安全护栏
-- `terraform-mcp-server` —— plan/apply 带确认门
+- ````aws-mcp-server```` —— IAM 范围内的 AWS API 访问
+- ````k8s-mcp-server```` —— kubectl 等价 + 安全护栏
+- ````terraform-mcp-server```` —— plan/apply 带确认门
 
 **Coding Agents**
-- `codemcp` —— 把任意 IDE 变成 MCP host
-- `e2b-sandbox-mcp` —— 沙箱化云端代码执行（替代 Code Interpreter）
+- ````codemcp```` —— 把任意 IDE 变成 MCP host
+- ````e2b-sandbox-mcp```` —— 沙箱化云端代码执行（替代 Code Interpreter）
 
 ## 7. 自托管 vs 云托管 MCP server
 
@@ -184,9 +185,9 @@ aliases:
 **挑选 checklist（每个候选 30 秒过一遍）**：
 
 1. **星数 > 500** + **最后提交 < 90 天** = 活跃项目（否则换一个）
-2. **有 `good first issue` 标签的 open issue** = 维护者欢迎贡献（健康）
+2. **有 ````good first issue```` 标签的 open issue** = 维护者欢迎贡献（健康）
 3. **License = MIT/Apache 2.0** = 商用安全
-4. **README 有 `claude_desktop_config.json` snippet** = 作者测过装机路径
+4. **README 有 ````claude_desktop_config.json```` snippet** = 作者测过装机路径
 5. **从 npm/PyPI 装时验签** —— 2026 真实威胁：通过 MCP server 的供应链攻击
 
 **没合适的就自己写**。TypeScript 和 Python SDK 能让你用 50 行代码做出可用的 MCP server。Anthropic 团队故意把协议设计得很薄 —— 写 server 几乎无摩擦。
@@ -205,8 +206,8 @@ aliases:
 困难不再是"找到一个 server"，而是 **挑对那个** —— 用第 8 节的 30 秒清单 + 第 2 节决策树。没合适就下午自己写一个（50 行 TS 或 Python）。
 
 
----
-*想自托管 5+ 个 MCP server（postgres + filesystem + git + memory + tavily-search）不烧云账单？开一个 $6/月的 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}，用 supervisor（systemd 或 PM2）跑起来，把 Claude Desktop 的 `claude_desktop_config.json` 指过去。一下午搞定。*
+* * *
+*想自托管 5+ 个 MCP server（postgres + filesystem + git + memory + tavily-search）不烧云账单？开一个 $6/月的 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}，用 supervisor（systemd 或 PM2）跑起来，把 Claude Desktop 的 ````claude_desktop_config.json``` 指过去。一下午搞定。*
 
 
 {
@@ -271,11 +272,11 @@ MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -285,7 +286,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](mcp-server-registry-comprehensive-guide-2026)
 - [codebase-memory-mcp-deep-code-intelligence](mcp-server-registry-comprehensive-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

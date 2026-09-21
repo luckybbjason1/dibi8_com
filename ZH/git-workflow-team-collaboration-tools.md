@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/git-workflow-team-collaboration-tools/-
 ---
+
 # Git工作流与团队协作工具：开发者完整指南
 
 
@@ -30,13 +31,13 @@ Git已经成为软件开发的标配工具，但"会用Git"和"用好Git"之间�
 
 | 维度 | GitFlow | GitHub Flow | Trunk-Based Development |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **分支数量** | 多（main/develop/feature/release/hotfix） | 少（main + feature） | 极简（main + 短分支） |
 | **发布模式** | 版本化发布（v1.0, v1.1） | 持续部署（随时发布） | 持续部署（随时发布） |
@@ -96,7 +97,7 @@ Trunk-Based Development（主干开发）是Google、Meta等巨头采用的高�
 
 **2. 审查者分配策略**
 - 至少1名审查者，关键模块需2人审查
-- 自动分配（CODEOWNERS文件）：`api/* @backend-team`
+- 自动分配（CODEOWNERS文件）：```api/* @backend-team````
 - 轮询分配避免单点瓶颈
 
 **3. 自动化检查前置**
@@ -113,15 +114,15 @@ Trunk-Based Development（主干开发）是Google、Meta等巨头采用的高�
 
 | 平台 | 最佳场景 | CI/CD | 自托管 | 价格 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub** | 开源项目、通用开发 | Actions（原生） | Enterprise Server | 免费/Team $4月/Enterprise $21月 |
 | **GitLab** | DevOps一体化 | GitLab CI（原生） | 社区版/企业版 | 免费/Ultimate $99月 |
@@ -135,26 +136,26 @@ GitHub以最大的生态和最多的第三方集成领先；GitLab的DevOps一�
 
 一致的Commit Message是项目可维护性的基础。推荐采用 [Conventional Commits](https://www.conventionalcommits.org/) 规范：
 
-```
+`````
 <type>(<scope>): <subject>
 
 <body>
 
 <footer>
-```
+`````
 
 常用类型：
-- `feat`: 新功能
-- `fix`: Bug修复
-- `docs`: 文档变更
-- `style`: 代码格式（不影响逻辑）
-- `refactor`: 重构
-- `test`: 测试相关
-- `chore`: 构建/依赖/工具变更
+- ````feat````: 新功能
+- ````fix````: Bug修复
+- ````docs````: 文档变更
+- ````style````: 代码格式（不影响逻辑）
+- ````refactor````: 重构
+- ````test````: 测试相关
+- ````chore````: 构建/依赖/工具变更
 
 **自动化工具链**：
 
-- **Husky**：在 `.git/hooks` 中注册Git钩子，提交前自动运行检查
+- **Husky**：在 ````.git/hooks```` 中注册Git钩子，提交前自动运行检查
 - **lint-staged**：只对暂存区的文件运行linter，避免全量检查浪费时间
 - **Commitizen**：交互式命令行辅助生成规范Commit Message
 - **semantic-release**：根据Commit类型自动生成版本号和CHANGELOG
@@ -166,13 +167,13 @@ GitHub以最大的生态和最多的第三方集成领先；GitLab的DevOps一�
 **预防层面**：
 - 采用功能开关替代长生命周期分支
 - 将代码按功能模块化，减少同一文件的并发修改
-- 频繁同步主分支（至少每天一次 `git pull origin main`）
+- 频繁同步主分支（至少每天一次 ````git pull origin main````）
 
 **解决层面**：
-- 优先使用 `git rebase` 保持线性历史，但只在本地未推送分支上操作
-- 已推送的分支使用 `git merge` 避免改写公共历史
-- 合并前使用 `git merge --no-commit --no-ff` 预览冲突
-- 复杂冲突考虑 `git mergetool` 或VS Code的可视化合并界面
+- 优先使用 ````git rebase```` 保持线性历史，但只在本地未推送分支上操作
+- 已推送的分支使用 ````git merge```` 避免改写公共历史
+- 合并前使用 ````git merge --no-commit --no-ff```` 预览冲突
+- 复杂冲突考虑 ````git mergetool```` 或VS Code的可视化合并界面
 
 ## GUI客户端能提升效率吗？
 
@@ -180,13 +181,13 @@ GitHub以最大的生态和最多的第三方集成领先；GitLab的DevOps一�
 
 | 工具 | 平台 | 特点 | 价格 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Fork** | Mac/Windows | 速度极快、界面直观 | 免费 |
 | **Sourcetree** | Mac/Windows | Atlassian出品、功能全面 | 免费 |
@@ -221,7 +222,7 @@ A: GitHub Flow是最佳选择。规则简单、学习成本低、与CI/CD天然�
 A: 如果你需要版本化发布（如v2.1.0 → v2.2.0），选GitFlow；如果你持续部署（每天多次发布），选GitHub Flow。大多数Web/SaaS团队更适合GitHub Flow。
 
 **Q: Git合并冲突怎么解决？**
-A: 首先用 `git status` 查看冲突文件，然后逐个编辑解决冲突标记（`<<<<<<<` / `=======` / `>>>>>>>`），完成后 `git add .` 并继续合并。VS Code和GUI客户端提供可视化冲突解决界面，新手更友好。
+A: 首先用 ````git status```` 查看冲突文件，然后逐个编辑解决冲突标记（````<<<<<<<```` / ````=======```` / ````>>>>>>>````），完成后 ````git add .```` 并继续合并。VS Code和GUI客户端提供可视化冲突解决界面，新手更友好。
 
 **Q: 代码审查的最佳实践有哪些？**
 A: 控制PR大小（400行以内）、使用PR模板、自动化检查前置（lint/test）、分配明确审查者、24小时内响应、建设性反馈语气。
@@ -230,7 +231,7 @@ A: 控制PR大小（400行以内）、使用PR模板、自动化检查前置（l
 A: 没有绝对优劣。Trunk-Based适合CI/CD高度成熟、自动化测试覆盖率极高的大型团队。中小型团队如果没有完善的功能开关机制和自动化流水线，强行采用反而会增加风险。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -304,7 +305,7 @@ Git工作流与团队协作工具：开发者完整指南 represents an importan
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -316,7 +317,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -327,4 +328,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

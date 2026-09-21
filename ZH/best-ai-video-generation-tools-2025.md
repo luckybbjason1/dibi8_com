@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/best-ai-video-generation-tools-2025/-
 ---
+
 # 2025年最佳AI视频生成工具对比：Sora、Runway、Pika等全面评测
 
 
@@ -123,17 +124,17 @@ Dream Machine的特点：
 
 | 工具 | 最高分辨率 | 最长时长 | 关键特色 | 起步价格 | 免费额度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Sora | 1920x1080 | 60秒 | 物理模拟、故事板 | $20/月（ChatGPT Plus） | 有限次数 |
 | Runway Gen-3 | 1920x1080 | 16秒 | 运动笔刷、相机控制 | $15/月 | 约125秒 |
@@ -162,13 +163,13 @@ Dream Machine的特点：
 
 | 用户类型 | 推荐工具 | 月成本 | 理由 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 个人轻度使用 | Luma Dream Machine | $0（免费版） | 每月30次免费生成 |
 | 个人中度使用 | Pika 2.0 Pro | $10 | 性价比高，功能丰富 |
@@ -198,9 +199,9 @@ Dream Machine的特点：
 ### 第二步：准备提示词
 视频提示词的结构与图像提示词类似，但需要额外关注时间维度：
 
-```
+````
 [场景描述] + [镜头运动] + [主体动作] + [光照条件] + [氛围/情绪] + [画质要求]
-```
+`````
 
 例如：
 > "A serene Japanese garden in spring, slow dolly-in camera movement, cherry blossom petals gently falling, golden hour lighting, peaceful and contemplative mood, cinematic quality, 4K resolution"
@@ -219,7 +220,7 @@ Dream Machine的特点：
 将AI生成的视频导入剪辑软件（如DaVinci Resolve、CapCut或Adobe Premiere）进行调色、配音和最终编辑。
 
 
----
+* * *
 ## 常见问题解答（FAQ）
 
 ### 哪款AI视频生成器质量最高？
@@ -247,7 +248,7 @@ Dream Machine的特点：
 提升生成质量的关键策略：使用高质量的参考图片（Image-to-Video模式）；提示词中包含具体的镜头运动、光照和氛围描述；选择简洁、清晰的场景描述，避免过于复杂的构图；利用工具提供的高级控制（如Runway的运动笔刷）精确调节运动区域；生成后进行后期调色和稳定化处理。参考社区优秀作品（如[Runway官网](https://runwayml.com)的Showcase）学习有效的提示词写法。
 
 
----
+* * *
 ## 推荐工具
 
 部署或体验上述工具时，推荐：
@@ -319,7 +320,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -332,7 +333,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -343,4 +344,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

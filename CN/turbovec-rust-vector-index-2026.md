@@ -12,6 +12,7 @@ maintainer: 'RyanCodrai'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 ---
+
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
 ![TurboQuant Benchmark](https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/benchmarks)
@@ -28,7 +29,7 @@ For teams building high-performance RAG systems, the choice between vector searc
 
 TurboVec is a high-performance vector index that prioritizes two things: query speed and memory efficiency. Under the hood, it uses TurboQuant — a custom quantization scheme that compresses embeddings to 4-bit precision while maintaining 99%+ retrieval accuracy. Written in Rust and exposed via Python bindings, it gives you C-level performance without leaving the Python ecosystem.
 
-```
+````
 ┌─────────────────────────────────────────────────┐
 │              TurboVec Architecture               │
 ├─────────────────────────────────────────────────┤
@@ -50,13 +51,13 @@ TurboVec is a high-performance vector index that prioritizes two things: query s
 │    ├─ On-disk checkpoint                         │
 │    └─ Incremental updates                         │
 └─────────────────────────────────────────────────┘
-```
+`````
 
 ## How TurboQuant Works
 
 Traditional vector stores store embeddings as 32-bit floats (4 bytes per dimension). TurboQuant compresses these to 4 bits (0.5 bytes per dimension) using a combination of product quantization and residual coding.
 
-```python
+`````python
 import turbovec
 
 # Create a TurboVec index with 4-bit quantization
@@ -73,7 +74,7 @@ index.add(embeddings)
 
 # Search — returns top-k results in milliseconds
 results = index.search(query_embedding, k=10)
-```
+`````
 
 The quantization pipeline works in three stages. First, the embedding space is divided into subspaces using product quantization. Second, residual vectors capture quantization error for high-frequency components. Third, runtime feature detection selects between AVX2 (2013+ CPUs) and AVX-512 (2017+ CPUs) kernels automatically.
 
@@ -81,13 +82,13 @@ The quantization pipeline works in three stages. First, the embedding space is d
 
 **Option 1: pip install (recommended)**
 
-```bash
+`````bash
 pip install turbovec
-```
+`````
 
 **Option 2: Framework-specific installation**
 
-```bash
+`````bash
 # LangChain integration
 pip install turbovec[langchain]
 
@@ -99,23 +100,23 @@ pip install turbovec[haystack]
 
 # Agno integration
 pip install turbovec[agno]
-```
+`````
 
 **Option 3: Build from source (Rust development)**
 
-```bash
+`````bash
 git clone https://github.com/RyanCodrai/turbovec.git
 cd turbovec
 pip install maturin
 maturin develop --release
-```
+`````
 
 **Option 4: Docker**
 
-```bash
+`````bash
 docker build -t turbovec:latest .
 docker run -p 8000:8000 turbovec:latest
-```
+`````
 
 ## Integration with LangChain, LlamaIndex, and Haystack
 
@@ -123,7 +124,7 @@ TurboVec's killer feature is its drop-in replacement design. You swap the import
 
 **LangChain Integration**
 
-```python
+`````python
 from langchain.vectorstores import TurboVec
 
 # Drop-in replacement for InMemoryVectorStore
@@ -136,11 +137,11 @@ store = TurboVec(
 # Same API as any LangChain vector store
 store.add_documents(documents)
 results = store.similarity_search("your query", k=5)
-```
+`````
 
 **LlamaIndex Integration**
 
-```python
+`````python
 from llama_index.vector_stores import TurboVecVectorStore
 
 vector_store = TurboVecVectorStore(
@@ -152,11 +153,11 @@ vector_store = TurboVecVectorStore(
 index = VectorStoreIndex.from_vector_store(vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What did the author learn?")
-```
+`````
 
 **Haystack Integration**
 
-```python
+`````python
 from haystack.document_stores import TurboVecDocumentStore
 
 document_store = TurboVecDocumentStore(
@@ -167,7 +168,7 @@ document_store = TurboVecDocumentStore(
 # Use with Haystack's Retriever
 retriever = Retriever(document_store=document_store)
 documents = retriever.run(query="your query")
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -175,15 +176,15 @@ TurboVec's performance advantage comes from TurboQuant's 4-bit compression combi
 
 | Metric | TurboVec | FAISS IVF | Pinecone | Weaviate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Query latency (100K vectors) | 2.3 ms | 8.7 ms | 15 ms | 12 ms |
 | Query speed (1M) | 4.1 ms | 23 ms | 28 ms | 21 ms |
@@ -191,7 +192,7 @@ TurboVec's performance advantage comes from TurboQuant's 4-bit compression combi
 | Accuracy (quantized) | 99.2% | 97.8% | 99.5% | 99.1% |
 | Max vectors per index | 100M | 100M | 2M | 10M |
 
-Real-world benchmark command: ```bash
+Real-world benchmark command: `````bash
 # Run TurboVec's built-in benchmark suite
 cargo test --release benchmarks
 
@@ -200,7 +201,7 @@ python benchmarks/compare_turbovec_faiss.py \
   --vectors 1000000 \
   --dim 1536 \
   --queries 10000
-```
+`````
 
 In practice, TurboVec delivers the best performance when used with embeddings that are 768 dimensions or higher. Below 384 dimensions, the quantization savings diminish because the overhead of the quantization pipeline itself becomes significant relative to the small vector sizes. For embeddings in the 384-512 range, consider using 8-bit quantization for the best accuracy-speed tradeoff.
 
@@ -208,7 +209,7 @@ In practice, TurboVec delivers the best performance when used with embeddings th
 
 **Persistent Index with Checkpointing**
 
-```python
+`````python
 import turbovec
 
 # Create a disk-backed index
@@ -229,11 +230,11 @@ index.save("my_index.turbovec")
 # Load checkpoint in a new process
 loaded = turbovec.Index.load("my_index.turbovec")
 results = loaded.search(query_emb, k=10)
-```
+`````
 
 **Multi-threaded Query Execution**
 
-```python
+`````python
 # TurboVec uses all available CPU cores by default
 import os
 os.environ["RAYON_NUM_THREADS"] = "16"
@@ -244,11 +245,11 @@ results = index.search_parallel(
     k=10,
     num_threads=16
 )
-```
+`````
 
 **Monitoring Index Performance in Production**
 
-```python
+`````python
 import time
 
 # Benchmark current index throughput
@@ -257,11 +258,11 @@ for _ in range(1000): index.search(query_emb, k=10)
 elapsed = time.perf_counter() - start
 print(f"Throughput: {1000/elapsed:.0f} queries/sec")
 print(f"Average latency: {elapsed/1000*1000:.2f} ms per query")
-```
+`````
 
 **Custom Quantization Configurations**
 
-```python
+`````python
 # Trade accuracy for speed: 3-bit quantization
 index_3bit = turbovec.Index(
     dim=1536,
@@ -273,11 +274,11 @@ index_8bit = turbovec.Index(
     dim=1536,
     quantization="8bit",    # 99.8% accuracy, 2x bigger
 )
-```
+`````
 
 **Building a Full RAG Pipeline with TurboVec**
 
-```python
+`````python
 import turbovec
 from transformers import AutoTokenizer, AutoModel
 
@@ -297,11 +298,11 @@ index.add(embed_texts(document_chunks))
 query_emb = embed_texts(["What is machine learning?"])[0]
 results = index.search(query_emb, k=5)
 for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
-```
+`````
 
 **Docker Compose for Production Serving**
 
-```yaml
+`````yaml
 version: '3.8'
 services: turbovec: image: ryan-codrai/turbovec:latest
     ports: - "8000:8000"
@@ -309,21 +310,21 @@ services: turbovec: image: ryan-codrai/turbovec:latest
     environment: - TURBOVEC_CAPACITY=10000000
       - TURBOVEC_DIM=1536
       - TURBOVEC_METRIC=cosine
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | TurboVec | FAISS | Pinecone | Weaviate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Self-hostable | ✓ | ✓ | No | ✓ |
 | Python API | ✓ | ✓ | ✓ | ✓ |
@@ -341,7 +342,7 @@ services: turbovec: image: ryan-codrai/turbovec:latest
 ## Limitations / Honest Assessment
 
 TurboVec is impressive for its performance profile, but there are honest limitations to consider: 1. **Newer library**: With 10,500 stars vs FAISS's 60,000+, TurboVec has less community documentation and fewer third-party tutorials. Production teams should budget time for trial runs.
-2. **Rust dependency**: Building from source requires `cargo` and a Rust toolchain. The pip install path avoids this, but custom builds need Rust 1.70+.
+2. **Rust dependency**: Building from source requires ````cargo```` and a Rust toolchain. The pip install path avoids this, but custom builds need Rust 1.70+.
 3. **Single-node only**: Unlike Weaviate or Qdrant, TurboVec does not have built-in horizontal scaling. For indexes exceeding 100M vectors, you need to shard across multiple instances.
 4. **Limited vector types**: Currently only supports dense vector search. Sparse vectors, hybrid search, and graph-based indexing are not yet available.
 5. **No built-in REST API**: TurboVec is an in-process library. If you need a networked vector search service, you must wrap it in a FastAPI or similar layer.
@@ -362,7 +363,7 @@ Not currently. TurboVec is optimized for CPU execution using SIMD instructions (
 
 **Q: How do I handle vector updates and deletions?**
 
-TurboVec supports incremental adds to existing indexes. Deletions are handled via tombstone markers — deleted vectors are logically removed but occupy space until you rebuild the index. Use `index.rebuild()` to compact deleted vectors and reclaim disk space.
+TurboVec supports incremental adds to existing indexes. Deletions are handled via tombstone markers — deleted vectors are logically removed but occupy space until you rebuild the index. Use ````index.rebuild()``` to compact deleted vectors and reclaim disk space.
 
 **Q: What is the maximum index size?**
 
@@ -389,7 +390,7 @@ Read more about [Building RAG Pipelines with Vector Search](dibi8-internal-link)
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions on AI tools, Rust, and developer infrastructure.
 
 
----
+* * *
 **Sources & Further Reading**: - Official repository: https://github.com/RyanCodrai/turbovec
 - TurboQuant paper: https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md
 - LangChain integration docs: https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/langchain.md
@@ -425,7 +426,7 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [turbovec-rust-vector-index-2026](turbovec-rust-vector-index-2026)
@@ -434,7 +435,7 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions
 - [ai-agent-frameworks-comparison-2026](turbovec-rust-vector-index-2026)
 - [ai-agent-frameworks-comparison-2026](turbovec-rust-vector-index-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -32,6 +32,7 @@ faqs: - q: 'DS4 (DwarfStar 4) là gì và ai đã tạo ra nó?'
     a: 'Có. Sau khi build DS4, bạn sẽ có file nhị phân ds4-server, cung cấp HTTP API tương thích OpenAI và Anthropic tại http://127.0.0.1:8000, bao gồm các endpoint /v1/chat/completions, /v1/completions và /v1/messages. Nó hỗ trợ function calling theo chuẩn OpenAI và hoạt động được với các framework agent như OpenCode, Pi và Claude Code.'
 ---
 
+
 {</* resource-info */>}
 
 # DS4 (DwarfStar 4): Chạy DeepSeek V4 Flash Local với Metal & CUDA — Hướng Dẫn Toàn Diện
@@ -42,7 +43,7 @@ Khác với các trình chạy GGUF đa năng hoặc wrapper xung quanh các run
 
 Trong hướng dẫn toàn diện này, chúng tôi khám phá điều gì làm cho DS4 đặc biệt, cách kiến trúc kỹ thuật của nó khác biệt với các lựa chọn thay thế như Ollama và llama.cpp, và cung cấp hướng dẫn cài đặt từng bước, benchmark hiệu năng, ví dụ mã và các trường hợp sử dụng thực tế.
 
----
+* * *
 
 ## Benchmark Chạy Local: DS4 vs Ollama vs llama.cpp
 Để kéo một con quái vật như DeepSeek V4 Flash, bạn phải ép xung tận răng. Đây là cách DS4 bón hành cho các đối thủ trên máy Mac chip M: | Tên Framework | Tốc Độ Lượng Tử Hóa 2-bit | Lưu Trạng Thái KV Cache | Tối Ưu Phần Cứng Lõi | Độ Khó Cài Đặt |
@@ -70,16 +71,16 @@ Sanfilippo tin rằng DeepSeek V4 Flash là một mô hình đặc biệt hấp 
 6. **Bộ nhớ đệm KV nén**: Cho phép suy luận ngữ cảnh dài trên máy local và hỗ trợ **lưu trữ bộ nhớ đệm KV trên đĩa** — một yếu tố thay đổi cuộc chơi cho các quy trình tác nhân.
 7. **Khả thi lượng tử hóa 2-bit**: Khi được lượng tử hóa không đối xứng (chỉ các routed experts), trọng số 2-bit chạy đáng ngạc nhiên tốt, vừa với các MacBook 96-128GB.
 
----
+* * *
 
 ## Kiến Trúc Kỹ Thuật: Tối Ưu Hóa Metal so với CUDA
 
 Kiến trúc của DS4 phản ánh một triết lý thiết kế rõ ràng: **tối đa hóa hiệu năng cho phần cứng mục tiêu**, ngay cả khi điều đó có nghĩa là hy sinh tính tổng quát. Dự án duy trì ba mục tiêu build: | Mục Tiêu Build | Nền Tảng | Trường Hợp Sử Dụng |
 |-------------|----------|----------|
-| `make` | macOS | Build production tối ưu Metal |
-| `make cuda-spark` | Linux (DGX Spark / GB10) | CUDA cho hệ thống NVIDIA GB10 |
-| `make cuda-generic` | Linux (GPU CUDA khác) | Hỗ trợ GPU CUDA chung |
-| `make cpu` | Bất kỳ | Chỉ để tham chiếu/gỡ lỗi |
+| ```make```` | macOS | Build production tối ưu Metal |
+| ````make cuda-spark```` | Linux (DGX Spark / GB10) | CUDA cho hệ thống NVIDIA GB10 |
+| ````make cuda-generic```` | Linux (GPU CUDA khác) | Hỗ trợ GPU CUDA chung |
+| ````make cpu```` | Bất kỳ | Chỉ để tham chiếu/gỡ lỗi |
 
 ### Metal trên macOS
 
@@ -91,7 +92,7 @@ Các con số này cạnh tranh — và trong một số trường hợp vượt
 
 ### CUDA trên Linux
 
-Đối với các máy trạm Linux, DS4 cung cấp hai đường dẫn build CUDA. Mục tiêu `cuda-spark` được tinh chỉnh cho nền tảng NVIDIA DGX Spark (GB10), trong khi `cuda-generic` hỗ trợ một loạt GPU CUDA local rộng hơn. Trên một DGX Spark GB10 với 128GB RAM, engine đạt **343 tokens/giây prefill** và **13,75 tokens/giây generation** với trọng số q2.
+Đối với các máy trạm Linux, DS4 cung cấp hai đường dẫn build CUDA. Mục tiêu ````cuda-spark```` được tinh chỉnh cho nền tảng NVIDIA DGX Spark (GB10), trong khi ````cuda-generic```` hỗ trợ một loạt GPU CUDA local rộng hơn. Trên một DGX Spark GB10 với 128GB RAM, engine đạt **343 tokens/giây prefill** và **13,75 tokens/giây generation** với trọng số q2.
 
 Đường dẫn CUDA chia sẻ cùng một engine thực thi đồ thị, nén bộ nhớ đệm KV và server API với bản build Metal, đảm bảo hành vi nhất quán trên các nền tảng.
 
@@ -101,7 +102,7 @@ DS4 bao gồm một backend CPU, nhưng Sanfilippo rõ ràng: **"Đừng coi đ�
 
 ### Các Đổi Mới Kiến Trúc Chính
 
-1. **Lượng tử hóa 2-bit không đối xứng**: Khác với lượng tử hóa đều làm suy giảm tất cả các lớp như nhau, q2 quant của DS4 áp dụng `IQ2_XXS` cho các chiếu up/gate MoE routed và `Q2_K` cho các chiếu down, trong khi để nguyên shared experts, projections và các lớp routing. Điều này bảo toàn chất lượng ở nơi quan trọng nhất.
+1. **Lượng tử hóa 2-bit không đối xứng**: Khác với lượng tử hóa đều làm suy giảm tất cả các lớp như nhau, q2 quant của DS4 áp dụng ````IQ2_XXS```` cho các chiếu up/gate MoE routed và ````Q2_K```` cho các chiếu down, trong khi để nguyên shared experts, projections và các lớp routing. Điều này bảo toàn chất lượng ở nơi quan trọng nhất.
 
 2. **Bộ nhớ đệm KV nén với lưu trữ đĩa**: DS4 coi bộ nhớ đệm KV là một "công dân đĩa hạng nhất." Thay vì giả định trạng thái KV phải nằm trong RAM, nó ghi các checkpoint vào SSD nhanh. Điều này cho phép cửa sổ ngữ cảnh 100K-300K (và thậm chí 1M) trên các máy có RAM hạn chế.
 
@@ -109,7 +110,7 @@ DS4 bao gồm một backend CPU, nhưng Sanfilippo rõ ràng: **"Đừng coi đ�
 
 4. **Model-specific graph executor**: Bằng cách không cố gắng hỗ trợ mọi tệp GGUF tồn tại, DS4 loại bỏ overhead của việc phân phối tensor chung và có thể hardcode các layout bộ nhớ tối ưu và chiến lược kernel fusion cho kiến trúc MoE của DeepSeek V4 Flash.
 
----
+* * *
 
 ## Hướng Dẫn Cài Đặt cho macOS và Linux
 
@@ -127,18 +128,18 @@ DS4 bao gồm một backend CPU, nhưng Sanfilippo rõ ràng: **"Đừng coi đ�
 - GPU NVIDIA với hỗ trợ CUDA
 - CUDA Toolkit 12.x+
 - **96GB+ RAM hệ thống** cho q2; **256GB+** cho q4
-- `build-essential`, `curl`, `git`
+- ````build-essential````, ````curl````, ````git````
 
 ### Bước 1: Sao Chép Repository
 
-```bash
+`````bash
 git clone https://github.com/antirez/ds4.git
 cd ds4
-```
+`````
 
 ### Bước 2: Tải Trọng Số Mô Hình
 
-DS4 chỉ hoạt động với các tệp GGUF được chế tạo đặc biệt của riêng nó. Sử dụng script tải xuống được cung cấp: ```bash
+DS4 chỉ hoạt động với các tệp GGUF được chế tạo đặc biệt của riêng nó. Sử dụng script tải xuống được cung cấp: `````bash
 # Cho máy RAM 96-128GB (khuyến nghị)
 ./download_model.sh q2-imatrix
 
@@ -147,53 +148,53 @@ DS4 chỉ hoạt động với các tệp GGUF được chế tạo đặc biệ
 
 # Tùy chọn: hỗ trợ speculative decoding
 ./download_model.sh mtp
-```
+`````
 
-Script tải từ Hugging Face (`antirez/deepseek-v4-gguf`), lưu trữ tệp trong `./gguf/`, và tạo một symlink tại `./ds4flash.gguf`.
+Script tải từ Hugging Face (````antirez/deepseek-v4-gguf````), lưu trữ tệp trong ````./gguf/````, và tạo một symlink tại ````./ds4flash.gguf````.
 
 ### Bước 3: Build Engine
 
 **macOS (Metal):**
-```bash
+`````bash
 make
-```
+`````
 
 **Linux (CUDA — DGX Spark / GB10):**
-```bash
+`````bash
 make cuda-spark
-```
+`````
 
 **Linux (CUDA — GPU chung):**
-```bash
+`````bash
 make cuda-generic
-```
+`````
 
 **Chỉ CPU (chẩn đoán):**
-```bash
+`````bash
 make cpu
-```
+`````
 
-Điều này tạo ra hai binary: - `./ds4` — CLI tương tác
-- `./ds4-server` — Server HTTP API tương thích OpenAI/Anthropic
+Điều này tạo ra hai binary: - ````./ds4```` — CLI tương tác
+- ````./ds4-server```` — Server HTTP API tương thích OpenAI/Anthropic
 
 ### Bước 4: Xác Minh Cài Đặt
 
-```bash
+`````bash
 # Kiểm tra one-shot nhanh
 ./ds4 -p "Explain the CAP theorem in one paragraph."
 
 # Xem tất cả tùy chọn
 ./ds4 --help
 ./ds4-server --help
-```
+`````
 
----
+* * *
 
 ## Benchmark Hiệu Năng: DS4 so với Ollama so với llama.cpp
 
 Benchmark suy luận LLM nổi tiếng là khó — các con số thay đổi theo độ dài prompt, lượng tử hóa, kích thước batch và phần cứng. Dù vậy, các con số được công bố của DS4 cho thấy hiệu năng ấn tượng, đặc biệt cho **prefill ngữ cảnh dài**.
 
-### Benchmark Chính Thức DS4 (Metal, `--ctx 32768`, greedy decoding, `-n 256`)
+### Benchmark Chính Thức DS4 (Metal, ````--ctx 32768````, greedy decoding, ````-n 256````)
 
 | Máy | Quant | Prompt | Prefill | Generation |
 |---------|-------|--------|---------|------------|
@@ -214,47 +215,47 @@ llama.cpp là dự án nền tảng đã làm cho suy luận LLM local trở nê
 
 **Kết Luận:** Nếu bạn muốn một con dao Thụy Sĩ cho nhiều mô hình, Ollama hoặc llama.cpp là lựa chọn tốt hơn. Nếu bạn muốn DeepSeek V4 Flash chạy nhanh và đáng tin cậy nhất trên Mac Studio hoặc máy trạm CUDA của bạn, DS4 được xây dựng dành riêng cho công việc đó.
 
----
+* * *
 
 ## Ví Dụ Mã cho Suy Luận
 
 ### CLI Prompt One-Shot
 
-```bash
+`````bash
 ./ds4 -p "Write a Python function to implement merge sort."
-```
+`````
 
 ### Phiên Chat Tương Tác
 
-```bash
+`````bash
 ./ds4
-```
+`````
 
-Điều này khởi động một cuộc trò chuyện đa lượt với trạng thái KV liên tục. Các lệnh hữu ích: - `/help` — Hiển thị các lệnh có sẵn
-- `/think` — Bật chế độ suy nghĩ (mặc định)
-- `/think-max` — Nỗ lực suy luận tối đa
-- `/nothink` — Tắt suy nghĩ cho phản hồi nhanh hơn
-- `/ctx 100000` — Đặt kích thước cửa sổ ngữ cảnh
-- `/read FILE` — Bao gồm nội dung tệp trong ngữ cảnh
-- `/quit` — Thoát
+Điều này khởi động một cuộc trò chuyện đa lượt với trạng thái KV liên tục. Các lệnh hữu ích: - ````/help```` — Hiển thị các lệnh có sẵn
+- ````/think```` — Bật chế độ suy nghĩ (mặc định)
+- ````/think-max```` — Nỗ lực suy luận tối đa
+- ````/nothink```` — Tắt suy nghĩ cho phản hồi nhanh hơn
+- ````/ctx 100000```` — Đặt kích thước cửa sổ ngữ cảnh
+- ````/read FILE```` — Bao gồm nội dung tệp trong ngữ cảnh
+- ````/quit```` — Thoát
 
 ### Chế Độ Server với API Tương Thích OpenAI
 
-```bash
+`````bash
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir /tmp/ds4-kv \
   --kv-disk-space-mb 8192
-```
+`````
 
-Server khởi động tại `http://127.0.0.1:8000` với các endpoint sau: - `GET /v1/models`
-- `POST /v1/chat/completions`
-- `POST /v1/completions`
-- `POST /v1/messages` (tương thích Anthropic)
+Server khởi động tại ````http://127.0.0.1:8000```` với các endpoint sau: - ````GET /v1/models````
+- ````POST /v1/chat/completions````
+- ````POST /v1/completions````
+- ````POST /v1/messages```` (tương thích Anthropic)
 
 ### Ví Dụ cURL (Chat Completions)
 
-```bash
+`````bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -264,11 +265,11 @@ curl http://127.0.0.1:8000/v1/chat/completions \
     ],
     "stream": true
   }'
-```
+`````
 
 ### Ví Dụ Client Python
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -287,11 +288,11 @@ response = client.chat.completions.create(
 )
 
 for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
 ### Ví Dụ Sử Dụng Công Cụ
 
-DS4 hỗ trợ function calling theo kiểu OpenAI. Server chuyển đổi các schema công cụ sang định dạng DSML của DeepSeek và ánh xạ kết quả tự động: ```bash
+DS4 hỗ trợ function calling theo kiểu OpenAI. Server chuyển đổi các schema công cụ sang định dạng DSML của DeepSeek và ánh xạ kết quả tự động: `````bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -312,9 +313,9 @@ curl http://127.0.0.1:8000/v1/chat/completions \
     }],
     "tool_choice": "auto"
   }'
-```
+````
 
----
+* * *
 
 ## Trường Hợp Sử Dụng: DS4 Xuất Sắc Ở Đâu
 
@@ -341,7 +342,7 @@ Cửa sổ ngữ cảnh 1 triệu token mở ra những khả năng trước đ�
 
 Với chi phí bằng không cho mỗi token, suy luận local với DS4 loại bỏ chi phí API cho các quy trình khối lượng cao. Khoản đầu tư phần cứng ban đầu (một Mac cao cấp hoặc máy trạm) nhanh chóng hoàn vốn khi xử lý hàng triệu token mỗi tháng.
 
----
+* * *
 
 ## Các Hạn Chế Bạn Cần Biết
 
@@ -361,7 +362,7 @@ DS4 rất mạnh, nhưng điều quan trọng là phải hiểu các ràng buộ
 
 8. **Phạm vi nền tảng**: Được tối ưu hóa cho Metal (macOS) và CUDA (Linux). Hỗ trợ Windows và AMD GPU không phải là ưu tiên hiện tại.
 
----
+* * *
 
 ## Kết Luận
 
@@ -371,11 +372,11 @@ DS4 đại diện cho một can đảm về tương lai của suy luận LLM loc
 
 Khi dự án trưởng thành từ alpha sang ổn định, DS4 có thể trở thành cách xác định để chạy DeepSeek V4 Flash local. Nếu bạn có phần cứng và trường hợp sử dụng, nó hoàn toàn đáng để đánh giá cùng với Ollama và llama.cpp.
 
----
+* * *
 
 **Sẵn sàng thử DS4?** Truy cập [github.com/antirez/ds4](https://github.com/antirez/ds4), sao chép repository, tải trọng số q2-imatrix và trải nghiệm suy luận local hạng biên ngay hôm nay.
 
----
+* * *
 
 *Được xuất bản bởi dibi8 Tech Team. Để biết thêm hướng dẫn về công cụ AI, tài nguyên dành cho nhà phát triển và phần mềm mã nguồn mở, hãy truy cập [dibi8.com](https://dibi8.com).*
 
@@ -390,7 +391,7 @@ A: Nếu nuôi mấy con bot code chạy 24/7, tiền API có khi đốt hàng n
 **Q: Cái trò lưu KV Cache xuống đĩa cứng của DS4 ảo tới mức nào?**
 A: Thằng Ollama tắt tab là bay hết trí nhớ, lúc chat lại phải ngồi đợi nó suy nghĩ. Còn DS4 nó dump cả đống KV Cache xuống SSD. Bạn vứt cái log chat 100k token vào, mai mở lên chat tiếp ngay tắp lự, không phải đợi nó đọc lại từ đầu!
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

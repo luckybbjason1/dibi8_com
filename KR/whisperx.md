@@ -24,11 +24,12 @@ aliases:
   - /kr/posts/whisperx/
 ---
 
+
 {{</* resource-info */>}}
 
 오디오 전사는 쉽습니다. 하지만 **100ms 미만의 단어 수준 타임스탬프**를 얻고, **각 단어를 누가 말했는지 정확히 아는 것**은 어렵습니다. OpenAI Whisper는 초 단위로 드리프트하는 구간 수준 타임스탬프만 제공합니다. 팟캐스트 편집, 비디오 자막, 회의 녹초본, 법적 증언 기록에 있어서 이 정밀도는 사용할 수 없습니다.
 
-**WhisperX**가 등장했습니다 — wav2vec2 강제 음소 정렬과 pyannote.audio 화자 분리를 통해 `faster-whisper`를 강화하는 22,000개 스타를 보유한 오픈소스 툴킷입니다. 그 결과: 70배 실시간 전사 속도에 단어 수준 타임스탬프와 다중 화자 라벨을 제공합니다. INTERSPEECH 2023에서 수락되었으며 전 세계 프로덕션 파이프라인에서 실전 검증을 거쳤습니다.
+**WhisperX**가 등장했습니다 — wav2vec2 강제 음소 정렬과 pyannote.audio 화자 분리를 통해 ```faster-whisper````를 강화하는 22,000개 스타를 보유한 오픈소스 툴킷입니다. 그 결과: 70배 실시간 전사 속도에 단어 수준 타임스탬프와 다중 화자 라벨을 제공합니다. INTERSPEECH 2023에서 수락되었으며 전 세계 프로덕션 파이프라인에서 실전 검증을 거쳤습니다.
 
 이 가이드는 WhisperX 설치, Docker 배포, Python API 통합, 프로덕션 하드닝, 그리고 Whisper, faster-whisper, DeepSpeech와의 정직한 벤치마크 비교를 포함한 완전한 튜토리얼을 제공합니다.
 
@@ -42,7 +43,7 @@ Whisper의 구간 수준 타임스탬프(1-3초 드리프트)와 달리, Whisper
 
 ## WhisperX의 작동 원리
 
-WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진적으로 풍부한 출력을 생성합니다: ```
+WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진적으로 풍부한 출력을 생성합니다: `````
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
 │  단계 1: ASR    │ →  │  단계 2: 정렬    │ →  │  단계 3: 분리    │
 │ (faster-whisper)│    │ (wav2vec2 강제)  │    │ (pyannote.audio) │
@@ -50,9 +51,9 @@ WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진�
          │                       │                       │
     구간 텍스트            단어 타임스탬프         화자 라벨
     (타임스탬프 없음)      (100ms 미만)          (단어당)
-```
+`````
 
-**단계 1 — 전사.** CTranslate2를 통해 `faster-whisper`를 사용한 배치 추론. pyannote의 VAD 전처리가 무음 구간을 제거하여 환각 현상을 줄이고 WER 저하 없이 배치 처리를 가능하게 합니다. 출력: 타임스탬프 없는 텍스트 구간.
+**단계 1 — 전사.** CTranslate2를 통해 ````faster-whisper````를 사용한 배치 추론. pyannote의 VAD 전처리가 무음 구간을 제거하여 환각 현상을 줄이고 WER 저하 없이 배치 처리를 가능하게 합니다. 출력: 타임스탬프 없는 텍스트 구간.
 
 **단계 2 — 정렬.** 언어 특정 wav2vec2 음소 정렬 모델을 통해 전사 텍스트를 실행합니다. 이는 강제 정렬을 통해 각 인식된 단어를 오디오의 정확한 위치에 매핑합니다. 출력: 단어 수준 시작/종료 타임스탬프가 있는 구간.
 
@@ -78,7 +79,7 @@ WhisperX는 Python 3.10+, CUDA 12.8이 포함된 PyTorch 2.7.1+, 그리고 ffmpe
 
 ### 방법 1: PyPI 설치 (권장)
 
-```bash
+`````bash
 # 먼저 CUDA 12.8 toolkit 설치 (Linux)
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 
@@ -87,21 +88,21 @@ pip install whisperx
 
 # 설치 확인
 whisperx --version
-```
+`````
 
 ### 방법 2: uv 설치 (가장 빠름)
 
-```bash
+`````bash
 # Astral uv를 사용한 즉시 도구 실행
 uvx whisperx --help
 
 # 또는 GitHub에서 최신 기능 설치
 uvx git+https://github.com/m-bain/whisperX.git
-```
+`````
 
 ### 방법 3: Docker 설치 (프로덕션)
 
-```bash
+`````bash
 # 모든 의존성이 포함된 사전 빌드 이미지 가져오기
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
@@ -123,11 +124,11 @@ EOF
 docker build -f Dockerfile.whisperx -t whisperx:latest .
 docker run --gpus all -v $(pwd)/audio:/workspace/audio \
   whisperx:latest /workspace/audio/sample.wav --model large-v2
-```
+`````
 
 ### Hugging Face 토큰 설정 (분리에 필요)
 
-화자 분리를 위해서는 pyannote 모델 라이선스 수락이 필요합니다: ```bash
+화자 분리를 위해서는 pyannote 모델 라이선스 수락이 필요합니다: `````bash
 # 1. https://huggingface.co 에서 계정 생성
 # 2. https://huggingface.co/settings/tokens 에서 읽기 토큰 생성
 # 3. 다음 모델 라이선스 수락: #    - pyannote/speaker-diarization-community-1
@@ -138,13 +139,13 @@ export HF_TOKEN="hf_your_token_here"
 
 # CLI로 전달
 whisperx audio.wav --diarize --hf_token $HF_TOKEN
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### faster-whisper
 
-WhisperX는 CTranslate2를 통해 `faster-whisper`를 기본 ASR 백엔드로 사용합니다. 속도/정확도 균형을 위해 빔 크기와 계산 유형을 구성할 수 있습니다: ```python
+WhisperX는 CTranslate2를 통해 ``faster-whisper``를 기본 ASR 백엔드로 사용합니다. 속도/정확도 균형을 위해 빔 크기와 계산 유형을 구성할 수 있습니다: `````python
 import whisperx
 
 # faster-whisper 백엔드로 모델 로드
@@ -159,11 +160,11 @@ model = whisperx.load_model(
         "patience": 2.0,
     }
 )
-```
+`````
 
 ### pyannote.audio
 
-분리는 pyannote.audio 3.1+ 모델을 사용합니다. `DiarizationPipeline`은 pyannote를 래핑하고 WhisperX 특정 화자 할당 기능을 추가합니다: ```python
+분리는 pyannote.audio 3.1+ 모델을 사용합니다. ``DiarizationPipeline``은 pyannote를 래핑하고 WhisperX 특정 화자 할당 기능을 추가합니다: `````python
 from whisperx.diarize import DiarizationPipeline
 
 # pyannote 백엔드로 분리 초기화
@@ -183,21 +184,21 @@ diarize_segments = diarize_model(
 
 # 단어에 화자 할당
 result = whisperx.assign_word_speakers(diarize_segments, result)
-```
+`````
 
 ### OpenAI Whisper
 
-WhisperX는 OpenAI의 Whisper 가중치를 로드하지만 4배 더 빠른 추론을 위해 CTranslate2 형식으로 변환합니다. `--model` 플래그로 Whisper 변형을 선택합니다: ```bash
+WhisperX는 OpenAI의 Whisper 가중치를 로드하지만 4배 더 빠른 추론을 위해 CTranslate2 형식으로 변환합니다. ``--model`` 플래그로 Whisper 변형을 선택합니다: `````bash
 # 모델 크기 옵션: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
 # 8GB VRAM GPU의 경우 INT8 양자화 사용
 whisperx audio.wav --model large-v2 --compute_type int8
-```
+`````
 
 ### Docker Compose 프로덕션 스택
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -226,11 +227,11 @@ services: whisperx: build: context: .
   # 선택: 배치 작업용 Redis 큐
   redis: image: redis:7-alpine
     ports: - "6379:6379"
-```
+`````
 
 ### FastAPI 서비스 래퍼
 
-```python
+`````python
 # api.py - 프로덕션 준비 WhisperX API
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
@@ -290,9 +291,9 @@ async def transcribe(
 
 @app.get("/health")
 async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
-```
+`````
 
-API 실행: ```bash
+API 실행: `````bash
 # 의존성 설치
 pip install fastapi uvicorn python-multipart
 
@@ -302,7 +303,7 @@ uvicorn api:app --host 0.0.0.0 --port 8000 --workers 1
 # curl로 테스트
 curl -X POST "http://localhost:8000/transcribe?diarize=true" \
   -F "file=@interview.wav"
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -340,7 +341,7 @@ WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼
 
 **법적 증언 분석.** 한 소송 지원 회사는 WhisperX를 사용해 8시간 증언 녹초본을 화자 속성과 함께 전사합니다. 단어 수준 정렬은 변호사가 전사의 아무 줄이나 클릭해 오디오/비디오의 정확한 순간으로 이동할 수 있게 합니다. 정식 환경에서 2-3명 화자의 분리 정확도는 약 90%입니다.
 
-**비디오 자막.** 한 미디어 회사는 50개 이상 언어로 SRT 파일을 생성합니다. WhisperX의 VAD 전처리는 무음 구간에서 환각을 제거하고, `--highlight_words` 플래그는 노래방 스타일의 단어 단위 자막을 생성합니다.
+**비디오 자막.** 한 미디어 회사는 50개 이상 언어로 SRT 파일을 생성합니다. WhisperX의 VAD 전처리는 무음 구간에서 환각을 제거하고, ````--highlight_words```` 플래그는 노래방 스타일의 단어 단위 자막을 생성합니다.
 
 **회의 전사.** Slack 봇과 통합되어, WhisperX는 업로드된 오디오 파일을 처리하고 화자 라벨이 있는 스레드 전사를 반환합니다. RTX 3060에서 INT8 양자화는 시간당 10개 이상의 회의를 처리합니다.
 
@@ -348,7 +349,7 @@ WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼
 
 ### 메모리 제한 배포
 
-VRAM이 제한된 GPU의 경우: ```bash
+VRAM이 제한된 GPU의 경우: `````bash
 # INT8 양자화: VRAM 30-40% 절감, 최소 정확도 손실
 whisperx audio.wav \
   --model large-v2 \
@@ -361,11 +362,11 @@ whisperx audio.wav \
   --model base \
   --compute_type int8 \
   --device cpu
-```
+`````
 
 ### 컨테이너 환경 모델 캐싱
 
-```bash
+`````bash
 # 콜드 스타트 지연 방지를 위한 모델 사전 다운로드
 python3 << PYEOF
 import whisperx
@@ -389,11 +390,11 @@ PYEOF
 
 # Docker에서 캐시 마운트
 # -v /host/cache:/root/.cache:rw
-```
+`````
 
 ### 모니터링 및 로깅
 
-```python
+`````python
 # monitoring.py - WhisperX용 Prometheus 메트릭
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -434,16 +435,16 @@ def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.tim
 
 # 9090 포트에서 메트릭 노출
 start_http_server(9090)
-```
+`````
 
 ### 보안 고려사항
 
-1. **토큰 관리.** `HF_TOKEN`을 비밀 관리자(AWS Secrets Manager, Vault)에 저장하고, 코드나 환경 파일에 절대 넣지 마세요.
+1. **토큰 관리.** ````HF_TOKEN````을 비밀 관리자(AWS Secrets Manager, Vault)에 저장하고, 코드나 환경 파일에 절대 넣지 마세요.
 2. **입력 검증.** 업로드된 파일명을 정제하세요. 격리된 임시 디렉토리에서 오디오를 처리하세요.
 3. **속도 제한.** GPU 자원 고갈 방지를 위해 사용자당 속도 제한을 구현하세요.
 4. **모델 격리.** 읽기 전용 루트 파일시스템으로 전용 컨테이너에서 WhisperX를 실행하세요.
 
-```bash
+`````bash
 # 보안 Docker 실행
 docker run --gpus all \
   --read-only \
@@ -452,11 +453,11 @@ docker run --gpus all \
   --cap-drop ALL \
   -e HF_TOKEN_FILE=/run/secrets/hf_token \
   whisperx:latest audio.wav --diarize
-```
+`````
 
 ### Kubernetes로 스케일링
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -484,7 +485,7 @@ spec: replicas: 2
       - name: audio-input
         nfs: server: 10.0.0.5
           path: /shared/audio
-```
+`````
 
 ## 대안과의 비교
 
@@ -516,7 +517,7 @@ spec: replicas: 2
 
 **겹치는 음성은 문제입니다.** 두 화자가 동시에 말할 때, WhisperX(및 Whisper)는 모든 음성을 한 화자에 할당합니다. pyannote 분리 모델은 겹침을 감지할 수 있지만 얽힌 오디오 스트림을 분리할 수는 없습니다. 심한 교차 대화 시나리오에서는 20-30% 화자 오류를 예상하세요.
 
-**분리는 알려진 화자 수에서 가장 정확합니다.** pyannote가 화자 수를 자동 감지할 수 있지만, 4명 이상 녹음에서 정확도는 약 90%(알려진 수)에서 약 75%(자동 감지)로 떨어집니다. 가능할 때 `--min_speakers`와 `--max_speakers`를 전달하세요.
+**분리는 알려진 화자 수에서 가장 정확합니다.** pyannote가 화자 수를 자동 감지할 수 있지만, 4명 이상 녹음에서 정확도는 약 90%(알려진 수)에서 약 75%(자동 감지)로 떨어집니다. 가능할 때 ````--min_speakers````와 ````--max_speakers````를 전달하세요.
 
 **언어별 정렬 모델이 필요합니다.** 단어 수준 정렬은 각 언어에 대한 음소 모델을 필요로 합니다. WhisperX는 20개 이상 언어에 대해 모델을 자동 선택하지만, 저자원 언어에는 품질 정렬기가 부족할 수 있습니다. 타겟 언어에서 테스트 후 결정하세요.
 
@@ -532,7 +533,7 @@ spec: replicas: 2
 
 **Q2: 화자 분리 없이 WhisperX를 사용할 수 있나요?**
 
-예 — 분리는 완전히 선택적입니다. `--diarize` 없이 실행하여 단어 수준 타임스탬프만 얻으세요. 정렬 단계는 항상 실행되므로 여전히 100ms 미만의 단어 타임스탬프를 얻습니다. 이는 처리 시간을 약 40% 줄입니다.
+예 — 분리는 완전히 선택적입니다. ````--diarize```` 없이 실행하여 단어 수준 타임스탬프만 얻으세요. 정렬 단계는 항상 실행되므로 여전히 100ms 미만의 단어 타임스탬프를 얻습니다. 이는 처리 시간을 약 40% 줄입니다.
 
 **Q3: 프로덕션 배포에 어떤 GPU가 필요한가요?**
 
@@ -540,7 +541,7 @@ INT8 양자화가 적용된 RTX 3060 (8GB VRAM)이 large-v2 모델을 편안하�
 
 **Q4: 긴 오디오 파일(2시간 이상)을 어떻게 처리하나요?**
 
-WhisperX는 VAD를 사용해 긴 오디오를 자동으로 분할합니다. 수동 청킹은 필요 없습니다. 4시간 이상 파일의 경우, VRAM이 허용하면 `--batch_size`를 늘리고, 메모리 제한 시스템에서는 4로 줄이세요. VAD 단계는 문장 중간에 단어가 잘리지 않도록 보장합니다.
+WhisperX는 VAD를 사용해 긴 오디오를 자동으로 분할합니다. 수동 청킹은 필요 없습니다. 4시간 이상 파일의 경우, VRAM이 허용하면 ````--batch_size````를 늘리고, 메모리 제한 시스템에서는 4로 줄이세요. VAD 단계는 문장 중간에 단어가 잘리지 않도록 보장합니다.
 
 **Q5: 자체 데이터에서 WhisperX를 파인튜닝할 수 있나요?**
 
@@ -548,7 +549,7 @@ OpenAI의 훈련 스크립트를 사용해 기본 Whisper 모델을 파인튜닝
 
 **Q6: 왜 Hugging Face 토큰이 필요한가요?**
 
-pyannote.audio 화자 분리 모델 (`speaker-diarization-community-1`)은 Hugging Face에 호스팅되어 있으며 라이선스 동의가 필요합니다. 토큰은 동의를 수락했음을 증명합니다. 물론이며 2분이면 설정됩니다. 분리를 걈프면 토큰이 필요 없습니다.
+pyannote.audio 화자 분리 모델 (````speaker-diarization-community-1```)은 Hugging Face에 호스팅되어 있으며 라이선스 동의가 필요합니다. 토큰은 동의를 수락했음을 증명합니다. 물론이며 2분이면 설정됩니다. 분리를 걈프면 토큰이 필요 없습니다.
 
 ## 결론
 
@@ -608,7 +609,7 @@ WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -618,6 +619,6 @@ WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 �
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](whisperx)
 - [moneyprinterturbo-one-click-ai-video-generator](whisperx)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

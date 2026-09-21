@@ -17,6 +17,7 @@ faqs: - q: 'Is Supabase or Firebase cheaper?'
   - q: 'Which is better for AI/vector search?'
     a: 'Supabase wins decisively — it ships pgvector built in, so you can store embeddings and run cosine-similarity searches in the same database as your app data. Firebase has no native vector support and requires bolting on Vertex AI or a separate vector DB. For RAG/AI apps in 2026, Supabase is the obvious pick.'
 ---
+
 # Supabase vs Firebase in 2026: Which BaaS Wins?
 
 
@@ -29,16 +30,16 @@ Use **Supabase** if: You want Postgres + SQL + joins, value open-source and self
 Use **Firebase** if: You need rock-solid realtime sync at massive scale, you're already in Google Cloud, you prefer NoSQL document modeling, or you're shipping a mobile-first app that benefits from Firebase Auth + Crashlytics + Analytics in one bundle.
 
 
----
+* * *
 ## Side-by-Side Comparison
 
 | Feature | Supabase | Firebase |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Vendor** | Supabase Inc. | Google |
 | **Launched** | 2020 | 2011 (acquired by Google 2014) |
@@ -58,7 +59,7 @@ Use **Firebase** if: You need rock-solid realtime sync at massive scale, you're 
 | **SDK languages** | JS, Dart, Swift, Kotlin, Python, Go | JS, Dart, Swift, Kotlin, Unity, C++ |
 
 
----
+* * *
 ## When to Choose Supabase
 
 ### Use case 1: Relational data with joins
@@ -68,12 +69,12 @@ If your app has users, orders, products, posts, comments — anything with relat
 pgvector ships built-in. Store OpenAI/Anthropic embeddings in the same database as your user data, run cosine-similarity queries with a single SQL line, get sub-100ms results up to a few million vectors. Firebase has nothing comparable — you'd need a separate Pinecone/Weaviate/Vertex AI bolt-on.
 
 ### Use case 3: Open source + self-host
-Supabase is Apache 2.0 / PostgreSQL licensed. You can clone the repo, run `docker compose up`, and have the entire stack — Postgres + GoTrue auth + Storage + Realtime + Studio — running on your laptop or VPS. If you ever need to escape the cloud, you already have the escape hatch. Firebase has none.
+Supabase is Apache 2.0 / PostgreSQL licensed. You can clone the repo, run ```docker compose up````, and have the entire stack — Postgres + GoTrue auth + Storage + Realtime + Studio — running on your laptop or VPS. If you ever need to escape the cloud, you already have the escape hatch. Firebase has none.
 
 ### Use case 4: Predictable pricing
 Supabase Pro is $25/mo flat with included compute, plus metered overages. You can budget. Firebase Blaze is pay-as-you-go with per-document reads, per-function invocation, per-GB egress — one viral tweet or buggy loop can drop a $400 bill overnight. Many Firebase horror stories on Reddit start with "I didn't know loops could read 1M docs."
 
----
+* * *
 
 ## When to Choose Firebase
 
@@ -89,7 +90,7 @@ If you're already deep in GCP — BigQuery exports, Cloud Run, Vertex AI, IAM �
 ### Use case 4: Anonymous + phone auth at scale
 Firebase Auth has the most mature anonymous auth and SMS phone auth in the BaaS world. For social apps where users browse first and sign up later, Firebase makes anonymous → permanent account upgrade trivial.
 
----
+* * *
 
 ## Pricing Deep Dive
 
@@ -113,17 +114,17 @@ For predictable monthly bills: **Supabase Pro $25/mo** wins by a mile.
 For zero-traffic side projects: **Firebase Spark** lasts longer because there's no project-pausing.
 For analytics-heavy or AI/RAG apps: **Supabase wins 5-10x** on monthly bills.
 
----
+* * *
 
 ## Performance Benchmarks (Subjective, From My Daily Use)
 
 | Task | Supabase | Firebase |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Simple CRUD app | 9/10 | 9/10 |
 | Complex relational queries | 10/10 | 4/10 |
@@ -139,29 +140,29 @@ For analytics-heavy or AI/RAG apps: **Supabase wins 5-10x** on monthly bills.
 
 → Supabase wins relational, AI, pricing, lock-in. Firebase wins massive-scale realtime and mobile-first observability.
 
----
+* * *
 
 ## Migration Tips
 
 ### Firebase → Supabase
-- Export Firestore data to JSON via `firebase-tools` (`firebase firestore:export`)
+- Export Firestore data to JSON via ````firebase-tools```` (````firebase firestore:export````)
 - Design Postgres schema first — denormalize Firestore into relational tables
-- Use Supabase's bulk import via `psql` or Studio CSV uploader
-- Replace Firestore listeners with `supabase.channel().on(postgres_changes, ...)`
-- Migrate Firebase Auth users via Supabase's `auth.admin.createUser()` API (passwords need re-hash — send users a password reset email)
+- Use Supabase's bulk import via ````psql```` or Studio CSV uploader
+- Replace Firestore listeners with ````supabase.channel().on(postgres_changes, ...)````
+- Migrate Firebase Auth users via Supabase's ````auth.admin.createUser()```` API (passwords need re-hash — send users a password reset email)
 - Run both stacks in parallel for one billing cycle to compare bills
 
 ### Supabase → Firebase
-- Export Postgres tables to CSV (`COPY ... TO STDOUT`)
+- Export Postgres tables to CSV (````COPY ... TO STDOUT````)
 - Flatten relational data into denormalized Firestore documents (this is the hard part — plan for 1-2 weeks of schema redesign)
 - Replace SQL queries with Firestore SDK calls — expect to lose joins and rebuild as composite indexes
-- Migrate auth users via Firebase Admin SDK `importUsers()` with passwordHash blob
+- Migrate auth users via Firebase Admin SDK ````importUsers()``` with passwordHash blob
 - Budget for surprise bills the first month — set up GCP budget alerts day one
 
 ### Self-Hosting Note
 Want to run Supabase on your own server to escape cloud bills entirely or to keep data on-prem for compliance? Spin up a {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet with $200 free credit" >}} — a $24/mo 4 GB droplet handles a self-hosted Supabase stack (Postgres + GoTrue + Storage + Realtime + Studio) for a small-to-medium SaaS comfortably. Cheaper than Supabase Pro after month 4, and your data never leaves your infrastructure. Firebase has no equivalent — there's no way to self-host out of Google's cloud.
 
----
+* * *
 
 ## Alternatives Worth Trying
 
@@ -171,7 +172,7 @@ If neither Supabase nor Firebase fits, consider: - **[Appwrite](https://dibi8.co
 - **Nhost** — Postgres + Hasura GraphQL + Auth, similar to Supabase but GraphQL-native
 - **Neon + Clerk + Cloudflare R2** — DIY composable stack, max flexibility, more wiring
 
----
+* * *
 
 ## dibi8's Take
 
@@ -183,13 +184,13 @@ If you want both data portability and Google-scale realtime → **Supabase on a 
 
 For an indie dev shipping a SaaS in 2026? **Supabase Pro $25/mo** is the best raw ROI in the BaaS category — predictable bills, SQL flexibility, built-in pgvector for AI features, and a real escape hatch via self-hosting. Firebase is still the king of mobile-first realtime at scale, but you pay for it in lock-in and unpredictable monthly bills.
 
----
+* * *
 
 ## FAQ
 
 (rendered via faqs frontmatter — visible inline + JSON-LD for AIO)
 
----
+* * *
 
 ## Further Reading
 
@@ -233,7 +234,7 @@ For an indie dev shipping a SaaS in 2026? **Supabase Pro $25/mo** is the best ra
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -243,6 +244,6 @@ For an indie dev shipping a SaaS in 2026? **Supabase Pro $25/mo** is the best ra
 - [claude-code-vs-cline](supabase-vs-firebase)
 - [cursor-vs-windsurf](supabase-vs-firebase)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

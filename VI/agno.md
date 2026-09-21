@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/agno/
 ---
 
+
 {{</* resource-info */>}}
 
 Chọn một framework AI Agent vào năm 2026 giống như đi qua một bãi mìn. Trong 18 tháng qua, hàng chục thư viện đã xuất hiện hứa hẹn "đơn giản hóa" việc phát triển agent, nhưng hầu hết lại tạo thêm nhiều lớp trừu tượng hơn giá trị thực tế. Các nhóm phát triển báo cáo rằng họ đã dành hàng tuần để học ngữ nghĩa điều phối dựa trên đồ thị, chỉ để phát hiện rằng use case của họ chỉ cần một vòng lặp gọi công cụ nhẹ nhàng. Agno (trước đây là Phidata) phá vỡ sự ồn ào này bằng triết lý ưu tiên runtime: xây dựng agent nhanh, chạy chúng như các dịch vụ, và kiểm soát toàn bộ stack của bạn. Với **40.233 GitHub Star**, **452 ngườI đóng góp**, và giấy phép Apache-2.0 mới, Agno đã trở thành framework hàng đầu cho các nhóm Python triển khai hệ thống agent production. Hướng dẫn **agno tutorial** này đi qua **agno setup**, kiến trúc, ví dụ code thực tế, benchmark **agno vs crewai**, và những sự thật về nơi **lightweight ai framework** này còn thiếu sót.
@@ -40,7 +41,7 @@ Giá trị cốt lõi của Agno rất đơn giản: bạn xây dựng agent b�
 
 ### Tổng Quan Kiến Trúc
 
-Kiến trúc của Agno tách biệt các mối quan tâm thành ba lớp riêng biệt, mỗi lớp có thể thay thế độc lập: ```
+Kiến trúc của Agno tách biệt các mối quan tâm thành ba lớp riêng biệt, mỗi lớp có thể thay thế độc lập: ````
 ┌─────────────────────────────────────────────────────────────┐
 │                    Control Plane (AgentOS UI)                │
 │         Chat · Trace Inspection · Session Management         │
@@ -54,7 +55,7 @@ Kiến trúc của Agno tách biệt các mối quan tâm thành ba lớp riêng
 │              Model Providers (23+ supported)                 │
 │  OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok ... │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### Các Khái Niệm Cốt Lõi
 
@@ -76,7 +77,7 @@ Agno cài đặt trong vòng hai phút với zero phụ thuộc bên ngoài ngo�
 
 ### Bước 1: Tạo Môi Trường Ảo
 
-```bash
+`````bash
 # Sử dụng uv (khuyến nghị)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv --python 3.12
@@ -85,11 +86,11 @@ source .venv/bin/activate
 # Hoặc sử dụng venv chuẩn
 python3 -m venv ~/.venvs/agno
 source ~/.venvs/agno/bin/activate
-```
+`````
 
 ### Bước 2: Cài Đặt Agno
 
-```bash
+`````bash
 # Cài đặt tối thiểu
 uv pip install -U agno
 
@@ -98,18 +99,18 @@ uv pip install -U agno openai
 
 # Cài đặt đầy đủ với các công cụ phổ biến
 uv pip install -U agno openai duckduckgo-search chromadb
-```
+`````
 
 ### Bước 3: Xác Minh Cài Đặt
 
-```bash
+`````bash
 python -c "import agno; print(agno.__version__)"
 # Kỳ vọng: 2.6.8 hoặc mới hơn
-```
+`````
 
 ### Bước 4: Chạy Agent Đầu Tiên
 
-Tạo `basic_agent.py`: ```python
+Tạo ``basic_agent.py``: `````python
 from agno.agent import Agent
 
 agent = Agent(
@@ -119,12 +120,12 @@ agent = Agent(
 )
 
 agent.print_response("Giải thích sự khác biệt giữa asyncio và threading trong Python.", stream=True)
-```
+`````
 
-```bash
+`````bash
 export OPENAI_API_KEY="sk-your-key-here"
 python basic_agent.py
-```
+`````
 
 Chỉ vậy thôi — một agent hoạt động chỉ với 10 dòng Python. Không có cấu hình YAML, không có định nghĩa đồ thị, không có thủ tục phức tạp.
 
@@ -132,7 +133,7 @@ Chỉ vậy thôi — một agent hoạt động chỉ với 10 dòng Python. Kh
 
 ### Tích Hợp OpenAI
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -145,11 +146,11 @@ agent = Agent(
 )
 
 agent.print_response("Tin tức mới nhất về điện toán lượng tử", stream=True)
-```
+`````
 
 ### Tích Hợp Anthropic Claude
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 
@@ -160,11 +161,11 @@ agent = Agent(
 )
 
 agent.print_response("Phân tích thị trường EV ở Đông Nam Á.", stream=True)
-```
+`````
 
 ### Tích Hợp Ollama (Mô Hình Local)
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.ollama import Ollama
 
@@ -175,9 +176,9 @@ agent = Agent(
 )
 
 agent.print_response("Giải thích đệ quy bằng ví dụ Python.", stream=True)
-```
+`````
 
-```bash
+`````bash
 # Cài đặt Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -186,11 +187,11 @@ ollama pull qwen3
 
 # Chạy
 python ollama_agent.py
-```
+`````
 
 ### Triển Khai Docker
 
-```dockerfile
+`````dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -201,9 +202,9 @@ COPY . .
 EXPOSE 8000
 
 CMD ["python", "workbench.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: agentos: build: .
@@ -212,11 +213,11 @@ services: agentos: build: .
       - AGNO_ENV=production
     volumes: - ./data:/app/data
     restart: unless-stopped
-```
+`````
 
 ### Triển Khai AWS (ECS với Fargate)
 
-```bash
+`````bash
 # Build và push lên ECR
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 
@@ -231,7 +232,7 @@ aws ecs create-service \
   --task-definition agno-task:1 \
   --desired-count 2 \
   --launch-type FARGATE
-```
+`````
 
 ## Benchmark / Các Use Case Thực Tế
 
@@ -264,7 +265,7 @@ Những con số này có ý nghĩa khi quy mô lớn. Một dịch vụ chạy 
 
 ### Hệ Thống Đa Agent
 
-Team Agno cho phép bạn tạo nhóm agent mà không cần định nghĩa đồ thị: ```python
+Team Agno cho phép bạn tạo nhóm agent mà không cần định nghĩa đồ thị: `````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -293,11 +294,11 @@ team = Team(
 )
 
 team.print_response("Viết một bài viết về xu hướng năng lượng tái tạo năm 2026.", stream=True)
-```
+`````
 
 ### Agentic RAG với Cơ Sở Kiến Thức
 
-```python
+`````python
 from agno.agent import Agent
 from agno.knowledge.embedder.google import GeminiEmbedder
 from agno.knowledge.knowledge import Knowledge
@@ -325,11 +326,11 @@ agent = Agent(
 )
 
 agent.print_response("Agno là gì?", stream=True)
-```
+`````
 
 ### Dịch Vụ Production với Lưu Trữ Session
 
-```python
+`````python
 from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.os import AgentOS
@@ -348,9 +349,9 @@ workbench = Agent(
 # Cung cấp như API
 AgentOS.agent = workbench
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
-```bash
+`````bash
 # Khởi động dịch vụ
 python workbench.py
 
@@ -358,11 +359,11 @@ python workbench.py
 curl -X POST http://localhost:8000/v1/agents/workbench/run \
   -H "Content-Type: application/json" \
   -d '{"message": "Tổ chức thư mục tải xuống của tôi", "session_id": "user-123"}"
-```
+`````
 
 ### Bảo Mật & Giám Sát
 
-```python
+`````python
 from agno.agent import Agent
 from agno.os import AgentOS
 
@@ -379,7 +380,7 @@ agent = Agent(
 # Truy vết OpenTelemetry (tự động cấu hình trong AgentOS)
 AgentOS.agent = agent
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
 ## So Sánh với Các Lựa Chọn Thay Thế
 
@@ -427,11 +428,11 @@ Agno ưu tiên chi phí runtime và đóng gói dịch vụ — bạn có backen
 
 ### Tôi có thể chạy Agno chỉ với các model local không?
 
-Có. Agno tích hợp với Ollama, LM Studio và bất kỳ endpoint local tương thích OpenAI nào. Nhà cung cấp model `Ollama` cho phép bạn chạy hoàn toàn ngoại tuyến với các model như Llama 3, Qwen3 hoặc Mistral. Không cần API key hay phụ thuộc đám mây cho các triển khai local.
+Có. Agno tích hợp với Ollama, LM Studio và bất kỳ endpoint local tương thích OpenAI nào. Nhà cung cấp model ````Ollama```` cho phép bạn chạy hoàn toàn ngoại tuyến với các model như Llama 3, Qwen3 hoặc Mistral. Không cần API key hay phụ thuộc đám mây cho các triển khai local.
 
 ### Agno hỗ trợ những cơ sở dữ liệu nào cho lưu trữ session?
 
-Agno hỗ trợ SQLite, PostgreSQL, MySQL và LanceDB cho lưu trữ session và bộ nhớ. Các class `SqliteDb`, `PostgresDb` và `LanceDb` xử lý đọc/ghi session tự động — không cần SQL thủ công. Các cơ sở dữ liệu vector được hỗ trợ bao gồm ChromaDB, LanceDB và pgvector cho cơ sở kiến thức RAG.
+Agno hỗ trợ SQLite, PostgreSQL, MySQL và LanceDB cho lưu trữ session và bộ nhớ. Các class ````SqliteDb````, ````PostgresDb```` và ````LanceDb```` xử lý đọc/ghi session tự động — không cần SQL thủ công. Các cơ sở dữ liệu vector được hỗ trợ bao gồm ChromaDB, LanceDB và pgvector cho cơ sở kiến thức RAG.
 
 ### Agno có phù hợp cho triển khai doanh nghiệp không?
 
@@ -439,7 +440,7 @@ Có, với một số lưu ý. AgentOS runtime của Agno bao gồm RBAC, vòng 
 
 ### Làm thế nào để di chuyển từ Phidata sang Agno?
 
-Việc di chuyển bao gồm cập nhật import package từ `phidata` sang `agno` và thích ứng với các thay đổi API 2.x. Nhóm Agno cung cấp [hướng dẫn di chuyển](https://docs.agno.com/migration) bao gồm các pattern phổ biến. Các thay đổi chính bao gồm class `Agent` thay thế `PhiAgent`, class `Team` thay thế `PhiTeam`, và AgentOS runtime trở thành một module riêng biệt. Hầu hết các việc di chuyển mất vài giờ cho codebase có quy mô trung bình.
+Việc di chuyển bao gồm cập nhật import package từ ````phidata```` sang ````agno```` và thích ứng với các thay đổi API 2.x. Nhóm Agno cung cấp [hướng dẫn di chuyển](https://docs.agno.com/migration) bao gồm các pattern phổ biến. Các thay đổi chính bao gồm class ````Agent```` thay thế ````PhiAgent````, class ````Team```` thay thế ````PhiTeam```, và AgentOS runtime trở thành một module riêng biệt. Hầu hết các việc di chuyển mất vài giờ cho codebase có quy mô trung bình.
 
 ### Tôi có thể sử dụng Agno mà không cần AgentOS runtime không?
 
@@ -475,7 +476,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So Sánh AI Agents Kit 2026](https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/) — Xếp hạng framework do cộng đồng bình chọn
 - [So Sánh Chi Tiết Agno vs CrewAI](https://respan.ai/market-map/compare/agno-vs-crewai) — Phân tích tính năng với đánh giá cộng đồng
 
----
+* * *
 
 *Bài viết này chứa liên kết tiếp thị. Nếu bạn đăng ký dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn.*
 
@@ -505,7 +506,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -515,7 +516,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [ollama-vs-vllm](agno)
 - [ollama-vs-lm-studio](agno)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

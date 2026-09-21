@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 ---
 
+
 ## 简介
 
 大型语言模型已从简单的聊天界面迅速演变为复杂的自主代理——它们做出决策、执行代码、与外部 API 交互并与人类协作。然而，随着这些系统的日益复杂，缺乏统一的架构基础所带来的痛苦也愈发明显。构建 LLM 应用程序的团队面临着与早期云应用相同的结构性挑战：脆弱的配置、不透明的行为、不一致的可观测性，以及难以重现的部署。
@@ -41,13 +42,13 @@ featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main
 
 为每个代理维护单一代码库，并纳入版本控制。与代码分布在多个仓库中的传统微服务架构不同，12-Factor Agents 建议每个独立的代理——即使它编排了多个 LLM 调用——都应该由单一、协调的代码库来表示。这使配置、提示模板、工具定义和业务逻辑紧密耦合，易于推理。
 
-```
+````
 # 初始化一个新的 12 因子代理项目
 npx create-12-factor-agent my-agent
 
 # 或使用 uvx
 uvx create-12-factor-agent my-agent
-```
+`````
 
 ### 2. 依赖项
 
@@ -57,13 +58,13 @@ uvx create-12-factor-agent my-agent
 
 将配置存储在环境变量中。代理配置——API 密钥、模型端点、温度设置、护栏阈值——绝不应硬编码。使用环境变量或密钥管理器。对于代理而言，这一原则尤其关键，因为它们经常访问敏感的外部服务和用户数据。
 
-```bash
+`````bash
 # 为代理设置环境变量
 export OPENAI_API_KEY="sk-..."
 export REDIS_URL="redis://localhost:6379"
 export GUARDRAIL_THRESHOLD="0.85"
 export HUMAN_APPROVAL_ENDPOINT="https://approval.example.com/queue"
-```
+`````
 
 ### 4. 支持服务
 
@@ -73,13 +74,13 @@ export HUMAN_APPROVAL_ENDPOINT="https://approval.example.com/queue"
 
 严格分离构建和运行阶段。构建阶段将你的代理代码、依赖项、提示模板和工具定义组装成发布制品。运行阶段在任意环境中执行该发布。这种分离对可重现性至关重要：同一发布在开发、 staging 或生产环境中运行时行为应一致。
 
-```bash
+`````bash
 # 构建阶段：打包代理
 npx create-12-factor-agent build --output dist/agent-release.tar.gz
 
 # 运行阶段：部署发布
 docker run --env-file .env agent-release:latest
-```
+`````
 
 ### 6. 进程
 
@@ -89,10 +90,10 @@ docker run --env-file .env agent-release:latest
 
 通过端口绑定导出服务。暴露 HTTP API、WebSocket 端点或事件侦听器的代理应显式绑定端口，而非依赖框架管理的反向代理。这使运维人员完全掌控网络、路由和负载均衡。
 
-```bash
+`````bash
 # 在特定端口上运行代理服务器
 python agent_server.py --port 8080 --host 0.0.0.0
-```
+`````
 
 ### 8. 并发
 
@@ -106,11 +107,11 @@ python agent_server.py --port 8080 --host 0.0.0.0
 
 保持开发、staging 和生产尽可能相似。LLM 代理中最大的 bug 来源是开发与生产环境之间的差距。该框架建议使用相同的模型提供商、相同的提示模板和相同的支持服务跨所有环境，仅配置不同。
 
-```bash
+`````bash
 # 跨环境使用一致的设置
 npx create-12-factor-agent init --env staging
 npx create-12-factor-agent init --env production
-```
+`````
 
 ### 11. 日志
 
@@ -120,19 +121,19 @@ npx create-12-factor-agent init --env production
 
 将管理/运维进程作为一次性进程运行。管理任务——数据库迁移、提示模板更新、模型提供商配置更改、审计日志导出——应作为附加到发布的进程一次性运行。这使管理操作与框架的部署模型保持一致。
 
-```bash
+`````bash
 # 将管理任务作为一次性进程运行
 npx create-12-factor-agent admin:migrate --env production
 npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv
-```
+`````
 
 ## 工作原理
 
-12-Factor Agents 框架通过 CLI 工具和架构约定的组合来运作。主要入口点是 `create-12-factor-agent` CLI，它使用推荐的目录结构、配置管理和可观测性钩子来生成项目。
+12-Factor Agents 框架通过 CLI 工具和架构约定的组合来运作。主要入口点是 ````create-12-factor-agent```` CLI，它使用推荐的目录结构、配置管理和可观测性钩子来生成项目。
 
 典型工作流程如下：
 
-```bash
+`````bash
 # 第 1 步：生成新的代理项目
 npx create-12-factor-agent finance-bot
 
@@ -147,7 +148,7 @@ cd finance-bot
 # - services/      (支持服务集成)
 # - tests/         (测试工具)
 # - docker-compose.yml (本地开发环境)
-```
+`````
 
 生成的项目采用分层架构。最底层，支持服务连接到环境的配置。其上是工具和集成层，提供代理的能力。最顶层，提示模板将这些能力编排成连贯的代理行为。
 
@@ -155,29 +156,29 @@ cd finance-bot
 
 ## 安装和设置
 
-作为一个基于原则的框架，12-Factor Agents 不需要传统的 `pip install` 或 `npm install`。相反，你可以使用以下两种 CLI 工具之一来生成项目脚手架：
+作为一个基于原则的框架，12-Factor Agents 不需要传统的 ````pip install```` 或 ````npm install````。相反，你可以使用以下两种 CLI 工具之一来生成项目脚手架：
 
-```bash
+`````bash
 # 方法 1：使用 npx（Node.js）
 npx create-12-factor-agent
 
 # 方法 2：使用 uvx（Python，需要 uv 包管理器）
 uvx create-12-factor-agent
-```
+`````
 
-两个工具都会创建一个具有推荐项目结构的新目录、一个列出所有必需环境变量的 `.env.example` 文件、一个 Dockerfile，以及一个你需要定制的初级代理实现。
+两个工具都会创建一个具有推荐项目结构的新目录、一个列出所有必需环境变量的 ````.env.example```` 文件、一个 Dockerfile，以及一个你需要定制的初级代理实现。
 
-```bash
+`````bash
 # 如果你还没有安装 uv
 pip install uv
 
 # 创建一个新的代理项目
 uvx create-12-factor-agent --name my-agent --template production
-```
+`````
 
 对于希望从零开始而不使用脚手架的团队，框架文档提供了生产级代理实现中需要满足的完整清单：
 
-```bash
+`````bash
 # 清单验证脚本
 # 验证你的代理遵循 12 因子原则
 cat > verify-12factor.sh << 'EOF'
@@ -190,7 +191,7 @@ echo "验证完成。"
 EOF
 chmod +x verify-12factor.sh
 ./verify-12factor.sh
-```
+`````
 
 ## 集成模式
 
@@ -200,7 +201,7 @@ chmod +x verify-12factor.sh
 
 该框架对人在回路工作流有一等支持。当代理遇到需要人工批准的操作时，它会暂停并向配置的审批端点发布请求。人工在仪表盘中审核请求、批准或拒绝它，然后代理继续执行。
 
-```bash
+`````bash
 # 配置人工审批环境变量
 export HUMAN_APPROVAL_SERVICE="https://approval.example.com"
 export HUMAN_APPROVAL_TIMEOUT="300"
@@ -208,13 +209,13 @@ export HUMAN_APPROVAL_RETRIES="3"
 
 # 启用人在回路模式启动代理
 npx create-12-factor-agent run --enable-hil
-```
+`````
 
 ### 可观测性集成
 
 每个代理进程都会输出结构化日志、指标和追踪。该框架集成标准可观测性后端：
 
-```bash
+`````bash
 # 配置 OpenTelemetry 用于分布式追踪
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -222,13 +223,13 @@ export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
 
 # 启用遥测运行
 npx create-12-factor-agent run --telemetry enabled
-```
+`````
 
 ### 多代理编排
 
 对于复杂任务，该框架支持编排多个遵循 12 因子原则的代理。一个主管代理将子任务委托给工作代理，收集它们的结果并综合最终响应。
 
-```bash
+`````bash
 # 定义多代理配置
 cat > agents.yaml << 'EOF'
 supervisor: model: gpt-4o
@@ -240,7 +241,7 @@ workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [data_analysis, chart_generation]
 EOF
-```
+`````
 
 ## 基准测试和采用情况
 
@@ -252,13 +253,13 @@ EOF
 
 | 指标 | 12 因子之前 | 12 因子之后 | 改进 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 平均恢复时间（MTTR） | 4.2 小时 | 47 分钟 | 减少 81% |
 | 代理失败率 | 18.5% | 3.2% | 减少 83% |
@@ -276,7 +277,7 @@ EOF
 
 12-Factor Agents 支持自定义工具注册表，允许团队独立于代理代码对工具进行版本控制、测试和部署：
 
-```bash
+`````bash
 # 注册自定义工具
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -286,13 +287,13 @@ npx create-12-factor-agent tools:register \
 npx create-12-factor-agent tools:test \
   --registry ./tools/registry.yaml \
   --output ./test-results
-```
+`````
 
 ### 提示模板版本控制
 
 提示模板被视为应进行版本控制和测试的一等公民制品。该框架推荐一种提示版本控制方案：
 
-```bash
+`````bash
 # 为提示模板打版本
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -303,13 +304,13 @@ npx create-12-factor-agent prompts:version \
 npx create-12-factor-agent prompts:rollback \
   --name "finance-summary" \
   --to-version v2.0.3
-```
+`````
 
 ### 速率限制和护栏
 
 生产级代理需要强大的速率限制来防止成本超支和滥用。该框架包含内置速率限制：
 
-```bash
+`````bash
 # 配置速率限制
 cat > rate-limits.yaml << 'EOF'
 global: requests_per_minute: 60
@@ -321,19 +322,19 @@ EOF
 
 # 应用速率限制
 npx create-12-factor-agent run --rate-limits rate-limits.yaml
-```
+`````
 
 ### 审计日志
 
 对于受监管的行业，审计日志跟踪代理做出的每一个决策：
 
-```bash
+`````bash
 # 启用全面的审计日志
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
 
 npx create-12-factor-agent run --audit-logging enabled
-```
+`````
 
 ## 与替代方案的比较
 
@@ -341,15 +342,15 @@ npx create-12-factor-agent run --audit-logging enabled
 
 | 特性 | 12-Factor Agents | LangChain | LlamaIndex | DSPy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 理念 | 基于原则的框架 | 代码库 | 代码库 | 基于编译器的优化 |
 | 学习曲线 | 中等（概念性） | 高 | 高 | 高 |
@@ -373,7 +374,7 @@ DSPy 采取了完全不同的方法，专注于提示和思维链推理的程序
 
 **陡峭的概念学习曲线。** 理解十二个因素中的每一个在 LLM 上下文中的重要性需要阅读和反思。新团队可能会发现一次性采用所有十二个因素令人望而却步。推荐的方法是从第 1、2、3 和 10 个因素（代码库、依赖项、配置和开发/生产一致性）开始，然后逐步加入其余部分。
 
-**没有官方 SDK。** 与竞争框架不同，没有官方的软件开发套件来实现所有十二个因素。`create-12-factor-agent` CLI 是一个社区工具，而非官方产品。这意味着你可能需要将其脚手架适配到你特定的技术栈。
+**没有官方 SDK。** 与竞争框架不同，没有官方的软件开发套件来实现所有十二个因素。````create-12-factor-agent``` CLI 是一个社区工具，而非官方产品。这意味着你可能需要将其脚手架适配到你特定的技术栈。
 
 **对特定 LLM 提供商的原生支持有限。** 该框架在设计上是与提供商无关的，这是一个特点，但也意味着它不提供与任何单个模型提供商的独特功能的深度集成。
 
@@ -490,12 +491,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](12-factor-agents)
@@ -504,7 +505,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents-production-llm-software-2026](12-factor-agents)
 - [1m-context-window-llm-2026-real-test](12-factor-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -535,15 +536,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

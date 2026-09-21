@@ -33,6 +33,7 @@ faqs: - q: 'PageIndex란 무엇이며 기존 RAG와 어떻게 다른가요?'
     a: 'PageIndex는 구조가 중요하고 설명 가능한 인용이 필요한 길고 전문적인 문서를 위해 설계되었습니다. 예를 들어 재무 보고서와 사업설명서, 법률 계약서와 판례법, 의학 문헌과 임상시험 보고서, 그리고 API 레퍼런스나 운영 매뉴얼 같은 기술 문서 등이 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 ![PageIndex 공식 hero 배너](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)
@@ -51,7 +52,7 @@ faqs: - q: 'PageIndex란 무엇이며 기존 RAG와 어떻게 다른가요?'
 GitHub: https://github.com/VectifyAI/PageIndex  
 Stars: **29,202+** | 언어: Python | 라이선스: Apache-2.0
 
----
+* * *
 
 ## 왜 전통적인 RAG가 충분하지 않은가?
 
@@ -71,13 +72,13 @@ PageIndex는 **인간 전문가**가 문서를 읽는 방식을 모방합니다:
 2. 질문에 따라 어떤 장으로 가야 할지 추론
 3. 관련 장에서 깊이 찾아보기
 
----
+* * *
 
 ## 핵심 기술 원리
 
 ### 1. 문서 트리 구조 생성
 
-PageIndex는 PDF를 계층적 트리 구조로 변환합니다: ```json
+PageIndex는 PDF를 계층적 트리 구조로 변환합니다: ````json
 {
   "title": "Financial Stability",
   "node_id": "0006",
@@ -93,7 +94,7 @@ PageIndex는 PDF를 계층적 트리 구조로 변환합니다: ```json
     }
   ]
 }
-```
+`````
 
 ### 2. 추론 기반 트리 검색
 
@@ -109,52 +110,52 @@ PageIndex는 AlphaGo에서 영감을 받아 **트리 검색 알고리즘**을 �
 - **평가** — LLM이 노드 관련성 평가
 - **역전파** — 노드 가중치 업데이트
 
----
+* * *
 
 ## 빠른 시작
 
 ### 설치
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/VectifyAI/PageIndex.git
 cd PageIndex
 
 # 의존성 설치
 pip3 install --upgrade -r requirements.txt
-```
+`````
 
 ### API Key 설정
 
-```bash
+`````bash
 # .env 파일 생성
 echo "OPENAI_API_KEY=your_openai_key_here" > .env
-```
+`````
 
 ### 문서 트리 생성
 
-```bash
+`````bash
 # PDF용 PageIndex 트리 구조 생성
 python3 run_pageindex.py --pdf_path /path/to/your/document.pdf
-```
+`````
 
 ### 선택적 매개변수
 
-```bash
+`````bash
 --model                  # LLM 모델 (기본: gpt-4o-2024-11-20)
 --toc-check-pages       # 목차 확인 페이지 (기본: 20)
 --max-pages-per-node    # 노드당 최대 페이지 (기본: 10)
 --max-tokens-per-node   # 노드당 최대 토큰 (기본: 20000)
 --if-add-node-summary   # 노드 요약 추가 (기본: yes)
-```
+`````
 
----
+* * *
 
 ## 실전 예시
 
 ### 예시 1: 금융 문서 분석
 
-```python
+`````python
 from pageindex import PageIndex
 
 # 문서 트리 로드
@@ -171,11 +172,11 @@ print(result.answer)
 
 print(result.sources)
 # [{"page": 45, "section": "Financial Results", "node_id": "0012"}]
-```
+`````
 
 ### 예시 2: 법률 계약 검토
 
-```python
+`````python
 # 계약 문서 로드
 pi = PageIndex(tree_path="contract.pdf.json")
 
@@ -185,11 +186,11 @@ result = pi.query(
 )
 
 # PageIndex가 자동으로 관련 장을 찾아줍니다
-```
+`````
 
 ### 예시 3: 학술 논문 연구
 
-```python
+`````python
 # 논문 로드
 pi = PageIndex(tree_path="paper.pdf.json")
 
@@ -199,9 +200,9 @@ result = pi.query(
 )
 
 # PageIndex가 트리 구조를 탐색하여 연관 정보를 찾습니다
-```
+`````
 
----
+* * *
 
 ## 경쟁사 비교
 
@@ -215,7 +216,7 @@ result = pi.query(
 | 전문 문서 | ✅ 우수 | ⚠️ 보통 | ⚠️ 보통 | ⚠️ 보통 |
 | 정확도 | ✅ 98.7% | ~75% | ~80% | ~78% |
 
----
+* * *
 
 ## 비즈니스 모델과 수익 기회
 
@@ -239,7 +240,7 @@ PageIndex 관련 다음을 제공: - **기술 컨설팅**
 - **맞춤형 개발**
 - **교육 서비스**
 
----
+* * *
 
 ## 성능 벤치마크
 
@@ -253,17 +254,17 @@ PageIndex 관련 다음을 제공: - **기술 컨설팅**
 
 PageIndex는 금융 문서 Q&A에서 **state-of-the-art**를 달성하여 추론 기반 검색의 우수성을 입증했습니다.
 
----
+* * *
 
 ## 배포 옵션
 
 ### 1. 자체 호스팅 (오픈소스)
 
-```bash
+`````bash
 git clone https://github.com/VectifyAI/PageIndex.git
 pip3 install -r requirements.txt
 python3 run_pageindex.py --pdf_path your.pdf
-```
+````
 
 적합: 기술 팀, 데이터 민감한 시나리오
 
@@ -281,7 +282,7 @@ python3 run_pageindex.py --pdf_path your.pdf
 - 맞춤형 OCR 파이프라인
 - 전담 지원
 
----
+* * *
 
 ## 커뮤니티와 리소스
 
@@ -291,7 +292,7 @@ python3 run_pageindex.py --pdf_path your.pdf
 - **Discord**: https://discord.com/invite/VuXuf29EUj
 - **API**: https://pageindex.ai/developer
 
----
+* * *
 
 ## 요약
 
@@ -310,7 +311,7 @@ PageIndex는 RAG 기술의 차세대 진화입니다: ✅ **29K+ Stars** — 커
 
 **시작하기**: https://github.com/VectifyAI/PageIndex
 
----
+* * *
 
 ## Related Articles
 
@@ -319,10 +320,10 @@ PageIndex는 RAG 기술의 차세대 진화입니다: ✅ **29K+ Stars** — 커
 - [Agent Reach: AI 에이전트를 인터넷에 연결하세요](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI를 인터넷에 연결
 - [42 Real-World OpenClaw Use Cases: 사람들이 일상에서 AI 에이전트를 사용하는 방법](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 사용 사례
 
----
+* * *
 
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -395,7 +396,7 @@ PageIndex：29K⭐벡터 없는 RAG 시스템, 문서 검색의 혁명 represent
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

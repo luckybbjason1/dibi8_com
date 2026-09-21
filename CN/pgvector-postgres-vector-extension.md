@@ -23,17 +23,18 @@ tags: ["pgvector", "postgresql", "vector-database", "hnsw", "ann", "rag", "simil
 aliases:
   - /posts/pgvector-postgres-vector-extension/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The 47-Second Query That Killed a Demo
 
 It was March 2025. An AI startup founder stood in front of a potential enterprise client, running a RAG demo. The question was simple: *"What does our product do?"* The vector search against 2 million documents in their PostgreSQL database took **47 seconds** to return. The client left the room before the first result appeared.
 
-The problem wasn't PostgreSQL. It was a missing **HNSW index** on the `vector` column. After adding `CREATE INDEX ... USING hnsw`, the same query dropped to **3.2 milliseconds** — a **14,000x improvement**. No database migration, no new infrastructure, just one SQL statement.
+The problem wasn't PostgreSQL. It was a missing **HNSW index** on the ```vector```` column. After adding ````CREATE INDEX ... USING hnsw````, the same query dropped to **3.2 milliseconds** — a **14,000x improvement**. No database migration, no new infrastructure, just one SQL statement.
 
 This is the power of **pgvector 0.8.2**, the open-source PostgreSQL extension that transforms the world's most trusted relational database into a high-performance vector database. With **15,000+ GitHub stars** and native support on Supabase, Neon, AWS RDS, and Google Cloud SQL, pgvector is the pragmatic choice for the **70% of AI-agent workloads** that stay under 10 million vectors.
 
-This guide covers everything: installation on PostgreSQL 18, HNSW tuning, `halfvec` quantization, filtered hybrid search, and production RAG integration.
+This guide covers everything: installation on PostgreSQL 18, HNSW tuning, ````halfvec```` quantization, filtered hybrid search, and production RAG integration.
 
 ## What Is pgvector? — Vectors Inside PostgreSQL
 
@@ -43,9 +44,9 @@ This guide covers everything: installation on PostgreSQL 18, HNSW tuning, `halfv
 
 | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | Current version | **0.8.2** |
 | PostgreSQL compatibility | **14 through 18** |
@@ -65,7 +66,7 @@ The default choice for most workloads. HNSW builds a multi-layer graph where eac
 
 **Best for:** High-recall, low-latency queries on datasets up to ~50M vectors.
 **Build time:** Slower than IVFFlat (single-threaded in pgvector 0.8.2).
-**Query parameters:** `hnsw.ef_search` controls recall vs. latency trade-off.
+**Query parameters:** ````hnsw.ef_search```` controls recall vs. latency trade-off.
 
 ### IVFFlat (Inverted File with Flat Index)
 
@@ -73,9 +74,9 @@ Partitions vectors into clusters (lists) using k-means. At query time, only the 
 
 **Best for:** Faster index builds, memory-constrained environments.
 **Trade-off:** Lower recall than HNSW at the same latency budget.
-**Query parameters:** `ivfflat.probes` controls how many clusters to scan.
+**Query parameters:** ````ivfflat.probes```` controls how many clusters to scan.
 
-```sql
+`````sql
 -- HNSW index (recommended for most workloads)
 CREATE INDEX ON documents
   USING hnsw (embedding vector_l2_ops)
@@ -85,23 +86,23 @@ CREATE INDEX ON documents
 CREATE INDEX ON documents
   USING ivfflat (embedding vector_l2_ops)
   WITH (lists = 100);
-```
+`````
 
 ### Distance Operators
 
 pgvector provides three distance operators: | Operator | Description | Use case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `<->` | Euclidean (L2) distance | General similarity (default) |
-| `<#>` | Negative inner product | OpenAI embeddings |
-| `<=>` | Cosine distance | Semantic similarity (normalized vectors) |
+| ````<->```` | Euclidean (L2) distance | General similarity (default) |
+| ````<#>```` | Negative inner product | OpenAI embeddings |
+| ````<=>```` | Cosine distance | Semantic similarity (normalized vectors) |
 
-```sql
+`````sql
 -- L2 distance (smaller = more similar)
 SELECT id, embedding <-> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
@@ -109,13 +110,13 @@ FROM documents ORDER BY distance LIMIT 10;
 -- Cosine distance (for normalized embeddings)
 SELECT id, embedding <=> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
-```
+`````
 
 ## Installation & Setup: Under 5 Minutes
 
 ### Option A: Docker (Fastest)
 
-```bash
+`````bash
 docker run -d \
   --name pgvector-demo \
   -e POSTGRES_PASSWORD=mysecretpassword \
@@ -125,11 +126,11 @@ docker run -d \
 
 # Verify
 docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
-```
+`````
 
 ### Option B: Existing PostgreSQL
 
-```bash
+`````bash
 # Install build dependencies (Ubuntu/Debian)
 sudo apt-get install postgresql-server-dev-18 build-essential git
 
@@ -141,31 +142,31 @@ sudo make install
 
 # Enable extension in database
 psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
-```
+`````
 
 ### Option C: Supabase (Managed)
 
-```sql
+`````sql
 -- pgvector is pre-installed on Supabase. Just enable it: CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Verify version
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Returns: 0.8.2
-```
+`````
 
 ### Option D: AWS RDS / Google Cloud SQL
 
-```sql
+`````sql
 -- On RDS PostgreSQL 18, pgvector is available as an extension
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Check available extensions if needed
 SELECT * FROM pg_available_extensions WHERE name = vector;
-```
+`````
 
 ### Verify Installation
 
-```sql
+`````sql
 -- Check pgvector version
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Expected: 0.8.2
@@ -173,13 +174,13 @@ SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Test vector type
 SELECT '[1,2,3]'::vector(3) <-> '[4,5,6]'::vector(3) AS l2_distance;
 -- Expected: ~5.196
-```
+`````
 
 ## Core Operations: Creating Tables, Inserting, and Querying
 
 ### Creating a Vector Table
 
-```sql
+`````sql
 -- Create table with vector column (1536 dimensions = OpenAI embeddings)
 CREATE TABLE documents (
     id          BIGSERIAL PRIMARY KEY,
@@ -194,11 +195,11 @@ CREATE TABLE documents (
 -- Add index for common filter columns
 CREATE INDEX idx_docs_tenant ON documents(tenant_id);
 CREATE INDEX idx_docs_created ON documents(created_at);
-```
+`````
 
 ### Inserting Vectors
 
-```sql
+`````sql
 -- Insert a single document with embedding
 INSERT INTO documents (title, content, embedding, metadata, tenant_id)
 VALUES (
@@ -211,9 +212,9 @@ VALUES (
 
 -- Insert with actual OpenAI embedding (from Python)
 -- See RAG Integration section below for full example
-```
+`````
 
-```python
+`````python
 # Batch insert vectors from Python
 import psycopg2
 import numpy as np
@@ -236,11 +237,11 @@ cur.executemany(
 )
 conn.commit()
 print(f"Inserted {batch_size} documents")
-```
+`````
 
 ### Building the HNSW Index (Production Tuning)
 
-```sql
+`````sql
 -- Set parameters for parallel index build
 SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
@@ -256,19 +257,19 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
 -- Check index size
 SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- Typical: ~450 MB for 100K vectors of 1536 dimensions
-```
+`````
 
 ### Vector Similarity Search
 
-```sql
+`````sql
 -- Basic ANN search
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-```sql
+`````sql
 -- Filtered vector search (most common production pattern)
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
@@ -277,11 +278,11 @@ WHERE tenant_id = 42
   AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
-```
+`````
 
 ### Hybrid Search: Vector + Full-Text
 
-```sql
+`````sql
 -- First, enable pg_trgm for text search
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
@@ -296,13 +297,13 @@ WHERE d.title % $2  -- trigram similarity filter
 ORDER BY
     (d.embedding <-> $1::vector) * 0.7 + (1 - similarity(d.title, $2)) * 0.3
 LIMIT 10;
-```
+`````
 
 ## Performance Tuning: From 47 Seconds to 3 Milliseconds
 
 ### GUC Parameters for HNSW
 
-```sql
+`````sql
 -- Tune ef_search for recall vs. latency
 -- Higher = better recall, slower queries
 SET hnsw.ef_search = 100;  -- Default is 40; 64-128 is typical for production
@@ -314,11 +315,11 @@ FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
 -- Look for: Index Scan using idx_docs_embedding_hnsw
-```
+`````
 
 ### Half-Precision Quantization (halfvec)
 
-pgvector 0.8.2 supports `halfvec` type for **50% storage reduction** with minimal recall loss: ```sql
+pgvector 0.8.2 supports ``halfvec`` type for **50% storage reduction** with minimal recall loss: `````sql
 -- Add halfvec column for quantized storage
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -340,11 +341,11 @@ SELECT
     pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
     pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size is typically ~45-50% of full_size
-```
+`````
 
 ### Connection Pooling (Pgbouncer)
 
-```ini
+`````ini
 ; pgbouncer.ini for pgvector workloads
 [databases]
 vectordb = host=localhost port=5432 dbname=vectordb
@@ -354,21 +355,21 @@ pool_mode = transaction
 max_client_conn = 10000
 default_pool_size = 50
 reserve_pool_size = 10
-```
+`````
 
 ### Benchmark Comparison: Before and After Tuning
 
 | Configuration | Query Latency (p99) | Recall@10 | Index Size | Build Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | No index (seq scan) | 47,000 ms | 1.00 | N/A | N/A |
 | HNSW defaults (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s |
@@ -380,11 +381,11 @@ reserve_pool_size = 10
 
 ### LangChain + pgvector
 
-```bash
+`````bash
 pip install langchain-postgres==0.0.13 langchain-openai==0.3.0
-```
+`````
 
-```python
+`````python
 from langchain_postgres import PGVector
 from langchain_openai import OpenAIEmbeddings
 
@@ -412,15 +413,15 @@ results = vector_store.similarity_search(
     filter={"source": "blog"}
 )
 for doc in results: print(f"Content: {doc.page_content}")
-```
+`````
 
 ### LlamaIndex + pgvector
 
-```bash
+`````bash
 pip install llama-index-vector-stores-postgres==0.4.2
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.postgres import PGVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -449,11 +450,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("How does pgvector work?")
 print(response)
-```
+`````
 
 ### Direct RAG Pipeline (No Framework)
 
-```python
+`````python
 import psycopg2
 from openai import OpenAI
 import numpy as np
@@ -491,13 +492,13 @@ def rag_query(user_question: str) -> str: docs = retrieve_documents(user_questio
     return response.choices[0].message.content
 
 print(rag_query("What is pgvector used for?"))
-```
+`````
 
 ## Production Hardening
 
 ### Row-Level Security for Multi-Tenancy
 
-```sql
+`````sql
 -- Enable RLS
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 
@@ -510,11 +511,11 @@ SET app.current_tenant = 42;
 
 -- Now all queries automatically filter by tenant
 SELECT * FROM documents;  -- Only tenant 42's documents visible
-```
+`````
 
 ### Monitoring Query Performance
 
-```sql
+`````sql
 -- Track slow vector queries
 CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
@@ -524,18 +525,18 @@ FROM pg_stat_statements
 WHERE query LIKE '%<->%'
 ORDER BY mean_exec_time DESC
 LIMIT 10;
-```
+`````
 
-```bash
+`````bash
 # Enable pg_stat_statements in postgresql.conf
 shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
-```
+`````
 
 ### Backup with pg_dump (Vectors Included)
 
-```bash
+`````bash
 # Full backup including vector data
 pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 
@@ -543,11 +544,11 @@ pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
 
 # Vectors are backed up as text arrays and restored correctly
-```
+`````
 
 ### Connection Best Practices for High QPS
 
-```python
+`````python
 # Use connection pooling for production workloads
 from psycopg2 import pool
 
@@ -568,23 +569,23 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
         )
         return cur.fetchall()
     finally: conn_pool.putconn(conn)
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | PostgreSQL License | No | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **Max Scale** | ~50M vectors | Unlimited | 200M/node | 500M/node | **10B+** |
@@ -616,7 +617,7 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
 
 **Single-node only:** pgvector runs inside a single PostgreSQL instance. There is no native distributed mode. For datasets exceeding available RAM, performance degrades significantly. At >50M vectors, consider a dedicated vector database.
 
-**HNSW build is single-threaded:** As of pgvector 0.8.2, HNSW index builds use only one CPU core. For 10M vectors, this can take **20-30 minutes**. The `max_parallel_maintenance_workers` setting does not accelerate HNSW builds.
+**HNSW build is single-threaded:** As of pgvector 0.8.2, HNSW index builds use only one CPU core. For 10M vectors, this can take **20-30 minutes**. The ````max_parallel_maintenance_workers```` setting does not accelerate HNSW builds.
 
 **Query latency is higher:** p99 latency of 25-40ms is acceptable for most RAG applications (where LLM inference dominates at 1-5 seconds), but it is slower than dedicated vector databases like Qdrant (~12ms) or Milvus GPU (~8ms).
 
@@ -636,11 +637,11 @@ pgvector 0.8.2 supports **PostgreSQL 14 through 18**. For production deployments
 
 ### How do I choose between HNSW and IVFFlat indexes?
 
-Use **HNSW** as the default. It provides better recall (~95%) and lower query latency. Use **IVFFlat** only when: (a) index build time is critical, (b) you have severe memory constraints, or (c) your vectors rarely change. For most RAG applications, HNSW with `m=16` and `ef_construction=64` is the right starting point.
+Use **HNSW** as the default. It provides better recall (~95%) and lower query latency. Use **IVFFlat** only when: (a) index build time is critical, (b) you have severe memory constraints, or (c) your vectors rarely change. For most RAG applications, HNSW with ````m=16```` and ````ef_construction=64```` is the right starting point.
 
 ### Can I use pgvector with managed PostgreSQL services?
 
-Yes. pgvector is available on: - **Supabase** — pre-installed, just run `CREATE EXTENSION vector;`
+Yes. pgvector is available on: - **Supabase** — pre-installed, just run ````CREATE EXTENSION vector;````
 - **Neon** — supported on all plans, including free tier
 - **AWS RDS** — available on PostgreSQL 15+
 - **Google Cloud SQL** — available on PostgreSQL 15+
@@ -650,7 +651,7 @@ No infrastructure changes are needed — it is a standard PostgreSQL extension.
 
 ### Does pgvector support filtered vector search?
 
-Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL `WHERE` clause alongside vector similarity: ```sql
+Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL ``WHERE`` clause alongside vector similarity: `````sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -658,23 +659,23 @@ WHERE tenant_id = 42
   AND metadata @> '{"status": "published"}'
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-PostgreSQL's planner optimizes this by pushing down the `WHERE` predicates during HNSW traversal.
+PostgreSQL's planner optimizes this by pushing down the ````WHERE```` predicates during HNSW traversal.
 
 ### How do I tune HNSW for my workload?
 
-The two key parameters are: - `ef_construction` (default 64): Higher = better index quality, slower builds. For production RAG, use **128-256**.
-- `ef_search` (default 40): Higher = better recall, slower queries. Benchmark your recall and set to **64-100**.
+The two key parameters are: - ````ef_construction```` (default 64): Higher = better index quality, slower builds. For production RAG, use **128-256**.
+- ````ef_search```` (default 40): Higher = better recall, slower queries. Benchmark your recall and set to **64-100**.
 
-```sql
+`````sql
 -- Benchmark ef_search values
 SET hnsw.ef_search = 64;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
 
 SET hnsw.ef_search = 128;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
-```
+`````
 
 ## Conclusion: The Pragmatic Choice
 
@@ -682,7 +683,7 @@ pgvector 0.8.2 is the most pragmatic vector database for teams already running P
 
 **Next steps:**
 
-1. Enable pgvector on your existing PostgreSQL instance (`CREATE EXTENSION vector;`).
+1. Enable pgvector on your existing PostgreSQL instance (````CREATE EXTENSION vector;```).
 2. Add a vector column and HNSW index to your documents table.
 3. Load your embeddings and run the tuning benchmarks from this guide.
 4. Integrate with LangChain or LlamaIndex for production RAG.
@@ -739,7 +740,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [alpaca-trading-api-stock-broker](pgvector-postgres-vector-extension)
@@ -749,7 +750,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [flowise](pgvector-postgres-vector-extension)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

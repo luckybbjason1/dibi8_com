@@ -32,6 +32,7 @@ faqs: - q: 'Bumblebee란 무엇이며 무엇을 스캔합니까?'
     a: 'go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1을 실행합니다. 일상 인벤토리는 bumblebee scan --profile baseline > inventory.ndjson, 특정 취약점 노출 검사는 bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only를 사용합니다.'
 ---
 
+
 ![Bumblebee 2026: Perplexity AI 공급망 스캐너 — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 
 2026년 5월 22일, Perplexity AI는 내부 보안 팀이 개발자 노트북 공급망 리스크 감사에 사용하던 도구인 [Bumblebee](https://github.com/perplexityai/bumblebee)를 오픈소스로 공개했습니다. 일주일도 안 돼 1,500개 이상의 GitHub 스타와 112개의 포크를 기록했습니다. 이 도구가 답하는 질문은 단 하나입니다: **침해된 패키지가 내 머신에 있는가?**
@@ -44,11 +45,11 @@ xz 사건, polyfill.io, AI 툴링을 겨냥한 수십 개의 악성 npm 패키�
 
 ## 읽기 전용 보장
 
-이 도구의 핵심 제약은 **아무것도 실행하지 않는다**는 것입니다. `npm ls`, `pip check`, `go list` 없음. 공급망 공격은 점점 검사 단계 자체를 노립니다. Bumblebee는 디스크의 메타데이터 파일만 읽어 이 위험을 완전히 우회합니다.
+이 도구의 핵심 제약은 **아무것도 실행하지 않는다**는 것입니다. ```npm ls````, ````pip check````, ````go list```` 없음. 공급망 공격은 점점 검사 단계 자체를 노립니다. Bumblebee는 디스크의 메타데이터 파일만 읽어 이 위험을 완전히 우회합니다.
 
 ## 세 가지 스캔 프로필
 
-```bash
+`````bash
 # 일상 전역 인벤토리
 bumblebee scan --profile baseline > inventory.ndjson
 
@@ -61,17 +62,17 @@ bumblebee scan --profile deep \
   --exposure-catalog ./catalog.json \
   --findings-only \
   --max-duration 10m
-```
+`````
 
 ## MCP 설정 지원
 
 2026년 AI 개발자에게 가장 중요한 기능입니다. Bumblebee가 스캔하는 경로: | 파일 | 도구 |
 |------|------|
-| `~/.claude.json` | Claude CLI |
-| `claude_desktop_config.json` | Claude Desktop |
-| `mcp_settings.json` | Cline / Roo Code |
-| `.mcp.json` / `mcp.json` | 범용 MCP |
-| `~/.gemini/settings.json` | Gemini CLI |
+| ````~/.claude.json```` | Claude CLI |
+| ````claude_desktop_config.json```` | Claude Desktop |
+| ````mcp_settings.json```` | Cline / Roo Code |
+| ````.mcp.json```` / ````mcp.json```` | 범용 MCP |
+| ````~/.gemini/settings.json```` | Gemini CLI |
 
 각 MCP 서버 항목에 대해 패키지 이름, 버전, 출처 레지스트리를 기록합니다. 노출 스캔 실행 시 MCP 패키지도 일반 의존성과 함께 검사됩니다.
 
@@ -79,9 +80,9 @@ bumblebee scan --profile deep \
 
 Go 1.25로 작성되었으며 **표준 라이브러리 외 의존성 없음**. 결과물은 단일 정적 바이너리입니다.
 
-```bash
+`````bash
 go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
-```
+````
 
 > **안전한 AI 인프라 구축:** MCP 서버나 AI 워크로드를 VPS에서 운영한다면 호스트 OS 강화가 최우선입니다. [월 $6 DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)으로 방화벽, 사용자 격리, 감사 로깅을 직접 설정하세요. 신규 사용자에게 **$200 무료 크레딧** 제공.
 
@@ -149,12 +150,12 @@ Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -164,7 +165,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](bumblebee-supply-chain-scanner-perplexity-2026)
 - [codebase-memory-mcp-deep-code-intelligence](bumblebee-supply-chain-scanner-perplexity-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -18,6 +18,7 @@ faqs: - q: 'Claude Opus 4 đắt hơn Sonnet 4 — có đáng không?'
     a: 'Tất cả model Claude 4 hỗ trợ context window 200K token, cho phép phân tích cả cuốn sách, codebase lớn hay lịch sử hội thoại dài trong một lần gọi. Output window tối đa 32K token — đủ để sinh báo cáo dài, file đầy đủ hay tài liệu nhiều phần trong một lần.'
 ---
 
+
 # Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test Thực Chiến
 
 
@@ -33,19 +34,19 @@ faqs: - q: 'Claude Opus 4 đắt hơn Sonnet 4 — có đáng không?'
 
 **Chọn Claude Haiku 4** khi: thông lượng cao, độ trễ thấp — tự động hoàn thành, phân loại, bot hỗ trợ.
 
----
+* * *
 
 ## Bảng So Sánh Dòng Claude 4
 
 | Model | API ID | Phù Hợp Nhất | Context |
 |---|---|---|---|
-| **Claude Opus 4** | `claude-opus-4-8` | Suy luận khó, agent | 200K |
-| **Claude Sonnet 4** | `claude-sonnet-4-6` | Lập trình, dùng hàng ngày | 200K |
-| **Claude Haiku 4** | `claude-haiku-4-5-20251001` | Tốc độ, số lượng lớn | 200K |
+| **Claude Opus 4** | ```claude-opus-4-8```` | Suy luận khó, agent | 200K |
+| **Claude Sonnet 4** | ````claude-sonnet-4-6```` | Lập trình, dùng hàng ngày | 200K |
+| **Claude Haiku 4** | ````claude-haiku-4-5-20251001```` | Tốc độ, số lượng lớn | 200K |
 
 Cả ba đều hỗ trợ **tool use**, **MCP server** và **computer use**. Opus 4 và Sonnet 4 có thêm **extended thinking**.
 
----
+* * *
 
 ## 3 Cải Tiến Lớn So Với Claude 3.5
 
@@ -58,7 +59,7 @@ Vòng lặp agent dài — 20+ lần gọi tool, chỉnh sửa file, chạy test
 **3. Extended Thinking (Suy Luận Mở Rộng)**
 Opus 4 và Sonnet 4 có thể hiển thị chuỗi suy nghĩ qua chế độ extended thinking. Với toán học khó, câu đố logic và yêu cầu mơ hồ, bật thinking mode mang lại cải thiện độ chính xác đo được so với chế độ thông thường.
 
----
+* * *
 
 ## Hiệu Suất Lập Trình Thực Tế
 
@@ -77,7 +78,7 @@ Claude 4 Sonnet là model chính của chúng tôi cho tác vụ lập trình h�
 
 So sánh với công cụ chuyên dụng xem tại [đánh giá Claude Code vs Cursor](cursor-vs-claude-code.md).
 
----
+* * *
 
 ## Suy Luận và Phân Tích
 
@@ -87,13 +88,13 @@ Extended thinking là tính năng nổi bật cho workflow nghiên cứu và ph�
 
 Đánh đổi: extended thinking thêm 3-10 giây độ trễ và tính phí thinking token. Với production API, thinking mode phù hợp nhất cho batch xử lý offline, không phải chat thời gian thực.
 
----
+* * *
 
 ## Cách Dùng Claude 4
 
 **API (Lập trình viên)**
 
-```python
+`````python
 import anthropic
 
 client = anthropic.Anthropic()
@@ -103,7 +104,7 @@ message = client.messages.create(
     messages=[{"role": "user", "content": "Giải thích tính năng extended thinking của Claude 4."}]
 )
 print(message.content)
-```
+````
 
 Tham chiếu model đầy đủ: [Tài liệu Anthropic Models](https://docs.anthropic.com/en/docs/about-claude/models/overview)
 
@@ -112,7 +113,7 @@ Tham chiếu model đầy đủ: [Tài liệu Anthropic Models](https://docs.ant
 - Pro ($20/tháng): Giới hạn cao hơn + truy cập Opus 4
 - Team/Enterprise: Không giới hạn + quản trị
 
----
+* * *
 
 ## Claude 4 vs GPT-4o vs Gemini 1.5 Pro
 
@@ -127,7 +128,7 @@ Tham chiếu model đầy đủ: [Tài liệu Anthropic Models](https://docs.ant
 
 Về văn bản và code thuần, Claude 4 Sonnet mạnh nhất. GPT-4o dẫn đầu về độ rộng tích hợp và tính năng đa phương tiện. Gemini 1.5 Pro hiệu quả chi phí nhất cho workload API cao lượng với free tier.
 
----
+* * *
 
 ## Kết Luận
 
@@ -141,7 +142,7 @@ Với hầu hết developer đang xây dựng sản phẩm AI năm 2026: bắt �
 
 Tìm hiểu cách dùng Claude 4 với [Model Context Protocol](mcp-deep-dive-definitive-2026-guide.md) hoặc trong [multi-agent workflow](claude-code-subagent-mastery-stack.md).
 
----
+* * *
 
 *Model ID được xác minh từ [tài liệu chính thức Anthropic](https://docs.anthropic.com/en/docs/about-claude/models/overview). Giá có thể thay đổi — kiểm tra trang giá Anthropic để biết mức hiện tại.*
 
@@ -207,12 +208,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -222,7 +223,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](claude-4-opus-sonnet-review-2026)
 - [deepseek-v3-vs-claude-sonnet](claude-4-opus-sonnet-review-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -18,6 +18,7 @@ faqs: - q: 'Nên dùng Ollama hay vLLM để phục vụ một LLM?'
     a: 'Có. Ollama nổi tiếng đơn giản — cài binary và chạy một lệnh như ollama run để kéo và trò chuyện với mô hình. vLLM cần môi trường GPU, phụ thuộc Python và cấu hình mô hình, song song, cài đặt server, nhưng sau đó nó phơi ra một API tương thích OpenAI dễ gọi. Hãy dành vài phút cho Ollama và một buổi chiều (cộng chuẩn bị GPU) cho lần triển khai vLLM production đầu tiên.'
 ---
 
+
 # Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughput Production
 
 
@@ -29,7 +30,7 @@ Dùng **Ollama** nếu: Bạn muốn cài đặt local bằng một lệnh, ch�
 
 Dùng **vLLM** nếu: Bạn phục vụ nhiều người dùng đồng thời, có GPU CUDA, cần token-mỗi-giây cao và chi phí mỗi token thấp ở quy mô, và muốn một API production tương thích OpenAI.
 
----
+* * *
 
 ## So Sánh Song Song
 
@@ -48,7 +49,7 @@ Dùng **vLLM** nếu: Bạn phục vụ nhiều người dùng đồng thời, c
 
 ### Trường hợp 1: Phát triển và prototype local
 
-Nếu bạn chỉ muốn chạy mô hình trên máy mình và bắt đầu xây dựng, Ollama là vô địch. Cài đặt, chạy `ollama run llama3`, và bạn trò chuyện với mô hình local trong chưa đầy một phút. Không cụm GPU, không địa ngục phụ thuộc Python.
+Nếu bạn chỉ muốn chạy mô hình trên máy mình và bắt đầu xây dựng, Ollama là vô địch. Cài đặt, chạy ```ollama run llama3```, và bạn trò chuyện với mô hình local trong chưa đầy một phút. Không cụm GPU, không địa ngục phụ thuộc Python.
 
 ### Trường hợp 2: Ưu tiên riêng tư, làm việc offline
 
@@ -174,12 +175,12 @@ Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughput Production represe
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -189,6 +190,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ollama-vs-vllm](ollama-vs-vllm)
 - [llm-inference-cost-optimization-guide-2026](ollama-vs-vllm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

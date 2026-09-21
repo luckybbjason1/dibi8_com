@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/claude-code/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -53,9 +54,9 @@ Claude Code는 Node.js CLI 프로세스로 실행되며 Claude API를 래핑합�
 
 | 개념 | 설명 |
 |---------|-------------|
-| `CLAUDE.md` | 코딩 표준, 규칙 및 사용자 지정 지침을 정의하는 프로젝트 수준 구성 파일 |
-| 계획 모드 (`/plan`) | Claude가 디스크에 접근하기 전에 모든 의도된 변경 사항을 개요화하여 승인 제어권을 부여합니다 |
-| 슬래시 명령 | `/init`, `/desktop`, `/mcp`, `/bug`와 같은 재사용 가능한 워크플로우 바로가기 |
+| ```CLAUDE.md```` | 코딩 표준, 규칙 및 사용자 지정 지침을 정의하는 프로젝트 수준 구성 파일 |
+| 계획 모드 (````/plan````) | Claude가 디스크에 접근하기 전에 모든 의도된 변경 사항을 개요화하여 승인 제어권을 부여합니다 |
+| 슬래시 명령 | ````/init````, ````/desktop````, ````/mcp````, ````/bug````와 같은 재사용 가능한 워크플로우 바로가기 |
 | MCP 통합 | 데이터베이스 쿼리, API 호출 등을 위해 모델 컨텍스트 프로토콜을 통해 외부 도구에 연결 |
 
 ## 설치 및 설정
@@ -64,7 +65,7 @@ Claude Code는 macOS, Linux 및 Windows(WSL 또는 PowerShell 통해)에서 60�
 
 ### macOS 및 Linux(권장 설치 방식)
 
-```bash
+`````bash
 # 공식 설치 프로그램으로 설치(백그라운드에서 자동 업데이트)
 curl -fsSL https://claude.ai/install.sh | bash
 
@@ -73,51 +74,51 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # 설치 확인
 claude --version
-```
+`````
 
 ### Windows PowerShell
 
-```powershell
+`````powershell
 # PowerShell 설치 프로그램으로 설치
 irm https://claude.ai/install.ps1 | iex
 
 # 설치 확인
 claude --version
-```
+`````
 
 ### Homebrew(macOS/Linux — 수동 업데이트)
 
-```bash
+`````bash
 # Homebrew로 설치(자동 업데이트 없음)
 brew install claude-code
 
 # 필요할 때 수동으로 업데이트
 brew upgrade claude-code
-```
+`````
 
 ### VS Code 확장
 
-```bash
+`````bash
 # VS Code 마켓플레이스에서 설치
 # 확장 패널 열기(Cmd+Shift+X / Ctrl+Shift+X)
 # "Claude Code" 검색 후 설치
 # 확장은 터미널에서 실행 중인 동일한 세션에 연결됩니다
-```
+`````
 
 ### 인증
 
-```bash
+`````bash
 # Anthropic 계정으로 로그인
 claude auth login
 
 # 브라우저 창이 열립니다. Claude Code는 유료 구독이 필요합니다: # - Claude Pro: $20/월
 # - Claude Max: $100/월 (5배 사용량)
 # - Claude Max 20x: $200/월 (20배 사용량)
-```
+`````
 
 ### 첫 번째 세션
 
-```bash
+`````bash
 # 프로젝트로 이동
 cd /path/to/your-project
 
@@ -126,7 +127,7 @@ claude
 
 # 프로젝트 구조 파악 요청
 What does this project do? Walk me through the architecture.
-```
+`````
 
 ## 인기 도구와의 통합
 
@@ -134,40 +135,40 @@ What does this project do? Walk me through the architecture.
 
 Claude Code 확장은 CLI 세션을 에디터 사이드바에 임베드합니다. 마켓플레이스에서 설치하고 한 번 인증하면, 터미널과 IDE 간에 컨텍스트를 잃지 않고 전환할 수 있습니다.
 
-```json
+`````json
 // .vscode/settings.json — Claude Code 권장 설정
 {
   "claude.code.enableInlineCompletion": false,
   "claude.code.autoApproveEdits": false,
   "claude.code.defaultModel": "claude-opus-4-6"
 }
-```
+`````
 
 ### Cursor
 
 Cursor는 VS Code 포크이므로, Claude Code는 Cursor의 통합 터미널에서 실행됩니다. 두 도구는 서로 보완적입니다: Cursor는 인라인 자동 완성과 시각적 diff를 처리하고, Claude Code는 다중 파일 리팩토링과 자율 작업 실행을 관리합니다.
 
-```bash
+`````bash
 # Cursor의 통합 터미널에서 단순히 실행: cd your-project
 claude
 
 # 두 도구는 동일한 파일 시스템에서 충돌 없이 작동합니다
-```
+`````
 
 ### GitHub 통합
 
-GitHub 풀 리퀘스트나 이슈에서 `@claude`를 태그하면 Claude Code 분석이 트리거됩니다. 에이전트는 PR diff를 읽고, 리뷰 코멘트를 남기며, 수정을 제안할 수 있습니다.
+GitHub 풀 리퀘스트나 이슈에서 ````@claude````를 태그하면 Claude Code 분석이 트리거됩니다. 에이전트는 PR diff를 읽고, 리뷰 코멘트를 남기며, 수정을 제안할 수 있습니다.
 
-```bash
+`````bash
 # GitHub 통합 활성화
 claude auth login --github
 
 # PR 코멘트에서 태그: @claude please review this change for security issues
-```
+`````
 
 ### GitLab CI/CD 파이프라인
 
-```yaml
+`````yaml
 # .gitlab-ci.yml — 자동화된 코드 리뷰를 위해 Claude Code 실행
 stages: - review
 
@@ -178,15 +179,15 @@ claude_review: stage: review
     - claude auth login --token $CLAUDE_API_TOKEN
   script: - claude review --diff HEAD~1 --output review.json
   artifacts: reports: codequality: review.json
-```
+`````
 
 ### JetBrains IDE
 
 JetBrains 마켓플레이스에서 Claude Code 플러그인을 설치합니다. WebStorm, IntelliJ, PyCharm, GoLand 및 기타 모든 JetBrains 제품과 함께 작동합니다.
 
-```bash
+`````bash
 # JetBrains IDE 낸부: # 설정 → 플러그인 → 마켓플레이스 → "Claude Code" 검색 → 설치 → 재시작
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -224,9 +225,9 @@ Terminal-Bench은 실제 터미널 작업 완료 정확도를 측정합니다: |
 
 ### CLAUDE.md 구성
 
-`CLAUDE.md` 파일은 Claude Code를 위한 프로젝트 지침서입니다. 저장소 루트에 배치합니다.
+````CLAUDE.md```` 파일은 Claude Code를 위한 프로젝트 지침서입니다. 저장소 루트에 배치합니다.
 
-```markdown
+`````markdown
 # CLAUDE.md — Claude Code 프로젝트 구성
 
 ## 코딩 표준
@@ -236,25 +237,25 @@ Terminal-Bench은 실제 터미널 작업 완료 정확도를 측정합니다: |
 - Promise 체인보다 async/await 선호
 
 ## 테스트
-- 변경 사항 커밋 전 `npm test` 실행
+- 변경 사항 커밋 전 ````npm test```` 실행
 - 새 기능은 >80% 커버리지의 단위 테스트 필요
 - 단위 테스트는 Vitest 사용, E2E는 Playwright 사용
 
 ## Git 워크플로우
 - 컨벤셔널 커밋 사용(feat:, fix:, docs:, refactor:)
 - 각 작업마다 새 브랜치 생성; main에 직접 커밋 금지
-- 각 커밋 전 `npm run lint` 실행
+- 각 커밋 전 ````npm run lint```` 실행
 
 ## 아키텍처
 - /src/components — React 컴포넌트(PascalCase 파일명)
 - /src/lib — 유틸리티 함수(camelCase 파일명)
 - /src/api — 라우트 핸들러
 - /tests — src 구조 미러링
-```
+`````
 
 ### 보안 샌드박싱
 
-Claude Code는 사용자 권한으로 셸 명령을 실행하므로, 내재적 위험이 있습니다. 프로덕션 환경에서는 샌드박스를 사용하여 실행하세요: ```bash
+Claude Code는 사용자 권한으로 셸 명령을 실행하므로, 내재적 위험이 있습니다. 프로덕션 환경에서는 샌드박스를 사용하여 실행하세요: `````bash
 # Docker 샌드박스에서 Claude Code 실행
 docker run -it --rm \
   -v $(pwd):/workspace \
@@ -263,11 +264,11 @@ docker run -it --rm \
   --tmpfs /tmp \
   node:22-slim \
   bash -c "curl -fsSL https://claude.ai/install.sh | bash && /root/.local/bin/claude"
-```
+`````
 
 ### 라이프사이클 훅을 통한 권한 제어
 
-```json
+`````json
 // ~/.claude/settings.json — 전역 권한 규칙
 {
   "permissions": {
@@ -285,11 +286,11 @@ docker run -it --rm \
     "PostToolUse": "/home/dev/.claude/hooks/post-tool.sh"
   }
 }
-```
+`````
 
 ### MCP 서버 구성
 
-```json
+`````json
 // mcp.json — 외부 도구 연결
 {
   "mcpServers": {
@@ -307,11 +308,11 @@ docker run -it --rm \
     }
   }
 }
-```
+`````
 
 ### 토큰 사용량 모니터링
 
-```bash
+`````bash
 # 현재 세션의 토큰 소비 확인
 claude status
 
@@ -320,7 +321,7 @@ claude status
 # Output tokens: 28,441
 # Estimated cost: $0.42
 # Rate limit: 4,200/5,000 requests remaining
-```
+`````
 
 ## 대안과의 비교
 
@@ -408,7 +409,7 @@ A: Claude Code는 파일 시스템 및 셸 레벨에서 작동하므로 언어�
 A: 큰 컨텍스트 윈도우를 통해 Claude Code는 전체 저장소(또는 상당 부분)를 잘리지 않고 로드할 수 있습니다. 이는 교차 파일 리팩토링, 모노레포 아키텍처 이해, 여러 모듈에 걸친 문제 디버깅에 중요합니다. 실제로 50만 줄 이하의 저장소는 컨텍스트 윈도우에 편안하게 들어갑니다.
 
 **Q: Claude Code는 프로덕션 코드베이스에 안전한가요?**
-A: Claude Code는 사용자 권한으로 셸 명령을 실행하므로, 내재적 위험이 있습니다. 프로덕션 환경에서는 Docker 샌드박스에서 실행하고, 위험한 명령을 가로채기 위해 라이프사이클 훅을 구성하고, 실행 전 변경 사항을 검토하기 위해 항상 계획 모드(`/plan`)를 사용하세요. 신뢰할 수 없는 저장소에서는 sudo나 샌드박스 없이 Claude Code를 절대 실행하지 마세요.
+A: Claude Code는 사용자 권한으로 셸 명령을 실행하므로, 내재적 위험이 있습니다. 프로덕션 환경에서는 Docker 샌드박스에서 실행하고, 위험한 명령을 가로채기 위해 라이프사이클 훅을 구성하고, 실행 전 변경 사항을 검토하기 위해 항상 계획 모드(````/plan````)를 사용하세요. 신뢰할 수 없는 저장소에서는 sudo나 샌드박스 없이 Claude Code를 절대 실행하지 마세요.
 
 **Q: Claude Code와 Cursor 또는 VS Code를 함께 사용할 수 있나요?**
 A: 예. 많은 개발자가 둘 다 사용합니다: Cursor는 인라인 자동 완성으로 일상적인 편집 루프를 처리하고, Claude Code는 터미널 창에서 대규모 자율 리팩토링을 관리합니다. 둘 다 동일한 Git 저장소에서 충돌 없이 작동하지만, 동시에 동일한 파일을 편집하면 병합 충돌이 발생할 수 있습니다.
@@ -420,10 +421,10 @@ Claude Code는 2026년에 사용할 수 있는 가장 강력한 터미널 네이
 이미 Anthropic 모델을 표준으로 사용하는 팀에게 Claude Code는 자연스러운 선택입니다. 모델 유연성이나 제로 구독 비용이 필요한 개발자에게는 Aider와 OpenHands가 강력한 오픈 소스 대안입니다. 가장 빠른 터미널 에이전트를 원하는 ChatGPT 구독자에게는 Codex CLI가 추가 비용 없이 경쟁력 있는 결과를 제공합니다.
 
 **시작을 위한 실천 항목:**
-1. `curl -fsSL https://claude.ai/install.sh | bash`로 Claude Code 설치
-2. `claude auth login`으로 인증하고 Claude Pro($20/월) 구독
-3. 주요 프로젝트에 코딩 표준이 포함된 `CLAUDE.md` 파일 생성
-4. 프로젝트 디렉토리에서 `claude`를 실행하고 아키텍처 파악 요청
+1. ````curl -fsSL https://claude.ai/install.sh | bash````로 Claude Code 설치
+2. ````claude auth login````으로 인증하고 Claude Pro($20/월) 구독
+3. 주요 프로젝트에 코딩 표준이 포함된 ````CLAUDE.md```` 파일 생성
+4. 프로젝트 디렉토리에서 ````claude```를 실행하고 아키텍처 파악 요청
 5. [dibi8 텔레그램 그룹](https://t.me/dibi8channel)에 가입하여 팁을 공유하고 질문하기
 
 
@@ -449,7 +450,7 @@ Claude Code는 2026년에 사용할 수 있는 가장 강력한 터미널 네이
 - [Anthropic 가격 페이지](https://www.anthropic.com/pricing)
 - [Claude Code 데스크톱 앱 다운로드](https://claude.com/download)
 
----
+* * *
 
 *면책 조항: 본 문서에는 제휴 링크가 포함되어 있지 않습니다. 모든 가격 및 벤치마크 데이터는 2026년 5월 기준 공개 정보를 반영합니다. 구매 결정 전 공식 공급업체 웹사이트에서 현재 가격을 확인하세요.*
 
@@ -479,7 +480,7 @@ Claude Code는 2026년에 사용할 수 있는 가장 강력한 터미널 네이
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -489,7 +490,7 @@ Claude Code는 2026년에 사용할 수 있는 가장 강력한 터미널 네이
 - [claude-code-vs-aider](claude-code)
 - [cursor-vs-claude-code](claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

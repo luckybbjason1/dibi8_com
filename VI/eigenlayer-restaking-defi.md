@@ -13,11 +13,12 @@ aliases:
   - /vi/posts/eigenlayer-restaking-defi/
 ---
 
+
 {{</* resource-info */>}}
 
 > **Tuyên bố tiếp thị liên kết**: Bài viết này chứa các liên kết tiếp thị đến [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) và [Minara](https://minara.ai/r/OSXG4X). Chúng tôi có thể nhận được hoa hồng khi bạn đăng ký qua các liên kết này — không phát sinh chi phí thêm cho bạn.
 
----
+* * *
 
 ## EigenLayer là gì và tại sao nó quan trọng?
 
@@ -29,7 +30,7 @@ EigenLayer là đổi mới quan trọng nhất trong nền kinh tế staking c�
 
 Restaking trên EigenLayer hoạt động bằng cách cho phép các trình xác thực Ethereum chọn tham gia bảo mật các giao thức bổ sung. Khi trình xác thực restake ETH của họ, họ chấp nhận các điều kiện slashing bổ sung được xác định bởi mỗi AVS họ chọn xác thực.
 
-Vòng đờii của một vị thế restake tuân theo các bước sau: ```bash
+Vòng đờii của một vị thế restake tuân theo các bước sau: ````bash
 # Bước 1: Stake ETH trên beacon chain Ethereum
 # Tối thiểu 32 ETH cho trình xác thực độc lập, hoặc sử dụng token staking thanh khoản (LST)
 
@@ -42,9 +43,9 @@ curl -X POST https://api.eigenlayer.com/restake \
     "amount": "1000000000000000000",
     "staker": "0xĐịaChỉCủabạn..."
   }'
-```
+`````
 
-```solidity
+`````solidity
 // Bước 3: EigenLayer Strategy Manager gửi vào chiến lược cơ bản
 // File: StrategyManager.sol (đơn giản hóa)
 function depositIntoStrategy(
@@ -60,9 +61,9 @@ function depositIntoStrategy(
     _addShares(msg.sender, strategy, shares);
     return shares;
 }
-```
+`````
 
-```solidity
+`````solidity
 // Bước 4: Staker ủy quyền cho operator
 // Operator chạy phần mềm xác thực AVS
 function delegateTo(
@@ -77,9 +78,9 @@ function delegateTo(
         approverSignatureAndExpiry
     );
 }
-```
+`````
 
-```solidity
+`````solidity
 // Bước 5: Operator chọn tham gia điều kiện slashing của AVS
 // Hợp đồng AVS xác định logic xác thực và slashing tùy chỉnh
 interface IAVSRegistry {
@@ -100,7 +101,7 @@ function optInToEigenDA(bytes memory blsPublicKey) external {
         blsSignature
     );
 }
-```
+`````
 
 ## Dịch vụ Xác thực Chủ động (AVS): Lớp ứng dụng
 
@@ -110,7 +111,7 @@ AVS là các giao thức và dịch vụ tận dụng bảo mật chia sẻ củ
 
 EigenDA là AVS nổi bật nhất được xây dựng trên EigenLayer. Nó cung cấp giải pháp tính khả dụng dữ liệu thông lượng cao, chi phí thấp cho các rollup Ethereum, đóng vai trò là giải pháp thay thế phi tập trung cho các giải pháp tính khả dụng dữ liệu tập trung.
 
-```go
+`````go
 // EigenDA disperser client - phân tán blob đến EigenDA
 package main
 
@@ -153,9 +154,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
 
     return reply.GetResult(), nil
 }
-```
+`````
 
-```python
+`````python
 # EigenDA retrieval client - xác minh tính khả dụng của blob
 import asyncio
 import grpc
@@ -175,7 +176,7 @@ async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grp
             "Xác minh bằng chứng KZG thất bại"
         
         return response.blob
-```
+`````
 
 ## Xây dựng AVS đầu tiên của bạn: Hướng dẫn thiết lập đầy đủ cho nhà phát triển
 
@@ -183,7 +184,7 @@ Phần này cung cấp hướng dẫn từng bước để xây dựng AVS trên
 
 ### Điều kiện tiên quyết
 
-```bash
+`````bash
 # Các công cụ bắt buộc
 node --version  # >= 18.0.0
 foundry --version  # Forge 0.2.0+
@@ -193,11 +194,11 @@ go version  # >= 1.21
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 git clone https://github.com/Layr-Labs/eigenlayer-middleware.git
 cd eigenlayer-middleware && forge install && cd ..
-```
+`````
 
 ### Bước 1: Kiến trúc hợp đồng AVS
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
@@ -275,11 +276,11 @@ contract PriceOracleAVS is BLSSignatureChecker, OperatorStateRetriever {
         emit PriceUpdated(assetId, proposedPrice, uint32(block.number));
     }
 }
-```
+`````
 
 ### Bước 2: Triển khai node Operator
 
-```go
+`````go
 // operator/price_task_generator.go
 package operator
 
@@ -367,11 +368,11 @@ func (g *PriceTaskGenerator) fetchAggregatedPrice(
     
     return calculateMedian(prices), nil
 }
-```
+`````
 
 ### Bước 3: Dịch vụ Aggregator
 
-```go
+`````go
 // aggregator/aggregator.go
 package aggregator
 
@@ -432,11 +433,11 @@ func (a *PriceAggregator) ProcessSignedPriceResponse(
     // Cố gắng tổng hợp
     return a.tryAggregateResponses(taskState)
 }
-```
+`````
 
 ### Bước 4: Script triển khai
 
-```bash
+`````bash
 #!/bin/bash
 # deploy_avs.sh - Triển khai PriceOracle AVS lên mainnet
 
@@ -469,9 +470,9 @@ forge script script/DeployPriceOracleAVS.s.sol:DeployStakeRegistry \
 
 echo "=== Triển khai hoàn tất ==="
 echo "Registry Coordinator: $REGISTRY_COORDINATOR"
-```
+`````
 
-```solidity
+`````solidity
 // script/DeployPriceOracleAVS.s.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
@@ -494,13 +495,13 @@ contract DeployAVS is Script {
         console.log("PriceOracleAVS được triển khai tại:", address(priceOracleAVS));
     }
 }
-```
+`````
 
 ## Điều kiện Slashing và Quản lý Rủi ro
 
 Một trong những khía cạnh quan trọng của EigenLayer là cơ chế slashing. Khi operator chọn tham gia một AVS, họ đồng ý với các điều kiện slashing bổ sung vượt xa sự đồng thuận của Ethereum.
 
-```solidity
+`````solidity
 // Điều kiện slashing tùy chỉnh cho PriceOracle AVS
 interface ISlasher {
     function freezeOperator(address operator) external;
@@ -546,9 +547,9 @@ contract PriceOracleSlashing {
         emit OperatorSlashed(operator, slashAmount, "DIVERGENT_RESPONSE");
     }
 }
-```
+`````
 
-```go
+`````go
 // Giám sát sức khỏe operator và phát hiện sự kiện có thể bị slash
 package monitoring
 
@@ -575,13 +576,13 @@ func (m *SlashMonitor) StartMonitoring(ctx context.Context) {
         }
     }
 }
-```
+`````
 
 ## Cơ chế Phân phối Phần thưởng
 
 Phân phối phần thưởng của EigenLayer cho phép các nhà phát triển AVS khuyến khích operator cho công việc xác thực của họ.
 
-```solidity
+`````solidity
 // Hợp đồng phân phối phần thưởng cho PriceOracle AVS
 contract PriceOracleRewards is IRewardsCoordinator {
     
@@ -638,13 +639,13 @@ contract PriceOracleRewards is IRewardsCoordinator {
         emit RewardsClaimed(msg.sender, amount);
     }
 }
-```
+`````
 
 ## Tích hợp Token Restaking Thanh khoản (LRT)
 
 Đối với ngườii dùng không muốn chạy cơ sở hạ tầng trình xác thực của riêng mình, các Token Restaking Thanh khoản cung cấp một điểm truy cập dễ tiếp cận.
 
-```typescript
+`````typescript
 // TypeScript SDK cho tương tác LRT
 import { ethers, Contract } from ethers;
 import { EigenLayerSDK } from '@eigenlayer/sdk';
@@ -665,8 +666,8 @@ async function depositForLRT(stethAmount: bigint) {
   });
   
   const receipt = await tx.wait();
-  console.log(`Đã gửi ${stethAmount} stETH, nhận ezETH`);
-  console.log(`Giao dịch: ${receipt.hash}`);
+  console.log(````Đã gửi ${stethAmount} stETH, nhận ezETH````);
+  console.log(````Giao dịch: ${receipt.hash}````);
   
   // Truy vấn phơi nhiễm AVS cơ bản
   const avsExposure = await renzo.getAVSExposure(walletAddress);
@@ -678,13 +679,13 @@ async function aggregateLRTYield() {
   const portfolio = await sdk.getLRTPortfolio(walletAddress);
   
   for (const position of portfolio.positions) {
-    console.log(`\n${position.lrtSymbol}:`);
-    console.log(`  Số dư: ${position.balance}`);
-    console.log(`  ETH cơ bản: ${position.underlyingETH}`);
-    console.log(`  Lợi nhuận 30 ngày: ${position.thirtyDayYield}%`);
+    console.log(````\n${position.lrtSymbol}:````);
+    console.log(````  Số dư: ${position.balance}````);
+    console.log(````  ETH cơ bản: ${position.underlyingETH}````);
+    console.log(````  Lợi nhuận 30 ngày: ${position.thirtyDayYield}%````);
   }
 }
-```
+`````
 
 ## FAQ: Các câu hỏi thường gặp về EigenLayer
 
@@ -694,7 +695,7 @@ A: Đối với restake gốc, bạn cần 32 ETH cho một trình xác thực �
 
 **Q2: Rủi ro slashing hoạt động như thế nào khi restake trên nhiều AVS?**
 
-A: Mỗi AVS xác định điều kiện slashing riêng, và ETH đã stake của bạn phải tuân theo tất cả điều kiện của mọi AVS bạn xác thực đồng thờii. Số tiền tối đa có thể bị slash được giới hạn cho mỗi AVS, nhưng cam kết AVS nhiều lần làm tăng rủi ro tiếp xúc của bạn. Hợp đồng `Slasher` thực thi các điều kiện theo chương trình — các lỗi có thể bị slash phổ biến bao gồm thờii gian chết, xác nhận chuyển đổi trạng thái không hợp lệ, và ký thông điệp xung đột.
+A: Mỗi AVS xác định điều kiện slashing riêng, và ETH đã stake của bạn phải tuân theo tất cả điều kiện của mọi AVS bạn xác thực đồng thờii. Số tiền tối đa có thể bị slash được giới hạn cho mỗi AVS, nhưng cam kết AVS nhiều lần làm tăng rủi ro tiếp xúc của bạn. Hợp đồng ````Slasher```` thực thi các điều kiện theo chương trình — các lỗi có thể bị slash phổ biến bao gồm thờii gian chết, xác nhận chuyển đổi trạng thái không hợp lệ, và ký thông điệp xung đột.
 
 **Q3: EigenDA khác biệt gì so với các giải pháp tính khả dụng dữ liệu khác?**
 
@@ -702,7 +703,7 @@ A: EigenDA là một lớp tính khả dụng dữ liệu phi tập trung đư�
 
 **Q4: Phần thưởng AVS được tính toán và phân phối như thế nào?**
 
-A: Mỗi AVS vận hành chương trình phần thưởng riêng, thường được tài trợ bởi phí giao thức hoặc phát hành token lạm phát. Phần thưởng được phân phối tỷ lệ dựa trên: (1) số lượng stake ủy quyền cho mỗi operator, (2) điểm hiệu suất của operator (thờii gian hoạt động, phản hồi chính xác), và (3) tỷ lệ phần thưởng cụ thể của AVS. Hợp đồng `RewardsCoordinator` xử lý việc phân phối yêu cầu, và các operator thường tính phí ủy quyền (5-15%) trên phần thưởng do ngườii ủy quyền kiếm được.
+A: Mỗi AVS vận hành chương trình phần thưởng riêng, thường được tài trợ bởi phí giao thức hoặc phát hành token lạm phát. Phần thưởng được phân phối tỷ lệ dựa trên: (1) số lượng stake ủy quyền cho mỗi operator, (2) điểm hiệu suất của operator (thờii gian hoạt động, phản hồi chính xác), và (3) tỷ lệ phần thưởng cụ thể của AVS. Hợp đồng ````RewardsCoordinator```` xử lý việc phân phối yêu cầu, và các operator thường tính phí ủy quyền (5-15%) trên phần thưởng do ngườii ủy quyền kiếm được.
 
 **Q5: Tôi có thể rút ETH đã restake bất cứ lúc nào không?**
 
@@ -710,13 +711,13 @@ A: Không — EigenLayer thực thi thờii gian trễ hủy ủy quyền và r�
 
 **Q6: Những ngôn ngữ lập trình và framework nào được sử dụng để xây dựng AVS?**
 
-A: Lớp hợp đồng thông minh sử dụng Solidity (khung Foundry). Các node operator thường được xây dựng bằng Go sử dụng EigenSDK. Tổng hợp chữ ký BLS yêu cầu thư viện `eigen-crypto`. Triển khai EigenDA tham chiếu sử dụng Go cho các dịch vụ disperser/retriever và Rust cho client node. Docker và Kubernetes là tiêu chuẩn cho triển khai sản xuất.
+A: Lớp hợp đồng thông minh sử dụng Solidity (khung Foundry). Các node operator thường được xây dựng bằng Go sử dụng EigenSDK. Tổng hợp chữ ký BLS yêu cầu thư viện ````eigen-crypto````. Triển khai EigenDA tham chiếu sử dụng Go cho các dịch vụ disperser/retriever và Rust cho client node. Docker và Kubernetes là tiêu chuẩn cho triển khai sản xuất.
 
 **Q7: Lựa chọn và ủy quyền operator hoạt động như thế nào?**
 
-A: Các staker duyệt các operator đã đăng ký trong `DelegationManager` và ủy quyền vị thế restake của họ cho operator đã chọn. Các operator phải đăng ký với khóa công khai BLS và yêu cầu stake tối thiểu. Khi chọn operator, hãy xem xét: tỷ lệ hoa hồng (5-15%), phạm vi AVS (AVS nào họ xác thực), hiệu suất lịch sử (% thờii gian hoạt động), và số tiền restake (cao hơn thường an toàn hơn). Bạn có thể tái ủy quyền ngay lập tức mà không cần hủy stake.
+A: Các staker duyệt các operator đã đăng ký trong ````DelegationManager```` và ủy quyền vị thế restake của họ cho operator đã chọn. Các operator phải đăng ký với khóa công khai BLS và yêu cầu stake tối thiểu. Khi chọn operator, hãy xem xét: tỷ lệ hoa hồng (5-15%), phạm vi AVS (AVS nào họ xác thực), hiệu suất lịch sử (% thờii gian hoạt động), và số tiền restake (cao hơn thường an toàn hơn). Bạn có thể tái ủy quyền ngay lập tức mà không cần hủy stake.
 
----
+* * *
 
 
 
@@ -729,7 +730,7 @@ A: Các staker duyệt các operator đã đăng ký trong `DelegationManager` v
 
 ## Bắt đầu: Danh sách kiểm tra EigenLayer của bạn
 
-```bash
+`````bash
 # 1. Thiết lập môi trường phát triển
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 cd eigenlayer-contracts && forge install
@@ -752,9 +753,9 @@ go run main.go --config config.yaml
 # 6. Giám sát hoạt động
 make telemetry
 # Mở bảng điều khiển Grafana tại http://localhost:3000
-```
+````
 
----
+* * *
 
 *Tuyên bố từ chối trách nhiệm: Hướng dẫn này chỉ nhằm mục đích giáo dục. Restaking bao gồm rủi ro hợp đồng thông minh đáng kể, rủi ro slashing, và rủi ro giao thức. Luôn tiến hành nghiên cứu của riêng bạn trước khi triển khai vốn hoặc mã. DYOR — Tự nghiên cứu của bạn.*
 
@@ -763,7 +764,7 @@ make telemetry
 - Khám phá triển khai AVS tự động với [Minara](https://minara.ai/r/OSXG4X)
 - Theo dõi chúng tôi trên Telegram để cập nhật tin tức EigenLayer mới nhất: **@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | Được xây dựng cho nhà phát triển DeFi, trader, và nhà nghiên cứu.*
 

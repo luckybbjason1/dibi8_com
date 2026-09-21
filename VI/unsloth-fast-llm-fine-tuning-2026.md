@@ -24,6 +24,7 @@ aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---
 
+
 Nếu [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) là framework fine-tuning multi-GPU production, **Unsloth** là vua tốc độ single-GPU. Bằng cách viết lại kernel training LLM trong Triton + Python tùy chỉnh thay vì dựa vào autograd chung của PyTorch, Unsloth fine-tune mô hình **nhanh hơn 2×** với **ít hơn 70% VRAM** so với baseline HuggingFace TRL.
 
 64.9k GitHub sao, dual Apache 2.0 / AGPL-3.0 license. Hỗ trợ 500+ mô hình (Llama 3-3.2, Mistral, Qwen 3-3.6, Gemma, DeepSeek, Phi-4, gpt-oss). Tool fine-tuning mặc định khi có GPU consumer 24 GB đơn và cần iterate nhanh.
@@ -62,11 +63,11 @@ Cho thuê cloud: H100 trên Vast.ai (~$1.50/giờ) xử mọi thứ; cho experim
 
 ## 3. Cài Nhanh (5 phút)
 
-```bash
+````bash
 pip install unsloth
-```
+`````
 
-Hello world — fine-tune Llama 3.2 8B QLoRA trong ~20 dòng: ```python
+Hello world — fine-tune Llama 3.2 8B QLoRA trong ~20 dòng: `````python
 from unsloth import FastLanguageModel
 from trl import SFTTrainer
 from datasets import load_dataset
@@ -93,17 +94,17 @@ trainer = SFTTrainer(
 )
 trainer.train()
 model.save_pretrained("./outputs/llama-alpaca-lora")
-```
+`````
 
 Đó là tất cả. Cùng mô hình, cùng dữ liệu — chạy với kernel tối ưu Unsloth.
 
 ## 4. Catalog Mô Hình Đã Pre-Quantized
 
-Unsloth duy trì các phiên bản pre-quantized 4-bit / 8-bit của mô hình phổ biến tại `huggingface.co/unsloth`. Dùng các này tiết kiệm 5-15 phút tải xuống ban đầu + lượng tử hóa mỗi lần chạy mới: - `unsloth/llama-3.2-8b-bnb-4bit`
-- `unsloth/mistral-7b-v0.3-bnb-4bit`
-- `unsloth/qwen3-coder-14b-bnb-4bit`
-- `unsloth/gemma-3-9b-bnb-4bit`
-- `unsloth/DeepSeek-V3-bnb-4bit` (cho người dũng cảm trên 48 GB+)
+Unsloth duy trì các phiên bản pre-quantized 4-bit / 8-bit của mô hình phổ biến tại ````huggingface.co/unsloth````. Dùng các này tiết kiệm 5-15 phút tải xuống ban đầu + lượng tử hóa mỗi lần chạy mới: - ````unsloth/llama-3.2-8b-bnb-4bit````
+- ````unsloth/mistral-7b-v0.3-bnb-4bit````
+- ````unsloth/qwen3-coder-14b-bnb-4bit````
+- ````unsloth/gemma-3-9b-bnb-4bit````
+- ````unsloth/DeepSeek-V3-bnb-4bit```` (cho người dũng cảm trên 48 GB+)
 
 Luôn kiểm tra HF profile của Unsloth cho phiên bản pre-quantized của mô hình mục tiêu trước khi tải từ nhà phát hành gốc.
 
@@ -111,7 +112,7 @@ Luôn kiểm tra HF profile của Unsloth cho phiên bản pre-quantized của m
 
 GRPO (Group Relative Policy Optimization) là mặc định fine-tuning RL 2026 (kỹ thuật đằng sau DeepSeek-R1). Implementation GRPO của Unsloth dùng ít hơn 80% VRAM so với HF TRL, làm GRPO khả thi trên single GPU 24 GB thay vì yêu cầu node multi-GPU.
 
-```python
+`````python
 from trl import GRPOConfig, GRPOTrainer
 from unsloth import FastLanguageModel, PatchFastRL
 
@@ -128,7 +129,7 @@ trainer = GRPOTrainer(
     reward_funcs=[reward_fn],
 )
 trainer.train()
-```
+`````
 
 Cho suy luận đặc thù domain (toán, code, output có cấu trúc), GRPO + Unsloth trên single GPU giờ là cách hiệu quả chi phí nhất để nướng cải thiện suy luận vào mô hình cơ sở.
 
@@ -156,18 +157,18 @@ Cho 99% user (bạn đang fine-tune mô hình cho product riêng), Apache là c�
 
 ## 8. Pattern Production
 
-Hai pattern hầu hết team định cư: **Pattern A — Pure Unsloth (shop single-GPU)**: ```
+Hai pattern hầu hết team định cư: **Pattern A — Pure Unsloth (shop single-GPU)**: `````
 Thuê RTX 4090 trên Vast.ai → Experiment Unsloth QLoRA → 
 Merge LoRA + base → Push tới HF Hub → Serve qua vLLM
-```
+`````
 
-**Pattern B — Hybrid Unsloth + Axolotl (team production)**: ```
+**Pattern B — Hybrid Unsloth + Axolotl (team production)**: `````
 Unsloth trên laptop dev cho 50 experiment nhanh
 ↓ tìm thấy winner
 Axolotl trên cluster 8× H100 cho full fine-tune cuối cùng dài context, multi-epoch
 ↓ mô hình production
 Push tới HF Hub → Serve qua vLLM sau LiteLLM gateway
-```
+````
 
 Pattern hybrid chỉ trả tiền cluster khi có ứng viên đáng scale.
 
@@ -184,7 +185,7 @@ Unsloth = **vua tốc độ fine-tuning LLM single-GPU**. 64.9k sao, nhanh hơn 
 
 Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) cho giai đoạn production multi-GPU. Thuê {{< aff "digitalocean" "footer-cta" "instance GPU" >}} hoặc dùng Vast.ai khi cần train.
 
----
+* * *
 
 *Một phần của Fine-Tuning Stack dibi8 — xem bộ sưu tập Fine-Tuning Stack sắp tới cho pipeline đầy đủ từ chuẩn bị dataset đến triển khai production.*
 
@@ -250,7 +251,7 @@ Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2×, VRAM Ít Hơn
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/devtoys/
 ---
 
+
 {{</* resource-info */>}}
 
 ![DevToys Logo](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/logo/Logo.png)
@@ -42,7 +43,7 @@ aliases:
 
 ### 아키텍처 개요
 
-DevToys는 모듈형 플러그인 기반 아키텍처를 따른다. 핵심 애플리케이션이 셸, UI 프레임워크, 스마트 감지 엔진을 제공한다. 개별 도구는 호스트에 자신을 등록하는 확장 프로그램으로 패키징된다: ```
+DevToys는 모듈형 플러그인 기반 아키텍처를 따른다. 핵심 애플리케이션이 셸, UI 프레임워크, 스마트 감지 엔진을 제공한다. 개별 도구는 호스트에 자신을 등록하는 확장 프로그램으로 패키징된다: ````
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -57,7 +58,7 @@ DevToys는 모듈형 플러그인 기반 아키텍처를 따른다. 핵심 애�
 └─────────────────────────────────────────┘
          │ Windows │ macOS │ Linux │
          └─────────┴───────┴───────┘
-```
+`````
 
 ### 핵심 개념
 
@@ -75,9 +76,9 @@ Windows에서 DevToys를 설치하는 가장 빠른 방법은 WinGet이나 Micro
 
 **WinGet으로 설치 (권장):**
 
-```powershell
+`````powershell
 winget install DevToys-app.DevToys
-```
+`````
 
 **Microsoft Store로 설치:**
 
@@ -85,34 +86,34 @@ Microsoft Store 앱에서 "DevToys"를 검색하거나 [스토어 페이지](htt
 
 **Chocolatey로 설치:**
 
-```powershell
+`````powershell
 choco install devtoys
-```
+`````
 
 **클래식 인스톨러로 수동 설치:**
 
-```powershell
+`````powershell
 # x64 인스톨러 다운로드
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64.exe" -OutFile "devtoys_installer.exe"
 
 # 인스톨러 실행
 .\devtoys_installer.exe /SILENT
-```
+`````
 
 **포터블 ZIP (설치 불필요):**
 
-```powershell
+`````powershell
 # 다운로드 및 압축 해제
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64_portable.zip" -OutFile "devtoys.zip"
 Expand-Archive -Path "devtoys.zip" -DestinationPath "C:\Tools\DevToys"
 
 # 직접 실행
 C:\Tools\DevToys\DevToys.exe
-```
+`````
 
 ### macOS
 
-```bash
+`````bash
 # macOS DMG 다운로드
 curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_macos.dmg"
 
@@ -120,15 +121,15 @@ curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download
 hdiutil attach devtoys.dmg
 cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
-```
+`````
 
-또는 Homebrew를 통해 설치(사용 가능한 경우): ```bash
+또는 Homebrew를 통해 설치(사용 가능한 경우): `````bash
 brew install --cask devtoys
-```
+`````
 
 ### Linux (Debian/Ubuntu)
 
-```bash
+`````bash
 # .deb 패키지 다운로드
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64.deb
 
@@ -137,19 +138,19 @@ sudo dpkg -i devtoys_linux_x64.deb
 
 # 의존성 문제 수정
 sudo apt-get install -f
-```
+`````
 
 **Linux 포터블 ZIP:**
 
-```bash
+`````bash
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64_portable.zip
 unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 ~/devtoys/DevToys
-```
+`````
 
 ### DevToys CLI 설치
 
-CLI는 별도로 배포되며 헤드리스 환경과 CI 파이프라인에 유용하다: ```bash
+CLI는 별도로 배포되며 헤드리스 환경과 CI 파이프라인에 유용하다: `````bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -158,29 +159,29 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 
 # Linux
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
-```
+`````
 
-설치 후 CLI가 정상 작동하는지 확인한다: ```bash
+설치 후 CLI가 정상 작동하는지 확인한다: `````bash
 devtoys --version
 # 출력: DevToys CLI 2.0.9.0
-```
+`````
 
 ### 첫 실행 및 구성
 
-첫 실행 시 DevToys는 어두운 테마의 사이드바와 함께 열리며 30개 이상의 도구를 나열한다. **설정**을 열어 다음을 구성한다: ```yaml
+첫 실행 시 DevToys는 어두운 테마의 사이드바와 함께 열리며 30개 이상의 도구를 나열한다. **설정**을 열어 다음을 구성한다: `````yaml
 # 프로덕션 워크플로우 권장 설정
 Smart Detection: Enabled      # 클립보드에서 도구 자동 추천
 Theme: System default        # 또는 강제 다크/라이트
 Language: English             # 14개 이상의 언어 지원
 Check for updates: Weekly     # 또는 폐쇄망 환경에서 비활성화
 Telemetry: Disabled          # DevToys는 기본적으로 원격 측정이 없음
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### VS Code
 
-DevToys는 독립 실행형 앱으로 실행되지만 키바인딩을 통해 VS Code에서 직접 실행할 수 있다. `keybindings.json`에 다음을 추가한다: ```json
+DevToys는 독립 실행형 앱으로 실행되지만 키바인딩을 통해 VS Code에서 직접 실행할 수 있다. ``keybindings.json``에 다음을 추가한다: `````json
 [
   {
     "key": "ctrl+alt+d",
@@ -189,13 +190,13 @@ DevToys는 독립 실행형 앱으로 실행되지만 키바인딩을 통해 VS 
     "when": "editorTextFocus"
   }
 ]
-```
+`````
 
 완전한 통합 경험을 위해 마켓플레이스에서 **DevToys for VSCode** 확장 프로그램을 설치하면 편집기 사이드바에 일부 도구가 직접 내장된다.
 
 ### PowerShell / 터미널
 
-DevToys는 명령줄 인수를 통해 개별 도구에 대한 딥 링크를 지원한다. 이는 스크립팅과 별칭에 유용하다: ```powershell
+DevToys는 명령줄 인수를 통해 개별 도구에 대한 딥 링크를 지원한다. 이는 스크립팅과 별칭에 유용하다: `````powershell
 # 특정 도구를 직접 열기
 start devtoys:?tool=jsonformat     # JSON 포맷터
 start devtoys:?tool=jsonyaml       # JSON <> YAML 변환기
@@ -207,11 +208,11 @@ start devtoys:?tool=uuid           # UUID 생성기
 start devtoys:?tool=url            # URL 인코더/디코더
 start devtoys:?tool=markdown       # Markdown 미리보기
 start devtoys:?tool=diff           # 텍스트 비교기
-```
+`````
 
 ### CI/CD 파이프라인 (GitHub Actions)
 
-DevToys CLI는 CI 워크플로우에 깔끔하게 통합된다. 다음은 리포지토리에서 JSON 파일을 검증하는 GitHub Actions 예시이다: ```yaml
+DevToys CLI는 CI 워크플로우에 깔끔하게 통합된다. 다음은 리포지토리에서 JSON 파일을 검증하는 GitHub Actions 예시이다: `````yaml
 name: Validate JSON
 on: [push, pull_request]
 jobs: validate: runs-on: ubuntu-latest
@@ -226,11 +227,11 @@ jobs: validate: runs-on: ubuntu-latest
       - name: Validate all JSON files
         run: |
           find . -name "*.json" -exec devtoys json validate {} \;
-```
+`````
 
 ### Docker (비공식)
 
-컨테이너화된 워크플로우를 위해 DevToys CLI를 가벼운 이미지로 래핑할 수 있다: ```dockerfile
+컨테이너화된 워크플로우를 위해 DevToys CLI를 가벼운 이미지로 래핑할 수 있다: `````dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -240,12 +241,12 @@ RUN apt-get update && apt-get install -y wget unzip \
     && apt-get remove -y wget unzip && apt-get autoremove -y
 
 ENTRYPOINT ["/app/devtoys"]
-```
+`````
 
-빌드 및 실행: ```bash
+빌드 및 실행: `````bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -286,22 +287,22 @@ DevToys는 완전히 오프라인으로 작동한다 — 핵심 도구에는 네
 
 ### 스마트 감지 구성
 
-오탐을 피하기 위해 스마트 감지를 미세 조정한다: ```yaml
+오탐을 피하기 위해 스마트 감지를 미세 조정한다: `````yaml
 # 설정 > 스마트 감지
 Behavior: "Always ask"        # 옵션: Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # 감지 임계값 조정
 Excluded tools: # 특정 도구의 감지 비활성화
   - "Lorem Ipsum Generator"
   - "Password Generator"
-```
+`````
 
 ### 확장 프로그램 개발
 
-DevToys SDK를 사용하여 커스텀 도구를 만든다. SDK NuGet 패키지를 설치한다: ```bash
+DevToys SDK를 사용하여 커스텀 도구를 만든다. SDK NuGet 패키지를 설치한다: `````bash
 dotnet add package DevToys.Sdk --version 2.0.0
-```
+`````
 
-최소 확장 프로그램은 `IGuiTool` 인터페이스를 구현한다: ```csharp
+최소 확장 프로그램은 ``IGuiTool`` 인터페이스를 구현한다: `````csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -333,17 +334,17 @@ internal sealed class MyCustomTool : IGuiTool
         // 스마트 감지 입력 처리
     }
 }
-```
+`````
 
 ### 팀에서 사용량 모니터링
 
-DevToys에는 기본 원격 측정 기능이 없지만, CLI를 로깅 스크립트로 래핑하여 팀이 가장 많이 사용하는 도구를 추적할 수 있다: ```bash
+DevToys에는 기본 원격 측정 기능이 없지만, CLI를 로깅 스크립트로 래핑하여 팀이 가장 많이 사용하는 도구를 추적할 수 있다: `````bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
 echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE"
 /devtoys "$@"
-```
+`````
 
 ![DevToys Microsoft Store 평점](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/ms-store-rate.png)
 
@@ -405,7 +406,7 @@ DevToys 2.0은 Windows 10 build 1903+, macOS 11+, Linux(Debian/Ubuntu, 다른 �
 
 ### 스마트 감지는 어떻게 작동하나요?
 
-스마트 감지는 클립보드를 모니터링하고 패턴 매칭 휴리스틱을 사용하여 복사된 콘텐츠를 분석한다. 고유한 `header.payload.signature` 구조를 가진 JWT 토큰을 복사하면 DevToys가 JWT 디코더 도구를 강조 표시한다. 동작을 구성할 수 있다 — 자동으로 도구 열기, 제안 표시, 완전히 비활성화 — 설정 패널에서.
+스마트 감지는 클립보드를 모니터링하고 패턴 매칭 휴리스틱을 사용하여 복사된 콘텐츠를 분석한다. 고유한 ````header.payload.signature```` 구조를 가진 JWT 토큰을 복사하면 DevToys가 JWT 디코더 도구를 강조 표시한다. 동작을 구성할 수 있다 — 자동으로 도구 열기, 제안 표시, 완전히 비활성화 — 설정 패널에서.
 
 ### CI/CD 파이프라인에서 DevToys를 사용할 수 있나요?
 
@@ -417,7 +418,7 @@ DevToys 2.0은 처음부터 다시 작성되어 크로스 플랫폼 지원(이�
 
 ### DevToys용 커스텀 확장을 어떻게 빌드하나요?
 
-.NET 클래스 라이브러리에서 DevToys.Sdk NuGet 패키지를 설치하고, `IGuiTool` 인터페이스를 구현하고, 확장을 NuGet 패키지로 패키징한다. 확장은 nuget.org에 게시하거나 DevToys 내 확장 관리자에서 수동으로 설치할 수 있다. 전체 문서는 [devtoys.app/doc](https://devtoys.app/doc)에서 확인한다.
+.NET 클래스 라이브러리에서 DevToys.Sdk NuGet 패키지를 설치하고, ````IGuiTool``` 인터페이스를 구현하고, 확장을 NuGet 패키지로 패키징한다. 확장은 nuget.org에 게시하거나 DevToys 내 확장 관리자에서 수동으로 설치할 수 있다. 전체 문서는 [devtoys.app/doc](https://devtoys.app/doc)에서 확인한다.
 
 ### 도움을 받거나 버그를 어디에 보고할 수 있나요?
 
@@ -483,7 +484,7 @@ DevToys는 개발자 툴킷에서 진정한 공백을 메운다: 프라이버시
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -493,6 +494,6 @@ DevToys는 개발자 툴킷에서 진정한 공백을 메운다: 프라이버시
 - [microsoft-markitdown-file-to-markdown-converter-cli](devtoys)
 - [nanochat-karpathy-100-chatgpt-single-gpu](devtoys)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -10,6 +10,7 @@ draft: false
 slug: temporal-ai-workflow-orchestration
 -CN---
 
+
 ## TL;DR
 
 Temporal 是一个持久化执行平台，让构建可靠的 AI 工作流变得极其简单。无需与 Kubernetes CronJob、死信队列和手动重试逻辑搏斗，你只需将 Python 函数装饰为 Temporal 的 workflow 和 activity。Temporal 保证恰好一次执行、自动指数退避重试和开箱即用的完整可观测性。
@@ -30,9 +31,9 @@ Temporal 是用于以规模运行容错工作流的开源分布式系统。其�
 
 考虑一个典型的 AI 流水线：
 
-```
+````
 [加载数据] → [预处理] → [文档嵌入] → [向量库索引] → [测试检索] → [通知团队]
-```
+`````
 
 使用传统工具（Airflow、Celery、cron 脚本），每个步骤都需要：
 - 网络超时的自定义错误处理
@@ -46,15 +47,15 @@ Temporal 通过让你的 Python 代码**天然可恢复**来消除所有这些�
 
 | 特性 | Temporal | Airflow | Celery + Redis | Kubernetes CronJob |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 代码即工作流定义 | ✅（Python 装饰器） | ❌（DAG YAML/Python） | ❌（仅是任务队列） | ❌（Shell 脚本） |
 | 自动重试 | ✅（可配置策略） | ⚠️（基础） | ⚠️（手动配置） | ❌（无） |
@@ -64,12 +65,12 @@ Temporal 通过让你的 Python 代码**天然可恢复**来消除所有这些�
 | ML 友好集成 | ✅（原生） | ⚠️（插件） | ❌ | ❌ |
 
 
----
+* * *
 ## 快速开始
 
 ### 第一步：安装 Temporal 栈
 
-```bash
+`````bash
 # 选项 A：Docker Compose（本地开发推荐）
 git clone https://github.com/temporalio/docker-compose.git
 cd docker-compose
@@ -80,7 +81,7 @@ docker compose up -d
 
 # 验证服务器正在运行
 temporal cluster health
-```
+`````
 
 默认 Docker Compose 设置包括：
 - Temporal Server（gRPC API + 历史）
@@ -90,13 +91,13 @@ temporal cluster health
 
 ### 第二步：安装 Python SDK
 
-```bash
+`````bash
 pip install temporalio
-```
+`````
 
 ### 第三步：第一个 Workflow
 
-```python
+`````python
 import asyncio
 from temporalio import worker, workflow, activity
 from temporalio.client import Client
@@ -172,11 +173,11 @@ class MLTrainingPipeline: @workflow.run
         )
         
         return deployment
-```
+`````
 
 ### 第四步：运行 Worker 和 Client
 
-```python
+`````python
 # worker.py
 import asyncio
 from temporalio.worker import Worker
@@ -192,9 +193,9 @@ async def main(): worker = Worker(
     await worker.run()
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
----
+* * *
 
 ## AI 专用工作流模式
 
@@ -202,7 +203,7 @@ if __name__ == "__main__": asyncio.run(main())
 
 链式多个 LLM 调用，自动回退到更便宜的模型：
 
-```python
+`````python
 from temporalio import workflow, activity
 
 @activity.defn
@@ -242,13 +243,13 @@ class ResilientLLMChain: @workflow.run
                 model_used = "local-llama"
         
         return {"response": result, "model_used": model_used, "fallback_chain": True}
-```
+`````
 
 ### 模式二：异步多 Agent 编排
 
 并行运行多个 AI Agent，然后聚合结果：
 
-```python
+`````python
 @activity.defn
 async def agent_research(query: str) -> dict: """研究 Agent：从网络收集信息。"""
     results = await search_web(query)
@@ -283,13 +284,13 @@ class MultiAgentResearch: @workflow.run
         )
         
         return final_report
-```
+`````
 
 ### 模式三：带检查点恢复的 ML 训练
 
 在任何故障后自动从上次检查点恢复训练：
 
-```python
+`````python
 @activity.defn
 async def save_checkpoint(epoch: int, model_state: dict) -> str: """将训练检查点保存到持久化存储。"""
     checkpoint_path = f"s3://my-bucket/checkpoints/epoch_{epoch}.pt"
@@ -331,22 +332,22 @@ class ResumableTraining: @workflow.run
                 workflow.set_memo({"last_checkpoint": cp_path})
         
         return {"final_state": model_state, "total_epochs": total_epochs}
-```
+`````
 
 ### 模式四：流式 LLM 输出
 
 在 workflow 中处理 LLM 的流式响应：
 
-```python
+`````python
 @activity.defn
 async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]: """从 LLM 流式传输 token 并以列表返回。"""
     tokens = []
     async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
         await asyncio.sleep(0.01)
     return tokens
-```
+`````
 
----
+* * *
 
 ## AI 工作流的高级功能
 
@@ -354,7 +355,7 @@ async def stream_llm_response(prompt: str, max_tokens: int = 1024) -> list[str]:
 
 从外部信号工作流以取消、更新优先级或注入新数据：
 
-```python
+`````python
 @workflow.defn
 class PriorityWorkflow: def __init__(self): self.priority = "normal"
         self.cancel_requested = False
@@ -371,13 +372,13 @@ class PriorityWorkflow: def __init__(self): self.priority = "normal"
     async def run(self, task_data: dict) -> dict: while not self.cancel_requested: result = await process_task(task_data, self.priority)
             await asyncio.sleep(0.1)
         return {"status": "cancelled", "partial_result": result}
-```
+`````
 
 ### 子工作流实现模块化设计
 
 将复杂流水线分解为嵌套子工作流：
 
-```python
+`````python
 @workflow.defn
 class DataPreparation: @workflow.run
     async def run(self, raw_data: dict) -> dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
@@ -390,13 +391,13 @@ class FullMLPipeline: @workflow.run
         trained_model = await workflow.child_execute(ModelTraining.run, prepared_data, model_config)
         eval_results = await workflow.child_execute(ModelEvaluation.run, trained_model)
         return eval_results
-```
+`````
 
 ### 查询工作流状态
 
 检查运行中的工作流而不停止它们：
 
-```python
+`````python
 client = await Client.connect("localhost:7233")
 handle = client.get_workflow_handle("training-job-001")
 
@@ -406,15 +407,15 @@ print(f"当前状态: {state}")
 info = await handle.describe()
 print(f"状态: {info.status}")
 print(f"开始时间: {info.start_time}")
-```
+`````
 
----
+* * *
 
 ## 监控和调试
 
 ### Temporal Web UI
 
-在 `http://localhost:8233` 访问内置 Web UI：
+在 ````http://localhost:8233```` 访问内置 Web UI：
 - 查看所有运行中和已完成的工作流
 - 检查每个 activity 的输入/输出数据
 - 逐步重放工作流历史
@@ -422,7 +423,7 @@ print(f"开始时间: {info.start_time}")
 
 ### CLI 调试
 
-```bash
+`````bash
 # 列出所有工作流
 temporal workflow list --namespace default
 
@@ -437,11 +438,11 @@ temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClo
 
 # 终止运行中的工作流
 temporal workflow terminate --workflow-id training-job-001 --reason "用户请求"
-```
+`````
 
 ### 结构化日志
 
-```python
+`````python
 import structlog
 from temporalio import activity
 
@@ -455,11 +456,11 @@ async def train_with_logging(model_config: dict) -> dict: logger.info("training_
     
     logger.info("training_complete", final_loss=loss)
     return {"final_loss": loss}
-```
+`````
 
 日志出现在 Temporal UI 中，并可导出到 Elasticsearch、Datadog 或任何 SIEM。
 
----
+* * *
 
 ## 成本优化
 
@@ -467,16 +468,16 @@ async def train_with_logging(model_config: dict) -> dict: logger.info("training_
 
 通过报告进度防止浪费计算：
 
-```python
+`````python
 @activity.defn
 async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f"第 {epoch}/100 轮完成")
         loss = train_one_epoch(config)
     return {"final_loss": loss}
-```
+`````
 
 ### 右侧大小 Worker 资源
 
-```python
+`````python
 worker = Worker(
     client, task_queue="ml-workers",
     workflows=[MLTrainingPipeline],
@@ -484,24 +485,24 @@ worker = Worker(
     max_concurrent_activities=50,
     max_concurrent_workflow_tasks=100,
 )
-```
+`````
 
 ### 成本对比
 
 | 方案 | 月成本（每月 100 个训练任务） | 运维开销 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Kubernetes + CronJob | $800（常驻节点）+ 20 小时/月 DevOps | 高 |
 | AWS Batch | $450（抢占式实例）+ 10 小时/月配置 | 中 |
 | Temporal Cloud | $200（计算）+ $0 运维 | 无 |
 | 自托管 Temporal | $150（2 台小 VM）+ 5 小时/月维护 | 低 |
 
----
+* * *
 
 ## 未来方向
 
@@ -530,7 +531,7 @@ Temporal 正在积极构建 AI 专用功能：
 - 你更喜欢可视化 DAG 编辑器——考虑 Apache Airflow
 - 你已深度投入 AWS Step Functions——原生集成可能更简单
 
----
+* * *
 
 ## 社区动态
 
@@ -543,22 +544,22 @@ Temporal 正在积极构建 AI 专用功能：
 
 Temporal 社区已增长到超过 50,000 GitHub star，来自构建生产 AI 系统的公司有活跃贡献。生态系统包括流行 ML 框架的连接器、监控集成和常见 AI 工作流模式的模板仓库。
 
----
+* * *
 
 ## FAQ
 
 ### Q: Temporal 如何处理 LLM 限流？
 
-使用 Temporal 的重试策略配合指数退避。配置 `initial_interval`、`maximum_interval` 和 `backoff_coefficient` 以实现礼貌的重试策略：
+使用 Temporal 的重试策略配合指数退避。配置 ````initial_interval````、````maximum_interval```` 和 ````backoff_coefficient```` 以实现礼貌的重试策略：
 
-```python
+`````python
 retry=RetryPolicy(
     initial_interval=timedelta(seconds=1),
     maximum_interval=timedelta(minutes=5),
     backoff_coefficient=2.0,
     maximum_attempts=5
 )
-```
+````
 
 这自然地在遇到限流时节流请求，不同于盲目冲击 API 的简单重试循环。
 
@@ -578,7 +579,7 @@ Temporal 工作流可以无限期运行——没有硬性超时。有记录的�
 
 可以。Temporal worker 可以在任何地方运行——EC2、GKE、EKS 甚至 serverless container。将 Temporal worker 与 Modal function 或 RunPod 实例一起部署。关键洞察：Temporal 管理工作流协调，而实际的 GPU 计算在成本最低的地方发生。
 
----
+* * *
 
 ## 参考资料
 
@@ -588,7 +589,7 @@ Temporal 工作流可以无限期运行——没有硬性超时。有记录的�
 - [使用 Temporal 构建弹性 ML 流水线 — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal)
 - [AI 工作流编排器对比 — ML 基础设施报告 2026](https://mlinfra.report/workflow-comparison-2026)
 
----
+* * *
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
 
@@ -618,7 +619,7 @@ Temporal 工作流可以无限期运行——没有硬性超时。有记录的�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -628,6 +629,6 @@ Temporal 工作流可以无限期运行——没有硬性超时。有记录的�
 - [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration)
 - [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

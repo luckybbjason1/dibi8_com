@@ -24,13 +24,14 @@ aliases:
   - /vi/posts/vectorbt-quantitative-backtesting/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao Backtest của bạn quá chậm
 
 Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã", "bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy **73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả**. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.
 
-Hãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng **mảng NumPy và biên dịch JIT Numba**", "VectorBT xử lý **hơn 1 triệu giao dịch mỗi giây** trên một lõi CPU. Repository GitHub `polakowo/vectorbt` đã tích lũy **8.900+ star** và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026", "hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas", "Plotly và scikit-learn.
+Hãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng **mảng NumPy và biên dịch JIT Numba**", "VectorBT xử lý **hơn 1 triệu giao dịch mỗi giây** trên một lõi CPU. Repository GitHub ```polakowo/vectorbt```` đã tích lũy **8.900+ star** và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026", "hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas", "Plotly và scikit-learn.
 
 Bài hướng dẫn này bao gồm mọi thứ: cài đặt", "khái niệm cốt lõi", "ví dụ code thực tế", "production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ", "VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.
 
@@ -42,17 +43,17 @@ VectorBT (Vector Backtesting) là một thư viện Python để backtest chiế
 
 Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy
 
-Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng `(2.520", "100)` —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.
+Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng ````(2.520", "100)```` —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.
 
 ### Biên dịch JIT Numba
 
-Các hàm đường dẫn quan trọng được trang trí bằng `@njit` từ Numba", "biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống **0", "03 giây** trong VectorBT.
+Các hàm đường dẫn quan trọng được trang trí bằng ````@njit```` từ Numba", "biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống **0", "03 giây** trong VectorBT.
 
 ### Broadcasting cho lưới tham số
 
-Module `vbt` của VectorBT có thể broadcast hàm tạo tín hiệu qua các tổ hợp tham số tự động. Việc kiểm tra 50 kích thước cửa sổ × 10 tài sản × 2 quy tắc vào lệnh không yêu cầu vòng lặp for lồng nhau —— nó trở thành một phép toán tensor đơn lẻ.
+Module ````vbt```` của VectorBT có thể broadcast hàm tạo tín hiệu qua các tổ hợp tham số tự động. Việc kiểm tra 50 kích thước cửa sổ × 10 tài sản × 2 quy tắc vào lệnh không yêu cầu vòng lặp for lồng nhau —— nó trở thành một phép toán tensor đơn lẻ.
 
-```python
+`````python
 import vectorbt as vbt
 import numpy as np
 import pandas as pd
@@ -64,26 +65,26 @@ price = vbt.YFData.download(
 
 print(f"Data shape: {price.shape}")  # (2", "210", ") — giá đóng cửa hàng ngày
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
-```
+`````
 
 ## Cài đặt & Thiết lập: Dưới 5 phút
 
 VectorBT cài đặt sạch qua pip. Gói cơ sở bao gồm Numba", "NumPy và tích hợp pandas. Các dependency tùy chọn bổ sung tính năng tải dữ liệu yfinance và vẽ biểu đồ Plotly.
 
-```bash
+`````bash
 # Cài đặt cơ bản
 pip install vectorbt
 
 # Với tất cả dependency tùy chọn (khuyến nghị)
 pip install "vectorbt[all"]"
-```
+`````
 
-Xác minh cài đặt: ```python
+Xác minh cài đặt: `````python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 hoặc mới hơn
-```
+`````
 
-Để đảm bảo khả năng tái tạo, cố định môi trường của bạn: ```bash
+Để đảm bảo khả năng tái tạo, cố định môi trường của bạn: `````bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -91,17 +92,17 @@ numpy==1.26.4
 pandas==2.2.3
 yfinance==0.2.54
 plotly==5.24.1
-```
+`````
 
-Vấn đề cài đặt phổ biến trên macOS: Numba yêu cầu `llvmlite`, cần Xcode Command Line Tools: ```bash
+Vấn đề cài đặt phổ biến trên macOS: Numba yêu cầu ``llvmlite``, cần Xcode Command Line Tools: `````bash
 xcode-select --install  # Chạy lệnh này trước nếu cài Numba thất bại
-```
+`````
 
 ## Backtest đầu tiên của bạn: Chiến lược MA Crossover
 
 Hãy xây dựng chiến lược khả thi đơn giản nhất: mua khi SMA 20 ngày cắt lên trên SMA 50 ngày, thoát khi ngược lại.
 
-```python
+`````python
 import vectorbt as vbt
 import pandas as pd
 
@@ -133,13 +134,13 @@ portfolio = vbt.Portfolio.from_signals(
 # Kết quả
 print(portfolio.total_return())
 print(portfolio.sharpe_ratio())
-```
+`````
 
 Chạy dưới **2 giây** cho 3 tài sản trong 6 năm. Cùng backtest đó trong Backtrader mất khoảng **90 giây**.
 
 ## Tối ưu tham số: Tìm kiếm lưới với tốc độ cao
 
-Sức mạnh thực sự của VectorBT xuất hiện khi bạn quét tham số. Hãy thử các cửa sổ MA từ 5 đến 200: ```python
+Sức mạnh thực sự của VectorBT xuất hiện khi bạn quét tham số. Hãy thử các cửa sổ MA từ 5 đến 200: `````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -168,13 +169,13 @@ portfolio = vbt.Portfolio.from_signals(
 best_idx = portfolio.sharpe_ratio().idxmax()
 print(f"Best params: {best_idx}")
 print(f"Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}")
-```
+`````
 
 Lưới **180 tổ hợp tham số** này được đánh giá trong khoảng **3,5 giây** trên M2 MacBook Air. Đó là **50 tổ hợp mỗi giây**.
 
 ## Phân tích Walk-Forward: Xác thực chiến lược mạnh mẽ
 
-Backtest trên một giai đoạn đơn lẻ dễ dẫn đến overfitting. Phân tích walk-forward (WFA) chia dữ liệu thành cửa sổ training in-sample và testing out-of-sample. VectorBT triển khai điều này qua `Portfolio.from_signals` với cắt theo ngày: ```python
+Backtest trên một giai đoạn đơn lẻ dễ dẫn đến overfitting. Phân tích walk-forward (WFA) chia dữ liệu thành cửa sổ training in-sample và testing out-of-sample. VectorBT triển khai điều này qua ``Portfolio.from_signals`` với cắt theo ngày: `````python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -231,13 +232,13 @@ for i in range(n_splits): # Định nghĩa cửa sổ train/test
 
 results_df = pd.DataFrame(results)
 print(results_df[["test_sharpe", "test_return"]].mean())
-```
+`````
 
 Sharpe ratio trung bình out-of-sample dưới 0,5 cho thấy chiến lược không mạnh —— bất kể hiệu suất in-sample.
 
 ## Tích hợp Machine Learning
 
-VectorBT kết hợp tự nhiên với scikit-learn cho tín hiệu dựa trên ML. Huấn luyện bộ phân loại dự đoán hướng ngày tiếp theo, sau đó đưa dự đoán vào VectorBT để mô phỏng thực thi thực tế: ```python
+VectorBT kết hợp tự nhiên với scikit-learn cho tín hiệu dựa trên ML. Huấn luyện bộ phân loại dự đoán hướng ngày tiếp theo, sau đó đưa dự đoán vào VectorBT để mô phỏng thực thi thực tế: `````python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -293,11 +294,11 @@ ml_portfolio = vbt.Portfolio.from_signals(
 print(f"ML Strategy Return: {ml_portfolio.total_return():.2%}")
 print(f"ML Strategy Sharpe: {ml_portfolio.sharpe_ratio():.2f}")
 print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}")
-```
+`````
 
 ## Tối ưu Danh mục với VectorBT
 
-VectorBT PRO (phiên bản trả phí, $299/năm) bổ sung tối ưu cấp danh mục qua mô hình Markowitz mean-variance và Black-Litterman. Phiên bản open-source vẫn hỗ trợ đánh trọng số đa tài sản: ```python
+VectorBT PRO (phiên bản trả phí, $299/năm) bổ sung tối ưu cấp danh mục qua mô hình Markowitz mean-variance và Black-Litterman. Phiên bản open-source vẫn hỗ trợ đánh trọng số đa tài sản: `````python
 import vectorbt as vbt
 import numpy as np
 
@@ -329,7 +330,7 @@ portfolio = vbt.Portfolio.from_holding(
 print(f"\nCAGR: {portfolio.total_return() ** (1/4) - 1:.2%}")
 print(f"Sharpe: {portfolio.sharpe_ratio():.2f}")
 print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
-```
+`````
 
 Để giao dịch thực trên các sàn lớn, kết nối tài khoản qua API. Binance cung cấp thanh khoản sâu và phí thấp cho giao dịch crypto thuật toán —— [đăng ký tại đây](https://www.bsmkweb.cc/register?ref=DIBI8). Đối với phái sinh và loại lệnh nâng cao, [OKX](https://www.promoohubly.com/join/12190433) cung cấp API cấp tổ chức.
 
@@ -354,7 +355,7 @@ Một quỹ crypto có hệ thống sử dụng VectorBT làm giai đoạn đầ
 
 ### Chỉ báo Tùy chỉnh
 
-`IndicatorFactory` của VectorBT chuyển đổi bất kỳ hàm nào thành chỉ báo vectorized: ```python
+``IndicatorFactory`` của VectorBT chuyển đổi bất kỳ hàm nào thành chỉ báo vectorized: `````python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
@@ -379,11 +380,11 @@ CustomMomentum = vbt.IF(
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
 cm = CustomMomentum.run(price, period=[7, 14, 30])
 print(cm.momentum)
-```
+`````
 
 ### Quản lý Rủi ro: Stop Loss và Take Profit
 
-```python
+`````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
@@ -404,11 +405,11 @@ portfolio = vbt.Portfolio.from_signals(
 print(f"Return: {portfolio.total_return():.2%}")
 print(f"Win rate: {portfolio.trades.win_rate():.2%}")
 print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
-```
+`````
 
 ### Thực thi Song song
 
-Các phép toán tensor của VectorBT đã bão hòa lõi đơn. Để mở rộng đa lõi, chia lưới tham số qua nhiều tiến trình: ```python
+Các phép toán tensor của VectorBT đã bão hòa lõi đơn. Để mở rộng đa lõi, chia lưới tham số qua nhiều tiến trình: `````python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
@@ -426,7 +427,7 @@ params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.re
 chunks = np.array_split(params, 4)
 
 with Pool(4) as p: results = p.map(run_chunk, chunks)
-```
+`````
 
 ## So sánh với các Lựa chọn Thay thế
 
@@ -456,7 +457,7 @@ VectorBT không phải giải pháp đa năng. Đây là những gì nó không 
 
 2. **Xấp xỉ vectorized.** Mô hình vectorized khớp lệnh ở giá đóng cửa của cùng cây nến theo mặc định. Trượt giá thực và tác động thị trường được xấp xỉ, không phải mô phỏng từng tick. Chiến lược tần suất cao sẽ thấy kết quả bị méo.
 
-3. **Bùng nổ bộ nhớ với lưới lớn.** Lưới tham số 5D với 50 giá trị mỗi chiều tạo ra 312 triệu tổ hợp. Điều này nhanh chóng cạn kiệt RAM. Sử dụng tham số `chunk_size` hoặc mảng hỗ trợ đĩa của PRO.
+3. **Bùng nổ bộ nhớ với lưới lớn.** Lưới tham số 5D với 50 giá trị mỗi chiều tạo ra 312 triệu tổ hợp. Điều này nhanh chóng cạn kiệt RAM. Sử dụng tham số ````chunk_size```` hoặc mảng hỗ trợ đĩa của PRO.
 
 4. **Tập trung đơn tài sản.** Logic rebalance đa tài sản có thể thực hiện nhưng không thuận tiện bằng các công cụ tối ưu danh mục chuyên dụng như PyPortfolioOpt.
 
@@ -488,7 +489,7 @@ Hoàn toàn được. Bất kỳ pandas DataFrame hoặc NumPy ndarray dữ li�
 
 **VectorBT có hỗ trợ bán khống không?**
 
-Có. Đặt `direction="short"` trong `Portfolio.from_signals`, hoặc dùng `direction="both"` cho chiến lược pairs trading long/short. Bán khống bao gồm mô hình margin và chi phí vay.
+Có. Đặt ````direction="short"```` trong ````Portfolio.from_signals````, hoặc dùng ````direction="both"``` cho chiến lược pairs trading long/short. Bán khống bao gồm mô hình margin và chi phí vay.
 
 **Làm sao bắt đầu với dữ liệu crypto?**
 

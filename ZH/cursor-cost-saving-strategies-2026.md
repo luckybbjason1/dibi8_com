@@ -23,6 +23,7 @@ faq: - q: "Cursor 在 2025 年的定价到底变了什么？"
     a: "两个都用。Cursor 负责 IDE 编辑 + tab 补全。Claude Code 负责 agent 循环 + 调试。合计约 $220/月。大多数专业开发者跑的就是这套组合 —— 这不是『二选一』。"
 ---
 
+
 {{</* resource-info */>}}
 
 # Cursor 省钱策略 2026
@@ -51,7 +52,7 @@ Cursor 的 agent 模式默认用 Opus 4.7 —— 质量最好、成本最高。�
 ### 2. 收紧上下文大小
 agent 默认会把整个文件塞给模型。做精细修改时，把上下文限制在你要改的那个函数或类。
 
-做法：把特定文件钉在上下文里，其余排除。Cursor 的 `@files` 语法能帮上忙。每一个无用的 token = 浪费一个信用点。
+做法：把特定文件钉在上下文里，其余排除。Cursor 的 ```@files```` 语法能帮上忙。每一个无用的 token = 浪费一个信用点。
 
 **节省**：约 25%。
 
@@ -61,7 +62,7 @@ $20 档位下的 tab 补全基本上是免费的。样板代码、类型、简�
 **策略**：tab 用于行内编辑，agent 用于跨文件工作。
 
 ### 4. 在测试文件里关掉自动建议
-Cursor 默认会在测试文件里跑自动补全，纯粹在噪音上烧信用点。把 `**/*.test.{ts,js}` 和 `**/spec/**` 的 suggest 关掉 —— 手写测试反而更快。
+Cursor 默认会在测试文件里跑自动补全，纯粹在噪音上烧信用点。把 ````**/*.test.{ts,js}```` 和 ````**/spec/**``` 的 suggest 关掉 —— 手写测试反而更快。
 
 **节省**：约 10%。
 
@@ -109,7 +110,7 @@ Cursor 的定价改动不致命 —— 它是一次倒逼。上面的策略能�
 对大多数专业开发者来说，2026 年的正解不是「弃用 Cursor」，而是「Cursor 配 Claude Code，按工具优势分工」。合计 $220/月，比单用任何一个都强。
 
 
----
+* * *
 **相关阅读**：[Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [AI 编程 2026-Q2 横评](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [AI 编程 Agent 月度账单 2026](https://dibi8.com/zh/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
 
 
@@ -175,11 +176,11 @@ Cursor 省钱策略 2026：信用点计费改版后的应对方案 represents an
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -189,7 +190,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](cursor-cost-saving-strategies-2026)
 - [claude-4-opus-sonnet-review-2026](cursor-cost-saving-strategies-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -233,15 +234,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

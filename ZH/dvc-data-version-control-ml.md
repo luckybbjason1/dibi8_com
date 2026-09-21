@@ -12,11 +12,12 @@ aliases:
   - /zh/posts/dvc-data-version-control-ml/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：那个撑爆 Git 仓库的数据集
 
-去年，一家中型 AI 创业公司的计算机视觉团队将一个 47 GB 的图像数据集直接提交到了 Git 仓库中。两周内，`git clone` 时间超过 3 小时，CI 运行器因磁盘已满而崩溃，新工程师入职变成了一整天的 ordeal。仓库变成了一个无法维护的庞然大物 — 不是因为代码差，而是因为 Git 从来就不是为数据设计的。
+去年，一家中型 AI 创业公司的计算机视觉团队将一个 47 GB 的图像数据集直接提交到了 Git 仓库中。两周内，```git clone```` 时间超过 3 小时，CI 运行器因磁盘已满而崩溃，新工程师入职变成了一整天的 ordeal。仓库变成了一个无法维护的庞然大物 — 不是因为代码差，而是因为 Git 从来就不是为数据设计的。
 
 这个故事在全球 ML 团队中反复上演。Git 擅长源代码管理，但在版本化数据集、模型权重和实验产物时却彻底失败。结果是什么？团队失去可复现性，在重复实验上浪费算力，并且难以回答一个根本问题：**"到底是什么数据训练出了这个模型？"**
 
@@ -32,11 +33,11 @@ aliases:
 
 核心功能一览：
 
-- **数据版本控制**: 使用类似 Git 的 `add`、`push`、`pull` 和 `checkout` 命令追踪数据集和模型
+- **数据版本控制**: 使用类似 Git 的 ````add````、````push````、````pull```` 和 ````checkout```` 命令追踪数据集和模型
 - **远程存储**: 将数据存储在 S3、GCS、Azure Blob、HDFS、SSH 或本地路径
-- **流水线定义**: 在 `dvc.yaml` 中将 ML 工作流定义为 DAG
+- **流水线定义**: 在 ````dvc.yaml```` 中将 ML 工作流定义为 DAG
 - **实验追踪**: 比较不同实验运行的指标、参数和图表
-- **可复现性**: 通过 `dvc repro` 从任何 Git 提交重新运行实验
+- **可复现性**: 通过 ````dvc repro```` 从任何 Git 提交重新运行实验
 
 ## DVC 工作原理：架构与核心概念
 
@@ -44,38 +45,38 @@ DVC 作为 Git 和数据存储之间的薄层运作。理解三个核心概念�
 
 ### 1. 指针文件 (.dvc)
 
-当你运行 `dvc add data/dataset.csv` 时，DVC 会计算文件的 MD5 哈希，将其移动到本地缓存 (`.dvc/cache`)，并创建一个小的 `dataset.csv.dvc` 元数据文件。这个 `.dvc` 文件包含哈希和大小 — 它是唯一提交到 Git 的内容：
+当你运行 ````dvc add data/dataset.csv```` 时，DVC 会计算文件的 MD5 哈希，将其移动到本地缓存 (````.dvc/cache````)，并创建一个小的 ````dataset.csv.dvc```` 元数据文件。这个 ````.dvc```` 文件包含哈希和大小 — 它是唯一提交到 Git 的内容：
 
-```
+`````
 # data/dataset.csv.dvc — 由 Git 追踪 (约 100 字节)
 outs: - md5: a1b2c3d4e5f6...
   size: 104857600
   hash: md5
   path: dataset.csv
-```
+`````
 
-实际的 100 MB 数据集存储在 `.dvc/cache` 中，可以推送到远程存储。这种分离是核心技巧：**Git 追踪元数据，DVC 追踪数据。**
+实际的 100 MB 数据集存储在 ````.dvc/cache```` 中，可以推送到远程存储。这种分离是核心技巧：**Git 追踪元数据，DVC 追踪数据。**
 
 ### 2. 缓存与远程存储
 
-DVC 在本地维护内容寻址缓存 (`.dvc/cache`)。文件按 MD5 哈希存储，实现自动去重 — 同一文件在不同版本中只存储一次。你可以配置远程存储以在团队间共享数据：
+DVC 在本地维护内容寻址缓存 (````.dvc/cache````)。文件按 MD5 哈希存储，实现自动去重 — 同一文件在不同版本中只存储一次。你可以配置远程存储以在团队间共享数据：
 
-```bash
+`````bash
 # 本地缓存结构
 .dvc/cache/
   files/
     md5/
       a1/
         b2c3d4e5f6...  # 实际文件内容
-```
+`````
 
-远程存储遵循相同的结构，使得 `dvc push` 和 `dvc pull` 成为简单的同步操作。
+远程存储遵循相同的结构，使得 ````dvc push```` 和 ````dvc pull```` 成为简单的同步操作。
 
 ### 3. 流水线 (dvc.yaml)
 
 DVC 流水线将有向无环图 (DAG) 中的可复现 ML 工作流定义为各个阶段。每个阶段都有依赖项、输出和命令：
 
-```yaml
+`````yaml
 # dvc.yaml — 流水线定义
 stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output data/processed.csv
     deps: - src/preprocess.py
@@ -88,7 +89,7 @@ stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output dat
     outs: - models/model.pkl
     params: - train.epochs
       - train.lr
-```
+`````
 
 DVC 追踪阶段依赖，仅在输入变化时重新运行阶段 — 类似于 Makefile，但具有内容感知哈希和完全可复现性。
 
@@ -96,7 +97,7 @@ DVC 追踪阶段依赖，仅在输入变化时重新运行阶段 — 类似于 M
 
 DVC 需要 Python 3.9+ 和 Git。使用 pip 安装：
 
-```bash
+`````bash
 # 核心 DVC (最小安装)
 pip install dvc
 
@@ -106,37 +107,37 @@ pip install "dvc[gs]"      # Google Cloud Storage
 pip install "dvc[azure]"   # Azure Blob Storage
 pip install "dvc[ssh]"     # SSH/SFTP
 pip install "dvc[all]"     # 所有远程后端
-```
+`````
 
 验证安装：
 
-```bash
+`````bash
 dvc --version
 # dvc version 3.67.1
-```
+`````
 
 在现有 Git 仓库中初始化 DVC：
 
-```bash
+`````bash
 cd my-ml-project
 git init          # 如果还不是 Git 仓库
 dvc init          # 创建 .dvc/ 目录和 .dvcignore
 git add .dvc
 git commit -m "Initialize DVC"
-```
+`````
 
-`dvc init` 命令创建：
+````dvc init```` 命令创建：
 
-- `.dvc/` — DVC 配置和缓存目录
-- `.dvc/.gitignore` — 防止缓存文件被 Git 追踪
-- `.dvc/config` — 本地 DVC 配置文件
-- `.dvcignore` — 从 DVC 追踪中排除的模式
+- ````.dvc/```` — DVC 配置和缓存目录
+- ````.dvc/.gitignore```` — 防止缓存文件被 Git 追踪
+- ````.dvc/config```` — 本地 DVC 配置文件
+- ````.dvcignore```` — 从 DVC 追踪中排除的模式
 
 ## 追踪数据：你的第一个数据集
 
 将数据集添加到 DVC 追踪：
 
-```bash
+`````bash
 # 添加单个文件
 dvc add data/training_data.csv
 
@@ -148,25 +149,25 @@ ls data/
 # training_data.csv
 # training_data.csv.dvc   <- 这个提交到 Git
 # .gitignore               <- DVC 将数据添加到 gitignore
-```
+`````
 
-`.dvc` 文件是 Git 可以高效处理的小型 YAML 文件。提交它：
+````.dvc```` 文件是 Git 可以高效处理的小型 YAML 文件。提交它：
 
-```bash
+`````bash
 git add data/training_data.csv.dvc data/.gitignore
 git commit -m "Track training dataset with DVC"
-```
+`````
 
 在另一台机器上或克隆后检索数据：
 
-```bash
+`````bash
 # 从远程拉取数据 (配置远程存储后)
 dvc pull
 
 # 或检出特定版本
 git checkout v1.0
 dvc checkout   # 恢复与 .dvc 指针对应的数据文件
-```
+`````
 
 ## 配置远程存储：S3、GCS、Azure
 
@@ -174,7 +175,7 @@ dvc checkout   # 恢复与 .dvc 指针对应的数据文件
 
 ### Amazon S3
 
-```bash
+`````bash
 # 添加 S3 作为默认远程
 dvc remote add -d myremote s3://my-bucket/dvc-storage
 
@@ -183,32 +184,32 @@ dvc remote add -d myremote s3://my-bucket/dvc-storage --profile production
 
 # 设置区域
 dvc remote modify myremote region us-east-1
-```
+`````
 
 ### Google Cloud Storage (GCS)
 
-```bash
+`````bash
 # 添加 GCS 远程
 dvc remote add -d myremote gs://my-bucket/dvc-storage
 
 # 使用服务账号
 dvc remote modify myremote credentialpath /path/to/service-account.json
-```
+`````
 
 ### Azure Blob Storage
 
-```bash
+`````bash
 # 添加 Azure 远程
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # 设置账户名和密钥
 dvc remote modify myremote account_name myaccount
 dvc remote modify myremote account_key mykey
-```
+`````
 
 配置完成后推送数据到远程：
 
-```bash
+`````bash
 # 将所有追踪的数据推送到远程
 dvc push
 
@@ -217,7 +218,7 @@ dvc pull
 
 # 获取特定目标的数据
 dvc pull data/training_data.csv
-```
+`````
 
 对于云 VPS 上的生产部署，[DigitalOcean Spaces](https://m.do.co/c/eca87ac14ee0) 提供兼容 S3 的对象存储，起价 $5/月 — 是团队开始使用 DVC 的经济选择。
 
@@ -225,7 +226,7 @@ dvc pull data/training_data.csv
 
 DVC 流水线将临时训练脚本转变为可复现的工作流。以下是一个完整 ML 项目的流水线：
 
-```yaml
+`````yaml
 # dvc.yaml
 stages: prepare: cmd: python src/prepare.py --config params.yaml
     deps: - src/prepare.py
@@ -252,11 +253,11 @@ stages: prepare: cmd: python src/prepare.py --config params.yaml
       - data/features/
     metrics: - metrics.json: cache: false
     plots: - plots/roc_curve.csv
-```
+`````
 
 运行流水线：
 
-```bash
+`````bash
 # 运行所有阶段 (仅重新运行变化的阶段)
 dvc repro
 
@@ -265,11 +266,11 @@ dvc repro train
 
 # 可视化流水线
 dvc dag
-```
+`````
 
-参数定义在 `params.yaml` 中：
+参数定义在 ````params.yaml```` 中：
 
-```yaml
+`````yaml
 # params.yaml
 prepare: split: 0.2
   seed: 42
@@ -278,13 +279,13 @@ train: lr: 0.001
   epochs: 50
   batch_size: 32
   model_type: resnet50
-```
+`````
 
 ## 实验追踪
 
 DVC 提供轻量级实验追踪，无需外部数据库：
 
-```bash
+`````bash
 # 运行修改参数的实验
 dvc exp run --set-param train.lr=0.01
 
@@ -293,11 +294,11 @@ dvc exp run --set-param train.lr=0.1,0.01,0.001
 
 # 列出所有实验
 dvc exp show
-```
+`````
 
 比较实验结果：
 
-```bash
+`````bash
 # 显示带指标的实验表
 dvc exp show --no-timestamp --precision 4
 
@@ -306,11 +307,11 @@ dvc exp apply exp-abc123
 
 # 推送实验到远程
 dvc exp push origin exp-abc123
-```
+`````
 
 对于指标可视化，DVC 可以生成图表：
 
-```yaml
+`````yaml
 # dvc.yaml (图表部分)
 plots: - plots/loss.csv: x: step
       y: loss
@@ -318,12 +319,12 @@ plots: - plots/loss.csv: x: step
   - plots/accuracy.csv: x: step
       y: accuracy
       title: Validation Accuracy
-```
+`````
 
-```bash
+`````bash
 # 生成并查看图表
 dvc plots show
-```
+`````
 
 ## CI/CD 集成：GitHub Actions 与 GitLab CI
 
@@ -331,7 +332,7 @@ DVC 原生集成 CI/CD 平台，实现自动化流水线运行和模型验证。
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline
 on: [push]
@@ -363,11 +364,11 @@ jobs: train: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: metrics
           path: metrics.json
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - data
   - train
@@ -397,7 +398,7 @@ evaluate_model: stage: evaluate
   dependencies: - train_model
   script: - dvc repro evaluate
     - cat metrics.json
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -405,11 +406,11 @@ DVC 已在从初创公司到财富 500 强企业的组织中得到实战验证�
 
 | 指标 | 数值 | 来源 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | **15,600+** | GitHub (2026年5月) |
 | PyPI 月下载量 | **500,000+** | PyPI 统计 |
@@ -422,22 +423,22 @@ DVC 已在从初创公司到财富 500 强企业的组织中得到实战验证�
 
 | 操作 | 1 GB 数据集 | 50 GB 数据集 | 1 TB 数据集 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `dvc add` (本地 SSD) | 2.1s | 45s | 18 分钟 |
-| `dvc push` (到 S3) | 8s | 3.2 分钟 | 52 分钟 |
-| `dvc pull` (从 S3) | 5s | 2.1 分钟 | 38 分钟 |
-| `dvc checkout` (切换版本) | 0.3s | 2.1s | 8.5s |
+| ````dvc add```` (本地 SSD) | 2.1s | 45s | 18 分钟 |
+| ````dvc push```` (到 S3) | 8s | 3.2 分钟 | 52 分钟 |
+| ````dvc pull```` (从 S3) | 5s | 2.1 分钟 | 38 分钟 |
+| ````dvc checkout```` (切换版本) | 0.3s | 2.1s | 8.5s |
 
 *基准测试在 c5.2xlarge (8 vCPU, 16 GB RAM) 上运行，通过 10 Gbps 网络连接到 S3 us-east-1。时间为 3 次运行的平均值。*
 
-突出的数据是 1 GB 数据集 `dvc checkout` 仅需 0.3 秒 — DVC 在可用时使用硬链接和 reflink，使版本切换几乎瞬时完成，不受数据集大小影响。
+突出的数据是 1 GB 数据集 ````dvc checkout```` 仅需 0.3 秒 — DVC 在可用时使用硬链接和 reflink，使版本切换几乎瞬时完成，不受数据集大小影响。
 
 ### 真实用例
 
@@ -453,7 +454,7 @@ DVC 已在从初创公司到财富 500 强企业的组织中得到实战验证�
 
 启用自动垃圾回收以回收旧缓存版本的空间：
 
-```bash
+`````bash
 # 仅保留当前 Git 工作区引用的文件
 dvc gc --workspace
 
@@ -462,11 +463,11 @@ dvc gc --all-branches --all-tags
 
 # 预览将被删除的内容 (模拟运行)
 dvc gc --workspace --dry
-```
+`````
 
 ### 多环境远程存储
 
-```bash
+`````bash
 # 生产远程 (大多数用户只读)
 dvc remote add production s3://prod-bucket/dvc-storage
 
@@ -475,11 +476,11 @@ dvc remote add -d dev s3://dev-bucket/dvc-storage
 
 # 推送到特定远程
 dvc push --remote production
-```
+`````
 
 ### 从外部源导入数据
 
-```bash
+`````bash
 # 导入数据而不复制 (追踪外部 URL)
 dvc import-url s3://external-bucket/dataset.csv data/dataset.csv
 
@@ -488,11 +489,11 @@ dvc import-url --rev v1.0 https://github.com/user/repo/data.csv
 
 # 更新导入的数据
 dvc update data/dataset.csv
-```
+`````
 
 ### 大文件优化 (符号链接/硬链接)
 
-```bash
+`````bash
 # 使用 reflinks (写时复制) — 最快，不重复占用空间
 dvc config cache.type reflink,hardlink,copy
 
@@ -501,34 +502,34 @@ dvc cache dir --show
 
 # 检查缓存健康状态
 dvc fsck
-```
+`````
 
 ### 保护敏感数据
 
-```bash
+`````bash
 # 使用 .dvcignore 排除敏感文件
 echo "secrets/" >> .dvcignore
 echo "*.key" >> .dvcignore
 
 # 远程存储静态加密 (S3 SSE)
 dvc remote modify myremote sse AES256
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | DVC | Git LFS | Pachyderm | LakeFS | MLflow |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | 是 (Apache-2.0) | 是 (MIT) | 是 (Apache-2.0) | 是 (Apache-2.0) | 是 (Apache-2.0) |
 | **最大文件大小** | 无限制 | 2 GB (GitHub) | 无限制 | 无限制 | 不适用 (无数据存储) |
@@ -572,13 +573,13 @@ dvc remote modify myremote sse AES256
 Git LFS 在单独的服务器上存储大文件，但仍通过 Git 提交追踪文件版本。DVC 完全将数据与 Git 解耦 — 只有微小的指针文件进入 Git，而数据存在于 S3、GCS 或任何远程存储中。DVC 还提供 Git LFS 所没有的流水线定义和实验追踪。
 
 **Q: DVC 可以与 Jupyter Notebook 一起使用吗？**
-可以。使用 `dvc.api` 直接在 Notebook 中从 DVC 远程读取数据集，无需手动 `dvc pull`：
+可以。使用 ````dvc.api```` 直接在 Notebook 中从 DVC 远程读取数据集，无需手动 ````dvc pull````：
 
-```python
+`````python
 import dvc.api
 
 with dvc.api.open('data/dataset.csv', remote=myremote) as f: df = pd.read_csv(f)
-```
+`````
 
 **Q: DVC 可以与私有 Git 仓库一起使用吗？**
 绝对可以。DVC 适用于任何 Git 仓库 — GitHub、GitLab、Bitbucket 或自托管 Git。DVC 远程存储独立于 Git 托管，可以是任何兼容 S3 的存储。
@@ -592,9 +593,9 @@ DVC 按内容哈希 (MD5) 存储文件。如果数据集的两个版本共享 90
 **Q: DVC 可以追踪本地 NAS 或共享驱动器上的数据吗？**
 可以。对网络连接存储使用本地远程：
 
-```bash
+`````bash
 dvc remote add -d myremote /mnt/shared-nas/dvc-storage
-```
+`````
 
 ## 结论：今天就开始版本化你的数据
 
@@ -604,12 +605,12 @@ dvc remote add -d myremote /mnt/shared-nas/dvc-storage
 
 今天就开始：
 
-```bash
+`````bash
 pip install dvc
 cd your-ml-project
 dvc init
 dvc add your-dataset.csv
-```
+````
 
 加入 DVC [Discord](https://dvc.org/chat) 社区，在 [GitHub](https://github.com/iterative/dvc) 上关注项目更新。
 
@@ -669,7 +670,7 @@ dvc add your-dataset.csv
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](dvc-data-version-control-ml)
@@ -678,5 +679,5 @@ dvc add your-dataset.csv
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](dvc-data-version-control-ml)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

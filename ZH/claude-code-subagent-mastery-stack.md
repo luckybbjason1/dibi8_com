@@ -17,6 +17,7 @@ faqs: - q: 'Claude Code 的五种子代理模式是什么？'
     a: '每种重大故障模式都有一个共同的根本原因：将代理的声明当作已验证的事实来信任。解决办法是在流水线的每个接缝处都内置验证（例如 git diff 和测试退出码）以及约束（停止条件和预算）。'
   - q: 'Claude Code 中多代理流水线的五种失败方式是什么？'
     a: '五种已记录的失败模式分别是：信任陷阱、上下文泄漏、失控扇出、静默截断和孤立 worktree。研究这些内容是区分一个能运行的 demo 和生产就绪流水线的关键所在。'---
+
 # Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会
 
 
@@ -30,16 +31,16 @@ faqs: - q: 'Claude Code 的五种子代理模式是什么？'
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **5 种子智能体模式** | 基础 | 五种工作流：并行扇出、worktree 隔离、专家委派、上下文保护、流水线编排 | [子智能体模式](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) |
-| 2 | **自定义智能体编写** | 构建 | 如何编写 `.claude/agents/*.md`——frontmatter、系统提示词、工具白名单 | [自定义智能体编写](/zh/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
+| 2 | **自定义智能体编写** | 构建 | 如何编写 ```.claude/agents/*.md````——frontmatter、系统提示词、工具白名单 | [自定义智能体编写](/zh/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
 | 3 | **子智能体 vs MCP vs 技能** | 决策 | 三轴框架——知识（技能）、上下文（子智能体）、能力（MCP） | [子智能体 vs MCP vs 技能](/zh/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) |
 | 4 | **技能编写** | 构建 | 把流程打包成 Claude 仅在相关时才加载的内容——SKILL.md、渐进式披露 | [技能编写](/zh/resources/llm-frameworks/claude-code-skill-authoring-guide-2026/) |
 | 5 | **编排复盘** | 规避 | 流水线失败的 5 种方式：信任陷阱、上下文渗漏、失控扇出、静默截断、孤立 worktree | [流水线复盘](/zh/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/) |
@@ -49,7 +50,7 @@ faqs: - q: 'Claude Code 的五种子代理模式是什么？'
 
 **从五种模式开始（1）。** 在你构建任何自定义内容之前，先内化*何时*该派出一个子智能体——并行研究扇出是阻力最小的切入点，收益立竿见影。底层原则贯穿其余一切：你的父对话是一种稀缺资源；子智能体就是你在不耗尽它的前提下进行支出的方式。
 
-**然后学会编写自定义智能体（2）。** 一旦掌握了模式，就把它们固化下来。一个自定义智能体就是可执行的制度知识——把你的评审清单、安全关卡或迁移审计器，做成受版本控制的 `.md` 文件。成败的关键细节在于 `description`（路由信号）和工具白名单（最小权限能防止一个评审者『好心地』去编辑它本该评审的代码）。
+**然后学会编写自定义智能体（2）。** 一旦掌握了模式，就把它们固化下来。一个自定义智能体就是可执行的制度知识——把你的评审清单、安全关卡或迁移审计器，做成受版本控制的 ````.md```` 文件。成败的关键细节在于 ````description```（路由信号）和工具白名单（最小权限能防止一个评审者『好心地』去编辑它本该评审的代码）。
 
 **退一步看决策框架（3）。** 这是基石。在构建下一个智能体之前，先问：我缺的是*知识*（→ 写一个技能）、*上下文*（→ 派一个子智能体），还是*能力*（→ 构建一个 MCP 服务器）？大多数团队在一个 markdown 文件就能在午饭前交付同样结果的情况下，却过度伸手去够 MCP 服务器。
 
@@ -142,12 +143,12 @@ Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](claude-code-subagent-mastery-stack)
@@ -156,7 +157,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](claude-code-subagent-mastery-stack)
 - [codebase-memory-mcp-deep-code-intelligence](claude-code-subagent-mastery-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -37,6 +37,7 @@ faqs: - q: 'Trình duyệt Ladybird là gì?'
     a: 'Bạn tự build Ladybird từ mã nguồn bằng cách clone repository GitHub về, cài đặt các gói phụ thuộc (build-essential, cmake, ninja-build trên Ubuntu/Debian), sau đó build bằng CMake và Ninja rồi chạy ./bin/Ladybird. Ngoài ra cũng có một Docker image thử nghiệm để bạn lựa chọn.'
 ---
 
+
 {</* resource-info */>}
 
 ## Ladybird là gì?
@@ -48,7 +49,7 @@ faqs: - q: 'Trình duyệt Ladybird là gì?'
 **Ngôn ngữ**: C++
 **Giấy phép**: BSD-2-Clause
 
----
+* * *
 
 ## Vấn đề Độc quyền Trình duyệt
 
@@ -73,7 +74,7 @@ faqs: - q: 'Trình duyệt Ladybird là gì?'
 4. **Bảo mật**: Công cụ duy nhất = điểm lỗi duy nhất
 5. **Tự do**: Lợi ích doanh nghiệp vs lợi ích người dùng
 
----
+* * *
 
 ## Cách tiếp cận của Ladybird
 
@@ -87,7 +88,7 @@ Ladybird không phân nhánh Chromium hay Firefox. Nó xây dựng mọi thứ: 
 
 ### Kiến trúc
 
-```
+````
 Yêu cầu Người dùng
     ↓
 Lớp Mạng (LibHTTP)
@@ -97,9 +98,9 @@ Bộ phân tích HTML (LibWeb)
 Cây DOM → Bộ phân tích CSS → Tính toán Kiểu
     ↓
 Công cụ Bố cục → Kết xuất → Hiển thị
-```
+`````
 
----
+* * *
 
 ## Tính năng Chính
 
@@ -127,7 +128,7 @@ Công cụ Bố cục → Kết xuất → Hiển thị
 - Thời gian khởi động nhanh
 - Kết xuất hiệu quả
 
----
+* * *
 
 ## Tình trạng Phát triển
 
@@ -153,13 +154,13 @@ Công cụ Bố cục → Kết xuất → Hiển thị
 - **100+ người đóng góp**
 - **Cam kết hàng ngày**
 
----
+* * *
 
 ## Cách Dùng thử Ladybird
 
 ### Xây dựng từ Nguồn
 
-```bash
+`````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/LadybirdBrowser/ladybird.git
 cd ladybird
@@ -174,16 +175,16 @@ ninja
 
 # Chạy
 ./bin/Ladybird
-```
+`````
 
 ### Docker (Thử nghiệm)
 
-```bash
+`````bash
 docker pull ladybird/browser
 docker run -it ladybird/browser
-```
+````
 
----
+* * *
 
 ## Tại sao Ladybird Quan trọng
 
@@ -205,7 +206,7 @@ docker run -it ladybird/browser
 - **Đổi mới**: Cạnh tranh thúc đẩy tiến bộ
 - **Khả năng phục hồi**: Không có điểm lỗi duy nhất
 
----
+* * *
 
 ## So sánh với Các trình duyệt Khác
 
@@ -228,7 +229,7 @@ docker run -it ladybird/browser
 | Hiện đại | Khởi đầu mới | Nợ kỹ thuật |
 | Tài trợ | Cộng đồng | Mozilla Corp |
 
----
+* * *
 
 ## Nhóm phía sau Ladybird
 
@@ -244,7 +245,7 @@ docker run -it ladybird/browser
 - Được thúc đẩy bởi tình nguyện viên
 - Quản trị minh bạch
 
----
+* * *
 
 ## Bài viết Liên quan
 
@@ -252,11 +253,11 @@ docker run -it ladybird/browser
 - [Free Claude Code: Mã hóa AI mã nguồn mở](/vi/resources/ai-tools/free-claude-code-open-source-proxy/) — Công cụ dành cho nhà phát triển
 - [Polymarket Agents: Bot Giao dịch AI](/vi/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — AI trong tài chính
 
----
+* * *
 
 *Tuyên bố miễn trừ: Ladybird đang trong quá trình phát triển tích cực và chưa sẵn sàng cho sử dụng hàng ngày. Bài viết này giới thiệu một dự án mã nguồn mở quan trọng chống lại độc quyền trình duyệt.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -329,7 +330,7 @@ Ladybird: Trình duyệt Web Độc lập Thực sự — Kỷ nguyên mới c�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

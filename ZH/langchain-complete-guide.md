@@ -7,6 +7,7 @@ aliases:
   - /posts/langchain-complete-guide/-
 ---
 
+
 {</* resource-info */>}
 
 LangChain自2022年10月开源以来，迅速成长为Python生态中最热门的LLM应用开发框架。截至2025年5月，其GitHub仓库已获得超过95,000颗星标，月下载量突破1,200万次。本文将带你系统掌握LangChain的核心架构、关键组件以及生产级部署策略。
@@ -27,11 +28,11 @@ LangChain的核心价值体现在三个维度：
 
 | 项目 | 定位 | 核心功能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 基础编排框架 | 组件抽象、链式调用、数据加载 |
 | LangGraph | 状态图引擎 | 循环工作流、多智能体协作、持久化状态 |
@@ -48,7 +49,7 @@ LangChain将模型调用抽象为两类接口：
 1. **LLMs**：基于文本补全的模型（如GPT-3.5-turbo-instruct）
 2. **Chat Models**：基于对话格式的模型（如GPT-4、Claude 3.5 Sonnet、Llama 3）
 
-推荐使用Chat Models作为默认选择，因为所有主流模型厂商都已迁移到对话API格式。通过`init_chat_model()`函数，你可以用统一的方式初始化来自不同供应商的模型。
+推荐使用Chat Models作为默认选择，因为所有主流模型厂商都已迁移到对话API格式。通过```init_chat_model()````函数，你可以用统一的方式初始化来自不同供应商的模型。
 
 ### Prompts：提示词工程基础设施
 
@@ -58,7 +59,7 @@ LangChain的提示词系统包含三个关键元素：
 - **Example Selectors**：从示例库中动态选择最相关的few-shot示例
 - **Output Parsers**：将模型输出解析为结构化数据（JSON、Pydantic对象等）
 
-2025年新推出的`ChatPromptTemplate`支持多模态消息，可以混合文本、图片和工具调用，这对构建视觉理解应用至关重要。
+2025年新推出的````ChatPromptTemplate````支持多模态消息，可以混合文本、图片和工具调用，这对构建视觉理解应用至关重要。
 
 ### Chains：工作流编排核心
 
@@ -75,12 +76,12 @@ RAG应用的数据处理流水线通常遵循以下流程：
 
 1. **Document Loaders**：从PDF、网页、数据库等来源加载原始文档（内置100+加载器）
 2. **Text Splitters**：按字符、token或语义边界切分文本
-   - `RecursiveCharacterTextSplitter`：最常用的通用切分器
-   - `SemanticChunker`：基于语义相似度的智能切分（实验性）
+   - ````RecursiveCharacterTextSplitter````：最常用的通用切分器
+   - ````SemanticChunker````：基于语义相似度的智能切分（实验性）
 3. **Vector Stores**：存储文本嵌入向量，支持FAISS、Chroma、Pinecone、Milvus等
 4. **Retrievers**：执行相似度搜索，返回与查询最相关的文档片段
 
-2025年LangChain引入了`ParentDocumentRetriever`，它在检索时使用小块文本保证精确度，但在传递给LLM时使用完整父文档，显著提升了RAG的回答质量。
+2025年LangChain引入了````ParentDocumentRetriever````，它在检索时使用小块文本保证精确度，但在传递给LLM时使用完整父文档，显著提升了RAG的回答质量。
 
 ### Agents：自主决策智能体
 
@@ -115,14 +116,14 @@ Memory组件管理对话历史的存储与检索。两种主要模式：
 
 ### 环境安装
 
-```bash
+`````bash
 pip install langchain langchain-openai langchain-community
 pip install faiss-cpu  # 或 chromadb
-```
+`````
 
 ### 基础LLM调用
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -133,11 +134,11 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 chain = prompt | llm
 response = chain.invoke({"question": "什么是RAG？"})
-```
+`````
 
 ### 完整RAG应用
 
-```python
+`````python
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -165,7 +166,7 @@ doc_chain = create_stuff_documents_chain(llm, qa_prompt)
 rag_chain = create_retrieval_chain(retriever, doc_chain)
 
 result = rag_chain.invoke({"input": "LangChain的核心组件有哪些？"})
-```
+`````
 
 这段代码涵盖了文档加载、切分、索引、检索和生成的完整RAG流水线。
 
@@ -175,11 +176,11 @@ result = rag_chain.invoke({"input": "LangChain的核心组件有哪些？"})
 
 生产环境的用户体验要求实时响应。LangChain原生支持流式输出：
 
-```python
+`````python
 for chunk in rag_chain.stream({"input": "解释RAG原理"}): if answer_chunk := chunk.get("answer"): print(answer_chunk, end="")
-```
+`````
 
-异步支持通过`ainvoke`、`astream`方法提供，与FastAPI、Sanic等异步框架无缝集成。
+异步支持通过````ainvoke````、````astream````方法提供，与FastAPI、Sanic等异步框架无缝集成。
 
 ### 错误处理与Fallback策略
 
@@ -191,7 +192,7 @@ for chunk in rag_chain.stream({"input": "解释RAG原理"}): if answer_chunk := 
 
 ### 自定义工具与Agent
 
-```python
+`````python
 from langchain_core.tools import tool
 from langchain.agents import create_react_agent, AgentExecutor
 
@@ -202,15 +203,15 @@ def calculate(expression: str) -> float: """执行数学计算。"""
 tools = [calculate]
 agent = create_react_agent(llm, tools, prompt)
 executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-```
+`````
 
-工具的定义只需要Python函数加上`@tool`装饰器，LangChain会自动生成schema供LLM理解。
+工具的定义只需要Python函数加上````@tool````装饰器，LangChain会自动生成schema供LLM理解。
 
 ## 生产部署最佳实践
 
 ### 安全防御
 
-- **Prompt Injection防护**：使用LangChain的`HuggingFaceTokenProtection`和输入过滤器
+- **Prompt Injection防护**：使用LangChain的````HuggingFaceTokenProtection````和输入过滤器
 - **输出校验**：通过Pydantic模型校验LLM输出的结构合法性
 - **权限隔离**：Agent的工具调用需遵循最小权限原则，代码执行必须在沙箱环境
 
@@ -219,20 +220,20 @@ executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 - **向量索引分区**：按数据源或时间维度分片，减少单次搜索空间
 - **Embedding缓存**：对高频查询的embedding结果进行Redis缓存
 - **模型量化**：本地部署时使用INT8/INT4量化模型，降低内存占用
-- **批处理**：利用`batch()`方法并行处理多个请求
+- **批处理**：利用````batch()````方法并行处理多个请求
 
 ### 部署方案
 
 Docker容器化是最推荐的部署方式：
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
 配合LangSmith的实时监控，可以追踪每一次请求的完整调用链路，快速定位延迟瓶颈。
 
@@ -240,13 +241,13 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 | 框架 | 核心优势 | 适用场景 | GitHub星标（2025.05） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | 生态最全、集成最多 | 通用LLM应用 | 95,000+ |
 | LlamaIndex | RAG管道最成熟 | 文档问答、知识库 | 39,000+ |
@@ -276,7 +277,7 @@ LlamaIndex在纯RAG场景下更专业，提供更细粒度的索引策略和查�
 
 ### LangChain可以与本地LLM（如Ollama）一起使用吗？
 
-完全可以。通过`ChatOllama`类即可连接本地Ollama服务。只需安装`langchain-ollama`包，然后初始化模型即可。这是降低API成本和保护数据隐私的最佳实践。
+完全可以。通过````ChatOllama````类即可连接本地Ollama服务。只需安装````langchain-ollama```包，然后初始化模型即可。这是降低API成本和保护数据隐私的最佳实践。
 
 ## 下一步学习路径
 
@@ -290,7 +291,7 @@ LlamaIndex在纯RAG场景下更专业，提供更细粒度的索引策略和查�
 LangChain的[官方文档](https://python.langchain.com)和[GitHub仓库](https://github.com/langchain-ai/langchain)是持续学习的最佳资源。框架迭代速度快，建议关注官方博客获取最新动态。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -364,7 +365,7 @@ LangChain完整入门指南2025：从零构建生产级AI应用 represents an im
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -408,15 +409,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

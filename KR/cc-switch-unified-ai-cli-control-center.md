@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 ---
 
+
 # cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센터 — 2026 실전 가이드
 
 ![cc-switch 메인 인터페이스](https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png)
@@ -37,7 +38,7 @@ cc-switch는 세 가지 아키텍처 레이어로 동작한다: 1. **에이전�
 
 3. **프리셋 시스템** — 전체 구성 프로필을 저장한다. 어떤 에이전트가 활성인지, 기본 모델 선택, 토큰 제한, 온도 설정, 커스텀 시스템 프롬프트, 프록시 구성. 프리셋은 GitHub Gist를 통해 공유하거나 ccswitch.io의 커뮤니티 갤러리에서 가져올 수 있다.
 
-```
+````
 ┌─────────────────────────────────────────┐
 │          cc-switch 데스크톱 앱           │
 │  (Tauri v2 + Rust 백엔드 + WebView2)    │
@@ -48,11 +49,11 @@ cc-switch는 세 가지 아키텍처 레이어로 동작한다: 1. **에이전�
 │  Claude Code │ Codex CLI │ OpenCode     │
 │  OpenClaw    │ Gemini CLI │ Hermes Agent│
 └─────────────────────────────────────────┘
-```
+`````
 
 *cc-switch 아키텍처: 세 가지 레이어로 여러 AI 코딩 에이전트 동시에 관리*
 
-에이전트 레지스트리 레이어는 `$PATH`와 일반적인 설치 디렉토리(`~/.claude`, `~/.codex`, `~/.opencode` 등)를 쿼리하여 설치된 에이전트를 자동 감지한다. 세션 관리자는 각 에이전트 프로세스에 훅을 걸어서 stdin/stdout의 세션 메타데이터를 추적한다. 프리셋 시스템은 모든 구성을 JSON으로 직렬화하여 버전 관리 및 내보내기 가능하게 한다.
+에이전트 레지스트리 레이어는 ````$PATH````와 일반적인 설치 디렉토리(````~/.claude````, ````~/.codex````, ````~/.opencode```` 등)를 쿼리하여 설치된 에이전트를 자동 감지한다. 세션 관리자는 각 에이전트 프로세스에 훅을 걸어서 stdin/stdout의 세션 메타데이터를 추적한다. 프리셋 시스템은 모든 구성을 JSON으로 직렬화하여 버전 관리 및 내보내기 가능하게 한다.
 
 ## Installation & Setup
 
@@ -60,7 +61,7 @@ cc-switch는 단일 Tauri 바이너리로 제공된다. Node.js, npm, yarn 불�
 
 ### 방법 1: 사전 빌드 바이너리 다운로드 (추천)
 
-```bash
+`````bash
 # macOS (Apple Silicon)
 curl -L -o cc-switch.pkg https://github.com/farion1231/cc-switch/releases/latest/download/cc-switch-aarch64-darwin.tar.gz
 tar -xzf cc-switch-aarch64-darwin.tar.gz
@@ -73,18 +74,18 @@ sudo cp cc-switch /usr/local/bin/
 
 # Windows (릴리스 페이지에서 다운로드)
 # cc-switch-x86_64-pc-windows-msvc.exe
-```
+`````
 
 ### 방법 2: Homebrew로 설치 (macOS / Linux)
 
-```bash
+`````bash
 brew install farion1231/tap/cc-switch
 cc-switch --version  # 설치 확인
-```
+`````
 
 ### 방법 3: 소스에서 빌드
 
-```bash
+`````bash
 git clone https://github.com/farion1231/cc-switch.git
 cd cc-switch
 # Rust 도구체인 설치
@@ -93,18 +94,18 @@ curl --proto '=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install tauri-cli
 # 빌드
 cargo tauri build
-```
+`````
 
 ### 첫 실행 설정
 
-시작 후 cc-switch는 시스템에서 설치된 AI 코딩 에이전트를 스캔한다: ```bash
+시작 후 cc-switch는 시스템에서 설치된 AI 코딩 에이전트를 스캔한다: `````bash
 $ cc-switch --scan-agents
 Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
   [✓] OpenCode       v0.8.1    ~/.local/bin/opencode
   [✓] Codex CLI      v0.3.7    ~/.codex/bin/codex
   [ ] Gemini CLI     Not found
   [✓] Hermes Agent   v0.5.0    ~/.hermes/bin/hermes
-```
+`````
 
 "에이전트 추가"를 눌러 수동으로 경로를 지정할 수 있다. "에이전트 추가" 대화상자는 다음을 허용한다: - 에이전트 이름 (자유 텍스트)
 - 실행 파일 경로
@@ -113,14 +114,14 @@ Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
 
 ## Integration with Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent
 
-cc-switch는 CLI 명령어 인터셉트와 환경 변수 주입을 통해 각 에이전트와 통합된다. "Claude Code로 전환"을 클릭하면 cc-switch는 다음을 수행한다: 1. `CLAUDE_CODE_SESSION=cc-switch-active` 환경 변수 설정
-2. 선택된 프리셋의 모델 구성 적용 (예: `claude-sonnet-4-20250514`, 토큰 제한 128K)
+cc-switch는 CLI 명령어 인터셉트와 환경 변수 주입을 통해 각 에이전트와 통합된다. "Claude Code로 전환"을 클릭하면 cc-switch는 다음을 수행한다: 1. ````CLAUDE_CODE_SESSION=cc-switch-active```` 환경 변수 설정
+2. 선택된 프리셋의 모델 구성 적용 (예: ````claude-sonnet-4-20250514````, 토큰 제한 128K)
 3. 에이전트 CLI가 사전 시작된 새 터미널 창 또는 탭 열기
 4. 크로스 에이전트 비교를 위해 세션 메타데이터 로깅
 
 ### 에이전트별 구성 예시
 
-```yaml
+`````yaml
 # cc-switch presets/claude-pro.yaml
 agent: claude-code
 preset_name: "claude-pro"
@@ -131,11 +132,11 @@ system_prompt: "You are an expert Python developer focused on clean, tested code
 proxy: "http://localhost:8080"  # WebShare로 안정적인 프록시 사용
 env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
   CLAUDE_CODE_TELEMETRY: "disabled"
-```
+`````
 
 ### 키보드 단축키로 에이전트 전환
 
-```bash
+`````bash
 # 글로벌 키보드 단축키 설정 (cc-switch 설정을 통해)
 # ⌘+1 → Claude Code
 # ⌘+2 → Codex CLI
@@ -146,9 +147,9 @@ env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
 
 # CLI에서 에이전트 직접 전환: cc-switch switch claude-code
 cc-switch switch opencode --preset claude-pro
-```
+`````
 
-이 통합을 통해 이제 `export ANTHROPIC_API_KEY=***`를 반복 입력하거나 에이전트 설정 파일을 수동으로 편집할 필요가 없다. 모든 환경 변수 주입은 cc-switch 레이어에서 자동으로 처리된다.
+이 통합을 통해 이제 ````export ANTHROPIC_API_KEY=***````를 반복 입력하거나 에이전트 설정 파일을 수동으로 편집할 필요가 없다. 모든 환경 변수 주입은 cc-switch 레이어에서 자동으로 처리된다.
 
 자체 호스팅 설정에는 [HTStack](https://my.htstack.com/aff.php?aff=27187)으로 안정적인 저지연 네트워크를, 에이전트가 외부 패키지를 가져올 때 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)로 데이터센터 프록시를 사용한다.
 
@@ -165,7 +166,7 @@ cc-switch switch opencode --preset claude-pro
 
 ### 실제 사용 사례 1: 멀티 에이전트 A/B 테스트
 
-중형 스타트업의 개발자는 cc-switch를 사용하여 동일한 코드베이스에서 Claude Code와 Codex CLI 간 일일 A/B 테스트를 수행한다: ```bash
+중형 스타트업의 개발자는 cc-switch를 사용하여 동일한 코드베이스에서 Claude Code와 Codex CLI 간 일일 A/B 테스트를 수행한다: `````bash
 # A/B 테스트 워크플로우 설정
 mkdir ab-test-repo && cd ab-test-repo
 git init
@@ -181,18 +182,18 @@ cc-switch switch codex-cli --preset codex-ab
 # diff 비교
 git diff HEAD..claude-branch --stat
 git diff HEAD..codex-branch --stat
-```
+`````
 
 ### 실제 사용 사례 2: 페어 프로그래밍 중 핫 스위치
 
-```bash
+`````bash
 # Claude Code에서 React 컴포넌트 작업 중
 # 동료가 TypeScript 검토를 위해 Gemini CLI로 전환
 # 터미널 닫을 필요 없음, 설정 편집할 필요 없음—⌘+4만 누르면
 
 cc-switch switch gemini-cli --preset ts-review
 # Gemini CLI가 TypeScript 전용 시스템 프롬프트로 열림
-```
+`````
 
 세션 관리자는 두 에이전트의 상태를 모두 보존한다. 전환하여 돌아오면 이전 에이전트의 터미널이 정확히 떠둔 그대로다.
 
@@ -200,7 +201,7 @@ cc-switch switch gemini-cli --preset ts-review
 
 ### 커스텀 제공자 프리셋
 
-cc-switch v3.16+에서 커스텀 제공자 지원이 추가되었다. Claude, OpenAI, Google을 넘어선 커스텀 AI 제공자를 프리셋 파일에 정의할 수 있다: ```yaml
+cc-switch v3.16+에서 커스텀 제공자 지원이 추가되었다. Claude, OpenAI, Google을 넘어선 커스텀 AI 제공자를 프리셋 파일에 정의할 수 있다: `````yaml
 # presets/custom-llm.yaml
 agent: open-code
 provider: "custom-llm"
@@ -208,11 +209,11 @@ base_url: "https://your-api.example.com/v1"
 api_key_env: "CUSTOM_LLM_KEY"
 model: "your-custom-model"
 max_tokens: 65536
-```
+`````
 
 ### GitHub를 통한 프리셋 공유
 
-```bash
+`````bash
 # 현재 프리셋을 gist로 내보내기
 cc-switch preset export --gist --preset my-workspace
 
@@ -221,18 +222,18 @@ cc-switch preset import --url https://github.com/user/repo/blob/main/presets.yam
 
 # 머신 간 프리셋 동기화
 cc-switch preset sync --remote github --repo my-org/cc-switch-presets
-```
+`````
 
 ### Docker 기반 에이전트 환경
 
-생산 환경 일관성을 위해 cc-switch는 Docker 컨테이너 내에서 에이전트를 시작하는 것을 지원한다: ```bash
+생산 환경 일관성을 위해 cc-switch는 Docker 컨테이너 내에서 에이전트를 시작하는 것을 지원한다: `````bash
 # Docker 에이전트 환경 생성
 cc-switch docker create --name claude-pro --image python:3.12-slim
 # 컨테이너 내에서 Claude Code 설치
 docker exec claude-pro pip install anthropic-cli
 # cc-switch에서 에이전트 실행
 cc-switch switch claude-code --docker claude-pro
-```
+`````
 
 이것은 호스트 환경 변이가 없이 재현 가능한 에이전트 동작이 필요한 CI/CD 파이프라인에서 유용하다.
 
@@ -276,11 +277,11 @@ A: cc-switch는 GUI가 있는 데스크톱 애플리케이션으로 설계되었
 
 **Q: 팀원 간에 프리셋을 공유할 수 있나요?**
 
-A: 가능하다. cc-switch는 GitHub Gist를 통해 프리셋 내보내기를 지원하며, 프리셋 YAML 파일을 공유 저장소에 커밋할 수도 있다. `cc-switch preset sync --remote github --repo your-team/repo`를 사용하여 자동 동기화한다.
+A: 가능하다. cc-switch는 GitHub Gist를 통해 프리셋 내보내기를 지원하며, 프리셋 YAML 파일을 공유 저장소에 커밋할 수도 있다. ````cc-switch preset sync --remote github --repo your-team/repo````를 사용하여 자동 동기화한다.
 
 **Q: cc-switch는 API 키 보안을 어떻게 처리하나요?**
 
-A: API 키는 환경 변수 또는 플랫폼 네이티브 키체인(macOS Keychain, Linux Secret Service, Windows Credential Manager)에 저장된다. cc-switch는 프리셋 파일에 평문 API 키를 절대 저장하지 않는다. 환경 변수를 참조하려면 `${env.ANTHROPIC_API_KEY}` 구문을 사용하자.
+A: API 키는 환경 변수 또는 플랫폼 네이티브 키체인(macOS Keychain, Linux Secret Service, Windows Credential Manager)에 저장된다. cc-switch는 프리셋 파일에 평문 API 키를 절대 저장하지 않는다. 환경 변수를 참조하려면 ````${env.ANTHROPIC_API_KEY}``` 구문을 사용하자.
 
 **Q: cc-switch를 상업적으로 무료로 사용할 수 있나요?**
 
@@ -330,7 +331,7 @@ cc-switch는 다른 어느 도구도 해결하지 않는 구멍을 메운다: **
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -340,7 +341,7 @@ cc-switch는 다른 어느 도구도 해결하지 않는 구멍을 메운다: **
 - [12-factor-agents](cc-switch-unified-ai-cli-control-center)
 - [2026-05-25-trending-ai-agents](cc-switch-unified-ai-cli-control-center)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

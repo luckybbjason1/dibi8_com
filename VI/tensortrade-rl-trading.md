@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/tensortrade-rl-trading/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tại Sao Hầu Hết Bot Giao Dịch Thất Bại (Và RL Thay Đổi Cuộc Chơi Như Thế Nào)
@@ -54,7 +55,7 @@ Trừu tượng hóa lớp thực thi. TensorTrade bao gồm các sàn giao dị
 Theo dõi tài sản nắm giữ trên các instrument và sàn giao dịch. Portfolio tính giá trị ròng, tính toán phần thưởng, và thực thi giới hạn vị thế.
 
 ### Environment (Gym)
-Lớp `TradingEnv` triển khai giao diện `gym.Env` tiêu chuẩn. Nó chuyển đổi dữ liệu thị trường → quan sát, chấp nhận hành động → thực thi giao dịch, và trả về phần thưởng dựa trên lợi nhuận danh mục hoặc tỷ lệ Sharpe.
+Lớp ```TradingEnv```` triển khai giao diện ````gym.Env```` tiêu chuẩn. Nó chuyển đổi dữ liệu thị trường → quan sát, chấp nhận hành động → thực thi giao dịch, và trả về phần thưởng dựa trên lợi nhuận danh mục hoặc tỷ lệ Sharpe.
 
 ### Agent
 Bất kỳ thuật toán RL nào tương thích với môi trường Gym — PPO, DQN, A2C của Stable Baselines3, hoặc triển khai tùy chỉnh.
@@ -67,18 +68,18 @@ TensorTrade yêu cầu Python 3.9+ và hoạt động tốt nhất trong môi tr
 
 ### Bước 1: Tạo Môi Trường
 
-```bash
+`````bash
 python -m venv tensortrade-env
 source tensortrade-env/bin/activate  # Linux/Mac
 # tensortrade-env\Scripts\activate  # Windows
 
 # Upgrade pip
 pip install --upgrade pip
-```
+`````
 
 ### Bước 2: Cài Đặt TensorTrade + Dependencies
 
-```bash
+`````bash
 # Core framework
 pip install tensortrade==1.2.0
 
@@ -90,11 +91,11 @@ pip install ccxt==4.4.0 yfinance==0.2.54
 
 # Utilities
 pip install pandas==2.2.3 numpy==1.26.4
-```
+`````
 
 ### Bước 3: Xác Minh Cài Đặt
 
-```python
+`````python
 import tensortrade
 import gymnasium as gym
 import stable_baselines3
@@ -102,17 +103,17 @@ import stable_baselines3
 print(f"TensorTrade version: {tensortrade.__version__}")
 print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
-```
+`````
 
-Output mong đợi: ```
+Output mong đợi: `````
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
-```
+`````
 
 ### Bước 4: Tải Dữ Liệu Mẫu và Chạy Backtest Đầu Tiên
 
-```python
+`````python
 import pandas as pd
 import yfinance as yf
 from tensortrade.env.default import create
@@ -160,7 +161,7 @@ env = create(
 
 print(f"Observation space: {env.observation_space}")
 print(f"Action space: {env.action_space}")
-```
+`````
 
 Tại thờii điểm này bạn đã có một môi trường giao dịch đầy đủ chức năng sẵn sàng cho việc huấn luyện RL.
 
@@ -168,7 +169,7 @@ Tại thờii điểm này bạn đã có một môi trường giao dịch đầ
 
 Sức mạnh thực sự của TensorTrade đến từ việc kết nối với các thư viện RL đã được kiểm chứng. Dưới đây là cách huấn luyện một agent PPO: ### Huấn Luyện Agent PPO
 
-```python
+`````python
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import EvalCallback
 
@@ -192,11 +193,11 @@ agent.learn(total_timesteps=100_000)
 
 # Save the trained model
 agent.save("ppo_btc_trader_v1")
-```
+`````
 
 ### Feature Engineering Tùy Chỉnh Với Stream
 
-Các agent giao dịch thực cần nhiều hơn chỉ giá thô. API `Stream` của TensorTrade cho phép bạn tính toán các chỉ báo kỹ thuật: ```python
+Các agent giao dịch thực cần nhiều hơn chỉ giá thô. API ``Stream`` của TensorTrade cho phép bạn tính toán các chỉ báo kỹ thuật: `````python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -215,11 +216,11 @@ feed = DataFeed([
     Stream.source(list(macd_signal), dtype="float").rename("macd_signal"),
     Stream.source(list(df["Volume"]), dtype="float").rename("volume"),
 ])
-```
+`````
 
 ### Tích Hợp Với Ray RLlib
 
-Để huấn luyện phân tán trên nhiều môi trường: ```python
+Để huấn luyện phân tán trên nhiều môi trường: `````python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -241,11 +242,11 @@ tune.run(
     checkpoint_at_end=True,
     storage_path="~/ray_results"
 )
-```
+`````
 
 ### Tích Hợp CCXT Để Lấy Dữ Liệu Live
 
-```python
+`````python
 import ccxt
 
 # Connect to Binance via CCXT
@@ -264,7 +265,7 @@ ohlcv_df = pd.DataFrame(
 
 # Use in TensorTrade environment
 # Note: live trading requires additional risk management
-```
+`````
 
 ## Benchmark / Use Case Thực Tế: Kết Quả Q1 2026
 
@@ -297,7 +298,7 @@ Khả năng rebalance động của agent RL dựa trên tín hiệu momentum đ
 
 ### Hàm Phần Thưởng Tùy Chỉnh
 
-Các reward scheme mặc định có thể không khớp với mục tiêu của quỹ. Dưới đây là reward dựa trên tỷ lệ Sortino: ```python
+Các reward scheme mặc định có thể không khớp với mục tiêu của quỹ. Dưới đây là reward dựa trên tỷ lệ Sortino: `````python
 import numpy as np
 
 class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
@@ -322,11 +323,11 @@ env = create(
     feed=feed,
     window_size=20,
 )
-```
+`````
 
 ### Thiết Lập Chênh Lệch Giá Đa Sàn
 
-```python
+`````python
 from tensortrade.oms.exchanges import Exchange
 from tensortrade.oms.instruments import USD, BTC
 
@@ -348,11 +349,11 @@ btc_coinbase = Wallet(coinbase_exchange, 0 * BTC)
 multi_portfolio = Portfolio(USD, [
     binance_wallet, coinbase_wallet, btc_binance, btc_coinbase
 ])
-```
+`````
 
 ### Quản Lý Rủi Ro: Định Cỡ Vị Thế Với Tiêu Chí Kelly
 
-```python
+`````python
 class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
     def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
@@ -364,11 +365,11 @@ class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
         return kelly * self.kelly_fraction * portfolio.base_balance
-```
+`````
 
 ### Checklist Triển Khai Production
 
-Trước khi giao dịch live với vốn thực: ```python
+Trước khi giao dịch live với vốn thực: `````python
 # 1. Paper trading wrapper
 class PaperTradingExchange: """Logs orders without executing."""
     def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
@@ -388,7 +389,7 @@ class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.0
 import datetime
 model_version = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 agent.save(f"models/ppo_prod_{model_version}.zip")
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -415,7 +416,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
-TensorTrade là một framework có khả năng, nhưng nó không phải là một cỗ máy kiếm tiền thần kỳ. Dưới đây là những hạn chế thực tế: 1. **Khoảng cách mô phỏng**: Sàn giao dịch mô phỏng khớp lệnh ở giá mid không có trượt giá. Thị trường thực có spread, độ trễ, và khớp một phần. Luôn stress-test với giả định trượt giá bảo thủ (`slippage=0.001` tối thiểu).
+TensorTrade là một framework có khả năng, nhưng nó không phải là một cỗ máy kiếm tiền thần kỳ. Dưới đây là những hạn chế thực tế: 1. **Khoảng cách mô phỏng**: Sàn giao dịch mô phỏng khớp lệnh ở giá mid không có trượt giá. Thị trường thực có spread, độ trễ, và khớp một phần. Luôn stress-test với giả định trượt giá bảo thủ (````slippage=0.001```` tối thiểu).
 
 2. **Rủi ro overfitting**: RL agents có thể ghi nhớ đường đi giá. Sử dụng walk-forward validation — train trên 2024, validate trên 2025, test trên 2026. Không bao giờ tối ưu trên test set.
 
@@ -425,7 +426,7 @@ TensorTrade là một framework có khả năng, nhưng nó không phải là m�
 
 5. **Không có pipeline dữ liệu tích hợp**: Không giống FinRL, TensorTrade không bao gồm dataset pre-loaded. Bạn tự mang dữ liệu qua yfinance, CCXT, hoặc feed độc quyền.
 
-6. **Di chuyển Gym API**: Dự án đã chuyển từ `gym` sang `gymnasium`. Một số ví dụ cộng đồng cũ hơn vẫn tham chiếu namespace `gym` đã bị deprecated.
+6. **Di chuyển Gym API**: Dự án đã chuyển từ ````gym```` sang ````gymnasium````. Một số ví dụ cộng đồng cũ hơn vẫn tham chiếu namespace ````gym``` đã bị deprecated.
 
 ## Câu Hỏi Thường Gặp
 
@@ -513,7 +514,7 @@ Bài viết này chứa các liên kết affiliate đến Binance và OKX. Nếu
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -523,7 +524,7 @@ Bài viết này chứa các liên kết affiliate đến Binance và OKX. Nếu
 - [chatgpt-pro-vs-claude-pro](tensortrade-rl-trading)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](tensortrade-rl-trading)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

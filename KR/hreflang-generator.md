@@ -3,6 +3,7 @@ title: "Hreflang 태그 생성기 — 다국어 및 국제 SEO"
 description: "다국어 및 국제 SEO를 위한 복사-붙여넣기 가능한 hreflang 링크 태그를 생성. 각 언어를 해당 URL에 매핑하고 x-default를 추가해 HTML head용 깔끔한 al..."
 tool_id: "hreflang-generator"
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -41,16 +42,16 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: ````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -60,22 +61,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -85,22 +86,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -110,22 +111,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -135,22 +136,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -160,22 +161,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -185,4 +186,4 @@ npm install
 
 # Start development server
 npm run dev
-```
+````

@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 ---
 
+
 ## Giới thiệu
 
 Google NotebookLM đã nhanh chóng trở thành một trong những công cụ quản lý kiến thức mạnh mẽ nhờ AI hữu ích nhất hiện có. Bằng cách tải lên các tài liệu và nguồn, người dùng có thể tạo một "sổ tay" cá nhân mà trợ lý AI có thể suy luận, trả lời câu hỏi và tổng hợp thành các bản tóm tắt, hướng dẫn học tập và phân tích chuyên sâu. Về cơ bản, đây là một hệ thống RAG mà bạn có thể sử dụng ngay lập tức.
@@ -30,7 +31,7 @@ Xin giới thiệu **Qiaomu Anything to NotebookLM** của [joeseesun](https://g
 Qiaomu Anything to NotebookLM là một bộ công cụ toàn diện chuyển đổi nội dung từ hơn 15 nguồn khác nhau sang các định dạng tương thích với Google NotebookLM. Nó hoạt động như cả một gói Python độc lập và một kỹ năng Claude Code, giúp nó dễ tiếp cận đối với cả người dùng lập trình và những người thích quy trình làm việc AI bằng trò chuyện.
 
 Bộ công cụ được xây dựng xung quanh hai chế độ hoạt động chính: 1. **Chế độ kỹ năng Claude Code** -- Sử dụng ngôn ngữ tự nhiên trong Claude Code để kích hoạt chuyển đổi: "Chuyển đổi video YouTube về machine learning này thành một nguồn NotebookLM." Kỹ năng xử lý toàn bộ quy trình.
-2. **Chế độ gói Python** -- Sử dụng gói Python `qiaomu-notebooklm` một cách lập trình cho xử lý hàng loạt, lên lịch và tích hợp vào các đường ống dữ liệu lớn hơn.
+2. **Chế độ gói Python** -- Sử dụng gói Python ```qiaomu-notebooklm```` một cách lập trình cho xử lý hàng loạt, lên lịch và tích hợp vào các đường ống dữ liệu lớn hơn.
 
 **Hình tính năng:**
 
@@ -55,7 +56,7 @@ Phạm vi hỗ trợ rộng lớn này có nghĩa là bất kể kiến thức c
 
 Quy trình chuyển đổi có bốn giai đoạn chính: ### 1. Trích xuất nội dung
 
-Công cụ trích xuất nội dung từ nguồn bằng cách sử dụng các chiến lược trích xuất phù hợp: ```python
+Công cụ trích xuất nội dung từ nguồn bằng cách sử dụng các chiến lược trích xuất phù hợp: `````python
 # Cài đặt gói
 pip install qiaomu-notebooklm
 
@@ -70,11 +71,11 @@ result = converter.convert(
     output_format="notebooklm"
 )
 print(f"Đã chuyển đổi {result.word_count} từ sang định dạng NotebookLM")
-```
+`````
 
 ### 2. Xử lý và làm sạch văn bản
 
-Nội dung được trích xuất được làm sạch, loại bỏ trùng lặp và cấu trúc hóa. Công cụ loại bỏ các phần tử điều hướng, quảng cáo, chân trang và các phần tử không phải nội dung khác: ```python
+Nội dung được trích xuất được làm sạch, loại bỏ trùng lặp và cấu trúc hóa. Công cụ loại bỏ các phần tử điều hướng, quảng cáo, chân trang và các phần tử không phải nội dung khác: `````python
 # Chuyển đổi nâng cao với tùy chọn tiền xử lý
 result = converter.convert(
     source_url="https://example.com/article",
@@ -87,11 +88,11 @@ result = converter.convert(
         "language": "en"
     }
 )
-```
+`````
 
 ### 3. Định dạng NotebookLM
 
-Nội dung đã xử lý được định dạng vào một cấu trúc mà Google NotebookLM có thể tiêu thụ. Điều này thường có nghĩa là tạo ra các tệp Markdown hoặc PDF có cấu trúc tốt: ```python
+Nội dung đã xử lý được định dạng vào một cấu trúc mà Google NotebookLM có thể tiêu thụ. Điều này thường có nghĩa là tạo ra các tệp Markdown hoặc PDF có cấu trúc tốt: `````python
 # Xuất sang các định dạng tương thích NotebookLM
 converter.export(
     result,
@@ -104,11 +105,11 @@ import os
 for f in os.listdir("./notebooklm_sources/"): filepath = os.path.join("./notebooklm_sources/", f)
     size = os.path.getsize(filepath)
     print(f"{f}: {size / 1024:.1f} KB")
-```
+`````
 
 ### 4. Tải lên NotebookLM
 
-Tùy chọn, công cụ có thể tải trực tiếp nội dung đã chuyển đổi lên Google NotebookLM qua API (khi có sẵn): ```python
+Tùy chọn, công cụ có thể tải trực tiếp nội dung đã chuyển đổi lên Google NotebookLM qua API (khi có sẵn): `````python
 # Tải lên NotebookLM
 notebooklm = converter.connect_notebooklm(
     google_account="your_email@gmail.com"
@@ -123,13 +124,13 @@ notebook = notebooklm.create_notebook(
 # Tải lên các nguồn
 notebook.upload_source("./notebooklm_sources/youtube_tutorial.md")
 notebook.upload_source("./notebooklm_sources/paper_abstract.pdf")
-```
+`````
 
 ## Cài đặt
 
 ### Cài đặt gói Python
 
-```bash
+`````bash
 # Cài đặt qua pip
 pip install qiaomu-notebooklm
 
@@ -138,11 +139,11 @@ python -c "import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)"
 
 # Cài đặt với tất cả các phụ thuộc tùy chọn
 pip install qiaomu-notebooklm[all]
-```
+`````
 
 ### Cài đặt bằng Git Clone
 
-Cho phiên bản phát triển mới nhất: ```bash
+Cho phiên bản phát triển mới nhất: `````bash
 # Clone repository
 git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git
 cd qiaomu-anything-to-notebooklm
@@ -152,11 +153,11 @@ pip install -e .
 
 # Cài đặt các phụ thuộc phát triển
 pip install -r requirements-dev.txt
-```
+`````
 
 ### Cài đặt kỹ năng Claude Code
 
-Để sử dụng như một kỹ năng Claude Code, thêm cấu hình kỹ năng vào thiết lập Claude Code của bạn: ```bash
+Để sử dụng như một kỹ năng Claude Code, thêm cấu hình kỹ năng vào thiết lập Claude Code của bạn: `````bash
 # Trong thư mục cấu hình Claude Code của bạn
 mkdir -p ~/.claude/skills
 
@@ -165,13 +166,13 @@ cp -r qiaomu-notebooklm/claude-code-skill/ ~/.claude/skills/
 
 # Khởi động lại Claude Code
 claude --reload-skills
-```
+`````
 
 ## Các mẫu tích hợp
 
 ### Quy trình xử lý hàng loạt
 
-Để xử lý các bộ sưu tập nội dung lớn: ```python
+Để xử lý các bộ sưu tập nội dung lớn: `````python
 # Xử lý hàng loạt một danh sách URL
 urls = [
     "https://youtube.com/watch?v=video1",
@@ -190,11 +191,11 @@ results = converter.batch_convert(
 
 for url, result in results.items(): status = "THÀNH CÔNG" if result.success else "THẤT BẠI"
     print(f"[{status}] {url}: {result.word_count} từ đã chuyển đổi")
-```
+`````
 
 ### Chuyển đổi theo lịch trình
 
-Thiết lập tiêu thụ nội dung theo lịch trình: ```python
+Thiết lập tiêu thụ nội dung theo lịch trình: `````python
 import schedule
 import time
 from datetime import datetime
@@ -224,11 +225,11 @@ schedule.every().day.at("06:00").do(daily_content_sync)
 
 while True: schedule.run_pending()
     time.sleep(60)
-```
+`````
 
 ### Vượt tường lửa
 
-Một trong những tính năng đặc sắc nhất của Qiaomu là khả năng truy cập nội dung bị khóa bằng bảng giá: ```python
+Một trong những tính năng đặc sắc nhất của Qiaomu là khả năng truy cập nội dung bị khóa bằng bảng giá: `````python
 # Vượt tường lửa để trích xuất nội dung bài viết
 result = converter.convert(
     source_url="https://premium-article.example.com/breaking-news",
@@ -243,7 +244,7 @@ result = converter.convert(
 # 2. Tra cứu dịch vụ lưu trữ
 # 3. Chuyển đổi sang văn bản thuần túy
 # 4. Truy cập dựa trên proxy (qua WebShare)
-```
+`````
 
 ![Quy trình chuyển đổi Qiaomu](https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/conversion-pipeline.png)
 
@@ -274,7 +275,7 @@ result = converter.convert(
 
 ### Plugin trích xuất tùy chỉnh
 
-Bạn có thể viết các plugin trích xuất tùy chỉnh cho các nguồn nội dung chưa được hỗ trợ: ```python
+Bạn có thể viết các plugin trích xuất tùy chỉnh cho các nguồn nội dung chưa được hỗ trợ: `````python
 from qiaomu_notebooklm.plugins import BaseExtractor
 
 @BaseExtractor.register("my_custom_source")
@@ -297,11 +298,11 @@ result = converter.convert(
     source_url="https://custom-source.example.com/article",
     extractor="my_custom_source"
 )
-```
+`````
 
 ### Quản lý nhiều NotebookLM
 
-Quản lý nhiều sổ tay NotebookLM từ một script duy nhất: ```python
+Quản lý nhiều sổ tay NotebookLM từ một script duy nhất: `````python
 notebooklm = converter.connect_notebooklm()
 
 # Tạo các sổ tay cụ thể cho dự án
@@ -324,11 +325,11 @@ for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebo
     for url in urls: result = converter.convert(url, output_format="notebooklm")
         notebook.upload_source(result.file_path)
         print(f"Đã thêm nguồn vào {notebook_name}: {url}")
-```
+`````
 
 ### Tạo sơ đồ kiến thức
 
-Tạo kiến thức có cấu trúc từ nội dung đã chuyển đổi: ```python
+Tạo kiến thức có cấu trúc từ nội dung đã chuyển đổi: `````python
 from qiaomu_notebooklm import KnowledgeExtractor
 
 extractor = KnowledgeExtractor()
@@ -345,7 +346,7 @@ knowledge_graph.save("./knowledge_graph.json")
 # Truy vấn sơ đồ
 entities = knowledge_graph.get_entities_by_type("Person")
 print(f"Đã tìm thấy {len(entities)} thực thể: {[e.name for e in entities]}")
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -379,7 +380,7 @@ Mặc dù Qiaomu là một công cụ mạnh mẽ, nhưng một số hạn chế
 
 ### 1. Tôi cài đặt Qiaomu Anything to NotebookLM như thế nào?
 
-Chạy `pip install qiaomu-notebooklm` để cài đặt gói Python. Để lấy phiên bản mới nhất, clone repository với `git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git` và cài đặt từ nguồn.
+Chạy ````pip install qiaomu-notebooklm```` để cài đặt gói Python. Để lấy phiên bản mới nhất, clone repository với ````git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git```` và cài đặt từ nguồn.
 
 ### 2. Nó hỗ trợ những nguồn nội dung nào?
 
@@ -413,9 +414,9 @@ Cho dù bạn muốn tự động chuyển đổi các hướng dẫn YouTube th
 
 Chỉ riêng tính năng vượt tường lửa đã khiến công cụ này vô giá đối với các nhà nghiên cứu và sinh viên những người cần truy cập vào một phạm vi rộng nội dung cho các thư viện kiến thức NotebookLM của họ.
 
-Cài đặt ngay hôm nay và bắt đầu xây dựng đường ống kiến thức tự động của bạn: ```bash
+Cài đặt ngay hôm nay và bắt đầu xây dựng đường ống kiến thức tự động của bạn: `````bash
 pip install qiaomu-notebooklm
-```
+````
 
 [CTA: Biến bất kỳ nội dung nào thành thư viện kiến thức NotebookLM. [Bắt đầu](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) | [Xem ví dụ](https://github.com/joeseesun/qiaomu-anything-to-notebooklm/tree/main/examples)]
 
@@ -454,7 +455,7 @@ pip install qiaomu-notebooklm
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -464,7 +465,7 @@ pip install qiaomu-notebooklm
 - [2026-05-25-trending-ai-agents](qiaomu-anything-to-notebooklm)
 - [2026-06-01-trending-ai-agents](qiaomu-anything-to-notebooklm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -7,6 +7,7 @@ aliases:
   - /posts/langchain-complete-guide/
 ---
 
+
 # LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발
 
 
@@ -32,23 +33,23 @@ LangChain의 강력함은 모듈화된 컴포넌트 설계에서 비롯된다. �
 
 ### 모델 (LLMs & Chat Models)
 
-LangChain은 OpenAI GPT-4, Anthropic Claude, Google Gemini, Mistral, Ollama 등 100개 이상의 모델 제공자를 통합 지원한다. `ChatOpenAI`, `ChatAnthropic` 같은 클래스로 일관된 인터페이스를 제공하며, 모델 교체 시 코드 변경을 최소화한다.
+LangChain은 OpenAI GPT-4, Anthropic Claude, Google Gemini, Mistral, Ollama 등 100개 이상의 모델 제공자를 통합 지원한다. ```ChatOpenAI````, ````ChatAnthropic```` 같은 클래스로 일관된 인터페이스를 제공하며, 모델 교체 시 코드 변경을 최소화한다.
 
 ### 프롬프트와 프롬프트 템플릿
 
-`PromptTemplate`, `ChatPromptTemplate` 클래스를 통해 동적 프롬프트 생성을 지원한다. 변수 삽입, Few-shot 예제 로딩, 프롬프트 체인링이 가능하며, LangSmith를 통해 프롬프트 버전 관리도 할 수 있다.
+````PromptTemplate````, ````ChatPromptTemplate```` 클래스를 통해 동적 프롬프트 생성을 지원한다. 변수 삽입, Few-shot 예제 로딩, 프롬프트 체인링이 가능하며, LangSmith를 통해 프롬프트 버전 관리도 할 수 있다.
 
 ### 체인 (Chains)
 
-체인은 여러 컴포넌트를 순차적으로 연결하는 핵심 추상화다. 2025년 현재 LangChain은 `LCEL(LangChain Expression Language)`을 통해 선언적 체인 구성을 권장한다. `RunnableSequence`, `RunnableParallel` 등으로 복잡한 데이터 흐름을 구현한다.
+체인은 여러 컴포넌트를 순차적으로 연결하는 핵심 추상화다. 2025년 현재 LangChain은 ````LCEL(LangChain Expression Language)````을 통해 선언적 체인 구성을 권장한다. ````RunnableSequence````, ````RunnableParallel```` 등으로 복잡한 데이터 흐름을 구현한다.
 
 ### 문서 로더와 텍스트 분할기
 
-PDF, 웹사이트, 데이터베이스, 클라우드 스토리지 등 80개 이상의 문서 로더를 제공한다. `RecursiveCharacterTextSplitter`, `TokenTextSplitter` 등 다양한 분할 전략으로 청크 크기와 중첩을 세밀하게 제어할 수 있다.
+PDF, 웹사이트, 데이터베이스, 클라우드 스토리지 등 80개 이상의 문서 로더를 제공한다. ````RecursiveCharacterTextSplitter````, ````TokenTextSplitter```` 등 다양한 분할 전략으로 청크 크기와 중첩을 세밀하게 제어할 수 있다.
 
 ### 벡터 스토어와 리트리버
 
-Chroma, Pinecone, Weaviate, FAISS, pgvector 등 40개 이상의 벡터 데이터베이스와 통합된다. `similarity_search`, `mmr`(Maximal Marginal Relevance) 등 다양한 검색 전략을 지원한다.
+Chroma, Pinecone, Weaviate, FAISS, pgvector 등 40개 이상의 벡터 데이터베이스와 통합된다. ````similarity_search````, ````mmr````(Maximal Marginal Relevance) 등 다양한 검색 전략을 지원한다.
 
 ### 에이전트와 도구 통합
 
@@ -56,7 +57,7 @@ ReAct, Plan-and-Execute, Self-Ask 등 여러 에이전트 아키텍처를 내장
 
 ### 메모리와 대화 관리
 
-`ConversationBufferMemory`, `ConversationSummaryMemory`, `VectorStoreRetrieverMemory` 등 대화 맥락을 유지하는 다양한 메모리 구현체를 지원한다. 긴 대화에서 토큰 사용량을 최적화하는 것이 핵심이다.
+````ConversationBufferMemory````, ````ConversationSummaryMemory````, ````VectorStoreRetrieverMemory```` 등 대화 맥락을 유지하는 다양한 메모리 구현체를 지원한다. 긴 대화에서 토큰 사용량을 최적화하는 것이 핵심이다.
 
 ## LangChain vs LangGraph vs LangSmith: 차이점은 무엇인가?
 
@@ -73,14 +74,14 @@ ReAct, Plan-and-Execute, Self-Ask 등 여러 에이전트 아키텍처를 내장
 
 ### 설치 및 환경 설정
 
-```bash
+`````bash
 pip install langchain langchain-openai
 export OPENAI_API_KEY="your-key"
-```
+`````
 
 ### 간단한 LLM 체인 구성
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -88,11 +89,11 @@ llm = ChatOpenAI(model="gpt-4o")
 prompt = ChatPromptTemplate.from_template("{topic}에 대해 3문장으로 설명해줘")
 chain = prompt | llm
 response = chain.invoke({"topic": "양자 컴퓨팅"})
-```
+`````
 
 ### RAG와 문서 로딩 추가
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
@@ -101,48 +102,48 @@ loader = PyPDFLoader("document.pdf")
 docs = loader.load_and_split()
 vectorstore = Chroma.from_documents(docs, OpenAIEmbeddings())
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
-```
+`````
 
 ### ReAct 에이전트와 도구 생성
 
-```python
+`````python
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain.tools import Tool
 
 tools = [search_tool, calculator_tool]
 agent = create_react_agent(llm, tools, prompt)
 executor = AgentExecutor(agent=agent, tools=tools)
-```
+`````
 
 ## 고급 LangChain 패턴
 
 ### 멀티스텝 추론 체인 구축
 
-LCEL의 `RunnableParallel`과 `RunnableBranch`를 사용하여 조걸 분기와 병렬 실행을 구현한다. 복잡한 의사결정 트리를 선언적으로 표현할 수 있다.
+LCEL의 ````RunnableParallel````과 ````RunnableBranch````를 사용하여 조걸 분기와 병렬 실행을 구현한다. 복잡한 의사결정 트리를 선언적으로 표현할 수 있다.
 
 ### 커스텀 도구와 에이전트 실행기
 
-`@tool` 데코레이터로 Python 함수를 도구로 등록할 수 있다. `AgentExecutor`의 `handle_parsing_errors`, `max_iterations` 파라미터로 안정성을 높인다.
+````@tool```` 데코레이터로 Python 함수를 도구로 등록할 수 있다. ````AgentExecutor````의 ````handle_parsing_errors````, ````max_iterations```` 파라미터로 안정성을 높인다.
 
 ### 스트리밍과 비동기 실행
 
-`chain.astream()` 메서드로 토큰 단위 실시간 스트리밍을 지원한다. 2025년 기준 LangChain은 `asyncio` 기반 비동기 처리를 전 컴포넌트에서 기본 지원한다.
+````chain.astream()```` 메서드로 토큰 단위 실시간 스트리밍을 지원한다. 2025년 기준 LangChain은 ````asyncio```` 기반 비동기 처리를 전 컴포넌트에서 기본 지원한다.
 
 ### 에러 처리와 폴백
 
-`RunnableWithFallbacks`로 모델 장애 시 대체 모델로 자동 전환할 수 있다. OpenAI Rate Limit 초과 시 Claude로 폴백하는 패턴이 대표적이다.
+````RunnableWithFallbacks````로 모델 장애 시 대체 모델로 자동 전환할 수 있다. OpenAI Rate Limit 초과 시 Claude로 폴백하는 패턴이 대표적이다.
 
 ## 프로덕션 환경에서의 LangChain 모범 사례
 
 ### 성능 최적화 팁
 
 - 벡터 검색 Top-K 값을 3~5로 제한하여 토큰 사용량 절감
-- `Caching` 레이어로 반복 쿼리 캐싱 (Redis, SQLite 지원)
+- ````Caching```` 레이어로 반복 쿼리 캐싱 (Redis, SQLite 지원)
 - 문서 분할 시 청크 크기 500~1000 토큰, 오버랩 10~20% 설정
 
 ### 보안 고려사항과 프롬프트 인젝션 방어
 
-프롬프트 인젝션 공격에 대비해 `LangChainPromptInjectionDefender`와 같은 미들웨어를 체인 앞단에 배치한다. 민감한 데이터는 `SecretStr` 타입으로 관리하고, LangSmith 로그에서 자동 마스킹을 활성화한다.
+프롬프트 인젝션 공격에 대비해 ````LangChainPromptInjectionDefender````와 같은 미들웨어를 체인 앞단에 배치한다. 민감한 데이터는 ````SecretStr```` 타입으로 관리하고, LangSmith 로그에서 자동 마스킹을 활성화한다.
 
 ### LangSmith로 모니터링하기
 
@@ -175,7 +176,7 @@ LangChain은 2025년 현재 가장 성숙하고 생태계가 풍부한 LLM 프�
 4. [LangGraph 튜토리얼](https://langchain-ai.github.io/langgraph)로 멀티 에이전트 시스템 학습
 5. 자체 RAG 애플리케이션을 구축하고 프로덕션 배포
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -189,10 +190,10 @@ LangChain은 RAG 기반 문서 검색, 대화형 AI 챗봇, 자동화 에이전�
 RAG와 데이터 중심 애플리케이션에는 LlamaIndex가, 범용 에이전트와 복잡한 워크플로우에는 LangChain이 적합합니다. 두 프레임워크는 함께 사용할 수도 있습니다.
 
 **Ollama 같은 로컬 LLM과 LangChain을 함께 사용할 수 있나요?**
-네, `langchain-ollama` 통합 패키지를 통해 Ollama에서 실행 중인 로컬 모델을 LangChain 에이전트와 체인에 연결할 수 있습니다.
+네, ````langchain-ollama```` 통합 패키지를 통해 Ollama에서 실행 중인 로컬 모델을 LangChain 에이전트와 체인에 연결할 수 있습니다.
 
 **LangChain은 JavaScript/TypeScript를 지원하나요?**
-네, `LangChain.js`라는 별도의 공식 패키지가 존재하며, Python 버전과 유사한 API를 제공합니다. npm으로 `langchain` 패키지를 설치하여 사용할 수 있습니다.
+네, ````LangChain.js````라는 별도의 공식 패키지가 존재하며, Python 버전과 유사한 API를 제공합니다. npm으로 ````langchain``` 패키지를 설치하여 사용할 수 있습니다.
 
 ## 참고 자료
 
@@ -202,7 +203,7 @@ RAG와 데이터 중심 애플리케이션에는 LlamaIndex가, 범용 에이전
 - [LangGraph 튜토리얼](https://langchain-ai.github.io/langgraph)
 - [Hugging Face 모델 허브](https://huggingface.co)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -274,7 +275,7 @@ LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -23,6 +23,7 @@ tags: ["wan-2-1", "video-generation", "diffusion-transformer", "ai-video", "open
 aliases:
   - /posts/wan-2-1/-
 ---
+
 {{</* resource-info */>}}
 
 ![Wan 2.1 Feature Image](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
@@ -51,15 +52,15 @@ Wan 2.1 is built on the Diffusion Transformer (DiT) paradigm with Flow Matching,
 
 | Model | Parameters | Resolution | VRAM (single GPU) | Typical Generation Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | T2V-1.3B | 1.3B | 480P | 8.19 GB | ~4 min on RTX 4090 |
 | T2V-14B | 14B | 480P / 720P | 40–48 GB (480P fp8) | ~4 min on H100 (480P) |
@@ -78,7 +79,7 @@ The 14B model uses a dimension of 5120, 40 attention heads, and 40 transformer l
 
 ### Basic Installation
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/Wan-Video/Wan2.1.git
 cd Wan2.1
@@ -89,9 +90,9 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies (torch >= 2.4.0 required)
 pip install -r requirements.txt
-```
+`````
 
-The `requirements.txt` includes: ```
+The ``requirements.txt`` includes: `````
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -101,11 +102,11 @@ accelerate>=1.1.1
 flash_attn
 gradio>=5.0.0
 numpy>=1.23.5,<2
-```
+`````
 
 ### Install with Poetry (Alternative)
 
-```bash
+`````bash
 # Install dependencies
 poetry install
 
@@ -113,11 +114,11 @@ poetry install
 poetry run pip install --upgrade pip setuptools wheel
 poetry run pip install flash-attn --no-build-isolation
 poetry install
-```
+`````
 
 ### Model Download
 
-Download models using the HuggingFace CLI: ```bash
+Download models using the HuggingFace CLI: `````bash
 # Install huggingface-cli
 pip install "huggingface_hub[cli]"
 
@@ -132,36 +133,36 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 
 # Download the text encoder
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
-```
+`````
 
-Or use ModelScope for faster downloads from China: ```bash
+Or use ModelScope for faster downloads from China: `````bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
-```
+`````
 
 ### First Video Generation (T2V-1.3B)
 
-```bash
+`````bash
 python generate.py \
   --task t2v-1.3B \
   --size 832*480 \
   --ckpt_dir ./Wan2.1-T2V-1.3B \
   --prompt "A serene mountain lake at sunrise, mist rising from the water, camera slowly panning right"
-```
+`````
 
 ### First Video Generation (T2V-14B)
 
-```bash
+`````bash
 python generate.py \
   --task t2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage."
-```
+`````
 
 ### Running the Gradio Web UI
 
-```bash
+`````bash
 cd gradio
 
 # Run T2V 14B with single GPU
@@ -172,13 +173,13 @@ python t2v_14B_singleGPU.py \
 # Run T2V 1.3B (lighter, for consumer GPUs)
 python t2v_1.3B_singleGPU.py \
   --ckpt_dir ./Wan2.1-T2V-1.3B
-```
+`````
 
 ## Integration with ComfyUI, Diffusers, and More
 
 ### ComfyUI Integration
 
-Wan 2.1 has native ComfyUI integration. The recommended approach uses the ComfyUI-WanVideoWrapper custom nodes by Kijai: ```bash
+Wan 2.1 has native ComfyUI integration. The recommended approach uses the ComfyUI-WanVideoWrapper custom nodes by Kijai: `````bash
 # Install custom nodes
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -188,9 +189,9 @@ git clone https://github.com/kijai/ComfyUI-KJNodes.git
 # Install node dependencies
 cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-Download the model files and place them in the appropriate ComfyUI directories: ```bash
+Download the model files and place them in the appropriate ComfyUI directories: `````bash
 # Diffusion models -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -200,13 +201,13 @@ Download the model files and place them in the appropriate ComfyUI directories: 
 
 # VAE -> ComfyUI/models/vae
 # Wan2_1_VAE_fp32.safetensors
-```
+`````
 
 ![Wan 2.1 ComfyUI Workflow](https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/vben_vs_sota.png)
 
 ### Diffusers Integration
 
-Wan 2.1 is available through HuggingFace Diffusers: ```python
+Wan 2.1 is available through HuggingFace Diffusers: `````python
 import torch
 from diffusers.utils import export_to_video
 from diffusers import AutoencoderKLWan, WanPipeline
@@ -258,11 +259,11 @@ output = pipe(
 ).frames[0]
 
 export_to_video(output, "output.mp4", fps=16)
-```
+`````
 
 ### Multi-GPU Inference with FSDP + xDiT
 
-For production deployments, Wan 2.1 supports distributed inference: ```bash
+For production deployments, Wan 2.1 supports distributed inference: `````bash
 # Install xDiT
 pip install "xfuser>=0.4.1"
 
@@ -274,22 +275,22 @@ torchrun --nproc_per_node=8 generate.py \
   --dit_fsdp --t5_fsdp \
   --ulysses_size 8 \
   --prompt "Your prompt here"
-```
+`````
 
 ### Image-to-Video Generation
 
-```bash
+`````bash
 python generate.py \
   --task i2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-I2V-14B-720P \
   --image examples/i2v_input.JPG \
   --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard."
-```
+`````
 
 ### First-Last-Frame-to-Video (FLF2V)
 
-```bash
+`````bash
 python generate.py \
   --task flf2v-14B \
   --size 1280*720 \
@@ -297,11 +298,11 @@ python generate.py \
   --first_frame examples/flf2v_input_first_frame.png \
   --last_frame examples/flf2v_input_last_frame.png \
   --prompt "CG animation style, a small blue bird takes off from the ground, flapping its wings."
-```
+`````
 
 ### Prompt Extension for Better Results
 
-Wan 2.1 includes an optional prompt extension feature that uses Qwen models to expand short prompts into detailed descriptions: ```bash
+Wan 2.1 includes an optional prompt extension feature that uses Qwen models to expand short prompts into detailed descriptions: `````bash
 # Using local Qwen model
 python generate.py \
   --task t2v-14B \
@@ -319,7 +320,7 @@ DASH_API_KEY=your_key python generate.py \
   --prompt "A cat playing piano" \
   --use_prompt_extend \
   --prompt_extend_method dashscope
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -333,13 +334,13 @@ Wan 2.1 was evaluated across 14 major dimensions and 26 sub-dimensions using 1,0
 
 Performance across different GPUs (total time in seconds / peak GPU memory in GB): | GPU | 1.3B 480P | 14B 480P | 14B 720P |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4090 (24GB) | 281s / 8.2GB | Not supported | Not supported |
 | A5000 (24GB) | 462s / 8.2GB | Not supported | Not supported |
@@ -352,17 +353,17 @@ Performance across different GPUs (total time in seconds / peak GPU memory in GB
 
 For teams evaluating cloud GPU costs for video generation (as of early 2026): | Model | Resolution | Duration | Gen Time | GPU Cost | Cost per clip |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Wan 2.1 1.3B | 480P | 5s | ~4 min | RTX 4090 local | ~$0.02 (electricity) |
 | Wan 2.1 14B | 480P | 5s | ~4 min | $2.50/hr (H100) | ~$0.17 |
@@ -381,7 +382,7 @@ For teams evaluating cloud GPU costs for video generation (as of early 2026): | 
 
 ### FP8 Quantization for VRAM Reduction
 
-For running the 14B model on limited VRAM: ```bash
+For running the 14B model on limited VRAM: `````bash
 # FP8 quantization reduces VRAM by ~20%
 python generate.py \
   --task t2v-14B \
@@ -390,26 +391,26 @@ python generate.py \
   --offload_model True \
   --t5_cpu \
   --prompt "Your prompt here"
-```
+`````
 
 ### VRAM Optimization Flags
 
 | Flag | Description | VRAM Impact |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `--offload_model True` | Offload transformer to CPU between steps | -15–20GB |
-| `--t5_cpu` | Run T5 encoder on CPU | -2–3GB |
-| `--dit_fsdp` | Shard DiT across GPUs | Divides by GPU count |
-| `--ulysses_size N` | Use sequence parallelism | Linear reduction |
+| ````--offload_model True```` | Offload transformer to CPU between steps | -15–20GB |
+| ````--t5_cpu```` | Run T5 encoder on CPU | -2–3GB |
+| ````--dit_fsdp```` | Shard DiT across GPUs | Divides by GPU count |
+| ````--ulysses_size N```` | Use sequence parallelism | Linear reduction |
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 WORKDIR /app
@@ -424,16 +425,16 @@ RUN huggingface-cli download Wan-AI/Wan2.1-T2V-14B \
 
 EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
-```
+`````
 
 ### Monitoring Generation Jobs
 
-For production deployments, wrap generation in a monitoring script: ```python
+For production deployments, wrap generation in a monitoring script: `````python
 import time
 import psutil
 import torch
@@ -454,11 +455,11 @@ def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     print(f"RAM delta: {peak_mem - start_mem:.1f} GB")
     
     return result
-```
+`````
 
 ### LoRA Fine-Tuning
 
-Community tools like DiffSynth-Studio support LoRA training on Wan 2.1 for style-specific video generation: ```bash
+Community tools like DiffSynth-Studio support LoRA training on Wan 2.1 for style-specific video generation: `````bash
 # Install DiffSynth-Studio
 pip install diffsynth-studio
 
@@ -469,21 +470,21 @@ python -m diffsynth.train \
   --output_path ./wan_lora_output \
   --learning_rate 1e-4 \
   --num_train_steps 1000
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Wan 2.1 | HunyuanVideo | CogVideoX-1.5-5B | Open-Sora 2.0 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Parameters** | 1.3B / 14B | ~13B | 5B | 7B |
 | **Min VRAM (T2V)** | 8.19GB (1.3B) | 12GB (quantized) | 5GB (diffusers) | 24GB |
@@ -545,7 +546,7 @@ Yes. Wan 2.1 is licensed under Apache 2.0, which permits commercial use, modific
 
 **Q: How do I reduce VRAM usage for the 14B model?**
 
-Use `--offload_model True` to move the transformer to CPU between diffusion steps, `--t5_cpu` to run the text encoder on CPU, and FP8 quantization for ~20% VRAM reduction. With all optimizations, the 14B 480P model can run on ~35GB VRAM.
+Use ````--offload_model True```` to move the transformer to CPU between diffusion steps, ````--t5_cpu``` to run the text encoder on CPU, and FP8 quantization for ~20% VRAM reduction. With all optimizations, the 14B 480P model can run on ~35GB VRAM.
 
 **Q: Why does my generated video have flickering or inconsistent motion?**
 
@@ -617,7 +618,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [stable-diffusion-complete-guide](wan-2-1)
@@ -627,5 +628,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-05-25-trending-ai-agents](wan-2-1)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

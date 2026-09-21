@@ -26,6 +26,7 @@ tags: ["cross-border", "ai marketing", "going global", "stack", "collection"]
 aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---
+
 # Cross-Border AI Marketing Stack 2026: 7-Tool Setup for Chinese Teams Shipping Globally
 
 
@@ -37,15 +38,15 @@ Total monthly cost: **$35-80/month** for a team of 1-3 founders. Compare against
 
 | # | Component | Role | Why this pick | Deep dive |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **n8n** | Automate multilingual content distribution to Reddit/X/HN/Discord | Self-hosted = no per-task pricing, JSON workflows portable | [n8n self-host](/resources/llm-frameworks/n8n/) |
 | 2 | **LangChain** | Multilingual agent workflows (CN→EN/JA/KR/VI content generation) | Mature i18n primitives + 100+ LLM provider integrations | [LangChain guide](/resources/llm-frameworks/langchain/) |
@@ -69,7 +70,7 @@ This stack addresses each pain point with a specific tool.
 
 ## 2. Architecture — The Hong Kong Bridge Pattern
 
-```
+````
    ┌─────────────────────────────────────┐
    │ Hong Kong VPS (HTStack)             │
    │                                     │
@@ -100,7 +101,7 @@ This stack addresses each pain point with a specific tool.
    │ │   (GDPR-compliant, EU + China)  │ │
    │ └─────────────────────────────────┘ │
    └─────────────────────────────────────┘
-```
+`````
 
 The HK VPS is the bridge: low latency to both China and global, neutral jurisdiction for analytics, payment cards usually work in both directions.
 
@@ -110,12 +111,12 @@ The HK VPS is the bridge: low latency to both China and global, neutral jurisdic
 
 **Why self-hosted matters here**: Zapier's "per task" pricing punishes the cross-border workflow — every translation, every platform variation, every analytics check is a "task." n8n on a self-hosted VPS = unlimited tasks for $6 of infra.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 docker run -d --name n8n -p 5678:5678 \
   -v ~/.n8n:/home/node/.n8n \
   -e WEBHOOK_URL=https://n8n.yourdomain.com \
   n8nio/n8n
-```
+`````
 
 **Workflow templates worth importing**: "RSS → translate → 5 platforms," "Calendly booking → CRM → email sequence," "GitHub release → cross-platform launch announcement."
 
@@ -127,11 +128,11 @@ Full setup including PostgreSQL backend (critical for production reliability —
 
 **Why this pick over LlamaIndex / AutoGen**: Mature i18n primitives (PromptTemplate handles locale-aware date/currency formatting), the most provider integrations (100+), and the agent framework with the largest ecosystem of pre-built tools for cross-border tasks (translation APIs, scraping, calendar).
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install langchain langchain-community langchain-openai
-```
+`````
 
-For multilingual agents specifically, the `langchain-community` package ships connectors to DeepL, Google Translate, plus prompt templates that handle right-to-left rendering for future Arabic expansion.
+For multilingual agents specifically, the ````langchain-community```` package ships connectors to DeepL, Google Translate, plus prompt templates that handle right-to-left rendering for future Arabic expansion.
 
 Full LangChain setup + agent recipes: [LangChain production guide](/resources/llm-frameworks/langchain/).
 
@@ -155,9 +156,9 @@ Detailed comparison + when each wins: [AI Search Tools 2026 (Perplexity vs Gemin
 - Self-hostable in Hong Kong = unblocked from mainland AND EU
 - ~80% data capture rate vs GA's ~60% (no ad-blocker filtering)
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 docker compose -f https://github.com/plausible/community-edition/raw/v3.0.0/compose.yml up -d
-```
+`````
 
 Full setup including event tracking for conversion attribution: [Plausible vs GA — privacy-first analytics](/resources/ai-tools/plausible-analytics-privacy-google/).
 
@@ -169,10 +170,10 @@ Full setup including event tracking for conversion attribution: [Plausible vs GA
 - **20× cheaper than Claude on the same task** — math gets serious at 3+ devs
 - **DeepSeek accepts RMB payments** — no need to convince finance to top up a USD card
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 npm install -g @opencode-ai/opencode
 opencode --provider deepseek --api-key $DEEPSEEK_KEY
-```
+`````
 
 Full setup including how to share MCP servers across the team: [OpenCode open-source guide](/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/).
 
@@ -196,10 +197,10 @@ We run dibi8.com itself on {{< aff "htstack" "stack-vps" "HTStack's Hong Kong VP
 
 **Trade-off**: OpenRouter adds 100-150ms latency vs direct provider connections — fine for offline content generation, not great for real-time chat.
 
-**Quick install**: Sign up at openrouter.ai, top up via crypto, use via OpenAI-compatible client: ```python
+**Quick install**: Sign up at openrouter.ai, top up via crypto, use via OpenAI-compatible client: `````python
 from openai import OpenAI
 client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="sk-or-...")
-```
+````
 
 Full OpenRouter guide + when direct beats OpenRouter: [OpenRouter unified LLM API gateway 2026](/resources/llm-frameworks/openrouter-unified-llm-api-gateway/) or the [Portkey vs LiteLLM vs OpenRouter comparison](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
@@ -221,13 +222,13 @@ After 3 hours you have a real cross-border AI marketing pipeline running.
 
 | Item | Solo founder | Team of 3 | Team of 10 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HTStack VPS | $10 | $20 (8 GB) | $50 (16 GB + replica) |
 | n8n | $0 (self-host) | $0 | $0 |
@@ -262,7 +263,7 @@ You"ll outgrow the $35-80/mo tier when: - **Team > 10 people** — Add LiteLLM w
 The cross-border-specific wins: no payment friction, no GDPR/Chinese data law violations, no Cursor $80/seat in USD, no GA blocking, no Cloudflare-vs-China issues. Spin up an {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}} and start with components 1-4 first week, add 5-7 in week 2.
 
 
----
+* * *
 *Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for the dev side, [Cheap LLM Stack](/collections/cheap-llm-stack/) for cost-extreme inference.*
 
 
@@ -292,7 +293,7 @@ The cross-border-specific wins: no payment friction, no GDPR/Chinese data law vi
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](cross-border-ai-marketing-stack)
@@ -301,6 +302,6 @@ The cross-border-specific wins: no payment friction, no GDPR/Chinese data law vi
 - [2026-06-08-trending-ai-agents](cross-border-ai-marketing-stack)
 - [2026-06-15-trending-ai-agents](cross-border-ai-marketing-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

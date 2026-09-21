@@ -35,6 +35,7 @@ faqs: - q: 'How do I fix AnythingLLM ''Connection Refused'' when connecting to O
   - q: 'Why does AnythingLLM''s default LanceDB throw SQLITE_BUSY errors with multiple users?'
     a: 'The default embedded vector databases (LanceDB/Chroma) suffer from file-locking issues under high-frequency concurrent writes, throwing SQLITE_BUSY or write-lock errors when many users upload large PDFs to the same workspace. In production with many employees, switch the Vector DB to a standalone Qdrant or Milvus instance.'
 ---
+
 {</* resource-info */>}
 
 # Why Do Enterprises Fear ChatGPT?
@@ -70,7 +71,7 @@ To flawlessly swallow hundreds of megabytes of PDF financial reports, AnythingLL
 
 In RAG, if chunking is done poorly, the retrieved context is just truncated garbage. AnythingLLM implements an extremely robust document parsing pipeline.
 
-```javascript
+````javascript
 // Core logic extracted from: server/utils/vectorDbProviders/lancedb/index.js (Vector Chunking)
 const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
 
@@ -96,15 +97,15 @@ async function processDocument(documentText, workspaceConfig) {
   await LanceDB.insert(workspaceConfig.namespace, embeddings);
   return chunks.length;
 }
-```
+`````
 
-**Deep Teardown**: This code reveals AnythingLLM's finesse in document handling. Pairing the `RecursiveCharacterTextSplitter` with a massive 200-token `chunkOverlap` ensures that core cross-paragraph logic (e.g., "If X... then Y") is not lost to arbitrary truncation. This overlapping is critical for maintaining the IQ of the local LLM's answers.
+**Deep Teardown**: This code reveals AnythingLLM's finesse in document handling. Pairing the ````RecursiveCharacterTextSplitter```` with a massive 200-token ````chunkOverlap```` ensures that core cross-paragraph logic (e.g., "If X... then Y") is not lost to arbitrary truncation. This overlapping is critical for maintaining the IQ of the local LLM's answers.
 
 ### 2. Frontend-Backend Interaction: Server-Sent Events (SSE) Streaming
 
 When using LLMs, forcing the user to wait until the entire answer is generated destroys the UX. AnythingLLM achieves a buttery-smooth typewriter effect via SSE.
 
-```javascript
+`````javascript
 // Backend streaming response core logic (Express.js Route)
 app.post('/api/workspace/:slug/chat', async (request, response) => {
   // Set HTTP headers to establish a persistent SSE connection
@@ -119,18 +120,18 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
     for await (const chunk of stream) {
       // Format data chunks according to SSE specs and push to the frontend
       // Keeps the connection alive to prevent Gateway Timeouts
-      response.write(`data: ${JSON.stringify({ text: chunk })}\n\n`);
+      response.write(````data: ${JSON.stringify({ text: chunk })}\n\n````);
     }
     
-    response.write(`data: [DONE]\n\n`);
+    response.write(````data: [DONE]\n\n````);
     response.end();
   } catch (error) {
     // [Pitfall Prevention]: Exceptions during streaming MUST manually close the response
-    response.write(`data: ${JSON.stringify({ error: "Streaming failed" })}\n\n`);
+    response.write(````data: ${JSON.stringify({ error: "Streaming failed" })}\n\n````);
     response.end();
   }
 });
-```
+`````
 
 **Deep Teardown**: Instead of using heavy WebSockets, AnythingLLM opts for SSE (Server-Sent Events), a lighter, unidirectional communication protocol. This is incredibly strategic for enterprise intranet deployments (which often sit behind complex Nginx reverse proxies), as it completely bypasses the firewall blocking issues that notoriously plague WebSockets.
 
@@ -139,11 +140,11 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 When executing an **AnythingLLM with Ollama setup** for private deployment, absolutely avoid these two landmines.
 
 1. **Pitfall 1: Docker Network Isolation & Ollama Port Refusal**
-   - **Symptom**: AnythingLLM (running inside a Docker container) violently throws `Connection Refused` errors, unable to connect to the Ollama service running on the host machine.
-   - **Solution**: Inside a Docker container, `localhost` refers to the container itself, NOT the host machine! You must point AnythingLLM's LLM URL to `http://host.docker.internal:11434`. Furthermore, when launching Ollama, you must set the environment variable `OLLAMA_HOST=0.0.0.0` to allow cross-network interface access.
+   - **Symptom**: AnythingLLM (running inside a Docker container) violently throws ````Connection Refused```` errors, unable to connect to the Ollama service running on the host machine.
+   - **Solution**: Inside a Docker container, ````localhost```` refers to the container itself, NOT the host machine! You must point AnythingLLM's LLM URL to ````http://host.docker.internal:11434````. Furthermore, when launching Ollama, you must set the environment variable ````OLLAMA_HOST=0.0.0.0```` to allow cross-network interface access.
 
 2. **Pitfall 2: LanceDB Disk IO File Locking**
-   - **Symptom**: When multiple users simultaneously upload large PDFs to the same Workspace, the database throws `SQLITE_BUSY` or write-lock errors.
+   - **Symptom**: When multiple users simultaneously upload large PDFs to the same Workspace, the database throws ````SQLITE_BUSY``` or write-lock errors.
    - **Solution**: The default embedded vector database, LanceDB/Chroma, suffers from file-locking issues under high-frequency concurrent writes. In a real enterprise environment with dozens of employees, ALWAYS switch the Vector DB configuration to a standalone Qdrant or Milvus instance.
 
 ## Commercial Loop: Selling "Absolute Security" for Outrageous Profits
@@ -157,7 +158,7 @@ Don't compete on "free" with the open-source crowd; sell "security" to enterpris
 **Conclusion**: AnythingLLM uses a gorgeous frontend shell and enterprise-grade permission isolation to perfectly mask the hardcore, tedious nature of underlying RAG pipelines. Master it, and you can package cold, intimidating LLMs and vector databases into the ultimate digital asset—one that B2B executives will happily write massive checks for.
 
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -239,7 +240,7 @@ Why Do Enterprises Fear ChatGPT? represents an important step forward in AI-powe
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 

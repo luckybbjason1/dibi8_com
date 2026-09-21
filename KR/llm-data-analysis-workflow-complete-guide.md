@@ -22,6 +22,7 @@ aliases:
   - /posts/llm-data-analysis-workflow-complete-guide/
 ---
 
+
 {</* resource-info */>}
 
 대형 언어 모델(LLM)은 데이터 분석의 패러다임을 바꾸고 있습니다. SQL이나 Python 코드를 직접 작성하는 대신 자연어로 질문하고, LLM이 코드를 생성해 실행하는 흐름이 자리 잡고 있습니다. 이 글에서는 PandasAI, ChatGPT Code Interpreter, OpenAI API 세 가지 접근 방식의 실전 활용법과 각 도구의 적합한 사용 사례를 설명합니다.
@@ -54,11 +55,11 @@ aliases:
 - **자동 시각화**: 질문 의도에 맞는 차트 자동 생성
 - **다중 DataFrame 추론**: 여러 테이블 간의 조인과 관계 분석
 - **Docker 샌드박스**: 코드 실행 환경 격리로 보안 강화
-- **SmartDataFrame**: `df.chat()` 메서드로 대화형 인터페이스 제공
+- **SmartDataFrame**: ```df.chat()```` 메서드로 대화형 인터페이스 제공
 
 ### PandasAI 설치와 기본 사용법
 
-```python
+`````python
 # PandasAI 기본 사용 예시
 import pandas as pd
 from pandasai import SmartDataframe
@@ -77,23 +78,23 @@ response = sdf.chat(
     "카테고리별 평균 매출과 주문량을 계산하고 "
     "매출이 가장 높은 카테고리의 월별 변화를 분석해줘"
 )
-```
+`````
 
-PandasAI는 난이도가 높은 분석 시 Agent 모드를 활성화해 여러 단계의 추론을 수행합니다. ` pai --version`으로 현재 설치 버전을 확인할 수 있으며, 2025년 12월 기준 최신 버전은 3.0.0-beta입니다.
+PandasAI는 난이도가 높은 분석 시 Agent 모드를 활성화해 여러 단계의 추론을 수행합니다. ```` pai --version````으로 현재 설치 버전을 확인할 수 있으며, 2025년 12월 기준 최신 버전은 3.0.0-beta입니다.
 
 ### 고급 PandasAI 기능
 
 PandasAI는 OpenAI 외에도 다양한 LLM 백엔드를 지원합니다. Ollama나 LM Studio를 통해 로컬 LLM을 연결하면 민감한 데이터를 외부로 전송하지 않고 분석할 수 있습니다. BambooLLM은 PandasAI 팀이 데이터 분석에 특화하여 파인튜닝한 모델로, 복잡한 집계와 시각화 명령에서 더 높은 정확도를 보입니다.
 
-```python
+`````python
 # 로컬 LLM 연동 예시
 from pandasai.llm import LocalLLM
 
 llm = LocalLLM(api_base="http://localhost:11434/v1", model="llama3")
 sdf = SmartDataframe(df, config={"llm": llm})
-```
+`````
 
-SQL 데이터베이스 연동은 `SmartDatalake` 클래스로 확장 가능합니다. 여러 DataFrame과 SQL 테이블을 하나의 대화 컨텍스트에서 통합 조회할 수 있습니다.
+SQL 데이터베이스 연동은 ````SmartDatalake```` 클래스로 확장 가능합니다. 여러 DataFrame과 SQL 테이블을 하나의 대화 컨텍스트에서 통합 조회할 수 있습니다.
 
 **적합한 사용 사례:** Jupyter Notebook 워크플로우, Python 개발자, 반복적인 탐색적 분석
 
@@ -135,7 +136,7 @@ OpenAI API를 직접 호출하면 데이터 분석 파이프라인에 LLM 기능
 - **Assistants API with Code Interpreter**: 스레드 기반 대화 상태 관리와 코드 실행 통합
 - **Batch API**: 대량 데이터셋의 비동기 처리로 비용 절감 (50% 할인)
 
-```python
+`````python
 # OpenAI Function Calling 예시
 import openai
 
@@ -159,15 +160,15 @@ response = client.chat.completions.create(
     }],
     function_call={"name": "generate_analysis_code"}
 )
-```
+`````
 
 **적합한 사용 사례:** 생산 파이프라인, 커스텀 애플리케이션, 대량 데이터 일괄 처리
 
 ## 완전한 LLM 기반 분석 파이프라인 구축
 
-견고하고 감사 가능한 분석을 위한 아키텍처는 다음과 같습니다: ```
+견고하고 감사 가능한 분석을 위한 아키텍처는 다음과 같습니다: `````
 데이터 수집 → LLM 전처리 → 검증 → 인간 검토 → 최종 출력
-```
+`````
 
 각 단계의 역할: 1. **데이터 수집**: 원본 데이터를 버전 관리된 저장소에서 로드
 2. **LLM 전처리**: 자연어 요청을 구조화된 코드로 변환
@@ -234,13 +235,13 @@ PandasAI는 오픈소스로 물로 사용할 수 있습니다. 다만 OpenAI GPT
 
 ### 민감한 데이터 분석에 로컬 LLM을 사용할 수 있나요?
 
-네, Ollama나 LM Studio를 통해 로컬에서 Llama 3.1 70B, Mistral 7B, CodeLlama 등을 실행할 수 있습니다. PandasAI도 `LocalLLM` 클래스로 로컬 모델 연동을 지원합니다. 다만 로컬 LLM의 분석 품질은 GPT-4o 대비 10-20% 낮을 수 있으며, GPU 메모리 요구사항도 고려해야 합니다. Llama 3.1 70B 기준 최소 40GB VRAM이 필요합니다.
+네, Ollama나 LM Studio를 통해 로컬에서 Llama 3.1 70B, Mistral 7B, CodeLlama 등을 실행할 수 있습니다. PandasAI도 ````LocalLLM``` 클래스로 로컬 모델 연동을 지원합니다. 다만 로컬 LLM의 분석 품질은 GPT-4o 대비 10-20% 낮을 수 있으며, GPU 메모리 요구사항도 고려해야 합니다. Llama 3.1 70B 기준 최소 40GB VRAM이 필요합니다.
 
 ### OpenAI API 데이터 분석의 비용은 어느 정도인가요?
 
 사용량에 따라 다르지만, 일반적인 패턴은 다음과 같습니다. GPT-4o 기준 1,000 토큰당 입력 $0.005, 출력 $0.015입니다. 하루 50개의 분석 요청(각 3,000 토큰 입력, 1,500 토큰 출력)을 가정하면 월 약 $30-40이 발생합니다. Batch API를 사용하면 50% 할인된 가격에 동일한 작업을 처리할 수 있으나, 24시간 내 비동기 결과 수신이라는 제약이 있습니다.
 
----
+* * *
 
 **참고 자료:**
 
@@ -250,7 +251,7 @@ PandasAI는 오픈소스로 물로 사용할 수 있습니다. 다만 OpenAI GPT
 - [Ollama 공식 사이트](https://ollama.com/)
 - [Python 공식 문서](https://docs.python.org/3/)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -322,7 +323,7 @@ LLM을 활용한 데이터 분석 완벽 워크플로우: PandasAI, Code Interpr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

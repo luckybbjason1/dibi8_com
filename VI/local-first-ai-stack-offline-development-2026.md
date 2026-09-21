@@ -28,6 +28,7 @@ faq: - q: "Tại sao phải đi hoàn toàn offline trong năm 2026?"
     a: "Có. Mẫu phổ biến: Ollama local làm chính, fallback sang API thương mại cho các tác vụ khó. Aider hỗ trợ chuyển mô hình ngay giữa phiên. Đa số developer chạy hybrid — local mặc định, cloud cho 10-20% thực sự cần."
 ---
 
+
 {{</* resource-info */>}}
 
 # Stack AI Local-First 2026: Môi Trường Phát Triển Offline
@@ -58,34 +59,34 @@ Với đa số developer: cloud vẫn thắng về chất lượng. Với workfl
 ## Stack (4 Thành Phần)
 
 ### 1. Ollama (LLM runtime)
-```bash
+````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.3:70b-instruct-q4_K_M
 ollama pull deepseek-coder-v2:16b-lite-instruct-q4_K_M
-```
-Nạp hai mô hình — một mô hình tổng quát, một chuyên cho code. Ollama phục vụ chúng tại `localhost:11434`.
+`````
+Nạp hai mô hình — một mô hình tổng quát, một chuyên cho code. Ollama phục vụ chúng tại ````localhost:11434````.
 
 ### 2. Aider (coding agent)
-```bash
+`````bash
 pip install aider-chat
 aider --model ollama/llama3.3:70b-instruct-q4_K_M
-```
+`````
 Aider kết nối tới Ollama local. Giờ bạn đã có pair programming offline.
 
 ### 3. ChromaDB (RAG local)
-```bash
+`````bash
 pip install chromadb
 # Dùng in-process hoặc chạy như service
 chroma run --path ./chroma-data
-```
+`````
 Vector DB chạy local. Lập chỉ mục codebase / tài liệu để tìm kiếm ngữ nghĩa.
 
 ### 4. Embedding local (BGE-M3)
-```python
+`````python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("BAAI/bge-m3")
 # Sinh embedding tại local
-```
+````
 Embedding ở lại trên máy bạn. Không có cuộc gọi ra ngoài.
 
 ## Thực Tế Phần Cứng
@@ -149,7 +150,7 @@ AI local-first năm 2026 là có thật nhưng mang tính chuyên biệt. Đừn
 
 Hybrid đúng đắn là local mặc định + API thương mại dự phòng. Phần lớn developer "local-first" cuối cùng đều chạy theo mẫu này — bạn nhận được hầu hết lợi ích về riêng tư đồng thời vẫn có chất lượng cloud khi cần.
 
----
+* * *
 
 **Bài liên quan**: [Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/vi/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Hướng Dẫn Cài Đặt Ollama](https://dibi8.com/vi/resources/llm-frameworks/ollama/) · [Kiến Trúc Production Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
@@ -215,12 +216,12 @@ Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn Toàn Offline r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -230,7 +231,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](local-first-ai-stack-offline-development-2026)
 - [ollama-vs-vllm](local-first-ai-stack-offline-development-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

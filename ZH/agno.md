@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/agno/-
 ---
 
+
 {{</* resource-info */>}}
 
 在 2026 年选择一个 AI Agent 框架就像在雷区中导航。过去 18 个月里，数十个库涌现出来，承诺"简化"Agent 开发，但大多数引入了比价值更多的抽象层。团队报告说，他们花了数周时间学习基于图的编排语义，最后却发现他们的用例所需要的不过是一个轻量级的工具调用循环。Agno（前身为 Phidata）以其运行时优先的理念打破了这一噪音：快速构建 Agent，将它们作为服务运行，并完全掌控你的整个技术栈。凭借 **40,233 个 GitHub Star**、**452 名贡献者**以及全新的 Apache-2.0 许可证，Agno 已成为 Python 团队交付生产级 Agent 系统的首选框架。本指南 —— 一份实用的 2026 年 **agno tutorial** —— 将介绍 **agno setup**、架构、真实代码示例、**agno vs crewai** 的性能基准对比，以及这个 **lightweight ai framework** 不足之处的事实分析。
@@ -42,7 +43,7 @@ Agno 的价值主张很简单：你使用纯 Python 类构建 Agent，从包含 
 
 Agno 的架构将关注点分离为三个独立的层，每一层都可以独立替换：
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │                    控制平面 (AgentOS UI)                      │
 │         聊天 · 链路检查 · 会话管理                             │
@@ -56,7 +57,7 @@ Agno 的架构将关注点分离为三个独立的层，每一层都可以独立
 │              模型提供商 (支持 23+ 家)                          │
 │  OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok ...   │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### 核心概念
 
@@ -78,7 +79,7 @@ Agno 可在两分钟内完成安装，除 Python 3.10+ 外无需任何外部依�
 
 ### 步骤 1：创建虚拟环境
 
-```bash
+`````bash
 # 使用 uv（推荐）
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv --python 3.12
@@ -87,11 +88,11 @@ source .venv/bin/activate
 # 或使用标准 venv
 python3 -m venv ~/.venvs/agno
 source ~/.venvs/agno/bin/activate
-```
+`````
 
 ### 步骤 2：安装 Agno
 
-```bash
+`````bash
 # 最小安装
 uv pip install -U agno
 
@@ -100,20 +101,20 @@ uv pip install -U agno openai
 
 # 全量安装，包含常用工具
 uv pip install -U agno openai duckduckgo-search chromadb
-```
+`````
 
 ### 步骤 3：验证安装
 
-```bash
+`````bash
 python -c "import agno; print(agno.__version__)"
 # 预期输出: 2.6.8 或更新版本
-```
+`````
 
 ### 步骤 4：运行你的第一个 Agent
 
-创建 `basic_agent.py`：
+创建 ````basic_agent.py````：
 
-```python
+`````python
 from agno.agent import Agent
 
 agent = Agent(
@@ -123,12 +124,12 @@ agent = Agent(
 )
 
 agent.print_response("解释 Python 中 asyncio 和 threading 的区别。", stream=True)
-```
+`````
 
-```bash
+`````bash
 export OPENAI_API_KEY="sk-your-key-here"
 python basic_agent.py
-```
+`````
 
 就这么简单 —— 一个可用的 Agent 只需 10 行 Python 代码。没有 YAML 配置，没有图定义，没有繁琐的仪式。
 
@@ -136,7 +137,7 @@ python basic_agent.py
 
 ### OpenAI 集成
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -149,11 +150,11 @@ agent = Agent(
 )
 
 agent.print_response("量子计算的最新进展", stream=True)
-```
+`````
 
 ### Anthropic Claude 集成
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 
@@ -164,11 +165,11 @@ agent = Agent(
 )
 
 agent.print_response("分析东南亚电动汽车市场。", stream=True)
-```
+`````
 
 ### Ollama 集成（本地模型）
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.ollama import Ollama
 
@@ -179,9 +180,9 @@ agent = Agent(
 )
 
 agent.print_response("用 Python 示例解释递归。", stream=True)
-```
+`````
 
-```bash
+`````bash
 # 安装 Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -190,11 +191,11 @@ ollama pull qwen3
 
 # 运行
 python ollama_agent.py
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -205,9 +206,9 @@ COPY . .
 EXPOSE 8000
 
 CMD ["python", "workbench.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: agentos: build: .
@@ -216,11 +217,11 @@ services: agentos: build: .
       - AGNO_ENV=production
     volumes: - ./data:/app/data
     restart: unless-stopped
-```
+`````
 
 ### AWS 部署（ECS with Fargate）
 
-```bash
+`````bash
 # 构建并推送到 ECR
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 
@@ -235,7 +236,7 @@ aws ecs create-service \
   --task-definition agno-task:1 \
   --desired-count 2 \
   --launch-type FARGATE
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -247,15 +248,15 @@ Agno 的轻量级设计在对比测试中展现出可衡量的优势：
 
 | 指标 | Agno | CrewAI | AutoGen | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Agent 初始化 | ~3 μs | ~12 ms | ~45 ms | ~150 ms |
 | 每个 Agent 内存占用 | ~6.5 KiB | ~320 KiB | ~1.2 MiB | ~2.8 MiB |
@@ -288,7 +289,7 @@ Agno 的轻量级设计在对比测试中展现出可衡量的优势：
 
 Agno Team 允许你在无需图定义的情况下组合 Agent 组：
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -317,11 +318,11 @@ team = Team(
 )
 
 team.print_response("撰写一篇关于 2026 年可再生能源趋势的文章。", stream=True)
-```
+`````
 
 ### Agentic RAG 知识库
 
-```python
+`````python
 from agno.agent import Agent
 from agno.knowledge.embedder.google import GeminiEmbedder
 from agno.knowledge.knowledge import Knowledge
@@ -349,11 +350,11 @@ agent = Agent(
 )
 
 agent.print_response("什么是 Agno？", stream=True)
-```
+`````
 
 ### 带会话存储的生产服务
 
-```python
+`````python
 from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.os import AgentOS
@@ -372,9 +373,9 @@ workbench = Agent(
 # 作为 API 提供服务
 AgentOS.agent = workbench
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
-```bash
+`````bash
 # 启动服务
 python workbench.py
 
@@ -382,11 +383,11 @@ python workbench.py
 curl -X POST http://localhost:8000/v1/agents/workbench/run \
   -H "Content-Type: application/json" \
   -d '{"message": "整理我的下载文件夹", "session_id": "user-123"}"
-```
+`````
 
 ### 安全与监控
 
-```python
+`````python
 from agno.agent import Agent
 from agno.os import AgentOS
 
@@ -403,21 +404,21 @@ agent = Agent(
 # OpenTelemetry 链路追踪（在 AgentOS 中自动配置）
 AgentOS.agent = agent
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Agno | CrewAI | AutoGen | LangChain + LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Star** | 40,233 | 51,000+ | 58,000+ | 96,000+ / 31,000+ |
 | **许可证** | Apache-2.0 | MIT | MIT (代码) / CC-BY-4.0 (文档) | MIT |
@@ -461,7 +462,7 @@ AgentOS.serve(host="0.0.0.0", port=8000)
 
 ### 核心代码实现
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.knowledge.knowledge import Knowledge
@@ -509,7 +510,7 @@ cs_team = Team(
     ),
     instructions="协作处理客户咨询，确保响应准确且及时。",
 )
-```
+`````
 
 ### 性能优化经验
 
@@ -529,7 +530,7 @@ cs_team = Team(
 
 不同任务对模型的要求差异巨大。我们的经验是：使用 gpt-4o-mini 处理 80% 的标准查询，gpt-4o 处理 15% 的复杂推理，gpt-5.5 仅用于 5% 的高价值场景。这种分级策略在保证质量的同时将 API 成本控制在合理范围内。对于需要保护数据隐私的场景，可以使用 Ollama 部署的本地模型替代云模型，虽然响应质量略有下降，但数据完全不出境。
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.models.ollama import Ollama
@@ -550,13 +551,13 @@ private_agent = Agent(
     model=Ollama(id="llama3:70b"),  # 本地大模型
     description="处理敏感数据的本地 Agent",
 )
-```
+`````
 
 ### 水平扩展方案
 
 AgentOS 的无状态设计使其天然适合水平扩展。我们使用 AWS ECS Fargate 部署 AgentOS 服务，配合 Application Auto Scaling 实现自动扩缩容。当请求量超过阈值时，ECS 自动增加任务副本；当流量下降时，自动减少副本以节约成本。配合 ElastiCache Redis 作为共享会话存储，确保所有实例访问一致的会话状态。
 
-```yaml
+`````yaml
 # ecs-service.yml
 service: name: agentos-service
   launchType: FARGATE
@@ -567,7 +568,7 @@ service: name: agentos-service
       securityGroups: [sg-xxx]
       assignPublicIp: ENABLED
   serviceRegistries: - registryArn: arn:aws:servicediscovery:xxx
-```
+`````
 
 ### 监控与告警
 
@@ -579,17 +580,17 @@ service: name: agentos-service
 
 **从简单开始**：不要一开始就构建复杂的多 Agent 团队。先用单个 Agent 验证核心逻辑，确认工具调用和模型交互正常后，再逐步增加复杂度。Agno 的轻量级设计使得 Agent 之间的耦合度很低，重构成本极小。
 
-**工具权限最小化**：为每个 Agent 配置工具时，始终遵循最小权限原则。例如，如果 Agent 只需要读取文件，就不要授予写入或删除权限。Agno 的 `Workspace` 工具支持通过 `allowed` 参数精确控制操作范围，这在生产环境中尤为重要。
+**工具权限最小化**：为每个 Agent 配置工具时，始终遵循最小权限原则。例如，如果 Agent 只需要读取文件，就不要授予写入或删除权限。Agno 的 ````Workspace```` 工具支持通过 ````allowed```` 参数精确控制操作范围，这在生产环境中尤为重要。
 
-**监控工具调用开销**：虽然 Agno 的 Agent 初始化速度极快（3 微秒），但工具调用（尤其是网络搜索或 API 调用）可能成为瓶颈。使用 `show_tool_calls=True` 参数可以在开发阶段查看每次工具调用的耗时，帮助你识别性能热点。
+**监控工具调用开销**：虽然 Agno 的 Agent 初始化速度极快（3 微秒），但工具调用（尤其是网络搜索或 API 调用）可能成为瓶颈。使用 ````show_tool_calls=True```` 参数可以在开发阶段查看每次工具调用的耗时，帮助你识别性能热点。
 
-**内存管理策略**：对于长时间运行的 Agent，注意内存增长问题。Agno 的 `SqliteDb` 适合小型项目，但在高并发场景下应切换到 `PostgresDb`。定期清理过期的会话数据可以防止数据库膨胀。建议为每个用户设置独立的 session_id，避免会话混淆。
+**内存管理策略**：对于长时间运行的 Agent，注意内存增长问题。Agno 的 ````SqliteDb```` 适合小型项目，但在高并发场景下应切换到 ````PostgresDb````。定期清理过期的会话数据可以防止数据库膨胀。建议为每个用户设置独立的 session_id，避免会话混淆。
 
 **错误处理与重试**：生产环境中 LLM API 可能出现超时或速率限制错误。Agno 支持通过模型参数配置重试策略。建议为 OpenAI 和 Anthropic 等云模型设置指数退避重试，为本地 Ollama 模型设置更长的超时时间。
 
-**调试技巧**：当 Agent 行为不符合预期时，首先检查 `show_tool_calls=True` 的输出，确认工具是否被正确调用。其次查看 AgentOS 的链路追踪界面，分析每个步骤的延迟。最后，使用 `markdown=True` 可以美化输出，但如果在自动化流程中解析 Agent 响应，建议关闭 markdown 以获得纯文本输出。
+**调试技巧**：当 Agent 行为不符合预期时，首先检查 ````show_tool_calls=True```` 的输出，确认工具是否被正确调用。其次查看 AgentOS 的链路追踪界面，分析每个步骤的延迟。最后，使用 ````markdown=True```` 可以美化输出，但如果在自动化流程中解析 Agent 响应，建议关闭 markdown 以获得纯文本输出。
 
-**版本锁定**：Agno 处于快速发展阶段，2.x 版本之间的 API 可能有细微变化。建议在 `requirements.txt` 中锁定精确版本，如 `agno==2.6.8`，并在升级前阅读发布说明。使用 `pip install -U agno` 自动升级可能会引入破坏性变更。
+**版本锁定**：Agno 处于快速发展阶段，2.x 版本之间的 API 可能有细微变化。建议在 ````requirements.txt```` 中锁定精确版本，如 ````agno==2.6.8````，并在升级前阅读发布说明。使用 ````pip install -U agno```` 自动升级可能会引入破坏性变更。
 
 ## 局限性 / 客观评估
 
@@ -613,11 +614,11 @@ Agno 优先考虑运行时开销和服务封装 —— 你可以在几分钟内�
 
 ### Agno 可以仅使用本地模型运行吗？
 
-可以。Agno 与 Ollama、LM Studio 以及任何兼容 OpenAI 的本地端点集成。`Ollama` 模型提供程序允许你使用 Llama 3、Qwen3 或 Mistral 等模型完全离线运行。本地部署不需要 API 密钥或云依赖。
+可以。Agno 与 Ollama、LM Studio 以及任何兼容 OpenAI 的本地端点集成。````Ollama```` 模型提供程序允许你使用 Llama 3、Qwen3 或 Mistral 等模型完全离线运行。本地部署不需要 API 密钥或云依赖。
 
 ### Agno 支持哪些数据库用于会话存储？
 
-Agno 支持 SQLite、PostgreSQL、MySQL 和 LanceDB 用于会话存储和内存。`SqliteDb`、`PostgresDb` 和 `LanceDb` 类自动处理会话读写 —— 无需手动编写 SQL。支持的向量数据库包括 ChromaDB、LanceDB 和用于 RAG 知识库的 pgvector。在实际项目中，我们推荐使用 pgvector 处理大规模数据，使用 ChromaDB 进行快速原型开发，使用 LanceDB 在嵌入式设备上部署。
+Agno 支持 SQLite、PostgreSQL、MySQL 和 LanceDB 用于会话存储和内存。````SqliteDb````、````PostgresDb```` 和 ````LanceDb```` 类自动处理会话读写 —— 无需手动编写 SQL。支持的向量数据库包括 ChromaDB、LanceDB 和用于 RAG 知识库的 pgvector。在实际项目中，我们推荐使用 pgvector 处理大规模数据，使用 ChromaDB 进行快速原型开发，使用 LanceDB 在嵌入式设备上部署。
 
 ### Agno 适合企业部署吗？
 
@@ -625,7 +626,7 @@ Agno 支持 SQLite、PostgreSQL、MySQL 和 LanceDB 用于会话存储和内存�
 
 ### 如何从 Phidata 迁移到 Agno？
 
-迁移涉及将包导入从 `phidata` 更新为 `agno`，并适配 2.x API 更改。这是一个系统性的过程，需要仔细规划和逐步执行。首先，建议在一个独立的分支中进行迁移，避免影响生产代码。其次，先更新核心依赖，运行测试确保基础功能正常，然后再逐步迁移高级功能。最后，迁移完成后进行全面的回归测试，特别是测试工具调用、会话管理和内存持久化等关键功能。Agno 团队提供了详细的迁移文档和常见问题解答，遇到问题可以在 Discord 社区寻求帮助。Agno 团队提供了[迁移指南](https://docs.agno.com/migration)。关键更改包括 `Agent` 类替换 `PhiAgent`，`Team` 类替换 `PhiTeam`，AgentOS 运行时成为一个独立的模块。大多数迁移对于中等规模的代码库需要几个小时。
+迁移涉及将包导入从 ````phidata```` 更新为 ````agno````，并适配 2.x API 更改。这是一个系统性的过程，需要仔细规划和逐步执行。首先，建议在一个独立的分支中进行迁移，避免影响生产代码。其次，先更新核心依赖，运行测试确保基础功能正常，然后再逐步迁移高级功能。最后，迁移完成后进行全面的回归测试，特别是测试工具调用、会话管理和内存持久化等关键功能。Agno 团队提供了详细的迁移文档和常见问题解答，遇到问题可以在 Discord 社区寻求帮助。Agno 团队提供了[迁移指南](https://docs.agno.com/migration)。关键更改包括 ````Agent```` 类替换 ````PhiAgent````，````Team```` 类替换 ````PhiTeam```，AgentOS 运行时成为一个独立的模块。大多数迁移对于中等规模的代码库需要几个小时。
 
 ### 可以不使用 AgentOS 运行时使用 Agno 吗？
 
@@ -664,7 +665,7 @@ Agno 在 Agent 框架领域中填补了特定的空白：它为 Python 团队提
 - [Agno vs CrewAI 详细对比](https://respan.ai/market-map/compare/agno-vs-crewai) — 带社区评论的逐项功能分析
 
 
----
+* * *
 *本文包含推广链接。如果你通过这些链接注册服务，dibi8.com 可能会获得佣金，而你无需支付额外费用。*
 
 
@@ -694,7 +695,7 @@ Agno 在 Agent 框架领域中填补了特定的空白：它为 Python 团队提
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](agno)
@@ -703,7 +704,7 @@ Agno 在 Agent 框架领域中填补了特定的空白：它为 Python 团队提
 - [bytedance-ui-tars-desktop-ai-agent-guide](agno)
 - [egonex-understand-anything-interactive-knowledge-graph-ai](agno)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

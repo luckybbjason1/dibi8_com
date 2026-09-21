@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 ---
 
+
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
 ![TurboQuant Benchmark](https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/benchmarks)
@@ -29,7 +30,7 @@ Các ứng dụng RAG dành phần lớn thời gian suy luận của chúng đ�
 
 TurboVec là một chỉ số vector hiệu suất cao ưu tiên hai điều: tốc độ truy vấn và hiệu quả bộ nhớ. Bên dưới, nó sử dụng TurboQuant — một lược đồ quantization tùy chỉnh nén embeddings xuống độ chính xác 4-bit trong khi duy trì độ chính xác truy xuất hơn 99%. Được viết bằng Rust và tiếp cận qua Python bindings, nó mang lại hiệu suất cấp C mà không cần rời khỏi hệ sinh thái Python.
 
-```
+````
 ┌─────────────────────────────────────────────────┐
 │              TurboVec Architecture               │
 ├─────────────────────────────────────────────────┤
@@ -51,13 +52,13 @@ TurboVec là một chỉ số vector hiệu suất cao ưu tiên hai điều: t�
 │    ├─ On-disk checkpoint                         │
 │    └─ Incremental updates                         │
 └─────────────────────────────────────────────────┘
-```
+`````
 
 ## TurboQuant Hoạt Động Như Thế Nào
 
 Các vector store truyền thống lưu trữ embeddings dưới dạng float 32-bit (4 bytes trên mỗi dimension). TurboQuant nén chúng xuống 4 bit (0.5 bytes trên mỗi dimension) bằng cách kết hợp product quantization và residual coding.
 
-```python
+`````python
 import turbovec
 
 # Create a TurboVec index with 4-bit quantization
@@ -74,7 +75,7 @@ index.add(embeddings)
 
 # Search — returns top-k results in milliseconds
 results = index.search(query_embedding, k=10)
-```
+`````
 
 Pipeline quantization hoạt động theo ba giai đoạn. Đầu tiên, không gian embedding được chia thành các subspace bằng cách sử dụng product quantization. Thứ hai, các vector dư thừa nắm bắt lỗi quantization cho các thành phần tần số cao. Thứ ba, phát hiện tính năng runtime tự động chọn giữa các kernel AVX2 (CPU 2013+) và AVX-512 (CPU 2017+).
 
@@ -82,13 +83,13 @@ Pipeline quantization hoạt động theo ba giai đoạn. Đầu tiên, không 
 
 **Tùy chọn 1: pip install (khuyến nghị)**
 
-```bash
+`````bash
 pip install turbovec
-```
+`````
 
 **Tùy chọn 2: Cài đặt theo framework**
 
-```bash
+`````bash
 # LangChain integration
 pip install turbovec[langchain]
 
@@ -100,23 +101,23 @@ pip install turbovec[haystack]
 
 # Agno integration
 pip install turbovec[agno]
-```
+`````
 
 **Tùy chọn 3: Build từ source (phát triển Rust)**
 
-```bash
+`````bash
 git clone https://github.com/RyanCodrai/turbovec.git
 cd turbovec
 pip install maturin
 maturin develop --release
-```
+`````
 
 **Tùy chọn 4: Docker**
 
-```bash
+`````bash
 docker build -t turbovec:latest .
 docker run -p 8000:8000 turbovec:latest
-```
+`````
 
 ## Tích Hợp Với LangChain, LlamaIndex Và Haystack
 
@@ -124,7 +125,7 @@ Tính năng nổi bật của TurboVec là thiết kế thay thế trực tiếp
 
 **Tích Hợp LangChain**
 
-```python
+`````python
 from langchain.vectorstores import TurboVec
 
 # Drop-in replacement for InMemoryVectorStore
@@ -137,11 +138,11 @@ store = TurboVec(
 # Same API as any LangChain vector store
 store.add_documents(documents)
 results = store.similarity_search("your query", k=5)
-```
+`````
 
 **Tích Hợp LlamaIndex**
 
-```python
+`````python
 from llama_index.vector_stores import TurboVecVectorStore
 
 vector_store = TurboVecVectorStore(
@@ -153,11 +154,11 @@ vector_store = TurboVecVectorStore(
 index = VectorStoreIndex.from_vector_store(vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What did the author learn?")
-```
+`````
 
 **Tích Hợp Haystack**
 
-```python
+`````python
 from haystack.document_stores import TurboVecDocumentStore
 
 document_store = TurboVecDocumentStore(
@@ -168,7 +169,7 @@ document_store = TurboVecDocumentStore(
 # Use with Haystack's Retriever
 retriever = Retriever(document_store=document_store)
 documents = retriever.run(query="your query")
-```
+`````
 
 ## Benchmark / Use Case Thực Tế
 
@@ -182,7 +183,7 @@ Lợi thế hiệu suất của TurboVec đến từ việc nén 4-bit của Tur
 | Độ chính xác (đã quantize) | 99.2% | 97.8% | 99.5% | 99.1% |
 | Vectors tối đa per index | 100M | 100M | 2M | 10M |
 
-Lệnh benchmark thực tế: ```bash
+Lệnh benchmark thực tế: `````bash
 # Run TurboVec's built-in benchmark suite
 cargo test --release benchmarks
 
@@ -191,7 +192,7 @@ python benchmarks/compare_turbovec_faiss.py \
   --vectors 1000000 \
   --dim 1536 \
   --queries 10000
-```
+`````
 
 Trong thực tế, TurboVec mang lại hiệu suất tốt nhất khi sử dụng với embeddings có kích thước 768 chiều trở lên. Dưới 384 chiều, lợi ích quantization giảm dần vì overhead của bản thân pipeline quantization trở nên đáng kể so với kích thước vector nhỏ. Đối với embeddings trong khoảng 384-512, hãy cân nhắc sử dụng quantization 8-bit để có sự đánh đổi độ chính xác-tốc độ tốt nhất.
 
@@ -199,7 +200,7 @@ Trong thực tế, TurboVec mang lại hiệu suất tốt nhất khi sử dụn
 
 **Chỉ Số Bền Vững Với Checkpoint**
 
-```python
+`````python
 import turbovec
 
 # Create a disk-backed index
@@ -220,11 +221,11 @@ index.save("my_index.turbovec")
 # Load checkpoint in a new process
 loaded = turbovec.Index.load("my_index.turbovec")
 results = loaded.search(query_emb, k=10)
-```
+`````
 
 **Thực Thi Truy Vấn Đa Thread**
 
-```python
+`````python
 # TurboVec uses all available CPU cores by default
 import os
 os.environ["RAYON_NUM_THREADS"] = "16"
@@ -235,11 +236,11 @@ results = index.search_parallel(
     k=10,
     num_threads=16
 )
-```
+`````
 
 **Giám Sát Hiệu Suất Index Trong Sản Xuất**
 
-```python
+`````python
 import time
 
 # Benchmark current index throughput
@@ -248,11 +249,11 @@ for _ in range(1000): index.search(query_emb, k=10)
 elapsed = time.perf_counter() - start
 print(f"Throughput: {1000/elapsed:.0f} queries/sec")
 print(f"Average latency: {elapsed/1000*1000:.2f} ms per query")
-```
+`````
 
 **Cấu Hình Quantization Tùy Chỉnh**
 
-```python
+`````python
 # Trade accuracy for speed: 3-bit quantization
 index_3bit = turbovec.Index(
     dim=1536,
@@ -264,11 +265,11 @@ index_8bit = turbovec.Index(
     dim=1536,
     quantization="8bit",    # 99.8% accuracy, 2x bigger
 )
-```
+`````
 
 **Xây Dựng Full RAG Pipeline Với TurboVec**
 
-```python
+`````python
 import turbovec
 from transformers import AutoTokenizer, AutoModel
 
@@ -288,11 +289,11 @@ index.add(embed_texts(document_chunks))
 query_emb = embed_texts(["What is machine learning?"])[0]
 results = index.search(query_emb, k=5)
 for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
-```
+`````
 
 **Docker Compose Cho Production Serving**
 
-```yaml
+`````yaml
 version: '3.8"
 services: turbovec: image: ryan-codrai/turbovec:latest
     ports: - "8000:8000"
@@ -300,7 +301,7 @@ services: turbovec: image: ryan-codrai/turbovec:latest
     environment: - TURBOVEC_CAPACITY=10000000
       - TURBOVEC_DIM=1536
       - TURBOVEC_METRIC=cosine
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -322,7 +323,7 @@ services: turbovec: image: ryan-codrai/turbovec:latest
 ## Hạn Chế / Đánh Giá Khách Quan
 
 TurboVec rất ấn tượng với hồ sơ hiệu suất của nó, nhưng có những hạn chế cần xem xét: 1. **Thư viện mới hơn**: Với 10.500 stars so với 60.000+ của FAISS, TurboVec có ít tài liệu cộng đồng và hướng dẫn bên thứ ba hơn. Các team sản xuất nên dành thời gian cho các bài test thử nghiệm.
-2. **Phụ thuộc Rust**: Build từ source yêu cầu `cargo` và Rust toolchain. Đường dẫn pip install tránh điều này, nhưng các custom build cần Rust 1.70+.
+2. **Phụ thuộc Rust**: Build từ source yêu cầu ````cargo```` và Rust toolchain. Đường dẫn pip install tránh điều này, nhưng các custom build cần Rust 1.70+.
 3. **Chỉ single-node**: Không giống như Weaviate hay Qdrant, TurboVec không có sẵn khả năng scale ngang. Đối với các index vượt quá 100M vectors, bạn cần sharding across multiple instances.
 4. **Giới hạn vector types**: Hiện tại chỉ hỗ trợ dense vector search. Sparse vectors, hybrid search và graph-based indexing chưa khả dụng.
 5. **Không có REST API built-in**: TurboVec là một in-process library. Nếu bạn cần một dịch vụ tìm kiếm vector qua mạng, bạn phải wrap nó trong một lớp FastAPI hoặc tương tự.
@@ -343,7 +344,7 @@ Hiện tại không. TurboVec được tối ưu hóa cho thực thi CPU bằng 
 
 **Q: Tôi xử lý vector updates và deletions như thế nào?**
 
-TurboVec hỗ trợ thêm增量 vào các index hiện có. Deletions được xử lý qua tombstone markers — các vectors bị xóa được xóa logic nhưng chiếm không gian cho đến khi bạn rebuild index. Sử dụng `index.rebuild()` để nén các vectors bị xóa và thu hồi không gian đĩa.
+TurboVec hỗ trợ thêm增量 vào các index hiện có. Deletions được xử lý qua tombstone markers — các vectors bị xóa được xóa logic nhưng chiếm không gian cho đến khi bạn rebuild index. Sử dụng ````index.rebuild()``` để nén các vectors bị xóa và thu hồi không gian đĩa.
 
 **Q: Kích thước index tối đa là gì?**
 
@@ -369,7 +370,7 @@ Thiết kế thay thế trực tiếp cho LangChain, LlamaIndex, Haystack và Ag
 
 Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để thảo luận về công cụ AI, Rust và hạ tầng phát triển.
 
----
+* * *
 
 **Nguồn & Đọc Thêm**: - Official repository: https://github.com/RyanCodrai/turbovec
 - TurboQuant paper: https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md
@@ -406,7 +407,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -416,7 +417,7 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - [ai-agent-frameworks-comparison-2026](turbovec-rust-vector-index-2026)
 - [ai-agent-frameworks-comparison-2026](turbovec-rust-vector-index-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

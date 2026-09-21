@@ -28,6 +28,7 @@ faqs: - q: 'Claude Code용 Caveman은 무엇인가요?'
     a: 'Caveman에는 세 가지 레벨이 있습니다: Lite(불필요한 표현 제거, 문법 유지), Full(기본 모드, 관사 생략 및 단편 문장 사용), Ultra(최대 전보식 압축). 또한 /caveman-commit, /caveman-review, /caveman-stats, 그리고 CLAUDE.md 같은 메모리 파일을 재작성하는 /caveman:compress 같은 서브 커맨드도 제공합니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드
@@ -37,7 +38,7 @@ faqs: - q: 'Claude Code용 Caveman은 무엇인가요?'
 
 AI 코딩 에이전트를 매일 쓰는 개발자라면 한 가지 고민이 있습니다. **토큰 비용**. Claude Code, Cursor, Windsurf, Cline… 도구는 좋은데 답변이 길어질수록 지갑이 얇아집니다. 오늘 소개할 **Caveman**은 이 문제를 단숨에 해결하는 Claude Code 스킬입니다. 설치는 1줄, 효과는 평균 **65% 토큰 절감**. 기술적 정확도는 그대로 유지하면서 말이죠.
 
----
+* * *
 
 ## Caveman이란?
 
@@ -48,7 +49,7 @@ Caveman은 [JuliusBrussee](https://github.com/JuliusBrussee)가 만든 Claude Co
 - **지원 에이전트**: 30+ (Claude Code, Cursor, Windsurf, Cline, Copilot, Gemini CLI, Codex, Continue, Roo, Augment, Aider, Goose, Warp, Replit Agent 등)
 - **공식 사이트**: [getcaveman.dev](https://getcaveman.dev/)
 
----
+* * *
 
 ## 왜 Caveman을 써야 할까?
 
@@ -88,7 +89,7 @@ Caveman은 [JuliusBrussee](https://github.com/JuliusBrussee)가 만든 Claude Co
 
 코드 리뷰가 코미디가 됩니다. 매일 쓰는 도구가 지루하지 않다는 건 큰 장점입니다.
 
----
+* * *
 
 ## 설치 방법 (1줄)
 
@@ -96,28 +97,28 @@ Caveman은 30개 이상의 AI 에이전트를 자동 감지하고, 각자의 네
 
 ### macOS / Linux / WSL / Git Bash
 
-```bash
+````bash
 curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
-```
+`````
 
 ### Windows (PowerShell)
 
-```powershell
+`````powershell
 irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | iex
-```
+`````
 
 ### 설치 옵션
 
 | 플래그 | 설명 |
 |--------|------|
-| `--all` | 플러그인 + 후크 + 상태줄 + MCP shrink + 현재 디렉토리 규칙 파일. 풀 패키지. |
-| `--minimal` | 플러그인/확장만. 후크, MCP shrink, 규칙 파일 제외. |
-| `--dry-run` | 미리보기. 실제로 아무것도 쓰지 않음. |
-| `--only <agent>` | 특정 에이전트만 설치 (반복 가능). |
-| `--with-hooks` | Claude Code 단독 후크 + 상태줄 + 통계 배지 연결. 기본 ON. |
-| `--with-mcp-shrink` | MCP shrink 미들웨어 등록. 기본 ON. |
+| ````--all```` | 플러그인 + 후크 + 상태줄 + MCP shrink + 현재 디렉토리 규칙 파일. 풀 패키지. |
+| ````--minimal```` | 플러그인/확장만. 후크, MCP shrink, 규칙 파일 제외. |
+| ````--dry-run```` | 미리보기. 실제로 아무것도 쓰지 않음. |
+| ````--only <agent>```` | 특정 에이전트만 설치 (반복 가능). |
+| ````--with-hooks```` | Claude Code 단독 후크 + 상태줄 + 통계 배지 연결. 기본 ON. |
+| ````--with-mcp-shrink```` | MCP shrink 미들웨어 등록. 기본 ON. |
 
----
+* * *
 
 ## 사용법: 3단계 강도
 
@@ -125,9 +126,9 @@ Caveman은 상황에 따라 3단계 강도를 선택할 수 있습니다.
 
 | 레벨 | 명령어 | 효과 |
 |------|--------|------|
-| **Lite** | `/caveman lite` | 필러 제거, 문법 유지. 프로페셔널하지만 장황함 없음. |
-| **Full** | `/caveman full` | 기본 Caveman. 관사 제거, 단편문, 완전한 그런트 스타일. |
-| **Ultra** | `/caveman ultra` | 최대 압축. 전보체. 모든 것을 축약. |
+| **Lite** | ````/caveman lite```` | 필러 제거, 문법 유지. 프로페셔널하지만 장황함 없음. |
+| **Full** | ````/caveman full```` | 기본 Caveman. 관사 제거, 단편문, 완전한 그런트 스타일. |
+| **Ultra** | ````/caveman ultra```` | 최대 압축. 전보체. 모든 것을 축약. |
 
 ### Before / After 예시
 
@@ -142,39 +143,39 @@ Caveman은 상황에 따라 3단계 강도를 선택할 수 있습니다.
 
 같은 기술 정보. 토큰은 1/4~1/8.
 
----
+* * *
 
 ## Caveman 스킬 모음
 
 | 스킬 | 기능 |
 |------|------|
-| `/caveman-commit` | 간결한 커밋 메시지. Conventional Commits, 제목 50자 이내. |
-| `/caveman-review` | 한 줄 PR 코멘트: `L42: 🔴 bug: user null. Add guard.` |
-| `/caveman-help` | 빠른 참조 카드. 모든 모드, 스킬, 명령어. |
-| `/caveman-stats` | 실제 세션 토큰 사용량 + 추정 절감액 + USD. `--all`로 누적, `--since 7d`로 기간 필터, `--share`로 트윗용 한 줄. |
-| `/caveman:compress <file>` | 메모리 파일(예: `CLAUDE.md`)을 Caveman 말투로 재작성. 백업은 `<file>.original.md`. 세션 시작 시 입력 토큰 ~46% 절감. |
+| ````/caveman-commit```` | 간결한 커밋 메시지. Conventional Commits, 제목 50자 이내. |
+| ````/caveman-review```` | 한 줄 PR 코멘트: ````L42: 🔴 bug: user null. Add guard.```` |
+| ````/caveman-help```` | 빠른 참조 카드. 모든 모드, 스킬, 명령어. |
+| ````/caveman-stats```` | 실제 세션 토큰 사용량 + 추정 절감액 + USD. ````--all````로 누적, ````--since 7d````로 기간 필터, ````--share````로 트윗용 한 줄. |
+| ````/caveman:compress <file>```` | 메모리 파일(예: ````CLAUDE.md````)을 Caveman 말투로 재작성. 백업은 ````<file>.original.md````. 세션 시작 시 입력 토큰 ~46% 절감. |
 
 ### Caveman Subagents (Claude Code 전용)
 
 | 서브에이전트 | 역할 |
 |-------------|------|
-| `cavecrew-investigator` | 읽기 전용 로케이터. 하이쿠 스타일. |
-| `cavecrew-builder` | 1~2개 파일 수술적 편집. 3개 이상 거부. |
-| `cavecrew-reviewer` | 한 줄 발견 사항. 하이쿠. |
+| ````cavecrew-investigator```` | 읽기 전용 로케이터. 하이쿠 스타일. |
+| ````cavecrew-builder```` | 1~2개 파일 수술적 편집. 3개 이상 거부. |
+| ````cavecrew-reviewer```` | 한 줄 발견 사항. 하이쿠. |
 
 서브에이전트 출력은 메인 컨텍스트에 주입됩니다. 기본 Explore/리뷰어 에이전트보다 **~60% 적은 토큰**을 사용해 긴 세션에서 메인 컨텍스트를 오래 유지합니다.
 
 ### 상태줄 절감 배지
 
-기본 ON. `/caveman-stats` 첫 실행 후 상태줄에 `[CAVEMAN] ⛏ 12.4k` (누적 절감 토큰)가 표시되고, 실행할 때마다 갱신됩니다. 끄려면 `CAVEMAN_STATUSLINE_SAVINGS=0`.
+기본 ON. ````/caveman-stats```` 첫 실행 후 상태줄에 ````[CAVEMAN] ⛏ 12.4k```` (누적 절감 토큰)가 표시되고, 실행할 때마다 갱신됩니다. 끄려면 ````CAVEMAN_STATUSLINE_SAVINGS=0````.
 
----
+* * *
 
 ## caveman-shrink: MCP 미들웨어
 
-Caveman은 MCP 서버를 감싸는 stdio 프록시 `caveman-shrink`도 제공합니다. `tools/list`, `prompts/list`, `resources/list` 응답의 `description` 필드를 압축합니다. 코드, URL, 경로, 식별자는 바이트 단위 그대로 유지.
+Caveman은 MCP 서버를 감싸는 stdio 프록시 ````caveman-shrink````도 제공합니다. ````tools/list````, ````prompts/list````, ````resources/list```` 응답의 ````description```` 필드를 압축합니다. 코드, URL, 경로, 식별자는 바이트 단위 그대로 유지.
 
-```json
+`````json
 {
   "mcpServers": {
     "fs-shrunk": {
@@ -183,11 +184,11 @@ Caveman은 MCP 서버를 감싸는 stdio 프록시 `caveman-shrink`도 제공합
     }
   }
 }
-```
+`````
 
-npm 패키지: [`caveman-shrink`](https://www.npmjs.com/package/caveman-shrink). V1은 툴콜 응답 본문이나 요청 페이로드는 건드리지 않습니다. `install.sh`가 자동 등록합니다(`--minimal`로 스킵).
+npm 패키지: [````caveman-shrink````](https://www.npmjs.com/package/caveman-shrink). V1은 툴콜 응답 본문이나 요청 페이로드는 건드리지 않습니다. ````install.sh````가 자동 등록합니다(````--minimal````로 스킵).
 
----
+* * *
 
 ## 과학적 근거
 
@@ -197,7 +198,7 @@ npm 패키지: [`caveman-shrink`](https://www.npmjs.com/package/caveman-shrink).
 
 Caveman은 이 원리를 실제 코딩 워크플로우에 적용한 도구입니다.
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -214,9 +215,9 @@ A: Claude Code 스킬은 언어에 구애받지 않습니다. Caveman의 "말투
 A: 안전하게 재실행 가능. 없는 에이전트는 스킵.
 
 **Q: 팀 전체에 적용하려면?**  
-A: `--all` 플래그로 저장소별 규칙 파일도 함께 배포. `.clinerules`, `.cursorrules` 등 자동 생성.
+A: ````--all```` 플래그로 저장소별 규칙 파일도 함께 배포. ````.clinerules````, ````.cursorrules```` 등 자동 생성.
 
----
+* * *
 
 ## 결론
 
@@ -224,17 +225,17 @@ Caveman은 단순한 "밈"이 아닙니다. **57K Star**를 받은 실전 도구
 
 AI 코딩 비용이 부담스럽다면, 오늘 바로 Caveman을 설치하세요.
 
-```bash
+`````bash
 curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
-```
+````
 
 더 알아보기: [github.com/JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | [getcaveman.dev](https://getcaveman.dev/)
 
----
+* * *
 
 *본 게시물은 dibi8.com에서 2026년 5월 10일에 작성되었습니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -306,7 +307,7 @@ Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드 represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

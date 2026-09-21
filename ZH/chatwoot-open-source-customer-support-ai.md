@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/chatwoot-open-source-customer-support-ai/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么你的客服技术栈需要重构
@@ -32,7 +33,7 @@ Chatwoot采用经典的单体Rails架构，配合Vue.js单页应用前端和Side
 
 ### 架构概览
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │                 （反向代理 + SSL）                    │
@@ -49,17 +50,17 @@ Chatwoot采用经典的单体Rails架构，配合Vue.js单页应用前端和Side
 │                 │（数据）  │  │（缓存）  │  │（任务）│ │
 │                 └─────────┘  └─────────┘  └──────┘ │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### 核心组件
 
 | 组件 | 用途 | 生产环境注意事项 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Rails API | 核心业务逻辑、REST API、ActionCable | 通过多个Puma worker水平扩展 |
 | Vue.js 仪表盘 | 客服用的工单管理SPA | 生产环境通过CDN分发静态资源 |
@@ -77,7 +78,7 @@ Chatwoot采用经典的单体Rails架构，配合Vue.js单页应用前端和Side
 
 **自动化规则（Automation Rules）** —— 如果-那么工作流，在会话创建、收到消息或基于时间的条件时触发。
 
-**宏（Macros）** —— 客服可一键插入的预定义回复模板。支持 `{{contact.name}}` 等动态变量。
+**宏（Macros）** —— 客服可一键插入的预定义回复模板。支持 ````{{contact.name}}```` 等动态变量。
 
 ## 安装与配置：5分钟从零到在线客服
 
@@ -92,7 +93,7 @@ Chatwoot采用经典的单体Rails架构，配合Vue.js单页应用前端和Side
 
 ### 步骤1：克隆并配置
 
-```bash
+`````bash
 # 克隆官方仓库
 git clone https://github.com/chatwoot/chatwoot.git
 cd chatwoot
@@ -102,11 +103,11 @@ git checkout v4.0.1
 
 # 复制环境变量模板
 cp .env.example .env
-```
+`````
 
 ### 步骤2：配置环境变量
 
-```bash
+`````bash
 # 使用编辑器修改 .env 文件
 nano .env
 
@@ -133,11 +134,11 @@ MAILER_SENDER_EMAIL=noreply@yourdomain.com
 # 启用AI功能（v4.0新增）
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-openai-key
-```
+`````
 
 ### 步骤3：Docker Compose 部署
 
-```bash
+`````bash
 # 使用生产环境Docker Compose文件
 docker compose -f docker-compose.production.yaml up -d
 
@@ -150,21 +151,21 @@ docker compose ps
 # chatwoot_worker     Up 30 seconds
 # chatwoot_postgres   Up 30 seconds  5432/tcp
 # chatwoot_redis      Up 30 seconds  6379/tcp
-```
+`````
 
 ### 步骤4：数据库初始化
 
-```bash
+`````bash
 # 执行数据库迁移
 docker compose exec rails bundle exec rails db:chatwoot_prepare
 
 # 创建管理员账户
 docker compose exec rails bundle exec rails db:seed
-```
+`````
 
 ### 步骤5：配置反向代理与SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/chatwoot
 server {
     listen 80;
@@ -192,18 +193,18 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
-```bash
+`````bash
 # 启用站点配置
 sudo ln -s /etc/nginx/sites-available/chatwoot /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
 # 通过 Let's Encrypt 获取SSL证书
 sudo certbot --nginx -d support.yourdomain.com
-```
+`````
 
-你的Chatwoot实例现已上线，访问地址：`https://support.yourdomain.com`。使用默认管理员凭据登录并立即修改密码。
+你的Chatwoot实例现已上线，访问地址：````https://support.yourdomain.com````。使用默认管理员凭据登录并立即修改密码。
 
 ## 与AI智能体、CRM和消息平台的集成
 
@@ -211,15 +212,15 @@ sudo certbot --nginx -d support.yourdomain.com
 
 Chatwoot v4.0引入了原生AI助手接口。不再需要第三方桥接工具。
 
-```bash
+`````bash
 # .env — AI配置
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-key
 OPENAI_MODEL=gpt-4.1-mini  # 复杂查询可用 gpt-4.1
 AI_AUTO_REPLY_THRESHOLD=0.85  # 自动回复的置信度阈值
-```
+`````
 
-```ruby
+`````ruby
 # config/ai_assistants.yml — 定义助手行为
 support_bot: name: "Support Assistant"
   model: gpt-4.1-mini
@@ -230,11 +231,11 @@ support_bot: name: "Support Assistant"
     3. Keep responses under 150 words
   handoff_keywords: ["refund", "chargeback", "legal", "complaint"]
   max_response_tokens: 200
-```
+`````
 
 ### 自定义AI智能体的Webhook集成
 
-```bash
+`````bash
 # 创建基于Webhook的AI集成
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
   -H "Content-Type: application/json" \
@@ -244,9 +245,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
     "subscriptions": ["message.created", "conversation.created"],
     "headers": {"X-Custom-Auth": "your-secret-token"}
   }'
-```
+`````
 
-```python
+`````python
 # ai_bridge.py — LangChain集成的Webhook处理器示例
 from flask import Flask, request, jsonify
 from langchain_openai import ChatOpenAI
@@ -272,11 +273,11 @@ def handle_chatwoot(): data = request.json
     # 将回复发送回Chatwoot
     send_chatwoot_reply(conversation_id, response["result"])
     return jsonify({"status": "ok"})
-```
+`````
 
 ### CRM集成
 
-```bash
+`````bash
 # HubSpot CRM — 通过Chatwoot应用市场安装
 # 路径：设置 > 应用 > HubSpot
 # 或通过API配置：
@@ -289,11 +290,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubs
     "sync_contacts": true,
     "sync_deals": true
   }'
-```
+`````
 
 ### 多渠道配置
 
-```bash
+`````bash
 # 通过Twilio添加WhatsApp Business渠道
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -310,9 +311,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
-```bash
+`````bash
 # 添加Telegram Bot渠道
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -326,11 +327,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
 ### Slack集成用于客服通知
 
-```bash
+`````bash
 # 连接你的客服团队Slack工作区
 # 在Chatwoot仪表盘中：设置 > 集成 > Slack
 # 授权并选择用于支持提醒的频道
@@ -339,7 +340,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 # - 新会话通知
 # - 客服@提及提醒
 # - 升级提醒
-```
+`````
 
 ## 基准测试与实际应用案例
 
@@ -347,11 +348,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 | 指标 | 数值 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动时间 | 3.2秒 | Docker容器启动 |
 | 消息传递延迟 | 95ms | P95，同区域客户端 |
@@ -365,15 +366,15 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 | 公司类型 | 客服人数 | 渠道 | 自建月成本 | 云服务等价方案 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SaaS初创公司 | 3 | 聊天+邮件 | **24美元**（VPS） | 360美元（Intercom） |
 | 电商公司 | 12 | 聊天+邮件+WhatsApp+FB | **64美元**（VPS+备份） | 1,200美元（Zendesk） |
@@ -393,7 +394,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 ### 使用多个Worker进行水平扩展
 
-```yaml
+`````yaml
 # docker-compose.scale.yaml — 增加更多Sidekiq worker
 services: worker_default: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -C config/sidekiq.yml
@@ -403,28 +404,28 @@ services: worker_default: image: chatwoot/chatwoot:v4.0.1
   worker_high_priority: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -q high -q default -q low
     deploy: replicas: 2
-```
+`````
 
 ### 数据库只读副本
 
-```ruby
+`````ruby
 # config/database.yml — 添加只读副本
 production: primary: <<: *default
     host: <%= ENV[POSTGRES_HOST] %>
   primary_replica: <<: *default
     host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
-```
+`````
 
-```bash
+`````bash
 # .env
 POSTGRES_REPLICA_HOST=postgres-replica.yourdomain.com
 DATABASE_REPLICA_ENABLED=true
-```
+`````
 
 ### 自动备份
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/chatwoot-backup.sh
 
@@ -443,16 +444,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/chatwoot/"
 
 # 仅保留最近14天
 find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron定时任务 — 每天凌晨2点执行
 0 2 * * * /opt/scripts/chatwoot-backup.sh >> /var/log/chatwoot-backup.log 2>&1
-```
+`````
 
 ### 使用Prometheus监控
 
-```bash
+`````bash
 # Chatwoot暴露 /metrics 端点
 # 添加到你的 prometheus.yml
 
@@ -460,11 +461,11 @@ scrape_configs: - job_name: chatwoot
     static_configs: - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
 ### 速率限制与安全头部
 
-```bash
+`````bash
 # 在 .env 中启用API速率限制
 RATE_LIMIT_ENABLED=true
 RATE_LIMIT_REQUESTS=100
@@ -475,23 +476,23 @@ add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Content-Security-Policy "default-src self" always;
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Chatwoot（开源） | Zendesk Suite | Intercom | Freshdesk | Help Scout |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT（开源） | 专有 | 专有 | 专有 | 专有 |
 | **自建选项** | 是（Docker） | 否 | 否 | 否 | 否 |
@@ -538,7 +539,7 @@ Chatwoot并非适合所有组织。以下是你应该了解的：
 
 Chatwoot遵循语义化版本。小版本更新（v4.0.0 → v4.0.1）通常不需要数据库迁移。大版本更新（v3.x → v4.x）需要执行迁移。标准流程：
 
-```bash
+`````bash
 # 先备份
 /opt/scripts/chatwoot-backup.sh
 
@@ -546,7 +547,7 @@ Chatwoot遵循语义化版本。小版本更新（v4.0.0 → v4.0.1）通常不�
 docker compose pull
 docker compose up -d
 docker compose exec rails bundle exec rails db:migrate
-```
+````
 
 升级大版本前务必阅读发布说明。
 
@@ -569,7 +570,7 @@ Chatwoot v4.0代表了开源客户支持的重要成熟节点。凭借原生AI�
 **加入我们的Telegram群组讨论开源工具**：[t.me/dibi8zh](https://t.me/dibi8zh)
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -590,7 +591,7 @@ Chatwoot v4.0代表了开源客户支持的重要成熟节点。凭借原生AI�
 - [DigitalOcean Docker部署指南](https://m.do.co/c/eca87ac14ee0) — VPS设置教程
 - [PostgreSQL流式复制](https://www.postgresql.org/docs/current/warm-standby.html) — 只读副本设置
 
----
+* * *
 
 *本文包含DigitalOcean和HTStack的联盟链接。如果你通过这些链接购买服务，dibi8.com可能会获得佣金，而你无需额外付费。所有推荐均基于实际测试和真实部署经验。*
 
@@ -656,12 +657,12 @@ Chatwoot 2026：开源客户支持平台与AI智能体集成 — 自建部署完
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -671,7 +672,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](chatwoot-open-source-customer-support-ai)
 - [nanochat-karpathy-100-chatgpt-single-gpu](chatwoot-open-source-customer-support-ai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -23,6 +23,7 @@ tags: ["openrouter", "llm", "api gateway", "ai", "openai", "claude", "machine le
 aliases:
   - /posts/openrouter-unified-llm-api-gateway/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The API Key Nightmare That Every Developer Faces
@@ -45,13 +46,13 @@ Think of it as a "universal adapter" for LLM APIs — instead of integrating wit
 
 ### Architecture Overview
 
-OpenRouter operates as a **proxy layer** between your application and upstream LLM providers: ```
+OpenRouter operates as a **proxy layer** between your application and upstream LLM providers: ````
 Your App → OpenRouter Gateway → Provider (OpenAI / Anthropic / Google / ...)
                 ↓
          [Fallback Provider]
                 ↓
          [Free Tier Provider]
-```
+`````
 
 The gateway handles four critical functions: 1. **Request Routing** — Forwards your API call to the selected provider using their native protocol
 2. **Response Normalization** — Returns results in OpenAI-compatible format regardless of the upstream provider
@@ -60,7 +61,7 @@ The gateway handles four critical functions: 1. **Request Routing** — Forwards
 
 ### The OpenRouter Value Pipeline
 
-```
+`````
 Provider Integration Layer
 ├── 60+ provider endpoints (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek...)
 ├── Authentication management per provider
@@ -80,7 +81,7 @@ Developer Interface
 ├── Usage analytics dashboard
 ├── Cost tracking per model
 └── OAuth for end-user billing
-```
+`````
 
 ## Installation & Setup
 
@@ -88,14 +89,14 @@ Developer Interface
 
 Sign up at [openrouter.ai](https://openrouter.ai/) and get your API key. The free tier includes access to selected open-source models with rate limits — enough for testing and prototyping.
 
-```bash
+`````bash
 # Store your API key securely
 export OPENROUTER_API_KEY="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+`````
 
 ### Step 2: Test with cURL (30 seconds)
 
-```bash
+`````bash
 # Basic chat completion request
 curl -s https://openrouter.ai/api/v1/chat/completions \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -106,18 +107,18 @@ curl -s https://openrouter.ai/api/v1/chat/completions \
       {"role": "user", "content": "Explain quantum computing in 3 sentences"}
     ]
   }'
-```
+`````
 
 The response follows the OpenAI format exactly, so existing code needs minimal changes.
 
 ### Step 3: Python SDK Setup (2 minutes)
 
-```bash
+`````bash
 # No special SDK needed — just use the OpenAI client
 pip install openai>=1.30.0
-```
+`````
 
-```python
+`````python
 # openrouter_demo.py
 from openai import OpenAI
 import os
@@ -141,19 +142,19 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 print(f"Model used: {response.model}")
 print(f"Tokens: {response.usage.total_tokens}")
-```
+`````
 
-Run it: ```bash
+Run it: `````bash
 python openrouter_demo.py
-```
+`````
 
 ### Step 4: JavaScript/TypeScript Setup
 
-```bash
+`````bash
 npm install openai
-```
+`````
 
-```typescript
+`````typescript
 // openrouter-demo.ts
 import OpenAI from "openai";
 
@@ -174,16 +175,16 @@ async function main() {
 }
 
 main();
-```
+`````
 
 ### Step 5: Query Available Models
 
-```bash
+`````bash
 # List all 300+ models with pricing
 curl -s https://openrouter.ai/api/v1/models \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" | \
   jq '.data[] | {id: .id, pricing: .pricing}' | head -50
-```
+`````
 
 This returns every model OpenRouter supports, including current per-token pricing for input and output.
 
@@ -191,7 +192,7 @@ This returns every model OpenRouter supports, including current per-token pricin
 
 ### LangChain Integration
 
-```python
+`````python
 # openrouter_langchain.py
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -213,11 +214,11 @@ chain = prompt | llm
 
 result = chain.invoke({"input": "Write a FastAPI middleware for rate limiting"})
 print(result.content)
-```
+`````
 
 ### LlamaIndex Integration
 
-```python
+`````python
 # openrouter_llamaindex.py
 from llama_index.llms.openai import OpenAI as LlamaOpenAI
 from llama_index.core import Settings
@@ -239,11 +240,11 @@ index = VectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine()
 response = query_engine.query("What does OpenRouter do?")
 print(response)
-```
+`````
 
 ### Vercel AI SDK Integration
 
-```typescript
+`````typescript
 // app/api/chat/route.ts
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { convertToModelMessages, streamText } from "ai";
@@ -263,11 +264,11 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### Go SDK Integration
 
-```go
+`````go
 // openrouter_demo.go
 package main
 
@@ -298,11 +299,11 @@ func main() {
 
 	fmt.Println(resp.Choices[0].Message.Content)
 }
-```
+`````
 
 ### Using the OpenRouter "Auto" Router
 
-The Auto Router selects the best available model in real-time based on price, speed, and quality metrics: ```python
+The Auto Router selects the best available model in real-time based on price, speed, and quality metrics: `````python
 # Let OpenRouter pick the best model automatically
 response = client.chat.completions.create(
     model="openrouter/auto",  # Auto-selects from 58+ candidate models
@@ -317,7 +318,7 @@ response = client.chat.completions.create(
     }
 )
 print(response.model)  # Shows which model was actually used
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -325,15 +326,15 @@ print(response.model)  # Shows which model was actually used
 
 | Provider | Model | Direct API Cost (per 1M tokens) | OpenRouter Cost | Difference |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Anthropic | Claude Sonnet 4.5 | $3.00 / $15.00 | $3.17 / $15.83 | +5.5% markup |
 | OpenAI | GPT-5 | $1.25 / $10.00 | $1.32 / $10.55 | +5.5% markup |
@@ -349,13 +350,13 @@ The **5.5% platform fee** is OpenRouter's only markup. For high-volume users, th
 
 | Model | Provider | Avg Latency (ms) | Throughput (tok/s) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-5 | OpenAI (direct) | 320 | 45 |
 | GPT-5 | Via OpenRouter | 340 | 43 |
@@ -371,11 +372,11 @@ The **5.5% platform fee** is OpenRouter's only markup. For high-volume users, th
 
 A mid-size SaaS company processing **50M tokens/month** switched to OpenRouter from managing 5 separate provider integrations: | Metric | Before OpenRouter | After OpenRouter |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Monthly API costs | $4,200 | $3,180 |
 | Engineering maintenance | 12 hrs/week | 1 hr/week |
@@ -389,7 +390,7 @@ The savings come from three factors: cheaper hosted open-source models for non-c
 
 ### Automatic Fallback Chains
 
-Configure multiple models for automatic failover when a provider is down: ```python
+Configure multiple models for automatic failover when a provider is down: `````python
 # Production fallback configuration
 response = client.chat.completions.create(
     model="anthropic/claude-sonnet-4.5",
@@ -406,13 +407,13 @@ response = client.chat.completions.create(
         ]
     }
 )
-```
+`````
 
 If Anthropic is unavailable, OpenRouter automatically retries with OpenAI, then Google — all transparent to your code.
 
 ### Using Custom Provider Keys (BYOK)
 
-For enterprise setups, bring your own provider API keys and use OpenRouter only for routing: ```bash
+For enterprise setups, bring your own provider API keys and use OpenRouter only for routing: `````bash
 # Store your direct provider keys
 curl -X POST https://openrouter.ai/api/v1/credentials \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -421,13 +422,13 @@ curl -X POST https://openrouter.ai/api/v1/credentials \
     "provider": "openai",
     "key": "sk-proj-your-direct-openai-key"
   }'
-```
+`````
 
 With BYOK, you pay providers directly at their list price. OpenRouter adds **no markup** on the first 1M requests/month, then a 5% fee.
 
 ### Request Routing by Cost or Speed
 
-```python
+`````python
 # Route to the cheapest available model
 response = client.chat.completions.create(
     model="openrouter/auto",
@@ -450,11 +451,11 @@ response = client.chat.completions.create(
         }
     }
 )
-```
+`````
 
 ### Self-Hosted Deployment with Docker
 
-For teams needing full control, deploy OpenRouter-compatible gateways on your own infrastructure: ```dockerfile
+For teams needing full control, deploy OpenRouter-compatible gateways on your own infrastructure: `````dockerfile
 # Dockerfile.openrouter-proxy
 FROM node:20-alpine
 
@@ -465,9 +466,9 @@ RUN npm install express axios
 COPY . .
 EXPOSE 3000
 CMD ["node", "proxy.js"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: openrouter-proxy: build: context: .
@@ -477,13 +478,13 @@ services: openrouter-proxy: build: context: .
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
-```
+`````
 
 Deploy this to a [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) for a production-grade setup starting at $6/month.
 
 ### Monitoring and Alerting
 
-```python
+`````python
 # Track usage and costs programmatically
 import requests
 
@@ -497,23 +498,23 @@ usage = requests.get(
 
 print(f"Remaining credits: ${usage[data][total_credits] - usage[data][total_usage]}")
 print(f"Total used: ${usage[data][total_usage]}")
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | OpenRouter | LiteLLM | Portkey | Cloudflare AI Gateway | ngrok AI Gateway |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Models Supported** | 300+ | 100+ | 250+ | Provider-dependent | Cloud + local |
 | **Deployment** | Managed SaaS | Self-hosted OSS | Managed + Self-hosted | Managed (Cloudflare) | Managed |
@@ -579,18 +580,18 @@ Use the **BYOK (Bring Your Own Keys)** feature. Connect your direct provider API
 
 ### How do I switch between models without code changes?
 
-Change only the `model` parameter in your API call. OpenRouter uses the same OpenAI-compatible format for all providers: ```python
+Change only the ``model`` parameter in your API call. OpenRouter uses the same OpenAI-compatible format for all providers: `````python
 # Same code, different model
 model = "anthropic/claude-sonnet-4.5"  # or "openai/gpt-5" or "google/gemini-3-pro"
 response = client.chat.completions.create(
     model=model,
     messages=[{"role": "user", "content": "Hello!"}]
 )
-```
+`````
 
 ### What happens if a provider goes down?
 
-OpenRouter automatically retries with fallback providers if you enable `allow_fallbacks: true`. You can also specify an ordered list of backup models. If all providers fail, OpenRouter returns a structured error so your application can handle it gracefully.
+OpenRouter automatically retries with fallback providers if you enable ````allow_fallbacks: true```. You can also specify an ordered list of backup models. If all providers fail, OpenRouter returns a structured error so your application can handle it gracefully.
 
 ## Conclusion: Start Building with OpenRouter Today
 
@@ -653,7 +654,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](openrouter-unified-llm-api-gateway)
@@ -663,7 +664,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [12-factor-agents-production-llm-software-2026](openrouter-unified-llm-api-gateway)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

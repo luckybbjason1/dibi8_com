@@ -22,6 +22,7 @@ aliases:
   - /posts/huggingface-transformers-guide/
 ---
 
+
 {</* resource-info */>}
 
 Hugging Face Transformers là thư viện deep learning phổ biến nhất thế giới cho các tác vụ xử lý ngôn ngữ tự nhiên (NLP), computer vision và speech processing. Với hơn 50.000 mô hình pretrained, hỗ trợ 200+ ngôn ngữ và tương thích với PyTorch, TensorFlow cùng JAX, thư viện này đã trở thành công cụ không thể thiếu trong hộp công cụ của mọi AI engineer. Bài hướng dẫn này đi sâu vào từng khía cạnh của Transformers — từ API đơn giản nhất đến kỹ thuật fine-tuning nâng cao — với code examples thực tế và benchmarks cập nhật đến tháng 5 năm 2025.
@@ -62,13 +63,13 @@ Transformers tương thích với cả ba framework deep learning phổ biến n
 - **TensorFlow/Keras**: hỗ trợ đầy đủ cho TF users
 - **JAX/Flax**: hỗ trợ cho XLA-accelerated training
 
-Bạn có thể tải cùng một mô hình cho cả ba framework bằng cách thay đổi tham số `from_tf`, `from_flax` hoặc mặc định PyTorch.
+Bạn có thể tải cùng một mô hình cho cả ba framework bằng cách thay đổi tham số ```from_tf````, ````from_flax```` hoặc mặc định PyTorch.
 
 ## Cài Đặt Và Thiết Lập Môi Trường
 
 ### Cài Đặt Thư Viện
 
-```bash
+`````bash
 # Cài đặt cơ bản
 pip install transformers
 
@@ -81,17 +82,17 @@ pip install transformers tensorflow
 # Cài đầy đủ tính năng (bao gồm sentencepiece, protobuf)
 pip install transformers[sentencepiece]
 pip install datasets accelerate
-```
+`````
 
 ### Thiết Lập GPU (CUDA)
 
-Để sử dụng GPU NVIDIA, cài đặt PyTorch với CUDA support: ```bash
+Để sử dụng GPU NVIDIA, cài đặt PyTorch với CUDA support: `````bash
 # PyTorch 2.3+ với CUDA 12.1
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 # Kiểm tra GPU availability
 python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
-```
+`````
 
 ### Sử Dụng Google Colab Miễn Phí
 
@@ -103,60 +104,60 @@ Google Colab cung cấp GPU Tesla T4 miễn phí — đủ để fine-tune các 
 
 ### Text Classification
 
-```python
+`````python
 from transformers import pipeline
 
 classifier = pipeline("sentiment-analysis",
                       model="nlptown/bert-base-multilingual-uncased-sentiment")
 result = classifier("Sản phẩm này rất tuyệt vờ!")
 # [{'label': '5 stars', 'score': 0.89}]
-```
+`````
 
 ### Named Entity Recognition (NER)
 
-```python
+`````python
 ner = pipeline("ner", model="dslim/bert-base-NER",
                aggregation_strategy="simple")
 result =ner("Apple was founded by Steve Jobs in California.")
 # [{'entity_group': 'ORG', 'word': 'Apple', 'score': 0.99}, ...]
-```
+`````
 
 ### Question Answering
 
-```python
+`````python
 qa = pipeline("question-answering",
               model="deepset/roberta-base-squad2")
 context = "Hugging Face được thành lập vào năm 2016 tại New York."
 result = qa(question="Hugging Face được thành lập khi nào?", context=context)
 # {'answer': '2016', 'score': 0.95, 'start': 39, 'end': 43}
-```
+`````
 
 ### Text Generation
 
-```python
+`````python
 generator = pipeline("text-generation",
                      model="mistralai/Mistral-7B-Instruct-v0.3",
                      torch_dtype="auto", device_map="auto")
 result = generator("Hướng dẫn cách học machine learning:",
                    max_new_tokens=200, do_sample=True, temperature=0.7)
-```
+`````
 
 ### Tóm Tắt Văn Bản
 
-```python
+`````python
 summarizer = pipeline("summarization",
                       model="facebook/bart-large-cnn")
 text = """Đoạn văn dài 500+ từ cần được tóm tắt..."""
 result = summarizer(text, max_length=150, min_length=30)
-```
+`````
 
 ### Dịch Máy
 
-```python
+`````python
 translator = pipeline("translation_en_to_de",
                       model="t5-base")
 result = translator("Hello, how are you?")
-```
+`````
 
 Các tasks khác được hỗ trợ bao gồm: fill-mask, feature-extraction, text2text-generation, token-classification, zero-shot-classification, và nhiều hơn nữa.
 
@@ -164,7 +165,7 @@ Các tasks khác được hỗ trợ bao gồm: fill-mask, feature-extraction, t
 
 ### Tải Models và Tokenizers
 
-```python
+`````python
 from transformers import AutoModel, AutoTokenizer
 
 # Tự động nhận diện architecture
@@ -175,7 +176,7 @@ tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 from transformers import BertModel, BertTokenizer
 model = BertModel.from_pretrained("bert-base-uncased")
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-```
+`````
 
 ### Các Loại Model Classes
 
@@ -187,7 +188,7 @@ tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 
 ### Lưu và Tải Models Local
 
-```python
+`````python
 # Lưu model và tokenizer
 model.save_pretrained("./my_model")
 tokenizer.save_pretrained("./my_model")
@@ -195,7 +196,7 @@ tokenizer.save_pretrained("./my_model")
 # Tải từ local
 model = AutoModel.from_pretrained("./my_model")
 tokenizer = AutoTokenizer.from_pretrained("./my_model")
-```
+`````
 
 ## Tokenization Deep Dive
 
@@ -214,7 +215,7 @@ Tokenization là quá trình chuyển đổi văn bản thành các tokens — c
 
 ### Làm Việc Với Tokenizer API
 
-```python
+`````python
 text = "Hello, how are you doing today?"
 
 # Encode: text → tokens → IDs
@@ -230,11 +231,11 @@ decoded = tokenizer.decode(encoded['input_ids'])
 # Xem tokens cụ thể
 tokens = tokenizer.convert_ids_to_tokens(encoded['input_ids'])
 # ['[CLS]', 'Hello', ',', 'how', 'are', 'you', 'doing', 'today', '?', '[SEP]']
-```
+`````
 
 ### Xử Lý Special Tokens Và Padding
 
-```python
+`````python
 # Batch encoding với padding và truncation
 sentences = ["Short sentence.", "This is a much longer sentence that needs truncation."]
 encoded = tokenizer(
@@ -244,13 +245,13 @@ encoded = tokenizer(
     max_length=20,
     return_tensors="pt"     # Trả về PyTorch tensors
 )
-```
+`````
 
 ## Fine-Tuning Models Cho Use Case Củ Bạn
 
 ### Chuẩn Bị Dataset
 
-```python
+`````python
 from datasets import load_dataset
 
 # Tải dataset
@@ -262,11 +263,11 @@ print(dataset)
 def tokenize(batch): return tokenizer(batch["text"], padding=True, truncation=True)
 
 tokenized_dataset = dataset.map(tokenize, batched=True)
-```
+`````
 
 ### Sử Dụng Trainer API
 
-```python
+`````python
 from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
 
 # Tải model với head classification
@@ -293,7 +294,7 @@ trainer = Trainer(
 )
 
 trainer.train()
-```
+`````
 
 ### Fine-Tuning BERT Cho Phân Loại
 
@@ -301,17 +302,17 @@ BERT-base (110M parameters) là lựa chọn phổ biến cho classification tas
 
 ### Fine-Tuning GPT Cho Text Generation
 
-```python
+`````python
 from transformers import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 # Training với causal language modeling objective
 # Model dự đoán token tiếp theo dựa trên context trước đó
-```
+`````
 
 ### Sử Dụng LoRA Cho Fine-Tuning Hiệu Quả
 
-**LoRA (Low-Rank Adaptation)** cho phép fine-tune chỉ 1-2% parameters của model, giảm đáng kể yêu cầu bộ nhớ GPU và thờigian training: ```python
+**LoRA (Low-Rank Adaptation)** cho phép fine-tune chỉ 1-2% parameters của model, giảm đáng kể yêu cầu bộ nhớ GPU và thờigian training: `````python
 from peft import LoraConfig, get_peft_model
 
 lora_config = LoraConfig(
@@ -326,13 +327,13 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 # trainable params: 33,554,432 || all params: 7,000,000,000 || trainable%: 0.479
-```
+`````
 
 ## Tối Ưu Hóa Và Triển Khai Model
 
 ### Quantization (INT8, INT4)
 
-Quantization giảm kích thước model bằng cách sử dụng precision thấp hơn: ```python
+Quantization giảm kích thước model bằng cách sử dụng precision thấp hơn: `````python
 from transformers import BitsAndBytesConfig
 import torch
 
@@ -348,13 +349,13 @@ model = AutoModelForCausalLM.from_pretrained(
     quantization_config=bnb_config,
     device_map="auto"
 )
-```
+`````
 
 Kết quả: model 7B parameters giảm từ ~14GB xuống ~4GB, có thể chạy trên GPU 8GB.
 
 ### Xuất Sang ONNX
 
-```python
+`````python
 from transformers import AutoModelForSequenceClassification
 from optimum.onnxruntime import ORTModelForSequenceClassification
 
@@ -363,11 +364,11 @@ model = ORTModelForSequenceClassification.from_pretrained(
     "distilbert-base-uncased-finetuned-sst-2-english", export=True
 )
 model.save_pretrained("./onnx_model")
-```
+`````
 
 ### Triển Khai Với Hugging Face Inference API
 
-Hugging Face cung cấp Inference API miễn phí cho hàng nghìn models — bạn có thể gọi qua HTTP mà không cần tự host: ```python
+Hugging Face cung cấp Inference API miễn phí cho hàng nghìn models — bạn có thể gọi qua HTTP mà không cần tự host: `````python
 import requests
 
 API_URL = "https://api-inference.huggingface.co/models/bert-base-uncased"
@@ -377,7 +378,7 @@ def query(payload): response = requests.post(API_URL, headers=headers, json=payl
     return response.json()
 
 result = query({"inputs": "Hugging Face is a great company!"})
-```
+`````
 
 ## Top Các Models Hàng Đầu Năm 2025
 
@@ -414,12 +415,12 @@ result = query({"inputs": "Hugging Face is a great company!"})
 
 | Nguyên nhân | Giải pháp |
 |---|---|
-| Batch size quá lớn | Giảm `per_device_train_batch_size` |
+| Batch size quá lớn | Giảm ````per_device_train_batch_size```` |
 | Model quá lớn | Dùng LoRA/QLoRA, hoặc gradient checkpointing |
-| Sequence quá dài | Giảm `max_length`, dùng gradient accumulation |
-| Nhiều models cùng lúc | Xóa biến không cần, dùng `torch.cuda.empty_cache()` |
+| Sequence quá dài | Giảm ````max_length````, dùng gradient accumulation |
+| Nhiều models cùng lúc | Xóa biến không cần, dùng ````torch.cuda.empty_cache()```` |
 
-```python
+`````python
 # Gradient checkpointing — đổi tính toán lấy bộ nhớ
 model.gradient_checkpointing_enable()
 
@@ -428,17 +429,17 @@ training_args = TrainingArguments(
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,  # effective batch = 16
 )
-```
+`````
 
 ### Vấn Đề Tương Thích Model
 
-```python
+`````python
 # Luôn kiểm tra config trước khi tải
 from transformers import AutoConfig
 config = AutoConfig.from_pretrained("model_name")
 print(config.architectures)  # ['BertForSequenceClassification']
 print(config.model_type)     # 'bert"
-```
+`````
 
 ### Giới Hạn Độ Dài Token
 
@@ -470,7 +471,7 @@ Các tiêu chí quan trọng: 1. **Task**: chọn model được pre-train hoặ
 
 ### Hugging Face có hỗ trợ fine-tuning trên dataset tùy chỉnh không?
 
-**Có**, đây là một trong những tính năng mạnh nhất. Bạn có thể fine-tune bất kỳ model nào trên dataset của riêng mình bằng Trainer API, hoặc sử dụng các scripts fine-tuning chính thức trong repository `transformers/examples`. Thư viện Datasets hỗ trợ load dữ liệu từ CSV, JSON, Parquet, và nhiều định dạng khác.
+**Có**, đây là một trong những tính năng mạnh nhất. Bạn có thể fine-tune bất kỳ model nào trên dataset của riêng mình bằng Trainer API, hoặc sử dụng các scripts fine-tuning chính thức trong repository ````transformers/examples```. Thư viện Datasets hỗ trợ load dữ liệu từ CSV, JSON, Parquet, và nhiều định dạng khác.
 
 ## Kết Luận Và Tài Nguyên
 
@@ -492,7 +493,7 @@ Hugging Face Transformers đã trở thành tiêu chuẩn de facto cho việc ph
 - [Hugging Face Datasets Documentation](https://huggingface.co/docs/datasets)
 - [LoRA: Low-Rank Adaptation Paper](https://arxiv.org/abs/2106.09685)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

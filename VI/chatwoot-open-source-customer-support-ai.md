@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/chatwoot-open-source-customer-support-ai/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại Sao Tech Stack Hỗ Trợ Củ Bạn Cần Được Thay Mới
@@ -44,7 +45,7 @@ Chatwoot theo kiến trúc Rails monolithic cổ điển với frontend Vue.js S
 
 ### Tổng quan kiến trúc
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │              (Reverse Proxy + SSL)                  │
@@ -61,7 +62,7 @@ Chatwoot theo kiến trúc Rails monolithic cổ điển với frontend Vue.js S
 │                 │ (Dữ liệu)│  │(Cache)  │  │(Jobs) │ │
 │                 └─────────┘  └─────────┘  └──────┘ │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### Các thành phần cốt lõi
 
@@ -83,7 +84,7 @@ Chatwoot theo kiến trúc Rails monolithic cổ điển với frontend Vue.js S
 
 **Automation Rules** — Luật if-this-then-that kích hoạt khi tạo hội thoại, nhận tin nhắn, hoặc điều kiện dựa trên thờ gian.
 
-**Macros** — Mẫu phản hồi định nghĩa trước mà nhân viên có thể chèn bằng một cú nhấp chuột. Hỗ trợ biến động như `{{contact.name}}`.
+**Macros** — Mẫu phản hồi định nghĩa trước mà nhân viên có thể chèn bằng một cú nhấp chuột. Hỗ trợ biến động như ````{{contact.name}}````.
 
 ## Cài đặt & Thiết lập: Từ Zero tớ Chat Trực Tiếp trong 5 Phút
 
@@ -98,7 +99,7 @@ VPS đáng tin cậy, chúng tôi khuyên dùng [DigitalOcean](https://m.do.co/c
 
 ### Bước 1: Clone và cấu hình
 
-```bash
+`````bash
 # Clone repository chính thức
 git clone https://github.com/chatwoot/chatwoot.git
 cd chatwoot
@@ -108,11 +109,11 @@ git checkout v4.0.1
 
 # Sao chép template môi trường
 cp .env.example .env
-```
+`````
 
 ### Bước 2: Cấu hình biến môi trường
 
-```bash
+`````bash
 # Chỉnh sửa file .env
 nano .env
 
@@ -139,11 +140,11 @@ MAILER_SENDER_EMAIL=noreply@yourdomain.com
 # Bật tính năng AI (mới trong v4.0)
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-openai-key
-```
+`````
 
 ### Bước 3: Triển khai Docker Compose
 
-```bash
+`````bash
 # Sử dụng file Docker Compose production
 docker compose -f docker-compose.production.yaml up -d
 
@@ -155,21 +156,21 @@ docker compose ps
 # chatwoot_worker     Up 30 seconds
 # chatwoot_postgres   Up 30 seconds  5432/tcp
 # chatwoot_redis      Up 30 seconds  6379/tcp
-```
+`````
 
 ### Bước 4: Thiết lập cơ sở dữ liệu
 
-```bash
+`````bash
 # Chạy migration cơ sở dữ liệu
 docker compose exec rails bundle exec rails db:chatwoot_prepare
 
 # Tạo tài khoản admin
 docker compose exec rails bundle exec rails db:seed
-```
+`````
 
 ### Bước 5: Reverse Proxy với SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/chatwoot
 server {
     listen 80;
@@ -197,18 +198,18 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
-```bash
+`````bash
 # Kích hoạt site
 sudo ln -s /etc/nginx/sites-available/chatwoot /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
 # Lấy chứng chỉ SSL qua Let's Encrypt
 sudo certbot --nginx -d support.yourdomain.com
-```
+`````
 
-Chatwoot instance của bạn giờ đang hoạt động tại `https://support.yourdomain.com`. Đăng nhập bằng thông tin admin mặc định và đổi ngay.
+Chatwoot instance của bạn giờ đang hoạt động tại ````https://support.yourdomain.com````. Đăng nhập bằng thông tin admin mặc định và đổi ngay.
 
 ## Tích hợp với AI Agent, CRM và Nền tảng Nhắn tin
 
@@ -216,15 +217,15 @@ Chatwoot instance của bạn giờ đang hoạt động tại `https://support.
 
 Chatwoot v4.0 giới thiệu các hook AI assistant tích hợp sẵn. Không cần cầu nối bên thứ ba nữa.
 
-```bash
+`````bash
 # .env — Cấu hình AI
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-key
 OPENAI_MODEL=gpt-4.1-mini  # hoặc gpt-4.1 cho truy vấn phức tạp
 AI_AUTO_REPLY_THRESHOLD=0.85  # Điểm tin cậy để tự động phản hồi
-```
+`````
 
-```ruby
+`````ruby
 # config/ai_assistants.yml — Định nghĩa hành vi assistant
 support_bot: name: "Support Assistant"
   model: gpt-4.1-mini
@@ -235,11 +236,11 @@ support_bot: name: "Support Assistant"
     3. Keep responses under 150 words
   handoff_keywords: ["refund", "chargeback", "legal", "complaint"]
   max_response_tokens: 200
-```
+`````
 
 ### Tích hợp Webhook cho AI Agent Tùy chỉnh
 
-```bash
+`````bash
 # Tạo tích hợp AI dựa trên webhook
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
   -H "Content-Type: application/json" \
@@ -249,9 +250,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
     "subscriptions": ["message.created", "conversation.created"],
     "headers": {"X-Custom-Auth": "your-secret-token"}
   }'
-```
+`````
 
-```python
+`````python
 # ai_bridge.py — Ví dụ webhook handler cho tích hợp LangChain
 from flask import Flask, request, jsonify
 from langchain_openai import ChatOpenAI
@@ -277,11 +278,11 @@ def handle_chatwoot(): data = request.json
     # Gửi phản hồi về Chatwoot
     send_chatwoot_reply(conversation_id, response["result"])
     return jsonify({"status": "ok"})
-```
+`````
 
 ### Tích hợp CRM
 
-```bash
+`````bash
 # HubSpot CRM — Cài qua Chatwoot app marketplace
 # Điều hướng: Settings > Applications > HubSpot
 # Hoặc cấu hình qua API: curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
@@ -292,11 +293,11 @@ def handle_chatwoot(): data = request.json
     "sync_contacts": true,
     "sync_deals": true
   }'
-```
+`````
 
 ### Cấu hình đa kênh
 
-```bash
+`````bash
 # Thêm kênh WhatsApp Business qua Twilio
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -313,9 +314,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
-```bash
+`````bash
 # Thêm kênh Telegram Bot
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -329,11 +330,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
 ### Tích hợp Slack cho thông báo nhân viên
 
-```bash
+`````bash
 # Kết nối workspace Slack đội hỗ trợ
 # Trong dashboard Chatwoot: Settings > Integrations > Slack
 # Ủy quyền và chọn kênh cho cảnh báo hỗ trợ
@@ -341,7 +342,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 # Bot sẽ đăng: # - Thông báo hội thoại mớ
 # - Cảnh báo nhân viên được nhắc đến
 # - Nhắc nhở leo thang
-```
+`````
 
 ## Benchmark & Các trường hợp sử dụng thực tế
 
@@ -377,7 +378,7 @@ Một công ty thương mại điện tử vừa ở Đông Nam Á đã di chuy�
 
 ### Mở rộng ngang với nhiều Worker
 
-```yaml
+`````yaml
 # docker-compose.scale.yaml — Thêm worker Sidekiq
 services: worker_default: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -C config/sidekiq.yml
@@ -387,28 +388,28 @@ services: worker_default: image: chatwoot/chatwoot:v4.0.1
   worker_high_priority: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -q high -q default -q low
     deploy: replicas: 2
-```
+`````
 
 ### Read Replica Cơ sở dữ liệu
 
-```ruby
+`````ruby
 # config/database.yml — Thêm read replica
 production: primary: <<: *default
     host: <%= ENV[POSTGRES_HOST] %>
   primary_replica: <<: *default
     host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
-```
+`````
 
-```bash
+`````bash
 # .env
 POSTGRES_REPLICA_HOST=postgres-replica.yourdomain.com
 DATABASE_REPLICA_ENABLED=true
-```
+`````
 
 ### Sao lưu tự động
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/chatwoot-backup.sh
 
@@ -427,16 +428,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/chatwoot/"
 
 # Chỉ giữ 14 ngày gần nhất
 find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron job — hàng ngày lúc 2 giờ sáng
 0 2 * * * /opt/scripts/chatwoot-backup.sh >> /var/log/chatwoot-backup.log 2>&1
-```
+`````
 
 ### Giám sát với Prometheus
 
-```bash
+`````bash
 # Chatwoot expose endpoint /metrics
 # Thêm vào prometheus.yml
 
@@ -444,11 +445,11 @@ scrape_configs: - job_name: chatwoot
     static_configs: - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics"
     scrape_interval: 30s
-```
+`````
 
 ### Giới hạn tốc độ & Security Headers
 
-```bash
+`````bash
 # Thêm vào .env cho giới hạn tốc độ API
 RATE_LIMIT_ENABLED=true
 RATE_LIMIT_REQUESTS=100
@@ -459,7 +460,7 @@ add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Content-Security-Policy "default-src self" always;
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -506,7 +507,7 @@ Sử dụng tích hợp dựa trên webhook. Bất kỳ dịch vụ LLM nào exp
 
 **Quy trình nâng cấp giữa các phiên bản là gì?**
 
-Chatwoot tuân theo semantic versioning. Cập nhật nhỏ (v4.0.0 → v4.0.1) thường không cần migration cơ sở dữ liệu. Cập nhật lớn (v3.x → v4.x) yêu cầu chạy migration. Quy trình chuẩn: ```bash
+Chatwoot tuân theo semantic versioning. Cập nhật nhỏ (v4.0.0 → v4.0.1) thường không cần migration cơ sở dữ liệu. Cập nhật lớn (v3.x → v4.x) yêu cầu chạy migration. Quy trình chuẩn: `````bash
 # Sao lưu trước
 /opt/scripts/chatwoot-backup.sh
 
@@ -514,7 +515,7 @@ Chatwoot tuân theo semantic versioning. Cập nhật nhỏ (v4.0.0 → v4.0.1) 
 docker compose pull
 docker compose up -d
 docker compose exec rails bundle exec rails db:migrate
-```
+````
 
 Luôn đọc release notes trước khi nâng cấp phiên bản lớn.
 
@@ -536,7 +537,7 @@ Triển khai instance của bạn trong tuần này. Bắt đầu với thiết 
 
 **Tham gia nhóm Telegram của chúng tôi để thảo luận công cụ mã nguồn mở**: [t.me/dibi8vn](https://t.me/dibi8vn)
 
----
+* * *
 
 
 
@@ -558,7 +559,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [DigitalOcean Docker Deployment Guide](https://m.do.co/c/eca87ac14ee0) — Hướng dẫn thiết lập VPS
 - [PostgreSQL Streaming Replication](https://www.postgresql.org/docs/current/warm-standby.html) — Thiết lập read replica
 
----
+* * *
 
 *Bài viết này chứa liên kết tiếp thị đến DigitalOcean và HTStack. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả khuyến nghị đều dựa trên thử nghiệm thực tế và kinh nghiệm triển khai thực tế.*
 
@@ -588,7 +589,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -598,7 +599,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](chatwoot-open-source-customer-support-ai)
 - [moneyprinterturbo-one-click-ai-video-generator](chatwoot-open-source-customer-support-ai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-translation-tools-compared-2025/
 ---
 
+
 # Các Công Cụ Dịch AI Tốt Nhất 2025: So Sánh Google Translate, DeepL Và ChatGPT
 
 
@@ -162,7 +163,7 @@ Google Translate hỗ trợ nhiều ngôn ngữ nhất vớI 243 ngôn ngữ —
 
 Có, hầu hết công cụ dịch AI đều có bản miễn phí vớI hạn mức nhất định. Google Translate miễn phí 500.000 ký tự mỗI tháng qua API, và không giớI hạn qua giao diện web. DeepL miễn phí 500.000 ký tự/tháng qua API và không giớI hạn 3.000 ký tự mỗI lần qua giao diện web. Microsoft Translator miễn phí 2 triệu ký tự/tháng qua Azure. Reverso có bản miễn phí vớI giớI hạn 2.000 ký tự mỗI lần. ChatGPT không có bản miễn phí cho dịch thuật — cần góI Plus 20 USD/tháng. ĐốI vớI nhu cầu cá nhân không quá lớn, các bản miễn phí thường đã đủ dùng.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

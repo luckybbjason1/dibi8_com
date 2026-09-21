@@ -11,6 +11,7 @@ featureImage: /images/articles/mineru-docs.png
 ---
 
 
+
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
 *MinerU — 开源文档解析引擎，在短短一年多的时间里就获得了 70,600 颗 GitHub 星。*
@@ -44,30 +45,30 @@ MinerU根据您的需求提供多种安装路径：
 
 ### pip（推荐给大多数用户）
 
-```bash
+````bash
 pip install mineru
-```
+`````
 
 ### 码头工人
 
-```bash
+`````bash
 docker pull mineru/mineru:latest
 docker run --gpus all -v $(pwd):/data mineru/mineru:latest
-```
+`````
 
 ### 本地发展
 
-```bash
+`````bash
 git clone https://github.com/opendatalab/MinerU.git
 cd MinerU
 pip install -e .
-```
+`````
 
 MinerU 支持 **仅 CPU** 和 **GPU 加速** 推理。 对于 GPU 加速，请安装 CUDA 支持：
 
-```bash
+`````bash
 pip install mineru[cuda]
-```
+`````
 
 在配备 Apple Silicon 的 macOS 上，MinerU 利用 MPS（金属性能着色器）进行加速。
 
@@ -79,9 +80,9 @@ MinerU提供了三种不同的解析后端，每种都针对不同的场景进�
 
 “管道”后端是大多数用户的默认选择。 它快速、稳定并且不会产生幻觉。 它在 CPU 上高效运行，非常适合批处理。
 
-```bash
+`````bash
 mineru ./input.pdf -o ./output/
-```
+`````
 
 **最适合：** 大容量文档处理、CI/CD 管道、仅 CPU 环境。
 
@@ -89,9 +90,9 @@ mineru ./input.pdf -o ./output/
 
 VLM（视觉语言模型）引擎使用 MinerU 专有的“MinerU2.5-Pro-2604-1.2B”模型来实现最先进的解析精度。 它擅长处理具有混合布局、手写文本和密集公式的复杂文档。
 
-```bash
+`````bash
 mineru ./complex.pdf -o ./output/ --engine vlm-engine
-```
+`````
 
 **最适合：** 复杂的科学论文、扫描文档、手写内容、多语言 OCR。
 
@@ -102,9 +103,9 @@ mineru ./complex.pdf -o ./output/ --engine vlm-engine
 - **中等努力：** 比高速度快 35-220%，OmniDocBench 上的准确度仅下降 0.13 点
  - **高强度：** 通过图像分析支持实现最高准确度
 
-```bash
+`````bash
 mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
-```
+`````
 
 **最适合：** 您需要平衡速度和准确性的生产工作负载。
 
@@ -114,11 +115,11 @@ MinerU 支持多种输入格式：
 
 | Format | Support Level | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
@@ -135,13 +136,13 @@ MinerU 的 OCR 引擎支持 **109 种语言**，并在 3.4 版本中升级至 PP
 
 从3.4版本开始，MinerU简化了OCR语言配置。 现在，所有场景都通过优化的“ch” OCR 模型进行路由，而不是选择单独的语言（日语、繁体中文、英语、拉丁语），从而降低了配置复杂性，同时提高了准确性。
 
-```bash
+`````bash
 # Automatic OCR detection (recommended)
 mineru ./scanned.pdf -o ./output/
 
 # 对特定文档强制进行 OCR
  ./document.pdf -o ./output/ --ocr
- ````
+ ``````
 
 ## Real-World Use Cases
 
@@ -149,14 +150,14 @@ mineru ./scanned.pdf -o ./output/
 
 MinerU 专为 RAG（检索增强生成）工作流程而构建。 通过将文档转换为结构化 Markdown 并保留阅读顺序、标题和语义结构，RAG 系统可以更有效地分块和嵌入文档。
 
-```python
+`````python
 import mineru as mu
 
 结果 = mu.parse("./research_paper.pdf")
  # result.markdown：清理 Markdown 以进行嵌入
  # result.json：用于检索的结构化 JSON
  # result.layout：用于调试的可视化布局
- ````
+ ``````
 
 ### AI代理知识库
 
@@ -176,9 +177,9 @@ MinerU 与几乎所有主要的人工智能框架集成：
 
 | Framework | Integration |
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | Native document loader |
 | LlamaIndex | Document parser integration |
@@ -192,10 +193,10 @@ MinerU 与几乎所有主要的人工智能框架集成：
 
 MinerU 还提供 **MCP 服务器**，用于与 Cursor、Claude Desktop 和 Windsurf 等 AI 编码工具集成。 这允许您直接在编码代理的工作流程中解析文档。
 
-```bash
+`````bash
 # Start the MCP server
 mineru-mcp-server
-```
+`````
 
 ## Performance Benchmarks
 
@@ -226,11 +227,11 @@ MinerU的“pipeline”后端在OmniDocBench v1.5**上取得**86.2的分数，�
 
 对于开发人员来说，[Colab笔记本](https://colab.research.google.com/gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb)提供了快速的交互式演示。
 
-```bash
+`````bash
 # Install and parse your first document
 pip install mineru
 mineru ./my-document.pdf -o ./output/ --format markdown
-```
+````
 
 ## Limitations
 
@@ -322,12 +323,12 @@ MinerU：70.6K 星 — 将任何文档转换为 LLM 就绪的 Markdown represent
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
@@ -336,7 +337,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mineru-document-parsing-engine](mineru-document-parsing-engine)
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -367,15 +368,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

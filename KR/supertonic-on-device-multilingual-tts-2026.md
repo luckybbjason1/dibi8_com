@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/supertonic-on-device-multilingual-tts-2026/
 ---
 
+
 # Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)
 
 
@@ -35,21 +36,21 @@ aliases:
 
 오픈소스 온디바이스 TTS도 따라잡고 있었지만 트레이드오프가 가혹했다: 영어 전용 미니 모델(Piper, Coqui의 소형 변종)이거나, 실용성을 확보하려면 GPU가 필수인 거대 다국어 모델(XTTS-v2, Bark)이거나. "빠르고, 다국어이며, 가볍고, 진짜 오픈 웨이트"라는 sweet spot은 누구도 맞추지 못했다.
 
-한국 음성 AI 회사 Supertone Inc.가 만든 [**Supertonic**](https://github.com/supertone-inc/supertonic) (GitHub: `supertone-inc/supertonic`, **9,900+ stars**)은 2026년에 그 공백을 메울 가장 신뢰할 만한 후보다. 99M 파라미터, 31개 언어, ONNX 런타임, CPU에서 무리 없이 돌아간다 — README에 따르면 비행기 모드의 e-reader에서도 실시간 대비 0.3배(RTF) 성능을 낸다고 한다.
+한국 음성 AI 회사 Supertone Inc.가 만든 [**Supertonic**](https://github.com/supertone-inc/supertonic) (GitHub: ```supertone-inc/supertonic````, **9,900+ stars**)은 2026년에 그 공백을 메울 가장 신뢰할 만한 후보다. 99M 파라미터, 31개 언어, ONNX 런타임, CPU에서 무리 없이 돌아간다 — README에 따르면 비행기 모드의 e-reader에서도 실시간 대비 0.3배(RTF) 성능을 낸다고 한다.
 
----
+* * *
 
 ## Supertonic의 정체
 
 ONNX로 익스포트된, flow-matching 기반 text-to-latent 모듈 + speech autoencoder. 구체적으로: - **총 99M 파라미터** — 몇 초 안에 로딩되고 평범한 CPU에서 실시간으로 돌아갈 만큼 작다. 참고로 XTTS-v2는 ~1.5B, Bark는 ~900M 수준.
 - **기본 제공 31개 언어**: 아랍어, 불가리아어, 크로아티아어, 체코어, 덴마크어, 네덜란드어, 영어, 에스토니아어, 핀란드어, 프랑스어, 독일어, 그리스어, 힌디어, 헝가리어, 인도네시아어, 이탈리아어, **일본어**, **한국어**, 라트비아어, 리투아니아어, 폴란드어, 포르투갈어, 루마니아어, 러시아어, 슬로바키아어, 슬로베니아어, 스페인어, 스웨덴어, 터키어, 우크라이나어, **베트남어**.
 - **44.1kHz 오디오 출력** — 대부분의 "그럭저럭" TTS가 머무는 22kHz가 아니라 진짜 스튜디오 샘플레이트.
-- **10개 표현 태그** — `<laugh>`, `<breath>`, `<sigh>` 등. 텍스트 안에 그대로 박아 넣으면 음성 클로닝을 다시 학습할 필요 없이 더 자연스러운 전달을 끌어낼 수 있다.
-- **`lang="na"` 모드** — 언어 코드를 굳이 고르고 싶지 않을 때 쓰는 언어 비종속(language-agnostic) 생성.
+- **10개 표현 태그** — ````<laugh>````, ````<breath>````, ````<sigh>```` 등. 텍스트 안에 그대로 박아 넣으면 음성 클로닝을 다시 학습할 필요 없이 더 자연스러운 전달을 끌어낼 수 있다.
+- **````lang="na"```` 모드** — 언어 코드를 굳이 고르고 싶지 않을 때 쓰는 언어 비종속(language-agnostic) 생성.
 
 라이선스: **코드는 MIT, 모델 가중치는 OpenRAIL-M**. 이 분리가 중요하다. OpenRAIL-M은 "책임 있는 AI" 라이선스로 일부 유해 용도를 제한하지만 상업적 배포는 허용한다. 제품으로 출시하기 전엔 model card를 꼭 읽어둬라.
 
----
+* * *
 
 ## 성능 수치
 
@@ -63,11 +64,11 @@ Supertone Inc.가 자사 benchmark와 README에서 인용한 수치들: | 지표
 
 e-reader benchmark가 헤드라인 수치다 — "정말 어디서든 돌아간다"는 시그널을 보내는 종류의 숫자. 최신 스마트폰 CPU라면 이것에 비하면 식은 죽 먹기여야 한다.
 
----
+* * *
 
 ## 런타임 커버리지
 
-Supertonic은 "알아서 래핑하시오" 식이 아니라 실제 SDK 바인딩을 함께 출시하는 몇 안 되는 오픈 TTS 프로젝트 중 하나다. v2.0.0 기준: - **Python** (`pip install supertonic`) — 1차 통합
+Supertonic은 "알아서 래핑하시오" 식이 아니라 실제 SDK 바인딩을 함께 출시하는 몇 안 되는 오픈 TTS 프로젝트 중 하나다. v2.0.0 기준: - **Python** (````pip install supertonic````) — 1차 통합
 - **Node.js** — 서버 및 Electron 앱
 - **Browser** — 가능하면 WebGPU, 폴백은 WebAssembly
 - **Java** — Android 및 JVM 백엔드
@@ -77,15 +78,15 @@ Supertonic은 "알아서 래핑하시오" 식이 아니라 실제 SDK 바인딩�
 
 2026년 애플리케이션 개발자가 TTS를 임베드하려는 거의 모든 자리를 커버한다. 무거운 일은 ONNX 런타임이 떠맡고, Supertonic은 모델별 접착제(glue)만 더한다.
 
----
+* * *
 
 ## 빠른 설치 (Python)
 
-```bash
+`````bash
 pip install supertonic
-```
+`````
 
-의존성은 이것 하나로 끝. 모델은 첫 호출 시 다운로드된다: ```python
+의존성은 이것 하나로 끝. 모델은 첫 호출 시 다운로드된다: `````python
 from supertonic import TTS
 
 tts = TTS(auto_download=True)
@@ -101,17 +102,17 @@ wav, duration = tts.synthesize(
     speed=1.05,
 )
 tts.save_audio(wav, "output.wav")
-```
+`````
 
-한국어가 필요하면 `lang="en"` → `lang="ko"`로 바꾸면 된다. `ja`, `vi`, `zh`도 동일. 보이스 스타일(`M1`)은 언어가 바뀌어도 일관성을 유지한다 — 다국어 캐릭터 음성을 만들 때 유용하다.
+한국어가 필요하면 ````lang="en"```` → ````lang="ko"````로 바꾸면 된다. ````ja````, ````vi````, ````zh````도 동일. 보이스 스타일(````M1````)은 언어가 바뀌어도 일관성을 유지한다 — 다국어 캐릭터 음성을 만들 때 유용하다.
 
-표현 태그를 쓰려면: ```python
+표현 태그를 쓰려면: `````python
 text = "I can't believe it. <laugh> That's incredible. <breath> Let me explain."
-```
+````
 
 모델이 태그를 텍스트 안에서 해석해 그에 맞는 표현을 음성에 입혀준다.
 
----
+* * *
 
 ## 다른 솔루션과의 비교
 
@@ -127,7 +128,7 @@ Bark는 비음성 오디오(음악, 효과음)에서 인상적이다. **Bark의 
 ### vs. ElevenLabs / OpenAI / Google Cloud
 보이스 클로닝 충실도와 최상위 음성의 순수 자연스러움에서는 클라우드 TTS가 여전히 앞선다. **Supertonic의 우위**: API 키 없음, 문자당 청구서 없음, 네트워크 의존성 없음, 완전한 프라이버시.
 
----
+* * *
 
 ## Supertonic이 못 하는 것
 
@@ -136,7 +137,7 @@ Bark는 비음성 오디오(음악, 효과음)에서 인상적이다. **Bark의 
 - **파인튜닝 도구가 제한적.** 모델 가중치는 OpenRAIL-M으로 오픈되어 있지만 학습 파이프라인 전체가 공개되어 있진 않다.
 - **22kHz 폴백 없음.** 항상 44.1kHz 출력. 더 낮은 대역폭이 필요하면 직접 리샘플해야 한다.
 
----
+* * *
 
 ## Supertonic이 빛나는 실전 케이스
 
@@ -146,7 +147,7 @@ Bark는 비음성 오디오(음악, 효과음)에서 인상적이다. **Bark의 
 - **한국어 / 일본어 / 베트남어 / 중국어 로컬라이제이션** — 아시아 언어용 오픈소스 TTS의 공백은 그동안 뼈아팠는데, Supertonic이 모델 하나로 그 큰 덩어리를 메운다.
 - **엣지 IoT 디바이스** — 클라우드 연결 없는 키오스크, 사이니지, 스마트 스피커.
 
----
+* * *
 
 ## 누가 써야 하나
 
@@ -161,7 +162,7 @@ Bark는 비음성 오디오(음악, 효과음)에서 인상적이다. **Bark의 
 - ElevenLabs 라인업 최상위가 여전히 앞서는 초사실적 단일 보이스 콘텐츠를 만든다.
 - 스트리밍 부분 오디오가 필요하다(공개된 Supertonic 릴리스는 아직 노출하지 않음).
 
----
+* * *
 
 ## 결론
 
@@ -171,7 +172,7 @@ Supertonic은 2026년에 출시된 "어디서든 돌아가는 단일 모델" 오
 
 프롬프트 측은 [온디바이스 LLM 런타임](https://dibi8.com/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/)과 묶으면, 클라우드 의존도 0인 완전 로컬 음성 에이전트 스택이 완성된다.
 
----
+* * *
 
 **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **라이선스**: MIT (코드) / OpenRAIL-M (가중치) · **최신**: v2.0.0 (2026-01-06) · **Stars**: 9.9K+ · **메인테이너**: Supertone Inc.
 
@@ -237,7 +238,7 @@ Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

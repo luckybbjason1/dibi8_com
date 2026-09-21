@@ -32,6 +32,7 @@ faq: - q: "AI coding agent nào tốt nhất Q2 2026?"
     a: "Gemini 2.5 Pro và Gemini CLI có context 1M+ token (lớn nhất rõ ràng). Claude Sonnet 4.6 (hoặc Opus 4.7) và Claude Code 1.0 hỗ trợ 1M token (1M-context tier). Cursor Pro mặc định 200K. GPT-5 và Codex CLI 256K. Với monorepo cực lớn, ưu thế context của Gemini CLI là thật, nhưng độ tin cậy tool-use vẫn tụt sau."
 ---
 
+
 {{</* resource-info */>}}
 
 # AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI
@@ -54,7 +55,7 @@ Bài đối đầu này là so sánh mà mọi developer hỏi nhưng hầu như
 >
 > **Open source quan trọng**: Aider, Cline, Roo Code viable cho developer ý thức chi phí sẵn sàng mang API key của mình.
 
----
+* * *
 
 ## 4 Tool Trong Một Cái Nhìn
 
@@ -89,8 +90,8 @@ Bài đối đầu này là so sánh mà mọi developer hỏi nhưng hầu như
 |---|---|---|---|---|
 | Claude Code | 2m 50s | 40/40 | 0 | Dùng đúng semantic search + ripgrep |
 | Cursor Pro | 1m 12s | 40/40 | 0 | Rename symbol-aware built-in |
-| Codex CLI | 4m 30s | 38/40 | 2 | Bỏ sót `.mdx` |
-| Gemini CLI | 5m 45s | 35/40 | 5 | Bỏ sót `.mdx` + template string |
+| Codex CLI | 4m 30s | 38/40 | 2 | Bỏ sót ```.mdx```` |
+| Gemini CLI | 5m 45s | 35/40 | 5 | Bỏ sót ````.mdx```` + template string |
 
 **Verdict**: Cursor thắng tốc độ. Claude Code khớp chất lượng.
 
@@ -167,7 +168,7 @@ Bài đối đầu này là so sánh mà mọi developer hỏi nhưng hầu như
 
 ## Cả 4 Đều Làm Kém
 
-- **Memory dự án giữa session**: Cả 4 quên context session hôm qua. MCP `memory` server giúp được, nhưng tỷ lệ áp dụng thấp.
+- **Memory dự án giữa session**: Cả 4 quên context session hôm qua. MCP ````memory``` server giúp được, nhưng tỷ lệ áp dụng thấp.
 - **Workflow đa repo**: Cả 4 phạm vi repo. Refactor cross-repo cần orchestrate thủ công.
 - **Minh bạch chi phí thời gian thực**: Cursor và Gemini hiển thị lượng dùng. Claude Code và Codex CLI giấu đến cuối tháng.
 - **Onboarding code senior**: Cả 4 vật lộn với codebase enterprise tài liệu kém nơi context không nằm trong code.
@@ -193,7 +194,7 @@ Hầu hết developer chuyên nghiệp được phỏng vấn Q2 2026: Claude Co
 
 Sai lầm lớn nhất: developer chạy theo release mới nhất vì Hacker News bảo thế. **Đừng đổi vì hype**. Chạy benchmark 3 workflow của riêng bạn. **Tool đúng là tool làm task cụ thể của bạn nhanh hơn đo được, không phải model lớn nhất**.
 
----
+* * *
 
 **Liên quan**: [Cursor Alternatives 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Hướng dẫn Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/) · [MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -223,7 +224,7 @@ Sai lầm lớn nhất: developer chạy theo release mới nhất vì Hacker Ne
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -233,7 +234,7 @@ Sai lầm lớn nhất: developer chạy theo release mới nhất vì Hacker Ne
 - [claude-code-vs-aider](ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout)
 - [cursor-vs-claude-code](ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -18,6 +18,7 @@ faqs: - q: 'Dify와 Flowise의 차이점은 무엇인가요?'
     a: 'Flowise는 드래그앤드롭 LangChain UI로 시작했고 이것이 여전히 핵심 정체성이지만, 단순한 래퍼를 넘어 발전했습니다. LangChain 외에도 LlamaIndex 컴포넌트를 지원하고, 자체 챗봇 임베드 위젯, API 엔드포인트 게시를 추가했으며, 커뮤니티 노드 생태계를 성장시켰습니다. 순수한 LangChain 래퍼가 아닌, LangChain과 LlamaIndex를 추상화한 시각적 LLM 파이프라인 빌더로 가장 잘 설명됩니다.'
 ---
 
+
 # Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스
 
 
@@ -29,7 +30,7 @@ faqs: - q: 'Dify와 Flowise의 차이점은 무엇인가요?'
 
 **Flowise** 선택 시: LangChain 프리미티브로 생각하는 개발자이거나, 최소한의 셀프호스팅 서비스가 필요하거나, 모든 파이프라인 노드에 대한 완전한 투명성을 선호하거나, 최대 유연성으로 빠르게 프로토타이핑할 때.
 
----
+* * *
 
 ## 항목별 비교
 
@@ -45,7 +46,7 @@ faqs: - q: 'Dify와 Flowise의 차이점은 무엇인가요?'
 | 최적 대상 | 풀스택 AI 팀, 엔터프라이즈 | 개발자, LangChain 빌더 |
 | 라이선스 | 오픈소스 (Apache 2.0) | 오픈소스 (Apache 2.0) |
 
----
+* * *
 
 ## Dify를 선택해야 할 때
 
@@ -63,7 +64,7 @@ Dify는 실제 애플리케이션을 구동하는 백엔드로 설계되었습�
 
 ![LLM 애플리케이션을 관리하는 엔터프라이즈 AI 플랫폼 대시보드, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
----
+* * *
 
 ## Flowise를 선택해야 할 때
 
@@ -73,7 +74,7 @@ Flowise는 LangChain과 LlamaIndex 개념에 매우 직접적으로 매핑됩니
 
 ### 사용 사례 2: 경량 단일 컨테이너 배포
 
-Flowise는 단일 Node.js 서비스로 실행됩니다 — `docker run` 또는 `npx flowise start`면 바로 실행됩니다. PostgreSQL, Redis, 또는 벡터 데이터베이스가 기본으로 포함되지 않습니다(필요 시 직접 연결). 최소한의 인프라로 운영하는 개인 개발자나 소규모 팀에게 이 경량 공간 차지는 Dify의 멀티 서비스 스택 대비 중요한 이점입니다.
+Flowise는 단일 Node.js 서비스로 실행됩니다 — ```docker run```` 또는 ````npx flowise start````면 바로 실행됩니다. PostgreSQL, Redis, 또는 벡터 데이터베이스가 기본으로 포함되지 않습니다(필요 시 직접 연결). 최소한의 인프라로 운영하는 개인 개발자나 소규모 팀에게 이 경량 공간 차지는 Dify의 멀티 서비스 스택 대비 중요한 이점입니다.
 
 ### 사용 사례 3: 최대 컴포넌트 유연성으로 빠른 프로토타이핑
 
@@ -81,7 +82,7 @@ Flowise가 모든 LangChain과 LlamaIndex 컴포넌트를 교체 가능한 노�
 
 ![개발자가 시각적 캔버스에서 AI 파이프라인 노드를 구축하는 모습, via dibi8.com](https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=760&q=80)
 
----
+* * *
 
 ## RAG 파이프라인 비교
 
@@ -93,21 +94,21 @@ RAG(검색 증강 생성)는 플랫폼이 가장 명확하게 갈리는 부분�
 
 **결론:** 빠르게 생산용 RAG 제품을 제공하려면 Dify. 모든 RAG 컴포넌트와 파라미터에 대한 세밀한 제어가 필요하면 Flowise.
 
----
+* * *
 
 ## 셀프호스팅 요구사항
 
 | 요구사항 | Dify | Flowise |
 |---|---|---|
 | 서비스 | API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant | 단일 Node.js 프로세스 |
-| Docker | Docker Compose (5+ 컨테이너) | 단일 `docker run` |
+| Docker | Docker Compose (5+ 컨테이너) | 단일 ````docker run``` |
 | 외부 DB | PostgreSQL 필수 | SQLite(기본), 외부 선택 사항 |
 | 메모리 공간 | 높음 (멀티 서비스) | 매우 낮음 |
 | 설정 시간 | 10~20분 | 5분 미만 |
 
 두 도구 모두 Docker에 익숙한 개발자에게는 간단하지만, Flowise가 눈에 띄게 더 작은 공간을 차지합니다. 셀프호스팅 AI 스택에 대해서는 [로컬 우선 AI 스택 2026](https://dibi8.com/kr/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/)을 참조하세요.
 
----
+* * *
 
 ## 생태계와 플러그인
 
@@ -117,13 +118,13 @@ RAG(검색 증강 생성)는 플랫폼이 가장 명확하게 갈리는 부분�
 
 두 생태계 모두 건강합니다. Dify 마켓플레이스는 더 큐레이션되어 있고, Flowise의 노드 생태계는 더 광범위하고 개발자 주도적입니다.
 
----
+* * *
 
 ## 두 가지를 상호 보완적으로 쓸 수 있나요?
 
 일부 아키텍처에서는 가능합니다. 팀들은 **Flowise로 파이프라인을 프로토타이핑하고 검증**한 다음, 검증된 흐름을 관리형 배포와 사용자 대면 게시를 위해 **Dify에서 재구축**합니다. 워크플로를 직접 이식할 수는 없지만 패턴이 전달됩니다. 또한 일부 팀은 내부 개발자 도구에는 Flowise를, 고객 대면 AI 제품에는 Dify를 사용합니다.
 
----
+* * *
 
 ## dibi8의 판단
 
@@ -205,12 +206,12 @@ Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-cline](dify-vs-flowise-2026)
 - [cursor-vs-windsurf](dify-vs-flowise-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

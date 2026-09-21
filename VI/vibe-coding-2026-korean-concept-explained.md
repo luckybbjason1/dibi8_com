@@ -28,6 +28,7 @@ faq: - q: "'Vibe coding' là gì?"
     a: "Không. Quy trình không phụ thuộc ngôn ngữ — bạn mô tả ý định bằng ngôn ngữ tự nhiên bất kỳ mà bạn nói. Thuật ngữ ra đời ở Hàn Quốc nhưng thực hành thì áp dụng toàn cầu. Lập trình viên nói tiếng Anh đã làm như vậy từ khi Cursor và Claude Code xuất hiện, chỉ là chưa có tên."
 ---
 
+
 {{</* resource-info */>}}
 
 # Vibe Coding 2026: Khái niệm Hàn Quốc, giải thích cho phần còn lại
@@ -49,7 +50,7 @@ Sự chuyển dịch: - **Lập trình AI truyền thống**: AI giúp bạn gõ
 
 ## Cách nó thực sự hoạt động
 
-Một phiên vibe-coding điển hình ở một công ty fintech Hàn Quốc (ẩn danh từ blog kỹ thuật của Toss): ```
+Một phiên vibe-coding điển hình ở một công ty fintech Hàn Quốc (ẩn danh từ blog kỹ thuật của Toss): ````
 Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘.
                  Redis 사용. 분당 100 req. 초과시 429 응답."
 
@@ -57,7 +58,7 @@ Dịch: "Thêm rate limiting vào API endpoint của tôi. Dùng Redis.
        100 req/phút. Trả về 429 nếu vượt."
 
 AI Claude Code: [tạo middleware, cập nhật route, thêm test]
-```
+````
 
 Người rà soát: - Không tự viết thuật toán rate limiting
 - Rà soát middleware do AI tạo xem có đúng không
@@ -132,7 +133,7 @@ Vibe coding là một cái tên cho điều vốn đã đang diễn ra. Fintech 
 
 Mô hình áp dụng mạnh nhất không phải "vibe code mọi thứ." Mà là "vibe code ở nơi phù hợp, viết tay ở nơi quan trọng." Hàn Quốc đã chứng minh điều này hoạt động ở quy mô production. Câu hỏi với phần còn lại của chúng ta không phải có nên thử hay không — mà là thử ở đâu.
 
----
+* * *
 
 **Liên quan**: [So sánh AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Lựa chọn thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Aider vs Cline vs OpenHands](https://dibi8.com/vi/resources/dev-utils/aider-cline-openhands-2026-honest-comparison/)
 
@@ -198,12 +199,12 @@ Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc, giải thí
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -213,7 +214,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](vibe-coding-2026-korean-concept-explained)
 - [claude-4-opus-sonnet-review-2026](vibe-coding-2026-korean-concept-explained)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

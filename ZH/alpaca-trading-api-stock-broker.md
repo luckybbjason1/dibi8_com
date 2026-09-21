@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/alpaca-trading-api-stock-broker/-
 ---
 
+
 {{</* resource-info */>}}
 
 > 📌 **联盟营销披露**：本文包含联盟营销链接。如果您通过我们的链接注册，我们可能会获得佣金——不会给您带来额外费用。我们的评测独立且基于深入研究。
@@ -19,11 +20,11 @@ aliases:
 > 🚀 **体验AI驱动交易**：[注册Minara](https://minara.ai/r/OSXG4X) —— AI交易平台，助您零代码构建、回测和部署自动化交易策略。
 
 
----
+* * *
 **发布日期：** 2026-05-19 | **类别：** AI交易 | **阅读时间：** 15分钟
 
 
----
+* * *
 ## 什么是Alpaca交易API？
 
 **Alpaca交易API**是一个面向开发者和算法交易者的零佣金、API优先的经纪平台。Alpaca成立于2015年，总部位于硅谷，已迅速成为构建自动化交易系统最受欢迎的选择之一，拥有超过**700万个API连接账户**，并于2026年1月被BrokerChooser评为**最佳券商第一名**。
@@ -34,9 +35,9 @@ Alpaca真正的独特之处在于其**零佣金模式**。您在美国股票和E
 
 | 功能 | 规格 |
 |
----
+* * *
 |
----
+* * *
 |
 | **API类型** | REST API、WebSocket流式传输、FIX API |
 | **支持资产** | 美国股票、ETF、期权、加密货币 |
@@ -49,7 +50,7 @@ Alpaca真正的独特之处在于其**零佣金模式**。您在美国股票和E
 | **碎股交易** | 支持——按金额投资 |
 | **保证金利率** | 6.25% |
 
----
+* * *
 
 ## 为什么选择Alpaca进行算法交易？
 
@@ -67,7 +68,7 @@ Alpaca的模拟交易环境不是一个简化的演示——它是一个功能�
 
 根据2025年Aite-Novarica集团的研究，在实盘部署前至少进行90天模拟测试的算法策略，在第一年实盘交易中显示出**低23%的回撤**。
 
----
+* * *
 
 ## 入门指南：账户设置和API密钥
 
@@ -79,23 +80,23 @@ Alpaca的模拟交易环境不是一个简化的演示——它是一个功能�
 
 账户获批后，导航至模拟交易部分以生成您的第一个API密钥：
 
-```python
+````python
 # 您的API凭证将如下所示：
 API_KEY = PKABCDEF1234567890EXAMPLE
 API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example
 BASE_URL = 'https://paper-api.alpaca.markets'  # 模拟交易端点
-```
+`````
 
-```javascript
+`````javascript
 // JavaScript/Node.js凭证配置
 const API_KEY = PKABCDEF1234567890EXAMPLE;
 const API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example;
 const BASE_URL = 'https://paper-api.alpaca.markets';
-```
+`````
 
 妥善保管您的密钥——切勿将其提交到版本控制。使用环境变量或密钥管理器：
 
-```python
+`````python
 # 使用环境变量的安全凭证管理
 import os
 from alpaca_trade_api import REST
@@ -105,17 +106,17 @@ api = REST(
     secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
-```
+`````
 
-```bash
+`````bash
 # .env文件（添加到.gitignore！）
 ALPACA_API_KEY=PKABCDEF1234567890EXAMPLE
 ALPACA_SECRET_KEY=abcdefghijklmnopqrstuvwxyz1234567890example
-```
+`````
 
 ### 第三步：安装SDK
 
-```bash
+`````bash
 # Python SDK
 pip install alpaca-trade-api
 
@@ -124,9 +125,9 @@ npm install @alpacahq/alpaca-trade-api
 
 # Go SDK
 go get github.com/alpacahq/alpaca-trade-api-go/v3/alpaca
-```
+`````
 
----
+* * *
 
 ## 核心交易操作
 
@@ -134,7 +135,7 @@ go get github.com/alpacahq/alpaca-trade-api-go/v3/alpaca
 
 Alpaca支持多种订单类型，包括市价单、限价单、止损单、止损限价单和跟踪止损单。以下是每种类型的操作方法：
 
-```python
+`````python
 from alpaca_trade_api import REST
 import os
 
@@ -153,9 +154,9 @@ market_order = api.submit_order(
     time_in_force=day
 )
 print(f"市价单已提交: {market_order.id}")
-```
+`````
 
-```python
+`````python
 # 限价单 —— 仅在指定价格或更优价格执行
 limit_order = api.submit_order(
     symbol=TSLA,
@@ -166,9 +167,9 @@ limit_order = api.submit_order(
     time_in_force=gtc  # 长期有效
 )
 print(f"限价单已提交: {limit_order.id}")
-```
+`````
 
-```python
+`````python
 # 止损单 —— 当价格跌至止损价时触发市价卖出
 stop_order = api.submit_order(
     symbol=MSFT,
@@ -178,9 +179,9 @@ stop_order = api.submit_order(
     stop_price=380.00,
     time_in_force=day
 )
-```
+`````
 
-```python
+`````python
 # 止损限价单 —— 将止损触发与限价执行相结合
 stop_limit_order = api.submit_order(
     symbol=GOOGL,
@@ -191,9 +192,9 @@ stop_limit_order = api.submit_order(
     limit_price=164.50,
     time_in_force=day
 )
-```
+`````
 
-```python
+`````python
 # 跟踪止损单 —— 止损价格跟随市场以设定距离移动
 trailing_stop = api.submit_order(
     symbol=AMZN,
@@ -203,13 +204,13 @@ trailing_stop = api.submit_order(
     trail_percent=5.0,  # 5%跟踪距离
     time_in_force=gtc
 )
-```
+`````
 
 ### 碎股交易
 
 Alpaca的突出功能之一是**碎股交易**，它允许您按精确的美元金额投资，而不是购买整股：
 
-```python
+`````python
 # 买入价值500美元的苹果股票 —— 无论股价如何
 fractional_order = api.submit_order(
     symbol=AAPL,
@@ -218,9 +219,9 @@ fractional_order = api.submit_order(
     type=market,
     time_in_force=day
 )
-```
+`````
 
-```python
+`````python
 # 以精确的美元分配构建平衡投资组合
 portfolio = {
     VTI: 2000.00,   # 美国全股票市场
@@ -237,13 +238,13 @@ for symbol, amount in portfolio.items(): order = api.submit_order(
         time_in_force=day
     )
     print(f"已下单买入 ${amount} 的 {symbol}")
-```
+`````
 
 ### 延长交易时间（24/5）
 
 Alpaca支持**每周5天、每天24小时交易**，让您可以在常规交易时间（美国东部时间上午9:30 – 下午4:00）之外进行交易：
 
-```python
+`````python
 # 为延长交易时间执行下单
 extended_hours_order = api.submit_order(
     symbol=SPY,
@@ -254,9 +255,9 @@ extended_hours_order = api.submit_order(
     time_in_force=day,
     extended_hours=True  # 启用盘前（凌晨4:00）和盘后（晚上8:00）交易
 )
-```
+`````
 
-```python
+`````python
 # 查看某个标的的交易时间
 from alpaca_trade_api import REST
 
@@ -266,9 +267,9 @@ clock = api.get_clock()
 print(f"市场{开盘 if clock.is_open else 收盘}")
 print(f"下次开盘: {clock.next_open}")
 print(f"下次收盘: {clock.next_close}")
-```
+`````
 
----
+* * *
 
 ## 使用WebSocket进行实时市场数据流式传输
 
@@ -276,7 +277,7 @@ print(f"下次收盘: {clock.next_close}")
 
 Alpaca的WebSocket API提供交易、报价和分钟K线的实时流式传输。这对于需要实时响应市场事件的策略至关重要：
 
-```python
+`````python
 import asyncio
 from alpaca_trade_api.stream import Stream
 
@@ -303,9 +304,9 @@ stream.subscribe_bars(handle_bar, SPY, QQQ)
 # 运行流
 print("启动WebSocket流...")
 stream.run()
-```
+`````
 
-```python
+`````python
 # 用于WebSocket流的异步上下文管理器模式
 import asyncio
 from alpaca_trade_api.stream import Stream
@@ -325,9 +326,9 @@ async def run_streaming_strategy(): stream = Stream(
     await stream._run_forever()
 
 # asyncio.run(run_streaming_strategy())
-```
+`````
 
-```javascript
+`````javascript
 // Node.js WebSocket流式传输
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 
@@ -345,19 +346,19 @@ client.onConnect(() => {
 });
 
 client.onStockTrade((subject, data) => {
-    console.log(`成交: ${data.sym} @ $${data.p} x ${data.s}`);
+    console.log(````成交: ${data.sym} @ $${data.p} x ${data.s}````);
 });
 
 client.connect();
-```
+`````
 
----
+* * *
 
 ## 投资组合管理和账户操作
 
 ### 查看持仓和账户信息
 
-```python
+`````python
 from alpaca_trade_api import REST
 import pandas as pd
 
@@ -371,46 +372,46 @@ print(f"现金: ${account.cash}")
 print(f"购买力: ${account.buying_power}")
 print(f"权益: ${account.equity}")
 print(f"当日交易次数: {account.daytrade_count}")
-```
+`````
 
-```python
+`````python
 # 列出所有当前持仓
 positions = api.list_positions()
 print(f"持仓数量: {len(positions)}")
 
 for pos in positions: print(f"{pos.symbol}: {pos.qty} 股 @ ${pos.avg_entry_price}")
     print(f"  当前: ${pos.current_price} | 盈亏: ${pos.unrealized_pl} ({pos.unrealized_plpc}%)")
-```
+`````
 
-```python
+`````python
 # 获取特定标的的持仓
 aapl_position = api.get_position(AAPL)
 print(f"AAPL持仓: {aapl_position.qty} 股")
 print(f"市值: ${aapl_position.market_value}")
 print(f"未实现盈亏: ${aapl_position.unrealized_pl}")
-```
+`````
 
 ### 订单管理
 
-```python
+`````python
 # 列出所有未成交订单
 open_orders = api.list_orders(status=open)
 for order in open_orders: print(f"订单 {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
-```
+`````
 
-```python
+`````python
 # 取消特定订单
 api.cancel_order(ORDER_ID_HERE)
 print("订单已取消")
-```
+`````
 
-```python
+`````python
 # 取消所有未成交订单
 api.cancel_all_orders()
 print("所有订单已取消")
-```
+`````
 
-```python
+`````python
 # 获取订单历史（已成交订单）
 closed_orders = api.list_orders(
     status=closed,
@@ -419,15 +420,15 @@ closed_orders = api.list_orders(
 )
 
 for order in closed_orders: print(f"{order.symbol}: {order.side} {order.filled_qty}/{order.qty} @ ${order.filled_avg_price}")
-```
+`````
 
----
+* * *
 
 ## 历史数据和回测
 
 ### 获取历史K线数据
 
-```python
+`````python
 from alpaca_trade_api import REST
 from datetime import datetime, timedelta
 
@@ -447,9 +448,9 @@ bars = api.get_bars(
 
 print(f"获取了 {len(bars)} 根K线")
 print(bars.head())
-```
+`````
 
-```python
+`````python
 # 获取日内策略的分钟K线
 minute_bars = api.get_bars(
     SPY,
@@ -469,9 +470,9 @@ minute_bars.loc[minute_bars[SMA_20] > minute_bars[SMA_50], signal] = 1
 minute_bars.loc[minute_bars[SMA_20] < minute_bars[SMA_50], signal] = -1
 
 print(minute_bars[[close, SMA_20, SMA_50, signal]].tail(10))
-```
+`````
 
-```python
+`````python
 # 高效获取多个标的
 import pandas as pd
 
@@ -495,15 +496,15 @@ print(prices_df.head())
 returns = prices_df.pct_change().dropna()
 print("\n日收益率:")
 print(returns.head())
-```
+`````
 
----
+* * *
 
 ## 构建完整的交易策略
 
 以下是一个结合了上述所有内容的完整**动量交易策略机器人**：
 
-```python
+`````python
 """
 Alpaca动量交易机器人
 策略: 当价格伴随成交量确认上穿20周期SMA时买入
@@ -592,9 +593,9 @@ class MomentumTrader: def __init__(self): self.api = REST(key_id=API_KEY, secret
 
 if __name__ == __main__: trader = MomentumTrader()
     trader.run()
-```
+`````
 
----
+* * *
 
 ## 高级功能和最佳实践
 
@@ -602,7 +603,7 @@ if __name__ == __main__: trader = MomentumTrader()
 
 通过Alpaca Elite，您可以访问复杂的订单类型：
 
-```python
+`````python
 # 二选一（OCO）括号订单
 bracket_order = api.submit_order(
     symbol=TSLA,
@@ -615,9 +616,9 @@ bracket_order = api.submit_order(
     take_profit=dict(limit_price=220.00),
     stop_loss=dict(stop_price=185.00, limit_price=184.50)
 )
-```
+`````
 
-```python
+`````python
 # 立即成交或取消（IOC）订单
 ioc_order = api.submit_order(
     symbol=SPY,
@@ -627,11 +628,11 @@ ioc_order = api.submit_order(
     limit_price=520.00,
     time_in_force=ioc  # 如未立即成交则取消
 )
-```
+`````
 
 ### 用于事件驱动交易的Webhook
 
-```python
+`````python
 # 用于外部信号的Flask webhook处理器
 from flask import Flask, request, jsonify
 from alpaca_trade_api import REST
@@ -666,9 +667,9 @@ def handle_trading_signal(): data = request.json
     return jsonify({status: unknown_signal}), 400
 
 if __name__ == __main__: app.run(host='0.0.0.0', port=5000)
-```
+````
 
----
+* * *
 
 ## 常见问题解答（FAQ）
 
@@ -696,7 +697,7 @@ Alpaca实施速率限制以确保公平使用：交易端点每分钟200个请�
 
 Alpaca和Interactive Brokers服务于不同的用例。Alpaca是希望拥有现代、零佣金API且易于设置的开发者和算法交易者的理想选择。Interactive Brokers更适合需要访问全球市场、期货、外汇和高级投资组合分析的专业交易者。许多交易者同时使用两者：Alpaca用于美国股票策略，IBKR用于全球多资产交易。
 
----
+* * *
 
 
 
@@ -717,7 +718,7 @@ Alpaca和Interactive Brokers服务于不同的用例。Alpaca是希望拥有现�
 
 对于希望加速进入自动化交易旅程而无需从头编写代码的交易者，我们建议将Alpaca与 **[Minara](https://minara.ai/r/OSXG4X)** 配对使用——这是一个AI驱动的交易平台，可帮助您可视化地构建、回测和部署策略。[立即注册Minara](https://minara.ai/r/OSXG4X)，了解AI如何改变您的交易工作流程。
 
----
+* * *
 
 *最后更新：2026-05-19 | Alpaca API版本：v2*
 
@@ -783,12 +784,12 @@ Alpaca交易API 2026：面向算法交易的零佣金股票经纪API — 设置�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -798,7 +799,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](alpaca-trading-api-stock-broker)
 - [llm-inference-cost-optimization-guide-2026](alpaca-trading-api-stock-broker)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

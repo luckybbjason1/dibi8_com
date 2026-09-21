@@ -29,6 +29,7 @@ faq:
     a: "수집 + 요약용: 둘 다 잘 작동합니다. 파일들 사이에서 특정 버그를 찾는 데는: Gemini의 '건초더미 속 바늘' 성능이 더 일관적입니다. 파일들에 걸친 다단계 추론에는: Claude가 유효 컨텍스트가 짧음에도 불구하고 더 낫습니다."
 ---
 
+
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']
@@ -54,7 +55,7 @@ faq: - q: "Gemini 2.5 Pro와 Claude Sonnet 4.6 모두 정말로 1M 토큰을 처
     a: "약 200K 토큰 이하 코퍼스에서는 컨텍스트 스터핑이 승리합니다 (더 단순하고, 검색 오류 없음). 200K-1M 구간은 업데이트 빈도와 코퍼스 안정성에 따라 다릅니다. 1M을 초과하면 (수백만 토큰), 반드시 RAG를 써야 합니다 — 1M 모델도 전부를 담을 수 없습니다."
   - q: "전체 코드베이스를 읽는 데는 어느 쪽이 더 좋나요?"
     a: "수집 + 요약용: 둘 다 잘 작동합니다. 파일들 사이에서 특정 버그를 찾는 데는: Gemini의 '건초더미 속 바늘' 성능이 더 일관적입니다. 파일들에 걸친 다단계 추론에는: 유효 컨텍스트가 더 짧음에도 불구하고 Claude가 이깁니다."
----
+* * *
 
 {{</* resource-info */>}}
 
@@ -118,13 +119,13 @@ faq: - q: "Gemini 2.5 Pro와 Claude Sonnet 4.6 모두 정말로 1M 토큰을 처
 
 ## 결정 트리
 
-```
+````
 Corpus size?
 ├── < 100K tokens → stuff context, any model
 ├── 100K-700K → either Gemini or Claude works
 ├── 700K-1M → Gemini (Claude degrades)
 └── > 1M → must use RAG, even 1M models can't fit
-```
+````
 
 ## 추천 인프라
 
@@ -139,7 +140,7 @@ Corpus size?
 
 2026년 대부분의 프로덕션 작업에서는: 대화형 흐름에 1M을 쓰지 마라 (너무 느리고 비쌈). RAG를 써라. 1M 컨텍스트는 통찰의 넓이로 비용을 정당화할 수 있는 일회성 심층 분석 작업에만 남겨두라.
 
----
+* * *
 
 **관련 글**: [RAG vs 파인튜닝 2026](https://dibi8.com/kr/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [AI 코딩 슛아웃 2026 Q2](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [MCP 서버 2026 순위](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -205,12 +206,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](1m-context-window-llm-2026-real-test)
 - [ai-engineering-from-scratch](1m-context-window-llm-2026-real-test)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -35,6 +35,7 @@ faqs: - q: 'Tại sao bot có thể kiếm lợi nhuận từ chênh lệch giá
     a: 'Trong giai đoạn theo dõi, bot tạo ra khoảng $206,000 trong khi con người sử dụng cùng logic chỉ đạt khoảng $100,000 - khoảng cách gấp 2 lần. Con người mắc phải bốn lỗi có hệ thống: vào lệnh trễ sau khi cửa sổ cơ hội đóng, định cỡ vị thế theo cảm xúc và thiếu nhất quán, mệt mỏi sau khoảng 8 giờ, và tâm lý sụt vốn khiến họ từ bỏ hoặc đặt cược gấp đôi.'
 ---
 
+
 # Polymarket Bot Giao Dịch: 28 Công Cụ Kiếm 1 Triệu Đô La
 
 {</* resource-info */>}
@@ -43,7 +44,7 @@ faqs: - q: 'Tại sao bot có thể kiếm lợi nhuận từ chênh lệch giá
 
 **1.003.450 đô la lợi nhuận. 3.062 dự đoán. Một ví.**
 
-Khi các nhà giao dịch lần đầu nhìn thấy quỹ đạo tăng trưởng của ví `0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3` trên Polymarket, phản ứng đầu tiên rất đơn giản: *giả mạo*. Lợi nhuận tích lũy 7 chữ số từ một ví bán lẻ nghe giống như câu chuyện trong nhóm lừa đảo Telegram, không phải dữ liệu trên chuỗi có thể xác minh.
+Khi các nhà giao dịch lần đầu nhìn thấy quỹ đạo tăng trưởng của ví ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3```` trên Polymarket, phản ứng đầu tiên rất đơn giản: *giả mạo*. Lợi nhuận tích lũy 7 chữ số từ một ví bán lẻ nghe giống như câu chuyện trong nhóm lừa đảo Telegram, không phải dữ liệu trên chuỗi có thể xác minh.
 
 Nhưng blockchain không nói dối. Mỗi giao dịch đều công khai. Mỗi kết toán đều có thể xác minh.
 
@@ -170,7 +171,7 @@ Polymarket hiển thị bốn bề mặt API: 1. **Gamma API** - Dữ liệu th�
 3. **Kết toán trên chuỗi** - Polygon (chuỗi ID 137), USDC
 4. **Nguồn cấp dữ liệu WebSocket** - Cập nhật giá thời gian thực
 
-Máy khách Python chính thức `py-clob-client` bao bọc tất cả những điều này. Ba dòng để tìm nạp sổ lệnh. Năm dòng để đặt lệnh giới hạn đã ký.
+Máy khách Python chính thức ````py-clob-client```` bao bọc tất cả những điều này. Ba dòng để tìm nạp sổ lệnh. Năm dòng để đặt lệnh giới hạn đã ký.
 
 **Kho lưu trữ chính:**
 - [Polymarket/agents](https://github.com/Polymarket/agents) - Khung tác nhân AI chính thức với LangChain
@@ -178,10 +179,10 @@ Máy khách Python chính thức `py-clob-client` bao bọc tất cả những �
 
 ## Luồng tín hiệu hoàn chỉnh
 
-```
+`````
 Sự kiện thế giới → Binance WebSocket (50ms) → Phân tích AI → Định cỡ Kelly → 
 Lệnh API CLOB → Kết toán Polygon → Giám sát vị thế → Lợi nhuận/Lỗ
-```
+````
 
 **Tổng độ trễ đường dẫn lý tưởng: Dưới 10 giây.**
 
@@ -219,7 +220,7 @@ Stack là mở. Công cụ miễn phí. Lợi thế là thực. Câu hỏi duy n
 
 **Hãy nhớ**: Cạnh tranh yếu hơn vẻ ngoài. Hầu hết mọi người sẽ hét lên "quá khó" và gọi nó là cái mũ. Chỉ những người xây dựng mới được ăn.
 
----
+* * *
 
 ## Tài nguyên & Liên kết
 
@@ -231,7 +232,7 @@ Stack là mở. Công cụ miễn phí. Lợi thế là thực. Câu hỏi duy n
 
 *Tuyên bố miễn trừ trách nhiệm: Bài viết này chỉ nhằm mục đích giáo dục. Giao dịch thị trường dự đoán có rủi ro đáng kể. Hiệu suất trong quá khứ không đảm bảo kết quả trong tương lai. Luôn thực hiện nghiên cứu của riêng bạn trước khi giao dịch.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

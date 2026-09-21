@@ -11,6 +11,7 @@ license: MIT
 featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
 ---
 
+
 # Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything
 
 
@@ -75,12 +76,12 @@ Supermemory: API Bộ nhớ AI Mã nguồn Mở Nhanh nhất để Xây dựng �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -90,7 +91,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [dify-vs-flowise-2026](supermemory-open-source-ai-memory-api)
 - [turbovec-rust-vector-index-2026](supermemory-open-source-ai-memory-api)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -23,6 +23,7 @@ tags: ["aider", "ai-pair-programming", "terminal-ai", "cli-coding", "git-ai", "l
 aliases:
   - /posts/aider/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -45,9 +46,9 @@ Aider's architecture centers on three core concepts: the repo map, the edit form
 
 **Architect Mode:** For complex changes, Aider separates planning from execution. A reasoning model (like o3 or Claude Opus) drafts the architectural plan, while a fast editing model (like GPT-4.1) executes the file changes. This two-model approach cuts costs by 40-60% on routine edits while maintaining high quality on complex refactors.
 
-```bash
+````bash
 aider --model o3 --editor-model gpt-4.1 --architect
-```
+`````
 
 ## Installation & Setup
 
@@ -55,7 +56,7 @@ Getting started with Aider takes under five minutes. You need Python 3.8-3.13 an
 
 **Step 1 — Install Aider:**
 
-```bash
+`````bash
 # Using aider-install (recommended)
 python -m pip install aider-install
 aider-install
@@ -69,11 +70,11 @@ curl -LsSf https://aider.chat/install.sh | sh
 
 # Or one-liner for Windows
 powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
-```
+`````
 
 **Step 2 — Configure your API key:**
 
-```bash
+`````bash
 # Claude (Anthropic)
 export ANTHROPIC_API_KEY=sk-ant-api03-your-key
 
@@ -88,11 +89,11 @@ export GEMINI_API_KEY=your-key
 
 # Or use a .env file in your project root
 echo "ANTHROPIC_API_KEY=sk-ant-api03-your-key" > .env
-```
+`````
 
 **Step 3 — Start coding:**
 
-```bash
+`````bash
 cd /to/your/project
 
 # With Claude Sonnet
@@ -107,44 +108,44 @@ aider --model deepseek --api-key deepseek=sk-your-key
 # With local model via Ollama
 ollama pull qwen2.5-coder:32b
 aider --model ollama/qwen2.5-coder:32b
-```
+`````
 
 **Docker alternative:**
 
-```bash
+`````bash
 docker run -it --rm \
   -v $(pwd):/app \
   -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
   paulgauthier/aider \
   --model sonnet
-```
+`````
 
 ## Integration with Popular Tools
 
 ### VS Code
 
-Aider does not require a VS Code extension. Start Aider in your project terminal, then edit files in VS Code as usual. Aider watches the git repository and commits changes automatically. For a tighter workflow, use the `--watch-files` flag: ```bash
+Aider does not require a VS Code extension. Start Aider in your project terminal, then edit files in VS Code as usual. Aider watches the git repository and commits changes automatically. For a tighter workflow, use the ``--watch-files`` flag: `````bash
 # In terminal 1: start aider
 aider --model sonnet --watch-files
 
 # In VS Code: add AI comments like "// AI: refactor this to use async/await"
 # Aider picks up the comment, makes the change, and commits it
-```
+`````
 
 ### Vim / Neovim
 
-Aider fits naturally into a Vim workflow. Run it in a tmux split alongside your editor: ```bash
+Aider fits naturally into a Vim workflow. Run it in a tmux split alongside your editor: `````bash
 # tmux config for aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
 tmux send-keys -t aider-vim.0 'vim .' C-m
 tmux send-keys -t aider-vim.1 'aider --model sonnet' C-m
 tmux attach -t aider-vim
-```
+`````
 
 ### Git & GitHub
 
-Aider's git integration is its standout feature. Every AI-assisted edit becomes a discrete commit: ```bash
+Aider's git integration is its standout feature. Every AI-assisted edit becomes a discrete commit: `````bash
 # Inside an aider session
 > /add src/auth.js src/middleware.js
 > Add JWT token validation to the auth middleware
@@ -158,21 +159,21 @@ git diff HEAD~3..HEAD  # review last 3 AI commits
 
 # Push to GitHub
 git push origin main
-```
+`````
 
 ### GitLab CI/CD Integration
 
-```yaml
+`````yaml
 # .gitlab-ci.yml - AI code review pipeline
 ai-review: image: python:3.12
   before_script: - pip install aider-chat
   script: - aider --model sonnet --message "Review this MR for security issues" --no-auto-commits
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-```
+`````
 
 ### Pre-commit Hooks
 
-```yaml
+`````yaml
 # .pre-commit-config.yaml
 repos: - repo: local
     hooks: - id: aider-lint
@@ -180,7 +181,7 @@ repos: - repo: local
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
         pass_filenames: false
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -190,13 +191,13 @@ Aider maintains the most widely cited LLM coding benchmark in the industry. The 
 
 | Model | Score | Cost/Run | Edit Format |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-5 (high) | 88.0% | $29.08 | diff |
 | GPT-5 (medium) | 86.7% | $17.69 | diff |
@@ -212,13 +213,13 @@ The cost gap is staggering: DeepSeek V3.2 Reasoner scores 74.2% at $1.30 per ben
 
 Aider also benchmarks itself on real-world coding tasks using the aider coding benchmark: | Model | Pass Rate | Avg Tokens | Latency |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Sonnet 4 | 72% | 18,400 | 45s |
 | GPT-4.1 | 68% | 22,100 | 38s |
@@ -236,44 +237,44 @@ Based on community reports and developer surveys in 2026: - **Solo developers:**
 
 ### Security: Restricting File Access
 
-```bash
+`````bash
 # Only allow edits to specific directories
 aider --model sonnet --read-only src/ --edit docs/
 
 # Use a .aiderignore file
 echo "*.secret" > .aiderignore
 echo "config/prod.yml" >> .aiderignore
-```
+`````
 
 ### Prompt Caching for Cost Reduction
 
-Aider supports prompt caching for Anthropic Claude and OpenAI models, reducing API costs by 40-60% on multi-turn conversations: ```bash
+Aider supports prompt caching for Anthropic Claude and OpenAI models, reducing API costs by 40-60% on multi-turn conversations: `````bash
 # Prompt caching is automatic for supported models
 aider --model sonnet --cache-prompts
 
 # Check cache statistics
 # Look for "Cache hit" in the output to confirm savings
-```
+`````
 
 ### Custom Model Aliases
 
-```bash
+`````bash
 # ~/.aider.conf.yml
 model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
-```
+`````
 
-Usage: ```bash
+Usage: `````bash
 aider --model fast    # uses gpt-4.1
 aider --model smart   # uses claude-sonnet-4
 aider --model cheap   # uses DeepSeek
-```
+`````
 
 ### Linting and Testing Integration
 
-```bash
+`````bash
 # Auto-run lint after each edit
 aider --model sonnet --lint-cmd "npm run lint"
 
@@ -282,11 +283,11 @@ aider --model sonnet --test-cmd "npm test" --auto-test
 
 # Only commit if tests pass
 aider --model sonnet --test-cmd "pytest" --auto-test --test-first
-```
+`````
 
 ### YAML Configuration File
 
-```yaml
+`````yaml
 # ~/.aider.conf.yml
 model: sonnet
 editor: nvim
@@ -296,31 +297,31 @@ lint-cmd: "npm run lint"
 test-cmd: "npm test"
 cache-prompts: true
 show-model-warnings: false
-```
+`````
 
 ### Monitoring with Analytics
 
-```bash
+`````bash
 # Set analytics log for cost tracking
 export AIDER_ANALYTICS_LOG=/var/log/aider/analytics.jsonl
 
 # Track per-project costs
 aider --model sonnet --analytics-log ./logs/aider.jsonl
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Aider | Claude Code | Cursor | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | Free + API keys | $20+/mo Pro | $20/mo Pro | ChatGPT Plus $20/mo |
 | **Open Source** | Apache-2.0 | Proprietary | Proprietary | Proprietary |
@@ -383,13 +384,13 @@ A: Aider itself is free and open source. You only pay for LLM API usage. Moderat
 A: Yes — that is Aider's core design principle. Aider runs in a terminal and operates on your git repository. You can use VS Code, Vim, Neovim, Emacs, Sublime Text, or any other editor simultaneously. Changes made by Aider appear in your editor's file watcher immediately.
 
 **Q: Is Aider safe for production codebases?**
-A: Aider commits every change to git with a descriptive message, so you can review and revert any edit. However, you should always review AI-generated code before merging to main. Use `git diff` to inspect changes, run your test suite with `--auto-test`, and enable branch protection on GitHub/GitLab.
+A: Aider commits every change to git with a descriptive message, so you can review and revert any edit. However, you should always review AI-generated code before merging to main. Use ````git diff```` to inspect changes, run your test suite with ````--auto-test````, and enable branch protection on GitHub/GitLab.
 
 **Q: Which LLM model works best with Aider?**
 A: According to the Aider polyglot leaderboard, GPT-5 (high) achieves the highest score at 88.0%, followed by Claude Sonnet 4 at ~84% and Gemini 2.5 Pro at 83.1%. For cost-sensitive work, DeepSeek V3.2 Reasoner at 74.2% and $1.30 per benchmark run offers the best value.
 
 **Q: Can Aider work without an internet connection?**
-A: Yes, if you use a local model via Ollama or LM Studio. Install the model locally (`ollama pull qwen2.5-coder:32b`), then run `aider --model ollama/qwen2.5-coder:32b`. Note that local models are slower and less capable than cloud APIs for complex multi-file edits.
+A: Yes, if you use a local model via Ollama or LM Studio. Install the model locally (````ollama pull qwen2.5-coder:32b````), then run ````aider --model ollama/qwen2.5-coder:32b````. Note that local models are slower and less capable than cloud APIs for complex multi-file edits.
 
 **Q: How does Aider compare to GitHub Copilot?**
 A: Copilot provides inline autocomplete inside your IDE. Aider is a conversational agent that makes multi-file edits and commits them to git. They complement each other — many developers use Copilot for daily autocomplete and Aider for larger refactors and feature implementation. Copilot costs $10-19/month; Aider is free plus API usage.
@@ -403,11 +404,11 @@ Aider is the most flexible, cost-effective AI pair programming tool available in
 
 **Action items to get started:**
 
-1. Install Aider with `curl -LsSf https://aider.chat/install.sh | sh`
-2. Set your `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`
-3. Run `aider --model sonnet` in your project directory
-4. Add files with `/add`, then describe what you want in natural language
-5. Review the auto-commits with `git log` before pushing
+1. Install Aider with ````curl -LsSf https://aider.chat/install.sh | sh````
+2. Set your ````ANTHROPIC_API_KEY```` or ````OPENAI_API_KEY````
+3. Run ````aider --model sonnet```` in your project directory
+4. Add files with ````/add````, then describe what you want in natural language
+5. Review the auto-commits with ````git log``` before pushing
 
 Join the Aider community on [Discord](https://discord.gg/Y7X7bhMQFV) or [Telegram](https://t.me/dibi8opensource) to share tips, get help, and stay updated on new releases.
 
@@ -463,7 +464,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [prompts-chat](aider)
@@ -473,7 +474,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [claude-code-vs-aider](aider)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

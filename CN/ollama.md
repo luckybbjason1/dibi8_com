@@ -24,6 +24,7 @@ aliases:
   - /posts/ollama/
 - /resources/llm-frameworks/ollama-local-llm-guide/-
 ---
+
 {{</* resource-info */>}}
 
 Running large language models used to mean wrestling with Python environments, CUDA drivers, and gigabytes of dependencies. In 2026, that friction is gone. [Ollama](https://ollama.com) lets you pull, configure, and serve production-grade LLMs with a single command — no PyTorch installation, no manual GPU tuning, no Docker mandatory. With 137,000+ GitHub stars and a thriving ecosystem of integrations, Ollama has become the default runtime for developers who want local inference without operational headaches.
@@ -44,11 +45,11 @@ Created by Jeffrey Morgan and the Ollama team in 2023, the project reached 137,0
 
 ## How Ollama Works
 
-Ollama's architecture follows a client-server model. A background daemon (`ollama serve`) manages model downloads, memory allocation, and inference. The CLI and REST API are thin clients that communicate with this daemon over HTTP on port 11434.
+Ollama's architecture follows a client-server model. A background daemon (```ollama serve````) manages model downloads, memory allocation, and inference. The CLI and REST API are thin clients that communicate with this daemon over HTTP on port 11434.
 
 ### Core Architecture
 
-```
+`````
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   Client    │────▶│ ollama serve │────▶│  llama.cpp/MLX  │
 │  (CLI/API)  │     │   (port     │     │  (inference     │
@@ -60,35 +61,35 @@ Ollama's architecture follows a client-server model. A background daemon (`ollam
                     │  (models,   │
                     │   blobs)    │
                     └─────────────┘
-```
+`````
 
 **Key components:**
 
-- **Model Hub**: Curated GGUF models pulled from `ollama.com`. Each model is identified by a `name:tag` pair (e.g., `llama3.2:8b`).
+- **Model Hub**: Curated GGUF models pulled from ````ollama.com````. Each model is identified by a ````name:tag```` pair (e.g., ````llama3.2:8b````).
 - **Modelfile**: A declarative config (like Dockerfile) specifying base model, system prompt, parameters, and chat templates.
 - **Inference Backends**: Automatic selection of llama.cpp (CUDA/ROCm/CPU), MLX (Apple Silicon), or Metal based on available hardware.
-- **REST API**: OpenAI-compatible endpoints at `/api/generate`, `/api/chat`, `/api/embed`, and `/v1/chat/completions`.
+- **REST API**: OpenAI-compatible endpoints at ````/api/generate````, ````/api/chat````, ````/api/embed````, and ````/v1/chat/completions````.
 
 ### Model Storage
 
-Models are stored in `~/.ollama/models/` as content-addressable blobs (SHA-256 digests). A manifest file tracks which blobs belong to which model tag. This deduplication means two models sharing the same base weights only store one copy on disk.
+Models are stored in ````~/.ollama/models/```` as content-addressable blobs (SHA-256 digests). A manifest file tracks which blobs belong to which model tag. This deduplication means two models sharing the same base weights only store one copy on disk.
 
 ## Installation & Setup
 
 ### macOS
 
-```bash
+`````bash
 # Using Homebrew (recommended)
 brew install ollama
 
 # Or download the native app from ollama.com/download
-```
+`````
 
 ### Linux (One-Line Installer)
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
-```
+`````
 
 This installs the binary, registers a systemd service, and auto-detects GPU capabilities (NVIDIA CUDA, AMD ROCm, or CPU-only).
 
@@ -98,7 +99,7 @@ Download the installer from [ollama.com/download](https://ollama.com/download). 
 
 ### Verify Installation
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.6.7
 
@@ -107,25 +108,25 @@ ollama serve
 
 # Pull and run your first model
 ollama run llama3.2:8b
-```
+`````
 
-The first time you run a model, Ollama downloads it. A quantized 8B parameter model like `llama3.2:8b` requires approximately 4.9 GB of disk space and runs comfortably on 8 GB VRAM.
+The first time you run a model, Ollama downloads it. A quantized 8B parameter model like ````llama3.2:8b```` requires approximately 4.9 GB of disk space and runs comfortably on 8 GB VRAM.
 
 ### Quick Model Selection by Hardware
 
 | Hardware | Recommended Model | Command |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 6–8 GB VRAM | Qwen3 8B | `ollama run qwen3:8b` |
-| 10–12 GB VRAM | Llama 3.1 8B Q4 | `ollama run llama3.1:8b` |
-| 16+ GB VRAM | DeepSeek-R1 14B | `ollama run deepseek-r1:14b` |
-| CPU only, 16 GB RAM | Phi-4 Mini 3.8B | `ollama run phi4-mini` |
-| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | `ollama run llama3.1:70b` |
+| 6–8 GB VRAM | Qwen3 8B | ````ollama run qwen3:8b```` |
+| 10–12 GB VRAM | Llama 3.1 8B Q4 | ````ollama run llama3.1:8b```` |
+| 16+ GB VRAM | DeepSeek-R1 14B | ````ollama run deepseek-r1:14b```` |
+| CPU only, 16 GB RAM | Phi-4 Mini 3.8B | ````ollama run phi4-mini```` |
+| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | ````ollama run llama3.1:70b```` |
 
 ## Integration with Popular Tools
 
@@ -133,7 +134,7 @@ The first time you run a model, Ollama downloads it. A quantized 8B parameter mo
 
 [Open WebUI](https://github.com/open-webui/open-webui) is the most popular frontend for Ollama, providing a ChatGPT-like web interface with RAG, voice input, and multi-user support.
 
-```bash
+`````bash
 # Run Open WebUI with Docker
 docker run -d -p 3000:8080 \
   --add-host=host.docker.internal:host-gateway \
@@ -141,13 +142,13 @@ docker run -d -p 3000:8080 \
   --name open-webui \
   --restart always \
   ghcr.io/open-webui/open-webui:main
-```
+`````
 
-Access at `http://localhost:3000`. Open WebUI auto-discovers your Ollama instance at `http://host.docker.internal:11434`.
+Access at ````http://localhost:3000````. Open WebUI auto-discovers your Ollama instance at ````http://host.docker.internal:11434````.
 
 ### LangChain (Python)
 
-```python
+`````python
 # Install
 pip install langchain-ollama
 
@@ -169,11 +170,11 @@ from langchain_ollama import OllamaEmbeddings
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 vector = embeddings.embed_query("Hello world")
 # Returns a 768-dimensional float vector
-```
+`````
 
 ### Continue.dev (VS Code/Cursor AI Coding Assistant)
 
-Add to `~/.continue/config.json`: ```json
+Add to ``~/.continue/config.json``: `````json
 {
   "models": [
     {
@@ -189,19 +190,19 @@ Add to `~/.continue/config.json`: ```json
     "model": "codeqwen:7b-code"
   }
 }
-```
+`````
 
 ### Dify (Self-Hosted AI Workflow Platform)
 
-In Dify's **Settings > Model Provider > Ollama**, configure: ```
+In Dify's **Settings > Model Provider > Ollama**, configure: `````
 Model Name: llama3.2:8b
 Base URL: http://host.docker.internal:11434
 Context Window: 8192
-```
+`````
 
 ### cURL / REST API Direct Usage
 
-```bash
+`````bash
 # Generate text
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.2:8b",
@@ -221,7 +222,7 @@ curl http://localhost:11434/api/embed -d '{
   "model": "nomic-embed-text",
   "input": ["The sky is blue", "Grass is green"]
 }'
-```
+`````
 
 ## Docker Setup for Production
 
@@ -229,7 +230,7 @@ curl http://localhost:11434/api/embed -d '{
 
 ### Basic Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -254,13 +255,13 @@ services: ollama: image: ollama/ollama:0.6.7
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: openwebui_data: ```
+volumes: ollama_data: openwebui_data: `````
 
-Start with `docker compose up -d`.
+Start with ````docker compose up -d````.
 
 ### NVIDIA GPU Setup
 
-```bash
+`````bash
 # Install NVIDIA Container Toolkit
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \
   | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
@@ -273,21 +274,21 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
-```
+`````
 
 ### AMD ROCm GPU Setup
 
-Use the ROCm-specific image tag: ```yaml
+Use the ROCm-specific image tag: `````yaml
 services: ollama: image: ollama/ollama:rocm
     devices: - /dev/kfd
       - /dev/dri
     group_add: - video
     environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
-```
+`````
 
 ### Multi-Model Concurrent Serving
 
-```yaml
+`````yaml
 services: ollama: image: ollama/ollama:0.6.7
     environment: - OLLAMA_NUM_PARALLEL=4      # 4 concurrent requests
       - OLLAMA_MAX_LOADED_MODELS=2  # Keep 2 models in VRAM
@@ -295,7 +296,7 @@ services: ollama: image: ollama/ollama:0.6.7
     deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-```
+`````
 
 ## Modelfile: Customizing Models
 
@@ -303,7 +304,7 @@ A Modelfile is Ollama's declarative configuration format. It defines how a model
 
 ### Basic Modelfile Example
 
-```dockerfile
+`````dockerfile
 # Modelfile
 FROM llama3.2:8b
 
@@ -326,9 +327,9 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
 
 {{ .Response }}<|eot_id|>"""
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 # Create the custom model
 ollama create senior-dev -f Modelfile
 
@@ -337,11 +338,11 @@ ollama run senior-dev
 
 # View the effective Modelfile
 ollama show senior-dev --modelfile
-```
+`````
 
 ### Advanced: Code Review Assistant
 
-```dockerfile
+`````dockerfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
@@ -359,15 +360,15 @@ Always suggest a fix for [CRITICAL] and [WARN] items."""
 PARAMETER temperature 0.1
 PARAMETER num_ctx 8192
 PARAMETER num_predict 2048
-```
+`````
 
-```bash
+`````bash
 ollama create code-reviewer -f Modelfile.code-review
-```
+`````
 
 ### Creating from a Local GGUF File
 
-```dockerfile
+`````dockerfile
 # Modelfile.local
 FROM ./my-fine-tuned-model-q4_k_m.gguf
 
@@ -375,15 +376,15 @@ PARAMETER temperature 0.7
 PARAMETER num_ctx 4096
 
 SYSTEM "You are a helpful assistant specialized in medical terminology."
-```
+`````
 
-```bash
+`````bash
 ollama create med-assistant -f Modelfile.local
-```
+`````
 
 ### Inspecting Existing Models
 
-```bash
+`````bash
 # Show model details and Modelfile
 ollama show llama3.2:8b --modelfile
 
@@ -398,7 +399,7 @@ ollama list
 
 # Show running models
 ollama ps
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -406,13 +407,13 @@ ollama ps
 
 | Tool | Format | Tokens/sec | Setup Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | Q4_K_M | ~62 tok/s | < 2 min |
 | vLLM | FP16 | ~71 tok/s | ~10 min |
@@ -425,13 +426,13 @@ ollama ps
 
 | Tool | Aggregate tok/s | p99 Latency | Architecture |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | ~155 tok/s | ~24.7s | FIFO queue |
 | vLLM | ~920 tok/s | ~2.8s | Continuous batching |
@@ -444,13 +445,13 @@ ollama ps
 
 | Tool | Idle RAM | Loaded RAM | Cold Start |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | 150 MB | 5.2 GB | 2s |
 | vLLM | 400 MB | 5.5 GB | 5s |
@@ -462,13 +463,13 @@ ollama ps
 1. **Individual Developer**: Ollama + Continue.dev for AI-assisted coding. Latency < 50ms for autocomplete suggestions.
 2. **Small Team (5–10 users)**: Ollama on a shared GPU workstation + Open WebUI. Handles ~50 requests/hour comfortably.
 3. **Edge/Raspberry Pi 5**: Ollama CPU-only with Phi-4 Mini (3.8B). ~8 tok/s, runs entirely offline.
-4. **CI/CD Pipeline**: Ollama in Docker for automated code review. Pulls `code-reviewer` model, processes PR diffs via API.
+4. **CI/CD Pipeline**: Ollama in Docker for automated code review. Pulls ````code-reviewer```` model, processes PR diffs via API.
 
 ## Advanced Usage / Production Hardening
 
 ### Environment Variables
 
-```bash
+`````bash
 # Core settings
 OLLAMA_HOST=0.0.0.0:11434          # Bind to all interfaces
 OLLAMA_KEEP_ALIVE=24h               # Keep models loaded for 24 hours
@@ -479,11 +480,11 @@ OLLAMA_FLASH_ATTENTION=1            # Enable Flash Attention (faster inference)
 # Performance tuning
 OLLAMA_GPU_OVERHEAD=200MB           # Reserve VRAM headroom
 OLLAMA_DEBUG=1                      # Verbose logging
-```
+`````
 
 ### Reverse Proxy with Nginx
 
-```nginx
+`````nginx
 server {
     listen 443 ssl http2;
     server_name ollama.yourdomain.com;
@@ -508,11 +509,11 @@ server {
         proxy_send_timeout 600s;
     }
 }
-```
+`````
 
 ### API Key Authentication (No Native Support)
 
-Ollama does not include built-in API key authentication. Add it via a reverse proxy: ```python
+Ollama does not include built-in API key authentication. Add it via a reverse proxy: `````python
 # ollama-auth-proxy.py (Flask example)
 from flask import Flask, request, Response
 import requests
@@ -537,11 +538,11 @@ def proxy(path): api_key = request.headers.get(Authorization, '').replace('Beare
                    content_type=resp.headers.get('Content-Type'))
 
 if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
-```
+`````
 
 ### Monitoring with Prometheus
 
-Ollama exposes basic metrics via the API: ```bash
+Ollama exposes basic metrics via the API: `````bash
 # List running models with memory usage
 curl http://localhost:11434/api/ps
 
@@ -556,13 +557,13 @@ curl http://localhost:11434/api/ps
 #     }
 #   ]
 # }
-```
+`````
 
-For production monitoring, wrap the `api/ps` endpoint with a Prometheus exporter or use the [ollamaMQ](https://github.com/Chleba/ollamaMQ) proxy with built-in metrics.
+For production monitoring, wrap the ````api/ps```` endpoint with a Prometheus exporter or use the [ollamaMQ](https://github.com/Chleba/ollamaMQ) proxy with built-in metrics.
 
 ### Systemd Service (Linux)
 
-```ini
+`````ini
 # /etc/systemd/system/ollama.service
 [Unit]
 Description=Ollama LLM Service
@@ -580,27 +581,27 @@ Environment="OLLAMA_KEEP_ALIVE=24h"
 
 [Install]
 WantedBy=default.target
-```
+`````
 
-```bash
+`````bash
 sudo systemctl daemon-reload
 sudo systemctl enable ollama
 sudo systemctl start ollama
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Ollama | llama.cpp | vLLM | LocalAI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 137K+ | 75K+ | 45K+ | 35K+ |
 | **Setup Time** | < 2 min | ~5 min | ~10 min | ~15 min |
@@ -631,9 +632,9 @@ sudo systemctl start ollama
 
 **GGUF-only format.** Ollama only supports GGUF-quantized models. If you need FP16 inference, AWQ, or GPTQ formats, use vLLM or Transformers directly.
 
-**No built-in model quantization.** You cannot quantize a model within Ollama. Convert models to GGUF externally (using `llama.cpp/convert_hf_to_gguf.py` or similar), then import via `ollama create`.
+**No built-in model quantization.** You cannot quantize a model within Ollama. Convert models to GGUF externally (using ````llama.cpp/convert_hf_to_gguf.py```` or similar), then import via ````ollama create````.
 
-**Memory management is static.** `OLLAMA_MAX_LOADED_MODELS` controls how many models stay resident, but there is no dynamic VRAM balancing. On a 12 GB GPU, loading a 70B model (even Q4) will OOM — Ollama does not automatically offload layers to CPU.
+**Memory management is static.** ````OLLAMA_MAX_LOADED_MODELS```` controls how many models stay resident, but there is no dynamic VRAM balancing. On a 12 GB GPU, loading a 70B model (even Q4) will OOM — Ollama does not automatically offload layers to CPU.
 
 **Limited tool calling support.** While tool calling is available for compatible models (Llama 3.1+, Mistral), the implementation is less robust than OpenAI's function calling. Complex multi-step tool workflows may require fallback handling.
 
@@ -646,13 +647,13 @@ A: A Q4_K_M quantized 7B model requires approximately 4.5–5 GB of VRAM. For Q8
 A: Yes. Ollama falls back to CPU inference via llama.cpp automatically. Performance depends on your CPU: an Intel i7-13700K generates ~8–12 tok/s with a 7B Q4 model. Apple Silicon M3 Pro achieves ~25 tok/s on CPU/Neural Engine.
 
 **Q: How do I update Ollama to the latest version?**
-A: On macOS, run `brew upgrade ollama`. On Linux, re-run the install script: `curl -fsSL https://ollama.com/install.sh | sh`. The script preserves your downloaded models in `~/.ollama/models/`.
+A: On macOS, run ````brew upgrade ollama````. On Linux, re-run the install script: ````curl -fsSL https://ollama.com/install.sh | sh````. The script preserves your downloaded models in ````~/.ollama/models/````.
 
 **Q: Is Ollama suitable for production use?**
 A: For single-purpose deployments (one model, one user, predictable load), yes. For multi-user production serving, consider adding a queuing proxy or switching to vLLM. Always add authentication and monitoring before exposing to a network.
 
 **Q: Can I use my own fine-tuned models with Ollama?**
-A: Yes. Convert your model to GGUF format, then create a Modelfile pointing to it with `FROM ./your-model.gguf`. Run `ollama create my-model -f Modelfile` and it becomes available through the standard API.
+A: Yes. Convert your model to GGUF format, then create a Modelfile pointing to it with ````FROM ./your-model.gguf````. Run ````ollama create my-model -f Modelfile```` and it becomes available through the standard API.
 
 **Q: How does Ollama compare to OpenAI's API in terms of output quality?**
 A: For equivalent base models (Llama 3.1 vs GPT-3.5), output quality is competitive on coding and reasoning tasks. The gap is larger on creative writing and multi-step reasoning where GPT-4 and Claude 3.5 Sonnet still lead. Local inference eliminates latency from network round-trips.
@@ -667,8 +668,8 @@ Ollama removes the friction from local LLM deployment. One command installs it, 
 For solo developers and small teams, Ollama is the pragmatic starting point. When concurrent load exceeds ~5 users, evaluate vLLM. When you need multi-modal support beyond text, evaluate LocalAI. But start with Ollama — the 137,000+ stars reflect a tool that genuinely delivers on its promise.
 
 **Next steps:**
-1. Install Ollama: `curl -fsSL https://ollama.com/install.sh | sh`
-2. Run your first model: `ollama run llama3.2:8b`
+1. Install Ollama: ````curl -fsSL https://ollama.com/install.sh | sh````
+2. Run your first model: ````ollama run llama3.2:8b```
 3. Deploy Open WebUI for a team chat interface
 4. Join the [dibi8 developer community on Telegram](https://t.me/dibi8dev) for local LLM deployment tips and troubleshooting
 
@@ -726,7 +727,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [llm-inference-cost-optimization-guide-2026](ollama)
@@ -736,7 +737,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [ollama-vs-vllm](ollama)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

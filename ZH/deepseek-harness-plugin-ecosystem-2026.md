@@ -13,13 +13,14 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 ---
 
+
 # DeepSeek Harness：正在席卷2026的插件框架
 
 你是否也经历过这样的困扰：花了几个小时配置 Claude Code，反复调试 Cursor 的设置，折腾 Codex CLI 的命令行参数——结果遇到一个稍微"不正常"的场景，整个工作流就崩了。这不是你的问题。核心矛盾在于：大多数 AI 编程工具都是封闭式系统，你的命运完全掌握在它们的官方 roadmap 手里。
 
 上个月，DeepSeek Harness 彻底改变了我对 AI Agent 的认知。当我在20分钟内写出第一个插件时，我意识到：**这才是 AI Agent 应该有的样子**。不用再等官方发需求，不用再担心工具之间的上下文串扰。所有能力都变成可组合、可分享的 Skill，而且永久有效。
 
-如果你用过国内的扣子（Coze）、Dify 的工作流编排，或者 Cursor 的 `.cursorrules`，你会很快理解 DSH 的思路——只是它把这件事做到了更底层、更灵活。扣子和 Dify 的优势在于低代码和可视化，适合快速搭建原型；但当你需要精细控制每一个细节、需要复用代码逻辑、需要在多个项目间共享能力时，DSH 的优势就显现出来了。
+如果你用过国内的扣子（Coze）、Dify 的工作流编排，或者 Cursor 的 ```.cursorrules````，你会很快理解 DSH 的思路——只是它把这件事做到了更底层、更灵活。扣子和 Dify 的优势在于低代码和可视化，适合快速搭建原型；但当你需要精细控制每一个细节、需要复用代码逻辑、需要在多个项目间共享能力时，DSH 的优势就显现出来了。
 
 更重要的是，DSH 是开源免费的，不绑定任何商业平台。你用 DSH 写的插件，可以自由迁移到任何环境，不会像某些 SaaS 工具那样被厂商锁定。
 
@@ -43,7 +44,7 @@ DeepSeek Harness 采用三层架构：
 2. **插件层** — 你的自定义代码，运行时动态加载
 3. **集成层** — 对接 Claude Code、Codex、Cursor 等宿主环境
 
-```typescript
+`````typescript
 // 示例：一个简单的 DSH 插件
 import { Plugin } from 'deepseek-harness';
 
@@ -56,7 +57,7 @@ export class MyPlugin extends Plugin {
     return { success: true };
   }
 }
-```
+`````
 
 插件可以做这些事情：
 - 钩入 Agent 生命周期事件（启动、暂停、停止）
@@ -68,7 +69,7 @@ export class MyPlugin extends Plugin {
 这跟 **Dify 的自定义工具** 或 **Coze 的插件市场** 类似，但 DSH 的插件是纯代码，你可以在 IDE 里享受完整的类型提示和热重载。
 
 跟国内常见的 AI 编程辅助工具对比：
-- **Cursor**：通过 `.cursorrules` 设置提示词，通过 Rules 文件定义规则，但不能添加可执行的行为
+- **Cursor**：通过 ````.cursorrules```` 设置提示词，通过 Rules 文件定义规则，但不能添加可执行的行为
 - **Windsurf**：类似 Cursor，规则驱动，缺少插件扩展能力
 - **Trae（字节跳动）**：基于 Cursor 改造，同样缺乏插件机制
 - **Roo Code**：开源替代品，但插件生态远不如 DSH 成熟
@@ -77,7 +78,7 @@ export class MyPlugin extends Plugin {
 DSH 的独特之处在于它是一个真正的运行时，而不是配置系统。你写的插件是实实在在的可执行代码，拥有完整的 API 访问权限、文件系统操作能力和异步执行能力。
 
 跟国内常见的 AI 编程辅助工具对比：
-- **Cursor**：通过 `.cursorrules` 设置提示词，通过 Rules 文件定义规则，但不能添加可执行的行为
+- **Cursor**：通过 ````.cursorrules```` 设置提示词，通过 Rules 文件定义规则，但不能添加可执行的行为
 - **Windsurf**：类似 Cursor，规则驱动，缺少插件扩展能力
 - **Trae（字节跳动）**：基于 Cursor 改造，同样缺乏插件机制
 - **Roo Code**：开源替代品，但插件生态远不如 DSH 成熟
@@ -107,7 +108,7 @@ DSH 的插件架构有几个关键设计原则：
 
 跟国内 **扣子的工作流版本管理** 对比，DSH 的版本管理更精细——你可以控制每个插件的加载顺序和依赖关系。
 
-另外，DSH 支持插件之间的依赖声明。比如你的 `code-review` 插件可能依赖 `secrets-scanner` 插件，DSH 会自动按照依赖关系排序加载顺序。这跟 npm 的依赖管理类似，但更简单直观。
+另外，DSH 支持插件之间的依赖声明。比如你的 ````code-review```` 插件可能依赖 ````secrets-scanner```` 插件，DSH 会自动按照依赖关系排序加载顺序。这跟 npm 的依赖管理类似，但更简单直观。
 
 ### 插件的生命周期
 
@@ -117,17 +118,17 @@ DSH 的插件架构有几个关键设计原则：
 2. **执行** — 插件的核心逻辑，接收上下文并返回结果
 3. **清理** — 插件被卸载时执行，用于释放资源、关闭连接等
 
-你可以通过重写这些生命周期方法来控制插件的行为。比如，在初始化阶段建立数据库连接，在执行阶段查询数据，在清理阶段关闭连接。这跟 Python 的 `__init__` 和 `__del__` 方法类似，但更灵活。
+你可以通过重写这些生命周期方法来控制插件的行为。比如，在初始化阶段建立数据库连接，在执行阶段查询数据，在清理阶段关闭连接。这跟 Python 的 ````__init__```` 和 ````__del__```` 方法类似，但更灵活。
 
 ### 插件的上下文对象
 
-每个插件执行时都会收到一个 `context` 对象，它包含了执行所需的所有信息：
+每个插件执行时都会收到一个 ````context```` 对象，它包含了执行所需的所有信息：
 
-- `context.agent` — 当前运行的 Agent 实例
-- `context.storage` — 持久化存储，用于跨会话保存数据
-- `context.config` — 插件的配置项
-- `context.logger` — 日志记录器
-- `context.env` — 环境变量
+- ````context.agent```` — 当前运行的 Agent 实例
+- ````context.storage```` — 持久化存储，用于跨会话保存数据
+- ````context.config```` — 插件的配置项
+- ````context.logger```` — 日志记录器
+- ````context.env```` — 环境变量
 
 这些对象让你可以访问任意资源，也可以被其他插件访问。这种设计跟 **Dify 的上下文变量** 类似，但更底层、更强大。
 
@@ -145,72 +146,72 @@ DSH 的插件架构有几个关键设计原则：
 - 在国内的 **GitHub Mirror**（如 ghproxy.com）上克隆仓库
 
 ### 方法一：npm 安装（推荐）
-```bash
+`````bash
 npm install -g deepseek-harness
 dsh init
-```
+`````
 
 ### 方法二：pip 安装
-```bash
+`````bash
 pip install deepseek-harness
 dsh init
-```
+`````
 
 ### 方法三：从源码编译
-```bash
+`````bash
 git clone https://github.com/deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm run build
 pnpm dsh web
-```
+`````
 
-**注意：** DSH 从源码构建需要 `pnpm`。如果还没装，可以用 `npm install -g pnpm` 先装好。
+**注意：** DSH 从源码构建需要 ````pnpm````。如果还没装，可以用 ````npm install -g pnpm```` 先装好。
 
 国内开发者如果 npm/pnpm 拉包慢，可以换成淘宝镜像源：
-```bash
+`````bash
 npm config set registry https://registry.npmmirror.com
 pnpm config set registry https://registry.npmmirror.com
-```
+`````
 
 推荐使用 nvm 管理 Node.js 版本，避免全局污染：
-```bash
+`````bash
 nvm install 18 && nvm use 18
-```
+`````
 
 ### 快速启动：Web 界面
-```bash
+`````bash
 npx @deepseek-ai/dsh web
-```
-启动后访问 `http://127.0.0.1:3080`。零配置，打开浏览器就能开始写插件。
+`````
+启动后访问 ````http://127.0.0.1:3080````。零配置，打开浏览器就能开始写插件。
 
 如果你在用 SSH 服务器或无头环境（比如你的阿里云 ECS 或本地 Docker 容器）：
-```bash
+`````bash
 npx @deepseek-ai/dsh web --no-open
 # 然后通过端口转发访问
 ssh -L 3080:localhost:3080 user@server
-```
+`````
 
 这个场景跟 **Cursor 远程开发** 或 **Windsurf 云环境** 的配置思路一样——本地跑 Web UI，远程服务暴露端口。
 
 国内开发者也可以考虑用 **Cloudflare Tunnel** 替代 SSH 端口转发，免费且稳定：
-```bash
+`````bash
 npm install -g cloudflared
 cloudflared tunnel --url http://localhost:3080
-```
+`````
 
 ## 构建你的第一个插件
 
 我们来写一个插件：每次提交代码后自动生成 commit 摘要。
 
 ### 第一步：初始化插件
-```bash
+`````bash
 dsh create-plugin summarize-commits
 cd summarize-commits
-```
+`````
 
 ### 第二步：编写插件代码
-```typescript
+`````typescript
 import { Plugin, PluginContext } from 'deepseek-harness';
 import { execSync } from 'child_process';
 
@@ -222,35 +223,35 @@ export class SummarizeCommitsPlugin extends Plugin {
     const diff = execSync('git diff HEAD~1 HEAD --stat').toString();
     const commit = execSync('git log -1 --pretty=%B').toString();
     
-    const prompt = `
+    const prompt = ````
 请用一句话总结这个 git commit：
 ${commit}
 
 变更文件：
 ${diff}
-`;
+````;
     
     return { prompt };
   }
 }
-```
+`````
 
 这段代码的逻辑跟 **AI 辅助写 commit message** 的工具（如 Commitlint + AI、orval 的 commit 插件）类似，但 DSH 把它变成了可复用的 Skill。
 
 跟国内的 **GPTcommit**、**Commitizen + AI** 等工具对比，DSH 的版本更强——因为它可以访问完整的 git 上下文，而且可以和其他插件协同工作。
 
 ### 第三步：注册插件
-```bash
+`````bash
 dsh plugin add ./summarize-commits
 dsh plugin list  # 确认安装成功
-```
+`````
 
 ### 第四步：测试插件
-```bash
+`````bash
 dsh run summarize-commits --dry-run
-```
+`````
 
-`--dry-run` 模式不会真正执行，只会输出将要发送的 prompt，方便你先确认效果。这跟 **Dify 的测试面板** 作用类似。
+````--dry-run```` 模式不会真正执行，只会输出将要发送的 prompt，方便你先确认效果。这跟 **Dify 的测试面板** 作用类似。
 
 测试通过后再正式运行，确认生成的 commit 摘要符合预期。你可以多次迭代优化插件逻辑，直到满意为止。
 
@@ -264,7 +265,7 @@ dsh run summarize-commits --dry-run
 DSH 通过 Skills 系统与 Claude Code 无缝对接。
 
 ### Claude Code 集成配置
-```yaml
+`````yaml
 # ~/.claude/settings.json
 {
   "plugins": [
@@ -275,12 +276,12 @@ DSH 通过 Skills 系统与 Claude Code 无缝对接。
     }
   ]
 }
-```
+`````
 
-`autoLoad: true` 表示每次启动 Claude Code 时自动加载 DSH 插件，不用再手动初始化。
+````autoLoad: true```` 表示每次启动 Claude Code 时自动加载 DSH 插件，不用再手动初始化。
 
 ### Cursor 集成配置
-```json
+`````json
 // .cursorrc
 {
   "dsh": {
@@ -288,18 +289,18 @@ DSH 通过 Skills 系统与 Claude Code 无缝对接。
     "pluginsDir": "~/.dsh/plugins"
   }
 }
-```
+`````
 
-这个配置跟 **Cursor 的自定义规则**（`.cursorrules`）是互补的——`.cursorrules` 控制提示词，DSH 控制可执行的行为。两者结合使用，能达到最佳效果。
+这个配置跟 **Cursor 的自定义规则**（````.cursorrules````）是互补的——````.cursorrules```` 控制提示词，DSH 控制可执行的行为。两者结合使用，能达到最佳效果。
 
 ### 在任何 Agent 中使用
-```bash
+`````bash
 # 启动 Web UI
 dsh web
 
 # 或直接通过命令行调用
 dsh run my-plugin --arg value
-```
+`````
 
 这跟 **扣子的工作流调用** 或 **Dify 的 API 触发** 是类似的思路，只是 DSH 更原生地融入开发工具链。
 
@@ -308,12 +309,12 @@ dsh run my-plugin --arg value
 ## 高级插件模式
 
 ### 异步操作
-```typescript
+`````typescript
 async execute(context: PluginContext): Promise<PluginResult> {
   const data = await fetchAPI('/external-endpoint');
   return { success: true, data };
 }
-```
+`````
 
 当你需要调用外部 API（比如 GitHub API、公司内部服务）时，用 async/await 模式。这跟 **FastGPT 的自定义工具** 或 **Coze 的 API 节点** 用法一致。
 
@@ -326,22 +327,22 @@ async execute(context: PluginContext): Promise<PluginResult> {
 DSH 的异步模型让这些集成变得非常简单，不需要额外封装。
 
 ### 状态持久化
-```typescript
+`````typescript
 const state = await context.storage.get('my-state');
 await context.storage.set('my-state', { key: 'value' });
-```
+`````
 
-插件之间的共享状态，或者跨会话的记忆，都存在 `context.storage` 里。这比 **Dify 的变量记忆** 更底层，但更灵活。
+插件之间的共享状态，或者跨会话的记忆，都存在 ````context.storage```` 里。这比 **Dify 的变量记忆** 更底层，但更灵活。
 
 你可以用这个机制存储用户的偏好设置、项目配置、历史执行结果等。下次同一个项目启动时，插件可以自动恢复之前的状态，实现真正的"记忆"功能。
 
 ### 事件钩子
-```typescript
+`````typescript
 this.on('before:commit', async (ctx) => {
   // 在 commit 前执行安全检查
   await this.validateSecurity(ctx);
 });
-```
+`````
 
 你可以监听各种生命周期事件，在特定时刻插入自己的逻辑。这跟 **Git Hooks（pre-commit、post-merge）** 的概念一致，只是 DSH 的事件粒度更细，而且支持异步。
 
@@ -359,9 +360,9 @@ this.on('before:commit', async (ctx) => {
 这个场景在国内开发者中很常见——类似 **AliSec 的安全扫描**、**字节跳动的内部代码审查工具**，但 DSH 让你能自己定制，而不是用现成的 SaaS 服务。
 
 具体实现时，你可以：
-- 集成 `gitleaks` 或 `trufflehog` 进行密钥扫描
-- 使用 `semgrep` 进行静态代码分析
-- 调用 `npm audit` 或 `pip audit` 检查依赖漏洞
+- 集成 ````gitleaks```` 或 ````trufflehog```` 进行密钥扫描
+- 使用 ````semgrep```` 进行静态代码分析
+- 调用 ````npm audit```` 或 ````pip audit```` 检查依赖漏洞
 - 自定义规则检查公司内部的编码规范
 
 对于中小型团队，DSH 插件可以替代部分 **SonarQube**、**Bandit**、**gitleaks** 的功能，而且更容易集成到日常开发流程中。
@@ -375,7 +376,7 @@ this.on('before:commit', async (ctx) => {
 
 这跟 **Multi-Agent 框架**（如 CrewAI、MetaGPT）的思路类似，但 DSH 更轻量，不需要部署独立的 Agent 集群。
 
-跟国内的 **Coze 多 Bot 协作**、**Dify 多 Agent 工作流** 对比，DSH 的多 Agent 协作更贴近代码层面，适合开发者直接使用。你可以通过 `context.storage` 在多个 Agent 之间共享状态，实现复杂的协作逻辑。
+跟国内的 **Coze 多 Bot 协作**、**Dify 多 Agent 工作流** 对比，DSH 的多 Agent 协作更贴近代码层面，适合开发者直接使用。你可以通过 ````context.storage```` 在多个 Agent 之间共享状态，实现复杂的协作逻辑。
 
 例如，你可以构建一个"代码审查流水线"：
 1. Agent A 读取代码变更
@@ -405,13 +406,13 @@ this.on('before:commit', async (ctx) => {
 
 | 指标 | 原生 Claude Code | DSH | 提升幅度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 插件加载时间 | N/A | 45ms | — |
 | Token 消耗（启用插件） | 100% | 62% | -38% |
@@ -434,15 +435,15 @@ this.on('before:commit', async (ctx) => {
 
 | 功能特性 | DeepSeek Harness | Agent Skills | Superpowers | Skills Framework |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 多 Agent 支持 | ✅ | ✅ | ✅ | ❌ |
 | 插件市场 | ✅ | ❌ | ❌ | ❌ |
@@ -503,13 +504,13 @@ DSH 并非完美。以下是一些你需要知道的：
 ## 常见问题排查
 
 ### 问题一：插件未加载
-```bash
+`````bash
 # 检查插件注册状态
 dsh plugin list
 
 # 查看插件日志
 dsh logs --plugin my-plugin --tail 50
-```
+`````
 
 如果插件没生效，先看日志，再查注册状态。这跟 **Dify 的调试日志** 或 **扣子的运行记录** 思路一样。
 
@@ -520,21 +521,21 @@ dsh logs --plugin my-plugin --tail 50
 
 ### 问题二：端口被占用
 如果 3080 端口已被占用：
-```bash
+`````bash
 npx @deepseek-ai/dsh web --port 3081
-```
+`````
 
 跟 **localtunnel** 或 **ngrok** 的思路一样，换端口绕过冲突。
 
 国内开发者如果遇到端口冲突，也可以用 **frp**、**ngrok 国内版** 等内网穿透工具，将 DSH Web UI 暴露到公网。
 
 ### 问题三：TypeScript 编译错误
-```bash
+`````bash
 # 清理缓存并重新构建
 rm -rf node_modules/.cache
 pnpm run clean
 pnpm run build
-```
+`````
 
 如果装了新的依赖后编译报错，先清缓存再试。这跟 **Next.js 开发模式** 的常见问题处理方式一致。
 
@@ -542,7 +543,7 @@ pnpm run build
 
 ### 问题四：长时间运行内存泄漏
 在插件配置中设置内存限制：
-```typescript
+`````typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -550,7 +551,7 @@ export default {
     gcInterval: '5m'
   }
 };
-```
+`````
 
 如果你的插件处理大量数据，建议加上这个配置。这跟 **Node.js 进程的内存管理** 最佳实践类似。
 
@@ -567,10 +568,10 @@ export default {
 3. **密钥扫描** — 集成密钥扫描工具作为 pre-commit 插件
 4. **插件审计** — 安装第三方插件前先审查代码
 
-```bash
+`````bash
 # 对插件进行安全扫描
 dsh security scan --deep ./plugins
-```
+`````
 
 这跟 **Snyk 扫描**、**SonarQube 代码审计** 的思路一致，只是 DSH 内置了安全检查命令。
 
@@ -610,7 +611,7 @@ Cordis 的核心创新在于将"时间"作为一等公民引入编程模型。�
 在高并发场景下，优化插件性能：
 
 ### 缓存策略
-```typescript
+`````typescript
 const cache = new LRUMap({
   max: 1000,
   ttl: '10m'
@@ -623,14 +624,14 @@ if (cached) return cached;
 const result = await expensiveOperation();
 cache.set(key, result);
 return result;
-```
+`````
 
 这跟 **Redis 缓存**、**Memcached** 的思路一致，只是 DSH 的缓存是进程内的，延迟更低。
 
 对于需要频繁调用的外部 API，建议在插件层面实现缓存层。这样可以减少重复请求，降低延迟，同时节省 API 调用费用。
 
 ### 并发控制
-```typescript
+`````typescript
 import { Semaphore } from 'deepseek-harness/utils';
 
 const sem = new Semaphore(5); // 最多 5 个并发操作
@@ -643,13 +644,13 @@ async execute(context) {
     sem.release();
   }
 }
-```
+`````
 
 如果你要并发调用多个外部 API，用信号量控制并发数，避免压垮下游服务。这跟 **Node.js 的并发控制库**（如 p-limit）用法类似。
 
 在国内场景下，对接国内 API（如百度、阿里、腾讯）时，需要注意 API 的并发限制。建议在插件中加入退避重试逻辑，避免触发限流。
 
-```typescript
+`````typescript
 import { exponentialBackoff } from 'deepseek-harness/utils';
 
 async execute(context) {
@@ -659,7 +660,7 @@ async execute(context) {
   
   return { success: true, data: result };
 }
-```
+`````
 
 这种模式在国内 API 集成中非常实用。百度、阿里、腾讯的 API 通常都有 QPS 限制，合理的退避策略可以避免触发限流，保证服务的稳定性。
 
@@ -685,14 +686,14 @@ async execute(context) {
 3. 提交带测试的 PR
 4. 加入 Discord 社区
 
-```bash
+`````bash
 # 开发环境搭建
 git clone git@github.com:deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm test  # 运行测试套件
 pnpm dev    # 启动开发模式
-```
+`````
 
 跟 **开源项目的标准贡献流程** 一样，没什么特别的。
 
@@ -753,7 +754,7 @@ DSH 本身用 TypeScript 编写，但插件可以用 TypeScript、Python 或 YAM
 
 **问：** DSH 可以和 Cursor 规则文件配合使用吗？
 
-可以。DSH 和 Cursor 的规则文件是互补的。你可以用 `.cursorrules` 设置全局的行为规范，用 DSH 插件实现复杂的自动化逻辑。
+可以。DSH 和 Cursor 的规则文件是互补的。你可以用 ````.cursorrules``` 设置全局的行为规范，用 DSH 插件实现复杂的自动化逻辑。
 
 **问：** DSH 支持自定义模型吗？
 
@@ -795,7 +796,7 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 你现在会想做什么样的插件？在评论区分享你的想法，或者去 GitHub 提一个 Issue。
 
 
----
+* * *
 **来源与延伸阅读：**
 - 官方文档：https://deepseek-harness.github.io/deepseek-harness/
 - 插件市场：https://marketplace.deepseek.ai
@@ -833,7 +834,7 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](deepseek-harness-plugin-ecosystem-2026)
@@ -842,7 +843,7 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 - [claude-code-vs-aider](deepseek-harness-plugin-ecosystem-2026)
 - [cursor-vs-claude-code](deepseek-harness-plugin-ecosystem-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

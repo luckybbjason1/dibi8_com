@@ -7,6 +7,7 @@ aliases:
   - /posts/huggingface-transformers-guide/
 ---
 
+
 {</* resource-info */>}
 
 Hugging Face Transformers는 현대 NLP 개발의 표준 라이브러리다. 2025년 5월 기준 50,000개 이상의 사전학습 모델과 200개 이상의 언어를 지원하며, GitHub Star 140,000개 이상으로 가장 인기 있는 머신러닝 저장소 중 하나다. 이 가이드는 설치부터 프로덕션 배포까지 개발자가 실제로 필요한 모든 내용을 다룬다.
@@ -44,30 +45,30 @@ Transformers 라이브러리의 핵심 강점은 압도적인 모델 지원 범�
 
 ### 기본 설치
 
-```bash
+````bash
 pip install transformers
 pip install torch  # PyTorch 백엔드
-```
+`````
 
 ### GPU 지원 설치
 
-```bash
+`````bash
 # CUDA 12.1 기준
 pip install torch --index-url https://download.pytorch.org/whl/cu121
 
 # GPU 사용 가능 여부 확인
 python -c "import torch; print(torch.cuda.is_available())"
-```
+`````
 
 ### Google Colab에서 물론 GPU 사용하기
 
-Colab에서는 런타임 유형을 GPU로 변경한 후 `!pip install transformers` 명령으로 설치한다. T4 GPU를 물론 제공하며, 대부분의 파인튜닝 작업에 충분하다.
+Colab에서는 런타임 유형을 GPU로 변경한 후 ````!pip install transformers```` 명령으로 설치한다. T4 GPU를 물론 제공하며, 대부분의 파인튜닝 작업에 충분하다.
 
 ## Pipeline API: 가장 쉬운 시작 방법
 
 Pipeline API는 복잡한 전처리와 모델 추론을 하나의 함수 호출로 추상화한다. 가장 빠르게 프로토타입을 만들 수 있는 방법이다.
 
-```python
+`````python
 from transformers import pipeline
 
 # 감성 분석
@@ -94,13 +95,13 @@ summarizer(long_text, max_length=130)
 # 번역
 translator = pipeline("translation_en_to_de", model="t5-base")
 translator("Hello world")
-```
+`````
 
 ## 사전학습 모델 다루기
 
 ### 모델과 토크나이저 로딩
 
-```python
+`````python
 from transformers import AutoModel, AutoTokenizer
 
 # 자동 클래스로 모델 로딩
@@ -113,7 +114,7 @@ model.save_pretrained("./my_model")
 
 # 로컬에서 로딩
 tokenizer = AutoTokenizer.from_pretrained("./my_tokenizer")
-```
+`````
 
 ### 모델 클래스별 특징
 
@@ -135,7 +136,7 @@ tokenizer = AutoTokenizer.from_pretrained("./my_tokenizer")
 2. **BPE (Byte-Pair Encoding)**: GPT 계열에서 사용. 병합 기반 서브워드 분할
 3. **SentencePiece**: T5, LLaMA에서 사용. 언어 중립적 서브워드 분할
 
-```python
+`````python
 from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
@@ -149,13 +150,13 @@ print(encoded.attention_mask) # [1, 1, 1, ...]
 # 배치 처리
 texts = ["첫 번째 문장", "두 번째 문장입니다"]
 batch = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
-```
+`````
 
 ## 특정 사용례를 위한 파인튜닝
 
 ### Trainer API 사용하기
 
-```python
+`````python
 from transformers import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
@@ -188,15 +189,15 @@ trainer = Trainer(
 )
 
 trainer.train()
-```
+`````
 
 ### BERT 분류 파인튜닝
 
-KLUE 벤치마크의 감성 분석 태스크에서 `klue/bert-base`를 파인튜닝할 때, 학습률 2e-5, 배치 크기 32, 3 에폭 설정이 일반적으로 권장된다. 검증 정확도 89~92% 수준을 달성할 수 있다.
+KLUE 벤치마크의 감성 분석 태스크에서 ````klue/bert-base````를 파인튜닝할 때, 학습률 2e-5, 배치 크기 32, 3 에폭 설정이 일반적으로 권장된다. 검증 정확도 89~92% 수준을 달성할 수 있다.
 
 ### LoRA를 활용한 효율적 파인튜닝
 
-```python
+`````python
 from peft import LoraConfig, get_peft_model
 
 lora_config = LoraConfig(
@@ -211,7 +212,7 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 # trainable params: 296,964 || all params: 108,929,604
-```
+`````
 
 LoRA는 전체 파라미터의 0.27%만 학습시켜도 기존 파인튜닝 대비 95% 이상의 성능을 달성한다. 메모리 사용량은 70% 감소한다.
 
@@ -219,7 +220,7 @@ LoRA는 전체 파라미터의 0.27%만 학습시켜도 기존 파인튜닝 대�
 
 ### 양자화 (Quantization)
 
-```python
+`````python
 from transformers import BitsAndBytesConfig
 
 quantization_config = BitsAndBytesConfig(
@@ -233,11 +234,11 @@ model = AutoModelForCausalLM.from_pretrained(
     quantization_config=quantization_config,
     device_map="auto",
 )
-```
+`````
 
 ### ONNX 변환과 추론
 
-```python
+`````python
 from transformers import AutoModelForSequenceClassification
 import torch
 
@@ -250,7 +251,7 @@ torch.onnx.export(
     output_names=["logits"],
     dynamic_axes={...}
 )
-```
+`````
 
 ### 배포 옵션 비교
 
@@ -277,20 +278,20 @@ torch.onnx.export(
 **CUDA out of memory**
 
 - 배치 크기를 1로 줄이고 그래디언트 누적 사용
-- `torch.cuda.empty_cache()` 호출
+- ````torch.cuda.empty_cache()```` 호출
 - 4비트 양자화로 모델 로딩
 
 **모델 호환성 문제**
 
-- `transformers` 라이브러리를 최신 버전으로 업그레이드: `pip install -U transformers`
+- ````transformers```` 라이브러리를 최신 버전으로 업그레이드: ````pip install -U transformers````
 - 모델 카드의 requirements 섹션 확인
 
 **토큰 길이 제한**
 
-- `truncation=True`로 초과 토큰 자동 제거
+- ````truncation=True````로 초과 토큰 자동 제거
 - 청킹(Chunking)으로 긴 문서 분할 처리
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -307,7 +308,7 @@ Hub은 50,000개 이상의 모델을 호스팅하는 웹 플랫폼입니다. Tra
 태스크, 언어, 컴퓨팅 리소스를 고려하세요. 한국어 NLP라면 KLUE/BERT 계열이, 다국어 지원이 필요하면 XLM-RoBERTa가, 텍스트 생성이면 Mistral-7B나 Llama-3가 권장됩니다. Hub의 모델 카드에서 벤치마크 점수를 확인하세요.
 
 **사용자 정의 데이터셋으로 파인튜닝이 가능한가요?**
-네, `Datasets` 라이브러리로 사용자 데이터를 로드하고 `Trainer` API 또는 PyTorch 커스텀 루프로 파인튜닝할 수 있습니다. LoRA/QLoRA를 사용하면 소규모 데이터셋에서도 효과적으로 파인튜닝이 가능합니다.
+네, ````Datasets```` 라이브러리로 사용자 데이터를 로드하고 ````Trainer``` API 또는 PyTorch 커스텀 루프로 파인튜닝할 수 있습니다. LoRA/QLoRA를 사용하면 소규모 데이터셋에서도 효과적으로 파인튜닝이 가능합니다.
 
 ## 참고 자료
 
@@ -317,7 +318,7 @@ Hub은 50,000개 이상의 모델을 호스팅하는 웹 플랫폼입니다. Tra
 - [Datasets 라이브러리 문서](https://huggingface.co/docs/datasets)
 - [Attention Is All You Need (arXiv)](https://arxiv.org/abs/1706.03762)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -389,7 +390,7 @@ Hugging Face Transformers 완벽 가이드 2025: 개발자를 위한 상세 튜�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

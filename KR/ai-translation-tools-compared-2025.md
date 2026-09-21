@@ -7,6 +7,7 @@ aliases:
   - /posts/ai-translation-tools-compared-2025/
 ---
 
+
 # 2025년 최고의 AI 번역 도구: Google Translate vs DeepL vs ChatGPT 비교
 
 
@@ -200,7 +201,7 @@ Google Translate가 243개 언어로 압도적 1위다. 그 다음으로 Microso
 - [Microsoft Translator](https://www.microsoft.com/translator)
 - [Smartcat 번역 플랫폼](https://www.smartcat.com)
 
----
+* * *
 
 ## 추천 도구
 

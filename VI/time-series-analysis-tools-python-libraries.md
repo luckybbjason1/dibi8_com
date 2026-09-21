@@ -22,6 +22,7 @@ aliases:
   - /posts/time-series-analysis-tools-python-libraries/
 ---
 
+
 {</* resource-info */>}
 
 Phân tích chuỗI thờI gian là một trong những lĩnh vực quan trọng nhất trong khoa học dữ liệu, với ứng dụng từ dự báo doanh thu, dự đoán giá chứng khoán, đến quản lý chuỗI cung ứng. Hệ sinh thái Python cho phân tích chuỗI thờI gian đã phát triển rất mạnh mẽ trong những năm gần đây, với các thư viện chuyên dụng như **Prophet**, **sktime**, **statsmodels**, và **Darts**.
@@ -41,18 +42,18 @@ Các tác vụ chính trong phân tích chuỗI thờI gian bao gồm: - **Forec
 
 ## Prophet: Công Cụ Dự Báo CủA Facebook
 
-**Prophet** là thư viện dự báo chuỗI thờI gian mã nguồn mở do Facebook (Meta) phát triển, ra mắt năm 2017. Prophet sử dụng **mô hình hồi quy cộng dồn (additive regression model)** với ba thành phần chính: ```
+**Prophet** là thư viện dự báo chuỗI thờI gian mã nguồn mở do Facebook (Meta) phát triển, ra mắt năm 2017. Prophet sử dụng **mô hình hồi quy cộng dồn (additive regression model)** với ba thành phần chính: ````
 y(t) = g(t) + s(t) + h(t) + ε(t)
 
 Trong đó: - g(t): Trend (xu hướng tuyến tính hoặc logistic)
 - s(t): Seasonality (tính mùa vụ hàng năm, hàng tuần, hàng ngày)
 - h(t): Holidays (tác động của các ngày lễ)
 - ε(t): Nhiễu (error term)
-```
+`````
 
 ### Cách Sử Dụng Prophet
 
-```python
+`````python
 from prophet import Prophet
 import pandas as pd
 
@@ -76,7 +77,7 @@ forecast = model.predict(future)
 # Vẽ kết quả
 fig = model.plot(forecast)
 fig_components = model.plot_components(forecast)
-```
+`````
 
 ### Cấu Hình Nâng Cao
 
@@ -85,7 +86,7 @@ Prophet cho phép tùy chỉnh sâu: - **Custom seasonality**: Thêm tính mùa 
 - **Changepoint detection**: Tự động phát hiện các điểm thay đổi xu hướng
 - **Multiplicative mode**: Chuyển sang mô hình nhân thay vì cộng khi tính mùa vụ tăng theo trend
 
-```python
+`````python
 # Thêm ngày lễ tùy chỉnh
 holidays = pd.DataFrame({
     'holiday': 'tet_holiday',
@@ -95,7 +96,7 @@ holidays = pd.DataFrame({
 })
 
 model = Prophet(holidays=holidays, seasonality_mode='multiplicative')
-```
+`````
 
 ### Khi Nào Chọn Prophet?
 
@@ -115,7 +116,7 @@ model = Prophet(holidays=holidays, seasonality_mode='multiplicative')
 - **Transformers chuyên dụng**: Hàng trăm transformer cho chuỗI thờI gian
 - **Extensive model zoo**: Tích hợp nhiều mô hình từ các thư viện khác nhau
 
-```python
+`````python
 from sktime.forecasting.model_selection import temporal_train_test_split
 from sktime.forecasting.ardl import ARDL
 from sktime.forecasting.compose import TransformedTargetForecaster
@@ -137,7 +138,7 @@ forecaster.fit(y_train)
 # Dự báo
 fh = ForecastingHorizon(y_test.index, is_relative=False)
 y_pred = forecaster.predict(fh)
-```
+`````
 
 ### sktime Pipelines Và Model Composition
 
@@ -145,7 +146,7 @@ sktime cung cấp nhiều strategies để biến đổi bài toán forecasting:
 - **Recursive reduction**: Dùng dự báo tại t-1 làm input cho t
 - **Multioutput reduction**: Huấn luyện một mô hình dự báo nhiều bước cùng lúc
 
-```python
+`````python
 from sktime.forecasting.compose import make_reduction
 from sklearn.ensemble import GradientBoostingRegressor
 
@@ -156,7 +157,7 @@ forecaster = make_reduction(
     strategy="recursive",  # Hoặc "direct", "multioutput"
     window_length=12
 )
-```
+`````
 
 ### Khi Nào Chọn sktime?
 
@@ -171,7 +172,7 @@ forecaster = make_reduction(
 
 ### Các Mô Hình Chính
 
-```python
+`````python
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
@@ -197,7 +198,7 @@ forecast = result.forecast(steps=12)
 # SARIMA với tính mùa vụ
 model = SARIMAX(time_series, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
 result = model.fit()
-```
+`````
 
 ### Các Công Cụ Phân Tích
 
@@ -228,7 +229,7 @@ result = model.fit()
 | **TiDE** | Time series Dense Encoder | Long-horizon forecasting |
 | **N-HiTS** | Hierarchical Interpolation | Multivariate với nhiều seasonality |
 
-```python
+`````python
 from darts.models import NBEATSModel, TFTModel
 from darts import TimeSeries
 from darts.metrics import mape, rmse
@@ -258,13 +259,13 @@ model = TFTModel(
 )
 model.fit(train, future_covariates=covariates, verbose=True)
 prediction = model.predict(n=12, num_samples=100)  # Probabilistic
-```
+`````
 
 ### Probabilistic Forecasting Và Backtesting
 
 Darts nổi bật với khả năng **probabilistic forecasting** — dự báo không chỉ điểm mà cả khoảng tin cậy. Điều này cực kỳ quan trọng trong quyết định kinh doanh.
 
-```python
+`````python
 from darts.backtesting import backtest
 
 # Backtesting với historical forecasts
@@ -279,7 +280,7 @@ historical_forecasts = model.historical_forecasts(
 # Tính metrics
 error = rmse(test, prediction)
 print(f"RMSE: {error:.2f}")
-```
+`````
 
 ### Khi Nào Chọn Darts?
 
@@ -297,7 +298,7 @@ Feature engineering là bước quan trọng nhất trong phân tích chuỗI th
 3. **Datetime features**: Giờ, ngày trong tuần, tháng, quý, năm
 4. **Fourier terms**: Sin/cos biến đổi cho tính mùa vụ
 
-```python
+`````python
 import pandas as pd
 import numpy as np
 
@@ -323,11 +324,11 @@ def create_time_features(df, target_col): """Tạo features cho time series"""
     df['cos_365'] = np.cos(2 * np.pi * df.index.dayofyear / 365.25)
     
     return df
-```
+`````
 
 ### Tích Hợp tsfresh
 
-**tsfresh** là thư viện tự động trích xuất hàng trăm features từ chuỗI thờI gian: ```python
+**tsfresh** là thư viện tự động trích xuất hàng trăm features từ chuỗI thờI gian: `````python
 from tsfresh import extract_features
 from tsfresh.utilities.dataframe_functions import impute
 
@@ -339,12 +340,12 @@ features = extract_features(
     default_fc_parameters='efficient'  # Hoặc 'comprehensive'
 )
 features = impute(features)  # Xử lý NaN
-```
+`````
 
 ### Tránh Data Leakage
 
 Điểm quan trọng nhất trong feature engineering chuỗI thờI gian là **không sử dụng future information** để tạo features. Luôn đảm bảo: - Chỉ sử dụng dữ liệu quá khứ để tạo features cho dự báo hiện tại
-- Sử dụng `shift(1)` trước khi tính rolling statistics
+- Sử dụng ````shift(1)```` trước khi tính rolling statistics
 - Chia train/test theo thờI gian, **không bao giờ shuffle**
 
 ## Bảng So Sánh Toàn Diện
@@ -366,7 +367,7 @@ features = impute(features)  # Xử lý NaN
 
 ### Workflow Hoàn Chỉnh
 
-```
+`````
 ┌─────────────────┐   ┌──────────────────┐   ┌─────────────────┐
 │  Data           │──▶│  Preprocessing   │──▶│  Feature        │
 │  Exploration    │   │  & Cleaning      │   │  Engineering    │
@@ -376,11 +377,11 @@ features = impute(features)  # Xử lý NaN
 │  Deployment     │◀──│  Model Selection │◀──│  Model Training │
 │  & Monitoring   │   │  & Evaluation    │   │  & Tuning       │
 └─────────────────┘   └──────────────────┘   └─────────────────┘
-```
+`````
 
 ### Code Pipeline Hoàn Chỉnh
 
-```python
+`````python
 import pandas as pd
 import numpy as np
 from prophet import Prophet
@@ -430,17 +431,17 @@ from prophet.diagnostics import cross_validation, performance_metrics
 df_cv = cross_validation(model, initial='730 days', period='180 days', horizon='365 days')
 df_p = performance_metrics(df_cv)
 print(df_p.head())
-```
+`````
 
 ## Các Sai Lầm Thường Gặp Và Best Practices
 
 ### Tránh Data Leakage
 
 Sai lầm phổ biến nhất là sử dụng future information trong features. Các dấu hiệu: - Train score cao bất thường so với test score
-- Sử dụng `StandardScaler.fit_transform()` trên toàn bộ dữ liệu trước khi chia train/test
+- Sử dụng ````StandardScaler.fit_transform()```` trên toàn bộ dữ liệu trước khi chia train/test
 - Shuffling dữ liệu chuỗI thờI gian
 
-```python
+`````python
 # ❌ SAI: Fit trên toàn bộ dữ liệu
 scaler = StandardScaler()
 X = scaler.fit_transform(X)  # Data leakage!
@@ -451,22 +452,22 @@ train, test = temporal_train_test_split(X, test_size=0.2)
 scaler = StandardScaler()
 train_scaled = scaler.fit_transform(train)
 test_scaled = scaler.transform(test)  # Chỉ transform, không fit
-```
+`````
 
 ### Cross-Validation Cho ChuỗI ThờI Gian
 
-Không sử dụng K-fold cross-validation thông thường. Sử dụng **walk-forward validation** hoặc **expanding window**: ```python
+Không sử dụng K-fold cross-validation thông thường. Sử dụng **walk-forward validation** hoặc **expanding window**: `````python
 from sklearn.model_selection import TimeSeriesSplit
 
 tscv = TimeSeriesSplit(n_splits=5)
 for train_idx, test_idx in tscv.split(X): X_train, X_test = X[train_idx], X[test_idx]
     # Huấn luyện và đánh giá
-```
+`````
 
 ### Xử Lý Timestamps Không Đều
 
-- **Resampling**: `df.resample('D').mean()` để đảm bảo tần suất đều
-- **Interpolation**: `df.interpolate(method='linear")` cho missing values
+- **Resampling**: ````df.resample('D').mean()```` để đảm bảo tần suất đều
+- **Interpolation**: ````df.interpolate(method='linear")```` cho missing values
 - **Irregular data**: Sử dụng Darts hoặc sktime có hỗ trợ timestamps không đều
 
 ### Chọn Forecast Horizon Phù Hợp
@@ -507,12 +508,12 @@ Ba nguyên tắc vàng: 1. **Không bao giờ shuffle** — Luôn chia theo th�
 2. **Fit transformers trên train only** — StandardScaler, PCA, v.v.
 3. **Lag features phải shift đủ** — Đảm bảo không dùng future information
 
-```python
+`````python
 # Kiểm tra: Nếu correlation giữa features và target quá cao (>0.95),
 # có thể đã có data leakage
 correlation = X_train.corrwith(y_train)
 print(correlation[correlation.abs() > 0.95])
-```
+````
 
 ### Thư Viện Nào Tốt Nhất Cho Real-time Forecasting?
 
@@ -538,7 +539,7 @@ Chiến lược phù hợp nhất là **bắt đầu đơn giản** — Prophet 
 - [statsmodels Documentation](https://www.statsmodels.org/stable/index.html) — Thư viện thống kê Python
 - [Pandas Documentation](https://pandas.pydata.org/docs/) — Xử lý dữ liệu chuỗI thờI gian
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

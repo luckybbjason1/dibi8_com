@@ -23,6 +23,7 @@ tags: ["docmost", "notion alternative", "wiki", "real-time collaboration", "self
 aliases:
   - /posts/docmost-team-docs-collaboration/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Team Needs a Self-Hosted Notion Alternative
@@ -43,9 +44,9 @@ Docmost is an open-source, self-hosted collaborative wiki and documentation plat
 
 Docmost uses a modern three-tier architecture that separates the application server, database, and real-time collaboration layer: | Layer | Technology |
 |
----
+* * *
 |
----
+* * *
 |
 | **Backend** | Node.js / NestJS (TypeScript) |
 | **Frontend** | React with block-based editor |
@@ -61,7 +62,7 @@ The defining architectural decisions are **Operational Transformation (OT)** for
 **Page** —— The primary content unit. Pages support nested sub-pages, creating a tree structure of arbitrary depth.
 **Block** —— The content atom. Everything in a Docmost page is a block: paragraphs, headings, code blocks, tables, callouts, embeds, diagrams.
 
-Docmost's block editor supports slash commands (`/heading`, `/code`, `/table`), Markdown shortcuts (type `##` for H2), and drag-and-drop block reordering. The editor experience is deliberately close to Notion's, reducing adoption friction for teams switching over.
+Docmost's block editor supports slash commands (```/heading````, ````/code````, ````/table````), Markdown shortcuts (type ````##```` for H2), and drag-and-drop block reordering. The editor experience is deliberately close to Notion's, reducing adoption friction for teams switching over.
 
 The Community edition (AGPL-3.0) includes all core collaboration features. Enterprise edition adds SAML 2.0 / OIDC / LDAP authentication, multi-factor authentication via TOTP, AI-powered answers, page-level permissions, Confluence import, and audit logging at **$3.50/seat/month** (minimum 10 seats).
 
@@ -71,7 +72,7 @@ Docmost requires **PostgreSQL and Redis** —— both can be deployed with a sin
 
 ### Step 1: Create the Docker Compose file
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: docmost: image: docmost/docmost:0.8.2
@@ -99,13 +100,13 @@ services: docmost: image: docmost/docmost:0.8.2
     restart: unless-stopped
     volumes: - redis_data:/data
 
-volumes: docmost_data: postgres_data: redis_data: ```
+volumes: docmost_data: postgres_data: redis_data: `````
 
 This defines three services: the Docmost application on port 3000, PostgreSQL 16 for persistent storage, and Redis 7.2 for real-time collaboration state and caching.
 
 ### Step 2: Launch the stack
 
-```bash
+`````bash
 # Create and start all containers
 docker compose up -d
 
@@ -115,22 +116,22 @@ docker logs -f docmost_db
 # Wait for "database system is ready to accept connections"
 # Then check Docmost logs
 docker logs -f docmost
-```
+`````
 
-On first boot, Docmost will run database migrations. This takes 15-30 seconds. You will see migration progress messages followed by `Application is running on: http://[::]:3000`.
+On first boot, Docmost will run database migrations. This takes 15-30 seconds. You will see migration progress messages followed by ````Application is running on: http://[::]:3000````.
 
 ### Step 3: Complete the setup wizard
 
-```bash
+`````bash
 # Access the web UI
 curl -s http://localhost:3000 | head -20
-```
+`````
 
-Navigate to `http://your-server-ip:3000` in your browser. On first access, Docmost presents a setup wizard where you create the admin workspace, admin user account, and configure basic settings. No default credentials —— you define everything during first boot.
+Navigate to ````http://your-server-ip:3000```` in your browser. On first access, Docmost presents a setup wizard where you create the admin workspace, admin user account, and configure basic settings. No default credentials —— you define everything during first boot.
 
 ### Step 4: Nginx reverse proxy with SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/docmost
 upstream docmost {
     server 127.0.0.1:3000;
@@ -171,13 +172,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-The `Upgrade` and `Connection` headers are critical —— Docmost uses WebSockets for real-time collaboration. Without these headers, the live cursor sync and simultaneous editing will not work.
+The ````Upgrade```` and ````Connection```` headers are critical —— Docmost uses WebSockets for real-time collaboration. Without these headers, the live cursor sync and simultaneous editing will not work.
 
 ### Environment variables reference
 
-```bash
+`````bash
 # Core configuration
 APP_URL=https://docs.yourdomain.com        # Must match your public URL
 APP_SECRET=your-super-secret-key           # Generate with: openssl rand -hex 32
@@ -202,7 +203,7 @@ AWS_S3_ENDPOINT=https://s3.amazonaws.com
 
 # Optional: Disable user registration (invite-only)
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 ## Real-Time Collaboration in Practice
 
@@ -212,7 +213,7 @@ Docmost's headline feature is simultaneous multi-user editing. Here is how it wo
 4. **Cursors** are visible in real-time, color-coded by user.
 5. **Page history** is saved automatically. Every edit creates a revision that can be restored.
 
-```javascript
+`````javascript
 // Docmost uses Yjs (CRDT library) under the hood for OT
 // The WebSocket messages look like this: {
   "type": "doc:update",
@@ -221,39 +222,39 @@ Docmost's headline feature is simultaneous multi-user editing. Here is how it wo
   "clientId": "user-uuid",
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 This is the same underlying technology that powers Figma and Notion. The difference: Docmost runs it on your infrastructure.
 
 ## Diagrams, Embeds & Rich Content
 
-Docmost supports inline diagrams without leaving the editor: ```markdown
+Docmost supports inline diagrams without leaving the editor: `````markdown
 # Slash command for diagrams
 /drawio     - Opens Draw.io editor inline
 /mermaid    - Mermaid diagram block
 /excalidraw - Excalidraw sketch block
 
 # Example Mermaid diagram in a page
-```mermaid
+`````mermaid
 graph TD
     A[User Request] --> B{Auth Check}
     B -->|Valid| C[Process Request]
     B -->|Invalid| D[Return 401]
     C --> E[Return Response]
-```
-```
+`````
+`````
 
-Supported embeds include Airtable, Loom, Miro, Figma, YouTube, and more. The full list is in the editor's `/embed` slash command.
+Supported embeds include Airtable, Loom, Miro, Figma, YouTube, and more. The full list is in the editor's ````/embed```` slash command.
 
-File attachments are stored either locally (in the `docmost_data` volume) or on S3-compatible storage. The default upload limit is 50MB per file, configurable via `MAX_FILE_SIZE` environment variable.
+File attachments are stored either locally (in the ````docmost_data```` volume) or on S3-compatible storage. The default upload limit is 50MB per file, configurable via ````MAX_FILE_SIZE```` environment variable.
 
 ## Benchmarks & Real-World Performance
 
 I deployed Docmost v0.8.2 on a 2 vCPU / 4GB RAM VPS and ran a 30-minute load test simulating 20 concurrent users editing and reading pages: | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start time | 2.8 seconds |
 | Page load (average) | 150ms |
@@ -274,7 +275,7 @@ For context: Notion charges $10/user/month. At 20 users, that is $200/month. Doc
 
 ### GitHub Actions: Auto-publish documentation
 
-```yaml
+`````yaml
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
@@ -295,13 +296,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d @payload.json
-```
+`````
 
 Docmost exposes a REST API for programmatic content management (Enterprise edition). Generate API keys in Settings → API. The API supports CRUD on spaces, pages, and comments.
 
 ### Backup automation
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-docmost.sh
 
@@ -324,20 +325,20 @@ docker exec docmost_redis cat /data/dump.rdb \
 
 # Keep only 14 days
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
 ### Prometheus monitoring
 
-```yaml
+`````yaml
 # Add to docker-compose.yml for monitoring
   postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
     environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
     ports: - "9187:9187"
-```
+`````
 
 ### Health check endpoint
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-docmost.sh
 
@@ -351,24 +352,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "OK: Docmost is healthy"
 fi
-```
+`````
 
-Add to cron for automated health monitoring: `*/5 * * * * /opt/scripts/health-check-docmost.sh`
+Add to cron for automated health monitoring: ````*/5 * * * * /opt/scripts/health-check-docmost.sh````
 
 ## Production Hardening
 
 ### Enable invite-only registration
 
-```yaml
+`````yaml
 # docker-compose.yml environment
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 With this setting, only existing workspace admins can invite new users via email. Critical for public-facing instances.
 
 ### Database connection pooling
 
-For teams with 50+ users, add connection pooling via PgBouncer: ```yaml
+For teams with 50+ users, add connection pooling via PgBouncer: `````yaml
 # Add to docker-compose.yml
   pgbouncer: image: pgbouncer/pgbouncer:1.22
     environment: DATABASES_HOST: db
@@ -379,13 +380,13 @@ For teams with 50+ users, add connection pooling via PgBouncer: ```yaml
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
     ports: - "6432:6432"
-```
+`````
 
-Update the Docmost `DATABASE_URL` to point to `pgbouncer:6432` instead of `db:5432`.
+Update the Docmost ````DATABASE_URL```` to point to ````pgbouncer:6432```` instead of ````db:5432````.
 
 ### Web Application Firewall rules
 
-```nginx
+`````nginx
 # Add to Nginx for WAF-like protection
 # Rate limiting for login attempts
 limit_req_zone $binary_remote_addr zone=login:10m rate=5r/m;
@@ -394,23 +395,23 @@ location /auth/login {
     limit_req zone=login burst=3 nodelay;
     proxy_pass http://docmost;
 }
-```
+`````
 
 ## Comparison: Docmost vs. Alternatives
 
 | Feature | Docmost | Notion | Confluence | BookStack | Outline |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | AGPL-3.0 (Community) | Proprietary | Proprietary | MIT | BSL 1.1 |
 | **Self-hosted** | Yes (Docker) | No | Yes (complex) | Yes (Docker) | Yes (complex) |
@@ -458,7 +459,7 @@ Docmost Enterprise edition includes importers for both Notion (export as Markdow
 
 ### How does Docmost handle backups?
 
-Back up two things: the PostgreSQL database (all content, metadata, user accounts) and the file storage volume (uploaded attachments). With Docker, a `pg_dump` plus `docker volume backup` of the docmost_data volume is sufficient. For Redis, the collaboration state is ephemeral —— a restart clears active sessions but does not affect saved page content.
+Back up two things: the PostgreSQL database (all content, metadata, user accounts) and the file storage volume (uploaded attachments). With Docker, a ````pg_dump```` plus ````docker volume backup```` of the docmost_data volume is sufficient. For Redis, the collaboration state is ephemeral —— a restart clears active sessions but does not affect saved page content.
 
 ### Is there a mobile app?
 
@@ -474,7 +475,7 @@ Community edition (AGPL-3.0) includes real-time collaboration, spaces, nested pa
 
 ### How do I update Docmost?
 
-With Docker Compose: pull the latest image, update the tag in docker-compose.yml, and run `docker compose up -d`. Docmost automatically runs database migrations on startup. Always back up PostgreSQL before updating. The update typically takes under 60 seconds with zero downtime if you run multiple replicas behind a load balancer.
+With Docker Compose: pull the latest image, update the tag in docker-compose.yml, and run ````docker compose up -d```. Docmost automatically runs database migrations on startup. Always back up PostgreSQL before updating. The update typically takes under 60 seconds with zero downtime if you run multiple replicas behind a load balancer.
 
 ## Conclusion: Is Docmost Ready for Your Team?
 
@@ -487,7 +488,7 @@ The project is young but the trajectory is strong. 20,000+ GitHub stars in under
 Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.
 
 
----
+* * *
 ## Sources & Further Reading
 
 - [Docmost Official Documentation](https://docmost.com/docs/)
@@ -496,7 +497,7 @@ Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for
 - [Docmost Community vs Enterprise Comparison](https://wz-it.com/en/blog/docmost-community-vs-enterprise-edition/)
 - [Docmost Docker Deployment Guide](https://lowcloud.io/en/blog/self-host-docmost-with-docker-and-traefik)
 
----
+* * *
 
 ## Recommended Hosting & Infrastructure
 
@@ -535,7 +536,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -545,6 +546,6 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [paddleocr-81k-star-ocr-engine](docmost-team-docs-collaboration)
 - [markitdown-universal-file-to-markdown-converter](docmost-team-docs-collaboration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

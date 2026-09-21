@@ -34,6 +34,7 @@ faqs: - q: 'Addy Osmani 开发的 Agent Skills 是什么？'
   - q: 'Agent Skills 中的反合理化表（anti-rationalization table）是什么？'
     a: '反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如"我稍后再加测试"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。'---
 
+
 {</* resource-info */>}
 
 # Agent Skills：开发团队如何以5倍速度交付生产级代码
@@ -46,10 +47,10 @@ Agent Skills 是一套**20个生产级工程技能**和**7个斜杠命令**，�
 
 该系统映射到完整的软件开发生命周期：
 
-```
+````
 定义 → 规划 → 构建 → 验证 → 审查 → 交付
   /spec   /plan  /build  /test   /review  /ship
-```
+`````
 
 ## 7个斜杠命令
 
@@ -57,19 +58,19 @@ Agent Skills 是一套**20个生产级工程技能**和**7个斜杠命令**，�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
-| 定义要构建的内容 | `/spec` | 规范先于代码 |
-| 规划如何构建 | `/plan` | 小而原子的任务 |
-| 增量构建 | `/build` | 一次一个切片 |
-| 证明它有效 | `/test` | 测试即证明 |
-| 合并前审查 | `/review` | 改善代码健康度 |
-| 简化代码 | `/code-simplify` | 清晰优于巧妙 |
-| 交付生产 | `/ship` | 更快更安全 |
+| 定义要构建的内容 | ````/spec```` | 规范先于代码 |
+| 规划如何构建 | ````/plan```` | 小而原子的任务 |
+| 增量构建 | ````/build```` | 一次一个切片 |
+| 证明它有效 | ````/test```` | 测试即证明 |
+| 合并前审查 | ````/review```` | 改善代码健康度 |
+| 简化代码 | ````/code-simplify```` | 清晰优于巧妙 |
+| 交付生产 | ````/ship```` | 更快更安全 |
 
-每个命令自动激活正确的技能。例如，`/build` 会根据您编辑的文件类型触发 `incremental-implementation`、`test-driven-development` 和 `frontend-ui-engineering`。
+每个命令自动激活正确的技能。例如，````/build```` 会根据您编辑的文件类型触发 ````incremental-implementation````、````test-driven-development```` 和 ````frontend-ui-engineering````。
 
 ## 20个生产级技能
 
@@ -110,31 +111,31 @@ Agent Skills 是一套**20个生产级工程技能**和**7个斜杠命令**，�
 
 ### Claude Code（推荐）
 
-```bash
+`````bash
 # 克隆到您的项目中
 gh repo clone addyosmani/agent-skills .claude/skills
 
 # 或作为插件安装
 claude plugin install addyosmani/agent-skills
-```
+`````
 
 ### Cursor
 
-将 `.cursor/skills/` 目录复制到项目根目录。技能根据文件类型自动激活。
+将 ````.cursor/skills/```` 目录复制到项目根目录。技能根据文件类型自动激活。
 
 ### Gemini CLI
 
-```bash
+`````bash
 gemini install skills addyosmani/agent-skills
-```
+`````
 
 ### Windsurf / OpenCode / Copilot
 
-每个都有专用目录（`.windsurf/`、`.opencode/`、`.github/copilot/`）包含技能清单。
+每个都有专用目录（````.windsurf/````、````.opencode/````、````.github/copilot/````）包含技能清单。
 
 ## 代码示例：规范驱动开发
 
-```markdown
+`````markdown
 # /spec 输出示例
 
 ## 目标
@@ -165,37 +166,37 @@ gemini install skills addyosmani/agent-skills
 - 不存储明文密码
 - 令牌15分钟过期
 - 速率限制：每分钟5次尝试
-```
+`````
 
 智能体使用此规范生成实现、测试和文档——在编写任何代码之前全部对齐。
 
 ## 实际应用场景
 
 ### 案例1：2周内完成创业MVP
-一个3人创业团队使用 `/spec` → `/plan` → `/build` → `/test` 在10天内交付了一个全栈SaaS MVP。规范防止了3次重大架构转向，每次转向原本会耗费2周。
+一个3人创业团队使用 ````/spec```` → ````/plan```` → ````/build```` → ````/test```` 在10天内交付了一个全栈SaaS MVP。规范防止了3次重大架构转向，每次转向原本会耗费2周。
 
 ### 案例2：企业重构
-一家财富500强团队使用 `incremental-implementation` 和 `code-review` 技能重构了一个10万行的React代码库。在3个月的迁移期间零生产事故。
+一家财富500强团队使用 ````incremental-implementation```` 和 ````code-review```` 技能重构了一个10万行的React代码库。在3个月的迁移期间零生产事故。
 
 ### 案例3：代理交付
 一家Web开发代理公司将Agent Skills嵌入其标准工作流。项目交付时间下降了40%，客户变更请求减少了25%，因为规范及早发现了歧义。
 
 ### 案例4：开源维护者
-一位流行的npm包维护者在每个PR上使用 `/review`。该技能在人类审查之前捕获边缘情况、缺失测试和API破坏性变更。
+一位流行的npm包维护者在每个PR上使用 ````/review````。该技能在人类审查之前捕获边缘情况、缺失测试和API破坏性变更。
 
 ## 与竞品对比
 
 | 功能 | Agent Skills | GitHub Copilot | Cursor Rules | 通用提示 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | ✅ 是 | ❌ 否 | ❌ 否 | N/A |
 | **20个结构化技能** | ✅ 是 | ❌ 通用 | ❌ 基础 | ❌ 临时 |
@@ -229,18 +230,18 @@ Agent Skills 使用上下文感知激活引擎，根据多个信号确定加载�
 
 ### 信号来源
 
-1. **显式命令**：`/build`、`/test`、`/review` 直接加载其映射的技能包。
-2. **文件类型检测**：编辑 `.tsx` 文件自动加载 `frontend-ui-engineering`；`.proto` 文件触发 `api-and-interface-design`。
-3. **Git 状态**：`src/` 中未提交的更改触发 `incremental-implementation`；失败的 CI 状态触发 `debugging-and-error-recovery`。
-4. **自然语言意图**："我需要为用户认证设计一个 API" 即使没有斜杠命令也会激活 `api-and-interface-design`。
+1. **显式命令**：````/build````、````/test````、````/review```` 直接加载其映射的技能包。
+2. **文件类型检测**：编辑 ````.tsx```` 文件自动加载 ````frontend-ui-engineering````；````.proto```` 文件触发 ````api-and-interface-design````。
+3. **Git 状态**：````src/```` 中未提交的更改触发 ````incremental-implementation````；失败的 CI 状态触发 ````debugging-and-error-recovery````。
+4. **自然语言意图**："我需要为用户认证设计一个 API" 即使没有斜杠命令也会激活 ````api-and-interface-design````。
 
 ### 技能组合
 
-技能是可组合的。当您在一个从新的 API 端点获取数据的 React 组件上运行 `/build` 时，引擎会加载：
-- `incremental-implementation`（主要）
-- `frontend-ui-engineering`（UI 层）
-- `api-and-interface-design`（数据契约）
-- `test-driven-development`（验证）
+技能是可组合的。当您在一个从新的 API 端点获取数据的 React 组件上运行 ````/build```` 时，引擎会加载：
+- ````incremental-implementation````（主要）
+- ````frontend-ui-engineering````（UI 层）
+- ````api-and-interface-design````（数据契约）
+- ````test-driven-development````（验证）
 
 这种组合防止了 AI 智能体针对一层进行优化而破坏相邻系统的常见失败模式。
 
@@ -250,11 +251,11 @@ Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反�
 
 | 常见合理化 | 反驳 | 技能 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | "我稍后添加测试" | "稍后永远不会到来。未经测试的代码会进入生产环境。" | test-driven-development |
 | "API 仅供内部使用" | "内部 API 会变成公共的。从第一天起就为外部使用者设计。" | api-and-interface-design |
@@ -265,13 +266,13 @@ Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反�
 
 ## 上下文工程：秘诀
 
-`context-engineering` 技能可以说是最具变革性的。它教会 AI 智能体如何有效地管理自己的上下文窗口：
+````context-engineering```` 技能可以说是最具变革性的。它教会 AI 智能体如何有效地管理自己的上下文窗口：
 
 ### 规则文件
 
-在项目根目录中放置 `.cursorrules`、`.claude.md` 或 `.kiro.md` 文件以定义：
+在项目根目录中放置 ````.cursorrules````、````.claude.md```` 或 ````.kiro.md```` 文件以定义：
 - 架构决策及其原理
-- 禁止的模式（例如，"永远不要在 TypeScript 中使用 `any`"）
+- 禁止的模式（例如，"永远不要在 TypeScript 中使用 ````any````"）
 - 首选库和版本约束
 - 测试约定（jest 与 vitest，覆盖率阈值）
 
@@ -296,13 +297,13 @@ Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反�
 
 | 指标 | 基线（无技能） | 使用 Agent Skills | 变化 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 从规范到首次提交的时间 | 4 小时 | 45 分钟 | -81% |
 | PR 审查轮次 | 平均 3.2 | 平均 1.4 | -56% |
@@ -314,20 +315,20 @@ Agent Skills 最具创新性的功能之一是嵌入在每个技能中的**反�
 
 ### 策略 1：逐步推广
 
-第 1-2 周：仅引入 `/spec` 和 `/plan`。在编写任何代码之前衡量规范质量。
-第 3-4 周：添加 `/build` 和 `/test`。跟踪测试覆盖率改进。
-第 5-6 周：启用 `/review` 和 `/ship`。衡量生产事故减少。
+第 1-2 周：仅引入 ````/spec```` 和 ````/plan````。在编写任何代码之前衡量规范质量。
+第 3-4 周：添加 ````/build```` 和 ````/test````。跟踪测试覆盖率改进。
+第 5-6 周：启用 ````/review```` 和 ````/ship````。衡量生产事故减少。
 
 ### 策略 2：试点小组
 
-选择一个 3-4 人的功能小组作为试点。让他们在一个完整的冲刺中使用所有 7 个命令。记录经验教训，并根据反馈创建团队特定的 `.cursorrules` 文件。
+选择一个 3-4 人的功能小组作为试点。让他们在一个完整的冲刺中使用所有 7 个命令。记录经验教训，并根据反馈创建团队特定的 ````.cursorrules```` 文件。
 
 ### 策略 3：门控集成
 
 将 Agent Skills 集成到 CI/CD 中：
 - 阻止不包含功能 > 100 行的规范文件的 PR
-- 在 PR 上自动运行 `/review` 并将结果作为评论发布
-- 要求任何错误修复 PR 的 `/test` 输出（测试计划）
+- 在 PR 上自动运行 ````/review```` 并将结果作为评论发布
+- 要求任何错误修复 PR 的 ````/test```` 输出（测试计划）
 
 ## 对比：Agent Skills 与工程阶梯
 
@@ -335,18 +336,18 @@ Agent Skills 有效地压缩了高级工程实践的学习曲线：
 
 | 高级工程实践 | 掌握所需年限 | Agent Skills 等效 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 编写全面的规范 | 2-3 年 | `/spec` 命令 |
-| 分解复杂项目 | 1-2 年 | `/plan` 命令 |
-| 测试驱动开发纪律 | 2-4 年 | `/test` + 技能 |
-| 代码审查专业知识 | 3-5 年 | `/review` 命令 |
-| 生产调试直觉 | 3-5 年 | `debugging-and-error-recovery` |
-| API 设计判断 | 2-3 年 | `api-and-interface-design` 技能 |
+| 编写全面的规范 | 2-3 年 | ````/spec```` 命令 |
+| 分解复杂项目 | 1-2 年 | ````/plan```` 命令 |
+| 测试驱动开发纪律 | 2-4 年 | ````/test```` + 技能 |
+| 代码审查专业知识 | 3-5 年 | ````/review```` 命令 |
+| 生产调试直觉 | 3-5 年 | ````debugging-and-error-recovery```` |
+| API 设计判断 | 2-3 年 | ````api-and-interface-design``` 技能 |
 
 这种压缩意味着使用 Agent Skills 的初级开发人员可以在几周内（而不是几年内）生产出与中级工程师相当的质量输出。
 
@@ -361,11 +362,11 @@ Agent Skills 有效地压缩了高级工程实践的学习曲线：
 Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节。通过将高级工程判断编码为结构化、可验证的工作流，Addy Osmani 为任何开发团队创造了一个力量倍增器。无论您是独立创始人、创业工程师还是企业负责人，这些技能都将使您的 AI 智能体编写您实际想要部署的代码。
 
 
----
+* * *
 *哪个 Agent Skill 对您的工作流改善最大？在评论中告诉我们。*
 
 
----
+* * *
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -438,7 +439,7 @@ Agent Skills：开发团队如何以5倍速度交付生产级代码 represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -470,15 +471,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

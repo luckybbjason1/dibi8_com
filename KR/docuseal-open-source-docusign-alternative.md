@@ -36,6 +36,7 @@ faqs: - q: 'DocuSeal은 DocuSign의 무료 대안인가요?'
     a: 'DocuSeal은 기본적으로 SQLite와 함께 로컬 디스크를 지원하며, 프로덕션 규모에서는 PostgreSQL 또는 MySQL을, 클라우드 객체 스토리지로는 AWS S3, Google Cloud Storage, Azure Blob을 지원합니다. 프로덕션 다중 사용자 환경에는 SSL을 적용한 PostgreSQL과 서버 측 암호화를 설정한 S3 사용을 권장합니다.'
 ---
 
+
 {</* resource-info */>}
 
 # DocuSeal 리뷰：이 오픈소스 DocuSign 대안으로 문서 서명 비용 90% 절감
@@ -96,12 +97,12 @@ DocuSeal은 ISO 32000 표준에 따라 암호화적으로 유효한 서명을 PD
 
 ### 7. API 및 Webhooks
 
-DocuSeal을 기존 스택에 통합합니다: ```bash
+DocuSeal을 기존 스택에 통합합니다: ````bash
 # API를 통해 템플릿 생성
 curl -X POST https://your-docuseal.com/api/templates   -H "Authorization: Bearer YOUR_API_KEY"   -d '{"name":"NDA 템플릿","fields":[{"type":"signature","role":"signer"}]}'
-```
+`````
 
-Webhooks는 다음 이벤트에서 실행됩니다: `document_signed`, `submitter_completed`, `template_created`.
+Webhooks는 다음 이벤트에서 실행됩니다: ````document_signed````, ````submitter_completed````, ````template_created````.
 
 ### 8. 다국어 지원
 
@@ -125,16 +126,16 @@ DocuSeal은 고급 기능이 포함된 상용 라이선스를 제공합니다: -
 
 ### Docker (가장 빠름)
 
-```bash
+`````bash
 docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal
-```
+`````
 
 ### Docker Compose (프로덕션)
 
-```bash
+`````bash
 curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
 sudo HOST=your-domain.com docker compose up
-```
+`````
 
 DNS가 서버를 가리키면 Caddy를 통해 HTTPS가 자동으로 프로비저닝됩니다.
 
@@ -144,7 +145,7 @@ DNS가 서버를 가리키면 Caddy를 통해 HTTPS가 자동으로 프로비저
 
 ## 코드 예제: React 임베디드 서명
 
-```jsx
+`````jsx
 import { DocuSealForm } from "@docuseal/react";
 
 function ContractPage() {
@@ -156,7 +157,7 @@ function ContractPage() {
     />
   );
 }
-```
+`````
 
 ## 실제 사용 사례
 
@@ -209,7 +210,7 @@ DocuSeal은 Ruby on Rails 8.1.2로 구축되었으며 문서 처리, 서명 암�
 
 ### 문서 처리 파이프라인
 
-사용자가 PDF를 업로드하면 DocuSeal은 다음 파이프라인을 실행합니다: 1. **PDF 파싱**: `pdf-reader` gem을 사용하여 텍스트, 필드 및 메타데이터를 추출합니다.
+사용자가 PDF를 업로드하면 DocuSeal은 다음 파이프라인을 실행합니다: 1. **PDF 파싱**: ````pdf-reader```` gem을 사용하여 텍스트, 필드 및 메타데이터를 추출합니다.
 2. **양식 필드 감지**: 기존 AcroForm 필드를 자동 감지하고 DocuSeal 필드 유형에 매핑을 제안합니다.
 3. **필드 배치**: WYSIWYG 빌더가 캔버스 계층에서 PDF를 렌더링하고 관리자가 특정 좌표로 필드를 드래그합니다.
 4. **스키마 생성**: 필드 유형, 검증 규칙, 조건부 논리 및 서명자 라우팅을 설명하는 JSON 스키마가 생성됩니다.
@@ -237,7 +238,7 @@ DocuSeal은 PKCS#7 분리 서명을 사용하여 ISO 32000-1을 준수하는 디
 
 DocuSeal의 REST API 및 웹훅 시스템은 강력한 자동화 시나리오를 가능하게 합니다: ### 패턴 1: CRM 트리거 계약 생성
 
-Salesforce에서 거래가 "Closed-Won" 단계에 도달하면: ```python
+Salesforce에서 거래가 "Closed-Won" 단계에 도달하면: `````python
 import requests
 
 def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportunity_id)
@@ -260,11 +261,11 @@ def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportun
         }
     )
     return response.json()["submission_url"]
-```
+`````
 
 ### 패턴 2: 웹훅 기반 프로비저닝
 
-문서가 완전히 서명되면 다운스트림 작업을 트리거합니다: ```javascript
+문서가 완전히 서명되면 다운스트림 작업을 트리거합니다: `````javascript
 // Express 웹훅 핸들러
 app.post('/webhooks/docuseal', (req, res) => {
     const event = req.body.event;
@@ -280,13 +281,13 @@ app.post('/webhooks/docuseal', (req, res) => {
     }
     res.status(200).send('OK');
 });
-```
+`````
 
 ### 패턴 3: 대량 HR 온보딩
 
-계절적 채용 급증의 경우 대량 전송 API를 사용하세요: ```bash
+계절적 채용 급증의 경우 대량 전송 API를 사용하세요: `````bash
 curl -X POST https://docuseal.yourcompany.com/api/bulk_submissions   -H "Authorization: Bearer API_KEY"   -F "template_id=employee-agreement"   -F "file=@new_hires.csv"   -F "column_mapping={"email":"submitter_email","name":"full_name"}"
-```
+`````
 
 ## 성능 및 확장성
 
@@ -328,7 +329,7 @@ DocuSeal은 빠르게 성장하는 생태계를 보유하고 있습니다: - **D
 **해결책**: 발송 도메인에 SPF, DKIM 및 DMARC 레코드를 구성하세요. 프로덕션을 위해 SendGrid 또는 AWS SES의 전용 IP를 사용하세요.
 
 ### 문제: PDF 필드가 올바르게 렌더링되지 않음
-**해결책**: 소스 PDF가 표준 AcroForm 필드를 사용하는지 확인하세요. XFA 양식이 아닌지 확인하세요. 업로드 전에 Adobe Acrobat 또는 `qpdf`를 사용하여 XFA를 AcroForm으로 변환하세요.
+**해결책**: 소스 PDF가 표준 AcroForm 필드를 사용하는지 확인하세요. XFA 양식이 아닌지 확인하세요. 업로드 전에 Adobe Acrobat 또는 ````qpdf```를 사용하여 XFA를 AcroForm으로 변환하세요.
 
 ### 문제: 모바일에서 문서 로딩이 느림
 **해결책**: PDF 자산에 CDN 캐싱을 활성화하세요. PDF 내 이미지를 300 DPI 미만으로 압축하세요. 다중 페이지 문서에 지연 로딩을 사용하세요.
@@ -345,11 +346,11 @@ DocuSeal은 수십억 달러 규모의 SaaS 기업을 직접 대체할 수 있�
 
 > **라이선스 참고**: AGPLv3 및 섹션 7(b) 추가 조항에 따라 배포됩니다. 상업적 사용은 라이선스 조항을 준수해야 합니다.
 
----
+* * *
 
 *DocuSign에서 DocuSeal로 마이그레이션해 보셨나요? 댓글에서 경험을 공유해 주세요.*
 
----
+* * *
 
 ## 추천 도구
 

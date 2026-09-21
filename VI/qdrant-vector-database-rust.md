@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/qdrant-vector-database-rust/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Điểm Nghẽn Vector Database Mà Mọi Team AI Đều Gặp
@@ -32,7 +33,7 @@ Pipeline embedding của bạn đang hoạt động. Documents được chunk, e
 
 Đây là điểm nghẽn vector database. Năm 2025, **78% các team AI production** báo cáo rằng hiệu suất vector search là một điểm blocker quan trọng trong pipeline RAG hoặc semantic search của họ. Vấn đề không phải ở embeddings — mà ở retrieval layer. Một vector store được chọn kém thêm **300-2000ms** độ trễ mỗi query, khiến các ứng dụng real-time trở nên không thể.
 
-[Qdrant](https://qdrant.tech/) — một engine tìm kiếm tương đồng vector được viết bằng **Rust** — được xây dựng đặc biệt để giải quyết điều này. Với **22.000+ sao GitHub** dưới tổ chức `qdrant`, giấy phép Apache-2.0, và một hệ sinh thái client libraries ngày càng phát triển, Qdrant xử lý **1 triệu vector ở độ trễ P99 10ms** trên phần cứng thông thường. HNSW indexing, payload-based filtering, và khả năng scale ngang của nó khiến nó trở thành lựa chọn hàng đầu cho các team cần vector search hoạt động ở quy mô lớn mà không cần hóa đơn cloud đắt đỏ.
+[Qdrant](https://qdrant.tech/) — một engine tìm kiếm tương đồng vector được viết bằng **Rust** — được xây dựng đặc biệt để giải quyết điều này. Với **22.000+ sao GitHub** dưới tổ chức ```qdrant````, giấy phép Apache-2.0, và một hệ sinh thái client libraries ngày càng phát triển, Qdrant xử lý **1 triệu vector ở độ trễ P99 10ms** trên phần cứng thông thường. HNSW indexing, payload-based filtering, và khả năng scale ngang của nó khiến nó trở thành lựa chọn hàng đầu cho các team cần vector search hoạt động ở quy mô lớn mà không cần hóa đơn cloud đắt đỏ.
 
 Hướng dẫn này bao gồm mọi thứ: triển khai Docker single-node, clustering production, client Python/Go/JS, phương pháp benchmark, và trade-off trung thực so với đối thủ cạnh tranh. Bạn sẽ có một vector database tự triển khai chạy trong vòng 10 phút.
 
@@ -47,19 +48,19 @@ Khác với các database đa năng được gắn thêm khả năng vector, Qdr
 ### HNSW Indexing: Thuật Toán Cốt Lõi
 
 Qdrant sử dụng **Hierarchical Navigable Small World (HNSW)** graphs — cùng thuật toán mà Pinecone, Weaviate, và Milvus sử dụng — với một số tối ưu hóa đặc thù của Rust: - **Multi-layer graph**: Các vector tồn tại trên nhiều layer, với layer trên cung cấp navigation nhanh tầm xa và layer dưới tinh chỉnh đến exact neighbors
-- **Tham số `ef` mặc định**: `ef=128` cân bằng giữa recall (~95%) và thờ gian build
+- **Tham số ````ef```` mặc định**: ````ef=128```` cân bằng giữa recall (~95%) và thờ gian build
 - **Incremental indexing**: Các vector mới được chèn vào mà không cần rebuild đầy đủ
 - **Rust memory safety**: Zero-copy deserialization và cache-friendly layout giảm overhead bộ nhớ ~30% so với các lựa chọn dựa trên JVM
 
 ### Segment-Based Storage Architecture
 
-Qdrant tổ chức dữ liệu thành **segments** — các shards độc lập có thể được tìm kiếm song song: ```
+Qdrant tổ chức dữ liệu thành **segments** — các shards độc lập có thể được tìm kiếm song song: `````
 Collection "documents"
 ├── Segment 1 (0-100K vectors) — HOT — mmap trong RAM
 ├── Segment 2 (100K-200K vectors) — WARM — trên disk
 ├── Segment 3 (200K-300K vectors) — WARM — trên disk
 └── Segment 4 (ghi mới) — NEW — mutable buffer
-```
+`````
 
 Segments cho phép một số tính năng quan trọng cho production: - **Incremental optimization**: Các segment cũ được compact trong background threads
 - **mmap support**: Các vector có thể được memory-mapped từ disk, giảm yêu cầu RAM
@@ -68,7 +69,7 @@ Segments cho phép một số tính năng quan trọng cho production: - **Incre
 
 ### Payload System: Metadata Filtering
 
-Đây là điểm Qdrant khác biệt với các vector store đơn giản. Mỗi vector mang một JSON payload: ```json
+Đây là điểm Qdrant khác biệt với các vector store đơn giản. Mỗi vector mang một JSON payload: `````json
 {
   "id": "doc_4821",
   "vector": [0.01, -0.23, 0.89, ...],
@@ -80,19 +81,19 @@ Segments cho phép một số tính năng quan trọng cho production: - **Incre
     "file_size_mb": 4.2
   }
 }
-```
+`````
 
-Payloads hỗ trợ rich filtering tại thờ điểm query: - **Match**: Exact string/integer matching (`department = "legal"`)
-- **Range**: So sánh số (`file_size_mb > 2.0`)
+Payloads hỗ trợ rich filtering tại thờ điểm query: - **Match**: Exact string/integer matching (````department = "legal"````)
+- **Range**: So sánh số (````file_size_mb > 2.0````)
 - **Geo**: Truy vấn radius và bounding box
 - **Full-text**: Indexed text search trong payloads (thêm ở v1.9.0)
-- **Nested objects**: Lọc trên sub-fields (`metadata.priority = "high"`)
+- **Nested objects**: Lọc trên sub-fields (````metadata.priority = "high"````)
 
 ## Cài Đặt & Thiết Lập: Tự Triển Khai Qdrant Trong 5 Phút
 
 ### Docker (Khuyến Nghị)
 
-```bash
+`````bash
 docker pull qdrant/qdrant:v1.13.0
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage:z \
@@ -100,11 +101,11 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 # Verify — nên trả về {"title":"qdrant","version":"1.13.0"}
 curl http://localhost:6333
-```
+`````
 
 ### Docker Compose (Template Production)
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: qdrant: image: qdrant/qdrant:v1.13.0
@@ -117,16 +118,16 @@ services: qdrant: image: qdrant/qdrant:v1.13.0
         hard: 65536
     restart: unless-stopped
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
-Triển khai: ```bash
+Triển khai: `````bash
 docker-compose up -d
 curl http://localhost:6333/collections  # Liệt kê collections (ban đầu trống)
-```
+`````
 
 ### Cài Đặt Binary (Không Docker)
 
-```bash
+`````bash
 # Tải binary pre-built (Linux x86_64)
 wget https://github.com/qdrant/qdrant/releases/download/v1.13.0/qdrant-x86_64-unknown-linux-gnu.tar.gz
 tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
@@ -134,11 +135,11 @@ tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
 
 # Hoặc cài qua Homebrew (macOS)
 brew install qdrant/tap/qdrant
-```
+`````
 
 ### File Cấu Hình
 
-Tạo `config/production.yaml` cho các cài đặt tinh chỉnh: ```yaml
+Tạo ``config/production.yaml`` cho các cài đặt tinh chỉnh: `````yaml
 # production.yaml
 storage: storage_path: /qdrant/storage
   snapshots_path: /qdrant/snapshots
@@ -151,13 +152,13 @@ service: http_port: 6333
 
 cluster: enabled: false  # Đặt true cho distributed mode
   p2p: port: 6335
-```
+`````
 
 ## Thao Tác Cốt Lõi: CRUD với Vector
 
 ### Tạo Collection
 
-```bash
+`````bash
 # Tạo collection với 1536 dimensions (OpenAI embeddings)
 curl -X PUT http://localhost:6333/collections/documents \
   -H "Content-Type: application/json" \
@@ -176,11 +177,11 @@ curl -X PUT http://localhost:6333/collections/documents \
       "indexing_threshold": 20000
     }
   }'
-```
+`````
 
 ### Upsert Vector với Payloads
 
-```python
+`````python
 # upsert_vectors.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
@@ -209,11 +210,11 @@ points = [
 
 client.upsert(collection_name="documents", points=points)
 print(f"Đã upsert {len(points)} vectors")
-```
+`````
 
 ### Tìm Kiếm với Payload Filtering
 
-```python
+`````python
 # search_filtered.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -237,11 +238,11 @@ results = client.search(
 )
 
 for point in results: print(f"ID: {point.id}, Score: {point.score:.4f}, Payload: {point.payload}")
-```
+`````
 
 ### Cập Nhật và Xóa
 
-```python
+`````python
 # update_delete.py
 # Cập nhật payload
 client.set_payload(
@@ -261,17 +262,17 @@ client.delete(
         )
     ),
 )
-```
+`````
 
 ## Tích Hợp với Các Công Cụ Phổ Biến
 
 ### Python Client (Official)
 
-```bash
+`````bash
 pip install qdrant-client==1.13.0
-```
+`````
 
-```python
+`````python
 # python_client.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
@@ -289,15 +290,15 @@ scroll_results = client.scroll(
     with_payload=True,
 )
 print(f"Đã truy xuất {len(scroll_results[0])} points")
-```
+`````
 
 ### JavaScript/TypeScript Client
 
-```bash
+`````bash
 npm install @qdrant/js-client-rest@1.13.0
-```
+`````
 
-```typescript
+`````typescript
 // ts_client.ts
 import { QdrantClient } from "@qdrant/js-client-rest";
 
@@ -313,16 +314,16 @@ const results = await client.search("documents", {
   with_payload: true,
 });
 
-console.log(`Tìm thấy ${results.length} kết quả`);
-```
+console.log(````Tìm thấy ${results.length} kết quả````);
+`````
 
 ### Go Client
 
-```bash
+`````bash
 go get github.com/qdrant/go-client@v1.13.0
-```
+`````
 
-```go
+`````go
 // go_client.go
 package main
 
@@ -350,11 +351,11 @@ func main() {
         fmt.Printf("Collection: %s\n", c.GetName())
     }
 }
-```
+`````
 
 ### Tích Hợp LangChain
 
-```python
+`````python
 # langchain_qdrant.py
 from langchain_qdrant import QdrantVectorStore
 from langchain_openai import OpenAIEmbeddings
@@ -374,11 +375,11 @@ vector_store.add_documents(docs)
 # Similarity search
 results = vector_store.similarity_search("hello", k=5)
 print(f"Tìm thấy {len(results)} documents tương tự")
-```
+`````
 
 ### Tích Hợp LlamaIndex
 
-```python
+`````python
 # llamaindex_qdrant.py
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -392,7 +393,7 @@ vector_store = QdrantVectorStore(
 
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ## Benchmark và Các Trường Hợp Sử Dụng Thực Tế
 
@@ -408,7 +409,7 @@ Tất cả các test chạy trên **4 vCPU / 8GB RAM DigitalOcean droplet** ($48
 | **Disk Usage** | 385MB | 1.9GB | 3.8GB | 19GB |
 | **Recall@10** | 0.97 | 0.96 | 0.95 | 0.93 |
 
-**Con số then chốt**: Với memory-mapping (`mmap`) được bật, Qdrant xử lý **1 triệu vector** chỉ dùng **720MB RAM** với **P50 10ms** và **P99 22ms** query latency. Đây là điều khiến self-hosting khả thi — bạn không cần một server $200/tháng cho workload triệu-vector.
+**Con số then chốt**: Với memory-mapping (````mmap````) được bật, Qdrant xử lý **1 triệu vector** chỉ dùng **720MB RAM** với **P50 10ms** và **P99 22ms** query latency. Đây là điều khiến self-hosting khả thi — bạn không cần một server $200/tháng cho workload triệu-vector.
 
 ### Filtered Search Performance
 
@@ -420,7 +421,7 @@ Thêm payload filters chỉ tăng overhead không đáng kể khi các trường
 | + full-text filter | 15ms | +50% |
 | + geo radius filter | 14ms | +40% |
 
-Index các trường payload của bạn để có hiệu suất tốt nhất: ```bash
+Index các trường payload của bạn để có hiệu suất tốt nhất: `````bash
 # Tạo payload index cho các trường thường xuyên được filter
 curl -X PUT http://localhost:6333/collections/documents/index \
   -H "Content-Type: application/json" \
@@ -428,12 +429,12 @@ curl -X PUT http://localhost:6333/collections/documents/index \
     "field_name": "category",
     "field_schema": "keyword"
   }'
-```
+`````
 
 ### Case Study: Tìm Kiếm Sản Phẩm E-Commerce
 
 Một nền tảng thương mại điện tử thờ trang đánh chỉ mục **2.3 triệu product vectors** (image + text embeddings) trong Qdrant: - **Server**: 4 vCPU / 16GB RAM dedicated server
-- **Index**: 1536-dim OpenAI `text-embedding-3-large` + 512-dim CLIP image embeddings (multi-vector collection)
+- **Index**: 1536-dim OpenAI ````text-embedding-3-large```` + 512-dim CLIP image embeddings (multi-vector collection)
 - **Filters**: Category, price range, availability, brand (đã index payload)
 - **Load**: 2,000 queries/giây trong giờ cao điểm
 - **Kết quả**: P50 **8ms**, P99 **19ms**, zero downtime trong 6 tháng
@@ -441,7 +442,7 @@ Một nền tảng thương mại điện tử thờ trang đánh chỉ mục **
 
 ### Case Study: Truy Xuất Tài Liệu Pháp Lý
 
-Một startup legal tech đánh chỉ mục **850,000 quyết định tòa án** cho semantic search: - **Embeddings**: 3072-dim `text-embedding-3-large`
+Một startup legal tech đánh chỉ mục **850,000 quyết định tòa án** cho semantic search: - **Embeddings**: 3072-dim ````text-embedding-3-large````
 - **Filters**: Jurisdiction, date range, case type, judge name
 - **Tích hợp**: Pipeline LlamaIndex RAG với Qdrant làm vector store
 - **Kết quả**: Trung bình mỗi query **45ms** (bao gồm round-trip mạng), **97% hài lòng ngườ dùng** về độ liên quan
@@ -450,7 +451,7 @@ Một startup legal tech đánh chỉ mục **850,000 quyết định tòa án**
 
 ### Distributed Cluster Mode
 
-Để scale ngang vượt quá giới hạn single-node: ```yaml
+Để scale ngang vượt quá giới hạn single-node: `````yaml
 # docker-compose.cluster.yml
 version: "3.8"
 services: qdrant-node1: image: qdrant/qdrant:v1.13.0
@@ -469,9 +470,9 @@ services: qdrant-node1: image: qdrant/qdrant:v1.13.0
     environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node3:6335
-```
+`````
 
-```python
+`````python
 # cluster_client.py
 from qdrant_client import QdrantClient
 
@@ -488,11 +489,11 @@ collection_info = client.create_collection(
     vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
     replication_factor=2,  # Mỗi shard trên 2 nodes
 )
-```
+`````
 
 ### Snapshots và Chiến Lược Backup
 
-```bash
+`````bash
 # Tạo snapshot qua REST API
 curl -X POST http://localhost:6333/collections/documents/snapshots
 
@@ -505,9 +506,9 @@ curl http://localhost:6333/collections/documents/snapshots
 curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover \
   -H "Content-Type: application/json" \
   -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}"
-```
+`````
 
-```python
+`````python
 # Tạo snapshot tự động với Python
 from datetime import datetime
 import requests
@@ -520,18 +521,18 @@ def create_snapshot(collection: str) -> str: url = f"http://localhost:6333/colle
 
 # Snapshot hàng ngày (chạy qua cron)
 snapshot_name = create_snapshot("documents")
-```
+`````
 
 ### Xác Thực và Bảo Mật
 
-Bật API key authentication: ```yaml
+Bật API key authentication: `````yaml
 # config/production.yaml
 service: api_key: "your-secret-api-key-32-chars-long!!"
   enable_cors: false
   verify_https: true
-```
+`````
 
-```python
+`````python
 # authenticated_client.py
 from qdrant_client import QdrantClient
 
@@ -543,11 +544,11 @@ client = QdrantClient(
 )
 
 # Tất cả requests giờ bao gồm header X-API-Key
-```
+`````
 
 ### Multi-Tenancy với Payload-Based Isolation
 
-```python
+`````python
 # multi_tenant.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -568,11 +569,11 @@ def search_for_tenant(query_vector, tenant_id: str, limit: int = 10): return cli
 
 # Chỉ search trong tenant cụ thể
 results = search_for_tenant(query_vector, tenant_id="acme_corp")
-```
+`````
 
 ### Monitoring với Prometheus Metrics
 
-Qdrant expose metrics tương thích Prometheus tại `:6333/metrics`: ```bash
+Qdrant expose metrics tương thích Prometheus tại ``:6333/metrics``: `````bash
 # Scrape metrics
 curl http://localhost:6333/metrics
 
@@ -580,26 +581,26 @@ curl http://localhost:6333/metrics
 # qdrant_search_latency_ms — search latency histogram
 # qdrant_optimizers_segment_count — số segments
 # qdrant_storage_size_bytes — kích thước storage
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml scrape config
 scrape_configs: - job_name: "qdrant"
     static_configs: - targets: ["qdrant:6333"]
     metrics_path: "/metrics"
     scrape_interval: 15s
-```
+`````
 
 ### Tối Ưu Bộ Nhớ với mmap
 
-Để có tỷ lệ RAM-to-performance tốt nhất, bật memory mapping: ```bash
+Để có tỷ lệ RAM-to-performance tốt nhất, bật memory mapping: `````bash
 # Đặt qua biến môi trường
 docker run -p 6333:6333 \
   -e QDRANT__STORAGE__ON_DISK_PAYLOAD=true \
   -e QDRANT__STORAGE__PERFORMANCE__IN_MEMORY_INDEX_MAP_THRESHOLD_KB=20000 \
   -v qdrant_data:/qdrant/storage \
   qdrant/qdrant:v1.13.0
-```
+`````
 
 Với các cài đặt này, Qdrant chỉ giữ HNSW graph trong RAM và memory-map các vector thô từ disk. Trên NVMe SSD, penalty hiệu suất thường **<15%** trong khi giảm RAM usage **60-80%**.
 
@@ -658,7 +659,7 @@ Có. Các binary pre-built có sẵn cho Linux x86_64, ARM64, macOS, và Windows
 
 ### Làm thế nào để migrate từ Pinecone sang Qdrant?
 
-Sử dụng công cụ migration của Qdrant: ```bash
+Sử dụng công cụ migration của Qdrant: `````bash
 pip install qdrant-client
 qdrant-migrate \
   --source pinecone \
@@ -666,13 +667,13 @@ qdrant-migrate \
   --pinecone-index "my-index" \
   --target http://localhost:6333 \
   --target-collection "migrated_docs"
-```
+`````
 
 Cho các collection lớn, migration chạy ở ~5.000 vectors/giây. Lên kế hoạch cho một cửa sổ bảo trì hoặc dual-write trong quá trình chuyển đổi.
 
 ### Qdrant có hỗ trợ hybrid search (dense + sparse vectors) không?
 
-Có, từ v1.10.0. Bạn có thể lưu cả dense (neural) và sparse (BM25/TF-IDF) vectors trong cùng một collection và kết hợp chúng tại thờ điểm query: ```python
+Có, từ v1.10.0. Bạn có thể lưu cả dense (neural) và sparse (BM25/TF-IDF) vectors trong cùng một collection và kết hợp chúng tại thờ điểm query: `````python
 from qdrant_client.models import SparseVector
 
 client.search(
@@ -687,7 +688,7 @@ client.search(
     ),
     fusion=models.Fusion.RRF,  # Reciprocal Rank Fusion
 )
-```
+`````
 
 Điều này cho bạn cả hai thế giới tốt nhất: khả năng hiểu ngữ nghĩa từ dense vectors và exact keyword matching từ sparse vectors.
 
@@ -698,7 +699,7 @@ Qdrant lưu trữ dữ liệu ở định dạng binary tùy chỉnh (segment fi
 ## Kết Luận: Triển Khai Vector Database Củ Bạn Hôm Nay
 
 Qdrant cho bạn vector search cấp production mà không cần vendor lock-in hay hóa đơn cloud. Con đường tự triển khai rất đơn giản: 1. Bắt đầu với template Docker Compose ở trên trên server 4 vCPU / 8GB
-2. Sử dụng `mmap` cho hiệu quả RAM ở quy mô lớn
+2. Sử dụng ````mmap``` cho hiệu quả RAM ở quy mô lớn
 3. Index các trường payload filter của bạn cho filtered search sub-15ms
 4. Thiết lập snapshot hàng ngày và Prometheus monitoring
 5. Nâng cấp lên cluster mode chỉ khi vượt quá capacity single-node (thường là 10M+ vectors)
@@ -727,7 +728,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 7. Qdrant Cloud Pricing — https://qdrant.to/cloud
 8. "Rust for Data Infrastructure" — Qdrant Engineering Blog, 2024
 
----
+* * *
 
 *Công Bố Affiliate: Bài viết này chứa liên kết affiliate đến DigitalOcean, HTStack, và 虎网云. Nếu bạn mua dịch vụ qua các liên kết này, dibi8.com có thể nhận hoa hồng mà không phát sinh chi phí thêm cho bạn. Tất cả khuyến nghị đều dựa trên đánh giá kỹ thuật thực sự, không phải khả năng affiliate. Xem [chính sách công bố đầy đủ](https://dibi8.com/affiliate-disclosure) để biết chi tiết.*
 
@@ -759,7 +760,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -769,6 +770,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [noco-db-airtable-alternative](qdrant-vector-database-rust)
 - [qdrant-vector-database-rust](qdrant-vector-database-rust)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -29,6 +29,7 @@ faqs: - q: 'Open Codesign 是免费的吗？使用费用是多少？'
   - q: 'Open Codesign 中的 DESIGN.md 文件是什么？'
     a: 'DESIGN.md 是一个 Markdown 文件，你可以在其中定义设计系统，例如品牌色彩、排版规范和间距 token。将该文件放置在工作区后，每次生成内容时都会自动继承这些 token，从而使模型保持品牌一致性，而不会在多次对话中出现偏移。'---
 
+
 {</* resource-info */>}
 
 # Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 AI 设计神器
@@ -45,7 +46,7 @@ Open Codesign 由 [OpenCoworkAI](https://github.com/OpenCoworkAI) 团队开发�
 
 Open Codesign 是一款基于 **Electron + React 19 + Vite 6 + Tailwind CSS v4** 构建的 MIT 许可证桌面应用。其核心使命是弥合自然语言与生产级设计产物之间的鸿沟。输入类似 *"一个现代 SaaS 落地页，包含毛玻璃效果首屏、定价卡片和带邮件订阅的页脚"* 的提示词，几秒钟内，Open Codesign 就能生成一个具备悬停状态、响应式断点和空状态处理的完整交互式 HTML 原型。
 
-但 Open Codesign 绝不仅仅是一个简单的代码生成器。随着 **v0.2.0**（Agentic Design 智能体设计）的发布，这款工具已进化为真正的**本地设计智能体**：具备工作空间会话管理、受权限控制的工具调用，以及通过 `DESIGN.md` 文件实现的持久化设计记忆。每一次设计都是一个带有 JSONL 历史记录的会话，存储在本地工作空间文件夹中 —— 这意味着你的迭代永远不会丢失，设计决策永远可审计。
+但 Open Codesign 绝不仅仅是一个简单的代码生成器。随着 **v0.2.0**（Agentic Design 智能体设计）的发布，这款工具已进化为真正的**本地设计智能体**：具备工作空间会话管理、受权限控制的工具调用，以及通过 ```DESIGN.md```` 文件实现的持久化设计记忆。每一次设计都是一个带有 JSONL 历史记录的会话，存储在本地工作空间文件夹中 —— 这意味着你的迭代永远不会丢失，设计决策永远可审计。
 
 ### 开源模式为何至关重要
 
@@ -60,7 +61,7 @@ Open Codesign 是一款基于 **Electron + React 19 + Vite 6 + Tailwind CSS v4**
 Open Codesign 逐一解决了上述所有问题。由于采用本地优先和 BYOK（自带密钥）架构，你对自己的数据、模型选择和预算拥有完全控制权。MIT 许可证意味着你可以自由 Fork、修改、内部自托管，甚至在其之上构建商业产品 —— 无需任何许可顾虑。
 
 
----
+* * *
 ## 核心功能：多模型支持、本地优先、BYOK
 
 ### 多模型架构：自由选择的权利
@@ -69,9 +70,9 @@ Open Codesign 最引人注目的差异化优势在于其**统一供应商模型*
 
 | 供应商 | 支持的模型 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Anthropic** | Claude 3.5 Sonnet、Claude 3 Opus、Claude Code 配置 |
 | **OpenAI** | GPT-4o、GPT-4 Turbo、通过 API 或 ChatGPT Plus 订阅使用 Codex 模型 |
@@ -90,8 +91,8 @@ Open Codesign 最引人注目的差异化优势在于其**统一供应商模型*
 
 Open Codesign 中的每一次设计会话都存储在本地磁盘上。v0.2.0 的工作空间模型为每个项目创建独立文件夹，包含：
 
-- `session.jsonl` —— 完整的对话和工具调用历史
-- `DESIGN.md` —— 共享的设计系统记忆（品牌令牌、颜色决策、排版规则）
+- ````session.jsonl```` —— 完整的对话和工具调用历史
+- ````DESIGN.md```` —— 共享的设计系统记忆（品牌令牌、颜色决策、排版规则）
 - 原生格式的生成产物文件（HTML、CSS、JS）
 - 版本快照，支持即时回滚
 
@@ -100,17 +101,17 @@ Open Codesign 中的每一次设计会话都存储在本地磁盘上。v0.2.0 �
 1. **真正的离线能力**：在飞机上开始设计，在无网络的乡村小屋完成它。
 2. **无限版本历史**：基于 SQLite 的会话存储意味着每一次迭代都被保留，没有人为限制。
 3. **零服务器依赖**：应用完全在你的机器上运行。不存在可能宕机、改条款或被收购的后端服务。
-4. **Git 友好**：由于设计是文件夹中的普通文件，你可以对任何项目执行 `git init`，像管理源代码一样管理设计历史。
+4. **Git 友好**：由于设计是文件夹中的普通文件，你可以对任何项目执行 ````git init````，像管理源代码一样管理设计历史。
 
 ### BYOK：自带密钥
 
 BYOK 模式简单明了：Open Codesign 是一款免费应用。你只需为通过现有供应商账户消耗的大语言模型 Token 付费。这与基于订阅的设计工具相比，创造了极为透明的成本结构。
 
-配置供应商只需不到 60 秒。对于已有 Claude Code 或 Codex CLI 使用经验的用户，**一键导入**功能堪称神奇 —— Open Codesign 自动检测你现有的 `~/.config/claude/config.toml` 或 Codex 供应商配置并导入所有设置。无需复制粘贴，无需手动输入 API 密钥，杜绝输错的可能。
+配置供应商只需不到 60 秒。对于已有 Claude Code 或 Codex CLI 使用经验的用户，**一键导入**功能堪称神奇 —— Open Codesign 自动检测你现有的 ````~/.config/claude/config.toml```` 或 Codex 供应商配置并导入所有设置。无需复制粘贴，无需手动输入 API 密钥，杜绝输错的可能。
 
-API 密钥存储在 `~/.config/open-codesign/config.toml` 中，文件权限为 `0600`，遵循与 Claude Code、`gh` CLI 和 SSH 私钥相同的安全规范。密钥绝不会被传输到除你所选供应商 API 端点之外的任何地方。
+API 密钥存储在 ````~/.config/open-codesign/config.toml```` 中，文件权限为 ````0600````，遵循与 Claude Code、````gh```` CLI 和 SSH 私钥相同的安全规范。密钥绝不会被传输到除你所选供应商 API 端点之外的任何地方。
 
----
+* * *
 
 ## 安装与配置指南
 
@@ -118,10 +119,10 @@ API 密钥存储在 `~/.config/open-codesign/config.toml` 中，文件权限为 
 
 Open Codesign 通过多种渠道分发二进制文件：
 
-- **macOS**：`.dmg` 安装包或 Homebrew（`brew install open-codesign`）
-- **Windows**：`.exe` 安装包或 winget（`winget install OpenCoworkAI.open-codesign`）
-- **Linux**：`.AppImage` 或 Scoop 包
-- **源码**：克隆后通过 `pnpm install && pnpm build` 构建
+- **macOS**：````.dmg```` 安装包或 Homebrew（````brew install open-codesign````）
+- **Windows**：````.exe```` 安装包或 winget（````winget install OpenCoworkAI.open-codesign````）
+- **Linux**：````.AppImage```` 或 Scoop 包
+- **源码**：克隆后通过 ````pnpm install && pnpm build```` 构建
 
 应用启动后呈现简洁的四标签页设置界面，涵盖模型、外观、存储和高级偏好设置。
 
@@ -151,34 +152,34 @@ Open Codesign 通过多种渠道分发二进制文件：
 
 #### 方案 D：本地 Ollama
 
-1. 确保 Ollama 正在本地运行（`ollama serve`）
+1. 确保 Ollama 正在本地运行（````ollama serve````）
 2. 打开 设置 → 模型 → 添加供应商 → Ollama
-3. Open Codesign 自动检测 `http://localhost:11434`
-4. 选择你已拉取的模型（如 `llama3.2`、`qwen2.5`、`mistral`）
+3. Open Codesign 自动检测 ````http://localhost:11434````
+4. 选择你已拉取的模型（如 ````llama3.2````、````qwen2.5````、````mistral````）
 
 ### 设置工作空间
 
 配置好供应商后，主界面呈现**中心（Hub）** —— 一个包含 15 个内置演示和你最近设计的画廊。点击"新建设计"即可创建基于工作空间的会话。在生成之前，你可以选择性：
 
 - 选择一个或多个**设计技能**（幻灯片、仪表盘、落地页、SVG 图表、毛玻璃效果、编辑排版、首屏、定价、页脚、聊天界面、数据表格、日历）
-- 附加 `DESIGN.md` 文件以建立品牌令牌
+- 附加 ````DESIGN.md```` 文件以建立品牌令牌
 - 选择输出格式偏好（HTML、React 组件或 PPTX）
 
----
+* * *
 
 ## 与 Claude Design、Figma AI、v0.dev 的对比
 
 | 功能 | **Open Codesign** | Claude Design | v0 by Vercel | Figma AI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT（开源） | 闭源 | 闭源 | 闭源 |
 | **平台** | 桌面端（Electron） | 纯 Web | 纯 Web | Web + 桌面 |
@@ -205,7 +206,7 @@ Vercel 的 v0 在 React 组件生成方面表现出色，但需要 Vercel 账户
 
 Figma AI 将 AI 功能集成到现有设计平台中。虽然在传统 UI 设计工作流中功能强大，但它不具备 Open Codesign 那种提示词到原型的即时性，缺乏多模型灵活性，且无法离线运行。Open Codesign 与 Figma 是互补关系 —— 使用 Open Codesign 进行快速创意探索，使用 Figma 进行高保真像素级精修。
 
----
+* * *
 
 ## 设计系统与原型设计能力
 
@@ -230,9 +231,9 @@ Figma AI 将 AI 功能集成到现有设计平台中。虽然在传统 UI 设计
 
 ### DESIGN.md：设计系统的共享记忆
 
-`DESIGN.md` 文件是 Open Codesign 最具创新性的功能之一。不同于强迫模型在多轮对话中记住品牌决策（这会导致漂移），你将设计系统写入一个 Markdown 文件：
+````DESIGN.md```` 文件是 Open Codesign 最具创新性的功能之一。不同于强迫模型在多轮对话中记住品牌决策（这会导致漂移），你将设计系统写入一个 Markdown 文件：
 
-```markdown
+`````markdown
 # Acme Corp 设计系统
 
 ## 颜色
@@ -247,7 +248,7 @@ Figma AI 将 AI 功能集成到现有设计平台中。虽然在传统 UI 设计
 ## 间距
 - 基础单位：4px
 - 区块内边距：垂直 64px
-```
+`````
 
 将此文件放入工作空间，每次生成都会自动继承这些令牌。模型根据这份文档而非训练数据来推理一致性。这使得 Open Codesign 对于管理多个品牌的代理商和产品团队来说具有独特优势。
 
@@ -255,19 +256,19 @@ Figma AI 将 AI 功能集成到现有设计平台中。虽然在传统 UI 设计
 
 Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**。一键切换断点，同时设计保持其 iframe 状态。这对于在原型阶段早期发现移动端布局问题非常宝贵。
 
----
+* * *
 
 ## 代码示例与提示词
 
 ### 示例 1：SaaS 落地页
 
 **提示词：**
-```
+`````
 为一款面向开发者的 API 监控工具"Pulse"创建一个落地页。
 包含：深色首屏配动态渐变背景、三张带 Lucide 图标的功能卡片、
 展示 JSON 响应的代码片段、三档定价区域，
 以及带 GitHub 和 Twitter 链接的页脚。功能卡片使用毛玻璃效果技能。
-```
+`````
 
 **Open Codesign 生成内容：**
 - 一份完全响应式的 HTML 文件，含内联 CSS
@@ -280,7 +281,7 @@ Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**�
 ### 示例 2：投资人路演幻灯片
 
 **提示词：**
-```
+`````
 为一家种子期金融科技初创公司生成 6 页路演幻灯片。
 第 1 页：大号字体标题页。
 第 2 页：问题（3 个带图标的要点）。
@@ -289,19 +290,19 @@ Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**�
 第 5 页：商业模式画布。
 第 6 页：团队照片占位符和联系方式。
 导出为 PPTX。
-```
+`````
 
-**结果：** 一份可下载的 `.pptx` 文件，含母版幻灯片布局、可编辑文本框和占位图片 —— 可直接在 PowerPoint、Keynote 或 Google Slides 中定制。
+**结果：** 一份可下载的 ````.pptx```` 文件，含母版幻灯片布局、可编辑文本框和占位图片 —— 可直接在 PowerPoint、Keynote 或 Google Slides 中定制。
 
 ### 示例 3：评论驱动精修
 
 生成仪表盘后，点击预览中的任意元素并放置钉选：
 
 **评论：**
-```
+`````
 让这张 KPI 卡片使用强调色而非灰色，将指标字号增大到 32px，
 并添加一个小型向上趋势箭头，标注 +12%。
-```
+`````
 
 模型仅**重写该区域**，保留其余布局。这种钉选-评论工作流消除了为微调而完全重新生成的烦恼。
 
@@ -309,7 +310,7 @@ Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**�
 
 生成后，Open Codesign 在专用面板中展示 **AI 发出的微调参数**：
 
-```javascript
+`````javascript
 // 生成的微调模式
 {
   "heroBackground": { "type": "color", "value": "#0F172A" },
@@ -317,11 +318,11 @@ Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**�
   "headingFont": { "type": "select", "options": ["Inter", "Geist", "Manrope"], "value": "Inter" },
   "sectionGap": { "type": "range", "min": 24, "max": 128, "value": 64 }
 }
-```
+`````
 
 调节滑块，预览实时更新 —— 无需新的提示词。
 
----
+* * *
 
 ## 开发者和设计师的使用场景
 
@@ -335,7 +336,7 @@ Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**�
 ### 产品设计师
 
 - **创意加速**：在以往手绘一个草图的时间里探索 10 个布局方向。
-- **设计系统文档**：使用 `DESIGN.md` 将活的设计系统编码和演进。
+- **设计系统文档**：使用 ````DESIGN.md``` 将活的设计系统编码和演进。
 - **利益相关者演示**：直接从产品简报生成 PPTX 幻灯片。
 - **无障碍测试**：生成的 HTML 默认包含语义化标记和 ARIA 标签。
 
@@ -351,7 +352,7 @@ Open Codesign 内置手机、平板和桌面的**真实响应式预览框架**�
 - **成本控制**：BYOK 意味着没有按席位 SaaS 订阅 —— 只需现有 API 合同。
 - **可审计性**：每个设计决策都存储在纯文本会话文件中，满足合规要求。
 
----
+* * *
 
 ## 总结
 
@@ -363,11 +364,11 @@ Open Codesign 标志着 AI 设计工具领域的一个有意义的转折点。�
 
 如果你尚未探索 Open Codesign，设置时间不到 90 秒。你的下一个原型只需一个提示词的距离 —— 而这一次，它真正属于你。
 
----
+* * *
 
 
 -
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -442,7 +443,7 @@ Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 AI 设�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

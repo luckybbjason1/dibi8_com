@@ -24,6 +24,7 @@ aliases:
   - /posts/ai-trading-stack/
 ---
 
+
 # AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우
 
 
@@ -59,7 +60,7 @@ SaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + Co
 
 ## 2. 아키텍처 — 신호 → 백테스트 → 실시간 → AI 루프
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ 시장 데이터 (websocket / REST)                   │
    │  - Hyperliquid order book + trade                │
@@ -95,7 +96,7 @@ SaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + Co
    │  → 전략 조정 제안                                │
    │  → 백테스트에 검증 위해 되돌림                   │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 코딩 없이 AI 에이전트 경험 원하는 비기술 사용자: **Minara**가 Hyperliquid 위 사용자 친화 hub 레이어 제공.
 
@@ -105,10 +106,10 @@ SaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + Co
 
 **왜 이거**: 30+ 년 전투 검증. 모든 퀀트 프레임워크가 ta-lib를 쓰거나 그 함수 재구현. 원본 사용.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 apt install libta-lib-dev
 pip install TA-Lib
-```
+`````
 
 전체 가이드 walk-forward 지표 조합 패턴 포함: [ta-lib 기술 분석 트레이딩](/kr/resources/ai-trading/ta-lib-technical-analysis-trading/).
 
@@ -118,9 +119,9 @@ pip install TA-Lib
 
 **왜 이거**: Walk-forward 최적화, 파라미터 스윕, 몬테카를로 시뮬레이션, Sharpe/Sortino/Calmar 메트릭, 포지션 사이징 — 모두 내장. 진지한 리테일 퀀트 사실상 선택.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install vectorbt
-```
+`````
 
 전체 가이드 walk-forward와 몬테카를로 포함: [vectorbt 정량적 백테스팅](/kr/resources/ai-trading/vectorbt-quantitative-backtesting/).
 
@@ -130,9 +131,9 @@ pip install vectorbt
 
 **왜 이거**: ~31k GitHub stars, 5+ 년 전투 검증. 전략 핫 리로드, dry-run 모드 (실시간 데이터에 페이퍼 트레이딩), Telegram 봇 통합, 웹 UI, Docker 배포. 기본 오픈소스 CEX 트레이딩 봇.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
-```
+`````
 
 낮은 레이턴시 VPS 배포 — 내부 freqtrade 인스턴스를 아시아 거래소 sub-50ms 레이턴시 위해 {{< aff "htstack" "trading-vps-hk" "HTStack 홍콩 VPS" >}}, 또는 미국 편향 venue 위해 NYC에 {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplet" >}}.
 
@@ -144,9 +145,9 @@ docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compo
 
 **왜 중요**: 정적 전략은 감쇠. 2026년 5월 암호화폐 시장은 2024년 1월 시장 아님. 조정 루프 없이는 전략 edge가 6-12개월 안에 침식. AI Trader는 이 루프에 특화된 유일한 널리 채택된 오픈소스 프레임워크.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install ai-trader
-```
+`````
 
 전체 셋업: [AI Trader 가이드](/kr/resources/llm-frameworks/ai-trader/).
 
@@ -156,9 +157,9 @@ pip install ai-trader
 
 **AI 트레이딩에 중요한 이유**: 지갑 서명으로 직접 Python SDK 액세스 = API 키 관리 없음, 가스 동등 온체인 제한 외 rate limit 없음. CEX 대시보드 안 만지고 코드에서 전략 실행.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 pip install hyperliquid-python-sdk
-```
+`````
 
 전체 가이드 지갑 셋업과 주문 타입 포함: [Hyperliquid perp DEX 트레이딩](/kr/resources/ai-trading/hyperliquid-perp-dex-trading/).
 
@@ -183,7 +184,7 @@ pip install hyperliquid-python-sdk
 ## 10. Day 1 셋업 순서 (4-5시간, 실제 자본 전)
 
 1. **VPS + Python 환경** (15분) — {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB, Python 3.11 + Docker 설치
-2. **ta-lib + vectorbt** (15분) — `pip install`, 1년 BTC 데이터에 샘플 백테스트 실행
+2. **ta-lib + vectorbt** (15분) — ````pip install```, 1년 BTC 데이터에 샘플 백테스트 실행
 3. **freqtrade dry-run** (30분) — Docker compose, 읽기 전용 Binance API 키로 구성, 실시간 가기 전 2주 페이퍼에 기본 Bollinger 전략 배포
 4. **Hyperliquid 테스트넷** (30분) — 테스트넷 USDC 받기, SDK 설치, 테스트넷에 테스트 주문, 실행 확인
 5. **AI Trader 통합** (45분) — DeepSeek (저렴) 또는 Claude (premium) API 키로 구성, freqtrade dry-run 로그 가리킴
@@ -237,7 +238,7 @@ pip install hyperliquid-python-sdk
 
 저레이턴시 실행 위해 {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} 띄우고, 실시간 가기 전 2-4주 페이퍼 트레이드, 잃을 수 있는 자본으로 시작, 실시간 성과가 백테스트 기대 일치 후만 스케일.
 
----
+* * *
 
 *동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) AI Trader의 LLM API 비용 측. [AI Agent 도구 체인](/kr/collections/ai-agent-tool-chain/) 자율 에이전트가 트레이딩 루프 구동 원함. [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 전략 코드 개발 측.*
 
@@ -269,7 +270,7 @@ pip install hyperliquid-python-sdk
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -279,7 +280,7 @@ pip install hyperliquid-python-sdk
 - [2026-06-01-trending-ai-agents](ai-trading-stack)
 - [2026-06-08-trending-ai-agents](ai-trading-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

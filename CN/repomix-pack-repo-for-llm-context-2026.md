@@ -32,13 +32,14 @@ faqs: - q: 'What is repomix and what was it called before?'
     a: 'repomix works well up to around 100,000–200,000 tokens (roughly a 5,000–10,000 file project). For larger repos, use --include patterns to send only the relevant subsystem. The --output-show-line-numbers flag helps LLMs give accurate line references for edits.'
   - q: 'Can I use repomix with Claude Projects or ChatGPT memory?'
     a: 'Yes — the most common workflow is to run repomix, then paste or upload the output file to a Claude Project or a custom GPT. This gives the AI full codebase context for debugging, code review, documentation, or architecture discussions without iterating over dozens of files.'---
+
 ![repomix 2026: Pack Your Codebase for LLM Context — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 
 When you ask Claude or ChatGPT to debug a multi-file issue or refactor a complex function, pasting code snippets one-by-one loses context fast. [repomix](https://github.com/yamadashy/repomix) solves this by turning your entire repository into one structured file — ready to drop into any LLM's context window in seconds.
 
 ## What repomix Does
 
-repomix scans your repository, excludes files in `.gitignore`, and outputs a single text file containing: 1. **Repository summary** — total files, token estimate, language breakdown
+repomix scans your repository, excludes files in ``.gitignore``, and outputs a single text file containing: 1. **Repository summary** — total files, token estimate, language breakdown
 2. **Directory tree** — full folder structure at a glance
 3. **All source files** — each prefixed with a path header and optional line numbers
 
@@ -46,7 +47,7 @@ The result is immediately usable with Claude, ChatGPT, Gemini, Cursor, or any LL
 
 ## Zero Config Start
 
-```bash
+````bash
 # Run without installing — uses npx
 npx repomix
 
@@ -58,9 +59,9 @@ repomix ./src
 
 # Pack remote GitHub repo directly (no git clone needed)
 npx repomix --remote https://github.com/user/repo
-```
+`````
 
-That's it. `repomix output.txt` is created in the current directory.
+That's it. ``repomix output.txt`` is created in the current directory.
 
 ## Output Formats
 
@@ -68,25 +69,25 @@ That's it. `repomix output.txt` is created in the current directory.
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
-| Plain text | `--style plain` (default) | ChatGPT, general LLMs |
-| XML | `--style xml` | Claude (uses XML natively), structured parsing |
-| Markdown | `--style markdown` | Copilot, documentation workflows |
+| Plain text | ````--style plain```` (default) | ChatGPT, general LLMs |
+| XML | ````--style xml```` | Claude (uses XML natively), structured parsing |
+| Markdown | ````--style markdown```` | Copilot, documentation workflows |
 
-```bash
+`````bash
 # XML output for Claude
 repomix --style xml --output repo-context.xml
 
 # Markdown output
 repomix --style markdown
-```
+`````
 
 ## Filtering the Output
 
-For large projects, include only what's relevant: ```bash
+For large projects, include only what's relevant: `````bash
 # Include only TypeScript files in src/
 repomix --include "src/**/*.ts"
 
@@ -95,11 +96,11 @@ repomix --ignore "**/*.test.ts,dist/**,node_modules/**"
 
 # Show line numbers (helps LLMs give accurate edit suggestions)
 repomix --output-show-line-numbers
-```
+`````
 
 ## repomix.config.json (Persistent Settings)
 
-Create `repomix.config.json` in your repo root to save preferences: ```json
+Create ``repomix.config.json`` in your repo root to save preferences: `````json
 {
   "output": {
     "style": "xml",
@@ -112,60 +113,60 @@ Create `repomix.config.json` in your repo root to save preferences: ```json
     "customPatterns": ["*.test.ts", "dist/**", "*.lock"]
   }
 }
-```
+`````
 
 ## Typical LLM Workflows
 
 ### Full Codebase Code Review
 
-```bash
+`````bash
 # Pack the repo, then paste into Claude
 repomix --style xml --output review.xml
 # → Upload to Claude Project or paste into conversation
 # → "Review this codebase for security issues, architecture problems, and dead code."
-```
+`````
 
 ### Bug Diagnosis Across Multiple Files
 
-```bash
+`````bash
 # Include only the affected subsystem
 repomix --include "src/auth/**,src/middleware/**" --style xml
 # → "Here's my authentication code. The JWT is being rejected on mobile but not desktop. Find the bug."
-```
+`````
 
 ### Generating Documentation
 
-```bash
+`````bash
 repomix --style markdown --output docs-context.md
 # → "Generate comprehensive JSDoc for every exported function in this codebase."
-```
+`````
 
 ### Remote Repo Analysis (No Clone Required)
 
-```bash
+`````bash
 # Analyze an open-source project without cloning
 npx repomix --remote https://github.com/some-org/some-project
 # → "Summarize the architecture. What design patterns does this project use?"
-```
+`````
 
-## Security Note: `.repomixignore`
+## Security Note: ````.repomixignore````
 
-repomix respects `.gitignore` by default, but secrets that aren't gitignored (local `.env` files, API keys in config) can end up in output. Add a `.repomixignore` file to explicitly exclude sensitive files: ```
+repomix respects ``.gitignore`` by default, but secrets that aren't gitignored (local ``.env`` files, API keys in config) can end up in output. Add a ``.repomixignore`` file to explicitly exclude sensitive files: `````
 .env
 .env.local
 secrets/**
 config/credentials.json
-```
+````
 
 ## repomix vs. Similar Tools
 
 | Tool | Approach | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **repomix** | Single file, LLM-optimized, XML/plain/MD | Any LLM, fastest start |
 | Cursor | IDE-native context | Cursor users only |
@@ -249,12 +250,12 @@ repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [superpowers](repomix-pack-repo-for-llm-context-2026)
@@ -263,7 +264,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -294,15 +295,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

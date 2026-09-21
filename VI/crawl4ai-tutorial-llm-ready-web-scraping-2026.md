@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
 
+
 # Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã Nguồn Mở Số 1 GitHub, Xây Dựng Pipeline Dữ Liệu LLM và RAG
 
 
@@ -31,13 +32,13 @@ aliases:
 
 ## Giới Thiệu: Tại Sao Crawl4AI Trở Thành Công Cụ Mã Nguồn Mở Hot Nhất 2026
 
-Ra mắt giữa năm 2024, chỉ trong chưa đầy hai năm `unclecode/crawl4ai` đã chinh phục cột mốc 63.000+ sao GitHub và chiếm vị trí #1 trên bảng xếp hạng Trending. Đây không phải là cơn sốt tạm thời — đó là kết quả của một điểm giao thoa công nghệ. Khi mô hình ngôn ngữ lớn (LLM), pipeline RAG và tác nhân AI tự trị trở thành dòng chảy chính của ngành, nhu cầu về dữ liệu web sạch, có cấu trúc ở quy mô lớn đã bùng nổ, trong khi các công cụ crawl truyền thống vẫn đang nhả ra những mớ HTML thô sơ.
+Ra mắt giữa năm 2024, chỉ trong chưa đầy hai năm ```unclecode/crawl4ai```` đã chinh phục cột mốc 63.000+ sao GitHub và chiếm vị trí #1 trên bảng xếp hạng Trending. Đây không phải là cơn sốt tạm thời — đó là kết quả của một điểm giao thoa công nghệ. Khi mô hình ngôn ngữ lớn (LLM), pipeline RAG và tác nhân AI tự trị trở thành dòng chảy chính của ngành, nhu cầu về dữ liệu web sạch, có cấu trúc ở quy mô lớn đã bùng nổ, trong khi các công cụ crawl truyền thống vẫn đang nhả ra những mớ HTML thô sơ.
 
 Crawl4AI đáp ứng khoảng trống đó bằng một lời hứa đơn giản nhưng mạnh mẽ: **biến bất kỳ website nào thành Markdown sạch sẽ, sẵn sàng cho LLM. Tự host. Không phí API. Hoàn toàn mã nguồn mở.**
 
 Bài viết này không phải là đánh giá sơ lược. Đây là hướng dẫn thực chiến, hướng tới các kỹ sư đang xây dựng hệ thống RAG, tác nhân AI, hoặc tập dữ liệu huấn luyện trong năm 2026.
 
----
+* * *
 
 ## Crawl4AI Là Gì? Hạ Tầng Dữ Liệu Cho Kỷ Nguyên LLM
 
@@ -52,7 +53,7 @@ Nghĩa là thanh điều hướng, banner cookie, quảng cáo và thẻ script 
 | Tính năng | Mô tả |
 |-----------|-------|
 | **Markdown Sẵn Sàng Cho LLM** | Tự động loại bỏ nhiễu HTML; xuất Markdown có cấu trúc lý tưởng cho LLM |
-| **Xử Lý Song Song Bất Đồng Bộ** | `AsyncWebCrawler` xử lý nhiều URL đồng thời cho công việc thông lượng cao |
+| **Xử Lý Song Song Bất Đồng Bộ** | ````AsyncWebCrawler```` xử lý nhiều URL đồng thời cho công việc thông lượng cao |
 | **Render JavaScript** | Động cơ Playwright xử lý React, Vue, và các SPA có cuộn vô hạn |
 | **Trích Xuất Bằng LLM** | Định nghĩa schema Pydantic + lệnh ngôn ngữ tự nhiên; LLM tự động trích xuất trường dữ liệu |
 | **Crawl Sâu** | Chiến lược BFS/DFS cho việc thu thập đệ quy toàn bộ site |
@@ -67,7 +68,7 @@ Nghĩa là thanh điều hướng, banner cookie, quảng cáo và thẻ script 
 - **Nhóm dữ liệu**: Thay thế các bộ chọn XPath/CSS dễ vỡ bằng lệnh trích xuất ngôn ngữ tự nhiên
 - **Tổ chức nhạy cảm về quyền riêng tư**: Giữ tất cả dữ liệu on-premise; không phụ thuộc SaaS bên thứ ba
 
----
+* * *
 
 ## Khởi Động Nhanh: Cài Đặt, Crawl Lần Đầu, Xuất Markdown Trong 5 Phút
 
@@ -75,24 +76,24 @@ Nghĩa là thanh điều hướng, banner cookie, quảng cáo và thẻ script 
 
 **Lựa chọn A — pip (khuyến nghị cho phát triển)**
 
-```bash
+`````bash
 pip install crawl4ai
 playwright install chromium
-```
+`````
 
-Nếu cần phiên bản đồng bộ (dựa trên Selenium): ```bash
+Nếu cần phiên bản đồng bộ (dựa trên Selenium): `````bash
 pip install crawl4ai[sync]
-```
+`````
 
 **Lựa chọn B — Docker (khuyến nghị cho production/môi trường cô lập)**
 
-```bash
+`````bash
 docker pull unclecode/crawl4ai:latest
-```
+`````
 
 ### Crawl Bất Đồng Bộ Đầu Tiên
 
-```python
+`````python
 import asyncio
 from crawl4ai import AsyncWebCrawler
 
@@ -100,19 +101,19 @@ async def main(): async with AsyncWebCrawler() as crawler: result = await crawle
         print(result.markdown[:1000])
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 Chỉ vậy thôi. Mười dòng code, và bạn đã có Markdown sạch sẵn sàng đưa vào mô hình embedding.
 
 ### CLI Chế Độ Nhanh
 
-```bash
+`````bash
 crwl https://example.com -o markdown
-```
+`````
 
-Các định dạng đầu ra được hỗ trợ: `markdown`, `html`, `json`, `links`, `screenshot`.
+Các định dạng đầu ra được hỗ trợ: ````markdown````, ````html````, ````json````, ````links````, ````screenshot````.
 
----
+* * *
 
 ## Nâng Cao: Trích Xuất Có Cấu Trúc Bằng LLM — Không Cần Viết Một Dòng CSS Nào
 
@@ -120,15 +121,15 @@ Các định dạng đầu ra được hỗ trợ: `markdown`, `html`, `json`, `
 
 ### Ví Dụ: Trích Xuất Dữ Liệu Giá Từ Trang API Của OpenAI
 
-Bước 1 — Định nghĩa schema bằng Pydantic: ```python
+Bước 1 — Định nghĩa schema bằng Pydantic: `````python
 from pydantic import BaseModel, Field
 
 class ModelPricing(BaseModel): model_name: str = Field(..., description="Tên mô hình")
     input_cost: str = Field(..., description="Chi phí cho 1M token đầu vào")
     output_cost: str = Field(..., description="Chi phí cho 1M token đầu ra")
-```
+`````
 
-Bước 2 — Cấu hình chiến lược trích xuất LLM: ```python
+Bước 2 — Cấu hình chiến lược trích xuất LLM: `````python
 import os
 import asyncio
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
@@ -160,26 +161,26 @@ async def main(): browser_config = BrowserConfig(verbose=True)
         print(result.extracted_content)
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ### Các Nhà Cung Cấp LLM Được Hỗ Trợ
 
-| Nhà cung cấp | Chuỗi `provider` mẫu | Ghi chú |
+| Nhà cung cấp | Chuỗi ````provider```` mẫu | Ghi chú |
 |--------------|----------------------|---------|
-| OpenAI | `openai/gpt-4o` | Độ chính xác tốt nhất; chi phí trung bình |
-| Anthropic | `anthropic/claude-sonnet-4-20250514` | Xuất sắc với trang ngữ cảnh dài |
-| Groq / DeepSeek | `groq/deepseek-r1-distill-llama-70b` | Nhanh, hiệu quả chi phí |
-| Local (Ollama) | `ollama/llama3` | Chi phí API bên ngoài bằng 0; cần GPU cục bộ |
+| OpenAI | ````openai/gpt-4o```` | Độ chính xác tốt nhất; chi phí trung bình |
+| Anthropic | ````anthropic/claude-sonnet-4-20250514```` | Xuất sắc với trang ngữ cảnh dài |
+| Groq / DeepSeek | ````groq/deepseek-r1-distill-llama-70b```` | Nhanh, hiệu quả chi phí |
+| Local (Ollama) | ````ollama/llama3```` | Chi phí API bên ngoài bằng 0; cần GPU cục bộ |
 
-**Mẹo chuyên gia**: Sử dụng `input_format="markdown"` giảm đáng kể lượng token so với việc đưa HTML thô vào LLM, thường tiết kiệm 60–80% chi phí.
+**Mẹo chuyên gia**: Sử dụng ````input_format="markdown"```` giảm đáng kể lượng token so với việc đưa HTML thô vào LLM, thường tiết kiệm 60–80% chi phí.
 
----
+* * *
 
 ## Crawl Sâu và Lọc Nội Dung: Từ Trang Đơn Lẻ Đến Toàn Bộ Site
 
 ### Crawl Sâu BFS (Toàn Site, 2 Cấp Độ)
 
-```python
+`````python
 import asyncio
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
@@ -200,22 +201,22 @@ async def main(): config = CrawlerRunConfig(
         for r in results[:5]: print(f"URL: {r.url} | Độ sâu: {r.metadata.get(depth, 0)}")
 
 if __name__ == "__main__": asyncio.run(main())
-```
+`````
 
 ### Lọc Nội Dung BM25 Cho Pipeline RAG
 
-Khi xây dựng cơ sở kiến thức, bạn thường không cần toàn bộ trang — chỉ cần các đoạn liên quan đến truy vấn. Bộ lọc BM25 của Crawl4AI giải quyết vấn đề này: ```python
+Khi xây dựng cơ sở kiến thức, bạn thường không cần toàn bộ trang — chỉ cần các đoạn liên quan đến truy vấn. Bộ lọc BM25 của Crawl4AI giải quyết vấn đề này: `````python
 from crawl4ai.content_filter import BM25ContentFilter
 
 filter = BM25ContentFilter(
     query="cách cấu hình crawler bất đồng bộ",
     threshold=0.1
 )
-```
+`````
 
 Bộ lọc này xếp hạng mỗi đoạn văn bản trên trang theo độ liên quan đến truy vấn của bạn, và loại bỏ nội dung có độ liên quan thấp trước khi bạn trả phí cho embedding hoặc lưu trữ vector.
 
----
+* * *
 
 ## So Sánh Trực Tiếp: Crawl4AI vs Firecrawl vs ScrapeGraphAI vs Scrapy (2026)
 
@@ -239,27 +240,27 @@ Bộ lọc này xếp hạng mỗi đoạn văn bản trên trang theo độ li�
 
 **Khuyến nghị lai**: Sử dụng Firecrawl cho các tác vụ API nhanh và Crawl4AI cho pipeline tự host thông lượng cao. Nhiều nhóm production chạy cả hai.
 
----
+* * *
 
 ## Triển Khai Production và Tinh Chỉnh Hiệu Năng
 
 ### Docker với FastAPI và Xác Thực JWT
 
-Triển khai Crawl4AI như một microservice nội bộ: ```bash
+Triển khai Crawl4AI như một microservice nội bộ: `````bash
 docker run -p 8000:8000 \
   -e CRAWL4AI_API_TOKEN=your_jwt_secret \
   unclecode/crawl4ai:latest
-```
+`````
 
-Gọi từ ứng dụng của bạn: ```bash
+Gọi từ ứng dụng của bạn: `````bash
 curl -X POST http://localhost:8000/crawl \
   -H "Authorization: Bearer your_jwt_secret" \
   -d '{"url": "https://example.com", "output_format": "markdown"}"
-```
+`````
 
 ### Cấu Hình Proxy và Đồng Thời
 
-Cho việc crawl quy mô production, cấu hình luân phiên proxy và pool trình duyệt headless: ```python
+Cho việc crawl quy mô production, cấu hình luân phiên proxy và pool trình duyệt headless: `````python
 browser_config = BrowserConfig(
     headless=True,
     proxy_config={
@@ -269,18 +270,18 @@ browser_config = BrowserConfig(
     },
     verbose=True
 )
-```
+`````
 
 ### Xử Lý Sự Cố Thường Gặp
 
 | Triệu chứng | Nguyên nhân gốc | Giải pháp |
 |-------------|----------------|-----------|
-| Đầu ra trống | SPA chưa render xong | Dùng `wait_until="networkidle"` hoặc thêm độ trễ |
+| Đầu ra trống | SPA chưa render xong | Dùng ````wait_until="networkidle"```` hoặc thêm độ trễ |
 | Bị chặn bởi anti-bot | Phát hiện fingerprint | Bật chế độ stealth; luân phiên proxy residential |
 | Trích xuất LLM timeout | Trang quá lớn so với context window | Tiền lọc bằng CSS selector trước khi đưa vào LLM |
-| Cài Playwright thất bại | Tải Chromium bị chặn | Dùng `PLAYWRIGHT_BROWSERS_PATH=0` hoặc URL mirror |
+| Cài Playwright thất bại | Tải Chromium bị chặn | Dùng ````PLAYWRIGHT_BROWSERS_PATH=0``` hoặc URL mirror |
 
----
+* * *
 
 
 
@@ -309,7 +310,7 @@ Crawl4AI không phải là giải pháp vạn năng cho mọi nhu cầu crawl. N
 4. Triển khai qua Docker và benchmark thông lượng so với yêu cầu khối lượng.
 5. Xem lại bảng so sánh ở Mục 5 để quyết định liệu bạn có cần thiết lập lai với Firecrawl hoặc Apify.
 
----
+* * *
 
 **Tài Liệu Tham Khảo**
 
@@ -318,7 +319,7 @@ Crawl4AI không phải là giải pháp vạn năng cho mọi nhu cầu crawl. N
 - [So sánh Crawl4AI vs Firecrawl vs Apify (2026)](https://www.pkgpulse.com/guides/crawl4ai-vs-firecrawl-vs-apify-ai-web-scraping-2026)
 - [Các Web Crawler Mã Nguồn Mở Tốt Nhất 2026 — Firecrawl Blog](https://www.firecrawl.dev/blog/best-open-source-web-crawler)
 
----
+* * *
 
 *Xuất bản ngày 2026-05-19. Dữ liệu dựa trên GitHub, tài liệu chính thức, và các benchmark công khai. Crawl4AI phát triển rất nhanh, vui lòng đối chiếu với tài liệu mới nhất.*
 
@@ -348,7 +349,7 @@ Crawl4AI không phải là giải pháp vạn năng cho mọi nhu cầu crawl. N
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -358,7 +359,7 @@ Crawl4AI không phải là giải pháp vạn năng cho mọi nhu cầu crawl. N
 - [2026-06-15-trending-ai-agents](crawl4ai-tutorial-llm-ready-web-scraping-2026)
 - [2026-06-22-trending-ai-agents](crawl4ai-tutorial-llm-ready-web-scraping-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

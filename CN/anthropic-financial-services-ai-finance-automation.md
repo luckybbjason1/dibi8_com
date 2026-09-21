@@ -36,6 +36,7 @@ faqs: - q: 'What financial workflows can Anthropic Financial Services agents aut
     a: 'The Pitch Agent runs a multi-step pipeline that pulls real data from LSEG and S&P Global APIs, runs LBO modeling and sensitivity tables, then uses Claude''s 200K-token context to write the narrative. Every number is traceable back to a source API call, and the output is staged in a human review gate before client delivery.'
   - q: 'How does Anthropic Financial Services meet financial compliance and security requirements?'
     a: 'Managed Agents can be deployed inside your own VPC so no data leaves your infrastructure, every agent action is audit-logged with a full chain-of-custody record, and access is gated through enterprise identity providers like Okta or Azure AD. No agent output goes directly to clients—everything queues for human sign-off to satisfy FINRA and SEC supervision requirements.'---
+
 {</* resource-info */>}
 
 # Anthropic Financial Services: How Financial Teams Can Automate Analysis & Boost ROI by 300%
@@ -49,7 +50,7 @@ Anthropic Financial Services is a collection of **named, end-to-end workflow age
 - **Private Equity**: Valuation reviews, GP package ingestion, LP reporting
 - **Wealth Management**: KYC screening, onboarding automation, statement auditing
 
-Everything ships in two forms: as a **Claude Cowork plugin** (install and use immediately) or as a **Claude Managed Agent template** (deploy behind your own workflow engine via `/v1/agents`).
+Everything ships in two forms: as a **Claude Cowork plugin** (install and use immediately) or as a **Claude Managed Agent template** (deploy behind your own workflow engine via ``/v1/agents``).
 
 ## Core Features and Capabilities
 
@@ -59,9 +60,9 @@ The repository includes purpose-built agents that map to real financial jobs: | 
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | Coverage & Advisory | **Pitch Agent** | Comps, precedents, LBO → branded pitch deck, end-to-end |
 | Coverage & Advisory | **Meeting Prep Agent** | Briefing pack before every client meeting |
@@ -76,7 +77,7 @@ The repository includes purpose-built agents that map to real financial jobs: | 
 
 ### 2. Vertical Skill Plugins
 
-Each vertical plugin bundles the underlying skills, slash commands, and data connectors. For example, the Investment Banking plugin gives you `/comps`, `/dcf`, `/earnings`, and connectors to market data providers. Install just the plugin if you don't need a full agent.
+Each vertical plugin bundles the underlying skills, slash commands, and data connectors. For example, the Investment Banking plugin gives you ```/comps````, ````/dcf````, ````/earnings````, and connectors to market data providers. Install just the plugin if you don't need a full agent.
 
 ### 3. Partner Integrations
 
@@ -84,7 +85,7 @@ The repo includes **partner-built plugins** from LSEG (London Stock Exchange Gro
 
 ### 4. Managed Agent Cookbooks
 
-For enterprise deployment, the `managed-agent-cookbooks/` directory contains: - `agent.yaml` configurations
+For enterprise deployment, the ````managed-agent-cookbooks/```` directory contains: - ````agent.yaml```` configurations
 - Leaf-worker subagent definitions
 - Steering-event examples
 - Per-agent security notes
@@ -93,19 +94,19 @@ For enterprise deployment, the `managed-agent-cookbooks/` directory contains: - 
 
 ### Option A: Claude Cowork Plugin (Easiest)
 
-```bash
+`````bash
 # Install via Claude Desktop or Claude Code
 claude plugin install anthropic/financial-services
-```
+`````
 
-Once installed, activate any agent with natural language: ```
+Once installed, activate any agent with natural language: `````
 "Run Pitch Agent for Tesla acquisition target"
 "Run KYC Screener on this onboarding PDF"
-```
+`````
 
 ### Option B: Managed Agent API (Enterprise)
 
-```yaml
+`````yaml
 # agent.yaml example for Pitch Agent
 name: pitch-agent
 version: 1.0.0
@@ -117,17 +118,17 @@ skills: - comps-analysis
   - lbo-modeling
 connectors: - lseg-market-data
   - sp-global-capiq
-```
+`````
 
-Deploy via the Claude Managed Agents API: ```bash
+Deploy via the Claude Managed Agents API: `````bash
 curl -X POST https://api.anthropic.com/v1/agents \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -d @agent.yaml
-```
+`````
 
 ## Code Example: Custom KYC Screener
 
-```python
+`````python
 from anthropic_financial import KYCAgent
 
 agent = KYCAgent(
@@ -146,7 +147,7 @@ results = agent.screen(
 # Output: flagged gaps, risk score, and human review staging
 print(results.summary)
 print(results.flagged_items)
-```
+````
 
 ## Real-World Use Cases
 
@@ -163,15 +164,15 @@ A wealth manager handling 500+ HNW clients per year uses the **KYC Screener** to
 
 | Feature | Anthropic Financial Services | Bloomberg Terminal | AlphaSense | Generic LLM (GPT-4) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | ✅ Yes | ❌ No | ❌ No | N/A |
 | **Financial-Specific Agents** | ✅ Pre-built | ✅ Built-in | ✅ Partial | ❌ Generic |
@@ -219,13 +220,13 @@ Financial services demand the highest security standards. Anthropic Financial Se
 
 Early adopters report quantifiable improvements: | Metric | Before Agent | After Agent | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Pitch deck turnaround | 48 hours | 4 hours | 88% faster |
 | DCF model build time | 6 hours | 45 minutes | 87% faster |
@@ -260,11 +261,11 @@ Anthropic Financial Services is not just another AI experiment — it is a **pro
 > **Disclaimer**: Nothing in this repository constitutes investment, legal, tax, or accounting advice. All outputs are staged for human sign-off.
 
 
----
+* * *
 *Have you tried Anthropic Financial Services? Leave a comment below and share your experience.*
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/openai-whisper/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -60,7 +61,7 @@ Whisper는 인코더-디코더 Transformer 아키텍처를 따른다. 오디오 
 
 ### Python 설치
 
-```bash
+````bash
 python -m venv whisper-env
 source whisper-env/bin/activate  # Linux/macOS
 # whisper-env\Scripts\activate  # Windows
@@ -70,11 +71,11 @@ pip install -U openai-whisper
 
 # 설치 확인
 whisper --version
-```
+`````
 
 ### 시스템 의존성
 
-FFmpeg는 오디오 전처리에 필수적이다: ```bash
+FFmpeg는 오디오 전처리에 필수적이다: `````bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -83,11 +84,11 @@ brew install ffmpeg
 
 # 확인
 ffmpeg -version | head -1
-```
+`````
 
 ### GPU 가속 (CUDA)
 
-```bash
+`````bash
 # CUDA 가용성 확인
 python -c "import torch; print(torch.cuda.is_available())"
 
@@ -96,11 +97,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # CPU 전용 추론
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
+`````
 
 ### Docker 배포
 
-```bash
+`````bash
 # 공식 이미지 가져오기 및 실행
 docker pull openai/whisper:latest
 
@@ -121,11 +122,11 @@ docker run --rm \
   /audio/podcast.mp3 \
   --model base \
   --device cpu
-```
+`````
 
 ### 첫 번째 빠른 전사
 
-```python
+`````python
 import whisper
 
 # 모델 로드 (첫 실행 시 다운로드)
@@ -137,11 +138,11 @@ print(result["text"])
 
 # 타임스탬프가 있는 세그먼트 가져오기
 for segment in result["segments"]: print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
-```
+`````
 
 ### CLI 사용 예시
 
-```bash
+`````bash
 # 기본 전사
 whisper audio.mp3 --model medium --language en
 
@@ -153,7 +154,7 @@ whisper french_interview.mp3 --model large-v3 --task translate
 
 # 언어 자동 감지
 whisper unknown.mp3 --model base --task transcribe
-```
+`````
 
 ## 인기 도구와의 통합
 
@@ -161,11 +162,11 @@ whisper unknown.mp3 --model base --task transcribe
 
 WhisperX는 faster-whisper를 감싸며 음소 수준 정렬과 화자 분리 기능을 추가한다. 회의 기록과 인터뷰 처리에 최적의 도구이다.
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -206,17 +207,17 @@ for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     end = segment["end"]
     text = segment["text"]
     print(f"[{start:.2f}s - {end:.2f}s] {speaker}: {text}")
-```
+`````
 
 ### faster-whisper (프로덕션 추론)
 
 faster-whisper는 CTranslate2를 사용하여 Whisper를 재구현하여 양자화 지원과 함께 4-8배 속도 향상을 제공한다. 프로덕션 API의 기본 선택이다.
 
-```bash
+`````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # 더 낮은 메모리를 위한 양자화로 로드
@@ -245,11 +246,11 @@ segments, info = model.transcribe(
 print(f"감지된 언어: {info.language} (확률: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ### LibreTranslate 통합 (번역 파이프라인)
 
-```python
+`````python
 import whisper
 import requests
 
@@ -270,11 +271,11 @@ def translate(text, source="ja", target="en"): response = requests.post(
 english_text = translate(japanese_text)
 print(f"JA: {japanese_text}")
 print(f"EN: {english_text}")
-```
+`````
 
 ### FastAPI 실시간 전사 서버
 
-```python
+`````python
 from fastapi import FastAPI, UploadFile, File
 from faster_whisper import WhisperModel
 import tempfile
@@ -310,13 +311,13 @@ async def transcribe(file: UploadFile = File(...)): with tempfile.NamedTemporary
         "language_probability": info.language_probability,
         "segments": results
     }
-```
+`````
 
-실행: `uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2`
+실행: ````uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2````
 
 ### Prometheus 모니터링 통합
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -342,7 +343,7 @@ def transcribe_with_metrics(audio_path, model_name="medium"): start = time.time(
 
 # 9090 포트에서 메트릭 서버 시작
 start_http_server(9090)
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -387,7 +388,7 @@ start_http_server(9090)
 
 ### 더 낮은 메모리를 위한 모델 양자화
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # INT8 양자화 — 2배 속도, VRAM 50% 절감
@@ -398,11 +399,11 @@ model_hybrid = WhisperModel("large-v3", device="cuda", compute_type="int8_float1
 
 # CPU에서 INT8 사용
 model_cpu = WhisperModel("medium", device="cpu", compute_type="int8", cpu_threads=8)
-```
+`````
 
 ### 배치 처리 파이프라인
 
-```python
+`````python
 import os
 from concurrent.futures import ThreadPoolExecutor
 from faster_whisper import WhisperModel
@@ -426,11 +427,11 @@ files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith
 with ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(process_file, files))
 
 print(f"{len(results)}개 파일 처리 완료")
-```
+`````
 
 ### NGINX 로드 밸런싱 (멀티 GPU)
 
-```nginx
+`````nginx
 upstream whisper_backend {
     least_conn;
     server 10.0.1.10:8000 weight=1;  # GPU 0
@@ -447,11 +448,11 @@ server {
         client_max_body_size 500M;
     }
 }
-```
+`````
 
 ### 헬스 체크 엔드포인트
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from faster_whisper import WhisperModel
 import torch
@@ -468,11 +469,11 @@ async def health(): gpu_available = torch.cuda.is_available()
         "gpu_memory_gb": gpu_memory / (1024**3),
         "model_loaded": model is not None
     }
-```
+`````
 
 ### Redis 큐 비동기 처리
 
-```python
+`````python
 import redis
 import json
 from faster_whisper import WhisperModel
@@ -494,7 +495,7 @@ def worker(): while True: job = r.blpop("transcription_queue", timeout=5)
         time.sleep(0.1)
 
 if __name__ == "__main__": worker()
-```
+`````
 
 ## 대안과의 비교
 
@@ -540,11 +541,11 @@ faster-whisper는 CTranslate2(C++ 추론 엔진)를 사용하여 Whisper를 재�
 
 ### 3. 어떤 모델 크기를 선택해야 하나?
 
-영어 전용 빠른 작업은 `base`, 일상적인 다국어 사용은 `small`, 전문가 수준의 정확도는 `medium`, 최대 정확도가 타협 불가능할 때 `large-v3`을 선택하라. `turbo` 모델은 지연 시간에 민감한 프로덕션 워크로드의 스위트 스팟이다.
+영어 전용 빠른 작업은 ````base````, 일상적인 다국어 사용은 ````small````, 전문가 수준의 정확도는 ````medium````, 최대 정확도가 타협 불가능할 때 ````large-v3````을 선택하라. ````turbo```` 모델은 지연 시간에 민감한 프로덕션 워크로드의 스위트 스팟이다.
 
 ### 4. 긴 오디오 파일을 효율적으로 처리하려면?
 
-faster-whisper의 `vad_filter=True`를 사용하여 무음 구간을 건드러뛰어라. 1시간 이상 파일은 청크로 분할하여 병렬 처리하라. WhisperX는 긴 파일을 기본적으로 처리하며, 3시간 이상 오디오에서 기본 Whisper보다 안정적이다.
+faster-whisper의 ````vad_filter=True````를 사용하여 무음 구간을 건드러뛰어라. 1시간 이상 파일은 청크로 분할하여 병렬 처리하라. WhisperX는 긴 파일을 기본적으로 처리하며, 3시간 이상 오디오에서 기본 Whisper보다 안정적이다.
 
 ### 5. Whisper는 상업적 사용이 물론 물가?
 
@@ -560,10 +561,10 @@ Whisper large-v3은 영어에서 Google Speech-to-Text와 비슷한 WER을 달�
 
 ## 결론
 
-OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선택으로 남아있다. 99,800개의 GitHub star는 인기를 넘어 생태계의 성숙도를 반영한다: faster-whisper가 속도를, WhisperX가 화자 분리를, 핵심 모델이 99개 언어에서 높은 정확도를 제공한다. `faster-whisper`와 `medium` 모델로 시작하고, 화자 레이블이 필요할 때 `WhisperX`를 추가하며, GPU 메모리가 부족할 때 INT8 양자화를 사용하라.
+OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선택으로 남아있다. 99,800개의 GitHub star는 인기를 넘어 생태계의 성숙도를 반영한다: faster-whisper가 속도를, WhisperX가 화자 분리를, 핵심 모델이 99개 언어에서 높은 정확도를 제공한다. ````faster-whisper````와 ````medium```` 모델로 시작하고, 화자 레이블이 필요할 때 ````WhisperX````를 추가하며, GPU 메모리가 부족할 때 INT8 양자화를 사용하라.
 
 **다음 단계:**
-- 저장소 클론: `git clone https://github.com/openai/whisper`
+- 저장소 클론: ````git clone https://github.com/openai/whisper```
 - 배포 팁을 위해 dibi8 개발자 Telegram 커뮤니티에 참여하라
 - 모델 크기를 확정하기 전에 자체 오디오 데이터에서 faster-whisper를 벤치마크하라
 
@@ -613,7 +614,7 @@ OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -623,6 +624,6 @@ OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](openai-whisper)
 - [moneyprinterturbo-one-click-ai-video-generator](openai-whisper)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

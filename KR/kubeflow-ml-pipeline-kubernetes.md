@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/kubeflow-ml-pipeline-kubernetes/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 왜 Kubernetes 네이티브 ML이 중요한가
@@ -44,7 +45,7 @@ Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: **모든
 
 제어 플레인은 서비스 메시를 위한 Istio, 인증을 위한 Dex 또는 OIDC, 모든 컴포넌트 간 통합 탐색을 위한 Central Dashboard를 포함한다.
 
-```bash
+````bash
 # 상위 수준 컴포넌트 뷰
 kubectl get pods -n kubeflow
 # 예상 출력 표시: # - ml-pipeline (KFP API 서버)
@@ -53,7 +54,7 @@ kubectl get pods -n kubeflow
 # - training-operator
 # - centraldashboard
 # - kubeflow-user-example-com 네임스페이스의 notebooks
-```
+`````
 
 ## 설치 및 설정: 10분 안에 실행
 
@@ -66,7 +67,7 @@ kubectl get pods -n kubeflow
 
 ### 옵션 A: kustomize로 배포 (공식 방법)
 
-```bash
+`````bash
 # manifests 저장소 클론
 export KUBEFLOW_VERSION=v1.10.0
 git clone https://github.com/kubeflow/manifests.git
@@ -80,26 +81,26 @@ while ! kustomize build example | kubectl apply -f -; do
   echo "Retrying to apply resources..."
   sleep 10
 done
-```
+`````
 
-```bash
+`````bash
 # 핵심 컴포넌트가 실행 중인지 확인
 kubectl get pods -n kubeflow --watch
 # 모든 Pod이 Running 또는 Completed로 표시될 때까지 대기
 # 3노드 클러스터에서 일반적으로 5-10분 소요
-```
+`````
 
-```bash
+`````bash
 # Central Dashboard에 접근하기 위한 포트 포워딩
 kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 
 # http://localhost:8080에서 접근
 # 기본 자격증명: user@example.com / 12341234
-```
+`````
 
 ### 옵션 B: Helm으로 배포 (개발 환경용 더 빠름)
 
-```bash
+`````bash
 # Kubeflow Helm 저장소 추가 (커뮤니티 유지관리)
 helm repo add kubeflow https://kubeflow.github.io/manifests/
 helm repo update
@@ -109,11 +110,11 @@ helm install kubeflow kubeflow/kubeflow \
   --namespace kubeflow \
   --create-namespace \
   --set pipeline.objectStore.minio.persistence.enabled=true
-```
+`````
 
 ### 옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)
 
-제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: ```bash
+제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: `````bash
 # doctl 설치 및 인증
 doctl kubernetes cluster create kubeflow-ml \
   --region nyc3 \
@@ -121,20 +122,20 @@ doctl kubernetes cluster create kubeflow-ml \
   --node-pool "name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2"
 
 # 그런 다음 옵션 A와 같이 Kubeflow manifests 적용
-```
+`````
 
 [DigitalOcean에 가입](https://m.do.co/c/eca87ac14ee0)하면 첫 60일 동안 **$200 크레딧**을 받을 수 있다 — GPU가 활성화된 Kubeflow 클러스터를 한 달 낂 낂 실험하기에 충분하다.
 
-```bash
+`````bash
 # Kubeflow가 생성한 모든 네임스페이스 확인
 kubectl get namespaces | grep kubeflow
 # kubeflow          Active
 # kubeflow-user-example-com  Active
-```
+`````
 
 ## 첫 번째 ML 파이프라인 구축하기
 
-Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: ```python
+Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: `````python
 # pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인
 import kfp
 from kfp import dsl
@@ -225,9 +226,9 @@ if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
-```
+`````
 
-```bash
+`````bash
 # 파이프라인 컴파일 및 업로드
 python pipeline.py
 
@@ -237,21 +238,21 @@ kfp pipeline create \
   --description "Iris classification training pipeline" \
   --engine argo \
   iris_pipeline.yaml
-```
+`````
 
-```bash
+`````bash
 # CLI에서 파이프라인 실행
 kfp run create \
   --experiment-name default \
   --pipeline-id <PIPELINE_ID> \
   --display-name "iris-run-$(date +%s)"
-```
+`````
 
 파이프라인은 KFP UI에 완전한 계보 추적과 함께 표시된다 — 모든 아티팩트, 파라미터, 실행이 자동으로 기록된다. 모델 아티팩트를 클릭하여 해당 모델을 생성한 정확한 데이터셋과 코드 버전으로 거슬러 올라갈 수 있다.
 
 ## Training Operator로 분산 훈련하기
 
-단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: ```yaml
+단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: `````yaml
 # pytorch-job.yaml — 분산 PyTorch 훈련
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
@@ -275,9 +276,9 @@ spec: pytorchReplicaSpecs: Master: replicas: 1
             resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-```
+`````
 
-```bash
+`````bash
 # 훈련 작업 제출
 kubectl apply -f pytorch-job.yaml
 
@@ -285,17 +286,17 @@ kubectl apply -f pytorch-job.yaml
 kubectl get pytorchjobs -n kubeflow-user-example-com -w
 kubectl logs -f cifar10-distributed-master-0 \
   -n kubeflow-user-example-com
-```
+`````
 
-```bash
+`````bash
 # 클러스터 전체 GPU 활용도 확인
 kubectl top nodes
 nvidia-smi  # 모든 GPU Pod 낶부에서 실행
-```
+`````
 
 ## KServe로 모델 서빙하기
 
-KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: ```yaml
+KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: `````yaml
 # inference-service.yaml — 훈련된 모델 배포
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
@@ -308,9 +309,9 @@ spec: predictor: serviceAccountName: sa-default
           memory: 2Gi
         requests: cpu: "100m"
           memory: 256Mi
-```
+`````
 
-```bash
+`````bash
 # InferenceService 적용
 kubectl apply -f inference-service.yaml
 
@@ -318,18 +319,18 @@ kubectl apply -f inference-service.yaml
 kubectl get inferenceservices -n kubeflow-user-example-com -w
 
 # 예상: iris-classifier   True    100   http://iris-classifier...   Ready
-```
+`````
 
-```bash
+`````bash
 # 배포된 모델 테스트
 curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict \
   -H "Content-Type: application/json" \
   -d '{"instances": [[5.1, 3.5, 1.4, 0.2]]}'
 
 # 응답: {"predictions": [0]}
-```
+`````
 
-칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: ```yaml
+칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: `````yaml
 # canary-rollout.yaml — v2의 점진적 롤아웃
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
@@ -337,11 +338,11 @@ metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
 spec: predictor: canaryTrafficPercent: 20
     sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
-```
+`````
 
 ## Katib로 하이퍼파라미터 튜닝하기
 
-Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다: ```yaml
+Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다: `````yaml
 # katib-experiment.yaml — Random Forest 하이퍼파라미터 최적화
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
@@ -381,9 +382,9 @@ spec: objective: type: maximize
                 resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
-```
+`````
 
-```bash
+`````bash
 # 실험 시작
 kubectl apply -f katib-experiment.yaml
 
@@ -395,7 +396,7 @@ kubectl get trials -n kubeflow-user-example-com
 kubectl get experiment iris-hp-tuning \
   -n kubeflow-user-example-com \
   -o jsonpath='{.status.currentOptimalTrial}"
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -430,7 +431,7 @@ KFP 오케스트레이션 오버헤드는 복잡한 다중 단계 워크플로�
 
 ### GPU 스케줄링 및 리소스 쿼터
 
-```yaml
+`````yaml
 # gpu-quota.yaml — 네임스페이스별 GPU 제한 강제
 apiVersion: v1
 kind: ResourceQuota
@@ -438,19 +439,19 @@ metadata: name: gpu-quota
   namespace: data-science-team
 spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
-```
+`````
 
-```bash
+`````bash
 # 쿼터 적용
 kubectl apply -f gpu-quota.yaml
 
 # 네임스페이스별 GPU 할당 확인
 kubectl describe resourcequota gpu-quota -n data-science-team
-```
+`````
 
 ### 데이터셋 영구 저장소
 
-```yaml
+`````yaml
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -459,19 +460,19 @@ metadata: name: training-datasets
 spec: accessModes: - ReadWriteMany
   resources: requests: storage: 500Gi
   storageClassName: nfs-client  # 또는 AWS에서 efs-sc
-```
+`````
 
-```bash
+`````bash
 # Kubeflow UI를 통해 노트북 서버에 마운트
 # 또는 파이프라인 컴포넌트에서 참조: # dsl.VolumeOp(name="create-dataset-volume",
 #              resource_name="training-datasets",
 #              size="500Gi",
 #              modes=dsl.VOLUME_MODE_RWM)
-```
+`````
 
 ### 인증 및 RBAC
 
-```bash
+`````bash
 # 리소스 제한이 있는 사용자 프로필 생성
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
@@ -484,11 +485,11 @@ spec: owner: kind: User
       nvidia.com/gpu: "8"
       pods: "50"
 EOF
-```
+`````
 
 ### 백업 및 재해 복구
 
-```bash
+`````bash
 # MySQL 메타데이터 데이터베이스 백업 (KFP 실험/실행)
 kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- \
   mysqldump -u root -p$mysqlpassword mlpipeline \
@@ -497,11 +498,11 @@ kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- \
 # MinIO 아티팩트 저장소 백업
 mc mirror myminio/kubeflow-pipelines/ \
   s3-backup/kubeflow-pipelines-backup/
-```
+`````
 
 ### Prometheus 및 Grafana로 모니터링
 
-```bash
+`````bash
 # Kubeflow는 여러 컴포넌트에서 Prometheus 메트릭을 노출한다
 kubectl apply -f \
   https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
@@ -510,7 +511,7 @@ kubectl apply -f \
 # - kubeflow_pipelines_run_latency_seconds (파이프라인 실행 시간)
 # - nvidia_gpu_utilization_gpu (Pod별 GPU 활용도)
 # - container_memory_working_set_bytes (OOM 감지)
-```
+`````
 
 ## 대안과의 비교
 
@@ -553,19 +554,19 @@ Kubeflow는 강력하지만 도전 과제가 없는 것은 아니다: **설정 �
 A: 최소 프로덕션 클러스터(3 CPU 노드 + 2 GPU 노드)는 DigitalOcean이나 GCP에서 월 **$800-1,200** 정도이다. GPU 유형에 따라 달라진다. CPU 전용 실험 클러스터는 월 $200까지 낮출 수 있다.
 
 **Q: GPU 없이 Kubeflow를 사용할 수 있는가?**
-A: 예. Kubeflow는 CPU 노드에서 완벽하게 작동한다. Training Operator, KFP, KServe는 모두 GPU 없이 작동한다. 단, 딥러닝 훈련은 상당히 느려진다. CPU 전용 클러스터의 경우 모든 매니페스트에서 `nvidia.com/gpu` 리소스 요청을 0으로 줄이면 된다.
+A: 예. Kubeflow는 CPU 노드에서 완벽하게 작동한다. Training Operator, KFP, KServe는 모두 GPU 없이 작동한다. 단, 딥러닝 훈련은 상당히 느려진다. CPU 전용 클러스터의 경우 모든 매니페스트에서 ````nvidia.com/gpu```` 리소스 요청을 0으로 줄이면 된다.
 
 **Q: 원시 Kubernetes + 커스텀 스크립트 대비 Kubeflow의 장점은 무엇인가?**
 A: 원시 Kubernetes는 완전한 제어권을 주지만 자체 파이프라인 엔진, 아티팩트 추적, 실험 관리 및 모델 서빙 레이어를 구축해야 한다. Kubeflow는 이 모든 것을 바로 제공하여 예상 **3-6개월**의 플랫폼 엔지니어링 노력을 절약한다. 대가로 컴포넌트 간 상호작용 방식에 대한 Kubeflow의 설계 선택을 수용해야 한다.
 
 **Q: 기존 CI/CD 시스템과 Kubeflow를 통합할 수 있는가?**
-A: 예. Kubeflow Pipelines는 GitHub Actions, GitLab CI, Jenkins 또는 HTTP API 호출을 할 수 있는 모든 시스템에서 트리거할 수 있다. 많은 팀이 `main`에 머지하면 자동으로 훈련, 평가 및 조걶적 배포를 수행하는 파이프라인 실행을 트리거하는 패턴을 구현한다.
+A: 예. Kubeflow Pipelines는 GitHub Actions, GitLab CI, Jenkins 또는 HTTP API 호출을 할 수 있는 모든 시스템에서 트리거할 수 있다. 많은 팀이 ````main````에 머지하면 자동으로 훈련, 평가 및 조걶적 배포를 수행하는 파이프라인 실행을 트리거하는 패턴을 구현한다.
 
 **Q: 아티팩트를 위한 권장 저장소 백엔드는 무엇인가?**
 A: 온프레미스 배포의 경우 Kubeflow 매니페스트에 포함된 **MinIO**가 S3 호환 저장소를 제공한다. 클라우드 배포의 경우 네이티브 오브젝트 저장소를 사용: GCP에서는 **GCS**, AWS에서는 **S3**, Azure에서는 **Azure Blob Storage**. 아티팩트 저장 비용이 무한정 증가하지 않도록 버킷에 수명 주기 정책이 있는지 확인하라 — 오래된 파이프라인 실행은 **월 수백 기가바이트**를 축적할 수 있다.
 
 **Q: 실패한 파이프라인 단계를 어떻게 디버깅하는가?**
-A: 각 KFP 단계는 Kubernetes Pod로 실행된다. `kubectl logs <pod-name> -n <namespace>`를 사용하여 컨테이너 로그를 검사하라. KFP UI는 Pod 이름과 로그 링크를 표시한다. 영구적인 디버깅을 위해 컴포넌트에 `dsl.Retry` 정책을 추가하거나 `kubectl describe pod`를 사용하여 리소스 제한, 이미지 풀 오류 또는 PVC 마운트 실패를 확인하라.
+A: 각 KFP 단계는 Kubernetes Pod로 실행된다. ````kubectl logs <pod-name> -n <namespace>````를 사용하여 컨테이너 로그를 검사하라. KFP UI는 Pod 이름과 로그 링크를 표시한다. 영구적인 디버깅을 위해 컴포넌트에 ````dsl.Retry```` 정책을 추가하거나 ````kubectl describe pod```를 사용하여 리소스 제한, 이미지 풀 오류 또는 PVC 마운트 실패를 확인하라.
 
 ## 결론: 오늘부터 프로덕션 ML 파이프라인 구축하기
 
@@ -625,7 +626,7 @@ Kubeflow는 여전히 Kubernetes에서 ML 워크로드를 실행하기 위한 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -635,6 +636,6 @@ Kubeflow는 여전히 Kubernetes에서 ML 워크로드를 실행하기 위한 �
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 - [ai-engineering-from-scratch](kubeflow-ml-pipeline-kubernetes)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

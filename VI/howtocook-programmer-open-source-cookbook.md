@@ -33,6 +33,7 @@ faqs: - q: 'HowToCook là gì?'
     a: 'Fork repository, sao chép công thức mẫu, viết công thức của bạn theo định dạng có cấu trúc của dự án, rồi gửi Pull Request. Dự án đã có hơn 200 người đóng góp và hỗ trợ tiếng Trung, tiếng Anh và tiếng Nhật.'
 ---
 
+
 {</* resource-info */>}
 
 ## HowToCook là gì?
@@ -46,7 +47,7 @@ Triết lý dự án: **Công thức nấu ăn nên rõ ràng như code**. Khôn
 **Người đóng góp**: 200+  
 **Giấy phép**: Unlicense
 
----
+* * *
 
 ## Tại sao lập trình viên cần cái này?
 
@@ -69,7 +70,7 @@ Triết lý dự án: **Công thức nấu ăn nên rõ ràng như code**. Khôn
 - **Theo dõi thời gian**: Thời gian chuẩn bị, thời gian nấu, tổng thời gian
 - **Xử lý lỗi**: Các lỗi thường gặp và cách tránh
 
----
+* * *
 
 ## Phân loại công thức
 
@@ -92,11 +93,11 @@ Triết lý dự án: **Công thức nấu ăn nên rõ ràng như code**. Khôn
 - **Bữa sáng**: 23 món（cháo, bánh kếp, sandwich）
 - **Tráng miệng**: 17 món（bánh, pudding, chè）
 
----
+* * *
 
 ## Công thức mẫu: Trứng Xào Cà Chua
 
-```markdown
+````markdown
 # Trứng Xào Cà Chua ⭐
 
 ## Nguyên liệu
@@ -133,9 +134,9 @@ Triết lý dự án: **Công thức nấu ăn nên rõ ràng như code**. Khôn
 - Đừng xào trứng quá lâu — trứng vẫn chín sau khi vớt ra
 - Nếu cà chua quá chua, thêm 1g đường
 - Để mềm hơn, thêm 10ml sữa vào trứng
-```
+`````
 
----
+* * *
 
 ## Cộng đồng và đóng góp
 
@@ -155,23 +156,23 @@ Triết lý dự án: **Công thức nấu ăn nên rõ ràng như code**. Khôn
 
 ### Triển khai web
 
-```bash
+`````bash
 # Triển khai cục bộ
 docker pull ghcr.io/anduin2017/how-to-cook:latest
 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 # Truy cập http://localhost:5000
-```
+`````
 
----
+* * *
 
 ## Gói NPM
 
-Cài đặt như gói Node.js: ```bash
+Cài đặt như gói Node.js: `````bash
 npm install how-to-cook
-```
+`````
 
-Sử dụng qua chương trình: ```javascript
+Sử dụng qua chương trình: `````javascript
 const recipes = require('how-to-cook');
 
 // Tìm kiếm công thức
@@ -182,9 +183,9 @@ const easyRecipes = recipes.filterByStars(1);
 
 // Lấy ngẫu nhiên
 const dinner = recipes.random();
-```
+````
 
----
+* * *
 
 ## Lộ trình học tập
 
@@ -206,7 +207,7 @@ const dinner = recipes.random();
 - Cân bằng hương vị
 - Trang trí
 
----
+* * *
 
 ## Tại sao dự án này đáng chú ý
 
@@ -216,7 +217,7 @@ const dinner = recipes.random();
 4. **Nội dung evergreen**: Nấu ăn không bao giờ lỗi thời
 5. **Đa ngôn ngữ**: Phiên bản tiếng Trung, tiếng Anh, tiếng Nhật
 
----
+* * *
 
 ## Bài viết liên quan
 
@@ -224,11 +225,11 @@ const dinner = recipes.random();
 - [Pixelle-Video AI Tạo Video Ngắn](/vi/resources/ai-tools/pixelle-video-ai-short-video-generator/) — Công cụ tạo nội dung AI
 - [OpenClaw 42 Trường Hợp Sử Dụng](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — Tác vụ hàng ngày của tác nhân AI
 
----
+* * *
 
 *Tuyên bố miễn trừ: Bài viết này giới thiệu dự án mã nguồn mở. Tất cả nội dung công thức thuộc về cộng đồng HowToCook. Vui lòng tuân thủ hướng dẫn an toàn thực phẩm khi nấu ăn.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -301,7 +302,7 @@ HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên: 297 Công Thức Nấ
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

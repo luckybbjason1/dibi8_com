@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/stable-diffusion-webui/-
 ---
 
+
 {{</* resource-info */>}}
 
 AUTOMATIC1111 开发的 Stable Diffusion WebUI 依然是本地 AI 图像生成领域使用最广泛的开源界面。凭借 **159,000+ GitHub stars**，它的社区规模超过了所有竞争对手的总和。如果你正在搭建本地 AI 图像管线，掌握这个工具的安装、配置和扩展方法是一项实际的必需技能。
@@ -35,7 +36,7 @@ AUTOMATIC1111 开发的 Stable Diffusion WebUI 依然是本地 AI 图像生成�
 
 ## Stable Diffusion WebUI 是什么？
 
-Stable Diffusion WebUI 是一个基于浏览器的界面，用于在本地运行 Stable Diffusion 模型。它将底层推理管线封装在一个标签页式的 Web 应用中，通过 `http://localhost:7860` 访问，提供文生图、图生图、局部重绘、超分辨率、模型融合和 LoRA/DreamBooth 训练等功能 —— 全部无需编写代码。
+Stable Diffusion WebUI 是一个基于浏览器的界面，用于在本地运行 Stable Diffusion 模型。它将底层推理管线封装在一个标签页式的 Web 应用中，通过 ```http://localhost:7860```` 访问，提供文生图、图生图、局部重绘、超分辨率、模型融合和 LoRA/DreamBooth 训练等功能 —— 全部无需编写代码。
 
 该项目由 AUTOMATIC1111 在 AGPL-3.0 许可证下维护。v1.10.1 版本（2025 年初发布）改进了 SDXL 精修流程、优化了 8GB 显卡的内存管理，并增加了对 SD3 Medium 推理的原生支持。扩展生态包含超过 1,000 个社区插件，涵盖从提示词自动补全到批量处理管线的各种功能。
 
@@ -46,7 +47,7 @@ Stable Diffusion WebUI 是一个基于浏览器的界面，用于在本地运行
 ![WebUI 架构流程](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png)
 *架构：Gradio 前端通过本地 HTTP 与模块化 Python 后端通信*
 
-```
+`````
 用户浏览器 (Gradio UI)
     |
     v
@@ -61,11 +62,11 @@ Python 后端 (modules/)
     |
     v
 PyTorch + CUDA --- GPU (显存: 4-24GB)
-```
+`````
 
 安装前需要理解的核心概念：
 
-- **Checkpoint**: 主模型文件（`.safetensors` 或 `.ckpt`），包含训练好的扩散权重。SD 1.5 模型约 4GB；SDXL 模型约 6-7GB。
+- **Checkpoint**: 主模型文件（````.safetensors```` 或 ````.ckpt````），包含训练好的扩散权重。SD 1.5 模型约 4GB；SDXL 模型约 6-7GB。
 - **VAE (变分自编码器)**: 负责像素空间和潜空间之间的编解码。不匹配的 VAE 会导致图像色彩暗淡或模糊。
 - **采样器 (Sampler)**: 逐步将潜空间噪声去噪为图像的算法。DPM++ 2M Karras 是最推荐的平衡点。
 - **CFG Scale**: 控制模型遵循提示词的程度。7-9 适合大多数场景；过高会增加对比度但可能产生伪影。
@@ -79,11 +80,11 @@ Stable Diffusion WebUI 支持 Windows、Linux 和 macOS。所有平台上最快�
 
 | 组件 | 最低配置 | 推荐配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | NVIDIA 4GB 显存 | NVIDIA RTX 3060 12GB+ |
 | 内存 | 8GB | 16GB |
@@ -95,7 +96,7 @@ Stable Diffusion WebUI 支持 Windows、Linux 和 macOS。所有平台上最快�
 
 自动安装器会处理 Git、Python 和依赖的安装：
 
-```batch
+`````batch
 :: 从发布页面下载 sd.webui.zip
 :: 解压到 C:\stable-diffusion-webui
 :: 先运行更新器
@@ -104,15 +105,15 @@ update.bat
 
 :: 启动 WebUI
 run.bat
-```
+`````
 
-首次启动时，脚本会下载 PyTorch、transformers 和默认的 SD 1.5 模型（约 4GB）。后续启动只需 15-30 秒。UI 将在 `http://127.0.0.1:7860` 可用。
+首次启动时，脚本会下载 PyTorch、transformers 和默认的 SD 1.5 模型（约 4GB）。后续启动只需 15-30 秒。UI 将在 ````http://127.0.0.1:7860```` 可用。
 
 ### Windows 命令行参数
 
-对于显存有限或有特定优化需求的 GPU，编辑 `webui-user.bat`：
+对于显存有限或有特定优化需求的 GPU，编辑 ````webui-user.bat````：
 
-```batch
+`````batch
 @echo off
 
 set PYTHON=python
@@ -128,13 +129,13 @@ set COMMANDLINE_ARGS=--xformers --autolaunch --update-check
 :: 出现黑图/绿图时，添加 --precision full --no-half
 
 call webui.bat
-```
+`````
 
 ### Linux 安装（手动）
 
 手动安装可完全控制 Python 环境：
 
-```bash
+`````bash
 # 安装依赖 (Ubuntu/Debian)
 sudo apt update && sudo apt install -y wget git python3 python3-venv libgl1 libglib2.0-0
 
@@ -150,15 +151,15 @@ pip install -r requirements.txt
 
 # 启动
 ./webui.sh --xformers --listen
-```
+`````
 
-对于无显示器的系统（无头服务器），添加 `--listen` 可在所有接口暴露 UI，并使用 `--gradio-auth 用户名:密码` 添加基础认证。
+对于无显示器的系统（无头服务器），添加 ````--listen```` 可在所有接口暴露 UI，并使用 ````--gradio-auth 用户名:密码```` 添加基础认证。
 
 ### Docker 安装（推荐用于生产环境）
 
 Docker 提供最可复现的安装方式，尤其适合服务器部署：
 
-```dockerfile
+`````dockerfile
 # Dockerfile.stable-diffusion-webui
 FROM nvidia/cuda:12.1.1-devel-ubuntu22.04
 
@@ -187,11 +188,11 @@ USER sduser
 EXPOSE 7860
 
 ENTRYPOINT ["bash", "-c", ". venv/bin/activate && python3 launch.py --listen --api --xformers"]
-```
+`````
 
 构建并运行：
 
-```bash
+`````bash
 # 构建镜像
 docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .
 
@@ -205,11 +206,11 @@ docker run -d \
   -v $(pwd)/extensions:/home/sduser/stable-diffusion-webui/extensions \
   -e NVIDIA_VISIBLE_DEVICES=all \
   sd-webui:latest
-```
+`````
 
 docker-compose 配置：
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -227,19 +228,19 @@ services: stable-diffusion-webui: build: context: .
               count: all
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
 一键部署：
 
-```bash
+`````bash
 docker-compose up -d
-```
+`````
 
 ### 使用 虎网云 GPU 云服务器部署
 
 如果本地硬件不足，虎网云 GPU 云服务器提供按量计费的 NVIDIA GPU 实例，适合短期训练或推理任务。虎网云支持分钟级开通，并提供预装 CUDA 和 PyTorch 的镜像，可大幅简化部署流程。
 
-```bash
+`````bash
 # 在虎网云 GPU 实例上 (Ubuntu 22.04 预配置)
 sudo apt update && sudo apt install -y git wget
 
@@ -255,7 +256,7 @@ pip install -r requirements.txt
 
 # 启动公开访问 (配置防火墙规则)
 python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:securepassword123
-```
+`````
 
 *虎网云提供灵活的 GPU 实例规格和稳定的中文技术支持，是国内部署 Stable Diffusion 的实用选择。*
 
@@ -268,7 +269,7 @@ ControlNet 支持结构引导生成 —— 姿势迁移、深度感知构图、�
 ![ControlNet 界面](https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png)
 *ControlNet 扩展面板在 WebUI txt2img 标签页中的样子*
 
-```bash
+`````bash
 # 通过扩展标签页安装（推荐）
 # 1. 打开 WebUI → 扩展 → 可用
 # 2. 点击"加载自"
@@ -279,11 +280,11 @@ ControlNet 支持结构引导生成 —— 姿势迁移、深度感知构图、�
 # 或手动安装：
 cd extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
-```
+`````
 
-下载 ControlNet 模型到 `models/ControlNet/`：
+下载 ControlNet 模型到 ````models/ControlNet/````：
 
-```bash
+`````bash
 # 核心 ControlNet 模型 (SD 1.5)
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
@@ -293,11 +294,11 @@ wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/res
 # SDXL ControlNet 模型
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_mid.safetensors
-```
+`````
 
 UI 中的 ControlNet 配置：
 
-```json
+`````json
 // settings.json - ControlNet 配置
 {
   "control_net_max_models_num": 3,
@@ -309,35 +310,35 @@ UI 中的 ControlNet 配置：
   "control_net_unit_mode": false,
   "control_net_sync_field_args": true
 }
-```
+`````
 
 ### LoRA (低秩适配) 集成
 
 LoRA 文件是轻量级适配器（约 10-200MB），可在不替换基础模型的情况下微调模型行为：
 
-```bash
+`````bash
 # 下载 LoRA 模型到专用目录
 # 将 .safetensors LoRA 文件放入：
 # models/Lora/
 
 # 示例：下载热门风格 LoRA
 wget -P models/Lora/ "https://civitai.com/api/download/models/12345"
-```
+`````
 
 在提示词中使用 LoRA：
 
-```
+`````
 <lora:add-detail-xl:1.0>, masterpiece, best quality, portrait of a warrior
 <lora:epiCRealismHelper:0.6>, photorealistic, 8k uhd
-```
+`````
 
-语法为 `<lora:文件名:权重>`，权重范围 0.0 到 1.0。单个提示词中可堆叠多个 LoRA。
+语法为 ````<lora:文件名:权重>````，权重范围 0.0 到 1.0。单个提示词中可堆叠多个 LoRA。
 
 ### ComfyUI 工作流桥接
 
 对于需要节点式工作流的场景，将 ComfyUI 作为辅助工具安装：
 
-```bash
+`````bash
 # 将 ComfyUI 安装为独立工具（推荐而非迁移）
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -350,13 +351,13 @@ ln -s /path/to/stable-diffusion-webui/models/ControlNet models/controlnet
 
 # 在不同端口启动
 python main.py --port 8188
-```
+`````
 
 这种配置让你可以同时使用 Stable Diffusion WebUI 进行快速原型设计和 ComfyUI 进行复杂多阶段管线，共享同一套模型库。
 
 ### 必备扩展清单
 
-```bash
+`````bash
 # 安装以下扩展以获得生产级体验
 cd extensions
 
@@ -379,7 +380,7 @@ git clone https://github.com/vladmandic/sd-extension-system-info.git
 git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 
 # 安装扩展后重启 WebUI
-```
+`````
 
 ## 基准测试 / 实际使用场景
 
@@ -389,15 +390,15 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 
 | GPU | 显存 | SD 1.5 512x512 | SDXL 1024x1024 | SDXL + ControlNet |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4060 Ti 16GB | 16 GB | ~4.2秒 | ~12.0秒 | ~16.5秒 |
 | RTX 3090 | 24 GB | ~2.4秒 | ~5.6秒 | ~9.2秒 |
@@ -410,21 +411,21 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 
 | 工作流 | 显存占用 (RTX 4090) | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | txt2img SD 1.5 @ 512x512 | ~4.5 GB | 任何现代显卡都能运行 |
 | txt2img SDXL @ 1024x1024 | ~8.0 GB | 需要 8GB+ 显存 |
-| SDXL + 1x ControlNet | ~12.5 GB | 8GB 显卡需使用 `--medvram` |
+| SDXL + 1x ControlNet | ~12.5 GB | 8GB 显卡需使用 ````--medvram```` |
 | SDXL + Hi-Res Fix 2x | ~14.0 GB | 推荐使用 Tiled VAE |
 | SDXL + 2x ControlNet + Adetailer | ~20.0 GB | 推荐 RTX 3090/4090 |
 
 ### 内存优化参数
 
-```bash
+`````bash
 # 4GB 显存 GPU (入门级): python3 launch.py --lowvram --precision full --no-half --xformers
 
 # 6-8GB 显存 GPU (主流级): python3 launch.py --medvram --xformers --opt-split-attention
@@ -432,15 +433,15 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 # 12GB+ 显存 GPU (高端): python3 launch.py --xformers --opt-sdp-attention
 
 # 24GB 显存 GPU (发烧级): python3 launch.py --xformers --opt-sdp-attention --no-half-vae
-```
+`````
 
 ## 高级用法 / 生产环境加固
 
 ### API 集成
 
-Stable Diffusion WebUI 在 `/sdapi/v1/` 提供完整的 REST API：
+Stable Diffusion WebUI 在 ````/sdapi/v1/```` 提供完整的 REST API：
 
-```python
+`````python
 # txt2img API 的 Python 客户端
 import requests
 import json
@@ -468,11 +469,11 @@ result = response.json()
 # 保存生成的图像
 import base64
 for i, img_data in enumerate(result[images]): with open(f"output_{i}.png", "wb") as f: f.write(base64.b64decode(img_data))
-```
+`````
 
 ### 批处理脚本
 
-```python
+`````python
 # batch_generate.py - 处理多个提示词
 import requests
 import csv
@@ -502,11 +503,11 @@ with open("prompts.csv", "r") as f: reader = csv.DictReader(f)
     for i, row in enumerate(reader): filename = f"output_{i:04d}.png"
         generate_image(row[prompt], filename)
         print(f"已生成: {filename}")
-```
+`````
 
 ### 公开部署的安全加固
 
-```bash
+`````bash
 # 1. 启用认证
 python3 launch.py --listen --gradio-auth admin:强密码
 
@@ -538,11 +539,11 @@ sudo ufw default deny incoming
 sudo ufw allow ssh
 sudo ufw allow 443/tcp
 sudo ufw enable
-```
+`````
 
 ### 监控和日志
 
-```bash
+`````bash
 # 创建简单的健康检查脚本
 #!/bin/bash
 # health_check.sh
@@ -552,9 +553,9 @@ if [ "$STATUS" != "200" ]; then
     echo "$(date): WebUI 宕机 (HTTP $STATUS)，正在重启..." >> /var/log/sd-webui.log
     systemctl restart sd-webui
 fi
-```
+`````
 
-```ini
+`````ini
 # 自动启动的 systemd 服务
 # /etc/systemd/system/sd-webui.service
 [Unit]
@@ -572,29 +573,29 @@ Environment="PYTHONUNBUFFERED=1"
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
 启用自动启动：
 
-```bash
+`````bash
 sudo systemctl daemon-reload
 sudo systemctl enable sd-webui
 sudo systemctl start sd-webui
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Stable Diffusion WebUI | ComfyUI | InvokeAI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **UI 类型** | 标签页式 Web 界面 | 节点图编辑器 | 带画布的 Web 应用 | 极简单页 |
 | **GitHub Stars** | 159,000+ | 75,000+ | 25,000+ | 42,000+ |
@@ -634,27 +635,27 @@ Stable Diffusion WebUI 并非适用于所有图像生成场景。以下是具体
 
 ### 需要什么 GPU 才能运行 Stable Diffusion WebUI？
 
-NVIDIA 显卡至少需要 4GB 显存才能运行 SD 1.5（512x512）。SDXL（1024x1024）实际需要 8GB 显存（使用 `--medvram` 优化）。12GB 显存（RTX 3060、RTX 4060 Ti）可无妥协运行 SDXL。专业用途配合 ControlNet 和 Hi-Res Fix 推荐 24GB（RTX 3090/4090）。
+NVIDIA 显卡至少需要 4GB 显存才能运行 SD 1.5（512x512）。SDXL（1024x1024）实际需要 8GB 显存（使用 ````--medvram```` 优化）。12GB 显存（RTX 3060、RTX 4060 Ti）可无妥协运行 SDXL。专业用途配合 ControlNet 和 Hi-Res Fix 推荐 24GB（RTX 3090/4090）。
 
 ### 如何更新 Stable Diffusion WebUI？
 
-在安装目录运行 `git pull` 获取最新代码，然后重启 WebUI。Windows 上双击 `update.bat`。如果扩展在更新后损坏，删除 `venv` 文件夹强制重新安装依赖。对于 RTX 50 系列显卡，更新前运行 `git checkout dev` 切换到开发分支。
+在安装目录运行 ````git pull```` 获取最新代码，然后重启 WebUI。Windows 上双击 ````update.bat````。如果扩展在更新后损坏，删除 ````venv```` 文件夹强制重新安装依赖。对于 RTX 50 系列显卡，更新前运行 ````git checkout dev```` 切换到开发分支。
 
 ### 没有 NVIDIA GPU 能运行吗？
 
-可以，但有明显限制。AMD GPU 在 Linux 上通过 ROCm 工作（添加 `--precision full --no-half`）。Apple Silicon Mac 可通过 `./webui.sh` 以 MPS 后端运行，速度比同档 NVIDIA 硬件慢 3-5 倍。纯 CPU 模式使用 `--use-cpu all`，但生成一张 512x512 图像需 5-10 分钟（GPU 仅需 2-4 秒）。
+可以，但有明显限制。AMD GPU 在 Linux 上通过 ROCm 工作（添加 ````--precision full --no-half````）。Apple Silicon Mac 可通过 ````./webui.sh```` 以 MPS 后端运行，速度比同档 NVIDIA 硬件慢 3-5 倍。纯 CPU 模式使用 ````--use-cpu all````，但生成一张 512x512 图像需 5-10 分钟（GPU 仅需 2-4 秒）。
 
 ### 为什么生成的图像是黑色或绿色的？
 
-这是某些 GPU/驱动组合上的半精度问题。添加 `--precision full --no-half`。如果 VAE 中出现 NaN 错误，使用 `--no-half-vae`。RTX 16 系列和部分 GTX 显卡更容易出现此问题。
+这是某些 GPU/驱动组合上的半精度问题。添加 ````--precision full --no-half````。如果 VAE 中出现 NaN 错误，使用 ````--no-half-vae````。RTX 16 系列和部分 GTX 显卡更容易出现此问题。
 
 ### 如何解决 "CUDA out of memory" 错误？
 
-首先启用 xFormers `--xformers`（减少 20-30% 显存）。8GB 显卡添加 `--medvram`，4-6GB 显卡使用 `--lowvram`。高分辨率生成安装 Tiled VAE 扩展。考虑使用 FP8 或 NF4 量化模型，显存减少 50% 且质量损失很小。最后可降低图像分辨率或批次大小。
+首先启用 xFormers ````--xformers````（减少 20-30% 显存）。8GB 显卡添加 ````--medvram````，4-6GB 显卡使用 ````--lowvram````。高分辨率生成安装 Tiled VAE 扩展。考虑使用 FP8 或 NF4 量化模型，显存减少 50% 且质量损失很小。最后可降低图像分辨率或批次大小。
 
 ### 将 Stable Diffusion WebUI 暴露到互联网安全吗？
 
-不安全 —— 除非增加额外安全措施。`--listen` 标志在无认证情况下暴露 UI。必须配合 `--gradio-auth 用户名:密码` 和 HTTPS 反向代理（nginx/Caddy）及防火墙规则。WebUI 设计用于本地使用；公开部署需要将其视为生产服务并进行适当访问控制。
+不安全 —— 除非增加额外安全措施。````--listen```` 标志在无认证情况下暴露 UI。必须配合 ````--gradio-auth 用户名:密码```` 和 HTTPS 反向代理（nginx/Caddy）及防火墙规则。WebUI 设计用于本地使用；公开部署需要将其视为生产服务并进行适当访问控制。
 
 ## 结论
 
@@ -665,7 +666,7 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 1. 确认你的 GPU 有 8GB+ 显存，使用自动安装器（Windows）或 Docker（Linux/服务器）安装 WebUI
 2. 安装 ControlNet + 4 个核心模型（openpose、depth、canny、lineart）实现结构引导生成
 3. 下载 2-3 个高质量 SDXL 基础模型和 5-10 个适合你场景的 LoRA 适配器
-4. 根据你的硬件配置 `--xformers` 和适当的显存优化参数
+4. 根据你的硬件配置 ````--xformers``` 和适当的显存优化参数
 5. 如果部署在 localhost 之外，设置 nginx 反向代理并启用认证
 
 **在 Telegram 群组中讨论本指南或获取帮助：** [t.me/dibi8opensource](https://t.me/dibi8opensource)
@@ -722,7 +723,7 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [stable-diffusion-complete-guide](stable-diffusion-webui)
@@ -732,5 +733,5 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 - [modal-serverless-gpu-compute](stable-diffusion-webui)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

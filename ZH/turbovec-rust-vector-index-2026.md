@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 ---
 
+
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
 ![TurboQuant Benchmark](https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/benchmarks)
@@ -29,7 +30,7 @@ RAG 应用程序的大部分推理时间都花在等待向量搜索返回结果�
 
 TurboVec 是一个高性能向量索引，优先考虑两件事：查询速度和内存效率。底层使用 TurboQuant——一种自定义量化方案，将嵌入压缩到 4 位精度，同时保持 99%+ 的检索准确性。使用 Rust 编写并通过 Python 绑定暴露，它在不离开 Python 生态系统的情况下为您提供 C 级性能。
 
-```
+````
 ┌─────────────────────────────────────────────────┐
 │              TurboVec Architecture               │
 ├─────────────────────────────────────────────────┤
@@ -51,13 +52,13 @@ TurboVec 是一个高性能向量索引，优先考虑两件事：查询速度�
 │    ├─ On-disk checkpoint                         │
 │    └─ Incremental updates                         │
 └─────────────────────────────────────────────────┘
-```
+`````
 
 ## TurboQuant 的工作原理
 
 传统向量存储将嵌入存储为 32 位浮点数（每个维度 4 字节）。TurboQuant 使用乘积量化的组合和残差编码将这些压缩到 4 位（每个维度 0.5 字节）。
 
-```python
+`````python
 import turbovec
 
 # Create a TurboVec index with 4-bit quantization
@@ -74,7 +75,7 @@ index.add(embeddings)
 
 # Search — returns top-k results in milliseconds
 results = index.search(query_embedding, k=10)
-```
+`````
 
 量化流水线分三个阶段工作。首先，使用乘积量化将嵌入空间划分为子空间。其次，残差向量捕获高频分量的量化误差。第三，运行时特征检测在 AVX2（2013+ CPU）和 AVX-512（2017+ CPU）内核之间自动选择。
 
@@ -82,13 +83,13 @@ results = index.search(query_embedding, k=10)
 
 **选项 1：pip install（推荐）**
 
-```bash
+`````bash
 pip install turbovec
-```
+`````
 
 **选项 2：框架特定安装**
 
-```bash
+`````bash
 # LangChain integration
 pip install turbovec[langchain]
 
@@ -100,23 +101,23 @@ pip install turbovec[haystack]
 
 # Agno integration
 pip install turbovec[agno]
-```
+`````
 
 **选项 3：从源代码构建（Rust 开发）**
 
-```bash
+`````bash
 git clone https://github.com/RyanCodrai/turbovec.git
 cd turbovec
 pip install maturin
 maturin develop --release
-```
+`````
 
 **选项 4：Docker**
 
-```bash
+`````bash
 docker build -t turbovec:latest .
 docker run -p 8000:8000 turbovec:latest
-```
+`````
 
 ## 与 LangChain、LlamaIndex 和 Haystack 的集成
 
@@ -124,7 +125,7 @@ TurboVec 的杀手锏是其无缝替换设计。您只需替换导入语句，�
 
 **LangChain 集成**
 
-```python
+`````python
 from langchain.vectorstores import TurboVec
 
 # Drop-in replacement for InMemoryVectorStore
@@ -137,11 +138,11 @@ store = TurboVec(
 # Same API as any LangChain vector store
 store.add_documents(documents)
 results = store.similarity_search("your query", k=5)
-```
+`````
 
 **LlamaIndex 集成**
 
-```python
+`````python
 from llama_index.vector_stores import TurboVecVectorStore
 
 vector_store = TurboVecVectorStore(
@@ -153,11 +154,11 @@ vector_store = TurboVecVectorStore(
 index = VectorStoreIndex.from_vector_store(vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What did the author learn?")
-```
+`````
 
 **Haystack 集成**
 
-```python
+`````python
 from haystack.document_stores import TurboVecDocumentStore
 
 document_store = TurboVecDocumentStore(
@@ -168,7 +169,7 @@ document_store = TurboVecDocumentStore(
 # Use with Haystack's Retriever
 retriever = Retriever(document_store=document_store)
 documents = retriever.run(query="your query")
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -176,15 +177,15 @@ TurboVec 的性能优势来自 TurboQuant 的 4 位压缩与 Rust 的零开销�
 
 || 指标 | TurboVec | FAISS IVF | Pinecone | Weaviate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 查询延迟（10 万向量） | 2.3 毫秒 | 8.7 毫秒 | 15 毫秒 | 12 毫秒 |
 | 查询速度（100 万） | 4.1 毫秒 | 23 毫秒 | 28 毫秒 | 21 毫秒 |
@@ -194,7 +195,7 @@ TurboVec 的性能优势来自 TurboQuant 的 4 位压缩与 Rust 的零开销�
 
 实际基准测试命令：
 
-```bash
+`````bash
 # Run TurboVec's built-in benchmark suite
 cargo test --release benchmarks
 
@@ -203,7 +204,7 @@ python benchmarks/compare_turbovec_faiss.py \
   --vectors 1000000 \
   --dim 1536 \
   --queries 10000
-```
+`````
 
 在实际应用中，当使用 768 维或更高维度的嵌入时，TurboVec 提供最佳性能。低于 384 维时，量化节省会减少，因为量化流水线本身的开销相对于较小的向量尺寸变得显著。对于 384-512 范围的嵌入，考虑使用 8 位量化以获得最佳准确性-速度权衡。
 
@@ -211,7 +212,7 @@ python benchmarks/compare_turbovec_faiss.py \
 
 **带检查点的持久索引**
 
-```python
+`````python
 import turbovec
 
 # Create a disk-backed index
@@ -232,11 +233,11 @@ index.save("my_index.turbovec")
 # Load checkpoint in a new process
 loaded = turbovec.Index.load("my_index.turbovec")
 results = loaded.search(query_emb, k=10)
-```
+`````
 
 **多线程查询执行**
 
-```python
+`````python
 # TurboVec uses all available CPU cores by default
 import os
 os.environ["RAYON_NUM_THREADS"] = "16"
@@ -247,11 +248,11 @@ results = index.search_parallel(
     k=10,
     num_threads=16
 )
-```
+`````
 
 **监控生产环境中的索引性能**
 
-```python
+`````python
 import time
 
 # Benchmark current index throughput
@@ -260,11 +261,11 @@ for _ in range(1000): index.search(query_emb, k=10)
 elapsed = time.perf_counter() - start
 print(f"Throughput: {1000/elapsed:.0f} queries/sec")
 print(f"Average latency: {elapsed/1000*1000:.2f} ms per query")
-```
+`````
 
 **自定义量化配置**
 
-```python
+`````python
 # Trade accuracy for speed: 3-bit quantization
 index_3bit = turbovec.Index(
     dim=1536,
@@ -276,11 +277,11 @@ index_8bit = turbovec.Index(
     dim=1536,
     quantization="8bit",    # 99.8% accuracy, 2x bigger
 )
-```
+`````
 
 **使用 TurboVec 构建完整的 RAG 流水线**
 
-```python
+`````python
 import turbovec
 from transformers import AutoTokenizer, AutoModel
 
@@ -300,11 +301,11 @@ index.add(embed_texts(document_chunks))
 query_emb = embed_texts(["What is machine learning?"])[0]
 results = index.search(query_emb, k=5)
 for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chunk={document_chunks[idx][:100]}")
-```
+`````
 
 **用于生产服务的 Docker Compose**
 
-```yaml
+`````yaml
 version: '3.8'
 services: turbovec: image: ryan-codrai/turbovec:latest
     ports: - "8000:8000"
@@ -312,21 +313,21 @@ services: turbovec: image: ryan-codrai/turbovec:latest
     environment: - TURBOVEC_CAPACITY=10000000
       - TURBOVEC_DIM=1536
       - TURBOVEC_METRIC=cosine
-```
+`````
 
 ## 与替代方案的比较
 
 || 功能 | TurboVec | FAISS | Pinecone | Weaviate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 可自托管 | ✓ | ✓ | 否 | ✓ |
 | Python API | ✓ | ✓ | ✓ | ✓ |
@@ -346,7 +347,7 @@ services: turbovec: image: ryan-codrai/turbovec:latest
 TurboVec 在性能表现方面令人印象深刻，但有以下诚实的局限性需要考虑：
 
 1. **较新的库**：TurboVec 拥有 10,500 stars，而 FAISS 拥有 60,000+ stars，TurboVec 的社区文档和第三方教程较少。生产团队应预留时间进行试用。
-2. **Rust 依赖**：从源代码构建需要 `cargo` 和 Rust 工具链。pip install 路径可避免此问题，但自定义构建需要 Rust 1.70+。
+2. **Rust 依赖**：从源代码构建需要 ````cargo```` 和 Rust 工具链。pip install 路径可避免此问题，但自定义构建需要 Rust 1.70+。
 3. **仅单节点**：与 Weaviate 或 Qdrant 不同，TurboVec 没有内置的水平扩展功能。对于超过 1 亿向量的索引，需要在多个实例之间进行分片。
 4. **有限的向量类型**：目前仅支持密集向量搜索。稀疏向量、混合搜索和基于图的索引尚不可用。
 5. **无内置 REST API**：TurboVec 是一个进程内库。如果您需要网络化的向量搜索服务，必须在 FastAPI 或类似层中进行封装。
@@ -367,7 +368,7 @@ TurboQuant 是一种针对 RAG 应用程序中常见的特定查询模式优化�
 
 **Q：我如何处理向量更新和删除？**
 
-TurboVec 支持在现有索引上进行增量添加。删除通过墓碑标记处理——已删除的向量被逻辑移除，但在重新构建索引之前占用空间。使用 `index.rebuild()` 压缩已删除的向量并回收磁盘空间。
+TurboVec 支持在现有索引上进行增量添加。删除通过墓碑标记处理——已删除的向量被逻辑移除，但在重新构建索引之前占用空间。使用 ````index.rebuild()``` 压缩已删除的向量并回收磁盘空间。
 
 **Q：最大索引大小是多少？**
 
@@ -394,7 +395,7 @@ TurboVec 代表了向量搜索性能的重大进步。通过将 Rust 的系统�
 加入 DIBI8 社区 [Telegram](https://t.me/DIBI8_Group) 群组，参与关于 AI 工具、Rust 和开发者基础设施的讨论。
 
 
----
+* * *
 **来源与延伸阅读**：
 - 官方仓库：https://github.com/RyanCodrai/turbovec
 - TurboQuant 论文：https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md
@@ -468,11 +469,11 @@ TurboVec：Rust 驱动的向量索引比 FAISS 快 10 倍 — AI 搜索指南 20
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -482,7 +483,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-agent-frameworks-comparison-2026](turbovec-rust-vector-index-2026)
 - [ai-agent-frameworks-comparison-2026](turbovec-rust-vector-index-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -513,15 +514,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

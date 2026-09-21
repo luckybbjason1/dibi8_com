@@ -12,9 +12,10 @@ maintainer: 'harry0703'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/13691804'
 ---
+
 # MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              MoneyPrinterTurbo Video Pipeline          │
 │                                                      │
@@ -33,7 +34,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/13691804'
 │  │         1080p/4K HD Video Output               │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *MoneyPrinterTurbo: script → voice → subtitles → video in one command*
 
@@ -59,7 +60,7 @@ Built with Python, FFmpeg for video assembly, and supports multiple AI providers
 
 ### Stage 1: Clone and Install
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
@@ -70,32 +71,32 @@ uv sync --frozen
 
 # Or with pip
 pip install -r requirements.txt
-```
+`````
 
 ### Stage 2: Configure API Keys
 
-```bash
+`````bash
 # Configure API keys
 cp .env.example .env
 # Edit .env: echo 'OPENAI_API_KEY=sk-...' >> .env
 echo 'ELEVENLABS_API_KEY=sk-...' >> .env
 # Or use edge-tts (free, no API key needed)
 echo 'TTS_PROVIDER=edge-tts' >> .env
-```
+`````
 
 ### Stage 3: Generate Video
 
-```bash
+`````bash
 # Generate video using the web UI
 uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False
 # Open http://localhost:8501 in your browser to create videos
-```
+`````
 
 ## Installation & Setup
 
 ### Quick Start (Docker — Recommended)
 
-```bash
+`````bash
 # Clone and run
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
@@ -110,11 +111,11 @@ echo 'TTS_PROVIDER=edge-tts' >> .env
 # Run with Docker Compose (requires Docker Compose v2)
 docker compose up -d
 # Open http://localhost:8501 for web UI
-```
+`````
 
 ### Manual Installation (uv)
 
-```bash
+`````bash
 # Install dependencies
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
@@ -127,28 +128,28 @@ uv sync --frozen
 
 # Run the web UI
 uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False
-```
+`````
 
 ### Manual Installation (pip)
 
-```bash
+`````bash
 # Install dependencies
 pip install -r requirements.txt
 
 # Run the web UI
 streamlit run ./webui/Main.py --browser.gatherUsageStats=False
-```
+`````
 
 ### Docker Compose Notes
 
-Running with `docker compose up` starts all services in detached mode. The web UI is accessible at http://localhost:8501. For persistent background operation, use `docker compose up -d`.
+Running with ````docker compose up```` starts all services in detached mode. The web UI is accessible at http://localhost:8501. For persistent background operation, use ````docker compose up -d````.
 
-Note: Requires Docker Compose v2 (not the legacy v1 plugin). Verify with `docker compose version`.  
-注意：请使用 Docker Compose v2（不是旧版 v1 插件）。使用 `docker compose version` 验证。
+Note: Requires Docker Compose v2 (not the legacy v1 plugin). Verify with ````docker compose version````.  
+注意：请使用 Docker Compose v2（不是旧版 v1 插件）。使用 ````docker compose version```` 验证。
 
 ### Video Template Customization
 
-Customize video templates for different content styles: ```yaml
+Customize video templates for different content styles: `````yaml
 # templates/news.yaml
 template: name: "Daily News"
   intro_duration: 3
@@ -158,11 +159,11 @@ template: name: "Daily News"
   subtitle_position: "bottom"
   transition_effect: "fade"
   music_style: "upbeat"
-```
+`````
 
 ### Batch Generation
 
-```bash
+`````bash
 # Generate multiple videos from a topics list
 cat > topics.txt << EOF
 How AI is changing software development
@@ -185,15 +186,15 @@ MoneyPrinterTurbo supports multiple AI service providers: ### Voice Synthesis Pr
 
 | Provider | Quality | Cost | Languages | Setup |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI TTS | High | $15/M | 6 voices | API key |
 | ElevenLabs | Very High | $5-22/mo | 30+ voices | API key |
@@ -202,7 +203,7 @@ MoneyPrinterTurbo supports multiple AI service providers: ### Voice Synthesis Pr
 
 ### Background Media Sources
 
-```yaml
+`````yaml
 # config.yaml — Media sources configuration
 media: stock_videos: provider: "pexels"  # "pexels" | "pixabay" | "coverr"
     api_key: "${PEXELS_API_KEY}"
@@ -214,7 +215,7 @@ media: stock_videos: provider: "pexels"  # "pexels" | "pixabay" | "coverr"
   background_music: provider: "freepd"   # "freepd" | "incompetech" | "local"
     mood: "upbeat"
     volume_db: -20
-```
+`````
 
 For self-hosted infrastructure, deploy on [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU droplets for faster video assembly, or [HTStack](https://my.htstack.com/aff.php?aff=27187) for Asia-Pacific low-latency TTS. For monetizing AI video content, create channels linked to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) or [OKX](https://www.promoohubly.com/join/12190433) crypto payment integrations.
 
@@ -228,15 +229,15 @@ MoneyPrinterTurbo automates the entire video production pipeline. The process in
 
 | Provider | Quality | Cost | Languages | Setup |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI TTS | High | $15/M | 6 voices | API key |
 | ElevenLabs | Very High | $5-22/mo | 30+ voices | API key |
@@ -253,7 +254,7 @@ The tool supports multiple background media providers: - **Pexels** — Stock vi
 
 ### Real-World Use Case: YouTube Channel
 
-A creator produces daily tech news videos: ```bash
+A creator produces daily tech news videos: `````bash
 # Daily automation script
 for topic in $(cat topics.txt); do
     streamlit run ./webui/Main.py \
@@ -262,13 +263,13 @@ for topic in $(cat topics.txt); do
       --browser.gatherUsageStats=False &
     wait
 done
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Custom Templates
 
-```yaml
+`````yaml
 # templates/tech-review.yaml
 template: intro_duration: 5
   scene_duration: 8
@@ -279,7 +280,7 @@ template: intro_duration: 5
     size: 36
     color: "#FFFFFF"
     position: "bottom"
-```
+`````
 
 ### Multiple Resolution Support
 
@@ -287,15 +288,15 @@ MoneyPrinterTurbo supports multiple output resolutions including 720p, 1080p, an
 
 ### Scheduled Video Generation
 
-```bash
+`````bash
 # Schedule video generation with cron
 crontab -e
 # Add a cron entry to generate videos automatically on a schedule
-```
+`````
 
 ### Post-Processing with FFmpeg
 
-Use FFmpeg for additional video editing tasks after generation: ```bash
+Use FFmpeg for additional video editing tasks after generation: `````bash
 # Extract audio track from generated video
 ffmpeg -i ./output/video.mp4 -vn -acodec pcm_s16le ./output/audio.wav
 
@@ -303,21 +304,21 @@ ffmpeg -i ./output/video.mp4 -vn -acodec pcm_s16le ./output/audio.wav
 ffmpeg -i ./output/video.mp4 -i ./music.mp3 \
   -filter_complex "[0:a][1:a]amix=inputs=2:duration=first" \
   -c:v copy ./output/video-with-music.mp4
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | MoneyPrinterTurbo | Pictory | InVideo AI | Synthesia |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open source | Yes (MIT) | No | No | No |
 | Self-hosted | Yes | No | No | No |
@@ -343,7 +344,7 @@ MoneyPrinterTurbo is not for everyone: 1. **Professional-grade production** — 
 
 5. **Single-language output** — Each video is generated in one language. Multi-language versions require separate runs (though you can batch-generate easily).
 
-```bash
+`````bash
 # Extract audio from generated video
 ffmpeg -i ./output/video.mp4 -vn -acodec pcm_s16le ./output/audio.wav
 
@@ -354,7 +355,7 @@ ffmpeg -i ./output/video.mp4 -i ./music.mp3 \
 
 # Create a thumbnail frame from video
 ffmpeg -i ./output/video.mp4 -frames:v 1 -q:v 2 ./output/thumbnail.jpg
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -378,13 +379,13 @@ A: A 3-minute video takes 1-6 minutes depending on providers. edge-tts + Pexels:
 
 A: Yes. The generated content is yours to use commercially. However, check the licensing of individual AI providers (some require attribution for certain voice types).
 
-```bash
+`````bash
 # Merge multiple videos into a compilation
 ffmpeg -f concat -i filelist.txt -c copy ./output/compilation.mp4
 
 # Convert to vertical format (9:16) for TikTok/Reels
 ffmpeg -i ./output/video.mp4 -vf "scale=iw:ih*9/16:force_original_aspect_ratio=decrease,pad=iw:ih*9/16:(ow-iw)/2:(oh-ih)/2" ./output/tiktok.mp4
-```
+`````
 
 ## Sources & Further Reading
 
@@ -405,7 +406,7 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss M
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 
-For batch video generation at scale, configure the `BATCH_SIZE` environment variable and use the `--parallel` flag with `uv run streamlit run ./webui/Main.py`. Each parallel worker uses a separate GPU process, allowing up to 4 concurrent video generations on a single RTX 4090. Monitor GPU usage with `nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv -l 5`.
+For batch video generation at scale, configure the ````BATCH_SIZE```` environment variable and use the ````--parallel```` flag with ````uv run streamlit run ./webui/Main.py````. Each parallel worker uses a separate GPU process, allowing up to 4 concurrent video generations on a single RTX 4090. Monitor GPU usage with ````nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv -l 5```.
 
 
 {
@@ -434,7 +435,7 @@ For batch video generation at scale, configure the `BATCH_SIZE` environment vari
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [impeccable-ai-design-language-harness-quality-ui](moneyprinter-turbo-ai-video-generation-one-command)
@@ -444,5 +445,5 @@ For batch video generation at scale, configure the `BATCH_SIZE` environment vari
 - [12-factor-agents](moneyprinter-turbo-ai-video-generation-one-command)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

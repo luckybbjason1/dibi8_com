@@ -17,6 +17,7 @@ faqs: - q: 'Is Claude Opus 4 worth the cost over Sonnet 4?'
   - q: 'What is the context window for Claude 4 models?'
     a: 'Claude 4 models support a 200K token context window, enabling analysis of books, large codebases, or long conversation histories in a single call. The output window is up to 32K tokens, sufficient for generating long reports, full files, or multi-section documents in one pass.'
 ---
+
 # Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested
 
 
@@ -33,27 +34,27 @@ faqs: - q: 'Is Claude Opus 4 worth the cost over Sonnet 4?'
 **Use Claude Haiku 4** for high-volume, latency-sensitive tasks: autocomplete, classification, support bots.
 
 
----
+* * *
 ## Claude 4 Model Lineup
 
 | Model | API ID | Best For | Context |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Claude Opus 4** | `claude-opus-4-8` | Hard reasoning, agents | 200K |
-| **Claude Sonnet 4** | `claude-sonnet-4-6` | Coding, daily use | 200K |
-| **Claude Haiku 4** | `claude-haiku-4-5-20251001` | Speed, volume | 200K |
+| **Claude Opus 4** | ```claude-opus-4-8```` | Hard reasoning, agents | 200K |
+| **Claude Sonnet 4** | ````claude-sonnet-4-6```` | Coding, daily use | 200K |
+| **Claude Haiku 4** | ````claude-haiku-4-5-20251001```` | Speed, volume | 200K |
 
 All three support **tool use**, **MCP servers**, and **computer use**. Opus 4 and Sonnet 4 add **extended thinking** for step-by-step reasoning.
 
 
----
+* * *
 ## What Changed From Claude 3.5
 
 Claude 4 brings three headline improvements over the Claude 3.5 series: **1. Stronger Instruction Following**
@@ -65,7 +66,7 @@ Long agent loops — 20+ tool calls, file edits, test runs — used to accumulat
 **3. Extended Thinking**
 Opus 4 and Sonnet 4 can expose their chain-of-thought via extended thinking mode. For hard math, logic puzzles, and ambiguous requirements, turning on thinking gives a measurable accuracy boost over the raw-output mode.
 
----
+* * *
 
 ## Coding Performance
 
@@ -82,7 +83,7 @@ Claude 4 Sonnet is our daily driver for coding tasks on [AI coding workflows](ai
 
 For comparison against specialized tools, see our [Claude Code vs Cursor review](cursor-vs-claude-code.md).
 
----
+* * *
 
 ## Reasoning and Analysis
 
@@ -92,13 +93,13 @@ Extended thinking mode is the headline feature for research and analysis workflo
 
 The trade-off: extended thinking adds 3-10 seconds of latency and increases token cost (thinking tokens are counted). For production APIs, thinking mode is best reserved for offline batch tasks, not real-time chat.
 
----
+* * *
 
 ## How to Access Claude 4
 
 **API (Developers)**
 
-```python
+`````python
 import anthropic
 
 client = anthropic.Anthropic()
@@ -108,7 +109,7 @@ message = client.messages.create(
     messages=[{"role": "user", "content": "Explain extended thinking in Claude 4."}]
 )
 print(message.content)
-```
+````
 
 Full model reference: [Anthropic Models Overview](https://docs.anthropic.com/en/docs/about-claude/models/overview)
 
@@ -117,19 +118,19 @@ Full model reference: [Anthropic Models Overview](https://docs.anthropic.com/en/
 - Pro ($20/month): Higher limits + Opus 4 access
 - Team/Enterprise: Unlimited + admin controls
 
----
+* * *
 
 ## Claude 4 vs GPT-4o vs Gemini 1.5 Pro
 
 | Criterion | Claude Sonnet 4 | GPT-4o | Gemini 1.5 Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Long-document analysis | ★★★★★ | ★★★★☆ | ★★★★★ |
 | Coding quality | ★★★★★ | ★★★★☆ | ★★★★☆ |
@@ -140,7 +141,7 @@ Full model reference: [Anthropic Models Overview](https://docs.anthropic.com/en/
 
 Claude 4 Sonnet is the strongest pure-text model in this comparison. GPT-4o wins on breadth of integrations and multimodal features. Gemini 1.5 Pro is the most cost-efficient for high-volume API workloads with its free tier.
 
----
+* * *
 
 ## Verdict
 
@@ -154,7 +155,7 @@ For most developers building AI products in 2026, start with Sonnet 4 — upgrad
 
 Learn how to use Claude 4 with the [Model Context Protocol](mcp-deep-dive-definitive-2026-guide.md) or as part of a [multi-agent workflow](claude-code-subagent-mastery-stack.md).
 
----
+* * *
 
 *Model IDs verified against [Anthropic official documentation](https://docs.anthropic.com/en/docs/about-claude/models/overview). Pricing subject to change — check Anthropic's pricing page for current rates.*
 
@@ -220,12 +221,12 @@ Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested represents an important s
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -235,7 +236,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [compound-engineering-multi-agent-coding-claude-codex-cursor](claude-4-opus-sonnet-review-2026)
 - [deepseek-v3-vs-claude-sonnet](claude-4-opus-sonnet-review-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

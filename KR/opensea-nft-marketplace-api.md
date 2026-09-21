@@ -12,13 +12,14 @@ aliases:
   - /kr/posts/opensea-nft-marketplace-api/
 ---
 
+
 {{</* resource-info */>}}
 
 2021년 폭발적 성장 이후 대체 불가능한 토큰(NFT) 생태계는 상당히 성숙해졌습니다. 디지털 아트 틈새 시장으로 시작했던 것이 게임, 부동산, 신원 인증, 탈중앙화 금융을 아우르는 수십억 달러 규모의 인프라 레이어로 진화했습니다. 이러한 변혁의 중심에는 세계 최대의 NFT 마켓플레이스인 [OpenSea](https://opensea.io/)와 개발자가 프로그래밍 방식 거래 시스템, 분석 대시보드, 자동화된 컬렉션 관리 도구를 구축할 수 있게 해주는 강력한 [OpenSea API](https://docs.opensea.io/reference/api-overview)가 있습니다.
 
 이 종합적인 2026 가이드에서는 API 키 획득과 Python SDK 설정부터 NFT 상장, 거래 실행, WebSocket을 통한 실시간 이벤트 스트리밍, 프로덕션 환경의 속도 제한 처리까지 OpenSea API에 대해 알아야 할 모든 것을 살펴 보겠습니다. 트레이딩 봇, 포트폴리오 추적기 또는 마켓플레이스 애그리게이터를 구축하든 이 가이드는 완전한 기술 기초를 제공합니다.
 
----
+* * *
 
 ## OpenSea API란 무엇인가?
 
@@ -28,7 +29,7 @@ OpenSea API는 OpenSea NFT 마켓플레이스에 대한 전체 액세스를 제�
 
 이 API는 현대적인 REST 규칙을 따륩니며 JSON 요청/응답 형식을 사용하고, API 키 기반 인증을 사용하며, 오류 처리를 위해 표준 HTTP 상태 코드를 구현합니다. 실시간 애플리케이션의 경우 WebSocket API는 1초 미만의 지연 시간으로 거래, 상장, 전송, 컬렉션 업데이트에 대한 이벤트 스트리밍을 제공합니다.
 
----
+* * *
 
 ## 시작하기: API 키 설정 및 인증
 
@@ -43,15 +44,15 @@ API 호출을 하기 전에 OpenSea 개발자 포털을 통해 API 키를 등록
 승인이 되면 대시보드에서 새 API 키를 만드세요. 두 가지 자격 증명을 받게 됩니다: - **API 키**: 애플리케이션 식별에 사용
 - **API 시크릿**: 특정 인증 요청 서명에 사용
 
-이 자격 증명을 안전하게 환경 변수에 저장하세요: ```bash
+이 자격 증명을 안전하게 환경 변수에 저장하세요: ````bash
 # .env 파일
 OPENSEA_API_KEY=your_api_key_here
 OPENSEA_API_SECRET=your_api_secret_here
-```
+`````
 
 ### 3단계: 인증 테스트
 
-간단한 헬스 체크로 API 키가 작동하는지 확인하세요: ```python
+간단한 헬스 체크로 API 키가 작동하는지 확인하세요: `````python
 import os
 import requests
 from dotenv import load_dotenv
@@ -75,11 +76,11 @@ response = requests.get(
 
 print(f"상태: {response.status_code}")
 print(f"컬렉션: {len(response.json()[collections])}")
-```
+`````
 
 ### 4단계: SDK 설치
 
-공식 JavaScript SDK 또는 커뮤니티 Python 래퍼를 설치하세요: ```bash
+공식 JavaScript SDK 또는 커뮤니티 Python 래퍼를 설치하세요: `````bash
 # 공식 JavaScript SDK
 npm install opensea-js
 
@@ -88,9 +89,9 @@ pip install opensea-api
 
 # 또는 requests 직접 사용
 pip install requests python-dotenv
-```
+`````
 
----
+* * *
 
 ## OpenSea API 엔드포인트 개요
 
@@ -100,7 +101,7 @@ OpenSea API는 NFT 마켓플레이스의 모든 측면을 다루는 논리적 �
 
 컬렉션 엔드포인트는 바닥 가격, 거래량 통계, 특성 분포, 소셜 링크를 포함한 NFT 컬렉션에 대한 포괄적인 메타데이터를 제공합니다.
 
-```python
+`````python
 def get_collection_details(collection_slug: str): """NFT 컬렉션의 상세 정보를 가져옵니다."""
     endpoint = f"{BASE_URL}/collections/{collection_slug}"
     response = requests.get(endpoint, headers=headers)
@@ -119,13 +120,13 @@ def get_collection_details(collection_slug: str): """NFT 컬렉션의 상세 정
 # 사용 예시
 crypto_punks = get_collection_details("cryptopunks")
 print(f"CryptoPunks 바닥: {crypto_punks[floor_price]} ETH")
-```
+`````
 
 ### 자산 조회 엔드포인트
 
 자산 엔드포인트를 통해 개별 NFT의 메타데이터, 소유권 정보, 상장 상태를 검색할 수 있습니다.
 
-```python
+`````python
 def get_asset_details(chain: str, address: str, token_id: str): """특정 NFT 자산의 메타데이터를 검색합니다."""
     endpoint = f"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}"
     response = requests.get(endpoint, headers=headers)
@@ -150,13 +151,13 @@ bored_ape = get_asset_details(
 )
 print(f"자산: {bored_ape[name]}")
 print(f"특성 개수: {len(bored_ape[traits])}")
-```
+`````
 
 ### 상장 및 주문 엔드포인트
 
 상장 엔드포인트는 NFT 판매 주문의 생성, 검색, 취소를 관리합니다. 이들은 프로그래밍 방식 거래의 핵심 엔드포인트입니다.
 
-```python
+`````python
 def get_listings_by_collection(collection_slug: str, limit: int = 20): """특정 컬렉션의 활성 상장을 가져옵니다."""
     endpoint = f"{BASE_URL}/listings/collection/{collection_slug}/all"
     params = {"limit": limit}
@@ -179,13 +180,13 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20): """특정
 # 가장 저렴한 상장 가져오기
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
 for listing in sorted(listings, key=lambda x: float(x["price"])): print(f"가격: {listing[price]} | 토큰: {listing[token][identifier]}")
-```
+`````
 
 ### 계정 및 활동 엔드포인트
 
 모든 이더리움 주소의 지갑 활동, 소유 자산, 이력 이벤트를 추적합니다.
 
-```python
+`````python
 def get_account_events(account_address: str, event_type: str = "order", limit: int = 50): """특정 계정의 활동 이벤트를 검색합니다."""
     endpoint = f"{BASE_URL}/events/accounts/{account_address}"
     params = {
@@ -209,9 +210,9 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
 for event in events: print(f"{event[timestamp]}: {event[asset]}이(가) {event[payment]}에 판매됨")
-```
+`````
 
----
+* * *
 
 ## Python SDK 통합 구축하기
 
@@ -219,7 +220,7 @@ for event in events: print(f"{event[timestamp]}: {event[asset]}이(가) {event[p
 
 ### 완전한 Python SDK 클래스
 
-```python
+`````python
 import os
 import time
 import logging
@@ -329,9 +330,9 @@ sdk = OpenSeaAPI()
 stats = sdk.get_collection_stats("boredapeyachtclub")
 print(f"바닥: {stats[total][floor_price]}")
 print(f"거래량: {stats[total][volume]}")
-```
+`````
 
----
+* * *
 
 ## 프로그래밍 방식으로 NFT 상장, 구매 및 판매하기
 
@@ -339,7 +340,7 @@ print(f"거래량: {stats[total][volume]}")
 
 ### 상장 생성하기
 
-NFT를 상장하려면 Seaport 주문을 생성해야 합니다. 이는 소유자의 개인 키로 주문에 서명해야 합니다: ```python
+NFT를 상장하려면 Seaport 주문을 생성해야 합니다. 이는 소유자의 개인 키로 주문에 서명해야 합니다: `````python
 from web3 import Web3
 
 # 이더리움 노드에 연결
@@ -393,11 +394,11 @@ response = requests.post(
     json=listing_data
 )
 print(f"상장 생성됨: {response.status_code}")
-```
+`````
 
 ### 주문 이행하기 (NFT 구매)
 
-상장된 NFT를 구매하려면 주문을 검색하고 이행 트랜잭션을 제출하세요: ```python
+상장된 NFT를 구매하려면 주문을 검색하고 이행 트랜잭션을 제출하세요: `````python
 def fulfill_order(order_hash: str, buyer_address: str): """기존 주문을 이행하여 NFT를 구매합니다."""
     # 주문 상세 정보 가져오기
     order_response = requests.get(
@@ -435,11 +436,11 @@ def fulfill_order(order_hash: str, buyer_address: str): """기존 주문을 이�
 # 가장 저렴한 상장 아이템 구매
 cheapest = min(listings, key=lambda x: float(x["price"]))
 tx = fulfill_order(cheapest["order_hash"], "0xBuyerWalletAddress")
-```
+`````
 
 ### 배치 작업
 
-고빈도 거래를 위해 배치 엔드포인트를 사용하여 여러 작업을 처리하세요: ```python
+고빈도 거래를 위해 배치 엔드포인트를 사용하여 여러 작업을 처리하세요: `````python
 def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """단일 요청으로 여러 상장을 가져옵니다."""
     response = requests.post(
         f"{BASE_URL}/listings/batch",
@@ -452,9 +453,9 @@ def batch_get_listings(requests_list: List[Dict]) -> List[Dict]: """단일 요�
 collections = ["boredapeyachtclub", "cryptopunks", "azuki"]
 requests_list = [{"collection": c, "limit": 5} for c in collections]
 batch_results = batch_get_listings(requests_list)
-```
+`````
 
----
+* * *
 
 ## WebSocket을 통한 실시간 이벤트 스트리밍
 
@@ -462,7 +463,7 @@ OpenSea WebSocket API는 마켓플레이스 이벤트의 실시간 모니터링�
 
 ### WebSocket 연결 설정
 
-```python
+`````python
 import json
 import asyncio
 import websockets
@@ -530,11 +531,11 @@ async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.listen(handle_event)
 
 # asyncio.run(main())
-```
+`````
 
 ### 이벤트 유형 참조
 
-WebSocket API는 다양한 사용 사례를 위한 여러 이벤트 유형을 지원합니다: ```python
+WebSocket API는 다양한 사용 사례를 위한 여러 이벤트 유형을 지원합니다: `````python
 # 사용 가능한 이벤트 유형
 EVENT_TYPES = {
     "item_listed": "새 상장 생성됨",
@@ -547,9 +548,9 @@ EVENT_TYPES = {
     "item_metadata_updated": "NFT 메타데이터 새로고침됨",
     "item_transfer": "토큰 전송됨"
 }
-```
+`````
 
----
+* * *
 
 ## 속도 제한 및 모범 사례
 
@@ -566,7 +567,7 @@ EVENT_TYPES = {
 
 ### 속도 제한 헤더
 
-모든 API 응답은 속도 제한 헤더를 포함합니다: ```python
+모든 API 응답은 속도 제한 헤더를 포함합니다: `````python
 def check_rate_limits(response: requests.Response): """속도 제한 상태를 추출하고 모니터링합니다."""
     limit = response.headers.get("X-RateLimit-Limit")
     remaining = response.headers.get("X-RateLimit-Remaining")
@@ -587,11 +588,11 @@ def check_rate_limits(response: requests.Response): """속도 제한 상태를 �
 # 모든 요청에 적용
 response = requests.get(f"{BASE_URL}/collections", headers=headers)
 limits = check_rate_limits(response)
-```
+`````
 
 ### 백오프 전략 구현
 
-```python
+`````python
 import random
 
 class AdaptiveRateLimiter: """지수 백오프가 있는 적응형 속도 제한기."""
@@ -627,11 +628,11 @@ for page in range(100): limiter.wait()
         limiter.on_success()
         process_assets(response.json())
     except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code)
-```
+`````
 
 ### 캐싱 전략
 
-```python
+`````python
 from functools import lru_cache
 from datetime import datetime, timedelta
 
@@ -657,13 +658,13 @@ def get_cached_collection(slug: str): cached = collection_cache.get(slug)
     data = sdk.get_collection_stats(slug)
     collection_cache.set(slug, data)
     return data
-```
+`````
 
----
+* * *
 
 ## 트레이딩 봇 구축: 완전한 예제
 
-다음은 컬렉션 간 바닥 가격을 모니터링하는 차익 거래 탐지 트레이딩 봇의 완전한 예제입니다: ```python
+다음은 컬렉션 간 바닥 가격을 모니터링하는 차익 거래 탐지 트레이딩 봇의 완전한 예제입니다: `````python
 import time
 from dataclasses import dataclass
 from typing import Callable
@@ -754,13 +755,13 @@ bot.add_collection("boredapeyachtclub", floor_threshold=30.0)
 bot.add_collection("azuki", floor_threshold=10.0)
 bot.on_opportunity(notify_discord)
 # bot.run(interval=60)
-```
+`````
 
----
+* * *
 
 ## 오류 처리 및 디버깅
 
-프로덕션 애플리케이션에는 강력한 오류 처리가 필요합니다. OpenSea API는 구조화된 오류 응답을 반환합니다: ```python
+프로덕션 애플리케이션에는 강력한 오류 처리가 필요합니다. OpenSea API는 구조화된 오류 응답을 반환합니다: `````python
 class OpenSeaAPIError(Exception): """OpenSea API 오류용 사용자 정의 예외."""
     
     def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
@@ -793,9 +794,9 @@ def handle_api_error(response: requests.Response): """적절한 예외를 구문
 class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
         if not response.ok: handle_api_error(response)
         return response.json()
-```
+`````
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -805,7 +806,7 @@ class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: st
 
 ### OpenSea API의 속도 제한은 무엇인가요?
 
-속도 제한은 API 계층에 따라 다릅니다. 묶음 계층은 초당 1개 요청, 버스트 5개를 허용합니다. 개발자 계층은 이를 초당 10개 요청, 버스트 50개로 증가시킵니다. 전문가 계층은 초당 40개 요청, 버스트 200개를 지원합니다. 엔터프라이즈 계층은 고빈도 트레이딩 애플리케이션을 위해 초당 120개 이상을 제공합니다. 사용량을 모니터링하려면 모든 응답의 `X-RateLimit-*` 헤더를 확인하세요.
+속도 제한은 API 계층에 따라 다릅니다. 묶음 계층은 초당 1개 요청, 버스트 5개를 허용합니다. 개발자 계층은 이를 초당 10개 요청, 버스트 50개로 증가시킵니다. 전문가 계층은 초당 40개 요청, 버스트 200개를 지원합니다. 엔터프라이즈 계층은 고빈도 트레이딩 애플리케이션을 위해 초당 120개 이상을 제공합니다. 사용량을 모니터링하려면 모든 응답의 ````X-RateLimit-*```` 헤더를 확인하세요.
 
 ### API를 통해 NFT를 사고 팔 수 있나요?
 
@@ -813,7 +814,7 @@ class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: st
 
 ### OpenSea API는 어떤 블록체인을 지원하나요?
 
-2026년 현재 OpenSea API는 이더리움 메인넷, 폴리곤(PoS 및 zkEVM), 아비트럼 원, 옵티미즘, 베이스, 조라, 세폴리아 테스트넷을 지원합니다. 각 체인에는 자체 엔드포인트 접두사가 있습니다(예: `/chain/ethereum/`, `/chain/polygon/`). 교차 체인 애그리게이션 엔드포인트를 통해 여러 네트워크를 동시에 쿼리할 수 있습니다.
+2026년 현재 OpenSea API는 이더리움 메인넷, 폴리곤(PoS 및 zkEVM), 아비트럼 원, 옵티미즘, 베이스, 조라, 세폴리아 테스트넷을 지원합니다. 각 체인에는 자체 엔드포인트 접두사가 있습니다(예: ````/chain/ethereum/````, ````/chain/polygon/````). 교차 체인 애그리게이션 엔드포인트를 통해 여러 네트워크를 동시에 쿼리할 수 있습니다.
 
 ### OpenSea에 공식 Python SDK가 있나요?
 
@@ -821,13 +822,13 @@ OpenSea에는 공식 Python SDK가 없습니다. 공식 SDK는 [opensea-js](http
 
 ### 실시간 이벤트를 어떻게 스트리밍하나요?
 
-`wss://stream.opensea.io/socket`에서 WebSocket API를 사용하세요. 선택적 컬렉션 필터와 함께 `item_listed`, `item_sold`, `item_cancelled` 등의 이벤트 유형을 구독하세요. WebSocket 연결에는 `X-API-KEY` 헤더에 API 키가 필요합니다. 프로덕션 안정성을 위해 재연결 로직을 구현하세요.
+````wss://stream.opensea.io/socket````에서 WebSocket API를 사용하세요. 선택적 컬렉션 필터와 함께 ````item_listed````, ````item_sold````, ````item_cancelled```` 등의 이벤트 유형을 구독하세요. WebSocket 연결에는 ````X-API-KEY``` 헤더에 API 키가 필요합니다. 프로덕션 안정성을 위해 재연결 로직을 구현하세요.
 
 ### Seaport 프로토콜이란 무엇인가요?
 
 Seaport는 OpenSea의 탈중앙화된 NFT 트레이딩 프로토콜입니다. 주문 매칭, 이행, 수수료 분배를 처리하는 오픈 소스 스마트 컨트랙트 표준입니다. API를 통해 주문을 생성하거나 이행할 때, 온체인의 Seaport 컨트랙트와 상호작용하는 것입니다. 이 프로토콜은 조건 기반 주문, 부분 채우기, 대량 실행과 같은 고급 기능을 지원합니다.
 
----
+* * *
 
 
 
@@ -851,7 +852,7 @@ OpenSea API는 2026년 현재 가장 포괄적이고 실전 검증된 NFT 마켓
 
 간단한 포트폴리오 추적기든 고빈도 트레이딩 봇이든, OpenSea API는 세계 최대의 NFT 마켓플레이스와 프로그래밍 방식으로 상호작용하는 데 필요한 인프라를 제공합니다. 이 가이드의 예제부터 시작하고, 속도 제한을 모니터링하며, 필요에 따라 애플리케이션을 확장하세요.
 
----
+* * *
 
 *이 문서는 2026-05-19에 작성되었습니다. API 사양과 속도 제한은 변경될 수 있습니다. 최신 업데이트는 [공식 OpenSea 문서](https://docs.opensea.io/)를 참조하세요.*
 

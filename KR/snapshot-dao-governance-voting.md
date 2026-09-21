@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/snapshot-dao-governance-voting/
 ---
 
+
 {{</* resource-info */>}}
 
 **날짜:** 2026-05-19  
@@ -20,11 +21,11 @@ aliases:
 **도구:** [Snapshot](https://snapshot.org)  
 **GitHub:** [snapshot-labs/snapshot](https://github.com/snapshot-labs/snapshot) — ⭐ 9,500 스타, MIT 라이선스
 
----
+* * *
 
 > 거버넌스 토큰 거래에 관심이 있으신가요? [바이낸스](https://www.bsmkweb.cc/register?ref=DIBI8)에 가입하여 DAO 토큰 거래를 시작하세요.
 
----
+* * *
 
 ## 1. 소개: 2026년 DAO 거버넌스가 중요한 이유
 
@@ -36,13 +37,13 @@ aliases:
 
 이 종합 가이드는 2026년 개발자와 DAO 운영자를 위한 Snapshot의 아키텍처, 투표 전략, 위임 메커니즘, SDK 통합 및 실제 구현 패턴을 살펴 봅니다.
 
----
+* * *
 
 ## 2. 핵심 아키텍처: Snapshot이 가스 없는 투표를 가능하게 하는 방법
 
 ### 2.1 오프체인 투표 패러다임
 
-Snapshot의 혁명적인 접근 방식은 **투표 신호**와 **투표 실행**을 분리하는 것에 기반합니다. 기존 온체인 거버넌스는 모든 참가자가 네트워크 혼잡에 비례하는 가스비를 지불하는 트랜잭션을 제출해야 합니다. Snapshot은 이 모델을 뒤집습니다: ```typescript
+Snapshot의 혁명적인 접근 방식은 **투표 신호**와 **투표 실행**을 분리하는 것에 기반합니다. 기존 온체인 거버넌스는 모든 참가자가 네트워크 혼잡에 비례하는 가스비를 지불하는 트랜잭션을 제출해야 합니다. Snapshot은 이 모델을 뒤집습니다: ````typescript
 // 기존 온체인 투표 (비쌈)
 // 각 투표자가 이 트랜잭션에 대해 가스비를 지불
 await governorContract.castVote(
@@ -50,9 +51,9 @@ await governorContract.castVote(
   support,       // 0=반대, 1=찬성, 2=기권
   { value: 0, gasPrice: 50000000000 } // ~$5-50 가스비
 );
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot 오프체인 투표 (가스 없음)
 // 사용자가 지갑으로 메시지 서명 — 가스비 제로
 const voteMessage = {
@@ -71,13 +72,13 @@ const signature = await signer.signTypedData(
   types,
   voteMessage
 );
-```
+`````
 
 서명된 메시지는 Snapshot의 허브에 브로드캐스트되고 IPFS에 고정되어 블록체인 트랜잭션 없이 영구적이고 검증 가능한 기록을 생성합니다.
 
 ### 2.2 IPFS 기반 데이터 저장소
 
-모든 Snapshot 데이터 — 제안, 투표, 스페이스 —는 **IPFS(성간 파일 시스템)**에 저장되어 검열 저항성과 영구성을 보장합니다: ```json
+모든 Snapshot 데이터 — 제안, 투표, 스페이스 —는 **IPFS(성간 파일 시스템)**에 저장되어 검열 저항성과 영구성을 보장합니다: `````json
 {
   "proposal": {
     "id": "QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz",
@@ -101,26 +102,26 @@ const signature = await signer.signTypedData(
     "votes": 1847
   }
 }
-```
+`````
 
-`snapshot` 필드는 토큰 잔액을 계산하는 이더리움 블록 번호를 지정하여 플래시론 공격을 방지하고 공정한 투표 가중치 계산을 보장합니다.
+````snapshot```` 필드는 토큰 잔액을 계산하는 이더리움 블록 번호를 지정하여 플래시론 공격을 방지하고 공정한 투표 가중치 계산을 보장합니다.
 
----
+* * *
 
 ## 3. Snapshot에서 DAO 스페이스 설정
 
 ### 3.1 스페이스 생성
 
-모든 프로젝트는 Snapshot에서 거버넌스 스페이스를 만들 수 있습니다. 이 과정에는 ENS 도메인 구성과 전략 선택이 포함됩니다: ```bash
+모든 프로젝트는 Snapshot에서 거버넌스 스페이스를 만들 수 있습니다. 이 과정에는 ENS 도메인 구성과 전략 선택이 포함됩니다: `````bash
 # 1단계: ENS 도메인 소유 확인
 # 스페이스 ID는 ENS 이름이 됩니다 (예: mydao.eth)
 
 # 2단계: ENS 텍스트 레코드 설정
 # 스냅샷 레코드를 스페이스 설정으로 지정
 ens records set mydao.eth text snapshot "ipfs://Qm..."
-```
+`````
 
-```typescript
+`````typescript
 // 3단계: Snapshot API를 통해 스페이스 설정 구성
 import snapshot from '@snapshot-labs/snapshot.js';
 
@@ -171,20 +172,20 @@ await snapshot.utils.subgraphRequest(
     }
   }
 );
-```
+`````
 
 ### 3.2 스페이스 검증
 
-구성 후 스페이스에 접근 가능한지 확인합니다: ```bash
+구성 후 스페이스에 접근 가능한지 확인합니다: `````bash
 # GraphQL을 통해 스페이스 조회
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { space(id: "mydao.eth") { id name about network symbol strategies { name params } } }"
   }'
-```
+`````
 
-```python
+`````python
 # Python 검증 스크립트
 import requests
 
@@ -236,9 +237,9 @@ def verify_snapshot_space(space_id: str) -> dict: """Snapshot 스페이스 구�
 
 # 검증
 space = verify_snapshot_space("mydao.eth")
-```
+`````
 
----
+* * *
 
 ## 4. 투표 전략: 유연한 토큰 가중 거버넌스
 
@@ -246,16 +247,16 @@ space = verify_snapshot_space("mydao.eth")
 
 Snapshot은 투표권 계산 방법을 결정하는 50개 이상의 투표 전략을 지원합니다. 가장 일반적으로 사용되는 전략은 다음과 같습니다: | 전략 | 사용 사례 | 예시 DAO |
 |------|----------|----------|
-| `erc20-balance-of` | 단순 토큰 잔액 | Uniswap, Aave |
-| `erc721` | NFT 소유권 | Bored Ape Yacht Club |
-| `contract-call` | 스마트 컨트랙트를 통한 커스텀 로직 | Compound |
-| `delegation` | 위임된 투표권 | Gitcoin |
-| `whitelist` | 사전 승인된 투표자 | 투자 DAO |
-| `snapshot-multichain` | 멀티체인 토큰 잔액 | Across Protocol |
+| ````erc20-balance-of```` | 단순 토큰 잔액 | Uniswap, Aave |
+| ````erc721```` | NFT 소유권 | Bored Ape Yacht Club |
+| ````contract-call```` | 스마트 컨트랙트를 통한 커스텀 로직 | Compound |
+| ````delegation```` | 위임된 투표권 | Gitcoin |
+| ````whitelist```` | 사전 승인된 투표자 | 투자 DAO |
+| ````snapshot-multichain```` | 멀티체인 토큰 잔액 | Across Protocol |
 
 ### 4.2 커스텀 전략 구성
 
-```typescript
+`````typescript
 // 복잡한 DAO를 위한 멀티 전략 구성
 const advancedStrategies = [
   // 전략 1: 기본 거버넌스 토큰
@@ -325,12 +326,12 @@ const votingPower = await getVotingPower(
   advancedStrategies,
   18945231
 );
-console.log(`투표권: ${votingPower} 토큰`);
-```
+console.log(````투표권: ${votingPower} 토큰````);
+`````
 
 ### 4.3 이차 투표 전략
 
-더 민주적인 결과를 원하는 DAO를 위해 Snapshot은 이차 투표를 지원합니다: ```json
+더 민주적인 결과를 원하는 DAO를 위해 Snapshot은 이차 투표를 지원합니다: `````json
 {
   "strategy": {
     "name": "quadratic-balance-of",
@@ -342,17 +343,17 @@ console.log(`투표권: ${votingPower} 토큰`);
     }
   }
 }
-```
+`````
 
 이차 투표를 통해 10,000 토큰을 보유한 사용자는 100의 투표권을 가지고(√10,000), 100 토큰을 보유한 사용자는 10의 투표권을 가집니다(√100) — 고래 보유자의 영향력을 줄입니다.
 
----
+* * *
 
 ## 5. 위임: DAO의 대의민주주의
 
 ### 5.1 위임의 작동 방식
 
-위임을 통해 토큰 보유자는 신뢰할 수 있는 대표자에게 투표권을 할당하여 참여율을 높이고 거버넌스 전문화를 가능하게 합니다: ```solidity
+위임을 통해 토큰 보유자는 신뢰할 수 있는 대표자에게 투표권을 할당하여 참여율을 높이고 거버넌스 전문화를 가능하게 합니다: `````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -375,9 +376,9 @@ interface IVotingDelegate {
         uint256 blockNumber
     ) external view returns (uint96);
 }
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot 위임 설정
 import Snapshot from '@snapshot-labs/snapshot.js';
 
@@ -413,12 +414,12 @@ const txHash = await delegateVotingPower(
   "uniswap.eth"             // 스페이스별 위임
 );
 
-console.log(`위임 기록: ${txHash}`);
-```
+console.log(````위임 기록: ${txHash}````);
+`````
 
 ### 5.2 위임 대시보드 쿼리
 
-```graphql
+`````graphql
 # 스페이스의 현재 위임 조회
 query GetDelegations($space: String!, $delegate: String!) {
   delegations(
@@ -436,32 +437,32 @@ query GetDelegations($space: String!, $delegate: String!) {
     timestamp
   }
 }
-```
+`````
 
-```bash
+`````bash
 # 위임 쿼리 실행
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { delegations(where: {space: "uniswap.eth", delegate: "0x2775b1c75658Be0F640272CCb8c72ac986009e38"}) { delegator timestamp } }"
   }'
-```
+`````
 
----
+* * *
 
 ## 6. 프로그래매틱 통합: Snapshot SDK
 
 ### 6.1 설치 및 설정
 
-```bash
+`````bash
 # Snapshot.js SDK 설치
 npm install @snapshot-labs/snapshot.js ethers
 
 # 또는 yarn 사용
 yarn add @snapshot-labs/snapshot.js ethers
-```
+`````
 
-```typescript
+`````typescript
 // Snapshot 클라이언트 초기화
 import snapshot from '@snapshot-labs/snapshot.js';
 import { Wallet } from ethers;
@@ -472,11 +473,11 @@ const client = new snapshot.Client712(hub);
 // 제공자 및 서명자 설정
 const provider = new ethers.JsonRpcProvider('https://eth.llamarpc.com');
 const signer = new Wallet(process.env.PRIVATE_KEY, provider);
-```
+`````
 
 ### 6.2 프로그래매틱 제안 생성
 
-```typescript
+`````typescript
 // SDK를 통한 거버넌스 제안 생성
 async function createProposal(
   signer: any,
@@ -487,7 +488,7 @@ async function createProposal(
     space: "mydao.eth",
     type: "single-choice",        // "single-choice" | "approval" | "quadratic" | "ranked-choice" | "weighted"
     title: "2026년 2분기 재무 할당 제안",
-    body: `## 요약
+    body: ````## 요약
 
 본 제안은 2026년 2분기 운영을 위한 재무 자금 할당을 합니다.
 
@@ -505,7 +506,7 @@ async function createProposal(
 ## 참고자료
 
 - [1분기 2026 재무 보고서](https://mydao.xyz/treasury/q1-2026)
-- [예산 스프레드시트](https://mydao.xyz/budget/q2-2026)`,
+- [예산 스프레드시트](https://mydao.xyz/budget/q2-2026)````,
     choices: ["찬성", "반대", "기권"],
     start: Math.floor(Date.now() / 1000) + 86400,    // 24시간 후 시작
     end: Math.floor(Date.now() / 1000) + 259200,      // 72시간 후 종료
@@ -531,12 +532,12 @@ const proposalId = await createProposal(
   "mydao.eth"
 );
 
-console.log(`제안 생성됨: ${proposalId}`);
-```
+console.log(````제안 생성됨: ${proposalId}````);
+`````
 
 ### 6.3 API를 통한 투표
 
-```typescript
+`````typescript
 // 프로그래매틱 투표 제출
 async function castVote(
   signer: any,
@@ -573,19 +574,19 @@ const voteReceipt = await castVote(
   "예산 할당이 로드맵에 명시된 전략적 우선순위와 일치하기 때문에 이 제안을 지지합니다."
 );
 
-console.log(`투표 기록: ${voteReceipt}`);
-```
+console.log(````투표 기록: ${voteReceipt}````);
+`````
 
 ### 6.4 배치 투표 쿼리
 
-```typescript
+`````typescript
 // 제안의 모든 투표 조회
 async function getProposalVotes(
   proposalId: string,
   first: number = 100,
   skip: number = 0
 ): Promise<any[]> {
-  const query = `
+  const query = ````
     query GetVotes($proposal: String!, $first: Int!, $skip: Int!) {
       votes(
         where: { proposal: $proposal }
@@ -604,7 +605,7 @@ async function getProposalVotes(
         ipfs
       }
     }
-  `;
+  ````;
 
   const response = await fetch('https://hub.snapshot.org/graphql', {
     method: POST,
@@ -643,18 +644,18 @@ async function getVoteStats(proposalId: string): Promise<any> {
 
 // 사용법
 const stats = await getVoteStats("QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz");
-console.log(`총 투표자: ${stats.totalVotes}`);
-console.log(`총 VP: ${stats.totalVotingPower}`);
+console.log(````총 투표자: ${stats.totalVotes}````);
+console.log(````총 VP: ${stats.totalVotingPower}````);
 console.log("결과:", stats.results);
-```
+`````
 
----
+* * *
 
 ## 7. 멀티체인 및 크로스 플랫폼 통합
 
 ### 7.1 멀티체인 투표 전략
 
-Snapshot은 동시에 여러 블록체인에서 투표를 지원합니다: ```typescript
+Snapshot은 동시에 여러 블록체인에서 투표를 지원합니다: `````typescript
 // 멀티체인 전략: 네트워크 전반에 걸쳐 토큰 집계
 const multichainStrategies = [
   {
@@ -696,11 +697,11 @@ const scores = await snapshot.utils.getScores(
 );
 
 console.log("크로스체인 투표권:", scores);
-```
+`````
 
 ### 7.2 Webhook 알림
 
-```typescript
+`````typescript
 // 제안 이벤트를 위한 Webhook 설정
 import express from express;
 
@@ -712,13 +713,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created': console.log(`새 제안: ${event.id}`);
+    case 'proposal/created': console.log(````새 제안: ${event.id}````);
       notifyDiscord(event);
       break;
-    case 'proposal/end': console.log(`투표 종료: ${event.id}`);
+    case 'proposal/end': console.log(````투표 종료: ${event.id}````);
       tallyResults(event);
       break;
-    case vote: console.log(`${event.proposal.id}의 새 투표`);
+    case vote: console.log(````${event.proposal.id}의 새 투표````);
       updateLeaderboard(event);
       break;
   }
@@ -730,8 +731,8 @@ function notifyDiscord(proposal: any) {
   // Discord Webhook으로 알림 전송
   const message = {
     embeds: [{
-      title: `📋 새 제안: ${proposal.title}`,
-      url: `https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}`,
+      title: ````📋 새 제안: ${proposal.title}````,
+      url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
       description: proposal.body.substring(0, 200) + '...',
       fields: [
         { name: 스페이스, value: proposal.space.name, inline: true },
@@ -750,15 +751,15 @@ function notifyDiscord(proposal: any) {
 }
 
 app.listen(3000, () => console.log('Webhook 서버가 3000 포트에서 대기 중'));
-```
+`````
 
----
+* * *
 
 ## 8. 실제 사용 사례 및 모범 사례
 
 ### 8.1 프로토콜 파라미터 변경
 
-DeFi 프로토콜은 Snapshot을 사용하여 중요한 파라미터에 대해 투표합니다: ```typescript
+DeFi 프로토콜은 Snapshot을 사용하여 중요한 파라미터에 대해 투표합니다: `````typescript
 // Aave 스타일의 리스크 파라미터 제안
 interface RiskParameterProposal {
   asset: string;              // 토큰 주소
@@ -777,11 +778,11 @@ const aaveProposal: RiskParameterProposal = {
   justification: "시장 변동성으로 인한 리스크 노출 감소",
   riskAnalysis: "https://gauntlet.network/analyses/aave-weth-2026-05"
 };
-```
+`````
 
 ### 8.2 재무 관리
 
-```typescript
+`````typescript
 // 재무 할당 투표 카테고리
 interface TreasuryProposal {
   totalAllocation: bigint;
@@ -811,11 +812,11 @@ const treasuryVote: TreasuryProposal = {
     interval: 30 * 86400    // 월간 릴리스
   }
 };
-```
+`````
 
 ### 8.3 보안 모범 사례
 
-```yaml
+`````yaml
 # snapshot-security-checklist.yml
 space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
@@ -834,9 +835,9 @@ space_security: admin_keys: - use_multisig: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
-```
+`````
 
----
+* * *
 
 ## 9. 자주 묻는 질문 (FAQ)
 
@@ -850,7 +851,7 @@ Snapshot 투표는 암호화학적으로 안전합니다. 각 투표는 EIP-712 
 
 ### 9.3 투표권과 토큰 잔액은 어떻게 계산되나요?
 
-투표권은 각 스페이스에 대해 구성된 **전략**에 의해 결정됩니다. 가장 일반적인 전략은 `erc20-balance-of`로, 특정 블록 번호(`snapshot` 블록)에서 투표자의 토큰 잔액을 확인합니다. 이는 다음을 방지합니다: - **플래시론 공격**: 동일한 트랜잭션에서 빌린 토큰을 투표에 사용할 수 없음
+투표권은 각 스페이스에 대해 구성된 **전략**에 의해 결정됩니다. 가장 일반적인 전략은 ````erc20-balance-of````로, 특정 블록 번호(````snapshot``` 블록)에서 투표자의 토큰 잔액을 확인합니다. 이는 다음을 방지합니다: - **플래시론 공격**: 동일한 트랜잭션에서 빌린 토큰을 투표에 사용할 수 없음
 - **이중 투표**: 동일한 토큰을 이동하고 다시 투표할 수 없음
 - **마지막 순간 축적**: 사용자가 제안 생성 후 토큰을 구매하여 투표에 영향을 줄 수 없음
 
@@ -873,7 +874,7 @@ Snapshot은 여러 통합 옵션을 제공합니다: - **Snapshot.js SDK**: 제�
 
 가장 일반적인 통합 패턴은 GraphQL API를 사용하여 프론트엔드에 거버넌스 데이터를 표시하고 SDK를 투표 제출과 결합하는 것입니다. 모든 통합에는 이더리움 호환 지갑 연결이 필요합니다(MetaMask, WalletConnect 등).
 
----
+* * *
 
 
 
@@ -892,11 +893,11 @@ DAO가 더 큰 자동화를 향해 발전함에 따라, **Safe{Core}**, **Zodiac
 
 차세대 거버넌스 도구를 구축하는 개발자에게 Snapshot의 MIT 라이선스 코드베이스, 활발한 개발자 커뮤니티, 모듈형 아키텍처는 이상적인 기반을 제공합니다. 새로운 DeFi 프로토콜을 출시하든, NFT 커뮤니티를 관리하든, 탈중앙화 조직을 위한 인프라를 구축하든, Snapshot은 현대 DAO 거버넌스에 필요한 유연성, 보안성, 확장성을 제공합니다.
 
----
+* * *
 
 > **오늘 거버넌스 토큰 거래를 시작하세요!** [바이낸스](https://www.bsmkweb.cc/register?ref=DIBI8)에 가입하여 Uniswap, Aave, Compound 등 주요 DAO의 토큰을 매수, 매도, 스테이킹하세요.
 
----
+* * *
 
 **라이선스:** MIT  
 **관리자:** [Snapshot Labs](https://github.com/snapshot-labs)  

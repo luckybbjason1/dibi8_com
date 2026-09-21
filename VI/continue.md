@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/continue/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Continue.dev Banner](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
@@ -52,7 +53,7 @@ Số liệu chính: | Chỉ số | Giá trị |
 
 Continue.dev hoạt động như một tiện ích mở rộng IDE chặn ngữ cảnh trình soạn thảo và định tuyến đến các backend LLM có thể cấu hình. Kiến trúc gồm ba tầng: **Tầng IDE** — Tiện ích mở rộng nhúng bảng chat, công cụ tự động hoàn thành inline, và bộ thực thi Agent trực tiếp vào VS Code hoặc JetBrains. Nó đọc nội dung file, output terminal, và cấu trúc dự án qua API native của IDE.
 
-**Tầng cấu hình** — Một file `config.yaml` duy nhất (hoặc `config.json` cũ) định nghĩa model nào xử lý tác vụ nào. Continue sử dụng "model roles" để gán các LLM khác nhau cho chat, tự động hoàn thành, chỉnh sửa, và hoạt động Agent. Điều này có nghĩa là bạn có thể dùng model local 1.5B nhanh cho tab completion trong khi định tuyến suy luận phức tạp đến Claude Sonnet.
+**Tầng cấu hình** — Một file ```config.yaml```` duy nhất (hoặc ````config.json```` cũ) định nghĩa model nào xử lý tác vụ nào. Continue sử dụng "model roles" để gán các LLM khác nhau cho chat, tự động hoàn thành, chỉnh sửa, và hoạt động Agent. Điều này có nghĩa là bạn có thể dùng model local 1.5B nhanh cho tab completion trong khi định tuyến suy luận phức tạp đến Claude Sonnet.
 
 **Tầng backend LLM** — Continue sử dụng API HTTP chuẩn. Nó hoạt động với endpoint tương thích OpenAI, API native của Anthropic, server local Ollama, hoặc bất kỳ proxy nào. Không bị khóa vào nhà cung cấp: đổi provider bằng cách thay đổi một key trong YAML.
 
@@ -64,34 +65,34 @@ Bản phát hành 2026 thêm **Tầng CI/Checks** — các agent không đồng 
 
 ### VS Code (≤2 phút)
 
-```bash
+`````bash
 # Cách 1: Tìm trên Marketplace
 # Mở VS Code → Extensions (Ctrl+Shift+X) → Tìm "Continue" → Cài đặt
 
 # Cách 2: Cài đặt trực tiếp
 # Nhấp Continue trong VS Code marketplace
-```
+`````
 
-Sau khi cài đặt, mở sidebar Continue bằng `Ctrl+L` (hoặc `Cmd+L` trên macOS).
+Sau khi cài đặt, mở sidebar Continue bằng ````Ctrl+L```` (hoặc ````Cmd+L```` trên macOS).
 
 ### JetBrains IDEs (≤3 phút)
 
-```bash
+`````bash
 # Mở JetBrains IDE (IntelliJ IDEA, PyCharm, v.v.)
 # File → Settings → Plugins → Marketplace
 # Tìm "Continue" → Cài đặt → Khởi động lại IDE
-```
+`````
 
 ### Xác minh cài đặt
 
-Mở bảng chat Continue và kiểm tra phiên bản: ```bash
+Mở bảng chat Continue và kiểm tra phiên bản: `````bash
 # VS Code: Mở sidebar (Ctrl+L) → biểu tượng bánh răng → hiển thị phiên bản v1.2.22
 # Kết quả mong đợi: Biểu tượng "C" màu cam hiển thị ở sidebar trái
-```
+`````
 
 ### Thiết lập model đầu tiên (config.yaml)
 
-Tạo file cấu hình toàn cục: ```bash
+Tạo file cấu hình toàn cục: `````bash
 # macOS / Linux
 mkdir -p ~/.continue
 cat > ~/.continue/config.yaml << EOF
@@ -115,19 +116,19 @@ models: - name: Claude Sonnet
 EOF
 
 # Windows: %USERPROFILE%\.continue\config.yaml
-```
+`````
 
 **Đặt API keys làm biến môi trường:**
 
-```bash
+`````bash
 # Thêm vào ~/.bashrc hoặc ~/.zshrc
 export ANTHROPIC_API_KEY="sk-ant-xxxxx"
 export OPENAI_API_KEY="sk-xxxxx"
-```
+`````
 
 ### Thiết lập LLM local với Ollama
 
-```bash
+`````bash
 # Bước 1: Cài đặt Ollama
 # macOS: brew install ollama
 # Linux: curl -fsSL https://ollama.com/install.sh | sh
@@ -139,9 +140,9 @@ ollama pull nomic-embed-text       # Embedding cho @codebase
 
 # Bước 3: Khởi động server Ollama (mặc định: http://localhost:11434)
 ollama serve
-```
+`````
 
-Thêm vào `config.yaml`: ```yaml
+Thêm vào ``config.yaml``: `````yaml
 models: - name: Qwen Coder 7B
     provider: ollama
     model: qwen2.5-coder:7b
@@ -161,11 +162,11 @@ models: - name: Qwen Coder 7B
     model: nomic-embed-text
     apiBase: http://localhost:11434
     roles: [embed]
-```
+`````
 
 ### Docker triển khai cho team
 
-```dockerfile
+`````dockerfile
 # Dockerfile.continue-ci
 FROM node:20-slim
 
@@ -176,9 +177,9 @@ ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
 
 # Chạy kiểm tra Continue trong CI
 CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml cho team Ollama + Continue
 version: '3.8"
 services: ollama: image: ollama/ollama:latest
@@ -188,13 +189,13 @@ services: ollama: image: ollama/ollama:latest
               count: 1
               capabilities: [gpu]
 
-volumes: ollama-data: ```
+volumes: ollama-data: `````
 
 ## Tích hợp với VS Code, Ollama, OpenAI, Anthropic và JetBrains
 
 ### VS Code: Workflow đa model
 
-Tính năng đặc trưng của Continue.dev trong VS Code là sử dụng **các model khác nhau cho các tác vụ khác nhau**. Dưới đây là cấu hình production: ```yaml
+Tính năng đặc trưng của Continue.dev trong VS Code là sử dụng **các model khác nhau cho các tác vụ khác nhau**. Dưới đây là cấu hình production: `````yaml
 # ~/.continue/config.yaml — Cấu hình VS Code production
 name: Production VS Code
 version: 1.0.0
@@ -241,23 +242,23 @@ rules: - name: Tiêu chuẩn TypeScript
     rule: |
       Sử dụng TypeScript strict. Ưu tiên interface hơn type.
       Dùng async/await, không dùng callback. Xử lý lỗi rõ ràng.
-```
+`````
 
 ### Ollama: Chế độ hoàn toàn offline
 
-```bash
+`````bash
 # Kiểm tra Ollama đang chạy
 curl http://localhost:11434/api/tags
 
 # Output mong đợi: danh sách model khả dụng
 # {"models":[{"name":"qwen2.5-coder:7b",...}]}
-```
+`````
 
 Với cấu hình Ollama ở trên, mọi xử lý code đều diễn ra trên máy tính. Không gọi mạng, dữ liệu không rờ khỏi localhost. Các team tài chính và y tế có yêu cầu tuân thủ sử dụng thiết lập này.
 
 ### Tích hợp Anthropic Claude
 
-```yaml
+`````yaml
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
@@ -265,13 +266,13 @@ models: - name: Claude Opus
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
-```
+`````
 
 Model Claude hỗ trợ sử dụng công cụ MCP native — cho phép chế độ Agent của Continue gọi công cụ bên ngoài.
 
 ### Tích hợp OpenAI
 
-```yaml
+`````yaml
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
@@ -284,26 +285,26 @@ models: - name: GPT-4o
     apiKey: ${{ secrets.OPENAI_API_KEY }}
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
-```
+`````
 
 ### JetBrains: Thiết lập đầy đủ tính năng
 
-Continue trong JetBrains hỗ trợ cùng `config.yaml`. Đặt tại: ```bash
+Continue trong JetBrains hỗ trợ cùng ``config.yaml``. Đặt tại: `````bash
 # Toàn cục (mọi dự án)
 # macOS: ~/.continue/config.yaml
 # Windows: %USERPROFILE%\.continue\config.yaml
 
 # Theo dự án
 # <thư mục gốc dự án>/.continue/config.yaml
-```
+`````
 
-Phím tắt JetBrains: - `Cmd/Ctrl + J` — Mở chat Continue
-- `Tab` — Chấp nhận tự động hoàn thành
-- `Cmd/Ctrl + Shift + L` — Chuyển chỉnh sửa inline
+Phím tắt JetBrains: - ````Cmd/Ctrl + J```` — Mở chat Continue
+- ````Tab```` — Chấp nhận tự động hoàn thành
+- ````Cmd/Ctrl + Shift + L```` — Chuyển chỉnh sửa inline
 
 ### Tích hợp MCP (Model Context Protocol)
 
-Continue.dev hỗ trợ server MCP cho việc sử dụng công cụ. Thêm vào `config.yaml`: ```yaml
+Continue.dev hỗ trợ server MCP cho việc sử dụng công cụ. Thêm vào ``config.yaml``: `````yaml
 mcpServers: - name: filesystem
     command: npx
     args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
@@ -316,7 +317,7 @@ mcpServers: - name: filesystem
   - name: postgres
     command: npx
     args: ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -342,7 +343,7 @@ Một nhóm fintech châu Âu với 12 lập trình viên chuyển từ Copilot 
 
 ### Trường hợp: Lập trình viên full-stack cá nhân
 
-Lập trình viên chạy kết hợp model local và cloud: ```yaml
+Lập trình viên chạy kết hợp model local và cloud: `````yaml
 # Cấu hình tối ưu chi phí-hiệu năng
 models: - name: Claude Haiku
     provider: anthropic
@@ -354,7 +355,7 @@ models: - name: Claude Haiku
     provider: ollama
     model: qwen2.5-coder:7b
     roles: [autocomplete, edit]  # Miễn phí
-```
+`````
 
 Hóa đơn API hàng tháng: **$3-8** cho 40 giờ lập trình. Không phí đăng ký.
 
@@ -362,7 +363,7 @@ Hóa đơn API hàng tháng: **$3-8** cho 40 giờ lập trình. Không phí đ�
 
 ### Chế độ Agent cho workflow tự động
 
-Chế độ Agent 2026 của Continue.dev có thể tự động lập kế hoạch và thực thi tác vụ đa bước: ```yaml
+Chế độ Agent 2026 của Continue.dev có thể tự động lập kế hoạch và thực thi tác vụ đa bước: `````yaml
 # Bật chế độ Agent với chính sách công cụ
 models: - name: Claude Sonnet Agent
     provider: anthropic
@@ -371,13 +372,13 @@ models: - name: Claude Sonnet Agent
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
-```
+`````
 
 Workflow Agent: mô tả tác vụ → AI phân tích codebase → tạo kế hoạch → thực thi thay đổi file → chạy lệnh terminal → xác minh kết quả. Chính sách công cụ có thể được đặt thành "Hỏi trước", "Tự động", hoặc "Loại trừ" cho từng công cụ.
 
 ### Quy tắc tùy chỉnh cho chất lượng code
 
-```yaml
+`````yaml
 # ~/.continue/rules/typescript.yaml
 name: Quy tắc TypeScript
 version: 1.0.0
@@ -386,32 +387,32 @@ schema: v1
 rules: - pattern: "**/*.ts"
     rule: |
       1. Sử dụng TypeScript strict (noImplicitAny, strictNullChecks)
-      2. Ưu tiên `interface` hơn `type` cho hình dạng đối tượng
+      2. Ưu tiên ````interface```` hơn ````type```` cho hình dạng đối tượng
       3. Luôn xử lý Promise rejection bằng try/catch
       4. Sử dụng dependency injection, tránh trạng thái toàn cục
       5. Hàm phải dưới 50 dòng
-```
+`````
 
 ### Context Providers cho hiểu biết sâu hơn
 
-Lệnh `@` của Continue cung cấp cho AI ngữ cảnh chính xác: ```
+Lệnh ``@`` của Continue cung cấp cho AI ngữ cảnh chính xác: `````
 @codebase    — Tìm kiếm ngữ nghĩa toàn bộ dự án
 @docs        — Tham khảo tài liệu bên ngoài
 @terminal    — Bao gồm output lệnh cuối cùng
 @file        — Tham khảo file cụ thể
 @web         — Tìm kiếm web cho thông tin mới nhất
 @github      — Kéo issues và PR
-```
+`````
 
-Ví dụ trong chat: ```
+Ví dụ trong chat: `````
 > @codebase giải thích cách middleware xác thực hoạt động trong dự án này
 > @docs https://docs.nestjs.com/security/authentication
 > Refactor handler đăng nhập sử dụng pattern từ docs
-```
+`````
 
 ### Bảo mật: Quản lý secrets
 
-```yaml
+`````yaml
 # Không bao giờ hardcode API key. Sử dụng biến môi trường: models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
@@ -419,18 +420,18 @@ Ví dụ trong chat: ```
 
 # Trong CI/CD, sử dụng secret store của runner: # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
 # GitLab CI: $ANTHROPIC_API_KEY (biến CI/CD)
-```
+`````
 
 ### Giám sát mức sử dụng
 
-```bash
+`````bash
 # Theo dõi chi phí API theo model
 # Thêm vào profile shell: export CONTINUE_LOG_LEVEL=debug
 
 # Log được ghi vào: # macOS: ~/Library/Logs/Continue/
 # Linux: ~/.config/Continue/logs/
 # Windows: %APPDATA%\Continue\logs\
-```
+`````
 
 ## So sánh với các lựa chọn khác
 
@@ -463,7 +464,7 @@ Ví dụ trong chat: ```
 
 Continue.dev không phải công cụ phù hợp cho mọi lập trình viên. Đây là những hạn chế trung thực: **1. Tính ổn định của tự động hoàn thành.** Tính năng tab completion có vấn đề về độ tin cậy đã biết qua các phiên bản. Nó hoạt động tốt với các model cụ thể (Codestral, Qwen 2.5 Coder) nhưng có thể bị lỗi hoặc im lặng thất bại với model khác. Nếu tự động hoàn thành là nhu cầu chính, Copilot hay Tabby đáng tin cậy hơn.
 
-**2. Chi phí cấu hình thủ công.** Mỗi lần đổi model đều cần chỉnh sửa `config.yaml`. So với Copilot cài xong dùng luôn. Continue thưởng cho ngườ thích vọc và phạt ngườ muốn zero config.
+**2. Chi phí cấu hình thủ công.** Mỗi lần đổi model đều cần chỉnh sửa ````config.yaml````. So với Copilot cài xong dùng luôn. Continue thưởng cho ngườ thích vọc và phạt ngườ muốn zero config.
 
 **3. Không có model tích hợp.** Bạn tự mang API key và trả theo mức sử dụng. Không có tier tính toán miễn phí đi kèm — không như gói miễn phí của Cursor với 2.000 completion. Với ngườ dùng LLM cloud nặng, chi phí có thể vượt quá các lựa chọn đăng ký.
 
@@ -477,7 +478,7 @@ Continue.dev không phải công cụ phù hợp cho mọi lập trình viên. �
 
 ### Continue.dev có hoạt động hoàn toàn offline không?
 
-Có, khi được cấu hình với Ollama hoặc LM Studio chạy model local. Mọi xử lý code diễn ra trên máy tính bạn không có cuộc gọi mạng. Hạn chế duy nhất là tìm kiếm web (`@web`) và context providers dựa trên cloud hiển nhiên cần kết nối. Với môi trường hoàn toàn cách ly (air-gapped), Continue.dev là một trong số ít trợ lý lập trình AI hoạt động được.
+Có, khi được cấu hình với Ollama hoặc LM Studio chạy model local. Mọi xử lý code diễn ra trên máy tính bạn không có cuộc gọi mạng. Hạn chế duy nhất là tìm kiếm web (````@web````) và context providers dựa trên cloud hiển nhiên cần kết nối. Với môi trường hoàn toàn cách ly (air-gapped), Continue.dev là một trong số ít trợ lý lập trình AI hoạt động được.
 
 ### Continue.dev so với GitHub Copilot trong lập trình hàng ngày như thế nào?
 
@@ -494,7 +495,7 @@ Có. Giấy phép Apache-2.0 cho phép sử dụng thương mại, chỉnh sửa
 ### Làm thế nào để chuyển từ Copilot sang Continue.dev?
 
 1. Cài tiện ích Continue (chưa gỡ Copilot)
-2. Cấu hình model ưa thích trong `~/.continue/config.yaml`
+2. Cấu hình model ưa thích trong ````~/.continue/config.yaml````
 3. Chạy song song 1-2 tuần để so sánh
 4. Tắt tự động hoàn thành Copilot trong VS Code settings, giữ Continue
 5. Hủy đăng ký Copilot khi đã quen
@@ -503,7 +504,7 @@ Quá trình chuyển đổi thường cần 3-5 ngày sử dụng tích cực đ
 
 ### config.yaml và config.json khác nhau thế nào?
 
-Continue.dev chuyển từ JSON sang YAML làm định dạng khuyến nghị vào năm 2025. `config.yaml` hỗ trợ đầy đủ tính năng bao gồm hệ thống quy tắc mới, nhập Hub, và khả năng đọc tốt hơn. `config.json` vẫn hoạt động vì tương thích ngược nhưng thiếu tính năng mới. Thiết lập mới nên dùng hoàn toàn YAML.
+Continue.dev chuyển từ JSON sang YAML làm định dạng khuyến nghị vào năm 2025. ````config.yaml```` hỗ trợ đầy đủ tính năng bao gồm hệ thống quy tắc mới, nhập Hub, và khả năng đọc tốt hơn. ````config.json```` vẫn hoạt động vì tương thích ngược nhưng thiếu tính năng mới. Thiết lập mới nên dùng hoàn toàn YAML.
 
 ## Kết luận
 
@@ -511,7 +512,7 @@ Continue.dev đứng một mình như trợ lý lập trình AI mã nguồn mở
 
 **Hành động:**
 1. Cài Continue.dev từ VS Code marketplace (2 phút)
-2. Cấu hình model đầu tiên trong `~/.continue/config.yaml` (10 phút)
+2. Cấu hình model đầu tiên trong ````~/.continue/config.yaml``` (10 phút)
 3. Thiết lập Ollama với Qwen 2.5 Coder cho tự động hoàn thành local miễn phí
 4. Tham gia cộng đồng Continue trên GitHub Discussions để học mẹo cấu hình
 
@@ -564,7 +565,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -574,7 +575,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [headroom-token-compression-proxy-library-mcp-server](continue)
 - [codebase-memory-mcp-deep-code-intelligence](continue)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

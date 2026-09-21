@@ -20,6 +20,7 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
+
 ## 快速概览
 
 AI Engineering From Scratch 是一套全面的实践课程，教你从零构建生产级的 AI 系统。拥有 32,771 颗星，它覆盖了完整的 AI 技术栈：LLM 微调、RAG 管道、Agent 框架、向量数据库和云端部署。该项目提供的是实用的代码示例，而非理论抽象。
@@ -40,7 +41,7 @@ AI Engineering From Scratch 是一个教育型仓库，教你从头构建 AI 系
 6. **Agent 框架**——工具调用、规划、记忆和多 Agent 编排
 7. **生产部署**——部署、监控、扩展和成本优化
 
-```bash
+````bash
 # 克隆仓库
 curl -sL "https://github.com/rohitg00/ai-engineering-from-scratch/archive/refs/heads/main.zip" -o /tmp/ai-eng.zip
 unzip -q /tmp/ai-eng.zip -d /tmp
@@ -48,7 +49,7 @@ ls /tmp/ai-engineering-from-scratch-main/
 
 # 查看模块结构
 find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
-```
+`````
 
 ## 工作原理：学习流水线
 
@@ -59,7 +60,7 @@ find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
 - **真实数据集**——使用实际语料库进行训练，而非玩具示例
 - **生产部署**——最终模块涵盖服务化、监控和扩展
 
-```bash
+`````bash
 # 典型的模块结构
 module-name/
 ├── README.md          # 理论和目标
@@ -69,7 +70,7 @@ module-name/
 │   ├── train.py       # 训练循环
 │   └── deploy.py      # 服务化代码
 └── tests/             # 单元测试和集成测试
-```
+`````
 
 核心教学理念：在你理解框架抽象了什么之前，你无法有效地使用 AI 框架。通过从零实现 Transformer，你会培养出直觉——为什么 LoRA 有效、为什么 RAG 能提升准确率、为什么 Agent 规划很重要。
 
@@ -77,7 +78,7 @@ module-name/
 
 项目需要 Python 3.10+ 和标准 ML 库依赖：
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
@@ -92,29 +93,29 @@ pip install -r requirements.txt
 # 验证安装
 python3 -c "import torch; print(f'PyTorch {torch.__version__}')"
 python3 -c "import transformers; print(f'Transformers {transformers.__version__}')"
-```
+`````
 
 ### GPU 加速
 
 对于微调和推理模块，推荐使用 GPU 加速：
 
-```bash
+`````bash
 # 检查 CUDA 可用性
 python3 -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
 
 # 安装 CUDA 版 PyTorch（如需要）
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### 备选方案：无 GPU 运行
 
 所有模块均可在 CPU 上运行，尽管微调和大规模推理会显著变慢：
 
-```bash
+`````bash
 # 强制 CPU 模式
 export CUDA_VISIBLE_DEVICES=""
 python3 src/train.py --device cpu
-```
+`````
 
 ## 与主流 AI 工具的集成
 
@@ -122,11 +123,11 @@ AI Engineering From Scratch 是对流行 AI 开发工具的补充，而非替代
 
 | 工具 | 集成点 | 用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | 模块 5（RAG） | 构建生产级 RAG 管道 |
 | **LlamaIndex** | 模块 5（RAG） | 高级索引和检索 |
@@ -135,7 +136,7 @@ AI Engineering From Scratch 是对流行 AI 开发工具的补充，而非替代
 | **vLLM** | 模块 7（生产） | 高吞吐量服务化 |
 | **Ollama** | 模块 3（Transformer） | 本地模型测试 |
 
-```bash
+`````bash
 # 示例：使用 LoRA 微调模型并用 vLLM 部署
 # 第一步：微调（模块 4）
 python3 src/fine_tune.py --model meta-llama/Llama-3.1-8B --lora_rank 16
@@ -148,18 +149,18 @@ pip install vllm
 python3 -m vllm.entrypoints.api_server \
   --model ./lora_adapter_merged \
   --port 8000
-```
+`````
 
 ## 基准测试：从零实现 vs 仅学框架
 
 完成整个 AI Engineering From Scratch 课程体系的学生，展现出比仅通过框架学习的学员明显更好的结果：
 
-```
+`````
 指标                      | 仅学框架 | 从零实现
 
----
+* * *
 |
----
+* * *
 |---
 调试时间（平均）          | 4.2 小时 | 1.1 小时
 自定义架构设计            | 罕见    | 常规操作
@@ -167,7 +168,7 @@ python3 -m vllm.entrypoints.api_server \
 RAG 质量改进              | 模板化  | 算法级
 Agent 故障恢复            | 重启    | 根因分析
 生产部署成功率            | 23%     | 67%
-```
+`````
 
 基准数据来自对 3 个学生群体长达 18 个月的跟踪观察。从零实现组显示出 3.8 倍更快的调试速度和近 3 倍的更高生产部署率。
 
@@ -175,7 +176,7 @@ Agent 故障恢复            | 重启    | 根因分析
 
 当你亲手实现过反向传播后，调试训练循环就不再是猜测哪个 PyTorch 函数出了问题——而是理解梯度流向。当你从零构建过向量数据库索引后，优化检索就不再是随机调整超参数——而是理解召回率和延迟之间的权衡。
 
-```python
+`````python
 # 示例：从零实现的注意力机制
 # 这是学生在模块 3 中要实现的代码
 import torch
@@ -193,7 +194,7 @@ def attention_from_scratch(Q, K, V, mask=None): """从数学定义实现的注�
     output = torch.matmul(attention_weights, V)
     
     return output, attention_weights
-```
+`````
 
 ## 进阶用法：自定义训练策略
 
@@ -201,7 +202,7 @@ def attention_from_scratch(Q, K, V, mask=None): """从数学定义实现的注�
 
 ### 量化感知微调
 
-```bash
+`````bash
 # 使用 4 位量化的 QLoRA
 python3 src/qlora_train.py \
   --model meta-llama/Llama-3.1-8B \
@@ -211,11 +212,11 @@ python3 src/qlora_train.py \
   --dataset custom_dataset.jsonl \
   --epochs 3 \
   --batch_size 4
-```
+`````
 
 ### 多阶段 RAG 优化
 
-```python
+`````python
 # 第一阶段：用最优尺寸分块文档
 from rag_pipeline import DocumentChunker
 
@@ -240,13 +241,13 @@ from reranker import CrossEncoderReranker
 reranker = CrossEncoderReranker("ms-marco-MiniLM-L-12-v2")
 results = index.search("your query here", top_k=20)
 reranked = reranker.rank("your query here", results)
-```
+`````
 
 ### 分布式训练策略
 
 对于更大的模型，跨多 GPU 的分布式训练至关重要：
 
-```bash
+`````bash
 # 使用 DeepSpeed 进行多 GPU 训练
 pip install deepspeed
 
@@ -259,22 +260,22 @@ deepspeed --num_gpus=4 src/train.py \
 
 # 用 TensorBoard 监控训练
 tensorboard --logdir ./runs/
-```
+`````
 
-```python
+`````python
 # FSDP（全分片数据并行）配置
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from torch.distributed.fsdp.wrap import size_based_auto_wrap_policy
 
 policy = size_based_auto_wrap_policy(min_params=1e8)
 model = FSDP(model, auto_wrap_policy=policy, cpu_offload=Offload(cpu=True))
-```
+`````
 
 ### 评估框架
 
 测量模型质量需要系统化的评估：
 
-```python
+`````python
 # 自动化评估流水线
 from eval_framework import Evaluator
 
@@ -292,11 +293,11 @@ results = evaluator.evaluate(
 # 导出结果
 results.to_csv("evaluation_results.csv")
 results.plot_confusion_matrix()
-```
+`````
 
 ### Agent 记忆系统
 
-```python
+`````python
 # 实现持久化 Agent 记忆
 from agent_memory import EpisodicMemory, SemanticMemory
 
@@ -309,7 +310,7 @@ episodic.store(action="query", result="answer", timestamp="2026-06-15")
 # 检索相关记忆
 relevant = episodic.retrieve(context="previous conversation about RAG")
 similar_semantic = semantic.query("RAG optimization", top_k=5)
-```
+`````
 
 ## 与替代方案的比较
 
@@ -317,15 +318,15 @@ similar_semantic = semantic.query("RAG optimization", top_k=5)
 
 | 特性 | AI Engineering From Scratch | Fast.ai | DeepLearning.AI | Kaggle Courses |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 星标数 | 32,771 | 24,000 | N/A（平台） | N/A |
 | 从零实现 | 完整 | 部分 | 无 | 无 |
@@ -352,14 +353,14 @@ AI Engineering From Scratch 内容全面，但仍有已知空白：
 
 5. **多模态模型**——课程聚焦文本。视觉语言模型和音频模型未涉及。
 
-```bash
+`````bash
 # 快速评估：这是否适合你？
 # ✅ 你懂 Python 基础 → 适合
 # ✅ 你想理解 AI 内部原理 → 适合
 # ✅ 你想构建生产级 AI 系统 → 适合
 # ✅ 你是编程完全新手 → 不适合（先从 Python 基础开始）
 # ✅ 你只需要调用 API 而不需要构建模型 → 考虑其他替代方案
-```
+`````
 
 ## 常见问题
 
@@ -397,16 +398,16 @@ AI Engineering From Scratch 填补了 AI 教育中的一个关键空白。大多
 
 **立即开始构建：**
 
-```bash
+`````bash
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
 pip install -r requirements.txt
-```
+````
 
 **相关文章**：[比较 AI Agent 框架](https://dibi8.com/ai-tools/oh-my-pi) · [学习提示词工程](https://dibi8.com/dev-utils/taste-skill)
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/rohitg00/ai-engineering-from-scratch
 - PyTorch 文档：https://pytorch.org/docs/
@@ -478,11 +479,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -492,7 +493,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](ai-engineering-from-scratch)
 - [ai-engineering-from-scratch](ai-engineering-from-scratch)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -523,15 +524,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

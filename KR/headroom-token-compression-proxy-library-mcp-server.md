@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
+
 # Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 — 2026 실전 가이드
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Headroom 압축 파이프라인                   │
 │                                                      │
@@ -35,7 +36,7 @@ featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headr
 │  │  (Claude Code / Codex / Copilot / Gemini CLI)  │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Headroom 파이프라인: 입력 → 압축 → 60-95% 적은 토큰으로 LLM*
 
@@ -54,13 +55,13 @@ Headroom은 **LLM 파이프라인용 토큰 압축 계층**으로, 입력이 모
 - **품질 유지** — 벤치마킹 결과 60-95% 토큰 절감에도 동등한 답변 생성
 - **제로 컨피그 시작** — 합리적인 기본값 포함, 이후 커스텀 규칙으로 최적화
 
-이 프로젝트는 Python으로 구축되었으며, 최소 의존성(`tiktoken`으로 토큰 계산만)을 사용하고 표준 HTTP API로 통합됩니다. 멀티 세션 시나리오를 위해 메모리 또는 Redis에 압축 상태를 저장합니다.
+이 프로젝트는 Python으로 구축되었으며, 최소 의존성(````tiktoken````으로 토큰 계산만)을 사용하고 표준 HTTP API로 통합됩니다. 멀티 세션 시나리오를 위해 메모리 또는 Redis에 압축 상태를 저장합니다.
 
 ## How Headroom Works
 
 Headroom은 세 단계 파이프라인으로 동작합니다: ### 단계 1: 입력 수집
 
-```bash
+`````bash
 # 라이브러리 설치
 pip install headroom-compress
 
@@ -75,11 +76,11 @@ print(f'압축: {result.compressed_tokens} 토큰')
 print(f'절약률: {result.savings_pct}%')
 # 출력: 원본: 5000 → 압축: 950 → 절약률: 81%
 "
-```
+`````
 
 ### 단계 2: 압축 엔진
 
-압축 엔진은 여러 전략을 적용합니다: ```python
+압축 엔진은 여러 전략을 적용합니다: `````python
 # 커스텀 압축 규칙
 from headroom import Compressor
 
@@ -98,32 +99,32 @@ compressed = compressor.compress([
     {"type": "rag_chunk", "data": embedded_text},
     {"type": "code_file", "data": source_code},
 ])
-```
+`````
 
 ### 단계 3: LLM 통합
 
-```bash
+`````bash
 # 프록시 서버 시작
 headroom serve --port 8787 --compressor balanced
 
 # 에이전트를 프록시를 통해 LLM에 연결하도록 설정
 # 에이전트 → Headroom 프록시 (8787) → 압축됨 → LLM API
-```
+`````
 
-```json
+`````json
 // .env — 프록시할 LLM 구성
 HEADROOM_PROXY_PORT=8787
 LLM_ENDPOINT=https://api.anthropic.com/v1/messages
 LLM_MODEL=claude-sonnet-4-20250514
 LLM_API_KEY=${ANTHROPIC_API_KEY}
 COMPRESSION_STRATEGY=balanced
-```
+`````
 
 ## Installation & Setup
 
 ### 빠른 시작 (라이브러리 모드)
 
-```bash
+`````bash
 # 설치
 pip install headroom-compress
 
@@ -133,11 +134,11 @@ import headroom
 compressed = headroom.compress(your_long_input)
 print(compressed.text)
 "
-```
+`````
 
 ### 프록시 모드 (에이전트용 권장)
 
-```bash
+`````bash
 # 설치 및 시작
 pip install headroom-compress
 headroom serve --host 0.0.0.0 --port 8787
@@ -153,11 +154,11 @@ curl -X POST http://localhost:8787/compress \
 #   "savings_pct": 80.3,
 #   "compressed_text": "..."
 # }
-```
+`````
 
 ### MCP 서버 모드
 
-```bash
+`````bash
 # MCP 서버로 시작
 headroom mcp-serve --port 9090
 
@@ -167,11 +168,11 @@ claude-code --mcp http://localhost:9090
 # MCP 서버가 노출하는 기능: # - headroom/compress — 텍스트 입력 압축
 # - headroom/benchmark — 압축 벤치마크 실행
 # - headroom/config — 압축 설정 조회/갱신
-```
+`````
 
 ### Docker 배포
 
-```bash
+`````bash
 # Docker로 실행
 docker run -d \
   --name headroom-proxy \
@@ -182,13 +183,13 @@ docker run -d \
 
 # 압축 통계 모니터링
 curl http://localhost:8787/stats | jq
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
 Headroom은 LLM API로 HTTP 요청을 보내는 모든 에이전트와 함께 동작합니다. 인기 있는 도구와의 통합 방법입니다: ### Claude Code
 
-```bash
+`````bash
 # 방법 1: MCP 서버로 사용
 headroom mcp-serve --port 9090
 # 그 후 Claude Code에서: add-mcp headroom http://localhost:9090
@@ -196,20 +197,20 @@ headroom mcp-serve --port 9090
 # 방법 2: .claude-env에서 API 프록시로 설정
 export CLAUDE_API_BASE_URL=http://localhost:8787/v1
 # Claude Code가 자동으로 Headroom을 통해 라우팅됨
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # Codex를 Headroom 프록시로 연결
 export OPENAI_API_BASE=http://localhost:8787/v1
 codex --model gpt-4o --prompt "인증 버그 수정"
 # 모든 컨텍스트가 먼저 Headroom 압축을 거침
-```
+`````
 
 ### OpenRouter 집계
 
-```bash
+`````bash
 # Headroom을 OpenRouter와 함께 사용하여 다중 모델 비용 절감
 headroom serve \
   --proxy http://api.openrouter.ai/api/v1 \
@@ -218,7 +219,7 @@ headroom serve \
 
 # Headroom이 입력을 압축한 후 OpenRouter로 전송
 # 원본 토큰이 아닌 압축된 토큰에 대해 비용 지불
-```
+`````
 
 셀프호스팅 프록시 인프라: [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 드롭렛은 안정적인 저지연 연결을 제공합니다. [HTStack](https://my.htstack.com/aff.php?aff=27187) 멀티 지역 배포, [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 데이터센터 프록시로 다지역 배포하세요.
 
@@ -235,18 +236,18 @@ headroom serve \
 
 ### 비용 절감: 실제 시나리오
 
-50K 라인 Python 프로젝트를 Claude Code로 처리하는 개발자: ```bash
+50K 라인 Python 프로젝트를 Claude Code로 처리하는 개발자: `````bash
 # Headroom使用前: # 일일 컨텍스트: ~120,000 토큰/일
 # 비용: ~$48/월 (Claude Sonnet @ $3/M)
 
 # Headroom 后 (균형 모드): # 일일 컨텍스트: ~28,000 토큰/일
 # 비용: ~$11/월
 # 절약: ~$37/월 = 77% 절감
-```
+`````
 
 ### RAG 청크 압축
 
-LLM에 전달하기 전 검색된 문서 압축: ```python
+LLM에 전달하기 전 검색된 문서 압축: `````python
 from headroom import Compressor, rag_compress
 
 # LLM 전 RAG 청크 압축
@@ -259,11 +260,11 @@ compressed_chunks = rag_compress(
 
 # 결과: 원본 47 청크 → 압축 12 청크
 # 동일한 답변 품질, 74% 적은 토큰
-```
+`````
 
 ### 실제 사용 사례: CI/CD 로그 분석
 
-한 팀이 주당 500개 GitHub Actions 로그를 처리: ```bash
+한 팀이 주당 500개 GitHub Actions 로그를 처리: `````bash
 # 배치로 로그 압축
 headroom compress-batch \
   --input ./ci-logs/*.log \
@@ -274,13 +275,13 @@ headroom compress-batch \
 # 압축된 로그를 AI로 분석
 cat ./compressed-logs/build-42.log | \
   headroom serve --prompt "이 실패의 근본 원인 찾아줘"
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### 커스텀 압축 규칙
 
-도메인 특화 압축 규칙 정의: ```yaml
+도메인 특화 압축 규칙 정의: `````yaml
 # headroom-config.yaml
 rules: # 코드 파일은 임계값 이하 압축 건너뛰기
   - pattern: "\\.py$"
@@ -299,11 +300,11 @@ rules: # 코드 파일은 임계값 이하 압축 건너뛰기
   - pattern: "openapi.*\\.yaml$"
     compress: false
     dedup: true
-```
+`````
 
 ### Redis 기반 세션 상태
 
-멀티 세션 시나리오에서 압축 상태 지속: ```bash
+멀티 세션 시나리오에서 압축 상태 지속: `````bash
 # Redis 상태 백엔드로 시작
 headroom serve \
   --redis-url redis://localhost:6379/0 \
@@ -311,11 +312,11 @@ headroom serve \
 
 # 세션 상태가 요청 간에 지속됨
 # 장시간 에이전트 세션에 유용
-```
+`````
 
 ### 헬스 체크 & 모니터링
 
-```bash
+`````bash
 # 헬스 체크 엔드포인트
 curl -s http://localhost:8787/health | jq
 
@@ -330,7 +331,7 @@ curl -s http://localhost:8787/stats | jq
 
 # 속도 제한
 curl -s http://localhost:8787/config | jq
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -367,7 +368,7 @@ A: Headroom은 생성式 요약이 아닌 구조적 분석(토큰 경계, 형식
 
 **Q: Headroom는 Ollama 같은 로컬 모델에서 동작하나요?**
 
-A: 네. 프록시를 Ollama 엔드포인트에 연결하세요: `LLM_ENDPOINT=http://localhost:11434/v1`. 요청이 Ollama에 도달하기 전 압축이 발생하므로 VRAM 사용량이 줄어듭니다.
+A: 네. 프록시를 Ollama 엔드포인트에 연결하세요: ````LLM_ENDPOINT=http://localhost:11434/v1````. 요청이 Ollama에 도달하기 전 압축이 발생하므로 VRAM 사용량이 줄어듭니다.
 
 **Q: 팀 사용을 위해 VPS에서 Headroom을 실행할 수 있나요?**
 
@@ -379,7 +380,7 @@ A: 없습니다. Headroom은 오픈소스(MIT 라이선스), 완전 무료이며
 
 **Q: Headroom은 RAG 검색을 어떻게 처리하나요?**
 
-A: Headroom에는 검색된 청크를 LLM에 전달하기 전 점수화, 중복 제거, 불필요 부분 삭제를 수행하는 `rag_compress` 함수가 포함되어 있습니다. 임베딩 유사도를 사용해 관련성 높은 청크를 보존합니다.
+A: Headroom에는 검색된 청크를 LLM에 전달하기 전 점수화, 중복 제거, 불필요 부분 삭제를 수행하는 ````rag_compress``` 함수가 포함되어 있습니다. 임베딩 유사도를 사용해 관련성 높은 청크를 보존합니다.
 
 ## Sources & Further Reading
 
@@ -425,7 +426,7 @@ Claude API 비용 절감을 원하는 개인 개발자든, AI 기반 CI/CD를 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -435,6 +436,6 @@ Claude API 비용 절감을 원하는 개인 개발자든, AI 기반 CI/CD를 �
 - [headroom-token-compression-proxy-library-mcp-server](headroom-token-compression-proxy-library-mcp-server)
 - [codebase-memory-mcp-deep-code-intelligence](headroom-token-compression-proxy-library-mcp-server)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -13,6 +13,7 @@ aliases:
   - /kr/posts/portkey-ai-gateway-production/
 ---
 
+
 {{</* resource-info */>}}
 
 프로덕션 환경에서 여러 대규모 언어 모델(LLM) 제공업체를 관리하는 것은 악몽과 같습니다. 각 제공업체는 고유한 API 형식, 인증 체계, 속도 제한 및 장애 모드를 가지고 있습니다. 애플리케이션 코드에는 OpenAI, Anthropic, Google, Azure 및 매달 등장하는 수십 개의 새로운 제공업체에 대한 조걸 로직이 가득합니다. **Portkey AI Gateway**를 소개합니다 — 단일 API 뒤에 200개 이상의 모델을 통합하고, 부하 분산, 폴 백 라우팅, 지출 추적, 요청 캐싱 및 엔터프라이즈급 관찰 가능성을 갖춘 오픈소스 LLM 게이트웨이입니다.
@@ -21,7 +22,7 @@ aliases:
 
 > **빠른 시작**: Portkey AI Gateway는 MIT 라이선스 하에 오픈소스이며 14,000개 이상의 GitHub 스타를 보유하고 있습니다. 자체 호스팅하거나 관리형 클라우드 옵션을 사용할 수 있습니다. 준비되셨나요? 시작해 봅시다.
 
----
+* * *
 
 ## Portkey AI Gateway란 무엇인가?
 
@@ -38,7 +39,7 @@ Portkey AI Gateway는 애플리케이션과 LLM 제공업체 사이에 위치하
 
 단일 모델을 실행하는 스타트업이든 수십 개의 제공업체를 관리하는 엔터프라이즈든, Portkey는 AI 애플리케이션을 프로덕션화하는 데 필요한 인프라 계층을 제공합니다.
 
----
+* * *
 
 ## 아키텍처 개요 및 배포 옵션
 
@@ -54,18 +55,18 @@ Portkey AI Gateway는 **클우드(관리형)** 및 **자체 호스팅** 두 가�
 
 **Docker로 배포:**
 
-```bash
+````bash
 # 저장소 복제
 git clone https://github.com/Portkey-AI/gateway.git
 cd gateway
 
 # Docker로 실행
 docker run -p 8787:8787 -e PORTKEY_GATEWAY_API_KEY=your-gateway-key portkeyai/gateway:latest
-```
+`````
 
 **Docker Compose로 배포:**
 
-```yaml
+`````yaml
 version: '3.8'
 services: portkey-gateway: image: portkeyai/gateway:latest
     ports: - "8787:8787"
@@ -74,11 +75,11 @@ services: portkey-gateway: image: portkeyai/gateway:latest
       - CACHE_TTL=3600
     volumes: - ./config:/app/config
     restart: unless-stopped
-```
+`````
 
 **Kubernetes에 배포:**
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: portkey-gateway
@@ -91,7 +92,7 @@ spec: replicas: 3
         env: - name: PORTKEY_GATEWAY_API_KEY
           valueFrom: secretKeyRef: name: portkey-secrets
               key: gateway-api-key
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: portkey-gateway-service
@@ -99,11 +100,11 @@ spec: selector: app: portkey-gateway
   ports: - port: 80
     targetPort: 8787
   type: ClusterIP
-```
+`````
 
 프로덕션 배포의 경우 Kubernetes를 사용하고 고가용성을 위해 최소 3개의 복제본을 권장합니다. 클러스터를 호스팅할 수 있는 신뢰할 수 있는 클라우드 플랫폼이 필요한 경우, [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0)는 Portkey와 완벽하게 어울리는 개발자 친화적인 관리형 Kubernetes 서비스를 제공합니다.
 
----
+* * *
 
 ## 제공업체 및 API 키 구성
 
@@ -111,7 +112,7 @@ spec: selector: app: portkey-gateway
 
 ### 제공업체 설정
 
-`providers.yaml` 구성 파일 생성: ```yaml
+``providers.yaml`` 구성 파일 생성: `````yaml
 providers: openai-primary: type: openai
     api_key: ${OPENAI_API_KEY}
     organization: ${OPENAI_ORG_ID}
@@ -131,11 +132,11 @@ providers: openai-primary: type: openai
   mistral-local: type: mistral
     api_key: ${MISTRAL_API_KEY}
     base_url: http://mistral-service:8000/v1
-```
+`````
 
 ### 구성 로드
 
-```bash
+`````bash
 # 환경 변수 설정
 export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-ant-..."
@@ -146,9 +147,9 @@ docker run -p 8787:8787 \
   -e PORTKEY_GATEWAY_API_KEY=$GATEWAY_API_KEY \
   -v $(pwd)/providers.yaml:/app/config/providers.yaml \
   portkeyai/gateway:latest
-```
+`````
 
----
+* * *
 
 ## 통합 API: 200개 이상의 모델을 위한 하나의 엔드포인트
 
@@ -156,7 +157,7 @@ Portkey의 핵심 가치는 통합 API입니다. 어떤 모델이나 제공업�
 
 ### 기본 대화 완성 요청
 
-```bash
+`````bash
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
   -H "Content-Type: application/json" \
@@ -168,11 +169,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
       {"role": "user", "content": "양자 컴퓨팅을 간단한 용어로 설명하세요."}
     ]
   }'
-```
+`````
 
 ### 제공업체 즉시 전환
 
-```bash
+`````bash
 # 동일한 요청, 다른 제공업체 — model/provider 필드만 변경
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -185,11 +186,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     ],
     "max_tokens": 1024
   }'
-```
+`````
 
 ### Python SDK 예제
 
-```python
+`````python
 from portkey_ai import Portkey
 
 # 클라이언트 초기화
@@ -207,11 +208,11 @@ response = portkey.chat.completions.create(
     ]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 스트리밍 응답
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(api_key="your-gateway-api-key")
@@ -223,9 +224,9 @@ stream = portkey.chat.completions.create(
 )
 
 for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
----
+* * *
 
 ## 부하 분산 및 폴 백 라우팅
 
@@ -233,7 +234,7 @@ for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].d
 
 ### 라운드 로빈 부하 분산
 
-여러 API 키 또는 제공업체 간에 트래픽을 균등하게 분산합니다: ```yaml
+여러 API 키 또는 제공업체 간에 트래픽을 균등하게 분산합니다: `````yaml
 # config/load-balance.yaml
 strategies: gpt4-pool: type: load_balance
     providers: - provider: openai-primary
@@ -242,20 +243,20 @@ strategies: gpt4-pool: type: load_balance
         weight: 1
       - provider: openai-backup
         weight: 1
-```
+`````
 
-```python
+`````python
 # 부하 분산 풀 사용
 response = portkey.chat.completions.create(
     model="gpt-4o",
     config="gpt4-pool",  # 전략 참조
     messages=[{"role": "user", "content": "안녕하세요!"}]
 )
-```
+`````
 
 ### 우선순위 기반 폴 백 라우팅
 
-자동 페일오버를 위한 폴 백 체인을 정의합니다: ```yaml
+자동 페일오버를 위한 폴 백 체인을 정의합니다: `````yaml
 strategies: production-fallback: type: fallback
     targets: - provider: azure-gpt4
         timeout: 10
@@ -269,9 +270,9 @@ strategies: production-fallback: type: fallback
       - provider: google-gemini
         model: gemini-2.5-pro
         timeout: 20
-```
+`````
 
-```bash
+`````bash
 # 게이트웨이는 성공할 때까지 순서대로 각 대상을 시도합니다
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -280,11 +281,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     "config": "production-fallback",
     "messages": [{"role": "user", "content": "중요한 비즈니스 질문"}]
   }'
-```
+`````
 
 ### 요청 속성 기반 조걸 라우팅
 
-콘텐츠, 사용자 또는 기타 요청 속성을 기반으로 요청을 라우팅합니다: ```yaml
+콘텐츠, 사용자 또는 기타 요청 속성을 기반으로 요청을 라우팅합니다: `````yaml
 strategies: smart-router: type: conditional
     rules: - condition: "request.messages[0].content.length > 4000"
         target: provider: anthropic-primary
@@ -295,9 +296,9 @@ strategies: smart-router: type: conditional
       - condition: "default"
         target: provider: azure-gpt4
           model: gpt-4o-mini
-```
+`````
 
----
+* * *
 
 ## 요청 캐싱: 비용 및 지연 시간 감소
 
@@ -305,15 +306,15 @@ LLM API 호출은 비용이 많이 들고 느립니다. Portkey의 의미론적 
 
 ### 캐시 활성화
 
-```yaml
+`````yaml
 cache: enabled: true
   mode: semantic  # 또는 "exact"는 정확한 일치 캐싱용
   ttl: 3600       # 캐시 생존 시간(초)
   max_size: 10000 # 최대 캐시 항목 수
   similarity_threshold: 0.95  # 의미론적 캐싱용
-```
+`````
 
-```python
+`````python
 # 첫 번째 호출은 제공업체를 타고 결과를 캐싱합니다
 response1 = portkey.chat.completions.create(
     model="gpt-4o",
@@ -327,17 +328,17 @@ response2 = portkey.chat.completions.create(
     messages=[{"role": "user", "content": "Kubernetes에 대해 설명해주세요"}],
     cache=True
 )
-```
+`````
 
 ### 캐시 통계 및 무효화
 
-```bash
+`````bash
 # 캐시 메트릭 확인
 curl http://localhost:8787/v1/admin/cache/stats \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # 특정 캐시 항목 무효화
 curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -346,9 +347,9 @@ curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
     "pattern": "kubernetes",
     "provider": "openai-primary"
   }'
-```
+`````
 
----
+* * *
 
 ## 지출 추적 및 비용 관찰 가능성
 
@@ -356,7 +357,7 @@ curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
 
 ### 비용 추적 설정
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(
@@ -378,25 +379,25 @@ response = portkey.chat.completions.create(
 print(f"입력 토큰: {response.usage.prompt_tokens}")
 print(f"출력 토큰: {response.usage.completion_tokens}")
 print(f"총 비용: ${response.usage.estimated_cost}")
-```
+`````
 
 ### 지출 분석 쿼리
 
-```bash
+`````bash
 # 제공업첼별 지출 보고서 가져오기
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=provider" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # 사용자별 지출 보고서 가져오기
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=user_id" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
 ### 예산 알림
 
-```yaml
+`````yaml
 alerts: daily-budget: type: budget
     threshold: 500  # USD
     period: daily
@@ -410,9 +411,9 @@ alerts: daily-budget: type: budget
     window: 1h
     channels: - type: pagerduty
         integration_key: your-pd-key
-```
+`````
 
----
+* * *
 
 ## 프롬프트 관리 및 버전 관리
 
@@ -420,7 +421,7 @@ alerts: daily-budget: type: budget
 
 ### 관리형 프롬프트 생성
 
-```python
+`````python
 from portkey_ai import Portkey
 
 portkey = Portkey(api_key="your-gateway-api-key")
@@ -439,11 +440,11 @@ prompt = portkey.prompts.deploy(
         "max_tokens": 50
     }
 )
-```
+`````
 
 ### 변수로 프롬프트 렌더링
 
-```python
+`````python
 # 관리형 프롬프트 렌더링 및 실행
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -454,11 +455,11 @@ response = portkey.prompts.render(
 
 print(response.choices[0].message.content)
 # 출력: "결제"
-```
+`````
 
 ### 프롬프트 A/B 테스트
 
-```python
+`````python
 # 프롬프트 버전 간 A/B 테스트 실행
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -466,9 +467,9 @@ response = portkey.prompts.render(
     test_version="1.3.0-beta",  # 50% 트래픽
     variables={"ticket_content": "사진 업로드 시 앱이 충돌합니다"}
 )
-```
+`````
 
----
+* * *
 
 ## 가드레일 및 콘텐츠 안전
 
@@ -476,7 +477,7 @@ Portkey의 가드레일 시스템을 사용하면 요청과 응답 모두에서 
 
 ### 가드레일 구성
 
-```yaml
+`````yaml
 guardrails: input-validation: - type: keyword_filter
       blocklist: ["password", "ssn", "credit_card", "secret_key"]
       action: block
@@ -493,20 +494,20 @@ guardrails: input-validation: - type: keyword_filter
     - type: response_format
       required_schema: type: json_object
       action: retry
-```
+`````
 
-```python
+`````python
 # 요청에 가드레일 적용
 response = portkey.chat.completions.create(
     model="gpt-4o",
     messages=[{"role": "user", "content": "사용자 입력 내용"}],
     guardrails=["input-validation", "output-validation"]
 )
-```
+`````
 
 ### 사용자 정의 가드레일 함수
 
-```python
+`````python
 from portkey_ai import Portkey
 import json
 
@@ -519,9 +520,9 @@ def custom_validator(request, response): """사용자 정의 비즈니스 로직
     except json.JSONDecodeError: return False, "응답은 유효한 JSON이어야 합니다"
 
 portkey.guardrails.register("confidence-check", custom_validator)
-```
+`````
 
----
+* * *
 
 ## 관찰 가능성: 로깅, 메트릭 및 추적
 
@@ -529,13 +530,13 @@ portkey.guardrails.register("confidence-check", custom_validator)
 
 ### 요청 로깅
 
-```bash
+`````bash
 # 최근 요청 로그 쿼리
 curl "http://localhost:8787/v1/admin/logs?limit=100&status=error" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```python
+`````python
 # 요청별 상세 로깅 활성화
 response = portkey.chat.completions.create(
     model="gpt-4o",
@@ -546,35 +547,35 @@ response = portkey.chat.completions.create(
         "user_id": "user-456"
     }
 )
-```
+`````
 
 ### OpenTelemetry 통합
 
-```yaml
+`````yaml
 observability: tracing: enabled: true
     exporter: otlp
     endpoint: http://jaeger-collector:4317
   metrics: enabled: true
     exporter: prometheus
     port: 9090
-```
+`````
 
 ### Prometheus 메트릭
 
-게이트웨이는 `/metrics`에서 Prometheus 호환 메트릭을 노출합니다: ```bash
+게이트웨이는 ``/metrics``에서 Prometheus 호환 메트릭을 노출합니다: `````bash
 # 메트릭 스크래핑
 curl http://localhost:8787/metrics
-```
+`````
 
-주요 메트릭: - `portkey_requests_total` — 제공업체, 모델, 상태별 총 요청 수
-- `portkey_request_duration_seconds` — 요청 지연 시간 히스토그램
-- `portkey_tokens_total` — 유형(입력/출력) 및 모델별 토큰 사용량
-- `portkey_cache_hits_total` — 캐시 적중/미적중 카운트
-- `portkey_spend_total` — 추정 지출(USD)
+주요 메트릭: - ````portkey_requests_total```` — 제공업체, 모델, 상태별 총 요청 수
+- ````portkey_request_duration_seconds```` — 요청 지연 시간 히스토그램
+- ````portkey_tokens_total```` — 유형(입력/출력) 및 모델별 토큰 사용량
+- ````portkey_cache_hits_total```` — 캐시 적중/미적중 카운트
+- ````portkey_spend_total```` — 추정 지출(USD)
 
 ### Grafana 대시보드
 
-Portkey의 공식 Grafana 대시보드(ID: `portkey-ai-gateway`)를 가져와 즉시 사용 가능한 시각화를 얻으세요: ```json
+Portkey의 공식 Grafana 대시보드(ID: ``portkey-ai-gateway``)를 가져와 즉시 사용 가능한 시각화를 얻으세요: `````json
 {
   "dashboard": {
     "title": "Portkey AI Gateway 개요",
@@ -606,15 +607,15 @@ Portkey의 공식 Grafana 대시보드(ID: `portkey-ai-gateway`)를 가져와 �
     ]
   }
 }
-```
+`````
 
----
+* * *
 
 ## 프로덕션 배포 체크리스트
 
 Portkey AI Gateway를 프로덕션에 도입하기 전에 다음 중요 항목을 확인했는지 확인하세요: ### 인프라
 
-```yaml
+`````yaml
 # Redis 캐싱 및 PostgreSQL 로그가 있는 프로덕션 docker-compose
 version: '3.8'
 services: gateway: image: portkeyai/gateway:latest
@@ -637,7 +638,7 @@ services: gateway: image: portkeyai/gateway:latest
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes: - postgres-data:/var/lib/postgresql/data
 
-volumes: redis-data: postgres-data: ```
+volumes: redis-data: postgres-data: `````
 
 ### 보안 체크리스트
 
@@ -652,15 +653,15 @@ volumes: redis-data: postgres-data: ```
 
 ### 헬스 체크
 
-```bash
+`````bash
 # 게이트웨이 헬스 엔드포인트
 curl http://localhost:8787/health
 
 # 예상 응답
 {"status": "healthy", "version": "2.5.0", "uptime": 86400}
-```
+`````
 
-```yaml
+`````yaml
 # Kubernetes 활성 및 준비 프로브
 livenessProbe: httpGet: path: /health
     port: 8787
@@ -671,9 +672,9 @@ readinessProbe: httpGet: path: /ready
     port: 8787
   initialDelaySeconds: 5
   periodSeconds: 5
-```
+`````
 
----
+* * *
 
 ## FAQ: Portkey AI Gateway
 
@@ -699,7 +700,7 @@ Portkey는 두 가지 캐싱 모드를 제공합니다: **정확한 일치**(동
 
 ### 기존 OpenAI SDK 코드에서 Portkey를 사용할 수 있나요?
 
-네. Portkey는 OpenAI SDK와 드롭인 호환성을 제공합니다. `base_url`을 게이트웨이 엔드포인트로 변경하고 Portkey API 키를 사용하기만 하면 됩니다: ```python
+네. Portkey는 OpenAI SDK와 드롭인 호환성을 제공합니다. ``base_url``을 게이트웨이 엔드포인트로 변경하고 Portkey API 키를 사용하기만 하면 됩니다: `````python
 import openai
 
 client = openai.OpenAI(
@@ -709,9 +710,9 @@ client = openai.OpenAI(
 
 # 기존 코드가 변경 없이 작동합니다
 response = client.chat.completions.create(...)
-```
+````
 
----
+* * *
 
 
 
@@ -730,7 +731,7 @@ Portkey AI Gateway는 여러 LLM 제공업체를 관리하는 복잡성을 해�
 
 Docker 빠른 시작으로 시작하여, 제공업체를 구성하고, 폴 백 경로가 있는 부하 분산을 설정하고, 캐싱을 활성화하고, 관찰 가능성 스택을 연결하세요. 1시간 이내에 200개 이상의 모델을 처리하고 완전한 관찰 가능성을 갖춘 프로덕션급 LLM 게이트웨이를 갖게 될 것입니다.
 
----
+* * *
 
 *게시일: 2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
 
@@ -760,7 +761,7 @@ Docker 빠른 시작으로 시작하여, 제공업체를 구성하고, 폴 백 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -770,7 +771,7 @@ Docker 빠른 시작으로 시작하여, 제공업체를 구성하고, 폴 백 �
 - [2026-06-08-trending-ai-agents](portkey-ai-gateway-production)
 - [2026-06-15-trending-ai-agents](portkey-ai-gateway-production)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

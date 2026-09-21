@@ -21,6 +21,7 @@ aliases:
 ---
 
 
+
 {{</* resource-info */>}}
 
 # LLM Cửa sổ Ngữ cảnh 1M 2026: Thử nghiệm Thực tế trên Codebase 950K Token
@@ -86,13 +87,13 @@ Với công việc ngữ cảnh dài khối lượng lớn, Gemini rẻ hơn 3 l
 
 ## Cây Quyết định
 
-```
+````
 Corpus size?
 ├── < 100K tokens → stuff context, any model
 ├── 100K-700K → either Gemini or Claude works
 ├── 700K-1M → Gemini (Claude degrades)
 └── > 1M → must use RAG, even 1M models can't fit
-```
+````
 
 ## Hạ tầng Khuyến nghị
 

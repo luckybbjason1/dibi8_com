@@ -24,11 +24,12 @@ aliases:
   - /kr/posts/dvc-data-version-control-ml/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: Git 저장소를 파괴한 데이터셋
 
-작년, 중형 AI 스타트업의 컴퓨터 비전 팀이 47 GB 이미지 데이터셋을 Git 저장소에 직접 커밋했습니다. 두 주 안에 `git clone` 시간이 3시간을 초과했고, CI 러너는 디스크 부족으로 크래시되었으며, 신규 엔지니어 온볼딩은 하루 종일 걸리는 ordeal이 되었습니다. 저장소는 유지보수 불가능한 거대한 덩어리가 되었습니다 — 나쁜 코드 때문이 아니라, Git이 데이터를 위해 설계된 적이 없기 때문입니다.
+작년, 중형 AI 스타트업의 컴퓨터 비전 팀이 47 GB 이미지 데이터셋을 Git 저장소에 직접 커밋했습니다. 두 주 안에 ```git clone```` 시간이 3시간을 초과했고, CI 러너는 디스크 부족으로 크래시되었으며, 신규 엔지니어 온볼딩은 하루 종일 걸리는 ordeal이 되었습니다. 저장소는 유지보수 불가능한 거대한 덩어리가 되었습니다 — 나쁜 코드 때문이 아니라, Git이 데이터를 위해 설계된 적이 없기 때문입니다.
 
 이 이야기는 전 세계 ML 팀에서 반복되고 있습니다. Git은 소스 코드에서 탁월하지만 데이터셋, 모델 가중치, 실험 아티팩트의 버전 관리에서는 처참하게 실패합니다. 결과는 무엇인가요? 팀은 재현성을 잃고, 중복 실험으로 컴퓨팅을 낭비하며, 근본적인 질문에 답하기 어려워합니다: **"정확히 어떤 데이터가 이 모델을 만들었는가?"**
 
@@ -42,42 +43,42 @@ aliases:
 
 Git LFS나 기존 버전 관리와 달리, DVC는 **멀티 TB 데이터셋**을 처리하고, 버전 간 저장소 중복 제거를 수행하며, Python 기반 ML 워크플로우와 원활하게 통합됩니다. 이 도구는 100% Python으로 작성되었습니다 (핵심 사용 시 컴파일 의존성 불필요). Linux, macOS, Windows를 지원합니다.
 
-핵심 기능 개요: - **데이터 버전 관리**: Git 스타일의 `add`, `push`, `pull`, `checkout` 명령으로 데이터셋과 모델을 추적
+핵심 기능 개요: - **데이터 버전 관리**: Git 스타일의 ````add````, ````push````, ````pull````, ````checkout```` 명령으로 데이터셋과 모델을 추적
 - **원격 스토리지**: S3, GCS, Azure Blob, HDFS, SSH, 로컬 경로에 데이터 저장
-- **파이프라인 정의**: `dvc.yaml`에서 ML 워크플로우를 DAG로 정의
+- **파이프라인 정의**: ````dvc.yaml````에서 ML 워크플로우를 DAG로 정의
 - **실험 추적**: 실험 실행 간 메트릭, 파라미터, 플롯 비교
-- **재현성**: `dvc repro`로 모든 Git 커밋에서 실험 재실행
+- **재현성**: ````dvc repro````로 모든 Git 커밋에서 실험 재실행
 
 ## DVC 작동 원리: 아키텍처와 핵심 개념
 
 DVC는 Git과 데이터 스토리지 사이의 얇은 레이어로 작동합니다. 세 가지 핵심 개념을 이해하면 전체 아키텍처를 파악할 수 있습니다: ### 1. 포인터 파일 (.dvc)
 
-`dvc add data/dataset.csv`를 실행하면, DVC는 파일의 MD5 해시를 계산하고 로컬 캐시(`.dvc/cache`)로 이동시킨 다음, 작은 `dataset.csv.dvc` 메타데이터 파일을 생성합니다. 이 `.dvc` 파일은 해시와 크기를 포함합니다 — Git에 커밋되는 유일한 것입니다: ```
+``dvc add data/dataset.csv``를 실행하면, DVC는 파일의 MD5 해시를 계산하고 로컬 캐시(``.dvc/cache``)로 이동시킨 다음, 작은 ``dataset.csv.dvc`` 메타데이터 파일을 생성합니다. 이 ``.dvc`` 파일은 해시와 크기를 포함합니다 — Git에 커밋되는 유일한 것입니다: `````
 # data/dataset.csv.dvc — Git으로 추적 (약 100바이트)
 outs: - md5: a1b2c3d4e5f6...
   size: 104857600
   hash: md5
   path: dataset.csv
-```
+`````
 
-실제 100 MB 데이터셋은 `.dvc/cache`에 있으며 원격 스토리지로 푸시될 수 있습니다. 이 분리가 핵심 트릭입니다: **Git은 메타데이터를 추적하고, DVC는 데이터를 추적합니다.**
+실제 100 MB 데이터셋은 ````.dvc/cache````에 있으며 원격 스토리지로 푸시될 수 있습니다. 이 분리가 핵심 트릭입니다: **Git은 메타데이터를 추적하고, DVC는 데이터를 추적합니다.**
 
 ### 2. 캐시와 원격 스토리지
 
-DVC는 로컬에서 콘텐츠 주소 지정 캐시(`.dvc/cache`)를 유지합니다. 파일은 MD5 해시로 저장되어 자동 중복 제거가 가능합니다 — 동일한 파일은 모든 버전에서 한 번만 저장됩니다. 팀 간 데이터 공유를 위해 원격 스토리지를 구성할 수 있습니다: ```bash
+DVC는 로컬에서 콘텐츠 주소 지정 캐시(``.dvc/cache``)를 유지합니다. 파일은 MD5 해시로 저장되어 자동 중복 제거가 가능합니다 — 동일한 파일은 모든 버전에서 한 번만 저장됩니다. 팀 간 데이터 공유를 위해 원격 스토리지를 구성할 수 있습니다: `````bash
 # 로컬 캐시 구조
 .dvc/cache/
   files/
     md5/
       a1/
         b2c3d4e5f6...  # 실제 파일 콘텐츠
-```
+`````
 
-원격 스토리지는 동일한 구조를 따륩니다. `dvc push`와 `dvc pull`은 간단한 동기화 작업입니다.
+원격 스토리지는 동일한 구조를 따륩니다. ````dvc push````와 ````dvc pull````은 간단한 동기화 작업입니다.
 
 ### 3. 파이프라인 (dvc.yaml)
 
-DVC 파이프라인은 유향 비순환 그래프(DAG)에서 재현 가능한 ML 워크플로우를 단계로 정의합니다. 각 단계에는 의존성, 출력, 명령이 있습니다: ```yaml
+DVC 파이프라인은 유향 비순환 그래프(DAG)에서 재현 가능한 ML 워크플로우를 단계로 정의합니다. 각 단계에는 의존성, 출력, 명령이 있습니다: `````yaml
 # dvc.yaml — 파이프라인 정의
 stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output data/processed.csv
     deps: - src/preprocess.py
@@ -90,13 +91,13 @@ stages: prepare: cmd: python src/preprocess.py --input data/raw.csv --output dat
     outs: - models/model.pkl
     params: - train.epochs
       - train.lr
-```
+`````
 
 DVC는 단계 의존성을 추적하고 입력이 변경될 때만 단계를 재실행합니다 — Makefile과 유사하지만 콘텐츠 인식 해싱과 완전한 재현성을 제공합니다.
 
 ## 설치 및 설정: 5분 이내
 
-DVC에는 Python 3.9+와 Git이 필요합니다. pip로 설치합니다: ```bash
+DVC에는 Python 3.9+와 Git이 필요합니다. pip로 설치합니다: `````bash
 # 핵심 DVC (최소 설치)
 pip install dvc
 
@@ -106,29 +107,29 @@ pip install "dvc[gs]"      # Google Cloud Storage
 pip install "dvc[azure]"   # Azure Blob Storage
 pip install "dvc[ssh]"     # SSH/SFTP
 pip install "dvc[all]"     # 모든 원격 백엔드
-```
+`````
 
-설치 확인: ```bash
+설치 확인: `````bash
 dvc --version
 # dvc version 3.67.1
-```
+`````
 
-기존 Git 저장소에서 DVC 초기화: ```bash
+기존 Git 저장소에서 DVC 초기화: `````bash
 cd my-ml-project
 git init          # 아직 Git 저장소가 아니라면
 dvc init          # .dvc/ 디렉토리와 .dvcignore 생성
 git add .dvc
 git commit -m "Initialize DVC"
-```
+`````
 
-`dvc init` 명령이 생성하는 것: - `.dvc/` — DVC 구성 및 캐시 디렉토리
-- `.dvc/.gitignore` — 캐시 파일이 Git에 추적되지 않도록 방지
-- `.dvc/config` — 로컬 DVC 구성 파일
-- `.dvcignore` — DVC 추적에서 제외할 패턴
+````dvc init```` 명령이 생성하는 것: - ````.dvc/```` — DVC 구성 및 캐시 디렉토리
+- ````.dvc/.gitignore```` — 캐시 파일이 Git에 추적되지 않도록 방지
+- ````.dvc/config```` — 로컬 DVC 구성 파일
+- ````.dvcignore```` — DVC 추적에서 제외할 패턴
 
 ## 데이터 추적: 첫 번째 데이터셋
 
-데이터셋을 DVC 추적에 추가: ```bash
+데이터셋을 DVC 추적에 추가: `````bash
 # 단일 파일 추가
 dvc add data/training_data.csv
 
@@ -140,21 +141,21 @@ ls data/
 # training_data.csv
 # training_data.csv.dvc   <- 이것이 Git에 커밋됨
 # .gitignore               <- DVC가 데이터를 gitignore에 추가
-```
+`````
 
-`.dvc` 파일은 Git이 효율적으로 처리할 수 있는 작은 YAML 파일입니다. 커밋합니다: ```bash
+``.dvc`` 파일은 Git이 효율적으로 처리할 수 있는 작은 YAML 파일입니다. 커밋합니다: `````bash
 git add data/training_data.csv.dvc data/.gitignore
 git commit -m "Track training dataset with DVC"
-```
+`````
 
-다른 머신에서 데이터를 검색하거나 클론 후: ```bash
+다른 머신에서 데이터를 검색하거나 클론 후: `````bash
 # 원격에서 데이터 가져오기 (원격 스토리지 구성 후)
 dvc pull
 
 # 또는 특정 버전 체크아웃
 git checkout v1.0
 dvc checkout   # .dvc 포인터와 일치하는 데이터 파일 복원
-```
+`````
 
 ## 원격 스토리지 구성: S3, GCS, Azure
 
@@ -162,7 +163,7 @@ dvc checkout   # .dvc 포인터와 일치하는 데이터 파일 복원
 
 ### Amazon S3
 
-```bash
+`````bash
 # 기본 원격으로 S3 추가
 dvc remote add -d myremote s3://my-bucket/dvc-storage
 
@@ -171,30 +172,30 @@ dvc remote add -d myremote s3://my-bucket/dvc-storage --profile production
 
 # 리전 설정
 dvc remote modify myremote region us-east-1
-```
+`````
 
 ### Google Cloud Storage (GCS)
 
-```bash
+`````bash
 # GCS 원격 추가
 dvc remote add -d myremote gs://my-bucket/dvc-storage
 
 # 서비스 계정 사용
 dvc remote modify myremote credentialpath /path/to/service-account.json
-```
+`````
 
 ### Azure Blob Storage
 
-```bash
+`````bash
 # Azure 원격 추가
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # 계정 이름과 키 설정
 dvc remote modify myremote account_name myaccount
 dvc remote modify myremote account_key mykey
-```
+`````
 
-구성 후 원격에 데이터 푸시: ```bash
+구성 후 원격에 데이터 푸시: `````bash
 # 추적된 모든 데이터를 원격에 푸시
 dvc push
 
@@ -203,13 +204,13 @@ dvc pull
 
 # 특정 대상 데이터 가져오기
 dvc pull data/training_data.csv
-```
+`````
 
 클우드 VPS에서 프로덕션 배포 시, [DigitalOcean Spaces](https://m.do.co/c/eca87ac14ee0)는 S3 호환 객체 스토리지를 월 $5부터 제공하여 DVC와 완벽하게 통합됩니다.
 
 ## ML 파이프라인 정의
 
-DVC 파이프라인은 임시 훈련 스크립트를 재현 가능한 워크플로우로 전환합니다. 전형적인 ML 프로젝트의 완전한 파이프라인입니다: ```yaml
+DVC 파이프라인은 임시 훈련 스크립트를 재현 가능한 워크플로우로 전환합니다. 전형적인 ML 프로젝트의 완전한 파이프라인입니다: `````yaml
 # dvc.yaml
 stages: prepare: cmd: python src/prepare.py --config params.yaml
     deps: - src/prepare.py
@@ -236,9 +237,9 @@ stages: prepare: cmd: python src/prepare.py --config params.yaml
       - data/features/
     metrics: - metrics.json: cache: false
     plots: - plots/roc_curve.csv
-```
+`````
 
-파이프라인 실행: ```bash
+파이프라인 실행: `````bash
 # 모든 단계 실행 (변경된 단계만 재실행)
 dvc repro
 
@@ -247,9 +248,9 @@ dvc repro train
 
 # 파이프라인 시각화
 dvc dag
-```
+`````
 
-파라미터는 `params.yaml`에 정의됩니다: ```yaml
+파라미터는 ``params.yaml``에 정의됩니다: `````yaml
 # params.yaml
 prepare: split: 0.2
   seed: 42
@@ -258,11 +259,11 @@ train: lr: 0.001
   epochs: 50
   batch_size: 32
   model_type: resnet50
-```
+`````
 
 ## 실험 추적
 
-DVC는 외부 데이터베이스 없이 경량 실험 추적을 제공합니다: ```bash
+DVC는 외부 데이터베이스 없이 경량 실험 추적을 제공합니다: `````bash
 # 수정된 파라미터로 실험 실행
 dvc exp run --set-param train.lr=0.01
 
@@ -271,9 +272,9 @@ dvc exp run --set-param train.lr=0.1,0.01,0.001
 
 # 모든 실험 나열
 dvc exp show
-```
+`````
 
-실험 결과 비교: ```bash
+실험 결과 비교: `````bash
 # 메트릭이 포함된 실험 표시
 dvc exp show --no-timestamp --precision 4
 
@@ -282,9 +283,9 @@ dvc exp apply exp-abc123
 
 # 실험을 원격에 푸시
 dvc exp push origin exp-abc123
-```
+`````
 
-메트릭 시각화를 위해 DVC가 플롯을 생성할 수 있습니다: ```yaml
+메트릭 시각화를 위해 DVC가 플롯을 생성할 수 있습니다: `````yaml
 # dvc.yaml (플롯 섹션)
 plots: - plots/loss.csv: x: step
       y: loss
@@ -292,12 +293,12 @@ plots: - plots/loss.csv: x: step
   - plots/accuracy.csv: x: step
       y: accuracy
       title: Validation Accuracy
-```
+`````
 
-```bash
+`````bash
 # 플롯 생성 및 보기
 dvc plots show
-```
+`````
 
 ## CI/CD 통합: GitHub Actions와 GitLab CI
 
@@ -305,7 +306,7 @@ DVC는 CI/CD 플랫폼과 원활하게 통합되어 자동화된 파이프라인
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline
 on: [push]
@@ -337,11 +338,11 @@ jobs: train: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: metrics
           path: metrics.json
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - data
   - train
@@ -371,7 +372,7 @@ evaluate_model: stage: evaluate
   dependencies: - train_model
   script: - dvc repro evaluate
     - cat metrics.json
-```
+`````
 
 ## 벤치마크와 실제 사용 사례
 
@@ -388,14 +389,14 @@ DVC는 스타트업부터 포춘 500대 기업까지 다양한 조직에서 실�
 
 | 작업 | 1 GB 데이터셋 | 50 GB 데이터셋 | 1 TB 데이터셋 |
 |------|-------------|--------------|-------------|
-| `dvc add` (로컬 SSD) | 2.1초 | 45초 | 18분 |
-| `dvc push` (S3로) | 8초 | 3.2분 | 52분 |
-| `dvc pull` (S3에서) | 5초 | 2.1분 | 38분 |
-| `dvc checkout` (버전 전환) | 0.3초 | 2.1초 | 8.5초 |
+| ````dvc add```` (로컬 SSD) | 2.1초 | 45초 | 18분 |
+| ````dvc push```` (S3로) | 8초 | 3.2분 | 52분 |
+| ````dvc pull```` (S3에서) | 5초 | 2.1분 | 38분 |
+| ````dvc checkout```` (버전 전환) | 0.3초 | 2.1초 | 8.5초 |
 
 *벤치마크는 c5.2xlarge (8 vCPU, 16 GB RAM)에서 10 Gbps 네트워크로 S3 us-east-1에 접속하여 실행. 시간은 3회 실행 평균입니다.*
 
-눈에 띄는 수치는 1 GB 데이터셋에 대한 `dvc checkout`이 0.3초라는 것입니다 — DVC는 사용 가능한 곳에서 하드링크와 reflink를 사용하여 데이터셋 크기와 관계없이 버전 전환이 거의 즉각적입니다.
+눈에 띄는 수치는 1 GB 데이터셋에 대한 ````dvc checkout````이 0.3초라는 것입니다 — DVC는 사용 가능한 곳에서 하드링크와 reflink를 사용하여 데이터셋 크기와 관계없이 버전 전환이 거의 즉각적입니다.
 
 ### 실제 사용 사례
 
@@ -409,7 +410,7 @@ DVC는 스타트업부터 포춘 500대 기업까지 다양한 조직에서 실�
 
 ### 스토리지 최적화
 
-오래된 캐시 버전의 공간을 회수하기 위해 자동 가비지 컬렉션을 활성화합니다: ```bash
+오래된 캐시 버전의 공간을 회수하기 위해 자동 가비지 컬렉션을 활성화합니다: `````bash
 # 현재 Git 작업 공간에서 참조하는 파일만 유지
 dvc gc --workspace
 
@@ -418,11 +419,11 @@ dvc gc --all-branches --all-tags
 
 # 삭제될 내용 미리보기 (시뮬레이션)
 dvc gc --workspace --dry
-```
+`````
 
 ### 다중 환경 원격 스토리지
 
-```bash
+`````bash
 # 프로덕션 원격 (대부분의 사용자는 읽기 전용)
 dvc remote add production s3://prod-bucket/dvc-storage
 
@@ -431,11 +432,11 @@ dvc remote add -d dev s3://dev-bucket/dvc-storage
 
 # 특정 원격에 푸시
 dvc push --remote production
-```
+`````
 
 ### 외부 소스에서 데이터 가져오기
 
-```bash
+`````bash
 # 복사 없이 데이터 가져오기 (외부 URL 추적)
 dvc import-url s3://external-bucket/dataset.csv data/dataset.csv
 
@@ -444,11 +445,11 @@ dvc import-url --rev v1.0 https://github.com/user/repo/data.csv
 
 # 가져온 데이터 업데이트
 dvc update data/dataset.csv
-```
+`````
 
 ### 심볼릭 링크/하드링크를 사용한 대용량 파일 최적화
 
-```bash
+`````bash
 # reflinks (카피온라이트) 사용 — 가장 빠름, 중복 공간 없음
 dvc config cache.type reflink,hardlink,copy
 
@@ -457,18 +458,18 @@ dvc cache dir --show
 
 # 캐시 상태 확인
 dvc fsck
-```
+`````
 
 ### 민감한 데이터 보호
 
-```bash
+`````bash
 # .dvcignore로 민감한 파일 제외
 echo "secrets/" >> .dvcignore
 echo "*.key" >> .dvcignore
 
 # 원격 스토리지 정적 암호화 (S3 SSE)
 dvc remote modify myremote sse AES256
-```
+`````
 
 ## 대안과 비교
 
@@ -516,11 +517,11 @@ dvc remote modify myremote sse AES256
 Git LFS는 별도 서버에 대용량 파일을 저장하지만 여전히 Git 커밋을 통해 파일 버전을 추적합니다. DVC는 데이터를 Git에서 완전히 분리합니다 — Git에는 작은 포인터 파일만 들어가고, 데이터는 S3, GCS 또는 원격 저장소에 있습니다. DVC는 Git LFS가 제공하지 않는 파이프라인 정의와 실험 추적도 제공합니다.
 
 **Q: DVC를 Jupyter Notebook과 함께 사용할 수 있나요?**
-예. `dvc.api`를 사용하여 노트북 낸에서 수동 `dvc pull` 없이 DVC 원격에서 데이터셋을 직접 읽을 수 있습니다: ```python
+예. ``dvc.api``를 사용하여 노트북 낸에서 수동 ``dvc pull`` 없이 DVC 원격에서 데이터셋을 직접 읽을 수 있습니다: `````python
 import dvc.api
 
 with dvc.api.open('data/dataset.csv", remote=myremote) as f: df = pd.read_csv(f)
-```
+`````
 
 **Q: DVC를 프라이빗 Git 저장소와 함께 사용할 수 있나요?**
 물론입니다. DVC는 GitHub, GitLab, Bitbucket 또는 셀프 호스팅 Git을 포함한 모든 Git 저장소에서 작동합니다. DVC 원격 스토리지는 Git 호스팅과 독립적이며 S3 호환 스토리지가 될 수 있습니다.
@@ -532,9 +533,9 @@ DVC는 콘텐츠 해시(MD5)로 파일을 저장합니다. 데이터셋의 두 �
 예. DVC v3.x는 2023년부터 안정적이며 Shell, IBM, Microsoft Research를 포함한 기업에서 사용됩니다. Apache-2.0 라이선스는 제한 없이 상용 사용을 허용합니다.
 
 **Q: DVC로 로컬 NAS 또는 공유 드라이브의 데이터를 추적할 수 있나요?**
-예. 네트워크 연결 스토리지에 로컬 원격을 사용합니다: ```bash
+예. 네트워크 연결 스토리지에 로컬 원격을 사용합니다: `````bash
 dvc remote add -d myremote /mnt/shared-nas/dvc-storage
-```
+`````
 
 ## 결론: 오늘부터 데이터 버전 관리 시작하기
 
@@ -542,12 +543,12 @@ dvc remote add -d myremote /mnt/shared-nas/dvc-storage
 
 **15,600+ Stars**, 성숙한 v3.67.1 릴리스, 깊은 Git 통합으로 DVC는 ML 데이터 버전 관리 표준 도구로서의 자리를 확고히 했습니다. 설정은 5분이 채 걸리지 않고, 명령은 Git과 정확히 일치하며, 이미 버전 관리를 사용하는 누구에게나 학습 곡선이 최소화됩니다.
 
-지금 시작하세요: ```bash
+지금 시작하세요: `````bash
 pip install dvc
 cd your-ml-project
 dvc init
 dvc add your-dataset.csv
-```
+````
 
 [DVC Discord](https://dvc.org/chat) 커뮤니티에 참여하고 [GitHub](https://github.com/iterative/dvc)에서 프로젝트 업데이트를 팔로우하세요.
 
@@ -604,7 +605,7 @@ Telegram 그룹에서 이 가이드를 논의하고 DVC 워크플로우를 공�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -614,6 +615,6 @@ Telegram 그룹에서 이 가이드를 논의하고 DVC 워크플로우를 공�
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](dvc-data-version-control-ml)
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](dvc-data-version-control-ml)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

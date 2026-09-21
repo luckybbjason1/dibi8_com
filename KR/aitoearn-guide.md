@@ -28,6 +28,7 @@ faqs: - q: 'AiToEarn은 Buffer와 Hootsuite의 무료 대안인가요?'
     a: 'AiToEarn은 SQLite 데이터베이스와 Playwright 헤드리스 브라우저를 격리하는 Docker Compose 파일을 제공하며, $5짜리 저렴한 VPS에서도 약 99.9%의 업타임으로 운영할 수 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교
@@ -58,7 +59,7 @@ A: 네! AiToEarn은 서구권 플랫폼(Instagram, TikTok)과 중국 거대 생�
 **Q: 자체 호스팅 콘텐츠 배포 자동화는 믿을 만한가요? (content distribution automation self-hosted)**
 A: 완벽합니다. AiToEarn은 Docker compose 파일을 제공하여 SQLite 데이터베이스와 Playwright 브라우저를 견고하게 격리합니다. 월 5달러짜리 저렴한 VPS에서도 99.9%의 가동률을 자랑합니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -130,7 +131,7 @@ Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

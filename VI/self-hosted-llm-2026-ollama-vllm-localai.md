@@ -32,6 +32,7 @@ faq: - q: "Stack LLM tự lưu trữ nào tốt nhất vào năm 2026?"
     a: "LocalAI theo thiết kế — nó cung cấp endpoint /v1/chat/completions tương thích OpenAI. Trỏ bất kỳ OpenAI SDK nào vào URL của LocalAI và nó chạy ngay. Ollama và vLLM cũng cung cấp endpoint tương thích OpenAI trong các phiên bản 2026, nhưng LocalAI có lịch sử dài nhất và hỗ trợ mô hình rộng nhất."
 ---
 
+
 {{</* resource-info */>}}
 
 # LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI
@@ -52,14 +53,14 @@ Ba runtime LLM mã nguồn mở nghiêm túc thống trị triển khai tự lư
 >
 > **Điểm hòa vốn chi phí**: tự lưu trữ thắng API ở ~10 triệu+ tokens/tháng. Dưới 5 triệu, API thắng.
 
----
+* * *
 
 ## Chúng Là Gì
 
 ### Ollama
 **Stars**: ~95K. **Stack**: Go. **License**: MIT.
 
-Runtime LLM cục bộ đơn giản nhất có thể. `ollama pull llama3.3:70b-instruct-q4_K_M && ollama run llama3.3:70b-instruct-q4_K_M`. Đó là toàn bộ thiết lập. Đơn người dùng, tập trung vào trải nghiệm nhà phát triển. CLI mạnh + HTTP API đơn giản.
+Runtime LLM cục bộ đơn giản nhất có thể. ```ollama pull llama3.3:70b-instruct-q4_K_M && ollama run llama3.3:70b-instruct-q4_K_M````. Đó là toàn bộ thiết lập. Đơn người dùng, tập trung vào trải nghiệm nhà phát triển. CLI mạnh + HTTP API đơn giản.
 
 ### vLLM
 **Stars**: ~30K. **Stack**: Python + CUDA. **License**: Apache-2.0.
@@ -69,7 +70,7 @@ Server inference cấp sản xuất với PagedAttention để batching. Through
 ### LocalAI
 **Stars**: ~22K. **Stack**: Go + nhiều backend. **License**: MIT.
 
-Server API tương thích OpenAI. Thay thế trực tiếp: đổi biến môi trường `OPENAI_API_BASE`, code hiện có của bạn chạy ngay. Hỗ trợ phạm vi định dạng mô hình rộng nhất (GGUF, GGML, ONNX, MLC, TensorRT). Tốt nhất cho trường hợp "chúng tôi có code OpenAI client sẵn, muốn chuyển sang cục bộ."
+Server API tương thích OpenAI. Thay thế trực tiếp: đổi biến môi trường ````OPENAI_API_BASE````, code hiện có của bạn chạy ngay. Hỗ trợ phạm vi định dạng mô hình rộng nhất (GGUF, GGML, ONNX, MLC, TensorRT). Tốt nhất cho trường hợp "chúng tôi có code OpenAI client sẵn, muốn chuyển sang cục bộ."
 
 ## Cấu Hình Benchmark
 
@@ -90,15 +91,15 @@ Cả ba được kiểm thử trên: - Phần cứng: RTX 4090 (24GB VRAM), 64GB
 ## Thời Gian Thiết Lập + Độ Phức Tạp Vận Hành
 
 ### Ollama (10 phút)
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.3:70b-instruct-q4_K_M
 ollama run llama3.3:70b-instruct-q4_K_M
-```
-Ba lệnh. Xong. Cập nhật bằng `ollama pull` lần nữa.
+`````
+Ba lệnh. Xong. Cập nhật bằng ````ollama pull```` lần nữa.
 
 ### vLLM (2 giờ)
-```bash
+`````bash
 # Python 3.11 + CUDA 12.4 venv
 pip install vllm
 # Configure model serving with proper batch size, max context, GPU mem fraction
@@ -107,16 +108,16 @@ vllm serve meta-llama/Llama-3.3-70B-Instruct \
   --max-model-len 8192 \
   --gpu-memory-utilization 0.95 \
   --quantization fp8
-```
-Cộng với debug địa ngục dependency (tương thích phiên bản CUDA, phiên bản torch, phiên bản vllm) thường mất 1-2 giờ lần đầu. Sau đó: `vllm serve` chạy.
+`````
+Cộng với debug địa ngục dependency (tương thích phiên bản CUDA, phiên bản torch, phiên bản vllm) thường mất 1-2 giờ lần đầu. Sau đó: ````vllm serve```` chạy.
 
 ### LocalAI (45 phút)
-```yaml
+`````yaml
 # docker-compose.yml
 services: api: image: localai/localai:latest-aio-gpu-nvidia
     volumes: - ./models:/build/models
     environment: - MODELS_PATH=/build/models
-```
+`````
 Cộng với YAML cấu hình mô hình cho mỗi mô hình được tải. Docker xử lý dependency gọn gàng.
 
 ## Phân Tích Chi Phí: Khi Nào Tự Lưu Trữ Thắng API
@@ -125,7 +126,7 @@ Giả định: - Một H100 (thuê $2/giờ) = $1440/tháng
 - Hoặc RTX 4090 sở hữu ($1600 ban đầu) + $50 điện = ~$80/tháng phân bổ trong 24 tháng
 - Serving vLLM đa người dùng = ~50K tokens/giây/GPU duy trì ở tải đầy
 
-```
+`````
 H100 sản xuất: $1440/tháng / tiềm năng 1 tỷ tokens/tháng
   = $0.0000014/1K tokens
   
@@ -133,7 +134,7 @@ so với Anthropic Sonnet API: $0.003/1K input + $0.015/1K output
   ~$0.009 pha trộn
   
 Điểm hòa vốn: ~160 triệu tokens/tháng
-```
+`````
 
 Với RTX 4090 nghiệp dư xử lý 100 triệu tokens/tháng: - Sở hữu: $80/tháng cho phân bổ phần cứng
 - API tương đương: $300-900/tháng
@@ -154,7 +155,7 @@ Cho lập trình/lý luận: thương mại thắng 8-15 điểm phần trăm. C
 
 ## Chọn Cái Nào: Ma Trận Quyết Định
 
-```
+`````
 Nhà phát triển đơn lẻ, dev/khám phá → Ollama
 Server sản xuất đa người dùng → vLLM
 Thay thế trực tiếp OpenAI API → LocalAI
@@ -162,7 +163,7 @@ Workload yêu cầu quyền riêng tư + ngân sách phần cứng → vLLM
 Thiết lập "vừa chạy" đơn giản nhất → Ollama
 Cần hỗ trợ định dạng mô hình rộng nhất → LocalAI
 Tối ưu chi phí + lưu lượng cao → vLLM với H100
-```
+````
 
 ## Hạ Tầng Khuyến Nghị
 
@@ -181,7 +182,7 @@ Tự lưu trữ chỉ thắng chi phí API ở quy mô đáng kể (10 triệu+ 
 
 Về chất lượng, Llama 3.3 70B đủ tốt cho hầu hết công việc hàng ngày nhưng không tốt bằng mô hình tiên tiến. Nếu workload đòi hỏi mô hình tốt nhất, ở lại API. Nếu "rất tốt và riêng tư" thắng "tốt nhất và chia sẻ", hãy tự lưu trữ.
 
----
+* * *
 
 **Liên quan**: [Hướng Dẫn Thiết Lập Ollama](https://dibi8.com/vi/resources/llm-frameworks/ollama/) · [RAG vs Fine-Tuning 2026](https://dibi8.com/vi/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -247,12 +248,12 @@ LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực Throughput, C
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -262,6 +263,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ollama-vs-vllm](self-hosted-llm-2026-ollama-vllm-localai)
 - [llm-inference-cost-optimization-guide-2026](self-hosted-llm-2026-ollama-vllm-localai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

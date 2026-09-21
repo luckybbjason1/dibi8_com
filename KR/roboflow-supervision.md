@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
 ---
 
+
 ## 소개
 
 컴퓨터 비전은 자율 주행 자동차, 품질 검사 시스템부터 의료 이미징 및 리테일 분석에 이르기까지 모든 것을 가능하게 하는 머신러닝의 가장 영향력 있는 응용 분야 중 하나가 되었습니다. 하지만 프로덕션 등급 CV 시스템을 구축하는 데에는 모델 학습만으로는 부족합니다. 데이터 주석, 평가, 시각화 및 디버깅을 위한 강력한 도구가 필요합니다.
@@ -39,7 +40,7 @@ Supervision은 전체 컴퓨터 비전 수명 주기 전반에 걸쳐 도구를 
 
 Supervision은 주석 형식을 생성, 조작 및 변환하기 위한 유틸리티를 제공합니다. COCO, YOLO, Pascal VOC 및 사용자 정의 형식을 지원하여 다양한 ML 프레임워크 및 파이프라인과 쉽게 작업할 수 있습니다.
 
-```python
+````python
 # supervision import
 from supervision import *
 
@@ -58,13 +59,13 @@ stats = get_annotation_stats(annotations)
 print(f"Total objects: {stats.total_objects}")
 print(f"Classes: {stats.classes}")
 print(f"Images: {stats.total_images}")
-```
+`````
 
 ### 탐지 처리
 
 Supervision은 신뢰도 필터링, 비최대값 억제 및 결과 시각화를 포함한 탐지 모델 출력을 처리하기 위한 강력한 도구를 제공합니다.
 
-```python
+`````python
 import supervision as sv
 import cv2
 
@@ -81,11 +82,11 @@ detections = sv.NMS(detections, iou_threshold=0.45)
 
 # 신뢰도로 필터링
 detections = detections[detections.confidence > 0.6]
-```
+`````
 
 ### 시각화 및 주석 그리기
 
-Supervision의 강점 중 하나는 시각화 도구 모음입니다. 이미지 및 비디오 프레임에 bounding box, segmentation mask, keypoint 및 tracking ID를 그리는 것은 간단합니다: ```python
+Supervision의 강점 중 하나는 시각화 도구 모음입니다. 이미지 및 비디오 프레임에 bounding box, segmentation mask, keypoint 및 tracking ID를 그리는 것은 간단합니다: `````python
 # 그리기용 annotation context 생성
 annotation_context = sv.BoxAnnotator(
     thickness=2,
@@ -124,11 +125,11 @@ annotated_image = label_annotator.annotate(
 
 # 결과 저장
 cv2.imwrite("annotated_scene.jpg", annotated_image)
-```
+`````
 
 ### 추적 지원
 
-Supervision은 인기 있는 추적 알고리즘에 대한 내장 통합을 갖춘 object tracking에 대한 first-class 지원을 제공합니다: ```python
+Supervision은 인기 있는 추적 알고리즘에 대한 내장 통합을 갖춘 object tracking에 대한 first-class 지원을 제공합니다: `````python
 # tracker 초기화
 tracker = sv.Tracker(
     tracker_type="ocsort",  # 또는 "bytetrack"
@@ -146,11 +147,11 @@ for frame_number, frame in enumerate(
     
     # tracking ID가 있는 주석이 달린 프레임
     annotated_frame = draw_tracking_ids(frame, detections)
-```
+`````
 
 ### 메트릭 계산
 
-Supervision은 일반적인 CV 평가 메트릭을 계산하기 위한 도구를 제공합니다: ```python
+Supervision은 일반적인 CV 평가 메트릭을 계산하기 위한 도구를 제공합니다: `````python
 # confusion matrix 계산
 confusion_matrix = sv.ConfusionMatrix(
     num_classes=10,
@@ -166,15 +167,15 @@ confusion_matrix.plot(title="Model Performance")
 
 # 클래스별 precision, recall 및 F1 가져오기
 for class_name, metrics in confusion_matrix.class_metrics().items(): print(f"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}")
-```
+`````
 
 ## 동작 방식
 
 Supervision은 몇 가지 핵심 디자인 패턴을 따르는 깔끔하고 일관된 API를 통해 동작합니다: ### Detections을 데이터 구조로
 
-Supervision의 핵심은 `Detections` 클래스로, 모든 유형의 객체 탐지 출력에 대한 통합 표현을 제공합니다 — bounding box, segmentation mask, keypoint 및 방향 각도.
+Supervision의 핵심은 ````Detections```` 클래스로, 모든 유형의 객체 탐지 출력에 대한 통합 표현을 제공합니다 — bounding box, segmentation mask, keypoint 및 방향 각도.
 
-```python
+`````python
 from supervision import Detections
 
 # 처음부터 detection 생성
@@ -195,11 +196,11 @@ high_confidence = detections[detections.confidence > 0.8]
 
 # 두 detection set 간 IoU 계산
 ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5)
-```
+`````
 
 ### 파이프라인 구성
 
-Supervision은 작업을 파이프라인으로 composition하도록 권장합니다. 각 단계는 `Detections` 객체를 가져오고 새 객체를 생성합니다: ```python
+Supervision은 작업을 파이프라인으로 composition하도록 권장합니다. 각 단계는 ``Detections`` 객체를 가져오고 새 객체를 생성합니다: `````python
 # 탐지 파이프라인 빌드
 pipeline = [
     {"operation": "filter_confidence", "threshold": 0.5},
@@ -210,11 +211,11 @@ pipeline = [
 
 # 파이프라인 실행
 results = apply_pipeline(original_detections, pipeline)
-```
+`````
 
 ## 설치
 
-Supervision 설치는 간단합니다: ```bash
+Supervision 설치는 간단합니다: `````bash
 # pip로 설치
 pip install supervision
 
@@ -223,21 +224,21 @@ python -c "import supervision as sv; print(sv.__version__)"
 
 # 최대 호환성을 위해 모든 선택적 의존성과 함께 설치
 pip install supervision[all]
-```
+`````
 
 ### PyTorch와 함께 설치
 
-딥러닝 워크플로우를 위해 PyTorch와 함께 설치하세요: ```bash
+딥러닝 워크플로우를 위해 PyTorch와 함께 설치하세요: `````bash
 # PyTorch로 설치 (CPU)
 pip install supervision torch torchvision
 
 # PyTorch로 설치 (CUDA 12.x)
 pip install supervision torch torchvision --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Colab 데모
 
-Roboflow는 Supervision의 기능을 탐색하기 위한 대화형 Colab 노트북을 제공합니다: ```bash
+Roboflow는 Supervision의 기능을 탐색하기 위한 대화형 Colab 노트북을 제공합니다: `````bash
 # 대화형 Colab 데모 열기
 # https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb
 
@@ -245,13 +246,13 @@ Roboflow는 Supervision의 기능을 탐색하기 위한 대화형 Colab 노트�
 git clone https://github.com/roboflow/supervision.git
 cd supervision
 jupyter notebook demo.ipynb
-```
+`````
 
 ## 통합 패턴
 
 ### YOLO 통합
 
-Supervision은 YOLO 모델과 first-class 통합을 제공합니다: ```python
+Supervision은 YOLO 모델과 first-class 통합을 제공합니다: `````python
 # YOLOv8 (Ultralytics) 통합
 from ultralytics import YOLO
 import supervision as sv
@@ -271,13 +272,13 @@ annotated_frame = annotator.annotate(
     scene=results[0].plot(),
     detections=detections
 )
-```
+`````
 
 ### MediaPipe 통합
 
 _pose estimation 및 landmark detection을 위해:_
 
-```python
+`````python
 import supervision as sv
 from mediapipe import solutions
 
@@ -289,11 +290,11 @@ results = pose.process(image)
 
 # Supervision keypoint 형식으로 변환
 if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
-```
+`````
 
 ### ONNX Runtime 통합
 
-최적화된 추론을 위해: ```python
+최적화된 추론을 위해: `````python
 import supervision as sv
 from onnxruntime import InferenceSession
 
@@ -303,7 +304,7 @@ session = InferenceSession("model.onnx")
 # 추론 실행 및 Supervision 형식으로 변환
 outputs = session.run(None, {session.get_inputs()[0].name: input_tensor})
 detections = sv.Detections.from_onnx(outputs)
-```
+`````
 
 ![Supervision 파이프라인 아키텍처](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png)
 
@@ -321,7 +322,7 @@ Supervision의 평가 함수는 속도에 최적화되어 있습니다: | 작업
 
 ### 모델 평가 처리량
 
-Supervision은 대규모로 모델을 평가하는 데 사용됩니다: ```python
+Supervision은 대규모로 모델을 평가하는 데 사용됩니다: `````python
 # 배치 평가 스크립트
 import supervision as sv
 from tqdm import tqdm
@@ -347,13 +348,13 @@ def evaluate_model(model, dataset): all_predictions = []
     print(f"mAP@0.5: {metrics.map_50:.4f}")
     print(f"mAP@0.5:0.95: {metrics.map_50_95:.4f}")
     return metrics
-```
+`````
 
 ## 고급 사용
 
 ### 사용자 정의 Annotator
 
-전문화된 시각화 필요에 대해 사용자 정의 annotator를 생성할 수 있습니다: ```python
+전문화된 시각화 필요에 대해 사용자 정의 annotator를 생성할 수 있습니다: `````python
 import supervision as sv
 import cv2
 import numpy as np
@@ -391,11 +392,11 @@ arrow_annotator = ArrowAnnotator(
     color=sv.Color.GREEN,
     thickness=3
 )
-```
+`````
 
 ### 비디오 분석 파이프라인
 
-실시간 비디오 분석을 위해: ```python
+실시간 비디오 분석을 위해: `````python
 import supervision as sv
 
 class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path
@@ -437,11 +438,11 @@ class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_
 # 파이프라인 실행
 pipeline = VideoAnalyticsPipeline("camera_feed.mp4", model)
 pipeline.run()
-```
+`````
 
 ### 메트릭 시각화
 
-Supervision은 평가 메트릭에 대한 내장 시각화를 제공합니다: ```python
+Supervision은 평가 메트릭에 대한 내장 시각화를 제공합니다: `````python
 import supervision as sv
 
 # ROC curve
@@ -458,7 +459,7 @@ pr = sv.PrecisionRecallCurve(
 )
 pr.compute(predictions, targets)
 pr.plot(save_path="pr_curve.png")
-```
+`````
 
 ## 대안과의 비교
 
@@ -491,11 +492,11 @@ Supervision은 강력한 도구 모음이지만 몇 가지 제한 사항이 있�
 
 ### 1. Supervision은 어떻게 설치하나요?
 
-`pip install supervision`을 실행하기만 하면 됩니다. 모든 기능과의 전체 호환성을 위해 `pip install supervision[all]`을 사용하세요.
+````pip install supervision````을 실행하기만 하면 됩니다. 모든 기능과의 전체 호환성을 위해 ````pip install supervision[all]````을 사용하세요.
 
 ### 2. Supervision은 YOLO 모델과 작동하나요?
 
-예, `Detections.from_ultralytics()` 메서드를 통해 YOLOv5, YOLOv8 및 YOLO-NAS와 first-class 통합을 제공합니다.
+예, ````Detections.from_ultralytics()```` 메서드를 통해 YOLOv5, YOLOv8 및 YOLO-NAS와 first-class 통합을 제공합니다.
 
 ### 3. 실시간 비디오 처리에 Supervision을 사용할 수 있나요?
 
@@ -507,7 +508,7 @@ Supervision은 COCO, YOLO, Pascal VOC 및 사용자 정의 JSON 형식을 지원
 
 ### 5. 사용자 정의 annotator를 생성할 수 있나요?
 
-물론입니다. annotator 시스템은 확장 가능하도록 설계되었습니다. `sv.Annotator`를 subclass하여 특정 사용 사례에 대한 사용자 정의 시각화 도구를 생성할 수 있습니다.
+물론입니다. annotator 시스템은 확장 가능하도록 설계되었습니다. ````sv.Annotator````를 subclass하여 특정 사용 사례에 대한 사용자 정의 시각화 도구를 생성할 수 있습니다.
 
 ### 6. Supervision은 프로덕션 사용에 적합한가요?
 
@@ -523,7 +524,7 @@ Roboflow의 Supervision은 컴퓨터 비전 분야에서 작업하는 모든 사
 
 데이터 주석과 모델 평가부터 시각화 및 추적에 이르기까지, Supervision은 다른 도구가 열어둔 gap을 커버합니다. 경량화, 잘 문서화되어 있으며 Python 기반 CV 워크플로우에 쉽게 통합할 수 있습니다. 훈련 데이터 주석 작성, 모델 성능 평가 또는 실시간 탐지 시스템 빌드이든, Supervision에는 필요한 도구가 있습니다.
 
-`pip install supervision`으로 시작하고 [대화형 Colab 데모](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)를 탐색하여 실제로 작동하는 것을 확인하세요.
+````pip install supervision```으로 시작하고 [대화형 Colab 데모](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)를 탐색하여 실제로 작동하는 것을 확인하세요.
 
 [CTA: Supervision으로 더 나은 컴퓨터 비전 시스템 빌드하기. [지금 설치](https://github.com/roboflow/supervision) | [문서 읽기](https://supervision.roboflow.com)]
 
@@ -563,13 +564,13 @@ Roboflow의 Supervision은 컴퓨터 비전 분야에서 작업하는 모든 사
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
 - [roboflow-supervision](roboflow-supervision)
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

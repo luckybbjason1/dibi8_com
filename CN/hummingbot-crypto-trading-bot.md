@@ -23,6 +23,7 @@ tags: ["]
 aliases:
   - /posts/hummingbot-crypto-trading-bot/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Most Trading Bots Fail
@@ -46,7 +47,7 @@ The latest v2.0 release (March 2026) introduces a modular architecture with plug
 
 ## How Hummingbot Works: Architecture Overview
 
-Hummingbot's architecture follows a clean separation of concerns: ```
+Hummingbot's architecture follows a clean separation of concerns: ````
 ┌─────────────────────────────────────────────────────┐
 │                   Strategy Layer                     │
 │  (Pure Market Making / Arbitrage / Custom Scripts)  │
@@ -60,7 +61,7 @@ Hummingbot's architecture follows a clean separation of concerns: ```
 │                   Infrastructure                     │
 │  (Docker / Config / Logs / SQLite Database)        │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 **The core loop** works as follows: 1. The **Strategy** defines order parameters (spread, inventory skew, refresh time)
 2. The **Connector** normalizes exchange-specific APIs into a unified interface
@@ -79,7 +80,7 @@ Hummingbot's architecture follows a clean separation of concerns: ```
 
 ### Step 1: Pull and Run Hummingbot
 
-```bash
+`````bash
 # Create a directory for Hummingbot files
 mkdir -p hummingbot_files/hummingbot_conf
 mkdir -p hummingbot_files/hummingbot_logs
@@ -94,9 +95,9 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data" \
   hummingbot/hummingbot:latest
-```
+`````
 
-After the container starts, you will see the Hummingbot CLI: ```
+After the container starts, you will see the Hummingbot CLI: `````
     ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
@@ -106,11 +107,11 @@ After the container starts, you will see the Hummingbot CLI: ```
     Enter "start" to start the current strategy
     
     >>>
-```
+`````
 
 ### Step 2: Connect Your Exchange
 
-```bash
+`````bash
 # Inside Hummingbot CLI
 >>> connect binance
 
@@ -122,20 +123,20 @@ Enter your Binance API secret >>> YOUR_API_SECRET
 
 # Verify the connection
 >>> balance
-```
+`````
 
-```
+`````
 Updating balances, please wait...
 
  binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
-```
+`````
 
 ### Step 3: Configure Pure Market Making Strategy
 
-```bash
+`````bash
 # Create a new strategy configuration
 >>> create
 
@@ -154,19 +155,19 @@ How often do you want to cancel and replace orders (in seconds)? >>> 30
 
 # Set order amount
 What is the amount of BTC per order? >>> 0.001
-```
+`````
 
 ### Step 4: Start Trading
 
-```bash
+`````bash
 # Confirm configuration
 >>> config
 
 # Start the strategy
 >>> start
-```
+`````
 
-```
+`````
 The pure_market_making strategy is starting.
 Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
@@ -174,11 +175,11 @@ Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
 Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
-```
+`````
 
 ### Step 5: Running in Background (Detached Mode)
 
-```bash
+`````bash
 # Exit Hummingbot but keep the container running
 Ctrl+P then Ctrl+Q
 
@@ -192,7 +193,7 @@ docker run -d --name hummingbot \
 # Attach to check status
 docker attach hummingbot
 # Then detach again with Ctrl+P, Ctrl+Q
-```
+`````
 
 ## Integration with Exchanges and Tools
 
@@ -200,7 +201,7 @@ docker attach hummingbot
 
 Binance is the most popular connector, supporting both spot and USD-M futures. The connector handles rate limiting automatically — it follows Binance's **1,200 request weight per minute** limit with adaptive backoff.
 
-```yaml
+`````yaml
 # conf/connectors/binance.yml
 connector: binance
 api_key: ${BINANCE_API_KEY}
@@ -208,19 +209,19 @@ api_secret: ${BINANCE_API_SECRET}
 rate_limit: adaptive
 timeout: 10
 use_futures: false
-```
+`````
 
 ### Coinbase Advanced Trade
 
-Coinbase uses a different authentication scheme (JWT-based since 2024). Hummingbot's Coinbase connector handles the JWT signing internally: ```bash
+Coinbase uses a different authentication scheme (JWT-based since 2024). Hummingbot's Coinbase connector handles the JWT signing internally: `````bash
 >>> connect coinbase_advanced_trade
 Enter your Coinbase API key (UUID format) >>> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 Enter your Coinbase API secret >>> YOUR_PRIVATE_KEY
-```
+`````
 
 ### Hummingbot Gateway for DEX Trading
 
-For Uniswap, PancakeSwap, and other DEXes, you need the Gateway service: ```bash
+For Uniswap, PancakeSwap, and other DEXes, you need the Gateway service: `````bash
 # Pull and run Gateway
 docker pull hummingbot/gateway:latest
 
@@ -231,9 +232,9 @@ docker run -d --name gateway \
 
 # In Hummingbot, connect to Gateway
 >>> gateway connect uniswap_ethereum_mainnet
-```
+`````
 
-```yaml
+`````yaml
 # Gateway configuration for Uniswap on Ethereum
 networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
     chain_id: 1
@@ -241,11 +242,11 @@ networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY
 token_list_source: /home/gateway/conf/lists/ethereum_token_list.json
 
 connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564
-```
+`````
 
 ### Telegram Notifications
 
-```yaml
+`````yaml
 # conf/telegram.yml
 telegram_enabled: true
 telegram_token: "YOUR_BOT_TOKEN"
@@ -253,15 +254,15 @@ telegram_chat_id: "YOUR_CHAT_ID"
 notify_events: - order_filled
   - trade_completed
   - strategy_error
-```
+`````
 
 ### Data Export to Grafana
 
-Hummingbot logs all trades to SQLite. You can export to Prometheus/Grafana for visualization: ```bash
+Hummingbot logs all trades to SQLite. You can export to Prometheus/Grafana for visualization: `````bash
 # sqlite query example
 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
   "SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;"
-```
+`````
 
 ## Benchmarks and Real-World Use Cases
 
@@ -269,15 +270,15 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 | Strategy Type | Avg Daily Trades | Avg Spread Capture | Latency to Exchange | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Pure Market Making | 150-400 | 0.3-0.8% | 50-200ms | Liquid pairs |
 | Cross-Exchange MM | 80-200 | 0.5-1.2% | 100-300ms | Cross-arb on BTC/ETH |
@@ -286,7 +287,7 @@ sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \
 
 ### Case Study: BTC-USDT Market Making on Binance
 
-A community member shared metrics from a **30-day** pure market making run on BTC-USDT with **$5,000** inventory: ```
+A community member shared metrics from a **30-day** pure market making run on BTC-USDT with **$5,000** inventory: `````
 Total trades executed: 8,247
 Maker fee (0.02%): 0.412 BTC paid in fees
 Spread captured (avg): 0.42%
@@ -295,19 +296,19 @@ PnL (before fees): +2.14% monthly
 PnL (after fees): +1.72% monthly
 Sharpe ratio: 1.34
 Max drawdown: 1.2%
-```
+`````
 
 ### Resource Usage
 
 Hummingbot is lightweight by design: | Resource | Idle | Active (1 strategy) | Active (5 strategies) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | <1% | 5-15% | 20-40% |
 | RAM | 80MB | 200-400MB | 800MB-1.5GB |
@@ -320,7 +321,7 @@ These numbers make Hummingbot suitable for a **$5/month VPS** for single-strateg
 
 ### Custom Strategy in Python
 
-Hummingbot v2.0's script strategy interface lets you write logic in pure Python: ```python
+Hummingbot v2.0's script strategy interface lets you write logic in pure Python: `````python
 # strategies/my_custom_mm.py
 from decimal import Decimal
 from hummingbot.strategy.script_strategy_base import ScriptStrategyBase
@@ -362,11 +363,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
         self.sell("binance", "BTC-USDT", self.order_amount, OrderType.LIMIT, sell_price)
 
     def cancel_all_orders(self): for order in self.get_active_orders("binance"): self.cancel(order)
-```
+`````
 
 ### Inventory Management with RSI
 
-```python
+`````python
 # Add to your strategy for inventory skew
     def calculate_inventory_skew(self): """Adjust order sizes based on inventory ratio."""
         base_balance = self.connectors["binance"].get_balance("BTC")
@@ -385,11 +386,11 @@ class CustomMarketMaker(ScriptStrategyBase): """
             self.sell_multiplier = Decimal("1.5")
         else: self.buy_multiplier = Decimal("1.5")
             self.sell_multiplier = Decimal("0.5")
-```
+`````
 
 ### Backtesting with Historical Data
 
-```bash
+`````bash
 # Download historical trade data
 python scripts/download_historical_data.py \
   --exchange binance \
@@ -404,9 +405,9 @@ python scripts/backtest.py \
   --config conf/strategies/pmm_btc.yml \
   --data data/binance_BTC-USDT_1m.csv \
   --output results/btc_pmm_backtest.html
-```
+`````
 
-```
+`````
 Backtest Results (2026-01-01 to 2026-03-31)
 ========================================
 Total trades: 12,450
@@ -416,11 +417,11 @@ Max drawdown: -2.1%
 Average trade duration: 18.4 minutes
 Win rate: 62.3%
 Profit factor: 1.48
-```
+`````
 
 ### Paper Trading Mode
 
-Always test on paper trading before going live: ```bash
+Always test on paper trading before going live: `````bash
 # Enable paper trading in config
 paper_trade_enabled: true
 paper_trade_account_balance: BTC: 1.0
@@ -429,11 +430,11 @@ paper_trade_account_balance: BTC: 1.0
 # Paper trades show with [PAPER] prefix
 >>> status
   Markets: [PAPER] binance  BTC-USDT  67,234.50  67,245.00  67,239.75
-```
+`````
 
 ### Docker Compose for Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -455,11 +456,11 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### Security Checklist
 
-```bash
+`````bash
 # 1. Use IP-whitelisted API keys (Binance supports this)
 # 2. Enable withdrawal restrictions on API keys
 # 3. Run in isolated Docker network
@@ -467,23 +468,23 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
 
 # Encrypt sensitive config
 openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Hummingbot | Freqtrade | 3Commas | Gunbot | Hummingbot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | | | | | | (reference) |
 | **License** | Apache-2.0 | GPL-3.0 | Proprietary | Proprietary | Apache-2.0 |
@@ -541,7 +542,7 @@ Regular connectors interact with centralized exchange APIs via REST/WebSocket. *
 
 ### How do I update Hummingbot to a new version?
 
-```bash
+`````bash
 # Pull the latest image
 docker pull hummingbot/hummingbot:latest
 
@@ -553,13 +554,13 @@ docker run -it --name hummingbot \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf" \
   --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs" \
   hummingbot/hummingbot:latest
-```
+`````
 
 Your configurations persist in the mounted volumes.
 
 ### Can I use Hummingbot for futures/perpetual trading?
 
-Yes. The Binance, Bybit, and OKX connectors support perpetual futures. Set the `domain` parameter to the futures subdomain and configure leverage carefully. Start with **1x-3x leverage** until you understand the funding rate mechanics.
+Yes. The Binance, Bybit, and OKX connectors support perpetual futures. Set the ````domain``` parameter to the futures subdomain and configure leverage carefully. Start with **1x-3x leverage** until you understand the funding rate mechanics.
 
 ## Conclusion: Start Trading Algorithmically Today
 
@@ -644,4 +645,4 @@ This guide contains affiliate links for [Binance](https://www.bsmkweb.cc/registe
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

@@ -35,6 +35,7 @@ faqs: - q: 'Nhà cung cấp suy luận LLM miễn phí nhanh nhất là gì?'
     a: 'Các gói miễn phí có thể phù hợp cho các ứng dụng lưu lượng thấp, nhà cung cấp dự phòng, cũng như các dự án nhạy cảm về chi phí hoặc dự án cộng đồng, nhưng chúng đi kèm giới hạn tốc độ và các điều khoản có thể thay đổi. Đối với production có lưu lượng cao, bạn nên sử dụng chúng một cách thận trọng hoặc kết hợp với các phương án trả phí.'
 ---
 
+
 {</* resource-info */>}
 
 ## Tài nguyên API LLM Miễn phí là gì?
@@ -46,7 +47,7 @@ faqs: - q: 'Nhà cung cấp suy luận LLM miễn phí nhanh nhất là gì?'
 **Ngôn ngữ**: Python
 **Giấy phép**: CC0-1.0 (Phạm vi công cộng)
 
----
+* * *
 
 ## Vấn đề: Chi phí API AI
 
@@ -71,7 +72,7 @@ faqs: - q: 'Nhà cung cấp suy luận LLM miễn phí nhanh nhất là gì?'
 | Ollama | Cục bộ | Không giới hạn | Tự lưu trữ |
 | LM Studio | Cục bộ | Không giới hạn | Tự lưu trữ |
 
----
+* * *
 
 ## Các Nhà cung cấp Miễn phí Nổi bật
 
@@ -85,7 +86,7 @@ faqs: - q: 'Nhà cung cấp suy luận LLM miễn phí nhanh nhất là gì?'
 - Mixtral 8x7B
 - Gemma 7B
 
-```python
+````python
 import requests
 
 # Groq API (gói miễn phí)
@@ -98,7 +99,7 @@ response = requests.post(
     }
 )
 print(response.json()["choices"][0]["message"]["content"])
-```
+`````
 
 ### 2. Together AI — $5 Tín dụng Miễn phí
 
@@ -107,7 +108,7 @@ print(response.json()["choices"][0]["message"]["content"])
 **Các Mô hình**: 100+ mô hình mã nguồn mở
 **Các Tính năng**: Tinh chỉnh, nhúng
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -120,7 +121,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Giải thích máy tính lượng tử"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 3. Ollama — Chạy Cục bộ
 
@@ -129,7 +130,7 @@ print(response.choices[0].message.content)
 **Quyền riêng tư**: 100% riêng tư
 **Các Mô hình**: Kéo từ thư viện Ollama
 
-```bash
+`````bash
 # Cài đặt Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -144,7 +145,7 @@ curl http://localhost:11434/api/generate -d '{
   "model": "llama3",
   "prompt": "Tại sao bầu trời có màu xanh?"
 }'
-```
+`````
 
 ### 4. LM Studio — GUI + API
 
@@ -153,7 +154,7 @@ curl http://localhost:11434/api/generate -d '{
 **Các Tính năng**: Trình duyệt mô hình GUI, máy chủ API
 **Tốt nhất cho**: Kiểm tra mô hình, phát triển
 
-```python
+`````python
 # API cục bộ LM Studio
 import openai
 
@@ -166,7 +167,7 @@ response = client.chat.completions.create(
     model="local-model",
     messages=[{"role": "user", "content": "Xin chào!"}]
 )
-```
+`````
 
 ### 5. Fireworks AI — Mô hình OSS Nhanh
 
@@ -175,7 +176,7 @@ response = client.chat.completions.create(
 **Tốc độ**: Suy luận được tối ưu hóa
 **Các Mô hình**: Llama, Mixtral, CodeLlama
 
----
+* * *
 
 ## Bảng So sánh
 
@@ -187,7 +188,7 @@ response = client.chat.completions.create(
 | LM Studio | Miễn phí | ⚡ | ✅ | ⭐⭐⭐ | Phát triển |
 | Fireworks | Dùng thử | ⚡⚡ | ❌ | ⭐⭐ | Suy luận nhanh |
 
----
+* * *
 
 ## Các Trường hợp Sử dụng
 
@@ -215,13 +216,13 @@ response = client.chat.completions.create(
 - Dự án nhạy cảm với chi phí
 - Công cụ cộng đồng
 
----
+* * *
 
 ## Cách Chọn
 
 ### Cây Quyết định
 
-```
+`````
 Cần truy cập API?
 ├── Có → Cần tốc độ cao?
 │   ├── Có → Groq (nhanh nhất)
@@ -229,7 +230,7 @@ Cần truy cập API?
 ├── Không → Cần quyền riêng tư?
 │   ├── Có → Ollama/LM Studio (cục bộ)
 │   └── Không → Cân nhắc các lựa chọn trả phí
-```
+````
 
 ### Giới hạn Tốc độ Quan trọng
 
@@ -239,7 +240,7 @@ Cần truy cập API?
 | Together | 60 | 12.000 | Tốt cho thử nghiệm |
 | Ollama | Không giới hạn | Giới hạn phần cứng | Phần cứng của bạn = giới hạn |
 
----
+* * *
 
 ## Cộng đồng & Cập nhật
 
@@ -257,7 +258,7 @@ Kho lưu trữ được cộng đồng duy trì: 1. **Star** kho lưu trữ đ�
 - **Tham gia** thảo luận để có lời khuyên
 - **Theo dõi** @cheahjs trên GitHub
 
----
+* * *
 
 ## Bài viết Liên quan
 
@@ -265,11 +266,11 @@ Kho lưu trữ được cộng đồng duy trì: 1. **Star** kho lưu trữ đ�
 - [TabPFN: Mô hình Nền tảng cho Dữ liệu Dạng bảng](/vi/resources/ai-tools/tabpfn-foundation-model-tabular-data/) — AI cho khoa học dữ liệu
 - [OpenClaw 42 Trường hợp Sử dụng](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — Ứng dụng tác nhân AI
 
----
+* * *
 
 *Tuyên bố miễn trừ: Các gói miễn phí có giới hạn tốc độ và có thể thay đổi. Luôn kiểm tra các điều khoản hiện tại của nhà cung cấp. Đây là tài nguyên cộng đồng, không liên kết với bất kỳ nhà cung cấp API nào.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -342,7 +343,7 @@ Tài nguyên API LLM Miễn phí: Truy cập Mô hình AI mà không Cần Chi t
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

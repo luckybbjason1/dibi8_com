@@ -23,6 +23,7 @@ tags: ["plausible", "analytics", "privacy", "gdpr", "google-analytics-alternativ
 aliases:
   - /posts/plausible-analytics-privacy-google/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Analytics Privacy Problem Nobody Talks About
@@ -43,7 +44,7 @@ Plausible takes a fundamentally different approach from traditional analytics. I
 
 ### Architecture Overview
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │              (Reverse Proxy + SSL)                   │
@@ -64,19 +65,19 @@ Plausible takes a fundamentally different approach from traditional analytics. I
 │          │ (Cache)  │                                │
 │          └──────────┘                                │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### Why ClickHouse for Event Storage
 
 Plausible uses **ClickHouse** as its analytical database — the same columnar DBMS that powers Yandex and Cloudflare analytics. This choice is deliberate: | Characteristic | PostgreSQL | ClickHouse | Impact |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Insert throughput | ~20K rows/sec | **1M+ rows/sec** | Handles traffic spikes |
 | Aggregation query speed | Seconds | **Milliseconds** | Dashboard loads instantly |
@@ -87,11 +88,11 @@ Plausible uses **ClickHouse** as its analytical database — the same columnar D
 
 | Component | Purpose | Scaling Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Phoenix App | Web dashboard, REST API, event ingestion | Stateless — scale horizontally |
 | ClickHouse | Event data storage, aggregations | Single node handles 10B+ events |
@@ -100,9 +101,9 @@ Plausible uses **ClickHouse** as its analytical database — the same columnar D
 
 ### The 1KB Script: What It Actually Does
 
-```html
+`````html
 </script>
-```
+`````
 
 This script does exactly three things: (1) sends the current page URL and referrer, (2) sends the browser viewport size to classify as desktop/mobile, and (3) listens for SPA navigation events. It does **not**: set cookies, use localStorage, generate fingerprint hashes, or execute third-party requests. The result is a payload under 1KB gzipped and execution time under 10ms on 4G networks.
 
@@ -119,18 +120,18 @@ For a reliable VPS, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers an exc
 
 ### Step 1: Create Directory and Compose File
 
-```bash
+`````bash
 # Create project directory
 mkdir -p /opt/plausible
 cd /opt/plausible
 
 # Download the official Docker Compose template
 curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml
-```
+`````
 
 ### Step 2: Generate Secrets and Configure
 
-```bash
+`````bash
 # Generate random secrets
 export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
@@ -156,11 +157,11 @@ SMTP_HOST_SSL_ENABLED=true
 # Registration
 DISABLE_REGISTRATION=false  # Set to true after creating your account
 EOF
-```
+`````
 
 ### Step 3: Launch with Docker Compose
 
-```bash
+`````bash
 # Start all services
 docker compose up -d
 
@@ -171,11 +172,11 @@ docker compose ps
 # plausible               Up 10 seconds   0.0.0.0:8000->8000/tcp
 # plausible_db            Up 10 seconds   5432/tcp
 # plausible_events_db     Up 10 seconds   8123/tcp
-```
+`````
 
 ### Step 4: Reverse Proxy with SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/plausible
 server {
     listen 80;
@@ -198,39 +199,39 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-```
+`````
 
-```bash
+`````bash
 # Enable site and obtain SSL
 sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 sudo certbot --nginx -d analytics.yourdomain.com
-```
+`````
 
 ### Step 5: First Login and Site Setup
 
-```bash
+`````bash
 # Create admin user
 docker compose exec plausible bin/plausible remote
 Plausible.Release.created_admin_user("admin@yourdomain.com", "YourSecurePassword123!")
 # Press Ctrl+C to exit
-```
+`````
 
-Visit `https://analytics.yourdomain.com`, log in, and add your first site. Copy the tracking script snippet to your website header.
+Visit ````https://analytics.yourdomain.com````, log in, and add your first site. Copy the tracking script snippet to your website header.
 
 ### Add Tracking to Your Website
 
-```html
+`````html
 </script>
 
 </script>
-```
+`````
 
 ## Integration with Frameworks, CMS, and Build Tools
 
 ### React / Next.js Integration
 
-```javascript
+`````javascript
 // components/PlausibleAnalytics.js
 import Script from 'next/script';
 
@@ -260,11 +261,11 @@ export default function RootLayout({ children }) {
 
   return <html>{children}</html>;
 }
-```
+`````
 
 ### Vue.js / Nuxt.js Integration
 
-```javascript
+`````javascript
 // plugins/plausible.client.js (Nuxt 3)
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
@@ -274,7 +275,7 @@ export default defineNuxtPlugin(() => {
       {
         defer: true,
         'data-domain': config.public.plausibleDomain,
-        src: `${config.public.plausibleHost}/js/script.js`,
+        src: ````${config.public.plausibleHost}/js/script.js````,
       },
     ],
   });
@@ -287,11 +288,11 @@ export default defineNuxtPlugin(() => {
     }
   });
 });
-```
+`````
 
 ### WordPress Plugin
 
-```bash
+`````bash
 # Option 1: Use the official Plausible WordPress plugin
 # Install from wp-admin: Plugins > Add New > Search "Plausible Analytics"
 # Configure with your self-hosted URL
@@ -301,17 +302,17 @@ export default defineNuxtPlugin(() => {
 "
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
-```
+`````
 
 ### Static Site Generators (Hugo, Jekyll, Astro)
 
-```html
+`````html
 {{ if not hugo.IsServer }}
 </script>
 {{ end }}
-```
+`````
 
-```javascript
+`````javascript
 // astro.config.mjs
 export default defineConfig({
   integrations: [
@@ -319,20 +320,20 @@ export default defineConfig({
       name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript(head, `
+          injectScript(head, ````
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
-          `);
+          ````);
         },
       },
     },
   ],
 });
-```
+`````
 
 ### Custom Event Tracking
 
-```javascript
+`````javascript
 // Track button clicks, form submissions, or any custom event
 // In your JavaScript: document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
@@ -352,7 +353,7 @@ plausible(Purchase, {
   },
   revenue: { currency: USD, amount: 9900 }  // in cents
 });
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -360,13 +361,13 @@ plausible(Purchase, {
 
 | Metric | Google Analytics 4 | Plausible (Cloud) | Plausible (Self-Hosted) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Script size** | **45KB** (gtag.js + analytics.js) | **<1KB** | **<1KB** |
 | **DNS lookups** | 5+ (google-analytics, googletagmanager, doubleclick, etc.) | **1** | **1** |
@@ -382,13 +383,13 @@ plausible(Purchase, {
 
 | Feature | Google Analytics 4 | Matomo | Plausible |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GDPR compliant without consent** | **No** (requires consent banner) | Partial | **Yes** |
 | **Cookie-free tracking** | **No** | Optional | **Yes (always)** |
@@ -402,11 +403,11 @@ plausible(Purchase, {
 
 | Metric | Value | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start | 4.1s | Docker container + ClickHouse |
 | Event ingestion rate | **50,000 events/sec** | Single node ClickHouse |
@@ -420,15 +421,15 @@ plausible(Purchase, {
 
 | Site Type | Monthly Pageviews | VPS Cost | GA4 Equivalent | Plausible Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Personal blog | 10,000 | **$6** (1GB) | Free | **$6** |
 | SaaS landing page | 100,000 | **$12** (2GB) | $0-150 | **$12** |
@@ -448,7 +449,7 @@ A European SaaS company with 200K monthly visitors replaced Google Analytics wit
 
 ### Enabling Enhanced Measurements
 
-```bash
+`````bash
 # plausible-conf.env — Enable additional tracking features
 # Outbound link tracking
 SCRIPT_NAME=script.outbound-links.js
@@ -461,15 +462,15 @@ SCRIPT_NAME=script.hash.js
 
 # Combined: all features
 SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
-```
+`````
 
-```html
+`````html
 </script>
-```
+`````
 
 ### API Integration for Custom Dashboards
 
-```bash
+`````bash
 # Get stats via the Stats API
 curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&period=30d&metrics=visitors,pageviews,bounce_rate" \
   -H "Authorization: Bearer YOUR_API_KEY"
@@ -481,9 +482,9 @@ curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=you
 #     "bounce_rate": {"value": 42}
 #   }
 # }
-```
+`````
 
-```python
+`````python
 # Python script to pull stats into your BI tool
 import requests
 from datetime import datetime, timedelta
@@ -509,11 +510,11 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews")
-```
+`````
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/plausible-backup.sh
 
@@ -533,16 +534,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/plausible/"
 
 # Cleanup: keep only 30 days
 find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron — daily at 3 AM
 0 3 * * * /opt/scripts/plausible-backup.sh >> /var/log/plausible-backup.log 2>&1
-```
+`````
 
 ### High Availability Setup
 
-```yaml
+`````yaml
 # docker-compose.ha.yaml — Multi-node ClickHouse with replication
 version: '3.8'
 services: plausible: image: plausible/analytics:v3.0
@@ -555,28 +556,28 @@ services: plausible: image: plausible/analytics:v3.0
 
   clickhouse-2: image: clickhouse/clickhouse-server:24.3
     volumes: - clickhouse_data_2:/var/lib/clickhouse
-```
+`````
 
 ### Monitoring with Prometheus
 
-```yaml
+`````yaml
 # Add to your prometheus.yml
 scrape_configs: - job_name: plausible
     static_configs: - targets: [analytics.yourdomain.com:8000]
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
-```bash
+`````bash
 # Key metrics to monitor
 # plausible_clickhouse_event_insertions_total — Event ingestion rate
 # plausible_phoenix_request_duration_ms — API response times
 # plausible_db_query_duration_ms — Database query performance
-```
+`````
 
 ### GeoIP Database for Location Data
 
-```bash
+`````bash
 # Download MaxMind GeoLite2 database for country/city data
 mkdir -p /opt/plausible/geoip
 cd /opt/plausible/geoip
@@ -592,23 +593,23 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 # Add to plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
 # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Plausible | Google Analytics 4 | Matomo (Self-Hosted) | Fathom | Umami |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | AGPL-3.0 | Proprietary | GPL-3.0 | Proprietary | MIT |
 | **Script size** | **<1KB** | **45KB** | ~22KB | **<1KB** | **<2KB** |
@@ -653,11 +654,11 @@ Plausible typically reports **5-15% higher visitor counts** than GA4 because it 
 
 Yes. Plausible provides a Google Analytics importer that pulls data via the GA Reporting API v4. The importer handles Universal Analytics (UA) properties and GA4 properties, mapping dimensions to Plausible's data model. Note that due to GA4's data model differences, some metrics (like "engagement time") do not have direct equivalents. The import runs as a background job and can take several hours for large datasets.
 
-```bash
+`````bash
 # Run the GA importer (from the Plausible container)
 docker compose exec plausible bin/plausible \
   "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
-```
+`````
 
 **What happens when my site exceeds my VPS capacity?**
 
@@ -665,11 +666,11 @@ Plausible scales predictably. A **2GB VPS handles ~500K pageviews/month**. A **4
 
 **How do I track multiple domains or subdomains?**
 
-Each domain is a separate "site" in Plausible, but you can organize them with a shared login. For subdomain tracking (e.g., `blog.yourdomain.com` and `app.yourdomain.com`), you have two options: track them separately for granular reporting, or roll them up using the `data-api-host` attribute to report to the same site ID. Cross-subdomain tracking works without special configuration because Plausible does not use cookies or session storage.
+Each domain is a separate "site" in Plausible, but you can organize them with a shared login. For subdomain tracking (e.g., ````blog.yourdomain.com```` and ````app.yourdomain.com````), you have two options: track them separately for granular reporting, or roll them up using the ````data-api-host```` attribute to report to the same site ID. Cross-subdomain tracking works without special configuration because Plausible does not use cookies or session storage.
 
-```html
+`````html
 </script>
-```
+````
 
 **Is self-hosted Plausible truly free forever?**
 
@@ -686,7 +687,7 @@ Deploy your instance this week. The Docker Compose setup takes under 5 minutes, 
 **Join our Telegram group for open-source tooling discussions**: [t.me/dibi8opensource](https://t.me/dibi8opensource)
 
 
----
+* * *
 ## Recommended Hosting & Infrastructure
 
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -706,7 +707,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [EDPB Guidelines on Consent](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — Legal basis for cookie-free analytics
 - [DigitalOcean VPS Setup](https://m.do.co/c/eca87ac14ee0) — VPS hosting for self-hosted deployment
 
----
+* * *
 
 *This article contains an affiliate link to DigitalOcean. If you purchase VPS services through this link, dibi8.com may receive a commission at no additional cost to you. All recommendations are based on hands-on testing and real deployment experience.*
 
@@ -736,7 +737,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -746,6 +747,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [paddleocr-81k-star-ocr-engine](plausible-analytics-privacy-google)
 - [markitdown-universal-file-to-markdown-converter](plausible-analytics-privacy-google)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -15,6 +15,7 @@ featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg
 ---
 
 
+
 <<<<<<< HEAD
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
@@ -69,7 +70,7 @@ C/Rust 索引引擎处理代码的速度比纯 Python 替代方案快 10-50 倍�
 
 ### Docker 快速入门
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/DeusData/codebase-memory-mcp.git
 cd codebase-memory-mcp
@@ -82,11 +83,11 @@ docker 运行 -d \
 -v $(pwd)/data: /app/data \
 -e INDEX_PATH=/app/data/my-project \
 代码库内存
-```
+`````
 
 ### 索引代码库
 
-```python
+`````python
 from codebase_memory import Indexer
 
 # 初始化索引器
@@ -106,11 +107,11 @@ query ="身份验证流程如何工作？"
 类似=indexer.search(查询,top_k=5)
 对于类似的文档：
 print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
-```
+`````
 
 ### MCP 服务器配置
 
-```json
+`````json
 {
   "mcpServers": {
     "codebase-memory": {
@@ -127,11 +128,11 @@ print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
     }
   }
 }
-```
+`````
 
 ### 与 Claude Desktop 一起使用
 
-```json
+`````json
 {
   "mcpServers": {
     "codebase-memory": {
@@ -144,7 +145,7 @@ print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
     }
   }
 }
-```
+`````
 
 ## 架构深度探究
 
@@ -152,7 +153,7 @@ print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
 
 该架构将计算密集型索引与协议处理分开：
 
-```
+`````
 ┌─────────────────────────────────────────────┐
 │              MCP Client (Claude, etc.)        │
 └──────────────────┬──────────────────────────┘
@@ -172,11 +173,11 @@ print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
 │  │ (Rust)   │  │ (C)      │  │ (Rust)   │  │
 │  └──────────┘  └──────────┘  └──────────┘  │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ### 增量索引
 
-```rust
+`````rust
 // Rust incremental indexer
 pub struct IncrementalIndexer {
     file_hashes: HashMap<PathBuf, String>,
@@ -247,11 +248,11 @@ period_ms: elapsed.as_millis() as u64,
 }
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
 }
-```
+`````
 
 ### 矢量搜索管道
 
-```python
+`````python
 class SearchPipeline: def __init__(self, vector_store, reranker=None): self.store = vector_store
         self.reranker = reranker
 <<<<<<< HEAD
@@ -277,7 +278,7 @@ class SearchPipeline: def __init__(self, vector_store, reranker=None): self.stor
             })
         
         return results
-```
+`````
 
 
 ## Advanced Usage: Custom Indexing Rules
@@ -306,7 +307,7 @@ query_embedding = self._embed(查询)
 })
 
 返回结果
-```
+`````
 
 ## 高级用法：自定义索引规则
 >>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
@@ -317,7 +318,7 @@ query_embedding = self._embed(查询)
 
 您可以使用针对特定领域语言的自定义解析器来扩展索引器：
 
-```python
+`````python
 from codebase_memory.parsers import BaseParser, register_parser
 
 @register_parser("mylang")
@@ -333,13 +334,13 @@ from codebase_memory.parsers import BaseParser, register_parser
 "line": 内容[:match.start()].count("\n") + 1,
 })
 返回段
-```
+`````
 
 ### 语义过滤
 
 排除不必要的文件并关注相关代码：
 
-```python
+`````python
 indexer = Indexer(
     codebase_path="./project",
     exclude_patterns=[
@@ -355,13 +356,13 @@ indexer = Indexer(
         "**/src/**",
     ]
 )
-```
+`````
 
 ### 自定义嵌入模型
 
 使用特定领域的嵌入模型来更好地理解语义：
 
-```python
+`````python
 from sentence_transformers import SentenceTransformer
 
 code_model = SentenceTransformer("Salesforce/codet5p-220m-paraphrase")
@@ -371,13 +372,13 @@ codebase_path="./project",
 embedding_model=代码模型，
 embedding_dimension=220，
 )
-```
+`````
 
 ### 多存储库索引
 
 将多个存储库索引到单个知识库中：
 
-```python
+`````python
 repositories = [
     "/home/user/project-alpha",
     "/home/user/project-beta",
@@ -391,7 +392,7 @@ cross_reference_resolution=true，
 )
 
 results = multi_indexer.search("认证流程")
-```
+`````
 
 ## 实际用例
 
@@ -399,33 +400,33 @@ results = multi_indexer.search("认证流程")
 
 新团队成员可以询问有关代码库的自然语言问题：
 
-```
+`````
 Q: How does the user authentication flow work?
 A: Authentication flows through: 1. JWT token generation in auth/middleware.ts (line 45-89)
    2. Token validation in api/routes/login.ts (line 12-34)
    3. Session storage in redis/session.ts (line 78-102)
-```
+`````
 
 ### 代码审查协助
 
 在合并拉取请求之前检查潜在问题：
 
-```bash
+`````bash
 mcp call codebase-memory security-audit --path ./src/api
 mcp call codebase-memory api-review --diff ./pr-123.diff
 mcp call codebase-memory changelog --since v2.0.0
-```
+`````
 
 ### 技术文档生成
 
-```python
+`````python
 docs = indexer.generate_documentation(
     format="markdown",
     include_examples=True,
     include_diagrams=True,
     output_dir="./docs"
 )
-```
+````
 
 ## 与替代方案的比较
 
@@ -433,12 +434,12 @@ docs = indexer.generate_documentation(
 |---
 
 |-
----
+* * *
 
 |---
 
 |-
----
+* * *
 
 |---
 
@@ -518,7 +519,7 @@ docs = indexer.generate_documentation(
 - [代码库内存 MCP 自述文件](https://github.com/DeusData/codebase-memory-mcp/blob/main/README.md)
 
 
----
+* * *
 <<<<<<< HEAD
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
 =======
@@ -588,11 +589,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -602,7 +603,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](codebase-memory-mcp-deep-code-intelligence)
 - [ecc-agent-harness-performance-optimization](codebase-memory-mcp-deep-code-intelligence)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -610,15 +611,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

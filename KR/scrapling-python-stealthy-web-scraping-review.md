@@ -34,14 +34,15 @@ faqs: - q: 'Python에서 Scrapling이란 무엇인가요?'
     a: '아니요. robots_txt_obey 설정은 기본 활성화가 아닌 선택적 활성화 방식이므로 직접 켜야 합니다. 이는 자신이 소유한 사이트를 크롤링하는 사용자를 위한 의도적인 설계 선택이지만, 제3자 사이트에서 이를 활성화하는 것을 잊으면 법적 문제가 생길 수 있습니다.'
 ---
 
+
 # Scrapling 리뷰: 더 빠르고 더 은밀한 Python 스크래핑
 
 {</* resource-info */>}
 
-Python 웹 스크래핑은 대략 네 시대를 거쳐 왔습니다. `urllib`과
-정규식. 그다음 `requests` + `BeautifulSoup`. 그다음 진지한
-작업은 전부 `Scrapy`. 그리고 웹의 절반이 JavaScript-only로
-넘어가면서 앞의 셋이 절벽 아래로 떨어지고 `Playwright`가 그
+Python 웹 스크래핑은 대략 네 시대를 거쳐 왔습니다. ```urllib````과
+정규식. 그다음 ````requests```` + ````BeautifulSoup````. 그다음 진지한
+작업은 전부 ````Scrapy````. 그리고 웹의 절반이 JavaScript-only로
+넘어가면서 앞의 셋이 절벽 아래로 떨어지고 ````Playwright````가 그
 자리를 차지했습니다.
 
 [**Scrapling**](https://github.com/D4Vinci/Scrapling)은 이 스택
@@ -76,19 +77,19 @@ import 안에 합치려고 한 것.**
 
 이 부분이 디자인에서 진짜 잘 만들어졌다고 느낀 곳입니다. 대부분
 의 스크래핑 프로젝트는 결국 누더기가 됩니다 — 빠른 페이지엔
-`requests`, JS가 무거운 페이지엔 `Selenium`이나 `Playwright`,
+````requests````, JS가 무거운 페이지엔 ````Selenium````이나 ````Playwright````,
 보호된 페이지엔 직접 짠 CDN 우회 코드. Scrapling은 이걸 세
 계층으로 분리하면서도 응답 객체 모양은 통일해 둡니다: | Fetcher | 백엔드 | 사용 시점 |
 | --- | --- | --- |
-| `Fetcher` | TLS 핑거프린트 위장이 적용된 일반 HTTP | 정적 HTML, 진짜 브라우저 불필요, 빠르게 |
-| `StealthyFetcher` | 안티 디텍션 패치가 들어간 헤드리스 브라우저 | Cloudflare/JS 보호 페이지, 진짜 브라우저가 필요할 때 |
-| `DynamicFetcher` | Playwright/Chromium 풀 자동화 | SPA, 복잡한 인증 플로우, JS로 렌더링되는 데이터 |
+| ````Fetcher```` | TLS 핑거프린트 위장이 적용된 일반 HTTP | 정적 HTML, 진짜 브라우저 불필요, 빠르게 |
+| ````StealthyFetcher```` | 안티 디텍션 패치가 들어간 헤드리스 브라우저 | Cloudflare/JS 보호 페이지, 진짜 브라우저가 필요할 때 |
+| ````DynamicFetcher```` | Playwright/Chromium 풀 자동화 | SPA, 복잡한 인증 플로우, JS로 렌더링되는 데이터 |
 
 같은 Spider 클래스 안에서 요청마다 다른 계층을 지정할 수
-있습니다. README의 예제를 보면: ```python
+있습니다. README의 예제를 보면: `````python
 async def parse(self, response: Response): for link in response.css('a::attr(href)').getall(): if "protected" in link: yield Request(link, sid="stealth")
         else: yield Request(link, sid="fast", callback=self.parse)
-```
+`````
 
 이게 왜 중요한지: 실제 크롤에서 무거운 백엔드가 정말 필요한
 페이지는 일부에 불과합니다. 하지만 도중에 다시 짜기 귀찮아서
@@ -118,7 +119,7 @@ Scrapling은 2.02 ms. 마이크로벤치마크의 오차 범위 안입니다.
 파싱 레이어에서는 사실이 아닙니다.
 
 Scrapling이 **실제 워크로드**에서 분명히 이기는 곳은 네트워크
-레이어입니다 — `Fetcher`의 TLS 핑거프린트 위장 덕분에 "기본
+레이어입니다 — ````Fetcher````의 TLS 핑거프린트 위장 덕분에 "기본
 JA3 핑거프린팅을 통과하기 위해 Playwright를 끼워 넣는" 비용을
 건너뛸 수 있습니다. 절약 단위가 마이크로초가 아니라 초입니다.
 
@@ -142,44 +143,44 @@ after website changes using similarity algorithms"(유사도
 
 ## 가장 단순하게 동작하는 코드
 
-문서에서 그대로 가져온, 가장 작은 예제는 이렇습니다: ```python
+문서에서 그대로 가져온, 가장 작은 예제는 이렇습니다: `````python
 from scrapling.fetchers import Fetcher, FetcherSession
 
 with FetcherSession(impersonate='chrome') as session: page = session.get('https://quotes.toscrape.com/', stealthy_headers=True)
     quotes = page.css('.quote .text::text').getall()
-```
+`````
 
 끝입니다. "Chrome의 TLS 핑거프린트로 페치하고 파싱하기"가 세
-줄. `impersonate='chrome'` 파라미터가 curl_cffi 스타일의 핑거
+줄. ````impersonate='chrome'```` 파라미터가 curl_cffi 스타일의 핑거
 프린트 위장입니다. 대상 사이트가 기본 핑거프린트 기반의 봇
 디텍션을 쓸 때 유용합니다.
 
-Cloudflare로 보호된 페이지의 경우: ```python
+Cloudflare로 보호된 페이지의 경우: `````python
 from scrapling.fetchers import StealthyFetcher
 
 page = StealthyFetcher.fetch('https://nopecha.com/demo/cloudflare')
 data = page.css('#padded_content a').getall()
-```
+`````
 
-`StealthyFetcher`는 별도 브라우저 설치가 필요합니다: ```bash
+``StealthyFetcher``는 별도 브라우저 설치가 필요합니다: `````bash
 pip install "scrapling[fetchers]"
 scrapling install
-```
+`````
 
-`scrapling install` 단계에서 패치된 Chromium 바이너리를 받아
-옵니다. 새 서버 기준 수백 MB 의존성이라서, 작은 VM에 `pip
-install` 하기 전에 알아두는 게 좋습니다.
+````scrapling install```` 단계에서 패치된 Chromium 바이너리를 받아
+옵니다. 새 서버 기준 수백 MB 의존성이라서, 작은 VM에 ````pip
+install```` 하기 전에 알아두는 게 좋습니다.
 
 ## 명백한 대안과의 비교
 
 | 필요한 것 | 손이 가는 도구 |
 | --- | --- |
-| 일회성 스크립트, 단순한 HTML, 학습 목적 | `requests` + `BeautifulSoup` |
-| 큰 크롤, 잘 정의된 파이프라인, 성숙한 생태계 | `Scrapy` |
-| 무거운 JS 앱, 복잡한 인증 플로우, 브라우저를 직접 제어 | `Playwright` 직접 사용 |
-| TLS 핑거프린팅, 브라우저 오버헤드 없이 | `curl_cffi` |
-| Cloudflare/Turnstile 보호된 정적-ish 페이지 | `cloudscraper` 또는 `Scrapling.StealthyFetcher` |
-| **위 전부를 한 라이브러리에서 원할 때** | `Scrapling` |
+| 일회성 스크립트, 단순한 HTML, 학습 목적 | ````requests```` + ````BeautifulSoup```` |
+| 큰 크롤, 잘 정의된 파이프라인, 성숙한 생태계 | ````Scrapy```` |
+| 무거운 JS 앱, 복잡한 인증 플로우, 브라우저를 직접 제어 | ````Playwright```` 직접 사용 |
+| TLS 핑거프린팅, 브라우저 오버헤드 없이 | ````curl_cffi```` |
+| Cloudflare/Turnstile 보호된 정적-ish 페이지 | ````cloudscraper```` 또는 ````Scrapling.StealthyFetcher```` |
+| **위 전부를 한 라이브러리에서 원할 때** | ````Scrapling```` |
 
 가장 정직하게 말하자면: 프로젝트의 형태가 명확할 때(예: "이미
 알고 있는 사이트의 1천만 개 상품 페이지를 크롤링한다") 그
@@ -199,7 +200,7 @@ Scrapling이 실제로 타깃하는 시스템 — 특히 Cloudflare Turnstile
 생각하세요. 비즈니스가 여기에 의존한다면 "한 번 설정하고 잊자"
 가 아니라 **지속적인 유지보수**를 예산에 넣어야 합니다.
 
-**`robots_txt_obey`는 기본값이 아니라 opt-in입니다.** 의도된
+**````robots_txt_obey````는 기본값이 아니라 opt-in입니다.** 의도된
 설계 결정입니다(어떤 사용자는 robots 파일을 무시할 합당한 이유가
 있죠 — 예: 자기 사이트를 크롤하는 경우). 하지만 이는 **의식적으로
 켜야 한다**는 뜻이기도 합니다. 제3자 사이트에서 켜는 걸 잊으면,
@@ -222,7 +223,7 @@ Scrapling이 실제로 타깃하는 시스템 — 특히 Cloudflare Turnstile
 Scrapling이 잘 어울린다고 생각하는 세 가지 구체적인 상황: 1. **개인 데이터 내보내기.** 어떤 서비스가 당신 데이터를 가지고
    있는데 진짜 export API를 안 줍니다. 진짜 브라우저로, 천천히,
    상대 사이트의 레이트 리밋을 존중하면서 자기 계정을 스크랩
-   하기 — Scrapling의 `DynamicSession`이 이 일에 잘 맞습니다.
+   하기 — Scrapling의 ````DynamicSession```이 이 일에 잘 맞습니다.
 
 2. **두세 가지 보호 수준을 모두 겪는 작은 상업용 크롤.** 일주일
    짜리 프로젝트를 위해 Scrapy + Playwright + curl_cffi 파이프
@@ -257,7 +258,7 @@ Scrapling은 진짜로 존재하는, 잘 설계된 라이브러리입니다 — 
 [github.com/D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling)
 에서 볼 수 있습니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -329,7 +330,7 @@ Scrapling 리뷰: 더 빠르고 더 은밀한 Python 스크래핑 represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

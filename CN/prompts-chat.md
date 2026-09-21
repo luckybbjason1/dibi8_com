@@ -10,6 +10,7 @@ github_repo: "https://github.com/f/prompts.chat"
 license: NOASSERTION
 featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
 ---
+
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
 If you are a developer, product manager, or AI researcher, you have likely hit the wall where the model is capable, but the prompt is not. We spend hours tweaking system instructions, debugging few-shot examples, and trying to get consistent outputs from LLMs.
@@ -40,13 +41,13 @@ It works with any modern AI assistant: ChatGPT, Claude, Gemini, Llama, Mistral, 
 
 The architecture is surprisingly simple, which is a feature, not a bug.
 
-1.  **The Core Repository:** The main `f/prompts.chat` repo contains the web app code (HTML/JS/CSS) and the `PROMPTS.md` file, which is the source of truth for all prompts.
+1.  **The Core Repository:** The main ```f/prompts.chat```` repo contains the web app code (HTML/JS/CSS) and the ````PROMPTS.md```` file, which is the source of truth for all prompts.
 2.  **The Web App:** The frontend is a static site generator. It renders the prompts into a searchable interface.
-3.  **The Dataset:** The prompts are also available on Hugging Face (`fka/prompts.chat`), making it easy to ingest into ML pipelines.
+3.  **The Dataset:** The prompts are also available on Hugging Face (````fka/prompts.chat````), making it easy to ingest into ML pipelines.
 
 ### ASCII Architecture Diagram
 
-```mermaid
+`````mermaid
 graph TD
     A[User/Dev] -->|Visits| B(prompts.chat Website)
     B -->|Fetches| C[PROMPTS.md / prompts.csv]
@@ -57,7 +58,7 @@ graph TD
     G -->|Configures| H[Auth / Branding]
     H -->|Runs| I[Private UI]
     I -->|Secure Access| J[Internal Team]
-```
+`````
 
 The key takeaway: **prompts.chat is a content management system for text prompts.** It does not execute the prompts itself; it serves them to you to use elsewhere.
 
@@ -69,7 +70,7 @@ You have two main paths: using the interactive wizard or a manual git clone. Bot
 
 This is the fastest way to spin up a local instance.
 
-```bash
+`````bash
 # Create a new directory named my-prompt-library
 npx prompts.chat new my-prompt-library
 
@@ -78,16 +79,16 @@ cd my-prompt-library
 
 # Run the setup wizard
 npm run setup
-```
+`````
 
-The `npm run setup` command will guide you through: 1.  **Branding:** Logo, site title, description.
+The ````npm run setup```` command will guide you through: 1.  **Branding:** Logo, site title, description.
 2.  **Theme:** Dark/Light mode defaults.
 3.  **Authentication:** Configure GitHub, Google, or Azure AD login (critical for enterprise).
 4.  **Database:** Configure PostgreSQL (recommended: Neon).
 
 ### Option 2: Manual Setup (Git Clone)
 
-For those who want full control over the codebase: ```bash
+For those who want full control over the codebase: `````bash
 # Clone the repository
 git clone https://github.com/f/prompts.chat.git
 
@@ -99,28 +100,28 @@ npm install
 
 # Run the setup wizard
 npm run setup
-```
+`````
 
 ### Database Configuration
 
 The README recommends **PostgreSQL** for self-hosted instances. For a managed solution, [Neon](https://get.neon.com/VqfnMo4) is the sponsored provider.
 
-```bash
+`````bash
 # Example .env configuration for local development
 DATABASE_URL=postgresql://user:password@localhost:5432/prompts_chat
 GITHUB_ID=your_github_client_id
 GITHUB_SECRET=your_github_client_secret
-```
+`````
 
 ### Docker Deployment
 
-If you prefer containerization, use the provided `DOCKER.md` guide. Generally, it involves: ```bash
+If you prefer containerization, use the provided ``DOCKER.md`` guide. Generally, it involves: `````bash
 # Build the image
 docker build -t prompts-chat .
 
 # Run the container
 docker run -p 3000:3000 -e DATABASE_URL=... prompts-chat
-```
+`````
 
 For production hosting, consider using [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187) for reliable, scalable infrastructure.
 
@@ -132,7 +133,7 @@ prompts.chat is not just a website. It provides integrations for CLI, Claude Cod
 
 You can access prompts directly from your terminal without opening a browser.
 
-```bash
+`````bash
 # Run the interactive CLI
 npx prompts.chat
 
@@ -141,19 +142,19 @@ npx prompts.chat search "python debugging"
 
 # Copy a prompt to clipboard (if supported by your OS)
 npx prompts.chat copy "react component generator"
-```
+`````
 
 ### 2. Claude Code Plugin
 
 If you use Claude Code, you can install prompts.chat as a plugin.
 
-```bash
+`````bash
 # Add the plugin from the marketplace
 /plugin marketplace add f/prompts.chat
 
 # Install the plugin
 /plugin install prompts.chat@prompts.chat
-```
+`````
 
 This allows you to trigger prompts directly within your coding session.
 
@@ -163,7 +164,7 @@ The Model Context Protocol (MCP) is becoming the standard for connecting AI tool
 
 **Remote MCP (Recommended for most users):**
 
-```json
+`````json
 {
   "mcpServers": {
     "prompts.chat": {
@@ -171,11 +172,11 @@ The Model Context Protocol (MCP) is becoming the standard for connecting AI tool
     }
   }
 }
-```
+`````
 
 **Local MCP (For self-hosted instances):**
 
-```json
+`````json
 {
   "mcpServers": {
     "prompts.chat": {
@@ -184,7 +185,7 @@ The Model Context Protocol (MCP) is becoming the standard for connecting AI tool
     }
   }
 }
-```
+`````
 
 This enables tools like Cursor, Windsurf, or custom LLM agents to query your prompt library programmatically.
 
@@ -196,7 +197,7 @@ Since prompts.chat does not provide proprietary performance benchmarks (it is a 
 
 *   **Onboarding New Developers:** A company can self-host prompts.chat and curate a list of "internal best practices" for prompt engineering. New hires can browse these prompts to understand how the team structures system instructions for code generation, documentation, and testing.
 *   **Consistency in Marketing:** Marketing teams can maintain a library of approved prompt templates for blog post outlines, social media captions, and email drafts. This ensures brand voice consistency across multiple AI tools.
-*   **Research & Experimentation:** Data scientists can download the `prompts.csv` or Hugging Face dataset to analyze prompt structures, common patterns, and effective few-shot examples across thousands of use cases.
+*   **Research & Experimentation:** Data scientists can download the ````prompts.csv```` or Hugging Face dataset to analyze prompt structures, common patterns, and effective few-shot examples across thousands of use cases.
 
 ### Use Case: Internal AI Governance
 
@@ -212,7 +213,7 @@ For production deployments, there are several hardening steps you should conside
 
 ### 1. Custom Domain & SSL
 
-Ensure your self-hosted instance uses a custom domain with valid SSL certificates. If using a reverse proxy (Nginx/Apache): ```nginx
+Ensure your self-hosted instance uses a custom domain with valid SSL certificates. If using a reverse proxy (Nginx/Apache): `````nginx
 server {
     listen 443 ssl;
     server_name prompts.internal.yourcompany.com;
@@ -226,18 +227,18 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### 2. Authentication & RBAC
 
 The setup wizard allows you to configure GitHub, Google, or Azure AD. For enterprise, Azure AD (Entra ID) is often preferred for SSO integration.
 
-```bash
+`````bash
 # Example Azure AD config in .env
 AZURE_AD_CLIENT_ID=your_azure_client_id
 AZURE_AD_TENANT_ID=your_azure_tenant_id
 AZURE_AD_CLIENT_SECRET=your_azure_client_secret
-```
+`````
 
 You can then restrict access to specific domains or groups.
 
@@ -245,7 +246,7 @@ You can then restrict access to specific domains or groups.
 
 If you expect high concurrency (e.g., 1000+ employees browsing simultaneously), ensure your PostgreSQL instance has appropriate connection pooling. PgBouncer is recommended.
 
-```bash
+`````bash
 # pgbouncer.ini
 [databases]
 prompts_chat = host=127.0.0.1 port=5432 dbname=prompts_chat
@@ -254,19 +255,19 @@ prompts_chat = host=127.0.0.1 port=5432 dbname=prompts_chat
 pool_mode = transaction
 max_client_conn = 1000
 default_pool_size = 20
-```
+`````
 
 ### 4. Backup Strategy
 
 Since prompts are stored in Git, version control is your backup. However, user contributions (if enabled) and database configurations should be backed up regularly.
 
-```bash
+`````bash
 # Backup PostgreSQL
 pg_dump -U postgres prompts_chat > prompts_backup_$(date +%F).sql
 
 # Backup Git repo
 git push origin main --mirror
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -289,7 +290,7 @@ No tool is perfect. Here are the limitations you should be aware of: 1.  **No Na
 2.  **Prompt Quality Variance:** While curated, the prompts are user-submitted. Some may be outdated, ineffective, or poorly written. You must review and curate your own instance.
 3.  **Static Content:** The core prompt library is updated via PRs to GitHub. It is not a real-time, live-updating feed. You must sync your self-hosted instance to get new prompts.
 4.  **Limited Analytics:** The self-hosted version does not provide built-in analytics on prompt usage (e.g., which prompts are most copied). You would need to add logging to your web server or integration layer.
-5.  **License Ambiguity:** The license is listed as `NOASSERTION`. While the code is open, the legal status of the prompt content itself is not explicitly defined. Use caution for commercial redistribution.
+5.  **License Ambiguity:** The license is listed as ````NOASSERTION````. While the code is open, the legal status of the prompt content itself is not explicitly defined. Use caution for commercial redistribution.
 
 ## Frequently Asked Questions
 
@@ -297,17 +298,17 @@ No tool is perfect. Here are the limitations you should be aware of: 1.  **No Na
 Yes, the software and the prompt library are free and open-source. You only pay for your own hosting infrastructure (e.g., DigitalOcean, Vercel, or your own server).
 
 ### 2. Can I use prompts.chat for commercial purposes?
-Yes, you can self-host it for your organization. However, check the `NOASSERTION` license and the content of individual prompts for any specific restrictions. The code itself is open.
+Yes, you can self-host it for your organization. However, check the ````NOASSERTION```` license and the content of individual prompts for any specific restrictions. The code itself is open.
 
 ### 3. How do I update my self-hosted instance?
-You can pull the latest changes from the GitHub repository: ```bash
+You can pull the latest changes from the GitHub repository: `````bash
 git pull origin main
 npm install
 npm run setup # Re-run setup to apply any new config defaults
-```
+`````
 
 ### 4. Does it support authentication?
-Yes, the self-hosted version supports GitHub, Google, and Azure AD authentication. This is configured during the `npm run setup` wizard.
+Yes, the self-hosted version supports GitHub, Google, and Azure AD authentication. This is configured during the ````npm run setup``` wizard.
 
 ### 5. Can I contribute prompts?
 Yes, you can submit prompts via the web interface at [prompts.chat/prompts/new](https://prompts.chat/prompts/new). They sync to the main repository automatically.
@@ -325,7 +326,7 @@ The 5-minute setup is real. The self-hosting capability is robust. And the commu
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss your deployment experiences and share your custom prompt configurations.
 
 
----
+* * *
 ## Sources & Further Reading
 
 *   [prompts.chat GitHub Repository](https://github.com/f/prompts.chat)
@@ -338,7 +339,7 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss y
 *   [Harvard: AI Prompts](https://www.huit.harvard.edu/news/ai-prompts)
 *   [Columbia: Prompt Library](https://etc.cuit.columbia.edu/news/columbia-prompt-library-effective-academic-ai-use)
 
----
+* * *
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
 {
@@ -366,7 +367,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -376,7 +377,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [codebase-memory-mcp-high-performance-code-intelligence](prompts-chat)
 - [moneyprinterturbo-one-click-ai-video-generator](prompts-chat)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

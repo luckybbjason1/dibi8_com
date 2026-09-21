@@ -11,6 +11,7 @@ maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -62,7 +63,7 @@ DeepSeek Harness sử dụng ba-layer architecture: 1. **Core Layer** — Quản
 2. **Plugin Layer** — Custom code của bạn, được load tại runtime
 3. **Integration Layer** — Kết nối với Claude Code, Codex, Cursor, v.v.
 
-```typescript
+````typescript
 // Ví dụ: Một DSH plugin đơn giản
 import { Plugin } from 'deepseek-harness';
 
@@ -75,7 +76,7 @@ export class MyPlugin extends Plugin {
     return { success: true };
   }
 }
-```
+`````
 
 Plugins có thể: - Hook vào agent lifecycle events
 - Thêm new commands vào CLI
@@ -90,52 +91,52 @@ Plugins có thể: - Hook vào agent lifecycle events
 - Một AI coding agent (Claude Code, Codex CLI, Cursor, hoặc OpenCode)
 
 ### Phương Pháp 1: npm (Được Khuyến Nghị)
-```bash
+`````bash
 npm install -g deepseek-harness
 dsh init
-```
+`````
 
 ### Phương Pháp 2: pip
-```bash
+`````bash
 pip install deepseek-harness
 dsh init
-```
+`````
 
 ### Phương Pháp 3: Từ Source
-```bash
+`````bash
 git clone https://github.com/deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm run build
 pnpm dsh web
-```
+`````
 
-**Lưu ý:** DeepSeek Harness yêu cầu `pnpm` cho source builds. Cài đặt nó với `npm install -g pnpm`.
+**Lưu ý:** DeepSeek Harness yêu cầu ````pnpm```` cho source builds. Cài đặt nó với ````npm install -g pnpm````.
 
 ### Quick Start: Web UI
-```bash
+`````bash
 npx @deepseek-ai/dsh web
-```
-Câu lệnh này khởi động một local web interface tại `http://127.0.0.1:3080` và mở nó trong default browser. Không cần configuration — chỉ cần mở browser và bắt đầu build plugins.
+`````
+Câu lệnh này khởi động một local web interface tại ````http://127.0.0.1:3080```` và mở nó trong default browser. Không cần configuration — chỉ cần mở browser và bắt đầu build plugins.
 
-Đối với SSH servers hoặc headless environments: ```bash
+Đối với SSH servers hoặc headless environments: `````bash
 npx @deepseek-ai/dsh web --no-open
 # Sau đó truy cập qua forwarded port
 ssh -L 3080:localhost:3080 user@server
-```
+`````
 
 ## Xây Dựng Plugin Đầu Tiên
 
 Hãy tạo một plugin tổng hợp code changes sau mỗi commit.
 
 ### Bước 1: Khởi Tạo Plugin
-```bash
+`````bash
 dsh create-plugin summarize-commits
 cd summarize-commits
-```
+`````
 
 ### Bước 2: Viết Plugin Code
-```typescript
+`````typescript
 import { Plugin, PluginContext } from 'deepseek-harness';
 import { execSync } from 'child_process';
 
@@ -147,32 +148,32 @@ export class SummarizeCommitsPlugin extends Plugin {
     const diff = execSync('git diff HEAD~1 HEAD --stat').toString();
     const commit = execSync('git log -1 --pretty=%B').toString();
     
-    const prompt = `
+    const prompt = ````
       Tóm tắt commit git này trong một câu: ${commit}
       
       Files changed: ${diff}
-    `;
+    ````;
     
     return { prompt };
   }
 }
-```
+`````
 
 ### Bước 3: Đăng Ký Plugin
-```bash
+`````bash
 dsh plugin add ./summarize-commits
 dsh plugin list  # Xác nhận installation
-```
+`````
 
 ### Bước 4: Test Plugin
-```bash
+`````bash
 dsh run summarize-commits --dry-run
-```
+`````
 
 ## Hướng Dẫn Tích Hợp
 
 ### Tích Hợp Claude Code
-```yaml
+`````yaml
 # ~/.claude/settings.json
 {
   "plugins": [
@@ -183,10 +184,10 @@ dsh run summarize-commits --dry-run
     }
   ]
 }
-```
+`````
 
 ### Tích Hợp Cursor
-```json
+`````json
 // .cursorrc
 {
   "dsh": {
@@ -194,40 +195,40 @@ dsh run summarize-commits --dry-run
     "pluginsDir": "~/.dsh/plugins"
   }
 }
-```
+`````
 
 ### Sử Dụng Trong Mọi Agent
-```bash
+`````bash
 # Khởi động harness
 dsh web
 
 # Hoặc sử dụng CLI trực tiếp
 dsh run my-plugin --arg value
-```
+`````
 
 ## Các Mẫu Plugin Nâng Cao
 
 ### Async Operations
-```typescript
+`````typescript
 async execute(context: PluginContext): Promise<PluginResult> {
   const data = await fetchAPI('/external-endpoint');
   return { success: true, data };
 }
-```
+`````
 
 ### State Persistence
-```typescript
+`````typescript
 const state = await context.storage.get('my-state');
 await context.storage.set('my-state', { key: 'value' });
-```
+`````
 
 ### Event Hooks
-```typescript
+`````typescript
 this.on('before:commit', async (ctx) => {
   // Chạy checks trước commit
   await this.validateSecurity(ctx);
 });
-```
+`````
 
 ## Cân Nhắc Bảo Mật
 
@@ -236,10 +237,10 @@ Khi chạy DSH plugins trong production: 1. **Sandbox Execution** — Luôn ch�
 3. **Secret Scanning** — Tích hợp một secrets scanner như một pre-commit plugin
 4. **Plugin Auditing** — Review third-party plugins trước khi installation
 
-```bash
+`````bash
 # Security scan cho plugins
 dsh security scan --deep ./plugins
-```
+`````
 
 ## Framework Cordis: Bên Trong
 
@@ -254,7 +255,7 @@ Cordis framework enables: - **Time-travel debugging** — Replay plugin executio
 ## Tối Ưu Hiệu Suất
 
 Cho high-volume environments, optimize plugin performance: ### Caching Strategy
-```typescript
+`````typescript
 const cache = new LRUMap({
   max: 1000,
   ttl: '10m'
@@ -267,10 +268,10 @@ if (cached) return cached;
 const result = await expensiveOperation();
 cache.set(key, result);
 return result;
-```
+`````
 
 ### Concurrency Control
-```typescript
+`````typescript
 import { Semaphore } from 'deepseek-harness/utils';
 
 const sem = new Semaphore(5); // Tối đa 5 concurrent operations
@@ -283,34 +284,34 @@ async execute(context) {
     sem.release();
   }
 }
-```
+`````
 
 ## Khắc Phục Sự Cố
 
 ### Vấn Đề Thường Gặp 1: Plugin Không Load
-```bash
+`````bash
 # Kiểm tra plugin registration
 dsh plugin list
 
 # Xem plugin logs
 dsh logs --plugin my-plugin --tail 50
-```
+`````
 
 ### Vấn Đề Thường Gặp 2: Port Đã Được Sử Dụng
-Nếu port 3080 bị occupied: ```bash
+Nếu port 3080 bị occupied: `````bash
 npx @deepseek-ai/dsh web --port 3081
-```
+`````
 
 ### Vấn Đề Thường Gặp 3: TypeScript Compilation Errors
-```bash
+`````bash
 # Xóa cache và rebuild
 rm -rf node_modules/.cache
 pnpm run clean
 pnpm run build
-```
+`````
 
 ### Vấn Đề Thường Gặp 4: Memory Leak Trong Long Sessions
-Enable memory limits trong plugin config: ```typescript
+Enable memory limits trong plugin config: `````typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -318,7 +319,7 @@ export default {
     gcInterval: '5m"
   }
 };
-```
+`````
 
 ## Cộng Đồng & Hệ Sinh Thái
 
@@ -334,14 +335,14 @@ Quan tâm đến contributing?
 3. Gửi PR với tests
 4. Tham gia Discord community
 
-```bash
+`````bash
 # Development setup
 git clone git@github.com:deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm test  # Chạy test suite
 pnpm dev    # Khởi động development mode
-```
+`````
 
 ## So Sánh Với Các Alternatives
 
@@ -376,7 +377,7 @@ Agent Skills là một specific implementation của skills pattern. DSH là bro
 Có, nhiều công ty lớn đang sử dụng DSH trong production. Plugin system stable, nhưng luôn test plugins trong staging trước.
 
 ### Q: Tôi xử lý plugin dependencies như thế nào?
-DSH sử dụng npm/pnpm cho plugin dependencies. Mỗi plugin khai báo package.json riêng. Chạy `dsh plugin deps <name>` để list và install.
+DSH sử dụng npm/pnpm cho plugin dependencies. Mỗi plugin khai báo package.json riêng. Chạy ````dsh plugin deps <name>``` để list và install.
 
 ### Q: Tôi có thể chia sẻ plugins với team không?
 Có. Publish lên private npm registry, hoặc share plugin directory trực tiếp. DSH hỗ trợ cả public và private plugin sources.
@@ -391,7 +392,7 @@ The real power không nằm ở framework本身 — nó nằm ở cộng đồng
 
 Bạn muốn build plugin nào đầu tiên? Chia sẻ ideas trong comments hoặc open an issue trên GitHub!
 
----
+* * *
 
 **Nguồn Và Đọc Thêm:**
 - Official docs: https://deepseek-harness.github.io/deepseek-harness/

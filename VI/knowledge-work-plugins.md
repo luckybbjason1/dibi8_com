@@ -17,7 +17,8 @@ images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-pl
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/tool-use-example.png"
     alt: "Ví dụ Sử dụng Công cụ"
     role: example
-featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
+featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---
+th--.png
 ---
 
 ## TL;DR
@@ -40,13 +41,13 @@ Kiến trúc plugin tuân theo một nguyên tắc đơn giản: Claude xác đ�
 - **Thao tác Tệp** — Liệt kê thư mục, di chuyển tệp, quản lý cấu trúc dự án
 - **Plugin Tùy chỉnh** — Xây dựng công cụ của riêng bạn bằng SDK plugin
 
-```bash
+````bash
 # Cài đặt Knowledge Work Plugins
 npx skills add https://github.com/anthropics/knowledge-work-plugins
 
 # Danh sách các plugin khả dụng
 npx skills list | grep knowledge-work
-```
+`````
 
 ## Hệ thống Plugin Hoạt động Như thế nào
 
@@ -54,7 +55,7 @@ Hệ thống plugin hoạt động thông qua một vòng lặp ba bước: 1. *
 2. **Cuộc gọi công cụ được gửi** — Claude gửi một yêu cầu JSON có cấu trúc xác định hành động và tham số
 3. **Plugin thực thi và trả về** — Hệ thống plugin chạy hành động trong môi trường sandbox và trả kết quả về cho Claude
 
-```python
+`````python
 # Ví dụ gọi plugin
 from knowledge_work_plugins import PluginClient
 
@@ -73,13 +74,13 @@ response = client.call(
 )
 
 print(response)  # {"status": "success", "lines_changed": 5}
-```
+`````
 
 Sandboxing đảm bảo Claude không thể thực hiện các thao tác phá hủy mà không có xác nhận rõ ràng. Mỗi plugin xác định mô hình quyền hạn của riêng mình, từ truy cập tệp chỉ đọc đến thực thi shell đầy đủ.
 
 ## Cài đặt & Thiết lập
 
-Cài đặt Knowledge Work Plugins yêu cầu Python 3.10+ và tích hợp Claude Code hoặc Anthropic API hoạt động: ```bash
+Cài đặt Knowledge Work Plugins yêu cầu Python 3.10+ và tích hợp Claude Code hoặc Anthropic API hoạt động: `````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/anthropics/knowledge-work-plugins.git
 cd knowledge-work-plugins
@@ -89,11 +90,11 @@ pip install -r requirements.txt
 
 # Khởi tạo cấu hình plugin
 cp plugins.config.example.yaml plugins.config.yaml
-```
+`````
 
 ### Cấu hình Plugin
 
-Mỗi plugin được cấu hình độc lập trong `plugins.config.yaml`: ```yaml
+Mỗi plugin được cấu hình độc lập trong ``plugins.config.yaml``: `````yaml
 plugins: document-edit: enabled: true
     max_file_size: 1048576  # 1MB
     allowed_extensions: - .md
@@ -116,15 +117,15 @@ plugins: document-edit: enabled: true
     max_results: 20
     timeout: 30
     user_agent: "Knowledge-Work-Plugins/1.0"
-```
+`````
 
 ### Thiết lập Docker
 
-```bash
+`````bash
 # Dựng và chạy trong Docker
 docker build -t knowledge-work-plugins:latest .
 docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins:latest
-```
+`````
 
 ## Tích hợp với Quy trình Phát triển
 
@@ -138,7 +139,7 @@ Knowledge Work Plugins tích hợp với mọi môi trường phát triển chí
 | **GitHub Actions** | CLI tool | code-analysis |
 | **GitLab CI** | Plugin runner | document-edit |
 
-```bash
+`````bash
 # Tích hợp với GitHub Actions
 # .github/workflows/plugin-audit.yml
 name: Plugin Audit
@@ -148,11 +149,11 @@ jobs: audit: runs-on: ubuntu-latest
       - uses: anthropics/knowledge-work-plugins@v1
         with: plugins: "code-analysis,docker-lint"
           config: plugins.config.yaml
-```
+`````
 
 ## Đánh giá Hiệu năng: AI có Plugin vs AI Tiêu chuẩn
 
-Tác động hiệu năng của việc thêm công cụ có cấu trúc cho các tác nhân AI là có thể đo lường được: ```
+Tác động hiệu năng của việc thêm công cụ có cấu trúc cho các tác nhân AI là có thể đo lường được: `````
 Nhiệm vụ                         | AI Tiêu chuẩn | AI có Plugin    | Cải thiện
 -------------------------------- | ------------- | --------------- | ---------
 Sửa bug trong cơ sở mã 10K LOC  | 2.3 giờ       | 18 phút         | 7.7x
@@ -160,20 +161,20 @@ Cập nhật tài liệu                | 45 phút       | 3 phút          | 15
 Viết kiểm thử tích hợp           | 1.5 giờ       | 12 phút         | 7.5x
 Tái cấu trúc endpoint API        | 2.0 giờ       | 20 phút         | 6x
 Review mã + đề xuất              | 3.0 giờ       | 25 phút         | 7.2x
-```
+`````
 
 Các benchmark đo thời gian từ khi bắt đầu nhiệm vụ đến đầu ra đã hoàn thành và xác minh. Quy trình có plugin bao gồm xác thực thực thi (chạy linter, kiểm thử) mà việc tạo mã AI tiêu chuẩn không thể thực hiện.
 
 ### So sánh Tỷ lệ Lỗi
 
-```
+`````
 Chỉ số                 | AI Tiêu chuẩn | AI có Plugin
 -----------------------| ------------- | ---------------
 Tạo mã sai             | 34%           | 8%
 Bỏ sót trường hợp biên  | 41%           | 12%
 Cần viết lại           | 67%           | 15%
 Sẵn sàng sản xuất      | 12%           | 78%
-```
+`````
 
 Giảm tỷ lệ lỗi đến từ khả năng xác thực đầu ra của hệ thống plugin đối với các ràng buộc thực tế — chạy các linter, kiểm thử và trình kiểm tra kiểu thực tế thay vì dựa vào kiến thức nội bộ của LLM.
 
@@ -181,7 +182,7 @@ Giảm tỷ lệ lỗi đến từ khả năng xác thực đầu ra của hệ 
 
 SDK plugin giúp dễ dàng xây dựng các công cụ tùy chỉnh cho quy trình làm việc cụ thể của bạn: ### Xây dựng Plugin Tùy chỉnh
 
-```python
+`````python
 # Plugin tùy chỉnh: Tự động hóa review PR
 from knowledge_work_plugins import PluginBase, PluginResult
 
@@ -213,11 +214,11 @@ class PRReviewPlugin(PluginBase): name = "pr-review"
 
     def generate_review(self, issues): # Tạo review có cấu trúc...
         pass
-```
+`````
 
 ### Tổ hợp Plugin
 
-Các nhiệm vụ phức tạp có thể được giải quyết bằng cách tổ hợp nhiều plugin: ```python
+Các nhiệm vụ phức tạp có thể được giải quyết bằng cách tổ hợp nhiều plugin: `````python
 # Tổ hợp: tìm kiếm → phân tích → chỉnh sửa → xác minh
 from knowledge_work_plugins import Pipeline
 
@@ -232,11 +233,11 @@ result = pipeline.execute(
     task="Cập nhật middleware auth để hỗ trợ OAuth2 PKCE flow",
     plugins_config="plugins.config.yaml"
 )
-```
+`````
 
 ### Xử lý Lỗi Plugin
 
-Xử lý lỗi mạnh mẽ là yếu tố quan trọng cho việc sử dụng plugin production. SDK cung cấp các loại lỗi có cấu trúc và logic tự động retry: ```python
+Xử lý lỗi mạnh mẽ là yếu tố quan trọng cho việc sử dụng plugin production. SDK cung cấp các loại lỗi có cấu trúc và logic tự động retry: `````python
 from knowledge_work_plugins import Pipeline, PluginError
 
 pipeline = Pipeline(["document-edit", "code-analysis"])
@@ -251,11 +252,11 @@ except PluginError.PermissionDenied as e: print(f"Từ chối quyền: {e.plugin
 except PluginError.ValidationError as e: print(f"Xác thực thất bại: {e.message}")
     # Sửa và retry
     result = pipeline.execute(task=f"Sửa: {e.suggestion}")
-```
+`````
 
 ### Giám sát và Nhật ký Plugin
 
-Theo dõi thực thi plugin với khả năng quan sát tích hợp: ```python
+Theo dõi thực thi plugin với khả năng quan sát tích hợp: `````python
 # Bật nhật ký chi tiết
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -269,11 +270,11 @@ metrics = pipeline.metrics()
 print(f"Tổng số lệnh gọi: {metrics.total_tool_calls}")
 print(f"Độ trễ trung bình: {metrics.avg_latency:.2f}s")
 print(f"Tỷ lệ lỗi: {metrics.error_rate:.1%}")
-```
+`````
 
 ### Tối ưu hóa Hiệu năng
 
-Đối với cơ sở mã lớn, thực thi plugin có thể được tối ưu hóa với caching và song song hóa: ```python
+Đối với cơ sở mã lớn, thực thi plugin có thể được tối ưu hóa với caching và song song hóa: `````python
 # Bật thực thi plugin song song
 pipeline.set_parallel(True, max_workers=4)
 
@@ -286,7 +287,7 @@ pipeline.set_budget(
     max_tokens=50000,
     max_tool_calls=50
 )
-```
+`````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -317,14 +318,14 @@ Knowledge Work Plugins mạnh mẽ nhưng không phải vạn năng: 1. **Phụ 
 
 5. **Truy cập tệp đa nền tảng** — Plugin hoạt động trong môi trường thực thi containerized. Truy cập tệp bên ngoài workspace yêu cầu mount volume rõ ràng, điều này thêm độ phức tạp cấu hình cho các thiết lập đa máy.
 
-```bash
+`````bash
 # Kiểm tra độ phù hợp nhanh
 # ✅ Phân tích và chỉnh sửa cơ sở mã → CÓ
 # ✅ Cập nhật tài liệu → CÓ
 # ✅ Nghiên cứu web → CÓ
 # ✅ Điều phối đa-API phức tạp → MỘT PHẦN (sử dụng LangChain thay thế)
 # ✅ Cập nhật dashboard thời gian thực → KHÔNG (sử dụng websockets trực tiếp)
-```
+`````
 
 ## Câu hỏi Thường gặp
 
@@ -338,19 +339,19 @@ SDK plugin được thiết kế cho Claude nhưng có thể được điều ch
 
 ### Tôi tạo plugin tùy chỉnh như thế nào?
 
-Sử dụng lớp `PluginBase` từ SDK. Xác định tên plugin, phiên bản, mô tả và phương thức `execute`. SDK xử lý serialization, xử lý lỗi và sandboxing.
+Sử dụng lớp ````PluginBase```` từ SDK. Xác định tên plugin, phiên bản, mô tả và phương thức ````execute````. SDK xử lý serialization, xử lý lỗi và sandboxing.
 
 ### Có giới hạn tốc độ trên thực thi plugin không?
 
-Có. Giới hạn tốc độ được xác định cho mỗi plugin trong `plugins.config.yaml`. Mặc định là 100 lệnh gọi mỗi phút, có thể điều chỉnh dựa trên nhu cầu của bạn.
+Có. Giới hạn tốc độ được xác định cho mỗi plugin trong ````plugins.config.yaml````. Mặc định là 100 lệnh gọi mỗi phút, có thể điều chỉnh dựa trên nhu cầu của bạn.
 
 ### Plugin có thể thực thi lệnh shell không?
 
-Có, plugin `shell-exec` cho phép thực thi shell có kiểm soát. Nó bao gồm các biện pháp bảo vệ chống lại các lệnh phá hủy và hoạt động trong sandbox thư mục được xác định. Các lệnh nhạy cảm như `rm -rf` và `dd` bị chặn mặc định.
+Có, plugin ````shell-exec```` cho phép thực thi shell có kiểm soát. Nó bao gồm các biện pháp bảo vệ chống lại các lệnh phá hủy và hoạt động trong sandbox thư mục được xác định. Các lệnh nhạy cảm như ````rm -rf```` và ````dd```` bị chặn mặc định.
 
 ### Tôi kiểm toán quyền plugin như thế nào?
 
-Chạy `knowledge-work-plugins audit` để tạo báo cáo kiểm toán toàn diện về tất cả quyền plugin, lệnh đã thực thi và mẫu truy cập tệp. Báo cáo kiểm toán bao gồm đánh giá rủi ro cho mỗi plugin và khuyến nghị để siết chặt quyền hạn.
+Chạy ````knowledge-work-plugins audit```` để tạo báo cáo kiểm toán toàn diện về tất cả quyền plugin, lệnh đã thực thi và mẫu truy cập tệp. Báo cáo kiểm toán bao gồm đánh giá rủi ro cho mỗi plugin và khuyến nghị để siết chặt quyền hạn.
 
 ## Kết luận
 
@@ -360,13 +361,13 @@ Knowledge Work Plugins đại diện cho tương lai của phát triển có h�
 
 **Bắt đầu ngay:**
 
-```bash
+`````bash
 npx skills add https://github.com/anthropics/knowledge-work-plugins
-```
+````
 
 **Liên kết nội bộ**: [Xây dựng hệ thống AI production](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) · [Tự động hóa nghiên cứu](https://dibi8.com/dev-utils/academic-research-skills)
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/anthropics/knowledge-work-plugins
 - Tài liệu SDK Plugin: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
@@ -406,7 +407,7 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -416,7 +417,7 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 - [deepseek-v3-vs-claude-sonnet](knowledge-work-plugins)
 - [gemini-cli-vs-claude-code](knowledge-work-plugins)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

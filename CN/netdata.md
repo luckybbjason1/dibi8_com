@@ -23,6 +23,7 @@ tags: ["netdata", "monitoring", "observability", "performance-tuning", "docker",
 aliases:
   - /posts/netdata/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -53,20 +54,20 @@ Netdata's architecture follows an edge-first, distributed model. Each node runs 
 
 ### One-Line Install (Linux)
 
-The fastest way to get Netdata running: ```bash
+The fastest way to get Netdata running: ````bash
 # Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash
-```
+`````
 
-Verify the installation: ```bash
+Verify the installation: `````bash
 sudo systemctl status netdata
 # Active: active (running) since ...
-```
+`````
 
-Access the local dashboard at `http://localhost:19999`.
+Access the local dashboard at ````http://localhost:19999````.
 
 ### Docker Deploy
 
-For containerized environments: ```bash
+For containerized environments: `````bash
 docker run -d --name=netdata \
   -p 19999:19999 \
   -v /proc:/host/proc:ro \
@@ -75,11 +76,11 @@ docker run -d --name=netdata \
   --cap-add SYS_PTRACE \
   --security-opt apparmor=unconfined \
   netdata/netdata:latest
-```
+`````
 
 ### Docker Compose (Production-Ready)
 
-```yaml
+`````yaml
 version: '3.8'
 services: netdata: image: netdata/netdata:v2.5.0
     container_name: netdata
@@ -99,13 +100,13 @@ services: netdata: image: netdata/netdata:v2.5.0
     environment: - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
       - NETDATA_CLAIM_ROOMS=${NETDATA_CLAIM_ROOMS}
-volumes: netdata-config: netdata-lib: netdata-cache: ```
+volumes: netdata-config: netdata-lib: netdata-cache: `````
 
 ![Netdata System Monitoring](https://hackmag.com/wp-content/uploads/2025/07/10244_02-16-39.png)
 
 ### Kubernetes Helm Install
 
-```bash
+`````bash
 # Add the Netdata Helm repository
 helm repo add netdata https://netdata.github.io/helmchart/
 helm repo update
@@ -114,33 +115,33 @@ helm repo update
 helm install netdata netdata/netdata \
   --namespace monitoring \
   --create-namespace
-```
+`````
 
-Verify the pods: ```bash
+Verify the pods: `````bash
 kubectl get pods -n monitoring
 # NAME                    READY   STATUS
 # netdata-parent-0        1/1     Running
 # netdata-child-xxx       1/1     Running
-```
+`````
 
 ### Generate Current Config
 
-Download the running configuration to customize: ```bash
+Download the running configuration to customize: `````bash
 # Download current effective config
 curl -o /etc/netdata/netdata.conf http://localhost:19999/netdata.conf
 # Or use the edit-config script
 sudo /etc/netdata/edit-config netdata.conf
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Prometheus Remote Write
 
-Export Netdata metrics to Prometheus for long-term storage and PromQL queries: ```bash
+Export Netdata metrics to Prometheus for long-term storage and PromQL queries: `````bash
 sudo /etc/netdata/edit-config exporting.conf
-```
+`````
 
-```conf
+`````conf
 [prometheus:remote_write]
     enabled = yes
     destination = prometheus:9090
@@ -149,15 +150,15 @@ sudo /etc/netdata/edit-config exporting.conf
     prefix = netdata
     send charts matching = *
     send hosts matching = *
-```
+`````
 
-Restart Netdata: ```bash
+Restart Netdata: `````bash
 sudo systemctl restart netdata
-```
+`````
 
 ### Grafana Dashboard
 
-While Netdata has a built-in dashboard, many teams prefer Grafana for centralized visualization. Add Netdata as a Prometheus data source in Grafana: ```yaml
+While Netdata has a built-in dashboard, many teams prefer Grafana for centralized visualization. Add Netdata as a Prometheus data source in Grafana: `````yaml
 # datasource.yaml in Grafana
 apiVersion: 1
 datasources: - name: Netdata-Prometheus
@@ -166,11 +167,11 @@ datasources: - name: Netdata-Prometheus
     access: proxy
     isDefault: false
     jsonData: timeInterval: "1s"
-```
+`````
 
 ### Kubernetes DaemonSet (Advanced)
 
-For full host-level visibility on every K8s node: ```yaml
+For full host-level visibility on every K8s node: `````yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata: name: netdata
@@ -199,11 +200,11 @@ spec: selector: matchLabels: app: netdata
           hostPath: path: /sys
         - name: docker-sock
           hostPath: path: /var/run/docker.sock
-```
+`````
 
 ### PostgreSQL Monitoring
 
-Enable the PostgreSQL collector in `go.d/postgres.conf`: ```yaml
+Enable the PostgreSQL collector in ``go.d/postgres.conf``: `````yaml
 jobs: - name: local
     dsn: 'postgres://netdata_monitor:password@localhost:5432/postgres'
     collect: - database_statistics
@@ -211,17 +212,17 @@ jobs: - name: local
       - index_statistics
       - replication_statistics
     timeout: 2
-```
+`````
 
-Test the collector: ```bash
+Test the collector: `````bash
 sudo /etc/netdata/edit-config go.d/postgres.conf
 # Restart to apply
 sudo systemctl restart netdata
-```
+`````
 
 ### Nginx Monitoring
 
-Monitor Nginx stub_status and access logs: ```yaml
+Monitor Nginx stub_status and access logs: `````yaml
 # /etc/netdata/go.d/nginx.conf
 jobs: - name: local
     url: http://localhost/stub_status
@@ -229,7 +230,7 @@ jobs: - name: local
   - name: access_log
     path: /var/log/nginx/access.log
     parser: type: ltsv
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -237,13 +238,13 @@ jobs: - name: local
 
 The University of Amsterdam published a peer-reviewed study (ICSOC 2023) ranking Netdata as the most energy-efficient monitoring tool for Docker-based systems. Independent benchmarks confirm: | Scenario | Netdata | Prometheus + Node Exporter | Zabbix Agent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU Overhead (%) | 1–5% | 5–15% | 10–20% |
 | RAM per Node | 100–150 MB | 200–500 MB | 150–300 MB |
@@ -275,7 +276,7 @@ The default configuration is optimized for standalone use. For production system
 
 **Minimal footprint (production child nodes):**
 
-```conf
+`````conf
 [global]
     # Run with lowest priority to avoid impacting applications
     process scheduling policy = batch
@@ -314,11 +315,11 @@ The default configuration is optimized for standalone use. For production system
     idlejitter = no
     debugfs = no
     systemd-journal = no
-```
+`````
 
 **Parent node with tiered storage (central monitoring):**
 
-```conf
+`````conf
 [db]
     mode = dbengine
     storage tiers = 3
@@ -355,11 +356,11 @@ The default configuration is optimized for standalone use. For production system
     bind to = *
     # Restrict access to internal networks
     allow connections from = 10.* 192.168.* 172.16.* 172.17.*
-```
+`````
 
 ### Streaming Configuration: stream.conf
 
-On child nodes (`/etc/netdata/stream.conf`): ```conf
+On child nodes (``/etc/netdata/stream.conf``): `````conf
 [stream]
     enabled = yes
     destination = tcp:netdata-parent.monitoring.svc.cluster.local:19999
@@ -370,49 +371,49 @@ On child nodes (`/etc/netdata/stream.conf`): ```conf
     buffer size bytes = 1048576
     reconnect delay seconds = 5
     initial clock resync iterations = 60
-```
+`````
 
-On the parent (`/etc/netdata/stream.conf`): ```conf
+On the parent (``/etc/netdata/stream.conf``): `````conf
 [API_KEY]
     enabled = yes
     default memory mode = dbengine
     health enabled by default = yes
-```
+`````
 
 ### Security Hardening
 
-Enable TLS for the web interface: ```conf
+Enable TLS for the web interface: `````conf
 [web]
     tls version = 1.3
     ssl key = /etc/netdata/ssl/key.pem
     ssl certificate = /etc/netdata/ssl/cert.pem
     # Require TLS for all connections
     bind to = *=dashboard|registry|badges|management|streaming|netdata.conf|readable|writable
-```
+`````
 
 ### Monitoring Netdata Itself
 
-Track the agent's own resource usage: ```bash
+Track the agent's own resource usage: `````bash
 # View internal metrics
 curl -s http://localhost:19999/api/v1/info | jq '.version, .hog'
 
 # Check dbengine statistics
 curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Netdata | Prometheus | Datadog | Zabbix |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Collection Interval | 1 second | 15–60 seconds | 15 seconds | 30–60 seconds |
 | Agent RAM | 100–150 MB | 200–500 MB | 200–400 MB | 150–300 MB |
@@ -461,11 +462,11 @@ A single parent node can ingest 1+ million samples/second. For horizontal scalin
 
 **Q: How do I back up Netdata's database and configuration?**
 
-Configuration lives in `/etc/netdata/` and can be version-controlled (Git, Ansible, Puppet). The dbengine database in `/var/cache/netdata/` is self-healing and does not require manual backup — streaming to multiple parent nodes provides natural redundancy. For critical environments, run active-active parent pairs.
+Configuration lives in ````/etc/netdata/```` and can be version-controlled (Git, Ansible, Puppet). The dbengine database in ````/var/cache/netdata/```` is self-healing and does not require manual backup — streaming to multiple parent nodes provides natural redundancy. For critical environments, run active-active parent pairs.
 
 **Q: Does Netdata support custom application metrics?**
 
-Yes. Use the built-in StatsD server (port 8125), the OpenMetrics endpoint, or write a custom collector in Python or Go. The `go.d.plugin` framework supports building new collectors with minimal boilerplate.
+Yes. Use the built-in StatsD server (port 8125), the OpenMetrics endpoint, or write a custom collector in Python or Go. The ````go.d.plugin```` framework supports building new collectors with minimal boilerplate.
 
 ## Conclusion
 
@@ -476,7 +477,7 @@ Netdata delivers on a promise most monitoring tools fail to keep: immediate, per
 1. Run the one-line installer on your most critical server today
 2. Deploy the Helm chart on your Kubernetes cluster
 3. Configure parent-child streaming for production hardening
-4. Tune `netdata.conf` for your resource constraints using the configs above
+4. Tune ````netdata.conf``` for your resource constraints using the configs above
 
 Join the [Netdata community on Telegram](https://t.me/netdata) for real-time support and discussions with 5,000+ engineers.
 
@@ -531,7 +532,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](netdata)
@@ -541,7 +542,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [12-factor-agents](netdata)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

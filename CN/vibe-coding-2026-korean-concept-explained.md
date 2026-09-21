@@ -27,6 +27,7 @@ faq: - q: "What is 'vibe coding'?"
   - q: "Do I need to learn Korean to vibe code?"
     a: "No. The workflow is language-agnostic — you describe intent in whatever natural language you speak. The term originated in Korea but the practice works globally. English-speaking developers have been doing this since Cursor and Claude Code came out, just without a name."
 ---
+
 {{</* resource-info */>}}
 
 # Vibe Coding 2026: The Korean Concept Explained for the Rest of Us
@@ -48,7 +49,7 @@ It's not just "using AI more" — it's a workflow inversion. You design and revi
 
 ## How It Actually Works
 
-A typical vibe-coding session at a Korean fintech (anonymized from Toss engineering blog): ```
+A typical vibe-coding session at a Korean fintech (anonymized from Toss engineering blog): ````
 Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘.
                  Redis 사용. 분당 100 req. 초과시 429 응답."
 
@@ -56,7 +57,7 @@ Translation: "Add rate limiting to my API endpoint. Use Redis.
               100 req/min. Return 429 if exceeded."
 
 AI Claude Code: [generates middleware, updates routes, adds tests]
-```
+````
 
 The human reviewer: - Doesn't write the rate-limiting algorithm
 - Reviews the generated middleware for correctness
@@ -132,7 +133,7 @@ Vibe coding is a name for what was already happening. Korean fintech crystallize
 The strongest adoption isn't "vibe code everything." It's "vibe code where it fits, hand-code where it matters." Korea proved this works at production scale. The question for the rest of us isn't whether to try — it's where.
 
 
----
+* * *
 **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Aider vs Cline vs OpenHands](https://dibi8.com/resources/dev-utils/aider-cline-openhands-2026-honest-comparison/)
 
 {
@@ -197,11 +198,11 @@ Vibe Coding 2026: The Korean Developer Concept Explained for the Rest of Us repr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -211,7 +212,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](vibe-coding-2026-korean-concept-explained)
 - [claude-4-opus-sonnet-review-2026](vibe-coding-2026-korean-concept-explained)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -242,15 +243,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

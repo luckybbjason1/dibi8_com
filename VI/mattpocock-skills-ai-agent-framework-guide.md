@@ -13,6 +13,7 @@ license: MIT
 featureImage: "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
 ---
 
+
 ## Giới thiệu
 
 AI coding agents đã biến đổi căn bản cách các nhà phát triển viết, debug và deploy code. Các công cụ như Claude Code, Cursor, Codex CLI, Gemini CLI và GitHub Copilot có thể tạo ra toàn bộ tính năng từ các prompt ngôn ngữ tự nhiên. Nhưng ngay cả AI agent tiên tiến nhất cũng bị giới hạn bởi dữ liệu nó có thể đọc và các công cụ nó có thể invoke. Đây là nơi framework Skills của Matt Pocock thay đổi mọi thứ — nó lấp khoảng cách giữa code generation và code execution.
@@ -40,7 +41,7 @@ Skills được phân phối dưới dạng một npm package và cài đặt to
 
 Skills hoạt động trên kiến trúc plugin. Mỗi "skill" là một module tự chứa định nghĩa những gì agent có thể làm. Khi một agent cần thực hiện một task, nó query các skills có sẵn và invoke skill phù hợp. Skill sau đó thực hiện action và trả về kết quả.
 
-Framework sử dụng một cấu hình file đơn giản (`skills.json`) liệt kê tất cả các skills có sẵn. Mỗi skill định nghĩa name, description và các commands hoặc API calls nó có thể thực hiện. Agent đọc cấu hình này và sử dụng các skill descriptions để xác định skill nào nên invoke cho một task nhất định.
+Framework sử dụng một cấu hình file đơn giản (```skills.json````) liệt kê tất cả các skills có sẵn. Mỗi skill định nghĩa name, description và các commands hoặc API calls nó có thể thực hiện. Agent đọc cấu hình này và sử dụng các skill descriptions để xác định skill nào nên invoke cho một task nhất định.
 
 Khi bạn yêu cầu một agent "Thiết lập database PostgreSQL cho dự án này," Skills cung cấp một database skill có thể tạo database, cấu hình connection và chạy các migrations ban đầu. Khi bạn yêu cầu "Deploy cái này lên staging," nó cung cấp một deployment skill trigger CI/CD pipeline của bạn. Agent không cần biết các task này hoạt động như thế nào — nó chỉ cần biết rằng Skills có thể xử lý chúng.
 
@@ -56,46 +57,46 @@ Skills sử dụng một phương pháp cài đặt độc đáo — nó đượ
 
 ### Thêm một Skill vào Project của bạn
 
-```bash
+`````bash
 npx skills@latest add mattpocock/skills
-```
+`````
 
 Lệnh này fetch phiên bản mới nhất của framework Skills và thêm nó vào project của bạn. Cách tiếp cận npx có nghĩa là không cần cài đặt toàn cục, tránh xung đột phiên bản giữa các project.
 
 ### Khởi tạo Skills trong Project
 
-```bash
+`````bash
 npx skills@latest init
-```
+`````
 
-Điều này tạo một file cấu hình `skills.json` trong root project của bạn với bộ skill mặc định. File cấu hình đóng vai trò là nguồn sự thật duy nhất cho tất cả các skills có sẵn.
+Điều này tạo một file cấu hình ````skills.json```` trong root project của bạn với bộ skill mặc định. File cấu hình đóng vai trò là nguồn sự thật duy nhất cho tất cả các skills có sẵn.
 
 ### Cài đặt một Skill cụ thể
 
-```bash
+`````bash
 npx skills@latest add database
 npx skills@latest add filesystem
 npx skills@latest add deploy
 npx skills@latest add api-client
-```
+`````
 
 Mỗi skill được cài đặt độc lập. Bạn chỉ cần cài đặt các skill liên quan đến workflow của bạn, giữ cho cấu hình gọn nhẹ.
 
 ### Cài đặt nhiều Skills cùng lúc
 
-```bash
+`````bash
 npx skills@latest add database filesystem deploy api-client docker
-```
+`````
 
 ### Cài đặt ở Development Mode
 
-```bash
+`````bash
 git clone https://github.com/mattpocock/skills.git && cd skills && npm install && npm link
-```
+`````
 
 ### Agent Integration Setup
 
-```bash
+`````bash
 # Cho Claude Code
 npx skills@latest setup claude-code
 
@@ -104,7 +105,7 @@ npx skills@latest setup cursor
 
 # Cho Gemini CLI
 npx skills@latest setup gemini-cli
-```
+`````
 
 Mỗi agent integration thiết lập cấu hình cần thiết cho skill discovery và invocation liền mạch.
 
@@ -112,11 +113,11 @@ Mỗi agent integration thiết lập cấu hình cần thiết cho skill discov
 
 ### Newsletter và Cộng đồng
 
-```bash
+`````bash
 # Subscribe to the Skills newsletter for updates
 # https://www.aihero.dev/s/skills-newsletter
 curl -s https://www.aihero.dev/s/skills-newsletter
-```
+`````
 
 ### Skills Hub
 
@@ -127,74 +128,74 @@ Duyệt tất cả các skills có sẵn tại official skills hub: - Skills sit
 
 ### Liệt kê các Skills có sẵn
 
-```bash
+`````bash
 npx skills@latest list
-```
+`````
 
 Điều này hiển thị tất cả các skills đã cài đặt với descriptions của chúng. Output bao gồm skill name, description và bất kỳ configuration bắt buộc nào. Bạn có thể nhanh chóng xem agent AI của bạn có những capabilities gì.
 
 ### Kiểm tra Skill Configuration
 
-```bash
+`````bash
 npx skills@latest inspect database
-```
+`````
 
 Điều này hiển thị chi tiết cấu hình cho database skill, bao gồm các commands có sẵn, environment variables bắt buộc và connection parameters.
 
 ### Test một Skill
 
-```bash
+`````bash
 npx skills@latest test database
-```
+`````
 
 Điều này chạy test suite của skill để xác minh rằng nó được cấu hình đúng và hoạt động. Hữu ích cho troubleshooting trước khi deploy lên production.
 
 ### Chạy một Skill Command
 
-```bash
+`````bash
 npx skills@latest run database --query "SELECT * FROM users LIMIT 10"
-```
+`````
 
 Điều này thực hiện một SQL query thông qua database skill. Kết quả được trả về ở định dạng có cấu trúc mà AI agent có thể process.
 
 ### Tạo một Custom Skill
 
-```bash
+`````bash
 npx skills@latest create my-custom-skill
-```
+`````
 
 Điều này tạo một template cho một custom skill mới, bao gồm skill definition, test file và documentation. Sau đó bạn có thể implement logic của riêng bạn trong plugin được generate.
 
 ### Liệt kê tất cả các Installed Skills với chi tiết
 
-```bash
+`````bash
 npx skills@latest list --verbose
-```
+`````
 
 ### Gỡ một Skill
 
-```bash
+`````bash
 npx skills@latest remove database
-```
+`````
 
 ### Cập nhật tất cả Skills
 
-```bash
+`````bash
 npx skills@latest update --all
-```
+`````
 
 ### Export và Import Skill Configuration
 
-```bash
+`````bash
 npx skills@latest export > skills-export.json
 npx skills@latest import < skills-export.json
-```
+`````
 
 ## Tích hợp với AI Agents
 
 ### Tích hợp Claude Code
 
-```bash
+`````bash
 # Khởi tạo Skills trong project của bạn
 npx skills@latest init
 
@@ -203,25 +204,25 @@ npx skills@latest add database deploy filesystem
 
 # Chạy Claude Code — nó sẽ tự động detect Skills
 claude
-```
+`````
 
-Claude Code đọc cấu hình `skills.json` và sử dụng các skills có sẵn khi thích hợp. Khi bạn yêu cầu Claude Code "thiết lập database," nó sẽ sử dụng database skill để tạo tables và chạy migrations.
+Claude Code đọc cấu hình ````skills.json```` và sử dụng các skills có sẵn khi thích hợp. Khi bạn yêu cầu Claude Code "thiết lập database," nó sẽ sử dụng database skill để tạo tables và chạy migrations.
 
 ### Tích hợp Cursor
 
-```bash
+`````bash
 # Cài đặt Skills toàn cục qua npx
 npx skills@latest init
 
 # Thêm các skills liên quan đến project
 npx skills@latest add database api-client
-```
+`````
 
 Cursor tự động detect Skills khi mở một project. Các skills xuất hiện trong agent context và sẵn sàng cho task execution, cung cấp các capabilities thực sự vượt xa code generation.
 
 ### Tích hợp Gemini CLI
 
-```bash
+`````bash
 # Khởi tạo Skills
 npx skills@latest init
 
@@ -230,13 +231,13 @@ npx skills@latest add deploy docker
 
 # Chạy Gemini CLI
 gemini
-```
+`````
 
 Gemini CLI đọc cấu hình skills và có thể invoke skills trong khi conversation, cho phép hoàn thành task end-to-end mà không cần sự can thiệp thủ công.
 
 ### Tích hợp Codex CLI
 
-```bash
+`````bash
 # Set up Skills
 npx skills@latest init
 
@@ -245,17 +246,17 @@ export SKILLS_PATH=./skills.json
 
 # Run Codex
 codex
-```
+`````
 
 ### Custom HTTP Client Skill
 
-```bash
+`````bash
 # Tạo một custom HTTP client skill
 npx skills@latest create custom-http --type http-client
 
 # Sử dụng skill để thực hiện API requests
 npx skills@latest run custom-http --url https://api.example.com/users --method GET
-```
+`````
 
 ## Benchmark / Use cases thực tế
 
@@ -284,7 +285,7 @@ Kiểm tra tỷ lệ hoàn thành task AI agent với và không có Skills trê
 
 ### Use case thực tế: Team phát triển Startup
 
-Một startup 5 người sử dụng Skills với Claude Code để tự động hóa toàn bộ development workflow: ```bash
+Một startup 5 người sử dụng Skills với Claude Code để tự động hóa toàn bộ development workflow: `````bash
 #!/bin/bash
 # Automated weekly deployment pipeline
 npx skills@latest init
@@ -292,17 +293,17 @@ npx skills@latest add database deploy ci-cd docker
 
 # Trigger the full pipeline
 npx skills@latest run ci-cd --action test --action build --action deploy --env production
-```
+`````
 
 Team báo cáo giảm 70% thời gian deployment và khả năng cho AI agents của họ hoàn thành các task end-to-end mà không cần sự can thiệp của con người.
 
 ### Use case thực tế: Freelance Developer
 
-Một freelance developer sử dụng Skills để quản lý nhiều dự án client: ```bash
+Một freelance developer sử dụng Skills để quản lý nhiều dự án client: `````bash
 # Export client-specific skills
 npx skills@latest export --project client-a > client-a-skills.json
 npx skills@latest export --project client-b > client-b-skills.json
-```
+`````
 
 Skill configurations được export và import cho từng client, giữ môi trường cách ly trong khi tái sử dụng các common skills giữa các project.
 
@@ -310,42 +311,42 @@ Skill configurations được export và import cho từng client, giữ môi tr
 
 ### Custom Skill Plugin Development với TypeScript
 
-```bash
+`````bash
 npx skills@latest plugin scaffold my-plugin --type npm
-```
+`````
 
 Plugin được generate bao gồm skill definition, test file, documentation và CI pipeline. Template TypeScript cung cấp type safety cho skill definitions và execution.
 
 ### Production Configuration Validation
 
-```bash
+`````bash
 # Validate all skill configurations before deployment
 npx skills@latest validate
 
 # Output validation report
 npx skills@latest validate --format json --output validation-report.json
-```
+`````
 
 ### Docker-Based Skill Execution
 
-```bash
+`````bash
 # Run skills in an isolated Docker container
 docker run -it node:20-alpine npx skills@latest run database --query "SELECT 1"
-```
+`````
 
 ### Secret Management Integration
 
-```bash
+`````bash
 # Set secrets securely using environment variables
 npx skills@latest env set DB_PASSWORD "$(gopass show secrets/db-password)"
 npx skills@latest env set AWS_KEY "$(aws secretsmanager get-secret-value --secret-id aws-key --query SecretString --output text)"
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
 | Feature | Skills | OpenHands Tools | CrewAI Tools | AutoGen Tools |
 |---------|--------|-----------------|-------------|---------------|
-| Install Method | `npx skills@latest add` | pip install | pip install | pip install |
+| Install Method | ````npx skills@latest add```` | pip install | pip install | pip install |
 | Plugin System | Yes (CLI-first) | Yes (Python) | Yes (Python) | Yes (Python) |
 | Agent Support | Claude Code, Cursor, Gemini CLI, Codex | OpenHands | CrewAI agents | AutoGen agents |
 | Zero Config | Yes | Partial | No | No |
@@ -381,7 +382,7 @@ A: Có, Skills là mã nguồn mở dưới giấy phép MIT. Bạn có thể c�
 
 **Q: Làm thế nào để tạo một custom skill?**
 
-A: Sử dụng `npx skills@latest create my-skill` để tạo một template, sau đó implement skill logic trong plugin được generate. Bạn cũng có thể viết một custom npm package export một skill definition tương thích với framework Skills sử dụng TypeScript `defineSkill` helper.
+A: Sử dụng ````npx skills@latest create my-skill```` để tạo một template, sau đó implement skill logic trong plugin được generate. Bạn cũng có thể viết một custom npm package export một skill definition tương thích với framework Skills sử dụng TypeScript ````defineSkill```` helper.
 
 **Q: Skills có thể xử lý các complex multi-step tasks không?**
 
@@ -399,11 +400,11 @@ A: Khi một skill gặp lỗi, nó trả về error message cho AI agent, sau �
 
 Framework Skills của Matt Pocock giải quyết một vấn đề căn bản trong AI-assisted development: agents có thể viết code tuyệt vời, nhưng chúng không thể thực thi nó mà không có các công cụ phù hợp. Skills lấp khoảng cách này bằng cách cung cấp một plugin system đơn giản, có thể mở rộng trao cho AI agents các capabilities thực sự — truy cập database, thao tác filesystem, CI/CD pipelines, cloud deployments và nhiều hơn nữa.
 
-Chỉ với một lệnh `npx skills@latest add mattpocock/skills` và `npx skills@latest init`, bạn có thể biến AI coding agent của bạn từ một code generator thành một developer assistant hoàn toàn có chức năng, người thực sự có thể hoàn thành các task end-to-end.
+Chỉ với một lệnh ````npx skills@latest add mattpocock/skills```` và ````npx skills@latest init````, bạn có thể biến AI coding agent của bạn từ một code generator thành một developer assistant hoàn toàn có chức năng, người thực sự có thể hoàn thành các task end-to-end.
 
 Để hosting development tooling và infrastructure ở quy mô lớn, hãy cân nhắc deploy trên các cloud providers đáng tin cậy. Sử dụng [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho các development servers, [HTStack](https://my.htstack.com/aff.php?aff=27187) cho production hosting và [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cho datacenter và residential proxies.
 
-Bắt đầu ngay hôm nay: `npx skills@latest add mattpocock/skills && npx skills@latest init` và trao cho AI agent của bạn siêu năng lực xứng đáng.
+Bắt đầu ngay hôm nay: ````npx skills@latest add mattpocock/skills && npx skills@latest init``` và trao cho AI agent của bạn siêu năng lực xứng đáng.
 
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
 
@@ -448,7 +449,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể kiếm đ�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -458,7 +459,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể kiếm đ�
 - [pm-skills-68-product-management-skills-ai-agents](mattpocock-skills-ai-agent-framework-guide)
 - [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

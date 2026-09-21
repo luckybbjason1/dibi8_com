@@ -38,6 +38,7 @@ faqs: - q: 'Năm mẫu subagent trong Claude Code là gì?'
     a: 'Năm failure mode đã được ghi chép là: trust trap, context bleed, runaway fan-out, silent truncation và orphaned worktree. Nghiên cứu những điều này là yếu tố phân biệt một bản demo hoạt động được với một pipeline sẵn sàng cho môi trường production.'
 ---
 
+
 # Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng
 
 
@@ -50,7 +51,7 @@ Bộ tài liệu này tập hợp **lộ trình hoàn chỉnh** để đạt t�
 | # | Thành phần | Lớp | Vai trò | Đi sâu |
 |---|---|---|---|---|
 | 1 | **5 Mô Hình Subagent** | Nền tảng | Năm quy trình: phân tán song song, cô lập worktree, ủy thác chuyên gia, bảo vệ ngữ cảnh, điều phối pipeline | [Mô Hình Subagent](/vi/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) |
-| 2 | **Viết Agent Tùy Chỉnh** | Xây dựng | Cách viết `.claude/agents/*.md` — frontmatter, system prompt, danh sách công cụ được phép | [Viết Agent Tùy Chỉnh](/vi/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
+| 2 | **Viết Agent Tùy Chỉnh** | Xây dựng | Cách viết ```.claude/agents/*.md```` — frontmatter, system prompt, danh sách công cụ được phép | [Viết Agent Tùy Chỉnh](/vi/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/) |
 | 3 | **Subagent vs MCP vs Skill** | Quyết định | Khung ba trục — kiến thức (skill), ngữ cảnh (subagent), năng lực (MCP) | [Subagent vs MCP vs Skill](/vi/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/) |
 | 4 | **Viết Skill** | Xây dựng | Đóng gói các quy trình mà Claude chỉ tải khi liên quan — SKILL.md, tiết lộ tăng dần | [Viết Skill](/vi/resources/llm-frameworks/claude-code-skill-authoring-guide-2026/) |
 | 5 | **Mổ Xẻ Sự Cố Điều Phối** | Né tránh | 5 cách pipeline thất bại: bẫy tin tưởng, rò rỉ ngữ cảnh, phân tán mất kiểm soát, cắt cụt âm thầm, worktree mồ côi | [Mổ Xẻ Pipeline](/vi/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/) |
@@ -60,7 +61,7 @@ Bộ tài liệu này tập hợp **lộ trình hoàn chỉnh** để đạt t�
 
 **Bắt đầu với năm mô hình (1).** Trước khi xây dựng bất cứ thứ gì tùy chỉnh, hãy thấm nhuần *khi nào* nên sinh ra một subagent — phân tán nghiên cứu song song là điểm vào ít ma sát nhất và lợi ích đến ngay lập tức. Nguyên lý nền tảng xuyên suốt mọi thứ còn lại: cuộc hội thoại cha của bạn là một tài nguyên khan hiếm; subagent là cách bạn chi tiêu mà không làm cạn kiệt nó.
 
-**Rồi học cách viết agent tùy chỉnh (2).** Một khi đã nắm các mô hình, hãy hệ thống hóa chúng. Một agent tùy chỉnh là kiến thức thể chế có thể thực thi — checklist review, cổng bảo mật, hay trình kiểm toán di trú của bạn dưới dạng một tập tin `.md` được quản lý phiên bản. Chi tiết sống còn nằm ở `description` (tín hiệu định tuyến) và danh sách công cụ được phép (đặc quyền tối thiểu giúp một reviewer không "nhiệt tình" chỉnh sửa chính đoạn mã mà nó được giao để review).
+**Rồi học cách viết agent tùy chỉnh (2).** Một khi đã nắm các mô hình, hãy hệ thống hóa chúng. Một agent tùy chỉnh là kiến thức thể chế có thể thực thi — checklist review, cổng bảo mật, hay trình kiểm toán di trú của bạn dưới dạng một tập tin ````.md```` được quản lý phiên bản. Chi tiết sống còn nằm ở ````description``` (tín hiệu định tuyến) và danh sách công cụ được phép (đặc quyền tối thiểu giúp một reviewer không "nhiệt tình" chỉnh sửa chính đoạn mã mà nó được giao để review).
 
 **Lùi lại để nắm khung quyết định (3).** Đây là viên đá đỉnh vòm. Trước khi xây thêm một agent, hãy tự hỏi: tôi đang thiếu *kiến thức* (→ viết một skill), *ngữ cảnh* (→ sinh một subagent), hay *năng lực* (→ xây một MCP server)? Hầu hết các đội với tay tới MCP server quá vội trong khi một tập tin markdown đã có thể giao cùng kết quả trước giờ ăn trưa.
 
@@ -150,12 +151,12 @@ Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Th
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -165,7 +166,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](claude-code-subagent-mastery-stack)
 - [codebase-memory-mcp-deep-code-intelligence](claude-code-subagent-mastery-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

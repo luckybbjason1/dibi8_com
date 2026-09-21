@@ -22,6 +22,7 @@ aliases:
   - /posts/data-cleaning-tools-best-practices/
 ---
 
+
 {</* resource-info */>}
 
 Data cleaning — làm sạch dữ liệu — là bước tốn thờI gian nhất nhưng cũng quan trọng nhất trong pipeline khoa học dữ liệu. Các nghiên cứu ước tính rằng các data scientist dành **60-80% thờI gian** cho việc làm sạch và chuẩn bị dữ liệu, chỉ còn 20-40% cho phân tích và mô hình hóa. Dữ liệu "bẩn" không chỉ làm chậm quy trình mà còn dẫn đến các quyết định sai lầm và mô hình ML kém hiệu quả.
@@ -56,12 +57,12 @@ Tác động của dữ liệu bẩn lên ML model performance là đáng kể. 
 1. **Import data**: Hỗ trợ CSV, TSV, Excel, JSON, XML, và nhiều định dạng khác
 2. **Explore with facets**: Tạo text facets, numeric facets, timeline facets để hiểu dữ liệu
 3. **Cluster and merge**: Edit cells → Cluster and edit → Chọn thuật toán (key collision, nearest neighbor)
-4. **Transform**: GREL expressions như `value.toLowercase().trim()`
+4. **Transform**: GREL expressions như ```value.toLowercase().trim()````
 5. **Export**: Xuất ra CSV, TSV, Excel, hoặc Google Sheets
 
 ### Workflow Nâng Cao
 
-OpenRefine lưu lại toàn bộ lịch sử thao tác trong **Undo/Redo history**. Quan trọng hơn, bạn có thể xuất các thao tác này dưới dạng **JSON** để áp dụng lại: ```json
+OpenRefine lưu lại toàn bộ lịch sử thao tác trong **Undo/Redo history**. Quan trọng hơn, bạn có thể xuất các thao tác này dưới dạng **JSON** để áp dụng lại: `````json
 [
   {
     "op": "core/text-transform",
@@ -72,7 +73,7 @@ OpenRefine lưu lại toàn bộ lịch sử thao tác trong **Undo/Redo history
     "onError": "keep-original"
   }
 ]
-```
+`````
 
 Điều này cho phép **làm sạch dữ liệu một cách tái tạo** — áp dụng cùng một chuỗI thao tác lên dữ liệu mới mà không cần làm thủ công lại.
 
@@ -92,7 +93,7 @@ Python cung cấp nhiều thư viện mạnh mẽ cho làm sạch dữ liệu, m
 
 ### Pandas: Nền Tảng Làm Sạch Dữ Liệu
 
-Pandas là thư viện cốt lõi, cung cấp các patterns làm sạch phổ biến: ```python
+Pandas là thư viện cốt lõi, cung cấp các patterns làm sạch phổ biến: `````python
 import pandas as pd
 import numpy as np
 
@@ -140,11 +141,11 @@ df_clean = df[z_scores < 3]  # Giữ lại giá trị có z-score < 3
 
 # 7. Categorical encoding
 df['category_encoded'] = df['category'].map({'A': 0, 'B': 1, 'C': 2})
-```
+`````
 
 ### pyjanitor: API Sạch Cho Pandas
 
-**pyjanitor** cung cấp API chainable, clean cho Pandas — biến code Pandas verbose thành method chain dễ đọc: ```python
+**pyjanitor** cung cấp API chainable, clean cho Pandas — biến code Pandas verbose thành method chain dễ đọc: `````python
 import janitor
 
 # Thay vì nhiều dòng code thủ công
@@ -157,11 +158,11 @@ df = (df
     .encode_categorical(['category', 'region'])
     .remove_columns(['temp_column'])
 )
-```
+`````
 
 ### datatest: Xác Thực Dữ Liệu
 
-```python
+`````python
 import datatest
 
 def validate_data(df): # Kiểm tra schema
@@ -174,7 +175,7 @@ def validate_data(df): # Kiểm tra schema
     # Kiểm tra ràng buộc
     datatest.validate(df['revenue'], lambda x: x >= 0)
     datatest.validate(df['status'], {'active', 'inactive', 'pending'})
-```
+`````
 
 ## Thư Viện Làm Sạch Dữ Liệu Tự Động
 
@@ -184,7 +185,7 @@ def validate_data(df): # Kiểm tra schema
 - **Out-of-distribution samples**: Dữ liệu không thuộc phân phối chuẩn
 - **Near duplicates**: Bản ghi gần giống nhau có thể gây leakage
 
-```python
+`````python
 from cleanlab.classification import CleanLearning
 from sklearn.ensemble import RandomForestClassifier
 
@@ -195,11 +196,11 @@ label_issues = cl.find_label_issues(X, y)
 # Xem các bản ghi nghi ngờ bị gán nhãn sai
 suspicious = label_issues[label_issues['is_label_issue'] == True]
 print(suspicious[['given_label', 'predicted_label', 'label_quality_score']])
-```
+`````
 
 ### AutoClean: Tiền Xử Lý Tự Động
 
-```python
+`````python
 from autoclean import AutoClean
 
 # Làm sạch tự động
@@ -207,11 +208,11 @@ df_clean = AutoClean(df, mode='auto').output
 
 # Mode options: # - 'auto': Tự động phát hiện và xử lý
 # - 'manual': Cho phép tùy chỉnh từng bước
-```
+`````
 
 ### Klib: Phân Tích Và Đề Xuất Làm Sạch
 
-```python
+`````python
 import klib
 
 # Phân tích dữ liệu
@@ -223,7 +224,7 @@ klib.dist_plot(df)  # Distribution plots
 df_clean = klib.data_cleaning(df)
 df_clean = klib.convert_datatypes(df)
 df_clean = klib.drop_missing(df)
-```
+`````
 
 ## Great Expectations: Xác Thực Dữ Liệu Production
 
@@ -231,7 +232,7 @@ df_clean = klib.drop_missing(df)
 
 ### Cách Hoạt Động
 
-```python
+`````python
 import great_expectations as gx
 
 # Khởi tạo context
@@ -267,7 +268,7 @@ checkpoint = context.add_checkpoint(
     }]
 )
 checkpoint_result = checkpoint.run()
-```
+`````
 
 Great Expectations còn cung cấp: - **Data Docs**: Tài liệu tự động về chất lượng dữ liệu
 - **Profiling**: Tự động phát hiện schema, types, distributions
@@ -288,7 +289,7 @@ Quyết định cách xử lý missing data phụ thuộc vào **mechanism** c�
 - **MAR (Missing At Random)**: Missing có liên quan đến các biến quan sát được → Imputation phù hợp
 - **MNAR (Missing Not At Random)**: Missing có liên quan đến chính giá trị thiếu → Cần phân tích chuyên sâu
 
-```python
+`````python
 # Little's MCAR test (thư viện missingno hoặc pymc)
 import missingno as msno
 
@@ -300,11 +301,11 @@ msno.heatmap(df)  # Correlation giữa các cột missing
 from sklearn.impute import IterativeImputer
 imputer = IterativeImputer(random_state=42)
 df_imputed = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
-```
+`````
 
 ### Phát Hiện Và Xử Lý Duplicates
 
-```python
+`````python
 # Exact duplicates
 df = df.drop_duplicates()
 
@@ -327,11 +328,11 @@ compare = recordlinkage.Compare()
 compare.exact('first_name', 'first_name', label='first_name')
 compare.string('address', 'address', method='jarowinkler', label='address')
 features = compare.compute(pairs, df_a, df_b)
-```
+`````
 
 ### Phát Hiện Outliers Trong Datasets Lớn
 
-Với datasets lớn (triệu rows), phương pháp IQR chậm. Sử dụng: ```python
+Với datasets lớn (triệu rows), phương pháp IQR chậm. Sử dụng: `````python
 # Isolation Forest — phù hợp datasets lớn
 from sklearn.ensemble import IsolationForest
 
@@ -349,11 +350,11 @@ from sklearn.cluster import DBSCAN
 dbscan = DBSCAN(eps=0.5, min_samples=5)
 clusters = dbscan.fit_predict(df[['feature1', 'feature2']])
 df['is_outlier'] = clusters == -1
-```
+`````
 
 ### Phát Hiện Schema Drift
 
-Schema drift xảy ra khi cấu trúc dữ liệu thay đổi theo thờI gian: ```python
+Schema drift xảy ra khi cấu trúc dữ liệu thay đổi theo thờI gian: `````python
 from great_expectations.core import ExpectationSuite
 
 def detect_schema_drift(current_df, expected_schema): """Phát hiện schema drift"""
@@ -372,13 +373,13 @@ def detect_schema_drift(current_df, expected_schema): """Phát hiện schema dri
             if actual_type != expected_type: issues.append(f"Type drift in {col}: {expected_type} → {actual_type}")
     
     return issues
-```
+`````
 
 ## Best Practices Framework Cho Làm Sạch Dữ Liệu
 
 ### 1. Document Everything
 
-Mọi quyết định làm sạch dữ liệu đều phải được ghi lại: ```python
+Mọi quyết định làm sạch dữ liệu đều phải được ghi lại: `````python
 # Sử dụng logging
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -395,11 +396,11 @@ def clean_data(df): original_shape = df.shape
     logger.info(f"Filled {missing_before} missing values")
     
     return df
-```
+`````
 
 ### 2. Make Cleaning Reproducible
 
-```python
+`````python
 # Sử dụng Makefile hoặc pipeline framework
 # hoặc đơn giản là một Python script với requirements.txt
 """
@@ -408,40 +409,40 @@ def clean_data(df): original_shape = df.shape
 
 Usage: python clean_data.py --input raw.csv --output clean.csv --config config.yaml
 """
-```
+`````
 
 ### 3. Version Cleaning Scripts
 
-```bash
+`````bash
 # Sử dụng Git để version các scripts làm sạch
 git add src/cleaning/
 git commit -m "Add data cleaning pipeline v2 - handle new date format"
-```
+`````
 
 ### 4. Validate Assumptions
 
-Luôn kiểm tra các giả định sau khi làm sạch: ```python
+Luôn kiểm tra các giả định sau khi làm sạch: `````python
 def validate_cleaned_data(df): """Kiểm tra dữ liệu sau khi làm sạch"""
     assert df.isnull().sum().sum() == 0, "Còn missing values!"
     assert df.duplicated().sum() == 0, "Còn duplicates!"
     assert df['revenue'].min() >= 0, "Revenue không âm!"
     assert df['date'].max() <= pd.Timestamp.now(), "Không có ngày tương lai!"
     print("Validation passed!")
-```
+`````
 
 ### 5. Preserve Raw Data
 
-**Không bao giờ ghi đè dữ liệu gốc.** Luôn lưu dữ liệu raw và data lineage: ```python
+**Không bao giờ ghi đè dữ liệu gốc.** Luôn lưu dữ liệu raw và data lineage: `````python
 # Cấu trúc thư mục
 # data/
 #   raw/          # Dữ liệu gốc, không bao giờ sửa
 #   interim/      # Dữ liệu trung gian
 #   processed/    # Dữ liệu cuối cùng
-```
+`````
 
 ### 6. Create Data Quality Reports
 
-```python
+`````python
 import pandas as pd
 from ydata_profiling import ProfileReport
 
@@ -449,11 +450,11 @@ from ydata_profiling import ProfileReport
 df = pd.read_csv('data.csv')
 profile = ProfileReport(df, title="Data Quality Report")
 profile.to_file("data_quality_report.html")
-```
+`````
 
 ### 7. Establish Data Contracts
 
-Data contract là thỏa thuận giữa team cung cấp dữ liệu (upstream) và team sử dụng (downstream): ```yaml
+Data contract là thỏa thuận giữa team cung cấp dữ liệu (upstream) và team sử dụng (downstream): `````yaml
 # data_contract.yaml
 table: user_transactions
 version: 2.0
@@ -467,7 +468,7 @@ schema: transaction_id: type: string
   timestamp: type: datetime
     required: true
     format: ISO-8601
-```
+`````
 
 ## Bảng So Sánh: Chọn Stack Làm Sạch Dữ Liệu
 
@@ -485,16 +486,16 @@ schema: transaction_id: type: string
 
 ### Thiết Kế Pipeline Module
 
-```
+`````
 ┌─────────┐   ┌──────────┐   ┌─────────┐   ┌──────────┐   ┌────────┐
 │  Load   │──▶│  Profile │──▶│  Clean  │──▶│ Validate │──▶│ Export │
 │         │   │          │   │         │   │          │   │        │
 └─────────┘   └──────────┘   └─────────┘   └──────────┘   └────────┘
-```
+`````
 
 ### Triển Khai Với Pandas + Great Expectations
 
-```python
+`````python
 # pipeline/clean.py
 import pandas as pd
 import great_expectations as gx
@@ -546,11 +547,11 @@ pipeline = DataCleaningPipeline(config={
     'dtypes': {'date': 'datetime', 'amount': 'float'}
 })
 pipeline.run('data/raw/sales.csv', 'data/processed/sales_clean.csv')
-```
+`````
 
 ### Tích Hợp CI/CD
 
-```yaml
+`````yaml
 # .github/workflows/data_quality.yml
 name: Data Quality Check
 on: [push, pull_request]
@@ -559,7 +560,7 @@ jobs: validate: runs-on: ubuntu-latest
       - run: pip install -r requirements.txt
       - run: python -m pytest tests/test_data_quality.py
       - run: python pipeline/clean.py --validate-only
-```
+`````
 
 ## FAQ
 
@@ -579,15 +580,15 @@ Trong thực tế, nhiều team kết hợp: OpenRefine cho exploration ban đ�
 ### Xử Lý Missing Data Không Làm Sai Lệch Model Như Thế Nào?
 
 Các chiến lược an toàn: 1. **Phân tích mechanism**: MCAR → simple imputation, MAR → advanced imputation (IterativeImputer), MNAR → cần domain knowledge
-2. **Tạo indicator column**: Thêm cột `_is_missing` để model biết giá trị nào bị imputed
+2. **Tạo indicator column**: Thêm cột ````_is_missing```` để model biết giá trị nào bị imputed
 3. **Multiple imputation**: Chạy imputation nhiều lần, lấy trung bình kết quả
 4. **Sensitivity analysis**: So sánh kết quả với/xóa missing data
 
-```python
+`````python
 # Thêm missing indicator
 df['age_missing'] = df['age'].isnull().astype(int)
 df['age'] = df['age'].fillna(df['age'].median())
-```
+`````
 
 ### Cách Tốt Nhất Phát Hiện Outliers Trong Datasets Lớn?
 
@@ -602,11 +603,11 @@ Với datasets lớn (>1 triệu rows): 1. **Isolation Forest**: Nhanh, song son
 
 Năm bước để tái tạo được: 1. **Version control**: Git cho cleaning scripts
 2. **Parameterized scripts**: Không hardcode giá trị, dùng config files
-3. **Deterministic operations**: Sử dụng `random_state` cho mọi bước ngẫu nhiên
+3. **Deterministic operations**: Sử dụng ````random_state```` cho mọi bước ngẫu nhiên
 4. **Reconciliation**: Lưu log đầy đủ các thao tác (OpenRefine JSON, Python logs)
-5. **Environment management**: `requirements.txt` hoặc `environment.yml` với exact versions
+5. **Environment management**: ````requirements.txt```` hoặc ````environment.yml```` với exact versions
 
-```python
+`````python
 # Thêm vào scripts
 import hashlib
 
@@ -614,7 +615,7 @@ def log_checksum(filepath): """Log MD5 checksum để xác minh dữ liệu"""
     with open(filepath, 'rb") as f: checksum = hashlib.md5(f.read()).hexdigest()
     logger.info(f"File {filepath} MD5: {checksum}")
     return checksum
-```
+````
 
 ## Kết Luận
 
@@ -635,7 +636,7 @@ Nhớ rằng: "Garbage in, garbage out" — không có mô hình ML nào có th�
 - [Cleanlab Documentation](https://docs.cleanlab.ai/stable/index.html) — Phát hiện lỗi dữ liệu
 - [pyjanitor Documentation](https://pyjanitor-devs.github.io/pyjanitor/) — API làm sạch dữ liệu sạch cho Pandas
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

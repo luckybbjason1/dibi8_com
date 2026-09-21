@@ -22,6 +22,7 @@ aliases:
   - /posts/vector-database-comparison/-
 ---
 
+
 {</* resource-info */>}
 
 在构建 RAG（检索增强生成）系统时，向量数据库的选择直接决定了检索质量、响应延迟和长期运维成本。2025 年的向量数据库市场百花齐放，从托管云原生方案到高性能开源引擎各有侧重。
@@ -59,11 +60,11 @@ Pinecone 采用按存储 + 查询量计费的模式：
 
 | 指标 | Serverless 定价 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 存储 | ~$0.10/GB/月 | 按实际存储向量占用计算 |
 | 查询 | ~$0.10/百万次查询 | 含检索和元数据过滤 |
@@ -97,11 +98,11 @@ Weaviate 来自荷兰，以其 **GraphQL 接口** 和 **模块化 AI 集成** �
 
 | 部署方式 | 适用场景 | 价格区间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Weaviate Cloud (WCD) | 不想运维的团队 | $0.05-$0.25/百万查询 |
 | 自托管（Docker/K8s） | 数据敏感型企业 | 免费（仅基础设施费用） |
@@ -132,13 +133,13 @@ Chroma 的设计哲学是**极简主义**——用最少的代码实现向量存
 - **轻量级**：零依赖（除 Python 包外无需额外安装）
 - **框架集成**：LangChain 的默认向量数据库
 
-```python
+````python
 import chromadb
 client = chromadb.Client()
 collection = client.create_collection("my_docs")
 collection.add(documents=["文本1", "文本2"], ids=["id1", "id2"])
 results = collection.query(query_texts=["查询"], n_results=2)
-```
+`````
 
 ### 优势与局限
 
@@ -170,11 +171,11 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 
 | 实例类型 | 适用场景 | 起步价格 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Serverless | 开发测试/可变负载 | 按查询 + 存储计费 |
 | Dedicated | 生产环境稳定负载 | ~$65/月起 |
@@ -199,15 +200,15 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 
 | 维度 | Pinecone | Weaviate | Chroma | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **部署方式** | 仅云托管 | 云 + 自托管 | 本地/嵌入式 | 自托管 + Zilliz Cloud |
 | **开源协议** | 闭源 | BSD-3 | Apache 2.0 | Apache 2.0 |
@@ -228,13 +229,13 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 
 | 数据库 | QPS (1M 向量, 768维) | 召回率@10 | P99 延迟 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Milvus (HNSW) | 8,500+ | 0.98 | 2.1ms |
 | Pinecone | 7,200+ | 0.97 | 3.5ms |
@@ -277,7 +278,7 @@ Milvus 由 Zilliz 公司开发并开源，是**吞吐量最高、最成熟**的�
 
 ### LangChain 集成
 
-```python
+`````python
 from langchain_community.vectorstores import Pinecone, Weaviate, Chroma, Milvus
 
 # Pinecone
@@ -288,16 +289,16 @@ vectorstore = Chroma.from_documents(docs, embeddings)
 
 # Milvus
 vectorstore = Milvus.from_documents(docs, embeddings, connection_args={"host": "localhost", "port": "19530"})
-```
+`````
 
 ### LlamaIndex 集成
 
-```python
+`````python
 from llama_index.vector_stores.pinecone import PineconeVectorStore
 from llama_index.vector_stores.milvus import MilvusVectorStore
 
 vector_store = MilvusVectorStore(uri="http://localhost:19530", dim=1536)
-```
+````
 
 ## 常见问题 FAQ
 
@@ -322,11 +323,11 @@ Chroma 是嵌入式/本地优先的轻量方案，开源免费但功能相对简
 在 ANN-Benchmarks 测试中，Milvus 在吞吐量和延迟方面表现最优，尤其是启用了 GPU 索引加速后。Pinecone 的 Serverless 架构在弹性扩展方面表现突出。具体选择应结合实际数据规模和查询模式测试验证。
 
 
----
+* * *
 更多技术细节可参考各数据库官方文档：[Pinecone Docs](https://docs.pinecone.io/)、[Weaviate Docs](https://weaviate.io/developers/weaviate)、[Chroma Docs](https://docs.trychroma.com/)、[Milvus Docs](https://milvus.io/docs)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -399,7 +400,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -431,15 +432,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

@@ -12,6 +12,7 @@ maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
+
 # Ruv Pi：自我扩展编码代理CLI多提供商LLM API
 
 ## 介绍
@@ -36,7 +37,7 @@ AI编程工具的版图已变得异常碎片化。开发人员在使用Claude Co
 尝试上面讨论的工具。如果该服务是付费的，请检查是否有关联推广优惠。
 
 
----
+* * *
 **来源与进一步阅读**: - 官方文档: https://ruv-pi.dev（查看官方仓库）
 - GitHub 仓库: https://github.com/ruv-pi/11/ruv/pi
 - 社区讨论: https://github.com/ruv-pi/discussions
@@ -106,11 +107,11 @@ Ruv Pi：自我扩展编码代理CLI多提供商LLM API represents an important 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -120,7 +121,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents-production-llm-software-2026](ruv-pi)
 - [12-factor-agents](ruv-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -216,15 +217,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

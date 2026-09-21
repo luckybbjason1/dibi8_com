@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/caddy/-
 ---
 
+
 {{</* resource-info */>}}
 
 Caddy 是唯一一个将 HTTPS 视为默认设置而非事后补救的主流 Web 服务器。当 Nginx 需要手动配置证书、Apache 需要折腾 mod_ssl 时，Caddy 已经自动从 Let's Encrypt 和 ZeroSSL 获取并续期 TLS 证书 —— 无需 cron 任务、无需 certbot、无需配置。拥有 **72,595 个 GitHub Stars**，代码基于 Go 语言编写，Caddy 已在生产环境中服务了数万亿请求，管理着数百万张 TLS 证书，部署规模从单台 VPS 到管理数十万个站点的大型集群不等。
@@ -38,7 +39,7 @@ Caddy 基于**模块化中间件链**架构构建。每个入站请求流经配�
 
 服务器使用 **Go 的 goroutine 调度器**，而非传统的事件循环或每连接一个进程模型。每个 HTTP 请求获得自己的 goroutine，这意味着：
 
-- 无需调整 worker 进程（没有 `worker_processes` 指令）
+- 无需调整 worker 进程（没有 ```worker_processes```` 指令）
 - 并发请求处理随 GOMAXPROCS 自动扩展
 - 每个连接的内存占用高于 Nginx 的事件循环，但更易于理解
 
@@ -48,7 +49,7 @@ Caddy 基于**模块化中间件链**架构构建。每个入站请求流经配�
 
 1. **ACME 客户端激活**：Caddy 内置的 ACME 客户端联系 Let's Encrypt（主）和 ZeroSSL（备用）
 2. **域名验证**：通过 HTTP-01 或 TLS-ALPN-01 挑战证明域名所有权
-3. **证书签发**：获取 TLS 证书并存储在 `$HOME/.local/share/caddy` 或 `/data`
+3. **证书签发**：获取 TLS 证书并存储在 ````$HOME/.local/share/caddy```` 或 ````/data````
 4. **OCSP 装订**：自动获取证书状态并装订到 TLS 握手
 5. **续期监控**：后台 goroutine 检查过期时间，在到期前 60 天自动续期
 6. **HTTP 重定向到 HTTPS**：端口 80 的流量自动重定向到 443 端口
@@ -57,9 +58,9 @@ Caddy 基于**模块化中间件链**架构构建。每个入站请求流经配�
 
 ### JSON 配置 API
 
-Caddy 在 `localhost:2019` 暴露 RESTful 管理 API，接受 JSON 配置。这实现了无需重启进程的动态配置变更，并为 `caddy-docker-proxy` 插件提供支持，实现自动 Docker 服务发现。
+Caddy 在 ````localhost:2019```` 暴露 RESTful 管理 API，接受 JSON 配置。这实现了无需重启进程的动态配置变更，并为 ````caddy-docker-proxy```` 插件提供支持，实现自动 Docker 服务发现。
 
-```bash
+`````bash
 # 获取当前运行配置
 curl http://localhost:2019/config/
 
@@ -67,7 +68,7 @@ curl http://localhost:2019/config/
 curl -X POST http://localhost:2019/config/apps/http/servers/srv0/routes \
   -H "Content-Type: application/json" \
   -d '{"handle": [{"handler": "static_response", "body": "OK"}]}'
-```
+`````
 
 ## 安装与配置
 
@@ -75,7 +76,7 @@ curl -X POST http://localhost:2019/config/apps/http/servers/srv0/routes \
 
 ### 通过官方仓库安装（推荐）
 
-```bash
+`````bash
 # 安装必要包
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
 
@@ -93,11 +94,11 @@ sudo apt install caddy
 
 # 检查版本
 caddy version
-```
+`````
 
 ### 通过 Docker 安装
 
-```yaml
+`````yaml
 # 文件: docker-compose.yml
 services: caddy: image: caddy:2-alpine
     container_name: caddy
@@ -113,19 +114,19 @@ services: caddy: image: caddy:2-alpine
 
 volumes: caddy_data: caddy_config: networks: caddy_network: name: caddy_network
     driver: bridge
-```
+`````
 
-```bash
+`````bash
 # 启动容器
 docker compose up -d
 
 # 查看日志
 docker compose logs -f caddy
-```
+`````
 
 ### 第一个 Caddyfile —— 静态站点
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 example.com {
     root * /usr/share/caddy
@@ -140,19 +141,19 @@ example.com {
         Referrer-Policy "strict-origin-when-cross-origin"
     }
 }
-```
+`````
 
-```bash
+`````bash
 # 验证配置
 caddy validate --config /etc/caddy/Caddyfile
 
 # 零停机重载
 caddy reload --config /etc/caddy/Caddyfile
-```
+`````
 
 ### Systemd 服务配置
 
-```ini
+`````ini
 # 文件: /etc/systemd/system/caddy.service
 [Unit]
 Description=Caddy Web Server
@@ -175,14 +176,14 @@ AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-```bash
+`````bash
 # 启用并启动
 sudo systemctl daemon-reload
 sudo systemctl enable --now caddy
 sudo systemctl status caddy
-```
+`````
 
 ## 与 Docker、Prometheus、Grafana 和 Let's Encrypt 集成
 
@@ -190,7 +191,7 @@ sudo systemctl status caddy
 
 最常见的生产环境部署方式是将 Caddy 用作多个容器化应用的反向代理。
 
-```yaml
+`````yaml
 # 文件: docker-compose.yml
 services: caddy: image: caddy:2-alpine
     container_name: caddy
@@ -231,9 +232,9 @@ services: caddy: image: caddy:2-alpine
 
 volumes: caddy_data: caddy_config: prometheus_data: grafana_data: networks: proxy: name: proxy
     driver: bridge
-```
+`````
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 {
     # 全局选项
@@ -301,11 +302,11 @@ prometheus.example.com {
 grafana.example.com {
     reverse_proxy grafana:3000
 }
-```
+`````
 
 ### Prometheus 采集配置
 
-```yaml
+`````yaml
 # 文件: prometheus.yml
 global: scrape_interval: 15s
   evaluation_interval: 15s
@@ -316,13 +317,13 @@ scrape_configs: - job_name: caddy
 
   - job_name: 'node-exporter'
     static_configs: - targets: ['node-exporter:9100']
-```
+`````
 
 ### 多租户 SaaS 的按需 TLS
 
 对于动态提供客户子域名的平台，Caddy 支持按需 TLS —— 首次请求域名时获取证书。
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 {
     on_demand_tls {
@@ -339,9 +340,9 @@ scrape_configs: - job_name: caddy
 
     reverse_proxy app:3000
 }
-```
+`````
 
-```python
+`````python
 # 文件: app/allow_endpoint.py (Flask 示例)
 from flask import Flask, request, jsonify
 
@@ -355,7 +356,7 @@ def check_domain(): domain = request.args.get("domain", "")
     return "Not allowed", 403
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -365,13 +366,13 @@ if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
 
 | 基准测试工作负载 | Caddy 2.8 | Nginx 1.26 | 胜出方 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 KB 静态文件, HTTP/2 (16 核) | 142,000 req/s | 117,000 req/s | Caddy +22% |
 | 1 MB 静态文件, HTTP/2 (16 核) | 9,800 req/s | 11,400 req/s | Nginx +16% |
@@ -385,13 +386,13 @@ if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
 
 | 场景 | Caddy 2.8 | Nginx 1.30 | Traefik 3.1 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HTTP 反向代理 (2 KB JSON) | 81,000 req/s | 88,000 req/s | 82,000 req/s |
 | HTTPS 反向代理 | 36,000 req/s | 38,000 req/s | 36,500 req/s |
@@ -415,7 +416,7 @@ if __name__ == "__main__": app.run(host="0.0.0.0", port=8080)
 
 ### 预压缩资源的文件服务器
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 example.com {
     root * /var/www/html
@@ -435,11 +436,11 @@ example.com {
         Cache-Control "public, max-age=31536000, immutable"
     }
 }
-```
+`````
 
 ### 带健康检查的高级负载均衡
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 api.example.com {
     reverse_proxy backend1:8080 backend2:8080 backend3:8080 {
@@ -465,11 +466,11 @@ api.example.com {
         header_up X-Forwarded-Proto {scheme}
     }
 }
-```
+`````
 
 ### 自定义错误页面
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 example.com {
     root * /var/www/html
@@ -477,12 +478,12 @@ example.com {
 
     handle_errors {
         @404 {
-            expression `{http.error.status_code} == 404`
+            expression ````{http.error.status_code} == 404````
         }
         rewrite @404 /404.html
 
         @5xx {
-            expression `{http.error.status_code} >= 500`
+            expression ````{http.error.status_code} >= 500````
         }
         rewrite @5xx /500.html
 
@@ -491,11 +492,11 @@ example.com {
         }
     }
 }
-```
+`````
 
 ### 文件日志与轮转
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 {
     log {
@@ -521,11 +522,11 @@ example.com {
 
     reverse_proxy app:3000
 }
-```
+`````
 
 ### JWT API 认证
 
-```caddy
+`````caddy
 # 文件: Caddyfile
 api.example.com {
     # 验证 JWT token（需要 http.jwt 模块）
@@ -550,11 +551,11 @@ api.example.com {
         reverse_proxy protected:3000
     }
 }
-```
+`````
 
 ### 生产全栈 Docker-Compose
 
-```yaml
+`````yaml
 # 文件: docker-compose.prod.yml
 services: caddy: image: caddy:2-alpine
     restart: unless-stopped
@@ -581,21 +582,21 @@ volumes: caddy_data: driver: local
 
 networks: proxy: driver: bridge
     internal: false
-```
+`````
 
 ## 与替代方案对比
 
 | 功能特性 | Caddy 2.8 | Nginx 1.30 | Apache 2.4 | Traefik 3.1 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **自动 HTTPS (零配置)** | 是 —— 内置 | 否 —— 需 certbot | 否 —— mod_ssl + certbot | 是 —— 内置 ACME |
 | **HTTP/3 (QUIC) 支持** | 原生, 默认开启 | 原生, 需手动配置 | 实验性模块 | 原生, 实验性 |
@@ -616,11 +617,11 @@ Caddy 并非适用于所有部署场景。在投入之前需要理解以下权�
 
 **空闲时内存占用更高。** 对于相同数量的空闲 keep-alive 连接，Caddy 的 RAM 使用量是 Nginx 的 3-4 倍。在 1 GB 的 Raspberry Pi 上这很关键。在 64 GB 的 Kubernetes 节点上则无关紧要。
 
-**大文件流式传输性能较低。** Nginx 的 `sendfile` 零拷贝路径在超过 1 GB 的文件上提供 17% 的吞吐量优势。如果你运营视频流平台，Nginx 仍是更好选择。
+**大文件流式传输性能较低。** Nginx 的 ````sendfile```` 零拷贝路径在超过 1 GB 的文件上提供 17% 的吞吐量优势。如果你运营视频流平台，Nginx 仍是更好选择。
 
 **运维知识储备较小。** Nginx 的专业知识无处不在 —— 每个 SRE 都调试过 nginx.conf。Caddy 的社区虽然增长迅速但规模较小。寻找具有深厚 Caddy 生产经验的顾问更难。
 
-**无内置 Docker 发现。** Traefik 通过标签自动发现容器。Caddy 需要第三方 `caddy-docker-proxy` 插件才能实现同等功能，或者服务变更时需要手动更新 Caddyfile。
+**无内置 Docker 发现。** Traefik 通过标签自动发现容器。Caddy 需要第三方 ````caddy-docker-proxy```` 插件才能实现同等功能，或者服务变更时需要手动更新 Caddyfile。
 
 **冷启动延迟。** Caddy 的 180ms 冷启动（对比 Nginx 的 45ms）在激进自动扩缩容环境中可能导致短暂的 503 级联。预热池或就绪探针可以缓解此问题。
 
@@ -628,7 +629,7 @@ Caddy 并非适用于所有部署场景。在投入之前需要理解以下权�
 
 ### Caddy 的自动 HTTPS 在 Cloudflare 后面能用吗？
 
-可以。如果 Cloudflare 代理你的 DNS（橙色云），将 Caddy 的 DNS A 记录设置为服务器的公网 IP，让 Cloudflare 处理边缘。Caddy 仍会自动为源站获取证书。对于 Cloudflare 和 Caddy 之间的完全加密，使用 Cloudflare 的 Origin CA 证书，或将 Caddy 配置为使用 DNS 挑战进行直接 ACME 签发。`tls` 指令支持自定义证书路径。
+可以。如果 Cloudflare 代理你的 DNS（橙色云），将 Caddy 的 DNS A 记录设置为服务器的公网 IP，让 Cloudflare 处理边缘。Caddy 仍会自动为源站获取证书。对于 Cloudflare 和 Caddy 之间的完全加密，使用 Cloudflare 的 Origin CA 证书，或将 Caddy 配置为使用 DNS 挑战进行直接 ACME 签发。````tls```` 指令支持自定义证书路径。
 
 ### Caddy 能在生产中完全替代 Nginx 吗？
 
@@ -636,19 +637,19 @@ Caddy 并非适用于所有部署场景。在投入之前需要理解以下权�
 
 ### Caddy 如何处理证书续期失败？
 
-Caddy 实现了多颁发者回退：如果 Let's Encrypt 失败，自动使用 ZeroSSL 重试。证书在到期前 60 天续期，临时失败时 Caddy 以指数退避重试。管理 API 端点 `/certificates` 显示所有托管证书的状态，便于监控和告警。
+Caddy 实现了多颁发者回退：如果 Let's Encrypt 失败，自动使用 ZeroSSL 重试。证书在到期前 60 天续期，临时失败时 Caddy 以指数退避重试。管理 API 端点 ````/certificates```` 显示所有托管证书的状态，便于监控和告警。
 
 ### Caddyfile vs JSON 配置如何取舍？
 
-Caddyfile 人类可读，针对手写配置优化 —— 适合大多数部署场景。JSON 机器可生成，支持通过管理 API 动态更新 —— 适合构建配置管理工具或使用 `caddy-docker-proxy` 时。两种格式功能完全相同；选择取决于谁生成配置。
+Caddyfile 人类可读，针对手写配置优化 —— 适合大多数部署场景。JSON 机器可生成，支持通过管理 API 动态更新 —— 适合构建配置管理工具或使用 ````caddy-docker-proxy```` 时。两种格式功能完全相同；选择取决于谁生成配置。
 
 ### 如何在生产环境中监控 Caddy？
 
-启用全局选项 `servers { metrics }` 即可在 `:2019/metrics` 暴露 Prometheus 兼容指标。关键指标包括 `caddy_http_requests_total`、`caddy_http_request_duration_seconds` 和 `caddy_tls_handshake_duration_seconds`。Grafana 仪表盘 ID `14280` 提供开箱即用的可视化。配合上游的 `health_uri` 指令实现端到端服务健康监控。
+启用全局选项 ````servers { metrics }```` 即可在 ````:2019/metrics```` 暴露 Prometheus 兼容指标。关键指标包括 ````caddy_http_requests_total````、````caddy_http_request_duration_seconds```` 和 ````caddy_tls_handshake_duration_seconds````。Grafana 仪表盘 ID ````14280```` 提供开箱即用的可视化。配合上游的 ````health_uri```` 指令实现端到端服务健康监控。
 
 ### Caddy 可以使用自己的通配符证书吗？
 
-可以。将证书和密钥挂载到容器中，然后在 Caddyfile 中引用：`tls /etc/caddy/cert.pem /etc/caddy/key.pem`。Caddy 会直接使用这些文件并跳过 ACME 申请。这在具有内部证书颁发机构的企业环境中很常见。
+可以。将证书和密钥挂载到容器中，然后在 Caddyfile 中引用：````tls /etc/caddy/cert.pem /etc/caddy/key.pem```。Caddy 会直接使用这些文件并跳过 ACME 申请。这在具有内部证书颁发机构的企业环境中很常见。
 
 ## 结论
 
@@ -690,7 +691,7 @@ Caddy 的自动 HTTPS、默认 HTTP/3 支持和大幅简化的配置使其成为
 - [Caddy 社区论坛](https://caddy.community/)
 
 
----
+* * *
 *披露：本文包含 DigitalOcean 和 HTStack 的联盟链接。如果你通过这些链接购买服务，dibi8.com 将获得佣金，不会向你收取额外费用。所有基准数据和推荐均基于独立测试和编辑判断。*
 
 
@@ -720,7 +721,7 @@ Caddy 的自动 HTTPS、默认 HTTP/3 支持和大幅简化的配置使其成为
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](caddy)
@@ -729,6 +730,6 @@ Caddy 的自动 HTTPS、默认 HTTP/3 支持和大幅简化的配置使其成为
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](caddy)
 - [moneyprinterturbo-one-click-ai-video-generator](caddy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

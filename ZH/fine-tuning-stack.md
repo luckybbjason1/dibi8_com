@@ -24,6 +24,7 @@ aliases:
   - /posts/fine-tuning-stack/-
 ---
 
+
 2026 LLM 微调终于有了一致的 stack —— 用胶带粘 HuggingFace Trainer + DeepSpeed config + 自定义 eval 脚本的日子结束了。这个合集组装的是 **5 组件管线**，从原始数据集到生产部署的微调模型，快速迭代（Unsloth）和生产部署（Axolotl）干净分离。按规模 $50-300/月训练基础设施。
 
 如果你在建领域特定模型、给开源权重基础模型做 instruction-tuning、做 DPO/GRPO 对齐、跑生产微调管线 —— 就这个 stack。
@@ -32,15 +33,15 @@ aliases:
 
 | # | 组件 | 阶段 | 角色 | 深度指南 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **Unsloth** | 实验 | 单 GPU 快速微调，2× 速度 + 70% VRAM 节省 | [Unsloth 2026 指南](/zh/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) |
 | 2 | **Axolotl** | 生产 | YAML 驱动的多 GPU 生产微调 | [Axolotl 2026 指南](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
@@ -67,7 +68,7 @@ aliases:
 
 ## 2. 架构 —— 实验到生产管线
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ 数据集（JSONL：prompt/response 或 messages）     │
    │  → HuggingFace datasets 库                       │
@@ -97,7 +98,7 @@ aliases:
    │  → 推合好模型到 HuggingFace Hub                  │
    │  → vLLM 在 LiteLLM 网关后服务模型                │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 分工是关键 —— Unsloth 快速迭代做"什么有效"探索，Axolotl 稳健做"现在扩展"生产跑。
 
@@ -108,9 +109,9 @@ aliases:
 **Unsloth 在这赢的理由**：比 HF TRL 快 2× = 每美元 2× 实验。少 70% VRAM = $1500 RTX 4090 上的实验，不需要 A100。看 [Unsloth 深度文](/zh/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)。
 
 **快装**：
-```bash
+`````bash
 pip install unsloth
-```
+`````
 
 **模式**：Vast.ai（$0.40-0.60/小时）或 RunPod 租 RTX 4090，周末跑 10-20 实验，找赢配方，团队评审用 notebook 记录。
 
@@ -121,9 +122,9 @@ pip install unsloth
 **Axolotl 在这赢的理由**：开箱可用的多节点分布式训练，最广方法支持（DPO/GRPO/KTO/ORPO/GDPO），config-as-code 可复现。看 [Axolotl 深度文](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/)。
 
 **快装**：
-```bash
+`````bash
 pip install axolotl
-```
+`````
 
 **模式**：从 Unsloth 赢配方拿超参 → 写 Axolotl YAML → 8× H100 集群跑（Vast.ai ~$15-25/小时）做最终 6-12 小时生产跑 → 最终权重推 HF Hub。
 
@@ -134,13 +135,13 @@ pip install axolotl
 **为什么显然选这个**：HF 赢了 AI 数据集分发层（像代码的 GitHub，HF Hub 给模型+数据集）。每个微调工具原生集成。
 
 **快装**：
-```bash
+`````bash
 pip install datasets
 huggingface-cli login
-```
+`````
 
 **模式**：
-```python
+`````python
 from datasets import load_dataset, Dataset
 
 # 本地准备 + 推
@@ -149,7 +150,7 @@ data.push_to_hub("yourname/my-finetune-dataset", private=True)
 
 # 团队成员加载
 data = load_dataset("yourname/my-finetune-dataset")
-```
+`````
 
 敏感数据（医疗 / 金融 / 专有）用 HF Hub **私有数据集** —— 有访问控制。
 
@@ -158,11 +159,11 @@ data = load_dataset("yourname/my-finetune-dataset")
 **角色**：你跑 50 实验找赢配方时，需要方法对比它们。W&B 是事实选择 —— 自动记 loss 曲线、eval 分、超参、硬件利用率。
 
 **快装**（通过 env var 配合 Unsloth 和 Axolotl）：
-```bash
+`````bash
 pip install wandb
 wandb login
 export WANDB_PROJECT="my-finetune-project"
-```
+`````
 
 现在每个 Unsloth / Axolotl 训练跑自动记到你 W&B 仪表盘。
 
@@ -175,21 +176,21 @@ export WANDB_PROJECT="my-finetune-project"
 完整 vLLM 为何在生产多用户服务上胜过 Ollama / LM Studio / llama.cpp 见 [Local LLM Runner 对比](/zh/resources/llm-frameworks/local-llm-runner-comparison-2026/)。
 
 **快装 + 服务微调模型**：
-```bash
+`````bash
 pip install vllm
 vllm serve yourname/my-finetuned-llama \
   --enable-lora \
   --lora-modules my-lora=path/to/lora_weights \
   --port 8000
-```
+`````
 
 在 [LiteLLM 网关](/zh/resources/llm-frameworks/litellm/) 后做认证 + 限流 + 客户级虚拟 key = 跑在你拥有基础设施上的生产就绪多租户 LLM API。
 
 ## 8. Day 1 管线设置（3-4 小时）
 
-1. **JSONL 格式数据集**（看情况）—— 准备 `train.jsonl` 和 `eval.jsonl`，推 HF Hub 私有
+1. **JSONL 格式数据集**（看情况）—— 准备 ````train.jsonl```` 和 ````eval.jsonl````，推 HF Hub 私有
 2. **租 RTX 4090 GPU**（10 分）—— Vast.ai 或 {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}} 给实验阶段
-3. **装 Unsloth + W&B**（10 分）—— `pip install unsloth wandb`
+3. **装 Unsloth + W&B**（10 分）—— ````pip install unsloth wandb```
 4. **第一次 QLoRA 跑**（60 分）—— Unsloth 指南第 3 节，微调 Llama 3.2 8B 1 epoch，验 W&B log 出现
 5. **迭代 5-10 短实验**（~半天）—— 变学习率、LoRA rank、数据集切片。找到最佳 eval 分配方
 6. **配方翻译成 Axolotl YAML**（30 分）—— 同超参 YAML 格式，git commit
@@ -204,13 +205,13 @@ vllm serve yourname/my-finetuned-llama \
 
 | 项 | 业余 | 生产团队 | 小 AI lab |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 实验 GPU（按需租）| $30-60/月 | $100-200/月 | $300-500/月 |
 | 生产训练（跑租）| $0-50/月 | $200-400/月 | $1500-3000/月 |
@@ -244,7 +245,7 @@ vllm serve yourname/my-finetuned-llama \
 实验租 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}}，生产跑扩到 Vast.ai 8× H100，最终模型部署在独立 24 GB GPU。端到端自托管，权重你拥有，成本随严肃程度扩展。
 
 
----
+* * *
 *配套合集：[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 部署后覆盖推理成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 做自动微调循环。[知识库 Stack](/zh/collections/knowledge-base-stack/) 在某些情况下 RAG 是微调的替代品。*
 
 
@@ -310,11 +311,11 @@ Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线 repr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -324,6 +325,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](fine-tuning-stack)
 - [ai-engineering-from-scratch](fine-tuning-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

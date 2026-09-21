@@ -22,6 +22,7 @@ aliases:
   - /posts/log-monitoring-observability-tools-developers/
 ---
 
+
 {</* resource-info */>}
 
 Trong hệ thống phần mềm hiện đại, việc biết ứng dụng "đang chạy" không còn đủ — bạn cần biết nó **đang hoạt động như thế nào**. Đó chính xác là những gì observability mang lại: khả năng hiểu được trạng thái nội bộ của hệ thống chỉ bằng cách phân tích các tín hiệu đầu ra. Năm 2025, observability đã chuyển từ một khái niệm xa xỉ thành yêu cầu cơ bản cho mọi team phát triển.
@@ -48,13 +49,13 @@ Monitoring truyền thống tập trung vào việc phát hiện các vấn đ�
 
 [Grafana Loki](https://grafana.com/oss/loki) là hệ thống tổng hợp log do Grafana Labs phát triển, được thiết kế đặc biệt để hoạt động cùng với Prometheus và Grafana. Khác với Elasticsearch lập chỉ mục toàn bộ nội dung log, **Loki chỉ lập chỉ mục các labels** (metadata như service name, level, job) và lưu nội dung log ở dạng nén. Điều này làm cho Loki nhẹ hơn, rẻ hơn, và dễ vận hành hơn ELK Stack đáng kể.
 
-Promtail — agent đi kèm — chịu trách nhiệm thu thập log từ các file trên server và đẩy lên Loki. LogQL là ngôn ngữ truy vấn của Loki, tương tự PromQL nhưng dành cho log: ```logql
+Promtail — agent đi kèm — chịu trách nhiệm thu thập log từ các file trên server và đẩy lên Loki. LogQL là ngôn ngữ truy vấn của Loki, tương tự PromQL nhưng dành cho log: ````logql
 # Tìm log lỗi trong service api
 {job="api"} |= "ERROR" | json | line_format "{{.message}}"
 
 # Tìm request chậm hơn 1 giây
 {job="nginx"} | json | response_time > 1
-```
+`````
 
 ### ELK/Elastic Stack: Lựa Chọn Kinh Điển
 
@@ -80,7 +81,7 @@ New Relic cũng tích hợp **CodeStream** — plugin cho VS Code và JetBrains 
 
 ### Prometheus: Thu Thập Số Liệu
 
-[Prometheus](https://prometheus.io) là hệ thống giám sát và cảnh báo mã nguồn mở, trở thành tiêu chuẩn de facto cho việc thu thập metrics trong hệ sinh thái cloud-native. Prometheus sử dụng mô hình pull — tự động phát hiện các target và kéo metrics từ endpoint `/metrics` của ứng dụng. Dữ liệu được lưu dưới dạng time-series và truy vấn bằng PromQL.
+[Prometheus](https://prometheus.io) là hệ thống giám sát và cảnh báo mã nguồn mở, trở thành tiêu chuẩn de facto cho việc thu thập metrics trong hệ sinh thái cloud-native. Prometheus sử dụng mô hình pull — tự động phát hiện các target và kéo metrics từ endpoint ````/metrics```` của ứng dụng. Dữ liệu được lưu dưới dạng time-series và truy vấn bằng PromQL.
 
 ### Grafana: Dashboard Và Cảnh Báo
 
@@ -116,7 +117,7 @@ Trong kiến trúc microservices, một request từ ngườii dùng có thể �
 
 ### OpenTelemetry Instrumentation
 
-OpenTelemetry cung cấp auto-instrumentation cho hầu hết các framework phổ biến: ```javascript
+OpenTelemetry cung cấp auto-instrumentation cho hầu hết các framework phổ biến: `````javascript
 // Node.js với Express — auto-instrumentation
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
@@ -126,7 +127,7 @@ const sdk = new NodeSDK({
   instrumentations: [getNodeAutoInstrumentations()]
 });
 sdk.start();
-```
+`````
 
 ### So Sánh Jaeger vs Tempo vs Zipkin
 
@@ -170,7 +171,7 @@ Alert fatigue xảy ra khi team nhận quá nhiều cảnh báo không quan tr�
 
 ### Stack Loki + Grafana
 
-```yaml
+`````yaml
 version: '3"
 services: loki: image: grafana/loki:2.9.0
     ports: - "3100:3100"
@@ -184,7 +185,7 @@ services: loki: image: grafana/loki:2.9.0
 
   grafana: image: grafana/grafana:10.0.0
     ports: - "3000:3000"
-```
+````
 
 ## Kết Luận
 
@@ -225,7 +226,7 @@ SaaS (Datadog, New Relic, Grafana Cloud) phù hợp khi bạn muốn tập trung
 - [SigNoz](https://signoz.io)
 - [Prometheus Documentation](https://prometheus.io)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

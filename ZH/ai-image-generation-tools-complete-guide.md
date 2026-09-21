@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/ai-image-generation-tools-complete-guide/-
 ---
+
 # AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等
 
 
@@ -31,13 +32,13 @@ AI图像生成技术在2024至2025年间经历了前所未有的跃迁。从2022
 
 | 架构类型 | 代表模型 | 优势 | 劣势 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 扩散模型 | Stable Diffusion、DALL-E 3 | 图像质量高、训练稳定、可控性强 | 生成速度慢、需要多步采样 |
 | GAN | StyleGAN、BigGAN | 生成速度快、单步推理 | 训练不稳定、模式坍塌问题 |
@@ -121,17 +122,17 @@ Leonardo.ai专注于游戏开发者和数字艺术家的工作流，提供了丰
 
 | 工具 | 最高分辨率 | 文本渲染 | 本地部署 | 商业授权 | 起步价格 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Midjourney v7 | 4096x4096 | 良好 | 不支持 | 支持 | $30/月 |
 | DALL-E 3 | 1024x1024 | 优秀 | 不支持 | 支持 | $20/月（含ChatGPT） |
@@ -156,9 +157,9 @@ Leonardo.ai专注于游戏开发者和数字艺术家的工作流，提供了丰
 
 提示词工程（Prompt Engineering）是获得高质量AI图像的关键技能。以下是经过验证的提示词结构：
 
-```
+````
 [主体描述] + [环境/背景] + [艺术风格] + [光照条件] + [摄影参数] + [质量修饰词]
-```
+`````
 
 例如：
 > "A futuristic Japanese street at night, neon lights reflecting on wet pavement, cyberpunk aesthetic, cinematic lighting, shot on 35mm lens, ultra detailed, 8k resolution --ar 16:9"
@@ -215,7 +216,7 @@ AI生成图像的版权问题仍是全球法律界的热点议题。截至2025�
 根据输出结果调整提示词，记录有效的参数组合。建立个人提示词库，持续积累高质量的生成配方。
 
 
----
+* * *
 ## 常见问题解答（FAQ）
 
 ### 最好的免费AI图像生成器是什么？
@@ -243,7 +244,7 @@ Stable Diffusion 3.5 Large的最低要求是12GB显存（RTX 3060 12GB），推�
 保持图像风格一致是专业应用的关键挑战。推荐方法：Midjourney使用--sref（风格参考）和--cref（角色参考）参数；Stable Diffusion使用ControlNet控制构图和姿势；训练专门的LoRA模型锁定特定风格；使用固定的种子值（seed）减少随机性。
 
 
----
+* * *
 ## 推荐工具
 
 部署或体验上述工具时，推荐：
@@ -315,7 +316,7 @@ AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等 rep
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -328,7 +329,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -339,4 +340,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

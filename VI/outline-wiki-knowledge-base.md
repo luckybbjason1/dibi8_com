@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/outline-wiki-knowledge-base/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tài Liệu Đi Đâu Mất Rồi
@@ -62,7 +63,7 @@ Tài liệu kế thừa quyền collection nhưng có thể ghi đè riêng lẻ
 
 ## Cài Đặt & Thiết Lập: Production Docker Deploy
 
-Outline yêu cầu ba dịch vụ: app, PostgreSQL, và Redis. Thiết lập Docker Compose production-ready: ```yaml
+Outline yêu cầu ba dịch vụ: app, PostgreSQL, và Redis. Thiết lập Docker Compose production-ready: ````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -127,11 +128,11 @@ services: outline: image: outlinewiki/outline:0.83.0
       exit 0;
       "
 
-volumes: postgres-data: redis-data: minio-data: ```
+volumes: postgres-data: redis-data: minio-data: `````
 
 ### Tạo Secrets
 
-Trước khi khởi động, tạo các secret cần thiết: ```bash
+Trước khi khởi động, tạo các secret cần thiết: `````bash
 # Tạo secret key 256-bit
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -140,9 +141,9 @@ export UTILS_SECRET=$(openssl rand -hex 16)
 
 echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
-```
+`````
 
-Thêm vào file `.env`: ```bash
+Thêm vào file ``.env``: `````bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -153,11 +154,11 @@ OIDC_CLIENT_ID=
 OIDC_CLIENT_SECRET=
 EOF
 chmod 600 .env
-```
+`````
 
 ### Khởi Động Stack
 
-```bash
+`````bash
 docker-compose up -d
 
 # Kiểm tra tất cả service khỏe mạnh
@@ -165,31 +166,31 @@ docker-compose ps
 
 # Xem logs
 docker-compose logs -f outline
-```
+`````
 
-Sau ~30 giây, Outline có thể truy cập tại `http://localhost:3000`.
+Sau ~30 giây, Outline có thể truy cập tại ````http://localhost:3000````.
 
 ### Thiết Lập Xác Thực
 
 Outline yêu cầu nhà cung cấp xác thực bên ngoài. Cách đơn giản nhất cho production là Google Workspace OIDC: 1. Vào [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials
 2. Tạo **OAuth 2.0 Client ID** (Web application)
-3. Thêm authorized redirect URI: `https://wiki.yourcompany.com/auth/oidc.callback`
-4. Thêm client ID và secret vào `.env`: ```bash
+3. Thêm authorized redirect URI: ````https://wiki.yourcompany.com/auth/oidc.callback````
+4. Thêm client ID và secret vào ``.env``: `````bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
 OIDC_TOKEN_URI=https://oauth2.googleapis.com/token
 OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
-```
+`````
 
-Khởi động lại Outline: ```bash
+Khởi động lại Outline: `````bash
 docker-compose restart outline
-```
+`````
 
 ### Triển Khai Nhanh Trên DigitalOcean
 
-Cho team chưa có sẵn Docker setup, [triển khai trên DigitalOcean](https://m.do.co/c/eca87ac14ee0): ```bash
+Cho team chưa có sẵn Docker setup, [triển khai trên DigitalOcean](https://m.do.co/c/eca87ac14ee0): `````bash
 # Trên Ubuntu 24.04 Droplet mới ($6/tháng)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -197,7 +198,7 @@ sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/outline/outline.git
 cd outline
 # Copy docker-compose.yml ở trên, cấu hình .env, rồi: docker compose up -d
-```
+`````
 
 Hoặc dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho deployment Outline được quản lý với SSL và backup tích hợp.
 
@@ -206,7 +207,7 @@ Hoặc dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho deployment 
 ### Tích Hợp Slack (Deep Link)
 
 Tích hợp Slack của Outline là một trong những tính năng mạnh nhất: 1. Vào [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest
-2. Dán manifest này: ```yaml
+2. Dán manifest này: `````yaml
 _display_name: Outline Wiki
 features: bot_user: display_name: Outline
     always_online: true
@@ -223,17 +224,17 @@ settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hoo
     bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
-```
+`````
 
 3. Cài đặt app vào workspace
-4. Copy Bot User OAuth Token và Verification Token vào `.env`
+4. Copy Bot User OAuth Token và Verification Token vào ````.env````
 5. Khởi động lại Outline
 
-Sau khi kết nối, gõ `/outline deploy rollback` trong Slack để tìm kiếm wiki tức thờivà dán link với preview tài liệu.
+Sau khi kết nối, gõ ````/outline deploy rollback```` trong Slack để tìm kiếm wiki tức thờivà dán link với preview tài liệu.
 
 ### API và Webhooks
 
-Truy cập lập trình vào knowledge base: ```bash
+Truy cập lập trình vào knowledge base: `````bash
 # Liệt kê tất cả collection
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -254,13 +255,13 @@ curl -X POST "https://wiki.yourcompany.com/api/documents.search" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"query": "rollback procedure"}'
-```
+`````
 
 Tạo API token từ **Settings** → **API** trong UI Outline.
 
 ### CI/CD Documentation Automation
 
-Tự động publish tài liệu từ Git repository: ```bash
+Tự động publish tài liệu từ Git repository: `````bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
@@ -282,18 +283,18 @@ jobs: publish: runs-on: ubuntu-latest
               \"text\": $(echo \"$DOCS\" | jq -R -s .),
               \"append\": false
             }"
-```
+`````
 
 ### Import Từ Notion Hoặc Confluence
 
-Di chuyển tài liệu hiện có: ```bash
+Di chuyển tài liệu hiện có: `````bash
 # Export từ Notion: # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
 # Export từ Confluence: # Space Tools → Content Tools → Export → XML format
 
 # Import vào Outline: # Collection → Import → Upload Markdown/ZIP file
 # Outline giữ cấu trúc heading và chuyển database Notion thành bảng
-```
+`````
 
 ## Benchmark & Các Trường Hợp Sử Dụng Thực Tế
 
@@ -326,7 +327,7 @@ Tested trên DigitalOcean Droplet $6/tháng (1 vCPU, 1GB RAM): | Chỉ Số | K�
 
 ### 1. HTTPS với Let's Encrypt
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/outline
 server {
     listen 80;
@@ -362,11 +363,11 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ### 2. Backup và Recovery Database
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/backup/outline-backup.sh
 set -euo pipefail
@@ -396,16 +397,16 @@ aws s3 cp "$BACKUP_DIR/outline_full_$TIMESTAMP.zip" \
 ls -t "$BACKUP_DIR"/outline_full_*.zip | tail -n +15 | xargs -r rm
 
 echo "Backup completed: outline_full_$TIMESTAMP.zip"
-```
+`````
 
-```bash
+`````bash
 # Chạy hàng ngày lúc 3 AM
 0 3 * * * /opt/backup/outline-backup.sh >> /var/log/outline-backup.log 2>&1
-```
+`````
 
 ### 3. Stack Giám Sát
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v2.51.0
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -428,11 +429,11 @@ services: prometheus: image: prom/prometheus:v2.51.0
       - '--path.sysfs=/host/sys"
     restart: unless-stopped
 
-volumes: prometheus-data: grafana-data: ```
+volumes: prometheus-data: grafana-data: `````
 
 ### 4. Lưu Trữ Tương Thích S3 với Backblaze B2
 
-Cho production file storage, thay MinIO bằng Backblaze B2 (hoặc AWS S3): ```bash
+Cho production file storage, thay MinIO bằng Backblaze B2 (hoặc AWS S3): `````bash
 # Thêm vào .env cho Backblaze B2
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -440,11 +441,11 @@ AWS_REGION=us-west-002
 AWS_S3_UPLOAD_BUCKET_URL=https://s3.us-west-002.backblazeb2.com
 AWS_S3_UPLOAD_BUCKET_NAME=your-outline-bucket
 AWS_S3_FORCE_PATH_STYLE=false
-```
+`````
 
 ### 5. Thiết Lập Multi-Environment
 
-```yaml
+`````yaml
 # docker-compose.prod.yml — extends base với production config
 services: outline: image: outlinewiki/outline:0.83.0
     environment: - NODE_ENV=production
@@ -459,7 +460,7 @@ services: outline: image: outlinewiki/outline:0.83.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -511,11 +512,11 @@ Outline sử dụng Operational Transforms (OT) —— cùng thuật toán Googl
 
 ### Chiến lược backup cho instance Outline tự lưu trữ là gì?
 
-Backup ba thành phần: (1) database PostgreSQL sử dụng `pg_dump`, (2) file đã upload từ kho lưu trữ tương thích S3 (MinIO hoặc AWS S3), và (3) dữ liệu Redis (tùy chọn, có thể rebuild). Cron job hàng ngày dump database và đồng bộ file sang lưu trữ bên ngoài bao phủ hầu hết kịch bản phục hồi. Test restore hàng quý.
+Backup ba thành phần: (1) database PostgreSQL sử dụng ````pg_dump````, (2) file đã upload từ kho lưu trữ tương thích S3 (MinIO hoặc AWS S3), và (3) dữ liệu Redis (tùy chọn, có thể rebuild). Cron job hàng ngày dump database và đồng bộ file sang lưu trữ bên ngoài bao phủ hầu hết kịch bản phục hồi. Test restore hàng quý.
 
 ### Tôi có thể import tài liệu từ Notion hoặc Confluence không?
 
-Có. Notion hỗ trợ xuất Markdown (**Settings** → **Export All Workspace Content**), mà Outline import trực tiếp. Confluence yêu cầu xuất XML chuyển đổi sang Markdown qua công cụ như `confluence-to-markdown`. Import bảo toàn cấu trúc heading, code block, và hình ảnh. Notion databases chuyển đổi thành Markdown tables trong Outline.
+Có. Notion hỗ trợ xuất Markdown (**Settings** → **Export All Workspace Content**), mà Outline import trực tiếp. Confluence yêu cầu xuất XML chuyển đổi sang Markdown qua công cụ như ````confluence-to-markdown````. Import bảo toàn cấu trúc heading, code block, và hình ảnh. Notion databases chuyển đổi thành Markdown tables trong Outline.
 
 ### Một team 50 ngườicần bao nhiêu tài nguyên server cho Outline?
 
@@ -523,11 +524,11 @@ VPS 2 vCPU với 2GB RAM xử lý thoải mái 50 ngườidùng đồng thờii.
 
 ### Có cách nào để tài liệu được truy cập công khai không?
 
-Có. Bất kỳ tài liệu nào có thể được chia sẻ qua link công khai chỉ đọc. Vào **Share** → **Publish to Internet** để tạo URL công khai. Điều này hữu ích cho tài liệu API, hướng dẫn ngườidùng, hoặc wiki dự án open-source. Tài liệu công khai không yêu cầu xác thực và được index bởi công cụ tìm kiếm trừ khi bạn thêm tag `noindex`.
+Có. Bất kỳ tài liệu nào có thể được chia sẻ qua link công khai chỉ đọc. Vào **Share** → **Publish to Internet** để tạo URL công khai. Điều này hữu ích cho tài liệu API, hướng dẫn ngườidùng, hoặc wiki dự án open-source. Tài liệu công khai không yêu cầu xác thực và được index bởi công cụ tìm kiếm trừ khi bạn thêm tag ````noindex````.
 
 ### Tôi có thể tích hợp Outline với pipeline CI/CD không?
 
-Có, thông qua REST API. Tạo API token từ **Settings** → **API**, sau đó sử dụng trong GitHub Actions, GitLab CI, hoặc bất kỳ công cụ CI nào để tự động publish cập nhật tài liệu. Pattern phổ biến là commit file Markdown vào thư mục `docs/` trong Git repo, sau đó CI push chúng lên Outline mỗi khi merge vào main.
+Có, thông qua REST API. Tạo API token từ **Settings** → **API**, sau đó sử dụng trong GitHub Actions, GitLab CI, hoặc bất kỳ công cụ CI nào để tự động publish cập nhật tài liệu. Pattern phổ biến là commit file Markdown vào thư mục ````docs/``` trong Git repo, sau đó CI push chúng lên Outline mỗi khi merge vào main.
 
 ## Kết Luận: Sở Hữu Kiến Thức Củabạn
 
@@ -543,7 +544,7 @@ Nếu team bạn hiện đang trả phí Notion hoặc Confluence, Outline hoàn
 
 **Công cụ liên quan**: [Keycloak SSO Setup](keycloak-sso-setup-dibi8-internal-link) | [MinIO S3 Setup Guide](minio-s3-setup-dibi8-internal-link)
 
----
+* * *
 
 
 
@@ -565,7 +566,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Tài Liệu MinIO](https://min.io/docs/)
 - [Hướng Dẫn Thiết Lập Google OIDC](https://developers.google.com/identity/protocols/oauth2/openid-connect)
 
----
+* * *
 
 *Bài viết này có thể chứa liên kết tiếp thị. Nếu bạn đăng ký DigitalOcean hoặc HTStack qua liên kết giới thiệu, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng.*
 
@@ -595,7 +596,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -605,6 +606,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [apple-container](outline-wiki-knowledge-base)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](outline-wiki-knowledge-base)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/-
 ---
+
 {</* resource-info */>}
 
 ## Why OpenClaw Exploded in 2026
@@ -33,11 +34,11 @@ In November 2025, Austrian developer Peter Steinberger released the first versio
 
 | Date | GitHub Stars | Key Milestone |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Nov 2025 | 15,000 | Initial release |
 | Jan 2026 | 147,000 | Front-page Hacker News feature |
@@ -56,7 +57,7 @@ Most "AI assistants" on the market are prompt wrappers—single-turn Q&A with co
 - **Heartbeat and cron workflows**: proactively check email, calendars, and monitoring alerts on a schedule rather than waiting passively for commands
 
 
----
+* * *
 ## Architecture Deep Dive: The Three Core Layers
 
 ### The Gateway Layer: Message Hub
@@ -72,7 +73,7 @@ The Gateway is OpenClaw's entry point, responsible for: - Receiving real-time me
 
 The agent layer is OpenClaw's "brain," composed of three core subsystems: #### SOUL.md — The Personality Anchor
 
-This is one of OpenClaw's most distinctive design choices. You define the agent's character, speaking style, domain expertise, and decision boundaries in plain text. It is not prompt engineering—it is persistent self-awareness: ```markdown
+This is one of OpenClaw's most distinctive design choices. You define the agent's character, speaking style, domain expertise, and decision boundaries in plain text. It is not prompt engineering—it is persistent self-awareness: ````markdown
 # SOUL.md — Who You Are
 
 ## Work Mode
@@ -84,7 +85,7 @@ Always have a concrete reference—a specific designer, painter, writer, or move
 
 ## Stance
 Privacy is not a rule requiring secrecy. Looking through someone's data makes you uncomfortable on principle.
-```
+`````
 
 SOUL.md is loaded into context at every session start, ensuring consistent "personality."
 
@@ -92,21 +93,21 @@ SOUL.md is loaded into context at every session start, ensuring consistent "pers
 
 | Layer | Content | Persistence | Typical Use |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Knowledge Graph | Project facts, relationships, technical decisions | Local Markdown (PARA method) | Cross-project durable context |
-| Daily Notes | Daily interactions, todos, fleeting thoughts | `memory/YYYY-MM-DD.md` | Short-term context, nightly consolidation |
-| Tacit Knowledge | User preferences, communication habits, hard rules | `SOUL.md` + `USER.md` | Behavioral constraints and personalization |
+| Daily Notes | Daily interactions, todos, fleeting thoughts | ````memory/YYYY-MM-DD.md```` | Short-term context, nightly consolidation |
+| Tacit Knowledge | User preferences, communication habits, hard rules | ````SOUL.md```` + ````USER.md```` | Behavioral constraints and personalization |
 
 #### Model Routing Strategy
 
-OpenClaw is not locked to a single model. In `openclaw.json`, you configure: - **Local models** (Ollama / Docker Model Runner): daily Q&A, low-risk operations
+OpenClaw is not locked to a single model. In ````openclaw.json````, you configure: - **Local models** (Ollama / Docker Model Runner): daily Q&A, low-risk operations
 - **Cloud models** (Claude 4.6 / GPT-5.5): complex reasoning, code review, long-context analysis
 - **Cost-aware switching**: automatically selects models based on task complexity, keeping daily API costs in the $1–3 range
 
@@ -121,20 +122,20 @@ ClawHub is OpenClaw's skill registry, currently hosting 5,700+ community skills 
 **Security note**: Cisco disclosed supply-chain attack risks in the OpenClaw skill ecosystem during Q1 2026. In production, audit every skill you import, enable sandbox mode, and regularly review tool permission scopes.
 
 
----
+* * *
 ## Hands-On: Deploying Your Private AI Assistant from Scratch
 
 ### Hardware and System Requirements
 
 | Scenario | Minimum | Recommended | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Gateway + cloud models only | 2 vCPU / 4GB RAM | 2 vCPU / 8GB RAM | Inference happens in the cloud; local is just routing |
 | Gateway + local 7B model | 4 vCPU / 16GB RAM | 4 vCPU / 32GB RAM | Ollama running Llama 3 8B needs ~6GB VRAM/RAM |
@@ -147,25 +148,25 @@ ClawHub is OpenClaw's skill registry, currently hosting 5,700+ community skills 
 
 #### Step 1: Run the installer
 
-```bash
+`````bash
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
+`````
 
 The script auto-detects the environment, installs Node.js 24+ dependencies, and downloads the Gateway binary.
 
 #### Step 2: Interactive onboarding wizard
 
-```bash
+`````bash
 openclaw onboard
-```
+`````
 
-Follow the prompts to set: - Agent name (e.g., `Home-Hermes`)
+Follow the prompts to set: - Agent name (e.g., ````Home-Hermes````)
 - LLM Provider (choose Ollama or OpenAI / Anthropic API)
 - Initial channel (Telegram Bot is recommended for easiest debugging)
 
 #### Step 3: Configure local model (optional)
 
-If using Ollama as the local inference backend: ```bash
+If using Ollama as the local inference backend: `````bash
 # Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -174,9 +175,9 @@ ollama pull llama3:8b
 
 # Verify it runs
 ollama run llama3:8b "Hi, introduce yourself"
-```
+`````
 
-Configure model routing in `~/.openclaw/openclaw.json`: ```json
+Configure model routing in ``~/.openclaw/openclaw.json``: `````json
 {
   "models": {
     "default": {
@@ -191,42 +192,42 @@ Configure model routing in `~/.openclaw/openclaw.json`: ```json
     }
   }
 }
-```
+`````
 
 ### Connecting Telegram (Recommended for Debugging)
 
 1. Create a new Bot via [@BotFather](https://t.me/botfather) and copy the API Token
-2. Edit `~/.openclaw/channels/telegram.json`: ```json
+2. Edit ``~/.openclaw/channels/telegram.json``: `````json
 {
   "enabled": true,
   "botToken": "YOUR_BOT_TOKEN_HERE",
   "allowedUsers": ["your_telegram_user_id"]
 }
-```
+`````
 
-3. Restart Gateway: `openclaw gateway restart`
+3. Restart Gateway: ````openclaw gateway restart````
 4. Send a test message to your Bot to verify connectivity
 
 ### Production Security Checklist
 
 Before going live, complete these hardening steps: - [ ] **DM pairing**: Only allow paired Telegram / WhatsApp users to interact with your agent
-- [ ] **Allowlist**: Explicitly list callable tools in `tools.md`; block dangerous operations (`rm -rf`, `DROP TABLE`)
-- [ ] **Sandbox mode**: Enable filesystem sandboxing; restrict agent to `~/workspace/` directory only
+- [ ] **Allowlist**: Explicitly list callable tools in ````tools.md````; block dangerous operations (````rm -rf````, ````DROP TABLE````)
+- [ ] **Sandbox mode**: Enable filesystem sandboxing; restrict agent to ````~/workspace/```` directory only
 - [ ] **Cost ceiling**: Set daily/monthly API call budgets for cloud models; prevent runaway heartbeat tasks from burning credits
 - [ ] **Skill audit**: Review every third-party skill imported from ClawHub; check its requested permission scope
 
----
+* * *
 
 ## Advanced Workflows: Making the AI Assistant Actually Work for You
 
 ### Smart Inbox Triage
 
-Configure a heartbeat task to check Lark / Gmail inbox every 2 hours: ```markdown
+Configure a heartbeat task to check Lark / Gmail inbox every 2 hours: `````markdown
 - Check unread emails; tag priority (high / medium / low)
 - High priority → immediate Telegram push with summary
 - Medium priority → add to today's todo list
 - Low priority / marketing → archive; batch-clean on weekends
-```
+````
 
 Real-world result: email processing time compressed from 45 minutes to 8 minutes daily.
 
@@ -242,29 +243,29 @@ When a GitHub PR is submitted, the agent automatically: 1. Pulls the PR branch c
 
 Paired with Home Assistant integration, enabling natural language control: | You say | Agent executes |
 |
----
+* * *
 |
----
+* * *
 |
 | "I have guests coming at 7" | Brighten living room lights → queue welcome playlist → check bathroom device status |
 | "Enable eco mode" | Turn off lights in unoccupied rooms → set AC to 65°F → start robot vacuum |
 | "I'm traveling until Friday" | Arm security mode → simulate occupancy with randomized lights → shut off water valve |
 
----
+* * *
 
 ## Cost Comparison: Self-Hosted vs. Cloud AI Services
 
 | Cost Item | OpenClaw Self-Hosted | ChatGPT Plus | Claude Pro | Human Assistant |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Monthly subscription | $0 (open source) | $20/mo | $25/mo | $4,500/mo |
 | API calls (cloud model) | $30–90/mo (on demand) | Included | Included | N/A |
@@ -275,7 +276,7 @@ Paired with Home Assistant integration, enabling natural language control: | You
 
 **Key insight**: If you already have idle hardware (old Mac Mini, Raspberry Pi 5, N100 mini-PC), the marginal cost of self-hosting approaches zero. Even pairing with cloud models for complex tasks, total monthly cost typically stays under $50.
 
----
+* * *
 
 ## The OpenClaw Ecosystem Outlook for 2026
 
@@ -298,7 +299,7 @@ Paired with Home Assistant integration, enabling natural language control: | You
 - **Discord developer community**: discord.gg/openclaw
 - **Weekly open-source AI digest**: buildmvpfast.com/blog
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -318,10 +319,10 @@ Llama 3 8B / Mistral 7B-class models already handle 80% of daily Q&A and text pr
 
 Three-layer protection: ① Local deployment ensures data never leaves your machine; ② allowlist restricts which external APIs the agent can call; ③ sandbox mode isolates filesystem access scope. For sensitive actions (sending emails, transfers), enable "human confirmation" mode.
 
----
+* * *
 
 -
----
+* * *
 
 ## Recommended Infrastructure for OpenClaw Self-Hosting
 
@@ -338,7 +339,7 @@ OpenClaw's explosion is not another ephemeral "AI hype" spike. It is the develop
 
 If you have been looking for an AI assistant serious enough, open enough, and truly yours—today is the best day to deploy it.
 
----
+* * *
 
 *Last updated: May 18, 2026. Technical details may evolve with version updates; always refer to the [official OpenClaw documentation](https://docs.openclaw.ai).*
 

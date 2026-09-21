@@ -7,6 +7,7 @@ aliases:
   - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
 ---
 
+
 # Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교
 
 
@@ -67,15 +68,15 @@ Postman의 강점은 방대한 생태계와 엔터프라이즈 지원에 있습�
 Bruno은 2023년 출시된 신생 오픈소스 API 클라이언트로, "Git 친화적"이라는 단 하나의 차별점으로 폭발적인 성장을 이뤘습니다.
 
 **핵심 차별점:**
-- 컬렉션이 `.bru` 텍스트 파일로 저장되어 Git diff 가능
+- 컬렉션이 ```.bru```` 텍스트 파일로 저장되어 Git diff 가능
 - 오프라인 우선 설계, 클라우드 로그인 불필요
 - 100% 오픈소스 (MIT 라이선스)
 - JavaScript로 테스트 스크립트 작성
-- CLI `bru` 명령어로 CI/CD 통합
+- CLI ````bru```` 명령어로 CI/CD 통합
 
 **왜 Git 친화적인가?**
 
-Postman의 컬렉션은 JSON 낸에 모든 정보를 담아 Git diff가 읽기 어렵습니다. 반면 Bruno의 `.bru` 파일은 다음과 같이 인간이 읽을 수 있는 형식입니다: ```
+Postman의 컬렉션은 JSON 낸에 모든 정보를 담아 Git diff가 읽기 어렵습니다. 반면 Bruno의 ``.bru`` 파일은 다음과 같이 인간이 읽을 수 있는 형식입니다: `````
 meta {
   name: Get Users
   type: http
@@ -91,7 +92,7 @@ get {
 headers {
   Content-Type: application/json
 }
-```
+`````
 
 PR에서 API 엔드포인트의 변경 사항을 코드 리뷰하듯 검토할 수 있습니다.
 
@@ -112,7 +113,7 @@ PR에서 API 엔드포인트의 변경 사항을 코드 리뷰하듯 검토할 �
 
 ## Git 통합과 버전 관리: 왜 중요한가?
 
-API 스펙은 애플리케이션 코드만큼이나 중요한 자산입니다. Bruno의 철학은 "API 컬렉션도 코드처럼 관리하자"입니다. `.bru` 파일을 Git에 커밋하면: 1. PR에서 API 변경 사항을 코드 리뷰할 수 있음
+API 스펙은 애플리케이션 코드만큼이나 중요한 자산입니다. Bruno의 철학은 "API 컬렉션도 코드처럼 관리하자"입니다. ````.bru```` 파일을 Git에 커밋하면: 1. PR에서 API 변경 사항을 코드 리뷰할 수 있음
 2. 브랜치별로 다른 API 버전 관리 가능
 3. CI/CD 파이프라인에서 API 테스트 자동화
 4. 히스토리 추적 및 롤백 용이
@@ -123,24 +124,24 @@ Postman도 컬렉션을 JSON으로 낯출 수 있지만, 이는 workaround에 �
 
 ### Bruno CLI
 
-Bruno의 CLI는 설치 즉시 사용 가능합니다: ```bash
+Bruno의 CLI는 설치 즉시 사용 가능합니다: `````bash
 npm install -g @usebruno/cli
 bru run collection --env dev
-```
+`````
 
-GitHub Actions와의 통합 예시: ```yaml
+GitHub Actions와의 통합 예시: `````yaml
 - name: Run API Tests
   run: |
     npm install -g @usebruno/cli
     bru run api-tests --env ci
-```
+`````
 
 ### Newman (Postman CLI)
 
-Newman은 Postman의 CLI 도구로, 수년간 안정적으로 사용되어 왔습니다. 하지만 물리 사용자는 기본적으로 사용할 수 없습니다: ```bash
+Newman은 Postman의 CLI 도구로, 수년간 안정적으로 사용되어 왔습니다. 하지만 물리 사용자는 기본적으로 사용할 수 없습니다: `````bash
 npm install -g newman
 newman run collection.json -e environment.json
-```
+`````
 
 ### Insomnia CLI
 
@@ -172,9 +173,9 @@ API 컬렉션을 코드처럼 PR로 리뷰하고, CI/CD에서 자동 테스트�
 ## 마이그레이션 가이드: Postman에서 Bruno으로
 
 1. **낯출**: Postman에서 Collection → Export → Collection v2.1 선택
-2. **변환**: Bruno의 Import 기능으로 `.json` 파일 업로드
-3. **환경 변수**: Postman Environment를 `.env` 파일로 변환
-4. **스크립트**: Postman의 `pm.*` API를 Bruno의 JavaScript 문법으로 변환
+2. **변환**: Bruno의 Import 기능으로 ````.json```` 파일 업로드
+3. **환경 변수**: Postman Environment를 ````.env```` 파일로 변환
+4. **스크립트**: Postman의 ````pm.*``` API를 Bruno의 JavaScript 문법으로 변환
 
 2025년 3월 기준 Bruno의 Postman importer는 95% 이상의 컬렉션을 정확히 변환합니다. 복잡한 테스트 스크립트만 수동 수정이 필요합니다.
 
@@ -184,7 +185,7 @@ API 컬렉션을 코드처럼 PR로 리뷰하고, CI/CD에서 자동 테스트�
 
 Git 네이티브 API 클라이언트의 부상은 개발자 커뮤니티가 "단순한 도구"에서 "워크플로우의 일부"로 API 테스트를 재정의하고 있음을 보여줍니다.
 
----
+* * *
 
 ## FAQ
 
@@ -203,7 +204,7 @@ Postman에서 컬렉션을 v2.1 JSON으로 낯출한 뒤, Bruno의 Import 기능
 **GraphQL과 gRPC를 동시에 지원하는 API 클라이언트는 무엇인가요?**  
 Postman과 Insomnia가 REST, GraphQL, gRPC, WebSocket을 모두 지원합니다. Bruno은 2025년 현재 gRPC 지원을 베타 단계에서 준비 중입니다.
 
----
+* * *
 
 ## 추천 인프라
 
@@ -275,7 +276,7 @@ Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교 repr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

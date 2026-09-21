@@ -31,6 +31,7 @@ faqs: - q: '在 Docker 内连接 Ollama 时,如何修复 AnythingLLM 的 ''Conne
     a: 'AnythingLLM 使用 SSE 这种更轻量的单向协议,因为它在部署于复杂 Nginx 反向代理之后的企业内网中能稳定工作。SSE 绕开了那些常常导致 WebSocket 连接中断的防火墙拦截问题。'
   - q: 'AnythingLLM 默认的 LanceDB 为什么在多用户时会抛出 SQLITE_BUSY 错误?'
     a: '默认的嵌入式向量数据库(LanceDB/Chroma)在高频并发写入下存在文件锁定问题,当许多用户向同一个工作区上传大型 PDF 时,会抛出 SQLITE_BUSY 或写锁错误。在员工众多的生产环境中,应将 Vector DB 切换为独立的 Qdrant 或 Milvus 实例。'---
+
 {</* resource-info */>}
 
 # 企业为什么害怕 ChatGPT？
@@ -66,7 +67,7 @@ faqs: - q: '在 Docker 内连接 Ollama 时,如何修复 AnythingLLM 的 ''Conne
 
 在 RAG 中，如果切分（Chunking）做不好，检索出来的全是被截断的废话。AnythingLLM 实现了一套非常强壮的文档解析管道。
 
-```javascript
+````javascript
 // 核心源码提取自：server/utils/vectorDbProviders/lancedb/index.js (向量切分逻辑)
 const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
 
@@ -92,16 +93,16 @@ async function processDocument(documentText, workspaceConfig) {
   await LanceDB.insert(workspaceConfig.namespace, embeddings);
   return chunks.length;
 }
-```
+`````
 
 **深度拆解**：
-这段代码揭示了 AnythingLLM 处理文档的细腻之处。`RecursiveCharacterTextSplitter` 搭配高达 200 token 的 `chunkOverlap`，确保了跨段落的核心逻辑（例如：如果...那么...）不会因为硬生生的字数截断而丢失。这种重叠切割对于维持本地 LLM 的回答智商至关重要。
+这段代码揭示了 AnythingLLM 处理文档的细腻之处。``RecursiveCharacterTextSplitter`` 搭配高达 200 token 的 ``chunkOverlap``，确保了跨段落的核心逻辑（例如：如果...那么...）不会因为硬生生的字数截断而丢失。这种重叠切割对于维持本地 LLM 的回答智商至关重要。
 
 ### 2. 前后端数据交互：Server-Sent Events (SSE) 流式输出
 
 使用大模型时，如果等回答完全生成再返回，用户体验会极速恶化。AnythingLLM 通过 SSE 实现了丝滑的打字机效果。
 
-```javascript
+`````javascript
 // 后端流式响应核心逻辑 (Express.js 路由)
 app.post('/api/workspace/:slug/chat', async (request, response) => {
   // 设置 HTTP 头，建立持久化 SSE 长连接
@@ -116,18 +117,18 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
     for await (const chunk of stream) {
       // 将数据分块按照 SSE 规范格式化并推送给前端
       // 避免由于网关超时导致连接断开
-      response.write(`data: ${JSON.stringify({ text: chunk })}\n\n`);
+      response.write(``data: ${JSON.stringify({ text: chunk })}\n\n``);
     }
     
-    response.write(`data: [DONE]\n\n`);
+    response.write(``data: [DONE]\n\n``);
     response.end();
   } catch (error) {
     // 【坑点防范】：流式连接中的异常捕获必须手动关闭 response
-    response.write(`data: ${JSON.stringify({ error: "Streaming failed" })}\n\n`);
+    response.write(``data: ${JSON.stringify({ error: "Streaming failed" })}\n\n``);
     response.end();
   }
 });
-```
+`````
 
 **深度拆解**：
 相较于复杂的 WebSocket，AnythingLLM 选择了更轻量级的单向通信流 SSE。这在企业级内网部署（通常经过多层 Nginx 反向代理）时穿透率极高，几乎不会遇到防火墙阻断 WebSocket 协议的问题。
@@ -137,11 +138,11 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 在执行 **Ollama 结合 AnythingLLM** 的私有化落地时，千万要避开以下两个大坑。
 
 1. **坑点一：Docker 内网穿透与 Ollama 端口隔离 (Network Isolation)**
-   - **症状**：AnythingLLM (运行在 Docker 容器内) 疯狂报错 `Connection Refused`，无法连接到宿主机上的 Ollama 服务。
-   - **解决方案**：在 Docker 内部，`localhost` 指的是容器自己，而不是宿主机！你必须将 AnythingLLM 的大模型配置地址指向 `http://host.docker.internal:11434`，并且在启动 Ollama 时配置环境变量 `OLLAMA_HOST=0.0.0.0` 以允许跨网卡访问。
+   - **症状**：AnythingLLM (运行在 Docker 容器内) 疯狂报错 ``Connection Refused``，无法连接到宿主机上的 Ollama 服务。
+   - **解决方案**：在 Docker 内部，``localhost`` 指的是容器自己，而不是宿主机！你必须将 AnythingLLM 的大模型配置地址指向 ``http://host.docker.internal:11434``，并且在启动 Ollama 时配置环境变量 ``OLLAMA_HOST=0.0.0.0`` 以允许跨网卡访问。
 
 2. **坑点二：LanceDB 的磁盘 IO 锁死 (File Locking)**
-   - **症状**：多个用户同时向同一个 Workspace 上传大型 PDF 时，数据库报错 `SQLITE_BUSY` 或写锁死。
+   - **症状**：多个用户同时向同一个 Workspace 上传大型 PDF 时，数据库报错 ``SQLITE_BUSY` 或写锁死。
    - **解决方案**：默认的嵌入式向量库 LanceDB/Chroma 在高频并发写入时存在文件锁问题。如果在拥有几十号员工的真实企业环境中，切记在系统配置中将 Vector DB 切换为独立部署的 Qdrant 或 Milvus 实例。
 
 ## 商业闭环：向 B 端企业兜售“绝对安全”的暴利法则
@@ -232,7 +233,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -263,15 +264,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

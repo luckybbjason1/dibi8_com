@@ -12,9 +12,10 @@ maintainer: 'h4ckf0r0day'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
 ---
+
 # Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026
 
-```
+````
 ┌───────────────────────────────────────────────────┐
 │             Obscura Architecture                    │
 │                                                     │
@@ -44,11 +45,11 @@ featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets
 │  │     ✅ Puppeteer      ✅ Playwright          │   │
 │  └─────────────────────────────────────────────┘   │
 └───────────────────────────────────────────────────┘
-```
+`````
 
 Obscura is a headless browser engine written in Rust, purpose-built for web scraping and AI agent automation. At just 30MB of memory usage and 85ms page load times, it dramatically outperforms headless Chrome while providing built-in anti-detection features.
 
-Created by `h4ckf0r0day`, Obscura has reached 14,788 GitHub stars and is designed as a drop-in replacement for headless Chrome when used with Puppeteer and Playwright. The key differentiator: it runs real JavaScript via V8 but with a fraction of the resource overhead.
+Created by ````h4ckf0r0day````, Obscura has reached 14,788 GitHub stars and is designed as a drop-in replacement for headless Chrome when used with Puppeteer and Playwright. The key differentiator: it runs real JavaScript via V8 but with a fraction of the resource overhead.
 
 This guide covers installation, CLI usage, CDP server setup, puppeteer/playwright integration, and production deployment.
 
@@ -58,11 +59,11 @@ Obscura is a headless browser engine that implements the Chrome DevTools Protoco
 
 The key metrics that set Obscura apart: | Metric | Obscura | Headless Chrome |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Memory | **30 MB** | 200+ MB |
 | Binary size | **70 MB** | 300+ MB |
@@ -82,7 +83,7 @@ The name references the Latin word for "darkness" or "hidden" — apt for a brow
 
 Obscura uses the V8 JavaScript engine (the same engine that powers Chrome and Node.js) to execute JavaScript, but its browser rendering pipeline is custom-built in Rust. This means it gets Chrome-level JavaScript compatibility with Rust-level performance.
 
-```
+`````
 Request (fetch / scrape / serve)
     │
     ▼
@@ -111,15 +112,15 @@ Request (fetch / scrape / serve)
 │  (HTML dump, JSON, text,     │
 │   eval result, assets)       │
 └─────────────────────────────┘
-```
+`````
 
-The `serve` command starts a CDP-compatible server that accepts connections from Puppeteer and Playwright. The `fetch` command runs one-off page operations. The `scrape` command runs parallel page operations with configurable concurrency.
+The ````serve```` command starts a CDP-compatible server that accepts connections from Puppeteer and Playwright. The ````fetch```` command runs one-off page operations. The ````scrape```` command runs parallel page operations with configurable concurrency.
 
 ## Installation & Setup
 
 ### Binary Install (Recommended)
 
-Download the latest binary from the [Releases page](https://github.com/h4ckf0r0day/obscura/releases): ```bash
+Download the latest binary from the [Releases page](https://github.com/h4ckf0r0day/obscura/releases): `````bash
 # Linux x86_64
 curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-linux.tar.gz
 tar xzf obscura-x86_64-linux.tar.gz
@@ -139,29 +140,29 @@ tar xzf obscura-x86_64-macos.tar.gz
 
 # Windows
 # Download the .zip from the releases page and extract manually
-```
+`````
 
-No Chrome, no Node.js, no dependencies. Release archives include both `obscura` and `obscura-worker` binaries — keep them in the same directory for the parallel `scrape` command.
+No Chrome, no Node.js, no dependencies. Release archives include both ````obscura```` and ````obscura-worker```` binaries — keep them in the same directory for the parallel ````scrape```` command.
 
 Linux releases target Ubuntu 22.04 (glibc 2.35+) for compatibility with common LTS servers.
 
 ### Arch Linux (AUR)
 
-```bash
+`````bash
 yay -S obscura-browser
-```
+`````
 
 ### Docker
 
-```bash
+`````bash
 docker run -d --name obscura -p 127.0.0.1:9222:9222 h4ckf0r0day/obscura
-```
+`````
 
-The Docker image is multi-stage built on `distroless/cc` — no shell, no package manager, approximately 57 MB compressed.
+The Docker image is multi-stage built on ````distroless/cc```` — no shell, no package manager, approximately 57 MB compressed.
 
 ### Build from Source
 
-```bash
+`````bash
 git clone https://github.com/h4ckf0r0day/obscura.git
 cd obscura
 
@@ -170,7 +171,7 @@ cargo build --release
 
 # With stealth mode (anti-detection + tracker blocking)
 cargo build --release --features stealth
-```
+`````
 
 Requires Rust 1.75+ ([rustup.rs](https://rustup.rs)). Subsequent builds are fast thanks to cargo's caching.
 
@@ -178,7 +179,7 @@ Requires Rust 1.75+ ([rustup.rs](https://rustup.rs)). Subsequent builds are fast
 
 ### Fetch a Page
 
-```bash
+`````bash
 # Get the page title
 obscura fetch https://example.com --eval "document.title"
 
@@ -205,19 +206,19 @@ obscura fetch https://example.com --wait-until networkidle0
 
 # Set navigation timeout for slow pages
 obscura fetch https://example.com --timeout 10
-```
+`````
 
 ### Start the CDP Server
 
-For Puppeteer/Playwright compatibility: ```bash
+For Puppeteer/Playwright compatibility: `````bash
 # Standard CDP server
 obscura serve --port 9222
 
 # With stealth mode (anti-detection + tracker blocking)
 obscura serve --port 9222 --stealth
-```
+`````
 
-Once running, connect with Puppeteer or Playwright: ```javascript
+Once running, connect with Puppeteer or Playwright: `````javascript
 // Puppeteer connection
 const puppeteer = require('puppeteer-core');
 
@@ -228,9 +229,9 @@ const browser = await puppeteer.connect({
 const page = await browser.newPage();
 await page.goto('https://example.com');
 console.log(await page.title());
-```
+`````
 
-```javascript
+`````javascript
 // Playwright connection
 const { chromium } = require('@playwright/test');
 
@@ -239,11 +240,11 @@ const context = await browser.newContext();
 const page = await context.newPage();
 await page.goto('https://example.com');
 console.log(await page.title());
-```
+`````
 
 ### Scrape in Parallel
 
-```bash
+`````bash
 # Scrape multiple pages in parallel
 obscura scrape url1 url2 url3 ... \
   --concurrency 25 \
@@ -254,15 +255,15 @@ obscura scrape site.com/page1 site.com/page2 \
   --concurrency 50 \
   --dump html \
   --output-dir ./scraped/
-```
+`````
 
-The `scrape` command requires both `obscura` and `obscura-worker` binaries in the same directory.
+The ````scrape```` command requires both ````obscura```` and ````obscura-worker```` binaries in the same directory.
 
 ## Integration with Popular Frameworks
 
 ### Puppeteer Integration
 
-```javascript
+`````javascript
 // Use Obscura as a Puppeteer browser
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
@@ -280,11 +281,11 @@ await page.goto('https://target-site.com');
 const data = await page.$$eval('.item', items =>
   items.map(i => i.textContent)
 );
-```
+`````
 
 ### Playwright Integration
 
-```python
+`````python
 # Python Playwright connection
 from playwright.sync_api import sync_playwright
 
@@ -295,11 +296,11 @@ with sync_playwright() as p: browser = p.chromium.connect_over_cdp(
     page.goto("https://example.com")
     print(page.title())
     browser.close()
-```
+`````
 
 ### AI Agent Integration
 
-```python
+`````python
 # Use Obscura in an AI agent workflow
 import subprocess
 
@@ -313,11 +314,11 @@ def fetch_page_text(url): """Fetch a page and extract text using Obscura"""
 # AI agent can use this to fetch and analyze web content
 def analyze_page(agent, url): content = fetch_page_text(url)
     agent.prompt(f"Analyze this page content:\n{content}")
-```
+`````
 
 ### Web Scraping Pipeline
 
-```bash
+`````bash
 #!/bin/bash
 # Automated scraping pipeline using Obscura
 
@@ -340,7 +341,7 @@ for f in ./output/*.html; do
   echo "Processing: $(basename $f)"
   ./obscura fetch "$f" --dump text --output "${f%.html}.txt"
 done
-```
+`````
 
 ## Benchmarks & Performance
 
@@ -348,11 +349,11 @@ done
 
 | Scenario | Obscura | Headless Chrome |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Idle browser | 30 MB RAM | 200+ MB RAM |
 | Single page load | ~5 MB additional | ~50 MB additional |
@@ -364,11 +365,11 @@ done
 
 | Page Type | Obscura | Headless Chrome |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Static HTML | ~15 ms | ~80 ms |
 | JS-rendered SPA | ~85 ms | ~500 ms |
@@ -377,7 +378,7 @@ done
 
 ### Memory Scaling Test (100 concurrent pages)
 
-```bash
+`````bash
 # Test with Obscura
 obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\/page_/') \
   --concurrency 100 \
@@ -387,13 +388,13 @@ obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\/page_/') \
 
 # Equivalent test with headless Chrome (Puppeteer)
 # Total RAM: ~15-25 GB
-```
+`````
 
 ## Advanced Usage
 
 ### Stealth Mode
 
-The stealth feature provides built-in anti-detection capabilities: ```bash
+The stealth feature provides built-in anti-detection capabilities: `````bash
 # Build with stealth support
 cargo build --release --features stealth
 
@@ -405,11 +406,11 @@ cargo build --release --features stealth
 # - Permissions API handling
 # - Chrome runtime property masking
 # - Tracker script blocking
-```
+`````
 
 ### Proxy Support
 
-```bash
+`````bash
 # HTTP proxy
 obscura --proxy http://user:pass@proxy.example.com:8080 \
   fetch https://example.com
@@ -425,11 +426,11 @@ const browser = await puppeteer.connect({
     args: [--proxy-server=http://proxy:8080]
   }
 });
-```
+`````
 
 ### Custom Navigation Options
 
-```bash
+`````bash
 # Wait for specific element to appear
 obscura fetch https://example.com \
   --wait-selector ".content-loaded"
@@ -445,11 +446,11 @@ obscura fetch https://example.com \
 # User agent override
 obscura fetch https://example.com \
   --user-agent "Mozilla/5.0 (compatible; MyBot/1.0)"
-```
+`````
 
 ### Cookie and Session Management
 
-```bash
+`````bash
 # Set cookies before loading a page
 obscura --cookie "session=abc123; token=xyz789" \
   fetch https://private.example.com
@@ -457,21 +458,21 @@ obscura --cookie "session=abc123; token=xyz789" \
 # Extract cookies from a session
 obscura fetch https://example.com \
   --dump cookies --output cookies.json
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Obscura | Headless Chrome | Playwright Browser | Selenium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Memory usage | 30 MB | 200+ MB | 150+ MB | 300+ MB |
 | Language | Rust | C++ | TypeScript/JS | Multi |
@@ -494,7 +495,7 @@ Obscura is powerful but not a perfect replacement for every use case: 1. **Young
 
 4. **Limited browser extensions** — Unlike Chrome, Obscura doesn't support browser extensions (AdBlock, uBlock, etc.). You'll need to implement ad-blocking logic in your scripts.
 
-5. **Docker image is minimal** — The 57 MB Docker image has no shell or package manager. Debugging inside the container requires the `obscura` binary's built-in logging flags.
+5. **Docker image is minimal** — The 57 MB Docker image has no shell or package manager. Debugging inside the container requires the ````obscura```` binary's built-in logging flags.
 
 6. **Obscura Cloud is beta** — The hosted version (managed infrastructure, residential proxies) is currently in waitlist/beta. The open-source engine remains fully featured with no feature gating.
 
@@ -502,7 +503,7 @@ Obscura is powerful but not a perfect replacement for every use case: 1. **Young
 
 **Q: Can Obscura replace headless Chrome in my existing Puppeteer scripts?**
 
-A: Yes, as long as you connect via CDP (`browserURL` or `connectOverCDP`). The browser-level behavior matches Chrome closely since it uses the same V8 engine and implements the CDP protocol.
+A: Yes, as long as you connect via CDP (````browserURL```` or ````connectOverCDP````). The browser-level behavior matches Chrome closely since it uses the same V8 engine and implements the CDP protocol.
 
 **Q: How does the stealth mode compare to puppeteer-extra-stealth?**
 
@@ -514,7 +515,7 @@ A: Yes, for most use cases. Its CDP compatibility means you can run existing Pla
 
 **Q: Is there an official Docker image?**
 
-A: Yes, `h4ckf0r0day/obscura` is available on Docker Hub. It's a multi-stage build on `distroless/cc` for minimal size (57 MB compressed).
+A: Yes, ````h4ckf0r0day/obscura```` is available on Docker Hub. It's a multi-stage build on ````distroless/cc``` for minimal size (57 MB compressed).
 
 **Q: What about JavaScript compatibility?**
 
@@ -552,7 +553,7 @@ The upcoming Obscura Cloud hosted service (managed infrastructure + residential 
 - V8 engine: https://v8.dev
 
 
----
+* * *
 Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclaimer:** This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
@@ -584,7 +585,7 @@ Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](obscura-rust-headless-browser-ai-agents-web-scraping)
@@ -593,7 +594,7 @@ Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/
 - [obscura-rust-headless-browser-ai-agents-web-scraping](obscura-rust-headless-browser-ai-agents-web-scraping)
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](obscura-rust-headless-browser-ai-agents-web-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

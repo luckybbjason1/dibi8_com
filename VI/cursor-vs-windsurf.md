@@ -18,6 +18,7 @@ faqs: - q: 'Cursor hay Windsurf rẻ hơn?'
     a: 'Cursor — cộng đồng lớn hơn, nhiều tutorial hơn, UX rõ ràng hơn cho người mới. Windsurf mới hơn (2024), nhưng agent Cascade có thể "quá hung hăng" với người mới chưa thiết lập kỷ luật undo. Bắt đầu với Cursor, lên Windsurf khi muốn tự chủ hơn.'
 ---
 
+
 # Cursor vs Windsurf 2026: AI IDE nào tốt hơn?
 
 
@@ -29,7 +30,7 @@ Dùng **Cursor** nếu: Muốn AI IDE trưởng thành nhất, coi trọng autoc
 
 Dùng **Windsurf** nếu: Muốn agent tự chủ hoàn toàn của Cascade (đa file + terminal + xem trước browser trong một luồng), nhạy giá ($15 vs $20/tháng), và tin tưởng AI điều khiển vòng tác vụ dài hơn.
 
----
+* * *
 
 ## So sánh trực tiếp
 
@@ -52,7 +53,7 @@ Dùng **Windsurf** nếu: Muốn agent tự chủ hoàn toàn của Cascade (đa
 | **Mã nguồn mở** | Không | Không |
 | **Ngôn ngữ hỗ trợ** | Tất cả (LSP) | Tất cả (LSP) |
 
----
+* * *
 
 ## Khi nào chọn Cursor
 
@@ -65,12 +66,12 @@ Cursor Tab là chuẩn vàng cho autocomplete ghost text. Nó dự đoán không
 ### Tình huống 3: Chỉnh sửa đa file có kiểm soát
 Composer cho phép giới hạn chỉnh sửa vào các file cụ thể, xem trước diff, từ chối từng cái. Cascade có xu hướng "phóng tay" — bạn muốn đổi 2 file, nó chạm 8 file. Coi trọng kiểm soát hơn tự chủ chọn Cursor.
 
----
+* * *
 
 ## Khi nào chọn Windsurf
 
 ### Tình huống 1: Luồng làm việc agent hoàn chỉnh
-Cascade là agent hung hăng nhất trong bất kỳ AI IDE nào hiện nay. Nói "thêm trang settings có toggle dark mode" và nó sẽ sửa routes, tạo component, cập nhật store, chạy `npm install` nếu cần, mở browser preview — tất cả trong một luồng. Composer của Cursor dừng trước bước chạy lệnh và preview.
+Cascade là agent hung hăng nhất trong bất kỳ AI IDE nào hiện nay. Nói "thêm trang settings có toggle dark mode" và nó sẽ sửa routes, tạo component, cập nhật store, chạy ```npm install``` nếu cần, mở browser preview — tất cả trong một luồng. Composer của Cursor dừng trước bước chạy lệnh và preview.
 
 ### Tình huống 2: Phí tháng thấp hơn
 $15/tháng so với $20/tháng tiết kiệm 25%. Cả năm là $60. Cộng với 5 prompt miễn phí mỗi ngày ở gói miễn phí, Windsurf là lựa chọn tiết kiệm.
@@ -78,7 +79,7 @@ $15/tháng so với $20/tháng tiết kiệm 25%. Cả năm là $60. Cộng vớ
 ### Tình huống 3: Tích hợp xem trước browser
 Windsurf có thể mở live preview cạnh editor và để Cascade tương tác với nó (click button, xem console). Công việc full-stack web thực sự hữu ích — không phải alt-tab giữa editor và browser.
 
----
+* * *
 
 ## Phân tích giá chi tiết
 
@@ -102,7 +103,7 @@ Dùng thỉnh thoảng: **Windsurf miễn phí > fallback slow request của Cur
 Dùng nặng hàng ngày dưới $20: **Windsurf Pro $15/tháng**.
 Dùng không giới hạn: **Windsurf Ultimate $60/tháng** (Cursor không có gói unlimited).
 
----
+* * *
 
 ## Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)
 
@@ -119,7 +120,7 @@ Dùng không giới hạn: **Windsurf Ultimate $60/tháng** (Cursor không có g
 
 → Cursor thắng autocomplete inline + độ trưởng thành hệ sinh thái. Windsurf thắng mọi thứ liên quan vòng agent và browser preview.
 
----
+* * *
 
 ## Mẹo chuyển đổi
 
@@ -140,7 +141,7 @@ Dùng không giới hạn: **Windsurf Ultimate $60/tháng** (Cursor không có g
 ### Mẹo Self-Hosting
 Cần sandbox dev để chạy thử cả hai IDE đối với codebase thật? Bật {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — đủ cho 2 tháng đánh giá song song trên staging environment. Rẻ hơn 2 tháng subscribe đồng thời cả hai IDE, và sau khi quyết định bạn vẫn giữ hạ tầng.
 
----
+* * *
 
 ## Lựa chọn thay thế đáng thử
 
@@ -149,7 +150,7 @@ Nếu cả Cursor và Windsurf đều không hợp: - **[Claude Code](https://di
 - **[Continue.dev](https://dibi8.com/resources/llm-frameworks/continue/)** — Extension VS Code miễn phí, BYO model
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Định tuyến Claude Code qua nhà cung cấp rẻ hơn, cắt giảm 60-80% chi phí
 
----
+* * *
 
 ## Góc nhìn dibi8
 
@@ -161,13 +162,13 @@ Muốn cả coding inline + năng lực refactor nặng → combo **Cursor + Cla
 
 Với indie dev đang launch SaaS một mình? **Windsurf Pro $15/tháng** là ROI thuần tốt nhất trong hạng mục AI IDE hiện nay. Agent Cascade tiết kiệm thời gian hơn Composer của Cursor ở giá thấp hơn — câu hỏi duy nhất là bạn có tin AI điều khiển vòng dài mà không cần giám sát không.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -210,7 +211,7 @@ Với indie dev đang launch SaaS một mình? **Windsurf Pro $15/tháng** là R
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ Với indie dev đang launch SaaS một mình? **Windsurf Pro $15/tháng** là R
 - [gemini-cli-vs-claude-code](cursor-vs-windsurf)
 - [chatgpt-pro-vs-claude-pro](cursor-vs-windsurf)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

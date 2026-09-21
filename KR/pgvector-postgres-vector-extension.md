@@ -12,17 +12,18 @@ aliases:
   - /kr/posts/pgvector-postgres-vector-extension/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 데모를 죽인 47초 쿼리
 
 2025년 3월이었다. 한 AI 스타트업 창업자가 잠재적 엔터프라이즈 고객 앞에서 RAG 데모를 실행하고 있었다. 질문은 단순했다: *"귀사 제품은 무엇을 하나요?"* PostgreSQL 데이터베이스의 200만 문서에 대한 벡터 검색은 **47초**가 소요되었다. 고객은 첫 결과가 나타나기 전에 방을 나갔다.
 
-문제는 PostgreSQL이 아니었다. `vector` 컬럼에 **HNSW 인덱스**가 없는 것이 문제였다. `CREATE INDEX ... USING hnsw`를 추가한 후, 동일한 쿼리는 **3.2 밀리초**로 떨어졌다 — **14,000배 향상**이다. 데이터베이스 마이그레이션 없이, 새 인프라 없이, 단 하나의 SQL 문장으로.
+문제는 PostgreSQL이 아니었다. ```vector```` 컬럼에 **HNSW 인덱스**가 없는 것이 문제였다. ````CREATE INDEX ... USING hnsw````를 추가한 후, 동일한 쿼리는 **3.2 밀리초**로 떨어졌다 — **14,000배 향상**이다. 데이터베이스 마이그레이션 없이, 새 인프라 없이, 단 하나의 SQL 문장으로.
 
 이것이 **pgvector 0.8.2**의 힘이다 — 세계에서 가장 신뢰받는 관계형 데이터베이스를 고성능 벡터 데이터베이스로 변환하는 오픈소스 PostgreSQL 확장이다. **15,000+ GitHub Stars**를 보유하고 Supabase, Neon, AWS RDS, Google Cloud SQL에서 네이티브 지원되는 pgvector는 **1000만 벡터 이하로 유지되는 AI 에이전트 워크로드의 70%**에 대한 실용적인 선택이다.
 
-이 가이드는 모든 것을 다룬다: PostgreSQL 18 설치, HNSW 튜닝, `halfvec` 양자화, 필터링된 하이브리드 검색, 프로덕션 RAG 통합.
+이 가이드는 모든 것을 다룬다: PostgreSQL 18 설치, HNSW 튜닝, ````halfvec```` 양자화, 필터링된 하이브리드 검색, 프로덕션 RAG 통합.
 
 ## pgvector란 무엇인가? — PostgreSQL 낶部的 벡터
 
@@ -50,7 +51,7 @@ pgvector는 서로 다른 트레이드오프를 가진 두 ANN 인덱스 타입�
 
 **적합:** ~5000만 벡터 이하의 데이터셋에서 높은 리콜, 낮은 지연 시간 쿼리.
 **빌드 시간:** IVFFlat보다 느림 (pgvector 0.8.2에서 단일 스레드).
-**쿼리 파라미터:** `hnsw.ef_search`가 리콜 대 지연 시간 트레이드오프를 제어한다.
+**쿼리 파라미터:** ````hnsw.ef_search````가 리콜 대 지연 시간 트레이드오프를 제어한다.
 
 ### IVFFlat (Inverted File with Flat Index)
 
@@ -58,9 +59,9 @@ k-means를 사용하여 벡터를 클러스터(리스트)로 분할한다. 쿼�
 
 **적합:** 더 빠른 인덱스 빌드, 메모리 제한 환경.
 **트레이드오프:** 동일한 지연 시간 예산에서 HNSW보다 낮은 리콜.
-**쿼리 파라미터:** `ivfflat.probes`가 스캔할 클러스터 수를 제어한다.
+**쿼리 파라미터:** ````ivfflat.probes````가 스캔할 클러스터 수를 제어한다.
 
-```sql
+`````sql
 -- HNSW 인덱스 (대부분의 워크로드에 권장)
 CREATE INDEX ON documents
   USING hnsw (embedding vector_l2_ops)
@@ -70,17 +71,17 @@ CREATE INDEX ON documents
 CREATE INDEX ON documents
   USING ivfflat (embedding vector_l2_ops)
   WITH (lists = 100);
-```
+`````
 
 ### 거리 연산자
 
 pgvector는 세 가지 거리 연산자를 제공한다: | 연산자 | 설명 | 사용 사례 |
 |----------|-------------|----------|
-| `<->` | 유클리드 (L2) 거리 | 일반 유사성 (기본값) |
-| `<#>` | 음수 내적 | OpenAI 임베딩 |
-| `<=>` | 코사인 거리 | 의미적 유사성 (정규화된 벡터) |
+| ````<->```` | 유클리드 (L2) 거리 | 일반 유사성 (기본값) |
+| ````<#>```` | 음수 내적 | OpenAI 임베딩 |
+| ````<=>```` | 코사인 거리 | 의미적 유사성 (정규화된 벡터) |
 
-```sql
+`````sql
 -- L2 거리 (작을수록 더 유사)
 SELECT id, embedding <-> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
@@ -88,13 +89,13 @@ FROM documents ORDER BY distance LIMIT 10;
 -- 코사인 거리 (정규화된 임베딩용)
 SELECT id, embedding <=> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
-```
+`````
 
 ## 설치 및 설정: 5분 이내
 
 ### 옵션 A: Docker (가장 빠름)
 
-```bash
+`````bash
 docker run -d \
   --name pgvector-demo \
   -e POSTGRES_PASSWORD=mysecretpassword \
@@ -104,11 +105,11 @@ docker run -d \
 
 # 확인
 docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
-```
+`````
 
 ### 옵션 B: 기존 PostgreSQL
 
-```bash
+`````bash
 # 빌드 종속성 설치 (Ubuntu/Debian)
 sudo apt-get install postgresql-server-dev-18 build-essential git
 
@@ -120,31 +121,31 @@ sudo make install
 
 # 데이터베이스에서 확장 활성화
 psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
-```
+`````
 
 ### 옵션 C: Supabase (관리형)
 
-```sql
+`````sql
 -- pgvector는 Supabase에 사전 설치되어 있음. 활성화만 하면 됨: CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 버전 확인
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 반환: 0.8.2
-```
+`````
 
 ### 옵션 D: AWS RDS / Google Cloud SQL
 
-```sql
+`````sql
 -- RDS PostgreSQL 18에서 pgvector는 확장으로 사용 가능
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 필요시 사용 가능한 확장 확인
 SELECT * FROM pg_available_extensions WHERE name = vector;
-```
+`````
 
 ### 설치 확인
 
-```sql
+`````sql
 -- pgvector 버전 확인
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 예상: 0.8.2
@@ -152,13 +153,13 @@ SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 벡터 타입 테스트
 SELECT '[1,2,3]'::vector(3) <-> '[4,5,6]'::vector(3) AS l2_distance;
 -- 예상: ~5.196
-```
+`````
 
 ## 핵심 작업: 테이블 생성, 삽입 및 쿼리
 
 ### 벡터 테이블 생성
 
-```sql
+`````sql
 -- 벡터 컬럼이 있는 테이블 생성 (1536 차원 = OpenAI 임베딩)
 CREATE TABLE documents (
     id          BIGSERIAL PRIMARY KEY,
@@ -173,11 +174,11 @@ CREATE TABLE documents (
 -- 일반적인 필터 컬럼에 인덱스 추가
 CREATE INDEX idx_docs_tenant ON documents(tenant_id);
 CREATE INDEX idx_docs_created ON documents(created_at);
-```
+`````
 
 ### 벡터 삽입
 
-```sql
+`````sql
 -- 임베딩이 있는 단일 문서 삽입
 INSERT INTO documents (title, content, embedding, metadata, tenant_id)
 VALUES (
@@ -190,9 +191,9 @@ VALUES (
 
 -- 실제 OpenAI 임베딩으로 삽입 (Python에서)
 -- 전체 예제는 아래 RAG 통합 섹션 참조
-```
+`````
 
-```python
+`````python
 # Python에서 벡터 일괄 삽입
 import psycopg2
 import numpy as np
@@ -215,11 +216,11 @@ cur.executemany(
 )
 conn.commit()
 print(f"{batch_size}개 문서 삽입 완료")
-```
+`````
 
 ### HNSW 인덱스 구축 (프로덕션 튜닝)
 
-```sql
+`````sql
 -- 병렬 인덱스 빌드용 파라미터 설정
 SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
@@ -235,19 +236,19 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
 -- 인덱스 크기 확인
 SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- 일반적: 1536 차원의 10만 벡터에 대해 ~450 MB
-```
+`````
 
 ### 벡터 유사성 검색
 
-```sql
+`````sql
 -- 기본 ANN 검색
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-```sql
+`````sql
 -- 필터링된 벡터 검색 (가장 일반적인 프로덕션 패턴)
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
@@ -256,11 +257,11 @@ WHERE tenant_id = 42
   AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
-```
+`````
 
 ### 하이브리드 검색: 벡터 + 전문
 
-```sql
+`````sql
 -- 먼저 전문 검색을 위해 pg_trgm 활성화
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
@@ -275,13 +276,13 @@ WHERE d.title % $2  -- trigram 유사성 필터
 ORDER BY
     (d.embedding <-> $1::vector) * 0.7 + (1 - similarity(d.title, $2)) * 0.3
 LIMIT 10;
-```
+`````
 
 ## 성능 튜닝: 47초에서 3밀리초로
 
 ### HNSW용 GUC 파라미터
 
-```sql
+`````sql
 -- 리콜 대 지연 시간을 위한 ef_search 튜닝
 -- 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림
 SET hnsw.ef_search = 100;  -- 기본값은 40; 프로덕션에서는 64-128이 일반적
@@ -293,11 +294,11 @@ FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
 -- 표시되어야 함: Index Scan using idx_docs_embedding_hnsw
-```
+`````
 
 ### 반정밀도 양자화 (halfvec)
 
-pgvector 0.8.2는 최소한의 리콜 손실로 **50% 스토리지 절감**을 위한 `halfvec` 타입을 지원한다: ```sql
+pgvector 0.8.2는 최소한의 리콜 손실로 **50% 스토리지 절감**을 위한 ``halfvec`` 타입을 지원한다: `````sql
 -- 양자화된 스토리지를 위한 halfvec 컬럼 추가
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -319,11 +320,11 @@ SELECT
     pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
     pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size는 일반적으로 full_size의 ~45-50%
-```
+`````
 
 ### 연결 풀링 (Pgbouncer)
 
-```ini
+`````ini
 ; pgvector 워크로드를 위한 pgbouncer.ini
 [databases]
 vectordb = host=localhost port=5432 dbname=vectordb
@@ -333,7 +334,7 @@ pool_mode = transaction
 max_client_conn = 10000
 default_pool_size = 50
 reserve_pool_size = 10
-```
+`````
 
 ### 벤치마크 비교: 튜닝 전후
 
@@ -349,11 +350,11 @@ reserve_pool_size = 10
 
 ### LangChain + pgvector
 
-```bash
+`````bash
 pip install langchain-postgres==0.0.13 langchain-openai==0.3.0
-```
+`````
 
-```python
+`````python
 from langchain_postgres import PGVector
 from langchain_openai import OpenAIEmbeddings
 
@@ -381,15 +382,15 @@ results = vector_store.similarity_search(
     filter={"source": "blog"}
 )
 for doc in results: print(f"Content: {doc.page_content}")
-```
+`````
 
 ### LlamaIndex + pgvector
 
-```bash
+`````bash
 pip install llama-index-vector-stores-postgres==0.4.2
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.postgres import PGVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -418,11 +419,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("How does pgvector work?")
 print(response)
-```
+`````
 
 ### 직접 RAG 파이프라인 (프레임워크 없음)
 
-```python
+`````python
 import psycopg2
 from openai import OpenAI
 import numpy as np
@@ -460,13 +461,13 @@ def rag_query(user_question: str) -> str: docs = retrieve_documents(user_questio
     return response.choices[0].message.content
 
 print(rag_query("What is pgvector used for?"))
-```
+`````
 
 ## 프로덕션 강화
 
 ### 다중 테넌트를 위한 행 수준 보안
 
-```sql
+`````sql
 -- RLS 활성화
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 
@@ -479,11 +480,11 @@ SET app.current_tenant = 42;
 
 -- 이제 모든 쿼리가 자동으로 테넌트별로 필터링됨
 SELECT * FROM documents;  -- 테넌트 42의 문서만 표시
-```
+`````
 
 ### 쿼리 성능 모니터링
 
-```sql
+`````sql
 -- 느린 벡터 쿼리 추적
 CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
@@ -493,18 +494,18 @@ FROM pg_stat_statements
 WHERE query LIKE '%<->%'
 ORDER BY mean_exec_time DESC
 LIMIT 10;
-```
+`````
 
-```bash
+`````bash
 # postgresql.conf에서 pg_stat_statements 활성화
 shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
-```
+`````
 
 ### pg_dump를 사용한 백업 (벡터 포함)
 
-```bash
+`````bash
 # 벡터 데이터를 포함한 전체 백업
 pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 
@@ -512,11 +513,11 @@ pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
 
 # 벡터는 텍스트 배열로 백업되고 정확하게 복원됨
-```
+`````
 
 ### 높은 QPS를 위한 연결 모범 사례
 
-```python
+`````python
 # 프로덕션 워크로드를 위한 연결 풀링 사용
 from psycopg2 import pool
 
@@ -537,7 +538,7 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
         )
         return cur.fetchall()
     finally: conn_pool.putconn(conn)
-```
+`````
 
 ## 대안과의 비교
 
@@ -573,7 +574,7 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
 
 **단일 노드만:** pgvector는 단일 PostgreSQL 인스턴스 낶部에서 실행된다. 네이티브 분산 모드가 없다. 사용 가능한 RAM을 초과하는 데이터셋의 경우 성능이 크게 저하된다. 5000만 벡터 이상에서는 전용 벡터 데이터베이스를 고려하라.
 
-**HNSW 빌드는 단일 스레드:** pgvector 0.8.2 기준, HNSW 인덱스 빌드는 하나의 CPU 코어만 사용한다. 1000만 벡터의 경우 **20-30분**이 소요될 수 있다. `max_parallel_maintenance_workers` 설정은 HNSW 빌드를 가속화하지 않는다.
+**HNSW 빌드는 단일 스레드:** pgvector 0.8.2 기준, HNSW 인덱스 빌드는 하나의 CPU 코어만 사용한다. 1000만 벡터의 경우 **20-30분**이 소요될 수 있다. ````max_parallel_maintenance_workers```` 설정은 HNSW 빌드를 가속화하지 않는다.
 
 **쿼리 지연 시간이 더 높음:** 25-40ms의 p99 지연 시간은 대부분의 RAG 애플리케이션에서 수용 가능하다 (LLM 추론이 1-5초로 지배하기 때문이지만), Qdrant (~12ms)나 Milvus GPU (~8ms)와 같은 전용 벡터 데이터베이스보다 느리다.
 
@@ -593,11 +594,11 @@ pgvector 0.8.2는 **PostgreSQL 14 ~ 18**을 지원한다. 프로덕션 배포에
 
 ### HNSW와 IVFFlat 인덱스 사이에서 어떻게 선택하나요?
 
-기본적으로 **HNSW**를 사용하라. 더 나은 리콜 (~95%)과 더 낮은 쿼리 지연 시간을 제공한다. 다음 경우에만 **IVFFlat**을 사용하라: (a) 인덱스 빌드 시간이 중요, (b) 심각한 메모리 제약, 또는 (c) 벡터가 거의 변경되지 않음. 대부분의 RAG 애플리케이션에서 `m=16` 및 `ef_construction=64`를 가진 HNSW가 올바른 시작점이다.
+기본적으로 **HNSW**를 사용하라. 더 나은 리콜 (~95%)과 더 낮은 쿼리 지연 시간을 제공한다. 다음 경우에만 **IVFFlat**을 사용하라: (a) 인덱스 빌드 시간이 중요, (b) 심각한 메모리 제약, 또는 (c) 벡터가 거의 변경되지 않음. 대부분의 RAG 애플리케이션에서 ````m=16```` 및 ````ef_construction=64````를 가진 HNSW가 올바른 시작점이다.
 
 ### pgvector를 관리형 PostgreSQL 서비스와 함께 사용할 수 있나요?
 
-예. pgvector는 다음에서 사용 가능하다: - **Supabase** — 사전 설치됨, `CREATE EXTENSION vector;`만 실행하면 됨
+예. pgvector는 다음에서 사용 가능하다: - **Supabase** — 사전 설치됨, ````CREATE EXTENSION vector;````만 실행하면 됨
 - **Neon** — 모든 플랜에서 지원, 묶티어 포함
 - **AWS RDS** — PostgreSQL 15+에서 사용 가능
 - **Google Cloud SQL** — PostgreSQL 15+에서 사용 가능
@@ -607,7 +608,7 @@ pgvector 0.8.2는 **PostgreSQL 14 ~ 18**을 지원한다. 프로덕션 배포에
 
 ### pgvector는 필터링된 벡터 검색을 지원하나요?
 
-예, 그리고 이것이 pgvector가 전용 벡터 데이터베이스보다 뛰어난 부분이다. 벡터 데이터가 PostgreSQL에 있기 때문에 벡터 유사성과 함께 모든 SQL `WHERE` 절을 적용할 수 있다: ```sql
+예, 그리고 이것이 pgvector가 전용 벡터 데이터베이스보다 뛰어난 부분이다. 벡터 데이터가 PostgreSQL에 있기 때문에 벡터 유사성과 함께 모든 SQL ``WHERE`` 절을 적용할 수 있다: `````sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -615,23 +616,23 @@ WHERE tenant_id = 42
   AND metadata @> '{"status": "published"}"
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-PostgreSQL의 플래너는 HNSW 순회 중 `WHERE` 술어를 푸시다운하여 이를 최적화한다.
+PostgreSQL의 플래너는 HNSW 순회 중 ````WHERE```` 술어를 푸시다운하여 이를 최적화한다.
 
 ### 내 워크로드에 맞게 HNSW를 어떻게 튜닝하나요?
 
-두 가지 핵심 파라미터: - `ef_construction` (기본값 64): 높을수록 = 인덱스 품질이 더 좋지만 빌드가 더 느림. 프로덕션 RAG의 경우 **128-256** 사용.
-- `ef_search` (기본값 40): 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림. 리콜을 벤치마크하고 **64-100**으로 설정.
+두 가지 핵심 파라미터: - ````ef_construction```` (기본값 64): 높을수록 = 인덱스 품질이 더 좋지만 빌드가 더 느림. 프로덕션 RAG의 경우 **128-256** 사용.
+- ````ef_search```` (기본값 40): 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림. 리콜을 벤치마크하고 **64-100**으로 설정.
 
-```sql
+`````sql
 -- ef_search 값 벤치마크
 SET hnsw.ef_search = 64;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
 
 SET hnsw.ef_search = 128;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
-```
+`````
 
 ## 결론: 실용적인 선택
 
@@ -639,7 +640,7 @@ pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용
 
 **다음 단계:**
 
-1. 기존 PostgreSQL 인스턴스에서 pgvector 활성화 (`CREATE EXTENSION vector;`).
+1. 기존 PostgreSQL 인스턴스에서 pgvector 활성화 (````CREATE EXTENSION vector;```).
 2. 문서 테이블에 벡터 컬럼과 HNSW 인덱스 추가.
 3. 임베딩을 로드하고 이 가이드의 튜닝 벤치마크 실행.
 4. 프로덕션 RAG를 위해 LangChain이나 LlamaIndex와 통합.
@@ -695,7 +696,7 @@ pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -705,7 +706,7 @@ pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용
 - [cognee-ai-memory-platform](pgvector-postgres-vector-extension)
 - [flowise](pgvector-postgres-vector-extension)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

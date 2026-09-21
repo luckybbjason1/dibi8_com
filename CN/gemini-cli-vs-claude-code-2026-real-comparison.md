@@ -27,6 +27,7 @@ faq: - q: "Is Gemini CLI a serious Claude Code competitor?"
   - q: "Should I use both?"
     a: "Many developers do. Gemini CLI for free tier exploration + long-context work. Claude Code for production agentic loops + reliable tool use. The combination covers more workflows than either alone, and Gemini's free tier means it's effectively zero added cost."
 ---
+
 {{</* resource-info */>}}
 
 # Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows
@@ -53,11 +54,11 @@ Both tested on the same 50K LOC TypeScript codebase.
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Time | 7m 30s | 4m 12s |
 | First-try success | 1/3 | 3/3 |
@@ -69,11 +70,11 @@ Both tested on the same 50K LOC TypeScript codebase.
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Time | 5m 45s | 2m 50s |
 | Found | 35/40 | 40/40 |
@@ -85,11 +86,11 @@ Both tested on the same 50K LOC TypeScript codebase.
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Diagnosis | Suggested re-run | Race condition (correct first try) |
 | Fix | N/A | Clean, commented |
@@ -100,11 +101,11 @@ Both tested on the same 50K LOC TypeScript codebase.
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Quality | **Excellent — includes sections Claude missed** | Excellent |
 | Speed | Fastest (1M context advantage) | Fast |
@@ -115,11 +116,11 @@ Both tested on the same 50K LOC TypeScript codebase.
 
 | | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Tool coordination | Tool chain broke 2x | Smooth |
 | Errors | 4 | 1 |
@@ -131,11 +132,11 @@ Both tested on the same 50K LOC TypeScript codebase.
 
 | Dimension | Gemini CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Free tier | ✅ Generous (60/min, 1500/day) | ❌ Trial only |
 | Context window | 1M+ | 200K (1M tier $$$) |
@@ -175,7 +176,7 @@ Gemini CLI is a serious tool in 2026 but not a Claude Code replacement. Its stre
 The best 2026 stack for most professional developers: Claude Code as primary + Gemini CLI as the free-tier "explore everything" tool. Gemini's free tier means it's effectively zero added cost.
 
 
----
+* * *
 **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/) · [1M Context Window LLM 2026](https://dibi8.com/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
 
 
@@ -241,11 +242,11 @@ Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows represents an imp
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -255,7 +256,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](gemini-cli-vs-claude-code-2026-real-comparison)
 - [claude-code-vs-cline](gemini-cli-vs-claude-code-2026-real-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

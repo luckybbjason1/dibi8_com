@@ -13,6 +13,7 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 ---
 
+
 # cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất 6+ công cụ AI mã hóa — Hướng dẫn thực tế 2026
 
 ![Giao diện chính cc-switch](https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png)
@@ -37,7 +38,7 @@ cc-switch hoạt động trên ba lớp kiến trúc: 1. **Lớp Registry Agent*
 
 3. **Hệ thống Preset** — Lưu trữ toàn bộ hồ sơ cấu hình: agent nào đang hoạt động, lựa chọn model mặc định, giới hạn token, cài đặt temperature, custom system prompt và proxy configuration. Preset có thể chia sẻ qua GitHub Gist hoặc nhập từ gallery cộng đồng tại ccswitch.io.
 
-```
+````
 ┌─────────────────────────────────────────┐
 │          Ứng dụng Desktop cc-switch      │
 │  (Tauri v2 + Rust Backend + WebView2)   │
@@ -48,11 +49,11 @@ cc-switch hoạt động trên ba lớp kiến trúc: 1. **Lớp Registry Agent*
 │  Claude Code │ Codex CLI │ OpenCode     │
 │  OpenClaw    │ Gemini CLI │ Hermes Agent│
 └─────────────────────────────────────────┘
-```
+`````
 
 *Kiến trúc cc-switch: ba lớp quản lý nhiều công cụ AI mã hóa cùng lúc*
 
-Lớp registry query `$PATH` và các thư mục cài đặt phổ biến (`~/.claude`, `~/.codex`, `~/.opencode`...) để tự động phát hiện agent đã cài đặt. Session manager attach vào tiến trình của mỗi agent, theo dõi metadata phiên qua stdin/stdout. Preset system serialize toàn bộ cấu hình sang JSON, có version control và exportable.
+Lớp registry query ````$PATH```` và các thư mục cài đặt phổ biến (````~/.claude````, ````~/.codex````, ````~/.opencode````...) để tự động phát hiện agent đã cài đặt. Session manager attach vào tiến trình của mỗi agent, theo dõi metadata phiên qua stdin/stdout. Preset system serialize toàn bộ cấu hình sang JSON, có version control và exportable.
 
 ## Installation & Setup
 
@@ -60,7 +61,7 @@ cc-switch được phân phối dưới dạng một Tauri binary duy nhất. Kh
 
 ### Phương pháp 1: Tải binary đã build sẵn (Khuyến nghị)
 
-```bash
+`````bash
 # macOS (Apple Silicon)
 curl -L -o cc-switch.pkg https://github.com/farion1231/cc-switch/releases/latest/download/cc-switch-aarch64-darwin.tar.gz
 tar -xzf cc-switch-aarch64-darwin.tar.gz
@@ -73,18 +74,18 @@ sudo cp cc-switch /usr/local/bin/
 
 # Windows (tải từ trang releases)
 # cc-switch-x86_64-pc-windows-msvc.exe
-```
+`````
 
 ### Phương pháp 2: Cài đặt qua Homebrew (macOS / Linux)
 
-```bash
+`````bash
 brew install farion1231/tap/cc-switch
 cc-switch --version  # Xác nhận cài đặt
-```
+`````
 
 ### Phương pháp 3: Build từ source
 
-```bash
+`````bash
 git clone https://github.com/farion1231/cc-switch.git
 cd cc-switch
 # Cài đặt Rust toolchain
@@ -93,18 +94,18 @@ curl --proto '=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install tauri-cli
 # Build
 cargo tauri build
-```
+`````
 
 ### Thiết lập lần đầu
 
-Sau khi khởi chạy, cc-switch quét hệ thống để tìm công cụ AI mã hóa đã cài đặt: ```bash
+Sau khi khởi chạy, cc-switch quét hệ thống để tìm công cụ AI mã hóa đã cài đặt: `````bash
 $ cc-switch --scan-agents
 Found agents: [✓] Claude Code    v1.4.2    /usr/local/bin/claude
   [✓] OpenCode       v0.8.1    ~/.local/bin/opencode
   [✓] Codex CLI      v0.3.7    ~/.codex/bin/codex
   [ ] Gemini CLI     Not found
   [✓] Hermes Agent   v0.5.0    ~/.hermes/bin/hermes
-```
+`````
 
 Nhấn "Add Agent" để chỉ định thủ công đường dẫn nếu auto-detection bỏ sót. Hộp thoại "Add Agent" chấp nhận: - Tên agent (text tự do)
 - Đường dẫn executable
@@ -113,14 +114,14 @@ Nhấn "Add Agent" để chỉ định thủ công đường dẫn nếu auto-de
 
 ## Integration with Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent
 
-cc-switch tích hợp với mỗi agent qua kết hợp CLI command interception và environment variable injection. Khi bạn click "Switch to Claude Code", cc-switch thực hiện: 1. Đặt biến môi trường `CLAUDE_CODE_SESSION=cc-switch-active`
-2. Áp dụng model configuration từ preset đã chọn (vd: `claude-sonnet-4-20250514`, token limit 128K)
+cc-switch tích hợp với mỗi agent qua kết hợp CLI command interception và environment variable injection. Khi bạn click "Switch to Claude Code", cc-switch thực hiện: 1. Đặt biến môi trường ````CLAUDE_CODE_SESSION=cc-switch-active````
+2. Áp dụng model configuration từ preset đã chọn (vd: ````claude-sonnet-4-20250514````, token limit 128K)
 3. Mở cửa sổ hoặc tab terminal mới với agent CLI đã pre-launch
 4. Log session metadata để so sánh cross-agent
 
 ### Ví dụ cấu hình per-agent
 
-```yaml
+`````yaml
 # cc-switch presets/claude-pro.yaml
 agent: claude-code
 preset_name: "claude-pro"
@@ -131,11 +132,11 @@ system_prompt: "You are an expert Python developer focused on clean, tested code
 proxy: "http://localhost:8080"  # Dùng WebShare cho proxy ổn định
 env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
   CLAUDE_CODE_TELEMETRY: "disabled"
-```
+`````
 
 ### Chuyển đổi agent với phím tắt
 
-```bash
+`````bash
 # Đặt global keyboard shortcut (qua cc-switch settings)
 # ⌘+1 → Claude Code
 # ⌘+2 → Codex CLI
@@ -146,9 +147,9 @@ env: ANTHROPIC_API_KEY: "${env.ANTHROPIC_API_KEY}"
 
 # Từ CLI, chuyển đổi agent trực tiếp: cc-switch switch claude-code
 cc-switch switch opencode --preset claude-pro
-```
+`````
 
-Tích hợp này nghĩa là bạn không bao giờ cần `export ANTHROPIC_API_KEY=*** hoặc chỉnh sửa tệp cấu hình agent thủ công nữa. Tất cả environment injection xảy ra ở lớp cc-switch.
+Tích hợp này nghĩa là bạn không bao giờ cần ````export ANTHROPIC_API_KEY=*** hoặc chỉnh sửa tệp cấu hình agent thủ công nữa. Tất cả environment injection xảy ra ở lớp cc-switch.
 
 Đối với self-hosted, tôi dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho mạng latency thấp đáng tin cậy, và [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cho data-center proxy khi agent cần fetch external packages.
 
@@ -165,7 +166,7 @@ Performance không phải là selling point chính của cc-switch — nó là w
 
 ### Use Case thực tế 1: A/B Testing đa agent
 
-Một developer tại startup cỡ trung dùng cc-switch để chạy A/B testing hàng ngày giữa Claude Code và Codex CLI trên cùng codebase: ```bash
+Một developer tại startup cỡ trung dùng cc-switch để chạy A/B testing hàng ngày giữa Claude Code và Codex CLI trên cùng codebase: `````bash
 # Thiết lập workflow A/B testing
 mkdir ab-test-repo && cd ab-test-repo
 git init
@@ -181,18 +182,18 @@ cc-switch switch codex-cli --preset codex-ab
 # So sánh diff
 git diff HEAD..claude-branch --stat
 git diff HEAD..codex-branch --stat
-```
+`````
 
 ### Use Case thực tế 2: Hot-switch khi pair programming
 
-```bash
+`````bash
 # Đang làm việc với Claude Code trên React component
 # Đồng nghiệp chuyển sang Gemini CLI cho TypeScript review
 # Không đóng terminal, không edit config—chỉ cần ⌘+4
 
 cc-switch switch gemini-cli --preset ts-review
 # Gemini CLI mở với system prompt chuyên TypeScript
-```
+`````
 
 Session manager giữ nguyên trạng thái cả hai agent. Khi chuyển lại, terminal agent trước đó chính xác như khi bạn rời đi.
 
@@ -200,7 +201,7 @@ Session manager giữ nguyên trạng thái cả hai agent. Khi chuyển lại, 
 
 ### Custom Provider Presets
 
-cc-switch v3.16+ thêm custom provider support. Bạn có thể định nghĩa custom AI provider (beyond Claude, OpenAI, Google built-in) trong preset files: ```yaml
+cc-switch v3.16+ thêm custom provider support. Bạn có thể định nghĩa custom AI provider (beyond Claude, OpenAI, Google built-in) trong preset files: `````yaml
 # presets/custom-llm.yaml
 agent: open-code
 provider: "custom-llm"
@@ -208,11 +209,11 @@ base_url: "https://your-api.example.com/v1"
 api_key_env: "CUSTOM_LLM_KEY"
 model: "your-custom-model"
 max_tokens: 65536
-```
+`````
 
 ### Chia sẻ Preset qua GitHub
 
-```bash
+`````bash
 # Export preset hiện tại ra gist
 cc-switch preset export --gist --preset my-workspace
 
@@ -221,18 +222,18 @@ cc-switch preset import --url https://github.com/user/repo/blob/main/presets.yam
 
 # Đồng bộ preset across machines
 cc-switch preset sync --remote github --repo my-org/cc-switch-presets
-```
+`````
 
 ### Agent Environment dựa trên Docker
 
-Đối với production consistency, cc-switch hỗ trợ launch agent trong Docker container: ```bash
+Đối với production consistency, cc-switch hỗ trợ launch agent trong Docker container: `````bash
 # Tạo Docker agent environment
 cc-switch docker create --name claude-pro --image python:3.12-slim
 # Cài đặt Claude Code trong container
 docker exec claude-pro pip install anthropic-cli
 # Chạy agent từ cc-switch
 cc-switch switch claude-code --docker claude-pro
-```
+`````
 
 Điều hữu ích cho CI/CD pipeline khi bạn cần reproducible agent behavior mà không có host environment drift.
 
@@ -276,11 +277,11 @@ A: cc-switch được thiết kế là ứng dụng desktop có GUI. Nó yêu c�
 
 **Q: Tôi có thể chia sẻ preset giữa các thành viên team không?**
 
-A: Có. cc-switch hỗ trợ export preset qua GitHub Gist, hoặc bạn có thể commit preset YAML file vào shared repository. Dùng `cc-switch preset sync --remote github --repo your-team/repo` cho automatic sync.
+A: Có. cc-switch hỗ trợ export preset qua GitHub Gist, hoặc bạn có thể commit preset YAML file vào shared repository. Dùng ````cc-switch preset sync --remote github --repo your-team/repo```` cho automatic sync.
 
 **Q: cc-switch xử lý bảo mật API key như thế nào?**
 
-A: API key được lưu trong environment variable hoặc platform-native keychain (macOS Keychain, Linux Secret Service, Windows Credential Manager). cc-switch không bao giờ lưu plaintext API key trong preset files. Dùng `${env.ANTHROPIC_API_KEY}` syntax để reference environment variable.
+A: API key được lưu trong environment variable hoặc platform-native keychain (macOS Keychain, Linux Secret Service, Windows Credential Manager). cc-switch không bao giờ lưu plaintext API key trong preset files. Dùng ````${env.ANTHROPIC_API_KEY}``` syntax để reference environment variable.
 
 **Q: Có thể dùng cc-switch miễn phí cho commercial use không?**
 
@@ -330,7 +331,7 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -340,7 +341,7 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 - [taste-skill](cc-switch-unified-ai-cli-control-center)
 - [nuwa-skill-distill-thinking-model-ai-agent-skills](cc-switch-unified-ai-cli-control-center)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

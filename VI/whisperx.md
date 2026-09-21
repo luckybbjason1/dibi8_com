@@ -24,11 +24,12 @@ aliases:
   - /vi/posts/whisperx/
 ---
 
+
 {{</* resource-info */>}}
 
 Chuyển văn bản từ âm thanh thì dễ. Nhưng để có **timestamp cấp từ chính xác đến dưới 80ms** và biết **chính xác ai đã nói từng từ** thì khó. OpenAI Whisper chỉ cung cấp timestamp cấp đoạn, sai lệch đến vài giây. Đối với chỉnh sửa podcast, phụ đề video, bản ghi cuộc họp và hồ sơ pháp lý, mức độ chính xác đó là không thể sử dụng được.
 
-**WhisperX** ra đờ — một bộ công cụ mã nguồn mở với 22.000 sao GitHub, tăng cường `faster-whisper` bằng cách căn chỉnh âm vị forced qua wav2vec2 và phân tách ngưới nói qua pyannote.audio. Kết quả: tốc độ phiên âm 70x real-time với timestamp cấp từ và nhãn ngưới nói đa ngưới. Được chấp nhận tại INTERSPEECH 2023 và đã qua kiểm chứng trong các pipeline production trên toàn cầu.
+**WhisperX** ra đờ — một bộ công cụ mã nguồn mở với 22.000 sao GitHub, tăng cường ```faster-whisper```` bằng cách căn chỉnh âm vị forced qua wav2vec2 và phân tách ngưới nói qua pyannote.audio. Kết quả: tốc độ phiên âm 70x real-time với timestamp cấp từ và nhãn ngưới nói đa ngưới. Được chấp nhận tại INTERSPEECH 2023 và đã qua kiểm chứng trong các pipeline production trên toàn cầu.
 
 Hướng dẫn này cung cấp hướng dẫn WhisperX toàn diện: cài đặt, triển khai Docker, tích hợp Python API, production hardening và benchmark so sánh với Whisper, faster-whisper và DeepSpeech.
 
@@ -42,7 +43,7 @@ Khác với timestamp cấp đoạn của Whisper (sai lệch 1-3 giây), Whispe
 
 ## WhisperX hoạt động như thế nào
 
-WhisperX vận hành như một pipeline ba giai đoạn, mỗi giai đoạn tạo ra đầu ra ngày càng phong phú: ```
+WhisperX vận hành như một pipeline ba giai đoạn, mỗi giai đoạn tạo ra đầu ra ngày càng phong phú: `````
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
 │  Giai đoạn 1: │ →  │  Giai đoạn 2: │ →  │  Giai đoạn 3: │
 │     ASR         │    │     Căn chỉnh    │    │     Phân tách    │
@@ -51,9 +52,9 @@ WhisperX vận hành như một pipeline ba giai đoạn, mỗi giai đoạn t�
          │                       │                       │
     Văn bản đoạn         Timestamp từ            Nhãn ngưới nói
     (không timestamp)    (dưới 100ms)            (theo từ)
-```
+`````
 
-**Giai đoạn 1 — Phiên âm.** Sử dụng `faster-whisper` (qua CTranslate2) để suy luận batch. Tiền xử lý VAD từ pyannote loại bỏ các đoạn im lặng, giảm ảo giác và cho phép batching mà không làm giảm WER. Đầu ra: các đoạn văn bản không có timestamp.
+**Giai đoạn 1 — Phiên âm.** Sử dụng ````faster-whisper```` (qua CTranslate2) để suy luận batch. Tiền xử lý VAD từ pyannote loại bỏ các đoạn im lặng, giảm ảo giác và cho phép batching mà không làm giảm WER. Đầu ra: các đoạn văn bản không có timestamp.
 
 **Giai đoạn 2 — Căn chỉnh.** Chạy bản phiên âm qua mô hình căn chỉnh âm vị wav2vec2 theo ngôn ngữ cụ thể. Điều này ánh xạ mỗi từ được nhận dạng đến vị trí chính xác trong âm thanh qua forced alignment. Đầu ra: các đoạn với timestamp bắt đầu/kết thúc cấp từ.
 
@@ -79,7 +80,7 @@ WhisperX yêu cầu Python 3.10+, PyTorch 2.7.1+ với CUDA 12.8 và ffmpeg. GPU
 
 ### Cách 1: Cài đặt PyPI (Khuyến nghị)
 
-```bash
+`````bash
 # Cài đặt CUDA 12.8 toolkit trước (Linux)
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 
@@ -88,21 +89,21 @@ pip install whisperx
 
 # Xác minh cài đặt
 whisperx --version
-```
+`````
 
 ### Cách 2: Cài đặt uv (Nhanh nhất)
 
-```bash
+`````bash
 # Sử dụng Astral uv để chạy công cụ ngay lập tức
 uvx whisperx --help
 
 # Hoặc cài đặt từ GitHub để có tính năng mới nhất
 uvx git+https://github.com/m-bain/whisperX.git
-```
+`````
 
 ### Cách 3: Cài đặt Docker (Production)
 
-```bash
+`````bash
 # Tải image đã đóng gói sẵn với đầy đủ dependencies
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
@@ -124,11 +125,11 @@ EOF
 docker build -f Dockerfile.whisperx -t whisperx:latest .
 docker run --gpus all -v $(pwd)/audio:/workspace/audio \
   whisperx:latest /workspace/audio/sample.wav --model large-v2
-```
+`````
 
 ### Thiết lập Token Hugging Face (Bắt buộc cho Phân tách)
 
-Phân tách ngưới nói yêu cầu chấp nhận giấy phép mô hình pyannote: ```bash
+Phân tách ngưới nói yêu cầu chấp nhận giấy phép mô hình pyannote: `````bash
 # 1. Tạo tài khoản Hugging Face tại https://huggingface.co
 # 2. Tạo token đọc tại https://huggingface.co/settings/tokens
 # 3. Chấp nhận giấy phép cho: #    - pyannote/speaker-diarization-community-1
@@ -139,13 +140,13 @@ export HF_TOKEN="hf_your_token_here"
 
 # Truyền qua CLI
 whisperx audio.wav --diarize --hf_token $HF_TOKEN
-```
+`````
 
 ## Tích hợp với các Công cụ Phổ biến
 
 ### faster-whisper
 
-WhisperX sử dụng `faster-whisper` làm backend ASR mặc định qua CTranslate2. Bạn có thể cấu hình beam size và compute type để cân bằng tốc độ và độ chính xác: ```python
+WhisperX sử dụng ``faster-whisper`` làm backend ASR mặc định qua CTranslate2. Bạn có thể cấu hình beam size và compute type để cân bằng tốc độ và độ chính xác: `````python
 import whisperx
 
 # Tải mô hình với backend faster-whisper
@@ -160,11 +161,11 @@ model = whisperx.load_model(
         "patience": 2.0,
     }
 )
-```
+`````
 
 ### pyannote.audio
 
-Phân tách sử dụng mô hình pyannote.audio 3.1+. `DiarizationPipeline` bọc pyannote với chức năng gán ngưới nói đặc thù của WhisperX: ```python
+Phân tách sử dụng mô hình pyannote.audio 3.1+. ``DiarizationPipeline`` bọc pyannote với chức năng gán ngưới nói đặc thù của WhisperX: `````python
 from whisperx.diarize import DiarizationPipeline
 
 # Khởi tạo phân tách với backend pyannote
@@ -184,21 +185,21 @@ diarize_segments = diarize_model(
 
 # Gán ngưới nói cho từng từ
 result = whisperx.assign_word_speakers(diarize_segments, result)
-```
+`````
 
 ### OpenAI Whisper
 
-WhisperX tải trọng số OpenAI Whisper nhưng chuyển đổi sang định dạng CTranslate2 để suy luận nhanh hơn 4 lần. Dùng cờ `--model` để chọn biến thể Whisper: ```bash
+WhisperX tải trọng số OpenAI Whisper nhưng chuyển đổi sang định dạng CTranslate2 để suy luận nhanh hơn 4 lần. Dùng cờ ``--model`` để chọn biến thể Whisper: `````bash
 # Các kích cỡ mô hình: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
 # Với GPU 8GB VRAM, dùng lượng tử hóa INT8
 whisperx audio.wav --model large-v2 --compute_type int8
-```
+`````
 
 ### Docker Compose Stack Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -227,11 +228,11 @@ services: whisperx: build: context: .
   # Tùy chọn: Hàng đợi Redis cho công việc batch
   redis: image: redis:7-alpine
     ports: - "6379:6379"
-```
+`````
 
 ### FastAPI Service Wrapper
 
-```python
+`````python
 # api.py - WhisperX API sẵn sàng production
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
@@ -291,9 +292,9 @@ async def transcribe(
 
 @app.get("/health")
 async def health(): return {"status": "ok", "device": DEVICE, "model": "large-v2"}
-```
+`````
 
-Chạy API: ```bash
+Chạy API: `````bash
 # Cài đặt dependencies
 pip install fastapi uvicorn python-multipart
 
@@ -303,7 +304,7 @@ uvicorn api:app --host 0.0.0.0 --port 8000 --workers 1
 # Kiểm tra với curl
 curl -X POST "http://localhost:8000/transcribe?diarize=true" \
   -F "file=@interview.wav"
-```
+`````
 
 ## Benchmark / Các Trường hợp Sử dụng Thực tế
 
@@ -341,7 +342,7 @@ WER thực tế từ các nghiên cứu độc lập (2024-2025): | Kịch bản
 
 **Phân tích lờ khai pháp lý.** Công ty hỗ trợ tố tụng sử dụng WhisperX để phiên âm các buổi lờ khai 8 giờ với gán ngưới nói. Căn chỉnh cấp từ cho phép luật sư nhấp vào bất kỳ dòng bản ghi nào và nhảy đến thờ điểm chính xác trong âm thanh/video. Độ chính xác phân tách khoảng 90% với 2-3 ngưới nói trong môi trường chính thức.
 
-**Phụ đề video.** Công ty truyền thông tạo file SRT cho hơn 50 ngôn ngữ. Tiền xử lý VAD của WhisperX loại bỏ ảo giác trên khoảng lặng, và cờ `--highlight_words` tạo phụ đề karaoke từng từ.
+**Phụ đề video.** Công ty truyền thông tạo file SRT cho hơn 50 ngôn ngữ. Tiền xử lý VAD của WhisperX loại bỏ ảo giác trên khoảng lặng, và cờ ````--highlight_words```` tạo phụ đề karaoke từng từ.
 
 **Phiên âm cuộc họp.** Tích hợp với bot Slack, WhisperX xử lý file âm thanh được tải lên và trả về bản ghi có nhãn ngưới nói theo thread. Lượng tử hóa INT8 trên RTX 3060 xử lý hơn 10 cuộc họp mỗi giờ.
 
@@ -349,7 +350,7 @@ WER thực tế từ các nghiên cứu độc lập (2024-2025): | Kịch bản
 
 ### Triển khai với Bộ nhớ Hạn chế
 
-Với GPU VRAM hạn chế: ```bash
+Với GPU VRAM hạn chế: `````bash
 # Lượng tử hóa INT8: Giảm VRAM 30-40%, mất chính xác tối thiểu
 whisperx audio.wav \
   --model large-v2 \
@@ -362,11 +363,11 @@ whisperx audio.wav \
   --model base \
   --compute_type int8 \
   --device cpu
-```
+`````
 
 ### Cache Mô hình cho Môi trường Container
 
-```bash
+`````bash
 # Tải trước mô hình để tránh độ trễ khởi động lạnh
 python3 << PYEOF
 import whisperx
@@ -390,11 +391,11 @@ PYEOF
 
 # Mount cache trong Docker
 # -v /host/cache:/root/.cache:rw
-```
+`````
 
 ### Giám sát và Ghi log
 
-```python
+`````python
 # monitoring.py - Metrics Prometheus cho WhisperX
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -435,16 +436,16 @@ def transcribe_with_metrics(audio_path, model_name="large-v2"): start = time.tim
 
 # Expose metrics trên cổng 9090
 start_http_server(9090)
-```
+`````
 
 ### Các Yếu tố Bảo mật
 
-1. **Quản lý token.** Lưu `HF_TOKEN` trong trình quản lý bí mật (AWS Secrets Manager, Vault), không bao giờ để trong code hay file môi trường.
+1. **Quản lý token.** Lưu ````HF_TOKEN```` trong trình quản lý bí mật (AWS Secrets Manager, Vault), không bao giờ để trong code hay file môi trường.
 2. **Xác thực đầu vào.** Làm sạch tên file tải lên. Xử lý âm thanh trong thư mục tạm cách ly.
 3. **Giới hạn tốc độ.** Triển khai giới hạn tốc độ mỗi ngưới dùng để ngăn cạn kiệt tài nguyên GPU.
 4. **Cô lập mô hình.** Chạy WhisperX trong container chuyên dụng với hệ thống file root chỉ đọc.
 
-```bash
+`````bash
 # Docker chạy bảo mật
 docker run --gpus all \
   --read-only \
@@ -453,11 +454,11 @@ docker run --gpus all \
   --cap-drop ALL \
   -e HF_TOKEN_FILE=/run/secrets/hf_token \
   whisperx:latest audio.wav --diarize
-```
+`````
 
 ### Mở rộng với Kubernetes
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -485,7 +486,7 @@ spec: replicas: 2
       - name: audio-input
         nfs: server: 10.0.0.5
           path: /shared/audio
-```
+`````
 
 ## So Sánh với các Phương án Thay thế
 
@@ -517,7 +518,7 @@ spec: replicas: 2
 
 **Giọng nói chồng chéo là vấn đề.** Khi hai ngưới nói đồng thờ, WhisperX (và Whisper) gán tất cả giọng nói cho một ngưới. Mô hình phân tách pyannote phát hiện chồng chéo nhưng không tách được các luồng âm thanh đan xen. Với kịch bản chen lờn nặng, lời ngưới nói khoảng 20-30%.
 
-**Phân tách đạt độ chính xác cao nhất khi biết số ngưới nói.** pyannote có thể tự động phát hiện số ngưới nói, nhưng độ chính xác giảm từ ~90% (biết trước) xuống ~75% (tự động) trên bản ghi 4+ ngưới. Truyền `--min_speakers` và `--max_speakers` khi có thể.
+**Phân tách đạt độ chính xác cao nhất khi biết số ngưới nói.** pyannote có thể tự động phát hiện số ngưới nói, nhưng độ chính xác giảm từ ~90% (biết trước) xuống ~75% (tự động) trên bản ghi 4+ ngưới. Truyền ````--min_speakers```` và ````--max_speakers```` khi có thể.
 
 **Cần mô hình căn chỉnh theo ngôn ngữ.** Căn chỉnh cấp từ yêu cầu mô hình âm vị cho mỗi ngôn ngữ. WhisperX tự động chọn mô hình cho 20+ ngôn ngữ, nhưng ngôn ngữ ít tài nguyên có thể thiếu công cụ căn chỉnh chất lượng. Kiểm tra trên ngôn ngữ mục tiêu trước khi quyết định.
 
@@ -533,7 +534,7 @@ Trên giọng nói sạch, timestamp WhisperX có sai số tuyệt đối trung 
 
 **Q2: Tôi có thể dùng WhisperX mà không cần phân tách ngưới nói không?**
 
-Có — phân tách là hoàn toàn tùy chọn. Chạy không có `--diarize` để chỉ nhận timestamp cấp từ. Giai đoạn căn chỉnh luôn chạy nên bạn vẫn có timestamp từ dưới 100ms. Điều này giảm thờ gian xử lý ~40%.
+Có — phân tách là hoàn toàn tùy chọn. Chạy không có ````--diarize```` để chỉ nhận timestamp cấp từ. Giai đoạn căn chỉnh luôn chạy nên bạn vẫn có timestamp từ dưới 100ms. Điều này giảm thờ gian xử lý ~40%.
 
 **Q3: Tôi cần GPU nào cho triển khai production?**
 
@@ -541,7 +542,7 @@ RTX 3060 (8GB VRAM) với lượng tử hóa INT8 xử lý thoải mái mô hìn
 
 **Q4: Tôi xử lý file âm thanh dài (2+ giờ) như thế nào?**
 
-WhisperX tự động phân đoạn âm thanh dài bằng VAD. Không cần chunk thủ công. Với file 4+ giờ, tăng `--batch_size` nếu VRAM cho phép, hoặc giảm xuống 4 cho hệ thống hạn chế bộ nhớ. Giai đoạn VAD đảm bảo không cắt giữa từ.
+WhisperX tự động phân đoạn âm thanh dài bằng VAD. Không cần chunk thủ công. Với file 4+ giờ, tăng ````--batch_size```` nếu VRAM cho phép, hoặc giảm xuống 4 cho hệ thống hạn chế bộ nhớ. Giai đoạn VAD đảm bảo không cắt giữa từ.
 
 **Q5: Tôi có thể fine-tune WhisperX trên dữ liệu riêng không?**
 
@@ -549,7 +550,7 @@ Bạn có thể fine-tune mô hình Whisper cơ sở bằng training script củ
 
 **Q6: Tại sao tôi cần token Hugging Face?**
 
-Mô hình phân tách ngưới nói pyannote.audio (`speaker-diarization-community-1`) được lưu trữ trên Hugging Face và yêu cầu chấp nhận thỏa thuận cấp phép. Token chứng minh bạn đã chấp nhận điều khoản. Miễn phí và chỉ mất 2 phút thiết lập. Không cần token nếu bỏ qua phân tách.
+Mô hình phân tách ngưới nói pyannote.audio (````speaker-diarization-community-1```) được lưu trữ trên Hugging Face và yêu cầu chấp nhận thỏa thuận cấp phép. Token chứng minh bạn đã chấp nhận điều khoản. Miễn phí và chỉ mất 2 phút thiết lập. Không cần token nếu bỏ qua phân tách.
 
 ## Kết luận
 
@@ -609,7 +610,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -619,6 +620,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](whisperx)
 - [moneyprinterturbo-one-click-ai-video-generator](whisperx)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

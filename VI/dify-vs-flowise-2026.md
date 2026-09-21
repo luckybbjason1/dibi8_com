@@ -18,6 +18,7 @@ faqs: - q: 'Sự khác biệt giữa Dify và Flowise là gì?'
     a: 'Flowise bắt đầu là giao diện LangChain kéo thả và đó vẫn là bản sắc cốt lõi, nhưng nó đã phát triển vượt ra ngoài một wrapper đơn giản. Nó hỗ trợ cả thành phần LlamaIndex ngoài LangChain, thêm widget nhúng chatbot riêng, xuất bản API endpoint và đã xây dựng hệ sinh thái node cộng đồng. Mô tả chính xác nhất là công cụ xây dựng pipeline LLM trực quan trừu tượng hóa LangChain và LlamaIndex, không phải wrapper LangChain thuần túy."
 ---
 
+
 # Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canvas LLM Nhẹ
 
 
@@ -29,7 +30,7 @@ Chọn **Dify** nếu: Bạn muốn nền tảng end-to-end, cần RAG tích h�
 
 Chọn **Flowise** nếu: Bạn là lập trình viên tư duy theo các primitive LangChain, muốn dịch vụ tự host tối giản, ưu tiên sự minh bạch hoàn toàn ở mỗi node pipeline, hoặc đang prototype nhanh với sự linh hoạt tối đa.
 
----
+* * *
 
 ## So Sánh Song Song
 
@@ -45,7 +46,7 @@ Chọn **Flowise** nếu: Bạn là lập trình viên tư duy theo các primiti
 | Phù hợp nhất | Team AI toàn diện, doanh nghiệp | Lập trình viên, builder LangChain |
 | Giấy phép | Mã nguồn mở (Apache 2.0) | Mã nguồn mở (Apache 2.0) |
 
----
+* * *
 
 ## Khi Nào Nên Chọn Dify
 
@@ -63,7 +64,7 @@ Dify được thiết kế để là backend vận hành một ứng dụng th�
 
 ![Dashboard nền tảng AI doanh nghiệp quản lý ứng dụng LLM, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
----
+* * *
 
 ## Khi Nào Nên Chọn Flowise
 
@@ -73,7 +74,7 @@ Flowise ánh xạ rất trực tiếp đến các khái niệm LangChain và Lla
 
 ### Trường hợp 2: Triển khai container đơn nhẹ
 
-Flowise chạy như một dịch vụ Node.js đơn — `docker run` hoặc `npx flowise start` là chạy được. Không có PostgreSQL, Redis hay vector database tích hợp sẵn (mang vào nếu cần). Với lập trình viên solo hoặc team nhỏ chạy trên hạ tầng tối thiểu, footprint nhỏ này là lợi thế đáng kể so với stack đa dịch vụ của Dify.
+Flowise chạy như một dịch vụ Node.js đơn — ```docker run```` hoặc ````npx flowise start```` là chạy được. Không có PostgreSQL, Redis hay vector database tích hợp sẵn (mang vào nếu cần). Với lập trình viên solo hoặc team nhỏ chạy trên hạ tầng tối thiểu, footprint nhỏ này là lợi thế đáng kể so với stack đa dịch vụ của Dify.
 
 ### Trường hợp 3: Prototype nhanh với linh hoạt thành phần tối đa
 
@@ -81,7 +82,7 @@ Vì Flowise phơi bày mọi thành phần LangChain và LlamaIndex như node c�
 
 ![Lập trình viên xây dựng node pipeline AI trên canvas trực quan, via dibi8.com](https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=760&q=80)
 
----
+* * *
 
 ## So Sánh Pipeline RAG
 
@@ -93,21 +94,21 @@ RAG (Retrieval-Augmented Generation) là nơi các nền tảng khác nhau rõ r
 
 **Kết luận:** Muốn giao sản phẩm RAG production nhanh, chọn Dify. Muốn kiểm soát chi tiết từng thành phần và tham số RAG, chọn Flowise.
 
----
+* * *
 
 ## Yêu Cầu Tự Host
 
 | Yêu cầu | Dify | Flowise |
 |---|---|---|
 | Dịch vụ | API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant | Một tiến trình Node.js duy nhất |
-| Docker | Docker Compose (5+ container) | `docker run` đơn |
+| Docker | Docker Compose (5+ container) | ````docker run``` đơn |
 | DB bên ngoài | PostgreSQL bắt buộc | SQLite (mặc định), ngoài tùy chọn |
 | Bộ nhớ tiêu thụ | Cao hơn (đa dịch vụ) | Rất thấp |
 | Thời gian thiết lập | 10–20 phút | Dưới 5 phút |
 
 Cả hai đều đơn giản với lập trình viên quen Docker, nhưng Flowise có footprint nhỏ hơn đáng kể. Về stack AI tự host, xem [Local-First AI Stack 2026](https://dibi8.com/vi/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/).
 
----
+* * *
 
 ## Hệ Sinh Thái và Plugin
 
@@ -117,13 +118,13 @@ Cả hai đều đơn giản với lập trình viên quen Docker, nhưng Flowis
 
 Cả hai hệ sinh thái đều khỏe mạnh. Marketplace của Dify được tuyển chọn kỹ hơn; hệ sinh thái node của Flowise rộng hơn và hướng đến lập trình viên hơn.
 
----
+* * *
 
 ## Có Thể Dùng Bổ Sung Cho Nhau Không?
 
 Trong một số kiến trúc, có. Các team dùng **Flowise để prototype và xác nhận pipeline**, rồi **xây dựng lại flow đã xác nhận trong Dify** để triển khai có quản lý và xuất bản cho người dùng. Workflow không thể chuyển đổi trực tiếp, nhưng các pattern được chuyển. Ngoài ra, một số team dùng Flowise cho công cụ nội bộ dành cho lập trình viên và Dify cho sản phẩm AI hướng khách hàng.
 
----
+* * *
 
 ## Nhận Định của dibi8
 
@@ -169,7 +170,7 @@ Tài liệu tham khảo ngoài: [Dify](https://dify.ai/) · [Dify GitHub](https:
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -179,7 +180,7 @@ Tài liệu tham khảo ngoài: [Dify](https://dify.ai/) · [Dify GitHub](https:
 - [claude-code-vs-cline](dify-vs-flowise-2026)
 - [cursor-vs-windsurf](dify-vs-flowise-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

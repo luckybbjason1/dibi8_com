@@ -12,6 +12,7 @@ github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
 
+
 # Phân Tích Cổ Phiếu Hàng Ngày: Thông Minh Đa Thị Trường Được Hỗ Trợ Bởi LLM
 
 **Phân Tích Cổ Phiếu Hàng Ngày** là một hệ thống phân tích cổ phiếu mã nguồn mở, được điều khiển bởi LLM, cung cấp thông tin đa thị trường với tổng hợp tin tức thời gian thực, bảng điều khiển ra quyết định tự động và hệ thống thông minh. Với **48.278 sao GitHub**, nó đã trở thành một trong những công cụ giao dịch định lượng phổ biến nhất cho nhà đầu tư cá nhân tìm kiếm phân tích cấp tổ chức.
@@ -44,7 +45,7 @@ Nền tảng hỗ trợ nhiều thị trường và nguồn dữ liệu: - **Th�
 
 ### Tùy Chọn 1: Triển Khai Docker (Dễ Nhất)
 
-```bash
+````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -58,11 +59,11 @@ docker compose up -d
 
 # Kiểm tra trạng thái
 docker compose ps
-```
+`````
 
 ### Tùy Chọn 2: Cài Đặt Thủ Công
 
-```bash
+`````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -85,11 +86,11 @@ cp config.example.yaml config.yaml
 
 # Chạy phân tích đầu tiên
 python main.py --market us --date $(date +%Y-%m-%d)
-```
+`````
 
 ### Tùy Chọn 3: Thiết Lập LLM Cục Bộ (Miễn Phí)
 
-Dành cho người dùng muốn tránh hoàn toàn chi phí API: ```bash
+Dành cho người dùng muốn tránh hoàn toàn chi phí API: `````bash
 # Cài đặt Ollama cho suy luận LLM cục bộ
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -105,13 +106,13 @@ EOF
 
 # Chạy phân tích với chi phí API bằng không
 python main.py --market a_shares --date $(date +%Y-%m-%d)
-```
+`````
 
 ## Tích Hợp Dữ Liệu Thị Trường
 
 ### Tích Hợp AKShare (Dữ Liệu Cổ Phiếu A Miễn Phí)
 
-AKShare cung cấp quyền truy cập miễn phí vào dữ liệu thị trường Trung Quốc mà không cần khóa API: ```python
+AKShare cung cấp quyền truy cập miễn phí vào dữ liệu thị trường Trung Quốc mà không cần khóa API: `````python
 import akshare as ak
 
 # Lấy dữ liệu thị trường cổ phiếu A hàng ngày
@@ -130,11 +131,11 @@ hist_df = ak.stock_zh_a_hist(
 # Lấy hiệu suất ngành
 sector_df = ak.stock_board_industry_name_em()
 print(sector_df)
-```
+`````
 
 ### Tích Hợp Tushare (Dữ Liệu Cổ Phiếu A Cao Cấp)
 
-Để dữ liệu cổ phiếu A toàn diện hơn bao gồm thông tin cơ bản: ```python
+Để dữ liệu cổ phiếu A toàn diện hơn bao gồm thông tin cơ bản: `````python
 import tushare as ts
 
 # Khởi tạo với token API của bạn
@@ -159,11 +160,11 @@ holder_df = pro.stock_holder_top10(
     ts_code="000001.SZ",
     ann_date="20260331"
 )
-```
+`````
 
 ### Dữ Liệu Thị Trường Mỹ
 
-```python
+`````python
 import yfinance as yf
 
 # Lấy dữ liệu cổ phiếu Mỹ
@@ -179,11 +180,11 @@ recommendations = ticker.recommendations
 # Lấy cảm xúc tin tức
 news = ticker.news
 for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
-```
+`````
 
 ### Dữ Liệu Tiền Điện Tử
 
-```python
+`````python
 import ccxt
 
 # Kết nối đến giao dịch
@@ -201,13 +202,13 @@ print(f"Khối lượng: {ticker['quoteVolume']}")
 order_book = exchange.fetch_order_book('ETH/USDT')
 print(f"Chúc mua: {order_book['bids'][0][0]}")
 print(f"Chúc bán: {order_book['asks'][0][0]}")
-```
+`````
 
 ## Phân Tích Được Hỗ Trợ Bởi LLM
 
 ### Pipeline Phân Tích Cảm Xúc
 
-Trọng tâm của Phân Tích Cổ Phiếu Hàng Ngày là pipeline phân tích cảm xúc do LLM cung cấp: ```python
+Trọng tâm của Phân Tích Cổ Phiếu Hàng Ngày là pipeline phân tích cảm xúc do LLM cung cấp: `````python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -239,11 +240,11 @@ print(f"Cảm Xúc Tổng Thể: {analysis.sentiment}")
 print(f"Độ Tin Cậy: {analysis.confidence:.1%}")
 print(f"Yếu Tố Chính: {', ".join(analysis.key_factors)}")
 print(f"Mức Độ Rủi Ro: {analysis.risk_level}")
-```
+`````
 
 ### Prompt Phân Tích Tùy Chỉnh
 
-Bạn có thể tùy chỉnh prompt phân tích LLM cho các trường hợp sử dụng khác nhau: ```python
+Bạn có thể tùy chỉnh prompt phân tích LLM cho các trường hợp sử dụng khác nhau: `````python
 # Prompt phân tích kỹ thuật
 tech_prompt = """
 Phân tích các chỉ báo kỹ thuật cổ phiếu sau và cung cấp: 1. Hướng xu hướng (bullish/bearish/trung tính)
@@ -273,11 +274,11 @@ combined = llm.analyze(
     fundamental_data=fundamental_data,
     news_data=news_data
 )
-```
+`````
 
 ### Phân Tích So Sánh Đa Thị Trường
 
-So sánh cổ phiếu trên các thị trường khác nhau đồng thời: ```python
+So sánh cổ phiếu trên các thị trường khác nhau đồng thời: `````python
 # So sánh cổ phiếu công nghệ Mỹ
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -291,18 +292,18 @@ a_share_sectors = llm.compare_sectors(
     market="a_shares",
     time_period="1m"
 )
-```
+`````
 
 ## Cấu Hình Bảng Điều Khiển
 
 ### Thiết Lập Bảng Điều Khiển Web
 
-Phân Tích Cổ Phiếu Hàng Ngày bao gồm bảng điều khiển web tích hợp: ```bash
+Phân Tích Cổ Phiếu Hàng Ngày bao gồm bảng điều khiển web tích hợp: `````bash
 # Khởi động máy chủ bảng điều khiển
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # Truy cập tại http://localhost:8080
-```
+`````
 
 Bảng điều khiển cung cấp: - Tổng quan thị trường thời gian thực với bản đồ nhiệt
 - Phân tích cổ phiếu cá nhân với biểu đồ tương tác
@@ -312,7 +313,7 @@ Bảng điều khiển cung cấp: - Tổng quan thị trường thời gian th�
 
 ### Tùy Chỉnh Bảng Điều Khiển
 
-```yaml
+`````yaml
 # dashboard_config.yaml
 dashboard: refresh_interval: 300  # 5 phút
   default_market: "a_shares"
@@ -328,11 +329,11 @@ dashboard: refresh_interval: 300  # 5 phút
   alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
-```
+`````
 
 ### Xuất Báo Cáo
 
-```bash
+`````bash
 # Tạo báo cáo hàng ngày định dạng PDF
 python report_generator.py --format pdf --output daily_report.pdf
 
@@ -341,13 +342,13 @@ python report_generator.py --format html --output daily_report.html
 
 # Xuất dữ liệu phân tích dưới dạng CSV
 python report_generator.py --format csv --output analysis_data.csv
-```
+`````
 
 ## Lên Lịch Tự Động
 
 ### Thiết Lập Cron Job
 
-Lên lịch chạy phân tích tự động: ```bash
+Lên lịch chạy phân tích tự động: `````bash
 # Chỉnh sửa crontab
 crontab -e
 
@@ -359,11 +360,11 @@ crontab -e
 
 # Báo cáo tổng hợp hàng tuần vào Chủ Nhật
 0 9 * * 0 cd /path/to/daily_stock_analysis && python weekly_report.py
-```
+`````
 
 ### Dịch Vụ Systemd
 
-Cho hoạt động nền liên tục: ```ini
+Cho hoạt động nền liên tục: `````ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=Dịch Vụ Phân Tích Cổ Phiếu Hàng Ngày
@@ -379,20 +380,20 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-```bash
+`````bash
 # Kích hoạt và khởi động dịch vụ
 sudo systemctl enable daily-stock-analysis
 sudo systemctl start daily-stock-analysis
 sudo systemctl status daily-stock-analysis
-```
+`````
 
 ## Hệ Thống Thông Báo
 
 ### Thông Báo Telegram
 
-```bash
+`````bash
 # Cấu hình bot Telegram
 python notify.py --setup telegram \
   --bot-token "${TELEGRAM_BOT_TOKEN}" \
@@ -401,11 +402,11 @@ python notify.py --setup telegram \
 # Gửi thông báo thử nghiệm
 python notify.py --send "Phân tích hàng ngày hoàn tất cho AAPL" \
   --channel telegram
-```
+`````
 
 ### Thông Báo Email
 
-```python
+`````python
 from daily_stock_analysis.notify import Notifier
 
 # Cấu hình trình thông báo email
@@ -424,11 +425,11 @@ notifier.send_email(
     body=analysis_report,
     attach_pdf=True
 )
-```
+`````
 
 ### Thông Báo Webhook Tùy Chỉnh
 
-```python
+`````python
 # Gửi đến webhook tùy chỉnh (ví dụ: Slack, Discord)
 notifier.send_webhook(
     url="https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
@@ -445,7 +446,7 @@ notifier.send_webhook(
         ]
     }
 )
-```
+````
 
 ## So Sánh: Phân Tích Cổ Phiếu Hàng Ngày vs Giải Pháp Thay Thế
 
@@ -483,7 +484,7 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -493,7 +494,7 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 - [9router-smart-llm-proxy-token-saver-free-coding](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 - [ai-engineering-from-scratch](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -23,11 +23,12 @@ tags: ["open-sora", "video-generation", "diffusion-transformer", "ai-video", "op
 aliases:
   - /posts/open-sora/-
 ---
+
 {{</* resource-info */>}}
 
 Most developers experimenting with AI video generation hit the same wall: commercial APIs charge $0.10-$0.50 per second of output, self-hosted alternatives require esoteric CUDA knowledge, and the few open-source projects that exist either lack documentation or demand enterprise-grade GPUs. In March 2024, HPC-AI Tech released Open-Sora to change that equation. Fifteen months and 29,000 GitHub stars later, the project has evolved from a research prototype into a production-capable framework capable of generating 5-second 768p videos with quality that rivals commercial alternatives — all on hardware you can rent by the hour.
 
-This tutorial walks through a complete Open-Sora setup: local installation, Docker deployment, ComfyUI integration, production hardening, and honest performance comparisons against CogVideoX, HunyuanVideo, and Wan. Every command has been verified against the latest `main` branch.
+This tutorial walks through a complete Open-Sora setup: local installation, Docker deployment, ComfyUI integration, production hardening, and honest performance comparisons against CogVideoX, HunyuanVideo, and Wan. Every command has been verified against the latest ```main```` branch.
 
 ## What Is Open-Sora?
 
@@ -52,17 +53,17 @@ Open-Sora's generation pipeline consists of three primary components working in 
 
 ### The Generation Flow
 
-```
+`````
 Prompt → T5 Encoder → Text Embedding
                                          ↘
 Random Noise → STDiT (50 steps) → Latent Video → DC-AE Decoder → MP4 Output
                                          ↗
                                     Conditioning
-```
+`````
 
 During inference, Open-Sora uses a rectified flow sampling scheduler (50 steps by default) with classifier-free guidance at scale 7.5 for text and 3.0 for image conditioning. The T2I2V (Text-to-Image-to-Video) pipeline first generates a keyframe using the FLUX text-to-image model, then animates it through the I2V path — this two-stage approach produces significantly higher quality than direct T2V generation.
 
-```python
+`````python
 # Core inference pipeline (simplified)
 import torch
 from opensora.models import STDiT3, T5Encoder, DC_AE
@@ -87,7 +88,7 @@ for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
 
 # Decode to video
 video = vae.decode(latent)  # [1, 3, 65, 768, 768]
-```
+`````
 
 ## Installation & Setup
 
@@ -95,11 +96,11 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 
 | Configuration | Minimum | Recommended |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU VRAM | 16 GB | 24+ GB (RTX 4090 / A100) |
 | GPU Model | RTX 3090 | RTX 4090 / A100 80GB |
@@ -109,7 +110,7 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 
 ### Option A: Conda Installation (Recommended for Development)
 
-```bash
+`````bash
 # Create virtual environment
 conda create -n opensora python=3.10 -y
 conda activate opensora
@@ -127,11 +128,11 @@ pip install -v .
 # Install optional accelerators
 pip install xformers==0.0.27.post2 --index-url https://download.pytorch.org/whl/cu121
 pip install flash-attn --no-build-isolation
-```
+`````
 
 ### Option B: Docker Installation (Recommended for Production)
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/hpcaitech/Open-Sora.git
 cd Open-Sora
@@ -149,11 +150,11 @@ docker run -ti --gpus all \
 # Inside container, download model weights
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
-```
+`````
 
 ### Dockerfile Explanation
 
-The official Dockerfile uses `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04` as the base image. Key stages include: ```dockerfile
+The official Dockerfile uses ``nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04`` as the base image. Key stages include: `````dockerfile
 FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 WORKDIR /workspace/Open-Sora
@@ -178,11 +179,11 @@ RUN pip install flash-attn --no-build-isolation
 
 EXPOSE 7860
 CMD ["/bin/bash"]
-```
+`````
 
 ### Model Weight Download
 
-Open-Sora 2.0 weights are available from both HuggingFace and ModelScope: ```bash
+Open-Sora 2.0 weights are available from both HuggingFace and ModelScope: `````bash
 # Option 1: HuggingFace
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
@@ -194,7 +195,7 @@ modelscope download hpcai-tech/Open-Sora-v2 --local_dir ./ckpts
 # Verify download
 ls -la ./ckpts/
 # Expected: model.safetensors, config.json, vae/, text_encoder/
-```
+`````
 
 The 11B checkpoint requires approximately 22 GB of disk space. The VAE and text encoder weights add another 8 GB.
 
@@ -202,7 +203,7 @@ The 11B checkpoint requires approximately 22 GB of disk space. The VAE and text 
 
 ### ComfyUI Integration
 
-Open-Sora integrates with ComfyUI through the official API node or community custom nodes. While Open-Sora does not have a native ComfyUI node yet, you can use it through a bridge approach: ```bash
+Open-Sora integrates with ComfyUI through the official API node or community custom nodes. While Open-Sora does not have a native ComfyUI node yet, you can use it through a bridge approach: `````bash
 # Install ComfyUI in a separate environment
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -211,9 +212,9 @@ pip install -r requirements.txt
 # Create a custom node for Open-Sora
 mkdir -p custom_nodes/opensora-bridge
 cd custom_nodes/opensora-bridge
-```
+`````
 
-```python
+`````python
 # custom_nodes/opensora-bridge/opensora_node.py
 import subprocess
 import torch
@@ -259,11 +260,11 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "OpenSoraTextToVideo": "Open-Sora Text to Video",
 }
-```
+`````
 
 ### Stable Diffusion / FLUX Integration
 
-Open-Sora 2.0 uses FLUX as its T2I backbone for the T2I2V pipeline. You can configure which T2I model to use: ```python
+Open-Sora 2.0 uses FLUX as its T2I backbone for the T2I2V pipeline. You can configure which T2I model to use: `````python
 # configs/diffusion/inference/t2i2v_768px.py
 # Text-to-Image-to-Video configuration
 model = dict(
@@ -293,19 +294,19 @@ t2i_model = dict(
 num_sampling_steps = 50
 cfg_scale = 7.5
 cfg_channel = 3  # Image conditioning scale
-```
+`````
 
 ### Gradio Web UI
 
-Open-Sora includes a built-in Gradio interface for interactive generation: ```bash
+Open-Sora includes a built-in Gradio interface for interactive generation: `````bash
 # Install Gradio dependencies
 pip install gradio spaces
 
 # Launch web UI
 python gradio/app.py --model-type v2 --checkpoint ./ckpts
-```
+`````
 
-Access the UI at `http://localhost:7860`. The interface supports: - Text-to-video generation with live preview
+Access the UI at ````http://localhost:7860````. The interface supports: - Text-to-video generation with live preview
 - Image-to-video upload and conditioning
 - Motion score adjustment (1-7 scale)
 - Resolution and frame count selection
@@ -313,7 +314,7 @@ Access the UI at `http://localhost:7860`. The interface supports: - Text-to-vide
 
 ### ColossalAI Integration for Distributed Training
 
-If you plan to fine-tune Open-Sora on custom data, ColossalAI provides the distributed training backbone: ```bash
+If you plan to fine-tune Open-Sora on custom data, ColossalAI provides the distributed training backbone: `````bash
 # Install ColossalAI
 pip install colossalai
 
@@ -331,7 +332,7 @@ torchrun --nproc_per_node 8 --standalone \
     configs/diffusion/train/stage2_sp.py \
     --data-path /path/to/video/dataset \
     --sequence-parallel-size 4
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -344,17 +345,17 @@ VBench is the standard evaluation suite for video generation, measuring 16+ dime
 
 | Model | Parameters | VBench Total | Quality Score | Temporal Score | Training Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI Sora | ~? | 82.5% | 85.2% | 79.8% | Proprietary |
 | **Open-Sora 2.0** | **11B** | **81.8%** | **84.1%** | **79.5%** | **$200K** |
@@ -369,23 +370,23 @@ VBench is the standard evaluation suite for video generation, measuring 16+ dime
 
 | Resolution | Duration | Steps | 1x GPU | 2x GPU (TP) | 8x GPU (SP) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 256x256 | 5s (65 frames) | 50 | ~45s | ~28s | ~12s |
 | 768x768 | 5s (65 frames) | 50 | ~240s | ~150s | ~55s |
 | 768x768 | 5s (65 frames) | 30 | ~145s | ~90s | ~33s |
 
-Times measured with `offload=True` for 256x256 and sequence parallelism for 768x768. Flash Attention 3 reduces times by an additional 15-20%.
+Times measured with ````offload=True```` for 256x256 and sequence parallelism for 768x768. Flash Attention 3 reduces times by an additional 15-20%.
 
 ### Real-World Deployment Scenarios
 
@@ -402,7 +403,7 @@ A university lab fine-tuned Open-Sora 2.0 on a custom dataset of microscopy vide
 
 ### Memory Optimization Techniques
 
-For GPUs with limited VRAM, Open-Sora provides several optimization strategies: ```bash
+For GPUs with limited VRAM, Open-Sora provides several optimization strategies: `````bash
 # 1. CPU Offloading (saves ~40% VRAM, 25% slower)
 torchrun --nproc_per_node 1 --standalone \
     scripts/diffusion/inference.py \
@@ -428,11 +429,11 @@ torchrun --nproc_per_node 1 --standalone \
     configs/diffusion/inference/t2i2v_256px.py \
     --prompt "raining, sea" \
     --mixed-precision bf16
-```
+`````
 
 ### Multi-GPU Deployment with Tensor Parallelism
 
-```bash
+`````bash
 # Tensor parallelism for high-resolution generation
 torchrun --nproc_per_node 8 --standalone \
     scripts/diffusion/inference.py \
@@ -440,11 +441,11 @@ torchrun --nproc_per_node 8 --standalone \
     --save-dir samples \
     --prompt "A soaring drone footage captures coastal cliffs" \
     --tp-size 4
-```
+`````
 
 ### Prompt Engineering for Open-Sora
 
-The model responds best to structured prompts with explicit scene descriptions: ```python
+The model responds best to structured prompts with explicit scene descriptions: `````python
 # Effective prompt structure
 prompt = """A cinematic wide shot of a golden retriever running along a sandy beach at sunset. 
 Ocean waves break in the background with warm golden hour lighting. 
@@ -454,11 +455,11 @@ High production value, anamorphic lens, shallow depth of field."""
 # Avoid: vague or abstract prompts
 # Bad: "a dog video"
 # Good: Detailed subject + action + environment + lighting + camera motion
-```
+`````
 
 ### Docker Compose for Production Deployment
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -491,11 +492,11 @@ services: opensora: build: .
               count: 4
               capabilities: [gpu]
 
-volumes: huggingface_cache: ```
+volumes: huggingface_cache: `````
 
 ### Monitoring and Logging
 
-```python
+`````python
 # production_monitor.py
 import torch
 import time
@@ -533,28 +534,28 @@ def generate_with_monitoring(prompt, config): process = psutil.Process()
 
 # Start metrics server on port 9090
 start_http_server(9090)
-```
+`````
 
 ### Security Considerations
 
 1. **Model Weight Integrity**: Verify SHA-256 checksums of downloaded checkpoints against the official registry.
 2. **Input Sanitization**: Sanitize all text prompts before encoding to prevent injection attacks through the T5 tokenizer.
-3. **Resource Limits**: Set `CUDA_VISIBLE_DEVICES` and Docker memory limits to prevent runaway generation processes from consuming all GPU resources.
+3. **Resource Limits**: Set ````CUDA_VISIBLE_DEVICES```` and Docker memory limits to prevent runaway generation processes from consuming all GPU resources.
 4. **Content Filtering**: Implement output filtering if deploying to public-facing services. The model has no built-in safety classifier.
 
 ## Comparison with Alternatives
 
 | Feature | Open-Sora 2.0 | CogVideoX-5B | HunyuanVideo | Wan 2.1 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Parameters** | 11B | 5B / 10B | 13B | 1.3B / 14B |
 | **Max Resolution** | 768x768 | 1440x960 | 1080p | 1080p |
@@ -594,7 +595,7 @@ Open-Sora is a capable framework, but it is not the right tool for every use cas
 
 ### Q1: Can Open-Sora run on consumer GPUs like the RTX 3060 or RTX 4070?
 
-The 11B model requires at least 16GB VRAM for 256px generation with INT8 quantization. An RTX 3060 (12GB) will not work for the 11B model, but the older 724M model (Open-Sora 1.0) can run on 8GB cards. For the RTX 4070 Ti Super (16GB), 256px FP16 generation works with `--offload True`. For 768px, you need an RTX 4090 (24GB) or multiple GPUs.
+The 11B model requires at least 16GB VRAM for 256px generation with INT8 quantization. An RTX 3060 (12GB) will not work for the 11B model, but the older 724M model (Open-Sora 1.0) can run on 8GB cards. For the RTX 4070 Ti Super (16GB), 256px FP16 generation works with ````--offload True````. For 768px, you need an RTX 4090 (24GB) or multiple GPUs.
 
 ### Q2: How does Open-Sora compare to OpenAI's Sora?
 
@@ -610,7 +611,7 @@ Direct T2V (text-to-video) generates video from a text prompt in a single diffus
 
 ### Q5: How do I deploy Open-Sora as an API service?
 
-Wrap the inference pipeline in a FastAPI application with GPU worker queues. Use Redis or RabbitMQ for job distribution, and run inference workers on GPU nodes. The Gradio app included in the repository (`gradio/app.py`) provides a reference implementation. For production, add request validation, rate limiting, and output caching. A complete FastAPI boilerplate is available in the `examples/api_server/` directory of the repository.
+Wrap the inference pipeline in a FastAPI application with GPU worker queues. Use Redis or RabbitMQ for job distribution, and run inference workers on GPU nodes. The Gradio app included in the repository (````gradio/app.py````) provides a reference implementation. For production, add request validation, rate limiting, and output caching. A complete FastAPI boilerplate is available in the ````examples/api_server/```` directory of the repository.
 
 ### Q6: What prompt format works best with Open-Sora?
 
@@ -628,7 +629,7 @@ For teams evaluating self-hosted video generation, the setup path is clear: star
 
 **Next steps:**
 
-1. Clone the repository: `git clone https://github.com/hpcaitech/Open-Sora.git`
+1. Clone the repository: ````git clone https://github.com/hpcaitech/Open-Sora.git```
 2. Join the community discussion on GitHub Discussions for fine-tuning tips
 3. Follow the project on GitHub for 1.4/2.1 release announcements
 4. Share your deployment experience in the dibi8 Telegram community: [https://t.me/dibi8tech](https://t.me/dibi8tech)
@@ -683,7 +684,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [stable-diffusion-complete-guide](open-sora)
@@ -693,5 +694,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [voicebox-open-source-ai-voice-studio](open-sora)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

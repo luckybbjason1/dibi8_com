@@ -14,6 +14,7 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
+
 ## TL;DR
 
 스크래치 AI 엔지니어링은 프로덕션 수준의 AI 시스템을 구축하기 위한 포괄적이고 실무 중심의 커리큘럼입니다. 32,771 스타를 달성하며 LLM 파인튜닝, RAG 파이프라인, 에이전트 프레임워크, 벡터 데이터베이스, 클라우드 배포를 전반적으로 다룹니다. 이 프로젝트는 추상적인 이론이 아닌 실용적인 코드 예시를 제공합니다.
@@ -32,7 +33,7 @@ featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-
 6. **에이전트 프레임워크** — 도구 사용, 계획, 메모리, 멀티 에이전트 오케스트레이션
 7. **프로덕션** — 배포, 모니터링, 확장, 비용 최적화
 
-```bash
+````bash
 # 레포지토리 클론
 curl -sL "https://github.com/rohitg00/ai-engineering-from-scratch/archive/refs/heads/main.zip" -o /tmp/ai-eng.zip
 unzip -q /tmp/ai-eng.zip -d /tmp
@@ -40,7 +41,7 @@ ls /tmp/ai-engineering-from-scratch-main/
 
 # 모듈 구조 확인
 find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
-```
+`````
 
 ## 학습 파이프라인: 어떻게 작동하는가
 
@@ -49,7 +50,7 @@ find /tmp/ai-engineering-from-scratch-main -name "*.py" | head -20
 - **실제 데이터셋** — 장난감 예시가 아닌 실제 코퍼스 학습
 - **프로덕션 배포** — 마지막 모듈은 서빙, 모니터링, 확장 다루기
 
-```bash
+`````bash
 # 일반적인 모듈 구조
 module-name/
 ├── README.md          # 이론과 목표
@@ -59,13 +60,13 @@ module-name/
 │   ├── train.py       # 학습 루프
 │   └── deploy.py      # 서빙 코드
 └── tests/             # 단위 및 통합 테스트
-```
+`````
 
 핵심 교육학적 통찰: 프레임워크가 추상화하는 것을 이해하기 전까지는 AI 프레임워크를 효과적으로 사용할 수 없습니다. 처음부터 트랜스포머를 구현하면 LoRA가 왜 작동하는지, RAG가 왜 정확도를 높이는지, 에이전트 계획이 왜 중요한지에 대한 직관을 개발할 수 있습니다.
 
 ## 설치 및 설정
 
-이 프로젝트는 Python 3.10+와 표준 ML 라이브러리에 의존합니다: ```bash
+이 프로젝트는 Python 3.10+와 표준 ML 라이브러리에 의존합니다: `````bash
 # 레포지토리 클론
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
@@ -80,25 +81,25 @@ pip install -r requirements.txt
 # 설치 확인
 python3 -c "import torch; print(f'PyTorch {torch.__version__}')"
 python3 -c "import transformers; print(f'Transformers {transformers.__version__}')"
-```
+`````
 
 ### GPU 가속
 
-파인튜닝 및 추론 모듈에서는 GPU 가속이 권장됩니다: ```bash
+파인튜닝 및 추론 모듈에서는 GPU 가속이 권장됩니다: `````bash
 # CUDA 사용 가능성 확인
 python3 -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
 
 # CUDA 지원 PyTorch 설치 (필요한 경우)
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### 대안: GPU 없이 실행
 
-모든 모듈은 CPU에서도 작동하지만, 파인튜닝과 대규모 추론은 훨씬 느려집니다: ```bash
+모든 모듈은 CPU에서도 작동하지만, 파인튜닝과 대규모 추론은 훨씬 느려집니다: `````bash
 # CPU 모드 강제
 export CUDA_VISIBLE_DEVICES=""
 python3 src/train.py --device cpu
-```
+`````
 
 ##主流 AI 도구와의 통합
 
@@ -111,7 +112,7 @@ python3 src/train.py --device cpu
 || **vLLM** | 모듈 7 (프로덕션) | 고속 스로틀 서빙 |
 || **Ollama** | 모듈 3 (트랜스포머) | 로컬 모델 테스트 |
 
-```bash
+`````bash
 # 예시: LoRA로 모델 파인튜닝 후 vLLM으로 배포
 # 1단계: 파인튜닝 (모듈 4)
 python3 src/fine_tune.py --model meta-llama/Llama-3.1-8B --lora_rank 16
@@ -124,11 +125,11 @@ pip install vllm
 python3 -m vllm.entrypoints.api_server \
   --model ./lora_adapter_merged \
   --port 8000
-```
+`````
 
 ## 벤치마크: 처음부터 vs 프레임워크 전용 학습
 
-전체 스크래치 AI 엔지니어링 커리큘럼을 완료한 학생들은 프레임워크만으로 학습한 학생보다 측정 가능한 더 나은 성과를 보입니다: ```
+전체 스크래치 AI 엔지니어링 커리큘럼을 완료한 학생들은 프레임워크만으로 학습한 학생보다 측정 가능한 더 나은 성과를 보입니다: `````
 Metric                      | 프레임워크 전용 | 처음부터
 ----------------------------|---------------|-------------
 디버깅 시간 (평균)          | 4.2 시간      | 1.1 시간
@@ -137,7 +138,7 @@ Metric                      | 프레임워크 전용 | 처음부터
 RAG 품질 개선              | 템플릿 기반  | 알고리즘적
 에이전트 실패 복원         | 재시작        | 근본 원인 분석
 프로덕션 배포율            | 23%          | 67%
-```
+`````
 
 벤치마크 데이터는 3개cohorts에 걸쳐 18개월간 학생 성과를 추적한 결과입니다. 처음부터 학습한 코호트는 디버깅이 3.8배 빠르고 프로덕션 배포율이 약 3배 높았습니다.
 
@@ -145,7 +146,7 @@ RAG 품질 개선              | 템플릿 기반  | 알고리즘적
 
 백프로패게이션을 직접 구현하면 학습 루프 디버깅은 어떤 PyTorch 함수가 잘못 작동하는지 추측하는 것이 아니라, 그라디언트 플로우를 이해하는 문제입니다. 벡터 데이터베이스 인덱스를 처음부터 구축하면, 검색 최적화는 하이퍼파라미터를 무작정 조정하는 것이 아니라, recall과 latency 간 트레이드오프를 이해하는 작업이 됩니다.
 
-```python
+`````python
 # 예시: 처음부터 구현한 주의 메커니즘
 # 이것은 학생들이 모듈 3에서 구현하는 내용입니다
 import torch
@@ -163,13 +164,13 @@ def attention_from_scratch(Q, K, V, mask=None): """수학적 정의에서 구현
     output = torch.matmul(attention_weights, V)
     
     return output, attention_weights
-```
+`````
 
 ## 고급 사용: 사용자 지정 학습 전략
 
 제공된 모듈 외에도 숙련된 실무자는 레포지토리를 사용자 지정 학습 전략의 기반도로 활용합니다: ### 양화 인식 파인튜닝
 
-```bash
+`````bash
 # 4비트 양화 QLoRA
 python3 src/qlora_train.py \
   --model meta-llama/Llama-3.1-8B \
@@ -179,11 +180,11 @@ python3 src/qlora_train.py \
   --dataset custom_dataset.jsonl \
   --epochs 3 \
   --batch_size 4
-```
+`````
 
 ### 멀티스테이지 RAG 최적화
 
-```python
+`````python
 # 1단계: 최적 크기로 문서 청킹
 from rag_pipeline import DocumentChunker
 
@@ -208,11 +209,11 @@ from reranker import CrossEncoderReranker
 reranker = CrossEncoderReranker("ms-marco-MiniLM-L-12-v2")
 results = index.search("your query here", top_k=20)
 reranked = reranker.rank("your query here", results)
-```
+`````
 
 ### 분산 학습 전략
 
-더 큰 모델의 경우 여러 GPU에 걸친 분산 학습이 필수적입니다: ```bash
+더 큰 모델의 경우 여러 GPU에 걸친 분산 학습이 필수적입니다: `````bash
 # DeepSpeed로 멀티 GPU 학습
 pip install deepspeed
 
@@ -225,20 +226,20 @@ deepspeed --num_gpus=4 src/train.py \
 
 # TensorBoard로 학습 모니터링
 tensorboard --logdir ./runs/
-```
+`````
 
-```python
+`````python
 # FSDP (Fully Sharded Data Parallel) 설정
 from torch.distributed.fsdp import FullyShardedDataParallel as FSDP
 from torch.distributed.fsdp.wrap import size_based_auto_wrap_policy
 
 policy = size_based_auto_wrap_policy(min_params=1e8)
 model = FSDP(model, auto_wrap_policy=policy, cpu_offload=Offload(cpu=True))
-```
+`````
 
 ### 평가 프레임워크
 
-모델 품질 측정은 체계적인 평가가 필요합니다: ```python
+모델 품질 측정은 체계적인 평가가 필요합니다: `````python
 # 자동 평가 파이프라인
 from eval_framework import Evaluator
 
@@ -256,11 +257,11 @@ results = evaluator.evaluate(
 # 결과 내보내기
 results.to_csv("evaluation_results.csv")
 results.plot_confusion_matrix()
-```
+`````
 
 ### 에이전트 메모리 시스템
 
-```python
+`````python
 # 영구 에이전트 메모리 구현
 from agent_memory import EpisodicMemory, SemanticMemory
 
@@ -273,7 +274,7 @@ episodic.store(action="query", result="answer", timestamp="2026-06-15")
 # 관련 메모리 검색
 relevant = episodic.retrieve(context="previous conversation about RAG")
 similar_semantic = semantic.query("RAG optimization", top_k=5)
-```
+`````
 
 ## 대체재와의 비교
 
@@ -302,14 +303,14 @@ similar_semantic = semantic.query("RAG optimization", top_k=5)
 
 5. **멀티모달 모델** — 커리큘럼은 텍스트에 집중합니다. 비전-언어 모델과 오디오 모델은 다루지 않습니다.
 
-```bash
+`````bash
 # 간단한 적합성 평가: 이것이 적합한가요?
 # ✅ Python 기초를 알고 있음 → 네
 # ✅ AI 내부 구조를 이해하고 싶음 → 네
 # ✅ 프로덕션 AI 시스템을 구축하고 싶음 → 네
 # ✅ 프로그래밍 완전 초보 → 아니오 (먼저 Python 기초부터 시작)
 # ✅ API 호출만 필요하고 모델 구축은 원하지 않음 → 대안 고려
-```
+`````
 
 ## 자주 묻는 질문
 
@@ -352,15 +353,15 @@ Telegram의 DIBI8 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https:/
 
 **오늘 바로 구축을 시작하세요:**
 
-```bash
+`````bash
 git clone https://github.com/rohitg00/ai-engineering-from-scratch.git
 cd ai-engineering-from-scratch
 pip install -r requirements.txt
-```
+````
 
 **내부 링크**: [AI 에이전트 프레임워크 비교](https://dibi8.com/ai-tools/oh-my-pi) · [프롬프트 엔지니어링 배우기](https://dibi8.com/dev-utils/taste-skill)
 
----
+* * *
 
 **소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/rohitg00/ai-engineering-from-scratch
 - PyTorch 문서: https://pytorch.org/docs/
@@ -395,7 +396,7 @@ pip install -r requirements.txt
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -405,6 +406,6 @@ pip install -r requirements.txt
 - [1m-context-window-llm-2026-real-test](ai-engineering-from-scratch)
 - [9router-smart-llm-proxy-token-saver-free-coding](ai-engineering-from-scratch)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

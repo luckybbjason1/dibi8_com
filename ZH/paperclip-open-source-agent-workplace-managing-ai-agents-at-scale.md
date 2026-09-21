@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
 
+
 # paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 — 2026 实战指南
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │           paperclip AI 代理工作场所                   │
 │                                                      │
@@ -29,7 +30,7 @@ featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/do
 │  │   任务队列  │  内存  │  路由           │          │
 │  └──────────────────────────────────────┘          │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *paperclip 架构：多代理协调平台*
 
@@ -57,7 +58,7 @@ paperclip 运行在三架构层上：
 
 每个代理作为独立进程运行，拥有自己的上下文窗口、系统提示词和工具权限。代理被分配角色（编码、研究、审查、部署）和任务描述。
 
-```python
+`````python
 # 在 paperclip 中定义代理
 agent = {
     "role": "coder",
@@ -67,7 +68,7 @@ agent = {
     "max_tokens": 16384,
     "temperature": 0.3,
 }
-```
+`````
 
 ### 2. 编排层
 
@@ -89,7 +90,7 @@ agent = {
 
 ### Docker Compose（推荐）
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/paperclipai/paperclip.git
 cd paperclip
@@ -105,11 +106,11 @@ docker compose up -d
 
 # 访问 UI
 # http://localhost:3000
-```
+`````
 
 ### 手动安装
 
-```bash
+`````bash
 # 克隆
 git clone https://github.com/paperclipai/paperclip.git
 cd paperclip
@@ -123,13 +124,13 @@ cd frontend && npm install && cd ..
 # 启动开发服务器
 python backend/main.py &
 npm run dev --prefix frontend
-```
+`````
 
 ### 云部署
 
 对于生产环境，paperclip 支持多种部署模式：
 
-```bash
+`````bash
 # 使用提供的脚本在 DigitalOcean 上部署
 curl -sSL https://paperclip.ai/deploy/do | bash
 
@@ -137,7 +138,7 @@ curl -sSL https://paperclip.ai/deploy/do | bash
 docker build -t paperclip .
 docker push your-registry/paperclip:latest
 # 遵循 docs/DEPLOYMENT-MODES.md 中的 ECS 部署手册
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, OpenCode, and Custom Agents
 
@@ -147,7 +148,7 @@ paperclip 的代理运行时设计为与 API 无关。它通过标准化接口�
 
 paperclip 附带预配置的代理模板：
 
-```yaml
+`````yaml
 # 常见代理角色的模板
 templates: coder: model: claude-sonnet-4-20250514
     system_prompt: "编写干净、经过测试的代码。使用类型提示。"
@@ -161,13 +162,13 @@ templates: coder: model: claude-sonnet-4-20250514
   deployer: model: claude-haiku-4-20250514
     system_prompt: "编写部署脚本和基础设施代码。"
     tools: [fs, terminal]
-```
+`````
 
 ### 连接外部代理
 
 连接 Claude Code、Codex CLI 或 OpenCode：
 
-```bash
+`````bash
 # 使用 CLI hub 注册代理
 paperclip agent register \
   --name "my-codex" \
@@ -178,7 +179,7 @@ paperclip agent register \
 # 验证连接
 paperclip agent test my-codex
 # 响应: OK (延迟: 42ms, 模型: codex-cli-v0.3)
-```
+`````
 
 对于自托管代理基础设施，我推荐使用 [HTStack](https://my.htstack.com/aff.php?aff=27187) 获取稳定网络连接，或使用 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 数据中心代理供需要外部 API 访问的代理使用。
 
@@ -190,13 +191,13 @@ paperclip agent test my-codex
 
 | 方法 | 时间 | 成功率 | 代码质量得分 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 单代理（Claude） | 23 分钟 | 78% | 7.2/10 |
 | paperclip 3 代理管线 | 18 分钟 | 96% | 9.1/10 |
@@ -206,13 +207,13 @@ paperclip agent test my-codex
 
 | 代理数 | 日 Token（百万） | API 成本（美元） | 效率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 代理 | 2.1M | $0.42 | 基准 |
 | 3 代理 | 3.8M | $0.76 | 每个 token 任务完成率高 22% |
@@ -222,7 +223,7 @@ paperclip agent test my-codex
 
 一个 3 人开发团队使用 paperclip 将 Rails 应用迁移到 FastAPI：
 
-```bash
+`````bash
 # 创建迁移工作区
 paperclip workspace create rails-to-fastapi
 
@@ -233,13 +234,13 @@ paperclip task assign reviewer "验证 API 契约兼容性"
 
 # 运行管线
 paperclip run pipeline
-```
+`````
 
 结果：2 周的迁移在 3 天内完成，首次运行通过率 94%。
 
 ### 实际用例 2：自动化 PR 审查
 
-```bash
+`````bash
 # 监控 GitHub 仓库
 paperclip monitor github --repo myorg/myapp --branch develop
 
@@ -251,7 +252,7 @@ paperclip agent configure reviewer \
 
 # 每次 PR 触发审查
 # 代理分析 diff、注释问题、建议修复
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
@@ -259,7 +260,7 @@ paperclip agent configure reviewer \
 
 创建多步代理管线：
 
-```yaml
+`````yaml
 # workflows/code-review.yaml
 workflow: name: "full-code-review"
   steps: - agent: linter
@@ -277,13 +278,13 @@ workflow: name: "full-code-review"
       task: "创建 PR 审查摘要"
       input: "review_comments"
       output: "pr_comment"
-```
+`````
 
 ### 自托管代理存储
 
 对于生产数据保留：
 
-```bash
+`````bash
 # 配置持久化存储
 paperclip storage configure \
   --type postgres \
@@ -296,11 +297,11 @@ paperclip vector-store configure \
   --type qdrant \
   --host vector.internal \
   --port 6333
-```
+`````
 
 ### 多团队工作区隔离
 
-```bash
+`````bash
 # 创建设备工作区
 paperclip team create engineering
 paperclip team create data-science
@@ -309,21 +310,21 @@ paperclip team create devops
 # 分配代理到团队
 paperclip team assign engineering --agents coder-1 coder-2 reviewer-1
 paperclip team assign data-science --agents researcher-1 coder-3
-```
+`````
 
 ## Comparison with Alternatives
 
 | 功能 | paperclip | CrewAI | AutoGen | OpenAI Agents SDK |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Web UI | 功能完整的仪表板 | 仅 CLI | 仅 CLI | 仅代码 |
 | 多代理任务 | 看板风格 | 顺序/并行 | 基于对话 | 基于护栏 |
@@ -358,7 +359,7 @@ A：不是。paperclip 是一个编排层，管理现有代理。你仍然需要
 
 **Q：我可以将 paperclip 与 Ollama 或 vLLM 的本地模型一起使用吗？**
 
-A：可以。paperclip 支持任何 OpenAI 兼容 API 端点，包括 Ollama（`http://localhost:11434/v1`）和 vLLM（`http://localhost:8000/v1`）。只需在添加代理时配置端点即可。
+A：可以。paperclip 支持任何 OpenAI 兼容 API 端点，包括 Ollama（````http://localhost:11434/v1````）和 vLLM（````http://localhost:8000/v1````）。只需在添加代理时配置端点即可。
 
 **Q：paperclip 如何处理 API key 安全？**
 
@@ -370,7 +371,7 @@ A：可以。paperclip 专为独立开发者和企业团队设计。它支持工
 
 **Q：我可以导出我的代理对话和数据吗？**
 
-A：可以。所有对话、任务和输出都可以导出为 JSON 或 Markdown。使用 `paperclip export --format json --workspace my-workspace` 进行完整导出，或使用 `paperclip export --format md --workspace my-workspace --conversation <id>` 导出特定对话。
+A：可以。所有对话、任务和输出都可以导出为 JSON 或 Markdown。使用 ````paperclip export --format json --workspace my-workspace```` 进行完整导出，或使用 ````paperclip export --format md --workspace my-workspace --conversation <id>```` 导出特定对话。
 
 ## Sources & Further Reading
 
@@ -386,7 +387,7 @@ paperclip 解决了一个大多数开发者在规模上遇到的真实问题：�
 
 如果你每天处理 2+ AI 代理——编码、审查、研究——paperclip 为你提供看板、对话历史和部署管线，将混乱转变为管理工作流。自托管选项意味着没有供应商锁定、数据不离开你的基础设施。
 
-加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 paperclip 设置和代理模板。查看我们的 [cc-switch 统一 CLI](dibi8-internal-link) 和 [Langflow 可视化工作流](dibi8-internal-link) 指南了解相关工具。今天就试试 paperclip——`docker compose up`，添加两个代理，看着你的第一个多代理管线运行。
+加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 paperclip 设置和代理模板。查看我们的 [cc-switch 统一 CLI](dibi8-internal-link) 和 [Langflow 可视化工作流](dibi8-internal-link) 指南了解相关工具。今天就试试 paperclip——````docker compose up```，添加两个代理，看着你的第一个多代理管线运行。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 
@@ -453,12 +454,12 @@ paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 �
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
@@ -467,7 +468,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 - [2026-06-15-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -498,15 +499,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

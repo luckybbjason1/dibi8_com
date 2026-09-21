@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 > Cách cài đặt CrewAI, cấu hình vai trò agent, kết nối tác vụ và triển khai hệ thống multi-agent production-ready trong vòng 30 phút.
@@ -45,12 +46,12 @@ Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều
 
 | Thành phần | Mục đích | File cấu hình |
 |------------|----------|---------------|
-| **Agent** | Ngườ làm việc AI dựa trên vai trò với mục tiêu, câu chuyện nền và công cụ | `agents.yaml` |
-| **Task** | Đơn vị công việc được giao cho agent với đầu ra mong đợi | `tasks.yaml` |
-| **Crew** | Đội agent thực thi tác vụ thông qua quy trình được định nghĩa | `crew.py` |
-| **Flow** | Luồng công việc dựa trên sự kiện kết nối nhiều crew với quản lý trạng thái | `flow.py` |
-| **Tool** | Khả năng bên ngoài (tìm kiếm, API, tính toán) | `tools/` |
-| **Process** | Chiến lược thực thi: tuần tự, phân cấp hoặc song song | `crew.py` |
+| **Agent** | Ngườ làm việc AI dựa trên vai trò với mục tiêu, câu chuyện nền và công cụ | ```agents.yaml```` |
+| **Task** | Đơn vị công việc được giao cho agent với đầu ra mong đợi | ````tasks.yaml```` |
+| **Crew** | Đội agent thực thi tác vụ thông qua quy trình được định nghĩa | ````crew.py```` |
+| **Flow** | Luồng công việc dựa trên sự kiện kết nối nhiều crew với quản lý trạng thái | ````flow.py```` |
+| **Tool** | Khả năng bên ngoài (tìm kiếm, API, tính toán) | ````tools/```` |
+| **Process** | Chiến lược thực thi: tuần tự, phân cấp hoặc song song | ````crew.py```` |
 
 ![CrewAI Architecture](https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png)
 
@@ -70,17 +71,17 @@ Sơ đồ trên thể hiện kiến trúc kép của CrewAI: **Crews** xử lý 
 
 CrewAI yêu cầu Python 3.10–3.13 và API key từ ít nhất một nhà cung cấp LLM.
 
-```bash
+`````bash
 # Kiểm tra phiên bản Python
 python --version  # Phải là 3.10, 3.11, 3.12, hoặc 3.13
 
 # Cài đặt uv (trình quản lý gói được khuyến nghị)
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+`````
 
 ### Cài đặt CrewAI
 
-```bash
+`````bash
 # Cài đặt framework CrewAI core
 uv pip install crewai
 
@@ -89,11 +90,11 @@ uv pip install 'crewai[tools]'
 
 # Xác minh cài đặt
 crewai version
-```
+`````
 
 ### Tạo dự án mới
 
-```bash
+`````bash
 # Tạo khung dự án CrewAI mới
 crewai create crew research_crew
 
@@ -102,9 +103,9 @@ cd research_crew
 
 # Cài đặt các phụ thuộc dự án
 crewai install
-```
+`````
 
-Cấu trúc dự án được tạo: ```
+Cấu trúc dự án được tạo: `````
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -121,26 +122,26 @@ research_crew/
         └── tools/
             ├── __init__.py
             └── custom_tool.py
-```
+`````
 
 ### Cấu hình biến môi trường
 
-```bash
+`````bash
 # .env — thêm file này vào .gitignore!
 OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
-```
+`````
 
-Với LLM cục bộ qua Ollama (không cần API key): ```bash
+Với LLM cục bộ qua Ollama (không cần API key): `````bash
 # Tải model cục bộ
 ollama pull llama3.1
 
 # Trong cấu hình agent, sử dụng: ollama/llama3.1
-```
+`````
 
 ## Xác định Agent đầu tiên của bạn
 
-Chỉnh sửa `src/research_crew/config/agents.yaml` để xác định các agent dựa trên vai trò: ```yaml
+Chỉnh sửa ``src/research_crew/config/agents.yaml`` để xác định các agent dựa trên vai trò: `````yaml
 # src/research_crew/config/agents.yaml
 
 researcher: role: >
@@ -179,23 +180,23 @@ editor: role: >
   llm: openai/gpt-4o-mini
   max_iter: 8
   verbose: true
-```
+`````
 
 Các tùy chọn cấu hình chính cho mỗi agent: | Tham số | Mô tả | Ví dụ |
 |---------|-------|-------|
-| `role` | Chức danh và chức năng của agent | `Senior Research Analyst` |
-| `goal` | Mục tiêu agent cần đạt được | Nghiên cứu `{topic}` |
-| `backstory` | Ngữ cảnh định hình hành vi của agent | Kinh nghiệm và tính cách |
-| `llm` | Mô hình LLM qua LiteLLM | `openai/gpt-4o` |
-| `max_iter` | Số vòng lặp suy luận tối đa mỗi tác vụ | `15` |
-| `verbose` | In quá trình suy nghĩ ra console | `true` |
-| `allow_delegation` | Có thể phân công cho agent khác | `false` |
+| ````role```` | Chức danh và chức năng của agent | ````Senior Research Analyst```` |
+| ````goal```` | Mục tiêu agent cần đạt được | Nghiên cứu ````{topic}```` |
+| ````backstory```` | Ngữ cảnh định hình hành vi của agent | Kinh nghiệm và tính cách |
+| ````llm```` | Mô hình LLM qua LiteLLM | ````openai/gpt-4o```` |
+| ````max_iter```` | Số vòng lặp suy luận tối đa mỗi tác vụ | ````15```` |
+| ````verbose```` | In quá trình suy nghĩ ra console | ````true```` |
+| ````allow_delegation```` | Có thể phân công cho agent khác | ````false```` |
 
 ## Xác định tác vụ và kết nối Crew
 
 ### Cấu hình tác vụ
 
-Chỉnh sửa `src/research_crew/config/tasks.yaml`: ```yaml
+Chỉnh sửa ``src/research_crew/config/tasks.yaml``: `````yaml
 # src/research_crew/config/tasks.yaml
 
 research_task: description: >
@@ -227,11 +228,11 @@ editing_task: description: >
   agent: editor
   context: [writing_task]
   output_file: output/final_article.md
-```
+`````
 
 ### Định nghĩa Crew
 
-Kết nối agent và tác vụ trong `src/research_crew/crew.py`: ```python
+Kết nối agent và tác vụ trong ``src/research_crew/crew.py``: `````python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
@@ -282,11 +283,11 @@ class ResearchCrew: """Research crew for producing high-quality articles."""
             process=Process.sequential,
             verbose=True,
         )
-```
+`````
 
 ### Điểm vào và thực thi
 
-```python
+`````python
 # src/research_crew/main.py
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
@@ -301,17 +302,17 @@ def run(): """Run the research crew."""
     print(f"\nToken usage: {result.token_usage}")
 
 if __name__ == "__main__": run()
-```
+`````
 
-Chạy crew: ```bash
+Chạy crew: `````bash
 # Thực thi qua CLI
 crewai run
 
 # Hoặc chạy trực tiếp bằng Python
 python -m research_crew.main
-```
+`````
 
-Đầu ra mong đợi: ```
+Đầu ra mong đợi: `````
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -323,13 +324,13 @@ python -m research_crew.main
 ========== FINAL OUTPUT ==========
 [Bài viết đã chỉnh sửa hoàn chỉnh xuất hiện ở đây]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
-```
+`````
 
 ## Cách sử dụng nâng cao: Flows, công cụ và mẫu production
 
 ### Sử dụng CrewAI Flows cho điều phối phức tạp
 
-Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: ```python
+Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: `````python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
@@ -356,11 +357,11 @@ class ArticleFlow(Flow[ArticleState]): @start()
             with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
 if __name__ == "__main__": ArticleFlow().kickoff()
-```
+`````
 
 ### Tạo công cụ tùy chỉnh
 
-```python
+`````python
 # src/research_crew/tools/custom_tool.py
 from crewai.tools import tool
 import requests
@@ -372,9 +373,9 @@ def web_search(query: str) -> str: """Search the web for information on a given 
         params={"q": query, "api_key": "${SERPER_API_KEY}"}
     )
     return response.json()["organic_results"][0]["snippet"]
-```
+`````
 
-Đăng ký công cụ trong crew: ```python
+Đăng ký công cụ trong crew: `````python
 # Trong crew.py, import và gắn kết
 from research_crew.tools.custom_tool import web_search
 
@@ -384,11 +385,11 @@ def researcher(self) -> Agent: return Agent(
         tools=[web_search],  # Gắn công cụ tùy chỉnh
         allow_delegation=False,
     )
-```
+`````
 
 ### Quy trình phân cấp với agent quản lý
 
-```python
+`````python
 @crew
 def crew(self) -> Crew: return Crew(
         agents=self.agents,
@@ -397,11 +398,11 @@ def crew(self) -> Crew: return Crew(
         manager_llm="openai/gpt-4o",
         verbose=True,
     )
-```
+`````
 
 ### Triển khai production với FastAPI
 
-```python
+`````python
 # api_server.py — Triển khai production
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
@@ -430,7 +431,7 @@ def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     jobs[job_id]["result"] = result.raw
 
 # Chạy: uvicorn api_server:app --host 0.0.0.0 --port 8000
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -460,25 +461,25 @@ So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-a
 
 ### OpenAI / Anthropic / Google Gemini
 
-CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: ```yaml
+CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: `````yaml
 # agents.yaml — chọn model cho mỗi agent
 researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # hoặc: openai/gpt-4o
   # hoặc: gemini/gemini-2.0-flash
-```
+`````
 
 ### Ollama (LLM cục bộ)
 
-```yaml
+`````yaml
 researcher: role: Research Analyst
   llm: ollama/llama3.1
   # Yêu cầu: ollama pull llama3.1
-```
+`````
 
 ### Công cụ LangChain
 
-```python
+`````python
 # Sử dụng công cụ LangChain trong CrewAI
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -492,11 +493,11 @@ agent = Agent(
     tools=[wiki_tool],  # Công cụ LangChain hoạt động trực tiếp
     verbose=True,
 )
-```
+`````
 
 ### LlamaIndex (Tích hợp RAG)
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from crewai.tools import tool
 
@@ -506,11 +507,11 @@ def document_search(query: str) -> str: """Search internal documents for relevan
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
     return str(query_engine.query(query))
-```
+`````
 
 ### Triển khai Docker
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -524,16 +525,16 @@ RUN crewai install
 EXPOSE 8000
 
 CMD ["crewai", "run"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: crewai: build: .
     env_file: .env
     volumes: - ./output:/app/output
     ports: - "8000:8000"
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -565,13 +566,13 @@ services: crewai: build: .
 ## Câu hỏi thường gặp
 
 **Q: CrewAI yêu cầu phiên bản Python nào?**
-A: CrewAI yêu cầu Python 3.10 đến 3.13. Không hỗ trợ Python 3.9 trở xuống. Sử dụng `pyenv` để quản lý nhiều phiên bản Python trên hệ thống.
+A: CrewAI yêu cầu Python 3.10 đến 3.13. Không hỗ trợ Python 3.9 trở xuống. Sử dụng ````pyenv```` để quản lý nhiều phiên bản Python trên hệ thống.
 
 **Q: Làm thế nào cài đặt CrewAI với hỗ trợ LLM cục bộ?**
-A: Cài đặt CrewAI bình thường bằng `pip install crewai`, sau đó cài đặt Ollama riêng. Trong cấu hình agent, đặt `llm: ollama/llama3.1`. Không cần API key cho suy luận cục bộ.
+A: Cài đặt CrewAI bình thường bằng ````pip install crewai````, sau đó cài đặt Ollama riêng. Trong cấu hình agent, đặt ````llm: ollama/llama3.1````. Không cần API key cho suy luận cục bộ.
 
 **Q: CrewAI có thể hoạt động với model không phải OpenAI không?**
-A: Có. CrewAI hỗ trợ mọi model tương thích LiteLLM bao gồm Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral và model cục bộ qua Ollama. Sử dụng định dạng `provider/model-name` trong cấu hình agent.
+A: Có. CrewAI hỗ trợ mọi model tương thích LiteLLM bao gồm Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral và model cục bộ qua Ollama. Sử dụng định dạng ````provider/model-name```` trong cấu hình agent.
 
 **Q: Sự khác biệt giữa CrewAI Crews và Flows là gì?**
 A: Crews là các team agent cộng tác trên tác vụ thông qua các quy trình tuần tự, phân cấp hoặc song song. Flows là luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện, quản lý trạng thái qua Pydantic models và phân nhánh. Dùng Crews cho cộng tác đơn luồng và Flows cho pipeline đa giai đoạn.
@@ -580,7 +581,7 @@ A: Crews là các team agent cộng tác trên tác vụ thông qua các quy tr�
 A: Với crew 3-agent sử dụng GPT-4o chạy 100 lần/ngày, dự kiến chi phí API LLM khoảng $100–$300/tháng. Sử dụng model rẻ hơn như GPT-4o-mini cho tác vụ đơn giản có thể giảm chi phí 40–60%. CrewAI miễn phí và mã nguồn mở (giấy phép MIT).
 
 **Q: Làm thế nào debug agent CrewAI cho kết quả kém?**
-A: Đặt `verbose: true` trên agent để xem quá trình suy nghĩ. Dùng `max_iter` giới hạn vòng lặp suy luận. Thêm schema đầu ra có cấu trúc để ép format. Xem lại chỉ số sử dụng token sau mỗi lần chạy. Với vấn đề dai dẳng, đơn giản hóa mô tả tác vụ và xác minh cấu hình công cụ.
+A: Đặt ````verbose: true```` trên agent để xem quá trình suy nghĩ. Dùng ````max_iter```` giới hạn vòng lặp suy luận. Thêm schema đầu ra có cấu trúc để ép format. Xem lại chỉ số sử dụng token sau mỗi lần chạy. Với vấn đề dai dẳng, đơn giản hóa mô tả tác vụ và xác minh cấu hình công cụ.
 
 **Q: CrewAI đã sẵn sàng production cho doanh nghiệp chưa?**
 A: Với khối lượng production vừa và nhỏ, có. CrewAI+ thêm tính năng quan sát và triển khai được quản lý từ $99/tháng. Với khối lượng lớn hoặc cần audit nghiêm ngặt, cân nhắc sử dụng CrewAI với checkpointing tùy chỉnh hoặc đánh giá LangGraph.
@@ -591,10 +592,10 @@ CrewAI mang lại con đường nhanh nhất từ ý tưởng đến hệ thốn
 
 **Các hành động bắt đầu ngay hôm nay:**
 
-1. Cài đặt CrewAI: `pip install crewai`
-2. Tạo khung dự án đầu tiên: `crewai create crew my_project`
-3. Xác định 2–3 agent với vai trò riêng biệt trong `agents.yaml`
-4. Chạy crew với `crewai run`
+1. Cài đặt CrewAI: ````pip install crewai````
+2. Tạo khung dự án đầu tiên: ````crewai create crew my_project````
+3. Xác định 2–3 agent với vai trò riêng biệt trong ````agents.yaml````
+4. Chạy crew với ````crewai run```
 5. Tham gia cộng đồng CrewAI để được hỗ trợ và tìm hiểu các mẫu nâng cao
 
 Tham gia thảo luận trên Telegram: [Tham gia cộng đồng dibi8.com](https://t.me/dibi8tech) để nhận mẹo multi-agent AI và chiến lược triển khai production.
@@ -647,7 +648,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -657,7 +658,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [temporal-ai-workflow-orchestration](crewai)
 - [cleanlab-11k-star-ai-data-cleaning](crewai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

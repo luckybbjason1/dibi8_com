@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 ---
 
+
 ## Giới Thiệu
 
 Giấc mơ về một trợ lý AI hoàn toàn tự trị — một thứ có thể xem màn hình máy tính của bạn, hiểu những gì nó thấy và thực hiện các hành động để hoàn thành nhiệm vụ — đã là chén thánh của phát triển AI trong nhiều năm. UI-TARS Desktop của ByteDance đưa giấc mơ này gần với thực tế hơn bằng cách kết hợp các mô hình ngôn ngữ-thị giác tiên tiến nhất với khả năng tự động hóa máy tính.
@@ -52,67 +53,67 @@ UI-TARS Desktop có thể được cài đặt qua npm (cho ứng dụng máy t�
 
 ### Cài Đặt Qua npm (Ứng Dụng Máy Tính Để Bàn)
 
-```bash
+````bash
 npm install -g @agent-tars/desktop
-```
+`````
 
 Điều này cài đặt ứng dụng UI-TARS Desktop trên toàn cầu, cung cấp trải nghiệm đại diện GUI đầy đủ với giao diện tích hợp sẵn.
 
 ### Tùy Chọn: Cài Đặt Qua pip (Thư Viện Python)
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 Điều này cài đặt phiên bản thư viện Python, lý tưởng cho việc sử dụng lập trình và triển khai máy chủ.
 
 ### Khởi Động Web UI
 
-```bash
+`````bash
 agent-tars web
-```
+`````
 
 Khởi chạy giao diện dựa trên web cho đại diện UI-TARS. Web UI cung cấp giao diện dựa trên trình duyệt để kiểm soát đại diện và xem các hành động của nó.
 
 ### Xác Minh Cài Đặt
 
-```bash
+`````bash
 agent-tars --version
-```
+`````
 
 ### Cài Đặt Từ Mã Nguồn
 
-```bash
+`````bash
 git clone https://github.com/bytedance/UI-TARS-desktop.git && cd UI-TARS-desktop && pip install -r requirements.txt
-```
+`````
 
 ### Tải Mô Hình Đã Huấn Luyện Sẵn
 
-```bash
+`````bash
 python download_model.py --model ui-tars-7b
-```
+`````
 
 Tải xuống mô hình ngôn ngữ-thị giác 7 tỷ tham số đã huấn luyện sẵn. Mô hình được tải từ HuggingFace và lưu cục bộ để suy luận ngoại tuyến.
 
 ### Cài Đặt Docker
 
-```bash
+`````bash
 docker pull bytedance/uitars-desktop
 docker run --gpus all -it bytedance/uitars-desktop
-```
+`````
 
 ### Cài Đặt Trên macOS
 
-```bash
+`````bash
 brew install python@3.11
 pip3 install agent-tars
-```
+`````
 
 ### Cài Đặt Trên Windows
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 ![UI-TARS Hành Động Chu Kỳ](https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/action-cycle.png)
 
@@ -120,83 +121,83 @@ pip install agent-tars
 
 ### Khởi Động Đại Diện
 
-```bash
+`````bash
 agent-tars --model ui-tars-7b
-```
+`````
 
 Điều này khởi động đại diện UI-TARS với mô hình ngôn ngữ-thị giác 7 tỷ tham số, là kích thước được khuyến nghị cho hầu hết các trường hợp sử dụng.
 
 ### Chạy Một Nhiệm Vụ Đơn Giản
 
-```bash
+`````bash
 agent-tars run --task "Open the browser and search for 'machine learning tutorial'" --model ui-tars-7b
-```
+`````
 
 Đại diện sẽ tự động mở trình duyệt mặc định của bạn, điều hướng đến công cụ tìm kiếm và tìm kiếm truy vấn được chỉ định.
 
 ### Chạy Từ Tệp Nhiệm Vụ
 
-```bash
+`````bash
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
-```
+`````
 
-Trong đó `tasks.yaml` chứa: ```yaml
+Trong đó ``tasks.yaml`` chứa: `````yaml
 tasks: - "Open the file explorer"
   - "Navigate to Desktop"
   - "Right-click and create a new folder"
   - "Name the folder 'My Project'"
-```
+`````
 
 ### Chế Độ Ảnh Chụp Màn Hình (Chỉ Phân Tích)
 
-```bash
+`````bash
 agent-tars analyze --screenshot screenshot.png
-```
+`````
 
 Điều này phân tích một ảnh chụp màn hình và mô tả các yếu tố UI hiển thị, mà không thực hiện bất kỳ hành động nào. Hữu ích cho gỡ lỗi và hiểu những gì mô hình nhìn thấy.
 
 ### Ghi Và Phát Lại
 
-```bash
+`````bash
 agent-tars record --output recording.yaml
 agent-tars replay --recording recording.yaml
-```
+`````
 
 Ghi lại các hành động của đại diện và tạo một tệp YAML có thể phát lại sau, cho phép tạo tập lệnh tự động hóa.
 
 ### Chạy Ở Chế Độ Không Đầu
 
-```bash
+`````bash
 agent-tars run --headless --task "Close all open browser tabs" --model ui-tars-7b
-```
+`````
 
 Chế độ không đầu chạy đại diện mà không hiển thị UI, hữu ích cho môi trường máy chủ và CI/CD pipelines.
 
 ### Cấu Hình Tham Số Đại Diện
 
-```bash
+`````bash
 agent-tars run --task "Your task" --model ui-tars-7b --max-steps 20 --confidence-threshold 0.8
-```
+`````
 
 ### Xử Lý Nhiệm Vụ Hàng loạt
 
-```bash
+`````bash
 agent-tars batch --task-file tasks.yaml --parallel 3 --output results.jsonl
-```
+`````
 
 Xử lý nhiều nhiệm vụ song song và ghi kết quả vào tệp JSONL để phân tích lập trình.
 
 ### Xuất Nhật Ký Nhiệm Vụ
 
-```bash
+`````bash
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## Sử Dụng Nâng Cao / Gia Cố Sản Xuất
 
 ### Chọn Mô Hình
 
-UI-TARS hỗ trợ nhiều kích thước mô hình cho các sự thỏa thuận hiệu suất khác nhau: ```bash
+UI-TARS hỗ trợ nhiều kích thước mô hình cho các sự thỏa thuận hiệu suất khác nhau: `````bash
 # Mô hình 7B tham số (khuyến nghị cho hầu hết các trường hợp sử dụng)
 agent-tars --model ui-tars-7b
 
@@ -205,11 +206,11 @@ agent-tars --model ui-tars-1b
 
 # Mô hình 72B tham số (chính xác nhất, chậm nhất, cần 40GB+ VRAM)
 agent-tars --model ui-tars-72b
-```
+`````
 
 ### Tệp Cấu Hình Tùy Chỉnh
 
-```yaml
+`````yaml
 # uitars-config.yaml
 agent: model: ui-tars-7b
   max_steps: 30
@@ -225,25 +226,25 @@ actions: click: method: mouse
 environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
-```
+`````
 
 ### Hỗ Trợ Đa Màn Hình
 
-```bash
+`````bash
 agent-tars --monitor 0 --task "Open settings on display 2"
-```
+`````
 
 Chỉ định màn hình nào đại diện nên sử dụng để chụp ảnh màn hình và thực thi hành động.
 
 ### Chế Độ Máy Chủ API
 
-```bash
+`````bash
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
-```
+`````
 
 Khởi chạy máy chủ REST API để kiểm soát lập trình đại diện. Điều này cho phép tích hợp với các công cụ khác và quy trình làm việc tự động hóa.
 
-```bash
+`````bash
 # Gửi một nhiệm vụ qua API
 curl -X POST http://localhost:8000/run \
   -H "Content-Type: application/json" \
@@ -254,21 +255,21 @@ curl http://localhost:8000/tasks/task-001/status
 
 # Hủy một nhiệm vụ đang chạy
 curl -X POST http://localhost:8000/tasks/task-001/cancel
-```
+`````
 
 ### Mô Hình Thị Giác Tùy Chỉnh
 
-```bash
+`````bash
 # Sử dụng mô hình thị giác đã tinh chỉnh từ đường dẫn cục bộ
 agent-tars --model-path ./custom-model/ --task "Your custom task"
 
 # Sử dụng VLM tùy chỉnh
 agent-tars --vlm-path ./my-vlm/ --task "Your task"
-```
+`````
 
 ### Phương Pháp Chụp Màn Hình
 
-```bash
+`````bash
 # Sử dụng phương pháp chụp ảnh màn hình (mặc định)
 agent-tars --capture screenshot --task "Your task"
 
@@ -277,25 +278,25 @@ agent-tars --capture recording --task "Your task"
 
 # Sử dụng phương pháp chia sẻ màn hình (Linux với PipeWire)
 agent-tars --capture pipewire --task "Your task"
-```
+`````
 
 ### Cấu Hình Bố Trí Bàn Phím
 
-```bash
+`````bash
 agent-tars --keyboard-layout us --task "Type 'Hello World'"
-```
+`````
 
 ### Tích Hợp Kiểm Tra CI/CD
 
-```bash
+`````bash
 # Sử dụng UI-TARS cho kiểm tra GUI trong CI/CD pipelines
 agent-tars run --task "Open the application, fill out the form, submit" \
   --headless --output test-report.json
-```
+`````
 
 ### Sử Dụng API Python
 
-```python
+`````python
 from agent_tars import Agent
 
 # Tạo một实例 đại diện
@@ -313,7 +314,7 @@ for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"Success: {result.success}")
 print(f"Reason: {result.explanation}")
-```
+`````
 
 ## Benchmark / Trường Hợp Sử Dụng Thực Tế
 
@@ -349,22 +350,22 @@ print(f"Reason: {result.explanation}")
 
 ### Trường Hợp Thực Tế: Nhóm Kiểm Tra QA
 
-Một nhóm QA gồm 8 kỹ sư sử dụng UI-TARS để tự động hóa kiểm tra GUI trên các ứng dụng web và máy tính để bàn của họ: ```bash
+Một nhóm QA gồm 8 kỹ sư sử dụng UI-TARS để tự động hóa kiểm tra GUI trên các ứng dụng web và máy tính để bàn của họ: `````bash
 #!/bin/bash
 # Bộ kiểm tra regression tự động
 agent-tars batch --task-file regression-tests.yaml \
   --headless --parallel 4 --output test-results.jsonl
-```
+`````
 
 Nhóm báo cáo giảm 60% thời gian kiểm tra regression và khả năng kiểm tra các ứng dụng trước đây yêu cầu kiểm tra thủ công do thiếu truy cập DOM.
 
 ### Trường Hợp Thực Tế: Tự Động Hóa Truy Cập
 
-Một công ty sử dụng UI-TARS để tự động hóa kiểm tra truy cập trên các ứng dụng của họ: ```bash
+Một công ty sử dụng UI-TARS để tự động hóa kiểm tra truy cập trên các ứng dụng của họ: `````bash
 # Kiểm tra nhiều trạng thái UI
 agent-tars run --task "Navigate to all menus and verify keyboard shortcuts work" \
   --model ui-tars-7b --max-steps 50
-```
+`````
 
 Đại diện điều hướng qua tất cả các menu và xác minh rằng các phím tắt được triển khai đúng cách, bắt được các regression mà các bài kiểm tra tự động truyền thống đã bỏ qua.
 
@@ -372,18 +373,18 @@ agent-tars run --task "Navigate to all menus and verify keyboard shortcuts work"
 
 ### Cấu Hình Sản Xuất Với Quản Lý Bí Mật
 
-```bash
+`````bash
 # Cấu hình đường dẫn mô hình một cách an toàn
 export UI_TARS_MODEL_PATH=/secure/path/to/models
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
 
 # Sử dụng cấu hình dựa trên môi trường
 agent-tars --config /etc/uitars/config.yaml serve
-```
+`````
 
 ### Triển Khai Container
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 
 RUN pip install agent-tars
@@ -392,33 +393,33 @@ COPY uitars-config.yaml /etc/uitars/config.yaml
 EXPOSE 8000
 
 ENTRYPOINT ["agent-tars", "serve", "--config", "/etc/uitars/config.yaml"]
-```
+`````
 
 ### Giới Hạn Tài Nguyên Cho Sản Xuất
 
-```bash
+`````bash
 # Giới hạn sử dụng bộ nhớ GPU
 CUDA_VISIBLE_DEVICES=0 agent-tars --model ui-tars-7b --max-gpu-memory 8192
 
 # Giới hạn nhiệm vụ đồng thời
 agent-tars serve --max-concurrent-tasks 5 --task-timeout 300
-```
+`````
 
 ### Nhật Ký Và Giám Sát
 
-```bash
+`````bash
 # Kích hoạt nhật ký chi tiết
 agent-tars run --task "Your task" --verbose --log-level debug
 
 # Xuất nhật ký để phân tích
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
 | Tính Năng | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
 |---------|----------------|-------------|-----------|-----------|
-| Phương Pháp Cài Đặt | `npm install -g @agent-tars/desktop` | pip install | pip install | pip install |
+| Phương Pháp Cài Đặt | ````npm install -g @agent-tars/desktop```` | pip install | pip install | pip install |
 | Hiểu Trực Quan | Dựa trên VLM (phân tích screenshot) | Hạn chế | Không | Một phần |
 | Mọi Ứng Dụng GUI | Có | Hạn chế | Có | Hạn chế |
 | Tự Sửa Chữa | Có (vòng lặp phản hồi trực quan) | Một phần | Không | Một phần |
@@ -437,7 +438,7 @@ Mặc dù UI-TARS Desktop rất mạnh mẽ, hãy nhận thức về những h�
 2. **Độ trễ** — Mỗi hành động yêu cầu một ảnh chụp màn hình và suy luận mô hình, thêm độ trễ vào mỗi bước. Các nhiệm vụ đa bước có thể mất vài phút.
 3. **Xem xét bảo mật** — Đại diện có toàn quyền kiểm soát máy tính để bàn của bạn. Chỉ sử dụng trong môi trường đáng tin cậy và giới hạn truy cập với xác thực thích hợp.
 4. **Nhập văn bản phức tạp** — Nhập văn bản dài hoặc phức tạp đôi khi có thể tạo ra lỗi trong nhận diện ký tự hoặc mô phỏng nhập liệu.
-5. **Màn hình DPI cao** — Phóng to màn hình trên một số màn hình có thể ảnh hưởng đến độ chính xác vị trí. Cấu hình tham số `scale_factor` để phù hợp với cài đặt màn hình của bạn.
+5. **Màn hình DPI cao** — Phóng to màn hình trên một số màn hình có thể ảnh hưởng đến độ chính xác vị trí. Cấu hình tham số ````scale_factor```` để phù hợp với cài đặt màn hình của bạn.
 6. **Quy trình không-GUI** — Đối với các nhiệm vụ thuần dòng lệnh hoặc dựa trên API, các công cụ CLI truyền thống hiệu quả hơn UI-TARS.
 
 ## Câu Hỏi Thường Gặp
@@ -474,7 +475,7 @@ Cho dù bạn đang tự động hóa các nhiệm vụ lặp lại, xây dựng
 
 Để lưu trữ cơ sở hạ tầng đại diện AI và tải trọng GPU của bạn, hãy xem xét triển khai trên các nền tảng đám mây cung cấp các instance GPU giá cả phải chăng. Sử dụng [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho máy chủ phát triển, [HTStack](https://my.htstack.com/aff.php?aff=27187) cho triển khai sản xuất và [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cho proxy và phân phối nội dung đáng tin cậy.
 
-Bắt đầu ngay hôm nay: `npm install -g @agent-tars/desktop` và trao cho máy tính của bạn một trợ lý AI thực sự có thể nhìn thấy và hiểu những gì nó đang làm.
+Bắt đầu ngay hôm nay: ````npm install -g @agent-tars/desktop``` và trao cho máy tính của bạn một trợ lý AI thực sự có thể nhìn thấy và hiểu những gì nó đang làm.
 
 Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com có thể kiếm hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp giữ trang web hoạt động và nội dung miễn phí.
 
@@ -518,7 +519,7 @@ Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -528,7 +529,7 @@ Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com
 - [2026-06-01-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 - [2026-06-08-trending-ai-agents](bytedance-ui-tars-desktop-ai-agent-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

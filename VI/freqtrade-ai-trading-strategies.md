@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/freqtrade-ai-trading-strategies/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tại Sao 90% Bot Giao Dịch Tự Làm Mất Tiền
@@ -50,7 +51,7 @@ Bản phát hành mới nhất v2026.5 mang đến FreqAI 2.0 với tự động
 
 ## Freqtrade Hoạt Động Như Thế Nào: Tìm Hiểu Sâu Kiến Trúc
 
-Kiến trúc của Freqtrade được xây dựng xung quanh một state machine xử lý dữ liệu thị trường thông qua chiến lược của bạn: ```
+Kiến trúc của Freqtrade được xây dựng xung quanh một state machine xử lý dữ liệu thị trường thông qua chiến lược của bạn: ````
 ┌──────────────────────────────────────────────────────────────┐
 │                    File Chiến Lược (.py)                      │
 │  (populate_indicators / populate_buy_trend /                  │
@@ -68,7 +69,7 @@ Kiến trúc của Freqtrade được xây dựng xung quanh một state machine
 │                    Hạ Tầng                                    │
 │  (SQLite DB / Telegram / Web UI / Docker)                   │
 └──────────────────────────────────────────────────────────────┘
-```
+`````
 
 **Vòng lặp giao dịch** hoạt động như sau: 1. Freqtrade lấy dữ liệu nến OHLCV từ sàn giao dịch qua CCXT
 2. **Chiến lược** của bạn tính toán các chỉ báo kỹ thuật và tạo tín hiệu mua/bán
@@ -91,7 +92,7 @@ Kiến trúc của Freqtrade được xây dựng xung quanh một state machine
 
 ### Bước 1: Tạo Cấu Trúc Thư Mục
 
-```bash
+`````bash
 # Tạo cấu trúc thư mục user_data
 mkdir -p freqtrade/user_data/strategies
 mkdir -p freqtrade/user_data/configs
@@ -99,18 +100,18 @@ mkdir -p freqtrade/user_data/configs
 # Tải file docker-compose chính thức
 cd freqtrade
 curl -o docker-compose.yml https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docker-compose.yml
-```
+`````
 
 ### Bước 2: Khởi Tạo Cấu Hình
 
-```bash
+`````bash
 # Chạy lệnh init để tạo config mặc định
 docker compose run --rm freqtrade new-config --config user_data/config.json
-```
+`````
 
 ### Bước 3: Tạo Chiến Lược Đầu Tiên
 
-```python
+`````python
 # user_data/strategies/SampleStrategy.py
 import numpy as np
 import talib.abstract as ta
@@ -171,51 +172,51 @@ class SampleStrategy(IStrategy): """
             exit_long
         ] = 1
         return dataframe
-```
+`````
 
 ### Bước 4: Khởi Động Bot
 
-```bash
+`````bash
 # Khởi động Freqtrade với chiến lược của bạn
 docker compose up -d
 
 # Kiểm tra logs
 docker compose logs -f freqtrade
-```
+`````
 
-```
+`````
 freqtrade  | 2026-05-19 08:00:01 freqtrade.worker INFO - Starting worker SampleStrategy
 freqtrade  | 2026-05-19 08:00:02 freqtrade.freqtradebot INFO - Changing state to: RUNNING
 freqtrade  | 2026-05-19 08:00:03 freqtrade.wallets INFO - Wallets synced.
 freqtrade  | 2026-05-19 08:00:04 freqtrade.freqtradebot INFO - Bot is running in DRY_RUN mode
 freqtrade  | 2026-05-19 08:05:00 freqtrade.persistence.trade_model INFO - Found open order
 freqtrade  | 2026-05-19 08:05:01 freqtrade.freqtradebot INFO - Long signal detected for BTC/USDT
-```
+`````
 
 ### Bước 5: Giám Sát Qua Telegram
 
-Gửi lệnh cho bot của bạn: ```
+Gửi lệnh cho bot của bạn: `````
 /status - Hiển thị giao dịch hiện tại và hiệu suất
 /profit - Hiển thị tóm tắt lợi nhuận
 /balance - Hiển thị số dư ví
 /daily - Hiển thị lãi/lỗ hàng ngày
 /performance - Hiển thị hiệu suất theo cặp
-```
+`````
 
-```
+`````
 Status: Running
 Trade Count: 12
 Open Trades: 2
 Closed Profit: +3.24 USDT
 Best Performing: ETH/USDT (+1.8%)
 Worst Performing: SOL/USDT (-0.4%)
-```
+`````
 
 ## Tích Hợp Machine Learning (FreqAI)
 
 ### Bật FreqAI
 
-FreqAI mang dự đoán machine learning vào chiến lược của bạn. Trước tiên, thêm cấu hình FreqAI: ```json
+FreqAI mang dự đoán machine learning vào chiến lược của bạn. Trước tiên, thêm cấu hình FreqAI: `````json
 // Thêm vào config.json
 "freqai": {
   "enabled": true,
@@ -246,11 +247,11 @@ FreqAI mang dự đoán machine learning vào chiến lược của bạn. Trư�
     "num_leaves": 32
   }
 }
-```
+`````
 
 ### Ví Dụ Chiến Lược FreqAI
 
-```python
+`````python
 # user_data/strategies/FreqAIStrategy.py
 import pandas as pd
 from freqtrade.strategy import IStrategy
@@ -306,7 +307,7 @@ class FreqAISrategy(IStrategy): """
             "exit_long"
         ] = 1
         return dataframe
-```
+`````
 
 ### Tùy Chọn Model
 
@@ -322,7 +323,7 @@ FreqAI hỗ trợ nhiều backend ML: | Model | Backend | Tốt Nhất Cho | T�
 
 ### Tối Ưu Hyperparameter Với Optuna
 
-```bash
+`````bash
 # Chạy tối ưu hyperparameter
 docker compose run --rm freqtrade hyperopt \
   --strategy SampleStrategy \
@@ -330,11 +331,11 @@ docker compose run --rm freqtrade hyperopt \
   --epochs 100 \
   --timerange 20260101-20260331 \
   --hyperopt-loss SharpeHyperOptLossDaily
-```
+`````
 
 ### Backtesting Với Edge Validation
 
-```bash
+`````bash
 # Tải dữ liệu lịch sử trước
 docker compose run --rm freqtrade download-data \
   --exchange binance \
@@ -349,11 +350,11 @@ docker compose run --rm freqtrade backtesting \
   --pairs BTC/USDT ETH/USDT SOL/USDT \
   --export trades \
   --export-filename user_data/backtest_results.json
-```
+`````
 
 ### Tích Hợp Jupyter Notebook
 
-```python
+`````python
 # Chạy bên trong container Jupyter của Freqtrade
 import pandas as pd
 from freqtrade.data.history import load_pair_history
@@ -377,11 +378,11 @@ dataframe = strategy.analyze_ticker(data, {pair: pair})
 signals = dataframe[dataframe[enter_long] == 1]
 print(f"Tìm thấy {len(signals)} tín hiệu vào lệnh")
 print(signals[[date, close, rsi, macdhist]].head(10))
-```
+`````
 
 ### REST API Cho Tích Hợp Bên Ngoài
 
-```bash
+`````bash
 # Khởi động API server (đã bật trong config.json)
 # Truy vấn trạng thái hiện tại
 curl -u admin:your-secure-password \
@@ -400,7 +401,7 @@ curl -X POST -u admin:your-secure-password \
   -H "Content-Type: application/json" \
   -d '{"pair": "BTC/USDT", "side": "long"}' \
   http://localhost:8080/api/v1/forceentry
-```
+`````
 
 ## Benchmark & Hiệu Suất Thực Tế
 
@@ -427,7 +428,7 @@ curl -X POST -u admin:your-secure-password \
 
 ### Trường Hợp Đặc Biệt: Phục Hồi Drawdown
 
-Một benchmark quan trọng là chiến lược phục hồi từ drawdown nhanh như thế nào: ```
+Một benchmark quan trọng là chiến lược phục hồi từ drawdown nhanh như thế nào: `````
 Chiến lược: FreqAI LightGBM
 Timeline: 2026-01-01 đến 2026-03-31
 
@@ -437,13 +438,13 @@ Số ngày phục hồi: 8 ngày giao dịch
 Feb return: +11.4%
 Mar return: +9.8%
 Q1 total return: +12.1%
-```
+`````
 
 ## Sử Dụng Nâng Cao & Củng Cố Production
 
 ### Cấu Hình Quản Lý Rủi Ro
 
-```json
+`````json
 // Cài đặt quản lý rủi ro nâng cao
 "max_open_trades": 3,
 "stake_amount": "unlimited",
@@ -481,11 +482,11 @@ Q1 total return: +12.1%
     "stop_duration": 60
   }
 ]
-```
+`````
 
 ### Stoploss Tùy Chỉnh Dựa Trên ATR
 
-```python
+`````python
 # Thêm vào chiến lược để có stoploss động
 def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float: """Stoploss động dựa trên ATR."""
@@ -500,11 +501,11 @@ def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
     
     # Chuyển đổi sang phần trăm từ giá hiện tại
     return stoploss_from_absolute(stoploss_price, current_rate, is_short=trade.is_short)
-```
+`````
 
 ### Phân Tích Đa Khung Thờ Gian
 
-```python
+`````python
 def informative_pairs(self): """Định nghĩa các cặp khung thờ gian cao hơn để phân tích."""
     return [
         ("BTC/USDT", "1h"),
@@ -529,11 +530,11 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
-```
+`````
 
 ### FreqAI Với Tăng Tốc GPU
 
-```yaml
+`````yaml
 # docker-compose.yml với hỗ trợ GPU cho FreqAI
 version: '3.8'
 
@@ -547,11 +548,11 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
     environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
     command: >
       trade --strategy FreqAIStrategy --config user_data/config.json
-```
+`````
 
 ### Docker Compose Cho Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -572,7 +573,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
       start_period: 60s
     command: >
       trade --strategy SampleStrategy --config user_data/config.json
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -608,7 +609,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
 
 4. **Mức sử dụng tài nguyên với FreqAI đáng kể.** Chạy FreqAI với 10+ cặp và neural network model đòi hỏi 2-4GB RAM và CPU đáng kể. Đừng mong đợi chạy trên VPS $3/tháng.
 
-5. **Hỗ trợ short thay đổi theo sàn.** Thị trường spot không hỗ trợ vị thế short. Cho chiến lược short, bạn cần connector hỗ trợ futures (Binance Futures, OKX) và `trading_mode: futures` trong config.
+5. **Hỗ trợ short thay đổi theo sàn.** Thị trường spot không hỗ trợ vị thế short. Cho chiến lược short, bạn cần connector hỗ trợ futures (Binance Futures, OKX) và ````trading_mode: futures```` trong config.
 
 ## Câu Hỏi Thường Gặp
 
@@ -630,13 +631,13 @@ Có. VPS **$5-10/tháng** (1 CPU, 1GB RAM) xử lý được các chiến lượ
 
 ### Làm sao ngăn bot mất tiền?
 
-Không bot nào đảm bảo có lợi nhuận. Các thực hành này giảm thiểu rủi ro: (1) Luôn backtest trên 1+ năm dữ liệu trước khi live. (2) Chạy dry-run ít nhất 2 tuần. (3) Dùng `max_open_trades` giới hạn rủi ro. (4) Đặt `stoploss` 5-10%. (5) Bật `protections` (CooldownPeriod, MaxDrawdown). (6) Bắt đầu với 1-2% vốn mỗi giao dịch.
+Không bot nào đảm bảo có lợi nhuận. Các thực hành này giảm thiểu rủi ro: (1) Luôn backtest trên 1+ năm dữ liệu trước khi live. (2) Chạy dry-run ít nhất 2 tuần. (3) Dùng ````max_open_trades```` giới hạn rủi ro. (4) Đặt ````stoploss```` 5-10%. (5) Bật ````protections```` (CooldownPeriod, MaxDrawdown). (6) Bắt đầu với 1-2% vốn mỗi giao dịch.
 
 ### Có thể dùng model ML tùy chỉnh không?
 
-Có. FreqAI hỗ trợ model PyTorch tùy chỉnh. Tạo class kế thừa từ `IFreqaiModel` và implement các phương thức `fit` và `predict`. Bạn có thể dùng bất kỳ model tương thích sklearn hoặc neural network PyTorch đầy đủ.
+Có. FreqAI hỗ trợ model PyTorch tùy chỉnh. Tạo class kế thừa từ ````IFreqaiModel```` và implement các phương thức ````fit```` và ````predict````. Bạn có thể dùng bất kỳ model tương thích sklearn hoặc neural network PyTorch đầy đủ.
 
-```python
+`````python
 # Ví dụ model tùy chỉnh
 from freqtrade.freqai.base_models import BaseRegressionModel
 from sklearn.ensemble import RandomForestRegressor
@@ -644,11 +645,11 @@ from sklearn.ensemble import RandomForestRegressor
 class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10)
         model.fit(data_dictionary["train_features"], data_dictionary["train_labels"])
         return model
-```
+`````
 
 ### Nếu API sàn giao dịch ngừng hoạt động thì sao?
 
-Freqtrade xử lý downtime sàn giao dịch một cách graceful. Lệnh mở được theo dõi, và bot tiếp tục hoạt động bình thường khi API phục hồi. Bật `stoploss_on_exchange` để đảm bảo lệnh stop-loss tồn tại trên sàn như mạng lưới an toàn. Thông báo Telegram cảnh báo bạn khi bot phát hiện vấn đề.
+Freqtrade xử lý downtime sàn giao dịch một cách graceful. Lệnh mở được theo dõi, và bot tiếp tục hoạt động bình thường khi API phục hồi. Bật ````stoploss_on_exchange``` để đảm bảo lệnh stop-loss tồn tại trên sàn như mạng lưới an toàn. Thông báo Telegram cảnh báo bạn khi bot phát hiện vấn đề.
 
 ## Kết Luận: Xây Dựng Bot Giao Dịch AI Củạ Bạn Ngay Hôm Nay
 

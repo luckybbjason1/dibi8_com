@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/ollama-local-llm-guide/
 ---
 
+
 {{</* resource-info */>}}
 
 대규모 언어 모델을 실행하는 것은 과거에 Python 환경, CUDA 드라이버, 수 GB의 의존성과 씨름하는 것을 의미했습니다. 2026년이 되면서 그 마찰은 사라졌습니다. [Ollama](https://ollama.com)는 단 하나의 명령으로 프로덕션급 LLM을 가져오고, 구성하고, 서빙할 수 있게 해줍니다 — PyTorch 설치, 수동 GPU 튜닝, 심지어 Docker까지 필요 없습니다. 137,000개 이상의 GitHub Star와 번성하는 통합 생태계를 보유한 Ollama는 운영적 부담 없이 로컬 추론을 원하는 개발자를 위한 기본 런타임이 되었습니다.
@@ -45,11 +46,11 @@ aliases:
 
 ## Ollama의 작동 방식
 
-Ollama의 아키텍처는 클라이언트-서버 모델을 따릅니다. 백그라운드 데몬(`ollama serve`)이 모델 다운로드, 메모리 할당, 추론을 관리합니다. CLI와 REST API는 HTTP 포트 11434를 통해 이 데몬과 통신하는 경량 클라이언트입니다.
+Ollama의 아키텍처는 클라이언트-서버 모델을 따릅니다. 백그라운드 데몬(```ollama serve````)이 모델 다운로드, 메모리 할당, 추론을 관리합니다. CLI와 REST API는 HTTP 포트 11434를 통해 이 데몬과 통신하는 경량 클라이언트입니다.
 
 ### 핵심 아키텍처
 
-```
+`````
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   클라이언트  │────▶│ ollama serve │────▶│  llama.cpp/MLX  │
 │  (CLI/API)  │     │   (포트      │     │  (추론 백엔드)   │
@@ -61,35 +62,35 @@ Ollama의 아키텍처는 클라이언트-서버 모델을 따릅니다. 백그�
                     │  (모델,      │
                     │   블롭)      │
                     └─────────────┘
-```
+`````
 
 **핵심 구성 요소:**
 
-- **모델 허브 (Model Hub)**: `ollama.com`에서 가져오는 큐레이션된 GGUF 모델. 각 모델은 `name:tag` 쌍으로 식별됩니다 (예: `llama3.2:8b`).
+- **모델 허브 (Model Hub)**: ````ollama.com````에서 가져오는 큐레이션된 GGUF 모델. 각 모델은 ````name:tag```` 쌍으로 식별됩니다 (예: ````llama3.2:8b````).
 - **Modelfile**: 베이스 모델, 시스템 프롬프트, 매개변수, 채팅 템플릿을 지정하는 선언적 설정 (Dockerfile과 유사).
 - **추론 백엔드**: 사용 가능한 하드웨어에 따라 llama.cpp (CUDA/ROCm/CPU), MLX (Apple Silicon), 또는 Metal을 자동 선택.
-- **REST API**: `/api/generate`, `/api/chat`, `/api/embed`, `/v1/chat/completions`에서 OpenAI 호환 엔드포인트.
+- **REST API**: ````/api/generate````, ````/api/chat````, ````/api/embed````, ````/v1/chat/completions````에서 OpenAI 호환 엔드포인트.
 
 ### 모델 저장소
 
-모델은 `~/.ollama/models/`에 콘텐츠 주소 가능한 블롭(SHA-256 다이제스트) 형태로 저장됩니다. 매니페스트 파일이 어떤 블롭이 어떤 모델 태그에 속하는지 추적합니다. 이 중복 제거는 동일한 베이스 가중치를 공유하는 두 모델이 디스크에 하나의 사본만 저장함을 의미합니다.
+모델은 ````~/.ollama/models/````에 콘텐츠 주소 가능한 블롭(SHA-256 다이제스트) 형태로 저장됩니다. 매니페스트 파일이 어떤 블롭이 어떤 모델 태그에 속하는지 추적합니다. 이 중복 제거는 동일한 베이스 가중치를 공유하는 두 모델이 디스크에 하나의 사본만 저장함을 의미합니다.
 
 ## 설치 및 설정
 
 ### macOS
 
-```bash
+`````bash
 # Homebrew 사용 (권장)
 brew install ollama
 
 # 또는 ollama.com/download에서 네이티브 앱 다운로드
-```
+`````
 
 ### Linux (한 줄 설치)
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
-```
+`````
 
 이 명령은 바이너리를 설치하고, systemd 서비스를 등록하며, GPU 기능(NVIDIA CUDA, AMD ROCm, 또는 CPU 전용)을 자동 감지합니다.
 
@@ -99,7 +100,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ### 설치 확인
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.6.7
 
@@ -108,19 +109,19 @@ ollama serve
 
 # 첫 번째 모델 가져오기 및 실행
 ollama run llama3.2:8b
-```
+`````
 
-모델을 처음 실행할 때 Ollama가 다운로드합니다. `llama3.2:8b`와 같은 양자화된 8B 파라미터 모델은 약 4.9GB 디스크 공간이 필요하며 8GB VRAM에서 원활하게 실행됩니다.
+모델을 처음 실행할 때 Ollama가 다운로드합니다. ````llama3.2:8b````와 같은 양자화된 8B 파라미터 모델은 약 4.9GB 디스크 공간이 필요하며 8GB VRAM에서 원활하게 실행됩니다.
 
 ### 하드웨어별 모델 빠른 선택
 
 | 하드웨어 | 권장 모델 | 명령어 |
 |----------|----------|--------|
-| 6–8 GB VRAM | Qwen3 8B | `ollama run qwen3:8b` |
-| 10–12 GB VRAM | Llama 3.1 8B Q4 | `ollama run llama3.1:8b` |
-| 16+ GB VRAM | DeepSeek-R1 14B | `ollama run deepseek-r1:14b` |
-| CPU 전용, 16 GB RAM | Phi-4 Mini 3.8B | `ollama run phi4-mini` |
-| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | `ollama run llama3.1:70b` |
+| 6–8 GB VRAM | Qwen3 8B | ````ollama run qwen3:8b```` |
+| 10–12 GB VRAM | Llama 3.1 8B Q4 | ````ollama run llama3.1:8b```` |
+| 16+ GB VRAM | DeepSeek-R1 14B | ````ollama run deepseek-r1:14b```` |
+| CPU 전용, 16 GB RAM | Phi-4 Mini 3.8B | ````ollama run phi4-mini```` |
+| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | ````ollama run llama3.1:70b```` |
 
 ## 인기 도구와의 통합
 
@@ -128,7 +129,7 @@ ollama run llama3.2:8b
 
 [Open WebUI](https://github.com/open-webui/open-webui)는 Ollama를 위한 가장 인기 있는 프론트엔드로, RAG, 음성 입력, 다중 사용자를 지원하는 ChatGPT와 유사한 웹 인터페이스를 제공합니다.
 
-```bash
+`````bash
 # Docker로 Open WebUI 실행
 docker run -d -p 3000:8080 \
   --add-host=host.docker.internal:host-gateway \
@@ -136,13 +137,13 @@ docker run -d -p 3000:8080 \
   --name open-webui \
   --restart always \
   ghcr.io/open-webui/open-webui:main
-```
+`````
 
-`http://localhost:3000`에서 접속하세요. Open WebUI는 `http://host.docker.internal:11434`에서 Ollama 인스턴스를 자동으로 감지합니다.
+````http://localhost:3000````에서 접속하세요. Open WebUI는 ````http://host.docker.internal:11434````에서 Ollama 인스턴스를 자동으로 감지합니다.
 
 ### LangChain (Python)
 
-```python
+`````python
 # 설치
 pip install langchain-ollama
 
@@ -164,11 +165,11 @@ from langchain_ollama import OllamaEmbeddings
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 vector = embeddings.embed_query("Hello world")
 # 768차원 부동소수점 벡터 반환
-```
+`````
 
 ### Continue.dev (VS Code/Cursor AI 코딩 어시스턴트)
 
-`~/.continue/config.json`에 추가: ```json
+``~/.continue/config.json``에 추가: `````json
 {
   "models": [
     {
@@ -184,19 +185,19 @@ vector = embeddings.embed_query("Hello world")
     "model": "codeqwen:7b-code"
   }
 }
-```
+`````
 
 ### Dify (자체 호스팅 AI 워크플로우 플랫폼)
 
-Dify의 **설정 > 모델 제공자 > Ollama**에서 구성: ```
+Dify의 **설정 > 모델 제공자 > Ollama**에서 구성: `````
 모델 이름: llama3.2:8b
 기본 URL: http://host.docker.internal:11434
 컨텍스트 윈도우: 8192
-```
+`````
 
 ### cURL / REST API 직접 사용
 
-```bash
+`````bash
 # 텍스트 생성
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.2:8b",
@@ -216,7 +217,7 @@ curl http://localhost:11434/api/embed -d '{
   "model": "nomic-embed-text",
   "input": ["하늘은 파랗다", "잔디는 초록색이다"]
 }'
-```
+`````
 
 ## 프로덕션용 Docker 설정
 
@@ -224,7 +225,7 @@ curl http://localhost:11434/api/embed -d '{
 
 ### 기본 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -249,13 +250,13 @@ services: ollama: image: ollama/ollama:0.6.7
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: openwebui_data: ```
+volumes: ollama_data: openwebui_data: `````
 
-`docker compose up -d`로 시작합니다.
+````docker compose up -d````로 시작합니다.
 
 ### NVIDIA GPU 설정
 
-```bash
+`````bash
 # NVIDIA Container Toolkit 설치
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \
   | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
@@ -268,21 +269,21 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
-```
+`````
 
 ### AMD ROCm GPU 설정
 
-ROCm 전용 이미지 태그 사용: ```yaml
+ROCm 전용 이미지 태그 사용: `````yaml
 services: ollama: image: ollama/ollama:rocm
     devices: - /dev/kfd
       - /dev/dri
     group_add: - video
     environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
-```
+`````
 
 ### 다중 모델 동시 서빙
 
-```yaml
+`````yaml
 services: ollama: image: ollama/ollama:0.6.7
     environment: - OLLAMA_NUM_PARALLEL=4      # 4개 동시 요청
       - OLLAMA_MAX_LOADED_MODELS=2  # VRAM에 2개 모델 유지
@@ -290,7 +291,7 @@ services: ollama: image: ollama/ollama:0.6.7
     deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-```
+`````
 
 ## Modelfile: 모델 커스터마이징
 
@@ -298,7 +299,7 @@ Modelfile은 Ollama의 선언적 설정 형식입니다. 모델의 동작 방식
 
 ### 기본 Modelfile 예제
 
-```dockerfile
+`````dockerfile
 # Modelfile
 FROM llama3.2:8b
 
@@ -321,9 +322,9 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
 
 {{ .Response }}<|eot_id|>"""
-```
+`````
 
-빌드 및 실행: ```bash
+빌드 및 실행: `````bash
 # 커스텀 모델 생성
 ollama create senior-dev -f Modelfile
 
@@ -332,11 +333,11 @@ ollama run senior-dev
 
 # 적용된 Modelfile 보기
 ollama show senior-dev --modelfile
-```
+`````
 
 ### 고급: 코드 리뷰 어시스턴트
 
-```dockerfile
+`````dockerfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
@@ -354,15 +355,15 @@ SYSTEM """당신은 코드 리뷰 어시스턴트입니다. 제공된 코드를 
 PARAMETER temperature 0.1
 PARAMETER num_ctx 8192
 PARAMETER num_predict 2048
-```
+`````
 
-```bash
+`````bash
 ollama create code-reviewer -f Modelfile.code-review
-```
+`````
 
 ### 로컬 GGUF 파일에서 생성
 
-```dockerfile
+`````dockerfile
 # Modelfile.local
 FROM ./my-fine-tuned-model-q4_k_m.gguf
 
@@ -370,15 +371,15 @@ PARAMETER temperature 0.7
 PARAMETER num_ctx 4096
 
 SYSTEM "당신은 의학 용어에 특화된 유용한 어시스턴트입니다."
-```
+`````
 
-```bash
+`````bash
 ollama create med-assistant -f Modelfile.local
-```
+`````
 
 ### 기존 모델 검사
 
-```bash
+`````bash
 # 모델 세부정보와 Modelfile 표시
 ollama show llama3.2:8b --modelfile
 
@@ -393,7 +394,7 @@ ollama list
 
 # 실행 중인 모델 표시
 ollama ps
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -433,13 +434,13 @@ ollama ps
 1. **개인 개발자**: AI 지원 코딩용 Ollama + Continue.dev. 자동완성 제안 지연시간 < 50ms.
 2. **소규모 팀 (5–10명)**: 공유 GPU 워크스테이션의 Ollama + Open WebUI. 시간당 약 50개 요청을 원활하게 처리.
 3. **엣지/Raspberry Pi 5**: Phi-4 Mini (3.8B)와 CPU 전용 Ollama. 약 8 tok/s, 완전히 오프라인 실행.
-4. **CI/CD 파이프라인**: 자동 코드 리뷰를 위한 Docker의 Ollama. `code-reviewer` 모델을 pull하고 API를 통해 PR diff 처리.
+4. **CI/CD 파이프라인**: 자동 코드 리뷰를 위한 Docker의 Ollama. ````code-reviewer```` 모델을 pull하고 API를 통해 PR diff 처리.
 
 ## 고급 사용법 / 프로덕션 하드닝
 
 ### 환경 변수
 
-```bash
+`````bash
 # 핵심 설정
 OLLAMA_HOST=0.0.0.0:11434          # 모든 인터페이스에 바인딩
 OLLAMA_KEEP_ALIVE=24h               # 24시간 동안 모델 유지
@@ -450,11 +451,11 @@ OLLAMA_FLASH_ATTENTION=1            # Flash Attention 활성화 (더 빠른 추�
 # 성능 튜닝
 OLLAMA_GPU_OVERHEAD=200MB           # VRAM 여유 공간 예약
 OLLAMA_DEBUG=1                      # 상세 로깅
-```
+`````
 
 ### Nginx 리버스 프록시
 
-```nginx
+`````nginx
 server {
     listen 443 ssl http2;
     server_name ollama.yourdomain.com;
@@ -479,11 +480,11 @@ server {
         proxy_send_timeout 600s;
     }
 }
-```
+`````
 
 ### API 키 인증 (네이티브 미지원)
 
-Ollama에는 내장 API 키 인증이 포함되어 있지 않습니다. 리버스 프록시를 통해 추가: ```python
+Ollama에는 내장 API 키 인증이 포함되어 있지 않습니다. 리버스 프록시를 통해 추가: `````python
 # ollama-auth-proxy.py (Flask 예제)
 from flask import Flask, request, Response
 import requests
@@ -508,20 +509,20 @@ def proxy(path): api_key = request.headers.get(Authorization, '').replace('Beare
                    content_type=resp.headers.get('Content-Type'))
 
 if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
-```
+`````
 
 ### Prometheus로 모니터링
 
-Ollama는 API를 통해 기본 메트릭을 노출합니다: ```bash
+Ollama는 API를 통해 기본 메트릭을 노출합니다: `````bash
 # 메모리 사용량과 함께 실행 중인 모델 나열
 curl http://localhost:11434/api/ps
-```
+`````
 
-프로덕션 모니터링을 위해 Prometheus 익스포터로 `api/ps` 엔드포인트를 감싸거나, 내장 메트릭이 있는 [ollamaMQ](https://github.com/Chleba/ollamaMQ) 프록시를 사용하세요.
+프로덕션 모니터링을 위해 Prometheus 익스포터로 ````api/ps```` 엔드포인트를 감싸거나, 내장 메트릭이 있는 [ollamaMQ](https://github.com/Chleba/ollamaMQ) 프록시를 사용하세요.
 
 ### Systemd 서비스 (Linux)
 
-```ini
+`````ini
 # /etc/systemd/system/ollama.service
 [Unit]
 Description=Ollama LLM 서비스
@@ -539,13 +540,13 @@ Environment="OLLAMA_KEEP_ALIVE=24h"
 
 [Install]
 WantedBy=default.target
-```
+`````
 
-```bash
+`````bash
 sudo systemctl daemon-reload
 sudo systemctl enable ollama
 sudo systemctl start ollama
-```
+`````
 
 ## 대안과의 비교
 
@@ -580,9 +581,9 @@ sudo systemctl start ollama
 
 **GGUF 전용 포맷.** Ollama는 GGUF 양자화 모델만 지원합니다. FP16 추론, AWQ, 또는 GPTQ 포맷이 필요하면 vLLM이나 Transformers를 직접 사용하세요.
 
-**내장 모델 양자화가 없습니다.** Ollama 내에서 모델을 양자화할 수 없습니다. 외부에서 모델을 GGUF로 변환(llama.cpp/convert_hf_to_gguf.py 등 사용)한 후 `ollama create`로 가져오세요.
+**내장 모델 양자화가 없습니다.** Ollama 내에서 모델을 양자화할 수 없습니다. 외부에서 모델을 GGUF로 변환(llama.cpp/convert_hf_to_gguf.py 등 사용)한 후 ````ollama create````로 가져오세요.
 
-**메모리 관리가 정적입니다.** `OLLAMA_MAX_LOADED_MODELS`가 상주 모델 수를 제어하지만 동적 VRAM 밸런싱은 없습니다. 12GB GPU에서 70B 모델(심지어 Q4도)을 로드하면 OOM이 발생합니다 — Ollama는 자동으로 CPU로 레이어를 오프로드하지 않습니다.
+**메모리 관리가 정적입니다.** ````OLLAMA_MAX_LOADED_MODELS````가 상주 모델 수를 제어하지만 동적 VRAM 밸런싱은 없습니다. 12GB GPU에서 70B 모델(심지어 Q4도)을 로드하면 OOM이 발생합니다 — Ollama는 자동으로 CPU로 레이어를 오프로드하지 않습니다.
 
 **도구 호출 지원이 제한적입니다.** 호환 모델(Llama 3.1+, Mistral)에서 도구 호출을 사용할 수 있지만 구현은 OpenAI의 함수 호출만큼 견고하지 않습니다. 복잡한 다단계 도구 워크플로는 폴 백 처리가 필요할 수 있습니다.
 
@@ -595,13 +596,13 @@ A: Q4_K_M 양자화된 7B 모델은 약 4.5–5GB VRAM이 필요합니다. Q8 �
 A: 네. Ollama는 자동으로 llama.cpp를 통해 CPU 추론으로 폴 백합니다. 성능은 CPU에 따라 달라집니다: Intel i7-13700K는 7B Q4 모델에서 ~8–12 tok/s를 달성합니다. Apple Silicon M3 Pro는 CPU/Neural Engine에서 ~25 tok/s를 달성합니다.
 
 **Q: Ollama를 최신 버전으로 업데이트하려면 어떻게 하나요?**
-A: macOS에서는 `brew upgrade ollama`를 실행하세요. Linux에서는 설치 스크립트를 다시 실행하세요: `curl -fsSL https://ollama.com/install.sh | sh`. 이 스크립트는 `~/.ollama/models/`에 다운로드된 모델을 보존합니다.
+A: macOS에서는 ````brew upgrade ollama````를 실행하세요. Linux에서는 설치 스크립트를 다시 실행하세요: ````curl -fsSL https://ollama.com/install.sh | sh````. 이 스크립트는 ````~/.ollama/models/````에 다운로드된 모델을 보존합니다.
 
 **Q: Ollama는 프로덕션 사용에 적합한가요?**
 A: 단일 목적 배포(하나의 모델, 하나의 사용자, 예측 가능한 부하)의 경우 네. 다중 사용자 프로덕션 서빙의 경우 대기열 프록시 추가나 vLLM으로의 전환을 고려하세요. 네트워크에 노출하기 전에 항상 인증과 모니터링을 추가하세요.
 
 **Q: Ollama에서 자체 파인튜닝한 모델을 사용할 수 있나요?**
-A: 네. 모델을 GGUF 포맷으로 변환한 다음 `FROM ./your-model.gguf`로 가리키는 Modelfile을 생성하세요. `ollama create my-model -f Modelfile`을 실행하면 표준 API를 통해 사용 가능해집니다.
+A: 네. 모델을 GGUF 포맷으로 변환한 다음 ````FROM ./your-model.gguf````로 가리키는 Modelfile을 생성하세요. ````ollama create my-model -f Modelfile````을 실행하면 표준 API를 통해 사용 가능해집니다.
 
 **Q: Ollama는 출력 품질 측면에서 OpenAI API와 어떻게 비교되나요?**
 A: 동등한 베이스 모델(Llama 3.1 vs GPT-3.5)의 경우 코딩과 추론 작업에서 출력 품질은 경쟁력이 있습니다. 창의적 글쓰기와 다단계 추론에서는 GPT-4와 Claude 3.5 Sonnet이 여전히 선도하는 분야입니다. 로컬 추론은 네트워크 왕복에서 오는 지연을 제거합니다.
@@ -616,8 +617,8 @@ Ollama는 로컬 LLM 배포의 마찰을 제거합니다. 하나의 명령으로
 개인 개발자와 소규모 팀에게 Ollama는 실용적인 시작점입니다. 동시 부하가 ~5명을 초과하면 vLLM을 평가하세요. 텍스트를 넘어 멀티모달 지원이 필요하면 LocalAI를 평가하세요. 하지만 Ollama로 시작하세요 — 137,000개 이상의 Star는 약속을 진정으로 이행하는 도구를 반영합니다.
 
 **다음 단계:**
-1. Ollama 설치: `curl -fsSL https://ollama.com/install.sh | sh`
-2. 첫 번째 모델 실행: `ollama run llama3.2:8b`
+1. Ollama 설치: ````curl -fsSL https://ollama.com/install.sh | sh````
+2. 첫 번째 모델 실행: ````ollama run llama3.2:8b```
 3. 팀 채팅 인터페이스를 위한 Open WebUI 배포
 4. 로컬 LLM 배포 팁과 문제 해결을 위해 [dibi8 개발자 Telegram 커뮤니티](https://t.me/dibi8dev)에 가입하세요
 
@@ -674,7 +675,7 @@ Ollama는 로컬 LLM 배포의 마찰을 제거합니다. 하나의 명령으로
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -684,7 +685,7 @@ Ollama는 로컬 LLM 배포의 마찰을 제거합니다. 하나의 명령으로
 - [ollama-vs-vllm](ollama)
 - [ollama-vs-vllm](ollama)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/aave-v4-defi-lending-protocol/
 ---
 
+
 {{</* resource-info */>}}
 
 탈중앙화 대출은 현대 DeFi의 초석이 되었으며, AAVE는 이 혁명의 최전선에 서 있습니다. 여러 체인에서 150억 달러 이상의 총 잠긴 가치를 보유한 AAVE는 암호화폐 생태계에서 가장 크고 가장 많은 실전 테스트를 거친 대출 프로토콜입니다. 2025년 말에 출시된 AAVE v4는 중요한 아키텍처 개선을 도입하여 이전보다 더 효율적이고 안전하며 개발자 친화적으로 만들었습니다.
@@ -32,7 +33,7 @@ DeFi 애플리케이션, 트레이딩 봇, 수익 집계기 또는 포트폴리�
 
 > **제휴 공개:** 이 기사에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 및 [OKX](https://www.promoohubly.com/join/12190433)의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 등록하시면 추가 비용 없이 커미션을 받을 수 있습니다.
 
----
+* * *
 
 ## AAVE란 무엇인가
 
@@ -47,7 +48,7 @@ AAVE v4는 여러 아키텍처 혁신을 도입합니다: - **모듈형 풀 아�
 - **담론에 대해 직접 민팅되는 GHO 네이티브 머니 마켓**
 - **가스 없는 트랜잭션 및 소셜 복구를 위한 계정 추상화 통합**
 
----
+* * *
 
 ## AAVE v4 아키텍처 이해하기
 
@@ -65,7 +66,7 @@ AAVE v4는 여러 아키텍처 혁신을 도입합니다: - **모듈형 풀 아�
 
 **리스크 모듈.** v4의 새로운 모듈형 구성 요소로, 리스크 매개변수, 담론 구성 및 격리 모드 로직을 캡슐화합니다. 이러한 분리를 통해 거버넌스는 핵심 풀을 수정하지 않고도 리스크 설정을 업데이트할 수 있습니다.
 
----
+* * *
 
 ## 개발 환경 설정
 
@@ -73,29 +74,29 @@ AAVE v4와 통합하려면 제대로 구성된 개발 환경이 필요합니다.
 
 ### Hardhat 프로젝트 설정
 
-```bash
+````bash
 mkdir aave-integration && cd aave-integration
 npm init -y
 npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
 npx hardhat init
-```
+`````
 
 ### AAVE 종속성 설치
 
-```bash
+`````bash
 npm install @aave/core-v4 @aave/periphery-v4
 npm install ethers dotenv
-```
+`````
 
 ### 환경 구성
 
-```bash
+`````bash
 # .env
 ETHEREUM_RPC=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
 PRIVATE_KEY=your_private_key
-```
+`````
 
-```javascript
+`````javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
 require(dotenv).config();
@@ -115,19 +116,19 @@ module.exports = {
     },
   },
 };
-```
+`````
 
----
+* * *
 
 ## 핵심 스마트 컨트랙트 통합
 
-AAVE v4와 상호작용하기 위한 주요 인터페이스는 `IPool` 컨트랙트입니다. 모든 공급, 대출 및 상환 작업은 이 컨트랙트를 통해 이루어집니다.
+AAVE v4와 상호작용하기 위한 주요 인터페이스는 ````IPool```` 컨트랙트입니다. 모든 공급, 대출 및 상환 작업은 이 컨트랙트를 통해 이루어집니다.
 
 ### AAVE에 자산 공급하기
 
 AAVE에 자산을 공급하면 ERC-20 토큰을 풀에 예치하고 교환으로 aToken을 받습니다. 이 aToken은 이자가 누적됨에 따라 자동으로 증가합니다.
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
@@ -155,13 +156,13 @@ contract AaveSupplier {
         pool.supply(asset, amount, msg.sender, 0);
     }
 }
-```
+`````
 
 ### 자산 대출하기
 
 대출을 받으려면 사용자가 충분한 담론을 공급해야 합니다. 최대 대출 금액은 공급 자산의 담론 계수에 의해 결정됩니다.
 
-```solidity
+`````solidity
 contract AaveBorrower {
     IPool public immutable pool;
     
@@ -188,11 +189,11 @@ contract AaveBorrower {
         pool.repay(asset, amount, interestRateMode, msg.sender);
     }
 }
-```
+`````
 
 ### 공급된 자산 인출하기
 
-```solidity
+`````solidity
 function withdrawAsset(
     address asset,
     uint256 amount // 전액 인출하려면 type(uint256).max 사용
@@ -200,15 +201,15 @@ function withdrawAsset(
     // aToken을 인출하고 기본 자산을 받습니다
     pool.withdraw(asset, amount, msg.sender);
 }
-```
+`````
 
----
+* * *
 
 ## 사용자 계정 데이터 읽기
 
 AAVE는 건강 요소, 사용 가능한 대출 한도 및 담론 내역을 포함한 사용자별 정보를 집계하는 데이터 제공자 컨트랙트를 제공합니다.
 
-```solidity
+`````solidity
 import {IPoolDataProvider} from '@aave/core-v4/contracts/interfaces/IPoolDataProvider.sol';
 
 contract AaveDataReader {
@@ -245,13 +246,13 @@ contract AaveDataReader {
         return dataProvider.getReserveConfigurationData(asset);
     }
 }
-```
+`````
 
 ### ethers.js를 사용한 JavaScript 통합
 
 프론트엔드 및 스크립팅 통합을 위해 ethers.js는 편리한 인터페이스를 제공합니다.
 
-```javascript
+`````javascript
 const { ethers } = require(ethers);
 require(dotenv).config();
 
@@ -279,9 +280,9 @@ async function getUserAccountData(userAddress) {
   console.log('건강 요소:', ethers.formatUnits(data.healthFactor, 18));
   return data;
 }
-```
+`````
 
----
+* * *
 
 ## 플래시 론 사용하기
 
@@ -289,7 +290,7 @@ async function getUserAccountData(userAddress) {
 
 ### 플래시 론 수신자 컨트랙트
 
-```solidity
+`````solidity
 import {IFlashLoanSimpleReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanSimpleReceiver.sol';
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
@@ -338,13 +339,13 @@ contract FlashLoanArbitrage is IFlashLoanSimpleReceiver {
         return true;
     }
 }
-```
+`````
 
 ### 다중 자산 플래시 론
 
 여러 자산이 필요한 고급 전략의 경우 전체 플래시 론 인터페이스를 사용합니다.
 
-```solidity
+`````solidity
 import {IFlashLoanReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanReceiver.sol';
 
 contract MultiAssetFlashLoan is IFlashLoanReceiver {
@@ -385,9 +386,9 @@ contract MultiAssetFlashLoan is IFlashLoanReceiver {
         return true;
     }
 }
-```
+`````
 
----
+* * *
 
 ## 격리 모드 및 리스크 관리
 
@@ -395,7 +396,7 @@ AAVE v4는 특정 담론 자산에 대해 제한된 노출 한도로 대출을 �
 
 ### 격리 모드에서 공급하기
 
-```solidity
+`````solidity
 contract IsolationModeSupplier {
     IPool public immutable pool;
     
@@ -429,11 +430,11 @@ contract IsolationModeSupplier {
         return pool.getReserveData(asset).isolationModeTotalDebt;
     }
 }
-```
+`````
 
 ### 격리 모드 제약 조건 확인
 
-```javascript
+`````javascript
 async function checkIsolationModeConstraints(userAddress, asset) {
   const reserveData = await pool.getReserveData(asset);
   const userConfig = await pool.getUserConfiguration(userAddress);
@@ -448,9 +449,9 @@ async function checkIsolationModeConstraints(userAddress, asset) {
   console.log('사용자 담론:', 
     ethers.formatUnits(userReserveConfig.currentATokenBalance, 18));
 }
-```
+`````
 
----
+* * *
 
 ## GHO 스테이블코인 통합
 
@@ -458,7 +459,7 @@ GHO는 AAVE 프로토콜을 통해 공급된 담론에 대해 직접 민팅되�
 
 ### 담론에 대해 GHO 민팅하기
 
-```solidity
+`````solidity
 import {IGhoToken} from '@aave/gho-core/contracts/gho/interfaces/IGhoToken.sol';
 
 contract GhoMinter {
@@ -499,11 +500,11 @@ contract GhoMinter {
         return gho.getDiscountPercent(user);
     }
 }
-```
+`````
 
 ### GHO 퍼실리테이터 패턴
 
-```solidity
+`````solidity
 import {IGhoFacilitator} from '@aave/gho-core/contracts/gho/interfaces/IGhoFacilitator.sol';
 
 contract CustomGhoFacilitator is IGhoFacilitator {
@@ -531,9 +532,9 @@ contract CustomGhoFacilitator is IGhoFacilitator {
         // 수수료 분배 구현
     }
 }
-```
+`````
 
----
+* * *
 
 ## 크로스체인 포털 및 브리지 작업
 
@@ -541,7 +542,7 @@ AAVE v4는 Chainlink CCIP를 활용하여 크로스체인 유동성 전송을 �
 
 ### 체인 간 aToken 브리징
 
-```solidity
+`````solidity
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 
 contract AaveCrossChainBridge {
@@ -582,15 +583,15 @@ contract AaveCrossChainBridge {
         return address(0); // 구현 세부 정보
     }
 }
-```
+`````
 
----
+* * *
 
 ## 청산 봇 구현
 
 청산은 프로토콜 솔벤시의 핵심 메커니즘입니다. 청산 봇을 구축하면 수익성이 있을 뿐만 아니라 프로토콜 건강에 기여할 수 있습니다.
 
-```solidity
+`````solidity
 contract AaveLiquidator {
     IPool public immutable pool;
     
@@ -635,11 +636,11 @@ contract AaveLiquidator {
         return (healthFactor < 1e18, healthFactor);
     }
 }
-```
+`````
 
 ### JavaScript 청산 스캐너
 
-```javascript
+`````javascript
 async function scanForLiquidations(usersToCheck) {
   const liquidatableUsers = [];
   
@@ -655,24 +656,24 @@ async function scanForLiquidations(usersToCheck) {
           totalCollateral: ethers.formatUnits(data.totalCollateralBase, 8),
           totalDebt: ethers.formatUnits(data.totalDebtBase, 8),
         });
-        console.log(`청산 가능: ${user} 건강 요소: ${healthFactor}`);
+        console.log(````청산 가능: ${user} 건강 요소: ${healthFactor}````);
       }
     } catch (error) {
-      console.error(`확인 오류 ${user}:`, error.message);
+      console.error(````확인 오류 ${user}:````, error.message);
     }
   }
   
   return liquidatableUsers;
 }
-```
+`````
 
----
+* * *
 
 ## React를 사용한 프론트엔드 통합
 
 현대적인 DeFi 프론트엔드는 일반적으로 wagmi 및 viem을 사용하여 블록체인 상호작용을 수행합니다.
 
-```typescript
+`````typescript
 // hooks/useAave.ts
 import { useContractWrite, usePrepareContractWrite } from wagmi;
 import { parseUnits } from viem;
@@ -698,18 +699,18 @@ export function useSupplyAsset(asset: string, amount: string, decimals: number) 
     abi: POOL_ABI,
     functionName: supply,
     args: [
-      asset as `0x${string}`,
+      asset as ````0x${string}````,
       parseUnits(amount, decimals),
-      0xYourAddress as `0x${string}`,
+      0xYourAddress as ````0x${string}````,
       0,
     ],
   });
 
   return useContractWrite(config);
 }
-```
+`````
 
-```tsx
+`````tsx
 // components/SupplyButton.tsx
 import { useSupplyAsset } from '../hooks/useAave';
 
@@ -726,9 +727,9 @@ export function SupplyButton({ asset, amount }: { asset: string; amount: string 
     </button>
   );
 }
-```
+````
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -756,7 +757,7 @@ GHO는 미국 달러에 페그된 AAVE의 네이티브 탈중앙화 스테이블
 
 네, AAVE v4는 Arbitrum, Optimism, Base 및 Polygon을 포함한 여러 Layer 2 네트워크에 배포되어 있습니다. 체인 간 통합 패턴은 거의 동일하지만, 각 네트워크에 적합한 컨트랙트 주소와 RPC 엔드포인트를 사용해야 합니다. Layer 2 배포는 일반적으로 롤업 아키텍처를 통해 동일한 보안 보장을 유지하면서 상당히 낮은 가스 비용을 제공합니다.
 
----
+* * *
 
 
 

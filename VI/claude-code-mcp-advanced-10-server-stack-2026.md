@@ -28,6 +28,7 @@ faq: - q: "Bao nhiêu MCP server là quá nhiều?"
     a: "HTTP: trạng thái bền vững, quản lý credential tập trung, phụ thuộc uptime của server. stdio: không độ trễ, không lộ credential, kết thúc cùng phiên làm việc. Mặc định dùng stdio. Chỉ dùng HTTP khi (a) cần trạng thái bền vững giữa các phiên, hoặc (b) tích hợp với SaaS không có bản local tương đương."
 ---
 
+
 {{</* resource-info */>}}
 
 # Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Production
@@ -44,7 +45,7 @@ Hệ sinh thái MCP đã vượt 1000+ server trong năm 2026. Phần lớn ngư
 >
 > **Chi phí khởi động**: tổng khoảng 1,5 giây.
 >
-> **Ghi đè theo dự án**: postgres, github, linear thông qua `.claude/mcp.json` trong repo.
+> **Ghi đè theo dự án**: postgres, github, linear thông qua ```.claude/mcp.json```` trong repo.
 
 ## Stack
 
@@ -104,7 +105,7 @@ Hệ sinh thái MCP đã vượt 1000+ server trong năm 2026. Phần lớn ngư
 
 ## Cấu Hình
 
-`~/.claude/mcp.json` (toàn cục, công cụ dùng chung): ```json
+``~/.claude/mcp.json`` (toàn cục, công cụ dùng chung): `````json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -116,9 +117,9 @@ Hệ sinh thái MCP đã vượt 1000+ server trong năm 2026. Phần lớn ngư
     "playwright": {"command": "npx", "args": ["-y", "@executeautomation/playwright-mcp-server"]}
   }
 }
-```
+`````
 
-`.claude/mcp.json` (theo dự án, công cụ nhạy cảm): ```json
+``.claude/mcp.json`` (theo dự án, công cụ nhạy cảm): `````json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -126,20 +127,20 @@ Hệ sinh thái MCP đã vượt 1000+ server trong năm 2026. Phần lớn ngư
     "linear": {"command": "...", "env": {"LINEAR_API_KEY": "${LINEAR_KEY}"}}
   }
 }
-```
+`````
 
 ## Vì Sao Không Thêm Server Khác?
 
-### Vì sao không có `slack` MCP?
+### Vì sao không có ````slack```` MCP?
 Hữu ích nhưng việc quản lý quyền tốn công. Thêm vào nếu tích hợp Slack là nhu cầu hằng ngày.
 
-### Vì sao không có `notion` MCP?
+### Vì sao không có ````notion```` MCP?
 Giống Slack — hữu ích nhưng tăng thời gian khởi động trong khi lợi ích hằng ngày không đủ với đa số người dùng.
 
-### Vì sao không có `kubernetes` MCP?
+### Vì sao không có ````kubernetes```` MCP?
 Mạnh nhưng ít dùng. Thêm theo dự án khi công việc vận hành thực sự cần.
 
-### Vì sao không có `aws` / `gcp` MCP?
+### Vì sao không có ````aws```` / ````gcp```` MCP?
 Tương tự — cài theo dự án. Đừng để credential cloud truy cập được ở phạm vi toàn cục.
 
 ## Tối Ưu Khởi Động
@@ -147,7 +148,7 @@ Tương tự — cài theo dự án. Đừng để credential cloud truy cập �
 Mỗi server thêm ~100-300ms. Với 10 server: tổng khởi động khoảng 1,5 giây. Trên 15 server: chậm rõ rệt.
 
 Mẹo: - Ưu tiên stdio (local) thay vì HTTP khi cả hai cùng tồn tại
-- Kiểm tra thời gian khởi động của từng server — đo bằng `time npx <server>`
+- Kiểm tra thời gian khởi động của từng server — đo bằng ````time npx <server>```
 - Thay server cộng đồng chậm bằng phương án chính thức của Anthropic khi có sẵn
 
 ## Mẫu Bảo Mật
@@ -171,7 +172,7 @@ Cho MCP server self-host (dùng chung trong team): - **{{< aff "digitalocean" "f
 
 Ghi đè theo dự án quan trọng hơn cấu hình toàn cục. Hãy giới hạn token nhạy cảm trong phạm vi dự án của chúng. Nguyên tắc "chỉ những gì dự án này cần" giúp tránh rò rỉ credential và giữ khởi động luôn nhanh.
 
----
+* * *
 
 **Liên quan**: [Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Kiểm Toán Bảo Mật MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Hướng Dẫn Cài Đặt Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/)
 
@@ -237,12 +238,12 @@ Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Production represents an imp
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -252,7 +253,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-mcp-advanced-10-server-stack-2026)
 - [cursor-vs-claude-code](claude-code-mcp-advanced-10-server-stack-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

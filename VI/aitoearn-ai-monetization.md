@@ -34,6 +34,7 @@ faqs: - q: 'AiToEarn là gì?'
     a: 'Có, AiToEarn có thể tự lưu trữ. Bạn clone kho lưu trữ GitHub, chạy npm install, sao chép .env.example thành .env và thêm các API key của bạn, sau đó chạy npm run dev. Ứng dụng khi đó sẽ chạy cục bộ tại http://localhost:3000.'
 ---
 
+
 {</* resource-info */>}
 
 ![AiToEarn — phân phối nội dung 12+ nền tảng](/images/articles/aitoearn-ai-monetization/app.png)
@@ -48,7 +49,7 @@ faqs: - q: 'AiToEarn là gì?'
 **Ngôn ngữ**: TypeScript / Node.js
 **Giấy phép**: AGPL-3.0
 
----
+* * *
 
 ## Tính Năng Cốt Lõi
 
@@ -73,11 +74,11 @@ Hỗ trợ tự động đăng lên: - **Nền tảng blog**: WordPress, Ghost, 
 | **Tải xuống trả phí** | Mẫu code, gói prompt, tài sản thiết kế | $1-20/lần |
 | **Thanh toán API** | Đóng gói quy trình AI thành API | $0.01-0.1/lần gọi |
 
----
+* * *
 
 ## Kiến Trúc Kỹ Thuật
 
-```
+````
 AiToEarn
 ├── Frontend (Next.js 14 + Tailwind)
 ├── Backend (NestJS + Prisma)
@@ -94,13 +95,13 @@ AiToEarn
     ├── Stripe Subscriptions
     ├── PayPal Payments
     └── Auto Affiliate Link Insertion
-```
+`````
 
----
+* * *
 
 ## Bắt Đầu Nhanh
 
-```bash
+`````bash
 # Clone repo
 git clone https://github.com/yikart/AiToEarn.git
 cd AiToEarn
@@ -114,15 +115,15 @@ cp .env.example .env
 
 # Khởi động dev server
 npm run dev
-```
+`````
 
-Truy cập `http://localhost:3000` để bắt đầu.
+Truy cập ````http://localhost:3000```` để bắt đầu.
 
----
+* * *
 
 ## Ví Dụ: Tự Động Hóa Blog AI
 
-```typescript
+`````typescript
 // Tạo workflow tự động hóa
 const workflow = await aite.createWorkflow({
   name: "Tin công nghệ hàng ngày",
@@ -144,11 +145,11 @@ const workflow = await aite.createWorkflow({
 
 // Khởi động workflow
 await workflow.start();
-```
+````
 
 > Cấu hình một lần, chạy tự động lâu dài. Nhà máy nội dung AI của bạn hoạt động 24/7.
 
----
+* * *
 
 ## Trường Hợp Người Dùng Thực Tế
 
@@ -159,7 +160,7 @@ await workflow.start();
 | @code_snippets | Hướng dẫn lập trình | 150 mẫu code | $2,500 |
 | @travel_ai | Hướng dẫn du lịch | 60 hướng dẫn | $600 |
 
----
+* * *
 
 ## So Sánh Với Đối Thủ
 
@@ -170,7 +171,7 @@ await workflow.start();
 | Buffer | ❌ | ❌ | ✅ | ❌ | ❌ |
 | **AiToEarn** | **✅** | **✅** | **✅** | **✅** | **✅** |
 
----
+* * *
 
 ## Tóm Tắt
 
@@ -180,7 +181,7 @@ AiToEarn đại diện cho **paradigm mới cho nền kinh tế người sáng t
 
 > 💡 Muốn biết thêm công cụ AI và dự án mã nguồn mở? Theo dõi [dibi8.com](https://dibi8.com) để nhận các lựa chọn được chọn lọc hàng tuần.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -260,7 +261,7 @@ AiToEarn: Công Cụ Kiếm Tiền Từ Nội Dung AI Mã Nguồn Mở — Biế
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

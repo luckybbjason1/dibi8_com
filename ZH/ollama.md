@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/llm-frameworks/ollama-local-llm-guide/-
 ---
 
+
 {{</* resource-info */>}}
 
 运行大语言模型过去意味着与 Python 环境、CUDA 驱动和数 GB 的依赖项搏斗。到了 2026 年，这种摩擦已经消失。[Ollama](https://ollama.com) 让你可以用一条命令拉取、配置并提供生产级 LLM —— 无需安装 PyTorch，无需手动调整 GPU，甚至不需要 Docker。凭借 137,000+ GitHub Stars 和繁荣的集成生态，Ollama 已成为开发者在本地运行推理而不想承受运维负担的默认运行时。
@@ -45,11 +46,11 @@ Ollama 由 Jeffrey Morgan 和团队在 2023 年创建，截至 2026 年中已在
 
 ## Ollama 的工作原理
 
-Ollama 的架构采用客户端-服务器模式。后台守护进程 (`ollama serve`) 管理模型下载、内存分配和推理。CLI 和 REST API 是通过 HTTP 端口 11434 与该守护进程通信的轻量级客户端。
+Ollama 的架构采用客户端-服务器模式。后台守护进程 (```ollama serve````) 管理模型下载、内存分配和推理。CLI 和 REST API 是通过 HTTP 端口 11434 与该守护进程通信的轻量级客户端。
 
 ### 核心架构
 
-```
+`````
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   客户端     │────▶│ ollama serve │────▶│  llama.cpp/MLX  │
 │  (CLI/API)  │     │   (端口      │     │  (推理后端)      │
@@ -61,35 +62,35 @@ Ollama 的架构采用客户端-服务器模式。后台守护进程 (`ollama se
                     │  (模型,      │
                     │   数据块)    │
                     └─────────────┘
-```
+`````
 
 **关键组件：**
 
-- **模型中心 (Model Hub)**：从 `ollama.com` 拉取的精选 GGUF 模型。每个模型通过 `name:tag` 标识（例如 `llama3.2:8b`）。
+- **模型中心 (Model Hub)**：从 ````ollama.com```` 拉取的精选 GGUF 模型。每个模型通过 ````name:tag```` 标识（例如 ````llama3.2:8b````）。
 - **Modelfile**：声明式配置（类似 Dockerfile），指定基础模型、系统提示词、参数和聊天模板。
 - **推理后端**：根据可用硬件自动选择 llama.cpp（CUDA/ROCm/CPU）、MLX（Apple Silicon）或 Metal。
-- **REST API**：兼容 OpenAI 的端点，包括 `/api/generate`、`/api/chat`、`/api/embed` 和 `/v1/chat/completions`。
+- **REST API**：兼容 OpenAI 的端点，包括 ````/api/generate````、````/api/chat````、````/api/embed```` 和 ````/v1/chat/completions````。
 
 ### 模型存储
 
-模型以内容寻址的数据块（SHA-256 摘要）形式存储在 `~/.ollama/models/` 中。清单文件跟踪哪些数据块属于哪个模型标签。这种去重意味着两个共享相同基础权重的模型在磁盘上只存储一份副本。
+模型以内容寻址的数据块（SHA-256 摘要）形式存储在 ````~/.ollama/models/```` 中。清单文件跟踪哪些数据块属于哪个模型标签。这种去重意味着两个共享相同基础权重的模型在磁盘上只存储一份副本。
 
 ## 安装与配置
 
 ### macOS
 
-```bash
+`````bash
 # 使用 Homebrew（推荐）
 brew install ollama
 
 # 或从 ollama.com/download 下载原生应用
-```
+`````
 
 ### Linux（一行命令安装）
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
-```
+`````
 
 这会安装二进制文件、注册 systemd 服务，并自动检测 GPU 能力（NVIDIA CUDA、AMD ROCm 或仅 CPU）。
 
@@ -99,7 +100,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ### 验证安装
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.6.7
 
@@ -108,25 +109,25 @@ ollama serve
 
 # 拉取并运行你的第一个模型
 ollama run llama3.2:8b
-```
+`````
 
-第一次运行模型时，Ollama 会下载它。像 `llama3.2:8b` 这样的 8B 参数量化模型需要约 4.9 GB 磁盘空间，在 8 GB VRAM 上可流畅运行。
+第一次运行模型时，Ollama 会下载它。像 ````llama3.2:8b```` 这样的 8B 参数量化模型需要约 4.9 GB 磁盘空间，在 8 GB VRAM 上可流畅运行。
 
 ### 按硬件快速选择模型
 
 | 硬件配置 | 推荐模型 | 命令 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 6–8 GB VRAM | Qwen3 8B | `ollama run qwen3:8b` |
-| 10–12 GB VRAM | Llama 3.1 8B Q4 | `ollama run llama3.1:8b` |
-| 16+ GB VRAM | DeepSeek-R1 14B | `ollama run deepseek-r1:14b` |
-| 仅 CPU, 16 GB RAM | Phi-4 Mini 3.8B | `ollama run phi4-mini` |
-| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | `ollama run llama3.1:70b` |
+| 6–8 GB VRAM | Qwen3 8B | ````ollama run qwen3:8b```` |
+| 10–12 GB VRAM | Llama 3.1 8B Q4 | ````ollama run llama3.1:8b```` |
+| 16+ GB VRAM | DeepSeek-R1 14B | ````ollama run deepseek-r1:14b```` |
+| 仅 CPU, 16 GB RAM | Phi-4 Mini 3.8B | ````ollama run phi4-mini```` |
+| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | ````ollama run llama3.1:70b```` |
 
 ## 与流行工具集成
 
@@ -134,7 +135,7 @@ ollama run llama3.2:8b
 
 [Open WebUI](https://github.com/open-webui/open-webui) 是 Ollama 最流行的前端，提供类 ChatGPT 的网页界面，支持 RAG、语音输入和多用户。
 
-```bash
+`````bash
 # 使用 Docker 运行 Open WebUI
 docker run -d -p 3000:8080 \
   --add-host=host.docker.internal:host-gateway \
@@ -142,13 +143,13 @@ docker run -d -p 3000:8080 \
   --name open-webui \
   --restart always \
   ghcr.io/open-webui/open-webui:main
-```
+`````
 
-在 `http://localhost:3000` 访问。Open WebUI 会自动发现你在 `http://host.docker.internal:11434` 的 Ollama 实例。
+在 ````http://localhost:3000```` 访问。Open WebUI 会自动发现你在 ````http://host.docker.internal:11434```` 的 Ollama 实例。
 
 ### LangChain（Python）
 
-```python
+`````python
 # 安装
 pip install langchain-ollama
 
@@ -170,13 +171,13 @@ from langchain_ollama import OllamaEmbeddings
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 vector = embeddings.embed_query("Hello world")
 # 返回 768 维浮点向量
-```
+`````
 
 ### Continue.dev（VS Code/Cursor AI 编程助手）
 
-添加到 `~/.continue/config.json`：
+添加到 ````~/.continue/config.json````：
 
-```json
+`````json
 {
   "models": [
     {
@@ -192,21 +193,21 @@ vector = embeddings.embed_query("Hello world")
     "model": "codeqwen:7b-code"
   }
 }
-```
+`````
 
 ### Dify（自托管 AI 工作流平台）
 
 在 Dify 的 **设置 > 模型提供商 > Ollama** 中配置：
 
-```
+`````
 模型名称: llama3.2:8b
 基础 URL: http://host.docker.internal:11434
 上下文窗口: 8192
-```
+`````
 
 ### cURL / REST API 直接使用
 
-```bash
+`````bash
 # 生成文本
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.2:8b",
@@ -226,7 +227,7 @@ curl http://localhost:11434/api/embed -d '{
   "model": "nomic-embed-text",
   "input": ["天空是蓝色的", "草地是绿色的"]
 }'
-```
+`````
 
 ## Docker 生产环境部署
 
@@ -234,7 +235,7 @@ curl http://localhost:11434/api/embed -d '{
 
 ### 基础 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -259,13 +260,13 @@ services: ollama: image: ollama/ollama:0.6.7
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: openwebui_data: ```
+volumes: ollama_data: openwebui_data: `````
 
-使用 `docker compose up -d` 启动。
+使用 ````docker compose up -d```` 启动。
 
 ### NVIDIA GPU 配置
 
-```bash
+`````bash
 # 安装 NVIDIA Container Toolkit
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \
   | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
@@ -278,23 +279,23 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
-```
+`````
 
 ### AMD ROCm GPU 配置
 
 使用 ROCm 专用镜像标签：
 
-```yaml
+`````yaml
 services: ollama: image: ollama/ollama:rocm
     devices: - /dev/kfd
       - /dev/dri
     group_add: - video
     environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
-```
+`````
 
 ### 多模型并发服务
 
-```yaml
+`````yaml
 services: ollama: image: ollama/ollama:0.6.7
     environment: - OLLAMA_NUM_PARALLEL=4      # 4 个并发请求
       - OLLAMA_MAX_LOADED_MODELS=2  # VRAM 中保持 2 个模型
@@ -302,7 +303,7 @@ services: ollama: image: ollama/ollama:0.6.7
     deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-```
+`````
 
 ## Modelfile：自定义模型行为
 
@@ -310,7 +311,7 @@ Modelfile 是 Ollama 的声明式配置格式。它定义了模型的行为方�
 
 ### 基础 Modelfile 示例
 
-```dockerfile
+`````dockerfile
 # Modelfile
 FROM llama3.2:8b
 
@@ -333,11 +334,11 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
 
 {{ .Response }}<|eot_id|>"""
-```
+`````
 
 构建并运行：
 
-```bash
+`````bash
 # 创建自定义模型
 ollama create senior-dev -f Modelfile
 
@@ -346,11 +347,11 @@ ollama run senior-dev
 
 # 查看生效的 Modelfile
 ollama show senior-dev --modelfile
-```
+`````
 
 ### 高级：代码审查助手
 
-```dockerfile
+`````dockerfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
@@ -370,15 +371,15 @@ SYSTEM """你是一个代码审查助手。分析提供的代码，检查：
 PARAMETER temperature 0.1
 PARAMETER num_ctx 8192
 PARAMETER num_predict 2048
-```
+`````
 
-```bash
+`````bash
 ollama create code-reviewer -f Modelfile.code-review
-```
+`````
 
 ### 从本地 GGUF 文件创建
 
-```dockerfile
+`````dockerfile
 # Modelfile.local
 FROM ./my-fine-tuned-model-q4_k_m.gguf
 
@@ -386,15 +387,15 @@ PARAMETER temperature 0.7
 PARAMETER num_ctx 4096
 
 SYSTEM "你是一个专注于医学术语的有用助手。"
-```
+`````
 
-```bash
+`````bash
 ollama create med-assistant -f Modelfile.local
-```
+`````
 
 ### 查看现有模型
 
-```bash
+`````bash
 # 显示模型详情和 Modelfile
 ollama show llama3.2:8b --modelfile
 
@@ -409,7 +410,7 @@ ollama list
 
 # 显示运行中的模型
 ollama ps
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -417,13 +418,13 @@ ollama ps
 
 | 工具 | 格式 | tok/s | 配置时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | Q4_K_M | ~62 tok/s | < 2 分钟 |
 | vLLM | FP16 | ~71 tok/s | ~10 分钟 |
@@ -436,13 +437,13 @@ ollama ps
 
 | 工具 | 总 tok/s | p99 延迟 | 架构 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | ~155 tok/s | ~24.7秒 | FIFO 队列 |
 | vLLM | ~920 tok/s | ~2.8秒 | 连续批处理 |
@@ -455,13 +456,13 @@ ollama ps
 
 | 工具 | 空闲 RAM | 加载后 RAM | 冷启动 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ollama | 150 MB | 5.2 GB | 2秒 |
 | vLLM | 400 MB | 5.5 GB | 5秒 |
@@ -473,13 +474,13 @@ ollama ps
 1. **个人开发者**：Ollama + Continue.dev 用于 AI 辅助编程。自动补全延迟 < 50ms。
 2. **小团队（5–10 人）**：共享 GPU 工作站上的 Ollama + Open WebUI。每小时可舒适处理约 50 个请求。
 3. **边缘/Raspberry Pi 5**：仅 CPU 的 Ollama + Phi-4 Mini (3.8B)。约 8 tok/s，完全离线运行。
-4. **CI/CD 流水线**：Docker 中的 Ollama 用于自动代码审查。拉取 `code-reviewer` 模型，通过 API 处理 PR diff。
+4. **CI/CD 流水线**：Docker 中的 Ollama 用于自动代码审查。拉取 ````code-reviewer```` 模型，通过 API 处理 PR diff。
 
 ## 高级用法 / 生产环境加固
 
 ### 环境变量
 
-```bash
+`````bash
 # 核心设置
 OLLAMA_HOST=0.0.0.0:11434          # 绑定到所有接口
 OLLAMA_KEEP_ALIVE=24h               # 模型保持加载 24 小时
@@ -490,11 +491,11 @@ OLLAMA_FLASH_ATTENTION=1            # 启用 Flash Attention（更快推理）
 # 性能调优
 OLLAMA_GPU_OVERHEAD=200MB           # 预留 VRAM 余量
 OLLAMA_DEBUG=1                      # 详细日志
-```
+`````
 
 ### Nginx 反向代理
 
-```nginx
+`````nginx
 server {
     listen 443 ssl http2;
     server_name ollama.yourdomain.com;
@@ -519,13 +520,13 @@ server {
         proxy_send_timeout 600s;
     }
 }
-```
+`````
 
 ### API 密钥认证（无原生支持）
 
 Ollama 不包含内置的 API 密钥认证。通过反向代理添加：
 
-```python
+`````python
 # ollama-auth-proxy.py（Flask 示例）
 from flask import Flask, request, Response
 import requests
@@ -550,22 +551,22 @@ def proxy(path): api_key = request.headers.get(Authorization, '').replace('Beare
                    content_type=resp.headers.get('Content-Type'))
 
 if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
-```
+`````
 
 ### 使用 Prometheus 监控
 
 Ollama 通过 API 暴露基本指标：
 
-```bash
+`````bash
 # 列出运行中的模型及其内存使用情况
 curl http://localhost:11434/api/ps
-```
+`````
 
-对于生产监控，使用 Prometheus 导出器包装 `api/ps` 端点，或使用内置指标的 [ollamaMQ](https://github.com/Chleba/ollamaMQ) 代理。
+对于生产监控，使用 Prometheus 导出器包装 ````api/ps```` 端点，或使用内置指标的 [ollamaMQ](https://github.com/Chleba/ollamaMQ) 代理。
 
 ### Systemd 服务（Linux）
 
-```ini
+`````ini
 # /etc/systemd/system/ollama.service
 [Unit]
 Description=Ollama LLM 服务
@@ -583,27 +584,27 @@ Environment="OLLAMA_KEEP_ALIVE=24h"
 
 [Install]
 WantedBy=default.target
-```
+`````
 
-```bash
+`````bash
 sudo systemctl daemon-reload
 sudo systemctl enable ollama
 sudo systemctl start ollama
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Ollama | llama.cpp | vLLM | LocalAI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 137K+ | 75K+ | 45K+ | 35K+ |
 | **配置时间** | < 2 分钟 | ~5 分钟 | ~10 分钟 | ~15 分钟 |
@@ -634,9 +635,9 @@ sudo systemctl start ollama
 
 **仅支持 GGUF 格式。** Ollama 只支持 GGUF 量化模型。如果需要 FP16 推理、AWQ 或 GPTQ 格式，请直接使用 vLLM 或 Transformers。
 
-**无内置模型量化。** 无法在 Ollama 内量化模型。需要在外部将模型转换为 GGUF 格式（使用 `llama.cpp/convert_hf_to_gguf.py` 等），然后通过 `ollama create` 导入。
+**无内置模型量化。** 无法在 Ollama 内量化模型。需要在外部将模型转换为 GGUF 格式（使用 ````llama.cpp/convert_hf_to_gguf.py```` 等），然后通过 ````ollama create```` 导入。
 
-**内存管理是静态的。** `OLLAMA_MAX_LOADED_MODELS` 控制常驻模型数量，但没有动态 VRAM 平衡。在 12 GB GPU 上加载 70B 模型（即使是 Q4）会导致 OOM —— Ollama 不会自动将层卸载到 CPU。
+**内存管理是静态的。** ````OLLAMA_MAX_LOADED_MODELS```` 控制常驻模型数量，但没有动态 VRAM 平衡。在 12 GB GPU 上加载 70B 模型（即使是 Q4）会导致 OOM —— Ollama 不会自动将层卸载到 CPU。
 
 **工具调用支持有限。** 虽然兼容模型（Llama 3.1+、Mistral）支持工具调用，但实现不如 OpenAI 的函数调用稳健。复杂的多步工具工作流可能需要降级处理。
 
@@ -649,13 +650,13 @@ A: Q4_K_M 量化的 7B 模型约需 4.5–5 GB VRAM。Q8 量化请预留 7–8 G
 A: 可以。Ollama 会通过 llama.cpp 自动回退到 CPU 推理。性能取决于 CPU：Intel i7-13700K 使用 7B Q4 模型可达约 8–12 tok/s。Apple Silicon M3 Pro 在 CPU/神经引擎上可达约 25 tok/s。
 
 **Q: 如何将 Ollama 更新到最新版本？**
-A: macOS 上运行 `brew upgrade ollama`。Linux 上重新运行安装脚本：`curl -fsSL https://ollama.com/install.sh | sh`。该脚本会保留你在 `~/.ollama/models/` 中已下载的模型。
+A: macOS 上运行 ````brew upgrade ollama````。Linux 上重新运行安装脚本：````curl -fsSL https://ollama.com/install.sh | sh````。该脚本会保留你在 ````~/.ollama/models/```` 中已下载的模型。
 
 **Q: Ollama 适合生产环境使用吗？**
 A: 对于单一用途的部署（一个模型、一个用户、可预测的负载），是的。对于多用户生产服务，考虑添加队列代理或切换到 vLLM。面向网络暴露前务必添加认证和监控。
 
 **Q: 可以在 Ollama 中使用自己微调过的模型吗？**
-A: 可以。将模型转换为 GGUF 格式，然后创建指向它的 Modelfile，使用 `FROM ./your-model.gguf`。运行 `ollama create my-model -f Modelfile`，它就可通过标准 API 访问。
+A: 可以。将模型转换为 GGUF 格式，然后创建指向它的 Modelfile，使用 ````FROM ./your-model.gguf````。运行 ````ollama create my-model -f Modelfile````，它就可通过标准 API 访问。
 
 **Q: Ollama 与 OpenAI API 在输出质量方面相比如何？**
 A: 对于同等基础模型（Llama 3.1 vs GPT-3.5），在编程和推理任务上输出质量具有竞争力。在创意写作和多步推理方面差距更大，GPT-4 和 Claude 3.5 Sonnet 仍然领先。本地推理消除了网络往返的延迟。
@@ -670,8 +671,8 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 对于个人开发者和小团队，Ollama 是务实的起点。当并发负载超过约 5 个用户时，评估 vLLM。当需要文本之外的多模态支持时，评估 LocalAI。但从 Ollama 开始 —— 137,000+ Stars 反映了一个真正兑现承诺的工具。
 
 **下一步：**
-1. 安装 Ollama：`curl -fsSL https://ollama.com/install.sh | sh`
-2. 运行你的第一个模型：`ollama run llama3.2:8b`
+1. 安装 Ollama：````curl -fsSL https://ollama.com/install.sh | sh````
+2. 运行你的第一个模型：````ollama run llama3.2:8b```
 3. 部署 Open WebUI 作为团队聊天界面
 4. 加入 [dibi8 开发者 Telegram 群组](https://t.me/dibi8dev) 获取本地 LLM 部署技巧和故障排除
 
@@ -731,7 +732,7 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [llm-inference-cost-optimization-guide-2026](ollama)
@@ -741,7 +742,7 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 - [egonex-understand-anything-interactive-knowledge-graph-ai](ollama)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

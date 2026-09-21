@@ -23,6 +23,7 @@ faq: - q: "2026 年企业对 AI 编码的主流策略立场有哪些？"
     a: "因情境而异。纯 Web SaaS 业务：允许并轻度审计基本就是对的。医疗/金融受监管业务：企业版 + DPA + 限制性使用是基准线。国防/涉密：禁用云端 AI，仅允许本地。策略错配要么带来合规风险，要么带来生产力损失。"
 ---
 
+
 {{</* resource-info */>}}
 
 # AI 编码伦理 2026：企业策略指南
@@ -104,7 +105,7 @@ AI 可能将 GPL 代码"反刍"进你的专有代码库，从而可能强制要�
 
 ## 如何挑选策略
 
-```
+````
 你是否处于受监管行业（金融、医疗、法律）？
 ├── 是 → 阵营 2：企业版 + DPA
 └── 否 → 继续
@@ -112,7 +113,7 @@ AI 可能将 GPL 代码"反刍"进你的专有代码库，从而可能强制要�
 你是否处理涉密或国防业务？
 ├── 是 → 阵营 3：禁用云端 AI
 └── 否 → 阵营 1：允许并审计
-```
+````
 
 错配后果：
 - 该限制却允许：合规违规、监管处罚
@@ -148,7 +149,7 @@ AI 可能将 GPL 代码"反刍"进你的专有代码库，从而可能强制要�
 最糟的结果是没有任何策略 —— 开发者照样会用 AI 工具。与其放任"影子 AI"无人监管，不如刻意制定立场并配套护栏。
 
 
----
+* * *
 **相关阅读**：[AI 编码 2026-Q2 巅峰对决](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [本地优先 AI 技术栈 2026](https://dibi8.com/zh/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/) · [自托管 LLM 2026](https://dibi8.com/zh/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
 
 
@@ -214,11 +215,11 @@ AI 编码伦理 2026：企业"允许 vs 限制"策略指南 represents an import
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -228,7 +229,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](ai-coding-ethics-corporate-policy-guide-2026)
 - [claude-4-opus-sonnet-review-2026](ai-coding-ethics-corporate-policy-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -272,15 +273,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

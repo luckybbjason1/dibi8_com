@@ -12,19 +12,20 @@ aliases:
   - /zh/posts/aiohttp-async-web-scraping/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：同步抓取的性能瓶颈
 
-你有 **50,000 个 URL** 需要抓取。你写了一个 `requests` 循环开始运行。三小时后，你还在等待。每个请求都会阻塞整个线程，**99.9% 的运行时间** 浪费在网络 I/O 上。你的 CPU 处于空闲状态，而脚本每秒只能抓取 4-5 个页面。这就是同步 HTTP 客户端的现实。
+你有 **50,000 个 URL** 需要抓取。你写了一个 ```requests```` 循环开始运行。三小时后，你还在等待。每个请求都会阻塞整个线程，**99.9% 的运行时间** 浪费在网络 I/O 上。你的 CPU 处于空闲状态，而脚本每秒只能抓取 4-5 个页面。这就是同步 HTTP 客户端的现实。
 
-由 `aio-libs` 维护、拥有 **15,200 个 GitHub Star** 的 `aiohttp` 是 Python 异步 HTTP 客户端/服务器框架的事实标准。它基于 `asyncio` 构建，无需线程或多进程开销即可实现并发请求。在生产环境基准测试中，单个 aiohttp 进程处理本地端点的速度可达 **每秒 10,000+ 请求**，针对真实分布式 API 可达 **2,000-4,000 req/s**。本文是你使用 aiohttp v3.11 构建高性能生产级网页抓取器的完整指南。
+由 ````aio-libs```` 维护、拥有 **15,200 个 GitHub Star** 的 ````aiohttp```` 是 Python 异步 HTTP 客户端/服务器框架的事实标准。它基于 ````asyncio```` 构建，无需线程或多进程开销即可实现并发请求。在生产环境基准测试中，单个 aiohttp 进程处理本地端点的速度可达 **每秒 10,000+ 请求**，针对真实分布式 API 可达 **2,000-4,000 req/s**。本文是你使用 aiohttp v3.11 构建高性能生产级网页抓取器的完整指南。
 
 ## 什么是 aiohttp？
 
-`aiohttp` 是一个基于 Python `asyncio` 的异步 HTTP 客户端和服务器框架。它于 2014 年首次发布，采用 Apache-2.0 许可证。该库同时提供客户端功能（发起 HTTP 请求）和服务器端功能（构建 Web 应用），这在 HTTP 库中独树一帜。对于网页抓取而言，客户端功能是核心关注点。
+````aiohttp```` 是一个基于 Python ````asyncio```` 的异步 HTTP 客户端和服务器框架。它于 2014 年首次发布，采用 Apache-2.0 许可证。该库同时提供客户端功能（发起 HTTP 请求）和服务器端功能（构建 Web 应用），这在 HTTP 库中独树一帜。对于网页抓取而言，客户端功能是核心关注点。
 
-与 `requests` 或 `urllib3` 等同步库不同，aiohttp 使用 Python 的 `async`/`await` 语法实现非阻塞 I/O。这意味着当一个请求等待服务器响应时，事件循环可以处理数十甚至数百个其他请求。结果就是更高的吞吐量和更低的资源消耗。
+与 ````requests```` 或 ````urllib3```` 等同步库不同，aiohttp 使用 Python 的 ````async````/````await```` 语法实现非阻塞 I/O。这意味着当一个请求等待服务器响应时，事件循环可以处理数十甚至数百个其他请求。结果就是更高的吞吐量和更低的资源消耗。
 
 ## aiohttp 工作原理：架构与核心概念
 
@@ -32,25 +33,25 @@ aliases:
 
 ### 事件循环与 Asyncio 集成
 
-aiohttp 运行在 Python 的 `asyncio` 事件循环上。当你发起 HTTP 请求时，aiohttp 向事件循环注册一个回调并交出控制权。事件循环在处理其他任务直到网络响应到达。这种协作式多任务处理避免了操作系统级线程切换的开销。
+aiohttp 运行在 Python 的 ````asyncio```` 事件循环上。当你发起 HTTP 请求时，aiohttp 向事件循环注册一个回调并交出控制权。事件循环在处理其他任务直到网络响应到达。这种协作式多任务处理避免了操作系统级线程切换的开销。
 
 ### 连接池
 
-aiohttp 通过 `TCPConnector` 维持持久 TCP 连接。默认情况下，它会将到同一主机的连接进行池化，在多个请求之间复用。这消除了困扰简单请求脚本每次连接 **约 200ms 的 TCP 握手开销**。在基准测试中，仅连接池一项就能将多请求场景的总请求时间减少 **60-80%**。
+aiohttp 通过 ````TCPConnector```` 维持持久 TCP 连接。默认情况下，它会将到同一主机的连接进行池化，在多个请求之间复用。这消除了困扰简单请求脚本每次连接 **约 200ms 的 TCP 握手开销**。在基准测试中，仅连接池一项就能将多请求场景的总请求时间减少 **60-80%**。
 
 ### 会话管理
 
-`ClientSession` 对象是核心抽象。它封装了连接器、请求头、Cookie 和配置。针对特定目标的所有请求应复用同一个会话。每次请求创建新会话是常见的反模式，会破坏连接复用。
+````ClientSession```` 对象是核心抽象。它封装了连接器、请求头、Cookie 和配置。针对特定目标的所有请求应复用同一个会话。每次请求创建新会话是常见的反模式，会破坏连接复用。
 
 ### 背压与流量控制
 
-aiohttp 通过 `asyncio` 信号量和限制实现背压。`TCPConnector` 上的 `limit` 参数控制每个主机的并发连接数，防止抓取器压垮目标服务器或耗尽本地文件描述符。
+aiohttp 通过 ````asyncio```` 信号量和限制实现背压。````TCPConnector```` 上的 ````limit```` 参数控制每个主机的并发连接数，防止抓取器压垮目标服务器或耗尽本地文件描述符。
 
 ## 安装与配置：5 分钟内就绪
 
 ### 第一步：安装 aiohttp
 
-```bash
+`````bash
 pip install aiohttp==3.11.0
 
 # 包含加速组件（生产环境推荐）
@@ -58,13 +59,13 @@ pip install aiohttp[speedups]==3.11.0
 
 # 安装抓取所需的附加工具
 pip install aiohttp==3.11.0 aiofiles==24.1.0 beautifulsoup4==4.12.3 lxml==5.3.0
-```
+`````
 
-`[speedups]` 额外组件会安装 `aiodns` 和 `Brotli`，分别提升 DNS 解析和响应解压速度。对于高吞吐量抓取，这些组件必不可少。
+````[speedups]```` 额外组件会安装 ````aiodns```` 和 ````Brotli````，分别提升 DNS 解析和响应解压速度。对于高吞吐量抓取，这些组件必不可少。
 
 ### 第二步：验证安装
 
-```python
+`````python
 import aiohttp
 import asyncio
 import sys
@@ -77,11 +78,11 @@ async def check(): async with aiohttp.ClientSession() as session: async with ses
             print(f"Response keys: {list(data.keys())}")
 
 asyncio.run(check())
-```
+`````
 
 ### 第三步：运行你的第一个并发抓取器
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -98,15 +99,15 @@ async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(
         for r in results: print(r["args"])
 
 asyncio.run(main())
-```
+`````
 
-这段代码在不到一秒内并发获取三个 URL。使用同步的 `requests`，同样由于顺序阻塞，耗时会是 **3 倍以上**。
+这段代码在不到一秒内并发获取三个 URL。使用同步的 ````requests````，同样由于顺序阻塞，耗时会是 **3 倍以上**。
 
 ## 核心集成：与 BeautifulSoup、lxml 和持久化存储的抓取技术栈
 
 ### 与 BeautifulSoup 集成进行 HTML 解析
 
-```python
+`````python
 import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
@@ -125,11 +126,11 @@ async def main(): urls = ["https://example.com", "https://httpbin.org/html"]
         for r in results: print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
-```
+`````
 
 ### 与 lxml 集成进行高性能 XML/HTML 解析
 
-```python
+`````python
 import aiohttp
 import asyncio
 from lxml import html as lh
@@ -144,13 +145,13 @@ async def main(): async with aiohttp.ClientSession() as session: links = await e
         print(f"Found {len(links)} external links")
 
 asyncio.run(main())
-```
+`````
 
 对于大型文档，lxml 比 html.parser **快 10-20 倍**，并且对格式错误的 HTML 处理更优雅。
 
 ### 与 aiofiles 集成进行异步文件 I/O
 
-```python
+`````python
 import aiohttp
 import aiofiles
 import asyncio
@@ -167,13 +168,13 @@ async def main(): async with aiohttp.ClientSession() as session: await scrape_an
         )
 
 asyncio.run(main())
-```
+`````
 
-使用 `aiofiles` 可避免在磁盘写入时阻塞事件循环，这在保存数千个抓取文件时至关重要。
+使用 ````aiofiles```` 可避免在磁盘写入时阻塞事件循环，这在保存数千个抓取文件时至关重要。
 
 ### 与 SQLite 集成进行结构化数据存储
 
-```python
+`````python
 import aiohttp
 import aiosqlite
 import asyncio
@@ -190,13 +191,13 @@ async def main(): async with aiosqlite.connect("scraped.db") as db: await db.exe
         async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, "https://httpbin.org/json")
 
 asyncio.run(main())
-```
+`````
 
 ### 通过 WebShare 集成代理轮换
 
 对于生产环境的大规模抓取，代理轮换必不可少。WebShare 提供可靠的轮换代理，与 aiohttp 无缝集成：
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -210,7 +211,7 @@ async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
         print(html[:200])
 
 asyncio.run(main())
-```
+`````
 
 **[开始使用 WebShare 代理](https://www.webshare.io/?referral_code=oa14d5f0wx4f)**，获取可靠、可随抓取需求扩展的轮换代理基础设施。
 
@@ -220,13 +221,13 @@ asyncio.run(main())
 
 | 指标 | requests (同步) | httpx (异步) | aiohttp 3.11 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1,000 请求 (本地) | 187秒 | 12秒 | **8.2秒** |
 | 10,000 请求 (本地) | 1,870秒 | 98秒 | **62秒** |
@@ -241,19 +242,19 @@ asyncio.run(main())
 ### 真实用例
 
 **案例 1：价格监控管道**
-一家德国电商聚合商使用 aiohttp 监控 12 家零售商的 **230 万个产品页面**。其抓取器运行在 4 台 DigitalOcean 云主机上，每台处理约 **600 req/s** 并配合轮换代理。总基础设施成本：**每月 240 美元**。之前基于 `requests` 的系统需要 18 台服务器，每月花费 1,080 美元。
+一家德国电商聚合商使用 aiohttp 监控 12 家零售商的 **230 万个产品页面**。其抓取器运行在 4 台 DigitalOcean 云主机上，每台处理约 **600 req/s** 并配合轮换代理。总基础设施成本：**每月 240 美元**。之前基于 ````requests```` 的系统需要 18 台服务器，每月花费 1,080 美元。
 
 **案例 2：新闻资讯聚合**
-一家媒体监控初创公司每 15 分钟处理 **45,000 个新闻源**。使用 aiohttp 配合 `aio-pika` 进行 RabbitMQ 集成，整个爬取周期的端到端延迟低于 90 秒。该异步管道取代了之前需要 8 分钟以上的 Celery+requests 架构。
+一家媒体监控初创公司每 15 分钟处理 **45,000 个新闻源**。使用 aiohttp 配合 ````aio-pika```` 进行 RabbitMQ 集成，整个爬取周期的端到端延迟低于 90 秒。该异步管道取代了之前需要 8 分钟以上的 Celery+requests 架构。
 
 **案例 3：学术研究数据集构建**
-一所大学的 NLP 实验室使用 aiohttp 从 340 个域名抓取了 **850 万个** 学术页面。整个爬取在单台 8 核服务器上 **72 小时** 内完成。使用 `requests` 的等效估计需要 **21 天**。
+一所大学的 NLP 实验室使用 aiohttp 从 340 个域名抓取了 **850 万个** 学术页面。整个爬取在单台 8 核服务器上 **72 小时** 内完成。使用 ````requests```` 的等效估计需要 **21 天**。
 
 ## 高级用法与生产环境加固
 
 ### 连接池调优
 
-```python
+`````python
 import aiohttp
 
 connector = aiohttp.TCPConnector(
@@ -276,11 +277,11 @@ session = aiohttp.ClientSession(
     timeout=timeout,
     headers={"User-Agent": "MyBot/1.0"},
 )
-```
+`````
 
 ### 使用信号量进行速率限制
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -297,11 +298,11 @@ async def main(): semaphore = asyncio.Semaphore(50)  # 最大 50 个并发请求
         print(f"Successful: {successes}/500")
 
 asyncio.run(main())
-```
+`````
 
 ### 指数退避重试逻辑
 
-```python
+`````python
 import aiohttp
 import asyncio
 import random
@@ -319,11 +320,11 @@ async def main(): async with aiohttp.ClientSession() as session: data = await fe
         print(data)
 
 asyncio.run(main())
-```
+`````
 
 ### WebSocket 实时数据抓取
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -337,11 +338,11 @@ async def websocket_scraper(): """从 WebSocket 端点抓取实时数据。"""
                     break
 
 asyncio.run(websocket_scraper())
-```
+`````
 
 ### 在 DigitalOcean 上使用 Docker 进行生产部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -351,9 +352,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY scraper.py .
 CMD ["python", "scraper.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: scraper: build: .
@@ -363,13 +364,13 @@ services: scraper: build: .
     logging: driver: "json-file"
       options: max-size: "100m"
         max-file: "3"
-```
+`````
 
 将其部署到 **[DigitalOcean 云主机](https://m.do.co/c/eca87ac14ee0)**，获取可靠的、可扩展的抓取基础设施，起价每月 4 美元。对于跨多个节点的分布式抓取，DigitalOcean 的 Kubernetes 服务让水平扩展变得简单。
 
 ### 使用 Prometheus 指标进行监控
 
-```python
+`````python
 import aiohttp
 import asyncio
 from prometheus_client import Counter, Histogram, start_http_server
@@ -384,23 +385,23 @@ async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: asyn
 
 # 在端口 9090 启动指标服务器
 start_http_server(9090)
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 异步支持 | 是 (原生) | 否 | 是 | 否 | 否 |
 | HTTP/2 支持 | 否 | 否 | 是 | 否 | 是 |
@@ -425,25 +426,25 @@ start_http_server(9090)
 
 没有工具是完美的。aiohttp 有以下局限性需要了解：
 
-**不支持 HTTP/2。** 截至 v3.11，aiohttp 仅支持 HTTP/1.1。如果你的目标需要 HTTP/2（在 Cloudflare 后的 API 中越来越常见），请改用 `httpx`。有一个开放的 issue (#2217) 在追踪 HTTP/2 实现，但没有承诺时间表。
+**不支持 HTTP/2。** 截至 v3.11，aiohttp 仅支持 HTTP/1.1。如果你的目标需要 HTTP/2（在 Cloudflare 后的 API 中越来越常见），请改用 ````httpx````。有一个开放的 issue (#2217) 在追踪 HTTP/2 实现，但没有承诺时间表。
 
-**asyncio 的学习曲线。** 刚接触 `async`/`await` 的开发者会遇到显著的学习曲线。常见陷阱包括忘记 `await`、混合同步和异步代码、以及调试挂起的事件循环。`RuntimeError: Event loop is closed` 错误是每个 asyncio 开发者必经之路。
+**asyncio 的学习曲线。** 刚接触 ````async````/````await```` 的开发者会遇到显著的学习曲线。常见陷阱包括忘记 ````await````、混合同步和异步代码、以及调试挂起的事件循环。````RuntimeError: Event loop is closed```` 错误是每个 asyncio 开发者必经之路。
 
-**DNS 解析瓶颈。** aiohttp 的默认 DNS 解析器使用 `getaddrinfo`，这是同步操作，在高并发下可能阻塞事件循环。安装 `aiodns`（包含在 `[speedups]` 中）以启用真正的异步 DNS 解析。
+**DNS 解析瓶颈。** aiohttp 的默认 DNS 解析器使用 ````getaddrinfo````，这是同步操作，在高并发下可能阻塞事件循环。安装 ````aiodns````（包含在 ````[speedups]```` 中）以启用真正的异步 DNS 解析。
 
 **服务器端焦点稀释客户端文档。** aiohttp 同时是客户端和服务器框架。文档有时会优先介绍服务器功能，导致客户端特定功能较难找到。
 
-**Cookie 处理特性。** aiohttp 的 cookie jar 严格遵循 RFC 6265，这可能与发送格式错误 cookie 的配置错误服务器产生问题。`CookieJar` 上的 `unsafe=True` 标志可以解决此问题。
+**Cookie 处理特性。** aiohttp 的 cookie jar 严格遵循 RFC 6265，这可能与发送格式错误 cookie 的配置错误服务器产生问题。````CookieJar```` 上的 ````unsafe=True```` 标志可以解决此问题。
 
 ## 常见问题解答
 
 ### aiohttp 能处理多少并发请求？
 
-默认设置（100 连接）下，aiohttp 每个主机可处理 **100 个并发请求**。将连接器 `limit` 增加到 200-300，单进程针对分布式目标可达 **2,000-4,000 req/s**。实际限制通常是目标服务器的速率限制或你的网络带宽，而不是 aiohttp 本身。
+默认设置（100 连接）下，aiohttp 每个主机可处理 **100 个并发请求**。将连接器 ````limit```` 增加到 200-300，单进程针对分布式目标可达 **2,000-4,000 req/s**。实际限制通常是目标服务器的速率限制或你的网络带宽，而不是 aiohttp 本身。
 
 ### 我可以在现有同步代码中使用 aiohttp 吗？
 
-可以，但要小心。使用 `asyncio.run()` 或 `loop.run_until_complete()` 来桥接同步和异步边界。对于从异步代码调用同步函数，使用 `loop.run_in_executor()` 将阻塞工作卸载到线程池。切勿直接从异步函数调用阻塞 I/O，因为它会冻结整个事件循环。
+可以，但要小心。使用 ````asyncio.run()```` 或 ````loop.run_until_complete()```` 来桥接同步和异步边界。对于从异步代码调用同步函数，使用 ````loop.run_in_executor()```` 将阻塞工作卸载到线程池。切勿直接从异步函数调用阻塞 I/O，因为它会冻结整个事件循环。
 
 ### 如何处理 CAPTCHA 和 JavaScript 渲染的页面？
 
@@ -451,11 +452,11 @@ aiohttp 是 HTTP 客户端，不是浏览器。它不能执行 JavaScript 或解
 
 ### aiohttp 适合大文件下载吗？
 
-是的。使用 `resp.content.iter_chunked(8192)` 来流式传输大文件而不将其加载到内存中。对于 **10GB 文件**，流式传输时 aiohttp 使用不到 **20MB RAM**，而使用 `await resp.read()` 需要 10GB+。
+是的。使用 ````resp.content.iter_chunked(8192)```` 来流式传输大文件而不将其加载到内存中。对于 **10GB 文件**，流式传输时 aiohttp 使用不到 **20MB RAM**，而使用 ````await resp.read()```` 需要 10GB+。
 
 ### 如何调试 aiohttp 性能问题？
 
-使用 `python -W default -m aiohttp.web` 或设置 `PYTHONASYNCIODEBUG=1` 启用 aiohttp 调试模式。使用 `asyncio.get_event_loop().set_debug(True)` 捕获常见错误。对于生产监控，使用高级用法部分的 `prometheus_client` 进行指标采集，或在开发期间使用 `aiohttp-debugtoolbar`。
+使用 ````python -W default -m aiohttp.web```` 或设置 ````PYTHONASYNCIODEBUG=1```` 启用 aiohttp 调试模式。使用 ````asyncio.get_event_loop().set_debug(True)```` 捕获常见错误。对于生产监控，使用高级用法部分的 ````prometheus_client```` 进行指标采集，或在开发期间使用 ````aiohttp-debugtoolbar````。
 
 ### aiohttp 和 Flask/FastAPI 有什么区别？
 
@@ -463,7 +464,7 @@ aiohttp 既是 HTTP 客户端也是服务器。在服务器端，它与 Flask �
 
 ## 结论：用 aiohttp 构建你的下一个抓取器
 
-如果你仍在使用 `requests` 进行大规模抓取，你将 **10-50 倍的性能提升** 留在了桌面上。aiohttp 的原生异步架构、成熟的生态系统和经生产验证的追踪记录使其成为 2026 年 Python 高吞吐量抓取器的最佳选择。
+如果你仍在使用 ````requests``` 进行大规模抓取，你将 **10-50 倍的性能提升** 留在了桌面上。aiohttp 的原生异步架构、成熟的生态系统和经生产验证的追踪记录使其成为 2026 年 Python 高吞吐量抓取器的最佳选择。
 
 从本文的 5 分钟快速设置开始，实现连接池和信号量进行生产加固，然后部署在 **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** 上获取可靠、高性价比的基础设施。对于大规模代理轮换，将 **[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)** 集成到你的管道中。
 
@@ -479,7 +480,7 @@ aiohttp 既是 HTTP 客户端也是服务器。在服务器端，它与 Flask �
 - [Real Python - asyncio 指南](https://realpython.com/async-io-python/)
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -519,7 +520,7 @@ aiohttp 既是 HTTP 客户端也是服务器。在服务器端，它与 Flask �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -529,6 +530,6 @@ aiohttp 既是 HTTP 客户端也是服务器。在服务器端，它与 Flask �
 - [agent-reach-internet-access-ai-agents](aiohttp-async-web-scraping)
 - [microsoft-markitdown-file-to-markdown-converter-cli](aiohttp-async-web-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

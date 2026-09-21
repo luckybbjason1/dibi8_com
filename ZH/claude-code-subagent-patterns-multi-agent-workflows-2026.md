@@ -23,6 +23,7 @@ faq: - q: "Claude Code 的 subagent 到底是什么？跟另开一个 CLI 进程
   - q: "Claude Code subagent 怎么计费 —— 每个都单独收费吗？"
     a: "每次 subagent 调用都和其他 Claude 对话一样消耗 token。成本约等于 subagent 的完整上下文（系统 prompt + 工具 schema + 任务 prompt + 思考 + 最终报告）。Pro 和 Max 套餐里，subagent 使用计入父会话同一个用量额度。API 用户就是按 token 直接计费。省钱点在于把会膨胀父上下文的探索工作卸载出去 —— 你付 subagent 的钱，换主会话保持轻快聚焦。"
 ---
+
 # Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）
 
 
@@ -40,12 +41,12 @@ faq: - q: "Claude Code 的 subagent 到底是什么？跟另开一个 CLI 进程
 
 **模式。** 在并行里派出 3 个 Explore subagent，每个一道问题。每个跑在自己的沙箱上下文里。每个返回简短报告。父看到 3 个简洁段落而不是 3 个 grep 倾倒。
 
-```
+````
 单条消息 → 3 个 Agent 工具调用：
   - Agent("查找 auth 处理器", subagent_type="Explore", prompt="...")
   - Agent("映射状态管理", subagent_type="Explore", prompt="...")
   - Agent("查找废弃函数 Z 引用", subagent_type="Explore", prompt="...")
-```
+`````
 
 **避开的失败模式。** 上下文窗口膨胀。父会话保持轻盈，能继续承载实际的实现对话。
 
@@ -53,17 +54,17 @@ faq: - q: "Claude Code 的 subagent 到底是什么？跟另开一个 CLI 进程
 
 ## 模式 2：风险编辑的 worktree 隔离
 
-**问题。** 你想让 subagent 尝试一次重构，但如果跑歪了你不想手动 `git reset --hard`。你还想让 subagent 能跑测试，又不干扰你在主 worktree 上的当前改动。
+**问题。** 你想让 subagent 尝试一次重构，但如果跑歪了你不想手动 ````git reset --hard````。你还想让 subagent 能跑测试，又不干扰你在主 worktree 上的当前改动。
 
 **模式。** 在 Agent 调用上使用 worktree 隔离参数。Subagent 在从你当前状态分出的临时 git worktree 里工作。如果它做了改动，你拿回 worktree 路径，可以随时审查、cherry-pick 或弃用。如果它没做改动，worktree 自动清理。
 
-```
+`````
 Agent({
   description: "尝试 controller 级别重构"
   isolation: "worktree",
   prompt: "重构 controllers/orders.rb 提取校验逻辑..."
 })
-```
+`````
 
 **避开的失败模式。** 半完成的重构在你来得及评估前污染工作树。
 
@@ -73,9 +74,9 @@ Agent({
 
 **问题。** 代码审查、安全审计、可访问性审计、SQL 查询优化 —— 都受益于聚焦心态，但你同时也在写功能时很难维持这种心态。通用 Claude 这些都能干，但专用 prompt 做得更好。
 
-**模式。** 用 `subagent_type` 参数委派给专家。`code-reviewer` subagent 读 diff 并按置信度报告发现。security-auditor 戴着威胁建模眼镜读同样的 diff。你留在父会话里继续做功能。
+**模式。** 用 ````subagent_type```` 参数委派给专家。````code-reviewer```` subagent 读 diff 并按置信度报告发现。security-auditor 戴着威胁建模眼镜读同样的 diff。你留在父会话里继续做功能。
 
-```
+`````
 Agent({
   description: "独立代码审查"
   subagent_type: "code-reviewer",
@@ -83,7 +84,7 @@ Agent({
    第二意见 —— 我已经检查过幂等性但想要独立验证。报告：并发失败
    下这是否安全？"
 })
-```
+`````
 
 **避开的失败模式。** "我写的所以肯定对"的盲点。一个没有你对话上下文的独立 agent 是真正独立的。
 
@@ -107,11 +108,11 @@ Agent({
 
 **模式。** 把清单编码成你 repo 里的自定义 subagent。任何装了 Claude Code 的人都可以调用。清单变成可执行的：它针对每个步骤生成结构化报告。
 
-```
+`````
 .claude/agents/migration-reviewer.md  # 自定义 subagent 定义
 .claude/agents/security-gate.md
 .claude/agents/perf-budget-checker.md
-```
+````
 
 团队成员运行编排器时，它能扇出到全部 3 个：migration-reviewer 审计 SQL，security-gate 审计 auth 触碰点，perf-budget-checker 审计任何碰请求热路径的改动。每个返回结构化报告。编排器聚合。
 
@@ -214,12 +215,12 @@ Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-patterns-multi-agent-workflows-2026)
@@ -228,7 +229,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagent-patterns-multi-agent-workflows-2026)
 - [cursor-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -259,15 +260,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

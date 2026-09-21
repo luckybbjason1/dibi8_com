@@ -37,6 +37,7 @@ faqs: - q: 'What is Agent Reach and what does it do?'
     a: 'Cookies and tokens are stored locally in ~/.agent-reach/config.yaml with 600 file permissions. All code and dependencies are open source and auditable, and Agent Reach recommends using throwaway dedicated accounts for cookie-based platforms to reduce ban risk.'
   - q: 'Which AI agents and coding tools is Agent Reach compatible with?'
     a: 'Agent Reach works with Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI, and any MCP-compatible agent. Each platform is implemented as an independent, swappable channel file, so you can replace the underlying tool for any platform without lock-in.'---
+
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 
 
@@ -64,15 +65,15 @@ The project's philosophy is simple: **Agent Reach is scaffolding, not a framewor
 
 ### One-Line Installation
 
-```
+````
 帮我安装 Agent Reach：https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md
-```
+`````
 
-That's it. The agent handles everything else: 1. Installs the `agent-reach` CLI via pip
+That's it. The agent handles everything else: 1. Installs the ``agent-reach`` CLI via pip
 2. Detects and installs system dependencies (Node.js, gh CLI, mcporter)
 3. Configures search via Exa MCP (free, no API key)
 4. Registers SKILL.md so the agent knows which tool to use for each platform
-5. Runs `agent-reach doctor` to verify everything works
+5. Runs ``agent-reach doctor`` to verify everything works
 
 ### Supported Platforms
 
@@ -80,14 +81,14 @@ That's it. The agent handles everything else: 1. Installs the `agent-reach` CLI 
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | **Web** | Read any webpage | None needed |
 | **YouTube** | Subtitle extraction + search | None needed |
 | **RSS** | Parse any feed | None needed |
-| **GitHub** | Read repos, search, create issues | `gh auth login` |
+| **GitHub** | Read repos, search, create issues | ````gh auth login```` |
 | **Twitter/X** | Read tweets, search, timeline | Cookie export |
 | **Reddit** | Search posts, read comments | Cookie login |
 | **Bilibili** | Subtitles + search | Proxy for servers |
@@ -103,7 +104,7 @@ That's it. The agent handles everything else: 1. Installs the `agent-reach` CLI 
 
 ### Architecture: Pluggable by Design
 
-Each platform is implemented as an independent channel: ```
+Each platform is implemented as an independent channel: `````
 channels/
 ├── web.py          → Jina Reader (free, no key)
 ├── twitter.py      → twitter-cli (cookie-based)
@@ -117,16 +118,16 @@ channels/
 ├── wechat.py       → Exa + Camoufox
 ├── rss.py          → feedparser
 └── exa_search.py   → mcporter MCP
-```
+`````
 
 Don't like a particular tool? Swap the channel file. The architecture is designed for replacement, not lock-in.
 
 ### Security Considerations
 
-Agent Reach takes security seriously: - **Local credential storage**: Cookies and tokens stay in `~/.agent-reach/config.yaml` with 600 permissions
+Agent Reach takes security seriously: - **Local credential storage**: Cookies and tokens stay in ````~/.agent-reach/config.yaml```` with 600 permissions
 - **Open source**: All code and dependencies are auditable
-- **Safe mode**: `agent-reach install --safe` previews changes without applying them
-- **Dry run**: `agent-reach install --dry-run` shows exactly what would happen
+- **Safe mode**: ````agent-reach install --safe```` previews changes without applying them
+- **Dry run**: ````agent-reach install --dry-run```` shows exactly what would happen
 - **Dedicated accounts recommended**: Use throwaway accounts for cookie-based platforms to mitigate ban risk
 
 ### Real-World Usage
@@ -148,14 +149,14 @@ For developers, researchers, and security analysts, Agent Reach transforms AI ag
 
 ## Getting Started
 
-```bash
+`````bash
 # One-line install via npx
 npx skills add Panniantong/Agent-Reach
 
 # Or clone manually
 git clone https://github.com/Panniantong/Agent-Reach.git
 cd Agent-Reach
-```
+````
 
 Compatible with Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI, and any MCP-compatible agent.
 
@@ -170,7 +171,7 @@ The project is actively maintained, completely free, and designed to evolve as p
 **Stars**: Growing rapidly in the AI agent community
 
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -252,7 +253,7 @@ Agent Reach: Give Your AI Agent Internet Superpowers represents an important ste
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 

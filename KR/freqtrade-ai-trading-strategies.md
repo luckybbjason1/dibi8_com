@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/freqtrade-ai-trading-strategies/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 90%의 DIY 트레이딩 봇이 돈을 잃는 이유
@@ -50,7 +51,7 @@ Freqtrade는 Python으로 작성된 물비 오픈소스 암호화폐 트레이�
 
 ## Freqtrade 작동 원리: 아키텍처 심층 분석
 
-Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 상태 기계 중심으로 구축됩니다: ```
+Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 상태 기계 중심으로 구축됩니다: ````
 ┌──────────────────────────────────────────────────────────────┐
 │                    전략 파일 (.py)                            │
 │  (populate_indicators / populate_buy_trend /                  │
@@ -68,7 +69,7 @@ Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 �
 │                    인프라                                     │
 │  (SQLite DB / Telegram / Web UI / Docker)                   │
 └──────────────────────────────────────────────────────────────┘
-```
+`````
 
 **트레이딩 루프** 작동 방식: 1. Freqtrade가 CCXT를 통해 거래소에서 OHLCV 캔들스틱 데이터를 가져옵니다
 2. **전략**이 기술적 지표를 계산하고 매수/매도 신호를 생성합니다
@@ -91,7 +92,7 @@ Freqtrade의 아키텍처는 전략을 통해 시장 데이터를 처리하는 �
 
 ### 1단계: 디렉터리 구조 생성
 
-```bash
+`````bash
 # user_data 디렉터리 구조 생성
 mkdir -p freqtrade/user_data/strategies
 mkdir -p freqtrade/user_data/configs
@@ -99,18 +100,18 @@ mkdir -p freqtrade/user_data/configs
 # 공식 docker-compose 파일 다운로드
 cd freqtrade
 curl -o docker-compose.yml https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docker-compose.yml
-```
+`````
 
 ### 2단계: 설정 초기화
 
-```bash
+`````bash
 # 기본 설정을 생성하는 init 명령 실행
 docker compose run --rm freqtrade new-config --config user_data/config.json
-```
+`````
 
 ### 3단계: 첫 번째 전략 만들기
 
-```python
+`````python
 # user_data/strategies/SampleStrategy.py
 import numpy as np
 import talib.abstract as ta
@@ -171,33 +172,33 @@ class SampleStrategy(IStrategy): """
             exit_long
         ] = 1
         return dataframe
-```
+`````
 
 ### 4단계: 봇 시작
 
-```bash
+`````bash
 # 전략으로 Freqtrade 시작
 docker compose up -d
 
 # 로그 확인
 docker compose logs -f freqtrade
-```
+`````
 
 ### 5단계: Telegram으로 모니터링
 
-봇에 명령 전송: ```
+봇에 명령 전송: `````
 /status - 현재 거래 및 성과 표시
 /profit - 이익 요약 표시
 /balance - 지갑 잔액 표시
 /daily - 일일 손익 표시
 /performance - 거래쌍별 성과 표시
-```
+`````
 
 ## 머신러닝 통합 (FreqAI)
 
 ### FreqAI 활성화
 
-FreqAI는 머신러닝 예측을 전략에 가져옵니다. 먼저 FreqAI 설정을 추가합니다: ```json
+FreqAI는 머신러닝 예측을 전략에 가져옵니다. 먼저 FreqAI 설정을 추가합니다: `````json
 // config.json에 추가
 "freqai": {
   "enabled": true,
@@ -228,11 +229,11 @@ FreqAI는 머신러닝 예측을 전략에 가져옵니다. 먼저 FreqAI 설정
     "num_leaves": 32
   }
 }
-```
+`````
 
 ### FreqAI 전략 예제
 
-```python
+`````python
 # user_data/strategies/FreqAIStrategy.py
 import pandas as pd
 from freqtrade.strategy import IStrategy
@@ -276,7 +277,7 @@ class FreqAISrategy(IStrategy): """
             "exit_long"
         ] = 1
         return dataframe
-```
+`````
 
 ### 모델 옵션
 
@@ -292,7 +293,7 @@ FreqAI는 여러 ML 백엔드를 지원합니다: | 모델 | 백엔드 | 최적 
 
 ### Optuna를 통한 하이퍼파라미터 최적화
 
-```bash
+`````bash
 # 하이퍼파라미터 최적화 실행
 docker compose run --rm freqtrade hyperopt \
   --strategy SampleStrategy \
@@ -300,11 +301,11 @@ docker compose run --rm freqtrade hyperopt \
   --epochs 100 \
   --timerange 20260101-20260331 \
   --hyperopt-loss SharpeHyperOptLossDaily
-```
+`````
 
 ### 엣지 검증이 포함된 백테스팅
 
-```bash
+`````bash
 # 먼저 역사적 데이터 다운로드
 docker compose run --rm freqtrade download-data \
   --exchange binance \
@@ -319,11 +320,11 @@ docker compose run --rm freqtrade backtesting \
   --pairs BTC/USDT ETH/USDT SOL/USDT \
   --export trades \
   --export-filename user_data/backtest_results.json
-```
+`````
 
 ### Jupyter Notebook 통합
 
-```python
+`````python
 # Freqtrade의 Jupyter 컨테이너 낶에서 실행
 import pandas as pd
 from freqtrade.data.history import load_pair_history
@@ -346,11 +347,11 @@ dataframe = strategy.analyze_ticker(data, {pair: pair})
 # 신호 확인
 signals = dataframe[dataframe[enter_long] == 1]
 print(f"{len(signals)}개 진입 신호 발견")
-```
+`````
 
 ### 외부 통합을 위한 REST API
 
-```bash
+`````bash
 # API 서버 시작 (config.json에서 활성화)
 # 현재 상태 조회
 curl -u admin:your-secure-password \
@@ -365,7 +366,7 @@ curl -X POST -u admin:your-secure-password \
   -H "Content-Type: application/json" \
   -d '{"pair": "BTC/USDT", "side": "long"}' \
   http://localhost:8080/api/v1/forceentry
-```
+`````
 
 ## 벤치마크 및 실제 성능
 
@@ -392,7 +393,7 @@ curl -X POST -u admin:your-secure-password \
 
 ### 엣지 케이스: 낙폭 회복
 
-핵심 벤치마크는 전략이 낙폭에서 회복하는 속도입니다: ```
+핵심 벤치마크는 전략이 낙폭에서 회복하는 속도입니다: `````
 전략: FreqAI LightGBM
 타임라인: 2026-01-01 ~ 2026-03-31
 
@@ -402,13 +403,13 @@ curl -X POST -u admin:your-secure-password \
 2월 수익률: +11.4%
 3월 수익률: +9.8%
 Q1 총 수익률: +12.1%
-```
+`````
 
 ## 고급 사용법 및 프로덕션 하드닝
 
 ### 리스크 관리 설정
 
-```json
+`````json
 // 고급 리스크 관리 설정
 "max_open_trades": 3,
 "stake_amount": "unlimited",
@@ -445,11 +446,11 @@ Q1 총 수익률: +12.1%
     "stop_duration": 60
   }
 ]
-```
+`````
 
 ### ATR 기반 커스텀 스톱로스
 
-```python
+`````python
 # 동적 스톱로스를 위한 전략에 추가
 def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float: """ATR 기반 동적 스톱로스."""
@@ -463,11 +464,11 @@ def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
     stoploss_price = trade.open_rate - (2 * atr)
     
     return stoploss_from_absolute(stoploss_price, current_rate, is_short=trade.is_short)
-```
+`````
 
 ### 멀티 타임프레임 분석
 
-```python
+`````python
 def informative_pairs(self): """분석을 위한 높은 타임프레임 페어 정의."""
     return [
         ("BTC/USDT", "1h"),
@@ -488,11 +489,11 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
-```
+`````
 
 ### FreqAI GPU 가속
 
-```yaml
+`````yaml
 # FreqAI GPU 지원 docker-compose.yml
 version: '3.8'
 
@@ -506,11 +507,11 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
     environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
     command: >
       trade --strategy FreqAIStrategy --config user_data/config.json
-```
+`````
 
 ### 프로덕션 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -531,7 +532,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
       start_period: 60s
     command: >
       trade --strategy SampleStrategy --config user_data/config.json
-```
+`````
 
 ## 대안과의 비교
 
@@ -567,7 +568,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
 
 4. **FreqAI를 사용한 리소스 사용량은 상당합니다.** 10개 이상의 페어와 신경망 모델로 FreqAI를 실행하려면 2-4GB RAM과 상당한 CPU가 필요합니다. 월 $3짜리 VPS에서 이를 실행하려 하지 마세요.
 
-5. **숏 포지션 지원은 거래소마다 다릅니다.** 현물 시장은 공매도 포지션을 지원하지 않습니다. 공매도 전략을 위해서는 선물 사용 가능 커넥터(Binance Futures, OKX)와 설정의 `trading_mode: futures`가 필요합니다.
+5. **숏 포지션 지원은 거래소마다 다릅니다.** 현물 시장은 공매도 포지션을 지원하지 않습니다. 공매도 전략을 위해서는 선물 사용 가능 커넥터(Binance Futures, OKX)와 설정의 ````trading_mode: futures````가 필요합니다.
 
 ## 자주 묻는 질문
 
@@ -589,13 +590,13 @@ FreqAI는 ML 엔지니어링 복잡성을 추상화합니다 — 특징 엔지�
 
 ### 봇이 돈을 잃는 것을 어떻게 방지하나요?
 
-어떤 봇도 수익성을 보장하지 않습니다. 다음 관행이 리스크를 최소화합니다: (1) 라이브 전 1년 이상의 데이터로 항상 백테스트. (2) 최소 2주간 드라이런. (3) `max_open_trades`로 노출 제한. (4) `stoploss`를 5-10%로 설정. (5) `protections` 활성화 (CooldownPeriod, MaxDrawdown). (6) 거래당 1-2% 자본으로 시작.
+어떤 봇도 수익성을 보장하지 않습니다. 다음 관행이 리스크를 최소화합니다: (1) 라이브 전 1년 이상의 데이터로 항상 백테스트. (2) 최소 2주간 드라이런. (3) ````max_open_trades````로 노출 제한. (4) ````stoploss````를 5-10%로 설정. (5) ````protections```` 활성화 (CooldownPeriod, MaxDrawdown). (6) 거래당 1-2% 자본으로 시작.
 
 ### 커스텀 머신러닝 모델을 사용할 수 있나요?
 
-예. FreqAI는 커스텀 PyTorch 모델을 지원합니다. `IFreqaiModel`을 상속하는 클래스를 만들고 `fit` 및 `predict` 메소드를 구현하세요. sklearn 호환 모델이나 전체 PyTorch 신경망을 사용할 수 있습니다. 예제는 FreqAI 문서를 참조하세요.
+예. FreqAI는 커스텀 PyTorch 모델을 지원합니다. ````IFreqaiModel````을 상속하는 클래스를 만들고 ````fit```` 및 ````predict```` 메소드를 구현하세요. sklearn 호환 모델이나 전체 PyTorch 신경망을 사용할 수 있습니다. 예제는 FreqAI 문서를 참조하세요.
 
-```python
+`````python
 # 커스텀 모델 예제
 from freqtrade.freqai.base_models import BaseRegressionModel
 from sklearn.ensemble import RandomForestRegressor
@@ -603,11 +604,11 @@ from sklearn.ensemble import RandomForestRegressor
 class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10)
         model.fit(data_dictionary["train_features"], data_dictionary["train_labels"])
         return model
-```
+`````
 
 ### 거래소 API가 다울 때 어떻게 되나요?
 
-Freqtrade는 거래소 다운타임을 우아하게 처리합니다. 미체결 주문은 추적되고 API가 복구되면 봇이 정상 작동을 재개합니다. 안전망으로 거래소 측에 스톱로스 주문이 존재하도록 `stoploss_on_exchange`를 활성화하세요. Telegram 알림은 봇이 문제를 감지할 때 알려줍니다.
+Freqtrade는 거래소 다운타임을 우아하게 처리합니다. 미체결 주문은 추적되고 API가 복구되면 봇이 정상 작동을 재개합니다. 안전망으로 거래소 측에 스톱로스 주문이 존재하도록 ````stoploss_on_exchange```를 활성화하세요. Telegram 알림은 봇이 문제를 감지할 때 알려줍니다.
 
 ## 결론: 오늘부터 AI 트레이딩 봇 구축하기
 

@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/shellcheck/-
 ---
 
+
 {{</* resource-info */>}}
 
 ShellCheck 是捕获 shell 脚本中 bug 的事实标准工具，在生产环境部署前就能发现问题。凭借 39,456+ GitHub stars 和活跃的开源社区，它是 bash、sh、dash 和 ksh 脚本中应用最广泛的静态分析工具。本指南涵盖 ShellCheck 安装、编辑器集成、CI/CD 流水线配置以及生产环境加固。
@@ -36,7 +37,7 @@ ShellCheck 是一款针对 shell 脚本的静态分析工具（"linter"）。它
 
 - **语法验证**：在运行前捕获格式错误的构造
 - **语义分析**：检测未引用变量、不可达代码和被掩盖的退出码
-- **可移植性检查**：在应遵循 POSIX 标准的 `/bin/sh` 脚本中标出 bash 特有语法
+- **可移植性检查**：在应遵循 POSIX 标准的 ```/bin/sh```` 脚本中标出 bash 特有语法
 - **安全审计**：识别命令注入向量和不安全的 eval 模式
 - **风格强制**：建议使用现代构造替代已弃用的语法
 
@@ -46,11 +47,11 @@ ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调
 
 ### 架构概览
 
-```
+`````
 源代码脚本 → 词法分析器 → 解析器 (AST) → 分析器 → 报告器
                       ↓            ↓             ↓
                   词法单元     语法树        SC-警告
-```
+`````
 
 1. **词法分析器**：将脚本切分为标识符、关键字、运算符和字面量
 2. **解析器**：从词法单元流构建 AST，处理 shell 特有的语法特点
@@ -63,11 +64,11 @@ ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调
 
 | 级别 | 退出码影响 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 错误 | 非零退出 | 语法错误，未定义变量 |
 | 警告 | 非零退出 | 未引用变量 (SC2086) |
@@ -76,7 +77,7 @@ ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调
 
 ### 核心检查类别
 
-- **SC1xxx**：语法和解析问题（如 SC1007 — `=` 后有多余空格）
+- **SC1xxx**：语法和解析问题（如 SC1007 — ````=```` 后有多余空格）
 - **SC2xxx**：语义和可移植性警告（如 SC2086 — 未引用变量）
 - **SC3xxx**：Bash/dash/ksh 特有的兼容性提示
 - **SC4xxx**：可选检查和实验性规则
@@ -87,7 +88,7 @@ ShellCheck 支持所有主流平台。安装耗时不超过两分钟。
 
 ### Linux (APT / Debian / Ubuntu)
 
-```bash
+`````bash
 # 更新软件包索引
 sudo apt update
 
@@ -100,41 +101,41 @@ shellcheck --version
 # version: 0.11.0
 # license: GNU General Public License, version 3
 # website: https://www.shellcheck.net
-```
+`````
 
 ### Linux (DNF / Fedora / RHEL)
 
-```bash
+`````bash
 # 通过 DNF 安装
 sudo dnf install -y shellcheck
 
 # 验证版本
 shellcheck --version
-```
+`````
 
 ### macOS (Homebrew)
 
-```bash
+`````bash
 # 通过 Homebrew 安装
 brew install shellcheck
 
 # 验证版本
 shellcheck --version
-```
+`````
 
 ### Windows (通过 Chocolatey)
 
-```powershell
+`````powershell
 # 通过 Chocolatey 安装（管理员权限）
 choco install shellcheck
 
 # 验证版本
 shellcheck --version
-```
+`````
 
 ### Docker（跨平台）
 
-```bash
+`````bash
 # 无需本地安装，通过 Docker 运行
 ocker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
   /mnt/deploy.sh
@@ -146,11 +147,11 @@ docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
 # 锁定特定版本以确保 CI 构建可复现
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:v0.11.0 \
   /mnt/deploy.sh
-```
+`````
 
 ### 从源码构建（Haskell Stack）
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/koalaman/shellcheck.git
 cd shellcheck
@@ -161,17 +162,17 @@ stack install
 # 或使用 Cabal 构建
 cabal update
 cabal install
-```
+`````
 
 ### Pre-commit 钩子
 
-```bash
+`````bash
 # 添加到 .pre-commit-config.yaml
 repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
     hooks: - id: shellcheck
         args: ["--severity=warning"]
-```
+`````
 
 ## 编辑器集成
 
@@ -179,9 +180,9 @@ repos: - repo: https://github.com/koalaman/shellcheck-precommit
 
 ### VS Code
 
-安装 Timon Wong 开发的 **ShellCheck** 扩展（插件 ID：`timonwong.shellcheck`）。
+安装 Timon Wong 开发的 **ShellCheck** 扩展（插件 ID：````timonwong.shellcheck````）。
 
-```json
+`````json
 // settings.json
 {
   "shellcheck.executablePath": "shellcheck",
@@ -189,13 +190,13 @@ repos: - repo: https://github.com/koalaman/shellcheck-precommit
   "shellcheck.severity": "warning",
   "shellcheck.run": "onType"
 }
-```
+`````
 
 ### Vim / Neovim
 
 使用 ALE（异步语法检查引擎）：
 
-```vim
+`````vim
 " .vimrc 或 init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -204,11 +205,11 @@ let g:ale_linters = {
 " 保存时和输入时运行
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
-```
+`````
 
 Neovim 中使用原生 LSP：
 
-```lua
+`````lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -217,21 +218,21 @@ require(lspconfig).bashls.setup {
     }
   }
 }
-```
+`````
 
 ### Emacs
 
-```elisp
+`````elisp
 ;; init.el 配合 Flycheck
 (add-hook 'sh-mode-hook #'flycheck-mode)
 (setq flycheck-shellcheck-severity "warning")
-```
+`````
 
 ### Sublime Text
 
 通过 Package Control 安装：**SublimeLinter-shellcheck**。
 
-```json
+`````json
 // SublimeLinter.sublime-settings
 {
   "linters": {
@@ -241,7 +242,7 @@ require(lspconfig).bashls.setup {
     }
   }
 }
-```
+`````
 
 ## CI/CD 集成
 
@@ -249,7 +250,7 @@ require(lspconfig).bashls.setup {
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/shellcheck.yml
 name: ShellCheck
 
@@ -265,11 +266,11 @@ jobs: shellcheck: runs-on: ubuntu-latest
         with: ignore_paths: >-
             ./vendor
             ./third_party
-```
+`````
 
 手动配置（指定版本）：
 
-```yaml
+`````yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
@@ -287,11 +288,11 @@ jobs: shellcheck: runs-on: ubuntu-latest
         run: |
           find . -name "*.sh" -type f -print0 | \
             xargs -0 shellcheck --severity=warning --format=tty
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - lint
 
@@ -300,11 +301,11 @@ shellcheck: stage: lint
   script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-```
+`````
 
 ### Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -334,18 +335,18 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ### CircleCI
 
-```yaml
+`````yaml
 # .circleci/config.yml
 version: 2.1
 orbs: shellcheck: circleci/shellcheck@3.2.0
 
 workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
-```
+`````
 
 ## 配置与规则管理
 
@@ -353,7 +354,7 @@ ShellCheck 提供多种机制来控制运行哪些检查以及如何报告。
 
 ### 行内指令
 
-```bash
+`````bash
 #!/bin/bash
 # shellcheck disable=SC2086
 echo $UNQUOTED_VAR  # 本行禁用 SC2086
@@ -364,11 +365,11 @@ UNUSED_VAR="此变量已赋值但未使用"
 # 代码块后重新启用
 # shellcheck enable=SC2086
 echo "$PROPERLY_QUOTED"
-```
+`````
 
 ### 配置文件 (.shellcheckrc)
 
-```bash
+`````bash
 # .shellcheckrc — 项目级配置
 # 放在仓库根目录或 $HOME/.shellcheckrc
 
@@ -386,21 +387,21 @@ enable=require-variable-braces,check-set-e-suppressed
 
 # 指定外部源（用于 source 的文件）
 external-sources=true
-```
+`````
 
 ### 严重程度过滤
 
-```bash
+`````bash
 # 仅报告错误和警告（不报告 info/style）
 shellcheck --severity=warning script.sh
 
 # 仅报告错误
 shellcheck --severity=error script.sh
-```
+`````
 
 ### 输出格式
 
-```bash
+`````bash
 # 人类可读的终端输出（默认）
 shellcheck --format=tty script.sh
 
@@ -415,7 +416,7 @@ shellcheck --format=gcc script.sh
 
 # SARIF 格式（集成到 GitHub Security 标签页）
 shellcheck --format=sarif script.sh > shellcheck.sarif
-```
+`````
 
 ## 基准测试与实际用例
 
@@ -427,13 +428,13 @@ ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下�
 
 | 脚本规模 | 行数 | 分析时间 | 内存占用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 小型 | 50 | 0.05秒 | 12 MB |
 | 中型 | 500 | 0.3秒 | 28 MB |
@@ -442,7 +443,7 @@ ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下�
 
 ### 实际采用情况
 
-- **GitHub Actions**: 官方 `ludeeus/action-shellcheck` 月运行 50万+ 次
+- **GitHub Actions**: 官方 ````ludeeus/action-shellcheck```` 月运行 50万+ 次
 - **Homebrew**: 用 ShellCheck 检查所有 5,000+ 个 formula 的 shell 脚本
 - **Google Shell 风格指南**: 推荐所有 shell 脚本使用 ShellCheck
 - **NixOS**: 在官方软件包构建流水线中使用 ShellCheck
@@ -452,11 +453,11 @@ ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下�
 
 | 检查编号 | 描述 | 检出率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SC2086 | 未引用变量 | 34.2% |
 | SC2164 | cd 未检查返回值 | 18.7% |
@@ -470,7 +471,7 @@ ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下�
 
 ### 多脚本批量分析
 
-```bash
+`````bash
 #!/bin/bash
 set -euo pipefail
 
@@ -488,11 +489,11 @@ find "${SCRIPT_DIRS[@]}" -name "*.sh" -type f -print0 | \
     xargs -0 shellcheck --severity="$SEVERITY" "${EXCLUDES[@]}"
 
 echo "所有脚本通过 ShellCheck 检查，严重程度: $SEVERITY"
-```
+`````
 
 ### 上传 SARIF 到 GitHub 安全面板
 
-```yaml
+`````yaml
 # .github/workflows/security-scan.yml
 name: Security Scan
 on: [push, pull_request]
@@ -511,11 +512,11 @@ jobs: scan: runs-on: ubuntu-latest
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with: sarif_file: shellcheck.sarif
-```
+`````
 
 ### Dockerfile 检查阶段
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM koalaman/shellcheck:stable AS lint
 WORKDIR /scripts
@@ -525,13 +526,13 @@ RUN find . -name "*.sh" -exec shellcheck --severity=warning {} +
 FROM alpine:3.20 AS runtime
 COPY --from=lint /scripts/deploy.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/deploy.sh"]
-```
+`````
 
 ### 在 CI 中监控 ShellCheck
 
 将 ShellCheck 失败作为团队指标追踪：
 
-```bash
+`````bash
 #!/bin/bash
 # ci-metrics.sh — 追踪 shellcheck 警告数量随时间变化
 
@@ -539,21 +540,21 @@ WARNINGS=$(find . -name "*.sh" -exec shellcheck --severity=warning --format=json
     jq '. | length")
 
 echo "shellcheck_warnings $WARNINGS" >> metrics.txt
-```
+`````
 
 ## 与替代工具对比
 
-| 功能 | ShellCheck | `bash -n` | shfmt | checkbashisms |
+| 功能 | ShellCheck | ````bash -n```` | shfmt | checkbashisms |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 静态分析深度 | 语义（基于 AST） | 仅语法 | 解析器/格式化器 | 模式匹配 |
 | 错误数量 | ~280+ 检查 | ~20 个错误 | 0（格式化器） | ~40 个模式 |
@@ -569,7 +570,7 @@ echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ### 何时选择哪种工具
 
 - **ShellCheck**：通用 shell 脚本质量和安全审计。默认选择。
-- **`bash -n`**：快速 bash 脚本语法验证，别无选择时的备选。
+- **````bash -n````**：快速 bash 脚本语法验证，别无选择时的备选。
 - **shfmt**：代码格式化和风格规范化。与 ShellCheck 互补（不是替代品）。
 - **checkbashisms**：Debian 特有的可移植性检查。为 Debian/Ubuntu 打包时使用。
 
@@ -579,15 +580,15 @@ ShellCheck 并非万能。理解其边界可避免盲目信任。
 
 ### ShellCheck 无法捕获的问题
 
-- **运行时逻辑错误**：无法判断你的 `curl` 命令是否指向正确的端点
+- **运行时逻辑错误**：无法判断你的 ````curl```` 命令是否指向正确的端点
 - **业务逻辑 bug**：验证语法，但不验证备份脚本是否备份了正确的目录
 - **性能问题**：语法有效的无限循环会通过检查
-- **图灵完备分析**：某些动态行为（如 `eval "$DYNAMIC_CMD"`）本质上无法分析
+- **图灵完备分析**：某些动态行为（如 ````eval "$DYNAMIC_CMD"````）本质上无法分析
 
 ### 平台与环境局限
 
 - ShellCheck 假设标准 Unix 工具。针对嵌入式系统或 busybox 环境的脚本可能产生误报
-- 部分 SC 规则具有主观性。团队应审查并自定义 `.shellcheckrc`，而非盲目应用所有建议
+- 部分 SC 规则具有主观性。团队应审查并自定义 ````.shellcheckrc````，而非盲目应用所有建议
 - 不支持 Windows 原生脚本（PowerShell、CMD）
 
 ### 构建与依赖考量
@@ -600,11 +601,11 @@ ShellCheck 并非万能。理解其边界可避免盲目信任。
 
 ### ShellCheck 支持哪些 shell？
 
-ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell、zsh（部分支持）和 fish。使用 `--shell bash|sh|dash|ksh` 指定目标 shell，或依赖脚本中的 shebang 行。
+ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell、zsh（部分支持）和 fish。使用 ````--shell bash|sh|dash|ksh```` 指定目标 shell，或依赖脚本中的 shebang 行。
 
 ### 如何屏蔽特定的 ShellCheck 警告？
 
-使用行内指令：在警告所在行前添加 `# shellcheck disable=SC2086`。要全局屏蔽，在 `.shellcheckrc` 中添加 `disable=SC2086`。每个检查都有对应的 wiki 页面，地址为 `https://www.shellcheck.net/wiki/SC2086`，说明了原理。
+使用行内指令：在警告所在行前添加 ````# shellcheck disable=SC2086````。要全局屏蔽，在 ````.shellcheckrc```` 中添加 ````disable=SC2086````。每个检查都有对应的 wiki 页面，地址为 ````https://www.shellcheck.net/wiki/SC2086````，说明了原理。
 
 ### ShellCheck 能自动修复脚本吗？
 
@@ -612,7 +613,7 @@ ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell�
 
 ### 如何将 ShellCheck 集成到 pre-commit 钩子？
 
-将官方 pre-commit 钩子 `https://github.com/koalaman/shellcheck-precommit` 添加到你的 `.pre-commit-config.yaml`。设置 `args: ["--severity=warning"]` 阻止带警告的提交，或 `args: ["--severity=error"]` 仅阻止错误。
+将官方 pre-commit 钩子 ````https://github.com/koalaman/shellcheck-precommit```` 添加到你的 ````.pre-commit-config.yaml````。设置 ````args: ["--severity=warning"]```` 阻止带警告的提交，或 ````args: ["--severity=error"]```` 仅阻止错误。
 
 ### ShellCheck 适合安全审计吗？
 
@@ -624,17 +625,17 @@ ShellCheck 识别常见安全模式，如命令注入（SC2096）、不安全的
 
 ### 如何在 Docker 容器中运行 ShellCheck？
 
-使用官方镜像：`docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh`。锁定到 `v0.11.0` 或其他特定版本以确保 CI 构建可复现。镜像基于 Alpine Linux，约 15 MB。
+使用官方镜像：````docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh````。锁定到 ````v0.11.0```` 或其他特定版本以确保 CI 构建可复现。镜像基于 Alpine Linux，约 15 MB。
 
 ## 总结
 
-ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。凭借 39,456+ GitHub stars、全面的 CI/CD 集成以及对每个主流编辑器的支持，它应该成为每位开发者的工具链标配。从 Docker 单行命令开始获取即时反馈，添加 `.shellcheckrc` 项目配置确保团队一致性，接入 GitHub Actions 在合并前捕获 bug。
+ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。凭借 39,456+ GitHub stars、全面的 CI/CD 集成以及对每个主流编辑器的支持，它应该成为每位开发者的工具链标配。从 Docker 单行命令开始获取即时反馈，添加 ````.shellcheckrc```` 项目配置确保团队一致性，接入 GitHub Actions 在合并前捕获 bug。
 
 团队行动项：
 
-1. 今天就对你最重要的 5 个部署脚本运行 `shellcheck`
+1. 今天就对你最重要的 5 个部署脚本运行 ````shellcheck````
 2. 安装 VS Code 扩展或 Vim ALE 集成以获得实时反馈
-3. 在仓库根目录创建 `.shellcheckrc`，配置项目特定规则
+3. 在仓库根目录创建 ````.shellcheckrc```，配置项目特定规则
 4. 设置 GitHub Actions 工作流，阻止带警告的合并
 
 加入 [dibi8 Telegram 群组](https://t.me/dibi8)，讨论开发者工具、CI/CD 最佳实践和 DevOps 自动化。
@@ -690,7 +691,7 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](shellcheck)
@@ -700,5 +701,5 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
 - [2026-06-22-trending-ai-agents](shellcheck)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

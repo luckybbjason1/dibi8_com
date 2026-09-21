@@ -9,6 +9,7 @@ aliases:
   - /vi/posts/ibis-dataframe-python-sql/
 ---
 
+
 {{</* resource-info */>}}
 
 Trong bối cảnh phân tích dữ liệu không ngừng phát triển, các nhà phát triển Python đã lâu phải đối mặt với một khó khăn khó chịu: nên sử dụng **pandas** vì API DataFrame trực quan của nó, hay viết **SQL** thuần để có hiệu suất vượt trội trên các tập dữ liệu lớn? Năm 2026, sự đánh đổi này không còn cần thiết nữa. Hãy làm quen với **Ibis** — một thư viện Python mã nguồn mở, có khả năng mang lại API DataFrame quen thuộc đồng thờ biên dịch các biểu thức của bạn thành SQL hiệu suất cao để thực thi trên 20+ backend. Với hơn 12.000 sao GitHub và giấy phép Apache-2.0, Ibis đang thay đổi cách các kỹ sư và nhà khoa học dữ liệu tương tác với cơ sở dữ liệu.
@@ -17,7 +18,7 @@ Dù bạn đang truy vấn một instance DuckDB cục bộ, một cluster Postg
 
 Trong hướng dẫn toàn diện này, chúng ta sẽ khám phá mọi thứ mà Ibis cung cấp: từ cài đặt và truy vấn cơ bản đến các mẫu nâng cao và benchmark thực tế. Khi kết thúc, bạn sẽ hiểu tại sao Ibis đang trở thành lựa chọn mặc định cho các chuyên gia dữ liệu từ chối phải đánh đổi giữa năng suất và hiệu suất.
 
----
+* * *
 
 ## Ibis là gì? Một Paragdigm Mới cho Phân tích Dữ liệu
 
@@ -25,7 +26,7 @@ Ibis là một thư viện DataFrame Python được tạo ra bởi **Wes McKinn
 
 Kết quả? Bạn có được cả hai thế giới tốt nhất: tính ergonomics của Python kết hợp với sức mạnh thô của các engine truy vấn SQL hiện đại. Không cần phải kéo hàng triệu hàng vào bộ nhớ chỉ để tính toán một phép tổng hợp. Không cần chuyển đổi ngữ cảnh giữa Python và các phương ngữ SQL. Ibis thống nhất quy trình dữ liệu của bạn dưới một giao diện thanh lịch, có khả năng mang đi.
 
-```python
+````python
 # Ibis trông quen thuộc với bất kỳ ngườ dùng pandas nào
 import ibis
 
@@ -41,11 +42,11 @@ result = (
 
 # Thực thi truy vấn — chạy bên trong DuckDB, không phải trong bộ nhớ Python
 print(result.execute())
-```
+`````
 
 Đằng sau hậu trường, Ibis biên dịch biểu thức trên thành một truy vấn SQL được tối ưu hóa, đẩy tất cả các phép tính xuống backend, và chỉ trả về các kết quả tổng hợp cuối cùng. Kiến trúc này là điều giúp Ibis có khả năng xử lý các tập dữ liệu sẽ làm crash một quy trình pandas.
 
----
+* * *
 
 ## Tại sao Ibis Quan trọng vào năm 2026
 
@@ -53,7 +54,7 @@ Bối cảnh dữ liệu vào năm 2026 phân mảnh hơn bao giờ hết. Các 
 
 Ibis giải quyết vấn đề phân mảnh này một cách thanh lịch. API DataFrame thống nhất của nó hoạt động giống hệt nhau trên tất cả các backend được hỗ trợ. Mã bạn viết cho DuckDB hoạt động không thay đổi cho BigQuery hay Snowflake. Khả năng mang đi này không chỉ là một sự tiện lợi — nó là một yếu tố thay đổi cuộc chơi cho các team cần di chuyển giữa các môi trường mà không phải viết lại pipeline phân tích của họ.
 
-```python
+`````python
 # CÙNG MỘT mã hoạt động trên TẤT CẢ các backend
 query = (
     t.select("customer_id", "order_date", "amount")
@@ -75,17 +76,17 @@ result_local = query.execute()
 # Chạy CÙNG MỘT truy vấn trên BigQuery
 con_bq = ibis.bigquery.connect(project_id="my-project")
 result_cloud = query.execute()
-```
+`````
 
 Ngoài khả năng mang đi, Ibis giải quyết **điểm nghẽn hiệu suất** làm đau đầu các quy trình pandas. Vì Ibis đẩy phép tính xuống engine truy vấn backend, nó không bao giờ vật chất hóa các kết quả trung gian trong bộ nhớ Python. Các phép tổng hợp, join, hàm cửa sổ, và bộ lọc đều thực thi bên trong cơ sở dữ liệu — nơi chúng thuộc về.
 
----
+* * *
 
 ## Cài đặt Ibis và Các Phụ thuộc Backend
 
 Bắt đầu với Ibis rất đơn giản. Thư viện lõi nhẹ, và bạn chỉ cài đặt các backend extras mà bạn cần.
 
-```bash
+`````bash
 # Cài đặt Ibis core
 pip install ibis-framework
 
@@ -99,24 +100,24 @@ pip install "ibis-framework[clickhouse]"
 
 # Cài đặt nhiều backend cùng lúc
 pip install "ibis-framework[duckdb,postgres,bigquery]"
-```
+`````
 
-Với ngườ dùng conda: ```bash
+Với ngườ dùng conda: `````bash
 conda install -c conda-forge ibis-framework
 conda install -c conda-forge ibis-duckdb ibis-postgres
-```
+`````
 
-Sau khi cài đặt, xác minh mọi thứ đang hoạt động: ```python
+Sau khi cài đặt, xác minh mọi thứ đang hoạt động: `````python
 import ibis
 print(ibis.__version__)
 
 # Liệt kê các backend có sẵn
 print(ibis.util.backend_entry_points())
-```
+`````
 
 Ibis hiện hỗ trợ 20+ backend bao gồm DuckDB, PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, ClickHouse, Trino, PySpark, DataFusion, v.v. Hệ sinh thái backend tiếp tục mở rộng với mỗi bản phát hành.
 
----
+* * *
 
 ## Kết nối với 20+ SQL Backend
 
@@ -124,7 +125,7 @@ Một trong những điểm mạnh xác định của Ibis là khả năng kết
 
 ### DuckDB (Khuyến nghị cho Phân tích Cục bộ)
 
-```python
+`````python
 import ibis
 
 # Cơ sở dữ liệu trong bộ nhớ
@@ -141,11 +142,11 @@ con.read_csv("customers.csv", table_name="customers")
 
 t = con.table("events")
 print(t.count().execute())
-```
+`````
 
 ### PostgreSQL
 
-```python
+`````python
 import ibis
 
 con = ibis.postgres.connect(
@@ -158,11 +159,11 @@ con = ibis.postgres.connect(
 
 t = con.table("sales")
 print(t.schema())
-```
+`````
 
 ### BigQuery
 
-```python
+`````python
 import ibis
 
 con = ibis.bigquery.connect(
@@ -172,11 +173,11 @@ con = ibis.bigquery.connect(
 
 t = con.table("user_events")
 result = t.filter(t.event_date >= "2026-01-01").execute()
-```
+`````
 
 ### Snowflake
 
-```python
+`````python
 import ibis
 
 con = ibis.snowflake.connect(
@@ -189,28 +190,28 @@ con = ibis.snowflake.connect(
 )
 
 t = con.table("transactions")
-```
+`````
 
 ### SQLite
 
-```python
+`````python
 import ibis
 
 con = ibis.sqlite.connect("sample.db")
 t = con.table("employees")
-```
+`````
 
 API kết nối nhất quán trên tất cả các backend. Khi bạn đã có kết nối và tham chiếu bảng, API biểu thức Ibis hoạt động giống hệt nhau bất kể hệ thống bên dưới là gì.
 
----
+* * *
 
 ## API DataFrame của Ibis: Quen thuộc nhưng Mạnh mẽ
 
-Nếu bạn đã sử dụng pandas, API Ibis sẽ ngay lập tức cảm thấy quen thuộc. Ibis cung cấp tất cả các thao tác DataFrame cốt lõi mà bạn mong đợi: `select`, `filter`, `group_by`, `aggregate`, `order_by`, `limit`, `join`, v.v.
+Nếu bạn đã sử dụng pandas, API Ibis sẽ ngay lập tức cảm thấy quen thuộc. Ibis cung cấp tất cả các thao tác DataFrame cốt lõi mà bạn mong đợi: ````select````, ````filter````, ````group_by````, ````aggregate````, ````order_by````, ````limit````, ````join````, v.v.
 
 ### Chọn và Lọc
 
-```python
+`````python
 import ibis
 
 con = ibis.duckdb.connect()
@@ -233,11 +234,11 @@ enriched = t.mutate(
     value_squared=t.value * t.value,
     is_high_value=t.value > 100
 )
-```
+`````
 
 ### Tổng hợp và Nhóm
 
-```python
+`````python
 # Tổng hợp cơ bản
 stats = t.aggregate(
     count=t.user_id.count(),
@@ -257,11 +258,11 @@ by_category = (
      )
      .order_by(ibis.desc("total"))
 )
-```
+`````
 
 ### Join
 
-```python
+`````python
 users = con.table("users")
 orders = con.table("orders")
 
@@ -287,11 +288,11 @@ reporting = users.inner_join(
     users.name.name("employee"),
     managers.name.name("manager")
 )
-```
+`````
 
 ### Hàm Cửa sổ
 
-```python
+`````python
 # Tổng chạy
 running = t.mutate(
     running_total=t.value.sum().over(
@@ -312,15 +313,15 @@ moving = t.mutate(
         ibis.window(order_by=t.timestamp, preceding=1, following=1)
     )
 )
-```
+`````
 
----
+* * *
 
 ## Đánh giá Lưới và Biên dịch SQL
 
-Một trong những tính năng mạnh mẽ nhất của Ibis là **mô hình đánh giá lưới (lazy evaluation)**. Khi bạn viết các biểu thức Ibis, không có phép tính nào xảy ra ngay lập tức. Thay vào đó, Ibis xây dựng một biểu diễn nội bộ cho truy vấn của bạn — một cây cú pháp trừu tượng (AST) — sau đó tối ưu hóa và biên dịch sang SQL chỉ khi bạn gọi `.execute()`.
+Một trong những tính năng mạnh mẽ nhất của Ibis là **mô hình đánh giá lưới (lazy evaluation)**. Khi bạn viết các biểu thức Ibis, không có phép tính nào xảy ra ngay lập tức. Thay vào đó, Ibis xây dựng một biểu diễn nội bộ cho truy vấn của bạn — một cây cú pháp trừu tượng (AST) — sau đó tối ưu hóa và biên dịch sang SQL chỉ khi bạn gọi ````.execute()````.
 
-```python
+`````python
 import ibis
 
 con = ibis.duckdb.connect("sales.db")
@@ -337,20 +338,20 @@ expr = (
 
 # Kiểm tra SQL đã biên dịch mà không cần thực thi
 print(expr.sql())
-```
+`````
 
-Đầu ra hiển thị chính xác SQL mà Ibis sẽ thực thi: ```sql
+Đầu ra hiển thị chính xác SQL mà Ibis sẽ thực thi: `````sql
 SELECT "category", SUM("amount") AS "total"
 FROM "transactions"
 WHERE "amount" > 100
 GROUP BY "category"
 ORDER BY "total" DESC
 LIMIT 5
-```
+`````
 
 Cách tiếp cận lưới này cho phép Ibis thực hiện tối ưu hóa truy vấn tinh vi. Nó có thể đẩy bộ lọc xuống nguồn, loại bỏ các cột không cần thiết, hợp nhất các thao tác dư thừa, và tận dụng toàn bộ sức mạnh tối ưu hóa của engine SQL bên dưới.
 
-```python
+`````python
 # Chuỗi nhiều thao tác — Ibis tối ưu hóa toàn bộ pipeline
 pipeline = (
     t.filter(t.status == "completed")
@@ -374,11 +375,11 @@ print(pipeline.sql())
 
 # Chỉ bây giờ truy vấn mới thực thi
 results = pipeline.execute()
-```
+`````
 
 Khả năng kiểm tra SQL đã biên dịch trước khi thực thi là vô giá cho việc gỡ lỗi, tinh chỉnh truy vấn, và học SQL. Nó xây dựng cầu nối giữa thao tác dữ liệu theo kiểu Python và các nền tảng phân tích ưu tiên SQL.
 
----
+* * *
 
 ## Các Mẫu Truy vấn Nâng cao với Ibis
 
@@ -386,7 +387,7 @@ Ibis hỗ trợ các mẫu phân tích phức tạp vượt xa các thao tác CR
 
 ### Biểu thức Tùy chỉnh và Hằng số
 
-```python
+`````python
 import ibis
 import ibis.selectors as s
 
@@ -410,11 +411,11 @@ categorized = t.mutate(
         .else_("Bronze")
         .end()
 )
-```
+`````
 
 ### Subquery Phức tạp
 
-```python
+`````python
 # Tìm ngườ dùng có chi tiêu trên mức trung bình
 avg_spend = t.amount.mean()
 above_avg = t.filter(t.amount > avg_spend)
@@ -425,11 +426,11 @@ from ibis import window, row_number
 w = window(group_by=t.category, order_by=ibis.desc(t.revenue))
 ranked = t.mutate(rn=row_number().over(w))
 top3 = ranked.filter(ranked.rn <= 3)
-```
+`````
 
 ### Hàm Do Ngườ Dùng Định Nghĩa (UDF)
 
-```python
+`````python
 # Định nghĩa Python UDF chạy trong DuckDB
 @ibis.udf.scalar.python
 def format_currency(value: float) -> str: return f"${value:,.2f}"
@@ -437,11 +438,11 @@ def format_currency(value: float) -> str: return f"${value:,.2f}"
 applied = t.mutate(
     formatted=format_currency(t.amount)
 )
-```
+`````
 
-### Tương tác với Tham chiếu `_`
+### Tương tác với Tham chiếu ````_````
 
-```python
+`````python
 # Dấu gạch dưới (_) tham chiếu đến bảng hiện tại trong pipeline
 result = (
     t.filter(_.amount > 100)
@@ -450,15 +451,15 @@ result = (
      .filter(_.total > 10000)
      .order_by(_.total.desc())
 )
-```
+`````
 
----
+* * *
 
 ## Benchmark Hiệu suất: Ibis so với pandas
 
 Sự khác biệt về hiệu suất giữa Ibis và pandas trở nên ấn tượng khi kích thước tập dữ liệu tăng lên. Hãy xem xét một benchmark cụ thể so sánh hai thư viện.
 
-```python
+`````python
 import ibis
 import pandas as pd
 import numpy as np
@@ -510,13 +511,13 @@ result_ibis = (
 ibis_time = time.time() - start
 print(f"Ibis + DuckDB: {ibis_time:.2f}s")
 print(f"Tăng tốc: {pandas_time / ibis_time:.1f}x")
-```
+`````
 
 Trên phần cứng điển hình, sự kết hợp Ibis + DuckDB thực thi truy vấn này nhanh hơn **10-15 lần** so với pandas, và với mức sử dụng bộ nhớ thấp hơn đáng kể. pandas phải tải tất cả 10 triệu hàng vào RAM, cấp phát các mảng trung gian cho việc lọc và nhóm, và thực hiện tất cả phép tính trong Python. Ibis, ngược lại, đẩy mọi thứ xuống engine truy vấn C++ được tối ưu hóa của DuckDB, chỉ vật chất hóa kết quả tổng hợp nhỏ trong Python.
 
 Đối với các tập dữ liệu còn lớn hơn — hàng trăm triệu hoặc hàng tỷ hàng — khoảng cách càng tăng thêm. pandas thường sẽ hết bộ nhớ và crash, trong khi Ibis tiếp tục thực thi qua BigQuery, Snowflake, hoặc ClickHouse mà không gặp vấn đề gì.
 
----
+* * *
 
 ## Ibis so với SQLAlchemy so với pandas: Khi nào Dùng Cái nào
 
@@ -538,7 +539,7 @@ Hiểu cách Ibis so sánh với các công cụ hiện có giúp làm rõ đề
 
 **Dùng Ibis**: khi bạn muốn trải nghiệm giống pandas ở mọi quy mô, cần truy vấn nhiều backend cơ sở dữ liệu với cùng một mã, hoặc muốn đánh giá lưới với biên dịch SQL được tối ưu hóa. Ibis là điểm ngọt cho các workload phân tích nơi ergonomics DataFrame gặp hiệu suất cơ sở dữ liệu.
 
-```python
+`````python
 # Mã Ibis súc tích hơn SQLAlchemy tương đương cho phân tích
 # Ibis: result = (
     t.group_by("category")
@@ -548,9 +549,9 @@ Hiểu cách Ibis so sánh với các công cụ hiện có giúp làm rõ đề
 ).execute()
 
 # SQLAlchemy tương đương cần nhiều boilerplate hơn cho truy vấn phân tích
-```
+`````
 
----
+* * *
 
 ## Câu Hỏi Thường Gặp (FAQ)
 
@@ -558,20 +559,20 @@ Hiểu cách Ibis so sánh với các công cụ hiện có giúp làm rõ đề
 
 Không, Ibis bổ sung cho pandas hơn là thay thế trực tiếp. Ibis xuất sắc trong việc truy vấn cơ sở dữ liệu từ xa và xử lý các tập dữ liệu lớn vượt quá bộ nhớ khả dụng. pandas vẫn xuất sắc cho các tập dữ liệu nhỏ đến trung bình trong bộ nhớ và cung cấp hệ sinh thái công cụ thống kê và trực quan phong phú hơn. Nhiều quy trình sử dụng Ibis cho phần việc nặng (lọc, join, tổng hợp ở quy mô lớn) và sau đó truyền các kết quả nhỏ hơn cho pandas để phân tích cuối cùng hoặc vẽ đồ thị.
 
-```python
+`````python
 # Quy trình lai: Ibis cho big data, pandas cho phân tích
 large_result = ibis_query.execute()  # Trả về DataFrame pandas
 small_summary = large_result.describe()  # pandas cho thống kê nhanh
-```
+`````
 
 ### Tôi có thể xem SQL mà Ibis tạo ra không?
 
-Có, hoàn toàn được. Bạn có thể kiểm tra SQL đã biên dịch bất cứ lúc nào bằng cách sử dụng phương thức `.sql()` trên bất kỳ biểu thức Ibis nào. Điều này cực kỳ hữu ích cho việc gỡ lỗi, tinh chỉnh hiệu suất, và học SQL.
+Có, hoàn toàn được. Bạn có thể kiểm tra SQL đã biên dịch bất cứ lúc nào bằng cách sử dụng phương thức ````.sql()```` trên bất kỳ biểu thức Ibis nào. Điều này cực kỳ hữu ích cho việc gỡ lỗi, tinh chỉnh hiệu suất, và học SQL.
 
-```python
+`````python
 expr = t.group_by("category").aggregate(total=t.amount.sum())
 print(expr.sql())
-```
+`````
 
 ### Ibis có phù hợp cho pipeline ETL production không?
 
@@ -581,21 +582,21 @@ Có, Ibis ngày càng được sử dụng trong các pipeline ETL và phân tí
 
 Ibis tự động trừu tượng hóa các khác biệt về phương ngữ. Khi bạn viết một biểu thức Ibis, thư viện xử lý việc dịch sang cú pháp PostgreSQL, cú pháp BigQuery, cú pháp Snowflake, hoặc bất kỳ phương ngữ nào mà backend đích của bạn yêu cầu. Bạn viết một đoạn mã Python, và Ibis lo phần còn lại.
 
-```python
+`````python
 # Biểu thức này biên dịch thành SQL khác nhau cho mỗi backend
 expr = t.mutate(year=t.date.year(), month=t.date.month())
 
 # PostgreSQL: EXTRACT(YEAR FROM "date")
-# BigQuery: EXTRACT(YEAR FROM `date`)
+# BigQuery: EXTRACT(YEAR FROM ````date````)
 # DuckDB: EXTRACT(YEAR FROM "date")
 # Ibis xử lý tất cả những điều này tự động
-```
+`````
 
 ### Độ cong học tập cho ngườ dùng pandas như thế nào?
 
-Độ cong học tập cho ngườ dùng pandas là đáng kinh ngạc khi dễ dàng. Hầu hết các thao tác cốt lõi — `filter`, `select`, `group_by`, `aggregate`, `order_by`, `mutate`, `join` — sử dụng các tên và ngữ nghĩa quen thuộc. Điều chỉnh chính là hiểu đánh giá lưới: các biểu thức không thực thi cho đến khi bạn gọi `.execute()`. Hầu hết ngườ dùng pandas có kinh nghiệm trở nên sản xuất được với Ibis trong vòng vài giờ.
+Độ cong học tập cho ngườ dùng pandas là đáng kinh ngạc khi dễ dàng. Hầu hết các thao tác cốt lõi — ````filter````, ````select````, ````group_by````, ````aggregate````, ````order_by````, ````mutate````, ````join```` — sử dụng các tên và ngữ nghĩa quen thuộc. Điều chỉnh chính là hiểu đánh giá lưới: các biểu thức không thực thi cho đến khi bạn gọi ````.execute()```. Hầu hết ngườ dùng pandas có kinh nghiệm trở nên sản xuất được với Ibis trong vòng vài giờ.
 
----
+* * *
 
 
 

@@ -23,6 +23,7 @@ tags: ["haystack", "nlp", "rag", "python", "llm", "document store", "retriever",
 aliases:
   - /posts/haystack-rag-pipeline-framework/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Another RAG Framework?
@@ -39,7 +40,7 @@ Haystack is an **open-source NLP framework** that enables you to build productio
 
 Originally focused on extractive QA (pre-LLM era), Haystack pivoted to embrace generative AI with the 2.0 release. As of v2.12 (May 2026), it supports **30+ document stores** (OpenSearch, Weaviate, Qdrant, PostgreSQL, etc.), **multi-modal retrieval**, **agentic pipelines with tool calling**, built-in evaluation, and native async execution. The framework is licensed under Apache-2.0 and maintained by deepset with **21000+ stars**.
 
-Unlike monolithic frameworks, Haystack separates concerns cleanly: - **Components** are self-contained units (e.g., `OpenAIDocumentEmbedder`, `InMemoryEmbeddingRetriever`)
+Unlike monolithic frameworks, Haystack separates concerns cleanly: - **Components** are self-contained units (e.g., ```OpenAIDocumentEmbedder````, ````InMemoryEmbeddingRetriever````)
 - **Pipelines** wire components into directed graphs
 - **Document Stores** handle persistence and vector search
 - **Agents** add reasoning loops with tool access
@@ -47,27 +48,27 @@ Unlike monolithic frameworks, Haystack separates concerns cleanly: - **Component
 
 ## How Haystack Works: Pipeline Architecture
 
-Haystack 2.x is built around a **directed acyclic graph (DAG)** where nodes are components and edges define data flow. Unlike 1.x's rigid `Query → Retriever → Reader` structure, 2.x lets you build arbitrary topologies: branching, merging, conditional routing, and loops (for agents).
+Haystack 2.x is built around a **directed acyclic graph (DAG)** where nodes are components and edges define data flow. Unlike 1.x's rigid ````Query → Retriever → Reader```` structure, 2.x lets you build arbitrary topologies: branching, merging, conditional routing, and loops (for agents).
 
 ### Core Component Types
 
 | Component | Role | Example |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Embedder** | Converts text/documents into vectors | `OpenAIDocumentEmbedder` |
-| **Document Store** | Persists documents and handles vector search | `InMemoryDocumentStore`, `OpenSearchDocumentStore` |
-| **Retriever** | Finds relevant documents by vector similarity | `InMemoryEmbeddingRetriever` |
-| **Generator** | Produces text responses from LLM | `OpenAIGenerator`, `HuggingFaceLocalGenerator` |
-| **PromptBuilder** | Assembles prompts from templates and variables | `PromptBuilder` |
-| **AnswerBuilder** | Parses and post-processes LLM responses | `AnswerBuilder` |
-| **Reranker** | Re-scores retrieved documents for better ranking | `CohereReranker` |
-| **Router** | Conditionally routes data to different branches | `ConditionalRouter` |
-| **Joiner** | Merges outputs from multiple branches | `DocumentJoiner` |
+| **Embedder** | Converts text/documents into vectors | ````OpenAIDocumentEmbedder```` |
+| **Document Store** | Persists documents and handles vector search | ````InMemoryDocumentStore````, ````OpenSearchDocumentStore```` |
+| **Retriever** | Finds relevant documents by vector similarity | ````InMemoryEmbeddingRetriever```` |
+| **Generator** | Produces text responses from LLM | ````OpenAIGenerator````, ````HuggingFaceLocalGenerator```` |
+| **PromptBuilder** | Assembles prompts from templates and variables | ````PromptBuilder```` |
+| **AnswerBuilder** | Parses and post-processes LLM responses | ````AnswerBuilder```` |
+| **Reranker** | Re-scores retrieved documents for better ranking | ````CohereReranker```` |
+| **Router** | Conditionally routes data to different branches | ````ConditionalRouter```` |
+| **Joiner** | Merges outputs from multiple branches | ````DocumentJoiner```` |
 
 ### Pipeline Execution Model
 
@@ -83,7 +84,7 @@ This model supports both synchronous and asynchronous execution, making it suita
 
 ### Minimal Install
 
-```bash
+`````bash
 python -m venv haystack-env
 source haystack-env/bin/activate
 
@@ -93,11 +94,11 @@ pip install haystack-ai
 # Verify installation
 python -c "import haystack; print(haystack.__version__)"
 # Expected: 2.12.x
-```
+`````
 
 ### With Document Stores and Models
 
-```bash
+`````bash
 # Install with all common extras
 pip install "haystack-ai[all]"
 
@@ -105,19 +106,19 @@ pip install "haystack-ai[all]"
 pip install haystack-ai opensearch-py  # For OpenSearch
 pip install haystack-ai qdrant-client   # For Qdrant
 pip install haystack-ai weaviate-client # For Weaviate
-```
+`````
 
 ### Environment Setup
 
-```bash
+`````bash
 # Set your OpenAI API key
 export OPENAI_API_KEY="sk-your-key-here"
 
 # For local models, install HuggingFace support
 pip install transformers torch sentence-transformers
-```
+`````
 
-Verify the full stack: ```python
+Verify the full stack: `````python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -128,13 +129,13 @@ print(f"Components available: embedders, retrievers, generators, routers")
 
 store = InMemoryDocumentStore()
 print(f"Document store initialized: {store.count_documents()} docs")
-```
+`````
 
 ## Building Your First RAG Pipeline
 
 ### Basic RAG with InMemoryDocumentStore
 
-```python
+`````python
 # basic_rag.py
 from haystack import Pipeline, Document
 from haystack.document_stores import InMemoryDocumentStore
@@ -192,17 +193,17 @@ result = rag.run({
     "prompt_builder": {"query": "What is Haystack?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
-Save and run: ```bash
+Save and run: `````bash
 python basic_rag.py
-```
+`````
 
 Output will include the generated answer with retrieved context.
 
 ### Adding a Reranker for Better Results
 
-```python
+`````python
 # rag_with_reranker.py
 from haystack import Pipeline
 from haystack.document_stores import InMemoryDocumentStore
@@ -248,11 +249,11 @@ result = pipeline.run({
     "prompt_builder": {"query": "How does Haystack handle document storage?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ### Branching Pipeline: Route by Query Type
 
-```python
+`````python
 # branching_pipeline.py
 from haystack import Pipeline
 from haystack.components.routers import ConditionalRouter
@@ -287,13 +288,13 @@ pipeline.connect("router.output", "tech_builder")
 pipeline.connect("router.fallback_output", "general_builder")
 
 result = pipeline.run({"router": {"query": "What is vector similarity search?"}})
-```
+`````
 
 ## Integration with Document Stores, Models & Tools
 
 ### OpenSearch Document Store (Production)
 
-```python
+`````python
 # opensearch_store.py
 from haystack.document_stores import OpenSearchDocumentStore
 
@@ -310,11 +311,11 @@ store = OpenSearchDocumentStore(
 from haystack.components.retrievers import OpenSearchEmbeddingRetriever
 
 retriever = OpenSearchEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Qdrant Vector Database
 
-```python
+`````python
 # qdrant_store.py
 from haystack_integrations.document_stores.qdrant import QdrantDocumentStore
 
@@ -329,11 +330,11 @@ store = QdrantDocumentStore(
 from haystack_integrations.components.retrievers.qdrant import QdrantEmbeddingRetriever
 
 retriever = QdrantEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Local LLM with Ollama
 
-```python
+`````python
 # local_llm.py
 from haystack.components.generators import HuggingFaceLocalGenerator
 
@@ -346,11 +347,11 @@ generator.warm_up()
 
 result = generator.run("Explain RAG pipelines in one paragraph.")
 print(result["replies"][0])
-```
+`````
 
 ### Using Custom Components
 
-```python
+`````python
 # custom_component.py
 from haystack import component
 from typing import Any, Dict, List
@@ -375,11 +376,11 @@ pipe.connect("counter.text", "generator.prompt")
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
 print(f"Tokens: {result[counter][token_count]}")
 print(f"Response: {result[generator][replies][0]}")
-```
+`````
 
 ### Web Search Tool for Agents
 
-```python
+`````python
 # web_search_tool.py
 from haystack import Pipeline
 from haystack.components.websearch import SerperDevWebSearch
@@ -407,7 +408,7 @@ result = pipeline.run({
     "builder": {"query": "What are the latest AI models released in 2026?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -415,13 +416,13 @@ print(result["generator"]["replies"][0])
 
 Measured on a 4-core VPS with Python 3.11: | Pipeline Type | Avg. Latency | P95 Latency | Throughput (req/s) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Basic RAG (InMemory, GPT-4o-mini) | **1,240 ms** | **1,890 ms** | **0.8** |
 | RAG + Reranker (cross-encoder) | **1,580 ms** | **2,340 ms** | **0.6** |
@@ -443,13 +444,13 @@ A legal-tech company deployed Haystack for searching across **2.4 million court 
 An e-commerce platform used Haystack for **7-language customer support QA**: - Single pipeline serves all languages via a language router component
 - Shared OpenSearch backend with **340,000** product documentation chunks
 - **23% reduction** in support ticket escalation after deployment
-- Evaluation loop using Haystack's `SASEvaluator` runs weekly to detect pipeline drift
+- Evaluation loop using Haystack's ````SASEvaluator```` runs weekly to detect pipeline drift
 
 ## Advanced Usage: Production Hardening
 
 ### Async Execution for High Throughput
 
-```python
+`````python
 # async_pipeline.py
 import asyncio
 from haystack import Pipeline
@@ -474,11 +475,11 @@ results = asyncio.run(run_queries([
     "Explain vector search.",
     "How does RAG work?",
 ]))
-```
+`````
 
 ### Pipeline Serialization & Versioning
 
-```python
+`````python
 # serialize_pipeline.py
 from haystack import Pipeline
 
@@ -491,11 +492,11 @@ result = loaded.run({
     "embedder": {"text": "What is Haystack?"},
     "prompt_builder": {"query": "What is Haystack?"},
 })
-```
+`````
 
 ### Custom Evaluation
 
-```python
+`````python
 # evaluate_pipeline.py
 from haystack import Pipeline, Document
 from haystack.components.evaluators import SASEvaluator, FaithfulnessEvaluator
@@ -521,11 +522,11 @@ sas_result = sas_evaluator.run(
     predicted_answers=predictions,
 )
 print(f"SAS Score: {sas_result[score]:.3f}")
-```
+`````
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -536,9 +537,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8000
 CMD ["python", "serve.py"]
-```
+`````
 
-```python
+`````python
 # serve.py
 from fastapi import FastAPI
 from haystack import Pipeline
@@ -558,9 +559,9 @@ async def query(question: str): result = pipeline.run({
         "answer": result["generator"]["replies"][0],
         "documents": [d.content for d in result.get("retriever", {}).get("documents", [])],
     }
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: haystack-api: build: .
@@ -574,23 +575,23 @@ services: haystack-api: build: .
     ports: - "9200:9200"
     volumes: - osdata:/usr/share/opensearch/data
 
-volumes: osdata: ```
+volumes: osdata: `````
 
-For a cloud VPS deployment, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform supports direct Docker deployments from Git. Push your `Dockerfile`, connect your repo, and the platform builds and hosts your Haystack API with zero configuration.
+For a cloud VPS deployment, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform supports direct Docker deployments from Git. Push your ````Dockerfile````, connect your repo, and the platform builds and hosts your Haystack API with zero configuration.
 
 ## Comparison with Alternatives
 
 | Feature | Haystack 2.x | LangChain | LlamaIndex | Semantic Kernel |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | **Apache-2.0** | MIT | MIT | MIT |
 | **GitHub Stars** | **21,000+** | 98,000+ | 41,000+ | 22,000+ |
@@ -622,7 +623,7 @@ Haystack excels for teams building **document-heavy search and QA systems** wher
 
 ### Should I use Haystack 1.x or 2.x?
 
-Haystack 2.x (released January 2024) is the only actively maintained branch as of May 2026. Version 1.x reached end-of-life in late 2024. All new projects should use 2.x. The pipeline API is completely different — 1.x used a `Pipeline` class with predefined node types, while 2.x uses a component-based DAG system.
+Haystack 2.x (released January 2024) is the only actively maintained branch as of May 2026. Version 1.x reached end-of-life in late 2024. All new projects should use 2.x. The pipeline API is completely different — 1.x used a ````Pipeline```` class with predefined node types, while 2.x uses a component-based DAG system.
 
 ### Can I use Haystack without OpenAI?
 
@@ -630,18 +631,18 @@ Absolutely. Haystack supports **any generator** that implements the component in
 
 ### How do I choose a document store?
 
-For prototyping, use `InMemoryDocumentStore`. For production: - **OpenSearch:** Best if you already run an Elasticsearch/OpenSearch cluster
+For prototyping, use ````InMemoryDocumentStore````. For production: - **OpenSearch:** Best if you already run an Elasticsearch/OpenSearch cluster
 - **Qdrant:** Excellent for pure vector search, low resource usage
 - **Weaviate:** Good built-in hybrid search (BM25 + vectors)
 - **PostgreSQL + pgvector:** Best if you want a single database for everything
 
 ### Is Haystack suitable for real-time applications?
 
-With async execution and a warmed-up pipeline, Haystack achieves **<500ms** end-to-end latency for simple RAG (excluding LLM generation time). For truly real-time use cases (<200ms), consider adding a caching layer or using streaming generators with `run_async()`.
+With async execution and a warmed-up pipeline, Haystack achieves **<500ms** end-to-end latency for simple RAG (excluding LLM generation time). For truly real-time use cases (<200ms), consider adding a caching layer or using streaming generators with ````run_async()````.
 
 ### How does Haystack handle pipeline versioning?
 
-Pipelines can be serialized to YAML or JSON and committed to version control. Components are referenced by class name and parameters, making diffs human-readable. The `pipeline.dump()` and `Pipeline.loads()` methods enable reproducible deployments where the same YAML produces identical behavior across environments.
+Pipelines can be serialized to YAML or JSON and committed to version control. Components are referenced by class name and parameters, making diffs human-readable. The ````pipeline.dump()```` and ````Pipeline.loads()``` methods enable reproducible deployments where the same YAML produces identical behavior across environments.
 
 ### What is the recommended deployment architecture for production?
 
@@ -675,7 +676,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Custom Components Tutorial: https://docs.haystack.deepset.ai/docs/custom-components
 
 
----
+* * *
 **Affiliate Disclosure:** Some links in this article are affiliate links. If you use our [DigitalOcean referral link](https://m.do.co/c/eca87ac14ee0) to sign up, you receive $200 in credits and we earn a referral bonus — at no extra cost to you. This supports our independent research and keeps the content free.
 
 
@@ -705,7 +706,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](haystack-rag-pipeline-framework)
@@ -714,7 +715,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](haystack-rag-pipeline-framework)
 - [ai-engineering-from-scratch](haystack-rag-pipeline-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

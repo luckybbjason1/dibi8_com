@@ -26,6 +26,7 @@ aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---
 
+
 Hầu hết TTS mã nguồn mở năm 2026 vẫn nghe như "người dẫn GPS thập niên 1990 với reverb thêm." **ChatTTS** là ngoại lệ đầu tiên được áp dụng rộng rãi — mô hình tiếng nói tạo sinh 39.3k sao GitHub, được huấn luyện đặc biệt cho **hội thoại** (không phải thuyết minh), với điều khiển token cấp về cười, tạm dừng, từ chêm, và prosody cuối cùng vượt ngưỡng "không làm bạn nhăn mặt".
 
 Nếu bạn đang xây agent giọng nói, podcast AI, TTS đa nhân vật cho game, hoặc bất kỳ sản phẩm giọng nói nào mà thuyết minh phẳng giết chết trải nghiệm — ChatTTS là lựa chọn mặc định mã nguồn mở năm 2026.
@@ -45,7 +46,7 @@ Phân chia cũ: - **TTS ghép nối** (festival, v.v.) — máy móc, không pro
 - **TTS thần kinh** (Tacotron / FastSpeech / VITS) — trôi chảy nhưng đơn điệu, tối ưu cho thuyết minh
 - **API thương mại** (ElevenLabs / OpenAI TTS) — tự nhiên nhưng $0.18-0.50/1000 ký tự và đóng nguồn
 
-ChatTTS nằm ở category thứ 4 mới: **TTS tạo sinh tự hồi quy với token điều khiển prosody rõ ràng**. Bạn không chỉ gõ text — bạn có thể đánh dấu `[laugh]`, `[uv_break]` (ừm), `[lbreak]` (tạm dừng dài), và mô hình tạo ra biểu diễn giọng nói, không chỉ giọng nói.
+ChatTTS nằm ở category thứ 4 mới: **TTS tạo sinh tự hồi quy với token điều khiển prosody rõ ràng**. Bạn không chỉ gõ text — bạn có thể đánh dấu ```[laugh]````, ````[uv_break]```` (ừm), ````[lbreak]```` (tạm dừng dài), và mô hình tạo ra biểu diễn giọng nói, không chỉ giọng nói.
 
 Cho các trường hợp sử dụng hội thoại (agent giọng nói, podcast AI, đối thoại NPC trong game), đây là khác biệt giữa "rõ ràng robot" và "có thể là người thật trên đường dây điện thoại xấu". Cho thuyết minh, TTS thần kinh cổ điển thường vẫn tốt hơn.
 
@@ -63,14 +64,14 @@ Cho các trường hợp sử dụng hội thoại (agent giọng nói, podcast 
 
 ## 3. Cài Nhanh (10 phút trên máy GPU)
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -r requirements.txt
 # Hoặc qua pip: pip install ChatTTS
-```
+`````
 
-Hello world: ```python
+Hello world: `````python
 import ChatTTS
 import torchaudio
 import torch
@@ -82,7 +83,7 @@ texts = ["Xin chào, đây là test TTS hội thoại [uv_break] nghe tự nhiê
 wavs = chat.infer(texts)
 
 torchaudio.save("out.wav", torch.from_numpy(wavs[0]), 24000)
-```
+`````
 
 Lần chạy đầu tải xuống ~2 GB trọng số mô hình. Lần chạy sau tức thời.
 
@@ -90,24 +91,24 @@ Lần chạy đầu tải xuống ~2 GB trọng số mô hình. Lần chạy sau
 
 Lý do ChatTTS cảm thấy sống động — các tag này hoạt động giữa văn bản: | Tag | Hiệu ứng |
 |---|---|
-| `[laugh]` | Chèn tiếng cười |
-| `[laugh_0]` đến `[laugh_2]` | Mức độ tiếng cười |
-| `[uv_break]` | Tạm dừng kiểu ừm |
-| `[lbreak]` | Tạm dừng dài hơn (kiểu câu) |
-| `[oral_0]` đến `[oral_9]` | Cường độ phong cách hội thoại (cao hơn = thường hơn) |
-| `[speed_0]` đến `[speed_9]` | Tốc độ nói (5 = bình thường) |
-| `[break_0]` đến `[break_7]` | Thời gian tạm dừng rời rạc |
+| ````[laugh]```` | Chèn tiếng cười |
+| ````[laugh_0]```` đến ````[laugh_2]```` | Mức độ tiếng cười |
+| ````[uv_break]```` | Tạm dừng kiểu ừm |
+| ````[lbreak]```` | Tạm dừng dài hơn (kiểu câu) |
+| ````[oral_0]```` đến ````[oral_9]```` | Cường độ phong cách hội thoại (cao hơn = thường hơn) |
+| ````[speed_0]```` đến ````[speed_9]```` | Tốc độ nói (5 = bình thường) |
+| ````[break_0]```` đến ````[break_7]```` | Thời gian tạm dừng rời rạc |
 
-Ví dụ: ```python
+Ví dụ: `````python
 text = "Tôi đã nói với anh ấy [uv_break] không thể nào là sự thật [laugh] [lbreak] nhưng anh ấy cứ khăng khăng."
 wavs = chat.infer([text])
-```
+`````
 
 Đây là cái đóng khoảng cách "robot vs người". Dùng tiết kiệm; gắn tag quá nhiều nghe như đã tập dượt.
 
 ## 5. Multi-Speaker — Giọng Ổn Định Qua Phiên
 
-ChatTTS tạo "speaker" khác nhau mỗi lần gọi mặc định. Cho nhân vật nhất quán (giọng NPC, nhân cách agent bền vững), seed speaker một lần và tái sử dụng: ```python
+ChatTTS tạo "speaker" khác nhau mỗi lần gọi mặc định. Cho nhân vật nhất quán (giọng NPC, nhân cách agent bền vững), seed speaker một lần và tái sử dụng: `````python
 # Tạo và lưu speaker ổn định
 rand_spk = chat.sample_random_speaker()
 torch.save(rand_spk, "speaker_alice.pt")
@@ -116,7 +117,7 @@ torch.save(rand_spk, "speaker_alice.pt")
 spk = torch.load("speaker_alice.pt")
 params_infer_code = ChatTTS.Chat.InferCodeParams(spk_emb=spk)
 wavs = chat.infer(texts, params_infer_code=params_infer_code)
-```
+`````
 
 Pattern: pre-tạo 5-10 embedding speaker khác biệt trong quá trình setup. Chọn cái khớp mỗi nhân vật. Giọng ổn định qua toàn production.
 
@@ -133,7 +134,7 @@ Cho sở thích, nghiên cứu, công cụ nội bộ, và hầu hết prototype
 
 ## 7. Pattern Production
 
-Cho pipeline agent giọng nói / podcast: ```
+Cho pipeline agent giọng nói / podcast: `````
    Đầu vào văn bản (từ agent LLM / bộ tạo script)
             │
             ▼
@@ -147,7 +148,7 @@ Cho pipeline agent giọng nói / podcast: ```
             │
             ▼
    Hậu xử lý tùy chọn (chuẩn hóa loudness, khử nhiễu)
-```
+`````
 
 Đứng nó trên {{< aff "htstack" "chattts-vps-hk" "VPS GPU HTStack Hong Kong" >}} hoặc instance Vast.ai có GPU, expose qua FastAPI, và stack của bạn có giọng nói ~$0.001 mỗi phút tạo (vs ElevenLabs ~$0.30/phút).
 
@@ -164,8 +165,8 @@ Cho pipeline agent giọng nói / podcast: ```
 
 ## 9. Cạm Bẫy
 
-1. **Gắn tag prosody quá nhiều** — rắc `[laugh]` và `[uv_break]` khắp nơi nghe như đã tập dượt. Ít là nhiều
-2. **Quên seed speaker** — mọi cuộc gọi không `spk_emb` là giọng khác. Luôn pre-tạo
+1. **Gắn tag prosody quá nhiều** — rắc ````[laugh]```` và ````[uv_break]```` khắp nơi nghe như đã tập dượt. Ít là nhiều
+2. **Quên seed speaker** — mọi cuộc gọi không ````spk_emb``` là giọng khác. Luôn pre-tạo
 3. **Chạy trên CPU và phàn nàn về tốc độ** — RTF tệ hơn 30-100× không có GPU. Chỉ thuê GPU
 4. **Bỏ qua license NC** — sử dụng ChatTTS cho sản phẩm giọng nói trả phí là rủi ro pháp lý
 
@@ -175,7 +176,7 @@ ChatTTS = **TTS mã nguồn mở đầu tiên xử lý hội thoại thuyết ph
 
 Bật instance GPU, chạy cài đặt 10 dòng ở mục 3, và bạn sẽ nghe trong 5 phút vì sao điều này thay thế mọi TTS mã nguồn mở khác trong cuộc thảo luận.
 
----
+* * *
 
 *Một phần của stack nội dung đa phương thức dibi8 — xem bộ sưu tập Multi-Modal Content Pipeline sắp tới cho ChatTTS + Whisper + Stable Diffusion + ComfyUI như pipeline sáng tạo audio/visual đầy đủ.*
 
@@ -241,7 +242,7 @@ ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cười, Tạm 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

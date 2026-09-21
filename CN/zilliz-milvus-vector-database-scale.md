@@ -23,6 +23,7 @@ tags: ["milvus", "zilliz", "vector-database", "ann", "similarity-search", "kuber
 aliases:
   - /posts/zilliz-milvus-vector-database-scale/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Billion-Vector Problem
@@ -43,9 +44,9 @@ The commercial sibling, **Zilliz Cloud**, offers a fully managed version with ze
 
 | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | Current version | **2.5.10** |
 | GitHub stars | **32,000+** |
@@ -64,27 +65,27 @@ Milvus 2.5 follows a **cloud-native microservices architecture** with five core 
 
 Storage is decoupled: **etcd** stores metadata, **MinIO/S3** stores actual vector data and indexes. This separation enables **tiered storage** — hot vectors stay on local NVMe, warm vectors move to object storage, and cold vectors can be archived.
 
-```bash
+````bash
 # etcd: metadata coordination
 # MinIO: object storage for segments and indexes
 # Pulsar/Kafka: log broker for streaming inserts
 # Milvus: proxy, query/data/index nodes, coordinators
-```
+`````
 
 **GPU Indexing (new in 2.5):** Milvus 2.5 introduces GPU-accelerated index building via NVIDIA RAFT. On a single Tesla T4, index construction is **~6x faster** than CPU-only builds. Query throughput doubles. For teams running GPU-enabled Kubernetes clusters (like those on [DigitalOcean GPU droplets](https://m.do.co/c/eca87ac14ee0)), this is a game-changer.
 
-```yaml
+`````yaml
 # GPU resource allocation for Milvus index node (Helm values)
 indexNode: resources: limits: nvidia.com/gpu: 1  # Request 1 GPU for index building
     requests: memory: "16Gi"
       cpu: "8"
-```
+`````
 
 ## Installation & Setup: From Docker to Kubernetes
 
 ### Option A: Docker Standalone (<5 minutes)
 
-```bash
+`````bash
 # Download docker-compose file
 curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
 
@@ -94,9 +95,9 @@ bash standalone_embed.sh start
 # Verify
 docker ps | grep milvus
 # Output: milvusdb/milvus:v2.5.10  "milvus run standalone"
-```
+`````
 
-```bash
+`````bash
 # Install Python SDK
 pip install pymilvus==2.5.10
 
@@ -106,11 +107,11 @@ from pymilvus import connections, utility
 connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
-```
+`````
 
 ### Option B: Kubernetes with Helm (Production)
 
-```bash
+`````bash
 # Add Milvus Helm repo
 helm repo add milvus https://zilliztech.github.io/milvus-helm/
 helm repo update
@@ -125,28 +126,28 @@ helm install my-milvus milvus/milvus \
 
 # Verify all pods are running
 kubectl get pods -l app.kubernetes.io/instance=my-milvus
-```
+`````
 
-```bash
+`````bash
 # Expose via LoadBalancer
 kubectl patch svc my-milvus-proxy -p '{"spec":{"type":"LoadBalancer"}}'
 
 # Get endpoint
 export MILVUS_HOST=$(kubectl get svc my-milvus-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo $MILVUS_HOST
-```
+`````
 
 ### Option C: Zilliz Cloud (Managed, Zero Ops)
 
-```bash
+`````bash
 # Sign up at https://cloud.zilliz.com
 # Create a free cluster (up to 1M vectors)
 # Grab your API key and endpoint
 
 pip install pymilvus==2.5.10
-```
+`````
 
-```python
+`````python
 from pymilvus import connections, Collection
 
 # Connect to Zilliz Cloud
@@ -157,13 +158,13 @@ connections.connect(
 )
 
 print("Connected to Zilliz Cloud!")
-```
+`````
 
 ## Core Operations: Collections, Inserts, and Search
 
 ### Creating a Collection with HNSW Index
 
-```python
+`````python
 from pymilvus import FieldSchema, CollectionSchema, DataType, Collection
 
 # Define fields
@@ -185,11 +186,11 @@ index_params = {
 }
 collection.create_index(field_name="embedding", index_params=index_params)
 collection.load()
-```
+`````
 
 ### Inserting Vectors (Single and Batch)
 
-```python
+`````python
 import numpy as np
 
 # Generate sample data: 100K vectors, 1536 dimensions each
@@ -206,11 +207,11 @@ for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch
 # Flush to ensure persistence
 collection.flush()
 print(f"Total inserted: {collection.num_entities}")
-```
+`````
 
 ### Vector Search with Metadata Filters
 
-```python
+`````python
 # Single vector search
 results = collection.search(
     data=[np.random.randn(1536).tolist()],
@@ -221,9 +222,9 @@ results = collection.search(
 )
 
 for hit in results[0]: print(f"ID: {hit.id}, Distance: {hit.distance:.4f}, Text: {hit.entity.text}")
-```
+`````
 
-```python
+`````python
 # Hybrid search: vector similarity + metadata filter
 from pymilvus import Filter
 
@@ -239,23 +240,23 @@ results = collection.search(
 )
 
 print(f"Found {len(results[0])} filtered results")
-```
+`````
 
 ## Benchmarks: Real-World Numbers
 
-Independent benchmarks from April 2026 on `dbpedia-openai-1M` dataset (1M vectors, 1536 dimensions, AWS c6i.8xlarge unless noted): | Metric | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+Independent benchmarks from April 2026 on ````dbpedia-openai-1M```` dataset (1M vectors, 1536 dimensions, AWS c6i.8xlarge unless noted): | Metric | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **p99 Query Latency** | 18 ms | **8 ms** | 28 ms | 19 ms | 12 ms |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
@@ -274,7 +275,7 @@ Independent benchmarks from April 2026 on `dbpedia-openai-1M` dataset (1M vector
 
 ### Large-Scale Insert Benchmark
 
-```python
+`````python
 # Benchmark script for insertion throughput
 import time
 from pymilvus import Collection
@@ -292,17 +293,17 @@ print(f"Inserted {batch:,} vectors in {elapsed:.2f}s")
 print(f"Throughput: {batch/elapsed:,.0f} vectors/sec")
 # Output on GPU index node: Inserted 100,000 vectors in 0.31s
 # Output: Throughput: 320,000 vectors/sec
-```
+`````
 
 ## Integration with Popular AI Frameworks
 
 ### LangChain Integration
 
-```python
+`````python
 pip install langchain-milvus==0.1.8
-```
+`````
 
-```python
+`````python
 from langchain_milvus import Milvus
 from langchain_openai import OpenAIEmbeddings
 
@@ -322,15 +323,15 @@ vector_store.add_documents(docs)
 # Similarity search
 results = vector_store.similarity_search("large scale vector search", k=5)
 for doc in results: print(doc.page_content)
-```
+`````
 
 ### LlamaIndex Integration
 
-```python
+`````python
 pip install llama-index-vector-stores-milvus==0.6.0
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -349,11 +350,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What is Milvus architecture?")
 print(response)
-```
+`````
 
 ### OpenAI Embeddings Integration
 
-```python
+`````python
 from openai import OpenAI
 import numpy as np
 
@@ -369,13 +370,13 @@ def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
 # Insert OpenAI embeddings into Milvus
 embedding = get_embedding("Milvus vector database handles 10 billion vectors")
 collection.insert([[embedding], ["milvus_overview"]])
-```
+`````
 
 ## Advanced Usage and Production Hardening
 
 ### Tiered Storage Configuration
 
-Milvus 2.5 supports tiered storage to reduce costs for large datasets: ```yaml
+Milvus 2.5 supports tiered storage to reduce costs for large datasets: `````yaml
 # Helm values for tiered storage
 extraConfigFiles: user.yaml: |+
     common: storageType: remote
@@ -387,11 +388,11 @@ extraConfigFiles: user.yaml: |+
         memoryLimit: 8GB  # Hot data in memory
       disk: enabled: true     # Warm data on local disk
         capacity: 100GB
-```
+`````
 
 ### Backup and Disaster Recovery
 
-```bash
+`````bash
 # Install Milvus Backup tool
 git clone https://github.com/zilliztech/milvus-backup.git
 cd milvus-backup
@@ -402,30 +403,30 @@ make
 
 # Restore to new cluster
 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection
-```
+`````
 
 ### Monitoring with Prometheus and Grafana
 
-```yaml
+`````yaml
 # Helm values for Milvus monitoring
 metrics: enabled: true
   serviceMonitor: enabled: true
     interval: 30s
 
 # Grafana dashboard: https://github.com/zilliztech/milvus-insight
-```
+`````
 
-```bash
+`````bash
 # Port-forward to access Milvus metrics
 kubectl port-forward svc/my-milvus-proxy 9091:9091
 
 # Check health
 curl http://localhost:9091/metrics | grep milvus_querynode_latency
-```
+`````
 
 ### Multi-Tenancy with Partitions
 
-```python
+`````python
 # Create partitions for multi-tenant isolation
 collection.create_partition("tenant_acme")
 collection.create_partition("tenant_globalcorp")
@@ -444,23 +445,23 @@ results = collection.search(
     limit=10,
     partition_names=["tenant_acme"]
 )
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Milvus 2.5 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | pgvector 0.8 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | Apache-2.0 | No | BSD-3 | Apache-2.0 | PostgreSQL |
 | **Max Scale** | **10B+ vectors** | Unlimited | 200M/node | 500M/node | ~50M |
@@ -522,9 +523,9 @@ Milvus 2.5 integrates NVIDIA RAFT for GPU-accelerated HNSW and IVF index constru
 
 ### What backup strategies does Milvus support?
 
-Milvus Backup (official tool) supports full cluster snapshots to S3-compatible storage. For production, schedule daily backups via cron: ```bash
+Milvus Backup (official tool) supports full cluster snapshots to S3-compatible storage. For production, schedule daily backups via cron: `````bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
-```
+````
 
 Point-in-time recovery is available when using Pulsar as the message broker, which retains operation logs.
 
@@ -591,12 +592,12 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

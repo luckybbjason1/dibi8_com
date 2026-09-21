@@ -23,6 +23,7 @@ tags: ["tabby", "ai-coding-assistant", "self-hosted", "github-copilot-alternativ
 aliases:
   - /posts/tabby/-
 ---
+
 {{</* resource-info */>}}
 
 GitHub Copilot sends your proprietary code to Microsoft's cloud. For teams handling sensitive IP — fintech, healthcare, defense, enterprise SaaS — that is a non-starter. Tabby is the open-source answer: a self-hosted AI coding assistant that runs entirely on your own hardware, with zero external data leakage. With 33,530+ GitHub stars and an active release cadence (v0.32.0 shipped January 2026), Tabby has matured from an experimental project into a production-grade alternative to Copilot. This **tabby tutorial** walks through a complete Tabby setup, from Docker deployment to IDE integration and production hardening. If you are specifically comparing **tabby vs copilot**, the comparison table in Section 8 breaks down feature parity and trade-offs.
@@ -62,7 +63,7 @@ The fastest way to get Tabby running is via Docker. Below are commands for the t
 
 #### NVIDIA GPU (CUDA)
 
-```bash
+````bash
 # Pull and run Tabby with CUDA acceleration
 docker run -d \
   --name tabby \
@@ -74,9 +75,9 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device cuda
-```
+`````
 
-For systems with SELinux enabled, add the `:Z` flag to the volume mount: ```bash
+For systems with SELinux enabled, add the ``:Z`` flag to the volume mount: `````bash
 docker run -d \
   --name tabby \
   --gpus all \
@@ -87,11 +88,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device cuda
-```
+`````
 
 #### Apple Silicon (Metal)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   -p 8080:8080 \
@@ -101,11 +102,11 @@ docker run -d \
   --model StarCoder-1B \
   --chat-model Qwen2-1.5B-Instruct \
   --device metal
-```
+`````
 
 #### AMD GPU (ROCm)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   --device /dev/kfd --device /dev/dri \
@@ -116,11 +117,11 @@ docker run -d \
   serve \
   --model StarCoder-1B \
   --device rocm
-```
+`````
 
 #### CPU-Only (Fallback)
 
-```bash
+`````bash
 docker run -d \
   --name tabby \
   -p 8080:8080 \
@@ -129,11 +130,11 @@ docker run -d \
   serve \
   --model Qwen2.5-Coder-0.5B \
   --device cpu
-```
+`````
 
 ### Verify the Installation
 
-```bash
+`````bash
 # Check server health
 curl http://localhost:8080/v1/health
 
@@ -142,13 +143,13 @@ docker logs -f tabby
 
 # Open the admin dashboard
 open http://localhost:8080
-```
+`````
 
-On first boot, Tabby downloads the specified model weights to `$HOME/.tabby`. Depending on your bandwidth, this may take 2–10 minutes. The admin dashboard will prompt you to create an admin account.
+On first boot, Tabby downloads the specified model weights to ````$HOME/.tabby````. Depending on your bandwidth, this may take 2–10 minutes. The admin dashboard will prompt you to create an admin account.
 
 ### Docker Compose (Production-Ready)
 
-For persistent deployments, use Docker Compose: ```yaml
+For persistent deployments, use Docker Compose: `````yaml
 version: '3.8'
 services: tabby: image: registry.tabbyml.com/tabbyml/tabby
     container_name: tabby
@@ -165,19 +166,19 @@ services: tabby: image: registry.tabbyml.com/tabbyml/tabby
       --chat-model Qwen2.5-Coder-7B-Instruct
       --device cuda
       --parallelism 4
-```
+`````
 
-Generate a secure JWT secret: ```bash
+Generate a secure JWT secret: `````bash
 openssl rand -hex 32
-```
+`````
 
-Deploy: ```bash
+Deploy: `````bash
 docker compose up -d
-```
+`````
 
 ### Homebrew (macOS Native)
 
-If you prefer not to use Docker on macOS: ```bash
+If you prefer not to use Docker on macOS: `````bash
 # Install via Homebrew
 brew install tabbyml/tabby/tabby
 
@@ -189,7 +190,7 @@ tabby serve \
 
 # Verify
 curl http://localhost:8080/v1/health
-```
+`````
 
 ## Integration with VS Code, JetBrains, Vim, and Ollama
 
@@ -200,19 +201,19 @@ Tabby's IDE extensions connect your editor to the local inference server via HTT
 ### VS Code
 
 1. Open the Extensions marketplace, search for **"Tabby"**, and install the extension by TabbyML.
-2. Open Settings (Ctrl+,), search for **"Tabby"**, and set the Server Endpoint to `http://localhost:8080`.
+2. Open Settings (Ctrl+,), search for **"Tabby"**, and set the Server Endpoint to ````http://localhost:8080````.
 3. The status bar will show a Tabby icon when connected. Start typing to receive completions.
 
 ### JetBrains IDEs (IntelliJ, PyCharm, GoLand)
 
 1. Open **Settings → Plugins → Marketplace**, search for **"Tabby"**, and install.
 2. Restart the IDE.
-3. Navigate to **Settings → Tools → Tabby** and enter your server endpoint URL (e.g., `http://localhost:8080`).
+3. Navigate to **Settings → Tools → Tabby** and enter your server endpoint URL (e.g., ````http://localhost:8080````).
 4. Generate an API token from the Tabby admin dashboard and paste it into the IDE settings.
 
 ### Vim / Neovim
 
-For Neovim with `nvim-cmp` and `cmp-tabby`: ```lua
+For Neovim with ``nvim-cmp`` and ``cmp-tabby``: `````lua
 -- In your Neovim config (e.g., init.lua)
 require(cmp).setup({
   sources = {
@@ -222,11 +223,11 @@ require(cmp).setup({
 
 -- Configure Tabby server URL
 vim.g.tabby_server_url = 'http://localhost:8080'
-```
+`````
 
 ### Using Ollama as a Backend
 
-Tabby can delegate inference to Ollama, which enables dynamic model switching and multi-model management: ```toml
+Tabby can delegate inference to Ollama, which enables dynamic model switching and multi-model management: `````toml
 # ~/.tabby/config.toml
 [model.completion.http]
 kind = "ollama/completion"
@@ -238,17 +239,17 @@ prompt_template = "<PRE> {prefix} <SUF>{suffix} <MID>"
 kind = "openai/chat"
 model_name = "qwen2.5-coder:7b"
 api_endpoint = "http://localhost:11434/v1"
-```
+`````
 
-Start Ollama with the required models: ```bash
+Start Ollama with the required models: `````bash
 ollama pull deepseek-coder:6.7b
 ollama pull qwen2.5-coder:7b
 ollama serve
-```
+`````
 
-Then start Tabby without specifying `--model` (it reads from `config.toml`): ```bash
+Then start Tabby without specifying ``--model`` (it reads from ``config.toml``): `````bash
 tabby serve --device cuda
-```
+`````
 
 This setup is ideal when you want to run multiple models on a single GPU with limited VRAM — Ollama handles model loading and unloading dynamically.
 
@@ -258,17 +259,17 @@ This section provides hard numbers for anyone running a **self-hosted coding ass
 
 Tabby's performance depends heavily on model size and hardware. The following numbers were collected from community benchmarks and internal testing: | Model | Size | GPU VRAM | Avg Latency | Accept Rate | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qwen2.5-Coder-0.5B | 0.5B | 2 GB | ~200ms | 18% | CPU-only setups, rapid testing |
 | StarCoder-1B | 1B | 3 GB | ~180ms | 22% | Low-resource deployments |
@@ -282,13 +283,13 @@ Tabby's performance depends heavily on model size and hardware. The following nu
 
 | Scenario | Hardware | Recommended Model | Monthly Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Solo developer, laptop | M2/M3 MacBook 16GB | StarCoder2-3B | $0 |
 | Small team (5–10 devs) | RTX 4070 Ti, 16GB VRAM | Qwen2.5-Coder-7B | ~$50 (power) |
@@ -305,20 +306,20 @@ For hosting the server infrastructure, consider providers like [DigitalOcean](ht
 
 Tabby's killer feature for teams is repository-level context indexing. It clones and indexes your Git repositories, then uses RAG (Retrieval-Augmented Generation) to surface relevant internal code snippets during completion.
 
-Add repositories via the admin dashboard: ```bash
+Add repositories via the admin dashboard: `````bash
 # Navigate to Repositories → Add Git URL
 # Supports GitHub, GitLab, and self-hosted Git instances
-```
+`````
 
-Or configure via the scheduler CLI: ```bash
+Or configure via the scheduler CLI: `````bash
 docker exec tabby /opt/tabby/bin/tabby-cpu scheduler --now
-```
+`````
 
 ### Security Hardening
 
-1. **Change the default JWT secret**: Set `TABBY_WEBSERVER_JWT_TOKEN_SECRET` to a cryptographically random 32-byte hex string.
+1. **Change the default JWT secret**: Set ````TABBY_WEBSERVER_JWT_TOKEN_SECRET```` to a cryptographically random 32-byte hex string.
 
-2. **Run behind a reverse proxy** with TLS termination: ```nginx
+2. **Run behind a reverse proxy** with TLS termination: `````nginx
 # Nginx example
 server {
     listen 443 ssl;
@@ -333,20 +334,20 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 3. **Enable LDAP/SSO authentication** (Enterprise feature) for team-wide access control.
 
-4. **Set resource limits** on the Docker container: ```bash
+4. **Set resource limits** on the Docker container: `````bash
 docker run -d \
   --memory=24g \
   --cpus=8 \
   # ... other flags
-```
+`````
 
 ### Performance Tuning
 
-```bash
+`````bash
 # Increase parallelism for concurrent team requests
 tabby serve \
   --model StarCoder2-3B \
@@ -358,11 +359,11 @@ tabby serve \
   --model StarCoder2-3B \
   --device cuda \
   --dtype float16
-```
+`````
 
 ### Monitoring
 
-```bash
+`````bash
 # Check API health
 curl http://localhost:8080/v1/health
 
@@ -371,21 +372,21 @@ docker stats tabby
 
 # View recent logs with errors only
 docker logs tabby 2>&1 | grep ERROR
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Tabby | GitHub Copilot | Cursor | Codeium |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Self-hosted** | Yes | No | No | Partial (Enterprise) |
 | **License** | Apache-2.0 | Proprietary | Proprietary | Proprietary |
@@ -433,11 +434,11 @@ Yes. Tabby supports any model in the Hugging Face Transformers format with an Op
 
 ### Is Tabby suitable for large enterprise teams?
 
-Tabby scales to 50+ users with proper hardware (multi-GPU server) and the `--parallelism` flag. The admin dashboard supports user management, API token rotation, and usage analytics. For SSO/LDAP integration, you will need the enterprise license.
+Tabby scales to 50+ users with proper hardware (multi-GPU server) and the ````--parallelism```` flag. The admin dashboard supports user management, API token rotation, and usage analytics. For SSO/LDAP integration, you will need the enterprise license.
 
 ### How do I update Tabby to a new version?
 
-```bash
+`````bash
 # Pull the latest image
 docker pull registry.tabbyml.com/tabbyml/tabby
 
@@ -447,7 +448,7 @@ docker compose up -d
 
 # Verify the new version
 curl http://localhost:8080/v1/health
-```
+`````
 
 ## Conclusion
 
@@ -456,7 +457,7 @@ Tabby fills a critical gap in the AI coding assistant market: a fully open-sourc
 **Action items to get started:**
 
 1. Run the Docker command in Section 4 to spin up Tabby on your local machine.
-2. Install the IDE extension for your editor and connect to `http://localhost:8080`.
+2. Install the IDE extension for your editor and connect to ````http://localhost:8080```.
 3. Index a test repository from the admin dashboard to experience RAG-powered completions.
 4. Join the [Tabby community on Telegram](https://t.me/dibi8_ai_hub) for deployment tips and model recommendations.
 
@@ -512,7 +513,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-15-trending-ai-agents](tabby)
@@ -522,7 +523,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [markitdown-universal-file-to-markdown-converter](tabby)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

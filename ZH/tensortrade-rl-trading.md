@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/tensortrade-rl-trading/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么大多数交易机器人会失败（强化学习如何改变游戏规则）
@@ -58,7 +59,7 @@ TensorTrade的架构遵循模块化设计，围绕五个核心抽象构建：
 跟踪跨工具、跨交易所的持仓。投资组合计算净值、奖励，并执行仓位限制。
 
 ### Environment 环境（Gym）
-`TradingEnv`类实现了标准的`gym.Env`接口。它将市场数据→转换为观察值，接受动作→执行交易，并基于投资组合收益或夏普比率返回奖励。
+```TradingEnv````类实现了标准的````gym.Env````接口。它将市场数据→转换为观察值，接受动作→执行交易，并基于投资组合收益或夏普比率返回奖励。
 
 ### Agent（智能体）
 任何兼容Gym环境的RL算法——Stable Baselines3的PPO、DQN、A2C，或自定义实现。
@@ -71,18 +72,18 @@ TensorTrade需要Python 3.9+，最好在虚拟环境中运行。
 
 ### 步骤 1：创建环境
 
-```bash
+`````bash
 python -m venv tensortrade-env
 source tensortrade-env/bin/activate  # Linux/Mac
 # tensortrade-env\Scripts\activate  # Windows
 
 # Upgrade pip
 pip install --upgrade pip
-```
+`````
 
 ### 步骤 2：安装 TensorTrade 和依赖
 
-```bash
+`````bash
 # Core framework
 pip install tensortrade==1.2.0
 
@@ -94,11 +95,11 @@ pip install ccxt==4.4.0 yfinance==0.2.54
 
 # Utilities
 pip install pandas==2.2.3 numpy==1.26.4
-```
+`````
 
 ### 步骤 3：验证安装
 
-```python
+`````python
 import tensortrade
 import gymnasium as gym
 import stable_baselines3
@@ -106,18 +107,18 @@ import stable_baselines3
 print(f"TensorTrade version: {tensortrade.__version__}")
 print(f"Gymnasium version: {gym.__version__}")
 print(f"Stable Baselines3 version: {stable_baselines3.__version__}")
-```
+`````
 
 预期输出：
-```
+`````
 TensorTrade version: 1.2.0
 Gymnasium version: 1.0.0
 Stable Baselines3 version: 2.5.0
-```
+`````
 
 ### 步骤 4：下载样本数据并运行首次回测
 
-```python
+`````python
 import pandas as pd
 import yfinance as yf
 from tensortrade.env.default import create
@@ -165,7 +166,7 @@ env = create(
 
 print(f"Observation space: {env.observation_space}")
 print(f"Action space: {env.action_space}")
-```
+`````
 
 至此，你已拥有一个功能完备、可用于RL训练的交易环境。
 
@@ -175,7 +176,7 @@ TensorTrade的真正威力来自于接入经过实战检验的RL库。以下是�
 
 ### 训练 PPO 智能体
 
-```python
+`````python
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import EvalCallback
 
@@ -199,13 +200,13 @@ agent.learn(total_timesteps=100_000)
 
 # Save the trained model
 agent.save("ppo_btc_trader_v1")
-```
+`````
 
 ### 使用 Stream 进行自定义特征工程
 
-真正的交易智能体需要的不仅仅是原始价格。TensorTrade的`Stream` API可以计算技术指标：
+真正的交易智能体需要的不仅仅是原始价格。TensorTrade的````Stream```` API可以计算技术指标：
 
-```python
+`````python
 import ta  # technical analysis library
 
 # Compute RSI
@@ -224,13 +225,13 @@ feed = DataFeed([
     Stream.source(list(macd_signal), dtype="float").rename("macd_signal"),
     Stream.source(list(df["Volume"]), dtype="float").rename("volume"),
 ])
-```
+`````
 
 ### 与 Ray RLlib 集成
 
 用于跨多个环境进行分布式训练：
 
-```python
+`````python
 import ray
 from ray import tune
 from ray.rllib.algorithms.ppo import PPOConfig
@@ -252,11 +253,11 @@ tune.run(
     checkpoint_at_end=True,
     storage_path="~/ray_results"
 )
-```
+`````
 
 ### 通过 CCXT 集成获取实时数据
 
-```python
+`````python
 import ccxt
 
 # Connect to Binance via CCXT
@@ -275,7 +276,7 @@ ohlcv_df = pd.DataFrame(
 
 # Use in TensorTrade environment
 # Note: live trading requires additional risk management
-```
+`````
 
 ## 基准测试 / 实际应用案例：2026年Q1 结果
 
@@ -283,17 +284,17 @@ ohlcv_df = pd.DataFrame(
 
 | 策略 | 总收益 | 夏普比率 | 最大回撤 | 胜率 | 月均交易次数 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | BTC 买入持有 | **+68.4%** | 1.42 | -22.1% | — | 0 |
 | PPO（默认特征） | **+54.2%** | 1.89 | -14.3% | 52% | 45 |
@@ -315,13 +316,13 @@ ohlcv_df = pd.DataFrame(
 
 | 配置 | 年化收益 | 夏普比率 | 索提诺比率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 等权重买入持有 | +45.2% | 1.28 | 1.84 |
 | PPO 多资产（TensorTrade） | **+58.7%** | **1.97** | **2.71** |
@@ -334,7 +335,7 @@ RL智能体根据动量信号动态再平衡的能力，相比被动配置产生
 
 默认的奖励方案可能不符合你基金的目标。以下是基于索提诺比率的奖励：
 
-```python
+`````python
 import numpy as np
 
 class SortinoRewardScheme: def __init__(self, risk_free_rate=0.02, window=30): self.risk_free_rate = risk_free_rate
@@ -359,11 +360,11 @@ env = create(
     feed=feed,
     window_size=20,
 )
-```
+`````
 
 ### 多交易所套利配置
 
-```python
+`````python
 from tensortrade.oms.exchanges import Exchange
 from tensortrade.oms.instruments import USD, BTC
 
@@ -385,11 +386,11 @@ btc_coinbase = Wallet(coinbase_exchange, 0 * BTC)
 multi_portfolio = Portfolio(USD, [
     binance_wallet, coinbase_wallet, btc_binance, btc_coinbase
 ])
-```
+`````
 
 ### 添加风险管理：基于凯利准则的仓位管理
 
-```python
+`````python
 class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion."""
     def __init__(self, kelly_fraction=0.3): self.kelly_fraction = kelly_fraction
         self.win_rate = 0.5
@@ -401,13 +402,13 @@ class KellyCriterionActionScheme: """Sizes bets using fractional Kelly criterion
                  (1 - self.win_rate) / self.avg_win) if self.avg_win > 0 else 0
         kelly = max(0, min(kelly, 0.5))  # Cap at 50%
         return kelly * self.kelly_fraction * portfolio.base_balance
-```
+`````
 
 ### 生产部署检查清单
 
 在实盘交易之前：
 
-```python
+`````python
 # 1. Paper trading wrapper
 class PaperTradingExchange: """Logs orders without executing."""
     def execute(self, order): print(f"[PAPER] {order.side} {order.quantity} @ {order.price}")
@@ -427,23 +428,23 @@ class CircuitBreaker: def __init__(self, max_drawdown=0.05, daily_loss_limit=0.0
 import datetime
 model_version = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 agent.save(f"models/ppo_prod_{model_version}.zip")
-```
+`````
 
 ## 与替代方案的对比
 
 | 功能 | TensorTrade | Backtrader | QuantConnect | FinRL | Gym Trading Env |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **RL原生设计** | 是（原生Gym） | 否（需包装器） | 部分支持 | 是 | 是 |
 | **Stable Baselines 集成** | 无缝 | 需自定义包装器 | 否 | 内置 | 需手动设置 |
@@ -468,7 +469,7 @@ agent.save(f"models/ppo_prod_{model_version}.zip")
 
 TensorTrade是一个功能强大的框架，但它不是神奇的赚钱机器。以下是真实的局限性：
 
-1. **模拟差距**：模拟交易所以中间价成交订单，没有滑点。真实市场有买卖价差、延迟和部分成交。务必使用保守的滑点假设进行压力测试（最低`slippage=0.001`）。
+1. **模拟差距**：模拟交易所以中间价成交订单，没有滑点。真实市场有买卖价差、延迟和部分成交。务必使用保守的滑点假设进行压力测试（最低````slippage=0.001````）。
 
 2. **过拟合风险**：RL智能体可能记住价格路径。使用滚动前向验证——在2024年训练，在2025年验证，在2026年测试。绝不要在测试集上优化。
 
@@ -478,7 +479,7 @@ TensorTrade是一个功能强大的框架，但它不是神奇的赚钱机器。
 
 5. **无内置数据管道**：与FinRL不同，TensorTrade不包含预加载数据集。你需要通过yfinance、CCXT或专有数据源自带数据。
 
-6. **Gym API迁移**：该项目从`gym`迁移到了`gymnasium`。一些较旧的社区示例仍引用已弃用的`gym`命名空间。
+6. **Gym API迁移**：该项目从````gym````迁移到了````gymnasium````。一些较旧的社区示例仍引用已弃用的````gym```命名空间。
 
 ## 常见问题
 
@@ -605,12 +606,12 @@ TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](tensortrade-rl-trading)
@@ -619,7 +620,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](tensortrade-rl-trading)
 - [agent-reach-internet-access-ai-agents](tensortrade-rl-trading)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

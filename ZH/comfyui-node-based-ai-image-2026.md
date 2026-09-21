@@ -24,6 +24,7 @@ aliases:
   - /posts/comfyui-node-based-ai-image-2026/-
 ---
 
+
 如果 [AUTOMATIC1111](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 是"AI 图像生成的 Photoshop"（打字生图），**ComfyUI** 就是 **"生成式 AI 的 Blender 节点编辑器"** —— 你把工作流当有向图来搭，对每个模型、采样器、条件步、后处理都有显式控制。114k GitHub 星，GPL-3.0，支持 2024-2026 出的几乎所有生成式 AI 模型家族：SD 1.x、SDXL、SD3/3.5、Flux（1 & 2）、Wan、Hunyuan（图/视频/3D）、PixArt、AuraFlow、LTX-Video。
 
 2026 现实：认真做 AI 图像、视频或多模态管线的都跑 ComfyUI。轻度创作者用 A1111。两者都对 —— 是不同心智模型的不同工具。
@@ -56,13 +57,13 @@ ComfyUI 智能内存管理比 A1111 好得多。同 GPU 在 ComfyUI 干更多事
 
 | GPU | SDXL | Flux dev | Hunyuan 视频（5s）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 4 GB（带 offload）| ~30 秒 | 可能但慢 | 不行 |
 | 8 GB | ~6 秒 | ~25 秒 | ~4 分 |
@@ -74,21 +75,21 @@ ComfyUI 智能内存管理比 A1111 好得多。同 GPU 在 ComfyUI 干更多事
 
 ## 3. 快装（10 分钟）
 
-```bash
+````bash
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 pip install -r requirements.txt
 python main.py
 # UI 开在 http://localhost:8188
-```
+`````
 
 或用独立 Windows 便携包（一键启动器）。
 
 装完第一件事：装 **ComfyUI Manager**（最接近"扩展商店"的东西）：
-```bash
+`````bash
 cd custom_nodes
 git clone https://github.com/ltdrdata/ComfyUI-Manager
-```
+`````
 
 重启 ComfyUI。Manager 处理模型下载、自定义节点安装、工作流管理。
 
@@ -143,7 +144,7 @@ ComfyUI 是唯一主流 UI，最新视频和 3D 模型 day-1 就工作：
 
 "AI 媒体生成 API" 部署：
 
-```
+`````
    GPU 实例（推荐 24 GB VRAM）
             │  在 Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}
             ▼
@@ -154,17 +155,17 @@ ComfyUI 是唯一主流 UI，最新视频和 3D 模型 day-1 就工作：
    - POST /run 带 workflow JSON + 覆盖参数
    - 返 job_id，WebSocket 流进度
    - 最终输出存 S3
-```
+`````
 
-ComfyUI 暴露 `POST /prompt` 端点接 workflow JSON。在上面搭薄 auth + 队列层，你有自托管 Midjourney 替代 API。
+ComfyUI 暴露 ````POST /prompt```` 端点接 workflow JSON。在上面搭薄 auth + 队列层，你有自托管 Midjourney 替代 API。
 
 ## 9. ComfyUI vs A1111 vs SwarmUI
 
 | 挑 | 何时 |
 |
----
+* * *
 |
----
+* * *
 |
 | **ComfyUI** | 复杂工作流、多模型、视频、音频、要精确可复现、要把 AI 媒体作为产品 ship |
 | **AUTOMATIC1111** | 单图生成，80% 轻度用例，最大扩展库，最低学习曲线。看我们的 [A1111 指南](/zh/resources/ai-tools/stable-diffusion-webui-2026/) |
@@ -175,9 +176,9 @@ ComfyUI 暴露 `POST /prompt` 端点接 workflow JSON。在上面搭薄 auth + �
 ## 10. 坑
 
 1. **跳过 ComfyUI Manager** —— "怎么找这个节点"问题装了 Manager 都没了
-2. **手动放模型文件** —— 模型在特定子目录（`models/checkpoints/` / `models/loras/` 等）。Manager 自动处理；手工易错
+2. **手动放模型文件** —— 模型在特定子目录（````models/checkpoints/```` / ````models/loras/```` 等）。Manager 自动处理；手工易错
 3. **加载不懂的工作流** —— Reddit 工作流可能 200+ 节点。从简单开始改
-4. **忽略内存管理设置** —— `--lowvram` / `--medvram` 在小 GPU 上是"行"和"OOM"的差距
+4. **忽略内存管理设置** —— ````--lowvram```` / ````--medvram``` 在小 GPU 上是"行"和"OOM"的差距
 5. **工作流不版本控制** —— 把 workflow JSON 和代码一起 git。未来你会感谢现在你
 
 ## TL;DR
@@ -187,7 +188,7 @@ ComfyUI = **节点式 AI 媒体生成工作流引擎，2026 单图 txt2img 之�
 装 ComfyUI + ComfyUI Manager（共 ~15 分钟），把 OpenArt 社区工作流拖到画布上，看生成式 AI 作为有向图的方式让 A1111 永远无法呈现。
 
 
----
+* * *
 *dibi8 多模态内容 stack 的一部分 —— 配 [Stable Diffusion WebUI 轻度用](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 和 [ChatTTS 做语音](/zh/resources/ai-tools/chattts-dialogue-tts-2026/)。见即将上线的多模态内容 Pipeline 合集拿完整创作者 stack。*
 
 
@@ -253,11 +254,11 @@ ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -267,6 +268,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](comfyui-node-based-ai-image-2026)
 - [nanochat-karpathy-100-chatgpt-single-gpu](comfyui-node-based-ai-image-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -28,6 +28,7 @@ faq: - q: "2025년 Cursor 가격 정책에서 무엇이 바뀌었나요?"
     a: "둘 다 쓰세요. Cursor는 IDE 편집 + tab 자동완성용. Claude Code는 agent 루프 + 디버깅용. 합계 약 $220/월. 대부분의 프로 개발자가 이 스택으로 일합니다 — 양자택일이 아닙니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # Cursor 비용 절감 전략 2026
@@ -56,7 +57,7 @@ Cursor의 agent 모드는 기본 Opus 4.7 — 최고 품질, 최고 비용. 일�
 ### 2. 컨텍스트 크기 조이기
 agent는 기본적으로 파일 전체를 모델에 전달합니다. 정밀한 수정 시, 컨텍스트를 편집할 함수나 클래스로만 좁히세요.
 
-방법: 특정 파일을 컨텍스트에 고정, 나머지는 제외. Cursor의 `@files` 문법이 도움이 됩니다. 쓰이지 않는 토큰 하나 = 낭비된 크레딧 하나.
+방법: 특정 파일을 컨텍스트에 고정, 나머지는 제외. Cursor의 ```@files```` 문법이 도움이 됩니다. 쓰이지 않는 토큰 하나 = 낭비된 크레딧 하나.
 
 **절약**: 약 25%.
 
@@ -66,7 +67,7 @@ $20 티어의 tab 자동완성은 사실상 무료입니다. 보일러플레이�
 **전략**: 인라인 편집은 tab, 다중 파일 작업은 agent.
 
 ### 4. 테스트 파일에서 자동 제안 끄기
-Cursor는 기본적으로 테스트 파일도 자동완성하면서 잡음에 크레딧을 태웁니다. `**/*.test.{ts,js}`와 `**/spec/**`의 suggest를 끄세요 — 테스트는 손으로 쓰는 게 어차피 더 빠릅니다.
+Cursor는 기본적으로 테스트 파일도 자동완성하면서 잡음에 크레딧을 태웁니다. ````**/*.test.{ts,js}````와 ````**/spec/**```의 suggest를 끄세요 — 테스트는 손으로 쓰는 게 어차피 더 빠릅니다.
 
 **절약**: 약 10%.
 
@@ -109,7 +110,7 @@ Cursor의 가격 변경은 치명적이지 않았습니다 — 강제로 합리�
 
 대부분의 프로 개발자에게 2026년의 정답은 "Cursor 버리기"가 아니라 "Cursor와 Claude Code를 페어링하고, 도구 강점에 따라 작업을 분배"입니다. 합계 $220/월, 어느 쪽 단독보다도 낫습니다.
 
----
+* * *
 
 **관련 글**: [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [AI 코딩 2026-Q2 비교](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [AI 코딩 에이전트 월별 청구서 2026](https://dibi8.com/kr/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
 
@@ -175,12 +176,12 @@ Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후 represents an i
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -190,7 +191,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](cursor-cost-saving-strategies-2026)
 - [claude-4-opus-sonnet-review-2026](cursor-cost-saving-strategies-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -23,6 +23,7 @@ tags: ["mem0", "ai-agent-memory", "persistent-memory", "langchain", "vector-stor
 aliases:
   - /posts/mem0/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -43,7 +44,7 @@ Mem0's architecture separates memory into four operational layers: **1. Extracti
 
 **4. Graph Layer (Pro tier)**: Beyond flat vector storage, Mem0 Pro builds a knowledge graph that understands entity relationships — enabling multi-hop reasoning ("Who does James work with?" requires connecting "James works at TechCorp" + "Sarah works at TechCorp").
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │                    User Message                       │
 └──────────────────────┬───────────────────────────────┘
@@ -67,21 +68,21 @@ Mem0's architecture separates memory into four operational layers: **1. Extracti
           ┌────────────▼────────────┐
           │   Injected into Prompt  │  ← Context enrichment
           └─────────────────────────┘
-```
+`````
 
 ## Installation & Setup
 
 ### Cloud Setup (Fastest Path)
 
-```bash
+`````bash
 # Install the Python client
 pip install mem0ai
 
 # Set your API key from https://app.mem0.ai
 export MEM0_API_KEY="m0-your-key-here"
-```
+`````
 
-```python
+`````python
 # mem0_quickstart.py
 import os
 from mem0 import MemoryClient
@@ -101,11 +102,11 @@ results = client.search(
     user_id="user123"
 )
 print(results)
-```
+`````
 
 ### Self-Hosted Setup (Docker)
 
-For teams that need data residency or air-gapped deployments: ```bash
+For teams that need data residency or air-gapped deployments: `````bash
 # Clone the repository
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -113,9 +114,9 @@ cd mem0
 # Bootstrap with Docker
 make bootstrap
 # Creates admin user, generates API key, starts server + dashboard
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml for production
 docker run -d \
   -p 8000:8000 \
@@ -125,15 +126,15 @@ docker run -d \
   -e LLM_PROVIDER=openai \
   -e OPENAI_API_KEY=$OPENAI_API_KEY \
   mem0/mem0-server:latest
-```
+`````
 
 ### Open Source SDK (Local)
 
-```bash
+`````bash
 pip install mem0ai openai chromadb
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # Initialize with custom vector store
@@ -149,13 +150,13 @@ m.add(messages, user_id="alice", metadata={"category": "movies"})
 
 # Search with metadata filtering
 results = m.search("movie recommendations", filters={"user_id": "alice"})
-```
+`````
 
 ## Memory Configuration & Performance Tuning
 
 ### Custom Configuration with YAML
 
-The `mem0config.yaml` file controls every component of the memory pipeline: ```yaml
+The ``mem0config.yaml`` file controls every component of the memory pipeline: `````yaml
 # mem0config.yaml — Production tuning config
 llm: provider: openai
   config: model: "gpt-4o-mini"
@@ -179,29 +180,29 @@ custom_instructions: |
   Extract user preferences, personal facts, and context.
   Focus on dietary restrictions, allergies, and technical preferences.
   Ignore temporary states and one-time requests.
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # Load custom configuration
 config_path = "mem0config.yaml"
 m = Memory.from_config(config_path)
-```
+`````
 
 ### Vector Store Backend Comparison
 
 | Backend | Best For | Latency | Persistence | Scaling |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qdrant | Production, hybrid search | <10ms | On-disk | Horizontal |
 | Chroma | Local dev, prototyping | <20ms | File-based | Single node |
@@ -211,7 +212,7 @@ m = Memory.from_config(config_path)
 
 ### Performance Tuning Checklist
 
-```python
+`````python
 # 1. Enable async memory for high-throughput apps
 from mem0 import MemoryClient
 import asyncio
@@ -239,11 +240,11 @@ results = client.search(
     top_k=5,  # Reduce for speed, increase for coverage
     rerank=True
 )
-```
+`````
 
 ### Memory with Custom Instructions
 
-```python
+`````python
 # Guide what facts get extracted and stored
 m = Memory.from_config({
     "custom_instructions": """
@@ -257,17 +258,17 @@ m = Memory.from_config({
     - Third-party information without consent
     """
 })
-```
+`````
 
 ## Integration with LangChain, CrewAI, and OpenAI
 
 ### LangChain Integration
 
-```bash
+`````bash
 pip install langchain langchain-openai mem0ai
-```
+`````
 
-```python
+`````python
 # langchain_mem0_agent.py
 import os
 from typing import List, Dict
@@ -323,15 +324,15 @@ print(response1)
 # Later session — agent remembers
 response2 = chat(user_id, "What should I pack for my trip?")
 # Output references Tokyo, time of year, traveler's preferences
-```
+`````
 
 ### CrewAI Integration
 
-```bash
+`````bash
 pip install crewai mem0ai
-```
+`````
 
-```python
+`````python
 # crewai_mem0_crew.py
 import os
 from crewai import Agent, Task, Crew
@@ -373,15 +374,15 @@ task = Task(
 crew = Crew(agents=[researcher], tasks=[task])
 result = crew.kickoff(inputs={"user_id": "user123"})
 print(result)
-```
+`````
 
 ### OpenAI Agents SDK Integration
 
-```bash
+`````bash
 pip install openai-agents mem0ai
-```
+`````
 
-```python
+`````python
 # openai_agents_mem0.py
 import os
 from dataclasses import dataclass
@@ -420,11 +421,11 @@ async def run_agent(): context = UserContext(user_id="user_42")
     print(result.final_output)
 
 # asyncio.run(run_agent())
-```
+`````
 
 ### Docker Compose Production Stack
 
-```yaml
+`````yaml
 # mem0-production-stack.yml
 version: "3.8"
 
@@ -450,7 +451,7 @@ services: qdrant: image: qdrant/qdrant:latest
     environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes: qdrant_storage: ```
+volumes: qdrant_storage: `````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -458,15 +459,15 @@ volumes: qdrant_storage: ```
 
 Mem0's new token-efficient algorithm (released April 2026) delivers significant accuracy improvements at lower token cost: | Benchmark | Metric | Old Algorithm | New Algorithm (April 2026) | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LoCoMo | Overall Accuracy | 66.9% | **92.5%** | +25.6 points |
 | LoCoMo | Mean Tokens/Query | ~26,000 | **6,956** | 3.7x reduction |
@@ -479,13 +480,13 @@ Mem0's new token-efficient algorithm (released April 2026) delivers significant 
 
 | Category | Old Score | New Score | Delta |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Single-hop | 76.6% | 94.6% | +18.0 |
 | Multi-hop | 70.2% | 95.4% | +25.2 |
@@ -514,7 +515,7 @@ Mem0's new token-efficient algorithm (released April 2026) delivers significant 
 
 ### Security Configuration
 
-```python
+`````python
 # Memory access control with metadata
 def store_sensitive_memory(user_id: str, fact: str, classification: str): """Store memory with security classification."""
     messages = [{"role": "user", "content": fact}]
@@ -536,11 +537,11 @@ results = client.search(
         "metadata.classification": ["public", "internal"]
     }
 )
-```
+`````
 
 ### Multi-Tenant Isolation
 
-```python
+`````python
 # Organization-scoped memory for SaaS applications
 def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """Store memory scoped to both organization and user."""
     client.add(
@@ -554,11 +555,11 @@ results = client.get_all(
     filters={"metadata.org_id": "org_123"},
     limit=100
 )
-```
+`````
 
 ### Memory Monitoring and Observability
 
-```python
+`````python
 # Track memory metrics
 import time
 
@@ -583,11 +584,11 @@ def memory_health_check(user_id: str): """Verify memory integrity for a user."""
         "categories": len(set(m.get("metadata", {}).get("category", "") for m in all_memories)),
         "avg_score": sum(m.get("score", 0) for m in all_memories) / len(all_memories) if all_memories else 0
     }
-```
+`````
 
 ### Rate Limiting and Cost Control
 
-```python
+`````python
 # Implement client-side rate limiting
 from functools import wraps
 import time
@@ -609,21 +610,21 @@ def rate_limited_add(messages, user_id): if not limiter.can_call(): # Queue for 
         return {"status": "queued"}
     limiter.record_call()
     return client.add(messages, user_id=user_id)
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma (Raw) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Architecture** | Hybrid Vector + Graph + KV | Key-value + Vector | Vector + Index | Pure Vector DB |
 | **GitHub Stars** | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 |
@@ -679,7 +680,7 @@ A: Qdrant is the recommended choice for production deployments due to its hybrid
 
 **Q: How do I migrate from LangChain Memory to Mem0?**
 
-A: The migration is incremental. Start by initializing Mem0 alongside your existing LangChain memory. Store new conversations in both systems. Use Mem0's `search()` API to retrieve memories and inject them into your LangChain prompts via the `memories` variable. Once confidence is high, switch the memory source exclusively to Mem0. The Mem0 docs provide a migration guide at mem0.ai/migration.
+A: The migration is incremental. Start by initializing Mem0 alongside your existing LangChain memory. Store new conversations in both systems. Use Mem0's ````search()```` API to retrieve memories and inject them into your LangChain prompts via the ````memories```` variable. Once confidence is high, switch the memory source exclusively to Mem0. The Mem0 docs provide a migration guide at mem0.ai/migration.
 
 **Q: What is the pricing for Mem0 at scale?**
 
@@ -695,7 +696,7 @@ Mem0 solves one of the most persistent problems in AI agent development: cross-s
 
 **Action items:**
 
-1. Clone the mem0ai/mem0 repo and run the quickstart with `pip install mem0ai`
+1. Clone the mem0ai/mem0 repo and run the quickstart with ````pip install mem0ai```
 2. Sign up for a free API key at app.mem0.ai
 3. Integrate Mem0 search into your LangChain or CrewAI agent prompts
 4. Benchmark your current memory solution against Mem0's retrieval on your own conversation dataset
@@ -756,7 +757,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-agent-frameworks-comparison-2026](mem0)
@@ -766,7 +767,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [langchain-complete-guide](mem0)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

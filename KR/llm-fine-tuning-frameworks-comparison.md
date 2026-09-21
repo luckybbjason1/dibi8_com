@@ -7,6 +7,7 @@ aliases:
   - /posts/llm-fine-tuning-frameworks-comparison/
 ---
 
+
 {</* resource-info */>}
 
 대규모 언어 모델(LLM)을 특정 업묘이나 도메인에 최적화하려면 파인튜닝이 필수적입니다. 하지만 70B, 405B 파라미터 모델을 전체 파인튜닝하는 것은 수십 개의 A100 GPU가 필요한 비현실적인 작업입니다. 이 글에서는 소비자용 GPU 하나로도 실행 가능한 효율적인 파인튜닝 기법과 프레임워크를 심층 분석합니다.
@@ -39,9 +40,9 @@ aliases:
 
 LoRA는 2021년 Microsoft Research에서 발표된 기법으로, 사전 학습된 가중치 행렬 W를 직접 수정하는 대신, 두 개의 저차원 행렬 A과 B를 추가합니다.
 
-```
+````
 W' = W + BA
-```
+`````
 
 여기서 A는 d×r 행렬, B는 r×k 행렬입니다. r(랭크)이 매우 작을 때(예: 8, 16, 64) 학습 파라미터 수가 획기적으로 줄어듭니다. 예를 들어 d=4096, k=4096인 행렬을 직접 수정하면 1,600만 개 파라미터가 필요하지만, r=16일 때는 A+B 합쳐서 약 13만 개(약 1/120)만 필요합니다.
 
@@ -103,14 +104,14 @@ PEFT(Parameter-Efficient Fine-Tuning)는 Hugging Face에서 제공하는 라이�
 
 ### Transformers, Accelerate와의 통합
 
-```python
+`````python
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8b")
 lora_config = LoraConfig(r=16, lora_alpha=32, target_modules=["q_proj", "v_proj"])
 model = get_peft_model(model, lora_config)
-```
+`````
 
 PEFT 어댑터는 별도 파일로 저장되어 기본 모델을 공유하면서 태스크별 어댑터만 교체할 수 있습니다.
 
@@ -138,7 +139,7 @@ Llama, Mistral, Qwen, Gemma, Phi 등 주요 오픈소스 모델 대부분을 지
 
 ### Unsloth로 Llama 3 파인튜닝 예시
 
-```python
+`````python
 from unsloth import FastLanguageModel
 
 model, tokenizer = FastLanguageModel.from_pretrained(
@@ -152,7 +153,7 @@ model = FastLanguageModel.get_peft_model(
     r=16,
     lora_alpha=16,
 )
-```
+`````
 
 ## 프레임워크 종합 비교
 
@@ -175,9 +176,9 @@ Google Colab(T4 GPU 물로), RunPod(GPU 클라우드 렌탈), 또는 로컬 RTX 
 
 JSONL 형식으로 instruction, input, output 필드를 포함합니다.
 
-```json
+`````json
 {"instruction": "다음 문장을 요약하세요", "input": "인공지능 기술이...", "output": "AI 기술 발전에 따른..."}
-```
+`````
 
 ### LoRA/QLoRA로 Llama 3 파인튜닝
 
@@ -188,13 +189,13 @@ JSONL 형식으로 instruction, input, output 필드를 포함합니다.
 
 ### 어댑터 병합 및 낸포트
 
-```python
+`````python
 # LoRA 어댑터를 기본 모델과 병합
 merged_model = model.merge_and_unload()
 
 # GGUF로 변환 (Ollama/llama.cpp 사용)
 merged_model.save_pretrained_gguf("output.gguf", quantization="Q4_K_M")
-```
+````
 
 ## 파인튜닝 모범 사례
 
@@ -241,7 +242,7 @@ PEFT는 전체 파라미터의 0.1~1%만 학습합니다. 품질은 전체 파�
 - [LoRA 논문 (arXiv:2106.09685)](https://arxiv.org/abs/2106.09685)
 - [Hugging Face Accelerate 문서](https://github.com/huggingface/accelerate)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -313,7 +314,7 @@ LLM 파인튜닝 프레임워크 비교 2025: LoRA, QLoRA, PEFT, Unsloth 심층 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

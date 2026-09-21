@@ -19,9 +19,10 @@ images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-pl
     role: example
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto
 ---
+
 th--.png
 
----
+* * *
 ## TL;DR
 
 Knowledge Work Plugins is Anthropic's official plugin ecosystem that extends Claude's capabilities with structured tool calls for document editing, code analysis, web browsing, and file operations. With 20,728 stars, it represents the gold standard for AI agent tool integration.
@@ -42,13 +43,13 @@ The plugin architecture follows a simple principle: Claude defines what it wants
 - **File Operations** — List directories, move files, manage project structures
 - **Custom Plugins** — Build your own tools using the plugin SDK
 
-```bash
+````bash
 # Install Knowledge Work Plugins
 npx skills add https://github.com/anthropics/knowledge-work-plugins
 
 # List available plugins
 npx skills list | grep knowledge-work
-```
+`````
 
 ## How the Plugin System Works
 
@@ -56,7 +57,7 @@ The plugin system operates through a three-step cycle: 1. **Claude identifies a 
 2. **Tool call is issued** — Claude sends a structured JSON request specifying the action and parameters
 3. **Plugin executes and returns** — The plugin system runs the action in a sandboxed environment and returns results to Claude
 
-```python
+`````python
 # Example plugin invocation
 from knowledge_work_plugins import PluginClient
 
@@ -75,13 +76,13 @@ response = client.call(
 )
 
 print(response)  # {"status": "success", "lines_changed": 5}
-```
+`````
 
 The sandboxing ensures Claude cannot perform destructive operations without explicit confirmation. Each plugin defines its own permission model, from read-only file access to full shell execution.
 
 ## Installation & Setup
 
-Setting up Knowledge Work Plugins requires Python 3.10+ and a working Claude Code or Anthropic API integration: ```bash
+Setting up Knowledge Work Plugins requires Python 3.10+ and a working Claude Code or Anthropic API integration: `````bash
 # Clone the repository
 git clone https://github.com/anthropics/knowledge-work-plugins.git
 cd knowledge-work-plugins
@@ -91,11 +92,11 @@ pip install -r requirements.txt
 
 # Initialize plugin configuration
 cp plugins.config.example.yaml plugins.config.yaml
-```
+`````
 
 ### Plugin Configuration
 
-Each plugin is configured independently in `plugins.config.yaml`: ```yaml
+Each plugin is configured independently in ``plugins.config.yaml``: `````yaml
 plugins: document-edit: enabled: true
     max_file_size: 1048576  # 1MB
     allowed_extensions: - .md
@@ -118,25 +119,25 @@ plugins: document-edit: enabled: true
     max_results: 20
     timeout: 30
     user_agent: "Knowledge-Work-Plugins/1.0"
-```
+`````
 
 ### Docker Setup
 
-```bash
+`````bash
 # Build and run in Docker
 docker build -t knowledge-work-plugins:latest .
 docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins:latest
-```
+`````
 
 ## Integration with Development Workflows
 
 Knowledge Work Plugins integrates with every major development environment: | Environment | Integration Method | Best Plugin |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Claude Code** | Built-in plugin loader | document-edit |
 | **Cursor** | Plugin SDK + VS Code extension | code-analysis |
@@ -146,7 +147,7 @@ Knowledge Work Plugins integrates with every major development environment: | En
 | **GitHub Actions** | CLI tool | code-analysis |
 | **GitLab CI** | Plugin runner | document-edit |
 
-```bash
+`````bash
 # Integrate with GitHub Actions
 # .github/workflows/plugin-audit.yml
 name: Plugin Audit
@@ -156,42 +157,42 @@ jobs: audit: runs-on: ubuntu-latest
       - uses: anthropics/knowledge-work-plugins@v1
         with: plugins: "code-analysis,docker-lint"
           config: plugins.config.yaml
-```
+`````
 
 ## Benchmarks: Plugin-Augmented vs Standard AI
 
-The performance impact of adding structured tools to AI agents is measurable: ```
+The performance impact of adding structured tools to AI agents is measurable: `````
 Task                          | Standard AI | Plugin-Augmented | Improvement
 
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |---
 Fix a bug in 10K LOC codebase | 2.3 hours  | 18 minutes       | 7.7x
 Update documentation           | 45 min     | 3 min            | 15x
 Write integration tests        | 1.5 hours  | 12 min           | 7.5x
 Refactor API endpoint          | 2.0 hours  | 20 min           | 6x
 Code review + suggestions      | 3.0 hours  | 25 min           | 7.2x
-```
+`````
 
 The benchmarks measure time from task initiation to completed, verified output. Plugin-augmented workflows include execution verification (running linters, tests) that standard AI generation cannot perform.
 
 ### Error Rate Comparison
 
-```
+`````
 Metric              | Standard AI | Plugin-Augmented
 
----
+* * *
 |
----
+* * *
 |---
 Incorrect code gen  | 34%        | 8%
 Missing edge cases  | 41%        | 12%
 Requires rewrites   | 67%        | 15%
 Production ready    | 12%        | 78%
-```
+`````
 
 The error rate reduction comes from the plugin system's ability to validate output against real constraints — running actual linters, tests, and type checkers rather than relying on the LLM's internal knowledge.
 
@@ -199,7 +200,7 @@ The error rate reduction comes from the plugin system's ability to validate outp
 
 The plugin SDK makes it straightforward to build custom tools for your specific workflow: ### Building a Custom Plugin
 
-```python
+`````python
 # Custom plugin: PR review automation
 from knowledge_work_plugins import PluginBase, PluginResult
 
@@ -231,11 +232,11 @@ class PRReviewPlugin(PluginBase): name = "pr-review"
 
     def generate_review(self, issues): # Generate structured review...
         pass
-```
+`````
 
 ### Plugin Composition
 
-Complex tasks can be solved by composing multiple plugins: ```python
+Complex tasks can be solved by composing multiple plugins: `````python
 # Compose: search → analyze → edit → verify
 from knowledge_work_plugins import Pipeline
 
@@ -250,11 +251,11 @@ result = pipeline.execute(
     task="Update auth middleware to support OAuth2 PKCE flow",
     plugins_config="plugins.config.yaml"
 )
-```
+`````
 
 ### Plugin Error Handling
 
-Robust error handling is critical for production plugin usage. The SDK provides structured error types and automatic retry logic: ```python
+Robust error handling is critical for production plugin usage. The SDK provides structured error types and automatic retry logic: `````python
 from knowledge_work_plugins import Pipeline, PluginError
 
 pipeline = Pipeline(["document-edit", "code-analysis"])
@@ -269,11 +270,11 @@ except PluginError.PermissionDenied as e: print(f"Permission denied: {e.plugin}"
 except PluginError.ValidationError as e: print(f"Validation failed: {e.message}")
     # Fix and retry
     result = pipeline.execute(task=f"Fix: {e.suggestion}")
-```
+`````
 
 ### Plugin Monitoring and Logging
 
-Track plugin execution with built-in observability: ```python
+Track plugin execution with built-in observability: `````python
 # Enable detailed logging
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -287,11 +288,11 @@ metrics = pipeline.metrics()
 print(f"Total calls: {metrics.total_tool_calls}")
 print(f"Average latency: {metrics.avg_latency:.2f}s")
 print(f"Error rate: {metrics.error_rate:.1%}")
-```
+`````
 
 ### Performance Optimization
 
-For large codebases, plugin execution can be optimized with caching and parallelization: ```python
+For large codebases, plugin execution can be optimized with caching and parallelization: `````python
 # Enable parallel plugin execution
 pipeline.set_parallel(True, max_workers=4)
 
@@ -304,21 +305,21 @@ pipeline.set_budget(
     max_tokens=50000,
     max_tool_calls=50
 )
-```
+`````
 
 ## Comparison with Alternatives
 
 Knowledge Work Plugins stands apart from competing tool-use frameworks: | Feature | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stars | 20,728 | 50K+ | 140K+ | N/A |
 | Developer | Anthropic | LangChain | AutoGPT | OpenAI |
@@ -345,14 +346,14 @@ Knowledge Work Plugins is powerful but not universal: 1. **API dependency** — 
 
 5. **Cross-platform file access** — Plugins operate within the containerized execution environment. Accessing files outside the workspace requires explicit volume mounts, which adds configuration complexity for multi-machine setups.
 
-```bash
+`````bash
 # Quick suitability check
 # ✅ Codebase analysis and editing → YES
 # ✅ Documentation updates → YES
 # ✅ Web research → YES
 # ✅ Complex multi-API orchestration → PARTIAL (use LangChain instead)
 # ✅ Real-time dashboard updates → NO (use websockets directly)
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -366,19 +367,19 @@ The plugin SDK is designed for Claude but can be adapted for other models with m
 
 ### How do I create a custom plugin?
 
-Use the `PluginBase` class from the SDK. Define your plugin name, version, description, and an `execute` method. The SDK handles serialization, error handling, and sandboxing.
+Use the ````PluginBase```` class from the SDK. Define your plugin name, version, description, and an ````execute```` method. The SDK handles serialization, error handling, and sandboxing.
 
 ### Are there rate limits on plugin execution?
 
-Yes. Rate limits are defined per-plugin in `plugins.config.yaml`. The default is 100 calls per minute, which can be adjusted based on your needs.
+Yes. Rate limits are defined per-plugin in ````plugins.config.yaml````. The default is 100 calls per minute, which can be adjusted based on your needs.
 
 ### Can plugins execute shell commands?
 
-Yes, the `shell-exec` plugin allows controlled shell execution. It includes safeguards against destructive commands and operates within a defined directory sandbox. Sensitive commands like `rm -rf` and `dd` are blocked by default.
+Yes, the ````shell-exec```` plugin allows controlled shell execution. It includes safeguards against destructive commands and operates within a defined directory sandbox. Sensitive commands like ````rm -rf```` and ````dd```` are blocked by default.
 
 ### How do I audit plugin permissions?
 
-Run `knowledge-work-plugins audit` to generate a comprehensive audit report of all plugin permissions, executed commands, and file access patterns. The audit report includes a risk assessment for each plugin and recommendations for tightening permissions.
+Run ````knowledge-work-plugins audit```` to generate a comprehensive audit report of all plugin permissions, executed commands, and file access patterns. The audit report includes a risk assessment for each plugin and recommendations for tightening permissions.
 
 ## Conclusion
 
@@ -388,14 +389,14 @@ For plugin development infrastructure, [DigitalOcean](https://m.do.co/oa14d5f0wx
 
 **Get started:**
 
-```bash
+`````bash
 npx skills add https://github.com/anthropics/knowledge-work-plugins
-```
+````
 
 **Internal links**: [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) · [Automate research](https://dibi8.com/dev-utils/academic-research-skills)
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/anthropics/knowledge-work-plugins
 - Plugin SDK documentation: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
 - Claude API reference: https://docs.anthropic.com/claude/reference/
@@ -430,7 +431,7 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](knowledge-work-plugins)
@@ -439,7 +440,7 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 - [1m-context-window-llm-2026-real-test](knowledge-work-plugins)
 - [9router-smart-llm-proxy-token-saver-free-coding](knowledge-work-plugins)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

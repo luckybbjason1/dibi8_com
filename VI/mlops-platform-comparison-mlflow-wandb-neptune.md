@@ -22,6 +22,7 @@ aliases:
   - /posts/mlops-platform-comparison-mlflow-wandb-neptune/
 ---
 
+
 # MLflow vs Weights & Biases vs Neptune: Hướng Dẫn Chọn Nền Tảng Theo Dõi Thử Nghiệm MLOps 2024
 
 
@@ -127,7 +128,7 @@ Với sự bùng nổ của Large Language Models năm 2024, cả ba nền tản
 ## Code Ví Dụ: Logging Thử Nghiệm Trên Ba Nền Tảng
 
 Dưới đây là ví dụ logging cùng một thử nghiệm đơn giản (huấn luyện Random Forest trên Iris dataset) trên cả ba nền tảng: **MLflow:**
-```python
+````python
 import mlflow
 import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
@@ -144,10 +145,10 @@ with mlflow.start_run(): X_train, X_test, y_train, y_test = train_test_split(*lo
     mlflow.log_param("max_depth", 5)
     mlflow.log_metric("accuracy", acc)
     mlflow.sklearn.log_model(rf, "model")
-```
+`````
 
 **Weights & Biases:**
-```python
+`````python
 import wandb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
@@ -161,10 +162,10 @@ rf.fit(X_train, y_train)
 acc = accuracy_score(y_test, rf.predict(X_test))
 wandb.log({"accuracy": acc})
 wandb.sklearn.plot_classifier(rf, X_train, X_test, y_train, y_test)
-```
+`````
 
 **Neptune:**
-```python
+`````python
 import neptune
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
@@ -180,9 +181,9 @@ rf.fit(X_train, y_train)
 acc = accuracy_score(y_test, rf.predict(X_test))
 run["metrics/accuracy"] = acc
 run.stop()
-```
+`````
 
-Nhận xét: MLflow sử dụng context manager (`with` statement) — rõ ràng và Pythonic. W&B tự động log cả config và metrics với ít code hơn. Neptune sử dụng cú pháp dictionary-like (`run["key"]`) cho phép cấu trúc namespace linh hoạt và phân cấp.
+Nhận xét: MLflow sử dụng context manager (````with```` statement) — rõ ràng và Pythonic. W&B tự động log cả config và metrics với ít code hơn. Neptune sử dụng cú pháp dictionary-like (````run["key"]```) cho phép cấu trúc namespace linh hoạt và phân cấp.
 
 ## Kết Luận
 
@@ -218,7 +219,7 @@ Không có cách chuyển đổi trực tiếp tự động giữa các nền t�
 - [Databricks MLflow Integration](https://databricks.com)
 - [Linux Foundation MLflow Project](https://linuxfoundation.org)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

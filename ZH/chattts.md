@@ -13,6 +13,7 @@ aliases:
 - /zh/resources/llm-frameworks/chattts-architecture-autoregressive-voice/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -41,24 +42,24 @@ ChatTTS遵循三阶段流水线：
 2. **语义Token生成**：GPT风格的自回归解码器基于优化后的文本和说话人嵌入生成语义token。这是核心的创造性步骤，模型在此决定节奏、语调和情感表达。
 3. **音频解码**：语义token通过预训练声码器（Vocos）转换为原始音频波形。输出为24kHz单声道音频。
 
-```
+````
 输入文本 → 文本优化器 (LLM) → 语义Token (GPT解码器) → 声码器 → 24kHz音频
                                       ↑
                                说话人嵌入 (spk_emb)
-```
+`````
 
 ![ChatTTS架构图 — 三阶段文本到语音流水线，包含说话人嵌入和韵律token控制](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/chattts/architecture-diagram.png)
 
 ### 核心概念
 
-- **说话人嵌入 (`spk_emb`)**：编码声音特征的向量。可以采样随机说话人、保存嵌入以供复用，或从参考音频中提取。
+- **说话人嵌入 (````spk_emb````)**：编码声音特征的向量。可以采样随机说话人、保存嵌入以供复用，或从参考音频中提取。
 - **韵律Token**：插入文本中控制表达的特殊token：
-  - `[laugh]` — 添加笑声
-  - `[uv_break]` — 添加微停顿
-  - `[lbreak]` — 添加较长停顿
+  - ````[laugh]```` — 添加笑声
+  - ````[uv_break]```` — 添加微停顿
+  - ````[lbreak]```` — 添加较长停顿
 - **推理参数**：Temperature、top-P和top-K采样控制生成语音的随机性和多样性。
 
-```python
+`````python
 import ChatTTS
 import torch
 
@@ -71,7 +72,7 @@ print(f"说话人嵌入形状: {rand_spk.shape}")
 
 # 保存以供后续复用
 torch.save(rand_spk, "speaker_embedding.pt")
-```
+`````
 
 ## 安装与配置
 
@@ -83,7 +84,7 @@ torch.save(rand_spk, "speaker_embedding.pt")
 
 ### 通过 PyPI 安装（稳定版）
 
-```bash
+`````bash
 # 创建虚拟环境
 conda create -n chattts python=3.11
 conda activate chattts
@@ -93,19 +94,19 @@ pip install ChatTTS
 
 # 安装GPU加速的可选依赖
 pip install torchaudio
-```
+`````
 
 ### 从源码安装（最新版）
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -e .
-```
+`````
 
 ### Docker 配置
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
@@ -113,11 +114,11 @@ cd ChatTTS
 # 使用Docker构建并运行
 docker build -t chattts .
 docker run --gpus all -p 8080:8080 chattts
-```
+`````
 
 ### 验证安装
 
-```python
+`````python
 import ChatTTS
 print(f"ChatTTS 版本: {ChatTTS.__version__}")
 
@@ -127,31 +128,31 @@ chat.load(compile=False)
 texts = ["你好，这是ChatTTS的测试。"]
 wavs = chat.infer(texts)
 print(f"生成音频形状: {wavs[0].shape}")
-```
+`````
 
 ### 启动 WebUI
 
-```bash
+`````bash
 python examples/web/webui.py
-```
+`````
 
-在浏览器访问 `http://localhost:7860`。WebUI支持文本输入、说话人选择、温度调节和音频播放。
+在浏览器访问 ````http://localhost:7860````。WebUI支持文本输入、说话人选择、温度调节和音频播放。
 
 ### 命令行推理
 
-```bash
+`````bash
 python examples/cmd/run.py "你的第一段文字。" "你的第二段文字。"
-```
+`````
 
-输出保存为 `./output_audio_n.mp3`。
+输出保存为 ````./output_audio_n.mp3````。
 
 ## 与主流工具集成
 
 ### OpenAI 兼容 API 服务
 
-ChatTTS提供兼容OpenAI的API，可与任何支持 `/v1/audio/speech` 端点的工具集成。
+ChatTTS提供兼容OpenAI的API，可与任何支持 ````/v1/audio/speech```` 端点的工具集成。
 
-```python
+`````python
 # openai_api_server.py — ChatTTS的OpenAI兼容端点
 import ChatTTS
 import torch
@@ -181,17 +182,17 @@ async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.I
     torchaudio.save(buffer, torch.from_numpy(wavs[0]).unsqueeze(0), 24000, format="mp3")
     buffer.seek(0)
     return {"audio": base64.b64encode(buffer.read()).decode()}
-```
+`````
 
 启动服务：
 
-```bash
+`````bash
 uvicorn openai_api_server:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### LangChain / LLM 集成
 
-```python
+`````python
 # 将ChatTTS集成到LangChain代理流水线
 from langchain.agents import Tool, AgentExecutor, create_react_agent
 from langchain_openai import ChatOpenAI
@@ -217,11 +218,11 @@ tools = [
 
 llm = ChatOpenAI(model="gpt-4o")
 agent = create_react_agent(llm, tools, prompt="你是一个语音助手。")
-```
+`````
 
 ### Gradio 网页界面定制
 
-```python
+`````python
 # 生产部署的自定义Gradio UI
 import gradio as gr
 import ChatTTS
@@ -259,11 +260,11 @@ demo = gr.Interface(
 )
 
 demo.launch(server_name="0.0.0.0", server_port=7860)
-```
+`````
 
 ### 实时应用流式输出
 
-```python
+`````python
 # 实时对话的流式音频生成
 import ChatTTS
 import numpy as np
@@ -283,11 +284,11 @@ class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
 
 streamer = StreamingTTS(chat)
 streamer.stream_and_play("嘿，让我先想想...")
-```
+`````
 
 ### Prometheus 监控
 
-```python
+`````python
 # 为ChatTTS API添加Prometheus指标
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
@@ -303,7 +304,7 @@ async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs
 
 @app.get("/metrics")
 async def metrics(): return Response(generate_latest(), media_type="text/plain")
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -313,15 +314,15 @@ async def metrics(): return Response(generate_latest(), media_type="text/plain")
 
 | 模型 | 显存占用(30s音频) | RTF (RTX 4090) | Token/秒 | CPU推理 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ChatTTS v0.2.5 | 4 GB | 0.30 | ~7语义tok/s | 不推荐 |
 | Coqui XTTS v2 | 4 GB | 0.25 | ~10 tok/s | 不支持 |
@@ -338,15 +339,15 @@ async def metrics(): return Response(generate_latest(), media_type="text/plain")
 
 | 评估维度 | ChatTTS | Coqui XTTS v2 | MeloTTS | Bark |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 自然停顿 | 5/6票 | 1/6票 | 2/6票 | 3/6票 |
 | 笑声质量 | 6/6票 | 0/6票 | 0/6票 | 2/6票 |
@@ -359,7 +360,7 @@ async def metrics(): return Response(generate_latest(), media_type="text/plain")
 
 ChatTTS在LLM助手流水线中表现出色，模型需要以自然韵律朗读回复。典型集成的端到端延迟约为~300毫秒：
 
-```python
+`````python
 import ChatTTS
 import torchaudio
 import time
@@ -381,13 +382,13 @@ audio_path = assistant.synthesize_response(
     "这是个有趣的问题！让我想想...[uv_break] "
     "好的，答案取决于你的具体配置。"
 )
-```
+`````
 
 ### 用例：多说话人对话生成
 
 ChatTTS支持通过切换说话人嵌入实现多说话人对话：
 
-```python
+`````python
 import ChatTTS
 import torchaudio
 
@@ -407,25 +408,25 @@ dialogue = [
 for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
-```
+`````
 
 ## 高级用法 / 生产环境加固
 
 ### Torch 编译加速
 
-在Ampere架构GPU上启用 `torch.compile()` 可获得约20%推理速度提升：
+在Ampere架构GPU上启用 ````torch.compile()```` 可获得约20%推理速度提升：
 
-```python
+`````python
 import ChatTTS
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # 在支持的模型上启用torch.compile
-```
+`````
 
 ### 说话人嵌入管理
 
 保存和加载说话人嵌入以保持一致的语音档案：
 
-```python
+`````python
 import ChatTTS
 import torch
 
@@ -441,13 +442,13 @@ for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
 # 加载已有说话人
 spk_agent = torch.load("speakers/agent.pt")
 params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
-```
+`````
 
 ### GPU 内存优化
 
 对于显存有限的服务器，使用混合精度并清理缓存：
 
-```python
+`````python
 import torch
 from ChatTTS import Chat
 
@@ -459,11 +460,11 @@ def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): # 混合�
         wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()  # 释放GPU内存
     return wavs
-```
+`````
 
 ### 健康检查端点
 
-```python
+`````python
 # health_check.py — 适用于Kubernetes的健康探针
 from fastapi import FastAPI, HTTPException
 import ChatTTS
@@ -482,11 +483,11 @@ def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="
 
 @app.get("/ready")
 def ready(): return {"status": "ready"}
-```
+`````
 
 ### Kubernetes 部署
 
-```yaml
+`````yaml
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -506,29 +507,29 @@ spec: replicas: 2
         readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
-```
+`````
 
 ## 与替代品对比
 
 | 特性 | ChatTTS | Coqui TTS (XTTS v2) | MeloTTS | Bark (Suno) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub星标** | 39.3k | 45.3k | 7.4k | 39.1k |
 | **许可证** | AGPL-3.0 | MPL-2.0 | MIT | MIT |
 | **最低显存** | 4 GB | 4 GB | 2 GB | 5 GB |
 | **RTF (RTX 4090)** | 0.30 | 0.25 | 0.08 | 0.45 |
 | **对话式TTS** | 是（专门设计） | 中等 | 否 | 中等 |
-| **笑声控制** | Token级 `[laugh]` | 否 | 否 | 有限 |
-| **停顿控制** | Token级 `[uv_break]` | 否 | 仅标点 | 有限 |
+| **笑声控制** | Token级 ````[laugh]```` | 否 | 否 | 有限 |
+| **停顿控制** | Token级 ````[uv_break]```` | 否 | 仅标点 | 有限 |
 | **呼吸声** | 是 | 否 | 否 | 否 |
 | **语音克隆** | 说话人嵌入 | 6秒音频克隆 | 否 | 说话人提示 |
 | **支持语言** | 中文、英文 | 17种语言 | 6种语言 | 多语言 |
@@ -572,10 +573,10 @@ ChatTTS并非万能TTS方案。在选用前，请了解以下限制：
 这是自回归TTS模型的固有特性。GPT风格解码器以概率方式采样token，偶尔采样轨迹会偏离到潜在空间中不同说话人区域。缓解方法：降低temperature、使用固定说话人嵌入，或生成多个样本选择最佳结果。
 
 **Q: 如何控制笑声和停顿？**
-ChatTTS支持输入文本中的特殊韵律token：`[laugh]`插入笑声，`[uv_break]`添加微停顿，`[lbreak]`添加较长停顿。也可通过 `RefineTextParams` 设置句子级控制。
+ChatTTS支持输入文本中的特殊韵律token：````[laugh]````插入笑声，````[uv_break]````添加微停顿，````[lbreak]````添加较长停顿。也可通过 ````RefineTextParams```` 设置句子级控制。
 
 **Q: ChatTTS支持语音克隆吗？**
-支持，通过说话人嵌入。可以使用 `chat.sample_random_speaker()` 采样随机说话人，或从参考音频提取嵌入。但与几秒音频的零样本克隆不同，该功能尚在路线图中。
+支持，通过说话人嵌入。可以使用 ````chat.sample_random_speaker()```` 采样随机说话人，或从参考音频提取嵌入。但与几秒音频的零样本克隆不同，该功能尚在路线图中。
 
 **Q: ChatTTS与GPT-SoVITS有何区别？**
 GPT-SoVITS优化于少样本语音克隆，最低仅需1分钟参考音频。ChatTTS优化于对话式TTS，擅长自然韵律、笑声和对话流畅度。需要克隆声音选GPT-SoVITS，需要自然对话选ChatTTS。
@@ -584,7 +585,7 @@ GPT-SoVITS优化于少样本语音克隆，最低仅需1分钟参考音频。Cha
 没有实用的CPU推理路径。如需CPU推理，考虑MeloTTS。
 
 **Q: 如何在Docker容器中部署ChatTTS？**
-使用官方Dockerfile构建：`docker build -t chattts .`，然后运行 `docker run --gpus all -p 7860:7860 chattts`。
+使用官方Dockerfile构建：````docker build -t chattts .````，然后运行 ````docker run --gpus all -p 7860:7860 chattts````。
 
 ## 结论
 
@@ -594,7 +595,7 @@ ChatTTS在开源TTS领域占据独特地位。其对话式设计、token级韵�
 
 **行动清单：**
 1. 克隆仓库并在GPU机器上运行WebUI
-2. 使用韵律token（`[laugh]`、`[uv_break]`）在你的对话数据集上实验
+2. 使用韵律token（````[laugh]````、````[uv_break]```）在你的对话数据集上实验
 3. 部署OpenAI兼容API以集成到你的LLM流水线
 4. 加入Discord或GitHub Discussions社区获取流式生成和情感控制更新
 
@@ -687,12 +688,12 @@ ChatTTS: 39.3K+ Stars — 对话式TTS基准对比 vs Coqui、MeloTTS 2026 repre
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](chattts)
@@ -701,6 +702,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](chattts)
 - [nanochat-karpathy-100-chatgpt-single-gpu](chattts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

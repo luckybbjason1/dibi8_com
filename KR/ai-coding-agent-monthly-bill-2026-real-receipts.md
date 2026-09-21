@@ -32,6 +32,7 @@ faq: - q: "Claude Max($200)는 API 종량제 대비 가치가 있나요?"
     a: "Anthropic은 4월 말 Max 플랜 속도 제한을 조정했습니다(더 느슨하고 여유가 큼). OpenAI의 Codex CLI는 완전 종량제로 이동(Pro 티어 폐지). Cursor는 API 크레딧이 포함된 $50 Business 티어를 추가했습니다. 세 가지 변화 모두 Q1 리뷰 대비 임계치 계산을 바꿔놓습니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # AI 코딩 에이전트 월 청구서 2026: 실측 30일 영수증
@@ -52,7 +53,7 @@ faq: - q: "Claude Max($200)는 API 종량제 대비 가치가 있나요?"
 >
 > **3-도구 스택은** Codex CLI의 터미널 네이티브 플로가 우위를 갖는 셸/데브옵스 자동화 요구가 있을 때만 가치 있음.
 
----
+* * *
 
 ## 30일 워크로드
 
@@ -68,38 +69,38 @@ faq: - q: "Claude Max($200)는 API 종량제 대비 가치가 있나요?"
 
 ### Claude Max ($200/월) — 가장 많은 시간, 가장 큰 가치
 
-```
+````
 Plan: Anthropic Max ($200)
 Period: 2026-05-01 to 2026-05-30
 Token usage: ~14.2M input, ~3.1M output (estimated)
 Rate limit hits: 2 (both during long debug loops near 200K context)
 Effective cost per hour: $2.98
-```
+`````
 
 표준 Sonnet 4.6 API 요금으로 청구되었다면 동일 사용량이 약 $340였을 것입니다. Max는 이 볼륨에서 약 $140 절감. **임계치**: 하루 3시간 미만 사용 시 API 종량제($80-150 구간)가 유리. 3시간 이상이면 Max 승.
 
 ### ChatGPT Plus + Codex CLI API (실효 $165)
 
-```
+`````
 Plan: ChatGPT Plus ($20) + Codex CLI API
 Period: 2026-05-01 to 2026-05-30
 API usage: $144.80 (GPT-5 + Codex)
 Effective monthly: $164.80
 Effective cost per hour (Codex only): $7.49
-```
+`````
 
 Codex CLI의 강점은 셸 중심 워크플로 — 데브옵스 스크립트, CI/CD 글루, 로그 분석입니다. 시간당 비용은 더 높지만 시간 수가 더 적습니다. **월 22시간의 에이전트 터미널 작업**에서는 Claude Max와 Cursor Pro 사이에 자리합니다.
 
 ### Cursor Pro + API (실측 $87)
 
-```
+`````
 Plan: Cursor Pro ($20)
 Period: 2026-05-01 to 2026-05-30
 Subscription: $20
 API overflow (agent mode): $67.12
 Effective monthly: $87.12
 Effective cost per hour: $0.98
-```
+````
 
 시간당 비용 최저 — 그러나 89시간의 대부분은 수동적 탭 자동완성입니다. 능동적 에이전트 루프 시간은 약 12시간. **능동 시간당 비용**은 $7.26에 훨씬 가깝습니다. 저렴이라는 프레임이 에이전트 모드를 본격 사용했을 때의 실체를 가립니다.
 
@@ -160,7 +161,7 @@ Effective cost per hour: $0.98
 
 최적화 전에 본인의 사용을 30일 추적해 보세요. 위 영수증은 한 개발자의 현실이지만, 여러분의 워크플로 구성에 따라 계산이 달라집니다. 추적이라는 행위 자체가 가장 큰 절감을 드러냅니다 — 대부분의 개발자는 직접 보기 전까지 시간당 얼마를 쓰는지 모릅니다.
 
----
+* * *
 
 **관련 글**: [AI 코딩 2026-Q2 슛아웃](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [RTK Rust CLI 프록시: AI 코딩 비용 80% 절감](https://dibi8.com/kr/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/)
 
@@ -226,12 +227,12 @@ AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor Pro 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -241,7 +242,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ai-coding-agent-monthly-bill-2026-real-receipts)
 - [cursor-vs-claude-code](ai-coding-agent-monthly-bill-2026-real-receipts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

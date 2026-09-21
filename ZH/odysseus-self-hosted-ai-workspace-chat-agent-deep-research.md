@@ -12,9 +12,10 @@ maintainer: 'pewdiepie-archdaemon'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg'
 ---
+
 # Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026
 
-```
+````
 ┌──────────────────────────────────────────────────┐
 │              Odysseus Architecture                 │
 │                                                   │
@@ -40,9 +41,9 @@ featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/d
 │  │        Frontend: Responsive Web UI (PWA)      │ │
 │  └───────────────────────────────────────────────┘ │
 └──────────────────────────────────────────────────┘
-```
+`````
 
-Odysseus 是一个自托管的AI工作站，集成了10多种集成工具到一个隐私优先的界面中。由名为`pewdiepie-archdaemon` 的开发者创建，自2026年5月31日创建以来已获得超过65,000颗GitHub星标——是GitHub历史上增长最快的AI项目之一。
+Odysseus 是一个自托管的AI工作站，集成了10多种集成工具到一个隐私优先的界面中。由名为````pewdiepie-archdaemon```` 的开发者创建，自2026年5月31日创建以来已获得超过65,000颗GitHub星标——是GitHub历史上增长最快的AI项目之一。
 
 与需要您提交数据的ChatGPT或Claude不同，Odysseus 完全在您的硬件上运行。您可以连接自己的API密钥或将本地模型自行服务。该项目描述自己为“类似于ChatGPT和Claude的UI体验的自托管版本，但更具瑕疵且更有趣。”
 
@@ -56,11 +57,11 @@ Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈A
 
 | 功能 | 描述 | 基于 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 聊天 | 多模型对话 | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | 代理 | 自主智能代理 | OpenCode, MCP, web, files, shell, skills, memory |
@@ -84,7 +85,7 @@ Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈A
 
 Odysseus 采用分层架构。后端是一个使用Python FastAPI编写的应用程序，负责模型推理、工具执行和数据库查询的协调。前端是一个响应式Web UI，可在桌面和移动设备上运行（可安装为PWA）。
 
-```
+`````
 Client (Browser/PWA)
     │
     ▼
@@ -107,7 +108,7 @@ Client (Browser/PWA)
     ▼     ▼          ▼          ▼
   vLLM  Ollama    SearXNG   ChromaDB
  (GPU)  (CPU)    (Search)  (Memory)
-```
+`````
 
 **烹饪书**组件尤为值得注意——它会扫描您的硬件以检测可用的GPU，然后推荐并下载兼容的GGUF、FP8或AWQ格式模型。这消除了确定哪个模型适合您VRAM的常见痛点。
 
@@ -119,7 +120,7 @@ Client (Browser/PWA)
 
 Docker 是运行Odysseus 的最简单且最可靠的方式。项目提供了完整的Docker Compose堆栈，包括应用程序、ChromaDB用于记忆、SearXNG用于Web搜索以及ntfy用于通知。
 
-```bash
+`````bash
 # Clone the repository (use dev branch for latest features)
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
@@ -134,20 +135,20 @@ cp .env.example .env
 
 # Start the stack
 docker compose up -d --build
-```
+`````
 
-启动后，请访问 `http://localhost:7000`。首次设置时，Odysseus 会创建一个管理员账户（除非设置了 `ODYSSEUS_ADMIN_USER`），并在终端中打印临时密码。
+启动后，请访问 ````http://localhost:7000````。首次设置时，Odysseus 会创建一个管理员账户（除非设置了 ````ODYSSEUS_ADMIN_USER````），并在终端中打印临时密码。
 
 要包含可选的额外功能（PDF查看器、AGPL PyMuPDF进行Office提取）：
 
-```bash
+`````bash
 docker compose build --build-arg INSTALL_OPTIONAL=true
 docker compose up -d --build
-```
+`````
 
 要启用对NVIDIA GPU的GPU通过：
 
-```bash
+`````bash
 # Diagnose GPU passthrough
 scripts/check-docker-gpu.sh
 
@@ -156,21 +157,21 @@ scripts/check-docker-gpu.sh --install-nvidia-toolkit
 
 # Enable GPU overlay
 scripts.check-docker-gpu.sh --enable-nvidia-overlay
-```
+`````
 
 对于AMD/ROCm：
 
-```bash
+`````bash
 scripts/check-docker-amd-gpu.sh
-```
+`````
 
-然后编辑 `.env` 以添加覆盖层和您的主机渲染组ID。
+然后编辑 ````.env```` 以添加覆盖层和您的主机渲染组ID。
 
 ### 原生Linux/macOS安装
 
 如果您不希望使用Docker：
 
-```bash
+`````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
@@ -186,40 +187,40 @@ python setup.py
 
 # Start the server
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
-```
+`````
 
 要求：Python 3.11+。应用程序本身很轻量级；本地模型服务取决于您的模型、运行时、GPU和VRAM的重量。
 
 ### Apple Silicon（macOS带GPU）
 Docker 在 macOS 上无法使用 Metal GPU。对于 M 系列 Mac 上的 GPU 加速本地模型服务：
 
-```bash
+`````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 
 # The bundled script handles venv + dependencies + startup
 ./start-macos.sh
-```
+`````
 
-这将在 `http://127.0.0.1:7860` 启动。要通过 Tailscale 暴露给手机：
+这将在 ````http://127.0.0.1:7860```` 启动。要通过 Tailscale 暴露给手机：
 
-```bash
+`````bash
 ODYSSEUS_HOST=0.0.0.0 ./start-macos.sh
-```
+`````
 
 ### 构建桌面应用
 
 您可以将 Odysseus 包装为原生桌面应用封装器：
 
-```bash
+`````bash
 ./build-macos-app.sh
-```
+`````
 
 ## 配置与模型设置
 
 安装后，通过 web UI 的 **设置** 选项卡配置您的 AI 模型。可以添加以下这些提供者中的任意一个：
 
-```yaml
+`````yaml
 # Example .env configuration for multi-provider setup
 APP_BIND=127.0.0.1
 APP_PORT=7000
@@ -238,13 +239,13 @@ OLLAMA_BASE_URL=http://localhost:11434
 
 # OpenRouter
 OPENROUTER_API_KEY=sk-or-your-key-here
-```
+`````
 
 烹饪书提供了图形界面辅助下载和部署模型的方式。它会检测到您的 GPU VRAM 并建议合适的模型。对于仅使用 API（没有本地模型）的情况，您可以跳过烹饪书并连接到您偏好的 API 提供商。
 
 ### 添加自定义模型
 
-```bash
+`````bash
 # List available models in Cookbook
 odysseus cookbook list
 
@@ -253,7 +254,7 @@ odysseus cookbook download mistral-7b
 
 # Start serving a local model
 odysseus cookbook serve llama-3.1-8b
-```
+`````
 
 ## 与其他工具的集成
 
@@ -261,7 +262,7 @@ odysseus cookbook serve llama-3.1-8b
 
 Odysseus 剂量基于 [OpenCode](https://github.com/anomalyco/opencode)，使其能够自主使用工具。您可以配置 MCP 服务器以连接外部工具：
 
-```bash
+`````bash
 # Configure MCP in .env
 MCP_SERVERS=http://localhost:3000,mcp://your-server
 
@@ -269,13 +270,13 @@ MCP_SERVERS=http://localhost:3000,mcp://your-server
 # - Shell execution
 # - Web search
 # - Custom skills
-```
+`````
 
 ### ChromaDB 用于持久内存
 
 Odysseus 包含了 ChromaDB，用于向量基础的持久内存。您的剂量会记住之前的对话，并可以通过向量相似性和关键词搜索来检索上下文：
 
-```bash
+`````bash
 # Memory import/export
 odysseus memory export --output memory.json
 odysseus memory import --input memory.json
@@ -283,23 +284,23 @@ odysseus memory import --input memory.json
 # The memory system uses: # - ChromaDB for vector storage
 # - fastembed (ONNX) for embeddings
 # - Combined vector + keyword retrieval
-```
+`````
 
 ### SearXNG 网站搜索
 
 对于需要网络研究的剂量，Odysseus 集成了 SearXNG（一个隐私保护的元搜索引擎）。这意味着 AI 剂量可以在不将您的查询暴露给 Google 或 Bing 的情况下进行网络搜索：
 
-```bash
+`````bash
 # SearXNG is included in the Docker stack
 # Access it at: http://localhost:8888 (inside Docker network)
 # Agent web search uses it automatically
-```
+`````
 
 ### 电子邮件集成
 
 Odysseus 包含了一个完整的 IMAP/SMTP 收件箱，并集成了 AI 功能来处理邮件：
 
-```yaml
+`````yaml
 # Email config in .env
 EMAIL_IMAP_SERVER=imap.gmail.com
 EMAIL_IMAP_PORT=993
@@ -307,7 +308,7 @@ EMAIL_SMTP_SERVER=smtp.gmail.com
 EMAIL_SMTP_PORT=587
 EMAIL_USERNAME=your@email.com
 EMAIL_PASSWORD=app-password
-```
+`````
 
 AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分类和过滤垃圾邮件。
 
@@ -317,11 +318,11 @@ AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分�
 
 | 组件 | Docker | 原生（无模型） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 内存 (RAM) | ~200 MB | ~50 MB |
 | 磁盘空间 (Disk) | ~500 MB（基础） | ~100 MB |
@@ -332,14 +333,14 @@ AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分�
 
 Odysseus 的深度研究功能（来自阿里巴巴 Tongyi DeepResearch 的改编）可以执行多步骤的研究工作流：
 
-```
+`````
 Research Task: "Compare RAG vs. fine-tuning for enterprise QA"
 
 Step 1: Web search (SearXNG) → 15 sources
 Step 2: Read & extract key points → 8 documents
 Step 3: Synthesize into report → 5-page summary
 Step 4: Visualize with charts → auto-generated
-```
+`````
 
 这特别适用于研究人员、分析师以及需要从多个来源综合信息并生成结构化报告的人。
 
@@ -347,21 +348,21 @@ Step 4: Visualize with charts → auto-generated
 
 比较功能允许您在旁边对不同模型进行盲 A/B 测试：
 
-```
+`````
 Prompt: "Write a Python binary search implementation"
 
 Model A: [hidden] → Response
 Model B: [hidden] → Response
 
 User selects best response → rankings updated
-```
+`````
 这消除了在评估哪种模型最适合您的用例时的品牌偏见。
 
 ### 高级用法 / 生产强化
 
 #### 多用户设置
 
-```bash
+`````bash
 # Enable authentication (default)
 AUTH_ENABLED=true
 
@@ -373,13 +374,13 @@ ODYSSEUS_ADMIN_PASSWORD=secure-password
 
 # After first login, disable temporary password requirement
 # via Settings panel
-```
+`````
 
 #### 反向代理配置
 
 对于反向代理后的生产部署：
 
-```nginx
+`````nginx
 server {
     listen 443 ssl;
     server_name ai.yourdomain.com;
@@ -398,11 +399,11 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 #### 用于生产的 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     restart: unless-stopped
@@ -413,11 +414,11 @@ services: odysseus: image: pewdiepie-archdaemon/odysseus:latest
     deploy: resources: reservations: devices: - driver: nvidia
               count: 1
               capabilities: [gpu]
-```
+`````
 
 #### 备份策略
 
-```bash
+`````bash
 # Backup ChromaDB (memory) and configuration
 tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
   data/ \
@@ -426,23 +427,23 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 # ChromaDB data persists in: ./data/chroma/
 # SQLite database: ./odysseus.db
-```
+`````
 
 ### 与其他替代方案的比较
 
 | 特性 | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 自托管 | ✅ 完全 | ❌ 只限云端 | ❌ 只限云端 | ❌ 只限云端 | ✅ 部分 |
 | 内置代理 | ✅ OpenCode/MCP | ✅ GPTs | ✅ Computer Use | ❌ 无 | ✅ 局部 |
@@ -458,11 +459,11 @@ tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \
 
 尽管 Odysseus 非常出色，但也有一些需要了解的限制：
 
-1. **新项目（创建于 2026 年 5 月 31 日）** — 尽管有超过 65,000 星，Odysseus 极其年轻。预期会出现错误、中断变更和不完整的文档。`dev` 分支是默认分支，但“可能不稳定”。
+1. **新项目（创建于 2026 年 5 月 31 日）** — 尽管有超过 65,000 星，Odysseus 极其年轻。预期会出现错误、中断变更和不完整的文档。````dev```` 分支是默认分支，但“可能不稳定”。
 
-2. **GPU 支持侧重于 Docker/NVIDIA** — AMD ROCm 支持存在，但需要手动 `.env` 配置。Apple Silicon 需要原生安装（不支持 Docker GPU）。
+2. **GPU 支持侧重于 Docker/NVIDIA** — AMD ROCm 支持存在，但需要手动 ````.env```` 配置。Apple Silicon 需要原生安装（不支持 Docker GPU）。
 
-3. **尚未发布官方容器镜像** — 您必须从源代码构建（`git clone` + `docker compose build`）。一个官方的 Docker Hub 镜像将简化部署过程。
+3. **尚未发布官方容器镜像** — 您必须从源代码构建（````git clone```` + ````docker compose build```）。一个官方的 Docker Hub 镜像将简化部署过程。
 
 4. **Cookbook 模型选择有限** — 虽然 VRAM 意识强，但 CookBook 从 HuggingFace 下载模型可能对大型模型下载速度较慢。没有内置模型注册表和质量评分。
 
@@ -513,7 +514,7 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 - 代理框架（OpenCode）: https://github.com/anomalyco/opencode
 
 
----
+* * *
 加入我们的社区，了解更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **免责声明：** 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。
@@ -544,7 +545,7 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [oh-my-pi](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
@@ -553,7 +554,7 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 - [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
 - [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

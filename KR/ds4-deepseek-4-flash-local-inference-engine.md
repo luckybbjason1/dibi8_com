@@ -22,6 +22,7 @@ aliases:
   - /posts/ds4/
 ---
 
+
 {</* resource-info */>}
 # ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드
 
@@ -41,20 +42,20 @@ ds4 DeepSeek 4 Flash local inference engine for Metal and CUDA. With 10,913 star
 
 At its core, ds4 solves a specific problem in the Dev Utils workflow. The architecture is designed around three principles: simplicity, composability, and production-readiness.
 
-```
+````
 [此处建议插入：项目架构图/核心模块关系图]
 Architecture: ds4 core components
 ├── CLI interface
 ├── API layer
 ├── Core engine
 └── Plugin/extension system
-```
+`````
 
 ## 설치 및 설정
 
 Get ds4 running in under 5 minutes: **Option 1: Install via package manager**
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/antirez/ds4.git
 cd ds4
@@ -64,33 +65,33 @@ npm install  # or pip install -r requirements.txt, or cargo build
 
 # Verify installation
 ds4 --version
-```
+`````
 
 **Option 2: Docker (recommended for production)**
 
-```bash
+`````bash
 docker pull antirez/ds4
 docker run -it --rm ds4 --help
-```
+`````
 
 **Option 3: Binary download**
 
-```bash
+`````bash
 curl -fsSL https://raw.githubusercontent.com/antirez/ds4/main/install.sh | bash
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### Claude Code Integration
 
-```bash
+`````bash
 # Add to your Claude Code project
 claude config set mcpServers.ds4 "https://github.com/antirez/ds4"
-```
+`````
 
 ### Cursor Integration
 
-```json
+`````json
 // .cursor/mcp.json
 {
   "mcpServers": {
@@ -100,11 +101,11 @@ claude config set mcpServers.ds4 "https://github.com/antirez/ds4"
     }
   }
 }
-```
+`````
 
 ### VS Code Integration
 
-```json
+`````json
 // .vscode/mcp.json
 {
   "servers": {
@@ -115,14 +116,14 @@ claude config set mcpServers.ds4 "https://github.com/antirez/ds4"
     }
   }
 }
-```
+`````
 
 ### GitHub Copilot Integration
 
-```bash
+`````bash
 # Configure Copilot to use ds4
 echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -141,7 +142,7 @@ echo "copilot.ds4.enabled=true" >> ~/.github/copilot.yml
 
 ### Production Hardening Checklist
 
-```yaml
+`````yaml
 security: - enable_rate_limiting: true
   - max_requests_per_minute: 120
   - authentication: required
@@ -153,11 +154,11 @@ monitoring: - health_check_endpoint: /health
 scaling: - min_replicas: 2
   - max_replicas: 10
   - target_cpu_utilization: 70%
-```
+`````
 
 ### Environment-specific Configuration
 
-```bash
+`````bash
 # Development
 export DS4_ENV=dev
 export DS4_LOG_LEVEL=debug
@@ -170,7 +171,7 @@ export DS4_LOG_LEVEL=info
 export DS4_ENV=production
 export DS4_LOG_LEVEL=warn
 export DS4_RATE_LIMIT=1000
-```
+`````
 
 ## 대안과의 비교
 
@@ -188,11 +189,11 @@ export DS4_RATE_LIMIT=1000
 
 **Q1: How do I install ds4 on a fresh machine?**
 
-A: The fastest path is the one-liner install script: `curl -fsSL ... | bash`. For production environments, use the Docker image for reproducibility.
+A: The fastest path is the one-liner install script: ````curl -fsSL ... | bash````. For production environments, use the Docker image for reproducibility.
 
 **Q2: Can I use ds4 with my existing Claude Code setup?**
 
-A: Yes. Add the MCP server configuration to your `.claude/mcp.json` or use the CLI command shown in the Integration section above.
+A: Yes. Add the MCP server configuration to your ````.claude/mcp.json``` or use the CLI command shown in the Integration section above.
 
 **Q3: What are the system requirements for running ds4 in production?**
 
@@ -214,7 +215,7 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 **Next step:** Clone the repo, run the 5-minute setup, and see the difference in your next deployment.
 
----
+* * *
 
 *Published on dibi8.com | Source: [antirez/ds4](https://github.com/antirez/ds4) | ⭐ 10,913*
 
@@ -280,7 +281,7 @@ ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

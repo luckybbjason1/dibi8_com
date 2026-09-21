@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/2026-local-first-ai-stack-production-architecture/
 ---
 
+
 # Local-First AI Stack 2026: Kiến trúc tham chiếu cho production (kèm 14 tool open-source)
 
 
@@ -38,7 +39,7 @@ Thực tế production năm 2026: - **Hóa đơn token nhân theo cấp số nh�
 
 Điều thay đổi trong năm 2026 không phải là local AI đột nhiên giỏi hơn hẳn — nó vẫn đang tiến bộ đều đặn từng tháng. Cái thay đổi là **toàn bộ stack open-source cần để thực sự ship local AI cho khách hàng trả tiền** cuối cùng đã ráp đủ mảnh. Bài này là kiến trúc tham chiếu cho stack đó: 7 layer, 14 tool open-source cụ thể, và cách chúng compose vào nhau.
 
----
+* * *
 
 ## Học thuyết
 
@@ -58,7 +59,7 @@ Bảy layer, từ trên xuống dưới, kèm tool open-source đại diện mà
 
 Cộng thêm mô liên kết xuyên suốt mọi layer: **[MCP — Model Context Protocol](https://dibi8.com/vi/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/)** — chuẩn giao tiếp mà mỗi tool dùng để nói chuyện với tool kế tiếp.
 
----
+* * *
 
 ## Layer 1 — Local LLM Runtime
 
@@ -72,7 +73,7 @@ Cái phân biệt một runtime production với một runtime cho hobby gói g�
 
 Với phần lớn team trong năm 2026, **vLLM cho serving + Ollama cho development** là cách chia thực tế nhất. ds4 là một lựa chọn model thú vị cho team muốn reasoning level DeepSeek mà không bị mập mờ về licensing khi chạy DeepSeek upstream trực tiếp.
 
----
+* * *
 
 ## Layer 2 — Agent Runtime / CLI
 
@@ -84,17 +85,17 @@ Năm 2026 bạn có ba lựa chọn open-source đang sống và đã được t
 
 Phần lớn team có quy mô đáng kể cuối cùng đều chạy *cả ba* — agent khác nhau cho job khác nhau. Điều đó tạo ra mớ config bùng nhùng, và đó là chỗ **[CC Switch](https://dibi8.com/vi/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)** (74K+ stars) vào cuộc, cho bạn một control center duy nhất bao quát cả ba CLI trên cộng thêm Claude Code và Gemini CLI. Không có CC Switch thì bạn mất một tiếng mỗi tuần để hoà giải 5 file MCP config và API key khác nhau.
 
----
+* * *
 
 ## Layer 3 — Symbol Intelligence
 
-Khi agent cần hiểu code của bạn, `grep` + `Read` thô đốt rất nhiều token. Rất nhiều. Đây là layer mà phần lớn team chỉ phát hiện ra sau khi đã ship — thường là lúc hoá đơn tháng đầu tiên về tới.
+Khi agent cần hiểu code của bạn, ```grep```` + ````Read```` thô đốt rất nhiều token. Rất nhiều. Đây là layer mà phần lớn team chỉ phát hiện ra sau khi đã ship — thường là lúc hoá đơn tháng đầu tiên về tới.
 
 **[CodeGraph](https://dibi8.com/vi/resources/dev-utils/codegraph-pre-indexed-knowledge-graph-2026/)** (20K+ stars) là câu trả lời open-source: một knowledge graph pre-index của symbol, quan hệ gọi hàm và framework route trong codebase, query được qua MCP trong vài mili giây. Số liệu báo cáo: tiết kiệm ~35% token mỗi session, ~70% ít tool call hơn.
 
 Insight kiến trúc từ CodeGraph có thể tổng quát hoá: **bất kỳ dữ liệu nào agent sẽ query đi query lại về domain của bạn nên có một bề mặt query pre-index riêng, đừng tái dẫn xuất lại mỗi session**. Customer record, product catalog, ticket history — tất cả đều đáng có index theo phong cách CodeGraph riêng.
 
----
+* * *
 
 ## Layer 4 — Cost Control / Routing
 
@@ -104,7 +105,7 @@ Kể cả khi đã có local model và symbol layer, agent vẫn sẽ gọi mode
 
 Với routing phức tạp hơn (A/B testing, ép budget, fallback chain), những gateway nặng hơn như LiteLLM hay Portkey vẫn work; chúng tôi đã có [bài so sánh LLM Gateway riêng](https://dibi8.com/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
----
+* * *
 
 ## Layer 5 — Memory và State
 
@@ -115,7 +116,7 @@ Bức tranh open-source về agent memory trong 2026 được tổng hợp trong
 
 Cả hai đi theo cùng một pattern kiến trúc: vector store cho semantic recall, một lớp key-value có cấu trúc cho fact và quyết định, plus một MCP server để bất kỳ agent runtime nào cũng query được cả hai. Nguyên tắc 12-Factor "own your context window" (factor 3) áp dụng triệt để ở đây — memory là một phần của context mà chính bạn lắp ráp.
 
----
+* * *
 
 ## Layer 6 — Voice và Audio I/O
 
@@ -125,7 +126,7 @@ Cho những agent giao tiếp với con người bằng giọng nói — không 
 
 Cho ASR (speech in), Whisper.cpp vẫn là default open-source bền bỉ. Combo Supertonic + Whisper.cpp + local LLM là stack 2026 đầu tiên đem lại một voice agent hoàn toàn local với latency mức hội thoại.
 
----
+* * *
 
 ## Layer 7 — Methodology
 
@@ -138,22 +139,22 @@ Những factor chi phối trực tiếp các layer phía trên: - **Factor 2: Ow
 
 Chúng tôi đã viết [walkthrough đầy đủ cả mười hai factor](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) — đó là tài liệu chúng tôi ước có được hai năm trước.
 
----
+* * *
 
 ## Các layer compose như thế nào: Một request thật
 
 Lần theo cái xảy ra khi user hỏi agent "tìm hết những chỗ đang authenticate qua LDAP server cũ và refactor sang module SSO mới": 1. **Layer 2 (Agent runtime)** nhận message của user.
 2. **Layer 5 (Memory)** được query — agent có nhớ gì về dự án migration LDAP/SSO không? Inject mọi quyết định trước đó liên quan vào context.
-3. **Layer 3 (Symbol intelligence)** được query qua MCP — "symbol nào match `LDAP` hoặc gọi `ldap_authenticate`?" CodeGraph trả lời trong 200ms.
-4. **Layer 4 (Cost control)** chọn model — `rtk` route prompt planning qua local model rẻ trước.
-5. **Layer 1 (Local LLM runtime)** thực thi plan. Nếu plan vượt khả năng của local model, `rtk` leo thang lên một frontier model.
+3. **Layer 3 (Symbol intelligence)** được query qua MCP — "symbol nào match ````LDAP```` hoặc gọi ````ldap_authenticate````?" CodeGraph trả lời trong 200ms.
+4. **Layer 4 (Cost control)** chọn model — ````rtk```` route prompt planning qua local model rẻ trước.
+5. **Layer 1 (Local LLM runtime)** thực thi plan. Nếu plan vượt khả năng của local model, ````rtk``` leo thang lên một frontier model.
 6. **Layer 2** loop: với mỗi file CodeGraph chỉ ra, chạy một subtask edit. Mỗi subtask là một agent nhỏ, hẹp (Factor 10).
 7. **Layer 6** (nếu đang ở voice mode): khi xong, Supertonic đọc lên "Refactor xong, 17 file thay đổi, 0 test fail."
 8. **Layer 5** lưu kết quả lại cho session sau.
 
 Mọi layer đều thay được. Mô liên kết — MCP — là chuẩn mà mỗi layer dùng để nói chuyện.
 
----
+* * *
 
 ## Lộ trình triển khai thực tế
 
@@ -183,7 +184,7 @@ Phần lớn team không thể adopt cả bảy layer cùng lúc. Thứ tự ch�
 
 **Kết quả**: một stack có khả năng chạy hoàn toàn local. Bạn vẫn dùng cloud model cho năng lực frontier — nhưng không còn *phụ thuộc* vào chúng.
 
----
+* * *
 
 ## Năm 2026 còn thiếu gì
 
@@ -195,7 +196,7 @@ Phải nói thẳng về những khoảng trống: - **Agent observability open-
 
 Đây chính là những chỗ mà nhịp open-source kế tiếp đang nhắm tới.
 
----
+* * *
 
 ## Phán quyết
 
@@ -208,7 +209,7 @@ Mỗi component trong stack đều là một dự án open-source tập trung, �
 
 Nếu bạn bắt đầu hôm nay, cài rtk và CC Switch trong tuần này, đọc 12-Factor Agents, và thêm CodeGraph vào repo bạn dùng nhiều nhất trước cuối tháng. Phần còn lại sẽ tự đến.
 
----
+* * *
 
 **Toàn bộ stack trong một bảng** — bookmark cái này: | # | Layer | Tool | Stars | License |
 |---|---|---|---|---|
@@ -248,7 +249,7 @@ Nếu bạn bắt đầu hôm nay, cài rtk và CC Switch trong tuần này, đ�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -258,7 +259,7 @@ Nếu bạn bắt đầu hôm nay, cài rtk và CC Switch trong tuần này, đ�
 - [12-factor-agents](2026-local-first-ai-stack-production-architecture)
 - [cc-switch-unified-ai-cli-control-center](2026-local-first-ai-stack-production-architecture)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -8,6 +8,7 @@ tags: ["iac", "terraform", "pulumi", "aws cdk", "基础设施"]
 aliases:
   - /zh/posts/infrastructure-as-code-tools-comparison/-
 ---
+
 # 2025年基础设施即代码工具对比：Terraform、Pulumi、AWS CDK、Crossplane全面评测
 
 
@@ -23,11 +24,11 @@ aliases:
 
 | 特性 | 声明式（Declarative） | 命令式（Imperative） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 描述方式 | 定义期望的最终状态 | 定义达到目标的步骤 |
 | 代表工具 | Terraform、CloudFormation | Ansible、Pulumi（可选） |
@@ -115,19 +116,19 @@ aliases:
 
 | 功能特性 | Terraform | Pulumi | AWS CDK | Crossplane | Ansible | Puppet |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 多云支持 | 优秀（3000+ providers） | 良好（60+ clouds） | 仅AWS | 良好（主流云） | 良好 | 一般 |
 | 编程语言 | HCL | TS/Python/Go/C#/Java | TS/Python/Java/C#/Go | YAML | YAML | Puppet DSL |
@@ -188,7 +189,7 @@ aliases:
 同时，**AI辅助的IaC**正在成为新趋势，工具如Pulumi AI能够根据自然语言描述自动生成基础设施代码，大幅降低了IaC的学习门槛。未来，IaC工具将更加智能化、声明式，并与云原生生态更紧密地融合。
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -283,19 +284,19 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](infrastructure-as-code-tools-comparison)
 - [trivy-production-security-scanner-2026](infrastructure-as-code-tools-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -307,7 +308,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -318,4 +319,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

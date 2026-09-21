@@ -19,6 +19,7 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     role: diagram
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
+
 ## TL;DR
 
 Oh My Pi turns any Raspberry Pi into a fully configured smart device with automated setup, pre-configured dashboards, and one-click service deployment. With 12,554 stars, it's the most popular Raspberry Pi automation framework on GitHub.
@@ -40,7 +41,7 @@ The project provides a modular service catalog that includes: - **Home Assistant
 - **Network Scanner** — Automatic device discovery and monitoring
 - **Backup Manager** — Scheduled backups with encrypted storage
 
-```bash
+````bash
 # Install Oh My Pi on a fresh Raspberry Pi OS
 curl -sSL https://ohmypi.sh/install | sudo bash
 
@@ -48,7 +49,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 git clone https://github.com/can1357/oh-my-pi.git
 cd oh-my-pi
 sudo ./install.sh
-```
+`````
 
 ## How Oh My Pi Works
 
@@ -56,7 +57,7 @@ Oh My Pi follows a three-phase deployment model: 1. **System Provisioning** — 
 2. **Service Installation** — Deploys selected services via Docker Compose with sensible defaults
 3. **Dashboard Assembly** — Creates a unified web dashboard to manage all services
 
-```bash
+`````bash
 # Phase 1: System provisioning
 sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
 
@@ -65,7 +66,7 @@ sudo omp install homeassistant grafana vaultwarden
 
 # Phase 3: Generate dashboard
 sudo omp dashboard --title "My Smart Pi" --theme dark
-```
+`````
 
 The provisioning phase handles everything that typically takes hours: static IP configuration, SSH key setup, firewall rules, log rotation, and automatic updates. Services are deployed as isolated Docker containers with persistent volumes for data.
 
@@ -73,7 +74,7 @@ The provisioning phase handles everything that typically takes hours: static IP 
 
 Requirements: Raspberry Pi 3B+ or newer (Pi 4 recommended), 8GB+ microSD card, Raspberry Pi OS Lite (64-bit).
 
-```bash
+`````bash
 # Step 1: Flash Raspberry Pi OS Lite
 # Download from https://www.raspberrypi.com/software/
 
@@ -86,11 +87,11 @@ Requirements: Raspberry Pi 3B+ or newer (Pi 4 recommended), 8GB+ microSD card, R
 # Step 4: SSH in and install Oh My Pi
 ssh pi@<pi-ip>
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+`````
 
 ### Docker Configuration
 
-Oh My Pi uses Docker Compose for all service deployments: ```yaml
+Oh My Pi uses Docker Compose for all service deployments: `````yaml
 # Generated docker-compose.yaml after installing services
 version: "3.9"
 services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
@@ -113,11 +114,11 @@ services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
     environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: `````
 
 ### Network Configuration
 
-Automatic network setup handles DHCP reservations, DNS forwarding, and firewall rules: ```bash
+Automatic network setup handles DHCP reservations, DNS forwarding, and firewall rules: `````bash
 # Configure static IP
 sudo omp network static --ip 192.168.1.100 --gateway 192.168.1.1 --dns 8.8.8.8
 
@@ -126,19 +127,19 @@ sudo omp network dns --upstream 1.1.1.1 --local 127.0.0.1
 
 # Configure firewall
 sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
-```
+`````
 
 ## Service Catalog: Detailed Breakdown
 
 Oh My Pi supports 20+ services across 6 categories: | Category | Services | Install Time | Resource Usage |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Home Automation** | Home Assistant, Zigbee2MQTT | 5 min | 512MB RAM |
 | **Networking** | AdGuard, Pi-hole, PiVPN | 3 min | 128MB RAM |
@@ -147,28 +148,28 @@ Oh My Pi supports 20+ services across 6 categories: | Category | Services | Inst
 | **Security** | Vaultwarden, FileBrowser, Uptime Kuma | 3 min | 256MB RAM |
 | **Monitoring** | Grafana, Prometheus, AlertManager | 6 min | 512MB RAM |
 
-```bash
+`````bash
 # Install a complete smart home setup
 sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 # All services deploy with coordinated startup ordering
 # Home Assistant starts first, then Zigbee2MQTT connects,
 # AdGuard handles DNS, Grafana monitors everything
-```
+`````
 
 ## Comparison with Alternatives
 
 Several Raspberry Pi automation projects exist, but Oh My Pi stands out: | Feature | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stars | 12,554 | 18K+ | N/A | 3.2K |
 | Service Count | 20+ | 15+ | N/A | 1 (media only) |
@@ -185,7 +186,7 @@ The key differentiator is **service diversity and orchestration**. Unlike CasaOS
 
 Deploy custom services with Oh My Pi's extension system: ### Writing a Custom Service Definition
 
-```yaml
+`````yaml
 # my-service.yaml — custom service definition
 service: name: my-custom-app
   version: "1.0"
@@ -206,11 +207,11 @@ service: name: my-custom-app
   backup: enabled: true
     schedule: "0 2 * * *"  # daily at 2 AM
     volumes: - myapp-data
-```
+`````
 
 ### Automated Backups
 
-Oh My Pi includes a built-in backup system with encrypted storage: ```bash
+Oh My Pi includes a built-in backup system with encrypted storage: `````bash
 # Configure backup destination
 sudo omp backup configure --remote s3 --bucket ohmypi-backups --region us-east-1
 
@@ -222,11 +223,11 @@ sudo omp backup restore --date 2026-06-14 --verify
 
 # Schedule daily backups
 sudo omp backup schedule --frequency daily --retention 30
-```
+`````
 
 ### Remote Access and Tunneling
 
-Access your Pi services from anywhere with automatic HTTPS tunneling: ```bash
+Access your Pi services from anywhere with automatic HTTPS tunneling: `````bash
 # Set up Cloudflare Tunnel (free, no port forwarding needed)
 sudo omp tunnel cloudflare --token <cloudflare-token>
 
@@ -235,11 +236,11 @@ sudo omp tunnel ngrok --authtoken <ngrok-token>
 
 # Configure reverse proxy with Caddy (auto HTTPS)
 sudo omp proxy caddy --domain mypi.local --ssl auto
-```
+`````
 
 ### Multi-Pi Cluster Management
 
-Manage multiple Pis from a single dashboard: ```bash
+Manage multiple Pis from a single dashboard: `````bash
 # Add a second Pi to the cluster
 sudo omp cluster add --host pi2.local --user pi --key ~/.ssh/id_ed25519
 
@@ -248,11 +249,11 @@ sudo omp cluster deploy --services homeassistant,grafana --nodes all
 
 # View cluster health
 sudo omp cluster health
-```
+`````
 
 ### SD Card Health Monitoring
 
-Raspberry Pi SD cards can fail without warning. Oh My Pi includes built-in SMART-like monitoring: ```bash
+Raspberry Pi SD cards can fail without warning. Oh My Pi includes built-in SMART-like monitoring: `````bash
 # Check SD card health
 sudo omp storage health
 
@@ -261,11 +262,11 @@ sudo omp storage alerts --enable --threshold 70
 
 # Schedule automatic health checks
 sudo omp storage schedule --interval hourly
-```
+`````
 
 ### Power Monitoring and UPS Integration
 
-For uninterrupted operation, Oh My Pi supports UPS hardware monitoring and graceful shutdown: ```bash
+For uninterrupted operation, Oh My Pi supports UPS hardware monitoring and graceful shutdown: `````bash
 # Configure UPS monitoring
 sudo omp ups configure --driver usb --shutdown-delay 300
 
@@ -274,11 +275,11 @@ sudo omp ups threshold --battery 20 --action shutdown
 
 # Monitor power events
 sudo omp ups logs --tail 50
-```
+`````
 
 ### Resource Monitoring and Alerts
 
-```bash
+`````bash
 # Set resource thresholds
 sudo omp monitor thresholds --cpu 90 --memory 85 --disk 80
 
@@ -287,7 +288,7 @@ sudo omp monitor alerts --channel telegram --token <bot-token> --chat <chat-id>
 
 # View resource history
 sudo omp monitor history --period 7d --graph
-```
+`````
 
 ## Limitations: When Oh My Pi May Not Fit
 
@@ -303,14 +304,14 @@ sudo omp monitor history --period 7d --graph
 
 6. **Limited ARM-specific optimizations** — While the Docker images are multi-architecture, some x86-optimized images may have reduced performance on ARM processors. Always verify image compatibility before deployment.
 
-```bash
+`````bash
 # Quick suitability check
 # ✅ Home automation hub → YES
 # ✅ Media server → YES
 # ✅ Development workstation → YES
 # ✅ Production database server → NO (use dedicated hardware)
 # ✅ IoT sensor project → NO (focus on network services only)
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -336,15 +337,15 @@ Yes. All Docker images can be pre-pulled and the system supports offline service
 
 ### How do I update installed services?
 
-Run `sudo omp update` to check for service updates and apply them with zero downtime where possible. The update system supports rolling updates for most services and can rollback automatically if a service fails to start after updating.
+Run ````sudo omp update```` to check for service updates and apply them with zero downtime where possible. The update system supports rolling updates for most services and can rollback automatically if a service fails to start after updating.
 
 ### Can I use Oh My Pi on non-Raspberry Pi boards?
 
-Yes. The framework supports any ARM64 or x86_64 Linux machine with Docker installed. The `omp provision` command auto-detects the hardware and adjusts resource limits accordingly.
+Yes. The framework supports any ARM64 or x86_64 Linux machine with Docker installed. The ````omp provision```` command auto-detects the hardware and adjusts resource limits accordingly.
 
 ### Is there a web dashboard for managing services?
 
-Yes. Oh My Pi generates a unified web dashboard at `http://<pi-ip>:3001` after installation. The dashboard shows all running services, resource usage, and provides one-click access to each service's admin panel.
+Yes. Oh My Pi generates a unified web dashboard at ````http://<pi-ip>:3001```` after installation. The dashboard shows all running services, resource usage, and provides one-click access to each service's admin panel.
 
 ## Conclusion
 
@@ -354,14 +355,14 @@ For reliable SD card storage, [HTStack](https://htstack.com/?referral_code=oa14d
 
 **Get started:**
 
-```bash
+`````bash
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+````
 
 **Internal links**: [Smart home guide](https://dibi8.com/) · [Edge computing with Pi](https://dibi8.com/ai-tools/)
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi
 - Raspberry Pi documentation: https://www.raspberrypi.com/documentation/
 - Docker documentation: https://docs.docker.com/
@@ -397,7 +398,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](oh-my-pi)
@@ -406,6 +407,6 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 - [2026-06-15-trending-ai-agents](oh-my-pi)
 - [2026-06-22-trending-ai-agents](oh-my-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/devtoys/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![DevToys Logo](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/logo/Logo.png)
@@ -34,7 +35,7 @@ aliases:
 
 DevToys 采用模块化的插件式架构，这种设计使得整个应用具有高度的可扩展性和维护性。核心应用提供外壳、UI 框架和智能检测引擎，负责协调各个独立工具的运行。各个工具以扩展的形式打包，向宿主注册自身。这种松耦合的设计意味着开发者可以轻松添加新工具，而无需修改核心代码：
 
-```
+````
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -49,7 +50,7 @@ DevToys 采用模块化的插件式架构，这种设计使得整个应用具有
 └─────────────────────────────────────────┘
          │ Windows │ macOS │ Linux │
          └─────────┴───────┴───────┘
-```
+`````
 
 ### 核心概念
 
@@ -67,9 +68,9 @@ DevToys 采用模块化的插件式架构，这种设计使得整个应用具有
 
 **通过 WinGet（推荐）：**
 
-```powershell
+`````powershell
 winget install DevToys-app.DevToys
-```
+`````
 
 **通过 Microsoft Store：**
 
@@ -77,36 +78,36 @@ winget install DevToys-app.DevToys
 
 **通过 Chocolatey：**
 
-```powershell
+`````powershell
 choco install devtoys
-```
+`````
 
 **使用经典安装程序手动安装：**
 
-```powershell
+`````powershell
 # 下载 x64 安装程序
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64.exe" -OutFile "devtoys_installer.exe"
 
 # 运行安装程序
 .\devtoys_installer.exe /SILENT
-```
+`````
 
 **便携 ZIP（无需安装）：**
 
-```powershell
+`````powershell
 # 下载并解压
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64_portable.zip" -OutFile "devtoys.zip"
 Expand-Archive -Path "devtoys.zip" -DestinationPath "C:\Tools\DevToys"
 
 # 直接启动
 C:\Tools\DevToys\DevToys.exe
-```
+`````
 
 ### macOS
 
 macOS 用户可以通过 DMG 文件或 Homebrew 安装 DevToys。DMG 方式是最直接的安装方法，只需下载、挂载镜像并将应用拖入 Applications 文件夹即可。Homebrew 用户则可以使用一行命令完成安装和后续更新。需要注意的是，由于 macOS 的安全机制，首次运行时可能需要在系统偏好设置中允许来自未知开发者的应用。
 
-```bash
+`````bash
 # 下载 macOS DMG
 curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_macos.dmg"
 
@@ -114,19 +115,19 @@ curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download
 hdiutil attach devtoys.dmg
 cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
-```
+`````
 
 或者通过 Homebrew 安装（如果可用）：
 
-```bash
+`````bash
 brew install --cask devtoys
-```
+`````
 
 ### Linux (Debian/Ubuntu)
 
 Linux 用户目前主要通过 .deb 包或便携 ZIP 文件安装 DevToys。Debian 和 Ubuntu 用户可以使用 dpkg 命令安装官方提供的 .deb 包。对于其他发行版（如 Fedora、Arch Linux），社区提供了非官方的打包版本。便携 ZIP 格式则适用于所有 Linux 发行版，只需解压并运行即可，无需处理依赖问题。
 
-```bash
+`````bash
 # 下载 .deb 包
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64.deb
 
@@ -135,21 +136,21 @@ sudo dpkg -i devtoys_linux_x64.deb
 
 # 修复依赖问题
 sudo apt-get install -f
-```
+`````
 
 **Linux 便携 ZIP：**
 
-```bash
+`````bash
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64_portable.zip
 unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 ~/devtoys/DevToys
-```
+`````
 
 ### DevToys CLI 安装
 
 CLI 单独分发，适用于 headless 环境和 CI 流水线：
 
-```bash
+`````bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -158,35 +159,35 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 
 # Linux
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
-```
+`````
 
 安装后验证 CLI 是否正常工作：
 
-```bash
+`````bash
 devtoys --version
 # 输出: DevToys CLI 2.0.9.0
-```
+`````
 
 ### 首次启动与配置
 
 首次启动时，DevToys 会以深色主题侧边栏打开，列出所有 30 多种工具。打开**设置**进行配置：
 
-```yaml
+`````yaml
 # 生产工作流推荐设置
 Smart Detection: Enabled      # 从剪贴板自动推荐工具
 Theme: System default        # 或强制深色/浅色
 Language: English             # 支持 14 种以上语言
 Check for updates: Weekly     # 或在隔离网络环境中禁用
 Telemetry: Disabled          # DevToys 默认无遥测
-```
+`````
 
 ## 与流行工具集成
 
 ### VS Code
 
-虽然 DevToys 作为独立应用运行，但你可以通过快捷键直接从 VS Code 启动它。将此添加到你的 `keybindings.json`：
+虽然 DevToys 作为独立应用运行，但你可以通过快捷键直接从 VS Code 启动它。将此添加到你的 ````keybindings.json````：
 
-```json
+`````json
 [
   {
     "key": "ctrl+alt+d",
@@ -195,7 +196,7 @@ Telemetry: Disabled          # DevToys 默认无遥测
     "when": "editorTextFocus"
   }
 ]
-```
+`````
 
 如需完全集成的体验，请从应用市场安装 **DevToys for VSCode** 扩展，它直接在编辑器侧边栏嵌入了一部分工具。
 
@@ -203,7 +204,7 @@ Telemetry: Disabled          # DevToys 默认无遥测
 
 DevToys 支持通过命令行参数深度链接到各个工具。这对脚本和别名很有用：
 
-```powershell
+`````powershell
 # 直接打开特定工具
 start devtoys:?tool=jsonformat     # JSON 格式化器
 start devtoys:?tool=jsonyaml       # JSON <> YAML 转换器
@@ -215,13 +216,13 @@ start devtoys:?tool=uuid           # UUID 生成器
 start devtoys:?tool=url            # URL 编码/解码器
 start devtoys:?tool=markdown       # Markdown 预览
 start devtoys:?tool=diff           # 文本比较器
-```
+`````
 
 ### CI/CD 流水线 (GitHub Actions)
 
 DevToys CLI 可以干净地集成到 CI 工作流中。以下是一个验证仓库中 JSON 文件的 GitHub Actions 示例：
 
-```yaml
+`````yaml
 name: Validate JSON
 on: [push, pull_request]
 jobs: validate: runs-on: ubuntu-latest
@@ -236,13 +237,13 @@ jobs: validate: runs-on: ubuntu-latest
       - name: Validate all JSON files
         run: |
           find . -name "*.json" -exec devtoys json validate {} \;
-```
+`````
 
 ### Docker (非官方)
 
 对于容器化工作流，你可以将 DevToys CLI 包装在一个轻量级镜像中：
 
-```dockerfile
+`````dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -252,14 +253,14 @@ RUN apt-get update && apt-get install -y wget unzip \
     && apt-get remove -y wget unzip && apt-get autoremove -y
 
 ENTRYPOINT ["/app/devtoys"]
-```
+`````
 
 构建并运行：
 
-```bash
+`````bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
-```
+`````
 
 ## 基准测试 / 实际使用案例
 
@@ -269,15 +270,15 @@ DevToys 完全在本地机器的内存中处理数据，不依赖网络连接，
 
 | 操作 | 数据大小 | DevToys (桌面版) | DevToys CLI | 在线替代方案 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | JSON 格式化 | 1 MB | ~45 ms | ~38 ms | ~200-500 ms* |
 | JSON 格式化 | 10 MB | ~320 ms | ~280 ms | ~2-5 s* |
@@ -320,26 +321,26 @@ DevToys 完全离线工作——核心工具永远不需要网络连接。对于
 
 微调智能检测以避免误报：
 
-```yaml
+`````yaml
 # 设置 > 智能检测
 Behavior: "Always ask"        # 选项：Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # 调整检测阈值
 Excluded tools: # 禁用特定工具的检测
   - "Lorem Ipsum Generator"
   - "Password Generator"
-```
+`````
 
 ### 扩展开发
 
 使用 DevToys SDK 创建自定义工具。安装 SDK NuGet 包：
 
-```bash
+`````bash
 dotnet add package DevToys.Sdk --version 2.0.0
-```
+`````
 
-最小扩展实现 `IGuiTool` 接口：
+最小扩展实现 ````IGuiTool```` 接口：
 
-```csharp
+`````csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -371,19 +372,19 @@ internal sealed class MyCustomTool : IGuiTool
         // 处理智能检测输入
     }
 }
-```
+`````
 
 ### 在团队中监控使用情况
 
 虽然 DevToys 没有内置遥测功能，但你可以通过包装 CLI 的日志脚本来追踪团队最常使用的工具：
 
-```bash
+`````bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
 echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE"
 /devtoys "$@"
-```
+`````
 
 ![DevToys Microsoft Store 评分](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/ms-store-rate.png)
 
@@ -393,15 +394,15 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE
 
 | 功能 | DevToys | CyberChef | DevUtils | Boop |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **平台** | Windows, macOS, Linux | Web (任何浏览器) | 仅 macOS | 仅 macOS |
 | **价格** | 免费 | 免费 | $25-40 (一次性) | 免费 |
@@ -457,7 +458,7 @@ DevToys 2.0 支持 Windows 10 build 1903+、macOS 11+ 和 Linux（Debian/Ubuntu�
 
 ### 智能检测是如何工作的？
 
-智能检测通过模式匹配启发式算法监控你的剪贴板并分析复制的内容。当你复制一个 JWT 令牌（具有独特的 `header.payload.signature` 结构）时，DevToys 会高亮显示 JWT 解码器工具。你可以在设置面板中配置该行为——自动打开工具、显示建议或完全禁用。
+智能检测通过模式匹配启发式算法监控你的剪贴板并分析复制的内容。当你复制一个 JWT 令牌（具有独特的 ````header.payload.signature```` 结构）时，DevToys 会高亮显示 JWT 解码器工具。你可以在设置面板中配置该行为——自动打开工具、显示建议或完全禁用。
 
 ### 我可以在 CI/CD 流水线中使用 DevToys 吗？
 
@@ -469,7 +470,7 @@ DevToys 2.0 是一次从头开始的重写，引入了跨平台支持（之前�
 
 ### 如何为 DevToys 构建自定义扩展？
 
-在 .NET 类库中安装 DevToys.Sdk NuGet 包，实现 `IGuiTool` 接口，并将你的扩展打包为 NuGet 包。扩展可以发布在 nuget.org 上，或从 DevToys 内部的扩展管理器手动安装。完整文档请访问 [devtoys.app/doc](https://devtoys.app/doc)。
+在 .NET 类库中安装 DevToys.Sdk NuGet 包，实现 ````IGuiTool``` 接口，并将你的扩展打包为 NuGet 包。扩展可以发布在 nuget.org 上，或从 DevToys 内部的扩展管理器手动安装。完整文档请访问 [devtoys.app/doc](https://devtoys.app/doc)。
 
 ### 在哪里可以获得帮助或报告 bug？
 
@@ -538,7 +539,7 @@ DevToys 填补了开发者工具包中的一个真正空白：一个免费、离
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [mattpocock-skills-ai-agent-framework-guide](devtoys)
@@ -548,5 +549,5 @@ DevToys 填补了开发者工具包中的一个真正空白：一个免费、离
 - [nanochat-karpathy-100-chatgpt-single-gpu](devtoys)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

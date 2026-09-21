@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-developer-tools-ide-plugins-2025/
 ---
 
+
 # 2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서
 
 
@@ -263,7 +264,7 @@ CodeRabbit이 PR 자동 리뷰에 가장 특화되어 있다. GitHub/GitLab PR�
 - [Codeium: 묣질 AI 코드 완성](https://codeium.com)
 - [Snyk Code 보안 분석](https://snyk.io/product/snyk-code/)
 
----
+* * *
 
 ## 추천 도구
 

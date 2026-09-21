@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/hunyuan-video/-
 ---
 
+
 {{</* resource-info */>}}
 
 一个需要 60GB 显存才能在 720p 下生成 5 秒视频的模型，不是玩具——它是基础设施。腾讯的 HunyuanVideo 是一个拥有 130 亿参数的扩散 Transformer 视频生成模型，在 GitHub 上已获得超过 12,100 颗星，成为需要在自托管硬件上获得电影级视频质量团队的首选。本指南涵盖完整的生产环境搭建：从可用的 Docker 部署到 FP8 量化、多 GPU 并行推理、ComfyUI 集成，以及大规模服务时需要的监控方案。
@@ -44,7 +45,7 @@ HunyuanVideo 是腾讯开发的用于大规模视频生成模型的系统化框�
 
 ### Docker 部署（推荐）
 
-```bash
+````bash
 # 拉取官方 CUDA 12 镜像
 docker pull hunyuanvideo/hunyuanvideo:cuda_12
 
@@ -57,11 +58,11 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host \
   -v /mnt/models:/models \
   -p 8081:8081 \
   hunyuanvideo/hunyuanvideo:cuda_12
-```
+`````
 
 ### Ubuntu 手动安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git
 cd HunyuanVideo
@@ -83,11 +84,11 @@ python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.
 
 # 安装 xDiT 用于多 GPU 并行推理
 python -m pip install xfuser==0.4.0
-```
+`````
 
 ### 下载预训练模型权重
 
-```bash
+`````bash
 # 安装 huggingface-cli
 pip install huggingface_hub
 
@@ -105,11 +106,11 @@ huggingface-cli download tencent/HunyuanVideo \
 huggingface-cli download tencent/HunyuanVideo \
   --include "*text_encoder*" \
   --local-dir ./ckpts
-```
+`````
 
 ### 首次推理运行
 
-```bash
+`````bash
 conda activate hunyuan
 
 python sample_video.py \
@@ -120,9 +121,9 @@ python sample_video.py \
     --flow-reverse \
     --use-cpu-offload \
     --save-path ./results
-```
+`````
 
-对于显存小于 80GB 的 GPU，`--use-cpu-offload` 标志至关重要。它在不使用时将模型权重卸载到系统内存，以速度换取内存空间。
+对于显存小于 80GB 的 GPU，````--use-cpu-offload```` 标志至关重要。它在不使用时将模型权重卸载到系统内存，以速度换取内存空间。
 
 ## 与主流工具集成
 
@@ -130,21 +131,21 @@ python sample_video.py \
 
 ComfyUI 在 2025 年初添加了对 HunyuanVideo 的原生支持。从 Comfy-Org 下载重新打包的模型文件：
 
-```bash
+`````bash
 # 模型文件放入 ComfyUI/models/ 目录
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
 # - diffusion_models/hunyuan_video_720p_bf16.safetensors
 # - vae/hunyuan_video_vae_bf16.safetensors
-```
+`````
 
-将官方工作流 JSON 拖入 ComfyUI 即可加载。关键节点包括 `HunyuanVideoSampler`、`HunyuanVideoDecode` 和 `TextEncodeHunyuanVideo`。
+将官方工作流 JSON 拖入 ComfyUI 即可加载。关键节点包括 ````HunyuanVideoSampler````、````HunyuanVideoDecode```` 和 ````TextEncodeHunyuanVideo````。
 
 ### Kijai 的 HunyuanVideoWrapper（高级版）
 
 如需 FP8 推理、视频到视频和图像到视频功能，请使用社区封装版：
 
-```bash
+`````bash
 # 通过 ComfyUI 管理器或 git 安装
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -152,13 +153,13 @@ git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
 # 安装依赖
 cd ComfyUI-HunyuanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-从 Hugging Face 的 `Kijai/HunyuanVideo_comfy` 下载 FP8 权重并放入 `ComfyUI/models/diffusion_models/` 目录。
+从 Hugging Face 的 ````Kijai/HunyuanVideo_comfy```` 下载 FP8 权重并放入 ````ComfyUI/models/diffusion_models/```` 目录。
 
 ### Diffusers 管线
 
-```python
+`````python
 from diffusers import HunyuanVideoPipeline
 import torch
 
@@ -190,26 +191,26 @@ frames[0].save(
     duration=67,
     loop=0
 )
-```
+`````
 
 ### Gradio API 服务器
 
-```bash
+`````bash
 # 启动 Gradio 服务器
 python gradio_server.py --flow-reverse
 
 # 或绑定到所有接口以支持远程访问
 SERVER_NAME=0.0.0.0 SERVER_PORT=8081 \
   python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
-Gradio UI 提供了提示词、分辨率、帧数、CFG 缩放和种子等参数的控制。如需编程访问，请在浏览器中检查网络标签页的 `/run/predict` 端点并复制 JSON 载荷。
+Gradio UI 提供了提示词、分辨率、帧数、CFG 缩放和种子等参数的控制。如需编程访问，请在浏览器中检查网络标签页的 ````/run/predict```` 端点并复制 JSON 载荷。
 
 ### DigitalOcean GPU Droplets
 
 对于没有本地 GPU 硬件的团队，DigitalOcean GPU Droplets 提供按需的 NVIDIA H100 和 A100 实例。使用以下 cloud-init 配置部署 HunyuanVideo：
 
-```yaml
+`````yaml
 #cloud-config
 package_update: true
 packages: - docker.io
@@ -220,7 +221,7 @@ runcmd: - systemctl restart docker
       -p 8081:8081 -v /mnt/models:/models \
       hunyuanvideo/hunyuanvideo:cuda_12 \
       python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -228,15 +229,15 @@ runcmd: - systemctl restart docker
 
 | 模型 | 参数量 | 显存需求 (720p) | 生成时间 (5秒, RTX 4090) | 美学质量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HunyuanVideo (原版) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
@@ -258,7 +259,7 @@ runcmd: - systemctl restart docker
 
 FP8 量化将 FP32 权重转换为 8 位浮点格式，可减少约 10GB GPU 显存使用量，且质量损失极小。
 
-```bash
+`````bash
 # 下载 FP8 权重和缩放文件
 huggingface-cli download tencent/HunyuanVideo \
   --include "mp_rank_00_model_states_fp8.pt" \
@@ -276,15 +277,15 @@ python sample_video.py \
     --use-cpu-offload \
     --use-fp8 \
     --save-path ./results
-```
+`````
 
-`--use-fp8` 标志激活 `hyvideo/modules/fp8_optimization.py` 中的 FP8 管线。E4M3 格式（4 位指数，3 位尾数）保留了足够的推理精度，同时减少约 40% 的显存。
+````--use-fp8```` 标志激活 ````hyvideo/modules/fp8_optimization.py```` 中的 FP8 管线。E4M3 格式（4 位指数，3 位尾数）保留了足够的推理精度，同时减少约 40% 的显存。
 
 ### 使用 xDiT 的多 GPU 并行推理
 
 对于生产工作负载，xDiT 提供统一序列并行性，可在多个 GPU 上扩展：
 
-```bash
+`````bash
 # 8 GPU 并行推理
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -296,28 +297,28 @@ torchrun --nproc_per_node=8 sample_video.py \
     --ulysses-degree 8 \
     --ring-degree 1 \
     --save-path ./results
-```
+`````
 
 1280x720、129 帧、50 步的延迟扩展数据：
 
 | GPU 数量 | 延迟 (秒) | 加速比 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
 | 4 | 514 | 3.70x |
 | 8 | 338 | 5.64x |
 
-`--ulysses-degree` 和 `--ring-degree` 参数控制并行策略。Ulysses 并行分片注意力计算；ring 并行在序列维度上分布。对于大多数设置，优先最大化 Ulysses。
+````--ulysses-degree```` 和 ````--ring-degree```` 参数控制并行策略。Ulysses 并行分片注意力计算；ring 并行在序列维度上分布。对于大多数设置，优先最大化 Ulysses。
 
 ### 带反向代理的生产级 Gradio
 
-```bash
+`````bash
 # 使用生产设置启动
 SERVER_NAME=0.0.0.0 \
 SERVER_PORT=8081 \
@@ -327,11 +328,11 @@ python gradio_server.py \
   --use-fp8 \
   --max-queue-size 10 \
   --queue-timeout 300
-```
+`````
 
 配合 Nginx 反向代理和速率限制：
 
-```nginx
+`````nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -354,11 +355,11 @@ server {
     limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m;
     limit_req zone=video burst=5 nodelay;
 }
-```
+`````
 
 ### 使用 Prometheus 监控
 
-```python
+`````python
 # 添加到 gradio_server.py 或包装推理调用
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -374,7 +375,7 @@ def generate_video(prompt, height, width, frames, steps): inference_count.inc()
 
 # 在端口 9090 启动指标服务器
 start_http_server(9090)
-```
+`````
 
 ### 安全加固
 
@@ -387,15 +388,15 @@ start_http_server(9090)
 
 | 特性 | HunyuanVideo | Wan 2.2 | CogVideoX-5B | Open-Sora |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 参数量 | 13B (1.5版 8.3B) | 14B | 5B | 1.1B - 7B |
 | 最大分辨率 | 1080p (超分) | 1080p | 720p | 720p |
@@ -462,7 +463,7 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 今日开始行动：
 
 1. 克隆仓库并在 GPU 实例上运行 Docker 镜像——官方 CUDA 12 镜像是最快的路径。
-2. 下载 FP8 权重并使用 `sample_video.py` 运行首次 720p 生成。
+2. 下载 FP8 权重并使用 ````sample_video.py``` 运行首次 720p 生成。
 3. 使用 Kijai 的封装版与 ComfyUI 集成，进行可视化工作流编辑。
 4. 加入 [dibi8 Telegram 群组](https://t.me/dibi8Channel) 讨论部署策略并与社区分享您的生成视频。
 
@@ -519,7 +520,7 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [bytedance-ui-tars-desktop-ai-agent-guide](hunyuan-video)
@@ -529,5 +530,5 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 - [comfyui-workflows-complete-guide](hunyuan-video)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

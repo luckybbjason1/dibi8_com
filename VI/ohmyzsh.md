@@ -11,9 +11,10 @@ license: MIT
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
+
 # Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn trong Năm 2026
 
-Nếu bạn dành hơn một giờ mỗi ngày trong terminal, shell chính là giao diện chính của bạn với thế giới. Trong nhiều năm, `bash` là mặc định. Nó hoạt động. Nó tẻ nhạt. Sau đó `zsh` xuất hiện, mang theo khả năng làm nổi bật cú pháp, gợi ý tự động và một ngôn ngữ scripting hiện đại hơn. Nhưng việc cấu hình `zsh` từ đầu là một nỗi đau. Hãy để **Oh My Zsh** giải quyết vấn đề đó.
+Nếu bạn dành hơn một giờ mỗi ngày trong terminal, shell chính là giao diện chính của bạn với thế giới. Trong nhiều năm, ```bash```` là mặc định. Nó hoạt động. Nó tẻ nhạt. Sau đó ````zsh```` xuất hiện, mang theo khả năng làm nổi bật cú pháp, gợi ý tự động và một ngôn ngữ scripting hiện đại hơn. Nhưng việc cấu hình ````zsh```` từ đầu là một nỗi đau. Hãy để **Oh My Zsh** giải quyết vấn đề đó.
 
 Với hơn 187.000 sao trên GitHub, nó không chỉ là một công cụ; nó là một tiêu chuẩn cộng đồng. Nhưng liệu nó vẫn còn liên quan trong năm 2026? Nó có làm chậm terminal của bạn không? Nó so sánh thế nào với các giải pháp thay thế dựa trên Rust hiện đại như Starship?
 
@@ -25,7 +26,7 @@ Trong bài viết này, chúng ta sẽ đi sâu hơn ngoài sự hypes "cài đ�
 
 Terminal là nơi diễn ra mọi hoạt động quan trọng dành cho nhà phát triển. Dù bạn đang triển khai lên [HTStack](https://my.htstack.com/aff.php?aff=27187), gỡ lỗi một microservice, hay quản lý cơ sở hạ tầng qua Terraform, tốc độ và ngữ cảnh đều quan trọng.
 
-Các shell tiêu chuẩn thường thiếu khả năng nhận biết ngữ cảnh. Bạn không biết mình đang ở trong Python virtualenv cho đến khi bạn gõ `pip`. Bạn không biết lệnh `git commit` cuối cùng của bạn có thất bại hay không cho đến khi bạn kiểm tra mã thoát (exit code). Oh My Zsh khắc phục khoảng trống này bằng cách cung cấp một framework quản lý file `.zshrc` của bạn, inject các plugin và áp dụng các theme một cách động.
+Các shell tiêu chuẩn thường thiếu khả năng nhận biết ngữ cảnh. Bạn không biết mình đang ở trong Python virtualenv cho đến khi bạn gõ ````pip````. Bạn không biết lệnh ````git commit```` cuối cùng của bạn có thất bại hay không cho đến khi bạn kiểm tra mã thoát (exit code). Oh My Zsh khắc phục khoảng trống này bằng cách cung cấp một framework quản lý file ````.zshrc```` của bạn, inject các plugin và áp dụng các theme một cách động.
 
 Tuy nhiên, "framework" ngụ ý có chi phí vận hành (overhead). Trong hướng dẫn này, chúng ta sẽ định lượng chi phí đó và chỉ cho bạn cách giảm thiểu nó. Chúng tôi không ở đây để bán cho bạn một sản phẩm; chúng tôi ở đây để giúp bạn xây dựng một môi trường phát triển nhanh hơn, an toàn hơn và năng suất hơn.
 
@@ -36,22 +37,22 @@ Oh My Zsh là một framework mã nguồn mở, được điều hành bởi c�
 ### Các Thành Phần Cốt Lõi
 
 1.  **Framework**: Nó cung cấp cấu trúc thư mục cho các plugin, theme và cấu hình tùy chỉnh. Nó xử lý việc load các file này theo đúng thứ tự.
-2.  **Plugins**: Có hơn 300 plugin. Đây là các script nhỏ thêm vào các chức năng cụ thể. Ví dụ bao gồm: *   `git`: Thêm các alias cho các lệnh git phổ biến (ví dụ: `gst` cho `git status`).
-    *   `docker`: Thêm các alias và autocomplete cho các lệnh Docker.
-    *   `python`: Tự động kích hoạt virtual environments khi bạn `cd` vào thư mục chứa `requirements.txt` hoặc thư mục `venv`.
-    *   `kubectl`: Thêm autocomplete và chuyển đổi ngữ cảnh cho Kubernetes.
-3.  **Themes**: Themes thay đổi dòng lệnh (prompt). Một số đơn giản, chỉ hiển thị thư mục hiện tại. Một số phức tạp hơn, hiển thị nhánh git, trạng thái dirty, mã thoát và thậm chí tên tài khoản AWS. Các theme phổ biến bao gồm `agnoster`, `spaceship` và `powerlevel10k`.
+2.  **Plugins**: Có hơn 300 plugin. Đây là các script nhỏ thêm vào các chức năng cụ thể. Ví dụ bao gồm: *   ````git````: Thêm các alias cho các lệnh git phổ biến (ví dụ: ````gst```` cho ````git status````).
+    *   ````docker````: Thêm các alias và autocomplete cho các lệnh Docker.
+    *   ````python````: Tự động kích hoạt virtual environments khi bạn ````cd```` vào thư mục chứa ````requirements.txt```` hoặc thư mục ````venv````.
+    *   ````kubectl````: Thêm autocomplete và chuyển đổi ngữ cảnh cho Kubernetes.
+3.  **Themes**: Themes thay đổi dòng lệnh (prompt). Một số đơn giản, chỉ hiển thị thư mục hiện tại. Một số phức tạp hơn, hiển thị nhánh git, trạng thái dirty, mã thoát và thậm chí tên tài khoản AWS. Các theme phổ biến bao gồm ````agnoster````, ````spaceship```` và ````powerlevel10k````.
 4.  **Tự Động Cập Nhật**: Oh My Zsh có thể tự động cập nhật chính nó và các plugin thông qua Git. Điều này đảm bảo bạn luôn có các bản sửa lỗi và tính năng mới nhất, mặc dù tính năng này có thể bị vô hiệu hóa để đảm bảo tính ổn định trong production.
 
 ![Huy Hiệu CI](https://github.com/ohmyzsh/ohmyzsh/workflows/CI/badge.svg)
 
 ## Oh My Zsh Hoạt Động Như Thế Nào
 
-Hiểu cơ chế hoạt động là rất quan trọng để gỡ lỗi và tối ưu hóa. Oh My Zsh hoạt động bằng cách sửa đổi biến môi trường `ZDOTDIR`.
+Hiểu cơ chế hoạt động là rất quan trọng để gỡ lỗi và tối ưu hóa. Oh My Zsh hoạt động bằng cách sửa đổi biến môi trường ````ZDOTDIR````.
 
 ### Cấu Trúc Thư Mục
 
-Khi bạn cài đặt Oh My Zsh, nó tạo ra thư mục `~/.oh-my-zsh`. Cấu trúc trông như sau: ```bash
+Khi bạn cài đặt Oh My Zsh, nó tạo ra thư mục ``~/.oh-my-zsh``. Cấu trúc trông như sau: `````bash
 ~/.oh-my-zsh
 ├── bin/          # Script nội bộ
 ├── cache/        # Hoàn thành (completions) đã được cache
@@ -62,9 +63,9 @@ Khi bạn cài đặt Oh My Zsh, nó tạo ra thư mục `~/.oh-my-zsh`. Cấu t
 ├── themes/       # Các theme tích hợp sẵn
 ├── tools/        # Script trợ giúp
 └── utils/        # Các hàm tiện ích
-```
+`````
 
-Cấu hình cá nhân của bạn nằm trong `~/.zshrc`. Oh My Zsh tạo file này trong quá trình cài đặt dựa trên một mẫu. Phần quan trọng nhất của `.zshrc` là dòng khởi tạo: ```zsh
+Cấu hình cá nhân của bạn nằm trong ``~/.zshrc``. Oh My Zsh tạo file này trong quá trình cài đặt dựa trên một mẫu. Phần quan trọng nhất của ``.zshrc`` là dòng khởi tạo: `````zsh
 # Tên thư mục cần loại bỏ khỏi prompt.
 ZSH_DISABLE_COMPFIX="true"
 
@@ -161,14 +162,14 @@ source $ZSH/oh-my-zsh.sh
 # plugin và theme của oh-my-zsh. Các alias có thể được đặt ở đây, mặc dù người dùng
 # oh-my-zsh được khuyến nghị xác định các alias trong phần toàn cục.
 # alias myzsh="vim ~/.zshrc"
-```
+`````
 
 ### Luồng Khởi Tạo
 
 1.  **Shell Bắt Đầu**: Người dùng mở terminal.
-2.  **Zsh Tải**: Zsh đọc `~/.zshrc`.
-3.  **Oh My Zsh Source**: Dòng `source $ZSH/oh-my-zsh.sh` được thực thi.
-4.  **Tải Plugin**: Oh My Zsh lặp qua mảng `plugins`. Với mỗi plugin, nó source file `*.plugin.zsh`.
+2.  **Zsh Tải**: Zsh đọc ````~/.zshrc````.
+3.  **Oh My Zsh Source**: Dòng ````source $ZSH/oh-my-zsh.sh```` được thực thi.
+4.  **Tải Plugin**: Oh My Zsh lặp qua mảng ````plugins````. Với mỗi plugin, nó source file ````*.plugin.zsh````.
 5.  **Tải Theme**: File theme được source, xác định các hàm prompt.
 6.  **Thiết Lập Hoàn Thành**: Oh My Zsh kích hoạt hệ thống hoàn thành (completion) của Zsh, mạnh mẽ hơn nhiều so với của Bash.
 7.  **Hiển Thị Prompt**: Dòng lệnh shell được render bằng theme đã xác định.
@@ -181,11 +182,11 @@ Cài đặt Oh My Zsh khá đơn giản, nhưng có những lưu ý quan trọng
 
 *   **Zsh**: Phiên bản 5.0 hoặc cao hơn được khuyến nghị.
 *   **Git**: Bắt buộc để clone repository và tự động cập nhật.
-*   **Powerline Fonts**: Nếu bạn sử dụng theme phức tạp (như `agnoster` hoặc `powerlevel10k`), bạn cần một font hỗ trợ các ký tự Powerline. Không có những font này, prompt của bạn sẽ hiển thị các ký tự bị lỗi.
+*   **Powerline Fonts**: Nếu bạn sử dụng theme phức tạp (như ````agnoster```` hoặc ````powerlevel10k````), bạn cần một font hỗ trợ các ký tự Powerline. Không có những font này, prompt của bạn sẽ hiển thị các ký tự bị lỗi.
 
 ### Bước 1: Cài Đặt Zsh
 
-Trên macOS, Zsh là shell mặc định kể từ Catalina. Trên Linux, bạn có thể cần cài đặt nó: ```bash
+Trên macOS, Zsh là shell mặc định kể từ Catalina. Trên Linux, bạn có thể cần cài đặt nó: `````bash
 # Ubuntu/Debian
 sudo apt-get install zsh
 
@@ -194,56 +195,56 @@ sudo dnf install zsh
 
 # Arch Linux
 sudo pacman -S zsh
-```
+`````
 
 ### Bước 2: Đặt Zsh Là Shell Mặc Định
 
-```bash
+`````bash
 chsh -s $(which zsh)
-```
+`````
 
 ### Bước 3: Cài Đặt Oh My Zsh
 
-Phương pháp cài đặt tiêu chuẩn sử dụng `curl` hoặc `wget` để clone repository và thiết lập cấu hình: ```bash
+Phương pháp cài đặt tiêu chuẩn sử dụng ``curl`` hoặc ``wget`` để clone repository và thiết lập cấu hình: `````bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+`````
 
-Hoặc sử dụng `wget`: ```bash
+Hoặc sử dụng ``wget``: `````bash
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-```
+`````
 
 ### Bước 4: Xác Nhận Cài Đặt
 
-Sau khi cài đặt, hãy đóng và mở lại terminal của bạn. Bạn sẽ thấy một dòng lệnh mới. Kiểm tra cấu hình của bạn: ```bash
+Sau khi cài đặt, hãy đóng và mở lại terminal của bạn. Bạn sẽ thấy một dòng lệnh mới. Kiểm tra cấu hình của bạn: `````bash
 echo $ZSH
 # Output: /home/username/.oh-my-zsh
-```
+`````
 
 ### Bước 5: Thay Đổi Theme
 
-Chỉnh sửa `~/.zshrc` và thay đổi biến `ZSH_THEME`. Các theme phổ biến bao gồm: *   `robbyrussell`: Mặc định. Đơn giản và sạch sẽ.
-*   `agnoster`: Hiển thị nhánh git, trạng thái dirty và mã thoát. Yêu cầu font Powerline.
-*   `powerlevel10k`: Có thể cấu hình cao, nhanh và hiện đại. Được khuyến nghị cho người dùng nâng cao.
+Chỉnh sửa ````~/.zshrc```` và thay đổi biến ````ZSH_THEME````. Các theme phổ biến bao gồm: *   ````robbyrussell````: Mặc định. Đơn giản và sạch sẽ.
+*   ````agnoster````: Hiển thị nhánh git, trạng thái dirty và mã thoát. Yêu cầu font Powerline.
+*   ````powerlevel10k````: Có thể cấu hình cao, nhanh và hiện đại. Được khuyến nghị cho người dùng nâng cao.
 
-```zsh
+`````zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
-```
+`````
 
-Nếu bạn chọn `powerlevel10k`, bạn sẽ cần cài đặt font và chạy wizard cấu hình: ```bash
+Nếu bạn chọn ``powerlevel10k``, bạn sẽ cần cài đặt font và chạy wizard cấu hình: `````bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
+`````
 
 ### Bước 6: Thêm Plugins
 
-Chỉnh sửa `~/.zshrc` và thêm các plugin vào mảng `plugins`: ```zsh
+Chỉnh sửa ``~/.zshrc`` và thêm các plugin vào mảng ``plugins``: `````zsh
 plugins=(git docker kubectl python node npm)
-```
+`````
 
 ### Bước 7: Tải Lại Cấu Hình
 
-```bash
+`````bash
 source ~/.zshrc
-```
+`````
 
 ## Tích Hợp Với [3-5 Công Cụ]
 
@@ -251,80 +252,80 @@ Oh My Zsh tỏa sáng khi được tích hợp với các công cụ phát tri�
 
 ### Docker
 
-Plugin `docker` cung cấp các alias và completions.
+Plugin ````docker```` cung cấp các alias và completions.
 
-```zsh
+`````zsh
 # Trong ~/.zshrc
 plugins=(docker)
-```
+`````
 
-Các alias được tạo: *   `dc`: `docker-compose`
-*   `dcr`: `docker-compose run`
-*   `dps`: `docker ps`
+Các alias được tạo: *   ````dc````: ````docker-compose````
+*   ````dcr````: ````docker-compose run````
+*   ````dps````: ````docker ps````
 
-Bạn cũng có thể thêm các completions tùy chỉnh cho các lệnh Docker: ```zsh
+Bạn cũng có thể thêm các completions tùy chỉnh cho các lệnh Docker: `````zsh
 # Custom completion cho Docker
 compdef _docker docker
-```
+`````
 
 ### Kubernetes
 
-Plugin `kubectl` thêm chuyển đổi ngữ cảnh và completion.
+Plugin ````kubectl```` thêm chuyển đổi ngữ cảnh và completion.
 
-```zsh
+`````zsh
 # Trong ~/.zshrc
 plugins=(kubectl)
-```
+`````
 
-Các alias được tạo: *   `k`: `kubectl`
-*   `kg`: `kubectl get`
-*   `kd`: `kubectl describe`
+Các alias được tạo: *   ````k````: ````kubectl````
+*   ````kg````: ````kubectl get````
+*   ````kd````: ````kubectl describe````
 
-Để chuyển đổi ngữ cảnh dễ dàng: ```bash
+Để chuyển đổi ngữ cảnh dễ dàng: `````bash
 # Liệt kê các contexts
 kubectx
 
 # Chuyển đổi context
 kubectx minikube
-```
+`````
 
 ### Python
 
-Plugin `python` tự động kích hoạt các virtual environments.
+Plugin ````python```` tự động kích hoạt các virtual environments.
 
-```zsh
+`````zsh
 # Trong ~/.zshrc
 plugins=(python)
-```
+`````
 
-Khi bạn `cd` vào một thư mục có `venv` hoặc `requirements.txt`, virtual environment sẽ được kích hoạt tự động. Để vô hiệu hóa, chạy `deactivate`.
+Khi bạn ````cd```` vào một thư mục có ````venv```` hoặc ````requirements.txt````, virtual environment sẽ được kích hoạt tự động. Để vô hiệu hóa, chạy ````deactivate````.
 
 ### Node.js
 
-Các plugin `node` và `npm` cung cấp completions và aliases.
+Các plugin ````node```` và ````npm```` cung cấp completions và aliases.
 
-```zsh
+`````zsh
 # Trong ~/.zshrc
 plugins=(node npm)
-```
+`````
 
-Các alias được tạo: *   `ni`: `npm install`
-*   `nr`: `npm run`
-*   `ns`: `npm start`
+Các alias được tạo: *   ````ni````: ````npm install````
+*   ````nr````: ````npm run````
+*   ````ns````: ````npm start````
 
 ### Git
 
-Plugin `git` là thiết yếu cho bất kỳ nhà phát triển nào.
+Plugin ````git```` là thiết yếu cho bất kỳ nhà phát triển nào.
 
-```zsh
+`````zsh
 # Trong ~/.zshrc
 plugins=(git)
-```
+`````
 
-Các alias được tạo: *   `gst`: `git status`
-*   `gc`: `git commit`
-*   `gco`: `git checkout`
-*   `gb`: `git branch`
+Các alias được tạo: *   ````gst````: ````git status````
+*   ````gc````: ````git commit````
+*   ````gco````: ````git checkout````
+*   ````gb````: ````git branch````
 
 ## Benchmarks / Sử Dụng Thực Tế
 
@@ -337,12 +338,12 @@ Chúng tôi đã đo thời gian khởi động của Zsh có và không có Oh 
 | Cấu Hình | Thời Gian Khởi Động (ms) | Ghi Chú |
 | :--- | :--- | :--- |
 | Zsh (Native) | 45 ms | Không plugin, không theme |
-| Zsh + Oh My Zsh (Mặc Định) | 120 ms | Theme `robbyrussell`, 5 plugin |
-| Zsh + Oh My Zsh (Powerlevel10k) | 180 ms | Theme `powerlevel10k`, 10 plugin |
+| Zsh + Oh My Zsh (Mặc Định) | 120 ms | Theme ````robbyrussell````, 5 plugin |
+| Zsh + Oh My Zsh (Powerlevel10k) | 180 ms | Theme ````powerlevel10k````, 10 plugin |
 | Zsh + Starship (Rust) | 35 ms | Dựa trên Rust, tối ưu hóa cao |
 | Zsh + Prezto | 90 ms | Framework Zsh thay thế |
 
-*Dữ liệu tính đến 2026-05. Đo bằng `time zsh -i -c exit`.*
+*Dữ liệu tính đến 2026-05. Đo bằng ````time zsh -i -c exit````.*
 
 ### Phân Tích
 
@@ -352,27 +353,27 @@ Chúng tôi đã đo thời gian khởi động của Zsh có và không có Oh 
 
 ### Trường Hợp Sử Dụng Thực Tế: Kỹ Sư DevOps
 
-Một kỹ sư DevOps làm việc với Kubernetes và Docker được hưởng lợi đáng kể từ các plugin `kubectl` và `docker`. Thời gian tiết kiệm được từ việc không phải gõ đầy đủ các lệnh và có autocomplete là rất đáng kể.
+Một kỹ sư DevOps làm việc với Kubernetes và Docker được hưởng lợi đáng kể từ các plugin ````kubectl```` và ````docker````. Thời gian tiết kiệm được từ việc không phải gõ đầy đủ các lệnh và có autocomplete là rất đáng kể.
 
-```bash
+`````bash
 # Trước Oh My Zsh
 $ kubectl get pods -n production -o wide
 
 # Sau Oh My Zsh
 $ k get po -n prod -o w
-```
+`````
 
 ### Trường Hợp Sử Dụng Thực Tế: Nhà Phát Triển Frontend
 
-Một nhà phát triển frontend làm việc với Node.js và React được hưởng lợi từ các plugin `node` và `npm`.
+Một nhà phát triển frontend làm việc với Node.js và React được hưởng lợi từ các plugin ````node```` và ````npm````.
 
-```bash
+`````bash
 # Trước Oh My Zsh
 $ npm run build
 
 # Sau Oh My Zsh
 $ nr build
-```
+`````
 
 ## Sử Dụng Nâng Cao / Tăng Cường Bảo Mật Production
 
@@ -380,48 +381,48 @@ $ nr build
 
 ### Vô Hiệu Hóa Tự Động Cập Nhật
 
-Tự động cập nhật có thể phá vỡ cấu hình của bạn một cách bất ngờ. Vô hiệu hóa nó trong `~/.zshrc`: ```zsh
+Tự động cập nhật có thể phá vỡ cấu hình của bạn một cách bất ngờ. Vô hiệu hóa nó trong ``~/.zshrc``: `````zsh
 export DISABLE_AUTO_UPDATE="true"
-```
+`````
 
 ### Giới Hạn Plugins
 
 Mỗi plugin thêm vào thời gian khởi động. Chỉ kích hoạt các plugin bạn cần.
 
-```zsh
+`````zsh
 # Tập hợp plugin tối thiểu
 plugins=(git)
-```
+`````
 
 ### Sử Dụng Theme Đơn Giản
 
-Các theme phức tạp như `powerlevel10k` có thể làm chậm shell. Sử dụng một theme đơn giản cho các server production.
+Các theme phức tạp như ````powerlevel10k```` có thể làm chậm shell. Sử dụng một theme đơn giản cho các server production.
 
-```zsh
+`````zsh
 ZSH_THEME="robbyrussell"
-```
+`````
 
 ### Cấu Hình Bảo Mật
 
-Đảm bảo file `.zshrc` của bạn có quyền bảo mật: ```bash
+Đảm bảo file ``.zshrc`` của bạn có quyền bảo mật: `````bash
 chmod 600 ~/.zshrc
 chmod 700 ~/.oh-my-zsh
-```
+`````
 
 ### Plugins Tùy Chỉnh
 
-Bạn có thể tạo các plugin tùy chỉnh trong `~/.oh-my-zsh/custom/plugins/`. Điều này hữu ích cho các alias hoặc hàm cụ thể cho nhóm.
+Bạn có thể tạo các plugin tùy chỉnh trong ````~/.oh-my-zsh/custom/plugins/````. Điều này hữu ích cho các alias hoặc hàm cụ thể cho nhóm.
 
-```bash
+`````bash
 mkdir -p ~/.oh-my-zsh/custom/plugins/my-custom-plugin
 touch ~/.oh-my-zsh/custom/plugins/my-custom-plugin/my-custom-plugin.plugin.zsh
-```
+`````
 
-Trong `my-custom-plugin.plugin.zsh`: ```zsh
+Trong ``my-custom-plugin.plugin.zsh``: `````zsh
 # Alias tùy chỉnh cho công cụ nội bộ
 alias deploy-staging='ssh staging-server "cd /app && ./deploy.sh"'
 alias deploy-prod='ssh prod-server "cd /app && ./deploy.sh""
-```
+`````
 
 ## So Sánh Với Các Giải Pháp Thay Thế
 
@@ -462,25 +463,25 @@ Có, Oh My Zsh là mã nguồn mở và được sử dụng rộng rãi. Tuy nh
 
 ### 2. Tôi có thể sử dụng Oh My Zsh với Bash không?
 
-Không. Oh My Zsh được thiết kế cụ thể cho Zsh. Nếu bạn muốn trải nghiệm tương tự với Bash, hãy xem xét sử dụng `bash-it` hoặc `bash-preexec`.
+Không. Oh My Zsh được thiết kế cụ thể cho Zsh. Nếu bạn muốn trải nghiệm tương tự với Bash, hãy xem xét sử dụng ````bash-it```` hoặc ````bash-preexec````.
 
 ### 3. Làm thế nào để gỡ cài đặt Oh My Zsh?
 
-Để gỡ cài đặt Oh My Zsh, hãy chạy lệnh sau: ```bash
+Để gỡ cài đặt Oh My Zsh, hãy chạy lệnh sau: `````bash
 uninstall_oh_my_zsh
-```
+`````
 
-Điều này sẽ xóa thư mục `~/.oh-my-zsh` và khôi phục file `.zshrc` gốc của bạn.
+Điều này sẽ xóa thư mục ````~/.oh-my-zsh```` và khôi phục file ````.zshrc```` gốc của bạn.
 
 ### 4. Làm thế nào để cập nhật Oh My Zsh?
 
-Nếu tự động cập nhật được bật, Oh My Zsh sẽ tự cập nhật chính nó. Nếu không, bạn có thể cập nhật thủ công: ```bash
+Nếu tự động cập nhật được bật, Oh My Zsh sẽ tự cập nhật chính nó. Nếu không, bạn có thể cập nhật thủ công: `````bash
 upgrade_oh_my_zsh
-```
+`````
 
 ### 5. Tại sao prompt của tôi hiển thị các ký tự bị lỗi?
 
-Điều này thường là do thiếu font Powerline. Hãy cài đặt một font Powerline (ví dụ: `MesloLGS NF`) và cấu hình terminal của bạn để sử dụng nó.
+Điều này thường là do thiếu font Powerline. Hãy cài đặt một font Powerline (ví dụ: ````MesloLGS NF````) và cấu hình terminal của bạn để sử dụng nó.
 
 ### 6. Tôi có thể sử dụng Oh My Zsh trên Windows không?
 
@@ -488,7 +489,7 @@ Có, nhưng bạn cần sử dụng WSL (Windows Subsystem for Linux) hoặc Git
 
 ### 7. Làm thế nào để tạo một plugin tùy chỉnh?
 
-Tạo một thư mục trong `~/.oh-my-zsh/custom/plugins/` với một file `.plugin.zsh`. Xác định các alias, hàm hoặc hooks trong file này.
+Tạo một thư mục trong ````~/.oh-my-zsh/custom/plugins/```` với một file ````.plugin.zsh```. Xác định các alias, hàm hoặc hooks trong file này.
 
 ## Kết Luận
 
@@ -540,7 +541,7 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -550,6 +551,6 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 - [claude-code-vs-cline](ohmyzsh)
 - [cursor-vs-windsurf](ohmyzsh)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

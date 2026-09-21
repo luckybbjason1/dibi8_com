@@ -23,43 +23,44 @@ tags: ["aiohttp", "async", "web scraping", "python", "http client", "asyncio"]
 aliases:
   - /posts/aiohttp-async-web-scraping/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Synchronous Scraping Bottleneck
 
-You have a list of **50,000 URLs** to scrape. You fire up `requests` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting **99.9% of the runtime** on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.
+You have a list of **50,000 URLs** to scrape. You fire up ```requests```` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting **99.9% of the runtime** on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.
 
-`aiohttp`, maintained by `aio-libs` and standing at **15,200 GitHub stars**, is the de facto async HTTP client/server framework for Python. Built on `asyncio`, it enables concurrent requests without the overhead of threading or multiprocessing. In production benchmarks, a single aiohttp process handles **10,000+ requests per second** against local endpoints, and **2,000-4,000 req/s** against real-world distributed APIs. This article is your complete, production-ready guide to building high-performance web scrapers with aiohttp v3.11.
+````aiohttp````, maintained by ````aio-libs```` and standing at **15,200 GitHub stars**, is the de facto async HTTP client/server framework for Python. Built on ````asyncio````, it enables concurrent requests without the overhead of threading or multiprocessing. In production benchmarks, a single aiohttp process handles **10,000+ requests per second** against local endpoints, and **2,000-4,000 req/s** against real-world distributed APIs. This article is your complete, production-ready guide to building high-performance web scrapers with aiohttp v3.11.
 
 ## What Is aiohttp?
 
-`aiohttp` is an asynchronous HTTP client and server framework for Python built on top of `asyncio`. It was first released in 2014 and is licensed under Apache-2.0. The library provides both client-side capabilities (making HTTP requests) and server-side capabilities (building web applications), making it unique among HTTP libraries. For web scraping, the client side is the primary focus.
+````aiohttp```` is an asynchronous HTTP client and server framework for Python built on top of ````asyncio````. It was first released in 2014 and is licensed under Apache-2.0. The library provides both client-side capabilities (making HTTP requests) and server-side capabilities (building web applications), making it unique among HTTP libraries. For web scraping, the client side is the primary focus.
 
-Unlike synchronous libraries such as `requests` or `urllib3`, aiohttp uses Python's `async`/`await` syntax to enable non-blocking I/O. This means while one request waits for a server response, the event loop processes dozens or hundreds of other requests. The result is dramatically higher throughput with lower resource consumption.
+Unlike synchronous libraries such as ````requests```` or ````urllib3````, aiohttp uses Python's ````async````/````await```` syntax to enable non-blocking I/O. This means while one request waits for a server response, the event loop processes dozens or hundreds of other requests. The result is dramatically higher throughput with lower resource consumption.
 
 ## How aiohttp Works: Architecture and Core Concepts
 
 Understanding aiohttp's architecture is critical to writing efficient scrapers. The framework is built on several key concepts: ### Event Loop and Asyncio Integration
 
-aiohttp runs on Python's `asyncio` event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.
+aiohttp runs on Python's ````asyncio```` event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.
 
 ### Connection Pooling
 
-aiohttp maintains persistent TCP connections via `TCPConnector`. By default, it pools connections to the same host, reusing them across requests. This eliminates the **TCP handshake overhead** (~200ms per connection) that plagues naive request scripts. In benchmarks, connection pooling alone reduces total request time by **60-80%** for multi-request scenarios.
+aiohttp maintains persistent TCP connections via ````TCPConnector````. By default, it pools connections to the same host, reusing them across requests. This eliminates the **TCP handshake overhead** (~200ms per connection) that plagues naive request scripts. In benchmarks, connection pooling alone reduces total request time by **60-80%** for multi-request scenarios.
 
 ### Session Management
 
-The `ClientSession` object is the core abstraction. It encapsulates the connector, headers, cookies, and configuration. A single session should be reused across all requests to a given target. Creating a new session per request is a common anti-pattern that destroys connection reuse.
+The ````ClientSession```` object is the core abstraction. It encapsulates the connector, headers, cookies, and configuration. A single session should be reused across all requests to a given target. Creating a new session per request is a common anti-pattern that destroys connection reuse.
 
 ### Backpressure and Flow Control
 
-aiohttp implements backpressure through `asyncio` semaphores and limits. The `limit` parameter on `TCPConnector` controls concurrent connections per host, preventing your scraper from overwhelming target servers or exhausting local file descriptors.
+aiohttp implements backpressure through ````asyncio```` semaphores and limits. The ````limit```` parameter on ````TCPConnector```` controls concurrent connections per host, preventing your scraper from overwhelming target servers or exhausting local file descriptors.
 
 ## Installation and Setup: Ready in Under 5 Minutes
 
 ### Step 1: Install aiohttp
 
-```bash
+`````bash
 pip install aiohttp==3.11.0
 
 # Include speedups (recommended for production)
@@ -67,13 +68,13 @@ pip install aiohttp[speedups]==3.11.0
 
 # With additional tools for scraping
 pip install aiohttp==3.11.0 aiofiles==24.1.0 beautifulsoup4==4.12.3 lxml==5.3.0
-```
+`````
 
-The `[speedups]` extra installs `aiodns` and `Brotli`, which improve DNS resolution and response decompression respectively. For high-throughput scraping, these are essential.
+The ````[speedups]```` extra installs ````aiodns```` and ````Brotli````, which improve DNS resolution and response decompression respectively. For high-throughput scraping, these are essential.
 
 ### Step 2: Verify the Installation
 
-```python
+`````python
 import aiohttp
 import asyncio
 import sys
@@ -86,11 +87,11 @@ async def check(): async with aiohttp.ClientSession() as session: async with ses
             print(f"Response keys: {list(data.keys())}")
 
 asyncio.run(check())
-```
+`````
 
 ### Step 3: Run Your First Concurrent Scraper
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -107,15 +108,15 @@ async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(
         for r in results: print(r["args"])
 
 asyncio.run(main())
-```
+`````
 
-This fetches three URLs concurrently in under a second. With synchronous `requests`, the same code would take **3x longer** due to sequential blocking.
+This fetches three URLs concurrently in under a second. With synchronous ````requests````, the same code would take **3x longer** due to sequential blocking.
 
 ## Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage
 
 ### Integration with BeautifulSoup for HTML Parsing
 
-```python
+`````python
 import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
@@ -134,11 +135,11 @@ async def main(): urls = ["https://example.com", "https://httpbin.org/html"]
         for r in results: print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
-```
+`````
 
 ### Integration with lxml for High-Performance XML/HTML Parsing
 
-```python
+`````python
 import aiohttp
 import asyncio
 from lxml import html as lh
@@ -153,13 +154,13 @@ async def main(): async with aiohttp.ClientSession() as session: links = await e
         print(f"Found {len(links)} external links")
 
 asyncio.run(main())
-```
+`````
 
 lxml is **10-20x faster** than html.parser for large documents and handles malformed HTML more gracefully.
 
 ### Integration with aiofiles for Async File I/O
 
-```python
+`````python
 import aiohttp
 import aiofiles
 import asyncio
@@ -176,13 +177,13 @@ async def main(): async with aiohttp.ClientSession() as session: await scrape_an
         )
 
 asyncio.run(main())
-```
+`````
 
-Using `aiofiles` prevents blocking the event loop during disk writes, which is critical when saving thousands of scraped files.
+Using ````aiofiles```` prevents blocking the event loop during disk writes, which is critical when saving thousands of scraped files.
 
 ### Integration with SQLite for Structured Data Storage
 
-```python
+`````python
 import aiohttp
 import aiosqlite
 import asyncio
@@ -199,11 +200,11 @@ async def main(): async with aiosqlite.connect("scraped.db") as db: await db.exe
         async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, "https://httpbin.org/json")
 
 asyncio.run(main())
-```
+`````
 
 ### Integration with Proxy Rotation via WebShare
 
-For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: ```python
+For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: `````python
 import aiohttp
 import asyncio
 
@@ -217,7 +218,7 @@ async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
         print(html[:200])
 
 asyncio.run(main())
-```
+`````
 
 **[Get started with WebShare proxies](https://www.webshare.io/?referral_code=oa14d5f0wx4f)** for reliable, rotating proxy infrastructure that scales with your scraping needs.
 
@@ -227,13 +228,13 @@ asyncio.run(main())
 
 | Metric | requests (sync) | httpx (async) | aiohttp 3.11 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1,000 requests (local) | 187s | 12s | **8.2s** |
 | 10,000 requests (local) | 1,870s | 98s | **62s** |
@@ -248,19 +249,19 @@ asyncio.run(main())
 ### Real-World Use Cases
 
 **Case 1: Price Monitoring Pipeline**
-A German e-commerce aggregator uses aiohttp to monitor **2.3 million product pages** across 12 retailers. Their scraper runs on 4 DigitalOcean droplets, each handling ~**600 req/s** with rotating proxies. Total infrastructure cost: **$240/month**. The previous `requests`-based system required 18 servers and cost $1,080/month.
+A German e-commerce aggregator uses aiohttp to monitor **2.3 million product pages** across 12 retailers. Their scraper runs on 4 DigitalOcean droplets, each handling ~**600 req/s** with rotating proxies. Total infrastructure cost: **$240/month**. The previous ````requests````-based system required 18 servers and cost $1,080/month.
 
 **Case 2: News Feed Aggregation**
-A media monitoring startup processes **45,000 news sources** every 15 minutes. Using aiohttp with `aio-pika` for RabbitMQ integration, they achieve end-to-end latency of under 90 seconds for the full crawl cycle. The async pipeline replaced a Celery+requests architecture that took 8+ minutes.
+A media monitoring startup processes **45,000 news sources** every 15 minutes. Using aiohttp with ````aio-pika```` for RabbitMQ integration, they achieve end-to-end latency of under 90 seconds for the full crawl cycle. The async pipeline replaced a Celery+requests architecture that took 8+ minutes.
 
 **Case 3: Academic Research Dataset Construction**
-A university NLP lab crawled **8.5 million** academic pages from 340 domains using aiohttp with domain-specific rate limiting. The crawl completed in **72 hours** on a single 8-core server. The equivalent `requests` estimate was **21 days**.
+A university NLP lab crawled **8.5 million** academic pages from 340 domains using aiohttp with domain-specific rate limiting. The crawl completed in **72 hours** on a single 8-core server. The equivalent ````requests```` estimate was **21 days**.
 
 ## Advanced Usage and Production Hardening
 
 ### Connection Pool Tuning
 
-```python
+`````python
 import aiohttp
 
 connector = aiohttp.TCPConnector(
@@ -283,11 +284,11 @@ session = aiohttp.ClientSession(
     timeout=timeout,
     headers={"User-Agent": "MyBot/1.0"},
 )
-```
+`````
 
 ### Rate Limiting with Semaphores
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -304,11 +305,11 @@ async def main(): semaphore = asyncio.Semaphore(50)  # Max 50 concurrent request
         print(f"Successful: {successences}/500")
 
 asyncio.run(main())
-```
+`````
 
 ### Retry Logic with Exponential Backoff
 
-```python
+`````python
 import aiohttp
 import asyncio
 import random
@@ -326,11 +327,11 @@ async def main(): async with aiohttp.ClientSession() as session: data = await fe
         print(data)
 
 asyncio.run(main())
-```
+`````
 
 ### WebSocket Scraping for Real-Time Data
 
-```python
+`````python
 import aiohttp
 import asyncio
 
@@ -344,11 +345,11 @@ async def websocket_scraper(): """Scrape real-time data from WebSocket endpoint.
                     break
 
 asyncio.run(websocket_scraper())
-```
+`````
 
 ### Production Deployment on DigitalOcean with Docker
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -358,9 +359,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY scraper.py .
 CMD ["python", "scraper.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: scraper: build: .
@@ -370,13 +371,13 @@ services: scraper: build: .
     logging: driver: "json-file"
       options: max-size: "100m"
         max-file: "3"
-```
+`````
 
 Deploy this to a **[DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)** for reliable, scalable scraping infrastructure starting at $4/month. For distributed scraping across multiple nodes, DigitalOcean's Kubernetes service makes horizontal scaling straightforward.
 
 ### Monitoring with Prometheus Metrics
 
-```python
+`````python
 import aiohttp
 import asyncio
 from prometheus_client import Counter, Histogram, start_http_server
@@ -391,23 +392,23 @@ async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: asyn
 
 # Start metrics server on port 9090
 start_http_server(9090)
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Async support | Yes (native) | No | Yes | No | No |
 | HTTP/2 support | No | No | Yes | No | Yes |
@@ -430,25 +431,25 @@ start_http_server(9090)
 
 ## Limitations: Honest Assessment
 
-No tool is perfect. aiohttp has specific limitations you should understand: **No HTTP/2 support.** As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use `httpx` instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.
+No tool is perfect. aiohttp has specific limitations you should understand: **No HTTP/2 support.** As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use ````httpx```` instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.
 
-**Learning curve for asyncio.** Developers new to `async`/`await` will encounter a significant learning curve. Common pitfalls include forgetting `await`, mixing sync and async code, and debugging hanging event loops. The `RuntimeError: Event loop is closed` error is a rite of passage for every asyncio developer.
+**Learning curve for asyncio.** Developers new to ````async````/````await```` will encounter a significant learning curve. Common pitfalls include forgetting ````await````, mixing sync and async code, and debugging hanging event loops. The ````RuntimeError: Event loop is closed```` error is a rite of passage for every asyncio developer.
 
-**DNS resolution bottlenecks.** aiohttp's default DNS resolver uses `getaddrinfo`, which is synchronous and can block the event loop under high concurrency. Install `aiodns` (included with `[speedups]`) to enable true async DNS resolution.
+**DNS resolution bottlenecks.** aiohttp's default DNS resolver uses ````getaddrinfo````, which is synchronous and can block the event loop under high concurrency. Install ````aiodns```` (included with ````[speedups]````) to enable true async DNS resolution.
 
 **Server-side focus dilutes client documentation.** aiohttp is both a client and server framework. The documentation sometimes prioritizes server features, making client-specific features harder to find.
 
-**Cookie handling quirks.** aiohttp's cookie jar follows RFC 6265 strictly, which can cause issues with misconfigured servers that send malformed cookies. The `unsafe=True` flag on `CookieJar` can work around this.
+**Cookie handling quirks.** aiohttp's cookie jar follows RFC 6265 strictly, which can cause issues with misconfigured servers that send malformed cookies. The ````unsafe=True```` flag on ````CookieJar```` can work around this.
 
 ## Frequently Asked Questions
 
 ### How many concurrent requests can aiohttp handle?
 
-With default settings (100 connections), aiohttp handles **100 concurrent requests per host**. Increasing the connector `limit` to 200-300 allows **2,000-4,000 req/s** against distributed targets on a single process. The practical limit is usually the target server's rate limiting or your network bandwidth, not aiohttp itself.
+With default settings (100 connections), aiohttp handles **100 concurrent requests per host**. Increasing the connector ````limit```` to 200-300 allows **2,000-4,000 req/s** against distributed targets on a single process. The practical limit is usually the target server's rate limiting or your network bandwidth, not aiohttp itself.
 
 ### Can I use aiohttp with existing synchronous code?
 
-Yes, but carefully. Use `asyncio.run()` or `loop.run_until_complete()` to bridge sync and async boundaries. For calling sync functions from async code, use `loop.run_in_executor()` to offload blocking work to a thread pool. Never call blocking I/O directly from async functions as it freezes the entire event loop.
+Yes, but carefully. Use ````asyncio.run()```` or ````loop.run_until_complete()```` to bridge sync and async boundaries. For calling sync functions from async code, use ````loop.run_in_executor()```` to offload blocking work to a thread pool. Never call blocking I/O directly from async functions as it freezes the entire event loop.
 
 ### How do I handle CAPTCHAs and JavaScript-rendered pages?
 
@@ -456,11 +457,11 @@ aiohttp is an HTTP client, not a browser. It cannot execute JavaScript or solve 
 
 ### Is aiohttp suitable for large file downloads?
 
-Yes. Use `resp.content.iter_chunked(8192)` to stream large files without loading them into memory. For a **10GB file**, aiohttp uses under **20MB of RAM** when streaming, compared to 10GB+ with naive `await resp.read()`.
+Yes. Use ````resp.content.iter_chunked(8192)```` to stream large files without loading them into memory. For a **10GB file**, aiohttp uses under **20MB of RAM** when streaming, compared to 10GB+ with naive ````await resp.read()````.
 
 ### How do I debug aiohttp performance issues?
 
-Enable `aiohttp` debug mode with `python -W default -m aiohttp.web` or set `PYTHONASYNCIODEBUG=1`. Use `asyncio.get_event_loop().set_debug(True)` to catch common mistakes. For production monitoring, instrument with `prometheus_client` as shown in the Advanced Usage section, or use `aiohttp-debugtoolbar` during development.
+Enable ````aiohttp```` debug mode with ````python -W default -m aiohttp.web```` or set ````PYTHONASYNCIODEBUG=1````. Use ````asyncio.get_event_loop().set_debug(True)```` to catch common mistakes. For production monitoring, instrument with ````prometheus_client```` as shown in the Advanced Usage section, or use ````aiohttp-debugtoolbar```` during development.
 
 ### What is the difference between aiohttp and Flask/FastAPI?
 
@@ -468,7 +469,7 @@ aiohttp is both an HTTP client and server. On the server side, it competes with 
 
 ## Conclusion: Build Your Next Scraper with aiohttp
 
-If you are still using `requests` for large-scale scraping, you are leaving **10-50x performance gains** on the table. aiohttp's native async architecture, mature ecosystem, and proven production track record make it the best choice for high-throughput Python scrapers in 2026.
+If you are still using ````requests``` for large-scale scraping, you are leaving **10-50x performance gains** on the table. aiohttp's native async architecture, mature ecosystem, and proven production track record make it the best choice for high-throughput Python scrapers in 2026.
 
 Start with the 5-minute setup in this guide, implement connection pooling and semaphores for production hardening, and deploy on **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** for reliable, cost-effective infrastructure. For proxy rotation at scale, integrate **[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)** into your pipeline.
 
@@ -484,7 +485,7 @@ Start with the 5-minute setup in this guide, implement connection pooling and se
 - [Real Python - asyncio Guide](https://realpython.com/async-io-python/)
 
 
----
+* * *
 ## Recommended Hosting & Infrastructure
 
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -522,7 +523,7 @@ This article contains affiliate links to DigitalOcean and WebShare. If you purch
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -532,6 +533,6 @@ This article contains affiliate links to DigitalOcean and WebShare. If you purch
 - [agent-reach-internet-access-ai-agents](aiohttp-async-web-scraping)
 - [microsoft-markitdown-file-to-markdown-converter-cli](aiohttp-async-web-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/-
 ---
+
 # Postman vs Insomnia vs Bruno：2025年最佳API测试工具对比
 
 
@@ -42,13 +43,13 @@ Insomnia的UI设计是三款中最精致的，**GraphQL支持尤其出色**—�
 
 ## Bruno：Git原生的革命性API客户端
 
-Bruno是2023年诞生的开源API客户端，创始人Anoop M D因不满Postman/Insomnia强制云端同步而创建。Bruno的核心理念是**"Collections as Code"**——API集合以纯文本文件（`.bru`格式）存储，可直接提交到Git仓库。
+Bruno是2023年诞生的开源API客户端，创始人Anoop M D因不满Postman/Insomnia强制云端同步而创建。Bruno的核心理念是**"Collections as Code"**——API集合以纯文本文件（```.bru````格式）存储，可直接提交到Git仓库。
 
 Bruno的独特优势：
 
-- **Git原生**：`.bru` 文件是类INI的纯文本格式，diff友好、review友好
+- **Git原生**：````.bru```` 文件是类INI的纯文本格式，diff友好、review友好
 - **离线优先**：无需注册账户，数据完全本地存储
-- **CLI支持**：`bru run` 命令可在CI/CD流水线中执行API测试
+- **CLI支持**：````bru run```` 命令可在CI/CD流水线中执行API测试
 - **无供应商锁定**：数据格式开放透明，随时可导出
 - **开源免费**：MIT许可证，社区驱动
 
@@ -60,20 +61,20 @@ Bruno的爆发速度惊人——GitHub Stars从2024年初的5k增长到2025年5�
 
 | 功能维度 | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **定价(个人版)** | 免费(需注册) | 免费(需注册) | 完全免费开源 |
 | **团队版价格** | $12-29月/用户 | $12月/用户 | 免费(Golden版$49一次性) |
 | **开源** | 否 | 否 | 是(MIT) |
 | **协议支持** | REST, GraphQL, WebSocket, gRPC | REST, GraphQL, gRPC, WebSocket | REST, GraphQL, WebSocket |
 | **Git友好** | 需导出/导入 | 需导出/导入 | 原生支持(.bru文件) |
-| **CLI工具** | Newman(独立) | 有限支持 | 内置 `bru run` |
+| **CLI工具** | Newman(独立) | 有限支持 | 内置 ````bru run```` |
 | **云端同步** | 强制 | 可选 | 无(纯本地) |
 | **离线使用** | 部分受限 | 支持 | 完全支持 |
 | **Mock Server** | 内置 | 需插件 | 不支持 |
@@ -88,8 +89,8 @@ Bruno的爆发速度惊人——GitHub Stars从2024年初的5k增长到2025年5�
 - **[Hoppscotch](https://hoppscotch.io/)**：浏览器端运行，零安装、零配置，适合快速测试
 - **HTTPie Desktop**：以人性化命令行闻名，GUI版延续了简洁设计
 - **Thunder Client**：VS Code内置的轻量HTTP客户端，无需离开编辑器
-- **JetBrains HTTP Client**：IntelliJ IDEA内置的 `.http` 文件格式，适合JetBrains生态用户
-- **REST Client (VS Code插件)**：通过 `.http` 文件发送请求，极简主义者的选择
+- **JetBrains HTTP Client**：IntelliJ IDEA内置的 ````.http```` 文件格式，适合JetBrains生态用户
+- **REST Client (VS Code插件)**：通过 ````.http```` 文件发送请求，极简主义者的选择
 
 ## Git集成为什么对API工作流如此重要？
 
@@ -100,9 +101,9 @@ API集合的演进与代码类似——需要版本控制、代码审查、回�
 3. **无法回滚**：误操作后难以恢复到历史版本
 4. **供应商锁定**：一旦弃用工具，历史数据导出困难
 
-Bruno的 `.bru` 格式直接解决了这些痛点。以下是一个 `.bru` 文件的示例：
+Bruno的 ````.bru```` 格式直接解决了这些痛点。以下是一个 ````.bru```` 文件的示例：
 
-```
+`````
 meta {
   name: Get User Profile
   type: http
@@ -123,7 +124,7 @@ assert {
   res.status: eq 200
   res.body.email: isDefined
 }
-```
+`````
 
 这种纯文本格式让API集合享有与源代码完全相同的Git工作流：分支、合并、冲突解决、历史追溯。
 
@@ -133,21 +134,21 @@ assert {
 
 | 工具 | CLI命令 | CI/CD友好度 | 报告输出 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Postman** | `newman run collection.json` | 高 | HTML, JUnit, JSON |
-| **Insomnia** | `inso run test` | 中 | 基础报告 |
-| **Bruno** | `bru run` | 高 | JSON, JUnit, HTML |
+| **Postman** | ````newman run collection.json```` | 高 | HTML, JUnit, JSON |
+| **Insomnia** | ````inso run test```` | 中 | 基础报告 |
+| **Bruno** | ````bru run```` | 高 | JSON, JUnit, HTML |
 
-Bruno的CLI设计最为简洁——进入集合目录直接运行 `bru run`，无需额外导出步骤。以下是一个GitHub Actions中使用Bruno的示例：
+Bruno的CLI设计最为简洁——进入集合目录直接运行 ````bru run````，无需额外导出步骤。以下是一个GitHub Actions中使用Bruno的示例：
 
-```yaml
+`````yaml
 name: API Tests
 on: [push, pull_request]
 jobs: test: runs-on: ubuntu-latest
@@ -157,7 +158,7 @@ jobs: test: runs-on: ubuntu-latest
       - name: Run API Tests
         run: bru run --env prod
         working-directory: ./api-tests
-```
+`````
 
 ## 如何根据团队需求选择工具？
 
@@ -209,7 +210,7 @@ A: 在Postman中导出Collection为v2.1 JSON格式，然后在Bruno中导入即�
 A: Insomnia对GraphQL和gRPC的支持最完善；Postman也支持这两种协议；Bruno支持GraphQL但不支持gRPC（截至2025年5月）。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -283,7 +284,7 @@ Postman vs Insomnia vs Bruno：2025年最佳API测试工具对比 represents an 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -295,7 +296,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -306,4 +307,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

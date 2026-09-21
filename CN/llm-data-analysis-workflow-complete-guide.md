@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/llm-data-analysis-workflow-complete-guide/-
 ---
+
 {</* resource-info */>}
 
 Large language models have fundamentally changed how data analysts interact with information. The shift from code-first to conversation-first analysis means that complex data transformations, statistical tests, and visualizations can now be triggered through natural language prompts rather than hundreds of lines of Python or SQL. This transformation does not eliminate the need for analytical rigor — it changes the interface through which analysts express their intent and validate results.
@@ -37,17 +38,17 @@ However, LLMs carry specific limitations in analytical contexts. Hallucination �
 
 ## PandasAI: Conversational DataFrame Operations
 
-PandasAI, an open-source library maintained on [GitHub](https://github.com/gventuri/pandas-ai), adds generative AI capabilities directly to Pandas DataFrames. Instead of writing `df.groupby('region')[sales].sum().sort_values(ascending=False)`, you write `df.chat("What are total sales by region, sorted highest to lowest?")` and PandasAI generates the appropriate code, executes it, and returns the result. The library abstracts away prompt engineering and code generation, presenting a clean interface that feels like an extension of Pandas itself.
+PandasAI, an open-source library maintained on [GitHub](https://github.com/gventuri/pandas-ai), adds generative AI capabilities directly to Pandas DataFrames. Instead of writing ```df.groupby('region')[sales].sum().sort_values(ascending=False)````, you write ````df.chat("What are total sales by region, sorted highest to lowest?")```` and PandasAI generates the appropriate code, executes it, and returns the result. The library abstracts away prompt engineering and code generation, presenting a clean interface that feels like an extension of Pandas itself.
 
 Behind the scenes, PandasAI constructs detailed prompts that include DataFrame schemas (column names, types, sample values), conversation history, and the user's question. The LLM generates Python code which PandasAI executes in a controlled environment, with options for Docker sandboxing to isolate potentially harmful operations. Results format automatically based on query type — tables for data retrieval, matplotlib or seaborn plots for visualization requests, and natural language summaries for analytical questions.
 
 ### PandasAI Setup and Basic Usage
 
-Installation requires Python 3.9+ and a single pip command: ```bash
+Installation requires Python 3.9+ and a single pip command: `````bash
 pip install pandasai
-```
+`````
 
-Basic usage wraps any Pandas DataFrame with PandasAI's `SmartDataFrame` or `Agent` interfaces: ```python
+Basic usage wraps any Pandas DataFrame with PandasAI's ``SmartDataFrame`` or ``Agent`` interfaces: `````python
 import pandas as pd
 from pandasai import SmartDataFrame
 
@@ -60,7 +61,7 @@ sdf = SmartDataFrame(df, config={"llm": "openai"})
 # Ask questions in natural language
 result = sdf.chat("What is the correlation between marketing spend and revenue?")
 print(result)  # Returns correlation coefficient + interpretation
-```
+````
 
 The library supports multiple LLM backends: OpenAI's GPT models, local models through [Ollama](https://ollama.com/) or LM Studio, Google's models, and PandasAI's own BambooLLM — a specialized model fine-tuned for data analysis tasks. Switching backends requires only changing the configuration dictionary, making it easy to move between cloud and local deployments based on privacy requirements.
 
@@ -94,11 +95,11 @@ The Assistants API extends this with persistent threads, file attachments, and b
 
 Production-grade LLM analysis requires more than prompting a model. A robust architecture layers human oversight between generation and action: | Stage | Component | Purpose |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Ingestion** | Data loading + validation | Ensure schema compliance and quality checks |
 | **Preprocessing** | LLM-generated cleaning code | Handle missing values, type conversion, formatting |
@@ -124,15 +125,15 @@ Cost estimation varies by workload. ChatGPT Plus costs $20/month for unlimited C
 
 | Use Case | PandasAI | Code Interpreter | OpenAI API | Local LLM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Jupyter notebook workflows** | Excellent | Not applicable | Good (code generation) | Good |
 | **Non-programmer analysts** | Requires Python basics | Excellent | Requires engineering | Requires setup |
@@ -175,7 +176,7 @@ Yes, and this is increasingly the preferred approach for regulated industries. M
 API costs scale with model choice and usage volume. GPT-4o (the current default for analysis) costs $2.50 per million input tokens and $10.00 per million output tokens as of early 2026. A typical analytical session — loading a dataset schema, asking 10 questions with moderate responses — consumes roughly 50,000-150,000 tokens total, costing $0.50-$2.00. The Assistants API with Code Interpreter tool adds a $0.03 per session code execution fee. For high-volume workloads, the Batch API offers 50% discounts with 24-hour latency. Most individual analysts spend under $50/month; small teams under $500/month; enterprise deployments vary widely based on dataset sizes and query volumes.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -209,4 +210,4 @@ To run any of the tools above reliably 24/7, infrastructure matters: - **[Digita
   }
 }
 </script>
----
+* * *

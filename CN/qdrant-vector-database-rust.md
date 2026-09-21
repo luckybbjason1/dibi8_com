@@ -23,6 +23,7 @@ tags: ["qdrant", "vector database", "rust", "hnsw", "similarity search", "docker
 aliases:
   - /posts/qdrant-vector-database-rust/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Vector Database Bottleneck Every AI Team Hits
@@ -31,7 +32,7 @@ Your embeddings pipeline is working. Documents are chunked, embedded, and stored
 
 This is the vector database bottleneck. In 2025, **78% of production AI teams** reported that vector search performance was a critical blocker in their RAG or semantic search pipeline. The problem is not the embeddings — it is the retrieval layer. A poorly chosen vector store adds **300-2000ms** of latency per query, making real-time applications impossible.
 
-[Qdrant](https://qdrant.tech/) — a vector similarity search engine written in **Rust** — was built specifically to solve this. With **22,000+ GitHub stars** under the `qdrant` organization, Apache-2.0 licensing, and a growing ecosystem of client libraries, Qdrant handles **1 million vectors at 10ms P99 latency** on commodity hardware. Its HNSW indexing, payload-based filtering, and horizontal scalability make it the go-to choice for teams that need vector search to work at scale without managed cloud bills.
+[Qdrant](https://qdrant.tech/) — a vector similarity search engine written in **Rust** — was built specifically to solve this. With **22,000+ GitHub stars** under the ```qdrant```` organization, Apache-2.0 licensing, and a growing ecosystem of client libraries, Qdrant handles **1 million vectors at 10ms P99 latency** on commodity hardware. Its HNSW indexing, payload-based filtering, and horizontal scalability make it the go-to choice for teams that need vector search to work at scale without managed cloud bills.
 
 This guide covers everything: single-node Docker deployment, production clustering, Python/Go/JS clients, benchmarking methodology, and honest trade-offs against competitors. You will have a self-hosted vector database running in under 10 minutes.
 
@@ -46,19 +47,19 @@ Unlike general-purpose databases bolted onto vector capabilities, Qdrant is purp
 ### HNSW Indexing: The Core Algorithm
 
 Qdrant uses **Hierarchical Navigable Small World (HNSW)** graphs — the same algorithm that powers Pinecone, Weaviate, and Milvus — with several Rust-specific optimizations: - **Multi-layer graph**: Vectors exist on multiple layers, with upper layers providing fast long-range navigation and lower layers refining to exact neighbors
-- **Default `ef` parameter**: `ef=128` balances recall (~95%) against build time
+- **Default ````ef```` parameter**: ````ef=128```` balances recall (~95%) against build time
 - **Incremental indexing**: New vectors are inserted without full rebuilds
 - **Rust memory safety**: Zero-copy deserialization and cache-friendly layout reduce memory overhead by ~30% compared to JVM-based alternatives
 
 ### Segment-Based Storage Architecture
 
-Qdrant organizes data into **segments** — independent shards that can be searched in parallel: ```
+Qdrant organizes data into **segments** — independent shards that can be searched in parallel: `````
 Collection "documents"
 ├── Segment 1 (0-100K vectors) — HOT — mmap'd in RAM
 ├── Segment 2 (100K-200K vectors) — WARM — on disk
 ├── Segment 3 (200K-300K vectors) — WARM — on disk
 └── Segment 4 (new writes) — NEW — mutable buffer
-```
+`````
 
 Segments enable several production-critical features: - **Incremental optimization**: Old segments are compacted in background threads
 - **mmap support**: Vectors can be memory-mapped from disk, reducing RAM requirements
@@ -67,7 +68,7 @@ Segments enable several production-critical features: - **Incremental optimizati
 
 ### Payload System: Metadata Filtering
 
-This is where Qdrant differentiates from simple vector stores. Each vector carries a JSON payload: ```json
+This is where Qdrant differentiates from simple vector stores. Each vector carries a JSON payload: `````json
 {
   "id": "doc_4821",
   "vector": [0.01, -0.23, 0.89, ...],
@@ -79,19 +80,19 @@ This is where Qdrant differentiates from simple vector stores. Each vector carri
     "file_size_mb": 4.2
   }
 }
-```
+`````
 
-Payloads support rich filtering at query time: - **Match**: Exact string/integer matching (`department = "legal"`)
-- **Range**: Numeric comparisons (`file_size_mb > 2.0`)
+Payloads support rich filtering at query time: - **Match**: Exact string/integer matching (````department = "legal"````)
+- **Range**: Numeric comparisons (````file_size_mb > 2.0````)
 - **Geo**: Radius and bounding box queries
 - **Full-text**: Indexed text search within payloads (added in v1.9.0)
-- **Nested objects**: Filter on sub-fields (`metadata.priority = "high"`)
+- **Nested objects**: Filter on sub-fields (````metadata.priority = "high"````)
 
 ## Installation & Setup: Self-Hosted Qdrant in 5 Minutes
 
 ### Docker (Recommended)
 
-```bash
+`````bash
 docker pull qdrant/qdrant:v1.13.0
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage:z \
@@ -99,11 +100,11 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 # Verify — should return {"title":"qdrant","version":"1.13.0"}
 curl http://localhost:6333
-```
+`````
 
 ### Docker Compose (Production Template)
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: qdrant: image: qdrant/qdrant:v1.13.0
@@ -116,16 +117,16 @@ services: qdrant: image: qdrant/qdrant:v1.13.0
         hard: 65536
     restart: unless-stopped
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
-Deploy: ```bash
+Deploy: `````bash
 docker-compose up -d
 curl http://localhost:6333/collections  # List collections (empty initially)
-```
+`````
 
 ### Binary Installation (No Docker)
 
-```bash
+`````bash
 # Download pre-built binary (Linux x86_64)
 wget https://github.com/qdrant/qdrant/releases/download/v1.13.0/qdrant-x86_64-unknown-linux-gnu.tar.gz
 tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
@@ -133,11 +134,11 @@ tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
 
 # Or install via Homebrew (macOS)
 brew install qdrant/tap/qdrant
-```
+`````
 
 ### Configuration File
 
-Create `config/production.yaml` for fine-tuned settings: ```yaml
+Create ``config/production.yaml`` for fine-tuned settings: `````yaml
 # production.yaml
 storage: storage_path: /qdrant/storage
   snapshots_path: /qdrant/snapshots
@@ -150,13 +151,13 @@ service: http_port: 6333
 
 cluster: enabled: false  # Set true for distributed mode
   p2p: port: 6335
-```
+`````
 
 ## Core Operations: CRUD with Vectors
 
 ### Create a Collection
 
-```bash
+`````bash
 # Create collection with 1536 dimensions (OpenAI embeddings)
 curl -X PUT http://localhost:6333/collections/documents \
   -H "Content-Type: application/json" \
@@ -175,11 +176,11 @@ curl -X PUT http://localhost:6333/collections/documents \
       "indexing_threshold": 20000
     }
   }'
-```
+`````
 
 ### Upsert Vectors with Payloads
 
-```python
+`````python
 # upsert_vectors.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
@@ -208,11 +209,11 @@ points = [
 
 client.upsert(collection_name="documents", points=points)
 print(f"Upserted {len(points)} vectors")
-```
+`````
 
 ### Search with Payload Filtering
 
-```python
+`````python
 # search_filtered.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -236,11 +237,11 @@ results = client.search(
 )
 
 for point in results: print(f"ID: {point.id}, Score: {point.score:.4f}, Payload: {point.payload}")
-```
+`````
 
 ### Update and Delete
 
-```python
+`````python
 # update_delete.py
 # Update payload
 client.set_payload(
@@ -260,17 +261,17 @@ client.delete(
         )
     ),
 )
-```
+`````
 
 ## Integration with Mainstream Tools
 
 ### Python Client (Official)
 
-```bash
+`````bash
 pip install qdrant-client==1.13.0
-```
+`````
 
-```python
+`````python
 # python_client.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
@@ -288,15 +289,15 @@ scroll_results = client.scroll(
     with_payload=True,
 )
 print(f"Retrieved {len(scroll_results[0])} points")
-```
+`````
 
 ### JavaScript/TypeScript Client
 
-```bash
+`````bash
 npm install @qdrant/js-client-rest@1.13.0
-```
+`````
 
-```typescript
+`````typescript
 // ts_client.ts
 import { QdrantClient } from "@qdrant/js-client-rest";
 
@@ -312,16 +313,16 @@ const results = await client.search("documents", {
   with_payload: true,
 });
 
-console.log(`Found ${results.length} matches`);
-```
+console.log(````Found ${results.length} matches````);
+`````
 
 ### Go Client
 
-```bash
+`````bash
 go get github.com/qdrant/go-client@v1.13.0
-```
+`````
 
-```go
+`````go
 // go_client.go
 package main
 
@@ -349,11 +350,11 @@ func main() {
         fmt.Printf("Collection: %s\n", c.GetName())
     }
 }
-```
+`````
 
 ### LangChain Integration
 
-```python
+`````python
 # langchain_qdrant.py
 from langchain_qdrant import QdrantVectorStore
 from langchain_openai import OpenAIEmbeddings
@@ -373,11 +374,11 @@ vector_store.add_documents(docs)
 # Similarity search
 results = vector_store.similarity_search("hello", k=5)
 print(f"Found {len(results)} similar documents")
-```
+`````
 
 ### LlamaIndex Integration
 
-```python
+`````python
 # llamaindex_qdrant.py
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -391,7 +392,7 @@ vector_store = QdrantVectorStore(
 
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ## Benchmarks and Real-World Use Cases
 
@@ -399,15 +400,15 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 All tests run on a **4 vCPU / 8GB RAM DigitalOcean droplet** ($48/mo) with Qdrant v1.13.0: | Metric | 100K Vectors | 500K Vectors | 1M Vectors | 5M Vectors |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Build Time** (OpenAI 1536d) | 12s | 58s | 2m 15s | 11m 30s |
 | **P50 Query Latency** | 3ms | 6ms | 10ms | 28ms |
@@ -417,17 +418,17 @@ All tests run on a **4 vCPU / 8GB RAM DigitalOcean droplet** ($48/mo) with Qdran
 | **Disk Usage** | 385MB | 1.9GB | 3.8GB | 19GB |
 | **Recall@10** | 0.97 | 0.96 | 0.95 | 0.93 |
 
-**Key numbers**: With memory-mapping (`mmap`) enabled, Qdrant handles **1 million vectors** using only **720MB RAM** with **10ms P50** and **22ms P99** query latency. This is what makes self-hosting viable — you do not need a $200/mo server for million-vector workloads.
+**Key numbers**: With memory-mapping (````mmap````) enabled, Qdrant handles **1 million vectors** using only **720MB RAM** with **10ms P50** and **22ms P99** query latency. This is what makes self-hosting viable — you do not need a $200/mo server for million-vector workloads.
 
 ### Filtered Search Performance
 
 Adding payload filters adds negligible overhead when filter fields are indexed: | Query Type | Latency (1M vectors) | Overhead |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Plain vector search | 10ms | Baseline |
 | + exact match filter | 11ms | +10% |
@@ -435,7 +436,7 @@ Adding payload filters adds negligible overhead when filter fields are indexed: 
 | + full-text filter | 15ms | +50% |
 | + geo radius filter | 14ms | +40% |
 
-Index your payload fields for best performance: ```bash
+Index your payload fields for best performance: `````bash
 # Create payload index for frequently filtered fields
 curl -X PUT http://localhost:6333/collections/documents/index \
   -H "Content-Type: application/json" \
@@ -443,12 +444,12 @@ curl -X PUT http://localhost:6333/collections/documents/index \
     "field_name": "category",
     "field_schema": "keyword"
   }'
-```
+`````
 
 ### Case Study: E-Commerce Product Search
 
 A fashion e-commerce platform indexes **2.3 million product vectors** (image + text embeddings) in Qdrant: - **Server**: 4 vCPU / 16GB RAM dedicated server
-- **Index**: 1536-dim OpenAI `text-embedding-3-large` + 512-dim CLIP image embeddings (multi-vector collection)
+- **Index**: 1536-dim OpenAI ````text-embedding-3-large```` + 512-dim CLIP image embeddings (multi-vector collection)
 - **Filters**: Category, price range, availability, brand (payload-indexed)
 - **Load**: 2,000 queries/second during peak hours
 - **Results**: P50 **8ms**, P99 **19ms**, zero downtime in 6 months
@@ -456,7 +457,7 @@ A fashion e-commerce platform indexes **2.3 million product vectors** (image + t
 
 ### Case Study: Legal Document Retrieval
 
-A legal tech startup indexes **850,000 court decisions** for semantic search: - **Embeddings**: 3072-dim `text-embedding-3-large`
+A legal tech startup indexes **850,000 court decisions** for semantic search: - **Embeddings**: 3072-dim ````text-embedding-3-large````
 - **Filters**: Jurisdiction, date range, case type, judge name
 - **Integration**: LlamaIndex RAG pipeline with Qdrant as vector store
 - **Results**: Average query **45ms** (including network round-trip), **97% user satisfaction** on relevance
@@ -465,7 +466,7 @@ A legal tech startup indexes **850,000 court decisions** for semantic search: - 
 
 ### Distributed Cluster Mode
 
-For horizontal scaling beyond single-node limits: ```yaml
+For horizontal scaling beyond single-node limits: `````yaml
 # docker-compose.cluster.yml
 version: "3.8"
 services: qdrant-node1: image: qdrant/qdrant:v1.13.0
@@ -484,9 +485,9 @@ services: qdrant-node1: image: qdrant/qdrant:v1.13.0
     environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node3:6335
-```
+`````
 
-```python
+`````python
 # cluster_client.py
 from qdrant_client import QdrantClient
 
@@ -503,11 +504,11 @@ collection_info = client.create_collection(
     vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
     replication_factor=2,  # Each shard on 2 nodes
 )
-```
+`````
 
 ### Snapshots and Backup Strategy
 
-```bash
+`````bash
 # Create snapshot via REST API
 curl -X POST http://localhost:6333/collections/documents/snapshots
 
@@ -520,9 +521,9 @@ curl http://localhost:6333/collections/documents/snapshots
 curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover \
   -H "Content-Type: application/json" \
   -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}'
-```
+`````
 
-```python
+`````python
 # Automated snapshot with Python
 from datetime import datetime
 import requests
@@ -535,18 +536,18 @@ def create_snapshot(collection: str) -> str: url = f"http://localhost:6333/colle
 
 # Daily snapshot (run via cron)
 snapshot_name = create_snapshot("documents")
-```
+`````
 
 ### Authentication and Security
 
-Enable API key authentication: ```yaml
+Enable API key authentication: `````yaml
 # config/production.yaml
 service: api_key: "your-secret-api-key-32-chars-long!!"
   enable_cors: false
   verify_https: true
-```
+`````
 
-```python
+`````python
 # authenticated_client.py
 from qdrant_client import QdrantClient
 
@@ -558,11 +559,11 @@ client = QdrantClient(
 )
 
 # All requests now include X-API-Key header
-```
+`````
 
 ### Multi-Tenancy with Payload-Based Isolation
 
-```python
+`````python
 # multi_tenant.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -583,11 +584,11 @@ def search_for_tenant(query_vector, tenant_id: str, limit: int = 10): return cli
 
 # Search within specific tenant only
 results = search_for_tenant(query_vector, tenant_id="acme_corp")
-```
+`````
 
 ### Monitoring with Prometheus Metrics
 
-Qdrant exposes Prometheus-compatible metrics on `:6333/metrics`: ```bash
+Qdrant exposes Prometheus-compatible metrics on ``:6333/metrics``: `````bash
 # Scrape metrics
 curl http://localhost:6333/metrics
 
@@ -595,26 +596,26 @@ curl http://localhost:6333/metrics
 # qdrant_search_latency_ms — search latency histogram
 # qdrant_optimizers_segment_count — number of segments
 # qdrant_storage_size_bytes — storage size
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml scrape config
 scrape_configs: - job_name: "qdrant"
     static_configs: - targets: ["qdrant:6333"]
     metrics_path: "/metrics"
     scrape_interval: 15s
-```
+`````
 
 ### Memory Optimization with mmap
 
-For the best RAM-to-performance ratio, enable memory mapping: ```bash
+For the best RAM-to-performance ratio, enable memory mapping: `````bash
 # Set via environment variable
 docker run -p 6333:6333 \
   -e QDRANT__STORAGE__ON_DISK_PAYLOAD=true \
   -e QDRANT__STORAGE__PERFORMANCE__IN_MEMORY_INDEX_MAP_THRESHOLD_KB=20000 \
   -v qdrant_data:/qdrant/storage \
   qdrant/qdrant:v1.13.0
-```
+`````
 
 With these settings, Qdrant keeps only the HNSW graph in RAM and memory-maps the raw vectors from disk. On NVMe SSD, the performance penalty is typically **<15%** while reducing RAM usage by **60-80%**.
 
@@ -622,17 +623,17 @@ With these settings, Qdrant keeps only the HNSW graph in RAM and memory-maps the
 
 | Feature | Qdrant | Pinecone | Weaviate | Chroma | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | Apache-2.0 | Proprietary | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **Self-Hosted** | Free | No (cloud only) | Free | Free | Free |
@@ -685,7 +686,7 @@ Yes. Pre-built binaries are available for Linux x86_64, ARM64, macOS, and Window
 
 ### How do I migrate from Pinecone to Qdrant?
 
-Use the Qdrant migration tool: ```bash
+Use the Qdrant migration tool: `````bash
 pip install qdrant-client
 qdrant-migrate \
   --source pinecone \
@@ -693,13 +694,13 @@ qdrant-migrate \
   --pinecone-index "my-index" \
   --target http://localhost:6333 \
   --target-collection "migrated_docs"
-```
+`````
 
 For large collections, the migration runs at ~5,000 vectors/second. Plan for a maintenance window or dual-write during the transition.
 
 ### Does Qdrant support hybrid search (dense + sparse vectors)?
 
-Yes, since v1.10.0. You can store both dense (neural) and sparse (BM25/TF-IDF) vectors in the same collection and combine them at query time: ```python
+Yes, since v1.10.0. You can store both dense (neural) and sparse (BM25/TF-IDF) vectors in the same collection and combine them at query time: `````python
 from qdrant_client.models import SparseVector
 
 client.search(
@@ -714,7 +715,7 @@ client.search(
     ),
     fusion=models.Fusion.RRF,  # Reciprocal Rank Fusion
 )
-```
+`````
 
 This gives you the best of both worlds: semantic understanding from dense vectors and exact keyword matching from sparse vectors.
 
@@ -725,7 +726,7 @@ Qdrant stores data in a custom binary format (segment files + WAL). While you ca
 ## Conclusion: Deploy Your Vector Database Today
 
 Qdrant gives you production-grade vector search without vendor lock-in or cloud bills. The self-hosted path is simple: 1. Start with the Docker Compose template above on a 4 vCPU / 8GB server
-2. Use `mmap` for RAM efficiency at scale
+2. Use ````mmap``` for RAM efficiency at scale
 3. Index your payload filter fields for sub-15ms filtered search
 4. Set up daily snapshots and Prometheus monitoring
 5. Upgrade to cluster mode only when you exceed single-node capacity (typically 10M+ vectors)
@@ -755,7 +756,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 8. "Rust for Data Infrastructure" — Qdrant Engineering Blog, 2024
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean, HTStack, and 虎网云. If you purchase services through these links, dibi8.com may earn a commission at no additional cost to you. All recommendations are based on genuine technical evaluation, not affiliate availability. See our [full disclosure policy](https://dibi8.com/affiliate-disclosure) for details.*
 
 *Last updated: 2026-05-19. Tested with Qdrant v1.13.0, qdrant-client 1.13.0, Python 3.12.*
@@ -787,7 +788,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [database-management-tools-comparison](qdrant-vector-database-rust)
@@ -796,6 +797,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [noco-db-airtable-alternative](qdrant-vector-database-rust)
 - [vector-database-comparison](qdrant-vector-database-rust)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

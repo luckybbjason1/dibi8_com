@@ -24,6 +24,7 @@ aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
 
+
 Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Hugging Face Trainer 래퍼 작성한 적 있다면 **Axolotl**이 채우는 갭을 느낌. 한 YAML 파일이 전체 파인튜닝 실행 설명 — 모델, 데이터셋, LoRA config, 하이퍼파라미터, 분산 전략 — 그리고 Axolotl이 나머지 처리.
 
 12k GitHub 별, Apache 2.0, 모든 주요 LLM 패밀리 지원 (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan 등) 및 2026에 중요한 모든 파인튜닝 방법 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO 선호 튜닝, GRPO/GDPO 강화 학습, 보상 모델링).
@@ -42,7 +43,7 @@ Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Huggi
 ## 1. Axolotl 존재 이유 (해결 문제)
 
 대체하는 3가지 일반 패턴: 1. **커스텀 HF Trainer 스크립트** — 실험당 300줄 보일러플레이트, 깨지기 쉬움, 프레임워크 버전 bump 안 견딤
-2. **DeepSpeed config 고고학** — 모델 크기 + GPU에 어떤 조합 `zero_stage`, `offload_optimizer`, `gradient_checkpointing` 작동하는지 알아내기
+2. **DeepSpeed config 고고학** — 모델 크기 + GPU에 어떤 조합 ```zero_stage````, ````offload_optimizer````, ````gradient_checkpointing```` 작동하는지 알아내기
 3. **클라우드 파인튜닝 플랫폼** (Together, Fireworks 등) — 쉽지만 결과 가중치나 프로세스 소유 안 함
 
 Axolotl은 "클라우드 플랫폼" UX (한 config 파일, 한 명령) 주면서 본인 소유 인프라에 두고 본인 통제 가중치 유지.
@@ -61,13 +62,13 @@ Axolotl은 "클라우드 플랫폼" UX (한 config 파일, 한 명령) 주면서
 
 ## 3. 빠른 설치 (15분)
 
-```bash
+`````bash
 git clone https://github.com/axolotl-ai-cloud/axolotl
 cd axolotl
 pip install -e '.[flash-attn,deepspeed]'
-```
+`````
 
-최소 훈련 실행 — 샘플 데이터셋에 QLoRA로 Llama 3.2 8B 파인튜닝: ```yaml
+최소 훈련 실행 — 샘플 데이터셋에 QLoRA로 Llama 3.2 8B 파인튜닝: `````yaml
 # config.yml
 base_model: meta-llama/Llama-3.2-8B
 datasets: - path: tatsu-lab/alpaca
@@ -78,18 +79,18 @@ lora_alpha: 32
 load_in_4bit: true
 num_epochs: 3
 output_dir: ./outputs/llama-alpaca
-```
+`````
 
-```bash
+`````bash
 axolotl train config.yml
-```
+`````
 
 그게 다. 같은 YAML이 1 GPU, 8 GPU, 또는 멀티 노드에서 작동 — Axolotl이 accelerate/DeepSpeed 통해 자동 감지.
 
 ## 4. YAML 구성이 킬러 기능
 
 YAML이 여기서 진짜 올바른 추상화인 이유: - **Git 친화**: 모든 파인튜닝이 repo의 config 파일. 체크아웃으로 재현 가능
-- **실험 매트릭스**: `yq` 치환 또는 W&B sweep 통한 파라미터 sweep. 복사-붙여넣기 50 스크립트 없음
+- **실험 매트릭스**: ````yq```` 치환 또는 W&B sweep 통한 파라미터 sweep. 복사-붙여넣기 50 스크립트 없음
 - **팀 핸드오프**: ML 엔지니어 YAML 작성, ops 엔지니어 실행. 명확한 계약
 - **자동 업그레이드**: Axolotl이 버전 간 config 하위 호환 유지, 6개월 전 실험도 여전히 실행
 
@@ -111,7 +112,7 @@ YAML이 여기서 진짜 올바른 추상화인 이유: - **Git 친화**: 모든
 
 ## 6. 실제 워크플로우
 
-```
+`````
 1. 데이터셋 준비 (JSONL, prompt/response 또는 messages 포맷)
    └─> 버전 관리 위해 HuggingFace Hub에 push
 
@@ -131,7 +132,7 @@ YAML이 여기서 진짜 올바른 추상화인 이유: - **Git 친화**: 모든
    └─> held-out prompt에 응답 정상 확인
 
 7. LoRA + base 머지 → HuggingFace Hub에 push 또는 vLLM 통해 서빙
-```
+`````
 
 "30줄 YAML + 한 명령" 워크플로우가 파인튜닝을 연구 프로젝트에서 배포 가능 엔지니어링 실천으로 바꿈.
 
@@ -148,10 +149,10 @@ YAML이 여기서 진짜 올바른 추상화인 이유: - **Git 친화**: 모든
 
 ## 8. 프로덕션 팁
 
-Axolotl 첫 사용자가 처음 부딪히는 5가지: 1. **Tokenizer pad token** — 많은 config가 `tokenizer.pad_token = eos_token` 누락. Axolotl 기본값이 알려진 모델 처리; 새 모델은 직접 verify
-2. **`max_seq_length`와 OOM** — 작게 시작 (1024), OOM까지 올림, 그 후 10% 후퇴. 추측하지 마세요
+Axolotl 첫 사용자가 처음 부딪히는 5가지: 1. **Tokenizer pad token** — 많은 config가 ````tokenizer.pad_token = eos_token```` 누락. Axolotl 기본값이 알려진 모델 처리; 새 모델은 직접 verify
+2. **````max_seq_length````와 OOM** — 작게 시작 (1024), OOM까지 올림, 그 후 10% 후퇴. 추측하지 마세요
 3. **Flash Attention 컴파일 시간** — 첫 설치가 FA2 컴파일에 20-30분 걸릴 수 있음. 인내
-4. **데이터셋 포맷 불일치** — `type` 필드가 데이터와 매치해야 함. `alpaca` ≠ `sharegpt` ≠ `chat_template`. 문서 읽기
+4. **데이터셋 포맷 불일치** — ````type```` 필드가 데이터와 매치해야 함. ````alpaca```` ≠ ````sharegpt```` ≠ ````chat_template```. 문서 읽기
 5. **DeepSpeed ZeRO stage 혼동** — Stage 1 = offload 없음 (가장 빠름, 가장 많은 VRAM). Stage 2 = optimizer offload. Stage 3 = full param offload (가장 느림, 가장 적은 VRAM). VRAM 예산에 맞춤
 
 ## 9. Axolotl을 사용하지 *않을* 때
@@ -167,7 +168,7 @@ Axolotl = **YAML 주도 LLM 파인튜닝 프레임워크, 2026 프로덕션 멀�
 
 H100 인스턴스 띄우고, 3절의 20줄 YAML 작성하고, 15분 후 파인튜닝 실행 중.
 
----
+* * *
 
 *dibi8의 Fine-Tuning Stack 일부 — [빠른 단일 GPU 반복용 Unsloth](/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)와 페어. 전체 LLM ops 그림은 다가오는 Fine-Tuning Stack 컬렉션 참조.*
 
@@ -233,12 +234,12 @@ Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -248,7 +249,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](axolotl-llm-fine-tuning-framework-2026)
 - [microsoft-markitdown-file-to-markdown-converter-cli](axolotl-llm-fine-tuning-framework-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -13,9 +13,10 @@ license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
 
+
 # Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, 배포 — 2026 실전 가이드
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Freqtrade 트레이딩 엔진                   │
 │                                                      │
@@ -30,7 +31,7 @@ featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/doc
 │  │  define_protections() │ populate_indicators()    │  │
 │  └───────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Freqtrade 아키텍처: 백테스트 → 최적화 → 배포*
 
@@ -53,7 +54,7 @@ Freqtrade는 **Python 기반 오픈소스 암호화폐 트레이딩 봇**으로 
 
 ### Docker Compose (권장)
 
-```bash
+`````bash
 # 리포지토리 클론
 git clone https://github.com/freqtrade/freqtrade.git
 cd freqtrade
@@ -68,11 +69,11 @@ pip install -r requirements.txt
 # Docker로 실행 (권장)
 docker compose up -d
 # http://localhost:8080
-```
+`````
 
 ### 전략 개발
 
-```python
+`````python
 # strategies/MyStrategy.py
 from freqtrade.strategy import IStrategy
 from pandas import DataFrame
@@ -99,7 +100,7 @@ class MyStrategy(IStrategy): stoploss = -0.10
             (dataframe[ema_fast] < dataframe[ema_slow]),
             'sell'] = 1
         return dataframe
-```
+`````
 
 ## Integration with Binance, OKX, Bitget, and 20+ Exchanges
 
@@ -114,7 +115,7 @@ Freqtrade는 ccxt 라이브러리로 모든 주요 암호화폐 거래소를 지
 
 ### 거래소 설정
 
-```json
+`````json
 // config.json
 {
     "exchange": {
@@ -131,7 +132,7 @@ Freqtrade는 ccxt 라이브러리로 모든 주요 암호화폐 거래소를 지
         "dry_run": false
     }
 }
-```
+`````
 
 셀프호스팅 인프라: [HTStack](https://my.htstack.com/aff.php?aff=27187) 안정 연결, [Dex-Trade](https://dex-trade.com/refcode/1mviku) DEX 거래.
 
@@ -157,10 +158,10 @@ BTC/USDT 1H, 2024-01-01 to 2025-12-31, $1000 시작 자본: | 전략 | 승률 | 
 
 ### Use Case: 알고리즘 데이 트레이딩
 
-```bash
+`````bash
 # 멀티 페어 트레이딩 설정
 freqtrade trade --strategy GridStrategy --config config.json --dry-run &
-```
+`````
 
 30일 간 347 거래, 61% 승률, +23.8% 포트폴리오 성장.
 
@@ -168,22 +169,22 @@ freqtrade trade --strategy GridStrategy --config config.json --dry-run &
 
 ### Docker 프로덕션 배포
 
-```dockerfile
+`````dockerfile
 FROM freqtradeorg/freqtrade:stable
 COPY strategies/MyStrategy.py /freqtrade/user_data/strategies/
 COPY config.json /freqtrade/user_data/config.json
 CMD ["trade", "--strategy", "MyStrategy", "--config", "/freqtrade/user_data/config.json"]
-```
+`````
 
-```bash
+`````bash
 docker run -d --name freqtrade-bot --restart unless-stopped \
   -v $(pwd)/user_data:/freqtrade/user_data \
   freqtradeorg/freqtrade:stable
-```
+`````
 
 ### Telegram 봇 통합
 
-```json
+`````json
 {
     "telegram": {
         "enabled": true,
@@ -191,7 +192,7 @@ docker run -d --name freqtrade-bot --restart unless-stopped \
         "chat_id": "YOUR_CHAT_ID"
     }
 }
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -238,7 +239,7 @@ A: 예. 1 vCPU 1GB RAM으로 3-5 페어 실행 가능. 더 많으면 2 vCPU 2GB 
 
 **Q: 선물/마진 트레이딩 지원?**
 
-A: 예. Binance, OKX, Bybit 등에서 현물/선물 모두 지원. 전략에서 `contract_size`와 `margin_mode` 설정.
+A: 예. Binance, OKX, Bybit 등에서 현물/선물 모두 지원. 전략에서 ````contract_size````와 ````margin_mode```` 설정.
 
 ## Sources & Further Reading
 
@@ -254,7 +255,7 @@ Freqtrade는 2016년부터 오픈소스 암호화폐 트레이딩 봇의 표준�
 
 알고리즘 데이 트레이딩 전략이든 스윙 트레이딩 시스템이든 정량 금융 학습 중이든, Freqtrade는 몇 개월이 아닌 며칠 만에 아이디어부터 라이브 트레이딩까지 도구 제공합니다. Docker 배포로 로컬 설정 고민 없고 Telegram 통합으로 어디서든 모니터링 가능.
 
-[dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 Freqtrade 전략과 구성 논의하세요. [Minara AI 트레이딩](dibi8-internal-link) 및 [n8n 워크플로우 자동화](dibi8-internal-link) 가이드 확인. 오늘 시도해보세요 — `freqtrade download-data` 실행하고 첫 백테스트 시작하세요.
+[dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 Freqtrade 전략과 구성 논의하세요. [Minara AI 트레이딩](dibi8-internal-link) 및 [n8n 워크플로우 자동화](dibi8-internal-link) 가이드 확인. 오늘 시도해보세요 — ````freqtrade download-data``` 실행하고 첫 백테스트 시작하세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다. 트레이딩에는 리스크가 따르므로 자산을 잃을 수 있는 금액만 투자하세요.
 
@@ -320,12 +321,12 @@ Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -335,7 +336,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ray-distributed-ai-framework-complete-guide](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 - [cleanlab-11k-star-ai-data-cleaning](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

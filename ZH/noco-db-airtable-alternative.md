@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/noco-db-airtable-alternative/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：当电子表格撞到天花板
@@ -41,7 +42,7 @@ NocoDB 采用**数据库优先架构**。它本身不存储你的业务数据。
 - **元数据库** —— 轻量级 SQLite 数据库（默认）或专用 PostgreSQL/MySQL 实例，存储项目元数据、视图配置、用户权限和 webhook 设置
 - **REST/GraphQL API 层** —— 为每个表自动生成端点，附带 Swagger 文档
 
-当用户在网格视图中编辑单元格时，NocoDB 将该操作转换为直接针对你数据库执行的参数化 SQL `UPDATE` 语句。当他们创建看板视图时，NocoDB 将视图配置存储在其元数据库中，而底层数据永远不会移动。
+当用户在网格视图中编辑单元格时，NocoDB 将该操作转换为直接针对你数据库执行的参数化 SQL ```UPDATE```` 语句。当他们创建看板视图时，NocoDB 将视图配置存储在其元数据库中，而底层数据永远不会移动。
 
 这种分离是关键：你的数据留在你的数据库中。NocoDB 只是一个智能镜头。
 
@@ -51,7 +52,7 @@ NocoDB 采用**数据库优先架构**。它本身不存储你的业务数据。
 
 在本地运行 NocoDB 的最快方式：
 
-```bash
+`````bash
 # 创建 NocoDB 数据目录
 mkdir -p ~/nocodb-data && cd ~/nocodb-data
 
@@ -61,15 +62,15 @@ docker run -d \
   -p 8080:8080 \
   -v "$(pwd)/nocodb:/usr/app/data" \
   nocodb/nocodb:latest
-```
+`````
 
-访问 `http://localhost:8080`，用管理员邮箱和密码注册。完成。
+访问 ````http://localhost:8080````，用管理员邮箱和密码注册。完成。
 
 ### 方案二：使用 Docker Compose 连接现有 PostgreSQL
 
 生产环境使用，连接到现有 PostgreSQL 数据库：
 
-```bash
+`````bash
 # docker-compose.yml
 version: "3.8"
 
@@ -81,19 +82,19 @@ services: nocodb: image: nocodb/nocodb:0.260.7
       - NC_PUBLIC_URL=https://nocodb.yourcompany.com
     volumes: - ./nocodb-data:/usr/app/data
     restart: unless-stopped
-```
+`````
 
 启动：
 
-```bash
+`````bash
 docker-compose up -d
-```
+`````
 
 ### 方案三：在 DigitalOcean 上部署（生产环境）
 
 对于生产 VPS 部署，[在 DigitalOcean 上启动一个每月 $6 的 Droplet](https://m.do.co/c/eca87ac14ee0) 并运行：
 
-```bash
+`````bash
 # 更新系统
 sudo apt update && sudo apt upgrade -y
 
@@ -111,7 +112,7 @@ docker run -d \
   -v /opt/nocodb:/usr/app/data \
   --restart unless-stopped \
   nocodb/nocodb:0.260.7
-```
+`````
 
 ### 添加第一个数据源
 
@@ -121,7 +122,7 @@ docker run -d \
 2. 选择 **PostgreSQL**（或 MySQL/SQLite）
 3. 输入连接信息：
 
-```yaml
+`````yaml
 # PostgreSQL 数据库连接示例
 Host: db.yourcompany.com
 Port: 5432
@@ -129,7 +130,7 @@ Username: app_readwrite
 Password: **********
 Database: production_app
 SSL: Require
-```
+`````
 
 NocoDB 在约 10 秒内完成 schema 检查，将所有表显示为交互式电子表格视图。
 
@@ -139,7 +140,7 @@ NocoDB 在约 10 秒内完成 schema 检查，将所有表显示为交互式电�
 
 每个表自动获得完整的 REST API。点击任意表上的 **"API"** 查看 Swagger 文档：
 
-```bash
+`````bash
 # 列出 "customers" 表中的所有记录
 curl -X GET "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
   -H "xc-token: YOUR_API_TOKEN" \
@@ -163,7 +164,7 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
     "id": 42,
     "Status": "Churned"
   }'
-```
+`````
 
 ### Webhook 自动化
 
@@ -173,7 +174,7 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
 2. 点击 **"Add Webhook"**
 3. 配置触发器：
 
-```json
+`````json
 {
   "title": "Notify Slack on New Order",
   "event": "after.insert",
@@ -189,28 +190,28 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
     }
   }
 }
-```
+`````
 
 ### n8n 集成
 
 NocoDB 与 [n8n 工作流自动化](n8n-workflow-automation-dibi8-internal-link) 无缝协作：
 
-```bash
+`````bash
 # n8n NocoDB 节点凭据
 Host: https://nocodb.yourcompany.com
 API Token: noco_xxxxxxxxxxxx
 Base ID: your-base-id
-```
+`````
 
 ### Metabase / BI 集成
 
 由于你的数据保留在 PostgreSQL 中，直接连接 Metabase 到同一个数据库进行数据分析，同时 NocoDB 处理操作编辑层：
 
-```yaml
+`````yaml
 # Metabase 连接到同一个 PostgreSQL 数据库
 # NocoDB 处理数据录入，Metabase 处理仪表板
 # 两者都从同一个真实数据源读取
-```
+`````
 
 ### 从 Airtable 同步（迁移路径）
 
@@ -227,11 +228,11 @@ Base ID: your-base-id
 
 | 指标 | NocoDB（自托管） | Airtable Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 每个 Base 的记录数 | **无限制** | 50,000 |
 | 文件附件 | **受磁盘限制** | 20 GB |
@@ -260,7 +261,7 @@ Base ID: your-base-id
 
 ### 1. 使用 Nginx 反向代理实现 HTTPS
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/nocodb
 server {
     listen 443 ssl http2;
@@ -280,18 +281,18 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-```
+`````
 
 启用并重启：
 
-```bash
+`````bash
 sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl restart nginx
-```
+`````
 
 ### 2. 环境变量安全
 
-```bash
+`````bash
 # 创建 secrets 文件
 sudo mkdir -p /opt/nocodb
 sudo tee /opt/nocodb/.env > /dev/null << EOF
@@ -303,7 +304,7 @@ NC_PUBLIC_URL=https://nocodb.yourcompany.com
 EOF
 
 sudo chmod 600 /opt/nocodb/.env
-```
+`````
 
 ### 3. 基于角色的访问控制
 
@@ -321,7 +322,7 @@ sudo chmod 600 /opt/nocodb/.env
 
 ### 4. 数据库备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/backup/nocodb-backup.sh
 
@@ -338,17 +339,17 @@ aws s3 sync /backups/ s3://yourcompany-backups/nocodb/
 
 # 只保留 7 天
 find /backups -name "*.sql" -mtime +7 -delete
-```
+`````
 
 添加到 crontab：
 
-```bash
+`````bash
 0 2 * * * /opt/backup/nocodb-backup.sh >> /var/log/nocodb-backup.log 2>&1
-```
+`````
 
 ### 5. 使用 Prometheus 监控
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v2.51.0
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -358,21 +359,21 @@ services: prometheus: image: prom/prometheus:v2.51.0
     ports: - "3000:3000"
     volumes: - grafana-data:/var/lib/grafana
 
-volumes: grafana-data: ```
+volumes: grafana-data: `````
 
 ## 与替代品对比
 
 | 功能 | NocoDB | Airtable | Baserow | Teable |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | AGPL-3.0 | 专有 | MIT | AGPL-3.0 |
 | **自托管** | 是 | 否 | 是 | 是 |
@@ -417,7 +418,7 @@ volumes: grafana-data: ```
 
 ### NocoDB 如何处理底层数据库的 schema 变更？
 
-NocoDB 自动同步 schema 变更。如果你通过 PostgreSQL 中的 `ALTER TABLE` 添加列，点击 Base 设置中的 **"Sync Now"**，新列会在几秒钟内出现在 NocoDB 中。现有视图被保留；你只需要将新字段添加到需要的视图中。
+NocoDB 自动同步 schema 变更。如果你通过 PostgreSQL 中的 ````ALTER TABLE```` 添加列，点击 Base 设置中的 **"Sync Now"**，新列会在几秒钟内出现在 NocoDB 中。现有视图被保留；你只需要将新字段添加到需要的视图中。
 
 ### 我可以将 NocoDB 用作面向客户的应用后端吗？
 
@@ -437,7 +438,7 @@ NocoDB 自动同步 schema 变更。如果你通过 PostgreSQL 中的 `ALTER TAB
 
 ### 有没有不用 Docker 运行 NocoDB 的方式？
 
-有的。NocoDB 为 Linux、macOS 和 Windows 提供独立可执行文件。从 GitHub 发布页面下载最新二进制文件，赋予执行权限，然后运行 `./nocodb`。但 Docker 仍然是生产环境推荐的部署方式，因为更新和依赖管理更容易。
+有的。NocoDB 为 Linux、macOS 和 Windows 提供独立可执行文件。从 GitHub 发布页面下载最新二进制文件，赋予执行权限，然后运行 ````./nocodb````。但 Docker 仍然是生产环境推荐的部署方式，因为更新和依赖管理更容易。
 
 ## 结论：你的数据，你做主
 
@@ -445,14 +446,14 @@ NocoDB 填补了一个特定的空白：为非技术团队提供 Airtable 的易
 
 如果你每月为 Airtable 支付 $200+，并且已经运行了 PostgreSQL 或 MySQL 数据库，NocoDB 在第一个月就回本。Docker 设置只需 5 分钟。从 Airtable 迁移是一个周末项目。拥有数据的自由是永久的。
 
-**立即开始**：[在 DigitalOcean 上部署 NocoDB](https://m.do.co/c/eca87ac14ee0)，使用 $6 的 Droplet，或在本地运行 `docker run nocodb/nocodb:latest` 探索后再决定。
+**立即开始**：[在 DigitalOcean 上部署 NocoDB](https://m.do.co/c/eca87ac14ee0)，使用 $6 的 Droplet，或在本地运行 ````docker run nocodb/nocodb:latest``` 探索后再决定。
 
 **加入社区**：[NocoDB Discord](https://discord.gg/5ZjDgHEG5H) | [GitHub Discussions](https://github.com/nocodb/nocodb/discussions)
 
 **相关工具**：[n8n 工作流自动化](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI 设置指南](metabase-bi-setup-dibi8-internal-link)
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -472,7 +473,7 @@ NocoDB 填补了一个特定的空白：为非技术团队提供 Airtable 的易
 - [PostgreSQL 官方文档](https://www.postgresql.org/docs/)
 - [在 Ubuntu 上部署 Docker — DigitalOcean 文档](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
 
----
+* * *
 
 *本文可能包含联盟链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会增加你的额外费用。我们只推荐自己使用的服务。*
 
@@ -538,12 +539,12 @@ NocoDB 2026 完整指南：将任何数据库变成智能电子表格的开源 A
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -553,6 +554,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](noco-db-airtable-alternative)
 - [nanochat-karpathy-100-chatgpt-single-gpu](noco-db-airtable-alternative)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -31,6 +31,7 @@ faqs: - q: 'EXPLAIN ANALYZE 输出中，顶行的 actual time 代表什么意思
     a: 'shared hit 统计的是已在 Postgres 缓冲区缓存中的页面，读取代价低；shared read 统计的是从操作系统或磁盘获取的页面，代价高昂。如果 read 占主导，说明数据根本没有被缓存——运行两次查询，第二次的结果才能反映稳定状态。'
   - q: '查询计划中 Sort 或 Hash 节点上出现 temp written 是什么意思？'
     a: '这意味着排序或哈希操作超出了 work_mem 的限制，数据溢出到了磁盘，这很容易让该节点的耗时增加 10 倍。解决方法是为该会话调大 work_mem，然后重新运行 EXPLAIN。'---
+
 # 阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失
 
 
@@ -41,21 +42,21 @@ EXPLAIN ANALYZE 输出看起来令人生畏，直到您知道实际重要的三�
 ## 实际重要的三个数字
 
 ### 1. **总执行时间 (Execution Time)**
-```
+````
 Total runtime: 1234.567 ms
-```
+`````
 这是最重要的指标。如果查询慢，这里会告诉您。
 
 ### 2. **实际行数 vs 估计行数 (Actual vs Estimated Rows)**
-```
+`````
 Seq Scan on users  (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1)
-```
+`````
 巨大差异表明规划器做出了错误假设。
 
 ### 3. **缓冲区命中率 (Buffer Hit Ratio)**
-```
+`````
 Buffers: shared hit=1000 read=50
-```
+`````
 高命中率 = 好缓存使用，低命中率 = 磁盘 I/O 问题。
 
 ## 阅读顺序
@@ -68,29 +69,29 @@ Buffers: shared hit=1000 read=50
 ## 常见问题模式
 
 ### **顺序扫描当应该索引扫描时**
-```
+`````
 Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32)
-```
+`````
 **解决方案**: 添加适当的索引
 
 ### **嵌套循环当应该哈希连接时**
-```
+`````
 Nested Loop (cost=1000.00..100000.00 rows=1000 width=64)
   -> Seq Scan on users
   -> Index Scan on orders
-```
+`````
 **解决方案**: 增加 work_mem 或重写查询
 
 ### **缓冲区未命中太多**
-```
+`````
 Buffers: shared hit=10 read=1000
-```
+`````
 **解决方案**: 增加 shared_buffers 或改善查询
 
 ### **排序溢出到磁盘**
-```
+`````
 Sort Method: external merge  Disk: 16384kB
-```
+`````
 **解决方案**: 增加 work_mem
 
 ## 实际应用
@@ -178,7 +179,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -190,7 +191,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -201,7 +202,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -211,7 +212,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -222,7 +223,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -232,7 +233,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -243,21 +244,21 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````
 
 ## Trading Bot Comparison
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

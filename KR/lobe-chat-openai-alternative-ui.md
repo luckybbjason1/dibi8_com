@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/lobe-chat-openai-alternative-ui/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: ChatGPT만으로는 이제 부족합니다
@@ -30,7 +31,7 @@ Lobe Chat은 LobeHub 팀이 만든 오픈소스 채팅 인터페이스로, **20+
 
 ## Lobe Chat의 작동 방식
 
-Lobe Chat의 아키텍처는 프레젠테이션 레이어와 모델 추론을 분리합니다. Next.js 프론트엔드는 UI 렌더링, 대화 상태, 플러그인 오케스트레이션을 처리하고, LLM 호출은 구성 가능한 API 엔드포인트를 통해 프록시됩니다: ```
+Lobe Chat의 아키텍처는 프레젠테이션 레이어와 모델 추론을 분리합니다. Next.js 프론트엔드는 UI 렌더링, 대화 상태, 플러그인 오케스트레이션을 처리하고, LLM 호출은 구성 가능한 API 엔드포인트를 통해 프록시됩니다: ````
 ┌─────────────────────────────────────────────┐
 │           사용자 브라우저 / PWA              │
 │  ┌─────────┐  ┌─────────┐  ┌────────────┐  │
@@ -53,7 +54,7 @@ Lobe Chat의 아키텍처는 프레젠테이션 레이어와 모델 추론을 �
 │  OpenAI  │  │  Claude  │  │   Ollama   │
 │  API     │  │  API     │  │  (로컬)    │
 └──────────┘  └──────────┘  └────────────┘
-```
+`````
 
 **핵심 구성 요소:**
 
@@ -71,21 +72,21 @@ Lobe Chat의 아키텍처는 프레젠테이션 레이어와 모델 추론을 �
 
 **1단계 —— 공식 이미지 가져오기 및 실행:**
 
-```bash
+`````bash
 docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY \
   -e ACCESS_CODE=your-secure-password \
   --name lobe-chat \
   lobehub/lobe-chat:latest
-```
+`````
 
 **2단계 —— UI 접근:**
 
-`http://localhost:3210`을 엽니다. 기본 LLM 제공업체를 선택하고 API 키를 입력하는 설정 마법사가 나타납니다.
+````http://localhost:3210````을 엽니다. 기본 LLM 제공업체를 선택하고 API 키를 입력하는 설정 마법사가 나타납니다.
 
 **3단계 —— 추가 제공업체 구성 (선택):**
 
-```bash
+`````bash
 # 환경 변수를 통한 다중 제공업체 설정
 docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=sk-xxx \
@@ -95,11 +96,11 @@ docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password \
   --name lobe-chat \
   lobehub/lobe-chat:latest
-```
+`````
 
 ### 방법 2: 영구 저장소가 있는 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 services: lobe-chat: image: lobehub/lobe-chat:latest
     ports: - "3210:3210"
@@ -117,16 +118,16 @@ services: lobe-chat: image: lobehub/lobe-chat:latest
     volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: lobe-data: pgdata: ```
+volumes: lobe-data: pgdata: `````
 
-```bash
+`````bash
 # 영속성과 함께 시작
 docker compose up -d
-```
+`````
 
 ### 방법 3: [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에 배포
 
-```bash
+`````bash
 # 2 vCPU / 4GB RAM Droplet에서 (~$24/월)
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -145,7 +146,7 @@ chat.yourdomain.com {
     reverse_proxy localhost:3210
 }
 EOF
-```
+`````
 
 DNS A 레코드를 Droplet IP로 가리키면 15분 이내에 라이브됩니다. [DigitalOcean Droplet을 여기에서 얻으세요](https://m.do.co/c/eca87ac14ee0).
 
@@ -153,32 +154,32 @@ DNS A 레코드를 Droplet IP로 가리키면 15분 이내에 라이브됩니다
 
 Lobe Chat은 통합 어댑터를 통해 제공업체 간 API 호출을 정규화합니다. 가장 인기 있는 제공업체의 구성 방법은 다음과 같습니다: ### OpenAI (GPT-4, GPT-4o)
 
-```bash
+`````bash
 # 환경 변수를 통해
 echo "OPENAI_API_KEY=sk-xxxxxxxx" >> .env
 
 # UI를 통해: 설정 → 언어 모델 → OpenAI → 키 입력
-```
+`````
 
 ### Anthropic Claude (Claude 3.5 Sonnet)
 
-```bash
+`````bash
 # 환경 변수
 echo "ANTHROPIC_API_KEY=sk-ant-xxxxxxxx" >> .env
 
 # 컨테이너 재시작
 docker restart lobe-chat
-```
+`````
 
 ### Google Gemini (Gemini 1.5 Pro)
 
-```bash
+`````bash
 echo "GOOGLE_API_KEY=AIzaxxxxxxxx" >> .env
-```
+`````
 
 ### Ollama (로컬 모델 — Llama, Mistral 등)
 
-```bash
+`````bash
 # 호스트에서 Ollama 실행
 docker run -d -p 11434:11434 --name ollama ollama/ollama
 
@@ -190,36 +191,36 @@ docker run -d -p 3210:3210 \
   -e OLLAMA_PROXY_URL=http://host.docker.internal:11434 \
   -e ACCESS_CODE=mypassword \
   lobehub/lobe-chat
-```
+`````
 
 ### Azure OpenAI Service
 
-```bash
+`````bash
 # 엔드포인트, API 키, 배포 이름 필요
 echo "AZURE_API_KEY=your-azure-key" >> .env
 echo "AZURE_API_ENDPOINT=https://your-resource.openai.azure.com" >> .env
 echo "AZURE_API_VERSION=2024-06-01" >> .env
-```
+`````
 
 ### AWS Bedrock
 
-```bash
+`````bash
 echo "AWS_ACCESS_KEY_ID=AKIAxxx" >> .env
 echo "AWS_SECRET_ACCESS_KEY=xxx" >> .env
 echo "AWS_REGION=us-east-1" >> .env
-```
+`````
 
 ### 런타임에 제공업체 전환
 
-사용자는 UI에서 대화별로 제공업체를 전환할 수 있습니다. 이를 통해 GPT-4와 Claude를 나란히 비교할 수 있습니다: ```
+사용자는 UI에서 대화별로 제공업체를 전환할 수 있습니다. 이를 통해 GPT-4와 Claude를 나란히 비교할 수 있습니다: `````
 # 재시작 불필요 —— 제공업체 전환은 클라이언트 측
 # 대화 헤더의 제공업체 아이콘 클릭 → 다른 모델 선택
 # 각 대화는 제공업체 선택을 기억합니다
-```
+`````
 
 ## 플러그인 시스템: Lobe Chat 확장하기
 
-Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 사용합니다. 플러그인은 `manifest.json`에서 기능을 선언하고, 채팅 UI는 이를 대화형 도구로 렌더링합니다.
+Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 사용합니다. 플러그인은 ````manifest.json````에서 기능을 선언하고, 채팅 UI는 이를 대화형 도구로 렌더링합니다.
 
 ### 플러그인 마켓플레이스에서 설치
 
@@ -230,7 +231,7 @@ Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 �
 
 ### 커스텀 플러그인 빌드하기
 
-낶부 API를 쿼리하는 간단한 플러그인을 만듭니다: ```json
+낶부 API를 쿼리하는 간단한 플러그인을 만듭니다: `````json
 {
   "api": [
     {
@@ -257,13 +258,13 @@ Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 �
   },
   "version": "1.0.0"
 }
-```
+`````
 
 이를 공개 URL에 호스팅한 다음 **플러그인 스토어 → 커스텀 플러그인 → URL 입력**을 통해 추가합니다.
 
 ### 플러그인 런타임 보안
 
-플러그인은 제한된 권한으로 샌드박스화된 iframe에서 실행됩니다: ```
+플러그인은 제한된 권한으로 샌드박스화된 iframe에서 실행됩니다: `````
 ┌─────────────────────────────┐
 │  Lobe Chat 메인 창          │
 │  ┌───────────────────────┐  │
@@ -274,7 +275,7 @@ Lobe Chat의 플러그인 아키텍처는 매니페스트 기반 시스템을 �
 │  │  - CORS 강제          │  │
 │  └───────────────────────┘  │
 └─────────────────────────────┘
-```
+`````
 
 각 플러그인 요청은 명시적인 사용자 승인이 필요합니다. LLM이 도구 호출을 제안하지만, 실행 전에 사용자가 확인해야 합니다.
 
@@ -290,21 +291,21 @@ Lobe Chat은 프로그레시브 웹 앱으로 작동하여 모든 플랫폼에�
 
 ### 모바일 설치 (iOS Safari)
 
-```
+`````
 1. Safari에서 Lobe Chat 열기
 2. 공유 → "홈 화면에 추가" 탭
 3. 네이티브 앱 아이콘으로 나타남
 4. 푸시 알림 지원 (서비스 워커를 통해)
-```
+`````
 
 ### 오프라인 지원
 
-서비스 워커가 앱 셸과 최근 대화를 캐시합니다. 인터넷 없이: ```
+서비스 워커가 앱 셸과 최근 대화를 캐시합니다. 인터넷 없이: `````
 ✅ 대화 기록 탐색
 ✅ 이전 응답 보기
 ✅ 메시지 작성 (전송 대기열)
 ❌ 새 LLM 응답 (API 연결 필요)
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -352,36 +353,36 @@ Lobe Chat은 프로그레시브 웹 앱으로 작동하여 모든 플랫폼에�
 
 ### 인증 활성화
 
-팀 배포를 위해 액세스 코드를 설정합니다: ```bash
+팀 배포를 위해 액세스 코드를 설정합니다: `````bash
 docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password-2026 \
   -e OPENAI_API_KEY=sk-xxx \
   lobehub/lobe-chat:latest
-```
+`````
 
-SSO 통합을 위해 OAuth를 구성합니다: ```bash
+SSO 통합을 위해 OAuth를 구성합니다: `````bash
   -e AUTH_PROVIDER=auth0 \
   -e AUTH_AUTH0_ID=your-client-id \
   -e AUTH_AUTH0_SECRET=your-secret \
   -e AUTH_AUTH0_ISSUER=https://your-domain.us.auth0.com \
-```
+`````
 
 ### 커스텀 테마
 
-테마 JSON 파일을 만듭니다: ```json
+테마 JSON 파일을 만듭니다: `````json
 {
   "primaryColor": "#1890ff",
   "neutralColor": "#8c8c8c",
   "backgroundColor": "#f0f2f5",
   "sidebarWidth": 280
 }
-```
+`````
 
 **설정 → 테마 → 커스텀 테마**를 통해 업로드합니다.
 
 ### 데이터베이스 기반 대화
 
-다중 사용자 지속성을 위해 PostgreSQL을 구성합니다: ```yaml
+다중 사용자 지속성을 위해 PostgreSQL을 구성합니다: `````yaml
 # docker-compose.prod.yml
 services: lobe-chat: image: lobehub/lobe-chat:latest
     environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
@@ -394,11 +395,11 @@ services: lobe-chat: image: lobehub/lobe-chat:latest
       POSTGRES_DB: lobechat
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### Caddy를 사용한 역방향 프록시
 
-```bash
+`````bash
 # 자동 HTTPS를 위한 Caddyfile
 chat.yourdomain.com {
     reverse_proxy localhost:3210
@@ -408,15 +409,15 @@ chat.yourdomain.com {
         X-Content-Type-Options nosniff
     }
 }
-```
+`````
 
-```bash
+`````bash
 caddy run --config Caddyfile
-```
+`````
 
 ### Prometheus를 사용한 모니터링
 
-Lobe Chat은 `/api/metrics`에서 메트릭을 노출합니다: ```yaml
+Lobe Chat은 ``/api/metrics``에서 메트릭을 노출합니다: `````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -424,7 +425,7 @@ services: prometheus: image: prom/prometheus
 
   grafana: image: grafana/grafana
     ports: - "3000:3000"
-```
+`````
 
 ## 대안과의 비교
 
@@ -478,7 +479,7 @@ services: prometheus: image: prom/prometheus
 
 **Q: Lobe Chat을 최신 버전으로 업데이트하려면 어떻게 하나요?**
 
-```bash
+`````bash
 # 최신 이미지 가져오기
 docker pull lobehub/lobe-chat:latest
 
@@ -487,7 +488,7 @@ docker compose down && docker compose up -d
 
 # 대화는 브라우저 localStorage에 지속됩니다
 # PostgreSQL 백엔드의 경우, 데이터베이스 마이그레이션이 자동으로 실행됩니다
-```
+````
 
 업데이트는 주간 단위로 제공됩니다. 업데이트하기 전에 [릴리스 페이지](https://github.com/lobehub/lobe-chat/releases)에서 중대 변경 사항을 확인하세요.
 
@@ -519,7 +520,7 @@ Lobe Chat은 ChatGPT가 제공하지 않는 것을 제공합니다: 데이터에
 
 AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** —— Lobe Chat 구성을 공유하고 5,000명 이상의 빌더에게 도움을 받으세요.
 
----
+* * *
 
 ## 출처 및 추가 자료
 
@@ -530,7 +531,7 @@ AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** �
 5. [LobeHub 플러그인 마켓플레이스](https://lobechat.com/plugins) —— 사용 가능한 플러그인 탐색
 6. [Next.js 문서](https://nextjs.org/docs) —— 기본 프레임워크 문서
 
----
+* * *
 
 
 
@@ -571,7 +572,7 @@ AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -581,6 +582,6 @@ AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** �
 - [12-factor-agents-production-llm-software-2026](lobe-chat-openai-alternative-ui)
 - [12-factor-agents](lobe-chat-openai-alternative-ui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

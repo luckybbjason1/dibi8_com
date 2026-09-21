@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/cc-switch-unified-ai-cli-control-center-2026/
 ---
 
+
 {</* resource-info */>}
 
 ## 들어가며: AI CLI 도구 홍수 시대의 설정 관리 문제
@@ -32,9 +33,9 @@ aliases:
 
 Claude Code는 200만 토큰 컨텍스트 윈도우로 아키텍처 리팩토링의 강자이고, OpenAI Codex는 Rust로 재작성되어 빠른 실행 속도를 자랑합니다. Google의 Gemini CLI는 하루 1,000회 무료라는 파격적인 조건으로 주목받고 있으며, OpenClaw는 서브 에이전트 오케스트레이션으로 기술 매니아들의 사랑을 받고 있습니다. 각 도구는 고유한 모델 생태계와 워크플로우를 가지고 있지만, 도구 간 전환 비용이 점점 생산성을 잠식하고 있습니다.
 
-`.env`, `.json`, `.toml` 파일을 수동으로 수정하고, 각 도구의 MCP 서버 주소를 기억하며, 터미널과 IDE 사이를 반복해서 이동하는 것 — 이런 잡무가 AI가 절약해줘야 할 시간을 오히려 소모하고 있습니다. **CC Switch**는 바로 이 "AI 도구 관리" 패러다임에 혁명을 일으키는 도구입니다.
+```.env````, ````.json````, ````.toml```` 파일을 수동으로 수정하고, 각 도구의 MCP 서버 주소를 기억하며, 터미널과 IDE 사이를 반복해서 이동하는 것 — 이런 잡무가 AI가 절약해줘야 할 시간을 오히려 소모하고 있습니다. **CC Switch**는 바로 이 "AI 도구 관리" 패러다임에 혁명을 일으키는 도구입니다.
 
----
+* * *
 
 ## 1. 프로젝트 개요: 74K Stars의 기술적 선택
 
@@ -55,7 +56,7 @@ CC Switch의 기술 스택 자체가 하나의 선언입니다: - **Rust 백엔�
 
 이러한 "웹 기술로 UI를, Rust로 로우레벨을" 처리하는 하이브리드 아키텍처는 2026년 크로스플랫폼 데스크톱 애플리케이션의 주류 패러다임으로 자리 잡고 있습니다.
 
----
+* * *
 
 ## 2. 핵심 기능 분석: "설정 지옥"에서 "원클릭 전환"으로
 
@@ -105,14 +106,14 @@ Model Context Protocol (MCP)는 2026년 AI 에이전트 생태계의 사실상 �
 
 다양한 모델의 출력을 비교해야 하는 개발자(예: 프롬프트 A/B 테스트)에게 이 기능은 전환 비용을 분 단위에서 초 단위로 낮춥니다.
 
----
+* * *
 
 ## 3. 고급 기능: 파워 유저를 위한 숨겨진 무기
 
 ### 3.1 프롬프트 프리셋 관리와 크로스 앱 동기화
 
 - 다양한 시스템 프롬프트 프리셋을 Markdown 에디터로 생성 및 실시간 미리보기
-- 각 도구의 설정 파일에 자동 매핑: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
+- 각 도구의 설정 파일에 자동 매핑: ````CLAUDE.md````, ````AGENTS.md````, ````GEMINI.md````
 - 팀 전체에서 표준화된 프롬프트 템플릿을 공유하여 출력 일관성 보장
 
 ### 3.2 Skills 확장 원클릭 설치
@@ -129,17 +130,17 @@ Model Context Protocol (MCP)는 2026년 AI 에이전트 생태계의 사실상 �
 
 ### 3.4 딥 링크 프로토콜 (ccswitch://)
 
-- `ccswitch://` 프로토콜 지원으로 브라우저나 문서에서 원클릭 공급사 설정 가져오기
+- ````ccswitch://```` 프로토콜 지원으로 브라우저나 문서에서 원클릭 공급사 설정 가져오기
 - API 릴레이 플랫폼의 Token 관리 페이지와 연동하여 "원클릭 자동 입력"
 - API 키 수동 복사의 오류 가능성과 보안 리스크 감소
 
----
+* * *
 
 ## 4. 설치 및 설정 실전 가이드
 
 ### 4.1 빠른 설치
 
-```bash
+`````bash
 # macOS / Linux
 brew install cc-switch
 
@@ -148,7 +149,7 @@ scoop install cc-switch
 
 # 또는 GitHub Releases에서 직접 다운로드
 # https://github.com/farion1231/cc-switch/releases
-```
+`````
 
 ### 4.2 첫 설정 모범 사례
 
@@ -160,7 +161,7 @@ scoop install cc-switch
 
 ### 4.3 팀 배포 템플릿
 
-```
+`````
 team-ai-config/
 ├── company-mcp-config.json      # 표준 MCP 서버 목록
 ├── company-prompts/               # 표준화된 프롬프트 템플릿
@@ -168,11 +169,11 @@ team-ai-config/
 │   ├── security-check.md
 │   └── api-doc-gen.md
 └── team-skills.json               # 내부 Skills 인덱스
-```
+````
 
 CC Switch의 가져오기/보내기 기능을 통해 신규 입사자도 5분 만에 완벽한 환경을 구축할 수 있습니다.
 
----
+* * *
 
 ## 5. 2026년 AI CLI 도구 생태계 전망
 
@@ -192,7 +193,7 @@ CC Switch의 독특한 가치는 **3개 티어를 모두横跨**하여 사용자
 2. **모델 전환이 일상화**: 개발자들은 단일 모델에 충성하기보다 작업 유형별로 최적 모델을 선택하는 방식으로 전환
 3. **설정 관리 도工具类 출현**: CC Switch가 시장 수요를 검증했으며, 유사 경쟁 제품이 등장할 것이지만 74K 커뮤니티 기반으로 선점 우위를 확보함
 
----
+* * *
 
 ## 6. 경쟁 비교와 선택 가이드
 
@@ -207,7 +208,7 @@ CC Switch의 독특한 가치는 **3개 티어를 모두横跨**하여 사용자
 
 **결론**: 2개 이상의 AI CLI 도구를 정기적으로 사용한다면, CC Switch는 첫날부터 시간 절약 효과를 제공합니다.
 
----
+* * *
 
 
 
@@ -228,7 +229,7 @@ CC Switch는 특정 AI 도구의 사용법을 개선하는 것이 아니라, "AI
 - 공식 사이트: https://ccswitch.io
 - 다운로드: GitHub Releases 페이지
 
----
+* * *
 
 *본 문서는 CC Switch v2.x 버전을 기준으로 작성되었으며, 기능 세부사항은 버전 업데이트에 따라 변경될 수 있습니다. 최신 정보는 공식 문서를 참조하세요.*
 
@@ -260,7 +261,7 @@ CC Switch는 특정 AI 도구의 사용법을 개선하는 것이 아니라, "AI
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -270,7 +271,7 @@ CC Switch는 특정 AI 도구의 사용법을 개선하는 것이 아니라, "AI
 - [claude-code-vs-aider](cc-switch-unified-ai-cli-control-center-2026)
 - [cursor-vs-claude-code](cc-switch-unified-ai-cli-control-center-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

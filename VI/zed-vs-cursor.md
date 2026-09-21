@@ -18,6 +18,7 @@ faqs: - q: 'Zed hay Cursor nhanh hơn?'
     a: 'Cả hai đều cho phép kết nối mô hình riêng, nhưng trọng tâm khác nhau. Zed cho phép cấu hình nhiều nhà cung cấp (Anthropic, OpenAI, và mô hình cục bộ qua Ollama), thân thiện với thiết lập ưu tiên cục bộ. Cursor hỗ trợ vài mô hình tiên tiến và một số khóa API riêng, nhưng các tính năng tốt nhất (Tab, Agent) được tinh chỉnh quanh pipeline mô hình lưu trữ của họ. Muốn trình soạn thảo hoàn toàn cục bộ, ưu tiên quyền riêng tư thì Zed dễ uốn theo stack của bạn hơn.'
 ---
 
+
 # Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So Sánh Thẳng Thắn
 
 
@@ -29,7 +30,7 @@ Dùng **Zed** nếu: Bạn muốn độ trễ soạn thảo dưới mili-giây, 
 
 Dùng **Cursor** nếu: Bạn muốn tính năng AI tiên tiến nhất (Tab nhiều dòng, chế độ Agent, lập chỉ mục kho mã), hỗ trợ Windows chắc chắn và tương thích đầy đủ với hệ sinh thái tiện ích VS Code.
 
----
+* * *
 
 ## So Sánh Song Song
 
@@ -189,12 +190,12 @@ Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So Sánh Thẳng T
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -204,7 +205,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-cline](zed-vs-cursor)
 - [cursor-vs-windsurf](zed-vs-cursor)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

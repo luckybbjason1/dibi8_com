@@ -32,6 +32,7 @@ faqs: - q: 'What is AI-Trader by HKUDS?'
   - q: 'Can I test AI-Trader without risking real money?'
     a: 'Yes. AI-Trader includes a high-fidelity backtesting engine for historical simulation and a paper trading mode (set mode: paper in the config). The project documentation recommends always using paper trading before deploying to live trading.'
 ---
+
 {</* resource-info */>}
 
 ## What is AI-Trader?
@@ -42,9 +43,9 @@ Unlike traditional rule-based trading bots, AI-Trader uses **reinforcement learn
 
 | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | Stars | 14,311+ |
 | Forks | 2,418+ |
@@ -67,11 +68,11 @@ Traditional trading bots are "script-native" — they execute pre-programmed rul
 
 | Market | Assets | Strategy Type |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stocks | US, HK, A-shares | Momentum + Mean Reversion |
 | Crypto | BTC, ETH, Altcoins | Trend Following + Arbitrage |
@@ -80,7 +81,7 @@ Traditional trading bots are "script-native" — they execute pre-programmed rul
 
 ### 3. Reinforcement Learning Core
 
-AI-Trader uses **Deep Reinforcement Learning (DRL)** for strategy optimization: ```python
+AI-Trader uses **Deep Reinforcement Learning (DRL)** for strategy optimization: ````python
 # Simplified training loop
 from ai_trader import TradingAgent, MarketEnv
 
@@ -96,13 +97,13 @@ agent.train(env, episodes=10000, batch_size=64)
 
 # Deploy to live trading (use paper trading first!)
 agent.deploy(mode='paper', exchange='binance')
-```
+`````
 
 ## Key Features
 
 ### Multi-Agent Collaboration System
 
-```
+`````
 ┌─────────────────────────────────────┐
 │         Market Data Feed            │
 │    (Price, Volume, Order Book)      │
@@ -132,7 +133,7 @@ agent.deploy(mode='paper', exchange='binance')
   │(Stop-   │   │(Order    │
   │  loss)  │   │Placement)│
   └─────────┘   └─────────┘
-```
+`````
 
 ### Risk Management
 
@@ -143,7 +144,7 @@ agent.deploy(mode='paper', exchange='binance')
 
 ### Backtesting Engine
 
-```python
+`````python
 # High-fidelity backtesting
 from ai_trader.backtest import BacktestEngine
 
@@ -159,19 +160,19 @@ results = engine.run(agent)
 print(f"Total Return: {results.total_return:.2%}")
 print(f"Sharpe Ratio: {results.sharpe_ratio:.2f}")
 print(f"Max Drawdown: {results.max_drawdown:.2%}")
-```
+`````
 
 ## Performance Benchmarks
 
 | Metric | AI-Trader | Buy & Hold | Traditional Bot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Annual Return | 45.2% | 18.5% | 12.3% |
 | Sharpe Ratio | 2.1 | 0.8 | 0.6 |
@@ -184,7 +185,7 @@ print(f"Max Drawdown: {results.max_drawdown:.2%}")
 
 ### Installation
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -194,11 +195,11 @@ pip install -r requirements.txt
 
 # Download market data
 python scripts/download_data.py --market crypto --assets BTC,ETH
-```
+`````
 
 ### Configuration
 
-```yaml
+`````yaml
 # config/trading.yaml
 market: type: crypto
   exchange: binance
@@ -215,11 +216,11 @@ risk: max_daily_loss: 0.02
 agent: algorithm: PPO
   network: LSTM
   episodes: 10000
-```
+`````
 
 ### Run Trading
 
-```bash
+`````bash
 # Train agent
 python train.py --config config/trading.yaml
 
@@ -228,13 +229,13 @@ python deploy.py --mode paper --config config/trading.yaml
 
 # Monitor dashboard
 python dashboard.py --port 8080
-```
+`````
 
 ## Use Cases
 
 ### Personal Investment
 
-Automate your personal trading strategy: ```python
+Automate your personal trading strategy: `````python
 # Custom strategy with AI enhancement
 from ai_trader import HybridAgent
 
@@ -246,7 +247,7 @@ agent = HybridAgent(
 
 # Run with your rules + AI optimization
 agent.run(schedule='0 9 * * 1-5')  # Every weekday at 9 AM
-```
+`````
 
 ### Institutional Trading
 
@@ -257,7 +258,7 @@ For hedge funds and prop trading firms: - **Multi-Account Management** — Trade
 
 ## Technical Architecture
 
-```
+`````
 ┌─────────────────────────────────────────────┐
 │              Data Layer                      │
 │  ┌─────────┐ ┌─────────┐ ┌─────────┐       │
@@ -295,7 +296,7 @@ For hedge funds and prop trading firms: - **Multi-Account Management** — Trade
 │  │ Sizing  │ │ Execution│ │ Rebalance│      │
 │  └─────────┘ └─────────┘ └─────────┘       │
 └─────────────────────────────────────────────┘
-```
+````
 
 ## Community & Resources
 
@@ -311,11 +312,11 @@ For hedge funds and prop trading firms: - **Multi-Account Management** — Trade
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
 
 
----
+* * *
 *Disclaimer: AI-Trader is for educational and research purposes. Always use paper trading before live trading. Past performance does not guarantee future results. Cryptocurrency trading carries significant risk.*
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -396,7 +397,7 @@ AI-Trader: 14K⭐ Fully Automated AI Trading Agent — Let AI Trade for You 24/7
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/llm-evaluation-benchmarking-frameworks/
 ---
 
+
 # Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh EleutherAI LM Eval, OpenCompass, BIG-bench
 
 
@@ -250,7 +251,7 @@ Chuẩn mực LLM dự đoán tương đối tốt cho các tác vụ tương t�
 
 ### EleutherAI LM Eval có miễn phí không?
 
-Có, EleutherAI LM Evaluation Harness hoàn toàn miễn phí và mã nguồn mở. Bạn có thể cài đặt qua pip (`pip install lm-eval`) và sử dụng ngay. Tuy nhiên, việc chạy đánh giá đòi hỏi tài nguyên tính toán (GPU), điều này có thể tốn chi phí nếu sử dụng dịch vụ đám mây.
+Có, EleutherAI LM Evaluation Harness hoàn toàn miễn phí và mã nguồn mở. Bạn có thể cài đặt qua pip (```pip install lm-eval```) và sử dụng ngay. Tuy nhiên, việc chạy đánh giá đòi hỏi tài nguyên tính toán (GPU), điều này có thể tốn chi phí nếu sử dụng dịch vụ đám mây.
 
 ### Tôi nên sử dụng chuẩn mực nào cho LLM tạo mã?
 
@@ -308,7 +309,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -318,7 +319,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](llm-evaluation-benchmarking-frameworks)
 - [ai-engineering-from-scratch](llm-evaluation-benchmarking-frameworks)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

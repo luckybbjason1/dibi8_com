@@ -23,13 +23,14 @@ tags: ["unstructured", "document-parsing", "llm", "rag", "data-preprocessing", "
 aliases:
   - /posts/unstructured-data-preprocessing-llm/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Dirty Secret Behind Every RAG Pipeline
 
 Your Retrieval-Augmented Generation (RAG) pipeline is only as good as the data you feed it. You can have the best embedding model, the most expensive vector database, and a state-of-the-art LLM — but if your source documents are raw PDFs with broken tables, scanned images with garbled OCR, or PowerPoint slides with invisible text boxes, your retrieval accuracy will suffer.
 
-I learned this the hard way. A client project ingested **12,000 PDF contracts** into a Pinecone-backed RAG system. The naive `pdftotext` approach produced chunks like "`Page 1 of 47CONFIDENTIAL AGREEMENT`" — headers merged with body text, table rows concatenated into unreadable blobs, and footnotes injected mid-sentence. Retrieval accuracy: **34%**. After switching to Unstructured.io with proper partitioning and chunking: **89%**.
+I learned this the hard way. A client project ingested **12,000 PDF contracts** into a Pinecone-backed RAG system. The naive ```pdftotext```` approach produced chunks like "````Page 1 of 47CONFIDENTIAL AGREEMENT````" — headers merged with body text, table rows concatenated into unreadable blobs, and footnotes injected mid-sentence. Retrieval accuracy: **34%**. After switching to Unstructured.io with proper partitioning and chunking: **89%**.
 
 That gap — 34% to 89% — is why Unstructured.io matters. Released in 2022 and now at **v0.17.0** (April 2026), the project has accumulated **10,500+ GitHub stars** under the Apache-2.0 license. It is the de facto standard for converting messy, real-world documents into clean, structured elements that LLMs can actually use.
 
@@ -45,32 +46,32 @@ Unstructured's pipeline consists of three distinct stages: **Partitioning → Cl
 
 ### Partitioning: Breaking Documents into Elements
 
-The `partition` function is Unstructured's core. It detects file types automatically and routes them to specialized parsers: | Partition Strategy | Speed | Accuracy | Best For |
+The ````partition```` function is Unstructured's core. It detects file types automatically and routes them to specialized parsers: | Partition Strategy | Speed | Accuracy | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `auto` | Medium | High | General use, mixed document types |
-| `fast` | Fast | Medium | Simple text-heavy PDFs, bulk processing |
-| `hi_res` | Slow | Highest | Complex layouts, tables, scanned docs |
-| `ocr_only` | Slowest | OCR-dependent | Image-based PDFs, scanned documents |
+| ````auto```` | Medium | High | General use, mixed document types |
+| ````fast```` | Fast | Medium | Simple text-heavy PDFs, bulk processing |
+| ````hi_res```` | Slow | Highest | Complex layouts, tables, scanned docs |
+| ````ocr_only```` | Slowest | OCR-dependent | Image-based PDFs, scanned documents |
 
-The `hi_res` strategy uses a **document understanding transformer model** (default: `detectron2` or `yolox`) to identify regions like titles, body text, headers, footers, and tables before extraction. This is what enables table-to-HTML conversion and reading order detection.
+The ````hi_res```` strategy uses a **document understanding transformer model** (default: ````detectron2```` or ````yolox````) to identify regions like titles, body text, headers, footers, and tables before extraction. This is what enables table-to-HTML conversion and reading order detection.
 
 ### Element Types: Structure Preservation
 
-Unstructured outputs 20+ element types. The most important for LLM work: - `NarrativeText` — body paragraphs
-- `Title` — document and section headings
-- `ListItem` — bullet and numbered lists
-- `Table` — tabular data (can export to HTML)
-- `Header` / `Footer` — typically filtered out
-- `Image` — embedded images (optional caption extraction)
-- `FigureCaption` — captions associated with images
+Unstructured outputs 20+ element types. The most important for LLM work: - ````NarrativeText```` — body paragraphs
+- ````Title```` — document and section headings
+- ````ListItem```` — bullet and numbered lists
+- ````Table```` — tabular data (can export to HTML)
+- ````Header```` / ````Footer```` — typically filtered out
+- ````Image```` — embedded images (optional caption extraction)
+- ````FigureCaption```` — captions associated with images
 
 Each element carries metadata: page number, coordinates, file type, languages detected, parent section, and custom fields you inject.
 
@@ -78,15 +79,15 @@ Each element carries metadata: page number, coordinates, file type, languages de
 
 Raw elements are too small (single words) or too large (entire pages). Unstructured's chunking strategies combine and split elements intelligently: | Chunking Strategy | Behavior | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `basic` | Fixed-size with overlap | Simple pipelines, predictable token counts |
-| `by_title` | Respects section boundaries | Preserving semantic coherence |
-| `by_similarity` | Semantic clustering | Long documents with topic shifts |
+| ````basic```` | Fixed-size with overlap | Simple pipelines, predictable token counts |
+| ````by_title```` | Respects section boundaries | Preserving semantic coherence |
+| ````by_similarity```` | Semantic clustering | Long documents with topic shifts |
 
 ## Installation & Setup: 5-Minute Startup
 
@@ -94,7 +95,7 @@ Unstructured supports both library usage (Python import) and a self-hosted API (
 
 ### Option A: Python Library (Development)
 
-```bash
+`````bash
 python -m venv venv_unstructured
 source venv_unstructured/bin/activate
 
@@ -103,21 +104,21 @@ pip install "unstructured[pdf]==0.17.0"
 
 # For full document support (larger install)
 pip install "unstructured[all-docs]==0.17.0"
-```
+`````
 
-The `[pdf]` extra installs `pdf2image`, `pdfplumber`, and `pikepdf`. The `[all-docs]` extra adds DOCX, PPTX, XLSX, MSG, EML, EPUB, and OCR dependencies including `tesseract` bindings.
+The ````[pdf]```` extra installs ````pdf2image````, ````pdfplumber````, and ````pikepdf````. The ````[all-docs]```` extra adds DOCX, PPTX, XLSX, MSG, EML, EPUB, and OCR dependencies including ````tesseract```` bindings.
 
-Verify the install: ```python
+Verify the install: `````python
 from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"Extracted {len(elements)} elements")
 for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
-```
+`````
 
 ### Option B: Self-Hosted API via Docker (Production)
 
-```bash
+`````bash
 # Pull the pre-built image
 docker pull downloads.unstructured.io/unstructured-io/unstructured-api:latest
 
@@ -130,20 +131,20 @@ docker run -d \
 
 # Verify health
 curl http://localhost:8000/healthcheck
-```
+`````
 
-For CPU-only environments (cheaper, slower on complex PDFs): ```bash
+For CPU-only environments (cheaper, slower on complex PDFs): `````bash
 docker run -d \
   --name unstructured-api-cpu \
   -p 8000:8000 \
   downloads.unstructured.io/unstructured-io/unstructured-api-cpu:latest
-```
+`````
 
 If you need a reliable cloud server to host this, [DigitalOcean's GPU droplets](https://m.do.co/c/eca87ac14ee0) work well for the hi_res pipeline.
 
 ### Sending Documents to the API
 
-```python
+`````python
 import requests
 
 with open("annual_report.pdf", "rb") as f: response = requests.post(
@@ -161,7 +162,7 @@ with open("annual_report.pdf", "rb") as f: response = requests.post(
 
 elements = response.json()
 print(f"Got {len(elements)} chunks")
-```
+`````
 
 ## Integration with LangChain, LlamaIndex & Vector Stores
 
@@ -169,7 +170,7 @@ Unstructured integrates natively with the major LLM orchestration frameworks.
 
 ### LangChain Loader
 
-```python
+`````python
 from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
@@ -194,11 +195,11 @@ vectorstore = Chroma.from_documents(
     documents=documents,
     embedding=OpenAIEmbeddings(),
 )
-```
+`````
 
 ### LlamaIndex Integration
 
-```python
+`````python
 from llama_index.readers.unstructured import UnstructuredReader
 from llama_index.core import VectorStoreIndex
 
@@ -218,11 +219,11 @@ query_engine = index.as_query_engine()
 
 response = query_engine.query("What are the key risks mentioned in section 3?")
 print(response)
-```
+`````
 
 ### Direct Chroma Integration (No Framework)
 
-```python
+`````python
 import chromadb
 from unstructured.chunking.title import chunk_by_title
 from unstructured.partition.pdf import partition_pdf
@@ -255,7 +256,7 @@ for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
             "type": chunk.category,
         }]
     )
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -263,15 +264,15 @@ for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
 
 Unstructured supports **25+ file formats** as of v0.17.0. Here's what works in production: | Format | Read | Tables | OCR | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PDF (text-based) | Yes | Yes | N/A | Best-supported format |
 | PDF (scanned/image) | Yes | Partial | Yes | Requires tesseract |
@@ -288,15 +289,15 @@ Unstructured supports **25+ file formats** as of v0.17.0. Here's what works in p
 
 Benchmarks on an **8-core Intel i7, 32GB RAM, no GPU**: | Document | Size | Strategy | Time | Elements |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 10-page text PDF | 2.1 MB | fast | 1.2s | 47 |
 | 10-page text PDF | 2.1 MB | hi_res | 8.4s | 52 |
@@ -304,36 +305,36 @@ Benchmarks on an **8-core Intel i7, 32GB RAM, no GPU**: | Document | Size | Stra
 | 30-slide PPTX | 5.4 MB | auto | 4.1s | 128 |
 | 85-page DOCX | 1.2 MB | auto | 2.8s | 312 |
 
-With **GPU acceleration** (NVIDIA T4 via the Docker API), `hi_res` partitioning drops to **2.1s** for the same 10-page PDF — roughly a **4x speedup**.
+With **GPU acceleration** (NVIDIA T4 via the Docker API), ````hi_res```` partitioning drops to **2.1s** for the same 10-page PDF — roughly a **4x speedup**.
 
 ### Chunking Quality Impact on RAG
 
 I ran a controlled test on 50 legal contracts (avg 15 pages each), measuring retrieval accuracy at top-3: | Preprocessing Method | Avg Chunk Quality | RAG Top-3 Accuracy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Raw `pdftotext` + split | 0.31 | 34% |
+| Raw ````pdftotext```` + split | 0.31 | 34% |
 | PyPDF2 + character split | 0.38 | 41% |
-| Unstructured `fast` + basic chunk | 0.67 | 72% |
-| Unstructured `hi_res` + by_title | 0.89 | 89% |
+| Unstructured ````fast```` + basic chunk | 0.67 | 72% |
+| Unstructured ````hi_res```` + by_title | 0.89 | 89% |
 
 Chunk quality scored on a 0-1 scale measuring: semantic coherence, boundary preservation (no mid-sentence splits), and metadata richness. The **89% accuracy with hi_res** represents the current practical ceiling for document RAG without human curation.
 
 ### Production Case Studies
 
-**Legal document analysis** (100K+ pages/month): A compliance startup uses Unstructured API in Kubernetes, processing SEC filings. They report **99.7% uptime**, processing ~50 docs/minute per pod with `fast` strategy for text PDFs and `hi_res` for scanned exhibits.
+**Legal document analysis** (100K+ pages/month): A compliance startup uses Unstructured API in Kubernetes, processing SEC filings. They report **99.7% uptime**, processing ~50 docs/minute per pod with ````fast```` strategy for text PDFs and ````hi_res```` for scanned exhibits.
 
-**Healthcare records ingestion**: A medical AI company extracts text from mixed PDF + scanned fax documents. OCR + `hi_res` handles 94% of documents without manual intervention; the remaining 6% are low-quality faxes flagged for human review.
+**Healthcare records ingestion**: A medical AI company extracts text from mixed PDF + scanned fax documents. OCR + ````hi_res```` handles 94% of documents without manual intervention; the remaining 6% are low-quality faxes flagged for human review.
 
 ## Advanced Usage & Production Hardening
 
 ### Custom Post-Processing Pipeline
 
-```python
+`````python
 from unstructured.partition.pdf import partition_pdf
 from unstructured.chunking.title import chunk_by_title
 from unstructured.cleaners.core import clean
@@ -371,11 +372,11 @@ chunks = chunk_by_title(
 )
 
 print(f"{len(elements)} raw → {len(filtered)} filtered → {len(chunks)} chunks")
-```
+`````
 
 ### Batch Processing with Concurrent Workers
 
-```python
+`````python
 import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
@@ -404,11 +405,11 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results =
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"Processed: {success}/{len(results)} files successfully")
-```
+`````
 
 ### Caching Strategy for Re-processing
 
-For iterative RAG development, partition once and cache: ```python
+For iterative RAG development, partition once and cache: `````python
 import json
 import hashlib
 from pathlib import Path
@@ -423,11 +424,11 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
     return elements
-```
+`````
 
 ### Deploying on Kubernetes
 
-```yaml
+`````yaml
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -442,14 +443,14 @@ spec: replicas: 3
             memory: "8Gi"
           requests: memory: "4Gi"
 
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: unstructured-api
 spec: selector: app: unstructured-api
   ports: - port: 80
     targetPort: 8000
-```
+`````
 
 If you're self-hosting, [DigitalOcean's Kubernetes cluster](https://m.do.co/c/eca87ac14ee0) with GPU nodes is a cost-effective option compared to managed APIs.
 
@@ -457,15 +458,15 @@ If you're self-hosting, [DigitalOcean's Kubernetes cluster](https://m.do.co/c/ec
 
 | Feature | Unstructured.io | LlamaParse | Docling | PyMuPDF + Custom |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open source | Yes (Apache-2.0) | No (proprietary) | Yes (MIT) | Yes (mixed) |
 | GitHub stars | 10,500+ | N/A (closed) | 5,200+ | N/A |
@@ -494,13 +495,13 @@ If you're self-hosting, [DigitalOcean's Kubernetes cluster](https://m.do.co/c/ec
 
 Unstructured is not magic. Here is what will trip you up in production: **1. OCR quality depends on input quality.** Low-resolution scanned documents (sub-150 DPI) produce garbled text regardless of the pipeline. Pre-process with image enhancement if your source material is poor.
 
-**2. `hi_res` is slow without GPU.** The default `detectron2` model runs on CPU at 3-5 pages per minute for complex layouts. Budget for GPU acceleration or use `fast` strategy for bulk text PDFs.
+**2. ````hi_res```` is slow without GPU.** The default ````detectron2```` model runs on CPU at 3-5 pages per minute for complex layouts. Budget for GPU acceleration or use ````fast```` strategy for bulk text PDFs.
 
 **3. Table extraction is good, not perfect.** Complex tables with merged cells, nested headers, or spanning rows may lose structural fidelity. HTML output captures ~85% of tables correctly in our tests.
 
-**4. Memory usage spikes on large documents.** A 200-page PDF with images can consume 4-6GB RAM during `hi_res` partitioning. Use `max_partition` and process in batches for large files.
+**4. Memory usage spikes on large documents.** A 200-page PDF with images can consume 4-6GB RAM during ````hi_res```` partitioning. Use ````max_partition```` and process in batches for large files.
 
-**5. Installation footprint is heavy.** The `[all-docs]` extra pulls in ~2GB of dependencies including PyTorch, Detectron2, and Tesseract. Use Docker in production to isolate this.
+**5. Installation footprint is heavy.** The ````[all-docs]```` extra pulls in ~2GB of dependencies including PyTorch, Detectron2, and Tesseract. Use Docker in production to isolate this.
 
 **6. Not a format converter.** Unstructured extracts *content*, not styling. If you need PDF-to-DOCX conversion with formatting preserved, use a different tool.
 
@@ -512,31 +513,31 @@ Unstructured supports 25+ formats including PDF, DOCX, PPTX, XLSX, HTML, Markdow
 
 ### Should I use the Python library or the Docker API?
 
-Use the Python library for development, prototyping, and single-document workflows. Switch to the Docker API for production — it provides better resource isolation, horizontal scaling via Kubernetes, and GPU acceleration for the `hi_res` strategy. The API also simplifies deployment across teams since no Python environment management is needed.
+Use the Python library for development, prototyping, and single-document workflows. Switch to the Docker API for production — it provides better resource isolation, horizontal scaling via Kubernetes, and GPU acceleration for the ````hi_res```` strategy. The API also simplifies deployment across teams since no Python environment management is needed.
 
 ### How does chunking with overlap work?
 
-When you set `overlap=200`, Unstructured copies the last 200 characters of each chunk into the beginning of the next chunk. This prevents context loss at chunk boundaries — critical for RAG because a sentence split across chunks becomes unanswerable. The `by_title` strategy additionally ensures that chunks never split across section boundaries unless a single section exceeds `max_characters`.
+When you set ````overlap=200````, Unstructured copies the last 200 characters of each chunk into the beginning of the next chunk. This prevents context loss at chunk boundaries — critical for RAG because a sentence split across chunks becomes unanswerable. The ````by_title```` strategy additionally ensures that chunks never split across section boundaries unless a single section exceeds ````max_characters````.
 
 ### Can I run Unstructured without internet access?
 
-Yes. The Docker image and Python library are fully self-contained after initial download. The `hi_res` strategy downloads model weights (Detectron2/YOLOX) on first use — cache these in your deployment image. No API keys or cloud calls are required for local operation.
+Yes. The Docker image and Python library are fully self-contained after initial download. The ````hi_res```` strategy downloads model weights (Detectron2/YOLOX) on first use — cache these in your deployment image. No API keys or cloud calls are required for local operation.
 
-### What is the difference between `fast` and `hi_res` partitioning?
+### What is the difference between ````fast```` and ````hi_res```` partitioning?
 
-`fast` uses rule-based text extraction (pdfplumber, python-docx) and is suitable for text-heavy documents with simple layouts. `hi_res` runs a visual document understanding model to detect regions, tables, and reading order — essential for complex layouts, scanned documents, and accurate table extraction. Expect 5-10x slower processing with `hi_res` on CPU, or use GPU acceleration to close the gap.
+````fast```` uses rule-based text extraction (pdfplumber, python-docx) and is suitable for text-heavy documents with simple layouts. ````hi_res```` runs a visual document understanding model to detect regions, tables, and reading order — essential for complex layouts, scanned documents, and accurate table extraction. Expect 5-10x slower processing with ````hi_res```` on CPU, or use GPU acceleration to close the gap.
 
 ### How do I handle documents that fail to parse?
 
-Wrap partition calls in try/except and implement a fallback chain: try `hi_res` first, fall back to `fast`, then fall back to `ocr_only` for image-based documents. Log failures with file hashes for manual review. In production, we see a **2-4% failure rate** on corrupted or password-protected files — plan for a dead-letter queue.
+Wrap partition calls in try/except and implement a fallback chain: try ````hi_res```` first, fall back to ````fast````, then fall back to ````ocr_only```` for image-based documents. Log failures with file hashes for manual review. In production, we see a **2-4% failure rate** on corrupted or password-protected files — plan for a dead-letter queue.
 
 ### Does Unstructured support non-English documents?
 
-Yes. The library auto-detects 50+ languages. OCR supports any language that Tesseract supports (100+ including Chinese, Japanese, Korean, Arabic, and Hindi). Set `languages=["eng", "chi_sim"]` to hint at specific languages for better OCR accuracy.
+Yes. The library auto-detects 50+ languages. OCR supports any language that Tesseract supports (100+ including Chinese, Japanese, Korean, Arabic, and Hindi). Set ````languages=["eng", "chi_sim"]```` to hint at specific languages for better OCR accuracy.
 
-## Conclusion: Start with `fast`, Upgrade to `hi_res`
+## Conclusion: Start with ````fast````, Upgrade to ````hi_res````
 
-Unstructured.io solves the most under-appreciated problem in LLM pipelines: turning real-world documents into usable data. The progression is straightforward — start with `fast` partitioning for text PDFs, add `by_title` chunking for RAG, and graduate to `hi_res` + GPU when you need tables and complex layouts.
+Unstructured.io solves the most under-appreciated problem in LLM pipelines: turning real-world documents into usable data. The progression is straightforward — start with ````fast```` partitioning for text PDFs, add ````by_title```` chunking for RAG, and graduate to ````hi_res``` + GPU when you need tables and complex layouts.
 
 The **10,500+ stars** and Apache-2.0 license make it a safe, community-backed choice. The self-hosted API keeps you in control of your data — no document leaves your infrastructure.
 
@@ -566,7 +567,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Related: [LangChain](dibi8-internal-link), [LlamaIndex](dibi8-internal-link), [RAG Pipeline Optimization](dibi8-internal-link)
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. Unstructured.io is open-source and free to use; we have no commercial relationship with Unstructured-IO. Opinions are based on hands-on testing.*
 
 
@@ -595,7 +596,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](unstructured-data-preprocessing-llm)
@@ -604,6 +605,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](unstructured-data-preprocessing-llm)
 - [ai-engineering-from-scratch](unstructured-data-preprocessing-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

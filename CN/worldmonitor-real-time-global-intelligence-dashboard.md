@@ -13,6 +13,7 @@ tags: ["ai", "dashboard", "geopolitics", "monitoring", "news", "opensource", "os
   license: MIT---
 
 
+
 # WorldMonitor: Real-Time Global Intelligence Dashboard
 
 **WorldMonitor** is an open-source, real-time global intelligence dashboard that aggregates news, geopolitical events, and infrastructure data into a unified situational awareness interface. With **59,524 GitHub stars**, it has emerged as the leading open-source alternative to commercial platforms like Palantir Gotham for geopolitical monitoring and OSINT analysis.
@@ -50,7 +51,7 @@ Before installing WorldMonitor, ensure your system meets the following requireme
 
 ### Option 1: Docker Compose Deployment (Recommended)
 
-The fastest way to get started is with the provided Docker Compose configuration: ```bash
+The fastest way to get started is with the provided Docker Compose configuration: ````bash
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
 
@@ -59,13 +60,13 @@ cp config.example.yaml config.yaml
 
 # Start all services
 docker compose up -d
-```
+`````
 
-This spins up the application server, PostgreSQL database, Redis cache, and the web frontend. Default credentials are set in the `.env` file — change them immediately for production use.
+This spins up the application server, PostgreSQL database, Redis cache, and the web frontend. Default credentials are set in the ``.env`` file — change them immediately for production use.
 
 ### Option 2: Manual Installation
 
-For users who need fine-grained control over their deployment: ```bash
+For users who need fine-grained control over their deployment: `````bash
 # Clone the repository
 git clone https://github.com/koala73/worldmonitor.git
 cd worldmonitor
@@ -92,11 +93,11 @@ python manage.py runserver 0.0.0.0:8000
 
 # Start the frontend (in a separate terminal)
 cd frontend && npm run start
-```
+`````
 
 ### Option 3: Kubernetes Deployment
 
-For production-scale deployments across multiple nodes: ```yaml
+For production-scale deployments across multiple nodes: `````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: worldmonitor
@@ -111,18 +112,18 @@ spec: replicas: 3
             cpu: "1000m"
           limits: memory: "4Gi"
             cpu: "2000m"
-```
+`````
 
 ## Configuration Deep Dive
 
 ### Data Sources Configuration
 
-WorldMonitor supports multiple data source types. Configure them in `config.yaml`: ```yaml
+WorldMonitor supports multiple data source types. Configure them in ``config.yaml``: `````yaml
 data_sources: rss_feeds: enabled: true
 
 ### AI Analysis Pipeline
 
-The AI-powered analysis engine processes incoming data through multiple stages: ```python
+The AI-powered analysis engine processes incoming data through multiple stages: `````python
 from worldmonitor.ai.pipeline import AnalysisPipeline
 from worldmonitor.ai.models import EventClassifier, CorrelationEngine
 
@@ -146,11 +147,11 @@ correlated = await pipeline.get_correlated_events(
     time_window="24h",
     event_types=["political", "economic"]
 )
-```
+`````
 
 ### Alert Configuration
 
-Set up custom alerts based on your monitoring priorities: ```yaml
+Set up custom alerts based on your monitoring priorities: `````yaml
 alerts: rules: - name: "Major Conflict Detection"
       conditions: - field: "event_type"
           operator: "eq"
@@ -188,7 +189,7 @@ alerts: rules: - name: "Major Conflict Detection"
           channels: ["email"]
           template: "keyword_surge"
           cooldown: "1800"
-```
+`````
 
 ## Core Features in Detail
 
@@ -196,7 +197,7 @@ alerts: rules: - name: "Major Conflict Detection"
 
 WorldMonitor's news aggregation engine pulls from over 50 sources across multiple languages. The system uses intelligent deduplication to avoid reporting the same story from multiple outlets, while preserving regional perspectives on major events.
 
-```bash
+`````bash
 # Query aggregated news with filters
 curl -X GET "https://your-worldmonitor/api/v1/news" \
   -H "Authorization: Bearer ${WM_API_KEY}" \
@@ -206,7 +207,7 @@ curl -X GET "https://your-worldmonitor/api/v1/news" \
 curl -X GET "https://your-worldmonitor/api/v1/news/deduplicated" \
   -H "Authorization: Bearer ${WM_API_KEY}" \
   -d "cluster_window=3600&language=en"
-```
+`````
 
 ### Geopolitical Event Mapping
 
@@ -226,7 +227,7 @@ Each facility is tagged with ownership, capacity, and risk level. Changes in sta
 
 The proprietary correlation engine identifies relationships between events that appear unrelated on the surface. For example, it might detect that a political statement in one country correlates with market movements in another, or that infrastructure disruptions in Region A preceded similar events in Region B.
 
-```python
+`````python
 from worldmonitor.correlation import CorrelationEngine
 
 engine = CorrelationEngine()
@@ -243,22 +244,22 @@ for corr in correlations: print(f"Strength: {corr.strength:.2f}")
     print(f"Type: {corr.type}")
     print(f"Events: {corr.event_ids}")
     print(f"Explanation: {corr.explanation}")
-```
+`````
 
 ## API Reference
 
 WorldMonitor exposes a comprehensive REST API for programmatic access: ### Authentication
 
-```bash
+`````bash
 # Obtain an API token
 curl -X POST "https://your-worldmonitor/api/v1/auth/login" \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "${WM_PASSWORD}"}'
-```
+`````
 
 ### News API
 
-```bash
+`````bash
 # List recent news with pagination
 curl "https://your-worldmonitor/api/v1/news?page=1&per_page=50" \
   -H "Authorization: Bearer ${WM_TOKEN}"
@@ -270,11 +271,11 @@ curl "https://your-worldmonitor/api/v1/news?region=south_asia&date_from=2026-06-
 # Search by keyword
 curl "https://your-worldmonitor/api/v1/news/search?q=trade+sanctions" \
   -H "Authorization: Bearer ${WM_TOKEN}"
-```
+`````
 
 ### Events API
 
-```bash
+`````bash
 # List geopolitical events
 curl "https://your-worldmonitor/api/v1/events?type=political&severity_gte=6" \
   -H "Authorization: Bearer ${WM_TOKEN}"
@@ -286,11 +287,11 @@ curl "https://your-worldmonitor/api/v1/events/EVT-2026-0625-001" \
 # Get event timeline
 curl "https://your-worldmonitor/api/v1/events/EVT-2026-0625-001/timeline" \
   -H "Authorization: Bearer ${WM_TOKEN}"
-```
+`````
 
 ### Alerts API
 
-```bash
+`````bash
 # List active alerts
 curl "https://your-worldmonitor/api/v1/alerts?status=active" \
   -H "Authorization: Bearer ${WM_TOKEN}"
@@ -317,32 +318,32 @@ curl -X POST "https://your-worldmonitor/api/v1/alerts/rules" \
       "recipients": ["team@example.com"]
     }
   }'
-```
+`````
 
 ## Deployment Options
 
 ### Single-Instance (Personal Analyst)
 
-For individual journalists or researchers, a single Docker Compose deployment on a 4-core VPS is sufficient: ```
+For individual journalists or researchers, a single Docker Compose deployment on a 4-core VPS is sufficient: `````
 Server: 4 vCPU, 8GB RAM, 100GB SSD
 Cost: ~$20/month (DigitalOcean / HTStack)
 Capacity: ~1,000 events/day, 30-day retention
-```
+`````
 
 ### Team Deployment
 
-For analyst teams of 5-20 people, add Redis clustering and PostgreSQL read replicas: ```
+For analyst teams of 5-20 people, add Redis clustering and PostgreSQL read replicas: `````
 App Servers: 3x 4 vCPU, 16GB RAM (behind load balancer)
 Database: PostgreSQL primary + 2 read replicas
 Cache: Redis Cluster (3 nodes)
 Storage: 500GB SSD + S3 archival
 Cost: ~$200/month
 Capacity: ~10,000 events/day, 90-day retention
-```
+`````
 
 ### Enterprise/Distributed
 
-For government or large organizational deployments: ```
+For government or large organizational deployments: `````
 Multi-region deployment with data sovereignty controls
 Horizontal scaling across 10+ application nodes
 PostgreSQL with Patroni for automatic failover
@@ -350,13 +351,13 @@ Object storage for historical data archival
 Integration with existing SIEM/SOC platforms
 Cost: Custom pricing
 Capacity: Unlimited, with geo-distributed data collection
-```
+`````
 
 ## Integration with Other Tools
 
 WorldMonitor integrates seamlessly with popular intelligence and communication tools: ### Slack Integration
 
-```bash
+`````bash
 # Install the Slack app
 curl -X POST "https://your-worldmonitor/api/v1/integrations/slack" \
   -H "Authorization: Bearer ${WM_TOKEN}" \
@@ -366,11 +367,11 @@ curl -X POST "https://your-worldmonitor/api/v1/integrations/slack" \
     "alert_rules": ["major_conflict", "infrastructure_disruption"],
     "digest_frequency": "hourly"
   }'
-```
+`````
 
 ### Telegram Bot
 
-```bash
+`````bash
 # Create a Telegram bot integration
 curl -X POST "https://your-worldmonitor/api/v1/integrations/telegram" \
   -H "Authorization: Bearer ${WM_TOKEN}" \
@@ -380,11 +381,11 @@ curl -X POST "https://your-worldmonitor/api/v1/integrations/telegram" \
     "chat_id": "${TELEGRAM_CHAT_ID}",
     "alert_rules": ["all_high_severity"]
   }'
-```
+`````
 
 ### Grafana Dashboard
 
-```bash
+`````bash
 # Export metrics for Grafana
 curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
   -H "Authorization: Bearer ${WM_TOKEN}" \
@@ -393,11 +394,11 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
     "datasource": "prometheus",
     "dashboard_template": "worldmonitor-overview"
   }"
-```
+`````
 
 ### ELK Stack / Elasticsearch
 
-```yaml
+`````yaml
 # WorldMonitor Elasticsearch output configuration
 output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     index: "worldmonitor-%{+yyyy.MM.dd}"
@@ -406,7 +407,7 @@ output: elasticsearch: hosts: ["https://es-cluster.internal:9200"]
     template_overwrite: true
     bulk_size: 500
     flush_interval: 5
-```
+````
 
 ## Comparison: WorldMonitor vs Commercial Alternatives
 
@@ -455,7 +456,7 @@ Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/
 - [2026-06-15-trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

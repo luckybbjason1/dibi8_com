@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/1inch-dex-aggregator-routing/
 ---
 
+
 {{</* resource-info */>}}
 
 탈중앙화 금융은 실험적인 뿌리를 훨씬 넘어 성숙했습니다. 2026년, 트레이더들은 단순한 유동성 접근을 넘어 매 거래의 모든 베이시스 포인트를 극대화하는 지능형 라우팅을 요구합니다. **1inch**는 이 진화의 최전선에 서 있으며, 생태계에서 가장 정교한 DEX 집계기로 작동합니다. 독점적인 **Pathfinder 알고리즘**을 통해 1inch는 10개 이상의 블록체인 네트워크에 걸쳐 **300개 이상의 유동성 소스**에서 거래를 라우팅하여 최적의 실행 가격을 보장하면서 슬리피지와 가스 비용을 최소화합니다.
@@ -70,7 +71,7 @@ Pathfinder는 두 개의 별개 단계에서 작동합니다: **1단계 — 경�
 - 과거 채우기 비율을 기반으로 한 성공 확률
 - MEV 보호 요구사항
 
-```typescript
+````typescript
 // 1inch API를 통해 견적 요청 — Pathfinder가 낶에서 라우팅을 처리
 import { OneInchApi } from '@1inch/sdk';
 
@@ -92,17 +93,17 @@ const quote = await oneInch.getQuote({
 console.log('예상 출력:', quote.dstAmount);
 console.log('경로:', quote.protocols); // 전체 라우팅 경로 표시
 console.log('예상 가스:', quote.tx.gas);
-```
+`````
 
-`protocols` 필드는 Pathfinder가 선택한 실제 경로를 보여줍니다 — 예를 들어, Uniswap v3을 통해 60%를 분할하고 Curve을 통해 40%를 분할하거나, 더 나은 가격을 위해 WETH → DAI → USDC와 같은 중간 토큰을 통해 라우팅합니다.
+````protocols```` 필드는 Pathfinder가 선택한 실제 경로를 보여줍니다 — 예를 들어, Uniswap v3을 통해 60%를 분할하고 Curve을 통해 40%를 분할하거나, 더 나은 가격을 위해 WETH → DAI → USDC와 같은 중간 토큰을 통해 라우팅합니다.
 
 ## 3. 1inch TypeScript SDK 설정하기
 
-공식 1inch SDK(GitHub의 `1inch/1inch-sdk`, 400개 이상의 스타, MIT 라이선스)는 모든 1inch API에 대해 타입 안전하고 Promise 기반 인터페이스를 제공합니다. 요청 서명, 오류 처리 및 응답 파싱을 처리합니다.
+공식 1inch SDK(GitHub의 ````1inch/1inch-sdk````, 400개 이상의 스타, MIT 라이선스)는 모든 1inch API에 대해 타입 안전하고 Promise 기반 인터페이스를 제공합니다. 요청 서명, 오류 처리 및 응답 파싱을 처리합니다.
 
 ### 3.1 설치 및 구성
 
-```bash
+`````bash
 # npm을 통해 설치
 npm install @1inch/sdk
 
@@ -111,15 +112,15 @@ yarn add @1inch/sdk
 
 # 피어 의존성 설치
 npm install ethers axios dotenv
-```
+`````
 
-API 자격 증명을 위한 `.env` 파일 생성: ```bash
+API 자격 증명을 위한 ``.env`` 파일 생성: `````bash
 ONEINCH_API_KEY=your_api_key_here
 PRIVATE_KEY=your_wallet_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
-```
+`````
 
-구성으로 SDK 초기화: ```typescript
+구성으로 SDK 초기화: `````typescript
 import { OneInchSdk } from '@1inch/sdk';
 import { ethers } from ethers;
 import * as dotenv from dotenv;
@@ -138,11 +139,11 @@ const sdk = new OneInchSdk({
 });
 
 console.log('1inch SDK가', wallet.address, '에 대해 초기화됨');
-```
+`````
 
 ### 3.2 SDK 아키텍처 개요
 
-SDK는 1inch의 API 구조를 반영하는 네임스페이스로 구성됩니다: ```typescript
+SDK는 1inch의 API 구조를 반영하는 네임스페이스로 구성됩니다: `````typescript
 // SDK 모듈 구조
 import {
   SwapApi,        // 토큰 스왑 및 견적
@@ -158,7 +159,7 @@ import {
 const swapApi = sdk.swap;
 const limitApi = sdk.limitOrder;
 const balanceApi = sdk.balance;
-```
+`````
 
 ## 4. 최적의 라우팅으로 스왑 실행하기
 
@@ -166,7 +167,7 @@ const balanceApi = sdk.balance;
 
 ### 4.1 기본 스왑 실행
 
-```typescript
+`````typescript
 import { OneInchSdk } from '@1inch/sdk';
 
 async function executeSwap() {
@@ -218,11 +219,11 @@ async function executeSwap() {
 }
 
 executeSwap().catch(console.error);
-```
+`````
 
 ### 4.2 슬리피지 및 부분 채우기 처리
 
-변동성이 큰 시장에서 슬리피지 허용 오차는 중요합니다. SDK는 세밀한 제어를 제공합니다: ```typescript
+변동성이 큰 시장에서 슬리피지 허용 오차는 중요합니다. SDK는 세밀한 제어를 제공합니다: `````typescript
 // 대량 거래를 위한 보수적 설정
 const largeTradeParams = {
   src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
@@ -245,11 +246,11 @@ const quickTradeParams = {
   // 최적 가격보다 속도 우선
   protocols: 'UNISWAP_V3,SUSHI,CURVE', // 특정 프로토콜 화이트리스트
 };
-```
+`````
 
 ### 4.3 Bridge API를 통한 크로스체인 스왑
 
-1inch의 집계는 단일 체인을 넘어 확장됩니다. Bridge API는 체인 간 최적 경로를 찾습니다: ```typescript
+1inch의 집계는 단일 체인을 넘어 확장됩니다. Bridge API는 체인 간 최적 경로를 찾습니다: `````typescript
 // Ethereum USDC에서 Arbitrum ETH로 브리지
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
@@ -276,7 +277,7 @@ const sentBridgeTx = await wallet.sendTransaction({
   value: bridgeTx.value,
   gasLimit: bridgeTx.gasLimit,
 });
-```
+`````
 
 ## 5. Fusion+: 가스 없는 스왑 실행
 
@@ -289,7 +290,7 @@ const sentBridgeTx = await wallet.sendTransaction({
 3. **승리한 리졸버**가 트랜잭션을 실행하고 사용자를 대신해 가스를 지불
 4. **리졸버의 수수료**는 스왑 비율에 내장되어 사용자에게 보이지 않음
 
-```typescript
+`````typescript
 // Fusion+ 가스 없는 스왑 실행
 import { FusionOrder } from '@1inch/sdk/fusion';
 
@@ -347,17 +348,17 @@ async function executeFusionSwap() {
     if (done) clearInterval(interval);
   }, 10000);
 }
-```
+`````
 
 ### 5.2 Fusion+ 프리셋 설명
 
 | 프리셋 | 경매 지속 시간 | 우선순위 | 가장 적합한 대상 |
 |--------|-----------------|----------|----------|
-| `fast` | 60초 | 높음 | 시간에 민감한 스왑, 더 높은 리졸버 수수료 |
-| `medium` | 180초 | 중간 | 속도와 비용의 균형 |
-| `slow` | 600초 | 낮음 | 최대 절약, 인내심 있는 실행 |
+| ````fast```` | 60초 | 높음 | 시간에 민감한 스왑, 더 높은 리졸버 수수료 |
+| ````medium```` | 180초 | 중간 | 속도와 비용의 균형 |
+| ````slow```` | 600초 | 낮음 | 최대 절약, 인내심 있는 실행 |
 
-```typescript
+`````typescript
 // Fusion 주문 라이프사이클 모니터링
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
@@ -378,7 +379,7 @@ orderEvents.on(filled, (data) => {
 orderEvents.on(expired, () => {
   console.log('주문이 채워지지 않고 만료됨 — 더 나은 minReturn으로 재시도');
 });
-```
+`````
 
 ## 6. 지정가 주문 및 프로그래밍 방식 트레이딩
 
@@ -386,7 +387,7 @@ orderEvents.on(expired, () => {
 
 ### 6.1 지정가 주문 생성
 
-```typescript
+`````typescript
 // 특정 가격으로 ETH로 DAI를 매수하는 지정가 주문 생성
 const limitOrder = await sdk.limitOrder.createOrder({
   makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH (판매하는 것)
@@ -416,11 +417,11 @@ const placedOrder = await sdk.limitOrder.submitOrder({
 
 console.log('지정가 주문 배치됨:', placedOrder.orderHash);
 console.log('예상 체결 가격:', 900 / 0.5, 'ETH당 DAI');
-```
+`````
 
 ### 6.2 주문 체결 수신 대기
 
-```typescript
+`````typescript
 // 주문 체결을 위한 웹훅 또는 폴 리스너 설정
 import { LimitOrderWatcher } from '@1inch/sdk/watcher';
 
@@ -446,7 +447,7 @@ watcher.watchOrder(placedOrder.orderHash, (event) => {
 
 // 감시 시작
 watcher.start();
-```
+`````
 
 ## 7. Portfolio API 및 잔액 추적
 
@@ -454,7 +455,7 @@ watcher.start();
 
 ### 7.1 멀티체인 잔액 가져오기
 
-```typescript
+`````typescript
 // 지원되는 모든 체인에서 토큰 잔액 가져오기
 const portfolio = await sdk.balance.getBalances({
   walletAddress: 0xYourWalletAddress,
@@ -467,9 +468,9 @@ const portfolio = await sdk.balance.getBalances({
 
 // 잔액 처리 및 표시
 for (const chainBalance of portfolio.balances) {
-  console.log(`\n=== 체인 ID: ${chainBalance.chainId} ===`);
+  console.log(````\n=== 체인 ID: ${chainBalance.chainId} ===````);
   for (const token of chainBalance.tokens) {
-    console.log(`${token.symbol}: ${token.balance} ($${token.usdValue})`);
+    console.log(````${token.symbol}: ${token.balance} ($${token.usdValue})````);
   }
 }
 
@@ -478,12 +479,12 @@ const totalValue = portfolio.balances.reduce((sum, chain) => {
   return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
-console.log(`\n총 포트폴리오 가치: $${totalValue.toFixed(2)}`);
-```
+console.log(````\n총 포트폴리오 가치: $${totalValue.toFixed(2)}````);
+`````
 
 ### 7.2 거래 내역 및 손익 분석
 
-```typescript
+`````typescript
 // 완전한 거래 내역 가져오기
 const history = await sdk.history.getTransactions({
   walletAddress: wallet.address,
@@ -514,12 +515,12 @@ console.table(swapAnalysis);
 const totalVolume = swaps.reduce((sum, tx) => {
   return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
-console.log(`총 스왑 거래량: $${totalVolume.toFixed(2)}`);
-```
+console.log(````총 스왑 거래량: $${totalVolume.toFixed(2)}````);
+`````
 
 ### 7.3 실시간 포트폴리오 대시보드 구축
 
-```typescript
+`````typescript
 // WebSocket 기반 실시간 포트폴리오 업데이트
 import { PortfolioWebSocket } from '@1inch/sdk/websocket';
 
@@ -529,8 +530,8 @@ const ws = new PortfolioWebSocket({
 });
 
 ws.on(balanceUpdate, (update) => {
-  console.log(`잔액 업데이트: ${update.tokenSymbol} = ${update.newBalance}`);
-  console.log(`USD 가치 변동: $${update.usdValueChange}`);
+  console.log(````잔액 업데이트: ${update.tokenSymbol} = ${update.newBalance}````);
+  console.log(````USD 가치 변동: $${update.usdValueChange}````);
   // 대시보드 UI를 여기서 업데이트
 });
 
@@ -542,7 +543,7 @@ ws.on(newTransaction, (tx) => {
 });
 
 ws.connect();
-```
+`````
 
 ## 8. 프로덕션 통합 패턴
 
@@ -550,7 +551,7 @@ ws.connect();
 
 ### 8.1 오류 처리 및 재시도 로직
 
-```typescript
+`````typescript
 // 재시도가 있는 강력한 스왑 실행
 async function executeSwapWithRetry(
   params: SwapParams,
@@ -562,7 +563,7 @@ async function executeSwapWithRetry(
     try {
       // 각 시도 전에 견적 새로고침 (가격이 변합니다!)
       const freshQuote = await sdk.swap.getQuote(params);
-      console.log(`시도 ${attempt}: 예상 출력 = ${freshQuote.dstAmount}`);
+      console.log(````시도 ${attempt}: 예상 출력 = ${freshQuote.dstAmount}````);
 
       // 가격이 너무 많이 움직였는지 확인
       if (parseFloat(freshQuote.dstAmount) < params.minExpectedOutput!) {
@@ -585,7 +586,7 @@ async function executeSwapWithRetry(
 
     } catch (error) {
       lastError = error as Error;
-      console.error(`시도 ${attempt} 실패:`, error);
+      console.error(````시도 ${attempt} 실패:````, error);
 
       // 지수 백오프로 재시도 전 대기
       if (attempt < maxRetries) {
@@ -595,13 +596,13 @@ async function executeSwapWithRetry(
     }
   }
 
-  throw new Error(`${maxRetries}번 시도 후 스왑 실패: ${lastError?.message}`);
+  throw new Error(````${maxRetries}번 시도 후 스왑 실패: ${lastError?.message}````);
 }
-```
+`````
 
 ### 8.2 속도 제한 및 API 키 관리
 
-```typescript
+`````typescript
 // 고빈도 사용을 위한 속도 제한 API 클라이언트
 import { RateLimiter } from limiter;
 
@@ -630,11 +631,11 @@ const client = new OneInchRateLimitedClient(
   process.env.ONEINCH_API_KEY!,
   3 // 보수적인 초당 3회 요청
 );
-```
+`````
 
 ### 8.3 보안 모범 사례
 
-```typescript
+`````typescript
 // 프로덕션 스왑을 위한 입력 유효성 검사
 function validateSwapParams(params: SwapParams): void {
   // 토큰 주소 검증
@@ -668,13 +669,13 @@ const wallet = new ethers.Wallet(
   await getKeyFromAWSKMS(), // 절대 개인키를 하드코딩하지 마세요!
   provider
 );
-```
+`````
 
 ## 9. 자주 묻는 질문
 
 **Q1: SDK가 물론이고 오픈 소스인데 1inch는 어떻게 수익을 창출하나요?**
 
-1inch는 **유동성 소스 수수료**와 선택적 **프로토콜 거버넌스 수수료**를 통해 수익을 창출합니다. 특정 DEX를 통해 거래가 라우팅될 때 1inch는 소액의 추천 수수료를 받을 수 있습니다. 개발자에게 SDK와 API는 물론 물론 사용할 수 있지만, 고거래량 사용자는 애플리케이션과 수익을 공유하는 **파트너 수수료** 모델을 선택할 수 있습니다. MIT 라이선스가 적용된 SDK(`1inch/1inch-sdk`, GitHub에서 400개 이상의 스타)는 완전한 투명성과 허가 없는 통합을 보장합니다.
+1inch는 **유동성 소스 수수료**와 선택적 **프로토콜 거버넌스 수수료**를 통해 수익을 창출합니다. 특정 DEX를 통해 거래가 라우팅될 때 1inch는 소액의 추천 수수료를 받을 수 있습니다. 개발자에게 SDK와 API는 물론 물론 사용할 수 있지만, 고거래량 사용자는 애플리케이션과 수익을 공유하는 **파트너 수수료** 모델을 선택할 수 있습니다. MIT 라이선스가 적용된 SDK(````1inch/1inch-sdk````, GitHub에서 400개 이상의 스타)는 완전한 투명성과 허가 없는 통합을 보장합니다.
 
 **Q2: 일반 스왑과 Fusion+ 스왑의 차이점은 무엇인가요?**
 
@@ -682,11 +683,11 @@ const wallet = new ethers.Wallet(
 
 **Q3: Ethereum 이외의 체인에서 1inch를 사용할 수 있나요?**
 
-물론입니다. 1inch는 Ethereum, Arbitrum, Optimism, Polygon, BNB Chain, Base, Avalanche, Fantom, Gnosis, zkSync Era를 포함한 **10개 이상의 블록체인 네트워크**를 지원합니다. SDK 초기화는 각 체인의 EIP-155 체인 ID에 해당하는 `networkId` 매개변수를 허용합니다. 크로스체인 스왑도 Bridge API를 통해 지원되어 최적의 라우팅으로 네트워크 간 자산 이동이 원활합니다.
+물론입니다. 1inch는 Ethereum, Arbitrum, Optimism, Polygon, BNB Chain, Base, Avalanche, Fantom, Gnosis, zkSync Era를 포함한 **10개 이상의 블록체인 네트워크**를 지원합니다. SDK 초기화는 각 체인의 EIP-155 체인 ID에 해당하는 ````networkId```` 매개변수를 허용합니다. 크로스체인 스왑도 Bridge API를 통해 지원되어 최적의 라우팅으로 네트워크 간 자산 이동이 원활합니다.
 
 **Q4: MEV 공격으로부터 거래를 어떻게 보호하나요?**
 
-1inch는 여러 MEV 보호 메커니즘을 제공합니다: (1) **Fusion+ 주문**은 실행을 낶부화하는 전문 리졸버에 의해 채워져 선행 거래가 불가능합니다; (2) **Pathfinder 알고리즘**은 지원되는 체인에서 **프라이빗 mempool** 및 **Flashbots Protect**를 통해 라우팅할 수 있습니다; (3) 대량 거래의 경우 `compatibility` 플래그를 활성화하면 추가 슬리피지 검사가 추가됩니다; (4) 엄격한 `slippage` 허용 오차를 설정하면 샌드위치 공격의 수익 창이 줄어듭니다. 고가치 거래에 대한 최대 보호를 위해 Fusion+의 `slow` 프리셋이 권장됩니다.
+1inch는 여러 MEV 보호 메커니즘을 제공합니다: (1) **Fusion+ 주문**은 실행을 낶부화하는 전문 리졸버에 의해 채워져 선행 거래가 불가능합니다; (2) **Pathfinder 알고리즘**은 지원되는 체인에서 **프라이빗 mempool** 및 **Flashbots Protect**를 통해 라우팅할 수 있습니다; (3) 대량 거래의 경우 ````compatibility```` 플래그를 활성화하면 추가 슬리피지 검사가 추가됩니다; (4) 엄격한 ````slippage```` 허용 오차를 설정하면 샌드위치 공격의 수익 창이 줄어듭니다. 고가치 거래에 대한 최대 보호를 위해 Fusion+의 ````slow```` 프리셋이 권장됩니다.
 
 **Q5: 1inch SDK는 기관 또는 고빈도 트레이딩에 적합한가요?**
 
@@ -713,11 +714,11 @@ const wallet = new ethers.Wallet(
 
 1inch는 DeFi 트레이딩 스택에서 **필수 인프라**로 자리매김했습니다. 300개 이상의 유동성 소스에서 라우팅하는 Pathfinder 알고리즘의 능력은 일관되게 우수한 가격 실행을 제공하며, Fusion+ 가스 없는 스왑과 포괄적인 Portfolio API와 같은 기능은 개발자에게 차세대 트레이딩 애플리케이션을 구축할 수 있는 강력한 도구를 제공합니다.
 
-**TypeScript SDK**(`1inch/1inch-sdk`, 400 스타, MIT 라이선스)는 프로덕션 준비가 되어 타입 안전한 인터페이스를 제공하여 다중 소스 라우팅의 복잡성을 추상화하면서 실행 매개변수에 대한 세밀한 제어를 유지합니다. 단순한 토큰 스왑을 실행하든, 정교한 트레이딩 대시보드를 구축하든, DeFi 프로토콜에 지정가 주문을 통합하든, 1inch는 필요한 인프라 계층을 제공합니다.
+**TypeScript SDK**(````1inch/1inch-sdk````, 400 스타, MIT 라이선스)는 프로덕션 준비가 되어 타입 안전한 인터페이스를 제공하여 다중 소스 라우팅의 복잡성을 추상화하면서 실행 매개변수에 대한 세밀한 제어를 유지합니다. 단순한 토큰 스왑을 실행하든, 정교한 트레이딩 대시보드를 구축하든, DeFi 프로토콜에 지정가 주문을 통합하든, 1inch는 필요한 인프라 계층을 제공합니다.
 
 **시작은 간단합니다:**
 1. [1inch Developer Portal](https://portal.1inch.io)에서 API 키 받기
-2. SDK 설치: `npm install @1inch/sdk`
+2. SDK 설치: ````npm install @1inch/sdk```
 3. 이 가이드의 코드 예제를 특정 사용 사례에 따라 따르기
 4. 개발자 지원을 위해 [1inch Discord](https://discord.gg/1inch) 참여
 

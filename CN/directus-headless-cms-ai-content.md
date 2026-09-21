@@ -23,6 +23,7 @@ tags: ["directus", "headless cms", "content management", "api", "docker", "open 
 aliases:
   - /posts/directus-headless-cms-ai-content/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Your CMS Is Still a Bottleneck in 2026
@@ -48,7 +49,7 @@ Unlike traditional CMS platforms that own your data structure, Directus is **dat
 
 ## How Directus Works: Architecture Overview
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │                        Directus Stack                        │
 ├─────────────────┬──────────────────┬────────────────────────┤
@@ -64,11 +65,11 @@ Unlike traditional CMS platforms that own your data structure, Directus is **dat
 ├─────────────────┴──────────────────┴────────────────────────┤
 │              Docker Compose / Kubernetes                     │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 Key architectural decisions: - **Database-first**: Directus does not abstract your database — it enhances it. Every collection maps 1:1 to a table. Migrations are standard SQL.
 - **Stateless API server**: Horizontal scaling is trivial — just add more API container replicas behind a load balancer.
-- **File storage abstraction**: Adapters for S3, Google Cloud Storage, Azure Blob, and local disk. Image transforms via URL parameters (e.g., `?width=800&height=600&fit=cover`).
+- **File storage abstraction**: Adapters for S3, Google Cloud Storage, Azure Blob, and local disk. Image transforms via URL parameters (e.g., ````?width=800&height=600&fit=cover````).
 - **Extension system**: Custom endpoints, hooks (event-driven), interfaces (custom UI components), displays, and dashboard panels — all hot-reloaded.
 - **Real-time**: WebSocket-based subscriptions for live data updates (v11+).
 
@@ -82,7 +83,7 @@ Key architectural decisions: - **Database-first**: Directus does not abstract yo
 
 ### Step 1: Launch with Docker Compose
 
-```bash
+`````bash
 mkdir ~/directus && cd ~/directus
 
 # Create compose file
@@ -118,23 +119,23 @@ services: directus: image: directus/directus:11.3.0
     volumes: - redis-data:/data
 
 volumes: pg-data: redis-data: EOF
-```
+`````
 
 ### Step 2: Start the Stack
 
-```bash
+`````bash
 docker compose up -d
 
 # Wait for initialization, then verify
 curl -s http://localhost:8055/server/health | jq .
 # Expected: {"status":"ok","release":"11.3.0"}
-```
+`````
 
-Access the admin panel at `http://localhost:8055`. Login with the admin credentials from the compose file.
+Access the admin panel at ````http://localhost:8055````. Login with the admin credentials from the compose file.
 
 ### Step 3: Configure Environment for Production
 
-```bash
+`````bash
 # .env file for production
 cat > .env << EOF
 # Security
@@ -176,15 +177,15 @@ EMAIL_SMTP_PASSWORD=your-sendgrid-key
 EXTENSIONS_PATH=./extensions
 EXTENSIONS_AUTO_RELOAD=true
 EOF
-```
+`````
 
 For a production deployment on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0), place this behind a reverse proxy (Traefik or Nginx) with SSL.
 
 ### Step 4: Create Your First Collection
 
-Via the admin UI: Settings → Data Model → Create Collection → `articles`.
+Via the admin UI: Settings → Data Model → Create Collection → ````articles````.
 
-Or via the API: ```bash
+Or via the API: `````bash
 # Create collection via REST API
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -204,13 +205,13 @@ curl -X POST http://localhost:8055/collections \
       { "field": "hero_image", "type": "uuid", "meta": { "special": ["file"] }, "schema": {} }
     ]
   }'
-```
+`````
 
 ## REST and GraphQL API Usage
 
 ### REST API Examples
 
-```bash
+`````bash
 # Read all published articles with filtering and field selection
 curl -s "http://localhost:8055/items/articles?filter[status][_eq]=published&fields=id,title,seo_score,published_at&sort=-published_at&limit=10" \
   -H "Authorization: Bearer <token>" | jq .
@@ -234,11 +235,11 @@ curl -s "http://localhost:8055/items/articles?aggregate[avg]=seo_score&groupBy=s
 # Deep relational query: articles with author info and image transforms
 curl -s "http://localhost:8055/items/articles?fields=id,title,author.name,author.email,hero_image.id,hero_image.filename_disk&filter[status][_eq]=published" \
   -H "Authorization: Bearer <token>" | jq .
-```
+`````
 
 ### GraphQL API
 
-```bash
+`````bash
 # Introspect the schema
 curl -X POST http://localhost:8055/graphql \
   -H "Content-Type: application/json" \
@@ -259,15 +260,15 @@ curl -X POST http://localhost:8055/graphql \
   -d '{
     "query": "mutation { create_articles_item(data: { title: \"GraphQL Guide\", content: \"Content here...\", status: \"draft\", seo_score: 90 }) { id title } }"
   }' | jq .
-```
+`````
 
 ### JavaScript SDK
 
-```bash
+`````bash
 npm install @directus/sdk@18.0.0
-```
+`````
 
-```javascript
+`````javascript
 import { createDirectus, rest, readItems, createItem, staticToken } from '@directus/sdk';
 
 const client = createDirectus('http://localhost:8055')
@@ -283,7 +284,7 @@ const articles = await client.request(
     fields: [id, title, seo_score, published_at]
   })
 );
-console.log(`Found ${articles.length} articles`);
+console.log(````Found ${articles.length} articles````);
 
 // Create article
 const newArticle = await client.request(
@@ -296,13 +297,13 @@ const newArticle = await client.request(
   })
 );
 console.log('Created:', newArticle.id);
-```
+`````
 
 ## AI Content Workflows: Connecting Directus to LLMs
 
 Directus Flows + Extensions enable AI-powered content pipelines without external tools. Here is a complete AI content workflow: ### Step 1: Create a Flow for AI Draft Generation
 
-```bash
+`````bash
 # Create a Flow via API that triggers when an article is created with ai_flag=true
 curl -X POST http://localhost:8055/flows \
   -H "Content-Type: application/json" \
@@ -314,11 +315,11 @@ curl -X POST http://localhost:8055/flows \
     "accountability": "all",
     "options": { "type": "filter", "scope": ["items.create.articles"] }
   }'
-```
+`````
 
 ### Step 2: Webhook Extension for AI Processing
 
-```javascript
+`````javascript
 // extensions/hooks/ai-content/index.js
 import { defineHook } from '@directus/extensions-sdk';
 
@@ -332,7 +333,7 @@ export default defineHook(({ filter, action }) => {
         model: 'gpt-4o',
         messages: [
           { role: system, content: 'You are a technical content writer.' },
-          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: user, content: ````Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).```` }
         ],
         response_format: { type: json_object },
         max_tokens: 2000
@@ -361,11 +362,11 @@ export default defineHook(({ filter, action }) => {
     }
   });
 });
-```
+`````
 
 ### Step 3: Deploy the Extension
 
-```bash
+`````bash
 # Build and deploy the extension
 cd extensions/hooks/ai-content
 npm install
@@ -373,11 +374,11 @@ npm run build
 
 # The extension is hot-reloaded by Directus
 cp -r dist/* /directus/extensions/hooks/ai-content/
-```
+`````
 
 ### Step 4: Query AI-Generated Content
 
-```javascript
+`````javascript
 // Fetch articles pending review
 const pendingReview = await client.request(
   readItems(articles, {
@@ -398,21 +399,21 @@ await client.request(
     published_at: new Date().toISOString()
   })
 );
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 I tested Directus 11.3.0 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) (2 vCPU / 4GB RAM / $24/month): | Operation | Directus 11.3.0 | Strapi 5.x | Sanity (Managed) | Contentful (Managed) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Read single item (cached) | **~8ms** | ~15ms | ~25ms | ~40ms |
 | Read 100 items with relations | **~35ms** | ~80ms | ~60ms | ~120ms |
@@ -430,7 +431,7 @@ I tested Directus 11.3.0 on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14
 
 ### 1. Read Replicas for Read-Heavy Workloads
 
-```bash
+`````bash
 # Scale the API horizontally with read replicas
 version: "3"
 services: directus-api-1: image: directus/directus:11.3.0
@@ -446,11 +447,11 @@ services: directus-api-1: image: directus/directus:11.3.0
   nginx: image: nginx:alpine
     ports: - "8055:8055"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf
-```
+`````
 
 ### 2. Automated Backups
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh — run via cron daily
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -469,11 +470,11 @@ aws s3 sync $BACKUP_DIR s3://backup-bucket/directus/ --delete
 
 # Retention: 14 days
 find $BACKUP_DIR -mtime +14 -delete
-```
+`````
 
 ### 3. Custom API Endpoints
 
-```javascript
+`````javascript
 // extensions/endpoints/stats/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -494,19 +495,19 @@ export default defineEndpoint((router, { services, database }) => {
   });
 
   router.get('/seo-report', async (req, res) => {
-    const result = await database.raw(`
+    const result = await database.raw(````
       SELECT status, AVG(seo_score) as avg_score, COUNT(*) as count
       FROM articles
       GROUP BY status
-    `);
+    ````);
     res.json(result.rows);
   });
 });
-```
+`````
 
 ### 4. Field-Level Permissions
 
-```javascript
+`````javascript
 // Grant editor role read-only on SEO fields, full access to content
 const rolePermissions = {
   collection: articles,
@@ -526,49 +527,49 @@ const adminPermissions = {
   fields: [*], // All fields
   validation: null
 };
-```
+`````
 
 ### 5. Monitoring with Prometheus
 
-Directus exposes metrics via the `/server/health` endpoint and can be extended for Prometheus: ```javascript
+Directus exposes metrics via the ``/server/health`` endpoint and can be extended for Prometheus: `````javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
 export default defineEndpoint((router, { database }) => {
   router.get('/metrics', async (_req, res) => {
-    const metrics = await database.raw(`
+    const metrics = await database.raw(````
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
       WHERE schemaname = public
-    `);
+    ````);
 
     let output = '';
     metrics.rows.forEach(row => {
-      output += `directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n`;
-      output += `directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n`;
+      output += ````directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n````;
+      output += ````directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n````;
     });
 
     res.setHeader('Content-Type', 'text/plain');
     res.send(output);
   });
 });
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Directus 11.x | Strapi 5.x | Sanity | Contentful | Ghost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open Source | **GPL-3.0** | MIT | MIT (partial) | No | MIT |
 | GitHub Stars | **29,100+** | 65,000+ | 3,500+ | N/A | 49,000+ |
@@ -597,10 +598,10 @@ Directus differentiates itself by being **database-first**: you own your schema,
 ## Frequently Asked Questions
 
 **Q: Can I use Directus with an existing database?**
-Yes — this is Directus's killer feature. Point Directus at any existing PostgreSQL, MySQL, or SQLite database, and it will introspect your schema and generate APIs instantly. Your existing applications continue working unchanged. Directus only adds its metadata tables (`directus_*`) without touching your data structure. This makes it ideal for adding a CMS interface to legacy applications.
+Yes — this is Directus's killer feature. Point Directus at any existing PostgreSQL, MySQL, or SQLite database, and it will introspect your schema and generate APIs instantly. Your existing applications continue working unchanged. Directus only adds its metadata tables (````directus_*````) without touching your data structure. This makes it ideal for adding a CMS interface to legacy applications.
 
 **Q: How does content versioning work?**
-Directus saves a snapshot of your content every time you hit "Save as Version." You can compare versions side-by-side, revert to any previous version, and schedule versions for future publishing. Versions are stored in the `directus_revisions` table. This works for all collections with versioning enabled in the data model settings.
+Directus saves a snapshot of your content every time you hit "Save as Version." You can compare versions side-by-side, revert to any previous version, and schedule versions for future publishing. Versions are stored in the ````directus_revisions``` table. This works for all collections with versioning enabled in the data model settings.
 
 **Q: Can Directus handle high-traffic applications?**
 Yes, with proper architecture. The API server is stateless — scale horizontally by adding container replicas behind a load balancer. Use Redis for caching and sessions. Use PostgreSQL read replicas for read-heavy workloads. A single 4 vCPU / 8GB instance handles ~2,000 requests/second for cached reads. File serving should go through a CDN.
@@ -648,7 +649,7 @@ Deploy it on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) in minutes
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [HTStack](https://my.htstack.com/aff.php?aff=27187). If you purchase hosting through these links, dibi8.com earns a commission at no extra cost to you. We only recommend services we use for our own infrastructure. All benchmarks were conducted independently on paid instances.
 
 
----
+* * *
 *Article published: 2026-05-19 | Category: dev-utils | Tool: Directus 11.3.0*
 *Join the dibi8 developer community: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
@@ -679,7 +680,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](directus-headless-cms-ai-content)
@@ -688,5 +689,5 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [llm-inference-cost-optimization-guide-2026](directus-headless-cms-ai-content)
 - [12-factor-agents](directus-headless-cms-ai-content)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -12,6 +12,7 @@ maintainer: roboflow
 license: MIT
 featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
 ---
+
 ## Introduction
 
 Computer vision has become one of the most impactful applications of machine learning, powering everything from autonomous vehicles and quality inspection systems to medical imaging and retail analytics. But building production-grade CV systems requires more than just training models — it demands robust tools for data annotation, evaluation, visualization, and debugging.
@@ -43,7 +44,7 @@ Supervision provides tools across the entire computer vision lifecycle: ### Data
 
 Supervision provides utilities for creating, manipulating, and converting annotation formats. It supports COCO, YOLO, Pascal VOC, and custom formats, making it easy to work with different ML frameworks and pipelines.
 
-```python
+````python
 # Import supervision
 from supervision import *
 
@@ -62,13 +63,13 @@ stats = get_annotation_stats(annotations)
 print(f"Total objects: {stats.total_objects}")
 print(f"Classes: {stats.classes}")
 print(f"Images: {stats.total_images}")
-```
+`````
 
 ### Detection Processing
 
 Supervision provides powerful tools for processing detection model outputs, including confidence filtering, non-maximum suppression, and result visualization.
 
-```python
+`````python
 import supervision as sv
 import cv2
 
@@ -85,11 +86,11 @@ detections = sv.NMS(detections, iou_threshold=0.45)
 
 # Filter by confidence
 detections = detections[detections.confidence > 0.6]
-```
+`````
 
 ### Visualization and Annotation Drawing
 
-One of Supervision's strengths is its visualization toolkit. Drawing bounding boxes, segmentation masks, keypoints, and tracking IDs on images and video frames is straightforward: ```python
+One of Supervision's strengths is its visualization toolkit. Drawing bounding boxes, segmentation masks, keypoints, and tracking IDs on images and video frames is straightforward: `````python
 # Create annotation context for drawing
 annotation_context = sv.BoxAnnotator(
     thickness=2,
@@ -128,11 +129,11 @@ annotated_image = label_annotator.annotate(
 
 # Save result
 cv2.imwrite("annotated_scene.jpg", annotated_image)
-```
+`````
 
 ### Tracking Support
 
-Supervision has first-class support for object tracking, with built-in integration for popular tracking algorithms: ```python
+Supervision has first-class support for object tracking, with built-in integration for popular tracking algorithms: `````python
 # Initialize a tracker
 tracker = sv.Tracker(
     tracker_type="ocsort",  # or "bytetrack"
@@ -150,11 +151,11 @@ for frame_number, frame in enumerate(
     
     # Annotated frame with tracking IDs
     annotated_frame = draw_tracking_ids(frame, detections)
-```
+`````
 
 ### Metric Computation
 
-Supervision provides tools for computing common CV evaluation metrics: ```python
+Supervision provides tools for computing common CV evaluation metrics: `````python
 # Compute confusion matrix
 confusion_matrix = sv.ConfusionMatrix(
     num_classes=10,
@@ -170,15 +171,15 @@ confusion_matrix.plot(title="Model Performance")
 
 # Get precision, recall, and F1 per class
 for class_name, metrics in confusion_matrix.class_metrics().items(): print(f"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}")
-```
+`````
 
 ## How It Works
 
 Supervision operates through a clean, consistent API that follows a few core design patterns: ### Detections as Data Structures
 
-The heart of Supervision is the `Detections` class, which provides a unified representation for all types of object detection outputs — bounding boxes, segmentation masks, keypoints, and orientation angles.
+The heart of Supervision is the ````Detections```` class, which provides a unified representation for all types of object detection outputs — bounding boxes, segmentation masks, keypoints, and orientation angles.
 
-```python
+`````python
 from supervision import Detections
 
 # Create detections from scratch
@@ -199,11 +200,11 @@ high_confidence = detections[detections.confidence > 0.8]
 
 # Compute IoU between two detection sets
 ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5)
-```
+`````
 
 ### Pipeline Composition
 
-Supervision encourages composing operations into pipelines. Each step takes a `Detections` object and produces a new one: ```python
+Supervision encourages composing operations into pipelines. Each step takes a ``Detections`` object and produces a new one: `````python
 # Build a detection pipeline
 pipeline = [
     {"operation": "filter_confidence", "threshold": 0.5},
@@ -214,11 +215,11 @@ pipeline = [
 
 # Execute the pipeline
 results = apply_pipeline(original_detections, pipeline)
-```
+`````
 
 ## Installation
 
-Installing Supervision is simple: ```bash
+Installing Supervision is simple: `````bash
 # Install via pip
 pip install supervision
 
@@ -227,21 +228,21 @@ python -c "import supervision as sv; print(sv.__version__)"
 
 # Install with all optional dependencies for maximum compatibility
 pip install supervision[all]
-```
+`````
 
 ### Installation with PyTorch
 
-For deep learning workflows, install with PyTorch: ```bash
+For deep learning workflows, install with PyTorch: `````bash
 # Install with PyTorch (CPU)
 pip install supervision torch torchvision
 
 # Install with PyTorch (CUDA 12.x)
 pip install supervision torch torchvision --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Colab Demo
 
-Roboflow provides an interactive Colab notebook for exploring Supervision's capabilities: ```bash
+Roboflow provides an interactive Colab notebook for exploring Supervision's capabilities: `````bash
 # Open the interactive Colab demo
 # https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb
 
@@ -249,13 +250,13 @@ Roboflow provides an interactive Colab notebook for exploring Supervision's capa
 git clone https://github.com/roboflow/supervision.git
 cd supervision
 jupyter notebook demo.ipynb
-```
+`````
 
 ## Integration Patterns
 
 ### YOLO Integration
 
-Supervision has first-class integration with YOLO models: ```python
+Supervision has first-class integration with YOLO models: `````python
 # Integration with YOLOv8 (Ultralytics)
 from ultralytics import YOLO
 import supervision as sv
@@ -275,11 +276,11 @@ annotated_frame = annotator.annotate(
     scene=results[0].plot(),
     detections=detections
 )
-```
+`````
 
 ### MediaPipe Integration
 
-For pose estimation and landmark detection: ```python
+For pose estimation and landmark detection: `````python
 import supervision as sv
 from mediapipe import solutions
 
@@ -291,11 +292,11 @@ results = pose.process(image)
 
 # Convert to Supervision keypoint format
 if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
-```
+`````
 
 ### ONNX Runtime Integration
 
-For optimized inference: ```python
+For optimized inference: `````python
 import supervision as sv
 from onnxruntime import InferenceSession
 
@@ -305,7 +306,7 @@ session = InferenceSession("model.onnx")
 # Run inference and convert to Supervision format
 outputs = session.run(None, {session.get_inputs()[0].name: input_tensor})
 detections = sv.Detections.from_onnx(outputs)
-```
+`````
 
 ![Supervision Pipeline Architecture](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png)
 
@@ -315,13 +316,13 @@ detections = sv.Detections.from_onnx(outputs)
 
 Supervision's evaluation functions are optimized for speed: | Operation | Dataset Size | Time | Performance |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Confusion Matrix (10 classes) | 10,000 samples | 0.3s | 33,333 samples/sec |
 | IoU Computation | 100 boxes vs 100 boxes | 0.02s | 5,000 pairings/sec |
@@ -331,7 +332,7 @@ Supervision's evaluation functions are optimized for speed: | Operation | Datase
 
 ### Model Evaluation Throughput
 
-Supervision is used to evaluate models at scale: ```python
+Supervision is used to evaluate models at scale: `````python
 # Batch evaluation script
 import supervision as sv
 from tqdm import tqdm
@@ -357,13 +358,13 @@ def evaluate_model(model, dataset): all_predictions = []
     print(f"mAP@0.5: {metrics.map_50:.4f}")
     print(f"mAP@0.5:0.95: {metrics.map_50_95:.4f}")
     return metrics
-```
+`````
 
 ## Advanced Usage
 
 ### Custom Annotators
 
-You can create custom annotators for specialized visualization needs: ```python
+You can create custom annotators for specialized visualization needs: `````python
 import supervision as sv
 import cv2
 import numpy as np
@@ -401,11 +402,11 @@ arrow_annotator = ArrowAnnotator(
     color=sv.Color.GREEN,
     thickness=3
 )
-```
+`````
 
 ### Video Analytics Pipelines
 
-For real-time video analytics: ```python
+For real-time video analytics: `````python
 import supervision as sv
 
 class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path
@@ -447,11 +448,11 @@ class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_
 # Run the pipeline
 pipeline = VideoAnalyticsPipeline("camera_feed.mp4", model)
 pipeline.run()
-```
+`````
 
 ### Metric Visualization
 
-Supervision provides built-in visualization for evaluation metrics: ```python
+Supervision provides built-in visualization for evaluation metrics: `````python
 import supervision as sv
 
 # ROC curve
@@ -468,7 +469,7 @@ pr = sv.PrecisionRecallCurve(
 )
 pr.compute(predictions, targets)
 pr.plot(save_path="pr_curve.png")
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -476,15 +477,15 @@ How does Supervision compare to other computer vision toolkits?
 
 | Feature | Supervision | Albumentations | Torchvision | MMDetection |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Primary Focus | CV toolkit/annotations | Image augmentation | PyTorch models | Detection framework |
 | Annotation Support | Excellent | Limited | None | Built-in |
@@ -511,11 +512,11 @@ While Supervision is a powerful toolkit, it has some limitations: **Not a Traini
 
 ### 1. How do I install Supervision?
 
-Simply run `pip install supervision`. For full compatibility with all features, use `pip install supervision[all]`.
+Simply run ````pip install supervision````. For full compatibility with all features, use ````pip install supervision[all]````.
 
 ### 2. Does Supervision work with YOLO models?
 
-Yes, it has first-class integration with YOLOv5, YOLOv8, and YOLO-NAS through the `Detections.from_ultralytics()` method.
+Yes, it has first-class integration with YOLOv5, YOLOv8, and YOLO-NAS through the ````Detections.from_ultralytics()```` method.
 
 ### 3. Can I use Supervision for real-time video processing?
 
@@ -527,7 +528,7 @@ Supervision supports COCO, YOLO, Pascal VOC, and custom JSON formats. Conversion
 
 ### 5. Can I create custom annotators?
 
-Absolutely. The annotator system is designed to be extensible. You can subclass `sv.Annotator` to create custom visualization tools for your specific use case.
+Absolutely. The annotator system is designed to be extensible. You can subclass ````sv.Annotator```` to create custom visualization tools for your specific use case.
 
 ### 6. Is Supervision suitable for production use?
 
@@ -543,14 +544,14 @@ Supervision by Roboflow is an essential tool for anyone working in computer visi
 
 From data annotation and model evaluation to visualization and tracking, Supervision covers the gaps that other tools leave open. It is lightweight, well-documented, and easy to integrate into any Python-based CV workflow. Whether you are annotating training data, evaluating model performance, or building a real-time detection system, Supervision has the tools you need.
 
-Start with `pip install supervision` and explore the [interactive Colab demo](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) to see it in action.
+Start with ````pip install supervision``` and explore the [interactive Colab demo](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) to see it in action.
 
 [CTA: Build better computer vision systems with Supervision. [Install Now](https://github.com/roboflow/supervision) | [Read Docs](https://supervision.roboflow.com)]
 
 
 
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://supervision.dev (check official repo)
 - GitHub repository: https://github.com/supervision/11/supervision
 - Community discussion: https://github.com/supervision/discussions
@@ -565,7 +566,7 @@ Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
 
----
+* * *
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
@@ -594,7 +595,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -602,6 +603,6 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 - [roboflow-supervision](roboflow-supervision)
 - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

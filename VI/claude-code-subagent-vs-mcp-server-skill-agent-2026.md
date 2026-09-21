@@ -36,6 +36,7 @@ faq: - q: "Khác biệt một câu giữa skill, subagent và MCP server là gì
     a: "Có, cả ba. Skill và subagent là các tệp được quản lý phiên bản trong repo của bạn, nên CI tự động nhận chúng. MCP server cần được cấu hình và truy cập được từ môi trường CI (thông tin xác thực trong CI secrets, quyền truy cập mạng tới dịch vụ). Chế độ headless -p tôn trọng cả ba; điểm vướng thực tế duy nhất là đảm bảo phần xác thực của MCP server hoạt động được mà không cần đăng nhập tương tác khi chạy không giám sát."
 ---
 
+
 # Subagent vs MCP Server vs Skill: Khi nào nên xây từng loại tiện ích mở rộng Claude Code (2026)
 
 
@@ -57,7 +58,7 @@ Nói thành một câu là sự nhầm lẫn tan biến: **một skill thay đ�
 
 ### Skill tác động trục «kiến thức»
 
-Một skill là câu trả lời cho *«Claude không biết quy trình cụ thể của chúng ta.»* Quy trình phát hành của bạn, bộ tiêu chí review code của bạn, runbook xử lý sự cố của bạn — kiến thức mang tính tình huống. Bạn không muốn nó nằm trong `CLAUDE.md` (vì nó nạp ở mọi tương tác và làm phình ngữ cảnh nền); bạn muốn nó chỉ được nạp khi nhiệm vụ cần. Một skill là một tệp markdown với một mô tả trigger; khi công việc khớp, các chỉ dẫn chi tiết đi vào cuộc hội thoại, còn nếu không thì chúng đứng ngoài, không vướng víu.
+Một skill là câu trả lời cho *«Claude không biết quy trình cụ thể của chúng ta.»* Quy trình phát hành của bạn, bộ tiêu chí review code của bạn, runbook xử lý sự cố của bạn — kiến thức mang tính tình huống. Bạn không muốn nó nằm trong ```CLAUDE.md```` (vì nó nạp ở mọi tương tác và làm phình ngữ cảnh nền); bạn muốn nó chỉ được nạp khi nhiệm vụ cần. Một skill là một tệp markdown với một mô tả trigger; khi công việc khớp, các chỉ dẫn chi tiết đi vào cuộc hội thoại, còn nếu không thì chúng đứng ngoài, không vướng víu.
 
 ### Subagent tác động trục «ngữ cảnh»
 
@@ -86,9 +87,9 @@ Lựa chọn rẻ nhất giải quyết được vấn đề của bạn gần n
 
 - **Năng lực?** Đọc code — Claude đã có. Không cần MCP server.
 - **Ngữ cảnh?** Rà soát toàn bộ codebase nghĩa là đọc hàng chục tệp. Việc đó *sẽ* làm phình tiến trình cha. → **Subagent.**
-- **Quy trình?** Bạn muốn cuộc rà soát tuân theo checklist cụ thể của OWASP. → **Skill** (hoặc nướng checklist đó vào system prompt của một custom agent `security-auditor`).
+- **Quy trình?** Bạn muốn cuộc rà soát tuân theo checklist cụ thể của OWASP. → **Skill** (hoặc nướng checklist đó vào system prompt của một custom agent ````security-auditor````).
 
-**Đáp án:** một subagent `security-auditor` có system prompt mã hóa checklist. Một tạo phẩm, bao trùm hai trục. Không cần server.
+**Đáp án:** một subagent ````security-auditor``` có system prompt mã hóa checklist. Một tạo phẩm, bao trùm hai trục. Không cần server.
 
 ## Kịch bản thực tế 2: «Cho tôi xem khách hàng nào đã rời bỏ tháng trước»
 
@@ -162,7 +163,7 @@ Hãy thôi hỏi «skill, subagent, hay MCP server?» như thể chúng cạnh t
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -172,7 +173,7 @@ Hãy thôi hỏi «skill, subagent, hay MCP server?» như thể chúng cạnh t
 - [claude-code-vs-aider](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 - [cursor-vs-claude-code](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

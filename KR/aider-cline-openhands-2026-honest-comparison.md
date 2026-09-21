@@ -32,6 +32,7 @@ faq: - q: "2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요
     a: "Aider: 생산성까지 15분(명확한 패턴을 따르는 CLI일 뿐). Cline: 30분(VS Code 확장 설정 + 모델 설정). OpenHands: 2-3시간(Docker 설정, 브라우저 도구 구성, 에이전트 루프 튜닝). Aider가 진입 장벽이 가장 낮고, OpenHands가 천장이 가장 높습니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # Aider vs Cline vs OpenHands 2026: 정직한 3자 OSS 비교
@@ -52,7 +53,7 @@ faq: - q: "2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요
 >
 > **OSS 전용 사용자를 위한 최고의 2-도구 조합**: Aider(주력) + OpenHands(자율 작업).
 
----
+* * *
 
 ## 각각은 무엇인가
 
@@ -125,14 +126,14 @@ VS Code 사이드바에 거주하는 에이전트. 멀티스텝 변경을 계획
 
 ## 규모에서의 비용 현실
 
-Sonnet 4.6(이 도구들에 가장 균형 잡힌 모델)로 BYO API 키: ```
+Sonnet 4.6(이 도구들에 가장 균형 잡힌 모델)로 BYO API 키: ````
 월 60시간 사용: Aider: ~$80-110  (가장 효율적인 컨텍스트 사용)
   Cline: ~$95-140  (더 장황한 계획 = 더 많은 토큰)
   OpenHands: ~$120-180 (자율 루프 = 더 많은 반복)
 
 vs Claude Max: $200 무제한
 vs Cursor Pro + API: $87 (에이전트 작업 훨씬 적음)
-```
+````
 
 "상용보다 저렴" 주장은 다음 조건에서만 성립: - 컨텍스트 크기 주시 (모든 호출에 전체 리포 전달하지 않기)
 - 일상 작업에는 Opus가 아닌 Sonnet 사용
@@ -192,7 +193,7 @@ OpenHands는 기본값이 Docker 샌드박스 — 가장 안전. Aider는 명령
 
 상용 vs OSS 선택은 가격이 아닙니다(마케팅이 시사하는 것보다 더 가깝습니다). 통제권, 다듬어짐, 그리고 도구 설정 vs 실제 작업에 쓰는 시간의 비율에 관한 것입니다. git을 잘 사용하는 솔로 개발자와 소규모 팀에게는 OSS가 승리. 예측 가능한 지원과 균일한 UX가 필요한 대규모 팀에게는 상용이 여전히 승리.
 
----
+* * *
 
 **관련**: [AI 코딩 2026-Q2 슛아웃](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [OpenCode 설정](https://dibi8.com/kr/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
 
@@ -258,12 +259,12 @@ Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -273,7 +274,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison)
 - [claude-code-vs-cline](aider-cline-openhands-2026-honest-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

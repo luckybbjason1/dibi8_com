@@ -10,6 +10,7 @@ github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
 license: MIT
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
+
 # Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide
 
 Personal AI Infrastructure (PAI) (15,000+ stars) by Daniel Miessler is a "Life Operating System" that combines AI strategy, execution, and reflection into one unified platform. With 45 skills, 171 workflows, 37 hooks, and Algorithm v6.3.0, PAI transforms AI from a simple tool into an intelligent partner that knows who you are and what you're trying to achieve.
@@ -20,7 +21,7 @@ Personal AI Infrastructure (PAI) (15,000+ stars) by Daniel Miessler is a "Life O
 
 PAI is not a chatbot, not a code generator, and not a productivity app. It is a **Life Operating System** — a complete infrastructure layer that sits between you and all your AI tools, managing context, strategy, and execution across every AI interaction you have.
 
-PAI has three layers: ```
+PAI has three layers: ````
 ┌─────────────────────────────────────┐
 │         PAI (The OS)                │
 │  Skills, Memory, Algorithm, Telos   │
@@ -34,11 +35,11 @@ PAI has three layers: ```
 │  Your AI's voice and personality    │
 │  Named, Voice-picked, TELOS-driven  │
 └─────────────────────────────────────┘
-```
+`````
 
 **PAI** — the OS itself. Skills, memory, the Algorithm, your Telos, your identity files.
 
-**Pulse** — the Life Dashboard at `localhost:31337`. Where you see your state, goals, and work.
+**Pulse** — the Life Dashboard at ````localhost:31337````. Where you see your state, goals, and work.
 
 **The DA** — your Digital Assistant. The voice and personality you talk to.
 
@@ -46,7 +47,7 @@ The system is designed for individuals first, but the same architecture works fo
 
 ## The Algorithm v6.3.0
 
-At the core of PAI is a custom algorithm that drives the transition from current state to ideal state through a seven-phase loop: ```
+At the core of PAI is a custom algorithm that drives the transition from current state to ideal state through a seven-phase loop: `````
 Current State ──▶ OBSERVE ──▶ THINK ──▶ PLAN
                     ▲                         │
                     │                         ▼
@@ -55,15 +56,15 @@ Current State ──▶ OBSERVE ──▶ THINK ──▶ PLAN
                     └───────────────── VERIFY  │
                              │                 │
                              └──────── LEARN ←┘
-```
+`````
 
 Each phase has a specific purpose: | Phase | Purpose | Output |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **OBSERVE** | Gather facts about the current state | State documentation |
 | **THINK** | Analyze using first principles | Root cause analysis |
@@ -77,7 +78,7 @@ The classifier determines whether a prompt needs minimal response, standard LLM 
 
 ### Mode Classifier
 
-PAI includes a Sonnet-backed mode classifier that picks the appropriate processing mode per prompt: ```
+PAI includes a Sonnet-backed mode classifier that picks the appropriate processing mode per prompt: `````
 Mode Classification: ┌────────────┬───────────────┐
 │ Mode       │ Description   │
 ├────────────┼───────────────┤
@@ -95,23 +96,23 @@ Tier Classification: ┌────────┬─────────�
 │ E4     │ Multi-phase project │
 │ E5     │ Life-scale project  │
 └────────┴─────────────────────┘
-```
+`````
 
 The classifier determines whether a prompt needs minimal response, standard LLM processing, or the full seven-phase algorithm. This prevents wasting compute on simple queries while ensuring complex tasks get the full treatment.
 
 ## Installation & Setup
 
-PAI v5.0.0 (the latest major release) is a complete rewrite — not an incremental upgrade. One-line install: ```bash
+PAI v5.0.0 (the latest major release) is a complete rewrite — not an incremental upgrade. One-line install: `````bash
 curl -sSL https://ourpai.ai/install.sh | bash
-```
+`````
 
-After installation: ```bash
+After installation: `````bash
 # Start the Pulse daemon
 pulse start
 
 # Access the Life Dashboard
 open http://localhost:31337
-```
+`````
 
 The Dashboard provides real-time visibility into: - Current state documentation
 - Active projects and goals
@@ -121,9 +122,9 @@ The Dashboard provides real-time visibility into: - Current state documentation
 
 ### The Interview
 
-PAI begins with an interview that shapes your Digital Assistant: ```bash
+PAI begins with an interview that shapes your Digital Assistant: `````bash
 /interview
-```
+`````
 
 The interview walks you through: 1. **Naming your DA** — Your AI assistant's identity
 2. **Picking a voice** — Audio identity for voice interactions
@@ -135,14 +136,14 @@ The TELOS (Τέλος) is the most important configuration. It captures your fun
 
 ### Identity Files
 
-PAI uses identity files to provide context to your DA: ```
+PAI uses identity files to provide context to your DA: `````
 ~/.pai/
 ├── PRINCIPAL_IDENTITY.md    # Who you are
 ├── DA_IDENTITY.md           # Your digital assistant's personality
 ├── TELOS.md                 # Your life's purpose
 ├── CONTAINMENT_ZONES/       # Privacy isolation rules
 └── SKILLS/                  # Custom skills directory
-```
+`````
 
 ### Upgrading from v4.x
 
@@ -150,7 +151,7 @@ If you're upgrading from PAI v4.x, this is a different system — not a patch. R
 
 ## 45 Skills — The Complete System
 
-PAI includes 45 built-in skills organized into categories: ```
+PAI includes 45 built-in skills organized into categories: `````
 Skill Categories: ┌──────────────────────┬───────┐
 │ Category             │ Count │
 ├──────────────────────┼───────┤
@@ -161,7 +162,7 @@ Skill Categories: ┌───────────────────�
 │ Automation Skills    │   5   │
 │ Reflection Skills    │   4   │
 └──────────────────────┴───────┘
-```
+`````
 
 ### Thinking Skills
 
@@ -177,18 +178,18 @@ PAI's thinking skills are its most distinctive feature. These aren't generic pro
 
 ### Code Execution Skills
 
-PAI biases toward deterministic code execution over pure prompting: ```
+PAI biases toward deterministic code execution over pure prompting: `````
 Skill Hierarchy (deterministic > prompt-based): 1. Code (deterministic) ← Most preferred
 2. CLI to run the code
 3. Workflow that prompts the CLI
 4. SKILL.md that routes between workflows
 
 "Prompts wrap code; code doesn't wrap prompts."
-```
+`````
 
 ### The ISA — Ideal State Artifact
 
-The ISA is a universal primitive for articulating "ideal state": ```markdown
+The ISA is a universal primitive for articulating "ideal state": `````markdown
 # ISA Document Structure
 
 1. Problem — What are we solving?
@@ -203,7 +204,7 @@ The ISA is a universal primitive for articulating "ideal state": ```markdown
 10. Decisions — Key architectural choices
 11. Changelog — Version history
 12. Verification — Final validation
-```
+`````
 
 Every major project in PAI starts with an ISA. This forces clarity before execution.
 
@@ -211,14 +212,14 @@ Every major project in PAI starts with an ISA. This forces clarity before execut
 
 ### Pulse Daemon
 
-Pulse is the unified daemon that powers the Life Dashboard at `localhost:31337`. It provides: - **Voice integration** — Speech input/output for hands-free interaction
+Pulse is the unified daemon that powers the Life Dashboard at ````localhost:31337````. It provides: - **Voice integration** — Speech input/output for hands-free interaction
 - **Hooks** — Automated triggers based on events, time, or context
 - **Observability** — Real-time monitoring of all AI interactions
 - **Cron scheduling** — Scheduled tasks and automated workflows
 - **Wiki API** — Structured knowledge base access
 - **Telegram/iMessage bridges** — Optional messaging integrations
 
-The Pulse dashboard has 22 routes covering: ```
+The Pulse dashboard has 22 routes covering: `````
 Pulse Dashboard Routes: ┌────────────────────────────────────────────────────┐
 │ Dashboard │ Current State │ Ideal State │ Strategy  │
 │ Tasks     │ Projects      │ Skills      │ Workflows │
@@ -226,21 +227,21 @@ Pulse Dashboard Routes: ┌─────────────────�
 │ Settings  │ Identity      │ TELOS       │ Contain.  │
 │ Reports   │ Audit         │ Backup      │ Restore   │
 └────────────────────────────────────────────────────┘
-```
+`````
 
 ### 171 Workflows
 
-Workflows are pre-built sequences of skills that automate common patterns: ```
+Workflows are pre-built sequences of skills that automate common patterns: `````
 Workflow Examples: - research-workflow: Gather sources → Analyze → Synthesize
 - code-review: Read code → Test → Review → Document
 - decision-framework: Define problem → Gather options → Evaluate → Decide
 - project-init: Brainstorm → ISA → Plan → Execute
 - daily-standup: Review progress → Update state → Plan next steps
-```
+`````
 
 ### 37 Hooks
 
-Hooks automate responses to specific triggers: ```json
+Hooks automate responses to specific triggers: `````json
 // Hook examples
 {
   "trigger": "git-commit",
@@ -250,11 +251,11 @@ Hooks automate responses to specific triggers: ```json
     "template": "commit-template.md"
   }
 }
-```
+`````
 
 ### Containment Zones
 
-PAI provides structural privacy through containment zones. Each zone isolates data and AI interactions: ```json
+PAI provides structural privacy through containment zones. Each zone isolates data and AI interactions: `````json
 // Containment zone configuration
 {
   "zones": [
@@ -278,17 +279,17 @@ PAI provides structural privacy through containment zones. Each zone isolates da
     }
   ]
 }
-```
+`````
 
 ## Integration with Other Tools
 
 PAI integrates with the broader AI ecosystem: | Tool | Integration | Direction |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Skills layer | PAI → Claude |
 | Cursor | Identity files | PAI → Cursor |
@@ -301,25 +302,25 @@ PAI integrates with the broader AI ecosystem: | Tool | Integration | Direction |
 
 ### Obsidian Integration
 
-PAI syncs its knowledge base with Obsidian: ```bash
+PAI syncs its knowledge base with Obsidian: `````bash
 # Sync PAI data to Obsidian vault
 pulse sync --target obsidian --vault ~/Obsidian
 
 # Import Obsidian notes into PAI
 pulse import --source obsidian --vault ~/Obsidian
-```
+`````
 
 This creates a persistent knowledge base that survives across PAI sessions.
 
 ### GitHub Integration
 
-PAI tracks projects in GitHub: ```bash
+PAI tracks projects in GitHub: `````bash
 # Create a PAI-managed GitHub repo
 pulse project --create --github my-new-project
 
 # Sync current state to GitHub issues
 pulse sync --target github --issues
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -327,13 +328,13 @@ pulse sync --target github --issues
 
 Users report dramatic improvements in decision quality after adopting PAI: | Metric | Without PAI | With PAI | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Decision re-evaluation rate | 40% | 8% | -80% |
 | Time from problem to solution | 3.2 days | 0.8 days | -75% |
@@ -343,7 +344,7 @@ Users report dramatic improvements in decision quality after adopting PAI: | Met
 
 ### Typical Daily Workflow
 
-A typical day with PAI: ```bash
+A typical day with PAI: `````bash
 # Morning: Daily standup
 pulse standup
 
@@ -358,19 +359,19 @@ pulse standup
 # Evening: Reflection
 pulse reflect --today
 # PAI compiles daily learnings into TELOS update
-```
+`````
 
 ### Cost Comparison
 
 | Approach | Monthly Cost | Time Saved | Knowledge Captured |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Pure AI tools | $50-200 | Low | None |
 | PAI + AI tools | $50-200 | High | Full |
@@ -382,15 +383,15 @@ PAI's value is not in reducing AI costs — it's in dramatically improving the r
 
 ### Custom Skills
 
-Create your own skills: ```bash
+Create your own skills: `````bash
 # Generate a new skill from template
 pulse skill create my-custom-skill --template thinking
 
 # Edit the skill
 pulse skill edit my-custom-skill
-```
+`````
 
-Skills follow the SKILL.md convention: ```markdown
+Skills follow the SKILL.md convention: `````markdown
 # My Custom Skill
 
 ## Description
@@ -407,11 +408,11 @@ The actual implementation
 
 ## Examples
 Usage examples
-```
+`````
 
 ### Advanced Pulse Configuration
 
-```bash
+`````bash
 # Configure Pulse hooks
 pulse hooks create --trigger git-push --action notify --config '{"channels": ["telegram"]}'
 
@@ -420,17 +421,17 @@ pulse cron add --schedule "0 9 * * *" --action "pulse standup" --name "morning-r
 
 # Enable voice mode
 pulse voice enable --model whisper --language en
-```
+`````
 
 ### Enterprise Deployment
 
-For team or organizational use: ```bash
+For team or organizational use: `````bash
 # Create a team PAI instance
 pulse team create --name my-org --members 10
 
 # Deploy on remote server
 pulse deploy --target remote --host pai.myorg.com --port 31337
-```
+`````
 
 ## Limitations / Honest Assessment
 
@@ -475,14 +476,14 @@ Personal AI Infrastructure represents the most ambitious attempt to create a com
 
 The core insight — that AI tools need structure, memory, and identity to be truly useful — is both simple and profound. PAI provides that infrastructure out of the box.
 
-**Try PAI today** — `curl -sSL https://ourpai.ai/install.sh | bash` and start the interview.
+**Try PAI today** — ````curl -sSL https://ourpai.ai/install.sh | bash``` and start the interview.
 
 For more on personal AI setups: - [ECC: Agent Harness Performance Optimization](/resources/dev-utils/ecc-agent-harness-performance-optimization/) — optimize your AI agent performance
 - [Compound Engineering](/resources/llm-frameworks/compound-engineering-multi-agent-coding-claude-codex-cursor/) — structured multi-agent workflows
 
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/danielmiessler/Personal_AI_Infrastructure
 - Blog post: https://danielmiessler.com/blog/personal-ai-infrastructure
 - Video walkthrough: https://youtu.be/Le0DLrn7ta0
@@ -491,7 +492,7 @@ For more on personal AI setups: - [ECC: Agent Harness Performance Optimization](
 **Join our community**: https://t.me/DIBI8_Group
 
 
----
+* * *
 **Disclosure**: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.
 
 {
@@ -519,7 +520,7 @@ For more on personal AI setups: - [ECC: Agent Harness Performance Optimization](
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -529,7 +530,7 @@ For more on personal AI setups: - [ECC: Agent Harness Performance Optimization](
 - [prompts-chat](personal-ai-infrastructure-daniel-miessler)
 - [llm-inference-cost-optimization-guide-2026](personal-ai-infrastructure-daniel-miessler)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

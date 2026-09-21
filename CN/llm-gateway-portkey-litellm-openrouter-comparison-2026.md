@@ -26,6 +26,7 @@ tags: ["llm gateway", "portkey", "litellm", "openrouter", "comparison"]
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
+
 # Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost & Self-Hosting)
 
 
@@ -45,9 +46,9 @@ An LLM gateway sits between your app and N providers, exposing one unified API (
 
 | Your situation | Pick |
 |
----
+* * *
 |
----
+* * *
 |
 | Enterprise, compliance-heavy, SOC2/HIPAA needed | **Portkey** |
 | Self-host preferred, zero vendor markup, infra team available | **LiteLLM** |
@@ -111,13 +112,13 @@ For the full OpenRouter walkthrough including free-model routing tricks, see our
 
 | Metric | Portkey | LiteLLM | OpenRouter |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub stars | 11.8k | **47.8k** | N/A (closed-source service) |
 | License | MIT | OSS core (custom enterprise) | Proprietary |
@@ -162,7 +163,7 @@ Three gateways. Three honest defaults: - **You're an enterprise** → Portkey
 There's no universally best LLM gateway. There's the one that matches your row in section 2"s decision tree. Pick that one, ship, and re-evaluate when your monthly inference bill crosses $5,000.
 
 
----
+* * *
 *Want to test these in production without commitment? Spin up a $6/month [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) with LiteLLM, point your existing OpenAI SDK at it, and watch your fallback options expand without touching application code.*
 
 
@@ -192,7 +193,7 @@ There's no universally best LLM gateway. There's the one that matches your row i
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](llm-gateway-portkey-litellm-openrouter-comparison-2026)
@@ -201,7 +202,7 @@ There's no universally best LLM gateway. There's the one that matches your row i
 - [9router-smart-llm-proxy-token-saver-free-coding](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 - [ai-engineering-from-scratch](llm-gateway-portkey-litellm-openrouter-comparison-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

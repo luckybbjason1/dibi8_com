@@ -28,6 +28,7 @@ faq: - q: "Năm 2026, ComfyUI có tốt hơn Stable Diffusion WebUI không?"
     a: "Load một workflow + sinh ảnh: 30 phút. Tự dựng workflow riêng: 1-2 ngày. Thành thạo node cho production: 2-3 tuần. Đường cong học tập ban đầu rất dốc nhưng đáng — workflow có thể tái sử dụng, chia sẻ và tái lập."
 ---
 
+
 {{</* resource-info */>}}
 
 # ComfyUI Workflow 2026: Cài đặt + 5 Template Production
@@ -49,19 +50,19 @@ ComfyUI đã trở thành công cụ mặc định cho việc sinh ảnh AI nghi
 ## Cài đặt (1 giờ)
 
 ### Bước 1: Cài đặt (15 phút)
-```bash
+````bash
 # Clone + thiết lập venv
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python main.py
-```
+`````
 
-Trình duyệt sẽ mở tại `http://localhost:8188`.
+Trình duyệt sẽ mở tại ````http://localhost:8188````.
 
 ### Bước 2: Tải mô hình (30 phút)
-Thả vào `ComfyUI/models/checkpoints/`: - **SDXL base + refiner** (đa năng nhất, tổng ~13GB)
+Thả vào ````ComfyUI/models/checkpoints/````: - **SDXL base + refiner** (đa năng nhất, tổng ~13GB)
 - **Flux.1 Schnell** (prototype nhanh, ~24GB)
 - **SD 3.5 Large** (chân thực ảnh tốt nhất, ~17GB)
 
@@ -69,7 +70,7 @@ Tùy chọn nhưng hữu ích: - 2-3 LoRA hợp phong cách của bạn (trên C
 - Mô hình ControlNet (OpenPose, Depth, Canny — mỗi cái ~1.5GB)
 
 ### Bước 3: Sinh ảnh lần đầu (15 phút)
-- Kéo workflow mặc định từ `ComfyUI/workflows/`
+- Kéo workflow mặc định từ ````ComfyUI/workflows/````
 - Load checkpoint SDXL
 - Nhập prompt
 - Queue prompt
@@ -107,7 +108,7 @@ Xong. Bạn đã bắt đầu sinh ảnh. Phần khó bắt đầu từ bây gi�
 
 ## Chia Sẻ Workflow
 
-Cả 5 template đều có thể lưu dưới dạng `.json`. Kéo lên canvas ComfyUI để load. Chia sẻ với team qua git hoặc Discord.
+Cả 5 template đều có thể lưu dưới dạng ````.json```. Kéo lên canvas ComfyUI để load. Chia sẻ với team qua git hoặc Discord.
 
 Cộng đồng đã đăng hàng nghìn workflow tại: - Subreddit ComfyUI
 - Thư viện workflow OpenArt.ai
@@ -128,7 +129,7 @@ Cho công việc ComfyUI nghiêm túc: - **{{< aff "digitalocean" "footer-cta" "
 
 Bắt đầu với 5 template ở trên. Tùy biến. Chia sẻ. Hiệu ứng lãi kép của workflow tái sử dụng sẽ xuất hiện sau tuần thứ 2 — khi bạn nhận ra mình kết hợp node nhanh hơn cả viết code.
 
----
+* * *
 
 **Bài liên quan**: [Cài đặt Stable Diffusion WebUI](https://dibi8.com/vi/resources/ai-tools/stable-diffusion-webui/) · [Công cụ sinh ảnh AI hàng đầu 2026](https://dibi8.com/vi/resources/ai-tools/ai-image-generation-tools-2025/) · [Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
@@ -194,12 +195,12 @@ ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới + 5 templat
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -208,6 +209,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

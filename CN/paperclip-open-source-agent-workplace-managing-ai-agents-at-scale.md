@@ -12,9 +12,10 @@ maintainer: 'paperclipai'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
+
 # paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │           paperclip Agent Workplace                  │
 │                                                      │
@@ -28,7 +29,7 @@ featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/do
 │  │   Task Queue  │  Memory  │  Routing    │          │
 │  └──────────────────────────────────────┘          │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *paperclip architecture: multi-agent coordination platform*
 
@@ -53,7 +54,7 @@ paperclip operates on a three-layer architecture: ### 1. Agent Layer
 
 Each agent runs as an isolated process with its own context window, system prompt, and tool permissions. Agents are assigned a role (Coder, Researcher, Reviewer, Deployer) and a task description.
 
-```python
+`````python
 # Define an agent in paperclip
 agent = {
     "role": "coder",
@@ -63,7 +64,7 @@ agent = {
     "max_tokens": 16384,
     "temperature": 0.3,
 }
-```
+`````
 
 ### 2. Orchestration Layer
 
@@ -83,21 +84,21 @@ The web-based UI provides: - Real-time agent activity monitoring
 
 ### Docker Compose (Recommended)
 
-paperclip is a web-based agent workplace. The easiest way to run it is with Docker Compose: ```bash
+paperclip is a web-based agent workplace. The easiest way to run it is with Docker Compose: `````bash
 # Start the stack
 docker compose up -d
 
 # Access the UI at http://localhost:3000
-```
+`````
 
-Set your API keys in the web UI or via the `.env` file: - `ANTHROPIC_API_KEY`
-- `OPENAI_API_KEY`
+Set your API keys in the web UI or via the ````.env```` file: - ````ANTHROPIC_API_KEY````
+- ````OPENAI_API_KEY````
 
 For full Docker Compose configuration, see the official docs at https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md
 
 ### Cloud Deployment
 
-For production, paperclip supports multiple deployment modes: ```bash
+For production, paperclip supports multiple deployment modes: `````bash
 # Deploy on DigitalOcean using the provided scripts
 curl -sSL https://paperclip.ai/deploy/do | bash
 
@@ -105,13 +106,13 @@ curl -sSL https://paperclip.ai/deploy/do | bash
 docker build -t paperclip .
 docker push your-registry/paperclip:latest
 # Follow ECS deployment runbook in docs/DEPLOYMENT-MODES.md
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, OpenCode, and Custom Agents
 
 paperclip's agent runtime is designed to be API-agnostic. It connects to any agent through a standardized interface: ### Built-in Agent Templates
 
-paperclip ships with pre-configured agent templates: ```yaml
+paperclip ships with pre-configured agent templates: `````yaml
 # Templates for common agent roles
 templates: coder: model: claude-sonnet-4-20250514
     system_prompt: "Write clean, tested code. Use type hints."
@@ -125,11 +126,11 @@ templates: coder: model: claude-sonnet-4-20250514
   deployer: model: claude-haiku-4-20250514
     system_prompt: "Write deployment scripts and infrastructure code."
     tools: [fs, terminal]
-```
+`````
 
 ### Connecting External Agents
 
-To connect Claude Code, Codex CLI, or OpenCode: ```bash
+To connect Claude Code, Codex CLI, or OpenCode: `````bash
 # Use the CLI hub to register an agent
 paperclip agent register \
   --name "my-codex" \
@@ -140,11 +141,11 @@ paperclip agent register \
 # Verify connection
 paperclip agent test my-codex
 # Response: OK (latency: 42ms, model: codex-cli-v0.3)
-```
+`````
 
 ### Agent Communication Protocol
 
-Agents communicate through paperclip's message bus using JSON-RPC: ```json
+Agents communicate through paperclip's message bus using JSON-RPC: `````json
 // Message format for agent-to-agent communication
 {
   "from": "coder",
@@ -157,15 +158,15 @@ Agents communicate through paperclip's message bus using JSON-RPC: ```json
     "priority": "high"
   }
 }
-```
+`````
 
-```bash
+`````bash
 # Monitor agent messages in real-time
 paperclip monitor --follow
 
 # View message history for a session
 paperclip history --session abc123 --format json
-```
+`````
 
 For self-hosted agent infrastructure, I recommend [HTStack](https://my.htstack.com/aff.php?aff=27187) for stable network connections or [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) data-center proxies for agents that need external API access.
 
@@ -175,13 +176,13 @@ For self-hosted agent infrastructure, I recommend [HTStack](https://my.htstack.c
 
 In a controlled test on a 10K-line Python refactoring task: | Approach | Time | Success Rate | Code Quality Score |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Single agent (Claude) | 23 min | 78% | 7.2/10 |
 | paperclip 3-agent pipeline | 18 min | 96% | 9.1/10 |
@@ -191,13 +192,13 @@ In a controlled test on a 10K-line Python refactoring task: | Approach | Time | 
 
 | Agents | Daily Tokens (M) | API Cost (USD) | Efficiency |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 agent | 2.1M | $0.42 | Baseline |
 | 3 agents | 3.8M | $0.76 | 22% better task completion/token |
@@ -205,7 +206,7 @@ In a controlled test on a 10K-line Python refactoring task: | Approach | Time | 
 
 ### Real-World Use Case 1: Codebase Migration
 
-A team of 3 developers uses paperclip to migrate a Rails app to FastAPI: ```bash
+A team of 3 developers uses paperclip to migrate a Rails app to FastAPI: `````bash
 # Create a migration workspace
 paperclip workspace create rails-to-fastapi
 
@@ -216,13 +217,13 @@ paperclip task assign reviewer "Verify API contract compatibility"
 
 # Run pipeline
 paperclip run pipeline
-```
+`````
 
 Result: 2-week migration completed in 3 days, with 94% test pass rate on the first run.
 
 ### Real-World Use Case 2: Automated PR Review
 
-```bash
+`````bash
 # Monitor a GitHub repo
 paperclip monitor github --repo myorg/myapp --branch develop
 
@@ -234,13 +235,13 @@ paperclip agent configure reviewer \
 
 # Review triggered on every PR
 # Agent analyzes diff, comments on issues, suggests fixes
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Custom Agent Workflows
 
-Create multi-step agent pipelines: ```yaml
+Create multi-step agent pipelines: `````yaml
 # workflows/code-review.yaml
 workflow: name: "full-code-review"
   steps: - agent: linter
@@ -258,11 +259,11 @@ workflow: name: "full-code-review"
       task: "Create PR review summary"
       input: "review_comments"
       output: "pr_comment"
-```
+`````
 
 ### Self-Hosted Agent Storage
 
-For production data retention: ```bash
+For production data retention: `````bash
 # Configure persistent storage
 paperclip storage configure \
   --type postgres \
@@ -275,11 +276,11 @@ paperclip vector-store configure \
   --type qdrant \
   --host vector.internal \
   --port 6333
-```
+`````
 
 ### Multi-Team Workspace Isolation
 
-```bash
+`````bash
 # Create team workspaces
 paperclip team create engineering
 paperclip team create data-science
@@ -288,21 +289,21 @@ paperclip team create devops
 # Assign agents to teams
 paperclip team assign engineering --agents coder-1 coder-2 reviewer-1
 paperclip team assign data-science --agents researcher-1 coder-3
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | paperclip | CrewAI | AutoGen | OpenAI Agents SDK |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Web UI | Full-featured dashboard | CLI only | CLI only | Code only |
 | Multi-agent tasks | Kanban-style board | Sequential/parallel | Conversation-based | Guardrails-based |
@@ -335,7 +336,7 @@ A: No. paperclip is an orchestration layer that manages existing agents. You sti
 
 **Q: Can I use paperclip with local models via Ollama or vLLM?**
 
-A: Yes. paperclip supports any OpenAI-compatible API endpoint, which includes Ollama (`http://localhost:11434/v1`) and vLLM (`http://localhost:8000/v1`). Simply configure the endpoint when adding an agent.
+A: Yes. paperclip supports any OpenAI-compatible API endpoint, which includes Ollama (````http://localhost:11434/v1````) and vLLM (````http://localhost:8000/v1````). Simply configure the endpoint when adding an agent.
 
 **Q: How does paperclip handle API key security?**
 
@@ -347,10 +348,10 @@ A: Yes. paperclip is designed for both individual developers and enterprise team
 
 **Q: Can I export my agent conversations and data?**
 
-A: Yes. All conversations, tasks, and outputs are exportable as JSON or Markdown. Use `paperclip export --format json --workspace my-workspace` for full export, or `paperclip export --format md --workspace my-workspace --conversation <id>` for a specific conversation.
+A: Yes. All conversations, tasks, and outputs are exportable as JSON or Markdown. Use ````paperclip export --format json --workspace my-workspace```` for full export, or ````paperclip export --format md --workspace my-workspace --conversation <id>```` for a specific conversation.
 
 
-```bash
+`````bash
 # View agent status
 docker exec paperclip-1 agentctl status
 
@@ -359,11 +360,11 @@ docker logs paperclip-1 --tail 50
 
 # Scale agent count
 docker compose up -d --scale worker=3
-```
+`````
 
 
 
-```bash
+`````bash
 # Check agent workspace state
 docker exec paperclip-1 statectl show
 
@@ -372,7 +373,7 @@ docker exec paperclip-1 template list
 
 # Create a new agent from template
 docker exec paperclip-1 agent create --template summarizer --name "daily-summary"
-```
+`````
 
 
 ## 
@@ -393,7 +394,7 @@ paperclip solves a real problem that most developers hit at scale: coordinating 
 
 If you"re juggling 2+ AI agents daily — coding, reviewing, researching — paperclip gives you a Kanban board, conversation history, and deployment pipeline that turns chaos into a managed workflow. The self-hosted option means no vendor lock-in, no data leaving your infrastructure.
 
-Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss paperclip setups and agent templates. Check out our guides on [持久记忆增强Agent](https://dibi8.com/agentmemory-persi[CLI统一管理](https://dibi8.com/cc-switch-unified-ai-cli-control-center)ual workflows]([agentmemory guide](https://dibi8.com/agentmemory-*) for related tooling. Try paperclip today — `docker compose up`, add two agents, and see your first multi-agent pipeline run.
+Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss paperclip setups and agent templates. Check out our guides on [持久记忆增强Agent](https://dibi8.com/agentmemory-persi[CLI统一管理](https://dibi8.com/cc-switch-unified-ai-cli-control-center)ual workflows]([agentmemory guide](https://dibi8.com/agentmemory-*) for related tooling. Try paperclip today — ````docker compose up```, add two agents, and see your first multi-agent pipeline run.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -424,7 +425,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
@@ -434,7 +435,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [2026-06-15-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -22,6 +22,7 @@ aliases:
   - /posts/automl-tools-comparison-guide/
 ---
 
+
 {</* resource-info */>}
 
 Automated Machine Learning (AutoML) đã trở thành một trong những xu hướng quan trọng nhất trong hệ sinh thái AI/ML từ năm 2020. Thay vì dành hàng tuần để thử nghiệm thủ công các kết hợp mô hình và siêu tham số, AutoML tự động hóa toàn bộ quy trình — từ kỹ thuật đặc trưng đến chọn lựa mô hình, tối ưu hóa siêu tham số, và xây dựng ensemble.
@@ -58,7 +59,7 @@ AutoML bao gồm tự động hóa các bước trong pipeline Machine Learning:
 - **Stacked ensembling**: Tự động kết hợp nhiều mô hình với multi-layer stacking, thường cho kết quả top-tier trên Kaggle
 - **3-line training API**: Cực kỳ đơn giản để bắt đầu
 
-```python
+````python
 from autogluon.tabular import TabularPredictor
 
 # Huấn luyện với 3 dòng code
@@ -69,7 +70,7 @@ predictor = TabularPredictor(label='target').fit(
 
 # Dự đoán
 predictions = predictor.predict('test.csv')
-```
+`````
 
 ### Các Module Chính
 
@@ -77,7 +78,7 @@ predictions = predictor.predict('test.csv')
 - **MultiModalPredictor**: Kết hợp dữ liệu văn bản, hình ảnh, và tabular trong một mô hình unified
 - **TimeSeriesPredictor**: Dự báo chuỗI thờI gian với DeepAR, Temporal Fusion Transformer, v.v.
 
-AutoGluon còn cung cấp các preset cấu hình như `best_quality` (chất lượng tốt nhất), `good_quality` (cân bằng), và `optimize_for_deployment` (tối ưu latency).
+AutoGluon còn cung cấp các preset cấu hình như ````best_quality```` (chất lượng tốt nhất), ````good_quality```` (cân bằng), và ````optimize_for_deployment```` (tối ưu latency).
 
 ### Khi Nào Chọn AutoGluon?
 
@@ -97,7 +98,7 @@ AutoGluon còn cung cấp các preset cấu hình như `best_quality` (chất l�
 - **Spark Integration**: H2O Sparkling Water cho phép tích hợp với Apache Spark để xử lý dữ liệu lớn
 - **Production deployment**: H2O hỗ trợ xuất mô hình dạng MOJO (Optimized Model Object) và POJO (Plain Old Java Object) để triển khai trong production
 
-```python
+`````python
 import h2o
 from h2o.automl import H2OAutoML
 
@@ -115,7 +116,7 @@ print(aml.leaderboard)
 
 # Lưu model tốt nhất
 aml.leader.save_mojo("best_model.zip")
-```
+`````
 
 ### H2O Model Explainability Và Deployment
 
@@ -142,7 +143,7 @@ TPOT sử dụng thuật toán di truyền để tiến hóa các pipeline qua n
 3. Chọn lọc, lai ghép, và đột biến để tạo thế hệ mới
 4. Lặp lại cho đến khi đạt điều kiện dừng
 
-```python
+`````python
 from tpot import TPOTClassifier
 
 # Cấu hình TPOT
@@ -159,7 +160,7 @@ tpot.fit(X_train, y_train)
 
 # Xuất pipeline tốt nhất thành code Python
 tpot.export('best_pipeline.py")
-```
+`````
 
 ### Điểm Độc Đáo: Pipeline Transparency
 
@@ -182,7 +183,7 @@ tpot.export('best_pipeline.py")
 2. **Bayesian Optimization với Hyperband**: Phân bổ ngân sách tài nguyên một cách thông minh cho các cấu hình tiềm năng
 3. **Portfolio optimization**: Tự động xây dựng portfolio mô hình phù hợp với dataset hiện tại
 
-```python
+`````python
 import autosklearn.classification
 
 # Cấu hình Auto-sklearn 2.0
@@ -197,9 +198,9 @@ automl.fit(X_train, y_train)
 
 # Dự đoán
 predictions = automl.predict(X_test)
-```
+`````
 
-Auto-sklearn 2.0 còn cung cấp `AutoSklearnRegressor` cho bài toán hồi quy và hỗ trợ ensemble selection để kết hợp các mô hình tốt nhất.
+Auto-sklearn 2.0 còn cung cấp ````AutoSklearnRegressor```` cho bài toán hồi quy và hỗ trợ ensemble selection để kết hợp các mô hình tốt nhất.
 
 ### Khi Nào Chọn Auto-sklearn?
 
@@ -289,9 +290,9 @@ Trước khi chạy AutoML, hãy xây dựng một baseline đơn giản (ví d�
 
 ### 2. Chia Tập Dữ Liệu Đúng Cách
 
-```
+`````
 Train (70%) → Validation (15%) → Test (15%)
-```
+````
 
 AutoML sử dụng validation set để chọn mô hình, test set chỉ dùng để đánh giá cuối cùng. Không để AutoML "nhìn thấy" test set trong quá trình tối ưu.
 
@@ -370,7 +371,7 @@ Bắt đầu với AutoGluon để nhanh chóng có baseline chất lượng cao
 - [Auto-sklearn Documentation](https://auto-sklearn.readthedocs.io/en/latest/) — Tài liệu Auto-sklearn
 - [Google AutoML Documentation](https://cloud.google.com/automl/docs) — Google Cloud AutoML Official Docs
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

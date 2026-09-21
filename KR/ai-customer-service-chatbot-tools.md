@@ -7,6 +7,7 @@ aliases:
   - /posts/ai-customer-service-chatbot-tools/
 ---
 
+
 # 2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등
 
 
@@ -190,7 +191,7 @@ ChatGPT Enterprise 기반 챗봇은 50개 이상의 언어를 지원하며, Inte
 - [Freshworks Freddy AI](https://www.freshworks.com/freddy-ai/)
 - [Drift 공식 웹사이트](https://www.drift.com)
 
----
+* * *
 
 ## 추천 도구
 
@@ -261,7 +262,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

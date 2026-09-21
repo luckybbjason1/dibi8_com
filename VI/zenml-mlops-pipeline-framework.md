@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/zenml-mlops-pipeline-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Pipeline ML Củɑ Bạn Đang Bị Hỏng
@@ -52,7 +53,7 @@ Kiến trúc của ZenML xoay quanh bốn khái niệm abstraction chính ánh x
 Một **Pipeline** là một hàm Python được decorated kết nối nhiều steps lại với nhau. ZenML biên dịch hàm này thành DAG, validate dependencies, và thực thi trên orchestrator bạn chọn.
 
 ### Steps
-Một **Step** là đơn vị công việc nhỏ nhất — một hàm Python thực hiện một tác vụ (load data, preprocess, train, evaluate). Các steps được decorated bằng `@step` và khai báo inputs/outputs thông qua type annotations.
+Một **Step** là đơn vị công việc nhỏ nhất — một hàm Python thực hiện một tác vụ (load data, preprocess, train, evaluate). Các steps được decorated bằng ```@step```` và khai báo inputs/outputs thông qua type annotations.
 
 ### Artifacts
 Mọi output từ một step là một **Artifact** — một object được typed và versioned, lưu trữ trong artifact store. Artifacts có thể là datasets (pandas DataFrames, NumPy arrays), models (sklearn, PyTorch, TensorFlow), hoặc custom objects. ZenML tự động serialize, version, và track lineage cho mọi artifact.
@@ -76,7 +77,7 @@ Chuyển đổi stacks chỉ là một CLI command. Code pipeline của bạn kh
 
 ### Bước 1: Cài Đặt ZenML
 
-```bash
+`````bash
 python -m venv zenml-env
 source zenml-env/bin/activate  # Linux/Mac
 # zenml-env\Scripts\activate  # Windows
@@ -87,23 +88,23 @@ pip install zenml
 # Xác minh cài đặt
 zenml version
 # Output: ZenML version 0.80.0
-```
+`````
 
 ### Bước 2: Khởi Tạo ZenML
 
-```bash
+`````bash
 # Khởi tạo ZenML repository (tạo thư mục .zen)
 zenml init
 
 # Kiểm tra trạng thái
 zenml status
-```
+`````
 
-Lệnh `zenml init` tạo một thư mục cấu hình `.zen`. Tương tự như `git init` — nó đánh dấu root của project ZenML và lưu trữ stack configurations locally.
+Lệnh ````zenml init```` tạo một thư mục cấu hình ````.zen````. Tương tự như ````git init```` — nó đánh dấu root của project ZenML và lưu trữ stack configurations locally.
 
 ### Bước 3: Đăng Ký Local Stack
 
-```bash
+`````bash
 # Đăng ký local artifact store
 zenml artifact-store register local_store --flavor=local --path=./artifacts
 
@@ -118,11 +119,11 @@ zenml stack register local_stack \
 
 # Xác minh active stack
 zenml stack describe
-```
+`````
 
 ### Bước 4: Chạy Pipeline Đầu Tiên
 
-Tạo file tên `first_pipeline.py`: ```python
+Tạo file tên ``first_pipeline.py``: `````python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -171,11 +172,11 @@ def training_pipeline(): """End-to-end ML training pipeline."""
 
 if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
-```
+`````
 
-Chạy: ```bash
+Chạy: `````bash
 python first_pipeline.py
-```
+`````
 
 Bạn sẽ thấy output hiển thị mỗi step thực thi tuần tự, kết thúc với độ chính xác model khoảng **0.9667**. ZenML đã tự động track mọi artifact, cache intermediate outputs, và ghi lại lịch sử chạy.
 
@@ -184,7 +185,7 @@ Bạn sẽ thấy output hiển thị mỗi step thực thi tuần tự, kết t
 Sức mạnh của ZenML nằm ở hệ sinh thái tích hợp. Dưới đây là các công cụ thường được kết nối nhất trong vòng đờ ML.
 
 ### Orchestrators
-ZenML hỗ trợ nhiều orchestrators cho các nhu cầu quy mô khác nhau: ```bash
+ZenML hỗ trợ nhiều orchestrators cho các nhu cầu quy mô khác nhau: `````bash
 # Cài đặt Airflow integration
 pip install zenml[airflow]
 
@@ -195,13 +196,13 @@ zenml orchestrator register airflow_orchestrator \
 
 # Chuyển sang Airflow stack
 zenml stack update local_stack -o airflow_orchestrator
-```
+`````
 
 Các orchestrators khác: **Kubernetes**, **GitHub Actions**, **AzureML**, **Vertex AI**, **SageMaker**, **Databricks**, **Kubeflow**.
 
 ### Experiment Tracking với MLflow
 
-```bash
+`````bash
 # Cài đặt MLflow integration
 pip install zenml[mlflow]
 
@@ -222,9 +223,9 @@ zenml model-registry register mlflow_registry \
 zenml stack update local_stack \
   -e mlflow_tracker \
   -r mlflow_registry
-```
+`````
 
-Giờ đây hãy sửa pipeline để log experiments: ```python
+Giờ đây hãy sửa pipeline để log experiments: `````python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
@@ -256,11 +257,11 @@ def register_model(
         print(f"Model registered: {model_version}")
         return "iris-classifier"
     return "below-threshold"
-```
+`````
 
 ### Artifact Storage với S3
 
-```bash
+`````bash
 # Đăng ký S3 artifact store
 zenml artifact-store register s3_store \
   --flavor=s3 \
@@ -270,11 +271,11 @@ zenml artifact-store register s3_store \
 
 # Cập nhật stack để dùng S3
 zenml stack update local_stack -a s3_store
-```
+`````
 
 ### Container Registry cho Cloud Execution
 
-```bash
+`````bash
 # Đăng ký Docker container registry
 zenml container-registry register docker_registry \
   --flavor=default \
@@ -283,22 +284,22 @@ zenml container-registry register docker_registry \
 # Build và chạy containerized pipeline
 zenml stack update local_stack -c docker_registry
 zenml pipeline run first_pipeline.py --build-docker
-```
+`````
 
 ### Weights & Biases Integration
 
-```bash
+`````bash
 pip install zenml[wandb]
 
 zenml experiment-tracker register wandb_tracker \
   --flavor=wandb \
   --api_key=$WANDB_API_KEY \
   --project_name="zenml-mlops"
-```
+`````
 
 ### Ví Dụ Cấu Hình Full Stack
 
-```yaml
+`````yaml
 # stack.yaml — Định nghĩa toàn bộ MLOps stack dưới dạng code
 stack_name: production_stack
 components: orchestrator: flavor: kubernetes
@@ -316,11 +317,11 @@ components: orchestrator: flavor: kubernetes
   step_operator: flavor: sagemaker
     configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
-```
+`````
 
-Đăng ký stack này: ```bash
+Đăng ký stack này: `````bash
 zenml stack register -f stack.yaml --set
-```
+`````
 
 ## Benchmark & Các Use Case Thực Tế
 
@@ -350,7 +351,7 @@ Phát hiện chính: Local mode của ZenML chỉ thêm **300ms overhead** mỗi
 
 ### Đặc Tính Mở Rộng
 
-```
+`````
 # Thờ gian thực thi ZenML pipeline vs. số steps
 # Đo trên DigitalOcean 8 vCPU / 32GB droplet
 
@@ -360,7 +361,7 @@ Steps | Local (s) | Kubernetes (s)
   10  |    2.8    |     68
   20  |    5.2    |     95
   50  |   11.5    |    175
-```
+`````
 
 Scale tuyến tính của local mode làm nó lý tưởng cho phát triển. Kubernetes mode có overhead cố định (~45s) nhưng scale tốt hơn cho các steps tính toán nặng hưởng lợi từ distributed resources.
 
@@ -368,7 +369,7 @@ Scale tuyến tính của local mode làm nó lý tưởng cho phát triển. Ku
 
 ### Custom Step Operators cho GPU Workloads
 
-Khi training cần GPU, offload các steps cụ thể lên cloud instances mà không thay đổi pipeline code: ```python
+Khi training cần GPU, offload các steps cụ thể lên cloud instances mà không thay đổi pipeline code: `````python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
@@ -386,11 +387,11 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """Tra
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model
-```
+`````
 
 ### Pipeline Scheduling
 
-```python
+`````python
 from zenml.pipelines import Schedule
 
 # Chạy pipeline mỗi ngày lúc 3 AM UTC
@@ -401,11 +402,11 @@ daily_schedule = Schedule(
 )
 
 zenml.pipeline_schedule register daily_schedule
-```
+`````
 
 ### Caching và Reproducibility
 
-Hệ thống caching của ZenML là tự động và artifact-aware. Nếu inputs và step code không thay đổi, ZenML tái sử dụng cached outputs: ```python
+Hệ thống caching của ZenML là tự động và artifact-aware. Nếu inputs và step code không thay đổi, ZenML tái sử dụng cached outputs: `````python
 @step(enable_cache=True)  # Hành vi mặc định
 def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """Chỉ chạy lại khi input df hoặc hàm này thay đổi."""
     # Phép biến đổi nặng mất 30 phút
@@ -413,11 +414,11 @@ def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """Chỉ chạy l
 
 # Force re-run khi cần
 zenml pipeline run training_pipeline.py --no-cache
-```
+`````
 
 ### Quản Lý Secrets
 
-```bash
+`````bash
 # Đăng ký secrets cho database credentials
 zenml secrets-manager register aws_secrets \
   --flavor=aws \
@@ -430,9 +431,9 @@ zenml secrets-manager secret register db_credentials \
   --schema=username_password \
   --username=ml_user \
   --password=$DB_PASSWORD
-```
+`````
 
-Truy cập trong steps: ```python
+Truy cập trong steps: `````python
 from zenml.client import Client
 
 @step
@@ -448,11 +449,11 @@ def load_from_database() -> pd.DataFrame: """Load data dùng credentials từ Ze
     )
     df = pd.read_sql("SELECT * FROM training_data", conn)
     return df
-```
+`````
 
 ### Tích Hợp CI/CD
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
 on: push: branches: [main]
@@ -477,7 +478,7 @@ jobs: train: runs-on: ubuntu-latest
         run: |
           curl -X POST $SLACK_WEBHOOK \
             -d '{"text":"Pipeline failed! Check ZenML dashboard."}"
-```
+`````
 
 ## So Sánh Với Các Lựa Chọn Khác
 
@@ -516,22 +517,22 @@ ZenML không phải là giải pháp vạn năng. Dưới đây là các trade-o
 ## Các Câu Hỏi Thường Gặp
 
 **Hỏi: Tôi có thể dùng ZenML với Jupyter notebooks hiện có không?**
-Đáp: Có, nhưng cần tái cấu trúc. Bạn trích xuất logic cell thành các hàm decorated `@step` và kết hợp chúng thành các hàm `@pipeline`. ZenML cung cấp lệnh `zenml notebook` giúp migration này. Notebook kernel vẫn có thể dùng cho phát triển và debug.
+Đáp: Có, nhưng cần tái cấu trúc. Bạn trích xuất logic cell thành các hàm decorated ````@step```` và kết hợp chúng thành các hàm ````@pipeline````. ZenML cung cấp lệnh ````zenml notebook```` giúp migration này. Notebook kernel vẫn có thể dùng cho phát triển và debug.
 
 **Hỏi: ZenML xử lý data versioning như thế nào?**
-Đáp: Mọi artifact được tạo bởi một step đều được tự động version bằng content hashing. Artifact store (local, S3, GCS) giữ tất cả các phiên bản. Bạn có thể truy xuất bất kỳ artifact lịch sử nào qua `Client().get_artifact_version(name, version)`. Điều này cho phép bạn tái tạo hoàn toàn mà không cần quản lý dữ liệu thủ công.
+Đáp: Mọi artifact được tạo bởi một step đều được tự động version bằng content hashing. Artifact store (local, S3, GCS) giữ tất cả các phiên bản. Bạn có thể truy xuất bất kỳ artifact lịch sử nào qua ````Client().get_artifact_version(name, version)````. Điều này cho phép bạn tái tạo hoàn toàn mà không cần quản lý dữ liệu thủ công.
 
 **Hỏi: ZenML có phù hợp cho pipeline inference real-time không?**
 Đáp: ZenML chủ yếu được thiết kế cho batch training và batch inference pipelines. Đối với serving real-time, hãy train với ZenML, register model, sau đó deploy qua [KServe](dibi8-internal-link), [Seldon](dibi8-internal-link), hoặc [BentoML](dibi8-internal-link). ZenML có built-in deployment integrations cho các công cụ này.
 
 **Hỏi: Làm thế nào để deploy ZenML server cho team collaboration?**
-Đáp: Chạy `zenml deploy` để deploy ZenML server trên AWS, GCP, Azure, hoặc dùng Helm chart cho self-hosted Kubernetes. Để thiết lập team nhanh chóng trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0), deploy một droplet và chạy `zenml up --docker` — điều này khởi động ZenML server với Docker Compose trong vài phút.
+Đáp: Chạy ````zenml deploy```` để deploy ZenML server trên AWS, GCP, Azure, hoặc dùng Helm chart cho self-hosted Kubernetes. Để thiết lập team nhanh chóng trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0), deploy một droplet và chạy ````zenml up --docker```` — điều này khởi động ZenML server với Docker Compose trong vài phút.
 
 **Hỏi: Khi một pipeline step thất bại thì sao?**
-Đáp: ZenML hỗ trợ retry logic có thể cấu hình (`@step(retry=3)`). Các run thất bại được ghi lại với full stack traces trong dashboard. Bạn có thể resume từ step thất bại bằng `zenml pipeline run --from-failure`, điều này reuse cached outputs từ các upstream steps thành công.
+Đáp: ZenML hỗ trợ retry logic có thể cấu hình (````@step(retry=3)````). Các run thất bại được ghi lại với full stack traces trong dashboard. Bạn có thể resume từ step thất bại bằng ````zenml pipeline run --from-failure````, điều này reuse cached outputs từ các upstream steps thành công.
 
 **Hỏi: Tôi có thể dùng ZenML mà không cần Docker không?**
-Đáp: Hoàn toàn được. Default local stack chạy hoàn toàn không cần Docker. Docker chỉ cần thiết cho containerized execution trên remote orchestrators (Kubernetes, Airflow ở Docker mode). Phát triển và kiểm thử local không cần gì ngoài `pip install zenml`.
+Đáp: Hoàn toàn được. Default local stack chạy hoàn toàn không cần Docker. Docker chỉ cần thiết cho containerized execution trên remote orchestrators (Kubernetes, Airflow ở Docker mode). Phát triển và kiểm thử local không cần gì ngoài ````pip install zenml```.
 
 ## Kết Luận: Từ Notebook Hỗn Loạn Đến Pipeline Sản Xuất
 

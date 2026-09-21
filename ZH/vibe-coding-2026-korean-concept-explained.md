@@ -23,6 +23,7 @@ faq: - q: "什么是「氛围编程」（vibe coding）？"
     a: "不需要。该工作流与具体语言无关——你用你所说的任何自然语言来描述意图即可。术语起源于韩国，但实践全球通用。讲英语的开发者从 Cursor 和 Claude Code 问世以来就一直在这么做，只是当时还没有这个名字。"
 ---
 
+
 {{</* resource-info */>}}
 
 # 氛围编程 2026：韩国概念，写给我们所有人
@@ -48,7 +49,7 @@ faq: - q: "什么是「氛围编程」（vibe coding）？"
 
 某韩国金融科技公司一次典型的氛围编程会话（取自 Toss 工程博客匿名整理）：
 
-```
+````
 Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘.
                  Redis 사용. 분당 100 req. 초과시 429 응답."
 
@@ -56,7 +57,7 @@ Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘.
             用 Redis。每分钟 100 次请求。超过返回 429。」
 
 AI Claude Code：[生成中间件，更新路由，加上测试]
-```
+````
 
 人类审阅者：
 - 不亲自写限流算法
@@ -142,7 +143,7 @@ AI Claude Code：[生成中间件，更新路由，加上测试]
 最强的采纳模式不是「什么都氛围编程」，而是「合适的地方氛围编程，关键的地方手写」。韩国证明了这在生产规模上有效。对我们其他人而言，问题不是要不要尝试——而是在哪里尝试。
 
 
----
+* * *
 **相关**：[AI 编码 2026-Q2 对决](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Aider vs Cline vs OpenHands](https://dibi8.com/zh/resources/dev-utils/aider-cline-openhands-2026-honest-comparison/)
 
 
@@ -208,11 +209,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -222,7 +223,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](vibe-coding-2026-korean-concept-explained)
 - [claude-4-opus-sonnet-review-2026](vibe-coding-2026-korean-concept-explained)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -279,15 +280,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

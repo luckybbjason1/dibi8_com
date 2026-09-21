@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/metabase-business-intelligence-open/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Vấn Đề Hóa Đơn Tableau $50,000
@@ -50,7 +51,7 @@ Metabase tổ chức analytics xung quanh **questions** — các truy vấn đư
 
 ### Visual Query Builder (Không Cần SQL)
 
-Core UX là question builder, dịch các hành động GUI thành database queries: ```sql
+Core UX là question builder, dịch các hành động GUI thành database queries: ````sql
 -- Ngườừ dùng click: -- Table: orders
 -- Filter: created_at là "Last 30 Days"
 -- Group by: country
@@ -64,13 +65,13 @@ FROM orders
 WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
-```
+`````
 
 Cùng một question có thể được save, thêm vào dashboard, convert sang SQL để edit, hoặc schedule gửi email — tất cả không cần user hiểu syntax SQL.
 
 ### Native SQL Editor Cho Analyst
 
-```sql
+`````sql
 -- Native SQL question trong Metabase
 WITH cohort_users AS (
     SELECT 
@@ -96,20 +97,20 @@ SELECT
 FROM retention
 WHERE period <= 12
 ORDER BY 1, 2;
-```
+`````
 
-SQL questions hỗ trợ variable injection qua syntax `{{variable}}`, làm cho chúng reusable across dashboards với filter values khác nhau.
+SQL questions hỗ trợ variable injection qua syntax ````{{variable}}````, làm cho chúng reusable across dashboards với filter values khác nhau.
 
 ### Dashboard Composition
 
-```markdown
+`````markdown
 Dashboard: "Q2 Revenue Overview"
 ├── Question: "Monthly Revenue Trend" (line chart)
 ├── Question: "Revenue by Country" (bar chart)
 ├── Question: "Top 10 Products" (table)
 ├── Question: "Customer Acquisition Funnel" (funnel chart)
 └── Filter: "Date Range" (linked tới all questions)
-```
+`````
 
 Dashboards hỗ trợ cross-filtering, auto-refresh, và full-screen presentation mode.
 
@@ -123,7 +124,7 @@ Dashboards hỗ trợ cross-filtering, auto-refresh, và full-screen presentatio
 
 ### Bước 1: Launch Với Docker
 
-```bash
+`````bash
 mkdir -p ~/metabase-data
 chmod 777 ~/metabase-data
 
@@ -138,11 +139,11 @@ docker run -d \
 
 # Check logs
 docker logs -f metabase
-```
+`````
 
 ### Bước 2: Hoàn Thành Setup Wizard
 
-Mở `http://localhost:3000/setup` và hoàn thành first-run wizard: ```markdown
+Mở ``http://localhost:3000/setup`` và hoàn thành first-run wizard: `````markdown
 1. Chọn ngôn ngữ (English)
 2. Tạo admin account (email + password)
 3. Thêm database đầu tiên: - Database type: PostgreSQL
@@ -152,11 +153,11 @@ Mở `http://localhost:3000/setup` và hoàn thành first-run wizard: ```markdow
    - Username: metabase_readonly
    - Password: ********
 4. Finish — Metabase auto-discovers tables và relationships
-```
+`````
 
 ### Bước 3: Production Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: metabase: image: metabase/metabase:v0.60.2
@@ -188,9 +189,9 @@ services: metabase: image: metabase/metabase:v0.60.2
       timeout: 5s
       retries: 5
 
-volumes: metabase_db: ```
+volumes: metabase_db: `````
 
-Launch production stack: ```bash
+Launch production stack: `````bash
 # Tạo environment file
 echo "POSTGRES_PASSWORD=$(openssl rand -base64 24)" > .env
 
@@ -199,11 +200,11 @@ docker-compose up -d
 
 # Verify both services healthy
 docker-compose ps
-```
+`````
 
 ### Bước 4: Deploy Trên DigitalOcean (VPS)
 
-Cho production-grade deployment trên **DigitalOcean Droplet** (2 vCPU / 4GB RAM từ $24/tháng): ```bash
+Cho production-grade deployment trên **DigitalOcean Droplet** (2 vCPU / 4GB RAM từ $24/tháng): `````bash
 # 1. Tạo Droplet với Docker pre-installed
 #    Nhận $200 free credit với referral link: #    https://m.do.co/c/eca87ac14ee0
 
@@ -237,15 +238,15 @@ EOF
 ln -s /etc/nginx/sites-available/metabase /etc/nginx/sites-enabled/
 certbot --nginx -d analytics.yourdomain.com
 systemctl reload nginx
-```
+`````
 
-Metabase instance đã live với HTTPS tại `https://analytics.yourdomain.com`.
+Metabase instance đã live với HTTPS tại ````https://analytics.yourdomain.com````.
 
 ## Tích Hợp Với 20+ Databases
 
 ### PostgreSQL Connection
 
-```yaml
+`````yaml
 # Connection settings trong Metabase UI
 Database type: PostgreSQL
 Host: db.example.com
@@ -255,11 +256,11 @@ Username: metabase_readonly
 Password: ${POSTGRES_PASSWORD}
 SSL: Required
 Additional JDBC options: ?prepareThreshold=0
-```
+`````
 
 ### Snowflake Connection
 
-```yaml
+`````yaml
 Database type: Snowflake
 Account: xyz123.us-east-1
 Warehouse: REPORTING_WH
@@ -268,18 +269,18 @@ Schema: PUBLIC
 Username: METABASE_USER
 Password: ${SNOWFLAKE_PASSWORD}
 Role: METABASE_ROLE
-```
+`````
 
 ### BigQuery Connection (Service Account)
 
-```bash
+`````bash
 # 1. Tạo service account trong Google Cloud Console
 # 2. Download JSON key file
 # 3. Upload trong Metabase connection dialog
 
 # Required IAM roles: # - roles/bigquery.dataViewer
 # - roles/bigquery.jobUser
-```
+`````
 
 ### Supported Databases (v60.2)
 
@@ -310,7 +311,7 @@ Role: METABASE_ROLE
 
 ### Tạo Question Đầu Tiên
 
-```markdown
+`````markdown
 Navigation: + New > Question
 Database: analytics
 Table: orders
@@ -324,11 +325,11 @@ Visualization: Bar chart
 Sort: Total descending
 
 Save as: "Revenue by Country (30d)"
-```
+`````
 
 ### Xây Dashboard
 
-```markdown
+`````markdown
 Navigation: + New > Dashboard
 Name: "Executive Summary"
 
@@ -341,11 +342,11 @@ Add filters: - Date Range (linked tới all questions)
   - Country (linked tới questions 2, 3)
 
 Configure auto-refresh: Every 5 minutes
-```
+`````
 
 ### SQL Variables Cho Dashboard Tương Tác
 
-```sql
+`````sql
 -- Question: "User Cohort Analysis"
 -- Với date filter variable
 
@@ -356,9 +357,9 @@ FROM users
 WHERE created_at >= {{start_date}}  -- Dashboard filter
 GROUP BY 1
 ORDER BY 1;
-```
+`````
 
-`{{start_date}}` variable render như date picker trong dashboard. Khi user thay đổi filter value, all linked questions refresh automatically.
+````{{start_date}}```` variable render như date picker trong dashboard. Khi user thay đổi filter value, all linked questions refresh automatically.
 
 ## Benchmarks và Use Cases Thực Tế
 
@@ -382,11 +383,11 @@ Công ty fintech Series B (ẩn danh) deploy Metabase thay thế Tableau Desktop
 
 ### Embedding Analytics Trong Ứng Dụng Customer-Facing
 
-```html
+`````html
 </iframe>
-```
+`````
 
-```javascript
+`````javascript
 // JWT token generation cho signed embedding (Node.js)
 const jwt = require(jsonwebtoken);
 
@@ -396,8 +397,8 @@ const token = jwt.sign({
   exp: Math.round(Date.now() / 1000) + (60 * 60) // 1 giờ
 }, process.env.METABASE_SECRET_KEY);
 
-const embedUrl = `https://analytics.yourapp.com/embed/dashboard/123#${token}`;
-```
+const embedUrl = ````https://analytics.yourapp.com/embed/dashboard/123#${token}````;
+`````
 
 Với signed embedding, mỗi customer chỉ thấy data của họ — row-level security enforced tại embedding layer.
 
@@ -405,7 +406,7 @@ Với signed embedding, mỗi customer chỉ thấy data của họ — row-leve
 
 ### Email và Slack Alerts
 
-```markdown
+`````markdown
 1. Mở bất kỳ saved question
 2. Click biểu tượng chuông → "Set up an alert"
 3. Chọn condition: - "When the result reaches a goal"
@@ -414,39 +415,39 @@ Với signed embedding, mỗi customer chỉ thấy data của họ — row-leve
 4. Chọn delivery: - Email: team@company.com
    - Slack: #data-alerts channel
 5. Set frequency: Check every hour
-```
+`````
 
-Cho Slack integration: ```bash
+Cho Slack integration: `````bash
 # Trong Metabase Admin > Settings > Slack: Slack API Token: xoxb-your-bot-token
 Slack channels: #data-alerts, #executive-summary
-```
+`````
 
 ### Caching Cho Performance
 
-```markdown
+`````markdown
 Admin > Settings > Caching: - Enable query caching: ON
   - Minimum query duration to cache: 1 second
   - Cache TTL multiplier: 10
   - Max cache entry size: 1,000 KB
-```
+`````
 
 Cho frequently accessed dashboards, caching giảm database load 60-80%.
 
 ### Row-Level Security (Pro/Enterprise)
 
-```sql
+`````sql
 -- Enterprise sandboxing: users chỉ thấy data của region họ
 -- Admin > Permissions > Data > Sandboxes
 
 SELECT * FROM orders
 WHERE region = user_attribute(region);
-```
+`````
 
-Hàm `user_attribute` resolve per-user tại query time, enforcing data isolation không cần separate database views.
+Hàm ````user_attribute```` resolve per-user tại query time, enforcing data isolation không cần separate database views.
 
 ### Chiến Lược Backup
 
-```bash
+`````bash
 #!/bin/bash
 # metabase-backup.sh — Chạy qua cron hàng ngày
 
@@ -466,7 +467,7 @@ find "$BACKUP_DIR" -name "*.sql" -mtime +7 -delete
 find "$BACKUP_DIR" -name "*.db" -mtime +7 -delete
 
 echo "Metabase backup hoàn thành: $DATE"
-```
+`````
 
 ## So Sánh Với Các Lựa Chọn Thay Thế
 
@@ -525,7 +526,7 @@ Cho production, dùng **PostgreSQL** làm application database của Metabase (n
 
 ### Làm thế nào để backup Metabase instance?
 
-Backup hai thứ: application database (PostgreSQL dump) và environment variables/secrets. Nếu dùng H2 database, backup file `.db` trong khi Metabase đang stopped. Cho Docker deployments, snapshot volume. Test restore process hàng quý — backup mà không restore được thì không phải backup.
+Backup hai thứ: application database (PostgreSQL dump) và environment variables/secrets. Nếu dùng H2 database, backup file ````.db``` trong khi Metabase đang stopped. Cho Docker deployments, snapshot volume. Test restore process hàng quý — backup mà không restore được thì không phải backup.
 
 ### Metabase có xử lý real-time dashboards không?
 
@@ -594,7 +595,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -604,6 +605,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [paddleocr-81k-star-ocr-engine](metabase-business-intelligence-open)
 - [markitdown-universal-file-to-markdown-converter](metabase-business-intelligence-open)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

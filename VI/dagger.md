@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/dagger/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -57,7 +58,7 @@ Kiến trúc của Dagger gồm bốn lớp: 1. **Code Pipeline** (Go / Python /
 3. **Dagger Engine** —— runtime container dựa trên BuildKit thực thi pipeline graph.
 4. **Container Runtime** —— Docker, Podman hoặc runtime OCI-compliant nào host engine.
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │  Pipeline Code (Go/Python/TS)                               │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐                 │
@@ -82,24 +83,24 @@ Kiến trúc của Dagger gồm bốn lớp: 1. **Code Pipeline** (Go / Python /
 ┌─────────────────────────────────────────────────────────────┐
 │  Docker / Podman / OCI Runtime                              │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### Mô hình thực thi
 
 Khi bạn chạy pipeline Dagger, SDK chuyển đổi function calls thành Directed Acyclic Graph (DAG) của các operations. Mỗi node trong DAG đại diện cho một container operation: pull image, copy file, chạy command, hoặc export artifact. Dagger Engine lập lịch các operations này với tính song song tự động và cache mọi kết quả trung gian.
 
-```
+`````
 # Luồng thực thi DAG mẫu
 Pull base image ──┬── Install deps ──┬── Run tests ──┬── Export binary
                   │                   │                │
                   └── Cache hit? Bỏ qua  └── Cache hit?   └── Cache hit?
-```
+`````
 
 ### Các khái niệm chính
 
 | Khái niệm | Mô tả |
 |---------|-------------|
-| **Module** | Gói function Dagger tái sử dụng được định nghĩa trong manifest `dagger.json` |
+| **Module** | Gói function Dagger tái sử dụng được định nghĩa trong manifest ````dagger.json```` |
 | **Function** | Operation typed, sandboxed nhận input và tạo output |
 | **Directory** | Cây filesystem content-addressed được truyền giữa các functions |
 | **Container** | OCI container image hoặc container đang chạy được thao tác qua API |
@@ -117,18 +118,18 @@ Pull base image ──┬── Install deps ──┬── Run tests ──┬
 
 **macOS (Homebrew):**
 
-```bash
+`````bash
 # Cài đặt qua Homebrew tap
 brew install dagger/tap/dagger
 
 # Xác minh cài đặt
 dagger version
 # Kỳ vọng: dagger v0.19.7 (registry.dagger.io/engine:v0.19.7)
-```
+`````
 
 **Linux:**
 
-```bash
+`````bash
 # Cài đặt bằng script chính thức
 curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
 
@@ -138,22 +139,22 @@ curl -fsSL https://dl.dagger.io/dagger/install.sh | \
 
 # Xác minh
 dagger version
-```
+`````
 
 **Windows:**
 
-```powershell
+`````powershell
 # Cài đặt qua scoop
 scoop bucket add dagger https://github.com/dagger/scoop-bucket
 scoop install dagger
 
 # Xác minh
 dagger version
-```
+`````
 
 ### Khởi tạo dự án đầu tiên
 
-```bash
+`````bash
 # Tạo module Dagger mới
 dagger init --sdk=python --source=./dagger my-pipeline
 
@@ -167,11 +168,11 @@ dagger init --sdk=typescript --source=./dagger my-pipeline
 # │   └── src/main.py (hoặc main.go, hoặc index.ts)
 # ├── dagger.json
 # └── .gitignore
-```
+`````
 
 ### Test nhanh locally
 
-```python
+`````python
 # dagger/src/main.py — Pipeline Dagger tối thiểu
 import dagger
 from dagger import dag, function, object_type
@@ -182,20 +183,20 @@ class MyPipeline: @function
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
-```
+`````
 
-```bash
+`````bash
 # Chạy function locally
 dagger call hello --name="Dagger"
 
 # Output: # Hello, Dagger!
-```
+`````
 
 ## Tích hợp với Docker, Go, Python và TypeScript
 
 ### Tích hợp Docker — Build và Push Image
 
-Dagger thao tác container trong hệ sinh thái Docker một cách native. Đây là pipeline đầy đủ build, tag và push Docker image: ```python
+Dagger thao tác container trong hệ sinh thái Docker một cách native. Đây là pipeline đầy đủ build, tag và push Docker image: `````python
 # dagger/src/main.py — Build và push Docker image
 import dagger
 from dagger import dag, function, object_type, Directory
@@ -219,9 +220,9 @@ class CiPipeline: @function
             .publish(f"{registry}/{repository}:{tag}")
 
         return digest
-```
+`````
 
-```bash
+`````bash
 # Chạy function build-and-push
 dagger call build-and-push \
   --source=. \
@@ -230,11 +231,11 @@ dagger call build-and-push \
   --password=env:GITHUB_TOKEN \
   --repository=my-org/my-app \
   --tag=v1.2.3
-```
+`````
 
 ### Go SDK — Pipeline CI đầy đủ
 
-```go
+`````go
 // dagger/main.go — Pipeline CI Go với testing
 dagger "dagger.io/dagger"
 
@@ -270,16 +271,16 @@ func (m *CiPipeline) Run(ctx context.Context, source *dagger.Directory) (*dagger
     // Trích xuất binary đã build như một file
     return binary.File("/src/bin/myapp"), nil
 }
-```
+`````
 
-```bash
+`````bash
 # Chạy pipeline Go từ project root
 dagger call run --source=. -o ./bin/myapp
-```
+`````
 
 ### Python SDK — Integration Test với Services
 
-```python
+`````python
 # dagger/src/main.py — Integration test với PostgreSQL service
 import dagger
 from dagger import dag, function, object_type, Directory, Service
@@ -310,11 +311,11 @@ class TestPipeline: @function
         )
 
         return test_result
-```
+`````
 
 ### TypeScript SDK — Build đa nền tảng
 
-```typescript
+`````typescript
 // dagger/src/index.ts — Build container đa nền tảng
 import { dag, function, objectType, Directory } from "@dagger.io/dagger";
 
@@ -329,14 +330,14 @@ class BuildPipeline {
             platforms.map(async (platform) => {
                 return await image
                     .platform(platform)
-                    .publish(`ghcr.io/my-org/my-app:${platform.replace("/", "-")}`);
+                    .publish(````ghcr.io/my-org/my-app:${platform.replace("/", "-")}````);
             })
         );
 
         return digests;
     }
 }
-```
+`````
 
 ## Benchmark / Use Case thực tế
 
@@ -365,20 +366,20 @@ Daggerverse ([daggerverse.dev](https://daggerverse.dev)) là registry module c�
 - Security scanning: Trivy, Snyk, SLSA verification
 - Testing: k6 load tests, Playwright browser tests
 
-```bash
+`````bash
 # Cài đặt và sử dụng module từ Daggerverse
 dagger -m github.com/kpenfound/blueprints/go call build \
   --source=. --args=./cmd/myapp
 
 # Liệt kê module đã cài đặt
 dagger module use github.com/Dudesons/daggerverse/node
-```
+`````
 
 ## Sử dụng nâng cao / Tăng cường Production
 
 ### Quản lý Secret
 
-Không bao giờ truyền secret dạng plain string. Kiểu `Secret` của Dagger đảm bảo các giá trị nhạy cảm được che trong log và trace: ```python
+Không bao giờ truyền secret dạng plain string. Kiểu ``Secret`` của Dagger đảm bảo các giá trị nhạy cảm được che trong log và trace: `````python
 import dagger
 from dagger import dag, function, object_type, Secret
 
@@ -400,18 +401,18 @@ class SecurePipeline: @function
             ])
             .stdout()
         )
-```
+`````
 
-```bash
+`````bash
 # Truyền secret từ environment variable
 dagger call deploy \
   --kubeconfig=file:$HOME/.kube/config \
   --image-digest=ghcr.io/my-org/my-app@sha256:abc123...
-```
+`````
 
 ### Mẫu thực thi song song
 
-Dagger tự động song song hóa các operations độc lập. Cấu trúc pipeline một cách rõ ràng để tối đa hóa tính song song: ```python
+Dagger tự động song song hóa các operations độc lập. Cấu trúc pipeline một cách rõ ràng để tối đa hóa tính song song: `````python
 import asyncio
 from dagger import dag, function, object_type, Directory
 
@@ -445,11 +446,11 @@ class ParallelPipeline: @function
             .with_workdir("/src")
             .with_exec(["trivy", "fs", "--scanners=vuln", "."])
             .stdout()
-```
+`````
 
 ### Monitoring với OpenTelemetry
 
-Dagger phát ra OpenTelemetry traces cho mọi operation. Export ra backend để có khả năng quan sát pipeline: ```bash
+Dagger phát ra OpenTelemetry traces cho mọi operation. Export ra backend để có khả năng quan sát pipeline: `````bash
 # Chạy với OTel export sang Jaeger
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
@@ -457,11 +458,11 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 dagger call run --source=. --otel-export=auto
 
 # Xem trace trong Jaeger UI tại http://localhost:16686
-```
+`````
 
 ### Tích hợp CI — GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/dagger.yml
 name: Dagger CI
 
@@ -477,11 +478,11 @@ jobs: ci: runs-on: ubuntu-latest
           module: .
           args: run --source=.
         env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+`````
 
 ### Tích hợp CI — GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: [build]
 
@@ -494,11 +495,11 @@ dagger:build: stage: build
   script: - dagger call run --source=.
   cache: key: dagger-cache
     paths: - .dagger-cache/
-```
+`````
 
 ### Tích hợp CI — Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -517,14 +518,14 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
 | Tính năng | Dagger | GitHub Actions | GitLab CI | Jenkins |
 |---------|--------|---------------|-----------|---------|
-| **Định nghĩa Pipeline** | Code Go/Python/TypeScript | YAML workflows | YAML `.gitlab-ci.yml` | Groovy/Java DSL |
-| **Thực thi Local** | Native — giống hệt CI | Không hỗ trợ (act là partial) | Giới hạn (`gitlab-runner exec`) | Hỗ trợ đầy đủ |
+| **Định nghĩa Pipeline** | Code Go/Python/TypeScript | YAML workflows | YAML ````.gitlab-ci.yml```` | Groovy/Java DSL |
+| **Thực thi Local** | Native — giống hệt CI | Không hỗ trợ (act là partial) | Giới hạn (````gitlab-runner exec````) | Hỗ trợ đầy đủ |
 | **Độ chi tiết Cache** | Cấp operation (content-addressed) | Key-value + Docker layer cache | Key-value + cache layers | Phụ thuộc plugin |
 | **Khóa Vendor** | Không — chạy trên mọi CI | Chỉ GitHub cho orchestration | Chỉ GitLab cho orchestration | Không (tự host) |
 | **Độ khó học** | Trung bình (cần Go/TS/Py) | Thấp (YAML + marketplace) | Thấp-Trung bình (YAML + DSL) | Cao (phức tạp Groovy) |
@@ -584,7 +585,7 @@ Dagger sử dụng caching content-addressed ở cấp operation, chi tiết hơ
 Có, nhưng có điều kiện. Caching content-addressed của Dagger hoạt động tốt trong monorepo vì các package không thay đổi được bỏ qua hoàn toàn. Tuy nhiên, việc xây dựng DAG ban đầu và quét file có thể chậm hơn cho repository rất lớn (10GB+). Nhóm Dagger đang tích cực tối ưu hiệu năng monorepo trong chu kỳ phát hành v0.20.x.
 
 **Q: Làm thế nào để migrate workflow GitHub Actions hiện có sang Dagger?**
-Bắt đầu từ từng phần nhỏ. Port từng job một —— thường là job build hoặc test trước. Giữ workflow GitHub Actions làm lớp orchestration và thay thế từng step bằng lệnh gọi `dagger call`. Cách tiếp cận hybrid này cho phép bạn xác thực Dagger locally trong khi duy trì infrastructure CI hiện có. Dần dần, hợp nhất các job còn lại vào Dagger functions.
+Bắt đầu từ từng phần nhỏ. Port từng job một —— thường là job build hoặc test trước. Giữ workflow GitHub Actions làm lớp orchestration và thay thế từng step bằng lệnh gọi ````dagger call````. Cách tiếp cận hybrid này cho phép bạn xác thực Dagger locally trong khi duy trì infrastructure CI hiện có. Dần dần, hợp nhất các job còn lại vào Dagger functions.
 
 **Q: Dagger hỗ trợ những container runtime nào?**
 Dagger yêu cầu container runtime Linux: Docker Engine 24.0+, Podman 4.0+, containerd hoặc runtime OCI-compliant bất kỳ. Trên macOS và Windows, cần Docker Desktop hoặc Podman Desktop. Rootless Docker và Podman được hỗ trợ với một số lưu ý cấu hình được ghi trong tài liệu tham khảo chính thức.
@@ -600,8 +601,8 @@ Cho các team làm việc với Go, Python hoặc TypeScript, Dagger loại bỏ
 
 ### Các bước hành động
 
-1. Cài đặt Dagger CLI: `brew install dagger/tap/dagger`
-2. Chạy quickstart: `dagger init --sdk=python --source=./dagger my-pipeline`
+1. Cài đặt Dagger CLI: ````brew install dagger/tap/dagger````
+2. Chạy quickstart: ````dagger init --sdk=python --source=./dagger my-pipeline```
 3. Port job build trước —— giữ CI hiện tại làm lớp trigger
 4. Tham gia cộng đồng Dagger trên [Discord](https://discord.com/invite/dagger-io) để được hỗ trợ
 5. Khám phá [Daggerverse](https://daggerverse.dev) cho các module tái sử dụng
@@ -657,7 +658,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -667,6 +668,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](dagger)
 - [moneyprinterturbo-one-click-ai-video-generator](dagger)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -26,6 +26,7 @@ tags: ["fine-tuning", "llm", "stack", "collection"]
 aliases:
   - /posts/fine-tuning-stack/-
 ---
+
 LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the **5-component pipeline** that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.
 
 If you're building a domain-specific model, instruction-tuning open-weight base models, doing DPO/GRPO alignment, or running production fine-tuning pipelines — this is the stack.
@@ -34,15 +35,15 @@ If you're building a domain-specific model, instruction-tuning open-weight base 
 
 | # | Component | Stage | Role | Deep dive |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **Unsloth** | Experiment | Fast single-GPU fine-tuning, 2× speed + 70% less VRAM | [Unsloth 2026 guide](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) |
 | 2 | **Axolotl** | Production | YAML-driven multi-GPU production fine-tuning | [Axolotl 2026 guide](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) |
@@ -66,7 +67,7 @@ Result: fine-tuning has moved from research → engineering practice. The stack 
 
 ## 2. Architecture — The Experiment-to-Production Pipeline
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ Dataset (JSONL: prompt/response or messages)      │
    │  → HuggingFace datasets library                  │
@@ -96,7 +97,7 @@ Result: fine-tuning has moved from research → engineering practice. The stack 
    │  → Push merged model to HuggingFace Hub          │
    │  → vLLM serves the model behind LiteLLM gateway  │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 The split is what makes this work — Unsloth's fast iteration for the "what works" exploration, Axolotl's robustness for the "now scale it" production run.
 
@@ -106,9 +107,9 @@ The split is what makes this work — Unsloth's fast iteration for the "what wor
 
 **Why Unsloth wins here**: 2× faster than HF TRL = 2× more experiments per dollar. 70% less VRAM = experiments on a $1500 RTX 4090 instead of needing an A100. See our [Unsloth deep-dive](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/).
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install unsloth
-```
+`````
 
 **Pattern**: rent RTX 4090 on Vast.ai ($0.40-0.60/hr) or RunPod, run 10-20 experiments over a weekend, find the winning recipe, capture in a notebook for team review.
 
@@ -118,9 +119,9 @@ pip install unsloth
 
 **Why Axolotl wins here**: Multi-node distributed training that works out of the box, broadest method support (DPO/GRPO/KTO/ORPO/GDPO), config-as-code for reproducibility. See our [Axolotl deep-dive](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/).
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install axolotl
-```
+`````
 
 **Pattern**: Take the hyperparams from your Unsloth winning recipe → write Axolotl YAML → run on 8× H100 cluster (Vast.ai ~$15-25/hr) for the final 6-12 hour production run → push final weights to HF Hub.
 
@@ -130,12 +131,12 @@ pip install axolotl
 
 **Why this is the obvious pick**: HF has won the AI dataset distribution layer (like GitHub for code, HF Hub for models + datasets). Every fine-tuning tool integrates with it natively.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install datasets
 huggingface-cli login
-```
+`````
 
-**Pattern**: ```python
+**Pattern**: `````python
 from datasets import load_dataset, Dataset
 
 # Local prep + push
@@ -144,7 +145,7 @@ data.push_to_hub("yourname/my-finetune-dataset", private=True)
 
 # Team member loads
 data = load_dataset("yourname/my-finetune-dataset")
-```
+`````
 
 For sensitive data (medical / financial / proprietary), use **private datasets** on HF Hub — they're access-controlled.
 
@@ -152,11 +153,11 @@ For sensitive data (medical / financial / proprietary), use **private datasets**
 
 **The role**: When you run 50 experiments to find the winning recipe, you need a way to compare them. W&B is the de-facto choice — auto-logs loss curves, eval scores, hyperparams, hardware utilization.
 
-**Quick install** (works with both Unsloth and Axolotl via env var): ```bash
+**Quick install** (works with both Unsloth and Axolotl via env var): `````bash
 pip install wandb
 wandb login
 export WANDB_PROJECT="my-finetune-project"
-```
+`````
 
 Now every Unsloth / Axolotl training run auto-logs to your W&B dashboard.
 
@@ -168,21 +169,21 @@ Now every Unsloth / Axolotl training run auto-logs to your W&B dashboard.
 
 See our [Local LLM Runner comparison](/resources/llm-frameworks/local-llm-runner-comparison-2026/) for the full rundown of why vLLM beats Ollama / LM Studio / llama.cpp for production multi-user serving.
 
-**Quick install + serve a fine-tuned model**: ```bash
+**Quick install + serve a fine-tuned model**: `````bash
 pip install vllm
 vllm serve yourname/my-finetuned-llama \
   --enable-lora \
   --lora-modules my-lora=path/to/lora_weights \
   --port 8000
-```
+`````
 
 Behind a [LiteLLM gateway](/resources/llm-frameworks/litellm/) for auth + rate limiting + per-customer virtual keys = production-ready multi-tenant LLM API on infra you own.
 
 ## 8. Day 1 Pipeline Setup (3-4 hours)
 
-1. **Datasets in JSONL format** (varies) — prep `train.jsonl` and `eval.jsonl`, push to HF Hub private
+1. **Datasets in JSONL format** (varies) — prep ````train.jsonl```` and ````eval.jsonl````, push to HF Hub private
 2. **Rent RTX 4090 GPU** (10 min) — Vast.ai or {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}} for experiment phase
-3. **Install Unsloth + W&B** (10 min) — `pip install unsloth wandb`
+3. **Install Unsloth + W&B** (10 min) — ````pip install unsloth wandb```
 4. **First QLoRA run** (60 min) — Section 3 of Unsloth guide, fine-tune Llama 3.2 8B for 1 epoch, verify W&B logs appear
 5. **Iterate 5-10 short experiments** (~half a day) — vary learning rate, LoRA rank, dataset slice. Find the recipe with best eval score
 6. **Translate recipe to Axolotl YAML** (30 min) — same hyperparams in YAML format, git commit
@@ -197,13 +198,13 @@ After 3-4 hours of setup + 1-2 weeks of experiments, you have your own fine-tune
 
 | Item | Hobbyist | Production team | Small AI lab |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Experiment GPU (rented as needed) | $30-60/mo | $100-200/mo | $300-500/mo |
 | Production training (rented for runs) | $0-50/mo | $200-400/mo | $1500-3000/mo |
@@ -234,7 +235,7 @@ When you outgrow this stack: - **Need to fine-tune > 70B models routinely** — 
 Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.
 
 
----
+* * *
 *Companion collections: [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the inference cost side post-deployment. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for automated fine-tuning loops. [Knowledge Base Stack](/collections/knowledge-base-stack/) for RAG as an alternative to fine-tuning in some cases.*
 
 
@@ -264,7 +265,7 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, sc
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](fine-tuning-stack)
@@ -273,6 +274,6 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, sc
 - [9router-smart-llm-proxy-token-saver-free-coding](fine-tuning-stack)
 - [ai-engineering-from-scratch](fine-tuning-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

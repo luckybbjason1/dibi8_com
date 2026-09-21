@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/activepieces-workflow-automation/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 워크플로우 자동화의 연간 $2,340 문제
@@ -45,7 +46,7 @@ Activepieces는 모듈형 3계층 아키텍처를 따릅니다: 1. **프론트�
 
 ### 플로우 엔진
 
-플로우가 실행되면 엔진이 순차적으로 단계를 처리합니다: ```typescript
+플로우가 실행되면 엔진이 순차적으로 단계를 처리합니다: ````typescript
 // 개념적 플로우 실행 모델
 interface FlowRun {
   id: string;
@@ -56,9 +57,9 @@ interface FlowRun {
 
 // 각 단계는 입력을 해석하고 Piece 액션을 실행하며,
 // 출력을 다운스트림 단계가 참조할 수 있도록 저장합니다
-```
+`````
 
-단계는 `{{step_name.property}}` 템플릿 구문을 통해 이전 단계의 출력을 참조할 수 있으며, Handlebars와 유사합니다. 엔진은 분기(`if/else`), 루프(`for each`), 서브플로우를 지원합니다.
+단계는 ````{{step_name.property}}```` 템플릿 구문을 통해 이전 단계의 출력을 참조할 수 있으며, Handlebars와 유사합니다. 엔진은 분기(````if/else````), 루프(````for each````), 서브플로우를 지원합니다.
 
 ### Pieces: 플러그인 시스템
 
@@ -78,7 +79,7 @@ Pieces는 공식(Activepieces 팀이 관리), 커뮤니티 기여, 또는 사설
 
 ### 옵션 A: Docker Compose(권장)
 
-```bash
+`````bash
 git clone https://github.com/activepieces/activepieces.git
 cd activepieces
 
@@ -87,26 +88,26 @@ cp packages/server/api/.env.example .env
 
 # 3. 모든 서비스 시작
 docker compose -f docker-compose.yml up -d
-```
+`````
 
-컨테이너가 시작되면 `http://localhost:8080`로 이동하여 초기 설정 마법사를 완료합니다.
+컨테이너가 시작되면 ````http://localhost:8080````로 이동하여 초기 설정 마법사를 완료합니다.
 
 ### 옵션 B: 신규 VPS에서 원라인 설치
 
-[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해 자동 설치 스크립트를 사용합니다: ```bash
+[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서의 프로덕션 배포를 위해 자동 설치 스크립트를 사용합니다: `````bash
 # 설치 스크립트 다운로드 및 실행
 curl -sSL https://cdn.activepieces.com/install.sh | bash
 
 # 스크립트가 다음을 묻습니다: # - 도메인 이름(선택사항, HTTPS용)
 # - 이메일(Let's Encrypt를 통한 SSL 인증서용)
 # - 관리자 이메일 및 비밀번호
-```
+`````
 
 이 스크립트는 Docker를 설치하고, Activepieces를 가져오고, Nginx를 리버스 프록시로 구성하고, SSL을 자동으로 설정합니다.
 
 ### 옵션 C: 사용자 정의 구성을 통한 수동 Docker
 
-```bash
+`````bash
 # 프로덕션용 docker-compose.yml
 version: "3.8"
 services: activepieces: image: activepieces/activepieces:0.46.0
@@ -138,29 +139,29 @@ services: activepieces: image: activepieces/activepieces:0.46.0
     restart: unless-stopped
     volumes: - redisdata:/data
 
-volumes: pgdata: redisdata: ```
+volumes: pgdata: redisdata: `````
 
-`docker compose up -d`로 배포합니다. 플랫폼은 약 60초 후 준비됩니다.
+````docker compose up -d````로 배포합니다. 플랫폼은 약 60초 후 준비됩니다.
 
 ### 환경 변수 참조
 
 | 변수 | 필수 | 설명 |
 |------|------|------|
-| `AP_ENCRYPTION_KEY` | 예 | 자격 증명 암호화용 AES-256 키 |
-| `AP_JWT_SECRET` | 예 | 인증 토큰 서명용 비밀 |
-| `AP_POSTGRES_*` | 예 | PostgreSQL 연결 정보 |
-| `AP_REDIS_URL` | 예 | Redis 연결 URL |
-| `AP_FRONTEND_URL` | 예 | 인스턴스의 공개 URL |
-| `AP_TELEMETRY` | 아니요 | `false`로 설정하여 익명 사용 데이터 비활성화 |
-| `AP_EXECUTION_MODE` | 아니요 | `SANDBOXED`(기본값) 또는 `UNSANDBOXED` |
+| ````AP_ENCRYPTION_KEY```` | 예 | 자격 증명 암호화용 AES-256 키 |
+| ````AP_JWT_SECRET```` | 예 | 인증 토큰 서명용 비밀 |
+| ````AP_POSTGRES_*```` | 예 | PostgreSQL 연결 정보 |
+| ````AP_REDIS_URL```` | 예 | Redis 연결 URL |
+| ````AP_FRONTEND_URL```` | 예 | 인스턴스의 공개 URL |
+| ````AP_TELEMETRY```` | 아니요 | ````false````로 설정하여 익명 사용 데이터 비활성화 |
+| ````AP_EXECUTION_MODE```` | 아니요 | ````SANDBOXED````(기본값) 또는 ````UNSANDBOXED```` |
 
 ### 첫 로그인
 
-```bash
+`````bash
 # 첫 시작 후 로그에 기본 관리자 URL이 표시됩니다
 docker logs activepieces 2>&1 | grep "first sign up"
 # 출력: http://localhost:8080/sign-up 에 접속하여 첫 관리자 계정 생성
-```
+`````
 
 해당 URL로 이동하여 관리자 계정을 생성하면 빌더에 접근할 수 있습니다.
 
@@ -179,7 +180,7 @@ Activepieces는 가장 인기 있는 서비스에 대한 공식 통합을 관리
 
 ### Slack 연결: 단계별 가이드
 
-```bash
+`````bash
 # 단계 1: 빌더에서 "새 연결"을 클릭하고 Slack 선택
 # 단계 2: "OAuth2" 인증 선택
 # 단계 3: https://api.slack.com/apps 에서 Slack 앱 생성
@@ -187,13 +188,13 @@ Activepieces는 가장 인기 있는 서비스에 대한 공식 통합을 관리
 #    - 리다이렉트 URL 설정: https://your-instance.com/redirect
 # 단계 4: 클라이언트 ID와 비밀을 Activepieces에 복사
 # 단계 5: 권한 부여 — Activepieces가 OAuth 흐름을 자동으로 처리합니다
-```
+`````
 
 연결되면 메시지를 별송하고, 채널 목록을 읽고, Slack 이벤트를 트리거로 반응할 수 있습니다.
 
 ### OpenAI를 사용한 AI 액션
 
-Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티브 OpenAI Piece를 포함합니다: ```yaml
+Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티브 OpenAI Piece를 포함합니다: `````yaml
 # 예시: AI 기반 리드 자격 평가 플로우
 트리거: Webhook("새 리드 폼 제출")
   → 단계 1: 폼 데이터 추출(이름, 이메일, 회사, 메시지)
@@ -206,13 +207,13 @@ Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티�
        "hot"이면 → HubSpot에서 고우선순위 작업 생성
        "warm"이면 → 이메일 너처 시퀀스에 추가
        "cold"이면 → 월간 검토를 위해 기록
-```
+`````
 
 OpenAI Piece는 사용자 정의 프롬프트, 온도 제어(0.0–2.0), 최대 토큰 제한, 구조화된 출력을 위한 JSON 모드를 지원합니다.
 
 ### Webhook 트리거
 
-```bash
+`````bash
 # Webhook 트리거가 있는 모든 플로우는 고유 URL을 받습니다
 curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
   -H "Content-Type: application/json" \
@@ -221,19 +222,19 @@ curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
     "amount": 149.00,
     "customer_id": "cust_88291"
   }'
-```
+`````
 
 Webhook 트리거는 사용자 정의 응답 구성을 지원하므로 즉시 200 OK를 반환하거나 플로우 완료를 기다릴 수 있습니다.
 
 ### 예약 플로우
 
-```yaml
+`````yaml
 # 반복 자동화를 위한 Cron 구문
 스케줄: "0 9 * * 1"  # 매주 월요일 오전 9:00
   → Google Analytics에서 주간 지표 가져오기
   → Markdown 보고서로 포맷팅
   → Slack #weekly-reports 채널에 게시
-```
+`````
 
 Activepieces는 Redis 기반의 BullMQ 작업 스케줄러를 사용하여 컨테이너 재시작 중에도 안정적인 Cron 실행을 보장합니다.
 
@@ -272,7 +273,7 @@ Activepieces는 Redis 기반의 BullMQ 작업 스케줄러를 사용하여 컨�
 
 ### 리버스 프록시 뒤에서 실행
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/activepieces
 server {
     listen 443 ssl http2;
@@ -293,11 +294,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # backup-activepieces.sh — cron으로 매일 실행
 DATE=$(date +%Y%m%d_%H%M%S)
@@ -313,22 +314,22 @@ docker cp activepieces-redis:/data/dump.rdb "$BACKUP_DIR/redis_$DATE.rdb"
 # 최근 14일만 유지
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
-```
+`````
 
 ### 헬스체크 모니터링
 
-```bash
+`````bash
 # docker-compose.yml에 추가
   activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-```
+`````
 
 ### 커스텀 Piece 개발
 
-```typescript
+`````typescript
 // my-api-piece/index.ts
 import { createPiece, PieceAuth } from '@activepieces/pieces-framework';
 import { sendNotification } from './lib/actions/send-notification';
@@ -344,17 +345,17 @@ export const myApiPiece = createPiece({
   actions: [sendNotification],
   triggers: [],
 });
-```
+`````
 
 빌드하여 커스텀 npm 레지스트리에 게시하고, Activepieces 관리 패널을 통해 설치합니다.
 
 ### 샌드박스 모드 보안
 
-기본적으로 플로우 실행은 격리된 샌드박스 컨테이너 낶에서 실행됩니다. 프로덕션의 최대 보안을 위해: ```yaml
+기본적으로 플로우 실행은 격리된 샌드박스 컨테이너 낶에서 실행됩니다. 프로덕션의 최대 보안을 위해: `````yaml
 environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # 실행당 MB 제한
   - AP_SANDBOX_TIMEOUT_SECONDS=120
-```
+`````
 
 이를 통해 폭주 플로우가 서버 리소스를 고갈시킬 수 없습니다.
 
@@ -398,13 +399,13 @@ environment: - AP_EXECUTION_MODE=SANDBOXED
 
 **Q: 셀프호스팅 인스턴스를 어떻게 업데이트하나요?**
 
-```bash
+`````bash
 # 최신 이미지를 가져오고 재시작
 cd /opt/activepieces
 docker compose pull
 docker compose up -d
 # 데이터베이스 마이그레이션은 시작 시 자동으로 실행됩니다
-```
+`````
 
 주요 버전 업그레이드 전에 항상 데이터베이스를 백업하세요. 프로젝트는 유의적 버전 관리를 따륾며, 패치 릴리스(0.46.1)는 자동 적용이 안전합니다.
 
@@ -430,7 +431,7 @@ Activepieces는 엔지니어링 팀이 실제로 필요로 하는 것을 제공�
 
 5분 Docker 설정, 성장하는 TypeScript Piece 생태계, 그리고 제로 제한의 MIT 라이선스를 갖춘 Activepieces는 API 배관에 대해 SaaS 임대료를 계속 지불할 이유가 거의 없습니다.
 
-**오늘 배포하기**: [DigitalOcean](https://m.do.co/c/eca87ac14ee0)(4GB 월 $24) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서 VPS를 생성하고, `docker compose up`을 실행하고, 10분 이내에 첫 플로우를 구축하세요.
+**오늘 배포하기**: [DigitalOcean](https://m.do.co/c/eca87ac14ee0)(4GB 월 $24) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서 VPS를 생성하고, ````docker compose up```을 실행하고, 10분 이내에 첫 플로우를 구축하세요.
 
 우선 지원이 포함된 관리형 호스팅을 위해 [AppSumo 딜](https://appsumo.com/s/106nifb/)에서 Activepieces 클라우드 플랜을 확인하세요.
 
@@ -455,7 +456,7 @@ Activepieces는 엔지니어링 팀이 실제로 필요로 하는 것을 제공�
 - [n8n](dibi8-internal-link) — 또 다른 오픈소스 워크플로우 자동화 도구
 - [셀프호스팅 가이드](dibi8-internal-link) — dibi8.com의 일반 셀프호스팅 모범 사례
 
----
+* * *
 
 *제휴 공개: 본 문서에는 DigitalOcean, HTStack, AppSumo의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 dibi8.com에 수수료가 지급되며, 추가 비용은 발생하지 않습니다. 모든 추천은 실제 테스트를 기반으로 하며, 제휴 가용성이 아닌 실제 성능에 근거합니다.*
 
@@ -485,7 +486,7 @@ Activepieces는 엔지니어링 팀이 실제로 필요로 하는 것을 제공�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -495,6 +496,6 @@ Activepieces는 엔지니어링 팀이 실제로 필요로 하는 것을 제공�
 - [oh-my-pi](activepieces-workflow-automation)
 - [12-factor-agents](activepieces-workflow-automation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

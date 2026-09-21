@@ -32,6 +32,7 @@ faqs: - q: 'JustHireMe 是免费开源的吗？'
     a: '它采用语义理解而非关键词匹配，将你的技能、经验、薪资期望和职业目标与每个职位的要求进行对比分析。每个职位列表都会得到一个 0-100 的评分，让你可以专注于 80 分以上的高匹配度职位。'
   - q: 'JustHireMe 的技术栈是什么？'
     a: '桌面端使用 Tauri 2 搭配 React 19 与 TypeScript；后端运行 Python 3.13，采用 FastAPI 与 WebSockets；数据存储层使用 SQLite、Kuzu 图数据库和 LanceDB 向量数据库；Playwright 负责处理抓取和自动投递的浏览器自动化任务。'---
+
 {</* resource-info */>}
 
 ## 问题：找工作就是一份全职工作
@@ -111,7 +112,7 @@ HR 看得出来是模板还是用心写的。
 |
 ---
 |
----
+* * *
 |
 | 桌面端 | Tauri 2 + React 19 + TypeScript |
 | 后端 | Python 3.13 + FastAPI + WebSockets |
@@ -123,7 +124,7 @@ HR 看得出来是模板还是用心写的。
 
 ## 安装使用
 
-```bash
+````bash
 # 克隆仓库
 git clone https://github.com/vasu-devs/JustHireMe.git
 cd JustHireMe
@@ -136,7 +137,7 @@ npm run dev
 
 # 启动桌面应用
 npm run tauri dev
-```
+`````
 
 ## 使用流程
 
@@ -170,13 +171,13 @@ npm run tauri dev
 - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
 
----
+* * *
 **项目地址**：[github.com/vasu-devs/JustHireMe](https://github.com/vasu-devs/JustHireMe)
 
 **Stars**：471 ⭐ | **Forks**：91 | **语言**：Python 47.3%, TypeScript 27.5%
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -249,7 +250,7 @@ JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an i
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -262,7 +263,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -273,7 +274,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -283,7 +284,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -294,4 +295,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

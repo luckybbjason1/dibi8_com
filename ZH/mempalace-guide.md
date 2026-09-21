@@ -31,6 +31,7 @@ faqs: - q: '如何为 Claude Code 添加持久记忆？'
   - q: 'MemPalace 是免费使用的吗？'
     a: '是的。MemPalace 以 MIT 协议开源，费用为 $0，没有任何 API 费用或订阅费用，而 Pinecone 则需要收取订阅或使用费。'---
 
+
 {</* resource-info */>}
 
 # Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)
@@ -53,7 +54,7 @@ Claude Code 正在颠覆软件外包行业，但它有一个致命缺陷：一�
 
 ### 通过 MCP 协议一键集成
 
-MemPalace 原生提供了一个标准模型上下文协议 (MCP) 服务器。你只需要在你的 `claude_code_config.json` 中配置指向 `http://localhost:8787/mcp`，并赋予读写权限。从此以后，当你对 Claude 说“记住这个架构决定”时，它会自动将信息存入 MemPalace 的“原文+向量”双核存储引擎中。
+MemPalace 原生提供了一个标准模型上下文协议 (MCP) 服务器。你只需要在你的 ``claude_code_config.json`` 中配置指向 ``http://localhost:8787/mcp``，并赋予读写权限。从此以后，当你对 Claude 说“记住这个架构决定”时，它会自动将信息存入 MemPalace 的“原文+向量”双核存储引擎中。
 
 ## FAQ
 
@@ -138,7 +139,7 @@ Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -195,15 +196,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -12,6 +12,7 @@ github_repo: https://github.com/NVIDIA/SkillSpector
 license: Apache-2.0
 ---
 
+
 # SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ năng AI Agent của NVIDIA
 
 **SkillSpector** là một công cụ quét bảo mật được thiết kế đặc biệt cho kỹ năng AI Agent — các plugin mô-đun và tiện ích mở rộng cung cấp năng lượng cho các khung như Claude Code, GitHub Copilot, Codex CLI và Gemini CLI. Được NVIDIA phát triển với **10.273 sao GitHub**, công cụ này giải quyết những lo ngại ngày càng tăng về bảo mật khi cài đặt các kỹ năng agent chưa được kiểm duyệt trong môi trường sản xuất.
@@ -43,7 +44,7 @@ Công cụ cung cấp: - **Quét lỗ hổng tự động** cho các tệp kỹ 
 
 ### Tùy chọn 1: Cài đặt qua Pip
 
-```bash
+````bash
 # Cài đặt SkillSpector từ PyPI
 pip install skillspector
 
@@ -52,11 +53,11 @@ skillspector --version
 
 # Tải cơ sở dữ liệu kỹ năng mới nhất
 skillspector update-db
-```
+`````
 
 ### Tùy chọn 2: Từ mã nguồn
 
-```bash
+`````bash
 # Sao chép kho lưu trữ
 git clone https://github.com/NVIDIA/SkillSpector.git
 cd SkillSpector
@@ -70,11 +71,11 @@ pip install -e .
 
 # Khởi tạo bộ quét
 skillspector init --download-database
-```
+`````
 
 ### Tùy chọn 3: Triển khai Docker
 
-```bash
+`````bash
 # Kéo hình ảnh chính thức
 docker pull nvcr.io/nvidia/skillspector:latest
 
@@ -91,7 +92,7 @@ docker run -d \
   -v ${PWD}/reports:/app/reports \
   nvcr.io/nvidia/skillspector:latest \
   daemon --interval 3600
-```
+````
 
 ## Khả năng quét
 
@@ -167,12 +168,12 @@ SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ năng AI Ag
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -182,7 +183,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 - [cursor-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

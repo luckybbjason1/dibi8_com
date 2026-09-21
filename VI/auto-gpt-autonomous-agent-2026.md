@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/auto-gpt-autonomous-agent-2026/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Agent đã mở đầu tất cả — Và tại sao nó quay lại
@@ -62,7 +63,7 @@ Auto-GPT sử dụng **bộ nhớ hai tầng**: ngữ cảnh ngắn hạn (cửa
 
 ### Bước 1: Yêu cầu tiên quyết
 
-```bash
+````bash
 python --version
 # Expected: Python 3.10.x or higher
 
@@ -71,11 +72,11 @@ git --version
 
 # Docker (tùy chọn, cho sandboxed execution)
 docker --version
-```
+`````
 
 ### Bước 2: Clone và Cài đặt
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/Significant-Gravitas/AutoGPT.git
 cd AutoGPT
@@ -86,19 +87,19 @@ pip install -e .
 # Hoặc dùng script cài đặt (khuyến nghị)
 ./setup.sh
 # Điều này cài dependencies, cấu hình đường dẫn mặc định, và xác thực môi trường
-```
+`````
 
 ### Bước 3: Cấu hình Biến môi trường
 
-```bash
+`````bash
 # Copy cấu hình mẫu
 cp .env.example .env
 
 # Chỉnh sửa .env với API keys của bạn
 nano .env
-```
+`````
 
-```bash
+`````bash
 # .env — cấu hình tối thiểu cần thiết
 # OpenAI (mặc định)
 OPENAI_API_KEY=sk-your-openai-key-here
@@ -121,11 +122,11 @@ DOCKER_CONTAINER_NAME=autogpt-sandbox
 # Agent settings
 CONTINUOUS_MODE=True
 CONTINUOUS_LIMIT=50  # Số lần lặp tối đa mỗi lần chạy
-```
+`````
 
 ### Bước 4: Chạy Auto-GPT
 
-```bash
+`````bash
 # Chế độ tương tác — agent yêu cầu xác nhận ở mỗi bước
 autogpt
 
@@ -137,13 +138,13 @@ autogpt --goal "Research the top 5 Python web frameworks in 2026 and write a com
 
 # Sử dụng model local
 autogpt --llm ollama --model llama3.2
-```
+`````
 
 Ở lần chạy đầu tiên, Auto-GPT khởi tạo database bộ nhớ và tải xuống các driver trình duyệt cần thiết. Điều này mất khoảng **90 giây** — giảm từ **hơn 8 phút** trong phiên bản 2024 nhờ khởi tạo song song.
 
 ### Bước 5: Xác minh Cài đặt
 
-```bash
+`````bash
 # Lệnh kiểm tra health
 autogpt --version
 # Expected: autogpt 0.6.x
@@ -151,7 +152,7 @@ autogpt --version
 # Kiểm tra tool registry
 autogpt --test-tools
 # Expected output: All 12 default tools loaded successfully
-```
+`````
 
 Để triển khai VPS production, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp $200 credit để khởi động Droplet sẵn Docker — lý tưởng để chạy Auto-GPT với sandboxing đầy đủ.
 
@@ -161,7 +162,7 @@ autogpt --test-tools
 
 Agent Protocol là một định dạng thông điệp dựa trên JSON chuẩn hóa cách các agent Auto-GPT giao tiếp. Trước đây, các hệ thống đa agent rất mong manh — các agent hiểu sai đầu ra của nhau hoặc mất ngữ cảnh.
 
-```json
+`````json
 {
   "protocol_version": "2.1",
   "message_type": "task_delegate",
@@ -179,11 +180,11 @@ Agent Protocol là một định dạng thông điệp dựa trên JSON chuẩn 
   },
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 ### Thiết lập Đa Agent
 
-```python
+`````python
 # multi_agent_demo.py
 from autogpt.agent import Agent
 from autogpt.protocol import AgentProtocol
@@ -222,11 +223,11 @@ result = orchestrator.run(
 )
 
 print(result.final_output)
-```
+`````
 
 ### Ủy thác Agent trong thực tế
 
-```python
+`````python
 # Một agent có thể ủy thác sub-task cho các agent khác một cách động
 class ResearchAgent(Agent): def handle_task(self, task): if task.complexity > 0.7: # Ủy thác việc viết cho writer agent
             return self.protocol.delegate(
@@ -235,13 +236,13 @@ class ResearchAgent(Agent): def handle_task(self, task): if task.complexity > 0.
                 context=self.gather_sources()
             )
         return self.execute(task)
-```
+`````
 
 ## Duyệt Web, Thao tác File và Sử dụng Công cụ
 
 ### Duyệt Web với Playwright
 
-```python
+`````python
 # Auto-GPT tự động xử lý các trang được render bằng JavaScript
 # và trích xuất dữ liệu có cấu trúc
 
@@ -267,11 +268,11 @@ search_result = browser.search(
 )
 
 for r in search_result.results: print(f"{r.title}: {r.url}")
-```
+`````
 
 ### Thao tác File
 
-```python
+`````python
 from autogpt.tools import FileOpsTool
 
 file_tool = FileOpsTool(sandbox_dir="./workspace")
@@ -285,11 +286,11 @@ file_tool.write("output/report.md", "# Analysis Results\n\n...")
 # Phân tích code
 analysis = file_tool.analyze_code("src/app.py")
 print(f"Lines: {analysis.line_count}, Functions: {analysis.function_count}")
-```
+`````
 
 ### Thực thi Code Sandboxed
 
-```python
+`````python
 # Code chạy trong container Docker cô lập
 from autogpt.tools import CodeExecuteTool
 
@@ -310,11 +311,11 @@ print(result.stdout)
 
 # Các lần thực thi thất bại được bắt và báo cáo
 if result.error: print(f"Error: {result.error}")
-```
+`````
 
 ### Đăng ký Công cụ Tùy chỉnh
 
-```python
+`````python
 # Đăng ký công cụ của riêng bạn
 from autogpt.tools import ToolRegistry
 
@@ -333,7 +334,7 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 # Giờ agent có thể tự động sử dụng công cụ này
 # LLM quyết định khi nào gọi nó dựa trên mô tả
-```
+`````
 
 ## Benchmark: Auto-GPT so với Framework Agent Hiện đại
 
@@ -371,7 +372,7 @@ Ba quyết định kiến trúc giải thích khoảng cách: 1. **Agent Protoco
 
 ### Thiết lập Docker Cơ bản
 
-```dockerfile
+`````dockerfile
 # Dockerfile.autogpt
 FROM python:3.11-slim
 
@@ -391,9 +392,9 @@ COPY . .
 
 # Chạy ở chế độ continuous với file mục tiêu
 CMD ["autogpt", "--continuous", "--goal-file", "/app/goals/main.json"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -426,9 +427,9 @@ services: autogpt: build: context: .
     read_only: true
     tmpfs: - /tmp
 
-volumes: chroma_data: redis_data: ```
+volumes: chroma_data: redis_data: `````
 
-```bash
+`````bash
 # Triển khai toàn bộ stack
 docker-compose up -d
 
@@ -437,11 +438,11 @@ docker-compose logs -f autogpt
 
 # Dừng mọi thứ
 docker-compose down
-```
+`````
 
 ### Triển khai Kubernetes
 
-```yaml
+`````yaml
 # autogpt-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -462,13 +463,13 @@ spec: replicas: 1
             cpu: "500m"
           limits: memory: "2Gi"
             cpu: "2000m"
-```
+`````
 
 ## Cấu hình Nâng cao và Tùy chỉnh
 
 ### Persona Agent Tùy chỉnh
 
-```python
+`````python
 # Định nghĩa hành vi agent chuyên biệt
 from autogpt.agent import AgentConfig
 
@@ -487,11 +488,11 @@ config = AgentConfig(
 
 agent = Agent(config=config)
 result = agent.run("Audit the auth module in src/auth.py")
-```
+`````
 
 ### Chuyển đổi Backend LLM
 
-```python
+`````python
 # Chuyển đổi giữa các nhà cung cấp LLM mà không thay đổi code agent
 from autogpt.llm import LLMManager
 
@@ -506,11 +507,11 @@ llm = LLMManager.create(provider="ollama", model="llama3.2", base_url="http://lo
 
 # Agent hoạt động như nhau bất kể backend
 agent = Agent(llm=llm)
-```
+`````
 
 ### Hệ thống Plugin
 
-```python
+`````python
 # Auto-GPT hỗ trợ plugin để mở rộng chức năng
 # Đặt plugin trong thư mục plugins/
 
@@ -522,7 +523,7 @@ class CustomLogger(Plugin): def on_agent_start(self, agent): print(f"[{agent.nam
     def on_step_complete(self, agent, step, result): with open("agent_log.txt", "a") as f: f.write(f"[{agent.name}] Step {step}: {result.summary}\n")
 
     def on_agent_finish(self, agent, result): print(f"[{agent.name}] Agent finished. Final output length: {len(result.final_output)}")
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -567,11 +568,11 @@ Auto-GPT rất mạnh, nhưng nó không phải phép màu. Đây là những g�
 
 ### Chi phí chạy Auto-GPT với model OpenAI là bao nhiêu?
 
-Một nhiệm vụ nghiên cứu 50 lần lặp điển hình với GPT-4o có chi phí từ **$0,30 đến $1,50**, tùy thuộc vào độ phức tạp của trang web được duyệt và file được xử lý. Cho hoạt động liên tục, ngân sách **$15–$60 mỗi ngày**. Sử dụng ollama với model local giảm chi phí này xuống chi phí điện và phần cứng. Luôn đặt `CONTINUOUS_LIMIT` để giới hạn chi tiêu.
+Một nhiệm vụ nghiên cứu 50 lần lặp điển hình với GPT-4o có chi phí từ **$0,30 đến $1,50**, tùy thuộc vào độ phức tạp của trang web được duyệt và file được xử lý. Cho hoạt động liên tục, ngân sách **$15–$60 mỗi ngày**. Sử dụng ollama với model local giảm chi phí này xuống chi phí điện và phần cứng. Luôn đặt ````CONTINUOUS_LIMIT```` để giới hạn chi tiêu.
 
 ### Auto-GPT có thể chạy hoàn toàn offline không?
 
-**Có**, nếu bạn sử dụng LLM local qua [ollama](dibi8-internal-link) hoặc tương tự. Tất cả các công cụ ngoại trừ duyệt web hoạt động offline — thao tác file, thực thi code, và tìm kiếm bộ nhớ không cần kết nối internet. Duyệt web hiển nhiên cần kết nối. Đặt `OLLAMA_BASE_URL` để trỏ đến instance local của bạn.
+**Có**, nếu bạn sử dụng LLM local qua [ollama](dibi8-internal-link) hoặc tương tự. Tất cả các công cụ ngoại trừ duyệt web hoạt động offline — thao tác file, thực thi code, và tìm kiếm bộ nhớ không cần kết nối internet. Duyệt web hiển nhiên cần kết nối. Đặt ````OLLAMA_BASE_URL```` để trỏ đến instance local của bạn.
 
 ### Auto-GPT so với ChatGPT với plugin như thế nào?
 
@@ -579,15 +580,15 @@ Plugin ChatGPT được ngườii dùng khởi xướng và single-turn. Auto-GP
 
 ### Auto-GPT có an toàn để chạy trên máy của tôi không?
 
-**Phần lớn là có, với cấu hình đúng.** Luôn đặt `EXECUTE_LOCAL_COMMANDS=False` (mặc định). Sử dụng Docker sandbox cho thực thi code. Auto-GPT chạy thao tác file trong thư mục workspace được cấu hình. Không bao giờ chạy với `sudo` hoặc root. Phiên bản 2026 đã trải qua audit bảo mật và hạn chế các thao tác nguy hiểm theo mặc định.
+**Phần lớn là có, với cấu hình đúng.** Luôn đặt ````EXECUTE_LOCAL_COMMANDS=False```` (mặc định). Sử dụng Docker sandbox cho thực thi code. Auto-GPT chạy thao tác file trong thư mục workspace được cấu hình. Không bao giờ chạy với ````sudo```` hoặc root. Phiên bản 2026 đã trải qua audit bảo mật và hạn chế các thao tác nguy hiểm theo mặc định.
 
 ### Tôi có thể sử dụng Auto-GPT với công cụ tùy chỉnh không?
 
-**Có.** Hệ thống plugin và decorator `@ToolRegistry.register` cho phép bạn thêm bất kỳ hàm Python nào làm công cụ agent. LLM tự động phát hiện và sử dụng các công cụ đã đăng ký dựa trên mô tả của chúng. Bạn có thể đăng ký API calls, truy vấn database, thuật toán tùy chỉnh, hoặc giao diện phần cứng.
+**Có.** Hệ thống plugin và decorator ````@ToolRegistry.register```` cho phép bạn thêm bất kỳ hàm Python nào làm công cụ agent. LLM tự động phát hiện và sử dụng các công cụ đã đăng ký dựa trên mô tả của chúng. Bạn có thể đăng ký API calls, truy vấn database, thuật toán tùy chỉnh, hoặc giao diện phần cứng.
 
 ### Số lần lặp tối đa Auto-GPT có thể chạy là bao nhiêu?
 
-Không có giới hạn cứng, nhưng có giới hạn thực tế. Đặt `CONTINUOUS_LIMIT` trong file `.env` của bạn — các giá trị khuyến nghị là **25–100** cho hầu hết các nhiệm vụ. Vượt quá 100 lần lặp, áp lực context window tăng lên và agent có thể mất dấu mục tiêu ban đầu. Hệ thống bộ nhớ hybrid mở rộng điều này nhưng không loại bỏ hoàn toàn.
+Không có giới hạn cứng, nhưng có giới hạn thực tế. Đặt ````CONTINUOUS_LIMIT```` trong file ````.env``` của bạn — các giá trị khuyến nghị là **25–100** cho hầu hết các nhiệm vụ. Vượt quá 100 lần lặp, áp lực context window tăng lên và agent có thể mất dấu mục tiêu ban đầu. Hệ thống bộ nhớ hybrid mở rộng điều này nhưng không loại bỏ hoàn toàn.
 
 ## Kết luận: Auto-GPT Đã Trở lại — Và Đáng Để Bạn Dành Thờii Gian
 
@@ -624,7 +625,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 
 Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký dịch vụ thông qua các liên kết được đánh dấu trong bài viết này (như DigitalOcean hoặc Nbility), dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ chúng tôi sử dụng và thực sự tin tưởng. Auto-GPT itself là miễn phí và mã nguồn mở theo MIT — không có quan hệ affiliate nào tồn tại với tổ chức Significant-Gravitas.
 
----
+* * *
 
 *Được đăng trên dibi8.com — AI Source Code Hub. Cập nhật lần cuối: 2026-05-19*
 

@@ -28,6 +28,7 @@ faq: - q: "Gemini CLI는 Claude Code의 진지한 경쟁자인가요?"
     a: "많은 개발자가 그렇게 합니다. Gemini CLI는 무료 티어 기반 탐색과 긴 컨텍스트 작업에, Claude Code는 프로덕션 에이전트 루프와 안정적인 도구 사용에 씁니다. 조합하면 한쪽만 쓸 때보다 더 많은 워크플로우를 커버하고, Gemini의 무료 티어 덕분에 추가 비용은 사실상 0입니다."
 ---
 
+
 {{</* resource-info */>}}
 
 # Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교
@@ -139,7 +140,7 @@ Gemini CLI는 2026년 진지하게 고려할 만한 도구지만 Claude Code의 
 
 2026년 대부분의 전문 개발자에게 가장 좋은 스택은: Claude Code를 주력으로 + Gemini CLI를 무료 티어 "무엇이든 탐색하는" 도구로 함께. Gemini의 무료 티어 덕분에 추가 비용은 사실상 0입니다.
 
----
+* * *
 
 **관련 글**: [AI Coding 2026-Q2 종합 비교](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/) · [1M 컨텍스트 윈도우 LLM 2026 실측](https://dibi8.com/kr/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
 
@@ -205,12 +206,12 @@ Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교 represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](gemini-cli-vs-claude-code-2026-real-comparison)
 - [claude-code-vs-cline](gemini-cli-vs-claude-code-2026-real-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

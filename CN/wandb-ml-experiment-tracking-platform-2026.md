@@ -12,6 +12,7 @@ maintainer: 'wandb'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
 ---
+
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
 ![W&B Sweeps](https://opengraph.github.com/github/wandb/wandb/tree/main/wandb/sweeps)
@@ -26,7 +27,7 @@ Training a machine learning model without experiment tracking is like driving bl
 
 Weights & Biases is an end-to-end ML development platform that covers the entire experiment lifecycle. At its core is the logger — a lightweight library you add to your training script that automatically tracks metrics, configurations, artifacts, and even model checkpoints. Beyond logging, W&B provides a web dashboard for visualizing runs, comparing experiments side by side, sharing results with your team, and managing models from training to deployment.
 
-```
+````
 ┌───────────────────────────────────────────────┐
 │           W&B Platform Architecture            │
 ├───────────────────────────────────────────────┤
@@ -50,13 +51,13 @@ Weights & Biases is an end-to-end ML development platform that covers the entire
 │    ├─ PyTorch Lightning, FastAI               │
 │    └─ Ray Tune, Optuna, Ax                    │
 └───────────────────────────────────────────────┘
-```
+`````
 
 ## How W&B Works
 
 W&B works by instrumenting your training loop. You initialize a run, log metrics at each step, and W&B sends the data to the cloud dashboard in real time. The SDK is designed to have minimal overhead — logging a metric takes roughly 0.1ms, and the network calls are batched and compressed to reduce bandwidth usage.
 
-```python
+`````python
 import wandb
 
 # Initialize a new run with your configuration
@@ -73,7 +74,7 @@ wandb.init(
 for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch)
         # Log metrics — W&B handles the rest
         wandb.log({"train_loss": loss, "lr": config.learning_rate})
-```
+`````
 
 The platform distinguishes between three types of tracked data: **metrics** (scalar values like loss and accuracy logged over time), **artifacts** (versioned files like datasets and model checkpoints), and **media** (images, audio, text samples visualized directly in the dashboard).
 
@@ -81,31 +82,31 @@ The platform distinguishes between three types of tracked data: **metrics** (sca
 
 **Option 1: pip install (standard)**
 
-```bash
+`````bash
 pip install wandb
-```
+`````
 
 **Option 2: Authenticate with W&B**
 
-```bash
+`````bash
 wandb login
 # Paste your API key from https://wandb.ai/authorize
-```
+`````
 
 **Option 3: Docker**
 
-```bash
+`````bash
 docker pull wandb/launch
 docker run -e WANDB_API_KEY=$WANDB_API_KEY \
   -v /path/to/code:/app wandb/launch python train.py
-```
+`````
 
 **Option 4: Hugging Face Integration**
 
-```bash
+`````bash
 pip install wandb transformers
 # W&B is pre-configured for Hugging Face Trainer
-```
+`````
 
 ## Integration with PyTorch, Hugging Face, and Ray Tune
 
@@ -113,7 +114,7 @@ W&B integrates with virtually every popular ML framework. Here are the most comm
 
 **PyTorch Lightning**
 
-```python
+`````python
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import WandbCallback
 
@@ -124,11 +125,11 @@ class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): lo
 # W&B callback auto-logs everything
 trainer = pl.Trainer(callbacks=[WandbCallback()])
 trainer.fit(model)
-```
+`````
 
 **Hugging Face Transformers**
 
-```python
+`````python
 from transformers import Trainer, TrainingArguments
 import wandb
 
@@ -145,11 +146,11 @@ trainer = Trainer(
     train_dataset=dataset,
 )
 trainer.train()
-```
+`````
 
 **Ray Tune for Hyperparameter Sweeps**
 
-```python
+`````python
 import ray
 from ray import tune
 import wandb
@@ -170,19 +171,19 @@ sweep = tune.run(
     metric="score",
     mode="max",
 )
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
 W&B's logging performance has been benchmarked across various training scales. At typical training workloads, the overhead is negligible: | Scenario | Logging Overhead | Network Bandwidth | Dashboard Load Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Small model (10K params) | 0.5% | <1 MB/run | <1s |
 | Medium model (100M params) | 1.2% | <5 MB/run | <2s |
@@ -190,7 +191,7 @@ W&B's logging performance has been benchmarked across various training scales. A
 | LLM fine-tuning (7B params) | 3.5% | <50 MB/run | <5s |
 | Distributed training (8 GPUs) | 4.0% | <100 MB/run | <3s |
 
-Real-world usage examples: ```python
+Real-world usage examples: `````python
 # Log a confusion matrix as a W&B table
 import numpy as np
 import wandb
@@ -208,13 +209,13 @@ wandb.log({
 artifact = wandb.Artifact("training_data", type="dataset")
 artifact.add_file("dataset.csv")
 wandb.log_artifact(artifact)
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 **Artifact Versioning and Lineage**
 
-```python
+`````python
 # Log a model checkpoint as an artifact
 model_artifact = wandb.Artifact("best_model", type="model")
 model_artifact.add(model, "model.pt")
@@ -226,11 +227,11 @@ wandb.log_artifact(model_artifact, aliases=["best", "v1.0"])
 run = wandb.init()
 art = run.use_artifact("project/model:v1", type="model")
 path = art.download()
-```
+`````
 
 **Custom Reports and Dashboards**
 
-```python
+`````python
 # Create a report with custom panels
 report = wandb.Report(
     title="Experiment Results",
@@ -246,11 +247,11 @@ report = wandb.Report(
     ]
 )
 report.save("experiment-report")
-```
+`````
 
 **Sweeps Configuration**
 
-```yaml
+`````yaml
 # sweeps.yaml
 name: nlp-sweep
 program: train.py
@@ -262,16 +263,16 @@ parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4]
     max: 0.1
 command: - python
   - train.py
-```
+`````
 
-Run the sweep: ```bash
+Run the sweep: `````bash
 wandb sweep sweeps.yaml
 wandb agent $SWEEP_ID
-```
+`````
 
 **Model Registry for Deployment**
 
-```python
+`````python
 # Log model to the registry
 run.log_model(
     path="./fine_tuned_model",
@@ -283,11 +284,11 @@ run.log_model(
 api = wandb.Api()
 model = api.model("my-nlp-model:staging")
 model.change_alias("production")
-```
+`````
 
 **W&B SDK for Custom Training Loops**
 
-```python
+`````python
 import wandb
 import torch
 from torch.optim import AdamW
@@ -321,11 +322,11 @@ for epoch in range(config.epochs): model.train()
         "epoch_loss_avg": epoch_loss / len(train_loader),
         "epoch": epoch,
     })
-```
+`````
 
 **Artifact Versioning for Dataset Workflows**
 
-```python
+`````python
 # Create and log a dataset artifact
 dataset_artifact = wandb.Artifact(
     name="cleaned_dataset",
@@ -345,23 +346,23 @@ wandb.log_artifact(dataset_artifact, aliases=["latest", "v1.2"])
 run = wandb.init()
 clean_data = run.use_artifact("project/cleaned_dataset:v1.2", type="dataset")
 data_path = clean_data.download()
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | W&B | MLflow | Weights & Biases | TensorBoard | Neptune.ai |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Experiment tracking | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Hyperparameter sweeps | ✓ (Native) | ✓ | ✓ | No | ✓ |
@@ -381,7 +382,7 @@ data_path = clean_data.download()
 W&B is the most polished ML tracking platform available, but it has some trade-offs: 1. **Cloud-first model**: W&B's free tier requires using their cloud platform. While they offer self-hosted W&B Enterprise for teams that need on-premise deployment, the free tier does not support self-hosting. If your organization requires all data to stay within your infrastructure, this may be a dealbreaker.
 2. **Free tier limits**: The free tier is limited to 1 team member. For larger research teams, the paid plans start at a significant cost, especially when you factor in the additional storage required for large model artifacts.
 3. **Learning curve for advanced features**: Basic logging is straightforward, but features like sweeps, artifact versioning, and custom reports require understanding W&B's data model. New users may need 1-2 hours to get comfortable with the platform's full capabilities.
-4. **Limited offline capability**: If your training environment has intermittent internet connectivity, W&B syncs data when the connection is restored. However, the SDK does support `wandb.init(mode="offline")` for fully disconnected environments, with manual sync later.
+4. **Limited offline capability**: If your training environment has intermittent internet connectivity, W&B syncs data when the connection is restored. However, the SDK does support ````wandb.init(mode="offline")```` for fully disconnected environments, with manual sync later.
 5. **Vendor lock-in risk**: While W&B exports data in standard formats (JSON, CSV), building a migration to another platform after committing to W&B for hundreds of experiments can be time-consuming.
 
 ## Frequently Asked Questions
@@ -392,7 +393,7 @@ Yes. W&B offers a generous free tier for individual researchers and small teams.
 
 **Q: Can I use W&B with Jupyter Notebooks?**
 
-Absolutely. W&B works seamlessly in Jupyter notebooks. Initialize your run with `wandb.init()` at the top of a notebook cell, and all subsequent `wandb.log()` calls will stream to the dashboard. Use `wandb.jupyter` for automatic integration with Jupyter widgets.
+Absolutely. W&B works seamlessly in Jupyter notebooks. Initialize your run with ````wandb.init()```` at the top of a notebook cell, and all subsequent ````wandb.log()```` calls will stream to the dashboard. Use ````wandb.jupyter```` for automatic integration with Jupyter widgets.
 
 **Q: How does W&B handle large model artifacts?**
 
@@ -410,7 +411,7 @@ W&B supports team workspaces where all runs, artifacts, and reports are shared b
 
 Weights & Biases has transformed how ML teams approach experiment tracking. By combining real-time logging, intuitive visualization, and powerful collaboration features, W&B turns the chaos of model training into a structured, reproducible workflow. Whether you're fine-tuning a 7B-parameter LLM or running a small hyperparameter sweep, W&B provides the visibility you need to make better decisions faster.
 
-The platform's deep integrations with PyTorch, Hugging Face, and Ray Tune mean you can start tracking experiments with a single line of code (`report_to="wandb"`). For teams building ML applications at scale, [DigitalOcean](https://m.do.co/c/oa14d5f0wx4f) offers affordable GPU instances that pair well with W&B"s tracking infrastructure.
+The platform's deep integrations with PyTorch, Hugging Face, and Ray Tune mean you can start tracking experiments with a single line of code (````report_to="wandb"```). For teams building ML applications at scale, [DigitalOcean](https://m.do.co/c/oa14d5f0wx4f) offers affordable GPU instances that pair well with W&B"s tracking infrastructure.
 
 For teams deploying ML pipelines: [WebShare](https://webshare.io/?referral_code=oa14d5f0wx4f) provides reliable proxy infrastructure for distributed training workflows.
 
@@ -425,7 +426,7 @@ Explore more guides on [MLflow vs W&B Comparison](dibi8-internal-link) and [LLM 
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for ongoing discussions about ML tools, experiment tracking, and MLOps practices.
 
 
----
+* * *
 **Sources & Further Reading**: - W&B documentation: https://docs.wandb.ai/
 - W&B GitHub repository: https://github.com/wandb/wandb
 - W&B API reference: https://docs.wandb.ai/ref/python/
@@ -461,7 +462,7 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for ongoing dis
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](wandb-ml-experiment-tracking-platform-2026)
@@ -470,6 +471,6 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for ongoing dis
 - [9router-smart-llm-proxy-token-saver-free-coding](wandb-ml-experiment-tracking-platform-2026)
 - [ai-engineering-from-scratch](wandb-ml-experiment-tracking-platform-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

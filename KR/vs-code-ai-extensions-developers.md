@@ -22,6 +22,7 @@ aliases:
   - /posts/vs-code-ai-extensions-developers/
 ---
 
+
 # 2025년 개발자를 위한 최고의 VS Code AI 확장 프로그램: 생산성 향상
 
 
@@ -159,7 +160,7 @@ Copilot과 Codeium을 동시에 활성화하면 충돌이 발생합니다. 권�
 
 2025년 VS Code는 자체 AI 기능을 대폭 강화하고 있습니다. Inline Chat, Agent Mode, AI 기반 터미널 명령어 제안 등이 기본 내장되고 있으며, 이는 확장 프로그램 생태계와 어떻게 공존할지 주목됩니다. 2025-2026년에는 AI 에이전트가 직접 터미널 명령을 실행하고 PR을 생성하는 시대가 올 것으로 예상됩니다.
 
----
+* * *
 
 ## FAQ
 
@@ -178,7 +179,7 @@ Tabnine의 로컬 모델과 Continue + Ollama 조합만 완전한 오프라인 �
 **초보 개발자도 AI 코딩 어시스턴트의 혜택을 볼 수 있나요?**  
 네이, 코드 제안을 통해 새로운 패턴과 문법을 배울 수 있습니다. 단, AI가 생성하는 코드를 비판적으로 검토하는 습관을 반드시 길러야 합니다. AI는 도구이지 교체재가 아닙니다.
 
----
+* * *
 
 ## 추천 인프라
 
@@ -250,7 +251,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

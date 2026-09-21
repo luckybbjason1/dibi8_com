@@ -33,6 +33,7 @@ faqs: - q: 'MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế n�
     a: 'Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.'
 ---
 
+
 {</* resource-info */>}
 
 ## Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra
@@ -50,7 +51,7 @@ Trong thế giới AI ngày nay, một vấn đề cốt lõi vẫn luôn thách
 
 MemPalace — với **51,745 sao trên GitHub** — chính là câu trả lời. Được mệnh danh là *"The best-benchmarked open-source AI memory system"*, MemPalace không chỉ miễn phí mà còn dễ dàng tích hợp vào bất kỳ dự án AI nào.
 
----
+* * *
 
 ## Vấn Đề Mà MemPalace Giải Quyết
 
@@ -60,7 +61,7 @@ Hầu hết AI assistant hiện nay đều mắc phải "bệnh quên": - **Ng�
 
 MemPalace giải quyết triệt để bằng cách lưu trữ, truy xuất và cập nhật **bộ nhớ dài hạn** cho AI — giống như não bộ con người vậy.
 
----
+* * *
 
 ## Kiến Trúc Kỹ Thuật Của MemPalace
 
@@ -78,22 +79,22 @@ Mọi thông tin quan trọng đều được chuyển thành **embedding vector
 
 Tự động tóm tắt, nén và ưu tiên thông tin — chỉ truy xuất điều thực sự cần thiết cho câu trả lời hiện tại.
 
----
+* * *
 
 ## Cài Đặt Và Sử Dụng MemPalace
 
-Cài đặt cực kỳ đơn giản: ```bash
+Cài đặt cực kỳ đơn giản: ````bash
 pip install mempalace
-```
+`````
 
-Hoặc với Docker: ```bash
+Hoặc với Docker: `````bash
 docker pull mempalace/mempalace:latest
 docker run -p 8080:8080 mempalace/mempalace:latest
-```
+`````
 
 ### Ví Dụ Tích Hợp Cơ Bản
 
-```python
+`````python
 from mempalace import MemoryPalace
 
 # Khởi tạo hệ thống trí nhớ
@@ -119,11 +120,11 @@ context = memory.recall(
 
 print(context)
 # Output: ['Người dùng thích cà phê đen, không đường.', 'Hay làm việc vào buổi tối.']
-```
+`````
 
 ### Tích Hợp Với LangChain
 
-```python
+`````python
 from langchain.chains import ConversationChain
 from mempalace.langchain import MemPalaceMemory
 
@@ -139,11 +140,11 @@ chain = ConversationChain(
 
 response = chain.predict(input="Tôi muốn một thứ gì đó tỉnh táo")
 # AI sẽ tự động nhớ và gợi ý cà phê đen
-```
+`````
 
 ### Cấu Hình Nâng Cao
 
-```python
+`````python
 memory = MemoryPalace(
     backend="pgvector",
     connection_string="postgresql://user:pass@localhost/db",
@@ -152,9 +153,9 @@ memory = MemoryPalace(
     decay_factor=0.95,                 # Thông tin cũ dần mờ đi
     importance_threshold=0.7           # Chỉ giữ thông tin quan trọng
 )
-```
+````
 
----
+* * *
 
 ## Tại Sao MemPalace Vượt Trội?
 
@@ -166,7 +167,7 @@ memory = MemoryPalace(
 | Tích hợp | LangChain, LlamaIndex, v.v. | Hạn chế |
 | Community | 51,745+ stars | Nhỏ hơn nhiều |
 
----
+* * *
 
 ## Kết Luận
 
@@ -174,7 +175,7 @@ MemPalace không chỉ là một thư viện — nó là **nền tảng trí nh�
 
 👉 **GitHub**: [github.com/MemPalace/mempalace](https://github.com/MemPalace/mempalace)
 
----
+* * *
 
 ## Related Articles
 
@@ -183,7 +184,7 @@ MemPalace không chỉ là một thư viện — nó là **nền tảng trí nh�
 
 
 
----
+* * *
 
 *Bài viết được cập nhật lần cuối: 2026-05-10*
 
@@ -198,7 +199,7 @@ A: Dư sức! Nó đẻ sẵn ra một cổng kết nối chuẩn MCP, giúp con
 **Q: Lưu bộ nhớ local thì xài ChromaDB hay Pinecone?**
 A: MemPalace xài ChromaDB local để đảm bảo độ trễ bằng không và đách tốn 1 xu gọi API. Ngon hơn Pinecone nhiều nếu bạn sợ bị lộ source code lên mây.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -271,7 +272,7 @@ MemPalace vs Mem0: Benchmark Recall 96.6% & Framework Bộ Nhớ AI Tốt Nhất
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

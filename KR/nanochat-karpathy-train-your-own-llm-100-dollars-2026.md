@@ -30,6 +30,7 @@ faqs: - q: 'nanochat란 무엇이며 누가 만들었습니까?'
     a: 'Ollama는 추론 런타임입니다 — 기존 사전학습 모델을 로드하고 서빙합니다. nanochat는 훈련 프레임워크입니다 — 원시 텍스트 데이터에서 모델을 훈련합니다. Ollama는 자동차고, nanochat는 엔진을 만드는 공장입니다. nanochat도 추론 서버와 채팅 UI를 포함하지만, 핵심 목적은 훈련입니다.'
 ---
 
+
 ![nanochat 2026: Andrej Karpathy LLM 훈련 파이프라인 — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 
 2025년 10월, Andrej Karpathy는 간단한 전제로 [nanochat](https://github.com/karpathy/nanochat)를 발표했습니다: "$100으로 살 수 있는 최고의 ChatGPT." 2026년 6월 기준 **54,700개의 GitHub 스타**를 기록하며 오픈소스 커뮤니티에서 가장 많이 읽히는 LLM 훈련 튜토리얼이 되었습니다.
@@ -57,7 +58,7 @@ Lambda Labs, CoreWeave, vast.ai, RunPod에서 노드를 임대할 수 있습니�
 
 ## 핵심 훈련 명령어
 
-```bash
+````bash
 # 토크나이저 훈련
 python tokenize_dataset.py --dataset fineweb --vocab-size 32768
 
@@ -72,7 +73,7 @@ torchrun --nproc_per_node=8 train_sft.py \
 
 # 추론 서버 실행
 python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
-```
+````
 
 ## 활용 대상
 
@@ -149,12 +150,12 @@ nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,000줄 전체 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -164,7 +165,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [wandb-ml-experiment-tracking-platform-2026](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
 - [egonex-understand-anything-interactive-knowledge-graph-ai](nanochat-karpathy-train-your-own-llm-100-dollars-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

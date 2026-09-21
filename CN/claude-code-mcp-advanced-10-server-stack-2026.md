@@ -27,6 +27,7 @@ faq: - q: "How many MCP servers is too many?"
   - q: "What's the trade-off for using HTTP/SSE servers vs stdio?"
     a: "HTTP: persistent state, centralized credentials, depends on server uptime. stdio: zero latency, no credential exposure, dies with session. Default to stdio. Use HTTP only when (a) needing persistent state across sessions, or (b) integrating with a SaaS that has no local equivalent."
 ---
+
 {{</* resource-info */>}}
 
 # Claude Code MCP Advanced 2026: The 10-Server Production Stack
@@ -43,7 +44,7 @@ The MCP ecosystem hit 1000+ servers in 2026. Most users either install too few (
 >
 > **Startup cost**: ~1.5 sec total.
 >
-> **Per-project override**: postgres, github, linear via `.claude/mcp.json` in repo.
+> **Per-project override**: postgres, github, linear via ```.claude/mcp.json```` in repo.
 
 ## The Stack
 
@@ -103,7 +104,7 @@ The MCP ecosystem hit 1000+ servers in 2026. Most users either install too few (
 
 ## Configuration
 
-`~/.claude/mcp.json` (global, universal tools): ```json
+``~/.claude/mcp.json`` (global, universal tools): `````json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -115,9 +116,9 @@ The MCP ecosystem hit 1000+ servers in 2026. Most users either install too few (
     "playwright": {"command": "npx", "args": ["-y", "@executeautomation/playwright-mcp-server"]}
   }
 }
-```
+`````
 
-`.claude/mcp.json` (per-project, sensitive tools): ```json
+``.claude/mcp.json`` (per-project, sensitive tools): `````json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -125,20 +126,20 @@ The MCP ecosystem hit 1000+ servers in 2026. Most users either install too few (
     "linear": {"command": "...", "env": {"LINEAR_API_KEY": "${LINEAR_KEY}"}}
   }
 }
-```
+`````
 
 ## Why Not More Servers?
 
-### Why no `slack` MCP?
+### Why no ````slack```` MCP?
 Useful but high-friction permission management. Move to it if Slack integration is daily.
 
-### Why no `notion` MCP?
+### Why no ````notion```` MCP?
 Same as Slack — useful but adds startup time without daily payoff for most users.
 
-### Why no `kubernetes` MCP?
+### Why no ````kubernetes```` MCP?
 Powerful but rare. Add per-project when ops work demands it.
 
-### Why no `aws` / `gcp` MCP?
+### Why no ````aws```` / ````gcp```` MCP?
 Same — per-project install. Don't keep cloud creds globally accessible.
 
 ## Startup Optimization
@@ -146,7 +147,7 @@ Same — per-project install. Don't keep cloud creds globally accessible.
 Each server adds ~100-300ms. With 10 servers: ~1.5 sec total startup. Above 15 servers: noticeably sluggish.
 
 Tips: - Use stdio (local) over HTTP whenever both exist
-- Audit each server's startup time — `time npx <server>` to measure
+- Audit each server's startup time — ````time npx <server>``` to measure
 - Replace slow community servers with Anthropic alternatives when available
 
 ## Security Patterns
@@ -171,7 +172,7 @@ For self-hosted MCP servers (team-shared): - **{{< aff "digitalocean" "footer-ct
 Per-project overrides matter more than global config. Keep sensitive tokens scoped to their project. The discipline of "only what this project needs" prevents credential bleed and keeps startup snappy.
 
 
----
+* * *
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP Server Security Audit 2026](https://dibi8.com/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/)
 
 
@@ -237,11 +238,11 @@ Claude Code MCP Advanced 2026: The 10-Server Production Stack represents an impo
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -251,7 +252,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-mcp-advanced-10-server-stack-2026)
 - [cursor-vs-claude-code](claude-code-mcp-advanced-10-server-stack-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -282,15 +283,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/bookstack-documentation-wiki/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt
@@ -66,7 +67,7 @@ Cách nhanh nhất để chạy BookStack là với Docker Compose. Bạn cần 
 
 ### Bước 1: Tạo file Docker Compose
 
-```yaml
+````yaml
 version: '3.8'
 
 services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
@@ -95,13 +96,13 @@ services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
       - MYSQL_PASSWORD=your_secure_db_password
     volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
-```
+`````
 
 File compose này định nghĩa hai dịch vụ: ứng dụng BookStack trên cổng 6875 và cơ sở dữ liệu MariaDB để lưu trữ.
 
 ### Bước 2: Khởi động stack
 
-```bash
+`````bash
 # Tạo thư mục dữ liệu
 mkdir -p bookstack_app_data bookstack_db_data
 
@@ -113,23 +114,23 @@ sleep 45
 
 # Kiểm tra log để xác nhận khởi động
 docker logs bookstack
-```
+`````
 
-Bạn sẽ thấy thông báo bootstrapping của Laravel theo sau bởi `NOTICE: ready to handle connections` từ PHP-FPM. Nếu kết nối cơ sở dữ liệu thất bại, kiểm tra DB_HOST có khớp với tên dịch vụ `bookstack_db` và thông tin đăng nhập có chính xác không.
+Bạn sẽ thấy thông báo bootstrapping của Laravel theo sau bởi ````NOTICE: ready to handle connections```` từ PHP-FPM. Nếu kết nối cơ sở dữ liệu thất bại, kiểm tra DB_HOST có khớp với tên dịch vụ ````bookstack_db```` và thông tin đăng nhập có chính xác không.
 
 ### Bước 3: Truy cập và cấu hình
 
-```bash
+`````bash
 # Thông tin đăng nhập mặc định khi khởi động đầu tiên
 # Tên đăng nhập: admin@admin.com
 # Mật khẩu: password
-```
+`````
 
-Truy cập `http://your-server-ip:6875` và đăng nhập. **Đổi mật khẩu admin ngay** trong Cài đặt → Ngườó dùng. Sau đó cấu hình APP_URL để sử dụng HTTPS —— BookStack tạo URL tuyệt đối trong thông báo email và xuất file, nên thiết lập APP_URL chính xác ngay từ đầu sẽ tránh link bị hỏng sau này.
+Truy cập ````http://your-server-ip:6875```` và đăng nhập. **Đổi mật khẩu admin ngay** trong Cài đặt → Ngườó dùng. Sau đó cấu hình APP_URL để sử dụng HTTPS —— BookStack tạo URL tuyệt đối trong thông báo email và xuất file, nên thiết lập APP_URL chính xác ngay từ đầu sẽ tránh link bị hỏng sau này.
 
 ### Bước 4: Nginx reverse proxy với SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/bookstack
 server {
     listen 443 ssl http2;
@@ -152,13 +153,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật `APP_URL` trong docker-compose.yml thành `https://docs.yourdomain.com` và khởi động lại container.
+Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật ````APP_URL```` trong docker-compose.yml thành ````https://docs.yourdomain.com```` và khởi động lại container.
 
 ### Cài đặt thủ công (Ubuntu 24.04 LTS)
 
-Nếu bạn thích triển khai bare-metal: ```bash
+Nếu bạn thích triển khai bare-metal: `````bash
 # Cài đặt dependencies
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -186,7 +187,7 @@ php artisan migrate
 chown -R www-data:www-data /var/www/BookStack
 chmod -R 755 /var/www/BookStack
 chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache
-```
+`````
 
 Cách thủ công cho bạn nhiều quyền kiểm soát hơn nhưng yêu cầu quản lý PHP, web server và MySQL riêng biệt. Cho production, Docker là lộ trình được khuyến nghị.
 
@@ -196,7 +197,7 @@ BookStack hỗ trợ nhiều backend xác thực. Cho triển khai doanh nghiệ
 
 ### Xác thực LDAP (Active Directory / OpenLDAP)
 
-```bash
+`````bash
 # Thêm vào file .env
 AUTH_METHOD=ldap
 LDAP_SERVER=ldap.company.com
@@ -209,13 +210,13 @@ LDAP_TLS=true
 LDAP_ID_ATTRIBUTE=uid
 LDAP_DISPLAY_NAME_ATTRIBUTE=cn
 LDAP_EMAIL_ATTRIBUTE=mail
-```
+`````
 
 Sau khi khởi động lại container, BookStack sẽ xác thực ngườó dùng thông qua thư mục LDAP. Ngườó dùng được tự động cung cấp khi đăng nhập lần đầu, nên bạn không cần tạo tài khoản thủ công.
 
 ### SAML 2.0 (cho Okta, Azure AD, OneLogin)
 
-```bash
+`````bash
 # Cấu hình SAML trong .env
 AUTH_METHOD=saml2
 SAML2_NAME=SSO
@@ -225,19 +226,19 @@ SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name
 SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata
 SAML2_IDP_SSO=https://your-idp.example.com/sso
 SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
-```
+`````
 
 ## Quản lý hình ảnh & Chỉnh sửa nội dung
 
 BookStack có sẵn hai trình chỉnh sửa. **Trình chỉnh sửa WYSIWYG** (dựa trên TinyMCE) là mặc định —— xử lý hình ảnh qua kéo-thả upload, hỗ trợ bảng, khối code với highlight cú pháp, và khối callout cho mẹo và cảnh báo. **Trình chỉnh sửa Markdown** cung cấp trải nghiệm chia màn hình với xem trước trực tiếp, lý tưởng cho lập trình viên thích viết Markdown.
 
-Upload hình ảnh rất đơn giản: ```markdown
+Upload hình ảnh rất đơn giản: `````markdown
 # Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack
 ![Văn bản thay thế](uploaded-image-name.png)
 
 # Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa
 # Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data
-```
+`````
 
 BookStack cũng hỗ trợ nhúng sơ đồ qua tích hợp Draw.io. Khi bạn chèn sơ đồ, BookStack lưu trữ XML nguồn Draw.io cùng với hình ảnh đã render, nên bạn có thể chỉnh sửa lại sơ đồ sau này mà không mất nguồn.
 
@@ -263,7 +264,7 @@ Cho ngữ cảnh: Confluence Cloud tính $6.05/ngườó/tháng. Với 50 ngư�
 
 ### GitHub Actions: Tự động hóa xuất bản tài liệu
 
-```yaml
+`````yaml
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
@@ -280,13 +281,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'"$(cat docs/api.html | base64 -w 0)"'"}' \
             "https://docs.yourdomain.com/api/pages/42"
-```
+`````
 
 BookStack expose REST API để quản lý nội dung theo chương trình. Tạo API token trong Cài đặt → API. API hỗ trợ thao tác CRUD trên kệ sách, sách, chương và trang, cùng upload hình ảnh và tìm kiếm.
 
 ### Tự động hóa sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-bookstack.sh
 
@@ -302,24 +303,24 @@ tar czf "$BACKUP_DIR/bookstack_app_$DATE.tar.gz" -C /path/to ./bookstack_app_dat
 
 # Chỉ giữ lại 14 ngày gần nhất
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
-Thêm vào cron để sao lưu hàng ngày: `0 3 * * * /opt/scripts/backup-bookstack.sh`
+Thêm vào cron để sao lưu hàng ngày: ````0 3 * * * /opt/scripts/backup-bookstack.sh````
 
 ### Giám sát với Prometheus
 
-```yaml
+`````yaml
 # Thêm vào docker-compose.yml cho monitoring
   node-exporter: image: prom/node-exporter:v1.7.0
     volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
     command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
-```
+`````
 
 ### Script kiểm tra sức khỏe
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-bookstack.sh
 
@@ -333,24 +334,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "OK: BookStack hoạt động bình thường"
 fi
-```
+`````
 
-Thêm vào cron để kiểm tra tự động: `*/5 * * * * /opt/scripts/health-check-bookstack.sh`
+Thêm vào cron để kiểm tra tự động: ````*/5 * * * * /opt/scripts/health-check-bookstack.sh````
 
 ## Sử dụng nâng cao: Củng cố production
 
 ### Bật cookie chỉ HTTPS
 
-```bash
+`````bash
 # Trong file .env
 SESSION_SECURE_COOKIE=true
-```
+`````
 
 Điều này đảm bảo session cookie chỉ được truyền qua kết nối HTTPS. Quan trọng nếu instance BookStack của bạn tiếp xúc với internet.
 
 ### Theme tùy chỉnh qua hệ thống module (v26.03+)
 
-```bash
+`````bash
 # Tạo thư mục module tùy chỉnh
 mkdir -p /config/www/themes/my_theme/modules/welcome_module
 
@@ -374,20 +375,20 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 # views/welcome.blade.php
 Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
-```
+`````
 
-Cài đặt module với: `php artisan bookstack:install-module /path/to/module.zip`
+Cài đặt module với: ````php artisan bookstack:install-module /path/to/module.zip````
 
 ### Kiểm soát lọc nội dung trang
 
-```bash
+`````bash
 # Trong .env (mới trong v25.12.4+)
 # Tùy chọn: false, true, hoặc danh sách tên bộ lọc phân cách bằng dấu phẩy
 APP_CONTENT_FILTERING=default
 
 # Các bộ lọc khả dụng: script, form, iframe, object, embed, style, css_expression
 # Để tắt lọc style (hữu ích nếu cần inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
-```
+`````
 
 ## So sánh: BookStack với các phương án thay thế
 
@@ -436,7 +437,7 @@ Không có công cụ nhập chính thức từ Confluence, nhưng bạn có th�
 
 ### Làm thế nào để cập nhật BookStack?
 
-Với Docker, cập nhật chỉ là một dòng lệnh: thay đổi tag image trong docker-compose.yml và chạy `docker compose up -d`. Với cài đặt thủ công, pull release mới nhất, chạy `git pull` hoặc tải archive release mới, sau đó chạy `php artisan migrate` và xóa cache. Luôn sao lưu cơ sở dữ liệu trước khi cập nhật —— BookStack phát hành bản vá bảo mật hàng tháng.
+Với Docker, cập nhật chỉ là một dòng lệnh: thay đổi tag image trong docker-compose.yml và chạy ````docker compose up -d````. Với cài đặt thủ công, pull release mới nhất, chạy ````git pull```` hoặc tải archive release mới, sau đó chạy ````php artisan migrate```` và xóa cache. Luôn sao lưu cơ sở dữ liệu trước khi cập nhật —— BookStack phát hành bản vá bảo mật hàng tháng.
 
 ### BookStack có hỗ trợ xác thực hai yếu tố không?
 
@@ -448,11 +449,11 @@ BookStack chính thức hỗ trợ MySQL và MariaDB. Hỗ trợ PostgreSQL đã
 
 ### Image LinuxServer.io và image chính thức khác nhau thế nào?
 
-Image `lscr.io/linuxserver/bookstack` được cộng đồng duy trì và sử dụng rộng rãi. Nó trừu tượng hóa cấu hình PHP-FPM và Nginx, khiến nó trở thành cách dễ nhất để chạy BookStack trong Docker. Không có image Docker chính thức từ ngườó duy trì BookStack —— LinuxServer image là tiêu chuẩn de facto.
+Image ````lscr.io/linuxserver/bookstack```` được cộng đồng duy trì và sử dụng rộng rãi. Nó trừu tượng hóa cấu hình PHP-FPM và Nginx, khiến nó trở thành cách dễ nhất để chạy BookStack trong Docker. Không có image Docker chính thức từ ngườó duy trì BookStack —— LinuxServer image là tiêu chuẩn de facto.
 
 ### Sao lưu hoạt động như thế nào?
 
-Sao lưu hai thứ: cơ sở dữ liệu MySQL/MariaDB (toàn bộ nội dung và metadata) và thư mục `/config/www/files` (hình ảnh và file đính kèm đã upload). Với cấu hình Docker ở trên, cả hai đều nằm trong named volumes. `mysqldump` đơn giản cộng với `tar` của volume dữ liệu ứng dụng là đủ. Kiểm tra quy trình khôi phục hàng quý.
+Sao lưu hai thứ: cơ sở dữ liệu MySQL/MariaDB (toàn bộ nội dung và metadata) và thư mục ````/config/www/files```` (hình ảnh và file đính kèm đã upload). Với cấu hình Docker ở trên, cả hai đều nằm trong named volumes. ````mysqldump```` đơn giản cộng với ````tar``` của volume dữ liệu ứng dụng là đủ. Kiểm tra quy trình khôi phục hàng quý.
 
 ## Kết luận: Bạn có nên chạy BookStack vào năm 2026?
 
@@ -462,7 +463,7 @@ Cho đội 5-50 ngườó muốn tài liệu nội bộ không bị khóa bởi 
 
 Tham gia cộng đồng dibi8.com: [Nhóm Telegram](https://t.me/dibi8opensource) để thảo luận công cụ mã nguồn mở hàng ngày, mẹo triển khai và hỗ trợ xử lý sự cố từ 5,000+ lập trình viên.
 
----
+* * *
 
 ## Nguồn & Tài liệu tham khảo
 
@@ -473,7 +474,7 @@ Tham gia cộng đồng dibi8.com: [Nhóm Telegram](https://t.me/dibi8opensource
 - [Image Docker BookStack LinuxServer.io](https://docs.linuxserver.io/images/docker-bookstack/)
 - [So sánh BookStack vs Wiki.js](https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/)
 
----
+* * *
 
 
 
@@ -514,7 +515,7 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -524,6 +525,6 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 - [hkuds-ai-trader](bookstack-documentation-wiki)
 - [apple-container](bookstack-documentation-wiki)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

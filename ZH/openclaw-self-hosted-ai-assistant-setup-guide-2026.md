@@ -22,6 +22,7 @@ aliases:
   - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/-
 ---
 
+
 {</* resource-info */>}
 
 ## 一、为什么 OpenClaw 在 2026 年爆发式增长？
@@ -34,11 +35,11 @@ aliases:
 
 | 时间节点 | GitHub Stars | 里程碑事件 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 2025 年 11 月 | 15,000 | 项目首次发布 |
 | 2026 年 1 月 | 147,000 | 登上 Hacker News 首页 |
@@ -59,7 +60,7 @@ aliases:
 - **心跳与定时任务**：按设定周期主动检查邮件、日历、监控告警，而非被动等待指令
 
 
----
+* * *
 ## 二、架构解析：OpenClaw 的三大核心层
 
 ### 2.1 Gateway 层：消息中枢
@@ -81,7 +82,7 @@ Agent 层是 OpenClaw 的「大脑」，核心由三部分组成：
 
 这是 OpenClaw 最具特色的设计之一。你通过纯文本定义 agent 的性格、说话方式、专业领域和决策边界。不是 prompt 工程，而是持续的自我认知：
 
-```markdown
+````markdown
 # SOUL.md — 你
 
 ## 工作模式
@@ -93,7 +94,7 @@ Agent 层是 OpenClaw 的「大脑」，核心由三部分组成：
 
 ## 立场
 隐私不是哪条规则要求你保密，是偷看这件事本身让你不舒服。
-```
+`````
 
 每次会话启动时，SOUL.md 的内容会被加载到上下文中，确保 agent 的「人格」一致且持久。
 
@@ -101,21 +102,21 @@ Agent 层是 OpenClaw 的「大脑」，核心由三部分组成：
 
 | 层级 | 存储内容 | 持久化方式 | 典型用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 知识图谱 | 项目事实、人物关系、技术决策 | 本地 Markdown 文件（PARA 方法） | 跨项目的 durable context |
-| 每日笔记 | 当天交互记录、待办事项、临时想法 | `memory/YYYY-MM-DD.md` | 短期上下文、夜间自动归档 |
-| 隐性知识 | 用户偏好、沟通习惯、硬性规则 | `SOUL.md` + `USER.md` | 行为约束和个性化 |
+| 每日笔记 | 当天交互记录、待办事项、临时想法 | ````memory/YYYY-MM-DD.md```` | 短期上下文、夜间自动归档 |
+| 隐性知识 | 用户偏好、沟通习惯、硬性规则 | ````SOUL.md```` + ````USER.md```` | 行为约束和个性化 |
 
 #### 模型路由策略
 
-OpenClaw 不绑定单一模型。你可以在 `openclaw.json` 中配置：
+OpenClaw 不绑定单一模型。你可以在 ````openclaw.json```` 中配置：
 
 - **本地模型**（Ollama/Docker Model Runner）：日常问答、低风险操作
 - **云端模型**（Claude 4.6 / GPT-5.5）：复杂推理、代码审查、长上下文分析
@@ -134,20 +135,20 @@ ClawHub 是 OpenClaw 的技能注册中心，目前收录 5700+ 个社区技能�
 **安全提示**：Cisco 在 2026 年 Q1 披露了 OpenClaw 技能生态中的供应链攻击风险。生产环境务必审计每个引入的技能，启用 sandbox 模式，并定期检查工具的权限范围。
 
 
----
+* * *
 ## 三、实战：从零部署你的私人 AI 助手
 
 ### 3.1 硬件与系统要求
 
 | 场景 | 最低配置 | 推荐配置 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 仅 Gateway + 云端模型 | 2 vCPU / 4GB RAM | 2 vCPU / 8GB RAM | 推理在云端，本地只做路由 |
 | Gateway + 本地 7B 模型 | 4 vCPU / 16GB RAM | 4 vCPU / 32GB RAM | Ollama 运行 Llama 3 8B 需要约 6GB 显存/内存 |
@@ -160,20 +161,20 @@ ClawHub 是 OpenClaw 的技能注册中心，目前收录 5700+ 个社区技能�
 
 #### 步骤 1：执行安装脚本
 
-```bash
+`````bash
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
+`````
 
 脚本会自动检测环境、安装 Node.js 24+ 依赖、下载 Gateway 二进制文件。
 
 #### 步骤 2：交互式配置向导
 
-```bash
+`````bash
 openclaw onboard
-```
+`````
 
 按提示设置：
-- Agent 名称（如 `Home-Hermes`）
+- Agent 名称（如 ````Home-Hermes````）
 - LLM Provider（选择 Ollama 或 OpenAI / Anthropic API）
 - 初始通道（建议先配置 Telegram Bot，调试最方便）
 
@@ -181,7 +182,7 @@ openclaw onboard
 
 若选择 Ollama 作为本地推理后端：
 
-```bash
+`````bash
 # 安装 Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -190,11 +191,11 @@ ollama pull llama3:8b
 
 # 验证运行
 ollama run llama3:8b "你好，请介绍自己"
-```
+`````
 
-在 `~/.openclaw/openclaw.json` 中配置模型路由：
+在 ````~/.openclaw/openclaw.json```` 中配置模型路由：
 
-```json
+`````json
 {
   "models": {
     "default": {
@@ -209,22 +210,22 @@ ollama run llama3:8b "你好，请介绍自己"
     }
   }
 }
-```
+`````
 
 ### 3.3 连接 Telegram（最推荐的调试通道）
 
 1. 通过 [@BotFather](https://t.me/botfather) 创建新 Bot，获取 API Token
-2. 编辑 `~/.openclaw/channels/telegram.json`：
+2. 编辑 ````~/.openclaw/channels/telegram.json````：
 
-```json
+`````json
 {
   "enabled": true,
   "botToken": "YOUR_BOT_TOKEN_HERE",
   "allowedUsers": ["your_telegram_user_id"]
 }
-```
+`````
 
-3. 重启 Gateway：`openclaw gateway restart`
+3. 重启 Gateway：````openclaw gateway restart````
 4. 向你的 Bot 发送第一条消息测试连通性
 
 ### 3.4 安全配置清单
@@ -232,12 +233,12 @@ ollama run llama3:8b "你好，请介绍自己"
 生产环境部署前，务必完成以下安全加固：
 
 - [ ] **DM 配对**：仅允许已配对的 Telegram / WhatsApp 用户与 agent 交互
-- [ ] **Allowlist**：在 `tools.md` 中明确列出 agent 可调用的工具，禁止危险操作（如 `rm -rf`、`DROP TABLE`）
-- [ ] **Sandbox 模式**：启用文件系统沙箱，限制 agent 只能访问 `~/workspace/` 目录
+- [ ] **Allowlist**：在 ````tools.md```` 中明确列出 agent 可调用的工具，禁止危险操作（如 ````rm -rf````、````DROP TABLE````）
+- [ ] **Sandbox 模式**：启用文件系统沙箱，限制 agent 只能访问 ````~/workspace/```` 目录
 - [ ] **成本上限**：为云端模型设置每日/每月 API 调用预算，防止心跳任务失控烧费
 - [ ] **技能审计**：逐一审查 ClawHub 引入的第三方技能，检查其请求的权限范围
 
----
+* * *
 
 ## 四、高阶场景：让 AI 助手真正为你工作
 
@@ -245,12 +246,12 @@ ollama run llama3:8b "你好，请介绍自己"
 
 配置心跳任务每 2 小时检查一次飞书 / Gmail 收件箱：
 
-```markdown
+`````markdown
 - 检查未读邮件，标记紧急度（高/中/低）
 - 高优先级 → 立即 Telegram 推送摘要
 - 中优先级 → 添加到今日待办
 - 低优先级 / 营销邮件 → 归档，周末统一清理
-```
+````
 
 实测效果：每日邮件处理时间从 45 分钟压缩到 8 分钟。
 
@@ -270,29 +271,29 @@ ollama run llama3:8b "你好，请介绍自己"
 
 | 你说 | Agent 执行 |
 |
----
+* * *
 |
----
+* * *
 |
 | "我 7 点有客人来" | 调亮客厅灯光 → 播放迎宾歌单 → 检查卫生间设备状态 |
 | "开启节能模式" | 关闭无人房间灯光 → 空调设为 18°C → 启动扫地机器人 |
 | "我要出差到周五" | 启动安防模式 → 模拟有人在家的灯光随机开关 → 关闭水阀 |
 
----
+* * *
 
 ## 五、成本对比：自托管 vs 云端 AI 服务
 
 | 成本项 | OpenClaw 自托管 | ChatGPT Plus | Claude Pro | 人工助理 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 月订阅费 | $0（开源） | $20/月 | $25/月 | $4,500/月 |
 | API 调用（云端模型） | $30-90/月（按需） | 包含 | 包含 | 无 |
@@ -303,7 +304,7 @@ ollama run llama3:8b "你好，请介绍自己"
 
 **关键洞察**：如果你已有闲置设备（旧 Mac Mini、树莓派 5、N100 小主机），自托管的边际成本趋近于零。即使搭配云端模型处理复杂任务，月均总成本通常也不超过 $50。
 
----
+* * *
 
 ## 六、2026 年 OpenClaw 生态展望
 
@@ -326,7 +327,7 @@ ollama run llama3:8b "你好，请介绍自己"
 - **Discord 开发者社区**：discord.gg/openclaw
 - **每周发布摘要**：buildmvpfast.com/blog（追踪最新开源 AI 工具动态）
 
----
+* * *
 
 ## 七、常见问题 FAQ
 
@@ -346,10 +347,10 @@ Llama 3 8B / Mistral 7B 级别的模型已经能胜任 80% 的日常问答和文
 
 三层防护：① 本地部署确保数据不出境；② allowlist 限制 agent 可调用的外部 API；③ sandbox 模式隔离文件系统访问范围。敏感操作（如发送邮件、转账）建议开启「人工确认」模式。
 
----
+* * *
 
 -
----
+* * *
 
 ## OpenClaw 自托管推荐服务器
 
@@ -368,7 +369,7 @@ OpenClaw 的爆发不是又一个「AI  hype」的昙花一现，而是开发者
 
 如果你一直在寻找一个足够严肃、足够开放、足够属于你的 AI 助手——今天就是部署它的最好时机。
 
----
+* * *
 
 *本文最后更新于 2026 年 5 月 18 日。技术方案可能随版本迭代变化，请以 [OpenClaw 官方文档](https://docs.openclaw.ai) 为准。*
 
@@ -439,7 +440,7 @@ OpenClaw 完全指南：2026 年最强开源 AI 助手自托管部署教程｜�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -471,15 +472,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

@@ -23,6 +23,7 @@ tags: ["invokeai", "stable diffusion", "ai image generation", "docker", "flux", 
 aliases:
   - /posts/invokeai/-
 ---
+
 {{</* resource-info */>}}
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
@@ -37,7 +38,7 @@ InvokeAI is a free, open-source creative engine for AI-powered image generation 
 
 ## How InvokeAI Works
 
-InvokeAI follows a modular client-server architecture. The backend is a Python-based API server (`invokeai.app.api_app`) that handles model loading, image generation, and queue management. The frontend is a React-based single-page application that provides the canvas, gallery, and workflow editor.
+InvokeAI follows a modular client-server architecture. The backend is a Python-based API server (```invokeai.app.api_app````) that handles model loading, image generation, and queue management. The frontend is a React-based single-page application that provides the canvas, gallery, and workflow editor.
 
 **Core components:**
 
@@ -62,41 +63,41 @@ Docker is the fastest path to a production-grade InvokeAI setup. The official im
 
 **Step 1 — Clone the repository:**
 
-```bash
+`````bash
 git clone https://github.com/invoke-ai/InvokeAI.git
 cd InvokeAI/docker
-```
+`````
 
 **Step 2 — Configure environment:**
 
-```bash
+`````bash
 cp .env.sample .env
-```
+`````
 
-Edit `.env` with your settings: ```bash
+Edit ``.env`` with your settings: `````bash
 # Core configuration
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
 GPU_DRIVER=cuda
 CONTAINER_UID=1000
 HUGGINGFACE_TOKEN=hf_your_token_here
-```
+`````
 
 **Step 3 — Start the container:**
 
-```bash
+`````bash
 ./run.sh
-```
+`````
 
-Or use `docker compose` directly: ```bash
+Or use ``docker compose`` directly: `````bash
 docker compose up -d
-```
+`````
 
-Access the UI at `http://localhost:9090`.
+Access the UI at ````http://localhost:9090````.
 
 ### Quick Docker Run (No Compose)
 
-For a quick test without persistence: ```bash
+For a quick test without persistence: `````bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -112,35 +113,35 @@ docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
   --volume /mnt/invokeai-data:/invokeai \
   ghcr.io/invoke-ai/invokeai:latest
-```
+`````
 
 ### Method 2: Bare Metal (Linux/macOS)
 
 **Step 1 — Install the launcher:**
 
-```bash
+`````bash
 pip install invokeai
-```
+`````
 
 **Step 2 — Run the setup:**
 
-```bash
+`````bash
 invokeai-configure
-```
+`````
 
 This interactive wizard installs the correct PyTorch version, downloads default models, and configures the runtime directory.
 
 **Step 3 — Start the WebUI:**
 
-```bash
+`````bash
 invokeai-web
-```
+`````
 
 ### Method 3: Cloud VPS (DigitalOcean)
 
 For teams without local GPU hardware, a cloud GPU instance provides full InvokeAI access. DigitalOcean GPU Droplets with NVIDIA A10G or H100 cards work well.
 
-```bash
+`````bash
 # On a fresh Ubuntu 24.04 GPU droplet
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 sudo systemctl enable --now docker
@@ -160,13 +161,13 @@ cd InvokeAI/docker
 cp .env.sample .env
 # Edit .env: set INVOKEAI_ROOT and HUGGINGFACE_TOKEN
 sudo docker compose up -d
-```
+`````
 
 *This guide includes affiliate links to DigitalOcean. Signing up through these links supports the site at no extra cost to you.*
 
 ### Production docker-compose.yml Reference
 
-```yaml
+`````yaml
 # Copyright (c) 2023 Eugene Brodsky https://github.com/ebr
 
 x-invokeai: &invokeai
@@ -198,7 +199,7 @@ services: invokeai-cuda: <<: *invokeai
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
     profiles: - rocm
-```
+`````
 
 ## Integration with Stable Diffusion, ComfyUI, and ControlNet
 
@@ -217,13 +218,13 @@ InvokeAI supports multiple model families out of the box: - **SD 1.5** — Class
 
 **Adding models manually:**
 
-```bash
+`````bash
 # Place .safetensors or .ckpt files in the models directory
 cp your-model.safetensors /opt/invokeai-data/models/sd-1/main/
 
 # Restart the container
 docker compose restart
-```
+`````
 
 ### ControlNet Integration
 
@@ -246,7 +247,7 @@ While InvokeAI and ComfyUI use different workflow formats, you can recreate Comf
 - Image Scale nodes
 - ControlNet processors
 
-```python
+`````python
 # Example: Programmatically setting generation parameters
 # via InvokeAI's REST API (v6.12.0+)
 import requests
@@ -265,7 +266,7 @@ response = requests.post(
     }
 )
 print(response.json()["session_id"])
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -273,13 +274,13 @@ print(response.json()["session_id"])
 
 | Platform | 768×1024 (avg) | 1024×1024 (avg) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **InvokeAI** | 18.83s | 24.44s | Professional UI, queue system |
 | **ComfyUI** | 16.16s | 21.47s | Fastest raw generation |
@@ -292,11 +293,11 @@ print(response.json()["session_id"])
 
 | Platform | VRAM Usage | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | InvokeAI | 14.2 GB | Efficient model caching |
 | ComfyUI | 13.8 GB | Lowest overhead |
@@ -327,10 +328,10 @@ print(response.json()["session_id"])
 
 ### Multi-User Mode (v6.12.0+)
 
-InvokeAI now supports multiple isolated accounts on a single backend: ```bash
+InvokeAI now supports multiple isolated accounts on a single backend: `````bash
 # Enable multi-user mode in your .env
 INVOKEAI_ENABLE_MULTIUSER=true
-```
+`````
 
 Each user gets: - Separate image boards and galleries
 - Independent canvas state
@@ -341,7 +342,7 @@ Admins manage models and session queues; regular users cannot add or delete syst
 
 ### Reverse Proxy with SSL
 
-```nginx
+`````nginx
 # Nginx configuration for production
 server {
     listen 443 ssl http2;
@@ -362,11 +363,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### systemd Service
 
-```ini
+`````ini
 # /etc/systemd/system/invokeai.service
 [Unit]
 Description=InvokeAI Creative Engine
@@ -383,16 +384,16 @@ TimeoutStartSec=0
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-Enable and start: ```bash
+Enable and start: `````bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
-```
+`````
 
 ### Monitoring with Prometheus
 
-Export container metrics and monitor GPU utilization: ```yaml
+Export container metrics and monitor GPU utilization: `````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -401,11 +402,11 @@ services: prometheus: image: prom/prometheus:latest
   dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
     ports: - "9400:9400"
-```
+`````
 
 ### Automated Backups
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/invokeai-backup/backup.sh
 BACKUP_DIR="/backups/invokeai"
@@ -417,25 +418,25 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 
 # Keep only last 7 days
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
-```
+`````
 
-Add to crontab: ```bash
+Add to crontab: `````bash
 0 2 * * * /opt/invokeai-backup/backup.sh
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | InvokeAI | AUTOMATIC1111 | ComfyUI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **WebUI Polish** | Professional, designed for creatives | Functional but dated | Minimal, node-focused | Minimal, prompt-focused |
 | **Node-based Workflows** | Yes, visual editor | No (extension-based) | Yes, native | No |
@@ -471,7 +472,7 @@ Minimum: 8GB VRAM (NVIDIA RTX 3060 or better), 16GB RAM, 50GB free disk space. R
 
 ### Can I run InvokeAI without a GPU?
 
-Yes, InvokeAI runs on CPU-only systems, but generation is 10–20× slower. Use the CPU Docker profile: `docker compose --profile cpu up -d`. Expect 2–5 minutes per 1024×1024 image on a modern 8-core CPU. This is suitable for testing but not production use.
+Yes, InvokeAI runs on CPU-only systems, but generation is 10–20× slower. Use the CPU Docker profile: ````docker compose --profile cpu up -d````. Expect 2–5 minutes per 1024×1024 image on a modern 8-core CPU. This is suitable for testing but not production use.
 
 ### How does InvokeAI handle model licensing?
 
@@ -479,21 +480,21 @@ InvokeAI itself is Apache-2.0 licensed. The models you download (SD 1.5, SDXL, F
 
 ### Can I migrate from AUTOMATIC1111 to InvokeAI?
 
-Yes. InvokeAI can use existing `.safetensors` and `.ckpt` models from your A1111 installation. Point `INVOKEAI_ROOT` to your existing models directory, or copy models into the InvokeAI models folder. Note that A1111 extensions and scripts do not transfer — InvokeAI uses its own node-based workflow system.
+Yes. InvokeAI can use existing ````.safetensors```` and ````.ckpt```` models from your A1111 installation. Point ````INVOKEAI_ROOT```` to your existing models directory, or copy models into the InvokeAI models folder. Note that A1111 extensions and scripts do not transfer — InvokeAI uses its own node-based workflow system.
 
 ### How do I update InvokeAI to a new version?
 
-For Docker installations, pull the latest image and restart: ```bash
+For Docker installations, pull the latest image and restart: `````bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
-```
+`````
 
-For bare metal installations, use the launcher: ```bash
+For bare metal installations, use the launcher: `````bash
 invokeai-update
-```
+`````
 
-Always back up your `INVOKEAI_ROOT` directory before major version updates.
+Always back up your ````INVOKEAI_ROOT```` directory before major version updates.
 
 ### Is there a hosted/cloud version of InvokeAI?
 
@@ -501,7 +502,7 @@ InvokeAI is primarily self-hosted. The developers offer Invoke for Teams (a comm
 
 ### How does multi-user mode work in v6.12.0?
 
-Multi-user mode creates separate accounts with individual galleries, canvas states, and preferences. An admin account manages models and system settings. Enable it with `INVOKEAI_ENABLE_MULTIUSER=true`. Each user logs in with a username and password. This is marked as experimental in v6.12.0 — expect improvements in future releases.
+Multi-user mode creates separate accounts with individual galleries, canvas states, and preferences. An admin account manages models and system settings. Enable it with ````INVOKEAI_ENABLE_MULTIUSER=true```. Each user logs in with a username and password. This is marked as experimental in v6.12.0 — expect improvements in future releases.
 
 ## Conclusion
 
@@ -537,7 +538,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [InvokeAI PyPI Package](https://pypi.org/project/InvokeAI/)
 
 
----
+* * *
 *Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no additional cost to you. This helps support the site and our open-source content. All opinions and benchmarks are independently produced.*
 
 
@@ -567,7 +568,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [impeccable-ai-design-language-harness-quality-ui](invokeai)
@@ -576,6 +577,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](invokeai)
 - [apple-container](invokeai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

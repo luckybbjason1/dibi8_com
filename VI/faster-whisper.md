@@ -24,9 +24,10 @@ aliases:
   - /vi/posts/faster-whisper/
 ---
 
+
 {{</* resource-info */>}}
 
-OpenAI Whisper đã thay đổi lĩnh vực chuyển giọng nói thành văn bản (speech-to-text) vào năm 2022, nhưng bản triển khai Python gốc không tận dụng được hiệu năng phần cứng. Với file audio 13 phút, `openai/whisper` cùng mô hình large-v2 cần hơn 4 phút trên GPU Tesla V100 — không thể chấp nhận được cho các pipeline production xử lý hàng trăm giờ mỗi ngày. **faster-whisper** của SYSTRAN tái triển khai Whisper inference bằng CTranslate2, đạt tốc độ nhanh gấp 4x với độ chính xác tương đương trong khi giảm VRAM gần 70%. Với hơn 23,000 stars trên GitHub, nó đã trở thành runtime mặc định cho speech-to-text production trong môi trường Python.
+OpenAI Whisper đã thay đổi lĩnh vực chuyển giọng nói thành văn bản (speech-to-text) vào năm 2022, nhưng bản triển khai Python gốc không tận dụng được hiệu năng phần cứng. Với file audio 13 phút, ```openai/whisper```` cùng mô hình large-v2 cần hơn 4 phút trên GPU Tesla V100 — không thể chấp nhận được cho các pipeline production xử lý hàng trăm giờ mỗi ngày. **faster-whisper** của SYSTRAN tái triển khai Whisper inference bằng CTranslate2, đạt tốc độ nhanh gấp 4x với độ chính xác tương đương trong khi giảm VRAM gần 70%. Với hơn 23,000 stars trên GitHub, nó đã trở thành runtime mặc định cho speech-to-text production trong môi trường Python.
 
 Hướng dẫn này cung cấp faster whisper tutorial cấp production, bao gồm cài đặt, benchmark, triển khai Docker, và tích hợp với WhisperX và whisper.cpp. Mọi lệnh và cấu hình đều sẵn sàng để copy-paste.
 
@@ -62,7 +63,7 @@ Các quyết định kỹ thuật chính tạo nên tốc độ: - **Lượng t�
 
 ### Cài đặt pip (CPU)
 
-```bash
+`````bash
 # Tạo môi trường ảo
 python -m venv venv-whisper
 source venv-whisper/bin/activate  # Linux/Mac
@@ -70,11 +71,11 @@ source venv-whisper/bin/activate  # Linux/Mac
 
 # Cài đặt faster-whisper
 pip install faster-whisper
-```
+`````
 
 ### Cài đặt pip với hỗ trợ GPU
 
-```bash
+`````bash
 # Cài cuBLAS và cuDNN qua pip (chỉ Linux)
 pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.*
 
@@ -83,11 +84,11 @@ export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import
 
 # Cài đặt faster-whisper
 pip install faster-whisper
-```
+`````
 
 ### Thiết lập Docker
 
-```bash
+`````bash
 # Pull image NVIDIA CUDA chính thức
 docker run -it --rm --gpus all \
   -v $(pwd)/audio:/audio \
@@ -97,11 +98,11 @@ docker run -it --rm --gpus all \
 # Bên trong container
 apt-get update && apt-get install -y python3-pip
 pip install faster-whisper
-```
+`````
 
 ### Xác minh cài đặt
 
-```python
+`````python
 # verify_setup.py
 from faster_whisper import WhisperModel
 import torch
@@ -112,11 +113,11 @@ print(f"Số thiết bị CUDA: {torch.cuda.device_count()}")
 model = WhisperModel("tiny", device="cuda", compute_type="float16")
 print(f"Mô hình tải trên: {model.model.device}")
 print("Xác minh cài đặt thành công")
-```
+`````
 
 ### Phiên âm đầu tiên
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # Tải mô hình (tự động tải từ Hugging Face lần đầu)
@@ -129,7 +130,7 @@ print(f"Ngôn ngữ phát hiện: {info.language} "
       f"(xác suất: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
@@ -137,11 +138,11 @@ for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {s
 
 WhisperX xây dựng trên faster-whisper để thêm timestamp cấp từ và phân tách ngưới nói. Công cụ đầu tiên cho phiên âm cuộc họp.
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -169,20 +170,20 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
           f"{speaker}: {segment[text]}")
-```
+`````
 
 ### whisper-asr-webservice (API tương thích OpenAI)
 
-```bash
+`````bash
 docker run -d --gpus all \
   -p 9000:9000 \
   -e ASR_MODEL=large-v3 \
   -e ASR_ENGINE=faster_whisper \
   -e COMPUTE_TYPE=int8 \
   onerahming/openai-whisper-asr
-```
+`````
 
-```python
+`````python
 import requests
 
 with open("audio.mp3", "rb") as f: response = requests.post(
@@ -191,30 +192,30 @@ with open("audio.mp3", "rb") as f: response = requests.post(
         data={"language": "en", "output": "json"}
     )
 print(response.json())
-```
+`````
 
 ### Speaches (Máy chủ tự host tương thích OpenAI)
 
-```bash
+`````bash
 docker run -d --gpus all \
   -p 8000:8000 \
   -e WHISPER__MODEL=large-v3 \
   -e WHISPER__COMPUTE_TYPE=int8 \
   fedirz/speaches:latest-gpu
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="dummy")
 
 with open("audio.mp3", "rb") as f: transcript = client.audio.transcriptions.create(model="large-v3", file=f)
 print(transcript.text)
-```
+`````
 
 ### LibreTranslate (Pipeline dịch thuật)
 
-```python
+`````python
 from faster_whisper import WhisperModel
 import requests
 
@@ -226,7 +227,7 @@ response = requests.post("http://localhost:5000/translate", json={
     "q": japanese_text, "source": "ja", "target": "en"
 })
 print(response.json()["translatedText"])
-```
+`````
 
 ## Benchmark / Use case thực tế
 
@@ -273,7 +274,7 @@ print(response.json()["translatedText"])
 
 ### Bộ lọc VAD phân đoạn trước
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v3", device="cuda", compute_type="int8")
@@ -288,11 +289,11 @@ segments, info = model.transcribe(
     ),
     beam_size=5
 )
-```
+`````
 
 ### Batch inference tối đa hóa thông lượng
 
-```python
+`````python
 from faster_whisper import WhisperModel
 import glob, time
 
@@ -304,18 +305,18 @@ for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_si
     text = " ".join([s.text for s in segments])
     print(f"{file_path}: {len(text)} ký tự")
 print(f"Tổng thờ gian: {time.time() - start:.1f}s cho {len(audio_files)} file")
-```
+`````
 
 ### Timestamp cấp từ
 
-```python
+`````python
 segments, _ = model.transcribe("audio.mp3", word_timestamps=True)
 for segment in segments: for word in segment.words: print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
-```
+`````
 
 ### Chuyển đổi mô hình tùy chỉnh
 
-```bash
+`````bash
 pip install transformers[torch]>=4.23
 
 ct2-transformers-converter \
@@ -323,11 +324,11 @@ ct2-transformers-converter \
   --output_dir whisper-large-v3-ct2 \
   --copy_files tokenizer.json preprocessor_config.json \
   --quantization float16
-```
+`````
 
 ### Giám sát bằng Prometheus
 
-```python
+`````python
 from faster_whisper import WhisperModel
 from prometheus_client import Counter, Histogram, start_http_server
 
@@ -341,11 +342,11 @@ def transcribe(audio_path): REQUEST_COUNT.inc()
     return model.transcribe(audio_path, beam_size=5)
 
 start_http_server(8000)
-```
+`````
 
 ### Xử lý lỗi linh hoạt
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_float16", "float16", "float32"]
@@ -355,7 +356,7 @@ def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_f
         except RuntimeError as e: print(f"{ct} thất bại: {e}, thử lại...")
             continue
     raise RuntimeError("Tất cả compute type đều thất bại")
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -405,7 +406,7 @@ GPU inference cần NVIDIA GPU hỗ trợ CUDA 12.x. Lượng tử hóa INT8 ch�
 
 ### Cách cài faster-whisper trong Docker?
 
-Dùng image NVIDIA CUDA runtime chính thức với cuDNN 9. Phần Cài đặt & Thiết lập bên trên có Dockerfile đầy đủ. Yêu cầu cốt lõi là image nền `nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04`. Chạy với `--gpus all` để expose GPU.
+Dùng image NVIDIA CUDA runtime chính thức với cuDNN 9. Phần Cài đặt & Thiết lập bên trên có Dockerfile đầy đủ. Yêu cầu cốt lõi là image nền ````nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04````. Chạy với ````--gpus all```` để expose GPU.
 
 ### Độ chính xác phiên âm có giống OpenAI Whisper không?
 
@@ -413,7 +414,7 @@ Có. faster-whisper dùng cùng trọng số mô hình và tokenizer. Chênh l�
 
 ### Compute_type tốt nhất cho GPU của tôi?
 
-Dùng `int8` để tiết kiệm VRAM tối đa (phù hợp card GTX 10xx và 8GB). Dùng `float16` để tốc độ tốt nhất trên GPU hiện đại (RTX 30xx/40xx/50xx, A100, H100). Card Pascal tiêu dùng (GTX 1060/1070/1080) nên dùng `int8` do hỗ trợ fp16 hạn chế.
+Dùng ````int8```` để tiết kiệm VRAM tối đa (phù hợp card GTX 10xx và 8GB). Dùng ````float16```` để tốc độ tốt nhất trên GPU hiện đại (RTX 30xx/40xx/50xx, A100, H100). Card Pascal tiêu dùng (GTX 1060/1070/1080) nên dùng ````int8```` do hỗ trợ fp16 hạn chế.
 
 ### faster-whisper so với WhisperX?
 
@@ -425,7 +426,7 @@ Có, thông qua tích hợp với Whisper-Streaming hoặc WhisperLive. faster-w
 
 ### Cách chuyển đổi mô hình Whisper fine-tune?
 
-Dùng công cụ CLI `ct2-transformers-converter` (được trình bày trong phần Sử dụng nâng cao). Mọi mô hình trên Hugging Face Hub hoặc checkpoint local tương thích Transformers đều có thể chuyển đổi. Hỗ trợ cả lượng tử hóa FP16 và INT8 trong quá trình chuyển đổi.
+Dùng công cụ CLI ````ct2-transformers-converter```` (được trình bày trong phần Sử dụng nâng cao). Mọi mô hình trên Hugging Face Hub hoặc checkpoint local tương thích Transformers đều có thể chuyển đổi. Hỗ trợ cả lượng tử hóa FP16 và INT8 trong quá trình chuyển đổi.
 
 ### faster-whisper có hỗ trợ mọi kích thước mô hình Whisper?
 
@@ -439,7 +440,7 @@ Dữ liệu rõ ràng: nếu bạn dùng GPU NVIDIA và Python, faster-whisper l
 
 **Danh sách hành động:**
 
-1. Chạy `pip install faster-whisper` và chạy script xác minh bên trên.
+1. Chạy ````pip install faster-whisper``` và chạy script xác minh bên trên.
 2. Benchmark phần cứng của bạn với file test audio 13 phút từ repo.
 3. Thiết lập triển khai Docker cho pipeline production.
 4. Tham gia [nhóm Telegram dibi8.com](https://t.me/dibi8tech) để chia sẻ benchmark và nhận hỗ trợ production.
@@ -491,7 +492,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -501,6 +502,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [agent-reach-internet-access-ai-agents](faster-whisper)
 - [microsoft-markitdown-file-to-markdown-converter-cli](faster-whisper)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

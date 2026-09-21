@@ -35,6 +35,7 @@ faqs: - q: 'What is 9Router and how does it work?'
     a: 'Any tool that supports a custom OpenAI-compatible API endpoint can connect to 9Router via http://localhost:20128/v1. Supported tools include Claude Code, OpenAI Codex CLI, Cursor IDE, GitHub Copilot, Cline, Continue, Roo Code, Antigravity, Droid, Kilo Code, and OpenCode.'
   - q: 'Can I use 9Router for AI coding at zero monthly cost?'
     a: 'Yes. You can build a combo using only free providers such as Kiro AI (free unlimited via AWS Builder ID, Google, or GitHub OAuth, no API key), OpenCode Free (zero auth passthrough), and Vertex AI ($300 free Google Cloud credits). Combined with RTK compression, this delivers production-quality responses at literally $0 per month.'---
+
 ![Hero Image](https://picsum.photos/seed/large-language-model/1200x800)
 
 
@@ -46,7 +47,7 @@ Enter **9Router** — an open-source smart proxy and token management system tha
 
 ## What Is 9Router and How Does It Work?
 
-9Router is a locally-hosted intermediary service (running on `localhost:20128` by default) that sits between your AI coding tool and the underlying model provider. Instead of sending API requests directly to Claude, OpenAI, or any single provider, your tool talks to 9Router — which then intelligently decides which backend provider to route the request to.
+9Router is a locally-hosted intermediary service (running on ``localhost:20128`` by default) that sits between your AI coding tool and the underlying model provider. Instead of sending API requests directly to Claude, OpenAI, or any single provider, your tool talks to 9Router — which then intelligently decides which backend provider to route the request to.
 
 This architecture gives you three major advantages: 1. **Multi-provider access from one place**: Configure Claude, Gemini, GLM, MiniMax, Kiro, OpenCode, Vertex AI, and 40+ other providers in a single dashboard. Your CLI tools send requests to localhost; 9Router handles the rest.
 2. **Automatic fallback**: When your primary provider hits a quota limit or experiences downtime, 9Router seamlessly switches to the next tier — whether that's a cheap backup provider or a completely free option. Zero interruptions to your workflow.
@@ -56,7 +57,7 @@ This architecture gives you three major advantages: 1. **Multi-provider access f
 
 ### 🚀 RTK Token Compression Engine
 
-Tool outputs frequently account for 30–50% of your total prompt budget. When Claude Code runs `git diff`, `ls -R`, or `grep` in a large codebase, it sends megabytes of text to the model — much of which is irrelevant noise.
+Tool outputs frequently account for 30–50% of your total prompt budget. When Claude Code runs ``git diff``, ``ls -R``, or ``grep`` in a large codebase, it sends megabytes of text to the model — much of which is irrelevant noise.
 
 9Router's built-in RTK integration detects these tool outputs automatically and applies smart, lossless compression filters: - **git-diff**: Reduces diff output to essential changed lines
 - **git-status**: Compresses status into summary format
@@ -67,10 +68,10 @@ Tool outputs frequently account for 30–50% of your total prompt budget. When C
 
 Crucially, if any filter fails or produces worse output than the original, RTK silently falls back to the unmodified text. Errors never break your requests. The compression runs *before* any format translation, so it works universally across all supported formats (OpenAI, Claude, Gemini, Cursor, Kiro, OpenAI Responses).
 
-```
+````
 Without RTK: 47K tokens sent to LLM
 With RTK: 28K tokens sent to LLM   (40% saved · same quality answer)
-```
+`````
 
 In practice, developers report seeing token savings of 20–40% on every single request — effectively extending the lifetime of every subscription by days or even weeks.
 
@@ -82,12 +83,12 @@ This can save up to **65% of output tokens**. For complex refactoring tasks or l
 
 ### 🎯 Smart Three-Tier Fallback System
 
-This is arguably 9Router's killer feature. You define "combos" — ordered lists of models spanning different pricing tiers — and 9Router automatically routes requests accordingly: ```
+This is arguably 9Router's killer feature. You define "combos" — ordered lists of models spanning different pricing tiers — and 9Router automatically routes requests accordingly: `````
 Combo: "my-coding-stack"
   1. cc/claude-opus-4-6        → Your Claude Code Pro subscription
   2. glm/glm-4.7               → Cheap backup ($0.6 per 1M tokens)
   3. kr/claude-sonnet-4.5      → Free emergency fallback via Kiro AI
-```
+`````
 
 When Opus quota runs out (or when an error occurs), 9Router instantly transitions to GLM. If GLM also exhausts, it drops to Kiro's free unlimited tier. You never hit a wall.
 
@@ -95,11 +96,11 @@ The system supports five distinct pricing layers: | Tier | Providers | Typical C
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Subscription | Claude Code, Codex, Copilot, Cursor | $10–200/mo | 5h rolling + weekly/monthly |
 | Cheap | GLM-5.1, MiniMax M2.7, Kimi K2.5 | $0.2–$0.6/1M tokens | Daily/rolling/fixed monthly |
@@ -125,7 +126,7 @@ Sync your entire configuration — providers, combos, aliases, settings — acro
 
 ## Supported Coding Tools and IDEs
 
-9Router acts as a universal adapter, supporting virtually every popular AI coding tool: - **Claude Code** (`~/.claude/config.json` with custom API base)
+9Router acts as a universal adapter, supporting virtually every popular AI coding tool: - **Claude Code** (````~/.claude/config.json```` with custom API base)
 - **OpenAI Codex CLI** (environment variable override)
 - **Cursor IDE** (Custom OpenAI endpoint settings)
 - **GitHub Copilot**
@@ -138,13 +139,13 @@ Sync your entire configuration — providers, combos, aliases, settings — acro
 - **Kilo Code**
 - **OpenCode**
 
-Any tool that supports a custom OpenAI-compatible API endpoint can connect to 9Router. The service exposes a standard OpenAI-compatible interface at `http://localhost:20128/v1`.
+Any tool that supports a custom OpenAI-compatible API endpoint can connect to 9Router. The service exposes a standard OpenAI-compatible interface at ````http://localhost:20128/v1````.
 
 ## Getting Started: Installation and Setup
 
 ### Quick Start: Localhost (Recommended for Most Users)
 
-```bash
+`````bash
 # Clone and install
 git clone https://github.com/decolua/9router.git
 cd 9router
@@ -159,13 +160,13 @@ export NODE_ENV="production"
 
 # Start the server
 npm run start
-```
+`````
 
-After startup, open `http://localhost:20128` to access the web dashboard. From there, connect your first provider.
+After startup, open ````http://localhost:20128```` to access the web dashboard. From there, connect your first provider.
 
 ### Docker Deployment
 
-For production or multi-device setups, Docker makes deployment trivial: ```bash
+For production or multi-device setups, Docker makes deployment trivial: `````bash
 docker build -t 9router .
 
 docker run -d \
@@ -175,30 +176,30 @@ docker run -d \
   -v 9router-data:/app/data \
   -v 9router-usage:/root/.9router \
   9router
-```
+`````
 
 ### Connecting Your First Provider
 
 Let's set up a complete free-tier combo — no payment methods required: 1. **Connect Kiro AI** in the dashboard (uses AWS Builder ID, Google, or GitHub OAuth — no API key needed)
 2. **Connect OpenCode Free** (zero auth, passthrough proxy, models auto-fetched)
-3. **Create a combo** named `free-dev` with models: - `kr/claude-sonnet-4.5` (Claude Sonnet 4.5 via Kiro — free unlimited)
-   - `kr/glm-5` (GLM-5 via Kiro — free unlimited)
-   - `vertex/gemini-3.1-pro-preview` (Google Cloud — $300 free credits)
+3. **Create a combo** named ````free-dev```` with models: - ````kr/claude-sonnet-4.5```` (Claude Sonnet 4.5 via Kiro — free unlimited)
+   - ````kr/glm-5```` (GLM-5 via Kiro — free unlimited)
+   - ````vertex/gemini-3.1-pro-preview```` (Google Cloud — $300 free credits)
 
-Then configure your preferred tool to point at `http://localhost:20128/v1` with your dashboard API key: ```json
+Then configure your preferred tool to point at ``http://localhost:20128/v1`` with your dashboard API key: `````json
 {
   "anthropic_api_base": "http://localhost:20128/v1",
   "anthropic_api_key": "your-9router-api-key"
 }
-```
+`````
 
 ### Configuring Cursor IDE
 
-In Cursor Settings → Models → Advanced: ```
+In Cursor Settings → Models → Advanced: `````
 OpenAI API Base URL: http://localhost:20128/v1
 OpenAI API Key: [copy from 9Router dashboard]
 Model: cc/claude-opus-4-7
-```
+`````
 
 Now every model call from Cursor flows through 9Router's routing intelligence.
 
@@ -208,17 +209,17 @@ Now every model call from Cursor flows through 9Router's routing intelligence.
 
 You pay $20/month for Claude Pro. Without 9Router, once the quota expires, coding stops until the reset.
 
-With 9Router's "maximize-claude" combo: - Primary: `cc/claude-opus-4-7` (use full subscription)
-- Backup: `glm/glm-5.1` ($0.6/1M, resets daily at 10 AM)
-- Emergency: `kr/claude-sonnet-4.5` (Kiro free fallback)
+With 9Router's "maximize-claude" combo: - Primary: ````cc/claude-opus-4-7```` (use full subscription)
+- Backup: ````glm/glm-5.1```` ($0.6/1M, resets daily at 10 AM)
+- Emergency: ````kr/claude-sonnet-4.5```` (Kiro free fallback)
 
 Result: Your $20 subscription lasts longer because RTK saves 20–40% tokens, and when it does expire, you have seamless backups. Total effective cost increases by roughly $5 for the cheap tier — far less than upgrading to Claude Max ($200/mo).
 
 ### Scenario B: Complete $0 Monthly Budget
 
-Start with 100% free models: - `gc/gemini-3-flash` (180K free queries/month from Google)
-- `kr/claude-sonnet-4.5` (Kiro free unlimited)
-- `oc/<auto>` (OpenCode Free, no authentication needed)
+Start with 100% free models: - ````gc/gemini-3-flash```` (180K free queries/month from Google)
+- ````kr/claude-sonnet-4.5```` (Kiro free unlimited)
+- ````oc/<auto>```` (OpenCode Free, no authentication needed)
 
 Combined with RTK compression, this setup delivers production-quality model responses with literally zero monthly cost.
 
@@ -251,13 +252,13 @@ How does 9Router compare to existing solutions?
 
 | Feature | 9Router | Direct Provider Access | Other Proxy Tools |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Smart fallback routing | ✅ Auto 3+ tier | ❌ Single provider | Partial |
 | Token compression (RTK) | ✅ Built-in | ❌ None | Rarely |
@@ -287,13 +288,13 @@ The combination of RTK token compression (~20–40% savings), Caveman mode outpu
 - **Auth**: OAuth 2.0 with PKCE, JWT session cookies, HMAC-signed API keys
 - **Proxy**: Full HTTP passthrough with configurable upstream proxies
 
-Environment variables give granular control over deployment: - `JWT_SECRET`: Change for production security
-- `REQUIRE_API_KEY`: Enforce bearer token auth on `/v1/*` routes
-- `ENABLE_REQUEST_LOGS`: Enable debug-level request/response logging
-- `AUTH_COOKIE_SECURE`: Force Secure cookie flag behind HTTPS reverse proxy
-- `HTTP_PROXY` / `HTTPS_PROXY`: Route upstream requests through corporate proxies
+Environment variables give granular control over deployment: - ````JWT_SECRET````: Change for production security
+- ````REQUIRE_API_KEY````: Enforce bearer token auth on ````/v1/*```` routes
+- ````ENABLE_REQUEST_LOGS````: Enable debug-level request/response logging
+- ````AUTH_COOKIE_SECURE````: Force Secure cookie flag behind HTTPS reverse proxy
+- ````HTTP_PROXY```` / ````HTTPS_PROXY````: Route upstream requests through corporate proxies
 
-The service listens on port `20128` by default and requires no external dependencies or databases beyond the JSON files stored in `${DATA_DIR}`.
+The service listens on port ````20128```` by default and requires no external dependencies or databases beyond the JSON files stored in ````${DATA_DIR}```.
 
 ## Final Thoughts
 
@@ -307,7 +308,7 @@ It's free, open-source, and takes minutes to self-host. Given the current trajec
 **Website**: [9router.com](https://9router.com)
 
 
----
+* * *
 ## Related Articles
 
 
@@ -317,7 +318,7 @@ It's free, open-source, and takes minutes to self-host. Given the current trajec
 - [Addy Osmani's Agent Skills: Production-Grade AI Coding Agents](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/)
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.

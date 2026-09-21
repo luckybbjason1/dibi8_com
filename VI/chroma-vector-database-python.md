@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/chroma-vector-database-python/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao pipeline RAG của bạn cần kho lưu trữ vector tốt hơn
@@ -34,7 +35,7 @@ Bạn xây dựng một ứng dụng RAG. Nó hoạt động tốt với 500 tà
 
 Tính đến tháng 5 năm 2026", "Chroma đã vượt qua **18.000 sao GitHub**", "phát hành **v0.6.x** với lưu trữ persistent", "lọc metadata", "và một engine truy vấn có benchmark **nhanh hơn 50 lần** so với tìm kiếm brute-force đơn thuần trên tập dữ liệu vượt quá 1 triệu vector. Dự án được duy trì bởi nhóm Chroma theo giấy phép **Apache-2.0** và là kho vector mặc định trong hướng dẫn bắt đầu nhanh của [LangChain"](dibi8-internal-link) và [LlamaIndex](dibi8-internal-link).
 
-Hướng dẫn này đưa bạn từ `pip install` đến RAG sẵn sàng production trong vòng dưới 30 phút. Không cần kinh nghiệm cơ sở dữ liệu vector trước đó.
+Hướng dẫn này đưa bạn từ ```pip install```` đến RAG sẵn sàng production trong vòng dưới 30 phút. Không cần kinh nghiệm cơ sở dữ liệu vector trước đó.
 
 ## Chroma là gì? (Định nghĩa một câu)
 
@@ -45,10 +46,10 @@ Không giống như các cơ sở dữ liệu truyền thống được gắn th
 ## Chroma hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
 Kiến trúc của Chroma được cố ý thiết kế đơn giản. Hiểu ba khái niệm cốt lõi sẽ giúp bạn nắm được 80%: ### Collections (Bộ sưu tập)
-Một **collection** là một container cho các tài liệu liên quan và embedding của chúng. Hãy nghĩ về nó như một bảng trong SQL, nhưng không có schema và native vector. Bạn tạo một collection cho mỗi loại tài liệu (ví dụ: `legal_docs`, `product_manuals`, `support_tickets`).
+Một **collection** là một container cho các tài liệu liên quan và embedding của chúng. Hãy nghĩ về nó như một bảng trong SQL, nhưng không có schema và native vector. Bạn tạo một collection cho mỗi loại tài liệu (ví dụ: ````legal_docs````, ````product_manuals````, ````support_tickets````).
 
 ### Embeddings
-Mỗi tài liệu bạn thêm vào được chuyển đổi thành một vector (một mảng số thực, thường 384–1536 chiều) bởi một mô hình embedding. Chroma có thể tự động tạo embedding bằng các mô hình mặc định (như `all-MiniLM-L6-v2`) hoặc chấp nhận vector được tính trước từ OpenAI, Cohere, hoặc bất kỳ mô hình tùy chỉnh nào.
+Mỗi tài liệu bạn thêm vào được chuyển đổi thành một vector (một mảng số thực, thường 384–1536 chiều) bởi một mô hình embedding. Chroma có thể tự động tạo embedding bằng các mô hình mặc định (như ````all-MiniLM-L6-v2````) hoặc chấp nhận vector được tính trước từ OpenAI, Cohere, hoặc bất kỳ mô hình tùy chỉnh nào.
 
 ### Truy vấn bằng Vector Similarity
 Khi bạn truy vấn, Chroma chuyển đổi văn bản của bạn vào cùng một không gian vector, sau đó sử dụng chỉ mục **HNSW (Hierarchical Navigable Small World)** để tìm các láng giềng gần nhất trong thờii gian dưới mili giây. Chỉ mục HNSW là yếu tố mang lại tốc độ **nhanh hơn 50 lần** so với brute-force cosine similarity.
@@ -56,8 +57,8 @@ Khi bạn truy vấn, Chroma chuyển đổi văn bản của bạn vào cùng m
 ### Các chế độ lưu trữ
 | Chế độ | Persistent | Trường hợp sử dụng | Hiệu suất |
 |--------|-----------|-------------------|-----------|
-| `:memory:` | Không | Testing, CI/CD | Nhanh nhất |
-| `./chroma_db` | Đĩa | Dev local, production nhỏ | Nhanh |
+| ````:memory:```` | Không | Testing, CI/CD | Nhanh nhất |
+| ````./chroma_db```` | Đĩa | Dev local, production nhỏ | Nhanh |
 | Docker volume | Container persistent | Self-hosted production | Nhanh |
 | S3/GCS backup | Cloud-backed | Khôi phục thảm họa | N/A |
 
@@ -65,7 +66,7 @@ Khi bạn truy vấn, Chroma chuyển đổi văn bản của bạn vào cùng m
 
 ### Bước 1: Cài đặt Chroma
 
-```bash
+`````bash
 pip install chromadb
 
 # Với backend embedding cụ thể
@@ -74,31 +75,31 @@ pip install chromadb[sentence-transformers]
 # Xác minh cài đặt
 python -c "import chromadb; print(chromadb.__version__)"
 # Expected: 0.6.x or higher
-```
+`````
 
 ### Bước 2: Chạy Chroma (Ba tùy chọn)
 
 **Tùy chọn A: In-memory (nhanh nhất cho testing)**
 
-```python
+`````python
 import chromadb
 
 # Pure in-memory — dữ liệu biến mất khi process kết thúc
 client = chromadb.Client()
-```
+`````
 
 **Tùy chọn B: Persistent local storage**
 
-```python
+`````python
 import chromadb
 
 # Dữ liệu được lưu vào thư mục ./chroma_db
 client = chromadb.PersistentClient(path="./chroma_db")
-```
+`````
 
 **Tùy chọn C: Docker (khuyến nghị cho production)**
 
-```bash
+`````bash
 # Chạy Chroma server trong Docker
 docker run -d \
   --name chroma \
@@ -109,13 +110,13 @@ docker run -d \
 # Kết nối từ Python
 import chromadb
 client = chromadb.HttpClient(host="localhost", port=8000)
-```
+`````
 
 Để triển khai VPS production, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp $200 tín dụng để khởi động Droplet chuyên dụng với Docker được cài đặt sẵn — hoàn hảo cho việc host Chroma cùng với RAG API của bạn.
 
 ### Bước 3: Tạo Collection và Thêm Tài liệu
 
-```python
+`````python
 import chromadb
 
 client = chromadb.PersistentClient(path="./chroma_db")
@@ -147,11 +148,11 @@ collection.add(
 
 print(f"Collection count: {collection.count()}")
 # Output: Collection count: 4
-```
+`````
 
 ### Bước 4: Truy vấn Collection
 
-```python
+`````python
 # Tìm kiếm similarity đơn giản
 results = collection.query(
     query_texts=["What is a vector database?"],
@@ -170,11 +171,11 @@ results = collection.query(
 
 print(results["documents"])
 # Output: [["HNSW indexing enables fast approximate nearest neighbor search."]]
-```
+`````
 
 ### Bước 5: Cập nhật và Xóa
 
-```python
+`````python
 # Cập nhật tài liệu
 collection.update(
     ids=["doc_1"],
@@ -187,17 +188,17 @@ collection.delete(ids=["doc_4"])
 
 print(f"Collection count after delete: {collection.count()}")
 # Output: Collection count after delete: 3
-```
+`````
 
 ## Tích hợp với LangChain, LlamaIndex và các Framework khác
 
 ### Tích hợp LangChain
 
-Chroma là kho vector mặc định trong quickstart của LangChain. Tích hợp chỉ cần 3 dòng: ```bash
+Chroma là kho vector mặc định trong quickstart của LangChain. Tích hợp chỉ cần 3 dòng: `````bash
 pip install langchain-chroma langchain-openai
-```
+`````
 
-```python
+`````python
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.documents import Document
@@ -222,15 +223,15 @@ vector_store.add_documents(docs)
 # Tìm kiếm
 results = vector_store.similarity_search("How do I use LangChain with Chroma?", k=2)
 for doc in results: print(doc.page_content)
-```
+`````
 
 ### Tích hợp LlamaIndex
 
-```bash
+`````bash
 pip install llama-index-vector-stores-chroma
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import StorageContext, VectorStoreIndex
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -257,11 +258,11 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine()
 response = query_engine.query("What vector database should I use with LlamaIndex?")
 print(response)
-```
+`````
 
 ### Tích hợp OpenAI Embeddings
 
-```python
+`````python
 from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 # Sử dụng mô hình embedding OpenAI trực tiếp với Chroma
@@ -284,11 +285,11 @@ results = collection.query(
     query_texts=["Tell me about OpenAI vectors"],
     n_results=1
 )
-```
+`````
 
 ### Sentence Transformers (Local, không cần API Key)
 
-```python
+`````python
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
 # Chạy hoàn toàn local — không có API call, không giới hạn tốc độ
@@ -305,11 +306,11 @@ collection.add(
     documents=["Local embeddings are free and privacy-preserving."],
     ids=["local_1"]
 )
-```
+`````
 
 ### Mẫu tích hợp FastAPI
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import chromadb
@@ -337,7 +338,7 @@ def search_docs(request: QueryRequest): try: results = collection.query(
 def health(): return {"status": "ok", "count": collection.count()}
 
 # Run: uvicorn main:app --reload
-```
+`````
 
 ## Benchmark & Các trường hợp sử dụng thực tế
 
@@ -371,7 +372,7 @@ Chroma sử dụng SQLite cho metadata và lưu trữ tài liệu, với chỉ m
 
 ### Embedding dimension tùy chỉnh
 
-```python
+`````python
 # Embedding được tính trước từ bất kỳ mô hình nào (ví dụ: OpenAI text-embedding-3-large)
 import numpy as np
 
@@ -387,11 +388,11 @@ collection.add(
     documents=["Doc with custom embedding", "Another doc"],
     ids=["custom_1", "custom_2"]
 )
-```
+`````
 
 ### Metadata Filtering chuyên sâu
 
-```python
+`````python
 # Truy vấn metadata phức tạp
 collection.add(
     documents=["Advanced filtering example"],
@@ -423,11 +424,11 @@ results = collection.query(
     },
     n_results=5
 )
-```
+`````
 
 ### Multi-tenant Collections
 
-```python
+`````python
 # Một collection cho mỗi user/tenant — cô lập theo thiết kế
 def get_user_collection(user_id: str): return client.get_or_create_collection(f"user_{user_id}_docs")
 
@@ -437,11 +438,11 @@ user_b = get_user_collection("bob")
 
 user_a.add(documents=["Alice's private document"], ids=["alice_1"])
 user_b.add(documents=["Bob"s private document"], ids=["bob_1"])
-```
+`````
 
 ### Docker Compose cho Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -455,16 +456,16 @@ services: chroma: image: chromadb/chroma:0.6.0
     deploy: resources: limits: memory: 8G
         reservations: memory: 2G
 
-volumes: chroma_data: ```
+volumes: chroma_data: `````
 
-Triển khai: ```bash
+Triển khai: `````bash
 docker-compose up -d
 # Chroma API có sẵn tại http://localhost:8000
-```
+`````
 
 ### Chiến lược Backup
 
-```bash
+`````bash
 # Chroma lưu trữ mọi thứ trong thư mục persist
 # Sao lưu bằng các công cụ chuẩn
 
@@ -472,7 +473,7 @@ tar -czf chroma_backup_$(date +%Y%m%d).tar.gz ./chroma_data/
 
 # Khôi phục đơn giản bằng cách giải nén vào cùng đường dẫn
 tar -xzf chroma_backup_20260519.tar.gz
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -521,7 +522,7 @@ Trên một máy có 32GB RAM, Chroma thoải mái xử lý **5–10 triệu vec
 
 ### Có thể dùng Chroma không cần kết nối internet không?
 
-**Có.** Nếu dùng `SentenceTransformerEmbeddingFunction` với mô hình được tải trước, Chroma hoạt động hoàn toàn offline. Không cần API key, không gọi cloud, không telemetry (tắt bằng `ANONYMIZED_TELEMETRY=FALSE`). Điều này làm nó lý tưởng cho môi trường cô lập.
+**Có.** Nếu dùng ````SentenceTransformerEmbeddingFunction```` với mô hình được tải trước, Chroma hoạt động hoàn toàn offline. Không cần API key, không gọi cloud, không telemetry (tắt bằng ````ANONYMIZED_TELEMETRY=FALSE````). Điều này làm nó lý tưởng cho môi trường cô lập.
 
 ### Chroma so với NumPy cho tìm kiếm vector như thế nào?
 
@@ -533,7 +534,7 @@ Tìm kiếm brute-force NumPy hoạt động với <1.000 vector. Ở 10.000 vec
 
 ### Có thể migrate từ Pinecone hoặc vector DB khác sang Chroma không?
 
-**Có.** Pattern migration: xuất vectors + metadata từ DB hiện tại → batch-insert vào Chroma dùng `collection.add()` với pre-computed embeddings. Hầu hết ngườii dùng hoàn thành migration trong một script. Cấu trúc collection của Chroma mapping gần với Pinecone namespaces.
+**Có.** Pattern migration: xuất vectors + metadata từ DB hiện tại → batch-insert vào Chroma dùng ````collection.add()```` với pre-computed embeddings. Hầu hết ngườii dùng hoàn thành migration trong một script. Cấu trúc collection của Chroma mapping gần với Pinecone namespaces.
 
 ### Chroma có hỗ trợ multi-modal embeddings (ảnh, âm thanh) không?
 
@@ -543,7 +544,7 @@ Chroma lưu vectors — nó không quan tâm vectors được tạo ra như th�
 
 Chroma lấp đầy khoảng trống quan trọng trong stack công cụ AI: một cơ sở dữ liệu vector ưu tiên trải nghiệm lập trình viên mà không làm giảm hiệu suất. Năm 2026, với **v0.6.x** cung cấp persistent storage, HNSW indexing, và tích hợp native với mọi framework RAG chính, Chroma là lựa chọn thực tế cho lập trình viên Python xây dựng tìm kiếm ngữ nghĩa và retrieval-augmented generation.
 
-Tốc độ **nhanh hơn 50 lần** so với tìm kiếm không chỉ mục không phải marketing — nó có thể đo lường, tái tạo, và có sẵn ngay hôm nay chỉ bằng cách chạy `pip install chromadb`. Dù bạn đang prototype chatbot hay deploy RAG API production, Chroma giúp bạn đến đích với ít cấu hình hơn và nhiều code thực tế hơn.
+Tốc độ **nhanh hơn 50 lần** so với tìm kiếm không chỉ mục không phải marketing — nó có thể đo lường, tái tạo, và có sẵn ngay hôm nay chỉ bằng cách chạy ````pip install chromadb```. Dù bạn đang prototype chatbot hay deploy RAG API production, Chroma giúp bạn đến đích với ít cấu hình hơn và nhiều code thực tế hơn.
 
 **Sẵn sàng deploy?** Khởi động VPS với Docker trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và có Chroma chạy production trong vòng 10 phút.
 
@@ -571,7 +572,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 
 Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký dịch vụ thông qua các liên kết được đánh dấu trong bài viết này (như DigitalOcean), dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ chúng tôi sử dụng và thực sự tin tưởng. Chroma itself là miễn phí và mã nguồn mở theo Apache-2.0 — không có quan hệ affiliate nào tồn tại với dự án Chroma.
 
----
+* * *
 
 *Được đăng trên dibi8.com — AI Source Code Hub. Cập nhật lần cuối: 2026-05-19*
 

@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/langchain-complete-guide/
 ---
 
+
 {{</* resource-info */>}}
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
@@ -45,25 +46,25 @@ LangChain은 대규모 언어 모델로 구동되는 애플리케이션을 구�
 
 LangChain의 아키텍처는 다섯 개 계층으로 관심사를 분리한다: 1. **모델 I/O** — 채팅 모델, LLM, 임베딩을 위한 표준화된 인터페이스. 한 줄의 임포트 변경으로 OpenAI GPT-4o에서 Anthropic Claude 3.5 Sonnet으로 전환한다.
 2. **검색(Retrieval)** — 문서 로더, 텍스트 분할기, 임베딩 모델, 벡터 스토어가 RAG 파이프라인을 구성한다. PDF, HTML, Notion 페이지를 로드하고, 청크로 분할하고, 임베딩하고, 의미론적으로 쿼리한다.
-3. **에이전트** — `create_agent` API(LangChain 1.0+)는 도구 선택, 추론 루프, 인간 개입 승인을 오케스트레이션한다. 에이전트는 어떤 도구를 호출하고, 어떤 순서로, 언제 멈출지 결정한다.
+3. **에이전트** — ```create_agent```` API(LangChain 1.0+)는 도구 선택, 추론 루프, 인간 개입 승인을 오케스트레이션한다. 에이전트는 어떤 도구를 호출하고, 어떤 순서로, 언제 멈출지 결정한다.
 4. **체인(Chains)** — 컴포넌트를 순차적으로 연결하는 구성 가능한 워크플로우. RetrievalQA 체인은 검색기를 LLM에 연결하여 문서 기반 질문 응답을 수행한다.
 5. **관찰 가능성** — LangSmith는 모든 호출을 추적하여 지연 시간, 토큰 사용량, 비용을 측정한다. 추적은 디버깅을 위해 입력, 출력, 중간 단계를 캡처한다.
 
-```
+`````
 사용자 쿼리 → 에이전트/체인 → [도구 호출 → LLM 호출 → 검색] → 응답
                 ↓
             LangSmith (추적, 메트릭, 평가)
-```
+`````
 
 ![LangChain RAG Flow](https://python.langchain.com/assets/images/rag_indexing-6b1e22092b4c169a9075d080d71a5e95.png)
 
 ### 핵심 개념
 
-**Runnable 인터페이스.** LangChain의 모든 컴포넌트는 `.invoke()`, `.batch()`, `.stream()` 메서드가 있는 `Runnable` 프로토콜을 구현한다. 이 통일된 인터페이스를 통해 단일 프롬프트, 열 개의 컴포넌트 체인, 또는 다중 에이전트 그래프를 동일하게 취급할 수 있다.
+**Runnable 인터페이스.** LangChain의 모든 컴포넌트는 ````.invoke()````, ````.batch()````, ````.stream()```` 메서드가 있는 ````Runnable```` 프로토콜을 구현한다. 이 통일된 인터페이스를 통해 단일 프롬프트, 열 개의 컴포넌트 체인, 또는 다중 에이전트 그래프를 동일하게 취급할 수 있다.
 
-**콘텐츠 블록(Content Blocks).** LangChain 1.0은 메시지에 `.content_blocks`를 도입했다 — 모든 제공업체에서 텍스트, 이미지, 도구 호출, 추론 추적을 위한 통합 형식이다. 더 이상 제공업첳별 메시지 파싱이 필요 없다.
+**콘텐츠 블록(Content Blocks).** LangChain 1.0은 메시지에 ````.content_blocks````를 도입했다 — 모든 제공업체에서 텍스트, 이미지, 도구 호출, 추론 추적을 위한 통합 형식이다. 더 이상 제공업첳별 메시지 파싱이 필요 없다.
 
-**모델 프로필(Model Profiles).** 채팅 모델은 `.profile` 속성을 통해 기능을 노출하여 동적 기능 감지를 가능하게 한다. 코드는 도구 호출이나 비전을 시도하기 전에 모델이 이를 지원하는지 확인할 수 있다.
+**모델 프로필(Model Profiles).** 채팅 모델은 ````.profile```` 속성을 통해 기능을 노출하여 동적 기능 감지를 가능하게 한다. 코드는 도구 호출이나 비전을 시도하기 전에 모델이 이를 지원하는지 확인할 수 있다.
 
 ## 설치 및 설정
 
@@ -71,7 +72,7 @@ LangChain의 아키텍처는 다섯 개 계층으로 관심사를 분리한다: 
 
 LangChain은 pip를 통해 60초 이내에 설치된다. 1.0 버전부터 Python 3.10+가 필요하다.
 
-```bash
+`````bash
 # 핵심 프레임워크 설치
 pip install langchain-core==1.4.0 langchain
 
@@ -89,11 +90,11 @@ pip install langgraph
 
 # LangSmith 관찰 가능성 설치
 pip install langsmith
-```
+`````
 
 ### 설치 확인
 
-```python
+`````python
 import langchain_core
 print(langchain_core.__version__)
 # Output: 1.4.0
@@ -106,22 +107,22 @@ openai_model = ChatOpenAI(model="gpt-4o", temperature=0)
 anthropic_model = ChatAnthropic(model="claude-3-5-sonnet-20241022")
 
 print("LangChain installed successfully with OpenAI and Anthropic providers")
-```
+`````
 
 ### 환경 구성
 
-```bash
+`````bash
 # .env 파일
 OPENAI_API_KEY=sk-proj-xxxxx
 ANTHROPIC_API_KEY=sk-ant-xxxxx
 LANGSMITH_API_KEY=ls-xxxxx
 LANGSMITH_TRACING=true
 LANGSMITH_PROJECT=production-agents
-```
+`````
 
 ### Docker 설정 (프로덕션용 권장)
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -150,9 +151,9 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
-```
+`````
 
-```txt
+`````txt
 # requirements.txt
 langchain-core==1.4.0
 langchain==1.3.0
@@ -166,9 +167,9 @@ pydantic==2.10.0
 python-dotenv==1.0.0
 redis==5.2.0
 httpx==0.28.0
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -191,11 +192,11 @@ services: app: build: .
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes: redis_data: chroma_data: ```
+volumes: redis_data: chroma_data: `````
 
 ### 빌드 및 실행
 
-```bash
+`````bash
 # 이미지 빌드
 docker build -t langchain-production-app .
 
@@ -204,13 +205,13 @@ docker-compose up -d
 
 # 배포 확인
 curl http://localhost:8000/health
-```
+`````
 
 ## OpenAI, Anthropic, Ollama 및 벡터 스토어와의 통합
 
 ### OpenAI GPT-4o 통합
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -237,11 +238,11 @@ response = chain.invoke({
     "question": "Explain backpropagation in 3 sentences."
 })
 print(response.content)
-```
+`````
 
 ### Anthropic Claude 통합
 
-```python
+`````python
 from langchain_anthropic import ChatAnthropic
 
 claude = ChatAnthropic(
@@ -258,11 +259,11 @@ response = claude_chain.invoke({
     "question": "What is the CAP theorem?"
 })
 print(response.content)
-```
+`````
 
 ### Ollama 로컬 모델
 
-```python
+`````python
 from langchain_ollama import ChatOllama
 
 local_model = ChatOllama(
@@ -273,11 +274,11 @@ local_model = ChatOllama(
 
 response = local_model.invoke("Explain quantum computing simply.")
 print(response.content)
-```
+`````
 
 ### Chroma 벡터 스토어를 사용한 RAG 파이프라인
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -314,11 +315,11 @@ qa_chain = RetrievalQA.from_chain_type(
 # 쿼리
 result = qa_chain.invoke({"query": "What are the key findings?"})
 print(result["result"])
-```
+`````
 
 ### 도구를 갖춘 에이전트
 
-```python
+`````python
 from langchain import hub
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.tools import tool
@@ -347,7 +348,7 @@ result = agent_executor.invoke({
     "input": "What is 1250 * 37 and search for deployment docs?"
 })
 print(result["output"])
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -379,7 +380,7 @@ LangChain은 원시 검색 속도를 오케스트레이션 유연성과 교환�
 
 LangGraph는 그래프 기반 에이전트 오케스트레이션으로 LangChain을 확장한다. 순환, 분기, 인간 개입을 지원하여 승인 게이트가 필요한 프로덕션 에이전트에 필수적이다.
 
-```python
+`````python
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated, Sequence
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
@@ -425,13 +426,13 @@ workflow.add_edge("reject", END)
 app = workflow.compile()
 result = app.invoke({"messages": [HumanMessage(content="Delete all user records from the database.")]})
 print(result["messages"][-1].content)
-```
+`````
 
 ### 오류 처리 및 재시도
 
 프로덕션 에이전트는 실패한다. 우아하게 처리하라.
 
-```python
+`````python
 from langchain_core.runnables import RunnableConfig
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -448,11 +449,11 @@ def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return
 # 사용법
 config = RunnableConfig(tags=["production", "customer-facing"])
 result = invoke_with_retry(qa_chain, {"query": "What are the terms?"}, config)
-```
+`````
 
 ### 속도 제한 및 비용 통제
 
-```python
+`````python
 from langchain_core.rate_limiters import InMemoryRateLimiter
 import time
 
@@ -474,11 +475,11 @@ from langchain.callbacks import get_openai_callback
 
 with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
-```
+`````
 
 ### LangSmith로 모니터링
 
-```python
+`````python
 import os
 
 # 추적 활성화
@@ -502,11 +503,11 @@ results = evaluate(
     data="my-dataset-name",
     evaluators=[accuracy_evaluator],
 )
-```
+`````
 
 ### Kubernetes 배포
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -536,7 +537,7 @@ spec: replicas: 3
             port: 8000
           initialDelaySeconds: 5
           periodSeconds: 10
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: langchain-service
@@ -545,18 +546,18 @@ spec: selector: app: langchain-app
       port: 80
       targetPort: 8000
   type: ClusterIP
-```
+`````
 
-```bash
+`````bash
 # Kubernetes에 배포
 kubectl apply -f k8s-deployment.yaml
 kubectl get pods -l app=langchain-app
 kubectl logs -f deployment/langchain-app
-```
+`````
 
 ### Redis를 사용한 빈번한 쿼리 캐싱
 
-```python
+`````python
 import redis
 import json
 import hashlib
@@ -579,7 +580,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
     return result
-```
+`````
 
 ![LangChain Integration Map](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/social_share.png)
 
@@ -609,7 +610,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
 
 **간단한 사용 사례에서 학습 곡선이 가파르다.** 기본적인 "PDF와 채팅" 앱은 로더, 분할기, 임베딩, 벡터 스토어, 체인을 이해해야 한다. RAGFlow나 Verba 같은 도구는 비개발자에게 더 빠른 경로를 제공한다.
 
-**빠른 발전으로 버전 드리프트가 발생한다.** 1.0 LTS 약속에도 불구하고 생태계는 빠르게 움직인다. 커뮤니티 통합(`langchain-community`)은 마이너 릴리스에서 중단 변경을 도입할 수 있다. 프로덕션에서 정확한 버전을 고정하라.
+**빠른 발전으로 버전 드리프트가 발생한다.** 1.0 LTS 약속에도 불구하고 생태계는 빠르게 움직인다. 커뮤니티 통합(````langchain-community````)은 마이너 릴리스에서 중단 변경을 도입할 수 있다. 프로덕션에서 정확한 버전을 고정하라.
 
 **LangSmith 비용이 사용량에 따라 확장된다.** 물뎐 티어는 월 5,000회 추적으로 프로토타이핑에는 충분하지만 프로덕션에는 부족하다. 월 100,000회 추적을 처리하는 5인 팀은 LangSmith에만 약 $220/월을 지불해야 하며 LLM API 비용은 별도다.
 
@@ -625,7 +626,7 @@ LangChain은 체인, 프롬프트, 모델 통합으로 LLM 애플리케이션을
 
 ### LangChain에서 LLM 제공업체를 전환하려면 어떻게 하나?
 
-모델 클래스 임포트를 변경하면 된다. LangChain의 표준화된 `BaseChatModel` 인터페이스는 OpenAI용으로 작성된 코드를 최소한의 변경으로 Anthropic, Google, Ollama 또는 지원되는 제공업체와 함께 작동하게 한다. 1.0+의 `.content_blocks` 속성은 모든 제공업체에서 메시지 형식을 표준화하여 제공업첳별 파싱 코드를 제거한다.
+모델 클래스 임포트를 변경하면 된다. LangChain의 표준화된 ````BaseChatModel```` 인터페이스는 OpenAI용으로 작성된 코드를 최소한의 변경으로 Anthropic, Google, Ollama 또는 지원되는 제공업체와 함께 작동하게 한다. 1.0+의 ````.content_blocks```` 속성은 모든 제공업체에서 메시지 형식을 표준화하여 제공업첳별 파싱 코드를 제거한다.
 
 ### LangChain은 상업적 사용이 물뎐인가?
 
@@ -637,7 +638,7 @@ LangChain은 체인, 프롬프트, 모델 통합으로 LLM 애플리케이션을
 
 ### LangChain은 오류와 재시도를 어떻게 처리하는가?
 
-LangChain은 모델 클래스의 `max_retries` 매개변수를 통해 지수 백오프가 있는 빌트인 재시도 로직을 제공한다. 프로덕션의 경우 Tenacity로 중요 경로를 감싸 재시도 정책을 세밀하게 제어하라. 구조화된 예외 처리를 사용하여 재시도 가능한 오류(속도 제한, 시간 초과)와 종료 오류(잘못된 입력, 인증 실패)를 구분하라. 모든 실패를 LangSmith에 기록하여 사후 분석을 수행하라.
+LangChain은 모델 클래스의 ````max_retries```` 매개변수를 통해 지수 백오프가 있는 빌트인 재시도 로직을 제공한다. 프로덕션의 경우 Tenacity로 중요 경로를 감싸 재시도 정책을 세밀하게 제어하라. 구조화된 예외 처리를 사용하여 재시도 가능한 오류(속도 제한, 시간 초과)와 종료 오류(잘못된 입력, 인증 실패)를 구분하라. 모든 실패를 LangSmith에 기록하여 사후 분석을 수행하라.
 
 ### LangSmith를 셀프 호스팅할 수 있나?
 
@@ -645,7 +646,7 @@ LangChain은 모델 클래스의 `max_retries` 매개변수를 통해 지수 백
 
 ### LangChain 에이전트를 1,000명 이상의 동시 사용자 처리로 확장하려면 어떻게 하나?
 
-로드 밸런서 뒤에서 여러 컨테이너 인스턴스를 실행하여 수평적으로 확장하라. 워커당 처리량을 극대화하기 위해 비동기 패턴(`ainvoke`, `astream`)을 사용하라. 자주 묻는 쿼리에 대해 Redis 캐싱을 구현하라. 데이터베이스 및 외부 API에 대한 연결 풀링을 설정하라. LangSmith를 통해 요청당 토큰 사용량과 비용을 모니터링하라. 장기 실행 에이전트 작업에는 동기 HTTP 요청보다 큐 시스템(Celery, RQ)을 사용하는 것을 고려하라.
+로드 밸런서 뒤에서 여러 컨테이너 인스턴스를 실행하여 수평적으로 확장하라. 워커당 처리량을 극대화하기 위해 비동기 패턴(````ainvoke````, ````astream```)을 사용하라. 자주 묻는 쿼리에 대해 Redis 캐싱을 구현하라. 데이터베이스 및 외부 API에 대한 연결 풀링을 설정하라. LangSmith를 통해 요청당 토큰 사용량과 비용을 모니터링하라. 장기 실행 에이전트 작업에는 동기 HTTP 요청보다 큐 시스템(Celery, RQ)을 사용하는 것을 고려하라.
 
 ## 결론
 
@@ -706,7 +707,7 @@ LangChain의 137,000개 GitHub 스타는 프로덕션 LLM 애플리케이션의 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -716,7 +717,7 @@ LangChain의 137,000개 GitHub 스타는 프로덕션 LLM 애플리케이션의 
 - [9router-smart-llm-proxy-token-saver-free-coding](langchain)
 - [ai-engineering-from-scratch](langchain)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

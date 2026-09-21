@@ -13,12 +13,13 @@ aliases:
   - /zh/posts/eigenlayer-restaking-defi/-
 ---
 
+
 {{</* resource-info */>}}
 
 > **联盟营销披露**：本文包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 和 [Minara](https://minara.ai/r/OSXG4X) 的联盟链接。您通过这些链接注册时，我们可能会赚取佣金 —— 对您不产生额外费用。
 
 
----
+* * *
 ## 什么是EigenLayer？为什么它如此重要？
 
 EigenLayer是自以太坊转向权益证明（Proof-of-Stake）以来，质押经济领域最重要的创新。作为部署在以太坊主网上的再质押协议，EigenLayer使ETH质押者能够将其已质押的ETH重新用于保护额外的去中心化服务 —— 这些服务被称为**主动验证服务（AVS）** —— 而不仅仅局限于以太坊共识本身。截至2026年5月，EigenLayer的**总锁仓价值（TVL）已超过200亿美元**，按担保资本计算已成为规模最大的DeFi协议之一。
@@ -31,7 +32,7 @@ EigenLayer上的再质押允许以太坊验证者选择加入来保护额外的�
 
 再质押仓位的生命周期遵循以下步骤：
 
-```bash
+````bash
 # 第1步：在以太坊信标链上质押ETH
 # 独立验证者最低需要32 ETH，或使用流动性质押代币（LST）
 
@@ -44,9 +45,9 @@ curl -X POST https://api.eigenlayer.com/restake \
     "amount": "1000000000000000000",
     "staker": "0x您的地址..."
   }'
-```
+`````
 
-```solidity
+`````solidity
 // 第3步：EigenLayer策略管理器将资金存入底层策略
 // 文件：StrategyManager.sol（简化版）
 function depositIntoStrategy(
@@ -62,9 +63,9 @@ function depositIntoStrategy(
     _addShares(msg.sender, strategy, shares);
     return shares;
 }
-```
+`````
 
-```solidity
+`````solidity
 // 第4步：质押者委托给运营商
 // 运营商运行AVS验证软件
 function delegateTo(
@@ -79,9 +80,9 @@ function delegateTo(
         approverSignatureAndExpiry
     );
 }
-```
+`````
 
-```solidity
+`````solidity
 // 第5步：运营商选择加入AVS惩罚条件
 // AVS合约定义自定义验证和惩罚逻辑
 interface IAVSRegistry {
@@ -102,7 +103,7 @@ function optInToEigenDA(bytes memory blsPublicKey) external {
         blsSignature
     );
 }
-```
+`````
 
 ## 主动验证服务（AVS）：应用层
 
@@ -112,7 +113,7 @@ AVS是利用EigenLayer共享安全的协议和服务。它们涵盖数据可用�
 
 EigenDA是建立在EigenLayer上最知名的AVS。它为以太坊Rollup提供高吞吐量、低成本的数据可用性解决方案，是中心化数据可用性方案的去中心化替代方案。
 
-```go
+`````go
 // EigenDA disperser客户端 - 将数据blob分散到EigenDA
 package main
 
@@ -155,9 +156,9 @@ func disperseBlob(data []byte) (*disperser.BlobStatus, error) {
 
     return reply.GetResult(), nil
 }
-```
+`````
 
-```python
+`````python
 # EigenDA检索客户端 - 验证blob可用性
 import asyncio
 import grpc
@@ -177,7 +178,7 @@ async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grp
             "KZG证明验证失败"
         
         return response.blob
-```
+`````
 
 ## 构建您的第一个AVS：完整开发者设置
 
@@ -185,7 +186,7 @@ async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grp
 
 ### 前置条件
 
-```bash
+`````bash
 # 所需工具
 node --version  # >= 18.0.0
 foundry --version  # Forge 0.2.0+
@@ -195,11 +196,11 @@ go version  # >= 1.21
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 git clone https://github.com/Layr-Labs/eigenlayer-middleware.git
 cd eigenlayer-middleware && forge install && cd ..
-```
+`````
 
 ### 第1步：AVS合约架构
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
@@ -277,11 +278,11 @@ contract PriceOracleAVS is BLSSignatureChecker, OperatorStateRetriever {
         emit PriceUpdated(assetId, proposedPrice, uint32(block.number));
     }
 }
-```
+`````
 
 ### 第2步：运营商节点实现
 
-```go
+`````go
 // operator/price_task_generator.go
 package operator
 
@@ -384,11 +385,11 @@ func (g *PriceTaskGenerator) fetchAggregatedPrice(
     
     return calculateMedian(prices), nil
 }
-```
+`````
 
 ### 第3步：聚合器服务
 
-```go
+`````go
 // aggregator/aggregator.go
 package aggregator
 
@@ -451,11 +452,11 @@ func (a *PriceAggregator) ProcessSignedPriceResponse(
     // 尝试聚合
     return a.tryAggregateResponses(taskState)
 }
-```
+`````
 
 ### 第4步：部署脚本
 
-```bash
+`````bash
 #!/bin/bash
 # deploy_avs.sh - 将PriceOracle AVS部署到主网
 
@@ -488,9 +489,9 @@ forge script script/DeployPriceOracleAVS.s.sol:DeployStakeRegistry \
 
 echo "=== 部署完成 ==="
 echo "注册协调器: $REGISTRY_COORDINATOR"
-```
+`````
 
-```solidity
+`````solidity
 // script/DeployPriceOracleAVS.s.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
@@ -513,13 +514,13 @@ contract DeployAVS is Script {
         console.log("PriceOracleAVS部署于:", address(priceOracleAVS));
     }
 }
-```
+`````
 
 ## 惩罚条件与风险管理
 
 EigenLayer的关键方面之一是惩罚机制。当运营商选择加入AVS时，他们需要接受超出以太坊共识的额外惩罚条件。
 
-```solidity
+`````solidity
 // PriceOracle AVS的自定义惩罚条件
 interface ISlasher {
     function freezeOperator(address operator) external;
@@ -566,9 +567,9 @@ contract PriceOracleSlashing {
         emit OperatorSlashed(operator, slashAmount, "DIVERGENT_RESPONSE");
     }
 }
-```
+`````
 
-```go
+`````go
 // 监控运营商健康状况并检测可惩罚事件
 package monitoring
 
@@ -595,13 +596,13 @@ func (m *SlashMonitor) StartMonitoring(ctx context.Context) {
         }
     }
 }
-```
+`````
 
 ## 奖励分配机制
 
 EigenLayer的奖励分配允许AVS开发者激励运营商的验证工作。
 
-```solidity
+`````solidity
 // PriceOracle AVS的奖励分配合约
 contract PriceOracleRewards is IRewardsCoordinator {
     
@@ -658,13 +659,13 @@ contract PriceOracleRewards is IRewardsCoordinator {
         emit RewardsClaimed(msg.sender, amount);
     }
 }
-```
+`````
 
 ## 流动性再质押代币（LRT）集成
 
 对于不想运行自己验证者基础设施的用户，流动性再质押代币提供了便捷的入口。
 
-```typescript
+`````typescript
 // TypeScript SDK用于LRT交互
 import { ethers, Contract } from ethers;
 import { EigenLayerSDK } from '@eigenlayer/sdk';
@@ -685,8 +686,8 @@ async function depositForLRT(stethAmount: bigint) {
   });
   
   const receipt = await tx.wait();
-  console.log(`存入 ${stethAmount} stETH，获得 ezETH`);
-  console.log(`交易: ${receipt.hash}`);
+  console.log(````存入 ${stethAmount} stETH，获得 ezETH````);
+  console.log(````交易: ${receipt.hash}````);
 }
 
 // 检查所有AVS仓位的收益
@@ -694,13 +695,13 @@ async function aggregateLRTYield() {
   const portfolio = await sdk.getLRTPortfolio(walletAddress);
   
   for (const position of portfolio.positions) {
-    console.log(`\n${position.lrtSymbol}:`);
-    console.log(`  余额: ${position.balance}`);
-    console.log(`  底层ETH: ${position.underlyingETH}`);
-    console.log(`  30天收益率: ${position.thirtyDayYield}%`);
+    console.log(````\n${position.lrtSymbol}:````);
+    console.log(````  余额: ${position.balance}````);
+    console.log(````  底层ETH: ${position.underlyingETH}````);
+    console.log(````  30天收益率: ${position.thirtyDayYield}%````);
   }
 }
-```
+`````
 
 ## 常见问题解答（FAQ）
 
@@ -726,13 +727,13 @@ A：不能 —— EigenLayer强制执行约7天的取消委托和提取延迟（
 
 **Q6：构建AVS需要什么编程语言和框架？**
 
-A：智能合约层使用Solidity（Foundry框架）。运营商节点通常使用EigenSDK以Go语言构建。BLS签名聚合需要`eigen-crypto`库。参考EigenDA实现使用Go构建disperser/retriever服务，Rust构建节点客户端。Docker和Kubernetes是生产部署的标准选择。
+A：智能合约层使用Solidity（Foundry框架）。运营商节点通常使用EigenSDK以Go语言构建。BLS签名聚合需要````eigen-crypto````库。参考EigenDA实现使用Go构建disperser/retriever服务，Rust构建节点客户端。Docker和Kubernetes是生产部署的标准选择。
 
 **Q7：运营商选择和委托如何运作？**
 
 A：质押者在DelegationManager中浏览已注册的运营商，并将他们的再质押仓位委托给选择的运营商。运营商必须使用BLS公钥和最低质押要求注册。选择运营商时，请考虑：佣金率（5-15%）、AVS覆盖范围（他们验证哪些AVS）、历史绩效（在线率%）和再质押金额（通常越高越安全）。您可以无需解押即时重新委托。
 
----
+* * *
 
 ## 推荐部署与基础设施
 
@@ -745,7 +746,7 @@ A：质押者在DelegationManager中浏览已注册的运营商，并将他们�
 
 ## 快速开始：您的EigenLayer清单
 
-```bash
+`````bash
 # 1. 设置开发环境
 git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
 cd eigenlayer-contracts && forge install
@@ -768,9 +769,9 @@ go run main.go --config config.yaml
 # 6. 监控运营
 make telemetry
 # 在 http://localhost:3000 打开Grafana仪表板
-```
+````
 
----
+* * *
 
 *免责声明：本指南仅供教育目的。再质押涉及重大的智能合约风险、惩罚风险和协议风险。在部署资金或代码之前，请务必进行自己的研究。DYOR —— 做好自己的研究。*
 
@@ -779,7 +780,7 @@ make telemetry
 - 使用 [Minara](https://minara.ai/r/OSXG4X) 探索自动化AVS部署
 - 关注我们的Telegram获取最新的EigenLayer资讯：**@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | 为DeFi开发者、交易者和研究人员而建。*
 

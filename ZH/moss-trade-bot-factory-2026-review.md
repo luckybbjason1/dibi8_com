@@ -36,6 +36,7 @@ faq: - q: "moss-trade-bot-factory 装起来安全吗？"
     a: "仅限 v1.0.26 BTC 304 天数据：以均值回归为主的网格 + 2-3x 杠杆是唯一正收益（+4.36%）。趋势跟随 + 5-10x 杠杆同窗口亏 -8% 到 -20%。这是 regime 决定的 — BTC 2025-07 ~ 2026-04 是震荡市。同样的网格逻辑在强单边市大概率亏。"
 ---
 
+
 {{</* resource-info */>}}
 
 # Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人
@@ -46,13 +47,13 @@ faq: - q: "moss-trade-bot-factory 装起来安全吗？"
 
 **in-sample 幻想 和 out-of-sample 现实之间的鸿沟，就是这篇评测要拆穿的事。**
 
-Moss Trade Bot Factory（`moss-trade-bot-skills` v1.0.26，MIT-0 协议）是一个开源 AI agent，把"利弗莫尔趋势跟随、保守杠杆、突破策略"这种自然语言描述转成完整的 Hyperliquid 永续合约参数集，在打包好的 CSV 历史数据上跑回测，可选通过 LLM 反思进化参数。两天深度实测之后 — 包含安全审计、Sharpe 年化常数 bug 修复、5 策略对比、进化模式、严格 70/30 train/OOS 验证 — 得出的判断比粉丝或反对者讲的都更复杂。
+Moss Trade Bot Factory（```moss-trade-bot-skills```` v1.0.26，MIT-0 协议）是一个开源 AI agent，把"利弗莫尔趋势跟随、保守杠杆、突破策略"这种自然语言描述转成完整的 Hyperliquid 永续合约参数集，在打包好的 CSV 历史数据上跑回测，可选通过 LLM 反思进化参数。两天深度实测之后 — 包含安全审计、Sharpe 年化常数 bug 修复、5 策略对比、进化模式、严格 70/30 train/OOS 验证 — 得出的判断比粉丝或反对者讲的都更复杂。
 
 ## ⚡ 90 秒总结
 
 > **本质**：开源 CLI skill，把自然语言策略描述转成 30+ 个 Hyperliquid 永续参数，跑工业级 Decimal 精度回测，可选 LLM 反思驱动的进化循环。
 >
-> **不是什么**：不是实盘系统（除非显式 `--platform-url` bind 到 ai.moss.site）。不是传统意义的 paper trading 沙盒 — 回测是历史数据 replay，不是实时市场撮合。
+> **不是什么**：不是实盘系统（除非显式 ````--platform-url```` bind 到 ai.moss.site）。不是传统意义的 paper trading 沙盒 — 回测是历史数据 replay，不是实时市场撮合。
 >
 > **适合谁**：想看工业级回测引擎内部实现的量化学习者（Decimal 算术、20 档深度模拟、强平建模）。想用一致的 harness 比较规则策略与自然语言生成参数的策略设计师。
 >
@@ -61,21 +62,21 @@ Moss Trade Bot Factory（`moss-trade-bot-skills` v1.0.26，MIT-0 协议）是一
 > **开源姿态**：MIT-0 协议、无 eval/exec、HMAC 签名平台调用永不上传 secret、不访问 wallet 私钥。商业漏斗是 moss.site（商业 AI 交易平台），但本地回测流水线完全离线运行。
 
 
----
+* * *
 ## Moss Trade Bot Factory 是什么（不是什么）
 
-项目地址 [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills)，归属 `moss-site` GitHub 组织（Moss AI，[moss.site](https://moss.site)，2025-07 成立）。截至 v1.0.26（2026-05-25 发布）共 98 stars、14 forks、101 commits，3 个贡献者（slowfirary 79 commits、fei-moss 14、lokix006 1）。
+项目地址 [github.com/moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills)，归属 ````moss-site```` GitHub 组织（Moss AI，[moss.site](https://moss.site)，2025-07 成立）。截至 v1.0.26（2026-05-25 发布）共 98 stars、14 forks、101 commits，3 个贡献者（slowfirary 79 commits、fei-moss 14、lokix006 1）。
 
 机制上 skill 工作分三个阶段：
 
-1. **解析**：自然语言输入（"BTC 保守网格，最近 90 天"）被 agent 解析成结构化 `params.json`，覆盖 30+ 战术与性格参数 — 5 个信号权重（趋势/动量/均值回归/量能/波动率）、杠杆、entry/exit 阈值、ATR 止损止盈倍数、regime 切换参数等。
+1. **解析**：自然语言输入（"BTC 保守网格，最近 90 天"）被 agent 解析成结构化 ````params.json````，覆盖 30+ 战术与性格参数 — 5 个信号权重（趋势/动量/均值回归/量能/波动率）、杠杆、entry/exit 阈值、ATR 止损止盈倍数、regime 切换参数等。
 
 2. **回放**：回测引擎读取打包的 Hyperliquid CSV 数据（15m bar，43 个标的，148–304 天覆盖），用以下机制 replay 交易：
-   - Decimal 精度账务（对齐 Moss 平台 Go `shopspring/decimal` 后端）
+   - Decimal 精度账务（对齐 Moss 平台 Go ````shopspring/decimal```` 后端）
    - 20 档冻结深度模板，真实建模滑点
    - 显式强平建模 — 维持保证金被破检测
    - Cross-margin 模拟（单合约，不是组合保证金）
-   - 1 小时 funding 结算（固定费率 `0.0000125`，不是真实历史 funding）
+   - 1 小时 funding 结算（固定费率 ````0.0000125````，不是真实历史 funding）
 
 3. **反思 + 进化**（可选）：把回测窗口切成多段（默认 4000 bars ≈ 41.7 天/段），先在每段跑 baseline，然后调用 LLM agent 读取分段汇总（exit reasons、平均盈亏、市场上下文），产生每段的参数表，相对 baseline 漂移上限 ±30%。性格参数（信号权重、杠杆、long_bias）锁死。
 
@@ -85,53 +86,53 @@ README 里的 pitch 是真的：这不只是 vectorbt 那种玩具。Decimal 精
 
 ## 回测引擎到底怎么工作
 
-任何评估量化工具的人，引擎内部比营销文案重要得多。`scripts/core/backtest.py` 里有三件事值得停下来看：
+任何评估量化工具的人，引擎内部比营销文案重要得多。````scripts/core/backtest.py```` 里有三件事值得停下来看：
 
 ### 1. Look-Ahead Bias 防护（基本到位）
 
-Replay 主循环喂给策略的 bar 是 `range(last_fed_idx + 1, end_idx)` — 严格止于评估 bar 的 close 之前。执行的 mark price 用 `open + (close-open)/15` 合成，模拟下一个 15m bar 的第一分钟价格。这在原理上正确，但假设 bar 内价格线性变化，在高波动 regime 下会失真。不是 bug，但是已知近似。
+Replay 主循环喂给策略的 bar 是 ````range(last_fed_idx + 1, end_idx)```` — 严格止于评估 bar 的 close 之前。执行的 mark price 用 ````open + (close-open)/15```` 合成，模拟下一个 15m bar 的第一分钟价格。这在原理上正确，但假设 bar 内价格线性变化，在高波动 regime 下会失真。不是 bug，但是已知近似。
 
 ### 2. 强平建模（正确）
 
-每个 replay step 都对 bar high（空仓）和 bar low（多仓）做维持保证金破检测。一旦触发，按强平价强制平仓。结果里的 `blowup_count` 字段统计策略爆仓次数 — BTC 304 天 × 5 策略测试下来，blowup count 全是 0，确认杠杆上限和 ATR 止损实际触发了。
+每个 replay step 都对 bar high（空仓）和 bar low（多仓）做维持保证金破检测。一旦触发，按强平价强制平仓。结果里的 ````blowup_count```` 字段统计策略爆仓次数 — BTC 304 天 × 5 策略测试下来，blowup count 全是 0，确认杠杆上限和 ATR 止损实际触发了。
 
 ### 3. Sharpe 年化常数 bug
 
-`backtest.py:828` 原代码：
+````backtest.py:828```` 原代码：
 
-```python
+`````python
 sharpe = (valid_returns.mean() / valid_returns.std(ddof=0) * np.sqrt(8760)) ...
-```
+`````
 
-这里 `8760` 是小时 bar 的年化常数（`365 × 24`）。但 `equity` 是按 15 分钟步进的（看 line 735 `equity_points.append`）。15m bar 正确常数是 `35040` = `365 × 24 × 4`。原常数对齐 Moss 平台 Go 后端做 verify parity，但**任何本地回测对比或绝对 Sharpe 解读，所有默认 Sharpe 值都系统性偏低约 2 倍**。
+这里 ````8760```` 是小时 bar 的年化常数（````365 × 24````）。但 ````equity```` 是按 15 分钟步进的（看 line 735 ````equity_points.append````）。15m bar 正确常数是 ````35040```` = ````365 × 24 × 4````。原常数对齐 Moss 平台 Go 后端做 verify parity，但**任何本地回测对比或绝对 Sharpe 解读，所有默认 Sharpe 值都系统性偏低约 2 倍**。
 
 一行修复：
 
-```python
+`````python
 ANNUALIZATION_FACTOR = 35040  # 15m bars per year
 sharpe = (valid_returns.mean() / valid_returns.std(ddof=0) * np.sqrt(ANNUALIZATION_FACTOR)) ...
-```
+`````
 
-如果你打算上传回测到 moss.site verify，保持 `8760`。如果是本地学量化、对比策略，用 `35040`。
+如果你打算上传回测到 moss.site verify，保持 ````8760````。如果是本地学量化、对比策略，用 ````35040````。
 
 ## 安装：10 分钟搞定
 
 这是我们 2026 装过的开源量化 skill 里最不折腾 env-var 的一个。标准流程：
 
-```bash
+`````bash
 git clone --depth 1 --branch v1.0.26 https://github.com/moss-site/moss-trade-bot-skills.git
 cd moss-trade-bot-skills/moss-trade-bot-factory/scripts
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-```
+`````
 
-依赖最简：`pandas≥2.0`、`numpy≥1.24`、`ccxt≥4.0`。首次跑 `dataset_catalog.py` 会从 GitHub Release Asset 下载约 100MB 历史 CSV（不是从 moss.site — 数据用 SHA256 钉到 tagged release 做复现性）。之后所有命令完全离线。
+依赖最简：````pandas≥2.0````、````numpy≥1.24````、````ccxt≥4.0````。首次跑 ````dataset_catalog.py```` 会从 GitHub Release Asset 下载约 100MB 历史 CSV（不是从 moss.site — 数据用 SHA256 钉到 tagged release 做复现性）。之后所有命令完全离线。
 
 列可用 symbol：
 
-```bash
+`````bash
 python3 dataset_catalog.py --list --timeframe 15m
-```
+`````
 
 覆盖 43 个 Hyperliquid 标的：BTC（304 天）、ETH/SOL/ADA/AAVE 等（148 天）、Tokenized 美股（TSLA / NVDA / MSTR）和商品（GOLD / SILVER / BRENTOIL / SP500）。
 
@@ -141,21 +142,21 @@ python3 dataset_catalog.py --list --timeframe 15m
 
 | 策略 | 杠杆 | 结束资金 | 收益 | 胜率 | 最大回撤 | PF | 交易数 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 保守网格（均值回归） | 2x | $10,436 | **+4.36%** ✅ | 51.9% | -22.8% | 1.27 | 214 |
 | 高频突破 | 10x | $9,207 | -7.93% | 42.0% | -17.4% | 1.04 | 100 |
@@ -189,15 +190,15 @@ python3 dataset_catalog.py --list --timeframe 15m
 
 | 指标 | Train Base | Train 进化后 | OOS Base | OOS 进化后 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 收益 | +3.02% | **+5.60%** ✅ | +7.22% | **-2.43%** ❌ |
 | 年化 | +5.20% | +9.64% | +28.63% | -9.64% |
@@ -234,7 +235,7 @@ skill 本身免费（MIT-0）。漏斗是 moss.site，可以：
 
 我们没测平台侧。README 明确这是研究教育工具，我们就停在这里。要实盘交易，需要自己的 Hyperliquid wallet、真 USDC，以及无视 Train-only 回测指标的耐心。
 
-整个 org 在明显的漏斗模式跑（6 个 repo，1 个有 star 的，其余支撑：`moss-og-pass-nft` 会员权益、`moss-bounty-x402-client` 支付、`Hyperliquid-copy-trade` 跟单）。不是邪恶 — 标准 open-core 分发 — 但当 skill 默认连 `ai.moss.site` 时值得知道。
+整个 org 在明显的漏斗模式跑（6 个 repo，1 个有 star 的，其余支撑：````moss-og-pass-nft```` 会员权益、````moss-bounty-x402-client```` 支付、````Hyperliquid-copy-trade```` 跟单）。不是邪恶 — 标准 open-core 分发 — 但当 skill 默认连 ````ai.moss.site```` 时值得知道。
 
 ## 这个 skill 在什么时候是对的工具
 
@@ -258,8 +259,8 @@ skill 本身免费（MIT-0）。漏斗是 moss.site，可以：
 
 - **Sharpe 年化常数 bug**（上文）。一行修复。
 - **没有内置 train/test 切分**。需要自己写 CSV 切分器和结果对比器。我们的在 [95至尊交易员记忆 档案库](https://github.com/luckybbjason1/home-hermes/tree/main/95%E8%87%B3%E5%B0%8A%E4%BA%A4%E6%98%93%E5%91%98%E8%AE%B0%E5%BF%86)。
-- **Regime 检测标注可能错**。Seg 4 被标 SIDEWAYS 但 BTC 跌 -19.6%。`core/regime.py` 自己也值得审一遍。
-- **Funding rate 是固定常数**（`0.0000125`/h）。真实 Hyperliquid funding 浮动。长持仓策略会在回测 vs 实盘之间看到分歧。
+- **Regime 检测标注可能错**。Seg 4 被标 SIDEWAYS 但 BTC 跌 -19.6%。````core/regime.py```` 自己也值得审一遍。
+- **Funding rate 是固定常数**（````0.0000125```/h）。真实 Hyperliquid funding 浮动。长持仓策略会在回测 vs 实盘之间看到分歧。
 - **没有多合约 cross-margin**。仅单合约 cross-margin。组合策略需要自己写。
 
 ## 推荐自托管基础设施
@@ -282,7 +283,7 @@ Moss Trade Bot Factory 是我们 2026 评测过的开源量化 skill 里最真�
 机器人不会教你诚实面对自己的 edge。这件事得你自己做。
 
 
----
+* * *
 **GitHub**: [moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) · **协议**: MIT-0 · **最新**: v1.0.26（2026-05-25）· **Stars**: 98 · **维护者**: moss-site / Moss AI（[moss.site](https://moss.site)）
 
 
@@ -347,12 +348,12 @@ Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -362,7 +363,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](moss-trade-bot-factory-2026-review)
 - [nanochat-karpathy-100-chatgpt-single-gpu](moss-trade-bot-factory-2026-review)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

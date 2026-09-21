@@ -10,6 +10,7 @@ license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 ---
 
+
 ## 소개
 
 진정으로 자율적인 AI 어시스턴트의 꿈 — 컴퓨터 화면을 보고, 무엇을 보는지 이해하고, 작업을 완료하기 위해 조치를 취하는 — 은 수년간 AI 개발의 성배였습니다. ByteDance의 UI-TARS Desktop은 최첨단 비전-언어 모델과 데스크톱 자동화 기능을 결합하여 이 꿈을 더 현실에 가깝게 가져옵니다.
@@ -49,67 +50,67 @@ UI-TARS Desktop은 npm(데스크톱 애플리케이션) 또는 pip(Python 라이
 
 ### npm으로 설치 (데스크톱 애플리케이션)
 
-```bash
+````bash
 npm install -g @agent-tars/desktop
-```
+`````
 
 UI-TARS Desktop 애플리케이션을 전역으로 설치하여 내장 인터페이스가 있는 완전한 GUI 에이전트 경험을 제공합니다.
 
 ### 대체: pip로 설치 (Python 라이브러리)
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 프로그래밍 접근과 서버 측 배포에 이상적인 Python 라이브러리 버전을 설치합니다.
 
 ### 웹 UI 시작
 
-```bash
+`````bash
 agent-tars web
-```
+`````
 
 UI-TARS 에이전트의 웹 기반 인터페이스를 시작합니다. 웹 UI는 에이전트를 제어하고 작업을 보기 위한 브라우저 기반 인터페이스를 제공합니다.
 
 ### 설치 확인
 
-```bash
+`````bash
 agent-tars --version
-```
+`````
 
 ### 소스에서 설치
 
-```bash
+`````bash
 git clone https://github.com/bytedance/UI-TARS-desktop.git && cd UI-TARS-desktop && pip install -r requirements.txt
-```
+`````
 
 ### 사전 훈련된 모델 다운로드
 
-```bash
+`````bash
 python download_model.py --model ui-tars-7b
-```
+`````
 
 70억 파라미터 비전-언어 모델을 다운로드합니다. 모델은 HuggingFace에서 다운로드되어 오프라인 추적을 위해 로컬에 저장됩니다.
 
 ### Docker 설치
 
-```bash
+`````bash
 docker pull bytedance/uitars-desktop
 docker run --gpus all -it bytedance/uitars-desktop
-```
+`````
 
 ### macOS에서 설치
 
-```bash
+`````bash
 brew install python@3.11
 pip3 install agent-tars
-```
+`````
 
 ### Windows에서 설치
 
-```bash
+`````bash
 pip install agent-tars
-```
+`````
 
 ![UI-TARS 행동 사이클](https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/action-cycle.png)
 
@@ -117,83 +118,83 @@ pip install agent-tars
 
 ### 에이전트 시작
 
-```bash
+`````bash
 agent-tars --model ui-tars-7b
-```
+`````
 
 대부분의 사용 사례에 권장되는 70억 파라미터 비전-언어 모델로 UI-TARS 에이전트를 시작합니다.
 
 ### 단일 작업 실행
 
-```bash
+`````bash
 agent-tars run --task "브라우저를 열고 '머신러닝 튜토리얼'을 검색해 줘" --model ui-tars-7b
-```
+`````
 
 에이전트는 기본 브라우저를 자동으로 열고, 검색 엔진으로 이동하여 지정된 쿼리를 검색합니다.
 
 ### 작업 파일에서 실행
 
-```bash
+`````bash
 agent-tars run --task-file tasks.yaml --model ui-tars-7b
-```
+`````
 
-여기서 `tasks.yaml`은 다음을 포함합니다: ```yaml
+여기서 ``tasks.yaml``은 다음을 포함합니다: `````yaml
 tasks: - "파일 탐색기 열기"
   - "데스크톱으로 이동"
   - "오른쪽 클릭하고 새 폴더 만들기"
   - "폴더 이름을 '내 프로젝트'로 지정"
-```
+`````
 
 ### 스크린샷 모드 (분석만)
 
-```bash
+`````bash
 agent-tars analyze --screenshot screenshot.png
-```
+`````
 
 스크린샷을 분석하고 표시된 UI 요소를 설명합니다. 동작은 수행하지 않습니다. 디버깅과 모델이 보는 것을 이해하는 데 유용합니다.
 
 ### 녹화 및 재생
 
-```bash
+`````bash
 agent-tars record --output recording.yaml
 agent-tars replay --recording recording.yaml
-```
+`````
 
 에이전트의 동작을 기록하고 나중에 재생할 수 있는 YAML 파일을 생성하여 자동화 스크립트 생성을 가능하게 합니다.
 
 ### 헤드리스 모드에서 실행
 
-```bash
+`````bash
 agent-tars run --headless --task "모든 열린 브라우저 탭 닫기" --model ui-tars-7b
-```
+`````
 
 헤드리스 모드는 UI를 표시하지 않고 에이전트를 실행하여 서버 환경과 CI/CD 파이프라인에 적합합니다.
 
 ### 에이전트 매개변수 구성
 
-```bash
+`````bash
 agent-tars run --task "작업 내용" --model ui-tars-7b --max-steps 20 --confidence-threshold 0.8
-```
+`````
 
 ### 배치 작업 처리
 
-```bash
+`````bash
 agent-tars batch --task-file tasks.yaml --parallel 3 --output results.jsonl
-```
+`````
 
 여러 작업을 병렬로 처리하고 결과를 JSONL 파일에 기록하여 프로그래밍 분석을 가능하게 합니다.
 
 ### 작업 로그 내보내기
 
-```bash
+`````bash
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## 고급 사용 / 프로덕션 견고화
 
 ### 모델 선택
 
-UI-TARS는 다양한 성능 절충안을 위해 여러 모델 크기를 지원합니다: ```bash
+UI-TARS는 다양한 성능 절충안을 위해 여러 모델 크기를 지원합니다: `````bash
 # 7B 파라미터 모델 (대부분의 사용 사례에 권장)
 agent-tars --model ui-tars-7b
 
@@ -202,11 +203,11 @@ agent-tars --model ui-tars-1b
 
 # 72B 파라미터 모델 (가장 정확, 가장 느림, 40GB+ VRAM 필요)
 agent-tars --model ui-tars-72b
-```
+`````
 
 ### 사용자 정의 구성 파일
 
-```yaml
+`````yaml
 # uitars-config.yaml
 agent: model: ui-tars-7b
   max_steps: 30
@@ -222,25 +223,25 @@ actions: click: method: mouse
 environment: resolution: 1920x1080
   scale_factor: 1.0
   language: en
-```
+`````
 
 ### 다중 모니터 지원
 
-```bash
+`````bash
 agent-tars --monitor 0 --task "모니터 2에서 설정 열기"
-```
+`````
 
 에이전트가 스크린샷 캡처 및 동작 실행에 사용할 모니터를 지정합니다.
 
 ### API 서버 모드
 
-```bash
+`````bash
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
-```
+`````
 
 에이전트의 프로그램적 제어를 위한 REST API 서버를 시작합니다. 이를 통해 다른 도구 및 자동화 워크플로우와 통합할 수 있습니다.
 
-```bash
+`````bash
 # API를 통해 작업 전송
 curl -X POST http://localhost:8000/run \
   -H "Content-Type: application/json" \
@@ -251,21 +252,21 @@ curl http://localhost:8000/tasks/task-001/status
 
 # 실행 중인 작업 취소
 curl -X POST http://localhost:8000/tasks/task-001/cancel
-```
+`````
 
 ### 사용자 정의 비전 모델
 
-```bash
+`````bash
 # 로컬 경로에서 미세 조정된 비전 모델 사용
 agent-tars --model-path ./custom-model/ --task "사용자 정의 작업"
 
 # 사용자 정의 VLM 사용
 agent-tars --vlm-path ./my-vlm/ --task "작업 내용"
-```
+`````
 
 ### 스크린 캡처 방법
 
-```bash
+`````bash
 # 스크린샷 방식 사용 (기본값)
 agent-tars --capture screenshot --task "작업 내용"
 
@@ -274,25 +275,25 @@ agent-tars --capture recording --task "작업 내용"
 
 # 데스크톱 공유 방식 사용 (Linux PipeWire)
 agent-tars --capture pipewire --task "작업 내용"
-```
+`````
 
 ### 키보드 레이아웃 구성
 
-```bash
+`````bash
 agent-tars --keyboard-layout us --task "'Hello World' 입력"
-```
+`````
 
 ### CI/CD 테스트 통합
 
-```bash
+`````bash
 # CI/CD 파이프라인에서 GUI 테스트를 위해 UI-TARS 사용
 agent-tars run --task "애플리케이션 열고, 폼 작성, 제출" \
   --headless --output test-report.json
-```
+`````
 
 ### Python API 사용
 
-```python
+`````python
 from agent_tars import Agent
 
 # 에이전트 인스턴스 생성
@@ -310,7 +311,7 @@ for action in result.actions: print(f"  {action.type}: {action.target}")
 
 print(f"성공: {result.success}")
 print(f"이유: {result.explanation}")
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -346,22 +347,22 @@ print(f"이유: {result.explanation}")
 
 ### 실제 사례: QA 테스트 팀
 
-8명의 엔지니어로 구성된 QA 팀은 웹 및 데스크톱 애플리케이션 전체의 GUI 테스트 자동화를 위해 UI-TARS를 사용합니다: ```bash
+8명의 엔지니어로 구성된 QA 팀은 웹 및 데스크톱 애플리케이션 전체의 GUI 테스트 자동화를 위해 UI-TARS를 사용합니다: `````bash
 #!/bin/bash
 # 자동화Regression 테스트 스위트
 agent-tars batch --task-file regression-tests.yaml \
   --headless --parallel 4 --output test-results.jsonl
-```
+`````
 
 팀회사는 Regression 테스트 시간이 60% 줄어들었으며, 이전에는 DOM 접근이 없어서 수동 테스트가 필요했던 애플리케이션도 테스트할 수 있다고 보고했습니다.
 
 ### 실제 사례: 접근성 자동화
 
-어느 회사는 애플리케이션 전체의 접근성 테스트 자동화에 UI-TARS를 사용합니다: ```bash
+어느 회사는 애플리케이션 전체의 접근성 테스트 자동화에 UI-TARS를 사용합니다: `````bash
 # 다양한 UI 상태 테스트
 agent-tars run --task "모든 메뉴로 이동하고 키보드 단축키가 작동하는지 확인" \
   --model ui-tars-7b --max-steps 50
-```
+`````
 
 에이전트는 모든 메뉴를 탐색하고 키보드 단축키가 적절히 구현되었는지 검증하여 전통적인 자동화 테스트가 놓친 Regression을 발견합니다.
 
@@ -369,18 +370,18 @@ agent-tars run --task "모든 메뉴로 이동하고 키보드 단축키가 작�
 
 ### 시크릿 관리가 포함된 프로덕션 구성
 
-```bash
+`````bash
 # 모델 경로를 안전하게 구성
 export UI_TARS_MODEL_PATH=/secure/path/to/models
 agent-tars serve --host 0.0.0.0 --port 8000 --model ui-tars-7b
 
 # 환경 기반 구성 사용
 agent-tars --config /etc/uitars/config.yaml serve
-```
+`````
 
 ### 컨테이너 배포
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 
 RUN pip install agent-tars
@@ -389,33 +390,33 @@ COPY uitars-config.yaml /etc/uitars/config.yaml
 EXPOSE 8000
 
 ENTRYPOINT ["agent-tars", "serve", "--config", "/etc/uitars/config.yaml"]
-```
+`````
 
 ### 프로덕션용 리소스 제한
 
-```bash
+`````bash
 # GPU 메모리 사용량 제한
 CUDA_VISIBLE_DEVICES=0 agent-tars --model ui-tars-7b --max-gpu-memory 8192
 
 # 동시 작업 수 제한
 agent-tars serve --max-concurrent-tasks 5 --task-timeout 300
-```
+`````
 
 ### 로깅 및 모니터링
 
-```bash
+`````bash
 # 상세 로깅 활성화
 agent-tars run --task "작업 내용" --verbose --log-level debug
 
 # 분석을 위해 로그 내보내기
 agent-tars export-logs --output uitars-logs.json
-```
+`````
 
 ## 대안과의 비교
 
 | 기능 | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
 |------|----------------|-------------|-----------|-----------|
-| 설치 방법 | `npm install -g @agent-tars/desktop` | pip install | pip install | pip install |
+| 설치 방법 | ````npm install -g @agent-tars/desktop```` | pip install | pip install | pip install |
 | 시각적 이해 | VLM 기반 (스크린샷 분석) | 제한적 | 없음 | 부분 |
 | 모든 GUI 앱 | 예 | 제한적 | 예 | 제한적 |
 | 자기 수정 | 예 (시각적 피드백 루프) | 부분 | 없음 | 부분 |
@@ -434,7 +435,7 @@ UI-TARS Desktop은 강력하지만 다음 한계를 인지하세요: 1. **GPU �
 2. **지연시간** — 각 동작에는 스크린샷 및 모델 추론이 필요하므로 각 단계마다 지연시간이 추가됩니다. 다단계 작업에는 몇 분 정도 걸릴 수 있습니다.
 3. **보안 고려사항** — 에이전트는 데스크톱에 대한 전체 제어권을 가집니다. 신뢰할 수 있는 환경에서만 사용하고 적절한 인증으로 액세스를 제한하세요.
 4. **복잡한 텍스트 입력** — 긴 텍스트나 복잡한 텍스트 입력 시 Occasionally 글자 인식 또는 입력 시뮬레이션 오류가 발생할 수 있습니다.
-5. **고해상도 디스플레이** — 일부 디스플레이의 화면 배율은 위치 정확도에 영향을 줄 수 있습니다. `scale_factor` 매개변수를 디스플레이 설정에 맞게 구성하세요.
+5. **고해상도 디스플레이** — 일부 디스플레이의 화면 배율은 위치 정확도에 영향을 줄 수 있습니다. ````scale_factor```` 매개변수를 디스플레이 설정에 맞게 구성하세요.
 6. **비GUI 워크플로우** — 순수 커맨드라인 또는 API 기반 작업의 경우 전통적인 CLI 도구가 UI-TARS보다 효율적입니다.
 
 ## 자주 묻는 질문
@@ -471,7 +472,7 @@ ByteDance의 UI-TARS Desktop은 데스크톱 자동화에서 패러다임 전환
 
 AI 에이전트 인프라와 GPU 워크로드를 호스팅하려면, 저렴한 GPU 인스턴스를 제공하는 클라우드 플랫폼에 배포하는 것을 고려하세요. 개발 서버용은 [DigitalOcean](https://m.do.co/c/eca87ac14ee0), 프로덕션 호스팅용은 [HTStack](https://my.htstack.com/aff.php?aff=27187), 신뢰할 수 있는 프록시 및 콘텐츠 배포용은 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)을 사용하세요.
 
-지금 시작하세요: `npm install -g @agent-tars/desktop` 하고 무엇을 하고 있는지 실제로 보고 이해할 수 있는 AI 어시스턴트를 컴퓨터에 부여하세요.
+지금 시작하세요: ````npm install -g @agent-tars/desktop``` 하고 무엇을 하고 있는지 실제로 보고 이해할 수 있는 AI 어시스턴트를 컴퓨터에 부여하세요.
 
 위의 링크에는 제휴 링크가 포함되어 있습니다. dibi8.com은 가입 시 수수료 수익을 얻을 수 있으며, 이는 이용자에게 추가 비용이 없습니다. 사이트 운영과 콘텐츠提供免费를 유지하는 데 도움이 됩니다.
 
@@ -515,7 +516,7 @@ AI 에이전트 인프라와 GPU 워크로드를 호스팅하려면, 저렴한 G
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -525,7 +526,7 @@ AI 에이전트 인프라와 GPU 워크로드를 호스팅하려면, 저렴한 G
 - [microsoft-markitdown-file-to-markdown-converter-cli](bytedance-ui-tars-desktop-ai-agent-guide)
 - [nanochat-karpathy-100-chatgpt-single-gpu](bytedance-ui-tars-desktop-ai-agent-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

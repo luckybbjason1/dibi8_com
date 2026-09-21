@@ -33,12 +33,13 @@ faqs: - q: 'What does the top line''s actual time mean in EXPLAIN ANALYZE output
   - q: 'What does temp written mean on a Sort or Hash node in a query plan?'
     a: 'It means the sort or hash didn''t fit in work_mem and spilled to disk, which can easily multiply a node''s time by 10x. The fix is to bump work_mem for that session and re-run EXPLAIN.'
 ---
+
 # Reading EXPLAIN ANALYZE in Postgres Without Getting Lost
 
 
 {</* resource-info */>}
 
-The first time you see Postgres `EXPLAIN ANALYZE` output, it looks like
+The first time you see Postgres ```EXPLAIN ANALYZE```` output, it looks like
 a Christmas tree of numbers. Most of them are noise for the question you
 actually have: *why is this query slow?*
 
@@ -46,29 +47,29 @@ Here's the order I read it in after a few hundred of these.
 
 ## A query to anchor on
 
-```sql
+`````sql
 EXPLAIN (ANALYZE, BUFFERS)
 SELECT u.id, u.email, count(o.id) AS order_count
 FROM users u
 LEFT JOIN orders o ON o.user_id = u.id
 WHERE u.signup_at > now() - interval '30 days'
 GROUP BY u.id;
-```
+`````
 
-A typical output snippet: ```
+A typical output snippet: `````
 HashAggregate  (cost=12345.67..23456.78 rows=10000 width=48)
                (actual time=412.331..480.219 rows=8742 loops=1)
   ->  Hash Right Join  (cost=2345.67..11234.56 rows=120000 width=44)
                        (actual time=18.221..380.115 rows=98213 loops=1)
         ...
         Buffers: shared hit=18234 read=4521
-```
+`````
 
 That's enough output to learn the technique on.
 
-## Step 1: Look at the top line's `actual time`
+## Step 1: Look at the top line's ````actual time````
 
-The outermost node's second `actual time` is the wall-clock cost of the
+The outermost node's second ````actual time```` is the wall-clock cost of the
 whole query (in ms, for one execution of that node). In the example
 above: **480 ms**. Everything else in the plan is breaking down where
 those 480 ms went.
@@ -77,10 +78,10 @@ If the top number is fine and you're chasing a slow query report,
 double-check that you're explaining the same query the application
 runs. Different parameter values produce different plans.
 
-## Step 2: Compare `rows=` estimate vs actual
+## Step 2: Compare ````rows=```` estimate vs actual
 
-Each line has two row counts: - `rows=N` in the `cost=…` part — the **planner's estimate**
-- `rows=N` in the `actual time=…` part — what **really happened**
+Each line has two row counts: - ````rows=N```` in the ````cost=…```` part — the **planner's estimate**
+- ````rows=N```` in the ````actual time=…```` part — what **really happened**
 
 When these disagree by 10× or more, the planner is operating on bad
 statistics, and *every node above it* has been chosen using a wrong
@@ -89,52 +90,52 @@ assumption. That's almost always your bug.
 In the example above the planner expected the join to produce 120,000
 rows and it produced 98,213. That's fine, ~20% off. But if I saw
 something like estimate 100, actual 1,000,000 — full stop, that's the
-problem. Common causes: - Stale statistics → run `ANALYZE the_table` and re-explain.
-- Correlated columns → set `CREATE STATISTICS` on the column pair, or
+problem. Common causes: - Stale statistics → run ````ANALYZE the_table```` and re-explain.
+- Correlated columns → set ````CREATE STATISTICS```` on the column pair, or
   rewrite the predicate.
 - Skewed data the planner can't model → sometimes you need a hint via
-  `pg_hint_plan` or query rewrite.
+  ````pg_hint_plan```` or query rewrite.
 
 ## Step 3: Find where the time actually went
 
-Each node's `actual time=A..B loops=L` reads as: *"first row produced
+Each node's ````actual time=A..B loops=L```` reads as: *"first row produced
 at A ms after start, last row produced at B ms; this node ran L times."*
 
 To get the time spent in *just this node* (excluding children), you
-have to subtract the children's `actual time` ranges. For the common
-case of `loops=1`, the simple version is: > **Self time ≈ this node's `B` − sum of children's `B` values**
+have to subtract the children's ````actual time```` ranges. For the common
+case of ````loops=1````, the simple version is: > **Self time ≈ this node's ````B```` − sum of children's ````B```` values**
 
 I scan the plan top-down looking for the node with the biggest self
 time. That's where the optimization budget should go.
 
-A node with `loops=N` where N is large (a `Nested Loop` inner side, for
-example) reports per-loop times. Multiply by `loops` to get total.
+A node with ````loops=N```` where N is large (a ````Nested Loop```` inner side, for
+example) reports per-loop times. Multiply by ````loops```` to get total.
 
-## Step 4: Use `BUFFERS` to tell I/O from CPU
+## Step 4: Use ````BUFFERS```` to tell I/O from CPU
 
-`EXPLAIN (ANALYZE, BUFFERS)` adds lines like: ```
+``EXPLAIN (ANALYZE, BUFFERS)`` adds lines like: `````
 Buffers: shared hit=18234 read=4521
-```
+`````
 
-- `shared hit` — pages already in Postgres' buffer cache. Cheap.
-- `shared read` — pages fetched from the OS / disk. Expensive.
-- `temp written / read` — sorts or hashes that didn't fit in `work_mem`
+- ````shared hit```` — pages already in Postgres' buffer cache. Cheap.
+- ````shared read```` — pages fetched from the OS / disk. Expensive.
+- ````temp written / read```` — sorts or hashes that didn't fit in ````work_mem````
   and spilled to disk. Also expensive.
 
-If `read` dominates, the plan is fine but the data isn't in cache. Run
+If ````read```` dominates, the plan is fine but the data isn't in cache. Run
 the query twice — the second run is more representative of steady
-state. If both runs are slow with high `read`, the working set doesn't
+state. If both runs are slow with high ````read````, the working set doesn't
 fit and you need either more RAM, an index that touches fewer pages, or
 a smaller query.
 
-If you see `temp written` appearing on a `Sort` or `Hash` node, bump
-`work_mem` for that session and re-explain. A spill to disk can easily
+If you see ````temp written```` appearing on a ````Sort```` or ````Hash```` node, bump
+````work_mem```` for that session and re-explain. A spill to disk can easily
 multiply a node's time by 10×.
 
 ## The three patterns I see most often
 
 After all that, the actual bugs cluster into a few shapes: **1. Sequential scan on a "should-be-indexed" column.** Plan node says
-`Seq Scan on big_table  Filter: (...)` and rows-removed-by-filter is
+````Seq Scan on big_table  Filter: (...)```` and rows-removed-by-filter is
 huge. Add an index on the filter column. Don't add it if the table is
 small or the filter is non-selective; the planner's choice was correct.
 
@@ -150,10 +151,10 @@ to handle.
 
 ## A quick reading checklist
 
-When someone hands me an `EXPLAIN ANALYZE`, I do this in order: 1. Total time at the top — is it actually slow?
-2. Any node with `rows` estimate vs actual off by ≥10×? — that's the bug.
+When someone hands me an ````EXPLAIN ANALYZE````, I do this in order: 1. Total time at the top — is it actually slow?
+2. Any node with ````rows```` estimate vs actual off by ≥10×? — that's the bug.
 3. Which node has the biggest self-time? — that's the budget.
-4. Any `temp written` or unusually high `shared read`? — I/O issue.
+4. Any ````temp written```` or unusually high ````shared read```? — I/O issue.
 5. Match the slow node to one of the three patterns above.
 
 That's it. It's not magic, but the order matters — chasing the biggest
@@ -168,7 +169,7 @@ self-time before checking the row estimates leads you to optimize the
 - [Agent Reach: Give Your AI Agent Internet Superpowers](/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI-powered development tools
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -240,6 +241,6 @@ Reading EXPLAIN ANALYZE in Postgres Without Getting Lost represents an important
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/activepieces-workflow-automation/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：工作流自动化每年$2,340的痛苦
@@ -50,7 +51,7 @@ Activepieces采用模块化的三层架构：
 
 当流程执行时，引擎按顺序处理步骤：
 
-```typescript
+````typescript
 // 概念性流程执行模型
 interface FlowRun {
   id: string;
@@ -61,9 +62,9 @@ interface FlowRun {
 
 // 每个步骤解析输入，执行Piece操作，
 // 并将输出存储供下游步骤引用
-```
+`````
 
-步骤可以通过`{{step_name.property}}`模板语法引用前面步骤的输出，类似于Handlebars。引擎支持分支（`if/else`）、循环（`for each`）和子流程。
+步骤可以通过````{{step_name.property}}````模板语法引用前面步骤的输出，类似于Handlebars。引擎支持分支（````if/else````）、循环（````for each````）和子流程。
 
 ### Pieces：插件系统
 
@@ -85,7 +86,7 @@ Pieces可以是官方的（由Activepieces团队维护）、社区贡献的，�
 
 ### 方案A：Docker Compose（推荐）
 
-```bash
+`````bash
 git clone https://github.com/activepieces/activepieces.git
 cd activepieces
 
@@ -94,15 +95,15 @@ cp packages/server/api/.env.example .env
 
 # 3. 启动所有服务
 docker compose -f docker-compose.yml up -d
-```
+`````
 
-容器启动后，访问`http://localhost:8080`完成初始设置向导。
+容器启动后，访问````http://localhost:8080````完成初始设置向导。
 
 ### 方案B：全新VPS上一键安装
 
 对于在[DigitalOcean](https://m.do.co/c/eca87ac14ee0)或[HTStack](https://my.htstack.com/aff.php?aff=27187)上的生产部署，使用自动安装脚本：
 
-```bash
+`````bash
 # 下载并运行安装脚本
 curl -sSL https://cdn.activepieces.com/install.sh | bash
 
@@ -110,13 +111,13 @@ curl -sSL https://cdn.activepieces.com/install.sh | bash
 # - 域名（可选，用于HTTPS）
 # - 邮箱（用于通过Let's Encrypt获取SSL证书）
 # - 管理员邮箱和密码
-```
+`````
 
 此脚本会自动安装Docker、拉取Activepieces、配置Nginx反向代理并设置SSL。
 
 ### 方案C：带自定义配置的手动Docker
 
-```bash
+`````bash
 # 用于生产环境的 docker-compose.yml
 version: "3.8"
 services: activepieces: image: activepieces/activepieces:0.46.0
@@ -148,35 +149,35 @@ services: activepieces: image: activepieces/activepieces:0.46.0
     restart: unless-stopped
     volumes: - redisdata:/data
 
-volumes: pgdata: redisdata: ```
+volumes: pgdata: redisdata: `````
 
-使用`docker compose up -d`部署。平台约60秒后准备就绪。
+使用````docker compose up -d````部署。平台约60秒后准备就绪。
 
 ### 环境变量参考
 
 | 变量 | 必填 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `AP_ENCRYPTION_KEY` | 是 | AES-256密钥，用于加密凭证 |
-| `AP_JWT_SECRET` | 是 | 签名认证令牌的密钥 |
-| `AP_POSTGRES_*` | 是 | PostgreSQL连接详情 |
-| `AP_REDIS_URL` | 是 | Redis连接URL |
-| `AP_FRONTEND_URL` | 是 | 实例的公网URL |
-| `AP_TELEMETRY` | 否 | 设为`false`禁用匿名使用数据 |
-| `AP_EXECUTION_MODE` | 否 | `SANDBOXED`（默认）或`UNSANDBOXED` |
+| ````AP_ENCRYPTION_KEY```` | 是 | AES-256密钥，用于加密凭证 |
+| ````AP_JWT_SECRET```` | 是 | 签名认证令牌的密钥 |
+| ````AP_POSTGRES_*```` | 是 | PostgreSQL连接详情 |
+| ````AP_REDIS_URL```` | 是 | Redis连接URL |
+| ````AP_FRONTEND_URL```` | 是 | 实例的公网URL |
+| ````AP_TELEMETRY```` | 否 | 设为````false````禁用匿名使用数据 |
+| ````AP_EXECUTION_MODE```` | 否 | ````SANDBOXED````（默认）或````UNSANDBOXED```` |
 
 ### 首次登录
 
-```bash
+`````bash
 # 首次启动后，日志会显示默认管理员URL
 docker logs activepieces 2>&1 | grep "first sign up"
 # 输出：访问 http://localhost:8080/sign-up 创建第一个管理员账号
-```
+`````
 
 访问该URL，创建管理员账号，即可进入构建器。
 
@@ -197,7 +198,7 @@ Activepieces维护以下热门服务的官方集成：
 
 ### 连接Slack：分步指南
 
-```bash
+`````bash
 # 步骤1：在构建器中点击"新建连接"并选择Slack
 # 步骤2：选择"OAuth2"认证方式
 # 步骤3：在 https://api.slack.com/apps 创建Slack应用
@@ -205,7 +206,7 @@ Activepieces维护以下热门服务的官方集成：
 #    - 设置重定向URL：https://your-instance.com/redirect
 # 步骤4：将客户端ID和密钥复制到Activepieces
 # 步骤5：授权 — Activepieces自动处理OAuth流程
-```
+`````
 
 连接后，你可以发送消息、读取频道列表，并将Slack事件作为触发器响应。
 
@@ -213,7 +214,7 @@ Activepieces维护以下热门服务的官方集成：
 
 Activepieces v0.46.0包含原生OpenAI Piece，支持GPT-4o、GPT-4.1和GPT-4.1-mini：
 
-```yaml
+`````yaml
 # 示例：AI驱动的潜在客户筛选流程
 触发器：Webhook（"新表单提交"）
   → 步骤1：提取表单数据（姓名、邮箱、公司、留言）
@@ -226,13 +227,13 @@ Activepieces v0.46.0包含原生OpenAI Piece，支持GPT-4o、GPT-4.1和GPT-4.1-
        如果 "hot" → 在HubSpot中创建高优先级任务
        如果 "warm" → 添加到邮件培育序列
        如果 "cold" → 记录供月度审阅
-```
+`````
 
 OpenAI Piece支持自定义提示词、温度控制（0.0–2.0）、最大token限制，以及JSON模式输出结构化数据。
 
 ### Webhook触发器
 
-```bash
+`````bash
 # 每个带有Webhook触发器的流程都会获得一个唯一URL
 curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
   -H "Content-Type: application/json" \
@@ -241,19 +242,19 @@ curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
     "amount": 149.00,
     "customer_id": "cust_88291"
   }'
-```
+`````
 
 Webhook触发器支持自定义响应配置，因此你可以立即返回200 OK，或等待流程完成。
 
 ### 定时流程
 
-```yaml
+`````yaml
 # 使用Cron语法设置重复性自动化
 调度："0 9 * * 1"  # 每周一上午9:00
   → 从Google Analytics拉取周度指标
   → 格式化为Markdown报告
   → 发布到Slack #weekly-reports 频道
-```
+`````
 
 Activepieces使用基于BullMQ的作业调度器，由Redis支持，确保即使在容器重启期间也能可靠执行Cron任务。
 
@@ -263,13 +264,13 @@ Activepieces使用基于BullMQ的作业调度器，由Redis支持，确保即使
 
 | 指标 | Activepieces（自托管） | Zapier（Professional） | Make（Core） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 月费 | $5–$12（VPS） | $49–$195 | $9–$16 |
 | 每月任务数 | 无限 | 2,000–50,000 | 10,000–40,000 |
@@ -287,13 +288,13 @@ Activepieces使用基于BullMQ的作业调度器，由Redis支持，确保即使
 
 | 工作负载 | 流程数 | 执行时间 | 吞吐量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 简单HTTP → Slack | 1,000 | 平均245ms | ~240流程/分钟 |
 | GPT-4.1-mini文本生成 | 500 | 平均1,800ms | ~33流程/分钟 |
@@ -310,7 +311,7 @@ Activepieces使用基于BullMQ的作业调度器，由Redis支持，确保即使
 
 ### 在反向代理后运行
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/activepieces
 server {
     listen 443 ssl http2;
@@ -331,11 +332,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # backup-activepieces.sh — 通过cron每日运行
 DATE=$(date +%Y%m%d_%H%M%S)
@@ -351,22 +352,22 @@ docker cp activepieces-redis:/data/dump.rdb "$BACKUP_DIR/redis_$DATE.rdb"
 # 仅保留最近14天
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
-```
+`````
 
 ### 健康检查监控
 
-```bash
+`````bash
 # 添加到docker-compose.yml
   activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-```
+`````
 
 ### 自定义Piece开发
 
-```typescript
+`````typescript
 // my-api-piece/index.ts
 import { createPiece, PieceAuth } from '@activepieces/pieces-framework';
 import { sendNotification } from './lib/actions/send-notification';
@@ -381,7 +382,7 @@ export const myApiPiece = createPiece({
   actions: [sendNotification],
   triggers: [],
 });
-```
+`````
 
 构建并发布你的Piece到私有npm仓库，然后通过Activepieces管理面板安装。
 
@@ -389,11 +390,11 @@ export const myApiPiece = createPiece({
 
 默认情况下，流程执行在隔离的沙箱容器中运行。为了生产环境的最高安全性：
 
-```yaml
+`````yaml
 environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # 每次执行的MB限制
   - AP_SANDBOX_TIMEOUT_SECONDS=120
-```
+`````
 
 这确保失控的流程不会耗尽服务器资源。
 
@@ -401,15 +402,15 @@ environment: - AP_EXECUTION_MODE=SANDBOXED
 
 | 功能 | Activepieces | Zapier | Make（Integromat） | n8n |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | MIT许可证 | 专有 | 专有 | Fair-code |
 | 自托管 | 完整Docker | 否 | 否 | 是 |
@@ -447,13 +448,13 @@ environment: - AP_EXECUTION_MODE=SANDBOXED
 
 **Q：如何更新我的自托管实例？**
 
-```bash
+`````bash
 # 拉取最新镜像并重启
 cd /opt/activepieces
 docker compose pull
 docker compose up -d
 # 数据库迁移在启动时自动运行
-```
+`````
 
 主要版本升级前始终备份数据库。项目遵循语义化版本控制，补丁版本（0.46.1）可安全自动应用。
 
@@ -479,7 +480,7 @@ Activepieces提供了工程团队真正需要的东西：**一个运行在你基
 
 凭借5分钟的Docker设置、不断增长的TypeScript Piece生态系统和零限制的MIT许可证，几乎没有什么理由继续为API管道支付SaaS租金。
 
-**立即部署**：在[DigitalOcean](https://m.do.co/c/eca87ac14ee0)（4GB $24/月）或[HTStack](https://my.htstack.com/aff.php?aff=27187)上创建VPS，运行`docker compose up`，并在10分钟内构建你的第一个流程。
+**立即部署**：在[DigitalOcean](https://m.do.co/c/eca87ac14ee0)（4GB $24/月）或[HTStack](https://my.htstack.com/aff.php?aff=27187)上创建VPS，运行````docker compose up```，并在10分钟内构建你的第一个流程。
 
 如需带优先支持的托管服务，请查看[AppSumo优惠](https://appsumo.com/s/106nifb/)获取Activepieces云方案。
 
@@ -507,7 +508,7 @@ Activepieces提供了工程团队真正需要的东西：**一个运行在你基
 - [自托管指南](dibi8-internal-link) — dibi8.com上的通用自托管最佳实践
 
 
----
+* * *
 *联盟营销披露：本文包含DigitalOcean、HTStack和AppSumo的联盟链接。如果你通过这些链接购买服务，dibi8.com将获得佣金，不会额外增加你的成本。所有推荐均基于实践测试，而非联盟可用性。*
 
 
@@ -573,11 +574,11 @@ Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -587,6 +588,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](activepieces-workflow-automation)
 - [nanochat-karpathy-100-chatgpt-single-gpu](activepieces-workflow-automation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

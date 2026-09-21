@@ -23,6 +23,7 @@ tags: ["melotts", "text-to-speech", "tts", "multilingual", "python", "voice-synt
 aliases:
   - /posts/melotts/-
 ---
+
 {{</* resource-info */>}}
 
 Most open-source TTS libraries force a choice: high quality demands a GPU, and CPU-friendly options sound robotic. [MeloTTS](https://github.com/myshell-ai/MeloTTS), developed by MIT and MyShell.ai researchers, breaks this trade-off. With 7,400+ GitHub stars and an MIT license, it delivers real-time, multi-lingual speech synthesis on CPU across 6 languages and multiple English accents. This guide walks through the complete MeloTTS setup, benchmarks it against Coqui TTS, ChatTTS, and Bark, and provides production-ready deployment configs.
@@ -39,7 +40,7 @@ Key differentiators: - **CPU real-time inference** with RTF (Real-Time Factor) a
 
 ## How MeloTTS Works
 
-MeloTTS uses a non-autoregressive, end-to-end neural architecture derived from VITS2 with BERT-based text encoding. The pipeline has four stages: 1. **Text Processing**: G2P (Grapheme-to-Phoneme) conversion via `espeak-ng` for most languages; BERT tokenizer for Chinese Japanese (via `unidic`). Mixed Chinese-English text is segmented and routed to the appropriate phoneme extractors.
+MeloTTS uses a non-autoregressive, end-to-end neural architecture derived from VITS2 with BERT-based text encoding. The pipeline has four stages: 1. **Text Processing**: G2P (Grapheme-to-Phoneme) conversion via ```espeak-ng```` for most languages; BERT tokenizer for Chinese Japanese (via ````unidic````). Mixed Chinese-English text is segmented and routed to the appropriate phoneme extractors.
 
 2. **BERT Encoder**: A lightweight MiniLM encoder extracts contextual representations from the input text, capturing prosody and semantic nuances.
 
@@ -57,7 +58,7 @@ The entire pipeline is non-autoregressive, which means the model processes the f
 
 ### Prerequisites
 
-Before installing MeloTTS, ensure you have: ```bash
+Before installing MeloTTS, ensure you have: `````bash
 # Ubuntu/Debian
 sudo apt-get update && sudo apt-get install -y espeak-ng libsndfile1 ffmpeg
 
@@ -66,11 +67,11 @@ brew install espeak libsndfile ffmpeg
 
 # Verify espeak-ng
 espeak-ng --version
-```
+`````
 
 ### Option 1: pip Install (Linux/macOS)
 
-```bash
+`````bash
 # Create a virtual environment
 python -m venv melotts-env
 source melotts-env/bin/activate
@@ -80,35 +81,35 @@ pip install melotts
 
 # Download Japanese dictionary (required for JA support)
 python -m unidic download
-```
+`````
 
 ### Option 2: Install from Source
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 pip install -e .
 python -m unidic download
-```
+`````
 
 ### Option 3: Docker (Recommended for Windows)
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 docker build -t melotts .
 docker run -it -p 8888:8888 melotts
-```
+`````
 
-For GPU acceleration: ```bash
+For GPU acceleration: `````bash
 docker run --gpus all -it -p 8888:8888 melotts
-```
+`````
 
-Open `http://localhost:8888` to access the built-in Web UI.
+Open ````http://localhost:8888```` to access the built-in Web UI.
 
 ### Verify Installation
 
-```python
+`````python
 from melo.api import TTS
 
 # Speed is adjustable
@@ -122,23 +123,23 @@ speaker_ids = model.hps.data.spk2id
 output_path = 'test_output.wav'
 model.tts_to_file(text, speaker_ids[EN-Default], output_path, speed=speed)
 print(f"Audio saved to {output_path}")
-```
+`````
 
 ### First Synthesis
 
-```bash
+`````bash
 # CLI usage (after pip install)
 melo "Hello, this is MeloTTS speaking." output.wav -l EN --speaker EN-US
 
 # List available speakers
 melo --list-speakers
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Python API — English with Multiple Accents
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -159,11 +160,11 @@ model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # Australian accent
 model.tts_to_file(text, speaker_ids[EN-AU], 'en-au.wav', speed=speed)
-```
+`````
 
 ### Chinese with Mixed English
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -176,11 +177,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
 model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
-```
+`````
 
 ### Japanese
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -192,11 +193,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
 model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
-```
+`````
 
 ### FastAPI REST API
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from melo.api import TTS
@@ -226,15 +227,15 @@ async def text_to_speech(req: TTSRequest): if req.language not in models: raise 
     model.tts_to_file(req.text, speaker_ids[req.speaker], output_path, speed=req.speed)
     
     return {"audio_file": output_path}
-```
+`````
 
-Run the API: ```bash
+Run the API: `````bash
 uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### Docker Compose for Production
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: melotts: build: context: .
@@ -249,11 +250,11 @@ services: melotts: build: context: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### Streaming TTS with WebSocket
 
-```python
+`````python
 import asyncio
 import websockets
 import json
@@ -274,11 +275,11 @@ async def tts_stream(websocket, path): async for message in websocket: data = js
 start_server = websockets.serve(tts_stream, '0.0.0.0', 8765)
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
-```
+`````
 
 ### Gradio Web UI
 
-```python
+`````python
 import gradio as gr
 from melo.api import TTS
 
@@ -303,7 +304,7 @@ iface = gr.Interface(
 )
 
 iface.launch(server_name='0.0.0.0', server_port=7860)
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -313,13 +314,13 @@ Real-Time Factor (RTF) measures how fast the model generates audio relative to p
 
 | Hardware | RTF | Latency (15 words) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Intel i7-12700 (12th gen) | 0.41 | ~85 ms | 2x faster than real-time |
 | Apple M1 (8-core) | 0.48 | ~95 ms | No GPU needed |
@@ -331,15 +332,15 @@ Real-Time Factor (RTF) measures how fast the model generates audio relative to p
 
 | Feature | MeloTTS | Coqui TTS (XTTS) | ChatTTS | Bark |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 7,400 | 34,000 | 33,000 | 37,000 |
 | **License** | MIT | MIT / AGPL | AGPL-3.0 | MIT |
@@ -358,11 +359,11 @@ Real-Time Factor (RTF) measures how fast the model generates audio relative to p
 
 | Use Case | Best Choice | Reason |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU-only edge deployment | MeloTTS | Only option with < 0.5 RTF on CPU |
 | Voice cloning application | Coqui XTTS | Dedicated voice cloning pipeline |
@@ -379,13 +380,13 @@ Real-Time Factor (RTF) measures how fast the model generates audio relative to p
 
 | Tool | Peak RAM (CPU) | Peak VRAM (GPU) | Cold Start Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **MeloTTS** | ~350 MB | ~1.2 GB | ~2 seconds |
 | **Coqui XTTS** | ~2.1 GB | ~4.5 GB | ~8 seconds |
@@ -403,7 +404,7 @@ In head-to-head tests on identical hardware (Intel i7-12700, 32GB RAM): - **Melo
 
 ### Model Pre-warming
 
-In production, always load the model at startup to avoid cold-start latency: ```python
+In production, always load the model at startup to avoid cold-start latency: `````python
 from melo.api import TTS
 import functools
 
@@ -414,11 +415,11 @@ def get_model(language): """Cached model loader — models are loaded once and r
 # Pre-warm all languages at startup
 for lang in [EN, ZH, ES, FR, JA, KO]: get_model(lang)
 print("All models loaded and ready.")
-```
+`````
 
 ### Batch Processing for Throughput
 
-```python
+`````python
 from melo.api import TTS
 import concurrent.futures
 
@@ -437,11 +438,11 @@ def synth(text): output_path = f"batch_{hash(text)}.wav"
 
 # Parallel batch processing
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(synth, texts))
-```
+`````
 
 ### Gunicorn + FastAPI Production Server
 
-```bash
+`````bash
 # Install gunicorn with uvicorn workers
 pip install gunicorn uvicorn
 
@@ -452,11 +453,11 @@ gunicorn tts_api:app -k uvicorn.workers.UvicornWorker \
   --timeout 120 \
   --max-requests 1000 \
   --max-requests-jitter 100
-```
+`````
 
 ### systemd Service File
 
-```ini
+`````ini
 [Unit]
 Description=MeloTTS REST API
 After=network.target
@@ -474,19 +475,19 @@ RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-Install and start: ```bash
+Install and start: `````bash
 sudo cp melotts.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable melotts
 sudo systemctl start melotts
 sudo systemctl status melotts
-```
+`````
 
 ### Monitoring with Prometheus
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
@@ -500,11 +501,11 @@ async def metrics(): return Response(content=generate_latest(), media_type="text
 @app.post("/tts")
 async def text_to_speech(req: TTSRequest): with tts_duration.time(): # ... existing TTS logic ...
         tts_requests.labels(language=req.language, speaker=req.speaker).inc()
-```
+`````
 
 ### Nginx Reverse Proxy
 
-```nginx
+`````nginx
 upstream melotts {
     server 127.0.0.1:8000;
     keepalive 32;
@@ -526,7 +527,7 @@ server {
         limit_req zone=tts_zone burst=20 nodelay;
     }
 }
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -534,15 +535,15 @@ server {
 
 | Capability | MeloTTS | Coqui TTS | ChatTTS | Bark |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Architecture** | VITS2 + BERT | VITS / XTTS | GPT-based | GPT-style transformer |
 | **Training Data** | Multi-lingual corpus | LJSpeech + custom | Conversational | Suno internal |
@@ -571,7 +572,7 @@ MeloTTS is not a universal solution. These are the concrete limitations to consi
 
 2. **No emotion control**: You can adjust speed, but there is no parameter for controlling happiness, sadness, anger, or other emotional qualities. Bark and ChatTTS offer richer emotional expression.
 
-3. **G2P limitations**: The default grapheme-to-phoneme pipeline uses rule-based `espeak-ng`, which occasionally mispronounces rare words or proper nouns. No neural G2P is included out of the box.
+3. **G2P limitations**: The default grapheme-to-phoneme pipeline uses rule-based ````espeak-ng````, which occasionally mispronounces rare words or proper nouns. No neural G2P is included out of the box.
 
 4. **No streaming inference**: While the full generation is fast, you must wait for the entire audio to be synthesized before playback starts. True chunk-by-chunk streaming is not supported.
 
@@ -593,19 +594,19 @@ Yes. MeloTTS is released under the MIT license, which permits commercial use, mo
 
 ### Q3: How does Chinese-English mixed input work?
 
-The Chinese model (`language=ZH`) automatically detects English words within Chinese text and routes them through the English G2P pipeline while maintaining prosodic continuity. No manual tagging or model switching is required.
+The Chinese model (````language=ZH````) automatically detects English words within Chinese text and routes them through the English G2P pipeline while maintaining prosodic continuity. No manual tagging or model switching is required.
 
 ### Q4: What is the maximum text length MeloTTS can handle?
 
 There is no hardcoded length limit. However, the model processes the entire text in a single forward pass, so very long texts (> 1000 characters) may cause out-of-memory errors on low-RAM systems. For long-form content, split text into sentences and synthesize in batches.
 
-### Q5: How do I fix `espeak-ng not found` errors?
+### Q5: How do I fix ````espeak-ng not found```` errors?
 
-Install `espeak-ng` via your system package manager before installing MeloTTS. On Ubuntu: `sudo apt-get install espeak-ng`. On macOS: `brew install espeak`. On Windows, download the installer from the espeak-ng GitHub releases page and add it to your PATH.
+Install ````espeak-ng```` via your system package manager before installing MeloTTS. On Ubuntu: ````sudo apt-get install espeak-ng````. On macOS: ````brew install espeak````. On Windows, download the installer from the espeak-ng GitHub releases page and add it to your PATH.
 
 ### Q6: Can I fine-tune MeloTTS on my own voice?
 
-Yes, but with caveats. The training pipeline exists (`docs/training.md`) but documentation is limited. You need ~30 minutes of clean audio recordings and a corresponding text transcript. Fine-tuning requires a GPU (NVIDIA with 8GB+ VRAM) and takes several hours.
+Yes, but with caveats. The training pipeline exists (````docs/training.md````) but documentation is limited. You need ~30 minutes of clean audio recordings and a corresponding text transcript. Fine-tuning requires a GPU (NVIDIA with 8GB+ VRAM) and takes several hours.
 
 ### Q7: How does MeloTTS compare to ElevenLabs or other commercial TTS?
 
@@ -616,7 +617,7 @@ MeloTTS matches commercial services in intelligibility and approaches them in na
 MeloTTS occupies a unique position in the open-source TTS landscape: it is the only library that combines multi-lingual support, MIT licensing, and real-time CPU inference in a sub-300MB package. For teams building SaaS products, chatbots, or content pipelines that need reliable speech synthesis without GPU infrastructure, MeloTTS is the pragmatic choice.
 
 **Action items:**
-1. Run `pip install melotts` and synthesize your first audio clip today
+1. Run ````pip install melotts``` and synthesize your first audio clip today
 2. Deploy the FastAPI example behind Nginx for a production-ready TTS endpoint
 3. Join the [MeloTTS GitHub Discussions](https://github.com/myshell-ai/MeloTTS/discussions) for community support
 4. Follow the dibi8 Telegram group for weekly AI tool updates
@@ -673,7 +674,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [openai-whisper-complete-guide](melotts)
@@ -683,5 +684,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [agent-reach-internet-access-ai-agents](melotts)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

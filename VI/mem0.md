@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/mem0/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -44,7 +45,7 @@ Kiến trúc của Mem0 chia bộ nhớ thành bốn lớp hoạt động: **1. 
 
 **4. Lớp Đồ thị (Pro tier)**: Vượt xa lưu trữ vector phẳng, Mem0 Pro xây dựng đồ thị tri thức hiểu các mối quan hệ thực thể — cho phép suy luận đa bước ("James làm việc với ai?" yêu cầu kết nối "James làm việc tại TechCorp" + "Sarah làm việc tại TechCorp").
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │                    Tin nhắn ngườ dùng                  │
 └──────────────────────┬───────────────────────────────┘
@@ -68,21 +69,21 @@ Kiến trúc của Mem0 chia bộ nhớ thành bốn lớp hoạt động: **1. 
           ┌────────────▼────────────┐
           │   Đưa vào Prompt        │  ← Tăng cường ngữ cảnh
           └─────────────────────────┘
-```
+`````
 
 ## Cài đặt & Thiết lập
 
 ### Thiết lập Cloud (Đường dẫn nhanh nhất)
 
-```bash
+`````bash
 # Cài đặt Python client
 pip install mem0ai
 
 # Thiết lập API key từ https://app.mem0.ai
 export MEM0_API_KEY="m0-your-key-here"
-```
+`````
 
-```python
+`````python
 # mem0_quickstart.py
 import os
 from mem0 import MemoryClient
@@ -102,11 +103,11 @@ results = client.search(
     user_id="user123"
 )
 print(results)
-```
+`````
 
 ### Thiết lập Self-Hosted (Docker)
 
-Dành cho các team cần lưu trữ dữ liệu tại chỗ hoặc triển khai air-gapped: ```bash
+Dành cho các team cần lưu trữ dữ liệu tại chỗ hoặc triển khai air-gapped: `````bash
 # Clone repository
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -114,9 +115,9 @@ cd mem0
 # Bootstrap với Docker
 make bootstrap
 # Tạo admin, phát sinh API key, khởi động server + dashboard
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml cho production
 docker run -d \
   -p 8000:8000 \
@@ -126,15 +127,15 @@ docker run -d \
   -e LLM_PROVIDER=openai \
   -e OPENAI_API_KEY=$OPENAI_API_KEY \
   mem0/mem0-server:latest
-```
+`````
 
 ### SDK Mã nguồn mở (Local)
 
-```bash
+`````bash
 pip install mem0ai openai chromadb
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # Khởi tạo với vector store tùy chỉnh
@@ -150,13 +151,13 @@ m.add(messages, user_id="alice", metadata={"category": "movies"})
 
 # Tìm kiếm với lọc metadata
 results = m.search("movie recommendations", filters={"user_id": "alice"})
-```
+`````
 
 ## Cấu hình Bộ nhớ & Tinh chỉnh Hiệu suất
 
 ### Cấu hình tùy chỉnh với YAML
 
-Tệp `mem0config.yaml` điều khiển mọi thành phần của pipeline bộ nhớ: ```yaml
+Tệp ``mem0config.yaml`` điều khiển mọi thành phần của pipeline bộ nhớ: `````yaml
 # mem0config.yaml — Cấu hình tinh chỉnh production
 llm: provider: openai
   config: model: "gpt-4o-mini"
@@ -180,15 +181,15 @@ custom_instructions: |
   Trích xuất sở thích ngườ dùng, sự kiện cá nhân và ngữ cảnh.
   Tập trung vào hạn chế chế độ ăn, dị ứng và sở thích công nghệ.
   Bỏ qua trạng thái tạm thờ và yêu cầu một lần.
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # Tải cấu hình tùy chỉnh
 config_path = "mem0config.yaml"
 m = Memory.from_config(config_path)
-```
+`````
 
 ### So sánh Backend Vector Store
 
@@ -202,7 +203,7 @@ m = Memory.from_config(config_path)
 
 ### Checklist Tinh chỉnh Hiệu suất
 
-```python
+`````python
 # 1. Bật async memory cho ứng dụng throughput cao
 from mem0 import MemoryClient
 import asyncio
@@ -230,11 +231,11 @@ results = client.search(
     top_k=5,  # Giảm để tăng tốc, tăng để mở rộng bao phủ
     rerank=True
 )
-```
+`````
 
 ### Bộ nhớ với Hớng dẫn Tùy chỉnh
 
-```python
+`````python
 # Hớng dẫn trích xuất và lưu trữ những sự kiện nào
 m = Memory.from_config({
     "custom_instructions": """
@@ -248,17 +249,17 @@ m = Memory.from_config({
     - Thông tin bên thứ ba không có sự đồng ý
     """
 })
-```
+`````
 
 ## Tích hợp với LangChain, CrewAI và OpenAI
 
 ### Tích hợp LangChain
 
-```bash
+`````bash
 pip install langchain langchain-openai mem0ai
-```
+`````
 
-```python
+`````python
 # langchain_mem0_agent.py
 import os
 from typing import List, Dict
@@ -314,15 +315,15 @@ print(response1)
 # Phiên sau — agent nhớ
 response2 = chat(user_id, "What should I pack for my trip?")
 # Output tham chiếu Tokyo, thờ điểm và sở thích ngườ đi du lịch
-```
+`````
 
 ### Tích hợp CrewAI
 
-```bash
+`````bash
 pip install crewai mem0ai
-```
+`````
 
-```python
+`````python
 # crewai_mem0_crew.py
 import os
 from crewai import Agent, Task, Crew
@@ -364,15 +365,15 @@ task = Task(
 crew = Crew(agents=[researcher], tasks=[task])
 result = crew.kickoff(inputs={"user_id": "user123"})
 print(result)
-```
+`````
 
 ### Tích hợp OpenAI Agents SDK
 
-```bash
+`````bash
 pip install openai-agents mem0ai
-```
+`````
 
-```python
+`````python
 # openai_agents_mem0.py
 import os
 from dataclasses import dataclass
@@ -411,11 +412,11 @@ async def run_agent(): context = UserContext(user_id="user_42")
     print(result.final_output)
 
 # asyncio.run(run_agent())
-```
+`````
 
 ### Docker Compose Production Stack
 
-```yaml
+`````yaml
 # mem0-production-stack.yml
 version: "3.8"
 
@@ -441,7 +442,7 @@ services: qdrant: image: qdrant/qdrant:latest
     environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes: qdrant_storage: ```
+volumes: qdrant_storage: `````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -487,7 +488,7 @@ Thuật toán token hiệu quả mới của Mem0 (phát hành tháng 4/2026) ma
 
 ### Cấu hình Bảo mật
 
-```python
+`````python
 # Kiểm soát truy cập bộ nhớ bằng metadata
 def store_sensitive_memory(user_id: str, fact: str, classification: str): """Lưu trữ bộ nhớ với phân loại bảo mật."""
     messages = [{"role": "user", "content": fact}]
@@ -509,11 +510,11 @@ results = client.search(
         "metadata.classification": ["public", "internal"]
     }
 )
-```
+`````
 
 ### Cách ly Multi-Tenant
 
-```python
+`````python
 # Bộ nhớ phạm vi tổ chức cho ứng dụng SaaS
 def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """Lưu trữ bộ nhớ phạm vi tổ chức và ngườ dùng."""
     client.add(
@@ -527,11 +528,11 @@ results = client.get_all(
     filters={"metadata.org_id": "org_123"},
     limit=100
 )
-```
+`````
 
 ### Giám sát Bộ nhớ và Khả năng Quan sát
 
-```python
+`````python
 # Theo dõi metrics bộ nhớ
 import time
 
@@ -556,11 +557,11 @@ def memory_health_check(user_id: str): """Xác minh tính toàn vẹn bộ nhớ
         "categories": len(set(m.get("metadata", {}).get("category", "") for m in all_memories)),
         "avg_score": sum(m.get("score", 0) for m in all_memories) / len(all_memories) if all_memories else 0
     }
-```
+`````
 
 ### Giới hạn Tốc độ và Kiểm soát Chi phí
 
-```python
+`````python
 # Triển khai giới hạn tốc độ phía client
 from functools import wraps
 import time
@@ -582,7 +583,7 @@ def rate_limited_add(messages, user_id): if not limiter.can_call(): # Xếp hàn
         return {"status": "queued"}
     limiter.record_call()
     return client.add(messages, user_id=user_id)
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -642,7 +643,7 @@ A: Qdrant là lựa chọn được khuyến nghị cho triển khai production 
 
 **Q: Làm thế nào để migrate từ LangChain Memory sang Mem0?**
 
-A: Migration là tăng dần. Bắt đầu bằng cách khởi tạo Mem0 song song với LangChain memory hiện tại. Lưu trữ cuộc hội thoại mới trên cả hai hệ thống. Sử dụng API `search()` của Mem0 để truy xuất bộ nhớ và inject vào prompt LangChain qua biến `memories`. Khi đã tự tin, chuyển hoàn toàn sang Mem0.
+A: Migration là tăng dần. Bắt đầu bằng cách khởi tạo Mem0 song song với LangChain memory hiện tại. Lưu trữ cuộc hội thoại mới trên cả hai hệ thống. Sử dụng API ````search()```` của Mem0 để truy xuất bộ nhớ và inject vào prompt LangChain qua biến ````memories````. Khi đã tự tin, chuyển hoàn toàn sang Mem0.
 
 **Q: Giá Mem0 ở quy mô lớn là bao nhiêu?**
 
@@ -658,7 +659,7 @@ Mem0 giải quyết một trong những vấn đề dai dẳng nhất trong phá
 
 **Hành động:**
 
-1. Clone repo mem0ai/mem0 và chạy quickstart với `pip install mem0ai`
+1. Clone repo mem0ai/mem0 và chạy quickstart với ````pip install mem0ai```
 2. Đăng ký API key miễn phí tại app.mem0.ai
 3. Tích hợp Mem0 search vào prompt agent LangChain hoặc CrewAI
 4. Benchmark giải pháp bộ nhớ hiện tại với truy xuất Mem0 trên tập dữ liệu hội thoại của bạn
@@ -718,7 +719,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -728,7 +729,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [docker-genai-stack-local-development](mem0)
 - [langchain-complete-guide](mem0)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

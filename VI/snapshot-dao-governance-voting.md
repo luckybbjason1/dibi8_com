@@ -12,6 +12,7 @@ aliases:
   - /vi/posts/snapshot-dao-governance-voting/
 ---
 
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  
@@ -20,11 +21,11 @@ aliases:
 **Công cụ:** [Snapshot](https://snapshot.org)  
 **GitHub:** [snapshot-labs/snapshot](https://github.com/snapshot-labs/snapshot) — ⭐ 9,500 sao, Giấy phép MIT
 
----
+* * *
 
 > Quan tâm đến giao dịch token quản trị? Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) để bắt đầu giao dịch token DAO.
 
----
+* * *
 
 ## 1. Giới thiệu: Tại sao Quản trị DAO quan trọng vào năm 2026
 
@@ -36,13 +37,13 @@ Không giống như các hệ thống bỏ phiếu on-chain thực thi mỗi phi
 
 Hướng dẫn toàn diện này khám phá kiến trúc, chiến lược bỏ phiếu, cơ chế ủy quyền, tích hợp SDK, và các mẫu triển khai thực tế của Snapshot cho các nhà phát triển và nhà vận hành DAO trong năm 2026.
 
----
+* * *
 
 ## 2. Kiến trúc lõi: Snapshot cho phép Bỏ phiếu Không tốn Gas như thế nào
 
 ### 2.1 Mô hình Bỏ phiếu Off-Chain
 
-Phương pháp tiếp cận cách mạng của Snapshot dựa trên việc tách biệt **tín hiệu bỏ phiếu** khỏi **thực thi bỏ phiếu**. Quản trị on-chain truyền thống yêu cầu mọi ngườitham gia gửi một giao dịch, trả phí gas tỷ lệ thuận với mức độ tắc nghẽn mạng. Snapshot đảo ngược mô hình này: ```typescript
+Phương pháp tiếp cận cách mạng của Snapshot dựa trên việc tách biệt **tín hiệu bỏ phiếu** khỏi **thực thi bỏ phiếu**. Quản trị on-chain truyền thống yêu cầu mọi ngườitham gia gửi một giao dịch, trả phí gas tỷ lệ thuận với mức độ tắc nghẽn mạng. Snapshot đảo ngược mô hình này: ````typescript
 // Bỏ phiếu on-chain truyền thống (đắt)
 // Mỗi cử tri trả gas cho giao dịch này
 await governorContract.castVote(
@@ -50,9 +51,9 @@ await governorContract.castVote(
   support,       // 0=chống, 1=ủng hộ, 2=phiếu trắng
   { value: 0, gasPrice: 50000000000 } // ~$5-50 phí gas
 );
-```
+`````
 
-```typescript
+`````typescript
 // Bỏ phiếu off-chain Snapshot (không tốn gas)
 // Ngườidùng ký một thông điệp bằng ví — chi phí gas bằng không
 const voteMessage = {
@@ -71,13 +72,13 @@ const signature = await signer.signTypedData(
   types,
   voteMessage
 );
-```
+`````
 
 Thông điệp đã ký được phát sóng đến trung tâm của Snapshot và được ghim vào IPFS, tạo ra một bản ghi vĩnh viễn, có thể xác minh mà không cần giao dịch blockchain nào.
 
 ### 2.2 Lưu trữ Dữ liệu trên IPFS
 
-Tất cả dữ liệu Snapshot — đề xuất, phiếu bầu, và không gian — được lưu trữ trên **Hệ thống Tệp Liên Hành tinh (IPFS)**, đảm bảo khả năng chống kiểm duyệt và tính vĩnh viễn: ```json
+Tất cả dữ liệu Snapshot — đề xuất, phiếu bầu, và không gian — được lưu trữ trên **Hệ thống Tệp Liên Hành tinh (IPFS)**, đảm bảo khả năng chống kiểm duyệt và tính vĩnh viễn: `````json
 {
   "proposal": {
     "id": "QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz",
@@ -101,26 +102,26 @@ Tất cả dữ liệu Snapshot — đề xuất, phiếu bầu, và không gian
     "votes": 1847
   }
 }
-```
+`````
 
-Trường `snapshot` chỉ định số khối Ethereum mà tại đó số dư token được tính, ngăn chặn các cuộc tấn công flash loan và đảm bảo tính toán trọng số phiếu bầu công bằng.
+Trường ````snapshot```` chỉ định số khối Ethereum mà tại đó số dư token được tính, ngăn chặn các cuộc tấn công flash loan và đảm bảo tính toán trọng số phiếu bầu công bằng.
 
----
+* * *
 
 ## 3. Thiết lập Không gian DAO trên Snapshot
 
 ### 3.1 Tạo Không gian của bạn
 
-Bất kỳ dự án nào cũng có thể tạo một không gian quản trị trên Snapshot. Quá trình này bao gồm cấu hình miền ENS và chọn lựa chiến lược: ```bash
+Bất kỳ dự án nào cũng có thể tạo một không gian quản trị trên Snapshot. Quá trình này bao gồm cấu hình miền ENS và chọn lựa chiến lược: `````bash
 # Bước 1: Đảm bảo bạn sở hữu một miền ENS
 # ID không gian của bạn sẽ là tên ENS (ví dụ: mydao.eth)
 
 # Bước 2: Thiết lập bản ghi văn bản ENS
 # Đặt bản ghi snapshot trỏ đến cài đặt không gian
 ens records set mydao.eth text snapshot "ipfs://Qm..."
-```
+`````
 
-```typescript
+`````typescript
 // Bước 3: Cấu hình cài đặt không gian qua API Snapshot
 import snapshot from '@snapshot-labs/snapshot.js';
 
@@ -171,20 +172,20 @@ await snapshot.utils.subgraphRequest(
     }
   }
 );
-```
+`````
 
 ### 3.2 Xác minh Không gian
 
-Sau khi cấu hình, xác minh không gian của bạn có thể truy cập được: ```bash
+Sau khi cấu hình, xác minh không gian của bạn có thể truy cập được: `````bash
 # Truy vấn không gian qua GraphQL
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { space(id: "mydao.eth") { id name about network symbol strategies { name params } } }"
   }'
-```
+`````
 
-```python
+`````python
 # Script xác minh Python
 import requests
 
@@ -236,9 +237,9 @@ def verify_snapshot_space(space_id: str) -> dict: """Xác minh cấu hình khôn
 
 # Xác minh
 space = verify_snapshot_space("mydao.eth")
-```
+`````
 
----
+* * *
 
 ## 4. Chiến lược Bỏ phiếu: Quản trị Trọng số Token Linh hoạt
 
@@ -246,16 +247,16 @@ space = verify_snapshot_space("mydao.eth")
 
 Snapshot hỗ trợ 50+ chiến lược bỏ phiếu quyết định cách tính quyền bỏ phiếu. Các chiến lược phổ biến nhất bao gồm: | Chiến lược | Trường hợp sử dụng | Ví dụ DAO |
 |------------|-------------------|-----------|
-| `erc20-balance-of` | Số dư token đơn giản | Uniswap, Aave |
-| `erc721` | Quyền sở hữu NFT | Bored Ape Yacht Club |
-| `contract-call` | Logic tùy chỉnh qua hợp đồng thông minh | Compound |
-| `delegation` | Quyền bỏ phiếu được ủy quyền | Gitcoin |
-| `whitelist` | Cử tri được phê duyệt trước | Đầu tư DAO |
-| `snapshot-multichain` | Số dư token đa chuỗi | Across Protocol |
+| ````erc20-balance-of```` | Số dư token đơn giản | Uniswap, Aave |
+| ````erc721```` | Quyền sở hữu NFT | Bored Ape Yacht Club |
+| ````contract-call```` | Logic tùy chỉnh qua hợp đồng thông minh | Compound |
+| ````delegation```` | Quyền bỏ phiếu được ủy quyền | Gitcoin |
+| ````whitelist```` | Cử tri được phê duyệt trước | Đầu tư DAO |
+| ````snapshot-multichain```` | Số dư token đa chuỗi | Across Protocol |
 
 ### 4.2 Cấu hình Chiến lược Tùy chỉnh
 
-```typescript
+`````typescript
 // Cấu hình đa chiến lược cho các DAO phức tạp
 const advancedStrategies = [
   // Chiến lược 1: Token quản trị cơ bản
@@ -325,12 +326,12 @@ const votingPower = await getVotingPower(
   advancedStrategies,
   18945231
 );
-console.log(`Quyền bỏ phiếu: ${votingPower} token`);
-```
+console.log(````Quyền bỏ phiếu: ${votingPower} token````);
+`````
 
 ### 4.3 Chiến lược Bỏ phiếu Bậc hai
 
-Đối với các DAO tìm kiếm kết quả dân chủ hơn, Snapshot hỗ trợ bỏ phiếu bậc hai: ```json
+Đối với các DAO tìm kiếm kết quả dân chủ hơn, Snapshot hỗ trợ bỏ phiếu bậc hai: `````json
 {
   "strategy": {
     "name": "quadratic-balance-of",
@@ -342,17 +343,17 @@ console.log(`Quyền bỏ phiếu: ${votingPower} token`);
     }
   }
 }
-```
+`````
 
 Với bỏ phiếu bậc hai, ngườidùng có 10.000 token có 100 quyền bỏ phiếu (√10.000), trong khi ngườidùng có 100 token có 10 quyền bỏ phiếu (√100) — giảm ảnh hưởng của chủ sở hữu cá voi.
 
----
+* * *
 
 ## 5. Ủy quyền: Nền Dân chủ Đại diện trong DAO
 
 ### 5.1 Ủy quyền Hoạt động như thế nào
 
-Ủy quyền cho phép chủ sở hữu token giao quyền bỏ phiếu của họ cho các đại diện đáng tin cậy, tăng tỷ lệ tham gia và cho phép chuyên môn hóa quản trị: ```solidity
+Ủy quyền cho phép chủ sở hữu token giao quyền bỏ phiếu của họ cho các đại diện đáng tin cậy, tăng tỷ lệ tham gia và cho phép chuyên môn hóa quản trị: `````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -375,9 +376,9 @@ interface IVotingDelegate {
         uint256 blockNumber
     ) external view returns (uint96);
 }
-```
+`````
 
-```typescript
+`````typescript
 // Thiết lập Ủy quyền Snapshot
 import Snapshot from '@snapshot-labs/snapshot.js';
 
@@ -413,12 +414,12 @@ const txHash = await delegateVotingPower(
   "uniswap.eth"             // Ủy quyền theo không gian
 );
 
-console.log(`Bản ghi ủy quyền: ${txHash}`);
-```
+console.log(````Bản ghi ủy quyền: ${txHash}````);
+`````
 
 ### 5.2 Truy vấn Bảng điều khiển Ủy quyền
 
-```graphql
+`````graphql
 # Truy vấn các ủy quyền hiện tại cho một không gian
 query GetDelegations($space: String!, $delegate: String!) {
   delegations(
@@ -436,32 +437,32 @@ query GetDelegations($space: String!, $delegate: String!) {
     timestamp
   }
 }
-```
+`````
 
-```bash
+`````bash
 # Thực thi truy vấn ủy quyền
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
     "query": "query { delegations(where: {space: "uniswap.eth", delegate: "0x2775b1c75658Be0F640272CCb8c72ac986009e38"}) { delegator timestamp } }"
   }'
-```
+`````
 
----
+* * *
 
 ## 6. Tích hợp Chương trình: Snapshot SDK
 
 ### 6.1 Cài đặt và Thiết lập
 
-```bash
+`````bash
 # Cài đặt Snapshot.js SDK
 npm install @snapshot-labs/snapshot.js ethers
 
 # Hoặc với yarn
 yarn add @snapshot-labs/snapshot.js ethers
-```
+`````
 
-```typescript
+`````typescript
 // Khởi tạo ứng dụng khách Snapshot
 import snapshot from '@snapshot-labs/snapshot.js';
 import { Wallet } from ethers;
@@ -472,11 +473,11 @@ const client = new snapshot.Client712(hub);
 // Thiết lập nhà cung cấp và ngườiký
 const provider = new ethers.JsonRpcProvider('https://eth.llamarpc.com');
 const signer = new Wallet(process.env.PRIVATE_KEY, provider);
-```
+`````
 
 ### 6.2 Tạo Đề xuất qua Chương trình
 
-```typescript
+`````typescript
 // Tạo đề xuất quản trị qua SDK
 async function createProposal(
   signer: any,
@@ -487,7 +488,7 @@ async function createProposal(
     space: "mydao.eth",
     type: "single-choice",        // "single-choice" | "approval" | "quadratic" | "ranked-choice" | "weighted"
     title: "Đề xuất Phân bổ Kho bạc Q2 2026",
-    body: `## Tóm tắt
+    body: ````## Tóm tắt
 
 Đề xuất này phân bổ quỹ kho bạc cho hoạt động Q2 2026.
 
@@ -505,7 +506,7 @@ Nếu được thông qua, đa chữ ký kho bạc sẽ thực hiện chuyển k
 ## Tài liệu tham khảo
 
 - [Báo cáo Kho bạc Q1 2026](https://mydao.xyz/treasury/q1-2026)
-- [Bảng tính Ngân sách](https://mydao.xyz/budget/q2-2026)`,
+- [Bảng tính Ngân sách](https://mydao.xyz/budget/q2-2026)````,
     choices: ["Ủng hộ", "Chống", "Phiếu trắng"],
     start: Math.floor(Date.now() / 1000) + 86400,    // Bắt đầu sau 24h
     end: Math.floor(Date.now() / 1000) + 259200,      // Kết thúc sau 72h
@@ -531,12 +532,12 @@ const proposalId = await createProposal(
   "mydao.eth"
 );
 
-console.log(`Đề xuất đã tạo: ${proposalId}`);
-```
+console.log(````Đề xuất đã tạo: ${proposalId}````);
+`````
 
 ### 6.3 Bỏ phiếu qua API
 
-```typescript
+`````typescript
 // Gửi phiếu bầu qua chương trình
 async function castVote(
   signer: any,
@@ -573,19 +574,19 @@ const voteReceipt = await castVote(
   "Ủng hộ đề xuất này vì phân bổ ngân sách phù hợp với các ưu tiên chiến lược được nêu trong lộ trình."
 );
 
-console.log(`Phiếu bầu đã ghi nhận: ${voteReceipt}`);
-```
+console.log(````Phiếu bầu đã ghi nhận: ${voteReceipt}````);
+`````
 
 ### 6.4 Truy vấn Bỏ phiếu Hàng loạt
 
-```typescript
+`````typescript
 // Truy vấn tất cả phiếu bầu cho một đề xuất
 async function getProposalVotes(
   proposalId: string,
   first: number = 100,
   skip: number = 0
 ): Promise<any[]> {
-  const query = `
+  const query = ````
     query GetVotes($proposal: String!, $first: Int!, $skip: Int!) {
       votes(
         where: { proposal: $proposal }
@@ -604,7 +605,7 @@ async function getProposalVotes(
         ipfs
       }
     }
-  `;
+  ````;
 
   const response = await fetch('https://hub.snapshot.org/graphql', {
     method: POST,
@@ -643,18 +644,18 @@ async function getVoteStats(proposalId: string): Promise<any> {
 
 // Sử dụng
 const stats = await getVoteStats("QmYwAPJzv5CZsnAzt8auVK914vhC2pW9e4iPApvb1xUcGz");
-console.log(`Tổng cử tri: ${stats.totalVotes}`);
-console.log(`Tổng VP: ${stats.totalVotingPower}`);
+console.log(````Tổng cử tri: ${stats.totalVotes}````);
+console.log(````Tổng VP: ${stats.totalVotingPower}````);
 console.log("Kết quả:", stats.results);
-```
+`````
 
----
+* * *
 
 ## 7. Tích hợp Đa chuỗi và Đa nền tảng
 
 ### 7.1 Chiến lược Bỏ phiếu Đa chuỗi
 
-Snapshot hỗ trợ bỏ phiếu trên nhiều blockchain đồng thờigian: ```typescript
+Snapshot hỗ trợ bỏ phiếu trên nhiều blockchain đồng thờigian: `````typescript
 // Chiến lược đa chuỗi: tổng hợp token trên các mạng
 const multichainStrategies = [
   {
@@ -696,11 +697,11 @@ const scores = await snapshot.utils.getScores(
 );
 
 console.log("Quyền bỏ phiếu đa chuỗi:", scores);
-```
+`````
 
 ### 7.2 Thông báo Webhook
 
-```typescript
+`````typescript
 // Thiết lập webhook cho sự kiện đề xuất
 import express from express;
 
@@ -712,13 +713,13 @@ app.post('/webhooks/snapshot', (req, res) => {
   const event = req.body;
 
   switch (event.event) {
-    case 'proposal/created': console.log(`Đề xuất mới: ${event.id}`);
+    case 'proposal/created': console.log(````Đề xuất mới: ${event.id}````);
       notifyDiscord(event);
       break;
-    case 'proposal/end': console.log(`Bỏ phiếu kết thúc: ${event.id}`);
+    case 'proposal/end': console.log(````Bỏ phiếu kết thúc: ${event.id}````);
       tallyResults(event);
       break;
-    case vote: console.log(`Phiếu bầu mới trên ${event.proposal.id}`);
+    case vote: console.log(````Phiếu bầu mới trên ${event.proposal.id}````);
       updateLeaderboard(event);
       break;
   }
@@ -730,8 +731,8 @@ function notifyDiscord(proposal: any) {
   // Gửi thông báo đến webhook Discord
   const message = {
     embeds: [{
-      title: `📋 Đề xuất Mới: ${proposal.title}`,
-      url: `https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}`,
+      title: ````📋 Đề xuất Mới: ${proposal.title}````,
+      url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
       description: proposal.body.substring(0, 200) + '...',
       fields: [
         { name: 'Không gian', value: proposal.space.name, inline: true },
@@ -750,15 +751,15 @@ function notifyDiscord(proposal: any) {
 }
 
 app.listen(3000, () => console.log('Máy chủ Webhook đang lắng nghe trên cổng 3000'));
-```
+`````
 
----
+* * *
 
 ## 8. Trường hợp Sử dụng Thực tế và Thực tiễn Tốt nhất
 
 ### 8.1 Thay đổi Thông số Giao thức
 
-Các giao thức DeFi sử dụng Snapshot để bỏ phiếu về các thông số quan trọng: ```typescript
+Các giao thức DeFi sử dụng Snapshot để bỏ phiếu về các thông số quan trọng: `````typescript
 // Đề xuất thông số rủi ro kiểu Aave
 interface RiskParameterProposal {
   asset: string;              // Địa chỉ token
@@ -777,11 +778,11 @@ const aaveProposal: RiskParameterProposal = {
   justification: "Giảm tiếp xúc rủi ro do biến động thị trường",
   riskAnalysis: "https://gauntlet.network/analyses/aave-weth-2026-05"
 };
-```
+`````
 
 ### 8.2 Quản lý Kho bạc
 
-```typescript
+`````typescript
 // Danh mục bỏ phiếu phân bổ kho bạc
 interface TreasuryProposal {
   totalAllocation: bigint;
@@ -811,11 +812,11 @@ const treasuryVote: TreasuryProposal = {
     interval: 30 * 86400    // Phát hành hàng tháng
   }
 };
-```
+`````
 
 ### 8.3 Thực tiễn Bảo mật Tốt nhất
 
-```yaml
+`````yaml
 # snapshot-security-checklist.yml
 space_security: admin_keys: - use_multisig: true
     - minimum_signers: 3
@@ -834,9 +835,9 @@ space_security: admin_keys: - use_multisig: true
     - discord_notifications: true
     - unusual_activity_alerts: true
     - delegate_change_alerts: true
-```
+`````
 
----
+* * *
 
 ## 9. Câu hỏi Thường gặp (FAQ)
 
@@ -850,7 +851,7 @@ Bỏ phiếu Snapshot an toàn về mặt mật mã. Mỗi phiếu bầu đượ
 
 ### 9.3 Quyền bỏ phiếu và số dư token được tính như thế nào?
 
-Quyền bỏ phiếu được xác định bởi các **chiến lược** được cấu hình cho mỗi không gian. Chiến lược phổ biến nhất là `erc20-balance-of`, kiểm tra số dư token của cử tri tại một số khối cụ thể (khối `snapshot`). Điều này ngăn chặn: - **Tấn công flash loan**: Token vay trong cùng một giao dịch không thể dùng để bỏ phiếu
+Quyền bỏ phiếu được xác định bởi các **chiến lược** được cấu hình cho mỗi không gian. Chiến lược phổ biến nhất là ````erc20-balance-of````, kiểm tra số dư token của cử tri tại một số khối cụ thể (khối ````snapshot```). Điều này ngăn chặn: - **Tấn công flash loan**: Token vay trong cùng một giao dịch không thể dùng để bỏ phiếu
 - **Bỏ phiếu kép**: Cùng một token không thể di chuyển và bỏ phiếu lại
 - **Tích lũy phút cuối**: Ngườidùng không thể mua token sau khi đề xuất được tạo để ảnh hưởng đến phiếu bầu
 
@@ -873,7 +874,7 @@ Snapshot cung cấp nhiều tùy chọn tích hợp: - **Snapshot.js SDK**: SDK 
 
 Mô hình tích hợp phổ biến nhất là sử dụng API GraphQL để hiển thị dữ liệu quản trị trong frontend của bạn, kết hợp với SDK để gửi phiếu bầu. Tất cả các tích hợp yêu cầu kết nối ví tương thích Ethereum (MetaMask, WalletConnect, v.v.).
 
----
+* * *
 
 
 
@@ -892,11 +893,11 @@ Khi các DAO phát triển hướng tới tự động hóa lớn hơn, chúng t
 
 Đối với các nhà phát triển xây dựng thế hệ công cụ quản trị tiếp theo, cơ sở mã MIT được cấp phép, cộng đồng nhà phát triển tích cực, và kiến trúc mô-đun của Snapshot cung cấp một nền tảng lý tưởng. Dù bạn đang khởi chạy một giao thức DeFi mới, quản lý một cộng đồng NFT, hoặc xây dựng hạ tầng cho các tổ chức phi tập trung, Snapshot cung cấp sự linh hoạt, bảo mật, và khả năng mở rộng cần thiết cho quản trị DAO hiện đại.
 
----
+* * *
 
 > **Bắt đầu giao dịch token quản trị ngay hôm nay!** Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) để mua, bán, và stake token từ các DAO hàng đầu như Uniswap, Aave, và Compound.
 
----
+* * *
 
 **Giấy phép:** MIT  
 **Ngườibảo trì:** [Snapshot Labs](https://github.com/snapshot-labs)  

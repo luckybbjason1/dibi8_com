@@ -32,6 +32,7 @@ faqs: - q: '如何安装 Firecrawl？'
     a: '`scrape` 处理单个 URL。`crawl` 会沿链接异步抓取整个站点。`map` 只返回站点上的 URL 列表，而不抓取其内容——适合用来规划爬取。'
   - q: 'Firecrawl 免费吗？它用什么协议？'
     a: '源代码在 AGPL-3.0 下免费且开源，官方 SDK 与 UI 组件则采用 MIT。托管云端 API 有免费额度，并提供更高用量的付费套餐。如果自托管，你需自行承担运行的基础设施成本。'---
+
 # Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南
 
 
@@ -49,15 +50,15 @@ faqs: - q: '如何安装 Firecrawl？'
 
 Firecrawl 是一个用于大规模搜索、抓取和爬取网站的网页数据 API，其明确目标就是产出可直接喂给 LLM 的内容。它不会把原始 HTML 丢给你，而是替你搞定那些棘手的环节——JavaScript 渲染、代理、反爬机制和内容清洗——最终交付 Markdown 或结构化 JSON。
 
-它提供两种使用方式：托管的云端 API（地址 `api.firecrawl.dev`，注册即可获取 API key），以及可用 Docker 自托管的完全开源版本。核心代码采用 AGPL-3.0 协议，官方 SDK 和 UI 组件则为 MIT 协议。凭借 127,000+ 的 GitHub star 数和 Firecrawl 团队的持续维护，对于生产级 AI 数据管线而言，它是一个有充分支撑的选择。
+它提供两种使用方式：托管的云端 API（地址 ``api.firecrawl.dev``，注册即可获取 API key），以及可用 Docker 自托管的完全开源版本。核心代码采用 AGPL-3.0 协议，官方 SDK 和 UI 组件则为 MIT 协议。凭借 127,000+ 的 GitHub star 数和 Firecrawl 团队的持续维护，对于生产级 AI 数据管线而言，它是一个有充分支撑的选择。
 
 ## Firecrawl 如何工作
 
-Firecrawl 暴露了一小组端点，每个只解决一件事。你用 Bearer API key（格式为 `fc-...`）做认证，按需调用其中之一：
+Firecrawl 暴露了一小组端点，每个只解决一件事。你用 Bearer API key（格式为 ``fc-...``）做认证，按需调用其中之一：
 
 1. **Scrape（抓取）**——把单个 URL 转换成 Markdown、HTML、截图或结构化 JSON。Firecrawl 会替你渲染 JavaScript 并剔除冗余内容。
 
-2. **Crawl（爬取）**——只需给它一个 URL，Firecrawl 就会发现并抓取站点内所有可达页面，并遵守 `robots.txt`。爬取是异步进行的：你启动一个任务，然后轮询获取结果。
+2. **Crawl（爬取）**——只需给它一个 URL，Firecrawl 就会发现并抓取站点内所有可达页面，并遵守 ``robots.txt``。爬取是异步进行的：你启动一个任务，然后轮询获取结果。
 
 3. **Map（映射）**——瞬间返回一个站点上的全部 URL，便于规划爬取或生成站点地图。
 
@@ -67,7 +68,7 @@ Firecrawl 暴露了一小组端点，每个只解决一件事。你用 Bearer AP
 
 用 Node SDK 做一次最简抓取是这样的：
 
-```typescript
+````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
@@ -77,7 +78,7 @@ const doc = await app.scrape('https://example.com', {
 });
 
 console.log(doc.markdown);
-```
+`````
 
 Firecrawl 是一个成熟的开源项目，背后有庞大的社区，这从它在 GitHub 上 127k+ 的 star 数便可见一斑。
 
@@ -91,56 +92,56 @@ Firecrawl 是一个成熟的开源项目，背后有庞大的社区，这从它�
 
 ### Node.js SDK
 
-```bash
+`````bash
 npm install firecrawl
-```
+`````
 
-```typescript
+`````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
-```
+`````
 
 ### Python SDK
 
-```bash
+`````bash
 pip install firecrawl-py
-```
+`````
 
-```python
+`````python
 from firecrawl import Firecrawl
 
 app = Firecrawl(api_key="fc-YOUR_API_KEY")
-```
+`````
 
 ### 用 Docker 自托管
 
 如果你更愿意把 Firecrawl 跑在自己的基础设施上，克隆仓库并使用自带的 Docker Compose 配置：
 
-```bash
+`````bash
 git clone https://github.com/firecrawl/firecrawl.git
 cd firecrawl
 docker compose up
-```
+`````
 
-这会启动 API 及其 worker。API 默认监听 `3002` 端口，因此你可以通过 `http://localhost:3002` 访问。把 SDK 指向自托管实例，只需设置 API 地址：
+这会启动 API 及其 worker。API 默认监听 ``3002`` 端口，因此你可以通过 ``http://localhost:3002`` 访问。把 SDK 指向自托管实例，只需设置 API 地址：
 
-```typescript
+`````typescript
 const app = new Firecrawl({
   apiKey: 'fc-YOUR_API_KEY',
   apiUrl: 'http://localhost:3002',
 });
-```
+`````
 
 ### 配置
 
 自托管通过环境变量进行配置。复制提供的模板并编辑：
 
-```bash
+`````bash
 cp apps/api/.env.example apps/api/.env
-```
+`````
 
-常用的配置项包括 `PORT`、`NUM_WORKERS_PER_QUEUE`，以及代理和渲染相关的可选集成。完整列表请参见仓库中的自托管指南。如果用托管 API，这一切都可以跳过——你唯一必须设置的就是 API key。
+常用的配置项包括 ``PORT``、``NUM_WORKERS_PER_QUEUE``，以及代理和渲染相关的可选集成。完整列表请参见仓库中的自托管指南。如果用托管 API，这一切都可以跳过——你唯一必须设置的就是 API key。
 
 ## 核心用法
 
@@ -148,7 +149,7 @@ cp apps/api/.env.example apps/api/.env
 
 ### 抓取单个页面
 
-```typescript
+`````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
@@ -158,13 +159,13 @@ const doc = await app.scrape('https://example.com', {
 });
 
 console.log(doc.markdown);
-```
+`````
 
 ### 爬取整个站点
 
-`crawl` 会发现并抓取每一个可达页面。你可以限制页面数量，也可以限制爬取深度：
+``crawl`` 会发现并抓取每一个可达页面。你可以限制页面数量，也可以限制爬取深度：
 
-```typescript
+`````typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
   scrapeOptions: { formats: [markdown] },
@@ -173,13 +174,13 @@ const result = await app.crawl('https://example.com', {
 for (const page of result.data) {
   console.log(page.metadata?.sourceURL, page.markdown?.slice(0, 80));
 }
-```
+`````
 
 ### 抽取结构化数据
 
 传入一个 JSON schema，Firecrawl 就会返回带类型的数据，而非原始文本——非常适合提取标题、价格或任何固定字段：
 
-```typescript
+`````typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
     type: json,
@@ -194,7 +195,7 @@ const doc = await app.scrape('https://example.com', {
 });
 
 console.log(doc.json);
-```
+`````
 
 更多细节请查阅[官方文档](https://docs.firecrawl.dev)。
 
@@ -206,7 +207,7 @@ console.log(doc.json);
 
 一种典型做法是把抓取封装在你自己的端点之后：
 
-```typescript
+`````typescript
 import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
@@ -215,13 +216,13 @@ export async function scrapeHandler(url: string) {
   const doc = await app.scrape(url, { formats: [markdown] });
   return doc.markdown;
 }
-```
+`````
 
 ### 在 CI/CD 中跑定时爬取
 
 对于周期性任务，可以从 GitHub Actions、GitLab CI 或任意调度器运行 Firecrawl。下面是一个简单的 GitHub Actions 工作流，每次 push 时抓取一个页面并保存为 Markdown：
 
-```yaml
+`````yaml
 name: Firecrawl Scraper
 
 on: push: branches: [ main ]
@@ -240,7 +241,7 @@ jobs: scrape: runs-on: ubuntu-latest
       - name: Run scraper
         env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: node scrape.js > output.json
-```
+`````
 
 这样你的抓取任务既自动化又可复现，而 API key 存放在仓库 secrets 中，而非硬编码进代码。
 
@@ -261,11 +262,11 @@ Firecrawl 被用于各类生产场景。下面的数字旨在说明团队会跑�
 团队按计划爬取商品和价格页面，使商品目录与比价数据保持最新。得益于 JavaScript 渲染，单页应用（SPA）型店铺无需自己编写浏览器自动化即可处理。
 
 #### 大规模 SEO 与内容审计
-代理机构会对大型站点进行爬取，以盘点页面、发现死链、标记过时内容。`map` 端点在这里很好用——在投入更深的爬取之前，先拿到完整的 URL 列表。
+代理机构会对大型站点进行爬取，以盘点页面、发现死链、标记过时内容。``map`` 端点在这里很好用——在投入更深的爬取之前，先拿到完整的 URL 列表。
 
 ### 性能说明
 
-托管 API 的吞吐量取决于你套餐的并发上限，也取决于目标站点自身的限流与反爬机制。自托管允许你用 `NUM_WORKERS_PER_QUEUE` 调节并发，但随之你要自行承担代理与渲染的基础设施。一个经验法则：把爬取任务按「每分钟多少页」来规划，而不要把 Firecrawl 当成一个亚 100 毫秒的实时请求层。
+托管 API 的吞吐量取决于你套餐的并发上限，也取决于目标站点自身的限流与反爬机制。自托管允许你用 ``NUM_WORKERS_PER_QUEUE`` 调节并发，但随之你要自行承担代理与渲染的基础设施。一个经验法则：把爬取任务按「每分钟多少页」来规划，而不要把 Firecrawl 当成一个亚 100 毫秒的实时请求层。
 
 ![firecrawl contributors, via dibi8.com](https://contrib.rocks/image?repo=firecrawl/firecrawl)
 
@@ -281,13 +282,13 @@ Firecrawl 被用于各类生产场景。下面的数字旨在说明团队会跑�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Stars**          | 127,747                  | ~90k                    | ~55k                    | ~107k                   |
 | **类型**           | 网页数据 API             | 浏览器自动化库          | 爬虫框架                | HTTP 客户端             |
@@ -315,7 +316,7 @@ Firecrawl 很强，但并非适合每一种任务：
 
 4. **托管套餐的成本与配额**：云端 API 按量计费。大型爬取会很快消耗额度，因此对于超大体量，你应当把托管账单与自托管的运维成本做对比。
 
-5. **合规仍由你负责**：Firecrawl 让抓取变得简单，但它不替你判断哪些内容你有权抓取。遵守 `robots.txt`、服务条款和数据保护规定，都是你的责任。
+5. **合规仍由你负责**：Firecrawl 让抓取变得简单，但它不替你判断哪些内容你有权抓取。遵守 ````robots.txt```、服务条款和数据保护规定，都是你的责任。
 
 正因为有这些取舍，在采用 Firecrawl 之前认真评估你的使用场景是值得的。
 
@@ -329,7 +330,7 @@ Firecrawl 是把开放网络变成「LLM 真正能用的数据」的最实用方
 - 延伸阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/firecrawl/firecrawl
 - 官方文档：https://docs.firecrawl.dev
@@ -402,6 +403,6 @@ Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

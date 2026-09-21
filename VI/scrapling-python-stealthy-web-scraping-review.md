@@ -35,6 +35,7 @@ faqs: - q: 'Scrapling trong Python là gì?'
     a: 'Không. Cài đặt robots_txt_obey là tùy chọn bật thủ công, không bật theo mặc định, vì vậy bạn phải chủ động bật nó. Đây là lựa chọn thiết kế có chủ ý dành cho người dùng sở hữu các trang họ crawl, nhưng quên bật khi crawl trang của bên thứ ba có thể dẫn đến rủi ro pháp lý.'
 ---
 
+
 # Đánh giá Scrapling: Một cách tiếp cận nhanh hơn, lén lút hơn cho việc cạo
 
 {</* resource-info */>}
@@ -101,7 +102,7 @@ Scrapling là một thư viện Python mới được thiết kế để làm ch
 
 Scrapling là một bổ sung hữu ích cho bộ công cụ cạo web Python, đặc biệt cho các dự án cần sự cân bằng giữa tốc độ và độ lén lút. Nó không phải là giải pháp hoàn hảo cho mọi trường hợp, nhưng nó xuất sắc trong lĩnh vực của mình.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -174,7 +175,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

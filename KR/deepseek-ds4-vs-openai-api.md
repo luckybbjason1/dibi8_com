@@ -26,6 +26,7 @@ faqs: - q: 'DeepSeek를 로컬에서 실행하는 것이 GPT-4o API를 사용하
     a: '로컬 추론은 100% 에어갭(air-gapped)이 가능하며, 이는 데이터가 자신의 인프라를 절대 벗어나지 않는다는 뜻입니다. OpenAI 같은 클라우드 API에서는 요청 데이터가 사용자 환경을 벗어나 제공업체 서버에서 처리됩니다.'
 ---
 
+
 {</* resource-info */>}
 
 # OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기
@@ -56,7 +57,7 @@ A: AI 코딩을 빡세게 돌리면 하루에 2~3백만 토큰을 씁니다. GPT
 **Q: 인터넷 없이도 AI 로컬 코딩이 가능한가요? (Local AI coding without internet)**
 A: 당연합니다. DeepSeek V4 GGUF 파일을 다운로드하여 DS4에 올리면, 컴퓨터는 완벽한 오프라인 상태로 동작합니다. 사내 망분리 규정 때문에 AI를 못 쓰던 금융권이나 방산 기업들에게는 그야말로 게임 체인저입니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -128,7 +129,7 @@ OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

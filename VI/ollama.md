@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/ollama-local-llm-guide/
 ---
 
+
 {{</* resource-info */>}}
 
 Chạy các mô hình ngôn ngữ lớn từng đồng nghĩa với việc vật lộn với môi trường Python, driver CUDA và hàng gigabyte dependency. Đến năm 2026, ma sát đó đã biến mất. [Ollama](https://ollama.com) cho phép bạn pull, cấu hình và serve các LLM production-grade chỉ bằng một lệnh — không cần cài PyTorch, không cần tune GPU thủ công, thậm chí không bắt buộc Docker. Với 137.000+ sao GitHub và hệ sinh thái tích hợp phát triển mạnh, Ollama đã trở thành runtime mặc định cho developer muốn chạy inference local mà không gánh nặng vận hành.
@@ -45,11 +46,11 @@ Hướng dẫn này đi qua toàn bộ quy trình thiết lập Ollama: cài đ�
 
 ## Ollama hoạt động như thế nào?
 
-Kiến trúc Ollama theo mô hình client-server. Một daemon chạy nền (`ollama serve`) quản lý việc tải model, phân bổ bộ nhớ và inference. CLI và REST API là các client mỏng giao tiếp với daemon này qua HTTP trên cổng 11434.
+Kiến trúc Ollama theo mô hình client-server. Một daemon chạy nền (```ollama serve````) quản lý việc tải model, phân bổ bộ nhớ và inference. CLI và REST API là các client mỏng giao tiếp với daemon này qua HTTP trên cổng 11434.
 
 ### Kiến trúc cốt lõi
 
-```
+`````
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   Client    │────▶│ ollama serve │────▶│  llama.cpp/MLX  │
 │  (CLI/API)  │     │   (cổng      │     │  (backend       │
@@ -61,35 +62,35 @@ Kiến trúc Ollama theo mô hình client-server. Một daemon chạy nền (`ol
                     │  (models,   │
                     │   blobs)    │
                     └─────────────┘
-```
+`````
 
 **Các thành phần chính:**
 
-- **Model Hub**: Các model GGUF được curate từ `ollama.com`. Mỗi model được xác định bằng cặp `name:tag` (ví dụ: `llama3.2:8b`).
+- **Model Hub**: Các model GGUF được curate từ ````ollama.com````. Mỗi model được xác định bằng cặp ````name:tag```` (ví dụ: ````llama3.2:8b````).
 - **Modelfile**: Một config khai báo (tương tự Dockerfile) chỉ định base model, system prompt, parameters và chat templates.
 - **Inference Backends**: Tự động chọn llama.cpp (CUDA/ROCm/CPU), MLX (Apple Silicon), hoặc Metal dựa trên phần cứng khả dụng.
-- **REST API**: Các endpoint tương thích OpenAI tại `/api/generate`, `/api/chat`, `/api/embed`, và `/v1/chat/completions`.
+- **REST API**: Các endpoint tương thích OpenAI tại ````/api/generate````, ````/api/chat````, ````/api/embed````, và ````/v1/chat/completions````.
 
 ### Lưu trữ Model
 
-Các model được lưu trong `~/.ollama/models/` dưới dạng content-addressable blobs (SHA-256 digests). Một file manifest theo dõi blobs nào thuộc về tag model nào. Cơ chế deduplication này có nghĩa là hai model chia sẻ cùng base weights chỉ lưu một bản sao trên đĩa.
+Các model được lưu trong ````~/.ollama/models/```` dưới dạng content-addressable blobs (SHA-256 digests). Một file manifest theo dõi blobs nào thuộc về tag model nào. Cơ chế deduplication này có nghĩa là hai model chia sẻ cùng base weights chỉ lưu một bản sao trên đĩa.
 
 ## Cài đặt và Thiết lập
 
 ### macOS
 
-```bash
+`````bash
 # Dùng Homebrew (khuyến nghị)
 brew install ollama
 
 # Hoặc tải app native từ ollama.com/download
-```
+`````
 
 ### Linux (Cài đặt một dòng)
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
-```
+`````
 
 Lệnh này cài binary, đăng ký systemd service, và tự động phát hiện khả năng GPU (NVIDIA CUDA, AMD ROCm, hoặc chỉ CPU).
 
@@ -99,7 +100,7 @@ Tải installer từ [ollama.com/download](https://ollama.com/download). Khuyế
 
 ### Xác minh cài đặt
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.6.7
 
@@ -108,19 +109,19 @@ ollama serve
 
 # Pull và chạy model đầu tiên
 ollama run llama3.2:8b
-```
+`````
 
-Lần đầu chạy một model, Ollama sẽ tải về. Một model 8B parameters quantized như `llama3.2:8b` cần khoảng 4.9 GB dung lượng đĩa và chạy thoải mái trên 8 GB VRAM.
+Lần đầu chạy một model, Ollama sẽ tải về. Một model 8B parameters quantized như ````llama3.2:8b```` cần khoảng 4.9 GB dung lượng đĩa và chạy thoải mái trên 8 GB VRAM.
 
 ### Chọn model nhanh theo phần cứng
 
 | Phần cứng | Model khuyến nghị | Lệnh |
 |----------|------------------|------|
-| 6–8 GB VRAM | Qwen3 8B | `ollama run qwen3:8b` |
-| 10–12 GB VRAM | Llama 3.1 8B Q4 | `ollama run llama3.1:8b` |
-| 16+ GB VRAM | DeepSeek-R1 14B | `ollama run deepseek-r1:14b` |
-| Chỉ CPU, 16 GB RAM | Phi-4 Mini 3.8B | `ollama run phi4-mini` |
-| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | `ollama run llama3.1:70b` |
+| 6–8 GB VRAM | Qwen3 8B | ````ollama run qwen3:8b```` |
+| 10–12 GB VRAM | Llama 3.1 8B Q4 | ````ollama run llama3.1:8b```` |
+| 16+ GB VRAM | DeepSeek-R1 14B | ````ollama run deepseek-r1:14b```` |
+| Chỉ CPU, 16 GB RAM | Phi-4 Mini 3.8B | ````ollama run phi4-mini```` |
+| Apple M3/M4 36 GB | Llama 3.1 70B Q4 | ````ollama run llama3.1:70b```` |
 
 ## Tích hợp với các công cụ phổ biến
 
@@ -128,7 +129,7 @@ Lần đầu chạy một model, Ollama sẽ tải về. Một model 8B paramete
 
 [Open WebUI](https://github.com/open-webui/open-webui) là frontend phổ biến nhất cho Ollama, cung cấp giao diện web tương tự ChatGPT với RAG, voice input và multi-user.
 
-```bash
+`````bash
 # Chạy Open WebUI với Docker
 docker run -d -p 3000:8080 \
   --add-host=host.docker.internal:host-gateway \
@@ -136,13 +137,13 @@ docker run -d -p 3000:8080 \
   --name open-webui \
   --restart always \
   ghcr.io/open-webui/open-webui:main
-```
+`````
 
-Truy cập tại `http://localhost:3000`. Open WebUI tự động phát hiện instance Ollama của bạn tại `http://host.docker.internal:11434`.
+Truy cập tại ````http://localhost:3000````. Open WebUI tự động phát hiện instance Ollama của bạn tại ````http://host.docker.internal:11434````.
 
 ### LangChain (Python)
 
-```python
+`````python
 # Cài đặt
 pip install langchain-ollama
 
@@ -164,11 +165,11 @@ from langchain_ollama import OllamaEmbeddings
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 vector = embeddings.embed_query("Hello world")
 # Trả về vector float 768 chiều
-```
+`````
 
 ### Continue.dev (Trợ lý lập trình AI cho VS Code/Cursor)
 
-Thêm vào `~/.continue/config.json`: ```json
+Thêm vào ``~/.continue/config.json``: `````json
 {
   "models": [
     {
@@ -184,19 +185,19 @@ Thêm vào `~/.continue/config.json`: ```json
     "model": "codeqwen:7b-code"
   }
 }
-```
+`````
 
 ### Dify (Nền tảng workflow AI tự host)
 
-Trong **Cài đặt > Nhà cung cấp Model > Ollama** của Dify, cấu hình: ```
+Trong **Cài đặt > Nhà cung cấp Model > Ollama** của Dify, cấu hình: `````
 Tên model: llama3.2:8b
 URL cơ sở: http://host.docker.internal:11434
 Cửa sổ ngữ cảnh: 8192
-```
+`````
 
 ### cURL / Sử dụng trực tiếp REST API
 
-```bash
+`````bash
 # Sinh văn bản
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.2:8b",
@@ -216,7 +217,7 @@ curl http://localhost:11434/api/embed -d '{
   "model": "nomic-embed-text",
   "input": ["Bầu trờ xanh", "Cỏ xanh"]
 }'
-```
+`````
 
 ## Thiết lập Docker cho Production
 
@@ -224,7 +225,7 @@ curl http://localhost:11434/api/embed -d '{
 
 ### Docker Compose cơ bản
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -249,13 +250,13 @@ services: ollama: image: ollama/ollama:0.6.7
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: openwebui_data: ```
+volumes: ollama_data: openwebui_data: `````
 
-Khởi động bằng `docker compose up -d`.
+Khởi động bằng ````docker compose up -d````.
 
 ### Thiết lập GPU NVIDIA
 
-```bash
+`````bash
 # Cài đặt NVIDIA Container Toolkit
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \
   | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
@@ -268,21 +269,21 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
-```
+`````
 
 ### Thiết lập GPU AMD ROCm
 
-Dùng image tag dành riêng cho ROCm: ```yaml
+Dùng image tag dành riêng cho ROCm: `````yaml
 services: ollama: image: ollama/ollama:rocm
     devices: - /dev/kfd
       - /dev/dri
     group_add: - video
     environment: - HSA_OVERRIDE_GFX_VERSION=11.0.0
-```
+`````
 
 ### Serve đồng thờ nhiều model
 
-```yaml
+`````yaml
 services: ollama: image: ollama/ollama:0.6.7
     environment: - OLLAMA_NUM_PARALLEL=4      # 4 request đồng thờ
       - OLLAMA_MAX_LOADED_MODELS=2  # Giữ 2 model trong VRAM
@@ -290,7 +291,7 @@ services: ollama: image: ollama/ollama:0.6.7
     deploy: resources: reservations: devices: - driver: nvidia
               count: all
               capabilities: [gpu]
-```
+`````
 
 ## Modelfile: Tùy chỉnh model
 
@@ -298,7 +299,7 @@ Modelfile là định dạng config khai báo của Ollama. Nó định nghĩa m
 
 ### Ví dụ Modelfile cơ bản
 
-```dockerfile
+`````dockerfile
 # Modelfile
 FROM llama3.2:8b
 
@@ -321,9 +322,9 @@ TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
 {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
 
 {{ .Response }}<|eot_id|>"""
-```
+`````
 
-Build và chạy: ```bash
+Build và chạy: `````bash
 # Tạo model tùy chỉnh
 ollama create senior-dev -f Modelfile
 
@@ -332,11 +333,11 @@ ollama run senior-dev
 
 # Xem Modelfile hiệu lực
 ollama show senior-dev --modelfile
-```
+`````
 
 ### Nâng cao: Trợ lý code review
 
-```dockerfile
+`````dockerfile
 # Modelfile.code-review
 FROM codellama:7b-code
 
@@ -354,15 +355,15 @@ Luôn đề xuất fix cho các mục [CRITICAL] và [WARN]."""
 PARAMETER temperature 0.1
 PARAMETER num_ctx 8192
 PARAMETER num_predict 2048
-```
+`````
 
-```bash
+`````bash
 ollama create code-reviewer -f Modelfile.code-review
-```
+`````
 
 ### Tạo từ file GGUF local
 
-```dockerfile
+`````dockerfile
 # Modelfile.local
 FROM ./my-fine-tuned-model-q4_k_m.gguf
 
@@ -370,15 +371,15 @@ PARAMETER temperature 0.7
 PARAMETER num_ctx 4096
 
 SYSTEM "Bạn là trợ lý hữu ích chuyên về thuật ngữ y tế."
-```
+`````
 
-```bash
+`````bash
 ollama create med-assistant -f Modelfile.local
-```
+`````
 
 ### Kiểm tra các model hiện có
 
-```bash
+`````bash
 # Hiển thị chi tiết model và Modelfile
 ollama show llama3.2:8b --modelfile
 
@@ -393,7 +394,7 @@ ollama list
 
 # Hiển thị model đang chạy
 ollama ps
-```
+`````
 
 ## Benchmark / Use case thực tế
 
@@ -433,13 +434,13 @@ ollama ps
 1. **Developer cá nhân**: Ollama + Continue.dev cho lập trình AI-assisted. Độ trễ autocomplete < 50ms.
 2. **Nhóm nhỏ (5–10 ngườ)**: Ollama trên workstation GPU chia sẻ + Open WebUI. Xử lý thoải mái ~50 request/giờ.
 3. **Edge/Raspberry Pi 5**: Ollama chỉ CPU với Phi-4 Mini (3.8B). ~8 tok/s, chạy hoàn toàn offline.
-4. **Pipeline CI/CD**: Ollama trong Docker cho code review tự động. Pull model `code-reviewer`, xử lý PR diff qua API.
+4. **Pipeline CI/CD**: Ollama trong Docker cho code review tự động. Pull model ````code-reviewer````, xử lý PR diff qua API.
 
 ## Sử dụng nâng cao / Production hardening
 
 ### Biến môi trường
 
-```bash
+`````bash
 # Cài đặt cốt lõi
 OLLAMA_HOST=0.0.0.0:11434          # Bind tất cả interfaces
 OLLAMA_KEEP_ALIVE=24h               # Giữ model loaded trong 24 giờ
@@ -450,11 +451,11 @@ OLLAMA_FLASH_ATTENTION=1            # Bật Flash Attention (inference nhanh hơ
 # Tune hiệu năng
 OLLAMA_GPU_OVERHEAD=200MB           # Dự trữ VRAM
 OLLAMA_DEBUG=1                      # Logging chi tiết
-```
+`````
 
 ### Reverse proxy với Nginx
 
-```nginx
+`````nginx
 server {
     listen 443 ssl http2;
     server_name ollama.yourdomain.com;
@@ -479,11 +480,11 @@ server {
         proxy_send_timeout 600s;
     }
 }
-```
+`````
 
 ### Xác thực API Key (không hỗ trợ native)
 
-Ollama không có xác thực API key tích hợp. Thêm qua reverse proxy: ```python
+Ollama không có xác thực API key tích hợp. Thêm qua reverse proxy: `````python
 # ollama-auth-proxy.py (Ví dụ Flask)
 from flask import Flask, request, Response
 import requests
@@ -508,20 +509,20 @@ def proxy(path): api_key = request.headers.get(Authorization, '').replace('Beare
                    content_type=resp.headers.get('Content-Type'))
 
 if __name__ == __main__: app.run(host='0.0.0.0", port=11435)
-```
+`````
 
 ### Giám sát với Prometheus
 
-Ollama expose các metric cơ bản qua API: ```bash
+Ollama expose các metric cơ bản qua API: `````bash
 # Liệt kê model đang chạy kèm mức sử dụng bộ nhớ
 curl http://localhost:11434/api/ps
-```
+`````
 
-Cho production monitoring, wrap endpoint `api/ps` với Prometheus exporter hoặc dùng proxy [ollamaMQ](https://github.com/Chleba/ollamaMQ) có built-in metrics.
+Cho production monitoring, wrap endpoint ````api/ps```` với Prometheus exporter hoặc dùng proxy [ollamaMQ](https://github.com/Chleba/ollamaMQ) có built-in metrics.
 
 ### Dịch vụ Systemd (Linux)
 
-```ini
+`````ini
 # /etc/systemd/system/ollama.service
 [Unit]
 Description=Dịch vụ Ollama LLM
@@ -539,13 +540,13 @@ Environment="OLLAMA_KEEP_ALIVE=24h"
 
 [Install]
 WantedBy=default.target
-```
+`````
 
-```bash
+`````bash
 sudo systemctl daemon-reload
 sudo systemctl enable ollama
 sudo systemctl start ollama
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -580,9 +581,9 @@ sudo systemctl start ollama
 
 **Chỉ hỗ trợ format GGUF.** Ollama chỉ hỗ trợ model quantized GGUF. Nếu cần inference FP16, AWQ, hoặc GPTQ, hãy dùng vLLM hoặc Transformers trực tiếp.
 
-**Không có quantization tích hợp.** Bạn không thể quantize model trong Ollama. Chuyển đổi model sang GGUF bên ngoài (dùng `llama.cpp/convert_hf_to_gguf.py` hoặc tương tự), rồi import qua `ollama create`.
+**Không có quantization tích hợp.** Bạn không thể quantize model trong Ollama. Chuyển đổi model sang GGUF bên ngoài (dùng ````llama.cpp/convert_hf_to_gguf.py```` hoặc tương tự), rồi import qua ````ollama create````.
 
-**Quản lý bộ nhớ tĩnh.** `OLLAMA_MAX_LOADED_MODELS` kiểm soát số model resident, nhưng không có cân bằng VRAM động. Trên GPU 12 GB, load model 70B (kể cả Q4) sẽ gây OOM — Ollama không tự động offload layers sang CPU.
+**Quản lý bộ nhớ tĩnh.** ````OLLAMA_MAX_LOADED_MODELS```` kiểm soát số model resident, nhưng không có cân bằng VRAM động. Trên GPU 12 GB, load model 70B (kể cả Q4) sẽ gây OOM — Ollama không tự động offload layers sang CPU.
 
 **Hỗ trợ tool calling hạn chế.** Dù tool calling có sẵn cho model tương thích (Llama 3.1+, Mistral), triển khai kém robust hơn function calling của OpenAI. Workflow tool phức tạp nhiều bước có thể cần xử lý fallback.
 
@@ -595,13 +596,13 @@ A: Model 7B quantized Q4_K_M cần khoảng 4,5–5 GB VRAM. Với quantization 
 A: Có. Ollama tự động fallback sang CPU inference qua llama.cpp. Hiệu năng phụ thuộc vào CPU: Intel i7-13700K đạt ~8–12 tok/s với model 7B Q4. Apple Silicon M3 Pro đạt ~25 tok/s trên CPU/Neural Engine.
 
 **Q: Làm sao cập nhật Ollama lên phiên bản mới nhất?**
-A: Trên macOS, chạy `brew upgrade ollama`. Trên Linux, chạy lại script cài đặt: `curl -fsSL https://ollama.com/install.sh | sh`. Script sẽ giữ nguyên các model đã tải trong `~/.ollama/models/`.
+A: Trên macOS, chạy ````brew upgrade ollama````. Trên Linux, chạy lại script cài đặt: ````curl -fsSL https://ollama.com/install.sh | sh````. Script sẽ giữ nguyên các model đã tải trong ````~/.ollama/models/````.
 
 **Q: Ollama có phù hợp cho production không?**
 A: Với triển khai đơn mục đích (một model, một ngườ dùng, tải dự đoán được), có. Với production serving đa ngườ dùng, hãy cân nhắc thêm queuing proxy hoặc chuyển sang vLLM. Luôn thêm xác thực và monitoring trước khi expose ra mạng.
 
 **Q: Có thể dùng model fine-tuned của riêng mình với Ollama không?**
-A: Có. Chuyển model sang format GGUF, rồi tạo Modelfile trỏ đến nó bằng `FROM ./your-model.gguf`. Chạy `ollama create my-model -f Modelfile` và nó sẽ khả dụng qua API chuẩn.
+A: Có. Chuyển model sang format GGUF, rồi tạo Modelfile trỏ đến nó bằng ````FROM ./your-model.gguf````. Chạy ````ollama create my-model -f Modelfile```` và nó sẽ khả dụng qua API chuẩn.
 
 **Q: Ollama so với OpenAI API về chất lượng output thì sao?**
 A: Với base model tương đương (Llama 3.1 vs GPT-3.5), chất lượng output cạnh tranh trên các tác vụ coding và reasoning. Khoảng cách lớn hơn ở creative writing và reasoning nhiều bước, nơi GPT-4 và Claude 3.5 Sonnet vẫn dẫn đầu. Inference local loại bỏ độ trễ từ vòng lặp mạng.
@@ -616,8 +617,8 @@ Ollama loại bỏ ma sát từ việc triển khai LLM local. Một lệnh đ�
 Với developer cá nhân và nhóm nhỏ, Ollama là điểm khởi đầu thực tế. Khi tải đồng thờ vượt quá ~5 ngườ dùng, hãy đánh giá vLLM. Khi cần hỗ trợ multi-modal vượt ra ngoài text, hãy đánh giá LocalAI. Nhưng hãy bắt đầu với Ollama — 137.000+ Stars phản ánh một công cụ thực sự thực hiện đúng lờ hứa của nó.
 
 **Các bước tiếp theo:**
-1. Cài đặt Ollama: `curl -fsSL https://ollama.com/install.sh | sh`
-2. Chạy model đầu tiên: `ollama run llama3.2:8b`
+1. Cài đặt Ollama: ````curl -fsSL https://ollama.com/install.sh | sh````
+2. Chạy model đầu tiên: ````ollama run llama3.2:8b```
 3. Triển khai Open WebUI làm giao diện chat cho team
 4. Tham gia [cộng đồng developer dibi8 trên Telegram](https://t.me/dibi8dev) để nhận mẹo triển khai LLM local và xử lý lỗi
 
@@ -674,7 +675,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -684,7 +685,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [ollama-vs-vllm](ollama)
 - [ollama-vs-vllm](ollama)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

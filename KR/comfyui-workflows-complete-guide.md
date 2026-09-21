@@ -13,7 +13,8 @@ description: "ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프�
 ### 주요 노드 카테고리
 
 | 카테고리 | 용도 | 예시 |
-|----------|------|------|
+|---
+-------|------|------|
 | 모델 로드 | 기본 모델 및 확장 로드 | CheckpointLoader, LoraLoader |
 | 컨디션 | 텍스트 프롬프트 처리 | CLIPTextEncode, Condition |
 | 샘플링 | 이미지 생성 | KSampler, Euler, DPM++ |
@@ -29,17 +30,17 @@ description: "ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프�
 
 ### 기본 이미지 생성
 
-```
+````
 단계 1: 체크포인트 로드 → 모델 선택 (SDXL, Flux 등)
 단계 2: CLIP 텍스트 인코딩 → 양수와 음수 프롬프트 입력
 단계 3: KSampler → 스텝(20-50), CFG(7-12), 시드 설정
 단계 4: VAE 디코드 → 잠재 공간을 픽셀 공간으로 변환
 단계 5: 이미지 저장 → 형식과 위치 선택
-```
+`````
 
 ### 고급: 다단계 파이프라인
 
-전문 결과를 위해 여러 단계를 체이닝: ```
+전문 결과를 위해 여러 단계를 체이닝: `````
 단계 1: 기본 생성
 ├── 체크포인트 로드 (SDXL)
 ├── 프롬프트 인코딩
@@ -59,15 +60,15 @@ description: "ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프�
 ├── 색상 보정
 ├── 세부 향상
 └── 고해상도 PNG 저장
-```
+`````
 
----
+* * *
 
 ## 인기 워크플로우 패턴
 
 ### 패턴 1: 반복 정제
 
-기본 이미지를 생성하고 평가한 후 특정 측면을 정제: ```json
+기본 이미지를 생성하고 평가한 후 특정 측면을 정제: `````json
 {
   "workflow_id": "iterative-refinement",
   "stages": [
@@ -76,11 +77,11 @@ description: "ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프�
     {"name": "detail", "steps": 30, "resolution": "2048x2048", "denoise": 0.3}
   ]
 }
-```
+`````
 
 ### 패턴 2: 배치 변형 생성
 
-비교를 위해 여러 변형 생성: ```json
+비교를 위해 여러 변형 생성: `````json
 {
   "workflow_id": "batch-variations",
   "config": {
@@ -94,11 +95,11 @@ description: "ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프�
     "parallel_workers": 4
   }
 }
-```
+`````
 
 ### 패턴 3: ControlNet 유도 생성
 
-참조 이미지를 사용하여 구도 유도: ```
+참조 이미지를 사용하여 구도 유도: `````
 입력: 참조 이미지
    ↓
 Canny 엣지 검출 → ControlNet (엣지 유도)
@@ -108,17 +109,17 @@ Canny 엣지 검출 → ControlNet (엣지 유도)
 결합 컨디션 → KSampler
    ↓
 정확한 구도 제어가 있는 최종 이미지
-```
+`````
 
 ### 패턴 4: Img2Img 파이프라인
 
-구조를 보존하면서 기존 이미지 변환: ```
+구조를 보존하면서 기존 이미지 변환: `````
 원본 이미지 → 인코딩 (VAE) → 노이즈 추가 → KSampler (디노이즈) → 디코딩 (VAE) → 결과
-```
+`````
 
 디노이즈 강도(0.1-0.9)를 조정하여 변환 강도 제어.
 
----
+* * *
 
 ## 모델 관리
 
@@ -135,7 +136,7 @@ ComfyUI는 광범위한 모델을 지원합니다: | 모델 유형 | 예시 | �
 
 ### 모델 설치
 
-```bash
+`````bash
 # ComfyUI/models/checkpoints/에 모델 다운로드
 wget -P models/checkpoints/ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
 
@@ -144,11 +145,11 @@ wget -P models/loras/ https://civitai.com/api/download/models/12345
 
 # VAE 설치
 wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
-```
+`````
 
 ### 의존성 관리
 
-```json
+`````json
 {
   "dependencies": {
     "checkpoints": ["sdxl_v1.0.safetensors"],
@@ -158,15 +159,15 @@ wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdx
     "upscale": ["4x-UltraSharp.pth"]
   }
 }
-```
+`````
 
----
+* * *
 
 ## 성능 최적화
 
 ### GPU 메모리 관리
 
-```python
+`````python
 # 다른 GPU 크기에 맞게 최적화
 optimization_config = {
     "24GB_GPU": {
@@ -188,7 +189,7 @@ optimization_config = {
         "lowvram_mode": True
     }
 }
-```
+`````
 
 ### 배치 처리 속도
 
@@ -201,7 +202,7 @@ optimization_config = {
 
 ### 캐싱 전략
 
-```json
+`````json
 {
   "caching": {
     "checkpoint_cache": true,
@@ -211,60 +212,60 @@ optimization_config = {
     "max_cache_size_gb": 8
   }
 }
-```
+`````
 
----
+* * *
 
 ## 고급 기술
 
 ### 기술 1: 계층적 생성
 
-먼저 저해상도로 생성한 후 단계적으로 업스케일: ```
+먼저 저해상도로 생성한 후 단계적으로 업스케일: `````
 저해상도 (512x512) → 중해상도 (1024x1024) → 고해상도 (2048x2048)
        ↓                   ↓                    ↓
     거친 세부            미세 세부          초고도 세부
-```
+`````
 
 ### 기술 2: 영역 기반 편집
 
-다른 부분에 영향을 주지 않고 이미지의 특정 부분 편집: ```
+다른 부분에 영향을 주지 않고 이미지의 특정 부분 편집: `````
 마스킹 선택 → 인페인팅 노드 → 로컬 프롬프트 → KSampler (마스킹만)
-```
+`````
 
 ### 기술 3: 스타일 트랜스퍼 파이프라인
 
-콘텐츠를 보존하면서 예술적 스타일 적용: ```
+콘텐츠를 보존하면서 예술적 스타일 적용: `````
 컨텐츠 이미지 → CLIP Vision → 스타일 참조 → 크로스 어텐션 → KSampler
-```
+`````
 
 ### 기술 4: 자동 품질 스코어링
 
-생성 이미지를 자동으로 스코어링하고 필터링: ```
+생성 이미지를 자동으로 스코어링하고 필터링: `````
 생성 이미지 → CLIP 스코어 노드 → 필터링 (> 임계값) → 최고 점수 저장
-```
+`````
 
----
+* * *
 
 ## 문제 해결
 
 ### 문제 1: 메모리 부족 오류
 
-```
+`````
 오류: CUDA out of memory
-```
+`````
 
 **수정:**
 - 배치 크기 축소
-- `--lowvram` 플래그 활성화
+- ````--lowvram```` 플래그 활성화
 - fp16 정밀도 사용
 - 다른 GPU 애플리케이션 종료
 - 워크플로우를 더 작은 단계로 분리
 
 ### 문제 2: 느린 생성
 
-```
+`````
 경고: 생성이 예상보다 오래 걸림
-```
+`````
 
 **수정:**
 - 빠른 샘플러 사용 (Euler a, DPM++ 2M)
@@ -275,9 +276,9 @@ optimization_config = {
 
 ### 문제 3: 낮은 품질 출력
 
-```
+`````
 이미지가 흐릿하거나 아티팩트가 있음
-```
+`````
 
 **수정:**
 - 스텝을 30-50으로 증가
@@ -286,7 +287,7 @@ optimization_config = {
 - 고해상도 활성화
 - 음수 프롬프트 품질 확인
 
----
+* * *
 
 ## 비교: ComfyUI vs 대안
 
@@ -301,13 +302,13 @@ optimization_config = {
 
 복잡한 커스텀 워크플로우에는 ComfyUI가胜出. 단순 생성에는 다른 도구가 더 쉽습니다.
 
----
+* * *
 
 ## 시작하기
 
 ### 설치
 
-```bash
+`````bash
 # ComfyUI 클론
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -320,11 +321,11 @@ pip install -r requirements.txt
 
 # ComfyUI 시작
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
 ### 브라우저 인터페이스
 
-브라우저에서 `http://localhost:8188` 열기: - 워크플로우 구축을 위한 빈 캔버스
+브라우저에서 ````http://localhost:8188```` 열기: - 워크플로우 구축을 위한 빈 캔버스
 - 오른쪽의 노드 라이브러리
 - 설정 패널 (톱니바퀴 아이콘)
 - 대기열 및 히스토리 탭
@@ -337,7 +338,7 @@ ComfyUI에는 많은 프리셋 워크플로우가 포함되어 있습니다: - *
 - **업스케일**: 해상도 향상
 - **AnimateDiff**: 애니메이션 생성
 
----
+* * *
 
 ## 커뮤니티 리소스
 
@@ -356,7 +357,7 @@ ComfyUI에는 많은 프리셋 워크플로우가 포함되어 있습니다: - *
 - **GitHub**: 오픈소스 워크플로우 컬렉션
 - **Discord**: 팁과 템플릿을 공유하는 활성 커뮤니티
 
----
+* * *
 
 ## FAQ
 
@@ -370,7 +371,7 @@ ComfyUI는 대부분의 대안보다 효율적입니다. 12GB GPU(RTX 3060/4070)
 
 ### Q: 다른 사람과 워크플로우를 어떻게 공유하나요?
 
-`.json` 또는 `.png` 파일로 내보냅니다. Civitai, GitHub 또는 Discord를 통해 공유합니다. 수신자는 파일을 ComfyUI 캔버스에 드래그하여 가져옵니다.
+````.json```` 또는 ````.png``` 파일로 내보냅니다. Civitai, GitHub 또는 Discord를 통해 공유합니다. 수신자는 파일을 ComfyUI 캔버스에 드래그하여 가져옵니다.
 
 ### Q: ComfyUI는 무료인가요?
 
@@ -384,7 +385,7 @@ ComfyUI는 대부분의 대안보다 효율적입니다. 12GB GPU(RTX 3060/4070)
 
 ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드 및 워크플로우 설치를 훨씬 쉽게 만드는 확장 프로그램입니다. 최고의 경험을 위해 먼저 설치하세요.
 
----
+* * *
 
 ## 참고자료
 
@@ -395,7 +396,7 @@ ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드
 - [Stable Diffusion 모델 Zoo](https://huggingface.co/stabilityai)
 - [AI 이미지 생성 벤치마크 보고서 2026](https://aigbenchmark.report/2026)
 
----
+* * *
 
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
 
@@ -425,7 +426,7 @@ ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -435,6 +436,6 @@ ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드
 - [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
 - [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

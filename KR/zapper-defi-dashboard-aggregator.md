@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/zapper-defi-dashboard-aggregator/
 ---
 
+
 {{</* resource-info */>}}
 
 **날짜:** 2026-05-19  
@@ -20,11 +21,11 @@ aliases:
 **도구:** [Zapper](https://zapper.xyz)  
 **GitHub:** [Zapper-fi](https://github.com/Zapper-fi) — ⭐ 300+ 스타, MIT 라이선스
 
----
+* * *
 
 > 오늘 바로 DeFi 포트폴리오 추적을 시작하세요! [바이낸스](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입하여 DeFi 여정을 시작하세요.
 
----
+* * *
 
 ## 1. 소개: 2026년 DeFi 대시보드 혁명
 
@@ -36,13 +37,13 @@ aliases:
 
 이 종합 가이드는 2026년 개발자와 DeFi 파워 유저를 위한 Zapper의 아키텍처, API 통합 패턴, 수익 추적 기능, 트랜잭션 빌더, 실제 구현 전략을 다룹니다.
 
----
+* * *
 
 ## 2. 핵심 아키텍처: Zapper가 DeFi 데이터를 집계하는 방법
 
 ### 2.1 멀티 프로토콜 데이터 애그리게이션 레이어
 
-Zapper의 백엔드 인프라는 모듈형 통합 시스템을 통해 수백 개의 DeFi 프로토콜에 연결됩니다. 각 프로토콜 통합은 스마트 컨트랙트 상호작용의 복잡성을 표준화된 데이터 모델로 추상화합니다: ```typescript
+Zapper의 백엔드 인프라는 모듈형 통합 시스템을 통해 수백 개의 DeFi 프로토콜에 연결됩니다. 각 프로토콜 통합은 스마트 컨트랙트 상호작용의 복잡성을 표준화된 데이터 모델로 추상화합니다: ````typescript
 // Zapper 프로토콜 통합 아키텍처
 interface ProtocolPosition {
   // 고유 식별자
@@ -80,11 +81,11 @@ interface TokenBalance {
   balanceUSD: number;
   priceUSD: number;
 }
-```
+`````
 
 ### 2.2 실시간 포트폴리오 동기화
 
-```typescript
+`````typescript
 // Zapper API를 사용하여 포트폴리오 가져오기
 import { ZapperClient } from '@zapper-fi/zapper-api';
 
@@ -140,14 +141,14 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
 
 // 실행
 const portfolio = await getPortfolio('0xMyAddress...');
-console.log(`총 순자산: $${portfolio.totalNetWorth.toLocaleString()}`);
-console.log(`대출 포지션: ${portfolio.categories.lending.length}`);
-console.log(`LP 포지션: ${portfolio.categories.liquidity.length}`);
-```
+console.log(````총 순자산: $${portfolio.totalNetWorth.toLocaleString()}````);
+console.log(````대출 포지션: ${portfolio.categories.lending.length}````);
+console.log(````LP 포지션: ${portfolio.categories.liquidity.length}````);
+`````
 
 ### 2.3 토큰 가격 오라클 시스템
 
-```typescript
+`````typescript
 // Zapper 가격 집계
 async function getTokenPrices(
   client: ZapperClient,
@@ -186,26 +187,26 @@ const tokenPrices = await getTokenPrices(
 
 console.log('WETH:', tokenPrices.get(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2));
 console.log('USDC:', tokenPrices.get(0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48));
-```
+`````
 
----
+* * *
 
 ## 3. API 인증 및 설정
 
 ### 3.1 API 키 얻기
 
-```bash
+`````bash
 # 1단계: https://zapper.xyz에 가입하고 개발자 설정으로 이동
 # 2단계: API 키 생성
 # 3단계: 환경 변수에 안전하게 저장
 
 export ZAPPER_API_KEY="your_api_key_here"
 export ZAPPER_API_URL="https://api.zapper.xyz"
-```
+`````
 
 ### 3.2 SDK 초기화
 
-```typescript
+`````typescript
 // 인증을 사용하여 Zapper SDK 초기화
 import { ZapperClient } from '@zapper-fi/zapper-api';
 
@@ -218,9 +219,9 @@ const client = new ZapperClient({
 
 // 옵션 2: 환경 설정 사용
 const client = ZapperClient.fromEnvironment();
-```
+`````
 
-```python
+`````python
 # Python SDK 설정
 import os
 from zapper_api import ZapperClient
@@ -235,22 +236,22 @@ health = client.health.check()
 print(f"API 상태: {health.status}")
 print(f"지원 네트워크: {len(health.networks)}")
 print(f"통합 프로토콜: {health.protocolCount}")
-```
+`````
 
-```bash
+`````bash
 # cURL 인증 예시
 curl -X GET "https://api.zapper.xyz/v2/balances?addresses[]=0x...&networks[]=ethereum" \
   -H "Authorization: Bearer ${ZAPPER_API_KEY}" \
   -H "Content-Type: application/json"
-```
+`````
 
----
+* * *
 
 ## 4. 포트폴리오 추적: 완전한 DeFi 포지션 개요
 
 ### 4.1 모든 포지션 가져오기
 
-```typescript
+`````typescript
 // 모든 포지션을 포함한 포괄적인 포트폴리오 가져오기
 async function getFullPortfolio(address: string) {
   const response = await client.v2.balances.getBalances({
@@ -315,11 +316,11 @@ function categorizePosition(position: any): string {
   if (position.positionType === staking) return staking;
   return other;
 }
-```
+`````
 
 ### 4.2 NFT 포트폴리오 추적
 
-```typescript
+`````typescript
 // 마켓플레이스 전반에 걸쳐 NFT 보유 추적
 async function getNFTPortfolio(address: string) {
   const nfts = await client.v2.nfts.getNftsForAddress({
@@ -358,25 +359,25 @@ async function getNFTPortfolio(address: string) {
 
 // NFT 포트폴리오 표시
 const nftPortfolio = await getNFTPortfolio('0xMyAddress...');
-console.log(`\n📊 NFT 포트폴리오 요약`);
-console.log(`컬렉션: ${nftPortfolio.totalCollections}`);
-console.log(`총 NFT: ${nftPortfolio.totalNFTs}`);
-console.log(`추정 가치: $${nftPortfolio.estimatedValueUSD.toLocaleString()}`);
+console.log(````\n📊 NFT 포트폴리오 요약````);
+console.log(````컬렉션: ${nftPortfolio.totalCollections}````);
+console.log(````총 NFT: ${nftPortfolio.totalNFTs}````);
+console.log(````추정 가치: $${nftPortfolio.estimatedValueUSD.toLocaleString()}````);
 
 nftPortfolio.collections
   .sort((a, b) => b.estimatedValueUSD - a.estimatedValueUSD)
   .forEach(c => {
-    console.log(`\n  ${c.name}: ${c.count}개 @ $${c.floorPriceUSD.toFixed(2)} 바닥가 = $${c.estimatedValueUSD.toFixed(2)}`);
+    console.log(````\n  ${c.name}: ${c.count}개 @ $${c.floorPriceUSD.toFixed(2)} 바닥가 = $${c.estimatedValueUSD.toFixed(2)}````);
   });
-```
+`````
 
----
+* * *
 
 ## 5. 이자 농사 추적 및 분석
 
 ### 5.1 활성 수익 포지션 모니터링
 
-```typescript
+`````typescript
 // APY 분석을 통한 이자 농사 포지션 추적
 interface YieldPosition {
   protocol: string;
@@ -460,30 +461,30 @@ positions.forEach(pos => {
   totalDeposited += pos.depositedValueUSD;
   totalDailyYield += pos.dailyYieldUSD;
   
-  console.log(`\n${pos.protocol} — ${pos.poolName} (${pos.network})`);
-  console.log(`  예치: $${pos.depositedValueUSD.toLocaleString()}`);
-  console.log(`  APY: ${pos.apy.total.toFixed(2)}% (기본: ${pos.apy.base.toFixed(2)}% + 보상: ${pos.apy.rewards.toFixed(2)}%)`);
-  console.log(`  일일 수익: $${pos.dailyYieldUSD.toFixed(2)}`);
-  console.log(`  총 수익: $${pos.totalEarnedUSD.toLocaleString()}`);
+  console.log(````\n${pos.protocol} — ${pos.poolName} (${pos.network})````);
+  console.log(````  예치: $${pos.depositedValueUSD.toLocaleString()}````);
+  console.log(````  APY: ${pos.apy.total.toFixed(2)}% (기본: ${pos.apy.base.toFixed(2)}% + 보상: ${pos.apy.rewards.toFixed(2)}%)````);
+  console.log(````  일일 수익: $${pos.dailyYieldUSD.toFixed(2)}````);
+  console.log(````  총 수익: $${pos.totalEarnedUSD.toLocaleString()}````);
   
   if (pos.impermanentLoss) {
-    console.log(`  ⚠️ IL: ${pos.impermanentLoss.toFixed(2)}%`);
+    console.log(````  ⚠️ IL: ${pos.impermanentLoss.toFixed(2)}%````);
   }
   
   pos.rewardTokens.forEach(r => {
-    console.log(`  보상: ${r.dailyAmount.toFixed(4)} ${r.token}/일 ($${r.dailyValueUSD.toFixed(2)})`);
+    console.log(````  보상: ${r.dailyAmount.toFixed(4)} ${r.token}/일 ($${r.dailyValueUSD.toFixed(2)})````);
   });
 });
 
-console.log(`\n${'='.repeat(80)}`);
-console.log(`총 예치: $${totalDeposited.toLocaleString()}`);
-console.log(`총 일일 수익: $${totalDailyYield.toFixed(2)} (${(totalDailyYield * 365 / totalDeposited * 100).toFixed(2)}% APY)`);
-console.log(`월간 예상: $${(totalDailyYield * 30).toFixed(2)}`);
-```
+console.log(````\n${'='.repeat(80)}````);
+console.log(````총 예치: $${totalDeposited.toLocaleString()}````);
+console.log(````총 일일 수익: $${totalDailyYield.toFixed(2)} (${(totalDailyYield * 365 / totalDeposited * 100).toFixed(2)}% APY)````);
+console.log(````월간 예상: $${(totalDailyYield * 30).toFixed(2)}````);
+`````
 
 ### 5.2 수익 기회 발견
 
-```typescript
+`````typescript
 // 새로운 수익 기회 발견
 async function discoverYields(
   network: string = ethereum,
@@ -519,21 +520,21 @@ const bestYields = await discoverYields(ethereum, 10_000_000, 10);
 
 console.log('\n🏆 최고 수익 기회 (TVL > $1000만, APY > 10%)\n');
 bestYields.slice(0, 10).forEach((opp, i) => {
-  console.log(`${i + 1}. ${opp.protocol} — ${opp.poolName}`);
-  console.log(`   토큰: ${opp.tokens.join('/')}`);
-  console.log(`   TVL: $${(opp.tvlUSD / 1e6).toFixed(1)}M | APY: ${opp.apy.total.toFixed(2)}%`);
-  console.log(`   리스크: ${opp.riskLevel} | IL 리스크: ${opp.ilRisk || 'N/A'}`);
+  console.log(````${i + 1}. ${opp.protocol} — ${opp.poolName}````);
+  console.log(````   토큰: ${opp.tokens.join('/')}````);
+  console.log(````   TVL: $${(opp.tvlUSD / 1e6).toFixed(1)}M | APY: ${opp.apy.total.toFixed(2)}%````);
+  console.log(````   리스크: ${opp.riskLevel} | IL 리스크: ${opp.ilRisk || 'N/A'}````);
   console.log();
 });
-```
+`````
 
----
+* * *
 
 ## 6. 트랜잭션 빌더: Zap In 및 Zap Out
 
 ### 6.1 간소화된 유동성 공급 (Zap In)
 
-Zapper의 가장 강력한 기능 중 하나는 **트랜잭션 빌더**로, 사용자가 단일 트랜잭션으로 복잡한 유동성 포지션에 진입할 수 있게 합니다. 수동으로 스왑, 승인, 예치하는 대신 Zapper의 "Zap In" 기능이 모든 것을 처리합니다: ```typescript
+Zapper의 가장 강력한 기능 중 하나는 **트랜잭션 빌더**로, 사용자가 단일 트랜잭션으로 복잡한 유동성 포지션에 진입할 수 있게 합니다. 수동으로 스왑, 승인, 예치하는 대신 Zapper의 "Zap In" 기능이 모든 것을 처리합니다: `````typescript
 // Uniswap V3 포지션에 Zap In
 async function zapInUniswapV3(
   fromToken: string,        // Zap할 토큰 주소
@@ -557,10 +558,10 @@ async function zapInUniswapV3(
   const tx = await client.v2.zap.generateZapInTransaction(zapParams);
 
   console.log('트랜잭션 준비:');
-  console.log(`  대상: ${tx.to}`);
-  console.log(`  값: ${tx.value}`);
-  console.log(`  가스 추정: ${tx.gasEstimate}`);
-  console.log(`  단계: ${tx.steps?.length || 1}`);
+  console.log(````  대상: ${tx.to}````);
+  console.log(````  값: ${tx.value}````);
+  console.log(````  가스 추정: ${tx.gasEstimate}````);
+  console.log(````  단계: ${tx.steps?.length || 1}````);
 
   // 서명 및 전송
   const receipt = await wallet.sendTransaction({
@@ -582,12 +583,12 @@ const txHash = await zapInUniswapV3(
   887220                                              // 풀 범위 상한
 );
 
-console.log(`Zap In 완료: ${txHash}`);
-```
+console.log(````Zap In 완료: ${txHash}````);
+`````
 
 ### 6.2 포지션 종료 (Zap Out)
 
-```typescript
+`````typescript
 // 유동성 포지션에서 Zap Out
 async function zapOutPosition(
   protocol: string,         // 예: 'uniswap-v3'
@@ -610,8 +611,8 @@ async function zapOutPosition(
   const tx = await client.v2.zap.generateZapOutTransaction(zapParams);
 
   console.log('Zap Out 트랜잭션:');
-  console.log(`  예상 출력: ${tx.expectedOutput}`);
-  console.log(`  최소 출력 (슬리피지 포함): ${tx.minOutput}`);
+  console.log(````  예상 출력: ${tx.expectedOutput}````);
+  console.log(````  최소 출력 (슬리피지 포함): ${tx.minOutput}````);
 
   const receipt = await wallet.sendTransaction({
     to: tx.to,
@@ -629,11 +630,11 @@ const exitTx = await zapOutPosition(
   12345,  // NFT 토큰 ID
   0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48  // USDC 수령
 );
-```
+`````
 
 ### 6.3 복잡한 다단계 트랜잭션
 
-```typescript
+`````typescript
 // 브리지 + Zap In (크로스체인 포지션 진입)
 async function bridgeAndZap(
   fromChain: string,       // 소스 체인
@@ -658,7 +659,7 @@ async function bridgeAndZap(
     value: route.value
   });
 
-  console.log(`브리지 tx: ${bridgeTx.hash}`);
+  console.log(````브리지 tx: ${bridgeTx.hash}````);
 
   // 브리지 완료 대기
   await client.v2.bridge.waitForBridge(bridgeTx.hash, fromChain, toChain);
@@ -680,15 +681,15 @@ async function bridgeAndZap(
 
   return receipt.hash;
 }
-```
+`````
 
----
+* * *
 
 ## 7. 고급 API 통합 패턴
 
 ### 7.1 WebSocket 실시간 업데이트
 
-```typescript
+`````typescript
 // WebSocket을 통한 실시간 포트폴리오 업데이트
 import { ZapperWebSocket } from '@zapper-fi/zapper-api';
 
@@ -700,13 +701,13 @@ const ws = new ZapperWebSocket({
 // 주소 업데이트 구독
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case balance_change: console.log(`💰 잔액 업데이트: ${update.token} = ${update.newBalance}`);
+    case balance_change: console.log(````💰 잔액 업데이트: ${update.token} = ${update.newBalance}````);
       break;
-    case new_position: console.log(`📈 새 포지션 감지: ${update.protocol} — ${update.valueUSD}`);
+    case new_position: console.log(````📈 새 포지션 감지: ${update.protocol} — ${update.valueUSD}````);
       break;
-    case yield_claimed: console.log(`🎁 보상 청구: ${update.amount} ${update.token}`);
+    case yield_claimed: console.log(````🎁 보상 청구: ${update.amount} ${update.token}````);
       break;
-    case nft_transfer: console.log(`🖼️ NFT 전송: ${update.collection} #${update.tokenId}`);
+    case nft_transfer: console.log(````🖼️ NFT 전송: ${update.collection} #${update.tokenId}````);
       break;
   }
 });
@@ -715,11 +716,11 @@ ws.subscribe('address:0xMyAddress...', (update: any) => {
 ws.onConnect(() => console.log('Zapper WS에 연결됨'));
 ws.onDisconnect(() => console.log('연결 해제, 재시도 중...'));
 ws.onError((err) => console.error('WS 오류:', err));
-```
+`````
 
 ### 7.2 과거 데이터 및 손익 추적
 
-```typescript
+`````typescript
 // 과거 포트폴리오 성과
 async function getHistoricalPerformance(
   address: string,
@@ -759,11 +760,11 @@ async function getHistoricalPerformance(
   const totalReturnPct = (totalReturn / performance.startValue) * 100;
 
   console.log('\n📈 포트폴리오 성과 (최근 90일)');
-  console.log(`시작 가치: $${performance.startValue.toLocaleString()}`);
-  console.log(`현재 가치: $${performance.endValue.toLocaleString()}`);
-  console.log(`최고 가치: $${performance.peakValue.toLocaleString()}`);
-  console.log(`총 수익: $${totalReturn.toLocaleString()} (${totalReturnPct.toFixed(2)}%)`);
-  console.log(`최대 낙폭: ${((performance.peakValue - performance.troughValue) / performance.peakValue * 100).toFixed(2)}%`);
+  console.log(````시작 가치: $${performance.startValue.toLocaleString()}````);
+  console.log(````현재 가치: $${performance.endValue.toLocaleString()}````);
+  console.log(````최고 가치: $${performance.peakValue.toLocaleString()}````);
+  console.log(````총 수익: $${totalReturn.toLocaleString()} (${totalReturnPct.toFixed(2)}%)````);
+  console.log(````최대 낙폭: ${((performance.peakValue - performance.troughValue) / performance.peakValue * 100).toFixed(2)}%````);
 
   return performance;
 }
@@ -777,7 +778,7 @@ async function getProtocolPnL(
   const pnl = await client.v2.analytics.getProtocolPnL({
     address,
     protocol,
-    period: `${days}d`
+    period: ````${days}d````
   });
 
   return {
@@ -789,11 +790,11 @@ async function getProtocolPnL(
     netPnL: pnl.data.netPnL
   };
 }
-```
+`````
 
 ### 7.3 배치 작업
 
-```typescript
+`````typescript
 // 여러 주소에 대한 배치 포트폴리오 쿼리
 async function batchPortfolioQuery(addresses: string[]) {
   const batchSize = 20;  // 요청당 최대 20개 주소
@@ -838,7 +839,7 @@ const whaleAddresses = [
 ];
 
 const whaleData = await batchPortfolioQuery(whaleAddresses);
-console.log(`통합 포트폴리오 가치: $${whaleData.totalValue.toLocaleString()}`);
+console.log(````통합 포트폴리오 가치: $${whaleData.totalValue.toLocaleString()}````);
 
 // 상위 프로토콜 노출
 const sortedExposure = [...whaleData.protocolExposure.entries()]
@@ -847,17 +848,17 @@ const sortedExposure = [...whaleData.protocolExposure.entries()]
 
 console.log('\n상위 프로토콜 노출:');
 sortedExposure.forEach(([protocol, value]) => {
-  console.log(`  ${protocol}: $${value.toLocaleString()}`);
+  console.log(````  ${protocol}: $${value.toLocaleString()}````);
 });
-```
+`````
 
----
+* * *
 
 ## 8. Zapper 데이터로 커스텀 대시보드 구축
 
 ### 8.1 React 컴포넌트 통합
 
-```tsx
+`````tsx
 // Zapper 포트폴리오 데이터용 React 훅
 import { useState, useEffect } from react;
 import { ZapperClient } from '@zapper-fi/zapper-api';
@@ -944,11 +945,11 @@ function PositionCard({ position }: { position: any }) {
     </div>
   );
 }
-```
+`````
 
 ### 8.2 수익 알림 시스템
 
-```typescript
+`````typescript
 // 자동 수익 모니터링 및 알림
 import { schedule } from 'node-cron';
 
@@ -983,12 +984,12 @@ class YieldMonitor {
 
         switch (alert.condition) {
           case apy_drop: if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
-              await this.sendAlert(`🚨 ${position.poolName}의 APY가 ${alert.threshold}% 하락: ${position.apy.total.toFixed(2)}%`);
+              await this.sendAlert(````🚨 ${position.poolName}의 APY가 ${alert.threshold}% 하락: ${position.apy.total.toFixed(2)}%````);
             }
             break;
 
           case il_warning: if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
-              await this.sendAlert(`⚠️ ${position.poolName}의 IL 경고: ${position.impermanentLoss.toFixed(2)}%`);
+              await this.sendAlert(````⚠️ ${position.poolName}의 IL 경고: ${position.impermanentLoss.toFixed(2)}%````);
             }
             break;
 
@@ -996,7 +997,7 @@ class YieldMonitor {
               (sum, r) => sum + r.dailyValueUSD, 0
             );
             if (prev && Math.abs(rewardChange - prev.dailyRewards) > alert.threshold) {
-              await this.sendAlert(`💰 ${position.poolName}의 보상 변화: $${rewardChange.toFixed(2)}/일`);
+              await this.sendAlert(````💰 ${position.poolName}의 보상 변화: $${rewardChange.toFixed(2)}/일````);
             }
             break;
         }
@@ -1019,7 +1020,7 @@ class YieldMonitor {
   startMonitoring(address: string, interval: string = '*/15 * * * *') {
     // 기본적으로 15분마다 확인
     schedule(interval, () => this.checkPositions(address));
-    console.log(`${address}에 대한 수익 모니터링 시작`);
+    console.log(````${address}에 대한 수익 모니터링 시작````);
   }
 }
 
@@ -1039,9 +1040,9 @@ monitor.addAlert({
 });
 
 monitor.startMonitoring('0xMyAddress...');
-```
+`````
 
----
+* * *
 
 ## 9. 자주 묻는 질문 (FAQ)
 
@@ -1063,9 +1064,9 @@ Zapper는 Chainlink, Uniswap V3, Curve, Balancer을 포함한 여러 분산형 �
 
 ### 9.5 Zapper API를 내 애플리케이션에 어떻게 통합하나요?
 
-Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서와 함께 **RESTful API**를 제공합니다. 통합 단계: (1) [zapper.xyz](https://zapper.xyz)에서 API 키 가입, (2) 공식 SDK 설치(`npm install @zapper-fi/zapper-api`) 또는 직접 HTTP 요청 사용, (3) `Authorization: Bearer` 헤더에서 API 키를 사용하여 인증. 주요 엔드포인트는 `/v2/balances`(포트폴리오 데이터), `/v2/apps`(프로토콜 목록), `/v2/prices`(토큰 가격), `/v2/transactions`(트랜잭션 빌딩)을 포함합니다. 유료 티어에서 실시간 업데이트를 위한 WebSocket 지원을 이용할 수 있습니다.
+Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서와 함께 **RESTful API**를 제공합니다. 통합 단계: (1) [zapper.xyz](https://zapper.xyz)에서 API 키 가입, (2) 공식 SDK 설치(````npm install @zapper-fi/zapper-api````) 또는 직접 HTTP 요청 사용, (3) ````Authorization: Bearer```` 헤더에서 API 키를 사용하여 인증. 주요 엔드포인트는 ````/v2/balances````(포트폴리오 데이터), ````/v2/apps````(프로토콜 목록), ````/v2/prices````(토큰 가격), ````/v2/transactions```(트랜잭션 빌딩)을 포함합니다. 유료 티어에서 실시간 업데이트를 위한 WebSocket 지원을 이용할 수 있습니다.
 
----
+* * *
 
 
 
@@ -1086,11 +1087,11 @@ Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서�
 
 첫 번째 유동성 풀을 추적하는 캐주얼 DeFi 사용자이든, 수십 개의 프로토콜에서 수백만 달러를 관리하는 기관이든, Zapper는 복잡한 DeFi 환경을 자신 있게 탐색하는 데 필요한 도구, 데이터, 인프라를 제공합니다.
 
----
+* * *
 
 > **오늘 DeFi 여정을 시작하세요!** [바이낸스](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입하여 거래를 시작하고 Zapper로 포트폴리오를 추적하세요.
 
----
+* * *
 
 **라이선스:** MIT  
 **관리자:** [Zapper-fi](https://github.com/Zapper-fi)  
@@ -1123,7 +1124,7 @@ Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -1133,7 +1134,7 @@ Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서�
 - [llm-inference-cost-optimization-guide-2026](zapper-defi-dashboard-aggregator)
 - [hkuds-ai-trader](zapper-defi-dashboard-aggregator)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

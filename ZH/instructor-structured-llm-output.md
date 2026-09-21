@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/instructor-structured-llm-output/-
 ---
 
+
 {{</* resource-info */>}}
 
 *最后更新：2026年5月19日*
@@ -21,28 +22,28 @@ aliases:
 Instructor是一个Python库，它修补OpenAI客户端（以及其他10多个LLM提供商），使用**Pydantic模型**来保证结构化、类型安全、经过验证的输出。它将LLM文本生成的狂野西部转变为一个可预测的、软件工程化的流程。拥有11,000多个GitHub星标、MIT许可证和一个蓬勃发展的社区，Instructor已成为Python中结构化LLM输出的事实标准。本指南涵盖了2026年从基本设置到高级多提供商模式的所有内容。
 
 
----
+* * *
 ## 什么是Instructor？为什么它很重要？
 
-Instructor由**Jason Liu**（`jxnl`）创建，是一个轻量级的Python库，位于你现有的LLM客户端之上，通过Pydantic模型验证强制执行结构化输出。与其从LLM接收原始文本并祈祷它能正确解析，不如定义一个Pydantic模式，Instructor确保每个响应都符合该模式——或者自动使用修正后的提示重试。
+Instructor由**Jason Liu**（```jxnl````）创建，是一个轻量级的Python库，位于你现有的LLM客户端之上，通过Pydantic模型验证强制执行结构化输出。与其从LLM接收原始文本并祈祷它能正确解析，不如定义一个Pydantic模式，Instructor确保每个响应都符合该模式——或者自动使用修正后的提示重试。
 
-Instructor解决的问题是根本性的：LLM生成文本，但应用程序需要数据。每个将LLM功能投入生产环境的开发者都曾在凌晨2点收到告警，因为模型在JSON对象前添加了"Here's your result:"而导致`json.loads()`崩溃。Instructor消除了这一整类错误。
+Instructor解决的问题是根本性的：LLM生成文本，但应用程序需要数据。每个将LLM功能投入生产环境的开发者都曾在凌晨2点收到告警，因为模型在JSON对象前添加了"Here's your result:"而导致````json.loads()````崩溃。Instructor消除了这一整类错误。
 
-```bash
+`````bash
 # 安装Instructor
 pip install instructor
 
 # 安装你首选的LLM客户端（以OpenAI为例）
 pip install openai
-```
+`````
 
 
----
+* * *
 ## 核心概念：修补OpenAI客户端
 
 Instructor的神奇之处在于**客户端修补**。与其直接调用OpenAI的API，不如创建一个修补过的客户端，拦截响应，根据你的Pydantic模型验证它们，并自动处理失败。
 
-```python
+`````python
 import instructor
 from openai import OpenAI
 from pydantic import BaseModel
@@ -82,17 +83,17 @@ print(profile)
 # 直接访问类型化字段
 print(f"姓名: {profile.name}, 年龄: {profile.age}")
 print(f"邮箱有效: {'@' in profile.email}")
-```
+`````
 
-注意`response_model=UserProfile`如何告诉Instructor根据我们的模式验证LLM的输出。结果是一个完全类型化的Pydantic对象——不是原始字符串或未类型化的字典。
+注意````response_model=UserProfile````如何告诉Instructor根据我们的模式验证LLM的输出。结果是一个完全类型化的Pydantic对象——不是原始字符串或未类型化的字典。
 
----
+* * *
 
 ## 通过自动重试处理验证失败
 
 当LLM产生无效输出时会发生什么？Instructor的默认行为是**重新询问**模型，并提供关于出错原因的反馈，创建一个自我修正的循环。
 
-```python
+`````python
 from pydantic import BaseModel, Field, field_validator
 
 class ValidatedProduct(BaseModel): name: str = Field(description="产品名称，最多50个字符")
@@ -128,15 +129,15 @@ product = parse_product(
 print(product)
 # ValidatedProduct(name=无线蓝牙降噪耳机, 
 #                  price=79.99, category=electronics)
-```
+`````
 
----
+* * *
 
 ## 嵌套模型和复杂模式
 
 现实世界的应用程序需要的不仅仅是扁平结构。Instructor可以轻松处理任意嵌套的Pydantic模型。
 
-```python
+`````python
 from typing import Optional, List
 from pydantic import BaseModel, Field
 
@@ -187,15 +188,15 @@ order = extract_order("""
 print(f"客户: {order.customer_name}")
 print(f"发货城市: {order.shipping_address.city}")
 print(f"订单总额: ${order.grand_total:.2f}")
-```
+`````
 
----
+* * *
 
 ## 多提供商支持：超越OpenAI
 
 Instructor不会将你锁定在OpenAI中。它以相同的API支持10多个LLM提供商，使供应商切换毫不费力。
 
-```python
+`````python
 # --- Anthropic Claude ---
 import anthropic
 import instructor
@@ -235,15 +236,15 @@ result = cohere_client.chat(
     message="提取：David 42岁，喜欢高尔夫和钓鱼"
 )
 print(result)
-```
+`````
 
----
+* * *
 
 ## 高容量应用的批处理
 
 处理数千个项目时，单个API调用太慢。Instructor支持使用asyncio进行并发执行的批处理。
 
-```python
+`````python
 import asyncio
 import instructor
 from openai import AsyncOpenAI
@@ -281,15 +282,15 @@ texts = [
 results = asyncio.run(analyze_batch(texts))
 positive = sum(1 for r in results if r.sentiment == "positive")
 print(f"正面: {positive}/{len(results)}")
-```
+`````
 
----
+* * *
 
 ## 流式结构化输出
 
 对于实时应用程序，Instructor支持在LLM生成结果时流式传输部分结果。
 
-```python
+`````python
 from typing import Iterable
 from pydantic import BaseModel
 
@@ -311,17 +312,17 @@ def stream_article(topic: str) -> Iterable[PartialArticle]: return client.chat.c
 for partial in stream_article("2026年可再生能源趋势"): print(f"标题: {partial.title}")
     print(f"已有章节数: {len(partial.sections)}")
     print("
----
+* * *
 ")
-```
+`````
 
----
+* * *
 
 ## 内置重试与重新询问
 
 Instructor的重试系统不仅仅是重复请求——它向LLM提供关于验证失败的具体反馈，使其能够自我修正。
 
-```python
+`````python
 from pydantic import BaseModel, field_validator
 
 class StrictDateRange(BaseModel): start_date: str = Field(description="YYYY-MM-DD格式")
@@ -356,15 +357,15 @@ try: result = extract_date_range(
     )
     print(result)
 except Exception as e: print(f"达到最大重试次数后失败: {e}")
-```
+`````
 
----
+* * *
 
 ## 使用Literal进行受限分类
 
-对于分类任务，使用Python的`Literal`类型将输出限制为特定值。
+对于分类任务，使用Python的````Literal````类型将输出限制为特定值。
 
-```python
+`````python
 from typing import Literal
 
 class SupportTicket(BaseModel): customer_query: str
@@ -398,15 +399,15 @@ ticket = classify_ticket(
 )
 print(f"类别: {ticket.category}")  # 永远是"billing"
 print(f"优先级: {ticket.priority}")  # 永远是4个值之一
-```
+`````
 
----
+* * *
 
 ## 与FastAPI集成构建生产API
 
 Instructor在API开发中表现出色。以下是一个完整的FastAPI端点，带有结构化LLM输出：
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import instructor
@@ -444,15 +445,15 @@ async def extract_entities(request: ExtractionRequest): """从非结构化文本
     except Exception as e: raise HTTPException(status_code=500, detail=str(e))
 
 # 使用 uvicorn main:app --reload 运行
-```
+`````
 
----
+* * *
 
 ## 高级：函数调用替代方案
 
 Instructor可以用更强大的基于Pydantic的模式替代OpenAI的函数调用。
 
-```python
+`````python
 from typing import Type
 
 class SearchQuery(BaseModel): """带有参数的生成搜索查询"""
@@ -477,15 +478,15 @@ query = generate_search(
 print(query.keywords)  # ['wireless earbuds', bluetooth]
 print(query.filters)   # {max_price: 100}
 print(query.sort_by)   # date
-```
+`````
 
----
+* * *
 
 ## 错误处理和日志记录
 
 生产系统需要了解Instructor的重试行为。配置日志以进行调试。
 
-```python
+`````python
 import logging
 import instructor
 
@@ -511,15 +512,15 @@ result = client.chat.completions.create(
     max_retries=3,
     messages=[{"role": "user", "content": "提取：Jane，25岁，喜欢艺术"}]
 )
-```
+`````
 
----
+* * *
 
 ## 常见问题解答
 
 ### Instructor支持哪些LLM提供商？
 
-Instructor支持**OpenAI**（GPT-4、GPT-4o、GPT-3.5）、**Anthropic**（Claude 3/3.5/4 Sonnet、Opus、Haiku）、**Google**（Gemini 1.5/2.0/2.5 Pro、Flash）、**Cohere**、**Mistral**、**Groq**、**Ollama**（本地模型）、**Azure OpenAI**、**AWS Bedrock**、**Fireworks AI**和**Together AI**。相同的`response_model`API在所有提供商上都能以相同方式工作。
+Instructor支持**OpenAI**（GPT-4、GPT-4o、GPT-3.5）、**Anthropic**（Claude 3/3.5/4 Sonnet、Opus、Haiku）、**Google**（Gemini 1.5/2.0/2.5 Pro、Flash）、**Cohere**、**Mistral**、**Groq**、**Ollama**（本地模型）、**Azure OpenAI**、**AWS Bedrock**、**Fireworks AI**和**Together AI**。相同的````response_model````API在所有提供商上都能以相同方式工作。
 
 ### Instructor与OpenAI的JSON模式有何不同？
 
@@ -531,21 +532,21 @@ OpenAI的JSON模式保证有效的JSON语法，但提供**无模式验证**。�
 
 ### Instructor的性能开销是多少？
 
-Instructor的开销极小——每次调用通常**10-50毫秒**用于Pydantic验证。重试机制仅在验证失败时增加延迟（对于能力足够的模型，这应该小于5%的调用）。对于高吞吐量应用程序，使用`gpt-4o-mini`或带有异步批处理的本地模型。与LLM API延迟本身（通常为500毫秒-5秒）相比，开销可以忽略不计。
+Instructor的开销极小——每次调用通常**10-50毫秒**用于Pydantic验证。重试机制仅在验证失败时增加延迟（对于能力足够的模型，这应该小于5%的调用）。对于高吞吐量应用程序，使用````gpt-4o-mini````或带有异步批处理的本地模型。与LLM API延迟本身（通常为500毫秒-5秒）相比，开销可以忽略不计。
 
 ### 重试/重新询问机制如何工作？
 
-当验证失败时，Instructor捕获Pydantic `ValidationError`，提取特定的错误消息（例如"age must be a positive integer"），并向LLM发送一个新请求，该请求包含：原始提示、不正确的响应和验证错误详细信息。这创建了一个自我修正循环，大多数问题在1-2次重试内解决。你通过`max_retries`参数控制最大重试次数。
+当验证失败时，Instructor捕获Pydantic ````ValidationError````，提取特定的错误消息（例如"age must be a positive integer"），并向LLM发送一个新请求，该请求包含：原始提示、不正确的响应和验证错误详细信息。这创建了一个自我修正循环，大多数问题在1-2次重试内解决。你通过````max_retries````参数控制最大重试次数。
 
 ### 我可以将Instructor与async/await模式一起使用吗？
 
-可以。Instructor通过`AsyncOpenAI`、`AsyncAnthropic`和其他异步客户端完全支持异步。对单个调用使用`await client.chat.completions.create()`，或使用`asyncio.gather()`进行并发批处理。流式传输在异步模式下也支持，通过`create_partial()`。
+可以。Instructor通过````AsyncOpenAI````、````AsyncAnthropic````和其他异步客户端完全支持异步。对单个调用使用````await client.chat.completions.create()````，或使用````asyncio.gather()````进行并发批处理。流式传输在异步模式下也支持，通过````create_partial()````。
 
 ### Instructor是否适合企业级生产部署？
 
 绝对适合。Instructor的11,000+ GitHub星标、MIT许可证、活跃的维护和基于Pydantic的架构使其具备企业就绪能力。它与FastAPI、监控系统（Datadog、Prometheus）和结构化日志记录干净地集成。原始LLM API无法匹配的验证层增加了可靠性。许多财富500强公司在生产数据管道中使用Instructor。
 
----
+* * *
 
 
 
@@ -564,7 +565,7 @@ Instructor将LLM从不可预测的文本生成器转变为可靠的结构化数�
 
 该库的多提供商支持意味着你永远不会被锁定在单一LLM供应商。它与FastAPI、异步模式和流式传输的无缝集成使其适用于从后台批处理作业到实时API的所有场景。凭借11,000+星标和活跃的社区，Instructor已赢得作为现代AI开发者工具包中基本工具的地位。
 
-如果你仍然在用`json.loads()`解析原始LLM输出并祈祷它能正常工作，那么是时候升级了。今天安装Instructor，体验**100%有效的JSON，100%的时间**意味着什么。
+如果你仍然在用````json.loads()```解析原始LLM输出并祈祷它能正常工作，那么是时候升级了。今天安装Instructor，体验**100%有效的JSON，100%的时间**意味着什么。
 
 
 {
@@ -628,7 +629,7 @@ Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南 represent
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -660,15 +661,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

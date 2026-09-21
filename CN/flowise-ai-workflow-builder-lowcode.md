@@ -23,11 +23,12 @@ tags: ["flowise", "langchain", "low-code", "ai workflow", "docker", "self-hosted
 aliases:
   - /posts/flowise-ai-workflow-builder-lowcode/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Writing AI Agents Still Feels Like 2006
 
-In 2026, building a production AI agent still requires juggling **3-5 different Python libraries**, writing boilerplate code for memory management, debugging async chains that fail silently, and praying your `requirements.txt` doesn't conflict when you add the next integration. You've got LangChain for the framework, a separate vector store client, another library for document loaders, FastAPI for the HTTP layer, and Streamlit if you want a frontend. By the time your "simple" RAG chatbot is deployed, you've written **800+ lines of Python** and inherited a maintenance burden that grows with every model update.
+In 2026, building a production AI agent still requires juggling **3-5 different Python libraries**, writing boilerplate code for memory management, debugging async chains that fail silently, and praying your ```requirements.txt```` doesn't conflict when you add the next integration. You've got LangChain for the framework, a separate vector store client, another library for document loaders, FastAPI for the HTTP layer, and Streamlit if you want a frontend. By the time your "simple" RAG chatbot is deployed, you've written **800+ lines of Python** and inherited a maintenance burden that grows with every model update.
 
 **Flowise** flips this paradigm. It's an Apache-2.0 licensed, visual workflow builder that sits on top of LangChain and lets you construct complex AI pipelines — RAG chatbots, multi-agent systems, document processors — by dragging, dropping, and connecting nodes on a canvas. With **45,000+ GitHub stars** and a thriving ecosystem of **100+ integrations**, it's become the tool of choice for teams who want to ship AI features fast without sacrificing the flexibility of LangChain's underlying engine.
 
@@ -41,7 +42,7 @@ Version **2.2.0** (released March 2026) introduced a redesigned canvas engine, n
 
 ## How Flowise Works: Architecture & Core Concepts
 
-Flowise's architecture consists of three layers: ```yaml
+Flowise's architecture consists of three layers: `````yaml
 ┌─────────────────────────────────────────────┐
 │           Frontend (React + Flow Editor)    │
 │           - Drag-and-drop canvas            │
@@ -59,7 +60,7 @@ Flowise's architecture consists of three layers: ```yaml
 │           - Vector stores (external)        │
 │           - File system (document uploads)  │
 └─────────────────────────────────────────────┘
-```
+`````
 
 ### Core Concepts
 
@@ -73,7 +74,7 @@ Flowise's architecture consists of three layers: ```yaml
 
 **Assistants** (new in v2.2.0) are persistent conversational agents with thread management, built on OpenAI Assistants API or local equivalents.
 
-```bash
+`````bash
 # Flowise stores flow definitions as JSON in the database
 # Example simplified chatflow structure
 {
@@ -87,13 +88,13 @@ Flowise's architecture consists of three layers: ```yaml
     { "source": "prompt_1", "target": "llm_1", "input": "prompt" }
   ]
 }
-```
+`````
 
 ## Installation & Setup: Running Flowise in Under 5 Minutes
 
 ### Docker Compose (Recommended)
 
-```bash
+`````bash
 # Create project directory
 mkdir -p ~/flowise && cd ~/flowise
 
@@ -120,13 +121,13 @@ docker compose up -d
 
 # Check status
 curl -s http://localhost:3000/api/v1/health | jq .
-```
+`````
 
-The initial pull of `flowiseai/flowise:2.2.0` is **~1.4 GB**. Once running, access the UI at `http://localhost:3000` and log in with the credentials from your compose file.
+The initial pull of ````flowiseai/flowise:2.2.0```` is **~1.4 GB**. Once running, access the UI at ````http://localhost:3000```` and log in with the credentials from your compose file.
 
 ### Production PostgreSQL Setup
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: postgres: image: postgres:16-alpine
     environment: POSTGRES_USER: flowise
@@ -147,11 +148,11 @@ services: postgres: image: postgres:16-alpine
     depends_on: - postgres
     volumes: - flowise_storage:/root/.flowise
 
-volumes: postgres_data: flowise_storage: ```
+volumes: postgres_data: flowise_storage: `````
 
 ### Environment Variables Reference
 
-```bash
+`````bash
 # Core configuration
 PORT=3000                                    # Application port
 FLOWISE_USERNAME=admin                       # Admin username
@@ -170,7 +171,7 @@ BLOB_STORAGE_TYPE=s3
 S3_STORAGE_BUCKET=flowise-docs
 S3_STORAGE_ACCESS_KEY_ID=...
 S3_STORAGE_SECRET_ACCESS_KEY=...
-```
+`````
 
 > 💡 **Affiliate:** Deploy Flowise on a reliable VPS with [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Use their $200 free credit to test Flowise with PostgreSQL backend on a 2 vCPU / 4 GB RAM droplet.
 
@@ -178,32 +179,32 @@ S3_STORAGE_SECRET_ACCESS_KEY=...
 
 ### Step 1: Create a New Chatflow
 
-Open Flowise at `http://localhost:3000` → **Chatflows** → **Create New**. You'll see a blank canvas with a node palette on the left side.
+Open Flowise at ````http://localhost:3000```` → **Chatflows** → **Create New**. You'll see a blank canvas with a node palette on the left side.
 
 ### Step 2: Add the Vector Store Retriever
 
-```bash
+`````bash
 # From the left panel, drag these nodes to the canvas: # 1. Vector Stores → "In-Memory Vector Store" (for testing)
 #    or "Chroma" / "Qdrant" / "Pinecone" (for production)
 # 2. Document Loaders → "PDF File" or "Plain Text"
 # 3. Embeddings → "OpenAI Embeddings" or "Ollama Embeddings"
 # 4. Text Splitters → "Recursive Character Text Splitter"
-```
+`````
 
 ### Step 3: Connect the Document Ingestion Chain
 
-```
+`````
 # Connect nodes in this order: # [PDF File] → [Recursive Character Text Splitter] → [OpenAI Embeddings] → [Vector Store]
 #
 # Configuration for each node: # - PDF File: upload your document
 # - Text Splitter: chunkSize=1000, chunkOverlap=200
 # - Embeddings: model=text-embedding-3-small
 # - Vector Store: collectionName=my-docs
-```
+`````
 
 ### Step 4: Add the Conversational RAG Chain
 
-```
+`````
 # Add these nodes for the query side: # [Chat Prompt Template] → [OpenAI Chat Model] → [Output Parser]
 #         ↑
 # [Vector Store Retriever] ← [Vector Store (same as above)]
@@ -213,11 +214,11 @@ Open Flowise at `http://localhost:3000` → **Chatflows** → **Create New**. Yo
 # Connect: # - Vector Store output → Vector Store Retriever input
 # - Retriever output → QA Chain's "source_documents" input
 # - QA Chain output → Chat Model input
-```
+`````
 
 ### Step 5: Configure the Prompt Template
 
-```python
+`````python
 # System prompt template for the RAG chatbot
 SYSTEM_PROMPT = """You are a helpful assistant answering questions based 
 on the provided context. If the answer is not in the context, say 
@@ -233,11 +234,11 @@ Answer:"""
 # Set template to the above text
 # {context} auto-populates from retriever
 # {question} comes from user input
-```
+`````
 
 ### Step 6: Test and Deploy
 
-```bash
+`````bash
 # In the Flowise UI, click the chat bubble in the top right
 # Ask a question related to your uploaded document
 # Check the "Used Context" tab to see which chunks were retrieved
@@ -246,7 +247,7 @@ Answer:"""
 # Copy the curl command: curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
   -H "Content-Type: application/json" \
   -d '{"question": "What is the main topic of this document?"}'
-```
+`````
 
 ## Multi-Agent Flows: Visual Agent Orchestration
 
@@ -254,7 +255,7 @@ Flowise v2.2.0's **Agentflow** feature lets you build multi-agent systems withou
 
 ### Building a Research Agent Team
 
-```
+`````
 # Canvas layout for a 3-agent research team: #
 #                    ┌─────────────────┐
 #                    │  Supervisor     │
@@ -270,11 +271,11 @@ Flowise v2.2.0's **Agentflow** feature lets you build multi-agent systems withou
 #
 # Supervisor routes queries to the appropriate agent
 # based on the task type detected from user input.
-```
+`````
 
 ### Node Configuration
 
-```bash
+`````bash
 # Supervisor Agent node: # - LLM: gpt-4.1-nano
 # - Type: supervisor
 # - System Prompt: "You are a research coordinator. Route tasks to 
@@ -291,11 +292,11 @@ Flowise v2.2.0's **Agentflow** feature lets you build multi-agent systems withou
 # Document Analyst Agent node: # - LLM: gpt-4.1-nano
 # - Tools: Vector Store Retriever
 # - System Prompt: "Analyze the provided documents for relevant information."
-```
+`````
 
 ### Deploying the Multi-Agent Flow
 
-```bash
+`````bash
 # Deploy as API endpoint
 curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
   -H "Content-Type: application/json" \
@@ -314,17 +315,17 @@ curl -X POST http://localhost:3000/api/v1/prediction/research-agent-team \
 #     {"agent": "web_search", "action": "found industry benchmarks"}
 #   ]
 # }
-```
+`````
 
 ## Integration with 100+ Tools and Services
 
 Flowise supports **100+ integrations** across these categories: | Category | Popular Integrations | Count |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LLM Providers** | OpenAI, Anthropic, Google, Ollama, Groq, Mistral, Cohere | 15+ |
 | **Vector Stores** | Chroma, Qdrant, Pinecone, Weaviate, LanceDB, Milvus, Redis | 10+ |
@@ -337,7 +338,7 @@ Flowise supports **100+ integrations** across these categories: | Category | Pop
 
 ### Adding a Custom Tool
 
-```javascript
+`````javascript
 // custom_tool.js — saved in Flowise server's tools directory
 const { Tool } = require('langchain/tools');
 
@@ -353,7 +354,7 @@ class JiraTicketTool extends Tool {
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
       method: POST,
       headers: {
-        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
+        Authorization: ````Basic ${Buffer.from('email:token').toString(base64)}````,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -370,7 +371,7 @@ class JiraTicketTool extends Tool {
 }
 
 module.exports = { JiraTicketTool };
-```
+`````
 
 ## Benchmarks & Real-World Performance
 
@@ -378,15 +379,15 @@ module.exports = { JiraTicketTool };
 
 Tested on **Intel i7-13700K + 32 GB RAM**, local Docker with OpenAI API: | Workflow Type | Nodes | Avg Latency | 95th Percentile | Tokens/sec |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Simple LLM call | 3 | 0.8s | 1.2s | 142 |
 | RAG (1 doc, 10 pages) | 7 | 2.1s | 3.4s | 98 |
@@ -398,11 +399,11 @@ Tested on **Intel i7-13700K + 32 GB RAM**, local Docker with OpenAI API: | Workf
 
 | Concurrent Users | Avg Response Time | Error Rate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 2.1s | 0% |
 | 5 | 2.8s | 0% |
@@ -416,13 +417,13 @@ For production workloads handling **>10 concurrent users**, run Flowise behind a
 
 | Metric | Flowise | Hand-Coded Python | Time Saved |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Simple RAG setup | 15 min | 4 hours | **94%** |
 | Multi-agent flow | 45 min | 12 hours | **94%** |
@@ -437,7 +438,7 @@ The **94% time savings** for standard workflows is why teams adopt Flowise. The 
 
 ### Embedding Flowise as a Chat Widget
 
-```html
+`````html
 import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.js";
   Chatbot.init({
     chatflowid: "your-chatflow-id",
@@ -456,11 +457,11 @@ import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@2.2.0/dist/web.j
     }
   });
 </script>
-```
+`````
 
 ### API Authentication & Rate Limiting
 
-```bash
+`````bash
 # Enable API key authentication
 # Settings → API Keys → Create New Key
 
@@ -472,11 +473,11 @@ curl -X POST http://localhost:3000/api/v1/prediction/your-chatflow-id \
 
 # For production, add Nginx rate limiting: # limit_req_zone $binary_remote_addr zone=flowise:10m rate=10r/s;
 # limit_req zone=flowise burst=20 nodelay;
-```
+`````
 
 ### Webhook Triggers
 
-```bash
+`````bash
 # Configure a flow to trigger on external events
 # Settings → Webhook → Enable
 
@@ -487,11 +488,11 @@ curl -X POST http://localhost:3000/api/v1/webhook/your-webhook-id \
     "event": "new_ticket",
     "data": { "ticket_id": "TKT-123", "description": "..." }
   }'
-```
+`````
 
 ### Backup and Migration
 
-```bash
+`````bash
 #!/bin/bash
 # backup-flowise.sh — run via cron
 
@@ -513,11 +514,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > "$BACKUP_DIR/database.
 
 # Keep last 14 days
 find /backups/flowise -type d -mtime +14 -exec rm -rf {} +
-```
+`````
 
 ### Monitoring with Prometheus
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v3.0
     ports: - "9090:9090"
@@ -532,21 +533,21 @@ services: prometheus: image: prom/prometheus:v3.0
       - METRICS_PORT=9091
     ports: - "3000:3000"
       - "9091:9091"
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Flowise | LangGraph Studio | Dify | n8n AI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | Apache-2.0 | MIT | Apache-2.0 | Fair-code |
 | **GitHub Stars** | 45,000 | 8,500 | 92,000 | 75,000 |
@@ -581,11 +582,11 @@ services: prometheus: image: prom/prometheus:v3.0
 
 ### Can I export a Flowise flow and run it without Flowise?
 
-Not directly. Flowise flows are stored as JSON graph definitions and executed by Flowise's runtime engine. However, you can export the flow JSON and use Flowise's open-source runtime package (`flowise-components`) to execute it programmatically in Node.js. For pure Python environments, you'll need to rebuild the equivalent LangChain code. The team has hinted at a Python runtime in a future release.
+Not directly. Flowise flows are stored as JSON graph definitions and executed by Flowise's runtime engine. However, you can export the flow JSON and use Flowise's open-source runtime package (````flowise-components````) to execute it programmatically in Node.js. For pure Python environments, you'll need to rebuild the equivalent LangChain code. The team has hinted at a Python runtime in a future release.
 
 ### How does Flowise handle API keys securely?
 
-API keys are encrypted at rest using AES-256 with a key derived from your `FLOWISE_SECRETKEY_OVERWRITE` environment variable. Keys are never exposed in the UI after entry, and flow exports strip credential values. For production, use environment-variable-based credentials rather than UI-entered ones, and rotate keys quarterly.
+API keys are encrypted at rest using AES-256 with a key derived from your ````FLOWISE_SECRETKEY_OVERWRITE```` environment variable. Keys are never exposed in the UI after entry, and flow exports strip credential values. For production, use environment-variable-based credentials rather than UI-entered ones, and rotate keys quarterly.
 
 ### What's the maximum flow complexity Flowise can handle?
 
@@ -593,12 +594,12 @@ Flows with **up to 50 nodes** execute reliably. Beyond that, canvas performance 
 
 ### Can I use Flowise with local LLMs only?
 
-Absolutely. Connect Ollama (via the Ollama Chat Model node), LM Studio, or LocalAI nodes. All vector store, embedding, and tool nodes work with local setups. The only Flowise feature requiring cloud access is the built-in telemetry (which can be disabled with `DISABLE_FLOWISE_TELEMETRY=true`).
+Absolutely. Connect Ollama (via the Ollama Chat Model node), LM Studio, or LocalAI nodes. All vector store, embedding, and tool nodes work with local setups. The only Flowise feature requiring cloud access is the built-in telemetry (which can be disabled with ````DISABLE_FLOWISE_TELEMETRY=true````).
 
 ### How do I migrate from Flowise v1.x to v2.x?
 
 Upgrading from v1.x to v2.2.0 requires: 1. Back up all chatflows via JSON export
-2. Pull the new Docker image: `flowiseai/flowise:2.2.0`
+2. Pull the new Docker image: ````flowiseai/flowise:2.2.0````
 3. Run database migrations automatically on first start
 4. Verify and reconfigure any deprecated nodes
 5. The v2.0 release deprecated 4 legacy nodes; check the migration guide at https://docs.flowiseai.com/migration/v1-to-v2
@@ -614,7 +615,7 @@ Flowise removes the **800 lines of boilerplate** that typically separate a LangC
 The **45,000+ GitHub stars** and Apache-2.0 license ensure long-term viability, while the 100+ integrations mean you're unlikely to hit a connectivity wall. For teams shipping RAG chatbots, document processors, or multi-agent research tools, Flowise cuts development time by **90%+** compared to hand-coding.
 
 **Next steps:**
-1. Deploy: `docker run -p 3000:3000 flowiseai/flowise:2.2.0`
+1. Deploy: ````docker run -p 3000:3000 flowiseai/flowise:2.2.0```
 2. Build a RAG chatbot in 15 minutes
 3. Deploy it as an embedded widget on your website
 4. Experiment with multi-agent flows for complex research tasks
@@ -676,7 +677,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](flowise-ai-workflow-builder-lowcode)
@@ -686,7 +687,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [2026-06-15-trending-ai-agents](flowise-ai-workflow-builder-lowcode)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

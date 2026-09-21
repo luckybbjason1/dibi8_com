@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/ragflow/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
@@ -70,11 +71,11 @@ RAGFlow 构建一个包含检索到的带可追溯引用分块的提示词。LLM
 
 | 服务 | 用途 | 默认后端 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 向量 + 全文存储 | 文档索引与搜索 | Elasticsearch 或 Infinity |
 | 对象存储 | 上传文档的文件存储 | MinIO |
@@ -90,11 +91,11 @@ RAGFlow 构建一个包含检索到的带可追溯引用分块的提示词。LLM
 
 | 资源 | 最低要求 | 生产环境推荐 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | 4 核 (x86_64) | 8+ 核 |
 | 内存 | 16 GB | 32+ GB |
@@ -108,7 +109,7 @@ RAGFlow 构建一个包含检索到的带可追溯引用分块的提示词。LLM
 
 在启动 RAGFlow 之前，确保内核参数已为 Elasticsearch 调优：
 
-```bash
+````bash
 # 检查当前的 vm.max_map_count
 sysctl vm.max_map_count
 
@@ -117,27 +118,27 @@ sudo sysctl -w vm.max_map_count=262144
 
 # 在重启后保持持久
 echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
-```
+`````
 
 ### 第一步：克隆代码仓库
 
-```bash
+`````bash
 git clone https://github.com/infiniflow/ragflow.git
 cd ragflow/docker
 git checkout -f v0.25.4
-```
+`````
 
 ### 第二步：配置环境变量
 
-```bash
+`````bash
 # 编辑环境文件
 cp .env .env.backup
 nano .env
-```
+`````
 
 需要设置的关键变量：
 
-```bash
+`````bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -147,22 +148,22 @@ REDIS_PASSWORD=your_secure_redis_password
 
 # 选择文档引擎：elasticsearch 或 infinity
 DOC_ENGINE=elasticsearch
-```
+`````
 
 ### 第三步：使用 Docker Compose 启动
 
-```bash
+`````bash
 # CPU 部署
 docker compose -f docker-compose.yml up -d
 
 # GPU 加速文档解析（NVIDIA）
 # sed -i '1i DEVICE=gpu' .env
 # docker compose -f docker-compose.yml up -d
-```
+`````
 
 验证部署：
 
-```bash
+`````bash
 # 查看日志直到看到成功消息
 docker logs -f ragflow-server
 
@@ -173,35 +174,35 @@ docker logs -f ragflow-server
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
 # /_/ |_|/_/  |_|\____//_/    /_/ \____/ |__/|__/
 #  * Running on all addresses (0.0.0.0)
-```
+`````
 
 ### 第四步：配置 LLM 提供商
 
-编辑 `service_conf.yaml.template` 添加你的 LLM API 密钥：
+编辑 ````service_conf.yaml.template```` 添加你的 LLM API 密钥：
 
-```yaml
+`````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
 支持的 LLM 提供商包括 OpenAI、Anthropic、DeepSeek、Gemini、Azure OpenAI、Bedrock，以及通过 Ollama 或 vLLM 使用的本地模型。配置更改后重启容器：
 
-```bash
+`````bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### 第五步：访问 Web UI
 
-打开浏览器，访问 `http://YOUR_SERVER_IP`。默认登录信息：
+打开浏览器，访问 ````http://YOUR_SERVER_IP````。默认登录信息：
 
-```
+`````
 邮箱: admin@ragflow.io
 密码: （首次登录时设置）
-```
+`````
 
 ![RAGFlow Web Interface](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/login.png)
 
@@ -211,44 +212,44 @@ docker compose -f docker-compose.yml up -d
 
 对于气隙环境或注重隐私的部署，将 RAGFlow 连接到 Ollama：
 
-```yaml
+`````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
-```
+`````
 
 在使用前通过 Ollama 拉取模型：
 
-```bash
+`````bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
-```
+`````
 
 在 RAGFlow Web UI 的 **设置 > 模型提供商** 中配置嵌入模型。
 
 ### OpenAI（云端 API）
 
-```yaml
+`````yaml
 user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
 使用环境变量替换避免硬编码密钥：
 
-```bash
+`````bash
 # 在 .env 中
 OPENAI_API_KEY=sk-your-key
-```
+`````
 
 ### Elasticsearch 迁移到 Infinity
 
 Infinity 是 RAGFlow 的融合上下文引擎，针对大规模部署进行了优化。切换方式：
 
-```bash
+`````bash
 # 1. 停止所有容器并清除卷
 docker compose -f docker-compose.yml down -v
 
@@ -257,7 +258,7 @@ sed -i 's/DOC_ENGINE=elasticsearch/DOC_ENGINE=infinity/' .env
 
 # 3. 重新启动
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 > **警告：** 这将清除现有数据。迁移前请备份数据集。
 
@@ -265,19 +266,19 @@ docker compose -f docker-compose.yml up -d
 
 对于生产部署，使用外部 Redis 集群：
 
-```yaml
+`````yaml
 # docker-compose.yml（节选）
 services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes: - redis_data:/data
     deploy: resources: limits: memory: 2G
-```
+`````
 
 ### Qdrant 作为替代向量存储
 
 虽然 RAGFlow 原生使用 Elasticsearch 或 Infinity，但你可以通过 Python SDK 集成 Qdrant 用于自定义检索管道：
 
-```python
+`````python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -288,7 +289,7 @@ qdrant = QdrantClient(url="http://localhost:6333")
 # 结合 RAGFlow 分块与 Qdrant 向量的自定义混合检索
 chunks = ragflow.retrieve(dataset_id="ds_123", query="2025年年度收入")
 vectors = qdrant.search(collection="financial_reports", vector=query_embedding, limit=5)
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -298,15 +299,15 @@ AI Multiple 在 2026 年进行的一项基准测试比较了 RAGFlow 与其他�
 
 | 指标 | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 回答准确率 | 97% | 94% | 95% | 91% |
 | 平均检索延迟 | 420ms | 380ms | 450ms | 510ms |
@@ -320,13 +321,13 @@ RAGFlow 在准确率和引用 grounding 方面领先，这归功于 DeepDoc 的�
 
 | 文档类型 | RAGFlow (DeepDoc) | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 含表格的 PDF | 完整结构保留 | 扁平文本 | 扁平文本 |
 | 扫描版 PDF (OCR) | 原生支持 | 需要扩展 | 需要扩展 |
@@ -338,15 +339,15 @@ RAGFlow 在准确率和引用 grounding 方面领先，这归功于 DeepDoc 的�
 
 | 配置档 | 用户数 | 文档数 | 硬件 | 月度云成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 团队 (10 用户) | 10 | 10,000 | 4 vCPU, 16 GB RAM | ~$80 (DigitalOcean) |
 | 部门 (100 用户) | 100 | 100,000 | 8 vCPU, 32 GB RAM | ~$200 (DigitalOcean) |
@@ -358,7 +359,7 @@ RAGFlow 在准确率和引用 grounding 方面领先，这归功于 DeepDoc 的�
 
 ### 使用反向代理启用 HTTPS
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/ragflow
 server {
     listen 443 ssl http2;
@@ -376,13 +377,13 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### 启用 GraphRAG 进行多跳推理
 
 GraphRAG 从文档中提取知识图谱，实现跨文档推理：
 
-```python
+`````python
 # 通过 RAGFlow Web UI 或 API
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -390,7 +391,7 @@ POST /api/datasets/{dataset_id}/chunks/graph
   "entity_types": ["人物", "组织", "产品", "事件"],
   "max_workers": 4
 }
-```
+`````
 
 GraphRAG 对法律文档、研究论文和财务报告特别有效，因为这些文档中实体之间的关系跨越多个页面。
 
@@ -398,18 +399,18 @@ GraphRAG 对法律文档、研究论文和财务报告特别有效，因为这�
 
 RAGFlow 的 Agent 可以在沙箱环境中执行 Python 和 JavaScript 代码。这需要 gVisor：
 
-```bash
+`````bash
 # 安装 gVisor（沙箱必需）
 sudo apt-get install -y runsc
 
 # 在 docker-compose.yml 中启用
 services: ragflow: environment: - ENABLE_SANDBOX=true
     devices: - /dev/kvm
-```
+`````
 
 ### 使用 Prometheus 监控
 
-```yaml
+`````yaml
 # 添加到 docker-compose.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -419,20 +420,20 @@ services: prometheus: image: prom/prometheus:latest
   grafana: image: grafana/grafana:latest
     ports: - "3000:3000"
     volumes: - grafana_data:/var/lib/grafana
-```
+`````
 
 需要监控的关键指标：
 
-```yaml
+`````yaml
 # prometheus.yml
 scrape_configs: - job_name: ragflow
     static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/ragflow/backup.sh
 
@@ -452,21 +453,21 @@ docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio
 
 # 同步到远程存储
 rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 80,853 | 49,500 | 25,300 | 105,000 |
 | **许可证** | Apache-2.0 | MIT | Apache-2.0 | MIT |
@@ -510,7 +511,7 @@ rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
 
 ### RAGFlow 可以只使用本地 LLM 吗？
 
-可以。RAGFlow 集成 Ollama、vLLM、Xinference 和 LocalAI。在 `service_conf.yaml.template` 中配置 LLM 提供商，填写本地推理服务器的 base URL。对于嵌入模型，通过 Ollama 拉取嵌入模型（如 `nomic-embed-text`）并在 Web UI 的模型提供商中配置。
+可以。RAGFlow 集成 Ollama、vLLM、Xinference 和 LocalAI。在 ````service_conf.yaml.template```` 中配置 LLM 提供商，填写本地推理服务器的 base URL。对于嵌入模型，通过 Ollama 拉取嵌入模型（如 ````nomic-embed-text````）并在 Web UI 的模型提供商中配置。
 
 ### RAGFlow 如何处理扫描 PDF 和图像？
 
@@ -522,9 +523,9 @@ RAGFlow 的 DeepDoc 引擎包含内置 OCR 管道，可处理扫描 PDF、PNG �
 
 ### 如何将 RAGFlow 升级到新版本？
 
-首先，备份 MySQL 数据库和 Elasticsearch 索引。然后拉取新 Docker 镜像，更新 `.env` 中的 `RAGFLOW_IMAGE` 变量，并重启容器。请务必查看版本间的发布说明，了解重大变更。
+首先，备份 MySQL 数据库和 Elasticsearch 索引。然后拉取新 Docker 镜像，更新 ````.env```` 中的 ````RAGFLOW_IMAGE```` 变量，并重启容器。请务必查看版本间的发布说明，了解重大变更。
 
-```bash
+`````bash
 cd ragflow/docker
 git fetch --tags
 git checkout -f v0.25.4
@@ -532,11 +533,11 @@ git checkout -f v0.25.4
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml pull
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### 我可以将 RAGFlow 集成到现有应用中吗？
 
-可以。RAGFlow 暴露了完整的 REST API，并提供 Python 和 JavaScript SDK。你可以以编程方式创建数据集、上传文档、启动聊天会话和检索答案。API 文档可在 RAGFlow 实例的 `/api/docs` 查看。
+可以。RAGFlow 暴露了完整的 REST API，并提供 Python 和 JavaScript SDK。你可以以编程方式创建数据集、上传文档、启动聊天会话和检索答案。API 文档可在 RAGFlow 实例的 ````/api/docs``` 查看。
 
 ### RAGFlow 支持哪些文档格式？
 
@@ -636,4 +637,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

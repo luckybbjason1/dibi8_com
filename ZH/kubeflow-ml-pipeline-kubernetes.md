@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/kubeflow-ml-pipeline-kubernetes/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言: 为什么 Kubernetes 原生的 ML 很重要
@@ -46,7 +47,7 @@ Kubeflow 的架构围绕一个核心原则：**一切运行在 Kubernetes 上**�
 
 控制平面包括用于服务网格的 Istio、用于身份验证的 Dex 或 OIDC，以及用于跨所有组件统一导航的 Central Dashboard。
 
-```bash
+````bash
 # 高层组件视图
 kubectl get pods -n kubeflow
 # 预期输出显示以下 Pod：
@@ -56,7 +57,7 @@ kubectl get pods -n kubeflow
 # - training-operator
 # - centraldashboard
 # - kubeflow-user-example-com 命名空间中的 notebooks
-```
+`````
 
 ## 安装与配置: 10 分钟内运行起来
 
@@ -69,7 +70,7 @@ kubectl get pods -n kubeflow
 
 ### 方案 A: 使用 kustomize 部署（官方方法）
 
-```bash
+`````bash
 # 克隆 manifests 仓库
 export KUBEFLOW_VERSION=v1.10.0
 git clone https://github.com/kubeflow/manifests.git
@@ -83,26 +84,26 @@ while ! kustomize build example | kubectl apply -f -; do
   echo "Retrying to apply resources..."
   sleep 10
 done
-```
+`````
 
-```bash
+`````bash
 # 验证核心组件正在运行
 kubectl get pods -n kubeflow --watch
 # 等待所有 Pod 显示 Running 或 Completed
 # 在 3 节点集群上通常需要 5-10 分钟
-```
+`````
 
-```bash
+`````bash
 # 端口转发以访问 Central Dashboard
 kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
 
 # 在 http://localhost:8080 访问
 # 默认凭据: user@example.com / 12341234
-```
+`````
 
 ### 方案 B: 使用 Helm 部署（开发环境更快）
 
-```bash
+`````bash
 # 添加 Kubeflow Helm 仓库（社区维护）
 helm repo add kubeflow https://kubeflow.github.io/manifests/
 helm repo update
@@ -112,13 +113,13 @@ helm install kubeflow kubeflow/kubeflow \
   --namespace kubeflow \
   --create-namespace \
   --set pipeline.objectStore.minio.persistence.enabled=true
-```
+`````
 
 ### 方案 C: DigitalOcean Kubernetes（生产就绪）
 
 如需无需管理控制平面的生产级集群：
 
-```bash
+`````bash
 # 安装 doctl 并认证
 doctl kubernetes cluster create kubeflow-ml \
   --region nyc3 \
@@ -126,22 +127,22 @@ doctl kubernetes cluster create kubeflow-ml \
   --node-pool "name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2"
 
 # 然后按方案 A 应用 Kubeflow manifests
-```
+`````
 
 [注册 DigitalOcean](https://m.do.co/c/eca87ac14ee0) 即可获得 **200 美元赠金**，有效期 60 天 — 足够运行一个启用 GPU 的 Kubeflow 集群进行一整月的实验。
 
-```bash
+`````bash
 # 检查 Kubeflow 创建的所有命名空间
 kubectl get namespaces | grep kubeflow
 # kubeflow          Active
 # kubeflow-user-example-com  Active
-```
+`````
 
 ## 构建你的第一个 ML 流水线
 
 Kubeflow Pipelines (KFP) 是 Kubeflow 最具价值的组件。下面是一个完整的流水线，包含数据下载、模型训练和评估：
 
-```python
+`````python
 # pipeline.py — 使用 KFP SDK v2 的完整 ML 流水线
 import kfp
 from kfp import dsl
@@ -232,9 +233,9 @@ if __name__ == "__main__": kfp.compiler.Compiler().compile(
         iris_pipeline,
         "iris_pipeline.yaml"
     )
-```
+`````
 
-```bash
+`````bash
 # 编译并上传流水线
 python pipeline.py
 
@@ -244,15 +245,15 @@ kfp pipeline create \
   --description "Iris classification training pipeline" \
   --engine argo \
   iris_pipeline.yaml
-```
+`````
 
-```bash
+`````bash
 # 从 CLI 运行流水线
 kfp run create \
   --experiment-name default \
   --pipeline-id <PIPELINE_ID> \
   --display-name "iris-run-$(date +%s)"
-```
+`````
 
 流水线会出现在 KFP UI 中，并带有完整的血缘追踪 — 每个制品、参数和执行都会被自动记录。你可以点击追溯模型制品，回到产生它的确切数据集和代码版本。
 
@@ -260,7 +261,7 @@ kfp run create \
 
 对于单机 GPU 无法容纳的工作负载，Kubeflow 的 Training Operator 管理分布式训练作业：
 
-```yaml
+`````yaml
 # pytorch-job.yaml — 分布式 PyTorch 训练
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
@@ -284,9 +285,9 @@ spec: pytorchReplicaSpecs: Master: replicas: 1
             resources: limits: nvidia.com/gpu: 1
                 memory: "16Gi"
                 cpu: "8"
-```
+`````
 
-```bash
+`````bash
 # 提交训练作业
 kubectl apply -f pytorch-job.yaml
 
@@ -294,19 +295,19 @@ kubectl apply -f pytorch-job.yaml
 kubectl get pytorchjobs -n kubeflow-user-example-com -w
 kubectl logs -f cifar10-distributed-master-0 \
   -n kubeflow-user-example-com
-```
+`````
 
-```bash
+`````bash
 # 检查集群 GPU 利用率
 kubectl top nodes
 nvidia-smi  # 在任何 GPU Pod 内部执行
-```
+`````
 
 ## 使用 KServe 进行模型服务
 
 KServe 提供生产级模型服务，支持自动扩缩容、流量分割和标准化推理协议：
 
-```yaml
+`````yaml
 # inference-service.yaml — 部署训练好的模型
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
@@ -319,9 +320,9 @@ spec: predictor: serviceAccountName: sa-default
           memory: 2Gi
         requests: cpu: "100m"
           memory: 256Mi
-```
+`````
 
-```bash
+`````bash
 # 应用 InferenceService
 kubectl apply -f inference-service.yaml
 
@@ -329,20 +330,20 @@ kubectl apply -f inference-service.yaml
 kubectl get inferenceservices -n kubeflow-user-example-com -w
 
 # 预期: iris-classifier   True    100   http://iris-classifier...   Ready
-```
+`````
 
-```bash
+`````bash
 # 测试已部署的模型
 curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict \
   -H "Content-Type: application/json" \
   -d '{"instances": [[5.1, 3.5, 1.4, 0.2]]}'
 
 # 响应: {"predictions": [0]}
-```
+`````
 
 金丝雀部署方面，KServe 支持流量分割：
 
-```yaml
+`````yaml
 # canary-rollout.yaml — v2 的渐进式发布
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
@@ -350,13 +351,13 @@ metadata: name: iris-classifier
   namespace: kubeflow-user-example-com
 spec: predictor: canaryTrafficPercent: 20
     sklearn: storageUri: "s3://kubeflow-models/iris/v2/model.joblib"
-```
+`````
 
 ## 使用 Katib 进行超参数调优
 
 Katib 使用 Kubernetes 原生实验自动化搜索最优超参数：
 
-```yaml
+`````yaml
 # katib-experiment.yaml — 优化 Random Forest 超参数
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
@@ -396,9 +397,9 @@ spec: objective: type: maximize
                 resources: limits: memory: "4Gi"
                     cpu: "2"
             restartPolicy: Never
-```
+`````
 
-```bash
+`````bash
 # 启动实验
 kubectl apply -f katib-experiment.yaml
 
@@ -410,7 +411,7 @@ kubectl get trials -n kubeflow-user-example-com
 kubectl get experiment iris-hp-tuning \
   -n kubeflow-user-example-com \
   -o jsonpath='{.status.currentOptimalTrial}'
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -418,13 +419,13 @@ kubectl get experiment iris-hp-tuning \
 
 | 配置 | 每轮时间 (CIFAR-10 ResNet-50) | GPU 数量 | 成本/小时* |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 单 GPU (NVIDIA A100) | 4 分 12 秒 | 1 | $2.50 |
 | Kubeflow PyTorchJob (4x A100) | 1 分 05 秒 | 4 | $10.00 |
@@ -437,11 +438,11 @@ kubectl get experiment iris-hp-tuning \
 
 | 场景 | 总运行时间 | KFP 开销 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 5 步流水线, 小数据 (< 1 GB) | 3 分 45 秒 | ~18 秒 |
 | 12 步流水线, 中数据 (10 GB) | 22 分 10 秒 | ~45 秒 |
@@ -459,7 +460,7 @@ KFP 编排开销始终**低于总流水线运行时间的 3%**，即使对于复
 
 ### GPU 调度和资源配额
 
-```yaml
+`````yaml
 # gpu-quota.yaml — 为每个命名空间强制 GPU 限制
 apiVersion: v1
 kind: ResourceQuota
@@ -467,19 +468,19 @@ metadata: name: gpu-quota
   namespace: data-science-team
 spec: hard: requests.nvidia.com/gpu: 8
     limits.nvidia.com/gpu: 16
-```
+`````
 
-```bash
+`````bash
 # 应用配额
 kubectl apply -f gpu-quota.yaml
 
 # 检查每个命名空间的 GPU 分配
 kubectl describe resourcequota gpu-quota -n data-science-team
-```
+`````
 
 ### 数据集持久化存储
 
-```yaml
+`````yaml
 # dataset-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -488,20 +489,20 @@ metadata: name: training-datasets
 spec: accessModes: - ReadWriteMany
   resources: requests: storage: 500Gi
   storageClassName: nfs-client  # 或 AWS 上使用 efs-sc
-```
+`````
 
-```bash
+`````bash
 # 通过 Kubeflow UI 挂载到 Notebook 服务器
 # 或在流水线组件中引用：
 # dsl.VolumeOp(name="create-dataset-volume",
 #              resource_name="training-datasets",
 #              size="500Gi",
 #              modes=dsl.VOLUME_MODE_RWM)
-```
+`````
 
 ### 认证与 RBAC
 
-```bash
+`````bash
 # 创建具有资源限制的用户配置文件
 kubectl apply -f - <<EOF
 apiVersion: kubeflow.org/v1
@@ -514,11 +515,11 @@ spec: owner: kind: User
       nvidia.com/gpu: "8"
       pods: "50"
 EOF
-```
+`````
 
 ### 备份与灾难恢复
 
-```bash
+`````bash
 # 备份 MySQL 元数据库 (KFP 实验/运行)
 kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- \
   mysqldump -u root -p$mysqlpassword mlpipeline \
@@ -527,11 +528,11 @@ kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- \
 # 备份 MinIO 制品存储
 mc mirror myminio/kubeflow-pipelines/ \
   s3-backup/kubeflow-pipelines-backup/
-```
+`````
 
 ### 使用 Prometheus 和 Grafana 监控
 
-```bash
+`````bash
 # Kubeflow 在多个组件上暴露 Prometheus 指标
 kubectl apply -f \
   https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
@@ -541,21 +542,21 @@ kubectl apply -f \
 # - kubeflow_pipelines_run_latency_seconds (流水线执行时间)
 # - nvidia_gpu_utilization_gpu (每个 Pod 的 GPU 利用率)
 # - container_memory_working_set_bytes (OOM 检测)
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Kubeflow | MLflow | Airflow | SageMaker |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Kubernetes 原生 | **是 (核心设计)** | 否 (可部署在 K8s 上) | 可选 (通过 Helm) | N/A (托管 AWS) |
 | 流水线编排 | **是 (KFP DAG)** | 有限 (MLflow Pipelines) | 是 (通用) | 是 (Step Functions) |
@@ -596,19 +597,19 @@ Kubeflow 功能强大但并非没有挑战：
 A: 最小生产集群（3 个 CPU 节点 + 2 个 GPU 节点）在 DigitalOcean 或 GCP 上每月约 **$800-1,200**，具体取决于 GPU 类型。仅 CPU 的实验集群可低至每月 $200。国内用户推荐 [虎网云 GPU 服务器](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367)，性价比更高。
 
 **Q: 没有 GPU 可以使用 Kubeflow 吗？**
-A: 可以。Kubeflow 完全在 CPU 节点上运行。Training Operator、KFP 和 KServe 都可在无 GPU 情况下运行。但深度学习训练会明显变慢。对于仅 CPU 集群，将所有清单中的 `nvidia.com/gpu` 资源请求设置为零。
+A: 可以。Kubeflow 完全在 CPU 节点上运行。Training Operator、KFP 和 KServe 都可在无 GPU 情况下运行。但深度学习训练会明显变慢。对于仅 CPU 集群，将所有清单中的 ````nvidia.com/gpu```` 资源请求设置为零。
 
 **Q: Kubeflow 与原始 Kubernetes + 自定义脚本相比如何？**
 A: 原始 Kubernetes 给你完全控制权，但需要自己构建流水线引擎、制品追踪、实验管理和模型服务层。Kubeflow 开箱即用提供所有这些，可节省约 **3-6 个月**的平台工程工作。代价是接受 Kubeflow 关于组件如何交互的设计选择。
 
 **Q: 我可以将 Kubeflow 与现有的 CI/CD 系统集成吗？**
-A: 可以。Kubeflow Pipelines 可以从 GitHub Actions、GitLab CI、Jenkins 或任何能发起 HTTP API 调用的系统中触发。许多团队实现这样的模式：合并到 `main` 自动触发流水线运行，完成训练、评估和条件部署。
+A: 可以。Kubeflow Pipelines 可以从 GitHub Actions、GitLab CI、Jenkins 或任何能发起 HTTP API 调用的系统中触发。许多团队实现这样的模式：合并到 ````main```` 自动触发流水线运行，完成训练、评估和条件部署。
 
 **Q: 制品的推荐存储后端是什么？**
 A: 对于本地部署，**MinIO**（包含在 Kubeflow 清单中）提供 S3 兼容存储。对于云部署，使用原生对象存储：GCP 上使用 **GCS**，AWS 上使用 **S3**，Azure 上使用 **Azure Blob Storage**。确保存储桶有生命周期策略，防止制品存储成本无限增长 — 旧的流水线运行每月可累积 **数百 GB**。
 
 **Q: 如何调试失败的流水线步骤？**
-A: 每个 KFP 步骤作为 Kubernetes Pod 运行。使用 `kubectl logs <pod-name> -n <namespace>` 检查容器日志。KFP UI 显示 Pod 名称和日志链接。要持久化调试，在组件中添加 `dsl.Retry` 策略，或使用 `kubectl describe pod` 检查资源限制、镜像拉取错误或 PVC 挂载失败。
+A: 每个 KFP 步骤作为 Kubernetes Pod 运行。使用 ````kubectl logs <pod-name> -n <namespace>```` 检查容器日志。KFP UI 显示 Pod 名称和日志链接。要持久化调试，在组件中添加 ````dsl.Retry```` 策略，或使用 ````kubectl describe pod``` 检查资源限制、镜像拉取错误或 PVC 挂载失败。
 
 ## 结论: 今天就开始构建生产级 ML 流水线
 
@@ -671,7 +672,7 @@ Kubeflow 仍然是 Kubernetes 上运行 ML 工作负载最完整的开源平台�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](kubeflow-ml-pipeline-kubernetes)
@@ -681,5 +682,5 @@ Kubeflow 仍然是 Kubernetes 上运行 ML 工作负载最完整的开源平台�
 - [wandb-ml-experiment-tracking-platform-2026](kubeflow-ml-pipeline-kubernetes)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

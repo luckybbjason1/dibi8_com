@@ -24,6 +24,7 @@ aliases:
   - /posts/litellm/
 - /resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
+
 {{</* resource-info */>}}
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
@@ -37,25 +38,25 @@ This is the multi-LLM operational tax — and it compounds with every new model 
 With **22,500+ GitHub stars** and **1,500+ contributors**, LiteLLM has become the default choice for teams that want gateway-level control without vendor lock-in. This LiteLLM tutorial walks through a complete llm gateway setup — from LiteLLM Docker deployment to virtual key management to litellm production monitoring — in under 30 minutes.
 
 
----
+* * *
 ## What Is LiteLLM?
 
 LiteLLM is an open-source LLM proxy gateway and Python SDK that provides a unified interface to call 100+ LLM APIs — OpenAI, Anthropic, Azure, Google Vertex AI, AWS Bedrock, Cohere, Ollama, and more — using a single OpenAI-compatible API format.
 
-Two modes exist: - **Python SDK** — `import litellm; completion(...)` in your code, provider-agnostic
-- **Proxy Server** — a self-hosted HTTP gateway at `:4000` that any OpenAI SDK client can point to
+Two modes exist: - **Python SDK** — ```import litellm; completion(...)```` in your code, provider-agnostic
+- **Proxy Server** — a self-hosted HTTP gateway at ````:4000```` that any OpenAI SDK client can point to
 
-The proxy mode is what most production teams use. It adds virtual keys, team management, budget controls, rate limiting, caching, and observability — all configured through a single `config.yaml` file.
+The proxy mode is what most production teams use. It adds virtual keys, team management, budget controls, rate limiting, caching, and observability — all configured through a single ````config.yaml```` file.
 
 
----
+* * *
 ## How LiteLLM Works
 
 ![LiteLLM Architecture Diagram](images/litellm-architecture.png)
 
 **Request flow:**
 
-1. Your application sends an OpenAI-formatted request to `http://litellm-proxy:4000/v1/chat/completions`
+1. Your application sends an OpenAI-formatted request to ````http://litellm-proxy:4000/v1/chat/completions````
 2. LiteLLM validates the virtual key, checks the team's budget and rate limits
 3. The router selects the best model deployment based on configured strategy (latency-based, cost-based, or simple load balancing)
 4. If the primary provider returns a 429/5xx, automatic fallback triggers within milliseconds
@@ -66,18 +67,18 @@ The proxy mode is what most production teams use. It adds virtual keys, team man
 
 | Component | Purpose | External Dependency |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Proxy Server | HTTP API, routing, auth | None (Python/FastAPI) |
 | PostgreSQL | Virtual keys, spend logs, team data | Required for production |
 | Redis | Rate-limit coordination, caching | Recommended |
 | Admin UI | Web dashboard for keys/models | Built-in |
 
----
+* * *
 
 ## Installation & Setup
 
@@ -89,7 +90,7 @@ The proxy mode is what most production teams use. It adds virtual keys, team man
 
 ### Step 1: Download the Docker Compose Template
 
-```bash
+`````bash
 # Create project directory
 mkdir -p litellm-gateway && cd litellm-gateway
 
@@ -104,11 +105,11 @@ OPENAI_API_KEY="sk-your-openai-key"
 ANTHROPIC_API_KEY="sk-your-anthropic-key"
 DATABASE_URL="postgresql://llmproxy:dbpassword9090@db:5432/litellm"
 EOF
-```
+`````
 
 ### Step 2: Create config.yaml
 
-```yaml
+`````yaml
 # litellm_config.yaml
 model_list: - model_name: gpt-4o
     litellm_params: model: openai/gpt-4o
@@ -165,11 +166,11 @@ litellm_settings: drop_params: true
   # Observability callbacks
   success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
 ### Step 3: Start the Stack
 
-```bash
+`````bash
 # Pull and start all services
 docker compose up -d
 
@@ -178,13 +179,13 @@ docker compose ps
 
 # Check proxy logs
 docker compose logs -f litellm
-```
+`````
 
-The proxy is now running at `http://localhost:4000`. The Admin UI is at `http://localhost:4000/ui/` — login with username `admin` and your `LITELLM_MASTER_KEY` as the password.
+The proxy is now running at ````http://localhost:4000````. The Admin UI is at ````http://localhost:4000/ui/```` — login with username ````admin```` and your ````LITELLM_MASTER_KEY```` as the password.
 
 ### Step 4: Test with a Request
 
-```bash
+`````bash
 # Test chat completions
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -202,15 +203,15 @@ curl http://localhost:4000/v1/embeddings \
     "model": "text-embedding",
     "input": ["LiteLLM is an AI gateway"]
   }'
-```
+`````
 
----
+* * *
 
 ## Integration with Popular Tools
 
 ### OpenAI SDK (Python)
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(
@@ -223,11 +224,11 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Explain load balancing"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### LangChain
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(
@@ -238,11 +239,11 @@ llm = ChatOpenAI(
 
 result = llm.invoke("What are the types of LLM gateways?")
 print(result.content)
-```
+`````
 
 ### Anthropic SDK (Native Compatibility)
 
-```python
+`````python
 from anthropic import Anthropic
 
 client = Anthropic(
@@ -256,19 +257,19 @@ response = client.messages.create(
     messages=[{"role": "user", "content": "Compare LiteLLM vs OpenRouter"}]
 )
 print(response.content[0].text)
-```
+`````
 
 ### Ollama (Local Models)
 
-```yaml
+`````yaml
 # Add to litellm_config.yaml
 model_list: - model_name: local-llama
     litellm_params: model: ollama/llama3.3
       api_base: http://localhost:11434
     model_info: mode: chat
-```
+`````
 
-```bash
+`````bash
 # Test local model through LiteLLM
 curl http://localhost:4000/v1/chat/completions \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -277,26 +278,26 @@ curl http://localhost:4000/v1/chat/completions \
     "model": "local-llama",
     "messages": [{"role": "user", "content": "Hello local model"}]
   }'
-```
+`````
 
 ### Cohere
 
-```yaml
+`````yaml
 model_list: - model_name: cohere-command
     litellm_params: model: cohere/command-r-plus
       api_key: os.environ/COHERE_API_KEY
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 client = OpenAI(base_url="http://localhost:4000", api_key="sk-virtual-key")
 response = client.chat.completions.create(
     model="cohere-command",
     messages=[{"role": "user", "content": "Summarize this"}]
 )
-```
+`````
 
----
+* * *
 
 ## Benchmarks / Real-World Use Cases
 
@@ -304,11 +305,11 @@ response = client.chat.completions.create(
 
 A 50-person AI startup serving 5 internal teams and external API customers: | Metric | Before LiteLLM | After LiteLLM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Provider SDKs maintained | 4 (OpenAI, Anthropic, Gemini, Ollama) | 1 (OpenAI-compatible) |
 | API key management | Shared keys in env vars | Virtual keys per team/customer |
@@ -320,13 +321,13 @@ A 50-person AI startup serving 5 internal teams and external API customers: | Me
 
 | Workload | Throughput | P50 Latency | P99 Latency |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 50 RPS chat (GPT-4o) | Stable | 45ms overhead | 120ms overhead |
 | 200 RPS embedding | Stable | 12ms overhead | 35ms overhead |
@@ -335,7 +336,7 @@ A 50-person AI startup serving 5 internal teams and external API customers: | Me
 
 **Note:** Gateway overhead excludes LLM API response time. LiteLLM adds a small, predictable latency penalty. For flows where every millisecond matters, deploy the proxy in the same VPC as your application.
 
----
+* * *
 
 ## Advanced Usage / Production Hardening
 
@@ -345,7 +346,7 @@ Virtual keys are the security backbone of a production LiteLLM deployment. Each 
 
 ![LiteLLM Admin Dashboard](images/litellm-dashboard.png)
 
-```bash
+`````bash
 # Create a virtual key for the "frontend-team"
 curl -X POST http://localhost:4000/key/generate \
   -H "Authorization: Bearer $LITELLM_MASTER_KEY" \
@@ -370,19 +371,19 @@ curl -X POST http://localhost:4000/key/generate \
 #   "max_budget": 500.00,
 #   "models": ["gpt-4o", "gemini-flash"]
 # }
-```
+`````
 
 ### Provider-Level Budget Caps
 
-```yaml
+`````yaml
 general_settings: provider_budget_config: openai: monthly_budget: 5000.00
     anthropic: monthly_budget: 3000.00
     gemini: monthly_budget: 1000.00
-```
+`````
 
 ### Latency-Based Routing
 
-```yaml
+`````yaml
 router_settings: routing_strategy: latency-based-routing
   routing_strategy_args: ttl: 60
   allowed_fails: 3
@@ -390,11 +391,11 @@ router_settings: routing_strategy: latency-based-routing
   num_retries: 2
   timeout: 90
   retry_after: 5
-```
+`````
 
 ### Security Checklist
 
-```yaml
+`````yaml
 # Security-hardened config.yaml
 general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   database_url: os.environ/DATABASE_URL
@@ -408,11 +409,11 @@ general_settings: master_key: os.environ/LITELLM_MASTER_KEY
   # Encrypt keys at rest
   litellm_settings: key_generation_algorithm: "rsa"
     allow_user_auth: false
-```
+`````
 
 ### Kubernetes / Helm Deployment
 
-```bash
+`````bash
 # Add LiteLLM Helm repo
 helm pull oci://docker.litellm.ai/berriai/litellm-helm
 
@@ -425,17 +426,17 @@ helm install litellm-gateway ./litellm-helm \
   --set ingress.hosts[0].host=litellm.yourdomain.com \
   --set env.LITELLM_MASTER_KEY="sk-$(openssl rand -hex 16)" \
   --set env.DATABASE_URL="postgresql://user:pass@neon-host/litellm"
-```
+`````
 
 ### Monitoring with Prometheus + Grafana
 
-```yaml
+`````yaml
 # Add to config.yaml
 litellm_settings: success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
-```
+`````
 
-Key Prometheus metrics exposed at `/metrics`: ```promql
+Key Prometheus metrics exposed at ``/metrics``: `````promql
 # Request rate by model
 rate(litellm_request_total_requests[5m])
 
@@ -447,25 +448,25 @@ litellm_remaining_requests
 
 # Gateway overhead histogram
 histogram_quantile(0.95, litellm_overhead_latency_ms_bucket)
-```
+`````
 
 Import the [official Grafana dashboard](https://github.com/BerriAI/litellm/blob/main/examples/grafana/grafana_dashboard.json) for pre-built panels showing requests/sec, token usage, cost per team, and latency percentiles.
 
----
+* * *
 
 ## Comparison with Alternatives
 
 | Feature | LiteLLM | Portkey | OpenRouter | Helicone |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT (Open Source) | Closed core + Open SDK | Closed (Hosted) | Closed (Hosted + Self-host) |
 | **Deployment** | Self-hosted / Docker / K8s | Cloud + Hybrid | Hosted only | Cloud + Self-host |
@@ -485,7 +486,7 @@ Import the [official Grafana dashboard](https://github.com/BerriAI/litellm/blob/
 - **OpenRouter** — You want instant access to 300+ models with zero infrastructure work, and the 5.5% credit fee is acceptable.
 - **Helicone** — Observability is your primary concern; you need detailed tracing and cost attribution across LLM calls.
 
----
+* * *
 
 ## Limitations / Honest Assessment
 
@@ -499,7 +500,7 @@ LiteLLM is not the right tool for every situation. Here is where it falls short:
 
 5. **Enterprise SSO costs money** — SAML/SSO, audit logs, and advanced guardrails are part of LiteLLM Enterprise. The OSS version handles virtual keys and basic budgets only.
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -509,7 +510,7 @@ LiteLLM is a self-hosted open-source gateway; OpenRouter is a managed multi-mode
 
 **Q: Can I use LiteLLM with my existing OpenAI SDK code?**
 
-Yes — change two lines: set `base_url` to your LiteLLM proxy and `api_key` to a virtual key. Everything else stays the same. This is the primary reason teams adopt LiteLLM; zero code changes beyond configuration.
+Yes — change two lines: set ````base_url```` to your LiteLLM proxy and ````api_key```` to a virtual key. Everything else stays the same. This is the primary reason teams adopt LiteLLM; zero code changes beyond configuration.
 
 **Q: What database does LiteLLM require?**
 
@@ -517,7 +518,7 @@ PostgreSQL 14+ is required for production features (virtual keys, spend tracking
 
 **Q: How does the fallback mechanism work?**
 
-You define fallback chains in `config.yaml`. If a model returns a 429, 500, or timeout, LiteLLM retries the request against the next model in the chain — all within the same client request. The client sees a single response; failover happens transparently.
+You define fallback chains in ````config.yaml````. If a model returns a 429, 500, or timeout, LiteLLM retries the request against the next model in the chain — all within the same client request. The client sees a single response; failover happens transparently.
 
 **Q: Is LiteLLM suitable for high-traffic production use?**
 
@@ -525,13 +526,13 @@ Yes — with Redis caching and 2+ replicas behind a load balancer, LiteLLM handl
 
 **Q: How do I monitor LiteLLM in production?**
 
-Enable the Prometheus callback in `config.yaml`, scrape the `/metrics` endpoint, and import the official Grafana dashboard. Set alerts on `litellm_requests_total_failed` (error rate) and `litellm_remaining_requests` (budget exhaustion). Wire `success_callback` to Langfuse for per-request tracing.
+Enable the Prometheus callback in ````config.yaml````, scrape the ````/metrics```` endpoint, and import the official Grafana dashboard. Set alerts on ````litellm_requests_total_failed```` (error rate) and ````litellm_remaining_requests```` (budget exhaustion). Wire ````success_callback```` to Langfuse for per-request tracing.
 
----
+* * *
 
 ## Conclusion
 
-LiteLLM solves the messy reality of production multi-LLM deployments: multiple SDKs, scattered API keys, opaque costs, and manual failover. With a single `config.yaml`, you get a unified OpenAI-compatible gateway, virtual keys with budgets, automatic fallbacks, and real-time spend tracking.
+LiteLLM solves the messy reality of production multi-LLM deployments: multiple SDKs, scattered API keys, opaque costs, and manual failover. With a single ````config.yaml```, you get a unified OpenAI-compatible gateway, virtual keys with budgets, automatic fallbacks, and real-time spend tracking.
 
 For teams spending $5,000+/month on LLM APIs and with basic DevOps capacity, self-hosting LiteLLM pays for itself in reduced markup fees and improved reliability. Start with the Docker Compose setup above, add Redis caching, then scale to Kubernetes with Helm as traffic grows.
 
@@ -546,7 +547,7 @@ For teams spending $5,000+/month on LLM APIs and with basic DevOps capacity, sel
 
 *本文含联盟营销链接。通过链接购买主机服务我们可能获得佣金——这不会影响价格或推荐。*
 
----
+* * *
 
 
 
@@ -596,7 +597,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -606,7 +607,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-15-trending-ai-agents](litellm)
 - [2026-06-22-trending-ai-agents](litellm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

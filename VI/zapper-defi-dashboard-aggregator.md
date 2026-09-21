@@ -12,6 +12,7 @@ aliases:
   - /vi/posts/zapper-defi-dashboard-aggregator/
 ---
 
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  
@@ -20,11 +21,11 @@ aliases:
 **Công cụ:** [Zapper](https://zapper.xyz)  
 **GitHub:** [Zapper-fi](https://github.com/Zapper-fi) — ⭐ 300+ sao, Giấy phép MIT
 
----
+* * *
 
 > Bắt đầu theo dõi danh mục DeFi của bạn ngay hôm nay! Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) hoặc [OKX](https://www.promoohubly.com/join/12190433) để bắt đầu hành trình DeFi.
 
----
+* * *
 
 ## 1. Giới thiệu: Cuộc Cách Mạng Bảng Điều Khiển DeFi trong năm 2026
 
@@ -36,13 +37,13 @@ Không giống như các công cụ theo dõi danh mục cơ bản chỉ hiển 
 
 Hướng dẫn toàn diện này bao gồm kiến trúc của Zapper, các mẫu tích hợp API, khả năng theo dõi yield, trình xây dựng giao dịch, và các chiến lược triển khai thực tế cho các nhà phát triển và ngườidùng DeFi chuyên sâu trong năm 2026.
 
----
+* * *
 
 ## 2. Kiến trúc lõi: Zapper Tổng Hợp Dữ Liệu DeFi Như Thế Nào
 
 ### 2.1 Lớp Tổng Hợp Dữ Liệu Đa Giao Thức
 
-Cơ sở hạ tầng phụ trợ của Zapper kết nối với hàng trăm giao thức DeFi thông qua một hệ thống tích hợp mô-đun. Mỗi tích hợp giao thức trừu tượng hóa sự phức tạp của tương tác hợp đồng thông minh thành các mô hình dữ liệu chuẩn hóa: ```typescript
+Cơ sở hạ tầng phụ trợ của Zapper kết nối với hàng trăm giao thức DeFi thông qua một hệ thống tích hợp mô-đun. Mỗi tích hợp giao thức trừu tượng hóa sự phức tạp của tương tác hợp đồng thông minh thành các mô hình dữ liệu chuẩn hóa: ````typescript
 // Kiến trúc tích hợp giao thức Zapper
 interface ProtocolPosition {
   // Định danh duy nhất
@@ -80,11 +81,11 @@ interface TokenBalance {
   balanceUSD: number;
   priceUSD: number;
 }
-```
+`````
 
 ### 2.2 Đồng Bộ Danh Mục Thờigian Thực
 
-```typescript
+`````typescript
 // Lấy danh mục đầy đủ bằng API Zapper
 import { ZapperClient } from '@zapper-fi/zapper-api';
 
@@ -140,14 +141,14 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
 
 // Thực thi
 const portfolio = await getPortfolio('0xMyAddress...');
-console.log(`Tổng Giá trị Tài sản Ròng: $${portfolio.totalNetWorth.toLocaleString()}`);
-console.log(`Vị thế Lending: ${portfolio.categories.lending.length}`);
-console.log(`Vị thế LP: ${portfolio.categories.liquidity.length}`);
-```
+console.log(````Tổng Giá trị Tài sản Ròng: $${portfolio.totalNetWorth.toLocaleString()}````);
+console.log(````Vị thế Lending: ${portfolio.categories.lending.length}````);
+console.log(````Vị thế LP: ${portfolio.categories.liquidity.length}````);
+`````
 
 ### 2.3 Hệ Thống Oracle Giá Token
 
-```typescript
+`````typescript
 // Tổng hợp giá Zapper
 async function getTokenPrices(
   client: ZapperClient,
@@ -186,26 +187,26 @@ const tokenPrices = await getTokenPrices(
 
 console.log('WETH:', tokenPrices.get(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2));
 console.log('USDC:', tokenPrices.get(0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48));
-```
+`````
 
----
+* * *
 
 ## 3. Xác Thực API và Thiết Lập
 
 ### 3.1 Lấy API Key
 
-```bash
+`````bash
 # Bước 1: Đăng ký tại https://zapper.xyz và điều hướng đến Cài đặt Nhà phát triển
 # Bước 2: Tạo API key
 # Bước 3: Lưu trữ an toàn trong biến môi trường
 
 export ZAPPER_API_KEY="your_api_key_here"
 export ZAPPER_API_URL="https://api.zapper.xyz"
-```
+`````
 
 ### 3.2 Khởi Tạo SDK
 
-```typescript
+`````typescript
 // Khởi tạo SDK Zapper với xác thực
 import { ZapperClient } from '@zapper-fi/zapper-api';
 
@@ -218,9 +219,9 @@ const client = new ZapperClient({
 
 // Tùy chọn 2: Sử dụng cấu hình môi trường
 const client = ZapperClient.fromEnvironment();
-```
+`````
 
-```python
+`````python
 # Thiết lập SDK Python
 import os
 from zapper_api import ZapperClient
@@ -235,22 +236,22 @@ health = client.health.check()
 print(f"Trạng thái API: {health.status}")
 print(f"Mạng được hỗ trợ: {len(health.networks)}")
 print(f"Giao thức tích hợp: {health.protocolCount}")
-```
+`````
 
-```bash
+`````bash
 # Ví dụ xác thực cURL
 curl -X GET "https://api.zapper.xyz/v2/balances?addresses[]=0x...&networks[]=ethereum" \
   -H "Authorization: Bearer ${ZAPPER_API_KEY}" \
   -H "Content-Type: application/json"
-```
+`````
 
----
+* * *
 
 ## 4. Theo Dõi Danh Mục: Tổng Quan Vị Thế DeFi Đầy Đủ
 
 ### 4.1 Lấy Tất Cả Vị Thế
 
-```typescript
+`````typescript
 // Lấy danh mục toàn diện với tất cả các vị thế
 async function getFullPortfolio(address: string) {
   const response = await client.v2.balances.getBalances({
@@ -315,11 +316,11 @@ function categorizePosition(position: any): string {
   if (position.positionType === staking) return staking;
   return other;
 }
-```
+`````
 
 ### 4.2 Theo Dõi Danh Mục NFT
 
-```typescript
+`````typescript
 // Theo dõi nắm giữ NFT trên các thị trường
 async function getNFTPortfolio(address: string) {
   const nfts = await client.v2.nfts.getNftsForAddress({
@@ -358,25 +359,25 @@ async function getNFTPortfolio(address: string) {
 
 // Hiển thị danh mục NFT
 const nftPortfolio = await getNFTPortfolio('0xMyAddress...');
-console.log(`\n📊 Tóm Tắt Danh Mục NFT`);
-console.log(`Bộ sưu tập: ${nftPortfolio.totalCollections}`);
-console.log(`Tổng NFT: ${nftPortfolio.totalNFTs}`);
-console.log(`Giá trị Ước tính: $${nftPortfolio.estimatedValueUSD.toLocaleString()}`);
+console.log(````\n📊 Tóm Tắt Danh Mục NFT````);
+console.log(````Bộ sưu tập: ${nftPortfolio.totalCollections}````);
+console.log(````Tổng NFT: ${nftPortfolio.totalNFTs}````);
+console.log(````Giá trị Ước tính: $${nftPortfolio.estimatedValueUSD.toLocaleString()}````);
 
 nftPortfolio.collections
   .sort((a, b) => b.estimatedValueUSD - a.estimatedValueUSD)
   .forEach(c => {
-    console.log(`\n  ${c.name}: ${c.count} vật phẩm @ $${c.floorPriceUSD.toFixed(2)} sàn = $${c.estimatedValueUSD.toFixed(2)}`);
+    console.log(````\n  ${c.name}: ${c.count} vật phẩm @ $${c.floorPriceUSD.toFixed(2)} sàn = $${c.estimatedValueUSD.toFixed(2)}````);
   });
-```
+`````
 
----
+* * *
 
 ## 5. Theo Dõi và Phân Tích Yield Farming
 
 ### 5.1 Giám Sát Các Vị Thế Yield Đang Hoạt Động
 
-```typescript
+`````typescript
 // Theo dõi các vị thế yield farming với phân tích APY
 interface YieldPosition {
   protocol: string;
@@ -460,30 +461,30 @@ positions.forEach(pos => {
   totalDeposited += pos.depositedValueUSD;
   totalDailyYield += pos.dailyYieldUSD;
   
-  console.log(`\n${pos.protocol} — ${pos.poolName} (${pos.network})`);
-  console.log(`  Đã gửi: $${pos.depositedValueUSD.toLocaleString()}`);
-  console.log(`  APY: ${pos.apy.total.toFixed(2)}% (Cơ bản: ${pos.apy.base.toFixed(2)}% + Thưởng: ${pos.apy.rewards.toFixed(2)}%)`);
-  console.log(`  Yield Hàng ngày: $${pos.dailyYieldUSD.toFixed(2)}`);
-  console.log(`  Tổng Đã Kiếm: $${pos.totalEarnedUSD.toLocaleString()}`);
+  console.log(````\n${pos.protocol} — ${pos.poolName} (${pos.network})````);
+  console.log(````  Đã gửi: $${pos.depositedValueUSD.toLocaleString()}````);
+  console.log(````  APY: ${pos.apy.total.toFixed(2)}% (Cơ bản: ${pos.apy.base.toFixed(2)}% + Thưởng: ${pos.apy.rewards.toFixed(2)}%)````);
+  console.log(````  Yield Hàng ngày: $${pos.dailyYieldUSD.toFixed(2)}````);
+  console.log(````  Tổng Đã Kiếm: $${pos.totalEarnedUSD.toLocaleString()}````);
   
   if (pos.impermanentLoss) {
-    console.log(`  ⚠️ IL: ${pos.impermanentLoss.toFixed(2)}%`);
+    console.log(````  ⚠️ IL: ${pos.impermanentLoss.toFixed(2)}%````);
   }
   
   pos.rewardTokens.forEach(r => {
-    console.log(`  Thưởng: ${r.dailyAmount.toFixed(4)} ${r.token}/ngày ($${r.dailyValueUSD.toFixed(2)})`);
+    console.log(````  Thưởng: ${r.dailyAmount.toFixed(4)} ${r.token}/ngày ($${r.dailyValueUSD.toFixed(2)})````);
   });
 });
 
-console.log(`\n${'='.repeat(80)}`);
-console.log(`Tổng Đã Gửi: $${totalDeposited.toLocaleString()}`);
-console.log(`Tổng Yield Hàng ngày: $${totalDailyYield.toFixed(2)} (${(totalDailyYield * 365 / totalDeposited * 100).toFixed(2)}% APY)`);
-console.log(`Dự Phóng Hàng tháng: $${(totalDailyYield * 30).toFixed(2)}`);
-```
+console.log(````\n${'='.repeat(80)}````);
+console.log(````Tổng Đã Gửi: $${totalDeposited.toLocaleString()}````);
+console.log(````Tổng Yield Hàng ngày: $${totalDailyYield.toFixed(2)} (${(totalDailyYield * 365 / totalDeposited * 100).toFixed(2)}% APY)````);
+console.log(````Dự Phóng Hàng tháng: $${(totalDailyYield * 30).toFixed(2)}````);
+`````
 
 ### 5.2 Khám Phá Cơ Hội Yield
 
-```typescript
+`````typescript
 // Khám phá cơ hội yield mới
 async function discoverYields(
   network: string = ethereum,
@@ -519,21 +520,21 @@ const bestYields = await discoverYields(ethereum, 10_000_000, 10);
 
 console.log('\n🏆 Cơ Hội Yield Hàng Đầu (TVL > $10M, APY > 10%)\n');
 bestYields.slice(0, 10).forEach((opp, i) => {
-  console.log(`${i + 1}. ${opp.protocol} — ${opp.poolName}`);
-  console.log(`   Token: ${opp.tokens.join('/')}`);
-  console.log(`   TVL: $${(opp.tvlUSD / 1e6).toFixed(1)}M | APY: ${opp.apy.total.toFixed(2)}%`);
-  console.log(`   Rủi ro: ${opp.riskLevel} | Rủi ro IL: ${opp.ilRisk || 'N/A'}`);
+  console.log(````${i + 1}. ${opp.protocol} — ${opp.poolName}````);
+  console.log(````   Token: ${opp.tokens.join('/')}````);
+  console.log(````   TVL: $${(opp.tvlUSD / 1e6).toFixed(1)}M | APY: ${opp.apy.total.toFixed(2)}%````);
+  console.log(````   Rủi ro: ${opp.riskLevel} | Rủi ro IL: ${opp.ilRisk || 'N/A'}````);
   console.log();
 });
-```
+`````
 
----
+* * *
 
 ## 6. Trình Xây Dựng Giao Dịch: Zap In và Zap Out
 
 ### 6.1 Cung Cấp Thanh Khoản Đơn Giản Hóa (Zap In)
 
-Một trong những tính năng mạnh mẽ nhất của Zapper là **Transaction Builder**, cho phép ngườidùng tham gia các vị thế thanh khoản phức tạp chỉ với một giao dịch. Thay vì thủ công hoán đổi, phê duyệt, và gửi token, tính năng "Zap In" của Zapper xử lý mọi thứ: ```typescript
+Một trong những tính năng mạnh mẽ nhất của Zapper là **Transaction Builder**, cho phép ngườidùng tham gia các vị thế thanh khoản phức tạp chỉ với một giao dịch. Thay vì thủ công hoán đổi, phê duyệt, và gửi token, tính năng "Zap In" của Zapper xử lý mọi thứ: `````typescript
 // Zap vào vị thế Uniswap V3
 async function zapInUniswapV3(
   fromToken: string,        // Địa chỉ token để zap
@@ -557,10 +558,10 @@ async function zapInUniswapV3(
   const tx = await client.v2.zap.generateZapInTransaction(zapParams);
 
   console.log('Giao dịch sẵn sàng:');
-  console.log(`  Đến: ${tx.to}`);
-  console.log(`  Giá trị: ${tx.value}`);
-  console.log(`  Ước tính Gas: ${tx.gasEstimate}`);
-  console.log(`  Bước: ${tx.steps?.length || 1}`);
+  console.log(````  Đến: ${tx.to}````);
+  console.log(````  Giá trị: ${tx.value}````);
+  console.log(````  Ước tính Gas: ${tx.gasEstimate}````);
+  console.log(````  Bước: ${tx.steps?.length || 1}````);
 
   // Ký và gửi
   const receipt = await wallet.sendTransaction({
@@ -582,12 +583,12 @@ const txHash = await zapInUniswapV3(
   887220                                              // Phạm vi trên đầy đủ
 );
 
-console.log(`Zap In hoàn tất: ${txHash}`);
-```
+console.log(````Zap In hoàn tất: ${txHash}````);
+`````
 
 ### 6.2 Thoát Vị Thế (Zap Out)
 
-```typescript
+`````typescript
 // Zap out khỏi vị thế thanh khoản
 async function zapOutPosition(
   protocol: string,         // ví dụ: 'uniswap-v3'
@@ -610,8 +611,8 @@ async function zapOutPosition(
   const tx = await client.v2.zap.generateZapOutTransaction(zapParams);
 
   console.log('Giao dịch Zap Out:');
-  console.log(`  Đầu ra dự kiến: ${tx.expectedOutput}`);
-  console.log(`  Đầu ra tối thiểu (có trượt giá): ${tx.minOutput}`);
+  console.log(````  Đầu ra dự kiến: ${tx.expectedOutput}````);
+  console.log(````  Đầu ra tối thiểu (có trượt giá): ${tx.minOutput}````);
 
   const receipt = await wallet.sendTransaction({
     to: tx.to,
@@ -629,11 +630,11 @@ const exitTx = await zapOutPosition(
   12345,  // ID token NFT
   0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48  // Nhận USDC
 );
-```
+`````
 
 ### 6.3 Giao Dịch Đa Bước Phức Tạp
 
-```typescript
+`````typescript
 // Bridge + Zap In (vào vị thế xuyên chuỗi)
 async function bridgeAndZap(
   fromChain: string,       // Chuỗi nguồn
@@ -658,7 +659,7 @@ async function bridgeAndZap(
     value: route.value
   });
 
-  console.log(`Bridge tx: ${bridgeTx.hash}`);
+  console.log(````Bridge tx: ${bridgeTx.hash}````);
 
   // Chờ bridge hoàn tất
   await client.v2.bridge.waitForBridge(bridgeTx.hash, fromChain, toChain);
@@ -680,15 +681,15 @@ async function bridgeAndZap(
 
   return receipt.hash;
 }
-```
+`````
 
----
+* * *
 
 ## 7. Các Mẫu Tích Hợp API Nâng Cao
 
 ### 7.1 Cập Nhật Thờigian Thực WebSocket
 
-```typescript
+`````typescript
 // Cập nhật danh mục thờigian thực qua WebSocket
 import { ZapperWebSocket } from '@zapper-fi/zapper-api';
 
@@ -700,13 +701,13 @@ const ws = new ZapperWebSocket({
 // Đăng ký cập nhật địa chỉ
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case balance_change: console.log(`💰 Cập nhật số dư: ${update.token} = ${update.newBalance}`);
+    case balance_change: console.log(````💰 Cập nhật số dư: ${update.token} = ${update.newBalance}````);
       break;
-    case new_position: console.log(`📈 Phát hiện vị thế mới: ${update.protocol} — ${update.valueUSD}`);
+    case new_position: console.log(````📈 Phát hiện vị thế mới: ${update.protocol} — ${update.valueUSD}````);
       break;
-    case yield_claimed: console.log(`🎁 Đã nhận thưởng: ${update.amount} ${update.token}`);
+    case yield_claimed: console.log(````🎁 Đã nhận thưởng: ${update.amount} ${update.token}````);
       break;
-    case nft_transfer: console.log(`🖼️ NFT đã chuyển: ${update.collection} #${update.tokenId}`);
+    case nft_transfer: console.log(````🖼️ NFT đã chuyển: ${update.collection} #${update.tokenId}````);
       break;
   }
 });
@@ -715,11 +716,11 @@ ws.subscribe('address:0xMyAddress...', (update: any) => {
 ws.onConnect(() => console.log('Đã kết nối Zapper WS'));
 ws.onDisconnect(() => console.log('Đã ngắt kết nối, đang thử lại...'));
 ws.onError((err) => console.error('Lỗi WS:', err));
-```
+`````
 
 ### 7.2 Dữ Liệu Lịch sử và Theo Dõi Lãi/Lỗ
 
-```typescript
+`````typescript
 // Hiệu suất danh mục lịch sử
 async function getHistoricalPerformance(
   address: string,
@@ -759,11 +760,11 @@ async function getHistoricalPerformance(
   const totalReturnPct = (totalReturn / performance.startValue) * 100;
 
   console.log('\n📈 Hiệu Suất Danh Mục (90 Ngày Qua)');
-  console.log(`Giá trị Bắt đầu: $${performance.startValue.toLocaleString()}`);
-  console.log(`Giá trị Hiện tại: $${performance.endValue.toLocaleString()}`);
-  console.log(`Giá trị Đỉnh: $${performance.peakValue.toLocaleString()}`);
-  console.log(`Tổng Lợi nhuận: $${totalReturn.toLocaleString()} (${totalReturnPct.toFixed(2)}%)`);
-  console.log(`Drawdown Tối đa: ${((performance.peakValue - performance.troughValue) / performance.peakValue * 100).toFixed(2)}%`);
+  console.log(````Giá trị Bắt đầu: $${performance.startValue.toLocaleString()}````);
+  console.log(````Giá trị Hiện tại: $${performance.endValue.toLocaleString()}````);
+  console.log(````Giá trị Đỉnh: $${performance.peakValue.toLocaleString()}````);
+  console.log(````Tổng Lợi nhuận: $${totalReturn.toLocaleString()} (${totalReturnPct.toFixed(2)}%)````);
+  console.log(````Drawdown Tối đa: ${((performance.peakValue - performance.troughValue) / performance.peakValue * 100).toFixed(2)}%````);
 
   return performance;
 }
@@ -777,7 +778,7 @@ async function getProtocolPnL(
   const pnl = await client.v2.analytics.getProtocolPnL({
     address,
     protocol,
-    period: `${days}d`
+    period: ````${days}d````
   });
 
   return {
@@ -789,11 +790,11 @@ async function getProtocolPnL(
     netPnL: pnl.data.netPnL
   };
 }
-```
+`````
 
 ### 7.3 Thao Tác Hàng Loạt
 
-```typescript
+`````typescript
 // Truy vấn danh mục hàng loạt cho nhiều địa chỉ
 async function batchPortfolioQuery(addresses: string[]) {
   const batchSize = 20;  // Tối đa 20 địa chỉ mỗi yêu cầu
@@ -838,7 +839,7 @@ const whaleAddresses = [
 ];
 
 const whaleData = await batchPortfolioQuery(whaleAddresses);
-console.log(`Giá Trị Danh Mục Tổng hợp: $${whaleData.totalValue.toLocaleString()}`);
+console.log(````Giá Trị Danh Mục Tổng hợp: $${whaleData.totalValue.toLocaleString()}````);
 
 // Phơi nhiễm giao thức hàng đầu
 const sortedExposure = [...whaleData.protocolExposure.entries()]
@@ -847,17 +848,17 @@ const sortedExposure = [...whaleData.protocolExposure.entries()]
 
 console.log('\nPhơi Nhiễm Giao Thức Hàng Đầu:');
 sortedExposure.forEach(([protocol, value]) => {
-  console.log(`  ${protocol}: $${value.toLocaleString()}`);
+  console.log(````  ${protocol}: $${value.toLocaleString()}````);
 });
-```
+`````
 
----
+* * *
 
 ## 8. Xây Dựng Bảng Điều Khiển Tùy Chỉnh với Dữ Liệu Zapper
 
 ### 8.1 Tích Hợp Thành Phần React
 
-```tsx
+`````tsx
 // React hook cho dữ liệu danh mục Zapper
 import { useState, useEffect } from react;
 import { ZapperClient } from '@zapper-fi/zapper-api';
@@ -944,11 +945,11 @@ function PositionCard({ position }: { position: any }) {
     </div>
   );
 }
-```
+`````
 
 ### 8.2 Hệ Thống Cảnh Báo Yield
 
-```typescript
+`````typescript
 // Giám sát và cảnh báo yield tự động
 import { schedule } from 'node-cron';
 
@@ -983,12 +984,12 @@ class YieldMonitor {
 
         switch (alert.condition) {
           case apy_drop: if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
-              await this.sendAlert(`🚨 APY giảm ${alert.threshold}% trên ${position.poolName}: ${position.apy.total.toFixed(2)}%`);
+              await this.sendAlert(````🚨 APY giảm ${alert.threshold}% trên ${position.poolName}: ${position.apy.total.toFixed(2)}%````);
             }
             break;
 
           case il_warning: if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
-              await this.sendAlert(`⚠️ Cảnh báo IL trên ${position.poolName}: ${position.impermanentLoss.toFixed(2)}%`);
+              await this.sendAlert(````⚠️ Cảnh báo IL trên ${position.poolName}: ${position.impermanentLoss.toFixed(2)}%````);
             }
             break;
 
@@ -996,7 +997,7 @@ class YieldMonitor {
               (sum, r) => sum + r.dailyValueUSD, 0
             );
             if (prev && Math.abs(rewardChange - prev.dailyRewards) > alert.threshold) {
-              await this.sendAlert(`💰 Thay đổi thưởng trên ${position.poolName}: $${rewardChange.toFixed(2)}/ngày`);
+              await this.sendAlert(````💰 Thay đổi thưởng trên ${position.poolName}: $${rewardChange.toFixed(2)}/ngày````);
             }
             break;
         }
@@ -1019,7 +1020,7 @@ class YieldMonitor {
   startMonitoring(address: string, interval: string = '*/15 * * * *') {
     // Kiểm tra mỗi 15 phút theo mặc định
     schedule(interval, () => this.checkPositions(address));
-    console.log(`Giám sát yield đã bắt đầu cho ${address}`);
+    console.log(````Giám sát yield đã bắt đầu cho ${address}````);
   }
 }
 
@@ -1039,9 +1040,9 @@ monitor.addAlert({
 });
 
 monitor.startMonitoring('0xMyAddress...');
-```
+`````
 
----
+* * *
 
 ## 9. Câu hỏi Thường gặp (FAQ)
 
@@ -1063,9 +1064,9 @@ Có, **Transaction Builder** của Zapper cho phép thực thi giao dịch trự
 
 ### 9.5 Làm thế nào để tích hợp API Zapper vào ứng dụng của riêng tôi?
 
-Zapper cung cấp **RESTful API** với tài liệu toàn diện tại [docs.zapper.xyz](https://docs.zapper.xyz). Các bước tích hợp: (1) Đăng ký API key tại [zapper.xyz](https://zapper.xyz), (2) Cài đặt SDK chính thức (`npm install @zapper-fi/zapper-api`) hoặc sử dụng yêu cầu HTTP trực tiếp, (3) Xác thực bằng API key trong header `Authorization: Bearer`. Các endpoint chính bao gồm `/v2/balances` (dữ liệu danh mục), `/v2/apps` (danh sách giao thức), `/v2/prices` (giá token), và `/v2/transactions` (xây dựng giao dịch). Hỗ trợ WebSocket có sẵn trên các gói trả phí cho cập nhật thờigian thực.
+Zapper cung cấp **RESTful API** với tài liệu toàn diện tại [docs.zapper.xyz](https://docs.zapper.xyz). Các bước tích hợp: (1) Đăng ký API key tại [zapper.xyz](https://zapper.xyz), (2) Cài đặt SDK chính thức (````npm install @zapper-fi/zapper-api````) hoặc sử dụng yêu cầu HTTP trực tiếp, (3) Xác thực bằng API key trong header ````Authorization: Bearer````. Các endpoint chính bao gồm ````/v2/balances```` (dữ liệu danh mục), ````/v2/apps```` (danh sách giao thức), ````/v2/prices```` (giá token), và ````/v2/transactions``` (xây dựng giao dịch). Hỗ trợ WebSocket có sẵn trên các gói trả phí cho cập nhật thờigian thực.
 
----
+* * *
 
 
 
@@ -1086,11 +1087,11 @@ Nhìn về nửa cuối năm 2026, chúng tôi dự đoán các tích hợp sâu
 
 Dù bạn là ngườidùng DeFi bình thường theo dõi pool thanh khoản đầu tiên hay một tổ chức quản lý hàng triệu đô la trên hàng chục giao thức, Zapper cung cấp các công cụ, dữ liệu, và hạ tầng cần thiết để điều hướng bối cảnh DeFi phức tạp một cách tự tin.
 
----
+* * *
 
 > **Bắt đầu hành trình DeFi của bạn ngay hôm nay!** Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) hoặc [OKX](https://www.promoohubly.com/join/12190433) để bắt đầu giao dịch và theo dõi danh mục của bạn với Zapper.
 
----
+* * *
 
 **Giấy phép:** MIT  
 **Ngườibảo trì:** [Zapper-fi](https://github.com/Zapper-fi)  
@@ -1123,7 +1124,7 @@ Dù bạn là ngườidùng DeFi bình thường theo dõi pool thanh khoản đ
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -1133,7 +1134,7 @@ Dù bạn là ngườidùng DeFi bình thường theo dõi pool thanh khoản đ
 - [llm-inference-cost-optimization-guide-2026](zapper-defi-dashboard-aggregator)
 - [hkuds-ai-trader](zapper-defi-dashboard-aggregator)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

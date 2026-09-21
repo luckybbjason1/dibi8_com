@@ -11,6 +11,7 @@ license: Apache-2.0
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 
+
 # DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷
 
 
@@ -30,7 +31,7 @@ AI 코딩 에이전트에게 랜딩 페이지를 만들라고 요청하면, 기�
 
 DESIGN.md는 프로젝트의 시각적 정체성에 대한 단일 진실의 출처 역할을 하는 마크다운 파일입니다. 이 파일은 AI 코딩 에이전트(Claude, ChatGPT, Codex, Cursor 등)가 읽을 수 있도록 설계되어, UI가 항상 브랜드에 맞게 일관되게 생성되도록 하며 — 매번 디자인 시스템을 다시 설명할 필요가 없도록 합니다.
 
-그 형식은 두 개의 상호 보완적인 층으로 이루어져 있습니다: ```
+그 형식은 두 개의 상호 보완적인 층으로 이루어져 있습니다: ````
 ┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
@@ -40,39 +41,39 @@ DESIGN.md는 프로젝트의 시각적 정체성에 대한 단일 진실의 출�
 │  ---                                           │
 │                                                  │
 │  ## Colors                                     │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
-│  ```                                           │
+│  `````                                           │
 │  <!-- Prose -->                                │
 │  A warm paper-and-ink system with a single     │
 │  vermilion accent for diagrams only.           │
 │                                                  │
 │  ## Typography                                 │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Spacing                                    │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Do's and Don'ts                            │
 │  - **Do** use the accent color only in charts  │
 │  - **Don't** add gradients or glass effects    │
 │                                                  │
 └──────────────────────────────────────────────────┘
-```
+`````
 
-YAML 토큰은 기계가 읽을 수 있는 값을 제공합니다. 산문은 사람이 읽을 수 있는 *맥락*을 제공합니다 — 단순히 16진수 코드를 나열하는 것이 아니라 색상이 왜 `#F4F0E4`인지(따뜻한 제록스 용지, 순수한 흰색이 아님)를 설명합니다. 이러한 구분이 DESIGN.md를 디자인 토큰 JSON 파일과 근본적으로 다르게 만드는 요소입니다.
+YAML 토큰은 기계가 읽을 수 있는 값을 제공합니다. 산문은 사람이 읽을 수 있는 *맥락*을 제공합니다 — 단순히 16진수 코드를 나열하는 것이 아니라 색상이 왜 ````#F4F0E4````인지(따뜻한 제록스 용지, 순수한 흰색이 아님)를 설명합니다. 이러한 구분이 DESIGN.md를 디자인 토큰 JSON 파일과 근본적으로 다르게 만드는 요소입니다.
 
 ## 산문이 토큰보다 더 중요한 이유
 
@@ -84,7 +85,7 @@ DESIGN.md는 이 원칙을 공식화합니다. 토큰은 지시가 아니라 맥
 
 ## 내부 작동 방식
 
-DESIGN.md 저장소는 조정을 위해 Turbo를 사용하는 Bun 모노레포 구조로 되어 있습니다: ```
+DESIGN.md 저장소는 조정을 위해 Turbo를 사용하는 Bun 모노레포 구조로 되어 있습니다: `````
 design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
@@ -97,11 +98,11 @@ design.md/
 ├── turbo.json                  # Turbo build orchestration
 ├── tsconfig.base.json          # Shared TypeScript config
 └── PHILOSOPHY.md               # Design philosophy manifesto
-```
+`````
 
-CLI 도구(`@google/design.md`)는 다음을 제공합니다: - **린팅**: DESIGN.md 파일을 명세 스키마에 따라 검증합니다
+CLI 도구(````@google/design.md````)는 다음을 제공합니다: - **린팅**: DESIGN.md 파일을 명세 스키마에 따라 검증합니다
 - **토큰 추출**: YAML 블록을 구조화된 데이터로 파싱합니다
-- **에이전트 통합**: Claude, ChatGPT 및 기타 코딩 에이전트를 위한 `.agents/skills/` 정의로 제공됩니다
+- **에이전트 통합**: Claude, ChatGPT 및 기타 코딩 에이전트를 위한 ````.agents/skills/```` 정의로 제공됩니다
 
 린터는 필수 섹션(이름, 색상, 타이포그래피, 간격, 라운드, 컴포넌트)이 존재하도록 강제하면서, 각 프로젝트에 특정한 모션, 아이콘, 엘리베이션 및 기타 디자인 차원에 대한 임의의 사용자 정의 섹션을 허용합니다.
 
@@ -109,56 +110,56 @@ CLI 도구(`@google/design.md`)는 다음을 제공합니다: - **린팅**: DESI
 
 ### 1. CLI 설치
 
-```bash
+`````bash
 bun install -g @google/design.md
-```
+`````
 
-또는 npx로 직접 사용하세요: ```bash
+또는 npx로 직접 사용하세요: `````bash
 npx @google/design.md lint DESIGN.md
-```
+`````
 
 ### 2. 첫 번째 DESIGN.md 만들기
 
-최소한 필요한 구조부터 시작하세요: ```markdown
----
+최소한 필요한 구조부터 시작하세요: `````markdown
+* * *
 name: My Project Design
----
+* * *
 
 ## 색상
 
-```yaml
+`````yaml
 colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
-```
+`````
 
 전문적인 SaaS 제품을 위한 깔끔한 청백색 시스템.
 
 ## 타이포그래피
 
-```yaml
+`````yaml
 typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
-```
+`````
 
 일관성을 위한 단일 패밀리 타이포그래피 시스템.
 
 ## 간격
 
-```yaml
+`````yaml
 spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
-```
+`````
 
 기본 그리드 4px, 더 큰 요소는 8px.
 
 ### 3. 그것을 여러분의 코딩 에이전트에게 보내세요
 
-프로젝트 저장소에 DESIGN.md를 추가하세요. 어떤 코딩 에이전트와 작업할 때든, 시스템 프롬프트에서 해당 파일을 참조하세요: ```
+프로젝트 저장소에 DESIGN.md를 추가하세요. 어떤 코딩 에이전트와 작업할 때든, 시스템 프롬프트에서 해당 파일을 참조하세요: `````
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
-```
+`````
 
 에이전트는 이제 모든 생성 과정에서 일관되게 귀하의 디자인 시스템을 적용할 것입니다.
 
@@ -168,7 +169,7 @@ All UI components must follow the design specifications defined there.
 
 **모션 디자인 시스템**: UI 피드백에 대한 타이밍 상수를 정의합니다(호버/프레스에 120ms, 콘텐츠 전환에 250ms)과 기계적 완화 곡선을 사용합니다. 글에서는 '아무 것도 튀지 않고, 아무 것도 넘치지 않으며, 아무 것도 오래 남지 않는다'라고 강조하여 에이전트에게 명확한 시간적 미학을 제공합니다.
 
-**맞춤형 디자인 치수**: 이 형식은 어떤 섹션 이름이라도 허용합니다. 한 팀은 `motion` 토큰을 CSS 애니메이션 곡선으로 정의하고, 다른 팀은 오디오 도메인 시간 상수를 버퍼 블록 단위로 측정합니다. 명세는 일관성이 도움이 되는 부분에서는 표준화하고, 더 중요한 부분에서는 유연성을 남겨둡니다.
+**맞춤형 디자인 치수**: 이 형식은 어떤 섹션 이름이라도 허용합니다. 한 팀은 ````motion```` 토큰을 CSS 애니메이션 곡선으로 정의하고, 다른 팀은 오디오 도메인 시간 상수를 버퍼 블록 단위로 측정합니다. 명세는 일관성이 도움이 되는 부분에서는 표준화하고, 더 중요한 부분에서는 유연성을 남겨둡니다.
 
 ## AI 지원 개발에서 이것이 중요한 이유
 
@@ -203,7 +204,7 @@ DESIGN.md는 Google Labs Code에서 개발되었으며 상당한 주목을 받�
 - **18 issues** and **17 pull requests** showing active development
 - **4 published tags** with semantic versioning
 
-이 형식은 AI 코딩 에이전트 생태계 전반에 걸쳐 파생 프로젝트와 통합에 영감을 주었습니다. 여러 에이전트 스킬 정의가 등장했으며, `.agents/skills/` 디렉토리는 인기 있는 코딩 에이전트용으로 바로 사용할 수 있는 구성을 제공합니다.
+이 형식은 AI 코딩 에이전트 생태계 전반에 걸쳐 파생 프로젝트와 통합에 영감을 주었습니다. 여러 에이전트 스킬 정의가 등장했으며, ````.agents/skills/``` 디렉토리는 인기 있는 코딩 에이전트용으로 바로 사용할 수 있는 구성을 제공합니다.
 
 ## 결론
 
@@ -223,7 +224,7 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
 
 일일 AI 도구, 개발 유틸리티, 오픈 소스 프로젝트에 대한 토론을 위해 [Telegram](https://t.me/DIBI8_Group)에서 DIBI8 커뮤니티에 참여하세요.
 
----
+* * *
 
 **출처 및 추가 자료**: - 공식 저장소: https://github.com/google-labs-code/design.md
 - DESIGN.md 철학: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
@@ -259,7 +260,7 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -269,7 +270,7 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
 - [personal-ai-infrastructure-daniel-miessler](design-md-google-open-source-format-ai-coding-agents-design-systems)
 - [prompts-chat](design-md-google-open-source-format-ai-coding-agents-design-systems)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/hoppscotch/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -49,8 +50,8 @@ Hoppscotch는 모듈식 모노레포 아키텍처를 따른다. 프론트엔드�
 - **워크스페이스(Workspaces)**: 컬렉션, 환경, 공유 리소스를 위한 팀 단위 컨테이너
 - **컬렉션(Collections)**: 폴더 계층으로 구성된 API 요청 그룹
 - **환경(Environments)**: 개발, 스테이징, 프로덕션 컨텍스트를 위한 변수 저장소
-- **사전 요청 스크립트(Pre-request Scripts)**: `pw` 객체를 통해 각 요청 전에 실행되는 JavaScript 스니펫
-- **테스트(Tests)**: 동일한 `pw` 스크립팅 API를 사용하는 응답 후 어서션
+- **사전 요청 스크립트(Pre-request Scripts)**: ```pw```` 객체를 통해 각 요청 전에 실행되는 JavaScript 스니펫
+- **테스트(Tests)**: 동일한 ````pw```` 스크립팅 API를 사용하는 응답 후 어서션
 - **인터셉터(Interceptors)**: 로컬호스트 테스트를 위한 브라우저 확장 또는 프록시 기반 요청 가로채기
 
 ## 설치 및 설정
@@ -63,7 +64,7 @@ Hoppscotch는 모듈식 모노레포 아키텍처를 따른다. 프론트엔드�
 
 ### 방법 2: 데스크톱 앱
 
-```bash
+`````bash
 # macOS (Homebrew)
 brew install --cask hoppscotch
 
@@ -72,11 +73,11 @@ winget install Hoppscotch.Hoppscotch
 
 # Linux (Flatpak)
 flatpak install flathub io.hoppscotch.Hoppscotch
-```
+`````
 
 ### 방법 3: CLI 도구
 
-```bash
+`````bash
 # 전제 조건 설치 (Debian/Ubuntu)
 sudo apt-get install -y python3 g++ build-essential
 
@@ -86,11 +87,11 @@ npm i -g @hoppscotch/cli
 # 설치 확인
 hopp --version
 # 출력: 0.31.2
-```
+`````
 
 ### 방법 4: Docker 셀프호스팅 (프로덕션)
 
-```bash
+`````bash
 # AIO 이미지 풀
 docker pull hoppscotch/hoppscotch:latest
 
@@ -121,11 +122,11 @@ docker run -d \
   --restart unless-stopped \
   --name hoppscotch \
   hoppscotch/hoppscotch:latest
-```
+`````
 
 ### Docker Compose (프로덕션 권장)
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -154,9 +155,9 @@ services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
 volumes: postgres_data: driver: local
 
 networks: hoppscotch-net: driver: bridge
-```
+`````
 
-스택 시작: ```bash
+스택 시작: `````bash
 docker compose up -d
 
 # 모든 서비스 상태 확인
@@ -164,7 +165,7 @@ docker compose ps
 
 # 로그 확인
 docker compose logs -f hoppscotch
-```
+`````
 
 VPS에 배포할 준비가 된 팀을 위해, [DigitalOcean](https://m.do.co/c/dibi8)은 신규 사용자에게 $200 크레딧을 제공한다. 2 vCPU / 2 GB RAM Droplet에서 Hoppscotch 인스턴스를 수개월간 실행하기에 충분하다.
 
@@ -172,7 +173,7 @@ VPS에 배포할 준비가 된 팀을 위해, [DigitalOcean](https://m.do.co/c/d
 
 ### GitHub Actions CI/CD 파이프라인
 
-```yaml
+`````yaml
 # .github/workflows/api-tests.yml
 name: Hoppscotch CLI로 API 테스트
 
@@ -212,11 +213,11 @@ jobs: api-test: runs-on: ubuntu-latest
         if: always()
         with: name: api-test-results
           path: test-results.xml
-```
+`````
 
 ### Node.js 애플리케이션 통합
 
-```javascript
+`````javascript
 // scripts/run-api-tests.js
 const { execSync } = require("child_process");
 const path = require("path");
@@ -227,23 +228,23 @@ const envPath = path.join(__dirname, "../environments");
 function runTests(environment) {
   const command = [
     "hopp test",
-    `"${collectionPath}/core-apis.json"`,
-    `-e "${envPath}/${environment}.json"`,
+    ````"${collectionPath}/core-apis.json"````,
+    ````-e "${envPath}/${environment}.json"````,
     "--reporter-junit",
-    `"reports/${environment}-results.xml"`,
+    ````"reports/${environment}-results.xml"````,
   ].join(" ");
 
-  console.log(`${environment}에 대해 테스트 실행 중...`);
+  console.log(````${environment}에 대해 테스트 실행 중...````);
   execSync(command, { stdio: "inherit" });
 }
 
 // 프로덕션 배포 전 스테이징에서 실행
 runTests("staging");
-```
+`````
 
 ### Vue.js 프론트엔드 프록시 설정
 
-```javascript
+`````javascript
 // vite.config.js
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -260,11 +261,11 @@ export default defineConfig({
     },
   },
 });
-```
+`````
 
 ### OAuth2 토큰 갱신 사전 요청 스크립트
 
-```javascript
+`````javascript
 // Hoppscotch 사전 요청 스크립트
 const token = pw.env.get("AUTH_TOKEN");
 const expiry = pw.env.get("TOKEN_EXPIRY");
@@ -287,12 +288,12 @@ if (!token || Date.now() > Number(expiry)) {
 }
 
 // 현재 요청에 토큰 적용
-pw.headers.set("Authorization", `Bearer ${pw.env.get("AUTH_TOKEN")}`);
-```
+pw.headers.set("Authorization", ````Bearer ${pw.env.get("AUTH_TOKEN")}````);
+`````
 
 ### 응답 후 테스트 어서션
 
-```javascript
+`````javascript
 // Hoppscotch 테스트 스크립트
 pw.test("상태 코드가 200이다", () => {
   pw.expect(pw.response.status).toBe(200);
@@ -311,7 +312,7 @@ pw.test("응답 본문에 사용자 ID가 포함된다", () => {
 pw.test("응답 시간이 허용 범위 내이다", () => {
   pw.expect(pw.response.time).toBeLessThan(500);
 });
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -331,12 +332,12 @@ pw.test("응답 시간이 허용 범위 내이다", () => {
 - **개인 개발자**: 계정 없이 빠른 API 탐색을 위해 Hoppscotch 웹 사용
 - **5–20인 팀**: 남부 인프라에서 커뮤니티 에디션을 셀프호스팅
 - **API 우선 스타트업**: 공유 링크를 통해 문서에 Hoppscotch 컬렉션 임베드
-- **CI/CD 파이프라인**: 모든 PR에서 API 계약을 검증하기 위해 `hopp test` 실행
+- **CI/CD 파이프라인**: 모든 PR에서 API 계약을 검증하기 위해 ````hopp test```` 실행
 - **마이크로서비스 팀**: 환경 변수를 사용해 10개 이상의 남부 서비스 전환
 
 ### CLI를 통한 부하 테스트
 
-```bash
+`````bash
 # 동시성 설정으로 컬렉션 실행
 hopp test load-test-collection.json \
   --iteration-count 100 \
@@ -350,13 +351,13 @@ hopp test api-collection.json \
 # Jenkins/GitLab 통합을 위한 JUnit XML 생성
 hopp test api-collection.json \
   --reporter-junit junit-report.xml
-```
+`````
 
 ## 고급 사용법 / 프로덕션 강화
 
 ### 보안 설정
 
-```bash
+`````bash
 # 암호학적으로 안전한 시크릿 생성
 JWT_SECRET=$(openssl rand -hex 64)
 REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
@@ -377,11 +378,11 @@ RATE_LIMIT_MAX=100
 # CORS (도메인으로 제한)
 ALLOWED_ORIGINS=https://api.yourcompany.com
 EOF
-```
+`````
 
 ### Nginx 리버스 프록시
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/hoppscotch
 server {
     listen 443 ssl http2;
@@ -415,11 +416,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### Prometheus로 모니터링
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 version: "3.8"
 
@@ -435,11 +436,11 @@ services: prometheus: image: prom/prometheus:latest
     networks: - hoppscotch-net
 
 volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
-```
+`````
 
 ### 데이터베이스 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # backup-hoppscotch.sh - cron으로 매일 실행
 
@@ -469,7 +470,7 @@ gzip "${BACKUP_DIR}/hoppscotch_${TIMESTAMP}.dump"
 find "${BACKUP_DIR}" -name "hoppscotch_*.dump.gz" -mtime +14 -delete
 
 echo "백업 완료: hoppscotch_${TIMESTAMP}.dump.gz"
-```
+`````
 
 ## 대안과의 비교
 
@@ -482,7 +483,7 @@ echo "백업 완료: hoppscotch_${TIMESTAMP}.dump.gz"
 | GraphQL 지원 | 예 (스키마 익스플로러) | 예 | 예 | 예 |
 | WebSocket 지원 | 예 | 예 | 예 | 예 |
 | gRPC 지원 | 계획 중 | 예 | 예 | 예 |
-| CI/CD CLI | 예 (`hopp test`) | Newman (유료) | 예 (inso) | 예 (`bru`) |
+| CI/CD CLI | 예 (````hopp test````) | Newman (유료) | 예 (inso) | 예 (````bru````) |
 | Git 네이티브 컬렉션 | 아니오 (난폭/가져오기) | 아니오 | 아니오 | 예 (설계 원칙) |
 | 팀 협업 | 워크스페이스 + 실시간 | 워크스페이스 | 클라우드 동기화 | Git + PR |
 | 10인 팀 가격 | $0 셀프호스팅 | $140–$490/월 | $80–$450/월 | $0 |
@@ -515,7 +516,7 @@ Hoppscotch는 모든 상황에 적합한 도구가 아니다. 마이그레이션
 예. 커뮤니티 에디션은 MIT 라이선스로 제한 없이 상업적 사용이 가능하다. 라이선스 비용 없이 남부에 셀프호스팅할 수 있다. 클라우드 버전은 추가 저장소와 SAML SSO 같은 기업 기능을 위한 유료 티어를 제공한다.
 
 **Q2: 기존 Postman 컬렉션을 가져올 수 있나요?**
-예. Hoppscotch는 Postman 컬렉션(v2.1 형식), OpenAPI 사양(3.0+), cURL 명령 가져오기를 지원한다. 마이그레이션 CLI 도구를 사용하라: `npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json`.
+예. Hoppscotch는 Postman 컬렉션(v2.1 형식), OpenAPI 사양(3.0+), cURL 명령 가져오기를 지원한다. 마이그레이션 CLI 도구를 사용하라: ````npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json````.
 
 **Q3: Hoppscotch는 localhost API의 CORS를 어떻게 처리하나요?**
 Hoppscotch 브라우저 확장(Chrome 및 Firefox 사용 가능)을 설치하거나 내장 프록시 서버를 구성하라. 설정에서 인터셉터 모드를 "프록시"에서 "브라우저 확장"으로 전환하면 로컬 개발의 CORS 제한을 우회할 수 있다.
@@ -527,7 +528,7 @@ Hoppscotch 브라우저 확장(Chrome 및 Firefox 사용 가능)을 설치하거
 CLI(현재 v0.31.2)는 pre-1.0 시맨틱 버전 관리를 따륾며 정기적인 업데이트를 받는다. JUnit 보고, CSV 데이터 반복, 환경 변수 주입을 지원한다. 여러 팀이 GitHub Actions와 GitLab CI에서 문제 없이 실행하고 있다.
 
 **Q6: 셀프호스팅 Hoppscotch 데이터를 어떻게 백업하나요?**
-`pg_dump`를 사용하여 PostgreSQL 데이터베이스를 백업하라. 매일 cron 작업을 설정하여 데이터베이스를 난폭하고, 압축하고, 원격 저장소로 복사하라. JSON 형식의 컬렉션 난폭도 개별 워크스페이스의 부분 백업으로 사용할 수 있다.
+````pg_dump````를 사용하여 PostgreSQL 데이터베이스를 백업하라. 매일 cron 작업을 설정하여 데이터베이스를 난폭하고, 압축하고, 원격 저장소로 복사하라. JSON 형식의 컬렉션 난폭도 개별 워크스페이스의 부분 백업으로 사용할 수 있다.
 
 **Q7: Hoppscotch는 Postman과 같은 실시간 협업을 지원하나요?**
 예. 팀 워크스페이스는 충돌 해결이 있는 실시간 협업, 활동 감사 로그, 역할 기반 접근 제어를 지원한다. 변경 사항은 브라우저와 데스크톱 세션 간에 즉시 동기화된다.
@@ -538,9 +539,9 @@ Hoppscotch는 개발자들이 진정으로 원하는 것을 구축하여 79,200�
 
 **다음 단계:**
 1. [hoppscotch.io](https://hoppscotch.io)를 열고 첫 번째 요청을 본라.
-2. 저장소를 복제하라: `git clone https://github.com/hoppscotch/hoppscotch.git`
-3. `docker compose up -d`로 셀프호스팅을 배포하라.
-4. CLI를 설치하라: `npm i -g @hoppscotch/cli`
+2. 저장소를 복제하라: ````git clone https://github.com/hoppscotch/hoppscotch.git````
+3. ````docker compose up -d````로 셀프호스팅을 배포하라.
+4. CLI를 설치하라: ````npm i -g @hoppscotch/cli```
 
 [Telegram 그룹](https://t.me/dibi8channel)에 참여하여 매주 오픈소스 도구 추천과 배포 가이드를 받아보세요.
 
@@ -595,7 +596,7 @@ Hoppscotch는 개발자들이 진정으로 원하는 것을 구축하여 79,200�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -605,6 +606,6 @@ Hoppscotch는 개발자들이 진정으로 원하는 것을 구축하여 79,200�
 - [microsoft-markitdown-file-to-markdown-converter-cli](hoppscotch)
 - [nanochat-karpathy-100-chatgpt-single-gpu](hoppscotch)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

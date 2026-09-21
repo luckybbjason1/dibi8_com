@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/directus-headless-cms-ai-content/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么你的 CMS 在 2026 年仍然是瓶颈
@@ -39,7 +40,7 @@ Directus 位于现有 SQL 数据库（PostgreSQL、MySQL、SQLite、Oracle、MS 
 
 ## Directus 的工作原理：架构概览
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │                        Directus 技术栈                       │
 ├─────────────────┬──────────────────┬────────────────────────┤
@@ -55,13 +56,13 @@ Directus 位于现有 SQL 数据库（PostgreSQL、MySQL、SQLite、Oracle、MS 
 ├─────────────────┴──────────────────┴────────────────────────┤
 │              Docker Compose / Kubernetes                     │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 关键架构决策：
 
 - **数据库优先**：Directus 不会抽象你的数据库 — 它增强它。每个集合 1:1 映射到表。迁移是标准 SQL。
 - **无状态 API 服务器**：水平扩展轻而易举 — 只需在负载均衡器后添加更多 API 容器副本。
-- **文件存储抽象**：S3、Google Cloud Storage、Azure Blob 和本地磁盘的适配器。通过 URL 参数进行图片转换（如 `?width=800&height=600&fit=cover`）。
+- **文件存储抽象**：S3、Google Cloud Storage、Azure Blob 和本地磁盘的适配器。通过 URL 参数进行图片转换（如 ````?width=800&height=600&fit=cover````）。
 - **扩展系统**：自定义端点、钩子（事件驱动）、界面（自定义 UI 组件）、展示和仪表板面板 — 全部热重载。
 - **实时功能**：基于 WebSocket 的实时数据更新订阅（v11+）。
 
@@ -75,7 +76,7 @@ Directus 位于现有 SQL 数据库（PostgreSQL、MySQL、SQLite、Oracle、MS 
 
 ### 步骤 1：使用 Docker Compose 启动
 
-```bash
+`````bash
 mkdir ~/directus && cd ~/directus
 
 # 创建 compose 文件
@@ -111,23 +112,23 @@ services: directus: image: directus/directus:11.3.0
     volumes: - redis-data:/data
 
 volumes: pg-data: redis-data: EOF
-```
+`````
 
 ### 步骤 2：启动技术栈
 
-```bash
+`````bash
 docker compose up -d
 
 # 等待初始化完成，然后验证
 curl -s http://localhost:8055/server/health | jq .
 # 预期输出: {"status":"ok","release":"11.3.0"}
-```
+`````
 
-在 `http://localhost:8055` 访问管理面板。使用 compose 文件中的管理员凭据登录。
+在 ````http://localhost:8055```` 访问管理面板。使用 compose 文件中的管理员凭据登录。
 
 ### 步骤 3：生产环境配置
 
-```bash
+`````bash
 # 生产环境 .env 文件
 cat > .env << EOF
 # 安全
@@ -169,17 +170,17 @@ EMAIL_SMTP_PASSWORD=your-sendgrid-key
 EXTENSIONS_PATH=./extensions
 EXTENSIONS_AUTO_RELOAD=true
 EOF
-```
+`````
 
 在 [DigitalOcean 云服务器](https://m.do.co/c/eca87ac14ee0) 上进行生产部署时，将其放在反向代理（Traefik 或 Nginx）后面并启用 SSL。
 
 ### 步骤 4：创建你的第一个集合
 
-通过管理 UI：设置 → 数据模型 → 创建集合 → `articles`。
+通过管理 UI：设置 → 数据模型 → 创建集合 → ````articles````。
 
 或通过 API：
 
-```bash
+`````bash
 # 通过 REST API 创建集合
 curl -X POST http://localhost:8055/collections \
   -H "Content-Type: application/json" \
@@ -199,13 +200,13 @@ curl -X POST http://localhost:8055/collections \
       { "field": "hero_image", "type": "uuid", "meta": { "special": ["file"] }, "schema": {} }
     ]
   }'
-```
+`````
 
 ## REST 和 GraphQL API 使用
 
 ### REST API 示例
 
-```bash
+`````bash
 # 读取所有已发布文章，带过滤和字段选择
 curl -s "http://localhost:8055/items/articles?filter[status][_eq]=published&fields=id,title,seo_score,published_at&sort=-published_at&limit=10" \
   -H "Authorization: Bearer <token>" | jq .
@@ -229,11 +230,11 @@ curl -s "http://localhost:8055/items/articles?aggregate[avg]=seo_score&groupBy=s
 # 深层关联查询：带作者信息和图片转换的文章
 curl -s "http://localhost:8055/items/articles?fields=id,title,author.name,author.email,hero_image.id,hero_image.filename_disk&filter[status][_eq]=published" \
   -H "Authorization: Bearer <token>" | jq .
-```
+`````
 
 ### GraphQL API
 
-```bash
+`````bash
 # 内省模式
 curl -X POST http://localhost:8055/graphql \
   -H "Content-Type: application/json" \
@@ -254,15 +255,15 @@ curl -X POST http://localhost:8055/graphql \
   -d '{
     "query": "mutation { create_articles_item(data: { title: "GraphQL 指南", content: "内容在此...", status: "draft", seo_score: 90 }) { id title } }"
   }' | jq .
-```
+`````
 
 ### JavaScript SDK
 
-```bash
+`````bash
 npm install @directus/sdk@18.0.0
-```
+`````
 
-```javascript
+`````javascript
 import { createDirectus, rest, readItems, createItem, staticToken } from '@directus/sdk';
 
 const client = createDirectus('http://localhost:8055')
@@ -278,7 +279,7 @@ const articles = await client.request(
     fields: [id, title, seo_score, published_at]
   })
 );
-console.log(`Found ${articles.length} articles`);
+console.log(````Found ${articles.length} articles````);
 
 // 创建文章
 const newArticle = await client.request(
@@ -291,7 +292,7 @@ const newArticle = await client.request(
   })
 );
 console.log('Created:', newArticle.id);
-```
+`````
 
 ## AI 内容工作流：将 Directus 连接到大语言模型
 
@@ -299,7 +300,7 @@ Directus Flows + 扩展功能无需外部工具即可实现 AI 驱动的内容�
 
 ### 步骤 1：创建 AI 草稿生成 Flow
 
-```bash
+`````bash
 # 通过 API 创建 Flow，当文章以 ai_flag=true 创建时触发
 curl -X POST http://localhost:8055/flows \
   -H "Content-Type: application/json" \
@@ -311,11 +312,11 @@ curl -X POST http://localhost:8055/flows \
     "accountability": "all",
     "options": { "type": "filter", "scope": ["items.create.articles"] }
   }'
-```
+`````
 
 ### 步骤 2：AI 处理的 Webhook 扩展
 
-```javascript
+`````javascript
 // extensions/hooks/ai-content/index.js
 import { defineHook } from '@directus/extensions-sdk';
 
@@ -329,7 +330,7 @@ export default defineHook(({ filter, action }) => {
         model: 'gpt-4o',
         messages: [
           { role: system, content: 'You are a technical content writer.' },
-          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: user, content: ````Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).```` }
         ],
         response_format: { type: json_object },
         max_tokens: 2000
@@ -358,11 +359,11 @@ export default defineHook(({ filter, action }) => {
     }
   });
 });
-```
+`````
 
 ### 步骤 3：部署扩展
 
-```bash
+`````bash
 # 构建并部署扩展
 cd extensions/hooks/ai-content
 npm install
@@ -370,11 +371,11 @@ npm run build
 
 # Directus 会热重载扩展
 cp -r dist/* /directus/extensions/hooks/ai-content/
-```
+`````
 
 ### 步骤 4：查询 AI 生成的内容
 
-```javascript
+`````javascript
 // 获取待审核的文章
 const pendingReview = await client.request(
   readItems(articles, {
@@ -395,7 +396,7 @@ await client.request(
     published_at: new Date().toISOString()
   })
 );
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -403,15 +404,15 @@ await client.request(
 
 | 操作 | Directus 11.3.0 | Strapi 5.x | Sanity (托管) | Contentful (托管) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 读取单条 (缓存) | **~8ms** | ~15ms | ~25ms | ~40ms |
 | 读取 100 条带关联 | **~35ms** | ~80ms | ~60ms | ~120ms |
@@ -429,7 +430,7 @@ await client.request(
 
 ### 1. 读密集型工作负载的读副本
 
-```bash
+`````bash
 # 使用读副本水平扩展 API
 version: "3"
 services: directus-api-1: image: directus/directus:11.3.0
@@ -445,11 +446,11 @@ services: directus-api-1: image: directus/directus:11.3.0
   nginx: image: nginx:alpine
     ports: - "8055:8055"
     volumes: - ./nginx.conf:/etc/nginx/nginx.conf
-```
+`````
 
 ### 2. 自动备份
 
-```bash
+`````bash
 #!/bin/bash
 # backup.sh — 通过 cron 每天运行
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -468,11 +469,11 @@ aws s3 sync $BACKUP_DIR s3://backup-bucket/directus/ --delete
 
 # 保留 14 天
 find $BACKUP_DIR -mtime +14 -delete
-```
+`````
 
 ### 3. 自定义 API 端点
 
-```javascript
+`````javascript
 // extensions/endpoints/stats/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
@@ -493,19 +494,19 @@ export default defineEndpoint((router, { services, database }) => {
   });
 
   router.get('/seo-report', async (req, res) => {
-    const result = await database.raw(`
+    const result = await database.raw(````
       SELECT status, AVG(seo_score) as avg_score, COUNT(*) as count
       FROM articles
       GROUP BY status
-    `);
+    ````);
     res.json(result.rows);
   });
 });
-```
+`````
 
 ### 4. 字段级权限
 
-```javascript
+`````javascript
 // 授予编辑角色对 SEO 字段只读，对内容完全访问
 const rolePermissions = {
   collection: articles,
@@ -525,51 +526,51 @@ const adminPermissions = {
   fields: ['*'], // 所有字段
   validation: null
 };
-```
+`````
 
 ### 5. 使用 Prometheus 监控
 
-Directus 通过 `/server/health` 端点暴露指标，并可扩展以支持 Prometheus：
+Directus 通过 ````/server/health```` 端点暴露指标，并可扩展以支持 Prometheus：
 
-```javascript
+`````javascript
 // extensions/endpoints/metrics/index.js
 import { defineEndpoint } from '@directus/extensions-sdk';
 
 export default defineEndpoint((router, { database }) => {
   router.get('/metrics', async (_req, res) => {
-    const metrics = await database.raw(`
+    const metrics = await database.raw(````
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
       WHERE schemaname = public
-    `);
+    ````);
 
     let output = '';
     metrics.rows.forEach(row => {
-      output += `directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n`;
-      output += `directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n`;
+      output += ````directus_table_inserts{table="${row.tablename}"} ${row.n_tup_ins}\n````;
+      output += ````directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n````;
     });
 
     res.setHeader('Content-Type', 'text/plain');
     res.send(output);
   });
 });
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Directus 11.x | Strapi 5.x | Sanity | Contentful | Ghost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | **GPL-3.0** | MIT | MIT (部分) | No | MIT |
 | GitHub Stars | **29,100+** | 65,000+ | 3,500+ | N/A | 49,000+ |
@@ -598,10 +599,10 @@ Directus 的差异化在于 **数据库优先**：你拥有自己的模式，你
 ## 常见问题
 
 **Q: 我可以将 Directus 与现有数据库一起使用吗？**
-可以 — 这是 Directus 的杀手级功能。将 Directus 指向任何现有的 PostgreSQL、MySQL 或 SQLite 数据库，它会内省你的模式并即时生成 API。你现有的应用继续不变地工作。Directus 只添加其元数据表（`directus_*`）而不触碰你的数据结构。这使其成为为遗留应用添加 CMS 界面的理想选择。
+可以 — 这是 Directus 的杀手级功能。将 Directus 指向任何现有的 PostgreSQL、MySQL 或 SQLite 数据库，它会内省你的模式并即时生成 API。你现有的应用继续不变地工作。Directus 只添加其元数据表（````directus_*````）而不触碰你的数据结构。这使其成为为遗留应用添加 CMS 界面的理想选择。
 
 **Q: 内容版本控制如何工作？**
-Directus 每次你点击 "另存为版本" 时保存内容的快照。你可以并排比较版本，恢复到任何先前版本，并计划版本在未来发布。版本存储在 `directus_revisions` 表中。这适用于数据模型设置中启用版本控制的所有集合。
+Directus 每次你点击 "另存为版本" 时保存内容的快照。你可以并排比较版本，恢复到任何先前版本，并计划版本在未来发布。版本存储在 ````directus_revisions``` 表中。这适用于数据模型设置中启用版本控制的所有集合。
 
 **Q: Directus 能处理高流量应用吗？**
 可以，配合适当的架构。API 服务器是无状态的 — 通过在负载均衡器后添加容器副本进行水平扩展。使用 Redis 进行缓存和会话。使用 PostgreSQL 读副本处理读密集型工作负载。单个 4 vCPU / 8GB 实例可处理约 2,000 请求/秒的缓存读取。文件服务应通过 CDN。
@@ -651,7 +652,7 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 本文包含指向 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买托管服务，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐用于自己基础设施的服务。所有基准测试均在付费实例上独立进行。
 
 
----
+* * *
 *文章发布：2026-05-19 | 分类：dev-utils | 工具：Directus 11.3.0*
 *加入 dibi8 开发者社区：[English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
 
@@ -682,7 +683,7 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](directus-headless-cms-ai-content)
@@ -691,5 +692,5 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 - [llm-inference-cost-optimization-guide-2026](directus-headless-cms-ai-content)
 - [12-factor-agents](directus-headless-cms-ai-content)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

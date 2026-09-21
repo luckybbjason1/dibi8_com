@@ -28,6 +28,7 @@ faq: - q: "2026 年应该选哪个 AI 智能体框架？"
     a: "可以但很痛。每个框架都有自己的工具调用 API、状态模型和可观测性钩子。一旦选定就要做好 6 个月以上的承诺。切换成本大致等于新建 1-2 个智能体工作流的成本。"
 ---
 
+
 {{</* resource-info */>}}
 
 # 开源 AI 智能体框架 Top 10（2026）
@@ -100,9 +101,9 @@ AI 智能体框架格局在 2026 年完成了整合。从两年前的 50+ 个框
 
 | 如果你... | 选择 |
 |
----
+* * *
 |
----
+* * *
 |
 | 需要生产级状态机 | LangGraph |
 | 工作流可按角色分解 | CrewAI |
@@ -132,7 +133,7 @@ AI 智能体框架格局在 2026 年完成了整合。从两年前的 50+ 个框
 按语言栈和工作流风格挑选。能力已经足够趋同，选择更多取决于生态契合度而非功能本身。Python 生产环境选 LangGraph，TypeScript 选 Mastra，自主编码选 OpenHands。承诺至少 6 个月 —— 切换成本是真实存在的。
 
 
----
+* * *
 **相关阅读**：[12-Factor Agents 生产指南](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [AI 智能体记忆系统](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP 服务器 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -198,11 +199,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -212,7 +213,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-agent-frameworks-comparison-2026](open-source-ai-agent-framework-top-10-2026)
 - [langgraph-vs-crewai](open-source-ai-agent-framework-top-10-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -31,6 +31,7 @@ faqs: - q: 'DS4（DwarfStar 4）是什么，由谁创建的？'
   - q: 'DS4 是否提供兼容 OpenAI 的 API 服务器？'
     a: '是的。构建 DS4 后会生成一个 ds4-server 二进制文件，它在 http://127.0.0.1:8000 上暴露兼容 OpenAI 和 Anthropic 的 HTTP API，包含 /v1/chat/completions、/v1/completions 和 /v1/messages 等端点。它支持 OpenAI 风格的函数调用，并可与 OpenCode、Pi 和 Claude Code 等 Agent 框架配合使用。'---
 
+
 {</* resource-info */>}
 
 # DS4 (DwarfStar 4)：在本地运行 DeepSeek V4 Flash 的完整指南
@@ -74,23 +75,23 @@ Sanfilippo 认为 DeepSeek V4 Flash 是本地部署领域一个极具吸引力�
 7. **2-bit 量化可行性**：当采用非对称量化（仅量化路由专家层）时，2-bit 权重运行效果出奇地好，可在 96-128GB 内存的 MacBook 上运行。
 
 
----
+* * *
 ## 技术架构：Metal 与 CUDA 优化详解
 
 DS4 的架构体现了一种清晰的设计理念：**最大化目标硬件性能**，即使这意味着牺牲通用性。项目维护三种构建目标：
 
 | 构建目标 | 平台 | 用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `make` | macOS | Metal 优化生产构建 |
-| `make cuda-spark` | Linux (DGX Spark / GB10) | 针对 NVIDIA GB10 系统的 CUDA |
-| `make cuda-generic` | Linux (其他 CUDA GPU) | 通用 CUDA GPU 支持 |
-| `make cpu` | 任意平台 | 仅用于参考/调试 |
+| ```make```` | macOS | Metal 优化生产构建 |
+| ````make cuda-spark```` | Linux (DGX Spark / GB10) | 针对 NVIDIA GB10 系统的 CUDA |
+| ````make cuda-generic```` | Linux (其他 CUDA GPU) | 通用 CUDA GPU 支持 |
+| ````make cpu```` | 任意平台 | 仅用于参考/调试 |
 
 ### macOS 上的 Metal 后端
 
@@ -104,7 +105,7 @@ Metal 后端是 DS4 在 macOS 上的**主要优化目标**。它利用 Apple 的
 
 ### Linux 上的 CUDA 后端
 
-对于 Linux 工作站，DS4 提供两种 CUDA 构建路径。`cuda-spark` 目标针对 NVIDIA DGX Spark（GB10）平台优化，而 `cuda-generic` 支持更广泛的本地 CUDA GPU。在配备 128GB 内存的 DGX Spark GB10 上，引擎可达到 **343 token/秒 预填充** 和 **13.75 token/秒 生成**（q2 权重）。
+对于 Linux 工作站，DS4 提供两种 CUDA 构建路径。````cuda-spark```` 目标针对 NVIDIA DGX Spark（GB10）平台优化，而 ````cuda-generic```` 支持更广泛的本地 CUDA GPU。在配备 128GB 内存的 DGX Spark GB10 上，引擎可达到 **343 token/秒 预填充** 和 **13.75 token/秒 生成**（q2 权重）。
 
 CUDA 路径与 Metal 构建共享相同的图执行引擎、KV 缓存压缩和 API 服务器，确保跨平台行为一致。
 
@@ -114,7 +115,7 @@ DS4 包含一个 CPU 后端，但 Sanfilippo 明确表示：**"不要将 CPU 路
 
 ### 关键架构创新
 
-1. **非对称 2-bit 量化**：与均匀降低所有层质量的量化不同，DS4 的 q2 量化对路由 MoE 的 up/gate 投影应用 `IQ2_XXS`，对 down 投影应用 `Q2_K`，而共享专家、投影和路由层保持原样。这在最关键的地方保留了质量。
+1. **非对称 2-bit 量化**：与均匀降低所有层质量的量化不同，DS4 的 q2 量化对路由 MoE 的 up/gate 投影应用 ````IQ2_XXS````，对 down 投影应用 ````Q2_K````，而共享专家、投影和路由层保持原样。这在最关键的地方保留了质量。
 
 2. **带磁盘持久化的压缩 KV 缓存**：DS4 将 KV 缓存视为"一等磁盘公民"。它不假设 KV 状态必须驻留在内存中，而是将检查点写入高速 SSD。这使得在内存有限的机器上支持 10 万-30 万（甚至 100 万）token 的上下文窗口成为可能。
 
@@ -122,7 +123,7 @@ DS4 包含一个 CPU 后端，但 Sanfilippo 明确表示：**"不要将 CPU 路
 
 4. **模型专用图执行器**：通过不试图支持每一个 GGUF 文件，DS4 消除了通用张量调度的开销，可以为 DeepSeek V4 Flash 的 MoE 架构硬编码最优内存布局和内核融合策略。
 
----
+* * *
 
 ## macOS 与 Linux 安装指南
 
@@ -140,20 +141,20 @@ DS4 包含一个 CPU 后端，但 Sanfilippo 明确表示：**"不要将 CPU 路
 - 支持 CUDA 的 NVIDIA GPU
 - CUDA Toolkit 12.x+
 - **96GB+ 系统内存**运行 q2；**256GB+** 运行 q4
-- `build-essential`、`curl`、`git`
+- ````build-essential````、````curl````、````git````
 
 ### 第一步：克隆仓库
 
-```bash
+`````bash
 git clone https://github.com/antirez/ds4.git
 cd ds4
-```
+`````
 
 ### 第二步：下载模型权重
 
 DS4 仅支持其专门制作的 GGUF 文件。使用提供的下载脚本：
 
-```bash
+`````bash
 # 适用于 96-128GB 内存机器（推荐）
 ./download_model.sh q2-imatrix
 
@@ -162,66 +163,66 @@ DS4 仅支持其专门制作的 GGUF 文件。使用提供的下载脚本：
 
 # 可选：投机解码支持
 ./download_model.sh mtp
-```
+`````
 
-脚本从 Hugging Face（`antirez/deepseek-v4-gguf`）获取文件，存储在 `./gguf/` 下，并在 `./ds4flash.gguf` 创建符号链接。
+脚本从 Hugging Face（````antirez/deepseek-v4-gguf````）获取文件，存储在 ````./gguf/```` 下，并在 ````./ds4flash.gguf```` 创建符号链接。
 
 ### 第三步：编译引擎
 
 **macOS (Metal)：**
-```bash
+`````bash
 make
-```
+`````
 
 **Linux (CUDA — DGX Spark / GB10)：**
-```bash
+`````bash
 make cuda-spark
-```
+`````
 
 **Linux (CUDA — 通用 GPU)：**
-```bash
+`````bash
 make cuda-generic
-```
+`````
 
 **仅 CPU（仅诊断）：**
-```bash
+`````bash
 make cpu
-```
+`````
 
 编译生成两个二进制文件：
-- `./ds4` —— 交互式 CLI
-- `./ds4-server` —— OpenAI/Anthropic 兼容 HTTP API 服务器
+- ````./ds4```` —— 交互式 CLI
+- ````./ds4-server```` —— OpenAI/Anthropic 兼容 HTTP API 服务器
 
 ### 第四步：验证安装
 
-```bash
+`````bash
 # 快速一次性测试
 ./ds4 -p "用一段话解释 CAP 定理。"
 
 # 查看所有选项
 ./ds4 --help
 ./ds4-server --help
-```
+`````
 
----
+* * *
 
 ## 性能基准测试：DS4 对比 Ollama 与 llama.cpp
 
 大语言模型推理的基准测试 notoriously 棘手 —— 数字因提示词长度、量化方式、批处理大小和硬件而异。尽管如此，DS4 公布的数字展现了令人印象深刻的性能，特别是在**长上下文预填充**方面。
 
-### DS4 官方基准测试 (Metal, `--ctx 32768`, 贪婪解码, `-n 256`)
+### DS4 官方基准测试 (Metal, ````--ctx 32768````, 贪婪解码, ````-n 256````)
 
 | 机器配置 | 量化 | 提示词 | 预填充速度 | 生成速度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | MacBook Pro M3 Max, 128GB | q2 | 短提示 | 58.52 t/s | 26.68 t/s |
 | MacBook Pro M3 Max, 128GB | q2 | 11,709 token | **250.11 t/s** | 21.47 t/s |
@@ -240,49 +241,49 @@ llama.cpp 是使本地 LLM 推理成为可能的基础项目。DS4 公开承认�
 
 **结论：** 如果你想要一把支持多模型的瑞士军刀，Ollama 或 llama.cpp 是更好的选择。如果你想让 DeepSeek V4 Flash 在你的 Mac Studio 或 CUDA 工作站上以最快、最可靠的方式运行，DS4 正是为这一确切任务而生。
 
----
+* * *
 
 ## 推理代码示例
 
 ### 一次性 CLI 提示
 
-```bash
+`````bash
 ./ds4 -p "写一个 Python 函数实现归并排序。"
-```
+`````
 
 ### 交互式对话会话
 
-```bash
+`````bash
 ./ds4
-```
+`````
 
 这将启动一个带持久 KV 状态的多轮对话。常用命令：
-- `/help` —— 显示可用命令
-- `/think` —— 启用思考模式（默认）
-- `/think-max` —— 最大推理努力
-- `/nothink` —— 禁用思考以获得更快响应
-- `/ctx 100000` —— 设置上下文窗口大小
-- `/read FILE` —— 将文件内容纳入上下文
-- `/quit` —— 退出
+- ````/help```` —— 显示可用命令
+- ````/think```` —— 启用思考模式（默认）
+- ````/think-max```` —— 最大推理努力
+- ````/nothink```` —— 禁用思考以获得更快响应
+- ````/ctx 100000```` —— 设置上下文窗口大小
+- ````/read FILE```` —— 将文件内容纳入上下文
+- ````/quit```` —— 退出
 
 ### 服务器模式与 OpenAI 兼容 API
 
-```bash
+`````bash
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir /tmp/ds4-kv \
   --kv-disk-space-mb 8192
-```
+`````
 
-服务器在 `http://127.0.0.1:8000` 启动，提供以下端点：
-- `GET /v1/models`
-- `POST /v1/chat/completions`
-- `POST /v1/completions`
-- `POST /v1/messages`（Anthropic 兼容）
+服务器在 ````http://127.0.0.1:8000```` 启动，提供以下端点：
+- ````GET /v1/models````
+- ````POST /v1/chat/completions````
+- ````POST /v1/completions````
+- ````POST /v1/messages````（Anthropic 兼容）
 
 ### cURL 示例（对话补全）
 
-```bash
+`````bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -292,11 +293,11 @@ curl http://127.0.0.1:8000/v1/chat/completions \
     ],
     "stream": true
   }'
-```
+`````
 
 ### Python 客户端示例
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -315,13 +316,13 @@ response = client.chat.completions.create(
 )
 
 for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
 ### 工具调用示例
 
 DS4 支持 OpenAI 风格的函数调用。服务器自动将工具模式转换为 DeepSeek 的 DSML 格式并映射结果：
 
-```bash
+`````bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -342,9 +343,9 @@ curl http://127.0.0.1:8000/v1/chat/completions \
     }],
     "tool_choice": "auto"
   }'
-```
+````
 
----
+* * *
 
 ## 应用场景：DS4 的用武之地
 
@@ -372,7 +373,7 @@ DS4 明确为**编程智能体工作流**而设计。其 OpenAI 兼容的服务�
 
 以每 token 零美元的成本，使用 DS4 进行本地推理消除了高吞吐量工作流的 API 费用。前期硬件投资（高端 Mac 或工作站）在每月处理数百万 token 时很快就能收回成本。
 
----
+* * *
 
 ## 你需要了解的局限性
 
@@ -394,7 +395,7 @@ DS4 功能强大，但了解其约束很重要：
 
 8. **平台范围**：针对 Metal（macOS）和 CUDA（Linux）优化。Windows 和 AMD GPU 支持不是当前优先事项。
 
----
+* * *
 
 ## 总结
 
@@ -404,15 +405,15 @@ DS4 代表了对本地 LLM 推理未来的一次大胆押注：**把一件事做
 
 随着项目从 alpha 走向稳定，DS4 可能成为本地运行 DeepSeek V4 Flash 的 definitive 方式。如果你有硬件和使用场景，它绝对值得与 Ollama 和 llama.cpp 一起评估。
 
----
+* * *
 
 **准备好尝试 DS4 了吗？** 访问 [github.com/antirez/ds4](https://github.com/antirez/ds4)，克隆仓库，下载 q2-imatrix 权重，今天就体验前沿级本地推理。
 
----
+* * *
 
 
 -
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -498,7 +499,7 @@ DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Flash 本地部�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

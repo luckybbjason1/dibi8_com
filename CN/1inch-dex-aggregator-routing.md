@@ -23,6 +23,7 @@ tags: ["1inch"]
 aliases:
   - /posts/1inch-dex-aggregator-routing/-
 ---
+
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -41,11 +42,11 @@ DEX aggregators solve one of DeFi's most persistent challenges: **liquidity frag
 
 1inch addresses this by functioning as a **meta-layer** above individual DEXes. Rather than executing a swap on a single exchange, 1inch's Pathfinder algorithm examines all available liquidity sources simultaneously, constructing complex multi-hop routes that can split a single trade across multiple protocols and even multiple blockchains. In 2026, this network spans: | Chain | Primary DEX Sources | Approximate Liquidity |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ethereum | Uniswap v3, Curve, Balancer, SushiSwap | $2.8B+ |
 | Arbitrum | Camelot, Uniswap v3, SushiSwap | $890M+ |
@@ -79,7 +80,7 @@ Pathfinder operates in two distinct phases: **Phase 1 — Route Discovery**: The
 - Success probability based on historical fill rates
 - MEV protection requirements
 
-```typescript
+````typescript
 // Request a quote through the 1inch API — Pathfinder handles routing internally
 import { OneInchApi } from '@1inch/sdk';
 
@@ -101,17 +102,17 @@ const quote = await oneInch.getQuote({
 console.log('Expected output:', quote.dstAmount);
 console.log('Route paths:', quote.protocols); // Shows the full routing path
 console.log('Estimated gas:', quote.tx.gas);
-```
+`````
 
-The `protocols` field reveals the actual route Pathfinder selected — for example, splitting 60% through Uniswap v3 and 40% through Curve, or routing through an intermediate token like WETH → DAI → USDC for better pricing.
+The ````protocols```` field reveals the actual route Pathfinder selected — for example, splitting 60% through Uniswap v3 and 40% through Curve, or routing through an intermediate token like WETH → DAI → USDC for better pricing.
 
 ## 3. Setting Up the 1inch TypeScript SDK
 
-The official 1inch SDK (`1inch/1inch-sdk` on GitHub, 400+ stars, MIT license) provides a type-safe, promise-based interface to all 1inch APIs. It handles request signing, error handling, and response parsing.
+The official 1inch SDK (````1inch/1inch-sdk```` on GitHub, 400+ stars, MIT license) provides a type-safe, promise-based interface to all 1inch APIs. It handles request signing, error handling, and response parsing.
 
 ### 3.1 Installation and Configuration
 
-```bash
+`````bash
 # Install via npm
 npm install @1inch/sdk
 
@@ -120,15 +121,15 @@ yarn add @1inch/sdk
 
 # Install peer dependencies
 npm install ethers axios dotenv
-```
+`````
 
-Create a `.env` file for your API credentials: ```bash
+Create a ``.env`` file for your API credentials: `````bash
 ONEINCH_API_KEY=your_api_key_here
 PRIVATE_KEY=your_wallet_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
-```
+`````
 
-Initialize the SDK with your configuration: ```typescript
+Initialize the SDK with your configuration: `````typescript
 import { OneInchSdk } from '@1inch/sdk';
 import { ethers } from ethers;
 import * as dotenv from dotenv;
@@ -147,11 +148,11 @@ const sdk = new OneInchSdk({
 });
 
 console.log('1inch SDK initialized for', wallet.address);
-```
+`````
 
 ### 3.2 SDK Architecture Overview
 
-The SDK is organized into namespaces that mirror 1inch's API structure: ```typescript
+The SDK is organized into namespaces that mirror 1inch's API structure: `````typescript
 // SDK module structure
 import {
   SwapApi,        // Token swaps and quotes
@@ -167,7 +168,7 @@ import {
 const swapApi = sdk.swap;
 const limitApi = sdk.limitOrder;
 const balanceApi = sdk.balance;
-```
+`````
 
 ## 4. Executing Swaps with Optimal Routing
 
@@ -175,7 +176,7 @@ The primary use case for 1inch is executing token swaps with the best possible p
 
 ### 4.1 Basic Swap Execution
 
-```typescript
+`````typescript
 import { OneInchSdk } from '@1inch/sdk';
 
 async function executeSwap() {
@@ -227,11 +228,11 @@ async function executeSwap() {
 }
 
 executeSwap().catch(console.error);
-```
+`````
 
 ### 4.2 Handling Slippage and Partial Fills
 
-Slippage tolerance is critical in volatile markets. The SDK provides granular control: ```typescript
+Slippage tolerance is critical in volatile markets. The SDK provides granular control: `````typescript
 // Conservative settings for large trades
 const largeTradeParams = {
   src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
@@ -254,11 +255,11 @@ const quickTradeParams = {
   // Prioritize speed over optimal price
   protocols: 'UNISWAP_V3,SUSHI,CURVE', // Whitelist specific protocols
 };
-```
+`````
 
 ### 4.3 Cross-Chain Swaps via the Bridge API
 
-1inch's aggregation extends beyond single chains. The Bridge API finds optimal routes across chains: ```typescript
+1inch's aggregation extends beyond single chains. The Bridge API finds optimal routes across chains: `````typescript
 // Bridge from Ethereum USDC to Arbitrum ETH
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
@@ -285,7 +286,7 @@ const sentBridgeTx = await wallet.sendTransaction({
   value: bridgeTx.value,
   gasLimit: bridgeTx.gasLimit,
 });
-```
+`````
 
 ## 5. Fusion+: Gasless Swap Execution
 
@@ -298,7 +299,7 @@ Traditional swaps require users to pay gas fees in the native token (ETH on Ethe
 3. **The winning resolver** executes the transaction, paying gas on behalf of the user
 4. **The resolver's fee** is embedded in the swap rate, invisible to the user
 
-```typescript
+`````typescript
 // Execute a Fusion+ gasless swap
 import { FusionOrder } from '@1inch/sdk/fusion';
 
@@ -356,25 +357,25 @@ async function executeFusionSwap() {
     if (done) clearInterval(interval);
   }, 10000);
 }
-```
+`````
 
 ### 5.2 Fusion+ Presets Explained
 
 | Preset | Auction Duration | Priority | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `fast` | 60 seconds | High | Time-sensitive swaps, higher resolver fee |
-| `medium` | 180 seconds | Medium | Balanced speed and cost |
-| `slow` | 600 seconds | Low | Maximum savings, patient execution |
+| ````fast```` | 60 seconds | High | Time-sensitive swaps, higher resolver fee |
+| ````medium```` | 180 seconds | Medium | Balanced speed and cost |
+| ````slow```` | 600 seconds | Low | Maximum savings, patient execution |
 
-```typescript
+`````typescript
 // Monitor Fusion order lifecycle
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
@@ -395,7 +396,7 @@ orderEvents.on(filled, (data) => {
 orderEvents.on(expired, () => {
   console.log('Order expired without fill — retry with better minReturn');
 });
-```
+`````
 
 ## 6. Limit Orders and Programmatic Trading
 
@@ -403,7 +404,7 @@ Beyond market swaps, 1inch offers a robust **limit order protocol** that allows 
 
 ### 6.1 Creating Limit Orders
 
-```typescript
+`````typescript
 // Create a limit order to buy DAI with ETH at a specific price
 const limitOrder = await sdk.limitOrder.createOrder({
   makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH (what you sell)
@@ -433,11 +434,11 @@ const placedOrder = await sdk.limitOrder.submitOrder({
 
 console.log('Limit order placed:', placedOrder.orderHash);
 console.log('Expected fill price:', 900 / 0.5, 'DAI per ETH');
-```
+`````
 
 ### 6.2 Listening for Order Fills
 
-```typescript
+`````typescript
 // Set up a webhook or polling listener for order fills
 import { LimitOrderWatcher } from '@1inch/sdk/watcher';
 
@@ -463,7 +464,7 @@ watcher.watchOrder(placedOrder.orderHash, (event) => {
 
 // Start watching
 watcher.start();
-```
+`````
 
 ## 7. Portfolio API and Balance Tracking
 
@@ -471,7 +472,7 @@ The **Portfolio API** provides comprehensive tracking of token balances, transac
 
 ### 7.1 Fetching Multi-Chain Balances
 
-```typescript
+`````typescript
 // Get all token balances across supported chains
 const portfolio = await sdk.balance.getBalances({
   walletAddress: 0xYourWalletAddress,
@@ -484,9 +485,9 @@ const portfolio = await sdk.balance.getBalances({
 
 // Process and display balances
 for (const chainBalance of portfolio.balances) {
-  console.log(`\n=== Chain ID: ${chainBalance.chainId} ===`);
+  console.log(````\n=== Chain ID: ${chainBalance.chainId} ===````);
   for (const token of chainBalance.tokens) {
-    console.log(`${token.symbol}: ${token.balance} ($${token.usdValue})`);
+    console.log(````${token.symbol}: ${token.balance} ($${token.usdValue})````);
   }
 }
 
@@ -495,12 +496,12 @@ const totalValue = portfolio.balances.reduce((sum, chain) => {
   return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
-console.log(`\nTotal Portfolio Value: $${totalValue.toFixed(2)}`);
-```
+console.log(````\nTotal Portfolio Value: $${totalValue.toFixed(2)}````);
+`````
 
 ### 7.2 Transaction History and P&L Analysis
 
-```typescript
+`````typescript
 // Fetch complete transaction history
 const history = await sdk.history.getTransactions({
   walletAddress: wallet.address,
@@ -531,12 +532,12 @@ console.table(swapAnalysis);
 const totalVolume = swaps.reduce((sum, tx) => {
   return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
-console.log(`Total swap volume: $${totalVolume.toFixed(2)}`);
-```
+console.log(````Total swap volume: $${totalVolume.toFixed(2)}````);
+`````
 
 ### 7.3 Building a Real-Time Portfolio Dashboard
 
-```typescript
+`````typescript
 // WebSocket-based real-time portfolio updates
 import { PortfolioWebSocket } from '@1inch/sdk/websocket';
 
@@ -546,8 +547,8 @@ const ws = new PortfolioWebSocket({
 });
 
 ws.on(balanceUpdate, (update) => {
-  console.log(`Balance update: ${update.tokenSymbol} = ${update.newBalance}`);
-  console.log(`USD value change: $${update.usdValueChange}`);
+  console.log(````Balance update: ${update.tokenSymbol} = ${update.newBalance}````);
+  console.log(````USD value change: $${update.usdValueChange}````);
   // Update your dashboard UI here
 });
 
@@ -559,7 +560,7 @@ ws.on(newTransaction, (tx) => {
 });
 
 ws.connect();
-```
+`````
 
 ## 8. Production Integration Patterns
 
@@ -567,7 +568,7 @@ Deploying 1inch integration in production requires attention to security, reliab
 
 ### 8.1 Error Handling and Retry Logic
 
-```typescript
+`````typescript
 // Robust swap execution with retries
 async function executeSwapWithRetry(
   params: SwapParams,
@@ -579,7 +580,7 @@ async function executeSwapWithRetry(
     try {
       // Refresh the quote before each attempt (prices change!)
       const freshQuote = await sdk.swap.getQuote(params);
-      console.log(`Attempt ${attempt}: Expected output = ${freshQuote.dstAmount}`);
+      console.log(````Attempt ${attempt}: Expected output = ${freshQuote.dstAmount}````);
 
       // Check if price moved too much
       if (parseFloat(freshQuote.dstAmount) < params.minExpectedOutput!) {
@@ -602,7 +603,7 @@ async function executeSwapWithRetry(
 
     } catch (error) {
       lastError = error as Error;
-      console.error(`Attempt ${attempt} failed:`, error);
+      console.error(````Attempt ${attempt} failed:````, error);
 
       // Wait before retry with exponential backoff
       if (attempt < maxRetries) {
@@ -612,13 +613,13 @@ async function executeSwapWithRetry(
     }
   }
 
-  throw new Error(`Swap failed after ${maxRetries} attempts: ${lastError?.message}`);
+  throw new Error(````Swap failed after ${maxRetries} attempts: ${lastError?.message}````);
 }
-```
+`````
 
 ### 8.2 Rate Limiting and API Key Management
 
-```typescript
+`````typescript
 // Rate-limited API client for high-frequency usage
 import { RateLimiter } from limiter;
 
@@ -647,11 +648,11 @@ const client = new OneInchRateLimitedClient(
   process.env.ONEINCH_API_KEY!,
   3 // Conservative 3 requests per second
 );
-```
+`````
 
 ### 8.3 Security Best Practices
 
-```typescript
+`````typescript
 // Input validation for production swaps
 function validateSwapParams(params: SwapParams): void {
   // Validate token addresses
@@ -685,13 +686,13 @@ const wallet = new ethers.Wallet(
   await getKeyFromAWSKMS(), // Never hardcode private keys!
   provider
 );
-```
+`````
 
 ## 9. Frequently Asked Questions
 
 **Q1: How does 1inch make money if the SDK is free and open-source?**
 
-1inch generates revenue through **liquidity source fees** and optional **protocol governance fees**. When a trade is routed through certain DEXes, 1inch may receive a small referral fee. For developers, the SDK and API are free to use, though high-volume users can opt into a **partner fee** model that shares revenue with the integrating application. The MIT-licensed SDK (`1inch/1inch-sdk`, 400+ GitHub stars) ensures complete transparency and permissionless integration.
+1inch generates revenue through **liquidity source fees** and optional **protocol governance fees**. When a trade is routed through certain DEXes, 1inch may receive a small referral fee. For developers, the SDK and API are free to use, though high-volume users can opt into a **partner fee** model that shares revenue with the integrating application. The MIT-licensed SDK (````1inch/1inch-sdk````, 400+ GitHub stars) ensures complete transparency and permissionless integration.
 
 **Q2: What is the difference between a regular swap and a Fusion+ swap?**
 
@@ -699,11 +700,11 @@ Regular swaps execute **on-chain immediately** — you pay gas, the transaction 
 
 **Q3: Can I use 1inch on chains other than Ethereum?**
 
-Absolutely. 1inch supports **10+ blockchain networks** including Ethereum, Arbitrum, Optimism, Polygon, BNB Chain, Base, Avalanche, Fantom, Gnosis, and zkSync Era. The SDK initialization accepts a `networkId` parameter corresponding to each chain's EIP-155 chain ID. Cross-chain swaps are also supported via the Bridge API, allowing seamless movement of assets between networks with optimal routing.
+Absolutely. 1inch supports **10+ blockchain networks** including Ethereum, Arbitrum, Optimism, Polygon, BNB Chain, Base, Avalanche, Fantom, Gnosis, and zkSync Era. The SDK initialization accepts a ````networkId```` parameter corresponding to each chain's EIP-155 chain ID. Cross-chain swaps are also supported via the Bridge API, allowing seamless movement of assets between networks with optimal routing.
 
 **Q4: How do I protect my trades from MEV attacks?**
 
-1inch provides multiple MEV protection mechanisms: (1) **Fusion+ orders** are filled by professional resolvers who internalize execution, making frontrunning impossible; (2) The **Pathfinder algorithm** can route through **private mempools** and **Flashbots Protect** on supported chains; (3) For large trades, enabling the `compatibility` flag adds additional slippage checks; (4) Setting tight `slippage` tolerances reduces the profit window for sandwich attacks. For maximum protection on high-value trades, Fusion+ with the `slow` preset is recommended.
+1inch provides multiple MEV protection mechanisms: (1) **Fusion+ orders** are filled by professional resolvers who internalize execution, making frontrunning impossible; (2) The **Pathfinder algorithm** can route through **private mempools** and **Flashbots Protect** on supported chains; (3) For large trades, enabling the ````compatibility```` flag adds additional slippage checks; (4) Setting tight ````slippage```` tolerances reduces the profit window for sandwich attacks. For maximum protection on high-value trades, Fusion+ with the ````slow```` preset is recommended.
 
 **Q5: Is the 1inch SDK suitable for institutional or high-frequency trading?**
 
@@ -730,11 +731,11 @@ Before you deploy any of the tools above into production, you'll need solid infr
 
 1inch has established itself as **essential infrastructure** in the DeFi trading stack. Its Pathfinder algorithm's ability to route across 300+ liquidity sources delivers consistently superior price execution, while features like Fusion+ gasless swaps and the comprehensive Portfolio API provide developers with powerful tools for building next-generation trading applications.
 
-The **TypeScript SDK** (`1inch/1inch-sdk`, 400 stars, MIT license) offers a production-ready, type-safe interface that abstracts away the complexity of multi-source routing while preserving fine-grained control over execution parameters. Whether you're executing a simple token swap, building a sophisticated trading dashboard, or integrating limit orders into your DeFi protocol, 1inch provides the infrastructure layer you need.
+The **TypeScript SDK** (````1inch/1inch-sdk````, 400 stars, MIT license) offers a production-ready, type-safe interface that abstracts away the complexity of multi-source routing while preserving fine-grained control over execution parameters. Whether you're executing a simple token swap, building a sophisticated trading dashboard, or integrating limit orders into your DeFi protocol, 1inch provides the infrastructure layer you need.
 
 **Getting started is straightforward:**
 1. Obtain an API key from [1inch Developer Portal](https://portal.1inch.io)
-2. Install the SDK: `npm install @1inch/sdk`
+2. Install the SDK: ````npm install @1inch/sdk```
 3. Follow the code examples in this guide for your specific use case
 4. Join the [1inch Discord](https://discord.gg/1inch) for developer support
 
@@ -775,7 +776,7 @@ Explore more articles in this category: 1. [Aave V4 Defi Lending Protocol](/cn/a
 2. [Alpaca Trading Api Stock Broker](/cn/alpaca-trading-api-stock-broker)
 
 
----
+* * *
 ## Frequently Asked Questions (FAQ)
 
 **问：量化交易的风险有多大？**
@@ -799,4 +800,4 @@ Explore more articles in this category: 1. [Aave V4 Defi Lending Protocol](/cn/a
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

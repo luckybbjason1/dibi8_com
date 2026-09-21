@@ -30,19 +30,20 @@ faqs: - q: 'repomix là gì và tên cũ của nó là gì?'
     a: 'repomix hoạt động tốt với khoảng 100,000–200,000 token (khoảng 5,000–10,000 file). Với repo lớn hơn, dùng --include để chỉ gửi subsystem liên quan. Flag --output-show-line-numbers giúp LLM đưa ra gợi ý chỉnh sửa chính xác theo số dòng.'
 ---
 
+
 ![repomix 2026: Đóng gói codebase cho ngữ cảnh LLM — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 
 Khi nhờ Claude hoặc ChatGPT debug lỗi liên quan nhiều file, việc dán từng đoạn code một nhanh chóng mất ngữ cảnh. [repomix](https://github.com/yamadashy/repomix) giải quyết bằng cách biến toàn bộ repository thành một file có cấu trúc — sẵn sàng đưa vào cửa sổ ngữ cảnh của bất kỳ LLM nào trong vài giây.
 
 ## repomix Làm Gì
 
-repomix quét repository, loại trừ file trong `.gitignore`, và xuất file text duy nhất chứa: 1. **Tóm tắt repository** — tổng số file, ước tính token, phân bố ngôn ngữ
+repomix quét repository, loại trừ file trong ```.gitignore````, và xuất file text duy nhất chứa: 1. **Tóm tắt repository** — tổng số file, ước tính token, phân bố ngôn ngữ
 2. **Cây thư mục** — cấu trúc thư mục đầy đủ
 3. **Tất cả file nguồn** — mỗi file có tiêu đề đường dẫn và số dòng tùy chọn
 
 ## Bắt Đầu Không Cần Cấu Hình
 
-```bash
+`````bash
 # Chạy không cần cài đặt bằng npx
 npx repomix
 
@@ -54,19 +55,19 @@ repomix ./src
 
 # Đóng gói repository GitHub từ xa (không cần git clone)
 npx repomix --remote https://github.com/user/repo
-```
+`````
 
 ## Định Dạng Đầu Ra
 
 | Định dạng | Cờ | Phù hợp nhất |
 |-----------|-----|-------------|
-| Văn bản thuần | `--style plain` (mặc định) | ChatGPT, LLM thông thường |
-| XML | `--style xml` | Claude (dùng XML bản địa) |
-| Markdown | `--style markdown` | Copilot, quy trình tài liệu |
+| Văn bản thuần | ````--style plain```` (mặc định) | ChatGPT, LLM thông thường |
+| XML | ````--style xml```` | Claude (dùng XML bản địa) |
+| Markdown | ````--style markdown```` | Copilot, quy trình tài liệu |
 
 ## Lọc Đầu Ra (Cho Dự Án Lớn)
 
-```bash
+`````bash
 # Chỉ bao gồm file TypeScript trong src/
 repomix --include "src/**/*.ts"
 
@@ -75,15 +76,15 @@ repomix --ignore "**/*.test.ts,dist/**"
 
 # Hiển thị số dòng
 repomix --output-show-line-numbers
-```
+`````
 
-## Bảo Mật: `.repomixignore`
+## Bảo Mật: ````.repomixignore````
 
-repomix tôn trọng `.gitignore` theo mặc định, nhưng file nhạy cảm chưa được gitignore (như `.env` local) có thể lọt vào output. Tạo file `.repomixignore` để loại trừ rõ ràng: ```
+repomix tôn trọng ``.gitignore`` theo mặc định, nhưng file nhạy cảm chưa được gitignore (như ``.env`` local) có thể lọt vào output. Tạo file ``.repomixignore`` để loại trừ rõ ràng: `````
 .env
 .env.local
 config/credentials.json
-```
+````
 
 > **Cần máy chủ để xây dựng công cụ AI?** [Người dùng mới DigitalOcean nhận $200 tín dụng miễn phí](https://m.do.co/c/eca87ac14ee0) — đủ để chạy máy chủ phát triển hoặc triển khai codebase hỗ trợ AI.
 
@@ -151,12 +152,12 @@ repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy Nhất Cho LLM —
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -166,6 +167,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [nanochat-karpathy-100-chatgpt-single-gpu](repomix-pack-repo-for-llm-context-2026)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

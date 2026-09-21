@@ -35,6 +35,7 @@ faq: - q: "Which AI coding agent is the best in 2026 Q2?"
   - q: "Which one has the biggest context window in mid-2026?"
     a: "Gemini CLI with Gemini 2.5 Pro supports 1M+ token context (the largest by far). Claude Code 1.0 with Claude Sonnet 4.6 (or Opus 4.7) supports 1M tokens via the 1M-context tier. Cursor Pro defaults to 200K. Codex CLI with GPT-5 supports 256K. For very large monorepos, Gemini CLI's context advantage is real but its tool-use reliability lags."
 ---
+
 {{</* resource-info */>}}
 
 # AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI — The Honest Comparison
@@ -64,21 +65,21 @@ Explore more articles in this category: 1. [Act](/cn/act)
 2. [Activepieces Workflow Automation](/cn/activepieces-workflow-automation)
 3. [Affine Knowledge Base Whiteboard](/cn/affine-knowledge-base-whiteboard)
 
----
+* * *
 
 ## The Four Tools at a Glance
 
 | Tool | Vendor | Latest Version | Primary Interface | Context Window |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Anthropic | 1.0 | CLI + IDE extensions | 200K (1M tier) |
 | Cursor Pro | Anysphere | 2026.05 | Standalone IDE (VS Code fork) | 200K |
@@ -96,19 +97,19 @@ We ran each tool against the same five workflows on a real 50K-line TypeScript c
 
 ### Workflow 1: Add a New Feature (3 files, ~200 LOC)
 
-Add a `userRoles` field to the User entity, propagate through API + Prisma schema + frontend form + tests.
+Add a ```userRoles```` field to the User entity, propagate through API + Prisma schema + frontend form + tests.
 
 | Tool | Time | First-Try Success | Tokens Used | Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 4m 12s | ✅ 3/3 | ~85K | $0.42 |
 | Cursor Pro | 5m 38s | ✅ 2/3 | ~95K | $0.18 (Pro tier) |
@@ -119,24 +120,24 @@ Add a `userRoles` field to the User entity, propagate through API + Prisma schem
 
 ### Workflow 2: Repo-Wide Refactor (rename utility, ~40 call sites)
 
-Rename `formatCurrency` to `formatMoney` across the entire codebase including tests.
+Rename ````formatCurrency```` to ````formatMoney```` across the entire codebase including tests.
 
 | Tool | Time | Sites Found | Missed | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 2m 50s | 40/40 | 0 | Used semantic search + ripgrep correctly |
 | Cursor Pro | 1m 12s | 40/40 | 0 | Built-in symbol-aware rename |
-| Codex CLI | 4m 30s | 38/40 | 2 | Missed two in `.mdx` files |
-| Gemini CLI | 5m 45s | 35/40 | 5 | Missed `.mdx` and template strings |
+| Codex CLI | 4m 30s | 38/40 | 2 | Missed two in ````.mdx```` files |
+| Gemini CLI | 5m 45s | 35/40 | 5 | Missed ````.mdx```` and template strings |
 
 **Verdict**: Cursor wins on speed (its IDE has symbol-aware tools). Claude Code matches on quality.
 
@@ -146,13 +147,13 @@ Test fails 30% of the time. Find root cause and fix without making the rest of t
 
 | Tool | Diagnosis Quality | Fix Quality | Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | ✅ Correct on first try (race condition in async setup) | Clean fix with explanatory comment | 8m |
 | Cursor Pro | ⚠️ Partial (identified the symptom, not root cause) | Patch that masked the issue | 6m |
@@ -167,13 +168,13 @@ Comprehend a 2000-line legacy utility, produce architectural summary + refactor 
 
 | Tool | Summary Quality | Refactor Suggestions | Reading Speed |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Excellent — accurate, structured | 5 specific, prioritized | Fast |
 | Cursor Pro | Good — slightly surface-level | 3 generic suggestions | Fast |
@@ -188,13 +189,13 @@ Generate Prisma migration, run it locally, verify schema, run tests, commit with
 
 | Tool | Tool Coordination | Errors Encountered | Recovery |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | ✅ Smooth, 4 tools used cleanly | 1 (missing env var) | Recovered automatically |
 | Cursor Pro | ⚠️ Mixed IDE actions with terminal | 2 | Required user prompt |
@@ -207,13 +208,13 @@ Generate Prisma migration, run it locally, verify schema, run tests, commit with
 
 For a developer doing 3+ hours of AI-assisted coding daily: | Tool | Plan | Monthly Cost | Includes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Anthropic Max | **$200** | Unlimited Claude usage in Claude Code + Claude.ai |
 | Cursor Pro | Pro | $20 | Cursor IDE + 500 fast premium-model requests/mo |
@@ -251,7 +252,7 @@ For a developer doing 3+ hours of AI-assisted coding daily: | Tool | Plan | Mont
 
 ## What All Four Still Don't Do Well
 
-- **Project memory across sessions**: All four struggle to remember context from yesterday's session. MCP `memory` server helps but adoption is low.
+- **Project memory across sessions**: All four struggle to remember context from yesterday's session. MCP ````memory``` server helps but adoption is low.
 - **Multi-repo workflows**: All four are repo-scoped. Cross-repo refactoring requires manual orchestration.
 - **Cost transparency in real time**: Cursor and Gemini show usage. Claude Code and Codex CLI hide it until end-of-month.
 - **Onboarding senior code**: All four struggle with poorly documented enterprise codebases where context isn't in the code.
@@ -278,7 +279,7 @@ For most professional developers we've talked to in Q2 2026: Claude Code + Curso
 The biggest mistake we see: developers chasing the latest release because Hacker News said so. Don"t switch on hype. Run your own three-workflow benchmark. The right tool is the one that makes your specific work measurably faster — not the one with the biggest model.
 
 
----
+* * *
 **See also**: [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/) · [MCP Servers 2026](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -329,4 +330,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

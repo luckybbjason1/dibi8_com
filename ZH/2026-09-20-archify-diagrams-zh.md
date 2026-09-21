@@ -466,10 +466,11 @@ archify --focus=data-flow --check=exposure
 | Repository Size | Analysis Time | Diagram Generation |
 |
 ---
+
 |
----
+* * *
 |
----
+* * *
 |
 | < 10K LOC | < 5 seconds | < 2 seconds |
 | 10K - 100K LOC | 10-30 seconds | 3-5 seconds |
@@ -494,11 +495,11 @@ archify --focus=data-flow --check=exposure
 
 | Feature | Archify | Mermaid |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Auto-generation | ✅ Yes | ❌ Manual |
 | Code Analysis | ✅ Deep | ❌ None |
@@ -513,11 +514,11 @@ archify --focus=data-flow --check=exposure
 
 | Feature | Archify | Draw.io |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Automation | ✅ Full | ❌ None |
 | Design Quality | High | High |
@@ -531,11 +532,11 @@ archify --focus=data-flow --check=exposure
 
 | Feature | Archify | PlantUML |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Auto-generation | ✅ Yes | ❌ Manual |
 | Language Support | Multiple | Java-focused |
@@ -620,13 +621,13 @@ As codebases grow more complex, the need for clear documentation becomes critica
 The tool doesn't replace human design thinking—it enhances it by handling the tedious parts of documentation while you focus on the important architectural decisions.
 
 
----
+* * *
 **GitHub Repository**: https://github.com/tt-a1i/archify  
 **Stars**: 59,700 ⭐ | **Forks**: 3,900 🍴 | **License**: MIT  
 **Last Updated**: September 2026
 
 
----
+* * *
 *Found this helpful? Join our Telegram community for daily AI tool updates: https://t.me/DIBI8_Group*
 
 ## Frequently Asked Questions (FAQ)
@@ -652,4 +653,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

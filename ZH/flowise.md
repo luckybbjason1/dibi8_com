@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -73,7 +74,7 @@ Flowise 提供四种安装方式，分别适合不同的环境和技能水平。
 
 需要 Node.js v18.15.0 或 v20+。这是从安装到运行最快的路径。
 
-```bash
+````bash
 # 全局安装 Flowise
 npm install -g flowise
 
@@ -82,30 +83,30 @@ npm install -g flowise@3.1.2
 
 # 启动 Flowise
 npx flowise start
-```
+`````
 
-在浏览器中打开 `http://localhost:3000`。首次启动会在 `~/.flowise` 自动创建 SQLite 数据库。
+在浏览器中打开 ````http://localhost:3000````。首次启动会在 ````~/.flowise```` 自动创建 SQLite 数据库。
 
 ### 方式二：Docker（推荐用于生产环境）
 
 这是最可靠的部署方式。Flowise 在 Docker Hub 提供官方镜像，支持多架构。
 
-```bash
+`````bash
 # 拉取并运行官方镜像
 docker run -d -p 3000:3000 \
   --name flowise \
   -e FLOWISE_USERNAME=admin \
   -e FLOWISE_PASSWORD=secure-password \
   flowiseai/flowise:latest
-```
+`````
 
-访问 `http://localhost:3000`，使用你设置的凭据登录。
+访问 ````http://localhost:3000````，使用你设置的凭据登录。
 
 ### 方式三：Docker Compose（生产级，带数据库）
 
 对于需要持久化的部署环境，使用 Docker Compose 配合 PostgreSQL 和卷挂载。
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: flowise: image: flowiseai/flowise:latest
@@ -133,19 +134,19 @@ services: flowise: image: flowiseai/flowise:latest
     volumes: - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: flowise_data: postgres_data: ```
+volumes: flowise_data: postgres_data: `````
 
 启动命令：
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
 ### 方式四：部署到 DigitalOcean 云服务器
 
 如果你想在可靠的云 VPS 上托管 Flowise，可以在几分钟内部署到 DigitalOcean。
 
-```bash
+`````bash
 # 在全新的 Ubuntu 24.04 服务器上（2 vCPU / 2GB RAM / $12/月）
 apt update && apt install -y docker.io docker-compose
 
@@ -158,11 +159,11 @@ cp .env.example .env
 
 # 编辑配置文件
 nano .env
-```
+`````
 
-DigitalOcean 部署的 `.env` 示例：
+DigitalOcean 部署的 ````.env```` 示例：
 
-```bash
+`````bash
 PORT=3000
 DATABASE_TYPE=sqlite
 DATABASE_PATH=/root/.flowise
@@ -173,50 +174,50 @@ FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=your-secure-password-here
 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
 JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)
-```
+`````
 
 启动服务：
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
 ### 环境变量参考表
 
 | 变量 | 说明 | 默认值 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `PORT` | HTTP 服务端口 | 3000 |
-| `DATABASE_TYPE` | 数据库引擎（sqlite, postgres） | sqlite |
-| `DATABASE_PATH` | SQLite 文件路径 | ~/.flowise |
-| `FLOWISE_USERNAME` | 管理员用户名 | — |
-| `FLOWISE_PASSWORD` | 管理员密码 | — |
-| `JWT_AUTH_TOKEN_SECRET` | 访问令牌密钥 | 自动生成 |
-| `JWT_REFRESH_TOKEN_SECRET` | 刷新令牌密钥 | 自动生成 |
-| `BLOB_STORAGE_PATH` | 文件上传存储路径 | ~/.flowise/storage |
-| `DISABLE_FLOWISE_TELEMETRY` | 关闭匿名遥测 | false |
+| ````PORT```` | HTTP 服务端口 | 3000 |
+| ````DATABASE_TYPE```` | 数据库引擎（sqlite, postgres） | sqlite |
+| ````DATABASE_PATH```` | SQLite 文件路径 | ~/.flowise |
+| ````FLOWISE_USERNAME```` | 管理员用户名 | — |
+| ````FLOWISE_PASSWORD```` | 管理员密码 | — |
+| ````JWT_AUTH_TOKEN_SECRET```` | 访问令牌密钥 | 自动生成 |
+| ````JWT_REFRESH_TOKEN_SECRET```` | 刷新令牌密钥 | 自动生成 |
+| ````BLOB_STORAGE_PATH```` | 文件上传存储路径 | ~/.flowise/storage |
+| ````DISABLE_FLOWISE_TELEMETRY```` | 关闭匿名遥测 | false |
 
 ## 与主流工具集成
 
 ### OpenAI 集成
 
-大多数用户从 OpenAI 模型开始。在 Flowise UI 的 Credentials 中配置 API Key，然后在 Flow 中使用 `ChatOpenAI` 节点。
+大多数用户从 OpenAI 模型开始。在 Flowise UI 的 Credentials 中配置 API Key，然后在 Flow 中使用 ````ChatOpenAI```` 节点。
 
-```bash
+`````bash
 # 可选：将 OpenAI API Key 设置为环境变量
 export OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
 ### Ollama（本地大模型）
 
 使用 Ollama 运行本地模型可以消除 API 费用并确保数据不出服务器。此方案非常适合对隐私敏感的部署场景。
 
-```yaml
+`````yaml
 # docker-compose-ollama.yml
 version: '3.8'
 services: ollama: image: ollama/ollama:latest
@@ -231,31 +232,31 @@ services: ollama: image: ollama/ollama:latest
     depends_on: - ollama
     restart: unless-stopped
 
-volumes: ollama_data: ```
+volumes: ollama_data: `````
 
 拉取模型并开始使用：
 
-```bash
+`````bash
 # 拉取轻量级测试模型
 docker exec -it ollama ollama pull qwen2:7b
 
 # 或拉取 Llama 3
 docker exec -it ollama ollama pull llama3.1:8b
-```
+`````
 
-在 Flowise 画布中，选择 `ChatOllama` 节点，将模型名设置为 `qwen2:7b` 或 `llama3.1:8b`。
+在 Flowise 画布中，选择 ````ChatOllama```` 节点，将模型名设置为 ````qwen2:7b```` 或 ````llama3.1:8b````。
 
 ### Chroma 向量数据库（RAG 设置）
 
 对于生产级 RAG 流水线，Chroma 提供了一个轻量级向量数据库，与 Flowise 无缝协作。
 
-```yaml
+`````yaml
 # 添加到 docker-compose.yml
   chroma: image: chromadb/chroma:latest
     ports: - "8000:8000"
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
-```
+`````
 
 在 Flowise 中构建 RAG 流水线：
 
@@ -271,20 +272,20 @@ docker exec -it ollama ollama pull llama3.1:8b
 
 对于高吞吐量的混合搜索 RAG 场景，Qdrant 的性能优于内存存储。
 
-```yaml
+`````yaml
 # 在 compose 文件中添加 Qdrant
   qdrant: image: qdrant/qdrant:latest
     ports: - "6333:6333"
       - "6334:6334"
     volumes: - qdrant_data:/qdrant/storage
     restart: unless-stopped
-```
+`````
 
-在 Flowise 中使用 `Qdrant` 向量数据库节点，host 设置为 `http://qdrant:6333`。
+在 Flowise 中使用 ````Qdrant```` 向量数据库节点，host 设置为 ````http://qdrant:6333````。
 
 ### Weaviate（企业级向量数据库）
 
-```yaml
+`````yaml
   weaviate: image: semitechnologies/weaviate:latest
     ports: - "8080:8080"
     environment: QUERY_DEFAULTS_LIMIT: 25
@@ -292,13 +293,13 @@ docker exec -it ollama ollama pull llama3.1:8b
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes: - weaviate_data:/var/lib/weaviate
     restart: unless-stopped
-```
+`````
 
 ### API 部署
 
 每个 Flow 都会自动暴露 REST API。导出你的 Chatflow 并在任意地方集成。
 
-```bash
+`````bash
 # 使用 curl 测试已部署的 Flow
 curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
   -H "Content-Type: application/json" \
@@ -308,11 +309,11 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
       "sessionId": "user_001"
     }
   }'
-```
+`````
 
 响应示例：
 
-```json
+`````json
 {
   "text": "根据我们的文档，退货政策允许在购买后 30 天内凭原始收据退货。",
   "sourceDocuments": [
@@ -322,11 +323,11 @@ curl -X POST "http://localhost:3000/api/v1/prediction/your-chatflow-id" \
     }
   ]
 }
-```
+`````
 
 Python SDK 示例：
 
-```python
+`````python
 import requests
 
 FLOWISE_API = "http://localhost:3000/api/v1/prediction/your-chatflow-id"
@@ -339,7 +340,7 @@ def ask(question, session_id="user_001"): resp = requests.post(FLOWISE_API, json
 
 answer = ask("你们有哪些配送方式？")
 print(answer)
-```
+`````
 
 ### 嵌入网站
 
@@ -348,7 +349,7 @@ Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任�
 ![Flowise 嵌入组件](https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png)
 *可自定义主题的嵌入聊天组件 —— 一个 script 标签即可部署到任意网站*
 
-```html
+`````html
 import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
@@ -370,7 +371,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
     }
   });
 </script>
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -378,11 +379,11 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
 
 | 指标 | 数值 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Docker 冷启动时间 | 3-5 秒 | 在 2 vCPU VPS 上 |
 | 首响延迟 | 1.5-3 秒 | 使用 GPT-4o，取决于 prompt |
@@ -398,15 +399,15 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
 
 | 特性 | Flowise | Dify | n8n | LangChain |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ |
 | 许可证 | MIT | Apache-2.0 | Fair-code | MIT |
@@ -438,7 +439,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
 
 在将 Flowise 暴露到公网之前，请完成以下步骤：
 
-```bash
+`````bash
 # 1. 启用身份验证（必须）
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=$(openssl rand -base64 24)
@@ -471,13 +472,13 @@ DISABLE_FLOWISE_TELEMETRY=true
 
 # 5. 为嵌入组件设置 CORS
 CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
-```
+`````
 
 ### 队列模式扩展
 
 对于高流量部署，Flowise 支持基于 Redis 的队列处理与工作进程。
 
-```yaml
+`````yaml
 # docker-compose-queue.yml
 version: '3.8'
 services: redis: image: redis:alpine
@@ -494,17 +495,17 @@ services: redis: image: redis:alpine
     environment: - QUEUE_NAME=flowise-queue
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
-```
+`````
 
 水平扩展工作进程：
 
-```bash
+`````bash
 docker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 # 备份 SQLite 数据库
 docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise
 docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz
@@ -514,11 +515,11 @@ docker exec flowise-postgres pg_dump -U flowise flowise > flowise-db-$(date +%Y%
 
 # 通过 cron 实现每日自动备份（添加到 crontab）
 0 2 * * * /usr/local/bin/backup-flowise.sh >> /var/log/flowise-backup.log 2>&1
-```
+`````
 
 ### Docker 监控
 
-```bash
+`````bash
 # 查看实时日志
 docker compose logs -f flowise
 
@@ -527,7 +528,7 @@ docker stats flowise
 
 # 健康检查端点
 curl http://localhost:3000/api/v1/ping
-```
+`````
 
 ## 局限性 / 客观评估
 
@@ -549,11 +550,11 @@ Flowise 并非适用于所有 AI 项目。以下情况不建议使用 Flowise：
 
 ### 没有 Node.js 的服务器如何安装 Flowise？
 
-使用 Docker。官方 `flowiseai/flowise` 镜像已打包所有依赖。一条 `docker run` 命令即可运行，无需在宿主机上安装 Node.js、pnpm 或任何构建工具。
+使用 Docker。官方 ````flowiseai/flowise```` 镜像已打包所有依赖。一条 ````docker run```` 命令即可运行，无需在宿主机上安装 Node.js、pnpm 或任何构建工具。
 
 ### Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？
 
-可以。Flowise 原生集成 Ollama。启动 Ollama 容器（或本地实例），拉取任意 GGUF 模型，然后在 Flowise 画布中选择 `ChatOllama` 节点。你的数据永远不会离开服务器 —— 无需 API Key。
+可以。Flowise 原生集成 Ollama。启动 Ollama 容器（或本地实例），拉取任意 GGUF 模型，然后在 Flowise 画布中选择 ````ChatOllama```` 节点。你的数据永远不会离开服务器 —— 无需 API Key。
 
 ### 构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？
 
@@ -569,18 +570,18 @@ $5/月的 VPS（1 vCPU / 1 GB RAM）配合 SQLite 即可处理中小型工作负
 
 ### 可以将 Flowise 聊天机器人导出为 API 吗？
 
-每个 Chatflow 和 Agentflow 都会自动获得 REST API 端点，路径为 `/api/v1/prediction/{flow-id}`。UI 会生成 curl、Python 和 JavaScript 代码片段。你也可以一键导出可嵌入的聊天组件。
+每个 Chatflow 和 Agentflow 都会自动获得 REST API 端点，路径为 ````/api/v1/prediction/{flow-id}````。UI 会生成 curl、Python 和 JavaScript 代码片段。你也可以一键导出可嵌入的聊天组件。
 
 ### 如何将 Flowise 升级到新版本？
 
 Docker 部署：拉取最新镜像并重启：
 
-```bash
+`````bash
 docker pull flowiseai/flowise:latest
 docker compose up -d
-```
+`````
 
-NPM 安装：运行 `npm update -g flowise`。升级前始终备份 `~/.flowise` 目录。
+NPM 安装：运行 ````npm update -g flowise````。升级前始终备份 ````~/.flowise```` 目录。
 
 *部分链接为联盟链接。我们可能获得佣金，但你无需支付额外费用。我们只推荐我们实际使用过的工具和服务。*
 
@@ -588,10 +589,10 @@ NPM 安装：运行 `npm update -g flowise`。升级前始终备份 `~/.flowise`
 
 Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个 GitHub Stars、MIT 许可证以及与 LangChain 组件模型直接映射的可视化画布，它是开发者的务实选择 —— 在不编写样板代码的前提下交付 LLM 驱动的聊天机器人和 RAG 系统。
 
-从 `npx flowise start` 开始本地原型。使用 Docker Compose 配合 PostgreSQL 进入生产。连接 Ollama 实现完全私有、无需 API Key 的部署。需要扩展时，添加 Redis 队列工作进程和水平工作副本。
+从 ````npx flowise start```` 开始本地原型。使用 Docker Compose 配合 PostgreSQL 进入生产。连接 Ollama 实现完全私有、无需 API Key 的部署。需要扩展时，添加 Redis 队列工作进程和水平工作副本。
 
 **本周行动清单：**
-1. 使用 Docker 本地部署 Flowise（`docker run -p 3000:3000 flowiseai/flowise`）
+1. 使用 Docker 本地部署 Flowise（````docker run -p 3000:3000 flowiseai/flowise```）
 2. 使用 PDF 加载器、文本分割器和 Chroma 向量库构建你的第一条 RAG 流水线
 3. 导出 REST API 并在测试页面嵌入聊天组件
 4. 加入 [FlowiseAI Telegram 群组](https://t.me/flowiseai) 获取社区支持和每周技巧
@@ -647,7 +648,7 @@ Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](flowise)
@@ -657,7 +658,7 @@ Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个
 - [2026-06-15-trending-ai-agents](flowise)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -32,6 +32,7 @@ faqs: - q: '일반 CPU로 Bitcoin-Classic (BTCC)을 채굴할 수 있나요?'
     a: '아닙니다. BTCC는 현재 시가총액과 유동성이 거의 없고, 주요 거래소 지원도 없으며, 커뮤니티 규모도 매우 작습니다(GitHub 스타 약 18-23개). 투자 대상이 아닌 교육 및 실험적 프로젝트로 보는 것이 가장 적합합니다.'
 ---
 
+
 # Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 복제판
 
 {</* resource-info */>}
@@ -46,7 +47,7 @@ faqs: - q: '일반 CPU로 Bitcoin-Classic (BTCC)을 채굴할 수 있나요?'
 **라이선스**: MIT
 **탐색기**: https://explorer.bitcoin-classic.net/
 
----
+* * *
 
 ## 비전: 모든 사람이 채굴할 수 있도록
 
@@ -56,7 +57,7 @@ Bitcoin-Classic의 핵심 개념은 **초기 비트코인 채굴 경험을 복�
 
 BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를 통해 일반인이 다시 그 경험을 할 수 있도록 합니다.
 
----
+* * *
 
 ## 핵심 기술 파라미터
 
@@ -88,7 +89,7 @@ BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를
 | 210,000 ~ 419,999 | 25 BTCC |
 | 420,000 ~ 629,999 | 12.5 BTCC |
 
----
+* * *
 
 ## 핵심 기능
 
@@ -104,11 +105,11 @@ BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를
 ### 4. 블록체인 탐색기
 공식 온라인 탐색기 https://explorer.bitcoin-classic.net/에서 블록, 거래, 주소 잔액 조회 가능.
 
----
+* * *
 
 ## 빠른 시작
 
-```
+````
 1. Bitcoin-Classic-Setup.exe 다운로드
    → https://github.com/Marcus-Vane/Bitcoin-Classic/releases
 
@@ -122,9 +123,9 @@ BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를
 
 6. 채굴 시작 후 자동으로 채굴 지갑 생성됨,
    우측 상단에서 지갑 전환하여 잔액 확인
-```
+````
 
----
+* * *
 
 ## 보안 주의사항
 
@@ -134,7 +135,7 @@ BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를
 - 누구에게도 별내지 마세요
 - 지갑 자산 소유권의 유일한 증명입니다
 
----
+* * *
 
 ## 비트코인과 비교
 
@@ -149,7 +150,7 @@ BTCC는 **낮은 난이도, CPU 친화적 채굴, 그래픽 인터페이스**를
 | 생태계 | 성숙 (거래소, DeFi) | 초기 (지갑 + 탐색기) |
 | 투자 가치 | 높은 유동성 | 실험적 |
 
----
+* * *
 
 ## 요약
 
@@ -167,7 +168,7 @@ Bitcoin-Classic은 **교육적이고 체험적인** 성격이 강한 프로젝�
 
 > 💡 더 많은 블록체인 및 암호화폐 도구를 원하시나요? 매주 선별된 오픈소스 프로젝트를 위해 [dibi8.com](https://dibi8.com)을 팔로우하세요.
 
----
+* * *
 
 ## 추천 도구
 
@@ -239,7 +240,7 @@ Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

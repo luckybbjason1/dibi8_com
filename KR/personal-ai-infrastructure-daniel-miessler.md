@@ -11,6 +11,7 @@ license: 'MIT'
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
+
 # 개인 AI 인프라: 에이전트 AI 설정 — 2026 가이드
 
 개인 AI 인프라(PAI) (스타 15,000+개)를 만든 Daniel Miessler의 PAI는 AI 전략, 실행, 성찰을 하나의 통합 플랫폼으로 결합하는 "라이프 오퍼레이팅 시스템"입니다. 45개의 스킬, 171개의 워크플로우, 37개의 훅, 알고리즘 v6.3.0을 갖추고 PAI는 AI를 단순한 도구를 넘어 누가 당신이며 무엇을 달성하려는지 아는 지능형 파트너로 변환합니다.
@@ -21,7 +22,7 @@ featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-datase
 
 PAI는 채팅봇이 아니며, 코드 생성기도 아니고, 생산성 앱도 아닙니다. 그것은 **라이프 오퍼레이팅 시스템**입니다 — 모든 AI 도구 사이에 위치하여 모든 AI 상호작용 전반에서 컨텍스트, 전략, 실행을 관리하는 완전한 인프라 레이어입니다.
 
-PAI는 세 가지 레이어로 구성됩니다: ```
+PAI는 세 가지 레이어로 구성됩니다: ````
 ┌─────────────────────────────────────┐
 │         PAI (The OS)                │
 │  Skills, Memory, Algorithm, Telos   │
@@ -35,11 +36,11 @@ PAI는 세 가지 레이어로 구성됩니다: ```
 │  Your AI's voice and personality    │
 │  Named, Voice-picked, TELOS-driven  │
 └─────────────────────────────────────┘
-```
+`````
 
 **PAI** — OS 자체입니다. 스킬, 메모리, 알고리즘, 텔로스, 아이덴티티 파일들.
 
-**Pulse** — `localhost:31337`에 있는 라이프 대시보드. 상태, 목표, 작업을 확인할 수 있는 곳.
+**Pulse** — ````localhost:31337````에 있는 라이프 대시보드. 상태, 목표, 작업을 확인할 수 있는 곳.
 
 **DA** — 디지털 어시스턴트. 대화하는 목소리와 성격.
 
@@ -47,7 +48,7 @@ PAI는 세 가지 레이어로 구성됩니다: ```
 
 ## 알고리즘 v6.3.0
 
-PAI의 핵심에는 현재 상태에서 이상 상태로 나아가도록 주도하는 7단계 루프 기반 커스텀 알고리즘이 있습니다: ```
+PAI의 핵심에는 현재 상태에서 이상 상태로 나아가도록 주도하는 7단계 루프 기반 커스텀 알고리즘이 있습니다: `````
 현재 상태 ──▶ 관찰 ──▶ 사고 ──▶ 계획
     ▲                         │
     │                         ▼
@@ -56,7 +57,7 @@ PAI의 핵심에는 현재 상태에서 이상 상태로 나아가도록 주도�
     └───────────────── 검증   │
                  │             │
                  └──────── 학습 ←┘
-```
+`````
 
 각 단계에는 고유한 목적이 있습니다: | 단계 | 목적 | 출력물 |
 |-------|---------|--------|
@@ -72,7 +73,7 @@ PAI의 핵심에는 현재 상태에서 이상 상태로 나아가도록 주도�
 
 ### 모드 클래스피어
 
-PAI에는 Sonnet 기반의 모드 클래스피어가 포함되어 있어 프롬프트마다 적절한 처리 모드를 선택합니다: ```
+PAI에는 Sonnet 기반의 모드 클래스피어가 포함되어 있어 프롬프트마다 적절한 처리 모드를 선택합니다: `````
 모드 분류: ┌────────────┬───────────────┐
 │ 모드       │ 설명          │
 ├────────────┼───────────────┤
@@ -90,23 +91,23 @@ PAI에는 Sonnet 기반의 모드 클래스피어가 포함되어 있어 프롬�
 │ E4     │ 다단계 프로젝트     │
 │ E5     │ 라이프 규모 프로젝트│
 └────────┴─────────────────────┘
-```
+`````
 
 클래스피어는 프롬프트에 최소 응답, 표준 LLM 처리, 또는 전체 7단계 알고리즘 중 무엇이 필요한지 결정합니다. 이는 간단한 쿼리에 컴퓨팅을 낭비하지 않으면서 복잡한 작업에는 전체 처리를 보장합니다.
 
 ## 설치 및 설정
 
-PAI v5.0.0 (최신 주요 릴리스)는 완전한 리라이트입니다 — 증분 업그레이드가 아닙니다. 원라인 설치: ```bash
+PAI v5.0.0 (최신 주요 릴리스)는 완전한 리라이트입니다 — 증분 업그레이드가 아닙니다. 원라인 설치: `````bash
 curl -sSL https://ourpai.ai/install.sh | bash
-```
+`````
 
-설치 후: ```bash
+설치 후: `````bash
 # 파스 데몬 시작
 pulse start
 
 # 라이프 대시보드 접근
 open http://localhost:31337
-```
+`````
 
 대시보드에서는 다음을 실시간으로 확인할 수 있습니다: - 현재 상태 문서화
 - 활성 프로젝트 및 목표
@@ -116,9 +117,9 @@ open http://localhost:31337
 
 ### 인터뷰
 
-PAI는 디지털 어시스턴트를 형성하는 인터뷰로 시작합니다: ```bash
+PAI는 디지털 어시스턴트를 형성하는 인터뷰로 시작합니다: `````bash
 /interview
-```
+`````
 
 인터뷰는 다음을 안내합니다: 1. **DA 이름 짓기** — AI 어시스턴트의 아이덴티티
 2. **목소리 선택** — 음성 상호작용을 위한 오디오 아이덴티티
@@ -130,14 +131,14 @@ PAI는 디지털 어시스턴트를 형성하는 인터뷰로 시작합니다: `
 
 ### 아이덴티티 파일
 
-PAI는 아이덴티티 파일을 사용하여 DA에 컨텍스트를 제공합니다: ```
+PAI는 아이덴티티 파일을 사용하여 DA에 컨텍스트를 제공합니다: `````
 ~/.pai/
 ├── PRINCIPAL_IDENTITY.md    #你是谁
 ├── DA_IDENTITY.md           # 디지털 어시스턴트의 성격
 ├── TELOS.md                 # 인생의 목적
 ├── CONTAINMENT_ZONES/       # 프라이버시 격리 규칙
 └── SKILLS/                  # 커스텀 스킬 디렉토리
-```
+`````
 
 ### v4.x에서 업그레이드
 
@@ -145,7 +146,7 @@ PAI v4.x에서 업그레이드하는 경우, 이는 다른 시스템입니다 �
 
 ## 45개 스킬 — 완전한 시스템
 
-PAI는 카테고리별로 조직화된 45개의 빌트인 스킬을 포함합니다: ```
+PAI는 카테고리별로 조직화된 45개의 빌트인 스킬을 포함합니다: `````
 스킬 카테고리: ┌──────────────────────┬───────┐
 │ 카테고리             │ 개수  │
 ├──────────────────────┼───────┤
@@ -156,7 +157,7 @@ PAI는 카테고리별로 조직화된 45개의 빌트인 스킬을 포함합니
 │ 자동화 스킬          │   5   │
 │ 성찰 스킬            │   4   │
 └──────────────────────┴───────┘
-```
+`````
 
 ### 사고 스킬
 
@@ -172,18 +173,18 @@ PAI의 사고 스킬이 가장 독특한 기능입니다. 이는 범용 프롬�
 
 ### 코드 실행 스킬
 
-PAI는 순수 프롬팅보다 결정론적 코드 실행을 선호합니다: ```
+PAI는 순수 프롬팅보다 결정론적 코드 실행을 선호합니다: `````
 스킬 계층 (결정론적 > 프롬트 기반): 1. 코드 (결정론적) ← 가장 선호
 2. 코드를 실행할 CLI
 3. CLI를 프롬트하는 워크플로우
 4. 워크플로우 간 라우팅하는 SKILL.md
 
 "프롬트는 코드를 감싸지만, 코드는 프롬트를 감싸지 않는다."
-```
+`````
 
 ### ISA — 이상 상태 아티팩트
 
-ISA는 "이상 상태"를 명확히 표현하기 위한 범용 프imitives입니다: ```markdown
+ISA는 "이상 상태"를 명확히 표현하기 위한 범용 프imitives입니다: `````markdown
 # ISA 문서 구조
 
 1. 문제 — 무엇을 해결하는가?
@@ -198,7 +199,7 @@ ISA는 "이상 상태"를 명확히 표현하기 위한 범용 프imitives입니
 10. 결정 — 주요 아키텍처 선택
 11. 변경 이력 — 버전 기록
 12. 검증 — 최종 검증
-```
+`````
 
 PAI의 모든 주요 프로젝트는 ISA로 시작합니다. 이는 실행 전 명확성을 강제합니다.
 
@@ -206,14 +207,14 @@ PAI의 모든 주요 프로젝트는 ISA로 시작합니다. 이는 실행 전 �
 
 ### 파스 데몬
 
-Pulse는 `localhost:31337`에서 라이프 대시보드를 powering하는 통합 데몬입니다. 다음을 제공합니다: - **음성 통합** — 핸즈프리 상호작용을 위한 음성 입력/출력
+Pulse는 ````localhost:31337````에서 라이프 대시보드를 powering하는 통합 데몬입니다. 다음을 제공합니다: - **음성 통합** — 핸즈프리 상호작용을 위한 음성 입력/출력
 - **훅** — 이벤트, 시간, 또는 컨텍스트 기반 자동화된 트리거
 - **관측 가능성** — 모든 AI 상호작용의 실시간 모니터링
 - **크론 스케줄링** — 예약된 작업 및 자동화 워크플로우
 - **위키 API** — 구조화된 지식베이스 접근
 - **Telegram/iMessage 브리지** — 옵션 메신저 통합
 
-파스 대시보드는 22개 라우트를 다룹니다: ```
+파스 대시보드는 22개 라우트를 다룹니다: `````
 파스 대시보드 라우트: ┌────────────────────────────────────────────────────┐
 │ 대시보드 │ 현재 상태 │ 이상 상태 │ 전략            │
 │ 작업     │ 프로젝트  │ 스킬      │ 워크플로우     │
@@ -221,21 +222,21 @@ Pulse는 `localhost:31337`에서 라이프 대시보드를 powering하는 통합
 │ 설정     │ 아이덴티티│ 텔로스    │ 격리          │
 │ 보고서   │ 감사      │ 백업      │ 복원          │
 └────────────────────────────────────────────────────┘
-```
+`````
 
 ### 171개 워크플로우
 
-워크플로우는 공통 패턴을 자동화하기 위한 사전 구축된 스킬 시퀀스입니다: ```
+워크플로우는 공통 패턴을 자동화하기 위한 사전 구축된 스킬 시퀀스입니다: `````
 워크플로우 예시: - research-workflow: 소스 수집 → 분석 → 종합
 - code-review: 코드 읽기 → 테스트 → 리뷰 → 문서화
 - decision-framework: 문제 정의 → 옵션 수집 → 평가 → 결정
 - project-init: 브레인스토밍 → ISA → 계획 → 실행
 - daily-standup: 진행도 검토 → 상태 업데이트 → 다음 단계 계획
-```
+`````
 
 ### 37개 훅
 
-훅은 특정 트리거에 대한 응답을 자동화합니다: ```json
+훅은 특정 트리거에 대한 응답을 자동화합니다: `````json
 // 훅 예시
 {
   "trigger": "git-commit",
@@ -245,11 +246,11 @@ Pulse는 `localhost:31337`에서 라이프 대시보드를 powering하는 통합
     "template": "commit-template.md"
   }
 }
-```
+`````
 
 ### 격리 존
 
-PAI는 격리 존을 통해 구조적 프라이버시를 제공합니다. 각 존은 데이터와 AI 상호작용을 격리합니다: ```json
+PAI는 격리 존을 통해 구조적 프라이버시를 제공합니다. 각 존은 데이터와 AI 상호작용을 격리합니다: `````json
 // 격리 존 구성
 {
   "zones": [
@@ -273,7 +274,7 @@ PAI는 격리 존을 통해 구조적 프라이버시를 제공합니다. 각 �
     }
   ]
 }
-```
+`````
 
 ## 다른 도구와의 통합
 
@@ -290,25 +291,25 @@ PAI는 더 넓은 AI 에코시스템과 통합됩니다: | 도구 | 통합 | 방
 
 ### Obsidian 통합
 
-PAI는 지식베이스를 Obsidian과 동기화합니다: ```bash
+PAI는 지식베이스를 Obsidian과 동기화합니다: `````bash
 # PAI 데이터를 Obsidian vault로 동기화
 pulse sync --target obsidian --vault ~/Obsidian
 
 # Obsidian 노트를 PAI로 가져오기
 pulse import --source obsidian --vault ~/Obsidian
-```
+`````
 
 이는 PAI 세션 전반에 걸쳐 생존하는 지속적 지식베이스를 생성합니다.
 
 ### GitHub 통합
 
-PAI는 GitHub에서 프로젝트를 추적합니다: ```bash
+PAI는 GitHub에서 프로젝트를 추적합니다: `````bash
 # PAI 관리 GitHub 레포 생성
 pulse project --create --github my-new-project
 
 # 현재 상태를 GitHub 이슈로 동기화
 pulse sync --target github --issues
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -324,7 +325,7 @@ pulse sync --target github --issues
 
 ### 일반적 일상 워크플로우
 
-PAI 사용자의 일반적인 하루: ```bash
+PAI 사용자의 일반적인 하루: `````bash
 # 아침: 데일리 스탠드업
 pulse standup
 
@@ -339,7 +340,7 @@ pulse standup
 # 저녁: 성찰
 pulse reflect --today
 # PAI가 일일 학습을 텔로스 업데이트로 종합
-```
+`````
 
 ### 비용 비교
 
@@ -355,15 +356,15 @@ PAI의 가치는 AI 비용 절감이 아닙니다 — 모든 AI 지출에 대한
 
 ### 커스텀 스킬
 
-자신만의 스킬을 생성하세요: ```bash
+자신만의 스킬을 생성하세요: `````bash
 # 템플릿에서 새 스킬 생성
 pulse skill create my-custom-skill --template thinking
 
 # 스킬 편집
 pulse skill edit my-custom-skill
-```
+`````
 
-스킬은 SKILL.md 관례를 따릅니다: ```markdown
+스킬은 SKILL.md 관례를 따릅니다: `````markdown
 # 커스텀 스킬
 
 ## 설명
@@ -380,11 +381,11 @@ pulse skill edit my-custom-skill
 
 ## 예시
 사용 예시
-```
+`````
 
 ### 고급 파스 구성
 
-```bash
+`````bash
 # 파스 훅 구성
 pulse hooks create --trigger git-push --action notify --config '{"channels": ["telegram"]}'
 
@@ -393,17 +394,17 @@ pulse cron add --schedule "0 9 * * *" --action "pulse standup" --name "morning-r
 
 # 음성 모드 활성화
 pulse voice enable --model whisper --language en
-```
+`````
 
 ### 엔터프라이즈 배포
 
-팀 또는 조직용: ```bash
+팀 또는 조직용: `````bash
 # 팀 PAI 인스턴스 생성
 pulse team create --name my-org --members 10
 
 # 원격 서버에 배포
 pulse deploy --target remote --host pai.myorg.com --port 31337
-```
+`````
 
 ## 한계 / 정직한 평가
 
@@ -448,13 +449,13 @@ A: 예. 7단계 루프는 구성 가능합니다. 단계를 추가, 제거, 또�
 
 핵심 통찰 — AI 도구는 진정으로 유용하기 위해 구조, 메모리, 아이덴티티가 필요하다 — 는 단순하면서도 심오합니다. PAI는 이를 박스 밖에서 제공합니다.
 
-**오늘 PAI 시작하세요** — `curl -sSL https://ourpai.ai/install.sh | bash`하고 인터뷰를 시작하세요.
+**오늘 PAI 시작하세요** — ````curl -sSL https://ourpai.ai/install.sh | bash```하고 인터뷰를 시작하세요.
 
 개인 AI 설정에 대해 더 보기: - [ECC: Agent Harness 성능 최적화](/kr/resources/dev-utils/ecc-agent-harness-performance-optimization/) — AI 에이전트 성능 최적화
 - [Compound Engineering](/kr/resources/llm-frameworks/compound-engineering-multi-agent-coding-claude-codex-cursor/) — 구조화된 멀티 에이전트 워크플로우
 
 
----
+* * *
 
 **출처 및 추가 읽기**: - GitHub 레포지토리: https://github.com/danielmiessler/Personal_AI_Infrastructure
 - 블로그 포스트: https://danielmiessler.com/blog/personal-ai-infrastructure
@@ -463,7 +464,7 @@ A: 예. 7단계 루프는 구성 가능합니다. 단계를 추가, 제거, 또�
 
 **커뮤니티 참여**: https://t.me/DIBI8_Group
 
----
+* * *
 
 **면책**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하면 추가 비용 없이 우리가 수수료 수익을 얻을 수 있습니다.
 
@@ -493,7 +494,7 @@ A: 예. 7단계 루프는 구성 가능합니다. 단계를 추가, 제거, 또�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -503,6 +504,6 @@ A: 예. 7단계 루프는 구성 가능합니다. 단계를 추가, 제거, 또�
 - [pm-skills-68-product-management-skills-ai-agents](personal-ai-infrastructure-daniel-miessler)
 - [mattpocock-skills-ai-agent-framework-guide](personal-ai-infrastructure-daniel-miessler)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -11,6 +11,7 @@ tags: ["activepieces", "workflow automation", "zapier alternative", "self-hosted
 aliases:
   - /posts/activepieces-workflow-automation/-
 ---
+
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -48,7 +49,7 @@ Activepieces follows a modular three-tier architecture: 1. **Frontend (Angular)*
 
 ### The Flow Engine
 
-When a flow executes, the engine processes steps sequentially: ```typescript
+When a flow executes, the engine processes steps sequentially: ````typescript
 // Conceptual flow execution model
 interface FlowRun {
   id: string;
@@ -59,9 +60,9 @@ interface FlowRun {
 
 // Each step resolves inputs, executes the piece action,
 // and stores output for downstream steps to reference
-```
+`````
 
-Steps can reference outputs from previous steps via `{{step_name.property}}` templating, similar to Handlebars. The engine supports branching (`if/else`), loops (`for each`), and sub-flows.
+Steps can reference outputs from previous steps via ````{{step_name.property}}```` templating, similar to Handlebars. The engine supports branching (````if/else````), loops (````for each````), and sub-flows.
 
 ### Pieces: The Plugin System
 
@@ -81,7 +82,7 @@ Pieces can be official (maintained by the Activepieces team), community-contribu
 
 ### Option A: Docker Compose (Recommended)
 
-```bash
+`````bash
 git clone https://github.com/activepieces/activepieces.git
 cd activepieces
 
@@ -90,26 +91,26 @@ cp packages/server/api/.env.example .env
 
 # 3. Start all services
 docker compose -f docker-compose.yml up -d
-```
+`````
 
-After the containers start, navigate to `http://localhost:8080` and complete the initial setup wizard.
+After the containers start, navigate to ````http://localhost:8080```` and complete the initial setup wizard.
 
 ### Option B: One-Line Install on a Fresh VPS
 
-For a production deployment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187), use the automated installer: ```bash
+For a production deployment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187), use the automated installer: `````bash
 # Download and run the setup script
 curl -sSL https://cdn.activepieces.com/install.sh | bash
 
 # The script will prompt for: # - Domain name (optional, for HTTPS)
 # - Email (for SSL certificate via Let's Encrypt)
 # - Admin email and password
-```
+`````
 
 This installs Docker, pulls Activepieces, configures Nginx as a reverse proxy, and sets up SSL automatically.
 
 ### Option C: Manual Docker with Custom Config
 
-```bash
+`````bash
 # docker-compose.yml for production
 version: "3.8"
 services: activepieces: image: activepieces/activepieces:0.46.0
@@ -141,35 +142,35 @@ services: activepieces: image: activepieces/activepieces:0.46.0
     restart: unless-stopped
     volumes: - redisdata:/data
 
-volumes: pgdata: redisdata: ```
+volumes: pgdata: redisdata: `````
 
-Deploy with `docker compose up -d`. The platform is ready in approximately 60 seconds.
+Deploy with ````docker compose up -d````. The platform is ready in approximately 60 seconds.
 
 ### Environment Variable Reference
 
 | Variable | Required | Description |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `AP_ENCRYPTION_KEY` | Yes | AES-256 key for encrypting credentials |
-| `AP_JWT_SECRET` | Yes | Secret for signing auth tokens |
-| `AP_POSTGRES_*` | Yes | PostgreSQL connection details |
-| `AP_REDIS_URL` | Yes | Redis connection URL |
-| `AP_FRONTEND_URL` | Yes | Public URL of the instance |
-| `AP_TELEMETRY` | No | Set `false` to disable anonymous usage data |
-| `AP_EXECUTION_MODE` | No | `SANDBOXED` (default) or `UNSANDBOXED` |
+| ````AP_ENCRYPTION_KEY```` | Yes | AES-256 key for encrypting credentials |
+| ````AP_JWT_SECRET```` | Yes | Secret for signing auth tokens |
+| ````AP_POSTGRES_*```` | Yes | PostgreSQL connection details |
+| ````AP_REDIS_URL```` | Yes | Redis connection URL |
+| ````AP_FRONTEND_URL```` | Yes | Public URL of the instance |
+| ````AP_TELEMETRY```` | No | Set ````false```` to disable anonymous usage data |
+| ````AP_EXECUTION_MODE```` | No | ````SANDBOXED```` (default) or ````UNSANDBOXED```` |
 
 ### First Login
 
-```bash
+`````bash
 # After first startup, the logs will show the default admin URL
 docker logs activepieces 2>&1 | grep "first sign up"
 # Output: Visit http://localhost:8080/sign-up to create the first admin account
-```
+`````
 
 Navigate to the URL, create your admin account, and you are in the builder.
 
@@ -188,7 +189,7 @@ Activepieces maintains official integrations for the most popular services: - **
 
 ### Connecting Slack: Step by Step
 
-```bash
+`````bash
 # Step 1: In the builder, click "New Connection" and select Slack
 # Step 2: Choose "OAuth2" authentication
 # Step 3: Create a Slack app at https://api.slack.com/apps
@@ -196,13 +197,13 @@ Activepieces maintains official integrations for the most popular services: - **
 #    - Set redirect URL: https://your-instance.com/redirect
 # Step 4: Copy Client ID and Secret into Activepieces
 # Step 5: Authorize — Activepieces handles the OAuth flow automatically
-```
+`````
 
 Once connected, you can send messages, read channel lists, and react to Slack events as triggers.
 
 ### AI Actions with OpenAI
 
-Activepieces v0.46.0 includes a native OpenAI piece supporting GPT-4o, GPT-4.1, and GPT-4.1-mini: ```yaml
+Activepieces v0.46.0 includes a native OpenAI piece supporting GPT-4o, GPT-4.1, and GPT-4.1-mini: `````yaml
 # Example: AI-powered lead qualification flow
 Trigger: Webhook ("New lead form submission")
   → Step 1: Extract form data (name, email, company, message)
@@ -215,13 +216,13 @@ Trigger: Webhook ("New lead form submission")
        If "hot" → Create high-priority task in HubSpot
        If "warm" → Add to email nurture sequence
        If "cold" → Log for monthly review
-```
+`````
 
 The OpenAI piece supports custom prompts, temperature control (0.0–2.0), max token limits, and JSON mode for structured outputs.
 
 ### Webhook Triggers
 
-```bash
+`````bash
 # Every flow with a webhook trigger gets a unique URL
 curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
   -H "Content-Type: application/json" \
@@ -230,19 +231,19 @@ curl -X POST https://your-instance.com/api/v1/webhooks/flow-id \
     "amount": 149.00,
     "customer_id": "cust_88291"
   }'
-```
+`````
 
 Webhook triggers support custom response configuration, so you can return 200 OK immediately or wait for flow completion.
 
 ### Scheduled Flows
 
-```yaml
+`````yaml
 # Cron syntax for recurring automation
 Schedule: "0 9 * * 1"  # Every Monday at 9:00 AM
   → Pull weekly metrics from Google Analytics
   → Format as markdown report
   → Post to Slack #weekly-reports channel
-```
+`````
 
 Activepieces uses a BullMQ-based job scheduler backed by Redis, ensuring reliable cron execution even across container restarts.
 
@@ -252,13 +253,13 @@ Activepieces uses a BullMQ-based job scheduler backed by Redis, ensuring reliabl
 
 | Metric | Activepieces (Self-Hosted) | Zapier (Professional) | Make (Core) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Monthly cost | $5–$12 (VPS) | $49–$195 | $9–$16 |
 | Tasks/month | Unlimited | 2,000–50,000 | 10,000–40,000 |
@@ -274,13 +275,13 @@ Activepieces uses a BullMQ-based job scheduler backed by Redis, ensuring reliabl
 
 Tested on a 4 vCPU / 8 GB RAM VPS (Ubuntu 24.04): | Workload | Flows | Execution Time | Throughput |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Simple HTTP → Slack | 1,000 | 245 ms avg | ~240 flows/min |
 | GPT-4.1-mini text gen | 500 | 1,800 ms avg | ~33 flows/min |
@@ -297,7 +298,7 @@ Tested on a 4 vCPU / 8 GB RAM VPS (Ubuntu 24.04): | Workload | Flows | Execution
 
 ### Running Behind a Reverse Proxy
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/activepieces
 server {
     listen 443 ssl http2;
@@ -318,11 +319,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # backup-activepieces.sh — run via cron daily
 DATE=$(date +%Y%m%d_%H%M%S)
@@ -338,22 +339,22 @@ docker cp activepieces-redis:/data/dump.rdb "$BACKUP_DIR/redis_$DATE.rdb"
 # Keep only last 14 days
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
 find "$BACKUP_DIR" -name "*.rdb" -mtime +14 -delete
-```
+`````
 
 ### Monitoring with Health Checks
 
-```bash
+`````bash
 # Add to your docker-compose.yml
   activepieces: healthcheck: test: ["CMD", "curl", "-f", "http://localhost:80/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 60s
-```
+`````
 
 ### Custom Piece Development
 
-```typescript
+`````typescript
 // my-api-piece/index.ts
 import { createPiece, PieceAuth } from '@activepieces/pieces-framework';
 import { sendNotification } from './lib/actions/send-notification';
@@ -368,17 +369,17 @@ export const myApiPiece = createPiece({
   actions: [sendNotification],
   triggers: [],
 });
-```
+`````
 
 Build and publish your piece to a private npm registry, then install it via the Activepieces admin panel.
 
 ### Sandbox Mode Security
 
-By default, flow execution runs inside isolated sandboxed containers. For maximum security in production: ```yaml
+By default, flow execution runs inside isolated sandboxed containers. For maximum security in production: `````yaml
 environment: - AP_EXECUTION_MODE=SANDBOXED
   - AP_SANDBOX_MEMORY_LIMIT=256  # MB per execution
   - AP_SANDBOX_TIMEOUT_SECONDS=120
-```
+`````
 
 This ensures a runaway flow cannot exhaust server resources.
 
@@ -386,15 +387,15 @@ This ensures a runaway flow cannot exhaust server resources.
 
 | Feature | Activepieces | Zapier | Make (Integromat) | n8n |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open source | MIT License | Proprietary | Proprietary | Fair-code |
 | Self-hosted | Full Docker | No | No | Yes |
@@ -432,13 +433,13 @@ There is no automatic migration tool, but the mapping is straightforward. Each Z
 
 **Q: How do I update my self-hosted instance?**
 
-```bash
+`````bash
 # Pull the latest image and restart
 cd /opt/activepieces
 docker compose pull
 docker compose up -d
 # Database migrations run automatically on startup
-```
+`````
 
 Always take a database backup before major version upgrades. The project follows semantic versioning, and patch releases (0.46.1) are safe to apply automatically.
 
@@ -464,7 +465,7 @@ Activepieces delivers what engineering teams actually need: **a workflow automat
 
 With a 5-minute Docker setup, a growing TypeScript piece ecosystem, and an MIT license that imposes zero restrictions, there is little reason to keep paying SaaS rent for API plumbing.
 
-**Deploy today**: Spin up a VPS on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($24/month for 4 GB) or [HTStack](https://my.htstack.com/aff.php?aff=27187), run `docker compose up`, and build your first flow in under 10 minutes.
+**Deploy today**: Spin up a VPS on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($24/month for 4 GB) or [HTStack](https://my.htstack.com/aff.php?aff=27187), run ````docker compose up```, and build your first flow in under 10 minutes.
 
 For managed hosting with priority support, check [AppSumo deals](https://appsumo.com/s/106nifb/) for Activepieces cloud plans.
 
@@ -490,7 +491,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Self-hosting guide](dibi8-internal-link) — General self-hosting best practices on dibi8.com
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean, HTStack, and AppSumo. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All recommendations are based on hands-on testing, not affiliate availability.*
 
 
@@ -520,7 +521,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](activepieces-workflow-automation)
@@ -529,6 +530,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-08-trending-ai-agents](activepieces-workflow-automation)
 - [2026-06-15-trending-ai-agents](activepieces-workflow-automation)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

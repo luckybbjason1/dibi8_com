@@ -34,6 +34,7 @@ faqs: - q: 'Odysseus có cần GPU để chạy không?'
     a: 'Có. Odysseus là PWA (Progressive Web App) với thiết kế đáp ứng hoàn toàn. Trên iOS hoặc Android, bạn có thể "Thêm vào màn hình chính" để có trải nghiệm gần như ứng dụng native. Các tính năng Cookbook và Agent cũng hoạt động trên di động, nhưng việc chạy mô hình cục bộ cần GPU vẫn đòi hỏi máy tính hoặc server.'
 ---
 
+
 # Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026
 
 
@@ -55,35 +56,35 @@ Về mặt kỹ thuật, Odysseus là ứng dụng web Python (backend FastAPI +
 
 ## Khởi Động Nhanh (Docker)
 
-```bash
+````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 cp .env.example .env          # tùy chọn nhưng khuyến nghị
 docker compose up -d --build
-```
+`````
 
-Mở **http://localhost:7000**. Lần chạy đầu tiên, Odysseus in mật khẩu admin tạm thời vào Docker logs: ```bash
+Mở **http://localhost:7000**. Lần chạy đầu tiên, Odysseus in mật khẩu admin tạm thời vào Docker logs: `````bash
 docker compose logs odysseus | grep "Admin password"
-```
+`````
 
 Đăng nhập, đổi mật khẩu trong Cài đặt, rồi thêm server mô hình đầu tiên (Ollama cục bộ hoặc OpenAI API key).
 
 ## Cài Đặt Native (Linux / macOS)
 
-Người dùng Apple Silicon nên chạy native thay vì Docker để sử dụng GPU Metal: ```bash
+Người dùng Apple Silicon nên chạy native thay vì Docker để sử dụng GPU Metal: `````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python setup.py
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
-```
+`````
 
-Khởi động nhanh trên Apple Silicon: ```bash
+Khởi động nhanh trên Apple Silicon: `````bash
 ./start-macos.sh        # bind vào 127.0.0.1:7860
-```
+`````
 
-Yêu cầu: Python 3.11+. Cookbook cần `tmux` để tải model nền.
+Yêu cầu: Python 3.11+. Cookbook cần ````tmux```` để tải model nền.
 
 ## So Sánh Với Các Công Cụ Khác
 
@@ -100,13 +101,13 @@ Yêu cầu: Python 3.11+. Cookbook cần `tmux` để tải model nền.
 
 ## Lưu Ý
 
-Odysseus hiện là phiên bản 1.0, mới ra mắt chưa đến 2 tuần. Một số điểm cần lưu ý: trên Linux, Cookbook có một số runtime cần `tmux` thủ công cho tác vụ nền; đồng bộ CalDAV có lỗi đã biết với sự kiện lặp lại; hiệu suất PWA trên di động khác nhau tùy trình duyệt. Tuy nhiên, issue tracker được quản lý tích cực và nhà phát triển phản hồi nhanh.
+Odysseus hiện là phiên bản 1.0, mới ra mắt chưa đến 2 tuần. Một số điểm cần lưu ý: trên Linux, Cookbook có một số runtime cần ````tmux```` thủ công cho tác vụ nền; đồng bộ CalDAV có lỗi đã biết với sự kiện lặp lại; hiệu suất PWA trên di động khác nhau tùy trình duyệt. Tuy nhiên, issue tracker được quản lý tích cực và nhà phát triển phản hồi nhanh.
 
 Với triển khai agent cấp độ sản xuất, các framework đã được kiểm chứng như LangGraph hay CrewAI vẫn đáng tin cậy hơn. Odysseus phù hợp nhất như một **không gian làm việc AI cá nhân** — mạnh mẽ, linh hoạt và bảo vệ quyền riêng tư.
 
 ## Kết Luận
 
-Nếu bạn muốn trải nghiệm AI như ChatGPT trên phần cứng của chính mình, không tốn phí hàng tháng, không đẩy dữ liệu lên cloud, Odysseus là lựa chọn mã nguồn mở hoàn chỉnh nhất hiện tại. 63.000 sao trong 9 ngày phản ánh sự ủng hộ thực sự từ cộng đồng, không phải hype. Clone repo, chạy `docker compose up`, 5 phút sau bạn có đầy đủ không gian làm việc AI.
+Nếu bạn muốn trải nghiệm AI như ChatGPT trên phần cứng của chính mình, không tốn phí hàng tháng, không đẩy dữ liệu lên cloud, Odysseus là lựa chọn mã nguồn mở hoàn chỉnh nhất hiện tại. 63.000 sao trong 9 ngày phản ánh sự ủng hộ thực sự từ cộng đồng, không phải hype. Clone repo, chạy ````docker compose up```, 5 phút sau bạn có đầy đủ không gian làm việc AI.
 
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
 
@@ -172,12 +173,12 @@ Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Tr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -187,7 +188,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [1m-context-window-llm-2026-real-test](odysseus-self-hosted-ai-workspace-2026)
 - [9router-smart-llm-proxy-token-saver-free-coding](odysseus-self-hosted-ai-workspace-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

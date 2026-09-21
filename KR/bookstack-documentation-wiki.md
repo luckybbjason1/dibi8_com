@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/bookstack-documentation-wiki/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 모든 팀이 겪는 문서 난장판
@@ -54,7 +55,7 @@ BookStack을 실행하는 가장 빠른 방법은 Docker Compose이다. **최소
 
 ### 단계 1: Docker Compose 파일 생성
 
-```yaml
+````yaml
 version: '3.8'
 
 services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
@@ -83,13 +84,13 @@ services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
       - MYSQL_PASSWORD=your_secure_db_password
     volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
-```
+`````
 
 이 compose 파일은 두 가지 서비스를 정의한다: 포트 6875의 BookStack 애플리케이션과 영속성을 위한 MariaDB 데이터베이스.
 
 ### 단계 2: 스택 실행
 
-```bash
+`````bash
 # 데이터 디렉토리 생성
 mkdir -p bookstack_app_data bookstack_db_data
 
@@ -101,23 +102,23 @@ sleep 45
 
 # 로그 확인하여 시작 확인
 docker logs bookstack
-```
+`````
 
-Laravel 부트스트래핑 메시지 뒤에 PHP-FPM의 `NOTICE: ready to handle connections`가 표시되어야 한다. 데이터베이스 연결이 실패하면 DB_HOST가 `bookstack_db` 서비스 이름과 일치하고 자격 증명이 정렬되어 있는지 확인하라.
+Laravel 부트스트래핑 메시지 뒤에 PHP-FPM의 ````NOTICE: ready to handle connections````가 표시되어야 한다. 데이터베이스 연결이 실패하면 DB_HOST가 ````bookstack_db```` 서비스 이름과 일치하고 자격 증명이 정렬되어 있는지 확인하라.
 
 ### 단계 3: 접근 및 구성
 
-```bash
+`````bash
 # 첫 부팅 시 기본 자격 증명
 # 사용자명: admin@admin.com
 # 비밀번호: password
-```
+`````
 
-`http://your-server-ip:6875`로 이동하여 로그인하라. **즉시 관리자 비밀번호를 변경**하라(설정 → 사용자). 그런 다음 APP_URL을 HTTPS 사용으로 구성하라 —— BookStack은 이메일 알림과 낼부에서 절대 URL을 생성하므로, 처음부터 APP_URL을 올바르게 설정하면 나중에 끊어진 링크를 방지할 수 있다.
+````http://your-server-ip:6875````로 이동하여 로그인하라. **즉시 관리자 비밀번호를 변경**하라(설정 → 사용자). 그런 다음 APP_URL을 HTTPS 사용으로 구성하라 —— BookStack은 이메일 알림과 낼부에서 절대 URL을 생성하므로, 처음부터 APP_URL을 올바르게 설정하면 나중에 끊어진 링크를 방지할 수 있다.
 
 ### 단계 4: Nginx 리버스 프록시 + SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/bookstack
 server {
     listen 443 ssl http2;
@@ -140,13 +141,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-Certbot으로 사이트를 활성화하고 인증서를 얻은 후, docker-compose.yml의 `APP_URL`을 `https://docs.yourdomain.com`로 업데이트하고 컨테이너를 재시작하라.
+Certbot으로 사이트를 활성화하고 인증서를 얻은 후, docker-compose.yml의 ````APP_URL````을 ````https://docs.yourdomain.com````로 업데이트하고 컨테이너를 재시작하라.
 
 ### 수동 설치 (Ubuntu 24.04 LTS)
 
-베어메탈 배포를 선호한다면: ```bash
+베어메탈 배포를 선호한다면: `````bash
 # 의존성 설치
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -174,7 +175,7 @@ php artisan migrate
 chown -R www-data:www-data /var/www/BookStack
 chmod -R 755 /var/www/BookStack
 chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache
-```
+`````
 
 수동 경로는 더 많은 제어권을 제공하지만 PHP, 웹 서버, MySQL을 별도로 관리해야 한다. 프로덕션 환경에서는 Docker가 권장되는 경로이다.
 
@@ -184,7 +185,7 @@ BookStack은 여러 인증 백엔드를 지원한다. 엔터프라이즈 배포�
 
 ### LDAP 인증 (Active Directory / OpenLDAP)
 
-```bash
+`````bash
 # .env 파일에 추가
 AUTH_METHOD=ldap
 LDAP_SERVER=ldap.company.com
@@ -197,13 +198,13 @@ LDAP_TLS=true
 LDAP_ID_ATTRIBUTE=uid
 LDAP_DISPLAY_NAME_ATTRIBUTE=cn
 LDAP_EMAIL_ATTRIBUTE=mail
-```
+`````
 
 컨테이너를 재시작한 후, BookStack은 LDAP 디렉토리에 대해 사용자 인증을 수행한다. 사용자는 첫 로그인 시 자동으로 생성되므로, 수동으로 계정을 만들 필요가 없다.
 
 ### SAML 2.0 (Okta, Azure AD, OneLogin용)
 
-```bash
+`````bash
 # .env의 SAML 구성
 AUTH_METHOD=saml2
 SAML2_NAME=SSO
@@ -213,19 +214,19 @@ SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name
 SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata
 SAML2_IDP_SSO=https://your-idp.example.com/sso
 SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
-```
+`````
 
 ## 이미지 관리 및 콘텐츠 편집
 
 BookStack에는 두 가지 편집기가 포함되어 있다. **WYSIWYG 편집기**(TinyMCE 기반)가 기본값이다 —— 드래그앤드롭 업로드로 이미지를 처리하고, 테이블, 구문 강조가 있는 코드 블록, 팁과 경고를 위한 콜아웃 블록을 지원한다. **Markdown 편집기**는 실시간 미리보기가 있는 분할 화면 경험을 제공하여 Markdown으로 작성하기를 선호하는 개발자에게 이상적이다.
 
-이미지 업로드는 간단하다: ```markdown
+이미지 업로드는 간단하다: `````markdown
 # Markdown 모드에서 —— 이미지는 BookStack의 갤러리에 업로드됨
 ![대체 텍스트](uploaded-image-name.png)
 
 # 이미지 갤러리는 편집기 도구 모음에서 접근 가능
 # 모든 업로드된 이미지는 bookstack_app_data 볼륨에 저장됨
-```
+`````
 
 BookStack은 또한 Draw.io 통합을 통해 임베디드 다이어그램을 지원한다. 다이어그램을 삽입할 때, BookStack은 렌더링된 이미지와 함께 Draw.io 소스 XML을 저장하므로 나중에 다이어그램을 다시 편집할 때 소스를 잃지 않는다.
 
@@ -251,7 +252,7 @@ BookStack은 또한 Draw.io 통합을 통해 임베디드 다이어그램을 지
 
 ### GitHub Actions: 자동화된 문서 게시
 
-```yaml
+`````yaml
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
@@ -268,13 +269,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'$(cat docs/api.html | base64 -w 0)'"}' \
             "https://docs.yourdomain.com/api/pages/42"
-```
+`````
 
 BookStack은 프로그래밍 방식 콘텐츠 관리를 위해 REST API를 노출한다. 설정 → API에서 API 토큰을 생성한다. API는 선반, 책, 챕터, 페이지에 대한 CRUD 작업과 이미지 업로드 및 검색을 지원한다.
 
 ### 백업 자동화
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-bookstack.sh
 
@@ -290,24 +291,24 @@ tar czf "$BACKUP_DIR/bookstack_app_$DATE.tar.gz" -C /path/to ./bookstack_app_dat
 
 # 최근 14일만 유지
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
-cron에 추가하여 매일 백업: `0 3 * * * /opt/scripts/backup-bookstack.sh`
+cron에 추가하여 매일 백업: ````0 3 * * * /opt/scripts/backup-bookstack.sh````
 
 ### Prometheus로 모니터링
 
-```yaml
+`````yaml
 # docker-compose.yml에 모니터링 추가
   node-exporter: image: prom/node-exporter:v1.7.0
     volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
     command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
-```
+`````
 
 ### 헬스 체크 스크립트
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-bookstack.sh
 
@@ -321,24 +322,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "정상: BookStack이 정상 작동 중"
 fi
-```
+`````
 
-cron에 자동 헬스 체크 추가: `*/5 * * * * /opt/scripts/health-check-bookstack.sh`
+cron에 자동 헬스 체크 추가: ````*/5 * * * * /opt/scripts/health-check-bookstack.sh````
 
 ## 고급 사용법: 프로덕션 강화
 
 ### HTTPS 전용 쿠키 활성화
 
-```bash
+`````bash
 # .env 파일에서
 SESSION_SECURE_COOKIE=true
-```
+`````
 
 이것은 세션 쿠키가 HTTPS 연결을 통해서만 전송되도록 보장한다. BookStack 인스턴스가 인터넷에 노출된 경우 필수적이다.
 
 ### 모듈 시스템을 통한 커스텀 테마 (v26.03+)
 
-```bash
+`````bash
 # 커스텀 모듈 디렉토리 생성
 mkdir -p /config/www/themes/my_theme/modules/welcome_module
 
@@ -362,20 +363,20 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 # views/welcome.blade.php
 Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
-```
+`````
 
-모듈 설치: `php artisan bookstack:install-module /path/to/module.zip`
+모듈 설치: ````php artisan bookstack:install-module /path/to/module.zip````
 
 ### 페이지 콘텐츠 필터링 제어
 
-```bash
+`````bash
 # .env에서 (v25.12.4+ 신규)
 # 옵션: false, true, 또는 필터 이름의 쉼표로 구분된 목록
 APP_CONTENT_FILTERING=default
 
 # 사용 가능한 필터: script, form, iframe, object, embed, style, css_expression
 # style 필터링 비활성화 (인라인 스타일이 필요한 경우): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
-```
+`````
 
 ## 비교: BookStack과 대안들
 
@@ -424,7 +425,7 @@ BookStack은 모든 문서화 사용 사례에 적합한 도구는 아니다. �
 
 ### BookStack을 어떻게 업데이트하나요?
 
-Docker를 사용하면 이미지 태그를 docker-compose.yml에서 변경하고 `docker compose up -d`를 실행하는 한 줄로 업데이트할 수 있다. 수동 설치의 경우, 최신 릴리스를 가져와 `git pull`을 실행하거나 새 릴리스 아카이브를 다운로드한 후 `php artisan migrate`를 실행하고 캐시를 지운다. 업데이트 전에 항상 데이터베이스를 백업하라 —— BookStack은 월별 보안 패치를 릴리스한다.
+Docker를 사용하면 이미지 태그를 docker-compose.yml에서 변경하고 ````docker compose up -d````를 실행하는 한 줄로 업데이트할 수 있다. 수동 설치의 경우, 최신 릴리스를 가져와 ````git pull````을 실행하거나 새 릴리스 아카이브를 다운로드한 후 ````php artisan migrate````를 실행하고 캐시를 지운다. 업데이트 전에 항상 데이터베이스를 백업하라 —— BookStack은 월별 보안 패치를 릴리스한다.
 
 ### BookStack은 이중 인증을 지원하나요?
 
@@ -436,11 +437,11 @@ BookStack은 공식적으로 MySQL과 MariaDB를 지원한다. PostgreSQL 지원
 
 ### LinuxServer.io 이미지와 공식 이미지의 차이점은 무엇인가요?
 
-`lscr.io/linuxserver/bookstack` 이미지는 커뮤니티에서 유지보수하며 널리 사용된다. PHP-FPM과 Nginx 구성을 추상화하여 Docker에서 BookStack을 실행하는 가장 쉬운 방법을 제공한다. BookStack 유지관리자의 공식 Docker 이미지는 없다 —— LinuxServer 이미지가 사실상의 표준이다.
+````lscr.io/linuxserver/bookstack```` 이미지는 커뮤니티에서 유지보수하며 널리 사용된다. PHP-FPM과 Nginx 구성을 추상화하여 Docker에서 BookStack을 실행하는 가장 쉬운 방법을 제공한다. BookStack 유지관리자의 공식 Docker 이미지는 없다 —— LinuxServer 이미지가 사실상의 표준이다.
 
 ### 백업은 어떻게 작동하나요?
 
-두 가지를 백업하라: MySQL/MariaDB 데이터베이스(모든 콘텐츠와 메타데이터)와 `/config/www/files` 디렉토리(업로드된 이미지와 첨부 파일). 위에 표시된 Docker 설정을 사용하면 둘 다 네임드 볼륨에 있다. 간단한 `mysqldump`와 앱 데이터 볼륨의 `tar` 아카이브만으로 충분하다. 분기마다 복원 절차를 테스트하라.
+두 가지를 백업하라: MySQL/MariaDB 데이터베이스(모든 콘텐츠와 메타데이터)와 ````/config/www/files```` 디렉토리(업로드된 이미지와 첨부 파일). 위에 표시된 Docker 설정을 사용하면 둘 다 네임드 볼륨에 있다. 간단한 ````mysqldump````와 앱 데이터 볼륨의 ````tar``` 아카이브만으로 충분하다. 분기마다 복원 절차를 테스트하라.
 
 ## 결론: 2026년에 BookStack을 실행해야 할까요?
 
@@ -450,7 +451,7 @@ BookStack은 공식적으로 MySQL과 MariaDB를 지원한다. PostgreSQL 지원
 
 dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매일 오픈소스 툴 토론, 배포 팁, 문제 해결을 나누는 [Telegram 그룹](https://t.me/dibi8opensource).
 
----
+* * *
 
 ## 출처 및 추가 자료
 
@@ -461,7 +462,7 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 - [LinuxServer.io BookStack Docker 이미지](https://docs.linuxserver.io/images/docker-bookstack/)
 - [BookStack vs Wiki.js 비교](https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/)
 
----
+* * *
 
 
 
@@ -502,7 +503,7 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -512,6 +513,6 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
 - [egonex-understand-anything-interactive-knowledge-graph-ai](bookstack-documentation-wiki)
 - [bytedance-ui-tars-desktop-ai-agent-guide](bookstack-documentation-wiki)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

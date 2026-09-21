@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/hyperliquid-perp-dex-trading/
 ---
 
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  
@@ -31,7 +32,7 @@ aliases:
 **Thẻ:** Hyperliquid, perpetual DEX, giao dịch on-chain, giao dịch đòn bẩy, bot giao dịch, DeFi, HyperEVM  
 **Thờ gian đọc:** 18 phút
 
----
+* * *
 
 ## Giới thiệu: Tại sao Hyperliquid thống trị thị trường Perp DEX
 
@@ -43,7 +44,7 @@ Thị trường giao dịch hợp đồng tương lai vĩnh viễn phi tập tru
 
 Trong hướng dẫn toàn diện này, chúng ta sẽ khám phá mọi khía cạnh của giao dịch trên Hyperliquid năm 2026 — từ hiểu kiến trúc cốt lõi đến xây dựng bot giao dịch sẵn sàng cho production.
 
----
+* * *
 
 ## Hiểu về Kiến trúc Cốt lõi của Hyperliquid
 
@@ -65,7 +66,7 @@ Việc giới thiệu **HyperEVM** vào cuối năm 2024 là một bước ngo�
 - **Loại lệnh tùy chỉnh** — Lệnh có điều kiện, trailing stop, TWAP
 - **Giao dịch không phí gas** — Hỗ trợ meta-transaction
 
----
+* * *
 
 ## Thiết lập Môi trường Giao dịch Hyperliquid
 
@@ -80,7 +81,7 @@ Hyperliquid sử dụng xác thực dựa trên ví — không cần đăng ký 
 
 ### Cài đặt Hyperliquid Python SDK
 
-```bash
+````bash
 # Tạo môi trường ảo
 python -m venv hyperliquid-env
 source hyperliquid-env/bin/activate
@@ -90,18 +91,18 @@ pip install hyperliquid-python-sdk
 
 # Cài đặt các phụ thuộc bổ sung
 pip install websockets aiohttp pandas numpy python-dotenv
-```
+`````
 
-Tạo file `.env`: ```bash
+Tạo file ``.env``: `````bash
 # .env — KHÔNG BAO GIỜ commit lên version control
 PRIVATE_KEY=your_ethereum_private_key_here
 WALLET_ADDRESS=0x_your_wallet_address
 TESTNET=true
-```
+`````
 
 ### Kết nối và Xác thực Cơ bản
 
-```python
+`````python
 import os
 import asyncio
 from dotenv import load_dotenv
@@ -139,11 +140,11 @@ class HyperliquidTrader: """Client giao dịch Hyperliquid sẵn sàng productio
 # Khởi tạo trader
 trader = HyperliquidTrader(use_testnet=True)
 trader.get_account_summary()
-```
+`````
 
 ### Lấy thông tin Thị trường
 
-```python
+`````python
     def get_all_assets(self): """Lấy tất cả các thị trường perpetual có sẵn."""
         meta = self.info.meta()
         universe = meta[universe]
@@ -159,15 +160,15 @@ trader.get_account_summary()
         for asset in assets[:10]: print(f"  {asset[name]}: đòn bẩy tối đa {asset[max_leverage]}x")
         
         return assets
-```
+`````
 
----
+* * *
 
 ## Xây dựng Bot Giao dịch Sẵn sàng Production
 
 ### Dữ liệu Thị trường Thờ gian Thực qua WebSocket
 
-```python
+`````python
 import json
 import websockets
 
@@ -213,11 +214,11 @@ class HyperliquidWebSocketFeed: """Feed dữ liệu WebSocket hiệu suất cao 
         self.subscriptions[f"book_{coin}"] = sub
         if self.running: await self.ws.send(json.dumps(sub))
         print(f"Đã đăng ký orderbook {coin}")
-```
+`````
 
 ### Đặt Lệnh: Thị trường, Giới hạn, và Lệnh Có điều kiện
 
-```python
+`````python
     def place_market_order(self, coin: str, is_buy: bool, sz: float): """Thực thi lệnh thị trường với bảo vệ trượt giá."""
         order_type = {"limit": {"tif": "Ioc"}}  # Immediate-or-Cancel
         
@@ -255,11 +256,11 @@ class HyperliquidWebSocketFeed: """Feed dữ liệu WebSocket hiệu suất cao 
         print(f"Cắt lỗ {MUA if is_buy else BÁN} {sz} {coin}")
         print(f"Trigger: {trigger_px}, Giới hạn: {limit_px}")
         return result
-```
+`````
 
 ### Quản lý Vị thế và Kiểm soát Rủi ro
 
-```python
+`````python
     def get_positions(self): """Lấy tất cả vị thế mở với chi tiết P&L."""
         user_state = self.info.user_state(self.wallet_address)
         positions = user_state.get(assetPositions, [])
@@ -297,11 +298,11 @@ class HyperliquidWebSocketFeed: """Feed dữ liệu WebSocket hiệu suất cao 
                 return self.place_market_order(coin, is_buy, sz)
         print(f"Không có vị thế mở cho {coin}")
         return None
-```
+`````
 
 ### Bot Trend-Following Hoàn chỉnh
 
-```python
+`````python
 import time
 import pandas as pd
 from datetime import datetime, timedelta
@@ -371,15 +372,15 @@ class TrendFollowingBot: """Bot trend-following EMA crossover cho Hyperliquid.""
                 time.sleep(check_interval)
             except Exception as e: print(f"Lỗi vòng lặp bot: {e}")
                 time.sleep(10)
-```
+`````
 
----
+* * *
 
 ## Tích hợp API Nâng cao
 
 ### API REST: Hoạt động Batch và Dữ liệu Lịch sử
 
-```python
+`````python
     def get_funding_rates(self): """Lấy tỷ lệ funding cho tất cả thị trường."""
         meta = self.info.meta()
         assets = meta[universe]
@@ -396,11 +397,11 @@ class TrendFollowingBot: """Bot trend-following EMA crossover cho Hyperliquid.""
         print("\nTỷ lệ Funding hàng đầu:")
         for f in funding_data[:10]: print(f"  {f[coin]}: {f[funding_rate]*100:+.4f}%")
         return funding_data
-```
+`````
 
 ### WebSocket Đa Tài sản
 
-```python
+`````python
 class MultiAssetWebSocketManager: """Quản lý kết nối WebSocket cho nhiều tài sản đồng thờ."""
     
     def __init__(self, assets: list): self.assets = assets
@@ -416,15 +417,15 @@ class MultiAssetWebSocketManager: """Quản lý kết nối WebSocket cho nhiề
     async def run(self): async with websockets.connect(self.ws_url) as ws: await self.subscribe_all(ws)
             async for message in ws: msg = json.loads(message)
                 if msg.get("channel") == "allMids": for asset, price in msg[data].items(): if asset in self.data_cache: self.data_cache[asset][mid] = float(price)
-```
+`````
 
----
+* * *
 
 ## Quản lý Rủi ro
 
 ### Margin Cô lập vs. Margin Chéo
 
-```python
+`````python
     def set_cross_margin(self, coin: str): result = self.exchange.update_isolated_margin(coin, False, None)
         print(f"Đã bật margin chéo cho {coin}")
         return result
@@ -432,11 +433,11 @@ class MultiAssetWebSocketManager: """Quản lý kết nối WebSocket cho nhiề
     def set_isolated_margin(self, coin: str, leverage: int): result = self.exchange.update_isolated_margin(coin, True, leverage)
         print(f"Đã bật margin cô lập {leverage}x cho {coin}")
         return result
-```
+`````
 
 ### Kiểm soát Rủi ro Tự động
 
-```python
+`````python
 class RiskManager: """Hệ thống quản lý rủi ro toàn diện cho Hyperliquid."""
     
     def __init__(self, trader: HyperliquidTrader): self.trader = trader
@@ -456,9 +457,9 @@ class RiskManager: """Hệ thống quản lý rủi ro toàn diện cho Hyperliq
         positions = self.trader.get_positions()
         for pos in positions: if pos[size] != 0: self.trader.close_position(pos[coin])
                 time.sleep(0.5)
-```
+`````
 
----
+* * *
 
 ## Câu hỏi Thường gặp (FAQ)
 
@@ -483,9 +484,9 @@ Hyperliquid hoạt động như một **sàn phi lưu ký** — tiền của b�
 
 ### Làm thế nào để backtest chiến lược?
 
-Hyperliquid cung cấp **dữ liệu lịch sử miễn phí** qua API. Sử dụng phương thức `fetch_historical_candles` để lấy dữ liệu OHLCV, sau đó chạy backtest với lớp `BacktestEngine`.
+Hyperliquid cung cấp **dữ liệu lịch sử miễn phí** qua API. Sử dụng phương thức ````fetch_historical_candles```` để lấy dữ liệu OHLCV, sau đó chạy backtest với lớp ````BacktestEngine```.
 
----
+* * *
 
 
 
@@ -502,11 +503,11 @@ Hyperliquid đã vững chắc khẳng định vị thế là địa điểm hà
 
 Bắt đầu xây dựng ngay hôm nay và trải nghiệm lý do tại sao hàng tỷ USD khối lượng giao dịch hàng ngày chảy qua sổ lệnh của Hyperliquid.
 
----
+* * *
 
 *Tuyên bố từ chối trách nhiệm: Giao dịch tiền điện tử có rủi ro đáng kể. Bài viết này chỉ nhằm mục đích giáo dục và không cấu thành lờ khuyên tài chính.*
 
----
+* * *
 
 **Tài nguyên liên quan:**
 - [Minara AI Trading Bot](https://minara.ai/r/OSXG4X)
@@ -538,7 +539,7 @@ Bắt đầu xây dựng ngay hôm nay và trải nghiệm lý do tại sao hàn
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -548,7 +549,7 @@ Bắt đầu xây dựng ngay hôm nay và trải nghiệm lý do tại sao hàn
 - [llm-inference-cost-optimization-guide-2026](hyperliquid-perp-dex-trading)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](hyperliquid-perp-dex-trading)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -8,6 +8,7 @@ date: 2026-07-17T00:00:00+00:00
 lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg
 ---
 
+
 ## TL;DR
 
 Deepset Haystack is the leading open-source Python framework for building production-grade Retrieval-Augmented Generation (RAG) applications in 2026. This comprehensive guide covers document ingestion, embedding generation, vector search, pipeline orchestration, and LLM integration for building intelligent knowledge systems.
@@ -29,25 +30,25 @@ Haystack is an end-to-end framework for building custom LLM applications centere
 
 ### Architecture Overview
 
-Haystack follows a component-based architecture where each piece of the pipeline is a modular, swappable component: ```
+Haystack follows a component-based architecture where each piece of the pipeline is a modular, swappable component: ````
 Documents → Preprocessing → Embedding → Storage → Retrieval → Reranking → Generation
     │            │              │           │          │           │           │
     └── FileConverter ──┘   └── Embedder ─┘   └── Retriever ─┘   └── Generator ──┘
-```
+`````
 
 ## Installation Guide
 
 ### Basic Installation
 
-```bash
+`````bash
 pip install haystack-ai
 # For full features with all document converters
 pip install "haystack-ai[docx,pdf]"
-```
+`````
 
 ### Provider-Specific Installations
 
-```bash
+`````bash
 # OpenAI integration
 pip install openai
 
@@ -59,11 +60,11 @@ pip install elasticsearch
 
 # Weaviate document store
 pip install weaviate-client
-```
+`````
 
 ### Verify Installation
 
-```python
+`````python
 from haystack import Pipeline, Component
 
 # Check version
@@ -73,13 +74,13 @@ print(f"Haystack version: {haystack.__version__}")
 # Create a simple pipeline
 pipeline = Pipeline()
 print("Pipeline created successfully!")
-```
+`````
 
 ## Building Your First RAG Pipeline
 
 ### Step 1: Document Ingestion
 
-Load and preprocess documents: ```python
+Load and preprocess documents: `````python
 from haystack import Pipeline, Document
 from haystack.components.converters import TextFileToDocument
 from haystack.components.preprocessors import DocumentCleaner, DocumentSplitter
@@ -102,11 +103,11 @@ result = splitter.run(documents=documents)
 documents = result["documents"]
 
 print(f"Processed {len(documents)} document chunks")
-```
+`````
 
 ### Step 2: Generate Embeddings
 
-Convert text to vector embeddings: ```python
+Convert text to vector embeddings: `````python
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
 
 # Use local embeddings (no API key needed)
@@ -120,11 +121,11 @@ result = embedder.run(documents=documents)
 documents_with_embeddings = result["documents"]
 
 print(f"Embedded {len(documents_with_embeddings)} documents")
-```
+`````
 
 ### Step 3: Store in Vector Database
 
-```python
+`````python
 from haystack_integrations.document_stores.weaviate import WeaviateDocumentStore
 from haystack.components.writers import DocumentWriter
 
@@ -135,11 +136,11 @@ document_store = WeaviateDocumentStore(url="http://localhost:8080")
 writer = DocumentWriter(document_store=document_store)
 result = writer.run(documents=documents_with_embeddings)
 print(f"Wrote {result[written]} documents to store")
-```
+`````
 
 ### Step 4: Build Retrieval Pipeline
 
-```python
+`````python
 from haystack_integrations.components.retrievers.weaviate import WeaviateEmbeddingRetriever
 from haystack.components.builders import PromptBuilder
 from haystack_integrations.components.generators.openai import OpenAIGenerator
@@ -167,11 +168,11 @@ rag_pipeline.add_component("generator", generator)
 # Connect components
 rag_pipeline.connect("retriever.documents", "prompt_builder.documents")
 rag_pipeline.connect("prompt_builder.prompt", "generator.prompt")
-```
+`````
 
 ### Step 5: Query the Pipeline
 
-```python
+`````python
 def ask_question(query: str, top_k: int = 5) -> str: result = rag_pipeline.run({
         "retriever": {"query": query, "top_k": top_k},
         "prompt_builder": {"question": query}
@@ -180,13 +181,13 @@ def ask_question(query: str, top_k: int = 5) -> str: result = rag_pipeline.run({
 
 answer = ask_question("What are the main features of Haystack?")
 print(answer)
-```
+`````
 
 ## Advanced Retrieval Strategies
 
 ### Hybrid Search (BM25 + Dense)
 
-Combine keyword and semantic search for best results: ```python
+Combine keyword and semantic search for best results: `````python
 from haystack_integrations.document_stores.elasticsearch import ElasticsearchDocumentStore
 from haystack_integrations.components.retrievers.elasticsearch import ElasticsearchEmbeddingRetriever
 
@@ -202,11 +203,11 @@ retriever = ElasticsearchEmbeddingRetriever(
     top_k=10,
     filters={"field_type": "dense"}
 )
-```
+`````
 
 ### Cross-Encoder Reranking
 
-Improve retrieval precision with cross-encoder reranking: ```python
+Improve retrieval precision with cross-encoder reranking: `````python
 from haystack_integrations.components.rankers.transformers import TransformersRanker
 
 # Rerank retrieved documents using a cross-encoder
@@ -218,11 +219,11 @@ ranker = TransformersRanker(
 # Integrate into pipeline
 rag_pipeline.add_component("ranker", ranker)
 rag_pipeline.connect("retriever.documents", "ranker.documents")
-```
+`````
 
 ### Multi-Query Retrieval
 
-Generate multiple queries for better coverage: ```python
+Generate multiple queries for better coverage: `````python
 from haystack.components.generators.chat import OpenAIChatGenerator
 from haystack.components.builders import PromptBuilder
 
@@ -254,7 +255,7 @@ for q in queries: docs = retriever.run(query=q.strip(), top_k=5)["documents"]
 
 # Deduplicate and rank
 unique_docs = deduplicate_documents(all_docs)
-```
+`````
 
 ## LLM Integration
 
@@ -262,11 +263,11 @@ unique_docs = deduplicate_documents(all_docs)
 
 | Provider | Package | Models |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI | haystack-integrations-generators-openai | GPT-4o, GPT-4 Turbo, o1 |
 | Anthropic | haystack-integrations-generators-anthropic | Claude 3.5 Sonnet, Haiku |
@@ -277,7 +278,7 @@ unique_docs = deduplicate_documents(all_docs)
 
 ### Using Ollama for Local LLMs
 
-Run LLMs entirely locally with no API costs: ```python
+Run LLMs entirely locally with no API costs: `````python
 from haystack_integrations.components.generators.ollama import OllamaGenerator
 
 generator = OllamaGenerator(
@@ -292,11 +293,11 @@ generator = OllamaGenerator(
 # Generate response
 result = generator.run(prompt="Explain RAG in simple terms")
 print(result["replies"][0])
-```
+`````
 
 ### Streaming Responses
 
-Stream LLM responses in real-time: ```python
+Stream LLM responses in real-time: `````python
 from haystack_integrations.components.generators.openai import OpenAIGenerator
 
 generator = OpenAIGenerator(
@@ -305,13 +306,13 @@ generator = OpenAIGenerator(
 )
 
 result = generator.run(prompt="Write a detailed explanation of machine learning")
-```
+`````
 
 ## Evaluation and Monitoring
 
 ### Retrieval Evaluation
 
-Evaluate how well your retriever finds relevant documents: ```python
+Evaluate how well your retriever finds relevant documents: `````python
 from haystack import Pipeline
 from haystack.dataclasses import Document, GeneratedAnswer
 from haystack_integrations.components.evaluators.ragas import RagasEvaluator
@@ -334,11 +335,11 @@ results = evaluator.run(
 
 print(f"Average faithfulness: {results[faithfulness]:.3f}")
 print(f"Average context recall: {results[context_recall]:.3f}")
-```
+`````
 
 ### Custom Evaluation Metrics
 
-Build custom evaluation pipelines: ```python
+Build custom evaluation pipelines: `````python
 from haystack import component
 
 @component
@@ -359,13 +360,13 @@ class RelevanceChecker: @component.output_types(is_relevant=bool, confidence=flo
 # Use in pipeline
 pipeline = Pipeline()
 pipeline.add_component("checker", RelevanceChecker())
-```
+`````
 
 ## Production Deployment
 
 ### Docker Deployment
 
-```dockerfile
+`````dockerfile
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y \
@@ -380,19 +381,19 @@ COPY . .
 
 EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
-requirements.txt: ```
+requirements.txt: `````
 haystack-ai
 fastapi
 uvicorn
 openai
 sentence-transformers
-```
+`````
 
 ### FastAPI Integration
 
-Build a REST API around your RAG pipeline: ```python
+Build a REST API around your RAG pipeline: `````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from haystack import Pipeline
@@ -424,11 +425,11 @@ async def query(request: QueryRequest): try: result = await rag_pipeline.ainvoke
             confidence=result.get("confidence", 0.0)
         )
     except Exception as e: raise HTTPException(status_code=500, detail=str(e))
-```
+`````
 
 ### Kubernetes Deployment
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: rag-service
@@ -446,21 +447,21 @@ spec: replicas: 3
         - name: WEAVIATE_URL
           valueFrom: secretKeyRef: name: weaviate
               key: url
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Haystack | LangChain | LlamaIndex | RAGFlow |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Python Native | ✅ | ✅ | ✅ | Partial |
 | Type Safety | Good | Limited | Moderate | Limited |
@@ -472,7 +473,7 @@ spec: replicas: 3
 
 ### Document Preprocessing Pipeline
 
-Efficient preprocessing is critical for RAG quality: ```python
+Efficient preprocessing is critical for RAG quality: `````python
 from haystack.components.preprocessors import RecursiveDocumentSplitter
 from haystack.components.preprocessors import DocumentCleaner
 from haystack.components.extractors import NamedEntityExtractor
@@ -508,11 +509,11 @@ preprocess_pipeline.connect("splitter.documents", "extractor.documents")
 
 result = preprocess_pipeline.run({"cleaner": {"documents": raw_documents}})
 processed_docs = result["extractor"]["documents"]
-```
+`````
 
 ### Hybrid Search Implementation
 
-Combine keyword and semantic search for best retrieval: ```python
+Combine keyword and semantic search for best retrieval: `````python
 from haystack_integrations.document_stores.elasticsearch import ElasticsearchDocumentStore
 from haystack_integrations.components.retrievers.elasticsearch import ElasticsearchEmbeddingRetriever
 from haystack_integrations.components.rankers.elasticsearch import ElasticsearchRanker
@@ -548,11 +549,11 @@ result = hybrid_pipeline.run({
     "retriever": {"query": user_question},
     "ranker": {"query": user_question}
 })
-```
+`````
 
 ### Multi-Tenant RAG Architecture
 
-Support multiple users with isolated knowledge bases: ```python
+Support multiple users with isolated knowledge bases: `````python
 from haystack import Pipeline, Document
 
 class MultiTenantRAG: def __init__(self): self.tenant_pipelines = {}
@@ -588,23 +589,23 @@ class MultiTenantRAG: def __init__(self): self.tenant_pipelines = {}
             "answer": result["generator"]["replies"][0],
             "sources": len(result["retriever"]["documents"])
         }
-```
+`````
 
 ### Embedding Model Selection Guide
 
 Choosing the right embedding model impacts retrieval quality: | Model | Dimensions | Max Tokens | mAP Score | Speed | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | all-MiniLM-L6-v2 | 384 | 256 | 42.3 | Fast | General purpose |
 | all-mpnet-base-v2 | 768 | 512 | 58.7 | Medium | High accuracy |
@@ -612,7 +613,7 @@ Choosing the right embedding model impacts retrieval quality: | Model | Dimensio
 | text-embedding-3-large | 3072 | 8191 | 63.5 | Slow | Maximum accuracy |
 | e5-mistral-7b-instruct | 4096 | 8192 | 65.1 | Slow | Research |
 
-```python
+`````python
 # Benchmark embedding models
 from sentence_transformers import SentenceTransformer
 import numpy as np
@@ -640,7 +641,7 @@ models = [
 
 for model in models: recall = benchmark_model(model, queries, docs)
     print(f"{model}: Recall@5 = {recall:.3f}")
-```
+````
 
 ## Production Checklist
 
@@ -724,7 +725,7 @@ Build production-ready RAG applications with Haystack. [Start building](https://
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [markitdown-universal-file-to-markdown-converter](deepset-haystack-rag-framework-complete-guide)
@@ -734,5 +735,5 @@ Build production-ready RAG applications with Haystack. [Start building](https://
 - [cognee-ai-memory-platform](deepset-haystack-rag-framework-complete-guide)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

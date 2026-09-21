@@ -22,6 +22,7 @@ aliases:
   - /posts/agentmemory-mcp-persistent-memory-2026/
 ---
 
+
 {</* resource-info */>}
 
 ## 서론: 당신의 AI 프로그래밍 도우미는 왜 계속 "기억상실"인가
@@ -36,7 +37,7 @@ Claude Code나 Cursor를 매일 쓰는 개발자라면 한결같이 겪는 문�
 
 이 글에서는 에이전트가 기억을 잃는 이유, agentmemory의 작동 원리, 그리고 오늘 바로 배포할 수 있는 구체적인 단계를 모두 다룬다.
 
----
+* * *
 
 ## 핵심 문제: 컨텍스트 윈도우의 "허상"
 
@@ -52,7 +53,7 @@ Gemini 3.1 Pro는 100만 토큰 컨텍스트 윈도우를 제공한다. Claude 3
 
 팀 환경에서는 고통이 가중된다. 공유 에이전트 메모리 없이 신규 엔지니어가 프로젝트에 투입되면, 조직에만 존재하는 관습을 4-6주간 반복해서 가르쳐야 한다. 공유 메모리 프로파일을 사용하면 팀 보고에 따르면 **온보딩 속도가 2-3배 빨라진다**—에이전트가 이미 팀의 표준, 안티패턴, 아키텍처 역사를 알고 있기 때문이다.
 
----
+* * *
 
 ## 아키텍처: 4단계 메모리 통합 파이프라인
 
@@ -68,11 +69,11 @@ SQLite 기반 벡터 인덱스(sqlite-vec)를 통해 최근 약 100개의 상호
 
 ### 3단계: 장기 기억(Long-term Memory) — 지식 그래프
 
-핵심 역할을 담당한다. agentmemory는 핵심 사실을 **엔티티-관계-엔티티 삼중항** 지식 그래프로 저장한다: ```
+핵심 역할을 담당한다. agentmemory는 핵심 사실을 **엔티티-관계-엔티티 삼중항** 지식 그래프로 저장한다: ````
 (프로젝트A) --[사용_프레임워크]--> (React)
 (프로젝트A) --[규칙]--> (Hook은 useXxx 형식)
 (프로젝트A) --[해결책]--> (Issue #442 수정)
-```
+`````
 
 그래프 구조는 **시간적 추론(Temporal Reasoning)**에 특히 적합하다. "3개월 전 왜 Redux를 포기했지?" 같은 질문에 답할 수 있다. 2026년 초 산업 표준 기억 시스템 테스트로 자리 잡은 LongMemEval 벤치마크가 이 접근법을 검증한다.
 
@@ -84,7 +85,7 @@ SQLite 기반 벡터 인덱스(sqlite-vec)를 통해 최근 약 100개의 상호
 
 이것은 단순한 기록이 아니다. **망각 메커니즘**이다—낮은 신뢰도의 노이즈를 적극적으로 제거하여 지식 그래프를 깨끗하고 빠르게 유지한다.
 
----
+* * *
 
 ## MCP: 이 모든 것이 작동하게 만드는 "AI의 USB-C"
 
@@ -92,7 +93,7 @@ agentmemory의 진정한 전략적 이점은 그래프 알고리즘이 아니라
 
 ### MCP 작동 방식
 
-```
+`````
 ┌─────────────┐      JSON-RPC      ┌──────────────────┐
 │  MCP Client │  ◄──────────────►  │   MCP Server     │
 │(Claude Code)│    (stdio/SSE)     │ (agentmemory)    │
@@ -103,7 +104,7 @@ agentmemory의 진정한 전략적 이점은 그래프 알고리즘이 아니라
                                     │ +벡터   │
                                     │ +그래프  │
                                     └─────────┘
-```
+`````
 
 MCP는 단순한 클라이언트-서버 아키텍처를 사용한다: - **Host**: AI 애플리케이션 자체 (Claude Code, Cursor 등)
 - **Client**: Host 내부의 통신 계층
@@ -115,11 +116,11 @@ MCP는 단순한 클라이언트-서버 아키텍처를 사용한다: - **Host**
 
 agentmemory는 세분화된 도표면을 노출한다—각 도구는 정확히 한 가지 작업만 수행한다: | 도구 | 기능 | 호출 시점 |
 |------|------|----------|
-| `memory_add` | 새 메모리 쓰기 | 아키텍처 결정 후 자동 보관 |
-| `memory_search` | 의미론적 검색 | 사용자가 "인증은 어떻게 처리했지?"라고 물을 때 |
-| `memory_update` | 신뢰도 조정 | 사용자가 구식 메모리를 수정할 때 |
-| `memory_graph_query` | 관계적 조회 | "이 API에 의존하는 모듈은?" |
-| `memory_consolidate` | 통합 실행 | 세션 종료 시 |
+| ````memory_add```` | 새 메모리 쓰기 | 아키텍처 결정 후 자동 보관 |
+| ````memory_search```` | 의미론적 검색 | 사용자가 "인증은 어떻게 처리했지?"라고 물을 때 |
+| ````memory_update```` | 신뢰도 조정 | 사용자가 구식 메모리를 수정할 때 |
+| ````memory_graph_query```` | 관계적 조회 | "이 API에 의존하는 모듈은?" |
+| ````memory_consolidate```` | 통합 실행 | 세션 종료 시 |
 
 ### Tool Search 혁명
 
@@ -127,7 +128,7 @@ agentmemory는 세분화된 도표면을 노출한다—각 도구는 정확히 
 
 agentmemory 사용자에게 이는 전체 50개 도구 표면을 컨텍스트 윈도우 비용 없이 노출할 수 있다는 의미이다.
 
----
+* * *
 
 ## 배포 가이드: 5분만에 영구 기억 구축
 
@@ -139,7 +140,7 @@ agentmemory 사용자에게 이는 전체 50개 도구 표면을 컨텍스트 �
 
 ### 단계 1: agentmemory 설치
 
-```bash
+`````bash
 git clone https://github.com/rohitg00/agentmemory.git
 cd agentmemory
 npm install
@@ -147,11 +148,11 @@ npm run build
 
 # 서버 실행 확인
 node dist/mcp-server.js --stdio
-```
+`````
 
 ### 단계 2: MCP 클라이언트 설정
 
-MCP 설정 파일 편집 (Claude Code의 경우 보통 `~/.claude/mcp.json`): ```json
+MCP 설정 파일 편집 (Claude Code의 경우 보통 ``~/.claude/mcp.json``): `````json
 {
   "mcpServers": {
     "agentmemory": {
@@ -167,23 +168,23 @@ MCP 설정 파일 편집 (Claude Code의 경우 보통 `~/.claude/mcp.json`): ``
     }
   }
 }
-```
+`````
 
 ### 단계 3: 기억 지속성 테스트
 
-Claude Code에서 입력: ```
+Claude Code에서 입력: `````
 기억해: 이 프로젝트의 모든 React Hook은 useXxx 네이밍 규칙을 사용해야 해. 언더스코어 절대 금지.
-```
+`````
 
-Claude Code를 종료하고 재시작. 질문: ```
+Claude Code를 종료하고 재시작. 질문: `````
 우리 프로젝트의 Hook 네이밍 규칙이 뭐였지?
-```
+`````
 
 설정이 올바르다면 Claude는 방금 저장한 규칙을 정확히 답할 것이다—**메모리가 세션 경계를 생존했다.**
 
 ### 단계 4: 자동 통합 활성화 (선택)
 
-`~/.claude/settings.json`에 추가: ```json
+``~/.claude/settings.json``에 추가: `````json
 {
   "hooks": {
     "SessionEnd": {
@@ -193,11 +194,11 @@ Claude Code를 종료하고 재시작. 질문: ```
     }
   }
 }
-```
+`````
 
 매 세션 종료 시 자동으로 그래프 업데이트와 신뢰도 재계산이 실행된다.
 
----
+* * *
 
 ## 팀 배포: 개인 기억에서 조직 지식으로
 
@@ -205,20 +206,20 @@ Claude Code를 종료하고 재시작. 질문: ```
 
 가장 간단한 팀 설정—SQLite 데이터베이스를 공유 아티팩트로 취급한다.
 
-```bash
+`````bash
 # 팀 공유 메모리 저장소 클론
 git clone git@github.com:yourteam/agentmemory-core.git
 cd agentmemory-core
 
 # 각 멤버의 MCP 설정이 공유 DB를 가리키도록 설정
 # ~/.claude/mcp.json에서: # "AGENTMEMORY_DB_PATH": "~/workspace/agentmemory-core/memory.db"
-```
+`````
 
 엔지니어 A가 "인증 모듀 해결책"을 업데이트하면, 모든 팀원의 에이전트가 다음 검색 시 이를 인식한다.
 
 ### 옵션 B: 중앙 집중식 MCP 서버 (10인 이상 팀 권장)
 
-단일 공유 인스턴스 배포: ```bash
+단일 공유 인스턴스 배포: `````bash
 # 공유 서버에서
 npx agentmemory-server --port 3000 --transport sse
 
@@ -230,7 +231,7 @@ npx agentmemory-server --port 3000 --transport sse
     }
   }
 }
-```
+````
 
 장점: - **실시간 동기화**: 한 번 쓰고, 모든 곳에서 즉시 읽기
 - **감사 추적**: 누가 언제 어떤 메모리를 변경했는지
@@ -242,7 +243,7 @@ npx agentmemory-server --port 3000 --transport sse
 - 동일 규칙에 대한 **반복 설명 80% 감소**
 - 팀 린트 규칙 대비 코드 스타일 일관성 점수가 62%에서 **89%로 향상**
 
----
+* * *
 
 ## 대안과의 비교
 
@@ -260,7 +261,7 @@ npx agentmemory-server --port 3000 --transport sse
 - **대규모 팀/엔터프라이즈**: mem0 (21개 프레임워크 통합) 또는 Cloudflare Agent Memory (관리형 SLA)
 - **강력한 시간 추론 필요**: Zep/Graphiti (LongMemEval 63.8% vs. mem0의 49.0%)
 
----
+* * *
 
 ## 한계와 솔직한 경고
 
@@ -280,7 +281,7 @@ M3 MacBook Pro에서 테스트: - 10K 항목 메모리에서 검색: **< 50ms**
 - 세션 종료 통합(100턴 대화): **~800ms**
 - 저장소 증가: 대화 턴당 약 5KB (벡터 인덱스 포함)
 
----
+* * *
 
 ## 결론
 
@@ -290,7 +291,7 @@ agentmemory의 MCP 기반 전략은 특히 영리하다. 사용자를 특정 생
 
 아직 지속 메모리를 설정하지 않았다면, 오늘이 그 날이다.
 
----
+* * *
 
 ## 참고 자료
 
@@ -300,7 +301,7 @@ agentmemory의 MCP 기반 전략은 특히 영리하다. 사용자를 특정 생
 - [Cloudflare Agent Memory 발표](https://blog.cloudflare.com/...)
 - [Claude Code MCP 커넥터 문서](https://docs.anthropic.com/...)
 
----
+* * *
 
 *2026년 5월 17일 작성. Star 수와 MCP 스펙 버전은 시점에 따라 변할 수 있으니, 인용 전 공식 출처에서 확인하시기 바랍니다.*
 

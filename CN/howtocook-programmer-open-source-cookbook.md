@@ -33,6 +33,7 @@ faqs: - q: 'What is HowToCook?'
   - q: 'How can you contribute a recipe to HowToCook?'
     a: 'Fork the repository, copy the template recipe, write your recipe following the project''s structured format, and submit a Pull Request. The project has 200+ contributors and supports Chinese, English, and Japanese.'
 ---
+
 {</* resource-info */>}
 
 ## What is HowToCook?
@@ -47,18 +48,18 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 **License**: Unlicense
 
 
----
+* * *
 ## Why Programmers Need This
 
 ### The Problem with Traditional Recipes
 
 | Issue | Example | HowToCook Solution |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ambiguous quantities | "a little salt" | "3g salt (1/2 teaspoon)" |
 | Vague timing | "cook until golden" | "fry for 90 seconds per side" |
@@ -76,18 +77,18 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 - **Error handling**: Common mistakes and how to avoid them
 
 
----
+* * *
 ## Recipe Categories
 
 ### By Difficulty
 
 | Stars | Count | Examples |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ⭐ | 45 | Tomato scrambled eggs, instant noodles upgrade |
 | ⭐⭐ | 78 | Kung Pao chicken, braised pork |
@@ -104,11 +105,11 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 - **Breakfast**: 23 recipes (congee, pancakes, sandwiches)
 - **Desserts**: 17 recipes (cakes, puddings, sweet soups)
 
----
+* * *
 
 ## Sample Recipe: Tomato Scrambled Eggs
 
-```markdown
+````markdown
 # Tomato Scrambled Eggs (西红柿炒鸡蛋) ⭐
 
 ## Ingredients
@@ -145,9 +146,9 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 - Don't overcook eggs - they continue cooking after removal
 - If tomatoes are too acidic, add 1g more sugar
 - For softer texture, add 10ml milk to eggs
-```
+`````
 
----
+* * *
 
 ## Community & Contributions
 
@@ -167,23 +168,23 @@ The project's philosophy is simple: **cooking recipes should be as clear as code
 
 ### Web Deployment
 
-```bash
+`````bash
 # Deploy locally
 docker pull ghcr.io/anduin2017/how-to-cook:latest
 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 # Access at http://localhost:5000
-```
+`````
 
----
+* * *
 
 ## NPM Package
 
-Install as a Node.js package: ```bash
+Install as a Node.js package: `````bash
 npm install how-to-cook
-```
+`````
 
-Use programmatically: ```javascript
+Use programmatically: `````javascript
 const recipes = require('how-to-cook');
 
 // Search recipes
@@ -194,9 +195,9 @@ const easyRecipes = recipes.filterByStars(1);
 
 // Get random recipe
 const dinner = recipes.random();
-```
+````
 
----
+* * *
 
 ## Learning Path
 
@@ -218,7 +219,7 @@ const dinner = recipes.random();
 - Flavor balancing
 - Presentation
 
----
+* * *
 
 ## Why This Matters for SEO
 
@@ -228,7 +229,7 @@ const dinner = recipes.random();
 4. **Evergreen content**: Cooking never goes out of style
 5. **Multi-language**: Chinese, English, Japanese versions
 
----
+* * *
 
 ## Related Articles
 
@@ -236,11 +237,11 @@ const dinner = recipes.random();
 - [Pixelle-Video: AI Short Video Generator](/resources/ai-tools/pixelle-video-ai-short-video-generator/) - AI tools for content creation
 - [OpenClaw 42 Use Cases](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) - AI agents for daily tasks
 
----
+* * *
 
 *Disclaimer: This article introduces an open-source project. All recipe content belongs to the HowToCook community. Please follow food safety guidelines when cooking.*
 
----
+* * *
 
 ## Recommended Tools
 
@@ -312,7 +313,7 @@ HowToCook: 297 Recipes for Programmers - The Open Source Cookbook represents an 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

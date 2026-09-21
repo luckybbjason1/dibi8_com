@@ -14,6 +14,7 @@ sources: - name: GitHub
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -59,7 +60,7 @@ sources: - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
----
+* * *
 
 # MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars
 
@@ -128,7 +129,7 @@ Edge TTS is the default and requires no API key. For higher quality voices, conf
 
 ### Method 1: Docker (Recommended for Isolation)
 
-```bash
+````bash
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
 
@@ -138,13 +139,13 @@ cp config.example.toml config.toml
 # Edit config.toml with your API keys
 # Then start with release image
 docker compose -f docker-compose.release.yml up
-```
+`````
 
-Access the Web UI at `http://127.0.0.1:8501` and the API docs at `http://127.0.0.1:8080/docs`.
+Access the Web UI at ````http://127.0.0.1:8501```` and the API docs at ````http://127.0.0.1:8080/docs````.
 
 ### Method 2: uv (Recommended for Local Python)
 
-```bash
+`````bash
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
 
@@ -157,11 +158,11 @@ uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False --server.s
 
 # Or start API service
 uv run python main.py
-```
+`````
 
 ### Method 3: Traditional pip
 
-```bash
+`````bash
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 cd MoneyPrinterTurbo
 
@@ -171,14 +172,14 @@ pip install -r requirements.txt
 
 # Start Web UI
 python webui/Main.py
-```
+`````
 
 ### Method 4: Windows One-Click Package
 
 1. Download the latest release from [GitHub Releases](https://github.com/harry0703/MoneyPrinterTurbo/releases/latest)
 2. Extract (avoid Chinese characters or special characters in path)
-3. Run `update.bat` to get the latest code
-4. Run `start.bat` to launch
+3. Run ````update.bat```` to get the latest code
+4. Run ````start.bat```` to launch
 
 ### Method 5: Google Colab
 
@@ -186,7 +187,7 @@ No local setup required. Click the badge below to run MoneyPrinterTurbo directly
 
 ## Configuration
 
-After cloning, copy `config.example.toml` to `config.toml` and configure your settings: ```toml
+After cloning, copy ``config.example.toml`` to ``config.toml`` and configure your settings: `````toml
 [app]
 # Video output settings
 video_width = 1080
@@ -224,17 +225,17 @@ api_keys = ["your-pixabay-api-key"]
 [coverr]
 # Alternative stock footage
 api_keys = ["your-coverr-api-key"]
-```
+`````
 
 ## Usage Examples
 
 ### Web UI
 
-Launch the Streamlit web interface and enter a video topic: ```bash
+Launch the Streamlit web interface and enter a video topic: `````bash
 uv run streamlit run ./webui/Main.py
-```
+`````
 
-Open `http://localhost:8501` in your browser. Enter a topic like "The importance of exercise" and the tool will: 1. Generate a script using your configured LLM
+Open ````http://localhost:8501```` in your browser. Enter a topic like "The importance of exercise" and the tool will: 1. Generate a script using your configured LLM
 2. Search for relevant stock footage
 3. Create voiceover narration
 4. Generate synchronized subtitles
@@ -242,7 +243,7 @@ Open `http://localhost:8501` in your browser. Enter a topic like "The importance
 
 ### Command Line Interface
 
-For headless operation or automation: ```bash
+For headless operation or automation: `````bash
 # Generate video from a topic
 uv run python cli.py --video-subject "The importance of exercise"
 
@@ -262,16 +263,16 @@ uv run python cli.py \
 uv run python cli.py \
   --video-subject "Healthy eating" \
   --stop-at audio
-```
+`````
 
 ### API Endpoint
 
-MoneyPrinterTurbo exposes a REST API for programmatic access: ```bash
+MoneyPrinterTurbo exposes a REST API for programmatic access: `````bash
 # Start the API service
 uv run python main.py
 
 # Then access Swagger docs at http://localhost:8080/docs
-```
+`````
 
 ## Subtitle Generation
 
@@ -282,20 +283,20 @@ Two subtitle generation modes are available: ### Edge Mode (Fast)
 - Occasionally inaccurate timestamps for complex sentences
 
 ### Whisper Mode (Accurate)
-- Uses local `faster-whisper` for audio transcription
+- Uses local ````faster-whisper```` for audio transcription
 - More granular timestamps
 - Requires downloading model files (~250MB for turbo, ~3GB for large-v3)
 - Better subtitle accuracy overall
 
-Switch modes in `config.toml`: ```toml
+Switch modes in ``config.toml``: `````toml
 [subtitle]
 provider = "edge"  # or "whisper"
-```
+`````
 
 For Whisper mode, download the model from HuggingFace. If you're in China and can"t access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9
 - **Quark Pan:** https://pan.quark.cn/s/3ee3d991d64b
 
-Extract and place in `MoneyPrinterTurbo/models/whisper-large-v3/`: ```
+Extract and place in ``MoneyPrinterTurbo/models/whisper-large-v3/``: `````
 MoneyPrinterTurbo/
   models/
     whisper-large-v3/
@@ -304,16 +305,16 @@ MoneyPrinterTurbo/
       preprocessor_config.json
       tokenizer.json
       vocabulary.json
-```
+`````
 
 ## Cross-Platform Publishing
 
-MoneyPrinterTurbo can automatically publish generated videos to social platforms via [Upload-Post](https://upload-post.com): ```toml
+MoneyPrinterTurbo can automatically publish generated videos to social platforms via [Upload-Post](https://upload-post.com): `````toml
 [upload]
 enabled = true
 platforms = ["tiktok", "youtube_shorts", "instagram_reels"]
 youtube_privacy_status = "private"  # or "public", "unlisted"
-```
+`````
 
 YouTube publishing automatically marks AI-generated content as required by platform policies.
 
@@ -336,39 +337,39 @@ If you rely mainly on cloud LLMs, cloud TTS, and online footage sources, CPU and
 
 ### No ffmpeg Found
 
-```
+`````
 RuntimeError: No ffmpeg exe could be found.
-```
+`````
 
-Download ffmpeg from https://www.gyan.dev/ffmpeg/builds/ and set the path: ```toml
+Download ffmpeg from https://www.gyan.dev/ffmpeg/builds/ and set the path: `````toml
 [app]
 ffmpeg_path = "C:\\Users\\YourName\\Downloads\\ffmpeg.exe"
-```
+`````
 
 ### Too Many Open Files
 
-```
+`````
 OSError: [Errno 24] Too many open files
-```
+`````
 
-Increase the limit: ```bash
+Increase the limit: `````bash
 ulimit -n 10240
-```
+`````
 
 ### Whisper Model Download Failure
 
-If you see `LocalEntryNotFoundError`, download the model manually (see Subtitle Generation section above).
+If you see ````LocalEntryNotFoundError````, download the model manually (see Subtitle Generation section above).
 
 ### ImageMagick Errors
 
-The current version no longer requires ImageMagick — it uses Pillow for subtitle rendering after upgrading to MoviePy 2.x. If you still see errors, update your code: ```bash
+The current version no longer requires ImageMagick — it uses Pillow for subtitle rendering after upgrading to MoviePy 2.x. If you still see errors, update your code: `````bash
 git pull
 # Windows: run update.bat
-```
+`````
 
 ## Architecture Overview
 
-```
+`````
 ┌──────────────────────────────────────────────────────┐
 │                   MoneyPrinterTurbo                    │
 ├──────────────────────────────────────────────────────┤
@@ -382,7 +383,7 @@ git pull
 │  Video Composer        │  ← MoviePy 2.x               │
 │  Publisher             │  ← Upload-Post API           │
 └────────────────────────┴──────────────────────────────┘
-```
+`````
 
 ## Who Should Use MoneyPrinterTurbo?
 
@@ -408,11 +409,11 @@ git pull
 
 ## Getting Started Checklist
 
-1. Clone the repository: `git clone https://github.com/harry0703/MoneyPrinterTurbo.git`
-2. Copy config: `cp config.example.toml config.toml`
+1. Clone the repository: ````git clone https://github.com/harry0703/MoneyPrinterTurbo.git````
+2. Copy config: ````cp config.example.toml config.toml````
 3. Add your API keys (at minimum, a Pexels API key for footage)
 4. Choose your LLM provider (Ollama for free local, or OpenAI for best quality)
-5. Start Docker: `docker compose -f docker-compose.release.yml up`
+5. Start Docker: ````docker compose -f docker-compose.release.yml up````
 6. Open Web UI at http://localhost:8501
 7. Enter a video topic and watch it generate a complete video
 8. Review, tweak, and regenerate if needed
@@ -425,7 +426,7 @@ No. Edge TTS is completely free and requires no key. For stock footage, Pexels a
 
 ### Q: Can I use my own video素材 (materials)?
 
-Yes. Set `video_source` to `local` and provide a comma-separated list of video file paths. The tool will use your local files instead of fetching from stock sources.
+Yes. Set ````video_source```` to ````local```` and provide a comma-separated list of video file paths. The tool will use your local files instead of fetching from stock sources.
 
 ### Q: How long does video generation take?
 
@@ -441,14 +442,14 @@ Yes, though slowly. The Docker image supports ARM64. For best results on Pi, use
 
 ### Q: How do I change the output aspect ratio?
 
-Edit `config.toml`: ```toml
+Edit ``config.toml``: `````toml
 [app]
 video_width = 1080
 video_height = 1920  # 9:16 portrait (TikTok/Shorts)
 # OR
 video_width = 1920
 video_height = 1080  # 16:9 landscape (YouTube)
-```
+````
 
 ## Sources
 
@@ -457,7 +458,7 @@ video_height = 1080  # 16:9 landscape (YouTube)
 - [Configuration Example](https://github.com/harry0703/MoneyPrinterTurbo/blob/main/config.example.toml)
 - [Upload-Post Cross-Platform Publishing](https://upload-post.com)
 
----
+* * *
 
 **Want to generate videos at scale?** MoneyPrinterTurbo is free, open-source, and runs on any machine with Python or Docker.
 

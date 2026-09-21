@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/superagent-ai-agent-framework/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction：没人谈论的部署鸿沟
@@ -25,7 +26,7 @@ aliases:
 > **前置要求：** Python 3.10+、Node.js 18+（用于 Web UI）、OpenAI API Key 或等效凭证。
 
 
----
+* * *
 ## What Is Superagent?
 
 Superagent 是一个**用于构建、管理和规模化部署 AI Agent 的开源框架**。它提供了大多数团队最终都会自行搭建的基础设施层：内存管理、向量数据库连接、工具编排、流式响应和 REST API——全部封装在简洁的 Python/TypeScript SDK 和 CLI 之后。
@@ -33,12 +34,12 @@ Superagent 是一个**用于构建、管理和规模化部署 AI Agent 的开源
 与庞大的一体化无代码平台不同，Superagent 坚持开发者优先。你编写 Python 代码定义 Agent 行为，选择 LLM 提供商，连接 Pinecone 或 Weaviate 等向量存储，并通过自动生成的 API 端点暴露一切。框架处理样板代码，让你专注于 Agent 逻辑。
 
 
----
+* * *
 ## How Superagent Works
 
 Superagent 的架构遵循**五层管道模型**：
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │                    客户端应用                                 │
 │         (SDK / REST API / WebSocket / CLI)                    │
@@ -63,7 +64,7 @@ Superagent 的架构遵循**五层管道模型**：
 │                  模型提供商                                   │
 │    OpenAI • Anthropic • Cohere • 本地模型 (Ollama)           │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 核心组件包括：
 
@@ -73,23 +74,23 @@ Superagent 的架构遵循**五层管道模型**：
 4. **Workflows（工作流）**——将 Agent、工具和条件逻辑串联起来的多步自动化。
 5. **API**——为每个创建的 Agent 和工作流自动生成 REST 端点和 OpenAPI 文档。
 
----
+* * *
 
 ## Installation & Setup：5 分钟从零到运行
 
 ### 第一步：安装 CLI 和 SDK
 
-```bash
+`````bash
 npm install -g superagent-cli
 
 # 验证安装
 superagent --version
 # 输出: superagent/0.4.2 linux-x64 node-v20.12.0
-```
+`````
 
 CLI 是最快的部署路径。如果你偏好编程控制，也可以安装 Python SDK：
 
-```bash
+`````bash
 # 安装 Python SDK
 pip install superagent-py
 
@@ -97,11 +98,11 @@ pip install superagent-py
 git clone https://github.com/superagent-ai/superagent.git
 cd superagent/libs/superagent-py
 pip install -e .
-```
+`````
 
 ### 第二步：配置环境变量
 
-```bash
+`````bash
 # 在项目根目录创建 .env 文件
 cat > .env << EOF
 OPENAI_API_KEY=sk-your-openai-key-here
@@ -115,11 +116,11 @@ PINECONE_ENVIRONMENT=us-east-1
 # 可选：本地 Ollama 开发
 OLLAMA_BASE_URL=http://localhost:11434
 EOF
-```
+`````
 
 ### 第三步：部署你的第一个 Agent
 
-```bash
+`````bash
 # 登录 Superagent Cloud（或自建实例）
 superagent login
 
@@ -131,19 +132,19 @@ superagent init --template qa-agent
 
 # 部署到生产环境
 superagent deploy
-```
+`````
 
-执行 `superagent deploy` 后，你会获得一个在线 API 端点：
+执行 ````superagent deploy```` 后，你会获得一个在线 API 端点：
 
-```
+`````
 ✅ Agent 部署成功！
 🔗 API 端点: https://api.superagent.sh/v1/agents/ag_01hwxyz123
 📖 文档: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs
-```
+`````
 
 ### 第四步：测试已部署的 Agent
 
-```bash
+`````bash
 # 通过 curl 查询 Agent
 curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   -H "Authorization: Bearer $SUPERAGENT_API_KEY" \
@@ -152,20 +153,20 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
     "input": "What are the key features of Superagent?",
     "enableStreaming": false
   }'
-```
+`````
 
 响应包含生成的答案、RAG 启用时的来源引用，以及执行元数据：
 
-```json
+`````json
 {
   "output": "Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.",
   "intermediate_steps": [],
   "total_tokens": 142,
   "total_cost": 0.0021
 }
-```
+`````
 
----
+* * *
 
 ## Integration with Mainstream Tools
 
@@ -173,7 +174,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
 
 Superagent 开箱即支持任何 OpenAI 兼容 API。切换提供商只需改配置：
 
-```python
+`````python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -192,13 +193,13 @@ agent_claude = client.agent.create(
     llm_model="claude-3-5-sonnet-20241022",
     api_key=os.getenv("ANTHROPIC_API_KEY")
 )
-```
+`````
 
 ### LangChain 集成
 
 Superagent 可接入任何 LangChain 工具或 Chain，迁移非常便捷：
 
-```python
+`````python
 from langchain.tools import DuckDuckGoSearchRun
 from superagent.client import Superagent
 
@@ -213,13 +214,13 @@ agent = client.agent.create(
         "langchain_tool": search  # 直接传入 LangChain 工具
     }]
 )
-```
+`````
 
 ### Pinecone / Weaviate 向量数据库
 
 连接现有向量存储用于 RAG 工作流：
 
-```python
+`````python
 import os
 from superagent.client import Superagent
 
@@ -246,13 +247,13 @@ datasource_weaviate = client.datasource.create(
         "class_name": "Document"
     }
 )
-```
+`````
 
 ### FastAPI / Express.js 后端集成
 
 将 Superagent 嵌入现有后端：
 
-```python
+`````python
 # FastAPI 集成示例
 from fastapi import FastAPI
 from superagent.client import Superagent
@@ -268,13 +269,13 @@ async def ask_question(question: str): response = await client.agent.invoke(
         enable_streaming=True
     )
     return {"answer": response.output}
-```
+`````
 
 ### Docker 部署
 
 对于自建部署，使用官方 Docker 镜像：
 
-```bash
+`````bash
 # 拉取官方镜像
 docker pull superagentai/superagent:latest
 
@@ -289,11 +290,11 @@ docker run -d \
 
 # 验证容器运行中
 docker ps | grep superagent
-```
+`````
 
 生产环境建议在 [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) 上使用 Docker Compose 部署：
 
-```yaml
+`````yaml
 # docker-compose.yml 生产配置
 version: "3.8"
 services: superagent: image: superagentai/superagent:latest
@@ -312,9 +313,9 @@ services: superagent: image: superagentai/superagent:latest
   redis: image: redis:7-alpine
     volumes: - redisdata:/data
 
-volumes: pgdata: redisdata: ```
+volumes: pgdata: redisdata: `````
 
----
+* * *
 
 ## Benchmarks and Real-World Use Cases
 
@@ -324,11 +325,11 @@ Superagent 采用按量计费模式。截至 2026 年初，Guard、Verify 和 Re
 
 | 服务 | 输入 Token | 输出 Token |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Guard | $0.90 / 百万 | $1.90 / 百万 |
 | Verify | $0.90 / 百万 | $1.90 / 百万 |
@@ -338,11 +339,11 @@ Superagent 采用按量计费模式。截至 2026 年初，Guard、Verify 和 Re
 
 | 指标 | 数值 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API P95 延迟 | ~350ms | GPT-4o 简单问答 |
 | 流式 TTFT | ~120ms | 启用流式传输的首 Token 时间 |
@@ -358,7 +359,7 @@ Superagent 采用按量计费模式。截至 2026 年初，Guard、Verify 和 Re
 
 **案例 3 — 内容生成管道：** 一家营销机构将三个 Superagent Agent（研究、起草、审核）串联成工作流，生成博客草稿。产出从每周 **4 篇增加到 15 篇**，编辑修订时间减少 40%。
 
----
+* * *
 
 ## Advanced Usage and Production Hardening
 
@@ -366,7 +367,7 @@ Superagent 采用按量计费模式。截至 2026 年初，Guard、Verify 和 Re
 
 构建 Agent 可调用的领域专用工具：
 
-```python
+`````python
 from superagent.client import Superagent
 import requests
 
@@ -386,13 +387,13 @@ client.tool.create(
     description="Get the current stock price for a given ticker symbol",
     function=get_stock_price
 )
-```
+`````
 
 ### 内存管理策略
 
 Superagent 支持多种内存后端，根据使用场景选择：
 
-```python
+`````python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -414,13 +415,13 @@ agent = client.agent.create(
     name="Multi-User Agent",
     memory={"type": "redis", "ttl": 3600}  # 1 小时 TTL
 )
-```
+`````
 
 ### 工作流自动化
 
 将多个 Agent 串联成多步工作流：
 
-```python
+`````python
 from superagent.client import Superagent
 
 client = Superagent()
@@ -453,13 +454,13 @@ result = client.workflow.invoke(
     inputs={"topic": "AI Agent Deployment Best Practices"}
 )
 print(result.steps[-1].output)  # 最终编辑后的文章
-```
+`````
 
 ### 认证与速率限制
 
 生产 API 强制执行访问控制：
 
-```python
+`````python
 # 配置 API Key 认证
 superagent config set auth.type=api_key
 superagent config set auth.rate_limit=100/minute
@@ -467,11 +468,11 @@ superagent config set auth.rate_limit=100/minute
 # 启用请求日志用于审计
 superagent config set logging.level=info
 superagent config set logging.retention=30d
-```
+`````
 
 ### 健康检查与监控
 
-```bash
+`````bash
 # 内置健康端点
 curl https://your-superagent-instance.com/health
 
@@ -480,23 +481,23 @@ curl https://your-superagent-instance.com/health
 
 # Prometheus 指标端点（启用后）
 curl https://your-superagent-instance.com/metrics
-```
+`````
 
----
+* * *
 
 ## Comparison with Alternatives
 
 | 特性 | Superagent | LangChain | AutoGen | CrewAI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **部署模式** | CLI + Cloud | 仅库 | 仅库 | 库 + CLI |
 | **REST API 生成** | 自动生成 | 手动配置 | 手动配置 | 部分支持 |
@@ -522,7 +523,7 @@ curl https://your-superagent-instance.com/metrics
 - 选 **AutoGen** 如果多 Agent 对话模式是核心需求
 - 选 **CrewAI** 如果你偏好基于角色的 Agent 抽象，配置更少
 
----
+* * *
 
 ## Limitations: 诚实评估
 
@@ -536,7 +537,7 @@ curl https://your-superagent-instance.com/metrics
 
 **5. 规模化使用成本需关注。** Guard/Verify/Redact 的按 Token 计费在大量使用时累积可观。每日处理数百万 Token 的高流量应用应在投入前仔细建模成本。
 
----
+* * *
 
 ## Frequently Asked Questions
 
@@ -546,11 +547,11 @@ LangChain 是一个用于构建 LLM 应用的库。Superagent 是一个部署框
 
 ### Superagent 能否与 Llama 或 Mistral 等本地模型配合使用？
 
-可以。任何通过 OpenAI 兼容 API 暴露的模型都支持，包括 [Ollama](https://ollama.com)、[vLLM](https://github.com/vllm-project/vllm) 和 [LM Studio](https://lmstudio.ai)。将 `base_url` 指向本地推理服务器端点即可。
+可以。任何通过 OpenAI 兼容 API 暴露的模型都支持，包括 [Ollama](https://ollama.com)、[vLLM](https://github.com/vllm-project/vllm) 和 [LM Studio](https://lmstudio.ai)。将 ````base_url```` 指向本地推理服务器端点即可。
 
 ### Superagent 是否适合生产工作负载？
 
-适合，但需正确配置。使用 Docker 部署配合 PostgreSQL 和 Redis 后端，配置速率限制，启用健康检查，监控 `/metrics` 端点。运行 10,000+ 请求/天的团队报告性能稳定。
+适合，但需正确配置。使用 Docker 部署配合 PostgreSQL 和 Redis 后端，配置速率限制，启用健康检查，监控 ````/metrics```` 端点。运行 10,000+ 请求/天的团队报告性能稳定。
 
 ### RAG 管道如何处理文档更新？
 
@@ -558,17 +559,17 @@ Superagent 通过数据源同步作业检测文档变更。上传新版本的文
 
 ### 能否不使用 Cloud，完全自建 Superagent？
 
-完全可以。整个技术栈在 MIT 许可证下开源。自建需要 Docker、PostgreSQL 和 Redis。CLI 可与自建实例配合使用——只需配置 `superagent config set api.url=https://your-instance.com`。
+完全可以。整个技术栈在 MIT 许可证下开源。自建需要 Docker、PostgreSQL 和 Redis。CLI 可与自建实例配合使用——只需配置 ````superagent config set api.url=https://your-instance.com````。
 
 ### Superagent 是否支持多语言文档处理？
 
-支持。文档分块和向量化管道支持任何语言的 Unicode 文本。针对非英语文档的 RAG，请确保嵌入模型（如 `text-embedding-3-large`）支持目标语言。
+支持。文档分块和向量化管道支持任何语言的 Unicode 文本。针对非英语文档的 RAG，请确保嵌入模型（如 ````text-embedding-3-large```）支持目标语言。
 
 ### 支持哪些向量数据库？
 
 截至 v0.4.x：Pinecone、Weaviate、Qdrant、Chroma 和带 pgvector 扩展的 PostgreSQL。Milvus 和 Redis Vector 支持已在[路线图](https://github.com/superagent-ai/superagent/issues)中。
 
----
+* * *
 
 ## Conclusion：今天就部署你的 Agent
 
@@ -578,7 +579,7 @@ Superagent 消除了"Agent 原型"和"生产 API"之间的摩擦。一条 CLI �
 
 > **参与讨论：** 在我们的 [Telegram 群组](https://t.me/dibi8ai_zh) 中分享你的 Superagent 部署经验——我们每周交流配置排错、分享配置和评审 Agent 架构。
 
----
+* * *
 
 ## Sources & Further Reading
 
@@ -590,7 +591,7 @@ Superagent 消除了"Agent 原型"和"生产 API"之间的摩擦。一条 CLI �
 - [OpenAI API 参考](https://platform.openai.com/docs)
 - [LangChain 文档](https://python.langchain.com)
 
----
+* * *
 
 
 
@@ -633,7 +634,7 @@ Superagent 消除了"Agent 原型"和"生产 API"之间的摩擦。一条 CLI �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -643,7 +644,7 @@ Superagent 消除了"Agent 原型"和"生产 API"之间的摩擦。一条 CLI �
 - [9router-smart-llm-proxy-token-saver-free-coding](superagent-ai-agent-framework)
 - [ai-engineering-from-scratch](superagent-ai-agent-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

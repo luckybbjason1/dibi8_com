@@ -26,6 +26,7 @@ aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
 
+
 # MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법
 
 
@@ -73,15 +74,15 @@ aliases:
 
 ## 4. awesome-mcp-servers — 87.3k Star 커뮤니티 색인
 
-[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)는 사실상 커뮤니티 카탈로그: **87.3k star, 10.5k fork, 1.6k PR**. 서버는 ~40 카테고리로 그룹화. 2026 AI 개발 워크플로우에서 가장 중요한 카테고리: - **Aggregators** — 여러 MCP server를 한 엔드포인트 뒤에 묶음 (`1mcp/agent`, `a2asearch-mcp`)
-- **Browser Automation** — `playwright-mcp`, `browsermcp/mcp`, `real-browser-mcp`
-- **Cloud Platforms** — `terraform-mcp-server`, `aws-mcp-server`, `k8s-mcp-server`, `localstack-mcp-server`
-- **Code Execution** — `e2b-sandbox-mcp` (클라우드 샌드박스), `piston-mcp` (멀티랭 러너), `pydantic-ai/mcp-run-python`
-- **Coding Agents** — `codemcp`, `claude-concilium`, `any-cli-mcp-server`
+[punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)는 사실상 커뮤니티 카탈로그: **87.3k star, 10.5k fork, 1.6k PR**. 서버는 ~40 카테고리로 그룹화. 2026 AI 개발 워크플로우에서 가장 중요한 카테고리: - **Aggregators** — 여러 MCP server를 한 엔드포인트 뒤에 묶음 (```1mcp/agent````, ````a2asearch-mcp````)
+- **Browser Automation** — ````playwright-mcp````, ````browsermcp/mcp````, ````real-browser-mcp````
+- **Cloud Platforms** — ````terraform-mcp-server````, ````aws-mcp-server````, ````k8s-mcp-server````, ````localstack-mcp-server````
+- **Code Execution** — ````e2b-sandbox-mcp```` (클라우드 샌드박스), ````piston-mcp```` (멀티랭 러너), ````pydantic-ai/mcp-run-python````
+- **Coding Agents** — ````codemcp````, ````claude-concilium````, ````any-cli-mcp-server````
 - **Databases** — Postgres, MySQL, MongoDB, Redis, SQLite, ClickHouse, Snowflake 커넥터 모두 OSS MCP server 있음
 - **Communication** — Slack (Zencoder), Discord, Teams, Telegram, 이메일 (IMAP/SMTP)
-- **Knowledge & Memory** — `mem0-mcp`, `letta-mcp`, 벡터 DB 통합 (Pinecone, Weaviate, Chroma)
-- **Search** — `brave-search-mcp-server`, `tavily-mcp`, `exa-mcp`, `perplexity-mcp`
+- **Knowledge & Memory** — ````mem0-mcp````, ````letta-mcp````, 벡터 DB 통합 (Pinecone, Weaviate, Chroma)
+- **Search** — ````brave-search-mcp-server````, ````tavily-mcp````, ````exa-mcp````, ````perplexity-mcp````
 
 **사용법**: 순차 탐색 금지. 문제 영역 Ctrl-F ("postgres", "kubernetes", "stripe"), 상위 2-3개 픽, star 카운트와 마지막 커밋 일자 확인. **리스트는 star 정렬 아니고 유지자 판단** — 직접 검증.
 
@@ -94,7 +95,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 - **모델**: 레지스트리 + 호스팅 런타임 + CLI 설치기
 - **server 수**: ~5,000 (큐레이션, mcp.so보다 작지만 품질 기준 높음)
 - **가격**: 리스트 무료, 탐색 무료, 설치 무료. 호스팅 server는 사용량 기반 가격일 수 있음
-- **킬러 기능**: `npx -y @smithery/cli@latest install <server>`로 Claude Desktop / Cursor / Continue config에 추가 — 수동 JSON 편집 불필요
+- **킬러 기능**: ````npx -y @smithery/cli@latest install <server>````로 Claude Desktop / Cursor / Continue config에 추가 — 수동 JSON 편집 불필요
 - **단점**: 아직 크리에이터 수익화 없음 — 개발자가 인기 server로 돈 못 받음
 
 ### mcp.so
@@ -114,33 +115,33 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 ## 6. 카테고리별 Top MCP Server (2026년 5월)
 
 커뮤니티 star 카운트, 통합 커버리지, 최근 커밋 활동 기준: **Filesystem & Code**
-- `modelcontextprotocol/server-filesystem` (공식) — 샌드박스 FS
-- `cyanheads/git-mcp-server` — 공식 Git server 범위 넘는 Git 작업
-- `tools-mcp/codemap-mcp` — 시맨틱 코드 내비게이션
+- ````modelcontextprotocol/server-filesystem```` (공식) — 샌드박스 FS
+- ````cyanheads/git-mcp-server```` — 공식 Git server 범위 넘는 Git 작업
+- ````tools-mcp/codemap-mcp```` — 시맨틱 코드 내비게이션
 
 **Browser & Web**
-- `microsoft/playwright-mcp` — E2E 테스트 + 복잡한 페이지 인터랙션 최강
-- `browsermcp/mcp` — 가벼움, 이미 로그인된 브라우저 세션 재사용
-- `tavily-mcp` — LLM 소비용으로 사전 포맷된 검색 결과
+- ````microsoft/playwright-mcp```` — E2E 테스트 + 복잡한 페이지 인터랙션 최강
+- ````browsermcp/mcp```` — 가벼움, 이미 로그인된 브라우저 세션 재사용
+- ````tavily-mcp```` — LLM 소비용으로 사전 포맷된 검색 결과
 
 **Database**
-- `postgres-mcp-server` — schema introspection + 안전한 쿼리 실행
-- `mongodb-mcp` — MongoDB 공식 관리
-- `redis-mcp` — 에이전트 협업용 KV + pub/sub
+- ````postgres-mcp-server```` — schema introspection + 안전한 쿼리 실행
+- ````mongodb-mcp```` — MongoDB 공식 관리
+- ````redis-mcp```` — 에이전트 협업용 KV + pub/sub
 
 **Memory & Knowledge**
-- `mem0-mcp` — 영구 시맨틱 메모리 레이어 (mem0 SaaS 연동)
-- `letta-mcp` — 에이전트 상태 프레임워크
-- `pinecone-mcp` — 벡터 스토어
+- ````mem0-mcp```` — 영구 시맨틱 메모리 레이어 (mem0 SaaS 연동)
+- ````letta-mcp```` — 에이전트 상태 프레임워크
+- ````pinecone-mcp```` — 벡터 스토어
 
 **Cloud Ops**
-- `aws-mcp-server` — IAM 범위 AWS API 접근
-- `k8s-mcp-server` — kubectl 동등 + 안전 가드레일
-- `terraform-mcp-server` — plan/apply with 확인 게이트
+- ````aws-mcp-server```` — IAM 범위 AWS API 접근
+- ````k8s-mcp-server```` — kubectl 동등 + 안전 가드레일
+- ````terraform-mcp-server```` — plan/apply with 확인 게이트
 
 **Coding Agents**
-- `codemcp` — 임의의 IDE를 MCP host로 변환
-- `e2b-sandbox-mcp` — 샌드박스 클라우드 코드 실행 (Code Interpreter 대체)
+- ````codemcp```` — 임의의 IDE를 MCP host로 변환
+- ````e2b-sandbox-mcp```` — 샌드박스 클라우드 코드 실행 (Code Interpreter 대체)
 
 ## 7. 셀프호스트 vs 클라우드 호스트 MCP Server
 
@@ -165,7 +166,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 **픽 체크리스트 (후보당 30초)**: 1. **Star > 500** + **마지막 커밋 < 90일** = 활성 프로젝트 (아니면 다른 거)
 2. **"good first issue" 라벨 open issue 존재** = 유지자가 컨트리뷰션 환영 (건강)
 3. **License = MIT/Apache 2.0** = 상업 사용 안전
-4. **README에 `claude_desktop_config.json` 스니펫 있음** = 작성자가 설치 경로 테스트함
+4. **README에 ````claude_desktop_config.json```` 스니펫 있음** = 작성자가 설치 경로 테스트함
 5. **npm/PyPI 설치 시 바이너리 서명 확인** — MCP server 통한 공급망 공격은 2026 실제 위협 벡터
 
 **맞는 게 없으면** 직접 작성. TypeScript와 Python SDK로 ~50줄로 동작하는 MCP server 출하. Anthropic 팀이 일부러 프로토콜을 얇게 유지 — server 만들기 마찰 없음.
@@ -181,9 +182,9 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 
 어려움은 더 이상 "server 찾기"가 아니라 **올바른 것 고르기** — 8절 30초 체크리스트와 2절 결정 트리 사용. 맞는 게 없으면 오후에 직접 작성 (50줄 TS 또는 Python).
 
----
+* * *
 
-*5+ MCP server (postgres + filesystem + git + memory + tavily-search)를 클라우드 청구서 안 태우고 셀프호스트하고 싶으신가요? $6/월 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 하나 띄우고, 슈퍼바이저(systemd 또는 PM2) 아래 돌리고, Claude Desktop `claude_desktop_config.json`을 호스트로 가리키세요. 오후에 완료.*
+*5+ MCP server (postgres + filesystem + git + memory + tavily-search)를 클라우드 청구서 안 태우고 셀프호스트하고 싶으신가요? $6/월 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 하나 띄우고, 슈퍼바이저(systemd 또는 PM2) 아래 돌리고, Claude Desktop ````claude_desktop_config.json```을 호스트로 가리키세요. 오후에 완료.*
 
 
 {
@@ -247,12 +248,12 @@ MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -262,7 +263,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](mcp-server-registry-comprehensive-guide-2026)
 - [codebase-memory-mcp-deep-code-intelligence](mcp-server-registry-comprehensive-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

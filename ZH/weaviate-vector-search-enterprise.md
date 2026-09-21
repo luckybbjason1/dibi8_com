@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/weaviate-vector-search-enterprise/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：当向量数据库在 1 亿对象时崩溃
@@ -35,7 +36,7 @@ aliases:
 本指南涵盖 Weaviate 在 Kubernetes 上的企业部署、混合搜索配置、多模态集合、RBAC、备份策略和监控。每个部分都包含经过生产测试的配置和真实性能数据。
 
 
----
+* * *
 ## 什么是 Weaviate？
 
 Weaviate 是一个用 Go 编写的开源 AI 原生向量搜索引擎。2018 年首次发布，目前版本 **v1.31.0**，它结合了向量相似度搜索与结构化过滤、混合排序和基于 GraphQL 的查询。与在存储层上附加搜索的向量数据库不同，Weaviate 从零开始围绕向量搜索问题设计。
@@ -45,7 +46,7 @@ Weaviate 支持多种向量化模块（OpenAI、Cohere、Hugging Face、Google�
 该项目由 Weaviate B.V. 在 **BSD-3-Clause 许可证** 下维护。Weaviate Cloud (WCD) 为不愿自托管的团队提供完全托管的选项。
 
 
----
+* * *
 ## Weaviate 的工作原理：架构深度解析
 
 ### 核心组件
@@ -54,7 +55,7 @@ Weaviate 的架构将关注点分离为四层：
 
 **摄入层**：处理数据验证、向量化（如果使用模块）和索引。传入对象根据 schema 进行验证，向量被生成或提供，对象并行写入倒排索引和向量索引。
 
-**向量索引层**：HNSW（分层可导航小世界）图索引向量以进行近似最近邻搜索。Weaviate 使用自定义 HNSW 实现，具有可调的 `ef`、`maxConnections` 和 `dynamicEF` 参数。对于小型集合或最大召回率，提供 flat 索引选项。
+**向量索引层**：HNSW（分层可导航小世界）图索引向量以进行近似最近邻搜索。Weaviate 使用自定义 HNSW 实现，具有可调的 ```ef````、````maxConnections```` 和 ````dynamicEF```` 参数。对于小型集合或最大召回率，提供 flat 索引选项。
 
 **倒排索引层**：支持 BM25 的倒排索引实现文本搜索、过滤和混合排序。这是关键的差异化因素 —— 大多数向量数据库缺乏原生的强大文本搜索。
 
@@ -64,15 +65,15 @@ Weaviate 的架构将关注点分离为四层：
 
 | 索引类型 | 最佳用途 | 查询延迟 | 内存开销 | 召回率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | HNSW (默认) | 大型集合", "ANN | 1–5ms | ~1.5x 向量大小 | 0.95–0.99 |
 | Flat (暴力) | 小型集合", "最高精度 | 50–500ms | ~1.1x 向量大小 | 1.0 |
@@ -80,13 +81,13 @@ Weaviate 的架构将关注点分离为四层：
 
 HNSW 是 95% 生产工作负载的正确选择。仅在召回率必须达到 100% 且集合大小低于 100 万对象时使用 flat。
 
----
+* * *
 
 ## 安装与配置：5 分钟内运行 Weaviate
 
 ### Docker（开发环境）
 
-```bash
+`````bash
 docker run -d \
   -p 8080:8080 \
   -p 50051:50051 \
@@ -97,18 +98,18 @@ docker run -d \
   --scheme http \
   --env ENABLE_MODULES='text2vec-openai", "generative-openai' \
   --env OPENAI_APIKEY=$OPENAI_API_KEY
-```
+`````
 
 验证实例：
 
-```bash
+`````bash
 curl http://localhost:8080/v1/meta
 # 返回: {"hostname":"...", "version":"1.31.0", "modules":{...}}
-```
+`````
 
 ### Docker Compose（生产单节点）
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: weaviate: image: semitechnologies/weaviate:1.31.0
@@ -125,13 +126,13 @@ services: weaviate: image: semitechnologies/weaviate:1.31.0
       CLUSTER_HOSTNAME: node1
     volumes: - weaviate_data:/var/lib/weaviate
     deploy: resources: limits: memory: 16G
-volumes: weaviate_data: ```
+volumes: weaviate_data: `````
 
-启动：`docker-compose up -d`
+启动：````docker-compose up -d````
 
 ### 首个 Schema 和数据摄入
 
-```python
+`````python
 import weaviate
 from weaviate.classes import ConfiguredBatch", "Vectorizers
 
@@ -150,11 +151,11 @@ products = client.collections.get("Product")
 with products.batch.dynamic() as batch: for item in product_data: batch.add_object(properties=item)
 
 print(f"导入了 {len(products)} 个对象")
-```
+`````
 
-`ef` 参数控制搜索期间动态候选列表的大小。较高值以延迟为代价提高召回率。`dynamic_ef_enabled=True` 根据结果限制自动调整 `ef`。
+````ef```` 参数控制搜索期间动态候选列表的大小。较高值以延迟为代价提高召回率。````dynamic_ef_enabled=True```` 根据结果限制自动调整 ````ef````。
 
----
+* * *
 
 ## 与 5 款主流工具的集成
 
@@ -162,7 +163,7 @@ print(f"导入了 {len(products)} 个对象")
 
 使用 [LangChain](dibi8-internal-link) 构建检索增强生成流水线：
 
-```python
+`````python
 from langchain_weaviate import WeaviateVectorStore
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.chains import RetrievalQA
@@ -188,13 +189,13 @@ qa_chain = RetrievalQA.from_chain_type(
 
 result = qa_chain.invoke("有哪些 200 美元以下的无线耳机有库存？")
 print(result["result"])
-```
+`````
 
 ### 2. 混合搜索（向量 + BM25）
 
 Weaviate 的混合搜索结合向量相似度和 BM25 关键词相关性：
 
-```python
+`````python
 products = client.collections.get("Product")
 
 results = products.query.hybrid(
@@ -207,13 +208,13 @@ results = products.query.hybrid(
 )
 
 for obj in results.objects: print(f"{obj.properties[name]}: ${obj.properties[price]}")
-```
+`````
 
-`alpha` 参数权衡向量与关键词分数。`alpha=0.7` 表示 70% 向量，30% BM25。从 0.75 开始并根据数据调整。
+````alpha```` 参数权衡向量与关键词分数。````alpha=0.7```` 表示 70% 向量，30% BM25。从 0.75 开始并根据数据调整。
 
 ### 3. 使用 Helm 在 Kubernetes 上部署
 
-```bash
+`````bash
 # 添加 Weaviate Helm 仓库
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
 
@@ -231,7 +232,7 @@ helm install weaviate weaviate/weaviate \
   --set env.CLUSTER_DATA_BIND_PORT=7001 \
   --set env.GOMAXPROCS=8 \
   --set service.type=LoadBalancer
-```
+`````
 
 对于处理 10 亿+ 对象的 3 节点集群，为每个节点分配 **32GB RAM 和 8 CPU 核心**，使用 NVMe SSD 存储的实例。
 
@@ -239,7 +240,7 @@ helm install weaviate weaviate/weaviate \
 
 在同一集合中存储和搜索文本和图像向量：
 
-```python
+`````python
 from weaviate.classes import ConfiguredBatch, Vectorizers, Multi2VecField
 
 client.collections.create(
@@ -266,21 +267,21 @@ import base64
 with open("query_image.jpg", "rb") as f: img_b64 = base64.b64encode(f.read()).decode()
 
 results = collection.query.near_image(near_image=img_b64, limit=5)
-```
+`````
 
 ### 5. Prometheus + Grafana 监控
 
 在 Weaviate 中启用 Prometheus 指标：
 
-```yaml
+`````yaml
 # 监控的额外环境变量
 environment: PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
-```
+`````
 
 需要设置告警的关键指标：
 
-```bash
+`````bash
 # Weaviate 查询延迟
 weaviate_queries_durations_ms_bucket
 
@@ -295,11 +296,11 @@ weaviate_runtime_mem_sys_bytes
 
 # 请求速率
 rate(weaviate_requests_total[5m])
-```
+`````
 
-从 grafana.com 导入官方 Weaviate Grafana 仪表板（ID `19275`）。
+从 grafana.com 导入官方 Weaviate Grafana 仪表板（ID ````19275````）。
 
----
+* * *
 
 ## 基准测试与实际案例
 
@@ -309,15 +310,15 @@ rate(weaviate_requests_total[5m])
 
 | 集合大小 | 纯向量 (HNSW) | 混合 (alpha=0.75) | 过滤向量 | 仅 BM25 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 100 万对象 | 1.2ms | 3.1ms | 2.8ms | 1.8ms |
 | 1000 万对象 | 2.1ms | 5.4ms | 4.9ms | 3.2ms |
@@ -332,13 +333,13 @@ rate(weaviate_requests_total[5m])
 
 | 并发客户端 | QPS (查询/秒) | 平均延迟 | P99 延迟 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 380 | 2.6ms | 4.1ms |
 | 10 | 1,420 | 7.0ms | 12.3ms |
@@ -352,7 +353,7 @@ QPS 在约 3,600 时达到平台期，受限于单节点。通过 3 节点集群
 
 一个全球求职市场在 AWS 上的 5 节点 Weaviate 集群索引 **32 亿份工作描述和简历**。他们使用混合搜索，按市场自定义 alpha 调优（技术岗位 0.6，创意岗位 0.8）。在 4,200 QPS 下平均查询延迟为 **8.4ms**。每月基础设施成本：**8,400 美元**用于计算和存储。之前的系统（Elasticsearch + Pinecone）成本为 14,200 美元/月，延迟高出 3 倍。
 
----
+* * *
 
 ## 高级用法：生产环境加固
 
@@ -360,7 +361,7 @@ QPS 在约 3,600 时达到平台期，受限于单节点。通过 3 节点集群
 
 Weaviate v1.31+ 引入企业级安全 RBAC：
 
-```python
+`````python
 from weaviate.classes.rbac import Permissions, Roles
 
 # 创建只读角色
@@ -383,13 +384,13 @@ client.roles.create(
         Permissions.data(collection="Product").full()
     ]
 )
-```
+`````
 
 ### 2. 备份与灾难恢复
 
 配置兼容 S3 的备份：
 
-```bash
+`````bash
 # 触发手动备份
 curl -X POST http://localhost:8080/v1/backups/s3 \
   -H "Content-Type: application/json" \
@@ -402,11 +403,11 @@ curl -X POST http://localhost:8080/v1/backups/s3 \
       "path": "production/"
     }
   }'
-```
+`````
 
 使用 CronJob 自动化：
 
-```yaml
+`````yaml
 # kubernetes/backup-cronjob.yaml
 apiVersion: batch/v1
 kind: CronJob
@@ -421,13 +422,13 @@ spec: schedule: "0 2 * * *"  # 每天凌晨 2 点
                 -H "Content-Type: application/json" \
                 -d "{"id":"backup-$(date +%Y%m%d)"}"
           restartPolicy: OnFailure
-```
+`````
 
 ### 3. 集群与复制
 
 对于 100 亿+ 对象部署，使用带复制的 5–7 节点集群：
 
-```yaml
+`````yaml
 # 大规模集群的 Helm 值
 replicas: 5
 env: CLUSTER_JOIN: "weaviate-0.weaviate-headless:7001"
@@ -444,13 +445,13 @@ resources: requests: memory: "64Gi"
     cpu: "16"
   limits: memory: "128Gi"
     cpu: "32"
-```
+`````
 
 ### 4. 使用 gRPC 进行高吞吐量摄入
 
 使用 gRPC 替代 REST 进行批量摄入 —— **快 3-5 倍**：
 
-```python
+`````python
 import weaviate
 from weaviate.classes import DataObject
 
@@ -468,13 +469,13 @@ with products.batch.fixed_size(batch_size=1000) as batch: for item in large_data
 
 failed = products.batch.failed_objects
 print(f"导入失败: {len(failed)}")
-```
+`````
 
 ### 5. 自定义向量（自带嵌入）
 
 对于使用自定义嵌入模型的团队：
 
-```python
+`````python
 # 跳过向量器 —— 手动提供向量
 client.collections.create(
     name="CustomEmbedding",
@@ -492,25 +493,25 @@ collection.data.insert(
     properties={"text": "示例文档"},
     vector=[0.01, -0.02, 0.03, ...]  # 您的嵌入
 )
-```
+`````
 
----
+* * *
 
 ## 与替代方案对比
 
 | 特性 | Weaviate | Pinecone | Milvus | Qdrant | pgvector |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 混合搜索 (向量 + BM25) | 原生 | 仅关键词 | 稀疏向量 | 稀疏向量 | 有限 |
 | GraphQL 接口 | 支持 | 仅 REST | REST/gRPC | REST/gRPC | SQL |
@@ -533,7 +534,7 @@ collection.data.insert(
 - **Qdrant**：Rust 构建、最小资源占用、强地理空间需求
 - **pgvector**：已用 PostgreSQL、<1000 万对象、SQL 优先工作流
 
----
+* * *
 
 ## 局限性：客观评估
 
@@ -547,7 +548,7 @@ collection.data.insert(
 
 **比 Elasticsearch 小的生态系统**：Elasticsearch 拥有 20 年的生态系统成熟度。Weaviate 的生态系统正在增长但缺乏插件、日志收集器和社区工具的广度。
 
----
+* * *
 
 ## 常见问题解答
 
@@ -565,7 +566,7 @@ Weaviate Cloud (WCD) 是完全托管的 SaaS 产品 —— 零运维、自动扩
 
 ### 如何从 Pinecone 迁移到 Weaviate？
 
-使用 `index.fetch()` 或快照 API 从 Pinecone 导出向量。使用 gRPC 启用的批量 API 导入 Weaviate。对于 1 亿对象，迁移预计需要 **6–12 小时**，取决于网络带宽。使用以 1,000 对象为块获取并通过 `batch.add_object()` 插入的脚本。将元数据保存为 Weaviate 属性以获得过滤搜索能力。
+使用 ````index.fetch()```` 或快照 API 从 Pinecone 导出向量。使用 gRPC 启用的批量 API 导入 Weaviate。对于 1 亿对象，迁移预计需要 **6–12 小时**，取决于网络带宽。使用以 1,000 对象为块获取并通过 ````batch.add_object()```` 插入的脚本。将元数据保存为 Weaviate 属性以获得过滤搜索能力。
 
 ### 哪些嵌入模型与 Weaviate 配合最好？
 
@@ -573,9 +574,9 @@ Weaviate Cloud (WCD) 是完全托管的 SaaS 产品 —— 零运维、自动扩
 
 ### Weaviate 如何处理生产中的 schema 变更？
 
-Schema 变更（添加属性、修改索引）需要通过 Raft 进行集群元数据更新。在生产集群中，这需要 **200–500ms** 且不影响读取查询。添加新属性是非阻塞的。更改向量索引参数（如 `ef`）需要重新创建集合。在低流量时段规划 schema 变更并先在 staging 测试。
+Schema 变更（添加属性、修改索引）需要通过 Raft 进行集群元数据更新。在生产集群中，这需要 **200–500ms** 且不影响读取查询。添加新属性是非阻塞的。更改向量索引参数（如 ````ef```）需要重新创建集合。在低流量时段规划 schema 变更并先在 staging 测试。
 
----
+* * *
 
 ## 结论：构建理解含义的搜索
 
@@ -587,7 +588,7 @@ Schema 变更（添加属性、修改索引）需要通过 Raft 进行集群元�
 
 **加入社区**：在 [dibi8 中文 Telegram 群组](https://t.me/dibi8cn) 中分享 Weaviate 部署配置、基准测试结果和故障排除技巧 —— 12,000+ 工程师构建 AI 原生搜索系统的社区。
 
----
+* * *
 
 
 
@@ -611,7 +612,7 @@ Schema 变更（添加属性、修改索引）需要通过 Raft 进行集群元�
 7. 多模态搜索教程 — https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip
 8. RBAC 文档 (v1.31+) — https://weaviate.io/developers/weaviate/configuration/authorization
 
----
+* * *
 
 *Affiliate 披露：本文包含 DigitalOcean 和 HTStack 的 affiliate 链接。如果您通过这些链接购买基础设施，dibi8.com 将获得佣金，不会额外增加您的费用。我们只推荐已在生产环境中基准测试过的提供商。Affiliate 收入支持独立技术研究和开源工具开发。*
 

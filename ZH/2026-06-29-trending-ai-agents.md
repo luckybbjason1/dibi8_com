@@ -15,6 +15,7 @@ methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os
 review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
+
 # 本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 29 日当周）
 
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
@@ -55,7 +56,7 @@ Palmier Pro 是首款专为 AI 代理构建的视频编辑器。与将 AI 功能
 
 → [适用于 macOS 的下载](https://github.com/palmier-io/palmier-pro/releases/latest/download/PalmierPro.dmg)
 
----
+* * *
 
 ## 2. Anthropic Cybersecurity Skills - 817 Structured Skills for AI Agents
 
@@ -86,7 +87,7 @@ Palmier Pro 是首款专为 AI 代理构建的视频编辑器。与将 AI 功能
 
 → [探索技能库](https://github.com/mukul975/Anthropic-Cybersecurity-Skills)
 
----
+* * *
 
 ## 3. Penpot - Open-Source Design Tool for Teams
 
@@ -123,7 +124,7 @@ Penpot 的 Clojure/ClojureScript 技术栈对于设计工具来说是不寻常�
 
 Penpot 提供了用于自托管的 Docker Compose 设置：
 
-```yaml
+````yaml
 version: "3.6"
 services: penpot-backend: image: penpotapp/backend:latest
     ports: - 9001:9001
@@ -133,12 +134,12 @@ services: penpot-backend: image: penpotapp/backend:latest
     ports: - 9000:80
     environment: - PENPET_PUBLIC_URI=http://localhost:9000
       - PENPET_BACKEND_URI=http://localhost:9001
-```
+`````
 
-部署后，通过 `http://localhost:9000` 访问 Penpot，并与您的团队开始创建设计。
+部署后，通过 ````http://localhost:9000``` 访问 Penpot，并与您的团队开始创建设计。
 
 
----
+* * *
 
 ## 4. AI Website Cloner Template - One-Command Website Duplication
 
@@ -168,7 +169,7 @@ TypeScript 的实现建议使用基于 Node.js 的工具，可能与流行的 AI
 
 → [在 GitHub 上查看](https://github.com/JCodesMore/ai-website-cloner-template)
 
----
+* * *
 
 ## 5. SimpleX Chat - Privacy-First Messaging Without User IDs
 
@@ -200,7 +201,7 @@ SimpleX 使用 Haskell 构建，利用函数式编程在形式验证和数学正
 
 → [了解更多](https://simplex.chat)
 
----
+* * *
 
 ## This Week's Trends
 
@@ -254,7 +255,7 @@ A：不。Dibi8 保持严格的编辑独立性。所有链接都指向官方 Git
 - [AI 代理工具链](https://dibi8.com/en/collections/ai-agent-tool-chain/) - 精选的 AI 代理开发工具集合。
 - [每周趋势档案](https://dibi8.com/en/resources/llm-frameworks/) - 过往几周的趋势报告。
 
----
+* * *
 
 *本周开源人工智能代理由 Dibi8 部落情报每周发布。数据收集日期：2026 年 6 月 29 日。下期刊登日期：2026 年 7 月 6 日。*
 
@@ -321,12 +322,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -336,7 +337,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-29-trending-ai-agents](2026-06-29-trending-ai-agents)
 - [semgrep-15k-star-sast-security-scanner](2026-06-29-trending-ai-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -367,15 +368,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

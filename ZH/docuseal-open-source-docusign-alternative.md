@@ -34,6 +34,7 @@ faqs: - q: 'DocuSeal 是 DocuSign 的免费替代品吗？'
   - q: 'DocuSeal 可以将签署后的文档存储在哪里？'
     a: 'DocuSeal 默认支持本地磁盘配合 SQLite 存储，生产环境可使用 PostgreSQL 或 MySQL，同时支持云对象存储，包括 AWS S3、Google Cloud Storage 和 Azure Blob。生产多用户部署建议使用 PostgreSQL（启用 SSL）和 S3（启用服务端加密）。'---
 
+
 {</* resource-info */>}
 
 # DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%
@@ -99,12 +100,12 @@ DocuSeal按照ISO 32000标准将加密有效的签名嵌入PDF。它还能验证
 
 将DocuSeal集成到您现有的技术栈中：
 
-```bash
+````bash
 # 通过API创建模板
 curl -X POST https://your-docuseal.com/api/templates   -H "Authorization: Bearer YOUR_API_KEY"   -d '{"name":"NDA模板","fields":[{"type":"signature","role":"signer"}]}'
-```
+`````
 
-Webhooks在以下事件触发：`document_signed`、`submitter_completed`、`template_created`。
+Webhooks在以下事件触发：``document_signed``、``submitter_completed``、``template_created``。
 
 ### 8. 多语言支持
 
@@ -129,16 +130,16 @@ DocuSeal提供商业许可证，包含高级功能：
 
 ### Docker（最快）
 
-```bash
+`````bash
 docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal
-```
+`````
 
 ### Docker Compose（生产环境）
 
-```bash
+`````bash
 curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
 sudo HOST=your-domain.com docker compose up
-```
+`````
 
 当您的DNS指向服务器时，这会通过Caddy自动配置HTTPS。
 
@@ -148,7 +149,7 @@ sudo HOST=your-domain.com docker compose up
 
 ## 代码示例：React嵌入式签署
 
-```jsx
+`````jsx
 import { DocuSealForm } from "@docuseal/react";
 
 function ContractPage() {
@@ -160,7 +161,7 @@ function ContractPage() {
     />
   );
 }
-```
+`````
 
 ## 实际应用场景
 
@@ -182,11 +183,11 @@ function ContractPage() {
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **价格** | 免费（自托管） | $10-60/用户/月 | $19-59/用户/月 |
 | **开源** | ✅ 是 | ❌ 否 | ❌ 否 |
@@ -224,7 +225,7 @@ DocuSeal 基于 Ruby on Rails 8.1.2 构建，采用模块化架构，将文档�
 
 当用户上传 PDF 时，DocuSeal 会将其通过以下管道运行：
 
-1. **PDF 解析**：使用 `pdf-reader` gem 提取文本、字段和元数据。
+1. **PDF 解析**：使用 ````pdf-reader```` gem 提取文本、字段和元数据。
 2. **表单字段检测**：自动检测现有的 AcroForm 字段，并建议映射到 DocuSeal 字段类型。
 3. **字段放置**：WYSIWYG 构建器在画布层中渲染 PDF，管理员将字段拖到特定坐标上。
 4. **模式生成**：生成描述字段类型、验证规则、条件逻辑和签署者路由的 JSON 模式。
@@ -260,7 +261,7 @@ DocuSeal 的 REST API 和 webhook 系统支持强大的自动化场景：
 
 当交易在 Salesforce 中达到 "Closed-Won" 阶段时：
 
-```python
+`````python
 import requests
 
 def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportunity_id)
@@ -283,13 +284,13 @@ def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportun
         }
     )
     return response.json()["submission_url"]
-```
+`````
 
 ### 模式 2：Webhook 驱动的配置
 
 当文档完全签署后，触发下游操作：
 
-```javascript
+`````javascript
 // Express webhook 处理程序
 app.post('/webhooks/docuseal', (req, res) => {
     const event = req.body.event;
@@ -305,15 +306,15 @@ app.post('/webhooks/docuseal', (req, res) => {
     }
     res.status(200).send('OK');
 });
-```
+`````
 
 ### 模式 3：批量 HR 入职
 
 对于季节性招聘高峰，使用批量发送 API：
 
-```bash
+`````bash
 curl -X POST https://docuseal.yourcompany.com/api/bulk_submissions   -H "Authorization: Bearer API_KEY"   -F "template_id=employee-agreement"   -F "file=@new_hires.csv"   -F "column_mapping={"email":"submitter_email","name":"full_name"}"
-```
+`````
 
 ## 性能与可扩展性
 
@@ -321,13 +322,13 @@ DocuSeal 通过水平扩展处理高容量签署场景：
 
 | 指标 | 单实例 | Docker Compose 集群 | Kubernetes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 并发签署者 | 50 | 500 | 5,000+ |
 | 文档/小时 | 200 | 2,000 | 20,000+ |
@@ -346,13 +347,13 @@ DocuSeal 通过水平扩展处理高容量签署场景：
 
 | 成本类别 | DocuSeal（自托管） | DocuSign Business Pro | PandaDoc Business |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 许可费 | $0 | $64,800（3年） | $70,200（3年） |
 | 基础设施 | $1,440（VPS） | $0 | $0 |
@@ -378,7 +379,7 @@ DocuSeal 拥有快速增长的生态系统：
 **解决方案**：为您的发送域配置 SPF、DKIM 和 DMARC 记录。对于生产环境，使用 SendGrid 或 AWS SES 的专用 IP。
 
 ### 问题：PDF 字段渲染不正确
-**解决方案**：确保源 PDF 使用标准 AcroForm 字段，而不是 XFA 表单。上传前使用 Adobe Acrobat 或 `qpdf` 将 XFA 转换为 AcroForm。
+**解决方案**：确保源 PDF 使用标准 AcroForm 字段，而不是 XFA 表单。上传前使用 Adobe Acrobat 或 ````qpdf``` 将 XFA 转换为 AcroForm。
 
 ### 问题：移动设备上文档加载缓慢
 **解决方案**：为 PDF 资产启用 CDN 缓存。将 PDF 中的图像压缩到 300 DPI 以下。对多页文档使用懒加载。
@@ -396,11 +397,11 @@ DocuSeal 是少数能直接替代价值数十亿美元 SaaS 巨头的开源项�
 > **许可证说明**：根据 AGPLv3 及第 7(b) 条附加条款分发。商业使用需遵守许可证条款。
 
 
----
+* * *
 *您从 DocuSign 迁移到 DocuSeal 了吗？在评论中分享您的经验。*
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -473,7 +474,7 @@ DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90% 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

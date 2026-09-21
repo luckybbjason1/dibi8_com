@@ -12,11 +12,6 @@ showSummary: true
 sources: ["GitHub Search API"]
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-review_checklist:
-  - "Editor's Take 段已填实际分析"
-  - "至少 1 个 repo 编辑加了 hands-on 评注"
-  - "无 placeholder URL"
-  - "无 aff 链接 (Tribe 文章纪律)"
 
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 
@@ -33,10 +28,11 @@ review_checklist:
 
 
 ---
+
 ## Methodology
 
-- **Source**: GitHub Search API, query window `pushed:>2026-05-25`
-- **Topics scanned**: `ai-agent` + `llm` + `mcp` (deduped across topics)
+- **Source**: GitHub Search API, query window ``pushed:>2026-05-25``
+- **Topics scanned**: ``ai-agent`` + ``llm`` + ``mcp`` (deduped across topics)
 - **Filter**: ≥100 stars + active commits in past 7 days
 - **Output**: Top 8 by stars
 - **Script**: [tribe-os-intel.sh](https://github.com/luckybbjason1/home-hermes/blob/main/服务器hermes/scripts/tribe-os-intel.sh) (open-source, fully reproducible)
@@ -49,8 +45,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 
 ### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) - ★200497
 
-- **Primary language**: `JavaScript`
-- **GitHub topic**: `mcp`
+- **Primary language**: ``JavaScript``
+- **GitHub topic**: ``mcp``
 - **What it claims**: The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor 
 
 
@@ -59,8 +55,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 2. [n8n-io/n8n](https://github.com/n8n-io/n8n) - ★190491
 
-- **Primary language**: `TypeScript`
-- **GitHub topic**: `mcp`
+- **Primary language**: ``TypeScript``
+- **GitHub topic**: ``mcp``
 - **What it claims**: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
 
 
@@ -69,8 +65,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 3. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) - ★184681
 
-- **Primary language**: `Python`
-- **GitHub topic**: `llm`
+- **Primary language**: ``Python``
+- **GitHub topic**: ``llm``
 - **What it claims**: AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.
 
 
@@ -79,8 +75,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 4. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) - ★174640
 
-- **Primary language**: `Python`
-- **GitHub topic**: `llm`
+- **Primary language**: ``Python``
+- **GitHub topic**: ``llm``
 - **What it claims**: The agent that grows with you
 
 
@@ -89,8 +85,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 5. [ollama/ollama](https://github.com/ollama/ollama) - ★172748
 
-- **Primary language**: `Go`
-- **GitHub topic**: `llm`
+- **Primary language**: ``Go``
+- **GitHub topic**: ``llm``
 - **What it claims**: Get up and running with Kimi-K2.5, GLM-5, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.
 
 
@@ -99,8 +95,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 6. [f/prompts.chat](https://github.com/f/prompts.chat) - ★163117
 
-- **Primary language**: `HTML`
-- **GitHub topic**: `llm`
+- **Primary language**: ``HTML``
+- **GitHub topic**: ``llm``
 - **What it claims**: f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source - self-host for your organization with complete pr
 
 
@@ -109,8 +105,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 7. [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) - ★156001
 
-- **Primary language**: `JavaScript`
-- **GitHub topic**: `mcp`
+- **Primary language**: ``JavaScript``
+- **GitHub topic**: ``mcp``
 - **What it claims**: Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发
 
 
@@ -119,8 +115,8 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 ---
 ### 8. [langgenius/dify](https://github.com/langgenius/dify) - ★143303
 
-- **Primary language**: `TypeScript`
-- **GitHub topic**: `mcp`
+- **Primary language**: ``TypeScript``
+- **GitHub topic**: ``mcp``
 - **What it claims**: Production-ready platform for agentic workflow development.
 
 

@@ -13,11 +13,12 @@ aliases:
   - /kr/posts/pendle-yield-tokenization-defi/
 ---
 
+
 {{</* resource-info */>}}
 
 > **제휴 공개**: 본 문서에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 및 [OKX](https://www.promoohubly.com/join/12190433) 제휴 링크가 포함되어 있습니다. 이 링크를 통해 등록하시면 커미션을 받을 수 있으며, 추가 비용은 발생하지 않습니다.
 
----
+* * *
 
 ## Pendle이란 무엇이며 왜 DeFi를 변화시키는가?
 
@@ -29,7 +30,7 @@ Pendle의 핵심 통찰은 수익과 원금이 근본적으로 다른 위험 및
 
 Pendle의 핵심은 SY(Standardized Yield) 토큰 표준으로, 모든 수익 창출 토큰을 통합 인터페이스로 포장합니다. stETH와 같은 자산을 Pendle에 예치하면 프로토콜은 SY-stETH를 발행한 다음 이를 PT-stETH와 YT-stETH로 분할합니다.
 
-```solidity
+````solidity
 // Pendle 수익 토큰화 흐름
 // 파일: PendleRouter.sol (간소화)
 
@@ -85,9 +86,9 @@ contract PendleRouter is IPendleRouter {
         emit Tokenized(input.underlying, input.amountIn, amountPYOut);
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // Lido stETH용 표준화 수익 토큰(SY) 구현
 // 파일: SYStETH.sol
 
@@ -147,9 +148,9 @@ contract SYStETH is SYBase {
         rewardAmounts[0] = yieldAccrued;
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // 원금 토큰(PT) 계약
 // 파일: PTStETH.sol
 
@@ -200,9 +201,9 @@ contract PTStETH is PTBase {
         impliedApy = _calculateImpliedFromPrice(ptPrice, timeToMaturity);
     }
 }
-```
+`````
 
-```solidity
+`````solidity
 // 수익 토큰(YT) 계약
 // 파일: YTStETH.sol
 
@@ -279,13 +280,13 @@ contract YTStETH is YTBase {
         }
     }
 }
-```
+`````
 
 ## Pendle AMM: 프로처럼 수익 거래하기
 
 Pendle의 자체 AMM은 만기에 다가감에 따라 시간 감가를 고려하는 특수 곡선을 사용하여 PT와 YT를 거래하도록 특별히 설계되었습니다.
 
-```solidity
+`````solidity
 // Pendle 마켓 AMM
 // 파일: PendleMarket.sol
 
@@ -378,9 +379,9 @@ contract PendleMarket is IPendleMarket {
         amountOut -= fee;
     }
 }
-```
+`````
 
-```typescript
+`````typescript
 // Pendle 거래용 TypeScript SDK
 import { PendleSDK } from '@pendle/sdk-v2';
 import { ethers } from ethers;
@@ -416,7 +417,7 @@ async function swapPtForSy(
   );
   
   const receipt = await tx.wait();
-  console.log(`${ptAmount} PT를 SY로 스왑. TX: ${receipt.hash}`);
+  console.log(````${ptAmount} PT를 SY로 스왑. TX: ${receipt.hash}````);
   
   return receipt;
 }
@@ -443,7 +444,7 @@ async function addLiquidity(
   
   // 수령한 LP 토큰 파싱
   const lpTokens = parseLPTokensFromReceipt(receipt);
-  console.log(`유동성 추가 완료. ${lpTokens} LP 토큰 수령`);
+  console.log(````유동성 추가 완료. ${lpTokens} LP 토큰 수령````);
   
   return lpTokens;
 }
@@ -460,13 +461,13 @@ async function getMarketImpliedApy(marketAddress: string) {
   const yearsToMaturity = timeToMaturity / (365.25 * 24 * 3600);
   const impliedApy = (1 / ptPrice) ** (1 / yearsToMaturity) - 1;
   
-  console.log(`PT 가격: ${ptPrice}`);
-  console.log(`만기까지: ${yearsToMaturity.toFixed(2)} 년`);
-  console.log(`암묵적 APY: ${(impliedApy * 100).toFixed(2)}%`);
+  console.log(````PT 가격: ${ptPrice}````);
+  console.log(````만기까지: ${yearsToMaturity.toFixed(2)} 년````);
+  console.log(````암묵적 APY: ${(impliedApy * 100).toFixed(2)}%````);
   
   return impliedApy;
 }
-```
+`````
 
 ## PT 및 YT 전략: 고정 수익, 수익 투기 등
 
@@ -474,7 +475,7 @@ Pendle은 다양한 위험 선호도와 시장 관점에 맞는 여러 정교한
 
 ### 고정 수익 전략(PT 구매)
 
-```solidity
+`````solidity
 // 전략: 고정 수익을 위해 할인된 가격에 PT 구매
 // 예시: 0.95에 PT-stETH 구매, 1년 만기에 1.0으로 상환
 // 고정 수익률 = (1 - 0.95) / 0.95 = 5.26%
@@ -544,11 +545,11 @@ contract FixedIncomeStrategy {
         emit FixedIncomeRedeemed(msg.sender, underlyingReceived, profit);
     }
 }
-```
+`````
 
 ### 레버리지 수익 전략(YT 구매)
 
-```solidity
+`````solidity
 // 전략: YT를 통한 수익 롱 포지션으로 스테이킹 수익에 대한 레버리지 노출
 // ETH 스테이킹 수익률이 평균 4%인데 6%로 예상하면 YT를 구매하여 수익
 
@@ -626,11 +627,11 @@ contract LeveragedYieldStrategy {
         emit YieldLongClosed(msg.sender, totalReceived, pnl);
     }
 }
-```
+`````
 
 ### 유동성 공급 전략
 
-```typescript
+`````typescript
 // LP 전략: PT/SY 거래 수익 + PT 부분 고정 수익
 async function provideLiquidityStrategy(
   marketAddress: string,
@@ -657,8 +658,8 @@ async function provideLiquidityStrategy(
   );
   
   // 수익 노출을 위한 남은 YT 보유
-  console.log(`LP 포지션: ${lpTokens} LP 토큰`);
-  console.log(`YT 포지션: ${ytOut} YT 토큰(수익 노출)`);
+  console.log(````LP 포지션: ${lpTokens} LP 토큰````);
+  console.log(````YT 포지션: ${ytOut} YT 토큰(수익 노출)````);
   
   // 자동 복리 설정
   const autoCompounder = new PendleAutoCompounder({
@@ -671,13 +672,13 @@ async function provideLiquidityStrategy(
   
   return { lpTokens, ytOut, autoCompounder };
 }
-```
+`````
 
 ## Pendle 기반 구축: 개발자 통합 가이드
 
 ### Pendle 시장 데이터 읽기
 
-```typescript
+`````typescript
 // Pendle에서 포괄적 시장 데이터 가져오기
 import { PendleMarketReader } from '@pendle/sdk-v2/market';
 
@@ -693,30 +694,30 @@ async function analyzePendleMarkets() {
   for (const market of markets) {
     const data = await reader.getMarketSnapshot(market.address);
     
-    console.log(`\n=== ${market.underlyingSymbol} (${data.expiryDate}) ===`);
-    console.log(`PT 가격: ${data.ptPrice.toFixed(4)}`);
-    console.log(`YT 가격: ${data.ytPrice.toFixed(4)}`);
-    console.log(`암묵적 APY: ${(data.impliedApy * 100).toFixed(2)}%`);
-    console.log(`기저 APY: ${(data.underlyingApy * 100).toFixed(2)}%`);
-    console.log(`유동성: $${(data.liquidityUSD / 1e6).toFixed(2)}M`);
-    console.log(`24h 거래량: $${(data.volume24h / 1e6).toFixed(2)}M`);
+    console.log(````\n=== ${market.underlyingSymbol} (${data.expiryDate}) ===````);
+    console.log(````PT 가격: ${data.ptPrice.toFixed(4)}````);
+    console.log(````YT 가격: ${data.ytPrice.toFixed(4)}````);
+    console.log(````암묵적 APY: ${(data.impliedApy * 100).toFixed(2)}%````);
+    console.log(````기저 APY: ${(data.underlyingApy * 100).toFixed(2)}%````);
+    console.log(````유동성: $${(data.liquidityUSD / 1e6).toFixed(2)}M````);
+    console.log(````24h 거래량: $${(data.volume24h / 1e6).toFixed(2)}M````);
     
     // 수익 스프레드 분석
     const yieldSpread = data.underlyingApy - data.impliedApy;
-    console.log(`수익 스프레드: ${(yieldSpread * 100).toFixed(2)}%`);
+    console.log(````수익 스프레드: ${(yieldSpread * 100).toFixed(2)}%````);
     
     if (yieldSpread > 0.01) {
-      console.log(`⚠️  과소평가: 시장이 기저 수익보다 적게 지불`);
+      console.log(````⚠️  과소평가: 시장이 기저 수익보다 적게 지불````);
     } else if (yieldSpread < -0.01) {
-      console.log(`🟢 과대평가: 시장이 기저 수익보다 많이 지불`);
+      console.log(````🟢 과대평가: 시장이 기저 수익보다 많이 지불````);
     }
   }
 }
-```
+`````
 
 ### Pendle Router 통합
 
-```solidity
+`````solidity
 // Pendle을 DeFi 프로토콜에 통합
 contract MyDeFiProtocol {
     
@@ -780,9 +781,9 @@ contract MyDeFiProtocol {
         return 1e18 - discount;
     }
 }
-```
+`````
 
-```typescript
+`````typescript
 // SDK 헬퍼: 최적 진입/청산 포인트 계산
 class PendleStrategyAnalyzer {
   
@@ -847,19 +848,19 @@ class PendleStrategyAnalyzer {
       ptReceived: ptAmount,
       redemptionValue,
       profit,
-      roi: `${roi}%`,
+      roi: ````${roi}%````,
       daysToMaturity,
-      apy: `${apy.toFixed(2)}%`,
+      apy: ````${apy.toFixed(2)}%````,
     };
   }
 }
-```
+`````
 
 ## 수익 오라클 및 가격 발견
 
 Pendle의 PT 가격은 선도 수익률에 대한 탈중앙화 오라클 역할을 합니다 — DeFi 고정 수익 시장의 중요한 기본 요소입니다.
 
-```solidity
+`````solidity
 // Pendle을 수익 오라클로 사용
 contract PendleYieldOracle {
     
@@ -928,11 +929,11 @@ contract PendleYieldOracle {
         return result;
     }
 }
-```
+`````
 
 ## Pendle V2 아키텍처 심층 분석
 
-```solidity
+`````solidity
 // Pendle V2 핵심 아키텍처
 // 파일: PendleRouterBase.sol
 
@@ -1014,9 +1015,9 @@ abstract contract PendleRouterBase is IPendleRouter {
         }
     }
 }
-```
+`````
 
-```python
+`````python
 # 기관 수익 관리용 Python SDK
 import asyncio
 from dataclasses import dataclass
@@ -1105,7 +1106,7 @@ class InstitutionalYieldManager: def __init__(self, rpc_url: str, wallet_key: st
         if spread > Decimal('0.02'): return "LONG_PT"
         elif spread < Decimal('-0.02'): return "LONG_YT"
         return "HOLD"
-```
+`````
 
 ## FAQ: Pendle에 대해 자주 묻는 질문
 
@@ -1115,7 +1116,7 @@ A: PT(원금 토큰)는 만기 시 기저 자산 1단위를 상환할 권리를 
 
 **Q2: Pendle의 AMM은 Uniswap이나 Curve와 어떻게 다른가요?**
 
-A: Pendle의 AMM은 PT와 YT 자산을 위해 특별히 설계된 전문화된 logit 곡선을 사용합니다. 일정한 곱 AMM(Uniswap)이나 스테이블스왑(Curve)과 달리 Pendle의 곡선은 PT의 시간 감쇠 특성을 고려합니다 — 만기에 다가감에 따라 PT 가격은 수학적으로 1.0으로 수렴하도록 보장됩니다. `rateScalar` 및 `rateAnchor` 파라미터가 곡선 경사도를 제어하고 암묵적 APY는 PT 가격과 만기까지 남은 시간에서 도출됩니다. 이 전문 설계는 가격 궤적이 더 예측 가능하기 때문에 LP의 비영구적 손실을 최소화합니다.
+A: Pendle의 AMM은 PT와 YT 자산을 위해 특별히 설계된 전문화된 logit 곡선을 사용합니다. 일정한 곱 AMM(Uniswap)이나 스테이블스왑(Curve)과 달리 Pendle의 곡선은 PT의 시간 감쇠 특성을 고려합니다 — 만기에 다가감에 따라 PT 가격은 수학적으로 1.0으로 수렴하도록 보장됩니다. ````rateScalar```` 및 ````rateAnchor```` 파라미터가 곡선 경사도를 제어하고 암묵적 APY는 PT 가격과 만기까지 남은 시간에서 도출됩니다. 이 전문 설계는 가격 궤적이 더 예측 가능하기 때문에 LP의 비영구적 손실을 최소화합니다.
 
 **Q3: PT나 YT가 만기에 도달하면 어떻게 되나요?**
 
@@ -1135,9 +1136,9 @@ A: 2026년 5월 기준으로 Pendle은 Ethereum, Arbitrum, Optimism 및 BNB Chai
 
 **Q7: PT 구매 시 정확한 수익률을 어떻게 계산하나요?**
 
-A: PT 수익률은 다음과 같이 계산됩니다: `고정 수익률% = (1 - PT_가격) / PT_가격`. 연간 APY: `APY = (1 / PT_가격)^(365 / 만기일수) - 1`. 예를 들어, 180일 만기에 0.95로 거래되는 PT: 수익률 = (1 - 0.95) / 0.95 = 5.26%; APY = (1/0.95)^(365/180) - 1 ≈ 10.8%. 만기까지 보유하면 이러한 수익은 보장되므로 PT는 전통 금융에서 기능적으로 영채와 동일합니다.
+A: PT 수익률은 다음과 같이 계산됩니다: ````고정 수익률% = (1 - PT_가격) / PT_가격````. 연간 APY: ````APY = (1 / PT_가격)^(365 / 만기일수) - 1````. 예를 들어, 180일 만기에 0.95로 거래되는 PT: 수익률 = (1 - 0.95) / 0.95 = 5.26%; APY = (1/0.95)^(365/180) - 1 ≈ 10.8%. 만기까지 보유하면 이러한 수익은 보장되므로 PT는 전통 금융에서 기능적으로 영채와 동일합니다.
 
----
+* * *
 
 
 
@@ -1150,7 +1151,7 @@ A: PT 수익률은 다음과 같이 계산됩니다: `고정 수익률% = (1 - P
 
 ## 시작하기: Pendle 통합 체크리스트
 
-```bash
+`````bash
 # 1. Pendle SDK 설치
 npm install @pendle/sdk-v2 ethers
 
@@ -1171,9 +1172,9 @@ npx ts-node examples/claim-yield.ts    # YT 수익 청구
 
 # 5. 테스트 실행
 npm test
-```
+`````
 
-```typescript
+`````typescript
 // 퀵 스타트: 완전한 수익 토큰화 워크플로우
 import { PendleSDK, Market } from '@pendle/sdk-v2';
 
@@ -1194,7 +1195,7 @@ async function quickstart() {
     ethers.parseEther(10), // 10 stETH
     0 // 최소 출력
   );
-  console.log(`${ptOut} PT + ${ytOut} YT 수령`);
+  console.log(````${ptOut} PT + ${ytOut} YT 수령````);
   
   // 3. 거래: 고정 수익 잠금을 위해 PT 스왑
   await market.swapExactPtForSy(
@@ -1205,14 +1206,14 @@ async function quickstart() {
   // 4. 모니터링: 수익 축적 추적
   setInterval(async () => {
     const accrued = await market.getAccruedYield(ytOut);
-    console.log(`축적된 수익: ${accrued}`);
+    console.log(````축적된 수익: ${accrued}````);
   }, 60000);
 }
 
 quickstart().catch(console.error);
-```
+````
 
----
+* * *
 
 *면책 조항: 본 가이드는 교육 목적만을 위한 것입니다. 수익 토큰화에는 스마트 계약 위험, 시장 위험 및 기저 자산 디페그 위험이 포함됩니다. 자본을 배포하기 전에 항상 자체 연구를 수행하십시오. 표시된 수익률은 추정치이며 보장되지 않습니다. DYOR — Do Your Own Research(자체 연구 수행).*
 
@@ -1221,7 +1222,7 @@ quickstart().catch(console.error);
 - 고급 DeFi 거래를 위해 [OKX](https://www.promoohubly.com/join/12190433) 계정을 개설하세요
 - 최신 Pendle 정보를 위해 Telegram을 팔로우하세요: **@dibi8crypto**
 
----
+* * *
 
 *© 2026 dibi8.com | DeFi 개발자, 트레이더, 연구원을 위해 제작되었습니다.*
 

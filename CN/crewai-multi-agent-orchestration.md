@@ -23,6 +23,7 @@ tags: ["crewai", "multi-agent", "ai-agents", "orchestration", "autonomous-agents
 aliases:
   - /posts/crewai-multi-agent-orchestration/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: One LLM Call Is Not Enough Anymore
@@ -49,54 +50,54 @@ CrewAI's architecture revolves around four primitives: **Agents**, **Tasks**, **
 
 An Agent in CrewAI is more than an LLM instance. It is a defined role with: | Attribute | Purpose | Example |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `role` | Job title / identity | `"Senior Research Analyst"` |
-| `goal` | What the agent aims to achieve | `"Find detailed pricing data for 3 competitors"` |
-| `backstory` | Personality / context | `"You are a meticulous analyst with 10 years of experience"` |
-| `tools` | External capabilities | `[search_tool, scraper_tool, calculator]` |
-| `allow_delegation` | Can assign work to others | `True` for managers, `False` for specialists |
-| `memory` | Retains context across tasks | `True` for multi-step reasoning |
+| ```role```` | Job title / identity | ````"Senior Research Analyst"```` |
+| ````goal```` | What the agent aims to achieve | ````"Find detailed pricing data for 3 competitors"```` |
+| ````backstory```` | Personality / context | ````"You are a meticulous analyst with 10 years of experience"```` |
+| ````tools```` | External capabilities | ````[search_tool, scraper_tool, calculator]```` |
+| ````allow_delegation```` | Can assign work to others | ````True```` for managers, ````False```` for specialists |
+| ````memory```` | Retains context across tasks | ````True```` for multi-step reasoning |
 
-The `backstory` is not fluff — it shapes how the LLM responds. A `"careless intern"` backstory produces different output than a `"senior engineer who triple-checks everything"`.
+The ````backstory```` is not fluff — it shapes how the LLM responds. A ````"careless intern"```` backstory produces different output than a ````"senior engineer who triple-checks everything"````.
 
 ### Tasks: Defined Units of Work
 
 Tasks specify what needs to be done, who does it, and what output is expected: | Attribute | Purpose | Example |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `description` | What to do (can include `{variables}`) | `"Research {company} pricing plans"` |
-| `expected_output` | Quality specification | `"A table with plan names, prices, and features"` |
-| `agent` | Who performs the task | `researcher` |
-| `context` | Previous task outputs to reference | `[task1, task2]` |
-| `tools` | Task-specific tools | `[search_tool]` |
+| ````description```` | What to do (can include ````{variables}````) | ````"Research {company} pricing plans"```` |
+| ````expected_output```` | Quality specification | ````"A table with plan names, prices, and features"```` |
+| ````agent```` | Who performs the task | ````researcher```` |
+| ````context```` | Previous task outputs to reference | ````[task1, task2]```` |
+| ````tools```` | Task-specific tools | ````[search_tool]```` |
 
-The `expected_output` field is critical — it acts as a quality rubric that guides the LLM's response format and depth.
+The ````expected_output```` field is critical — it acts as a quality rubric that guides the LLM's response format and depth.
 
 ### Processes: How Agents Collaborate
 
 CrewAI supports three collaboration patterns: | Process | Pattern | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `Process.sequential` | Linear handoff: A → B → C | Workflows with clear dependencies |
-| `Process.hierarchical` | Manager delegates to workers | Complex projects requiring oversight |
-| `Process.parallel` | Multiple agents work simultaneously | Independent tasks, speed optimization |
+| ````Process.sequential```` | Linear handoff: A → B → C | Workflows with clear dependencies |
+| ````Process.hierarchical```` | Manager delegates to workers | Complex projects requiring oversight |
+| ````Process.parallel```` | Multiple agents work simultaneously | Independent tasks, speed optimization |
 
-In **hierarchical** mode, you designate a `manager_llm` (often a stronger model like GPT-4) that plans task allocation, monitors progress, and decides when work is complete.
+In **hierarchical** mode, you designate a ````manager_llm```` (often a stronger model like GPT-4) that plans task allocation, monitors progress, and decides when work is complete.
 
 ### Tools: Extending Agent Capabilities
 
@@ -106,7 +107,7 @@ CrewAI agents can use any LangChain-compatible tool. Common ones include: - **We
 - **Database queries** — SQL connectors
 - **File operations** — Read/write local files
 - **API calls** — REST API toolkit
-- **Custom tools** — Any Python function wrapped with `@tool`
+- **Custom tools** — Any Python function wrapped with ````@tool````
 
 ## Installation & Setup: 5-Minute Startup
 
@@ -114,7 +115,7 @@ CrewAI requires Python 3.10+ and works with any LLM provider.
 
 ### Basic Installation
 
-```bash
+`````bash
 python -m venv venv_crewai
 source venv_crewai/bin/activate
 
@@ -125,13 +126,13 @@ pip install "crewai[tools]==0.108.0"
 pip install langchain-openai    # OpenAI
 pip install langchain-anthropic # Anthropic
 pip install langchain-google    # Google Gemini
-```
+`````
 
-As of May 2026, CrewAI is at **v0.108.0**. The `[tools]` extra installs SerpAPI, Selenium, and other common tool dependencies.
+As of May 2026, CrewAI is at **v0.108.0**. The ````[tools]```` extra installs SerpAPI, Selenium, and other common tool dependencies.
 
 ### Verify Installation
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool
 
@@ -147,18 +148,18 @@ researcher = Agent(
 )
 
 print("CrewAI installed successfully!")
-```
+`````
 
 ### Environment Setup
 
-```bash
+`````bash
 # Required API keys
 export OPENAI_API_KEY="sk-..."
 export SERPAPI_API_KEY="..."
 
 # Optional: for local models
 export OLLAMA_HOST="http://localhost:11434"
-```
+`````
 
 For self-hosting CrewAI-based systems, a reliable VPS is essential. [DigitalOcean droplets](https://m.do.co/c/eca87ac14ee0) work well for running agent orchestration APIs.
 
@@ -166,7 +167,7 @@ For self-hosting CrewAI-based systems, a reliable VPS is essential. [DigitalOcea
 
 ### Example 1: Blog Post Creation Team
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool, ScrapeWebsiteTool
 
@@ -248,11 +249,11 @@ crew = Crew(
 
 result = crew.kickoff()
 print(result)
-```
+`````
 
 ### Example 2: Hierarchical Project Management
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 
 # Hierarchical process requires a manager LLM
@@ -266,13 +267,13 @@ project_crew = Crew(
 )
 
 result = project_crew.kickoff()
-```
+`````
 
-In hierarchical mode, the `manager_llm` dynamically assigns tasks based on agent capabilities and task dependencies. This is powerful for **10+ agent teams** where manual task ordering becomes unwieldy.
+In hierarchical mode, the ````manager_llm```` dynamically assigns tasks based on agent capabilities and task dependencies. This is powerful for **10+ agent teams** where manual task ordering becomes unwieldy.
 
 ### Example 3: Code Review Team
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import CodeInterpreterTool
 
@@ -326,7 +327,7 @@ code_crew = Crew(
     process=Process.sequential,
     memory=True,
 )
-```
+`````
 
 ## Integration with LangChain, LlamaIndex & External APIs
 
@@ -334,7 +335,7 @@ CrewAI integrates with the broader AI ecosystem through LangChain-compatible too
 
 ### Using LangChain Tools
 
-```python
+`````python
 from crewai import Agent
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -350,11 +351,11 @@ researcher = Agent(
     tools=[ddg_search, wikipedia],
     llm="gpt-4o",
 )
-```
+`````
 
 ### Custom Tool Definition
 
-```python
+`````python
 from crewai import Agent, Task
 from crewai.tools import tool
 import requests
@@ -378,11 +379,11 @@ analyst = Agent(
     tools=[check_stock_price, get_weather],
     llm="gpt-4o",
 )
-```
+`````
 
 ### Callbacks and Observability
 
-```python
+`````python
 from crewai import Crew
 
 # Step callback for monitoring
@@ -402,11 +403,11 @@ monitored_crew = Crew(
     task_callback=on_task_callback,
     crew_callback=on_crew_callback,
 )
-```
+`````
 
 ### Integration with LlamaIndex for RAG-Augmented Agents
 
-```python
+`````python
 from crewai import Agent, Task, Crew
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -428,7 +429,7 @@ policy_expert = Agent(
     tools=[query_knowledge_base],
     llm="gpt-4o",
 )
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -436,15 +437,15 @@ policy_expert = Agent(
 
 I tested CrewAI with varying team sizes and task complexities on an **8-core CPU, 32GB RAM**, using GPT-4o via API: | Crew Size | Tasks | Process | Avg Time | Token Cost |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 2 agents | 2 tasks | sequential | 18s | $0.04 |
 | 3 agents | 3 tasks | sequential | 45s | $0.12 |
@@ -459,13 +460,13 @@ I tested CrewAI with varying team sizes and task complexities on an **8-core CPU
 
 | Metric | Single Prompt | 3-Agent Crew | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Factual accuracy | 62% | 91% | +46% |
 | Output completeness | 55% | 88% | +60% |
@@ -487,7 +488,7 @@ These numbers are from a **competitive analysis** use case where 3 agents (Resea
 
 ### Custom Memory with Vector Store
 
-```python
+`````python
 from crewai import Agent, Crew, Process
 from chromadb import Client
 from chromadb.config import Settings
@@ -513,11 +514,11 @@ crew = Crew(
     memory=True,  # enables shared short-term memory
     cache=True,   # caches LLM responses
 )
-```
+`````
 
 ### Output Validation with Pydantic
 
-```python
+`````python
 from pydantic import BaseModel, Field
 from crewai import Task
 
@@ -533,11 +534,11 @@ structured_task = Task(
     output_json=CompetitorAnalysis,  # validates against schema
     agent=researcher,
 )
-```
+`````
 
 ### Error Handling and Retry Logic
 
-```python
+`````python
 from crewai import Crew
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -551,11 +552,11 @@ def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
         raise
 
 result = run_crew_with_retry(my_crew)
-```
+`````
 
 ### Parallel Task Execution with Dependencies
 
-```python
+`````python
 from crewai import Task, Crew, Process
 
 # Tasks 1 and 2 run in parallel (no dependencies)
@@ -573,11 +574,11 @@ parallel_crew = Crew(
     tasks=[task1, task2, task3],
     process=Process.sequential,  # crew handles parallelization internally
 )
-```
+`````
 
 ### Deploying as a FastAPI Service
 
-```python
+`````python
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
 from crewai import Crew, Agent, Task, Process
@@ -630,13 +631,13 @@ def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
     results_db[job_id] = {"status": "completed", "result": str(result)}
 
 # Run with: uvicorn main:app --host 0.0.0.0 --port 8000
-```
+`````
 
 Deploy this behind a load balancer on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for a production-ready agent API.
 
 ### Monitoring with LangSmith
 
-```python
+`````python
 import os
 from crewai import Crew
 
@@ -650,21 +651,21 @@ crew = Crew(
     tasks=[task1, task2],
     process=Process.sequential,
 )
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | CrewAI | AutoGen | LangGraph | MetaGPT |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub stars | 28,000+ | 36,000+ | 11,000+ | 48,000+ |
 | License | MIT | MIT | MIT | MIT |
@@ -684,7 +685,7 @@ crew = Crew(
 **When to choose what:**
 
 - **CrewAI**: Best for teams new to multi-agent systems. The role-based API is intuitive, documentation is excellent, and the learning curve is gentle. Ideal for content generation, research workflows, and business analysis tasks.
-- **AutoGen (Microsoft)**: Choose when conversational patterns and code execution are central. AutoGen's group chat pattern is powerful for debugging and coding agents. The `UserProxyAgent` enables seamless human-in-the-loop workflows.
+- **AutoGen (Microsoft)**: Choose when conversational patterns and code execution are central. AutoGen's group chat pattern is powerful for debugging and coding agents. The ````UserProxyAgent```` enables seamless human-in-the-loop workflows.
 - **LangGraph (LangChain)**: Choose when you need fine-grained control over agent state and transitions. LangGraph's graph-based approach excels for complex conditional logic and state management but has a steeper learning curve.
 - **MetaGPT**: Choose specifically for software engineering tasks. MetaGPT agents emulate a full dev team (PM, architect, engineer, QA) and produce structured code outputs. Overkill for non-coding use cases.
 
@@ -692,7 +693,7 @@ crew = Crew(
 
 CrewAI is powerful but not a silver bullet. Production realities you should know: **1. LLM costs scale with agent count.** A 5-agent crew running 8 tasks with GPT-4o can cost $0.50-2.00 per run. With 1,000 runs per day, that is $500-2,000/day. Budget accordingly or use cheaper models for less critical agents.
 
-**2. Token limits constrain context sharing.** When Agent A passes output to Agent B, that output consumes tokens in Agent B's context window. With 5 agents each producing 2K tokens, the final agent may hit GPT-4o's 128K limit. Use `max_iter` and summarize intermediate outputs.
+**2. Token limits constrain context sharing.** When Agent A passes output to Agent B, that output consumes tokens in Agent B's context window. With 5 agents each producing 2K tokens, the final agent may hit GPT-4o's 128K limit. Use ````max_iter```` and summarize intermediate outputs.
 
 **3. Hierarchical planning adds latency.** The manager LLM in hierarchical mode needs to reason about task assignments before work starts. For small crews (3-4 agents), this overhead may not be worth it. Sequential is often faster for simple workflows.
 
@@ -714,7 +715,7 @@ Yes. CrewAI works with any LangChain-compatible LLM, including local models via 
 
 ### How does memory sharing work between agents?
 
-When `memory=True` is set on the Crew, all agents share a short-term memory buffer that persists across tasks. Agent A's task output becomes context for Agent B's task when specified via the `context` parameter. For long-term memory, CrewAI uses an embedded Chroma vector store to retrieve relevant past interactions. You can also inject custom memory by passing context task outputs explicitly.
+When ````memory=True```` is set on the Crew, all agents share a short-term memory buffer that persists across tasks. Agent A's task output becomes context for Agent B's task when specified via the ````context```` parameter. For long-term memory, CrewAI uses an embedded Chroma vector store to retrieve relevant past interactions. You can also inject custom memory by passing context task outputs explicitly.
 
 ### What is the maximum number of agents per crew?
 
@@ -722,15 +723,15 @@ There is no hard limit, but practical considerations apply. Each additional agen
 
 ### How do I prevent agents from getting stuck in loops?
 
-Set `max_iter` on tasks (default is 25) to cap iterations per task. For the crew, set `max_rpm` to limit API calls per minute. In hierarchical mode, the manager agent monitors progress and can interrupt stuck agents. Add `expected_output` quality gates so agents know when their work is complete rather than endlessly refining.
+Set ````max_iter```` on tasks (default is 25) to cap iterations per task. For the crew, set ````max_rpm```` to limit API calls per minute. In hierarchical mode, the manager agent monitors progress and can interrupt stuck agents. Add ````expected_output```` quality gates so agents know when their work is complete rather than endlessly refining.
 
 ### Can CrewAI handle real-time streaming outputs?
 
-As of v0.108.0, CrewAI supports step-by-step output through callbacks (`step_callback`), but full streaming of agent outputs is limited. Use callbacks to build real-time UIs that show agent progress. Full streaming support is on the roadmap for H2 2026.
+As of v0.108.0, CrewAI supports step-by-step output through callbacks (````step_callback````), but full streaming of agent outputs is limited. Use callbacks to build real-time UIs that show agent progress. Full streaming support is on the roadmap for H2 2026.
 
 ### How do I test agent crews effectively?
 
-Unit test each agent independently by running single tasks. Use mock LLM responses (via LangChain's `FakeListLLM`) to test task routing and tool selection without API costs. Integration test the full crew with a small, known-good task. Log all intermediate outputs for regression testing.
+Unit test each agent independently by running single tasks. Use mock LLM responses (via LangChain's ````FakeListLLM```) to test task routing and tool selection without API costs. Integration test the full crew with a small, known-good task. Log all intermediate outputs for regression testing.
 
 ## Conclusion: Start Small, Scale to Teams
 
@@ -765,7 +766,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Related: [LangChain](dibi8-internal-link), [AutoGen Guide](dibi8-internal-link), [LangGraph Patterns](dibi8-internal-link)
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. CrewAI is open-source and free to use; we have no commercial relationship with the CrewAI project. Opinions are based on hands-on testing and production deployments.*
 
 
@@ -795,7 +796,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](crewai-multi-agent-orchestration)
@@ -804,7 +805,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [9router-smart-llm-proxy-token-saver-free-coding](crewai-multi-agent-orchestration)
 - [ai-engineering-from-scratch](crewai-multi-agent-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

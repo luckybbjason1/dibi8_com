@@ -18,6 +18,7 @@ faqs: - q: 'Tôi nên dùng LangGraph hay CrewAI?'
     a: 'CrewAI là một framework độc lập, không phải một lớp nằm trên LangGraph, dù nó có thể tương tác với công cụ LangChain. Ngược lại, LangGraph là một phần chính thức của hệ sinh thái LangChain và do nhóm LangChain duy trì như lớp điều phối cấp thấp. Vậy nên chúng có nguồn gốc khác nhau: LangGraph mở rộng LangChain xuống thành các đồ thị kiểm soát được, còn CrewAI là một cách diễn giải độc lập, ở cấp cao hơn, về "nhóm agent"."
 ---
 
+
 # LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên Kiểm Soát vs Nhóm Agent Theo Vai Trò
 
 ## Trả lời nhanh
@@ -28,7 +29,7 @@ Dùng **LangGraph** nếu: Bạn cần phân nhánh, vòng lặp và trạng th�
 
 Dùng **CrewAI** nếu: Bạn muốn khởi đầu nhanh với mô hình "nhóm chuyên gia"; các agent ánh xạ gọn gàng vào vai trò và công việc; bạn coi trọng tốc độ prototype hơn kiểm soát chi tiết; và một framework áp đặt cách làm (opinionated) là ưu điểm chứ không phải hạn chế.
 
----
+* * *
 
 ## So sánh song song
 
@@ -140,7 +141,7 @@ Tham khảo ngoài: [LangGraph](https://www.langchain.com/langgraph) · [Tài li
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -150,7 +151,7 @@ Tham khảo ngoài: [LangGraph](https://www.langchain.com/langgraph) · [Tài li
 - [9router-smart-llm-proxy-token-saver-free-coding](langgraph-vs-crewai)
 - [ai-engineering-from-scratch](langgraph-vs-crewai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

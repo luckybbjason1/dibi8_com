@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/docmost-team-docs-collaboration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao đội của bạn cần phương án thay thế Notion tự host
@@ -58,7 +59,7 @@ Các quyết định kiến trúc mang tính định nghĩa là **Operational Tr
 **Trang** —— Đơn vị nội dung chính. Trang hỗ trợ sub-page lồng nhau, tạo cấu trúc cây với độ sâu tùy ý.
 **Khối** —— Nguyên tử nội dung. Mọi thứ trong trang Docmost đều là khối: đoạn văn, tiêu đề, khối code, bảng, callout, embed, sơ đồ.
 
-Trình chỉnh sửa khối của Docmost hỗ trợ lệnh gạch chéo (`/heading`, `/code`, `/table`), phím tắt Markdown (gõ `##` cho H2), và kéo-thả sắp xếp lại khối. Trải nghiệm trình chỉnh sửa được thiết kế cố ý gần với Notion, giảm ma sát áp dụng cho các đội chuyển đổi.
+Trình chỉnh sửa khối của Docmost hỗ trợ lệnh gạch chéo (```/heading````, ````/code````, ````/table````), phím tắt Markdown (gõ ````##```` cho H2), và kéo-thả sắp xếp lại khối. Trải nghiệm trình chỉnh sửa được thiết kế cố ý gần với Notion, giảm ma sát áp dụng cho các đội chuyển đổi.
 
 Phiên bản Community (AGPL-3.0) bao gồm tất cả các tính năng cộng tác cốt lõi. Phiên bản Enterprise thêm xác thực SAML 2.0 / OIDC / LDAP, MFA qua TOTP, câu trả lờói cung cấp sức mạnh AI, quyền cấp trang, nhập Confluence và ghi log kiểm toán với giá **$3.50/chỗ ngồi/tháng** (tối thiểu 10 chỗ).
 
@@ -68,7 +69,7 @@ Docmost yêu cầu **PostgreSQL và Redis** —— cả hai đều có thể đ�
 
 ### Bước 1: Tạo file Docker Compose
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: docmost: image: docmost/docmost:0.8.2
@@ -96,13 +97,13 @@ services: docmost: image: docmost/docmost:0.8.2
     restart: unless-stopped
     volumes: - redis_data:/data
 
-volumes: docmost_data: postgres_data: redis_data: ```
+volumes: docmost_data: postgres_data: redis_data: `````
 
 Điều này định nghĩa ba dịch vụ: ứng dụng Docmost trên cổng 3000, PostgreSQL 16 cho lưu trữ liên tục, và Redis 7.2 cho trạng thái cộng tác thờói gian thực và cache.
 
 ### Bước 2: Khởi động stack
 
-```bash
+`````bash
 # Tạo và khởi động tất cả container
 docker compose up -d
 
@@ -112,22 +113,22 @@ docker logs -f docmost_db
 # Đợi "database system is ready to accept connections"
 # Sau đó kiểm tra log Docmost
 docker logs -f docmost
-```
+`````
 
-Khi khởi động lần đầu, Docmost sẽ chạy database migrations. Việc này mất 15-30 giây. Bạn sẽ thấy thông báo tiến độ migration theo sau bởi `Application is running on: http://[::]:3000`.
+Khi khởi động lần đầu, Docmost sẽ chạy database migrations. Việc này mất 15-30 giây. Bạn sẽ thấy thông báo tiến độ migration theo sau bởi ````Application is running on: http://[::]:3000````.
 
 ### Bước 3: Hoàn thành trình hướng dẫn thiết lập
 
-```bash
+`````bash
 # Truy cập giao diện web
 curl -s http://localhost:3000 | head -20
-```
+`````
 
-Điều hướng đến `http://your-server-ip:3000` trong trình duyệt. Khi truy cập lần đầu, Docmost hiển thị trình hướng dẫn thiết lập nơi bạn tạo workspace admin, tài khoản admin và cấu hình cơ bản. Không có thông tin đăng nhập mặc định —— bạn xác định mọi thứ trong lần khởi động đầu tiên.
+Điều hướng đến ````http://your-server-ip:3000```` trong trình duyệt. Khi truy cập lần đầu, Docmost hiển thị trình hướng dẫn thiết lập nơi bạn tạo workspace admin, tài khoản admin và cấu hình cơ bản. Không có thông tin đăng nhập mặc định —— bạn xác định mọi thứ trong lần khởi động đầu tiên.
 
 ### Bước 4: Nginx reverse proxy với SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/docmost
 upstream docmost {
     server 127.0.0.1:3000;
@@ -168,13 +169,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-Các header `Upgrade` và `Connection` là quan trọng —— Docmost sử dụng WebSocket cho cộng tác thờói gian thực. Không có các header này, đồng bộ hóa con trỏ trực tiếp và chỉnh sửa đồng thờói sẽ không hoạt động.
+Các header ````Upgrade```` và ````Connection```` là quan trọng —— Docmost sử dụng WebSocket cho cộng tác thờói gian thực. Không có các header này, đồng bộ hóa con trỏ trực tiếp và chỉnh sửa đồng thờói sẽ không hoạt động.
 
 ### Tham chiếu biến môi trường
 
-```bash
+`````bash
 # Cấu hình cốt lõi
 APP_URL=https://docs.yourdomain.com        # Phải khớp với URL công khai
 APP_SECRET=your-super-secret-key           # Tạo bằng: openssl rand -hex 32
@@ -199,7 +200,7 @@ AWS_S3_ENDPOINT=https://s3.amazonaws.com
 
 # Tùy chọn: Vô hiệu hóa đăng ký ngườói dùng (chỉ invite)
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 ## Cộng tác thờói gian thực trong thực tế
 
@@ -209,7 +210,7 @@ Tính năng đầu trang của Docmost là chỉnh sửa đa ngườói dùng đ
 4. **Con trỏ** hiển thị thờói gian thực, mã màu theo ngườói dùng.
 5. **Lịch sử trang** được tự động lưu. Mỗi lần chỉnh sửa tạo một revision có thể khôi phục.
 
-```javascript
+`````javascript
 // Docmost sử dụng Yjs (thư viện CRDT) bên dưới cho OT
 // Tin nhắn WebSocket trông như thế này: {
   "type": "doc:update",
@@ -218,31 +219,31 @@ Tính năng đầu trang của Docmost là chỉnh sửa đa ngườói dùng đ
   "clientId": "user-uuid",
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 Đây là cùng công nghệ nền tảng cung cấp năng lượng cho Figma và Notion. Điểm khác biệt: Docmost chạy nó trên cơ sở hạ tầng của bạn.
 
 ## Sơ đồ, Embed & Nội dung phong phú
 
-Docmost hỗ trợ sơ đồ inline mà không cần rờói khỏi trình chỉnh sửa: ```markdown
+Docmost hỗ trợ sơ đồ inline mà không cần rờói khỏi trình chỉnh sửa: `````markdown
 # Lệnh gạch chéo cho sơ đồ
 /drawio     - Mở trình chỉnh sửa Draw.io inline
 /mermaid    - Khối sơ đồ Mermaid
 /excalidraw - Khối phác thảo Excalidraw
 
 # Ví dụ sơ đồ Mermaid trong trang
-```mermaid
+`````mermaid
 graph TD
     A[Yêu cầu ngườói dùng] --> B{Kiểm tra xác thực}
     B -->|Hợp lệ| C[Xử lý yêu cầu]
     B -->|Không hợp lệ| D[Trả về 401]
     C --> E[Trả về phản hồói]
-```
-```
+`````
+`````
 
-Các embed được hỗ trợ bao gồm Airtable, Loom, Miro, Figma, YouTube và nhiều hơn nữa. Danh sách đầy đủ nằm trong lệnh gạch chéo `/embed` của trình chỉnh sửa.
+Các embed được hỗ trợ bao gồm Airtable, Loom, Miro, Figma, YouTube và nhiều hơn nữa. Danh sách đầy đủ nằm trong lệnh gạch chéo ````/embed```` của trình chỉnh sửa.
 
-File đính kèm được lưu trữ cục bộ (trong volume `docmost_data`) hoặc trên lưu trữ S3-compatible. Giới hạn upload mặc định là 50MB mỗi file, có thể cấu hình qua biến môi trường `MAX_FILE_SIZE`.
+File đính kèm được lưu trữ cục bộ (trong volume ````docmost_data````) hoặc trên lưu trữ S3-compatible. Giới hạn upload mặc định là 50MB mỗi file, có thể cấu hình qua biến môi trường ````MAX_FILE_SIZE````.
 
 ## Benchmark & Hiệu suất thực tế
 
@@ -267,7 +268,7 @@ Cho ngữ cảnh: Notion tính $10/ngườói/tháng. Với 20 ngườói dùng,
 
 ### GitHub Actions: Tự động xuất bản tài liệu
 
-```yaml
+`````yaml
 # .github/workflows/publish-to-docmost.yml
 name: Publish Docs to Docmost
 
@@ -288,13 +289,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d @payload.json
-```
+`````
 
 Docmost expose REST API cho quản lý nội dung theo chương trình (phiên bản Enterprise). Tạo API key trong Cài đặt → API. API hỗ trợ CRUD trên space, trang và bình luận.
 
 ### Tự động hóa sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-docmost.sh
 
@@ -317,20 +318,20 @@ docker exec docmost_redis cat /data/dump.rdb \
 
 # Chỉ giữ 14 ngày gần nhất
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
 ### Giám sát với Prometheus
 
-```yaml
+`````yaml
 # Thêm vào docker-compose.yml cho monitoring
   postgres_exporter: image: prometheuscommunity/postgres-exporter:v0.15.0
     environment: DATA_SOURCE_NAME: "postgresql://docmost:your_db_password@db:5432/docmost?sslmode=disable"
     ports: - "9187:9187"
-```
+`````
 
 ### Endpoint kiểm tra sức khỏe
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-docmost.sh
 
@@ -344,24 +345,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "OK: Docmost hoạt động bình thường"
 fi
-```
+`````
 
-Thêm vào cron để giám sát sức khỏe tự động: `*/5 * * * * /opt/scripts/health-check-docmost.sh`
+Thêm vào cron để giám sát sức khỏe tự động: ````*/5 * * * * /opt/scripts/health-check-docmost.sh````
 
 ## Củng cố Production
 
 ### Kích hoạt đăng ký chỉ mờói invite
 
-```yaml
+`````yaml
 # Biến môi trường docker-compose.yml
 ALLOW_PUBLIC_SIGNUP=false
-```
+`````
 
 Với cài đặt này, chỉ admin workspace hiện tại mới có thể mờói ngườói dùng mới qua email. Rất quan trọng cho các instance tiếp xúc công khai.
 
 ### Connection pooling cơ sở dữ liệu
 
-Cho đội ngũ 50+ ngườói dùng, thêm connection pooling qua PgBouncer: ```yaml
+Cho đội ngũ 50+ ngườói dùng, thêm connection pooling qua PgBouncer: `````yaml
 # Thêm vào docker-compose.yml
   pgbouncer: image: pgbouncer/pgbouncer:1.22
     environment: DATABASES_HOST: db
@@ -372,13 +373,13 @@ Cho đội ngũ 50+ ngườói dùng, thêm connection pooling qua PgBouncer: ``
       POOL_MODE: transaction
       MAX_CLIENT_CONN: 200
     ports: - "6432:6432"
-```
+`````
 
-Cập nhật `DATABASE_URL` của Docmost để trỏ đến `pgbouncer:6432` thay vì `db:5432`.
+Cập nhật ````DATABASE_URL```` của Docmost để trỏ đến ````pgbouncer:6432```` thay vì ````db:5432````.
 
 ### Quy tắc Web Application Firewall
 
-```nginx
+`````nginx
 # Thêm vào Nginx cho bảo vệ kiểu WAF
 # Rate limiting cho lần đăng nhập
 limit_req_zone $binary_remote_addr zone=login:10m rate=5r/m;
@@ -387,7 +388,7 @@ location /auth/login {
     limit_req zone=login burst=3 nodelay;
     proxy_pass http://docmost;
 }
-```
+`````
 
 ## So sánh: Docmost với các phương án thay thế
 
@@ -439,7 +440,7 @@ Phiên bản Enterprise của Docmost bao gồm trình nhập cho cả Notion (x
 
 ### Docmost xử lý sao lưu như thế nào?
 
-Sao lưu hai thứ: cơ sở dữ liệu PostgreSQL (toàn bộ nội dung, metadata, tài khoản ngườói dùng) và volume lưu trữ file (file đính kèm đã upload). Với Docker, `pg_dump` cộng với `docker volume backup` của volume docmost_data là đủ. Cho Redis, trạng thái cộng tác là tạm thờói —— khởi động lại xóa session đang hoạt động nhưng không ảnh hưởng đến nội dung trang đã lưu.
+Sao lưu hai thứ: cơ sở dữ liệu PostgreSQL (toàn bộ nội dung, metadata, tài khoản ngườói dùng) và volume lưu trữ file (file đính kèm đã upload). Với Docker, ````pg_dump```` cộng với ````docker volume backup```` của volume docmost_data là đủ. Cho Redis, trạng thái cộng tác là tạm thờói —— khởi động lại xóa session đang hoạt động nhưng không ảnh hưởng đến nội dung trang đã lưu.
 
 ### Có ứng dụng di động không?
 
@@ -455,7 +456,7 @@ Community edition (AGPL-3.0) bao gồm cộng tác thờói gian thực, space, 
 
 ### Làm thế nào để cập nhật Docmost?
 
-Với Docker Compose: pull image mới nhất, cập nhật tag trong docker-compose.yml, và chạy `docker compose up -d`. Docmost tự động chạy database migrations khi khởi động. Luôn sao lưu PostgreSQL trước khi cập nhật. Việc cập nhật thường mất dưới 60 giây với zero downtime nếu bạn chạy nhiều replica sau load balancer.
+Với Docker Compose: pull image mới nhất, cập nhật tag trong docker-compose.yml, và chạy ````docker compose up -d```. Docmost tự động chạy database migrations khi khởi động. Luôn sao lưu PostgreSQL trước khi cập nhật. Việc cập nhật thường mất dưới 60 giây với zero downtime nếu bạn chạy nhiều replica sau load balancer.
 
 ## Kết luận: Docmost đã sẵn sàng cho đội của bạn chưa?
 
@@ -467,7 +468,7 @@ Dự án còn trẻ nhưng quỹ đạo mạnh mẽ. 20,000+ sao GitHub trong ch
 
 Tham gia cộng đồng dibi8.com: [Nhóm Telegram](https://t.me/dibi8opensource) để thảo luận công cụ mã nguồn mở hàng ngày, mẹo triển khai và hỗ trợ xử lý sự cố từ 5,000+ lập trình viên.
 
----
+* * *
 
 ## Nguồn & Tài liệu tham khảo
 
@@ -477,7 +478,7 @@ Tham gia cộng đồng dibi8.com: [Nhóm Telegram](https://t.me/dibi8opensource
 - [So sánh Community vs Enterprise Docmost](https://wz-it.com/en/blog/docmost-community-vs-enterprise-edition/)
 - [Hướng dẫn triển khai Docker Docmost](https://lowcloud.io/en/blog/self-host-docmost-with-docker-and-traefik)
 
----
+* * *
 
 
 
@@ -518,7 +519,7 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -528,6 +529,6 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](docmost-team-docs-collaboration)
 - [moneyprinterturbo-one-click-ai-video-generator](docmost-team-docs-collaboration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

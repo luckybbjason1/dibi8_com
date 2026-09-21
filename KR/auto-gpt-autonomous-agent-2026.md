@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/auto-gpt-autonomous-agent-2026/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 모든 것을 시작한 에이전트 — 그리고 왜 돌아왔는가
@@ -50,7 +51,7 @@ Auto-GPT는 **이중 계층 메모리**를 사용한다: 단기 컨텍스트(LLM
 
 ### 1단계: 전제 조건
 
-```bash
+````bash
 python --version
 # Expected: Python 3.10.x or higher
 
@@ -59,11 +60,11 @@ git --version
 
 # Docker (선택, 샌드박스 실행용)
 docker --version
-```
+`````
 
 ### 2단계: 클론 및 설치
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/Significant-Gravitas/AutoGPT.git
 cd AutoGPT
@@ -74,19 +75,19 @@ pip install -e .
 # 또는 설치 스크립트 사용 (권장)
 ./setup.sh
 # 이것은 의존성 설치, 기본 경로 구성, 환경 검증을 수행한다
-```
+`````
 
 ### 3단계: 환경 변수 구성
 
-```bash
+`````bash
 # 예시 설정 복사
 cp .env.example .env
 
 # API 키로 .env 편집
 nano .env
-```
+`````
 
-```bash
+`````bash
 # .env — 최소 필수 구성
 # OpenAI (기본)
 OPENAI_API_KEY=sk-your-openai-key-here
@@ -109,11 +110,11 @@ DOCKER_CONTAINER_NAME=autogpt-sandbox
 # 에이전트 설정
 CONTINUOUS_MODE=True
 CONTINUOUS_LIMIT=50  # 실행당 최대 반복 횟수
-```
+`````
 
 ### 4단계: Auto-GPT 실행
 
-```bash
+`````bash
 # 대화형 모드 — 에이전트가 각 단계에서 확인을 요청한다
 autogpt
 
@@ -125,13 +126,13 @@ autogpt --goal "Research the top 5 Python web frameworks in 2026 and write a com
 
 # 로컬 모델 사용
 autogpt --llm ollama --model llama3.2
-```
+`````
 
 처음 실행할 때 Auto-GPT는 메모리 데이터베이스를 초기화하고 필요한 브라우저 드라이버를 다운로드한다. 이것은 약 **90초** 걸린다 — 병렬화된 초기화 덕분에 2024년 버전의 **8분 이상**에서 크게 줄어들었다.
 
 ### 5단계: 설치 확인
 
-```bash
+`````bash
 # 상태 확인 명령
 autogpt --version
 # Expected: autogpt 0.6.x
@@ -139,7 +140,7 @@ autogpt --version
 # 도구 레지스트리 테스트
 autogpt --test-tools
 # Expected output: All 12 default tools loaded successfully
-```
+`````
 
 프로덕션 VPS 배포를 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 Docker가 준비된 Droplet을 실행할 수 있는 $200 크레딧을 제공한다 — 전체 샌드박싱으로 Auto-GPT를 실행하기에 이상적이다.
 
@@ -149,7 +150,7 @@ autogpt --test-tools
 
 에이전트 프로토콜은 Auto-GPT 에이전트가 통신하는 방식을 표준화하는 JSON 기반 메시지 형식이다. 이전에는 멀티 에이전트 시스템이 취약했다 — 에이전트가 서로의 출력을 오해하거나 컨텍스트를 잃었다.
 
-```json
+`````json
 {
   "protocol_version": "2.1",
   "message_type": "task_delegate",
@@ -167,11 +168,11 @@ autogpt --test-tools
   },
   "timestamp": "2026-05-19T10:30:00Z"
 }
-```
+`````
 
 ### 멀티 에이전트 설정
 
-```python
+`````python
 # multi_agent_demo.py
 from autogpt.agent import Agent
 from autogpt.protocol import AgentProtocol
@@ -210,11 +211,11 @@ result = orchestrator.run(
 )
 
 print(result.final_output)
-```
+`````
 
 ### 실전 에이전트 위임
 
-```python
+`````python
 # 에이전트는 동적으로 다른 에이전트에게 하위 작업을 위임할 수 있다
 class ResearchAgent(Agent): def handle_task(self, task): if task.complexity > 0.7: # 작성을 writer 에이전트에게 위임
             return self.protocol.delegate(
@@ -223,13 +224,13 @@ class ResearchAgent(Agent): def handle_task(self, task): if task.complexity > 0.
                 context=self.gather_sources()
             )
         return self.execute(task)
-```
+`````
 
 ## 웹 브라우징, 파일 작업, 도구 사용
 
 ### Playwright를 이용한 웹 브라우징
 
-```python
+`````python
 # Auto-GPT는 JavaScript 렌더링 페이지를 자동으로 처리하고
 # 구조화된 데이터를 추출한다
 
@@ -255,11 +256,11 @@ search_result = browser.search(
 )
 
 for r in search_result.results: print(f"{r.title}: {r.url}")
-```
+`````
 
 ### 파일 작업
 
-```python
+`````python
 from autogpt.tools import FileOpsTool
 
 file_tool = FileOpsTool(sandbox_dir="./workspace")
@@ -273,11 +274,11 @@ file_tool.write("output/report.md", "# Analysis Results\n\n...")
 # 코드 분석
 analysis = file_tool.analyze_code("src/app.py")
 print(f"Lines: {analysis.line_count}, Functions: {analysis.function_count}")
-```
+`````
 
 ### 샌드박스 코드 실행
 
-```python
+`````python
 # 코드는 격리된 Docker 컨테이너에서 실행된다
 from autogpt.tools import CodeExecuteTool
 
@@ -298,11 +299,11 @@ print(result.stdout)
 
 # 실패한 실행은 포착되고 보고된다
 if result.error: print(f"Error: {result.error}")
-```
+`````
 
 ### 커스텀 도구 등록
 
-```python
+`````python
 # 자신만의 도구 등록
 from autogpt.tools import ToolRegistry
 
@@ -321,7 +322,7 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 # 이제 에이전트가 이 도구를 자동으로 사용할 수 있다
 # LLM이 설명을 보고 언제 호출할지 결정한다
-```
+`````
 
 ## 벤치마크: Auto-GPT 대비 현대 에이전트 프레임워크
 
@@ -359,7 +360,7 @@ def send_slack(channel: str, message: str) -> str: import requests
 
 ### 기본 Docker 설정
 
-```dockerfile
+`````dockerfile
 # Dockerfile.autogpt
 FROM python:3.11-slim
 
@@ -379,9 +380,9 @@ COPY . .
 
 # 연속 모드로 목표 파일과 함께 실행
 CMD ["autogpt", "--continuous", "--goal-file", "/app/goals/main.json"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -414,9 +415,9 @@ services: autogpt: build: context: .
     read_only: true
     tmpfs: - /tmp
 
-volumes: chroma_data: redis_data: ```
+volumes: chroma_data: redis_data: `````
 
-```bash
+`````bash
 # 스택 배포
 docker-compose up -d
 
@@ -425,11 +426,11 @@ docker-compose logs -f autogpt
 
 # 모두 중지
 docker-compose down
-```
+`````
 
 ### Kubernetes 배포
 
-```yaml
+`````yaml
 # autogpt-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -450,13 +451,13 @@ spec: replicas: 1
             cpu: "500m"
           limits: memory: "2Gi"
             cpu: "2000m"
-```
+`````
 
 ## 고급 구성 및 커스터마이징
 
 ### 커스텀 에이전트 페르소나
 
-```python
+`````python
 # 전문 에이전트 동작 정의
 from autogpt.agent import AgentConfig
 
@@ -475,11 +476,11 @@ config = AgentConfig(
 
 agent = Agent(config=config)
 result = agent.run("Audit the auth module in src/auth.py")
-```
+`````
 
 ### LLM 백엔드 전환
 
-```python
+`````python
 # 에이전트 코드를 변경하지 않고 LLM 제공자 전환
 from autogpt.llm import LLMManager
 
@@ -494,11 +495,11 @@ llm = LLMManager.create(provider="ollama", model="llama3.2", base_url="http://lo
 
 # 백엔드와 관계없이 에이전트는 동일하게 작동
 agent = Agent(llm=llm)
-```
+`````
 
 ### 플러그인 시스템
 
-```python
+`````python
 # Auto-GPT는 기능 확장을 위한 플러그인을 지원한다
 # 플러그인을 plugins/ 디렉토리에 배치
 
@@ -510,7 +511,7 @@ class CustomLogger(Plugin): def on_agent_start(self, agent): print(f"[{agent.nam
     def on_step_complete(self, agent, step, result): with open("agent_log.txt", "a") as f: f.write(f"[{agent.name}] Step {step}: {result.summary}\n")
 
     def on_agent_finish(self, agent, result): print(f"[{agent.name}] Agent finished. Final output length: {len(result.final_output)}")
-```
+`````
 
 ## 대안과 비교
 
@@ -555,11 +556,11 @@ Auto-GPT는 강력하지만 마법은 아니다. 프로덕션 워크로드를 �
 
 ### OpenAI 모델로 Auto-GPT를 실행하는 데 얼마나 드나요?
 
-GPT-4o를 사용한 일반적인 50회 반복 연구 작업은 **$0.30에서 $1.50** 사이이다. 탐색된 웹 페이지의 복잡성과 처리된 파일에 따라 다르다. 연속 작업의 경우 **$15–$60/일**을 예산하라. ollama를 통한 로컬 모델은 이를 전기 및 하드웨어 비용으로 줄인다. 항상 지출을 제한하기 위해 `CONTINUOUS_LIMIT`을 설정하라.
+GPT-4o를 사용한 일반적인 50회 반복 연구 작업은 **$0.30에서 $1.50** 사이이다. 탐색된 웹 페이지의 복잡성과 처리된 파일에 따라 다르다. 연속 작업의 경우 **$15–$60/일**을 예산하라. ollama를 통한 로컬 모델은 이를 전기 및 하드웨어 비용으로 줄인다. 항상 지출을 제한하기 위해 ````CONTINUOUS_LIMIT````을 설정하라.
 
 ### Auto-GPT를 완전히 오프라인으로 실행할 수 있나요?
 
-**네**, [ollama](dibi8-internal-link)나 유사한 것을 통한 로컬 LLM을 사용하면. 웹 브라우징을 제외한 모든 도구가 오프라인으로 작동한다 — 파일 작업, 코드 실행, 메모리 검색은 인터넷 연결이 필요 없다. 웹 브라우징은 명백하게 연결이 필요하다. `OLLAMA_BASE_URL`을 로컬 인스턴스를 가리키도록 설정하라.
+**네**, [ollama](dibi8-internal-link)나 유사한 것을 통한 로컬 LLM을 사용하면. 웹 브라우징을 제외한 모든 도구가 오프라인으로 작동한다 — 파일 작업, 코드 실행, 메모리 검색은 인터넷 연결이 필요 없다. 웹 브라우징은 명백하게 연결이 필요하다. ````OLLAMA_BASE_URL````을 로컬 인스턴스를 가리키도록 설정하라.
 
 ### Auto-GPT와 ChatGPT 플러그인을 비교하면 어떤가요?
 
@@ -567,15 +568,15 @@ ChatGPT 플러그인은 사용자가 시작하고 단일 턴이다. Auto-GPT는 
 
 ### 내 컴퓨터에서 Auto-GPT를 실행하는 것이 안전한가요?
 
-**대체로 네, 올바른 구성으로.** 항상 `EXECUTE_LOCAL_COMMANDS=False`(기본값)으로 설정하라. 코드 실행에는 Docker 샌드박스를 사용하라. Auto-GPT는 구성된 워크스페이스 디렉토리 내에서 파일 작업을 실행한다. 절대 `sudo` 또는 root로 실행하지 마라. 2026 버전은 보안 감사를 거쳤고 기본적으로 잠재적으로 위험한 작업을 제한한다.
+**대체로 네, 올바른 구성으로.** 항상 ````EXECUTE_LOCAL_COMMANDS=False````(기본값)으로 설정하라. 코드 실행에는 Docker 샌드박스를 사용하라. Auto-GPT는 구성된 워크스페이스 디렉토리 내에서 파일 작업을 실행한다. 절대 ````sudo```` 또는 root로 실행하지 마라. 2026 버전은 보안 감사를 거쳤고 기본적으로 잠재적으로 위험한 작업을 제한한다.
 
 ### Auto-GPT를 사용자 지정 도구와 함께 사용할 수 있나요?
 
-**네.** 플러그인 시스템과 `@ToolRegistry.register` 데코레이터를 통해 모든 Python 함수를 에이전트 도구로 추가할 수 있다. LLM은 설명을 기반으로 자동으로 등록된 도구를 발견하고 사용한다. API 호출, 데이터베이스 쿼리, 커스텀 알고리즘, 또는 하드웨어 인터페이스를 등록할 수 있다.
+**네.** 플러그인 시스템과 ````@ToolRegistry.register```` 데코레이터를 통해 모든 Python 함수를 에이전트 도구로 추가할 수 있다. LLM은 설명을 기반으로 자동으로 등록된 도구를 발견하고 사용한다. API 호출, 데이터베이스 쿼리, 커스텀 알고리즘, 또는 하드웨어 인터페이스를 등록할 수 있다.
 
 ### Auto-GPT가 실행할 수 있는 최대 반복 횟수는 얼마인가?
 
-하드 한도는 없지만 실용적 한도가 있다. `.env` 파일에서 `CONTINUOUS_LIMIT`을 설정하라 — 대부분의 작업에 권장 값은 **25–100**이다. 100회 반복을 넘어가면 컨텍스트 창 압력이 증가하고 에이전트가 원래 목표를 잃을 수 있다. 하이브리드 메모리 시스템은 이를 연장하지만 완전히 제거하지는 못한다.
+하드 한도는 없지만 실용적 한도가 있다. ````.env```` 파일에서 ````CONTINUOUS_LIMIT```을 설정하라 — 대부분의 작업에 권장 값은 **25–100**이다. 100회 반복을 넘어가면 컨텍스트 창 압력이 증가하고 에이전트가 원래 목표를 잃을 수 있다. 하이브리드 메모리 시스템은 이를 연장하지만 완전히 제거하지는 못한다.
 
 ## 결론: Auto-GPT는 돌아왔다 — 그리고 당신의 시간을 투자할 가치가 있다
 
@@ -612,7 +613,7 @@ ChatGPT 플러그인은 사용자가 시작하고 단일 턴이다. Auto-GPT는 
 
 이 글은 제휴 링크를 포함하고 있다. 이 글의 링크를 통해 서비스에 가입하면 (DigitalOcean이나 Nbility 등) dibi8.com이 추가 비용 없이 커미션을 받을 수 있다. 우리는 우리가 사용하고 진정으로 믿는 도구만 추천한다. Auto-GPT 자체는 MIT 하에 묣이며 오픈소스다 — Significant-Gravitas 조직과는 제휴 관계가 없다.
 
----
+* * *
 
 *dibi8.com — AI 소스 코드 허브에 게시됨. 최종 업데이트: 2026-05-19*
 

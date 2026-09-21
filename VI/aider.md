@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/aider/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -46,9 +47,9 @@ Kiến trúc của Aider tập trung vào ba khái niệm cốt lõi: repo map, 
 
 **Architect Mode:** Đối với các thay đổi phức tạp, Aider tách biệt việc lập kế hoạch và thực thi. Một mô hình suy luận (như o3 hoặc Claude Opus) soạn thảo kế hoạch kiến trúc, trong khi một mô hình chỉnh sửa nhanh (như GPT-4.1) thực thi các thay đổi file. Cách tiếp cận hai mô hình này giảm chi phí 40-60% cho các chỉnh sửa thông thường trong khi vẫn duy trì chất lượng cao cho các tác vụ tái cấu trúc phức tạp.
 
-```bash
+````bash
 aider --model o3 --editor-model gpt-4.1 --architect
-```
+`````
 
 ## Cài đặt & Thiết lập
 
@@ -56,7 +57,7 @@ Bắt đầu với Aider chỉ mất dưới năm phút. Bạn cần Python 3.8-
 
 **Bước 1 — Cài đặt Aider:**
 
-```bash
+`````bash
 # Sử dụng aider-install (khuyến nghị)
 python -m pip install aider-install
 aider-install
@@ -70,11 +71,11 @@ curl -LsSf https://aider.chat/install.sh | sh
 
 # Lệnh một dòng cho Windows
 powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
-```
+`````
 
 **Bước 2 — Cấu hình API key:**
 
-```bash
+`````bash
 # Claude (Anthropic)
 export ANTHROPIC_API_KEY=sk-ant-api03-your-key
 
@@ -89,11 +90,11 @@ export GEMINI_API_KEY=your-key
 
 # Hoặc sử dụng file .env trong thư mục gốc dự án
 echo "ANTHROPIC_API_KEY=sk-ant-api03-your-key" > .env
-```
+`````
 
 **Bước 3 — Bắt đầu lập trình:**
 
-```bash
+`````bash
 cd /to/your/project
 
 # Với Claude Sonnet
@@ -108,44 +109,44 @@ aider --model deepseek --api-key deepseek=sk-your-key
 # Với mô hình cục bộ qua Ollama
 ollama pull qwen2.5-coder:32b
 aider --model ollama/qwen2.5-coder:32b
-```
+`````
 
 **Phương án Docker:**
 
-```bash
+`````bash
 docker run -it --rm \
   -v $(pwd):/app \
   -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
   paulgauthier/aider \
   --model sonnet
-```
+`````
 
 ## Tích hợp với các công cụ phổ biến
 
 ### VS Code
 
-Aider không yêu cầu extension VS Code. Khởi động Aider trong terminal dự án của bạn, sau đó chỉnh sửa file trong VS Code như bình thường. Aider giám sát git repository và tự động commit các thay đổi. Để có luồng làm việc chặt chẽ hơn, sử dụng cờ `--watch-files`: ```bash
+Aider không yêu cầu extension VS Code. Khởi động Aider trong terminal dự án của bạn, sau đó chỉnh sửa file trong VS Code như bình thường. Aider giám sát git repository và tự động commit các thay đổi. Để có luồng làm việc chặt chẽ hơn, sử dụng cờ ``--watch-files``: `````bash
 # Terminal 1: khởi động aider
 aider --model sonnet --watch-files
 
 # Trong VS Code: thêm comment AI như "// AI: refactor cái này sang async/await"
 # Aider nhận comment, thực hiện thay đổi, và commit
-```
+`````
 
 ### Vim / Neovim
 
-Aider phù hợp tự nhiên với luồng làm việc Vim. Chạy nó trong một cửa sổ tmux chia đôi bên cạnh trình soạn thảo của bạn: ```bash
+Aider phù hợp tự nhiên với luồng làm việc Vim. Chạy nó trong một cửa sổ tmux chia đôi bên cạnh trình soạn thảo của bạn: `````bash
 # Cấu hình tmux cho aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
 tmux send-keys -t aider-vim.0 'vim .' C-m
 tmux send-keys -t aider-vim.1 'aider --model sonnet" C-m
 tmux attach -t aider-vim
-```
+`````
 
 ### Git và GitHub
 
-Tích hợp git của Aider là tính năng nổi bật. Mỗi chỉnh sửa được hỗ trợ bởi AI đều trở thành một commit riêng biệt: ```bash
+Tích hợp git của Aider là tính năng nổi bật. Mỗi chỉnh sửa được hỗ trợ bởi AI đều trở thành một commit riêng biệt: `````bash
 # Trong phiên aider
 > /add src/auth.js src/middleware.js
 > Thêm xác thực JWT token vào auth middleware
@@ -159,21 +160,21 @@ git diff HEAD~3..HEAD  # xem xét 3 commit AI gần nhất
 
 # Push lên GitHub
 git push origin main
-```
+`````
 
 ### Tích hợp GitLab CI/CD
 
-```yaml
+`````yaml
 # .gitlab-ci.yml - pipeline đánh giá code AI
 ai-review: image: python:3.12
   before_script: - pip install aider-chat
   script: - aider --model sonnet --message "Đánh giá MR này về vấn đề bảo mật" --no-auto-commits
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-```
+`````
 
 ### Pre-commit hooks
 
-```yaml
+`````yaml
 # .pre-commit-config.yaml
 repos: - repo: local
     hooks: - id: aider-lint
@@ -181,7 +182,7 @@ repos: - repo: local
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
         pass_filenames: false
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -221,44 +222,44 @@ Dựa trên báo cáo cộng đồng và khảo sát nhà phát triển năm 202
 
 ### Bảo mật: Hạn chế truy cập file
 
-```bash
+`````bash
 # Chỉ cho phép chỉnh sửa các thư mục cụ thể
 aider --model sonnet --read-only src/ --edit docs/
 
 # Sử dụng file .aiderignore
 echo "*.secret" > .aiderignore
 echo "config/prod.yml" >> .aiderignore
-```
+`````
 
 ### Prompt caching để giảm chi phí
 
-Aider hỗ trợ prompt caching cho các mô hình Anthropic Claude và OpenAI, giảm chi phí API 40-60% trong các cuộc trò chuyện nhiều lượt: ```bash
+Aider hỗ trợ prompt caching cho các mô hình Anthropic Claude và OpenAI, giảm chi phí API 40-60% trong các cuộc trò chuyện nhiều lượt: `````bash
 # Prompt caching tự động cho các mô hình được hỗ trợ
 aider --model sonnet --cache-prompts
 
 # Kiểm tra thống kê cache
 # Tìm "Cache hit" trong output để xác nhận tiết kiệm
-```
+`````
 
 ### Bí danh mô hình tùy chỉnh
 
-```bash
+`````bash
 # ~/.aider.conf.yml
 model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
-```
+`````
 
-Sử dụng: ```bash
+Sử dụng: `````bash
 aider --model fast    # sử dụng gpt-4.1
 aider --model smart   # sử dụng claude-sonnet-4
 aider --model cheap   # sử dụng DeepSeek
-```
+`````
 
 ### Tích hợp linting và testing
 
-```bash
+`````bash
 # Tự động chạy lint sau mỗi lần chỉnh sửa
 aider --model sonnet --lint-cmd "npm run lint"
 
@@ -267,11 +268,11 @@ aider --model sonnet --test-cmd "npm test" --auto-test
 
 # Chỉ commit nếu test đạt
 aider --model sonnet --test-cmd "pytest" --auto-test --test-first
-```
+`````
 
 ### File cấu hình YAML
 
-```yaml
+`````yaml
 # ~/.aider.conf.yml
 model: sonnet
 editor: nvim
@@ -281,17 +282,17 @@ lint-cmd: "npm run lint"
 test-cmd: "npm test"
 cache-prompts: true
 show-model-warnings: false
-```
+`````
 
 ### Giám sát với phân tích
 
-```bash
+`````bash
 # Đặt log phân tích để theo dõi chi phí
 export AIDER_ANALYTICS_LOG=/var/log/aider/analytics.jsonl
 
 # Theo dõi chi phí từng dự án
 aider --model sonnet --analytics-log ./logs/aider.jsonl
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -358,13 +359,13 @@ A: Aider bản thân miễn phí và mã nguồn mở. Bạn chỉ trả phí s�
 A: Có — đây là nguyên tắc thiết kế cốt lõi của Aider. Aider chạy trong terminal và hoạt động trên git repository của bạn. Bạn có thể dùng VS Code, Vim, Neovim, Emacs, Sublime Text, hoặc bất kỳ trình soạn thảo nào đồng thờ. Các thay đổi do Aider thực hiện xuất hiện ngay lập tức trong trình theo dõi file của trình soạn thảo.
 
 **Q: Aider có an toàn cho codebase production không?**
-A: Aider commit mọi thay đổi vào git với thông điệp mô tả, vì vậy bạn có thể xem xét và hoàn tác bất kỳ chỉnh sửa nào. Tuy nhiên, bạn nên luôn xem xét code do AI tạo trước khi merge vào main. Dùng `git diff` để kiểm tra thay đổi, chạy test suite với `--auto-test`, và bật bảo vệ nhánh trên GitHub/GitLab.
+A: Aider commit mọi thay đổi vào git với thông điệp mô tả, vì vậy bạn có thể xem xét và hoàn tác bất kỳ chỉnh sửa nào. Tuy nhiên, bạn nên luôn xem xét code do AI tạo trước khi merge vào main. Dùng ````git diff```` để kiểm tra thay đổi, chạy test suite với ````--auto-test````, và bật bảo vệ nhánh trên GitHub/GitLab.
 
 **Q: Mô hình LLM nào hoạt động tốt nhất với Aider?**
 A: Theo bảng xếp hạng đa ngôn ngữ của Aider, GPT-5 (high) đạt điểm cao nhất ở 88.0%, tiếp theo là Claude Sonnet 4 khoảng 84% và Gemini 2.5 Pro ở 83.1%. Đối với công việc nhạy cảm về chi phí, DeepSeek V3.2 Reasoner với 74.2% và $1.30 mỗi lần chạy mang lại giá trị tốt nhất.
 
 **Q: Aider có thể hoạt động không cần kết nối internet không?**
-A: Có, nếu bạn dùng mô hình cục bộ qua Ollama hoặc LM Studio. Cài đặt mô hình cục bộ (`ollama pull qwen2.5-coder:32b`), sau đó chạy `aider --model ollama/qwen2.5-coder:32b`. Lưu ý rằng các mô hình cục bộ chậm hơn và kém năng lực hơn API đám mây cho các chỉnh sửa phức tạp trên nhiều file.
+A: Có, nếu bạn dùng mô hình cục bộ qua Ollama hoặc LM Studio. Cài đặt mô hình cục bộ (````ollama pull qwen2.5-coder:32b````), sau đó chạy ````aider --model ollama/qwen2.5-coder:32b````. Lưu ý rằng các mô hình cục bộ chậm hơn và kém năng lực hơn API đám mây cho các chỉnh sửa phức tạp trên nhiều file.
 
 **Q: Aider so với GitHub Copilot như thế nào?**
 A: Copilot cung cấp tự động hoàn thành inline trong IDE. Aider là agent hội thoại thực hiện chỉnh sửa đa file và commit chúng vào git. Chúng bổ sung cho nhau — nhiều nhà phát triển dùng Copilot cho tự động hoàn thành hàng ngày và Aider cho các tác vụ tái cấu trúc lớn và triển khai tính năng. Copilot giá $10-19/tháng; Aider miễn phí cộng phí API.
@@ -378,11 +379,11 @@ Aider là công cụ lập trình cặp AI linh hoạt và hiệu quả nhất v
 
 **Các bước hành động để bắt đầu:**
 
-1. Cài đặt Aider bằng `curl -LsSf https://aider.chat/install.sh | sh`
-2. Thiết lập `ANTHROPIC_API_KEY` hoặc `OPENAI_API_KEY`
-3. Chạy `aider --model sonnet` trong thư mục dự án
-4. Thêm file bằng `/add`, sau đó mô tả bạn muốn gì bằng ngôn ngữ tự nhiên
-5. Xem xét auto-commit bằng `git log` trước khi push
+1. Cài đặt Aider bằng ````curl -LsSf https://aider.chat/install.sh | sh````
+2. Thiết lập ````ANTHROPIC_API_KEY```` hoặc ````OPENAI_API_KEY````
+3. Chạy ````aider --model sonnet```` trong thư mục dự án
+4. Thêm file bằng ````/add````, sau đó mô tả bạn muốn gì bằng ngôn ngữ tự nhiên
+5. Xem xét auto-commit bằng ````git log``` trước khi push
 
 Tham gia cộng đồng [Discord](https://discord.gg/Y7X7bhMQFV) hoặc [Telegram](https://t.me/dibi8opensource) để chia sẻ mẹo, nhận trợ giúp và cập nhật các bản phát hành mới.
 
@@ -437,7 +438,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -447,7 +448,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [claude-code-vs-aider](aider)
 - [claude-code-vs-aider](aider)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

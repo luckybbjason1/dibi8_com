@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/dagster-data-pipeline-orchestrator/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：凌晨三点数据管道失效的噩梦
@@ -20,7 +21,7 @@ aliases:
 
 这是以任务为中心的编排模式的根本问题：它只记录作业是否运行了，却不关心你的数据是否正确。
 
-**Dagster**应运而生——这是一款以资产为中心的数据编排器，将你的数据产品（表、模型、文件、ML模型）视为一等公民。Dagster在GitHub上拥有**超过14,000颗星标**，由Dagster Labs团队维护，已成为构建现代数据平台团队的首选编排器。**1.13版本**（2026年初发布）将`dg` CLI和Components框架提升至GA状态，巩固了其作为市场上最具数据感知能力编排器的地位。
+**Dagster**应运而生——这是一款以资产为中心的数据编排器，将你的数据产品（表、模型、文件、ML模型）视为一等公民。Dagster在GitHub上拥有**超过14,000颗星标**，由Dagster Labs团队维护，已成为构建现代数据平台团队的首选编排器。**1.13版本**（2026年初发布）将```dg```` CLI和Components框架提升至GA状态，巩固了其作为市场上最具数据感知能力编排器的地位。
 
 在本指南中，你将在五分钟内完成Dagster的本地部署，连接dbt和Snowflake，并了解Stripe、Flexport和Vimeo等团队为何将关键数据管道从Airflow迁移至Dagster。
 
@@ -28,7 +29,7 @@ aliases:
 
 **Dagster**是一款开源数据管道编排器，围绕**软件定义资产**的概念构建——即代表数据表、ML模型、文件或任何其他数据产物的Python装饰函数。你不是调度那些恰好产生数据的任务，而是直接定义数据资产本身，由Dagster编排计算过程来实现它们的具体化。
 
-Dagster于2019年由Elementl团队（现Dagster Labs）推出，2026年初达到**1.13版本**，Components和`dg` CLI正式发布。它采用**Apache-2.0许可证**，获得**超过3500万美元**的风险投资支持。该项目处于现代数据栈的核心位置，提供与dbt、Snowflake、BigQuery、Airbyte、Fivetran等40多种工具的原生集成。
+Dagster于2019年由Elementl团队（现Dagster Labs）推出，2026年初达到**1.13版本**，Components和````dg```` CLI正式发布。它采用**Apache-2.0许可证**，获得**超过3500万美元**的风险投资支持。该项目处于现代数据栈的核心位置，提供与dbt、Snowflake、BigQuery、Airbyte、Fivetran等40多种工具的原生集成。
 
 ## Dagster 工作原理：资产为中心的架构
 
@@ -36,9 +37,9 @@ Dagster于2019年由Elementl团队（现Dagster Labs）推出，2026年初达到
 
 ### 软件定义资产
 
-Dagster中的资产是一个使用`@asset`装饰的Python函数，返回一个数据对象。资产之间的依赖通过函数参数表达：
+Dagster中的资产是一个使用````@asset````装饰的Python函数，返回一个数据对象。资产之间的依赖通过函数参数表达：
 
-```python
+`````python
 from dagster import asset, Definitions
 import pandas as pd
 
@@ -62,15 +63,15 @@ def customer_metrics(cleaned_customers): """Aggregate customer metrics for repor
 
 # Define the repository of assets
 defs = Definitions(assets=[raw_customers, cleaned_customers, customer_metrics])
-```
+`````
 
-Dagster自动从这些函数签名构建依赖图。当请求`cleaned_customers`时，Dagster知道必须先实现`raw_customers`。无需显式的DAG连线。
+Dagster自动从这些函数签名构建依赖图。当请求````cleaned_customers````时，Dagster知道必须先实现````raw_customers````。无需显式的DAG连线。
 
 ### 数据感知调度
 
 Dagster的调度器理解数据依赖，而不仅仅是时间。资产可以通过以下方式调度：
 
-```python
+`````python
 from dagster import AssetSelection, define_asset_job, ScheduleDefinition
 
 # Run daily at 6 AM UTC
@@ -84,11 +85,11 @@ daily_schedule = ScheduleDefinition(
     cron_schedule="0 6 * * *",  # 6 AM UTC daily
     default_status=DefaultScheduleStatus.RUNNING
 )
-```
+`````
 
 更重要的是，资产可以通过**自动物化策略**自动触发下游运行：
 
-```python
+`````python
 from dagster import AutoMaterializePolicy
 
 @asset(
@@ -96,15 +97,15 @@ from dagster import AutoMaterializePolicy
 )
 def customer_metrics(cleaned_customers): """Automatically rebuilds whenever upstream data changes."""
     return cleaned_customers.groupby("country").agg(...)
-```
+`````
 
-使用`AutoMaterializePolicy.eager()`，每当`cleaned_customers`更新时，`customer_metrics`会自动重建——无需手动管理调度计划。
+使用````AutoMaterializePolicy.eager()````，每当````cleaned_customers````更新时，````customer_metrics````会自动重建——无需手动管理调度计划。
 
 ### 资产检查与数据质量
 
 Dagster将数据质量检查内置于资产模型中：
 
-```python
+`````python
 from dagster import asset_check, AssetCheckResult
 
 @asset_check(asset=raw_customers)
@@ -122,7 +123,7 @@ def unique_emails(cleaned_customers): """Validate email uniqueness after dedupli
         passed=duplicate_count == 0,
         metadata={"duplicate_emails": duplicate_count}
     )
-```
+`````
 
 当检查失败时，资产生成会被标记——让你立即看到数据质量问题，而不仅仅是运行时错误。
 
@@ -136,7 +137,7 @@ def unique_emails(cleaned_customers): """Validate email uniqueness after dedupli
 
 ### 步骤 1：安装 Dagster
 
-```bash
+`````bash
 # Create a virtual environment
 python -m venv .venv
 source .venv/bin/activate
@@ -147,13 +148,13 @@ pip install dagster dagster-webserver dagster-graphql
 # Verify installation
 dagster --version
 # dagster, version 1.13.2
-```
+`````
 
 ### 步骤 2：使用 dg CLI 创建新项目
 
-Dagster 1.13引入了用于项目脚手架的`dg` CLI：
+Dagster 1.13引入了用于项目脚手架的````dg```` CLI：
 
-```bash
+`````bash
 # Install the dg CLI tool
 pip install dagster-dg
 
@@ -168,11 +169,11 @@ cd my_data_platform
 # │   └── assets.py
 # ├── pyproject.toml
 # └── setup.py
-```
+`````
 
 ### 步骤 3：定义你的第一个资产
 
-```python
+`````python
 # my_data_platform/assets.py
 from dagster import asset, Definitions
 import pandas as pd
@@ -185,20 +186,20 @@ def hello_world(): """First asset: creates a sample dataset."""
     })
 
 defs = Definitions(assets=[hello_world])
-```
+`````
 
 ### 步骤 4：启动开发服务器
 
-```bash
+`````bash
 # From the project root
 dagster dev -h 0.0.0.0 -p 3000
-```
+`````
 
-在浏览器中打开`http://localhost:3000`。你将看到Dagster UI界面及你的资产图，可以随时进行物化操作。
+在浏览器中打开````http://localhost:3000````。你将看到Dagster UI界面及你的资产图，可以随时进行物化操作。
 
 ### 步骤 5：使用 Docker Compose 进行生产级本地开发
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: dagster-postgres: image: postgres:15-alpine
@@ -224,13 +225,13 @@ services: dagster-postgres: image: postgres:15-alpine
       DAGSTER_POSTGRES_HOST: dagster-postgres
     depends_on: - dagster-postgres
 
-volumes: postgres_data: ```
+volumes: postgres_data: `````
 
 构建并启动：
 
-```bash
+`````bash
 docker-compose up --build -d
-```
+`````
 
 你的Dagster实例现在已运行，并使用PostgreSQL持久化存储运行历史、事件日志和调度计划。
 
@@ -238,9 +239,9 @@ docker-compose up --build -d
 
 ### dbt 集成（原生级）
 
-Dagster的dbt集成是编排领域中最深度的。资产直接从`manifest.json`生成：
+Dagster的dbt集成是编排领域中最深度的。资产直接从````manifest.json````生成：
 
-```python
+`````python
 # Integrate dbt models as Dagster assets
 from dagster_dbt import DbtProject, dbt_assets
 from dagster import AssetExecutionContext
@@ -253,13 +254,13 @@ dbt_project = DbtProject(
 @dbt_assets(manifest=dbt_project.manifest_path)
 def dbt_models(context: AssetExecutionContext, dbt: DbtCliResource): """Every dbt model becomes a Dagster asset automatically."""
     yield from dbt.cli(["build"], context=context).stream()
-```
+`````
 
 这为你带来：列级血缘、映射到dbt测试的资产检查、感知分区的回填——全部无需编写一行YAML。
 
 ### Snowflake / BigQuery 集成
 
-```python
+`````python
 from dagster_snowflake import SnowflakeResource
 from dagster import asset, Definitions
 
@@ -279,11 +280,11 @@ defs = Definitions(
         )
     }
 )
-```
+`````
 
 ### Airbyte / Fivetran 同步触发
 
-```python
+`````python
 from dagster_airbyte import AirbyteResource, sync_assets
 
 airbyte = AirbyteResource(
@@ -298,17 +299,17 @@ airbyte_assets = sync_assets(
     connection_id="123e4567-e89b-12d3-a456-426614174000",
     airbyte=airbyte
 )
-```
+`````
 
 ### 集成概览表
 
 | 工具 | 集成类型 | 关键特性 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | dbt | 原生资产生成 | 列级血缘，测试映射 |
 | Snowflake | 基于资源 | 连接池，查询流式传输 |
@@ -326,13 +327,13 @@ airbyte_assets = sync_assets(
 
 | 指标 | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动到首个任务 | 2.3秒 | 8.7秒 | 3.1秒 |
 | 100个资产生成 | 4分12秒 | 6分38秒 | 5分19秒 |
@@ -354,7 +355,7 @@ Stripe的数据平台团队在2022年至2024年间将400多条管道从Airflow�
 
 Dagster的分区系统支持日、小时、周和动态分区：
 
-```python
+`````python
 from dagster import DailyPartitionsDefinition, asset
 
 daily_partition = DailyPartitionsDefinition(start_date="2024-01-01")
@@ -367,13 +368,13 @@ def daily_sales(context): """Process one day of sales data per partition."""
 
 # Backfill 30 days with one command
 dagster asset backfill -p daily_sales --from 2024-01-01 --to 2024-01-30
-```
+`````
 
 ## 高级用法：生产环境加固
 
 ### 按环境配置资源
 
-```python
+`````python
 # resources.py — different configs for dev/staging/prod
 from dagster_snowflake import SnowflakeResource
 
@@ -394,11 +395,11 @@ snowflake_prod = SnowflakeResource(
     schema="public",
     warehouse="PROD_WH_LARGE"
 )
-```
+`````
 
 ### 传感器与告警（Slack/Email）
 
-```python
+`````python
 from dagster import sensor, RunRequest
 from dagster_slack import make_slack_on_run_failure_sensor
 
@@ -420,13 +421,13 @@ def s3_file_sensor(): new_files = check_s3_for_new_files("s3://data-lake/incomin
             run_key=file.etag,
             run_config={"ops": {"raw_customers": {"config": {"s3_path": file.key}}}}
         )
-```
+`````
 
 ### 多团队部署的代码位置
 
 Dagster支持多个代码位置——可以独立部署的独立Python环境：
 
-```yaml
+`````yaml
 # workspace.yaml
 load_from: - python_module: module_name: analytics_team.definitions
       location_name: analytics
@@ -434,7 +435,7 @@ load_from: - python_module: module_name: analytics_team.definitions
       location_name: ml_platform
   - python_module: module_name: finance_team.definitions
       location_name: finance
-```
+`````
 
 每个团队拥有自己的代码位置，独立部署，并通过同一个Dagster UI实现跨团队可见性。
 
@@ -442,7 +443,7 @@ load_from: - python_module: module_name: analytics_team.definitions
 
 在**DigitalOcean Droplet**（4 vCPU / 8GB RAM，起价$48/月）上的生产部署：
 
-```bash
+`````bash
 # 1. Provision a Droplet with Docker pre-installed
 # Use my referral link for $200 free credit: # https://m.do.co/c/eca87ac14ee0
 
@@ -455,9 +456,9 @@ docker-compose -f docker-compose.prod.yml up -d
 
 # 4. Verify health
 curl http://your-droplet-ip:3000/health
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: "3.8"
 services: dagster-webserver: image: your-registry/dagster-platform:latest
@@ -476,28 +477,28 @@ services: dagster-webserver: image: your-registry/dagster-platform:latest
     environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes: - postgres_data:/var/lib/postgresql/data
 
-volumes: dagster_home: postgres_data: ```
+volumes: dagster_home: postgres_data: `````
 
 ## 与替代方案的比较
 
 | 特性 | Dagster 1.13 | Apache Airflow 2.10 | Prefect 3.7 | Mage |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **核心模型** | 资产为中心 | 任务为中心DAG | Flow/任务装饰器 | 基于块 |
 | **数据血缘** | 列级（通过dbt） | 仅任务依赖 | 基本资产图 | 表级 |
 | **资产检查** | 原生，支持分区 | 外部（Soda等） | 内置检查 | 每个块检查 |
 | **自动物化** | 积极/惰性策略 | 仅手动调度 | 手动触发 | 管道触发 |
 | **dbt集成** | 原生资产同步 | BashOperator包装 | 直接运行器 | 原生块 |
-| **本地开发启动** | `dagster dev`（5秒） | Docker Compose（60秒） | `prefect server start`（10秒） | `mage start`（15秒） |
+| **本地开发启动** | ````dagster dev````（5秒） | Docker Compose（60秒） | ````prefect server start````（10秒） | ````mage start````（15秒） |
 | **分区** | 一等公民，多维 | DAG参数+宏 | 基本分区 | 日期管道变量 |
 | **UI资产图** | 交互式，可筛选 | 仅DAG图 | Flow运行仪表板 | 管道图 |
 | **托管服务** | Dagster+（$10/月起） | Astronomer / MWAA | Prefect Cloud | Mage Pro（$100/月起） |
@@ -526,7 +527,7 @@ volumes: dagster_home: postgres_data: ```
 
 ### Dagster资产和Airflow任务有什么区别？
 
-Airflow任务是执行单元——它描述*如何运行作业*。Dagster资产描述的是*数据产品*——它建模数据是什么及其与其他数据产品的关系。在Dagster中，编排器自动从资产依赖关系推导执行图。在Airflow中，你需要手动用`>>`运算符连接任务依赖。这意味着Dagster原生理解你的数据血缘，而Airflow将其视为事后考虑。
+Airflow任务是执行单元——它描述*如何运行作业*。Dagster资产描述的是*数据产品*——它建模数据是什么及其与其他数据产品的关系。在Dagster中，编排器自动从资产依赖关系推导执行图。在Airflow中，你需要手动用````>>````运算符连接任务依赖。这意味着Dagster原生理解你的数据血缘，而Airflow将其视为事后考虑。
 
 ### 我可以将现有的Airflow DAG迁移到Dagster吗？
 
@@ -534,7 +535,7 @@ Airflow任务是执行单元——它描述*如何运行作业*。Dagster资产�
 
 ### Dagster如何处理机密和凭证？
 
-Dagster通过其资源系统使用**环境范围配置**。机密在资源配置中通过`{"env": "VARIABLE_NAME"}`引用，并在运行时从环境变量解析。在生产环境中，使用密钥管理器集成（AWS Secrets Manager、HashiCorp Vault）与自定义`ConfigurableResource`。切勿将机密提交到Dagster代码中。
+Dagster通过其资源系统使用**环境范围配置**。机密在资源配置中通过````{"env": "VARIABLE_NAME"}````引用，并在运行时从环境变量解析。在生产环境中，使用密钥管理器集成（AWS Secrets Manager、HashiCorp Vault）与自定义````ConfigurableResource````。切勿将机密提交到Dagster代码中。
 
 ### Dagster可以免费商用吗？
 
@@ -544,7 +545,7 @@ Dagster通过其资源系统使用**环境范围配置**。机密在资源配置
 
 Dagster通过**依赖注入**提供出色的可测试性。你可以在单元测试中模拟资源并直接物化资产：
 
-```python
+`````python
 from dagster import materialize
 
 def test_customer_metrics(): mock_customers = pd.DataFrame({
@@ -559,7 +560,7 @@ def test_customer_metrics(): mock_customers = pd.DataFrame({
     assert result.success
     metrics = result.output_for_node("customer_metrics")
     assert len(metrics) == 2  # US and UK
-```
+`````
 
 ### Dagster的运行存储支持哪些数据库？
 
@@ -569,7 +570,7 @@ Dagster的运行存储（事件日志、调度、传感器触发）支持**Postg
 
 Dagster代表了数据团队构建和管理管道的根本性转变。通过将数据资产——而非任务——提升为一等公民，它弥合了工程师思考数据的方式与编排器执行工作的方式之间的差距。
 
-随着1.13版本、Components和`dg` CLI的GA发布，Dagster已经成熟为一个可与Airflow媲美的生产就绪平台，同时为现代数据栈提供了真正更好的开发体验。
+随着1.13版本、Components和````dg``` CLI的GA发布，Dagster已经成熟为一个可与Airflow媲美的生产就绪平台，同时为现代数据栈提供了真正更好的开发体验。
 
 如果你正在启动全新的数据项目、大量使用dbt，或曾经历过数据质量问题在以任务为中心的管道中蔓延的痛苦，Dagster值得你认真评估。将它部署到每月$48的DigitalOcean Droplet上，连接你的数据仓库，在一小时内实现你的第一个资产。
 
@@ -662,12 +663,12 @@ Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](dagster-data-pipeline-orchestrator)
@@ -676,6 +677,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [agent-reach-internet-access-ai-agents](dagster-data-pipeline-orchestrator)
 - [microsoft-markitdown-file-to-markdown-converter-cli](dagster-data-pipeline-orchestrator)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

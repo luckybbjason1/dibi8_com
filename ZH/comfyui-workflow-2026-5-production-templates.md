@@ -23,6 +23,7 @@ faq: - q: "2026 年 ComfyUI 比 Stable Diffusion WebUI 更好用吗？"
     a: "加载一个工作流并出图：30 分钟。自己搭建工作流：1-2 天。精通节点用于生产：2-3 周。学习曲线一开始很陡，但回报丰厚——工作流可复用、可分享、可复现。"
 ---
 
+
 {{</* resource-info */>}}
 
 # ComfyUI 工作流 2026：搭建指南 + 5 套生产模板
@@ -44,19 +45,19 @@ faq: - q: "2026 年 ComfyUI 比 Stable Diffusion WebUI 更好用吗？"
 ## 搭建（1 小时）
 
 ### 第 1 步：安装（15 分钟）
-```bash
+````bash
 # 克隆 + 配置虚拟环境
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python main.py
-```
+`````
 
-浏览器会自动打开 `http://localhost:8188`。
+浏览器会自动打开 ````http://localhost:8188````。
 
 ### 第 2 步：下载模型（30 分钟）
-放进 `ComfyUI/models/checkpoints/`：
+放进 ````ComfyUI/models/checkpoints/````：
 - **SDXL base + refiner**（最通用，总计约 13GB）
 - **Flux.1 Schnell**（快速原型，约 24GB）
 - **SD 3.5 Large**（最强写实，约 17GB）
@@ -66,7 +67,7 @@ python main.py
 - ControlNet 模型（OpenPose、Depth、Canny — 每个约 1.5GB）
 
 ### 第 3 步：首次出图（15 分钟）
-- 从 `ComfyUI/workflows/` 拖入默认工作流
+- 从 ````ComfyUI/workflows/```` 拖入默认工作流
 - 加载 SDXL checkpoint
 - 输入提示词
 - 队列生成
@@ -104,7 +105,7 @@ python main.py
 
 ## 工作流分享
 
-上述 5 套模板都可保存为 `.json`。拖到 ComfyUI 画布即可加载。可以通过 git 或 Discord 与团队共享。
+上述 5 套模板都可保存为 ````.json````。拖到 ComfyUI 画布即可加载。可以通过 git 或 Discord 与团队共享。
 
 社区已公开数千套工作流：
 - ComfyUI subreddit
@@ -128,7 +129,7 @@ ComfyUI 的学习曲线很真实，但回报同样真实。当你拥有 5 套可
 从上面 5 套模板开始。改造。分享。可复用工作流的复利效应会在第 2 周后显现 — 那时你会发现，自己组合节点的速度比写代码还快。
 
 
----
+* * *
 **相关阅读**：[Stable Diffusion WebUI 搭建](https://dibi8.com/zh/resources/ai-tools/stable-diffusion-webui/) · [2026 年顶级 AI 图像生成工具](https://dibi8.com/zh/resources/ai-tools/ai-image-generation-tools-2025/) · [2026 本地优先 AI 技术栈](https://dibi8.com/zh/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
@@ -194,11 +195,11 @@ ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板 represents an
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -207,7 +208,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 - [comfyui-workflows-complete-guide](comfyui-workflow-2026-5-production-templates)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -219,7 +220,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -230,4 +231,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

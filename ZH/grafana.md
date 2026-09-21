@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/grafana/-
 ---
 
+
 {{</* resource-info */>}}
 
 每一次生产事故都始于一个问题："什么变了？"如果没有一个集中化的指标、日志和追踪视图，回答这个问题可能需要几分钟 —— 有时甚至几小时。Grafana，这个拥有 73,876 个 GitHub Star 的开源可视化平台，将这个问题变成了一眼可见的仪表盘。本指南将带你完成生产级 Docker 部署、数据源集成，以及区分概念验证和生产就绪监控栈的加固决策。
@@ -58,7 +59,7 @@ Grafana 作为一个无状态的可视化层，介于数据源和运维团队之
 
 启动 Grafana 的最快方式用于本地探索：
 
-```bash
+````bash
 # 创建持久化卷用于 Grafana 数据
 docker volume create grafana-storage
 
@@ -68,22 +69,22 @@ docker run -d \
   --name=grafana \
   --volume grafana-storage:/var/lib/grafana \
   grafana/grafana-enterprise
-```
+`````
 
-访问 `http://localhost:3000`。默认凭据是 `admin` / `admin`。首次登录时系统会提示你更改密码。
+访问 ````http://localhost:3000````。默认凭据是 ````admin```` / ````admin````。首次登录时系统会提示你更改密码。
 
 ### Docker Compose — 生产就绪技术栈
 
 对于生产级监控栈，将 Grafana 与 Prometheus 和 Loki 结合使用。创建以下目录结构：
 
-```bash
+`````bash
 mkdir -p ~/grafana-stack/{prometheus,loki,grafana/provisioning/datasources,grafana/provisioning/dashboards,grafana/dashboards}
 cd ~/grafana-stack
-```
+`````
 
 **docker-compose.yml：**
 
-```yaml
+`````yaml
 version: "3.8"
 
 services: grafana: image: grafana/grafana-enterprise:11.6.0
@@ -132,11 +133,11 @@ services: grafana: image: grafana/grafana-enterprise:11.6.0
     networks: - monitoring
 
 volumes: grafana-data: prometheus-data: loki-data: networks: monitoring: driver: bridge
-```
+`````
 
 **prometheus/prometheus.yml：**
 
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
@@ -148,11 +149,11 @@ scrape_configs: - job_name: prometheus
 
   - job_name: grafana
     static_configs: - targets: ['grafana:3000']
-```
+`````
 
 **loki/loki-config.yml：**
 
-```yaml
+`````yaml
 auth_enabled: false
 
 server: http_listen_port: 3100
@@ -183,11 +184,11 @@ compactor: working_directory: /loki/compactor
   retention_delete_delay: 2h
 
 limits_config: retention_period: 720h
-```
+`````
 
 **loki/promtail-config.yml：**
 
-```yaml
+`````yaml
 server: http_listen_port: 9080
   grpc_listen_port: 0
 
@@ -199,21 +200,21 @@ scrape_configs: - job_name: system-logs
     static_configs: - targets: - localhost
         labels: job: system-logs
           __path__: /var/log/*.log
-```
+`````
 
 启动技术栈：
 
-```bash
+`````bash
 docker compose up -d
-```
+`````
 
-在 `http://your-server-ip:3000` 访问 Grafana。Prometheus 在 9090 端口，Loki 在 3100 端口。
+在 ````http://your-server-ip:3000```` 访问 Grafana。Prometheus 在 9090 端口，Loki 在 3100 端口。
 
 ### 自动预配置数据源
 
-无需手动点击 UI 添加数据源，使用 Grafana 的预配置系统。创建 `grafana/provisioning/datasources/datasources.yml`：
+无需手动点击 UI 添加数据源，使用 Grafana 的预配置系统。创建 ````grafana/provisioning/datasources/datasources.yml````：
 
-```yaml
+`````yaml
 apiVersion: 1
 
 datasources: - name: Prometheus
@@ -234,13 +235,13 @@ datasources: - name: Prometheus
     access: proxy
     url: http://tempo:3200
     editable: false
-```
+`````
 
 重启 Grafana，数据源将自动出现：
 
-```bash
+`````bash
 docker compose restart grafana
-```
+`````
 
 ## 与 Prometheus、Loki、InfluxDB 和 Elasticsearch 集成
 
@@ -248,7 +249,7 @@ docker compose restart grafana
 
 Prometheus 是 Grafana 的事实标准指标源。典型的 CPU 监控面板使用 PromQL：
 
-```promql
+`````promql
 # CPU 使用率百分比
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
@@ -257,36 +258,36 @@ Prometheus 是 Grafana 的事实标准指标源。典型的 CPU 监控面板使�
 
 # 磁盘使用率
 100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"})
-```
+`````
 
-从 Grafana 仪表盘库导入官方 Node Exporter Full 仪表盘（ID: `1860`），获取 115 多个预构建的系统指标面板。
+从 Grafana 仪表盘库导入官方 Node Exporter Full 仪表盘（ID: ````1860````），获取 115 多个预构建的系统指标面板。
 
 ### Loki — 日志聚合
 
 Loki 将日志行与指标并排显示在同一个仪表盘中。用于查找错误行的 LogQL 查询：
 
-```logql
+`````logql
 # 统计每个应用的错误日志数量
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # 搜索特定错误模式
 {job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
-```
+`````
 
 ### InfluxDB — 时序数据
 
 对于物联网和高基数指标工作负载，InfluxDB 与 Grafana 配合良好：
 
-```sql
+`````sql
 -- InfluxQL 示例：每个传感器的平均温度
 SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id", time($__interval) fill(null)
-```
+`````
 
 ### Elasticsearch — 日志搜索
 
 对于已投资 Elastic 技术栈的团队，Grafana 可以直接查询 Elasticsearch 索引：
 
-```json
+`````json
 {
   "query": {
     "bool": {
@@ -297,7 +298,7 @@ SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id"
     }
   }
 }
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -305,11 +306,11 @@ SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id"
 
 | 指标 | 单实例 (Docker) | HA 对 (K8s) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 仪表盘加载时间 | 50-200ms | 30-100ms |
 | 并发用户数 | 50-100 | 500+ |
@@ -336,7 +337,7 @@ Grafana 的告警时间线仪表盘随时间可视化告警触发模式，帮助
 
 切勿将 Grafana 直接暴露在互联网上。使用 Traefik 或 Nginx 作为反向代理：
 
-```yaml
+`````yaml
 # docker-compose.yml 附加配置
   traefik: image: traefik:v3.3
     command: - "--api.insecure=true"
@@ -349,13 +350,13 @@ Grafana 的告警时间线仪表盘随时间可视化告警触发模式，帮助
     volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
     networks: - monitoring
-```
+`````
 
 ### 高可用性设置
 
 对于需要零停机的生产环境：
 
-```yaml
+`````yaml
 # Grafana HA 需要共享数据库（PostgreSQL 或 MySQL）
 # 以及负载均衡器后的多个 Grafana 实例
 
@@ -374,13 +375,13 @@ Grafana 的告警时间线仪表盘随时间可视化告警触发模式，帮助
       - GF_REMOTE_CACHE_TYPE=redis
       - GF_REMOTE_CACHE_CONNSTR=redis:6379
     depends_on: - postgres
-```
+`````
 
 ### 告警即代码配置
 
 通过预配置定义告警规则：
 
-```yaml
+`````yaml
 # grafana/provisioning/alerting/alert-rules.yml
 apiVersion: 1
 groups: - orgId: 1
@@ -399,13 +400,13 @@ groups: - orgId: 1
         execErrState: Error
         for: 5m
         annotations: summary: "{{ $labels.instance }} 上 CPU 使用率过高"
-```
+`````
 
 ### 从 Git 预配置仪表盘
 
 将仪表盘作为 JSON 存储在代码仓库中并自动预配置：
 
-```yaml
+`````yaml
 # grafana/provisioning/dashboards/dashboards.yml
 apiVersion: 1
 
@@ -418,16 +419,16 @@ providers: - name: default
     updateIntervalSeconds: 30
     options: path: /var/lib/grafana/dashboards
       foldersFromFilesStructure: true
-```
+`````
 
 ### 安全检查清单
 
 - 立即更改默认管理员密码
-- 禁用用户注册：`GF_USERS_ALLOW_SIGN_UP=false`
+- 禁用用户注册：````GF_USERS_ALLOW_SIGN_UP=false````
 - 使用有效证书启用 HTTPS
 - 在团队环境中使用 OAuth 2.0 或 LDAP 进行认证
 - 将数据源代理访问权限限制为管理员角色
-- 启用审计日志：`GF_AUDIT_ENABLED=true`
+- 启用审计日志：````GF_AUDIT_ENABLED=true````
 - 在容器中以非 root 用户运行 Grafana
 - 保持插件更新 —— 有漏洞的插件是常见的攻击媒介
 
@@ -435,15 +436,15 @@ providers: - name: default
 
 | 特性 | Grafana | Datadog | Kibana | New Relic |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | 是 (AGPL-3.0) | 否 | 是 (SSPL) | 否 |
 | **自托管选项** | 是，免费 | 否 | 是 | 否 |
@@ -490,7 +491,7 @@ Grafana 不是银弹。在投入之前了解这些局限性：
 
 **Q3: 如何备份我的 Grafana 仪表盘？**
 
-仪表盘以 JSON 格式存储在 Grafana 的数据库中。使用 API 导出它们：`curl -H "Authorization: Bearer $API_KEY" http://grafana:3000/api/dashboards/uid/<uid>`。对于 GitOps 工作流，从版本控制中的 JSON 文件预配置仪表盘。
+仪表盘以 JSON 格式存储在 Grafana 的数据库中。使用 API 导出它们：````curl -H "Authorization: Bearer $API_KEY" http://grafana:3000/api/dashboards/uid/<uid>````。对于 GitOps 工作流，从版本控制中的 JSON 文件预配置仪表盘。
 
 **Q4: Grafana OSS 和 Grafana Enterprise 有什么区别？**
 
@@ -516,7 +517,7 @@ Grafana 凭借解决了一个具体问题而赢得了 73,876 个 GitHub Star —
 
 1. 克隆 [Grafana GitHub 仓库](https://github.com/grafana/grafana) 并探索代码库
 2. 在你自己的基础设施上部署本指南中的 Docker Compose 技术栈
-3. 导入仪表盘 ID `1860` (Node Exporter Full) 获取即时系统可见性
+3. 导入仪表盘 ID ````1860``` (Node Exporter Full) 获取即时系统可见性
 4. 加入 [Grafana 社区论坛](https://community.grafana.com/) 获取支持
 5. 关注 [dibi8 Telegram 群组](https://t.me/dibi8hub) 获取每周开发工具深度解析
 
@@ -609,12 +610,12 @@ Grafana: 73,876 GitHub Stars — Docker 部署指南 2026 represents an importan
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [worldmonitor-real-time-global-intelligence-dashboard](grafana)
@@ -623,6 +624,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [moneyprinterturbo-one-click-ai-video-generator](grafana)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](grafana)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

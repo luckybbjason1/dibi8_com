@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/invokeai/
 ---
 
+
 {{</* resource-info */>}}
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
@@ -38,7 +39,7 @@ InvokeAI là một creative engine mã nguồn mở miễn phí để tạo ản
 
 ## InvokeAI hoạt động như thế nào?
 
-InvokeAI tuân theo kiến trúc client-server module. Backend là máy chủ API dựa trên Python (`invokeai.app.api_app`) xử lý việc tải model, tạo ảnh, và quản lý hàng đợi. Frontend là ứng dụng single-page dựa trên React cung cấp canvas, gallery, và trình chỉnh sửa workflow.
+InvokeAI tuân theo kiến trúc client-server module. Backend là máy chủ API dựa trên Python (```invokeai.app.api_app````) xử lý việc tải model, tạo ảnh, và quản lý hàng đợi. Frontend là ứng dụng single-page dựa trên React cung cấp canvas, gallery, và trình chỉnh sửa workflow.
 
 **Các thành phần cốt lõi:**
 
@@ -63,41 +64,41 @@ Docker là con đường nhanh nhất để thiết lập InvokeAI production-gr
 
 **Bước 1 — Clone repository:**
 
-```bash
+`````bash
 git clone https://github.com/invoke-ai/InvokeAI.git
 cd InvokeAI/docker
-```
+`````
 
 **Bước 2 — Cấu hình môi trường:**
 
-```bash
+`````bash
 cp .env.sample .env
-```
+`````
 
-Chỉnh sửa file `.env`: ```bash
+Chỉnh sửa file ``.env``: `````bash
 # Cấu hình cốt lõi
 INVOKEAI_ROOT=/opt/invokeai-data
 INVOKEAI_PORT=9090
 GPU_DRIVER=cuda
 CONTAINER_UID=1000
 HUGGINGFACE_TOKEN=hf_your_token_here
-```
+`````
 
 **Bước 3 — Khởi động container:**
 
-```bash
+`````bash
 ./run.sh
-```
+`````
 
-Hoặc dùng `docker compose` trực tiếp: ```bash
+Hoặc dùng ``docker compose`` trực tiếp: `````bash
 docker compose up -d
-```
+`````
 
-Truy cập UI tại `http://localhost:9090`.
+Truy cập UI tại ````http://localhost:9090````.
 
 ### Chạy Docker Nhanh (Không cần Compose)
 
-Để test nhanh không cần lưu trữ dữ liệu: ```bash
+Để test nhanh không cần lưu trữ dữ liệu: `````bash
 # NVIDIA GPU
 docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
@@ -113,35 +114,35 @@ docker run --runtime=nvidia --gpus=all \
   --publish 9090:9090 \
   --volume /mnt/invokeai-data:/invokeai \
   ghcr.io/invoke-ai/invokeai:latest
-```
+`````
 
 ### Phương pháp 2: Bare Metal (Linux/macOS)
 
 **Bước 1 — Cài đặt launcher:**
 
-```bash
+`````bash
 pip install invokeai
-```
+`````
 
 **Bước 2 — Chạy trình hướng dẫn cấu hình:**
 
-```bash
+`````bash
 invokeai-configure
-```
+`````
 
 Trình hướng dẫn tương tác này cài đặt đúng phiên bản PyTorch, tải model mặc định, và cấu hình thư mục runtime.
 
 **Bước 3 — Khởi động WebUI:**
 
-```bash
+`````bash
 invokeai-web
-```
+`````
 
 ### Phương pháp 3: Cloud VPS (DigitalOcean)
 
 Với các team không có phần cứng GPU local, instance cloud GPU cung cấp quyền truy cập InvokeAI đầy đủ. DigitalOcean GPU Droplets với card NVIDIA A10G hoặc H100 hoạt động tốt.
 
-```bash
+`````bash
 # Trên Droplet GPU Ubuntu 24.04 mới
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 sudo systemctl enable --now docker
@@ -161,13 +162,13 @@ cd InvokeAI/docker
 cp .env.sample .env
 # Chỉnh sửa .env: đặt INVOKEAI_ROOT và HUGGINGFACE_TOKEN
 sudo docker compose up -d
-```
+`````
 
 *Hướng dẫn này có chứa liên kết liên kết đến DigitalOcean. Đăng ký qua các liên kết này hỗ trợ trang web mà không phát sinh chi phí thêm cho bạn.*
 
 ### Tham khảo docker-compose.yml cho Production
 
-```yaml
+`````yaml
 # Copyright (c) 2023 Eugene Brodsky https://github.com/ebr
 
 x-invokeai: &invokeai
@@ -199,7 +200,7 @@ services: invokeai-cuda: <<: *invokeai
       - RENDER_GROUP_ID=${RENDER_GROUP_ID}
     runtime: amd
     profiles: - rocm
-```
+`````
 
 ## Tích hợp với Stable Diffusion, ComfyUI và ControlNet
 
@@ -218,13 +219,13 @@ InvokeAI hỗ trợ nhiều họ mô hình ngay từ đầu: - **SD 1.5** — C�
 
 **Thêm model thủ công:**
 
-```bash
+`````bash
 # Sao chép file .safetensors hoặc .ckpt vào thư mục model
 cp your-model.safetensors /opt/invokeai-data/models/sd-1/main/
 
 # Khởi động lại container
 docker compose restart
-```
+`````
 
 ### Tích hợp ControlNet
 
@@ -247,7 +248,7 @@ Mặc dù InvokeAI và ComfyUI sử dụng định dạng workflow khác nhau, b
 - Image Scale nodes
 - ControlNet processors
 
-```python
+`````python
 # Ví dụ: Thiết lập tham số tạo ảnh qua REST API của InvokeAI (v6.12.0+)
 import requests
 
@@ -265,7 +266,7 @@ response = requests.post(
     }
 )
 print(response.json()["session_id"])
-```
+`````
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
@@ -313,10 +314,10 @@ print(response.json()["session_id"])
 
 ### Chế độ đa ngườ dùng (v6.12.0+)
 
-InvokeAI hiện hỗ trợ nhiều tài khoản riêng biệt trên một backend: ```bash
+InvokeAI hiện hỗ trợ nhiều tài khoản riêng biệt trên một backend: `````bash
 # Bật chế độ đa ngườ dùng trong .env
 INVOKEAI_ENABLE_MULTIUSER=true
-```
+`````
 
 Mỗi ngườ dùng có: - Board ảnh và gallery riêng
 - Trạng thái canvas độc lập
@@ -327,7 +328,7 @@ Admin quản lý model và session queue; ngườ dùng thường không thể t
 
 ### Reverse Proxy với SSL
 
-```nginx
+`````nginx
 # Cấu hình Nginx cho production
 server {
     listen 443 ssl http2;
@@ -348,11 +349,11 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
 ### Dịch vụ systemd
 
-```ini
+`````ini
 # /etc/systemd/system/invokeai.service
 [Unit]
 Description=InvokeAI Creative Engine
@@ -369,16 +370,16 @@ TimeoutStartSec=0
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-Kích hoạt và khởi động: ```bash
+Kích hoạt và khởi động: `````bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now invokeai
-```
+`````
 
 ### Giám sát với Prometheus
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -387,11 +388,11 @@ services: prometheus: image: prom/prometheus:latest
   dcgm-exporter: image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
     runtime: nvidia
     ports: - "9400:9400"
-```
+`````
 
 ### Sao lưu tự động
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/invokeai-backup/backup.sh
 BACKUP_DIR="/backups/invokeai"
@@ -403,11 +404,11 @@ tar czf "$BACKUP_DIR/models-$DATE.tar.gz" /opt/invokeai-data/models
 
 # Giữ lại 7 ngày gần nhất
 find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete
-```
+`````
 
-Thêm vào crontab: ```bash
+Thêm vào crontab: `````bash
 0 2 * * * /opt/invokeai-backup/backup.sh
-```
+`````
 
 ## So sánh với các giải pháp thay thế
 
@@ -447,7 +448,7 @@ Tối thiểu: 8GB VRAM (NVIDIA RTX 3060 trở lên), 16GB RAM, 50GB dung lượ
 
 ### Chạy InvokeAI không có GPU được không?
 
-Được, InvokeAI chạy trên hệ thống CPU-only nhưng tạo ảnh chậm hơn 10-20 lần. Dùng CPU Docker profile: `docker compose --profile cpu up -d`. Kỳ vọng 2-5 phút cho mỗi ảnh 1024×1024 trên CPU 8 nhân hiện đại. Phù hợp để test nhưng không cho production.
+Được, InvokeAI chạy trên hệ thống CPU-only nhưng tạo ảnh chậm hơn 10-20 lần. Dùng CPU Docker profile: ````docker compose --profile cpu up -d````. Kỳ vọng 2-5 phút cho mỗi ảnh 1024×1024 trên CPU 8 nhân hiện đại. Phù hợp để test nhưng không cho production.
 
 ### InvokeAI xử lý giấy phép model như thế nào?
 
@@ -455,21 +456,21 @@ InvokeAI có giấy phép Apache-2.0. Các model bạn tải xuống (SD 1.5, SD
 
 ### Có thể migrate từ AUTOMATIC1111 sang InvokeAI không?
 
-Được. InvokeAI có thể sử dụng các model `.safetensors` và `.ckpt` hiện có từ cài đặt A1111. Chỉ `INVOKEAI_ROOT` đến thư mục model hiện có, hoặc sao chép model vào thư mục model của InvokeAI. Lưu ý các extension và script A1111 không chuyển đổi — InvokeAI dùng hệ thống workflow dạng node riêng.
+Được. InvokeAI có thể sử dụng các model ````.safetensors```` và ````.ckpt```` hiện có từ cài đặt A1111. Chỉ ````INVOKEAI_ROOT```` đến thư mục model hiện có, hoặc sao chép model vào thư mục model của InvokeAI. Lưu ý các extension và script A1111 không chuyển đổi — InvokeAI dùng hệ thống workflow dạng node riêng.
 
 ### Làm sao cập nhật InvokeAI lên phiên bản mới?
 
-Với cài đặt Docker, pull image mới nhất và khởi động lại: ```bash
+Với cài đặt Docker, pull image mới nhất và khởi động lại: `````bash
 cd InvokeAI/docker
 docker compose pull
 docker compose up -d
-```
+`````
 
-Với cài đặt bare metal, dùng launcher: ```bash
+Với cài đặt bare metal, dùng launcher: `````bash
 invokeai-update
-```
+`````
 
-Luôn sao lưu thư mục `INVOKEAI_ROOT` trước khi cập nhật phiên bản lớn.
+Luôn sao lưu thư mục ````INVOKEAI_ROOT```` trước khi cập nhật phiên bản lớn.
 
 ### Có phiên bản hosted/cloud của InvokeAI không?
 
@@ -477,7 +478,7 @@ InvokeAI chủ yếu là tự host. Các nhà phát triển cung cấp Invoke fo
 
 ### Chế độ đa ngườ dùng trong v6.12.0 hoạt động thế nào?
 
-Chế độ đa ngườ dùng tạo các tài khoản riêng biệt với gallery, trạng thái canvas, và tùy chọn riêng. Tài khoản admin quản lý model và cài đặt hệ thống. Bật bằng `INVOKEAI_ENABLE_MULTIUSER=true`. Mỗi ngườ dùng đăng nhập bằng tên ngườ dùng và mật khẩu. Được đánh dấu là thử nghiệm trong v6.12.0 — sẽ cải thiện trong các bản phát hành tới.
+Chế độ đa ngườ dùng tạo các tài khoản riêng biệt với gallery, trạng thái canvas, và tùy chọn riêng. Tài khoản admin quản lý model và cài đặt hệ thống. Bật bằng ````INVOKEAI_ENABLE_MULTIUSER=true```. Mỗi ngườ dùng đăng nhập bằng tên ngườ dùng và mật khẩu. Được đánh dấu là thử nghiệm trong v6.12.0 — sẽ cải thiện trong các bản phát hành tới.
 
 ## Kết luận
 
@@ -512,7 +513,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [ComfyUI vs InvokeAI vs Fooocus So sánh](https://toolhalla.ai/blog/comfyui-vs-invokeai-vs-fooocus-2026)
 - [InvokeAI PyPI Package](https://pypi.org/project/InvokeAI/)
 
----
+* * *
 
 *Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Điều này giúp hỗ trợ trang web và nội dung mã nguồn mở của chúng tôi. Tất cả ý kiến và benchmark đều được sản xuất độc lập.*
 
@@ -542,7 +543,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -552,6 +553,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [2026-06-08-trending-ai-agents](invokeai)
 - [2026-06-15-trending-ai-agents](invokeai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

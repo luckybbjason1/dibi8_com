@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 ---
 
+
 # AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              AgentMemory 아키텍처                      │
 │                                                      │
@@ -37,7 +38,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 │  │  "지난번에 인증 버그를 수정했죠..."              │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트*
 
@@ -62,7 +63,7 @@ Python으로 구축되었으며, 벡터 저장을 위해 ChromaDB, 그래프 연
 
 ### 단계 1: 메모리 추출
 
-```bash
+`````bash
 # 메모리 저장소 초기화
 agentmemory init --project ./my-project
 
@@ -76,11 +77,11 @@ claude-code
 # - facts.db (구조화된 사실)
 # - embeddings/ (벡터 저장소)
 # - graph.db (지식 그래프)
-```
+`````
 
 ### 단계 2: 메모리 저장
 
-```python
+`````python
 # 메모리 추출 파이프라인
 from agentmemory import MemoryExtractor
 
@@ -100,11 +101,11 @@ extractor.extract_from_session(
 # 결과: # - 47개 사실 추출 (버그 수정, 결정, 패턴)
 # - 12개 벡터 임베딩 저장
 # - 지식 그래프에 89개 엣지
-```
+`````
 
 ### 단계 3: 메모리 검색
 
-```python
+`````python
 # 새 세션을 위한 관련 메모리 검색
 from agentmemory import MemoryRetriever
 
@@ -125,13 +126,13 @@ context = retriever.retrieve(
 #   {"type": "decision", "date": "2026-06-01", "summary": "비밀번호 해싱에 bcrypt 선택"},
 #   ...
 # ]
-```
+`````
 
 ## 설치 및 설정
 
 ### 빠른 시작
 
-```bash
+`````bash
 pip install agentmemory
 
 # 프로젝트를 위해 초기화
@@ -142,11 +143,11 @@ agentmemory run \
   --agent claude-code \
   --project ./my-app \
   --session-dir ./sessions
-```
+`````
 
 ### Docker 배포
 
-```bash
+`````bash
 docker run -d \
   --name agentmemory \
   -v $(pwd)/project:/project \
@@ -158,11 +159,11 @@ docker run -d \
 curl -X POST http://localhost:9090/query \
   -H "Content-Type: application/json" \
   -d '{"query": "What bugs were fixed last week?", "top_k": 5}" | jq
-```
+`````
 
 ### 메모리 저장 옵션
 
-```python
+`````python
 # 스토리지 백엔드 선택
 config = {
     "vector_store": "chromadb",  # "chromadb" | "qdrant" | "weaviate" | "sqlite"
@@ -178,39 +179,39 @@ agentmemory init --vector-store qdrant --qdrant-url http://qdrant:6333
 
 # Neo4j (그래프 중심 사용 사례)
 agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687
-```
+`````
 
 ## Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합
 
 AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다: ### Claude Code
 
-```bash
+`````bash
 # AgentMemory Claude Code 플러그인
 agentmemory install claude-code
 
 # 이제 모든 Claude Code 세션이 자동으로: # 1. 시작 시 관련 메모리 검색
 # 2. 세션 중 새 사실 저장
 # 3. 세션 종료 시 메모리 업데이트
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # 메모리 프로젝트 설정
 export AGENTMEMORY_PROJECT=./my-project
 # Codex CLI는 각 세션 전에 메모리를 읽고
 # 완료 후 결과를 저장합니다
-```
+`````
 
 ### OpenCode
 
-```bash
+`````bash
 # OpenCode 플러그인
 agentmemory install opencode
 
 # 메모리 컨텍스트가 도구 호출로 주입됨: # agentmemory.query("auth-related changes")
 # 관련 과거 컨텍스트를 구조화된 데이터로 반환
-```
+`````
 
 신뢰할 수 있는 호스팅을 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplet에서 팀 공유 메모리를 위해, 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187)에서 아시아-태평양 저지연을 위해 배포하세요.
 
@@ -237,7 +238,7 @@ agentmemory install opencode
 
 ### 실제 사용 사례: 팀 개발
 
-5인 개발팀이 AgentMemory 사용: ```bash
+5인 개발팀이 AgentMemory 사용: `````bash
 # 개발자 A가 월요일에 인증 버그 수정
 # 개발자 B가 화요일에 동일한 작업 처리
 # AgentMemory가 A의 수정 및 컨텍스트 검색
@@ -251,13 +252,13 @@ agentmemory query \
 # - 근본 원인: 만료된 JWT token
 # - 해결책: token refresh middleware 추가
 # - 관련 파일: middleware/auth.py, services/jwt.js
-```
+`````
 
 ## 고급 사용 / 프로덕션 견고화
 
 ### 사용자 정의 메모리 스키마
 
-```python
+`````python
 # 프로젝트를 위한 사용자 정의 메모리 스키마 정의
 from agentmemory import SchemaBuilder
 
@@ -277,11 +278,11 @@ schema.add_relationship(
     target="architecture_decision",
     relation="affects"
 )
-```
+`````
 
 ### 팀 메모리 동기화
 
-```bash
+`````bash
 # 원격 저장소를 통해 팀원 간 메모리 동기화
 agentmemory sync \
   --remote git@github.com:myorg/agentmemory-data.git \
@@ -290,11 +291,11 @@ agentmemory sync \
 
 # 각 개발자가 세션 전에 최신 메모리 pull
 agentmemory pull --project ./my-app
-```
+`````
 
 ### 메모리 분석
 
-```bash
+`````bash
 # 메모리 통계 확인
 agentmemory stats --project ./my-app
 
@@ -306,7 +307,7 @@ agentmemory stats --project ./my-app
 
 # 분석을 위해 메모리 내보내기
 agentmemory export --format json --output ./memory-report.json
-```
+`````
 
 ## 대체製品와의 비교
 
@@ -338,7 +339,7 @@ agentmemory export --format json --output ./memory-report.json
 AgentMemory는 모든 사람에게 적합하지 않습니다: 1. **소규모 개인 프로젝트** — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다.
 2. **프라이버시 민감한 코드** — 메모리는 코드 패턴과 결정을 로컬에 저장합니다. 기업 코드베이스의 경우 추출 및 저장된 사실을 검토해야 합니다. 프로젝트에 프라이버시 컨트롤이 있지만 스키마를 신중히 검토하세요.
 3. **콜드 스타트 기간** — 메모리는 구축에 시간이 필요합니다. 새 프로젝트는 빈 메모리로 시작하며, 시스템이 유용해지려면 10-20개의 세션이 필요합니다. 이 준비 기간을 계획하세요.
-4. **메모리 드리프트** — 시간이 지남에 따라 오래된 사실이 에이전트를 혼란스럽게 할 수 있습니다. 정기적인 메모리 정리(월간 권장, `agentmemory prune --older-than 90d` 사용)를 구현하세요.
+4. **메모리 드리프트** — 시간이 지남에 따라 오래된 사실이 에이전트를 혼란스럽게 할 수 있습니다. 정기적인 메모리 정리(월간 권장, ````agentmemory prune --older-than 90d```` 사용)를 구현하세요.
 5. **벡터 DB 복잡성** — 여러 에이전트를 위한 프로덕션 배포의 경우, ChromaDB/Qdrant/Neo4j 관리는 운영 오버헤드를 추가합니다. 간단한 설정은 SQLite로 시작하세요.
 
 ## 자주 묻는 질문
@@ -357,7 +358,7 @@ A: 네. AgentMemory는 에이전트 비종속적이며 도구 호출을 지원�
 
 **Q: 오래된 메모리는 어떻게 정리하나요?**
 
-A: `agentmemory prune --older-than 90d`를 사용하여 90일 이상된 사실을 제거합니다. 설정에서 자동 정리를 설정할 수도 있습니다: `cleanup_threshold_days: 90`.
+A: ````agentmemory prune --older-than 90d````를 사용하여 90일 이상된 사실을 제거합니다. 설정에서 자동 정리를 설정할 수도 있습니다: ````cleanup_threshold_days: 90```.
 
 **Q: 비코딩 작업에 사용할 수 있나요?**
 
@@ -415,7 +416,7 @@ dibi8 한국어 텔레그램 그룹 [dibi8 한국어 Telegram 그룹](https://t.
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -425,7 +426,7 @@ dibi8 한국어 텔레그램 그룹 [dibi8 한국어 Telegram 그룹](https://t.
 - [2026-06-01-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 - [2026-06-08-trending-ai-agents](agentmemory-persistent-memory-ai-coding-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -31,6 +31,7 @@ faqs: - q: 'Pixelle-Video 是什么？'
   - q: 'Pixelle-Video 除基础视频生成外还能做什么？'
     a: '它包含三个扩展模块：数字人 Avatar，可将一张照片转换为支持韩语、中文或英语的唇形同步讲话头像视频；Image-to-Video，可将静态图片制作成动态视频；Motion Transfer，可将参考视频中的动作映射到静止图像上。'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -84,14 +85,14 @@ faqs: - q: 'Pixelle-Video 是什么？'
 🔗 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
 
----
+* * *
 ## 核心功能亮点
 
 | 功能 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
 | **全自动生成** | 输入主题 → 获得完整视频 |
 | **AI 智能文案** | AI 自动写解说词，无需手动写脚本 |
@@ -105,7 +106,7 @@ faqs: - q: 'Pixelle-Video 是什么？'
 | **ComfyUI 架构** | 模块化设计，可自定义任意能力 |
 
 
----
+* * *
 ## 视频生成流程
 
 Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：
@@ -114,7 +115,7 @@ Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：
 
 每个环节都支持灵活定制，可选择不同的 AI 模型、音频引擎、视觉风格等，满足个性化创作需求。
 
----
+* * *
 
 ## 扩展模块
 
@@ -129,7 +130,7 @@ Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：
 ### 💃 动作迁移
 上传参考视频和图片，将动作迁移到图片上 — 比如让照片里的人跟着视频跳舞。
 
----
+* * *
 
 ## 支持的 AI 模型
 
@@ -153,28 +154,28 @@ Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：
 - ChatTTS
 - 自定义 ComfyUI TTS 工作流
 
----
+* * *
 
 ## 快速入门
 
 ### 1. 克隆仓库
 
-```bash
+````bash
 git clone https://github.com/AIDC-AI/Pixelle-Video.git
 cd Pixelle-Video
-```
+`````
 
 ### 2. 安装依赖
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
 ### 3. 配置 API 密钥
 
-编辑 `config.json` 填入你的 API 密钥：
+编辑 ````config.json```` 填入你的 API 密钥：
 
-```json
+`````json
 {
   "llm": {
     "api_key": "你的API密钥",
@@ -185,15 +186,15 @@ pip install -r requirements.txt
     "comfyui_url": "http://127.0.0.1:8188"
   }
 }
-```
+`````
 
 ### 4. 启动 Web 界面
 
-```bash
+`````bash
 python webui.py
-```
+`````
 
-浏览器打开 `http://localhost:7860`
+浏览器打开 ````http://localhost:7860```
 
 ### 5. 生成你的第一个视频
 
@@ -203,15 +204,15 @@ python webui.py
 4. 点击"生成视频"
 5. 等待 2-5 分钟获得完整视频
 
----
+* * *
 
 ## 使用场景
 
 | 场景 | 示例主题 |
 |
----
+* * *
 |
----
+* * *
 |
 | **知识分享** | "Python 新手必知的 10 个技巧" |
 | **产品评测** | "iPhone 16 vs 三星 S24 对比" |
@@ -220,7 +221,7 @@ python webui.py
 | **新闻评论** | "2026 年 AI 发展趋势" |
 | **书评/影评** | "《原子习惯》的启示" |
 
----
+* * *
 
 ## 视频风格示例
 
@@ -236,7 +237,7 @@ Pixelle-Video 支持多种视频风格：
 - 📜 **小说解说类** — 小说评论、人物分析
 - 🧬 **知识科普类** — 医学常识、健康知识
 
----
+* * *
 
 ## 技术架构
 
@@ -248,19 +249,19 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 - **Web 界面** — 基于 Gradio 的易用界面
 - **批量处理** — 同时生成多个视频
 
----
+* * *
 
 ## 性能与成本
 
 | 方案 | 成本 | 速度 | 质量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **本地部署** | 免费（需要 GPU） | 快 | 高 |
 | **RunningHub 云端** | 按量付费 | 即时 | 高 |
@@ -271,21 +272,21 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 - 图像: RunningHub（无需本地 GPU）
 - TTS: Edge-TTS（免费，多语言）
 
----
+* * *
 
 ## 与其他工具对比
 
 | 功能 | Pixelle-Video | HeyGen | Synthesia | Pictory |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | ✅ | ❌ | ❌ | ❌ |
 | **免费使用** | ✅ | 有限 | 有限 | 有限 |
@@ -296,7 +297,7 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 | **数字人** | ✅ | ✅ | ✅ | ❌ |
 | **动作迁移** | ✅ | ❌ | ❌ | ❌ |
 
----
+* * *
 
 ## 最佳实践技巧
 
@@ -306,14 +307,14 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 4. **语音预览** — 生成完整视频前先预览 TTS 效果
 5. **批量生成** — 同时生成 3-5 个版本，挑选最好的
 
----
+* * *
 
 ## 相关文章
 
 - [Free Claude Code：让 Claude Code CLI 免费使用的开源代理工具](/zh/resources/ai-tools/free-claude-code-open-source-proxy/) — 免费 AI 编程助手
 - [Agent Reach：让你的 AI Agent 一键连接互联网](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — AI 智能体联网工具
 
----
+* * *
 
 ## 总结
 
@@ -325,11 +326,11 @@ Pixelle-Video 基于 **ComfyUI** 架构构建：
 
 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
+* * *
 
 *最后更新：2026-05-06*
 
----
+* * *
 
 ## 推荐工具
 

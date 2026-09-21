@@ -22,6 +22,7 @@ aliases:
   - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
 
+
 {</* resource-info */>}
 
 Chất lượng mã nguồn không chỉ là vấn đề thẩm mỹ — nó ảnh hưởng trực tiếp đến khả năng bảo trì, số lượng bug, và tốc độ onboarding thành viên mới. Năm 2025, hệ sinh thái công cụ đảm bảo chất lượng mã đã phát triển vượt bậc: từ ESLint 9 với flat config, Ruff thay thế hàng loạt công cụ Python cũ, đến các pre-commit hooks tự động hóa hoàn toàn quy trình kiểm tra.
@@ -54,7 +55,7 @@ ESLint là linter phổ biến nhất cho JavaScript và TypeScript, với hơn 
 
 ### Thiết Lập ESLint 9 với Flat Config (eslint.config.js)
 
-ESLint 9, ra mắt tháng 4 năm 2024, giới thiệu flat config thay thế `.eslintrc` file. Cấu hình mới sử dụng JavaScript thuần thay vì JSON/YAML: ```javascript
+ESLint 9, ra mắt tháng 4 năm 2024, giới thiệu flat config thay thế ``.eslintrc`` file. Cấu hình mới sử dụng JavaScript thuần thay vì JSON/YAML: ````javascript
 // eslint.config.js
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
@@ -71,21 +72,21 @@ export default [
   },
   prettier, // Luôn đặt cuối cùng
 ];
-```
+`````
 
 ### Các Cấu Hình Phổ Biến
 
 | Cấu hình | Mô tả | Phù hợp với |
 |----------|-------|-------------|
-| `eslint:recommended` | Rules cơ bản của ESLint | Mọi dự án |
-| `@typescript-eslint/recommended` | Rules cho TypeScript | Dự án TS |
-| `airbnb` | Strict, nhiều rules nhất | Team lớn, cần consistency cao |
-| `standard` | Không dùng dấu chấm phẩy | Cộng đồng JS |
-| `xo` | Kết hợp nhiều rules | Dự án Node.js |
+| ````eslint:recommended```` | Rules cơ bản của ESLint | Mọi dự án |
+| ````@typescript-eslint/recommended```` | Rules cho TypeScript | Dự án TS |
+| ````airbnb```` | Strict, nhiều rules nhất | Team lớn, cần consistency cao |
+| ````standard```` | Không dùng dấu chấm phẩy | Cộng đồng JS |
+| ````xo```` | Kết hợp nhiều rules | Dự án Node.js |
 
 ### ESLint Stylistic cho Formatting Rules
 
-Từ ESLint 9, hầu hết formatting rules đã bị deprecate. Thay vào đó, sử dụng **@stylistic/eslint-plugin** — một dự án community-driven duy trì các stylistic rules: ```javascript
+Từ ESLint 9, hầu hết formatting rules đã bị deprecate. Thay vào đó, sử dụng **@stylistic/eslint-plugin** — một dự án community-driven duy trì các stylistic rules: `````javascript
 import stylistic from '@stylistic/eslint-plugin'
 
 export default [
@@ -99,7 +100,7 @@ export default [
     }
   }
 ]
-```
+`````
 
 ## JavaScript/TypeScript: Thiết Lập Prettier
 
@@ -109,7 +110,7 @@ Prettier là "opinionated code formatter" — nó không hỏi ý kiến bạn v
 
 ### Cấu Hình .prettierrc
 
-```json
+`````json
 {
   "semi": true,
   "singleQuote": true,
@@ -119,22 +120,22 @@ Prettier là "opinionated code formatter" — nó không hỏi ý kiến bạn v
   "bracketSpacing": true,
   "arrowParens": "avoid"
 }
-```
+`````
 
 ### Prettier vs ESLint: Bổ Sung, Không Cạnh Tranh
 
-Prettier xử lý formatting (dấu cách, dấu xuống dòng, dấu phẩy), ESLint xử lý code quality (lỗi logic, anti-patterns). Để tránh xung đột, luôn cài đặt `eslint-config-prettier` — nó tắt tất cả ESLint rules có thể xung đột với Prettier.
+Prettier xử lý formatting (dấu cách, dấu xuống dòng, dấu phẩy), ESLint xử lý code quality (lỗi logic, anti-patterns). Để tránh xung đột, luôn cài đặt ````eslint-config-prettier```` — nó tắt tất cả ESLint rules có thể xung đột với Prettier.
 
 ### Tích Hợp Editor (VS Code, Vim, JetBrains)
 
-**VS Code**: Cài đặt extension Prettier, bật "Format On Save" trong settings: ```json
+**VS Code**: Cài đặt extension Prettier, bật "Format On Save" trong settings: `````json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
 }
-```
+`````
 
-**Vim**: Sử dụng `vim-prettier` hoặc `coc-prettier`.
+**Vim**: Sử dụng ````vim-prettier```` hoặc ````coc-prettier````.
 
 **JetBrains**: Prettier tích hợp sẵn từ WebStorm 2023.1+.
 
@@ -142,7 +143,7 @@ Prettier xử lý formatting (dấu cách, dấu xuống dòng, dấu phẩy), E
 
 ### Hướng Dẫn Từng Bước cho Dự Án Mới
 
-```bash
+`````bash
 # Bước 1: Cài đặt dependencies
 npm install -D eslint @eslint/js typescript-eslint prettier eslint-config-prettier
 
@@ -153,9 +154,9 @@ npm install -D eslint @eslint/js typescript-eslint prettier eslint-config-pretti
 # (xem ví dụ ở phần Prettier ở trên)
 
 # Bước 4: Thêm scripts vào package.json
-```
+`````
 
-```json
+`````json
 {
   "scripts": {
     "lint": "eslint .",
@@ -164,11 +165,11 @@ npm install -D eslint @eslint/js typescript-eslint prettier eslint-config-pretti
     "format:check": "prettier --check ."
   }
 }
-```
+`````
 
 ### Chuyển Đổi từ ESLint Legacy Config sang Flat Config
 
-```bash
+`````bash
 # Cài đặt @eslint/migrate-config
 npx @eslint/migrate-config .eslintrc.json
 
@@ -176,11 +177,11 @@ npx @eslint/migrate-config .eslintrc.json
 # 2. Chuyển extends → import và spread
 # 3. Chuyển parserOptions → languageOptions.parserOptions
 # 4. Chuyển env → languageOptions.globals
-```
+`````
 
 ### Tích Hợp CI/CD cho Kiểm Tra Tự Động
 
-```yaml
+`````yaml
 # .github/workflows/quality.yml
 name: Code Quality
 on: [push, pull_request]
@@ -192,7 +193,7 @@ jobs: lint-and-format: runs-on: ubuntu-latest
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
-```
+`````
 
 ## Python: Black - The Uncompromising Formatter
 
@@ -202,7 +203,7 @@ Black ra đờivới triết lý "định dạng duy nhất" — không có tùy
 
 ### Cài Đặt và Sử Dụng Cơ Bản
 
-```bash
+`````bash
 # Cài đặt
 pip install black
 
@@ -214,11 +215,11 @@ black --check src/
 
 # Xem diff
 black --diff src/
-```
+`````
 
 ### Cấu Hình pyproject.toml
 
-```toml
+`````toml
 [tool.black]
 line-length = 88
 target-version = ['py311']
@@ -229,14 +230,14 @@ extend-exclude = '''
   | node_modules
 )/
 '''
-```
+`````
 
 ### Black với Jupyter Notebooks
 
-Black hỗ trợ format `.ipynb` files: ```bash
+Black hỗ trợ format ``.ipynb`` files: `````bash
 pip install black[jupyter]
 black notebook.ipynb
-```
+`````
 
 ### Hạn Chế và Khi Nào Dùng Alternative
 
@@ -256,11 +257,11 @@ Ruff hỗ trợ hơn 800 rules từ Flake8, pylint, pydocstyle, pyupgrade, isort
 
 ### Thay Thế Black bằng Ruff Format
 
-Từ phiên bản 0.1.0, Ruff cung cấp `ruff format` — formatter tương thích với Black nhưng nhanh hơn đáng kể. Có thể thay thế hoàn toàn Black + isort + Flake8 bằng Ruff duy nhất.
+Từ phiên bản 0.1.0, Ruff cung cấp ````ruff format```` — formatter tương thích với Black nhưng nhanh hơn đáng kể. Có thể thay thế hoàn toàn Black + isort + Flake8 bằng Ruff duy nhất.
 
 ### Cấu Hình pyproject.toml Đầy Đủ
 
-```toml
+`````toml
 [tool.ruff]
 target-version = "py311"
 line-length = 88
@@ -285,11 +286,11 @@ convention = "google"
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-```
+`````
 
 ### Hướng Dẫn Migration từ Flake8/Black sang Ruff
 
-```bash
+`````bash
 # Bước 1: Gỡ bỏ công cụ cũ
 pip uninstall flake8 black isort
 
@@ -303,63 +304,63 @@ pip install ruff
 # flake8 --fix   → ruff check --fix .
 
 # Bước 4: Chuyển đổi cấu hình sang pyproject.toml
-```
+`````
 
 ## Go: gofmt và golangci-lint
 
 ### Format Tích Hợp với gofmt
 
-Go có lợi thế lớn: `gofmt` được tích hợp sẵn trong toolchain. Không cần cài đặt thêm, không cần cấu hình: ```bash
+Go có lợi thế lớn: ``gofmt`` được tích hợp sẵn trong toolchain. Không cần cài đặt thêm, không cần cấu hình: `````bash
 gofmt -w .        # Format tất cả files
 gofmt -l .        # Liệt kê files cần format
 go fmt ./...      # gofmt + goimports
-```
+`````
 
 ### golangci-lint cho Linting Toàn Diện
 
-`gofmt` chỉ xử lý formatting. Để linting, sử dụng **golangci-lint** — aggregator chạy 50+ linters khác nhau: ```bash
+``gofmt`` chỉ xử lý formatting. Để linting, sử dụng **golangci-lint** — aggregator chạy 50+ linters khác nhau: `````bash
 # Cài đặt
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
 
 # Chạy
 golangci-lint run ./...
-```
+`````
 
-Cấu hình trong `.golangci.yml` cho phép chọn linters phù hợp với project. Xem thêm tại [golangci-lint.run](https://golangci-lint.run).
+Cấu hình trong ````.golangci.yml```` cho phép chọn linters phù hợp với project. Xem thêm tại [golangci-lint.run](https://golangci-lint.run).
 
 ## Rust: rustfmt và Clippy
 
 ### rustfmt cho Format Nhất Quán
 
-Tương tự Go, Rust có `rustfmt` — formatter chính thức, được tích hợp qua `rustup`: ```bash
+Tương tự Go, Rust có ``rustfmt`` — formatter chính thức, được tích hợp qua ``rustup``: `````bash
 rustup component add rustfmt
 cargo fmt           # Format toàn bộ project
 cargo fmt -- --check # Kiểm tra (CI mode)
-```
+`````
 
-Cấu hình trong `rustfmt.toml`: ```toml
+Cấu hình trong ``rustfmt.toml``: `````toml
 max_width = 100
 hard_tabs = false
 tab_spaces = 4
-```
+`````
 
 ### Clippy Linting và Gợi Ý Code
 
-Clippy là "linter collection" cho Rust, cung cấp hơn 650 lint rules. Không chỉ phát hiện lỗi, Clippy còn đề xuất cách viết code tối ưu hơn: ```bash
+Clippy là "linter collection" cho Rust, cung cấp hơn 650 lint rules. Không chỉ phát hiện lỗi, Clippy còn đề xuất cách viết code tối ưu hơn: `````bash
 rustup component add clippy
 cargo clippy        # Chạy clippy
 cargo clippy -- -D warnings  # Treat warnings as errors
-```
+`````
 
 ## Pre-Commit Hooks: Tự Động Hóa Chất Lượng Mã
 
 ### Giới Thiệu Pre-Commit Framework
 
-Pre-commit hooks chạy kiểm tra trước mỗi lần `git commit`. Nếu checks fail, commit bị từ chối — đảm bảo code không đạt chuẩn không bao giờ vào repository.
+Pre-commit hooks chạy kiểm tra trước mỗi lần ````git commit````. Nếu checks fail, commit bị từ chối — đảm bảo code không đạt chuẩn không bao giờ vào repository.
 
 ### Thiết Lập .pre-commit-config.yaml
 
-```yaml
+`````yaml
 # .pre-commit-config.yaml
 repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
@@ -385,33 +386,33 @@ repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     hooks: - id: eslint
         files: \.[jt]sx?$
         types: [file]
-```
+`````
 
 ### Các Hooks Phổ Biến
 
 | Hook | Tác dụng |
 |------|----------|
-| `trailing-whitespace` | Xóa khoảng trắng cuối dòng |
-| `end-of-file-fixer` | Đảm bảo file kết thúc bằng newline |
-| `check-yaml` | Kiểm tra YAML syntax |
-| `check-added-large-files` | Ngăn commit file quá lớn |
-| `detect-private-key` | Phát hiện private key trong code |
+| ````trailing-whitespace```` | Xóa khoảng trắng cuối dòng |
+| ````end-of-file-fixer```` | Đảm bảo file kết thúc bằng newline |
+| ````check-yaml```` | Kiểm tra YAML syntax |
+| ````check-added-large-files```` | Ngăn commit file quá lớn |
+| ````detect-private-key```` | Phát hiện private key trong code |
 
 ### Husky cho Dự Án JavaScript/TypeScript
 
-Husky là cách phổ biến nhất để quản lý Git hooks trong JS/TS projects: ```bash
+Husky là cách phổ biến nhất để quản lý Git hooks trong JS/TS projects: `````bash
 # Cài đặt Husky v9
 npx husky@latest init
 
 # Thêm hook
 npx husky add .husky/pre-commit "npx lint-staged"
-```
+`````
 
 ## Tích Hợp CI/CD cho Chất Lượng Mã
 
 ### GitHub Actions Workflow cho Linting
 
-```yaml
+`````yaml
 name: Code Quality
 on: [push, pull_request]
 jobs: python: runs-on: ubuntu-latest
@@ -429,11 +430,11 @@ jobs: python: runs-on: ubuntu-latest
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
-```
+`````
 
 ### GitLab CI Pipeline cho Kiểm Tra Formatting
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - quality
 
@@ -448,7 +449,7 @@ lint-js: stage: quality
   script: - npm ci
     - npm run lint
     - npm run format:check
-```
+`````
 
 ### Build Thất Bại Khi Có Lỗi Lint
 
@@ -467,7 +468,7 @@ Cấu hình CI để fail build khi có lỗi lint — điều này đảm bảo
 
 ### Có Nên Dùng ESLint và Prettier Cùng Nhau Không?
 
-Có, và đây là cách phổ biến nhất. ESLint xử lý code quality (lỗi logic, anti-patterns), Prettier xử lý formatting (style, indentation). Chúng bổ sung cho nhau. Quan trọng là phải cài `eslint-config-prettier` để tắt các ESLint formatting rules tránh xung đột với Prettier.
+Có, và đây là cách phổ biến nhất. ESLint xử lý code quality (lỗi logic, anti-patterns), Prettier xử lý formatting (style, indentation). Chúng bổ sung cho nhau. Quan trọng là phải cài ````eslint-config-prettier```` để tắt các ESLint formatting rules tránh xung đột với Prettier.
 
 ### Ruff Có Tốt Hơn Black cho Python Không?
 
@@ -475,7 +476,7 @@ Ruff format và Black tạo ra output tương tự nhau (Ruff được thiết k
 
 ### Làm Thế Nào Để Thiết Lập Pre-Commit Hooks?
 
-```bash
+`````bash
 # Bước 1: Cài đặt pre-commit
 pip install pre-commit
 
@@ -487,9 +488,9 @@ pre-commit install
 
 # Bước 4: Chạy trên toàn bộ repo (optional)
 pre-commit run --all-files
-```
+`````
 
-Từ giờ, mỗi lần `git commit`, pre-commit sẽ tự động chạy checks. Nếu fail, commit bị từ chối và bạn cần fix lỗi.
+Từ giờ, mỗi lần ````git commit```, pre-commit sẽ tự động chạy checks. Nếu fail, commit bị từ chối và bạn cần fix lỗi.
 
 ### Có Thể Dùng Một Công Cụ cho Nhiều Ngôn Ngữ Không?
 
@@ -516,7 +517,7 @@ Chiến lược áp dụng dần: bắt đầu với formatter (Prettier/Black/r
 
 Tài nguyên tham khảo: [eslint.org](https://eslint.org), [prettier.io](https://prettier.io), [black.readthedocs.io](https://black.readthedocs.io), [docs.astral.sh/ruff](https://docs.astral.sh/ruff), và [pre-commit.com](https://pre-commit.com).
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

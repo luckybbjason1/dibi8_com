@@ -34,6 +34,7 @@ faqs: - q: 'Tôi cài Skyvern-AI/skyvern như thế nào?'
     a: 'Xem trang chính thức tại <https://www.skyvern.com> và README trên GitHub, cả hai đều trình bày chi tiết về cài đặt, API và các quy trình mẫu."
 ---
 
+
 {{< resource-info >}}
 
 ## Giới thiệu
@@ -70,49 +71,49 @@ Bên dưới, mỗi tác vụ được lưu trong một cơ sở dữ liệu c�
 
 Cài đặt Skyvern khá đơn giản nếu bạn quen với Python. Bạn cần Python 3.11 trở lên và ít nhất một LLM API key.
 
-### Dùng `pip`
+### Dùng ```pip````
 
-Cài gói đầy đủ, bao gồm cả UI và máy chủ cục bộ: ```bash
+Cài gói đầy đủ, bao gồm cả UI và máy chủ cục bộ: `````bash
 pip install "skyvern[all]"
-```
+`````
 
-Nếu bạn chỉ cần SDK để gọi Skyvern từ mã của mình, bản cài nhẹ hơn là đủ: ```bash
+Nếu bạn chỉ cần SDK để gọi Skyvern từ mã của mình, bản cài nhẹ hơn là đủ: `````bash
 pip install skyvern
-```
+`````
 
 ### Bắt đầu nhanh
 
-Sau khi cài, cách nhanh nhất để có một môi trường hoạt động là lệnh quickstart đi kèm. Nó hướng dẫn bạn cấu hình nhà cung cấp LLM, rồi khởi chạy máy chủ cục bộ và giao diện web với SQLite làm backend: ```bash
+Sau khi cài, cách nhanh nhất để có một môi trường hoạt động là lệnh quickstart đi kèm. Nó hướng dẫn bạn cấu hình nhà cung cấp LLM, rồi khởi chạy máy chủ cục bộ và giao diện web với SQLite làm backend: `````bash
 skyvern quickstart
-```
+`````
 
-Nếu bạn thích thiết lập dùng Postgres làm backend, hãy truyền cờ: ```bash
+Nếu bạn thích thiết lập dùng Postgres làm backend, hãy truyền cờ: `````bash
 skyvern quickstart --postgres
-```
+`````
 
-Bạn cũng có thể khởi động từng thành phần riêng lẻ: ```bash
+Bạn cũng có thể khởi động từng thành phần riêng lẻ: `````bash
 skyvern run server   # chỉ máy chủ API
 skyvern run ui       # chỉ giao diện web
-```
+`````
 
 ### Cấu hình
 
-Skyvern cần ít nhất một LLM API key, và nó đọc key này từ tệp `.env` trong dự án. Một ví dụ tối thiểu dùng OpenAI trông như sau: ```bash
+Skyvern cần ít nhất một LLM API key, và nó đọc key này từ tệp ``.env`` trong dự án. Một ví dụ tối thiểu dùng OpenAI trông như sau: `````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
-Lệnh quickstart có thể tạo tệp này cho bạn theo kiểu tương tác. Mặc định Skyvern lưu dữ liệu trong cơ sở dữ liệu SQLite cục bộ tại `~/.skyvern/`.
+Lệnh quickstart có thể tạo tệp này cho bạn theo kiểu tương tác. Mặc định Skyvern lưu dữ liệu trong cơ sở dữ liệu SQLite cục bộ tại ````~/.skyvern/````.
 
 ### Lỗi thường gặp và cách khắc phục
 
-Một vấn đề hay gặp khi chạy lần đầu là máy chủ khởi động được nhưng mọi tác vụ đều thất bại vì chưa bật nhà cung cấp LLM nào. Nếu bạn thấy lỗi về mô hình bị thiếu hoặc bị tắt, hãy xác nhận rằng cờ `ENABLE_*` tương ứng và API key đều có mặt trong `.env`, ví dụ: ```bash
+Một vấn đề hay gặp khi chạy lần đầu là máy chủ khởi động được nhưng mọi tác vụ đều thất bại vì chưa bật nhà cung cấp LLM nào. Nếu bạn thấy lỗi về mô hình bị thiếu hoặc bị tắt, hãy xác nhận rằng cờ ``ENABLE_*`` tương ứng và API key đều có mặt trong ``.env``, ví dụ: `````bash
 ENABLE_ANTHROPIC=true
 ANTHROPIC_API_KEY=sk-ant-your-key-here
-```
+`````
 
-Hãy khởi động lại máy chủ sau khi chỉnh `.env` để các giá trị mới được áp dụng.
+Hãy khởi động lại máy chủ sau khi chỉnh ````.env```` để các giá trị mới được áp dụng.
 
 ## Cách dùng cốt lõi
 
@@ -120,7 +121,7 @@ Skyvern được xây dựng quanh việc chạy các tác vụ agent từ một
 
 ### Ví dụ 1: Chạy một tác vụ
 
-Quy trình đơn giản nhất là khởi tạo một client Skyvern cục bộ và gọi `run_task` với một prompt. Agent mở trình duyệt, hoàn thành mục tiêu và trả về kết quả: ```python
+Quy trình đơn giản nhất là khởi tạo một client Skyvern cục bộ và gọi ``run_task`` với một prompt. Agent mở trình duyệt, hoàn thành mục tiêu và trả về kết quả: `````python
 import asyncio
 from skyvern import Skyvern
 
@@ -131,11 +132,11 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-```
+`````
 
 ### Ví dụ 2: Trích xuất dữ liệu có cấu trúc
 
-Khi bạn muốn đầu ra có cấu trúc gọn gàng thay vì văn bản tự do, hãy truyền `data_extraction_schema`. Skyvern trả về các trường được trích xuất khớp với schema của bạn: ```python
+Khi bạn muốn đầu ra có cấu trúc gọn gàng thay vì văn bản tự do, hãy truyền ``data_extraction_schema``. Skyvern trả về các trường được trích xuất khớp với schema của bạn: `````python
 import asyncio
 from skyvern import Skyvern
 
@@ -161,11 +162,11 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-```
+`````
 
 ### Ví dụ 3: Lệnh cấp trang
 
-Để kiểm soát tinh tế hơn, bạn có thể điều khiển trình duyệt trực tiếp và ra từng lệnh AI riêng lẻ — `act` để làm gì đó, `extract` để đọc dữ liệu, và `validate` để kiểm tra một điều kiện: ```python
+Để kiểm soát tinh tế hơn, bạn có thể điều khiển trình duyệt trực tiếp và ra từng lệnh AI riêng lẻ — ``act`` để làm gì đó, ``extract`` để đọc dữ liệu, và ``validate`` để kiểm tra một điều kiện: `````python
 import asyncio
 from skyvern import Skyvern
 
@@ -179,9 +180,9 @@ async def main(): skyvern = Skyvern.local()
     print(data)
 
 asyncio.run(main())
-```
+`````
 
-Những ví dụ này bao quát các điểm vào chính: `run_task` cấp cao cho mục tiêu đầu-cuối, trích xuất dựa trên schema để có dữ liệu gọn gàng, và lệnh cấp trang khi bạn cần kiểm soát từng bước.
+Những ví dụ này bao quát các điểm vào chính: ````run_task```` cấp cao cho mục tiêu đầu-cuối, trích xuất dựa trên schema để có dữ liệu gọn gàng, và lệnh cấp trang khi bạn cần kiểm soát từng bước.
 
 - **Image**: ![](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_screenshot.png)
 - **Stars**: 21,803
@@ -196,7 +197,7 @@ Skyvern hòa vào một codebase Python sẵn có mà không cần nhiều thủ
 
 ### Gọi Skyvern từ một dịch vụ web
 
-Vì `run_task` là bất đồng bộ, nó ăn khớp tự nhiên với một framework web bất đồng bộ. Dưới đây là cách gắn nó vào một endpoint FastAPI khởi động một tác vụ theo yêu cầu: ```python
+Vì ``run_task`` là bất đồng bộ, nó ăn khớp tự nhiên với một framework web bất đồng bộ. Dưới đây là cách gắn nó vào một endpoint FastAPI khởi động một tác vụ theo yêu cầu: `````python
 from fastapi import FastAPI
 from skyvern import Skyvern
 
@@ -208,17 +209,17 @@ async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
-```
+`````
 
 ### Cấu hình qua biến môi trường
 
-Với môi trường sản xuất, để thông tin xác thực và lựa chọn nhà cung cấp trong biến môi trường thay vì viết cứng trong mã sẽ gọn gàng hơn. Skyvern đọc chúng khi khởi động, nên tệp `.env` là nơi tự nhiên để quản lý: ```bash
+Với môi trường sản xuất, để thông tin xác thực và lựa chọn nhà cung cấp trong biến môi trường thay vì viết cứng trong mã sẽ gọn gàng hơn. Skyvern đọc chúng khi khởi động, nên tệp ``.env`` là nơi tự nhiên để quản lý: `````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=your_api_key_here
-```
+`````
 
-```python
+`````python
 from dotenv import load_dotenv
 from skyvern import Skyvern
 
@@ -226,7 +227,7 @@ load_dotenv()
 
 # Skyvern picks up the LLM provider settings from the environment
 skyvern = Skyvern.local()
-```
+`````
 
 Bằng cách giữ cấu hình trong môi trường, bạn có thể di chuyển cùng một mã giữa cục bộ, staging và sản xuất mà không phải đổi một dòng nào.
 
@@ -289,12 +290,12 @@ Những hạn chế này nghĩa là Skyvern xuất sắc cho tự động hóa b
 
 ## Kết luận
 
-Skyvern-AI/skyvern là một công cụ có năng lực để tự động hóa các quy trình trên trình duyệt bằng AI, với hơn 21.800 sao và được bảo trì tích cực. Nếu việc tự động hóa của bạn phải sống sót qua những thay đổi bố cục hoặc hoạt động trên nhiều trang mà bạn không kiểm soát, cách tiếp cận "LLM cộng thị giác" của nó là một bước tiến thực sự so với kịch bản dựa trên selector. Hãy vào kho GitHub, chạy `skyvern quickstart`, và thử một prompt của riêng bạn.
+Skyvern-AI/skyvern là một công cụ có năng lực để tự động hóa các quy trình trên trình duyệt bằng AI, với hơn 21.800 sao và được bảo trì tích cực. Nếu việc tự động hóa của bạn phải sống sót qua những thay đổi bố cục hoặc hoạt động trên nhiều trang mà bạn không kiểm soát, cách tiếp cận "LLM cộng thị giác" của nó là một bước tiến thực sự so với kịch bản dựa trên selector. Hãy vào kho GitHub, chạy ````skyvern quickstart```, và thử một prompt của riêng bạn.
 
 - Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để nhận các bản giới thiệu công cụ AI mã nguồn mở.
 - Đọc tiếp: [các hướng dẫn liên quan trên dibi8](dibi8-internal-link).
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Kho GitHub: https://github.com/Skyvern-AI/skyvern
 - Tài liệu chính thức / README: https://github.com/Skyvern-AI/skyvern#readme

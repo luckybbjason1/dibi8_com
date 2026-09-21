@@ -32,6 +32,7 @@ faq: - q: "Claude Max ($200) có đáng so với API trả theo dùng không?"
     a: "Anthropic điều chỉnh giới hạn tốc độ của gói Max vào cuối tháng 4 (nới lỏng hơn, nhiều khoảng dư hơn). Codex CLI của OpenAI chuyển hoàn toàn sang trả theo dùng (bỏ tier Pro). Cursor thêm tier Business $50 kèm tín dụng API. Cả ba thay đổi này đều dịch chuyển phép tính ngưỡng so với các đánh giá Q1."
 ---
 
+
 {{</* resource-info */>}}
 
 # Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 30 ngày
@@ -52,7 +53,7 @@ Hầu hết đánh giá công cụ AI coding đều bàn về giá đăng ký m�
 >
 > **Chồng 3 công cụ chỉ đáng** khi bạn có nhu cầu tự động hóa shell/devops mà luồng terminal-native của Codex CLI thắng.
 
----
+* * *
 
 ## Khối lượng công việc 30 ngày
 
@@ -68,38 +69,38 @@ Một số giờ chồng lấp (Cursor mở trong khi Claude Code chạy ở ter
 
 ### Claude Max ($200/tháng) — Nhiều giờ nhất, giá trị nhất
 
-```
+````
 Plan: Anthropic Max ($200)
 Period: 2026-05-01 to 2026-05-30
 Token usage: ~14.2M input, ~3.1M output (estimated)
 Rate limit hits: 2 (both during long debug loops near 200K context)
 Effective cost per hour: $2.98
-```
+`````
 
 Nếu tính phí qua API theo giá Sonnet 4.6 tiêu chuẩn, cùng mức sử dụng sẽ vào khoảng $340. Max tiết kiệm ~$140 ở khối lượng này. **Ngưỡng**: dưới 3 giờ/ngày, API trả theo dùng (khoảng $80-150) thắng. Trên 3 giờ, Max thắng.
 
 ### ChatGPT Plus + Codex CLI API (hiệu dụng $165)
 
-```
+`````
 Plan: ChatGPT Plus ($20) + Codex CLI API
 Period: 2026-05-01 to 2026-05-30
 API usage: $144.80 (GPT-5 + Codex)
 Effective monthly: $164.80
 Effective cost per hour (Codex only): $7.49
-```
+`````
 
 Điểm mạnh của Codex CLI là workflow điều khiển bằng shell — script devops, kết nối CI/CD, phân tích log. Chi phí mỗi giờ cao hơn nhưng số giờ thấp hơn. **Với 22 giờ/tháng làm việc terminal agent**, nó nằm giữa Claude Max và Cursor Pro.
 
 ### Cursor Pro + API (thực $87)
 
-```
+`````
 Plan: Cursor Pro ($20)
 Period: 2026-05-01 to 2026-05-30
 Subscription: $20
 API overflow (agent mode): $67.12
 Effective monthly: $87.12
 Effective cost per hour: $0.98
-```
+````
 
 Chi phí mỗi giờ thấp nhất — nhưng phần lớn trong 89 giờ đó là tab completion thụ động. Số giờ vòng lặp agent chủ động chỉ ~12. **Chi phí mỗi giờ chủ động** gần với $7.26 hơn. Nhãn "rẻ" che giấu điều xảy ra khi bạn dùng chế độ agent nhiều.
 
@@ -160,7 +161,7 @@ Câu trả lời trung thực là "không có công cụ duy nhất nào thắng
 
 Hãy theo dõi việc sử dụng của bạn trong 30 ngày trước khi tối ưu. Các biên lai ở trên là thực tế của một lập trình viên, nhưng cơ cấu workflow của bạn sẽ thay đổi phép tính. Chính hành động theo dõi thường tiết lộ khoản tiết kiệm lớn nhất — hầu hết lập trình viên không biết mình trả bao nhiêu mỗi giờ cho đến khi nhìn vào.
 
----
+* * *
 
 **Liên quan**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Lựa chọn thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [RTK Rust CLI Proxy: Tiết kiệm 80% chi phí AI coding](https://dibi8.com/vi/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/)
 
@@ -226,12 +227,12 @@ Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 30 ngày từ Cla
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -241,7 +242,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ai-coding-agent-monthly-bill-2026-real-receipts)
 - [cursor-vs-claude-code](ai-coding-agent-monthly-bill-2026-real-receipts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

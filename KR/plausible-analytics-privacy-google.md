@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/plausible-analytics-privacy-google/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 아묵도 이야기하지 않는 분석 프라이버시 문제
@@ -44,7 +45,7 @@ Plausible은 기존 분석 도구와 근본적으로 다른 접근 방식을 취
 
 ### 아키텍처 개요
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │              (리버스 프록시 + SSL)                   │
@@ -65,7 +66,7 @@ Plausible은 기존 분석 도구와 근본적으로 다른 접근 방식을 취
 │          │ (캐시)   │                                │
 │          └──────────┘                                │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### 이벤트 저장소로 ClickHouse를 선택한 이유
 
@@ -87,9 +88,9 @@ Plausible은 **ClickHouse**를 분석 데이터베이스로 사용한다 — Yan
 
 ### 1KB 스크립트: 실제로 하는 일
 
-```html
+`````html
 </script>
-```
+`````
 
 이 스크립트는 정확히 세 가지만 수행한다: (1) 현재 페이지 URL과 리퍼러를 전송하고, (2) 브라우저 뷰포트 크기를 전송하여 데스크톱/모바일을 분류하고, (3) SPA 낵게이션 이벤트를 수신한다. 이 스크립트는 다음을 수행하지 **않는다**: 쿠키 설정, localStorage 사용, 핑거프린트 해시 생성, 서드파티 요청 실행. 결과는 gzip 압축 시 1KB 미만의 페이로드와 4G 네트워크에서 10ms 미만의 실행 시간이다.
 
@@ -106,18 +107,18 @@ Plausible은 **ClickHouse**를 분석 데이터베이스로 사용한다 — Yan
 
 ### 1단계: 디렉토리 및 Compose 파일 생성
 
-```bash
+`````bash
 # 프로젝트 디렉토리 생성
 mkdir -p /opt/plausible
 cd /opt/plausible
 
 # 공식 Docker Compose 템플릿 다운로드
 curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml
-```
+`````
 
 ### 2단계: 시크릿 생성 및 구성
 
-```bash
+`````bash
 # 랜덤 시크릿 생성
 export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
@@ -143,11 +144,11 @@ SMTP_HOST_SSL_ENABLED=true
 # 등록
 DISABLE_REGISTRATION=false  # 계정 생성 후 true로 설정
 EOF
-```
+`````
 
 ### 3단계: Docker Compose로 실행
 
-```bash
+`````bash
 # 모든 서비스 시작
 docker compose up -d
 
@@ -158,11 +159,11 @@ docker compose ps
 # plausible               Up 10 seconds   0.0.0.0:8000->8000/tcp
 # plausible_db            Up 10 seconds   5432/tcp
 # plausible_events_db     Up 10 seconds   8123/tcp
-```
+`````
 
 ### 4단계: 리버스 프록시 및 SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/plausible
 server {
     listen 80;
@@ -185,39 +186,39 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-```
+`````
 
-```bash
+`````bash
 # 사이트 활성화 및 SSL 획득
 sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 sudo certbot --nginx -d analytics.yourdomain.com
-```
+`````
 
 ### 5단계: 첫 로그인 및 사이트 설정
 
-```bash
+`````bash
 # 관리자 사용자 생성
 docker compose exec plausible bin/plausible remote
 Plausible.Release.created_admin_user("admin@yourdomain.com", "YourSecurePassword123!")
 # Ctrl+C를 눌러 종료
-```
+`````
 
-`https://analytics.yourdomain.com`에 접속하여 로그인하고 첫 번째 사이트를 추가하라. 추적 스크립트 코드를 웹사이트 헤더에 복사하라.
+````https://analytics.yourdomain.com````에 접속하여 로그인하고 첫 번째 사이트를 추가하라. 추적 스크립트 코드를 웹사이트 헤더에 복사하라.
 
 ### 웹사이트에 추적 추가
 
-```html
+`````html
 </script>
 
 </script>
-```
+`````
 
 ## 프레임워크, CMS 및 빌드 도구와의 통합
 
 ### React / Next.js 통합
 
-```javascript
+`````javascript
 // components/PlausibleAnalytics.js
 import Script from 'next/script';
 
@@ -247,11 +248,11 @@ export default function RootLayout({ children }) {
 
   return <html>{children}</html>;
 }
-```
+`````
 
 ### Vue.js / Nuxt.js 통합
 
-```javascript
+`````javascript
 // plugins/plausible.client.js (Nuxt 3)
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
@@ -261,7 +262,7 @@ export default defineNuxtPlugin(() => {
       {
         defer: true,
         'data-domain': config.public.plausibleDomain,
-        src: `${config.public.plausibleHost}/js/script.js`,
+        src: ````${config.public.plausibleHost}/js/script.js````,
       },
     ],
   });
@@ -274,11 +275,11 @@ export default defineNuxtPlugin(() => {
     }
   });
 });
-```
+`````
 
 ### WordPress 플러그인
 
-```bash
+`````bash
 # 옵션 1: 공식 Plausible WordPress 플러그인 사용
 # wp-admin에서 설치: 플러그인 > 새로 추가 > "Plausible Analytics" 검색
 # 셀프 호스팅 URL로 구성
@@ -288,17 +289,17 @@ export default defineNuxtPlugin(() => {
 "
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
-```
+`````
 
 ### 정적 사이트 생성기 (Hugo, Jekyll, Astro)
 
-```html
+`````html
 {{ if not hugo.IsServer }}
 </script>
 {{ end }}
-```
+`````
 
-```javascript
+`````javascript
 // astro.config.mjs
 export default defineConfig({
   integrations: [
@@ -306,20 +307,20 @@ export default defineConfig({
       name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript(head, `
+          injectScript(head, ````
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
-          `);
+          ````);
         },
       },
     },
   ],
 });
-```
+`````
 
 ### 커스텀 이벤트 추적
 
-```javascript
+`````javascript
 // 버튼 클릭, 폼 제출 또는 모든 커스텀 이벤트 추적
 document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
@@ -339,7 +340,7 @@ plausible(Purchase, {
   },
   revenue: { currency: USD, amount: 9900 }  // 센트 단위
 });
-```
+`````
 
 ## 벤치마크 및 실제 활용 사례
 
@@ -403,7 +404,7 @@ plausible(Purchase, {
 
 ### 향상된 측정 활성화
 
-```bash
+`````bash
 # plausible-conf.env — 추가 추적 기능 활성화
 # 아웃바운드 링크 추적
 SCRIPT_NAME=script.outbound-links.js
@@ -416,15 +417,15 @@ SCRIPT_NAME=script.hash.js
 
 # 조합: 모든 기능
 SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
-```
+`````
 
-```html
+`````html
 </script>
-```
+`````
 
 ### 커스텀 대시보드를 위한 API 통합
 
-```bash
+`````bash
 # Stats API를 통한 통계 조회
 curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&period=30d&metrics=visitors,pageviews,bounce_rate" \
   -H "Authorization: Bearer YOUR_API_KEY"
@@ -436,9 +437,9 @@ curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=you
 #     "bounce_rate": {"value": 42}
 #   }
 # }
-```
+`````
 
-```python
+`````python
 # BI 도구로 통계를 가져오는 Python 스크립트
 import requests
 from datetime import datetime, timedelta
@@ -464,11 +465,11 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} 방문자, {entry[pageviews]} 페이지뷰")
-```
+`````
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/plausible-backup.sh
 
@@ -488,16 +489,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/plausible/"
 
 # 정리: 30일만 유지
 find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron — 매일 오전 3시
 0 3 * * * /opt/scripts/plausible-backup.sh >> /var/log/plausible-backup.log 2>&1
-```
+`````
 
 ### 고가용성 설정
 
-```yaml
+`````yaml
 # docker-compose.ha.yaml — 복제가 있는 다중 노드 ClickHouse
 version: '3.8'
 services: plausible: image: plausible/analytics:v3.0
@@ -510,21 +511,21 @@ services: plausible: image: plausible/analytics:v3.0
 
   clickhouse-2: image: clickhouse/clickhouse-server:24.3
     volumes: - clickhouse_data_2:/var/lib/clickhouse
-```
+`````
 
 ### Prometheus를 이용한 모니터링
 
-```yaml
+`````yaml
 # prometheus.yml에 추가
 scrape_configs: - job_name: plausible
     static_configs: - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
 ### 위치 데이터를 위한 GeoIP 데이터베이스
 
-```bash
+`````bash
 # MaxMind GeoLite2 데이터베이스 다운로드
 mkdir -p /opt/plausible/geoip
 cd /opt/plausible/geoip
@@ -540,7 +541,7 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 
 # plausible-conf.env에 추가: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
 # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb
-```
+`````
 
 ## 대안과 비교
 
@@ -589,11 +590,11 @@ Plausible은 일반적으로 GA4보다 **5-15% 높은 방문자 수**를 보고�
 
 예. Plausible은 GA Reporting API v4를 통해 데이터를 가져오는 Google Analytics 가져오기 도구를 제공한다. UA 속성과 GA4 속성을 처리하여 Plausible의 데이터 모델에 매핑한다. GA4의 데이터 모델 차이로 인해 일부 지표에는 직접적인 대등 항목이 없다. 가져오기는 백그라운드 작업으로 실행되며 대규모 데이터셋에는 수 시간이 소요될 수 있다.
 
-```bash
+`````bash
 # GA 가져오기 실행 (Plausible 컨테이너에서)
 docker compose exec plausible bin/plausible \
   "Plausible.Google.Import.start('your-ga-property-id", YOUR_API_KEY)"
-```
+`````
 
 **사이트가 VPS 용량을 초과하면 어떻게 되나요?**
 
@@ -601,11 +602,11 @@ Plausible은 예측 가능하게 확장된다. **2GB VPS는 월 약 50만 PV**�
 
 **여러 도메인이나 서브도메인은 어떻게 추적하나요?**
 
-각 도메인은 Plausible에서 별도의 "사이트"이지만 공유 로그인으로 구성할 수 있다. 서브도메인 추적의 경우 두 가지 옵션이 있다: 세부 보고를 위해 별도로 추적하거나, `data-api-host` 속성을 사용하여 동일한 사이트 ID로 롤업한다. 서브도메인 간 추적은 Plausible이 쿠키나 세션 저장소를 사용하지 않으므로 특별한 구성 없이 작동한다.
+각 도메인은 Plausible에서 별도의 "사이트"이지만 공유 로그인으로 구성할 수 있다. 서브도메인 추적의 경우 두 가지 옵션이 있다: 세부 보고를 위해 별도로 추적하거나, ````data-api-host```` 속성을 사용하여 동일한 사이트 ID로 롤업한다. 서브도메인 간 추적은 Plausible이 쿠키나 세션 저장소를 사용하지 않으므로 특별한 구성 없이 작동한다.
 
-```html
+`````html
 </script>
-```
+````
 
 **셀프 호스팅 Plausible은 정말 영구적으로 묣인가요?**
 
@@ -621,7 +622,7 @@ Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필�
 
 **오픈소스 도구 논의를 위한 Telegram 그룹**: [t.me/dibi8ko](https://t.me/dibi8ko)
 
----
+* * *
 
 
 
@@ -644,7 +645,7 @@ Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필�
 - [EDPB 동의 가이드라인](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — 쿠키 없는 분석의 법적 기초
 - [DigitalOcean VPS 설정](https://m.do.co/c/eca87ac14ee0) — 셀프 호스팅 배포용 VPS 호스팅
 
----
+* * *
 
 *본 문서에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 VPS 서비스를 구매할 경우 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 모든 추천은 실제 테스트와 실제 배포 경험에 기반합니다.*
 
@@ -674,7 +675,7 @@ Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -684,6 +685,6 @@ Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필�
 - [apple-container](plausible-analytics-privacy-google)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

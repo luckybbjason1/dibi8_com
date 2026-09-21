@@ -7,6 +7,7 @@ aliases:
   - /posts/autogen-multi-agent-framework/-
 ---
 
+
 {</* resource-info */>}
 
 AutoGen是微软研究院开源的多智能体对话框架，它让多个AI Agent通过自然语言协作完成复杂任务。自2023年发布以来，AutoGen在GitHub上积累了超过33,000颗星标，成为构建多Agent系统的首选工具之一。本文将从零开始，带你掌握AutoGen的核心概念与实战技巧。
@@ -26,13 +27,13 @@ AutoGen的核心理念是**"对话即编程"**。在AutoGen中，每个Agent是�
 
 | 特性 | AutoGen | CrewAI | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 核心交互模式 | 对话驱动 | 角色+任务分配 | 状态图编排 |
 | 代码执行 | 原生支持（隔离环境） | 需自定义 | 需自定义 |
@@ -45,7 +46,7 @@ AutoGen的核心理念是**"对话即编程"**。在AutoGen中，每个Agent是�
 
 ### ConversableAgent：所有Agent的基类
 
-`ConversableAgent`是AutoGen中所有Agent类型的父类。每个Agent包含三个核心属性：
+```ConversableAgent````是AutoGen中所有Agent类型的父类。每个Agent包含三个核心属性：
 
 - **LLM配置**：指定使用的模型（GPT-4、Claude、本地模型等）
 - **系统消息**：定义Agent的角色和行为准则
@@ -55,21 +56,21 @@ AutoGen的核心理念是**"对话即编程"**。在AutoGen中，每个Agent是�
 
 | Agent类型 | 职责 | 典型用途 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | AssistantAgent | 编写代码和提出建议 | 程序员角色，生成解决方案 |
 | UserProxyAgent | 代表人类用户执行代码 | 执行Assistant写的代码，返回结果 |
 | GroupChatManager | 管理多Agent群聊 | 协调多个Agent的发言顺序和话题流转 |
 
-`AssistantAgent`和`UserProxyAgent`的组合是AutoGen最常见的双Agent模式：Assistant负责思考，UserProxy负责执行。
+````AssistantAgent````和````UserProxyAgent````的组合是AutoGen最常见的双Agent模式：Assistant负责思考，UserProxy负责执行。
 
 ### GroupChat：多Agent协作机制
 
-当任务需要多个不同专长的Agent协作时，`GroupChat`提供了群聊功能。它支持多种发言策略：
+当任务需要多个不同专长的Agent协作时，````GroupChat````提供了群聊功能。它支持多种发言策略：
 
 - **round_robin**：轮流发言，确保每个Agent都有机会参与
 - **random**：随机选择下一个发言者，增加对话多样性
@@ -79,15 +80,15 @@ AutoGen的核心理念是**"对话即编程"**。在AutoGen中，每个Agent是�
 
 ### 基础安装
 
-```bash
+`````bash
 pip install pyautogen
-```
+`````
 
 ### LLM端点配置
 
 AutoGen通过配置文件指定模型端点。支持OpenAI、Azure OpenAI、本地模型等多种来源。
 
-```python
+`````python
 config_list = [
     {
         "model": "gpt-4",
@@ -103,11 +104,11 @@ config_list = [
         "api_key": os.environ.get("OPENAI_API_KEY")
     }
 ]
-```
+`````
 
 ### 本地模型配置（Ollama）
 
-```python
+`````python
 config_list = [
     {
         "model": "llama3.1",
@@ -115,13 +116,13 @@ config_list = [
         "api_key": "ollama",  # Ollama不需要真实API key
     }
 ]
-```
+`````
 
 ## 实战：构建你的第一个多Agent系统
 
 ### 基础双Agent对话
 
-```python
+`````python
 import autogen
 
 # LLM配置
@@ -148,7 +149,7 @@ user_proxy.initiate_chat(
     assistant,
     message="写一个Python函数，计算斐波那契数列的前20项，并画出图表。"
 )
-```
+`````
 
 运行这段代码后，Assistant会生成Python代码，UserProxy会自动执行并返回结果。如果代码有错误，Assistant会收到错误信息并修正。
 
@@ -156,14 +157,14 @@ user_proxy.initiate_chat(
 
 无限循环是Agent系统常见的问题。AutoGen提供了多种终止控制：
 
-```python
+`````python
 user_proxy = autogen.UserProxyAgent(
     name="user_proxy",
     human_input_mode="TERMINATE",  # 检测到终止词时询问用户
     is_termination_msg=lambda msg: "TERMINATE" in msg.get("content", ""),
     max_consecutive_auto_reply=5,
 )
-```
+`````
 
 ## 高级Agent模式
 
@@ -171,7 +172,7 @@ user_proxy = autogen.UserProxyAgent(
 
 以下示例展示三个Agent协作完成数据分析任务：
 
-```python
+`````python
 import autogen
 
 config_list = [{"model": "gpt-4", "api_key": "your-key"}]
@@ -220,15 +221,15 @@ user_proxy.initiate_chat(
     manager,
     message="分析 https://raw.githubusercontent.com/datasciencedoc/data/main/titanic.csv 数据集，总结生还率的关键影响因素。"
 )
-```
+`````
 
-在这个群聊中，`GroupChatManager`会自动决定每次由哪个Agent发言。数据工程师先处理数据，分析师进行统计分析和可视化，最后报告员撰写总结。
+在这个群聊中，````GroupChatManager````会自动决定每次由哪个Agent发言。数据工程师先处理数据，分析师进行统计分析和可视化，最后报告员撰写总结。
 
 ### 顺序对话工作流
 
-有些场景需要按固定顺序执行，AutoGen的`SequentialChat`支持这种模式：
+有些场景需要按固定顺序执行，AutoGen的````SequentialChat````支持这种模式：
 
-```python
+`````python
 from autogen import initiate_chats
 
 chats = [
@@ -246,7 +247,7 @@ chats = [
     }
 ]
 initiate_chats(chats)
-```
+`````
 
 每一步的总结会自动传递给下一步，实现流水线式的处理。
 
@@ -254,21 +255,21 @@ initiate_chats(chats)
 
 在关键决策点引入人类审核：
 
-```python
+`````python
 user_proxy = autogen.UserProxyAgent(
     name="user_proxy",
     human_input_mode="ALWAYS",  # 每次Agent回复后都询问人类
     code_execution_config={"work_dir": "safe_mode"}
 )
-```
+`````
 
-将`human_input_mode`设为`ALWAYS`后，每次Agent输出后都会暂停等待人类输入。适合需要高度可控性的场景。
+将````human_input_mode````设为````ALWAYS````后，每次Agent输出后都会暂停等待人类输入。适合需要高度可控性的场景。
 
 ## 与本地和开源模型集成
 
 ### Ollama集成
 
-```python
+`````python
 config_list = [
     {
         "model": "llama3.1:8b",
@@ -277,11 +278,11 @@ config_list = [
         "temperature": 0.7
     }
 ]
-```
+`````
 
 ### vLLM集成（高性能本地部署）
 
-```python
+`````python
 config_list = [
     {
         "model": "meta-llama/Meta-Llama-3-8B-Instruct",
@@ -289,7 +290,7 @@ config_list = [
         "api_key": "dummy"
     }
 ]
-```
+`````
 
 ### 成本优化策略
 
@@ -297,7 +298,7 @@ config_list = [
 
 1. **模型分层**：复杂决策用GPT-4，简单响应用GPT-3.5-turbo或本地模型
 2. **缓存响应**：对确定性任务的结果进行缓存
-3. **限制轮次**：设置`max_consecutive_auto_reply`防止无限对话
+3. **限制轮次**：设置````max_consecutive_auto_reply````防止无限对话
 4. **使用本地模型**：开发测试阶段用Ollama，生产环境再切到云端API
 
 ## 真实世界应用案例
@@ -327,11 +328,11 @@ AutoGen和LangGraph代表了两条不同的多Agent设计路线：
 
 | 维度 | AutoGen | LangGraph |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 交互模型 | 自由对话 | 有向状态图 |
 | 控制粒度 | 粗粒度（LLM决定流程） | 细粒度（开发者定义流程） |
@@ -353,24 +354,24 @@ AutoGen和LangGraph代表了两条不同的多Agent设计路线：
 
 AutoGen的代码执行功能是把双刃剑。生产环境必须注意：
 
-- **使用Docker隔离**：`code_execution_config={"use_docker": True}`
+- **使用Docker隔离**：````code_execution_config={"use_docker": True}````
 - **限制文件系统访问**：只开放必要的目录
 - **禁用危险操作**：在系统消息中明确禁止删除文件、网络扫描等操作
 - **输入校验**：对人类输入进行安全检查，防止Prompt Injection
 
 ### 调试技巧
 
-1. 设置`verbosity="DEBUG"`查看完整消息流转
+1. 设置````verbosity="DEBUG"````查看完整消息流转
 2. 使用LangSmith追踪Agent调用链
-3. 保存对话日志：`chat_result.summary`和`chat_result.chat_history`
-4. 逐步调试：设置`human_input_mode="ALWAYS"`逐轮检查
+3. 保存对话日志：````chat_result.summary````和````chat_result.chat_history````
+4. 逐步调试：设置````human_input_mode="ALWAYS"````逐轮检查
 
 ### 性能优化
 
 - 减少群聊中的Agent数量，避免无效对话
 - 为每个Agent编写精确的系统消息，减少方向偏离
 - 使用更小的模型处理简单任务
-- 设置合理的`max_round`防止对话失控
+- 设置合理的````max_round````防止对话失控
 
 ## 常见问题（FAQ）
 
@@ -388,11 +389,11 @@ AutoGen最适合需要多步骤协作的复杂任务，典型场景包括：自�
 
 ### AutoGen可以运行本地LLM吗？
 
-完全可以。AutoGen通过OpenAI兼容API与本地模型通信。支持Ollama、vLLM、LM Studio等所有主流本地推理工具。配置方式是在`config_list`中指定`base_url`指向本地服务端点。
+完全可以。AutoGen通过OpenAI兼容API与本地模型通信。支持Ollama、vLLM、LM Studio等所有主流本地推理工具。配置方式是在````config_list````中指定````base_url````指向本地服务端点。
 
 ### AutoGen的代码执行安全吗？
 
-默认配置下存在风险，因为Agent生成的代码会直接执行。生产环境必须采取安全措施：启用Docker隔离、限制文件系统访问范围、设置允许和禁止的命令列表、在关键操作前要求人类确认。建议始终将`use_docker`设为True。
+默认配置下存在风险，因为Agent生成的代码会直接执行。生产环境必须采取安全措施：启用Docker隔离、限制文件系统访问范围、设置允许和禁止的命令列表、在关键操作前要求人类确认。建议始终将````use_docker```设为True。
 
 ## 结语
 
@@ -401,7 +402,7 @@ AutoGen代表了AI应用开发的一种新范式——从"调用模型"到"编�
 更多学习资源：[AutoGen官方文档](https://microsoft.github.io/autogen/)、[AutoGen GitHub](https://github.com/microsoft/autogen)、[CrewAI对比参考](https://github.com/crewAIInc/crewAI)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -475,7 +476,7 @@ AutoGen多智能体框架教程2025：轻松构建多Agent AI系统 represents a
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -506,15 +507,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

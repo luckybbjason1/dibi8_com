@@ -30,6 +30,7 @@ faqs: - q: 'What is the best free open-source alternative to Midjourney?'
     a: 'Midjourney works on a fixed ''prompt-in, image-out'' model with no pipeline control, while ComfyUI exposes the entire Stable Diffusion backend as a node graph. You can route latent data through specific checkpoints, ControlNet, IP-Adapter style transfer, and custom upscalers in one execution graph.'
   - q: 'Is ComfyUI better than Midjourney for privacy and censorship?'
     a: 'ComfyUI runs 100% offline and locally, so generated assets never leave your machine and models are unrestricted. Midjourney stores assets on public cloud servers and heavily censors prompts and banned words.'---
+
 {</* resource-info */>}
 
 # Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source Standard
@@ -145,6 +146,6 @@ Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source Standard rep
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

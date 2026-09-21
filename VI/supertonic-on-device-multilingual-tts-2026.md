@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/supertonic-on-device-multilingual-tts-2026/
 ---
 
+
 # Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M tham số qua ONNX, hỗ trợ 31 ngôn ngữ (2026)
 
 
@@ -35,21 +36,21 @@ Vết nứt lộ ra ở ba chỗ. **Quyền riêng tư** — gửi từng script
 
 TTS on-device open-source đang đuổi kịp, nhưng đánh đổi rất gắt: hoặc là model tí hon chỉ có tiếng Anh (Piper, các biến thể nhỏ của Coqui), hoặc model đa ngôn ngữ khổng lồ cần GPU mới chạy được thực tế (XTTS-v2, Bark). Chưa có cái nào đạt điểm ngọt "nhanh, đa ngôn ngữ, nhẹ, weight open thật sự".
 
-[**Supertonic**](https://github.com/supertone-inc/supertonic) (GitHub: `supertone-inc/supertonic`, **9,900+ stars**) của công ty speech-AI Hàn Quốc Supertone Inc. là ứng viên 2026 đáng tin nhất để lấp khoảng trống đó. 99M tham số, 31 ngôn ngữ, runtime ONNX, chạy thoải mái trên CPU — bao gồm, theo lời README, real-time factor 0.3× trên một máy đọc sách điện tử ở chế độ máy bay.
+[**Supertonic**](https://github.com/supertone-inc/supertonic) (GitHub: ```supertone-inc/supertonic````, **9,900+ stars**) của công ty speech-AI Hàn Quốc Supertone Inc. là ứng viên 2026 đáng tin nhất để lấp khoảng trống đó. 99M tham số, 31 ngôn ngữ, runtime ONNX, chạy thoải mái trên CPU — bao gồm, theo lời README, real-time factor 0.3× trên một máy đọc sách điện tử ở chế độ máy bay.
 
----
+* * *
 
 ## Supertonic là gì
 
 Một module flow-matching text-to-latent kết hợp với speech autoencoder, được export sang ONNX. Cụ thể: - **99M tham số tổng cộng** — đủ nhỏ để load trong vài giây và chạy real-time trên một CPU bình thường. Để so sánh, XTTS-v2 khoảng ~1.5B và Bark ~900M.
 - **31 ngôn ngữ sẵn dùng**: Ả Rập, Bulgaria, Croatia, Séc, Đan Mạch, Hà Lan, Anh, Estonia, Phần Lan, Pháp, Đức, Hy Lạp, Hindi, Hungary, Indonesia, Ý, **Nhật**, **Hàn**, Latvia, Litva, Ba Lan, Bồ Đào Nha, Romania, Nga, Slovakia, Slovenia, Tây Ban Nha, Thụy Điển, Thổ Nhĩ Kỳ, Ukraine, **Việt**.
 - **Output audio 44.1kHz** — sample rate chuẩn studio thực sự, không phải mức 22kHz mà đa số TTS "đủ dùng" đành chấp nhận.
-- **10 expression tag** — `<laugh>`, `<breath>`, `<sigh>`, v.v. Nhúng inline trong text để dẫn dụ kiểu đọc tự nhiên hơn mà không cần retrain voice clone.
-- **Chế độ `lang="na"`** — sinh giọng không phụ thuộc ngôn ngữ khi bạn không muốn chọn mã ngôn ngữ.
+- **10 expression tag** — ````<laugh>````, ````<breath>````, ````<sigh>````, v.v. Nhúng inline trong text để dẫn dụ kiểu đọc tự nhiên hơn mà không cần retrain voice clone.
+- **Chế độ ````lang="na"````** — sinh giọng không phụ thuộc ngôn ngữ khi bạn không muốn chọn mã ngôn ngữ.
 
 License: **MIT cho code, OpenRAIL-M cho weight model**. Sự phân tách này quan trọng: OpenRAIL-M là license "responsible AI" hạn chế một số mục đích gây hại, nhưng cho phép deploy thương mại bình thường. Đọc model card trước khi ship sản phẩm.
 
----
+* * *
 
 ## Số liệu hiệu năng công bố
 
@@ -63,11 +64,11 @@ Các con số Supertone Inc. trích trong benchmark và README: | Chỉ số | S
 
 Benchmark trên e-reader là con số headline — kiểu số liệu báo hiệu "đúng vậy, cái này chạy được mọi nơi". Một CPU điện thoại hiện đại lẽ ra phải chạy nhẹ tênh.
 
----
+* * *
 
 ## Phạm vi runtime
 
-Supertonic là một trong số ít dự án TTS open ship SDK binding thật chứ không chỉ "chắc bạn có thể tự wrap được". Tính đến v2.0.0: - **Python** (`pip install supertonic`) — tích hợp chính
+Supertonic là một trong số ít dự án TTS open ship SDK binding thật chứ không chỉ "chắc bạn có thể tự wrap được". Tính đến v2.0.0: - **Python** (````pip install supertonic````) — tích hợp chính
 - **Node.js** — cho server và app Electron
 - **Browser** — WebGPU khi có sẵn, WebAssembly làm fallback
 - **Java** — backend Android và JVM
@@ -77,15 +78,15 @@ Supertonic là một trong số ít dự án TTS open ship SDK binding thật ch
 
 Phủ gần hết mọi chỗ mà một developer ứng dụng năm 2026 có thể muốn nhúng TTS. ONNX runtime gánh phần nặng; Supertonic thêm phần keo gắn riêng cho model.
 
----
+* * *
 
 ## Cài đặt nhanh (Python)
 
-```bash
+`````bash
 pip install supertonic
-```
+`````
 
-Chỉ vậy là xong phần dependency. Model tự download lần đầu gọi: ```python
+Chỉ vậy là xong phần dependency. Model tự download lần đầu gọi: `````python
 from supertonic import TTS
 
 tts = TTS(auto_download=True)
@@ -101,17 +102,17 @@ wav, duration = tts.synthesize(
     speed=1.05,
 )
 tts.save_audio(wav, "output.wav")
-```
+`````
 
-Với tiếng Hàn, đổi `lang="en"` → `lang="ko"`. Tương tự với `ja`, `vi`, `zh`. Voice style (`M1` ở đây) nhất quán giữa các ngôn ngữ — hữu ích nếu bạn đang xây giọng nhân vật đa ngôn ngữ.
+Với tiếng Hàn, đổi ````lang="en"```` → ````lang="ko"````. Tương tự với ````ja````, ````vi````, ````zh````. Voice style (````M1```` ở đây) nhất quán giữa các ngôn ngữ — hữu ích nếu bạn đang xây giọng nhân vật đa ngôn ngữ.
 
-Với expression tag: ```python
+Với expression tag: `````python
 text = "I can't believe it. <laugh> That"s incredible. <breath> Let me explain."
-```
+````
 
 Model diễn giải tag inline và tạo biểu cảm tương ứng trong audio.
 
----
+* * *
 
 ## So sánh
 
@@ -127,7 +128,7 @@ Bark ấn tượng ở mảng audio phi-giọng-nói (nhạc, hiệu ứng âm t
 ### So với ElevenLabs / OpenAI / Google Cloud
 Cloud TTS vẫn thắng về độ trung thực của voice cloning và độ tự nhiên thuần túy của các giọng top. **Supertonic thắng**: không API key, không hóa đơn theo ký tự, không phụ thuộc mạng, riêng tư toàn diện.
 
----
+* * *
 
 ## Điều Supertonic không làm
 
@@ -136,7 +137,7 @@ Cloud TTS vẫn thắng về độ trung thực của voice cloning và độ t�
 - **Tooling fine-tuning hạn chế.** Model weight open theo OpenRAIL-M, nhưng pipeline training chưa public hoàn toàn.
 - **Không có fallback 22kHz.** Luôn output 44.1kHz. Cần bandwidth thấp hơn thì tự resample.
 
----
+* * *
 
 ## Các use case Supertonic tỏa sáng
 
@@ -146,7 +147,7 @@ Cloud TTS vẫn thắng về độ trung thực của voice cloning và độ t�
 - **Localization tiếng Hàn / Nhật / Việt / Trung** — khoảng trống TTS open-source cho các ngôn ngữ châu Á lâu nay rất nhức nhối; Supertonic lấp một mảng lớn trong một model.
 - **Thiết bị edge IoT** — kiosk, biển hiệu, loa thông minh không kết nối cloud.
 
----
+* * *
 
 ## Ai nên dùng
 
@@ -161,7 +162,7 @@ Cloud TTS vẫn thắng về độ trung thực của voice cloning và độ t�
 - Sản xuất nội dung một giọng siêu chân thực, nơi dòng cao cấp nhất của ElevenLabs vẫn dẫn đầu.
 - Cần streaming audio từng phần (release Supertonic public chưa expose cái này).
 
----
+* * *
 
 ## Kết luận
 
@@ -171,7 +172,7 @@ Với developer ở Việt Nam, Hàn Quốc, Nhật Bản, hay bất kỳ thị 
 
 Ghép nó với [một runtime LLM on-device](https://dibi8.com/vi/resources/llm-frameworks/local-llm-runner-comparison-2026/) cho phía prompt, bạn có ngay một stack voice agent hoàn toàn local, không phụ thuộc cloud một mảy may.
 
----
+* * *
 
 **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **License**: MIT (code) / OpenRAIL-M (weight) · **Mới nhất**: v2.0.0 (6/1/2026) · **Stars**: 9.9K+ · **Maintainer**: Supertone Inc.
 

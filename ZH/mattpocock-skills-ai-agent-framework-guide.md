@@ -8,6 +8,7 @@ category: dev-utils
 tags: ["matt-pocock", "skills", "AI Agent", "CLI框架", "AI编程工具", "Agent能力", "开发者工具", "开源"]
 ---
 
+
 ## 简介
 
 AI 编程 Agent 从根本上改变了开发人员编写、调试和部署代码的方式。Claude Code、Cursor、Codex CLI、Gemini CLI 和 GitHub Copilot 等工具可以从自然语言提示生成整个功能。但即使是最先进的 AI Agent 也受到其能读取的数据和能调用的工具的限制。这就是 Matt Pocock 的 Skills 框架改变一切的地方——它弥合了代码生成与代码执行之间的鸿沟。
@@ -37,7 +38,7 @@ Skills 作为 npm 包分发，通过一条命令全局安装。它被设计为�
 
 Skills 基于插件架构。每个"技能"都是一个自包含的模块，定义了 Agent 可以做什么。当 Agent 需要执行任务时，它会查询可用的技能并调用相应的技能。然后该技能执行操作并返回结果。
 
-该框架使用一个简单的配置文件（`skills.json`）列出所有可用技能。每个技能定义其名称、描述以及它可以执行的命令或 API 调用。Agent 读取此配置并使用技能描述来确定给定任务应调用哪个技能。
+该框架使用一个简单的配置文件（```skills.json````）列出所有可用技能。每个技能定义其名称、描述以及它可以执行的命令或 API 调用。Agent 读取此配置并使用技能描述来确定给定任务应调用哪个技能。
 
 当你问 Agent"为此项目设置 PostgreSQL 数据库"时，Skills 提供一个数据库技能，可以创建数据库、配置连接并运行初始迁移。当你问"部署到暂存环境"时，它提供一个部署技能来触发你的 CI/CD 管道。Agent 不需要知道这些任务如何工作——它只需要知道 Skills 可以处理它们。
 
@@ -55,46 +56,46 @@ Skills 使用独特的安装方式——它通过 npx 安装而不是作为传�
 
 ### 将技能添加到你的项目
 
-```bash
+`````bash
 npx skills@latest add mattpocock/skills
-```
+`````
 
 此命令获取最新版本的 Skills 框架并将其添加到你的项目中。npx 方式意味着不需要全局安装，避免跨项目的版本冲突。
 
 ### 在项目中初始化 Skills
 
-```bash
+`````bash
 npx skills@latest init
-```
+`````
 
-这会在你的项目根目录创建一个 `skills.json` 配置文件，包含默认技能集。配置文件作为所有可用技能的单一事实来源。
+这会在你的项目根目录创建一个 ````skills.json```` 配置文件，包含默认技能集。配置文件作为所有可用技能的单一事实来源。
 
 ### 安装特定技能
 
-```bash
+`````bash
 npx skills@latest add database
 npx skills@latest add filesystem
 npx skills@latest add deploy
 npx skills@latest add api-client
-```
+`````
 
 每个技能独立安装。你只需要安装与你工作流相关的技能，保持配置简洁。
 
 ### 一次安装多个技能
 
-```bash
+`````bash
 npx skills@latest add database filesystem deploy api-client docker
-```
+`````
 
 ### 以开发模式安装
 
-```bash
+`````bash
 git clone https://github.com/mattpocock/skills.git && cd skills && npm install && npm link
-```
+`````
 
 ### Agent 集成设置
 
-```bash
+`````bash
 # 对于 Claude Code
 npx skills@latest setup claude-code
 
@@ -103,7 +104,7 @@ npx skills@latest setup cursor
 
 # 对于 Gemini CLI
 npx skills@latest setup gemini-cli
-```
+`````
 
 每个 Agent 集成都会设置必要的配置以实现无缝的技能发现和调用。
 
@@ -111,11 +112,11 @@ npx skills@latest setup gemini-cli
 
 ### 新闻通讯与社区
 
-```bash
+`````bash
 # 订阅 Skills 新闻通讯以获取更新
 # https://www.aihero.dev/s/skills-newsletter
 curl -s https://www.aihero.dev/s/skills-newsletter
-```
+`````
 
 ### Skills 中心
 
@@ -127,74 +128,74 @@ curl -s https://www.aihero.dev/s/skills-newsletter
 
 ### 列出可用技能
 
-```bash
+`````bash
 npx skills@latest list
-```
+`````
 
 这会显示所有已安装的技能及其描述。输出包括技能名称、描述和任何必需的配置。你可以快速查看你的 AI Agent 可以访问哪些能力。
 
 ### 检查技能配置
 
-```bash
+`````bash
 npx skills@latest inspect database
-```
+`````
 
 这将显示数据库技能的详细配置，包括可用命令、必需的环境变量和连接参数。
 
 ### 测试技能
 
-```bash
+`````bash
 npx skills@latest test database
-```
+`````
 
 这运行技能的测试套件以验证其正确配置且功能正常。在部署到生产环境前可用于故障排除。
 
 ### 运行技能命令
 
-```bash
+`````bash
 npx skills@latest run database --query "SELECT * FROM users LIMIT 10"
-```
+`````
 
 这通过数据库技能执行 SQL 查询。结果以结构化格式返回，AI Agent 可以处理。
 
 ### 创建自定义技能
 
-```bash
+`````bash
 npx skills@latest create my-custom-skill
-```
+`````
 
 这为新的自定义技能生成模板，包括技能定义、测试文件和文档。然后你可以在生成的插件中实现你自己的逻辑。
 
 ### 列出所有已安装技能的详细信息
 
-```bash
+`````bash
 npx skills@latest list --verbose
-```
+`````
 
 ### 移除技能
 
-```bash
+`````bash
 npx skills@latest remove database
-```
+`````
 
 ### 更新所有技能
 
-```bash
+`````bash
 npx skills@latest update --all
-```
+`````
 
 ### 导出和导入技能配置
 
-```bash
+`````bash
 npx skills@latest export > skills-export.json
 npx skills@latest import < skills-export.json
-```
+`````
 
 ## 与 AI Agent 集成
 
 ### Claude Code 集成
 
-```bash
+`````bash
 # 在你的项目中初始化 Skills
 npx skills@latest init
 
@@ -203,25 +204,25 @@ npx skills@latest add database deploy filesystem
 
 # 运行 Claude Code——它将自动检测 Skills
 claude
-```
+`````
 
-Claude Code 读取 `skills.json` 配置并在适当时候使用可用技能。当你要求 Claude Code"设置数据库"时，它将使用数据库技能创建表并运行迁移。
+Claude Code 读取 ````skills.json```` 配置并在适当时候使用可用技能。当你要求 Claude Code"设置数据库"时，它将使用数据库技能创建表并运行迁移。
 
 ### Cursor 集成
 
-```bash
+`````bash
 # 通过 npx 全局安装 Skills
 npx skills@latest init
 
 # 添加与你项目相关的技能
 npx skills@latest add database api-client
-```
+`````
 
 Cursor 在打开项目时自动检测 Skills。技能出现在 Agent 的上下文中，可用于任务执行，提供超越代码生成的真实能力。
 
 ### Gemini CLI 集成
 
-```bash
+`````bash
 # 初始化 Skills
 npx skills@latest init
 
@@ -230,13 +231,13 @@ npx skills@latest add deploy docker
 
 # 运行 Gemini CLI
 gemini
-```
+`````
 
 Gemini CLI 读取技能配置并在对话期间可以调用技能，实现无需手动干预的端到端任务完成。
 
 ### Codex CLI 集成
 
-```bash
+`````bash
 # 设置 Skills
 npx skills@latest init
 
@@ -245,17 +246,17 @@ export SKILLS_PATH=./skills.json
 
 # 运行 Codex
 codex
-```
+`````
 
 ### 自定义 HTTP 客户端技能
 
-```bash
+`````bash
 # 创建自定义 HTTP 客户端技能
 npx skills@latest create custom-http --type http-client
 
 # 使用技能发起 API 请求
 npx skills@latest run custom-http --url https://api.example.com/users --method GET
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -263,9 +264,9 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 
 | 技能类型 | 典型执行时间 |
 |
----
+* * *
 |
----
+* * *
 |
 | 数据库查询（简单） | 约 100 毫秒 |
 | 数据库查询（复杂关联） | 约 500 毫秒 |
@@ -281,11 +282,11 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 
 | 任务类别 | 无 Skills | 有 Skills |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据库设置 | 0%（Agent 编写代码但无法运行） | 100% |
 | 文件管理 | 30% | 95% |
@@ -298,7 +299,7 @@ npx skills@latest run custom-http --url https://api.example.com/users --method G
 
 一个 5 人初创团队使用 Skills 和 Claude Code 来自动化其整个开发工作流：
 
-```bash
+`````bash
 #!/bin/bash
 # 自动化每周部署管道
 npx skills@latest init
@@ -306,7 +307,7 @@ npx skills@latest add database deploy ci-cd docker
 
 # 触发完整管道
 npx skills@latest run ci-cd --action test --action build --action deploy --env production
-```
+`````
 
 该团队报告部署时间减少了 70%，其 AI Agent 能够在无需人工干预的情况下完成端到端任务。
 
@@ -314,11 +315,11 @@ npx skills@latest run ci-cd --action test --action build --action deploy --env p
 
 一名自由职业开发者使用 Skills 来管理多个客户项目：
 
-```bash
+`````bash
 # 导出客户专用技能
 npx skills@latest export --project client-a > client-a-skills.json
 npx skills@latest export --project client-b > client-b-skills.json
-```
+`````
 
 技能配置按客户导出和导入，保持环境隔离，同时在项目间复用通用技能。
 
@@ -326,52 +327,52 @@ npx skills@latest export --project client-b > client-b-skills.json
 
 ### 自定义技能插件开发（TypeScript）
 
-```bash
+`````bash
 npx skills@latest plugin scaffold my-plugin --type npm
-```
+`````
 
 生成的插件包括技能定义、测试文件、文档和 CI 管道。TypeScript 模板为技能定义和执行为类型安全。
 
 ### 生产配置验证
 
-```bash
+`````bash
 # 在部署前验证所有技能配置
 npx skills@latest validate
 
 # 输出验证报告
 npx skills@latest validate --format json --output validation-report.json
-```
+`````
 
 ### 基于 Docker 的技能执行
 
-```bash
+`````bash
 # 在隔离的 Docker 容器中运行技能
 docker run -it node:20-alpine npx skills@latest run database --query "SELECT 1"
-```
+`````
 
 ### 密钥管理集成
 
-```bash
+`````bash
 # 使用环境变量安全设置密钥
 npx skills@latest env set DB_PASSWORD "$(gopass show secrets/db-password)"
 npx skills@latest env set AWS_KEY "$(aws secretsmanager get-secret-value --secret-id aws-key --query SecretString --output text)"
-```
+`````
 
 ## 与替代方案比较
 
 | 功能 | Skills | OpenHands Tools | CrewAI Tools | AutoGen Tools |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 安装方式 | `npx skills@latest add` | pip install | pip install | pip install |
+| 安装方式 | ````npx skills@latest add```` | pip install | pip install | pip install |
 | 插件系统 | 是（CLI 优先） | 是（Python） | 是（Python） | 是（Python） |
 | Agent 支持 | Claude Code、Cursor、Gemini CLI、Codex | OpenHands | CrewAI Agents | AutoGen Agents |
 | 零配置 | 是 | 部分 | 否 | 否 |
@@ -409,7 +410,7 @@ Skills 以其简单性和广泛的 AI Agent 兼容性脱颖而出。虽然 OpenH
 
 **问：如何创建自定义技能？**
 
-答：使用 `npx skills@latest create my-skill` 生成模板，然后在生成的插件中实现技能逻辑。你也可以编写一个自定义 npm 包，使用 TypeScript `defineSkill` 辅助函数导出与 Skills 框架兼容的技能定义。
+答：使用 ````npx skills@latest create my-skill```` 生成模板，然后在生成的插件中实现技能逻辑。你也可以编写一个自定义 npm 包，使用 TypeScript ````defineSkill```` 辅助函数导出与 Skills 框架兼容的技能定义。
 
 **问：Skills 可以处理复杂的多步任务吗？**
 
@@ -427,11 +428,11 @@ Skills 以其简单性和广泛的 AI Agent 兼容性脱颖而出。虽然 OpenH
 
 Matt Pocock 的 Skills 框架解决了 AI 辅助开发中的一个根本问题：Agent 可以编写出色的代码，但如果没有合适的工具，它们无法执行代码。Skills 通过提供一个简单的可扩展插件系统来弥合这一鸿沟，赋予 AI Agent 真实能力——数据库访问、文件系统操作、CI/CD 管道、云部署以及更多内容。
 
-通过一条 `npx skills@latest add mattpocock/skills` 命令和一条 `npx skills@latest init`，你可以将你的 AI 编程 Agent 从代码生成器转变为功能齐全的开发者助手，能够真正完成端到端任务。
+通过一条 ````npx skills@latest add mattpocock/skills```` 命令和一条 ````npx skills@latest init````，你可以将你的 AI 编程 Agent 从代码生成器转变为功能齐全的开发者助手，能够真正完成端到端任务。
 
 为了大规模托管你的开发工具和基础设施，考虑在可靠的云提供商上部署。使用 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 获取开发服务器，[HTStack](https://my.htstack.com/aff.php?aff=27187) 用于生产托管，以及 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 用于数据中心和住宅代理。
 
-立即开始：`npx skills@latest add mattpocock/skills && npx skills@latest init`，赋予你的 AI Agent 它应得的超能力。
+立即开始：````npx skills@latest add mattpocock/skills && npx skills@latest init```，赋予你的 AI Agent 它应得的超能力。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
 
@@ -513,12 +514,12 @@ Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [agent-skills-production-workflows](mattpocock-skills-ai-agent-framework-guide)
@@ -527,7 +528,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
 - [personal-ai-infrastructure-daniel-miessler](mattpocock-skills-ai-agent-framework-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

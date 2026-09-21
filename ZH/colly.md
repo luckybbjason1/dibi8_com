@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/colly/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -32,7 +33,7 @@ aliases:
 
 ## 什么是 Colly？
 
-**Colly** 是一款优雅、极速的 Go 网页抓取和爬虫框架。它提供了一个干净的基于回调的 API，处理 HTTP 请求、HTML 解析、Cookie 管理、速率限制和并行执行——全部封装在一个 `Collector` 对象后面。该框架编译为静态二进制文件，零运行时依赖，是 DevOps 友好型抓取流水线的首选方案。
+**Colly** 是一款优雅、极速的 Go 网页抓取和爬虫框架。它提供了一个干净的基于回调的 API，处理 HTTP 请求、HTML 解析、Cookie 管理、速率限制和并行执行——全部封装在一个 ```Collector```` 对象后面。该框架编译为静态二进制文件，零运行时依赖，是 DevOps 友好型抓取流水线的首选方案。
 
 ## Colly 的工作原理
 
@@ -42,14 +43,14 @@ aliases:
 
 Colly 的架构围绕 **Collector** 构建——这是一个有状态的协调器，管理整个抓取生命周期。数据流如下：
 
-1. **Collector** 通过 `Visit()` 接收起始 URL
+1. **Collector** 通过 ````Visit()```` 接收起始 URL
 2. **HTTP 后端** 使用配置的 timeout、代理和 header 发起请求
-3. **响应** 触发已注册的回调（`OnHTML`、`OnResponse`、`OnError`）
+3. **响应** 触发已注册的回调（````OnHTML````、````OnResponse````、````OnError````）
 4. **HTMLElement** 使用类 goquery 选择器解析 DOM
 5. **队列** 处理 URL 调度以实现递归爬取
 6. **存储后端** 管理 Cookie、会话和缓存
 
-```
+`````
 ┌─────────────┐    HTTP GET     ┌──────────────┐
 │  Collector  │ ──────────────> │  目标站点     │
 │  (状态)      │ <────────────── │              │
@@ -65,7 +66,7 @@ Colly 的架构围绕 **Collector** 构建——这是一个有状态的协调�
 ┌─────────────┐
 │     队列     │ ──> 访问下一个 URL
 └─────────────┘
-```
+`````
 
 Collector 模式保持代码组织有序：你为特定 HTML 元素注册处理函数，让 Colly 自动管理并发、重试和抓取礼仪。
 
@@ -74,11 +75,11 @@ Collector 模式保持代码组织有序：你为特定 HTML 元素注册处理�
 ### 前置要求
 
 - 已安装 Go 1.21+
-- 一个可用的 Go 模块（`go mod init`）
+- 一个可用的 Go 模块（````go mod init````）
 
 ### 安装 Colly
 
-```bash
+`````bash
 # 初始化项目
 mkdir colly-scraper && cd colly-scraper
 go mod init github.com/youruser/colly-scraper
@@ -88,11 +89,11 @@ go get github.com/gocolly/colly/v2
 
 # 验证安装
 go list -m github.com/gocolly/colly/v2
-```
+`````
 
 ### 你的第一个抓取器
 
-```go
+`````go
 package main
 
 import (
@@ -120,17 +121,17 @@ func main() {
 
 	c.Visit("https://go-colly.org/")
 }
-```
+`````
 
 运行：
 
-```bash
+`````bash
 go run main.go
-```
+`````
 
 ### Docker 配置
 
-```dockerfile
+`````dockerfile
 FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
@@ -143,24 +144,24 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /app/scraper .
 CMD ["./scraper"]
-```
+`````
 
-```bash
+`````bash
 # 构建并运行
 docker build -t colly-scraper .
 docker run --rm colly-scraper
-```
+`````
 
 ### Docker Compose with Redis 缓存
 
-```yaml
+`````yaml
 version: '3.8'
 services: scraper: build: .
     depends_on: - redis
     environment: - REDIS_URL=redis:6379
   redis: image: redis:7-alpine
     volumes: - redis-data:/data
-  volumes: redis-data: ```
+  volumes: redis-data: `````
 
 ## 与流行工具的集成
 
@@ -168,7 +169,7 @@ services: scraper: build: .
 
 对于大规模爬取，使用 Redis 缓存避免冗余请求：
 
-```go
+`````go
 package main
 
 import (
@@ -200,13 +201,13 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### 通过 Webshare 进行代理轮换
 
 大规模抓取时，轮换代理可防止 IP 被封。[Webshare](https://www.webshare.io/) 提供与 Colly 无缝集成的住宅代理。
 
-```go
+`````go
 package main
 
 import (
@@ -237,13 +238,13 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### goquery 高级 DOM 遍历
 
-Colly 内置的 `HTMLElement` 涵盖了大多数场景，但 goquery 能解锁复杂的 DOM 导航：
+Colly 内置的 ````HTMLElement```` 涵盖了大多数场景，但 goquery 能解锁复杂的 DOM 导航：
 
-```go
+`````go
 package main
 
 import (
@@ -274,13 +275,13 @@ func main() {
 
 	c.Visit("https://news.ycombinator.com")
 }
-```
+`````
 
 ### chromedp 处理 JavaScript 渲染页面
 
 Colly 不执行 JavaScript。对于 SPA，将其与 chromedp 配对使用：
 
-```go
+`````go
 package main
 
 import (
@@ -319,25 +320,25 @@ func main() {
 	// 解析渲染后的 HTML...
 	fmt.Println("渲染后长度:", len(htmlContent))
 }
-```
+`````
 
 ## 基准测试 / 实际用例
 
 ### 吞吐量基准测试
 
-我们在 AWS `c6i.xlarge`（4 vCPU, 8GB RAM）上针对四个工具进行了抓取 1,000 个静态 HTML 页面的受控基准测试：
+我们在 AWS ````c6i.xlarge````（4 vCPU, 8GB RAM）上针对四个工具进行了抓取 1,000 个静态 HTML 页面的受控基准测试：
 
 | 工具 | 时间（1000 页面） | 内存占用 | 请求/秒 | 二进制体积 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Colly**（并行） | ~7秒 | 25 MB | ~1,200 | 12 MB |
 | **Colly**（同步） | ~52秒 | 20 MB | ~19 | 12 MB |
@@ -367,7 +368,7 @@ colly benchmark 关键观察：
 
 ### 速率限制与抓取礼仪
 
-```go
+`````go
 package main
 
 import (
@@ -394,11 +395,11 @@ func main() {
 
 	c.Visit("https://example.com/products")
 }
-```
+`````
 
 ### 基于 Redis 队列的分布式抓取
 
-```go
+`````go
 package main
 
 import (
@@ -431,11 +432,11 @@ func main() {
 	q.AddURL("https://example.com/start")
 	q.Run(c)
 }
-```
+`````
 
 ### 自定义 HTTP 后端与超时
 
-```go
+`````go
 package main
 
 import (
@@ -468,11 +469,11 @@ func main() {
 
 	c.Visit("https://example.com")
 }
-```
+`````
 
 ### 使用结构体标签提取结构化数据
 
-```go
+`````go
 package main
 
 import (
@@ -482,9 +483,9 @@ import (
 )
 
 type Product struct {
-	Name  string `selector:"h1.product-title"`
-	Price string `selector:"span.price"`
-	SKU   string `selector:"meta[itemprop=sku]" attr:"content"`
+	Name  string ````selector:"h1.product-title"````
+	Price string ````selector:"span.price"````
+	SKU   string ````selector:"meta[itemprop=sku]" attr:"content"````
 }
 
 func main() {
@@ -499,21 +500,21 @@ func main() {
 
 	c.Visit("https://shop.example.com/item/123")
 }
-```
+`````
 
 ## 与替代方案的比较
 
 | 特性 | Colly | Scrapy | Puppeteer | goquery |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **语言** | Go | Python | Node.js | Go |
 | **请求/秒**（单核） | 1,000+ | ~300 | ~3 | ~20 |
@@ -559,15 +560,15 @@ Colly 在原始吞吐量（1,000+ vs ~300 req/sec）和内存效率（25 MB vs 1
 
 ### 如何在多台机器上扩展 Colly？
 
-使用 Redis 支持的队列（`colly/queue`）在多个 worker 之间分发 URL。每个 worker 运行一个 Colly 实例，从共享队列消费并将结果写入中央数据库。在 Kubernetes 中添加 HPA 实现弹性容量。
+使用 Redis 支持的队列（````colly/queue````）在多个 worker 之间分发 URL。每个 worker 运行一个 Colly 实例，从共享队列消费并将结果写入中央数据库。在 Kubernetes 中添加 HPA 实现弹性容量。
 
 ### 哪些代理提供商与 Colly 配合最好？
 
-任何 HTTP 代理都可通过 `colly/proxy` 工作。[Webshare](https://www.webshare.io/) 提供与 Colly `RoundRobinProxySwitcher` 干净集成的住宅代理和轮换 IP 池。Bright Data 和 Oxylabs 是具有专属支持的企业级替代方案。
+任何 HTTP 代理都可通过 ````colly/proxy```` 工作。[Webshare](https://www.webshare.io/) 提供与 Colly ````RoundRobinProxySwitcher```` 干净集成的住宅代理和轮换 IP 池。Bright Data 和 Oxylabs 是具有专属支持的企业级替代方案。
 
 ### 如何避免抓取时被封锁？
 
-组合多种技术：通过 Colly 扩展轮换 User-Agent、添加随机延迟（`LimitRule` 中的 `RandomDelay`）、遵守 `robots.txt`、使用住宅代理、并随时间分布请求。永远不要超过目标站点的容量——监控响应码并在 429 错误时退避。
+组合多种技术：通过 Colly 扩展轮换 User-Agent、添加随机延迟（````LimitRule```` 中的 ````RandomDelay````）、遵守 ````robots.txt````、使用住宅代理、并随时间分布请求。永远不要超过目标站点的容量——监控响应码并在 429 错误时退避。
 
 ### Colly 适合抓取数百万页面吗？
 
@@ -575,14 +576,14 @@ Colly 在原始吞吐量（1,000+ vs ~300 req/sec）和内存效率（25 MB vs 1
 
 ### 如何调试 Colly 抓取器？
 
-使用 `colly.Debugger(&debug.LogDebugger{})` 启用调试日志以追踪每个请求/响应。使用 `OnError` 回调捕获和记录失败请求。对于复杂问题，附加带有请求/响应转储功能的自定义 HTTP 后端。
+使用 ````colly.Debugger(&debug.LogDebugger{})```` 启用调试日志以追踪每个请求/响应。使用 ````OnError```` 回调捕获和记录失败请求。对于复杂问题，附加带有请求/响应转储功能的自定义 HTTP 后端。
 
 ## 结论
 
 Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和单二进制部署故事。以 **25,302 个 GitHub Stars** 和 **每秒 1,000+ 请求**的速度，它在吞吐量和内存效率方面优于 Python 和 Node.js 替代方案。回调 API 直观，Redis 集成支持真正的分布式爬取，代理支持让你在规模上保持畅通。
 
 **入门行动项：**
-1. 克隆 [Colly GitHub 仓库](https://github.com/gocolly/colly)并运行 `_examples/` 文件夹
+1. 克隆 [Colly GitHub 仓库](https://github.com/gocolly/colly)并运行 ````_examples/``` 文件夹
 2. 使用上方 5 分钟配置构建你的第一个抓取器
 3. 在扩展到 1 万页之前添加 Redis 缓存和代理轮换
 4. 加入 [dibi8 Telegram 群组](https://t.me/dibi8_channel)参与 Go 抓取讨论和生产技巧分享
@@ -639,7 +640,7 @@ Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [headroom-token-compression-proxy-library-mcp-server](colly)
@@ -649,5 +650,5 @@ Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和�
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](colly)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

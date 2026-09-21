@@ -36,6 +36,7 @@ faqs: - q: 'Ladybird 브라우저란 무엇인가요?'
     a: 'GitHub 저장소를 클론한 후 의존성(Ubuntu/Debian 기준: build-essential, cmake, ninja-build)을 설치하고, CMake와 Ninja로 빌드한 뒤 ./bin/Ladybird를 실행하면 소스에서 직접 빌드할 수 있습니다. 실험적인 Docker 이미지도 제공됩니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## Ladybird란?
@@ -47,7 +48,7 @@ faqs: - q: 'Ladybird 브라우저란 무엇인가요?'
 **언어**: C++
 **라이선스**: BSD-2-Clause
 
----
+* * *
 
 ## 브라우저 독점 문제
 
@@ -72,7 +73,7 @@ faqs: - q: 'Ladybird 브라우저란 무엇인가요?'
 4. **보안**: 단일 엔진 = 단일 실패 지점
 5. **자유**: 기업 이익 vs 사용자 이익
 
----
+* * *
 
 ## Ladybird의 접근 방식
 
@@ -86,7 +87,7 @@ Ladybird는 Chromium이나 Firefox를 포크하지 않습니다. 모든 것을 �
 
 ### 아키텍처
 
-```
+````
 사용자 요청
     ↓
 네트워크 레이어 (LibHTTP)
@@ -96,9 +97,9 @@ HTML 파서 (LibWeb)
 DOM 트리 → CSS 파서 → 스타일 계산
     ↓
 레이아웃 엔진 → 렌더링 → 디스플레이
-```
+`````
 
----
+* * *
 
 ## 주요 기능
 
@@ -126,7 +127,7 @@ DOM 트리 → CSS 파서 → 스타일 계산
 - 빠른 시작 시간
 - 효율적인 렌더링
 
----
+* * *
 
 ## 개발 상태
 
@@ -152,13 +153,13 @@ DOM 트리 → CSS 파서 → 스타일 계산
 - **100+ 기여자**
 - **일일 커밋**
 
----
+* * *
 
 ## Ladybird 사용 방법
 
 ### 소스에서 빌드
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/LadybirdBrowser/ladybird.git
 cd ladybird
@@ -173,16 +174,16 @@ ninja
 
 # 실행
 ./bin/Ladybird
-```
+`````
 
 ### Docker (실험적)
 
-```bash
+`````bash
 docker pull ladybird/browser
 docker run -it ladybird/browser
-```
+````
 
----
+* * *
 
 ## 왜 Ladybird가 중요한가
 
@@ -204,7 +205,7 @@ docker run -it ladybird/browser
 - **혁신**: 경쟁이 발전을 주도
 - **탄력성**: 단일 실패 지점 없음
 
----
+* * *
 
 ## 다른 브라우저와 비교
 
@@ -227,7 +228,7 @@ docker run -it ladybird/browser
 | 현대성 | 새로운 시작 | 기술 부채 |
 | 자금 | 커뮤니티 | Mozilla Corp |
 
----
+* * *
 
 ## Ladybird 뒤에 있는 팀
 
@@ -243,7 +244,7 @@ docker run -it ladybird/browser
 - 자원봉사자 주도
 - 투명한 거버넌스
 
----
+* * *
 
 ## 관련 기사
 
@@ -251,11 +252,11 @@ docker run -it ladybird/browser
 - [Free Claude Code: 오픈소스 AI 코딩](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) — 개발자 도구
 - [Polymarket Agents: AI 트레이딩 봇](/kr/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — 금융의 AI
 
----
+* * *
 
 *면책 조항: Ladybird는 활발히 개발 중이며 아직 일상 사용을 위한 준비가 되지 않았습니다. 본 문서는 브라우저 독점에 맞서는 중요한 오픈소스 프로젝트를 소개합니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -327,7 +328,7 @@ Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

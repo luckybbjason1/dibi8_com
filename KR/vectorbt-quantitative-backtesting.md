@@ -12,13 +12,14 @@ aliases:
   - /kr/posts/vectorbt-quantitative-backtesting/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 왜 당신의 백테스팅은 너무 느린가
 
 50개 종목에 대한 10년분 OHLCV 데이터를 반복 처리하는 pandas 기반 백테스트를 완료하는 데 20분을 기다려본 적이 있다면", "당신은 혼자가 아닙니다. 2025년 퀀트 금융 설문조사에서 **소매 퀀트의 73%가 백테스트 결과를 분석하는 것보다 백테스트를 기다리는 데 더 많은 시간을 소비**한다고 밝혔습니다. Zipline이나 Backtrader와 같은 이벤트 기반 백테스터는 현실성 면에서 탁월하지만", "수천 가지 매개변수 조합을 테스트해야 할 때는 기어가다시피 합니다.
 
-VectorBT를 소개합니다 — 파이썬 백테스팅을 벡터화된 계산 문제로 재구상한 라이브러리입니다. **NumPy 배열과 Numba JIT 컴파일**을 활용하여 VectorBT는 단일 CPU 코어에서 **초당 100만 건 이상의 거래**를 처리합니다. GitHub 저장소 `polakowo/vectorbt`는 **8", "900개 이상의 스타**를 누적했으며 Oleg Polakowo가 Apache-2.0 라이선스 하에 유지보수합니다. 2026년 5월 기준 v0.27.2 릴리스는 Python 3.9+를 지원하며 pandas", "Plotly", "scikit-learn과 완벽하게 통합됩니다.
+VectorBT를 소개합니다 — 파이썬 백테스팅을 벡터화된 계산 문제로 재구상한 라이브러리입니다. **NumPy 배열과 Numba JIT 컴파일**을 활용하여 VectorBT는 단일 CPU 코어에서 **초당 100만 건 이상의 거래**를 처리합니다. GitHub 저장소 ```polakowo/vectorbt````는 **8", "900개 이상의 스타**를 누적했으며 Oleg Polakowo가 Apache-2.0 라이선스 하에 유지보수합니다. 2026년 5월 기준 v0.27.2 릴리스는 Python 3.9+를 지원하며 pandas", "Plotly", "scikit-learn과 완벽하게 통합됩니다.
 
 이 가이드는 설치", "핵심 개념", "실제 코드 예제", "프로덕션 강화", "그리고 정직한 한계를 다룹니다. 간단한 이동평균선 크로스오버를 테스트하든 전체 워크포워드 최적화 파이프라인을 실행하든", "VectorBT는 백테스팅 속도에 대한 당신의 생각을 바꿀 것입니다.
 
@@ -30,17 +31,17 @@ VectorBT(Vector Backtesting)는 **이벤트 기반 루프 대신 벡터화된 �
 
 VectorBT의 속도는 세 가지 아키텍처적 결정에서 나옵니다: ### NumPy-First 데이터 표현
 
-모든 가격 데이터는 NumPy ndarray로 존재합니다. 100개 자산에 대한 10년 일일 데이터 DataFrame은 형태 `(2", "520", "100)`의 2D 배열이 됩니다 —— 연간 약 252 거래일. 핫 패스 어디에서도 행 단위 반복이 일어나지 않습니다.
+모든 가격 데이터는 NumPy ndarray로 존재합니다. 100개 자산에 대한 10년 일일 데이터 DataFrame은 형태 ````(2", "520", "100)````의 2D 배열이 됩니다 —— 연간 약 252 거래일. 핫 패스 어디에서도 행 단위 반복이 일어나지 않습니다.
 
 ### Numba JIT 컴파일
 
-핵심 경로 함수는 Numba의 `@njit`으로 데코레이션되어 런타임에 Python을 머신 코드로 컴파일합니다. 원시 pandas에서 12초가 걸리는 이동평균선 크로스오버가 VectorBT에서는 **0.03초**로 줄어듭니다.
+핵심 경로 함수는 Numba의 ````@njit````으로 데코레이션되어 런타임에 Python을 머신 코드로 컴파일합니다. 원시 pandas에서 12초가 걸리는 이동평균선 크로스오버가 VectorBT에서는 **0.03초**로 줄어듭니다.
 
 ### 매개변수 그리드 브로드캐스팅
 
-VectorBT의 `vbt` 모듈은 신호 생성 함수를 매개변수 조합에 자동으로 브로드캐스트할 수 있습니다. 50개 윈도우 크기 × 10개 자산 × 2개 진입 규칙을 테스트하는 것은 중첩 for 루프가 필요 없습니다 —— 단일 텐서 연산이 됩니다.
+VectorBT의 ````vbt```` 모듈은 신호 생성 함수를 매개변수 조합에 자동으로 브로드캐스트할 수 있습니다. 50개 윈도우 크기 × 10개 자산 × 2개 진입 규칙을 테스트하는 것은 중첩 for 루프가 필요 없습니다 —— 단일 텐서 연산이 됩니다.
 
-```python
+`````python
 import vectorbt as vbt
 import numpy as np
 import pandas as pd
@@ -52,26 +53,26 @@ price = vbt.YFData.download(
 
 print(f"Data shape: {price.shape}")  # (2", "210", ") — 일일 종가
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
-```
+`````
 
 ## 설치 및 설정: 5분 안에 완료
 
 VectorBT는 pip를 통해 깔끔하게 설치됩니다. 기본 패키지에는 Numba", "NumPy", "pandas 통합이 포함됩니다. 선택적 의존성은 yfinance 데이터 가져오기와 Plotly 차트 기능을 추가합니다.
 
-```bash
+`````bash
 # 기본 설치
 pip install vectorbt
 
 # 모든 선택적 의존성 포함 (권장)
 pip install "vectorbt[all"]"
-```
+`````
 
-설치 확인: ```python
+설치 확인: `````python
 import vectorbt as vbt
 print(vbt.__version__)  # 0.27.2 이상
-```
+`````
 
-재현성을 위해 환경을 고정하세요: ```bash
+재현성을 위해 환경을 고정하세요: `````bash
 # requirements.txt
 vectorbt==0.27.2
 numba==0.60.0
@@ -79,17 +80,17 @@ numpy==1.26.4
 pandas==2.2.3
 yfinance==0.2.54
 plotly==5.24.1
-```
+`````
 
-macOS의 일반적인 설치 문제: Numba는 `llvmlite`가 필요하며, 이는 Xcode Command Line Tools가 필요합니다: ```bash
+macOS의 일반적인 설치 문제: Numba는 ``llvmlite``가 필요하며, 이는 Xcode Command Line Tools가 필요합니다: `````bash
 xcode-select --install  # Numba 설치가 실패하면 먼저 실행
-```
+`````
 
 ## 첫 번째 백테스트: 이동평균선 크로스오버
 
 가장 간단한 실용 전략을 구축해 봅시다: 20일 SMA가 50일 SMA 위로 교차할 때 롱 진입, 반대 교차 시 청산.
 
-```python
+`````python
 import vectorbt as vbt
 import pandas as pd
 
@@ -121,13 +122,13 @@ portfolio = vbt.Portfolio.from_signals(
 # 결과
 print(portfolio.total_return())
 print(portfolio.sharpe_ratio())
-```
+`````
 
 3개 자산에 대한 6년 데이터가 **2초 이내**에 완료됩니다. Backtrader에서 동일한 백테스트는 약 **90초**가 걸립니다.
 
 ## 매개변수 최적화: 워프 속도의 그리드 서치
 
-VectorBT의 진정한 힘이 드러나는 것은 매개변수를 스윕할 때입니다. 5부터 200까지의 MA 윈도우를 테스트해 봅시다: ```python
+VectorBT의 진정한 힘이 드러나는 것은 매개변수를 스윕할 때입니다. 5부터 200까지의 MA 윈도우를 테스트해 봅시다: `````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2020-01-01", end="2026-01-01").get("Close")
@@ -156,13 +157,13 @@ portfolio = vbt.Portfolio.from_signals(
 best_idx = portfolio.sharpe_ratio().idxmax()
 print(f"Best params: {best_idx}")
 print(f"Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}")
-```
+`````
 
 **180개 매개변수 조합**의 이 그리드가 M2 MacBook Air에서 약 **3.5초**에 평가됩니다. 이는 **초당 50개 조합**입니다.
 
 ## 워크포워드 분석: 강건한 전략 검증
 
-단일 기간에 대한 백테스팅은 오버피팅을 유발합니다. 워크포워드 분석(WFA)은 데이터를 샘플 내 트레이닝과 샘플 외 테스트 윈도우로 분할합니다. VectorBT는 날짜 슬라이싱을 통한 `Portfolio.from_signals`로 이를 구현합니다: ```python
+단일 기간에 대한 백테스팅은 오버피팅을 유발합니다. 워크포워드 분석(WFA)은 데이터를 샘플 내 트레이닝과 샘플 외 테스트 윈도우로 분할합니다. VectorBT는 날짜 슬라이싱을 통한 ``Portfolio.from_signals``로 이를 구현합니다: `````python
 import vectorbt as vbt
 from datetime import datetime
 import pandas as pd
@@ -219,13 +220,13 @@ for i in range(n_splits): # 트레인/테스트 윈도우 정의
 
 results_df = pd.DataFrame(results)
 print(results_df[["test_sharpe", "test_return"]].mean())
-```
+`````
 
 샘플 외 평균 샤프 비율이 0.5 미만이면 전략이 강건하지 않음을 시사합니다 —— 샘플 내 성과에 관계없이.
 
 ## 머신러닝과의 통합
 
-VectorBT는 ML 기반 신호를 위해 scikit-learn과 자연스럽게 페어링됩니다. 다음 날 방향을 예측하는 분류기를 훈련한 다음, 예측을 VectorBT에 공급하여 현실적인 실행 시뮬레이션을 수행합니다: ```python
+VectorBT는 ML 기반 신호를 위해 scikit-learn과 자연스럽게 페어링됩니다. 다음 날 방향을 예측하는 분류기를 훈련한 다음, 예측을 VectorBT에 공급하여 현실적인 실행 시뮬레이션을 수행합니다: `````python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -281,11 +282,11 @@ ml_portfolio = vbt.Portfolio.from_signals(
 print(f"ML Strategy Return: {ml_portfolio.total_return():.2%}")
 print(f"ML Strategy Sharpe: {ml_portfolio.sharpe_ratio():.2f}")
 print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}")
-```
+`````
 
 ## VectorBT를 활용한 포트폴리오 최적화
 
-VectorBT PRO(유료 버전, $299/년)는 마코위츠 평균-분산 및 Black-Litterman 모델을 통한 포트폴리오 수준 최적화를 추가합니다. 오픈소스 버전도 다중 자산 가중치를 지원합니다: ```python
+VectorBT PRO(유료 버전, $299/년)는 마코위츠 평균-분산 및 Black-Litterman 모델을 통한 포트폴리오 수준 최적화를 추가합니다. 오픈소스 버전도 다중 자산 가중치를 지원합니다: `````python
 import vectorbt as vbt
 import numpy as np
 
@@ -317,7 +318,7 @@ portfolio = vbt.Portfolio.from_holding(
 print(f"\nCAGR: {portfolio.total_return() ** (1/4) - 1:.2%}")
 print(f"Sharpe: {portfolio.sharpe_ratio():.2f}")
 print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
-```
+`````
 
 주요 거래소에서의 실제 트레이딩을 위해 API를 통해 계정을 연결하세요. Binance는 암호화폐 알고리즘 트레이딩을 위한 깊은 유동성과 낮은 수수료를 제공합니다 —— [여기서 가입](https://www.bsmkweb.cc/register?ref=DIBI8). 파생상품과 고급 주문 유형의 경우 [OKX](https://www.promoohubly.com/join/12190433)는 기관 수준 API를 제공합니다.
 
@@ -342,7 +343,7 @@ print(f"Max Drawdown: {portfolio.max_drawdown():.2%}")
 
 ### 사용자 정의 지표
 
-VectorBT의 `IndicatorFactory`는 모든 함수를 벡터화된 지표로 변환합니다: ```python
+VectorBT의 ``IndicatorFactory``는 모든 함수를 벡터화된 지표로 변환합니다: `````python
 import vectorbt as vbt
 import numpy as np
 from numba import njit
@@ -367,11 +368,11 @@ CustomMomentum = vbt.IF(
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
 cm = CustomMomentum.run(price, period=[7, 14, 30])
 print(cm.momentum)
-```
+`````
 
 ### 리스크 관리: 스톱로스와 테이크프로핏
 
-```python
+`````python
 import vectorbt as vbt
 
 price = vbt.YFData.download("BTC-USD", start="2023-01-01").get("Close")
@@ -392,11 +393,11 @@ portfolio = vbt.Portfolio.from_signals(
 print(f"Return: {portfolio.total_return():.2%}")
 print(f"Win rate: {portfolio.trades.win_rate():.2%}")
 print(f"Avg trade: {portfolio.trades.returns.mean():.2%}")
-```
+`````
 
 ### 병렬 실행
 
-VectorBT의 텐서 연산은 이미 단일 코어를 포화시킵니다. 멀티코어 확장을 위해 매개변수 그리드를 프로세스 간에 분할합니다: ```python
+VectorBT의 텐서 연산은 이미 단일 코어를 포화시킵니다. 멀티코어 확장을 위해 매개변수 그리드를 프로세스 간에 분할합니다: `````python
 from multiprocessing import Pool
 import vectorbt as vbt
 import numpy as np
@@ -414,7 +415,7 @@ params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.re
 chunks = np.array_split(params, 4)
 
 with Pool(4) as p: results = p.map(run_chunk, chunks)
-```
+`````
 
 ## 대안과의 비교
 
@@ -444,7 +445,7 @@ VectorBT는 만능 솔루션이 아닙니다. 다음은 그것이 하지 못하�
 
 2. **벡터화된 근사.** 벡터화된 모델은 기본적으로 동일 봉의 종가에 주문을 체결합니다. 실제 슬리피지와 시장 충격은 틱 단위로 시뮬레이션되는 것이 아니라 근사됩니다. 고주파 전략은 왜곡된 결과를 보게 됩니다.
 
-3. **대규모 그리드에서 메모리 폭발.** 각 차원에 50개 값을 가진 5D 매개변수 그리드는 3.12억 개의 조합을 생성합니다. 이는 RAM을 빠르게 고갈시킵니다. `chunk_size` 매개변수나 PRO의 디스크 기반 배열을 사용하세요.
+3. **대규모 그리드에서 메모리 폭발.** 각 차원에 50개 값을 가진 5D 매개변수 그리드는 3.12억 개의 조합을 생성합니다. 이는 RAM을 빠르게 고갈시킵니다. ````chunk_size```` 매개변수나 PRO의 디스크 기반 배열을 사용하세요.
 
 4. **단일 자산 중심.** 다중 자산 리밸런싱 로직은 가능하지만 PyPortfolioOpt와 같은 전용 포트폴리오 최적화기만큼 직관적이지 않습니다.
 
@@ -476,7 +477,7 @@ VectorBT는 Python 반복을 완전히 피하기 때문에 일반적으로 원�
 
 **VectorBT는 공매도를 지원하나요?**
 
-예. `Portfolio.from_signals`에서 `direction="short"`을 설정하거나, 페어 트레이딩 전략의 경우 `direction="both"`를 사용하세요. 공매도에는 증거금과 대여 비용 모델링이 포함됩니다.
+예. ````Portfolio.from_signals````에서 ````direction="short"````을 설정하거나, 페어 트레이딩 전략의 경우 ````direction="both"```를 사용하세요. 공매도에는 증거금과 대여 비용 모델링이 포함됩니다.
 
 **암호화폐 데이터를 시작하려면 어떻게 하나요?**
 

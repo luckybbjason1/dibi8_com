@@ -27,6 +27,7 @@ aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---
 
+
 Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/월 + OpenAI API 충전 $120/월 내고 있다면 AI 코딩 월 지출이 **$289/월**입니다. 12개월이면 **$3,468** — 소유하지도, 감사하지도 못하고, 예고 없이 rate-limit 되거나 끊길 수 있는 도구들에 들어가는 돈.
 
 이 컬렉션은 **7컴포넌트 셀프호스트 대안**을 조립합니다. **$6/월 VPS** 위에서 돌며 SaaS 기능 세트의 90%+를 매칭합니다. 지난 90일간 각 컴포넌트의 심층 가이드를 게시했고, 이 페이지는 **완전한 스택 조립** — 무엇을 설치하고, 어떤 순서로, 어떤 config로, 그리고 $6 tier를 벗어날 때 업그레이드 경로까지.
@@ -55,7 +56,7 @@ Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/�
 
 ## 2. 아키텍처 개요
 
-```
+````
                   ┌─────────────────────────────┐
                   │   당신 머신 / VPS ($6)       │
                   │                             │
@@ -82,7 +83,7 @@ Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/�
 
       MCP servers (filesystem + git + memory + tavily-search)
       claude_desktop_config.json 통해 OpenCode에 마운트
-```
+`````
 
 패턴: **OpenCode가 에디터 두뇌, LiteLLM이 교통 경찰, 9Router가 압축, MCP servers가 세계 노출.** 어떤 컴포넌트도 다른 거 안 건드리고 교체 가능.
 
@@ -92,10 +93,10 @@ Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/�
 
 **왜 이거**: MCP 네이티브 지원하는 오픈소스 에이전트. 동일 리팩토링 작업(400줄 React 컴포넌트)에서 OpenCode + DeepSeek-V4 = 18초 $0.007. Claude Code (Sonnet) = 12초 $0.14. 20배 저렴, 5% 느림.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 npm install -g @opencode-ai/opencode
 opencode --version  # 1.x
-```
+`````
 
 LiteLLM 게이트웨이(다음 컴포넌트) 가리키도록 config 설정, 끝.
 
@@ -107,11 +108,11 @@ LiteLLM 게이트웨이(다음 컴포넌트) 가리키도록 config 설정, 끝.
 
 **왜 이거**: 137k star. 싱글 바이너리 설치. Llama 3.2 3B가 5년 된 M1 MacBook 8GB RAM에서 22 tok/sec. Qwen 3 Coder 14B는 16GB M 시리즈 Mac 또는 32GB Linux에서 편하게.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull qwen3-coder:14b
 ollama serve  # :11434 OpenAI 호환 API 노출
-```
+`````
 
 LiteLLM이 Ollama를 provider로 자동 인식.
 
@@ -123,14 +124,14 @@ LiteLLM이 Ollama를 provider로 자동 인식.
 
 **왜 이거**: 47.8k star, LLM 게이트웨이 중 star 1위. 1k RPS에서 P95 8ms. 셀프호스트 무료. 상세 비교는 [Portkey vs LiteLLM vs OpenRouter 2026 가이드](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 참조.
 
-**4GB VPS에 빠른 배포** (중국 본토 sub-30ms는 {{< aff "htstack" "stack-vps" "HTStack 홍콩 VPS" >}}, 그 외엔 {{< aff "digitalocean" "stack-droplet" "DigitalOcean $6 droplet" >}}): ```bash
+**4GB VPS에 빠른 배포** (중국 본토 sub-30ms는 {{< aff "htstack" "stack-vps" "HTStack 홍콩 VPS" >}}, 그 외엔 {{< aff "digitalocean" "stack-droplet" "DigitalOcean $6 droplet" >}}): `````bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
   -e DEEPSEEK_API_KEY=$DEEPSEEK_KEY \
   -e ANTHROPIC_API_KEY=$CLAUDE_KEY \
   ghcr.io/berriai/litellm:main-stable
-```
+`````
 
 **전체 셋업** (가상 키, 지출 추적, 페일오버 규칙) — [LiteLLM 프로덕션 게이트웨이 2026](/kr/resources/llm-frameworks/litellm/) 참조.
 
@@ -140,26 +141,26 @@ docker run -d --name litellm -p 4000:4000 \
 
 **왜 중요한가**: 코딩 에이전트는 병적인 토큰 소비자 — 매 턴 전체 코드베이스 컨텍스트 전송. Claude Sonnet 입력 $3/M token, 빠르게 쌓임. 9Router의 RTK(Repetition-Token Compression)는 이 워크로드 전용으로 설계된 유일한 프록시.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=anthropic,openai,gemini,deepseek \
   ghcr.io/rtk-ai/9router:latest
-```
+`````
 
-LiteLLM의 premium provider 엔드포인트를 직접 대신 `localhost:9999`로 가리키게.
+LiteLLM의 premium provider 엔드포인트를 직접 대신 ````localhost:9999````로 가리키게.
 
 **전체 셋업**: [9Router 스마트 프록시 가이드](/kr/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/).
 
 ## 7. 컴포넌트 5 — 메모리 레이어 (mem0 + AgentMemory MCP)
 
-**역할**: 코딩 세션 간 영구 시맨틱 메모리. "Tailwind v4 쓰고 auth는 `src/lib/auth.ts`에 있다는 거 기억해" — 다음 주 월요일에도 에이전트가 기억함.
+**역할**: 코딩 세션 간 영구 시맨틱 메모리. "Tailwind v4 쓰고 auth는 ````src/lib/auth.ts````에 있다는 거 기억해" — 다음 주 월요일에도 에이전트가 기억함.
 
 **왜 이거**: mem0는 30k+ star의 오픈소스 시맨틱 메모리 레이어. AgentMemory는 그걸 임의의 MCP host(OpenCode / Claude Desktop / Cursor)에 노출하는 MCP server.
 
-**빠른 설치**: ```bash
+**빠른 설치**: `````bash
 npm install -g @mem0/mem0-mcp
 # OpenCode MCP config에 추가: # { "agentmemory": { "command": "mem0-mcp", "args": [] } }
-```
+`````
 
 **전체 셋업** (임베딩 모델 선택 + 벡터 DB 고르기) — [AgentMemory MCP 가이드](/kr/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/) 참조.
 
@@ -167,11 +168,11 @@ npm install -g @mem0/mem0-mcp
 
 **역할**: 에이전트에 눈과 손 주기. 프로젝트 파일 읽기, git 히스토리 확인, 웹 검색 — 모두 MCP 프로토콜 경유.
 
-**최소 세트**: - `modelcontextprotocol/server-filesystem` (Anthropic reference)
-- `modelcontextprotocol/server-git` (Anthropic reference)
-- `tavily-mcp` (LLM 포맷된 웹 검색 결과)
+**최소 세트**: - ````modelcontextprotocol/server-filesystem```` (Anthropic reference)
+- ````modelcontextprotocol/server-git```` (Anthropic reference)
+- ````tavily-mcp```` (LLM 포맷된 웹 검색 결과)
 
-**빠른 설치** (3개 모두 OpenCode `claude_desktop_config.json`에 추가): ```json
+**빠른 설치** (3개 모두 OpenCode ``claude_desktop_config.json``에 추가): `````json
 {
   "mcpServers": {
     "filesystem": {
@@ -189,7 +190,7 @@ npm install -g @mem0/mem0-mcp
     }
   }
 }
-```
+`````
 
 Tavily는 월 1,000 검색 무료 tier로 $6 예산 안에 충분.
 
@@ -199,7 +200,7 @@ Tavily는 월 1,000 검색 무료 tier로 $6 예산 안에 충분.
 
 **역할**: 특정 작업에 Claude Code 네이티브로 쓰고 싶을 때 — 또는 Codex로 Rust 속도 점프 — CC Switch는 1-click 스왑. 싱글 config, 모든 AI CLI가 MCP servers 공유.
 
-**왜 이거**: 75k star Rust + Tauri 데스크톱 앱, 5개 다른 CLI를 위해 5개 별도 `~/.claude_desktop_config.json` 유지 안 해도 됨.
+**왜 이거**: 75k star Rust + Tauri 데스크톱 앱, 5개 다른 CLI를 위해 5개 별도 ````~/.claude_desktop_config.json```` 유지 안 해도 됨.
 
 **빠른 설치**: [farion1231/cc-switch releases](https://github.com/farion1231/cc-switch/releases)에서 다운로드, 각 CLI를 한 번 클릭으로 설정.
 
@@ -208,12 +209,12 @@ Tavily는 월 1,000 검색 무료 tier로 $6 예산 안에 충분.
 ## 10. 조립 순서 — Day 1 셋업 (90분)
 
 처음부터 시작한다면 이 순서로: 1. **인프라 띄우기** (15분) — {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}} 주문, Docker 설치, 포트 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama) 열기
-2. **Ollama 먼저** (10분) — 설치 + `qwen3-coder:14b` 풀 (~9 GB). `curl localhost:11434/api/tags` 동작 확인
-3. **LiteLLM 두 번째** (15분) — 5절 env vars로 docker run. `curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"`로 Ollama 모델 나열 확인
+2. **Ollama 먼저** (10분) — 설치 + ````qwen3-coder:14b```` 풀 (~9 GB). ````curl localhost:11434/api/tags```` 동작 확인
+3. **LiteLLM 두 번째** (15분) — 5절 env vars로 docker run. ````curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"````로 Ollama 모델 나열 확인
 4. **9Router 세 번째** (10분) — 옵션이지만 추천. LiteLLM premium provider config에 추가
-5. **OpenCode 네 번째** (15분) — 로컬 설치, `https://your-vps:4000/v1` LiteLLM 가리킴, 기본 prompt 테스트
+5. **OpenCode 네 번째** (15분) — 로컬 설치, ````https://your-vps:4000/v1```` LiteLLM 가리킴, 기본 prompt 테스트
 6. **MCP servers 다섯 번째** (15분) — filesystem + git + tavily를 OpenCode config에 추가. "이 repo의 파일 나열해" 물어 테스트
-7. **mem0 + AgentMemory 여섯 번째** (10분) — `npm i -g mem0-mcp`, config에 추가, "Tailwind v4 쓴다는 거 기억해" 말하기
+7. **mem0 + AgentMemory 여섯 번째** (10분) — ````npm i -g mem0-mcp```, config에 추가, "Tailwind v4 쓴다는 거 기억해" 말하기
 8. **CC Switch 마지막** (옵션) — 네이티브 Claude Code / Codex 병행 원할 때만
 
 이제 $289/월 SaaS 번들의 90%를 매칭하는 $6/월 AI 코딩 스택 보유.
@@ -258,7 +259,7 @@ $6 tier를 벗어날 때 (1명 이상 dev / 1개 이상 프로젝트 / 영구 �
 
 AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전. {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}} 띄우고 10절 따라가서 다음 주에 결과 보고.
 
----
+* * *
 
 *이 페이지 북마크 — 새 오픈소스 릴리스 따라 분기별 컴포넌트 선택 업데이트. 마지막 업데이트: 2026-05-21.*
 
@@ -288,7 +289,7 @@ AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전. {{
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -298,7 +299,7 @@ AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전. {{
 - [2026-06-08-trending-ai-agents](self-hosted-ai-coding-workflow)
 - [2026-06-15-trending-ai-agents](self-hosted-ai-coding-workflow)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

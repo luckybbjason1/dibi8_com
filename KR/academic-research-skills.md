@@ -14,6 +14,7 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
+
 ## TL;DR
 
 학술 연구 스킬은 Claude Code를 논문 검색, 핵심 결과 추출, 문헌 종합, 포괄적 검토 생성이 가능한 연구 어시스턴트로 변환합니다. 31,628 스타를 달성하며 학술 연구에서 가장 시간이 많이 소요되는 부분을 자동화합니다.
@@ -30,19 +31,19 @@ featureImage: /images/articles/academic-research-skills-automate-literature-revi
 - **종합 엔진** — 여러 논문에서 발견된 결과를 구조화된 요약으로 통합
 - **문헌 검토 작성기** — 적절한 인용과 함께 출판 준비 완료 문헌 검토 생성
 
-```bash
+````bash
 # 학술 연구 스킬 설치
 npx skills add https://github.com/Imbad0202/academic-research-skills
 
 # 사용 가능한 연구 스킬 목록
 npx skills list | grep research
-```
+`````
 
 ## 연구 파이프라인 작동 방식
 
-연구 파이프라인은 각 스킬의 출력이 다음으로 이어지는 방향성 비순환 그래프(DAG)로 동작합니다: ```
+연구 파이프라인은 각 스킬의 출력이 다음으로 이어지는 방향성 비순환 그래프(DAG)로 동작합니다: `````
 질문 → 검색 → 필터링 → 추출 → 분석 → 종합 → 작성
-```
+`````
 
 1. **질문 formulation** — 연구 질문이나 주제를 제공
 2. **데이터베이스 검색** — 검색 스킬이 여러 학술 데이터베이스에 동시에 질의
@@ -52,7 +53,7 @@ npx skills list | grep research
 6. **교차 논문 종합** — 모든 논문의 발견 결과를 비교 및 종합
 7. **검토 생성** — 적절한 인용과 함께 구조화된 문헌 검토 작성
 
-```bash
+`````bash
 # 예시: "transformer 효율성" 연구 파이프라인
 # 1단계: 검색
 python3 scripts/search.py --query "transformer model efficiency optimization" --databases arxiv,pubmed --max-results 50
@@ -65,11 +66,11 @@ python3 scripts/extract.py --papers filtered_papers.json --fields methods,result
 
 # 4단계: 종합
 python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md
-```
+`````
 
 ## 설치 및 설정
 
-학술 연구 스킬 설정에는 Python 3.10+와 학술 데이터베이스 API 접근 권한이 필요합니다: ```bash
+학술 연구 스킬 설정에는 Python 3.10+와 학술 데이터베이스 API 접근 권한이 필요합니다: `````bash
 # 레포지토리 클론
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -81,7 +82,7 @@ pip install -r requirements.txt
 # API 키 구성
 cp config.example.yaml config.yaml
 # config.yaml를 편집하여 API 키 입력
-```
+`````
 
 ### 필요한 API 키
 
@@ -93,9 +94,9 @@ cp config.example.yaml config.yaml
 || **Crossref** | 인용 메타데이터 | 무제한 |
 || **DOI Resolver** | 논문 DOI 조회 | 무제한 |
 
-각 API 키는 `config.yaml`의 해당 서비스 섹션에 구성됩니다. 시스템은 시작 시 모든 키를 검증하고 연구 파이프라인 시작 전에 실패를 보고합니다.
+각 API 키는 ````config.yaml````의 해당 서비스 섹션에 구성됩니다. 시스템은 시작 시 모든 키를 검증하고 연구 파이프라인 시작 전에 실패를 보고합니다.
 
-```bash
+`````bash
 # API 키 구성 확인
 python3 scripts/verify_config.py
 
@@ -108,13 +109,13 @@ resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', par
 })
 print(f'Status: {resp.status_code}, Results: {len(resp.json().get("data", []))}')
 "
-```
+`````
 
 ### Docker 배포
 
 반복 가능한 연구 환경을 위해 학술 연구 스킬은 모든 의존성과 API 클라이언트를 단일 컨테이너에 번들한 공식 Docker 이미지를 제공합니다.
 
-```bash
+`````bash
 # Docker 이미지 빌드
 docker build -t research-skills:latest .
 
@@ -125,7 +126,7 @@ docker run -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
 # GPU 지원 PDF OCR으로 실행
 docker run --gpus all -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
   python3 scripts/extract.py --papers papers.json --with-ocr
-```
+`````
 
 Docker 이미지에는 스캔 문서 처리용 tesseract-ocr와 PDF 텍스트 추출용 poppler-utils가 포함되어 있습니다.
 
@@ -139,17 +140,17 @@ Docker 이미지에는 스캔 문서 처리용 tesseract-ocr와 PDF 텍스트 �
 || **Obsidian** | Markdown 볼트 동기화 | 지식 관리 |
 || **Connected Papers** | API 통합 | 인용 시각화 |
 
-```bash
+`````bash
 # 연구 결과를 Zotero 호환 CSV로 내보내기
 python3 scripts/export.py --format zotero --input synthesis.json --output references.csv
 
 # Overleaf 준비 완료 LaTeX 참고자료 생성
 python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib
-```
+`````
 
 ## 벤치마크: 수동 vs 자동화 연구
 
-문헌 검토 자동화의 시간 절약 효과는 상당합니다: ```
+문헌 검토 자동화의 시간 절약 효과는 상당합니다: `````
 연구 작업                        | 수동 | 자동화 | 속도 향상
 -------------------------------|------|--------|----------
 관련 논문 50편 검색              | 8시간 | 15분  | 32배
@@ -157,13 +158,13 @@ python3 scripts/export.py --format latex --input synthesis.json --output bibliog
 검토에 종합                     | 12시간 | 2시간  | 6배
 인용 형식 정리                  | 3시간 | 5분    | 36배
 TOTAL                          | 39시간 | 3시간  | 13배
-```
+`````
 
 이 벤치마크는 컴퓨터과학의 20편 체계적 문헌 검토에서 측정되었습니다. 자동화 파이프라인은 수동 검토 대비 94% 정확도를 유지하며, 논문 간 더 높은 일관성을 보였습니다.
 
 ### 정확도 비교
 
-```python
+`````python
 # 자동화 vs 수동 인용 추출 정확도
 metrics = {
     "precision": 0.91,    # 추출된 인용 중 91%가 정확
@@ -171,13 +172,13 @@ metrics = {
     "f1_score": 0.90,     # 정밀도와 재현율의 조화 평균
     "time_saved_hours": 36 # 검토당 36시간 절약
 }
-```
+`````
 
 ## 고급 사용: 사용자 지정 연구 워크플로우
 
 숙련된 연구자는 기본 스킬을 사용자 지정 워크플로우로 확장합니다: ### 멀티데이터베이스 검색 전략
 
-```python
+`````python
 # 여러 데이터베이스에서 통합 결과로 검색
 from research_pipeline import MultiDatabaseSearcher
 
@@ -190,11 +191,11 @@ searcher = MultiDatabaseSearcher(
 
 results = searcher.run()
 print(f"Found {len(results)} papers across {len(set(r[database] for r in results))} databases")
-```
+`````
 
 ### 인용 네트워크 분석
 
-```python
+`````python
 # 인용 네트워크 구축 및 시각화
 from citation_network import CitationGraph
 
@@ -204,11 +205,11 @@ graph.compute_centrality()  # PageRank, H-index, 인용 횟수
 # 핵심 논문 식별
 seminal = graph.get_top_cited(k=10)
 for paper in seminal: print(f"{paper.title} — {paper.citation_count} citations")
-```
+`````
 
 ### 사용자 지정 종합 템플릿
 
-```python
+`````python
 # 다양한 검토 유형별 사용자 지정 종합 템플릿 정의
 templates = {
     "systematic_review": {
@@ -227,11 +228,11 @@ templates = {
         "min_papers": 8
     }
 }
-```
+`````
 
 ### 자동 인용 형식 지정
 
-학술 작업에서 적절한 인용 형식은 필수적입니다. 스킬 스위트에는 APA, IEEE, Chicago, Vancouver 스타일을 지원하는 인용 포맷터가 포함되어 있습니다: ```python
+학술 작업에서 적절한 인용 형식은 필수적입니다. 스킬 스위트에는 APA, IEEE, Chicago, Vancouver 스타일을 지원하는 인용 포맷터가 포함되어 있습니다: `````python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -241,7 +242,7 @@ formatted = formatter.format(results)
 formatted.export("references_apa.txt")
 formatted.export("references_bib.bib")
 formatted.export("references_ris.ris")
-```
+`````
 
 ## 대체재와의 비교
 
@@ -270,14 +271,14 @@ formatted.export("references_ris.ris")
 
 5. **새로운 방법론 발견** — 시스템은 기존 작업을 요약하는 데 탁월하지만, 아직 광범위하게 인용되지 않은 진정으로 새로운 방법론을 식별하는 데는 어려움을 겪습니다. 이러한 경우 수동 문헌 탐색이 종종 더 좋은 결과를 낳습니다. 연구자는 포괄적인 커버리지를 위해 자동화 파이프라인 출력과 도메인 전문성을 결합해야 합니다.
 
-```bash
+`````bash
 # 간단한 적합성 체크
 # ✅ 체계적 문헌 검토 → 네
 # ✅ 인용 네트워크 분석 → 네
 # ✅ 특정 주제 논문 찾기 → 네
 # ✅ 처음부터 연구 제안서 작성 → 부분 (수동 입력 필요)
 # ✅ 비영어 문헌 검토 → 아니오 (주의 사용)
-```
+`````
 
 ## 자주 묻는 질문
 
@@ -315,13 +316,13 @@ formatted.export("references_ris.ris")
 
 레포지토리를 클론하고 의존성을 설치하여 오늘 바로 연구 워크플로우 자동화를 시작하세요.
 
-```bash
+`````bash
 npx skills add https://github.com/Imbad0202/academic-research-skills
-```
+````
 
 **내부 링크**: [AI 코딩 에이전트 비교](https://dibi8.com/ai-tools/oh-my-pi) · [프로덕션 AI 시스템 구축](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch)
 
----
+* * *
 
 **소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
@@ -363,7 +364,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -373,7 +374,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 - [academic-research-skills](academic-research-skills)
 - [cc-switch-unified-ai-cli-control-center](academic-research-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

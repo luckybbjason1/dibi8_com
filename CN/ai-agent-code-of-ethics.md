@@ -38,6 +38,7 @@ faqs: - q: 'How is AI agent ethics different from chatbot ethics?'
   - q: 'Can these ethics principles be enforced in code, or are they just guidelines?'
     a: 'Most of them are enforceable in code. Least privilege is scoped credentials and allowlists; auditability is structured logging of every tool call; reversibility is risk-tiered approval gates plus undo/idempotency; bounded autonomy is rate and spend limits; fail-safe is confidence thresholds and a kill switch. Only the intent behind them — deciding which actions are high-risk — requires human judgment. Ethics that cannot be enforced are decoration.'
 ---
+
 # The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents
 
 
@@ -51,13 +52,13 @@ This is that discipline, in seven rules. Each one states a principle, explains w
 
 | # | Principle | The one-line rule | Enforced by |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **Authorization** | An agent acts only within explicitly granted, least-privilege scope | Per-task credentials, allowlists, spend caps |
 | 2 | **Transparency** | Every action is logged, attributable, and explainable after the fact | Structured audit log of all tool calls |
@@ -167,7 +168,7 @@ A few practical anchors: - **Run agents in isolated, disposable infrastructure**
 Ethics for autonomous agents is not a statement you publish. It is a set of controls you ship. The agent that follows these seven rules is not less capable — it is the only kind of capable agent that an organization can responsibly put its name behind.
 
 
----
+* * *
 *This code of ethics is released under CC-BY-4.0 — adapt it into your own agent governance docs freely. If your team is shipping autonomous agents in 2026, the right time to wire in these controls is before the first production run, not after the first incident.*
 
 
@@ -197,7 +198,7 @@ Ethics for autonomous agents is not a statement you publish. It is a set of cont
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](ai-agent-code-of-ethics)
@@ -206,7 +207,7 @@ Ethics for autonomous agents is not a statement you publish. It is a set of cont
 - [2026-06-08-trending-ai-agents](ai-agent-code-of-ethics)
 - [2026-06-15-trending-ai-agents](ai-agent-code-of-ethics)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

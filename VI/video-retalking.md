@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/video-retalking/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu
@@ -69,36 +70,36 @@ Inference chỉ CPU được hỗ trợ nhưng chậm hơn 10–15 lần. Apple 
 
 ### Bước 1: Clone repository
 
-```bash
+````bash
 git clone https://github.com/OpenTalker/video-retalking.git
 cd video-retalking
-```
+`````
 
 ### Bước 2: Tạo môi trường Conda
 
-```bash
+`````bash
 conda create -n video_retalking python=3.8 -y
 conda activate video_retalking
 conda install ffmpeg -y
-```
+`````
 
 ### Bước 3: Cài đặt PyTorch với CUDA
 
-```bash
+`````bash
 # Cho CUDA 11.1 (mặc định dự án)
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 
 # Cho CUDA 12.1 (GPU hiện đại, 2026)
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### Bước 4: Cài đặt dependencies
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
-File `requirements.txt` cài đặt các gói chính sau: ```
+File ``requirements.txt`` cài đặt các gói chính sau: `````
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -109,35 +110,35 @@ librosa==0.9.2
 dlib==19.24.0
 gradio>=3.7.0
 numpy==1.23.4
-```
+`````
 
 ### Bước 5: Tải models pre-trained
 
-Tải checkpoints pre-trained từ [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) và giải nén vào `./checkpoints/`: ```bash
+Tải checkpoints pre-trained từ [Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0) và giải nén vào ``./checkpoints/``: `````bash
 # Cấu trúc thư mục nên như sau: # ./checkpoints/
 #   ├── 244000.pth          (D-Net expression editing)
 #   ├── wav2lip.pth         (L-Net lip sync)
 #   ├── GFPGANv1.3.pth      (GFPGAN enhancer)
 #   ├── GPEN-BFR-512.pth    (GPEN enhancer)
 #   └── ...
-```
+`````
 
 ### Bước 6: Xác minh cài đặt
 
-```bash
+`````bash
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
-```
+`````
 
-Đầu ra dự kiến trên hệ thống GPU: ```
+Đầu ra dự kiến trên hệ thống GPU: `````
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
-```
+`````
 
 ## Tích hợp với công cụ TTS và voice cloning
 
 ### Tích hợp với RVC (Retrieval-based Voice Conversion)
 
-RVC chuyển đổi giọng nói này sang giọng khác trong khi bảo toàn ngữ điệu. Chuỗi với VideoReTalking để tạo đầu ra lip-sync đã đổi giọng: ```bash
+RVC chuyển đổi giọng nói này sang giọng khác trong khi bảo toàn ngữ điệu. Chuỗi với VideoReTalking để tạo đầu ra lip-sync đã đổi giọng: `````bash
 # Bước 1: Tạo hoặc chuyển đổi âm thanh với RVC
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -146,11 +147,11 @@ python inference.py \
   --face input_video.mp4 \
   --audio rvc_output.wav \
   --outfile output_rvc_synced.mp4
-```
+`````
 
 ### Tích hợp với GPT-SoVITS
 
-GPT-SoVITS tạo TTS chất lượng cao với voice cloning few-shot. Workflow: ```python
+GPT-SoVITS tạo TTS chất lượng cao với voice cloning few-shot. Workflow: `````python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -172,11 +173,11 @@ subprocess.run([
     "--exp_img", "neutral",
     "--up_face", "surprise"
 ])
-```
+`````
 
 ### Tích hợp với Coqui TTS
 
-```bash
+`````bash
 # Cài đặt Coqui TTS
 pip install TTS
 
@@ -192,7 +193,7 @@ python inference.py \
   --face original_video.mp4 \
   --audio coqui_output.wav \
   --outfile coqui_synced.mp4
-```
+`````
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
@@ -234,23 +235,23 @@ VideoReTalking xử lý khoảng **1 giây video trên 1 giây thờ gian GPU** 
 
 ### Thiết lập Gradio WebUI
 
-VideoReTalking bao gồm giao diện Gradio để sử dụng qua trình duyệt: ```bash
+VideoReTalking bao gồm giao diện Gradio để sử dụng qua trình duyệt: `````bash
 # Khởi chạy WebUI
 python webUI.py
-```
+`````
 
-WebUI khởi động mặc định tại `http://localhost:7860`. Nó hỗ trợ: - Kéo-thả upload video và âm thanh
+WebUI khởi động mặc định tại ````http://localhost:7860````. Nó hỗ trợ: - Kéo-thả upload video và âm thanh
 - Chọn mẫu biểu cảm (neutral, smile)
 - Điều khiển cảm xúc nửa mặt trên (surprise, angry)
 - Xử lý theo đoạn hàng loạt cho video dài
 
-Để truy cập từ xa qua reverse proxy: ```bash
+Để truy cập từ xa qua reverse proxy: `````bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
-```
+`````
 
 ### Triển khai Docker
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
 
@@ -268,16 +269,16 @@ RUN mkdir -p checkpoints
 
 EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
-```
+`````
 
-Build và chạy: ```bash
+Build và chạy: `````bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
-```
+`````
 
 ### Script xử lý hàng loạt
 
-```python
+`````python
 #!/usr/bin/env python3
 # batch_process.py
 import os
@@ -301,11 +302,11 @@ for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.ste
         "--outfile", outname,
         "--exp_img", "neutral"
     ])
-```
+`````
 
 ### Giám sát và logging
 
-```python
+`````python
 # Wrapper production với structured logging
 import logging
 import time
@@ -331,12 +332,12 @@ def inference_with_monitoring(face_path, audio_path, output_path): start = time.
     
     logging.info(f"Processed {face_path} in {elapsed:.1f}s, "
                  f"VRAM: {vram_before:.1f}GB -> {vram_after:.1f}GB")
-```
+`````
 
 ### Các cân nhắc bảo mật
 
 - Chạy trong container với mount filesystem chỉ đọc cho model weights
-- Hạn chế truy cập GPU bằng `CUDA_VISIBLE_DEVICES` để cô lập workload
+- Hạn chế truy cập GPU bằng ````CUDA_VISIBLE_DEVICES```` để cô lập workload
 - Xác thực định dạng file đầu vào trước khi xử lý để ngăn path traversal
 - Dự án bao gồm disclaimer toàn diện về quyền chân dung và tuân thủ pháp luật
 
@@ -387,7 +388,7 @@ Có. Mạng lip-sync không phụ thuộc ngôn ngữ —— nó ánh xạ đặ
 
 ### Tại sao video đầu ra bị mờ quanh miệng?
 
-Bộ tăng cường GFPGAN mặc định áp dụng hiệu ứng làm mịn vừa phải. Thử chuyển sang bộ tăng cường GPEN bằng cách chỉnh sửa `inference.py`. Hoặc tắt hoàn toàn tăng cường để có đầu ra sắc nét hơn (nhưng có thể kém nhất quán hơn).
+Bộ tăng cường GFPGAN mặc định áp dụng hiệu ứng làm mịn vừa phải. Thử chuyển sang bộ tăng cường GPEN bằng cách chỉnh sửa ````inference.py````. Hoặc tắt hoàn toàn tăng cường để có đầu ra sắc nét hơn (nhưng có thể kém nhất quán hơn).
 
 ### Có thể fine-tune model trên dataset của riêng mình không?
 
@@ -400,8 +401,8 @@ VideoReTalking cung cấp giải pháp tự host thực tiễn cho đồng bộ 
 **Các hành động để bắt đầu:**
 
 1. Clone repo và thiết lập môi trường conda theo các lệnh trên
-2. Tải gói checkpoint 2GB vào `./checkpoints/`
-3. Chạy lệnh inference nhanh với file mẫu trong `examples/`
+2. Tải gói checkpoint 2GB vào ````./checkpoints/````
+3. Chạy lệnh inference nhanh với file mẫu trong ````examples/```
 4. Khởi chạy Gradio WebUI để thử nghiệm tương tác
 5. Liên kết với GPT-SoVITS hoặc RVC để xây dựng pipeline voice cloning + lip-sync hoàn chỉnh
 
@@ -454,13 +455,13 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

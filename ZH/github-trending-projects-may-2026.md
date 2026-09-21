@@ -33,6 +33,7 @@ faqs: - q: 'DeepSeek-TUI 是什么，它和 Cursor 或 GitHub Copilot 有何不�
     a: '它内置 11 个命名智能体，覆盖具体的金融工作流，包括 Pitch Agent（可比公司、先例交易、LBO 到路演材料）、Market Researcher、Earnings Reviewer、GL Reconciler 和 KYC Screener。它还新增了垂直领域的斜杠命令插件，如 /comps、/dcf 和 /earnings，以及由 LSEG 和 S&P Global 构建的合作伙伴连接器。'
   - q: 'Local Deep Research 是否保护隐私，它的准确度如何？'
     a: 'Local Deep Research 完全在你自己的硬件上运行，零遥测、无云依赖，并将研究历史存储在经 SQLCipher 加密的数据库中。尽管在本地运行，但当它在 RTX 3090 上搭配 Qwen3.6-27B 时，在 SimpleQA 上能达到约 95% 的准确度，并支持包括 arXiv 和 PubMed 在内的 10 多个搜索引擎。'---
+
 {</* resource-info */>}
 
 ## 引言
@@ -47,34 +48,34 @@ faqs: - q: 'DeepSeek-TUI 是什么，它和 Cursor 或 GitHub Copilot 有何不�
 ---
 ## 项目一：Hmbown / DeepSeek-TUI —— 您的终端现在是一个超级编程智能体
 
-**Stars：** 21,085 &nbsp;|&nbsp; **+今日新增5,799星** &nbsp;|&nbsp; 仓库：[`Hmbown/DeepSeek-TUI`](https://github.com/Hmbown/DeepSeek-TUI)
+**Stars：** 21,085 &nbsp;|&nbsp; **+今日新增5,799星** &nbsp;|&nbsp; 仓库：[```Hmbown/DeepSeek-TUI````](https://github.com/Hmbown/DeepSeek-TUI)
 
 如果用一个项目来定义当前的AI编程热潮，那非DeepSeek-TUI莫属。在一天之内，它获得了近5,800个新stars——远超所有其他趋势项目。这不仅仅是一个浏览器中的ChatGPT包装器；它是一个真正的终端级编程智能体，可以无缝集成到您的现有开发工作流中。
 
 ### 与众不同的特点
 
-DeepSeek-TUI通过`deepseek`命令在本地终端运行。您不需要打开网页标签并在文本框中输入内容，而是直接在代码库中进行交互。智能体会将推理过程流式传输回您的终端，读取和写入磁盘上的文件，并且在执行任何文件系统更改之前使用审批门控机制。这意味着您可以在获得AI辅助编辑速度提升的同时保持控制权。
+DeepSeek-TUI通过````deepseek````命令在本地终端运行。您不需要打开网页标签并在文本框中输入内容，而是直接在代码库中进行交互。智能体会将推理过程流式传输回您的终端，读取和写入磁盘上的文件，并且在执行任何文件系统更改之前使用审批门控机制。这意味着您可以在获得AI辅助编辑速度提升的同时保持控制权。
 
-与Cursor或Copilot等需要完整GUI编辑器的工具不同，DeepSeek-TUI专为终端原语者设计。如果您整天使用`tmux`、`neovim`或`zsh`工作，这个工具会带来原生般的体验。无需在浏览器标签和IDE窗口之间切换上下文。
+与Cursor或Copilot等需要完整GUI编辑器的工具不同，DeepSeek-TUI专为终端原语者设计。如果您整天使用````tmux````、````neovim````或````zsh````工作，这个工具会带来原生般的体验。无需在浏览器标签和IDE窗口之间切换上下文。
 
 ### Auto Mode（自动模式）：智能模型路由节省成本
 
-最引人注目的功能是自动模式（`deepseek --model auto`）。在发送每个请求之前，DeepSeek-TUI会使用`deepseek-v4-flash`（不启用思考）进行微小的路由调用。路由器会评估您最近的请求和对话上下文，然后选择最优组合：
+最引人注目的功能是自动模式（````deepseek --model auto````）。在发送每个请求之前，DeepSeek-TUI会使用````deepseek-v4-flash````（不启用思考）进行微小的路由调用。路由器会评估您最近的请求和对话上下文，然后选择最优组合：
 
-- **模型：** `deepseek-v4-flash`用于快速任务，`deepseek-v4-pro`用于复杂的架构工作
-- **思考级别：** `off`用于简单重构，`high`或`max`用于安全审计或多步骤调试
+- **模型：** ````deepseek-v4-flash````用于快速任务，````deepseek-v4-pro````用于复杂的架构工作
+- **思考级别：** ````off````用于简单重构，````high````或````max````用于安全审计或多步骤调试
 
-这意味着简单问题保持低成本，只有真正复杂才会触发高成本推理。上游API永远不会收到`"model": "auto"`——TUI内部解析它并根据实际使用的模型收费。费用跟踪透明进行。
+这意味着简单问题保持低成本，只有真正复杂才会触发高成本推理。上游API永远不会收到````"model": "auto"````——TUI内部解析它并根据实际使用的模型收费。费用跟踪透明进行。
 
 ### 全平台安装支持
 
-```bash
+`````bash
 # npm — 最简单的方式
 npm install -g deepseek-tui
 
 # Cargo — 不需要Node.js
-cargo install deepseek-tui-cli --locked   # 提供 `deepseek`
-cargo install deepseek-tui     --locked   # 提供 `deepseek-tui`
+cargo install deepseek-tui-cli --locked   # 提供 ````deepseek````
+cargo install deepseek-tui     --locked   # 提供 ````deepseek-tui````
 
 # Homebrew（macOS）
 brew tap Hmbown/deepseek-tui
@@ -85,9 +86,9 @@ docker run --rm -it \
   -e DEEPSEEK_API_KEY \
   -v "$PWD:/workspace" \
   ghcr.io/hmbown/deepseek-tui:latest
-```
+`````
 
-认证通过`deepseek auth set --provider deepseek`管理。您可以使用`deepseek auth status`检查配置状态而不暴露密钥，使用`deepseek auth clear`旋转或删除已保存的密钥。
+认证通过````deepseek auth set --provider deepseek````管理。您可以使用````deepseek auth status````检查配置状态而不暴露密钥，使用````deepseek auth clear````旋转或删除已保存的密钥。
 
 对于中国大陆开发者，项目支持Cargo镜像源（如清华Tuna）和可配置的发布URL基地址以加快下载速度。Windows用户受益于Scoop包管理器集成。ARM64 Linux（树莓派、Asahi、Graviton、鸿蒙PC）从v0.8.8起原生支持。
 
@@ -99,9 +100,9 @@ docker run --rm -it \
 
 | 场景 | 收益 |
 |
----
+* * *
 |
----
+* * *
 |
 | 快速原型开发 | 用英语描述功能，在编辑器中获得可用代码 |
 | 遗留代码重构 | 批量修复数百个文件中的不一致模式 |
@@ -113,15 +114,15 @@ docker run --rm -it \
 
 | 工具 | 编辑器 | 定价 | 推理流 | 审批门控 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | DeepSeek-TUI | 终端 | 按token付费 | ✅ 有 | ✅ 可配置 |
 | Cursor | GUI应用 | $20/月 | ✅ 有 | ❌ 全自动 |
@@ -131,10 +132,10 @@ docker run --rm -it \
 DeepSeek-TUI在价格上低于Claude Code，同时匹配其核心能力。对于在Linux服务器或无头CI管道上运行的团队，DeepSeek-TUI是唯一能在终端环境中舒适运行的选项。
 
 
----
+* * *
 ## 项目二：anthropics / financial-services —— 面向华尔街的企业级AI智能体
 
-**Stars：** 13,496 &nbsp;|&nbsp; **+今日新增1,343星** &nbsp;|&nbsp; 仓库：[`anthropics/claude-for-financial-services`](https://github.com/anthropics/claude-for-financial-services)
+**Stars：** 13,496 &nbsp;|&nbsp; **+今日新增1,343星** &nbsp;|&nbsp; 仓库：[````anthropics/claude-for-financial-services````](https://github.com/anthropics/claude-for-financial-services)
 
 当面向消费者的AI编程工具占据头条新闻时，Anthropic悄悄发布了一个更具商业意义的项目：一套完整的、生产就绪的金融服务AI智能体套件。这不是玩具原型——它涵盖了投资银行、股票研究、私募股权和财富管理的全流程工作。
 
@@ -144,11 +145,11 @@ DeepSeek-TUI在价格上低于Claude Code，同时匹配其核心能力。对于
 
 | 功能 | 智能体 | 输出 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 承销与顾问 | **Pitch Agent** | 可比公司、先例分析、LBO → 品牌化推介PPT |
 | 研究与建模 | **Market Researcher** | 行业概述+竞争格局+同行可比公司 |
@@ -156,7 +157,7 @@ DeepSeek-TUI在价格上低于Claude Code，同时匹配其核心能力。对于
 | 基金管理 | **GL Reconciler** | 发现差异，追溯根本原因 |
 | 运营与合规 | **KYC Screener** | 解析入职文档，通过规则引擎标记差距 |
 
-此外还有`/comps`、`/dcf`、`/earnings`等垂直插件和更细粒度的斜杠命令。来自LSEG和S&P Global的合作方插件进一步扩展了生态系统。
+此外还有````/comps````、````/dcf````、````/earnings````等垂直插件和更细粒度的斜杠命令。来自LSEG和S&P Global的合作方插件进一步扩展了生态系统。
 
 ### 两种部署路径
 
@@ -164,7 +165,7 @@ DeepSeek-TUI在价格上低于Claude Code，同时匹配其核心能力。对于
 
 1. **Claude Cowork插件** — 直接通过粘贴仓库URL或上传zip文件到Claude.ai安装。选择单个智能体或全套方案。非常适合独立分析师或小团队。
 
-2. **Claude Managed Agents API** — 通过`/v1/agents`端点在您自己的工作流引擎后面部署。附带`agent.yaml`配置、叶子工人子智能体模板、事件引导和每智能体的安全说明。专为需要审计追踪、基于角色的访问控制以及与内部系统集成的大型机构设计。
+2. **Claude Managed Agents API** — 通过````/v1/agents````端点在您自己的工作流引擎后面部署。附带````agent.yaml````配置、叶子工人子智能体模板、事件引导和每智能体的安全说明。专为需要审计追踪、基于角色的访问控制以及与内部系统集成的大型机构设计。
 
 ### 商业价值何在
 
@@ -177,26 +178,26 @@ DeepSeek-TUI在价格上低于Claude Code，同时匹配其核心能力。对于
 
 ### 入门指南
 
-```bash
+`````bash
 # 通过Claude Code市场
 claude plugin marketplace add anthropics/claude-for-financial-services
 claude plugin install financial-analysis@claude-for-financial-services
 
 # 或通过Cowork设置：设置→插件→添加插件
 # 粘贴：https://github.com/anthropics/claude-for-financial-services
-```
+`````
 
-对于Managed Agent部署，`managed-agent-cookbooks/`目录中为每个命名智能体提供了现成的`agent.yaml`配置文件。
+对于Managed Agent部署，````managed-agent-cookbooks/````目录中为每个命名智能体提供了现成的````agent.yaml````配置文件。
 
 ### 风险与责任
 
 Anthropic明确表示：此仓库中的任何内容都不构成投资建议、法律意见、税务建议或会计建议。这些智能体起草分析师工作产品——模型、备忘录、研究报告、对账单——供合格专业人员审核。您对验证输出和维护适用法律法规合规性负责。这是企业采用的正确定位。
 
----
+* * *
 
 ## 项目三：LearningCircuit / local-deep-research —— 规模化的私密加密AI研究
 
-**Stars：** 6,542 &nbsp;|&nbsp; 仓库：[`LearningCircuit/local-deep-research`](https://github.com/LearningCircuit/local-deep-research)
+**Stars：** 6,542 &nbsp;|&nbsp; 仓库：[````LearningCircuit/local-deep-research````](https://github.com/LearningCircuit/local-deep-research)
 
 随着AI生成内容充斥互联网，真正深度研究的能力成为一种高级技能。Local Deep Research通过完全在您的硬件上运行来实现这一承诺——没有任何数据离开您的机器，没有API将查询发送到第三方，每个数据库连接都使用SQLCipher加密。
 
@@ -217,28 +218,28 @@ Anthropic明确表示：此仓库中的任何内容都不构成投资建议、�
 
 ### 安装方法
 
-```bash
+`````bash
 pip install local-deep-research
-```
+`````
 
 或使用Docker镜像进行隔离部署：
-```bash
+`````bash
 docker pull localdeepresearch/local-deep-research
-```
+`````
 
----
+* * *
 
 ## 三方横向对比
 
 | 特性 | DeepSeek-TUI | Anthropic FinServ | Local Deep Research |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **类别** | 终端编程智能体 | 金融AI智能体 | 本地研究引擎 |
 | **每日Star增长** | +5,799 | +1,343 | 平稳增长 |
@@ -249,7 +250,7 @@ docker pull localdeepresearch/local-deep-research
 | **部署方式** | 终端、Docker | Cowork插件、API、Docker | pip、Docker |
 | **商业潜力** | ★★★★★ | ★★★★★ | ★★★★☆ |
 
----
+* * *
 
 ## 我们的评选标准
 
@@ -259,28 +260,28 @@ docker pull localdeepresearch/local-deep-research
 2. **垂直领域专长胜出** — Anthropic的金融服务套件针对的是一个有记录的、预算丰富的市场，拥有明确的买家群体
 3. **隐私是不断增长的护城河** — Local Deep Research应对推动企业远离云端AI的监管顺风
 
----
+* * *
 
 ## 结论：您应该先尝试哪一个？
 
-- **想要更快编码的开发者** → 先从DeepSeek-TUI开始。通过`npm`安装、配置API密钥、体验浏览器绑定AI与终端原生智能体工作流之间的区别。
+- **想要更快编码的开发者** → 先从DeepSeek-TUI开始。通过````npm```安装、配置API密钥、体验浏览器绑定AI与终端原生智能体工作流之间的区别。
 - **金融专业人士** → 通过Cowork安装Pitch Agent或Market Researcher，看看结构化的金融分析从数小时缩短到几分钟有多快。
 - **研究者与记者** → 尝试用自己的文档集合使用Local Deep Research。单是离线保证就足以证明投入设置的精力是合理的。
 
 所有三个项目都展示了2026年的开源AI革命正在从噱头转向基础设施——解决昂贵、重复性问题且有能力花钱的人的工具。
 
----
+* * *
 
 ## 相关文章
 
 - [Addy Osmani的Agent-Skills：AI编程智能体的工程级技能包](/zh/resources/llm-frameworks/agent-skills-production-grade-ai-coding/)
 - [Docuseal：开源版DocuSign替代方案](/zh/resources/ai-tools/docuseal-open-source-docusign-alternative/)
 
----
+* * *
 
 💬 *您如何看待基于终端的AI编程智能体？您尝试过DeepSeek-TUI吗？请在评论区分享您的想法。*
 
----
+* * *
 
 ## 推荐工具
 
@@ -361,7 +362,7 @@ DeepSeek 终端编程智能体 + Anthropic金融AI：2026年5月GitHub最值得�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

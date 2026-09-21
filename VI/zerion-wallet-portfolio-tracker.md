@@ -13,6 +13,7 @@ aliases:
   - /vi/posts/zerion-wallet-portfolio-tracker/
 ---
 
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  
@@ -21,7 +22,7 @@ aliases:
 **GitHub:** [zeriontech](https://github.com/zeriontech)（★ 200 · Giấy phép MIT）  
 **Tiết lộ Liên kết:** *Bài viết này chứa liên kết liên kết. Chúng tôi có thể kiếm được hoa hồng nếu bạn đăng ký qua liên kết đối tác — không phát sinh thêm chi phí cho bạn. Ý kiến biên tập của chúng tôi vẫn độc lập.*
 
----
+* * *
 
 ## Giới thiệu: Tại Sao Việc Theo Dõi Danh Mục DeFi Quan Trọng Trong 2026
 
@@ -31,7 +32,7 @@ Tài chính Phi tập trung (DeFi) đã phát triển từ một thử nghiệm 
 
 **👉 Sẵn sàng bắt đầu giao dịch? [Đăng ký trên Binance](https://www.bsmkweb.cc/register?ref=DIBI8) ngay hôm nay và nhận phí giao dịch thấp nhất trên thị trường.**
 
----
+* * *
 
 ## Zerion Là Gì? Hiểu Kiến Trúc Cốt Lõi
 
@@ -39,21 +40,21 @@ Zerion là một **bộ tổng hợp danh mục DeFi** được thiết kế đ�
 
 Nền tảng hoạt động bằng cách lập chỉ mục dữ liệu on-chain thông qua sự kết hợp của các truy vấn subgraph, lệnh gọi RPC trực tiếp và cơ sở hạ tầng lập chỉ mục độc quyền.
 
----
+* * *
 
 ## Hướng Dẫn Bắt Đầu Nhanh: Thiết Lập Zerion Lần Đầu
 
 ### Bước 1 — Truy Cập Ứng Dụng Web Zerion
 
-```bash
+````bash
 # Không cần cài đặt — Zerion là một dApp dựa trên web
 # URL chính thức: https://app.zerion.io
 # Luôn xác minh chứng chỉ SSL trước khi kết nối ví
-```
+`````
 
 ### Bước 2 — Kết Nối Ví CủA Bạn
 
-```javascript
+`````javascript
 // Các bộ kết nối ví được hỗ trợ trong Zerion
 const supportedWallets = [
   "MetaMask",
@@ -63,29 +64,29 @@ const supportedWallets = [
   "Zerion Wallet",
   "Ledger (qua WalletConnect)"
 ];
-```
+`````
 
 ### Bước 3 — Ký Thông Điệp Xác Thực
 
-```javascript
+`````javascript
 // Ví dụ: Ký thông điệp xác thực (chỉ đọc)
 const message = "Sign this message to authenticate with Zerion\nNonce: 123456";
 const signature = await signer.signMessage(message);
 // Đây là thao tác CHỈ ĐỌC — không có giao dịch nào được thực hiện
-```
+`````
 
 ### Bước 4 — Xem Bảng Điều Khiển Danh Mục CủA Bạn
 
-```bash
+`````bash
 # Bảng điều khiển danh mục của bạn hiển thị: # - Tổng Giá Trị Danh Mục (tương đương USD)
 # - Thay ĐổI 24h (%) và Tuyệt đốI ($)
 # - Phân Bổ Tài Sản theo ChuỗI
 # - Phân Bổ Tài Sản theo Giao Thức
 # - Giao Dịch Gần Đây
 # - Cơ HộI Yield
-```
+`````
 
----
+* * *
 
 ## Tìm Hiểu Sâu: Theo Dõi Ví Đa ChuỗI
 
@@ -93,7 +94,7 @@ Một trong những tính năng nổi bật của Zerion là khả năng tổng 
 
 ### Các Mạng Được Hỗ Trợ (2026)
 
-```yaml
+`````yaml
 # Danh sách đầy đủ các mạng được Zerion hỗ trợ
 ethereum: chain_id: 1
   type: "Layer 1"
@@ -122,18 +123,18 @@ bnb_chain: chain_id: 56
 avalanche: chain_id: 43114
   type: "Layer 1 (Subnet)"
   features: ["Hỗ trợ C-Chain", "Vị thế DeFi"]
-```
+`````
 
 ### Xem Số Dư Đa ChuỗI
 
-```javascript
+`````javascript
 // Zerion API: Lấy danh mục đa chuỗI
 const fetchPortfolio = async (address) => {
   const response = await fetch(
-    `https://api.zerion.io/v1/wallets/${address}/portfolio`,
+    ````https://api.zerion.io/v1/wallets/${address}/portfolio````,
     {
       headers: {
-        "Authorization": `Basic ${API_KEY}`,
+        "Authorization": ````Basic ${API_KEY}````,
         "Accept": "application/json"
       }
     }
@@ -141,9 +142,9 @@ const fetchPortfolio = async (address) => {
   const data = await response.json();
   return data;  // Trả về: { total_value, chain_breakdown, assets, positions }
 };
-```
+`````
 
----
+* * *
 
 ## Theo DõI Yield: Giám Sát LợI Nhuận DeFi CủA Bạn
 
@@ -151,7 +152,7 @@ Mô-đun theo dõI yield của Zerion giám sát các vị thế của bạn tr�
 
 ### Các Giao Thức Yield Được Hỗ Trợ
 
-```python
+`````python
 # Zerion theo dõI vị thế trên các giao thức này
 yield_protocols = {
     "cho_vay": ["Aave", "Compound", "Morpho", "Radiant"],
@@ -159,11 +160,11 @@ yield_protocols = {
     "staking": ["Lido", "Rocket Pool", "Frax Ether", "Coinbase Staked ETH"],
     "vaults": ["Yearn Finance", "Beefy Finance", "Convex Finance"]
 }
-```
+`````
 
 ### Tính Toán Yield Ròng
 
-```javascript
+`````javascript
 // Ví dụ: Tính yield ròng từ vị thế Aave
 const calculateNetYield = (position) => {
   const supplyAPY = position.supply_apy;        // vd: 3.45%
@@ -179,20 +180,20 @@ const calculateNetYield = (position) => {
     health_factor: position.health_factor
   };
 };
-```
+`````
 
----
+* * *
 
 ## Quản Lý Danh Mục NFT
 
 Zerion không chỉ dành cho token có thể thay thế — nó cung cấp **theo dõI danh mục NFT** toàn diện với dữ liệu giá sàn, điểm độ hiếm và phân tích bộ sưu tập.
 
-```javascript
+`````javascript
 // Zerion API: Lấy tài sản NFT
 const fetchNFTs = async (address) => {
   const response = await fetch(
-    `https://api.zerion.io/v1/wallets/${address}/nft-positions`,
-    { headers: { "Authorization": `Basic ${API_KEY}` } }
+    ````https://api.zerion.io/v1/wallets/${address}/nft-positions````,
+    { headers: { "Authorization": ````Basic ${API_KEY}```` } }
   );
   const { data } = await response.json();
   
@@ -204,15 +205,15 @@ const fetchNFTs = async (address) => {
     estimated_value: nft.estimated_price
   }));
 };
-```
+`````
 
----
+* * *
 
 ## Lịch Sử Giao Dịch & Phân Tích
 
 Zerion cung cấp lịch sử giao dịch đầy đủ với siêu dữ liệu chi tiết.
 
-```javascript
+`````javascript
 // Zerion API: Truy vấn lịch sử giao dịch với bộ lọc
 const fetchTransactions = async (address, filters) => {
   const queryParams = new URLSearchParams({
@@ -225,21 +226,21 @@ const fetchTransactions = async (address, filters) => {
   });
   
   const response = await fetch(
-    `https://api.zerion.io/v1/wallets/${address}/transactions?${queryParams}`,
-    { headers: { "Authorization": `Basic ${API_KEY}` } }
+    ````https://api.zerion.io/v1/wallets/${address}/transactions?${queryParams}````,
+    { headers: { "Authorization": ````Basic ${API_KEY}```` } }
   );
   
   return await response.json();
 };
-```
+`````
 
----
+* * *
 
 ## API Dành Cho Lập Trình Viên: Xây Dựng VớI Zerion
 
 Zerion cung cấp **REST API** mạnh mẽ để các nhà phát triển tích hợp dữ liệu danh mục vào ứng dụng của họ.
 
-```bash
+`````bash
 # Zerion API sử dụng Xác thực Cơ bản
 API_KEY=$(echo -n 'YOUR_API_KEY:' | base64)
 
@@ -247,16 +248,16 @@ API_KEY=$(echo -n 'YOUR_API_KEY:' | base64)
 curl -X GET "https://api.zerion.io/v1/wallets/0x.../portfolio" \
   -H "Authorization: Basic ${API_KEY}" \
   -H "Accept: application/json"
-```
+`````
 
-```javascript
+`````javascript
 // Dữ liệu giá thờI gian thực cho bất kỳ token nào
 const getTokenPrice = async (tokenAddress, chain = "ethereum") => {
   const response = await fetch(
-    `https://api.zerion.io/v1/fungibles/${tokenAddress}?currency=usd`,
+    ````https://api.zerion.io/v1/fungibles/${tokenAddress}?currency=usd````,
     {
       headers: {
-        "Authorization": `Basic ${btoa(API_KEY + ":")}`,
+        "Authorization": ````Basic ${btoa(API_KEY + ":")}````,
         "Accept": "application/json"
       }
     }
@@ -269,9 +270,9 @@ const getTokenPrice = async (tokenAddress, chain = "ethereum") => {
     market_cap: data.attributes.market_data.market_cap
   };
 };
-```
+`````
 
-```javascript
+`````javascript
 // Đăng ký nhận cập nhật danh mục thờI gian thực
 const ws = new WebSocket("wss://api.zerion.io/v1/ws");
 
@@ -294,15 +295,15 @@ ws.onmessage = (event) => {
   const update = JSON.parse(event.data);
   console.log("Cập nhật danh mục:", update);
 };
-```
+`````
 
----
+* * *
 
 ## Ứng Dụng Di Động: DeFi Mọi Lúc MọI Nơi
 
 Ứng dụng di động của Zerion (có trên iOS và Android) mang toàn bộ sức mạnh của bảng điều khiển web vào túi bạn.
 
-```bash
+`````bash
 # iOS: https://apps.apple.com/app/zerion-wallet/id1456732565
 # Android: https://play.google.com/store/apps/details?id=io.zerion.android
 # Các tính năng chính: # - Thông báo đẩy cho giao dịch lớn
@@ -310,21 +311,21 @@ ws.onmessage = (event) => {
 # - Chức năng hoán đổI tích hợp (0x API)
 # - Phòng trưng bày NFT với xem trước AR
 # - Danh sách theo dõI cho mọI địa chỉ
-```
+`````
 
----
+* * *
 
 ## Các Thực Hành Tốt Nhất Về Bảo Mật
 
-```bash
+`````bash
 # 1. Luôn xác minh URL là https://app.zerion.io
 # 2. Không bao giờ chia sẻ khóa riêng hoặc cụm từ hạt giống
 # 3. Sử dụng ví phần cứng cho các danh mục lớn
 # 4. Thu hồi phê duyệt token không cần thiết thường xuyên
 # 5. Bật 2FA trên mọI tài khoản sàn giao dịch liên quan
-```
+````
 
----
+* * *
 
 ## Câu HỏI Thường Gặp (FAQ)
 
@@ -352,7 +353,7 @@ A: Ứng dụng web Zerion là trình theo dõI danh mục kết nối với ví
 **Câu 8: Zerion so vớI DeBank như thế nào?**
 A: Cả hai đều là trình theo dõI danh mục DeFi hàng đầu. Zerion cung cấp giao diện ngườI dùng đẹp hơn, trải nghiệm di động tốt hơn và các thành phần mã nguồn mở theo giấy phép MIT. Nhiều ngườI dùng cao cấp sử dụng cả hai một cách bổ sung.
 
----
+* * *
 
 
 
@@ -369,7 +370,7 @@ Trong thế giớI DeFi đa chuỗI phân mảnh, Zerion nổi bật như giải
 
 **Sẵn sàng khám phá thế giớI giao dịch DeFi? [Đăng ký trên Binance](https://www.bsmkweb.cc/register?ref=DIBI8) — sàn giao dịch crypto hàng đầu thế giớI vớI phí giao dịch thấp nhất và thanh khoản sâu nhất.**
 
----
+* * *
 
 *Tuyên bố Miễn trừ: Bài viết này chỉ nhằm mục đích thông tin và không cấu thành lờI khuyên tài chính. Các khoản đầu tư tiền điện tử mang theo rủi ro đáng kể. Luôn thực hiện nghiên cứu của riêng bạn trước khi đưa ra quyết định đầu tư. Bài đăng này chứa các liên kết liên kết — chúng tôi có thể nhận được khoản bồi thường khi bạn sử dụng liên kết đối tác của chúng tôi mà không phát sinh thêm chi phí cho bạn.*
 
@@ -399,7 +400,7 @@ Trong thế giớI DeFi đa chuỗI phân mảnh, Zerion nổi bật như giải
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -407,7 +408,7 @@ Trong thế giớI DeFi đa chuỗI phân mảnh, Zerion nổi bật như giải
 - [zerion-wallet-portfolio-tracker](zerion-wallet-portfolio-tracker)
 - [zerion-wallet-portfolio-tracker](zerion-wallet-portfolio-tracker)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

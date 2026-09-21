@@ -8,6 +8,7 @@ category: data-science
 slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/fine-tuning-stack.png
 ---
+
 # TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting
 
 Time series forecasting has long been one of the most challenging problems in data science. From predicting stock prices to forecasting weather patterns, from sales projections to energy consumption estimates — accurate predictions can make or break businesses.
@@ -40,11 +41,11 @@ Version 2.5, released in September 2025, brings significant improvements over pr
 
 | Feature | TimesFM 2.0 | TimesFM 2.5 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Parameters | 500M | 200M |
 | Context Length | 2,048 | 16,000 |
@@ -66,7 +67,7 @@ This counterintuitive improvement is achieved through: ![Neural Network](https:/
 
 Getting started with TimesFM is straightforward. The model is available through PyPI, making installation as simple as: ### Option 1: Quick Install via PyPI
 
-```bash
+````bash
 # Install with PyTorch backend
 pip install timesfm[torch]
 
@@ -75,11 +76,11 @@ pip install timesfm[flax]
 
 # If you need covariate support (XReg)
 pip install timesfm[xreg]
-```
+`````
 
 ### Option 2: Development Installation
 
-For those who want to contribute or access the latest features: ```bash
+For those who want to contribute or access the latest features: `````bash
 # Clone the repository
 git clone https://github.com/google-research/timesfm.git
 cd timesfm
@@ -92,7 +93,7 @@ source .venv/bin/activate
 uv pip install -e .[torch]
 # Or for Flax backend
 uv pip install -e .[flax]
-```
+`````
 
 ### Backend Selection
 
@@ -106,7 +107,7 @@ Choose your backend based on your hardware and deployment requirements.
 
 Let's start with a simple forecasting example: ### Zero-Shot Forecasting
 
-```python
+`````python
 import numpy as np
 import timesfm
 
@@ -123,11 +124,11 @@ historical_data = np.random.randn(1, 1024)
 forecast = model.forecast(historical_data, horizon=12)
 print(f"Forecast shape: {forecast.shape}")
 print(f"Predicted values: {forecast}")
-```
+`````
 
 ### With Quantile Forecasting
 
-For uncertainty estimation, enable the continuous quantile head: ```python
+For uncertainty estimation, enable the continuous quantile head: `````python
 forecast_with_uncertainty = model.forecast(
     historical_data,
     horizon=12,
@@ -138,11 +139,11 @@ forecast_with_uncertainty = model.forecast(
 point_forecast = forecast_with_uncertainty[:, :, 1]  # median
 lower_bound = forecast_with_uncertainty[:, :, 0]     # 10th percentile
 upper_bound = forecast_with_uncertainty[:, :, 2]     # 90th percentile
-```
+`````
 
 ### Using the PyTorch Backend
 
-```python
+`````python
 import torch
 import timesfm
 
@@ -175,13 +176,13 @@ point_forecast, quantile_forecast = model.forecast(
         np.sin(np.linspace(0, 20, 67)),
     ]
 )
-```
+`````
 
 ## Advanced Features
 
 ### Fine-Tuning with LoRA
 
-One of the most powerful features of TimesFM 2.5 is the ability to fine-tune using Low-Rank Adaptation (LoRA): ```python
+One of the most powerful features of TimesFM 2.5 is the ability to fine-tune using Low-Rank Adaptation (LoRA): `````python
 from transformers import AutoModelForSequenceClassification
 from peft import LoraConfig, get_peft_model
 
@@ -203,11 +204,11 @@ model = get_peft_model(base_model, lora_config)
 
 # Now you can fine-tune on your specific dataset
 # This requires significantly fewer parameters than full fine-tuning
-```
+`````
 
 ### Covariate Support with XReg
 
-For scenarios where you have external variables that influence your time series, TimesFM 2.5 supports covariate modeling: ```python
+For scenarios where you have external variables that influence your time series, TimesFM 2.5 supports covariate modeling: `````python
 # Install with XReg support
 # pip install timesfm[xreg]
 
@@ -232,11 +233,11 @@ y_pred, confidence_intervals = model.predict(
     horizon=12,
     X_future=np.random.randn(12, 5)
 )
-```
+`````
 
 ### Batch Forecasting
 
-For multiple time series simultaneously: ```python
+For multiple time series simultaneously: `````python
 # Prepare batch of time series
 batch_data = np.random.randn(10, 1024)  # 10 series, 1024 timesteps each
 
@@ -245,11 +246,11 @@ forecasts = model.forecast(batch_data, horizon=24)
 
 # Shape: (10, 24) - 10 forecasts of 24 time steps each
 print(f"Batch forecast shape: {forecasts.shape}")
-```
+`````
 
 ### Batch Forecasting
 
-For multiple time series simultaneously: ```python
+For multiple time series simultaneously: `````python
 # Prepare batch of time series
 batch_data = np.random.randn(10, 1024)  # 10 series, 1024 timesteps each
 
@@ -258,11 +259,11 @@ forecasts = model.forecast(batch_data, horizon=24)
 
 # Shape: (10, 24) - 10 forecasts of 24 time steps each
 print(f"Batch forecast shape: {forecasts.shape}")
-```
+`````
 
 ### Batch Forecasting
 
-For multiple time series simultaneously: ```python
+For multiple time series simultaneously: `````python
 # Prepare batch of time series
 batch_data = np.random.randn(10, 1024)  # 10 series, 1024 timesteps each
 
@@ -271,11 +272,11 @@ forecasts = model.forecast(batch_data, horizon=24)
 
 # Shape: (10, 24) - 10 forecasts of 24 time steps each
 print(f"Batch forecast shape: {forecasts.shape}")
-```
+`````
 
 ### Streaming Inference
 
-For real-time forecasting applications: ```python
+For real-time forecasting applications: `````python
 # Initialize streaming client
 streaming_model = timesfm.StreamingTimesFM(
     model_path="google/timesfm-2.5-200m-flax"
@@ -285,7 +286,7 @@ streaming_model = timesfm.StreamingTimesFM(
 while True: new_data = get_next_time_step()
     forecast = streaming_model.update_and_predict(new_data, horizon=12)
     display_forecast(forecast)
-```
+`````
 
 ## Performance Benchmarks
 
@@ -293,15 +294,15 @@ TimesFM 2.5 achieves state-of-the-art results across multiple benchmark datasets
 
 | Dataset | TimesFM 2.5 | AutoARIMA | Prophet | N-BEATS |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ETTh1 | 0.312 | 0.487 | 0.523 | 0.398 |
 | Electricity | 0.234 | 0.312 | 0.298 | 0.267 |
@@ -322,7 +323,7 @@ In production environments, TimesFM 2.5 has demonstrated: - **95% accuracy** on 
 
 One of TimesFM's unique advantages is its integration with Google's ecosystem: ### BigQuery ML
 
-For enterprise-scale forecasting: ```sql
+For enterprise-scale forecasting: `````sql
 -- Use TimesFM model in BigQuery ML
 CREATE MODEL my_project.my_timesfm_model
 OPTIONS(model_type='TIMESFM') AS
@@ -330,8 +331,8 @@ SELECT
   timestamp_col,
   value_col,
   EXTRACT(HOUR FROM timestamp_col) AS hour_of_day
-FROM `my_dataset.time_series_data`;
-```
+FROM ````my_dataset.time_series_data````;
+`````
 
 ### Google Sheets Integration
 
@@ -342,7 +343,7 @@ For non-technical users: 1. Install the [TimesFM add-on](https://workspaceupdate
 
 ### Vertex AI Model Garden
 
-For cloud deployment: ```python
+For cloud deployment: `````python
 from google.cloud import aiplatform
 
 # Deploy TimesFM model to Vertex AI
@@ -359,13 +360,13 @@ model = aiplatform.Model.upload(
 )
 
 endpoint.deploy(model=model, machine_type="n1-standard-4")
-```
+`````
 
 ## Real-World Applications
 
 ### Application 1: Sales Forecasting
 
-Retail companies can use TimesFM to predict future sales: ```python
+Retail companies can use TimesFM to predict future sales: `````python
 import pandas as pd
 import timesfm
 
@@ -382,11 +383,11 @@ model = timesfm.TimesFM_2p5_200M.from_pretrained(
 
 forecast = model.forecast(historical_sales, horizon=30)
 print(f"Expected sales next month: {forecast.mean():.2f}")
-```
+`````
 
 ### Application 2: Energy Demand Prediction
 
-Utility companies can forecast electricity demand: ```python
+Utility companies can forecast electricity demand: `````python
 # Load energy consumption data
 energy_data = pd.read_csv("energy_consumption.csv")
 
@@ -405,11 +406,11 @@ future_demand = model.predict(
     horizon=24,
     X_future=future_covariates.values
 )
-```
+`````
 
 ### Application 3: Financial Market Analysis
 
-While not financial advice, TimesFM can help analyze market patterns: ```python
+While not financial advice, TimesFM can help analyze market patterns: `````python
 # Stock price forecasting
 stock_prices = pd.read_csv("stock_history.csv")["close"].values
 
@@ -422,7 +423,7 @@ batch_stocks = np.array([
 
 # Forecast all stocks
 predictions = model.forecast(batch_stocks, horizon=30)
-```
+`````
 
 ## Comparison with Traditional Methods
 
@@ -430,11 +431,11 @@ predictions = model.forecast(batch_stocks, horizon=30)
 
 | Aspect | TimesFM 2.5 | ARIMA |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Setup Time | Minutes | Hours-Days |
 | Parameter Tuning | Minimal | Extensive |
@@ -447,11 +448,11 @@ predictions = model.forecast(batch_stocks, horizon=30)
 
 | Aspect | TimesFM 2.5 | Prophet |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Foundation Model | Yes | No |
 | Transfer Learning | Yes | No |
@@ -479,11 +480,11 @@ predictions = model.forecast(batch_stocks, horizon=30)
 
 | Aspect | TimesFM 2.5 | ARIMA |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Setup Time | Minutes | Hours-Days |
 | Parameter Tuning | Minimal | Extensive |
@@ -496,11 +497,11 @@ predictions = model.forecast(batch_stocks, horizon=30)
 
 | Aspect | TimesFM 2.5 | Prophet |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Foundation Model | Yes | No |
 | Transfer Learning | Yes | No |
@@ -543,7 +544,7 @@ The Google Research team continues to push the boundaries with ongoing work on: 
 
 ## Getting Started Today
 
-Ready to revolutionize your forecasting workflow? Here's how to begin: 1. **Install**: `pip install timesfm[flax]`
+Ready to revolutionize your forecasting workflow? Here's how to begin: 1. **Install**: ````pip install timesfm[flax]```
 2. **Load Model**: Use the pretrained checkpoint from Hugging Face
 3. **Prepare Data**: Format your time series appropriately
 4. **Forecast**: Call the forecast method with your desired horizon
@@ -586,7 +587,7 @@ With its integration into Google's ecosystem, active development community, and 
 For anyone working with temporal data, investing time in learning and deploying TimesFM is not just beneficial — it"s becoming essential.
 
 
----
+* * *
 **Sources:**
 - [GitHub Repository](https://github.com/google-research/timesfm)
 - [ICML 2024 Paper](https://arxiv.org/abs/2310.10688)
@@ -627,7 +628,7 @@ For anyone working with temporal data, investing time in learning and deploying 
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-05-25-trending-ai-agents](timesfm-google-time-series-foundation-model)
@@ -636,6 +637,6 @@ For anyone working with temporal data, investing time in learning and deploying 
 - [2026-06-15-trending-ai-agents](timesfm-google-time-series-foundation-model)
 - [2026-06-22-trending-ai-agents](timesfm-google-time-series-foundation-model)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

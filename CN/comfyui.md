@@ -24,6 +24,7 @@ aliases:
   - /posts/comfyui/
 - /resources/ai-tools/comfyui-architecture-node-based-ai-image/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -59,21 +60,21 @@ ComfyUI's architecture separates concerns into three layers: 1. **Frontend** —
 
 | Concept | Description |
 |
----
+* * *
 |
----
+* * *
 |
-| **Node** | A single operation (e.g., `KSampler`, `Load Checkpoint`, `Save Image`) |
+| **Node** | A single operation (e.g., ```KSampler````, ````Load Checkpoint````, ````Save Image````) |
 | **Link** | A directed connection carrying typed data (MODEL, LATENT, IMAGE, CONDITIONING) |
 | **Workflow** | A complete JSON graph defining a generative pipeline |
 | **Queue** | The execution scheduler that runs workflows in order |
 | **Custom Node** | A Python class extending ComfyUI's node registry |
 
-The node system enforces type safety at the graph level. A `KSampler` node expects a `MODEL` input and outputs a `LATENT` tensor. Connect a string to a model slot and the editor highlights the mismatch before execution starts.
+The node system enforces type safety at the graph level. A ````KSampler```` node expects a ````MODEL```` input and outputs a ````LATENT```` tensor. Connect a string to a model slot and the editor highlights the mismatch before execution starts.
 
 ### Workflow Serialization
 
-Every workflow is a JSON file. Share it with a teammate, version it in Git, or POST it to the API server: ```json
+Every workflow is a JSON file. Share it with a teammate, version it in Git, or POST it to the API server: `````json
 {
   "1": {
     "inputs": {
@@ -91,7 +92,7 @@ Every workflow is a JSON file. Share it with a teammate, version it in Git, or P
     "_meta": { "title": "Positive Prompt" }
   }
 }
-```
+`````
 
 This JSON-first approach makes ComfyUI uniquely suitable for CI/CD pipelines and automated batch processing.
 
@@ -101,11 +102,11 @@ This JSON-first approach makes ComfyUI uniquely suitable for CI/CD pipelines and
 
 | Hardware | Minimum | Recommended |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | NVIDIA with 6 GB VRAM | RTX 4090 (24 GB) for Flux |
 | RAM | 16 GB | 32 GB |
@@ -114,7 +115,7 @@ This JSON-first approach makes ComfyUI uniquely suitable for CI/CD pipelines and
 
 ### Method 1: Direct Installation (5 Minutes)
 
-```bash
+`````bash
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 
@@ -130,31 +131,31 @@ pip install -r requirements.txt
 
 # Start the server
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
-Open `http://localhost:8188` in your browser. The interface loads a default text-to-image workflow.
+Open ````http://localhost:8188```` in your browser. The interface loads a default text-to-image workflow.
 
 ### Method 2: ComfyUI Desktop
 
-For users who prefer an installer over the terminal: ```bash
+For users who prefer an installer over the terminal: `````bash
 # Download the latest desktop release from: # https://github.com/Comfy-Org/ComfyUI-Desktop/releases
 
 # The desktop app handles Python, CUDA, and dependency management automatically.
 # First launch takes ~15 minutes (downloads models and sets up the environment).
-```
+`````
 
 ### Method 3: Docker (Production Recommended)
 
-The Docker approach keeps your host system clean and makes deployment reproducible: ```bash
+The Docker approach keeps your host system clean and makes deployment reproducible: `````bash
 # Verify GPU passthrough works
 docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
 
 # Create directory structure for persistent storage
 mkdir -p comfyui-deploy/{models/checkpoints,models/loras,models/vae,models/controlnet,output,custom_nodes,workflows}
 cd comfyui-deploy
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -170,9 +171,9 @@ services: comfyui: image: ghcr.io/ai-dock/comfyui:latest-cuda
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # Start the stack
 docker compose up -d
 
@@ -181,11 +182,11 @@ docker compose logs -f comfyui
 
 # Check GPU utilization inside the container
 docker exec comfyui nvidia-smi
-```
+`````
 
 ### Model Setup
 
-Download models into the appropriate directories: ```bash
+Download models into the appropriate directories: `````bash
 # SDXL Base (6.9 GB)
 wget -P models/checkpoints \
   "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
@@ -201,15 +202,15 @@ wget -P models/vae \
 # ControlNet OpenPose
 wget -P models/controlnet \
   "https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors"
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Stable Diffusion & SDXL
 
-ComfyUI supports all major Stable Diffusion variants natively. The built-in `CheckpointLoaderSimple` node handles both SD 1.5 and SDXL checkpoints without configuration changes.
+ComfyUI supports all major Stable Diffusion variants natively. The built-in ````CheckpointLoaderSimple```` node handles both SD 1.5 and SDXL checkpoints without configuration changes.
 
-```python
+`````python
 # Load SDXL with refiner pipeline
 CheckpointLoaderSimple: ckpt_name: "sd_xl_base_1.0.safetensors"
 
@@ -219,11 +220,11 @@ KSampler: seed: 42
   sampler_name: "dpmpp_2m"
   scheduler: "karras"
   denoise: 1.0
-```
+`````
 
 ### Flux
 
-Flux models integrate through dedicated nodes with optimized attention implementations: ```python
+Flux models integrate through dedicated nodes with optimized attention implementations: `````python
 # Flux workflow nodes
 UNETLoader: unet_name: "flux1-dev.safetensors"
   weight_dtype: "fp8_e4m3fn"  # Reduces VRAM from 24GB to 12GB
@@ -235,20 +236,20 @@ DualCLIPLoader: clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
 EmptySD3LatentImage: width: 1024
   height: 1024
   batch_size: 1
-```
+`````
 
 Flux support includes Dev, Schnell, and community fine-tunes. FP8 quantization reduces VRAM usage by ~50% with minimal quality loss.
 
 ### Wan Video Models
 
-Wan 2.1/2.2 integration for text-to-video and image-to-video: ```bash
+Wan 2.1/2.2 integration for text-to-video and image-to-video: `````bash
 # Install Wan custom nodes
  cd custom_nodes
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 pip install -r ComfyUI-WanVideoWrapper/requirements.txt
-```
+`````
 
-```python
+`````python
 # Wan text-to-video workflow
 WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   positive: "slow motion aerial shot of ocean waves"
@@ -256,11 +257,11 @@ WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   height: 720
   frames: 81
   steps: 30
-```
+`````
 
 ### ControlNet & LoRA
 
-ControlNet and LoRA nodes integrate at the model level, allowing composable conditioning: ```python
+ControlNet and LoRA nodes integrate at the model level, allowing composable conditioning: `````python
 # Apply multiple LoRAs with strength control
 LoraLoaderModelOnly: model: ["CheckpointLoader", 0]
   lora_name: "add_detail.safetensors"
@@ -272,11 +273,11 @@ ControlNetApplyAdvanced: positive: ["CLIPTextEncode", 0]
   strength: 1.0
   start_percent: 0.0
   end_percent: 0.8
-```
+`````
 
 ### API Integration
 
-Every workflow can be executed via REST API: ```bash
+Every workflow can be executed via REST API: `````bash
 # Submit a workflow via API
 curl -X POST http://localhost:8188/prompt \
   -H "Content-Type: application/json" \
@@ -292,7 +293,7 @@ curl http://localhost:8188/queue
 
 # Get generated images
 curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&type=output
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -300,15 +301,15 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 
 Benchmarks run on identical hardware (RTX 4090, CUDA 12.4, 64 GB RAM): | Test Case | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SD 1.5 512x512 | 2.1s | 2.4s | 2.3s | 2.3s |
 | SDXL 1024x1024 | 7.8s | 9.2s | 8.5s | 8.5s |
@@ -323,24 +324,24 @@ Benchmarks run on identical hardware (RTX 4090, CUDA 12.4, 64 GB RAM): | Test Ca
 
 ### Use Case: Product Photo Pipeline
 
-An e-commerce team generates 50 product images daily with consistent lighting: ```python
+An e-commerce team generates 50 product images daily with consistent lighting: `````python
 # Batch workflow with shared style LoRA
 LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
                     ↓
             LoadPromptList (50 prompts)
                     ↓
             SaveImage (with metadata + filename pattern)
-```
+`````
 
 Results: 50 images in 11 minutes (SDXL, 1024x1024), fully reproducible by re-loading the workflow JSON.
 
 ### Use Case: Video Generation Studio
 
-A content studio produces short-form video clips: ```
+A content studio produces short-form video clips: `````
 Text Prompt → WanVideoSampler → Frame Interpolation (RIFE) → Video Combine
                    ↓
          Image Conditioning (optional img2video)
-```
+`````
 
 Wan 2.1 14B generates 81 frames at 1280x720 in ~4 minutes per clip. The node structure allows swapping between Wan variants (1.3B light, 14B quality) by changing a single loader node.
 
@@ -348,7 +349,7 @@ Wan 2.1 14B generates 81 frames at 1280x720 in ~4 minutes per clip. The node str
 
 ### Reverse Proxy with SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/comfyui
 server {
     listen 443 ssl http2;
@@ -373,20 +374,20 @@ server {
         proxy_pass http://127.0.0.1:8188;
     }
 }
-```
+`````
 
 ### Authentication
 
-```bash
+`````bash
 # Start with listen-only on localhost + API key
 python main.py --listen 0.0.0.0 --port 8188 \
   --api-key "your-secure-api-key-here" \
   --disable-xformers
-```
+`````
 
 ### Custom Node Development
 
-```python
+`````python
 # custom_nodes/my_custom_node/nodes.py
 class MyUpscaleNode: """A simple 4x upscale node using Real-ESRGAN."""
 
@@ -407,18 +408,18 @@ class MyUpscaleNode: """A simple 4x upscale node using Real-ESRGAN."""
 
 NODE_CLASS_MAPPINGS = {"MyUpscaleNode": MyUpscaleNode}
 NODE_DISPLAY_NAME_MAPPINGS = {"MyUpscaleNode": "My Upscale (Real-ESRGAN)"}
-```
+`````
 
-```python
+`````python
 # custom_nodes/my_custom_node/__init__.py
 from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
-```
+`````
 
 ### Monitoring
 
-```bash
+`````bash
 # GPU utilization dashboard (run alongside ComfyUI)
 watch -n 1 nvidia-smi
 
@@ -427,11 +428,11 @@ curl -s http://localhost:8188/queue | jq '.queue_running | length'
 
 # Disk space monitoring for model storage
 df -h models/ output/
-```
+`````
 
 ### Backup Strategy
 
-```bash
+`````bash
 #!/bin/bash
 # backup-comfyui.sh
 BACKUP_DIR="/backup/comfyui-$(date +%Y%m%d)"
@@ -450,21 +451,21 @@ rsync -av --progress output/ "$BACKUP_DIR/output/"
 # rsync -av --progress models/ "$BACKUP_DIR/models/"
 
 echo "Backup complete: $BACKUP_DIR"
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Interface Type** | Node-based graph | Traditional Web UI | Canvas + web UI | One-click simplified |
 | **Learning Curve** | Steep (10-20 hrs) | Moderate (3-5 hrs) | Low (1-2 hrs) | Minimal (30 min) |
@@ -491,7 +492,7 @@ ComfyUI is not the right tool for every situation. Here is where it falls short:
 
 **Not beginner-friendly.** If you want to type a prompt and get an image in 30 seconds, use Fooocus. ComfyUI rewards investment with control, but that investment is real.
 
-**Model management is manual.** Unlike InvokeAI's built-in model browser, ComfyUI expects you to `wget` files into the correct directory structure. The ComfyUI Manager custom node helps, but it is not a first-class package manager.
+**Model management is manual.** Unlike InvokeAI's built-in model browser, ComfyUI expects you to ````wget```` files into the correct directory structure. The ComfyUI Manager custom node helps, but it is not a first-class package manager.
 
 ## Frequently Asked Questions
 
@@ -505,7 +506,7 @@ Yes, with limitations. Apple Silicon Macs work via MPS backend with ~40% slower 
 
 ### How do I install custom nodes?
 
-Use the ComfyUI Manager (install via `git clone https://github.com/Comfy-Org/ComfyUI-Manager.git` into `custom_nodes/`), or install manually by cloning repositories into the `custom_nodes/` directory. Restart ComfyUI after installation. The Manager provides a searchable browser with one-click install for 3,000+ community nodes.
+Use the ComfyUI Manager (install via ````git clone https://github.com/Comfy-Org/ComfyUI-Manager.git```` into ````custom_nodes/````), or install manually by cloning repositories into the ````custom_nodes/```` directory. Restart ComfyUI after installation. The Manager provides a searchable browser with one-click install for 3,000+ community nodes.
 
 ### Is ComfyUI free for commercial use?
 
@@ -513,24 +514,24 @@ ComfyUI itself is licensed under GPL-3.0, which permits commercial use with the 
 
 ### How do I upgrade ComfyUI safely?
 
-```bash
+`````bash
 cd ComfyUI
 git pull origin master
 pip install -r requirements.txt
 # Restart the server
-```
+`````
 
-For production deployments, pin to a specific release tag instead of master: `git checkout v0.21.1`. Always back up your workflows before upgrading, as custom node compatibility can break across versions.
+For production deployments, pin to a specific release tag instead of master: ````git checkout v0.21.1````. Always back up your workflows before upgrading, as custom node compatibility can break across versions.
 
 ### Can I use ComfyUI with existing AUTOMATIC1111 models?
 
-Yes. Both tools use the same `.safetensors` and `.ckpt` model formats. Point ComfyUI's model directories at your existing A1111 model folder, or symlink them: `ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints`.
+Yes. Both tools use the same ````.safetensors```` and ````.ckpt```` model formats. Point ComfyUI's model directories at your existing A1111 model folder, or symlink them: ````ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints````.
 
 ## Conclusion
 
 ComfyUI is the most capable open-source interface for diffusion model workflows. Its node-based architecture trades initial simplicity for long-term power — once you build a workflow, you can version it, automate it, and scale it. The 87,200+ GitHub stars reflect a community that values this control over convenience.
 
-Start with the Docker setup for production environments, or the desktop installer for local experimentation. Install the ComfyUI Manager immediately — it unlocks the 3,000+ custom node ecosystem. Benchmark your workflows with `nvidia-smi` running, and pin your version tag once you find a stable combination.
+Start with the Docker setup for production environments, or the desktop installer for local experimentation. Install the ComfyUI Manager immediately — it unlocks the 3,000+ custom node ecosystem. Benchmark your workflows with ````nvidia-smi``` running, and pin your version tag once you find a stable combination.
 
 **Action items:**
 1. Clone the repo and run the Docker Compose setup
@@ -589,7 +590,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](comfyui)
@@ -599,5 +600,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](comfyui)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

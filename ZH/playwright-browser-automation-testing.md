@@ -12,11 +12,12 @@ aliases:
   - /zh/posts/playwright-browser-automation-testing/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：浏览器自动化的不稳定性流行病
 
-你的 CI 管道又红了。本地通过的 Selenium 测试在 Jenkins 上失败，报出 `NoSuchElementException`。你加了 `time.sleep(3)` 作为权宜之计。第二天，另一个测试失败了。你加了更多 sleep。六个月后，你的测试套件需要 **47 分钟** 才能跑完，并且随机失败 **30%** 的时间。这就是困扰浏览器自动化领域十年的不稳定性流行病。
+你的 CI 管道又红了。本地通过的 Selenium 测试在 Jenkins 上失败，报出 ```NoSuchElementException````。你加了 ````time.sleep(3)```` 作为权宜之计。第二天，另一个测试失败了。你加了更多 sleep。六个月后，你的测试套件需要 **47 分钟** 才能跑完，并且随机失败 **30%** 的时间。这就是困扰浏览器自动化领域十年的不稳定性流行病。
 
 微软的 Playwright 拥有 **72,000 个 GitHub Star**，由构建 Puppeteer 的团队维护，从零开始设计以消除这类问题。凭借自动等待、原子操作和内置追踪，Playwright 在生产套件中实现了 **低于 1% 的不稳定率**。在正面基准测试中，它比 **Selenium 快 3 倍**，并通过单一 API 支持 Chromium、Firefox 和 WebKit。本指南涵盖了使用 Playwright v1.51 实现可靠浏览器自动化的所有内容。
 
@@ -34,21 +35,21 @@ Playwright 最强大的抽象是 **BrowserContext**。每个上下文都是一�
 
 ### 自动等待：告别显式睡眠
 
-Playwright 在每次交互前执行可操作性检查。在点击元素之前，它会自动等待元素 **已附加、可见、稳定且已启用**。在填写表单字段之前，它会检查元素是否 **可编辑**。这些检查以 **30 秒默认超时** 和 **500ms 轮询间隔** 运行，消除了显式 `sleep` 调用的需要。
+Playwright 在每次交互前执行可操作性检查。在点击元素之前，它会自动等待元素 **已附加、可见、稳定且已启用**。在填写表单字段之前，它会检查元素是否 **可编辑**。这些检查以 **30 秒默认超时** 和 **500ms 轮询间隔** 运行，消除了显式 ````sleep```` 调用的需要。
 
 ### Web-First 断言
 
-Playwright 提供自动重试直到满足条件或超时的断言。`expect(page).to_have_title("Dashboard")` 会轮询 DOM 直到标题匹配，而不是立即检查一次就失败。
+Playwright 提供自动重试直到满足条件或超时的断言。````expect(page).to_have_title("Dashboard")```` 会轮询 DOM 直到标题匹配，而不是立即检查一次就失败。
 
 ### 追踪与调试
 
-内置的追踪查看器为每个测试捕获屏幕截图、DOM 快照、网络日志和控制台输出。当测试失败时，你在追踪查看器中打开 `.zip` 追踪文件，像观看录像一样逐步执行每个操作。调试时间从数小时缩短到数分钟。
+内置的追踪查看器为每个测试捕获屏幕截图、DOM 快照、网络日志和控制台输出。当测试失败时，你在追踪查看器中打开 ````.zip```` 追踪文件，像观看录像一样逐步执行每个操作。调试时间从数小时缩短到数分钟。
 
 ## 安装与配置：5 分钟内就绪
 
 ### 第一步：安装 Playwright
 
-```bash
+`````bash
 pip install playwright==1.51.0
 
 # 安装浏览器二进制文件（Chromium、Firefox、WebKit）
@@ -56,13 +57,13 @@ playwright install
 
 # 可选：仅安装 Chromium 以加快安装速度
 playwright install chromium
-```
+`````
 
-`playwright install` 命令会下载浏览器二进制文件（每个浏览器约 180MB）。这些与你的系统浏览器隔离，确保跨环境的可复现测试。
+````playwright install```` 命令会下载浏览器二进制文件（每个浏览器约 180MB）。这些与你的系统浏览器隔离，确保跨环境的可复现测试。
 
 ### 第二步：验证安装
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 with sync_playwright() as p: browser = p.chromium.launch()
@@ -72,11 +73,11 @@ with sync_playwright() as p: browser = p.chromium.launch()
     browser.close()
 
 print("Playwright is ready!")
-```
+`````
 
 ### 第三步：运行你的第一个自动化测试
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 def test_login_flow(): with sync_playwright() as p: browser = p.chromium.launch(headless=True)
@@ -104,7 +105,7 @@ def test_login_flow(): with sync_playwright() as p: browser = p.chromium.launch(
 
 if __name__ == "__main__": test_login_flow()
     print("Test passed!")
-```
+`````
 
 这个测试在不到 3 秒内完成，零显式等待。Playwright 在交互前自动等待每个元素准备就绪。
 
@@ -112,7 +113,7 @@ if __name__ == "__main__": test_login_flow()
 
 ### 与 pytest 集成
 
-```python
+`````python
 # conftest.py
 import pytest
 from playwright.sync_api import sync_playwright
@@ -129,9 +130,9 @@ def page(browser): context = browser.new_context(
     page = context.new_page()
     yield page
     context.close()
-```
+`````
 
-```python
+`````python
 # test_ecommerce.py
 def test_add_to_cart(page): page.goto("https://example.com/products")
     page.click("button[data-testid='add-to-cart']")
@@ -148,11 +149,11 @@ def test_search_results(page): page.goto("https://example.com")
     page.wait_for_selector(".search-result")
     results = page.query_selector_all(".search-result")
     assert len(results) > 0
-```
+`````
 
 ### 与 GitHub Actions CI/CD 集成
 
-```yaml
+`````yaml
 # .github/workflows/playwright.yml
 name: Playwright Tests
 on: [push, pull_request]
@@ -167,13 +168,13 @@ jobs: test: runs-on: ubuntu-latest
         if: failure()
         with: name: playwright-traces
           path: test-results/
-```
+`````
 
 ### 与代码生成集成
 
 Playwright 可以通过录制你的手动浏览器操作来生成测试代码：
 
-```bash
+`````bash
 # 启动 codegen 并录制交互
 playwright codegen https://example.com
 
@@ -182,13 +183,13 @@ playwright codegen --viewport-size="1920,1080" https://example.com
 
 # 使用特定语言录制
 playwright codegen --target=python https://example.com
-```
+`````
 
 codegen 工具会打开一个浏览器窗口和一个检查器面板。每次点击、输入和导航都会实时转换为 Playwright 代码。对于复杂的用户流程，这减少了 **70-80%** 的测试编写时间。
 
 ### 与异步 API 集成
 
-```python
+`````python
 import asyncio
 from playwright.async_api import async_playwright
 
@@ -206,11 +207,11 @@ async def scrape_multiple_pages(): async with async_playwright() as p: browser =
         await browser.close()
 
 asyncio.run(scrape_multiple_pages())
-```
+`````
 
 ### 使用 pytest-xdist 进行并行测试执行
 
-```bash
+`````bash
 # 安装并行测试运行器
 pip install pytest-xdist
 
@@ -219,13 +220,13 @@ pytest -n 4 --headed
 
 # 启用追踪以进行调试
 pytest --tracing=on -n auto
-```
+`````
 
 Playwright 基于上下文的隔离意味着每个并行测试都会获得一个干净的浏览器状态，而无需启动新浏览器进程的开销。这就是 Playwright 在工作进程数量上呈线性扩展的原因，直到 CPU 核心限制。
 
 ### 与 Docker 集成进行 CI/CD
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM mcr.microsoft.com/playwright/python:v1.51.0-jammy
 
@@ -235,9 +236,9 @@ RUN pip install -r requirements.txt
 
 COPY tests/ ./tests/
 CMD ["pytest", "-n", "4", "--tracing=retain-on-failure"]
-```
+`````
 
-微软在 `mcr.microsoft.com/playwright/python` 提供了预装浏览器的官方 Docker 镜像。用于一致的 CI/CD 环境。
+微软在 ````mcr.microsoft.com/playwright/python```` 提供了预装浏览器的官方 Docker 镜像。用于一致的 CI/CD 环境。
 
 对于生产测试基础设施，将你的 Playwright 套件部署在 **[DigitalOcean 云主机](https://m.do.co/c/eca87ac14ee0)** 上。它们的 SSD 支持实例和可预测的定价使其成为每月 4 美元起的理想 CI 运行器。
 
@@ -247,13 +248,13 @@ CMD ["pytest", "-n", "4", "--tracing=retain-on-failure"]
 
 | 指标 | Selenium 4.26 | Cypress 14.0 | Playwright 1.51 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 登录测试 (毫秒) | 2,840 | 1,920 | **680** |
 | 加购测试 (毫秒) | 3,120 | 2,100 | **720** |
@@ -282,7 +283,7 @@ CMD ["pytest", "-n", "4", "--tracing=retain-on-failure"]
 
 ### 网络拦截与模拟
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 def test_with_mocked_api(): with sync_playwright() as p: browser = p.chromium.launch()
@@ -298,11 +299,11 @@ def test_with_mocked_api(): with sync_playwright() as p: browser = p.chromium.la
         page.goto("https://example.com/products")
         assert "Mocked Product" in page.content()
         browser.close()
-```
+`````
 
 ### 认证状态持久化
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 import json
 
@@ -330,13 +331,13 @@ def test_with_saved_auth(): with sync_playwright() as p: browser = p.chromium.la
         page.goto("https://example.com/dashboard")
         assert "Welcome" in page.content()
         browser.close()
-```
+`````
 
 这种模式将需要认证的测试套件的测试时间减少了 **40-60%**。
 
 ### 视觉回归测试
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 def test_visual_regression(): with sync_playwright() as p: browser = p.chromium.launch()
@@ -351,11 +352,11 @@ def test_visual_regression(): with sync_playwright() as p: browser = p.chromium.
         # assert compare_images("landing-baseline.png", "landing.png") < 0.1
         
         browser.close()
-```
+`````
 
 ### 移动设备模拟
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 iphone = sync_playwright().start().devices["iPhone 14 Pro Max"]
@@ -372,13 +373,13 @@ def test_mobile_viewport(): with sync_playwright() as p: browser = p.chromium.la
         assert page.is_visible("nav.mobile-menu")
         
         browser.close()
-```
+`````
 
 Playwright 支持 **40 多个预配置设备配置文件**，包括 iPhone、iPad 和 Android 设备。每个配置文件包括视口、用户代理、设备缩放因子和触摸支持。
 
 ### 请求/响应监控
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 def test_api_contract(): with sync_playwright() as p: browser = p.chromium.launch()
@@ -401,11 +402,11 @@ def test_api_contract(): with sync_playwright() as p: browser = p.chromium.launc
         assert "data" in body
         
         browser.close()
-```
+`````
 
 ### 用于抓取的隐身模式
 
-```python
+`````python
 from playwright.sync_api import sync_playwright
 
 def scrape_with_stealth(): with sync_playwright() as p: browser = p.chromium.launch(
@@ -427,21 +428,21 @@ def scrape_with_stealth(): with sync_playwright() as p: browser = p.chromium.lau
         page.goto("https://example.com")
         print(page.title())
         browser.close()
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Playwright 1.51 | Selenium 4.26 | Cypress 14.0 | Puppeteer 24.0 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 浏览器支持 | Chromium, Firefox, WebKit | Chrome, FF, Safari, Edge | 仅 Chromium | 仅 Chromium |
 | 自动等待 | **完整（所有操作）** | 仅手动 | 部分 | 有限 |
@@ -464,7 +465,7 @@ def scrape_with_stealth(): with sync_playwright() as p: browser = p.chromium.lau
 
 ## 局限性：诚实评估
 
-**资源占用。** Playwright 捆绑完整的浏览器二进制文件（每个浏览器约 180MB）。Docker 镜像比 Selenium 的等效镜像更大。对于受限环境，考虑仅使用 `chromium` 而不是所有三个浏览器。
+**资源占用。** Playwright 捆绑完整的浏览器二进制文件（每个浏览器约 180MB）。Docker 镜像比 Selenium 的等效镜像更大。对于受限环境，考虑仅使用 ````chromium```` 而不是所有三个浏览器。
 
 **JavaScript 优先的生态系统。** 虽然 Playwright 支持 Python、Java 和 C#，但最活跃的社区和最新功能首先在 JavaScript/TypeScript 绑定中发布。Python 用户可能需要在新版本发布后等待 **1-2 周** 才能获得功能对等。
 
@@ -486,7 +487,7 @@ Playwright 无法原生解决 CAPTCHA。对于测试环境，在 staging 服务�
 
 ### Playwright 能与单页应用 (SPA) 一起工作吗？
 
-**是的，非常出色。** Playwright 的自动等待机制无需显式等待即可处理 React、Vue 和 Angular 应用中的动态内容加载。`page.wait_for_selector` 和 `page.wait_for_load_state("networkidle")` 方法优雅地处理异步页面转换。
+**是的，非常出色。** Playwright 的自动等待机制无需显式等待即可处理 React、Vue 和 Angular 应用中的动态内容加载。````page.wait_for_selector```` 和 ````page.wait_for_load_state("networkidle")```` 方法优雅地处理异步页面转换。
 
 ### 我可以在 ARM64/树莓派上运行 Playwright 吗？
 
@@ -494,22 +495,22 @@ Playwright 在 Linux 和 macOS 上支持 ARM64。对于树莓派，你需要从�
 
 ### 如何更新浏览器二进制文件？
 
-在更新 pip 包后运行 `playwright install`。Playwright 维护 Python 绑定和浏览器二进制文件之间的版本兼容性。版本不匹配会产生明确的错误消息，提示所需的确切安装命令。
+在更新 pip 包后运行 ````playwright install````。Playwright 维护 Python 绑定和浏览器二进制文件之间的版本兼容性。版本不匹配会产生明确的错误消息，提示所需的确切安装命令。
 
-```bash
+`````bash
 pip install --upgrade playwright==1.51.0
 playwright install
-```
+`````
 
 ### sync_api 和 async_api 有什么区别？
 
-`sync_api` 使用阻塞调用，适合测试脚本和顺序工作流。`async_api` 使用 Python 的 `async`/`await`，非常适合并发抓取多个页面或与 FastAPI 等异步框架集成。两个 API 的方法签名完全相同；只有调用语法不同。
+````sync_api```` 使用阻塞调用，适合测试脚本和顺序工作流。````async_api```` 使用 Python 的 ````async````/````await````，非常适合并发抓取多个页面或与 FastAPI 等异步框架集成。两个 API 的方法签名完全相同；只有调用语法不同。
 
 ## 结论：自信地自动化
 
 浏览器自动化不再需要不稳定、缓慢或令人沮丧。Playwright 的现代架构、自动等待和内置调试工具使其成为 2026 年跨浏览器自动化的最佳选择。比 Selenium **快 3 倍** 的提升和 **低于 1% 的不稳定率** 直接转化为更快的 CI 管道和更可靠的发布。
 
-从 `playwright codegen` 开始录制你的第一个测试，与 pytest 集成以构建结构化的测试套件，并在 **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** 上部署以获得高性价比的 CI 基础设施。学习 Playwright 的时间投入在第一个月内就会通过减少调试和维护得到回报。
+从 ````playwright codegen``` 开始录制你的第一个测试，与 pytest 集成以构建结构化的测试套件，并在 **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** 上部署以获得高性价比的 CI 基础设施。学习 Playwright 的时间投入在第一个月内就会通过减少调试和维护得到回报。
 
 **加入我们的 Telegram 群组**，获取浏览器自动化模式和测试最佳实践的每日技巧：[https://t.me/dibi8python](https://t.me/dibi8python)
 
@@ -523,7 +524,7 @@ playwright install
 - [Playwright Docker 镜像](https://mcr.microsoft.com/en-us/product/playwright/about)
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -563,7 +564,7 @@ playwright install
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -573,6 +574,6 @@ playwright install
 - [obscura-rust-headless-browser-ai-agents-web-scraping](playwright-browser-automation-testing)
 - [ray-distributed-ai-framework-complete-guide](playwright-browser-automation-testing)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

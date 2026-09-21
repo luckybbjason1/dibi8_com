@@ -35,6 +35,7 @@ faq: - q: "What exactly is a subagent in Claude Code, and how is it different fr
   - q: "How does Claude Code subagent pricing work — am I paying separately for each one?"
     a: "Each subagent invocation consumes tokens like any other Claude conversation. The cost is roughly the subagent's full context (system prompt + tools schema + task prompt + thinking + final report). For Pro and Max plans, subagent usage counts against the same usage allowance as the parent session. For API users, the cost is straightforward per-token billing. The savings come from offloading exploration that would otherwise bloat your parent context — you pay for the subagent, but your main session stays fast and focused."
 ---
+
 # Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)
 
 
@@ -52,11 +53,11 @@ If you're already using Claude Code via the [official CLI](https://docs.anthropi
 
 **Pattern.** Spawn three Explore subagents in parallel, one per question. Each runs in its own sandboxed context. Each returns a short report. Your parent sees three concise paragraphs instead of three grep dumps.
 
-```
+````
 Single message → 3 Agent tool calls: - Agent("Find auth handlers", subagent_type="Explore", prompt="...")
   - Agent("Map state management", subagent_type="Explore", prompt="...")
   - Agent("Find deprecated fn Z usages", subagent_type="Explore", prompt="...")
-```
+`````
 
 **Failure mode it avoids.** Context window bloat. Your parent stays light and can hold the actual implementation conversation.
 
@@ -64,17 +65,17 @@ Single message → 3 Agent tool calls: - Agent("Find auth handlers", subagent_ty
 
 ## Pattern 2: Worktree Isolation for Risky Edits
 
-**Problem.** You want a subagent to try a refactor, but if it goes sideways you don't want to manually `git reset --hard`. You also want the subagent to be able to run tests without interfering with your active changes in the main worktree.
+**Problem.** You want a subagent to try a refactor, but if it goes sideways you don't want to manually ````git reset --hard````. You also want the subagent to be able to run tests without interfering with your active changes in the main worktree.
 
 **Pattern.** Use the worktree isolation parameter on the Agent invocation. The subagent operates in a temporary git worktree branched off your current state. If it makes changes, you get back the worktree path and can review, cherry-pick, or discard at your leisure. If it makes no changes, the worktree is auto-cleaned.
 
-```
+`````
 Agent({
   description: "Try the controller-level refactor"
   isolation: "worktree",
   prompt: "Refactor controllers/orders.rb to extract the validation logic..."
 })
-```
+`````
 
 **Failure mode it avoids.** Half-done refactors that contaminate your working tree before you've had a chance to evaluate.
 
@@ -84,9 +85,9 @@ Agent({
 
 **Problem.** Code review, security audits, accessibility audits, and SQL query optimization all benefit from a focused mindset that's hard to maintain when you're also writing the feature. Generic Claude is good at all of these, but specialized prompting is better.
 
-**Pattern.** Use the `subagent_type` parameter to delegate to specialists. A `code-reviewer` subagent reads the diff and reports findings with confidence levels. A security-auditor reads the same diff with threat-modeling glasses on. You stay in your parent conversation building the feature.
+**Pattern.** Use the ````subagent_type```` parameter to delegate to specialists. A ````code-reviewer```` subagent reads the diff and reports findings with confidence levels. A security-auditor reads the same diff with threat-modeling glasses on. You stay in your parent conversation building the feature.
 
-```
+`````
 Agent({
   description: "Independent code review"
   subagent_type: "code-reviewer",
@@ -94,7 +95,7 @@ Agent({
    opinion on the retry logic — I've checked idempotency but want
    independent verification. Report: is this safe under concurrent failures?"
 })
-```
+`````
 
 **Failure mode it avoids.** The "I wrote it so it must be right" blind spot. A separate agent with no context from your conversation is genuinely independent.
 
@@ -118,11 +119,11 @@ This is the pattern that pays for itself the fastest. A two-hour debugging sessi
 
 **Pattern.** Codify the checklist as a custom subagent in your repo. Anyone with Claude Code installed can invoke it. The checklist becomes executable: it produces a structured report against each step.
 
-```
+`````
 .claude/agents/migration-reviewer.md  # custom subagent definition
 .claude/agents/security-gate.md
 .claude/agents/perf-budget-checker.md
-```
+````
 
 When a team member runs the orchestrator, it can fan out to all three: migration-reviewer audits SQL, security-gate audits auth touches, perf-budget-checker audits anything that touches the request hot path. Each returns a structured report. The orchestrator aggregates.
 
@@ -187,7 +188,7 @@ The instinct to "just keep typing into the main session" dies hard. Override it.
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-patterns-multi-agent-workflows-2026)
@@ -197,7 +198,7 @@ The instinct to "just keep typing into the main session" dies hard. Override it.
 - [cursor-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -9,6 +9,7 @@ slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/fine-tuning-stack.png
 ---
 
+
 # TimesFM 2.5: Mô hình nền tảng dự báo chuỗi thời gian mang tính cách mạng của Google 
 
 Dự báo chuỗi thời gian từ lâu đã là một trong những vấn đề thách thức nhất trong khoa học dữ liệu. Từ dự đoán giá cổ phiếu đến dự báo mô hình thời tiết, từ dự báo doanh số đến ước tính mức tiêu thụ năng lượng — những dự đoán chính xác có thể tạo nên hoặc phá vỡ hoạt động kinh doanh. 
@@ -61,7 +62,7 @@ Sự cải tiến phản trực giác này đạt được thông qua: ![Mạng 
 
 Bắt đầu với TimesFM rất đơn giản. Mô hình này có sẵn thông qua PyPI, giúp việc cài đặt trở nên đơn giản như: ### Cách 1: Cài đặt nhanh qua PyPI 
 
-``` bash 
+```` bash 
 # Cài đặt với phụ trợ PyTorch 
 cài đặt pip lầnfm[ngọn đuốc] 
 
@@ -70,11 +71,11 @@ cài đặt pip lầnfm[flax]
 
 # Nếu bạn cần hỗ trợ đồng biến (XReg) 
 cài đặt pip lầnfm[xreg] 
-``` 
+````` 
 
 ### Tùy chọn 2: Cài đặt phát triển 
 
-Dành cho những người muốn đóng góp hoặc truy cập các tính năng mới nhất: ``` bash 
+Dành cho những người muốn đóng góp hoặc truy cập các tính năng mới nhất: ````` bash 
 # Sao chép kho lưu trữ 
 bản sao git https://github.com/google-research/timesfm.git 
 cd lầnfm 
@@ -87,7 +88,7 @@ nguồn .venv/bin/kích hoạt
 cài đặt uv pip -e .[đèn pin] 
 # Hoặc cho phần phụ trợ Flax 
 cài đặt uv pip -e .[flax] 
-``` 
+````` 
 
 ### Lựa chọn phụ trợ 
 
@@ -101,7 +102,7 @@ Chọn chương trình phụ trợ dựa trên yêu cầu về phần cứng và
 
 Hãy bắt đầu với một ví dụ dự báo đơn giản: ### Dự báo không có phát bắn nào 
 
-``` con trăn 
+````` con trăn 
 nhập numpy dưới dạng np 
 nhập lầnfm 
 
@@ -118,11 +119,11 @@ lịch sử_data = np.random.randn(1, 1024)
 dự báo = model.forecast(lịch sử_data, chân trời=12) 
 print(f"Dự báo hình dạng: {forecast.shape}") 
 print(f"Giá trị dự đoán: {forecast}") 
-``` 
+````` 
 
 ### Với dự báo lượng tử
 
-Để ước tính độ không đảm bảo, hãy bật đầu phân vị liên tục: ``` con trăn 
+Để ước tính độ không đảm bảo, hãy bật đầu phân vị liên tục: ````` con trăn 
 dự báo_with_uncertainty = model.forecast( 
 dữ liệu lịch sử, 
 chân trời=12, 
@@ -133,11 +134,11 @@ lượng tử=[0,1, 0,5, 0,9] # phân vị thứ 10, 50, 90
 point_forecast = dự báo_với_không chắc chắn[:, :, 1] # trung vị 
 giới hạn thấp hơn = dự báo_với_không chắc chắn[:, :, 0] # phân vị thứ 10 
 giới hạn trên = dự báo_với_không chắc chắn[:, :, 2] # phân vị thứ 90 
-``` 
+````` 
 
 ### Sử dụng phần cuối PyTorch 
 
-``` con trăn 
+````` con trăn 
 ngọn đuốc nhập khẩu 
 nhập lầnfm 
 
@@ -170,13 +171,13 @@ np.linspace(0, 1, 100),
 np.sin(np.linspace(0, 20, 67)), 
 ] 
 ) 
-``` 
+````` 
 
 ## Tính năng nâng cao 
 
 ### Tinh chỉnh với LoRA 
 
-Một trong những tính năng mạnh mẽ nhất của TimesFM 2.5 là khả năng tinh chỉnh bằng cách sử dụng Thích ứng xếp hạng thấp (LoRA): ``` con trăn 
+Một trong những tính năng mạnh mẽ nhất của TimesFM 2.5 là khả năng tinh chỉnh bằng cách sử dụng Thích ứng xếp hạng thấp (LoRA): ````` con trăn 
 từ máy biến áp nhập khẩu AutoModelForSequenceClassification 
 từ nhập peft LoraConfig, get_peft_model 
 
@@ -198,11 +199,11 @@ mô hình = get_peft_model(base_model, lora_config)
 
 # Bây giờ bạn có thể tinh chỉnh tập dữ liệu cụ thể của mình 
 # Điều này yêu cầu ít tham số hơn đáng kể so với tinh chỉnh đầy đủ 
-``` 
+````` 
 
 ### Hỗ trợ đồng biến với XReg 
 
-Đối với các trường hợp trong đó bạn có các biến bên ngoài ảnh hưởng đến chuỗi thời gian của mình, TimesFM 2.5 hỗ trợ lập mô hình hiệp phương sai: ``` con trăn 
+Đối với các trường hợp trong đó bạn có các biến bên ngoài ảnh hưởng đến chuỗi thời gian của mình, TimesFM 2.5 hỗ trợ lập mô hình hiệp phương sai: ````` con trăn 
 # Cài đặt có hỗ trợ XReg 
 # pip cài đặt lầnfm[xreg] 
 
@@ -227,11 +228,11 @@ y_pred, độ tin cậy_intervals = model.predict(
 chân trời=12, 
 X_future=np.random.randn(12, 5) 
 ) 
-``` 
+````` 
 
 ### Dự báo hàng loạt 
 
-Đối với nhiều chuỗi thời gian cùng một lúc: ``` con trăn 
+Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn 
 # Chuẩn bị chuỗi thời gian 
 batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian 
 
@@ -240,11 +241,11 @@ dự báo = model.forecast(batch_data, Horizon=24)
 
 # Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian 
 print(f"Hình dạng dự báo hàng loạt: {forecasts.shape}") 
-``` 
+````` 
 
 ### Dự báo hàng loạt 
 
-Đối với nhiều chuỗi thời gian cùng một lúc: ``` con trăn 
+Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn 
 # Chuẩn bị chuỗi thời gian 
 batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian 
 
@@ -253,11 +254,11 @@ dự báo = model.forecast(batch_data, Horizon=24)
 
 # Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian 
 print(f"Hình dạng dự báo hàng loạt: {forecasts.shape}") 
-``` 
+````` 
 
 ### Dự báo hàng loạt 
 
-Đối với nhiều chuỗi thời gian cùng một lúc: ``` con trăn 
+Đối với nhiều chuỗi thời gian cùng một lúc: ````` con trăn 
 # Chuẩn bị chuỗi thời gian 
 batch_data = np.random.randn(10, 1024) # 10 chuỗi, mỗi chuỗi 1024 dấu thời gian 
 
@@ -266,11 +267,11 @@ dự báo = model.forecast(batch_data, Horizon=24)
 
 # Hình dạng: (10, 24) - 10 dự báo, mỗi dự báo 24 bước thời gian 
 print(f"Hình dạng dự báo hàng loạt: {forecasts.shape}") 
-``` 
+````` 
 
 ### Truyền suy luận 
 
-Đối với các ứng dụng dự báo thời gian thực: ``` con trăn 
+Đối với các ứng dụng dự báo thời gian thực: ````` con trăn 
 # Khởi tạo ứng dụng phát trực tuyến 
 streaming_model = timefm.StreamingTimesFM( 
 model_path="google/timesfm-2.5-200m-flax" 
@@ -280,7 +281,7 @@ model_path="google/timesfm-2.5-200m-flax"
 trong khi Đúng: dữ liệu mới = get_next_time_step() 
 dự báo = streaming_model.update_and_predict(new_data, Horizon=12) 
 display_forecast(dự báo) 
-``` 
+````` 
 
 ## Điểm chuẩn hiệu suất 
 
@@ -307,7 +308,7 @@ Trong môi trường sản xuất, TimesFM 2.5 đã chứng minh: - **Độ chí
 
 Một trong những lợi thế độc đáo của TimesFM là khả năng tích hợp với hệ sinh thái của Google: ### BigQuery ML 
 
-Đối với dự báo ở quy mô doanh nghiệp: ```sql 
+Đối với dự báo ở quy mô doanh nghiệp: `````sql 
 -- Sử dụng mô hình TimesFM trong BigQuery ML 
 TẠO MÔ HÌNH my_project.my_timesfm_model 
 TÙY CHỌN(model_type='TIMESFM") NHƯ 
@@ -315,8 +316,8 @@ CHỌN
 dấu thời gian_col, 
 giá trị_col, 
 EXTRACT(HOUR TỪ timestamp_col) AS giờ_of_day 
-TỪ `my_dataset.time_series_data`; 
-``` 
+TỪ ````my_dataset.time_series_data````; 
+````` 
 
 ### Tích hợp Google Trang tính 
 
@@ -327,7 +328,7 @@ TỪ `my_dataset.time_series_data`;
 
 ### Vườn mô hình AI của Vertex 
 
-Để triển khai trên đám mây: ``` con trăn 
+Để triển khai trên đám mây: ````` con trăn 
 từ google.cloud nhập aiplatform 
 
 # Triển khai mô hình TimesFM lên Vertex AI 
@@ -344,13 +345,13 @@ Artifact_uri="gs://your-bucket/timesfm-model"
 ) 
 
 endpoint.deploy(model=model, machine_type="n1-standard-4") 
-``` 
+````` 
 
 ## Ứng dụng trong thế giới thực 
 
 ### Ứng dụng 1: Dự báo doanh số 
 
-Các công ty bán lẻ có thể sử dụng TimesFM để dự đoán doanh số bán hàng trong tương lai: ``` con trăn 
+Các công ty bán lẻ có thể sử dụng TimesFM để dự đoán doanh số bán hàng trong tương lai: ````` con trăn 
 nhập gấu trúc dưới dạng pd 
 nhập lầnfm 
 
@@ -367,11 +368,11 @@ mô hình = timefm.TimesFM_2p5_200M.from_pretrain(
 
 dự báo = model.forecast(lịch sử_bán hàng, chân trời=30) 
 print(f"Doanh số dự kiến tháng tới: {forecast.mean():.2f}") 
-``` 
+````` 
 
 ### Ứng dụng 2: Dự đoán nhu cầu năng lượng 
 
-Các công ty tiện ích có thể dự báo nhu cầu điện: ``` con trăn 
+Các công ty tiện ích có thể dự báo nhu cầu điện: ````` con trăn 
 # Tải dữ liệu tiêu thụ năng lượng 
 energy_data = pd.read_csv("energy_consumption.csv") 
 
@@ -390,11 +391,11 @@ Future_demand = model.predict(
 chân trời=24, 
 X_future=future_covariates.values 
 ) 
-``` 
+````` 
 
 ### Ứng dụng 3: Phân tích thị trường tài chính 
 
-Tuy không phải là lời khuyên tài chính nhưng TimesFM có thể giúp phân tích các mô hình thị trường: ``` con trăn 
+Tuy không phải là lời khuyên tài chính nhưng TimesFM có thể giúp phân tích các mô hình thị trường: ````` con trăn 
 #dự báo giá cổ phiếu 
 stock_prices = pd.read_csv("stock_history.csv")["close"].values 
 
@@ -407,7 +408,7 @@ stock_price[200:] # Amazon
 
 # Dự báo tất cả cổ phiếu 
 dự đoán = model.forecast(batch_stocks, Horizon=30) 
-``` 
+````` 
 
 ##So Sánh Với Phương Pháp Truyền Thống 
 
@@ -504,7 +505,7 @@ Nhóm Nghiên cứu của Google tiếp tục vượt qua các ranh giới bằn
 
 ## Bắt đầu ngay hôm nay 
 
-Bạn đã sẵn sàng cách mạng hóa quy trình dự báo của mình chưa? Đây là cách để bắt đầu: 1. **Cài đặt**: `pip install Timesfm[flax]` 
+Bạn đã sẵn sàng cách mạng hóa quy trình dự báo của mình chưa? Đây là cách để bắt đầu: 1. **Cài đặt**: ````pip install Timesfm[flax]``` 
 2. **Tải mô hình**: Sử dụng điểm kiểm tra đã được huấn luyện trước từ Ôm mặt 
 3. **Chuẩn bị dữ liệu**: Định dạng chuỗi thời gian của bạn một cách thích hợp 
 4. **Dự báo**: Gọi phương thức dự báo với đường chân trời mong muốn của bạn 
@@ -546,7 +547,7 @@ Với sự tích hợp vào hệ sinh thái của Google, cộng đồng phát t
 
 Đối với bất kỳ ai làm việc với dữ liệu tạm thời, việc đầu tư thời gian vào việc tìm hiểu và triển khai TimesFM không chỉ mang lại lợi ích mà nó còn trở nên cần thiết. 
 
---- 
+* * *
 
 **Nguồn:** 
 - [Kho lưu trữ GitHub](https://github.com/google-research/timesfm) 

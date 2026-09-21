@@ -34,6 +34,7 @@ faqs: - q: 'Odysseus를 실행하려면 GPU가 필요한가요?'
     a: '네. Odysseus는 PWA(프로그레시브 웹 앱)로 완전한 반응형 디자인을 지원합니다. iOS나 Android에서 "홈 화면에 추가"하면 네이티브 앱에 가까운 경험을 얻을 수 있습니다. Cookbook과 에이전트 기능도 모바일에서 동작하지만, GPU 집약적인 로컬 모델 서빙은 데스크탑/서버 환경이 필요합니다.'
 ---
 
+
 # Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드
 
 
@@ -55,35 +56,35 @@ Odysseus는 2026년 5월 31일 깃허브에 공개된 후 6월 8일까지 63,000
 
 ## 빠른 시작 (Docker)
 
-```bash
+````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 cp .env.example .env          # 선택 사항이지만 권장
 docker compose up -d --build
-```
+`````
 
-**http://localhost:7000**을 열면 됩니다. 첫 실행 시 Docker 로그에 임시 관리자 비밀번호가 출력됩니다: ```bash
+**http://localhost:7000**을 열면 됩니다. 첫 실행 시 Docker 로그에 임시 관리자 비밀번호가 출력됩니다: `````bash
 docker compose logs odysseus | grep "Admin password"
-```
+`````
 
 로그인 후 설정에서 비밀번호를 변경하고, 첫 번째 모델 서버(로컬 Ollama 또는 OpenAI API 키)를 추가하세요.
 
 ## 네이티브 설치 (Linux / macOS)
 
-Apple Silicon에서 GPU 가속 로컬 모델을 사용하려면 Docker 대신 네이티브 설치를 권장합니다(Docker는 Metal GPU에 접근할 수 없음): ```bash
+Apple Silicon에서 GPU 가속 로컬 모델을 사용하려면 Docker 대신 네이티브 설치를 권장합니다(Docker는 Metal GPU에 접근할 수 없음): `````bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python setup.py
 python -m uvicorn app:app --host 127.0.0.1 --port 7000
-```
+`````
 
-Apple Silicon 원클릭 시작: ```bash
+Apple Silicon 원클릭 시작: `````bash
 ./start-macos.sh        # 127.0.0.1:7860에 바인딩
-```
+`````
 
-요구 사항: Python 3.11+. Cookbook의 백그라운드 모델 다운로드에는 `tmux`가 필요합니다.
+요구 사항: Python 3.11+. Cookbook의 백그라운드 모델 다운로드에는 ````tmux````가 필요합니다.
 
 ## 주요 경쟁 제품과 비교
 
@@ -100,13 +101,13 @@ Apple Silicon 원클릭 시작: ```bash
 
 ## 주의 사항
 
-Odysseus는 현재 버전 1.0으로, 출시된 지 2주도 채 되지 않았습니다. Linux에서 Cookbook의 일부 런타임은 백그라운드 작업에 수동 `tmux`가 필요하고, CalDAV 동기화에서 반복 이벤트 처리 관련 알려진 이슈가 있으며, 모바일 PWA 성능은 브라우저마다 다소 차이가 있습니다. 하지만 이슈 트래커가 활발하게 관리되고 있고 메인테이너의 응답 속도가 빠릅니다.
+Odysseus는 현재 버전 1.0으로, 출시된 지 2주도 채 되지 않았습니다. Linux에서 Cookbook의 일부 런타임은 백그라운드 작업에 수동 ````tmux````가 필요하고, CalDAV 동기화에서 반복 이벤트 처리 관련 알려진 이슈가 있으며, 모바일 PWA 성능은 브라우저마다 다소 차이가 있습니다. 하지만 이슈 트래커가 활발하게 관리되고 있고 메인테이너의 응답 속도가 빠릅니다.
 
 프로덕션급 에이전트 배포에는 LangGraph나 CrewAI처럼 더 검증된 프레임워크가 여전히 유리합니다. Odysseus는 강력하고 유연하며 프라이버시를 보장하는 **개인 AI 워크스페이스**로 포지셔닝하는 것이 적합합니다.
 
 ## 결론
 
-월 구독료 없이, 데이터를 클라우드에 올리지 않고, 내 하드웨어에서 ChatGPT 수준의 AI 워크스페이스를 원한다면 Odysseus가 현재 가장 완성도 높은 오픈소스 선택지입니다. 9일 만에 63,000 스타를 달성한 것은 과장된 홍보가 아닌 커뮤니티의 진심 어린 반응입니다. 레포를 클론하고 `docker compose up`을 실행하면 5분 안에 완전한 AI 워크스페이스가 실행됩니다.
+월 구독료 없이, 데이터를 클라우드에 올리지 않고, 내 하드웨어에서 ChatGPT 수준의 AI 워크스페이스를 원한다면 Odysseus가 현재 가장 완성도 높은 오픈소스 선택지입니다. 9일 만에 63,000 스타를 달성한 것은 과장된 홍보가 아닌 커뮤니티의 진심 어린 반응입니다. 레포를 클론하고 ````docker compose up```을 실행하면 5분 안에 완전한 AI 워크스페이스가 실행됩니다.
 
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
 
@@ -172,12 +173,12 @@ Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -187,6 +188,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents](odysseus-self-hosted-ai-workspace-2026)
 - [1m-context-window-llm-2026-real-test](odysseus-self-hosted-ai-workspace-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

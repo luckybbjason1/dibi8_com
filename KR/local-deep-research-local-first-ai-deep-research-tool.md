@@ -33,6 +33,7 @@ faqs: - q: 'Local Deep Research (LDR)란 무엇인가요?'
     a: 'LDR은 고충실도 인용을 제공하여, 제시하는 모든 주장에 참고 문헌을 첨부하므로 출처 자료를 즉시 확인할 수 있습니다. 또한 단일한 표면적 답변에 의존하는 대신, 공백을 식별하고 후속 검색을 수행하는 반복적 종합을 진행합니다.'
 ---
 
+
 {</* resource-info */>}
 
 대부분의 AI 어시스턴트는 '대화 우선' 방식입니다. 즉, 사전 학습된 데이터를 바탕으로 빠른 답변을 제공하는 데 중점을 둡니다. 하지만 웹, 학술 논문, 로컬 문서를 샅샅이 뒤져 심층적인 보고서를 작성하는 **'연구 우선(Research-first)'** 접근 방식이 필요하다면 어떨까요? 그리고 이 모든 과정을 **100% 개인정보 보호** 하에 수행하고 싶다면요?
@@ -74,13 +75,13 @@ LDR을 최대한 활용하려면 다음 **로컬 우선 스택**을 권장합니
 
 ### 빠른 배포 (Docker)
 
-```bash
+````bash
 # SearXNG 실행
 docker run -d -p 8080:8080 --name searxng searxng/searxng
 
 # Local Deep Research 실행
 docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research
-```
+````
 
 ## 💡 멘토의 팁: '심화(Deepening)' 전략
 
@@ -90,12 +91,12 @@ LDR을 사용할 때 단순히 질문 하나만 던지지 마세요. **'상세 �
 
 Local Deep Research는 단순한 도구 그 이상입니다. AI 시대에 우리가 정보와 상호작용하는 방식의 패러다임 변화를 의미합니다. 얕은 AI 답변에 지치고 데이터 프라이버시가 걱정된다면, 이제 리서치 환경을 로컬로 옮겨야 할 때입니다.
 
----
+* * *
 
 ### 관련 리소스
 - [파이썬 컨텍스트 매니저 마스터하기](/kr/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/) — 로컬 AI 스크립트를 깔끔하게 정리하세요.
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -167,7 +168,7 @@ Local Deep Research: 궁극의 로컬 우선 AI 딥 리서치 도구 represents 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

@@ -23,6 +23,7 @@ tags: ["jesse", "crypto trading", "python", "backtesting", "technical indicators
 aliases:
   - /posts/jesse-ai-trading-framework/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Most Trading Bots Fail in Production
@@ -46,7 +47,7 @@ Key facts as of May 2026: - **GitHub stars**: 6,200+
 - **Built-in indicators**: 30+ (SMA, EMA, RSI, MACD, Bollinger Bands, Stochastic, ATR, etc.)
 - **Exchange support**: Binance, Bitfinex, Coinbase Pro, Bybit
 
-Jesse positions itself between lightweight libraries like `ta-lib` wrappers and heavy commercial platforms like TradingView Pine Script. You get full Python flexibility with production-grade execution infrastructure.
+Jesse positions itself between lightweight libraries like ```ta-lib```` wrappers and heavy commercial platforms like TradingView Pine Script. You get full Python flexibility with production-grade execution infrastructure.
 
 ## How Jesse Works: Architecture & Core Concepts
 
@@ -56,10 +57,10 @@ Jesse follows a modular pipeline architecture. Understanding these five modules 
 Jesse fetches historical OHLCV data from supported exchanges and stores it in a local database (PostgreSQL or SQLite). You can also import custom CSV data. The data module handles timeframe resampling and caching automatically.
 
 ### 2. Indicator Module
-The framework includes 30+ built-in technical indicators. Each indicator is implemented as a NumPy-accelerated function, ensuring backtests run fast even on large datasets. You can also write custom indicators using the `numpy` or `pandas` interface.
+The framework includes 30+ built-in technical indicators. Each indicator is implemented as a NumPy-accelerated function, ensuring backtests run fast even on large datasets. You can also write custom indicators using the ````numpy```` or ````pandas```` interface.
 
 ### 3. Strategy Module
-Strategies in Jesse are Python classes inheriting from `Strategy`. You define entry/exit logic inside `should_long()`, `should_short()`, `go_long()`, `go_short()`, and `update_position()` methods. This object-oriented design keeps logic clean and testable.
+Strategies in Jesse are Python classes inheriting from ````Strategy````. You define entry/exit logic inside ````should_long()````, ````should_short()````, ````go_long()````, ````go_short()````, and ````update_position()```` methods. This object-oriented design keeps logic clean and testable.
 
 ### 4. Backtest Module
 Jesse's backtest engine simulates trades using historical data with realistic assumptions: slippage, trading fees, and partial fills. Results include equity curves, drawdown analysis, Sharpe ratio, win rate, and trade-by-trade logs.
@@ -67,37 +68,37 @@ Jesse's backtest engine simulates trades using historical data with realistic as
 ### 5. Live Trading Module
 The live module connects to exchange APIs via WebSocket for real-time price feeds and REST for order execution. It includes a notification system (Telegram, Discord, Slack), a portfolio tracker, and automatic reconnection handling.
 
-Here is the high-level data flow: ```
+Here is the high-level data flow: `````
 Exchange API → Data Module → Strategy Logic → Risk Manager → Order Executor → Exchange API
                                     ↑
                               Indicator Module
-```
+`````
 
 ## Installation & Setup: From Zero to Backtest in 5 Minutes
 
-Jesse requires Python 3.10+, PostgreSQL (recommended) or SQLite, and `pip`. The entire setup takes under 5 minutes on a clean machine.
+Jesse requires Python 3.10+, PostgreSQL (recommended) or SQLite, and ````pip````. The entire setup takes under 5 minutes on a clean machine.
 
 ### Step 1: Install Jesse
 
-```bash
+`````bash
 python3 -m venv jesse-env
 source jesse-env/bin/activate
 
 # Install Jesse
 pip install jesse==1.7.2
-```
+`````
 
 ### Step 2: Initialize a New Project
 
-```bash
+`````bash
 # Create project directory
 mkdir my-trading-bot && cd my-trading-bot
 
 # Initialize Jesse (creates config, routes, strategies folders)
 jesse init
-```
+`````
 
-After running `jesse init`, your project structure looks like this: ```
+After running ``jesse init``, your project structure looks like this: `````
 my-trading-bot/
 ├── config.py          # Exchange API keys, database, notifications
 ├── routes.py          # Trading pairs and timeframes
@@ -105,11 +106,11 @@ my-trading-bot/
 │   └── __init__.py
 ├── storage/           # Databases and logs
 └── requirements.txt
-```
+`````
 
 ### Step 3: Configure Database
 
-Edit `config.py` to set your database connection: ```python
+Edit ``config.py`` to set your database connection: `````python
 # config.py — database configuration
 DATABASES = {
     default: {
@@ -121,20 +122,20 @@ DATABASES = {
         password: your_secure_password
     }
 }
-```
+`````
 
-For quick testing with SQLite: ```python
+For quick testing with SQLite: `````python
 DATABASES = {
     default: {
         driver: sqlite,
         path: 'storage/jesse.db'
     }
 }
-```
+`````
 
 ### Step 4: Define Trading Routes
 
-Edit `routes.py` to specify which pairs and timeframes your bot will trade: ```python
+Edit ``routes.py`` to specify which pairs and timeframes your bot will trade: `````python
 # routes.py — define trading pairs
 from jesse.enums import timeframes
 
@@ -146,18 +147,18 @@ routes = [
 extra_candles = [
     {exchange: Binance, symbol: 'BTC-USDT', timeframe: 4h},
 ]
-```
+`````
 
 ### Step 5: Fetch Historical Data
 
-```bash
+`````bash
 # Download 1 year of 1h BTC-USDT candles from Binance
 jesse import-candles Binance BTC-USDT 2025-01-01
-```
+`````
 
 ### Step 6: Create Your First Strategy
 
-Create `strategies/SimpleMA/__init__.py`: ```python
+Create ``strategies/SimpleMA/__init__.py``: `````python
 # strategies/SimpleMA/__init__.py
 from jesse.strategies import Strategy
 import jesse.indicators as ta
@@ -179,16 +180,16 @@ class SimpleMA(Strategy): def __init__(self): super().__init__()
     def update_position(self): # Exit when price drops below SMA
         sma = ta.sma(self.candles, self.period)
         if self.close < sma: self.liquidate()
-```
+`````
 
 ### Step 7: Run Backtest
 
-```bash
+`````bash
 # Run backtest for the period defined in routes
 jesse backtest 2025-01-01 2025-12-31
-```
+`````
 
-You will see output like this: ```
+You will see output like this: `````
 Loading candles...
 Executing backtest...
 =====================================
@@ -198,7 +199,7 @@ Net Profit: 23.7%
 Max Drawdown: -8.2%
 Sharpe Ratio: 1.34
 =====================================
-```
+`````
 
 ## Integration with Mainstream Tools
 
@@ -206,7 +207,7 @@ Jesse integrates cleanly with the Python quantitative trading ecosystem. Here ar
 
 ### 1. NumPy & Pandas for Custom Indicators
 
-```python
+`````python
 # Custom indicator using NumPy
 import numpy as np
 import jesse.indicators as ta
@@ -216,11 +217,11 @@ def custom_zscore(candles, period=20): closes = np.array([c[2] for c in candles[
 
 class ZScoreStrategy(Strategy): def should_long(self): z = custom_zscore(self.candles, 20)
         return z < -2.0  # Buy when price is 2 std dev below mean
-```
+`````
 
 ### 2. scikit-learn for ML Signal Generation
 
-```python
+`````python
 # ML-enhanced strategy using sklearn
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
@@ -238,11 +239,11 @@ class MLStrategy(Strategy): def __init__(self): super().__init__()
         features = [rsi, sma20/sma50, atr/self.close]
         prediction = self.model.predict([features])
         return prediction[0] == 1
-```
+`````
 
 ### 3. Telegram Notifications
 
-```python
+`````python
 # config.py — Telegram notification setup
 NOTIFICATIONS = {
     enabled: True,
@@ -251,11 +252,11 @@ NOTIFICATIONS = {
     telegram_chat_id: YOUR_CHAT_ID,
     events: [order_executed, trade_completed, error]
 }
-```
+`````
 
 ### 4. Docker Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile for Jesse deployment
 FROM python:3.11-slim
 
@@ -265,9 +266,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["jesse", "run"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: postgres: image: postgres:16
@@ -283,11 +284,11 @@ services: postgres: image: postgres:16
       - ./config.py:/app/config.py
       - ./routes.py:/app/routes.py
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### 5. Prometheus & Grafana Monitoring
 
-```python
+`````python
 # metrics.py — export metrics for Prometheus
 from prometheus_client import Counter, Gauge, start_http_server
 
@@ -297,7 +298,7 @@ pnl_current = Gauge(jesse_pnl_percent, 'Current P&L percentage')
 
 # Start metrics server on port 9090
 start_http_server(9090)
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -307,13 +308,13 @@ Jesse has been used in production by individual traders and small quant funds si
 
 | Metric | SMA(20/50) | EMA(12/26) | SMA + RSI Filter |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Total Trades | 142 | 189 | 98 |
 | Win Rate | 58.5% | 54.0% | 67.3% |
@@ -326,11 +327,11 @@ Jesse has been used in production by individual traders and small quant funds si
 
 | Operation | 1 Year 1H Candles | 3 Years 1H Candles |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Data import | 8s | 22s |
 | Backtest (simple MA) | 1.2s | 3.8s |
@@ -354,7 +355,7 @@ Running Jesse in production requires more than a working strategy. Here are the 
 
 ### 1. Risk Management Configuration
 
-```python
+`````python
 # config.py — risk management settings
 RISK_MANAGEMENT = {
     max_risk_per_trade: 0.02,      # 2% max risk per trade
@@ -362,11 +363,11 @@ RISK_MANAGEMENT = {
     daily_loss_limit: 0.05,        # 5% daily loss limit
     position_size_limit: 0.25,     # Max 25% in single position
 }
-```
+`````
 
 ### 2. Multiple Timeframe Analysis
 
-```python
+`````python
 # Multi-timeframe strategy example
 class MultiTFStrategy(Strategy): def prepare(self): # Access 4h candles for trend bias
         self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
@@ -376,11 +377,11 @@ class MultiTFStrategy(Strategy): def prepare(self): # Access 4h candles for tren
 
         # Only long if 4h trend is up AND 1h shows momentum
         return self.close_4h > h4_sma50 and self.close > h1_sma20
-```
+`````
 
 ### 3. Custom Stop-Loss and Take-Profit
 
-```python
+`````python
 # Advanced exit logic
 class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         stop_loss = entry * 0.97       # 3% stop
@@ -390,38 +391,38 @@ class RiskManagedStrategy(Strategy): def go_long(self): entry = self.close
         self.buy = qty, entry
         self.stop_loss = qty, stop_loss
         self.take_profit = qty, take_profit
-```
+`````
 
 ### 4. Paper Trading Before Live
 
-```bash
+`````bash
 # Run in paper trading mode (simulated orders on live data)
 jesse run --paper
 
 # Monitor logs in real-time
 tail -f storage/logs/live-trading.log
-```
+`````
 
 ### 5. Database Backup for Audit
 
-```bash
+`````bash
 # Daily backup cron job
 0 2 * * * pg_dump jesse_db | gzip > /backups/jesse_$(date +\%F).sql.gz
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Jesse | Freqtrade | Hummingbot | TradingView |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT | GPLv3 | Apache 2.0 | Proprietary |
 | **Language** | Python | Python | Python | Pine Script |
@@ -469,7 +470,7 @@ Commercial platforms offer GUIs and pre-built strategies but charge monthly fees
 
 ### Does Jesse support AI or machine learning strategies?
 
-Yes. Jesse strategies are pure Python, so you can import any ML library — scikit-learn, XGBoost, PyTorch, TensorFlow — and use model predictions inside `should_long()` or `should_short()`. For dedicated AI trading signal generation, you can also integrate with [Minara](https://minara.ai/r/OSXG4X).
+Yes. Jesse strategies are pure Python, so you can import any ML library — scikit-learn, XGBoost, PyTorch, TensorFlow — and use model predictions inside ````should_long()```` or ````should_short()````. For dedicated AI trading signal generation, you can also integrate with [Minara](https://minara.ai/r/OSXG4X).
 
 ### Is Jesse suitable for high-frequency trading?
 
@@ -477,7 +478,7 @@ No. Jesse is designed for swing and position trading on 1h–1d timeframes. The 
 
 ### How do I handle API key security in production?
 
-Never commit API keys to version control. Use environment variables: ```python
+Never commit API keys to version control. Use environment variables: `````python
 # config.py — secure API key handling
 import os
 
@@ -488,9 +489,9 @@ EXCHANGES = {
         sandbox: False
     }
 }
-```
+`````
 
-Load secrets via `.env` files or Docker secrets in production.
+Load secrets via ````.env```` files or Docker secrets in production.
 
 ## Conclusion: From Backtest to Live Trading
 
@@ -498,7 +499,7 @@ Jesse fills a critical gap in the Python trading ecosystem. It is not the easies
 
 If you are serious about algorithmic crypto trading, the setup path is clear: install Jesse today, run your first backtest this afternoon, and paper-trade for two weeks before committing capital. The 30+ built-in indicators, realistic backtesting engine, and live trading infrastructure give you a genuine edge over ad-hoc scripting.
 
-Ready to start? Grab your [Binance API keys](https://www.bsmkweb.cc/register?ref=DIBI8), install Jesse with `pip install jesse==1.7.2`, and run your first backtest. Join the community of 6,200+ developers building the future of open-source quantitative trading.
+Ready to start? Grab your [Binance API keys](https://www.bsmkweb.cc/register?ref=DIBI8), install Jesse with ````pip install jesse==1.7.2```, and run your first backtest. Join the community of 6,200+ developers building the future of open-source quantitative trading.
 
 **Join our Telegram group for algo traders:** [t.me/dibi8ai](https://t.me/dibi8ai) — share strategies, get help, and stay updated on the latest quantitative trading tools.
 
@@ -521,7 +522,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 6. Binance API documentation: https://binance-docs.github.io/apidocs/
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to Binance, OKX, Minara, DigitalOcean, and HTStack. If you sign up through these links, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we have tested or thoroughly researched.*
 
 
@@ -551,7 +552,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [hkuds-ai-trader](jesse-ai-trading-framework)
@@ -560,7 +561,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](jesse-ai-trading-framework)
 - [agent-reach-internet-access-ai-agents](jesse-ai-trading-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

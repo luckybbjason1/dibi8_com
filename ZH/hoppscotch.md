@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/hoppscotch/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -36,9 +37,9 @@ Hoppscotch 采用模块化 monorepo 架构。前端基于 Vue 3、Vite 和 TypeS
 
 - **工作区（Workspaces）**：面向团队的容器，包含集合、环境和共享资源。每个工作区有独立的权限控制和审计日志，支持多人实时协作编辑。
 - **集合（Collections）**：组织良好的 API 请求组，支持文件夹层级嵌套。集合可以导出为 JSON 格式进行版本控制，也可以导入 Postman 和 OpenAPI 格式的文件。
-- **环境（Environments）**：变量存储，用于开发、staging 和生产环境。通过 `<<variable_name>>` 语法在 URL、请求头和请求体中引用变量，实现不同环境间的无缝切换。
-- **前置脚本（Pre-request Scripts）**：通过 `pw` 对象在每个请求前执行的 JavaScript 片段。可用于动态生成时间戳、计算签名、刷新 OAuth Token 等场景。
-- **测试（Tests）**：使用相同 `pw` 脚本 API 的响应后断言。支持验证状态码、响应时间、JSON 结构等，测试结果会生成详细的报告。
+- **环境（Environments）**：变量存储，用于开发、staging 和生产环境。通过 ```<<variable_name>>```` 语法在 URL、请求头和请求体中引用变量，实现不同环境间的无缝切换。
+- **前置脚本（Pre-request Scripts）**：通过 ````pw```` 对象在每个请求前执行的 JavaScript 片段。可用于动态生成时间戳、计算签名、刷新 OAuth Token 等场景。
+- **测试（Tests）**：使用相同 ````pw```` 脚本 API 的响应后断言。支持验证状态码、响应时间、JSON 结构等，测试结果会生成详细的报告。
 - **拦截器（Interceptors）**：浏览器扩展或代理方式拦截请求，用于本地测试。内置代理服务器可以解决浏览器 CORS 限制，让 localhost API 测试变得简单。
 
 ## 安装与配置
@@ -51,7 +52,7 @@ Hoppscotch 采用模块化 monorepo 架构。前端基于 Vue 3、Vite 和 TypeS
 
 ### 方法 2：桌面应用
 
-```bash
+`````bash
 # macOS (Homebrew)
 brew install --cask hoppscotch
 
@@ -60,11 +61,11 @@ winget install Hoppscotch.Hoppscotch
 
 # Linux (Flatpak)
 flatpak install flathub io.hoppscotch.Hoppscotch
-```
+`````
 
 ### 方法 3：CLI 工具
 
-```bash
+`````bash
 # 安装前置依赖（Debian/Ubuntu）
 sudo apt-get install -y python3 g++ build-essential
 
@@ -74,11 +75,11 @@ npm i -g @hoppscotch/cli
 # 验证安装
 hopp --version
 # 输出: 0.31.2
-```
+`````
 
 ### 方法 4：Docker 自托管（生产环境）
 
-```bash
+`````bash
 # 拉取 AIO 镜像
 docker pull hoppscotch/hoppscotch:latest
 
@@ -109,11 +110,11 @@ docker run -d \
   --restart unless-stopped \
   --name hoppscotch \
   hoppscotch/hoppscotch:latest
-```
+`````
 
 ### Docker Compose（生产环境推荐）
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -142,11 +143,11 @@ services: hoppscotch: image: hoppscotch/hoppscotch:2026.4.1
 volumes: postgres_data: driver: local
 
 networks: hoppscotch-net: driver: bridge
-```
+`````
 
 启动堆栈：
 
-```bash
+`````bash
 docker compose up -d
 
 # 验证所有服务健康
@@ -157,7 +158,7 @@ docker compose logs -f hoppscotch
 
 # 查看实时请求统计
 docker compose logs -f hoppscotch | grep "Request processed"
-```
+`````
 
 AIO（All-In-One）容器将前端、后端和管理面板打包在一起，通过内部路由分发流量。这种方式最适合快速原型验证和小团队内部使用。对于生产环境，建议将三个服务拆分为独立容器，并配置 Nginx 反向代理和 SSL 证书。
 
@@ -165,13 +166,13 @@ AIO（All-In-One）容器将前端、后端和管理面板打包在一起，通�
 
 ## 与流行工具集成
 
-Hoppscotch 的生态系统围绕开放标准构建，支持与主流开发工具的无缝集成。CLI 工具 `@hoppscotch/cli` 是整个集成策略的核心，它支持 JSON 格式的 collection 导出、环境变量注入和多格式测试报告输出。
+Hoppscotch 的生态系统围绕开放标准构建，支持与主流开发工具的无缝集成。CLI 工具 ````@hoppscotch/cli```` 是整个集成策略的核心，它支持 JSON 格式的 collection 导出、环境变量注入和多格式测试报告输出。
 
 ### GitHub Actions CI/CD 流水线
 
 将 Hoppscotch CLI 集成到 GitHub Actions 中，可以在每次代码推送或 Pull Request 时自动运行 API 测试。以下是完整的 workflow 配置示例，包含服务器启动等待、测试执行和结果上传三个核心步骤。
 
-```yaml
+`````yaml
 # .github/workflows/api-tests.yml
 name: 使用 Hoppscotch CLI 进行 API 测试
 
@@ -211,11 +212,11 @@ jobs: api-test: runs-on: ubuntu-latest
         if: always()
         with: name: api-test-results
           path: test-results.xml
-```
+`````
 
 ### Node.js 应用集成
 
-```javascript
+`````javascript
 // scripts/run-api-tests.js
 const { execSync } = require("child_process");
 const path = require("path");
@@ -226,25 +227,25 @@ const envPath = path.join(__dirname, "../environments");
 function runTests(environment) {
   const command = [
     "hopp test",
-    `"${collectionPath}/core-apis.json"`,
-    `-e "${envPath}/${environment}.json"`,
+    ````"${collectionPath}/core-apis.json"````,
+    ````-e "${envPath}/${environment}.json"````,
     "--reporter-junit",
-    `"reports/${environment}-results.xml"`,
+    ````"reports/${environment}-results.xml"````,
   ].join(" ");
 
-  console.log(`正在对 ${environment} 运行测试...`);
+  console.log(````正在对 ${environment} 运行测试...````);
   execSync(command, { stdio: "inherit" });
 }
 
 // 在部署到生产环境前对 staging 运行
 runTests("staging");
-```
+`````
 
 ### Vue.js 前端代理配置
 
-在开发 Vue.js 前端应用时，通过 Vite 的代理配置将 `/api` 路径转发到 Hoppscotch 后端，可以避免跨域问题并简化本地开发流程。以下配置适用于 Vite + Vue 3 项目。
+在开发 Vue.js 前端应用时，通过 Vite 的代理配置将 ````/api```` 路径转发到 Hoppscotch 后端，可以避免跨域问题并简化本地开发流程。以下配置适用于 Vite + Vue 3 项目。
 
-```javascript
+`````javascript
 // vite.config.js
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -261,11 +262,11 @@ export default defineConfig({
     },
   },
 });
-```
+`````
 
 ### OAuth2 Token 刷新的前置脚本
 
-```javascript
+`````javascript
 // Hoppscotch 前置脚本
 const token = pw.env.get("AUTH_TOKEN");
 const expiry = pw.env.get("TOKEN_EXPIRY");
@@ -288,12 +289,12 @@ if (!token || Date.now() > Number(expiry)) {
 }
 
 // 将 token 应用到当前请求
-pw.headers.set("Authorization", `Bearer ${pw.env.get("AUTH_TOKEN")}`);
-```
+pw.headers.set("Authorization", ````Bearer ${pw.env.get("AUTH_TOKEN")}````);
+`````
 
 ### 响应后测试断言
 
-```javascript
+`````javascript
 // Hoppscotch 测试脚本
 pw.test("状态码为 200", () => {
   pw.expect(pw.response.status).toBe(200);
@@ -312,7 +313,7 @@ pw.test("响应体包含用户 ID", () => {
 pw.test("响应时间可接受", () => {
   pw.expect(pw.response.time).toBeLessThan(500);
 });
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -322,15 +323,15 @@ pw.test("响应时间可接受", () => {
 
 | 指标 | Hoppscotch | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动 (Web) | < 1秒 | 8–12秒 | 4–6秒 | 2–3秒 |
 | 桌面应用大小 | ~8 MB | ~180 MB | ~120 MB | ~45 MB |
@@ -344,12 +345,12 @@ pw.test("响应时间可接受", () => {
 - **个人开发者** 使用 Hoppscotch Web 版进行快速 API 探索，无需创建账户
 - **5–20 人团队** 在内部基础设施上自托管社区版
 - **API 优先的初创公司** 通过共享链接将 Hoppscotch 集合嵌入文档
-- **CI/CD 流水线** 在每个 pull request 上运行 `hopp test` 以验证 API 契约
+- **CI/CD 流水线** 在每个 pull request 上运行 ````hopp test```` 以验证 API 契约
 - **微服务团队** 使用环境变量在 10+ 内部服务之间切换
 
 ### 通过 CLI 进行负载测试
 
-```bash
+`````bash
 # 使用并发设置运行集合
 hopp test load-test-collection.json \
   --iteration-count 100 \
@@ -363,13 +364,13 @@ hopp test api-collection.json \
 # 生成 JUnit XML 用于 Jenkins/GitLab 集成
 hopp test api-collection.json \
   --reporter-junit junit-report.xml
-```
+`````
 
 ## 高级用法 / 生产环境加固
 
 ### 安全配置
 
-```bash
+`````bash
 # 生成加密安全的密钥
 JWT_SECRET=$(openssl rand -hex 64)
 REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)
@@ -390,11 +391,11 @@ RATE_LIMIT_MAX=100
 # CORS（限制为你的域名）
 ALLOWED_ORIGINS=https://api.yourcompany.com
 EOF
-```
+`````
 
 ### 使用 Nginx 反向代理
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/hoppscotch
 server {
     listen 443 ssl http2;
@@ -428,11 +429,11 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
-```
+`````
 
 ### 使用 Prometheus 监控
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 version: "3.8"
 
@@ -448,11 +449,11 @@ services: prometheus: image: prom/prometheus:latest
     networks: - hoppscotch-net
 
 volumes: prometheus_data: grafana_data: networks: hoppscotch-net: external: true
-```
+`````
 
 ### 数据库备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # backup-hoppscotch.sh - 通过 cron 每日运行
 
@@ -482,21 +483,21 @@ gzip "${BACKUP_DIR}/hoppscotch_${TIMESTAMP}.dump"
 find "${BACKUP_DIR}" -name "hoppscotch_*.dump.gz" -mtime +14 -delete
 
 echo "备份完成: hoppscotch_${TIMESTAMP}.dump.gz"
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | Hoppscotch | Postman | Insomnia | Bruno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | 是 (MIT) | 否 (专有) | 是 (Apache-2.0) | 是 (MIT) |
 | 自托管 | 免费 (CE) | 仅企业版 | 仅云端 | N/A (本地) |
@@ -505,7 +506,7 @@ echo "备份完成: hoppscotch_${TIMESTAMP}.dump.gz"
 | GraphQL 支持 | 是 (Schema Explorer) | 是 | 是 | 是 |
 | WebSocket 支持 | 是 | 是 | 是 | 是 |
 | gRPC 支持 | 计划中 | 是 | 是 | 是 |
-| CI/CD CLI | 是 (`hopp test`) | Newman (付费) | 是 (inso) | 是 (`bru`) |
+| CI/CD CLI | 是 (````hopp test````) | Newman (付费) | 是 (inso) | 是 (````bru````) |
 | Git 原生集合 | 否 (导出/导入) | 否 | 否 | 是 (原生设计) |
 | 团队协作 | 工作区 + 实时 | 工作区 | 云同步 | Git + PR |
 | 10 人团队价格 | $0 自托管 | $140–$490/月 | $80–$450/月 | $0 |
@@ -539,7 +540,7 @@ Hoppscotch 并非适用于所有场景。在迁移前请考虑以下因素：
 可以。社区版采用 MIT 许可证，可无限免费用于商业用途。你可以在内部自托管而无需支付许可费用。云端版提供付费层级以获取更多存储和企业功能如 SAML SSO。
 
 **Q2: 我可以导入现有的 Postman 集合吗？**
-可以。Hoppscotch 支持导入 Postman 集合（v2.1 格式）、OpenAPI 规范（3.0+）和 cURL 命令。使用迁移 CLI 工具：`npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json`。
+可以。Hoppscotch 支持导入 Postman 集合（v2.1 格式）、OpenAPI 规范（3.0+）和 cURL 命令。使用迁移 CLI 工具：````npx @hoppscotch/migrate --from postman --file collection.json --output hoppscotch.json````。
 
 **Q3: Hoppscotch 如何处理 localhost API 的 CORS 问题？**
 安装 Hoppscotch 浏览器扩展（支持 Chrome 和 Firefox）或配置内置代理服务器。在设置中将拦截模式从"代理"切换为"浏览器扩展"，以绕过本地开发的 CORS 限制。
@@ -551,7 +552,7 @@ Hoppscotch 并非适用于所有场景。在迁移前请考虑以下因素：
 CLI（当前 v0.31.2）遵循 pre-1.0 语义化版本控制，并定期接收更新。它支持 JUnit 报告、CSV 数据迭代和环境变量注入。多个团队已在 GitHub Actions 和 GitLab CI 中成功运行。
 
 **Q6: 如何备份自托管的 Hoppscotch 数据？**
-使用 `pg_dump` 备份 PostgreSQL 数据库。设置每日 cron 作业导出数据库、压缩并复制到远程存储。JSON 格式的集合导出也可作为单个工作区的部分备份。
+使用 ````pg_dump```` 备份 PostgreSQL 数据库。设置每日 cron 作业导出数据库、压缩并复制到远程存储。JSON 格式的集合导出也可作为单个工作区的部分备份。
 
 **Q7: Hoppscotch 是否支持像 Postman 那样的实时协作？**
 支持。团队工作区支持带冲突解决的实时协作、活动审计日志和基于角色的访问控制。更改在浏览器和桌面会话之间即时同步。免费版支持最多 3 个工作区，付费版可解锁无限工作区和高级 SSO 集成。
@@ -572,9 +573,9 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 
 **下一步行动：**
 1. 打开 [hoppscotch.io](https://hoppscotch.io) 发送你的第一个请求
-2. 克隆仓库：`git clone https://github.com/hoppscotch/hoppscotch.git`
-3. 使用 `docker compose up -d` 进行自托管部署
-4. 安装 CLI：`npm i -g @hoppscotch/cli`
+2. 克隆仓库：````git clone https://github.com/hoppscotch/hoppscotch.git````
+3. 使用 ````docker compose up -d```` 进行自托管部署
+4. 安装 CLI：````npm i -g @hoppscotch/cli```
 
 加入我们的 [Telegram 群组](https://t.me/dibi8channel) 获取每周开源工具推荐和部署指南。
 
@@ -632,7 +633,7 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](hoppscotch)
@@ -642,5 +643,5 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 - [nanochat-karpathy-100-chatgpt-single-gpu](hoppscotch)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

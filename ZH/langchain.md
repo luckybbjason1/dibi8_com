@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/llm-frameworks/langchain-complete-guide/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
@@ -47,25 +48,25 @@ LangChain的架构分为五个层次：
 
 1. **模型I/O** —— 聊天模型、LLM和嵌入模型的标准化接口。只需更改一行导入代码，即可从OpenAI GPT-4o切换到Anthropic Claude 3.5 Sonnet。
 2. **检索** —— 文档加载器、文本分割器、嵌入模型和向量存储构成RAG管道。加载PDF、HTML或Notion页面，分块、嵌入、语义查询。
-3. **智能体** —— `create_agent` API（LangChain 1.0+）编排工具选择、推理循环和人工介入审批。智能体决定调用哪些工具、按什么顺序、何时停止。
+3. **智能体** —— ```create_agent```` API（LangChain 1.0+）编排工具选择、推理循环和人工介入审批。智能体决定调用哪些工具、按什么顺序、何时停止。
 4. **链** —— 按顺序链接组件的可组合工作流。RetrievalQA链将检索器连接到LLM，实现文档问答。
 5. **可观测性** —— LangSmith追踪每次调用，测量延迟、token用量和成本。追踪记录输入、输出和中间步骤以供调试。
 
-```
+`````
 用户查询 → 智能体/链 → [工具调用 → LLM调用 → 检索] → 响应
                 ↓
             LangSmith (追踪、指标、评估)
-```
+`````
 
 ![LangChain RAG Flow](https://python.langchain.com/assets/images/rag_indexing-6b1e22092b4c169a9075d080d71a5e95.png)
 
 ### 核心概念
 
-**Runnable接口。** LangChain中的每个组件都实现了`Runnable`协议，包含`.invoke()`、`.batch()`和`.stream()`方法。这个统一接口让你可以相同地对待单个提示、十个组件的链或多智能体图。
+**Runnable接口。** LangChain中的每个组件都实现了````Runnable````协议，包含````.invoke()````、````.batch()````和````.stream()````方法。这个统一接口让你可以相同地对待单个提示、十个组件的链或多智能体图。
 
-**内容块（Content Blocks）。** LangChain 1.0在消息上引入了`.content_blocks` —— 一种跨所有提供商的统一格式，用于文本、图像、工具调用和推理追踪。不再需要特定于提供商的消息解析。
+**内容块（Content Blocks）。** LangChain 1.0在消息上引入了````.content_blocks```` —— 一种跨所有提供商的统一格式，用于文本、图像、工具调用和推理追踪。不再需要特定于提供商的消息解析。
 
-**模型配置文件（Model Profiles）。** 聊天模型通过`.profile`属性公开功能，支持动态功能检测。你的代码可以在尝试工具调用或视觉功能之前检查模型是否支持它们。
+**模型配置文件（Model Profiles）。** 聊天模型通过````.profile````属性公开功能，支持动态功能检测。你的代码可以在尝试工具调用或视觉功能之前检查模型是否支持它们。
 
 ## 安装与设置
 
@@ -73,7 +74,7 @@ LangChain的架构分为五个层次：
 
 LangChain可以通过pip在60秒内完成安装。1.0版本起需要Python 3.10+。
 
-```bash
+`````bash
 # 安装核心框架
 pip install langchain-core==1.4.0 langchain
 
@@ -91,11 +92,11 @@ pip install langgraph
 
 # 安装LangSmith可观测性
 pip install langsmith
-```
+`````
 
 ### 验证安装
 
-```python
+`````python
 import langchain_core
 print(langchain_core.__version__)
 # Output: 1.4.0
@@ -108,22 +109,22 @@ openai_model = ChatOpenAI(model="gpt-4o", temperature=0)
 anthropic_model = ChatAnthropic(model="claude-3-5-sonnet-20241022")
 
 print("LangChain installed successfully with OpenAI and Anthropic providers")
-```
+`````
 
 ### 环境配置
 
-```bash
+`````bash
 # .env 文件
 OPENAI_API_KEY=sk-proj-xxxxx
 ANTHROPIC_API_KEY=sk-ant-xxxxx
 LANGSMITH_API_KEY=ls-xxxxx
 LANGSMITH_TRACING=true
 LANGSMITH_PROJECT=production-agents
-```
+`````
 
 ### Docker设置（推荐用于生产）
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -152,9 +153,9 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
-```
+`````
 
-```txt
+`````txt
 # requirements.txt
 langchain-core==1.4.0
 langchain==1.3.0
@@ -168,9 +169,9 @@ pydantic==2.10.0
 python-dotenv==1.0.0
 redis==5.2.0
 httpx==0.28.0
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -193,11 +194,11 @@ services: app: build: .
     volumes: - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-volumes: redis_data: chroma_data: ```
+volumes: redis_data: chroma_data: `````
 
 ### 构建并运行
 
-```bash
+`````bash
 # 构建镜像
 docker build -t langchain-production-app .
 
@@ -206,13 +207,13 @@ docker-compose up -d
 
 # 验证部署
 curl http://localhost:8000/health
-```
+`````
 
 ## 与OpenAI、Anthropic、Ollama和向量存储集成
 
 ### OpenAI GPT-4o集成
 
-```python
+`````python
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -239,11 +240,11 @@ response = chain.invoke({
     "question": "Explain backpropagation in 3 sentences."
 })
 print(response.content)
-```
+`````
 
 ### Anthropic Claude集成
 
-```python
+`````python
 from langchain_anthropic import ChatAnthropic
 
 claude = ChatAnthropic(
@@ -260,11 +261,11 @@ response = claude_chain.invoke({
     "question": "What is the CAP theorem?"
 })
 print(response.content)
-```
+`````
 
 ### Ollama本地模型
 
-```python
+`````python
 from langchain_ollama import ChatOllama
 
 local_model = ChatOllama(
@@ -275,11 +276,11 @@ local_model = ChatOllama(
 
 response = local_model.invoke("Explain quantum computing simply.")
 print(response.content)
-```
+`````
 
 ### 使用Chroma向量存储的RAG管道
 
-```python
+`````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -316,11 +317,11 @@ qa_chain = RetrievalQA.from_chain_type(
 # 查询
 result = qa_chain.invoke({"query": "What are the key findings?"})
 print(result["result"])
-```
+`````
 
 ### 带工具的智能体
 
-```python
+`````python
 from langchain import hub
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.tools import tool
@@ -349,7 +350,7 @@ result = agent_executor.invoke({
     "input": "What is 1250 * 37 and search for deployment docs?"
 })
 print(result["output"])
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -359,15 +360,15 @@ print(result["output"])
 
 | 指标 | LangChain | LlamaIndex | Haystack | Semantic Kernel |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QPS (查询/秒) | 78.2 | 85.4 | 102.5 | 65.4 |
 | 内存峰值 (MB) | 1,203 | 980 | 856 | 987 |
@@ -393,7 +394,7 @@ LangChain用原始检索速度换取了编排灵活性。Haystack在纯文档检
 
 LangGraph通过基于图的智能体编排扩展了LangChain。它支持循环、分支和人工介入 —— 对于需要审批节点的生产智能体至关重要。
 
-```python
+`````python
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated, Sequence
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
@@ -439,13 +440,13 @@ workflow.add_edge("reject", END)
 app = workflow.compile()
 result = app.invoke({"messages": [HumanMessage(content="Delete all user records from the database.")]})
 print(result["messages"][-1].content)
-```
+`````
 
 ### 错误处理和重试
 
 生产智能体会失败。优雅地处理它。
 
-```python
+`````python
 from langchain_core.runnables import RunnableConfig
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -462,11 +463,11 @@ def invoke_with_retry(chain, inputs, config: RunnableConfig = None): try: return
 # 用法
 config = RunnableConfig(tags=["production", "customer-facing"])
 result = invoke_with_retry(qa_chain, {"query": "What are the terms?"}, config)
-```
+`````
 
 ### 速率限制和成本控制
 
-```python
+`````python
 from langchain_core.rate_limiters import InMemoryRateLimiter
 import time
 
@@ -488,11 +489,11 @@ from langchain.callbacks import get_openai_callback
 
 with get_openai_callback() as cb: response = model.invoke("Summarize this 50-page report.")
     print(f"Tokens: {cb.total_tokens}, Cost: ${cb.total_cost:.4f}")
-```
+`````
 
 ### 使用LangSmith监控
 
-```python
+`````python
 import os
 
 # 启用追踪
@@ -516,11 +517,11 @@ results = evaluate(
     data="my-dataset-name",
     evaluators=[accuracy_evaluator],
 )
-```
+`````
 
 ### Kubernetes部署
 
-```yaml
+`````yaml
 # k8s-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -551,7 +552,7 @@ spec: replicas: 3
           initialDelaySeconds: 5
           periodSeconds: 10
 
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: langchain-service
@@ -560,18 +561,18 @@ spec: selector: app: langchain-app
       port: 80
       targetPort: 8000
   type: ClusterIP
-```
+`````
 
-```bash
+`````bash
 # 部署到Kubernetes
 kubectl apply -f k8s-deployment.yaml
 kubectl get pods -l app=langchain-app
 kubectl logs -f deployment/langchain-app
-```
+`````
 
 ### Redis缓存高频查询
 
-```python
+`````python
 import redis
 import json
 import hashlib
@@ -594,7 +595,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
     result = chain.invoke(inputs)
     redis_client.setex(cache_key, ttl, json.dumps({"output": result.content}))
     return result
-```
+`````
 
 ![LangChain Integration Map](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/social_share.png)
 
@@ -602,15 +603,15 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
 
 | 特性 | LangChain | LlamaIndex | Haystack | Semantic Kernel |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **主要专注** | 多步骤工作流、智能体编排 | 文档索引、检索优化 | 语义搜索、RAG管道 | 企业集成、微软生态 |
 | **语言支持** | Python, TypeScript | Python, TypeScript | Python | C#, Python, Java |
@@ -634,7 +635,7 @@ def cached_invoke(chain, inputs: dict, ttl: int = 3600): cache_key = get_cache_k
 
 **简单用例的学习曲线更陡。** 一个基础的"与PDF聊天"应用需要理解加载器、分割器、嵌入、向量存储和链。像RAGFlow或Verba这样的工具为非开发者提供更快捷的路径。
 
-**快速演进带来版本漂移。** 尽管有1.0 LTS承诺，生态系统仍然发展迅速。社区集成（`langchain-community`）可能在次要版本中引入破坏性变更。在生产环境中固定精确版本。
+**快速演进带来版本漂移。** 尽管有1.0 LTS承诺，生态系统仍然发展迅速。社区集成（````langchain-community````）可能在次要版本中引入破坏性变更。在生产环境中固定精确版本。
 
 **LangSmith成本随用量扩展。** 免费层每月覆盖5,000次追踪 —— 对原型足够，但对生产不够。一个5人团队每月处理100,000次追踪需支付约$220/月的LangSmith费用，还不包括LLM API成本。
 
@@ -650,7 +651,7 @@ LangChain是构建LLM应用的核心框架，包含链、提示和模型集成�
 
 ### 如何在LangChain中切换LLM提供商?
 
-更改模型类导入即可。LangChain标准化的`BaseChatModel`接口意味着为OpenAI编写的代码只需最小改动即可用于Anthropic、Google、Ollama或任何支持的提供商。1.0+版本中的`.content_blocks`属性在所有提供商间标准化了消息格式，消除了特定于提供商的解析代码。
+更改模型类导入即可。LangChain标准化的````BaseChatModel````接口意味着为OpenAI编写的代码只需最小改动即可用于Anthropic、Google、Ollama或任何支持的提供商。1.0+版本中的````.content_blocks````属性在所有提供商间标准化了消息格式，消除了特定于提供商的解析代码。
 
 ### LangChain可以商业免费使用吗?
 
@@ -662,7 +663,7 @@ LangChain是构建LLM应用的核心框架，包含链、提示和模型集成�
 
 ### LangChain如何处理错误和重试?
 
-LangChain通过模型类上的`max_retries`参数提供内置重试逻辑和指数退避。对于生产环境，使用Tenacity包装关键路径以精细控制重试策略。使用结构化异常处理区分可重试错误（速率限制、超时）和终端错误（无效输入、认证失败）。将所有失败记录到LangSmith进行事后分析。
+LangChain通过模型类上的````max_retries````参数提供内置重试逻辑和指数退避。对于生产环境，使用Tenacity包装关键路径以精细控制重试策略。使用结构化异常处理区分可重试错误（速率限制、超时）和终端错误（无效输入、认证失败）。将所有失败记录到LangSmith进行事后分析。
 
 ### 我可以自建LangSmith吗?
 
@@ -670,7 +671,7 @@ LangChain通过模型类上的`max_retries`参数提供内置重试逻辑和指�
 
 ### 如何将LangChain智能体扩展至处理1000+并发用户?
 
-通过在负载均衡器后运行多个容器实例进行水平扩展。使用异步模式（`ainvoke`、`astream`）最大化每个worker的吞吐量。对高频查询实施Redis缓存。为数据库和外部API设置连接池。通过LangSmith监控每次请求的token用量和成本。对长时间运行的智能体任务考虑使用队列系统（Celery、RQ）而非同步HTTP请求。
+通过在负载均衡器后运行多个容器实例进行水平扩展。使用异步模式（````ainvoke````、````astream```）最大化每个worker的吞吐量。对高频查询实施Redis缓存。为数据库和外部API设置连接池。通过LangSmith监控每次请求的token用量和成本。对长时间运行的智能体任务考虑使用队列系统（Celery、RQ）而非同步HTTP请求。
 
 ## 结论
 
@@ -739,7 +740,7 @@ LangChain的137,000个GitHub星标反映了它作为生产级LLM应用默认框�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](langchain)
@@ -748,7 +749,7 @@ LangChain的137,000个GitHub星标反映了它作为生产级LLM应用默认框�
 - [agent-reach-internet-access-ai-agents](langchain)
 - [microsoft-markitdown-file-to-markdown-converter-cli](langchain)
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

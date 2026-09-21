@@ -22,6 +22,7 @@ aliases:
   - /posts/automl-tools-comparison-guide/
 ---
 
+
 {</* resource-info */>}
 
 자동 머신러닝(AutoML)은 특성 공학, 모델 선택, 하이퍼파라미터 튜닝, 앙상블 구성을 자동화하여 데이터 과학자의 반복 작업을 줄여줍니다. 2026년 현재 다양한 AutoML 프레임워크가 출시되어 있지만, 각 도구는 설계 철학과 강점이 다릅니다. 이 글에서는 5개의 대표적인 AutoML 도구를 비교하고 선택 기준을 제시합니다.
@@ -54,11 +55,11 @@ AutoML의 핵심 범위는 네 가지입니다: 1. **자동 특성 공학**: 원
 - **다중 모달 지원**: 테이블, NLP, 컴퓨터 비전, 시계열 데이터 처리
 - **스택드 앙상블**: 다수 모델의 예측을 쌓아 올리는 앙상블 전략
 - **3줄 학습 API**: TabularPredictor.fit() 하나로 완전한 파이프라인 실행
-- **프리셋 구성**: `best_quality`, `good_quality`, `optimize_for_deployment` 등 사전 설정
+- **프리셋 구성**: ```best_quality````, ````good_quality````, ````optimize_for_deployment```` 등 사전 설정
 
 ### AutoGluon 테이블, 멀티모달, 시계열
 
-```python
+`````python
 # AutoGluon 기본 사용 예시
 from autogluon.tabular import TabularPredictor
 
@@ -73,9 +74,9 @@ predictor = TabularPredictor(
 
 # 리더보드 확인
 predictor.leaderboard(test_df)
-```
+`````
 
-AutoGluon의 `TabularPredictor`는 2024년 Kaggle 설문조사에서 가장 많이 사용되는 AutoML 도구 중 하나로 꼽혔습니다. `TimeSeriesPredictor`는 N-BEATS, DeepAR 등의 딥러닝 모델과 통계 모델을 함께 앙상블합니다.
+AutoGluon의 ````TabularPredictor````는 2024년 Kaggle 설문조사에서 가장 많이 사용되는 AutoML 도구 중 하나로 꼽혔습니다. ````TimeSeriesPredictor````는 N-BEATS, DeepAR 등의 딥러닝 모델과 통계 모델을 함께 앙상블합니다.
 
 **적합한 사용 사례:** 빠른 베이스라인 필요, 다양한 데이터 타입, Kaggle 경진대회
 
@@ -191,7 +192,7 @@ AutoML을 사용할 때는 다음 원칙을 지킵니다: - **강력한 베이�
 
 ### 초보자에게 가장 좋은 AutoML 도구는 무엇인가요?
 
-Google AutoML이 진입장벽이 가장 낮습니다. 코드 작성 없이 웹 인터페이스로 모델을 학습할 수 있습니다. 코드 기반 접근을 선호한다면 AutoGluon이 가장 쉬운 API를 제공하며, `pip install autogluon`으로 설치 후 3줄의 코드로 바로 시작할 수 있습니다.
+Google AutoML이 진입장벽이 가장 낮습니다. 코드 작성 없이 웹 인터페이스로 모델을 학습할 수 있습니다. 코드 기반 접근을 선호한다면 AutoGluon이 가장 쉬운 API를 제공하며, ````pip install autogluon```으로 설치 후 3줄의 코드로 바로 시작할 수 있습니다.
 
 ### AutoGluon과 H2O 중 테이블 데이터에 더 나은 것은?
 
@@ -205,7 +206,7 @@ Google AutoML이 진입장벽이 가장 낮습니다. 코드 작성 없이 웹 �
 
 2026년 기준 테이블 데이터 모델 학습은 약 $19.32/시간이며, 이미지 분류는 $3.15/노드시간입니다. 예측 요금은 온라인 예측 기준 1,000건당 $0.027입니다. 소규모 프로젝트라면 한 번의 모델 학습에 $20-50 정도가 소요됩니다. GCP 무제 사용 한도 내에서 테스트해 볼 수 있습니다.
 
----
+* * *
 
 **참고 자료:**
 
@@ -215,7 +216,7 @@ Google AutoML이 진입장벽이 가장 낮습니다. 코드 작성 없이 웹 �
 - [Auto-sklearn 문서](https://automl.github.io/auto-sklearn/)
 - [Google AutoML 가격](https://cloud.google.com/automl/pricing)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -287,7 +288,7 @@ AutoML 도구 비교: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML 완벽 �
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -13,6 +13,7 @@ featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: zh
 ---
 
+
 # Addy Osmani 的 Agent Skills：生产级 AI 编程工作流的正确打开方式
 
 以前我也觉得，AI 编程助手不过就是换个皮的高级自动补全，加个聊天框而已。直到 Addy Osmani 发布了 Agent Skills 框架，我才发现自己错得有多离谱。
@@ -72,12 +73,12 @@ lang: zh
 
 简单说，Agent Skills 是一套为 AI 编程助手设计的**可复用能力封装框架**。类比一下国内开发者熟悉的生态：
 
-```
+````
 Skills = 你组织的 AI 知识资产
        = 预置好的工作流模板
        = 自定义命令集
        = 上下文感知的智能助手
-```
+`````
 
 想象一下：你在公司里有一套内部 npm 包管理规范，所有团队都能复用经过测试的工具链。Agent Skills 做的事情类似，只不过对象从「代码库」换成了「AI 助手的行为模式」。
 
@@ -85,7 +86,7 @@ Skills = 你组织的 AI 知识资产
 
 更重要的是，这种封装方式支持**版本管理**和**持续集成**。你可以像管理代码一样管理 skill：
 
-```bash
+`````bash
 # 版本控制
 git add skills/
 git commit -m "update security scan skill v2.1"
@@ -96,7 +97,7 @@ git pull origin main  # 拉取团队最新的 skill 定义
 # 测试验证
 skills test           # 运行 skill 的单元测试
 skills lint           # 检查 skill 的代码规范
-```
+`````
 
 这种开发模式与国内传统的软件测试流程高度一致——代码提交前必须通过测试、lint、安全扫描等自动化检查。不同的是，这里检查的对象从「业务代码」变成了「AI 助手的行为」。这意味着你需要为 skill 编写测试用例，验证其在不同输入下的输出是否符合预期。
 
@@ -113,31 +114,31 @@ skills lint           # 检查 skill 的代码规范
 ## 安装与配置
 
 ### 方式一：快速开始
-```bash
+`````bash
 npm install -g agent-skills
 skills init my-project
-```
+`````
 
 ### 方式二：手动安装
-```bash
+`````bash
 git clone https://github.com/addyosmani/agent-skills.git
 cd agent-skills
 npm install
 npm run build
-```
+`````
 
 ### IDE 集成
 **VS Code 配置：**
-```json
+`````json
 // settings.json
 {
   "agentSkills.enabled": true,
   "agentSkills.skillsPath": "./skills"
 }
-```
+`````
 
 **Cursor 配置：**
-```json
+`````json
 // .cursorrc
 {
   "skills": {
@@ -145,11 +146,11 @@ npm run build
     "directory": "./skills"
   }
 }
-```
+`````
 
 对于习惯使用 VS Code 或 Cursor 的国内开发者来说，这个集成方式和配置 Cursor 规则（Cursor Rules）的思路很像——都是通过配置文件告诉 AI 助手「你的工作边界是什么」。不同之处在于，Agent Skills 的规则是结构化、可版本控制、可复用的，而不是一次性的 prompt 文本。
 
-与国内一些 AI 编程工具的对比：Cursor 的 `.cursorrules` 文件是纯文本 prompt，而 Agent Skills 的 skill 定义是结构化的 YAML/Markdown，支持参数化、条件判断、错误处理等高级特性。这就像是「手写 SQL」和「ORM 框架」的区别——前者灵活但容易出错，后者有约束但更可靠。
+与国内一些 AI 编程工具的对比：Cursor 的 ````.cursorrules```` 文件是纯文本 prompt，而 Agent Skills 的 skill 定义是结构化的 YAML/Markdown，支持参数化、条件判断、错误处理等高级特性。这就像是「手写 SQL」和「ORM 框架」的区别——前者灵活但容易出错，后者有约束但更可靠。
 
 国内的主流 AI 编程工具（如通义灵码、跃码、CodeWhisperer）大多采用「对话式」交互模式，开发者需要通过自然语言描述需求。而 Agent Skills 采用的是「命令式」模式，更像传统的命令行工具，可以通过明确的参数和标志来控制行为。这两种模式各有优势：对话式更适合探索性工作，命令式更适合标准化流程。
 
@@ -158,42 +159,42 @@ npm run build
 ## 编写你的第一个 Skill
 
 ### 基础目录结构
-```
+`````
 skills/
 ├── my-skill/
 │   ├── SKILL.md          # Skill 定义文件
 │   ├── execute.ts        # 实现逻辑
 │   └── config.yaml       # 配置文件
-```
+`````
 
 这个结构很像国内一些低代码平台的工作流定义方式——用声明式文件描述能力，用代码实现逻辑。你只需要按照模板填写，就能快速创建一个可用的 skill。
 
 ### Skill 定义文件
-```markdown
----
+`````markdown
+* * *
 name: my-skill
 description: "一行描述这个 skill 做什么"
 version: 1.0.0
 author: your-name
----
+* * *
 
 # My Skill
 
 详细的描述内容...
 
 ### 使用方法
-```
+`````
 skills run my-skill --flag value
-```
+`````
 
 ### 示例代码
-```typescript
+`````typescript
 // 示例代码
-```
-```
+`````
+`````
 
 ### 实现逻辑
-```typescript
+`````typescript
 import { Skill, SkillContext } from 'agent-skills';
 
 export class MySkill extends Skill {
@@ -209,9 +210,9 @@ export class MySkill extends Skill {
     };
   }
 }
-```
+`````
 
-这里的设计思路和国内很多 AI 编程工具的工作流引擎很像——定义输入、执行逻辑、返回结构化结果。关键是 `metrics` 字段：它会记录 token 消耗和执行时间，让你能像监控业务接口一样监控 AI 助手的性能。
+这里的设计思路和国内很多 AI 编程工具的工作流引擎很像——定义输入、执行逻辑、返回结构化结果。关键是 ````metrics```` 字段：它会记录 token 消耗和执行时间，让你能像监控业务接口一样监控 AI 助手的性能。
 
 这种 metrics 的设计在国内企业级应用中越来越常见——无论是阿里的 ARMS 监控、腾讯的云监控，还是百度 SRE 的指标体系，核心思想都是「没有度量就没有改进」。Agent Skills 把同样的理念带进了 AI 编程领域。
 
@@ -222,7 +223,7 @@ export class MySkill extends Skill {
 ### 1. 安全扫描 Skill
 在代码提交前自动执行安全检查：
 
-```typescript
+`````typescript
 class SecurityScanSkill extends Skill {
   async execute(ctx) {
     const files = await this.getModifiedFiles();
@@ -243,7 +244,7 @@ class SecurityScanSkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 这个例子有点像国内一些安全团队用的 SAST 工具（比如 SonarQube、白码、长亭雷池等）的 AI 化版本——把安全规则变成可执行、可追踪的 skill，而不是一次性的扫描脚本。不同的是，这个 skill 可以直接集成到 AI 助手的日常工作中，让你在不离开编码环境的情况下完成安全检查。
 
@@ -252,7 +253,7 @@ class SecurityScanSkill extends Skill {
 ### 2. 文档生成 Skill
 从代码自动提取 API 并生成文档：
 
-```typescript
+`````typescript
 class DocGeneratorSkill extends Skill {
   async execute(ctx) {
     const api = await this.extractAPI(ctx.code);
@@ -262,11 +263,11 @@ class DocGeneratorSkill extends Skill {
     
     return {
       success: true,
-      output: `已生成 ${api.length} 条 API 文档`
+      output: ````已生成 ${api.length} 条 API 文档````
     };
   }
 }
-```
+`````
 
 类比你用过 JSDoc、TypeDoc 或者国内的语雀 AI 文档生成、飞书智能文档，但这个 skill 的优势在于：它是 AI 驱动的，能理解代码语义而不仅仅是解析注释。它还能根据上下文自动生成使用说明、最佳实践示例，甚至能识别代码中的潜在问题并给出建议。
 
@@ -275,7 +276,7 @@ class DocGeneratorSkill extends Skill {
 ### 3. 性能分析 Skill
 测量代码性能并给出优化建议：
 
-```typescript
+`````typescript
 class PerformanceProfileSkill extends Skill {
   async execute(ctx) {
     const metrics = await this.profileCode(ctx.code);
@@ -287,7 +288,7 @@ class PerformanceProfileSkill extends Skill {
     };
   }
 }
-```
+`````
 
 这个思路类似于 Lighthouse 的性能审计报告，但是整合进了 AI 助手的日常工作流中，让你在写代码的时候就能实时收到优化建议。类比国内的 Chrome DevTools、WebPageTest 等性能分析工具，这个 skill 把专业的性能分析能力下放到了日常的编码场景中。
 
@@ -295,7 +296,7 @@ class PerformanceProfileSkill extends Skill {
 ## 高阶使用模式
 
 ### 模式一：条件执行
-```typescript
+`````typescript
 class ConditionalSkill extends Skill {
   async shouldExecute(ctx): Promise<boolean> {
     // 只在特定条件下执行
@@ -306,16 +307,16 @@ class ConditionalSkill extends Skill {
     // ...
   }
 }
-```
+`````
 
-这个模式类似于国内一些 CI/CD 工具的条件触发逻辑——比如 GitLab CI 的 `only`/`except` 规则，或者 GitHub Actions 的 `if` 条件。区别在于这里的条件是动态的、基于上下文感知的——skill 可以自己判断是否应该执行，而不是依赖外部配置。
+这个模式类似于国内一些 CI/CD 工具的条件触发逻辑——比如 GitLab CI 的 ````only````/````except```` 规则，或者 GitHub Actions 的 ````if```` 条件。区别在于这里的条件是动态的、基于上下文感知的——skill 可以自己判断是否应该执行，而不是依赖外部配置。
 
 在实际应用中，这种条件执行可以用来实现「仅在开发环境启用调试功能」或「仅在有提交变更时才执行安全检查」。这种灵活性让 skill 能够适应不同的使用场景，避免了不必要的资源浪费。
 
 此外，条件执行还可以用于权限控制。比如某些敏感操作只能由特定角色的用户触发，或者某些 skill 只能在特定的代码分支上运行。这种细粒度的控制能力让 skill 更加安全和可控。
 
 ### 模式二：多步骤工作流
-```typescript
+`````typescript
 class DeploySkill extends Skill {
   async execute(ctx) {
     const steps = [
@@ -332,12 +333,12 @@ class DeploySkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 这就像国内的 Jenkins pipeline 或者阿里的流水线平台——把复杂的部署流程拆成多个可复用的步骤，每个步骤都是一个独立的 skill。好处是：你可以单独测试、单独替换某个步骤，而不需要重写整个流程。比如你想把测试步骤换成另一个框架，只需要替换对应的 skill，其他步骤不受影响。
 
 ### 模式三：状态持久化
-```typescript
+`````typescript
 class CachingSkill extends Skill {
   async execute(ctx) {
     const cacheKey = this.computeKey(ctx);
@@ -352,14 +353,14 @@ class CachingSkill extends Skill {
     return result;
   }
 }
-```
+`````
 
 缓存机制在很多场景下都很重要——比如国内的 Redis 缓存方案、或者浏览器端的各种缓存策略。这里把同样的思路用在了 AI skill 的执行层面，避免重复执行耗时操作。比如一次代码扫描的结果可以被缓存，后续相同的扫描任务直接返回缓存结果，节省时间和 token。
 
 在国内的后端开发中，缓存是一个基础且重要的优化手段。这个模式让 AI skill 也能享受缓存带来的性能提升，特别是在处理大量数据或复杂计算时效果显著。常见的缓存策略包括：LRU（最近最少使用）、TTL（生存时间）等，你可以根据具体场景选择合适的缓存方案。对于高频调用的 skill，合理的缓存策略可以显著降低 API 调用成本。
 
 ### 模式四：错误恢复
-```typescript
+`````typescript
 class RobustSkill extends Skill {
   async execute(ctx) {
     const maxRetries = 3;
@@ -373,12 +374,12 @@ class RobustSkill extends Skill {
     }
   }
 }
-```
+`````
 
 这个重试逻辑类似于网络请求的指数退避策略——国内很多 HTTP 客户端库（比如 axios、node-fetch）都内置了类似的机制。在 AI skill 中引入这个模式，能让你的工作流在遇到临时失败时更加健壮。比如网络超时、API 限流等场景，skill 会自动重试而不是直接报错。
 
 ### 模式五：并行执行
-```typescript
+`````typescript
 class ParallelSkill extends Skill {
   async execute(ctx) {
     const results = await Promise.all([
@@ -389,30 +390,30 @@ class ParallelSkill extends Skill {
     return { data: results[0], meta: results[1], valid: results[2] };
   }
 }
-```
+`````
 
-并行执行是提升性能的关键手段——类比国内的 React Suspense 并发模式，或者 Node.js 的 `Promise.all` 最佳实践。当多个 skill 之间没有依赖关系时，并行执行能显著缩短总耗时。比如同时执行代码扫描、测试、安全检查等多个独立任务。
+并行执行是提升性能的关键手段——类比国内的 React Suspense 并发模式，或者 Node.js 的 ````Promise.all```` 最佳实践。当多个 skill 之间没有依赖关系时，并行执行能显著缩短总耗时。比如同时执行代码扫描、测试、安全检查等多个独立任务。
 
-```
+`````
     return result;
   }
 }
-```
+`````
 
 ## 集成指南
 
 ### 与 Claude Code 集成
-```bash
+`````bash
 # 安装 skills
 skills install ./my-skills
 
 # 在会话中使用
 claude code
 > /skills run my-skill
-```
+`````
 
 ### 与 VS Code 集成
-```json
+`````json
 // .vscode/settings.json
 {
   "agentSkills.skills": [
@@ -421,12 +422,12 @@ claude code
     "./skills/performance"
   ]
 }
-```
+`````
 
 对于习惯 VS Code 的国内开发者来说，这个配置方式和安装 VS Code 插件的配置很像——只不过这里配置的是 AI 助手的能力集，而不是扩展本身。你可以在同一个项目中配置多个 skill，让它们协同工作。
 
 ### 与 GitHub Actions 集成
-```yaml
+`````yaml
 # .github/workflows/skills.yml
 name: Run Skills
 on: [push]
@@ -438,7 +439,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: skills test
       - run: skills lint
-```
+`````
 
 这个模式和你配置 GitHub Actions 跑单元测试、lint 检查的逻辑完全一致——把 AI skill 的测试和验证也纳入 CI/CD 流程，确保每次提交都不会破坏已有的能力。类比国内的 Gitee Pipeline、阿里云效等平台，这个思路是相通的：把质量检查自动化，纳入持续的交付流程。
 
@@ -473,7 +474,7 @@ jobs:
 **问题：** 多个 skill 做相似的事情。
 **解决方案：** 使用 skill 组合，而不是重复实现：
 
-```typescript
+`````typescript
 // 不要这样重复写
 class AuthSkill extends Skill { /* auth 逻辑 */ }
 class APIKeySkill extends Skill { /* 更多 auth 逻辑 */ }
@@ -486,17 +487,17 @@ class AuthenticatedRequest extends Skill {
     return result;
   }
 }
-```
+`````
 
 这个模式类似于国内前端开发中常用的「组合式函数」（composition function）——把通用的逻辑抽离成小单元，然后通过组合的方式构建复杂功能。既避免了重复代码，也让每个 skill 的职责更加清晰。类比 Vue 3 的 composition API 或者 React 的自定义 hooks，这种「小积木 + 组合」的思路在软件工程领域已经被验证了无数次。
 
 举个实际例子：假设你需要开发一个用户认证功能，传统的做法是写一个大的 Skill 处理所有逻辑。但使用组合模式，你可以拆分成：
 
-- `AuthSkill`：处理 token 生成和验证
-- `APIKeySkill`：处理 API key 的管理
-- `SessionSkill`：处理会话状态
+- ````AuthSkill````：处理 token 生成和验证
+- ````APIKeySkill````：处理 API key 的管理
+- ````SessionSkill````：处理会话状态
 
-在这个例子中，`AuthenticationSkill` 是一个复合 skill，它组合了 `AuthSkill` 和 `APIKeySkill` 的功能。这种组合方式让代码更加模块化和可复用，同时也更容易理解和维护。
+在这个例子中，````AuthenticationSkill```` 是一个复合 skill，它组合了 ````AuthSkill```` 和 ````APIKeySkill```` 的功能。这种组合方式让代码更加模块化和可复用，同时也更容易理解和维护。
 
 在实际开发中，你可以像搭积木一样组合各种基础 skill，快速构建出复杂的工作流。这种「组合优于继承」的设计理念在面向对象编程中已经被广泛验证，在 AI skill 的设计中同样适用。
 
@@ -504,14 +505,14 @@ class AuthenticatedRequest extends Skill {
 **问题：** Skill 之间相互干扰对方状态。
 **解决方案：** 每个 skill 实例隔离状态：
 
-```typescript
+`````typescript
 class IsolatedSkill extends Skill {
   async execute(ctx) {
     const localState = this.createIsolatedState();
     // ... 只使用 localState
   }
 }
-```
+`````
 
 这类似于国内后端开发中的「请求隔离」概念——每个请求有独立的状态空间，不会互相污染。在 AI skill 场景中，这意味着每个 skill 的执行都是自包含的，不会意外修改其他 skill 的数据。类比数据库事务的隔离级别，每个 skill 的「事务」是独立的，互不干扰。
 
@@ -525,14 +526,14 @@ class IsolatedSkill extends Skill {
 **问题：** Skill 过多导致助手变慢。
 **解决方案：** 懒加载：
 
-```typescript
+`````typescript
 class LazySkill extends Skill {
   async load() {
     // 只在需要时才加载
     return import('./heavy-module');
   }
 }
-```
+`````
 
 这个思路和国内前端框架的「代码分割」（code splitting）很像——按需加载，避免一次性导入所有模块导致启动缓慢。对于 skill 数量较多的项目尤其重要。类比微信小程序的分包加载策略，只有在用户访问相关页面时才加载对应的代码模块。
 
@@ -542,15 +543,15 @@ class LazySkill extends Skill {
 - 部分 skill 永远不被使用却占用了资源
 
 通过懒加载，你可以实现：
-```typescript
+`````typescript
 // 延迟加载大型依赖
 async function loadHeavyModule() {
   const module = await import('./heavy-module');
   return module.default;
 }
-```
+`````
 
-这种模式在国内主流框架中广泛应用，如 Vue 的 `defineAsyncComponent`、React 的 `React.lazy()`。Agent Skills 借鉴了这一成熟的前端工程实践，确保系统在高负载下的稳定性和响应速度。
+这种模式在国内主流框架中广泛应用，如 Vue 的 ````defineAsyncComponent````、React 的 ````React.lazy()````。Agent Skills 借鉴了这一成熟的前端工程实践，确保系统在高负载下的稳定性和响应速度。
 
 通过合理设计懒加载策略，你可以显著降低启动时间和内存占用，特别是在 skill 数量较多的大规模项目中效果更为明显。建议结合监控指标持续优化加载策略。
 
@@ -570,19 +571,19 @@ async function loadHeavyModule() {
 ### 容器化部署
 在 Docker 中运行 Agent Skills，实现环境隔离：
 
-```dockerfile
+`````dockerfile
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 COPY . .
 CMD ["skills", "run", "my-skill"]
-```
+`````
 
-```bash
+`````bash
 docker build -t agent-skills-app .
 docker run -v $(pwd)/skills:/app/skills agent-skills-app
-```
+`````
 
 容器化部署是国内很多团队的标准实践——无论是用 Docker Compose 本地开发，还是用 Kubernetes 生产部署。Agent Skills 的容器化方案让你可以在隔离环境中运行 AI 工作流，避免对环境变量的依赖或者对宿主机配置的污染。
 
@@ -599,7 +600,7 @@ docker run -v $(pwd)/skills:/app/skills agent-skills-app
 ### CI/CD 集成
 在流水线中自动化测试 skill：
 
-```yaml
+`````yaml
 # .github/workflows/skills-test.yml
 name: Test Skills
 on: [push, pull_request]
@@ -613,12 +614,12 @@ jobs:
       - run: skills test
       - run: skills lint
       - run: skills coverage
-```
+`````
 
 ### 多团队协作模式
 适用于拥有多个团队的组织：
 
-```yaml
+`````yaml
 # skills-config.yaml
 global:
   pluginsDir: ~/.agent-skills/plugins
@@ -631,7 +632,7 @@ teams:
   data:
     skillsDir: ./skills/data
     members: [charlie, diana]
-```
+`````
 
 这个配置方式和国内一些中台架构的思路类似——基础能力全局共享，业务特定能力团队私有。每个团队可以维护自己的 skill 库，同时复用平台团队提供的通用能力。
 
@@ -712,25 +713,25 @@ Skills 更加侧重工作流和约定，插件则更加通用灵活。可以理�
 ## 故障排查
 
 ### 常见问题：Skills 未加载
-```bash
+`````bash
 # 检查 skill 注册状态
 skills list
 
 # 查看 skill 日志
 skills logs --skill my-skill --tail 50
-```
+`````
 
 ### 常见问题：TypeScript 编译错误
-```bash
+`````bash
 # 清除缓存并重新构建
 rm -rf node_modules/.cache
 npm run clean
 npm run build
-```
+`````
 
 ### 常见问题：长时间会话内存泄漏
 在 skill 配置中启用内存限制：
-```typescript
+`````typescript
 // skill.config.ts
 export default {
   memory: {
@@ -738,19 +739,19 @@ export default {
     gcInterval: '5m"
   }
 };
-```
+`````
 
 这个配置类似于国内后端服务中的「内存上限」和「垃圾回收频率」设置——防止长时间运行的进程占用过多内存。
 
 ### 常见问题：Skill 冲突
 当多个 skill 发生冲突时：
-```bash
+`````bash
 # 列出所有已加载的 skill
 skills list --all
 
 # 暂时禁用冲突的 skill
 skills disable skill-name
-```
+`````
 
 ## 安全考量
 
@@ -761,10 +762,10 @@ skills disable skill-name
 3. **密钥扫描** — 将密钥扫描集成到部署前的检查中
 4. **Skill 审计** — 安装前审查第三方 skill
 
-```bash
+`````bash
 # 对 skill 进行安全扫描
 skills security scan --deep ./skills
-```
+````
 
 这些安全实践类比国内云服务商的安全最佳实践——就像阿里云的安全中心、腾讯云的安全管家一样，把安全防护前置到开发和部署的各个环节，而不是等到出事之后再补救。
 
@@ -787,7 +788,7 @@ Agent Skills 代表了一位性能工程师为 AI 工具建设所做的思考：
 
 **轮到你了：** 你会最先构建什么 skill？欢迎分享你的想法！
 
----
+* * *
 
 **资料来源与延伸阅读：**
 - GitHub 仓库：https://github.com/addyosmani/agent-skills

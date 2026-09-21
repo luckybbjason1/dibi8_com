@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/moralis-web3-data-api/
 ---
 
+
 {{</* resource-info */>}}
 
 블록체인 데이터는 모든 탈중앙화 애플리케이션의 생명선입니다. DeFi 대시보드, NFT 마켓플레이스, 지갑 추적기 또는 트레이딩 봇을 구축하든 애플리케이션에는 빠르고 신뢰할 수 있는 온체인 데이터 액세스가 필요합니다. 2026년에 Moralis는 10개 이상의 EVM 호환 체인에서 실시간 블록체인 데이터를 제공하며 100,000개 이상의 탈중앙화 애플리케이션에 서비스를 제공하는 가장 널리 채택된 Web3 Data API로 남아 있습니다.
@@ -32,7 +33,7 @@ Moralis는 자체 블록체인 노드 실행, 인덱싱 레이어 및 데이터 
 
 > **제휴 공개:** 이 기사에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 등록하시면 추가 비용 없이 커미션을 받을 수 있습니다.
 
----
+* * *
 
 ## Moralis란 무엇인가
 
@@ -47,7 +48,7 @@ Moralis는 여러 가지 핵심 API 그룹을 제공합니다: - **Web3 API** �
 - **Streams API** — 온체인 이벤트에 대한 실시간 웹훅
 - **Auth API** — Web3 인증 및 사용자 세션 관리
 
----
+* * *
 
 ## 2026년에 Moralis를 선택하는 이유
 
@@ -63,7 +64,7 @@ Web3 인프라 환경이 상당히 성숙했지만 Moralis는 여러 가지 설�
 
 **풍부한 SDK 생태계.** JavaScript, Python, Unity용 공식 SDK를 통해 선호하는 환경에서 Moralis를 통합할 수 있습니다. React 훅과 Next.js 바인딩은 프론트엔드 개발을 더욱 가속화합니다.
 
----
+* * *
 
 ## Moralis 계정 설정
 
@@ -71,29 +72,29 @@ Web3 인프라 환경이 상당히 성숙했지만 Moralis는 여러 가지 설�
 
 **1단계:** admin.moralis.io의 Moralis 관리 콘솔을 방문하여 새 계정을 등록하세요. 이메일 주소를 사용하거나 Web3 지갑을 연결할 수 있습니다.
 
-**2단계:** 로그인 후 대시보드에서 새 프로젝트를 만드세요. `defi-dashboard` 또는 `nft-tracker`와 같은 설명적인 이름을 지정하세요.
+**2단계:** 로그인 후 대시보드에서 새 프로젝트를 만드세요. ```defi-dashboard```` 또는 ````nft-tracker````와 같은 설명적인 이름을 지정하세요.
 
 **3단계:** API Keys 섹션으로 이동하여 기본 API 키를 복사하세요. Moralis는 계층형 가격 모델을 사용합니다. 묶음 티어에는 개발 및 소규모 프로덕션 애플리케이션에 충분한 월간 API 호출이 포함되어 있습니다.
 
 **4단계:** 환경 변수를 사용하여 API 키를 보호하세요. API 키를 소스 코드 리포지토리에 직접 커밋하지 마세요.
 
-```bash
+`````bash
 # .env
 MORALIS_API_KEY=your_api_key_here
-```
+`````
 
-이 변수를 애플리케이션에서 `dotenv` 또는 런타임의 기본 환경 변수 지원을 사용하여 로드하세요.
+이 변수를 애플리케이션에서 ````dotenv```` 또는 런타임의 기본 환경 변수 지원을 사용하여 로드하세요.
 
-```javascript
+`````javascript
 // server.js
 require(dotenv).config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
   throw new Error('MORALIS_API_KEY is not defined');
 }
-```
+`````
 
----
+* * *
 
 ## Moralis SDK 설치
 
@@ -101,11 +102,11 @@ Moralis는 여러 프로그래밍 언어 및 프레임워크용 공식 SDK를 �
 
 ### JavaScript / Node.js
 
-```bash
+`````bash
 npm install moralis
-```
+`````
 
-```javascript
+`````javascript
 // Node.js 애플리케이션에서 Moralis 초기화
 const Moralis = require(moralis).default;
 
@@ -114,15 +115,15 @@ await Moralis.start({
 });
 
 console.log('Moralis SDK initialized successfully');
-```
+`````
 
 ### Python
 
-```bash
+`````bash
 pip install moralis
-```
+`````
 
-```python
+`````python
 # Python에서 Moralis 초기화
 from moralis import evm_api
 import os
@@ -131,13 +132,13 @@ api_key = os.environ.get(MORALIS_API_KEY)
 if not api_key: raise ValueError("MORALIS_API_KEY environment variable is required")
 
 print("Moralis Python SDK ready")
-```
+`````
 
 ### Unity
 
 Unity 개발자의 경우 Moralis는 Unity Package Manager를 통해 전용 SDK 패키지를 제공합니다. 공식 Moralis GitHub 리포지토리에서 패키지를 가져온 다음 게임 시작 스크립트에서 초기화하세요.
 
-```csharp
+`````csharp
 // Unity C# 초기화
 using MoralisUnity;
 using MoralisUnity.Web3Api.Client;
@@ -151,9 +152,9 @@ async void Start()
     await moralis.StartAsync();
     Debug.Log("Moralis Unity SDK initialized");
 }
-```
+`````
 
----
+* * *
 
 ## Token API로 토큰 데이터 가져오기
 
@@ -163,7 +164,7 @@ Token API는 Moralis에서 가장 자주 사용되는 구성 요소 중 하나�
 
 모든 토큰의 현재 가격을 가져오는 것은 간단합니다. Moralis는 여러 탈중앙화 거래소 및 유동성 풀에서 가격 데이터를 집계합니다.
 
-```javascript
+`````javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
   address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   chain: 0x1, // Ethereum 메인넷
@@ -171,28 +172,28 @@ const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
 
 console.log('Token Price:', priceResponse.result.usdPrice);
 console.log('Price Change 24h:', priceResponse.result.usdPricePercentChange24h);
-```
+`````
 
 ### 지갑 토큰 잔액 가져오기
 
 단일 API 호출로 특정 지갑 주소가 보유한 모든 ERC-20 토큰을 검색합니다.
 
-```javascript
+`````javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
 });
 
 balances.result.forEach((token) => {
-  console.log(`${token.name}: ${token.balance} (${token.symbol})`);
+  console.log(````${token.name}: ${token.balance} (${token.symbol})````);
 });
-```
+`````
 
 ### 토큰 전송 가져오기
 
 지갑 또는 특정 토큰 계약의 수신 및 발신 토큰 전송을 추적합니다.
 
-```javascript
+`````javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
@@ -200,15 +201,15 @@ const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}`);
+  console.log(````From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}````);
 });
-```
+`````
 
 ### 토큰 메타데이터 가져오기
 
 이름, 기호, 소수점, 로고를 포함하여 모든 ERC-20 토큰에 대한 자세한 메타데이터를 검색합니다.
 
-```javascript
+`````javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
   addresses: [
     0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
@@ -218,11 +219,11 @@ const metadata = await Moralis.EvmApi.token.getTokenMetadata({
 });
 
 metadata.result.forEach((token) => {
-  console.log(`${token.name} (${token.symbol}) - ${token.decimals} decimals`);
+  console.log(````${token.name} (${token.symbol}) - ${token.decimals} decimals````);
 });
-```
+`````
 
----
+* * *
 
 ## NFT API 작업
 
@@ -230,7 +231,7 @@ NFT API는 NFT 소유권, 메타데이터, 전송 및 컬렉션 수준 통계를
 
 ### 지갑이 소유한 NFT 가져오기
 
-```javascript
+`````javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
@@ -238,14 +239,14 @@ const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
 });
 
 nfts.result.forEach((nft) => {
-  console.log(`Collection: ${nft.name} Token ID: ${nft.tokenId}`);
-  console.log(`Metadata: ${nft.metadata}`);
+  console.log(````Collection: ${nft.name} Token ID: ${nft.tokenId}````);
+  console.log(````Metadata: ${nft.metadata}````);
 });
-```
+`````
 
 ### 토큰 ID로 NFT 메타데이터 가져오기
 
-```javascript
+`````javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
   address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
   tokenId: 1,
@@ -255,11 +256,11 @@ const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
 console.log('Name:', nftMetadata.result.name);
 console.log('Image:', nftMetadata.result.metadata?.image);
 console.log('Attributes:', nftMetadata.result.metadata?.attributes);
-```
+`````
 
 ### 컬렉션의 NFT 전송 가져오기
 
-```javascript
+`````javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
   address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
   chain: 0x1,
@@ -267,13 +268,13 @@ const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}`);
+  console.log(````Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}````);
 });
-```
+`````
 
 ### Python 예제: 플로어 가격 가져오기
 
-```python
+`````python
 from moralis import evm_api
 
 params = {
@@ -287,9 +288,9 @@ result = evm_api.nft.get_nft_floor_price(
 )
 
 print(f"Floor Price: {result[floor_price]} ETH")
-```
+`````
 
----
+* * *
 
 ## Streams API를 사용한 실시간 웹훅
 
@@ -297,7 +298,7 @@ Moralis의 두드러진 기능 중 하나는 온체인 이벤트에 대한 실�
 
 ### 스트림 설정
 
-```javascript
+````javascript
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {

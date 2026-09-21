@@ -23,6 +23,7 @@ tags: ["signoz", "apm", "observability", "distributed tracing", "opentelemetry",
 aliases:
   - /posts/signoz-apm-observability-open-source/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The $65,000/Year Observability Bill Nobody Talks About
@@ -60,7 +61,7 @@ SigNoz follows a modern observability pipeline architecture: 1. **OpenTelemetry 
 5. **Query Service (Go)**: Processes API requests, runs queries against ClickHouse and Druid
 6. **Frontend (React)**: Web UI for trace exploration, metrics dashboards, log search, and alert configuration
 
-```yaml
+````yaml
 Application (OTel SDK) → OTLP/gRPC → SigNoz Otel Collector
                                         ↓
                               ┌──────────────────┐
@@ -74,7 +75,7 @@ Application (OTel SDK) → OTLP/gRPC → SigNoz Otel Collector
                               Query Service (Go)
                                      ↓
                                 React Frontend
-```
+`````
 
 ### Why ClickHouse for Traces and Logs?
 
@@ -85,7 +86,7 @@ ClickHouse is a columnar OLAP database optimized for analytical queries on large
 
 ### OpenTelemetry-Native Design
 
-Unlike Datadog or New Relic, which require proprietary agents, SigNoz consumes standard OpenTelemetry data: ```python
+Unlike Datadog or New Relic, which require proprietary agents, SigNoz consumes standard OpenTelemetry data: `````python
 # No vendor-specific SDK needed — standard OTel only
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -102,7 +103,7 @@ provider = TracerProvider()
 processor = BatchSpanProcessor(otlp_exporter)
 provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
-```
+`````
 
 If you ever migrate away from SigNoz, simply point the same OTLP exporter at a different backend. No code changes required.
 
@@ -117,7 +118,7 @@ If you ever migrate away from SigNoz, simply point the same OTLP exporter at a d
 
 ### Option A: Docker Compose (Recommended)
 
-```bash
+`````bash
 # 1. Clone the SigNoz repository
 git clone -b main https://github.com/SigNoz/signoz.git
 cd signoz/deploy/docker
@@ -129,13 +130,13 @@ cd signoz/deploy/docker
 # - Pull all required images (ClickHouse, Kafka, Query Service, Frontend)
 # - Start all services
 # - Print the access URL
-```
+`````
 
-After installation completes, access SigNoz at `http://localhost:3301`.
+After installation completes, access SigNoz at ````http://localhost:3301````.
 
 ### Option B: Kubernetes via Helm
 
-```bash
+`````bash
 # 1. Add the SigNoz Helm repository
 helm repo add signoz https://charts.signoz.io
 helm repo update
@@ -152,11 +153,11 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=signoz -n signo
 
 # 4. Port-forward the frontend
 kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
-```
+`````
 
 ### Option C: Production VPS Deployment
 
-For a production deployment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187): ```bash
+For a production deployment on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) or [HTStack](https://my.htstack.com/aff.php?aff=27187): `````bash
 # docker-compose.production.yml
 version: "3.8"
 services: signoz-frontend: image: signoz/frontend:0.76.0
@@ -201,13 +202,13 @@ services: signoz-frontend: image: signoz/frontend:0.76.0
     volumes: - kafka-data:/bitnami/kafka
     depends_on: - zookeeper
 
-volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````
 
-Deploy with `docker compose -f docker-compose.production.yml up -d`.
+Deploy with ````docker compose -f docker-compose.production.yml up -d````.
 
 ### Verifying the Installation
 
-```bash
+`````bash
 # Check all containers are running
 docker ps --format "table {{.Names}}\t{{.Status}}"
 
@@ -222,13 +223,13 @@ docker ps --format "table {{.Names}}\t{{.Status}}"
 # Test the health endpoint
 curl http://localhost:3301/api/v1/health
 # Output: {"status":"ok"}
-```
+`````
 
 ## Instrumenting Your Application
 
 ### Auto-Instrumentation (Recommended for Quick Start)
 
-SigNoz supports auto-instrumentation for most languages without code changes: ```bash
+SigNoz supports auto-instrumentation for most languages without code changes: `````bash
 # Node.js — zero code changes
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=payment-service" \
@@ -249,11 +250,11 @@ java -javaagent:opentelemetry-javaagent.jar \
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=api-gateway" \
 go run main.go
-```
+`````
 
 ### Manual Instrumentation (Production-Grade)
 
-For production services, manual instrumentation provides better control: ```python
+For production services, manual instrumentation provides better control: `````python
 # Python Flask with manual instrumentation
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -284,11 +285,11 @@ def process_payment(): with tracer.start_as_current_span("process_payment") as s
             pass
 
         return {"status": "success"}
-```
+`````
 
 ### Custom Dashboards and Metrics
 
-Once data is flowing, create dashboards in the SigNoz UI or via API: ```bash
+Once data is flowing, create dashboards in the SigNoz UI or via API: `````bash
 # Create a custom dashboard via API
 curl -X POST http://localhost:3301/api/v1/dashboards \
   -H "Content-Type: application/json" \
@@ -315,7 +316,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
       }
     ]
   }'
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -323,13 +324,13 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 | Metric | SigNoz (Self-Hosted) | Datadog | New Relic |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 50 hosts APM | $40–$120/month (VPS) | $2,040/month | $1,470/month |
 | Traces (1M spans/day) | Included | ~$180/month | ~$150/month |
@@ -346,9 +347,9 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 Tested with 1 million spans/day ingestion on a 4 vCPU / 8 GB RAM VPS: | Metric | Result |
 |
----
+* * *
 |
----
+* * *
 |
 | Span ingestion rate | 12,000 spans/second sustained |
 | Query latency (last 1 hour) | 45 ms p95 |
@@ -368,7 +369,7 @@ Tested with 1 million spans/day ingestion on a 4 vCPU / 8 GB RAM VPS: | Metric |
 
 ### High-Availability Setup
 
-```yaml
+`````yaml
 # docker-compose.ha.yml — multi-node ClickHouse with ZooKeeper
 services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - clickhouse1-data:/var/lib/clickhouse
@@ -393,11 +394,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
     ports: - "8123:8123"
       - "9000:9000"
-```
+`````
 
 ### Long-Term Storage with S3
 
-```yaml
+`````yaml
 # ClickHouse S3 backup configuration
 <clickhouse>
   <storage_configuration>
@@ -424,11 +425,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     </policies>
   </storage_configuration>
 </clickhouse>
-```
+`````
 
 ### Alert Configuration
 
-```yaml
+`````yaml
 # alert-rules.yml — SigNoz alert manager rules
 groups: - name: payment_service_alerts
     rules: - alert: HighErrorRate
@@ -458,7 +459,7 @@ Configure alert channels (Slack, PagerDuty, email) in the SigNoz UI under Settin
 
 ### Kubernetes Auto-Instrumentation
 
-```yaml
+`````yaml
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
@@ -473,7 +474,7 @@ spec: ports: - name: otlp-grpc
   selector: app.kubernetes.io/name: otel-collector
 
 
----
+* * *
 # Instrument a deployment by adding OTel env vars
 apiVersion: apps/v1
 kind: Deployment
@@ -488,11 +489,11 @@ spec: template: spec: containers: - name: payment-service
               value: "parentbased_traceidratio"
             - name: OTEL_TRACES_SAMPLER_ARG
               value: "0.1"  # Sample 10% of traces
-```
+`````
 
 ### Sampling Strategy for High-Traffic Services
 
-For services handling >10,000 requests/second, implement head-based sampling: ```yaml
+For services handling >10,000 requests/second, implement head-based sampling: `````yaml
 # otel-collector-config.yaml
 receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
       http: endpoint: 0.0.0.0:4318
@@ -516,7 +517,7 @@ exporters: clickhousetraces: datasource: tcp://clickhouse:9000
 service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
-```
+`````
 
 This configuration samples 100% of error traces, 100% of slow requests (>500ms), and 10% of normal traffic — giving you complete error visibility while controlling storage costs.
 
@@ -524,15 +525,15 @@ This configuration samples 100% of error traces, 100% of slow requests (>500ms),
 
 | Feature | SigNoz | Datadog | New Relic | Grafana Stack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open source | MIT License | Proprietary | Proprietary | AGPL (some) |
 | Self-hosted | Full Docker/K8s | No | No | Yes |
@@ -577,10 +578,10 @@ For 1 million spans/day ingestion with 7-day hot retention: 4 vCPU, 8 GB RAM, 10
 
 **Q: Can I use my existing Prometheus metrics with SigNoz?**
 
-Yes. SigNoz's OTel Collector includes a Prometheus receiver. Configure it in `otel-collector-config.yaml`: ```yaml
+Yes. SigNoz's OTel Collector includes a Prometheus receiver. Configure it in ``otel-collector-config.yaml``: `````yaml
 receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
           static_configs: - targets: [my-app:9090]
-```
+`````
 
 Existing Prometheus scrape configs can be imported directly. SigNoz will store the metrics in Druid for long-term querying.
 
@@ -602,7 +603,7 @@ SigNoz delivers what engineering teams at scale actually need: **a production-gr
 
 With a 5-minute Docker setup, ClickHouse-powered sub-second queries on billions of spans, and zero vendor lock-in, the case for spending $50,000+/year on cloud APM becomes difficult to justify.
 
-**Deploy today**: Spin up a VPS on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($48/month for 8 GB) or [HTStack](https://my.htstack.com/aff.php?aff=27187), run `./install.sh`, and start instrumenting your first service in under 10 minutes.
+**Deploy today**: Spin up a VPS on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) ($48/month for 8 GB) or [HTStack](https://my.htstack.com/aff.php?aff=27187), run ````./install.sh```, and start instrumenting your first service in under 10 minutes.
 
 **Join the community**: [Telegram group](https://t.me/dibi8en) for English-speaking developers | [GitHub Discussions](https://github.com/SigNoz/signoz/discussions) | [Slack](https://signoz.io/slack)
 
@@ -626,7 +627,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Self-hosting guide](dibi8-internal-link) — General self-hosting best practices on dibi8.com
 
 
----
+* * *
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com receives a commission at no additional cost to you. All recommendations are based on hands-on testing, not affiliate availability.*
 
 
@@ -655,7 +656,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](signoz-apm-observability-open-source)
@@ -664,6 +665,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-22-trending-ai-agents](signoz-apm-observability-open-source)
 - [prompts-chat](signoz-apm-observability-open-source)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

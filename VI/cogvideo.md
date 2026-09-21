@@ -24,21 +24,22 @@ aliases:
   - /vi/posts/cogvideo/
 ---
 
+
 {{</* resource-info */>}}
 
 > Biến văn bản và hình ảnh thành video điện ảnh với Diffusion Transformer mã nguồn mở của Zhipu AI. Từ zero đến production trong 30 phút.
 
----
+* * *
 
 ## Giới Thiệu
 
 Tạo video từ văn bản đã chuyển từ chủ đề nghiên cứu sang công cụ production trong 2024-2025. Các mô hình mã nguồn mở hiện cạnh tranh với API thương mại về chất lượng trong khi chạy trên GPU ngườì dùng. Vấn đề là: hầu hết repository chỉ cung cấp model weights với tài liệu rải rác. Bạn mất hàng giờ để ghép script inference, flag tối ưu VRAM và pipeline fine-tuning thay vì tạo video.
 
-CogVideo của Zhipu AI giải quyết khác biệt. Với 12.7K GitHub stars, 36 contributors và release active, nó cung cấp toolkit đầy đủ: model pretrained 2B và 5B tham số, tích hợp Diffusers pipeline, fine-tuning SAT, node ComfyUI và 3D causal VAE nén video thành biểu diễn latent hiệu quả. Hướng dẫn này bao gồm mọi thứ từ `pip install` đến triển khai production với quantized inference và LoRA fine-tuning.
+CogVideo của Zhipu AI giải quyết khác biệt. Với 12.7K GitHub stars, 36 contributors và release active, nó cung cấp toolkit đầy đủ: model pretrained 2B và 5B tham số, tích hợp Diffusers pipeline, fine-tuning SAT, node ComfyUI và 3D causal VAE nén video thành biểu diễn latent hiệu quả. Hướng dẫn này bao gồm mọi thứ từ ```pip install```` đến triển khai production với quantized inference và LoRA fine-tuning.
 
 ![CogVideo web demo](https://raw.githubusercontent.com/zai-org/CogVideo/main/resources/web_demo.png)
 
----
+* * *
 
 ## CogVideo Là Gì?
 
@@ -46,7 +47,7 @@ CogVideo của Zhipu AI giải quyết khác biệt. Với 12.7K GitHub stars, 3
 
 CogVideo là framework tạo video từ văn bản và hình ảnh mã nguồn mở do Zhipu AI phát triển, dựa trên kiến trúc 3D causal VAE và expert transformer. Series CogVideoX (2024) kế thừa mô hình CogVideo gốc được công bố tại ICLR 2023, cung cấp model 5B tham số tạo video 6 giây 720p từ text prompt hoặc ảnh tĩnh.
 
----
+* * *
 
 ## CogVideo Hoạt Động Như Thế Nào
 
@@ -56,7 +57,7 @@ CogVideoX sử dụng pipeline ba thành phần: 1. **T5 Text Encoder**: Mã hó
 2. **3D Causal VAE**: Nén video không gian và thờì gian vào latent space — nén không gian 4x và nén thờì gian 4-8x tùy biến thể model
 3. **Expert Transformer (DiT)**: Diffusion transformer với 3D full attention denoise biểu diễn video latent qua 50 bước inference
 
-Luồng kiến trúc: `Text Prompt → T5 Encoder → Latent Text Embedding → DiT Denoising → 3D VAE Decoder → MP4 Video`
+Luồng kiến trúc: ````Text Prompt → T5 Encoder → Latent Text Embedding → DiT Denoising → 3D VAE Decoder → MP4 Video````
 
 ![CogVideoX architecture overview](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/cogvideox/pipeline.png)
 
@@ -70,7 +71,7 @@ Luồng kiến trúc: `Text Prompt → T5 Encoder → Latent Text Embedding → 
 | CogVideoX1.5-5B | 5B | 1360 x 768 | 161 (10s) | 10 GB min | 7 GB |
 | CogVideoX1.5-5B-I2V | 5B | 768 x 1360 | 49 (6s) | 4 GB min | 3.6 GB |
 
----
+* * *
 
 ## Cài Đặt & Thiết Lập
 
@@ -83,44 +84,44 @@ Luồng kiến trúc: `Text Prompt → T5 Encoder → Latent Text Embedding → 
 
 ### Cách 1: pip Install (Khuyến nghị, Dưới 5 Phút)
 
-Bước 1 — Tạo môi trường ảo: ```bash
+Bước 1 — Tạo môi trường ảo: `````bash
 python3.11 -m venv cogvideo_env
 source cogvideo_env/bin/activate
-```
+`````
 
-Bước 2 — Clone repository và cài dependencies: ```bash
+Bước 2 — Clone repository và cài dependencies: `````bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo
 pip install -r requirements.txt
-```
+`````
 
-`requirements.txt` cài PyTorch, Diffusers, Transformers, Accelerate và toolkit SAT: ```
+``requirements.txt`` cài PyTorch, Diffusers, Transformers, Accelerate và toolkit SAT: `````
 torch>=2.3.0
 diffusers>=0.30.0
 transformers>=4.40.0
 accelerate>=0.30.0
 sentencepiece
 opencv-python
-```
+`````
 
-Bước 3 — Xác minh cài đặt: ```python
+Bước 3 — Xác minh cài đặt: `````python
 import torch
 from diffusers import CogVideoXPipeline
 
 print(f"PyTorch version: {torch.__version__}")
 print(f"CUDA available: {torch.cuda.is_available()}")
 print(f"CUDA version: {torch.version.cuda}")
-```
+`````
 
-Output mong đợi: ```
+Output mong đợi: `````
 PyTorch version: 2.5.1+cu121
 CUDA available: True
 CUDA version: 12.1
-```
+`````
 
 ### Cách 2: Docker Deployment (Production)
 
-Triển khai reproducible và multi-GPU inference với Docker image: ```dockerfile
+Triển khai reproducible và multi-GPU inference với Docker image: `````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -138,9 +139,9 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 7860
 
 CMD ["python3", "-m", "inference.cli_demo"]
-```
+`````
 
-Build và run: ```bash
+Build và run: `````bash
 docker build -t cogvideo:latest .
 docker run --gpus all -it --rm \
   -v $(pwd)/output:/app/output \
@@ -148,36 +149,36 @@ docker run --gpus all -it --rm \
   cogvideo:latest \
   --prompt "A serene mountain lake at sunrise" \
   --model_path THUDM/CogVideoX-5B
-```
+`````
 
-Multi-GPU inference, thêm `device_map="balanced"` vào `from_pretrained()` và bỏ `enable_model_cpu_offload()`: ```python
+Multi-GPU inference, thêm ``device_map="balanced"`` vào ``from_pretrained()`` và bỏ ``enable_model_cpu_offload()``: `````python
 pipe = CogVideoXPipeline.from_pretrained(
     "THUDM/CogVideoX-5B",
     torch_dtype=torch.bfloat16,
     device_map="balanced"
 )
-```
+`````
 
 ### Cách 3: SAT Framework (Nghiên cứu & Fine-tuning)
 
-Swiss Army Transformer (SAT) là training toolkit của Zhipu AI. Cài để fine-tune và nghiên cứu: ```bash
+Swiss Army Transformer (SAT) là training toolkit của Zhipu AI. Cài để fine-tune và nghiên cứu: `````bash
 git clone https://github.com/zai-org/CogVideo.git
 cd CogVideo/sat
 pip install -e .
-```
+`````
 
-Xác minh SAT: ```python
+Xác minh SAT: `````python
 from sat import get_args
 print("SAT framework loaded successfully")
-```
+`````
 
----
+* * *
 
 ## Tích Hợp Với Công Cụ Phổ Biến
 
 ### Hugging Face Diffusers (Khuyến nghị Cho Ngườì Mới)
 
-Diffusers pipeline là cách nhanh nhất để tạo video. Script text-to-video đầy đủ: ```python
+Diffusers pipeline là cách nhanh nhất để tạo video. Script text-to-video đầy đủ: `````python
 import torch
 from diffusers import CogVideoXPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video
@@ -212,9 +213,9 @@ video = pipe(
 
 # 5. Lưu
 export_to_video(video, "output.mp4", fps=8)
-```
+`````
 
-Image-to-video với CogVideoX1.5-5B-I2V: ```python
+Image-to-video với CogVideoX1.5-5B-I2V: `````python
 import torch
 from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler
 from diffusers.utils import export_to_video, load_image
@@ -244,22 +245,22 @@ video = pipe(
 ).frames[0]
 
 export_to_video(video, "output_i2v.mp4", fps=8)
-```
+`````
 
 ### ComfyUI Node-Based Workflow
 
-ComfyUI-CogVideoXWrapper cho phép workflow dạng node trực quan. Cài đặt: ```bash
+ComfyUI-CogVideoXWrapper cho phép workflow dạng node trực quan. Cài đặt: `````bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-CogVideoXWrapper.git
 cd ComfyUI-CogVideoXWrapper
 pip install -r requirements.txt
-```
+`````
 
 Restart ComfyUI và load workflow CogVideoX. Wrapper hỗ trợ mọi biến thể model bao gồm I2V và video-to-video.
 
 ### SAT Framework Fine-Tuning
 
-Fine-tune style và concept tùy chỉnh bằng LoRA qua SAT: Cấu hình `sat/configs/sft.yaml`: ```yaml
+Fine-tune style và concept tùy chỉnh bằng LoRA qua SAT: Cấu hình ``sat/configs/sft.yaml``: `````yaml
 model_parallel_size: 1
 experiment_name: lora-custom-style
 mode: finetune
@@ -272,41 +273,41 @@ train_data: ["your_train_data_path"]
 valid_data: ["your_val_data_path"]
 deepseed: bf16: enabled: False  # True cho 5B
   fp16: enabled: True   # False cho 5B
-```
+`````
 
-Chạy fine-tuning trên single GPU: ```bash
+Chạy fine-tuning trên single GPU: `````bash
 cd CogVideo/sat
 bash finetune_single_gpu.sh
-```
+`````
 
-Chuyển đổi SAT LoRA weights sang Hugging Face format: ```bash
+Chuyển đổi SAT LoRA weights sang Hugging Face format: `````bash
 python tools/export_sat_lora_weight.py \
   --sat_pt_path ckpts/lora-custom-style/1000/mp_rank_00_model_states.pt \
   --lora_save_directory ./hf_lora_weights/
-```
+`````
 
-Load fine-tuned weights trong inference: ```python
+Load fine-tuned weights trong inference: `````python
 pipe.load_lora_weights(
     "./hf_lora_weights/",
     weight_name="pytorch_lora_weights.safetensors",
     adapter_name="custom_style"
 )
 pipe.fuse_lora(components=["transformer"], lora_scale=1.0)
-```
+`````
 
 ### Pipeline Tối Ưu Prompt
 
-CogVideoX được train với prompt dài, mô tả chi tiết. Prompt ngắn cho chất lượng thấp hơn. Dùng script chuyển đổi prompt: ```bash
+CogVideoX được train với prompt dài, mô tả chi tiết. Prompt ngắn cho chất lượng thấp hơn. Dùng script chuyển đổi prompt: `````bash
 python inference/convert_demo.py \
   --prompt "A girl riding a bike" \
   --type "t2v"
-```
+`````
 
-Script gọi large language model (GLM-4 Plus hoặc GPT-4o) để mở rộng prompt đơn giản thành mô tả chi tiết. Ví dụ chuyển đổi: **Input:** `"A girl riding a bike"`
+Script gọi large language model (GLM-4 Plus hoặc GPT-4o) để mở rộng prompt đơn giản thành mô tả chi tiết. Ví dụ chuyển đổi: **Input:** ````"A girl riding a bike"````
 
-**Output:** `"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."`
+**Output:** ````"A young woman with flowing auburn hair rides a vintage red bicycle along a cobblestone path. She wears a light summer dress that billows gently in the breeze. The path winds through a sun-dappled forest with tall oak trees casting long shadows on the ground. Golden afternoon light filters through the leaves, creating a warm, nostalgic atmosphere. She pedals at a leisurely pace, a serene smile on her face, occasionally glancing at wildflowers growing along the path edge."````
 
-Dùng programmatic: ```python
+Dùng programmatic: `````python
 from inference.convert_demo import convert_prompt
 
 optimized_prompt = convert_prompt(
@@ -315,15 +316,15 @@ optimized_prompt = convert_prompt(
     type="t2v"
 )
 print(optimized_prompt)
-```
+`````
 
 ### Quantized Inference Với TorchAO
 
-Cho deployment VRAM hạn chế, dùng INT8 quantization qua diffusers-torchao: ```bash
+Cho deployment VRAM hạn chế, dùng INT8 quantization qua diffusers-torchao: `````bash
 pip install torchao
-```
+`````
 
-```python
+`````python
 import torch
 from diffusers import CogVideoXPipeline
 from torchao.quantization import quantize_, int8_weight_only
@@ -344,11 +345,11 @@ video = pipe(
     num_inference_steps=50,
     num_frames=49,
 ).frames[0]
-```
+`````
 
 Quantization giảm VRAM từ 10GB xuống ~7GB cho CogVideoX-5B với ít mất mát chất lượng.
 
----
+* * *
 
 ## Benchmarks & Use Case Thực Tế
 
@@ -384,13 +385,13 @@ Nguồn: Video-BLADE paper (Zhejiang University, 2025)
 
 **Marketing Mạng Xã Hội**: Team marketing tạo 50+ video variant mỗi ngày cho A/B testing trên server GPU 16GB VRAM.
 
----
+* * *
 
 ## Cách Sử Dụng Nâng Cao / Củng Cố Production
 
 ### Multi-GPU Parallel Inference
 
-Phân phối inference qua nhiều GPU cho throughput cao: ```python
+Phân phối inference qua nhiều GPU cho throughput cao: `````python
 import torch
 from diffusers import CogVideoXPipeline
 
@@ -400,13 +401,13 @@ pipe = CogVideoXPipeline.from_pretrained(
     device_map="balanced"  # Auto-distribute qua GPUs
 )
 # Không gọi enable_model_cpu_offload() với device_map
-```
+`````
 
 Multi-GPU giảm memory mỗi GPU xuống ~24GB BF16 cho CogVideoX-5B.
 
 ### API Server Với FastAPI
 
-Wrap inference trong production API: ```python
+Wrap inference trong production API: `````python
 from fastapi import FastAPI
 from pydantic import BaseModel
 import torch
@@ -446,11 +447,11 @@ async def generate_video(req: GenerateRequest): video = pipe(
     export_to_video(video, output_path, fps=8)
 
     return {"video_url": f"/videos/{output_id}.mp4", "status": "complete"}
-```
+`````
 
-Chạy: ```bash
+Chạy: `````bash
 uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
-```
+`````
 
 ### Checklist Tối Ưu VRAM
 
@@ -463,7 +464,7 @@ uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
 
 ### Monitoring Với Prometheus
 
-Theo dõi metrics inference trong production: ```python
+Theo dõi metrics inference trong production: `````python
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
@@ -480,9 +481,9 @@ def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
     vram = torch.cuda.max_memory_allocated()
     VRAM_USAGE.observe(vram)
     return result
-```
+`````
 
----
+* * *
 
 ## So Sánh Với Các Lựa Chọn Khác
 
@@ -510,7 +511,7 @@ def generate_tracked(pipe, prompt): INFERENCE_COUNT.inc()
 
 **Khi chọn Open-Sora**: Cho linh hoạt nghiên cứu và video rất dài (tối đa 16 giây), chất lượng hình ảnh thấp hơn.
 
----
+* * *
 
 ## Hạn Chế / Đánh Giá Trung Thực
 
@@ -526,7 +527,7 @@ CogVideoX có những ràng buộc rõ ràng cần biết trước khi đầu t�
 
 6. **Không Có API Video Thương Mại**: Khác với Runway hay Kling, CogVideoX chỉ hỗ trợ self-hosted. Bạn tự quản lý GPU infrastructure, scaling và queueing.
 
----
+* * *
 
 ## Câu Hỏi Thường Gặp
 
@@ -536,11 +537,11 @@ A: CogVideoX-2B chạy trên 5GB VRAM với Diffusers + sequential CPU offload. 
 
 **Q: Làm sao tăng tốc inference vượt quá 50 bước?**
 
-A: Dùng CogVideoXDPMScheduler với `timestep_spacing="trailing"` và giảm bước xuống 25-30 cho preview. Video-BLADE step distillation đạt 8.89x tốc độ trên CogVideoX-5B. Bật VAE tiling và slicing.
+A: Dùng CogVideoXDPMScheduler với ````timestep_spacing="trailing"```` và giảm bước xuống 25-30 cho preview. Video-BLADE step distillation đạt 8.89x tốc độ trên CogVideoX-5B. Bật VAE tiling và slicing.
 
 **Q: Có thể fine-tune CogVideoX trên dataset riêng không?**
 
-A: Có, qua hai đường dẫn. SAT framework hỗ trợ full-parameter fine-tuning và LoRA. Diffusers hỗ trợ LoRA qua `train_cogvideox_lora.py`. Model 5B cần A100 GPU — model 2B có thể train trên single RTX 4090. Cần 25+ video cho học style hoặc concept mới.
+A: Có, qua hai đường dẫn. SAT framework hỗ trợ full-parameter fine-tuning và LoRA. Diffusers hỗ trợ LoRA qua ````train_cogvideox_lora.py````. Model 5B cần A100 GPU — model 2B có thể train trên single RTX 4090. Cần 25+ video cho học style hoặc concept mới.
 
 **Q: Khác biệt giữa CogVideoX-5B và CogVideoX1.5-5B là gì?**
 
@@ -552,15 +553,15 @@ A: API thương mại dễ truy cập, chất lượng đỉnh cao hơn, đặc 
 
 **Q: CogVideoX output định dạng file gì?**
 
-A: Diffusers pipeline output PyTorch tensors. Dùng `export_to_video()` từ `diffusers.utils` để lưu MP4 với H.264 encoding ở 8-16 FPS. Chuyển đổi sang định dạng khác bằng FFmpeg: ```bash
+A: Diffusers pipeline output PyTorch tensors. Dùng ``export_to_video()`` từ ``diffusers.utils`` để lưu MP4 với H.264 encoding ở 8-16 FPS. Chuyển đổi sang định dạng khác bằng FFmpeg: `````bash
 ffmpeg -i output.mp4 -c:v libx265 -crf 23 output_h265.mp4
-```
+`````
 
 **Q: Có web UI cho ngườì dùng không kỹ thuật không?**
 
 A: Có, nhiều lựa chọn. Hugging Face Space chính thức cho online inference không cần setup. ComfyUI với node CogVideoXWrapper cho giao diện workflow trực quan local.
 
----
+* * *
 
 ## Kết Luận
 
@@ -568,17 +569,17 @@ CogVideoX cung cấp tạo video từ văn bản cấp production với tính li
 
 **Hành động để bắt đầu ngay hôm nay:**
 
-1. Clone repository: `git clone https://github.com/zai-org/CogVideo.git`
-2. Cài dependencies: `pip install -r requirements.txt`
-3. Chạy generation đầu tiên: `python inference/cli_demo.py --prompt "Your prompt here" --model_path THUDM/CogVideoX-5B`
-4. Tối ưu prompt với `convert_demo.py` để chất lượng tốt hơn
+1. Clone repository: ````git clone https://github.com/zai-org/CogVideo.git````
+2. Cài dependencies: ````pip install -r requirements.txt````
+3. Chạy generation đầu tiên: ````python inference/cli_demo.py --prompt "Your prompt here" --model_path THUDM/CogVideoX-5B````
+4. Tối ưu prompt với ````convert_demo.py``` để chất lượng tốt hơn
 5. Tham gia cộng đồng [Discord](https://github.com/zai-org/CogVideo#-join-our-community) để hỗ trợ và chia sẻ workflow
 
 Cho triển khai production, bắt đầu với Docker setup, thêm FastAPI wrapping, và monitor bằng Prometheus.
 
 **Tham gia nhóm Telegram để cập nhật mã nguồn AI hàng ngày:** [@dibi8source](https://t.me/dibi8source)
 
----
+* * *
 
 
 
@@ -631,7 +632,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -641,6 +642,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [moneyprinter-turbo-ai-video-generation-one-command](cogvideo)
 - [moneyprinter-turbo-ai-video-generation-one-command](cogvideo)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

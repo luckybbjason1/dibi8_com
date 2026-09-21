@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/affine-knowledge-base-whiteboard/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Sự hỗn loạn quản lý tri thức năm 2026
@@ -52,12 +53,12 @@ Kiến trúc AFFiNE là một chồng ba lớp: **Lớp 1: OctoBase (Công cụ 
 
 Đối với triển khai tự lưu trữ, chồng này bổ sung PostgreSQL (dữ liệu ứng dụng), Redis (bộ nhớ đệm và quản lý phiên) và container máy chủ AFFiNE (API Node.js và đồng bộ WebSocket).
 
-```yaml
+````yaml
 # - Máy chủ AFFiNE (web + API + đồng bộ)
 # - PostgreSQL 16 (dữ liệu liên tục)
 # - Redis 7 (bộ nhớ đệm + phiên)
 # - Tùy chọn: lưu trữ đối tượng cho tệp blob
-```
+`````
 
 Cổng mặc định là **3010**. Ngườ dùng đầu tiên đăng ký sẽ tự động trở thành quản trị viên.
 
@@ -65,13 +66,13 @@ Cổng mặc định là **3010**. Ngườ dùng đầu tiên đăng ký sẽ t�
 
 Thiết lập Docker Compose chính thức của AFFiNE là phương pháp triển khai được khuyến nghị. Nó xử lý tự động di chuyển cơ sở dữ liệu, lưu trữ liên tục và các phụ thuộc dịch vụ.
 
-**Bước 1:** Tạo thư mục và tải xuống tệp compose chính thức: ```bash
+**Bước 1:** Tạo thư mục và tải xuống tệp compose chính thức: `````bash
 mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example
-```
+`````
 
-**Bước 2:** Chỉnh sửa tệp môi trường với thông tin xác thực của bạn: ```bash
+**Bước 2:** Chỉnh sửa tệp môi trường với thông tin xác thực của bạn: `````bash
 # Chỉnh sửa tệp .env
 cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
@@ -84,26 +85,26 @@ UPLOAD_LOCATION=./storage
 REDIS_DATA_LOCATION=./redis
 CONFIG_LOCATION=./config
 EOF
-```
+`````
 
-**Bước 3:** Khởi động chồng dịch vụ: ```bash
+**Bước 3:** Khởi động chồng dịch vụ: `````bash
 docker compose up -d
 # Tải: affineteams/affine-graphql, postgres:16, redis:7.2
 # Chạy tự động di chuyển DB
 # Tạo tài khoản quản trị từ .env khi khởi động đầu tiên
-```
+`````
 
-**Bước 4:** Xác minh tất cả container đều khỏe mạnh: ```bash
+**Bước 4:** Xác minh tất cả container đều khỏe mạnh: `````bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010->3010/tcp
 affine-postgres Up 10 seconds   5432/tcp
 affine-redis    Up 10 seconds   6379/tcp
-```
+`````
 
-**Bước 5:** Mở `http://localhost:3010` trong trình duyệt. Đăng nhập bằng thông tin xác thực từ tệp `.env`.
+**Bước 5:** Mở ````http://localhost:3010```` trong trình duyệt. Đăng nhập bằng thông tin xác thực từ tệp ````.env````.
 
-```bash
+`````bash
 # Dừng chồng dịch vụ
 docker compose down
 
@@ -112,11 +113,11 @@ docker compose down
 wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
 docker compose pull
 docker compose up -d
-```
+`````
 
 **Sử dụng reverse proxy (môi trường sản xuất):**
 
-```nginx
+`````nginx
 # Đoạn mã Nginx cho AFFiNE
 server {
     listen 443 ssl http2;
@@ -131,9 +132,9 @@ server {
         proxy_read_timeout 86400;
     }
 }
-```
+`````
 
-Các header `Upgrade` và `Connection` rất quan trọng — chúng cho phép hợp tác thờ gian thực dựa trên WebSocket.
+Các header ````Upgrade```` và ````Connection```` rất quan trọng — chúng cho phép hợp tác thờ gian thực dựa trên WebSocket.
 
 **Để triển khai trên đám mây,** [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp $200 tín dụng miễn phí cho tài khoản mớ, đủ để chạy AFFiNE trên droplet 2-CPU với PostgreSQL được quản lý.
 
@@ -141,17 +142,17 @@ Các header `Upgrade` và `Connection` rất quan trọng — chúng cho phép h
 
 AFFiNE kết nối với chuỗi công cụ hiện có của bạn thông qua hệ thống plugin và API: **1. Tích hợp lịch CalDAV**
 
-AFFiNE v0.26+ hỗ trợ CalDAV, cho phép bạn đồng bộ tác vụ và hạn chót với lịch bên ngoài. Cấu hình từ **Cài đặt > Tích hợp > CalDAV**: ```bash
+AFFiNE v0.26+ hỗ trợ CalDAV, cho phép bạn đồng bộ tác vụ và hạn chót với lịch bên ngoài. Cấu hình từ **Cài đặt > Tích hợp > CalDAV**: `````bash
 # Kiểm tra kết nối CalDAV
 curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ \
   -u admin:password \
   -H "Content-Type: text/xml" \
   -d '<?xml version="1.0"?><d:propfind xmlns:d="DAV:"><d:prop><d:displayname/></d:prop></d:propfind>'
-```
+`````
 
 **2. Cấu hình trợ lý AI (OpenAI API)**
 
-Trợ lý AI có thể được trỏ đến bất kỳ điểm cuối tương thích OpenAI nào, bao gồm các mô hình cục bộ qua Ollama hoặc LiteLLM: ```bash
+Trợ lý AI có thể được trỏ đến bất kỳ điểm cuối tương thích OpenAI nào, bao gồm các mô hình cục bộ qua Ollama hoặc LiteLLM: `````bash
 # Trong bảng điều khiển quản trị AFFiNE > Cài đặt > AI
 # URL nhà cung cấp: http://your-ollama:11434/v1
 # Khóa API: sk-ollama (hoặc khóa của bạn)
@@ -160,11 +161,11 @@ Trợ lý AI có thể được trỏ đến bất kỳ điểm cuối tương t
 # Hoặc sử dụng OpenAI trực tiếp
 # URL nhà cung cấp: https://api.openai.com/v1
 # Mô hình: gpt-4o-mini
-```
+`````
 
 **3. REST API cho tự động hóa bên ngoài**
 
-```bash
+`````bash
 # Xuất dữ liệu không gian làm việc qua API
 curl -H "Authorization: Bearer $AFFINE_TOKEN" \
   http://localhost:3010/api/workspaces
@@ -174,16 +175,16 @@ curl -X POST http://localhost:3010/api/docs \
   -H "Authorization: Bearer $AFFINE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"Sprint Retrospective","content":"<blocks>...</blocks>"}'
-```
+`````
 
 **4. Đồng bộ Git cho quy trình phát triển**
 
-Sử dụng tính năng xuất của AFFiNE kết hợp với `git` để quản lý tài liệu có kiểm soát phiên bản: ```bash
+Sử dụng tính năng xuất của AFFiNE kết hợp với ``git`` để quản lý tài liệu có kiểm soát phiên bản: `````bash
 #!/bin/bash
 # daily-backup.sh - lập lịch cron mỗi đêm
 docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
 git add backup-*.sql && git commit -m "docs: daily AFFiNE backup $(date +%Y-%m-%d)"
-```
+`````
 
 ## Đánh giá hiệu suất / Trường hợp sử dụng thực tế
 
@@ -203,7 +204,7 @@ Các đặc tính hiệu suất của AFFiNE quan trọng cho triển khai sản
 
 **Bật HTTPS với Let's Encrypt:**
 
-```bash
+`````bash
 # Sử dụng Caddy làm reverse proxy
 cat > Caddyfile << EOF
 affine.yourdomain.com {
@@ -211,11 +212,11 @@ affine.yourdomain.com {
     tls admin@yourdomain.com
 }
 EOF
-```
+`````
 
 **Chiến lược sao lưu:**
 
-```bash
+`````bash
 # Sao lưu tự động hàng ngày
 cat > backup-affine.sh << EOF
 #!/bin/bash
@@ -234,11 +235,11 @@ EOF
 chmod +x backup-affine.sh
 # Chạy lúc 2 giờ sáng mỗi ngày
 echo "0 2 * * * /root/backup-affine.sh" | crontab -
-```
+`````
 
 **Cấu hình SMTP cho lờ mờ:**
 
-```bash
+`````bash
 # config/affine.js hoặc qua UI quản trị
 {
   "mailer": {
@@ -252,11 +253,11 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     "from": "AFFiNE <affine@yourdomain.com>"
   }
 }
-```
+`````
 
 **Xác thực OAuth (Google):**
 
-```bash
+`````bash
 # Trong config/affine.js
 {
   "auth": {
@@ -270,17 +271,17 @@ echo "0 2 * * * /root/backup-affine.sh" | crontab -
     }
   }
 }
-```
+`````
 
 **Tinh chỉnh connection pool cơ sở dữ liệu:**
 
-```yaml
+`````yaml
 # Thêm vào docker-compose.yml cho kịch bản tải cao
 environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine
   - DATABASE_POOL_SIZE=20
   - DATABASE_POOL_MAX=50
   - DATABASE_TIMEOUT=30000
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -323,7 +324,7 @@ AFFiNE không hoàn hảo. Đây là những điều cần biết trước khi c
 
 **Hỏi: Tôi có thể nhập không gian làm việc Notion hiện có vào AFFiNE không?**
 
-Đáp: Có. AFFiNE hỗ trợ xuất khẩu Notion dạng `.zip`. Vào **Nhập > Notion** và tải lên tệp zip đã xuất. Hệ thống phân cấp trang, nội dung văn bản và hình ảnh được chuyển chính xác. Chế độ xem cơ sở dữ liệu chuyển đổi thành bảng cơ sở dữ liệu AFFiNE, mặc dù các công thức Notion phức tạp có thể cần điều chỉnh thủ công.
+Đáp: Có. AFFiNE hỗ trợ xuất khẩu Notion dạng ````.zip```. Vào **Nhập > Notion** và tải lên tệp zip đã xuất. Hệ thống phân cấp trang, nội dung văn bản và hình ảnh được chuyển chính xác. Chế độ xem cơ sở dữ liệu chuyển đổi thành bảng cơ sở dữ liệu AFFiNE, mặc dù các công thức Notion phức tạp có thể cần điều chỉnh thủ công.
 
 **Hỏi: Yêu cầu phần cứng để tự lưu trữ AFFiNE cho nhóm 20 ngườ là gì?**
 
@@ -393,7 +394,7 @@ Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đ
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -403,6 +404,6 @@ Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đ
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](affine-knowledge-base-whiteboard)
 - [moneyprinterturbo-one-click-ai-video-generator](affine-knowledge-base-whiteboard)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

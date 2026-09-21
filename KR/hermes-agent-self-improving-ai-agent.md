@@ -35,6 +35,7 @@ faqs: - q: 'Hermes Agent는 Claude Code, Cursor, GitHub Copilot 같은 도구와
     a: 'Linux, macOS 또는 WSL2에서는 한 줄짜리 curl 스크립트를 bash로 파이프하여 설치하거나, 저장소를 클론한 뒤 `./setup-hermes.sh`를 실행할 수 있습니다. 그런 다음 `hermes config set provider openai`와 `hermes config set model gpt-4o` 같은 명령으로 제공자를 설정하거나, `hermes config set provider ollama`를 통해 로컬 모델을 사용할 수 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 문제: 대부분의 AI 에이전트는 당신을 잊어버립니다
@@ -60,9 +61,9 @@ AI 어시스턴트에게 당신의 워크플로우, 코딩 스타일, 프로젝�
 
 ### 1. 내장 학습 루프
 
-Hermes Agent의 핵심 혁신은 **자기 개선 사이클**입니다: ```
+Hermes Agent의 핵심 혁신은 **자기 개선 사이클**입니다: ````
 경험 → 반성 → 스킬 생성 → 실습 → 개선
-```
+`````
 
 Hermes로 작업을 완료하면 다음을 수행합니다: 1. **분석** — 무엇이 효과적이었고 무엇이 아니었는지
 2. **추출** — 재사용 가능한 패턴
@@ -116,12 +117,12 @@ Hermes Agent는 **두 가지 유형의 메모리**를 유지합니다: **사용�
 
 Hermes Agent는 단순한 CLI 도구가 아닙니다 — **멀티플랫폼 메시징 봇**입니다: | 플랫폼 | 설정 | 사용 사례 |
 |---------|-------|---------|
-| **Telegram** | `hermes gateway setup` | 모바일 AI 어시스턴트 |
-| **Discord** | `hermes gateway setup` | 팀 협업 |
-| **Slack** | `hermes gateway setup` | 직장 통합 |
-| **WhatsApp** | `hermes gateway setup` | 개인 어시스턴트 |
-| **Signal** | `hermes gateway setup` | 프라이버시 중심 |
-| **Email** | `hermes gateway setup` | 비동기 워크플로우 |
+| **Telegram** | ````hermes gateway setup```` | 모바일 AI 어시스턴트 |
+| **Discord** | ````hermes gateway setup```` | 팀 협업 |
+| **Slack** | ````hermes gateway setup```` | 직장 통합 |
+| **WhatsApp** | ````hermes gateway setup```` | 개인 어시스턴트 |
+| **Signal** | ````hermes gateway setup```` | 프라이버시 중심 |
+| **Email** | ````hermes gateway setup```` | 비동기 워크플로우 |
 
 구성이 완료되면 이러한 플랫폼 중 하나에서 동일한 명령과 스킬을 사용하여 Hermes와 채팅할 수 있습니다.
 
@@ -136,7 +137,7 @@ Hermes Agent는 **모델 컨텍스트 프로토콜(MCP)**을 지원하여 확장
 
 ### 7. 크론 스케줄링
 
-Hermes Agent는 내장된 크론 시스템을 통해 **예약된 작업**을 실행할 수 있습니다: ```bash
+Hermes Agent는 내장된 크론 시스템을 통해 **예약된 작업**을 실행할 수 있습니다: `````bash
 # 매일 오전 9시에 스킬 실행
 hermes cron add --skill "daily-report" --schedule "0 9 * * *"
 
@@ -145,7 +146,7 @@ hermes cron add --skill "backup-database" --schedule "0 2 * * 0"
 
 # 모든 예약 작업 목록
 hermes cron list
-```
+`````
 
 일정에 따라 실행되어야 하는 자동화 워크플로우에 적합합니다.
 
@@ -160,7 +161,7 @@ Hermes Agent는 보안을 중요하게 생각합니다: - **명령 승인** — 
 
 ### 설치
 
-```bash
+`````bash
 # 한 줄 설치 (Linux, macOS, WSL2)
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 
@@ -168,18 +169,18 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 git clone https://github.com/NousResearch/hermes-agent.git
 cd hermes-agent
 ./setup-hermes.sh
-```
+`````
 
 ### 첫 대화
 
-```bash
+`````bash
 source ~/.bashrc    # 셸 다시 로드
 hermes              # 채팅 시작
-```
+`````
 
 ### 공급자 구성
 
-```bash
+`````bash
 # 선호하는 LLM 공급자 설정
 hermes config set provider openai
 hermes config set model gpt-4o
@@ -187,11 +188,11 @@ hermes config set model gpt-4o
 # 또는 로컬 모델 사용
 hermes config set provider ollama
 hermes config set model llama3.1
-```
+`````
 
 ### 유용한 명령
 
-```bash
+`````bash
 # 새 대화 시작
 /new
 
@@ -212,11 +213,11 @@ hermes config set model llama3.1
 
 # 토큰 절약을 위해 컨텍스트 압축
 /compress
-```
+`````
 
 ## 아키텍처
 
-Hermes Agent는 모듈식 아키텍처로 구축되었습니다: ```
+Hermes Agent는 모듈식 아키텍처로 구축되었습니다: `````
 Hermes Agent
 ├── CLI 인터페이스 (터미널 UI)
 ├── 메시징 게이트웨이 (Telegram, Discord 등)
@@ -227,7 +228,7 @@ Hermes Agent
 ├── MCP 클라이언트 (외부 통합)
 ├── 크론 스케줄러 (자동화 작업)
 └── 보안 계층 (승인, 격리)
-```
+````
 
 전체 시스템은 **Python** (2800만+ 라인)으로 작성되었으며, 웹 인터페이스에는 TypeScript 구성 요소가 사용됩니다.
 
@@ -291,7 +292,7 @@ Hermes Agent를 사용해 보셨나요? 자기 개선하는 AI 에이전트에 �
 - [Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구](/kr/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42개 실제 사용 사례: AI 에이전트가 이미 우리의 삶을 이렇게 바꾸고 있습니다](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 

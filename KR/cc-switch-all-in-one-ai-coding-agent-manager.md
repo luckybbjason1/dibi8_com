@@ -9,6 +9,7 @@ slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---
 
+
 # CC 스위치: 다중 플랫폼 개발을 위한 최고의 AI 코딩 에이전트 관리자 
 
 빠르게 진화하는 AI 지원 소프트웨어 개발 환경에서 개발자들은 각각 고유한 장점을 지닌 **Claude Code**, **Codex CLI**, **Gemini CLI**, **OpenCode**, **OpenClaw** 및 **Hermes Agent**와 같은 여러 AI 코딩 에이전트를 점점 더 많이 채택하고 있습니다. 그러나 다양한 프로젝트, 공급자 및 구성에서 이러한 도구를 관리하는 것은 금세 부담이 됩니다. 
@@ -75,7 +76,7 @@ CC Switch에는 **MCP(모델 컨텍스트 프로토콜)** 서버에 대한 지�
 
 [공식 웹사이트](https://ccswitch.io) 또는 [GitHub 릴리스 페이지](https://github.com/farion1231/cc-switch/releases/latest)를 방문하여 플랫폼에 맞는 바이너리를 다운로드하세요. 
 
-``배쉬 
+```배쉬 
 # 맥OS(홈브루) 
 양조 설치 Farion1231/tap/cc-스위치 
 
@@ -86,7 +87,7 @@ chmod +x cc-스위치-x86_64.AppImage
 
 # 윈도우즈 
 # 릴리스 페이지에서 CC.Switch.Setup.exe를 다운로드합니다. 
-```` 
+`````` 
 
 ### 2단계: 초기 구성 
 
@@ -97,7 +98,7 @@ chmod +x cc-스위치-x86_64.AppImage
 3. **기본 에이전트 설정** — 기본적으로 사용할 에이전트를 선택합니다. 
 4. **MCP 서버 구성** — MCP 서버 엔드포인트 추가 
 
-``json 
+````json 
 // 공급자 구성 예 
 { 
 "공급자": { 
@@ -114,13 +115,13 @@ chmod +x cc-스위치-x86_64.AppImage
 } 
 } 
 } 
-```` 
+`````` 
 
 ### 3단계: 여러 에이전트 사용 
 
 일단 구성되면 에이전트 간 전환은 버튼을 클릭하는 것만큼 간단합니다. 
 
-``배쉬 
+````배쉬 
 # CLI 통합 — CC 스위치는 명령줄에서도 사용할 수 있습니다 
 cc 스위치는 클로드 코드를 사용합니다. 
 cc-스위치 코덱 사용 
@@ -132,7 +133,7 @@ cc 스위치 전류
 
 # 사용 가능한 에이전트 나열 
 cc 스위치 목록 
-```` 
+`````` 
 
 ## CC 스위치의 내부 작동 방식 
 
@@ -145,7 +146,7 @@ CC Switch는 가볍고 안전한 아키텍처를 위해 **Tauri 2**를 활용합
 
 ### 아키텍처 개요 
 
-```` 
+`````` 
 ┌────────────────────────────────────┐ 
 │ CC 스위치 UI │ 
 │ (타우리 + TypeScript + 타우리 CLI) │ 
@@ -160,7 +161,7 @@ CC Switch는 가볍고 안전한 아키텍처를 위해 **Tauri 2**를 활용합
 │ • 시스템 트레이 통합 │ 
 │ • 크로스 플랫폼 API │ 
 └────────────────────────────────────┘ 
-```` 
+`````` 
 
 ## 실제 사용 사례 
 
@@ -168,7 +169,7 @@ CC Switch는 가볍고 안전한 아키텍처를 위해 **Tauri 2**를 활용합
 
 개발자 Alice는 CC Switch를 사용하여 다양한 에이전트의 장점을 활용합니다. 
 
-``배쉬 
+````배쉬 
 # 아침 : 클로드코드를 활용한 건축설계 
 cc 스위치는 클로드 코드를 사용합니다. 
 # "다음을 위한 마이크로서비스 아키텍처 설계..." 
@@ -180,7 +181,7 @@ cc-스위치 코덱 사용
 # 저녁: 문서화를 위해 Gemini를 사용하세요 
 cc 스위치는 Gemini를 사용합니다. 
 # "여포괄적인 문서를 작성합니다..." 
-```` 
+`````` 
 
 ### 사례 연구 2: 비용 최적화 
 
@@ -198,13 +199,13 @@ CC Switch는 제공업체 간 가격을 실시간으로 비교함으로써 개�
 
 팀은 git을 통해 CC 스위치 구성을 공유하여 모든 구성원 간에 일관된 에이전트 설정을 보장할 수 있습니다. 
 
-``배쉬 
+````배쉬 
 # 현재 구성 내보내기 
 cc-스위치 구성 내보내기 team-config.json 
 
 # 공유 구성 가져오기 
 cc-스위치 구성 가져오기 team-config.json 
-```` 
+`````` 
 
 ## 대안과의 비교 
 
@@ -234,7 +235,7 @@ cc-스위치 구성 가져오기 team-config.json
 
 ### 다양한 사용 사례에 대한 최적의 설정 
 
-``배쉬 
+````배쉬 
 # 최대 성능을 위해 
 cc-스위치 구성 설정 성능.모드 높음 
 
@@ -245,7 +246,7 @@ cc-스위치 구성 세트 Budget.alert true
 # 팀 협업을 위해 
 cc-스위치 구성 세트 team.share trUE 
 cc-스위치 구성 세트 team.sync 간격:30m 
-```` 
+````` 
 
 ### 보안 모범 사례 
 
@@ -319,7 +320,7 @@ CC Switch는 AI 코딩 에이전트 관리의 획기적인 도약을 의미합�
 - [타우리 문서](https://tauri.app/) 
 - [모델 컨텍스트 프로토콜 사양](https://modelcontextprotocol.io/) 
 
---- 
+* * *
 
 💬 토론을 위해 텔레그램 그룹에 참여하세요: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
@@ -348,7 +349,7 @@ CC Switch는 AI 코딩 에이전트 관리의 획기적인 도약을 의미합�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -358,6 +359,6 @@ CC Switch는 AI 코딩 에이전트 관리의 획기적인 도약을 의미합�
 - [codebase-memory-mcp-high-performance-code-intelligence](cc-switch-all-in-one-ai-coding-agent-manager)
 - [prompts-chat](cc-switch-all-in-one-ai-coding-agent-manager)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

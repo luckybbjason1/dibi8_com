@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/1inch-dex-aggregator-routing/-
 ---
 
+
 {{</* resource-info */>}}
 
 去中心化金融已经远远超越了实验性阶段。进入 2026 年，交易者要求的不仅仅是流动性访问，而是能够最大化每一笔交易每一个基点的智能路由。**1inch** 站在这一演进的前沿，作为生态系统中最为精密的 DEX 聚合器运行。凭借其专有的 **Pathfinder 算法**，1inch 在横跨 10 多个区块链网络的 **300 多个流动性来源**之间路由交易，确保以最优的执行价格同时最小化滑点和 Gas 成本。
@@ -40,11 +41,11 @@ DEX 聚合器解决了 DeFi 中最持久的挑战之一：**流动性碎片化**
 
 | 链 | 主要 DEX 来源 | 近似流动性 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Ethereum | Uniswap v3, Curve, Balancer, SushiSwap | $2.8B+ |
 | Arbitrum | Camelot, Uniswap v3, SushiSwap | $890M+ |
@@ -82,7 +83,7 @@ Pathfinder 分为两个不同的阶段运行：
 - 基于历史成交率的成功率
 - MEV 保护需求
 
-```typescript
+````typescript
 // 通过 1inch API 请求报价 — Pathfinder 在内部处理路由
 import { OneInchApi } from '@1inch/sdk';
 
@@ -104,17 +105,17 @@ const quote = await oneInch.getQuote({
 console.log('预期输出:', quote.dstAmount);
 console.log('路由路径:', quote.protocols); // 显示完整路由路径
 console.log('预估 Gas:', quote.tx.gas);
-```
+`````
 
-`protocols` 字段揭示了 Pathfinder 选择的实际路由 —— 例如，通过 Uniswap v3 分割 60% 和通过 Curve 分割 40%，或者通过 WETH → DAI → USDC 等中间代币路由以获得更好的价格。
+````protocols```` 字段揭示了 Pathfinder 选择的实际路由 —— 例如，通过 Uniswap v3 分割 60% 和通过 Curve 分割 40%，或者通过 WETH → DAI → USDC 等中间代币路由以获得更好的价格。
 
 ## 3. 设置 1inch TypeScript SDK
 
-官方 1inch SDK（GitHub 上的 `1inch/1inch-sdk`，400+ stars，MIT 许可证）为所有 1inch API 提供类型安全、基于 Promise 的接口。它处理请求签名、错误处理和响应解析。
+官方 1inch SDK（GitHub 上的 ````1inch/1inch-sdk````，400+ stars，MIT 许可证）为所有 1inch API 提供类型安全、基于 Promise 的接口。它处理请求签名、错误处理和响应解析。
 
 ### 3.1 安装和配置
 
-```bash
+`````bash
 # 通过 npm 安装
 npm install @1inch/sdk
 
@@ -123,19 +124,19 @@ yarn add @1inch/sdk
 
 # 安装对等依赖
 npm install ethers axios dotenv
-```
+`````
 
-创建 `.env` 文件存放你的 API 凭证：
+创建 ````.env```` 文件存放你的 API 凭证：
 
-```bash
+`````bash
 ONEINCH_API_KEY=your_api_key_here
 PRIVATE_KEY=your_wallet_private_key
 RPC_URL=https://mainnet.infura.io/v3/your_project_id
-```
+`````
 
 使用你的配置初始化 SDK：
 
-```typescript
+`````typescript
 import { OneInchSdk } from '@1inch/sdk';
 import { ethers } from ethers;
 import * as dotenv from dotenv;
@@ -154,13 +155,13 @@ const sdk = new OneInchSdk({
 });
 
 console.log('1inch SDK 已为', wallet.address, 初始化);
-```
+`````
 
 ### 3.2 SDK 架构概览
 
 SDK 按命名空间组织，镜像 1inch 的 API 结构：
 
-```typescript
+`````typescript
 // SDK 模块结构
 import {
   SwapApi,        // 代币兑换和报价
@@ -176,7 +177,7 @@ import {
 const swapApi = sdk.swap;
 const limitApi = sdk.limitOrder;
 const balanceApi = sdk.balance;
-```
+`````
 
 ## 4. 以最优路由执行兑换
 
@@ -184,7 +185,7 @@ const balanceApi = sdk.balance;
 
 ### 4.1 基础兑换执行
 
-```typescript
+`````typescript
 import { OneInchSdk } from '@1inch/sdk';
 
 async function executeSwap() {
@@ -236,13 +237,13 @@ async function executeSwap() {
 }
 
 executeSwap().catch(console.error);
-```
+`````
 
 ### 4.2 处理滑点和部分成交
 
 在波动市场中，滑点容忍度至关重要。SDK 提供了细粒度的控制：
 
-```typescript
+`````typescript
 // 大额交易的保守设置
 const largeTradeParams = {
   src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
@@ -265,13 +266,13 @@ const quickTradeParams = {
   // 优先速度而非最优价格
   protocols: 'UNISWAP_V3,SUSHI,CURVE', // 白名单指定协议
 };
-```
+`````
 
 ### 4.3 通过 Bridge API 进行跨链兑换
 
 1inch 的聚合超越单一链。Bridge API 找到跨链最优路由：
 
-```typescript
+`````typescript
 // 从以太坊 USDC 桥接到 Arbitrum ETH
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // 以太坊
@@ -298,7 +299,7 @@ const sentBridgeTx = await wallet.sendTransaction({
   value: bridgeTx.value,
   gasLimit: bridgeTx.gasLimit,
 });
-```
+`````
 
 ## 5. Fusion+：无 Gas 兑换执行
 
@@ -313,7 +314,7 @@ const sentBridgeTx = await wallet.sendTransaction({
 3. **获胜的解析器**执行交易，代表用户支付 Gas
 4. **解析器的费用**嵌入在兑换汇率中，对用户不可见
 
-```typescript
+`````typescript
 // 执行 Fusion+ 无 Gas 兑换
 import { FusionOrder } from '@1inch/sdk/fusion';
 
@@ -371,25 +372,25 @@ async function executeFusionSwap() {
     if (done) clearInterval(interval);
   }, 10000);
 }
-```
+`````
 
 ### 5.2 Fusion+ 预设说明
 
 | 预设 | 拍卖持续时间 | 优先级 | 最适合 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `fast` | 60 秒 | 高 | 时间敏感的兑换，解析器费用较高 |
-| `medium` | 180 秒 | 中 | 速度与成本的平衡 |
-| `slow` | 600 秒 | 低 | 最大化节省，耐心执行 |
+| ````fast```` | 60 秒 | 高 | 时间敏感的兑换，解析器费用较高 |
+| ````medium```` | 180 秒 | 中 | 速度与成本的平衡 |
+| ````slow```` | 600 秒 | 低 | 最大化节省，耐心执行 |
 
-```typescript
+`````typescript
 // 监控 Fusion 订单生命周期
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
@@ -410,7 +411,7 @@ orderEvents.on(filled, (data) => {
 orderEvents.on(expired, () => {
   console.log('订单过期未成交 — 使用更好的 minReturn 重试');
 });
-```
+`````
 
 ## 6. 限价单和程序化交易
 
@@ -418,7 +419,7 @@ orderEvents.on(expired, () => {
 
 ### 6.1 创建限价单
 
-```typescript
+`````typescript
 // 创建限价单以特定价格用 ETH 买入 DAI
 const limitOrder = await sdk.limitOrder.createOrder({
   makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH（你卖出的）
@@ -448,11 +449,11 @@ const placedOrder = await sdk.limitOrder.submitOrder({
 
 console.log('限价单已提交:', placedOrder.orderHash);
 console.log('预期成交价格:', 900 / 0.5, '每 ETH 的 DAI');
-```
+`````
 
 ### 6.2 监听订单成交
 
-```typescript
+`````typescript
 // 设置 webhook 或轮询监听器以监听订单成交
 import { LimitOrderWatcher } from '@1inch/sdk/watcher';
 
@@ -478,7 +479,7 @@ watcher.watchOrder(placedOrder.orderHash, (event) => {
 
 // 开始监听
 watcher.start();
-```
+`````
 
 ## 7. Portfolio API 和余额追踪
 
@@ -486,7 +487,7 @@ watcher.start();
 
 ### 7.1 获取多链余额
 
-```typescript
+`````typescript
 // 获取跨支持链的所有代币余额
 const portfolio = await sdk.balance.getBalances({
   walletAddress: 0xYourWalletAddress,
@@ -499,9 +500,9 @@ const portfolio = await sdk.balance.getBalances({
 
 // 处理和显示余额
 for (const chainBalance of portfolio.balances) {
-  console.log(`\n=== 链 ID: ${chainBalance.chainId} ===`);
+  console.log(````\n=== 链 ID: ${chainBalance.chainId} ===````);
   for (const token of chainBalance.tokens) {
-    console.log(`${token.symbol}: ${token.balance} ($${token.usdValue})`);
+    console.log(````${token.symbol}: ${token.balance} ($${token.usdValue})````);
   }
 }
 
@@ -510,12 +511,12 @@ const totalValue = portfolio.balances.reduce((sum, chain) => {
   return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
-console.log(`\n投资组合总价值: $${totalValue.toFixed(2)}`);
-```
+console.log(````\n投资组合总价值: $${totalValue.toFixed(2)}````);
+`````
 
 ### 7.2 交易历史和盈亏分析
 
-```typescript
+`````typescript
 // 获取完整的交易历史
 const history = await sdk.history.getTransactions({
   walletAddress: wallet.address,
@@ -546,12 +547,12 @@ console.table(swapAnalysis);
 const totalVolume = swaps.reduce((sum, tx) => {
   return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
-console.log(`总兑换交易量: $${totalVolume.toFixed(2)}`);
-```
+console.log(````总兑换交易量: $${totalVolume.toFixed(2)}````);
+`````
 
 ### 7.3 构建实时投资组合仪表板
 
-```typescript
+`````typescript
 // 基于 WebSocket 的实时投资组合更新
 import { PortfolioWebSocket } from '@1inch/sdk/websocket';
 
@@ -561,8 +562,8 @@ const ws = new PortfolioWebSocket({
 });
 
 ws.on(balanceUpdate, (update) => {
-  console.log(`余额更新: ${update.tokenSymbol} = ${update.newBalance}`);
-  console.log(`USD 价值变化: $${update.usdValueChange}`);
+  console.log(````余额更新: ${update.tokenSymbol} = ${update.newBalance}````);
+  console.log(````USD 价值变化: $${update.usdValueChange}````);
   // 在此处更新你的仪表板 UI
 });
 
@@ -574,7 +575,7 @@ ws.on(newTransaction, (tx) => {
 });
 
 ws.connect();
-```
+`````
 
 ## 8. 生产集成模式
 
@@ -582,7 +583,7 @@ ws.connect();
 
 ### 8.1 错误处理和重试逻辑
 
-```typescript
+`````typescript
 // 带重试的稳健兑换执行
 async function executeSwapWithRetry(
   params: SwapParams,
@@ -594,7 +595,7 @@ async function executeSwapWithRetry(
     try {
       // 每次尝试前刷新报价（价格会变化！）
       const freshQuote = await sdk.swap.getQuote(params);
-      console.log(`尝试 ${attempt}: 预期输出 = ${freshQuote.dstAmount}`);
+      console.log(````尝试 ${attempt}: 预期输出 = ${freshQuote.dstAmount}````);
 
       // 检查价格是否变动过大
       if (parseFloat(freshQuote.dstAmount) < params.minExpectedOutput!) {
@@ -617,7 +618,7 @@ async function executeSwapWithRetry(
 
     } catch (error) {
       lastError = error as Error;
-      console.error(`尝试 ${attempt} 失败:`, error);
+      console.error(````尝试 ${attempt} 失败:````, error);
 
       // 重试前等待指数退避
       if (attempt < maxRetries) {
@@ -627,13 +628,13 @@ async function executeSwapWithRetry(
     }
   }
 
-  throw new Error(`兑换在 ${maxRetries} 次尝试后失败: ${lastError?.message}`);
+  throw new Error(````兑换在 ${maxRetries} 次尝试后失败: ${lastError?.message}````);
 }
-```
+`````
 
 ### 8.2 速率限制和 API 密钥管理
 
-```typescript
+`````typescript
 // 用于高频使用的速率限制 API 客户端
 import { RateLimiter } from limiter;
 
@@ -662,11 +663,11 @@ const client = new OneInchRateLimitedClient(
   process.env.ONEINCH_API_KEY!,
   3 // 保守的每秒 3 次请求
 );
-```
+`````
 
 ### 8.3 安全最佳实践
 
-```typescript
+`````typescript
 // 生产兑换的输入验证
 function validateSwapParams(params: SwapParams): void {
   // 验证代币地址
@@ -700,13 +701,13 @@ const wallet = new ethers.Wallet(
   await getKeyFromAWSKMS(), // 切勿硬编码私钥！
   provider
 );
-```
+`````
 
 ## 9. 常见问题
 
 **Q1：如果 SDK 免费且开源，1inch 如何盈利？**
 
-1inch 通过**流动性来源费用**和可选的**协议治理费用**产生收入。当交易通过某些 DEX 路由时，1inch 可能会收到少量推荐费。对于开发者来说，SDK 和 API 免费使用，尽管高量用户可以选择**合作伙伴费用**模式，与集成应用共享收入。MIT 许可的 SDK（`1inch/1inch-sdk`，GitHub 上 400+ stars）确保完全的透明度和无需许可的集成。
+1inch 通过**流动性来源费用**和可选的**协议治理费用**产生收入。当交易通过某些 DEX 路由时，1inch 可能会收到少量推荐费。对于开发者来说，SDK 和 API 免费使用，尽管高量用户可以选择**合作伙伴费用**模式，与集成应用共享收入。MIT 许可的 SDK（````1inch/1inch-sdk````，GitHub 上 400+ stars）确保完全的透明度和无需许可的集成。
 
 **Q2：普通兑换和 Fusion+ 兑换有什么区别？**
 
@@ -714,11 +715,11 @@ const wallet = new ethers.Wallet(
 
 **Q3：我可以在以太坊以外的链上使用 1inch 吗？**
 
-当然。1inch 支持 **10 多个区块链网络**，包括 Ethereum、Arbitrum、Optimism、Polygon、BNB Chain、Base、Avalanche、Fantom、Gnosis 和 zkSync Era。SDK 初始化接受对应每条链 EIP-155 链 ID 的 `networkId` 参数。跨链兑换也通过 Bridge API 支持，允许通过最优路由在不同网络之间无缝移动资产。
+当然。1inch 支持 **10 多个区块链网络**，包括 Ethereum、Arbitrum、Optimism、Polygon、BNB Chain、Base、Avalanche、Fantom、Gnosis 和 zkSync Era。SDK 初始化接受对应每条链 EIP-155 链 ID 的 ````networkId```` 参数。跨链兑换也通过 Bridge API 支持，允许通过最优路由在不同网络之间无缝移动资产。
 
 **Q4：如何保护我的交易免受 MEV 攻击？**
 
-1inch 提供多种 MEV 保护机制：(1) **Fusion+ 订单**由专业解析器填充，他们将执行内部化，使抢先交易成为不可能；(2) **Pathfinder 算法**可以在支持链上通过**私有内存池**和 **Flashbots Protect** 路由；(3) 对于大额交易，启用 `compatibility` 标志会添加额外的滑点检查；(4) 设置严格的 `slippage` 容忍度会缩小三明治攻击的利润窗口。对于高价值交易的最大保护，推荐使用 Fusion+ 的 `slow` 预设。
+1inch 提供多种 MEV 保护机制：(1) **Fusion+ 订单**由专业解析器填充，他们将执行内部化，使抢先交易成为不可能；(2) **Pathfinder 算法**可以在支持链上通过**私有内存池**和 **Flashbots Protect** 路由；(3) 对于大额交易，启用 ````compatibility```` 标志会添加额外的滑点检查；(4) 设置严格的 ````slippage```` 容忍度会缩小三明治攻击的利润窗口。对于高价值交易的最大保护，推荐使用 Fusion+ 的 ````slow```` 预设。
 
 **Q5：1inch SDK 是否适合机构或高频交易？**
 
@@ -747,11 +748,11 @@ const wallet = new ethers.Wallet(
 
 1inch 已确立自身作为 DeFi 交易堆栈中**必不可少的基础设施**。其 Pathfinder 算法跨 300+ 流动性来源路由的能力持续提供更优的价格执行，而 Fusion+ 无 Gas 兑换和全面的 Portfolio API 等功能为开发者提供了构建下一代交易应用的强大工具。
 
-**TypeScript SDK**（`1inch/1inch-sdk`，400 stars，MIT 许可证）提供了一个生产就绪、类型安全的接口，抽象了多来源路由的复杂性，同时保留了对执行参数的细粒度控制。无论你是执行简单的代币兑换、构建复杂的交易仪表板，还是将限价单集成到你的 DeFi 协议中，1inch 都提供了你需要的基础设施层。
+**TypeScript SDK**（````1inch/1inch-sdk````，400 stars，MIT 许可证）提供了一个生产就绪、类型安全的接口，抽象了多来源路由的复杂性，同时保留了对执行参数的细粒度控制。无论你是执行简单的代币兑换、构建复杂的交易仪表板，还是将限价单集成到你的 DeFi 协议中，1inch 都提供了你需要的基础设施层。
 
 **入门非常简单：**
 1. 从 [1inch Developer Portal](https://portal.1inch.io) 获取 API 密钥
-2. 安装 SDK：`npm install @1inch/sdk`
+2. 安装 SDK：````npm install @1inch/sdk```
 3. 按照本指南中的代码示例针对你的特定用例操作
 4. 加入 [1inch Discord](https://discord.gg/1inch) 获取开发者支持
 
@@ -792,7 +793,7 @@ Explore more articles in this category: 1. [Aave V4 Defi Lending Protocol](/zh/a
 2. [Alpaca Trading Api Stock Broker](/zh/alpaca-trading-api-stock-broker)
 
 
----
+* * *
 ## Frequently Asked Questions (FAQ)
 
 **问：量化交易的风险有多大？**
@@ -816,4 +817,4 @@ Explore more articles in this category: 1. [Aave V4 Defi Lending Protocol](/zh/a
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

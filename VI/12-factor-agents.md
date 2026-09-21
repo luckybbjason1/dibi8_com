@@ -13,6 +13,7 @@ license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 ---
 
+
 ## Giới thiệu
 
 Mô hình ngôn ngữ lớn đã nhanh chóng phát triển từ các giao diện trò chuyện đơn giản thành các agent tự chủ phức tạp đưa ra quyết định, thực thi mã, tương tác với API bên ngoài và cộng tác với con người. Tuy nhiên, khi các hệ thống này ngày càng tinh vi, sự thiếu hụt nền tảng kiến trúc coherent trở nên ngày càng đau đầu. Các đội xây dựng ứng dụng LLM phải đối mặt với cùng thách thức cấu trúc làm phiền các ứng dụng đám mây sớm: cấu hình dễ vỡ, hành vi không rõ ràng, khả năng quan sát không nhất quán và triển khai khó tái sản xuất.
@@ -41,13 +42,13 @@ Khung xác định mười hai nguyên tắc cốt lõi. Mỗi nguyên tắc án
 
 Duy trì một codebase duy nhất cho mỗi agent, được theo dõi trong version control. Không giống như kiến trúc microservice truyền thống nơi mã được phân phối qua nhiều kho, 12-Factor Agents khuyến nghị mỗi agent riêng biệt — ngay cả khi nó orchestrate nhiều gọi LLM — nên được biểu diễn bằng một codebase cohesive duy nhất. Điều này giữ cấu hình, prompt template, định nghĩa công cụ và logic nghiệp vụ tightly coupled và dễ suy luận.
 
-```
+````
 # Khởi tạo dự án agent 12-factor mới
 npx create-12-factor-agent my-agent
 
 # Hoặc với uvx
 uvx create-12-factor-agent my-agent
-```
+`````
 
 ### 2. Dependencies
 
@@ -57,12 +58,12 @@ Khai báo và cô lập rõ ràng tất cả dependencies. Agent LLM có một �
 
 Lưu cấu hình trong environment. Cấu hình agent — API key, model endpoint, cài đặt temperature, guardrail threshold — không bao giờ được hardcoded. Sử dụng biến môi trường hoặc secrets manager. Nguyên tắc này đặc biệt quan trọng cho agent vì chúng thường truy cập các dịch vụ bên ngoài nhạy cảm và dữ liệu người dùng.
 
-```bash
+`````bash
 # Đặt biến môi trường cho agent của bạn
 export OPENAI_API_KEY="sk-....port REDIS_URL="redis://localhost:6379"
 export GUARDRAIL_THRESHOLD="0.85"
 export HUMAN_APPROVAL_ENDPOINT="https://approval.example.com/queue"
-```
+`````
 
 ### 4. Backing Services
 
@@ -72,13 +73,13 @@ Xem backing services như attached resources. Agent LLM kết nối đến sự 
 
 Tách biệt nghiêm ngặt các giai đoạn build và run. Giai đoạn build gói mã agent, dependencies, prompt template và định nghĩa tool của bạn vào một release artifact. Giai đoạn run thực thi release đó trên bất kỳ environment nào. Sự tách biệt này là critical cho reproducibility: cùng release nên hoạt động identically bất kể chạy trong development, staging hay production.
 
-```bash
+`````bash
 # Giai đoạn build: package agent
 npx create-12-factor-agent build --output dist/agent-release.tar.gz
 
 # Giai đoạn run: deploy release
 docker run --env-file .env agent-release:latest
-```
+`````
 
 ### 6. Processes
 
@@ -88,10 +89,10 @@ Thực thi agent như một hoặc nhiều stateless process. Mỗi process agen
 
 Xuất dịch vụ qua port binding. Agent expose HTTP API, WebSocket endpoint hoặc event listener nên bind đến port một cách explicit thay vì dựa vào reverse proxy do framework quản lý. Điều này cho phép operator kiểm soát đầy đủ về networking, routing và load balancing.
 
-```bash
+`````bash
 # Chạy server agent trên port cụ thể
 python agent_server.py --port 8080 --host 0.0.0.0
-```
+`````
 
 ### 8. Concurrency
 
@@ -105,11 +106,11 @@ Tối đa robustness với fast startup và graceful shutdown. Process agent nê
 
 Giữ development, staging và production càng similar càng tốt. Nguồn bug lớn nhất trong agent LLM là sự gap giữa development và production environment. Khung khuyến nghị sử dụng cùng model provider, cùng prompt template và cùng backing services trên tất cả environment, chỉ có sự khác biệt cấu hình.
 
-```bash
+`````bash
 # Sử dụng setup identically trên các environment
 npx create-12-factor-agent init --env staging
 npx create-12-factor-agent init --env production
-```
+`````
 
 ### 11. Logs
 
@@ -119,17 +120,17 @@ Xem logs như event stream. Log agent nên được emit dưới dạng JSON eve
 
 Chạy admin/management process như one-off process. Tác vụ admin — database migration, prompt template update, model provider configuration change, audit log export — nên được chạy như one-off process attached đến release. Điều này giữ admin operation consistent với deployment model của framework.
 
-```bash
+`````bash
 # Chạy tác vụ admin như one-off process
 npx create-12-factor-agent admin:migrate --env production
 npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv
-```
+`````
 
 ## Cách hoạt động
 
-Khung 12-Factor Agents hoạt động qua sự kết hợp của CLI tooling và architectural convention. Entry point chính là CLI `create-12-factor-agent`, scaffold một project với directory structure được khuyến nghị, configuration management và observability hook.
+Khung 12-Factor Agents hoạt động qua sự kết hợp của CLI tooling và architectural convention. Entry point chính là CLI ````create-12-factor-agent````, scaffold một project với directory structure được khuyến nghị, configuration management và observability hook.
 
-Sau đây là workflow điển hình: ```bash
+Sau đây là workflow điển hình: `````bash
 # Bước 1: Scaffold một dự án agent mới
 npx create-12-factor-agent finance-bot
 
@@ -143,7 +144,7 @@ cd finance-bot
 # - services/      (tích hợp backing service)
 # - tests/         (utility testing)
 # - docker-compose.yml (môi trường phát triển local)
-```
+`````
 
 Project được generate sử dụng kiến trúc phân lớp. Ở lớp bottom, backing service kết nối đến configuration của environment. Phía trên đó, lớp tools và services cung cấp khả năng của agent. Ở top, prompt template orchestrate các khả năng này thành hành vi agent coherent.
 
@@ -151,25 +152,25 @@ Project được generate sử dụng kiến trúc phân lớp. Ở lớp bottom
 
 ## Cài đặt và Thiết lập
 
-Là một khung dựa trên nguyên tắc, 12-Factor Agents không yêu cầu `pip install` hoặc `npm install` truyền thống. Thay vào đó, bạn sử dụng một trong hai CLI tool để generate project scaffold: ```bash
+Là một khung dựa trên nguyên tắc, 12-Factor Agents không yêu cầu ``pip install`` hoặc ``npm install`` truyền thống. Thay vào đó, bạn sử dụng một trong hai CLI tool để generate project scaffold: `````bash
 # Phương pháp 1: Sử dụng npx (Node.js)
 npx create-12-factor-agent
 
 # Phương pháp 2: Sử dụng uvx (Python, yêu cầu package manager uv)
 uvx create-12-factor-agent
-```
+`````
 
-Cả hai tool đều tạo một directory mới với cấu trúc project được khuyến nghị, một file `.env.example` liệt kê tất cả biến môi trường bắt buộc, một Dockerfile và một basic agent implementation mà bạn tùy chỉnh.
+Cả hai tool đều tạo một directory mới với cấu trúc project được khuyến nghị, một file ````.env.example```` liệt kê tất cả biến môi trường bắt buộc, một Dockerfile và một basic agent implementation mà bạn tùy chỉnh.
 
-```bash
+`````bash
 # Cài đặt uv nếu bạn chưa có
 pip install uv
 
 # Tạo dự án agent mới
 uvx create-12-factor-agent --name my-agent --template production
-```
+`````
 
-Đối với team muốn bắt đầu từ đầu mà không có scaffold, tài liệu framework cung cấp một checklist hoàn chỉnh về những gì cần có trong bất kỳ implementation agent cấp độ sản xuất nào: ```bash
+Đối với team muốn bắt đầu từ đầu mà không có scaffold, tài liệu framework cung cấp một checklist hoàn chỉnh về những gì cần có trong bất kỳ implementation agent cấp độ sản xuất nào: `````bash
 # Script xác minh checklist
 # Xác nhận agent của bạn tuân thủ nguyên tắc 12-factor
 cat > verify-12factor.sh << 'EOF'
@@ -182,7 +183,7 @@ echo "Xác minh hoàn tất."
 EOF
 chmod +x verify-12factor.sh
 ./verify-12factor.sh
-```
+`````
 
 ## Tích hợp Patterns
 
@@ -192,7 +193,7 @@ chmod +x verify-12factor.sh
 
 Khung có support first-class cho human-in-the-loop workflow. Khi agent encountering một action yêu cầu human approval, nó pause và post một request đến configured approval endpoint. Human review request trong dashboard, approve hoặc reject nó, và agent resume.
 
-```bash
+`````bash
 # Cấu hình human approval trong environment
 export HUMAN_APPROVAL_SERVICE="https://approval.example.com"
 export HUMAN_APPROVAL_TIMEOUT="300"
@@ -200,11 +201,11 @@ export HUMAN_APPROVAL_RETRIES="3"
 
 # Start agent với human-in-the-loop enabled
 npx create-12-factor-agent run --enable-hil
-```
+`````
 
 ### Observability Integration
 
-Mỗi agent process emit structured log, metrics và trace. Khung tích hợp với standard observability backend: ```bash
+Mỗi agent process emit structured log, metrics và trace. Khung tích hợp với standard observability backend: `````bash
 # Cấu hình OpenTelemetry cho distributed tracing
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -212,13 +213,13 @@ export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
 
 # Chạy với telemetry enabled
 npx create-12-factor-agent run --telemetry enabled
-```
+`````
 
 ### Multi-Agent Orchestration
 
 Đối với task phức tạp, khung hỗ trợ orchestrate nhiều agent mà mỗi agent tuân thủ nguyên tắc 12-factor. Một supervisor agent delegating subtask cho worker agent, collect kết quả của chúng và synthesizing một response cuối cùng.
 
-```bash
+`````bash
 # Định nghĩa cấu hình multi-agent
 cat > agents.yaml << 'EOF'
 supervisor: model: gpt-4o
@@ -230,7 +231,7 @@ workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [data_analysis, chart_generation]
 EOF
-```
+`````
 
 ## Benchmark và Adoption
 
@@ -254,7 +255,7 @@ Khung đã được adopt bởi hàng trăm team xây dựng production LLM appl
 
 ### Custom Tool Registry
 
-12-Factor Agents hỗ trợ custom tool registry cho phép team version, test và deploy tool độc lập với mã agent: ```bash
+12-Factor Agents hỗ trợ custom tool registry cho phép team version, test và deploy tool độc lập với mã agent: `````bash
 # Register custom tool
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -264,11 +265,11 @@ npx create-12-factor-agent tools:register \
 npx create-12-factor-agent tools:test \
   --registry ./tools/registry.yaml \
   --output ./test-results
-```
+`````
 
 ### Prompt Template Versioning
 
-Prompt template được xem như first-class artifact nên được version-controlled và test. Khung khuyến nghị một prompt versioning scheme: ```bash
+Prompt template được xem như first-class artifact nên được version-controlled và test. Khung khuyến nghị một prompt versioning scheme: `````bash
 # Version prompt template
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -279,11 +280,11 @@ npx create-12-factor-agent prompts:version \
 npx create-12-factor-agent prompts:rollback \
   --name "finance-summary" \
   --to-version v2.0.3
-```
+`````
 
 ### Rate Limiting và Guardrail
 
-Agent production cần robust rate limiting để prevent cost overrun và abuse. Khung bao gồm built-in rate limiting: ```bash
+Agent production cần robust rate limiting để prevent cost overrun và abuse. Khung bao gồm built-in rate limiting: `````bash
 # Cấu hình rate limit
 cat > rate-limits.yaml << 'EOF'
 global: requests_per_minute: 60
@@ -295,17 +296,17 @@ EOF
 
 # Áp dụng rate limit
 npx create-12-factor-agent run --rate-limits rate-limits.yaml
-```
+`````
 
 ### Audit Logging
 
-Đối với regulated industry, audit log tracking mọi decision agent đưa ra: ```bash
+Đối với regulated industry, audit log tracking mọi decision agent đưa ra: `````bash
 # Enable comprehensive audit logging
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
 
 npx create-12-factor-agent run --audit-logging enabled
-```
+`````
 
 ## So sánh với Alternatives
 
@@ -333,7 +334,7 @@ Không có framework nào hoàn hảo, và 12-Factor Agents có một số limit
 
 **Học curve khái niệm dốc.** Hiểu tại sao mỗi trong mười hai factors matter trong LLM context yêu cầu reading và reflection. Team mới có thể thấy overwhelming để adopt tất cả mười hai factors cùng lúc. Method đề nghị là bắt đầu với factors 1, 2, 3 và 10 (Codebase, Dependencies, Config và Dev/Prod Parity) và layer in còn lại theo thời gian.
 
-**Không có Official SDK.** Khác với competing framework, không có official software development kit nào implement tất cả mười hai factors. CLI `create-12-factor-agent` là một community tool, không phải product official. Điều này có nghĩa bạn có thể cần adapt scaffold đến stack cụ thể của bạn.
+**Không có Official SDK.** Khác với competing framework, không có official software development kit nào implement tất cả mười hai factors. CLI ````create-12-factor-agent``` là một community tool, không phải product official. Điều này có nghĩa bạn có thể cần adapt scaffold đến stack cụ thể của bạn.
 
 **Hạn chế Native Support cho Specific LLM Provider.** Framework là provider-agnostic theo design, đây là một feature nhưng cũng có nghĩa nó không cung cấp deep integration với bất kỳ model provider đơn lẻ nào.
 
@@ -413,7 +414,7 @@ Cho dù bạn mới bắt đầu với LLM agent hay scaling một hệ thống 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -423,7 +424,7 @@ Cho dù bạn mới bắt đầu với LLM agent hay scaling một hệ thống 
 - [12-factor-agents-production-llm-software-2026](12-factor-agents)
 - [1m-context-window-llm-2026-real-test](12-factor-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

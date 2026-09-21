@@ -34,6 +34,7 @@ faqs: - q: 'Anthropic Financial Services 智能体能自动化哪些金融工作
   - q: 'Anthropic Financial Services 如何满足金融合规与安全要求？'
     a: 'Managed Agents 可以部署在你自己的 VPC 内，因此没有任何数据离开你的基础设施；每个智能体的操作都会被审计记录，并保留完整的保管链记录；访问权限通过 Okta 或 Azure AD 等企业身份提供商进行管控。没有任何智能体输出会直接发送给客户——所有内容都会排队等待人工签字确认，以满足 FINRA 和 SEC 的监管要求。'---
 
+
 {</* resource-info */>}
 
 # Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%
@@ -49,7 +50,7 @@ Anthropic Financial Services 是一套基于Claude AI构建的**命名端到端�
 - **私募股权**：估值审查、GP包摄入、LP报告
 - **财富管理**：KYC筛查、入职自动化、报表审计
 
-所有内容都以两种形式提供：作为 **Claude Cowork 插件**（立即安装使用）或作为 **Claude Managed Agent 模板**（通过 `/v1/agents` 部署在您自己的工作流引擎后面）。
+所有内容都以两种形式提供：作为 **Claude Cowork 插件**（立即安装使用）或作为 **Claude Managed Agent 模板**（通过 ``/v1/agents`` 部署在您自己的工作流引擎后面）。
 
 ## 核心功能与能力
 
@@ -61,9 +62,9 @@ Anthropic Financial Services 是一套基于Claude AI构建的**命名端到端�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | 覆盖与咨询 | **Pitch Agent** | 可比分析、先例交易、LBO → 品牌pitch deck，端到端 |
 | 覆盖与咨询 | **Meeting Prep Agent** | 每次客户会议前的简报包 |
@@ -78,7 +79,7 @@ Anthropic Financial Services 是一套基于Claude AI构建的**命名端到端�
 
 ### 2. 垂直技能插件
 
-每个垂直插件捆绑底层技能、斜杠命令和数据连接器。例如，投资银行插件提供 `/comps`、`/dcf`、`/earnings` 以及市场数据提供商连接器。如果您不需要完整智能体，只需安装插件即可。
+每个垂直插件捆绑底层技能、斜杠命令和数据连接器。例如，投资银行插件提供 ```/comps````、````/dcf````、````/earnings```` 以及市场数据提供商连接器。如果您不需要完整智能体，只需安装插件即可。
 
 ### 3. 合作伙伴集成
 
@@ -86,8 +87,8 @@ Anthropic Financial Services 是一套基于Claude AI构建的**命名端到端�
 
 ### 4. 托管智能体手册
 
-对于企业部署，`managed-agent-cookbooks/` 目录包含：
-- `agent.yaml` 配置
+对于企业部署，````managed-agent-cookbooks/```` 目录包含：
+- ````agent.yaml```` 配置
 - 叶子工作子智能体定义
 - 引导事件示例
 - 每个智能体的安全说明
@@ -96,21 +97,21 @@ Anthropic Financial Services 是一套基于Claude AI构建的**命名端到端�
 
 ### 选项A：Claude Cowork 插件（最简单）
 
-```bash
+`````bash
 # 通过Claude Desktop或Claude Code安装
 claude plugin install anthropic/financial-services
-```
+`````
 
 安装后，使用自然语言激活任何智能体：
 
-```
+`````
 "为特斯拉收购目标运行Pitch Agent"
 "对此入职PDF运行KYC Screener"
-```
+`````
 
 ### 选项B：托管智能体API（企业版）
 
-```yaml
+`````yaml
 # Pitch Agent的agent.yaml示例
 name: pitch-agent
 version: 1.0.0
@@ -122,17 +123,17 @@ skills: - comps-analysis
   - lbo-modeling
 connectors: - lseg-market-data
   - sp-global-capiq
-```
+`````
 
 通过Claude Managed Agents API部署：
 
-```bash
+`````bash
 curl -X POST https://api.anthropic.com/v1/agents   -H "x-api-key: $ANTHROPIC_API_KEY"   -d @agent.yaml
-```
+`````
 
 ## 代码示例：自定义KYC Screener
 
-```python
+`````python
 from anthropic_financial import KYCAgent
 
 agent = KYCAgent(
@@ -151,7 +152,7 @@ results = agent.screen(
 # 输出：标记的缺口、风险评分和人工审查阶段
 print(results.summary)
 print(results.flagged_items)
-```
+````
 
 ## 实际应用场景
 
@@ -168,15 +169,15 @@ print(results.flagged_items)
 
 | 功能 | Anthropic Financial Services | Bloomberg Terminal | AlphaSense | 通用LLM (GPT-4) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | ✅ 是 | ❌ 否 | ❌ 否 | N/A |
 | **金融专用智能体** | ✅ 预构建 | ✅ 内置 | ✅ 部分 | ❌ 通用 |
@@ -210,7 +211,7 @@ Anthropic Financial Services 不仅仅是另一个AI实验——它是Claude的�
 > **免责声明**：本仓库中的任何内容均不构成投资、法律、税务或会计建议。所有输出都分阶段供人工审批。
 
 
----
+* * *
 *您尝试过Anthropic Financial Services吗？在下方留下评论并分享您的经验。*
 
 
@@ -242,13 +243,13 @@ Pitch Agent 不是一个简单的模板填充器。它使用多步推理管道�
 
 | 指标 | 使用前 | 使用后 | 改进 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Pitch deck 周转时间 | 48小时 | 4小时 | 加快88% |
 | DCF 模型构建时间 | 6小时 | 45分钟 | 加快87% |
@@ -280,7 +281,7 @@ Pitch Agent 不是一个简单的模板填充器。它使用多步推理管道�
 这种分阶段方法可以最大限度地降低风险，同时建立对 AI 辅助工作流的内部信心。
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -360,7 +361,7 @@ Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -392,15 +393,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

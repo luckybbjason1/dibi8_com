@@ -36,6 +36,7 @@ faq: - q: "스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 
     a: "그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다."
 ---
 
+
 # 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)
 
 
@@ -57,7 +58,7 @@ faq: - q: "스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 
 
 ### 스킬은 "지식" 축을 움직인다
 
-스킬은 *"Claude가 우리의 특정 절차를 모른다"*에 대한 답이다. 당신의 릴리스 프로세스, 당신의 코드 리뷰 평가 기준, 당신의 인시던트 대응 런북 — 상황 의존적인 지식이다. 이걸 `CLAUDE.md`에 두고 싶지는 않을 것이다(그건 모든 상호작용마다 로드되어 기본 컨텍스트를 부풀린다); 작업이 요구할 때만 로드되기를 원할 것이다. 스킬은 트리거 설명이 달린 마크다운 파일이다; 작업이 매칭되면 상세 지침이 대화에 들어오고, 그렇지 않으면 비켜서 있는다.
+스킬은 *"Claude가 우리의 특정 절차를 모른다"*에 대한 답이다. 당신의 릴리스 프로세스, 당신의 코드 리뷰 평가 기준, 당신의 인시던트 대응 런북 — 상황 의존적인 지식이다. 이걸 ```CLAUDE.md````에 두고 싶지는 않을 것이다(그건 모든 상호작용마다 로드되어 기본 컨텍스트를 부풀린다); 작업이 요구할 때만 로드되기를 원할 것이다. 스킬은 트리거 설명이 달린 마크다운 파일이다; 작업이 매칭되면 상세 지침이 대화에 들어오고, 그렇지 않으면 비켜서 있는다.
 
 ### 서브에이전트는 "컨텍스트" 축을 움직인다
 
@@ -86,9 +87,9 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 
 - **역량?** 코드 읽기 — Claude는 이미 갖고 있다. MCP 서버 불필요.
 - **컨텍스트?** 코드베이스 전체를 감사하려면 수십 개 파일을 읽어야 한다. 그건 부모를 부풀릴 것이다. → **서브에이전트.**
-- **절차?** 감사가 OWASP의 특정 체크리스트를 따르기를 원한다. → **스킬**(또는 체크리스트를 `security-auditor` 커스텀 에이전트의 시스템 프롬프트에 구워 넣기).
+- **절차?** 감사가 OWASP의 특정 체크리스트를 따르기를 원한다. → **스킬**(또는 체크리스트를 ````security-auditor```` 커스텀 에이전트의 시스템 프롬프트에 구워 넣기).
 
-**답:** 체크리스트를 시스템 프롬프트에 인코딩한 `security-auditor` 서브에이전트. 하나의 아티팩트, 두 개의 축 커버. 서버 없음.
+**답:** 체크리스트를 시스템 프롬프트에 인코딩한 ````security-auditor``` 서브에이전트. 하나의 아티팩트, 두 개의 축 커버. 서버 없음.
 
 ## 실제 시나리오 2: "지난달에 어떤 고객이 이탈했는지 보여달라"
 
@@ -198,12 +199,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -213,7 +214,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 - [cursor-vs-claude-code](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

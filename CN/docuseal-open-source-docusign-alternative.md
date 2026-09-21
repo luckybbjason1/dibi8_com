@@ -39,6 +39,7 @@ faqs: - q: 'Is DocuSeal a free alternative to DocuSign?'
     a: 'Yes. DocuSeal embeds ISO 32000-1 compliant digital signatures using PKCS#7 detached signatures, including a SHA-256 document digest, a trusted timestamp token, and signer identity metadata. These signatures are legally admissible in EU courts under eIDAS and in US courts under ESIGN and UETA.'
   - q: 'Where can DocuSeal store signed documents?'
     a: 'DocuSeal supports local disk with SQLite by default, PostgreSQL or MySQL for production scale, and cloud object storage on AWS S3, Google Cloud Storage, or Azure Blob. PostgreSQL with SSL and S3 with server-side encryption are recommended for production multi-user deployments.'---
+
 {</* resource-info */>}
 
 # DocuSeal Review: Cut Document Signing Costs by 90% with This Open-Source DocuSign Alternative
@@ -99,12 +100,12 @@ The signing experience works flawlessly on phones and tablets — no app install
 
 ### 7. API & Webhooks
 
-Integrate DocuSeal into your existing stack: ```bash
+Integrate DocuSeal into your existing stack: ````bash
 # Create a template via API
 curl -X POST https://your-docuseal.com/api/templates   -H "Authorization: Bearer YOUR_API_KEY"   -d '{"name":"NDA Template","fields":[{"type":"signature","role":"signer"}]}'
-```
+`````
 
-Webhooks fire on events: `document_signed`, `submitter_completed`, `template_created`.
+Webhooks fire on events: ``document_signed``, ``submitter_completed``, ``template_created``.
 
 ### 8. Multi-Language Support
 
@@ -128,16 +129,16 @@ DocuSeal offers a commercial license with advanced features: - **White-label**: 
 
 ### Docker (Fastest)
 
-```bash
+`````bash
 docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal
-```
+`````
 
 ### Docker Compose (Production)
 
-```bash
+`````bash
 curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
 sudo HOST=your-domain.com docker compose up
-```
+`````
 
 This automatically provisions HTTPS via Caddy when your DNS points to the server.
 
@@ -147,7 +148,7 @@ One-click deploy buttons are available for all major platforms.
 
 ## Code Example: Embedded Signing in React
 
-```jsx
+`````jsx
 import { DocuSealForm } from "@docuseal/react";
 
 function ContractPage() {
@@ -159,7 +160,7 @@ function ContractPage() {
     />
   );
 }
-```
+`````
 
 ## Real-World Use Cases
 
@@ -181,11 +182,11 @@ A solo consultant sends 30+ contracts per month via DocuSeal Cloud (free tier). 
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | Free (self-hosted) | $10-$60/user/mo | $19-$59/user/mo |
 | **Open Source** | ✅ Yes | ❌ No | ❌ No |
@@ -220,7 +221,7 @@ DocuSeal is built on Ruby on Rails 8.1.2 with a modular architecture that separa
 
 ### Document Processing Pipeline
 
-When a user uploads a PDF, DocuSeal runs it through the following pipeline: 1. **PDF Parsing**: Uses `pdf-reader` gem to extract text, fields, and metadata.
+When a user uploads a PDF, DocuSeal runs it through the following pipeline: 1. **PDF Parsing**: Uses ````pdf-reader```` gem to extract text, fields, and metadata.
 2. **Form Field Detection**: Automatically detects existing AcroForm fields and suggests mappings to DocuSeal field types.
 3. **Field Placement**: The WYSIWYG builder renders the PDF in a canvas layer where administrators drag fields onto specific coordinates.
 4. **Schema Generation**: A JSON schema is generated describing field types, validation rules, conditional logic, and signer routing.
@@ -248,7 +249,7 @@ When deploying DocuSeal on your own infrastructure, follow this hardening guide:
 
 DocuSeal's REST API and webhook system enable powerful automation scenarios: ### Pattern 1: CRM-Triggered Contract Generation
 
-When a deal reaches "Closed-Won" stage in Salesforce: ```python
+When a deal reaches "Closed-Won" stage in Salesforce: `````python
 import requests
 
 def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportunity_id)
@@ -271,11 +272,11 @@ def generate_contract(opportunity_id): opp = salesforce.get_opportunity(opportun
         }
     )
     return response.json()["submission_url"]
-```
+`````
 
 ### Pattern 2: Webhook-Driven Provisioning
 
-When a document is fully signed, trigger downstream actions: ```javascript
+When a document is fully signed, trigger downstream actions: `````javascript
 // Express webhook handler
 app.post('/webhooks/docuseal', (req, res) => {
     const event = req.body.event;
@@ -291,25 +292,25 @@ app.post('/webhooks/docuseal', (req, res) => {
     }
     res.status(200).send('OK');
 });
-```
+`````
 
 ### Pattern 3: Bulk HR Onboarding
 
-For seasonal hiring spikes, use the bulk send API: ```bash
+For seasonal hiring spikes, use the bulk send API: `````bash
 curl -X POST https://docuseal.yourcompany.com/api/bulk_submissions   -H "Authorization: Bearer API_KEY"   -F "template_id=employee-agreement"   -F "file=@new_hires.csv"   -F "column_mapping={"email":"submitter_email","name":"full_name"}"
-```
+`````
 
 ## Performance and Scalability
 
 DocuSeal handles high-volume signing scenarios through horizontal scaling: | Metric | Single Instance | Docker Compose Cluster | Kubernetes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Concurrent signers | 50 | 500 | 5,000+ |
 | Documents/hour | 200 | 2,000 | 20,000+ |
@@ -325,13 +326,13 @@ For enterprise deployments, the DocuSeal team recommends: - 2 CPU cores and 4GB 
 
 Let"s break down the true cost of ownership for a 100-person company over 3 years: | Cost Category | DocuSeal (Self-Hosted) | DocuSign Business Pro | PandaDoc Business |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | License fees | $0 | $64,800 (3yr) | $70,200 (3yr) |
 | Infrastructure | $1,440 (VPS) | $0 | $0 |
@@ -355,7 +356,7 @@ DocuSeal has a rapidly growing ecosystem: - **Discord community**: 2,400+ member
 **Solution**: Configure SPF, DKIM, and DMARC records for your sending domain. Use a dedicated IP with SendGrid or AWS SES for production.
 
 ### Issue: PDF fields not rendering correctly
-**Solution**: Ensure the source PDF uses standard AcroForm fields, not XFA forms. Convert XFA to AcroForm using Adobe Acrobat or `qpdf` before upload.
+**Solution**: Ensure the source PDF uses standard AcroForm fields, not XFA forms. Convert XFA to AcroForm using Adobe Acrobat or ````qpdf``` before upload.
 
 ### Issue: Slow document loading on mobile
 **Solution**: Enable CDN caching for PDF assets. Compress images within PDFs to under 300 DPI. Use lazy loading for multi-page documents.
@@ -373,11 +374,11 @@ DocuSeal is the rare open-source project that directly replaces a multi-billion-
 > **License Note**: Distributed under AGPLv3 with Section 7(b) Additional Terms. Commercial use requires compliance with the license terms.
 
 
----
+* * *
 *Have you migrated from DocuSign to DocuSeal? Share your experience in the comments.*
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.

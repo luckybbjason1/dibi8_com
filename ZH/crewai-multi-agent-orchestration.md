@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/crewai-multi-agent-orchestration/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：单次 LLM 调用已经不够了
@@ -40,20 +41,20 @@ CrewAI 中的智能体不仅仅是 LLM 实例。它是一个定义好的角色�
 
 | 属性 | 用途 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `role` | 职位/身份 | `"高级研究分析师"` |
-| `goal` | 智能体想要实现的目标 | `"找到3个竞争对手的详细定价数据"` |
-| `backstory` | 个性/背景 | `"你是一位拥有10年经验的细致分析师"` |
-| `tools` | 外部能力 | `[搜索工具, 爬虫工具, 计算器]` |
-| `allow_delegation` | 能否分配工作给他人 | 管理者设为 `True`，专家设为 `False` |
-| `memory` | 跨任务保持上下文 | 多步推理设为 `True` |
+| ```role```` | 职位/身份 | ````"高级研究分析师"```` |
+| ````goal```` | 智能体想要实现的目标 | ````"找到3个竞争对手的详细定价数据"```` |
+| ````backstory```` | 个性/背景 | ````"你是一位拥有10年经验的细致分析师"```` |
+| ````tools```` | 外部能力 | ````[搜索工具, 爬虫工具, 计算器]```` |
+| ````allow_delegation```` | 能否分配工作给他人 | 管理者设为 ````True````，专家设为 ````False```` |
+| ````memory```` | 跨任务保持上下文 | 多步推理设为 ````True```` |
 
-`backstory` 不是装饰 — 它塑造了 LLM 的响应方式。`"粗心的实习生"` 背景故事与 `"凡事三重检查的高级工程师"` 产生不同的输出。
+````backstory```` 不是装饰 — 它塑造了 LLM 的响应方式。````"粗心的实习生"```` 背景故事与 ````"凡事三重检查的高级工程师"```` 产生不同的输出。
 
 ### 任务：定义的工作单元
 
@@ -61,19 +62,19 @@ CrewAI 中的智能体不仅仅是 LLM 实例。它是一个定义好的角色�
 
 | 属性 | 用途 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `description` | 要做什么（可包含 `{变量}`） | `"研究 {公司} 的定价方案"` |
-| `expected_output` | 质量规范 | `"包含方案名称、价格和功能的表格"` |
-| `agent` | 谁执行任务 | `researcher` |
-| `context` | 要引用的先前任务输出 | `[task1, task2]` |
-| `tools` | 任务专用工具 | `[search_tool]` |
+| ````description```` | 要做什么（可包含 ````{变量}````） | ````"研究 {公司} 的定价方案"```` |
+| ````expected_output```` | 质量规范 | ````"包含方案名称、价格和功能的表格"```` |
+| ````agent```` | 谁执行任务 | ````researcher```` |
+| ````context```` | 要引用的先前任务输出 | ````[task1, task2]```` |
+| ````tools```` | 任务专用工具 | ````[search_tool]```` |
 
-`expected_output` 字段至关重要 — 它作为质量评分标准，指导 LLM 的响应格式和深度。
+````expected_output```` 字段至关重要 — 它作为质量评分标准，指导 LLM 的响应格式和深度。
 
 ### 流程：智能体如何协作
 
@@ -81,17 +82,17 @@ CrewAI 支持三种协作模式：
 
 | 流程 | 模式 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `Process.sequential` | 线性交接：A → B → C | 有明确依赖关系的工作流 |
-| `Process.hierarchical` | 管理者委派给工作者 | 需要监督的复杂项目 |
-| `Process.parallel` | 多个智能体同时工作 | 独立任务，速度优化 |
+| ````Process.sequential```` | 线性交接：A → B → C | 有明确依赖关系的工作流 |
+| ````Process.hierarchical```` | 管理者委派给工作者 | 需要监督的复杂项目 |
+| ````Process.parallel```` | 多个智能体同时工作 | 独立任务，速度优化 |
 
-在 **层级** 模式下，你指定一个 `manager_llm`（通常是更强的模型如 GPT-4）来规划任务分配、监控进度并决定工作何时完成。
+在 **层级** 模式下，你指定一个 ````manager_llm````（通常是更强的模型如 GPT-4）来规划任务分配、监控进度并决定工作何时完成。
 
 ### 工具：扩展智能体能力
 
@@ -103,7 +104,7 @@ CrewAI 智能体可以使用任何兼容 LangChain 的工具。常见工具包�
 - **数据库查询** — SQL 连接器
 - **文件操作** — 读写本地文件
 - **API 调用** — REST API 工具包
-- **自定义工具** — 任何用 `@tool` 包装的 Python 函数
+- **自定义工具** — 任何用 ````@tool```` 包装的 Python 函数
 
 ## 安装与配置：5分钟快速上手
 
@@ -111,7 +112,7 @@ CrewAI 需要 Python 3.10+ 并与任何 LLM 提供商兼容。
 
 ### 基础安装
 
-```bash
+`````bash
 python -m venv venv_crewai
 source venv_crewai/bin/activate
 
@@ -122,13 +123,13 @@ pip install "crewai[tools]==0.108.0"
 pip install langchain-openai    # OpenAI
 pip install langchain-anthropic # Anthropic
 pip install langchain-google    # Google Gemini
-```
+`````
 
-截至2026年5月，CrewAI 版本为 **v0.108.0**。`[tools]` 额外安装 SerpAPI、Selenium 和其他常用工具依赖。
+截至2026年5月，CrewAI 版本为 **v0.108.0**。````[tools]```` 额外安装 SerpAPI、Selenium 和其他常用工具依赖。
 
 ### 验证安装
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool
 
@@ -144,18 +145,18 @@ researcher = Agent(
 )
 
 print("CrewAI 安装成功！")
-```
+`````
 
 ### 环境配置
 
-```bash
+`````bash
 # 必需的 API 密钥
 export OPENAI_API_KEY="sk-..."
 export SERPAPI_API_KEY="..."
 
 # 可选：本地模型
 export OLLAMA_HOST="http://localhost:11434"
-```
+`````
 
 自托管基于 CrewAI 的系统需要可靠的 VPS。[DigitalOcean droplets](https://m.do.co/c/eca87ac14ee0) 非常适合运行智能体编排 API。如果需要 GPU 加速处理更复杂的智能体推理，[虎网云 GPU 服务器](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) 也是一个经济高效的选择。
 
@@ -163,7 +164,7 @@ export OLLAMA_HOST="http://localhost:11434"
 
 ### 示例 1：博客文章创作团队
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerpDevTool, ScrapeWebsiteTool
 
@@ -243,11 +244,11 @@ crew = Crew(
 
 result = crew.kickoff()
 print(result)
-```
+`````
 
 ### 示例 2：层级项目管理
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 
 # 层级流程需要一个管理者 LLM
@@ -261,13 +262,13 @@ project_crew = Crew(
 )
 
 result = project_crew.kickoff()
-```
+`````
 
-在层级模式下，`manager_llm` 基于智能体能力和任务依赖关系动态分配任务。这对于 **10+ 智能体团队** 非常强大，因为手动任务排序变得繁琐。
+在层级模式下，````manager_llm```` 基于智能体能力和任务依赖关系动态分配任务。这对于 **10+ 智能体团队** 非常强大，因为手动任务排序变得繁琐。
 
 ### 示例 3：代码审查团队
 
-```python
+`````python
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import CodeInterpreterTool
 
@@ -321,7 +322,7 @@ code_crew = Crew(
     process=Process.sequential,
     memory=True,
 )
-```
+`````
 
 ## 与 LangChain、LlamaIndex 和外部 API 集成
 
@@ -329,7 +330,7 @@ CrewAI 通过兼容 LangChain 的工具和回调与更广泛的 AI 生态系统�
 
 ### 使用 LangChain 工具
 
-```python
+`````python
 from crewai import Agent
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -345,11 +346,11 @@ researcher = Agent(
     tools=[ddg_search, wikipedia],
     llm="gpt-4o",
 )
-```
+`````
 
 ### 自定义工具定义
 
-```python
+`````python
 from crewai import Agent, Task
 from crewai.tools import tool
 import requests
@@ -368,11 +369,11 @@ analyst = Agent(
     tools=[check_stock_price],
     llm="gpt-4o",
 )
-```
+`````
 
 ### 回调与可观测性
 
-```python
+`````python
 from crewai import Crew
 
 # 用于监控的步骤回调
@@ -388,11 +389,11 @@ monitored_crew = Crew(
     step_callback=on_step_callback,
     task_callback=on_task_callback,
 )
-```
+`````
 
 ### 与 LlamaIndex 集成实现 RAG 增强智能体
 
-```python
+`````python
 from crewai import Agent, Task, Crew
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -414,7 +415,7 @@ policy_expert = Agent(
     tools=[query_knowledge_base],
     llm="gpt-4o",
 )
-```
+`````
 
 ## 基准测试与实际用例
 
@@ -424,15 +425,15 @@ policy_expert = Agent(
 
 | 团队规模 | 任务数 | 流程 | 平均时间 | Token 成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 2 智能体 | 2 任务 | 顺序 | 18秒 | $0.04 |
 | 3 智能体 | 3 任务 | 顺序 | 45秒 | $0.12 |
@@ -447,13 +448,13 @@ policy_expert = Agent(
 
 | 指标 | 单提示 | 3智能体团队 | 提升 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 事实准确性 | 62% | 91% | +46% |
 | 输出完整性 | 55% | 88% | +60% |
@@ -475,7 +476,7 @@ policy_expert = Agent(
 
 ### 使用向量存储的自定义记忆
 
-```python
+`````python
 from crewai import Agent, Crew, Process
 from chromadb import Client
 from chromadb.config import Settings
@@ -501,11 +502,11 @@ crew = Crew(
     memory=True,  # 启用共享短期记忆
     cache=True,   # 缓存 LLM 响应
 )
-```
+`````
 
 ### 使用 Pydantic 进行输出验证
 
-```python
+`````python
 from pydantic import BaseModel, Field
 from crewai import Task
 
@@ -521,11 +522,11 @@ structured_task = Task(
     output_json=CompetitorAnalysis,  # 针对模式验证
     agent=researcher,
 )
-```
+`````
 
 ### 错误处理与重试逻辑
 
-```python
+`````python
 from crewai import Crew
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -539,11 +540,11 @@ def run_crew_with_retry(crew: Crew): try: return crew.kickoff()
         raise
 
 result = run_crew_with_retry(my_crew)
-```
+`````
 
 ### 使用依赖关系的并行任务执行
 
-```python
+`````python
 from crewai import Task, Crew, Process
 
 # 任务 1 和 2 并行运行（无依赖）
@@ -561,11 +562,11 @@ parallel_crew = Crew(
     tasks=[task1, task2, task3],
     process=Process.sequential,  # crew 内部处理并行化
 )
-```
+`````
 
 ### 部署为 FastAPI 服务
 
-```python
+`````python
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
 from crewai import Crew, Agent, Task, Process
@@ -618,13 +619,13 @@ def execute_crew(job_id: str, request: CrewRequest): researcher = Agent(
     results_db[job_id] = {"status": "completed", "result": str(result)}
 
 # 运行: uvicorn main:app --host 0.0.0.0 --port 8000
-```
+`````
 
 将此部署在 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的负载均衡器后面，获得生产就绪的智能体 API。
 
 ### 使用 LangSmith 监控
 
-```python
+`````python
 import os
 from crewai import Crew
 
@@ -638,21 +639,21 @@ crew = Crew(
     tasks=[task1, task2],
     process=Process.sequential,
 )
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | CrewAI | AutoGen | LangGraph | MetaGPT |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | 28,000+ | 36,000+ | 11,000+ | 48,000+ |
 | 许可证 | MIT | MIT | MIT | MIT |
@@ -672,7 +673,7 @@ crew = Crew(
 **选择建议：**
 
 - **CrewAI**: 最适合多智能体系统新手。基于角色的 API 直观，文档优秀，学习曲线平缓。适合内容生成、研究工作流和业务分析任务。
-- **AutoGen (Microsoft)**: 当对话模式和代码执行是核心时选择。AutoGen 的群聊模式对调试和编程智能体非常强大。`UserProxyAgent` 实现无缝的人类参与循环工作流。
+- **AutoGen (Microsoft)**: 当对话模式和代码执行是核心时选择。AutoGen 的群聊模式对调试和编程智能体非常强大。````UserProxyAgent```` 实现无缝的人类参与循环工作流。
 - **LangGraph (LangChain)**: 当需要对智能体状态和转换进行细粒度控制时选择。LangGraph 的基于图的方法擅长复杂条件逻辑和状态管理，但学习曲线更陡峭。
 - **MetaGPT**: 专门用于软件工程任务时选择。MetaGPT 智能体模拟完整开发团队（PM、架构师、工程师、QA）并产生结构化代码输出。非编码用例过于复杂。
 
@@ -682,7 +683,7 @@ CrewAI 很强大，但不是万能药。你应该了解的生产现实：
 
 **1. LLM 成本随智能体数量增加。** 5 智能体团队运行 8 个任务使用 GPT-4o，每次运行可能花费 $0.50-2.00。每天 1,000 次运行，就是 $500-2,000/天。相应预算或使用更便宜的模型处理不太关键的智能体。
 
-**2. Token 限制限制上下文共享。** 当智能体 A 传递输出给智能体 B 时，该输出消耗智能体 B 上下文窗口的 token。5 个智能体各产生 2K token，最终智能体可能达到 GPT-4o 的 128K 限制。使用 `max_iter` 并总结中间输出。
+**2. Token 限制限制上下文共享。** 当智能体 A 传递输出给智能体 B 时，该输出消耗智能体 B 上下文窗口的 token。5 个智能体各产生 2K token，最终智能体可能达到 GPT-4o 的 128K 限制。使用 ````max_iter```` 并总结中间输出。
 
 **3. 层级规划增加延迟。** 层级模式下的 manager LLM 需要在开始前推理任务分配。对于小团队（3-4 智能体），这种开销可能不值得。简单工作流通常顺序模式更快。
 
@@ -704,7 +705,7 @@ CrewAI 不是 LangChain 或 LlamaIndex 的替代品 — 它是 **上层抽象**�
 
 ### 智能体间记忆共享如何工作？
 
-当 Crew 上设置 `memory=True` 时，所有智能体共享跨任务持续存在的短期记忆缓冲区。当通过 `context` 参数指定时，智能体 A 的任务输出成为智能体 B 的任务上下文。长期记忆方面，CrewAI 使用嵌入式 Chroma 向量存储来检索相关的过往交互。你也可以通过显式传递上下文任务输出来注入自定义记忆。
+当 Crew 上设置 ````memory=True```` 时，所有智能体共享跨任务持续存在的短期记忆缓冲区。当通过 ````context```` 参数指定时，智能体 A 的任务输出成为智能体 B 的任务上下文。长期记忆方面，CrewAI 使用嵌入式 Chroma 向量存储来检索相关的过往交互。你也可以通过显式传递上下文任务输出来注入自定义记忆。
 
 ### 每个团队的最大智能体数量是多少？
 
@@ -712,15 +713,15 @@ CrewAI 不是 LangChain 或 LlamaIndex 的替代品 — 它是 **上层抽象**�
 
 ### 如何防止智能体陷入循环？
 
-在任务上设置 `max_iter`（默认 25）以限制每次任务的迭代次数。为 crew 设置 `max_rpm` 以限制每分钟 API 调用次数。在层级模式下，管理者智能体监控进度并可中断卡住的智能体。添加 `expected_output` 质量门，使智能体知道工作何时完成，而不是无休止地优化。
+在任务上设置 ````max_iter````（默认 25）以限制每次任务的迭代次数。为 crew 设置 ````max_rpm```` 以限制每分钟 API 调用次数。在层级模式下，管理者智能体监控进度并可中断卡住的智能体。添加 ````expected_output```` 质量门，使智能体知道工作何时完成，而不是无休止地优化。
 
 ### CrewAI 能否处理实时流式输出？
 
-截至 v0.108.0，CrewAI 通过回调（`step_callback`）支持逐步输出，但智能体输出的完整流式传输有限。使用回调构建显示智能体进度的实时 UI。完整流式支持在 2026 下半年路线图。
+截至 v0.108.0，CrewAI 通过回调（````step_callback````）支持逐步输出，但智能体输出的完整流式传输有限。使用回调构建显示智能体进度的实时 UI。完整流式支持在 2026 下半年路线图。
 
 ### 如何有效测试智能体团队？
 
-通过运行单个任务独立单元测试每个智能体。使用模拟 LLM 响应（通过 LangChain 的 `FakeListLLM`）在没有 API 成本的情况下测试任务路由和工具选择。使用小型已知良好的任务对整个团队进行集成测试。记录所有中间输出用于回归测试。
+通过运行单个任务独立单元测试每个智能体。使用模拟 LLM 响应（通过 LangChain 的 ````FakeListLLM```）在没有 API 成本的情况下测试任务路由和工具选择。使用小型已知良好的任务对整个团队进行集成测试。记录所有中间输出用于回归测试。
 
 ## 结论：从小处开始，扩展到团队
 
@@ -757,7 +758,7 @@ CrewAI 让多智能体编排变得触手可及。从简单的 2 智能体顺序�
 - 相关文章: [LangChain](dibi8-internal-link), [AutoGen 指南](dibi8-internal-link), [LangGraph 模式](dibi8-internal-link)
 
 
----
+* * *
 *联盟营销披露: 本文包含 DigitalOcean 和 虎网云 的联盟链接。如果你通过这些链接注册，我们赚取佣金，不额外收费。CrewAI 是开源免费使用的；我们与 CrewAI 项目没有商业关系。观点基于实际测试和生产部署。*
 
 
@@ -787,7 +788,7 @@ CrewAI 让多智能体编排变得触手可及。从简单的 2 智能体顺序�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](crewai-multi-agent-orchestration)
@@ -796,7 +797,7 @@ CrewAI 让多智能体编排变得触手可及。从简单的 2 智能体顺序�
 - [12-factor-agents](crewai-multi-agent-orchestration)
 - [1m-context-window-llm-2026-real-test](crewai-multi-agent-orchestration)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

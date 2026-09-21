@@ -22,6 +22,7 @@ aliases:
   - /posts/vs-code-ai-extensions-developers/
 ---
 
+
 # Các Tiện Ích Mở Rộng AI Tốt Nhất cho VS Code Dành cho Nhà Phát Triển Năm 2025
 
 
@@ -190,7 +191,7 @@ Không nên. Việc cài đặt nhiều extension code completion cùng lúc s�
 
 ### Cấu Hình Phím Tắt cho Từng Công Cụ
 
-Mỗi extension AI có phím tắt riêng. Ví dụ, Copilot dùng `Alt+\` để trigger inline suggestion, còn Continue dùng `Cmd/Ctrl+M` để mở chat. Bạn nên tùy chỉnh trong VS Code Keyboard Shortcuts (`Cmd+K Cmd+S`) để tránh xung đột.
+Mỗi extension AI có phím tắt riêng. Ví dụ, Copilot dùng ```Alt+\```` để trigger inline suggestion, còn Continue dùng ````Cmd/Ctrl+M```` để mở chat. Bạn nên tùy chỉnh trong VS Code Keyboard Shortcuts (````Cmd+K Cmd+S```) để tránh xung đột.
 
 ## Tương Lai của AI trong VS Code
 
@@ -239,7 +240,7 @@ Quan trọng nhất là chọn công cụ phù hợp với workflow và yêu c�
 
 Để tìm hiểu thêm, hãy truy cập [GitHub Copilot](https://github.com/features/copilot), [Codeium](https://codeium.com), [Tabnine](https://www.tabnine.com), [Sourcegraph Cody](https://sourcegraph.com/cody), và [Continue.dev](https://www.continue.dev).
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/aider/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -46,9 +47,9 @@ Aider 的架构围绕三个核心概念构建：仓库地图（repo map）、编
 
 **架构师模式：** 对于复杂的更改，Aider 将规划与执行分离。一个推理模型（如 o3 或 Claude Opus）起草架构计划，而一个快速的编辑模型（如 GPT-4.1）执行文件更改。这种双模型方法在常规编辑上降低40-60%的成本，同时在复杂重构上保持高质量。
 
-```bash
+````bash
 aider --model o3 --editor-model gpt-4.1 --architect
-```
+`````
 
 ## 安装与设置
 
@@ -56,7 +57,7 @@ aider --model o3 --editor-model gpt-4.1 --architect
 
 **步骤 1 — 安装 Aider：**
 
-```bash
+`````bash
 # 使用 aider-install（推荐）
 python -m pip install aider-install
 aider-install
@@ -70,11 +71,11 @@ curl -LsSf https://aider.chat/install.sh | sh
 
 # Windows 一行命令安装
 powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
-```
+`````
 
 **步骤 2 — 配置 API 密钥：**
 
-```bash
+`````bash
 # Claude (Anthropic)
 export ANTHROPIC_API_KEY=sk-ant-api03-your-key
 
@@ -89,11 +90,11 @@ export GEMINI_API_KEY=your-key
 
 # 或在项目根目录使用 .env 文件
 echo "ANTHROPIC_API_KEY=sk-ant-api03-your-key" > .env
-```
+`````
 
 **步骤 3 — 开始编码：**
 
-```bash
+`````bash
 cd /to/your/project
 
 # 使用 Claude Sonnet
@@ -108,50 +109,50 @@ aider --model deepseek --api-key deepseek=sk-your-key
 # 使用 Ollama 本地模型
 ollama pull qwen2.5-coder:32b
 aider --model ollama/qwen2.5-coder:32b
-```
+`````
 
 **Docker 替代方案：**
 
-```bash
+`````bash
 docker run -it --rm \
   -v $(pwd):/app \
   -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
   paulgauthier/aider \
   --model sonnet
-```
+`````
 
 ## 与流行工具的集成
 
 ### VS Code
 
-Aider 不需要 VS Code 扩展。在你的项目终端中启动 Aider，然后在 VS Code 中正常编辑文件。Aider 监视 git 仓库并自动提交更改。对于更紧密的工作流，使用 `--watch-files` 标志：
+Aider 不需要 VS Code 扩展。在你的项目终端中启动 Aider，然后在 VS Code 中正常编辑文件。Aider 监视 git 仓库并自动提交更改。对于更紧密的工作流，使用 ````--watch-files```` 标志：
 
-```bash
+`````bash
 # 终端 1：启动 aider
 aider --model sonnet --watch-files
 
 # 在 VS Code 中添加 AI 注释，如 "// AI: 将此重构为 async/await"
 # Aider 会捕获注释、进行更改并提交
-```
+`````
 
 ### Vim / Neovim
 
 Aider 天然适合 Vim 工作流。在 tmux 分屏中与编辑器并排运行：
 
-```bash
+`````bash
 # tmux 配置：aider + vim
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
 tmux send-keys -t aider-vim.0 'vim .' C-m
 tmux send-keys -t aider-vim.1 'aider --model sonnet' C-m
 tmux attach -t aider-vim
-```
+`````
 
 ### Git 与 GitHub
 
 Aider 的 git 集成是其突出的功能。每个AI辅助的编辑都成为一个独立的提交：
 
-```bash
+`````bash
 # 在 aider 会话中
 > /add src/auth.js src/middleware.js
 > 在认证中间件中添加JWT令牌验证
@@ -166,21 +167,21 @@ git diff HEAD~3..HEAD  # 查看最近3个AI提交
 
 # 推送到 GitHub
 git push origin main
-```
+`````
 
 ### GitLab CI/CD 集成
 
-```yaml
+`````yaml
 # .gitlab-ci.yml - AI代码审查流水线
 ai-review: image: python:3.12
   before_script: - pip install aider-chat
   script: - aider --model sonnet --message "审查此MR的安全问题" --no-auto-commits
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-```
+`````
 
 ### Pre-commit 钩子
 
-```yaml
+`````yaml
 # .pre-commit-config.yaml
 repos: - repo: local
     hooks: - id: aider-lint
@@ -188,7 +189,7 @@ repos: - repo: local
         entry: aider --lint-cmd "npm run lint" --lint
         language: system
         pass_filenames: false
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -198,13 +199,13 @@ Aider 维护着业界最广泛引用的 LLM 编程基准测试。多语言基准
 
 | 模型 | 得分 | 每次运行成本 | 编辑格式 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-5 (high) | 88.0% | $29.08 | diff |
 | GPT-5 (medium) | 86.7% | $17.69 | diff |
@@ -222,13 +223,13 @@ Aider 还在实际编程任务上对自身进行基准测试：
 
 | 模型 | 通过率 | 平均Token数 | 延迟 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Sonnet 4 | 72% | 18,400 | 45s |
 | GPT-4.1 | 68% | 22,100 | 38s |
@@ -248,48 +249,48 @@ Aider 还在实际编程任务上对自身进行基准测试：
 
 ### 安全：限制文件访问
 
-```bash
+`````bash
 # 仅允许编辑特定目录
 aider --model sonnet --read-only src/ --edit docs/
 
 # 使用 .aiderignore 文件
 echo "*.secret" > .aiderignore
 echo "config/prod.yml" >> .aiderignore
-```
+`````
 
 ### 提示缓存以降低成本
 
 Aider 支持 Anthropic Claude 和 OpenAI 模型的提示缓存，在多轮对话中减少40-60%的API成本：
 
-```bash
+`````bash
 # 支持缓存的模型会自动启用提示缓存
 aider --model sonnet --cache-prompts
 
 # 查看缓存统计
 # 在输出中查找 "Cache hit" 确认节省
-```
+`````
 
 ### 自定义模型别名
 
-```bash
+`````bash
 # ~/.aider.conf.yml
 model-alias: - fast: gpt-4.1
   - smart: claude-sonnet-4
   - cheap: deepseek/deepseek-chat
   - local: ollama/qwen2.5-coder:32b
-```
+`````
 
 使用方式：
 
-```bash
+`````bash
 aider --model fast    # 使用 gpt-4.1
 aider --model smart   # 使用 claude-sonnet-4
 aider --model cheap   # 使用 DeepSeek
-```
+`````
 
 ### 代码检查与测试集成
 
-```bash
+`````bash
 # 每次编辑后自动运行代码检查
 aider --model sonnet --lint-cmd "npm run lint"
 
@@ -298,11 +299,11 @@ aider --model sonnet --test-cmd "npm test" --auto-test
 
 # 仅在测试通过时提交
 aider --model sonnet --test-cmd "pytest" --auto-test --test-first
-```
+`````
 
 ### YAML 配置文件
 
-```yaml
+`````yaml
 # ~/.aider.conf.yml
 model: sonnet
 editor: nvim
@@ -312,31 +313,31 @@ lint-cmd: "npm run lint"
 test-cmd: "npm test"
 cache-prompts: true
 show-model-warnings: false
-```
+`````
 
 ### 使用分析进行监控
 
-```bash
+`````bash
 # 设置分析日志以跟踪成本
 export AIDER_ANALYTICS_LOG=/var/log/aider/analytics.jsonl
 
 # 跟踪每个项目的成本
 aider --model sonnet --analytics-log ./logs/aider.jsonl
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Aider | Claude Code | Cursor | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **价格** | 免费 + API密钥 | $20+/月 Pro | $20/月 Pro | ChatGPT Plus $20/月 |
 | **开源** | Apache-2.0 | 专有 | 专有 | 专有 |
@@ -401,13 +402,13 @@ A: Aider本身是免费的开源软件。你只需支付LLM API使用费。中�
 A: 可以 —— 这是Aider的核心设计原则。Aider在终端中运行并操作你的git仓库。你可以同时使用VS Code、Vim、Neovim、Emacs、Sublime Text或任何其他编辑器。Aider所做的更改会立即出现在你编辑器的文件监视器中。
 
 **Q: Aider 用于生产代码库安全吗？**
-A: Aider将每个更改以描述性消息提交到git，因此你可以审查和回滚任何编辑。但是，在合并到main分支之前，你应始终审查AI生成的代码。使用 `git diff` 检查更改，使用 `--auto-test` 运行测试套件，并在GitHub/GitLab上启用分支保护。
+A: Aider将每个更改以描述性消息提交到git，因此你可以审查和回滚任何编辑。但是，在合并到main分支之前，你应始终审查AI生成的代码。使用 ````git diff```` 检查更改，使用 ````--auto-test```` 运行测试套件，并在GitHub/GitLab上启用分支保护。
 
 **Q: 哪个LLM模型与Aider配合最好？**
 A: 根据Aider多语言排行榜，GPT-5 (high) 以88.0%的分数位居榜首，其次是Claude Sonnet 4（约84%）和Gemini 2.5 Pro（83.1%）。对于成本敏感的工作，DeepSeek V3.2 Reasoner以74.2%的分数和每次运行$1.30的价格提供了最佳性价比。
 
 **Q: Aider 可以在没有互联网连接的情况下工作吗？**
-A: 可以，如果你通过Ollama或LM Studio使用本地模型。在本地安装模型（`ollama pull qwen2.5-coder:32b`），然后运行 `aider --model ollama/qwen2.5-coder:32b`。注意，对于复杂的多文件编辑，本地模型比云API更慢且能力较弱。
+A: 可以，如果你通过Ollama或LM Studio使用本地模型。在本地安装模型（````ollama pull qwen2.5-coder:32b````），然后运行 ````aider --model ollama/qwen2.5-coder:32b````。注意，对于复杂的多文件编辑，本地模型比云API更慢且能力较弱。
 
 **Q: Aider 与 GitHub Copilot 相比如何？**
 A: Copilot在你的IDE中提供内联自动补全。Aider是一个对话式代理，进行多文件编辑并将其提交到git。它们互补 —— 许多开发者使用Copilot进行日常自动补全，使用Aider进行大型重构和功能实现。Copilot费用$10-19/月；Aider免费加API使用费。
@@ -421,11 +422,11 @@ Aider 是2026年最灵活、最具成本效益的AI结对编程工具。凭借45
 
 **入门行动清单：**
 
-1. 使用 `curl -LsSf https://aider.chat/install.sh | sh` 安装 Aider
-2. 设置你的 `ANTHROPIC_API_KEY` 或 `OPENAI_API_KEY`
-3. 在项目目录中运行 `aider --model sonnet`
-4. 使用 `/add` 添加文件，然后用自然语言描述你的需求
-5. 推送前使用 `git log` 审查自动提交
+1. 使用 ````curl -LsSf https://aider.chat/install.sh | sh```` 安装 Aider
+2. 设置你的 ````ANTHROPIC_API_KEY```` 或 ````OPENAI_API_KEY````
+3. 在项目目录中运行 ````aider --model sonnet````
+4. 使用 ````/add```` 添加文件，然后用自然语言描述你的需求
+5. 推送前使用 ````git log``` 审查自动提交
 
 加入 [Discord](https://discord.gg/Y7X7bhMQFV) 或 [Telegram](https://t.me/dibi8opensource) 社区，分享技巧、获取帮助并关注新版本发布。
 
@@ -519,12 +520,12 @@ Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完整对
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-aider](aider)
@@ -533,7 +534,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](aider)
 - [2026-06-22-trending-ai-agents](aider)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

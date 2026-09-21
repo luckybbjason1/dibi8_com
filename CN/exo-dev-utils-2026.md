@@ -32,11 +32,12 @@ faqs: - q: 'How do I install exo?'
     a: 'exo serves an OpenAI/Claude/Ollama-compatible API on port 52415. For example: ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}"]}'' ```'
   - q: 'Where do I see the status of my cluster?'
     a: 'Open the dashboard in a browser at `http://localhost:52415`. It shows every discovered device, how the model is split across them, and live throughput and memory usage.'---
+
 {{< resource-info >}}
 
 ## Introduction
 
-Frontier models are big. A 671B-parameter model will not fit on a single laptop, and renting enough cloud GPU to run one yourself gets expensive fast. `exo` takes a different route: it stitches the devices you already own — Macs, Linux boxes, even phones — into one cluster, then splits a model across them so they run inference together. With more than 45,000 stars on GitHub, it has become one of the most-watched projects for running large models on hardware you control. This guide walks through installing exo, opening the dashboard, and talking to it through its OpenAI-, Claude- and Ollama-compatible API.
+Frontier models are big. A 671B-parameter model will not fit on a single laptop, and renting enough cloud GPU to run one yourself gets expensive fast. ``exo`` takes a different route: it stitches the devices you already own — Macs, Linux boxes, even phones — into one cluster, then splits a model across them so they run inference together. With more than 45,000 stars on GitHub, it has become one of the most-watched projects for running large models on hardware you control. This guide walks through installing exo, opening the dashboard, and talking to it through its OpenAI-, Claude- and Ollama-compatible API.
 
 ## What Is exo?
 
@@ -58,30 +59,30 @@ If you want exo reachable around the clock (for a shared in-house endpoint, say)
 
 ### macOS app (easiest)
 
-The simplest path on a Mac is the prebuilt app. Install it with Homebrew: ```bash
+The simplest path on a Mac is the prebuilt app. Install it with Homebrew: ````bash
 brew install --cask exo
-```
+`````
 
-Or download the latest DMG directly from `https://assets.exolabs.net/EXO-latest.dmg`. The app requires a recent macOS release.
+Or download the latest DMG directly from ``https://assets.exolabs.net/EXO-latest.dmg``. The app requires a recent macOS release.
 
 ### Build from source (macOS or Linux)
 
-To run the latest code, clone the repository and start it with `uv`. You will need `uv`, Node 18+ and a nightly Rust toolchain installed first (macOS also needs Xcode, Homebrew and `macmon`): ```bash
+To run the latest code, clone the repository and start it with ``uv``. You will need ``uv``, Node 18+ and a nightly Rust toolchain installed first (macOS also needs Xcode, Homebrew and ``macmon``): `````bash
 git clone https://github.com/exo-explore/exo
 cd exo/dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
-If you use Nix, you can skip the prerequisites entirely: ```bash
+If you use Nix, you can skip the prerequisites entirely: `````bash
 nix run .#exo
-```
+`````
 
 ### Common error and fix
 
-A frequent first-run snag is the dashboard failing to load because the front-end was never built. The web UI is compiled from the `dashboard/` directory, so if you cloned the repo and ran `uv run exo` without building it, rebuild the dashboard before launching: ```bash
+A frequent first-run snag is the dashboard failing to load because the front-end was never built. The web UI is compiled from the ``dashboard/`` directory, so if you cloned the repo and ran ``uv run exo`` without building it, rebuild the dashboard before launching: `````bash
 cd dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
 If you hit other issues during installation, check the official README in the repository.
 
@@ -94,30 +95,30 @@ Once exo is installed, the workflow is refreshingly short: start it on each devi
 
 ### Starting a node
 
-Launch exo on every device you want in the cluster: ```bash
+Launch exo on every device you want in the cluster: `````bash
 uv run exo
-```
+`````
 
-Each node automatically finds the others on the same network — there is nothing to register manually. A few flags are handy: - `--no-worker`: run a coordinator-only node that does not perform inference itself.
-- `--legacy-daemon`: run exo in the background as a daemon.
+Each node automatically finds the others on the same network — there is nothing to register manually. A few flags are handy: - ``--no-worker``: run a coordinator-only node that does not perform inference itself.
+- ``--legacy-daemon``: run exo in the background as a daemon.
 
 ### Monitoring the cluster
 
-exo serves a dashboard on port `52415`. Open it in a browser: ```sh
+exo serves a dashboard on port ``52415``. Open it in a browser: `````sh
 http://localhost:52415
-```
+`````
 
 You will see every device exo has discovered, how the current model is split across them, and live throughput and memory use.
 
 ### Calling the model
 
-exo exposes an HTTP API that is compatible with the OpenAI, Claude (Anthropic Messages) and Ollama formats, so existing client code mostly works unchanged. A streaming chat request looks like this: ```bash
+exo exposes an HTTP API that is compatible with the OpenAI, Claude (Anthropic Messages) and Ollama formats, so existing client code mostly works unchanged. A streaming chat request looks like this: `````bash
 curl -X POST http://localhost:52415/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}'
-```
+`````
 
-The same endpoint understands the Claude Messages API at `/v1/messages` and the Ollama API at `/ollama/api/chat`.
+The same endpoint understands the Claude Messages API at ``/v1/messages`` and the Ollama API at ``/ollama/api/chat``.
 
 ### Conclusion
 
@@ -132,7 +133,7 @@ Because exo speaks the OpenAI, Claude and Ollama APIs, it drops into most existi
 
 ### Reusing your existing OpenAI client
 
-Point any OpenAI-compatible client at your local exo endpoint and it just works: ```python
+Point any OpenAI-compatible client at your local exo endpoint and it just works: `````python
 # Talk to a local exo cluster with the standard OpenAI client
 from openai import OpenAI
 
@@ -146,11 +147,11 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Summarize the exo project in one sentence."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### Using it from a Jupyter notebook
 
-The same client works inside a notebook, which is convenient for quick experiments against your cluster: ```python
+The same client works inside a notebook, which is convenient for quick experiments against your cluster: `````python
 # Quick test from a Jupyter notebook
 from openai import OpenAI
 
@@ -161,7 +162,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "List three uses for a local AI cluster."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 Because everything goes through a standard HTTP API, you can integrate exo with any language or framework that can make a POST request.
 
@@ -197,17 +198,17 @@ exo has been demonstrated running very large models across clusters of Apple Sil
 
 See also our [related open-source tools](dibi8-internal-link) coverage.
 
-exo is not the only way to run models locally, and it solves a specific problem — spreading one big model across many devices — that single-machine tools don't. The table below sketches how it compares to two common alternatives, `ollama/ollama` (single-machine local serving) and `ggml-org/llama.cpp` (the inference engine many local tools build on).
+exo is not the only way to run models locally, and it solves a specific problem — spreading one big model across many devices — that single-machine tools don't. The table below sketches how it compares to two common alternatives, ``ollama/ollama`` (single-machine local serving) and ``ggml-org/llama.cpp`` (the inference engine many local tools build on).
 
 | Feature              | exo-explore/exo                 | ollama/ollama                   | ggml-org/llama.cpp              |
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License**          | Apache-2.0                      | MIT                             | MIT                            |
 | **Primary language** | Python / Rust                   | Go                              | C/C++                          |
@@ -226,7 +227,7 @@ exo is genuinely useful, but it is a young and fast-moving project. A few honest
 
 2. **It is built for big-model clusters.** If your model already fits on one machine, exo"s distributed machinery is more than you need — a single-machine tool will be simpler.
 
-3. **Source builds have real prerequisites.** Running from source needs `uv`, Node, a nightly Rust toolchain and (on macOS) Xcode and extra tools. The macOS app avoids this, but source users should expect a heavier setup than a one-line installer.
+3. **Source builds have real prerequisites.** Running from source needs ````uv```, Node, a nightly Rust toolchain and (on macOS) Xcode and extra tools. The macOS app avoids this, but source users should expect a heavier setup than a one-line installer.
 
 4. **Fast-moving codebase.** As an actively developed project, APIs and behavior can shift between versions. Pin to a known-good commit if you need stability.
 
@@ -242,7 +243,7 @@ exo by exo-explore is a compelling tool for running frontier AI on your own hard
 - Read next: [related guides on dibi8](dibi8-internal-link).
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme
 
@@ -276,4 +277,4 @@ exo by exo-explore is a compelling tool for running frontier AI on your own hard
   }
 }
 </script>
----
+* * *

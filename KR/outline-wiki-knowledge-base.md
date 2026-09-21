@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/outline-wiki-knowledge-base/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 문서가 죽어가는 곳
@@ -50,7 +51,7 @@ Outline의 스택은 현대적이고 잘 설계된 아키텍처를 가집니다:
 
 ## 설치 및 설정: 프로덕션 Docker 배포
 
-Outline은 세 가지 서비스가 필요합니다: 앱, PostgreSQL, Redis. 프로덕션용 Docker Compose 설정: ```yaml
+Outline은 세 가지 서비스가 필요합니다: 앱, PostgreSQL, Redis. 프로덕션용 Docker Compose 설정: ````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -115,11 +116,11 @@ services: outline: image: outlinewiki/outline:0.83.0
       exit 0;
       "
 
-volumes: postgres-data: redis-data: minio-data: ```
+volumes: postgres-data: redis-data: minio-data: `````
 
 ### 비밀 키 생성
 
-시작하기 전에 필요한 비밀 키를 생성합니다: ```bash
+시작하기 전에 필요한 비밀 키를 생성합니다: `````bash
 # 256비트 비밀 키 생성
 export SECRET_KEY=$(openssl rand -hex 32)
 
@@ -128,9 +129,9 @@ export UTILS_SECRET=$(openssl rand -hex 16)
 
 echo "SECRET_KEY=$SECRET_KEY"
 echo "UTILS_SECRET=$UTILS_SECRET"
-```
+`````
 
-`.env` 파일에 추가: ```bash
+``.env`` 파일에 추가: `````bash
 cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
@@ -141,11 +142,11 @@ OIDC_CLIENT_ID=
 OIDC_CLIENT_SECRET=
 EOF
 chmod 600 .env
-```
+`````
 
 ### 스택 시작
 
-```bash
+`````bash
 docker-compose up -d
 
 # 모든 서비스가 정상인지 확인
@@ -153,31 +154,31 @@ docker-compose ps
 
 # 로그 보기
 docker-compose logs -f outline
-```
+`````
 
-약 30초 후 Outline은 `http://localhost:3000`에서 사용 가능합니다.
+약 30초 후 Outline은 ````http://localhost:3000````에서 사용 가능합니다.
 
 ### 인증 설정
 
 Outline은 외부 인증 제공자가 필요합니다. 가장 간단한 프로덕션 설정은 Google Workspace OIDC입니다: 1. [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials로 이동
 2. **OAuth 2.0 Client ID** (Web application) 생성
-3. 승인된 리다이렉트 URI 추가: `https://wiki.yourcompany.com/auth/oidc.callback`
-4. client ID와 secret을 `.env` 파일에 추가: ```bash
+3. 승인된 리다이렉트 URI 추가: ````https://wiki.yourcompany.com/auth/oidc.callback````
+4. client ID와 secret을 ``.env`` 파일에 추가: `````bash
 OIDC_CLIENT_ID=xxx.apps.googleusercontent.com
 OIDC_CLIENT_SECRET=GOCSPX-xxx
 OIDC_AUTH_URI=https://accounts.google.com/o/oauth2/v2/auth
 OIDC_TOKEN_URI=https://oauth2.googleapis.com/token
 OIDC_USERINFO_URI=https://openidconnect.googleapis.com/v1/userinfo
 OIDC_LOGOUT_URI=https://accounts.google.com/logout
-```
+`````
 
-Outline 재시작: ```bash
+Outline 재시작: `````bash
 docker-compose restart outline
-```
+`````
 
 ### DigitalOcean에서 빠른 배포
 
-기존 Docker 설정이 없는 팀을 위해, [DigitalOcean에 배포](https://m.do.co/c/eca87ac14ee0): ```bash
+기존 Docker 설정이 없는 팀을 위해, [DigitalOcean에 배포](https://m.do.co/c/eca87ac14ee0): `````bash
 # 새 Ubuntu 24.04 Droplet ($6/월)에서
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -185,7 +186,7 @@ sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 git clone https://github.com/outline/outline.git
 cd outline
 # 위의 docker-compose.yml을 복사하고 .env를 구성한 후: docker compose up -d
-```
+`````
 
 또는 SSL과 자동 백업이 포함된 관리형 Outline 배포를 위해 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 사용하세요.
 
@@ -194,7 +195,7 @@ cd outline
 ### Slack 통합 (딥 링크)
 
 Outline의 Slack 통합은 가장 강력한 기능 중 하나입니다: 1. [Slack API Apps](https://api.slack.com/apps) → Create New App → From Manifest로 이동
-2. 이 매니페스트를 붙여넣기: ```yaml
+2. 이 매니페스트를 붙여넣기: `````yaml
 _display_name: Outline Wiki
 features: bot_user: display_name: Outline
     always_online: true
@@ -211,17 +212,17 @@ settings: event_subscriptions: request_url: https://wiki.yourcompany.com/api/hoo
     bot_events: - link_shared
   org_deploy_enabled: true
   socket_mode_enabled: false
-```
+`````
 
 3. 워크스페이스에 앱 설치
-4. Bot User OAuth Token과 Verification Token을 `.env`에 복사
+4. Bot User OAuth Token과 Verification Token을 ````.env````에 복사
 5. Outline 재시작
 
-연결 후 Slack에서 `/outline deploy rollback`을 입력하면 Wiki를 즉시 검색하고 문서 미리보기가 포함된 링크를 붙여넣을 수 있습니다.
+연결 후 Slack에서 ````/outline deploy rollback````을 입력하면 Wiki를 즉시 검색하고 문서 미리보기가 포함된 링크를 붙여넣을 수 있습니다.
 
 ### API 및 Webhooks
 
-지식 베이스에 대한 프로그래밍 방식 접근: ```bash
+지식 베이스에 대한 프로그래밍 방식 접근: `````bash
 # 모든 컬렉션 나열
 curl -X GET "https://wiki.yourcompany.com/api/collections" \
   -H "Authorization: Bearer YOUR_API_TOKEN"
@@ -242,13 +243,13 @@ curl -X POST "https://wiki.yourcompany.com/api/documents.search" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"query": "rollback procedure"}'
-```
+`````
 
 Outline UI의 **Settings** → **API**에서 API Token을 생성합니다.
 
 ### CI/CD 문서 자동화
 
-Git 저장소에서 자동 문서 게시: ```bash
+Git 저장소에서 자동 문서 게시: `````bash
 #!/bin/bash
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to Outline
@@ -270,18 +271,18 @@ jobs: publish: runs-on: ubuntu-latest
               \"text\": $(echo \"$DOCS\" | jq -R -s .),
               \"append\": false
             }"
-```
+`````
 
 ### Notion 또는 Confluence에서 가져오기
 
-기존 문서 마이그레이션: ```bash
+기존 문서 마이그레이션: `````bash
 # Notion에서 납품: # Settings & Members → Settings → Export All Workspace Content → Export as Markdown
 
 # Confluence에서 납품: # Space Tools → Content Tools → Export → XML format
 
 # Outline로 가져오기: # Collection → Import → Markdown/ZIP 파일 업로드
 # Outline은 제목 구조와 코드 블록, 이미지를 보존하고 Notion 데이터베이스를 테이블로 변환
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -314,7 +315,7 @@ jobs: publish: runs-on: ubuntu-latest
 
 ### 1. Let's Encrypt로 HTTPS
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/outline
 server {
     listen 80;
@@ -350,11 +351,11 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
 ### 2. 데이터베이스 백업 및 복구
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/backup/outline-backup.sh
 set -euo pipefail
@@ -384,16 +385,16 @@ aws s3 cp "$BACKUP_DIR/outline_full_$TIMESTAMP.zip" \
 ls -t "$BACKUP_DIR"/outline_full_*.zip | tail -n +15 | xargs -r rm
 
 echo "Backup completed: outline_full_$TIMESTAMP.zip"
-```
+`````
 
-```bash
+`````bash
 # 매일 오전 3시 실행
 0 3 * * * /opt/backup/outline-backup.sh >> /var/log/outline-backup.log 2>&1
-```
+`````
 
 ### 3. 모니터링 스택
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus:v2.51.0
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -416,11 +417,11 @@ services: prometheus: image: prom/prometheus:v2.51.0
       - '--path.sysfs=/host/sys"
     restart: unless-stopped
 
-volumes: prometheus-data: grafana-data: ```
+volumes: prometheus-data: grafana-data: `````
 
 ### 4. Backblaze B2를 사용한 S3 호환 스토리지
 
-프로덕션 파일 스토리지를 위해 MinIO를 Backblaze B2 (또는 AWS S3)로 교체: ```bash
+프로덕션 파일 스토리지를 위해 MinIO를 Backblaze B2 (또는 AWS S3)로 교체: `````bash
 # Backblaze B2용 .env 추가
 AWS_ACCESS_KEY_ID=YOUR_B2_KEY_ID
 AWS_SECRET_ACCESS_KEY=YOUR_B2_APPLICATION_KEY
@@ -428,11 +429,11 @@ AWS_REGION=us-west-002
 AWS_S3_UPLOAD_BUCKET_URL=https://s3.us-west-002.backblazeb2.com
 AWS_S3_UPLOAD_BUCKET_NAME=your-outline-bucket
 AWS_S3_FORCE_PATH_STYLE=false
-```
+`````
 
 ### 5. 다중 환경 설정
 
-```yaml
+`````yaml
 # docker-compose.prod.yml — 프로덕션 구성으로 기본 확장
 services: outline: image: outlinewiki/outline:0.83.0
     environment: - NODE_ENV=production
@@ -447,7 +448,7 @@ services: outline: image: outlinewiki/outline:0.83.0
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ## 대안과의 비교
 
@@ -499,11 +500,11 @@ Outline은 Operational Transforms (OT)를 사용합니다 —— Google Docs가 
 
 ### 셀프호스팅 Outline 인스턴스의 백업 전략은 무엇인가요?
 
-세 가지 구성 요소를 백업합니다: (1) `pg_dump`를 사용한 PostgreSQL 데이터베이스, (2) S3 호환 저장소(MinIO 또는 AWS S3)의 업로드된 파일, (3) Redis 데이터(선택 사항, 재구축 가능). 데이터베이스를 덤프하고 파일을 외부 저장소로 동기화하는 매일 cron 작업이 대부분의 복구 시나리오를 포괄합니다. 분기별로 복구를 테스트하세요.
+세 가지 구성 요소를 백업합니다: (1) ````pg_dump````를 사용한 PostgreSQL 데이터베이스, (2) S3 호환 저장소(MinIO 또는 AWS S3)의 업로드된 파일, (3) Redis 데이터(선택 사항, 재구축 가능). 데이터베이스를 덤프하고 파일을 외부 저장소로 동기화하는 매일 cron 작업이 대부분의 복구 시나리오를 포괄합니다. 분기별로 복구를 테스트하세요.
 
 ### Notion이나 Confluence에서 문서를 가져올 수 있나요?
 
-예. Notion은 Markdown 납품을 지원합니다 (**Settings** → **Export All Workspace Content**), 이를 Outline이 직접 가져옵니다. Confluence는 `confluence-to-markdown`과 같은 도구를 통해 Markdown로 변환되는 XML 납품이 필요합니다. 가져오기는 제목 구조, 코드 블록, 이미지를 보존합니다. Notion 데이터베이스는 Outline에서 Markdown 테이블로 변환됩니다.
+예. Notion은 Markdown 납품을 지원합니다 (**Settings** → **Export All Workspace Content**), 이를 Outline이 직접 가져옵니다. Confluence는 ````confluence-to-markdown````과 같은 도구를 통해 Markdown로 변환되는 XML 납품이 필요합니다. 가져오기는 제목 구조, 코드 블록, 이미지를 보존합니다. Notion 데이터베이스는 Outline에서 Markdown 테이블로 변환됩니다.
 
 ### 50인 팀을 위한 Outline에 얼마나 많은 서버 리소스가 필요한가요?
 
@@ -511,11 +512,11 @@ Outline은 Operational Transforms (OT)를 사용합니다 —— Google Docs가 
 
 ### 문서를 공개적으로 접근 가능하게 만들 방법이 있나요?
 
-예. 모든 문서는 읽기 전용 공개 링크를 통해 공유할 수 있습니다. **Share** → **Publish to Internet**으로 이동하여 공개 URL을 생성합니다. 이는 API 문서, 사용자 가이드, 오픈소스 프로젝트 Wiki에 유용합니다. 공개 문서는 인증이 필요 없으며 `noindex` 태그를 추가하지 않는 한 검색 엔진에 인덱싱됩니다.
+예. 모든 문서는 읽기 전용 공개 링크를 통해 공유할 수 있습니다. **Share** → **Publish to Internet**으로 이동하여 공개 URL을 생성합니다. 이는 API 문서, 사용자 가이드, 오픈소스 프로젝트 Wiki에 유용합니다. 공개 문서는 인증이 필요 없으며 ````noindex```` 태그를 추가하지 않는 한 검색 엔진에 인덱싱됩니다.
 
 ### CI/CD 파이프라인과 Outline을 통합할 수 있나요?
 
-예, REST API를 통해 가능합니다. **Settings** → **API**에서 API Token을 생성한 다음 GitHub Actions, GitLab CI, 또는 main에 병합할 때마다 Outline으로 문서 업데이트를 자동으로 푸시하는 모든 CI 도구에서 사용합니다. 일반적인 패턴은 Markdown 파일을 Git 저장소의 `docs/` 디렉토리에 커밋하고 CI가 매번 Outline으로 푸시하도록 하는 것입니다.
+예, REST API를 통해 가능합니다. **Settings** → **API**에서 API Token을 생성한 다음 GitHub Actions, GitLab CI, 또는 main에 병합할 때마다 Outline으로 문서 업데이트를 자동으로 푸시하는 모든 CI 도구에서 사용합니다. 일반적인 패턴은 Markdown 파일을 Git 저장소의 ````docs/``` 디렉토리에 커밋하고 CI가 매번 Outline으로 푸시하도록 하는 것입니다.
 
 ## 결론: 팀의 지식을 소유하세요
 
@@ -531,7 +532,7 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 
 **관련 도구**: [Keycloak SSO 설정](keycloak-sso-setup-dibi8-internal-link) | [MinIO S3 설정 가이드](minio-s3-setup-dibi8-internal-link)
 
----
+* * *
 
 
 
@@ -552,7 +553,7 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 - [Redis 공식 문서](https://redis.io/docs/)
 - [MinIO 문서](https://min.io/docs/)
 
----
+* * *
 
 *본 문서에는 제휴 링크가 포함될 수 있습니다. 당사의 추천 링크를 통해 DigitalOcean이나 HTStack에 가입하시면 추가 비용 없이 커미션을 받습니다. 당사는 직접 사용하는 서비스만을 추천합니다.*
 
@@ -582,7 +583,7 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -592,6 +593,6 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](outline-wiki-knowledge-base)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](outline-wiki-knowledge-base)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

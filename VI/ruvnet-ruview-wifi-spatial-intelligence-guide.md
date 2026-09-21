@@ -13,6 +13,7 @@ license: MIT
 featureImage: "https://raw.githubusercontent.com/ruvnet/RuView/main/assets/ruview-seed.png"
 ---
 
+
 ## Giới thiệu
 
 WiFi đã trở thành nhiều hơn chỉ là một phương tiện kết nối thiết bị với internet — nó đã tiến hóa thành một nền tảng trí tuệ không gian capable của việc theo dõi vị trí thời gian thực, lập bản đồ layout tòa nhà và tối ưu hóa wireless networks. RuView, được phát triển bởi ruvnet, là một platform Python mã nguồn mở biến đổi WiFi signals thành precise spatial data, biến cơ sở hạ tầng WiFi hiện có của bạn thành một sensing system mạnh mẽ.
@@ -50,53 +51,53 @@ RuView được phân phối dưới dạng Python package trên PyPI, giúp cà
 
 ### Cài đặt qua pip
 
-```bash
+````bash
 pip install ruview
-```
+`````
 
 Điều này cài đặt gói RuView cốt lõi với các default dependencies bao gồm NumPy, SciPy và scikit-learn. Việc cài đặt thường hoàn thành trong dưới 30 giây trên một connection tiêu chuẩn.
 
 ### Xác minh cài đặt
 
-```bash
+`````bash
 ruview --help
-```
+`````
 
 ### Cài đặt với tất cả Optional Dependencies
 
-```bash
+`````bash
 pip install ruview[all]
-```
+`````
 
-Extra `[all]` cài đặt các additional dependencies cho advanced features bao gồm CSI processing, real-time streaming và GPU acceleration.
+Extra ````[all]```` cài đặt các additional dependencies cho advanced features bao gồm CSI processing, real-time streaming và GPU acceleration.
 
 ### Cài đặt từ Source
 
-```bash
+`````bash
 git clone https://github.com/ruvnet/RuView.git && cd RuView && pip install -e .
-```
+`````
 
 Cài đặt từ source cho phép bạn truy cập các tính năng mới nhất và cho phép bạn đóng góp changes ngược lại project.
 
 ### Docker Installation
 
-```bash
+`````bash
 docker run --rm -it ruview/ruview ruview --help
-```
+`````
 
 ### Cài đặt với GPU Acceleration
 
-```bash
+`````bash
 pip install ruview[cuda]
-```
+`````
 
 Yêu cầu NVIDIA CUDA toolkit version 11.0 hoặc cao hơn. GPU acceleration cải thiện đáng kể CSI processing speeds, tăng throughput từ 500 lên 2500 samples per second.
 
 ### Cài đặt với Home Assistant MQTT Integration
 
-```bash
+`````bash
 pip install ruview[mqtt]
-```
+`````
 
 Điều này cài đặt MQTT broker integration cho Home Assistant compatibility, cho phép automatic device registration qua HA-DISCO.
 
@@ -106,61 +107,61 @@ pip install ruview[mqtt]
 
 ### Quét các WiFi Devices có sẵn
 
-```bash
+`````bash
 ruview scan --device wlan0
-```
+`````
 
 Điều này quét network interface wlan0 và output một danh sách các visible WiFi devices với signal strength và position estimates. Sử dụng để discover devices trong environment của bạn.
 
 ### Bắt đầu Real-Time Tracking
 
-```bash
+`````bash
 ruview track --device wlan0 --output tracking.json
-```
+`````
 
 Điều này bắt đầu continuous position tracking của tất cả WiFi-enabled devices visible qua interface wlan0. Results được viết vào tracking.json trong thời gian thực ở các configurable intervals.
 
 ### Generate Floor Plan
 
-```bash
+`````bash
 ruview map --device wlan0 --output floorplan.png --resolution 0.1
-```
+`````
 
 Điều này generate một floor plan image từ WiFi signal data với 0.1 meter resolution. Output visualizes signal strength across the building, revealing walls, rooms và coverage gaps.
 
 ### Tối ưu Mesh Network
 
-```bash
+`````bash
 ruview optimize --device wlan0 --points 100 --output config.yaml
-```
+`````
 
 Điều này phân tích WiFi coverage và đề xuất optimal access point positions cho một mesh network với 100 evaluation points. Output là một YAML configuration file có thể được import vào network management tools.
 
 ### CSI Processing
 
-```bash
+`````bash
 ruview csi --device wlan0 --output csi-data.npy
-```
+`````
 
 Điều này capture Channel State Information data từ WiFi interface được chỉ định và save nó vào một NumPy array cho further analysis.
 
 ### Export Position Data
 
-```bash
+`````bash
 ruview export --format csv --output positions.csv
-```
+`````
 
 ### Xem Statistics
 
-```bash
+`````bash
 ruview stats --device wlan0
-```
+`````
 
 ### MQTT Streaming
 
-```bash
+`````bash
 ruview --mqtt
-```
+`````
 
 Bật MQTT streaming mode, publishing position data đến một MQTT broker cho integration với IoT platforms và smart home systems.
 
@@ -168,21 +169,21 @@ Bật MQTT streaming mode, publishing position data đến một MQTT broker cho
 
 ### MQTT Integration với HA-DISCO
 
-```bash
+`````bash
 ruview mqtt --broker localhost:1883 --topic ruview/positions --qos 1
-```
+`````
 
 Điều này stream position data đến một MQTT broker cho integration với smart building management systems. Khi sử dụng với Home Assistant's HA-DISCO MQTT publisher, RuView devices được automatically discovered và thêm vào Home Assistant instance của bạn.
 
 ### REST API Server
 
-```bash
+`````bash
 ruview api --host 0.0.0.0 --port 5000 --database ruview.db
-```
+`````
 
 Bắt đầu một REST API server để query position data, quản lý tracked devices và cấu hình tracking parameters. API server chạy trên port 5000 theo mặc định.
 
-```bash
+`````bash
 # Query tracked devices
 curl http://localhost:5000/api/devices
 
@@ -193,33 +194,33 @@ curl http://localhost:5000/api/devices/device-001/position
 curl -X POST http://localhost:5000/api/config \
   -H "Content-Type: application/json" \
   -d '{"algorithm": "tof", "confidence_threshold": 0.9}'
-```
+`````
 
 ### Home Assistant Integration
 
-```yaml
+`````yaml
 # Trong configuration.yaml của Home Assistant
 sensor: - platform: ruview
     host: localhost
     port: 5000
     scan_interval: 5
-```
+`````
 
 RuView có thể tích hợp trực tiếp với Home Assistant cho smart home automation dựa trên presence detection. Kết hợp với Matter Bridge support, tracked devices có thể được expose đến Apple Home, Google Home và Alexa.
 
 ### Grafana Dashboard Integration
 
-```bash
+`````bash
 ruview grafana --port 3000 --dataset ruview
-```
+`````
 
 Push position data đến Grafana cho real-time visualization và monitoring. Configure dashboards để track device movements, coverage heatmaps và network optimization metrics.
 
 ### Real-Time WebSocket Streaming
 
-```bash
+`````bash
 ruview stream --port 8765 --format websocket
-```
+`````
 
 Điều này bắt đầu một WebSocket server trên port 8765 stream position data trong thời gian thực. Web applications có thể connect để nhận live tracking updates mà không cần polling.
 
@@ -246,35 +247,35 @@ ruview stream --port 8765 --format websocket
 
 ### Mesh Optimization Performance
 
-Cho một 5000 square meter building với 10 access points: ```bash
+Cho một 5000 square meter building với 10 access points: `````bash
 time ruview optimize --device wlan0 --points 5000 --output optimization.yaml
 real 2m45s
 user 2m30s
 sys 0m12s
-```
+`````
 
 Optimizer tìm optimal access point placements trong dưới 3 phút cho các building sizes điển hình, sử dụng simulated annealing để maximize coverage.
 
 ### Use case thực tế: Smart Retail Store
 
-Một retail chain sử dụng RuView để track customer movement patterns across 12 store locations: ```bash
+Một retail chain sử dụng RuView để track customer movement patterns across 12 store locations: `````bash
 #!/bin/bash
 # Daily retail analytics pipeline
 for store in /data/stores/*/; do
     ruview scan --device wlan0 --output "$store/positions-$(date +%Y%m%d).json"
     ruview detect --device wlan0 --sensitivity 0.7 --output "$store/motion.json"
 done
-```
+`````
 
 Store sử dụng data này để tối ưu product placement, phân tích foot traffic patterns và đo lường effectiveness của in-store promotions.
 
 ### Use case thực tế: Office Building WiFi Optimization
 
-Một office building management team sử dụng RuView để tối ưu WiFi coverage across 3 floors: ```bash
+Một office building management team sử dụng RuView để tối ưu WiFi coverage across 3 floors: `````bash
 # Run optimization across all floors
 ruview optimize --device wlan0 --points 5000 --output optimization.yaml
 ruview map --device wlan0 --output floorplan.svg --format svg
-```
+`````
 
 Optimization xác định 4 dead zones và đề xuất 3 additional access point placements, cải thiện coverage từ 72% lên 98%.
 
@@ -282,30 +283,30 @@ Optimization xác định 4 dead zones và đề xuất 3 additional access poin
 
 ### Config File Setup
 
-```bash
+`````bash
 ruview init --config ruview.yaml
-```
+`````
 
-Điều này tạo một file cấu hình `ruview.yaml` với default settings. Sau đó bạn có thể customize: ```yaml
+Điều này tạo một file cấu hình ``ruview.yaml`` với default settings. Sau đó bạn có thể customize: `````yaml
 device: wlan0
 sample_rate: 100
 position_algorithm: tof
 confidence_threshold: 0.85
 output_format: json
 tracking_interval: 0.5
-```
+`````
 
 ### Multi-Device Tracking
 
-```bash
+`````bash
 ruview track --device wlan0 --device wlan1 --mode multi
-```
+`````
 
 Tracks devices sử dụng nhiều WiFi interfaces simultaneously, cải thiện accuracy qua sensor fusion và redundant measurements.
 
 ### Custom Positioning Algorithm
 
-```python
+`````python
 import ruview
 
 # Define a custom positioning algorithm
@@ -318,47 +319,47 @@ ruview.register_algorithm("custom_tri", custom_triangulation)
 
 # Use the custom algorithm
 ruview.track(device="wlan0", algorithm="custom_tri")
-```
+`````
 
 ### Batch Processing
 
-```bash
+`````bash
 ruview batch --input /data/wifi-captures/ --output /data/positions/ --parallel 4
-```
+`````
 
 Processes multiple WiFi capture files in parallel sử dụng 4 worker processes, ideal cho việc processing historical data.
 
 ### Floor Plan Export Formats
 
-```bash
+`````bash
 ruview map --device wlan0 --output floorplan.svg --format svg
 ruview map --device wlan0 --output floorplan.pdf --format pdf
 ruview map --device wlan0 --output floorplan.json --format json
-```
+`````
 
 RuView hỗ trợ nhiều output formats cho floor plan generation bao gồm PNG, SVG, PDF và JSON.
 
 ### Motion Detection
 
-```bash
+`````bash
 ruview detect --device wlan0 --sensitivity 0.7 --output motion.json
-```
+`````
 
 Phát hiện motion và activity patterns qua WiFi signal analysis. Sensitivity parameter kiểm soát threshold cho motion detection (0.0 đến 1.0).
 
 ### Mesh Network Simulation
 
-```bash
+`````bash
 ruview simulate --floor-plan floorplan.json --num-aps 5 --iterations 1000 --output optimization.yaml
-```
+`````
 
 Simulates mesh network optimization over 1000 iterations để tìm optimal access point placements cho một floor plan nhất định.
 
 ### CSI Visualization
 
-```bash
+`````bash
 ruview visualize-csi --input csi-data.npy --output csi-visualization.html
-```
+`````
 
 Generates một interactive HTML visualization của Channel State Information data cho detailed signal analysis.
 
@@ -366,7 +367,7 @@ Generates một interactive HTML visualization của Channel State Information d
 
 | Feature | RuView | AirWatch | Ekahau | NetSurveyor |
 |---------|--------|----------|--------|-------------|
-| Install Method | `pip install ruview` | Enterprise SaaS | Enterprise SaaS | Desktop app |
+| Install Method | ````pip install ruview```` | Enterprise SaaS | Enterprise SaaS | Desktop app |
 | Cost | Free (MIT) | $50K+/year | $25K+/year | $300/license |
 | Python API | Yes | No | No | Limited |
 | Real-Time Tracking | Yes | Yes | Yes | No |
@@ -418,13 +419,13 @@ A: Có, RuView có built-in Home Assistant integration với HA-DISCO MQTT publi
 
 ## Kết luận: CTA
 
-RuView biến đổi standard WiFi infrastructure thành một powerful spatial intelligence platform. Với một lệnh `pip install ruview` đơn giản, bạn có thể bắt đầu track device positions, generate floor plans và tối ưu hóa WiFi mesh networks — tất cả sử dụng standard WiFi adapters và không có specialized hardware. Việc bổ sung Matter Bridge support có nghĩa là WiFi sensing data của bạn có thể seamless integrate với smart home ecosystems bao gồm Apple Home, Google Home và Alexa.
+RuView biến đổi standard WiFi infrastructure thành một powerful spatial intelligence platform. Với một lệnh ````pip install ruview```` đơn giản, bạn có thể bắt đầu track device positions, generate floor plans và tối ưu hóa WiFi mesh networks — tất cả sử dụng standard WiFi adapters và không có specialized hardware. Việc bổ sung Matter Bridge support có nghĩa là WiFi sensing data của bạn có thể seamless integrate với smart home ecosystems bao gồm Apple Home, Google Home và Alexa.
 
 Dù bạn đang build một smart building system, tối ưu WiFi coverage, phát triển location-aware applications hoặc tạo privacy-preserving presence detection cho Home Assistant, RuView cung cấp flexibility, accuracy và ease of use bạn cần ở zero cost.
 
 Để hosting smart building infrastructure và IoT pipelines của bạn, hãy cân nhắc deploy trên các cloud servers giá cả phải chăng. Sử dụng [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho development servers, [HTStack](https://my.htstack.com/aff.php?aff=27187) cho production hosting và [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cho proxy và content distribution đáng tin cậy.
 
-Bắt đầu ngay hôm nay: `pip install ruview && ruview scan --device wlan0` và khám phá WiFi network của bạn thực sự có thể làm gì.
+Bắt đầu ngay hôm nay: ````pip install ruview && ruview scan --device wlan0``` và khám phá WiFi network của bạn thực sự có thể làm gì.
 
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
 
@@ -469,7 +470,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể kiếm đ�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -479,6 +480,6 @@ Một số liên kết trên là affiliate links. dibi8.com có thể kiếm đ�
 - [cleanlab-11k-star-ai-data-cleaning](ruvnet-ruview-wifi-spatial-intelligence-guide)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ruvnet-ruview-wifi-spatial-intelligence-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

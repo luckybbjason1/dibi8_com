@@ -5,6 +5,7 @@ slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png
 ---
 
+
 # TimesFM 2.5: 예측을 위한 Google의 혁신적인 시계열 기반 모델 
 
 시계열 예측은 오랫동안 데이터 과학에서 가장 어려운 문제 중 하나였습니다. 주가 예측에서 날씨 패턴 예측, 매출 예측에서 에너지 소비 예측에 이르기까지 정확한 예측은 비즈니스의 성패를 좌우할 수 있습니다. 
@@ -65,7 +66,7 @@ TimesFM을 시작하는 것은 간단합니다. 이 모델은 PyPI를 통해 제
 
 ### 옵션 1: PyPI를 통한 빠른 설치 
 
-``배쉬 
+```배쉬 
 # PyTorch 백엔드로 설치 
 pip 설치 시간fm[토치] 
 
@@ -74,11 +75,11 @@ pip 설치 시간fm[flax]
 
 # 공변량 지원이 필요한 경우(XReg) 
 pip 설치 시간fm[xreg] 
-```` 
+`````` 
 
 ### 옵션 2: 개발 설치 
 
-최신 기능에 참여하거나 액세스하려는 사람들을 위해: ``배쉬 
+최신 기능에 참여하거나 액세스하려는 사람들을 위해: ````배쉬 
 # 저장소를 복제합니다 
 자식 클론 https://github.com/google-research/timesfm.git 
 CD타임스FM 
@@ -91,7 +92,7 @@ CD타임스FM
 uv pip install -e .[토치] 
 # 또는 Flax 백엔드의 경우 
 uv pip install -e .[flax] 
-```` 
+`````` 
 
 ### 백엔드 선택 
 
@@ -109,7 +110,7 @@ TimesFM은 여러 백엔드를 지원합니다.
 
 ### 제로샷 예측 
 
-``파이썬 
+````파이썬 
 numpy를 np로 가져오기 
 수입 시간 FM 
 
@@ -126,13 +127,13 @@ Historical_data = np.random.randn(1, 1024)
 예측 = model.forecast(historical_data, horizon=12) 
 print(f"예측 형태: {forecast.shape}") 
 print(f"예측 값: {예측}") 
-```` 
+`````` 
 
 ### 분위수 예측 사용
 
 불확실성 추정을 위해 연속 분위수 수두를 활성화합니다. 
 
-``파이썬 
+````파이썬 
 Forecast_with_uncertainty = 모델.예측( 
 역사적_데이터, 
 지평선=12, 
@@ -143,11 +144,11 @@ Quantiles=[0.1, 0.5, 0.9] # 10번째, 50번째, 90번째 백분위수
 point_forecast = Forecast_with_uncertainty[:, :, 1] # 중앙값 
 lower_bound = Forecast_with_uncertainty[:, :, 0] # 10번째 백분위수 
 upper_bound = Forecast_with_uncertainty[:, :, 2] # 90번째 백분위수 
-```` 
+`````` 
 
 ### PyTorch 백엔드 사용 
 
-``파이썬 
+````파이썬 
 수입 토치 
 수입 시간 FM 
 
@@ -180,7 +181,7 @@ np.linspace(0, 1, 100),
 np.sin(np.linspace(0, 20, 67)), 
 ] 
 ) 
-```` 
+`````` 
 
 ## 고급 기능 
 
@@ -188,7 +189,7 @@ np.sin(np.linspace(0, 20, 67)),
 
 TimesFM 2.5의 가장 강력한 기능 중 하나는 LoRA(Low-Rank Adaptation)를 사용하여 미세 조정하는 기능입니다. 
 
-``파이썬 
+````파이썬 
 변환기에서 AutoModelForSequenceClassification 가져오기 
 peft import LoraConfig, get_peft_model에서 
 
@@ -210,13 +211,13 @@ lora_dropout=0.1,
 
 # 이제 특정 데이터 세트를 미세 조정할 수 있습니다 
 # 전체 미세 조정보다 훨씬 적은 수의 매개변수가 필요합니다. 
-```` 
+`````` 
 
 ### XReg를 통한 공변량 지원 
 
 시계열에 영향을 미치는 외부 변수가 있는 시나리오의 경우 TimesFM 2.5는 공변량 모델링을 지원합니다. 
 
-``파이썬 
+````파이썬 
 # XReg 지원으로 설치 
 # pip 설치 시간fm[xreg] 
 
@@ -241,11 +242,11 @@ y_pred,confidence_intervals=모델.예측(
 지평선=12, 
 X_future=np.random.randn(12, 5) 
 ) 
-```` 
+`````` 
 
 ### 일괄 예측 
 
-동시에 여러 시계열의 경우: ``파이썬 
+동시에 여러 시계열의 경우: ````파이썬 
 # 시계열 배치 준비 
 배치_데이터 = np.random.randn(10, 1024) # 10개 계열, 각각 1024개의 시간 단계 
 
@@ -254,11 +255,11 @@ X_future=np.random.randn(12, 5)
 
 # 모양: (10, 24) - 각각 24개 시간 단계로 구성된 예측 10개 
 print(f"일괄 예측 형태: {forecasts.shape}") 
-```` 
+`````` 
 
 ### 일괄 예측 
 
-동시에 여러 시계열의 경우: ``파이썬 
+동시에 여러 시계열의 경우: ````파이썬 
 # 시계열 배치 준비 
 배치_데이터 = np.random.randn(10, 1024) # 10개 계열, 각각 1024개의 시간 단계 
 
@@ -267,11 +268,11 @@ print(f"일괄 예측 형태: {forecasts.shape}")
 
 # 모양: (10, 24) - 각각 24개 시간 단계로 구성된 예측 10개 
 print(f"일괄 예측 형태: {forecasts.shape}") 
-```` 
+`````` 
 
 ### 일괄 예측 
 
-동시에 여러 시계열의 경우: ``파이썬 
+동시에 여러 시계열의 경우: ````파이썬 
 # 시계열 배치 준비 
 배치_데이터 = np.random.randn(10, 1024) # 10개 계열, 각각 1024개의 시간 단계 
 
@@ -280,11 +281,11 @@ print(f"일괄 예측 형태: {forecasts.shape}")
 
 # 모양: (10, 24) - 각각 24개 시간 단계로 구성된 예측 10개 
 print(f"일괄 예측 형태: {forecasts.shape}") 
-```` 
+`````` 
 
 ### 스트리밍 추론 
 
-실시간 예측 애플리케이션의 경우: ``파이썬 
+실시간 예측 애플리케이션의 경우: ````파이썬 
 # 스트리밍 클라이언트 초기화 
 Streaming_model = timesfm.StreamingTimesFM( 
 model_path="google/timesfm-2.5-200m-flax" 
@@ -294,7 +295,7 @@ model_path="google/timesfm-2.5-200m-flax"
 True인 동안: new_data = get_next_time_step() 
 예측 = Streaming_model.update_and_predict(new_data, horizon=12) 
 display_forecast(예측) 
-```` 
+`````` 
 
 ## 성능 벤치마크 
 
@@ -327,7 +328,7 @@ TimesFM의 독특한 장점 중 하나는 Google 생태계와의 통합입니다
 
 ### BigQuery ML 
 
-엔터프라이즈 규모 예측의 경우: ``sql 
+엔터프라이즈 규모 예측의 경우: ````sql 
 -- BigQuery ML에서 TimesFM 모델 사용 
 모델 생성 my_project.my_timesfm_model 
 OPTIONS(model_type='TIMESFM') AS 
@@ -335,8 +336,8 @@ OPTIONS(model_type='TIMESFM') AS
 타임스탬프_콜, 
 value_col, 
 추출(timestamp_col에서 HOUR) AS hour_of_day 
-`my_dataset.time_series_data`에서; 
-```` 
+````my_dataset.time_series_data````에서; 
+`````` 
 
 ### Google 스프레드시트 통합 
 
@@ -347,7 +348,7 @@ value_col,
 
 ### Vertex AI 모델 가든 
 
-클라우드 배포의 경우: ``파이썬 
+클라우드 배포의 경우: ````파이썬 
 google.cloud에서 aiplatform 가져오기 
 
 # TimesFM 모델을 Vertex AI에 배포 
@@ -364,7 +365,7 @@ Artifact_uri="gs://your-bucket/timesfm-model"
 ) 
 
 끝점.배포(모델=모델, machine_type="n1-standard-4") 
-```` 
+`````` 
 
 ## 실제 애플리케이션 
 
@@ -372,7 +373,7 @@ Artifact_uri="gs://your-bucket/timesfm-model"
 
 소매업체는 TimesFM을 사용하여 향후 매출을 예측할 수 있습니다. 
 
-``파이썬 
+````파이썬 
 팬더를 PD로 가져오기 
 수입 시간 FM 
 
@@ -389,13 +390,13 @@ Historical_sales = sales_data["sales"].values.reshape(1, -1)
 
 예측 = model.forecast(historical_sales, horizon=30) 
 print(f"다음 달 예상 판매량: {forecast.mean():.2f}") 
-```` 
+`````` 
 
 ### 애플리케이션 2: 에너지 수요 예측 
 
 유틸리티 회사는 전력 수요를 예측할 수 있습니다. 
 
-``파이썬 
+````파이썬 
 # 에너지 소비 데이터 로드 
 에너지 데이터 = pd.read_csv("energy_consumption.csv") 
 
@@ -414,13 +415,13 @@ future_demand = 모델.예측(
 지평선=24, 
 X_future=future_covariates.values 
 ) 
-```` 
+`````` 
 
 ### 애플리케이션 3: 금융 시장 분석 
 
 재정적인 조언은 아니지만 TimesFM은 시장 패턴을 분석하는 데 도움을 줄 수 있습니다. 
 
-``파이썬 
+````파이썬 
 # 주가예측 
 stock_prices = pd.read_csv("stock_history.csv")["close"].values 
 
@@ -433,7 +434,7 @@ stock_prices[200:] # 아마존
 
 # 전 종목 예측 
 예측 = model.forecast(batch_stocks, horizon=30) 
-```` 
+`````` 
 
 ## 기존 방식과의 비교 
 
@@ -536,7 +537,7 @@ Google Research 팀은 다음과 같은 지속적인 작업을 통해 계속해�
 
 예측 워크플로를 혁신할 준비가 되셨나요? 시작하는 방법은 다음과 같습니다.
 
-1. **설치**: `pip install timesfm[flax]` 
+1. **설치**: ````pip install timesfm[flax]``` 
 2. **모델 로드**: Hugging Face에서 사전 학습된 체크포인트 사용 
 3. **데이터 준비**: 시계열 형식을 적절하게 지정하세요. 
 4. **예측**: 원하는 기간으로 예측 방법을 호출합니다. 
@@ -578,7 +579,7 @@ Google 생태계와의 통합, 활발한 개발 커뮤니티, 지속적인 개�
 
 시간 데이터로 작업하는 모든 사람에게 TimesFM을 학습하고 배포하는 데 시간을 투자하는 것은 유익할 뿐만 아니라 필수가 되고 있습니다. 
 
---- 
+* * *
 
 **출처:** 
 - [GitHub 저장소](https://github.com/google-research/timesfm) 

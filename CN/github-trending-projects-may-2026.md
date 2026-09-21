@@ -34,6 +34,8 @@ faqs: - q: 'What is DeepSeek-TUI and how is it different from Cursor or GitHub C
   - q: 'Is Local Deep Research private, and how accurate is it?'
     a: 'Local Deep Research runs entirely on your own hardware with zero telemetry and no cloud dependency, storing research history in a SQLCipher-encrypted database. Despite running locally, it reaches roughly 95% accuracy on SimpleQA when paired with Qwen3.6-27B on an RTX 3090, and supports 10+ search engines including arXiv and PubMed.'
 ---
+
+
 {</* resource-info */>}
 
 ## Introduction
@@ -45,35 +47,35 @@ This article breaks down the hottest trending projects you should actually care 
 ![Modern workspace with multiple monitors](https://images.pexels.com/photos/34804018/pexels-photo-34804018.jpeg?auto=compress&cs=tinysrgb&h=350) *Image credit: Daniil Komov via Pexels*
 
 
----
+* * *
 ## Project 1: Hmbown / DeepSeek-TUI — Your Terminal Is Now a Supercharged Coding Agent
 
-**Stars:** 21,085 &nbsp;|&nbsp; **+5,799 stars today** &nbsp;|&nbsp; Repository: [`Hmbown/DeepSeek-TUI`](https://github.com/Hmbown/DeepSeek-TUI)
+**Stars:** 21,085 &nbsp;|&nbsp; **+5,799 stars today** &nbsp;|&nbsp; Repository: [````Hmbown/DeepSeek-TUI``````](https://github.com/Hmbown/DeepSeek-TUI)
 
 If one project defined the current AI-coding hype cycle, it is DeepSeek-TUI. In a single day, it accumulated nearly 5,800 new stars — far outpacing every other trending repository. It is not just another ChatGPT-in-the-browser wrapper; it is a genuine terminal-based coding agent that integrates seamlessly into your existing development workflow.
 
 ### What Makes It Different
 
-DeepSeek-TUI runs locally from your terminal using the `deepseek` command. Instead of opening a web tab and typing into a text box, you interact directly inside your codebase. The agent streams reasoning blocks back to your terminal, reads and writes files on disk, and — critically — uses approval gates before making any filesystem changes. This means you stay in control while getting the speed boost of AI-assisted editing.
+DeepSeek-TUI runs locally from your terminal using the ``````deepseek`````` command. Instead of opening a web tab and typing into a text box, you interact directly inside your codebase. The agent streams reasoning blocks back to your terminal, reads and writes files on disk, and — critically — uses approval gates before making any filesystem changes. This means you stay in control while getting the speed boost of AI-assisted editing.
 
-Unlike Cursor or Copilot which run as full GUI editors, DeepSeek-TUI is designed for terminal purists. If you spend your day in `tmux`, `neovim`, or `zsh`, this feels native. No context-switching between browser tabs and IDE windows.
+Unlike Cursor or Copilot which run as full GUI editors, DeepSeek-TUI is designed for terminal purists. If you spend your day in ``````tmux``````, ``````neovim``````, or ``````zsh``````, this feels native. No context-switching between browser tabs and IDE windows.
 
 ### Auto Mode: Smart Model Routing That Saves Money
 
-The standout feature is auto mode (`deepseek --model auto`). Before sending each request, DeepSeek-TUI makes a tiny routing call using `deepseek-v4-flash` (no thinking enabled). The router evaluates your latest request and recent conversation context, then picks the optimal combination: - **Model:** `deepseek-v4-flash` for quick tasks, `deepseek-v4-pro` for complex architecture work
-- **Thinking level:** `off` for simple refactors, `high` or `max` for security reviews or debugging multi-step problems
+The standout feature is auto mode (``````deepseek --model auto``````). Before sending each request, DeepSeek-TUI makes a tiny routing call using ``````deepseek-v4-flash`````` (no thinking enabled). The router evaluates your latest request and recent conversation context, then picks the optimal combination: - **Model:** ``````deepseek-v4-flash`````` for quick tasks, ``````deepseek-v4-pro`````` for complex architecture work
+- **Thinking level:** ``````off`````` for simple refactors, ``````high`````` or ``````max`````` for security reviews or debugging multi-step problems
 
-This means short questions stay cheap, and only genuinely complex tasks trigger higher-cost inference. The upstream API never receives `"model": "auto"` — the TUI resolves it internally and charges you against the actual model used. Cost tracking happens transparently.
+This means short questions stay cheap, and only genuinely complex tasks trigger higher-cost inference. The upstream API never receives ``````"model": "auto"`````` — the TUI resolves it internally and charges you against the actual model used. Cost tracking happens transparently.
 
 ### Installation — Every Platform Covered
 
-```bash
+```````bash
 # npm — easiest path
 npm install -g deepseek-tui
 
 # Cargo — no Node.js required
-cargo install deepseek-tui-cli --locked   # provides `deepseek`
-cargo install deepseek-tui     --locked   # provides `deepseek-tui`
+cargo install deepseek-tui-cli --locked   # provides ``````deepseek``````
+cargo install deepseek-tui     --locked   # provides ``````deepseek-tui``````
 
 # Homebrew (macOS)
 brew tap Hmbown/deepseek-tui
@@ -84,9 +86,9 @@ docker run --rm -it \
   -e DEEPSEEK_API_KEY \
   -v "$PWD:/workspace" \
   ghcr.io/hmbown/deepseek-tui:latest
-```
+```````
 
-Auth is managed via `deepseek auth set --provider deepseek`. You can rotate keys or check config status without exposing secrets using `deepseek auth status` and `deepseek auth clear`.
+Auth is managed via ``````deepseek auth set --provider deepseek``````. You can rotate keys or check config status without exposing secrets using ``````deepseek auth status`````` and ``````deepseek auth clear``````.
 
 For developers in mainland China, the project supports Cargo registry mirrors (like Tsinghua Tuna) and configurable release base URLs for faster downloads. Windows users benefit from Scoop package manager integration. ARM64 Linux (Raspberry Pi, Asahi, Graviton, HarmonyOS PC) works natively from v0.8.8 onward.
 
@@ -98,9 +100,9 @@ When a task is large enough, DeepSeek-TUI can spawn sub-agents. Each sub-agent i
 
 | Scenario | Benefit |
 |
----
+* * *
 |
----
+* * *
 |
 | Rapid prototyping | Describe a feature in plain English, get working code in your editor |
 | Legacy code refactoring | Batch-fix inconsistent patterns across hundreds of files |
@@ -112,15 +114,15 @@ When a task is large enough, DeepSeek-TUI can spawn sub-agents. Each sub-agent i
 
 | Tool | Editor | Pricing | Reasoning Streams | Approval Gates |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | DeepSeek-TUI | Terminal | Pay per token | ✅ Yes | ✅ Configurable |
 | Cursor | GUI App | $20/mo | ✅ Yes | ❌ Full automation |
@@ -130,10 +132,10 @@ When a task is large enough, DeepSeek-TUI can spawn sub-agents. Each sub-agent i
 DeepSeek-TUI undercuts Claude Code on pricing while matching its core capabilities. For teams running on Linux servers or headless CI pipelines, DeepSeek-TUI is the only option that runs comfortably in a terminal environment.
 
 
----
+* * *
 ## Project 2: anthropics / financial-services — Enterprise-Grade AI Agents for Wall Street
 
-**Stars:** 13,496 &nbsp;|&nbsp; **+1,343 stars today** &nbsp;|&nbsp; Repository: [`anthropics/financial-services`](https://github.com/anthropics/claude-for-financial-services)
+**Stars:** 13,496 &nbsp;|&nbsp; **+1,343 stars today** &nbsp;|&nbsp; Repository: [``````anthropics/financial-services``````](https://github.com/anthropics/claude-for-financial-services)
 
 While consumer-facing AI coding tools dominate headlines, Anthropic quietly released something far more commercially significant: a complete, production-ready AI agent suite for financial services. This is not a toy prototype — it covers investment banking, equity research, private equity, and wealth management workflows end-to-end.
 
@@ -141,11 +143,11 @@ While consumer-facing AI coding tools dominate headlines, Anthropic quietly rele
 
 The repository ships 11 named agents, each covering a specific financial workflow: | Function | Agent | Output |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Coverage & Advisory | **Pitch Agent** | Comps, precedents, LBO → branded pitch deck |
 | Research & Modeling | **Market Researcher** | Sector overview + competitive landscape + peer comps |
@@ -153,13 +155,13 @@ The repository ships 11 named agents, each covering a specific financial workflo
 | Fund Administration | **GL Reconciler** | Finds discrepancies, traces root cause |
 | Operations & Compliance | **KYC Screener** | Parses onboarding docs, flags gaps via rules engine |
 
-Plus vertical plugins for `/comps`, `/dcf`, `/earnings`, and more granular slash commands. Partner-built plugins from LSEG and S&P Global extend the ecosystem further.
+Plus vertical plugins for ``````/comps``````, ``````/dcf``````, ``````/earnings``````, and more granular slash commands. Partner-built plugins from LSEG and S&P Global extend the ecosystem further.
 
 ### Two Deployment Paths
 
 What makes this truly distinctive is the dual distribution model: 1. **Claude Cowork Plugin** — Install directly in Claude.ai by pasting the repo URL or uploading a zip file. Pick individual agents or the full stack. Perfect for solo analysts or small teams.
 
-2. **Claude Managed Agents API** — Deploy behind your own workflow engine via the `/v1/agents` endpoint. Comes with `agent.yaml` configs, leaf-worker subagent templates, steering events, and per-agent security notes. Designed for firms that need audit trails, role-based access, and integration with internal systems.
+2. **Claude Managed Agents API** — Deploy behind your own workflow engine via the ``````/v1/agents`````` endpoint. Comes with ``````agent.yaml`````` configs, leaf-worker subagent templates, steering events, and per-agent security notes. Designed for firms that need audit trails, role-based access, and integration with internal systems.
 
 ### Why This Matters Commercially
 
@@ -170,26 +172,26 @@ Financial services is a $4 trillion industry in the U.S. alone. The friction bet
 
 ### Getting Started
 
-```bash
+```````bash
 # Via Claude Code marketplace
 claude plugin marketplace add anthropics/claude-for-financial-services
 claude plugin install financial-analysis@claude-for-financial-services
 
 # Or via Cowork settings: Settings → Plugins → Add plugin
 # Paste: https://github.com/anthropics/claude-for-financial-services
-```
+```````
 
-For Managed Agent deployments, cookbooks in `managed-agent-cookbooks/` provide ready-made `agent.yaml` configurations for each named agent.
+For Managed Agent deployments, cookbooks in ``````managed-agent-cookbooks/`````` provide ready-made ``````agent.yaml`````` configurations for each named agent.
 
 ### Risk & Responsibility
 
 Anthropic is explicit: nothing in this repository constitutes investment, legal, tax, or accounting advice. These agents draft analyst work product — models, memos, research notes, reconciliations — for review by qualified professionals. You are responsible for verifying outputs and maintaining compliance with applicable laws. This is the correct framing for enterprise adoption.
 
----
+* * *
 
 ## Project 3: LearningCircuit / local-deep-research — Private, Encrypted AI Research at Scale
 
-**Stars:** 6,542 &nbsp;|&nbsp; Repository: [`LearningCircuit/local-deep-research`](https://github.com/LearningCircuit/local-deep-research)
+**Stars:** 6,542 &nbsp;|&nbsp; Repository: [``````LearningCircuit/local-deep-research``````](https://github.com/LearningCircuit/local-deep-research)
 
 As AI-generated content floods the internet, the ability to conduct genuine, deep research becomes a premium skill. Local Deep Research delivers on that promise by running entirely on your hardware — no data leaves your machine, no APIs send your queries to third parties, and every database connection uses SQLCipher encryption.
 
@@ -210,27 +212,27 @@ In 2026, data privacy regulations (GDPR, CCPA, China PIPL, Brazil LGPD) make clo
 
 ### Installation
 
-```bash
+```````bash
 pip install local-deep-research
-```
+```````
 
-Or use the Docker image for isolated deployment: ```bash
+Or use the Docker image for isolated deployment: ```````bash
 docker pull localdeepresearch/local-deep-research
-```
+```````
 
----
+* * *
 
 ## Side-by-Side Comparison
 
 | Feature | DeepSeek-TUI | Anthropic FinServ | Local Deep Research |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Category** | Terminal coding agent | Financial AI agents | Local research engine |
 | **Daily Star Growth** | +5,799 | +1,343 | N/A (steady) |
@@ -241,7 +243,7 @@ docker pull localdeepresearch/local-deep-research
 | **Deployment** | Terminal, Docker | Cowork plugin, API, Docker | pip, Docker |
 | **Commercial Potential** | ★★★★★ | ★★★★★ | ★★★★☆ |
 
----
+* * *
 
 ## How We Ranked These Projects
 
@@ -249,28 +251,28 @@ Our selection criteria prioritize commercial relevance over raw star count. Here
 2. **Vertical specialization wins** — Anthropic's financial-services suite targets a documented, budget-rich market with identifiable buyers
 3. **Privacy is a growing moat** — Local Deep Research addresses the regulatory tailwinds pushing enterprises away from cloud AI
 
----
+* * *
 
 ## Conclusion: What Should You Try First?
 
-- **Developers wanting faster coding** → Start with DeepSeek-TUI. Install via `npm`, configure your API key, and experience the difference between browser-bound AI and terminal-native agentic workflows.
+- **Developers wanting faster coding** → Start with DeepSeek-TUI. Install via ``````npm````, configure your API key, and experience the difference between browser-bound AI and terminal-native agentic workflows.
 - **Financial professionals** → Install the Pitch Agent or Market Researcher via Cowork and see how quickly structured financial analysis goes from hours to minutes.
 - **Researchers & journalists** → Try Local Deep Research with your own document collection. The offline guarantee alone justifies the setup effort.
 
 All three projects demonstrate that 2026's open-source AI revolution is shifting from gimmicks to infrastructure — tools that solve expensive, recurring problems for people who have budgets to spend.
 
----
+* * *
 
 ## Related Articles
 
 - [Agent-Skills by Addy Osmani: Production-Grade Engineering for AI Coding Agents](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/)
 - [Docuseal: The Open-Source Alternative to DocuSign](/resources/ai-tools/docuseal-open-source-docusign-alternative/)
 
----
+* * *
 
 💬 *What do you think about terminal-based AI coding agents? Have you tried DeepSeek-TUI yet? Share your thoughts in the comments below.*
 
----
+* * *
 
 ## Recommended Tools
 

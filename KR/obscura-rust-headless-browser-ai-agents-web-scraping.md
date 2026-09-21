@@ -13,9 +13,10 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
 ---
 
+
 # Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南
 
-```
+````
 ┌───────────────────────────────────────────────────┐
 │             Obscura Architecture                    │
 │                                                     │
@@ -45,11 +46,11 @@ featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets
 │  │     ✅ Puppeteer      ✅ Playwright          │   │
 │  └─────────────────────────────────────────────┘   │
 └───────────────────────────────────────────────────┘
-```
+`````
 
 Obscura 是一款以 Rust 編寫的無頭瀏覽器引擎，專門為網頁爬蟲和 AI 代理自動化而設計。僅需 30MB 記憶體使用和 85ms 頁面載入時間，它在效能上大幅超越無頭 Chrome，同時提供內建的反偵測功能。
 
-由 `h4ckf0r0day` 創造的 Obscura 已獲得 14,788 顆 GitHub 星，設計為在使用 Puppeteer 和 Playwright 時作為無頭 Chrome 的即插即用取代方案。其主要差異點：它透過 V8 執行真實的 JavaScript，但資源開銷僅有 Chrome 的一小部分。
+由 ````h4ckf0r0day```` 創造的 Obscura 已獲得 14,788 顆 GitHub 星，設計為在使用 Puppeteer 和 Playwright 時作為無頭 Chrome 的即插即用取代方案。其主要差異點：它透過 V8 執行真實的 JavaScript，但資源開銷僅有 Chrome 的一小部分。
 
 本指南涵蓋安裝、CLI 使用、CDP 伺服器設定、Puppeteer/Playwright 整合以及生產環境部署。
 
@@ -79,7 +80,7 @@ Obscura 是一款以 Rust 實作 Chrome 開發者工具協議（CDP）的無頭�
 
 Obscura 使用 V8 JavaScript 引擎（ powering Chrome 和 Node.js 的同一個引擎）來執行 JavaScript，但其瀏覽器渲染管線是完全以 Rust 自訂建構的。這意味著它能獲得 Chrome 等級的 JavaScript 相容性，同時具備 Rust 等級的效能。
 
-```
+`````
 Request (fetch / scrape / serve)
     │
     ▼
@@ -108,9 +109,9 @@ Request (fetch / scrape / serve)
 │  (HTML dump, JSON, text,     │
 │   eval result, assets)       │
 └─────────────────────────────┘
-```
+`````
 
-`serve` 指令啟動相容 CDP 的伺服器，接受來自 Puppeteer 和 Playwright 的連線。`fetch` 指令執行一次性頁面操作。`scrape` 指令則使用可配置的併發性執行平行頁面操作。
+````serve```` 指令啟動相容 CDP 的伺服器，接受來自 Puppeteer 和 Playwright 的連線。````fetch```` 指令執行一次性頁面操作。````scrape```` 指令則使用可配置的併發性執行平行頁面操作。
 
 ## 安裝與設定
 
@@ -118,7 +119,7 @@ Request (fetch / scrape / serve)
 
 從[發行頁面](https://github.com/h4ckf0r0day/obscura/releases)下載最新二進位檔：
 
-```bash
+`````bash
 # Linux x86_64
 curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-linux.tar.gz
 tar xzf obscura-x86_64-linux.tar.gz
@@ -138,29 +139,29 @@ tar xzf obscura-x86_64-macos.tar.gz
 
 # Windows
 # 從發行頁面下載 .zip 並手動解壓縮
-```
+`````
 
-不需要 Chrome、Node.js 或任何依賴。發行套件包含 `obscura` 和 `obscura-worker` 兩個二進位檔——請將它們放在同一個目錄中以支援平行 `scrape` 指令。
+不需要 Chrome、Node.js 或任何依賴。發行套件包含 ````obscura```` 和 ````obscura-worker```` 兩個二進位檔——請將它們放在同一個目錄中以支援平行 ````scrape```` 指令。
 
 Linux 發行版以 Ubuntu 22.04（glibc 2.35+）為目標，以與常見 LTS 伺服器相容。
 
 ### Arch Linux（AUR）
 
-```bash
+`````bash
 yay -S obscura-browser
-```
+`````
 
 ### Docker
 
-```bash
+`````bash
 docker run -d --name obscura -p 127.0.0.1:9222:9222 h4ckf0r0day/obscura
-```
+`````
 
-Docker 映像檔採用 `distroless/cc` 進行多階段建構——沒有 shell，沒有套件管理器，壓縮後約 57 MB。
+Docker 映像檔採用 ````distroless/cc```` 進行多階段建構——沒有 shell，沒有套件管理器，壓縮後約 57 MB。
 
 ### 從原始碼建構
 
-```bash
+`````bash
 git clone https://github.com/h4ckf0r0day/obscura.git
 cd obscura
 
@@ -169,7 +170,7 @@ cargo build --release
 
 # 啟用隱密模式（反偵測 + 追蹤器封鎖）
 cargo build --release --features stealth
-```
+`````
 
 需要 Rust 1.75+（[rustup.rs](https://rustup.rs)）。由於 Cargo 的快取機制，後續建構速度很快。
 
@@ -177,7 +178,7 @@ cargo build --release --features stealth
 
 ### 擷取頁面
 
-```bash
+`````bash
 # 取得頁面標題
 obscura fetch https://example.com --eval "document.title"
 
@@ -204,23 +205,23 @@ obscura fetch https://example.com --wait-until networkidle0
 
 # 為慢速頁面設定導航逾時
 obscura fetch https://example.com --timeout 10
-```
+`````
 
 ### 啟動 CDP 伺服器
 
 為了 Puppeteer/Playwright 相容性：
 
-```bash
+`````bash
 # 標準 CDP 伺服器
 obscura serve --port 9222
 
 # 啟用隱密模式（反偵測 + 追蹤器封鎖）
 obscura serve --port 9222 --stealth
-```
+`````
 
 啟動後，即可用 Puppeteer 或 Playwright 連線：
 
-```javascript
+`````javascript
 // Puppeteer 連線
 const puppeteer = require('puppeteer-core');
 
@@ -231,9 +232,9 @@ const browser = await puppeteer.connect({
 const page = await browser.newPage();
 await page.goto('https://example.com');
 console.log(await page.title());
-```
+`````
 
-```javascript
+`````javascript
 // Playwright 連線
 const { chromium } = require('@playwright/test');
 
@@ -242,11 +243,11 @@ const context = await browser.newContext();
 const page = await context.newPage();
 await page.goto('https://example.com');
 console.log(await page.title());
-```
+`````
 
 ### 平行爬蟲
 
-```bash
+`````bash
 # 平行爬取多個頁面
 obscura scrape url1 url2 url3 ... \
   --concurrency 25 \
@@ -257,15 +258,15 @@ obscura scrape site.com/page1 site.com/page2 \
   --concurrency 50 \
   --dump html \
   --output-dir ./scraped/
-```
+`````
 
-`scrape` 指令需要 `obscura` 和 `obscura-worker` 兩個二進位檔在同一個目錄中。
+````scrape```` 指令需要 ````obscura```` 和 ````obscura-worker```` 兩個二進位檔在同一個目錄中。
 
 ## 與熱門框架整合
 
 ### Puppeteer 整合
 
-```javascript
+`````javascript
 // 將 Obscura 用作 Puppeteer 瀏覽器
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
@@ -283,11 +284,11 @@ await page.goto('https://target-site.com');
 const data = await page.$$eval('.item', items =>
   items.map(i => i.textContent)
 );
-```
+`````
 
 ### Playwright 整合
 
-```python
+`````python
 # Python Playwright 連線
 from playwright.sync_api import sync_playwright
 
@@ -298,11 +299,11 @@ with sync_playwright() as p: browser = p.chromium.connect_over_cdp(
     page.goto("https://example.com")
     print(page.title())
     browser.close()
-```
+`````
 
 ### AI 代理整合
 
-```python
+`````python
 # 在 AI 代理工作流程中使用 Obscura
 import subprocess
 
@@ -316,11 +317,11 @@ def fetch_page_text(url): """使用 Obscura 擷取頁面並提取文字"""
 # AI 代理可使用此函數來擷取並分析網頁內容
 def analyze_page(agent, url): content = fetch_page_text(url)
     agent.prompt(f"Analyze this page content:\n{content}")
-```
+`````
 
 ### 網頁爬蟲管線
 
-```bash
+`````bash
 #!/bin/bash
 # 使用 Obscura 的自動化爬蟲管線
 
@@ -343,7 +344,7 @@ for f in ./output/*.html; do
   echo "Processing: $(basename $f)"
   ./obscura fetch "$f" --dump text --output "${f%.html}.txt"
 done
-```
+`````
 
 ## 效能基準測試
 
@@ -368,7 +369,7 @@ done
 
 ### 記憶體擴展測試（100 個平行頁面）
 
-```bash
+`````bash
 # 使用 Obscura 測試
 obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\/page_/') \
   --concurrency 100 \
@@ -378,7 +379,7 @@ obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\/page_/') \
 
 # 使用無頭 Chrome（Puppeteer）的等效測試
 # 總 RAM：約 15-25 GB
-```
+`````
 
 ## 進階使用
 
@@ -386,7 +387,7 @@ obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\/page_/') \
 
 隱密功能提供內建的反偵測能力：
 
-```bash
+`````bash
 # 以隱密支援建構
 cargo build --release --features stealth
 
@@ -399,11 +400,11 @@ cargo build --release --features stealth
 # - Permissions API 處理
 # - Chrome 執行階段屬性遮蔽
 # - 追蹤器指令碼封鎖
-```
+`````
 
 ### 代理伺服器支援
 
-```bash
+`````bash
 # HTTP 代理
 obscura --proxy http://user:pass@proxy.example.com:8080 \
   fetch https://example.com
@@ -419,11 +420,11 @@ const browser = await puppeteer.connect({
     args: ['--proxy-server=http://proxy:8080"]
   }
 });
-```
+`````
 
 ### 自訂導航選項
 
-```bash
+`````bash
 # 等待特定元素出現
 obscura fetch https://example.com \
   --wait-selector ".content-loaded"
@@ -439,11 +440,11 @@ obscura fetch https://example.com \
 # 使用者代理程式覆寫
 obscura fetch https://example.com \
   --user-agent "Mozilla/5.0 (compatible; MyBot/1.0)"
-```
+`````
 
 ### Cookie 與工作階段管理
 
-```bash
+`````bash
 # 在載入頁面之前設定 Cookie
 obscura --cookie "session=abc123; token=xyz789" \
   fetch https://private.example.com
@@ -451,7 +452,7 @@ obscura --cookie "session=abc123; token=xyz789" \
 # 從工作階段中擷取 Cookie
 obscura fetch https://example.com \
   --dump cookies --output cookies.json
-```
+`````
 
 ## 與替代方案比較
 
@@ -480,7 +481,7 @@ Obscura 功能強大，但並非適合所有使用情境的完美取代方案：
 
 4. **瀏覽器擴充功能有限**——與 Chrome 不同，Obscura 不支援瀏覽器擴充功能（AdBlock、uBlock 等）。您需要在腳本中實作廣告封鎖邏輯。
 
-5. **Docker 映像檔非常簡化**——57 MB 的 Docker 映像檔沒有 shell 或套件管理器。在容器內除錯需要依賴 `obscura` 二進位檔內建的日誌旗標。
+5. **Docker 映像檔非常簡化**——57 MB 的 Docker 映像檔沒有 shell 或套件管理器。在容器內除錯需要依賴 ````obscura```` 二進位檔內建的日誌旗標。
 
 6. **Obscura Cloud 處於測試階段**——託管版本（管理式基礎建設 + 住宅代理）目前處於名單/測試階段。開源引擎仍然功能完整，無功能限制。
 
@@ -488,7 +489,7 @@ Obscura 功能強大，但並非適合所有使用情境的完美取代方案：
 
 **Q：Obscura 能取代我現有的 Puppeteer 腳本中的無頭 Chrome 嗎？**
 
-A：可以，只要您透過 CDP 連線（`browserURL` 或 `connectOverCDP`）。由於使用相同的 V8 引擎並實作 CDP 協議，瀏覽器層級行為與 Chrome 高度相似。
+A：可以，只要您透過 CDP 連線（````browserURL```` 或 ````connectOverCDP````）。由於使用相同的 V8 引擎並實作 CDP 協議，瀏覽器層級行為與 Chrome 高度相似。
 
 **Q：隱密模式與 puppeteer-extra-stealth 相比如何？**
 
@@ -500,7 +501,7 @@ A：可以，適用於大多數使用情境。它的 CDP 相容性意味著您�
 
 **Q：有官方的 Docker 映像檔嗎？**
 
-A：是的，`h4ckf0r0day/obscura` 可在 Docker Hub 上取得。它採用 `distroless/cc` 進行多階段建構，體積極小（壓縮後 57 MB）。
+A：是的，````h4ckf0r0day/obscura```` 可在 Docker Hub 上取得。它採用 ````distroless/cc``` 進行多階段建構，體積極小（壓縮後 57 MB）。
 
 **Q：JavaScript 相容性如何？**
 
@@ -537,7 +538,7 @@ Obscura 代表了無頭瀏覽器技術的重大進步。在 30MB 記憶體、85m
 - CDP 文件：https://chromedevtools.github.io/devtools-protocol/
 - V8 引擎：https://v8.dev
 
----
+* * *
 
 加入我們的社群以獲得更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
@@ -569,7 +570,7 @@ Obscura 代表了無頭瀏覽器技術的重大進步。在 30MB 記憶體、85m
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -579,7 +580,7 @@ Obscura 代表了無頭瀏覽器技術的重大進步。在 30MB 記憶體、85m
 - [cc-switch-unified-ai-cli-control-center](obscura-rust-headless-browser-ai-agents-web-scraping)
 - [nuwa-skill-distill-thinking-model-ai-agent-skills](obscura-rust-headless-browser-ai-agents-web-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/haystack-rag-pipeline-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## \uc18c\uac1c: \ub610 \ub2e4\ub978 RAG \ud504\ub808\uc784\uc6cc\ud06c\uac00 \ud544\uc694\ud55c \uc774\uc720\ub294 \ubb34\uc5c7\uc778\uac00?
@@ -40,7 +41,7 @@ Haystack\uc740 **\uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c**\u
 
 \ucd94\ucd9c\uc2dd QA\uc5d0 \ucd08\uc810\uc744 \ub9de\ucdb0 2.0 \ubc1c\ub839\uc744 \uae30\uc810\uc73c\ub85c \uc0dd\uc131\ud615 AI\ub97c \uc218\uc6a9\ud588\ub2e4. v2.12(2026\ub144 5\uc6d4) \uae30\uc900 **30+ \ubb38\uc11c \uc800\uc7a5\uc18c**\ub97c \uc9c0\uc6d0\ud558\uba70, \uba40\ud2f0\ubaa8\ub2ec \uac80\uc0c9, **\ud234 \ud638\ucd9c\uc774 \uac00\ub2a5\ud55c \uc5d0\uc774\uc804\ud2b8 \ud30c\uc774\ud504\ub77c\uc778**, \ub0b4\uc7a5 \ud3c9\uac00, \ub124\uc774\ud2f0\ube0c \ube44\ub3d9\uae30 \uc2e4\ud589\uc744 \uc81c\uacf5\ud55c\ub2e4. Apache-2.0 \ub77c\uc774\uc120\uc2a4\ub85c deepset\uc774 \uc720\uc9c0\ubcf4\uc218\ud558\uba70 **21,000+ Stars**\ub97c \ubcf4\uc720\ud558\uace0 \uc788\ub2e4.
 
-\ub2e8\uc77c \ud504\ub808\uc784\uc6cc\ud06c\uc640 \ub2ec\ub9ac Haystack\uc740 \uad00\uc2ec\uc0ac\uc744 \ub2e8\uc21c\uba85\ub8e8\ud558\uac8c \ubd84\ub9ac\ud55c\ub2e4: - **\ucef4\ud3ec\ub10c\ud2b8**\ub294 \uc790\ub3d9\uc870\uc808\ud558\ub294 \ub2e8\uc704(\uc608: `OpenAIDocumentEmbedder`)
+\ub2e8\uc77c \ud504\ub808\uc784\uc6cc\ud06c\uc640 \ub2ec\ub9ac Haystack\uc740 \uad00\uc2ec\uc0ac\uc744 \ub2e8\uc21c\uba85\ub8e8\ud558\uac8c \ubd84\ub9ac\ud55c\ub2e4: - **\ucef4\ud3ec\ub10c\ud2b8**\ub294 \uc790\ub3d9\uc870\uc808\ud558\ub294 \ub2e8\uc704(\uc608: ```OpenAIDocumentEmbedder````)
 - **\ud30c\uc774\ud504\ub77c\uc778**\uc740 \ucef4\ud3ec\ub10c\ud2b8\ub97c \uc720\ub3c4\uadf8\ub798\ud504\ub85c \uc5f0\uacb0\ud55c\ub2e4
 - **\ubb38\uc11c \uc800\uc7a5\uc18c**\ub294 \uc601\uc18d\uc131\uacfc \ubca1\ud130 \uac80\uc0c9\uc744 \ucc98\ub9ac\ud55c\ub2e4
 - **\uc5d0\uc774\uc804\ud2b8**\ub294 \ud234 \uc811\uadfc\uacfc \ud568\uaed8 \uc0ac\uace0 \ub8e8\ud504\ub97c \ucd94\uac00\ud55c\ub2e4
@@ -48,21 +49,21 @@ Haystack\uc740 **\uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c**\u
 
 ## Haystack\uc758 \uc791\ub3d9 \uc6d0\ub9ac: \ud30c\uc774\ud504\ub77c\uc778 \uc544\ud0a4\ud399\ucc98
 
-Haystack 2.x\ub294 **\uc720\ub3c4\ube44\uc21c\ud658 \uadf8\ub798\ud504(DAG)**\ub97c \uc8fc\uc694 \uac1c\ub150\uc73c\ub85c \ud558\ub294\ub370, \ub178\ub4dc\ub294 \ucef4\ud3ec\ub10c\ud2b8\uc774\uace0 \uc5e3\uc9c0\ub294 \ub370\uc774\ud130 \ud50c\ub85c\uc6b0\ub97c \uc815\uc758\ud55c\ub2e4. 1.x\uc758 \uace0\uc815\ub41c `Query \u2192 Retriever \u2192 Reader` \uad6c\uc870\uc640 \ub2ec\ub9ac, 2.x\ub294 \uac00\uc9c0\ucd98 \ud1b1\ub85c\ub9ac(\uac00\uc9c0\uc9c0, \ubcd1\ud569, \uc870\uac74 \ub77c\uc6b0\ud305, \uc5d0\uc774\uc804\ud2b8\uc6a9 \ub8e8\ud504)\ub97c \uad6c\ucd95\ud560 \uc218 \uc788\ub2e4.
+Haystack 2.x\ub294 **\uc720\ub3c4\ube44\uc21c\ud658 \uadf8\ub798\ud504(DAG)**\ub97c \uc8fc\uc694 \uac1c\ub150\uc73c\ub85c \ud558\ub294\ub370, \ub178\ub4dc\ub294 \ucef4\ud3ec\ub10c\ud2b8\uc774\uace0 \uc5e3\uc9c0\ub294 \ub370\uc774\ud130 \ud50c\ub85c\uc6b0\ub97c \uc815\uc758\ud55c\ub2e4. 1.x\uc758 \uace0\uc815\ub41c ````Query \u2192 Retriever \u2192 Reader```` \uad6c\uc870\uc640 \ub2ec\ub9ac, 2.x\ub294 \uac00\uc9c0\ucd98 \ud1b1\ub85c\ub9ac(\uac00\uc9c0\uc9c0, \ubcd1\ud569, \uc870\uac74 \ub77c\uc6b0\ud305, \uc5d0\uc774\uc804\ud2b8\uc6a9 \ub8e8\ud504)\ub97c \uad6c\ucd95\ud560 \uc218 \uc788\ub2e4.
 
 ### \ud575\uc2ec \ucef4\ud3ec\ub10c\ud2b8 \uc720\ud615
 
 | \ucef4\ud3ec\ub10c\ud2b8 | \uc5ed\ud560 | \uc608\uc2dc |
 |---|---|---|
-| **Embedder** | \ud14d\uc2a4\ud2b8/\ubb38\uc11c\ub97c \ubca1\ud130\ub85c \ubcc0\ud658 | `OpenAIDocumentEmbedder` |
-| **\ubb38\uc11c \uc800\uc7a5\uc18c** | \ubb38\uc11c \uc601\uad6c\ud654\ud558\uace0 \ubca1\ud130 \uac80\uc0c9 \ucc98\ub9ac | `InMemoryDocumentStore`, `OpenSearchDocumentStore` |
-| **Retriever** | \ubca1\ud130 \uc720\uc0ac\ub3c4\ub85c \uad00\ub828 \ubb38\uc11c \ucc3e\uae30 | `InMemoryEmbeddingRetriever` |
-| **Generator** | LLM\uc73c\ub85c \ud14d\uc2a4\ud2b8 \uc751\ub2f5 \uc0dd\uc131 | `OpenAIGenerator`, `HuggingFaceLocalGenerator` |
-| **PromptBuilder** | \ud15c\ud50c\ub9bf\uacfc \ubcc0\uc218\ub85c \ud504\ub86f\ud504\ud2b8 \uc870\ub9bd | `PromptBuilder` |
-| **AnswerBuilder** | LLM \uc751\ub2f5 \ubd84\uc11d \ubc0f \ud6c4\ucc98\ub9ac | `AnswerBuilder` |
-| **Reranker** | \uac80\uc0c9\ub41c \ubb38\uc11c \uc7ac\uc810\uc218 | `CohereReranker` |
-| **Router** | \uc870\uac74\uc5d0 \ub530\ub77c \ub370\uc774\ud130 \uacbd\ub85c \ubd84\uae30 | `ConditionalRouter` |
-| **Joiner** | \uc5ec\ub7ec \ubc30\uc5ed\uc758 \ucd9c\ub825 \ubcd1\ud569 | `DocumentJoiner` |
+| **Embedder** | \ud14d\uc2a4\ud2b8/\ubb38\uc11c\ub97c \ubca1\ud130\ub85c \ubcc0\ud658 | ````OpenAIDocumentEmbedder```` |
+| **\ubb38\uc11c \uc800\uc7a5\uc18c** | \ubb38\uc11c \uc601\uad6c\ud654\ud558\uace0 \ubca1\ud130 \uac80\uc0c9 \ucc98\ub9ac | ````InMemoryDocumentStore````, ````OpenSearchDocumentStore```` |
+| **Retriever** | \ubca1\ud130 \uc720\uc0ac\ub3c4\ub85c \uad00\ub828 \ubb38\uc11c \ucc3e\uae30 | ````InMemoryEmbeddingRetriever```` |
+| **Generator** | LLM\uc73c\ub85c \ud14d\uc2a4\ud2b8 \uc751\ub2f5 \uc0dd\uc131 | ````OpenAIGenerator````, ````HuggingFaceLocalGenerator```` |
+| **PromptBuilder** | \ud15c\ud50c\ub9bf\uacfc \ubcc0\uc218\ub85c \ud504\ub86f\ud504\ud2b8 \uc870\ub9bd | ````PromptBuilder```` |
+| **AnswerBuilder** | LLM \uc751\ub2f5 \ubd84\uc11d \ubc0f \ud6c4\ucc98\ub9ac | ````AnswerBuilder```` |
+| **Reranker** | \uac80\uc0c9\ub41c \ubb38\uc11c \uc7ac\uc810\uc218 | ````CohereReranker```` |
+| **Router** | \uc870\uac74\uc5d0 \ub530\ub77c \ub370\uc774\ud130 \uacbd\ub85c \ubd84\uae30 | ````ConditionalRouter```` |
+| **Joiner** | \uc5ec\ub7ec \ubc30\uc5ed\uc758 \ucd9c\ub825 \ubcd1\ud569 | ````DocumentJoiner```` |
 
 ### \ud30c\uc774\ud504\ub77c\uc778 \uc2e4\ud589 \ubaa8\ub378
 
@@ -78,7 +79,7 @@ Haystack 2.x\ub294 **\uc720\ub3c4\ube44\uc21c\ud658 \uadf8\ub798\ud504(DAG)**\ub
 
 ### \ucd5c\uc18c \uc124\uce58
 
-```bash
+`````bash
 python -m venv haystack-env
 source haystack-env/bin/activate
 
@@ -88,11 +89,11 @@ pip install haystack-ai
 # \uc124\uce58 \ud655\uc778
 python -c "import haystack; print(haystack.__version__)"
 # \uae30\ub300 \uacb0\uacfc: 2.12.x
-```
+`````
 
 ### \ubb38\uc11c \uc800\uc7a5\uc18c\uc640 \ubaa8\ub378\uc744 \ud568\uaed8 \uc124\uce58
 
-```bash
+`````bash
 # \ubaa8\ub4e0 \uc77c\ubc18 \ucd94\uac00 \uae30\ub2a5 \ud568\uaed8 \uc124\uce58
 pip install "haystack-ai[all]"
 
@@ -100,19 +101,19 @@ pip install "haystack-ai[all]"
 pip install haystack-ai opensearch-py  # OpenSearch\uc6a9
 pip install haystack-ai qdrant-client   # Qdrant\uc6a9
 pip install haystack-ai weaviate-client # Weaviate\uc6a9
-```
+`````
 
 ### \ud658\uacbd \uc124\uc815
 
-```bash
+`````bash
 # OpenAI API \ud0a4 \uc124\uc815
 export OPENAI_API_KEY="sk-your-key-here"
 
 # \ub85c\uceec \ubaa8\ub378 \uc9c0\uc6d0\uc744 \uc704\ud55c HuggingFace \uc124\uce58
 pip install transformers torch sentence-transformers
-```
+`````
 
-\uc804\uc2a4\ud0dd \ud655\uc778: ```python
+\uc804\uc2a4\ud0dd \ud655\uc778: `````python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -123,13 +124,13 @@ print(f"\uc0ac\uc6a9 \uac00\ub2a5\ud55c \ucef4\ud3ec\ub10c\ud2b8: embedders, ret
 
 store = InMemoryDocumentStore()
 print(f"\ubb38\uc11c \uc800\uc7a5\uc18c \ucd08\uae30\ud654: {store.count_documents()} \uac1c \ubb38\uc11c")
-```
+`````
 
 ## \uccab RAG \ud30c\uc774\ud504\ub77c\uc778 \uad6c\ucd95
 
 ### InMemoryDocumentStore\ub97c \ud0dc\uc6a9\ud55c \uae30\ubcf8 RAG
 
-```python
+`````python
 # basic_rag.py
 from haystack import Pipeline, Document
 from haystack.document_stores import InMemoryDocumentStore
@@ -187,17 +188,17 @@ result = rag.run({
     "prompt_builder": {"query": "What is Haystack?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
-\uc800\uc7a5 \ubc0f \uc2e4\ud589: ```bash
+\uc800\uc7a5 \ubc0f \uc2e4\ud589: `````bash
 python basic_rag.py
-```
+`````
 
 \ucd9c\ub825\uc740 \uac80\uc0c9\ub41c \ubb38\ub9e5\uacfc \ud568\uaed8 \uc0dd\uc131\ub41c \uad73\ubc31\uc744 \ud3ec\ud568\ud55c\ub2e4.
 
 ### \ub354 \ub098\uc740 \uacb0\uacfc\ub97c \uc704\ud55c \uc7ac\ub79c\ud0b9 \ucd94\uac00
 
-```python
+`````python
 # rag_with_reranker.py
 from haystack import Pipeline
 from haystack.document_stores import InMemoryDocumentStore
@@ -243,11 +244,11 @@ result = pipeline.run({
     "prompt_builder": {"query": "How does Haystack handle document storage?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ### \ubd84\uae30 \ud30c\uc774\ud504\ub77c\uc778: \ucffc\ub9ac \uc720\ud615\ubcc4 \uacbd\ub85c
 
-```python
+`````python
 # branching_pipeline.py
 from haystack import Pipeline
 from haystack.components.routers import ConditionalRouter
@@ -282,13 +283,13 @@ pipeline.connect("router.output", "tech_builder")
 pipeline.connect("router.fallback_output", "general_builder")
 
 result = pipeline.run({"router": {"query": "What is vector similarity search?"}})
-```
+`````
 
 ## \ubb38\uc11c \uc800\uc7a5\uc18c, \ubaa8\ub378 \ubc0f \ub3c4\uad6c\uc640\uc758 \ud1b5\ud569
 
 ### OpenSearch \ubb38\uc11c \uc800\uc7a5\uc18c (\ud504\ub85c\ub355\uc158)
 
-```python
+`````python
 # opensearch_store.py
 from haystack.document_stores import OpenSearchDocumentStore
 
@@ -305,11 +306,11 @@ store = OpenSearchDocumentStore(
 from haystack.components.retrievers import OpenSearchEmbeddingRetriever
 
 retriever = OpenSearchEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Qdrant \ubca1\ud130 \ub370\uc774\ud130\ubca0\uc774\uc2a4
 
-```python
+`````python
 # qdrant_store.py
 from haystack_integrations.document_stores.qdrant import QdrantDocumentStore
 
@@ -324,11 +325,11 @@ store = QdrantDocumentStore(
 from haystack_integrations.components.retrievers.qdrant import QdrantEmbeddingRetriever
 
 retriever = QdrantEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Ollama\ub97c \ud1b5\ud55c \ub85c\uceec LLM
 
-```python
+`````python
 # local_llm.py
 from haystack.components.generators import HuggingFaceLocalGenerator
 
@@ -341,11 +342,11 @@ generator.warm_up()
 
 result = generator.run("Explain RAG pipelines in one paragraph.")
 print(result["replies"][0])
-```
+`````
 
 ### \ucee4\uc2a4\ud140 \ucef4\ud3ec\ub10c\ud2b8 \uc0ac\uc6a9
 
-```python
+`````python
 # custom_component.py
 from haystack import component
 from typing import Any, Dict, List
@@ -369,11 +370,11 @@ pipe.connect("counter.text", "generator.prompt")
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
 print(f"Tokens: {result[counter][token_count]}")
 print(f"Response: {result[generator][replies][0]}")
-```
+`````
 
 ### \uc5d0\uc774\uc804\ud2b8\uc6a9 \uc6f9 \uac80\uc0c9 \ub3c4\uad6c
 
-```python
+`````python
 # web_search_tool.py
 from haystack import Pipeline
 from haystack.components.websearch import SerperDevWebSearch
@@ -401,7 +402,7 @@ result = pipeline.run({
     "builder": {"query": "What are the latest AI models released in 2026?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ## \ubca4\uce58\ub9c8\ud06c \ubc0f \uc2e4\uc81c \uc0ac\uc6a9 \uc0ac\ub840
 
@@ -426,7 +427,7 @@ print(result["generator"]["replies"][0])
 
 ### \uace0\uc2a4\ub8e8\ud4e8\ud2b8\ud3ec\ud2b8\ub97c \uc704\ud55c \ube44\ub3d9\uae30 \uc2e4\ud589
 
-```python
+`````python
 # async_pipeline.py
 import asyncio
 from haystack import Pipeline
@@ -451,11 +452,11 @@ results = asyncio.run(run_queries([
     "Explain vector search.",
     "How does RAG work?",
 ]))
-```
+`````
 
 ### \ud30c\uc774\ud504\ub77c\uc778 \uc9c1\ub82c\ud654 \ubc0f \ubc84\uc804 \uad00\ub9ac
 
-```python
+`````python
 # serialize_pipeline.py
 from haystack import Pipeline
 
@@ -468,11 +469,11 @@ result = loaded.run({
     "embedder": {"text": "What is Haystack?"},
     "prompt_builder": {"query": "What is Haystack?"},
 })
-```
+`````
 
 ### \ucee4\uc2a4\ud140 \ud3c9\uac00
 
-```python
+`````python
 # evaluate_pipeline.py
 from haystack import Pipeline, Document
 from haystack.components.evaluators import SASEvaluator, FaithfulnessEvaluator
@@ -498,11 +499,11 @@ sas_result = sas_evaluator.run(
     predicted_answers=predictions,
 )
 print(f"SAS Score: {sas_result[score]:.3f}")
-```
+`````
 
 ### Docker \ubc30\ud3ec
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -513,9 +514,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8000
 CMD ["python", "serve.py"]
-```
+`````
 
-```python
+`````python
 # serve.py
 from fastapi import FastAPI
 from haystack import Pipeline
@@ -535,9 +536,9 @@ async def query(question: str): result = pipeline.run({
         "answer": result["generator"]["replies"][0],
         "documents": [d.content for d in result.get("retriever", {}).get("documents", [])],
     }
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: haystack-api: build: .
@@ -551,9 +552,9 @@ services: haystack-api: build: .
     ports: - "9200:9200"
     volumes: - osdata:/usr/share/opensearch/data
 
-volumes: osdata: ```
+volumes: osdata: `````
 
-\ud06c\ub77c\uc6b0\ub4dc VPS \ubc30\ud3ec\uc758 \uacbd\uc6b0, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform\uc740 Git\uc5d0\uc11c \uc9c1\uc811 Docker \ubc30\ud3ec\ub97c \uc9c0\uc6d0\ud55c\ub2e4. `Dockerfile`\uc744 \ud478\uc2dc\ud558\uace0 \uc800\uc7a5\uc18c\ub97c \uc5f0\uacb0\ud558\uba74 \ud50c\ub7ab\ud3fc\uc774 \uc124\uc815 \uc5c6\uc774 Haystack API\ub97c \ube4c\ub4dc\ud558\uace0 \ud638\uc2a4\ud305\ud55c\ub2e4.
+\ud06c\ub77c\uc6b0\ub4dc VPS \ubc30\ud3ec\uc758 \uacbd\uc6b0, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform\uc740 Git\uc5d0\uc11c \uc9c1\uc811 Docker \ubc30\ud3ec\ub97c \uc9c0\uc6d0\ud55c\ub2e4. ````Dockerfile````\uc744 \ud478\uc2dc\ud558\uace0 \uc800\uc7a5\uc18c\ub97c \uc5f0\uacb0\ud558\uba74 \ud50c\ub7ab\ud3fc\uc774 \uc124\uc815 \uc5c6\uc774 Haystack API\ub97c \ube4c\ub4dc\ud558\uace0 \ud638\uc2a4\ud305\ud55c\ub2e4.
 
 ## \ub300\uc548 \uacfc\uc758 \ube44\uad50
 
@@ -589,7 +590,7 @@ Haystack\ub294 **\ubb38\uc11c \uc911\uc2ec\uc758 \uac80\uc0c9\uacfc QA \uc2dc\uc
 
 ### Haystack 1.x\uc640 2.x \uc911 \uc5b4\ub5a4 \uac83\uc744 \uc0ac\uc6a9\ud574\uc57c \ud558\ub098?
 
-Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc900 \uc720\uc77c\ud558\uac8c \uc801\uade0 \uc720\uc9c0\ub418\ub294 \ube0c\ub79c\uce58\ub2e4. 1.x\ub294 2024\ub144 \ub9cc\uc5d0 \uc9c0\uc6d0 \uc885\ub8cc\ub418\uc5c8\ub2e4. \ubaa8\ub4e0 \uc2e0\uaddc \ud504\ub85c\uc81d\ud2b8\ub294 2.x\ub97c \uc0ac\uc6a9\ud574\uc57c \ud55c\ub2e4. \ud30c\uc774\ud504\ub77c\uc778 API\uac00 \uc644\uc804\ud788 \ub2e4\ub974\ub2e4 — 1.x\ub294 \uc0ac\uc804 \uc815\uc758\ub41c \ub178\ub4dc \uc720\ud615\uc744 \uc0ac\uc6a9\ud558\ub294 `Pipeline` \ud074\ub798\uc2a4\ub97c \uc0ac\uc6a9\ud558\uace0, 2.x\ub294 \ucef4\ud3ec\ub10c\ud2b8 \uae30\ubc18 DAG \uc2dc\uc2a4\ud15c\uc744 \uc0ac\uc6a9\ud55c\ub2e4.
+Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc900 \uc720\uc77c\ud558\uac8c \uc801\uade0 \uc720\uc9c0\ub418\ub294 \ube0c\ub79c\uce58\ub2e4. 1.x\ub294 2024\ub144 \ub9cc\uc5d0 \uc9c0\uc6d0 \uc885\ub8cc\ub418\uc5c8\ub2e4. \ubaa8\ub4e0 \uc2e0\uaddc \ud504\ub85c\uc81d\ud2b8\ub294 2.x\ub97c \uc0ac\uc6a9\ud574\uc57c \ud55c\ub2e4. \ud30c\uc774\ud504\ub77c\uc778 API\uac00 \uc644\uc804\ud788 \ub2e4\ub974\ub2e4 — 1.x\ub294 \uc0ac\uc804 \uc815\uc758\ub41c \ub178\ub4dc \uc720\ud615\uc744 \uc0ac\uc6a9\ud558\ub294 ````Pipeline```` \ud074\ub798\uc2a4\ub97c \uc0ac\uc6a9\ud558\uace0, 2.x\ub294 \ucef4\ud3ec\ub10c\ud2b8 \uae30\ubc18 DAG \uc2dc\uc2a4\ud15c\uc744 \uc0ac\uc6a9\ud55c\ub2e4.
 
 ### OpenAI \uc5c6\uc774 Haystack\uc744 \uc0ac\uc6a9\ud560 \uc218 \uc788\ub098?
 
@@ -597,18 +598,18 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 
 ### \ubb38\uc11c \uc800\uc7a5\uc18c\ub97c \uc5b4\ub5bb\uac8c \uc120\ud0dd\ud558\ub098?
 
-\ud504\ub85c\ud1a0\ud0c0\uc774\ud551\uc5d0\uc11c\ub294 `InMemoryDocumentStore`\ub97c \uc0ac\uc6a9\ud558\ub77c. \ud504\ub85c\ub355\uc158\uc5d0\uc11c: - **OpenSearch:** \uc774\ubbf8 Elasticsearch/OpenSearch \ud074\ub7ec\uc2a4\ud130\ub97c \uc6b4\uc601\ud558\uace0 \uc788\ub2e4\uba74 \ucd5c\uc120
+\ud504\ub85c\ud1a0\ud0c0\uc774\ud551\uc5d0\uc11c\ub294 ````InMemoryDocumentStore````\ub97c \uc0ac\uc6a9\ud558\ub77c. \ud504\ub85c\ub355\uc158\uc5d0\uc11c: - **OpenSearch:** \uc774\ubbf8 Elasticsearch/OpenSearch \ud074\ub7ec\uc2a4\ud130\ub97c \uc6b4\uc601\ud558\uace0 \uc788\ub2e4\uba74 \ucd5c\uc120
 - **Qdrant:** \uc21c\uc218 \ubca1\ud130 \uac80\uc0c9\uc5d0 \ucd5c\uc801, \ub0ae\uc740 \ub9ac\uc18c\uc2a4 \uc0ac\uc6a9
 - **Weaviate:** \ud558\uc774\ube0c\ub9ac\ub4dc \uac80\uc0c9(BM25 + \ubca1\ud130)\uc758 \ub0b4\uc7a5 \uae30\ub2a5\uc774 \uc6b0\uc218\ud568
 - **PostgreSQL + pgvector:** \ubaa8\ub4e0 \uac83\uc744 \ud558\ub098\uc758 \ub370\uc774\ud130\ubca0\uc774\uc2a4\ub85c \ucc98\ub9ac\ud558\uace0 \uc2f6\ub2e4\uba74 \ucd5c\uc120
 
 ### Haystack\uc740 \uc2e4\uc2dc\uac04 \uc751\uc6a9\uc5d0 \uc801\ud569\ud55a\ub098?
 
-\uc6cc\ubc40\ud551\ub41c \ud30c\uc774\ud504\ub77c\uc778\uacfc \ube44\ub3d9\uae30 \uc2e4\ud589\uc73c\ub85c \uac04\ub2e8\ud55c RAG\uc5d0\uc11c **<500ms**\uc758 \uc5d4\ub4dc\ud22c\uc5d4\ub4dc \uc9c0\uc5f0\uc744 \ub2ec\uc131\ud55c\ub2e4(LLM \uc0dd\uc131 \uc2dc\uac04 \uc81c\uc678). \uc9c4\uc815\uc73c\ub85c \uc2e4\uc2dc\uac04\uc778 \uc0ac\uc6a9\uc0ac\ub840(<200ms)\uc758 \uacbd\uc6b0 \uce90\uc2f1 \ub808\uc774\uc5b4\ub97c \ucd94\uac00\ud558\uac70\ub098 `run_async()`\uc758 \uc2a4\ud2b8\ub9ac\ubc0d \uc0dd\uc131\uae30\ub97c \uc0ac\uc6a9\ud558\ub77c.
+\uc6cc\ubc40\ud551\ub41c \ud30c\uc774\ud504\ub77c\uc778\uacfc \ube44\ub3d9\uae30 \uc2e4\ud589\uc73c\ub85c \uac04\ub2e8\ud55c RAG\uc5d0\uc11c **<500ms**\uc758 \uc5d4\ub4dc\ud22c\uc5d4\ub4dc \uc9c0\uc5f0\uc744 \ub2ec\uc131\ud55c\ub2e4(LLM \uc0dd\uc131 \uc2dc\uac04 \uc81c\uc678). \uc9c4\uc815\uc73c\ub85c \uc2e4\uc2dc\uac04\uc778 \uc0ac\uc6a9\uc0ac\ub840(<200ms)\uc758 \uacbd\uc6b0 \uce90\uc2f1 \ub808\uc774\uc5b4\ub97c \ucd94\uac00\ud558\uac70\ub098 ````run_async()````\uc758 \uc2a4\ud2b8\ub9ac\ubc0d \uc0dd\uc131\uae30\ub97c \uc0ac\uc6a9\ud558\ub77c.
 
 ### Haystack\uc740 \ud30c\uc774\ud504\ub77c\uc778 \ubc84\uc804 \uad00\ub9ac\ub97c \uc5b4\ub5bb\uac8c \ucc98\ub9ac\ud558\ub098?
 
-\ud30c\uc774\ud504\ub77c\uc778\uc740 YAML\uacfc JSON\uc73c\ub85c \uc9c1\ub82c\ud654\ud560 \uc218 \uc788\uace0 \ubc84\uc804 \uad00\ub9ac\uc5d0 \ucee4\ubc0b\ud560 \uc218 \uc788\ub2e4. \ucef4\ud3ec\ub10c\ud2b8\ub294 \ud074\ub798\uc2a4 \uc774\ub984\uacfc \ub9e4\uac1c\ubcc0\uc218\ub85c \ucc38\uc870\ub418\uc5b4 \uc788\uc5b4 \ucc28\uc774\ub97c \uc77d\uae30 \uc27d\uac8c \ub9cc\ub4e0\ub2e4. `pipeline.dump()`\uacfc `Pipeline.loads()` \uba54\uc11c\ub4dc\ub294 \ub3d9\uc77c\ud55c YAML\uc774 \ub2e4\ub978 \ud658\uacbd\uc5d0\uc11c \ub3d9\uc77c\ud55c \ub3d9\uc791\uc744 \ub9cc\ub4dc\ub294 \ubc18\ubcf5 \uac00\ub2a5\ud55c \ubc30\ud3ec\uc744 \uac00\ub2a5\ud558\uac8c \ud55c\ub2e4.
+\ud30c\uc774\ud504\ub77c\uc778\uc740 YAML\uacfc JSON\uc73c\ub85c \uc9c1\ub82c\ud654\ud560 \uc218 \uc788\uace0 \ubc84\uc804 \uad00\ub9ac\uc5d0 \ucee4\ubc0b\ud560 \uc218 \uc788\ub2e4. \ucef4\ud3ec\ub10c\ud2b8\ub294 \ud074\ub798\uc2a4 \uc774\ub984\uacfc \ub9e4\uac1c\ubcc0\uc218\ub85c \ucc38\uc870\ub418\uc5b4 \uc788\uc5b4 \ucc28\uc774\ub97c \uc77d\uae30 \uc27d\uac8c \ub9cc\ub4e0\ub2e4. ````pipeline.dump()````\uacfc ````Pipeline.loads()``` \uba54\uc11c\ub4dc\ub294 \ub3d9\uc77c\ud55c YAML\uc774 \ub2e4\ub978 \ud658\uacbd\uc5d0\uc11c \ub3d9\uc77c\ud55c \ub3d9\uc791\uc744 \ub9cc\ub4dc\ub294 \ubc18\ubcf5 \uac00\ub2a5\ud55c \ubc30\ud3ec\uc744 \uac00\ub2a5\ud558\uac8c \ud55c\ub2e4.
 
 ### \ud504\ub85c\ub355\uc158\uc744 \uc704\ud55c \uad8c\uc7a5 \ubc30\ud3ec \uc544\ud0a4\ud399\cc98\ub294 \ubb34\uc5c7\uc778\uac00?
 
@@ -639,7 +640,7 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 - "Building Search Systems with Haystack 2.x" \u2014 deepset \ube14\ub85c\uadf8, 2026
 - "RAG Evaluation Best Practices" \u2014 dibi8.com \ub0b4\ubd80 \uc5f0\uad6c
 
----
+* * *
 
 **\uc81c\ud734 \uacf5\uac1c:** \ubcf8 \uae00\uc758 \uc77c\ubd80 \ub9c1\ud06c\ub294 \uc81c\ud734 \ub9c1\ud06c\uc774\ub2e4. \uc6b0\ub9ac\uc758 [DigitalOcean \ucd94\ucc9c \ub9c1\ud06c](https://m.do.co/c/eca87ac14ee0)\ub97c \ud1b5\ud574 \uac00\uc785\ud558\uba74 $200 \ud06c\ub808\ub527\uc744 \ubc1b\uace0 \uc6b0\ub9ac\ub3c4 \ucd94\ucc9c \ubcf4\ub108\uc2a4\ub97c \ubc1b\ub2e4 \u2014 \ucda9\uac00 \ube44\uc6a9\uc5c6\uc774. \uc774\ub294 \uc6b0\ub9ac\uc758 \ub3c5\ub9bd\uc801\uc778 \uc5f0\uad6c\uc744 \uc9c0\uc6d0\ud558\uace0 \ucf58\ud150\ucce4\uc744 \ubb34\ub8cc\ub85c \uc720\uc9c0\ud55c\ub2e4.
 
@@ -669,7 +670,7 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -679,6 +680,6 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 - [1m-context-window-llm-2026-real-test](haystack-rag-pipeline-framework)
 - [9router-smart-llm-proxy-token-saver-free-coding](haystack-rag-pipeline-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

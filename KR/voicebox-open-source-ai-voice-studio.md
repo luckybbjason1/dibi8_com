@@ -12,6 +12,7 @@ github_repo: https://github.com/voicebox-ai/voicebox
 license: MIT
 ---
 
+
 # VoiceBox: 오픈소스 AI 음성 스튜디오
 
 **VoiceBox**는 음성 복제, 음성 생성 및 녹취를 위한 포괄적인 오픈소스 AI 음성 스튜디오로, 모든 것이 머신에서 로컬로 실행됩니다. **33,745개의 GitHub 스타**와 활발한 개발 커뮤니티를 바탕으로, 클라우드 API에 의존하지 않고 강력한 음성 AI가 필요한 개발자, 콘텐츠 제작자 및 프라이버시 중심 사용자를 위한 필수 솔루션이 되었습니다.
@@ -54,7 +55,7 @@ VoiceBox는 여러 하드웨어 구성을 지원합니다: **GPU 가속 (권장)
 
 ### 옵션 1: Pip로 빠른 설치
 
-```bash
+````bash
 # PyPI에서 VoiceBox 설치
 pip install voicebox-ai
 
@@ -63,11 +64,11 @@ voicebox --version
 
 # 애플리케이션 초기화
 voicebox init --model qwen3-tts
-```
+`````
 
 ### 옵션 2: 소스에서 설치 (최신 기능)
 
-```bash
+`````bash
 # 저장소 복제
 git clone https://github.com/jamiepine/voicebox.git
 cd voicebox
@@ -84,11 +85,11 @@ pip install -e .
 
 # 기본 음성 모델 다운로드
 voicebox download-models --all
-```
+`````
 
 ### 옵션 3: Docker 배포
 
-```bash
+`````bash
 # 공식 이미지 가져오기
 docker pull jamiepine/voicebox:latest
 
@@ -108,11 +109,11 @@ docker run -d \
   -v ${HOME}/voicebox-data:/data \
   -e VOICEBOX_MODEL=qwen3-tts \
   jamiepine/voicebox:latest
-```
+`````
 
 ### 옵션 4: Windows 설치
 
-```powershell
+`````powershell
 # Microsoft Store에서 Python 3.11+ 설치
 # 그런 다음 VoiceBox 설치
 pip install voicebox-ai
@@ -122,13 +123,13 @@ pip install voicebox-ai
 
 # VoiceBox 초기화
 voicebox init --gpu cuda
-```
+`````
 
 ## 음성 복제
 
 ### 오디오 샘플 녹음
 
-음성을 복제하려면 최소 3초의 명확한 오디오가 필요합니다. 최상의 결과를 위해 30-60초의 음성을 제공하세요: ```bash
+음성을 복제하려면 최소 3초의 명확한 오디오가 필요합니다. 최상의 결과를 위해 30-60초의 음성을 제공하세요: `````bash
 # 내장 레코더로 오디오 녹음
 voicebox record --output sample.wav --duration 30
 
@@ -136,11 +137,11 @@ voicebox record --output sample.wav --duration 30
 voicebox clone --audio my_voice_sample.mp3 --name "my-voice"
 
 # VoiceBox가 자동으로 오디오를 처리하고 음성 특징 추출
-```
+`````
 
 ### 음성 처리 파이프라인
 
-음성 복제 파이프라인은 여러 단계로 구성됩니다: ```python
+음성 복제 파이프라인은 여러 단계로 구성됩니다: `````python
 from voicebox.engine import VoiceCloner
 from voicebox.audio import AudioProcessor
 
@@ -170,11 +171,11 @@ output = voice_model.synthesize(
     emotion="neutral"
 )
 voice_model.save(output, "test_output.wav")
-```
+`````
 
 ### 고급 음성 매개변수
 
-VoiceBox는 음성 합성에 세밀한 제어를 제공합니다: ```bash
+VoiceBox는 음성 합성에 세밀한 제어를 제공합니다: `````bash
 # 발화 속도 조절
 voicebox synthesize --input script.txt --output speech.wav --speed 0.8
 
@@ -192,11 +193,11 @@ voicebox synthesize \
   --pitch +100 \
   --emotion confident \
   --clarity high
-```
+`````
 
 ### 다중 음성 지원
 
-여러 음성 복제를 동시에 생성하고 관리할 수 있습니다: ```python
+여러 음성 복제를 동시에 생성하고 관리할 수 있습니다: `````python
 from voicebox.engine import VoiceManager
 
 manager = VoiceManager()
@@ -217,7 +218,7 @@ hybrid = manager.blend_voices(
     weight_b=0.3
 )
 output = hybrid.synthesize("혼합 음성 출력")
-```
+`````
 
 ## 녹취 모드
 
@@ -225,7 +226,7 @@ VoiceBox의 녹취 모드는 시스템의 모든 앱에서 작동하는 실시�
 
 ### 시스템 전체 녹취 설정
 
-```bash
+`````bash
 # 시스템 전체 녹취 활성화
 voicebox dictation --enable
 
@@ -237,11 +238,11 @@ voicebox dictation --language en
 
 # 핫키 구성
 voicebox dictation --hotkey "ctrl+space"
-```
+`````
 
 ### 녹취 API 사용
 
-```python
+`````python
 from voicebox.dictation import DictationEngine
 
 # 녹취 엔진 초기화
@@ -269,11 +270,11 @@ result = await engine.listen_session(
 print(f"변역: {result.text}")
 print(f"신뢰도: {result.confidence:.2%}")
 print(f"단어 수: {result.word_count}")
-```
+`````
 
 ### 다국어 녹취
 
-VoiceBox는 자동 언어 감지와 함께 동시 다국어 녹취를 지원합니다: ```bash
+VoiceBox는 자동 언어 감지와 함께 동시 다국어 녹취를 지원합니다: `````bash
 # 자동 감지 활성화
 voicebox dictation --auto-detect
 
@@ -282,13 +283,13 @@ voicebox dictation --languages en,zh,ko,ja,es,fr,de
 
 # 주요 언어 설정 (더 나은 정확도)
 voicebox dictation --primary-language en
-```
+`````
 
 ## 텍스트-음성 변환 API
 
 VoiceBox는 프로그램matic 텍스트-음성 변환을 위한 완전한 REST API를 제공합니다: ### 기본 TTS
 
-```bash
+`````bash
 # 간단한 텍스트-음성 변환
 curl -X POST "https://your-voicebox/api/v1/tts" \
   -H "Content-Type: application/json" \
@@ -299,21 +300,21 @@ curl -X POST "https://your-voicebox/api/v1/tts" \
     "output_format": "wav"
   }' \
   --output speech.wav
-```
+`````
 
 ### 스트리밍 TTS
 
-실시간 오디오 스트리밍 애플리케이션용: ```bash
+실시간 오디오 스트리밍 애플리케이션용: `````bash
 # 청크로 오디오 스트리밍
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
   -d '{"text": "이 오디오는 실시간으로 스트리밍됩니다...", "voice": "cloned-voice"}' \
   --output - | aplay
-```
+`````
 
 ### 배치 처리
 
-여러 텍스트를 동시에 처리: ```python
+여러 텍스트를 동시에 처리: `````python
 from voicebox.api import VoiceBoxClient
 
 client = VoiceBoxClient("https://your-voicebox")
@@ -332,7 +333,7 @@ results = await client.tts.batch(
 )
 
 for i, result in enumerate(results): print(f"생성됨: speech_{i}.mp3 ({result.duration:.1f}s)")
-```
+````
 
 ## 하드웨어 요구사항 및 성능
 
@@ -406,12 +407,12 @@ VoiceBox: 음성 복제, 녹취 및 생성을 위한 오픈소스 AI 음성 스�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -421,6 +422,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 - [2026-06-15-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

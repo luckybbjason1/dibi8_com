@@ -4,6 +4,7 @@ description: "JuiceFS（13,900+ 星标）将任何 S3 兼容的对象存储转�
 license: 'Apache-2.0'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
 # JuiceFS：云存储，本地速度
 
 想象一下，你的团队需要在50多个工作人员之间共享用于人工智能训练的大型数据集。
@@ -28,7 +29,7 @@ JuiceFS 将文件元数据与文件数据分开。
 
 这一建筑决策是其性能的关键。
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    JuiceFS Client                     │
 │  ┌──────────────┐    ┌──────────────┐               │
@@ -41,7 +42,7 @@ JuiceFS 将文件元数据与文件数据分开。
 │  │   (mount -t juicefs juicefs /mnt)│               │
 │  └──────────────────────────────────┘               │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 元数据操作（文件列表、权限、时间戳）存储到 Redis —— 一个极快的内存数据存储。
 
@@ -71,7 +72,7 @@ Redis 每秒处理数百万次操作，延迟低于毫秒级。
 
 这是一个完整的设置，使用 Redis 存储元数据，使用 AWS S3 进行存储：
 
-```bash
+`````bash
 # Install JuiceFS CLI
 curl -sSL https://d.juicefs.com/install | sh -
 
@@ -86,15 +87,15 @@ juicefs format \
 
 # Mount it locally
 juicefs mount mydata /mnt/juicefs
-```
+`````
 
 就是这样。
 
-`/mnt/juicefs` 现在的行为就像一个普通的 Linux 文件系统。
+````/mnt/juicefs```` 现在的行为就像一个普通的 Linux 文件系统。
 
-运行 `ls`、`cp`、`python train`。
+运行 ````ls````、````cp````、````python train````。
 
-py`，或任何标准工具——都能无缝运行。
+py````，或任何标准工具——都能无缝运行。
 
 ## 高级用法：分层存储
 
@@ -102,7 +103,7 @@ JuiceFS 强大的功能之一是分层存储。
 
 冷数据会自动移动到更便宜的存储层：
 
-```bash
+`````bash
 # Mount with tiered storage (S3 as cache backend)
 juicefs mount \
   --cache-size 10000 \
@@ -110,7 +111,7 @@ juicefs mount \
   --cache-compress \
   mydata \
   /mnt/juicefs
-```
+`````
 
 当本地缓存填满时，最久未使用的文件将被清除。
 
@@ -122,7 +123,7 @@ juicefs mount \
 
 为您的特定工作负载微调缓存行为：
 
-```bash
+`````bash
 # 50GB memory cache + 100GB disk cache with compression
 juicefs mount \
   --read-only-false \
@@ -139,13 +140,13 @@ juicefs status mydata
 # Cache usage: 45.2GB / 150.0GB (30%)
 # Cache hit rate: 94.7%
 # Cache miss: 2.1K ops
-```
+`````
 
 ### 多挂载与读写协作
 
 多个 JuiceFS 客户端可以同时挂载同一个文件系统以进行协作工作：
 
-```bash
+`````bash
 # Worker 1: Mount and start training
 juicefs mount mydata /mnt/juicefs &
 python train.py --data /mnt/juicefs/dataset --workers 8
@@ -157,13 +158,13 @@ python evaluate.py --data /mnt/juicefs/dataset
 # Worker 3: Upload new data while training runs
 rsync -av ./new_data/ /mnt/juicefs/dataset/
 # Training workers see new data immediately
-```
+`````
 
 ### S3 生命周期集成
 
 将 JuiceFS 与 S3 生命周期策略结合，实现自动成本优化：
 
-```bash
+`````bash
 # Set S3 lifecycle rule via AWS CLI
 aws s3api put-bucket-lifecycle-configuration \
   --bucket my-bucket \
@@ -183,7 +184,7 @@ aws s3api put-bucket-lifecycle-configuration \
 
 # JuiceFS automatically handles tier transitions
 # Accessing a cold file triggers fetch from Glacier
-```
+`````
 
 ## 性能基准
 
@@ -255,7 +256,7 @@ JuiceFS (14K⭐): 将云存储转化为本地存储的分布式 POSIX 文件系�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -267,7 +268,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -278,7 +279,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -288,7 +289,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -299,6 +300,6 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````
 
----
+* * *

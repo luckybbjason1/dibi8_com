@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/feast-feature-store-ml/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Khủng hoảng Feature Engineering 200ms
@@ -54,7 +55,7 @@ Feast **không** compute features — nó store và serve pre-computed features 
 
 Kiến trúc Feast bao gồm bốn core components: ### 1. Feature Registry
 
-Registry là bộ não của Feast. Nó lưu trữ tất cả feature definitions dưới dạng code (trong `feature_store.yaml` và Python files) và persist metadata đến một backend — file (local, S3, GCS) hoặc SQL database (PostgreSQL, MySQL): ```yaml
+Registry là bộ não của Feast. Nó lưu trữ tất cả feature definitions dưới dạng code (trong ``feature_store.yaml`` và Python files) và persist metadata đến một backend — file (local, S3, GCS) hoặc SQL database (PostgreSQL, MySQL): ````yaml
 # feature_store.yaml — Feast project configuration
 project: fraud_detection
 provider: local
@@ -65,9 +66,9 @@ offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
-```
+`````
 
-Cho production, sử dụng **SQL registry** (PostgreSQL) để prevent conflicts khi nhiều team members chạy `feast apply` đồng thờii.
+Cho production, sử dụng **SQL registry** (PostgreSQL) để prevent conflicts khi nhiều team members chạy ````feast apply```` đồng thờii.
 
 ### 2. Offline Store
 
@@ -76,7 +77,7 @@ Offline store giữ khối lượng lớn historical feature data. Nó phục v�
 
 Supported backends: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino**
 
-```python
+`````python
 # Retrieve historical features cho training
 from feast import FeatureStore
 
@@ -90,9 +91,9 @@ historical_df = store.get_historical_features(
         "user_features:days_since_last_order",
     ],
 ).to_df()
-```
+`````
 
-`get_historical_features()` thực hiện **point-in-time join** — nó retrieve mỗi feature value như nó tồn tại tại timestamp được chỉ định trong `entity_df`. Điều này prevent data leakage, một trong những mistakes phổ biến nhất trong ML training pipelines.
+````get_historical_features()```` thực hiện **point-in-time join** — nó retrieve mỗi feature value như nó tồn tại tại timestamp được chỉ định trong ````entity_df````. Điều này prevent data leakage, một trong những mistakes phổ biến nhất trong ML training pipelines.
 
 ### 3. Online Store
 
@@ -100,7 +101,7 @@ Online store là low-latency key-value database cho real-time feature serving. T
 
 Supported backends: **Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL**
 
-```python
+`````python
 # Retrieve online features cho real-time inference
 features = store.get_online_features(
     features=[
@@ -111,11 +112,11 @@ features = store.get_online_features(
 ).to_dict()
 
 # Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
-```
+`````
 
 ### 4. Feature Server
 
-Feast feature server là Go-based high-performance service expose feature retrieval qua REST và gRPC. Deploy như sidecar bên cạnh model serving infrastructure: ```bash
+Feast feature server là Go-based high-performance service expose feature retrieval qua REST và gRPC. Deploy như sidecar bên cạnh model serving infrastructure: `````bash
 # Start feature server
 feast serve --port 6566
 
@@ -126,11 +127,11 @@ curl -X POST "http://localhost:6566/get-online-features" \
     "features": ["user_features:avg_order_amount_30d"],
     "entities": {"user_id": ["user_12345"]}
   }"
-```
+`````
 
 ## Cài đặt & Setup: Dưới 5 phút
 
-Feast yêu cầu Python 3.9+ và pip. Cài đặt với backends mong muốn: ```bash
+Feast yêu cầu Python 3.9+ và pip. Cài đặt với backends mong muốn: `````bash
 # Core Feast (minimal)
 pip install feast
 
@@ -142,24 +143,24 @@ pip install "feast[redis]"
 
 # Full install
 pip install "feast[gcp,redis,postgres,snowflake]"
-```
+`````
 
-Verify: ```bash
+Verify: `````bash
 feast version
 # Feast SDK Version: 0.63.0
-```
+`````
 
-Khởi tạo Feast project mới: ```bash
+Khởi tạo Feast project mới: `````bash
 mkdir fraud_detection_feature_store
 cd fraud_detection_feature_store
 feast init
-```
+`````
 
 ## Định nghĩa Features: Entities, Feature Views, Feature Services
 
 ### Bước 1: Định nghĩa Entity
 
-```python
+`````python
 # features/entities.py
 from feast import Entity, ValueType
 
@@ -169,11 +170,11 @@ user = Entity(
     description="Unique identifier for each user",
     join_key="user_id",
 )
-```
+`````
 
 ### Bước 2: Định nghĩa Data Source
 
-```python
+`````python
 # features/data_sources.py
 from feast import BigQuerySource
 
@@ -185,16 +186,16 @@ transaction_stats_source = BigQuerySource(
             total_transactions_90d, days_since_last_order,
             unique_merchants_30d, avg_transaction_amount_7d,
             failed_transaction_rate_30d, created
-        FROM `my-gcp-project.featds.transaction_aggregates`
+        FROM ````my-gcp-project.featds.transaction_aggregates````
     """,
     timestamp_field="event_timestamp",
     created_timestamp_column="created",
 )
-```
+`````
 
 ### Bước 3: Định nghĩa Feature View
 
-```python
+`````python
 # features/feature_views.py
 from feast import FeatureView, Field
 from feast.types import Float32, Int64, Float64
@@ -217,11 +218,11 @@ user_transaction_features = FeatureView(
     tags={"team": "fraud", "domain": "transactions"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### Bước 4: Feature Service
 
-```python
+`````python
 # features/feature_services.py
 from feast import FeatureService
 
@@ -231,11 +232,11 @@ fraud_detection_v1 = FeatureService(
     tags={"version": "1.0", "model": "fraud_xgboost"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### Bước 5: Apply và Materialize
 
-```bash
+`````bash
 # Apply feature definitions
 feast apply
 
@@ -244,13 +245,13 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 
 # Hoặc materialize specific time range
 feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
-```
+`````
 
 ## Cấu hình Production: Redis + BigQuery
 
 ### feature_store.yaml (Production)
 
-```yaml
+`````yaml
 project: fraud_detection
 provider: gcp
 registry: registry_store_type: sql
@@ -267,11 +268,11 @@ offline_store: type: bigquery
   location: US
 
 entity_key_serialization_version: 2
-```
+`````
 
 ### Deploy Redis trên VPS
 
-```bash
+`````bash
 # Deploy Redis trên Ubuntu 22.04 (DigitalOcean Droplet)
 sudo apt update && sudo apt install redis-server
 
@@ -286,13 +287,13 @@ EOF
 
 sudo systemctl restart redis
 redis-cli ping  # PONG
-```
+`````
 
 ## Tích hợp với ML Pipeline
 
 ### Training Pipeline
 
-```python
+`````python
 # training_pipeline.py
 from feast import FeatureStore
 import pandas as pd
@@ -315,11 +316,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 model = xgb.XGBClassifier(max_depth=6, learning_rate=0.1, n_estimators=200)
 model.fit(X_train, y_train)
 print(f"AUC-ROC: {roc_auc_score(y_test, model.predict_proba(X_test)[:, 1]):.4f}")
-```
+`````
 
 ### Real-Time Inference
 
-```python
+`````python
 # inference_service.py
 from feast import FeatureStore
 from fastapi import FastAPI
@@ -358,11 +359,11 @@ async def predict(user_id: str, transaction_amount: float): features = store.get
         "is_fraud": fraud_probability > 0.7,
         "features_retrieved": {k: v[0] for k, v in features.items()},
     }
-```
+`````
 
 ### Airflow DAG cho Materialization
 
-```python
+`````python
 # dags/feast_materialize.py
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -387,7 +388,7 @@ with DAG("feast_materialize", default_args=default_args,
     )
     
     materialize >> validate
-```
+`````
 
 ## Benchmarks & Use Cases Thực tế
 
@@ -429,7 +430,7 @@ Con số nổi bật: **p50 online feature retrieval từ Redis là 1.2ms** — 
 
 ### On-Demand Feature Transformations
 
-```python
+`````python
 from feast import on_demand_feature_view
 from feast.types import Float64
 
@@ -442,11 +443,11 @@ def transaction_transforms(inputs): import pandas as pd
     df = pd.DataFrame()
     df["transaction_amount_ratio"] = (inputs["transaction_amount"] / inputs["avg_order_amount_30d"]).fillna(0)
     return df
-```
+`````
 
 ### Multi-Project Setup
 
-```yaml
+`````yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
 registry: path: s3://shared-bucket/registry_team_a.db
@@ -455,11 +456,11 @@ online_store: type: redis
 offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_a_features
-```
+`````
 
 ### Bảo mật Feature Store
 
-```yaml
+`````yaml
 auth: type: oidc
   oidc_server_url: "https://auth.company.com"
   client_id: "feast-app"
@@ -469,11 +470,11 @@ authorization: enabled: true
   policies: - resource: "feature_view:user_transaction_features"
       actions: ["read", "materialize"]
       roles: ["ml-engineer", "data-scientist"]
-```
+`````
 
 ### Stream Feature Ingestion (Kafka -> Redis)
 
-```python
+`````python
 from feast import FeatureStore
 from confluent_kafka import Consumer
 import json, pandas as pd
@@ -491,7 +492,7 @@ while True: msg = consumer.poll(timeout=1.0)
                df=pd.DataFrame([{"user_id": event["user_id"],
                                 "event_timestamp": event["timestamp"],
                                 "avg_transaction_amount_7d": event["amount"]}]))
-```
+`````
 
 ## So Sánh với Các Giải Pháp Thay Thế
 
@@ -537,7 +538,7 @@ while True: msg = consumer.poll(timeout=1.0)
 Data warehouse (BigQuery, Snowflake) lưu raw và aggregated data cho analytics. Feature store thêm ba thứ: (1) online store cho sub-second serving, (2) point-in-time correct joins để prevent data leakage, (3) feature registry cho discovery và governance.
 
 **Q: Online features trong Feast tươi đến mức nào?**
-Freshness phụ thuộc vào materialization schedule. Nếu chạy `feast materialize-incremental` mỗi 5 phút, online features stale tối đa 5 phút.
+Freshness phụ thuộc vào materialization schedule. Nếu chạy ````feast materialize-incremental```` mỗi 5 phút, online features stale tối đa 5 phút.
 
 **Q: Tôi có thể dùng Feast không có cloud provider không?**
 Có. Dùng SQLite hoặc PostgreSQL làm offline store và Redis (self-hosted) hoặc SQLite làm online store. Feast chạy hoàn toàn on-premises.
@@ -563,12 +564,12 @@ Nếu ML models của bạn chịu đựng training-serving skew, inference pipe
 
 Feast, với **7,000+ stars**, một cộng đồng vibrant gồm **361 contributors**, và support cho **20+ storage backends**, là open-source feature store của choice cho teams coi trọng flexibility và multi-cloud portability. Redis + BigQuery combination deliver **p50 online serving latency dưới 2ms**, trong khi point-in-time joins ensure training data của bạn free from leakage.
 
-Bắt đầu hôm nay: ```bash
+Bắt đầu hôm nay: `````bash
 pip install feast[redis,bigquery]
 feast init
 feast apply
 feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
-```
+````
 
 Tham gia Feast community trên [Slack](https://join.slack.com/t/feastopensource/shared_invite) và follow project trên [GitHub](https://github.com/feast-dev/feast).
 
@@ -625,7 +626,7 @@ Bài viết này chứa liên kết affiliate cho [DigitalOcean](https://m.do.co
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -634,6 +635,6 @@ Bài viết này chứa liên kết affiliate cho [DigitalOcean](https://m.do.co
 - [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
 - [spec-kit-github-spec-driven-development-toolkit](feast-feature-store-ml)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

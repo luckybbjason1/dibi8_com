@@ -11,11 +11,12 @@ license: MIT
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
 
+
 ## 引言
 
 你克隆了一个新的代码库。50,000 行代码分布在 200 个文件中。你打开 VS Code，盯着文件树看。你甚至从哪里开始？
 
-大多数开发者会首先使用 `grep`。然后是 `ripgrep`。接着他们会打开 10 个引用最多的文件，试图在脑海中拼凑出架构。这对小型项目有效。但对于任何较大的项目，这就很累人。
+大多数开发者会首先使用 ```grep````。然后是 ````ripgrep````。接着他们会打开 10 个引用最多的文件，试图在脑海中拼凑出架构。这对小型项目有效。但对于任何较大的项目，这就很累人。
 
 Understand-Anything 做的事情从根本上不同。它将任何代码库转化为一个交互式知识图——节点代表文件、类和函数；边代表依赖和关系。你可以探索、搜索并对代码提问。不用正则表达式，用自然语言。
 
@@ -31,13 +32,13 @@ Understand-Anything 是由 Egonex-AI 开发的开源工具，可以将任何代�
 
 结果是一个可视化且可查询的代码表示，人类和 AI 代理都可以进行导航。Claude Code 可以遍历它。Codex 可以对它进行推理。Cursor 可以引用它。该图作为开发者和 AI 助手之间的共享理解层。
 
-```bash
+`````bash
 # Install via npm (TypeScript-based CLI)
 npm install -g understand-anything
 
 # Or use via Docker
 docker run -v $(pwd):/code ghcr.io/egonex-ai/understand-anything:latest /code
-```
+`````
 
 该工具可与 Claude Code、Codex、Cursor、Copilot、Gemini CLI、OpenCode 及其他 AI 编程代理协同工作——使其成为 AI 编程工具链的通用知识层。
 
@@ -45,7 +46,7 @@ docker run -v $(pwd):/code ghcr.io/egonex-ai/understand-anything:latest /code
 
 该管道有三个阶段：解析、图构建和索引：
 
-```
+`````
 Source Code (all languages)
         │
         ▼
@@ -70,9 +71,9 @@ Source Code (all languages)
          ▼
    Knowledge Graph
   (explore + query)
-```
+`````
 
-每种语言都使用其本地的 AST 进行解析（Python 使用 `ast`，TypeScript 使用 `typescript` 编译器 API 等）。图表以紧凑格式存储，优化以便可视化和快速查询。
+每种语言都使用其本地的 AST 进行解析（Python 使用 ````ast````，TypeScript 使用 ````typescript```` 编译器 API 等）。图表以紧凑格式存储，优化以便可视化和快速查询。
 
 索引层为语义搜索添加向量嵌入——使得可以在整个代码库中执行“查找所有处理身份验证的函数”类型的查询。
 
@@ -80,17 +81,17 @@ Source Code (all languages)
 
 ### 快速安装
 
-```bash
+`````bash
 # npm installation (recommended)
 npm install -g understand-anything
 
 # Verify
 understand-anything --version
-```
+`````
 
 ### Docker 安装
 
-```bash
+`````bash
 # Pull latest image
 docker pull ghcr.io/egonex-ai/understand-anything:latest
 
@@ -98,35 +99,35 @@ docker pull ghcr.io/egonex-ai/understand-anything:latest
 docker run --rm -v $(pwd):/code \
   ghcr.io/egonex-ai/understand-anything:latest \
   /code --output ./knowledge-graph.json
-```
+`````
 
 ### 来自来源
 
-```bash
+`````bash
 git clone https://github.com/Egonex-AI/Understand-Anything.git
 cd Understand-Anything
 npm install
 npm run build
 npm link  # global install
-```
+`````
 
 ### Python 包装器
 
-```bash
+`````bash
 pip install understand-anything-python
-```
+`````
 
-```python
+`````python
 from understand_anything import CodebaseAnalyzer
 
 analyzer = CodebaseAnalyzer("/path/to/codebase")
 analyzer.build_graph()
 analyzer.export_graph("graph.json")
-```
+`````
 
 ### 配置
 
-```json
+`````json
 {
   "include": ["src/**/*.{ts,tsx,js,jsx}", "tests/**/*"],
   "exclude": ["node_modules", "dist", "*.test.*"],
@@ -135,49 +136,49 @@ analyzer.export_graph("graph.json")
   "max_file_size": 50000,
   "max_depth": 5
 }
-```
+`````
 
 ## 与主流工具的集成
 
 ### Claude 代码集成
 
-```bash
+`````bash
 # Add knowledge graph to Claude Code context
 understand-anything analyze ./src --format claude-code
 
 # Claude Code automatically loads the graph for context-aware responses
-```
+`````
 
 ### Cursor IDE 插件
 
-```bash
+`````bash
 # Install the Cursor extension
 # Settings → Extensions → Understand-Anything
 # Point to your project root
 
 # Cursor will show the knowledge graph sidebar
 # Click any node to navigate to the source
-```
+`````
 
 ### GitHub Copilot 扩展
 
-```bash
+`````bash
 # Generate a .copilot context file
 understand-anything analyze ./src --format copilot
 
 # Creates .github/copilot-instructions.md with
 # graph-derived context for Copilot
-```
+`````
 
 ### VS Code 扩展
 
-```bash
+`````bash
 # Install from marketplace
 # vscode-marketplace: egonex.understand-anything
 
 # Or CLI install
 npx @egonex/vscode-extension install
-```
+`````
 
 ## 基准测试与实际应用案例
 
@@ -204,7 +205,7 @@ npx @egonex/vscode-extension install
 
 由15名开发人员组成的团队加入了一个50,000行的TypeScript项目。在使用Understand-Anything之前，上手需要花费2周时间阅读代码。之后：
 
-```bash
+`````bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
@@ -212,19 +213,19 @@ understand-anything analyze ./src --onboarding
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
-```
+`````
 
 新开发者的入职时间从14天减少到3天。交互式图表让他们可以按自己的节奏浏览代码库。
 
 ### 使用场景：遗留代码重构
 
-```bash
+`````bash
 # Find all files that reference deprecated API
 understand-anything query "deprecated authentication endpoints"
 
 # Returns: 23 files, 47 references
 # With full dependency chains
-```
+`````
 
 该图揭示了电子表格和grep完全无法发现的隐藏耦合。
 
@@ -232,7 +233,7 @@ understand-anything query "deprecated authentication endpoints"
 
 ### 自定义语言支持
 
-```typescript
+`````typescript
 // Add support for a new language
 import { LanguagePlugin } from 'understand-anything';
 
@@ -251,11 +252,11 @@ class MyLangPlugin implements LanguagePlugin {
 
 // Register plugin
 registerPlugin(new MyLangPlugin());
-```
+`````
 
 ### 图查询语言 (GQL)
 
-```bash
+`````bash
 # Find all functions called by more than 5 other functions
 understand-anything gql "func where call_count > 5 order by call_count desc"
 
@@ -264,11 +265,11 @@ understand-anything gql "file where incoming_refs == 0"
 
 # Find circular dependencies
 understand-anything gql "cycle where type == 'import'"
-```
+`````
 
 ### CI/CD 集成
 
-```yaml
+`````yaml
 # .github/workflows/graph-check.yml
 name: Knowledge Graph CI
 on: [pull_request]
@@ -287,11 +288,11 @@ jobs: analyze: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: graph-violations
           path: graph-violations.json
-```
+`````
 
 ### 性能调优
 
-```bash
+`````bash
 # Use incremental analysis (fastest for dev workflows)
 understand-anything analyze ./src --incremental
 
@@ -303,11 +304,11 @@ understand-anything analyze ./src --workers 8
 
 # Memory-efficient mode (for constrained environments)
 understand-anything analyze ./src --low-memory
-```
+`````
 
 ### 导出格式
 
-```bash
+`````bash
 # JSON (programmatic access)
 understand-anything analyze ./src --format json -o graph.json
 
@@ -321,7 +322,7 @@ understand-anything analyze ./src --format mermaid -o graph.mmd
 # HTML (interactive viewer)
 understand-anything analyze ./src --format html -o graph.html
 # Opens in browser with zoom, pan, search
-```
+`````
 
 ## 与替代方案的比较
 
@@ -346,11 +347,11 @@ Understand-Anything 很强大，但也有明显的局限性：
 
 1. **生成的代码不会被分析。** 动态代码（eval、exec、运行时生成的类）不会出现在图中。这是静态分析的一个根本限制——没有工具能完美解决这个问题。
 
-2. **第三方库需要单独分析。** 该图表关注的是你的代码库。要包含依赖项，你需要单独分析 `node_modules`、`vendor/` 或等效目录。
+2. **第三方库需要单独分析。** 该图表关注的是你的代码库。要包含依赖项，你需要单独分析 ````node_modules````、````vendor/```` 或等效目录。
 
-3. **大型单一仓库需要调优。** 超过50,000个文件可能需要使用 `--workers` 和 `--low-memory` 参数以获得最佳性能。默认设置对最多10,000个文件的项目效果良好。
+3. **大型单一仓库需要调优。** 超过50,000个文件可能需要使用 ````--workers```` 和 ````--low-memory```` 参数以获得最佳性能。默认设置对最多10,000个文件的项目效果良好。
 
-4. **非标准文件扩展名。** 没有已识别扩展名的文件可能无法被正确解析。使用 `include` 配置来指定模式。
+4. **非标准文件扩展名。** 没有已识别扩展名的文件可能无法被正确解析。使用 ````include```` 配置来指定模式。
 
 5. **实时协作。** 图表是按需计算的，而不是持续更新的。更改需要重新分析（增量模式可以最小化此成本）。
 
@@ -378,15 +379,15 @@ Understand-Anything 很强大，但也有明显的局限性：
 
 **问：它适用于单体仓库吗？**
 
-是的。Understand-Anything 原生支持 monorepos。将 `--root` 标志设置为 monorepo 根目录，并指定要包含的包。跨包依赖检测会自动工作。
+是的。Understand-Anything 原生支持 monorepos。将 ````--root```` 标志设置为 monorepo 根目录，并指定要包含的包。跨包依赖检测会自动工作。
 
 **问：代码库的最大规模是多少？**
 
-已在多达 500,000 个文件和 5,000 万行代码的代码库上进行测试。性能取决于硬件——一台现代笔记本可以轻松处理 10,000 个文件。对于更大的项目，请使用 `--workers` 和 `--low-memory` 参数。
+已在多达 500,000 个文件和 5,000 万行代码的代码库上进行测试。性能取决于硬件——一台现代笔记本可以轻松处理 10,000 个文件。对于更大的项目，请使用 ````--workers```` 和 ````--low-memory```` 参数。
 
 **问：有网页界面吗？**
 
-是的。`--format html` 导出会生成一个完全交互的网页查看器，具有缩放、平移、搜索和点击导航功能。不需要服务器——它是一个静态 HTML 文件。
+是的。````--format html```` 导出会生成一个完全交互的网页查看器，具有缩放、平移、搜索和点击导航功能。不需要服务器——它是一个静态 HTML 文件。
 
 ## 结论
 
@@ -396,14 +397,14 @@ Understand-Anything 很强大，但也有明显的局限性：
 
 一个月内获得超过6万颗星不仅仅是炒作。这是开发者意识到，浏览代码库应该像探索地图一样，而不是像读电话簿一样。
 
-在你的下一个项目中试试吧。克隆一个仓库，运行 `understand-anything analyze .`，然后看图表出现。你会想不知道没有它你以前是怎么上手的。
+在你的下一个项目中试试吧。克隆一个仓库，运行 ````understand-anything analyze .```，然后看图表出现。你会想不知道没有它你以前是怎么上手的。
 
 **行动号召**: 今天就尝试 Understand-Anything。加入 [dibi8 Telegram 群组](https://t.me/DIBI8_Group/2) 讨论代码可视化和 AI 辅助的开发工作流程。
 
 想了解更多关于人工智能编码工具的信息，请查看我们关于[Claude Code 精通](dibi8-claude-code-mastery)和[Cursor IDE 优化](dibi8-cursor-optimization)的指南。
 
 
----
+* * *
 **来源及进一步阅读**：
 - 官方文档：https://github.com/Egonex-AI/Understand-Anything
 - GitHub 仓库: https://github.com/Egonex-AI/Understand-Anything
@@ -480,11 +481,11 @@ Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026 repres
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -494,7 +495,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](understand-anything-interactive-knowledge-graphs-codebases)
 - [cursor-vs-claude-code](understand-anything-interactive-knowledge-graphs-codebases)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -525,15 +526,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

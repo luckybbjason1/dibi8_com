@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/melotts/
 ---
 
+
 {{</* resource-info */>}}
 
 대부분의 오픈소스 TTS 라이브러리는 품질과 속도 사이에서 선택을 강요합니다: 고품질을 위해서는 GPU가 필요하고, CPU 친화적인 옵션은 로봇처럼 들립니다. MIT와 MyShell.ai 연구원들이 개발한 MeloTTS는 이 트레이드오프를 깨뜨립니다. 7,400개 이상의 GitHub Stars와 MIT 라이선스를 보유한 이 라이브러리는 CPU에서 6개 언어와 여러 영어 억양으로 실시간 다국어 음성 합성을 제공합니다. 이 가이드에서는 MeloTTS의 완전한 설치 설정, Coqui TTS, ChatTTS, Bark와의 벤치마크 비교, 그리고 프로덕션 배포 구성을 다룹니다.
@@ -40,7 +41,7 @@ MeloTTS는 VITS, VITS2, Bert-VITS2 아키텍처를 기반으로 한 고품질 �
 
 ## MeloTTS 작동 방식
 
-MeloTTS는 VITS2에서 파생된 비자기회귀(Non-Autoregressive) 종단간 신경 아키텍처를 사용하며 BERT 기반 텍스트 인코딩을 결합합니다. 파이프라인은 네 단계로 구성됩니다: 1. **텍스트 처리**: 대부분의 언어에 대해 `espeak-ng`를 통한 G2P(그래핌-투-포넴) 변환; 중국어와 일본어는 BERT 토크나이저 사용(via `unidic`). 중영 혼합 텍스트는 자동으로 분할되어 해당 음소 추출기로 라우팅됩니다.
+MeloTTS는 VITS2에서 파생된 비자기회귀(Non-Autoregressive) 종단간 신경 아키텍처를 사용하며 BERT 기반 텍스트 인코딩을 결합합니다. 파이프라인은 네 단계로 구성됩니다: 1. **텍스트 처리**: 대부분의 언어에 대해 ```espeak-ng````를 통한 G2P(그래핌-투-포넴) 변환; 중국어와 일본어는 BERT 토크나이저 사용(via ````unidic````). 중영 혼합 텍스트는 자동으로 분할되어 해당 음소 추출기로 라우팅됩니다.
 
 2. **BERT 인코더**: 경량 MiniLM 인코더가 입력 텍스트에서 맥락적 표현을 추출하여 운율과 의미적 뉘앙스를 포착합니다.
 
@@ -58,7 +59,7 @@ MeloTTS는 VITS2에서 파생된 비자기회귀(Non-Autoregressive) 종단간 �
 
 ### 사전 요구사항
 
-MeloTTS를 설치하기 전에 다음을 확인하세요: ```bash
+MeloTTS를 설치하기 전에 다음을 확인하세요: `````bash
 # Ubuntu/Debian
 sudo apt-get update && sudo apt-get install -y espeak-ng libsndfile1 ffmpeg
 
@@ -67,11 +68,11 @@ brew install espeak libsndfile ffmpeg
 
 # espeak-ng 확인
 espeak-ng --version
-```
+`````
 
 ### 방법 1: pip 설치 (Linux/macOS)
 
-```bash
+`````bash
 # 가상 환경 생성
 python -m venv melotts-env
 source melotts-env/bin/activate
@@ -81,35 +82,35 @@ pip install melotts
 
 # 일본어 사전 다운로드 (JA 지원에 필요)
 python -m unidic download
-```
+`````
 
 ### 방법 2: 소스에서 설치
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 pip install -e .
 python -m unidic download
-```
+`````
 
 ### 방법 3: Docker (Windows에 권장)
 
-```bash
+`````bash
 git clone https://github.com/myshell-ai/MeloTTS.git
 cd MeloTTS
 docker build -t melotts .
 docker run -it -p 8888:8888 melotts
-```
+`````
 
-GPU 가속 버전: ```bash
+GPU 가속 버전: `````bash
 docker run --gpus all -it -p 8888:8888 melotts
-```
+`````
 
-`http://localhost:8888`을 열어 내장 Web UI에 접속합니다.
+````http://localhost:8888````을 열어 내장 Web UI에 접속합니다.
 
 ### 설치 확인
 
-```python
+`````python
 from melo.api import TTS
 
 # 속도 조절 가능
@@ -123,23 +124,23 @@ speaker_ids = model.hps.data.spk2id
 output_path = 'test_output.wav'
 model.tts_to_file(text, speaker_ids['EN-Default'], output_path, speed=speed)
 print(f"Audio saved to {output_path}")
-```
+`````
 
 ### 첫 합성
 
-```bash
+`````bash
 # CLI 사용 (pip 설치 후)
 melo "Hello, this is MeloTTS speaking." output.wav -l EN --speaker EN-US
 
 # 사용 가능한 화자 목록
 melo --list-speakers
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### Python API — 다중 억양 영어
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -160,11 +161,11 @@ model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # 호주 억양
 model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
-```
+`````
 
 ### 중국어-영어 혼합
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -177,11 +178,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
 model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
-```
+`````
 
 ### 일본어
 
-```python
+`````python
 from melo.api import TTS
 
 speed = 1.0
@@ -193,11 +194,11 @@ speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
 model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
-```
+`````
 
 ### FastAPI REST API
 
-```python
+`````python
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from melo.api import TTS
@@ -227,15 +228,15 @@ async def text_to_speech(req: TTSRequest): if req.language not in models: raise 
     model.tts_to_file(req.text, speaker_ids[req.speaker], output_path, speed=req.speed)
     
     return {"audio_file": output_path}
-```
+`````
 
-API 실행: ```bash
+API 실행: `````bash
 uvicorn tts_api:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### Docker Compose 프로덕션 배포
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: melotts: build: context: .
@@ -250,11 +251,11 @@ services: melotts: build: context: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### WebSocket 스트리밍 TTS
 
-```python
+`````python
 import asyncio
 import websockets
 import json
@@ -274,11 +275,11 @@ async def tts_stream(websocket, path): async for message in websocket: data = js
 start_server = websockets.serve(tts_stream, '0.0.0.0', 8765)
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
-```
+`````
 
 ### Gradio Web UI
 
-```python
+`````python
 import gradio as gr
 from melo.api import TTS
 
@@ -303,7 +304,7 @@ iface = gr.Interface(
 )
 
 iface.launch(server_name='0.0.0.0', server_port=7860)
-```
+`````
 
 ## 벤치마크 / 실제 활용 사례
 
@@ -371,7 +372,7 @@ MeloTTS는 Coqui XTTS보다 6분의 1 이하의 메모리를 사용하여 AWS t3
 
 ### 모델 프리워밍
 
-프로덕션에서는 항상 시작 시 모델을 로드하여 콜드 스타트 지연을 방지합니다: ```python
+프로덕션에서는 항상 시작 시 모델을 로드하여 콜드 스타트 지연을 방지합니다: `````python
 from melo.api import TTS
 import functools
 
@@ -382,11 +383,11 @@ def get_model(language): """캐시된 모델 로더 — 모델은 한 번만 로
 # 시작 시 모든 언어 프리워밍
 for lang in [EN, ZH, ES, FR, JA, KO]: get_model(lang)
 print("모든 모델이 로드되었습니다.")
-```
+`````
 
 ### 배치 처리로 처리량 향상
 
-```python
+`````python
 from melo.api import TTS
 import concurrent.futures
 
@@ -405,11 +406,11 @@ def synth(text): output_path = f"batch_{hash(text)}.wav"
 
 # 병렬 배치 처리
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: results = list(executor.map(synth, texts))
-```
+`````
 
 ### Gunicorn + FastAPI 프로덕션 서버
 
-```bash
+`````bash
 # gunicorn과 uvicorn 워커 설치
 pip install gunicorn uvicorn
 
@@ -420,11 +421,11 @@ gunicorn tts_api:app -k uvicorn.workers.UvicornWorker \
   --timeout 120 \
   --max-requests 1000 \
   --max-requests-jitter 100
-```
+`````
 
 ### systemd 서비스 파일
 
-```ini
+`````ini
 [Unit]
 Description=MeloTTS REST API
 After=network.target
@@ -442,19 +443,19 @@ RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-설치 및 시작: ```bash
+설치 및 시작: `````bash
 sudo cp melotts.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable melotts
 sudo systemctl start melotts
 sudo systemctl status melotts
-```
+`````
 
 ### Prometheus 모니터링
 
-```python
+`````python
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
@@ -468,11 +469,11 @@ async def metrics(): return Response(content=generate_latest(), media_type="text
 @app.post("/tts")
 async def text_to_speech(req: TTSRequest): with tts_duration.time(): # ... 기존 TTS 로직 ...
         tts_requests.labels(language=req.language, speaker=req.speaker).inc()
-```
+`````
 
 ### Nginx 리버스 프록시
 
-```nginx
+`````nginx
 upstream melotts {
     server 127.0.0.1:8000;
     keepalive 32;
@@ -494,7 +495,7 @@ server {
         limit_req zone=tts_zone burst=20 nodelay;
     }
 }
-```
+`````
 
 ## 대안과의 비교
 
@@ -529,7 +530,7 @@ MeloTTS는 만능 솔루션이 아닙니다. 고려해야 할 구체적인 한�
 
 2. **감정 제어 없음**: 속도는 조절 가능하지만, 기쁨, 슬픔, 분노 등의 감정을 제어하는 매개변수는 없습니다. Bark와 ChatTTS가 더 풍부한 감정 표현을 제공합니다.
 
-3. **G2P 제한**: 기본 G2P 파이프라인은 규칙 기반 `espeak-ng`를 사용하여 드문 단어나 고유명사를 가끔 잘못 발음합니다. 기본 제공되는 신경 G2P는 없습니다.
+3. **G2P 제한**: 기본 G2P 파이프라인은 규칙 기반 ````espeak-ng````를 사용하여 드문 단어나 고유명사를 가끔 잘못 발음합니다. 기본 제공되는 신경 G2P는 없습니다.
 
 4. **스트리밍 추론 없음**: 전체 생성은 빠르지만, 재생을 시작하려면 전체 오디오 합성이 완료될 때까지 기다려야 합니다. 진정한 청크 단위 스트리밍은 지원하지 않습니다.
 
@@ -551,19 +552,19 @@ MeloTTS는 만능 솔루션이 아닙니다. 고려해야 할 구체적인 한�
 
 ### Q3: 중영 혼합 입력은 어떻게 작동하나요?
 
-중국어 모델(`language=ZH`)이 중국어 텍스트 내의 영어 단어를 자동으로 감지하고 적절한 운율적 연속성을 유지하면서 영어 G2P 파이프라인으로 라우팅합니다. 수동 태깅이나 모델 전환이 필요하지 않습니다.
+중국어 모델(````language=ZH````)이 중국어 텍스트 내의 영어 단어를 자동으로 감지하고 적절한 운율적 연속성을 유지하면서 영어 G2P 파이프라인으로 라우팅합니다. 수동 태깅이나 모델 전환이 필요하지 않습니다.
 
 ### Q4: MeloTTS가 처리할 수 있는 최대 텍스트 길이는 얼마인가요?
 
 하드코딩된 길이 제한은 없습니다. 그러나 모델이 전체 텍스트를 단일 포워드 패스에서 처리하므로 매우 긴 텍스트(> 1000자)는 저RAM 시스템에서 메모리 부족 오류를 일으킬 수 있습니다. 장문 콘텐츠는 문장으로 분할하여 배치 합성하세요.
 
-### Q5: `espeak-ng not found` 오류를 어떻게 수정하나요?
+### Q5: ````espeak-ng not found```` 오류를 어떻게 수정하나요?
 
-시스템 패키지 관리자를 통해 `espeak-ng`를 설치하세요. Ubuntu: `sudo apt-get install espeak-ng`. macOS: `brew install espeak`. Windows는 espeak-ng GitHub 릴리스 페이지에서 설치 프로그램을 다운로드하여 PATH에 추가하세요.
+시스템 패키지 관리자를 통해 ````espeak-ng````를 설치하세요. Ubuntu: ````sudo apt-get install espeak-ng````. macOS: ````brew install espeak````. Windows는 espeak-ng GitHub 릴리스 페이지에서 설치 프로그램을 다운로드하여 PATH에 추가하세요.
 
 ### Q6: 나만의 목소리로 MeloTTS를 파인튜닝할 수 있나요?
 
-예, 하지만 주의사항이 있습니다. 학습 파이프라인(`docs/training.md`)이 존재하지만 문서가 부족합니다. 약 30분의 깨끗한 오디오 녹음과 해당 텍스트 전사본이 필요합니다. 파인튜닝에는 GPU(NVIDIA 8GB+ VRAM)가 필요하며 수 시간이 소요됩니다.
+예, 하지만 주의사항이 있습니다. 학습 파이프라인(````docs/training.md````)이 존재하지만 문서가 부족합니다. 약 30분의 깨끗한 오디오 녹음과 해당 텍스트 전사본이 필요합니다. 파인튜닝에는 GPU(NVIDIA 8GB+ VRAM)가 필요하며 수 시간이 소요됩니다.
 
 ### Q7: MeloTTS는 ElevenLabs 같은 상용 TTS와 어떻게 비교되나요?
 
@@ -574,7 +575,7 @@ MeloTTS는 이핵도에서 상용 서비스와 일치하고 지원 언어의 자
 MeloTTS는 오픈소스 TTS 환경에서 독특한 위치를 차지합니다: 다국어 지원, MIT 라이선스, 실시간 CPU 추론을 300MB 미만 패키지로 결합하는 유일한 라이브러리입니다. GPU 인프라 없이 안정적인 음성 합성이 필요한 SaaS 제품, 챗봇, 콘텐츠 파이프라인을 구축하는 팀에게 MeloTTS는 실용적인 선택입니다.
 
 **실행 항목:**
-1. 오늘 `pip install melotts`를 실행하여 첫 오디오 클립을 합성하세요
+1. 오늘 ````pip install melotts```를 실행하여 첫 오디오 클립을 합성하세요
 2. Nginx 뒤에 FastAPI 예제를 배포하여 프로덕션 준비 TTS 엔드포인트를 만드세요
 3. [MeloTTS GitHub Discussions](https://github.com/myshell-ai/MeloTTS/discussions)에 가입하여 커뮤니티 지원을 받으세요
 4. 매주 AI 도구 업데이트를 위해 dibi8 Telegram 그룹을 팔로우하세요
@@ -630,7 +631,7 @@ MeloTTS는 오픈소스 TTS 환경에서 독특한 위치를 차지합니다: �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -640,6 +641,6 @@ MeloTTS는 오픈소스 TTS 환경에서 독특한 위치를 차지합니다: �
 - [agent-reach-internet-access-ai-agents](melotts)
 - [microsoft-markitdown-file-to-markdown-converter-cli](melotts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

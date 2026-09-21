@@ -22,6 +22,7 @@ aliases:
   - /posts/llm-fine-tuning-frameworks-comparison/
 ---
 
+
 {</* resource-info */>}
 
 Fine-tuning là kỹ thuật cho phép điều chỉnh mô hình ngôn ngữ lớn để hoạt động tốt hơn trên tác vụ hoặc miền dữ liệu cụ thể. Tuy nhiên, việc fine-tuning toàn bộ tham số của một mô hình như Llama 3 70B đòi hỏi hàng trăm GB VRAM — con số nằm ngoài tầm với của hầu hết các tổ chức. Các phương pháp fine-tuning hiệu quả tham số (Parameter-Efficient Fine-Tuning — PEFT) ra đờii để giải quyết bài toán này. Bài viết so sánh chi tiết bốn công nghệ hàng đầu năm 2025: LoRA, QLoRA, PEFT, và Unsloth.
@@ -42,9 +43,9 @@ Fine-tuning phù hợp khi bạn cần thay đổi hành vi của mô hình (wri
 
 ### LoRA Hoạt Động Như Thế Nào?
 
-LoRA, được giới thiệu trong bài báo năm 2021 của Microsoft Research [^2^](https://arxiv.org/abs/2106.09685), dựa trên một insight quan trọng: ma trận cập nhật trong quá trình fine-tuning có rank thấp. Thay vì cập nhật toàn bộ ma trận trọng số W, LoRA thêm hai ma trận nhỏ A và B sao cho: ```
+LoRA, được giới thiệu trong bài báo năm 2021 của Microsoft Research [^2^](https://arxiv.org/abs/2106.09685), dựa trên một insight quan trọng: ma trận cập nhật trong quá trình fine-tuning có rank thấp. Thay vì cập nhật toàn bộ ma trận trọng số W, LoRA thêm hai ma trận nhỏ A và B sao cho: ````
 W" = W + BA
-```
+`````
 
 Trong đó A có kích thước (r × d) và B có kích thước (d × r), với r << d. Rank r thường chọn từ 8 đến 128, giảm số tham số cần huấn luyện từ d×d xuống 2×d×r.
 
@@ -59,11 +60,11 @@ Trong đó A có kích thước (r × d) và B có kích thước (d × r), vớ
 
 ### Các Module Mục Tiêu
 
-Với kiến trúc transformer, LoRA thường áp dụng cho các projection layers trong attention mechanism: - `q_proj`: Query projection
-- `k_proj`: Key projection
-- `v_proj`: Value projection
-- `o_proj`: Output projection
-- `gate_proj`, `up_proj`, `down_proj`: Feed-forward layers (tùy chọn)
+Với kiến trúc transformer, LoRA thường áp dụng cho các projection layers trong attention mechanism: - ````q_proj````: Query projection
+- ````k_proj````: Key projection
+- ````v_proj````: Value projection
+- ````o_proj````: Output projection
+- ````gate_proj````, ````up_proj````, ````down_proj````: Feed-forward layers (tùy chọn)
 
 Áp dụng LoRA cho cả attention và feed-forward layers tăng số tham số huấn luyện nhưng thường cho kết quả tốt hơn.
 
@@ -109,7 +110,7 @@ PEFT hỗ trợ nhiều phương pháp fine-tuning: - **LoRA**: Phổ biến nh�
 
 ### Tích Hợp Với Transformers Và Accelerate
 
-```python
+`````python
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM
 
@@ -126,18 +127,18 @@ peft_config = LoraConfig(
 
 model = get_peft_model(model, peft_config)
 model.print_trainable_parameters()  # Chỉ ~0.5% tham số
-```
+`````
 
 ### Lưu Và Tải Adapters
 
-PEFT cho phép lưu chỉ các adapter weights (chỉ vài MB) thay vì toàn bộ model (hàng chục GB). Điều này giúp chia sẻ và deployment nhanh chóng: ```python
+PEFT cho phép lưu chỉ các adapter weights (chỉ vài MB) thay vì toàn bộ model (hàng chục GB). Điều này giúp chia sẻ và deployment nhanh chóng: `````python
 # Lưu adapter
 model.save_pretrained("./lora-adapter")
 
 # Tải adapter
 from peft import PeftModel
 model = PeftModel.from_pretrained(base_model, "./lora-adapter")
-```
+`````
 
 ## Unsloth: Framework Fine-Tuning Nhanh Nhất
 
@@ -211,7 +212,7 @@ Bạn có thể fine-tuning trên nhiều nền tảng: - **Google Colab**: Mi�
 
 ### Chuẩn Bị Dataset
 
-Dataset cần được định dạng theo dạng hội thoại: ```json
+Dataset cần được định dạng theo dạng hội thoại: `````json
 [
   {
     "messages": [
@@ -221,11 +222,11 @@ Dataset cần được định dạng theo dạng hội thoại: ```json
     ]
   }
 ]
-```
+`````
 
 ### Fine-Tuning Llama 3 Với LoRA/QLoRA
 
-```python
+`````python
 from transformers import TrainingArguments, Trainer
 from peft import LoraConfig, get_peft_model
 
@@ -250,11 +251,11 @@ training_args = TrainingArguments(
 # 4. Training
 trainer = Trainer(model=model, args=training_args, train_dataset=dataset)
 trainer.train()
-```
+`````
 
 ### Fine-Tuning Với Unsloth (Nhanh Hơn)
 
-```python
+`````python
 from unsloth import FastLanguageModel, UnslothTrainer
 
 model, tokenizer = FastLanguageModel.from_pretrained(
@@ -269,7 +270,7 @@ model = FastLanguageModel.get_peft_model(
 
 trainer = UnslothTrainer(model=model, tokenizer=tokenizer, train_dataset=dataset)
 trainer.train()
-```
+`````
 
 ### Đánh Giá Model
 
@@ -280,14 +281,14 @@ Sau fine-tuning, đánh giá model trên tập validation: - **Perplexity**: Đo
 
 ### Merge Adapters Và Export GGUF
 
-```python
+`````python
 # Merge LoRA vào base model
 model = model.merge_and_unload()
 model.save_pretrained("./merged-model")
 
 # Hoặc export sang GGUF cho Ollama
 # Sử dụng llama.cpp convert script
-```
+`````
 
 ## Các Phương Pháp Tốt Nhất
 
@@ -326,37 +327,37 @@ model.save_pretrained("./merged-model")
 
 ### Merge LoRA Weights Với Base Model
 
-```python
+`````python
 from peft import PeftModel
 
 base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8B")
 model = PeftModel.from_pretrained(base_model, "./lora-adapter")
 model = model.merge_and_unload()
 model.save_pretrained("./full-model")
-```
+`````
 
 ### Chuyển Đổi Sang GGUF
 
-```bash
+`````bash
 python convert-hf-to-gguf.py --outfile model.gguf ./full-model
-```
+`````
 
 ### Triển Khai Với vLLM
 
-```python
+`````python
 from vllm import LLM
 
 llm = LLM(model="./full-model")
 output = llm.generate("Câu hỏi của ngườii dùng")
-```
+`````
 
 ### Upload Lên Hugging Face Hub
 
-```python
+`````python
 from huggingface_hub import HfApi
 api = HfApi()
 api.upload_folder(folder_path="./full-model", repo_id="username/my-model")
-```
+````
 
 ## Các Công Cụ Thay Thế Và Bổ Trợ
 
@@ -398,7 +399,7 @@ Có. Colab free cung cấp GPU T4 16GB, đủ để fine-tune model 7B với QLo
 
 PEFT chỉ huấn luyện <1% tham số của model (thường là adapter layers), giảm VRAM cần thiết đi hàng chục lần. Full fine-tuning cập nhật toàn bộ trọng số, cần nhiều tài nguyên hơn nhưng có thể đạt chất lượng cao hơn một chút trên một số tác vụ. Trong thực tế, PEFT đạt 95-99% hiệu suất của full fine-tuning.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

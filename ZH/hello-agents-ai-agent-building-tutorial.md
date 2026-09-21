@@ -30,6 +30,7 @@ faqs: - q: 'Datawhale Hello-Agents 是什么？'
     a: '是的，Hello-Agents 完全免费，采用开源许可证，完整 PDF 可通过 GitHub releases 或 Datawhale 官网免费获取。该 PDF 带有 Datawhale 水印以防止商业转售，但完全可用于个人学习。'
   - q: '跟着 Hello-Agents 可以做出哪些真实项目？'
     a: '教程包含三个综合案例：一个通过 MCP 工具调用协调多个专业 agent 的智能旅行助手；一个搜索网络信息并将其综合成报告的自动化深度研究 agent；以及一个由具有不同性格和日常行为的 AI agent 组成的赛博小镇模拟。'---
+
 {</* resource-info */>}
 
 ## Hello-Agents 是什么？
@@ -49,7 +50,7 @@ faqs: - q: 'Datawhale Hello-Agents 是什么？'
 然而，对大多数开发者来说，从"使用聊天机器人"到"构建真正的 Agent"之间的鸿沟依然巨大。Hello-Agents 正是填补这一空缺的完整解决方案。
 
 
----
+* * *
 ## 16 章完整课程体系
 
 ### 第一部分：Agent 与大模型基础
@@ -78,21 +79,21 @@ faqs: - q: 'Datawhale Hello-Agents 是什么？'
 ### 第五部分：大作业与展望
 - **第16章：大作业** — 从零设计并构建完整的智能体应用
 
----
+* * *
 
 ## 核心亮点
 
 | 能力 | Hello-Agents | 框架文档 | 付费训练营 | 视频教程 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 体系化课程 | 16章渐进式 | 碎片化 | 参差不齐 | 无结构 |
 | 理论深度 | 从 Transformer 到 RL | 仅框架层面 | 通常较浅 | 通常较浅 |
@@ -103,11 +104,11 @@ faqs: - q: 'Datawhale Hello-Agents 是什么？'
 | 社区更新 | 71位贡献者 | 厂商控制 | N/A | 不可靠 |
 | 价格 | 免费 | 免费 | $500-$5000 | 免费 |
 
----
+* * *
 
 ## 快速开始
 
-```bash
+````bash
 # 在线阅读
 # https://datawhalechina.github.io/hello-agents/
 
@@ -118,13 +119,13 @@ cd hello-agents
 
 # 运行第4章 ReAct Agent
 python code/chapter4/react_agent.py
-```
+`````
 
----
+* * *
 
 ## 代码示例：从零构建 ReAct Agent
 
-```python
+`````python
 import openai
 import json
 
@@ -175,26 +176,26 @@ for step in range(5): response = openai.chat.completions.create(
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
     else: print("最终答案:", message.content)
         break
-```
+````
 
 > 这个"思考 → 调用工具 → 观察结果 → 再思考"的循环，正是 OpenAI Operator 和 Claude Computer Use 等顶级 Agent 的核心机制。
 
----
+* * *
 
 ## 适用人群
 
 | 人群 | 价值 |
 |
----
+* * *
 |
----
+* * *
 |
 | **AI 工程师求职者** | 系统掌握 Agent 工程核心能力，面试题直接来自大厂真题 |
 | **产品团队** | 用低代码章节快速原型验证，再用框架章节与开发团队高效协作 |
 | **研究者/学者** | Agentic RL 和评估章节足以作为研究项目的起点 |
 | **独立开发者/创业者** | 大作业结构和社区项目库为产品化提供灵感和参考实现 |
 
----
+* * *
 
 ## 总结
 
@@ -204,7 +205,7 @@ Hello-Agents 是当今最全面、最易懂、社区支持最强的 AI 智能体
 
 > 💡 想了解更多 AI 工具和开源项目？关注 [dibi8.com](https://dibi8.com) 获取每周精选。
 
----
+* * *
 
 ## 推荐自托管基础设施
 
@@ -278,7 +279,7 @@ Hello-Agents: Datawhale 开源 AI 智能体教程如何帮你从零构建生产�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -310,15 +311,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

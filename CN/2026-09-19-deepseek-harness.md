@@ -12,6 +12,7 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -63,7 +64,7 @@ DeepSeek Harness uses a three-layer architecture: 1. **Core Layer** — Manages 
 2. **Plugin Layer** — Your custom code, loaded at runtime
 3. **Integration Layer** — Connects to Claude Code, Codex, Cursor, etc.
 
-```typescript
+````typescript
 // Example: A simple DSH plugin
 import { Plugin } from 'deepseek-harness';
 
@@ -76,7 +77,7 @@ export class MyPlugin extends Plugin {
     return { success: true };
   }
 }
-```
+`````
 
 Plugins can: - Hook into agent lifecycle events
 - Add new commands to the CLI
@@ -91,52 +92,52 @@ Plugins can: - Hook into agent lifecycle events
 - An AI coding agent (Claude Code, Codex CLI, Cursor, or OpenCode)
 
 ### Method 1: npm (Recommended)
-```bash
+`````bash
 npm install -g deepseek-harness
 dsh init
-```
+`````
 
 ### Method 2: pip
-```bash
+`````bash
 pip install deepseek-harness
 dsh init
-```
+`````
 
 ### Method 3: From Source
-```bash
+`````bash
 git clone https://github.com/deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm run build
 pnpm dsh web
-```
+`````
 
-**Note:** DeepSeek Harness requires `pnpm` for source builds. Install it with `npm install -g pnpm`.
+**Note:** DeepSeek Harness requires ````pnpm```` for source builds. Install it with ````npm install -g pnpm````.
 
 ### Quick Start: Web UI
-```bash
+`````bash
 npx @deepseek-ai/dsh web
-```
-This starts a local web interface at `http://127.0.0.1:3080`. No configuration needed — just open your browser and start building plugins.
+`````
+This starts a local web interface at ````http://127.0.0.1:3080````. No configuration needed — just open your browser and start building plugins.
 
-For SSH servers or headless environments: ```bash
+For SSH servers or headless environments: `````bash
 npx @deepseek-ai/dsh web --no-open
 # Then access via forwarded port
 ssh -L 3080:localhost:3080 user@server
-```
+`````
 
 ## Building Your First Plugin
 
 Let's create a plugin that summarizes code changes after each commit.
 
 ### Step 1: Initialize Plugin
-```bash
+`````bash
 dsh create-plugin summarize-commits
 cd summarize-commits
-```
+`````
 
 ### Step 2: Write the Plugin Code
-```typescript
+`````typescript
 import { Plugin, PluginContext } from 'deepseek-harness';
 import { execSync } from 'child_process';
 
@@ -148,34 +149,34 @@ export class SummarizeCommitsPlugin extends Plugin {
     const diff = execSync('git diff HEAD~1 HEAD --stat').toString();
     const commit = execSync('git log -1 --pretty=%B').toString();
     
-    const prompt = `
+    const prompt = ````
 Summarize this git commit in one sentence: ${commit}
 
 Files changed: ${diff}
-`;
+````;
     
     return { prompt };
   }
 }
-```
+`````
 
 ### Step 3: Register the Plugin
-```bash
+`````bash
 dsh plugin add ./summarize-commits
 dsh plugin list  # Verify installation
-```
+`````
 
 ### Step 4: Test Your Plugin
-```bash
+`````bash
 dsh run summarize-commits --dry-run
-```
+`````
 
 ## Integrating with Claude Code
 
 DSH works seamlessly with Claude Code through the skills system.
 
 ### Claude Code Integration
-```yaml
+`````yaml
 # ~/.claude/settings.json
 {
   "plugins": [
@@ -186,10 +187,10 @@ DSH works seamlessly with Claude Code through the skills system.
     }
   ]
 }
-```
+`````
 
 ### Cursor Integration
-```json
+`````json
 // .cursorrc
 {
   "dsh": {
@@ -197,40 +198,40 @@ DSH works seamlessly with Claude Code through the skills system.
     "pluginsDir": "~/.dsh/plugins"
   }
 }
-```
+`````
 
 ### Usage in Any Agent
-```bash
+`````bash
 # Start the harness
 dsh web
 
 # Or use CLI directly
 dsh run my-plugin --arg value
-```
+`````
 
 ## Advanced Plugin Patterns
 
 ### Async Operations
-```typescript
+`````typescript
 async execute(context: PluginContext): Promise<PluginResult> {
   const data = await fetchAPI('/external-endpoint');
   return { success: true, data };
 }
-```
+`````
 
 ### State Persistence
-```typescript
+`````typescript
 const state = await context.storage.get('my-state');
 await context.storage.set('my-state', { key: 'value' });
-```
+`````
 
 ### Event Hooks
-```typescript
+`````typescript
 this.on('before:commit', async (ctx) => {
   // Run checks before commit
   await this.validateSecurity(ctx);
 });
-```
+`````
 
 ## Real-World Use Cases
 
@@ -255,13 +256,13 @@ Build plugins that: - Trigger deployments on specific patterns
 
 Testing DSH against vanilla Claude Code: | Metric | Vanilla | DSH | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Plugin load time | N/A | 45ms | — |
 | Token usage (with plugin) | 100% | 62% | -38% |
@@ -274,15 +275,15 @@ Testing DSH against vanilla Claude Code: | Metric | Vanilla | DSH | Improvement 
 
 | Feature | DeepSeek Harness | Agent Skills | Superpowers | Skills Framework |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Multi-agent support | ✅ | ✅ | ✅ | ❌ |
 | Plugin marketplace | ✅ | ❌ | ❌ | ❌ |
@@ -315,29 +316,29 @@ DSH isn't perfect. Here's what you should know: 1. **Plugin quality varies** —
 ## Troubleshooting Common Issues
 
 ### Issue 1: Plugin Not Loading
-```bash
+`````bash
 # Check plugin registration
 dsh plugin list
 
 # View plugin logs
 dsh logs --plugin my-plugin --tail 50
-```
+`````
 
 ### Issue 2: Port Already in Use
-If port 3080 is occupied: ```bash
+If port 3080 is occupied: `````bash
 npx @deepseek-ai/dsh web --port 3081
-```
+`````
 
 ### Issue 3: TypeScript Compilation Errors
-```bash
+`````bash
 # Clear cache and rebuild
 rm -rf node_modules/.cache
 pnpm run clean
 pnpm run build
-```
+`````
 
 ### Issue 4: Memory Leak in Long Sessions
-Enable memory limits in your plugin config: ```typescript
+Enable memory limits in your plugin config: `````typescript
 // dsh.config.ts
 export default {
   memory: {
@@ -345,7 +346,7 @@ export default {
     gcInterval: '5m'
   }
 };
-```
+`````
 
 ## Security Considerations
 
@@ -354,10 +355,10 @@ When running DSH plugins in production: 1. **Sandbox Execution** — Always run 
 3. **Secret Scanning** — Integrate a secrets scanner as a pre-commit plugin
 4. **Plugin Auditing** — Review third-party plugins before installation
 
-```bash
+`````bash
 # Security scan for plugins
 dsh security scan --deep ./plugins
-```
+`````
 
 ## The Cordis Framework: Under the Hood
 
@@ -372,7 +373,7 @@ This is why DSH plugins can be paused, resumed, and replayed without state loss.
 ## Performance Tuning
 
 For high-volume environments, optimize plugin performance: ### Caching Strategy
-```typescript
+`````typescript
 const cache = new LRUMap({
   max: 1000,
   ttl: '10m'
@@ -385,10 +386,10 @@ if (cached) return cached;
 const result = await expensiveOperation();
 cache.set(key, result);
 return result;
-```
+`````
 
 ### Concurrency Control
-```typescript
+`````typescript
 import { Semaphore } from 'deepseek-harness/utils';
 
 const sem = new Semaphore(5); // Max 5 concurrent operations
@@ -401,7 +402,7 @@ async execute(context) {
     sem.release();
   }
 }
-```
+`````
 
 ## Community & Ecosystem
 
@@ -417,14 +418,14 @@ Interested in contributing?
 3. Submit a PR with tests
 4. Join the Discord community
 
-```bash
+`````bash
 # Development setup
 git clone git@github.com:deepseek-ai/deepseek-harness.git
 cd deepseek-harness
 pnpm install
 pnpm test  # Run test suite
 pnpm dev    # Start development mode
-```
+`````
 
 ### Q: Is DeepSeek Harness free?
 Yes, the core framework is MIT-licensed and free. Premium plugins may exist in the future, but the base system is open-source.
@@ -442,7 +443,7 @@ Agent Skills is a specific implementation of the skills pattern. DSH is the broa
 Yes, several large companies are using DSH in production. The plugin system is stable, but always test plugins in staging first.
 
 ### Q: How do I handle plugin dependencies?
-DSH uses npm/pnpm for plugin dependencies. Each plugin declares its own package.json. Run `dsh plugin deps <name>` to list and install.
+DSH uses npm/pnpm for plugin dependencies. Each plugin declares its own package.json. Run ````dsh plugin deps <name>``` to list and install.
 
 ### Q: Can I share plugins with my team?
 Yes. Publish to a private npm registry, or share the plugin directory directly. DSH supports both public and private plugin sources.
@@ -458,7 +459,7 @@ The real power isn't in the framework itself — it's in the community building 
 Your turn: What plugin would you build first? Share your ideas in the comments or open an issue on GitHub.
 
 
----
+* * *
 **Sources & Further Reading:**
 - Official docs: https://deepseek-harness.github.io/deepseek-harness/
 - Plugin marketplace: https://marketplace.deepseek.ai
@@ -471,4 +472,4 @@ Your turn: What plugin would you build first? Share your ideas in the comments o
 
 [LangChain vs DSH](dibi8-internal-link) | [Agent Memory Systems 2026](dibi8-internal-link)
 
----
+* * *

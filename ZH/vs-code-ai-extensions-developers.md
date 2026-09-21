@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/vs-code-ai-extensions-developers/-
 ---
+
 # 2025年开发者最佳VS Code AI插件推荐：提升编程效率
 
 
@@ -101,7 +102,7 @@ Continue的核心优势：
 
 - **完全开源**：代码托管在GitHub，社区驱动开发
 - **本地LLM支持**：配合Ollama可在纯离线环境运行，零数据外传
-- **高度可定制**：通过 `config.json` 配置模型、快捷键、Prompt模板
+- **高度可定制**：通过 ```config.json``` 配置模型、快捷键、Prompt模板
 - **多模型并行**：同时连接多个AI模型，对比不同模型的回答
 
 **定价**：完全免费（只需支付所使用API的调用费用，本地模型则零成本）。
@@ -118,17 +119,17 @@ Mintlify Doc Writer专注于一个垂直场景——**自动生成代码文档�
 
 | 工具 | 个人版价格 | 企业版价格 | 开源 | 离线可用 | 最强场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Copilot | 免费(限次) / $10月 | $19月/用户 | 否 | 否 | 通用代码补全 |
 | Codeium | 免费(无限) | $20月/用户 | 否 | 否 | 免费替代方案 |
@@ -176,7 +177,7 @@ A: 只有支持本地模型的工具可以离线使用。Continue配合本地Oll
 A: 适合，但需要正确使用。AI助手是加速学习的工具而非替代品——阅读AI生成的代码、理解其逻辑、查阅相关文档，这个过程比从零写更快上手。但要避免过度依赖，基础语法和核心概念仍需扎实掌握。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -250,7 +251,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -307,15 +308,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

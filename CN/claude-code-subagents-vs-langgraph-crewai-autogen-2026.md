@@ -33,6 +33,7 @@ faq: - q: "Do I need LangGraph or CrewAI if I'm already using Claude Code subage
   - q: "Can I use Claude models with LangGraph or CrewAI?"
     a: "Yes. LangGraph, CrewAI, and AutoGen are all model-agnostic — you can run Claude, GPT, Gemini, or local models behind them. The Claude Agent SDK (renamed from the Claude Code SDK in late 2025, now shipping as both Python and TypeScript packages) is Claude-only by design, trading model flexibility for native safety features and extended thinking. So if multi-vendor flexibility is a hard requirement, reach for one of the agnostic frameworks; if you're all-in on Claude and want the tightest integration, the Agent SDK is the native path."
 ---
+
 # Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen (2026): When to Graduate to a Standalone Framework
 
 
@@ -62,19 +63,19 @@ The real decision isn't "which is best." It's **"has my problem outgrown the bui
 
 | | Orchestration model | Learning curve | Production readiness | Model lock-in | Stars (Apr 2026) | Best for |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Claude Code subagents** | Parent-spawns-workers, built-in | None (it's in the CLI) | High for dev/CI work | Claude-only | — | Coding, research fan-out, pipelines |
 | **Claude Agent SDK** | Tool-use chain + subagents | Low | High (safety-first) | Claude-only | — | Anthropic-native production apps |
@@ -87,11 +88,11 @@ Benchmark color: in 2026 testing, LangGraph led complex tasks at ~62% success vs
 ## When Claude Code Subagents Are Already Enough
 
 Don't graduate if your need is any of these. Built-in subagents cover them today, with no new infrastructure: - **Parallel research fan-out.** Five agents each reading a different subsystem, results merged. This is the highest-ROI subagent pattern and it's free.
-- **Specialist delegation.** A `security-auditor` or `code-reviewer` custom agent with its own tool allowlist and system prompt.
+- **Specialist delegation.** A ```security-auditor```` or ````code-reviewer```` custom agent with its own tool allowlist and system prompt.
 - **Context protection.** Offloading a 30-file exploration so it doesn't crowd your parent conversation's working memory.
 - **Pipeline orchestration for dev tasks.** Find → verify → synthesize, where each stage is a delegated worker.
 
-Concrete proof: **dibi8's own multilingual pipeline.** Every article you read here in English, Chinese, Korean, and Vietnamese is produced by parallel Claude Code translation subagents — one per language, fanned out, results verified against a `npm run build` ground truth. We deliberately did *not* reach for LangGraph. There's no durable state to checkpoint, no human approval gate, no multi-vendor requirement. Built-in subagents ship the outcome by lunch; a framework would have been pure overhead.
+Concrete proof: **dibi8's own multilingual pipeline.** Every article you read here in English, Chinese, Korean, and Vietnamese is produced by parallel Claude Code translation subagents — one per language, fanned out, results verified against a ````npm run build``` ground truth. We deliberately did *not* reach for LangGraph. There's no durable state to checkpoint, no human approval gate, no multi-vendor requirement. Built-in subagents ship the outcome by lunch; a framework would have been pure overhead.
 
 ## When to Graduate to a Standalone Framework
 
@@ -163,7 +164,7 @@ Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
@@ -173,7 +174,7 @@ Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone
 - [cursor-vs-claude-code](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -33,11 +33,12 @@ faqs: - q: '怎么安装 exo？'
   - q: '在哪里看集群状态？'
     a: '在浏览器里打开 `http://localhost:52415` 的控制台。它会显示每一台被发现的设备、模型在它们之间的切分方式，以及实时的吞吐量和内存占用。'---
 
+
 {{< resource-info >}}
 
 ## 引言
 
-前沿大模型体积庞大。一个 671B 参数的模型根本塞不进一台笔记本，而要自己租足够的云端 GPU 来跑，开销又很快变得高昂。`exo` 走的是另一条路：它把你手上已有的设备——Mac、Linux 主机，甚至手机——拼成一个集群，再把模型切分到这些设备上，让它们协同完成推理。凭借 GitHub 上超过 45,000 个 star，它已经成为「在自己掌控的硬件上跑大模型」这条赛道上最受关注的项目之一。本指南会带你走一遍：安装 exo、打开控制台，并通过它那套兼容 OpenAI、Claude 和 Ollama 的 API 与之交互。
+前沿大模型体积庞大。一个 671B 参数的模型根本塞不进一台笔记本，而要自己租足够的云端 GPU 来跑，开销又很快变得高昂。``exo`` 走的是另一条路：它把你手上已有的设备——Mac、Linux 主机，甚至手机——拼成一个集群，再把模型切分到这些设备上，让它们协同完成推理。凭借 GitHub 上超过 45,000 个 star，它已经成为「在自己掌控的硬件上跑大模型」这条赛道上最受关注的项目之一。本指南会带你走一遍：安装 exo、打开控制台，并通过它那套兼容 OpenAI、Claude 和 Ollama 的 API 与之交互。
 
 ## exo 是什么？
 
@@ -63,36 +64,36 @@ exo 是一个开源工具，通过把若干设备组成一个分布式集群，�
 
 在 Mac 上最省事的方式是用预编译好的应用。用 Homebrew 安装：
 
-```bash
+````bash
 brew install --cask exo
-```
+`````
 
-或者直接从 `https://assets.exolabs.net/EXO-latest.dmg` 下载最新的 DMG。该应用需要较新版本的 macOS。
+或者直接从 ``https://assets.exolabs.net/EXO-latest.dmg`` 下载最新的 DMG。该应用需要较新版本的 macOS。
 
 ### 从源码编译（macOS 或 Linux）
 
-想跑最新代码，就克隆仓库并用 `uv` 启动。你需要先装好 `uv`、Node 18+ 以及 nightly 版的 Rust 工具链（macOS 上还需要 Xcode、Homebrew 和 `macmon`）：
+想跑最新代码，就克隆仓库并用 ``uv`` 启动。你需要先装好 ``uv``、Node 18+ 以及 nightly 版的 Rust 工具链（macOS 上还需要 Xcode、Homebrew 和 ``macmon``）：
 
-```bash
+`````bash
 git clone https://github.com/exo-explore/exo
 cd exo/dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
 如果你用 Nix，可以完全跳过这些前置依赖：
 
-```bash
+`````bash
 nix run .#exo
-```
+`````
 
 ### 常见错误与修复
 
-首次运行时常见的一个坑是控制台打不开，原因是前端从没被编译过。Web 界面是从 `dashboard/` 目录编译出来的，所以如果你克隆了仓库后直接 `uv run exo` 却没构建前端，先重新构建控制台再启动：
+首次运行时常见的一个坑是控制台打不开，原因是前端从没被编译过。Web 界面是从 ``dashboard/`` 目录编译出来的，所以如果你克隆了仓库后直接 ``uv run exo`` 却没构建前端，先重新构建控制台再启动：
 
-```bash
+`````bash
 cd dashboard && npm install && npm run build && cd ..
 uv run exo
-```
+`````
 
 如果安装过程中遇到其他问题，请查阅仓库里的官方 README。
 
@@ -107,22 +108,22 @@ uv run exo
 
 在你想加入集群的每台设备上启动 exo：
 
-```bash
+`````bash
 uv run exo
-```
+`````
 
 每个节点会自动找到同一网络里的其他节点——无需手动注册。有几个常用参数：
 
-- `--no-worker`：以「仅协调」模式运行该节点，它本身不参与推理。
-- `--legacy-daemon`：让 exo 作为后台守护进程运行。
+- ``--no-worker``：以「仅协调」模式运行该节点，它本身不参与推理。
+- ``--legacy-daemon``：让 exo 作为后台守护进程运行。
 
 ### 监控集群
 
-exo 在 `52415` 端口上提供一个控制台。在浏览器里打开：
+exo 在 ``52415`` 端口上提供一个控制台。在浏览器里打开：
 
-```sh
+`````sh
 http://localhost:52415
-```
+`````
 
 你会看到 exo 发现的每一台设备、当前模型是如何切分到它们身上的，以及实时的吞吐量和内存占用。
 
@@ -130,13 +131,13 @@ http://localhost:52415
 
 exo 暴露的 HTTP API 兼容 OpenAI、Claude（Anthropic Messages）和 Ollama 三种格式，因此现有的客户端代码大多无需改动就能用。一个流式聊天请求长这样：
 
-```bash
+`````bash
 curl -X POST http://localhost:52415/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}'
-```
+`````
 
-同一个端点也能理解位于 `/v1/messages` 的 Claude Messages API，以及位于 `/ollama/api/chat` 的 Ollama API。
+同一个端点也能理解位于 ``/v1/messages`` 的 Claude Messages API，以及位于 ``/ollama/api/chat`` 的 Ollama API。
 
 ### 小结
 
@@ -153,7 +154,7 @@ curl -X POST http://localhost:52415/v1/chat/completions \
 
 把任何兼容 OpenAI 的客户端指向本地的 exo 端点，就能直接用：
 
-```python
+`````python
 # 用标准 OpenAI 客户端访问本地 exo 集群
 from openai import OpenAI
 
@@ -167,13 +168,13 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Summarize the exo project in one sentence."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 在 Jupyter notebook 里使用
 
 同一个客户端在 notebook 里也能用，很方便针对集群做快速实验：
 
-```python
+`````python
 # 在 Jupyter notebook 里做个快速测试
 from openai import OpenAI
 
@@ -184,7 +185,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "List three uses for a local AI cluster."}],
 )
 print(response.choices[0].message.content)
-```
+`````
 
 由于一切都走标准 HTTP API，任何能发 POST 请求的语言或框架都能与 exo 集成。
 
@@ -222,17 +223,17 @@ exo 已经被演示用于在一批 Apple Silicon Mac 组成的集群上运行超
 
 也可以看看我们对 [相关开源工具](dibi8-internal-link) 的报道。
 
-exo 不是本地跑模型的唯一选择，而且它解决的是一个很具体的问题——把一个大模型摊到多台设备上——这是单机工具做不到的。下表大致勾勒出它与两种常见替代方案的差异：`ollama/ollama`（单机本地服务）和 `ggml-org/llama.cpp`（许多本地工具底层依赖的推理引擎）。
+exo 不是本地跑模型的唯一选择，而且它解决的是一个很具体的问题——把一个大模型摊到多台设备上——这是单机工具做不到的。下表大致勾勒出它与两种常见替代方案的差异：``ollama/ollama``（单机本地服务）和 ``ggml-org/llama.cpp``（许多本地工具底层依赖的推理引擎）。
 
 | 特性                  | exo-explore/exo                  | ollama/ollama                  | ggml-org/llama.cpp             |
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **协议**              | Apache-2.0                       | MIT                            | MIT                            |
 | **主要语言**          | Python / Rust                    | Go                             | C/C++                          |
@@ -253,7 +254,7 @@ exo 确实好用，但它是一个年轻且快速演进的项目。几点诚实�
 
 2. **它是为「大模型集群」而生。** 如果你的模型本来就能装进一台机器，exo 那套分布式机制就显得多余了——单机工具会更简单。
 
-3. **源码编译有实打实的前置依赖。** 从源码运行需要 `uv`、Node、nightly 版 Rust 工具链，macOS 上还要 Xcode 和额外工具。macOS 应用能省掉这些，但走源码路线的用户得做好比「一行安装」更重的配置准备。
+3. **源码编译有实打实的前置依赖。** 从源码运行需要 ````uv```、Node、nightly 版 Rust 工具链，macOS 上还要 Xcode 和额外工具。macOS 应用能省掉这些，但走源码路线的用户得做好比「一行安装」更重的配置准备。
 
 4. **代码库变动快。** 作为一个活跃开发中的项目，API 和行为可能在版本之间发生变化。如果你需要稳定性，请固定到一个已知可用的 commit。
 
@@ -269,7 +270,7 @@ exo-explore 出品的 exo 是一个很有吸引力的工具，让你在自己的
 - 继续阅读：[dibi8 上的相关指南](dibi8-internal-link)。
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/exo-explore/exo
 - Official docs / README: https://github.com/exo-explore/exo#readme
 
@@ -341,6 +342,6 @@ exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）—�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

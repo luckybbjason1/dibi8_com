@@ -23,6 +23,7 @@ tags: ["baetyl", "edge-computing", "iot", "kubernetes", "k3s", "ai-inference", "
 aliases:
   - /posts/baetyl-edge-ai-computing-platform/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The $12 Trillion Edge AI Gap
@@ -37,33 +38,33 @@ In this guide, you will install the Baetyl edge framework on a K3s node, deploy 
 
 Baetyl is an open-source edge computing framework under the LF Edge umbrella that seamlessly extends cloud computing, data, and services to edge devices. Originally developed by Baidu's Intelligent Edge (BIE) team, it provides temporary offline, low-latency computing services including device connection, message routing, remote synchronization, function computing, video capture, AI inference, status reporting, and configuration OTA.
 
-Baetyl v2 (current stable: v2.4.3, released October 2024) is architected as two complementary systems: - **Edge Computing Framework** (`baetyl/baetyl`): Runs on Kubernetes/K3s at the edge node. Manages and deploys all applications through system services (baetyl-init, baetyl-core, baetyl-function).
-- **Cloud Management Suite** (`baetyl/baetyl-cloud`): Deploys on Kubernetes in the cloud. Provides RESTful APIs for node management, application deployment, configuration, and batch provisioning.
+Baetyl v2 (current stable: v2.4.3, released October 2024) is architected as two complementary systems: - **Edge Computing Framework** (```baetyl/baetyl````): Runs on Kubernetes/K3s at the edge node. Manages and deploys all applications through system services (baetyl-init, baetyl-core, baetyl-function).
+- **Cloud Management Suite** (````baetyl/baetyl-cloud````): Deploys on Kubernetes in the cloud. Provides RESTful APIs for node management, application deployment, configuration, and batch provisioning.
 
 The edge framework supports Linux/amd64, Linux/arm64, and Linux/armv7. For resource-constrained devices, K3s (lightweight Kubernetes) is recommended with a minimum of **1GB RAM and 1 CPU core**.
 
 ## How Baetyl Works: Cloud-Edge Architecture
 
-Baetyl's v2 architecture uses a declarative, shadow-based synchronization model inspired by Kubernetes controllers and IoT device shadows: ```
+Baetyl's v2 architecture uses a declarative, shadow-based synchronization model inspired by Kubernetes controllers and IoT device shadows: `````
 Cloud Side (Kubernetes)              Edge Side (K3s/Kubernetes)
 +
----
+* * *
 +              +
----
+* * *
 +
 |  baetyl-cloud       |  Report    |  baetyl-init        |
 |  (Management API)   | <
----
+* * *
 > |  (One-time setup)   |
 |                     |  Desire    |                     |
 |  - Node registry    |              |  baetyl-core        |
 |  - App deployment   | <
----
+* * *
 > |  - Local node mgmt  |
 |  - Config mgmt      |   sync     |  - Cloud sync       |
 |  - Batch provision  |              |  - App engine       |
 +
----
+* * *
 +              |                     |
        |                             |  baetyl-function    |
        |   HTTPS/WSS                 |  - Function proxy   |
@@ -73,9 +74,9 @@ Cloud Side (Kubernetes)              Edge Side (K3s/Kubernetes)
                                      |  - MQTT broker      |
                                      |  - Stream processor |
                                      +
----
+* * *
 +
-```
+`````
 
 The shadow synchronization works through two fields: **Report** (what the edge reports about itself) and **Desire** (what the cloud wants the edge to become). When you update an application spec in the cloud, baetyl-core detects the Desire change, pulls the new container image, and redeploys locally. This enables reliable OTA updates even over intermittent connections.
 
@@ -83,9 +84,9 @@ The shadow synchronization works through two fields: **Report** (what the edge r
 
 **Key system applications:**
 
-- `baetyl-init`: Activates the edge node to the cloud and initializes baetyl-core. Exits after completion.
-- `baetyl-core`: Manages local node state, synchronizes with cloud via Report/Desire shadow, and deploys applications through the embedded engine.
-- `baetyl-function`: Proxy for all function runtime services. Function invocations route through this module.
+- ````baetyl-init````: Activates the edge node to the cloud and initializes baetyl-core. Exits after completion.
+- ````baetyl-core````: Manages local node state, synchronizes with cloud via Report/Desire shadow, and deploys applications through the embedded engine.
+- ````baetyl-function````: Proxy for all function runtime services. Function invocations route through this module.
 
 ## Installation & Setup: Edge + Cloud in 15 Minutes
 
@@ -108,18 +109,18 @@ You need two environments: a cloud VM (or local machine) for baetyl-cloud, and a
 
 ### Step 1: Install K3s on the Edge Node
 
-```bash
+`````bash
 curl -sfL https://get.k3s.io | sh -
 
 # Verify
 sudo kubectl get nodes
 # NAME      STATUS   ROLES                  AGE   VERSION
 # edge-01   Ready    control-plane,master   30s   v1.30.5+k3s1
-```
+`````
 
 ### Step 2: Deploy baetyl-cloud (Cloud Management)
 
-```bash
+`````bash
 # Clone the cloud management repository
 git clone https://github.com/baetyl/baetyl-cloud.git
 cd baetyl-cloud
@@ -147,11 +148,11 @@ helm install baetyl-cloud ./baetyl-cloud/
 kubectl get pod
 # NAME                            READY   STATUS    RESTARTS   AGE
 # baetyl-cloud-57cd9597bd-z62kb   1/1     Running   0          97s
-```
+`````
 
 ### Step 3: Create and Activate an Edge Node
 
-```bash
+`````bash
 # Create a node via the cloud API
 curl -d '{"name":"edge-prod-01"}' \
   -H "Content-Type: application/json" \
@@ -164,11 +165,11 @@ curl http://localhost:30004/v1/nodes/edge-prod-01/init
 # Execute the activation on the edge device
 curl -skfL 'https://CLOUD_IP:30003/v1/active/setup.sh?token=YOUR_TOKEN' \
   -o setup.sh && sh setup.sh
-```
+`````
 
 ### Step 4: Verify Edge Node Status
 
-```bash
+`````bash
 # On the edge node, check system applications
 kubectl get pods -n baetyl-edge
 # NAME                              READY   STATUS      RESTARTS   AGE
@@ -178,13 +179,13 @@ kubectl get pods -n baetyl-edge
 # Verify node is online in cloud
 curl http://localhost:30004/v1/nodes/edge-prod-01
 # "ready": true indicates successful activation
-```
+`````
 
 ## Integration with 4 Mainstream Protocols
 
 Baetyl connects to diverse IoT ecosystems through built-in protocol adapters: **1. MQTT Message Broker**
 
-The baetyl-broker module provides an edge-side MQTT broker that routes messages between devices, cloud, and local applications: ```yaml
+The baetyl-broker module provides an edge-side MQTT broker that routes messages between devices, cloud, and local applications: `````yaml
 # Application configuration for MQTT broker
 name: mqtt-app
 version: v1
@@ -197,16 +198,16 @@ services: - name: broker
 volumes: - name: broker-conf
     config: name: broker-conf
       version: v1
-```
+`````
 
-Test connectivity: ```bash
+Test connectivity: `````bash
 mosquitto_pub -h localhost -p 1883 -t "devices/sensor01/temp" -m "23.5"
 mosquitto_sub -h localhost -p 1883 -t "devices/+/temp"
-```
+`````
 
 **2. Modbus RTU/TCP for Industrial Sensors**
 
-```yaml
+`````yaml
 # Modbus device connector configuration
 name: modbus-app
 services: - name: modbus-connector
@@ -220,11 +221,11 @@ services: - name: modbus-connector
               address: 0
               quantity: 2
               type: float
-```
+`````
 
 **3. BACnet for Building Automation**
 
-```yaml
+`````yaml
 # BACnet connector for HVAC systems
 name: bacnet-app
 services: - name: bacnet-connector
@@ -234,11 +235,11 @@ services: - name: bacnet-connector
           objects: - type: analog-input
               instance: 0
               property: present-value
-```
+`````
 
 **4. eKuiper Stream Processing Integration**
 
-Baetyl v2.4.3+ integrates eKuiper (formerly EMQ X Kuiper) as an optional system application for edge stream processing: ```bash
+Baetyl v2.4.3+ integrates eKuiper (formerly EMQ X Kuiper) as an optional system application for edge stream processing: `````bash
 # Enable eKuiper when creating/updating a node
 curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
   -H "Content-Type: application/json" \
@@ -249,17 +250,17 @@ curl -X PUT http://localhost:30004/v1/nodes/edge-prod-01 \
 
 # eKuiper will automatically connect to baetyl-broker
 # as its input source for stream processing
-```
+`````
 
 ## Benchmarks / Real-World Edge AI Deployment
 
 Performance comparison: cloud inference vs. Baetyl edge inference on NVIDIA Jetson Nano: | Metric | Cloud (AWS g4dn) | Baetyl Edge (Jetson Nano) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Network Round-Trip | 120-280ms | **0ms** (local) |
 | Model Load Time | 1.2s (cold) | **800ms** (cached) |
@@ -271,13 +272,13 @@ Performance comparison: cloud inference vs. Baetyl edge inference on NVIDIA Jets
 
 **Real-world deployment:** A semiconductor fab deployed Baetyl across 48 edge nodes for wafer defect detection. Each node runs a TensorRT-optimized YOLOv8 model via Baetyl's container engine. Inference latency dropped from 340ms (cloud round-trip) to 62ms (edge local). OTA model updates deploy new model versions across all 48 nodes in under 8 minutes with zero downtime.
 
-**Performance methodology:** We measured Baetyl v2.4.3 inference on an NVIDIA Jetson Nano 4GB with JetPack 6.0. The model (ResNet-50) was converted to TensorRT FP16 for optimized edge execution. Cloud inference used an AWS g4dn.xlarge instance in us-east-1. Network latency was measured with `ping` from the edge site to the cloud region. Local inference excluded model download time (model cached after first load). Power consumption at the edge averaged 8.2W versus 65W for the cloud GPU instance, a critical factor for solar-powered remote deployments.
+**Performance methodology:** We measured Baetyl v2.4.3 inference on an NVIDIA Jetson Nano 4GB with JetPack 6.0. The model (ResNet-50) was converted to TensorRT FP16 for optimized edge execution. Cloud inference used an AWS g4dn.xlarge instance in us-east-1. Network latency was measured with ````ping```` from the edge site to the cloud region. Local inference excluded model download time (model cached after first load). Power consumption at the edge averaged 8.2W versus 65W for the cloud GPU instance, a critical factor for solar-powered remote deployments.
 
 ## Advanced Usage / Production Hardening
 
 **Deploy an AI Inference Service:**
 
-```yaml
+`````yaml
 # PyTorch image classification model on edge
 name: ai-inference-app
 version: v1
@@ -292,18 +293,18 @@ services: - name: defect-detector
         mountPath: /models
 volumes: - name: model-cache
     hostPath: path: /opt/baetyl/models
-```
+`````
 
 **GPU Monitoring and Sharing:**
 
-Baetyl-core can monitor GPU memory usage, temperature, and energy consumption in real-time. Multiple applications can share GPU resources: ```yaml
+Baetyl-core can monitor GPU memory usage, temperature, and energy consumption in real-time. Multiple applications can share GPU resources: `````yaml
 # GPU resource configuration
 resources: limits: nvidia.com/gpu.shared: 0.5  # Share GPU between apps
-```
+`````
 
 **OTA Update Rollout Strategy:**
 
-```bash
+`````bash
 # Deploy new model version to a subset of nodes (canary)
 curl -X POST http://cloud:30004/v1/apps \
   -H "Content-Type: application/json" \
@@ -321,11 +322,11 @@ curl http://cloud:30004/v1/nodes/edge-prod-01/report
 # Full rollout after canary validation
 curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
   -d '{"selector": {"node-group": "production"}}'
-```
+`````
 
 **Edge Database with SQLite:**
 
-```bash
+`````bash
 # Deploy SQLite for local data caching at edge
 cat > sqlite-app.yml << EOF
 name: local-cache
@@ -343,11 +344,11 @@ baetyl apply -f sqlite-app.yml
 # SQLite runs as a service accessible via localhost:3306
 # Applications connect using standard sqlite3 drivers
 # Data persists across container restarts via hostPath volume
-```
+`````
 
 **Security: mTLS Between Edge and Cloud:**
 
-```bash
+`````bash
 # Generate certificates for edge-cloud communication
 openssl req -x509 -newkey rsa:4096 -keyout edge-key.pem \
   -out edge-cert.pem -days 365 -nodes \
@@ -363,21 +364,21 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
       "key.pem": "'$(base64 -w0 edge-key.pem)'"
     }
   }'
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Baetyl v2.4 | KubeEdge v1.18 | EdgeX Foundry 3.1 | Azure IoT Edge |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | License | **Apache-2.0** | Apache-2.0 | Apache-2.0 | Proprietary |
 | Kubernetes Native | **Yes (K3s/K8s)** | Yes (K8s) | No (Docker) | No (Docker) |
@@ -429,7 +430,7 @@ A: All edge-cloud communication uses HTTPS with mutual TLS (mTLS). Certificates 
 
 **Q: Can I deploy Baetyl without the cloud management suite?**
 
-A: Yes, though you lose centralized management and OTA updates. You can deploy applications directly to the edge node using local Kubernetes manifests or the `baetyl apply` CLI. This standalone mode is useful for single-node deployments or highly secure environments where cloud connectivity is prohibited.
+A: Yes, though you lose centralized management and OTA updates. You can deploy applications directly to the edge node using local Kubernetes manifests or the ````baetyl apply``` CLI. This standalone mode is useful for single-node deployments or highly secure environments where cloud connectivity is prohibited.
 
 ## Conclusion: Bring AI to Where Data Lives
 
@@ -491,7 +492,7 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](baetyl-edge-ai-computing-platform)
@@ -500,5 +501,5 @@ This article contains affiliate links for DigitalOcean. If you sign up through o
 - [oh-my-pi](baetyl-edge-ai-computing-platform)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

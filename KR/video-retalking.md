@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/video-retalking/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -69,36 +70,36 @@ CPU 전용 추론이 지원되지만 속도가 10–15배 느리다. Apple Silic
 
 ### 1단계: 저장소 클론
 
-```bash
+````bash
 git clone https://github.com/OpenTalker/video-retalking.git
 cd video-retalking
-```
+`````
 
 ### 2단계: Conda 환경 생성
 
-```bash
+`````bash
 conda create -n video_retalking python=3.8 -y
 conda activate video_retalking
 conda install ffmpeg -y
-```
+`````
 
 ### 3단계: CUDA 지원 PyTorch 설치
 
-```bash
+`````bash
 # CUDA 11.1 (프로젝트 기본값)
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 
 # CUDA 12.1 (최신 GPU, 2026년)
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-```
+`````
 
 ### 4단계: 의존 패키지 설치
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
-requirements.txt가 설치하는 주요 패키지: ```
+requirements.txt가 설치하는 주요 패키지: `````
 basicsr==1.4.2
 kornia==0.5.1
 face-alignment==1.3.4
@@ -109,35 +110,35 @@ librosa==0.9.2
 dlib==19.24.0
 gradio>=3.7.0
 numpy==1.23.4
-```
+`````
 
 ### 5단계: 사전학습 모델 다운로드
 
-[Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)에서 사전학습 가중치를 다운로드하여 `./checkpoints/`에 압축 해제한다: ```bash
+[Google Drive](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)에서 사전학습 가중치를 다운로드하여 ``./checkpoints/``에 압축 해제한다: `````bash
 # 디렉터리 구조는 다음과 같아야 한다: # ./checkpoints/
 #   ├── 244000.pth          (D-Net 표정 편집)
 #   ├── wav2lip.pth         (L-Net 립싱크)
 #   ├── GFPGANv1.3.pth      (GFPGAN 강화)
 #   ├── GPEN-BFR-512.pth    (GPEN 강화)
 #   └── ...
-```
+`````
 
 ### 6단계: 설치 검증
 
-```bash
+`````bash
 python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
-```
+`````
 
-GPU 시스템의 예상 출력: ```
+GPU 시스템의 예상 출력: `````
 CUDA available: True
 Device: NVIDIA GeForce RTX 4090
-```
+`````
 
 ## TTS 및 보이스 클로닝 도구 통합
 
 ### RVC(검색 기반 보이스 변환) 통합
 
-RVC는 운율을 보존하며 한 목소리를 다른 목소리로 변환한다. VideoReTalking과 연결하여 음성 교체 립싱크 출력을 만들 수 있다: ```bash
+RVC는 운율을 보존하며 한 목소리를 다른 목소리로 변환한다. VideoReTalking과 연결하여 음성 교체 립싱크 출력을 만들 수 있다: `````bash
 # 1단계: RVC로 오디오 생성 또는 변환
 python rvc/infer.py --input input.wav --model weights/model.pth --output rvc_output.wav
 
@@ -146,11 +147,11 @@ python inference.py \
   --face input_video.mp4 \
   --audio rvc_output.wav \
   --outfile output_rvc_synced.mp4
-```
+`````
 
 ### GPT-SoVITS 통합
 
-GPT-SoVITS는 소수 샘플 보이스 클로닝 TTS를 생성한다. 워크플로우는 다음과 같다: ```python
+GPT-SoVITS는 소수 샘플 보이스 클로닝 TTS를 생성한다. 워크플로우는 다음과 같다: `````python
 # gpt_sovits_videoretalking.py
 import subprocess
 import os
@@ -172,11 +173,11 @@ subprocess.run([
     "--exp_img", "neutral",
     "--up_face", "surprise"
 ])
-```
+`````
 
 ### Coqui TTS 통합
 
-```bash
+`````bash
 # Coqui TTS 설치
 pip install TTS
 
@@ -192,7 +193,7 @@ python inference.py \
   --face original_video.mp4 \
   --audio coqui_output.wav \
   --outfile coqui_synced.mp4
-```
+`````
 
 ## 벤치마크 / 실전 사용 사례
 
@@ -234,23 +235,23 @@ VideoReTalking은 최신 GPU에서 512x512 해상도에서 대략 **1초 영상�
 
 ### Gradio WebUI 설정
 
-VideoReTalking에는 브라우저 기반 사용을 위한 Gradio 인터페이스가 내장되어 있다: ```bash
+VideoReTalking에는 브라우저 기반 사용을 위한 Gradio 인터페이스가 내장되어 있다: `````bash
 # WebUI 실행
 python webUI.py
-```
+`````
 
-WebUI는 기본적으로 `http://localhost:7860`에서 시작된다. 지원 기능: - 드래그 앤 드롭 영상 및 오디오 업로드
+WebUI는 기본적으로 ````http://localhost:7860````에서 시작된다. 지원 기능: - 드래그 앤 드롭 영상 및 오디오 업로드
 - 표정 템플릿 선택 (neutral, smile)
 - 상반부 얼굴 감정 제어 (surprise, angry)
 - 긴 영상에 대한 배치 세그먼트 처리
 
-리버스 프록시 뒤 원격 접근: ```bash
+리버스 프록시 뒤 원격 접근: `````bash
 python webUI.py --server-name 0.0.0.0 --server-port 7860 --share
-```
+`````
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
 
@@ -268,16 +269,16 @@ RUN mkdir -p checkpoints
 
 EXPOSE 7860
 CMD ["python3", "webUI.py", "--server-name", "0.0.0.0"]
-```
+`````
 
-빌드 및 실행: ```bash
+빌드 및 실행: `````bash
 docker build -t video-retalking .
 docker run --gpus all -p 7860:7860 -v $(pwd)/checkpoints:/app/checkpoints video-retalking
-```
+`````
 
 ### 배치 처리 스크립트
 
-```python
+`````python
 #!/usr/bin/env python3
 # batch_process.py
 import os
@@ -301,11 +302,11 @@ for vid, aud in zip(video_files, audio_files): outname = f"{OUTPUT_DIR}/{vid.ste
         "--outfile", outname,
         "--exp_img", "neutral"
     ])
-```
+`````
 
 ### 모니터링 및 로깅
 
-```python
+`````python
 # 구조화된 로깅을 갖춘 프로덕션 래퍼
 import logging
 import time
@@ -331,12 +332,12 @@ def inference_with_monitoring(face_path, audio_path, output_path): start = time.
     
     logging.info(f"Processed {face_path} in {elapsed:.1f}s, "
                  f"VRAM: {vram_before:.1f}GB -> {vram_after:.1f}GB")
-```
+`````
 
 ### 보안 고려사항
 
 - 모델 가중치에 대해 읽기 전용 파일 시스템 마운트가 적용된 컨테이너 낸에서 실행한다
-- `CUDA_VISIBLE_DEVICES`로 GPU 접근을 제한하여 워크로드를 격리한다
+- ````CUDA_VISIBLE_DEVICES````로 GPU 접근을 제한하여 워크로드를 격리한다
 - 경로 탐색 공격을 방지하기 위해 처리 전 입력 파일 형식을 검증한다
 - 프로젝트는 초상권 및 규정 준수에 대한 포괄적인 면책 조항을 포함한다
 
@@ -387,7 +388,7 @@ NVIDIA GPU 최소 8GB VRAM이 실질적인 최소 사양이다. 24GB VRAM의 RTX
 
 ### 출력 영상의 입 주변이 왜 흐릿한가?
 
-기본 GFPGAN 강화기는 적절한 수준의 스묘딩 효과를 적용한다. `inference.py`에서 강화기 초기화를 변경하여 GPEN 강화기로 전환하거나, 더 선명한(하지만 일관성이 낮을 수 있는) 출력을 위해 강화를 완전히 비활성화해 본다.
+기본 GFPGAN 강화기는 적절한 수준의 스묘딩 효과를 적용한다. ````inference.py````에서 강화기 초기화를 변경하여 GPEN 강화기로 전환하거나, 더 선명한(하지만 일관성이 낮을 수 있는) 출력을 위해 강화를 완전히 비활성화해 본다.
 
 ### 자체 데이터셋으로 모델을 미세 조정할 수 있는가?
 
@@ -400,8 +401,8 @@ VideoReTalking은 프로덕션급 출력 품질로 오디오 기반 립싱크를
 **시작을 위한 액션 아이템:**
 
 1. 위 명령으로 저장소를 클론하고 conda 환경을 구성한다
-2. 2GB 체크포인트 패키지를 `./checkpoints/`에 다운로드한다
-3. `examples/`의 샘플 파일로 빠른 추론 명령을 실행한다
+2. 2GB 체크포인트 패키지를 ````./checkpoints/````에 다운로드한다
+3. ````examples/```의 샘플 파일로 빠른 추론 명령을 실행한다
 4. 대화형 실험을 위해 Gradio WebUI를 시작한다
 5. GPT-SoVITS나 RVC와 연결하여 완전한 보이스 클로닝 + 립싱크 파이프라인을 구축한다
 
@@ -454,13 +455,13 @@ VideoReTalking은 프로덕션급 출력 품질로 오디오 기반 립싱크를
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 - [wandb-ml-experiment-tracking-platform-2026](video-retalking)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

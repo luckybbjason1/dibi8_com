@@ -23,6 +23,7 @@ tags: ["moralis"]
 aliases:
   - /posts/moralis-web3-data-api/-
 ---
+
 {{</* resource-info */>}}
 
 Blockchain data is the lifeblood of every decentralized application. Whether you are building a DeFi dashboard, an NFT marketplace, a wallet tracker, or a trading bot, your application needs fast, reliable access to on-chain data. In 2026, Moralis remains the most widely adopted Web3 Data API, serving over 100,000 decentralized applications with real-time blockchain data across more than ten EVM-compatible chains.
@@ -32,7 +33,7 @@ Moralis abstracts away the complexity of running your own blockchain nodes, inde
 > **Affiliate Disclosure:** This article contains affiliate links to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8). We may earn a commission when you register through our link at no extra cost to you.
 
 
----
+* * *
 ## What Is Moralis?
 
 Moralis is a unified Web3 data API and development platform that provides developers with real-time access to blockchain data. Founded in 2021, it has grown to become the infrastructure backbone for over 100,000 DApps, ranging from small indie projects to enterprise-grade DeFi protocols. Moralis handles the heavy lifting of indexing, normalizing, and serving blockchain data through clean, well-documented REST APIs and SDKs.
@@ -47,7 +48,7 @@ Moralis provides several key API groups: - **Web3 API** — General blockchain q
 - **Auth API** — Web3 authentication and user session management
 
 
----
+* * *
 ## Why Choose Moralis in 2026?
 
 The Web3 infrastructure landscape has matured significantly, yet Moralis continues to lead for several compelling reasons.
@@ -62,7 +63,7 @@ The Web3 infrastructure landscape has matured significantly, yet Moralis continu
 
 **Rich SDK ecosystem.** Official SDKs for JavaScript, Python, and Unity allow you to integrate Moralis in your preferred environment. React hooks and Next.js bindings further accelerate frontend development.
 
----
+* * *
 
 ## Setting Up Your Moralis Account
 
@@ -70,29 +71,29 @@ Before writing any code, you need a Moralis account and API key.
 
 **Step 1:** Visit the Moralis admin console at admin.moralis.io and register a new account. You can use an email address or connect with a Web3 wallet.
 
-**Step 2:** After logging in, create a new project from the dashboard. Give it a descriptive name such as `defi-dashboard` or `nft-tracker`.
+**Step 2:** After logging in, create a new project from the dashboard. Give it a descriptive name such as ```defi-dashboard```` or ````nft-tracker````.
 
 **Step 3:** Navigate to the API Keys section and copy your default API key. Moralis uses a tiered pricing model. The free tier includes a generous number of API calls per month, which is sufficient for development and small production applications.
 
 **Step 4:** Secure your API key using environment variables. Never commit API keys directly into your source code repository.
 
-```bash
+`````bash
 # .env
 MORALIS_API_KEY=your_api_key_here
-```
+`````
 
-Load this variable in your application using `dotenv` or your runtime's built-in environment variable support.
+Load this variable in your application using ````dotenv```` or your runtime's built-in environment variable support.
 
-```javascript
+`````javascript
 // server.js
 require(dotenv).config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
   throw new Error('MORALIS_API_KEY is not defined');
 }
-```
+`````
 
----
+* * *
 
 ## Installing the Moralis SDK
 
@@ -100,11 +101,11 @@ Moralis offers official SDKs for multiple programming languages and frameworks. 
 
 ### JavaScript / Node.js
 
-```bash
+`````bash
 npm install moralis
-```
+`````
 
-```javascript
+`````javascript
 // Initialize Moralis in your Node.js application
 const Moralis = require(moralis).default;
 
@@ -113,15 +114,15 @@ await Moralis.start({
 });
 
 console.log('Moralis SDK initialized successfully');
-```
+`````
 
 ### Python
 
-```bash
+`````bash
 pip install moralis
-```
+`````
 
-```python
+`````python
 # Initialize Moralis in Python
 from moralis import evm_api
 import os
@@ -130,13 +131,13 @@ api_key = os.environ.get(MORALIS_API_KEY)
 if not api_key: raise ValueError("MORALIS_API_KEY environment variable is required")
 
 print("Moralis Python SDK ready")
-```
+`````
 
 ### Unity
 
 For Unity developers, Moralis provides a dedicated SDK package available through the Unity Package Manager. Import the package from the official Moralis GitHub repository, then initialize it in your game startup script.
 
-```csharp
+`````csharp
 // Unity C# initialization
 using MoralisUnity;
 using MoralisUnity.Web3Api.Client;
@@ -150,9 +151,9 @@ async void Start()
     await moralis.StartAsync();
     Debug.Log("Moralis Unity SDK initialized");
 }
-```
+`````
 
----
+* * *
 
 ## Fetching Token Data with the Token API
 
@@ -162,7 +163,7 @@ The Token API is one of the most frequently used components of Moralis. It provi
 
 Fetching the current price of any token is straightforward. Moralis aggregates price data from multiple decentralized exchanges and liquidity pools.
 
-```javascript
+`````javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
   address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   chain: 0x1, // Ethereum mainnet
@@ -170,28 +171,28 @@ const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
 
 console.log('Token Price:', priceResponse.result.usdPrice);
 console.log('Price Change 24h:', priceResponse.result.usdPricePercentChange24h);
-```
+`````
 
 ### Get Wallet Token Balances
 
 Retrieve all ERC-20 tokens held by a specific wallet address with a single API call.
 
-```javascript
+`````javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
 });
 
 balances.result.forEach((token) => {
-  console.log(`${token.name}: ${token.balance} (${token.symbol})`);
+  console.log(````${token.name}: ${token.balance} (${token.symbol})````);
 });
-```
+`````
 
 ### Get Token Transfers
 
 Track incoming and outgoing token transfers for a wallet or a specific token contract.
 
-```javascript
+`````javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
@@ -199,15 +200,15 @@ const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}`);
+  console.log(````From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}````);
 });
-```
+`````
 
 ### Get Token Metadata
 
 Retrieve detailed metadata for any ERC-20 token including name, symbol, decimals, and logo.
 
-```javascript
+`````javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
   addresses: [
     0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
@@ -217,11 +218,11 @@ const metadata = await Moralis.EvmApi.token.getTokenMetadata({
 });
 
 metadata.result.forEach((token) => {
-  console.log(`${token.name} (${token.symbol}) - ${token.decimals} decimals`);
+  console.log(````${token.name} (${token.symbol}) - ${token.decimals} decimals````);
 });
-```
+`````
 
----
+* * *
 
 ## Working with the NFT API
 
@@ -229,7 +230,7 @@ The NFT API provides comprehensive coverage for querying NFT ownership, metadata
 
 ### Get NFTs Owned by a Wallet
 
-```javascript
+`````javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
   address: 0x1234567890123456789012345678901234567890,
   chain: 0x1,
@@ -237,14 +238,14 @@ const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
 });
 
 nfts.result.forEach((nft) => {
-  console.log(`Collection: ${nft.name} Token ID: ${nft.tokenId}`);
-  console.log(`Metadata: ${nft.metadata}`);
+  console.log(````Collection: ${nft.name} Token ID: ${nft.tokenId}````);
+  console.log(````Metadata: ${nft.metadata}````);
 });
-```
+`````
 
 ### Get NFT Metadata by Token ID
 
-```javascript
+`````javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
   address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
   tokenId: 1,
@@ -254,11 +255,11 @@ const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
 console.log('Name:', nftMetadata.result.name);
 console.log('Image:', nftMetadata.result.metadata?.image);
 console.log('Attributes:', nftMetadata.result.metadata?.attributes);
-```
+`````
 
 ### Get NFT Transfers for a Collection
 
-```javascript
+`````javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
   address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
   chain: 0x1,
@@ -266,13 +267,13 @@ const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}`);
+  console.log(````Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}````);
 });
-```
+`````
 
 ### Python Example: Get Floor Price
 
-```python
+`````python
 from moralis import evm_api
 
 params = {
@@ -286,9 +287,9 @@ result = evm_api.nft.get_nft_floor_price(
 )
 
 print(f"Floor Price: {result[floor_price]} ETH")
-```
+`````
 
----
+* * *
 
 ## Real-Time Webhooks with the Streams API
 
@@ -296,7 +297,7 @@ One of Moralis's standout features is the Streams API, which enables real-time w
 
 ### Setting Up a Stream
 
-```javascript
+````javascript
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {

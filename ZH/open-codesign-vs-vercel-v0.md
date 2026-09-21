@@ -30,6 +30,7 @@ faqs: - q: '有没有可以自托管的开源 Vercel v0 替代方案？'
   - q: '与 Vercel v0 相比，Open Codesign 支持哪些框架输出？'
     a: 'Open Codesign 支持输出 React、Vue、Svelte 以及原始 HTML 的自定义代码，而 Vercel v0 则高度偏向于 Next.js 和 Tailwind。'---
 
+
 {</* resource-info */>}
 
 # Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI
@@ -144,7 +145,7 @@ Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -201,15 +202,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

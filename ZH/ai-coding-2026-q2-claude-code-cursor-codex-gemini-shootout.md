@@ -36,6 +36,7 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
     a: "Gemini CLI 配 Gemini 2.5 Pro 支持 1M+ token 上下文（远远最大）。Claude Code 1.0 配 Claude Sonnet 4.6（或 Opus 4.7）支持 1M token（via 1M-context tier）。Cursor Pro 默认 200K。Codex CLI 配 GPT-5 支持 256K。超大 monorepo 的话 Gemini CLI 的上下文优势是真的，但工具调用可靠性落后。"
 ---
 
+
 {{</* resource-info */>}}
 
 # AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI
@@ -59,20 +60,20 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 > **开源选项仍重要**: Aider、Cline、Roo Code 对预算紧愿意自带 API key 的开发者仍可用。
 
 
----
+* * *
 ## 四工具一览
 
 | 工具 | 厂商 | 最新版本 | 主接口 | 上下文窗口 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Anthropic | 1.0 | CLI + IDE 扩展 | 200K（1M 档） |
 | Cursor Pro | Anysphere | 2026.05 | 独立 IDE（VS Code fork） | 200K |
@@ -89,19 +90,19 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 ### 工作流 1: 加新功能（3 文件 ~200 行）
 
-给 User 实体加 `userRoles` 字段，传递到 API + Prisma schema + 前端表单 + 测试。
+给 User 实体加 ```userRoles```` 字段，传递到 API + Prisma schema + 前端表单 + 测试。
 
 | 工具 | 耗时 | 首次成功 | Token | 成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 4m 12s | ✅ 3/3 | ~85K | $0.42 |
 | Cursor Pro | 5m 38s | ✅ 2/3 | ~95K | $0.18 |
@@ -114,20 +115,20 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 | 工具 | 耗时 | 找到 | 漏 | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 2m 50s | 40/40 | 0 | 语义搜索 + ripgrep 用对 |
 | Cursor Pro | 1m 12s | 40/40 | 0 | 内建 symbol-aware rename |
-| Codex CLI | 4m 30s | 38/40 | 2 | 漏 `.mdx` |
-| Gemini CLI | 5m 45s | 35/40 | 5 | 漏 `.mdx` + 模板字符串 |
+| Codex CLI | 4m 30s | 38/40 | 2 | 漏 ````.mdx```` |
+| Gemini CLI | 5m 45s | 35/40 | 5 | 漏 ````.mdx```` + 模板字符串 |
 
 **判定**: Cursor 速度赢。Claude Code 质量并列。
 
@@ -137,13 +138,13 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 | 工具 | 诊断 | 修复 | 时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | ✅ 首次答对（async setup 竞态） | 干净 + 注释 | 8m |
 | Cursor Pro | ⚠️ 部分（症状不是根因） | 掩盖 patch | 6m |
@@ -156,13 +157,13 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 | 工具 | 总结质量 | 重构建议 | 阅读速度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | 优秀 — 准确结构化 | 5 个具体 + 排序 | 快 |
 | Cursor Pro | 好 — 略表面 | 3 个通用 | 快 |
@@ -177,13 +178,13 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 | 工具 | 工具协调 | 错误 | 恢复 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | ✅ 流畅，4 工具干净用 | 1（缺 env var） | 自动恢复 |
 | Cursor Pro | ⚠️ IDE 动作混终端 | 2 | 需用户提示 |
@@ -196,13 +197,13 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 | 工具 | 计划 | 月费 | 含 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Anthropic Max | **$200** | Claude Code + Claude.ai 无限 |
 | Cursor Pro | Pro | $20 | Cursor IDE + 500 fast premium/月 |
@@ -244,7 +245,7 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 ## 四个都还做不好的
 
-- **跨会话项目记忆**: 都难记昨天会话。MCP `memory` server 帮忙但采用率低。
+- **跨会话项目记忆**: 都难记昨天会话。MCP ````memory``` server 帮忙但采用率低。
 - **多仓库工作流**: 都仓库级。跨仓重构需手动协调。
 - **实时成本透明**: Cursor + Gemini 显示用量。Claude Code + Codex CLI 月末才知。
 - **理解资深代码**: 文档差的企业代码都不擅长。
@@ -273,7 +274,7 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 最大错误：开发者追最新版本因为 HN 说。**别因 hype 换工具**。跑自己的三工作流基准。**对的工具是真让你工作可测量更快的，不是模型最大的**。
 
 
----
+* * *
 **相关**: [Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Claude Code 设置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/) · [MCP 服务器 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -338,12 +339,12 @@ AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Ge
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -353,7 +354,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout)
 - [cursor-vs-claude-code](ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

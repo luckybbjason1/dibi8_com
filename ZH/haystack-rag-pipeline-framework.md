@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/haystack-rag-pipeline-framework/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么还需要另一个 RAG 框架？
@@ -30,7 +31,7 @@ Haystack 是一个**开源 NLP 框架**，用于构建生产级搜索和问答�
 
 与单体框架不同，Haystack  cleanly 分离关注点：
 
-- **组件**是自包含的单元（例如 `OpenAIDocumentEmbedder`、`InMemoryEmbeddingRetriever`）
+- **组件**是自包含的单元（例如 ```OpenAIDocumentEmbedder````、````InMemoryEmbeddingRetriever````）
 - **流水线**将组件连接成有向图
 - **文档存储**处理持久化和向量搜索
 - **Agent**通过工具访问添加推理循环
@@ -38,27 +39,27 @@ Haystack 是一个**开源 NLP 框架**，用于构建生产级搜索和问答�
 
 ## Haystack 的工作原理：流水线架构
 
-Haystack 2.x 围绕**有向无环图（DAG）**构建，其中节点是组件，边定义数据流。与 1.x 的固定 `Query → Retriever → Reader` 结构不同，2.x 允许你构建任意拓扑：分支、合并、条件路由和循环（用于 Agent）。
+Haystack 2.x 围绕**有向无环图（DAG）**构建，其中节点是组件，边定义数据流。与 1.x 的固定 ````Query → Retriever → Reader```` 结构不同，2.x 允许你构建任意拓扑：分支、合并、条件路由和循环（用于 Agent）。
 
 ### 核心组件类型
 
 | 组件 | 角色 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **嵌入器 (Embedder)** | 将文本/文档转换为向量 | `OpenAIDocumentEmbedder` |
-| **文档存储** | 持久化文档并处理向量搜索 | `InMemoryDocumentStore`、`OpenSearchDocumentStore` |
-| **检索器 (Retriever)** | 通过向量相似度查找相关文档 | `InMemoryEmbeddingRetriever` |
-| **生成器 (Generator)** | 使用 LLM 生成文本响应 | `OpenAIGenerator`、`HuggingFaceLocalGenerator` |
-| **PromptBuilder** | 从模板和变量组装 Prompt | `PromptBuilder` |
-| **AnswerBuilder** | 解析和后处理 LLM 响应 | `AnswerBuilder` |
-| **重排序器 (Reranker)** | 对检索到的文档重新打分 | `CohereReranker` |
-| **路由器 (Router)** | 根据条件将数据路由到不同分支 | `ConditionalRouter` |
-| **合并器 (Joiner)** | 合并来自多个分支的输出 | `DocumentJoiner` |
+| **嵌入器 (Embedder)** | 将文本/文档转换为向量 | ````OpenAIDocumentEmbedder```` |
+| **文档存储** | 持久化文档并处理向量搜索 | ````InMemoryDocumentStore````、````OpenSearchDocumentStore```` |
+| **检索器 (Retriever)** | 通过向量相似度查找相关文档 | ````InMemoryEmbeddingRetriever```` |
+| **生成器 (Generator)** | 使用 LLM 生成文本响应 | ````OpenAIGenerator````、````HuggingFaceLocalGenerator```` |
+| **PromptBuilder** | 从模板和变量组装 Prompt | ````PromptBuilder```` |
+| **AnswerBuilder** | 解析和后处理 LLM 响应 | ````AnswerBuilder```` |
+| **重排序器 (Reranker)** | 对检索到的文档重新打分 | ````CohereReranker```` |
+| **路由器 (Router)** | 根据条件将数据路由到不同分支 | ````ConditionalRouter```` |
+| **合并器 (Joiner)** | 合并来自多个分支的输出 | ````DocumentJoiner```` |
 
 ### 流水线执行模型
 
@@ -74,7 +75,7 @@ Haystack 2.x 围绕**有向无环图（DAG）**构建，其中节点是组件，
 
 ### 最小化安装
 
-```bash
+`````bash
 python -m venv haystack-env
 source haystack-env/bin/activate
 
@@ -84,11 +85,11 @@ pip install haystack-ai
 # 验证安装
 python -c "import haystack; print(haystack.__version__)"
 # 预期输出: 2.12.x
-```
+`````
 
 ### 带文档存储和模型的安装
 
-```bash
+`````bash
 # 安装所有常用额外依赖
 pip install "haystack-ai[all]"
 
@@ -96,21 +97,21 @@ pip install "haystack-ai[all]"
 pip install haystack-ai opensearch-py  # 用于 OpenSearch
 pip install haystack-ai qdrant-client   # 用于 Qdrant
 pip install haystack-ai weaviate-client # 用于 Weaviate
-```
+`````
 
 ### 环境配置
 
-```bash
+`````bash
 # 设置 OpenAI API 密钥
 export OPENAI_API_KEY="sk-your-key-here"
 
 # 本地模型支持，安装 HuggingFace
 pip install transformers torch sentence-transformers
-```
+`````
 
 验证完整堆栈：
 
-```python
+`````python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -121,13 +122,13 @@ print(f"Components available: embedders, retrievers, generators, routers")
 
 store = InMemoryDocumentStore()
 print(f"Document store initialized: {store.count_documents()} docs")
-```
+`````
 
 ## 构建你的第一个 RAG 流水线
 
 ### 使用 InMemoryDocumentStore 的基础 RAG
 
-```python
+`````python
 # basic_rag.py
 from haystack import Pipeline, Document
 from haystack.document_stores import InMemoryDocumentStore
@@ -185,19 +186,19 @@ result = rag.run({
     "prompt_builder": {"query": "What is Haystack?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 保存并运行：
 
-```bash
+`````bash
 python basic_rag.py
-```
+`````
 
 输出将包含带有检索上下文的生成答案。
 
 ### 添加重排序器获得更好结果
 
-```python
+`````python
 # rag_with_reranker.py
 from haystack import Pipeline
 from haystack.document_stores import InMemoryDocumentStore
@@ -243,11 +244,11 @@ result = pipeline.run({
     "prompt_builder": {"query": "How does Haystack handle document storage?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ### 分支流水线：按查询类型路由
 
-```python
+`````python
 # branching_pipeline.py
 from haystack import Pipeline
 from haystack.components.routers import ConditionalRouter
@@ -282,13 +283,13 @@ pipeline.connect("router.output", "tech_builder")
 pipeline.connect("router.fallback_output", "general_builder")
 
 result = pipeline.run({"router": {"query": "What is vector similarity search?"}})
-```
+`````
 
 ## 与文档存储、模型和工具的集成
 
 ### OpenSearch 文档存储（生产级）
 
-```python
+`````python
 # opensearch_store.py
 from haystack.document_stores import OpenSearchDocumentStore
 
@@ -305,11 +306,11 @@ store = OpenSearchDocumentStore(
 from haystack.components.retrievers import OpenSearchEmbeddingRetriever
 
 retriever = OpenSearchEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Qdrant 向量数据库
 
-```python
+`````python
 # qdrant_store.py
 from haystack_integrations.document_stores.qdrant import QdrantDocumentStore
 
@@ -324,11 +325,11 @@ store = QdrantDocumentStore(
 from haystack_integrations.components.retrievers.qdrant import QdrantEmbeddingRetriever
 
 retriever = QdrantEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### 使用 Ollama 的本地 LLM
 
-```python
+`````python
 # local_llm.py
 from haystack.components.generators import HuggingFaceLocalGenerator
 
@@ -341,11 +342,11 @@ generator.warm_up()
 
 result = generator.run("Explain RAG pipelines in one paragraph.")
 print(result["replies"][0])
-```
+`````
 
 ### 使用自定义组件
 
-```python
+`````python
 # custom_component.py
 from haystack import component
 from typing import Any, Dict, List
@@ -370,11 +371,11 @@ pipe.connect("counter.text", "generator.prompt")
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
 print(f"Tokens: {result[counter][token_count]}")
 print(f"Response: {result[generator][replies][0]}")
-```
+`````
 
 ### Agent 的网络搜索工具
 
-```python
+`````python
 # web_search_tool.py
 from haystack import Pipeline
 from haystack.components.websearch import SerperDevWebSearch
@@ -402,7 +403,7 @@ result = pipeline.run({
     "builder": {"query": "What are the latest AI models released in 2026?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -412,13 +413,13 @@ print(result["generator"]["replies"][0])
 
 | 流水线类型 | 平均延迟 | P95 延迟 | 吞吐量 (请求/秒) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 基础 RAG (InMemory, GPT-4o-mini) | **1,240 ms** | **1,890 ms** | **0.8** |
 | RAG + 重排序器 (cross-encoder) | **1,580 ms** | **2,340 ms** | **0.6** |
@@ -444,13 +445,13 @@ print(result["generator"]["replies"][0])
 - 通过语言路由器组件，单个流水线服务所有语言
 - 共享 OpenSearch 后端，包含 **340,000** 个产品文档块
 - 部署后支持工单升级率降低 **23%**
-- 使用 Haystack 的 `SASEvaluator` 的评估循环每周运行一次，检测流水线漂移
+- 使用 Haystack 的 ````SASEvaluator```` 的评估循环每周运行一次，检测流水线漂移
 
 ## 高级用法：生产级强化
 
 ### 异步执行实现高吞吐量
 
-```python
+`````python
 # async_pipeline.py
 import asyncio
 from haystack import Pipeline
@@ -475,11 +476,11 @@ results = asyncio.run(run_queries([
     "Explain vector search.",
     "How does RAG work?",
 ]))
-```
+`````
 
 ### 流水线序列化与版本管理
 
-```python
+`````python
 # serialize_pipeline.py
 from haystack import Pipeline
 
@@ -492,11 +493,11 @@ result = loaded.run({
     "embedder": {"text": "What is Haystack?"},
     "prompt_builder": {"query": "What is Haystack?"},
 })
-```
+`````
 
 ### 自定义评估
 
-```python
+`````python
 # evaluate_pipeline.py
 from haystack import Pipeline, Document
 from haystack.components.evaluators import SASEvaluator, FaithfulnessEvaluator
@@ -522,11 +523,11 @@ sas_result = sas_evaluator.run(
     predicted_answers=predictions,
 )
 print(f"SAS Score: {sas_result[score]:.3f}")
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -537,9 +538,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8000
 CMD ["python", "serve.py"]
-```
+`````
 
-```python
+`````python
 # serve.py
 from fastapi import FastAPI
 from haystack import Pipeline
@@ -559,9 +560,9 @@ async def query(question: str): result = pipeline.run({
         "answer": result["generator"]["replies"][0],
         "documents": [d.content for d in result.get("retriever", {}).get("documents", [])],
     }
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: haystack-api: build: .
@@ -575,23 +576,23 @@ services: haystack-api: build: .
     ports: - "9200:9200"
     volumes: - osdata:/usr/share/opensearch/data
 
-volumes: osdata: ```
+volumes: osdata: `````
 
-对于云 VPS 部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform 支持从 Git 直接部署 Docker。推送你的 `Dockerfile`，连接你的仓库，平台将零配置地构建和托管你的 Haystack API。
+对于云 VPS 部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform 支持从 Git 直接部署 Docker。推送你的 ````Dockerfile````，连接你的仓库，平台将零配置地构建和托管你的 Haystack API。
 
 ## 与替代方案对比
 
 | 功能 | Haystack 2.x | LangChain | LlamaIndex | Semantic Kernel |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | **Apache-2.0** | MIT | MIT | MIT |
 | **GitHub Stars** | **21,000+** | 98,000+ | 41,000+ | 22,000+ |
@@ -623,7 +624,7 @@ Haystack 在构建**文档密集型搜索和 QA 系统**的团队中表现出色
 
 ### 应该使用 Haystack 1.x 还是 2.x？
 
-Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护的分支。1.x 在 2024 年底已终止维护。所有新项目都应使用 2.x。流水线 API 完全不同——1.x 使用预定义节点类型的 `Pipeline` 类，而 2.x 使用基于组件的 DAG 系统。
+Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护的分支。1.x 在 2024 年底已终止维护。所有新项目都应使用 2.x。流水线 API 完全不同——1.x 使用预定义节点类型的 ````Pipeline```` 类，而 2.x 使用基于组件的 DAG 系统。
 
 ### 可以在不使用 OpenAI 的情况下使用 Haystack 吗？
 
@@ -631,7 +632,7 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 
 ### 如何选择文档存储？
 
-原型开发使用 `InMemoryDocumentStore`。生产环境：
+原型开发使用 ````InMemoryDocumentStore````。生产环境：
 - **OpenSearch：** 如果你已经在运行 Elasticsearch/OpenSearch 集群
 - **Qdrant：** 纯向量搜索，资源占用低
 - **Weaviate：** 内置混合搜索（BM25 + 向量）
@@ -639,11 +640,11 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 
 ### Haystack 适合实时应用吗？
 
-使用异步执行和预热流水线，Haystack 在简单 RAG 上实现 **<500ms** 的端到端延迟（不包括 LLM 生成时间）。对于真正的实时场景（<200ms），考虑添加缓存层或使用 `run_async()` 的流式生成器。
+使用异步执行和预热流水线，Haystack 在简单 RAG 上实现 **<500ms** 的端到端延迟（不包括 LLM 生成时间）。对于真正的实时场景（<200ms），考虑添加缓存层或使用 ````run_async()```` 的流式生成器。
 
 ### Haystack 如何处理流水线版本管理？
 
-流水线可以序列化为 YAML 或 JSON 并提交到版本控制。组件通过类名和参数引用，使差异可读。`pipeline.dump()` 和 `Pipeline.loads()` 方法支持可复现的部署，相同的 YAML 在不同环境中产生相同的行为。
+流水线可以序列化为 YAML 或 JSON 并提交到版本控制。组件通过类名和参数引用，使差异可读。````pipeline.dump()```` 和 ````Pipeline.loads()``` 方法支持可复现的部署，相同的 YAML 在不同环境中产生相同的行为。
 
 ### 生产环境的推荐部署架构是什么？
 
@@ -679,7 +680,7 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 - 自定义组件教程：https://docs.haystack.deepset.ai/docs/custom-components
 
 
----
+* * *
 **联盟披露：** 本文中的部分链接是联盟链接。如果你使用我们的 [DigitalOcean 推荐链接](https://m.do.co/c/eca87ac14ee0) 注册，你将获得 $200 信用额度，我们也会获得推荐奖励——不会增加你的额外成本。这支持我们的独立研究并保持内容免费。
 
 
@@ -709,7 +710,7 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](haystack-rag-pipeline-framework)
@@ -718,7 +719,7 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](haystack-rag-pipeline-framework)
 - [moneyprinterturbo-one-click-ai-video-generator](haystack-rag-pipeline-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

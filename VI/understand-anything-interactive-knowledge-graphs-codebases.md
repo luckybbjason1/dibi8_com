@@ -11,11 +11,12 @@ license: MIT
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
 
+
 ## Giới thiệu
 
 Bạn sao chép một cơ sở mã mới. 50.000 dòng mã trên 200 tệp. Bạn mở VS Code và nhìn chằm chằm vào cây tệp. Bạn bắt đầu từ đâu?
 
-Hầu hết các nhà phát triển đều sử dụng `grep`. Rồi đến `ripgrep`. Sau đó họ mở 10 tệp được tham chiếu nhiều nhất và cố gắng lắp ráp kiến trúc trong đầu. Nó hiệu quả — với các dự án nhỏ. Với bất cứ thứ gì lớn hơn, nó thật mệt mỏi.
+Hầu hết các nhà phát triển đều sử dụng ```grep````. Rồi đến ````ripgrep````. Sau đó họ mở 10 tệp được tham chiếu nhiều nhất và cố gắng lắp ráp kiến trúc trong đầu. Nó hiệu quả — với các dự án nhỏ. Với bất cứ thứ gì lớn hơn, nó thật mệt mỏi.
 
 Understand-Anything làm một điều hoàn toàn khác biệt. Nó biến mọi cơ sở mã thành một đồ thị tri thức tương tác — các nút cho tệp, lớp và hàm; các cạnh cho các phụ thuộc và mối quan hệ. Bạn có thể khám phá, tìm kiếm và đặt câu hỏi về mã. Không phải với regex. Mà với ngôn ngữ tự nhiên.
 
@@ -31,19 +32,19 @@ Understand-Anything là một công cụ mã nguồn mở của Egonex-AI, chuy�
 
 Kết quả là một biểu diễn trực quan + có thể truy vấn của mã mà cả con người và các tác nhân AI đều có thể duyệt. Claude Code có thể di chuyển qua nó. Codex có thể suy luận về nó. Cursor có thể tham chiếu đến nó. Đồ thị này đóng vai trò như một lớp hiểu biết chung giữa các nhà phát triển và trợ lý AI.
 
-```bash
+`````bash
 # Install via npm (TypeScript-based CLI)
 npm install -g understand-anything
 
 # Or use via Docker
 docker run -v $(pwd):/code ghcr.io/egonex-ai/understand-anything:latest /code
-```
+`````
 
 Công cụ này hoạt động với Claude Code, Codex, Cursor, Copilot, Gemini CLI, OpenCode và các tác nhân lập trình AI khác — biến nó thành một lớp kiến thức phổ quát cho chuỗi công cụ lập trình AI.
 
 ## Cách Hiểu-Mọi-Thứ Hoạt Động
 
-Đường ống có ba giai đoạn: phân tích cú pháp, xây dựng đồ thị và lập chỉ mục: ```
+Đường ống có ba giai đoạn: phân tích cú pháp, xây dựng đồ thị và lập chỉ mục: `````
 Source Code (all languages)
         │
         ▼
@@ -68,9 +69,9 @@ Source Code (all languages)
          ▼
    Knowledge Graph
   (explore + query)
-```
+`````
 
-Mỗi ngôn ngữ được phân tích cú pháp với AST gốc của nó (Python với `ast`, TypeScript với API trình biên dịch `typescript`, v.v.). Đồ thị được lưu trữ ở định dạng gọn nhẹ tối ưu cho cả việc trực quan hóa và truy vấn nhanh.
+Mỗi ngôn ngữ được phân tích cú pháp với AST gốc của nó (Python với ````ast````, TypeScript với API trình biên dịch ````typescript````, v.v.). Đồ thị được lưu trữ ở định dạng gọn nhẹ tối ưu cho cả việc trực quan hóa và truy vấn nhanh.
 
 Lớp lập chỉ mục thêm các nhúng vector cho tìm kiếm ngữ nghĩa — cho phép các truy vấn kiểu "tìm tất cả các hàm xử lý xác thực" trên toàn bộ cơ sở mã.
 
@@ -78,17 +79,17 @@ Lớp lập chỉ mục thêm các nhúng vector cho tìm kiếm ngữ nghĩa �
 
 ### Cài đặt Nhanh
 
-```bash
+`````bash
 # npm installation (recommended)
 npm install -g understand-anything
 
 # Verify
 understand-anything --version
-```
+`````
 
 ### Cài đặt Docker
 
-```bash
+`````bash
 # Pull latest image
 docker pull ghcr.io/egonex-ai/understand-anything:latest
 
@@ -96,35 +97,35 @@ docker pull ghcr.io/egonex-ai/understand-anything:latest
 docker run --rm -v $(pwd):/code \
   ghcr.io/egonex-ai/understand-anything:latest \
   /code --output ./knowledge-graph.json
-```
+`````
 
 ### Từ Nguồn
 
-```bash
+`````bash
 git clone https://github.com/Egonex-AI/Understand-Anything.git
 cd Understand-Anything
 npm install
 npm run build
 npm link  # global install
-```
+`````
 
 ### Vỏ Bao Python
 
-```bash
+`````bash
 pip install understand-anything-python
-```
+`````
 
-```python
+`````python
 from understand_anything import CodebaseAnalyzer
 
 analyzer = CodebaseAnalyzer("/path/to/codebase")
 analyzer.build_graph()
 analyzer.export_graph("graph.json")
-```
+`````
 
 ### Cấu hình
 
-```json
+`````json
 {
   "include": ["src/**/*.{ts,tsx,js,jsx}", "tests/**/*"],
   "exclude": ["node_modules", "dist", "*.test.*"],
@@ -133,49 +134,49 @@ analyzer.export_graph("graph.json")
   "max_file_size": 50000,
   "max_depth": 5
 }
-```
+`````
 
 ## Tích hợp với các công cụ chính
 
 ### Tích hợp Mã Claude
 
-```bash
+`````bash
 # Add knowledge graph to Claude Code context
 understand-anything analyze ./src --format claude-code
 
 # Claude Code automatically loads the graph for context-aware responses
-```
+`````
 
 ### Plugin IDE Cursor
 
-```bash
+`````bash
 # Install the Cursor extension
 # Settings → Extensions → Understand-Anything
 # Point to your project root
 
 # Cursor will show the knowledge graph sidebar
 # Click any node to navigate to the source
-```
+`````
 
 ### Tiện ích GitHub Copilot
 
-```bash
+`````bash
 # Generate a .copilot context file
 understand-anything analyze ./src --format copilot
 
 # Creates .github/copilot-instructions.md with
 # graph-derived context for Copilot
-```
+`````
 
 ### Tiện ích mở rộng VS Code
 
-```bash
+`````bash
 # Install from marketplace
 # vscode-marketplace: egonex.understand-anything
 
 # Or CLI install
 npx @egonex/vscode-extension install
-```
+`````
 
 ## Tiêu chuẩn tham chiếu & Các trường hợp sử dụng thực tế
 
@@ -200,7 +201,7 @@ Thời gian phân tích tăng xấp xỉ tuyến tính theo số lượng tệp.
 
 ### Trường hợp sử dụng: Đưa các nhà phát triển mới vào
 
-Một nhóm 15 lập trình viên tham gia vào một dự án TypeScript dài 50.000 dòng. Trước khi Sử dụng Understand-Anything, việc làm quen mất 2 tuần để đọc mã. Sau đó: ```bash
+Một nhóm 15 lập trình viên tham gia vào một dự án TypeScript dài 50.000 dòng. Trước khi Sử dụng Understand-Anything, việc làm quen mất 2 tuần để đọc mã. Sau đó: `````bash
 # Generate onboarding graph
 understand-anything analyze ./src --onboarding
 
@@ -208,19 +209,19 @@ understand-anything analyze ./src --onboarding
 # - Key entry points
 # - Module dependency map
 # - Common patterns and anti-patterns
-```
+`````
 
 Thời gian giới thiệu lập trình viên mới đã giảm từ 14 ngày xuống còn 3 ngày. Biểu đồ tương tác cho phép họ khám phá cơ sở mã theo tốc độ của riêng mình.
 
 ### Trường hợp sử dụng: Tái cấu trúc mã cũ
 
-```bash
+`````bash
 # Find all files that reference deprecated API
 understand-anything query "deprecated authentication endpoints"
 
 # Returns: 23 files, 47 references
 # With full dependency chains
-```
+`````
 
 Đồ thị tiết lộ sự liên kết ẩn mà bảng tính và grep hoàn toàn bỏ sót.
 
@@ -228,7 +229,7 @@ understand-anything query "deprecated authentication endpoints"
 
 ### Hỗ Trợ Ngôn Ngữ Tùy Chỉnh
 
-```typescript
+`````typescript
 // Add support for a new language
 import { LanguagePlugin } from 'understand-anything';
 
@@ -247,11 +248,11 @@ class MyLangPlugin implements LanguagePlugin {
 
 // Register plugin
 registerPlugin(new MyLangPlugin());
-```
+`````
 
 ### Ngôn ngữ Truy vấn Đồ thị (GQL)
 
-```bash
+`````bash
 # Find all functions called by more than 5 other functions
 understand-anything gql "func where call_count > 5 order by call_count desc"
 
@@ -260,11 +261,11 @@ understand-anything gql "file where incoming_refs == 0"
 
 # Find circular dependencies
 understand-anything gql "cycle where type == 'import'"
-```
+`````
 
 ### Tích hợp CI/CD
 
-```yaml
+`````yaml
 # .github/workflows/graph-check.yml
 name: Knowledge Graph CI
 on: [pull_request]
@@ -283,11 +284,11 @@ jobs: analyze: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: graph-violations
           path: graph-violations.json
-```
+`````
 
 ### Tối Ưu Hiệu Suất
 
-```bash
+`````bash
 # Use incremental analysis (fastest for dev workflows)
 understand-anything analyze ./src --incremental
 
@@ -299,11 +300,11 @@ understand-anything analyze ./src --workers 8
 
 # Memory-efficient mode (for constrained environments)
 understand-anything analyze ./src --low-memory
-```
+`````
 
 ### Định dạng xuất
 
-```bash
+`````bash
 # JSON (programmatic access)
 understand-anything analyze ./src --format json -o graph.json
 
@@ -317,7 +318,7 @@ understand-anything analyze ./src --format mermaid -o graph.mmd
 # HTML (interactive viewer)
 understand-anything analyze ./src --format html -o graph.html
 # Opens in browser with zoom, pan, search
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -340,11 +341,11 @@ Understand-Anything là công cụ duy nhất kết hợp trực quan hóa tươ
 
 Understand-Anything mạnh mẽ nhưng có những hạn chế trung thực: 1. **Mã được tạo ra không được phân tích.** Mã động (eval, exec, các lớp được tạo ra trong thời gian chạy) sẽ không xuất hiện trong biểu đồ. Đây là một hạn chế cơ bản của phân tích tĩnh — không có công cụ nào giải quyết vấn đề này một cách hoàn hảo.
 
-2. **Thư viện bên thứ ba cần được phân tích riêng.** Biểu đồ tập trung vào mã nguồn của bạn. Để bao gồm các phụ thuộc, bạn cần phân tích `node_modules`, `vendor/`, hoặc tương đương một cách riêng biệt.
+2. **Thư viện bên thứ ba cần được phân tích riêng.** Biểu đồ tập trung vào mã nguồn của bạn. Để bao gồm các phụ thuộc, bạn cần phân tích ````node_modules````, ````vendor/````, hoặc tương đương một cách riêng biệt.
 
-3. **Các kho mã lớn cần được điều chỉnh.** Hơn 50.000 tệp có thể yêu cầu các cờ `--workers` và `--low-memory` để đạt hiệu suất tối ưu. Cài đặt mặc định hoạt động tốt cho các dự án lên đến 10.000 tệp.
+3. **Các kho mã lớn cần được điều chỉnh.** Hơn 50.000 tệp có thể yêu cầu các cờ ````--workers```` và ````--low-memory```` để đạt hiệu suất tối ưu. Cài đặt mặc định hoạt động tốt cho các dự án lên đến 10.000 tệp.
 
-4. **Phần mở rộng tệp không chuẩn.** Các tệp không có phần mở rộng được công nhận có thể không được phân tích đúng cách. Sử dụng cấu hình `include` để chỉ định các mẫu.
+4. **Phần mở rộng tệp không chuẩn.** Các tệp không có phần mở rộng được công nhận có thể không được phân tích đúng cách. Sử dụng cấu hình ````include```` để chỉ định các mẫu.
 
 5. **Hợp tác theo thời gian thực.** Đồ thị được tính toán theo nhu cầu, không được cập nhật liên tục. Các thay đổi yêu cầu phân tích lại (chế độ tăng dần giảm thiểu chi phí này).
 
@@ -372,15 +373,15 @@ Vâng. GQL (Ngôn ngữ Truy vấn Đồ thị) hỗ trợ các truy vấn cấu
 
 **Hỏi: Nó có hoạt động với monorepos không?**
 
-Vâng. Understand-Anything xử lý monorepo một cách tự nhiên. Đặt cờ `--root` đến gốc của monorepo và chỉ định các gói cần bao gồm. Việc phát hiện phụ thuộc giữa các gói hoạt động tự động.
+Vâng. Understand-Anything xử lý monorepo một cách tự nhiên. Đặt cờ ````--root```` đến gốc của monorepo và chỉ định các gói cần bao gồm. Việc phát hiện phụ thuộc giữa các gói hoạt động tự động.
 
 **Hỏi: Kích thước mã nguồn tối đa là bao nhiêu?**
 
-Đã được thử nghiệm với các cơ sở mã lên đến 500.000 tệp và 50 triệu dòng mã. Hiệu suất phụ thuộc vào phần cứng — một chiếc laptop hiện đại có thể xử lý 10.000 tệp một cách dễ dàng. Đối với các dự án lớn hơn, hãy sử dụng các cờ `--workers` và `--low-memory`.
+Đã được thử nghiệm với các cơ sở mã lên đến 500.000 tệp và 50 triệu dòng mã. Hiệu suất phụ thuộc vào phần cứng — một chiếc laptop hiện đại có thể xử lý 10.000 tệp một cách dễ dàng. Đối với các dự án lớn hơn, hãy sử dụng các cờ ````--workers```` và ````--low-memory````.
 
 **Hỏi: Có giao diện web không?**
 
-Vâng. Xuất `--format html` tạo ra một trình xem web tương tác đầy đủ với các chức năng phóng to, thu nhỏ, tìm kiếm và nhấp để điều hướng. Không cần máy chủ — đây là một tệp HTML tĩnh.
+Vâng. Xuất ````--format html```` tạo ra một trình xem web tương tác đầy đủ với các chức năng phóng to, thu nhỏ, tìm kiếm và nhấp để điều hướng. Không cần máy chủ — đây là một tệp HTML tĩnh.
 
 ## Kết luận
 
@@ -390,13 +391,13 @@ Thực tế là nó hoạt động với Claude Code, Codex, Cursor, Copilot và
 
 Hơn 60.000 sao trong một tháng không chỉ là thị phi. Đó là các nhà phát triển nhận ra rằng việc điều hướng các cơ sở mã nên cảm giác như khám phá một bản đồ, chứ không phải đọc sổ điện thoại.
 
-Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu trữ, chạy `understand-anything analyze .`, và xem biểu đồ xuất hiện. Bạn sẽ tự hỏi làm sao bạn từng bắt đầu mà không có nó.
+Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu trữ, chạy ````understand-anything analyze .```, và xem biểu đồ xuất hiện. Bạn sẽ tự hỏi làm sao bạn từng bắt đầu mà không có nó.
 
 **Hành động kêu gọi**: Hãy thử Understand-Anything hôm nay. Tham gia [nhóm Telegram dibi8](https://t.me/DIBI8_Group/2) để thảo luận về trực quan hóa mã và quy trình phát triển được hỗ trợ bởi AI.
 
 Để tìm hiểu thêm về các công cụ lập trình AI, hãy xem hướng dẫn của chúng tôi về [thành thạo Claude Code](dibi8-claude-code-mastery) và [tối ưu hóa Cursor IDE](dibi8-cursor-optimization).
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Tài liệu chính thức: https://github.com/Egonex-AI/Understand-Anything
 - Kho lưu trữ GitHub: https://github.com/Egonex-AI/Understand-Anything
@@ -436,7 +437,7 @@ Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -446,7 +447,7 @@ Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu 
 - [claude-code-vs-aider](understand-anything-interactive-knowledge-graphs-codebases)
 - [cursor-vs-claude-code](understand-anything-interactive-knowledge-graphs-codebases)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

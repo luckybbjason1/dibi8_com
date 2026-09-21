@@ -25,6 +25,7 @@ tags: ["comfyui", "image generation", "video generation", "node-based", "workflo
 aliases:
   - /posts/comfyui-node-based-ai-image-2026/-
 ---
+
 If [AUTOMATIC1111](/resources/ai-tools/stable-diffusion-webui-2026/) is "Photoshop for AI image generation" (you type, the image happens), **ComfyUI** is **"Blender's node editor for generative AI"** — you build the workflow as a directed graph of nodes, with explicit control over every model, sampler, conditioning step, and post-process. 114k GitHub stars, GPL-3.0, supports literally every generative AI model family released in 2024-2026: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (image / video / 3D), PixArt, AuraFlow, LTX-Video.
 
 The 2026 reality: anyone serious about AI image, video, or multi-modal pipelines runs ComfyUI. Casual creators use A1111. Both are correct — they're different tools for different mental models.
@@ -54,13 +55,13 @@ The trade-off: ComfyUI takes a weekend to "click" mentally. A1111 takes 5 minute
 
 ComfyUI's smart memory management is much better than A1111's. The same GPU does more with ComfyUI: | GPU | SDXL | Flux dev | Hunyuan video (5s) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 4 GB (with offload) | ~30s | Possible but slow | No |
 | 8 GB | ~6s | ~25s | ~4 min |
@@ -72,20 +73,20 @@ Cloud option: spin up an H100 on Vast.ai for $1.50/hr or a 24 GB GPU on {{< aff 
 
 ## 3. Quick Install (10 minutes)
 
-```bash
+````bash
 git clone https://github.com/comfyanonymous/ComfyUI
 cd ComfyUI
 pip install -r requirements.txt
 python main.py
 # Opens UI at http://localhost:8188
-```
+`````
 
 Or use the standalone Windows portable build (one-click launcher).
 
-First task after install: install **ComfyUI Manager** (the closest thing to an "extension store"): ```bash
+First task after install: install **ComfyUI Manager** (the closest thing to an "extension store"): `````bash
 cd custom_nodes
 git clone https://github.com/ltdrdata/ComfyUI-Manager
-```
+`````
 
 Restart ComfyUI. The Manager handles model downloads, custom node installation, and workflow management.
 
@@ -132,7 +133,7 @@ A "text → image → video → audio narration" pipeline that would require 4 s
 
 ## 8. Production Self-Host Pattern
 
-For an "AI media generation API" deploy: ```
+For an "AI media generation API" deploy: `````
    GPU instance (24 GB VRAM recommended)
             │  on Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}
             ▼
@@ -142,17 +143,17 @@ For an "AI media generation API" deploy: ```
    Your wrapper service: - POST /run with workflow JSON + override params
    - Returns job_id, stream progress via WebSocket
    - Save final outputs to S3
-```
+`````
 
-ComfyUI exposes a `POST /prompt` endpoint that takes a workflow JSON. Build a thin auth + queue layer on top and you have a self-hosted Midjourney-replacement API.
+ComfyUI exposes a ````POST /prompt```` endpoint that takes a workflow JSON. Build a thin auth + queue layer on top and you have a self-hosted Midjourney-replacement API.
 
 ## 9. ComfyUI vs A1111 vs SwarmUI
 
 | Pick | When |
 |
----
+* * *
 |
----
+* * *
 |
 | **ComfyUI** | Complex workflows, multi-model, video, audio, you want exact reproducibility, you're shipping AI media as a product |
 | **AUTOMATIC1111** | Single image gen, 80% of casual use cases, biggest extension library, lowest learning curve. See our [A1111 guide](/resources/ai-tools/stable-diffusion-webui-2026/) |
@@ -163,9 +164,9 @@ The honest path: start with A1111 if you're new. Migrate to ComfyUI when you nee
 ## 10. Pitfalls
 
 1. **Skipping ComfyUI Manager** — every "how do I find this node" problem disappears with Manager installed
-2. **Manual model file placement** — models go in specific subdirs (`models/checkpoints/`, `models/loras/`, etc.). Manager handles this automatically; doing it by hand is error-prone
+2. **Manual model file placement** — models go in specific subdirs (````models/checkpoints/````, ````models/loras/````, etc.). Manager handles this automatically; doing it by hand is error-prone
 3. **Loading workflows you don't understand** — Reddit workflows can be 200+ nodes. Start with simple ones and modify
-4. **Ignoring memory management settings** — `--lowvram` / `--medvram` are the difference between "works" and "OOM" on smaller GPUs
+4. **Ignoring memory management settings** — ````--lowvram```` / ````--medvram``` are the difference between "works" and "OOM" on smaller GPUs
 5. **No version control on workflows** — git the workflow JSONs alongside your code. Future-you will thank present-you
 
 ## TL;DR
@@ -175,7 +176,7 @@ ComfyUI = **node-based AI media generation workflow engine, 2026 default for any
 Install ComfyUI + ComfyUI Manager (~15 minutes total), drop a community workflow from OpenArt onto the canvas, watch generative AI as a directed graph make sense in a way A1111 never can.
 
 
----
+* * *
 *Part of dibi8's multi-modal content stack — pairs with [Stable Diffusion WebUI for casual use](/resources/ai-tools/stable-diffusion-webui-2026/) and [ChatTTS for voice](/resources/ai-tools/chattts-dialogue-tts-2026/). See the upcoming Multi-Modal Content Pipeline collection for the full creator stack.*
 
 
@@ -241,11 +242,11 @@ ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio Workflow Engine — Comp
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -255,6 +256,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [moneyprinterturbo-one-click-ai-video-generator](comfyui-node-based-ai-image-2026)
 - [stable-diffusion-complete-guide](comfyui-node-based-ai-image-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

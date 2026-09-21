@@ -1,6 +1,7 @@
 ---
 好的，这是为您翻译的英文技术文章，遵循了您提供的所有规则：
 ---
+
 title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: '探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。'
 date: 2026-05-23
@@ -14,7 +15,7 @@ maintainer: 'obra'
 license: MIT
 featureImage: ''
 
----
+* * *
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -82,42 +83,42 @@ Superpowers 的工作原理是将“技能”组合成能够执行任务的“�
 
 让我们以一个简单的交互为例。想象一个代理的任务是查找给定城市的天气。
 
-```ascii
+````ascii
 +
----
+* * *
 +      +
----
+* * *
 +      +
----
+* * *
 +
 |                   |      |                   |      |                   |
 |      Agent        |
----
+* * *
 >|    Skill: Get     |
----
+* * *
 >|   External API    |
 | (Orchestrates)    |      |      Weather      |      | (Weather Service) |
 |                   |      |                   |      |                   |
 +
----
+* * *
 +      +
----
+* * *
 +      +
----
+* * *
 +
           ^                                                    |
           |                                                    |
           +
----
+* * *
 +
                      (API Response)
 
-```
+`````
 
 在此图表中：
 *   **Agent** 接收请求（例如，“伦敦的天气怎么样？”）。
-*   它识别出需要天气信息，并调用 `get_weather` 技能。
-*   `get_weather` 技能可能随后与外部天气 API 交互，可能使用 `curl` 或 `wget` 等工具。
+*   它识别出需要天气信息，并调用 ````get_weather```` 技能。
+*   ````get_weather```` 技能可能随后与外部天气 API 交互，可能使用 ````curl```` 或 ````wget```` 等工具。
 *   API 的响应由技能处理并返回给代理。
 *   代理可能会使用 LLM 将此信息格式化为人类可读的响应。
 
@@ -130,42 +131,42 @@ Superpowers 的力量在于它能够抽象化管理这些技能执行的复杂�
 **先决条件：**
 
 *   类 Unix 环境（Linux、macOS、Windows 上的 WSL）。
-*   已安装 `git`。
-*   现代 Shell 解释器（例如 `bash`、`zsh`）。
-*   （可选，用于 LLM 集成）LLM API 密钥及相关工具（如 `ollama`、`openai-cli` 等）。
+*   已安装 ````git````。
+*   现代 Shell 解释器（例如 ````bash````、````zsh````）。
+*   （可选，用于 LLM 集成）LLM API 密钥及相关工具（如 ````ollama````、````openai-cli```` 等）。
 
 **安装步骤：**
 
 1.  **克隆仓库：**
     获取 Superpowers 的主要方式是克隆其 GitHub 仓库。
 
-    ```bash
+    `````bash
     git clone https://github.com/obra/superpowers.git
     cd superpowers
-    ```
+    `````
 
 2.  **Source 环境：**
     Superpowers 依赖于 source 其主脚本来设置必要的环境变量和函数。
 
-    ```bash
+    `````bash
     source ./superpowers.sh
-    ```
+    `````
 
-    此命令使 Superpowers 命令和函数在您当前的 shell 会话中可用。为了持久访问，您通常会将此行添加到您的 shell 配置文件中（例如 `~/.bashrc`、`~/.zshrc`）。
+    此命令使 Superpowers 命令和函数在您当前的 shell 会话中可用。为了持久访问，您通常会将此行添加到您的 shell 配置文件中（例如 ````~/.bashrc````、````~/.zshrc````）。
 
 3.  **初始化配置（可选但推荐）：**
     Superpowers 通常使用配置文件来管理设置、API 密钥和路径。您可以初始化一个默认配置。
 
-    ```bash
+    `````bash
     # 此命令可能会创建一个默认配置文件，例如 ~/.config/superpowers/config
     superpowers init
-    ```
+    `````
 
-    然后，您需要编辑此配置文件（例如 `~/.config/superpowers/config`）来设置您的 LLM 提供商、API 密钥以及任何其他必要的参数。
+    然后，您需要编辑此配置文件（例如 ````~/.config/superpowers/config````）来设置您的 LLM 提供商、API 密钥以及任何其他必要的参数。
 
-    **示例 `~/.config/superpowers/config`：**
+    **示例 ````~/.config/superpowers/config````：**
 
-    ```ini
+    `````ini
     # Superpowers Configuration
     # As of 2026-05-23
 
@@ -185,12 +186,12 @@ Superpowers 的力量在于它能够抽象化管理这些技能执行的复杂�
     SKILL_DIR="$HOME/.superpowers/skills"
 
     # ... other configurations
-    ```
+    `````
 
 4.  **创建您的第一个技能（示例）：**
     让我们创建一个简单的“hello world”技能。
 
-    ```bash
+    `````bash
     # 如果技能目录不存在，则创建它
     mkdir -p ~/.superpowers/skills
     cd ~/.superpowers/skills
@@ -209,22 +210,22 @@ Superpowers 的力量在于它能够抽象化管理这些技能执行的复杂�
 
     # 使技能可执行
     chmod +x hello.sh
-    ```
+    `````
 
 5.  **运行一个简单的代理：**
     现在，您可以尝试运行一个使用此技能的代理。Superpowers 通常提供一个命令行界面来与代理进行交互。
 
-    ```bash
+    `````bash
     # 假设在 source 之后 'superpowers' 命令现在可用
     # 这是一个概念性示例，确切的命令可能因 Superpowers CLI 而异
     superpowers agent --prompt "Greet my friend John" --skills ~/.superpowers/skills
-    ```
+    `````
 
-    如果代理逻辑正确地解析了提示并使用“John”作为输入调用 `hello.sh` 技能，输出可能如下：
+    如果代理逻辑正确地解析了提示并使用“John”作为输入调用 ````hello.sh```` 技能，输出可能如下：
 
-    ```
+    `````
     greeting=Hello, John!
-    ```
+    `````
 
 这个设置过程，尤其是 source 主脚本和设置基本配置，在新的系统上确实可以在 5 分钟内完成。
 
@@ -237,27 +238,27 @@ Superpowers 的优势在于其作为中央编排器的能力，可以与开发�
 这可以说是 agentic 框架最重要的集成。Superpowers 允许代理利用 LLM 的推理和生成能力。
 
 **工作原理：**
-`superpowers.sh` 脚本（或关联的 CLI）通常会包含调用 LLM API 或本地模型的逻辑。`~/.config/superpowers/config` 中的配置指定了提供商、模型和 API 端点/密钥。
+````superpowers.sh```` 脚本（或关联的 CLI）通常会包含调用 LLM API 或本地模型的逻辑。````~/.config/superpowers/config```` 中的配置指定了提供商、模型和 API 端点/密钥。
 
-**示例配置（`~/.config/superpowers/config`）：**
+**示例配置（````~/.config/superpowers/config````）：**
 
-```ini
+`````ini
 LLM_PROVIDER="ollama"
 LLM_MODEL="llama3:latest"
 LLM_API_BASE="http://localhost:11434"
-```
+`````
 
 或用于 OpenAI：
 
-```ini
+`````ini
 LLM_PROVIDER="openai"
 LLM_MODEL="gpt-4o-mini"
 LLM_API_KEY="YOUR_OPENAI_API_KEY"
-```
+`````
 
-**示例技能（概念性 `llm_query.sh`）：**
+**示例技能（概念性 ````llm_query.sh````）：**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: LLM Query
 # Description: Sends a prompt to the configured LLM and returns the response.
@@ -281,18 +282,18 @@ elif [ "\$PROVIDER" = "openai" ]; then
     # 使用 curl 或 openai-cli 进行 OpenAI API 的类似逻辑
     echo "response=OpenAI integration not fully implemented in this example."
 fi
-```
+`````
 
 ### 2. 版本控制系统（Git）
 
 代理可能需要与代码仓库交互、签出分支、提交更改或管理代码。
 
 **工作原理：**
-Superpowers 可以定义包装标准 `git` 命令的技能。然后可以指示代理执行版本控制操作。
+Superpowers 可以定义包装标准 ````git```` 命令的技能。然后可以指示代理执行版本控制操作。
 
-**示例技能（`git_commit.sh`）：**
+**示例技能（````git_commit.sh````）：**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Git Commit
 # Description: Commits staged changes in the current Git repository.
@@ -322,7 +323,7 @@ else
     echo "error=Git commit failed."
     exit 1
 fi
-```
+`````
 
 代理可以在生成代码或文档后使用此技能。
 
@@ -331,11 +332,11 @@ fi
 许多代理任务都需要基本的文件操作，例如读取配置、写入输出或处理数据文件。
 
 **工作原理：**
-Superpowers 可以直接将标准的 Unix 实用程序（如 `cat`、`echo`、`mkdir`、`mv`、`rm`、`grep`、`sed`、`awk` 等）作为技能使用。
+Superpowers 可以直接将标准的 Unix 实用程序（如 ````cat````、````echo````、````mkdir````、````mv````、````rm````、````grep````、````sed````、````awk```` 等）作为技能使用。
 
-**示例技能（`write_file.sh`）：**
+**示例技能（````write_file.sh````）：**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Write File
 # Description: Writes content to a specified file.
@@ -360,18 +361,18 @@ else
     echo "error=Failed to write to file \$FILEPATH."
     exit 1
 fi
-```
+`````
 
-### 4. Web Scraping / API Interaction（例如 `curl`、`wget`）
+### 4. Web Scraping / API Interaction（例如 ````curl````、````wget````）
 
 代理通常需要从网络获取数据或与外部 API 交互。
 
 **工作原理：**
-`curl` 和 `wget` 等 Shell 命令是技能的绝佳候选者。
+````curl```` 和 ````wget```` 等 Shell 命令是技能的绝佳候选者。
 
-**示例技能（`fetch_url.sh`）：**
+**示例技能（````fetch_url.sh````）：**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Fetch URL
 # Description: Fetches content from a given URL.
@@ -395,20 +396,20 @@ if [ \$? -ne 0 ]; then
 fi
 
 echo "content=\$CONTENT"
-```
+`````
 
-对于更复杂的 Web Scraping，您可以集成使用 `BeautifulSoup` 或 `Scrapy` 等库的 Python 脚本，并通过 `run_python_script.sh` 技能调用它们。
+对于更复杂的 Web Scraping，您可以集成使用 ````BeautifulSoup```` 或 ````Scrapy```` 等库的 Python 脚本，并通过 ````run_python_script.sh```` 技能调用它们。
 
-### 5. 数据处理（例如 `jq`、`awk`、`sed`）
+### 5. 数据处理（例如 ````jq````、````awk````、````sed````）
 
 处理结构化或非结构化数据是常见的代理任务。
 
 **工作原理：**
 强大的命令行数据处理工具可以直接暴露为技能。
 
-**示例技能（使用 `jq` 的 `process_json.sh`）：**
+**示例技能（使用 ````jq```` 的 ````process_json.sh````）：**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Process JSON with jq
 # Description: Processes JSON data using a jq filter.
@@ -438,7 +439,7 @@ if [ \$? -ne 0 ]; then
 fi
 
 echo "processed_data=\$PROCESSED_DATA"
-```
+`````
 
 这种与现有命令行工具和服务的集成能力，使得 Superpowers 成为构建能够与更广泛的软件生态系统交互的智能代理的通用框架。要访问用于 Web Scraping 或 API 调用的高速代理，可以考虑使用 [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 等服务。
 
@@ -450,7 +451,7 @@ echo "processed_data=\$PROCESSED_DATA"
 
 **场景：** 一个团队使用 Superpowers 自动化遗留 Python 代码的重构过程。一个代理的任务是：
 1.  识别重构的区域（例如，长函数、重复代码）。
-2.  应用自动化重构工具（例如 `autopep8`、`black`、自定义 AST 操作脚本）。
+2.  应用自动化重构工具（例如 ````autopep8````、````black````、自定义 AST 操作脚本）。
 3.  为重构后的代码生成或更新文档字符串。
 4.  使用描述性消息将更改提交到 Git 仓库。
 
@@ -459,7 +460,7 @@ echo "processed_data=\$PROCESSED_DATA"
 *   **任务完成时间：** 以前需要 2-3 天开发人员工作量的复杂重构任务，由代理在 4 小时内完成（包括代码审查周期）。
 *   **一致性：** 确保了代码库中格式和文档的一致性，减少了审查开销。
 
-**涉及的技能：** `run_python_script.sh`、`git_commit.sh`、`find_files.sh`、`llm_query.sh`（用于文档字符串生成）。
+**涉及的技能：** ````run_python_script.sh````、````git_commit.sh````、````find_files.sh````、````llm_query.sh````（用于文档字符串生成）。
 
 ### 用例 2：内容生成与分发管道
 
@@ -467,14 +468,14 @@ echo "processed_data=\$PROCESSED_DATA"
 1.  从 RSS feed 或新闻 API 获取热门话题。
 2.  使用 LLM 根据话题起草一篇博客文章或社交媒体更新。
 3.  为不同平台（例如 Twitter、LinkedIn）格式化内容。
-4.  （可选）通过平台的 API 安排帖子（使用自定义的 `post_to_platform.sh` 技能）。
+4.  （可选）通过平台的 API 安排帖子（使用自定义的 ````post_to_platform.sh```` 技能）。
 
 **基准/结果：**
 *   **内容吞吐量：** 每周内容产出增加了 3 倍。
 *   **节省时间：** 手动内容准备时间减少了 70%。
 *   **适应性：** 通过简单地更新代理的提示或输入源，可以快速适应新的热门话题。
 
-**涉及的技能：** `fetch_url.sh`、`llm_query.sh`、`format_text.sh`（自定义脚本）、`post_to_twitter.sh`（自定义技能）。
+**涉及的技能：** ````fetch_url.sh````、````llm_query.sh````、````format_text.sh````（自定义脚本）、````post_to_twitter.sh````（自定义技能）。
 
 ### 用例 3：CI/CD 管道增强
 
@@ -488,11 +489,11 @@ echo "processed_data=\$PROCESSED_DATA"
 *   **开发者专注度：** 使开发者能够专注于新问题，而不是重复的调试。
 *   **成本效益：** 自动化了许多原本需要 DevOps 工程师手动干预的任务。
 
-**涉及的技能：** `read_file.sh`、`grep_logs.sh`、`run_script.sh`（用于应用修复）、`send_notification.sh`。
+**涉及的技能：** ````read_file.sh````、````grep_logs.sh````、````run_script.sh````（用于应用修复）、````send_notification.sh````。
 
 ### 性能考虑：
 
-*   **Shell 脚本速度：** 基本的 Shell 操作速度极快。`grep` 或 `sed` 命令的执行时间为毫秒级。
+*   **Shell 脚本速度：** 基本的 Shell 操作速度极快。````grep```` 或 ````sed```` 命令的执行时间为毫秒级。
 *   **LLM 延迟：** 许多 agentic 任务的主要瓶颈是 LLM 推理时间。这是 LLM 的固有特性，并非 Superpowers 本身的限制。
 *   **外部 API 调用：** 外部 API 调用的网络延迟将影响任务完成时间。
 *   **技能复杂度：** 自定义技能的效率取决于开发者。编写良好、经过优化的脚本至关重要。
@@ -505,14 +506,14 @@ echo "processed_data=\$PROCESSED_DATA"
 
 ### 1. 健壮的技能设计
 
-*   **错误处理：** 每个技能都应具有全面的错误处理。使用 `set -e`（如果命令以非零状态退出，则立即退出）和 `set -o pipefail`（管道的返回值为最后一个以非零状态退出的命令的状态，如果所有命令都成功退出，则为零）。
+*   **错误处理：** 每个技能都应具有全面的错误处理。使用 ````set -e````（如果命令以非零状态退出，则立即退出）和 ````set -o pipefail````（管道的返回值为最后一个以非零状态退出的命令的状态，如果所有命令都成功退出，则为零）。
 *   **输入验证：** 对技能的所有输入进行清理和验证，以防止意外行为或安全漏洞。
 *   **幂等性：** 在可能的情况下，设计技能使其具有幂等性——使用相同输入多次运行技能会产生相同的结果，而不会产生副作用。
 *   **资源管理：** 注意资源使用（CPU、内存、网络）。对于耗时或资源密集型的技能，考虑将其卸载到专用服务。
 
-**示例 `robust_skill.sh` 片段：**
+**示例 ````robust_skill.sh```` 片段：**
 
-```bash
+`````bash
 #!/bin/bash
 # Superpowers Skill: Robust Example
 # ... (description, inputs, outputs)
@@ -534,7 +535,7 @@ RESULT="Processed: $INPUT_DATA"
 
 # 输出格式化
 echo "result=$RESULT"
-```
+`````
 
 ### 2. 状态管理与持久化
 
@@ -546,7 +547,7 @@ echo "result=$RESULT"
 
 **示例：使用文件作为代理状态：**
 
-```bash
+`````bash
 # 更新代理进度状态的技能
 update_agent_state.sh: #!/bin/bash
 set -e
@@ -581,19 +582,19 @@ if [ -f "$STATE_FILE" ]; then
 else
     echo "{}"
 fi
-```
+`````
 
 ### 3. 日志记录与监控
 
 有效的日志记录对于调试和理解生产环境中代理的行为至关重要。
 
-*   **标准输出/错误：** 确保技能将有意义的信息记录到 `stdout` 和 `stderr`。Superpowers 运行时应捕获这些。
+*   **标准输出/错误：** 确保技能将有意义的信息记录到 ````stdout```` 和 ````stderr````。Superpowers 运行时应捕获这些。
 *   **集中式日志记录：** 与集中式日志系统（例如 ELK stack、Splunk）集成，方法是让技能将日志发送到那里，或者处理 Superpowers 的输出日志。
 *   **指标：** 跟踪关键指标，如任务成功率、执行时间和错误频率。
 
 **示例：为日志添加时间戳：**
 
-```bash
+`````bash
 # 在您的代理执行脚本或包装技能中：
 log_with_timestamp() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
@@ -604,7 +605,7 @@ log_with_timestamp "Starting skill: my_skill.sh"
 ./my_skill.sh arg1 arg2 >> agent.log 2>&1
 EXIT_CODE=$?
 log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
-```
+`````
 
 ### 4. 安全注意事项
 
@@ -621,11 +622,11 @@ log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
 
 **示例：通过 cron 触发 Superpowers 代理：**
 
-```bash
+`````bash
 # 在您的 crontab 中（运行 'crontab -e"）
 # 每天凌晨 3 点运行一个每日代理任务
 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf >> /var/log/superpowers_agent.log 2>&1
-```
+`````
 
 通过实施这些高级实践，您可以使用 Superpowers 框架为生产环境构建健壮、可靠且安全的 AI 代理。
 
@@ -672,8 +673,8 @@ Superpowers 在一个拥挤的 LLM 框架领域运作。以下是截至 2026 年
 ### 1. Shell 脚本固有的挑战
 
 *   **复杂性管理：** 虽然 Shell 非常适合简单任务，但仅用 Shell 管理非常庞大、复杂的代理逻辑可能会变得笨拙。调试复杂的 Shell 脚本可能具有挑战性，尤其是对于不熟悉其细微之处的开发者。
-*   **可移植性细微差别：** 虽然 Shell 是可移植的，但 Shell 版本和操作系统之间的细微差别（例如 `sed` 的行为、文件路径处理）有时会导致特定于平台的问​​题，需要仔细测试。
-*   **缺乏丰富的数据结构：** Shell 主要处理字符串。复杂的**数据结构**（如嵌套字典或列表）需要外部工具，如 `jq` 或自定义解析，这会增加开销。
+*   **可移植性细微差别：** 虽然 Shell 是可移植的，但 Shell 版本和操作系统之间的细微差别（例如 ````sed```` 的行为、文件路径处理）有时会导致特定于平台的问​​题，需要仔细测试。
+*   **缺乏丰富的数据结构：** Shell 主要处理字符串。复杂的**数据结构**（如嵌套字典或列表）需要外部工具，如 ````jq```` 或自定义解析，这会增加开销。
 
 ### 2. 生态系统成熟度
 
@@ -683,7 +684,7 @@ Superpowers 在一个拥挤的 LLM 框架领域运作。以下是截至 2026 年
 ### 3. 开发范式转变
 
 *   **抽象级别：** 习惯于高级 Python 抽象的开发者可能会发现，Superpowers 对 shell 命令和脚本的直接依赖在处理复杂任务时，在认知负荷方面不够“开发者友好”。您更接近底层，这是一把双刃剑。
-*   **错误传播：** 虽然 `set -e` 和 `set -o pipefail` 有所帮助，但在多个链式 Shell 脚本之间跟踪错误有时不如调试 Python 调用堆栈那样直接。
+*   **错误传播：** 虽然 ````set -e```` 和 ````set -o pipefail```` 有所帮助，但在多个链式 Shell 脚本之间跟踪错误有时不如调试 Python 调用堆栈那样直接。
 
 ### 4. 性能瓶颈
 
@@ -707,13 +708,13 @@ Superpowers 在使 LLM 功能易于访问和在熟悉的、可移植的、通常
 ## 常见问题解答
 
 **Q1: Superpowers 只适用于 Shell 脚本吗？我可以使用 Python 或其他语言吗？**
-A1: Superpowers 主要是一个基于 Shell 的框架，这意味着其核心执行引擎和许多提供的实用程序都是用 Shell 编写的。但是，您绝对可以集成用 Python、Node.js、Go 或任何其他语言编写的技能。您通常会创建一个 Shell 脚本（一个“技能”）来执行您的 Python 脚本，传递参数并捕获其输出。例如，一个 `run_python_script.sh` 技能。
+A1: Superpowers 主要是一个基于 Shell 的框架，这意味着其核心执行引擎和许多提供的实用程序都是用 Shell 编写的。但是，您绝对可以集成用 Python、Node.js、Go 或任何其他语言编写的技能。您通常会创建一个 Shell 脚本（一个“技能”）来执行您的 Python 脚本，传递参数并捕获其输出。例如，一个 ````run_python_script.sh```` 技能。
 
 **Q2: Superpowers 如何处理 LLM 成本？**
-A2: Superpowers 本身不直接管理 LLM 成本。它充当编排器。成本由您在 `~/.config/superpowers/config` 文件中配置的 LLM 提供商（例如 OpenAI、Anthropic）产生。您负责管理您的 API 密钥并监控与这些提供商的使用情况。一些本地 LLM 提供商（如 Ollama）没有按 token 收费，只有硬件/电力成本。
+A2: Superpowers 本身不直接管理 LLM 成本。它充当编排器。成本由您在 ````~/.config/superpowers/config```` 文件中配置的 LLM 提供商（例如 OpenAI、Anthropic）产生。您负责管理您的 API 密钥并监控与这些提供商的使用情况。一些本地 LLM 提供商（如 Ollama）没有按 token 收费，只有硬件/电力成本。
 
 **Q3: 我如何在团队中共享技能或代理？**
-A3: 技能通常是单独的脚本（例如 `.sh` 文件）。您可以通过以下方式共享它们：
+A3: 技能通常是单独的脚本（例如 ````.sh``` 文件）。您可以通过以下方式共享它们：
     *   将它们存储在共享的 Git 仓库中。
     *   使用通用的目录结构并将代理指向该目录。
     *   将它们打包为更大应用程序或 Docker 镜像的一部分。
@@ -770,4 +771,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

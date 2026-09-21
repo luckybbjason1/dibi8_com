@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/haystack-rag-pipeline-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại Sao Cần Một Framework RAG Khác?
@@ -40,7 +41,7 @@ Haystack là **framework NLP mã nguồn mở** cho phép bạn xây dựng hệ
 
 Ban đầu tập trung vào extractive QA (thờ tiền-LLM), Haystack chuyển hướng sang generative AI với bản phát hành 2.0. Tính đến v2.12 (tháng 5/2026), nó hỗ trợ **30+ document store** (OpenSearch, Weaviate, Qdrant, PostgreSQL, v.v.), **multi-modal retrieval**, **agentic pipelines với tool calling**, evaluation tích hợp, và thực thi async native. Framework được cấp phép Apache-2.0 và duy trì bởi deepset với **21,000+ stars**.
 
-Khác với các framework nguyên khối, Haystack phân tách rõ ràng các mối quan tâm: - **Components** là các đơn vị tự chứa (ví dụ: `OpenAIDocumentEmbedder`, `InMemoryEmbeddingRetriever`)
+Khác với các framework nguyên khối, Haystack phân tách rõ ràng các mối quan tâm: - **Components** là các đơn vị tự chứa (ví dụ: ```OpenAIDocumentEmbedder````, ````InMemoryEmbeddingRetriever````)
 - **Pipelines** nối các thành phần thành đồ thị có hướng
 - **Document Stores** xử lý persistence và vector search
 - **Agents** thêm reasoning loops với tool access
@@ -48,21 +49,21 @@ Khác với các framework nguyên khối, Haystack phân tách rõ ràng các m
 
 ## Haystack Hoạt Động Như Thế Nào: Kiến trúc Pipeline
 
-Haystack 2.x được xây dựng xung quanh **đồ thị không có chu trình có hướng (DAG)** trong đó các node là thành phần và các cạnh xác định luồng dữ liệu. Khác với cấu trúc cứng nhắc `Query → Retriever → Reader` của 1.x, 2.x cho phép bạn xây dựng topo tùy ý: phân nhánh, hợp nhất, định tuyến có điều kiện, và vòng lặp (cho agents).
+Haystack 2.x được xây dựng xung quanh **đồ thị không có chu trình có hướng (DAG)** trong đó các node là thành phần và các cạnh xác định luồng dữ liệu. Khác với cấu trúc cứng nhắc ````Query → Retriever → Reader```` của 1.x, 2.x cho phép bạn xây dựng topo tùy ý: phân nhánh, hợp nhất, định tuyến có điều kiện, và vòng lặp (cho agents).
 
 ### Các Loại Thành phần Cốt lõi
 
 | Thành phần | Vai trò | Ví dụ |
 |---|---|---|
-| **Embedder** | Chuyển đổi văn bản/tài liệu thành vector | `OpenAIDocumentEmbedder` |
-| **Document Store** | Lưu trữ tài liệu và xử lý vector search | `InMemoryDocumentStore`, `OpenSearchDocumentStore` |
-| **Retriever** | Tìm tài liệu liên quan bằng vector similarity | `InMemoryEmbeddingRetriever` |
-| **Generator** | Tạo phản hồi văn bản từ LLM | `OpenAIGenerator`, `HuggingFaceLocalGenerator` |
-| **PromptBuilder** | Lắp ráp prompt từ template và biến | `PromptBuilder` |
-| **AnswerBuilder** | Phân tích và xử lý sau phản hồi LLM | `AnswerBuilder` |
-| **Reranker** | Chấm điểm lại các tài liệu được truy xuất | `CohereReranker` |
-| **Router** | Định tuyến dữ liệu đến các nhánh khác nhau | `ConditionalRouter` |
-| **Joiner** | Hợp nhất đầu ra từ nhiều nhánh | `DocumentJoiner` |
+| **Embedder** | Chuyển đổi văn bản/tài liệu thành vector | ````OpenAIDocumentEmbedder```` |
+| **Document Store** | Lưu trữ tài liệu và xử lý vector search | ````InMemoryDocumentStore````, ````OpenSearchDocumentStore```` |
+| **Retriever** | Tìm tài liệu liên quan bằng vector similarity | ````InMemoryEmbeddingRetriever```` |
+| **Generator** | Tạo phản hồi văn bản từ LLM | ````OpenAIGenerator````, ````HuggingFaceLocalGenerator```` |
+| **PromptBuilder** | Lắp ráp prompt từ template và biến | ````PromptBuilder```` |
+| **AnswerBuilder** | Phân tích và xử lý sau phản hồi LLM | ````AnswerBuilder```` |
+| **Reranker** | Chấm điểm lại các tài liệu được truy xuất | ````CohereReranker```` |
+| **Router** | Định tuyến dữ liệu đến các nhánh khác nhau | ````ConditionalRouter```` |
+| **Joiner** | Hợp nhất đầu ra từ nhiều nhánh | ````DocumentJoiner```` |
 
 ### Mô hình Thực thi Pipeline
 
@@ -78,7 +79,7 @@ Mô hình này hỗ trợ cả thực thi đồng bộ và bất đồng bộ, p
 
 ### Cài đặt Tối thiểu
 
-```bash
+`````bash
 python -m venv haystack-env
 source haystack-env/bin/activate
 
@@ -88,11 +89,11 @@ pip install haystack-ai
 # Xác minh cài đặt
 python -c "import haystack; print(haystack.__version__)"
 # Kết quả mong đợi: 2.12.x
-```
+`````
 
 ### Với Document Stores và Models
 
-```bash
+`````bash
 # Cài đặt với tất cả các tính năng mở rộng phổ biến
 pip install "haystack-ai[all]"
 
@@ -100,19 +101,19 @@ pip install "haystack-ai[all]"
 pip install haystack-ai opensearch-py  # Cho OpenSearch
 pip install haystack-ai qdrant-client   # Cho Qdrant
 pip install haystack-ai weaviate-client # Cho Weaviate
-```
+`````
 
 ### Thiết lập Môi trường
 
-```bash
+`````bash
 # Đặt OpenAI API key
 export OPENAI_API_KEY="sk-your-key-here"
 
 # Để hỗ trợ model cục bộ, cài HuggingFace
 pip install transformers torch sentence-transformers
-```
+`````
 
-Xác minh stack đầy đủ: ```python
+Xác minh stack đầy đủ: `````python
 # verify_setup.py
 from haystack import Pipeline
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -123,13 +124,13 @@ print(f"Components available: embedders, retrievers, generators, routers")
 
 store = InMemoryDocumentStore()
 print(f"Document store initialized: {store.count_documents()} docs")
-```
+`````
 
 ## Xây dựng RAG Pipeline Đầu tiên
 
 ### RAG Cơ bản với InMemoryDocumentStore
 
-```python
+`````python
 # basic_rag.py
 from haystack import Pipeline, Document
 from haystack.document_stores import InMemoryDocumentStore
@@ -187,17 +188,17 @@ result = rag.run({
     "prompt_builder": {"query": "What is Haystack?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
-Lưu và chạy: ```bash
+Lưu và chạy: `````bash
 python basic_rag.py
-```
+`````
 
 Đầu ra sẽ bao gồm câu trả lờ được tạo với ngữ cảnh đã truy xuất.
 
 ### Thêm Reranker để Có Kết quả Tốt Hơn
 
-```python
+`````python
 # rag_with_reranker.py
 from haystack import Pipeline
 from haystack.document_stores import InMemoryDocumentStore
@@ -243,11 +244,11 @@ result = pipeline.run({
     "prompt_builder": {"query": "How does Haystack handle document storage?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ### Pipeline Phân nhánh: Định tuyến theo Loại Truy vấn
 
-```python
+`````python
 # branching_pipeline.py
 from haystack import Pipeline
 from haystack.components.routers import ConditionalRouter
@@ -282,13 +283,13 @@ pipeline.connect("router.output", "tech_builder")
 pipeline.connect("router.fallback_output", "general_builder")
 
 result = pipeline.run({"router": {"query": "What is vector similarity search?"}})
-```
+`````
 
 ## Tích hợp với Document Stores, Models & Công cụ
 
 ### OpenSearch Document Store (Sản xuất)
 
-```python
+`````python
 # opensearch_store.py
 from haystack.document_stores import OpenSearchDocumentStore
 
@@ -305,11 +306,11 @@ store = OpenSearchDocumentStore(
 from haystack.components.retrievers import OpenSearchEmbeddingRetriever
 
 retriever = OpenSearchEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Qdrant Vector Database
 
-```python
+`````python
 # qdrant_store.py
 from haystack_integrations.document_stores.qdrant import QdrantDocumentStore
 
@@ -324,11 +325,11 @@ store = QdrantDocumentStore(
 from haystack_integrations.components.retrievers.qdrant import QdrantEmbeddingRetriever
 
 retriever = QdrantEmbeddingRetriever(document_store=store, top_k=5)
-```
+`````
 
 ### Local LLM với Ollama
 
-```python
+`````python
 # local_llm.py
 from haystack.components.generators import HuggingFaceLocalGenerator
 
@@ -341,11 +342,11 @@ generator.warm_up()
 
 result = generator.run("Explain RAG pipelines in one paragraph.")
 print(result["replies"][0])
-```
+`````
 
 ### Sử dụng Components Tùy chỉnh
 
-```python
+`````python
 # custom_component.py
 from haystack import component
 from typing import Any, Dict, List
@@ -369,11 +370,11 @@ pipe.connect("counter.text", "generator.prompt")
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
 print(f"Tokens: {result[counter][token_count]}")
 print(f"Response: {result[generator][replies][0]}")
-```
+`````
 
 ### Công cụ Tìm kiếm Web cho Agents
 
-```python
+`````python
 # web_search_tool.py
 from haystack import Pipeline
 from haystack.components.websearch import SerperDevWebSearch
@@ -401,7 +402,7 @@ result = pipeline.run({
     "builder": {"query": "What are the latest AI models released in 2026?"},
 })
 print(result["generator"]["replies"][0])
-```
+`````
 
 ## Benchmark & Các Trường hợp Sử dụng Thực tế
 
@@ -429,13 +430,13 @@ Một công ty legal-tech triển khai Haystack để tìm kiếm trên **2.4 tr
 Một nền tảng thương mại điện tử sử dụng Haystack cho **hỗ trợ khách hàng 7 ngôn ngữ**: - Một pipeline duy nhất phục vụ tất cả ngôn ngữ thông qua language router component
 - Backend OpenSearch chia sẻ với **340,000** chunk tài liệu sản phẩm
 - Giảm **23%** chuyển tiếp ticket hỗ trợ sau triển khai
-- Evaluation loop sử dụng `SASEvaluator` của Haystack chạy hàng tuần để phát hiện pipeline drift
+- Evaluation loop sử dụng ````SASEvaluator```` của Haystack chạy hàng tuần để phát hiện pipeline drift
 
 ## Sử dụng Nâng cao: Củng cố Sản xuất
 
 ### Thực thi Async cho Thông lượng Cao
 
-```python
+`````python
 # async_pipeline.py
 import asyncio
 from haystack import Pipeline
@@ -460,11 +461,11 @@ results = asyncio.run(run_queries([
     "Explain vector search.",
     "How does RAG work?",
 ]))
-```
+`````
 
 ### Pipeline Serialization & Versioning
 
-```python
+`````python
 # serialize_pipeline.py
 from haystack import Pipeline
 
@@ -477,11 +478,11 @@ result = loaded.run({
     "embedder": {"text": "What is Haystack?"},
     "prompt_builder": {"query": "What is Haystack?"},
 })
-```
+`````
 
 ### Đánh giá Tùy chỉnh
 
-```python
+`````python
 # evaluate_pipeline.py
 from haystack import Pipeline, Document
 from haystack.components.evaluators import SASEvaluator, FaithfulnessEvaluator
@@ -507,11 +508,11 @@ sas_result = sas_evaluator.run(
     predicted_answers=predictions,
 )
 print(f"SAS Score: {sas_result[score]:.3f}")
-```
+`````
 
 ### Triển khai Docker
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.11-slim
 
@@ -522,9 +523,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8000
 CMD ["python", "serve.py"]
-```
+`````
 
-```python
+`````python
 # serve.py
 from fastapi import FastAPI
 from haystack import Pipeline
@@ -544,9 +545,9 @@ async def query(question: str): result = pipeline.run({
         "answer": result["generator"]["replies"][0],
         "documents": [d.content for d in result.get("retriever", {}).get("documents", [])],
     }
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: haystack-api: build: .
@@ -560,9 +561,9 @@ services: haystack-api: build: .
     ports: - "9200:9200"
     volumes: - osdata:/usr/share/opensearch/data
 
-volumes: osdata: ```
+volumes: osdata: `````
 
-Cho triển khai VPS cloud, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform hỗ trợ triển khai Docker trực tiếp từ Git. Push `Dockerfile`, kết nối repo, và nền tảng build và host API Haystack của bạn với cấu hình zero.
+Cho triển khai VPS cloud, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) App Platform hỗ trợ triển khai Docker trực tiếp từ Git. Push ````Dockerfile````, kết nối repo, và nền tảng build và host API Haystack của bạn với cấu hình zero.
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -598,7 +599,7 @@ Haystack xuất sắc cho các nhóm xây dựng **hệ thống tìm kiếm và 
 
 ### Tôi nên dùng Haystack 1.x hay 2.x?
 
-Haystack 2.x (phát hành tháng 1/2024) là nhánh duy nhất đang được duy trì tích cực tính đến tháng 5/2026. Phiên bản 1.x đã kết thúc vòng đờ vào cuối 2024. Tất cả dự án mới nên dùng 2.x. API pipeline hoàn toàn khác — 1.x sử dụng class `Pipeline` với các loại node định trước, trong khi 2.x sử dụng hệ thống DAG dựa trên component.
+Haystack 2.x (phát hành tháng 1/2024) là nhánh duy nhất đang được duy trì tích cực tính đến tháng 5/2026. Phiên bản 1.x đã kết thúc vòng đờ vào cuối 2024. Tất cả dự án mới nên dùng 2.x. API pipeline hoàn toàn khác — 1.x sử dụng class ````Pipeline```` với các loại node định trước, trong khi 2.x sử dụng hệ thống DAG dựa trên component.
 
 ### Tôi có thể dùng Haystack mà không cần OpenAI không?
 
@@ -606,18 +607,18 @@ Hoàn toàn được. Haystack hỗ trợ **bất kỳ generator nào** triển 
 
 ### Làm sao chọn document store?
 
-Cho prototyping, dùng `InMemoryDocumentStore`. Cho sản xuất: - **OpenSearch:** Tốt nhất nếu bạn đang chạy cluster Elasticsearch/OpenSearch
+Cho prototyping, dùng ````InMemoryDocumentStore````. Cho sản xuất: - **OpenSearch:** Tốt nhất nếu bạn đang chạy cluster Elasticsearch/OpenSearch
 - **Qdrant:** Xuất sắc cho pure vector search, tài nguyên thấp
 - **Weaviate:** Tích hợp hybrid search tốt (BM25 + vectors)
 - **PostgreSQL + pgvector:** Tốt nhất nếu muốn một database cho tất cả
 
 ### Haystack có phù hợp cho ứng dụng real-time không?
 
-Với async execution và pipeline warmed-up, Haystack đạt **<500ms** độ trễ end-to-end cho RAG đơn giản (không tính thờ gian LLM generation). Cho trường hợp real-time thực sự (<200ms), cân nhắc thêm lớp cache hoặc dùng streaming generators với `run_async()`.
+Với async execution và pipeline warmed-up, Haystack đạt **<500ms** độ trễ end-to-end cho RAG đơn giản (không tính thờ gian LLM generation). Cho trường hợp real-time thực sự (<200ms), cân nhắc thêm lớp cache hoặc dùng streaming generators với ````run_async()````.
 
 ### Haystack quản lý versioning pipeline như thế nào?
 
-Pipeline có thể được serialize sang YAML hoặc JSON và commit vào version control. Components được tham chiếu bằng tên class và tham số, làm cho diff dễ đọc. Các phương thức `pipeline.dump()` và `Pipeline.loads()` cho phép triển khai có thể tái tạo nơi cùng YAML tạo ra hành vi giống hệt nhau trên các môi trường.
+Pipeline có thể được serialize sang YAML hoặc JSON và commit vào version control. Components được tham chiếu bằng tên class và tham số, làm cho diff dễ đọc. Các phương thức ````pipeline.dump()```` và ````Pipeline.loads()``` cho phép triển khai có thể tái tạo nơi cùng YAML tạo ra hành vi giống hệt nhau trên các môi trường.
 
 ### Kiến trúc triển khai khuyến nghị cho sản xuất là gì?
 
@@ -650,7 +651,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Hướng dẫn OpenSearch Document Store: https://docs.haystack.deepset.ai/docs/opensearch-document-store
 - Hướng dẫn Custom Components: https://docs.haystack.deepset.ai/docs/custom-components
 
----
+* * *
 
 **Tuyên bố Liên kết:** Một số liên kết trong bài viết này là liên kết affiliate. Nếu bạn dùng [liên kết giới thiệu DigitalOcean](https://m.do.co/c/eca87ac14ee0) của chúng tôi để đăng ký, bạn nhận được $200 tín dụng và chúng tôi nhận thưởng giới thiệu — không tốn thêm chi phí cho bạn. Điều này hỗ trợ nghiên cứu độc lập của chúng tôi và giữ nội dung miễn phí.
 
@@ -680,7 +681,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -690,7 +691,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [9router-smart-llm-proxy-token-saver-free-coding](haystack-rag-pipeline-framework)
 - [ai-engineering-from-scratch](haystack-rag-pipeline-framework)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

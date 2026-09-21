@@ -19,6 +19,7 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
     role: architecture
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
+
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
@@ -39,19 +40,19 @@ The skill suite includes: - **Paper Search** — Query academic databases (PubMe
 - **Synthesis Engine** — Combine findings from multiple papers into structured summaries
 - **Literature Review Writer** — Generate publication-ready literature reviews with proper citations
 
-```bash
+````bash
 # Install Academic Research Skills
 npx skills add https://github.com/Imbad0202/academic-research-skills
 
 # List available research skills
 npx skills list | grep research
-```
+`````
 
 ## How the Research Pipeline Works
 
-The research pipeline operates as a directed acyclic graph (DAG), where each skill's output feeds into the next: ```
+The research pipeline operates as a directed acyclic graph (DAG), where each skill's output feeds into the next: `````
 Query → Search → Filter → Extract → Analyze → Synthesize → Write
-```
+`````
 
 1. **Query Formulation** — You provide a research question or topic
 2. **Database Search** — The search skill queries multiple academic databases simultaneously
@@ -61,7 +62,7 @@ Query → Search → Filter → Extract → Analyze → Synthesize → Write
 6. **Cross-Paper Synthesis** — Findings from all papers are compared and synthesized
 7. **Review Generation** — A structured literature review is written with proper citations
 
-```bash
+`````bash
 # Example: Research pipeline for "transformer efficiency"
 # Step 1: Search
 python3 scripts/search.py --query "transformer model efficiency optimization" --databases arxiv,pubmed --max-results 50
@@ -74,11 +75,11 @@ python3 scripts/extract.py --papers filtered_papers.json --fields methods,result
 
 # Step 4: Synthesize
 python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md
-```
+`````
 
 ## Installation & Setup
 
-Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: ```bash
+Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: `````bash
 # Clone the repository
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -90,17 +91,17 @@ pip install -r requirements.txt
 # Configure API keys
 cp config.example.yaml config.yaml
 # Edit config.yaml with your API keys
-```
+`````
 
 ### Required API Keys
 
 | Service | Purpose | Free Tier |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Semantic Scholar** | Paper search and citation data | 100 req/min |
 | **arXiv** | Preprint paper access | Unlimited |
@@ -108,9 +109,9 @@ cp config.example.yaml config.yaml
 | **Crossref** | Citation metadata | Unlimited |
 | **DOI Resolver** | Paper DOI lookups | Unlimited |
 
-Each API key is configured in `config.yaml` under the corresponding service section. The system validates all keys on startup and reports any failures before beginning the research pipeline.
+Each API key is configured in ````config.yaml```` under the corresponding service section. The system validates all keys on startup and reports any failures before beginning the research pipeline.
 
-```bash
+`````bash
 # Verify API key configuration
 python3 scripts/verify_config.py
 
@@ -123,13 +124,13 @@ resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', par
 })
 print(f'Status: {resp.status_code}, Results: {len(resp.json().get("data", []))}')
 "
-```
+`````
 
 ### Docker Deployment
 
 For reproducible research environments, Academic Research Skills provides an official Docker image that bundles all dependencies and API clients into a single container.
 
-```bash
+`````bash
 # Build the Docker image
 docker build -t research-skills:latest .
 
@@ -140,7 +141,7 @@ docker run -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
 # Run with GPU support for PDF OCR
 docker run --gpus all -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
   python3 scripts/extract.py --papers papers.json --with-ocr
-```
+`````
 
 The Docker image includes tesseract-ocr for scanned document processing and poppler-utils for PDF text extraction.
 
@@ -148,11 +149,11 @@ The Docker image includes tesseract-ocr for scanned document processing and popp
 
 Academic Research Skills integrates with popular research and writing tools: | Tool | Integration Method | Use Case |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Zotero** | CSV export/import | Reference management |
 | **Notion** | Markdown import | Research notes |
@@ -160,37 +161,37 @@ Academic Research Skills integrates with popular research and writing tools: | T
 | **Obsidian** | Markdown vault sync | Knowledge management |
 | **Connected Papers** | API integration | Citation visualization |
 
-```bash
+`````bash
 # Export research findings to Zotero-compatible CSV
 python3 scripts/export.py --format zotero --input synthesis.json --output references.csv
 
 # Generate Overleaf-ready LaTeX bibliography
 python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib
-```
+`````
 
 ## Benchmarks: Manual vs Automated Research
 
-The time savings from automating literature reviews are substantial: ```
+The time savings from automating literature reviews are substantial: `````
 Research Task                  | Manual | Automated | Speedup
 
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |---
 Search 50 relevant papers      | 8 hrs  | 15 min    | 32x
 Extract key findings from 20   | 16 hrs | 45 min    | 21x
 Synthesize into review         | 12 hrs | 2 hrs     | 6x
 Format citations properly      | 3 hrs  | 5 min     | 36x
 TOTAL                          | 39 hrs | 3 hrs     | 13x
-```
+`````
 
 These benchmarks were measured on a 20-paper systematic review in computer science. The automated pipeline maintained 94% accuracy in finding extraction compared to manual review, with higher consistency across papers.
 
 ### Accuracy Comparison
 
-```python
+`````python
 # Automated vs manual citation extraction accuracy
 metrics = {
     "precision": 0.91,    # Of extracted citations, 91% are correct
@@ -198,13 +199,13 @@ metrics = {
     "f1_score": 0.90,     # Harmonic mean of precision and recall
     "time_saved_hours": 36 # 36 hours saved per review
 }
-```
+`````
 
 ## Advanced Usage: Custom Research Workflows
 
 Experienced researchers extend the base skills with custom workflows: ### Multi-Database Search Strategy
 
-```python
+`````python
 # Search across multiple databases with unified results
 from research_pipeline import MultiDatabaseSearcher
 
@@ -217,11 +218,11 @@ searcher = MultiDatabaseSearcher(
 
 results = searcher.run()
 print(f"Found {len(results)} papers across {len(set(r[database] for r in results))} databases")
-```
+`````
 
 ### Citation Network Analysis
 
-```python
+`````python
 # Build and visualize citation networks
 from citation_network import CitationGraph
 
@@ -231,11 +232,11 @@ graph.compute_centrality()  # PageRank, H-index, citation count
 # Identify seminal papers
 seminal = graph.get_top_cited(k=10)
 for paper in seminal: print(f"{paper.title} — {paper.citation_count} citations")
-```
+`````
 
 ### Custom Synthesis Templates
 
-```python
+`````python
 # Define custom synthesis templates for different review types
 templates = {
     "systematic_review": {
@@ -254,11 +255,11 @@ templates = {
         "min_papers": 8
     }
 }
-```
+`````
 
 ### Automated Citation Formatting
 
-Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: ```python
+Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: `````python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -268,23 +269,23 @@ formatted = formatter.format(results)
 formatted.export("references_apa.txt")
 formatted.export("references_bib.bib")
 formatted.export("references_ris.ris")
-```
+`````
 
 ## Comparison with Alternatives
 
 Several tools automate parts of the research process, but Academic Research Skills is unique in its end-to-end approach: | Feature | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Stars | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 |
 | Multi-Database Search | 4 databases | Semantic Scholar only | Semantic Scholar | Semantic Scholar | Crossref only |
@@ -309,14 +310,14 @@ Despite its capabilities, the automated pipeline has limitations: 1. **Domain ex
 
 5. **Novel methodology discovery** — The system excels at summarizing existing work but struggles to identify genuinely novel methodological approaches that haven't been widely cited yet. In these cases, manual literature exploration often yields better results. Researchers should combine automated pipeline output with domain expertise for comprehensive coverage.
 
-```bash
+`````bash
 # Quick suitability check
 # ✅ Systematic literature review → YES
 # ✅ Citation network analysis → YES
 # ✅ Finding papers on a specific topic → YES
 # ✅ Writing a grant proposal from scratch → PARTIAL (needs manual input)
 # ✅ Non-English literature review → NO (use with caution)
-```
+`````
 
 ## Frequently Asked Questions
 
@@ -354,14 +355,14 @@ For researchers managing large datasets, [WebShare proxies](https://proxy.websha
 
 Clone the repository and install dependencies to begin automating your research workflow today.
 
-```bash
+`````bash
 npx skills add https://github.com/Imbad0202/academic-research-skills
-```
+````
 
 **Internal links**: [Compare AI coding agents](https://dibi8.com/ai-tools/oh-my-pi) · [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch)
 
 
----
+* * *
 **Sources & Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API: https://api.semanticscholar.org/
 - arXiv API: https://info.arxiv.org/help/api/index.html
@@ -398,7 +399,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
@@ -407,7 +408,7 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
 - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

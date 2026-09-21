@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/copilotkit/-
 ---
 
+
 {{</* resource-info */>}}
 
 CopilotKit 是一个开源前端框架，可以将任何 React 或 Angular 应用转变为 AI 原生产品。拥有 **31,536 个 GitHub Stars**、3,300+ Forks，以及 2026 年 5 月完成的 2700 万美元 A 轮融资，它已成为团队交付应用内 AI 助手的默认选择——这些助手可以读取应用状态、触发前端操作，并在聊天界面内渲染生成式 UI 组件。
@@ -33,30 +34,30 @@ CopilotKit 是一个开源前端框架，可以将任何 React 或 Angular 应�
 ![CopilotKit Logo](https://raw.githubusercontent.com/CopilotKit/CopilotKit/main/docs/static/img/logo.png)
 
 
----
+* * *
 ## CopilotKit 是什么？
 
-**CopilotKit** 是一个用于构建应用内 AI Copilot 和生成式 UI 体验的前端框架。它提供预构建的 React 组件（`CopilotSidebar`、`CopilotChat`、`CopilotPopup`）、类型安全的 Hooks（`useCopilotReadable`、`useCopilotAction`），以及可插拔的运行时，可连接 OpenAI、LangChain、LangGraph、Groq 或任何自定义智能体后端。
+**CopilotKit** 是一个用于构建应用内 AI Copilot 和生成式 UI 体验的前端框架。它提供预构建的 React 组件（```CopilotSidebar````、````CopilotChat````、````CopilotPopup````）、类型安全的 Hooks（````useCopilotReadable````、````useCopilotAction````），以及可插拔的运行时，可连接 OpenAI、LangChain、LangGraph、Groq 或任何自定义智能体后端。
 
 该项目由 CopilotKit Inc. 维护，采用 MIT 许可证，迄今为止已获得 2700 万美元融资。约 25 名工程师组成的团队每周发布新版本，并维护 AG-UI 开放协议——这是一种智能体到前端的通信线标准，目前已获得 Google、Microsoft、Amazon、LangChain 和 Mastra 的支持。
 
 
----
+* * *
 ## CopilotKit 的工作原理
 
 CopilotKit 位于你的前端应用和 LLM 或智能体后端之间。它通过清晰的三层架构处理流式聊天、工具调用、状态同步和生成式 UI 渲染：
 
 | 层级 | 职责 | 关键文件 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **UI 组件** | 渲染聊天侧边栏、弹窗或内联聊天 | `CopilotSidebar`、`CopilotChat`、`CopilotPopup` |
-| **React Hooks** | 向 LLM 暴露状态和操作 | `useCopilotReadable`、`useCopilotAction` |
-| **Copilot 运行时** | 将请求路由到 LLM/智能体后端 | `app/api/copilotkit/route.ts` |
+| **UI 组件** | 渲染聊天侧边栏、弹窗或内联聊天 | ````CopilotSidebar````、````CopilotChat````、````CopilotPopup```` |
+| **React Hooks** | 向 LLM 暴露状态和操作 | ````useCopilotReadable````、````useCopilotAction```` |
+| **Copilot 运行时** | 将请求路由到 LLM/智能体后端 | ````app/api/copilotkit/route.ts```` |
 
 ![CopilotKit 架构图](https://docs.copilotkit.ai/assets/images/copilotkit-architecture.png)
 
@@ -68,7 +69,7 @@ CopilotKit 位于你的前端应用和 LLM 或智能体后端之间。它通过�
 - **生成式 UI** — 在聊天中渲染的 React 组件，作为工具调用的响应（天气卡片、任务项、数据表格）。
 - **AG-UI 协议** — 智能体到前端通信的开放线格式。CopilotKit 是参考实现。
 
----
+* * *
 
 ## 安装与设置
 
@@ -80,7 +81,7 @@ CopilotKit 位于你的前端应用和 LLM 或智能体后端之间。它通过�
 
 ### 步骤 1：安装包
 
-```bash
+`````bash
 # React 核心 + UI 组件 + 运行时
 npm install @copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime
 
@@ -89,22 +90,22 @@ npm install @copilotkit/runtime-langchain
 
 # Groq 适配器（可选）
 npm install @copilotkit/runtime groq-sdk
-```
+`````
 
 ### 步骤 2：添加环境变量
 
-```bash
+`````bash
 # .env.local
 OPENAI_API_KEY=sk-your-openai-key
 GROQ_API_KEY=gsk-your-groq-key
 COPILOTKIT_API_KEY=ck-your-copilot-cloud-key  # 可选，用于云功能
-```
+`````
 
 ### 步骤 3：创建运行时端点
 
-在 Next.js 项目中创建 `app/api/copilotkit/route.ts`：
+在 Next.js 项目中创建 ````app/api/copilotkit/route.ts````：
 
-```typescript
+`````typescript
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -130,13 +131,13 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### 步骤 4：用 Provider 包裹应用
 
 更新根布局或页面组件：
 
-```tsx
+`````tsx
 // app/layout.tsx 或 app/page.tsx
 "use client";
 
@@ -160,17 +161,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </CopilotKit>
   );
 }
-```
+`````
 
 ### 步骤 5：运行开发服务器
 
-```bash
+`````bash
 npm run dev
 # 打开 http://localhost:3000
 # 点击 Copilot 按钮——你的 AI 助手已上线
-```
+`````
 
----
+* * *
 
 ## 与 LangChain、LangGraph 和 OpenAI 集成
 
@@ -178,7 +179,7 @@ npm run dev
 
 OpenAI 适配器是通往生产环境的最快路径。无需额外的后端基础设施即可直接连接 GPT-4o：
 
-```typescript
+`````typescript
 // app/api/copilotkit/route.ts — OpenAI 版本
 import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/runtime";
 import { copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
@@ -194,13 +195,13 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### LangChain 适配器
 
 对于已投资 LangChain 的团队，使用 LangChain 适配器接入自定义链、检索器和智能体：
 
-```typescript
+`````typescript
 // app/api/copilotkit/route.ts — LangChain 版本
 import { CopilotRuntime, LangChainAdapter } from "@copilotkit/runtime";
 import { ChatOpenAI } from "@langchain/openai";
@@ -223,13 +224,13 @@ export const POST = async (req: NextRequest) => {
 
   return handleRequest(req);
 };
-```
+`````
 
 ### LangGraph 智能体（高级）
 
 对于有状态的多步骤智能体，连接到 LangGraph 后端：
 
-```typescript
+`````typescript
 // app/api/copilotkit/route.ts — LangGraph 版本
 import {
   CopilotRuntime,
@@ -255,13 +256,13 @@ export const POST = (req: NextRequest) =>
     serviceAdapter,
     endpoint: "/api/copilotkit",
   }).handleRequest(req);
-```
+`````
 
 ### Groq 适配器（快速推理）
 
 通过 Groq 使用 Llama 模型实现低延迟响应：
 
-```typescript
+`````typescript
 import {
   CopilotRuntime,
   GroqAdapter,
@@ -285,15 +286,15 @@ export const POST = async (req: NextRequest) => {
   });
   return handleRequest(req);
 };
-```
+`````
 
----
+* * *
 
 ## 真实 TSX 示例：任务管理 Copilot
 
 以下是一个完整的、生产就绪的集成了 CopilotKit 的任务管理器。AI 可以读取任务、添加新任务、将其标记为完成，并在聊天中渲染任务卡片。
 
-```tsx
+`````tsx
 // app/components/TaskManager.tsx
 "use client";
 
@@ -345,7 +346,7 @@ export function TaskManager() {
         priority: priority as Task["priority"],
       };
       setTasks((prev) => [...prev, newTask]);
-      return `已添加任务："${title}"，优先级 ${priority}`;
+      return ````已添加任务："${title}"，优先级 ${priority}````;
     },
   });
 
@@ -365,7 +366,7 @@ export function TaskManager() {
       setTasks((prev) =>
         prev.map((t) => (t.id === taskId ? { ...t, completed: true } : t))
       );
-      return `已将任务 ${taskId} 标记为已完成`;
+      return ````已将任务 ${taskId} 标记为已完成````;
     },
   });
 
@@ -383,7 +384,7 @@ export function TaskManager() {
     ],
     handler: ({ taskId }) => {
       setTasks((prev) => prev.filter((t) => t.id !== taskId));
-      return `已删除任务 ${taskId}`;
+      return ````已删除任务 ${taskId}````;
     },
   });
 
@@ -401,11 +402,11 @@ export function TaskManager() {
     </div>
   );
 }
-```
+`````
 
 **生成式 UI：在聊天中渲染自定义卡片**
 
-```tsx
+`````tsx
 // 在 Copilot 聊天中渲染任务卡片
 useCopilotAction({
   name: "showTaskDetails",
@@ -420,16 +421,16 @@ useCopilotAction({
     return (
       <div className="task-card">
         <h4>{task.title}</h4>
-        <span className={`priority-${task.priority}`}>{task.priority}</span>
+        <span className={````priority-${task.priority}````}>{task.priority}</span>
         <p>状态：{task.completed ? "已完成" : "进行中"}</p>
       </div>
     );
   },
-  handler: ({ taskId }) => `已显示任务 ${taskId} 的详情`,
+  handler: ({ taskId }) => ````已显示任务 ${taskId} 的详情````,
 });
-```
+`````
 
----
+* * *
 
 ## 基准测试 / 真实用例
 
@@ -437,13 +438,13 @@ CopilotKit 已部署在各种生产应用中。以下是经过验证的部署指
 
 | 用例 | 公司 / 类型 | 规模 | 集成方案 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 任务管理 Copilot | SaaS 初创公司 | 5K-50K 月活 | React + OpenAI |
 | CRM 数据助手 | 销售平台 | 10K+ 用户 | Angular + LangChain |
@@ -455,11 +456,11 @@ CopilotKit 已部署在各种生产应用中。以下是经过验证的部署指
 
 | 指标 | CopilotKit + GPT-4o | CopilotKit + Groq Llama 3 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 首 token 时间 | 800ms | 180ms |
 | 完整响应（100 tokens） | 2.1s | 0.9s |
@@ -469,13 +470,13 @@ CopilotKit 已部署在各种生产应用中。以下是经过验证的部署指
 
 > **在 DigitalOcean 上部署 CopilotKit**，新用户可获得 $200 免费额度：[DigitalOcean](https://www.digitalocean.com/) 提供开发者友好的云基础设施，月费 $4 起。启动 Droplet，安装 Docker，10 分钟内即可部署 CopilotKit 运行时。
 
----
+* * *
 
 ## 高级用法 / 生产环境加固
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM node:20-alpine
 WORKDIR /app
@@ -487,9 +488,9 @@ EXPOSE 3000
 ENV NODE_ENV=production
 ENV PORT=3000
 CMD ["npm", "start"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: app: build: .
@@ -501,11 +502,11 @@ services: app: build: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
 ### 基于环境的配置
 
-```typescript
+`````typescript
 // lib/copilot-config.ts
 export const copilotConfig = {
   runtimeUrl: process.env.NEXT_PUBLIC_COPILOT_RUNTIME_URL || "/api/copilotkit",
@@ -514,11 +515,11 @@ export const copilotConfig = {
   temperature: parseFloat(process.env.COPILOT_TEMPERATURE || "0.7"),
   threadRetention: parseInt(process.env.COPILOT_THREAD_RETENTION || "3"), // 天
 };
-```
+`````
 
 ### 速率限制与安全
 
-```typescript
+`````typescript
 // middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -540,11 +541,11 @@ export async function middleware(req: NextRequest) {
   }
   return NextResponse.next();
 }
-```
+`````
 
 ### 使用 LangSmith 监控
 
-```typescript
+`````typescript
 // 将 LangSmith 追踪添加到运行时
 import { Client } from "langsmith";
 
@@ -569,23 +570,23 @@ const runtime = new CopilotRuntime({
     },
   ],
 });
-```
+`````
 
----
+* * *
 
 ## 与替代方案对比
 
 | 功能 | CopilotKit | Vercel AI SDK | LangChain | Dify |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **预构建 React 组件** | CopilotSidebar, CopilotChat, CopilotPopup | AI Elements（shadcn 风格） | 无——需自建 | 无——仅 API |
 | **前端状态共享** | useCopilotReadable Hook | 通过 useChat 手动实现 | 不适用 | 不适用 |
@@ -609,7 +610,7 @@ const runtime = new CopilotRuntime({
 
 ![CopilotKit 对比表](https://docs.copilotkit.ai/assets/images/copilotkit-comparison.png)
 
----
+* * *
 
 ## 局限性 / 诚实评估
 
@@ -627,7 +628,7 @@ CopilotKit 并非适合每个项目。以下是真实的权衡：
 
 6. **高级智能体依赖 LangGraph。** 复杂的多步骤智能体需要 LangGraph 知识。内置智能体覆盖基本聊天，但不覆盖复杂工作流。
 
----
+* * *
 
 ## 常见问题解答
 
@@ -637,7 +638,7 @@ CopilotKit 并非适合每个项目。以下是真实的权衡：
 
 ### CopilotKit 可以不使用 Next.js 吗？
 
-可以。CopilotKit 适用于任何 React 18+ 应用。运行时端点可以单独托管（Express、Fastify 或任何 Node 服务器）。`@copilotkit/react-core` 包没有 Next.js 依赖。
+可以。CopilotKit 适用于任何 React 18+ 应用。运行时端点可以单独托管（Express、Fastify 或任何 Node 服务器）。````@copilotkit/react-core```` 包没有 Next.js 依赖。
 
 ### CopilotKit 支持哪些 LLM 提供商？
 
@@ -653,13 +654,13 @@ Vercel AI SDK 是流式和聊天 UI 工具包。CopilotKit 是带有类型化状
 
 ### CopilotKit 支持多智能体系统吗？
 
-支持。Copilot 运行时可以将请求路由到多个智能体。在 `CopilotRuntime` 中使用 `agents` 配置注册 LangGraph 智能体，并在运行时使用 `agentId` 属性在它们之间切换。
+支持。Copilot 运行时可以将请求路由到多个智能体。在 ````CopilotRuntime```` 中使用 ````agents```` 配置注册 LangGraph 智能体，并在运行时使用 ````agentId``` 属性在它们之间切换。
 
 ### AG-UI 协议是什么？
 
 AG-UI 是由 CopilotKit 创建的智能体到前端通信的开放线协议。它标准化了流式聊天、工具调用和状态共享。截至 2026 年，Google、Microsoft、Amazon、LangChain 和 Mastra 都支持 AG-UI。
 
----
+* * *
 
 ## 结论
 
@@ -674,7 +675,7 @@ CopilotKit 填补了一个特定的空白：在现有 React 应用中嵌入 AI C
 
 **在我们的 Telegram 群组中讨论本文并获取帮助：** [t.me/dibi8opensource](https://t.me/dibi8opensource) — 分享你的 CopilotKit 构建成果、提问并与其他交付 AI Copilot 的开发者交流。
 
----
+* * *
 
 
 
@@ -700,7 +701,7 @@ CopilotKit 填补了一个特定的空白：在现有 React 应用中嵌入 AI C
 - [Dev.to：LangGraph + CopilotKit 智能体系统](https://dev.to/ayushgupta/building-a-production-ready-composable-ai-agent-system-with-copilotkit-and-langgraph-141f)
 - [2026 年 AI 聊天 UI 库全面评测](https://dev.to/alexander_lukashov/i-evaluated-every-ai-chat-ui-library-in-2026-heres-what-i-found-and-what-i-built-4p10)
 
----
+* * *
 
 **披露声明：** 本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，dibi8.com 可能会获得佣金，无需你额外付费。所有观点和基准测试均为独立评估。DigitalOcean 为新用户提供 $200 免费额度用于试用 CopilotKit 部署。
 
@@ -730,7 +731,7 @@ CopilotKit 填补了一个特定的空白：在现有 React 应用中嵌入 AI C
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -740,7 +741,7 @@ CopilotKit 填补了一个特定的空白：在现有 React 应用中嵌入 AI C
 - [mattpocock-skills-ai-agent-framework-guide](copilotkit)
 - [nanochat-karpathy-100-chatgpt-single-gpu](copilotkit)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -20,6 +20,7 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
+
 ## TL;DR
 
 Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh được cấu hình đầy đủ với cài đặt tự động, dashboard được cấu hình sẵn và triển khai dịch vụ một-click. Với 12.554 sao, đây là framework tự động hóa Raspberry Pi phổ biến nhất trên GitHub.
@@ -41,7 +42,7 @@ Dự án cung cấp một danh mục dịch vụ mô-đun bao gồm: - **Home As
 - **Network Scanner** — Khám phá và giám sát thiết bị tự động
 - **Backup Manager** — Backup định kỳ với lưu trữ mã hóa
 
-```bash
+````bash
 # Cài đặt Oh My Pi trên Raspberry Pi OS mới
 curl -sSL https://ohmypi.sh/install | sudo bash
 
@@ -49,7 +50,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 git clone https://github.com/can1357/oh-my-pi.git
 cd oh-my-pi
 sudo ./install.sh
-```
+`````
 
 ## Oh My Pi Hoạt động Như thế nào
 
@@ -57,7 +58,7 @@ Oh My Pi tuân theo mô hình triển khai ba giai đoạn: 1. **Cung cấp Hệ
 2. **Cài đặt Dịch vụ** — Triển khai dịch vụ đã chọn qua Docker Compose với các giá trị mặc định hợp lý
 3. **Lắp ráp Dashboard** — Tạo một dashboard web thống nhất để quản lý tất cả dịch vụ
 
-```bash
+`````bash
 # Giai đoạn 1: Cung cấp hệ thống
 sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
 
@@ -66,7 +67,7 @@ sudo omp install homeassistant grafana vaultwarden
 
 # Giai đoạn 3: Tạo dashboard
 sudo omp dashboard --title "My Smart Pi" --theme dark
-```
+`````
 
 Giai đoạn provisioning xử lý mọi thứ thường mất hàng giờ: cấu hình IP tĩnh, thiết lập SSH key, quy tắc firewall, xoay log và cập nhật tự động. Dịch vụ được triển khai dưới dạng container Docker cô lập với volume bền vững cho dữ liệu.
 
@@ -74,7 +75,7 @@ Giai đoạn provisioning xử lý mọi thứ thường mất hàng giờ: cấ
 
 Yêu cầu: Raspberry Pi 3B+ hoặc mới hơn (khuyến nghị Pi 4), thẻ microSD 8GB+, Raspberry Pi OS Lite (64-bit).
 
-```bash
+`````bash
 # Bước 1: Flash Raspberry Pi OS Lite
 # Tải từ https://www.raspberrypi.com/software/
 
@@ -87,11 +88,11 @@ Yêu cầu: Raspberry Pi 3B+ hoặc mới hơn (khuyến nghị Pi 4), thẻ mic
 # Bước 4: SSH vào và cài đặt Oh My Pi
 ssh pi@<pi-ip>
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+`````
 
 ### Cấu hình Docker
 
-Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: ```yaml
+Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: `````yaml
 # docker-compose.yaml được tạo sau khi cài đặt dịch vụ
 version: "3.9"
 services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
@@ -114,11 +115,11 @@ services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
     environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: `````
 
 ### Cấu hình Mạng
 
-Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: ```bash
+Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: `````bash
 # Cấu hình IP tĩnh
 sudo omp network static --ip 192.168.1.100 --gateway 192.168.1.1 --dns 8.8.8.8
 
@@ -127,7 +128,7 @@ sudo omp network dns --upstream 1.1.1.1 --local 127.0.0.1
 
 # Cấu hình firewall
 sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
-```
+`````
 
 ## Danh mục Dịch vụ: Phân tích Chi tiết
 
@@ -140,14 +141,14 @@ Oh My Pi hỗ trợ 20+ dịch vụ qua 6 danh mục: | Danh mục | Dịch vụ
 | **Security** | Vaultwarden, FileBrowser, Uptime Kuma | 3 phút | 256MB RAM |
 | **Monitoring** | Grafana, Prometheus, AlertManager | 6 phút | 512MB RAM |
 
-```bash
+`````bash
 # Cài đặt toàn bộ setup nhà thông minh
 sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 # Tất cả dịch vụ được triển khai với thứ tự khởi động phối hợp
 # Home Assistant khởi động trước, sau đó Zigbee2MQTT kết nối,
 # AdGuard xử lý DNS, Grafana giám sát mọi thứ
-```
+`````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -168,7 +169,7 @@ Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi n�
 
 Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi: ### Viết Định nghĩa Dịch vụ Tùy chỉnh
 
-```yaml
+`````yaml
 # my-service.yaml — định nghĩa dịch vụ tùy chỉnh
 service: name: my-custom-app
   version: "1.0"
@@ -189,11 +190,11 @@ service: name: my-custom-app
   backup: enabled: true
     schedule: "0 2 * * *"  # hàng ngày lúc 2 AM
     volumes: - myapp-data
-```
+`````
 
 ### Backup Tự động
 
-Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: ```bash
+Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: `````bash
 # Cấu hình đích backup
 sudo omp backup configure --remote s3 --bucket ohmypi-backups --region us-east-1
 
@@ -205,11 +206,11 @@ sudo omp backup restore --date 2026-06-14 --verify
 
 # Lên lịch backup hàng ngày
 sudo omp backup schedule --frequency daily --retention 30
-```
+`````
 
 ### Truy cập Từ xa và Tunneling
 
-Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động: ```bash
+Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động: `````bash
 # Thiết lập Cloudflare Tunnel (miễn phí, không cần port forwarding)
 sudo omp tunnel cloudflare --token <cloudflare-token>
 
@@ -218,11 +219,11 @@ sudo omp tunnel ngrok --authtoken <ngrok-token>
 
 # Cấu hình reverse proxy với Caddy (auto HTTPS)
 sudo omp proxy caddy --domain mypi.local --ssl auto
-```
+`````
 
 ### Quản lý Cụm Đa Pi
 
-Quản lý nhiều Pi từ một dashboard duy nhất: ```bash
+Quản lý nhiều Pi từ một dashboard duy nhất: `````bash
 # Thêm Pi thứ hai vào cluster
 sudo omp cluster add --host pi2.local --user pi --key ~/.ssh/id_ed25519
 
@@ -231,11 +232,11 @@ sudo omp cluster deploy --services homeassistant,grafana --nodes all
 
 # Xem sức khỏe cluster
 sudo omp cluster health
-```
+`````
 
 ### Giám sát Sức khỏe Thẻ SD
 
-Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp: ```bash
+Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp: `````bash
 # Kiểm tra sức khỏe thẻ SD
 sudo omp storage health
 
@@ -244,11 +245,11 @@ sudo omp storage alerts --enable --threshold 70
 
 # Lên lịch kiểm tra sức khỏe tự động
 sudo omp storage schedule --interval hourly
-```
+`````
 
 ### Giám sát Nguồn và Tích hợp UPS
 
-Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: ```bash
+Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: `````bash
 # Cấu hình giám sát UPS
 sudo omp ups configure --driver usb --shutdown-delay 300
 
@@ -257,11 +258,11 @@ sudo omp ups threshold --battery 20 --action shutdown
 
 # Giám sát sự kiện nguồn
 sudo omp ups logs --tail 50
-```
+`````
 
 ### Giám sát Tài nguyên và Cảnh báo
 
-```bash
+`````bash
 # Đặt ngưỡng tài nguyên
 sudo omp monitor thresholds --cpu 90 --memory 85 --disk 80
 
@@ -270,7 +271,7 @@ sudo omp monitor alerts --channel telegram --token <bot-token> --chat <chat-id>
 
 # Xem lịch sử tài nguyên
 sudo omp monitor history --period 7d --graph
-```
+`````
 
 ## Hạn chế: Khi Oh My Pi Có thể Không Phù hợp
 
@@ -286,14 +287,14 @@ sudo omp monitor history --period 7d --graph
 
 6. **Tối ưu hóa ARM hạn chế** — Mặc dù các image Docker là multi-architecture, một số image tối ưu x86 có thể có hiệu năng giảm trên bộ xử lý ARM. Luôn xác minh tương thích image trước khi triển khai.
 
-```bash
+`````bash
 # Kiểm tra độ phù hợp nhanh
 # ✅ Hub home automation → CÓ
 # ✅ Máy chủ media → CÓ
 # ✅ Workstation phát triển → CÓ
 # ✅ Máy chủ database production → KHÔNG (sử dụng phần cứng chuyên dụng)
 # ✅ Dự án cảm biến IoT → KHÔNG (chỉ tập trung vào dịch vụ mạng)
-```
+`````
 
 ## Câu hỏi Thường gặp
 
@@ -319,15 +320,15 @@ Có. Tất cả image Docker có thể được pre-pull và hệ thống hỗ t
 
 ### Tôi cập nhật dịch vụ đã cài đặt như thế nào?
 
-Chạy `sudo omp update` để kiểm tra cập nhật dịch vụ và áp dụng chúng với zero downtime nơi có thể. Hệ thống cập nhật hỗ trợ rolling updates cho hầu hết dịch vụ và có thể tự động rollback nếu dịch vụ không khởi động được sau khi cập nhật.
+Chạy ````sudo omp update```` để kiểm tra cập nhật dịch vụ và áp dụng chúng với zero downtime nơi có thể. Hệ thống cập nhật hỗ trợ rolling updates cho hầu hết dịch vụ và có thể tự động rollback nếu dịch vụ không khởi động được sau khi cập nhật.
 
 ### Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?
 
-Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt. Lệnh `omp provision` tự động phát hiện phần cứng và điều chỉnh giới hạn tài nguyên tương ứng.
+Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt. Lệnh ````omp provision```` tự động phát hiện phần cứng và điều chỉnh giới hạn tài nguyên tương ứng.
 
 ### Có dashboard web để quản lý dịch vụ không?
 
-Có. Oh My Pi tạo một dashboard web thống nhất tại `http://<pi-ip>:3001` sau khi cài đặt. Dashboard hiển thị tất cả dịch vụ đang chạy, sử dụng tài nguyên và cung cấp truy cập một-click đến panel admin của mỗi dịch vụ.
+Có. Oh My Pi tạo một dashboard web thống nhất tại ````http://<pi-ip>:3001```` sau khi cài đặt. Dashboard hiển thị tất cả dịch vụ đang chạy, sử dụng tài nguyên và cung cấp truy cập một-click đến panel admin của mỗi dịch vụ.
 
 ## Kết luận
 
@@ -337,13 +338,13 @@ Oh My Pi loại bỏ những phần khó chịu nhất của việc sở hữu R
 
 **Bắt đầu ngay:**
 
-```bash
+`````bash
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+````
 
 **Liên kết nội bộ**: [Hướng dẫn nhà thông minh](https://dibi8.com/) · [Edge computing với Pi](https://dibi8.com/ai-tools/)
 
----
+* * *
 
 **Nguồn & Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi
 - Tài liệu Raspberry Pi: https://www.raspberrypi.com/documentation/
@@ -383,7 +384,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -393,6 +394,6 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 - [oh-my-pi](oh-my-pi)
 - [ohmyzsh](oh-my-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

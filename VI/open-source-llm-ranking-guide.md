@@ -22,6 +22,7 @@ aliases:
   - /posts/open-source-llm-ranking-guide/
 ---
 
+
 # Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen, DeepSeek & Hơn Nữa
 
 
@@ -243,20 +244,20 @@ Với yêu cầu enterprise: hỗ trợ, bảo mật, compliance: - **Llama 3.1 
 
 ### Hugging Face Hub
 
-Hugging Face là nền tảng chính để tải model mã nguồn mở: ```python
+Hugging Face là nền tảng chính để tải model mã nguồn mở: ````python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
-```
+`````
 
 ### Thư Viện Model Ollama
 
-Ollama là cách dễ nhất để chạy model local [^7^](https://ollama.com/library): ```bash
+Ollama là cách dễ nhất để chạy model local [^7^](https://ollama.com/library): `````bash
 ollama run llama3.1:8b
 ollama run mistral
 ollama run qwen2.5:7b
-```
+````
 
 ### GPT4All Và LM Studio
 
@@ -315,7 +316,7 @@ Năm 2025, Llama 3.1 405B và DeepSeek V3 đã bắt kịp GPT-4o trên hầu h�
 
 Với quantization 4-bit, Llama 3 70B cần khoảng 40-45GB VRAM — có thể chạy trên 2× RTX 4090 (24GB) hoặc 1× A100 80GB. Với 8-bit, cần 75-80GB (2× A100 80GB hoặc 1× H100). Với full precision (16-bit), cần khoảng 140GB VRAM.
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

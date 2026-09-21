@@ -28,6 +28,7 @@ faqs: - q: 'JustHireMe는 무료 오픈 소스인가요?'
     a: '데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구축되었으며, 백엔드는 FastAPI와 WebSockets를 사용하는 Python 3.13으로 실행됩니다. 데이터는 SQLite와 Kuzu 그래프 데이터베이스, LanceDB 벡터 저장소에 보관되며, Playwright가 스크래핑 및 지원서 제출을 위한 브라우저 자동화를 담당합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 문제: 구직은 풀타임 직업입니다
@@ -109,7 +110,7 @@ HR은 템플릿과 진심 어린 글을 구분할 수 있습니다.
 
 ## 설치 및 사용
 
-```bash
+````bash
 # 저장소 클론
 git clone https://github.com/vasu-devs/JustHireMe.git
 cd JustHireMe
@@ -122,7 +123,7 @@ npm run dev
 
 # 데스크톱 앱 시작
 npm run tauri dev
-```
+````
 
 ## 사용 프로세스
 
@@ -154,13 +155,13 @@ npm run tauri dev
 - [Free Claude Code：비용 부담 없이 Claude Code 사용하기](/kr/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42개 실제 사용 사례：AI 에이전트가 이미 이렇게 우리의 삶을 바꾸고 있습니다](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
+* * *
 
 **프로젝트 주소**: [github.com/vasu-devs/JustHireMe](https://github.com/vasu-devs/JustHireMe)
 
 **Stars**: 471 ⭐ | **Forks**: 91 | **언어**: Python 47.3%, TypeScript 27.5%
 
----
+* * *
 
 ## 추천 도구
 
@@ -232,7 +233,7 @@ JustHireMe：AI가 당신의 취업을 자동화합니다 represents an importan
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

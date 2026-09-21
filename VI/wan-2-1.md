@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/wan-2-1/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Ảnh bìa Wan 2.1](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
@@ -69,7 +70,7 @@ Mô hình 14B sử dụng chiều 5120, 40 đầu attention và 40 lớp transfo
 
 ### Cài đặt cơ bản
 
-```bash
+````bash
 # Clone repository
 git clone https://github.com/Wan-Video/Wan2.1.git
 cd Wan2.1
@@ -80,9 +81,9 @@ source venv/bin/activate
 
 # Cài đặt dependencies (yêu cầu torch >= 2.4.0)
 pip install -r requirements.txt
-```
+`````
 
-Nội dung requirements.txt: ```
+Nội dung requirements.txt: `````
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -92,11 +93,11 @@ accelerate>=1.1.1
 flash_attn
 gradio>=5.0.0
 numpy>=1.23.5,<2
-```
+`````
 
 ### Cài đặt bằng Poetry (thay thế)
 
-```bash
+`````bash
 # Cài đặt dependencies
 poetry install
 
@@ -104,11 +105,11 @@ poetry install
 poetry run pip install --upgrade pip setuptools wheel
 poetry run pip install flash-attn --no-build-isolation
 poetry install
-```
+`````
 
 ### Tải mô hình
 
-Tải mô hình bằng HuggingFace CLI: ```bash
+Tải mô hình bằng HuggingFace CLI: `````bash
 # Cài đặt huggingface-cli
 pip install "huggingface_hub[cli]"
 
@@ -123,36 +124,36 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 
 # Tải bộ mã hóa văn bản
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
-```
+`````
 
-Hoặc dùng ModelScope để tải nhanh hơn từ Trung Quốc: ```bash
+Hoặc dùng ModelScope để tải nhanh hơn từ Trung Quốc: `````bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
-```
+`````
 
 ### Tạo video đầu tiên (T2V-1.3B)
 
-```bash
+`````bash
 python generate.py \
   --task t2v-1.3B \
   --size 832*480 \
   --ckpt_dir ./Wan2.1-T2V-1.3B \
   --prompt "Hồ núi yên bìn lúc bình minh, sương mù bốc lên từ mặt nước, camera di chuyển chậm sang phải"
-```
+`````
 
 ### Tạo video đầu tiên (T2V-14B)
 
-```bash
+`````bash
 python generate.py \
   --task t2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "Hai chú mèo nhân hóa mặc đồ boxing thoải mái và găng tay sáng màu đấu nhau kịch liệt trên sân khấu được chiếu đèn."
-```
+`````
 
 ### Chạy Gradio Web UI
 
-```bash
+`````bash
 cd gradio
 
 # Chạy T2V 14B với GPU đơn
@@ -163,13 +164,13 @@ python t2v_14B_singleGPU.py \
 # Chạy T2V 1.3B (nhẹ hơn, cho GPU phổ thông)
 python t2v_1.3B_singleGPU.py \
   --ckpt_dir ./Wan2.1-T2V-1.3B
-```
+`````
 
 ## Tích hợp với ComfyUI, Diffusers và các công cụ khác
 
 ### Tích hợp ComfyUI
 
-Wan 2.1 có tích hợp ComfyUI gốc. Cách tiếp cận được đề xuất sử dụng các node tùy chỉnh ComfyUI-WanVideoWrapper của Kijai: ```bash
+Wan 2.1 có tích hợp ComfyUI gốc. Cách tiếp cận được đề xuất sử dụng các node tùy chỉnh ComfyUI-WanVideoWrapper của Kijai: `````bash
 # Cài đặt node tùy chỉnh
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -179,9 +180,9 @@ git clone https://github.com/kijai/ComfyUI-KJNodes.git
 # Cài đặt dependencies cho node
 cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-Tải file mô hình và đặt vào thư mục ComfyUI phù hợp: ```bash
+Tải file mô hình và đặt vào thư mục ComfyUI phù hợp: `````bash
 # Diffusion models -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -191,13 +192,13 @@ Tải file mô hình và đặt vào thư mục ComfyUI phù hợp: ```bash
 
 # VAE -> ComfyUI/models/vae
 # Wan2_1_VAE_fp32.safetensors
-```
+`````
 
 ![Workflow Wan 2.1 ComfyUI](https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/vben_vs_sota.png)
 
 ### Tích hợp Diffusers
 
-```python
+`````python
 import torch
 from diffusers.utils import export_to_video
 from diffusers import AutoencoderKLWan, WanPipeline
@@ -248,11 +249,11 @@ output = pipe(
 ).frames[0]
 
 export_to_video(output, "output.mp4", fps=16)
-```
+`````
 
 ### Suy luận đa GPU với FSDP + xDiT
 
-```bash
+`````bash
 # Cài đặt xDiT
 pip install "xfuser>=0.4.1"
 
@@ -264,22 +265,22 @@ torchrun --nproc_per_node=8 generate.py \
   --dit_fsdp --t5_fsdp \
   --ulysses_size 8 \
   --prompt "Nhập prompt của bạn"
-```
+`````
 
 ### Tạo video từ hình ảnh (I2V)
 
-```bash
+`````bash
 python generate.py \
   --task i2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-I2V-14B-720P \
   --image examples/i2v_input.JPG \
   --prompt "Phong cách kỳ nghỉ bãi biển mùa hè, một chú mèo trắng đeo kính râm ngồi trên ván lướt sóng."
-```
+`````
 
 ### Tạo video từ khung đầu/cuối (FLF2V)
 
-```bash
+`````bash
 python generate.py \
   --task flf2v-14B \
   --size 1280*720 \
@@ -287,11 +288,11 @@ python generate.py \
   --first_frame examples/flf2v_input_first_frame.png \
   --last_frame examples/flf2v_input_last_frame.png \
   --prompt "Phong cách hoạt hình CG, một chú chim xanh nhỏ cất cánh từ mặt đất, vỗ cánh bay lên."
-```
+`````
 
 ### Mở rộng prompt
 
-```bash
+`````bash
 # Sử dụng mô hình Qwen cục bộ
 python generate.py \
   --task t2v-14B \
@@ -309,7 +310,7 @@ DASH_API_KEY=your_key python generate.py \
   --prompt "Một con mèo chơi piano" \
   --use_prompt_extend \
   --prompt_extend_method dashscope
-```
+`````
 
 ## Benchmark / Các trường hợp sử dụng thực tế
 
@@ -351,7 +352,7 @@ Chi phí GPU cloud cho tạo video đầu năm 2026: | Mô hình | Độ phân g
 
 ### Lượng tử hóa FP8 để giảm VRAM
 
-```bash
+`````bash
 # Lượng tử hóa FP8 giảm ~20% VRAM
 python generate.py \
   --task t2v-14B \
@@ -360,20 +361,20 @@ python generate.py \
   --offload_model True \
   --t5_cpu \
   --prompt "Nhập prompt của bạn"
-```
+`````
 
 ### Cờ tối ưu VRAM
 
 | Cờ | Mô tả | Tác động VRAM |
 |---|---|---|
-| `--offload_model True` | Chuyển transformer sang CPU giữa các bước | -15–20GB |
-| `--t5_cpu` | Chạy encoder T5 trên CPU | -2–3GB |
-| `--dit_fsdp` | Chia DiT qua nhiều GPU | Chia theo số GPU |
-| `--ulysses_size N` | Sử dụng song song chuỗi | Giảm tuyến tính |
+| ````--offload_model True```` | Chuyển transformer sang CPU giữa các bước | -15–20GB |
+| ````--t5_cpu```` | Chạy encoder T5 trên CPU | -2–3GB |
+| ````--dit_fsdp```` | Chia DiT qua nhiều GPU | Chia theo số GPU |
+| ````--ulysses_size N```` | Sử dụng song song chuỗi | Giảm tuyến tính |
 
 ### Triển khai Docker
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 WORKDIR /app
@@ -388,16 +389,16 @@ RUN huggingface-cli download Wan-AI/Wan2.1-T2V-14B \
 
 EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
-```
+`````
 
-Build và chạy: ```bash
+Build và chạy: `````bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
-```
+`````
 
 ### Giám sát tác vụ tạo sinh
 
-```python
+`````python
 import time
 import psutil
 import torch
@@ -417,11 +418,11 @@ def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     print(f"Tăng RAM: {peak_mem - start_mem:.1f} GB")
     
     return result
-```
+`````
 
 ### Fine-tuning LoRA
 
-```bash
+`````bash
 # Cài đặt DiffSynth-Studio
 pip install diffsynth-studio
 
@@ -432,7 +433,7 @@ python -m diffsynth.train \
   --output_path ./wan_lora_output \
   --learning_rate 1e-4 \
   --num_train_steps 1000
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -498,7 +499,7 @@ Có. Wan 2.1 được cấp phép Apache 2.0, cho phép sử dụng thương m�
 
 **Q: Làm thế nào để giảm VRAM cho mô hình 14B?**
 
-Sử dụng `--offload_model True`, `--t5_cpu`, và lượng tử hóa FP8 để giảm xuống còn ~35GB VRAM.
+Sử dụng ````--offload_model True````, ````--t5_cpu```, và lượng tử hóa FP8 để giảm xuống còn ~35GB VRAM.
 
 **Q: Video tạo ra bị nhấp nháy hoặc chuyển động không nhất quán?**
 
@@ -568,7 +569,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -577,6 +578,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [comfyui-workflows-complete-guide](wan-2-1)
 - [comfyui-workflows-complete-guide](wan-2-1)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -31,6 +31,7 @@ faqs: - q: 'AiToEarn 是什么？'
     a: 'AiToEarn 使用一个 Model Router 来连接多个 AI 提供商，包括 GPT-4（OpenAI）、Claude（Anthropic）、Gemini（Google）和本地 LLM。它还集成了 DALL-E、Midjourney、Stable Diffusion 等图像生成器。'
   - q: 'AiToEarn 可以自托管吗？要怎么安装？'
     a: '可以，AiToEarn 支持自托管。你先克隆 GitHub 仓库，运行 npm install，把 .env.example 复制为 .env 并填入你的 API key，然后运行 npm run dev。之后应用就会在 http://localhost:3000 本地运行。'---
+
 {</* resource-info */>}
 
 ![AiToEarn 移动端 — 一键分发 12+ 社媒平台](/images/articles/aitoearn-ai-monetization/app.png)
@@ -65,11 +66,11 @@ faqs: - q: 'AiToEarn 是什么？'
 ### 💰 多元变现
 | 变现模式 | 说明 | 收入潜力 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **订阅制** | 付费会员解锁高级内容 | $5-50/月/用户 |
 | **广告分成** | 集成 Google AdSense、Media.net | $0.5-5/千次展示 |
@@ -78,10 +79,10 @@ faqs: - q: 'AiToEarn 是什么？'
 | **API 收费** | 将你的 AI 工作流封装为 API | $0.01-0.1/调用 |
 
 
----
+* * *
 ## 技术架构
 
-```
+````
 AiToEarn
 ├── 前端 (Next.js 14 + Tailwind)
 ├── 后端 (NestJS + Prisma)
@@ -98,13 +99,13 @@ AiToEarn
     ├── Stripe 订阅
     ├── PayPal 支付
     └── 联盟链接自动插入
-```
+`````
 
----
+* * *
 
 ## 快速开始
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/yikart/AiToEarn.git
 cd AiToEarn
@@ -118,15 +119,15 @@ cp .env.example .env
 
 # 启动开发服务器
 npm run dev
-```
+`````
 
-访问 `http://localhost:3000` 开始使用。
+访问 ````http://localhost:3000```` 开始使用。
 
----
+* * *
 
 ## 使用示例：AI 博客自动化
 
-```typescript
+`````typescript
 // 创建自动化工作流
 const workflow = await aite.createWorkflow({
   name: "每日科技新闻",
@@ -148,53 +149,53 @@ const workflow = await aite.createWorkflow({
 
 // 启动工作流
 await workflow.start();
-```
+````
 
 > 一次配置，长期自动运行。你的 AI 内容工厂 24/7 不间断产出。
 
----
+* * *
 
 ## 真实用户案例
 
 | 用户 | 领域 | 月产出 | 月收入 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | @techblogger_cn | 科技评测 | 90 篇文章 | $1,200 |
 | @design_daily | 设计资源 | 300 张 AI 图 | $800 |
 | @code snippets | 编程教程 | 150 个代码模板 | $2,500 |
 | @travel_ai | 旅游攻略 | 60 篇攻略 | $600 |
 
----
+* * *
 
 ## 与竞品对比
 
 | 平台 | 开源 | 多模型 | 多平台分发 | 变现集成 | 自托管 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Jasper | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Copy.ai | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Buffer | ❌ | ❌ | ✅ | ❌ | ❌ |
 | **AiToEarn** | **✅** | **✅** | **✅** | **✅** | **✅** |
 
----
+* * *
 
 ## 总结
 
@@ -204,7 +205,7 @@ AiToEarn 代表了**AI 时代创作者经济**的新范式：不再是"人写内
 
 > 💡 想了解更多 AI 工具和开源项目？关注 [dibi8.com](https://dibi8.com) 获取每周精选。
 
----
+* * *
 
 ## 推荐工具
 
@@ -285,7 +286,7 @@ AiToEarn: 开源 AI 内容变现工具 — 把你的 GPT 对话变成被动收�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -317,15 +318,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

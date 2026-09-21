@@ -8,6 +8,7 @@ tags: ["ibis"]
 aliases:
   - /posts/ibis-dataframe-python-sql/-
 ---
+
 {{</* resource-info */>}}
 
 In the ever-evolving landscape of data analytics, Python developers have long faced a frustrating dilemma: should you use **pandas** for its intuitive DataFrame API, or write raw **SQL** for its superior performance on large datasets? In 2026, this trade-off is no longer necessary. Enter **Ibis** — a portable, open-source Python library that offers a familiar DataFrame API while compiling your expressions to high-performance SQL for execution across 20+ backends. With over 12,000 GitHub stars and an Apache-2.0 license, Ibis is transforming how data engineers and scientists interact with databases.
@@ -17,14 +18,14 @@ Whether you are querying a local DuckDB instance, a production PostgreSQL cluste
 In this comprehensive guide, we will explore everything Ibis has to offer: from installation and basic queries to advanced patterns and real-world benchmarks. By the end, you will understand why Ibis is becoming the default choice for data practitioners who refuse to compromise between productivity and performance.
 
 
----
+* * *
 ## What Is Ibis? A New Paradigm for Data Analytics
 
 Ibis is a Python DataFrame library created by **Wes McKinney**, the original author of pandas. Unlike pandas, which operates entirely in-memory, Ibis takes a fundamentally different approach: it provides a **DataFrame API that compiles to SQL**. This means you write Python code that looks and feels like pandas, but Ibis translates those expressions into optimized SQL queries that run directly inside your database engine.
 
 The result? You get the best of both worlds: the ergonomics of Python combined with the raw power of modern SQL query engines. No more pulling millions of rows into memory just to compute an aggregation. No more context-switching between Python and SQL dialects. Ibis unifies your data workflow under one elegant, portable interface.
 
-```python
+````python
 # Ibis looks familiar to any pandas user
 import ibis
 
@@ -40,19 +41,19 @@ result = (
 
 # Execute the query - runs inside DuckDB, not in Python memory
 print(result.execute())
-```
+`````
 
 Behind the scenes, Ibis compiles the expression above into an optimized SQL query, pushes all computation to the backend, and returns only the final aggregated results. This architecture is what makes Ibis capable of handling datasets that would crash a pandas process.
 
 
----
+* * *
 ## Why Ibis Matters in 2026
 
 The data landscape in 2026 is more fragmented than ever. Organizations run analytics across a patchwork of systems: local DuckDB for development, PostgreSQL for transactional data, BigQuery for data warehouses, Snowflake for enterprise analytics, and ClickHouse for real-time workloads. Historically, each of these systems required learning a different SDK, a different SQL dialect, and a different mental model.
 
 Ibis solves this fragmentation problem elegantly. Its unified DataFrame API works identically across all supported backends. The code you write for DuckDB works unchanged for BigQuery or Snowflake. This portability is not just a convenience — it is a game-changer for teams that need to move between environments without rewriting their analytics pipelines.
 
-```python
+`````python
 # The SAME code works across ALL backends
 query = (
     t.select("customer_id", "order_date", "amount")
@@ -74,17 +75,17 @@ result_local = query.execute()
 # Run the EXACT SAME query on BigQuery
 con_bq = ibis.bigquery.connect(project_id="my-project")
 result_cloud = query.execute()
-```
+`````
 
 Beyond portability, Ibis addresses the **performance bottleneck** that plagues pandas workflows. Because Ibis pushes computation to the backend query engine, it never materializes intermediate results in Python memory. Aggregations, joins, window functions, and filters all execute inside the database — where they belong.
 
----
+* * *
 
 ## Installing Ibis and Backend Dependencies
 
 Getting started with Ibis is straightforward. The core library is lightweight, and you install only the backend extras you need.
 
-```bash
+`````bash
 # Install Ibis core
 pip install ibis-framework
 
@@ -98,24 +99,24 @@ pip install "ibis-framework[clickhouse]"
 
 # Install multiple backends at once
 pip install "ibis-framework[duckdb,postgres,bigquery]"
-```
+`````
 
-For conda users: ```bash
+For conda users: `````bash
 conda install -c conda-forge ibis-framework
 conda install -c conda-forge ibis-duckdb ibis-postgres
-```
+`````
 
-After installation, verify everything is working: ```python
+After installation, verify everything is working: `````python
 import ibis
 print(ibis.__version__)
 
 # List available backends
 print(ibis.util.backend_entry_points())
-```
+`````
 
 Ibis currently supports 20+ backends including DuckDB, PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, ClickHouse, Trino, PySpark, DataFusion, and more. The backend ecosystem continues to expand with each release.
 
----
+* * *
 
 ## Connecting to 20+ SQL Backends
 
@@ -123,7 +124,7 @@ One of Ibis's defining strengths is its ability to connect to virtually any data
 
 ### DuckDB (Recommended for Local Analytics)
 
-```python
+`````python
 import ibis
 
 # In-memory database
@@ -140,11 +141,11 @@ con.read_csv("customers.csv", table_name="customers")
 
 t = con.table("events")
 print(t.count().execute())
-```
+`````
 
 ### PostgreSQL
 
-```python
+`````python
 import ibis
 
 con = ibis.postgres.connect(
@@ -157,11 +158,11 @@ con = ibis.postgres.connect(
 
 t = con.table("sales")
 print(t.schema())
-```
+`````
 
 ### BigQuery
 
-```python
+`````python
 import ibis
 
 con = ibis.bigquery.connect(
@@ -171,11 +172,11 @@ con = ibis.bigquery.connect(
 
 t = con.table("user_events")
 result = t.filter(t.event_date >= "2026-01-01").execute()
-```
+`````
 
 ### Snowflake
 
-```python
+`````python
 import ibis
 
 con = ibis.snowflake.connect(
@@ -188,28 +189,28 @@ con = ibis.snowflake.connect(
 )
 
 t = con.table("transactions")
-```
+`````
 
 ### SQLite
 
-```python
+`````python
 import ibis
 
 con = ibis.sqlite.connect("sample.db")
 t = con.table("employees")
-```
+`````
 
 The connection API is consistent across all backends. Once you have a connection and a table reference, the Ibis expression API works identically regardless of what is underneath.
 
----
+* * *
 
 ## Ibis DataFrame API: Familiar Yet Powerful
 
-If you have used pandas, the Ibis API will feel immediately familiar. Ibis provides all the core DataFrame operations you expect: `select`, `filter`, `group_by`, `aggregate`, `order_by`, `limit`, `join`, and more.
+If you have used pandas, the Ibis API will feel immediately familiar. Ibis provides all the core DataFrame operations you expect: ````select````, ````filter````, ````group_by````, ````aggregate````, ````order_by````, ````limit````, ````join````, and more.
 
 ### Selecting and Filtering
 
-```python
+`````python
 import ibis
 
 con = ibis.duckdb.connect()
@@ -232,11 +233,11 @@ enriched = t.mutate(
     value_squared=t.value * t.value,
     is_high_value=t.value > 100
 )
-```
+`````
 
 ### Aggregation and Grouping
 
-```python
+`````python
 # Basic aggregation
 stats = t.aggregate(
     count=t.user_id.count(),
@@ -256,11 +257,11 @@ by_category = (
      )
      .order_by(ibis.desc("total"))
 )
-```
+`````
 
 ### Joins
 
-```python
+`````python
 users = con.table("users")
 orders = con.table("orders")
 
@@ -286,11 +287,11 @@ reporting = users.inner_join(
     users.name.name("employee"),
     managers.name.name("manager")
 )
-```
+`````
 
 ### Window Functions
 
-```python
+`````python
 # Running total
 running = t.mutate(
     running_total=t.value.sum().over(
@@ -311,15 +312,15 @@ moving = t.mutate(
         ibis.window(order_by=t.timestamp, preceding=1, following=1)
     )
 )
-```
+`````
 
----
+* * *
 
 ## Lazy Evaluation and SQL Compilation
 
-One of Ibis's most powerful features is its **lazy evaluation model**. When you write Ibis expressions, no computation occurs immediately. Instead, Ibis builds an internal representation of your query — an abstract syntax tree (AST) — which it then optimizes and compiles to SQL only when you call `.execute()`.
+One of Ibis's most powerful features is its **lazy evaluation model**. When you write Ibis expressions, no computation occurs immediately. Instead, Ibis builds an internal representation of your query — an abstract syntax tree (AST) — which it then optimizes and compiles to SQL only when you call ````.execute()````.
 
-```python
+`````python
 import ibis
 
 con = ibis.duckdb.connect("sales.db")
@@ -336,20 +337,20 @@ expr = (
 
 # Inspect the compiled SQL without executing
 print(expr.sql())
-```
+`````
 
-The output shows the exact SQL that Ibis will execute: ```sql
+The output shows the exact SQL that Ibis will execute: `````sql
 SELECT "category", SUM("amount") AS "total"
 FROM "transactions"
 WHERE "amount" > 100
 GROUP BY "category"
 ORDER BY "total" DESC
 LIMIT 5
-```
+`````
 
 This lazy approach enables Ibis to perform sophisticated query optimization. It can push filters down to the source, eliminate unnecessary columns, merge redundant operations, and leverage the full optimization power of the underlying SQL engine.
 
-```python
+`````python
 # Chain multiple operations — Ibis optimizes the entire pipeline
 pipeline = (
     t.filter(t.status == "completed")
@@ -373,11 +374,11 @@ print(pipeline.sql())
 
 # Only now does the query execute
 results = pipeline.execute()
-```
+`````
 
 The ability to inspect compiled SQL before execution is invaluable for debugging, query tuning, and learning SQL. It bridges the gap between Pythonic data manipulation and SQL-first analytics platforms.
 
----
+* * *
 
 ## Advanced Query Patterns with Ibis
 
@@ -385,7 +386,7 @@ Ibis supports sophisticated analytical patterns that go far beyond basic CRUD op
 
 ### Custom Expressions and Literals
 
-```python
+`````python
 import ibis
 import ibis.selectors as s
 
@@ -409,11 +410,11 @@ categorized = t.mutate(
         .else_("Bronze")
         .end()
 )
-```
+`````
 
 ### Complex Subqueries
 
-```python
+`````python
 # Find users with above-average spend
 avg_spend = t.amount.mean()
 above_avg = t.filter(t.amount > avg_spend)
@@ -424,11 +425,11 @@ from ibis import window, row_number
 w = window(group_by=t.category, order_by=ibis.desc(t.revenue))
 ranked = t.mutate(rn=row_number().over(w))
 top3 = ranked.filter(ranked.rn <= 3)
-```
+`````
 
 ### User-Defined Functions (UDFs)
 
-```python
+`````python
 # Define a Python UDF that runs in DuckDB
 @ibis.udf.scalar.python
  def format_currency(value: float) -> str: return f"${value:,.2f}"
@@ -436,11 +437,11 @@ top3 = ranked.filter(ranked.rn <= 3)
 applied = t.mutate(
     formatted=format_currency(t.amount)
 )
-```
+`````
 
-### Interactivity with `_` Reference
+### Interactivity with ````_```` Reference
 
-```python
+`````python
 # The underscore (_) refers to the current table in a pipeline
 result = (
     t.filter(_.amount > 100)
@@ -449,15 +450,15 @@ result = (
      .filter(_.total > 10000)
      .order_by(_.total.desc())
 )
-```
+`````
 
----
+* * *
 
 ## Performance Benchmark: Ibis vs pandas
 
 The performance difference between Ibis and pandas becomes dramatic as dataset sizes grow. Let us examine a concrete benchmark comparing the two libraries.
 
-```python
+`````python
 import ibis
 import pandas as pd
 import numpy as np
@@ -509,13 +510,13 @@ result_ibis = (
 ibis_time = time.time() - start
 print(f"Ibis + DuckDB: {ibis_time:.2f}s")
 print(f"Speedup: {pandas_time / ibis_time:.1f}x")
-```
+`````
 
 On typical hardware, the Ibis + DuckDB combination executes this query **10-15x faster** than pandas, and with dramatically lower memory usage. pandas must load all 10 million rows into RAM, allocate intermediate arrays for filtering and grouping, and perform all computation in Python. Ibis, by contrast, pushes everything to DuckDB's optimized C++ query engine, materializing only the small aggregated result in Python.
 
 For even larger datasets — hundreds of millions or billions of rows — the gap widens further. pandas will typically run out of memory and crash, while Ibis continues to execute via BigQuery, Snowflake, or ClickHouse without breaking a sweat.
 
----
+* * *
 
 ## Ibis vs SQLAlchemy vs pandas: When to Use What
 
@@ -523,13 +524,13 @@ Understanding how Ibis compares to existing tools helps clarify its unique value
 
 | Feature | pandas | SQLAlchemy | Ibis |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API Style | DataFrame | SQL/ORM | DataFrame |
 | Execution | In-memory Python | SQL via Python | SQL via Python |
@@ -545,7 +546,7 @@ Understanding how Ibis compares to existing tools helps clarify its unique value
 
 **Use Ibis** when you want a pandas-like experience at any scale, need to query multiple database backends with the same code, or want lazy evaluation with optimized SQL compilation. Ibis is the sweet spot for analytics workloads where DataFrame ergonomics meet database performance.
 
-```python
+`````python
 # Ibis code is more concise than equivalent SQLAlchemy for analytics
 # Ibis: result = (
     t.group_by("category")
@@ -555,9 +556,9 @@ Understanding how Ibis compares to existing tools helps clarify its unique value
 ).execute()
 
 # Equivalent SQLAlchemy requires more boilerplate for analytical queries
-```
+`````
 
----
+* * *
 
 ## Frequently Asked Questions (FAQ)
 
@@ -565,20 +566,20 @@ Understanding how Ibis compares to existing tools helps clarify its unique value
 
 No, Ibis is complementary to pandas rather than a direct replacement. Ibis excels at querying remote databases and handling large datasets that exceed available memory. pandas remains excellent for small to medium in-memory datasets and offers a richer ecosystem of statistical and visualization tools. Many workflows use Ibis for the heavy lifting (filtering, joining, aggregating at scale) and then pass the smaller results to pandas for final analysis or plotting.
 
-```python
+`````python
 # Hybrid workflow: Ibis for big data, pandas for analysis
 large_result = ibis_query.execute()  # Returns a pandas DataFrame
 small_summary = large_result.describe()  # pandas for quick stats
-```
+`````
 
 ### Can I see the SQL that Ibis generates?
 
-Yes, absolutely. You can inspect the compiled SQL at any time using the `.sql()` method on any Ibis expression. This is incredibly useful for debugging, performance tuning, and learning SQL.
+Yes, absolutely. You can inspect the compiled SQL at any time using the ````.sql()```` method on any Ibis expression. This is incredibly useful for debugging, performance tuning, and learning SQL.
 
-```python
+`````python
 expr = t.group_by("category").aggregate(total=t.amount.sum())
 print(expr.sql())
-```
+`````
 
 ### Is Ibis suitable for production ETL pipelines?
 
@@ -588,21 +589,21 @@ Yes, Ibis is increasingly used in production ETL and analytics pipelines. Its Ap
 
 Ibis abstracts away dialect differences automatically. When you write an Ibis expression, the library handles the translation to PostgreSQL syntax, BigQuery syntax, Snowflake syntax, or whichever dialect your target backend requires. You write one piece of Python code, and Ibis takes care of the rest.
 
-```python
+`````python
 # This same expression compiles to different SQL for each backend
 expr = t.mutate(year=t.date.year(), month=t.date.month())
 
 # PostgreSQL: EXTRACT(YEAR FROM "date")
-# BigQuery: EXTRACT(YEAR FROM `date`)
+# BigQuery: EXTRACT(YEAR FROM ````date````)
 # DuckDB: EXTRACT(YEAR FROM "date")
 # Ibis handles all of these automatically
-```
+`````
 
 ### What is the learning curve for pandas users?
 
-The learning curve for pandas users is remarkably gentle. Most core operations — `filter`, `select`, `group_by`, `aggregate`, `order_by`, `mutate`, `join` — use familiar names and semantics. The main adjustment is understanding lazy evaluation: expressions do not execute until you call `.execute()`. Most experienced pandas users become productive with Ibis within a few hours.
+The learning curve for pandas users is remarkably gentle. Most core operations — ````filter````, ````select````, ````group_by````, ````aggregate````, ````order_by````, ````mutate````, ````join```` — use familiar names and semantics. The main adjustment is understanding lazy evaluation: expressions do not execute until you call ````.execute()```. Most experienced pandas users become productive with Ibis within a few hours.
 
----
+* * *
 
 
 

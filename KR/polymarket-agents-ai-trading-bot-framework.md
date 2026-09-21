@@ -35,6 +35,7 @@ faqs: - q: 'Polymarket Agents란 무엇인가요?'
     a: 'CLI 명령어 ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''를 실행하세요. 또한 ''get-all-markets --sort-by volume''로 시장 목록을 조회하거나 ''get-market --market-id <MARKET_ID>''로 단일 시장을 확인할 수도 있습니다.'
 ---
 
+
 {</* resource-info */>}
 
 ![Polymarket Agents CLI 명령어 목록](/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png)
@@ -52,7 +53,7 @@ faqs: - q: 'Polymarket Agents란 무엇인가요?'
 
 🔗 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
+* * *
 
 ## Polymarket이란?
 
@@ -64,7 +65,7 @@ faqs: - q: 'Polymarket Agents란 무엇인가요?'
 
 거래자는 예측에 따라 "예" 또는 "아니오" 주식을 구매하며, 가격은 시장의 합의 확률을 반영합니다.
 
----
+* * *
 
 ## 핵심 기능
 
@@ -79,7 +80,7 @@ faqs: - q: 'Polymarket Agents란 무엇인가요?'
 | **Docker 지원** | 쉬운 설정을 위한 컨테이너화된 배포 |
 | **MIT 라이선스** | 무료 오픈소스 |
 
----
+* * *
 
 ## 아키텍처
 
@@ -94,7 +95,7 @@ Polymarket Agents는 개별 커뮤니티 멤버가 유지 관리하고 확장할
 
 ### CLI 명령
 
-Polymarket과 상호작용하기 위한 주요 사용자 인터페이스: ```bash
+Polymarket과 상호작용하기 위한 주요 사용자 인터페이스: ````bash
 # 거래량별로 정렬된 모든 시장 가져오기
 python scripts/python/cli.py get-all-markets --limit 10 --sort-by volume
 
@@ -103,36 +104,36 @@ python scripts/python/cli.py get-market --market-id <MARKET_ID>
 
 # 거래 실행
 python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>
-```
+`````
 
----
+* * *
 
 ## 빠른 시작
 
 ### 1. 저장소 클론
 
-```bash
+`````bash
 git clone https://github.com/polymarket/agents.git
 cd agents
-```
+`````
 
 ### 2. 환경 설정
 
-```bash
+`````bash
 # 가상 환경 생성
 virtualenv --python=python3.9 .venv
 source .venv/bin/activate
 
 # 의존성 설치
 pip install -r requirements.txt
-```
+`````
 
 ### 3. API 키 구성
 
-`.env` 파일 생성: ```env
+``.env`` 파일 생성: `````env
 POLYGON_WALLET_PRIVATE_KEY="귀하의 지갑 개인 키"
 OPENAI_API_KEY="귀하의 OpenAI API 키"
-```
+`````
 
 ### 4. 지갑에 USDC 충전
 
@@ -140,26 +141,26 @@ OPENAI_API_KEY="귀하의 OpenAI API 키"
 
 ### 5. CLI 실행
 
-```bash
+`````bash
 # Python 경로 설정
 export PYTHONPATH="."
 
 # CLI 실행
 python scripts/python/cli.py
-```
+`````
 
-또는 직접 거래 실행: ```bash
+또는 직접 거래 실행: `````bash
 python agents/application/trade.py
-```
+`````
 
 ### 6. Docker 대안
 
-```bash
+`````bash
 ./scripts/bash/build-docker.sh
 ./scripts/bash/run-docker-dev.sh
-```
+````
 
----
+* * *
 
 ## 거래 전략
 
@@ -183,7 +184,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 - RAG를 사용한 역사적 데이터 쿼리
 - 정보에 입각한 예측 수행
 
----
+* * *
 
 ## 데이터 소스
 
@@ -195,7 +196,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 | **소셜 미디어** | 감정 분석 | 트렌드 감지 |
 | **온체인 데이터** | 거래 데이터 | 시장 인텔리전스 |
 
----
+* * *
 
 ## RAG 구현
 
@@ -204,7 +205,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 3. **검색** — 시장 맥락에 기반한 관련 정보 쿼리
 4. **생성** — LLM이 검색된 데이터를 거래 결정으로 종합
 
----
+* * *
 
 ## 리스크 관리
 
@@ -216,7 +217,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 | **운영 리스크** | 봇 성능 정기 모니터링 |
 | **규제 리스크** | 현지 규정 준수 |
 
----
+* * *
 
 ## 다른 도구와 비교
 
@@ -231,7 +232,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 | **속도** | 빠름 | 빠름 | 느림 |
 | **감정 없음** | ✅ | ✅ | ❌ |
 
----
+* * *
 
 ## 사용 사례
 
@@ -255,7 +256,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 - 박스오피스 예측
 - 리얼리티 쇼 결과
 
----
+* * *
 
 ## 관련 저장소
 
@@ -267,7 +268,7 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 | [Langchain](https://github.com/langchain-ai/langchain) | 맥락 인식 추론 |
 | [Chroma](https://docs.trychroma.com) | 벡터 데이터베이스 |
 
----
+* * *
 
 ## 읽을 자료
 
@@ -275,14 +276,14 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 - [암호화폐 + AI 애플리케이션](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) 작성자: Vitalik Buterin
 - [슈퍼예측](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment)
 
----
+* * *
 
 ## 관련 기사
 
 - [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/kr/resources/dev-utils/polymarket-trading-bot-stack/) — 완전한 거래 봇 아키텍처
 - [Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) — AI 코딩 어시스턴트
 
----
+* * *
 
 ## 결론
 
@@ -292,10 +293,10 @@ Polymarket Agents는 다양한 AI 기반 거래 전략을 지원합니다: ### 1
 
 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
+* * *
 
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 
@@ -368,7 +369,7 @@ Polymarket Agents: Polymarket 예측 시장용 AI 자동 거래 봇 구축 repre
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

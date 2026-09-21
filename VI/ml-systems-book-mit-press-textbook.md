@@ -35,6 +35,7 @@ faqs: - q: 'ML Systems Book bao gồm những chủ đề gì?'
     a: 'Cuốn sách hướng đến các kỹ sư ML cần mở rộng quy mô huấn luyện và phục vụ mô hình có độ trễ thấp trong môi trường sản xuất, các kỹ sư phần mềm đang chuyển sang lĩnh vực ML, các nhà nghiên cứu muốn tăng tốc thực nghiệm, và các quản lý kỹ thuật cần lập kế hoạch đầu tư hạ tầng ML cũng như cơ cấu đội nhóm.'
 ---
 
+
 {</* resource-info */>}
 
 ## Vấn đề: Ngoài thuật toán, kỹ sư ML còn cần gì?
@@ -61,7 +62,7 @@ Khác với các nguồn chỉ nói về thuật toán và kiến trúc mô hìn
 
 ### 1. Kỹ thuật dữ liệu (Data Engineering)
 
-```python
+````python
 # Tải dữ liệu kém hiệu quả là nguyên nhân hàng đầu gây nút thắt huấn luyện
 # Cuốn sách dạy bạn xây dựng đường ống dữ liệu hiệu quả
 
@@ -75,7 +76,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
            .map(preprocess, num_parallel_calls=tf.data.AUTOTUNE)
            .cache()
            .prefetch(tf.data.AUTOTUNE))
-```
+`````
 
 Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arrow)
 - Thiết kế đường ống ETL
@@ -94,13 +95,13 @@ Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arr
 
 ### 3. Huấn luyện nhận biết phần cứng (Hardware-Aware Training)
 
-```python
+`````python
 # Hiểu đặc tính phần cứng mới viết được mã huấn luyện hiệu quả
 
 # GPU: băng thông bộ nhớ là nút thắt → giảm truyền dữ liệu
 # TPU: tối ưu nhân ma trận → dùng batch size phù hợp
 # Edge NPU: tính toán điểm cố định → huấn luyện nhận biết lượng tử hóa
-```
+`````
 
 - **GPU**: Lập trình CUDA, quản lý bộ nhớ, song song đa card
 - **TPU**: Biên dịch XLA, kiến trúc Pod, GSPMD
@@ -108,7 +109,7 @@ Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arr
 
 ### 4. Tăng tốc suy luận (Inference Acceleration)
 
-```python
+`````python
 # Thực tiễn kỹ thuật giảm từ 100ms xuống 10ms
 
 # 1. Chuyển đổi mô hình: ONNX → TensorRT
@@ -116,7 +117,7 @@ Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arr
 # 3. Tối ưu bộ nhớ: chia sẻ trọng số, tính toán lại kích hoạt
 # 4. Xử lý hàng: batching động + hợp nhất yêu cầu
 # 5. Cache: cache kết quả + khởi động nóng mô hình
-```
+`````
 
 ### 5. Triển khai và MLOps
 
@@ -127,13 +128,13 @@ Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arr
 
 ### 6. ML biên và nhúng (Edge / TinyML)
 
-```cpp
+`````cpp
 // Chạy ML trên vi điều khiển (TinyML)
 #include "tensorflow/lite/micro/micro_interpreter.h"
 
 // Mô hình chỉ 20KB, chạy trên Arduino 16MHz
 // vẫn làm được đánh thức bằng giọng nói, nhận dạng cử chỉ
-```
+`````
 
 - **Nén mô hình**: từ 100MB xuống 100KB
 - **Nền tảng phần cứng**: Arduino, ESP32, Raspberry Pi
@@ -141,7 +142,7 @@ Các chủ đề bao phủ: - Định dạng dữ liệu (TFRecord, Parquet, Arr
 
 ## Kiến trúc kiến thức
 
-```
+`````
 ML Systems Book
 ├── Part 1: Foundations
 │   ├── Ôn tập ML
@@ -171,27 +172,27 @@ ML Systems Book
     ├── CI/CD cho ML
     ├── Giám sát và khả năng quan sát
     └── Đạo đức và bảo mật
-```
+`````
 
 ## Cách tiếp cận
 
 ### Đọc trực tuyến miễn phí
 
-```
+`````
 https://mlsysbook.ai/book/
-```
+`````
 
 ### Tải PDF miễn phí
 
-```
+`````
 https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf
-```
+`````
 
 ### Mã nguồn GitHub
 
-```bash
+`````bash
 git clone https://github.com/harvard-edge/cs249r_book.git
-```
+````
 
 ### Mua bản in
 
@@ -247,7 +248,7 @@ Nếu bạn chỉ biết huấn luyện mô hình nhưng không biết triển k
 - [Free LLM API Resources for AI Development](/vi/resources/llm-frameworks/free-llm-api-resources-ai-development/)
 - [Hermes Agent: Tác nhân AI tự cải thiện](/vi/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

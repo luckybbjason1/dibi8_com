@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/rvc/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
@@ -46,7 +47,7 @@ RVC 的架构由四个核心模块组成：
 
 **声学模型（Acoustic Modeling）** — 基于 VITS（Variational Inference with adversarial learning for end-to-end Text-to-Speech），一种条件 VAE，通过标准化流进行增强。VITS 通过生成器与多周期判别器之间的对抗训练生成高保真音频。
 
-**检索模块（Retrieval Module）** — RVC 的标志性创新。训练期间，内容特征被索引到 Faiss 向量数据库中。推理时，源特征被替换为训练集中 Top-K 个最近邻（默认 K=8），显著减少源说话人的音色泄漏。`index_rate` 参数（α，通常为 0.3）控制检索特征与源特征的混合比例。
+**检索模块（Retrieval Module）** — RVC 的标志性创新。训练期间，内容特征被索引到 Faiss 向量数据库中。推理时，源特征被替换为训练集中 Top-K 个最近邻（默认 K=8），显著减少源说话人的音色泄漏。```index_rate```` 参数（α，通常为 0.3）控制检索特征与源特征的混合比例。
 
 ![RVC 架构图](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/raw/main/docs/rvc_arch.png)
 
@@ -66,7 +67,7 @@ RVC 可在 Linux、macOS 和 Windows 上运行。训练需要至少 4GB 显存�
 
 官方 Dockerfile 使用 CUDA 11.6.2 + Ubuntu 20.04 + Python 3.9：
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -81,11 +82,11 @@ docker run -d --name rvc \
   -v $(pwd)/weights:/app/weights \
   -v $(pwd)/opt:/app/opt \
   rvc-webui:latest
-```
+`````
 
 docker-compose 用户：
 
-```yaml
+`````yaml
 version: '3.8'
 
 services: rvc: build: .
@@ -100,19 +101,19 @@ services: rvc: build: .
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # 使用 docker-compose 启动
 docker-compose up -d
 
 # 查看日志
 docker-compose logs -f rvc
-```
+`````
 
 ### 方法二：本地 Python 安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI.git
 cd Retrieval-based-Voice-Conversion-WebUI
@@ -134,11 +135,11 @@ wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained_v2/f0G40k.pth -P assets/pretrained_v2/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt -P assets/hubert/
 wget https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt -P assets/rmvpe/
-```
+`````
 
 ### 方法三：AMD GPU 安装（ROCm）
 
-```bash
+`````bash
 # 安装 ROCm 依赖（Ubuntu/Debian）
 sudo apt install rocm-hip-sdk rocm-opencl-sdk
 
@@ -152,16 +153,16 @@ sudo usermod -aG video $USER
 
 # 安装 AMD 专用依赖
 pip install -r requirements-amd.txt
-```
+`````
 
 ### 启动 WebUI
 
-```bash
+`````bash
 # 启动 Gradio 网页界面
 python infer-web.py
 
 # WebUI 将在 http://localhost:7865 可用
-```
+`````
 
 ## 训练流水线
 
@@ -176,28 +177,28 @@ RVC 需要干净、单声道的音频。为获得最佳效果：
 
 使用 UVR5（内置）进行声源分离：
 
-```bash
+`````bash
 # 从背景音乐中分离人声
 python tools/uvr5/uvr5_cli.py \
   --input_path ./raw_audio/song_with_music.wav \
   --output_path ./dataset/ \
   --model_name "HP2-人声vocals+非人声instrumentals"
-```
+`````
 
 ### 第二步：预处理和特征提取
 
 在 WebUI 的 **训练** 标签页中：
 
-1. 设置 **实验名称**（例如 `my_voice_v2`）
+1. 设置 **实验名称**（例如 ````my_voice_v2````）
 2. 设置 **目标采样率** 为 40kHz（推荐）
 3. 设置 **RVC 版本** 为 v2
-4. 设置 **模型架构** 为 `rmvpe_gpu`
+4. 设置 **模型架构** 为 ````rmvpe_gpu````
 5. 设置 **数据集路径** 为你的音频文件夹
 6. 点击 **一键训练**
 
 或通过命令行：
 
-```bash
+`````bash
 # 第一步：预处理（重采样、切片、去除静音）
 python trainset_preprocess_pipeline_print.py \
   ./dataset/my_voice \
@@ -221,27 +222,27 @@ python train_nsf_sim_cache_sid_load_pretrain.py \
   --pretrained_G assets/pretrained_v2/f0G40k.pth \
   --pretrained_D assets/pretrained_v2/f0D40k.pth \
   --gpu 0
-```
+`````
 
 ### 第三步：构建特征索引
 
-```bash
+`````bash
 # 为检索生成 Faiss 索引
 python tools/infer/train_index.py \
   --model_name my_voice_v2 \
   --sample_rate 40000
-```
+`````
 
 训练输出位置：
 
-```
+`````
 logs/
 └── my_voice_v2/
     ├── added_IVF512_Flat_nprobe_1.index   # Faiss 检索索引
     ├── G_*.pth                             # 生成器检查点
     ├── D_*.pth                             # 判别器检查点
     └── config.json                         # 模型配置
-```
+`````
 
 ![RVC WebUI 训练标签页](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/docs/en/training_tab.png)
 
@@ -249,15 +250,15 @@ logs/
 
 | 硬件 | 数据集大小 | 轮数 | 训练时间 | 输出质量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 3090 (24GB) | 10 分钟音频 | 200 | ~18 分钟 | 极佳 |
 | RTX 4090 (24GB) | 10 分钟音频 | 200 | ~12 分钟 | 极佳 |
@@ -271,7 +272,7 @@ logs/
 
 GPT-SoVITS 从文本生成语音；RVC 将其转换为目标声音。两者结合形成完整的文本到语音克隆流水线：
 
-```python
+`````python
 # gpt_sovits_rvc_pipeline.py
 import requests
 
@@ -299,11 +300,11 @@ def tts_then_convert(text: str, speaker_wav: str, rvc_model: str): """GPT-SoVITS
     })
     
     return rvc_response.json()["output_path"]
-```
+`````
 
 ### 集成二：Coqui TTS
 
-```python
+`````python
 # coqui_rvc_bridge.py
 from TTS.api import TTS
 import requests
@@ -327,13 +328,13 @@ def coqui_to_rvc(text: str, rvc_model: str, output_path: str): # 使用 Coqui XT
     
     with open(output_path, "wb") as f: f.write(response.content)
     return output_path
-```
+`````
 
 ### 集成三：demucs（高级声源分离）
 
 用于训练前的生产级人声隔离：
 
-```bash
+`````bash
 # 安装 demucs
 pip install demucs
 
@@ -342,7 +343,7 @@ demucs --two-stems=vocals --mp3 --mp3-bitrate 320 input_song.mp3
 
 # 使用分离的人声轨道进行 RVC 训练
 mv separated/htdemucs/input_song/vocals.wav ./dataset/clean_voice.wav
-```
+`````
 
 ### 集成四：实时语音转换 GUI
 
@@ -350,7 +351,7 @@ RVC 包含用于直播应用的实时语音转换 GUI：
 
 ![RVC 实时 GUI](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/gui_preview.png)
 
-```bash
+`````bash
 # 启动实时 GUI
 python gui_v1.py
 
@@ -362,11 +363,11 @@ python gui_v1.py --dml
 # - 交叉淡入淡出：0.05s
 # - 额外时间：2.5s
 # - 音高提取器：fcpe（最快）或 rmvpe（质量最好）
-```
+`````
 
 流式配置（使用 ASIO 实现 90ms 端到端延迟）：
 
-```python
+`````python
 # gui_config.py 示例
 config = {
     "block_time": 0.1,        # 100ms 块以降低延迟
@@ -379,20 +380,20 @@ config = {
     "I_noise_reduce": True,
     "O_noise_reduce": False
 }
-```
+`````
 
 ### 集成五：API 服务器（FastAPI）
 
 RVC 为生产部署提供基于 FastAPI 的 REST API：
 
-```bash
+`````bash
 # 启动 API 服务器
 python api_240604.py
 
 # API 将在 http://localhost:7865 可用
-```
+`````
 
-```python
+`````python
 # API 推理客户端示例
 import requests
 
@@ -416,7 +417,7 @@ with open("input_audio.wav", "rb") as f: response = requests.post(
     )
 
 with open("converted_output.wav", "wb") as f: f.write(response.content)
-```
+`````
 
 ## 基准测试 / 实际应用案例
 
@@ -424,15 +425,15 @@ with open("converted_output.wav", "wb") as f: f.write(response.content)
 
 | 指标 | RVC v2 | So-VITS-SVC 4.1 | GPT-SoVITS (SVC) | DDSP-SVC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 说话人相似度（余弦） | 0.85 | 0.79 | 0.82 | 0.71 |
 | PESQ（质量，/4.5） | 3.6 | 3.3 | 3.4 | 2.8 |
@@ -457,7 +458,7 @@ with open("converted_output.wav", "wb") as f: f.write(response.content)
 
 ### 安全注意事项
 
-```python
+`````python
 # api_production.py — 加固版 API 包装器
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -477,11 +478,11 @@ async def secure_convert(
 ): verify_token(credentials)
     # ... 转换逻辑
     return {"output_url": signed_url}
-```
+`````
 
 ### 模型管理
 
-```bash
+`````bash
 # 组织多个语音模型
 models/
 ├── celeb_voice_a/
@@ -496,9 +497,9 @@ models/
     ├── model.pth
     ├── index.faiss
     └── config.json
-```
+`````
 
-```python
+`````python
 # 多租户部署的动态模型加载器
 import os
 import glob
@@ -511,11 +512,11 @@ def list_available_models(models_dir="./models"): """列出所有可用的语音
                       glob.glob(os.path.join(model_dir, "*.index"))
         if pth_files and index_files: models.append({"name": name, "pth": pth_files[0], "index": index_files[0]})
     return models
-```
+`````
 
 ### 监控与日志
 
-```python
+`````python
 # monitoring.py — 兼容 Prometheus 的指标
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -534,31 +535,31 @@ def monitored_convert(audio_path, model_name): start = time.time()
 
 # 启动指标端点
 start_http_server(9090)
-```
+`````
 
 ### 导出 ONNX 加速推理
 
-```bash
+`````bash
 # 将训练好的模型导出为 ONNX，实现 CPU/GPU 通用推理
 python tools/export_onnx.py \
   --checkpoint_path ./logs/my_voice_v2/G_12000.pth \
   --output_path ./models/my_voice_v2/model.onnx \
   --sample_rate 40000
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | RVC v2 | GPT-SoVITS | So-VITS-SVC 4.1 | DDSP-SVC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **主要用途** | 语音转换 | TTS + 语音克隆 | 歌声转换 | 歌声转换 |
 | **训练时间**（10分钟数据） | ~18 分钟 (RTX 3090) | ~45 分钟 | ~2 小时 | ~15 分钟 |
@@ -614,7 +615,7 @@ RVC v2 将内容编码器从 9 层 HuBERT 的 256 维特征改为 12 层 HuBERT 
 调整 **index_rate** 参数。较高的值（0.7–1.0）增加对检索索引的依赖，从训练集中获取更多特征，从源音频获取更少。从 0.75 开始，根据输出质量调整。如果声音听起来不自然，降低到 0.3–0.5。
 
 ### 可以在 Discord/Zoom/游戏中使用 RVC 实时变声吗？
-可以，通过 RVC 实时 GUI（`gui_v1.py`）。将麦克风通过虚拟音频线路由（Windows 用 VB-Cable，macOS 用 BlackHole，Linux 用 PulseAudio），将 RVC 设为输入设备，并配置应用程序使用虚拟音频线输出。使用 ASIO 驱动和现代 GPU，延迟保持在 100ms 以下。
+可以，通过 RVC 实时 GUI（````gui_v1.py```）。将麦克风通过虚拟音频线路由（Windows 用 VB-Cable，macOS 用 BlackHole，Linux 用 PulseAudio），将 RVC 设为输入设备，并配置应用程序使用虚拟音频线输出。使用 ASIO 驱动和现代 GPU，延迟保持在 100ms 以下。
 
 ### RVC 支持哪些文件格式？
 RVC 支持 WAV、MP3、FLAC、OGG 和 M4A 作为输入。输出始终是目标采样率（32kHz、40kHz 或 48kHz）的 WAV。为获得最佳质量，使用无损 WAV 或 FLAC 作为输入，避免多次重新编码 MP3 文件。
@@ -687,7 +688,7 @@ RVC 在中等硬件上提供训练时间低于 20 分钟的生产级语音转换
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](rvc)
@@ -697,5 +698,5 @@ RVC 在中等硬件上提供训练时间低于 20 分钟的生产级语音转换
 - [moneyprinterturbo-one-click-ai-video-generator](rvc)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

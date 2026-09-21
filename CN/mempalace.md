@@ -31,6 +31,7 @@ faqs: - q: 'What is MemPalace and how does it give an AI memory?'
     a: 'MemPalace uses a palace metaphor with three levels: Wings for people and projects, Rooms for topics within those projects, and Drawers that hold the original content stored verbatim. This lets you scope a search to a specific project wing or topic room instead of querying a flat vector database.'
   - q: 'Does MemPalace work with Claude Code and other AI tools?'
     a: 'Yes. MemPalace ships native plugins including a .claude-plugin directory for Claude Code, a .codex-plugin directory for OpenAI Codex, and a .agents/plugins directory for MCP-compatible tools, plus support for Gemini CLI and local models. It exposes an MCP-compatible endpoint out of the box for persistent coding-agent memory.'---
+
 {</* resource-info */>}
 
 # MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)
@@ -57,7 +58,7 @@ Large language models have a fixed context window. Once a conversation exceeds t
 MemPalace solves this by creating a **structured, searchable memory layer** outside the model itself. It does not summarize or paraphrase your history. It keeps the original text intact and retrieves the exact passages your AI needs, when it needs them.
 
 
----
+* * *
 ## How MemPalace Works
 
 MemPalace organizes memory using a palace metaphor: - **Wings** — People and projects
@@ -66,15 +67,15 @@ MemPalace organizes memory using a palace metaphor: - **Wings** — People and p
 
 This structure lets you scope searches precisely. Instead of dumping everything into a flat vector database, you can search within a specific project wing or topic room.
 
-The retrieval layer is pluggable. The default backend is **ChromaDB**, and the interface is defined in `mempalace/backends/base.py`. You can swap in an alternative backend without touching the rest of the system.
+The retrieval layer is pluggable. The default backend is **ChromaDB**, and the interface is defined in ```mempalace/backends/base.py````. You can swap in an alternative backend without touching the rest of the system.
 
 Importantly, **nothing leaves your machine unless you opt in**. MemPalace is local-first by design.
 
----
+* * *
 
 ## Quickstart: Install in Seconds
 
-MemPalace is written in Python and installs cleanly via `uv` or `pip`: ```shell
+MemPalace is written in Python and installs cleanly via ``uv`` or ``pip``: `````shell
 # Recommended: install with uv
 uv tool install mempalace
 
@@ -83,15 +84,15 @@ pip install mempalace
 
 # Initialize for your project
 mempalace init ~/projects/myapp
-```
+`````
 
 Once installed, you can start mining content and searching memory immediately.
 
----
+* * *
 
 ## Mining Your Project History
 
-MemPalace can ingest both project files and conversation history. Here is how to populate your palace: ```shell
+MemPalace can ingest both project files and conversation history. Here is how to populate your palace: `````shell
 # Mine a project directory
 mempalace mine ~/projects/myapp
 
@@ -103,28 +104,28 @@ mempalace search "why did we switch to GraphQL"
 
 # Load context into a new session
 mempalace wake-up
-```
+`````
 
-The `mine` command indexes your content. The `search` command runs semantic retrieval. And `wake-up` loads the most relevant context into your current AI session so you can pick up exactly where you left off.
+The ````mine```` command indexes your content. The ````search```` command runs semantic retrieval. And ````wake-up```` loads the most relevant context into your current AI session so you can pick up exactly where you left off.
 
----
+* * *
 
 ## Plugin Ecosystem
 
-MemPalace ships with native plugins for popular AI tools: - **Claude Code** — `.claude-plugin` directory
-- **OpenAI Codex** — `.codex-plugin` directory
-- **MCP-compatible tools** — `.agents/plugins` directory
+MemPalace ships with native plugins for popular AI tools: - **Claude Code** — ````.claude-plugin```` directory
+- **OpenAI Codex** — ````.codex-plugin```` directory
+- **MCP-compatible tools** — ````.agents/plugins```` directory
 - **Gemini CLI** and local models
 
 This means you can integrate MemPalace into your existing workflow without switching editors or rewriting prompts.
 
----
+* * *
 
 ## Benchmarks and Performance
 
-MemPalace markets itself as the **best-benchmarked** open-source AI memory system. The repository includes a `benchmarks/` directory with reproducible tests comparing retrieval accuracy, latency, and memory usage against other memory solutions. If you care about measurable performance rather than marketing claims, this is a strong signal.
+MemPalace markets itself as the **best-benchmarked** open-source AI memory system. The repository includes a ````benchmarks/``` directory with reproducible tests comparing retrieval accuracy, latency, and memory usage against other memory solutions. If you care about measurable performance rather than marketing claims, this is a strong signal.
 
----
+* * *
 
 ## When to Use MemPalace
 
@@ -136,11 +137,11 @@ MemPalace is ideal if you: - Work on long-running projects with complex context
 
 If your AI sessions are short and self-contained, you may not need a memory system. But for developers, researchers, and power users, MemPalace turns every new chat into a continuation rather than a restart.
 
----
+* * *
 
 
 -
----
+* * *
 
 ## Related Articles
 
@@ -156,7 +157,7 @@ MemPalace gives your AI a memory that is structured, searchable, and private. Wi
 
 Install it today, mine your first project, and stop re-explaining your stack to every new chat session.
 
----
+* * *
 
 ## Related Articles
 
@@ -164,11 +165,11 @@ Install it today, mine your first project, and stop re-explaining your stack to 
 
 
 
----
+* * *
 
 
 -
----
+* * *
 
 ## Recommended Tools
 
@@ -260,7 +261,7 @@ MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memory Framework (2026) repr
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

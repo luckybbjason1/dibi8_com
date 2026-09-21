@@ -12,13 +12,14 @@ aliases:
   - /kr/posts/lean-quantconnect-trading-engine/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 왜 대부분의 트레이딩 엔진은 규모에서 실패하는가
 
 모든 퀀트 개발자가 겪어본 경험이 있습니다. 노트북에서 Python 백테스트 스크립트가 아름답게 작동하지만", "틱 데이터로 500개 자산에서 실행하려고 하면 완전히 멈춥니다. 메모리 사용량이 8GB로 급증합니다. 이벤트 루프가 멈춥니다. 당신의 "프로덕션 준비" 백테스터가 기관급 워크로드를 위해 설계된 적이 없었다는 것을 깨닫게 됩니다.
 
-Lean은 다릅니다. 원래 QuantConnect에서 개발되어 2015년에 오픈소스화된 Lean은 C#으로 작성된 **다중 자산 알고리즘 트레이딩 엔진**으로", "QuantConnect 클라우드 플랫폼에서 **하루 50", "000회 이상의 백테스트**를 처리합니다. 저장소 `QuantConnect/Lean`은 **10", "500개 이상의 스타**를 획득했으며 QuantConnect 팀이 적극적으로 유지보수하고 Apache-2.0 라이선스 하에 실행됩니다. 2026년 5월 기준", "Lean은 15개 이상의 브로커를 통해 주식", "외환", "옵션", "선물", "암호화폐를 지원합니다.
+Lean은 다릅니다. 원래 QuantConnect에서 개발되어 2015년에 오픈소스화된 Lean은 C#으로 작성된 **다중 자산 알고리즘 트레이딩 엔진**으로", "QuantConnect 클라우드 플랫폼에서 **하루 50", "000회 이상의 백테스트**를 처리합니다. 저장소 ```QuantConnect/Lean````은 **10", "500개 이상의 스타**를 획득했으며 QuantConnect 팀이 적극적으로 유지보수하고 Apache-2.0 라이선스 하에 실행됩니다. 2026년 5월 기준", "Lean은 15개 이상의 브로커를 통해 주식", "외환", "옵션", "선물", "암호화폐를 지원합니다.
 
 이 가이드는 설치", "첫 번째 알고리즘 작성", "다중 자산 전략", "프로덕션 배포", "C# 기반 엔진 사용의 정직한 장단점을 안내합니다. C# 성능에 대해 궁금한 Python 퀀트이든 트레이딩 시스템을 구축하는 .NET 개발자이든", "이것이 완벽한 2026년 참고 자료입니다.
 
@@ -33,25 +34,25 @@ Lean은 **오픈소스 알고리즘 트레이딩 엔진**으로", "데이터 수
 ### 모듈형 플러그인 시스템
 
 Lean의 아키텍처는 관심사를 교체 가능한 모듈로 분리합니다: - **IDataFeed**: 여러 소스의 역사적 및 실시간 데이터 처리 (IQFeed", "Polygon", "Coinbase 등)
-- **IAlgorithm**: `QCAlgorithm`을 상속한 전략 로직
+- **IAlgorithm**: ````QCAlgorithm````을 상속한 전략 로직
 - **IBrokerage**: 실제 브로커나 모의 트레이딩에서 주문 실행
 - **ITransactionHandler**: 주문 상태", "체결", "슬리피지 모델 관리
 - **IResultHandler**: 백테스트 결과", "차트", "로그 출력
 
 ### C# 코어와 Python 바인딩
 
-Lean은 .NET에서 실행되지만", "Python 알고리즘은 Python.NET을 통해 실행되어 Python으로 전략을 작성하면서 C#의 성능에 완전히 액세스할 수 있습니다. Python API는 C# API를 거의 정확하게 미러링합니다: ```python
+Lean은 .NET에서 실행되지만", "Python 알고리즘은 Python.NET을 통해 실행되어 Python으로 전략을 작성하면서 C#의 성능에 완전히 액세스할 수 있습니다. Python API는 C# API를 거의 정확하게 미러링합니다: `````python
 class MyAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(2020", "1", "1)
         self.SetEndDate(2026", "1", "1)
         self.SetCash(100000)
         self.AddEquity("AAPL", "Resolution.Daily)
-```
+`````
 
 ### 데이터 아키텍처
 
-Lean은 로컬에 저장되거나 QuantConnect의 클라우드 데이터 라이브러리에서 스트리밍되는 맞춤형 압축 데이터 형식(분/초/틱 데이터가 포함된 `.zip` 파일)을 사용합니다. 데이터 라이브러리는 지원되는 모든 자산 클래스에 대해 **2TB 이상의 정제된 역사적 데이터**를 포함합니다.
+Lean은 로컬에 저장되거나 QuantConnect의 클라우드 데이터 라이브러리에서 스트리밍되는 맞춤형 압축 데이터 형식(분/초/틱 데이터가 포함된 ````.zip```` 파일)을 사용합니다. 데이터 라이브러리는 지원되는 모든 자산 클래스에 대해 **2TB 이상의 정제된 역사적 데이터**를 포함합니다.
 
-```csharp
+`````csharp
 // C# 알고리즘 구조
 namespace QuantConnect.Algorithm.CSharp
 {
@@ -74,13 +75,13 @@ namespace QuantConnect.Algorithm.CSharp
         }
     }
 }
-```
+`````
 
 ## 설치 및 설정: 로컬에서 Lean 실행
 
 ### 필수 조건
 
-```bash
+`````bash
 # Ubuntu/Debian
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 git
 
@@ -88,11 +89,11 @@ sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0 git
 brew install dotnet-sdk git
 
 # Windows — https://dotnet.microsoft.com/download에서 다운로드
-```
+`````
 
 ### 클론 및 빌드
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/QuantConnect/Lean.git
 cd Lean
@@ -102,11 +103,11 @@ dotnet build QuantConnect.Lean.sln
 
 # 샘플 백테스트 실행
 dotnet run --project Launcher --config Config.json
-```
+`````
 
 ### Python 설정 (퀀트에게 권장)
 
-```bash
+`````bash
 # Python.NET 설치 (Python 알고리즘에 필수)
 pip install pythonnet
 
@@ -115,11 +116,11 @@ pip install quantconnect-stubs
 
 # 설치 확인
 python -c "from Algorithm.Python import *; print('Lean Python ready")"
-```
+`````
 
 ### Docker 배포 (가장 빠름)
 
-```bash
+`````bash
 # 공식 이미지 가져오기
 docker pull quantconnect/lean:latest
 
@@ -127,11 +128,11 @@ docker pull quantconnect/lean:latest
 docker run -v "$(pwd)/Data:/Data" \
   -v "$(pwd)/Results:/Results" \
   quantconnect/lean:latest --backtest
-```
+`````
 
 ## 첫 번째 알고리즘: Python으로 이동평균선 크로스오버
 
-Lean의 Python API로 클래식 이동평균선 크로스오버 전략을 구축해 봅시다: ```python
+Lean의 Python API로 클래식 이동평균선 크로스오버 전략을 구축해 봅시다: `````python
 from AlgorithmImports import *
 
 class SmaCrossoverAlgorithm(QCAlgorithm): def Initialize(self): # 백테스트 기간
@@ -168,15 +169,15 @@ class SmaCrossoverAlgorithm(QCAlgorithm): def Initialize(self): # 백테스트 �
         
         self.previous_fast = fast_val
         self.previous_slow = slow_val
-```
+`````
 
-CLI를 통해 이 백테스트를 실행합니다: ```bash
+CLI를 통해 이 백테스트를 실행합니다: `````bash
 # main.py로 저장한 후: lean backtest "MyProject" --output results.json
-```
+`````
 
 ## 다중 자산 포트폴리오 전략
 
-Lean은 다중 자산 전략에서 탁월합니다. 다음은 주식과 채권 간의 리스크 패리티 배분입니다: ```python
+Lean은 다중 자산 전략에서 탁월합니다. 다음은 주식과 채권 간의 리스크 패리티 배분입니다: `````python
 from AlgorithmImports import *
 import numpy as np
 
@@ -219,11 +220,11 @@ class RiskParityAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(
         for symbol, weight in weights.items(): self.SetHoldings(symbol, weight)
         
         self.Debug(f"Rebalanced: {weights}")
-```
+`````
 
 ## 옵션 및 선물 전략
 
-Lean은 네이티브 지원으로 복잡한 파생상품을 처리합니다: ```python
+Lean은 네이티브 지원으로 복잡한 파생상품을 처리합니다: `````python
 from AlgorithmImports import *
 
 class OptionsStraddleAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(2023, 1, 1)
@@ -257,11 +258,11 @@ class OptionsStraddleAlgorithm(QCAlgorithm): def Initialize(self): self.SetStart
         # 스트래들 매수
         self.Buy(atm_call.Symbol, 1)
         self.Buy(atm_put.Symbol, 1)
-```
+`````
 
 ## 실제 트레이딩 및 모의 트레이딩 설정
 
-백테스트에서 실제 트레이딩으로 전환하려면 단일 구성을 변경하면 됩니다: ```python
+백테스트에서 실제 트레이딩으로 전환하려면 단일 구성을 변경하면 됩니다: `````python
 from AlgorithmImports import *
 
 class LiveSmaAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(2026, 1, 1)
@@ -276,11 +277,11 @@ class LiveSmaAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(202
 
     def OnData(self, data): # 백테스트와 동일한 로직
         pass
-```
+`````
 
 ### 브로커 구성
 
-실제 배포를 위해 `config.json`을 편집합니다: ```json
+실제 배포를 위해 ``config.json``을 편집합니다: `````json
 {
   "environment": "live",
   "algorithm-type-name": "LiveSmaAlgorithm",
@@ -292,13 +293,13 @@ class LiveSmaAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(202
   "ib-host": "127.0.0.1",
   "ib-port": 7497
 }
-```
+`````
 
 Binance에서 암호화폐 실제 트레이딩을 위해 API 키를 설정하고 깊은 유동성 시장에 연결하세요 —— [여기서 등록](https://www.bsmkweb.cc/register?ref=DIBI8)하여 알고리즘 암호화폐 트레이딩을 시작하세요.
 
 ## 머신러닝과의 통합
 
-Lean은 scikit-learn과 ONNX 런타임을 통해 ML 모델을 지원합니다. 오프라인에서 훈련하고, 모델을 직렬화한 다음, 알고리즘 초기화 중에 로드합니다: ```python
+Lean은 scikit-learn과 ONNX 런타임을 통해 ML 모델을 지원합니다. 오프라인에서 훈련하고, 모델을 직렬화한 다음, 알고리즘 초기화 중에 로드합니다: `````python
 from AlgorithmImports import *
 import pickle
 import numpy as np
@@ -330,7 +331,7 @@ class MLPredictionAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDat
         # 1 = 상승 예측, 0 = 하락 예측
         if prediction == 1 and not self.Portfolio[self.symbol].Invested: self.SetHoldings(self.symbol, 1.0)
         elif prediction == 0 and self.Portfolio[self.symbol].Invested: self.Liquidate(self.symbol)
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -354,7 +355,7 @@ AUM 2억 달러의 체계적 거시 펀드는 Lean을 주요 실행 엔진으로
 
 ### 사용자 정의 알파 모델 (프레임워크 알고리즘)
 
-Lean의 알고리즘 프레임워크는 알파 생성, 포트폴리오 구성, 실행을 분리합니다: ```python
+Lean의 알고리즘 프레임워크는 알파 생성, 포트폴리오 구성, 실행을 분리합니다: `````python
 from AlgorithmImports import *
 
 class CustomAlphaModel(AlphaModel): def __init__(self): self.name = "CustomAlpha"
@@ -384,11 +385,11 @@ class CustomAlphaModel(AlphaModel): def __init__(self): self.name = "CustomAlpha
     
     def OnSecuritiesChanged(self, algorithm, changes): self.securities.extend(changes.AddedSecurities)
         for removed in changes.RemovedSecurities: self.securities.remove(removed)
-```
+`````
 
 ### 리스크 관리 모듈
 
-```python
+`````python
 from AlgorithmImports import *
 
 class MaxDrawdownRiskManagement(RiskManagementModel): def __init__(self, max_drawdown=0.10): self.max_drawdown = max_drawdown
@@ -405,11 +406,11 @@ class MaxDrawdownRiskManagement(RiskManagementModel): def __init__(self, max_dra
             return []
         
         return targets
-```
+`````
 
 ### 유니버스 선택
 
-```python
+`````python
 from AlgorithmImports import *
 
 class FundamentalUniverseAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(2022, 1, 1)
@@ -441,7 +442,7 @@ class FundamentalUniverseAlgorithm(QCAlgorithm): def Initialize(self): self.SetS
 
     def OnData(self, data): # 월별 리밸런싱
         pass
-```
+`````
 
 ## 대안과의 비교
 
@@ -477,7 +478,7 @@ Lean은 강력하지만 마찰이 없는 것은 아닙니다: 1. **Python 퀀트
 
 4. **Python 알고리즘 제한.** Python.NET에는 C# 예외가 제대로 전파되지 않는 엣지 케이스가 있습니다. 일부 고급 기능(사용자 정의 데이터 타입)은 C# 구현이 필요합니다.
 
-5. **웜업 요구사항.** 지표는 유효한 신호를 생성하기 전에 웜업 기간이 필요합니다. 새로운 사용자는 종종 `SetWarmUp()`을 잊고 알고리즘이 거래하지 않는 이유를 궁금해합니다.
+5. **웜업 요구사항.** 지표는 유효한 신호를 생성하기 전에 웜업 기간이 필요합니다. 새로운 사용자는 종종 ````SetWarmUp()```을 잊고 알고리즘이 거래하지 않는 이유를 궁금해합니다.
 
 6. **최적 경험을 위한 클라우드 의존.** Lean은 로컬에서 실행되지만 최고의 데이터와 컴퓨팅 경험은 QuantConnect의 클라우드에 있어 벤더 종속 우려가 있습니다.
 

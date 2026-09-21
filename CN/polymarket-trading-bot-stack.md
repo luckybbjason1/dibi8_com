@@ -40,6 +40,7 @@ faqs: - q: 'Why can a bot profit from arbitrage between Binance and Polymarket?'
   - q: 'Why do trading bots outperform humans using the same Polymarket strategy?'
     a: 'In a tracked period bots generated about $206,000 versus roughly $100,000 for humans using the same logic, a 2x gap. Humans lose to four systematic errors: late entries after the window closes, emotional and inconsistent position sizing, fatigue after about 8 hours, and drawdown psychology that makes them abandon or double down on strategies.'
 ---
+
 # 28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown
 
 {</* resource-info */>}
@@ -48,7 +49,7 @@ faqs: - q: 'Why can a bot profit from arbitrage between Binance and Polymarket?'
 
 **$1,003,450 in profit. 3,062 predictions. One wallet.**
 
-When traders first saw the growth trajectory of wallet `0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3` on Polymarket, the reaction was simple: *fake*. A seven-figure PnL from a retail-profile wallet belongs in a Telegram scam group, not on a verifiable on-chain dashboard.
+When traders first saw the growth trajectory of wallet ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3```` on Polymarket, the reaction was simple: *fake*. A seven-figure PnL from a retail-profile wallet belongs in a Telegram scam group, not on a verifiable on-chain dashboard.
 
 But the blockchain doesn't lie. Every trade is public. Every settlement is verifiable.
 
@@ -103,11 +104,11 @@ The gap? Risk management quality. Claude's generated code included more conserva
 
 | Tool | Purpose | Link |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Claude (Anthropic)** | Primary strategist. Reasons about market questions, estimates probability vs current price | [anthropic.com](https://anthropic.com) |
 | **Qwen3-Coder** | Open source coding LLM. Watches live performance, rewrites modules autonomously | [GitHub](https://github.com/QwenLM/Qwen3-Coder) |
@@ -122,11 +123,11 @@ A reasoning engine with no execution layer is just an opinion generator.
 
 | Tool | Purpose | Link |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Agency Agents** | Bull vs Bear debate with Risk Manager veto | [GitHub](https://github.com/msitarzewski/agency-agents) |
 | **ClaudeAgent OneClick** | One-click deploy. 24/7 market watcher in minutes | [GitHub](https://github.com/cvxv666/ClaudeAgentOneClick) |
@@ -142,11 +143,11 @@ The bot is only as good as what it can see.
 
 | Tool | Purpose | Link |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **OpenBB** | Open source Bloomberg. 100+ data sources unified | [GitHub](https://github.com/OpenBB-finance/OpenBB) |
 | **Dexter** | Autonomous deep research. SEC filings, earnings transcripts | [GitHub](https://github.com/virattt/dexter) |
@@ -165,11 +166,11 @@ You don't have to build everything from scratch.
 
 | Tool | Purpose | Link |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Polyscope** | Scans 2,000+ markets. Whale alerts to Telegram | [thepolyscope.com](https://thepolyscope.com) |
 | **Polywhaler** | $10k+ whale trade tracker with AI signals | [polywhaler.com](https://polywhaler.com) |
@@ -187,11 +188,11 @@ This is the layer most retail bots skip - and the reason most blow up.
 
 | Tool | Purpose | Link |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **prediction-market-backtesting** | Backtests against real historical Polymarket/Kalshi data | [GitHub](https://github.com/evan-kolberg/prediction-market-backtesting) |
 | **polybot** | Full execution infrastructure with paper trading. Kafka, ClickHouse, Grafana | [GitHub](https://github.com/ent0n29/polybot) |
@@ -205,7 +206,7 @@ Polymarket exposes four API surfaces: 1. **Gamma API** - Market data, prices, me
 3. **On-chain settlement** - Polygon (chain ID 137), USDC
 4. **WebSocket feeds** - Real-time price updates
 
-The official Python client `py-clob-client` wraps all of this. Three lines to fetch an order book. Five to place a signed limit order.
+The official Python client ````py-clob-client```` wraps all of this. Three lines to fetch an order book. Five to place a signed limit order.
 
 **Key repos:**
 - [Polymarket/agents](https://github.com/Polymarket/agents) - Official AI agent framework with LangChain
@@ -213,10 +214,10 @@ The official Python client `py-clob-client` wraps all of this. Three lines to fe
 
 ## The Complete Signal Flow
 
-```
+`````
 World Event → Binance WebSocket (50ms) → AI Analysis → Kelly Sizing → 
 CLOB API Order → Polygon Settlement → Position Monitoring → Profit/Loss
-```
+````
 
 **Total latency: Under 10 seconds** in the ideal path.
 
@@ -255,7 +256,7 @@ The stack is open. The tools are free. The edge is real. The only question is wh
 **Remember**: Competition is weaker than it looks. Most people will scream "too hard" and call it cap. Only the builders eat.
 
 
----
+* * *
 ## Resources & Links
 
 - [Polymarket Official](https://polymarket.com)
@@ -267,7 +268,7 @@ The stack is open. The tools are free. The edge is real. The only question is wh
 *Disclaimer: This article is for educational purposes only. Prediction market trading carries significant risk. Past performance does not guarantee future results. Always conduct your own research before trading.*
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.

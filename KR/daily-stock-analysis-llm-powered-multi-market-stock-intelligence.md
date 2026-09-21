@@ -12,6 +12,7 @@ github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
 
+
 # 일일 주식 분석: LLM 기반 다시장 주식 인텔리전스
 
 **일일 주식 분석** 은 LLM 기반의 오픈소스 주식 분석 시스템으로, 실시간 뉴스 집계, 자동화된 의사결정 대시보드 및 지능형 알림 시스템을 갖춘 다시장 인텔리전스를 제공합니다. **48,278개의 GitHub 스타**를 달성하며, 기관급 분석을 추구하는 개인 투자자들을 위한 가장 인기 있는 퀀트 트레이딩 도구 중 하나가 되었습니다.
@@ -44,7 +45,7 @@ license: MIT
 
 ### 옵션 1: Docker 배포 (가장 쉬움)
 
-```bash
+````bash
 # 저장소 복제
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -58,11 +59,11 @@ docker compose up -d
 
 # 상태 확인
 docker compose ps
-```
+`````
 
 ### 옵션 2: 수동 설치
 
-```bash
+`````bash
 # 저장소 복제
 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 cd daily_stock_analysis
@@ -85,11 +86,11 @@ cp config.example.yaml config.yaml
 
 # 첫 번째 분석 실행
 python main.py --market us --date $(date +%Y-%m-%d)
-```
+`````
 
 ### 옵션 3: 로컬 LLM 설정 (무료)
 
-API 비용을 완전히 피하고 싶은 사용자를 위한 방법: ```bash
+API 비용을 완전히 피하고 싶은 사용자를 위한 방법: `````bash
 # 로컬 LLM 추론을 위해 Ollama 설치
 curl -fsSL https://ollama.ai/install.sh | sh
 
@@ -105,13 +106,13 @@ EOF
 
 # 제로 API 비용으로 분석 실행
 python main.py --market a_shares --date $(date +%Y-%m-%d)
-```
+`````
 
 ## 시장 데이터 통합
 
 ### AKShare 통합 (무료 A주식 데이터)
 
-AKShare는 API 키 없이 중국 시장 데이터에 대한 무료 접근을 제공합니다: ```python
+AKShare는 API 키 없이 중국 시장 데이터에 대한 무료 접근을 제공합니다: `````python
 import akshare as ak
 
 # 일일 A주식 시장 데이터 가져오기
@@ -130,11 +131,11 @@ hist_df = ak.stock_zh_a_hist(
 # 섹터 성과 가져오기
 sector_df = ak.stock_board_industry_name_em()
 print(sector_df)
-```
+`````
 
 ### Tushare 통합 (프리미엄 A주식 데이터)
 
-기본 정보를 포함한 더 포괄적인 A주식 데이터를 위한: ```python
+기본 정보를 포함한 더 포괄적인 A주식 데이터를 위한: `````python
 import tushare as ts
 
 # API 토큰으로 초기화
@@ -159,11 +160,11 @@ holder_df = pro.stock_holder_top10(
     ts_code="000001.SZ",
     ann_date="20260331"
 )
-```
+`````
 
 ### 미국 시장 데이터
 
-```python
+`````python
 import yfinance as yf
 
 # 미국 주식 데이터 가져오기
@@ -179,11 +180,11 @@ recommendations = ticker.recommendations
 # 뉴스 감정 가져오기
 news = ticker.news
 for item in news: print(f"{item[title]}: {item[providerPublishTime]}")
-```
+`````
 
 ### 암호화폐 데이터
 
-```python
+`````python
 import ccxt
 
 # 거래소 연결
@@ -201,13 +202,13 @@ print(f"거래량: {ticker[quoteVolume]}")
 order_book = exchange.fetch_order_book('ETH/USDT')
 print(f"매수: {order_book[bids][0][0]}")
 print(f"매도: {order_book[asks][0][0]}")
-```
+`````
 
 ## LLM 기반 분석
 
 ### 감정 분석 파이프라인
 
-일일 주식 분석의 핵심은 LLM 기반 감정 분석 파이프라인입니다: ```python
+일일 주식 분석의 핵심은 LLM 기반 감정 분석 파이프라인입니다: `````python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider
 
@@ -239,11 +240,11 @@ print(f"전체 감정: {analysis.sentiment}")
 print(f"신뢰도: {analysis.confidence:.1%}")
 print(f"핵심 요소: {', '.join(analysis.key_factors)}")
 print(f"위험 수준: {analysis.risk_level}")
-```
+`````
 
 ### 사용자 정의 분석 프롬프트
 
-다양한 사용 사례에 대해 LLM 분석 프롬프트를 사용자 정의할 수 있습니다: ```python
+다양한 사용 사례에 대해 LLM 분석 프롬프트를 사용자 정의할 수 있습니다: `````python
 # 기술 분석 프롬프트
 tech_prompt = """
 다음 주식 기술적 지표를 분석하고 다음을 제공하세요: 1. 추세 방향 (강세/약세/중립)
@@ -273,11 +274,11 @@ combined = llm.analyze(
     fundamental_data=fundamental_data,
     news_data=news_data
 )
-```
+`````
 
 ### 다시장 비교 분석
 
-서로 다른 시장의 주식을 동시에 비교: ```python
+서로 다른 시장의 주식을 동시에 비교: `````python
 # 미국 기술주 비교
 us_techs = llm.compare_stocks(
     symbols=["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -291,18 +292,18 @@ a_share_sectors = llm.compare_sectors(
     market="a_shares",
     time_period="1m"
 )
-```
+`````
 
 ## 대시보드 구성
 
 ### 웹 대시보드 설정
 
-일일 주식 분석은 내장 웹 대시보드를 포함합니다: ```bash
+일일 주식 분석은 내장 웹 대시보드를 포함합니다: `````bash
 # 대시보드 서버 시작
 python dashboard.py --host 0.0.0.0 --port 8080
 
 # http://localhost:8080에서 접근
-```
+`````
 
 대시보드는 다음을 제공합니다: - 히트맵과 함께하는 실시간 시장 개요
 - 대화형 차트와 함께하는 개별 주식 분석
@@ -312,7 +313,7 @@ python dashboard.py --host 0.0.0.0 --port 8080
 
 ### 대시보드 사용자 정의
 
-```yaml
+`````yaml
 # dashboard_config.yaml
 dashboard: refresh_interval: 300  # 5분
   default_market: "a_shares"
@@ -328,11 +329,11 @@ dashboard: refresh_interval: 300  # 5분
   alerts: - threshold: 0.8
       action: "notification"
       channels: ["email", "telegram"]
-```
+`````
 
 ### 보고서 내보내기
 
-```bash
+`````bash
 # PDF 형식으로 일일 보고서 생성
 python report_generator.py --format pdf --output daily_report.pdf
 
@@ -341,13 +342,13 @@ python report_generator.py --format html --output daily_report.html
 
 # 분석 데이터를 CSV로 내보내기
 python report_generator.py --format csv --output analysis_data.csv
-```
+`````
 
 ## 자동 스케줄링
 
 ### 크론 작업 설정
 
-자동 분석 실행 예약: ```bash
+자동 분석 실행 예약: `````bash
 # crontab 편집
 crontab -e
 
@@ -359,11 +360,11 @@ crontab -e
 
 # 일요일에 주간 종합 보고서
 0 9 * * 0 cd /path/to/daily_stock_analysis && python weekly_report.py
-```
+`````
 
 ### systemd 서비스
 
-지속적인 백그라운드 작동을 위한: ```ini
+지속적인 백그라운드 작동을 위한: `````ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
 Description=일일 주식 분석 서비스
@@ -379,20 +380,20 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-```bash
+`````bash
 # 서비스 활성화 및 시작
 sudo systemctl enable daily-stock-analysis
 sudo systemctl start daily-stock-analysis
 sudo systemctl status daily-stock-analysis
-```
+`````
 
 ## 알림 시스템
 
 ### Telegram 알림
 
-```bash
+`````bash
 # Telegram 봇 구성
 python notify.py --setup telegram \
   --bot-token "${TELEGRAM_BOT_TOKEN}" \
@@ -401,11 +402,11 @@ python notify.py --setup telegram \
 # 테스트 알림 보내기
 python notify.py --send "AAPL 일일 분석 완료" \
   --channel telegram
-```
+`````
 
 ### 이메일 알림
 
-```python
+`````python
 from daily_stock_analysis.notify import Notifier
 
 # 이메일 알림기 구성
@@ -424,11 +425,11 @@ notifier.send_email(
     body=analysis_report,
     attach_pdf=True
 )
-```
+`````
 
 ### 사용자 정의 웹훅 알림
 
-```python
+`````python
 # 사용자 정의 웹훅으로 보내기 (예: Slack, Discord)
 notifier.send_webhook(
     url="https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
@@ -445,7 +446,7 @@ notifier.send_webhook(
         ]
     }
 )
-```
+````
 
 ## 비교: 일일 주식 분석 vs 대안
 
@@ -519,12 +520,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -534,7 +535,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 - [ai-engineering-from-scratch](daily-stock-analysis-llm-powered-multi-market-stock-intelligence)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

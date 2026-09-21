@@ -32,6 +32,7 @@ faq: - q: "Claude Max（$200）相比 API 按量付费值不值？"
     a: "Anthropic 在 4 月底调整了 Max 套餐的限速（更宽松、更多余量）。OpenAI 的 Codex CLI 完全转向按量付费（不再有 Pro 套餐）。Cursor 新增 $50 Business 套餐并捆绑 API 额度。三者都让临界点的算法相比 Q1 评测发生了偏移。"
 ---
 
+
 {{</* resource-info */>}}
 
 # AI 编码 Agent 月度账单 2026：30 天真实账单
@@ -53,7 +54,7 @@ faq: - q: "Claude Max（$200）相比 API 按量付费值不值？"
 > **叠三家只值得**当你有明确的 shell/devops 自动化需求、Codex CLI 的终端原生流程胜出时。
 
 
----
+* * *
 ## 30 天工作负载
 
 为了可比：我追踪了一名独立开发者在三家平台上的真实使用，2026 年 5 月 1 日至 30 日。项目构成：70% TypeScript SaaS 功能开发、20% Python 数据脚本、10% 杂项（配置/文档/运维）。
@@ -69,38 +70,38 @@ faq: - q: "Claude Max（$200）相比 API 按量付费值不值？"
 
 ### Claude Max（$200/月）— 用得最多，价值最大
 
-```
+````
 Plan: Anthropic Max ($200)
 Period: 2026-05-01 to 2026-05-30
 Token usage: ~14.2M input, ~3.1M output (estimated)
 Rate limit hits: 2 (both during long debug loops near 200K context)
 Effective cost per hour: $2.98
-```
+`````
 
 如果按标准 Sonnet 4.6 API 计费，同样的用量约为 $340。Max 在此量级省下约 $140。**临界点**：每天 < 3 小时使用，API 按量付费（$80-150 区间）更划算。超过 3 小时，Max 胜出。
 
 ### ChatGPT Plus + Codex CLI API（实际 $165）
 
-```
+`````
 Plan: ChatGPT Plus ($20) + Codex CLI API
 Period: 2026-05-01 to 2026-05-30
 API usage: $144.80 (GPT-5 + Codex)
 Effective monthly: $164.80
 Effective cost per hour (Codex only): $7.49
-```
+`````
 
 Codex CLI 的强项在 shell 驱动的工作流——devops 脚本、CI/CD 胶水、日志分析。每小时成本更高但小时数更少。**对每月 22 小时的终端 agent 工作来说**，它正好夹在 Claude Max 和 Cursor Pro 之间。
 
 ### Cursor Pro + API（实际 $87）
 
-```
+`````
 Plan: Cursor Pro ($20)
 Period: 2026-05-01 to 2026-05-30
 Subscription: $20
 API overflow (agent mode): $67.12
 Effective monthly: $87.12
 Effective cost per hour: $0.98
-```
+````
 
 每小时成本最低——但那 89 小时大部分是被动的 tab 补全。主动 agent 循环的小时数约 12 小时。**按主动小时算成本**，更接近 $7.26。"便宜"的标签掩盖了你重度使用 agent 模式时的真相。
 
@@ -110,13 +111,13 @@ Effective cost per hour: $0.98
 
 | 任务类型 | Claude Code | Cursor | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 新功能，~200 行，3 个文件 | $0.42 | $0.18 | $0.55 |
 | 全仓重构（~40 处） | $0.84 | $0.05（符号重命名） | $1.10 |
@@ -176,7 +177,7 @@ Effective cost per hour: $0.98
 优化前先追踪自己 30 天的真实用量。上面的账单是一位开发者的现实，但你的工作流构成会改变算法。追踪这个动作本身往往就揭示了最大的节省空间——多数开发者在真正去看之前，根本不知道自己每小时花了多少。
 
 
----
+* * *
 **相关阅读**：[AI 编码 2026-Q2 终极对决](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 替代方案 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [RTK Rust CLI 代理：AI 编码成本省 80%](https://dibi8.com/zh/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/)
 
 
@@ -241,12 +242,12 @@ AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro 的 3
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -256,7 +257,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](ai-coding-agent-monthly-bill-2026-real-receipts)
 - [cursor-vs-claude-code](ai-coding-agent-monthly-bill-2026-real-receipts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

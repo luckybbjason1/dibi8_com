@@ -18,6 +18,7 @@ faqs: - q: 'Sự khác biệt cốt lõi giữa Claude Code và Cline là gì?'
     a: 'Cline, nếu bạn muốn quan sát và phê duyệt mọi thứ trong khi học — nó nằm bên trong VS Code với một giao diện đồ họa quen thuộc, và mọi diff/lệnh/lượt tải web đều được xem xét trước khi chạy, nên không có gì xảy ra mà bạn chưa đồng ý. Claude Code giả định bạn thoải mái với terminal và tin tưởng agent triển khai các thay đổi nhiều bước một cách tự chủ, điều này mạnh mẽ hơn nhưng ít dắt tay hơn. Hãy bắt đầu với Cline để có khả năng quan sát và kiểm soát; nâng cấp lên Claude Code khi bạn tin tưởng vòng lặp và muốn tốc độ.'
 ---
 
+
 # Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?
 
 
@@ -29,7 +30,7 @@ Dùng **Claude Code** nếu: bạn sống trong terminal, muốn agent tự ch�
 
 Dùng **Cline** nếu: bạn muốn một tiện ích mở rộng VS Code hiển thị và hỏi trước mọi thay đổi, tự do dùng bất kỳ mô hình nào (Claude/GPT/DeepSeek/Gemini/cục bộ) và hóa đơn token thấp nhất có thể.
 
----
+* * *
 
 ## So sánh trực tiếp
 
@@ -46,7 +47,7 @@ Dùng **Cline** nếu: bạn muốn một tiện ích mở rộng VS Code hiển
 | **Con người trong vòng lặp** | Tùy chọn (tin tưởng vòng lặp) | Tích hợp sẵn (phê duyệt mọi thứ) |
 | **Phù hợp nhất cho** | Công việc nhiều bước tự chủ, tự động hóa theo lịch | Kiểm soát, tự do chọn mô hình, tối ưu chi phí |
 
----
+* * *
 
 ## Khi nào nên chọn Claude Code
 
@@ -59,7 +60,7 @@ Routines (tháng 5/2026) cho phép bạn đặt "kiểm tra migration hàng đê
 ### Tình huống 3: Chất lượng trên mỗi token tối đa với Claude
 Được tinh chỉnh chuyên dụng cho các mô hình Claude, Claude Code khai thác được nhiều việc hữu ích hơn từ mỗi token — điểm 77.2% SWE-bench (2026) của Anthropic là điểm cao nhất từng được công bố cho một coding agent. Nếu bạn dùng Claude dù sao đi nữa, bạn khai thác được nhiều nhất ở đây.
 
----
+* * *
 
 ## Khi nào nên chọn Cline
 
@@ -72,7 +73,7 @@ Cline không phụ thuộc vào mô hình: Claude, GPT, DeepSeek, Gemini hay m�
 ### Tình huống 3: Chi phí thấp nhất
 Tiện ích mở rộng là miễn phí; bạn chỉ trả cho suy luận. Định tuyến công việc lặp lại sang DeepSeek hoặc Gemini Flash, hoặc chạy một mô hình cục bộ, và hóa đơn của bạn giảm về gần như bằng không. Một lập trình viên Cline-trên-Sonnet-4.6 điển hình chỉ chi $5-15/tháng.
 
----
+* * *
 
 ## Phân tích sâu về giá cả
 
@@ -88,7 +89,7 @@ Tiện ích mở rộng là miễn phí; bạn chỉ trả cho suy luận. Đị
 
 → Cline thắng về mức sàn chi phí thô nhờ định tuyến mô hình. Claude Code thắng về *giá trị* trên mỗi token với Claude, cộng với các tính năng bạn không thể có trong một tiện ích mở rộng thuần túy.
 
----
+* * *
 
 ## Trục thực sự: Kiểm soát và Tự chủ
 
@@ -97,7 +98,7 @@ Gạt bỏ các danh sách tính năng đi thì lựa chọn mang tính triết 
 
 Không cái nào "đúng" một cách phổ quát. Nước đi chín chắn là khớp công cụ với rủi ro: Cline cho việc tái cấu trúc nhạy cảm mà bạn muốn quan sát, Claude Code cho ticket thường nhật mà bạn muốn *hoàn thành*.
 
----
+* * *
 
 ## Góc nhìn của dibi8
 
@@ -109,13 +110,13 @@ Cây quyết định thành thật: - Tin tưởng vòng lặp, dùng Claude, mu
 - Muốn phê duyệt mọi thứ, chuyển đổi mô hình, giảm thiểu chi phí → **Cline**
 - Cũng so sánh với các công cụ kiểu IDE? Xem [Cursor và Claude Code](https://dibi8.com/vi/vs/cursor-vs-claude-code/) và [Claude Code và Aider](https://dibi8.com/vi/vs/claude-code-vs-aider/).
 
----
+* * *
 
 ## FAQ
 
 (hiển thị qua frontmatter faqs — xuất hiện trực tiếp + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc thêm
 
@@ -159,7 +160,7 @@ Cây quyết định thành thật: - Tin tưởng vòng lặp, dùng Claude, mu
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -169,7 +170,7 @@ Cây quyết định thành thật: - Tin tưởng vòng lặp, dùng Claude, mu
 - [claude-code-vs-aider](claude-code-vs-cline)
 - [cursor-vs-claude-code](claude-code-vs-cline)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

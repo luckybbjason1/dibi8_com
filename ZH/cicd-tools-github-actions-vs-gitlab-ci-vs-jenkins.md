@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/-
 ---
+
 # CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测
 
 
@@ -29,9 +30,9 @@ GitHub Actions的最大优势在于**与GitHub的深度集成**。你的代码�
 
 ### 核心工作机制
 
-GitHub Actions使用YAML定义workflow，放置在仓库的`.github/workflows/`目录下。一个workflow包含多个job，每个job运行在独立的虚拟机（runner）上，job之间可以定义依赖关系。最基础的workflow可能只有几十行：
+GitHub Actions使用YAML定义workflow，放置在仓库的```.github/workflows/````目录下。一个workflow包含多个job，每个job运行在独立的虚拟机（runner）上，job之间可以定义依赖关系。最基础的workflow可能只有几十行：
 
-```yaml
+`````yaml
 name: CI
 on: [push, pull_request]
 jobs: test: runs-on: ubuntu-latest
@@ -39,7 +40,7 @@ jobs: test: runs-on: ubuntu-latest
       - uses: actions/setup-node@v4
       - run: npm ci
       - run: npm test
-```
+`````
 
 **Matrix builds**是GitHub Actions的杀手级功能。你可以在单份配置中并行测试多个操作系统和语言版本的组合，例如同时在Node.js 18/20/22和ubuntu/macOS/windows上运行测试，配置仅需额外5-6行YAML。
 
@@ -57,13 +58,13 @@ GitLab CI不是独立的CI工具，而是[GitLab](https://docs.gitlab.com/ee/ci)
 
 ### 流水线配置结构
 
-GitLab CI通过仓库根目录的`.gitlab-ci.yml`文件定义流水线。核心概念包括：
+GitLab CI通过仓库根目录的````.gitlab-ci.yml````文件定义流水线。核心概念包括：
 
 - **Stages**：定义流水线阶段（如build、test、deploy），阶段按顺序执行，同一阶段内的job并行运行
 - **Jobs**：每个job独立运行，可以指定镜像、脚本、产物（artifacts）和缓存
 - **Runners**：执行job的代理，GitLab提供共享runner，也支持自托管runner
 
-```yaml
+`````yaml
 stages: [build, test, deploy]
 build_job: stage: build
   script: npm run build
@@ -73,7 +74,7 @@ test_job: stage: test
 deploy_job: stage: deploy
   script: npm run deploy
   only: [main]
-```
+`````
 
 ### Kubernetes原生集成
 
@@ -99,7 +100,7 @@ Jenkins拥有超过**1,800个插件**，覆盖 virtually  every 工具链集成�
 
 Jenkins 2.0引入的**Jenkinsfile**让流水线可以像代码一样版本管理。使用声明式语法（Declarative Pipeline）或脚本式语法（Scripted Pipeline），你可以定义复杂的构建逻辑：
 
-```groovy
+`````groovy
 pipeline {
   agent any
   stages {
@@ -118,7 +119,7 @@ pipeline {
     }
   }
 }
-```
+`````
 
 **Blue Ocean**插件为Jenkins提供了现代化的UI界面，大幅改善了用户体验。不过原生Jenkins的界面在2025年看来已经相当陈旧，这是许多团队转向新平台的原因之一。
 
@@ -130,13 +131,13 @@ Jenkins的Master-Agent架构让它能轻松扩展到数百个构建节点。但�
 
 | 维度 | GitHub Actions | GitLab CI | Jenkins |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **上手难度** | 低，YAML配置 + Marketplace | 中低，YAML配置，概念稍多 | 高，需安装配置服务器 |
 | **托管选项** | 云托管 + 自托管runner | 云托管 + 自托管 | 仅自托管 |
@@ -154,7 +155,7 @@ Jenkins的Master-Agent架构让它能轻松扩展到数百个构建节点。但�
 
 **并行执行**上，GitHub Actions支持最多256个job并行（Enterprise计划），GitLab CI的并行度取决于runner数量，Jenkins理论上无限但受限于Master节点性能。
 
-**单体仓库（Monorepo）**处理是2025年的热门话题。GitHub Actions的`paths`过滤可以只针对变更目录触发构建，GitLab CI有`rules:changes`实现类似功能，Jenkins则需配合插件或脚本实现变更检测。
+**单体仓库（Monorepo）**处理是2025年的热门话题。GitHub Actions的````paths````过滤可以只针对变更目录触发构建，GitLab CI有````rules:changes````实现类似功能，Jenkins则需配合插件或脚本实现变更检测。
 
 ## 安全性深度对比
 
@@ -215,7 +216,7 @@ Jenkins的Master-Agent架构让它能轻松扩展到数百个构建节点。但�
 建议分阶段迁移：1）先从非关键项目试点，熟悉Actions的YAML语法和概念差异；2）将Jenkins Pipeline中的核心步骤（build、test、deploy）逐一映射为GitHub Actions的jobs和steps；3）利用GitHub Actions Marketplace替代Jenkins插件；4）最后处理复杂逻辑（如Jenkins的Groovy脚本可用GitHub Actions的脚本step或composite actions替代）。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -289,7 +290,7 @@ CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测 r
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -301,7 +302,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -312,4 +313,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

@@ -12,6 +12,7 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -61,41 +62,41 @@ When someone with Addy's track record says "build skills for AI agents," you lis
 
 ## What Are Agent Skills?
 
-Agent Skills is a framework for creating reusable, shareable capabilities for AI coding assistants. Think of it as npm for agent behaviors: ```
+Agent Skills is a framework for creating reusable, shareable capabilities for AI coding assistants. Think of it as npm for agent behaviors: ````
 Skills = Your organization's AI knowledge
         = Pre-built workflows
         = Custom commands
         = Context-aware helpers
-```
+`````
 
 ## Installation & Setup
 
 ### Method 1: Quick Start
-```bash
+`````bash
 npm install -g agent-skills
 skills init my-project
-```
+`````
 
 ### Method 2: Manual Installation
-```bash
+`````bash
 git clone https://github.com/addyosmani/agent-skills.git
 cd agent-skills
 npm install
 npm run build
-```
+`````
 
 ### IDE Integration
 **For VS Code:**
-```json
+`````json
 // settings.json
 {
   "agentSkills.enabled": true,
   "agentSkills.skillsPath": "./skills"
 }
-```
+`````
 
 **For Cursor:**
-```json
+`````json
 // .cursorrc
 {
   "skills": {
@@ -103,46 +104,46 @@ npm run build
     "directory": "./skills"
   }
 }
-```
+`````
 
 ## Building Your First Skill
 
 ### Basic Structure
-```
+`````
 skills/
 ├── my-skill/
 │   ├── SKILL.md          # Skill definition
 │   ├── execute.ts        # Implementation
 │   └── config.yaml       # Configuration
-```
+`````
 
 ### Skill Definition
-```markdown
+`````markdown
 
----
+* * *
 name: my-skill
 description: "One-line description of what this skill does"
 version: 1.0.0
 author: your-name
 
----
+* * *
 # My Skill
 
 Detailed description here...
 
 ## Usage
-\`\`\`
+\````\````\````
 skills run my-skill --flag value
-\`\`\`
+\````\````\````
 
 ## Examples
-\`\`\`typescript
+\````\````\````typescript
 // Example code
-\`\`\`
-```
+\````\````\````
+`````
 
 ### Implementation
-```typescript
+`````typescript
 import { Skill, SkillContext } from 'agent-skills';
 
 export class MySkill extends Skill {
@@ -158,12 +159,12 @@ export class MySkill extends Skill {
     };
   }
 }
-```
+`````
 
 ## Real-World Skill Examples
 
 ### 1. Security Scanner
-Automated security checks before commits: ```typescript
+Automated security checks before commits: `````typescript
 class SecurityScanSkill extends Skill {
   async execute(ctx) {
     const files = await this.getModifiedFiles();
@@ -184,10 +185,10 @@ class SecurityScanSkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 ### 2. Documentation Generator
-Auto-generate docs from code: ```typescript
+Auto-generate docs from code: `````typescript
 class DocGeneratorSkill extends Skill {
   async execute(ctx) {
     const api = await this.extractAPI(ctx.code);
@@ -197,14 +198,14 @@ class DocGeneratorSkill extends Skill {
     
     return {
       success: true,
-      output: `Generated ${api.length} API docs`
+      output: ````Generated ${api.length} API docs````
     };
   }
 }
-```
+`````
 
 ### 3. Performance Profiler
-Measure and optimize code: ```typescript
+Measure and optimize code: `````typescript
 class PerformanceProfileSkill extends Skill {
   async execute(ctx) {
     const metrics = await this.profileCode(ctx.code);
@@ -216,12 +217,12 @@ class PerformanceProfileSkill extends Skill {
     };
   }
 }
-```
+`````
 
 ## Advanced Patterns
 
 ### Pattern 1: Conditional Execution
-```typescript
+`````typescript
 class ConditionalSkill extends Skill {
   async shouldExecute(ctx): Promise<boolean> {
     // Only run if certain conditions are met
@@ -232,10 +233,10 @@ class ConditionalSkill extends Skill {
     // ...
   }
 }
-```
+`````
 
 ### Pattern 2: Multi-Step Workflows
-```typescript
+`````typescript
 class DeploySkill extends Skill {
   async execute(ctx) {
     const steps = [
@@ -252,10 +253,10 @@ class DeploySkill extends Skill {
     return { success: true };
   }
 }
-```
+`````
 
 ### Pattern 3: State Persistence
-```typescript
+`````typescript
 class CachingSkill extends Skill {
   async execute(ctx) {
     const cacheKey = this.computeKey(ctx);
@@ -270,10 +271,10 @@ class CachingSkill extends Skill {
     return result;
   }
 }
-```
+`````
 
 ### Pattern 4: Error Recovery
-```typescript
+`````typescript
 class RobustSkill extends Skill {
   async execute(ctx) {
     const maxRetries = 3;
@@ -287,10 +288,10 @@ class RobustSkill extends Skill {
     }
   }
 }
-```
+`````
 
 ### Pattern 5: Parallel Execution
-```typescript
+`````typescript
 class ParallelSkill extends Skill {
   async execute(ctx) {
     const results = await Promise.all([
@@ -301,27 +302,27 @@ class ParallelSkill extends Skill {
     return { data: results[0], meta: results[1], valid: results[2] };
   }
 }
-```
+`````
     
     return result;
   }
 }
-```
+`````
 
 ## Integration Guide
 
 ### With Claude Code
-```bash
+`````bash
 # Install skills
 skills install ./my-skills
 
 # Use in session
 claude code
 > /skills run my-skill
-```
+`````
 
 ### With VS Code
-```json
+`````json
 // .vscode/settings.json
 {
   "agentSkills.skills": [
@@ -330,10 +331,10 @@ claude code
     "./skills/performance"
   ]
 }
-```
+`````
 
 ### With GitHub Actions
-```yaml
+`````yaml
 # .github/workflows/skills.yml
 name: Run Skills
 on: [push]
@@ -342,19 +343,19 @@ jobs: test: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
       - run: skills test
       - run: skills lint
-```
+`````
 
 ## Performance Benchmarks
 
 Testing Agent Skills vs vanilla assistants: | Metric | Vanilla | With Skills | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Task completion | 65% | 89% | +24% |
 | Error rate | 12% | 3% | -75% |
@@ -373,7 +374,7 @@ After 3 months of production use: - **First-month bug rate:** 8.2 bugs per 1000 
 
 ### Pitfall 1: Skills Overlap
 **Problem:** Multiple skills do similar things.
-**Solution:** Use skill composition, not duplication: ```typescript
+**Solution:** Use skill composition, not duplication: `````typescript
 // Instead of duplicating logic
 class AuthSkill extends Skill { /* auth logic */ }
 class APIKeySkill extends Skill { /* more auth logic */ }
@@ -386,49 +387,49 @@ class AuthenticatedRequest extends Skill {
     return result;
   }
 }
-```
+`````
 
 ### Pitfall 2: State Leakage
 **Problem:** Skills interfere with each other's state.
-**Solution:** Isolate state per skill instance: ```typescript
+**Solution:** Isolate state per skill instance: `````typescript
 class IsolatedSkill extends Skill {
   async execute(ctx) {
     const localState = this.createIsolatedState();
     // ... use localState only
   }
 }
-```
+`````
 
 ### Pitfall 3: Performance Degradation
 **Problem:** Too many skills slow down the assistant.
-**Solution:** Lazy loading: ```typescript
+**Solution:** Lazy loading: `````typescript
 class LazySkill extends Skill {
   async load() {
     // Only load when needed
     return import('./heavy-module');
   }
 }
-```
+`````
 
 ## Deployment Patterns
 
 ### Containerized Deployment
-Run Agent Skills in Docker for isolated environments: ```dockerfile
+Run Agent Skills in Docker for isolated environments: `````dockerfile
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 COPY . .
 CMD ["skills", "run", "my-skill"]
-```
+`````
 
-```bash
+`````bash
 docker build -t agent-skills-app .
 docker run -v $(pwd)/skills:/app/skills agent-skills-app
-```
+`````
 
 ### CI/CD Integration
-Automate skill testing in your pipeline: ```yaml
+Automate skill testing in your pipeline: `````yaml
 # .github/workflows/skills-test.yml
 name: Test Skills
 on: [push, pull_request]
@@ -439,10 +440,10 @@ jobs: test: runs-on: ubuntu-latest
       - run: skills test
       - run: skills lint
       - run: skills coverage
-```
+`````
 
 ### Multi-Team Setup
-For organizations with multiple teams: ```yaml
+For organizations with multiple teams: `````yaml
 # skills-config.yaml
 global: pluginsDir: ~/.agent-skills/plugins
   cacheDir: ~/.agent-skills/cache
@@ -451,19 +452,19 @@ teams: platform: skillsDir: ./skills/platform
     members: [alice, bob]
   data: skillsDir: ./skills/data
     members: [charlie, diana]
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Agent Skills | DeepSeek Harness | Superpowers |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Creator | Addy Osmani | DeepSeek AI | Unknown |
 | Stars | 96K | 229K | 204K |
@@ -529,24 +530,24 @@ Browse the GitHub repository's topics tag, or search npm for "agent-skills" pack
 ## Troubleshooting
 
 ### Common Issue: Skills Not Loading
-```bash
+`````bash
 # Check skill registration
 skills list
 
 # View skill logs
 skills logs --skill my-skill --tail 50
-```
+`````
 
 ### Common Issue: TypeScript Compilation Errors
-```bash
+`````bash
 # Clear cache and rebuild
 rm -rf node_modules/.cache
 npm run clean
 npm run build
-```
+`````
 
 ### Common Issue: Memory Leak in Long Sessions
-Enable memory limits in your skill config: ```typescript
+Enable memory limits in your skill config: `````typescript
 // skill.config.ts
 export default {
   memory: {
@@ -554,25 +555,25 @@ export default {
     gcInterval: '5m'
   }
 };
-```
+`````
 
 ### Common Issue: Plugin Conflicts
-When multiple skills conflict: ```bash
+When multiple skills conflict: `````bash
 # List all loaded skills
 skills list --all
 
 # Disable conflicting skills temporarily
 skills disable skill-name
-```
+`````
 
 ### Common Issue: Plugin Conflicts
-When multiple skills conflict: ```bash
+When multiple skills conflict: `````bash
 # List all loaded skills
 skills list --all
 
 # Disable conflicting skills temporarily
 skills disable skill-name
-```
+`````
 
 ## Security Considerations
 When deploying skills in production environments: 1. **Sandbox Execution** — Always run skills in isolated containers
@@ -580,10 +581,10 @@ When deploying skills in production environments: 1. **Sandbox Execution** — A
 3. **Secret Scanning** — Integrate a secrets scanner as a pre-deploy check
 4. **Skill Auditing** — Review third-party skills before installation
 
-```bash
+`````bash
 # Security scan for skills
 skills security scan --deep ./skills
-```
+````
 
 ## Community & Ecosystem
 
@@ -597,7 +598,7 @@ The lesson: Build skills, not just prompts. Structure beats magic.
 
 **Your turn:** What skill would you build first? Share your ideas!
 
----
+* * *
 **Sources & Further Reading:**
 - GitHub repo: https://github.com/addyosmani/agent-skills
 - Documentation: https://agent-skills.addy.io/

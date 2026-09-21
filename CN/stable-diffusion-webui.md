@@ -23,6 +23,7 @@ tags: ["stable-diffusion", "automatic1111", "image-generation", "ai-webui", "con
 aliases:
   - /posts/stable-diffusion-webui/-
 ---
+
 {{</* resource-info */>}}
 
 Stable Diffusion WebUI by AUTOMATIC1111 remains the most widely adopted open-source interface for local AI image generation. With **159,000+ GitHub stars**, it has accumulated a larger community than any competing interface — ComfyUI, InvokeAI, and Fooocus combined. If you are building a local AI image pipeline, understanding how to install, configure, and extend this tool is a practical necessity, not an option.
@@ -34,7 +35,7 @@ This **stable diffusion webui tutorial** walks through the complete **automatic1
 
 ## What Is Stable Diffusion WebUI?
 
-Stable Diffusion WebUI is a browser-based interface for running Stable Diffusion models locally. It wraps the underlying inference pipeline in a tabbed web application accessible at `http://localhost:7860`, providing controls for txt2img, img2img, inpainting, upscaling, model merging, and training LoRA/DreamBooth — all without writing code.
+Stable Diffusion WebUI is a browser-based interface for running Stable Diffusion models locally. It wraps the underlying inference pipeline in a tabbed web application accessible at ```http://localhost:7860````, providing controls for txt2img, img2img, inpainting, upscaling, model merging, and training LoRA/DreamBooth — all without writing code.
 
 The project is maintained by AUTOMATIC1111 under the AGPL-3.0 license. Version 1.10.1 (released early 2025) added SDXL refinement pass improvements, better memory management for 8GB GPUs, and native support for SD3 medium inference. The extension ecosystem includes over 1,000 community plugins covering everything from prompt auto-completion to batch processing pipelines.
 
@@ -43,7 +44,7 @@ The project is maintained by AUTOMATIC1111 under the AGPL-3.0 license. Version 1
 The architecture follows a modular Python backend + Gradio frontend pattern: ![WebUI Architecture Flow](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png)
 *Architecture: Gradio frontend communicates with modular Python backend over local HTTP*
 
-```
+`````
 User Browser (Gradio UI)
     |
     v
@@ -58,9 +59,9 @@ Python Backend (modules/)
     |
     v
 PyTorch + CUDA --- GPU (VRAM: 4-24GB)
-```
+`````
 
-Key concepts to understand before installation: - **Checkpoint**: The main model file (`.safetensors` or `.ckpt`) containing the trained diffusion weights. SD 1.5 models are ~4GB; SDXL models are ~6-7GB.
+Key concepts to understand before installation: - **Checkpoint**: The main model file (````.safetensors```` or ````.ckpt````) containing the trained diffusion weights. SD 1.5 models are ~4GB; SDXL models are ~6-7GB.
 - **VAE (Variational Autoencoder)**: Handles the encode/decode step between pixel space and latent space. A mismatched VAE produces desaturated or blurry outputs.
 - **Sampler**: The algorithm that progressively denoises latent noise into an image. DPM++ 2M Karras is the most widely recommended for quality/speed balance.
 - **CFG Scale (Classifier-Free Guidance)**: Controls how strictly the model follows your prompt. Values of 7-9 work for most use cases; higher values increase contrast but may introduce artifacts.
@@ -74,11 +75,11 @@ Stable Diffusion WebUI supports Windows, Linux, and macOS. The fastest path on a
 
 | Component | Minimum | Recommended |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | NVIDIA 4GB VRAM | NVIDIA RTX 3060 12GB+ |
 | RAM | 8GB | 16GB |
@@ -88,7 +89,7 @@ Stable Diffusion WebUI supports Windows, Linux, and macOS. The fastest path on a
 
 ### Windows Installation (Automatic)
 
-The automatic installer handles Git, Python, and dependency setup: ```batch
+The automatic installer handles Git, Python, and dependency setup: `````batch
 :: Download sd.webui.zip from the releases page
 :: Extract to C:\stable-diffusion-webui
 :: Run the updater first
@@ -97,13 +98,13 @@ update.bat
 
 :: Launch the web UI
 run.bat
-```
+`````
 
-On first launch, the script downloads PyTorch, transformers, and the default SD 1.5 model (~4GB). Subsequent starts take 15-30 seconds. The UI becomes available at `http://127.0.0.1:7860`.
+On first launch, the script downloads PyTorch, transformers, and the default SD 1.5 model (~4GB). Subsequent starts take 15-30 seconds. The UI becomes available at ````http://127.0.0.1:7860````.
 
 ### Windows Command-Line Arguments
 
-For GPUs with limited VRAM or specific optimization needs, edit `webui-user.bat`: ```batch
+For GPUs with limited VRAM or specific optimization needs, edit ``webui-user.bat``: `````batch
 @echo off
 
 set PYTHON=python
@@ -119,11 +120,11 @@ set COMMANDLINE_ARGS=--xformers --autolaunch --update-check
 :: For black/green images, add --precision full --no-half
 
 call webui.bat
-```
+`````
 
 ### Linux Installation (Manual)
 
-Manual installation gives full control over the Python environment: ```bash
+Manual installation gives full control over the Python environment: `````bash
 # Install dependencies (Ubuntu/Debian)
 sudo apt update && sudo apt install -y wget git python3 python3-venv libgl1 libglib2.0-0
 
@@ -139,13 +140,13 @@ pip install -r requirements.txt
 
 # Launch
 ./webui.sh --xformers --listen
-```
+`````
 
-For systems without a display (headless servers), add `--listen` to expose the UI on all interfaces and `--gradio-auth username:password` for basic authentication.
+For systems without a display (headless servers), add ````--listen```` to expose the UI on all interfaces and ````--gradio-auth username:password```` for basic authentication.
 
 ### Docker Installation (Recommended for Production)
 
-Docker provides the most reproducible setup, especially for server deployments: ```dockerfile
+Docker provides the most reproducible setup, especially for server deployments: `````dockerfile
 # Dockerfile.stable-diffusion-webui
 FROM nvidia/cuda:12.1.1-devel-ubuntu22.04
 
@@ -174,9 +175,9 @@ USER sduser
 EXPOSE 7860
 
 ENTRYPOINT ["bash", "-c", \". venv/bin/activate && python3 launch.py --listen --api --xformers"]
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 # Build the image
 docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .
 
@@ -190,9 +191,9 @@ docker run -d \
   -v $(pwd)/extensions:/home/sduser/stable-diffusion-webui/extensions \
   -e NVIDIA_VISIBLE_DEVICES=all \
   sd-webui:latest
-```
+`````
 
-For docker-compose users: ```yaml
+For docker-compose users: `````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -210,17 +211,17 @@ services: stable-diffusion-webui: build: context: .
               count: all
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-Deploy with one command: ```bash
+Deploy with one command: `````bash
 docker-compose up -d
-```
+`````
 
 ### Cloud GPU Setup with DigitalOcean
 
 If local hardware is insufficient, [DigitalOcean GPU Droplets](https://www.digitalocean.com/products/gpu-droplets) provide on-demand NVIDIA H100 instances starting at competitive hourly rates. New accounts receive $200 in free credits valid for 60 days — enough to run an H100 instance for extended testing.
 
-```bash
+`````bash
 # On a DigitalOcean GPU Droplet (Ubuntu 22.04 pre-configured)
 sudo apt update && sudo apt install -y git wget
 
@@ -236,7 +237,7 @@ pip install -r requirements.txt
 
 # Launch with public access (configure firewall rules)
 python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:securepassword123
-```
+`````
 
 *Disclosure: DigitalOcean links are affiliate links. We may earn a commission at no additional cost to you. We only recommend services we would use ourselves.*
 
@@ -247,7 +248,7 @@ python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:securepass
 ControlNet enables structure-guided generation — pose transfer, depth-aware composition, edge-based control: ![ControlNet Interface](https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png)
 *ControlNet extension panel inside the WebUI txt2img tab*
 
-```bash
+`````bash
 # Install via Extensions tab (recommended)
 # 1. Open WebUI → Extensions → Available
 # 2. Click "Load from"
@@ -257,9 +258,9 @@ ControlNet enables structure-guided generation — pose transfer, depth-aware co
 
 # Or install manually: cd extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
-```
+`````
 
-Download ControlNet models to `models/ControlNet/`: ```bash
+Download ControlNet models to ``models/ControlNet/``: `````bash
 # Essential ControlNet models (SD 1.5)
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
@@ -269,9 +270,9 @@ wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/res
 # SDXL ControlNet models
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_mid.safetensors
-```
+`````
 
-Configure ControlNet in the UI: ```json
+Configure ControlNet in the UI: `````json
 // settings.json - ControlNet configuration
 {
   "control_net_max_models_num": 3,
@@ -283,28 +284,28 @@ Configure ControlNet in the UI: ```json
   "control_net_unit_mode": false,
   "control_net_sync_field_args": true
 }
-```
+`````
 
 ### LoRA (Low-Rank Adaptation) Integration
 
-LoRA files are lightweight adapters (~10-200MB) that fine-tune model behavior without replacing the base checkpoint: ```bash
+LoRA files are lightweight adapters (~10-200MB) that fine-tune model behavior without replacing the base checkpoint: `````bash
 # Download LoRA models to the dedicated directory
 # Place .safetensors LoRA files in: # models/Lora/
 
 # Example: Download a popular style LoRA
 wget -P models/Lora/ "https://civitai.com/api/download/models/12345"
-```
+`````
 
-Using LoRA in prompts: ```
+Using LoRA in prompts: `````
 <lora:add-detail-xl:1.0>, masterpiece, best quality, portrait of a warrior
 <lora:epiCRealismHelper:0.6>, photorealistic, 8k uhd
-```
+`````
 
-The syntax is `<lora:filename:weight>` where weight ranges from 0.0 to 1.0. Multiple LoRAs can be stacked in a single prompt.
+The syntax is ````<lora:filename:weight>```` where weight ranges from 0.0 to 1.0. Multiple LoRAs can be stacked in a single prompt.
 
 ### ComfyUI Workflow Bridge
 
-For users who need node-based workflows alongside the WebUI interface: ```bash
+For users who need node-based workflows alongside the WebUI interface: `````bash
 # Install ComfyUI as a secondary tool (recommended over migration)
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -317,13 +318,13 @@ ln -s /path/to/stable-diffusion-webui/models/ControlNet models/controlnet
 
 # Launch on a different port
 python main.py --port 8188
-```
+`````
 
 This setup lets you use Stable Diffusion WebUI for quick prototyping and ComfyUI for complex multi-stage pipelines, sharing the same model library.
 
 ### Essential Extensions List
 
-```bash
+`````bash
 # Install these extensions for a production-ready setup
 
 cd extensions
@@ -347,7 +348,7 @@ git clone https://github.com/vladmandic/sd-extension-system-info.git
 git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 
 # Restart the WebUI after installing extensions
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -355,15 +356,15 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 
 All benchmarks use Stable Diffusion WebUI v1.10.1, DPM++ 2M Karras sampler, 20 steps, batch size 1: | GPU | VRAM | SD 1.5 512x512 | SDXL 1024x1024 | SDXL + ControlNet |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RTX 4060 Ti 16GB | 16 GB | ~4.2s | ~12.0s | ~16.5s |
 | RTX 3090 | 24 GB | ~2.4s | ~5.6s | ~9.2s |
@@ -376,21 +377,21 @@ Sources: Community benchmarks via sd-extension-system-info, averaged over 10 run
 
 | Workflow | VRAM Usage (RTX 4090) | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | txt2img SD 1.5 @ 512x512 | ~4.5 GB | Fits on any modern GPU |
 | txt2img SDXL @ 1024x1024 | ~8.0 GB | Requires 8GB+ VRAM |
-| SDXL + 1x ControlNet | ~12.5 GB | Use `--medvram` on 8GB cards |
+| SDXL + 1x ControlNet | ~12.5 GB | Use ````--medvram```` on 8GB cards |
 | SDXL + Hi-Res Fix 2x | ~14.0 GB | Tiled VAE recommended |
 | SDXL + 2x ControlNet + Adetailer | ~20.0 GB | RTX 3090/4090 recommended |
 
 ### Memory Optimization Flags
 
-```bash
+`````bash
 # For 4GB VRAM GPUs (entry-level): python3 launch.py --lowvram --precision full --no-half --xformers
 
 # For 6-8GB VRAM GPUs (mainstream): python3 launch.py --medvram --xformers --opt-split-attention
@@ -398,13 +399,13 @@ Sources: Community benchmarks via sd-extension-system-info, averaged over 10 run
 # For 12GB+ VRAM GPUs (high-end): python3 launch.py --xformers --opt-sdp-attention
 
 # For 24GB VRAM GPUs (enthusiast): python3 launch.py --xformers --opt-sdp-attention --no-half-vae
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### API Integration
 
-Stable Diffusion WebUI exposes a full REST API at `/sdapi/v1/`: ```python
+Stable Diffusion WebUI exposes a full REST API at ``/sdapi/v1/``: `````python
 # Python client for txt2img API
 import requests
 import json
@@ -432,11 +433,11 @@ result = response.json()
 # Save the generated image
 import base64
 for i, img_data in enumerate(result[images]): with open(f"output_{i}.png", "wb") as f: f.write(base64.b64decode(img_data))
-```
+`````
 
 ### Batch Processing Script
 
-```python
+`````python
 # batch_generate.py - process multiple prompts
 import requests
 import csv
@@ -466,11 +467,11 @@ with open("prompts.csv", "r") as f: reader = csv.DictReader(f)
     for i, row in enumerate(reader): filename = f"output_{i:04d}.png"
         generate_image(row[prompt], filename)
         print(f"Generated: {filename}")
-```
+`````
 
 ### Security Hardening for Public Deployment
 
-```bash
+`````bash
 # 1. Enable authentication
 python3 launch.py --listen --gradio-auth admin:strongpassword
 
@@ -505,11 +506,11 @@ sudo ufw enable
 
 # 4. Rate limiting via nginx limit_req
 limit_req_zone $binary_remote_addr zone=sd_limit:10m rate=5r/m;
-```
+`````
 
 ### Monitoring and Logging
 
-```bash
+`````bash
 # Create a simple health check script
 #!/bin/bash
 # health_check.sh
@@ -519,9 +520,9 @@ if [ "$STATUS" != "200" ]; then
     echo "$(date): WebUI is down (HTTP $STATUS), restarting..." >> /var/log/sd-webui.log
     systemctl restart sd-webui
 fi
-```
+`````
 
-```ini
+`````ini
 # systemd service for auto-start
 # /etc/systemd/system/sd-webui.service
 [Unit]
@@ -539,27 +540,27 @@ Environment="PYTHONUNBUFFERED=1"
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-Enable auto-start: ```bash
+Enable auto-start: `````bash
 sudo systemctl daemon-reload
 sudo systemctl enable sd-webui
 sudo systemctl start sd-webui
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Stable Diffusion WebUI | ComfyUI | InvokeAI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **UI Type** | Tab-based web interface | Node-based graph editor | Web app with canvas | Minimal single-page |
 | **GitHub Stars** | 159,000+ | 75,000+ | 25,000+ | 42,000+ |
@@ -569,7 +570,7 @@ sudo systemctl start sd-webui
 | **LoRA Support** | Full (stackable, weight control) | Full | Built-in manager | Basic |
 | **VRAM Minimum (SDXL)** | 4GB (with --lowvram) | 4GB (with tricks) | 6GB | 4GB |
 | **Batch Processing** | Built-in | Queue-based workflows | Queue system | Manual only |
-| **API** | Full REST API (`/sdapi/v1/`) | REST + WebSocket | Full REST | None |
+| **API** | Full REST API (````/sdapi/v1/````) | REST + WebSocket | Full REST | None |
 | **Best For** | All-around use, extensions | Power users, automation | Artists, canvas editing | Beginners, quick generation |
 
 ### When to Choose Which Tool
@@ -584,13 +585,13 @@ sudo systemctl start sd-webui
 
 ## Limitations / Honest Assessment
 
-Stable Diffusion WebUI is not the right tool for every image generation use case. Here are the concrete limitations: 1. **Higher VRAM usage than alternatives**: The Gradio-based UI adds ~500MB-1GB of VRAM overhead compared to ComfyUI's leaner frontend. On 4-6GB GPUs, this difference matters — you may need to use `--lowvram` while ComfyUI handles the same workflow on the same hardware without optimization flags.
+Stable Diffusion WebUI is not the right tool for every image generation use case. Here are the concrete limitations: 1. **Higher VRAM usage than alternatives**: The Gradio-based UI adds ~500MB-1GB of VRAM overhead compared to ComfyUI's leaner frontend. On 4-6GB GPUs, this difference matters — you may need to use ````--lowvram```` while ComfyUI handles the same workflow on the same hardware without optimization flags.
 
 2. **Not the fastest option**: Benchmarks consistently show ComfyUI outpacing WebUI by 10-20% on identical hardware and models. The gap widens on batch processing where ComfyUI's queue system is more efficient.
 
 3. **Flux model support is limited**: While SD 1.5, SDXL, and SD3 are well-supported, running Flux models requires either the Forge fork or manual configuration. ComfyUI has better day-0 support for new model architectures.
 
-4. **Extension conflicts**: With 1,000+ extensions available, incompatibilities between extensions are common. Updates can break existing workflows. The `extensions/` folder sometimes needs manual cleanup when things go wrong.
+4. **Extension conflicts**: With 1,000+ extensions available, incompatibilities between extensions are common. Updates can break existing workflows. The ````extensions/```` folder sometimes needs manual cleanup when things go wrong.
 
 5. **Not ideal for video generation**: While extensions like AnimateDiff exist, the WebUI interface is fundamentally designed for static images. ComfyUI's node system is significantly better suited for video and animation workflows.
 
@@ -600,27 +601,27 @@ Stable Diffusion WebUI is not the right tool for every image generation use case
 
 ### What GPU do I need for Stable Diffusion WebUI?
 
-An NVIDIA GPU with at least 4GB VRAM is the minimum for SD 1.5 at 512x512 resolution. For SDXL at 1024x1024, 8GB VRAM is the practical minimum (with `--medvram` optimization). A 12GB VRAM card (RTX 3060, RTX 4060 Ti) provides comfortable SDXL generation without compromises. For professional use with ControlNet and Hi-Res Fix, 24GB (RTX 3090/4090) is recommended.
+An NVIDIA GPU with at least 4GB VRAM is the minimum for SD 1.5 at 512x512 resolution. For SDXL at 1024x1024, 8GB VRAM is the practical minimum (with ````--medvram```` optimization). A 12GB VRAM card (RTX 3060, RTX 4060 Ti) provides comfortable SDXL generation without compromises. For professional use with ControlNet and Hi-Res Fix, 24GB (RTX 3090/4090) is recommended.
 
 ### How do I update Stable Diffusion WebUI?
 
-Run `git pull` in the installation directory to fetch the latest code, then restart the WebUI. On Windows, double-click `update.bat`. If extensions break after updating, delete the `venv` folder to force dependency reinstallation. For the dev branch (required for RTX 50-series GPUs), run `git checkout dev` before updating.
+Run ````git pull```` in the installation directory to fetch the latest code, then restart the WebUI. On Windows, double-click ````update.bat````. If extensions break after updating, delete the ````venv```` folder to force dependency reinstallation. For the dev branch (required for RTX 50-series GPUs), run ````git checkout dev```` before updating.
 
 ### Can I run Stable Diffusion WebUI without an NVIDIA GPU?
 
-Yes, but with significant limitations. AMD GPUs work on Linux via ROCm (`--precision full --no-half`). Apple Silicon Macs can run via `./webui.sh` with MPS backend, though generation is 3-5x slower than equivalent NVIDIA hardware. CPU-only mode is possible with `--use-cpu all` but generates a single 512x512 image in 5-10 minutes versus 2-4 seconds on a mid-range GPU.
+Yes, but with significant limitations. AMD GPUs work on Linux via ROCm (````--precision full --no-half````). Apple Silicon Macs can run via ````./webui.sh```` with MPS backend, though generation is 3-5x slower than equivalent NVIDIA hardware. CPU-only mode is possible with ````--use-cpu all```` but generates a single 512x512 image in 5-10 minutes versus 2-4 seconds on a mid-range GPU.
 
 ### Why are my generated images black or green?
 
-This is a half-precision issue on certain GPU/driver combinations. Add `--precision full --no-half` to your launch arguments. For NaN errors specifically in the VAE, use `--no-half-vae` instead. RTX 16-series and some GTX cards are more prone to this issue.
+This is a half-precision issue on certain GPU/driver combinations. Add ````--precision full --no-half```` to your launch arguments. For NaN errors specifically in the VAE, use ````--no-half-vae```` instead. RTX 16-series and some GTX cards are more prone to this issue.
 
 ### How do I fix "CUDA out of memory" errors?
 
-First, enable xFormers with `--xformers` (20-30% VRAM reduction). For 8GB cards, add `--medvram`. For 4-6GB cards, use `--lowvram`. Install the Tiled VAE extension for high-resolution generation. Consider using FP8 or NF4 quantized models which use 50% less VRAM at a minor quality cost. If all else fails, reduce image resolution or batch size.
+First, enable xFormers with ````--xformers```` (20-30% VRAM reduction). For 8GB cards, add ````--medvram````. For 4-6GB cards, use ````--lowvram````. Install the Tiled VAE extension for high-resolution generation. Consider using FP8 or NF4 quantized models which use 50% less VRAM at a minor quality cost. If all else fails, reduce image resolution or batch size.
 
 ### Is it safe to expose Stable Diffusion WebUI to the internet?
 
-No — not without additional security. The built-in `--listen` flag exposes the UI without authentication. Always combine `--gradio-auth username:password` with an HTTPS reverse proxy (nginx/Caddy) and firewall rules. The WebUI was designed for local use; public deployment requires treating it as a production service with proper access controls.
+No — not without additional security. The built-in ````--listen```` flag exposes the UI without authentication. Always combine ````--gradio-auth username:password```` with an HTTPS reverse proxy (nginx/Caddy) and firewall rules. The WebUI was designed for local use; public deployment requires treating it as a production service with proper access controls.
 
 ## Conclusion
 
@@ -631,7 +632,7 @@ Stable Diffusion WebUI by AUTOMATIC1111 remains the most practical starting poin
 1. Verify your GPU has 8GB+ VRAM and install the WebUI using the automatic installer (Windows) or Docker (Linux/server)
 2. Install ControlNet + 4 core models (openpose, depth, canny, lineart) for structure-guided generation
 3. Download 2-3 quality SDXL checkpoints and 5-10 LoRA adapters for your use case
-4. Configure `--xformers` and the appropriate VRAM flag for your hardware
+4. Configure ````--xformers``` and the appropriate VRAM flag for your hardware
 5. Set up nginx reverse proxy with authentication if deploying beyond localhost
 
 **Discuss this guide or get help in our Telegram group:** [t.me/dibi8opensource](https://t.me/dibi8opensource)
@@ -686,7 +687,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [stable-diffusion-complete-guide](stable-diffusion-webui)
@@ -696,5 +697,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [modal-serverless-gpu-compute](stable-diffusion-webui)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

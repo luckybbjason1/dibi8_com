@@ -12,13 +12,14 @@ aliases:
   - /zh/posts/unstructured-data-preprocessing-llm/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：每个RAG流水线背后不为人知的痛点
 
 你的检索增强生成（RAG）流水线的质量完全取决于你喂给它什么数据。你可以拥有最顶尖的嵌入模型、最昂贵的向量数据库、以及最先进的LLM — 但如果你的源文档是排版混乱的PDF、OCR识别失败的扫描件、或者带有隐藏文本框的PPT幻灯片，你的检索准确率必将大打折扣。
 
-我吃过这个苦头。一个客户项目将 **12,000份PDF合同** 灌入基于Pinecone的RAG系统。使用简单的 `pdftotext` 方法得到的块是这样的："`第1页，共47页保密协议`" — 页眉与正文混在一起，表格行被拼接成不可读的 Blob，脚注直接插入句子中间。检索准确率：**34%**。切换到 Unstructured.io 并采用正确的分区与分块策略后：**89%**。
+我吃过这个苦头。一个客户项目将 **12,000份PDF合同** 灌入基于Pinecone的RAG系统。使用简单的 ```pdftotext```` 方法得到的块是这样的："````第1页，共47页保密协议````" — 页眉与正文混在一起，表格行被拼接成不可读的 Blob，脚注直接插入句子中间。检索准确率：**34%**。切换到 Unstructured.io 并采用正确的分区与分块策略后：**89%**。
 
 这个差距 — 从34%到89% — 就是 Unstructured.io 存在的意义。该项目于2022年发布，目前版本为 **v0.17.0**（2026年4月），在 Apache-2.0 许可证下已积累 **10,500+ GitHub Stars**。它已成为将混乱的现实世界文档转换为LLM可用的干净结构化元素的事实标准。
 
@@ -34,36 +35,36 @@ Unstructured 的流水线包含三个不同阶段：**分区 → 清洗 → 分�
 
 ### 分区：将文档拆解为元素
 
-`partition` 函数是 Unstructured 的核心。它自动检测文件类型并将其路由到专门的解析器：
+````partition```` 函数是 Unstructured 的核心。它自动检测文件类型并将其路由到专门的解析器：
 
 | 分区策略 | 速度 | 准确率 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `auto` | 中等 | 高 | 通用场景，混合文档类型 |
-| `fast` | 快 | 中等 | 简单文本型PDF，批量处理 |
-| `hi_res` | 慢 | 最高 | 复杂排版，表格，扫描文档 |
-| `ocr_only` | 最慢 | 依赖OCR | 图像型PDF，扫描文档 |
+| ````auto```` | 中等 | 高 | 通用场景，混合文档类型 |
+| ````fast```` | 快 | 中等 | 简单文本型PDF，批量处理 |
+| ````hi_res```` | 慢 | 最高 | 复杂排版，表格，扫描文档 |
+| ````ocr_only```` | 最慢 | 依赖OCR | 图像型PDF，扫描文档 |
 
-`hi_res` 策略使用 **文档理解 Transformer 模型**（默认：`detectron2` 或 `yolox`）来识别标题、正文、页眉、页脚和表格等区域，然后再进行提取。这就是它能够将表格转换为 HTML 并检测阅读顺序的原因。
+````hi_res```` 策略使用 **文档理解 Transformer 模型**（默认：````detectron2```` 或 ````yolox````）来识别标题、正文、页眉、页脚和表格等区域，然后再进行提取。这就是它能够将表格转换为 HTML 并检测阅读顺序的原因。
 
 ### 元素类型：保留结构
 
 Unstructured 输出 20+ 种元素类型。对于 LLM 工作最重要的：
 
-- `NarrativeText` — 正文段落
-- `Title` — 文档和章节标题
-- `ListItem` — 无序和有序列表
-- `Table` — 表格数据（可导出为HTML）
-- `Header` / `Footer` — 通常被过滤掉
-- `Image` — 嵌入图像（可选提取标题）
-- `FigureCaption` — 与图像关联的标题
+- ````NarrativeText```` — 正文段落
+- ````Title```` — 文档和章节标题
+- ````ListItem```` — 无序和有序列表
+- ````Table```` — 表格数据（可导出为HTML）
+- ````Header```` / ````Footer```` — 通常被过滤掉
+- ````Image```` — 嵌入图像（可选提取标题）
+- ````FigureCaption```` — 与图像关联的标题
 
 每个元素都携带元数据：页码、坐标、文件类型、检测到的语言、父级章节，以及你注入的自定义字段。
 
@@ -73,15 +74,15 @@ Unstructured 输出 20+ 种元素类型。对于 LLM 工作最重要的：
 
 | 分块策略 | 行为 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `basic` | 固定大小带重叠 | 简单流水线，可预测的token数 |
-| `by_title` | 尊重章节边界 | 保持语义连贯性 |
-| `by_similarity` | 语义聚类 | 主题转换的长文档 |
+| ````basic```` | 固定大小带重叠 | 简单流水线，可预测的token数 |
+| ````by_title```` | 尊重章节边界 | 保持语义连贯性 |
+| ````by_similarity```` | 语义聚类 | 主题转换的长文档 |
 
 ## 安装与配置：5分钟快速上手
 
@@ -89,7 +90,7 @@ Unstructured 支持库用法（Python导入）和自托管API（Docker）。对�
 
 ### 方案A：Python库（开发环境）
 
-```bash
+`````bash
 python -m venv venv_unstructured
 source venv_unstructured/bin/activate
 
@@ -98,23 +99,23 @@ pip install "unstructured[pdf]==0.17.0"
 
 # 完整文档支持（安装量更大）
 pip install "unstructured[all-docs]==0.17.0"
-```
+`````
 
-`[pdf]` 额外安装 `pdf2image`、`pdfplumber` 和 `pikepdf`。`[all-docs]` 额外添加 DOCX、PPTX、XLSX、MSG、EML、EPUB 和 OCR 依赖（包括 `tesseract` 绑定）。
+````[pdf]```` 额外安装 ````pdf2image````、````pdfplumber```` 和 ````pikepdf````。````[all-docs]```` 额外添加 DOCX、PPTX、XLSX、MSG、EML、EPUB 和 OCR 依赖（包括 ````tesseract```` 绑定）。
 
 验证安装：
 
-```python
+`````python
 from unstructured.partition.auto import partition
 
 elements = partition(filename="test.pdf")
 print(f"提取了 {len(elements)} 个元素")
 for el in elements[:5]: print(f"  {el.category}: {str(el)[:60]}...")
-```
+`````
 
 ### 方案B：通过Docker自托管API（生产环境）
 
-```bash
+`````bash
 # 拉取预构建镜像
 docker pull downloads.unstructured.io/unstructured-io/unstructured-api:latest
 
@@ -127,22 +128,22 @@ docker run -d \
 
 # 验证健康状态
 curl http://localhost:8000/healthcheck
-```
+`````
 
 纯CPU环境（更便宜，复杂PDF处理较慢）：
 
-```bash
+`````bash
 docker run -d \
   --name unstructured-api-cpu \
   -p 8000:8000 \
   downloads.unstructured.io/unstructured-io/unstructured-api-cpu:latest
-```
+`````
 
 如果你需要可靠的云服务器来托管，[DigitalOcean的GPU droplets](https://m.do.co/c/eca87ac14ee0) 非常适合运行 hi_res 流水线。
 
 ### 向API发送文档
 
-```python
+`````python
 import requests
 
 with open("annual_report.pdf", "rb") as f: response = requests.post(
@@ -160,7 +161,7 @@ with open("annual_report.pdf", "rb") as f: response = requests.post(
 
 elements = response.json()
 print(f"获取了 {len(elements)} 个块")
-```
+`````
 
 ## 与 LangChain、LlamaIndex 和向量数据库集成
 
@@ -168,7 +169,7 @@ Unstructured 与主流 LLM 编排框架原生集成。
 
 ### LangChain 加载器
 
-```python
+`````python
 from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
@@ -193,11 +194,11 @@ vectorstore = Chroma.from_documents(
     documents=documents,
     embedding=OpenAIEmbeddings(),
 )
-```
+`````
 
 ### LlamaIndex 集成
 
-```python
+`````python
 from llama_index.readers.unstructured import UnstructuredReader
 from llama_index.core import VectorStoreIndex
 
@@ -217,11 +218,11 @@ query_engine = index.as_query_engine()
 
 response = query_engine.query("第3节提到的关键风险有哪些？")
 print(response)
-```
+`````
 
 ### 直接 Chroma 集成（无需框架）
 
-```python
+`````python
 import chromadb
 from unstructured.chunking.title import chunk_by_title
 from unstructured.partition.pdf import partition_pdf
@@ -254,7 +255,7 @@ for i, chunk in enumerate(chunks): embedding = model.encode(str(chunk)).tolist()
             "type": chunk.category,
         }]
     )
-```
+`````
 
 ## 基准测试与实际用例
 
@@ -264,15 +265,15 @@ Unstructured v0.17.0 支持 **25+ 种文件格式**：
 
 | 格式 | 读取 | 表格 | OCR | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PDF（文本型） | 是 | 是 | 不适用 | 最佳支持格式 |
 | PDF（扫描/图像型） | 是 | 部分 | 是 | 需要 tesseract |
@@ -291,15 +292,15 @@ Unstructured v0.17.0 支持 **25+ 种文件格式**：
 
 | 文档 | 大小 | 策略 | 耗时 | 元素数 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 10页文本PDF | 2.1 MB | fast | 1.2秒 | 47 |
 | 10页文本PDF | 2.1 MB | hi_res | 8.4秒 | 52 |
@@ -307,7 +308,7 @@ Unstructured v0.17.0 支持 **25+ 种文件格式**：
 | 30页PPTX | 5.4 MB | auto | 4.1秒 | 128 |
 | 85页DOCX | 1.2 MB | auto | 2.8秒 | 312 |
 
-使用 **GPU加速**（通过Docker API使用NVIDIA T4），相同10页PDF的 `hi_res` 分区降至 **2.1秒** — 约 **4倍加速**。
+使用 **GPU加速**（通过Docker API使用NVIDIA T4），相同10页PDF的 ````hi_res```` 分区降至 **2.1秒** — 约 **4倍加速**。
 
 ### 分块质量对RAG的影响
 
@@ -315,30 +316,30 @@ Unstructured v0.17.0 支持 **25+ 种文件格式**：
 
 | 预处理方法 | 平均块质量 | RAG Top-3 准确率 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| 原始 `pdftotext` + 拆分 | 0.31 | 34% |
+| 原始 ````pdftotext```` + 拆分 | 0.31 | 34% |
 | PyPDF2 + 字符拆分 | 0.38 | 41% |
-| Unstructured `fast` + basic 分块 | 0.67 | 72% |
-| Unstructured `hi_res` + by_title | 0.89 | 89% |
+| Unstructured ````fast```` + basic 分块 | 0.67 | 72% |
+| Unstructured ````hi_res```` + by_title | 0.89 | 89% |
 
 块质量按0-1分制评分，评估维度：语义连贯性、边界保留（不在句中拆分）、元数据丰富度。**89%的 hi_res 准确率** 代表了未经人工整理情况下文档RAG的实际上限。
 
 ### 生产案例
 
-**法律文档分析**（每月10万+页）：一家合规初创公司使用 Kubernetes 中的 Unstructured API 处理SEC文件。报告 **99.7% 正常运行时间**，每个Pod使用 `fast` 策略处理文本PDF，`hi_res` 处理扫描附件，速度约 **50份文档/分钟**。
+**法律文档分析**（每月10万+页）：一家合规初创公司使用 Kubernetes 中的 Unstructured API 处理SEC文件。报告 **99.7% 正常运行时间**，每个Pod使用 ````fast```` 策略处理文本PDF，````hi_res```` 处理扫描附件，速度约 **50份文档/分钟**。
 
-**医疗记录导入**：一家医疗AI公司从混合PDF + 扫描传真文档中提取文本。OCR + `hi_res` 处理 **94% 的文档无需人工干预**；剩余6%为低质量传真，标记供人工审核。
+**医疗记录导入**：一家医疗AI公司从混合PDF + 扫描传真文档中提取文本。OCR + ````hi_res```` 处理 **94% 的文档无需人工干预**；剩余6%为低质量传真，标记供人工审核。
 
 ## 高级用法与生产加固
 
 ### 自定义后处理流水线
 
-```python
+`````python
 from unstructured.partition.pdf import partition_pdf
 from unstructured.chunking.title import chunk_by_title
 from unstructured.cleaners.core import clean
@@ -376,11 +377,11 @@ chunks = chunk_by_title(
 )
 
 print(f"{len(elements)} 原始 → {len(filtered)} 过滤 → {len(chunks)} 块")
-```
+`````
 
 ### 带并发工作器的批量处理
 
-```python
+`````python
 import concurrent.futures
 from pathlib import Path
 from unstructured.partition.auto import partition
@@ -409,13 +410,13 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results =
 
 success = sum(1 for r in results if r["status"] == "success")
 print(f"成功处理了: {success}/{len(results)} 个文件")
-```
+`````
 
 ### 重处理缓存策略
 
 对于迭代RAG开发，分区一次并缓存：
 
-```python
+`````python
 import json
 import hashlib
 from pathlib import Path
@@ -430,11 +431,11 @@ def partition_with_cache(file_path: str, strategy: str = "hi_res"): file_hash = 
     elements = partition_pdf(file_path, strategy=strategy)
     cache_path.write_text(json.dumps(elements_to_dicts(elements), indent=2))
     return elements
-```
+`````
 
 ### Kubernetes 部署
 
-```yaml
+`````yaml
 # unstructured-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -449,14 +450,14 @@ spec: replicas: 3
             memory: "8Gi"
           requests: memory: "4Gi"
 
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: unstructured-api
 spec: selector: app: unstructured-api
   ports: - port: 80
     targetPort: 8000
-```
+`````
 
 如果你选择自托管，[DigitalOcean的Kubernetes集群](https://m.do.co/c/eca87ac14ee0) 配合GPU节点是相比托管API更具性价比的选择。
 
@@ -464,15 +465,15 @@ spec: selector: app: unstructured-api
 
 | 特性 | Unstructured.io | LlamaParse | Docling | PyMuPDF + 自定义 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | 是 (Apache-2.0) | 否 (商业) | 是 (MIT) | 是 (混合) |
 | GitHub Stars | 10,500+ | N/A (闭源) | 5,200+ | N/A |
@@ -503,13 +504,13 @@ Unstructured 并非万能。以下是在生产环境中会让你头疼的问题�
 
 **1. OCR质量取决于输入质量。** 低分辨率扫描文档（低于150 DPI）无论用什么流水线都会产生乱码。如果你的源材料质量差，先用图像增强预处理。
 
-**2. 无GPU时 `hi_res` 很慢。** 默认的 `detectron2` 模型在CPU上处理复杂排版速度为每分钟3-5页。预算GPU加速，或对批量文本PDF使用 `fast` 策略。
+**2. 无GPU时 ````hi_res```` 很慢。** 默认的 ````detectron2```` 模型在CPU上处理复杂排版速度为每分钟3-5页。预算GPU加速，或对批量文本PDF使用 ````fast```` 策略。
 
 **3. 表格提取不错，但不完美。** 包含合并单元格、嵌套表头或跨行结构的复杂表格可能丢失结构保真度。HTML输出在我们的测试中正确捕获约 **85% 的表格**。
 
-**4. 大文档内存占用会飙升。** 带图像的200页PDF在 `hi_res` 分区期间可能消耗4-6GB内存。对大文件使用 `max_partition` 分批处理。
+**4. 大文档内存占用会飙升。** 带图像的200页PDF在 ````hi_res```` 分区期间可能消耗4-6GB内存。对大文件使用 ````max_partition```` 分批处理。
 
-**5. 安装体积庞大。** `[all-docs]` 额外依赖约2GB，包括 PyTorch、Detectron2 和 Tesseract。在生产环境使用Docker来隔离。
+**5. 安装体积庞大。** ````[all-docs]```` 额外依赖约2GB，包括 PyTorch、Detectron2 和 Tesseract。在生产环境使用Docker来隔离。
 
 **6. 不是格式转换器。** Unstructured 提取的是 *内容*，不是样式。如果你需要保留格式的 PDF 转 DOCX，请使用其他工具。
 
@@ -521,31 +522,31 @@ Unstructured 支持 25+ 种格式，包括 PDF、DOCX、PPTX、XLSX、HTML、Mar
 
 ### 应该使用 Python 库还是 Docker API？
 
-开发、原型设计和单文档工作流使用 Python 库。生产环境切换到 Docker API — 它提供更好的资源隔离、通过 Kubernetes 的水平扩展、以及 `hi_res` 策略的 GPU 加速。API 还简化了团队协作，因为不需要管理 Python 环境。
+开发、原型设计和单文档工作流使用 Python 库。生产环境切换到 Docker API — 它提供更好的资源隔离、通过 Kubernetes 的水平扩展、以及 ````hi_res```` 策略的 GPU 加速。API 还简化了团队协作，因为不需要管理 Python 环境。
 
 ### 带重叠的分块如何工作？
 
-设置 `overlap=200` 时，Unstructured 将每个块的末尾200个字符复制到下一块的开头。这防止了块边界的上下文丢失 — 对RAG至关重要，因为跨块拆分的句子会变得无法回答。`by_title` 策略额外确保块永远不会跨章节边界拆分，除非单个章节超过 `max_characters`。
+设置 ````overlap=200```` 时，Unstructured 将每个块的末尾200个字符复制到下一块的开头。这防止了块边界的上下文丢失 — 对RAG至关重要，因为跨块拆分的句子会变得无法回答。````by_title```` 策略额外确保块永远不会跨章节边界拆分，除非单个章节超过 ````max_characters````。
 
 ### 能否在离线环境下运行 Unstructured？
 
-可以。Docker镜像和Python库在初始下载后完全自包含。`hi_res` 策略在首次使用时下载模型权重（Detectron2/YOLOX）— 在部署镜像中缓存这些权重。本地运行不需要API密钥或云端调用。
+可以。Docker镜像和Python库在初始下载后完全自包含。````hi_res```` 策略在首次使用时下载模型权重（Detectron2/YOLOX）— 在部署镜像中缓存这些权重。本地运行不需要API密钥或云端调用。
 
-### `fast` 和 `hi_res` 分区有什么区别？
+### ````fast```` 和 ````hi_res```` 分区有什么区别？
 
-`fast` 使用基于规则的文本提取（pdfplumber、python-docx），适用于排版简单的文本型文档。`hi_res` 运行视觉文档理解模型来检测区域、表格和阅读顺序 — 对于复杂排版、扫描文档和精确的表格提取至关重要。在CPU上 `hi_res` 预计慢5-10倍，或使用GPU加速来缩小差距。
+````fast```` 使用基于规则的文本提取（pdfplumber、python-docx），适用于排版简单的文本型文档。````hi_res```` 运行视觉文档理解模型来检测区域、表格和阅读顺序 — 对于复杂排版、扫描文档和精确的表格提取至关重要。在CPU上 ````hi_res```` 预计慢5-10倍，或使用GPU加速来缩小差距。
 
 ### 如何处理解析失败的文档？
 
-用 try/except 包裹分区调用并实现降级链：先尝试 `hi_res`，降级到 `fast`，然后对图像型文档降级到 `ocr_only`。记录失败日志并附带文件哈希供人工审核。生产中，损坏或密码保护文件的 **失败率约2-4%** — 请规划死信队列。
+用 try/except 包裹分区调用并实现降级链：先尝试 ````hi_res````，降级到 ````fast````，然后对图像型文档降级到 ````ocr_only````。记录失败日志并附带文件哈希供人工审核。生产中，损坏或密码保护文件的 **失败率约2-4%** — 请规划死信队列。
 
 ### Unstructured 支持非英文文档吗？
 
-支持。该库自动检测 50+ 种语言。OCR 支持 Tesseract 支持的任何语言（100+ 种，包括中文、日文、韩文、阿拉伯文和印地文）。设置 `languages=["eng", "chi_sim"]` 来提示特定语言以获得更好的 OCR 准确率。
+支持。该库自动检测 50+ 种语言。OCR 支持 Tesseract 支持的任何语言（100+ 种，包括中文、日文、韩文、阿拉伯文和印地文）。设置 ````languages=["eng", "chi_sim"]```` 来提示特定语言以获得更好的 OCR 准确率。
 
-## 结论：从 `fast` 开始，升级到 `hi_res`
+## 结论：从 ````fast```` 开始，升级到 ````hi_res````
 
-Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界文档转换为可用数据。路径很清晰 — 文本PDF先用 `fast` 分区，添加 `by_title` 分块用于RAG，需要表格和复杂排版时升级到 `hi_res` + GPU。
+Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界文档转换为可用数据。路径很清晰 — 文本PDF先用 ````fast```` 分区，添加 ````by_title```` 分块用于RAG，需要表格和复杂排版时升级到 ````hi_res``` + GPU。
 
 **10,500+ Stars** 和 Apache-2.0 许可证使其成为一个安全的社区支持选择。自托管API让你完全掌控数据 — 文档不会离开你的基础设施。
 
@@ -577,7 +578,7 @@ Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界�
 - 相关文章: [LangChain](dibi8-internal-link), [LlamaIndex](dibi8-internal-link), [RAG流水线优化](dibi8-internal-link)
 
 
----
+* * *
 *联盟营销披露: 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接注册，我们赚取佣金，不额外收费。Unstructured.io 是开源免费使用的；我们与 Unstructured-IO 没有商业关系。观点基于实际测试。*
 
 
@@ -606,7 +607,7 @@ Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界�
 }
 </script>
 
----
+* * *
 ## Related Articles
 
 - [mineru-document-parsing-engine](unstructured-data-preprocessing-llm)
@@ -615,6 +616,6 @@ Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界�
 - [mineru-document-parsing-engine](unstructured-data-preprocessing-llm)
 - [2026-06-22-trending-ai-agents](unstructured-data-preprocessing-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

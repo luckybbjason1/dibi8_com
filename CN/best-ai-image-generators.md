@@ -5,6 +5,7 @@ layout: simple
 date: 2026-06-28T00:00:00+08:00
 lastmod: 2026-06-28T00:00:00+08:00
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -63,16 +64,16 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: ````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -82,22 +83,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -107,22 +108,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -132,22 +133,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -157,22 +158,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -182,22 +183,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -207,6 +208,6 @@ npm install
 
 # Start development server
 npm run dev
-```
+````
 
----
+* * *

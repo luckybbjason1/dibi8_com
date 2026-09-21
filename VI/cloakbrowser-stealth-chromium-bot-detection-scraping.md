@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 ---
 
+
 # CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              CloakBrowser Chống Phát Hiện              │
 │                                                      │
@@ -38,7 +39,7 @@ featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 │  │         Stealth browser                        │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *CloakBrowser: drop-in Playwright replacement that passes every bot test*
 
@@ -52,7 +53,7 @@ CloakBrowser là **a stealth Chromium browser engine** patched at the source lev
 
 Key capabilities: - **Source-level patches** — Modify Chromium at build time, not runtime hacks
 - **30/30 detection tests passed** — Vượt qua major bot detection systems (Cloudflare, Datadome, PerimeterX, etc.)
-- **Drop-in Playwright replacement** — Replace `playwright.chromium.launch()` với one line
+- **Drop-in Playwright replacement** — Replace ````playwright.chromium.launch()```` với one line
 - **TLS fingerprint randomization** — Rotate TLS fingerprints like real browsers
 - **WebRTC leak prevention** — Prevent IP leak through WebRTC
 - **Headless detection bypass** — Hide all headless browser signatures
@@ -64,7 +65,7 @@ Key capabilities: - **Source-level patches** — Modify Chromium at build time, 
 
 ### Giai đoạn 1: Source-Level Patches
 
-CloakBrowser applies patches at Chromium build time: ```bash
+CloakBrowser applies patches at Chromium build time: `````bash
 # Build CloakBrowser from source
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser
@@ -83,11 +84,11 @@ cd CloakBrowser
 # - Language detection
 # - Plugin enumeration
 # - Font enumeration
-```
+`````
 
 ### Giai đoạn 2: Runtime Integration
 
-```python
+`````python
 # Replace Playwright's Chromium with CloakBrowser
 from playwright.sync_api import sync_playwright
 
@@ -99,11 +100,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     page.goto("https://example.com")
     print(page.title())
     browser.close()
-```
+`````
 
 ### Giai đoạn 3: Stealth Configuration
 
-```python
+`````python
 # Advanced stealth configuration
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -120,13 +121,13 @@ browser = p.chromium.launch(
 import os
 os.environ["CLOAK_RANDOMIZE_FINGERPRINT"] = "true"
 os.environ["CLOAK_PROXY_ROTATION"] = "true"
-```
+`````
 
 ## Cài đặt và Thiết lập
 
 ### Bắt đầu Nhanh (Python)
 
-```bash
+`````bash
 # Install CloakBrowser
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser && ./build.sh
@@ -137,11 +138,11 @@ playwright install chromium
 
 # Run with CloakBrowser
 python stealth_scrape.py
-```
+`````
 
 ### Node.js Setup
 
-```bash
+`````bash
 # Install CloakBrowser
 git clone https://github.com/CloakHQ/CloakBrowser.git
 cd CloakBrowser && ./build.sh
@@ -154,11 +155,11 @@ npx playwright install chromium
 const browser = await chromium.launch({
   executablePath: './cloak-browser/chrome',
 });
-```
+`````
 
 ### Docker Deployment
 
-```bash
+`````bash
 # Build and run in Docker
 docker build -t cloak-browser .
 
@@ -168,11 +169,11 @@ docker run -d \
   -v $(pwd)/output:/output \
   -e CLOAK_PROXY=http://proxy:8080 \
   cloak-browser:latest
-```
+`````
 
 ### Proxy Integration
 
-```python
+`````python
 # CloakBrowser with proxy rotation
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -194,7 +195,7 @@ for url in urls: proxy = get_proxy()
     page = browser.new_page(proxy=proxy)
     page.goto(url)
     # scrape...
-```
+`````
 
 Để reliable proxy infrastructure, use [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) data-center proxies, [ProxyShard](https://www.proxyshard.com/?ref=11457) residential proxies, or deploy on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for self-hosted scraping.
 
@@ -231,7 +232,7 @@ for url in urls: proxy = get_proxy()
 
 ### Trường hợp Sử dụng Thực tế 1: E-commerce Price Monitoring
 
-```python
+`````python
 # Monitor prices across 50 e-commerce sites
 from playwright.sync_api import sync_playwright
 import time
@@ -253,11 +254,11 @@ with sync_playwright() as p: browser = p.chromium.launch(
     browser.close()
 
 # Result: 48/50 sites passed, 2 blocked (manual captcha)
-```
+`````
 
 ### Trường hợp Sử dụng Thực tế 2: SEO Tool Data Collection
 
-```python
+`````python
 # Collect SEO data from search engines
 page = browser.new_page()
 
@@ -272,13 +273,13 @@ for query in seo_queries: ua = random.choice(user_agents)
     page.goto(f"https://google.com/search?q={query}")
     results = page.locator(".g").all()
     print(f"Query: {query}, Results: {len(results)}")
-```
+`````
 
 ## Sử dụng Nâng cao / Cứng hóa Sản xuất
 
 ### Fingerprint Randomization
 
-```python
+`````python
 # Enable automatic fingerprint rotation
 browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
@@ -304,11 +305,11 @@ fingerprint = {
 
 # Apply custom fingerprint
 os.environ["CLOAK_FINGERPRINT"] = json.dumps(fingerprint)
-```
+`````
 
 ### Session Management
 
-```python
+`````python
 # Maintain session cookies across requests
 context = browser.new_context()
 
@@ -317,11 +318,11 @@ context.storage_state(path="./cookies.json")
 
 # Restore cookies on next run
 context = browser.new_context(storage_state="./cookies.json")
-```
+`````
 
 ### Headless Mode
 
-```python
+`````python
 # CloakBrowser works in both headless and headed modes
 # Headless: for server deployment
 browser = p.chromium.launch(
@@ -334,7 +335,7 @@ browser = p.chromium.launch(
     executable_path="./cloak-browser/chrome",
     headless=False,
 )
-```
+````
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -444,7 +445,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -454,7 +455,7 @@ Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa
 - [obscura-rust-headless-browser-ai-agents-web-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping)
 - [agent-reach-internet-access-ai-agents](cloakbrowser-stealth-chromium-bot-detection-scraping)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

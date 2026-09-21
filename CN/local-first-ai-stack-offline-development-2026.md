@@ -27,6 +27,7 @@ faq: - q: "Why go fully offline in 2026?"
   - q: "Can I sync local and cloud workflows?"
     a: "Yes. Pattern: local Ollama as primary, fall back to commercial API for hard tasks. Aider supports model switching mid-session. Most developers run hybrid — local default, cloud for the 10-20% that needs it."
 ---
+
 {{</* resource-info */>}}
 
 # Local-First AI Stack 2026: Offline Development Environment
@@ -57,45 +58,45 @@ For most developers: cloud still wins on quality. For specific workflows: local 
 ## The Stack (4 Components)
 
 ### 1. Ollama (LLM runtime)
-```bash
+````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.3:70b-instruct-q4_K_M
 ollama pull deepseek-coder-v2:16b-lite-instruct-q4_K_M
-```
-Two models loaded — one general, one coding-specific. Ollama serves them at `localhost:11434`.
+`````
+Two models loaded — one general, one coding-specific. Ollama serves them at ````localhost:11434````.
 
 ### 2. Aider (coding agent)
-```bash
+`````bash
 pip install aider-chat
 aider --model ollama/llama3.3:70b-instruct-q4_K_M
-```
+`````
 Aider connects to local Ollama. Now you have offline pair programming.
 
 ### 3. ChromaDB (local RAG)
-```bash
+`````bash
 pip install chromadb
 # Use in-process or run as service
 chroma run --path ./chroma-data
-```
+`````
 Vector DB runs locally. Index your codebase / docs for semantic search.
 
 ### 4. Local embedding (BGE-M3)
-```python
+`````python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("BAAI/bge-m3")
 # Generate embeddings locally
-```
+````
 Embeddings stay on your machine. No outbound calls.
 
 ## Hardware Reality
 
 | Setup | Models that work | Performance |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Mac M3 Max 64GB | Llama 3.3 70B + DeepSeek Coder | 20-30 tok/sec |
 | RTX 4090 24GB | Llama 3.3 70B Q4 | 25-30 tok/sec |
@@ -155,7 +156,7 @@ Local-first AI in 2026 is real but specialized. Don't go local because it's "pur
 The right hybrid is local default + commercial fallback. Most "local-first" developers eventually run this pattern — it gets you most of the privacy benefits with cloud quality available when you need it.
 
 
----
+* * *
 **Related**: [Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Ollama Setup Guide](https://dibi8.com/resources/llm-frameworks/ollama/) · [2026 Local-First AI Stack Production](https://dibi8.com/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
 
@@ -221,11 +222,11 @@ Local-First AI Stack 2026: Fully Offline AI Development Environment represents a
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -235,7 +236,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](local-first-ai-stack-offline-development-2026)
 - [ollama-vs-vllm](local-first-ai-stack-offline-development-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

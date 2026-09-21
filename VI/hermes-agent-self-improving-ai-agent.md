@@ -37,6 +37,7 @@ faqs: - q: 'Hermes Agent khác gì so với các công cụ như Claude Code, Cu
     a: 'Trên Linux, macOS hoặc WSL2, bạn có thể cài đặt bằng một script curl một dòng đưa qua bash, hoặc clone repo rồi chạy `./setup-hermes.sh`. Sau đó bạn thiết lập nhà cung cấp bằng các lệnh như `hermes config set provider openai` và `hermes config set model gpt-4o`, hoặc dùng một mô hình cục bộ qua `hermes config set provider ollama`.'
 ---
 
+
 {</* resource-info */>}
 
 ## Vấn đề: Hầu hết các tác nhân AI đều quên bạn
@@ -62,9 +63,9 @@ Không giống như các tác nhân khác là công cụ tĩnh, Hermes Agent: - 
 
 ### 1. Vòng lặp học tập tích hợp
 
-Đổi mới cốt lõi của Hermes Agent là **chu kỳ tự cải thiện**: ```
+Đổi mới cốt lõi của Hermes Agent là **chu kỳ tự cải thiện**: ````
 Kinh nghiệm → Suy ngẫm → Tạo kỹ năng → Thực hành → Cải thiện
-```
+`````
 
 Khi bạn hoàn thành một tác vụ với Hermes, nó sẽ: 1. **Phân tích** điều gì hiệu quả và điều gì không
 2. **Trích xuất** các mẫu có thể tái sử dụng
@@ -118,12 +119,12 @@ Bộ nhớ này tồn tại xuyên suốt các phiên, vì vậy Hermes **nhớ 
 
 Hermes Agent không chỉ là công cụ CLI — nó là **bot tin nhắn đa nền tảng**: | Nền tảng | Thiết lập | Trường hợp sử dụng |
 |---------|-------|---------|
-| **Telegram** | `hermes gateway setup` | Trợ lý AI di động |
-| **Discord** | `hermes gateway setup` | Cộng tác nhóm |
-| **Slack** | `hermes gateway setup` | Tích hợp nơi làm việc |
-| **WhatsApp** | `hermes gateway setup` | Trợ lý cá nhân |
-| **Signal** | `hermes gateway setup` | Tập trung vào quyền riêng tư |
-| **Email** | `hermes gateway setup` | Quy trình không đồng bộ |
+| **Telegram** | ````hermes gateway setup```` | Trợ lý AI di động |
+| **Discord** | ````hermes gateway setup```` | Cộng tác nhóm |
+| **Slack** | ````hermes gateway setup```` | Tích hợp nơi làm việc |
+| **WhatsApp** | ````hermes gateway setup```` | Trợ lý cá nhân |
+| **Signal** | ````hermes gateway setup```` | Tập trung vào quyền riêng tư |
+| **Email** | ````hermes gateway setup```` | Quy trình không đồng bộ |
 
 Sau khi cấu hình, bạn có thể trò chuyện với Hermes từ bất kỳ nền tảng nào trong số này bằng cách sử dụng cùng các lệnh và kỹ năng.
 
@@ -138,7 +139,7 @@ Hermes Agent hỗ trợ **Giao thức ngữ cảnh mô hình (MCP)**, cho phép 
 
 ### 7. Lập lịch Cron
 
-Hermes Agent có thể chạy **tác vụ đã lên lịch** thông qua hệ thống cron tích hợp: ```bash
+Hermes Agent có thể chạy **tác vụ đã lên lịch** thông qua hệ thống cron tích hợp: `````bash
 # Chạy một kỹ năng mỗi ngày lúc 9 giờ sáng
 hermes cron add --skill "daily-report" --schedule "0 9 * * *"
 
@@ -147,7 +148,7 @@ hermes cron add --skill "backup-database" --schedule "0 2 * * 0"
 
 # Liệt kê tất cả các tác vụ đã lên lịch
 hermes cron list
-```
+`````
 
 Hoàn hảo cho các quy trình tự động cần chạy theo lịch trình.
 
@@ -162,7 +163,7 @@ Hermes Agent coi trọng bảo mật: - **Phê duyệt lệnh** — các lệnh 
 
 ### Cài đặt
 
-```bash
+`````bash
 # Cài đặt một dòng (Linux, macOS, WSL2)
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 
@@ -170,18 +171,18 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 git clone https://github.com/NousResearch/hermes-agent.git
 cd hermes-agent
 ./setup-hermes.sh
-```
+`````
 
 ### Cuộc trò chuyện đầu tiên
 
-```bash
+`````bash
 source ~/.bashrc    # tải lại shell
 hermes              # bắt đầu trò chuyện
-```
+`````
 
 ### Cấu hình nhà cung cấp
 
-```bash
+`````bash
 # Đặt nhà cung cấp LLM ưa thích của bạn
 hermes config set provider openai
 hermes config set model gpt-4o
@@ -189,11 +190,11 @@ hermes config set model gpt-4o
 # Hoặc sử dụng mô hình cục bộ
 hermes config set provider ollama
 hermes config set model llama3.1
-```
+`````
 
 ### Các lệnh hữu ích
 
-```bash
+`````bash
 # Bắt đầu cuộc trò chuyện mới
 /new
 
@@ -214,11 +215,11 @@ hermes config set model llama3.1
 
 # Nén ngữ cảnh để tiết kiệm token
 /compress
-```
+`````
 
 ## Kiến trúc
 
-Hermes Agent được xây dựng với kiến trúc mô-đun: ```
+Hermes Agent được xây dựng với kiến trúc mô-đun: `````
 Hermes Agent
 ├── Giao diện CLI (UI terminal)
 ├── Cổng tin nhắn (Telegram, Discord, v.v.)
@@ -229,7 +230,7 @@ Hermes Agent
 ├── Máy khách MCP (tích hợp bên ngoài)
 ├── Bộ lập lịch Cron (tác vụ tự động)
 └── Lớp bảo mật (phê duyệt, cách ly)
-```
+````
 
 Toàn bộ hệ thống được viết bằng **Python** (28M+ dòng) với các thành phần TypeScript cho giao diện web.
 
@@ -293,7 +294,7 @@ Bạn đã thử Hermes Agent chưa? Bạn có kinh nghiệm gì với các tác
 - [Free Claude Code: Công cụ proxy mã nguồn mở để sử dụng Claude Code CLI miễn phí](/vi/resources/ai-tools/free-claude-code-open-source-proxy/)
 - [OpenClaw 42 trường hợp sử dụng thực tế: Tác nhân AI đã thay đổi cuộc sống của chúng ta](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

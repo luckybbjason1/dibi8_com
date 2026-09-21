@@ -9,6 +9,7 @@ github_repo: "https://github.com/opendatalab/MinerU"
 license: MinerU Open Source License (Apache 2.0-based)
 featureImage: /images/articles/mineru-docs.png
 ---
+
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
 *MinerU — the open-source document parsing engine that turned 70,600 GitHub stars in just over a year.*
@@ -38,28 +39,28 @@ The result is document content that AI agents and LLMs can actually understand.
 
 MinerU offers multiple installation paths depending on your needs: ### pip (Recommended for most users)
 
-```bash
+````bash
 pip install mineru
-```
+`````
 
 ### Docker
 
-```bash
+`````bash
 docker pull mineru/mineru:latest
 docker run --gpus all -v $(pwd):/data mineru/mineru:latest
-```
+`````
 
 ### Local Development
 
-```bash
+`````bash
 git clone https://github.com/opendatalab/MinerU.git
 cd MinerU
 pip install -e .
-```
+`````
 
-MinerU supports both **CPU-only** and **GPU-accelerated** inference. For GPU acceleration, install with CUDA support: ```bash
+MinerU supports both **CPU-only** and **GPU-accelerated** inference. For GPU acceleration, install with CUDA support: `````bash
 pip install mineru[cuda]
-```
+`````
 
 On macOS with Apple Silicon, MinerU leverages MPS (Metal Performance Shaders) for acceleration.
 
@@ -67,32 +68,32 @@ On macOS with Apple Silicon, MinerU leverages MPS (Metal Performance Shaders) fo
 
 MinerU provides three different parsing backends, each optimized for different scenarios: ### 1. Pipeline Backend (Fast & Stable)
 
-The `pipeline` backend is the default choice for most users. It's fast, stable, and produces no hallucinations. It runs efficiently on CPU and is ideal for batch processing.
+The ````pipeline```` backend is the default choice for most users. It's fast, stable, and produces no hallucinations. It runs efficiently on CPU and is ideal for batch processing.
 
-```bash
+`````bash
 mineru ./input.pdf -o ./output/
-```
+`````
 
 **Best for:** High-volume document processing, CI/CD pipelines, CPU-only environments.
 
 ### 2. VLM Engine (High Accuracy)
 
-The VLM (Vision Language Model) engine uses MinerU's proprietary `MinerU2.5-Pro-2604-1.2B` model for state-of-the-art parsing accuracy. It excels on complex documents with mixed layouts, handwritten text, and dense formulas.
+The VLM (Vision Language Model) engine uses MinerU's proprietary ````MinerU2.5-Pro-2604-1.2B```` model for state-of-the-art parsing accuracy. It excels on complex documents with mixed layouts, handwritten text, and dense formulas.
 
-```bash
+`````bash
 mineru ./complex.pdf -o ./output/ --engine vlm-engine
-```
+`````
 
 **Best for:** Complex scientific papers, scanned documents, handwritten content, multi-language OCR.
 
 ### 3. Hybrid Engine (Balanced)
 
-The `hybrid` engine combines native text extraction with VLM-based analysis. Starting from version 3.3, it includes an `effort` parameter with `medium` and `high` levels: - **Medium effort:** 35-220% faster than high, with only 0.13-point accuracy drop on OmniDocBench
+The ````hybrid```` engine combines native text extraction with VLM-based analysis. Starting from version 3.3, it includes an ````effort```` parameter with ````medium```` and ````high```` levels: - **Medium effort:** 35-220% faster than high, with only 0.13-point accuracy drop on OmniDocBench
 - **High effort:** Maximum accuracy with image analysis support
 
-```bash
+`````bash
 mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
-```
+`````
 
 **Best for:** Production workloads where you need to balance speed and accuracy.
 
@@ -100,11 +101,11 @@ mineru ./document.pdf -o ./output/ --engine hybrid-engine --effort medium
 
 MinerU supports a comprehensive range of input formats: | Format | Support Level | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | PDF | Native | Text PDFs, scanned PDFs, garbled PDFs |
 | DOCX | Native | Full structural preservation |
@@ -119,15 +120,15 @@ The native DOCX, PPTX, and XLSX support (added in version 3.1.0) means MinerU ca
 
 MinerU's OCR engine supports **109 languages** and was upgraded to PP-OCRv6 in version 3.4, improving accuracy by approximately 11% on the OmniDocBench v1.6 benchmark.
 
-Starting from version 3.4, MinerU simplified the OCR language configuration. Instead of selecting individual languages (Japanese, Traditional Chinese, English, Latin), all scenarios now route through the optimized `ch` OCR model, reducing configuration complexity while improving accuracy.
+Starting from version 3.4, MinerU simplified the OCR language configuration. Instead of selecting individual languages (Japanese, Traditional Chinese, English, Latin), all scenarios now route through the optimized ````ch```` OCR model, reducing configuration complexity while improving accuracy.
 
-```bash
+`````bash
 # Automatic OCR detection (recommended)
 mineru ./scanned.pdf -o ./output/
 
 # Force OCR on a specific document
 mineru ./document.pdf -o ./output/ --ocr
-```
+`````
 
 ## Real-World Use Cases
 
@@ -135,14 +136,14 @@ mineru ./document.pdf -o ./output/ --ocr
 
 MinerU is purpose-built for RAG (Retrieval-Augmented Generation) workflows. By converting documents into structured Markdown with preserved reading order, headings, and semantic structure, RAG systems can chunk and embed documents far more effectively.
 
-```python
+`````python
 import mineru as mu
 
 result = mu.parse("./research_paper.pdf")
 # result.markdown: Clean Markdown for embedding
 # result.json: Structured JSON for retrieval
 # result.layout: Visual layout for debugging
-```
+`````
 
 ### AI Agent Knowledge Base
 
@@ -160,9 +161,9 @@ With support for multi-threaded concurrent inference and streaming writes to dis
 
 MinerU integrates with virtually every major AI framework: | Framework | Integration |
 |
----
+* * *
 |
----
+* * *
 |
 | LangChain | Native document loader |
 | LlamaIndex | Document parser integration |
@@ -176,19 +177,19 @@ MinerU integrates with virtually every major AI framework: | Framework | Integra
 
 MinerU also provides an **MCP Server** for integration with AI coding tools like Cursor, Claude Desktop, and Windsurf. This allows you to parse documents directly within your coding agent's workflow.
 
-```bash
+`````bash
 # Start the MCP server
 mineru-mcp-server
-```
+`````
 
 ## Performance Benchmarks
 
-MinerU's `pipeline` backend achieves a score of **86.2 on OmniDocBench v1.5**, surpassing the accuracy of the previous-generation VLM model `MinerU2.0-2505-0.9B`.
+MinerU's ````pipeline```` backend achieves a score of **86.2 on OmniDocBench v1.5**, surpassing the accuracy of the previous-generation VLM model ````MinerU2.0-2505-0.9B````.
 
-The Hybrid engine with `effort=medium` delivers: - **~80% faster** for text PDF scenarios on Linux
+The Hybrid engine with ````effort=medium```` delivers: - **~80% faster** for text PDF scenarios on Linux
 - **~90% faster** for text PDF scenarios on Windows
 - **~220% faster** for text PDF scenarios on macOS
-- Only **0.13-point accuracy drop** compared to `effort=high`
+- Only **0.13-point accuracy drop** compared to ````effort=high````
 
 ## Why MinerU Stands Out
 
@@ -208,11 +209,11 @@ The easiest way to try MinerU is through the [online web application](https://mi
 
 For developers, the [Colab notebook](https://colab.research.google.com/gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb) provides a quick interactive demo.
 
-```bash
+`````bash
 # Install and parse your first document
 pip install mineru
 mineru ./my-document.pdf -o ./output/ --format markdown
-```
+````
 
 ## Limitations
 
@@ -269,7 +270,7 @@ With 70,600+ stars, an active development team, and growing framework integratio
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
@@ -279,7 +280,7 @@ With 70,600+ stars, an active development team, and growing framework integratio
 - [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

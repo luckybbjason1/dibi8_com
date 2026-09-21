@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/prometheus/
 ---
 
+
 # Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026
 
 
@@ -41,7 +42,7 @@ Prometheus는 클라우드 네이티브 환경을 위해 설계된 오픈소스 
 
 ## Prometheus 작동 방식
 
-Prometheus는 **풀(pull) 기반 아키텍처**를 사용한다. 에이전트가 중앙 수집기에 지표를 푸시하는 대신, Prometheus는 구성된 간격으로 HTTP 엔드포인트를 스크랩한다. 이 설계는 서비스 디스커버리를 단순화하고, 모든 호스트에 에이전트를 설치할 필요가 없으며, 내장된 상태 감지 기능을 제공한다 —— 타겟이 응답하지 않으면 `up` 지표가 즉시 `0`을 반환한다.
+Prometheus는 **풀(pull) 기반 아키텍처**를 사용한다. 에이전트가 중앙 수집기에 지표를 푸시하는 대신, Prometheus는 구성된 간격으로 HTTP 엔드포인트를 스크랩한다. 이 설계는 서비스 디스커버리를 단순화하고, 모든 호스트에 에이전트를 설치할 필요가 없으며, 내장된 상태 감지 기능을 제공한다 —— 타겟이 응답하지 않으면 ```up```` 지표가 즉시 ````0````을 반환한다.
 
 핵심 구성 요소: | 구성 요소 | 역할 |
 |---|---|
@@ -56,7 +57,7 @@ Prometheus는 **풀(pull) 기반 아키텍처**를 사용한다. 에이전트가
 데이터 흐름: Service Discovery가 타겟을 식별하면, Scraper가 HTTP로 지표를 가져오고, TSDB가 압축하여 저장하며, Rule Engine이 알림 및 기록 규칙을 평가한다. Alertmanager가 알림 라우팅을 처리하고, HTTP API가 Grafana 또는 내장 표현식 브라우저에 쿼리를 제공한다.
 
 **핵심 설계 결정:**
-- **풀 오버 푸시**: 타겟은 `/metrics`만 노출하면 되며 에이전트 구성이 불필요
+- **풀 오버 푸시**: 타겟은 ````/metrics````만 노출하면 되며 에이전트 구성이 불필요
 - **로컬 저장소**: 기본적으로 각 Prometheus 서버가 자율적으로 운영
 - **다차원 데이터 모델**: 모든 지표에 키-값 레이블이 부여되어 유연한 쿼리 가능
 - **PromQL**: 집계, 속도 계산, 알림을 위한 강력한 쿼리 언어
@@ -66,16 +67,16 @@ Prometheus는 **풀(pull) 기반 아키텍처**를 사용한다. 에이전트가
 ### Docker 설정 (단일 노드, 5분 이내)
 
 가장 빠르게 Prometheus를 실행하는 방법은 Docker이다. 프로젝트 디렉토리를 생성하고 두 개의 파일을 만든다: **prometheus.yml:**
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: prometheus
     static_configs: - targets: ['localhost:9090']
-```
+`````
 
 **docker-compose.yml:**
-```yaml
+`````yaml
 version: '3.8'
 
 services: prometheus: image: prom/prometheus:v3.11.0
@@ -89,17 +90,17 @@ services: prometheus: image: prom/prometheus:v3.11.0
       - '--web.enable-lifecycle'
     restart: unless-stopped
 
-volumes: prometheus-data: ```
+volumes: prometheus-data: `````
 
-시작: ```bash
+시작: `````bash
 docker compose up -d
-```
+`````
 
-UI 접속: `http://localhost:9090`. `--web.enable-lifecycle` 플래그는 `POST /-/reload`를 통해 컨테이너 재시작 없이 구성을 다시 로드할 수 있게 한다.
+UI 접속: ````http://localhost:9090````. ````--web.enable-lifecycle```` 플래그는 ````POST /-/reload````를 통해 컨테이너 재시작 없이 구성을 다시 로드할 수 있게 한다.
 
 ### Docker 풀 스택: Prometheus + Grafana + Node Exporter + cAdvisor
 
-완전한 모니터링 스택을 위해 Grafana 시각화 및 호스트/컨테이너 지표를 위한 익스포터를 추가한다: ```yaml
+완전한 모니터링 스택을 위해 Grafana 시각화 및 호스트/컨테이너 지표를 위한 익스포터를 추가한다: `````yaml
 version: '3.8'
 
 services: prometheus: image: prom/prometheus:v3.11.0
@@ -138,10 +139,10 @@ services: prometheus: image: prom/prometheus:v3.11.0
     ports: - "8080:8080"
     restart: unless-stopped
 
-volumes: prometheus-data: grafana-data: ```
+volumes: prometheus-data: grafana-data: `````
 
 **풀 스택용 prometheus.yml:**
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
@@ -153,11 +154,11 @@ scrape_configs: - job_name: prometheus
 
   - job_name: cadvisor
     static_configs: - targets: ['cadvisor:8080']
-```
+`````
 
 ### Kubernetes Helm 배포
 
-프로덕션 Kubernetes 환경에서는 `kube-prometheus-stack` Helm 차트를 사용한다: ```bash
+프로덕션 Kubernetes 환경에서는 ``kube-prometheus-stack`` Helm 차트를 사용한다: `````bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
@@ -169,21 +170,21 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage=50Gi \
   --set grafana.enabled=true \
   --set grafana.adminPassword='your-secure-password'
-```
+`````
 
-배포 확인: ```bash
+배포 확인: `````bash
 kubectl get pods -n monitoring
-```
+`````
 
-로컬 접속용 포트 포워딩: ```bash
+로컬 접속용 포트 포워딩: `````bash
 kubectl port-forward svc/prometheus-kube-prometheus-prometheus 9090:9090 -n monitoring
 kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring
 kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 9093:9093 -n monitoring
-```
+`````
 
 ### Kubernetes 프로덕션 설정
 
-```yaml
+`````yaml
 prometheus: prometheusSpec: resources: requests: memory: 2Gi
         cpu: 500m
       limits: memory: 4Gi
@@ -204,12 +205,12 @@ alertmanager: alertmanagerSpec: resources: requests: memory: 256Mi
 grafana: enabled: true
   persistence: enabled: true
     size: 10Gi
-```
+`````
 
-적용: ```bash
+적용: `````bash
 helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
   -n monitoring -f values-production.yaml
-```
+`````
 
 ## Docker, Kubernetes, Grafana, Alertmanager 통합
 
@@ -217,7 +218,7 @@ helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
 
 Grafana에 Prometheus를 데이터 소스로 추가: 1. Grafana → Configuration → Data Sources → Add Data Source
 2. **Prometheus** 선택
-3. URL: `http://prometheus:9090` (Docker) 또는 `http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090` (K8s)
+3. URL: ````http://prometheus:9090```` (Docker) 또는 ````http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090```` (K8s)
 4. **Save & Test** 클릭
 
 대시보드 ID **1860** (Node Exporter Full)을 임포트하여 완전한 호스트 지표 대시보드를 얻거나, ID **14282**로 cAdvisor 컨테이너 지표를 확인한다.
@@ -226,7 +227,7 @@ Grafana에 Prometheus를 데이터 소스로 추가: 1. Grafana → Configuratio
 
 ### Prometheus + Alertmanager 알림 규칙
 
-`alert-rules.yml` 생성: ```yaml
+``alert-rules.yml`` 생성: `````yaml
 groups: - name: node-alerts
     rules: - alert: HighMemoryUsage
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
@@ -258,11 +259,11 @@ groups: - name: node-alerts
         labels: severity: warning
         annotations: summary: "{{ $labels.instance }} 요청 지연 과다"
           description: "95번째 백분위 지연이 {{ $value }}초"
-```
+`````
 
 ### Alertmanager Slack 설정
 
-`alertmanager.yml` 생성: ```yaml
+``alertmanager.yml`` 생성: `````yaml
 global: slack_api_url: YOUR_SLACK_WEBHOOK_URL
 
 route: receiver: 'slack-notifications'
@@ -276,11 +277,11 @@ receivers: - name: 'slack-notifications'
         send_resolved: true
         title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
         text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
-```
+`````
 
 ### Kubernetes 서비스 디스커버리
 
-```yaml
+`````yaml
 scrape_configs: - job_name: 'kubernetes-pods'
     kubernetes_sd_configs: - role: pod
         namespaces: names: - default
@@ -293,48 +294,48 @@ scrape_configs: - job_name: 'kubernetes-pods'
         target_label: __address__
         regex: ([^:]+)(?::\d+)?;(\d+)
         replacement: $1:$2
-```
+`````
 
 ### PromQL 쿼리 예시
 
 **초당 요청율:**
-```promql
+`````promql
 rate(http_requests_total[5m])
-```
+`````
 
 **95번째 백분위 지연 시간:**
-```promql
+`````promql
 histogram_quantile(0.95, 
   sum(rate(http_request_duration_seconds_bucket[5m])) by (le)
 )
-```
+`````
 
 **CPU 사용률 백분율:**
-```promql
+`````promql
 100 - (avg by(instance) (
   irate(node_cpu_seconds_total{mode="idle"}[5m])
 ) * 100)
-```
+`````
 
 **메모리 사용량 (MB):**
-```promql
+`````promql
 (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1024 / 1024
-```
+`````
 
 **엔드포인트별 오류율:**
-```promql
+`````promql
 sum(rate(http_requests_total{status=~"5.."}[5m])) by (handler) 
 / 
 sum(rate(http_requests_total[5m])) by (handler)
-```
+`````
 
 **디스크 사용 예측 (7일 내 가득 참?):**
-```promql
+`````promql
 predict_linear(
   node_filesystem_avail_bytes[1h], 
   7 * 24 * 3600
 ) < 0
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -369,22 +370,22 @@ predict_linear(
 
 ### 보안 모범 사례
 
-1. **기본 인증 활성화** (Prometheus v2.24+): ```yaml
+1. **기본 인증 활성화** (Prometheus v2.24+): `````yaml
 basic_auth_users: admin: $2y$10$... # bcrypt 해시
-```
+`````
 
-```bash
+`````bash
 htpasswd -nBC 10 "" | tr -d ':\n'
-```
+`````
 
-2. **스크랩 타겟에 TLS 사용**: ```yaml
+2. **스크랩 타겟에 TLS 사용**: `````yaml
 scrape_configs: - job_name: 'secure-target'
     scheme: https
     tls_config: ca_file: /etc/prometheus/certs/ca.crt
       cert_file: /etc/prometheus/certs/client.crt
       key_file: /etc/prometheus/certs/client.key
       insecure_skip_verify: false
-```
+`````
 
 3. **네트워크 정책** (Kubernetes)으로 Prometheus 9090 포트 접근을 제한한다.
 
@@ -399,16 +400,16 @@ scrape_configs: - job_name: 'secure-target'
 
 ### Prometheus 자체 모니터링
 
-```promql
+`````promql
 prometheus_tsdb_head_series
 prometheus_tsdb_head_chunks
 prometheus_rule_evaluation_duration_seconds
 prometheus_notifications_dropped_total
-```
+`````
 
 ### Thanos 장기 저장소
 
-Thanos는 객체 저장소(S3, GCS, Azure Blob)를 통해 Prometheus를 확장하여 장기 보관 및 글로벌 쿼리를 가능하게 한다: ```yaml
+Thanos는 객체 저장소(S3, GCS, Azure Blob)를 통해 Prometheus를 확장하여 장기 보관 및 글로벌 쿼리를 가능하게 한다: `````yaml
 - name: thanos-sidecar
   image: quay.io/thanos/thanos:v0.37.0
   args: - sidecar
@@ -416,7 +417,7 @@ Thanos는 객체 저장소(S3, GCS, Azure Blob)를 통해 Prometheus를 확장�
     - --objstore.config-file=/etc/thanos/objstore.yml
   volumeMounts: - name: prometheus-data
       mountPath: /prometheus
-```
+`````
 
 ## 대안과의 비교
 
@@ -458,13 +459,13 @@ Prometheus는 만능 모니터링 솔루션이 아니다. 다음 제약 사항�
 A: Prometheus가 지표를 수집하고 저장하면, Grafana가 이를 시각화한다. 이들은 경쟁자가 아닌 상호 보완적인 도구이다.
 
 **Q: Python 애플리케이션을 Prometheus로 모니터링하려면?**
-A: 공식 `prometheus-client` Python 라이브러리를 사용하여 `/metrics` 엔드포인트를 노출한 후, Prometheus가 이를 스크랩하도록 구성한다.
+A: 공식 ````prometheus-client```` Python 라이브러리를 사용하여 ````/metrics```` 엔드포인트를 노출한 후, Prometheus가 이를 스크랩하도록 구성한다.
 
 **Q: Prometheus로 고가용성을 구현할 수 있나?**
 A: 가능하지만 외부 솔루션이 필요하다. 동일한 타겟을 스크랩하는 두 개의 동일한 Prometheus 인스턴스를 실행하고, Thanos Querier 또는 Cortex로 중복 제거 및 글로벌 쿼리를 수행한다.
 
 **Q: Prometheus 데이터의 최대 보관 기간은?**
-A: `--storage.tsdb.retention.time`으로 구성 가능(기본 15일). 수년간의 보관을 위해서는 Thanos, Mimir 또는 객체 저장소로의 리모트 라이트가 필요하다.
+A: ````--storage.tsdb.retention.time````으로 구성 가능(기본 15일). 수년간의 보관을 위해서는 Thanos, Mimir 또는 객체 저장소로의 리모트 라이트가 필요하다.
 
 **Q: Prometheus와 CloudWatch 같은 클라우드 모니터링을 비교하면?**
 A: Prometheus는 더 유연한 쿼리(PromQL vs CloudWatch Insights), 차원 레이블, 지표당 과금이 없는 장점이 있다. CloudWatch는 AWS 서비스와 네이티브 통합되며 운영 오버헤드가 없다.
@@ -480,7 +481,7 @@ A: 장치가 HTTP 엔드포인트를 노출하고 Prometheus 서버가 접근 �
 Prometheus는 2026년에도 클라우드 네이티브 모니터링의 표준으로 남아있다. 64,094개의 GitHub Stars, 활발한 CNCF 지원, 그리고 지속적인 성능 개선(PromQL 힙 할당 감소, 네이티브 히스토그램 안정화, Remote Write 2.0)을 통해 인프라 관찰 가능성을 위한 안전한 장기 투자 대상이다.
 
 **액션 아이템:**
-1. `kube-prometheus-stack` Helm 차트를 클론하여 스테이징 클러스터에 배포
+1. ````kube-prometheus-stack``` Helm 차트를 클론하여 스테이징 클러스터에 배포
 2. Grafana 대시보드 1860을 임포트하여 즉각적인 Node Exporter 가시성 확보
 3. 중요 서비스에 대한 세 가지 알림 규칙 작성
 4. [dibi8 Telegram 그룹](https://t.me/dibi8)에 가입하여 일일 오픈소스 도구 업데이트와 배포 팁을 받아보세요
@@ -536,7 +537,7 @@ Prometheus는 2026년에도 클라우드 네이티브 모니터링의 표준으�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -546,6 +547,6 @@ Prometheus는 2026년에도 클라우드 네이티브 모니터링의 표준으�
 - [worldmonitor-real-time-global-intelligence-dashboard](prometheus)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](prometheus)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

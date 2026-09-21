@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/mem0/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言
@@ -46,7 +47,7 @@ Mem0 的架构将记忆分为四个操作层：
 
 **4. 图层（Pro 版）**：超越平面向量存储，Mem0 Pro 构建知识图谱，理解实体关系——支持多跳推理（"James 和谁一起工作？"需要连接 "James 在 TechCorp 工作" + "Sarah 在 TechCorp 工作"）。
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │                    用户消息                           │
 └──────────────────────┬───────────────────────────────┘
@@ -70,21 +71,21 @@ Mem0 的架构将记忆分为四个操作层：
           ┌────────────▼────────────┐
           │   注入提示词             │  ← 上下文增强
           └─────────────────────────┘
-```
+`````
 
 ## 安装与设置
 
 ### 云端设置（最快路径）
 
-```bash
+`````bash
 # 安装 Python 客户端
 pip install mem0ai
 
 # 设置 API 密钥（从 https://app.mem0.ai 获取）
 export MEM0_API_KEY="m0-your-key-here"
-```
+`````
 
-```python
+`````python
 # mem0_quickstart.py
 import os
 from mem0 import MemoryClient
@@ -104,13 +105,13 @@ results = client.search(
     user_id="user123"
 )
 print(results)
-```
+`````
 
 ### 自托管设置（Docker）
 
 适合需要数据驻留或离线部署的团队：
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/mem0ai/mem0.git
 cd mem0
@@ -118,9 +119,9 @@ cd mem0
 # 使用 Docker 启动
 make bootstrap
 # 创建管理员用户，生成 API 密钥，启动服务器和管理面板
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml 生产环境配置
 docker run -d \
   -p 8000:8000 \
@@ -130,15 +131,15 @@ docker run -d \
   -e LLM_PROVIDER=openai \
   -e OPENAI_API_KEY=$OPENAI_API_KEY \
   mem0/mem0-server:latest
-```
+`````
 
 ### 开源 SDK（本地）
 
-```bash
+`````bash
 pip install mem0ai openai chromadb
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # 使用自定义向量存储初始化
@@ -154,15 +155,15 @@ m.add(messages, user_id="alice", metadata={"category": "movies"})
 
 # 使用元数据过滤搜索
 results = m.search("movie recommendations", filters={"user_id": "alice"})
-```
+`````
 
 ## 内存配置与性能调优
 
 ### 使用 YAML 自定义配置
 
-`mem0config.yaml` 文件控制记忆流水线的每个组件：
+````mem0config.yaml```` 文件控制记忆流水线的每个组件：
 
-```yaml
+`````yaml
 # mem0config.yaml — 生产级调优配置
 llm: provider: openai
   config: model: "gpt-4o-mini"
@@ -186,29 +187,29 @@ custom_instructions: |
   提取用户偏好、个人事实和上下文。
   重点关注饮食限制、过敏和技术偏好。
   忽略临时状态和一次性请求。
-```
+`````
 
-```python
+`````python
 from mem0 import Memory
 
 # 加载自定义配置
 config_path = "mem0config.yaml"
 m = Memory.from_config(config_path)
-```
+`````
 
 ### 向量存储后端对比
 
 | 后端 | 适用场景 | 延迟 | 持久化 | 扩展性 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qdrant | 生产环境、混合搜索 | <10ms | 磁盘 | 水平扩展 |
 | Chroma | 本地开发、原型设计 | <20ms | 文件 | 单节点 |
@@ -218,7 +219,7 @@ m = Memory.from_config(config_path)
 
 ### 性能调优清单
 
-```python
+`````python
 # 1. 为高吞吐量应用启用异步记忆
 from mem0 import MemoryClient
 import asyncio
@@ -246,11 +247,11 @@ results = client.search(
     top_k=5,  # 减少提升速度，增加提升覆盖度
     rerank=True
 )
-```
+`````
 
 ### 带自定义指令的记忆
 
-```python
+`````python
 # 引导提取和存储哪些事实
 m = Memory.from_config({
     "custom_instructions": """
@@ -266,17 +267,17 @@ m = Memory.from_config({
     - 未经同意的第三方信息
     """
 })
-```
+`````
 
 ## 与 LangChain、CrewAI 和 OpenAI 集成
 
 ### LangChain 集成
 
-```bash
+`````bash
 pip install langchain langchain-openai mem0ai
-```
+`````
 
-```python
+`````python
 # langchain_mem0_agent.py
 import os
 from typing import List, Dict
@@ -333,15 +334,15 @@ print(response1)
 # 后续会话 — 智能体记住了
 response2 = chat(user_id, "What should I pack for my trip?")
 # 输出引用东京、时间以及旅行者的偏好
-```
+`````
 
 ### CrewAI 集成
 
-```bash
+`````bash
 pip install crewai mem0ai
-```
+`````
 
-```python
+`````python
 # crewai_mem0_crew.py
 import os
 from crewai import Agent, Task, Crew
@@ -383,15 +384,15 @@ task = Task(
 crew = Crew(agents=[researcher], tasks=[task])
 result = crew.kickoff(inputs={"user_id": "user123"})
 print(result)
-```
+`````
 
 ### OpenAI Agents SDK 集成
 
-```bash
+`````bash
 pip install openai-agents mem0ai
-```
+`````
 
-```python
+`````python
 # openai_agents_mem0.py
 import os
 from dataclasses import dataclass
@@ -430,11 +431,11 @@ async def run_agent(): context = UserContext(user_id="user_42")
     print(result.final_output)
 
 # asyncio.run(run_agent())
-```
+`````
 
 ### Docker Compose 生产级部署
 
-```yaml
+`````yaml
 # mem0-production-stack.yml
 version: "3.8"
 
@@ -460,7 +461,7 @@ services: qdrant: image: qdrant/qdrant:latest
     environment: - MEM0_API_URL=http://mem0-server:8000
       - MEM0_API_KEY=${MEM0_API_KEY}
 
-volumes: qdrant_storage: ```
+volumes: qdrant_storage: `````
 
 ## 基准测试 / 实际用例
 
@@ -470,15 +471,15 @@ Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成�
 
 | 基准测试 | 指标 | 旧算法 | 新算法（2026年4月） | 提升 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LoCoMo | 总体准确率 | 66.9% | **92.5%** | +25.6 个百分点 |
 | LoCoMo | 平均 Token/查询 | ~26,000 | **6,956** | 3.7 倍减少 |
@@ -491,13 +492,13 @@ Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成�
 
 | 类别 | 旧分数 | 新分数 | 增量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 单跳 | 76.6% | 94.6% | +18.0 |
 | 多跳 | 70.2% | 95.4% | +25.2 |
@@ -526,7 +527,7 @@ Mem0 的新型 token 高效算法（2026 年 4 月发布）在更低 token 成�
 
 ### 安全配置
 
-```python
+`````python
 # 使用元数据进行记忆访问控制
 def store_sensitive_memory(user_id: str, fact: str, classification: str): """存储带安全等级的记忆。"""
     messages = [{"role": "user", "content": fact}]
@@ -548,11 +549,11 @@ results = client.search(
         "metadata.classification": ["public", "internal"]
     }
 )
-```
+`````
 
 ### 多租户隔离
 
-```python
+`````python
 # 面向 SaaS 应用的组织级记忆隔离
 def add_org_scoped_memory(org_id: str, user_id: str, messages: list): """存储同时按组织和用户范围隔离的记忆。"""
     client.add(
@@ -566,11 +567,11 @@ results = client.get_all(
     filters={"metadata.org_id": "org_123"},
     limit=100
 )
-```
+`````
 
 ### 记忆监控与可观测性
 
-```python
+`````python
 # 追踪记忆指标
 import time
 
@@ -595,11 +596,11 @@ def memory_health_check(user_id: str): """验证用户记忆的完整性。"""
         "categories": len(set(m.get("metadata", {}).get("category", "") for m in all_memories)),
         "avg_score": sum(m.get("score", 0) for m in all_memories) / len(all_memories) if all_memories else 0
     }
-```
+`````
 
 ### 速率限制与成本控制
 
-```python
+`````python
 # 客户端速率限制实现
 from functools import wraps
 import time
@@ -621,21 +622,21 @@ def rate_limited_add(messages, user_id): if not limiter.can_call(): # 稍后排�
         return {"status": "queued"}
     limiter.record_call()
     return client.add(messages, user_id=user_id)
-```
+`````
 
 ## 与替代品对比
 
 | 特性 | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma（原始） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **架构** | 混合 向量+图+KV | 键值+向量 | 向量+索引 | 纯向量数据库 |
 | **GitHub Stars** | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 |
@@ -693,7 +694,7 @@ A: Qdrant 是生产部署的推荐选择，因为它具备混合搜索能力（�
 
 **Q: 如何从 LangChain Memory 迁移到 Mem0？**
 
-A: 迁移是渐进的。首先在现有 LangChain 记忆旁初始化 Mem0。在两个系统中同时存储新对话。使用 Mem0 的 `search()` API 检索记忆并通过 `memories` 变量注入 LangChain 提示词。建立信心后，完全切换到 Mem0。Mem0 文档提供了迁移指南。
+A: 迁移是渐进的。首先在现有 LangChain 记忆旁初始化 Mem0。在两个系统中同时存储新对话。使用 Mem0 的 ````search()```` API 检索记忆并通过 ````memories```` 变量注入 LangChain 提示词。建立信心后，完全切换到 Mem0。Mem0 文档提供了迁移指南。
 
 **Q: Mem0 的大规模使用定价如何？**
 
@@ -709,7 +710,7 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 
 **行动项：**
 
-1. 克隆 mem0ai/mem0 仓库，使用 `pip install mem0ai` 运行快速入门
+1. 克隆 mem0ai/mem0 仓库，使用 ````pip install mem0ai``` 运行快速入门
 2. 在 app.mem0.ai 注册免费 API 密钥
 3. 将 Mem0 搜索集成到你的 LangChain 或 CrewAI 智能体提示词中
 4. 在你自己的对话数据集上，将当前记忆解决方案与 Mem0 的检索进行基准对比
@@ -772,7 +773,7 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](mem0)
@@ -782,7 +783,7 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 - [nanochat-karpathy-100-chatgpt-single-gpu](mem0)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

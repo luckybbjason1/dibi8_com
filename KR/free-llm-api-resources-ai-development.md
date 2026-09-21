@@ -32,6 +32,7 @@ faqs: - q: '가장 빠른 무료 LLM 추론 제공업체는 무엇인가요?'
     a: '무료 등급은 트래픽이 적은 애플리케이션, 폴백 제공업체, 비용에 민감하거나 커뮤니티 프로젝트에는 적합할 수 있지만, 속도 제한이 있고 약관이 변경될 수 있습니다. 트래픽이 많은 프로덕션의 경우 신중하게 사용하거나 유료 옵션과 함께 사용해야 합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## 무료 LLM API 리소스란?
@@ -43,7 +44,7 @@ faqs: - q: '가장 빠른 무료 LLM 추론 제공업체는 무엇인가요?'
 **언어**: Python
 **라이선스**: CC0-1.0 (퍼블릭 도메인)
 
----
+* * *
 
 ## 문제: AI API 비용
 
@@ -68,7 +69,7 @@ faqs: - q: '가장 빠른 무료 LLM 추론 제공업체는 무엇인가요?'
 | Ollama | 로컬 | 무제한 | 자체 호스팅 |
 | LM Studio | 로컬 | 무제한 | 자체 호스팅 |
 
----
+* * *
 
 ## 주요 무료 제공업체
 
@@ -82,7 +83,7 @@ faqs: - q: '가장 빠른 무료 LLM 추론 제공업체는 무엇인가요?'
 - Mixtral 8x7B
 - Gemma 7B
 
-```python
+````python
 import requests
 
 # Groq API (무료 티어)
@@ -95,7 +96,7 @@ response = requests.post(
     }
 )
 print(response.json()["choices"][0]["message"]["content"])
-```
+`````
 
 ### 2. Together AI — $5 무료 크레딧
 
@@ -104,7 +105,7 @@ print(response.json()["choices"][0]["message"]["content"])
 **모델**: 100+ 오픈소스 모델
 **기능**: 파인튜닝, 임베딩
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -117,7 +118,7 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "양자 컴퓨팅을 설명해줘"}]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### 3. Ollama — 로컬 실행
 
@@ -126,7 +127,7 @@ print(response.choices[0].message.content)
 **개인정보 보호**: 100% 프라이빗
 **모델**: Ollama 라이브러리에서 가져오기
 
-```bash
+`````bash
 # Ollama 설치
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -141,7 +142,7 @@ curl http://localhost:11434/api/generate -d '{
   "model": "llama3",
   "prompt": "하늘이 왜 파란색이야?"
 }'
-```
+`````
 
 ### 4. LM Studio — GUI + API
 
@@ -150,7 +151,7 @@ curl http://localhost:11434/api/generate -d '{
 **기능**: GUI 모델 브라우저, API 서버
 **최적의 용도**: 모델 테스트, 개발
 
-```python
+`````python
 # LM Studio 로컬 API
 import openai
 
@@ -163,7 +164,7 @@ response = client.chat.completions.create(
     model="local-model",
     messages=[{"role": "user", "content": "안녕하세요!"}]
 )
-```
+`````
 
 ### 5. Fireworks AI — 빠른 오픈소스 모델
 
@@ -172,7 +173,7 @@ response = client.chat.completions.create(
 **속도**: 최적화된 추론
 **모델**: Llama, Mixtral, CodeLlama
 
----
+* * *
 
 ## 비교표
 
@@ -184,7 +185,7 @@ response = client.chat.completions.create(
 | LM Studio | 무료 | ⚡ | ✅ | ⭐⭐⭐ | 개발 |
 | Fireworks | 체험 | ⚡⚡ | ❌ | ⭐⭐ | 빠른 추론 |
 
----
+* * *
 
 ## 사용 사례
 
@@ -212,13 +213,13 @@ response = client.chat.completions.create(
 - 비용 민감 프로젝트
 - 커뮤니티 도구
 
----
+* * *
 
 ## 선택 방법
 
 ### 의사결정 트리
 
-```
+`````
 API 접근 필요?
 ├── 예 → 고속 필요?
 │   ├── 예 → Groq (가장 빠름)
@@ -226,7 +227,7 @@ API 접근 필요?
 ├── 아니오 → 개인정보 보호 필요?
 │   ├── 예 → Ollama/LM Studio (로컬)
 │   └── 아니오 → 유료 옵션 고려
-```
+````
 
 ### 속도 제한은 중요합니다
 
@@ -236,7 +237,7 @@ API 접근 필요?
 | Together | 60 | 12,000 | 테스트에 적합 |
 | Ollama | 무제한 | 하드웨어 한계 | 하드웨어 = 한계 |
 
----
+* * *
 
 ## 커뮤니티 및 업데이트
 
@@ -254,7 +255,7 @@ API 접근 필요?
 - **참여** 팁을 위한 토론
 - **팔로우** GitHub의 @cheahjs
 
----
+* * *
 
 ## 관련 기사
 
@@ -262,11 +263,11 @@ API 접근 필요?
 - [TabPFN: 표 형식 데이터 기반 모델](/kr/resources/ai-tools/tabpfn-foundation-model-tabular-data/) — 데이터 과학 AI
 - [OpenClaw 42개 사용 사례](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 응용
 
----
+* * *
 
 *면책 조항: 무료 티어에는 속도 제한이 있으며 변경될 수 있습니다. 항상 제공업체의 현재 약관을 확인하세요. 이는 커뮤니티 리소스이며 어떤 API 제공업체와도 제휴하지 않습니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -338,7 +339,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

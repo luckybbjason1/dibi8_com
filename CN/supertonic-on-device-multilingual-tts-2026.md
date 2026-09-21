@@ -23,6 +23,7 @@ tags: ["supertonic", "text-to-speech", "tts", "on-device-ai", "onnx", "multiling
 aliases:
   - /zh/posts/supertonic-on-device-multilingual-tts-2026/
 ---
+
 # Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）
 
 
@@ -34,10 +35,10 @@ aliases:
 
 开源本地 TTS 一直在追赶，但权衡很扎眼：要么是英文专用的小模型（Piper、Coqui 的小变体），要么是必须上 GPU 才能跑出实用速度的多语种巨无霸（XTTS-v2、Bark）。"又快、又多语种、又轻量、还是真开源权重"这个甜蜜点一直没人击中。
 
-[**Supertonic**](https://github.com/supertone-inc/supertonic)（GitHub：`supertone-inc/supertonic`，**9,900+ stars**）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最有希望补上这块缺口的项目。9900 万参数、31 种语言、ONNX runtime、CPU 上跑得很舒服——README 里甚至给出在飞行模式下的电纸书上跑出 0.3× 实时因子的数据。
+[**Supertonic**](https://github.com/supertone-inc/supertonic)（GitHub：```supertone-inc/supertonic````，**9,900+ stars**）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最有希望补上这块缺口的项目。9900 万参数、31 种语言、ONNX runtime、CPU 上跑得很舒服——README 里甚至给出在飞行模式下的电纸书上跑出 0.3× 实时因子的数据。
 
 
----
+* * *
 ## Supertonic 到底是什么
 
 一个 flow-matching 文本到 latent 模块，配上一个语音 autoencoder，整体导出为 ONNX。具体看：
@@ -45,24 +46,24 @@ aliases:
 - **总参数 9900 万**——加载只要几秒，普通 CPU 上实时跑。作为参照，XTTS-v2 约 15 亿、Bark 约 9 亿。
 - **开箱即用 31 种语言**：阿拉伯语、保加利亚语、克罗地亚语、捷克语、丹麦语、荷兰语、英语、爱沙尼亚语、芬兰语、法语、德语、希腊语、印地语、匈牙利语、印尼语、意大利语、**日语**、**韩语**、拉脱维亚语、立陶宛语、波兰语、葡萄牙语、罗马尼亚语、俄语、斯洛伐克语、斯洛文尼亚语、西班牙语、瑞典语、土耳其语、乌克兰语、**越南语**。
 - **44.1kHz 音频输出**——真正的录音棚级采样率，不是大多数"够用就行" TTS 妥协的 22kHz。
-- **10 个表情标签**——`<laugh>`、`<breath>`、`<sigh>` 等。直接内联在文本里，无需重训声音克隆就能让语气更自然。
-- **`lang="na"` 模式**——不想指定语言代码时的语言无关生成。
+- **10 个表情标签**——````<laugh>````、````<breath>````、````<sigh>```` 等。直接内联在文本里，无需重训声音克隆就能让语气更自然。
+- **````lang="na"```` 模式**——不想指定语言代码时的语言无关生成。
 
 协议：**代码 MIT，模型权重 OpenRAIL-M**。两边分开很关键：OpenRAIL-M 是"负责任 AI"协议，限制部分有害用途，但允许商业部署。发产品前请先读 model card。
 
 
----
+* * *
 ## 性能数字
 
 Supertone Inc. 在 benchmark 和 README 里给出的数字：
 
 | 指标 | Supertonic | 常见基准 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 参数量 | 99M | 0.7B–2B |
 | 朗读准确率（Minimax-MLS-test WER/CER） | 与大很多的模型相当 | — |
@@ -72,13 +73,13 @@ Supertone Inc. 在 benchmark 和 README 里给出的数字：
 
 电纸书那个 benchmark 是头号宣传数字——这种数字传达的信号是"对，它真的哪都能跑"。现代手机 CPU 应该完全无压力。
 
----
+* * *
 
 ## 运行时覆盖
 
 Supertonic 是少数几个真正提供 SDK 绑定的开源 TTS，不是"你大概可以自己包一层"那种。截至 v2.0.0：
 
-- **Python**（`pip install supertonic`）——主要集成方式
+- **Python**（````pip install supertonic````）——主要集成方式
 - **Node.js**——server 和 Electron app
 - **浏览器**——WebGPU 可用时优先，WebAssembly 兜底
 - **Java**——Android 和 JVM 后端
@@ -88,17 +89,17 @@ Supertonic 是少数几个真正提供 SDK 绑定的开源 TTS，不是"你大�
 
 基本覆盖了 2026 年应用开发者可能想嵌 TTS 的所有地方。重活由 ONNX runtime 扛，Supertonic 提供模型相关的胶水代码。
 
----
+* * *
 
 ## 快速上手（Python）
 
-```bash
+`````bash
 pip install supertonic
-```
+`````
 
 依赖就这一个。模型在首次调用时下载：
 
-```python
+`````python
 from supertonic import TTS
 
 tts = TTS(auto_download=True)
@@ -114,19 +115,19 @@ wav, duration = tts.synthesize(
     speed=1.05,
 )
 tts.save_audio(wav, "output.wav")
-```
+`````
 
-中文把 `lang="en"` 换成 `lang="zh"`，韩语 `ko`、日语 `ja`、越南语 `vi`。声音风格（这里的 `M1`）跨语言保持一致——做多语种角色配音时很有用。
+中文把 ````lang="en"```` 换成 ````lang="zh"````，韩语 ````ko````、日语 ````ja````、越南语 ````vi````。声音风格（这里的 ````M1````）跨语言保持一致——做多语种角色配音时很有用。
 
 表情标签的用法：
 
-```python
+`````python
 text = "I can't believe it. <laugh> That's incredible. <breath> Let me explain."
-```
+`````
 
 模型会内联解释标签，并在音频里产出对应的表达。
 
----
+* * *
 
 ## 横向对比
 
@@ -144,7 +145,7 @@ Bark 在非语音音频（音乐、音效）上有亮点。**Bark 赢在**：超
 ### 对比 ElevenLabs / OpenAI / Google Cloud
 云端 TTS 在声音克隆保真度和顶级语音的纯自然度上仍然领先。**Supertonic 赢在**：没 API key、没按字符账单、不依赖网络、完整隐私。
 
----
+* * *
 
 ## Supertonic 做不到什么
 
@@ -155,7 +156,7 @@ Bark 在非语音音频（音乐、音效）上有亮点。**Bark 赢在**：超
 - **微调工具有限。** 模型权重以 OpenRAIL-M 开放，但训练 pipeline 没完全公开。
 - **没有 22kHz 降级输出。** 永远是 44.1kHz。要低带宽你自己重采样。
 
----
+* * *
 
 ## Supertonic 真正发光的场景
 
@@ -165,7 +166,7 @@ Bark 在非语音音频（音乐、音效）上有亮点。**Bark 赢在**：超
 - **韩语 / 日语 / 越南语 / 中文本地化**——开源 TTS 在亚洲语言上的窟窿一直很疼；Supertonic 用一个模型补掉了一大块。
 - **边缘 IoT 设备**——自助终端、数字标牌、不连云端的智能音箱。
 
----
+* * *
 
 ## 谁该用
 
@@ -180,7 +181,7 @@ Bark 在非语音音频（音乐、音效）上有亮点。**Bark 赢在**：超
 - 做超写实单角色内容，ElevenLabs 顶级线还领先。
 - 需要流式部分音频（Supertonic 公开版还没开放）。
 
----
+* * *
 
 ## 结论
 
@@ -190,7 +191,7 @@ Supertonic 是 2026 年最有说服力的"一个模型走天下"开源 TTS。990
 
 再搭一个[本地 LLM 运行时](https://dibi8.com/zh/resources/llm-frameworks/local-llm-runner-comparison-2026/)处理 prompt 侧，你就拥有了一套完全本地、零云依赖的语音 agent 栈。
 
----
+* * *
 
 **GitHub**：[supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **协议**：MIT（代码）/ OpenRAIL-M（权重）· **最新**：v2.0.0（2026-01-06）· **Stars**：9.9K+ · **维护方**：Supertone Inc.
 
@@ -256,7 +257,7 @@ Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026） re
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -269,7 +270,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -280,4 +281,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

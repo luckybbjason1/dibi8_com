@@ -12,9 +12,10 @@ aliases:
   - /zh/posts/zoxide/-
 ---
 
+
 {{</* resource-info */>}}
 
-普通开发者每天切换目录超过 200 次。如果每次 `cd` 都要花 3-5 秒输入完整路径，那么每天就有 10-15 分钟浪费在导航上。Zoxide 彻底消除了这种摩擦：它学习你去过的地方，让你用两个按键就能跳转到目标目录。凭借 36,752 个 GitHub Stars 和 Rust 驱动的核心，Zoxide 已成为开发者社区中传统 `cd` 命令的事实替代品。
+普通开发者每天切换目录超过 200 次。如果每次 ```cd```` 都要花 3-5 秒输入完整路径，那么每天就有 10-15 分钟浪费在导航上。Zoxide 彻底消除了这种摩擦：它学习你去过的地方，让你用两个按键就能跳转到目标目录。凭借 36,752 个 GitHub Stars 和 Rust 驱动的核心，Zoxide 已成为开发者社区中传统 ````cd```` 命令的事实替代品。
 
 本指南涵盖在所有平台和 Shell 上安装、配置和生产级加固 Zoxide 的全部内容 —— 包含真实配置、基准测试以及从 autojump 和 fasd 迁移的路径。
 
@@ -22,7 +23,7 @@ aliases:
 
 Zoxide（发音为 "zoh-kside"）是一个用 Rust 编写的跨 Shell 目录跳转工具。它追踪你访问的目录，根据频率和最近访问时间（一种称为"frecency"的指标）为每个目录分配相关性分数，并让你使用模糊关键词匹配而不是完整路径来导航到它们。
 
-如果你今天访问过 `~/projects/mycompany/frontend/src/components` 三次，输入 `z comp` 甚至 `z fro src` 就能瞬间传送到那里。无需别名，无需书签，无需记忆。
+如果你今天访问过 ````~/projects/mycompany/frontend/src/components```` 三次，输入 ````z comp```` 甚至 ````z fro src```` 就能瞬间传送到那里。无需别名，无需书签，无需记忆。
 
 ![Zoxide 教程演示](https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/contrib/tutorial.webp)
 
@@ -34,9 +35,9 @@ Zoxide 使用 **frecency**（**freq**uency 频率 + re**cency** 新近度）对�
 
 | 最近访问时间    | Frecency 乘数 |
 |
----
+* * *
 |
----
+* * *
 |
 | 1 小时内       | score × 4    |
 | 1 天内         | score × 2    |
@@ -50,10 +51,10 @@ Zoxide 使用 **frecency**（**freq**uency 频率 + re**cency** 新近度）对�
 Zoxide 使用可预测的、不区分大小写的匹配方式：
 
 - 所有查询词必须按**顺序**出现在路径中。
-- `z fo ba` 匹配 `/foo/bar`，但不匹配 `/bar/foo`。
+- ````z fo ba```` 匹配 ````/foo/bar````，但不匹配 ````/bar/foo````。
 - 最后一个词必须匹配路径的最后一个组件。
-- `z bar` 匹配 `/foo/bar`，但不匹配 `/bar/foo`。
-- 斜杠是字面量：`z fo / ba` 匹配 `/foo/bar`，但不匹配 `/foobar`。
+- ````z bar```` 匹配 ````/foo/bar````，但不匹配 ````/bar/foo````。
+- 斜杠是字面量：````z fo / ba```` 匹配 ````/foo/bar````，但不匹配 ````/foobar````。
 
 ### 数据库管理
 
@@ -61,15 +62,15 @@ Zoxide 将数据库存储在平台特定的路径：
 
 | 操作系统  | 默认数据库路径                                        |
 |
----
+* * *
 |
----
+* * *
 |
-| Linux    | `$XDG_DATA_HOME/zoxide/db.sqlite` 或 `~/.local/share/zoxide/db.sqlite` |
-| macOS    | `~/Library/Application Support/zoxide/db.sqlite`     |
-| Windows  | `%LOCALAPPDATA%\\zoxide\\db.sqlite`                   |
+| Linux    | ````$XDG_DATA_HOME/zoxide/db.sqlite```` 或 ````~/.local/share/zoxide/db.sqlite```` |
+| macOS    | ````~/Library/Application Support/zoxide/db.sqlite````     |
+| Windows  | ````%LOCALAPPDATA%\\zoxide\\db.sqlite````                   |
 
-数据库会自动清理在磁盘上不存在且超过 90 天的条目。`_ZO_MAXAGE` 变量（默认 10000）通过老化算法限制总条目数，当超过阈值时按比例缩减分数。
+数据库会自动清理在磁盘上不存在且超过 90 天的条目。````_ZO_MAXAGE```` 变量（默认 10000）通过老化算法限制总条目数，当超过阈值时按比例缩减分数。
 
 ## 安装与配置
 
@@ -77,110 +78,110 @@ Zoxide 将数据库存储在平台特定的路径：
 
 **Linux / WSL（通用安装脚本）：**
 
-```bash
+`````bash
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-```
+`````
 
 **macOS（Homebrew）：**
 
-```bash
+`````bash
 brew install zoxide
-```
+`````
 
 **Arch Linux：**
 
-```bash
+`````bash
 sudo pacman -S zoxide
-```
+`````
 
 **Fedora / RHEL：**
 
-```bash
+`````bash
 sudo dnf install zoxide
-```
+`````
 
 **Ubuntu / Debian（24.04+）：**
 
-```bash
+`````bash
 sudo apt install zoxide
-```
+`````
 
 **Windows（winget）：**
 
-```powershell
+`````powershell
 winget install ajeetdsouza.zoxide
-```
+`````
 
 **Windows（Scoop）：**
 
-```powershell
+`````powershell
 scoop install zoxide
-```
+`````
 
 **通过 Cargo（任何安装了 Rust 的平台）：**
 
-```bash
+`````bash
 cargo install zoxide --locked
-```
+`````
 
 验证安装：
 
-```bash
+`````bash
 zoxide --version
 # zoxide 0.9.7
-```
+`````
 
 ### 第二步：添加 Shell 集成
 
-Zoxide 需要在你的 Shell 配置中进行一次性初始化。这会启用 `z` 和 `zi` 命令，并钩入目录更改事件以更新数据库。
+Zoxide 需要在你的 Shell 配置中进行一次性初始化。这会启用 ````z```` 和 ````zi```` 命令，并钩入目录更改事件以更新数据库。
 
-**Bash** — 添加到 `~/.bashrc`：
+**Bash** — 添加到 ````~/.bashrc````：
 
-```bash
+`````bash
 eval "$(zoxide init bash)"
-```
+`````
 
-**Zsh** — 添加到 `~/.zshrc`（在 `compinit` 之后）：
+**Zsh** — 添加到 ````~/.zshrc````（在 ````compinit```` 之后）：
 
-```zsh
+`````zsh
 eval "$(zoxide init zsh)"
-```
+`````
 
-**Fish** — 添加到 `~/.config/fish/config.fish`：
+**Fish** — 添加到 ````~/.config/fish/config.fish````：
 
-```fish
+`````fish
 zoxide init fish | source
-```
+`````
 
-**Nushell** — 添加到你的环境文件（`$nu.env-path`）：
+**Nushell** — 添加到你的环境文件（````$nu.env-path````）：
 
-```nu
+`````nu
 zoxide init nushell | save -f ~/.zoxide.nu
-```
+`````
 
-然后在你的配置文件（`$nu.config-path`）中引用：
+然后在你的配置文件（````$nu.config-path````）中引用：
 
-```nu
+`````nu
 source ~/.zoxide.nu
-```
+`````
 
-**PowerShell** — 添加到你的配置文件（用 `echo $profile` 查找路径）：
+**PowerShell** — 添加到你的配置文件（用 ````echo $profile```` 查找路径）：
 
-```powershell
+`````powershell
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
-```
+`````
 
 重新加载你的 Shell 或执行配置：
 
-```bash
+`````bash
 source ~/.bashrc   # 或 ~/.zshrc 等
-```
+`````
 
 ### 第三步：安装 fzf（可选但强烈推荐）
 
-`zi` 命令通过 fzf 提供交互式模糊选择：
+````zi```` 命令通过 fzf 提供交互式模糊选择：
 
-```bash
+`````bash
 # macOS
 brew install fzf
 
@@ -193,13 +194,13 @@ sudo pacman -S fzf
 # 或通过 git
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-```
+`````
 
 ### 第四步：导入现有数据（可选）
 
 如果你正在从其他目录跳转工具迁移，可以导入历史记录：
 
-```bash
+`````bash
 # 从 autojump 迁移
 zoxide import autojump
 
@@ -211,50 +212,50 @@ zoxide import z
 
 # 从 Atuin 迁移
 zoxide import atuin
-```
+`````
 
 ## 与流行工具的集成
 
 ### fzf 交互式选择
 
-安装 fzf 后，`zi` 会在你的目录历史上打开交互式模糊查找器：
+安装 fzf 后，````zi```` 会在你的目录历史上打开交互式模糊查找器：
 
-```bash
+`````bash
 zi frontend        # 模糊查找匹配 "frontend" 的目录
 zi                 # 浏览整个目录历史
-```
+`````
 
 自定义 zoxide 的 fzf 行为：
 
-```bash
+`````bash
 export _ZO_FZF_OPTS="--height 40% --reverse --preview 'ls -la {}'"
-```
+`````
 
 ### nnn 文件管理器
 
-Zoxide 通过 `nnn-autojump` 插件与 nnn 原生集成。添加到你的 nnn 配置：
+Zoxide 通过 ````nnn-autojump```` 插件与 nnn 原生集成。添加到你的 nnn 配置：
 
-```bash
+`````bash
 export NNN_PLUG="z:zoxide"
-```
+`````
 
-然后在 nnn 中按 `;z` 使用 zoxide 跳转。
+然后在 nnn 中按 ````;z```` 使用 zoxide 跳转。
 
 ### tmux 会话管理器
 
-`sesh`、`tmux-session-wizard` 和 `tmux-sessionx` 等工具原生支持 zoxide，可以从你最常用的目录启动 tmux 会话：
+````sesh````、````tmux-session-wizard```` 和 ````tmux-sessionx```` 等工具原生支持 zoxide，可以从你最常用的目录启动 tmux 会话：
 
-```bash
+`````bash
 # 安装 sesh 后
 sesh list          # 显示 zoxide 排名的目录
 sesh connect       # 从 zoxide 列表启动交互式 tmux 会话
-```
+`````
 
 ### Neovim / Vim
 
-使用 `telescope-zoxide` 在 Neovim 内部进行模糊目录导航：
+使用 ````telescope-zoxide```` 在 Neovim 内部进行模糊目录导航：
 
-```lua
+`````lua
 -- 在你的 Neovim 配置中（Lazy.nvim）
 {
   "jvgrootvelte/telescope-zoxide",
@@ -263,23 +264,23 @@ sesh connect       # 从 zoxide 列表启动交互式 tmux 会话
     require("telescope").load_extension("zoxide")
   end,
 }
-```
+`````
 
-通过 `:Telescope zoxide list` 触发。
+通过 ````:Telescope zoxide list```` 触发。
 
 ### Yazi 文件管理器
 
-Yazi 原生支持 zoxide。在 Yazi 中按 `Z` 键触发 zoxide 目录跳转。
+Yazi 原生支持 zoxide。在 Yazi 中按 ````Z```` 键触发 zoxide 目录跳转。
 
 ### Emacs
 
-从 MELPA 安装 `zoxide.el`：
+从 MELPA 安装 ````zoxide.el````：
 
-```elisp
+`````elisp
 (use-package zoxide
   :ensure t
   :bind (("C-c z" . zoxide-find-file)))
-```
+`````
 
 ## 基准测试与实际用例
 
@@ -287,20 +288,20 @@ Yazi 原生支持 zoxide。在 Yazi 中按 `Z` 键触发 zoxide 目录跳转。
 
 | 工具          | 编程语言    | 启动时间   | 查询时间（1万目录） | 模糊搜索 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Zoxide**   | Rust       | ~5 ms     | < 10 ms           | 完整支持 |
 | autojump     | Python     | ~50 ms    | 20-50 ms          | 不支持   |
 | fasd         | POSIX sh   | ~20 ms    | 15-30 ms          | 部分支持 |
-| 原生 `cd`    | Shell 内置 | 0 ms      | N/A               | 不支持   |
+| 原生 ````cd````    | Shell 内置 | 0 ms      | N/A               | 不支持   |
 
 在 Ryzen 9 5900X + SSD 上测试，跟踪 10,000 个目录。
 
@@ -308,13 +309,13 @@ Yazi 原生支持 zoxide。在 Yazi 中按 `Z` 键触发 zoxide 目录跳转。
 
 | 场景                             | 原生 cd   | Zoxide   | 节省时间  |
 |
----
+* * *
 |
----
+* * *
 :|
----
+* * *
 :|
----
+* * *
 :|
 | 跳转到项目根目录（深层路径）      | 5 秒      | 0.5 秒   | 4.5 秒    |
 | 在两个常用目录间切换              | 3 秒      | 0.5 秒   | 2.5 秒    |
@@ -329,69 +330,69 @@ Yazi 原生支持 zoxide。在 Yazi 中按 `Z` 键触发 zoxide 目录跳转。
 
 ### 完全替换 cd
 
-要让 `cd` 本身使用 zoxide，使用 `--cmd cd` 初始化：
+要让 ````cd```` 本身使用 zoxide，使用 ````--cmd cd```` 初始化：
 
-```bash
+`````bash
 eval "$(zoxide init bash --cmd cd)"
-```
+`````
 
-现在 `cd proj` 对模糊匹配的行为就像 `z proj`，同时仍然支持绝对路径的原生 `cd` 语法。
+现在 ````cd proj```` 对模糊匹配的行为就像 ````z proj````，同时仍然支持绝对路径的原生 ````cd```` 语法。
 
 ### 自定义别名
 
-```bash
+`````bash
 eval "$(zoxide init bash --cmd j)"    # 使用 j/ji 替代 z/zi
-```
+`````
 
 ### 排除目录
 
 阻止 zoxide 追踪敏感或临时目录：
 
-```bash
+`````bash
 export _ZO_EXCLUDE_DIRS="$HOME:$HOME/private/*:/tmp:/var/tmp"
-```
+`````
 
 在 Windows 上使用分号作为分隔符：
 
-```powershell
+`````powershell
 $env:_ZO_EXCLUDE_DIRS = "$HOME;$HOME\private\*;C:\Temp"
-```
+`````
 
 ### 更改数据库位置
 
-```bash
+`````bash
 export _ZO_DATA_DIR="/mnt/fast-ssd/zoxide-data"
-```
+`````
 
 ### 启用回显模式
 
 在导航前打印匹配的目录（对脚本编写有用）：
 
-```bash
+`````bash
 export _ZO_ECHO=1
-```
+`````
 
 ### 解析符号链接
 
 如果你在符号链接环境中工作，强制在写入数据库前解析符号链接：
 
-```bash
+`````bash
 export _ZO_RESOLVE_SYMLINKS=1
-```
+`````
 
 ### Hook 配置
 
 控制 zoxide 何时更新目录分数：
 
-```bash
+`````bash
 eval "$(zoxide init bash --hook prompt)"   # 每次提示符时更新
 eval "$(zoxide init bash --hook pwd)"      # 仅在 cd 时更新（默认）
 eval "$(zoxide init bash --hook none)"     # 从不自动更新；手动使用 zoxide add
-```
+`````
 
 ### 数据库维护
 
-```bash
+`````bash
 # 查看所有带分数的追踪目录
 zoxide query --list --score
 
@@ -400,33 +401,33 @@ zoxide remove /old/project/path
 
 # 删除项目后清理
 zoxide edit                    # 在 $EDITOR 中打开数据库
-```
+`````
 
 ### Shell 补全设置
 
-**Zsh** — 确保初始化行放在 `compinit` 之后：
+**Zsh** — 确保初始化行放在 ````compinit```` 之后：
 
-```zsh
+`````zsh
 autoload -Uz compinit; compinit
 eval "$(zoxide init zsh)"      # 必须在 compinit 之后
 rm ~/.zcompdump*; compinit     # 如有需要重建补全缓存
-```
+`````
 
-**Bash 4.4+** — `z <query><空格><Tab>` 触发交互式补全。
+**Bash 4.4+** — ````z <query><空格><Tab>```` 触发交互式补全。
 
 ## 与替代方案对比
 
 | 特性                         | Zoxide    | autojump  | fasd      | 原生 cd     |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **编程语言**                 | Rust      | Python    | POSIX sh  | Shell 内置  |
 | **启动时间**                 | ~5 ms     | ~50 ms    | ~20 ms    | 0 ms       |
@@ -441,18 +442,18 @@ rm ~/.zcompdump*; compinit     # 如有需要重建补全缓存
 | **从其他工具导入**            | 是 (5+)   | 否         | 否         | N/A        |
 | **Tab 补全**                 | 是         | 否         | 是         | 是          |
 
-Zoxide 在每个指标上都优于竞对手，除了与原生 `cd` 的原始启动时间相比 —— 但这根本不是问题，因为 `z` 命令只在需要智能匹配时才被调用。对于绝对路径，zoxide 会委托给 Shell 的内置 `cd`。
+Zoxide 在每个指标上都优于竞对手，除了与原生 ````cd```` 的原始启动时间相比 —— 但这根本不是问题，因为 ````z```` 命令只在需要智能匹配时才被调用。对于绝对路径，zoxide 会委托给 Shell 的内置 ````cd````。
 
 ## 局限性与诚实评估
 
-**Zoxide 不是万能的 `cd` 替代品。** 在以下特定场景下它不会带来价值：
+**Zoxide 不是万能的 ````cd```` 替代品。** 在以下特定场景下它不会带来价值：
 
-- **CI/CD 流水线：** 脚本应该使用绝对路径或 `cd` 以确保确定性。Zoxide 的数据库依赖行为会引入不可重复性。
+- **CI/CD 流水线：** 脚本应该使用绝对路径或 ````cd```` 以确保确定性。Zoxide 的数据库依赖行为会引入不可重复性。
 - **共享系统 / 多用户服务器：** 数据库按用户设计，无法帮助你发现从未访问过的目录。
-- **非常短的路径：** 输入 `z d` 到达 `/home/user/Downloads` 并不比 `cd ~/D` + Tab 节省按键次数。
-- **首次导航：** Zoxide 只认识你至少访问过一次的目录。第一次访问需要正常的 `cd` 或绝对路径。
+- **非常短的路径：** 输入 ````z d```` 到达 ````/home/user/Downloads```` 并不比 ````cd ~/D```` + Tab 节省按键次数。
+- **首次导航：** Zoxide 只认识你至少访问过一次的目录。第一次访问需要正常的 ````cd```` 或绝对路径。
 - **非交互式 Shell：** 在子 Shell 和非登录 Shell 中，数据库初始化会增加约 5ms 的开销，在高频脚本循环中可能有影响。
-- **数据库损坏风险：** 尽管 SQLite 很健壮，但在写入时强制终止 Shell 可能理论上损坏数据库。如果你严重依赖历史记录，请备份 `_ZO_DATA_DIR`。
+- **数据库损坏风险：** 尽管 SQLite 很健壮，但在写入时强制终止 Shell 可能理论上损坏数据库。如果你严重依赖历史记录，请备份 ````_ZO_DATA_DIR````。
 
 ## 常见问题解答
 
@@ -462,15 +463,15 @@ Zoxide 在每个指标上都优于竞对手，除了与原生 `cd` 的原始启�
 
 ### Zoxide 会与现有的 cd 命令冲突吗？
 
-完全不会。默认情况下，`z` 和 `zi` 是与 `cd` 分开的命令，不会互相干扰。如果你希望 `cd` 本身使用 zoxide 的智能匹配，使用 `--cmd cd` 进行初始化。
+完全不会。默认情况下，````z```` 和 ````zi```` 是与 ````cd```` 分开的命令，不会互相干扰。如果你希望 ````cd```` 本身使用 zoxide 的智能匹配，使用 ````--cmd cd```` 进行初始化。
 
 ### 如何从 autojump 或 fasd 迁移？
 
-使用内置的导入命令：`zoxide import autojump`、`zoxide import fasd`、`zoxide import z` 等。这些命令会自动检测源数据库格式并将条目转换为 zoxide 的 SQLite 格式。
+使用内置的导入命令：````zoxide import autojump````、````zoxide import fasd````、````zoxide import z```` 等。这些命令会自动检测源数据库格式并将条目转换为 zoxide 的 SQLite 格式。
 
 ### 数据存储在哪里？可以备份吗？
 
-数据库是一个 SQLite 文件，在 Linux 上位于 `~/.local/share/zoxide/db.sqlite`，macOS 上位于 `~/Library/Application Support/zoxide/db.sqlite`，Windows 上位于 `%LOCALAPPDATA%\\zoxide\\db.sqlite`。复制该文件即可备份你的目录历史。
+数据库是一个 SQLite 文件，在 Linux 上位于 ````~/.local/share/zoxide/db.sqlite````，macOS 上位于 ````~/Library/Application Support/zoxide/db.sqlite````，Windows 上位于 ````%LOCALAPPDATA%\\zoxide\\db.sqlite````。复制该文件即可备份你的目录历史。
 
 ### Zoxide 在 Windows 上能用吗？
 
@@ -478,29 +479,29 @@ Zoxide 在每个指标上都优于竞对手，除了与原生 `cd` 的原始启�
 
 ### 不用 fzf 能用 Zoxide 吗？
 
-可以。核心的 `z` 命令不需要 fzf。fzf 仅用于 `zi` 交互式选择功能和 Tab 补全。即使跳过 fzf，你仍然能获得 Zoxide 90% 的价值。
+可以。核心的 ````z```` 命令不需要 fzf。fzf 仅用于 ````zi```` 交互式选择功能和 Tab 补全。即使跳过 fzf，你仍然能获得 Zoxide 90% 的价值。
 
 ### Zoxide 如何处理同名目录？
 
-它会按 frecency 分数排名。如果你同时有 `~/work/frontend` 和 `~/personal/frontend`，你访问更频繁且更近的那个会胜出。使用 `z work fro` 或 `z per fro` 来消除歧义。
+它会按 frecency 分数排名。如果你同时有 ````~/work/frontend```` 和 ````~/personal/frontend````，你访问更频繁且更近的那个会胜出。使用 ````z work fro```` 或 ````z per fro```` 来消除歧义。
 
 ### 数据库是加密的吗？
 
-不是。SQLite 数据库以明文存储路径。如果目录名包含敏感信息，请设置 `_ZO_EXCLUDE_DIRS` 以排除这些路径不被追踪。
+不是。SQLite 数据库以明文存储路径。如果目录名包含敏感信息，请设置 ````_ZO_EXCLUDE_DIRS```` 以排除这些路径不被追踪。
 
 ### 可以针对特定会话禁用数据库更新吗？
 
-将 `_ZO_DATA_DIR` 设置为临时位置，或在初始化时使用 `--hook none`，然后仅在需要时手动运行 `zoxide add`。
+将 ````_ZO_DATA_DIR```` 设置为临时位置，或在初始化时使用 ````--hook none````，然后仅在需要时手动运行 ````zoxide add````。
 
 ## 总结
 
-Zoxide 是 2026 年最成熟、性能最强、维护最活跃的目录跳转工具。安装不到 60 秒，学习曲线平坦，每日节省时间可量化。如果你还在用 `cd` 输入完整路径，你正在浪费生产力。
+Zoxide 是 2026 年最成熟、性能最强、维护最活跃的目录跳转工具。安装不到 60 秒，学习曲线平坦，每日节省时间可量化。如果你还在用 ````cd```` 输入完整路径，你正在浪费生产力。
 
 **行动清单：**
 
 1. 使用你平台的包管理器安装 Zoxide（参见安装部分）。
-2. 在 Shell 配置中添加一行 `eval` 命令。
-3. 安装 fzf 以获得 `zi` 交互式体验。
+2. 在 Shell 配置中添加一行 ````eval```` 命令。
+3. 安装 fzf 以获得 ````zi``` 交互式体验。
 4. 如果从其他工具迁移，导入 autojump/fasd 的数据。
 5. 加入讨论：在我们的 [Telegram 群组](https://t.me/dibi8opensource) 分享你的 Zoxide 使用技巧。
 
@@ -588,12 +589,12 @@ Zoxide: 36,752 GitHub Stars — 2026 年完整安装配置指南 represents an i
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [cc-switch-all-in-one-ai-coding-agent-manager](zoxide)
@@ -602,6 +603,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [spec-kit-github-spec-driven-development-toolkit](zoxide)
 - [zed-vs-cursor](zoxide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

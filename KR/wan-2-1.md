@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/wan-2-1/
 ---
 
+
 {{</* resource-info */>}}
 
 ![Wan 2.1 특집 이미지](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
@@ -69,7 +70,7 @@ Wan 2.1은 Stable Diffusion 3과 동일한 Diffusion Transformer(DiT) 패러다�
 
 ### 기본 설치
 
-```bash
+````bash
 # 저장소 클론
 git clone https://github.com/Wan-Video/Wan2.1.git
 cd Wan2.1
@@ -80,9 +81,9 @@ source venv/bin/activate
 
 # 의존성 설치(torch >= 2.4.0 필요)
 pip install -r requirements.txt
-```
+`````
 
-requirements.txt 내용: ```
+requirements.txt 내용: `````
 torch>=2.4.0
 torchvision>=0.19.0
 opencv-python>=4.9.0.80
@@ -92,11 +93,11 @@ accelerate>=1.1.1
 flash_attn
 gradio>=5.0.0
 numpy>=1.23.5,<2
-```
+`````
 
 ### Poetry로 설치(대안)
 
-```bash
+`````bash
 # 의존성 설치
 poetry install
 
@@ -104,11 +105,11 @@ poetry install
 poetry run pip install --upgrade pip setuptools wheel
 poetry run pip install flash-attn --no-build-isolation
 poetry install
-```
+`````
 
 ### 모델 다운로드
 
-HuggingFace CLI를 사용한 모델 다운로드: ```bash
+HuggingFace CLI를 사용한 모델 다운로드: `````bash
 # huggingface-cli 설치
 pip install "huggingface_hub[cli]"
 
@@ -123,36 +124,36 @@ huggingface-cli download Wan-AI/Wan2.1-VAE --local-dir ./Wan2.1-VAE
 
 # 텍스트 인코더 다운로드
 huggingface-cli download Wan-AI/Wan2.1-T5 --local-dir ./Wan2.1-T5
-```
+`````
 
-ModelScope로 더 빠른 다운로드: ```bash
+ModelScope로 더 빠른 다운로드: `````bash
 pip install modelscope
 modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
-```
+`````
 
 ### 첫 비디오 생성(T2V-1.3B)
 
-```bash
+`````bash
 python generate.py \
   --task t2v-1.3B \
   --size 832*480 \
   --ckpt_dir ./Wan2.1-T2V-1.3B \
   --prompt "일출 시 조용한 산악 호수, 물 위로 안개가 피어오르고 칩라가 천천히 오른쪽으로 패닝"
-```
+`````
 
 ### 첫 비디오 생성(T2V-14B)
 
-```bash
+`````bash
 python generate.py \
   --task t2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "편안한 복싱 장비와 밝은 장갑을 낀 두 마리의 의인화된 고양이가 스포트라이트 묵에서 격렬히 싸운다."
-```
+`````
 
 ### Gradio Web UI 실행
 
-```bash
+`````bash
 cd gradio
 
 # 단일 GPU로 T2V 14B 실행
@@ -163,13 +164,13 @@ python t2v_14B_singleGPU.py \
 # T2V 1.3B 실행(가벼움, 소비자용 GPU용)
 python t2v_1.3B_singleGPU.py \
   --ckpt_dir ./Wan2.1-T2V-1.3B
-```
+`````
 
 ## ComfyUI, Diffusers 등과의 통합
 
 ### ComfyUI 통합
 
-Wan 2.1은 네이티브 ComfyUI 통합을 제공합니다. Kijai의 ComfyUI-WanVideoWrapper 커스텀 노드를 권장합니다: ```bash
+Wan 2.1은 네이티브 ComfyUI 통합을 제공합니다. Kijai의 ComfyUI-WanVideoWrapper 커스텀 노드를 권장합니다: `````bash
 # 커스텀 노드 설치
 cd ComfyUI/custom_nodes
 git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git
@@ -179,9 +180,9 @@ git clone https://github.com/kijai/ComfyUI-KJNodes.git
 # 노드 의존성 설치
 cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-모델 파일을 적절한 ComfyUI 디렉토리에 배치: ```bash
+모델 파일을 적절한 ComfyUI 디렉토리에 배치: `````bash
 # 확산 모델 -> ComfyUI/models/diffusion_models
 # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
 # Wan2_1-T2V-1_3B_fp32.safetensors
@@ -191,13 +192,13 @@ pip install -r requirements.txt
 
 # VAE -> ComfyUI/models/vae
 # Wan2_1_VAE_fp32.safetensors
-```
+`````
 
 ![Wan 2.1 ComfyUI 워크플로우](https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/vben_vs_sota.png)
 
 ### Diffusers 통합
 
-```python
+`````python
 import torch
 from diffusers.utils import export_to_video
 from diffusers import AutoencoderKLWan, WanPipeline
@@ -248,11 +249,11 @@ output = pipe(
 ).frames[0]
 
 export_to_video(output, "output.mp4", fps=16)
-```
+`````
 
 ### FSDP + xDiT 다중 GPU 추론
 
-```bash
+`````bash
 # xDiT 설치
 pip install "xfuser>=0.4.1"
 
@@ -264,22 +265,22 @@ torchrun --nproc_per_node=8 generate.py \
   --dit_fsdp --t5_fsdp \
   --ulysses_size 8 \
   --prompt "프롬프트 입력"
-```
+`````
 
 ### 이미지-투-비디오 생성
 
-```bash
+`````bash
 python generate.py \
   --task i2v-14B \
   --size 1280*720 \
   --ckpt_dir ./Wan2.1-I2V-14B-720P \
   --image examples/i2v_input.JPG \
   --prompt "여름 핳핳 휴양지 스타일, 선글라스를 낀 하얀 고양이가 서핑보드 위에 앉아 있다."
-```
+`````
 
 ### 첫/마지막 프레임-투-비디오(FLF2V)
 
-```bash
+`````bash
 python generate.py \
   --task flf2v-14B \
   --size 1280*720 \
@@ -287,11 +288,11 @@ python generate.py \
   --first_frame examples/flf2v_input_first_frame.png \
   --last_frame examples/flf2v_input_last_frame.png \
   --prompt "CG 애니메이션 스타일, 파란색 작은 새가 지면에서 이륙하여 날개를 퍼덕인다."
-```
+`````
 
 ### 프롬프트 확장
 
-```bash
+`````bash
 # 로컬 Qwen 모델 사용
 python generate.py \
   --task t2v-14B \
@@ -309,7 +310,7 @@ DASH_API_KEY=your_key python generate.py \
   --prompt "피아노를 치는 고양이" \
   --use_prompt_extend \
   --prompt_extend_method dashscope
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -351,7 +352,7 @@ Wan 2.1은 1,035개 낸부 프롬프트를 사용하여 14개 주요 차원과 2
 
 ### FP8 양자화로 VRAM 절감
 
-```bash
+`````bash
 # FP8 양자화로 VRAM 약 20% 감소
 python generate.py \
   --task t2v-14B \
@@ -360,20 +361,20 @@ python generate.py \
   --offload_model True \
   --t5_cpu \
   --prompt "프롬프트 입력"
-```
+`````
 
 ### VRAM 최적화 플래그
 
 | 플래그 | 설명 | VRAM 영향 |
 |---|---|---|
-| `--offload_model True` | 스텝 간 트랜스포머를 CPU로 오프로드 | -15–20GB |
-| `--t5_cpu` | T5 인코더를 CPU에서 실행 | -2–3GB |
-| `--dit_fsdp` | DiT를 GPU 간 샤딩 | GPU 수로 나눔 |
-| `--ulysses_size N` | 시퀀스 병렬화 사용 | 선형 감소 |
+| ````--offload_model True```` | 스텝 간 트랜스포머를 CPU로 오프로드 | -15–20GB |
+| ````--t5_cpu```` | T5 인코더를 CPU에서 실행 | -2–3GB |
+| ````--dit_fsdp```` | DiT를 GPU 간 샤딩 | GPU 수로 나눔 |
+| ````--ulysses_size N```` | 시퀀스 병렬화 사용 | 선형 감소 |
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
 
 WORKDIR /app
@@ -388,16 +389,16 @@ RUN huggingface-cli download Wan-AI/Wan2.1-T2V-14B \
 
 EXPOSE 7860
 CMD ["python", "gradio/t2v_14B_singleGPU.py", "--ckpt_dir", "./Wan2.1-T2V-14B"]
-```
+`````
 
-빌드 및 실행: ```bash
+빌드 및 실행: `````bash
 docker build -t wan2.1 .
 docker run --gpus all -p 7860:7860 wan2.1
-```
+`````
 
 ### 생성 작업 모니터링
 
-```python
+`````python
 import time
 import psutil
 import torch
@@ -417,11 +418,11 @@ def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
     print(f"RAM 증가: {peak_mem - start_mem:.1f} GB")
     
     return result
-```
+`````
 
 ### LoRA 파인튜닝
 
-```bash
+`````bash
 # DiffSynth-Studio 설치
 pip install diffsynth-studio
 
@@ -432,7 +433,7 @@ python -m diffsynth.train \
   --output_path ./wan_lora_output \
   --learning_rate 1e-4 \
   --num_train_steps 1000
-```
+`````
 
 ## 대안과의 비교
 
@@ -498,7 +499,7 @@ Sora와 Kling과 같은 클로즈드 소스 모델이 시간적 일관성, 물�
 
 **Q: 14B 모델의 VRAM 사용을 줄이려면 어떻게 해야 하나요?**
 
-`--offload_model True`, `--t5_cpu`, FP8 양자화를 사용하면 VRAM을 약 35GB까지 줄일 수 있습니다.
+````--offload_model True````, ````--t5_cpu```, FP8 양자화를 사용하면 VRAM을 약 35GB까지 줄일 수 있습니다.
 
 **Q: 생성된 비디오에 깜빡임이나 불일치한 모션이 있으면 어떻게 하나요?**
 
@@ -567,7 +568,7 @@ Wan 2.1은 접근 가능한 하드웨어에서 프로덕션 품질 출력을 제
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -577,6 +578,6 @@ Wan 2.1은 접근 가능한 하드웨어에서 프로덕션 품질 출력을 제
 - [microsoft-markitdown-file-to-markdown-converter-cli](wan-2-1)
 - [nanochat-karpathy-100-chatgpt-single-gpu](wan-2-1)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

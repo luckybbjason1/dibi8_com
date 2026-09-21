@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/voicecraft/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -69,7 +70,7 @@ VoiceCraft는 **RealEdit**를 도입했다. 오디오북, YouTube 동영상, Spo
 
 Docker는 작동하는 VoiceCraft 환경에 가장 빠른 경로이다. 공식 Dockerfile은 EnCodec, Montreal Forced Aligner(MFA), CUDA 바인딩을 포함한 모든 의존성을 처리한다.
 
-```bash
+````bash
 # 1. 저장소 클론
 git clone https://github.com/jasonppy/VoiceCraft.git
 cd VoiceCraft
@@ -86,15 +87,15 @@ docker logs jupyter | grep "127.0.0.1:8888"
 
 # 5. 컨테이너 내에서 GPU 확인
 docker exec -it jupyter nvidia-smi
-```
+`````
 
-컨테이너는 8888번 포트에서 Jupyter Lab을, 7860번 포트에서 Gradio UI를 노출한다. `inference_tts.ipynb` 또는 `inference_speech_editing.ipynb`를 열어 추론을 실행한다.
+컨테이너는 8888번 포트에서 Jupyter Lab을, 7860번 포트에서 Gradio UI를 노출한다. ````inference_tts.ipynb```` 또는 ````inference_speech_editing.ipynb````를 열어 추론을 실행한다.
 
 ### 옵션 2: Conda 환경 (로컬 개발)
 
 모델 개발 및 미세조정을 위해 로컬 Conda 환경이 더 많은 유연성을 제공한다.
 
-```bash
+`````bash
 # 환경 생성 및 활성화
 conda create -n voicecraft python=3.9.16
 conda activate voicecraft
@@ -127,11 +128,11 @@ mfa model download acoustic english_us_arpa
 
 # Jupyter 커널 (선택)
 conda install -n voicecraft ipykernel --no-deps --force-reinstall
-```
+`````
 
 ### 옵션 3: Gradio 로컬 UI
 
-노트북 없이 브라우저 기반 인터페이스를 사용하려면: ```bash
+노트북 없이 브라우저 기반 인터페이스를 사용하려면: `````bash
 # Gradio 추가 시스템 의존성
 apt-get install -y espeak espeak-data libespeak1 libespeak-dev
 apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev
@@ -141,9 +142,9 @@ pip install -r gradio_requirements.txt
 
 # Gradio 서버 실행
 python gradio_app.py
-```
+`````
 
-`http://127.0.0.1:7860`에서 웹 UI에 접근한다.
+````http://127.0.0.1:7860````에서 웹 UI에 접근한다.
 
 ### 하드웨어 요구사항
 
@@ -153,13 +154,13 @@ python gradio_app.py
 | 빠른 추론 (330M) | 8 GB | 16 GB VRAM | 16 GB |
 | Gradio UI | 8 GB | 16 GB VRAM | 16 GB |
 
-`kvcache` 최적화는 약간의 품질 저하를 감수하고 상당한 메모리 감소를 얻어 8 GB GPU에서도 추론을 가능하게 한다.
+````kvcache```` 최적화는 약간의 품질 저하를 감수하고 상당한 메모리 감소를 얻어 8 GB GPU에서도 추론을 가능하게 한다.
 
 ## 인기 도구와의 통합
 
 ### VoiceCraft + Gradio Web UI
 
-내장 Gradio 인터페이스는 실험에 가장 쉬운 방법이다: ```bash
+내장 Gradio 인터페이스는 실험에 가장 쉬운 방법이다: `````bash
 # 기본 설정으로 Gradio 실행
 python gradio_app.py --model-name "giga330M" --device "cuda"
 
@@ -168,13 +169,13 @@ python gradio_app.py \
   --model-path "./pretrained_models/giga330M.pth" \
   --codec-model "encodec_16khz" \
   --share  # 공개 URL 생성
-```
+`````
 
 Gradio UI는 세 가지 모드를 지원한다: **TTS 모드** (제로샷 보이스 클론), **편집 모드** (음성 편집), **긴 TTS 모드** (긴 텍스트 분할 생성).
 
 ### VoiceCraft + Jupyter 노트북
 
-프로그래밍 방식 접근을 위해 Jupyter 노트북을 사용한다: ```python
+프로그래밍 방식 접근을 위해 Jupyter 노트북을 사용한다: `````python
 # inference_tts.ipynb — 제로샷 TTS 예제
 from voicecraft import VoiceCraft
 
@@ -197,11 +198,11 @@ output = model.tts(
     temperature=1.0
 )
 output.save("output_tts.wav")
-```
+`````
 
 ### VoiceCraft + 명령줄
 
-배치 처리 및 스크립팅: ```bash
+배치 처리 및 스크립팅: `````bash
 # CLI를 통한 TTS 추론
 python tts_demo.py \
   --audio_path "demo/pam.wav" \
@@ -218,11 +219,11 @@ python speech_editing_demo.py \
   --edited_transcript "edited text here" \
   --model_name "giga830M" \
   --output_path "edited_output.wav"
-```
+`````
 
 ### VoiceCraft + Docker API
 
-프로덕션 배포를 위해 VoiceCraft를 REST API로 감싼다: ```dockerfile
+프로덕션 배포를 위해 VoiceCraft를 REST API로 감싼다: `````dockerfile
 # Dockerfile.api — 프로덕션 API 래퍼
 FROM voicecraft:latest
 
@@ -235,9 +236,9 @@ RUN pip install -r requirements-api.txt
 EXPOSE 8000
 
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
+`````
 
-```python
+`````python
 # api.py — VoiceCraft용 FastAPI 래퍼
 from fastapi import FastAPI, UploadFile, File
 from voicecraft import VoiceCraft
@@ -260,11 +261,11 @@ async def tts(
         top_k=40
     )
     return {"output": output.serialize()}
-```
+`````
 
 ### VoiceCraft + HuggingFace Hub
 
-HuggingFace에서 사전 훈련된 모델을 직접 다운로드: ```python
+HuggingFace에서 사전 훈련된 모델을 직접 다운로드: `````python
 from huggingface_hub import hf_hub_download
 
 # 모델 가중치 다운로드
@@ -278,7 +279,7 @@ model_path = hf_hub_download(
 # ModelScope를 통한 다운로드 (중국 지역용)
 from modelscope import snapshot_download
 model_dir = snapshot_download('AI-ModelScope/VoiceCraft")
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -321,7 +322,7 @@ RealEdit 데이터셋(310개 실제 편집 예제)에서 VoiceCraft는 FluentSpe
 
 ### KV Cache를 사용한 메모리 최적화
 
-VRAM이 제한된 GPU의 경우 키-값 캐시를 활성화: ```python
+VRAM이 제한된 GPU의 경우 키-값 캐시를 활성화: `````python
 # 8GB GPU용 kvcache 활성화
 output = model.tts(
     target_text=target_text,
@@ -331,11 +332,11 @@ output = model.tts(
     kvcache=True,  # VRAM 사용량 약 60% 감소
     batch_size=1
 )
-```
+`````
 
 ### Top-k 샘플링 (2025년 3월 업데이트)
 
-기본 샘플링 전략이 top-p=1.0에서 top-k=40으로 업데이트되어 출력 품질이 크게 향상: ```python
+기본 샘플링 전략이 top-p=1.0에서 top-k=40으로 업데이트되어 출력 품질이 크게 향상: `````python
 # 권장: top-k=40 최고 품질
 output = model.tts(
     target_text=target_text,
@@ -344,11 +345,11 @@ output = model.tts(
     top_k=40,
     temperature=1.0
 )
-```
+`````
 
 ### 사용자 정의 데이터 미세조정
 
-특정 도메인 목소리의 경우 사전 훈련된 모델을 미세조정: ```bash
+특정 도메인 목소리의 경우 사전 훈련된 모델을 미세조정: `````bash
 # 데이터셋 준비
 conda activate voicecraft
 cd ./data
@@ -364,11 +365,11 @@ python phonemize_encodec_encode_hf.py \
 # 미세조정 시작
 cd ../z_scripts
 bash e830M_ft.sh  # 830M 모델 미세조정
-```
+`````
 
 ### 모니터링 및 로깅
 
-```python
+`````python
 import logging
 from torch.utils.tensorboard import SummaryWriter
 
@@ -380,7 +381,7 @@ logger = logging.getLogger("voicecraft")
 writer = SummaryWriter(log_dir="./runs/voicecraft-ft")
 writer.add_scalar("loss/train", loss.item(), global_step)
 writer.add_scalar("mos/validation", val_mos, global_step)
-```
+`````
 
 ### 보안 및 윤리적 고려사항
 
@@ -451,7 +452,7 @@ VoiceCraft 코드는 CC BY-NC-SA 4.0, 모델 가중치는 Coqui Public Model Lic
 
 **Q3: VoiceCraft를 실행하려면 어떤 GPU가 필요한가?**
 
-830M 모델은 32GB VRAM이 필요하다(A100, V100, 또는 RTX 4090 + 시스템 RAM 공유). 330M 모델은 16GB GPU에서 실행 가능하며 `kvcache=True`로 8GB 카드에서도 추론할 수 있다. CPU 전용 추론은 8코어 Ryzen에서 7분 이상 걸리지만 GPU에서는 35초이다.
+830M 모델은 32GB VRAM이 필요하다(A100, V100, 또는 RTX 4090 + 시스템 RAM 공유). 330M 모델은 16GB GPU에서 실행 가능하며 ````kvcache=True```로 8GB 카드에서도 추론할 수 있다. CPU 전용 추론은 8코어 Ryzen에서 7분 이상 걸리지만 GPU에서는 35초이다.
 
 **Q4: VoiceCraft와 GPT-SoVITS 보이스 클론은 어떻게 비교되나?**
 
@@ -529,7 +530,7 @@ VoiceCraft 배포 패턴을 논의하고, 미세조정 설정을 공유하고, �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -539,6 +540,6 @@ VoiceCraft 배포 패턴을 논의하고, 미세조정 설정을 공유하고, �
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](voicecraft)
 - [moneyprinterturbo-one-click-ai-video-generator](voicecraft)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

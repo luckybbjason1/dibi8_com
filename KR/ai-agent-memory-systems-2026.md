@@ -35,6 +35,7 @@ faqs: - q: 'Mem0, agentmemory, Hindsight, MemPalace의 차이?'
     a: '네 — Mem0 2026-04 알고리즘 업그레이드로 LoCoMo 92.5% 정확도를 query당 ~7K 토큰으로 달성 (full-context ~26K 토큰 대비). 토큰 73% 감소하면서 정확도는 더 높음. inference 규모에서는 비즈니스 모델 차이지 한계적 개선이 아님.'
 ---
 
+
 # 2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsight / MemPalace
 
 
@@ -84,7 +85,7 @@ Mem0는 단순 기술 혁신으로 승부하지 않는다. **"어디든 붙일 �
 
 - **21개 프레임워크 공식 통합**: LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, Mastra, Vercel AI SDK, OpenAI Agents SDK, ElevenLabs, LiveKit, Pipecat 등
 - **20개 벡터 스토어**: Qdrant, Chroma, Weaviate, Milvus, PGVector, Redis, Elasticsearch, Pinecone, Azure AI Search, AWS Neptune Analytics, Apache Cassandra, Valkey 등
-- **4단위 스코프 모델**: `user_id`(사용자급), `agent_id`(에이전트 인스턴스급), `run_id`(세션급), `app_id`(조직급)
+- **4단위 스코프 모델**: ```user_id````(사용자급), ````agent_id````(에이전트 인스턴스급), ````run_id````(세션급), ````app_id````(조직급)
 
 **2026년 4월 알고리즘 업그레이드**
 
@@ -97,17 +98,17 @@ Mem0는 단일 패스 계층적 추출과 다중 신호 융합을 기반으로 �
 풀 컨텍스트 베이스라인이 쿼리당 약 26,000토큰을 소모하는 것과 비교하면, Mem0는 **26%의 토큰**으로 정확도를 뛰어넘는다. 이것은 메모리 시스템의 경제성을 바꾸는 임계점이다.
 
 **빠른 시작:**
-```python
+`````python
 from mem0 import MemoryClient
 
 client = MemoryClient(api_key="your-key")
 client.add("나는 데이터 파이프라인에 Python을 선호한다", user_id="dev-001")
 results = client.search("프로그래밍 선호도", user_id="dev-001")
-```
+`````
 
 **누구에게 적합한가**: 여러 에이전트 프레임워크를 병행하는 팀, 빠른 프로덕션 진입이 필요한 스타트업, TypeScript/Python 혼용 환경.
 
----
+* * *
 
 ### agentmemory: 코딩 에이전트 전용 장기 기억
 
@@ -127,7 +128,7 @@ Claude Code, Cursor, Codex CLI, Windsurf는 매 세션마다 눈가리개를 쓴
 
 **누구에게 적합한가**: Claude Code나 Cursor에 거주하며 대형·장기 프로젝트를 수행하는 엔지니어.
 
----
+* * *
 
 ### Hindsight: 학술급 생체 모방 시스템
 
@@ -149,15 +150,15 @@ Hindsight는 메모리를 **데이터베이스 부가 기능이 아닌 1등급 �
 Virginia Tech Sanghani Center와 Washington Post가 독립적으로 재현 검증한 **LongMemEval 최고 점수**를 보유하고 있다.
 
 **의도적으로 미니멀한 API:**
-```python
+`````python
 client.retain("Alice가 백엔드 팀에서 ML 플랫폼 리더로 이동했다")
 client.recall("ML 플랫폼을 누가 리드하는가?")
 client.reflect("최근 조직 변화는 무엇인가?")
-```
+`````
 
 **누구에게 적합한가**: 최고의 재현율을 요구하는 팀, 전담 인프라팀을 보유한 조직, 기억 품질이 사용자 신뢰에 직접 영향을 주는 애플리케이션.
 
----
+* * *
 
 ### MemPalace: 커뮤니티 기준의 선두
 
@@ -174,7 +175,7 @@ MemPalace는 2026년 5월 기준 GitHub에서 가장 많은 Star를 받은 오�
 
 ## 선택 의사결정 트리
 
-```
+`````
 1시간 안에 프로덕션 메모리가 필요한가?
   → Mem0 Cloud (매니지드)
 
@@ -192,7 +193,7 @@ MemPalace는 2026년 5월 기준 GitHub에서 가장 많은 Star를 받은 오�
 
 보이스 + 텍스트 + 웹 인터페이스를 동시에 운영하는가?
   → Mem0 (가장 넓은 통합 표면)
-```
+````
 
 ## 프로덕션 도입 시 3가지 함정
 
@@ -224,7 +225,7 @@ AI 에이전트 메모리 시스템은 연구적 호기심에서 프로덕션 �
 
 이번 주에 하나만 해보라. 매일 쓰는 코딩 에이전트에 메모리 레이어를 연결하라. 일주일이 지나면, 어제 대화를 기억하는 팀원처럼 에이전트를 대하게 될 것이다.
 
----
+* * *
 
 **참고 자료:**
 - Mem0 평가 프레임워크(오픈소스): [github.com/mem0ai/memory-benchmarks](https://github.com/mem0ai/memory-benchmarks)
@@ -233,7 +234,7 @@ AI 에이전트 메모리 시스템은 연구적 호기심에서 프로덕션 �
 - AGENTS.md 오픈 표준: [agents.md](https://agents.md/)
 
 *발행일 2026-05-20. Star 수와 통합 데이터는 시점에 민감하므로 아키텍처 결정 전 공식 저장소에서 최신 상태를 반드시 확인할 것.*
----
+* * *
 
 ## 추천 인프라 (셀프 호스팅)
 
@@ -244,7 +245,7 @@ Hindsight (Postgres + pgvector) / MemPalace / 영구 저장이 필요한 메모�
 
 *이 글에는 제휴 링크가 포함되어 있습니다.*
 
----
+* * *
 
 ## 추가 자료
 
@@ -281,7 +282,7 @@ Hindsight (Postgres + pgvector) / MemPalace / 영구 저장이 필요한 메모�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -291,7 +292,7 @@ Hindsight (Postgres + pgvector) / MemPalace / 영구 저장이 필요한 메모�
 - [headroom-token-compression-proxy-library-mcp-server](ai-agent-memory-systems-2026)
 - [codebase-memory-mcp-deep-code-intelligence](ai-agent-memory-systems-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

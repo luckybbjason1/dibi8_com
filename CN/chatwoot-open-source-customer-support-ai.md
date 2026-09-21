@@ -23,6 +23,7 @@ tags: ["chatwoot", "customer-support", "open-source", "ai-chatbot", "self-hosted
 aliases:
   - /posts/chatwoot-open-source-customer-support-ai/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Support Stack Needs a Reset
@@ -43,7 +44,7 @@ Chatwoot follows a classic monolithic Rails architecture with a Vue.js SPA front
 
 ### Architecture Overview
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │                 (Reverse Proxy + SSL)               │
@@ -60,17 +61,17 @@ Chatwoot follows a classic monolithic Rails architecture with a Vue.js SPA front
 │                 │ (Data)   │  │(Cache)  │  │(Jobs) │ │
 │                 └─────────┘  └─────────┘  └──────┘ │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### Core Components
 
 | Component | Purpose | Production Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Rails API | Core business logic, REST API, ActionCable | Scale horizontally with multiple Puma workers |
 | Vue.js Dashboard | Agent-facing SPA for ticket management | Static assets served via CDN in production |
@@ -88,7 +89,7 @@ Chatwoot follows a classic monolithic Rails architecture with a Vue.js SPA front
 
 **Automation Rules** — If-this-then-that workflows that trigger on conversation creation, message received, or time-based conditions.
 
-**Macros** — Predefined response templates agents can insert with one click. Supports dynamic variables like `{{contact.name}}`.
+**Macros** — Predefined response templates agents can insert with one click. Supports dynamic variables like ````{{contact.name}}````.
 
 ## Installation & Setup: From Zero to Live Chat in 5 Minutes
 
@@ -103,7 +104,7 @@ For a reliable VPS, we recommend [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 
 
 ### Step 1: Clone and Configure
 
-```bash
+`````bash
 # Clone the official repository
 git clone https://github.com/chatwoot/chatwoot.git
 cd chatwoot
@@ -113,11 +114,11 @@ git checkout v4.0.1
 
 # Copy environment template
 cp .env.example .env
-```
+`````
 
 ### Step 2: Configure Environment Variables
 
-```bash
+`````bash
 # Edit the .env file with your settings
 nano .env
 
@@ -144,11 +145,11 @@ MAILER_SENDER_EMAIL=noreply@yourdomain.com
 # Enable AI features (new in v4.0)
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-openai-key
-```
+`````
 
 ### Step 3: Docker Compose Deployment
 
-```bash
+`````bash
 # Use the production Docker Compose file
 docker compose -f docker-compose.production.yaml up -d
 
@@ -160,21 +161,21 @@ docker compose ps
 # chatwoot_worker     Up 30 seconds
 # chatwoot_postgres   Up 30 seconds  5432/tcp
 # chatwoot_redis      Up 30 seconds  6379/tcp
-```
+`````
 
 ### Step 4: Database Setup
 
-```bash
+`````bash
 # Run database migrations
 docker compose exec rails bundle exec rails db:chatwoot_prepare
 
 # Create your admin account
 docker compose exec rails bundle exec rails db:seed
-```
+`````
 
 ### Step 5: Reverse Proxy with SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/chatwoot
 server {
     listen 80;
@@ -202,18 +203,18 @@ server {
         proxy_set_header Connection "upgrade";
     }
 }
-```
+`````
 
-```bash
+`````bash
 # Enable the site
 sudo ln -s /etc/nginx/sites-available/chatwoot /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
 # Obtain SSL certificate via Let's Encrypt
 sudo certbot --nginx -d support.yourdomain.com
-```
+`````
 
-Your Chatwoot instance is now live at `https://support.yourdomain.com`. Login with the default admin credentials and change them immediately.
+Your Chatwoot instance is now live at ````https://support.yourdomain.com````. Login with the default admin credentials and change them immediately.
 
 ## Integration with AI Agents, CRMs, and Messaging Platforms
 
@@ -221,15 +222,15 @@ Your Chatwoot instance is now live at `https://support.yourdomain.com`. Login wi
 
 Chatwoot v4.0 introduced native AI assistant hooks. You no longer need third-party bridges.
 
-```bash
+`````bash
 # .env — AI configuration
 ENABLE_AI_FEATURES=true
 OPENAI_API_KEY=sk-your-key
 OPENAI_MODEL=gpt-4.1-mini  # or gpt-4.1 for complex queries
 AI_AUTO_REPLY_THRESHOLD=0.85  # Confidence score for auto-response
-```
+`````
 
-```ruby
+`````ruby
 # config/ai_assistants.yml — Define assistant behavior
 support_bot: name: "Support Assistant"
   model: gpt-4.1-mini
@@ -240,11 +241,11 @@ support_bot: name: "Support Assistant"
     3. Keep responses under 150 words
   handoff_keywords: ["refund", "chargeback", "legal", "complaint"]
   max_response_tokens: 200
-```
+`````
 
 ### Webhook Integration for Custom AI Agents
 
-```bash
+`````bash
 # Create a webhook-based AI integration
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
   -H "Content-Type: application/json" \
@@ -254,9 +255,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/webhooks" \
     "subscriptions": ["message.created", "conversation.created"],
     "headers": {"X-Custom-Auth": "your-secret-token"}
   }'
-```
+`````
 
-```python
+`````python
 # ai_bridge.py — Example webhook handler for LangChain integration
 from flask import Flask, request, jsonify
 from langchain_openai import ChatOpenAI
@@ -282,11 +283,11 @@ def handle_chatwoot(): data = request.json
     # Send reply back to Chatwoot
     send_chatwoot_reply(conversation_id, response["result"])
     return jsonify({"status": "ok"})
-```
+`````
 
 ### CRM Integrations
 
-```bash
+`````bash
 # HubSpot CRM — Install via Chatwoot app marketplace
 # Navigate to: Settings > Applications > HubSpot
 # Or configure via API: curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/integrations/hubspot" \
@@ -297,11 +298,11 @@ def handle_chatwoot(): data = request.json
     "sync_contacts": true,
     "sync_deals": true
   }'
-```
+`````
 
 ### Multi-Channel Configuration
 
-```bash
+`````bash
 # Add a WhatsApp Business channel via Twilio
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -318,9 +319,9 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
-```bash
+`````bash
 # Add Telegram Bot channel
 curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
   -H "Content-Type: application/json" \
@@ -334,11 +335,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
       }
     }
   }'
-```
+`````
 
 ### Slack Integration for Agent Notifications
 
-```bash
+`````bash
 # Connect your support team Slack workspace
 # In Chatwoot dashboard: Settings > Integrations > Slack
 # Authorize and select the channel for support alerts
@@ -346,7 +347,7 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 # The bot will post: # - New conversation notifications
 # - Agent mention alerts
 # - Escalation reminders
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -354,11 +355,11 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 | Metric | Value | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start time | 3.2s | Docker container startup |
 | Message delivery latency | 95ms | P95, same-region client |
@@ -372,15 +373,15 @@ curl -X POST "https://support.yourdomain.com/api/v1/accounts/1/inboxes" \
 
 | Company Type | Agents | Channels | Monthly Cost (Self-Hosted) | Cloud Equivalent |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SaaS Startup | 3 | Chat + Email | **$24** (VPS) | $360 (Intercom) |
 | E-commerce | 12 | Chat + Email + WhatsApp + FB | **$64** (VPS + backups) | $1,200 (Zendesk) |
@@ -398,7 +399,7 @@ A mid-size e-commerce company in Southeast Asia migrated from Zendesk Suite to s
 
 ### Horizontal Scaling with Multiple Workers
 
-```yaml
+`````yaml
 # docker-compose.scale.yaml — Add more Sidekiq workers
 services: worker_default: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -C config/sidekiq.yml
@@ -408,28 +409,28 @@ services: worker_default: image: chatwoot/chatwoot:v4.0.1
   worker_high_priority: image: chatwoot/chatwoot:v4.0.1
     command: bundle exec sidekiq -q high -q default -q low
     deploy: replicas: 2
-```
+`````
 
 ### Database Read Replicas
 
-```ruby
+`````ruby
 # config/database.yml — Add read replica
 production: primary: <<: *default
     host: <%= ENV[POSTGRES_HOST] %>
   primary_replica: <<: *default
     host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
-```
+`````
 
-```bash
+`````bash
 # .env
 POSTGRES_REPLICA_HOST=postgres-replica.yourdomain.com
 DATABASE_REPLICA_ENABLED=true
-```
+`````
 
 ### Automated Backups
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/chatwoot-backup.sh
 
@@ -448,16 +449,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/chatwoot/"
 
 # Keep only last 14 days
 find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron job — daily at 2 AM
 0 2 * * * /opt/scripts/chatwoot-backup.sh >> /var/log/chatwoot-backup.log 2>&1
-```
+`````
 
 ### Monitoring with Prometheus
 
-```bash
+`````bash
 # Chatwoot exposes a /metrics endpoint
 # Add to your prometheus.yml
 
@@ -465,11 +466,11 @@ scrape_configs: - job_name: chatwoot
     static_configs: - targets: [support.yourdomain.com:3000]
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
 ### Rate Limiting & Security Headers
 
-```bash
+`````bash
 # Add to .env for API rate limiting
 RATE_LIMIT_ENABLED=true
 RATE_LIMIT_REQUESTS=100
@@ -480,23 +481,23 @@ add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Content-Security-Policy "default-src self" always;
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Chatwoot (Open) | Zendesk Suite | Intercom | Freshdesk | Help Scout |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT (Open) | Proprietary | Proprietary | Proprietary | Proprietary |
 | **Self-hosted option** | Yes (Docker) | No | No | No | No |
@@ -539,7 +540,7 @@ Use the webhook-based integration. Any LLM service that exposes an HTTP API can 
 
 **What is the upgrade process between versions?**
 
-Chatwoot follows semantic versioning. Minor updates (v4.0.0 → v4.0.1) are typically database-migration-free. Major updates (v3.x → v4.x) require running migrations. The standard process: ```bash
+Chatwoot follows semantic versioning. Minor updates (v4.0.0 → v4.0.1) are typically database-migration-free. Major updates (v3.x → v4.x) require running migrations. The standard process: `````bash
 # Backup first
 /opt/scripts/chatwoot-backup.sh
 
@@ -547,7 +548,7 @@ Chatwoot follows semantic versioning. Minor updates (v4.0.0 → v4.0.1) are typi
 docker compose pull
 docker compose up -d
 docker compose exec rails bundle exec rails db:migrate
-```
+````
 
 Always read the release notes before upgrading major versions.
 
@@ -570,7 +571,7 @@ Deploy your instance this week. Start with the Docker Compose setup, connect you
 **Join our Telegram group for open-source tooling discussions**: [t.me/dibi8opensource](https://t.me/dibi8opensource)
 
 
----
+* * *
 ## Recommended Hosting & Infrastructure
 
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -589,7 +590,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [DigitalOcean Docker Deployment Guide](https://m.do.co/c/eca87ac14ee0) — VPS setup tutorial
 - [PostgreSQL Streaming Replication](https://www.postgresql.org/docs/current/warm-standby.html) — For read replica setup
 
----
+* * *
 
 *This article contains affiliate links to DigitalOcean and HTStack. If you purchase services through these links, dibi8.com may receive a commission at no additional cost to you. All recommendations are based on hands-on testing and real deployment experience.*
 
@@ -619,7 +620,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -629,7 +630,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [paddleocr-81k-star-ocr-engine](chatwoot-open-source-customer-support-ai)
 - [markitdown-universal-file-to-markdown-converter](chatwoot-open-source-customer-support-ai)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

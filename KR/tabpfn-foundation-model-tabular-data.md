@@ -33,6 +33,7 @@ faqs: - q: 'TabPFN이란 무엇인가요?'
     a: '''pip install tabpfn''으로 설치한 후, tabpfn 패키지에서 TabPFNClassifier를 임포트하고 clf.fit(X_train, y_train)과 clf.predict(X_test)를 순서대로 호출하면 됩니다. 피처 타입을 자동으로 감지하며, 결측값과 범주형 피처도 자동으로 처리합니다.'
 ---
 
+
 {</* resource-info */>}
 
 ## TabPFN이란?
@@ -44,7 +45,7 @@ faqs: - q: 'TabPFN이란 무엇인가요?'
 **언어**: Python
 **라이선스**: Apache-2.0
 
----
+* * *
 
 ## 기존 표 형식 ML의 문제점
 
@@ -68,7 +69,7 @@ faqs: - q: 'TabPFN이란 무엇인가요?'
 | 결과 얻기 | 즉시 | 누구나 |
 | **총계** | **~2분** | **전문성 불필요** |
 
----
+* * *
 
 ## TabPFN 작동 방식
 
@@ -86,7 +87,7 @@ TabPFN은 **수백만 개의 합성 표 형식 데이터셋**에서 학습하여
 3. **하이퍼파라미터 없음**: 그리드 서치 및 튜닝 제거
 4. **빠른 추론**: 시간이 아닌 초 단위 결과
 
----
+* * *
 
 ## 성능 벤치마크
 
@@ -108,19 +109,19 @@ TabPFN은 **수백만 개의 합성 표 형식 데이터셋**에서 학습하여
 | FLAML | 10-30분 | 0.1초 |
 | **TabPFN** | **0초** | **0.5-2초** |
 
----
+* * *
 
 ## 빠른 시작
 
 ### 설치
 
-```bash
+````bash
 pip install tabpfn
-```
+`````
 
 ### 기본 사용법
 
-```python
+`````python
 from tabpfn import TabPFNClassifier
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -140,11 +141,11 @@ y_prob = clf.predict_proba(X_test)
 # 평가
 accuracy = (y_pred == y_test).mean()
 print(f"정확도: {accuracy:.4f}")
-```
+`````
 
 ### 고급 기능
 
-```python
+`````python
 # 결측값 자동 처리
 clf = TabPFNClassifier()
 clf.fit(X_train_with_nans, y_train)
@@ -160,9 +161,9 @@ y = df['target']
 
 clf = TabPFNClassifier()
 clf.fit(X, y)  # 특성 유형 자동 감지
-```
+`````
 
----
+* * *
 
 ## 사용 사례
 
@@ -187,15 +188,15 @@ clf.fit(X, y)  # 특성 유형 자동 감지
 - 설문조사 데이터 처리
 - 게놈 데이터 분류
 
----
+* * *
 
 ## 아키텍처 심층 분석
 
 ### 표를 위한 트랜스포머
 
-TabPFN은 NLP에서 인기 있는 **트랜스포머 아키텍처**를 표 형식 데이터에 맞게 조정합니다: ```
+TabPFN은 NLP에서 인기 있는 **트랜스포머 아키텍처**를 표 형식 데이터에 맞게 조정합니다: `````
 입력 특성 → 임베딩 레이어 → 트랜스포머 블록 → 출력
-```
+````
 
 NLP 트랜스포머와의 주요 차이점: - **특성별 임베딩** 혼합 데이터 유형용
 - **어텐션 메커니즘** 열 관계 최적화
@@ -208,7 +209,7 @@ NLP 트랜스포머와의 주요 차이점: - **특성별 임베딩** 혼합 데
 3. **메타 학습** 새로운 데이터셋에 적응 가능
 4. **결과**: 단일 모델이 다양한 표 형식 작업 처리
 
----
+* * *
 
 ## 한계점
 
@@ -219,7 +220,7 @@ NLP 트랜스포머와의 주요 차이점: - **특성별 임베딩** 혼합 데
 | GPU 필요 | 추론에 GPU 필요 | CPU 모드 사용(느림) |
 | 분류만 | 현재 분류만 | 회귀 기능 개발 중 |
 
----
+* * *
 
 ## 관련 기사
 
@@ -227,11 +228,11 @@ NLP 트랜스포머와의 주요 차이점: - **특성별 임베딩** 혼합 데
 - [Polymarket Agents: AI 트레이딩 봇](/kr/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — 금융의 AI
 - [OpenClaw 42개 사용 사례](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 응용
 
----
+* * *
 
 *면책 조항: 본 문서는 오픈소스 AI 프로젝트를 소개합니다. TabPFN은 연구 도구이며, 프로덕션 배포 전 특정 사용 사례에서 검증해야 합니다.*
 
----
+* * *
 
 ## 추천 도구
 
@@ -303,7 +304,7 @@ TabPFN: 표 형식 데이터 기반 모델 — 구조화된 데이터의 AI 혁�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

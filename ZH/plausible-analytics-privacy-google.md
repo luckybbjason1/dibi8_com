@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/plausible-analytics-privacy-google/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：没人谈论的分析工具隐私问题
@@ -44,7 +45,7 @@ Plausible采用了与传统分析工具截然不同的方法。它不进行客�
 
 ### 架构概览
 
-```
+````
 ┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
 │              （反向代理 + SSL）                       │
@@ -65,7 +66,7 @@ Plausible采用了与传统分析工具截然不同的方法。它不进行客�
 │          │ （缓存）  │                                │
 │          └──────────┘                                │
 └─────────────────────────────────────────────────────┘
-```
+`````
 
 ### 为什么使用 ClickHouse 存储事件
 
@@ -73,13 +74,13 @@ Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudfl
 
 | 特性 | PostgreSQL | ClickHouse | 影响 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 写入吞吐量 | ~2万行/秒 | **100万+行/秒** | 处理流量峰值 |
 | 聚合查询速度 | 秒级 | **毫秒级** | 仪表盘即时加载 |
@@ -90,11 +91,11 @@ Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudfl
 
 | 组件 | 用途 | 扩展注意事项 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Phoenix 应用 | Web仪表盘、REST API、事件接收 | 无状态——水平扩展 |
 | ClickHouse | 事件数据存储、聚合 | 单节点可处理100亿+事件 |
@@ -103,9 +104,9 @@ Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudfl
 
 ### 1KB脚本：它实际做了什么
 
-```html
+`````html
 </script>
-```
+`````
 
 这个脚本只做三件事：(1)发送当前页面URL和引荐来源，(2)发送浏览器视口大小以分类桌面/移动端，(3)监听SPA导航事件。它 **不会**：设置Cookie、使用localStorage、生成指纹哈希或执行第三方请求。结果是gzip压缩后不到1KB的payload，在4G网络上的执行时间不到10毫秒。
 
@@ -122,18 +123,18 @@ Plausible使用 **ClickHouse** 作为其分析数据库——与Yandex和Cloudfl
 
 ### 步骤1：创建目录和Compose文件
 
-```bash
+`````bash
 # 创建项目目录
 mkdir -p /opt/plausible
 cd /opt/plausible
 
 # 下载官方Docker Compose模板
 curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml
-```
+`````
 
 ### 步骤2：生成密钥和配置
 
-```bash
+`````bash
 # 生成随机密钥
 export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
@@ -159,11 +160,11 @@ SMTP_HOST_SSL_ENABLED=true
 # 注册控制
 DISABLE_REGISTRATION=false  # 创建账户后设为true
 EOF
-```
+`````
 
 ### 步骤3：Docker Compose 启动
 
-```bash
+`````bash
 # 启动所有服务
 docker compose up -d
 
@@ -175,11 +176,11 @@ docker compose ps
 # plausible               Up 10 seconds   0.0.0.0:8000->8000/tcp
 # plausible_db            Up 10 seconds   5432/tcp
 # plausible_events_db     Up 10 seconds   8123/tcp
-```
+`````
 
 ### 步骤4：反向代理与SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/plausible
 server {
     listen 80;
@@ -202,39 +203,39 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-```
+`````
 
-```bash
+`````bash
 # 启用站点并获取SSL证书
 sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 sudo certbot --nginx -d analytics.yourdomain.com
-```
+`````
 
 ### 步骤5：首次登录和站点设置
 
-```bash
+`````bash
 # 创建管理员用户
 docker compose exec plausible bin/plausible remote
 Plausible.Release.created_admin_user("admin@yourdomain.com", "YourSecurePassword123!")
 # 按 Ctrl+C 退出
-```
+`````
 
-访问 `https://analytics.yourdomain.com`，登录并添加第一个站点。复制追踪脚本代码到网站头部。
+访问 ````https://analytics.yourdomain.com````，登录并添加第一个站点。复制追踪脚本代码到网站头部。
 
 ### 添加追踪到你的网站
 
-```html
+`````html
 </script>
 
 </script>
-```
+`````
 
 ## 与框架、CMS和构建工具的集成
 
 ### React / Next.js 集成
 
-```javascript
+`````javascript
 // components/PlausibleAnalytics.js
 import Script from 'next/script';
 
@@ -264,11 +265,11 @@ export default function RootLayout({ children }) {
 
   return <html>{children}</html>;
 }
-```
+`````
 
 ### Vue.js / Nuxt.js 集成
 
-```javascript
+`````javascript
 // plugins/plausible.client.js (Nuxt 3)
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
@@ -278,7 +279,7 @@ export default defineNuxtPlugin(() => {
       {
         defer: true,
         'data-domain': config.public.plausibleDomain,
-        src: `${config.public.plausibleHost}/js/script.js`,
+        src: ````${config.public.plausibleHost}/js/script.js````,
       },
     ],
   });
@@ -291,11 +292,11 @@ export default defineNuxtPlugin(() => {
     }
   });
 });
-```
+`````
 
 ### WordPress 插件
 
-```bash
+`````bash
 # 选项1：使用官方Plausible WordPress插件
 # 从wp-admin安装：插件 > 安装新插件 > 搜索 "Plausible Analytics"
 # 配置你的自托管URL
@@ -305,17 +306,17 @@ export default defineNuxtPlugin(() => {
 "
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
-```
+`````
 
 ### 静态网站生成器（Hugo、Jekyll、Astro）
 
-```html
+`````html
 {{ if not hugo.IsServer }}
 </script>
 {{ end }}
-```
+`````
 
-```javascript
+`````javascript
 // astro.config.mjs
 export default defineConfig({
   integrations: [
@@ -323,20 +324,20 @@ export default defineConfig({
       name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript(head, `
+          injectScript(head, ````
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
-          `);
+          ````);
         },
       },
     },
   ],
 });
-```
+`````
 
 ### 自定义事件追踪
 
-```javascript
+`````javascript
 // 追踪按钮点击、表单提交或任何自定义事件
 document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
@@ -356,7 +357,7 @@ plausible(Purchase, {
   },
   revenue: { currency: USD, amount: 9900 }  // 以分为单位
 });
-```
+`````
 
 ## 基准测试与实际应用案例
 
@@ -364,13 +365,13 @@ plausible(Purchase, {
 
 | 指标 | Google Analytics 4 | Plausible（Cloud） | Plausible（自建） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **脚本大小** | **45KB** (gtag.js + analytics.js) | **<1KB** | **<1KB** |
 | **DNS查询** | 5+ (google-analytics等) | **1** | **1** |
@@ -386,13 +387,13 @@ plausible(Purchase, {
 
 | 功能 | Google Analytics 4 | Matomo | Plausible |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **无需同意即GDPR合规** | **否**（需同意横幅） | 部分 | **是** |
 | **无Cookie追踪** | **否** | 可选 | **是（始终）** |
@@ -406,11 +407,11 @@ plausible(Purchase, {
 
 | 指标 | 数值 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 冷启动 | 4.1秒 | Docker容器 + ClickHouse |
 | 事件接收速率 | **5万事件/秒** | 单节点ClickHouse |
@@ -424,15 +425,15 @@ plausible(Purchase, {
 
 | 站点类型 | 月PV | VPS费用 | GA4等价方案 | Plausible费用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 个人博客 | 1万 | **$6** (1GB) | 免费 | **$6** |
 | SaaS落地页 | 10万 | **$12** (2GB) | $0-150 | **$12** |
@@ -454,7 +455,7 @@ plausible(Purchase, {
 
 ### 启用增强测量
 
-```bash
+`````bash
 # plausible-conf.env — 启用额外追踪功能
 # 出站链接追踪
 SCRIPT_NAME=script.outbound-links.js
@@ -467,15 +468,15 @@ SCRIPT_NAME=script.hash.js
 
 # 组合：所有功能
 SCRIPT_NAME=script.outbound-links.file-downloads.hash.js
-```
+`````
 
-```html
+`````html
 </script>
-```
+`````
 
 ### API集成用于自定义仪表盘
 
-```bash
+`````bash
 # 通过Stats API获取统计
 curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&period=30d&metrics=visitors,pageviews,bounce_rate" \
   -H "Authorization: Bearer YOUR_API_KEY"
@@ -488,9 +489,9 @@ curl -X GET "https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=you
 #     "bounce_rate": {"value": 42}
 #   }
 # }
-```
+`````
 
-```python
+`````python
 # Python脚本：将统计数据拉取到BI工具
 import requests
 from datetime import datetime, timedelta
@@ -516,11 +517,11 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]: print(f"{entry[date]}: {entry[visitors]} 访客, {entry[pageviews]} 页面浏览")
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/plausible-backup.sh
 
@@ -540,16 +541,16 @@ aws s3 sync "$BACKUP_DIR" "s3://your-backup-bucket/plausible/"
 
 # 清理：只保留30天
 find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \;
-```
+`````
 
-```bash
+`````bash
 # Cron — 每天凌晨3点
 0 3 * * * /opt/scripts/plausible-backup.sh >> /var/log/plausible-backup.log 2>&1
-```
+`````
 
 ### 高可用架构
 
-```yaml
+`````yaml
 # docker-compose.ha.yaml — ClickHouse多节点复制
 version: '3.8'
 services: plausible: image: plausible/analytics:v3.0
@@ -562,21 +563,21 @@ services: plausible: image: plausible/analytics:v3.0
 
   clickhouse-2: image: clickhouse/clickhouse-server:24.3
     volumes: - clickhouse_data_2:/var/lib/clickhouse
-```
+`````
 
 ### 使用Prometheus监控
 
-```yaml
+`````yaml
 # 添加到你的 prometheus.yml
 scrape_configs: - job_name: plausible
     static_configs: - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
-```
+`````
 
 ### GeoIP数据库用于位置数据
 
-```bash
+`````bash
 # 下载MaxMind GeoLite2数据库用于国家/城市数据
 mkdir -p /opt/plausible/geoip
 cd /opt/plausible/geoip
@@ -593,23 +594,23 @@ tar -xzf GeoLite2-City.tar.gz --strip-components=1
 # 添加到plausible-conf.env：
 # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb
 # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Plausible | Google Analytics 4 | Matomo（自建） | Fathom | Umami |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | AGPL-3.0 | 专有 | GPL-3.0 | 专有 | MIT |
 | **脚本大小** | **<1KB** | **45KB** | ~22KB | **<1KB** | **<2KB** |
@@ -656,11 +657,11 @@ Plausible通常报告的 **访客数比GA4高5-15%**，因为它被广告拦截�
 
 可以。Plausible提供了通过GA Reporting API v4提取数据的Google Analytics导入器。导入器处理Universal Analytics（UA）属性和GA4属性，将维度映射到Plausible的数据模型。由于GA4的数据模型差异，某些指标（如"互动时间"）没有直接等价物。导入作为后台作业运行，大型数据集可能需要数小时。
 
-```bash
+`````bash
 # 运行GA导入器（从Plausible容器）
 docker compose exec plausible bin/plausible \
   "Plausible.Google.Import.start('your-ga-property-id", YOUR_API_KEY)"
-```
+`````
 
 **当我的站点超出VPS容量时会发生什么？**
 
@@ -668,11 +669,11 @@ Plausible可预测地扩展。**2GB VPS处理约50万PV/月**。**4GB VPS处理�
 
 **如何追踪多个域名或子域名？**
 
-每个域名在Plausible中是独立的"站点"，但你可以用共享登录来组织它们。对于子域名追踪（如 `blog.yourdomain.com` 和 `app.yourdomain.com`），你有两个选择：分开追踪以获得细粒度报告，或使用 `data-api-host` 属性汇总到同一个站点ID。跨子域名追踪无需特殊配置即可工作，因为Plausible不使用Cookie或会话存储。
+每个域名在Plausible中是独立的"站点"，但你可以用共享登录来组织它们。对于子域名追踪（如 ````blog.yourdomain.com```` 和 ````app.yourdomain.com````），你有两个选择：分开追踪以获得细粒度报告，或使用 ````data-api-host```` 属性汇总到同一个站点ID。跨子域名追踪无需特殊配置即可工作，因为Plausible不使用Cookie或会话存储。
 
-```html
+`````html
 </script>
-```
+````
 
 **自托管Plausible真的永久免费吗？**
 
@@ -689,7 +690,7 @@ Plausible Analytics证明了你不需要用隐私换取洞察力。**不到1KB�
 **加入我们的Telegram群组讨论开源工具**：[t.me/dibi8zh](https://t.me/dibi8zh)
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -711,7 +712,7 @@ Plausible Analytics证明了你不需要用隐私换取洞察力。**不到1KB�
 - [EDPB同意指南](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — 无Cookie分析的法律依据
 - [DigitalOcean VPS设置](https://m.do.co/c/eca87ac14ee0) — 自托管部署的VPS主机
 
----
+* * *
 
 *本文包含DigitalOcean的联盟链接。如果你通过这些链接购买VPS服务，dibi8.com可能会获得佣金，而你无需额外付费。所有推荐均基于实际测试和真实部署经验。*
 
@@ -741,7 +742,7 @@ Plausible Analytics证明了你不需要用隐私换取洞察力。**不到1KB�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -751,6 +752,6 @@ Plausible Analytics证明了你不需要用隐私换取洞察力。**不到1KB�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google)
 - [moneyprinterturbo-one-click-ai-video-generator](plausible-analytics-privacy-google)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

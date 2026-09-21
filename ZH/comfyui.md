@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -66,23 +67,23 @@ ComfyUI 的架构分为三个层次：
 
 | 概念 | 说明 |
 |
----
+* * *
 |
----
+* * *
 |
-| **节点 (Node)** | 单个操作（如 `KSampler`、`Load Checkpoint`、`Save Image`） |
+| **节点 (Node)** | 单个操作（如 ```KSampler````、````Load Checkpoint````、````Save Image````） |
 | **连接 (Link)** | 传输特定类型数据的有向连接（MODEL、LATENT、IMAGE、CONDITIONING） |
 | **工作流 (Workflow)** | 定义完整生成管线的 JSON 图结构 |
 | **队列 (Queue)** | 按顺序执行工作流的任务调度器 |
 | **自定义节点 (Custom Node)** | 扩展 ComfyUI 节点注册表的 Python 类 |
 
-节点系统在图级别强制类型安全。`KSampler` 节点需要 `MODEL` 输入并输出 `LATENT` 张量。如果将字符串连接到模型插槽，编辑器会在执行前高亮显示类型不匹配。
+节点系统在图级别强制类型安全。````KSampler```` 节点需要 ````MODEL```` 输入并输出 ````LATENT```` 张量。如果将字符串连接到模型插槽，编辑器会在执行前高亮显示类型不匹配。
 
 ### 工作流序列化
 
 每个工作流都是一个 JSON 文件。你可以分享给同事、用 Git 做版本控制，或者通过 API 服务器发送 POST 请求：
 
-```json
+`````json
 {
   "1": {
     "inputs": {
@@ -100,7 +101,7 @@ ComfyUI 的架构分为三个层次：
     "_meta": { "title": "Positive Prompt" }
   }
 }
-```
+`````
 
 这种 JSON 优先的方式让 ComfyUI 在 CI/CD 管线和自动化批处理场景中独具优势。开发团队可以将工作流文件纳入版本控制，在代码审查中追踪生成参数的变化，并通过自动化测试确保工作流的稳定性。这种"代码即工作流"的理念，是 ComfyUI 区别于其他 Stable Diffusion 界面的关键特性之一。
 
@@ -112,11 +113,11 @@ ComfyUI 的安装方式多样，可以满足不同用户的需求。无论你是
 
 | 硬件 | 最低配置 | 推荐配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU | 6 GB 显存的 NVIDIA 显卡 | RTX 4090（24 GB）运行 Flux |
 | 内存 | 16 GB | 32 GB |
@@ -125,7 +126,7 @@ ComfyUI 的安装方式多样，可以满足不同用户的需求。无论你是
 
 ### 方法一：直接安装（5 分钟）
 
-```bash
+`````bash
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 
@@ -141,27 +142,27 @@ pip install -r requirements.txt
 
 # 启动服务器
 python main.py --listen 0.0.0.0 --port 8188
-```
+`````
 
-在浏览器中打开 `http://localhost:8188`，界面会加载默认的文生图工作流。首次启动时，ComfyUI 会自动下载所需的依赖并初始化模型目录结构。如果看到 GPU 相关的错误信息，请检查 CUDA 驱动版本是否与 PyTorch 版本匹配。建议保持 PyTorch 和 CUDA 的版本一致以避免兼容性问题。
+在浏览器中打开 ````http://localhost:8188````，界面会加载默认的文生图工作流。首次启动时，ComfyUI 会自动下载所需的依赖并初始化模型目录结构。如果看到 GPU 相关的错误信息，请检查 CUDA 驱动版本是否与 PyTorch 版本匹配。建议保持 PyTorch 和 CUDA 的版本一致以避免兼容性问题。
 
 ### 方法二：ComfyUI 桌面版
 
 如果你更习惯安装包而不是命令行：
 
-```bash
+`````bash
 # 从以下地址下载最新桌面版：
 # https://github.com/Comfy-Org/ComfyUI-Desktop/releases
 
 # 桌面版会自动处理 Python、CUDA 和依赖管理。
 # 首次启动约需 15 分钟（下载模型并设置环境）。
-```
+`````
 
 ### 方法三：Docker（推荐用于生产环境）
 
 Docker 方式保持宿主系统整洁，确保部署可复现：
 
-```bash
+`````bash
 # 验证 GPU 透传
 nvidia-smi
 docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
@@ -169,9 +170,9 @@ docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
 # 创建持久化存储目录
 mkdir -p comfyui-deploy/{models/checkpoints,models/loras,models/vae,models/controlnet,output,custom_nodes,workflows}
 cd comfyui-deploy
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 
@@ -187,9 +188,9 @@ services: comfyui: image: ghcr.io/ai-dock/comfyui:latest-cuda
               count: 1
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-```bash
+`````bash
 # 启动服务
 docker compose up -d
 
@@ -198,13 +199,13 @@ docker compose logs -f comfyui
 
 # 检查容器内 GPU 利用率
 docker exec comfyui nvidia-smi
-```
+`````
 
 ### 模型配置
 
 将模型下载到对应的目录：
 
-```bash
+`````bash
 # SDXL Base (6.9 GB)
 wget -P models/checkpoints \
   "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
@@ -220,15 +221,15 @@ wget -P models/vae \
 # ControlNet OpenPose
 wget -P models/controlnet \
   "https://huggingface.co/lllyasviel/control_v11p_sd15_openpose/resolve/main/diffusion_pytorch_model.safetensors"
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Stable Diffusion & SDXL
 
-ComfyUI 原生支持所有主流的 Stable Diffusion 变体。内置的 `CheckpointLoaderSimple` 节点可以同时处理 SD 1.5 和 SDXL 的 checkpoint，无需额外配置。
+ComfyUI 原生支持所有主流的 Stable Diffusion 变体。内置的 ````CheckpointLoaderSimple```` 节点可以同时处理 SD 1.5 和 SDXL 的 checkpoint，无需额外配置。
 
-```python
+`````python
 # 使用 refiner 管线的 SDXL 加载配置
 CheckpointLoaderSimple: ckpt_name: "sd_xl_base_1.0.safetensors"
 
@@ -238,13 +239,13 @@ KSampler: seed: 42
   sampler_name: "dpmpp_2m"
   scheduler: "karras"
   denoise: 1.0
-```
+`````
 
 ### Flux
 
 Flux 模型通过专用节点集成，采用优化的注意力机制实现：
 
-```python
+`````python
 # Flux 工作流节点
 UNETLoader: unet_name: "flux1-dev.safetensors"
   weight_dtype: "fp8_e4m3fn"  # 显存从 24GB 降至 12GB
@@ -256,7 +257,7 @@ DualCLIPLoader: clip_name1: "t5xxl_fp8_e4m3fn.safetensors"
 EmptySD3LatentImage: width: 1024
   height: 1024
   batch_size: 1
-```
+`````
 
 Flux 支持 Dev、Schnell 和社区微调版本。FP8 量化可将显存占用减少约 50%，质量损失极小。
 
@@ -264,14 +265,14 @@ Flux 支持 Dev、Schnell 和社区微调版本。FP8 量化可将显存占用�
 
 Wan 2.1/2.2 集成支持文生视频和图生视频：
 
-```bash
+`````bash
 # 安装 Wan 自定义节点
 cd custom_nodes
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 pip install -r ComfyUI-WanVideoWrapper/requirements.txt
-```
+`````
 
-```python
+`````python
 # Wan 文生视频工作流
 WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   positive: "slow motion aerial shot of ocean waves"
@@ -279,13 +280,13 @@ WanVideoSampler: model: "wan_2.1_14b_fp8.safetensors"
   height: 720
   frames: 81
   steps: 30
-```
+`````
 
 ### ControlNet & LoRA
 
 ControlNet 和 LoRA 节点在模型层面集成，支持可组合的条件控制：
 
-```python
+`````python
 # 应用多个 LoRA 并控制强度
 LoraLoaderModelOnly: model: ["CheckpointLoader", 0]
   lora_name: "add_detail.safetensors"
@@ -297,13 +298,13 @@ ControlNetApplyAdvanced: positive: ["CLIPTextEncode", 0]
   strength: 1.0
   start_percent: 0.0
   end_percent: 0.8
-```
+`````
 
 ### API 集成
 
 每个工作流都可以通过 REST API 执行：
 
-```bash
+`````bash
 # 通过 API 提交工作流
 curl -X POST http://localhost:8188/prompt \
   -H "Content-Type: application/json" \
@@ -319,7 +320,7 @@ curl http://localhost:8188/queue
 
 # 获取生成的图片
 curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&type=output
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -331,15 +332,15 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 
 | 测试项目 | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | SD 1.5 512x512 | 2.1秒 | 2.4秒 | 2.3秒 | 2.3秒 |
 | SDXL 1024x1024 | 7.8秒 | 9.2秒 | 8.5秒 | 8.5秒 |
@@ -356,14 +357,14 @@ curl http://localhost:8188/view?filename=ComfyUI_00001_.png&subfolder=output&typ
 
 某电商团队每日生成 50 张风格一致的商品图片：
 
-```python
+`````python
 # 带共享风格 LoRA 的批处理工作流
 LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
                     ↓
             LoadPromptList (50 条提示词)
                     ↓
             SaveImage (带元数据 + 文件名模式)
-```
+`````
 
 结果：50 张图片耗时 11 分钟（SDXL、1024x1024），通过重新加载工作流 JSON 完全可复现。
 
@@ -371,11 +372,11 @@ LoadCheckpoint → LoadLoRA → CLIPTextEncode → KSampler → VAE Decode
 
 某内容工作室制作短视频片段：
 
-```
+`````
 文本提示词 → WanVideoSampler → 帧插值 (RIFE) → 视频合成
                    ↓
          图像条件控制（可选图生视频）
-```
+`````
 
 Wan 2.1 14B 在 1280x720 分辨率下生成 81 帧，每片段约 4 分钟。节点结构允许通过更换单个加载节点在 Wan 变体（1.3B 轻量版、14B 质量版）之间切换。
 
@@ -385,7 +386,7 @@ Wan 2.1 14B 在 1280x720 分辨率下生成 81 帧，每片段约 4 分钟。节
 
 ### 反向代理 + SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/comfyui
 server {
     listen 443 ssl http2;
@@ -410,20 +411,20 @@ server {
         proxy_pass http://127.0.0.1:8188;
     }
 }
-```
+`````
 
 ### 身份认证
 
-```bash
+`````bash
 # 仅监听 localhost + API 密钥启动
 python main.py --listen 0.0.0.0 --port 8188 \
   --api-key "your-secure-api-key-here" \
   --disable-xformers
-```
+`````
 
 ### 自定义节点开发
 
-```python
+`````python
 # custom_nodes/my_custom_node/nodes.py
 class MyUpscaleNode: """使用 Real-ESRGAN 的简单 4x 上采样节点。"""
 
@@ -444,18 +445,18 @@ class MyUpscaleNode: """使用 Real-ESRGAN 的简单 4x 上采样节点。"""
 
 NODE_CLASS_MAPPINGS = {"MyUpscaleNode": MyUpscaleNode}
 NODE_DISPLAY_NAME_MAPPINGS = {"MyUpscaleNode": "My Upscale (Real-ESRGAN)"}
-```
+`````
 
-```python
+`````python
 # custom_nodes/my_custom_node/__init__.py
 from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
-```
+`````
 
 ### 监控
 
-```bash
+`````bash
 # GPU 利用率仪表板（与 ComfyUI 并行运行）
 watch -n 1 nvidia-smi
 
@@ -464,11 +465,11 @@ curl -s http://localhost:8188/queue | jq '.queue_running | length'
 
 # 监控模型存储的磁盘空间
 df -h models/ output/
-```
+`````
 
 ### 备份策略
 
-```bash
+`````bash
 #!/bin/bash
 # backup-comfyui.sh
 BACKUP_DIR="/backup/comfyui-$(date +%Y%m%d)"
@@ -487,21 +488,21 @@ rsync -av --progress output/ "$BACKUP_DIR/output/"
 # rsync -av --progress models/ "$BACKUP_DIR/models/"
 
 echo "备份完成: $BACKUP_DIR"
-```
+`````
 
 ## Comparison with Alternatives
 
 | 特性 | ComfyUI | AUTOMATIC1111 | InvokeAI | Fooocus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **界面类型** | 节点式图编辑器 | 传统 Web 界面 | 画布 + Web 界面 | 一键简化界面 |
 | **学习曲线** | 陡峭（10-20 小时） | 中等（3-5 小时） | 低（1-2 小时） | 极简（30 分钟） |
@@ -530,7 +531,7 @@ ComfyUI 并非适用于所有场景。以下是其不足之处：
 
 **对初学者不友好。** 如果你只想输入提示词然后在 30 秒内获得图片，用 Fooocus。ComfyUI 的投资回报在于控制力，但这笔投资是真实的。
 
-**模型管理是手动的。** 不同于 InvokeAI 内置的模型浏览器，ComfyUI 要求你手动将文件 `wget` 到正确的目录结构中。ComfyUI Manager 自定义节点有所帮助，但它不是一流的包管理器。
+**模型管理是手动的。** 不同于 InvokeAI 内置的模型浏览器，ComfyUI 要求你手动将文件 ````wget```` 到正确的目录结构中。ComfyUI Manager 自定义节点有所帮助，但它不是一流的包管理器。
 
 ## Frequently Asked Questions
 
@@ -544,7 +545,7 @@ SD 1.5 可在 6 GB 显存上运行。SDXL 需要 8 GB 显存以生成 1024x1024 
 
 ### 如何安装自定义节点？
 
-使用 ComfyUI Manager（通过 `git clone https://github.com/Comfy-Org/ComfyUI-Manager.git` 安装到 `custom_nodes/` 目录），或手动将仓库克隆到 `custom_nodes/` 目录。安装后重启 ComfyUI。Manager 提供可搜索的浏览器，支持 3000+ 社区节点的一键安装。
+使用 ComfyUI Manager（通过 ````git clone https://github.com/Comfy-Org/ComfyUI-Manager.git```` 安装到 ````custom_nodes/```` 目录），或手动将仓库克隆到 ````custom_nodes/```` 目录。安装后重启 ComfyUI。Manager 提供可搜索的浏览器，支持 3000+ 社区节点的一键安装。
 
 ### ComfyUI 可以免费商用吗？
 
@@ -552,18 +553,18 @@ ComfyUI 本身采用 GPL-3.0 许可证，允许商用，但要求分发的修改
 
 ### 如何安全地升级 ComfyUI？
 
-```bash
+`````bash
 cd ComfyUI
 git pull origin master
 pip install -r requirements.txt
 # 重启服务器
-```
+`````
 
-生产环境部署请固定到特定发布标签而非 master：`git checkout v0.21.1`。升级前务必备份工作流，因为自定义节点的兼容性可能跨版本断裂。
+生产环境部署请固定到特定发布标签而非 master：````git checkout v0.21.1````。升级前务必备份工作流，因为自定义节点的兼容性可能跨版本断裂。
 
 ### 可以与已有的 AUTOMATIC1111 模型共用吗？
 
-可以。两款工具使用相同的 `.safetensors` 和 `.ckpt` 模型格式。将 ComfyUI 的模型目录指向已有的 A1111 模型文件夹，或创建符号链接：`ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints`。
+可以。两款工具使用相同的 ````.safetensors```` 和 ````.ckpt```` 模型格式。将 ComfyUI 的模型目录指向已有的 A1111 模型文件夹，或创建符号链接：````ln -s /path/to/A1111/models/Stable-diffusion models/checkpoints````。
 
 ## Conclusion
 
@@ -571,7 +572,7 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 
 对于正在评估 AI 图像生成工具的团队来说，ComfyUI 的优势在于其无与伦比的灵活性和可扩展性。与 AUTOMATIC1111 相比，它提供了更精细的控制和更高的 VRAM 效率；与 InvokeAI 相比，它在批量处理和自动化方面更胜一筹；与 Fooocus 相比，它支持更多的模型和更复杂的工作流。虽然学习曲线相对陡峭，但一旦掌握，你将拥有一个可以处理任何图像生成任务的强大工具。
 
-生产环境使用 Docker 安装，本地实验使用桌面安装程序。立即安装 ComfyUI Manager —— 它解锁了 3000+ 自定义节点生态。用 `nvidia-smi` 运行基准测试，找到稳定组合后固定版本标签。在生产环境中，务必配置好监控和备份策略，以防止模型文件丢失或服务中断。定期检查 ComfyUI 的更新日志，了解新功能和性能改进。
+生产环境使用 Docker 安装，本地实验使用桌面安装程序。立即安装 ComfyUI Manager —— 它解锁了 3000+ 自定义节点生态。用 ````nvidia-smi``` 运行基准测试，找到稳定组合后固定版本标签。在生产环境中，务必配置好监控和备份策略，以防止模型文件丢失或服务中断。定期检查 ComfyUI 的更新日志，了解新功能和性能改进。
 
 **行动清单：**
 1. 克隆仓库并运行 Docker Compose 配置
@@ -634,7 +635,7 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ai-engineering-from-scratch](comfyui)
@@ -644,5 +645,5 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 - [2026-06-08-trending-ai-agents](comfyui)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

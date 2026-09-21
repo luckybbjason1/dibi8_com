@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -59,13 +60,13 @@ OpenHands 的前身是 OpenDevin，于 2024 年初启动，随后更名并快速
 
 智能体循环遵循以下模式：
 
-```
+````
 1. 观察（OBSERVE）：读取任务描述、仓库状态、先前操作的结果
 2. 思考（THINK）：LLM 生成计划（编辑哪个文件、运行什么命令）
 3. 行动（ACT）：执行计划操作（read_file、write_file、run_cmd 等）
 4. 观察（OBSERVE）：捕获结果（输出、错误、测试结果）
 5. 重复（REPEAT）：持续迭代直到任务完成或达到最大迭代次数
-```
+`````
 
 每个任务通常消耗 30-50 次 LLM 调用。v1.5 版本新增的内存压缩器（memory condenser）会总结较早的上下文，保持上下文窗口聚焦，从而减少长任务的延迟和 Token 消耗。
 
@@ -84,7 +85,7 @@ OpenHands 的前身是 OpenDevin，于 2024 年初启动，随后更名并快速
 
 使用 uv 安装是启动 OpenHands 最快的方式：
 
-```bash
+`````bash
 # 安装 uv（如果尚未安装）
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -93,23 +94,23 @@ uv tool install openhands --python 3.12
 
 # 启动 GUI 服务器
 openhands serve
-```
+`````
 
-服务器在 `http://localhost:3000` 启动。打开浏览器，选择 LLM 提供商，输入 API 密钥，即可开始分配任务。
+服务器在 ````http://localhost:3000```` 启动。打开浏览器，选择 LLM 提供商，输入 API 密钥，即可开始分配任务。
 
 ![OpenHands Web UI](https://raw.githubusercontent.com/All-Hands-AI/OpenHands/main/docs/static/img/screenshot.png)
 
 后续升级：
 
-```bash
+`````bash
 uv tool upgrade openhands --python 3.12
-```
+`````
 
 ### 方案二：直接通过 Docker 运行
 
 如果你更倾向于不安装 Python 工具的 Docker 方式：
 
-```bash
+`````bash
 # 拉取最新镜像
 docker pull ghcr.io/openhands/openhands:latest
 
@@ -119,46 +120,46 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/openhands/openhands:latest \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
-`--mount-cwd` 标志将当前工作目录挂载到沙盒中：
+````--mount-cwd```` 标志将当前工作目录挂载到沙盒中：
 
-```bash
+`````bash
 openhands serve --mount-cwd
-```
+`````
 
 如需 GPU 加速本地模型：
 
-```bash
+`````bash
 openhands serve --gpu
-```
+`````
 
 ### 方案三：通过 pip 安装
 
-```bash
+`````bash
 pip install openhands-ai
 
 # 启动 Web UI
 openhands serve
-```
+`````
 
 ### Windows 安装注意事项
 
 在 Windows 上，所有命令需在 WSL2（Ubuntu）内运行：
 
-```powershell
+`````powershell
 # 在 PowerShell 管理员权限下
 wsl --install -d Ubuntu
 wsl -d Ubuntu
-```
+`````
 
 然后在 WSL 内：
 
-```bash
+`````bash
 # 先安装 Docker Desktop for Windows，然后：
 uv tool install openhands --python 3.12
 openhands serve
-```
+`````
 
 ## 配置与首个任务
 
@@ -167,24 +168,24 @@ openhands serve
 启动 OpenHands 后，在设置面板（齿轮图标）中配置你的模型：
 
 1. **选择提供商**：Anthropic（Claude）、OpenAI（GPT）、Google（Gemini）或本地模型
-2. **选择模型**：推荐使用 `anthropic/claude-sonnet-4-20250514` 以获得最佳效果
+2. **选择模型**：推荐使用 ````anthropic/claude-sonnet-4-20250514```` 以获得最佳效果
 3. **输入 API 密钥**：粘贴你的提供商 API 密钥
 4. **保存更改**
 
 如需高级配置，开启高级设置，使用 LiteLLM 前缀格式设置自定义模型：
 
-```
+`````
 anthropic/claude-sonnet-4-5-20250929
 openai/gpt-5-2025-08-07
 gemini/gemini-3-pro-preview
 deepseek/deepseek-chat
-```
+`````
 
 ### 使用本地模型（Ollama）
 
 需要离线部署的团队可按以下步骤操作：
 
-```bash
+`````bash
 # 启动 Ollama 并加载强大的编程模型
 ollama run qwen3-coder:32b
 
@@ -192,11 +193,11 @@ ollama run qwen3-coder:32b
 # 自定义模型：openai/qwen3-coder:32b
 # 基础 URL：http://host.docker.internal:11434/v1
 # API 密钥：ollama（任意值均可）
-```
+`````
 
 ### 运行第一个任务
 
-在 `localhost:3000` 打开 UI：
+在 ````localhost:3000```` 打开 UI：
 
 1. 在聊天框输入任务："为 app.py 中的 main 函数添加文档字符串"
 2. 智能体会生成沙盒、读取文件、编写文档字符串并确认更改
@@ -204,10 +205,10 @@ ollama run qwen3-coder:32b
 
 处理 GitHub Issue：
 
-```
+`````
 修复 issue #42 中描述的身份验证错误。
 克隆仓库、复现错误、实现修复并运行测试套件。
-```
+`````
 
 ## 与 VS Code、GitHub、Docker 和 CI/CD 集成
 
@@ -215,13 +216,13 @@ ollama run qwen3-coder:32b
 
 OpenHands v1.5+ 包含用于 IDE 集成的 Agent Control Plane：
 
-```bash
+`````bash
 # 安装 OpenHands VS Code 扩展
 # 在 VS Code 扩展市场中搜索 "OpenHands"
 
 # 配置扩展连接本地 OpenHands 服务器
 # 设置 > OpenHands > 服务器 URL：http://localhost:3000
-```
+`````
 
 ACP 协议允许 VS Code 直接向 OpenHands 发送任务，并以差异补丁形式接收结构化编辑。
 
@@ -229,7 +230,7 @@ ACP 协议允许 VS Code 直接向 OpenHands 发送任务，并以差异补丁�
 
 将 OpenHands 连接到你的 GitHub 仓库以实现自动化 Issue 解决：
 
-```bash
+`````bash
 # 设置细粒度的 GitHub PAT（个人访问令牌）
 export GITHUB_TOKEN=ghp_your_token_here
 
@@ -239,7 +240,7 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e GITHUB_TOKEN=$GITHUB_TOKEN \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 在 UI 中粘贴 GitHub Issue URL，OpenHands 将自动执行以下步骤：
 1. 克隆仓库
@@ -253,20 +254,20 @@ docker run -it --rm \
 
 GitLab 支持（v1.5 新增）配置方式类似：
 
-```bash
+`````bash
 export GITLAB_TOKEN=glpat-your-token
 docker run -it --rm \
   -p 3000:3000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e GITLAB_TOKEN=$GITLAB_TOKEN \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 ### 生产环境 Docker Compose
 
 持久化部署请使用 Docker Compose：
 
-```yaml
+`````yaml
 version: "3.8"
 services: openhands: image: ghcr.io/openhands/openhands:latest
     ports: - "3000:3000"
@@ -279,21 +280,21 @@ services: openhands: image: ghcr.io/openhands/openhands:latest
       - LOG_LEVEL=info
     restart: unless-stopped
     security_opt: - no-new-privileges:true
-```
+`````
 
 部署：
 
-```bash
+`````bash
 docker-compose up -d
-```
+`````
 
-部署完成后，你可以通过 `docker-compose logs -f openhands` 查看实时日志。建议在生产环境中配合反向代理（如 Nginx 或 Traefik）使用，并启用 HTTPS 以加密通信。对于高可用性部署，可以考虑在多个节点上运行 OpenHands，并使用共享存储卷来保持会话状态的一致性。
+部署完成后，你可以通过 ````docker-compose logs -f openhands```` 查看实时日志。建议在生产环境中配合反向代理（如 Nginx 或 Traefik）使用，并启用 HTTPS 以加密通信。对于高可用性部署，可以考虑在多个节点上运行 OpenHands，并使用共享存储卷来保持会话状态的一致性。
 
 ### CI/CD 流水线无头模式
 
 无头模式在无交互 UI 的情况下运行 OpenHands，适用于自动化场景：
 
-```bash
+`````bash
 # 以无头模式运行任务
 openhands --headless -t "为认证模块编写单元测试"
 
@@ -302,11 +303,11 @@ openhands --headless -f task.txt
 
 # JSON 输出供流水线解析
 openhands --headless --json -t "修复 routes.py 中的 API 端点" > output.jsonl
-```
+`````
 
 GitHub Actions 工作流示例：
 
-```yaml
+`````yaml
 name: OpenHands 自动修复
 on: issues: types: [labeled]
 jobs: fix: if: github.event.label.name == 'auto-fix'
@@ -321,13 +322,13 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl
-```
+`````
 
 ### MCP 服务器集成
 
 OpenHands 支持 Model Context Protocol (MCP) 服务器以扩展功能：
 
-```json
+`````json
 {
   "mcpServers": {
     "fetch": {
@@ -340,7 +341,7 @@ OpenHands 支持 Model Context Protocol (MCP) 服务器以扩展功能：
     }
   }
 }
-```
+`````
 
 ## 基准测试 / 实际应用场景
 
@@ -350,11 +351,11 @@ SWE-bench Verified 在 500 个真实 GitHub Issue 上测试智能体。得分越
 
 | 智能体 + 模型 | SWE-bench Verified | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenHands + Claude Opus 4.6 | ~72% | 开源框架最佳成绩 |
 | OpenHands + Claude Sonnet 4.6 | ~67% | 推荐的成本/质量平衡 |
@@ -370,13 +371,13 @@ SWE-bench Verified 在 500 个真实 GitHub Issue 上测试智能体。得分越
 
 | 模型 | 每次尝试成本 | 成功率 | 每次成功成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Opus 4.7 | ~$1.50 | 87.6% | ~$1.71 |
 | GPT-5.3-Codex | ~$0.90 | 85.0% | ~$1.06 |
@@ -406,9 +407,9 @@ AMD、Apple、Google 和 Netflix 均已内部部署 OpenHands 用于自动化维
 
 **1. 沙盒网络隔离**
 
-```yaml
+`````yaml
 environment: - SANDBOX_NETWORK_DISABLED=true
-```
+`````
 
 这会阻止沙盒容器发出出站请求。仅在需要安装依赖包的任务中有选择地启用。
 
@@ -416,43 +417,43 @@ environment: - SANDBOX_NETWORK_DISABLED=true
 
 挂载 Docker socket 实际上等于 root 访问权限。可通过以下方式缓解：
 
-```bash
+`````bash
 docker run --security-opt no-new-privileges \
   --cap-drop ALL \
   --cap-add SYS_ADMIN \
   -v /var/run/docker.sock:/var/run/docker.sock \
   ghcr.io/openhands/openhands:latest
-```
+`````
 
 **3. 细粒度的 GitHub PAT**
 
 切勿使用组织范围的令牌。将 PAT 限定到特定仓库：
 
-```bash
+`````bash
 # 在 GitHub > 设置 > 开发者设置 中创建细粒度 PAT
 # 仅选择：内容（读/写）、Issue（读）、拉取请求（写）
-```
+`````
 
 **4. 密钥管理**
 
 将密钥挂载为只读卷，而非环境变量：
 
-```yaml
+`````yaml
 volumes: - /var/run/docker.sock:/var/run/docker.sock
   - /opt/secrets:/secrets:ro
 environment: - LLM_API_KEY_FILE=/secrets/anthropic_key
-```
+`````
 
 ### 多智能体委派
 
 大型功能开发可启用多智能体模式：
 
-```bash
+`````bash
 # 在 config.toml 或通过环境变量配置
 [agent]
 enable_multi_agent = true
 max_subagents = 3
-```
+`````
 
 父智能体将 "构建带认证的 REST API" 分解为：
 - 子智能体 1：实现 API 端点
@@ -463,23 +464,23 @@ max_subagents = 3
 
 长任务可调整内存压缩器设置：
 
-```toml
+`````toml
 [llm]
 enable_condenser = true
 condenser_max_history = 240  # 240 个事件后总结（默认：240）
-```
+`````
 
 ### 监控与日志
 
 启用结构化 JSON 日志以实现可观测性：
 
-```bash
+`````bash
 openhands --headless --json -t "你的任务" 2>&1 | tee openhands.log
-```
+`````
 
 解析日志获取指标：
 
-```bash
+`````bash
 # 统计 LLM 调用次数
 jq 'select(.type == "llm")' openhands.log | wc -l
 
@@ -488,13 +489,13 @@ jq 'select(.type == "error")' openhands.log
 
 # 计算任务耗时
 jq 'select(.type == "finish") | .timestamp' openhands.log
-```
+`````
 
 ### Kubernetes 扩展
 
 团队部署可使用社区维护的 Helm Chart：
 
-```bash
+`````bash
 # 添加 OpenHands Helm 仓库
 helm repo add openhands https://charts.openhands.dev
 helm repo update
@@ -505,21 +506,21 @@ helm install openhands openhands/openhands \
   --set llm.model=anthropic/claude-sonnet-4-20250514 \
   --set sandbox.networkDisabled=true \
   --set replicas=2
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | OpenHands | Claude Code | Aider | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT (开源) | 专有 (闭源) | Apache-2.0 (开源) | 专有 (闭源) |
 | **GitHub Stars** | 74,200 | 不适用 | 39,000 | 不适用 |
@@ -566,7 +567,7 @@ OpenHands 并非适用于所有场景。以下情况不适合使用：
 
 ### OpenHands 可以完全离线运行吗？
 
-可以，通过 Ollama、vLLM 或 LM Studio 使用本地模型。将基础 URL 设置为本地端点（如 `http://localhost:11434/v1`），API 密钥可使用任意值。复杂任务性能会比前沿 API 低 20-30%，但日常 Bug 修复和重构没有问题。
+可以，通过 Ollama、vLLM 或 LM Studio 使用本地模型。将基础 URL 设置为本地端点（如 ````http://localhost:11434/v1````），API 密钥可使用任意值。复杂任务性能会比前沿 API 低 20-30%，但日常 Bug 修复和重构没有问题。
 
 ### OpenHands 与 Devin 相比如何？
 
@@ -574,11 +575,11 @@ Devin（$20-500/月）更容易设置（2 分钟注册），但锁定在 Cogniti
 
 ### 我的代码在 OpenHands 中安全吗？
 
-代码在任务完成后会被销毁的 Docker 沙盒容器中运行。如果设置了 `SANDBOX_NETWORK_DISABLED=true`，沙盒没有网络访问权限。但挂载 Docker socket 赋予控制器显著的主机访问权限，因此应在专用机器或 VM 上运行 OpenHands，而非生产笔记本。
+代码在任务完成后会被销毁的 Docker 沙盒容器中运行。如果设置了 ````SANDBOX_NETWORK_DISABLED=true````，沙盒没有网络访问权限。但挂载 Docker socket 赋予控制器显著的主机访问权限，因此应在专用机器或 VM 上运行 OpenHands，而非生产笔记本。
 
 ### OpenHands 可以与现有 CI/CD 流水线集成吗？
 
-可以，通过无头模式。`--headless --json` 标志生成结构化 JSONL 输出，任何 CI 系统都可以解析。典型的 GitHub Actions 工作流会克隆仓库，对已标记 Issue 运行 OpenHands，并从生成的差异创建 PR。
+可以，通过无头模式。````--headless --json```` 标志生成结构化 JSONL 输出，任何 CI 系统都可以解析。典型的 GitHub Actions 工作流会克隆仓库，对已标记 Issue 运行 OpenHands，并从生成的差异创建 PR。
 
 ### 哪些模型与 OpenHands 配合最好？
 
@@ -586,7 +587,7 @@ Claude Sonnet 4.6 在大多数任务中提供最佳的成本与质量平衡。Cl
 
 ### OpenHands 陷入循环时如何调试？
 
-检查 UI 中的事件日志，寻找重复失败的行动。常见修复方法：（1）提供更具体的指令，（2）切换到更强的模型，（3）将任务拆分为更小的子任务，（4）在设置中增加 `max_iterations` 限制。
+检查 UI 中的事件日志，寻找重复失败的行动。常见修复方法：（1）提供更具体的指令，（2）切换到更强的模型，（3）将任务拆分为更小的子任务，（4）在设置中增加 ````max_iterations```` 限制。
 
 ## 结论
 
@@ -595,9 +596,9 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 设置过程约 10-15 分钟：通过 uv 或 Docker 安装，配置 LLM 提供商，开始分配任务。生产使用时，启用沙盒网络隔离，使用细粒度 GitHub PAT，并部署无头模式用于 CI/CD 集成。
 
 **后续步骤：**
-1. 克隆仓库：`git clone https://github.com/OpenHands/OpenHands.git`
-2. 安装：`uv tool install openhands --python 3.12`
-3. 启动：`openhands serve` 并在 `localhost:3000` 连接
+1. 克隆仓库：````git clone https://github.com/OpenHands/OpenHands.git````
+2. 安装：````uv tool install openhands --python 3.12````
+3. 启动：````openhands serve```` 并在 ````localhost:3000``` 连接
 4. 加入 Slack 社区获取支持和功能更新
 
 
@@ -623,7 +624,7 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 - [Agent Control Plane 文档](https://docs.openhands.dev/openhands/usage/key-features) — VS Code 集成和多智能体设置
 
 
----
+* * *
 *本指南独立维护并定期更新。最后验证时间：2026年5月。*
 
 
@@ -653,7 +654,7 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](openhands)
@@ -662,7 +663,7 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 - [2026-06-08-trending-ai-agents](openhands)
 - [2026-06-15-trending-ai-agents](openhands)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

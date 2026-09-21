@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/pancake-trading-bot-defi-bsc/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Bài Học 4,2 Tỷ USD Trong Tự Động Hóa DeFi
@@ -36,20 +37,20 @@ Hướng dẫn này hướng dẫn bạn cách xây dựng bot giao dịch Panca
 
 ## PancakeSwap Là Gì Và Tại Sao Cần Tự Động Hóa?
 
-**PancakeSwap là sàn giao dịch phi tập trung (DEX) lớn nhất trên Binance Smart Chain (BSC), xử lý hơn 1,2 triệu giao dịch hàng ngày trên **12.800+ cặp thanh khoản** .** Xây dựng trên cơ chế nhà tạo lập thị trường tự động (AMM) do Uniswap khởi xướng, PancakeSwap sử dụng đường cong sản phẩm không đổi (`x * y = k`) để định giá tài sản mà không cần sổ lệnh truyền thống.
+**PancakeSwap là sàn giao dịch phi tập trung (DEX) lớn nhất trên Binance Smart Chain (BSC), xử lý hơn 1,2 triệu giao dịch hàng ngày trên **12.800+ cặp thanh khoản** .** Xây dựng trên cơ chế nhà tạo lập thị trường tự động (AMM) do Uniswap khởi xướng, PancakeSwap sử dụng đường cong sản phẩm không đổi (```x * y = k````) để định giá tài sản mà không cần sổ lệnh truyền thống.
 
 Tự động hóa quan trọng vì thị trường DeFi hoạt động 24/7 với các cơ hội chỉ tồn tại trong vài giây. Giao dịch thủ công không thể nắm bắt: - **Khoảng chênh lệch giá** giữa PancakeSwap và sàn giao dịch tập trung (thường 0,1-0,5%, đóng trong vòng 30 giây)
 - **Cân bằng lại thanh khoản** trong các pool biến động (phòng ngừa tổn thất vô thường)
 - **Các pool mới ra mắt** (lợi thế ngườii đi đầu trên token đang hot)
 - **Tối ưu hóa yield farming** (tự động tái đầu tư, nhảy pool)
 
-Các hợp đồng cốt lõi của PancakeSwap (`pancake-swap-core`, **2.500+ GitHub stars**, GPL-3.0) đã được kiểm toán bởi CertiK, SlowMist và PeckShield — khiến chúng trở thành một trong những hợp đồng thông minh được kiểm tra kỹ lưỡng nhất trong DeFi.
+Các hợp đồng cốt lõi của PancakeSwap (````pancake-swap-core````, **2.500+ GitHub stars**, GPL-3.0) đã được kiểm toán bởi CertiK, SlowMist và PeckShield — khiến chúng trở thành một trong những hợp đồng thông minh được kiểm tra kỹ lưỡng nhất trong DeFi.
 
 ## PancakeSwap AMM Hoạt Động Như Thế Nào: Khái Niệm Cốt Lõi
 
 Hiểu cơ chế AMM là bắt buộc để phát triển bot. Đây là những gì xảy ra bên trong: ### Công Thức Sản Phẩm Không Đổi
 
-Đối với bất kỳ pool thanh khoản nào có dự trữ `x` (token A) và `y` (token B), bất biến được duy trì: ```python
+Đối với bất kỳ pool thanh khoản nào có dự trữ ``x`` (token A) và ``y`` (token B), bất biến được duy trì: `````python
 x * y = k
 
 # Price of token A in terms of token B
@@ -57,7 +58,7 @@ price_a = y / x
 
 # When a swap occurs: (x + dx) * (y - dy) = k
 # After 0.25% fee: dx * 0.9975 is what actually enters the pool
-```
+`````
 
 Công thức này có nghĩa là các giao dịch lớn có mức thực hiện tệ hơn (tác động giá). Bot của bạn phải tính toán điều này trước khi gửi bất kỳ giao dịch nào.
 
@@ -70,7 +71,7 @@ Hầu hết các bot sử dụng V2 vì đơn giản, nhưng V3 cung cấp giá 
 
 ### Trượt Giá và Đầu Ra Tối Thiểu
 
-```python
+`````python
 # Slippage calculation for a swap
 def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=0.005): """Calculate minimum output with 0.5% slippage tolerance."""
     amount_in_with_fee = amount_in * 9975 // 10000  # 0.25% fee
@@ -79,7 +80,7 @@ def calculate_min_output(amount_in, reserve_in, reserve_out, slippage_tolerance=
     expected_output = numerator // denominator
     min_output = int(expected_output * (1 - slippage_tolerance))
     return min_output
-```
+`````
 
 Luôn đặt trượt giá dựa trên độ sâu pool, không phải phần trăm cố định. Pool sâu (>$1M TVL) có thể dùng 0,3-0,5%. Pool mới có thể cần 2-5%.
 
@@ -87,7 +88,7 @@ Luôn đặt trượt giá dựa trên độ sâu pool, không phải phần tr�
 
 ### Bước 1: Lấy RPC Endpoint BSC
 
-Bạn cần kết nối với node BSC. Các tùy chọn: ```bash
+Bạn cần kết nối với node BSC. Các tùy chọn: `````bash
 # Option A: Public endpoint (rate-limited, NOT for production)
 BSC_RPC = "https://bsc-dataseed.binance.org/"
 
@@ -96,23 +97,23 @@ BSC_RPC = "https://docs.chainstack.com/"  # Get your endpoint from Chainstack
 
 # Option C: Self-hosted geth node (maximum reliability)
 # geth --config ./config.toml --datadir ./node --http
-```
+`````
 
 Với bot production, sử dụng nhà cung cấp RPC trả phí. Các endpoint công cộng hạn chế request và có thể drop giao dịch.
 
 ### Bước 2: Cài Đặt Dependencies
 
-```bash
+`````bash
 python -m venv pancakeswap-bot-env
 source pancakeswap-bot-env/bin/activate
 
 pip install --upgrade pip
 pip install web3==7.6.0 python-dotenv==1.0.1 requests==2.32.3 eth-account==0.13.4
-```
+`````
 
 ### Bước 3: Cấu Trúc Dự Án
 
-```
+`````
 pancake-bot/
 ├── .env                    # Private keys (never commit)
 ├── config.py               # Contract addresses, RPC URLs
@@ -138,11 +139,11 @@ pancake-bot/
 │   ├── price.py            # Price calculations
 │   └── alerts.py           # Telegram/Discord alerts
 └── main.py                 # Entry point
-```
+`````
 
 ### Bước 4: File Cấu Hình
 
-```python
+`````python
 # config.py — all contract addresses and settings
 import os
 from dotenv import load_dotenv
@@ -172,11 +173,11 @@ GAS_LIMIT_APPROVE = 100000
 DEFAULT_SLIPPAGE = 0.005  # 0.5%
 MAX_GAS_PRICE_GWEI = 5
 MIN_PROFIT_BNB = 0.001    # Minimum profit to execute
-```
+`````
 
 ### Bước 5: Thiết Lập Client Web3
 
-```python
+`````python
 # bot/client.py — Web3 connection with retry logic
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
@@ -213,13 +214,13 @@ class BSCClient: def __init__(self): self.w3 = Web3(Web3.HTTPProvider(config.BSC
 
 client = BSCClient()
 print(f"BNB Balance: {client.get_balance():.4f} BNB")
-```
+`````
 
 ## Xây Dựng Chức Năng Swap Cốt Lõi
 
 ### Phê Duyệt Token
 
-Trước khi swap, router cần được phê duyệt để chi tiêu token của bạn: ```python
+Trước khi swap, router cần được phê duyệt để chi tiêu token của bạn: `````python
 # bot/swap.py — swap execution with full safety checks
 from web3 import Web3
 import config
@@ -260,11 +261,11 @@ class PancakeSwapBot: def __init__(self, client): self.client = client
 
         print(f"Approval tx: {tx_hash.hex()} — Status: {receipt[status]}")
         return receipt["status"] == 1
-```
+`````
 
 ### Thực Thi Swap
 
-```python
+`````python
     def swap_exact_tokens_for_tokens(
         self,
         amount_in_wei,
@@ -335,13 +336,13 @@ class PancakeSwapBot: def __init__(self, client): self.client = client
         signed = self.w3.eth.account.sign_transaction(tx, config.PRIVATE_KEY)
         tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction)
         return self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
-```
+`````
 
 ## Giám Sát Pool Thanh Khoản và Theo Dõi Giá
 
 ### Dữ Liệu Pool Real-Time
 
-```python
+`````python
 # bot/monitor.py — pool monitoring and price tracking
 import json
 from web3 import Web3
@@ -410,11 +411,11 @@ class PoolMonitor: def __init__(self, client): self.client = client
             "price_impact": price_impact,
             "is_safe": price_impact < 0.01
         }
-```
+`````
 
 ### Trình Giám Sát Pool Liên Tục
 
-```python
+`````python
     def watch_pool(self, token_a, token_b, callback, interval=12): """Watch pool and call callback on significant changes."""
         import time
         last_price = None
@@ -430,7 +431,7 @@ class PoolMonitor: def __init__(self, client): self.client = client
                     })
                 last_price = current_price
             time.sleep(interval)
-```
+`````
 
 ## Bảo Vệ MEV và Tăng Cường Bảo Mật
 
@@ -438,7 +439,7 @@ Các cuộc tấn công MEV (Maximal Extractable Value) đã khiến các nhà g
 
 ### Bảo Vệ Dựa Trên Slippage
 
-```python
+`````python
 # utils/gas.py — gas optimization and MEV protection
 import random
 
@@ -478,11 +479,11 @@ class MEVProtection: def __init__(self, client): self.client = client
         tx_dict["gasPrice"] = base_gas + jitter
         tx_dict["deadline"] = self.w3.eth.get_block("latest")["timestamp"] + 60
         return tx_dict
-```
+`````
 
 ### Endpoint RPC Riêng Tư (Thay Thế Flashbots Trên BSC)
 
-```python
+`````python
 class PrivateTransactionSender: """Send transactions via private mempool to avoid sandwich attacks."""
 
     def __init__(self, client): self.client = client
@@ -504,13 +505,13 @@ class PrivateTransactionSender: """Send transactions via private mempool to avoi
                 continue
 
         return self.client.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
-```
+`````
 
 ## Chiến Lược Tự Động: Ba Phương Pháp Được Kiểm Chứng
 
 ### Chiến Lược 1: Phá Vỡ Động Lượng Đơn Giản
 
-```python
+`````python
 # strategies/momentum.py — momentum breakout strategy
 import time
 from datetime import datetime
@@ -565,11 +566,11 @@ class MomentumStrategy: def __init__(self, bot, monitor, config_overrides=None):
                     if receipt["status"] == 1: position = 0
 
             time.sleep(12)
-```
+`````
 
 ### Chiến Lược 2: Chênh Lệch Giá PancakeSwap-Binance
 
-```python
+`````python
 # strategies/arbitrage.py — cross-market arbitrage
 import requests
 
@@ -615,11 +616,11 @@ class ArbitrageStrategy: def __init__(self, bot, monitor): self.bot = bot
         print(f"Arbitrage found: {opportunity}")
         if opportunity["direction"] == "BUY_PANCAKE_SELL_BINANCE": receipt = self.bot.swap_bnb_for_tokens(0.1, config.BUSD)
             if receipt["status"] == 1: print("PancakeSwap buy executed — sell on Binance via API")
-```
+`````
 
 ### Chiến Lược 3: Tự Động Tái Đầu Tư Yield Farming
 
-```python
+`````python
 # strategies/yield_optimizer.py — auto-compound CAKE rewards
 import time
 import json
@@ -670,7 +671,7 @@ class YieldOptimizer: def __init__(self, client, bot): self.client = client
             print(f"Pending CAKE: {pending:.4f}")
             if pending >= self.min_cake_to_harvest: self.compound(pid)
             time.sleep(self.compound_interval)
-```
+`````
 
 ## Benchmark / Kết Quả Thực Tế: Q1 2026
 
@@ -702,7 +703,7 @@ Chúng tôi đã triển khai ba cấu hình bot trên BSC testnet (và xác min
 
 ### Web3 Async cho Nhiều Cặp
 
-```python
+`````python
 import asyncio
 from web3 import AsyncWeb3
 
@@ -718,11 +719,11 @@ class AsyncBSCBot: def __init__(self, rpc_url): self.w3 = AsyncWeb3(AsyncWeb3.As
             "price": pool["price"],
             "opportunity": self.evaluate(pair, pool)
         }
-```
+`````
 
 ### Cảnh Báo Telegram cho Sự Kiện Quan Trọng
 
-```python
+`````python
 # utils/alerts.py
 import requests
 
@@ -737,11 +738,11 @@ class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = 
             json={"chat_id": self.chat_id, "text": text},
             timeout=5
         )
-```
+`````
 
 ### Ghi Log Database cho Phân Tích
 
-```python
+`````python
 import sqlite3
 from datetime import datetime
 
@@ -766,7 +767,7 @@ class TradeLogger: def __init__(self, db_path="trades.db"): self.conn = sqlite3.
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (datetime.now().isoformat(), strategy, token_in, token_out, amount_in, amount_out, gas_cost, profit, tx_hash))
         self.conn.commit()
-```
+`````
 
 ## So Sánh: Bot PancakeSwap vs Các Giải Pháp Thay Thế
 
@@ -813,7 +814,7 @@ Xây dựng bot PancakeSwap có lợi nhuận nhưng không dễ. Đây là nh�
 
 ### Tôi có thể chạy trên BSC testnet trước không?
 
-Chắc chắn. BSC testnet sử dụng `https://data-seed-prebsc-1-s1.binance.org:8545/` làm RPC. Nhận BNB test từ [faucet](https://testnet.bnbchain.org/faucet-smart). Trước khi triển khai vốn thực, hãy xác nhận mỗi chiến lược trên testnet ít nhất **2 tuần**. Sử dụng [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) để thiết lập tài khoản testnet.
+Chắc chắn. BSC testnet sử dụng ````https://data-seed-prebsc-1-s1.binance.org:8545/```` làm RPC. Nhận BNB test từ [faucet](https://testnet.bnbchain.org/faucet-smart). Trước khi triển khai vốn thực, hãy xác nhận mỗi chiến lược trên testnet ít nhất **2 tuần**. Sử dụng [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) để thiết lập tài khoản testnet.
 
 ### Làm thế nào để bảo vệ chống lại MEV sandwich attacks?
 
@@ -825,7 +826,7 @@ Bắt đầu với **yield farming auto-compounding**. Thực thi 1-2 giao dịc
 
 ### Làm thế nào để xử lý giao dịch thất bại?
 
-Triển khai nonce manager và retry logic: ```python
+Triển khai nonce manager và retry logic: `````python
 class NonceManager: def __init__(self, w3, address): self.w3 = w3
         self.address = address
         self._nonce = w3.eth.get_transaction_count(address)
@@ -835,7 +836,7 @@ class NonceManager: def __init__(self, w3, address): self.w3 = w3
         return nonce
 
     def reset(self): self._nonce = self.w3.eth.get_transaction_count(self.address)
-```
+````
 
 Luôn reset nonce sau giao dịch thất bại để tránh lỗi "nonce too high".
 
@@ -903,7 +904,7 @@ Bài viết này chứa các liên kết affiliate đến Binance và Minara. N�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -913,7 +914,7 @@ Bài viết này chứa các liên kết affiliate đến Binance và Minara. N�
 - [ray-distributed-ai-framework-complete-guide](pancake-trading-bot-defi-bsc)
 - [cleanlab-11k-star-ai-data-cleaning](pancake-trading-bot-defi-bsc)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/openrouter-unified-llm-api-gateway/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：每个开发者都面临的API密钥噩梦
@@ -48,13 +49,13 @@ OpenRouter是一个**统一LLM API网关**，通过单个OpenAI兼容端点提�
 
 OpenRouter作为你的应用程序与上游LLM提供商之间的**代理层**运行：
 
-```
+````
 你的应用 → OpenRouter网关 → 提供商 (OpenAI / Anthropic / Google / ...)
                 ↓
          [备用提供商]
                 ↓
          [免费层提供商]
-```
+`````
 
 该网关处理四个关键功能：
 
@@ -65,7 +66,7 @@ OpenRouter作为你的应用程序与上游LLM提供商之间的**代理层**运
 
 ### OpenRouter价值管道
 
-```
+`````
 提供商集成层
 ├── 60+ 提供商端点 (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek...)
 ├── 每个提供商的认证管理
@@ -85,7 +86,7 @@ OpenRouter作为你的应用程序与上游LLM提供商之间的**代理层**运
 ├── 使用情况分析仪表盘
 ├── 每个模型的成本跟踪
 └── 终端用户计费的OAuth
-```
+`````
 
 ## 安装与设置
 
@@ -93,14 +94,14 @@ OpenRouter作为你的应用程序与上游LLM提供商之间的**代理层**运
 
 在 [openrouter.ai](https://openrouter.ai/) 注册并获取你的API密钥。免费层包括对选定开源模型的访问，但有速率限制 —— 足以进行测试和原型设计。
 
-```bash
+`````bash
 # 安全存储你的API密钥
 export OPENROUTER_API_KEY="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+`````
 
 ### 步骤2：使用cURL测试（30秒）
 
-```bash
+`````bash
 # 基本聊天补全请求
 curl -s https://openrouter.ai/api/v1/chat/completions \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -111,18 +112,18 @@ curl -s https://openrouter.ai/api/v1/chat/completions \
       {"role": "user", "content": "用3句话解释量子计算"}
     ]
   }'
-```
+`````
 
 响应完全遵循OpenAI格式，因此现有代码只需极少更改。
 
 ### 步骤3：Python SDK设置（2分钟）
 
-```bash
+`````bash
 # 无需特殊SDK —— 直接使用OpenAI客户端
 pip install openai>=1.30.0
-```
+`````
 
-```python
+`````python
 # openrouter_demo.py
 from openai import OpenAI
 import os
@@ -146,21 +147,21 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 print(f"使用的模型: {response.model}")
 print(f"Token数: {response.usage.total_tokens}")
-```
+`````
 
 运行：
 
-```bash
+`````bash
 python openrouter_demo.py
-```
+`````
 
 ### 步骤4：JavaScript/TypeScript设置
 
-```bash
+`````bash
 npm install openai
-```
+`````
 
-```typescript
+`````typescript
 // openrouter-demo.ts
 import OpenAI from "openai";
 
@@ -181,16 +182,16 @@ async function main() {
 }
 
 main();
-```
+`````
 
 ### 步骤5：查询可用模型
 
-```bash
+`````bash
 # 列出所有300+模型及其定价
 curl -s https://openrouter.ai/api/v1/models \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" | \
   jq '.data[] | {id: .id, pricing: .pricing}' | head -50
-```
+`````
 
 这将返回OpenRouter支持的每个模型，包括输入和输出的当前每token定价。
 
@@ -198,7 +199,7 @@ curl -s https://openrouter.ai/api/v1/models \
 
 ### LangChain集成
 
-```python
+`````python
 # openrouter_langchain.py
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -220,11 +221,11 @@ chain = prompt | llm
 
 result = chain.invoke({"input": "写一个FastAPI速率限制中间件"})
 print(result.content)
-```
+`````
 
 ### LlamaIndex集成
 
-```python
+`````python
 # openrouter_llamaindex.py
 from llama_index.llms.openai import OpenAI as LlamaOpenAI
 from llama_index.core import Settings
@@ -246,11 +247,11 @@ index = VectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine()
 response = query_engine.query("OpenRouter是做什么的？")
 print(response)
-```
+`````
 
 ### Vercel AI SDK集成
 
-```typescript
+`````typescript
 // app/api/chat/route.ts
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { convertToModelMessages, streamText } from "ai";
@@ -270,11 +271,11 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### Go SDK集成
 
-```go
+`````go
 // openrouter_demo.go
 package main
 
@@ -305,13 +306,13 @@ func main() {
 
 	fmt.Println(resp.Choices[0].Message.Content)
 }
-```
+`````
 
 ### 使用OpenRouter "Auto"路由器
 
 Auto路由器根据价格、速度和质量指标实时选择最佳可用模型：
 
-```python
+`````python
 # 让OpenRouter自动选择最佳模型
 response = client.chat.completions.create(
     model="openrouter/auto",  # 从58+候选模型中自动选择
@@ -326,7 +327,7 @@ response = client.chat.completions.create(
     }
 )
 print(response.model)  # 显示实际使用了哪个模型
-```
+`````
 
 ## 基准测试 / 真实用例
 
@@ -334,15 +335,15 @@ print(response.model)  # 显示实际使用了哪个模型
 
 | 提供商 | 模型 | 直接API成本（每百万token） | OpenRouter成本 | 差异 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Anthropic | Claude Sonnet 4.5 | $3.00 / $15.00 | $3.17 / $15.83 | +5.5% 加价 |
 | OpenAI | GPT-5 | $1.25 / $10.00 | $1.32 / $10.55 | +5.5% 加价 |
@@ -360,13 +361,13 @@ print(response.model)  # 显示实际使用了哪个模型
 
 | 模型 | 提供商 | 平均延迟（毫秒） | 吞吐量（token/秒） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPT-5 | OpenAI（直接） | 320 | 45 |
 | GPT-5 | 通过OpenRouter | 340 | 43 |
@@ -384,11 +385,11 @@ print(response.model)  # 显示实际使用了哪个模型
 
 | 指标 | 使用OpenRouter前 | 使用OpenRouter后 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 月度API成本 | $4,200 | $3,180 |
 | 工程维护 | 12小时/周 | 1小时/周 |
@@ -404,7 +405,7 @@ print(response.model)  # 显示实际使用了哪个模型
 
 当提供商宕机时，配置多个模型进行自动故障转移：
 
-```python
+`````python
 # 生产故障转移配置
 response = client.chat.completions.create(
     model="anthropic/claude-sonnet-4.5",
@@ -421,7 +422,7 @@ response = client.chat.completions.create(
         ]
     }
 )
-```
+`````
 
 如果Anthropic不可用，OpenRouter会自动使用OpenAI重试，然后使用Google —— 对你的代码完全透明。
 
@@ -429,7 +430,7 @@ response = client.chat.completions.create(
 
 对于企业设置，携带你自己的提供商API密钥，仅将OpenRouter用于路由：
 
-```bash
+`````bash
 # 存储你的直接提供商密钥
 curl -X POST https://openrouter.ai/api/v1/credentials \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -438,13 +439,13 @@ curl -X POST https://openrouter.ai/api/v1/credentials \
     "provider": "openai",
     "key": "sk-proj-your-direct-openai-key"
   }'
-```
+`````
 
 使用BYOK时，你直接按列表价格向提供商付款。OpenRouter在前100万次请求/月不收取加价费，之后收取5%费用。
 
 ### 按成本或速度请求路由
 
-```python
+`````python
 # 路由到最便宜的可用模型
 response = client.chat.completions.create(
     model="openrouter/auto",
@@ -467,13 +468,13 @@ response = client.chat.completions.create(
         }
     }
 )
-```
+`````
 
 ### 使用Docker自托管部署
 
 对于需要完全控制的团队，在你自己的基础设施上部署OpenRouter兼容网关：
 
-```dockerfile
+`````dockerfile
 # Dockerfile.openrouter-proxy
 FROM node:20-alpine
 
@@ -484,9 +485,9 @@ RUN npm install express axios
 COPY . .
 EXPOSE 3000
 CMD ["node", "proxy.js"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: openrouter-proxy: build: context: .
@@ -496,13 +497,13 @@ services: openrouter-proxy: build: context: .
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
-```
+`````
 
 将其部署到 [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)，以每月6美元起的生产级设置运行。
 
 ### 监控和告警
 
-```python
+`````python
 # 以编程方式跟踪使用和成本
 import requests
 
@@ -516,23 +517,23 @@ usage = requests.get(
 
 print(f"剩余信用额: ${usage[data][total_credits] - usage[data][total_usage]}")
 print(f"总使用量: ${usage[data][total_usage]}")
-```
+`````
 
 ## 与替代品对比
 
 | 功能 | OpenRouter | LiteLLM | Portkey | Cloudflare AI Gateway | ngrok AI Gateway |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **支持模型** | 300+ | 100+ | 250+ | 取决于提供商 | 云+本地 |
 | **部署方式** | 托管SaaS | 自托管OSS | 托管+自托管 | 托管（Cloudflare） | 托管 |
@@ -600,20 +601,20 @@ OpenRouter充当透传代理，不会永久存储大多数提供商的请求内�
 
 ### 如何在不更改代码的情况下切换模型？
 
-只需更改API调用中的`model`参数。OpenRouter对所有提供商使用相同的OpenAI兼容格式：
+只需更改API调用中的````model````参数。OpenRouter对所有提供商使用相同的OpenAI兼容格式：
 
-```python
+`````python
 # 相同代码，不同模型
 model = "anthropic/claude-sonnet-4.5"  # 或 "openai/gpt-5" 或 "google/gemini-3-pro"
 response = client.chat.completions.create(
     model=model,
     messages=[{"role": "user", "content": "你好！"}]
 )
-```
+`````
 
 ### 如果提供商宕机会发生什么？
 
-如果你启用`allow_fallbacks: true`，OpenRouter会自动使用备用提供商重试。你也可以指定有序的后备模型列表。如果所有提供商都失败，OpenRouter会返回结构化错误，让你的应用可以优雅地处理。
+如果你启用````allow_fallbacks: true```，OpenRouter会自动使用备用提供商重试。你也可以指定有序的后备模型列表。如果所有提供商都失败，OpenRouter会返回结构化错误，让你的应用可以优雅地处理。
 
 ## 结论：立即开始使用OpenRouter构建
 
@@ -714,12 +715,12 @@ OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 202
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](openrouter-unified-llm-api-gateway)
@@ -728,7 +729,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](openrouter-unified-llm-api-gateway)
 - [ai-engineering-from-scratch](openrouter-unified-llm-api-gateway)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

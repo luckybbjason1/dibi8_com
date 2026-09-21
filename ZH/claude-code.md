@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/claude-code/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 简介
@@ -43,13 +44,13 @@ Claude Code 作为 Node.js CLI 进程运行，封装了 Claude API。它保持�
 
 | 概念 | 描述 |
 |
----
+* * *
 |
----
+* * *
 |
-| `CLAUDE.md` | 项目级配置文件，定义编码标准、约定和自定义指令 |
-| 计划模式 (`/plan`) | Claude 在接触磁盘之前概述所有预期变更，让你拥有审批控制权 |
-| 斜杠命令 | 可复用的工作流快捷方式，如 `/init`、`/desktop`、`/mcp` 和 `/bug` |
+| ```CLAUDE.md```` | 项目级配置文件，定义编码标准、约定和自定义指令 |
+| 计划模式 (````/plan````) | Claude 在接触磁盘之前概述所有预期变更，让你拥有审批控制权 |
+| 斜杠命令 | 可复用的工作流快捷方式，如 ````/init````、````/desktop````、````/mcp```` 和 ````/bug```` |
 | MCP 集成 | 通过模型上下文协议连接外部工具，用于数据库查询、API 调用等 |
 
 ## 安装与配置
@@ -58,7 +59,7 @@ Claude Code 在 macOS、Linux 和 Windows（通过 WSL 或 PowerShell）上可�
 
 ### macOS 和 Linux（推荐安装方式）
 
-```bash
+`````bash
 # 通过官方安装程序安装（后台自动更新）
 curl -fsSL https://claude.ai/install.sh | bash
 
@@ -67,40 +68,40 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # 检查安装
 claude --version
-```
+`````
 
 ### Windows PowerShell
 
-```powershell
+`````powershell
 # 通过 PowerShell 安装程序安装
 irm https://claude.ai/install.ps1 | iex
 
 # 验证安装
 claude --version
-```
+`````
 
 ### Homebrew（macOS/Linux — 需手动更新）
 
-```bash
+`````bash
 # 通过 Homebrew 安装（不会自动更新）
 brew install claude-code
 
 # 需要时手动更新
 brew upgrade claude-code
-```
+`````
 
 ### VS Code 扩展
 
-```bash
+`````bash
 # 从 VS Code 市场安装
 # 打开扩展面板 (Cmd+Shift+X / Ctrl+Shift+X)
 # 搜索 "Claude Code" 并安装
 # 该扩展会连接到终端中运行的同一会话
-```
+`````
 
 ### 身份验证
 
-```bash
+`````bash
 # 使用你的 Anthropic 账户登录
 claude auth login
 
@@ -108,11 +109,11 @@ claude auth login
 # - Claude Pro: $20/月
 # - Claude Max: $100/月 (5 倍用量)
 # - Claude Max 20x: $200/月 (20 倍用量)
-```
+`````
 
 ### 首次会话
 
-```bash
+`````bash
 # 导航到你的项目
 cd /path/to/your-project
 
@@ -121,7 +122,7 @@ claude
 
 # 让它熟悉项目结构
 What does this project do? Walk me through the architecture.
-```
+`````
 
 ## 与主流工具集成
 
@@ -129,42 +130,42 @@ What does this project do? Walk me through the architecture.
 
 Claude Code 扩展将 CLI 会话嵌入到编辑器侧边栏中。从市场安装，一次性完成认证，即可在终端和 IDE 之间切换而不会丢失上下文。
 
-```json
+`````json
 // .vscode/settings.json — Claude Code 推荐配置
 {
   "claude.code.enableInlineCompletion": false,
   "claude.code.autoApproveEdits": false,
   "claude.code.defaultModel": "claude-opus-4-6"
 }
-```
+`````
 
 ### Cursor
 
 由于 Cursor 是 VS Code 的分支，Claude Code 可以在 Cursor 的集成终端中运行。这两种工具互为补充：Cursor 处理行内自动补全和可视化差异，而 Claude Code 管理多文件重构和自主任务执行。
 
-```bash
+`````bash
 # 在 Cursor 的集成终端中，直接运行：
 cd your-project
 claude
 
 # 两个工具在同一个文件系统上运行，互不冲突
-```
+`````
 
 ### GitHub 集成
 
-在 GitHub Pull Request 或 Issue 中标记 `@claude` 即可触发 Claude Code 分析。代理会读取 PR 差异、留下审查评论并可以建议修复。
+在 GitHub Pull Request 或 Issue 中标记 ````@claude```` 即可触发 Claude Code 分析。代理会读取 PR 差异、留下审查评论并可以建议修复。
 
-```bash
+`````bash
 # 启用 GitHub 集成
 claude auth login --github
 
 # 在 PR 评论中标记：
 @claude please review this change for security issues
-```
+`````
 
 ### GitLab CI/CD 流水线
 
-```yaml
+`````yaml
 # .gitlab-ci.yml — 运行 Claude Code 进行自动化代码审查
 stages: - review
 
@@ -175,16 +176,16 @@ claude_review: stage: review
     - claude auth login --token $CLAUDE_API_TOKEN
   script: - claude review --diff HEAD~1 --output review.json
   artifacts: reports: codequality: review.json
-```
+`````
 
 ### JetBrains IDE
 
 从 JetBrains 市场安装 Claude Code 插件。它支持 WebStorm、IntelliJ、PyCharm、GoLand 和所有其他 JetBrains 产品。
 
-```bash
+`````bash
 # 在任何 JetBrains IDE 中：
 # 设置 → 插件 → 市场 → 搜索 "Claude Code" → 安装 → 重启
-```
+`````
 
 ## 基准测试 / 实际使用案例
 
@@ -196,13 +197,13 @@ SWE-bench Verified 是 AI 编程代理的黄金标准基准测试，衡量解决
 
 | 代理 / 模型 | SWE-bench Verified | 日期 | 来源 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code + Opus 4.6 | **80.8%** | 2026-03 | Anthropic |
 | Claude Code + Opus 4.5 | 64.3% | 2025-12 | SWE-bench 排行榜 |
@@ -216,13 +217,13 @@ Terminal-Bench 衡量真实终端任务完成准确率：
 
 | 代理 | 模型 | 准确率 | 排名 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Codex CLI | GPT-5.5 | **82.0%** | #7 |
 | Claude Code | Opus 4.6 | **58.0%** | #51 |
@@ -235,13 +236,13 @@ Terminal-Bench 衡量真实终端任务完成准确率：
 
 | 指标 | Claude Code | Aider | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 首次提交平均时间 | 4.2 分钟 | 6.1 分钟 | 3.8 分钟 |
 | 多文件重构成功率 | 78% | 62% | 71% |
@@ -252,9 +253,9 @@ Terminal-Bench 衡量真实终端任务完成准确率：
 
 ### CLAUDE.md 配置
 
-`CLAUDE.md` 文件是 Claude Code 的项目指令手册。将其放在仓库根目录中。
+````CLAUDE.md```` 文件是 Claude Code 的项目指令手册。将其放在仓库根目录中。
 
-```markdown
+`````markdown
 # CLAUDE.md — Claude Code 项目配置
 
 ## 编码标准
@@ -264,27 +265,27 @@ Terminal-Bench 衡量真实终端任务完成准确率：
 - 优先使用 async/await，避免 Promise 链
 
 ## 测试
-- 提交前运行 `npm test`
+- 提交前运行 ````npm test````
 - 新功能需要单元测试覆盖率 >80%
 - 单元测试使用 Vitest，E2E 测试使用 Playwright
 
 ## Git 工作流
 - 使用约定式提交 (feat:, fix:, docs:, refactor:)
 - 每个任务创建新分支，不要直接提交到 main
-- 每次提交前运行 `npm run lint`
+- 每次提交前运行 ````npm run lint````
 
 ## 架构
 - /src/components — React 组件（PascalCase 文件名）
 - /src/lib — 工具函数（camelCase 文件名）
 - /src/api — 路由处理器
 - /tests — 镜像 src 结构
-```
+`````
 
 ### 安全沙箱
 
 Claude Code 使用你的用户权限执行 shell 命令，这存在固有风险。对于生产环境，请使用沙箱运行：
 
-```bash
+`````bash
 # 在 Docker 沙箱中运行 Claude Code
 docker run -it --rm \
   -v $(pwd):/workspace \
@@ -293,11 +294,11 @@ docker run -it --rm \
   --tmpfs /tmp \
   node:22-slim \
   bash -c "curl -fsSL https://claude.ai/install.sh | bash && /root/.local/bin/claude"
-```
+`````
 
 ### 使用生命周期钩子进行权限控制
 
-```json
+`````json
 // ~/.claude/settings.json — 全局权限规则
 {
   "permissions": {
@@ -315,11 +316,11 @@ docker run -it --rm \
     "PostToolUse": "/home/dev/.claude/hooks/post-tool.sh"
   }
 }
-```
+`````
 
 ### MCP 服务器配置
 
-```json
+`````json
 // mcp.json — 连接外部工具
 {
   "mcpServers": {
@@ -337,11 +338,11 @@ docker run -it --rm \
     }
   }
 }
-```
+`````
 
 ### 监控 Token 使用量
 
-```bash
+`````bash
 # 检查当前会话的 token 消耗
 claude status
 
@@ -351,7 +352,7 @@ claude status
 # Output tokens: 28,441
 # Estimated cost: $0.42
 # Rate limit: 4,200/5,000 requests remaining
-```
+`````
 
 ## 与替代品对比
 
@@ -359,15 +360,15 @@ claude status
 
 | 功能 | Claude Code | Aider | OpenHands | Codex CLI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | 125,050 | 32,800 | 73,913 | 83,000 |
 | **许可证** | Anthropic 条款 | Apache-2.0 | MIT | Apache-2.0 |
@@ -451,7 +452,7 @@ A: Claude Code 是语言无关的，因为它在文件系统和 shell 级别运�
 A: 大上下文窗口允许 Claude Code 加载整个代码仓库（或其大部分）而不截断。这对跨文件重构、理解 monorepo 架构以及调试跨多个模块的问题很重要。实践中，50 万行以下的代码仓库可以舒适地放入上下文窗口。
 
 **Q: Claude Code 对生产代码库安全吗？**
-A: Claude Code 使用你的用户权限执行 shell 命令，这存在固有风险。对于生产环境，请在 Docker 沙箱中运行，配置生命周期钩子以拦截危险命令，并始终使用计划模式（`/plan`）在执行前审查变更。切勿在不受信任的仓库上使用 sudo 运行 Claude Code 或没有沙箱保护的情况下运行。
+A: Claude Code 使用你的用户权限执行 shell 命令，这存在固有风险。对于生产环境，请在 Docker 沙箱中运行，配置生命周期钩子以拦截危险命令，并始终使用计划模式（````/plan````）在执行前审查变更。切勿在不受信任的仓库上使用 sudo 运行 Claude Code 或没有沙箱保护的情况下运行。
 
 **Q: 我可以同时使用 Claude Code 和 Cursor 或 VS Code 吗？**
 A: 可以。许多开发者同时使用两者：Cursor 处理日常编辑循环的行内自动补全，而 Claude Code 在终端窗格中管理大型自主重构。它们在同一个 Git 仓库上运行而不会冲突，尽管并发编辑同一文件可能导致合并冲突。
@@ -463,10 +464,10 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 对于已标准化使用 Anthropic 模型的团队，Claude Code 是自然的选择。对于需要模型灵活性或零订阅成本的开发者，Aider 和 OpenHands 是强大的开源替代品。对于希望获得最快终端代理的 ChatGPT 订阅者，Codex CLI 以无额外成本提供有竞争力的结果。
 
 **入门行动清单：**
-1. 使用 `curl -fsSL https://claude.ai/install.sh | bash` 安装 Claude Code
-2. 使用 `claude auth login` 认证并订阅 Claude Pro ($20/月)
-3. 在你的主项目中创建包含编码标准的 `CLAUDE.md` 文件
-4. 在项目目录中运行 `claude` 并让它梳理架构
+1. 使用 ````curl -fsSL https://claude.ai/install.sh | bash```` 安装 Claude Code
+2. 使用 ````claude auth login```` 认证并订阅 Claude Pro ($20/月)
+3. 在你的主项目中创建包含编码标准的 ````CLAUDE.md```` 文件
+4. 在项目目录中运行 ````claude``` 并让它梳理架构
 5. 加入 [dibi8 Telegram 群组](https://t.me/dibi8channel) 分享技巧并提问
 
 
@@ -495,7 +496,7 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 - [Claude Code 桌面应用下载](https://claude.com/download)
 
 
----
+* * *
 *免责声明：本文不含联盟营销链接。所有定价和基准测试数据反映截至 2026 年 5 月的公开信息。在购买决策前，请在官方供应商网站上核实当前定价。*
 
 
@@ -525,7 +526,7 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code)
@@ -534,7 +535,7 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 - [claude-code-vs-aider](claude-code)
 - [cursor-vs-claude-code](claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

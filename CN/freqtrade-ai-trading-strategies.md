@@ -23,6 +23,7 @@ tags: ["]
 aliases:
   - /posts/freqtrade-ai-trading-strategies/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: Why 90% of DIY Trading Bots Lose Money
@@ -49,7 +50,7 @@ The latest v2026.5 release brings FreqAI 2.0 with auto-feature engineering, GPU-
 
 ## How Freqtrade Works: Architecture Deep Dive
 
-Freqtrade's architecture is built around a state machine that processes market data through your strategy: ```
+Freqtrade's architecture is built around a state machine that processes market data through your strategy: ````
 ┌──────────────────────────────────────────────────────────────┐
 │                    Strategy File (.py)                        │
 │  (populate_indicators / populate_buy_trend /                  │
@@ -67,7 +68,7 @@ Freqtrade's architecture is built around a state machine that processes market d
 │                    Infrastructure                             │
 │  (SQLite DB / Telegram / Web UI / Docker)                   │
 └──────────────────────────────────────────────────────────────┘
-```
+`````
 
 **The trading loop** works as follows: 1. Freqtrade fetches OHLCV candlestick data from your exchange via CCXT
 2. Your **strategy** computes technical indicators and generates buy/sell signals
@@ -90,7 +91,7 @@ Freqtrade's architecture is built around a state machine that processes market d
 
 ### Step 1: Create Directory Structure
 
-```bash
+`````bash
 # Create the user_data directory structure
 mkdir -p freqtrade/user_data/strategies
 mkdir -p freqtrade/user_data/configs
@@ -98,16 +99,16 @@ mkdir -p freqtrade/user_data/configs
 # Download the official docker-compose file
 cd freqtrade
 curl -o docker-compose.yml https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docker-compose.yml
-```
+`````
 
 ### Step 2: Initialize Configuration
 
-```bash
+`````bash
 # Run the init command to create default config
 docker compose run --rm freqtrade new-config --config user_data/config.json
-```
+`````
 
-```
+`````
 ? Do you want to enable Dry Run (simulated trading)? Yes
 ? Please insert your exchange name (binance, coinbase, kraken, ...) binance
 ? Please insert your API Key for binance YOUR_API_KEY
@@ -115,9 +116,9 @@ docker compose run --rm freqtrade new-config --config user_data/config.json
 ? Do you want to enable Telegram? Yes
 ? Insert your Telegram token YOUR_BOT_TOKEN
 ? Insert your Telegram chat ID YOUR_CHAT_ID
-```
+`````
 
-Your `user_data/config.json` will look like this: ```json
+Your ``user_data/config.json`` will look like this: `````json
 {
   "max_open_trades": 3,
   "stake_currency": "USDT",
@@ -200,11 +201,11 @@ Your `user_data/config.json` will look like this: ```json
     "process_throttle_secs": 5
   }
 }
-```
+`````
 
 ### Step 3: Create Your First Strategy
 
-```python
+`````python
 # user_data/strategies/SampleStrategy.py
 import numpy as np
 import talib.abstract as ta
@@ -265,51 +266,51 @@ class SampleStrategy(IStrategy): """
             exit_long
         ] = 1
         return dataframe
-```
+`````
 
 ### Step 4: Start the Bot
 
-```bash
+`````bash
 # Start Freqtrade with your strategy
 docker compose up -d
 
 # Check logs
 docker compose logs -f freqtrade
-```
+`````
 
-```
+`````
 freqtrade  | 2026-05-19 08:00:01 freqtrade.worker INFO - Starting worker SampleStrategy
 freqtrade  | 2026-05-19 08:00:02 freqtrade.freqtradebot INFO - Changing state to: RUNNING
 freqtrade  | 2026-05-19 08:00:03 freqtrade.wallets INFO - Wallets synced.
 freqtrade  | 2026-05-19 08:00:04 freqtrade.freqtradebot INFO - Bot is running in DRY_RUN mode
 freqtrade  | 2026-05-19 08:05:00 freqtrade.persistence.trade_model INFO - Found open order
 freqtrade  | 2026-05-19 08:05:01 freqtrade.freqtradebot INFO - Long signal detected for BTC/USDT
-```
+`````
 
 ### Step 5: Monitor via Telegram
 
-Send commands to your bot: ```
+Send commands to your bot: `````
 /status - Show current trades and performance
 /profit - Show profit summary
 /balance - Show wallet balances
 /daily - Show daily profit/loss
 /performance - Show performance per pair
-```
+`````
 
-```
+`````
 Status: Running
 Trade Count: 12
 Open Trades: 2
 Closed Profit: +3.24 USDT
 Best Performing: ETH/USDT (+1.8%)
 Worst Performing: SOL/USDT (-0.4%)
-```
+`````
 
 ## Integration with Machine Learning (FreqAI)
 
 ### Enabling FreqAI
 
-FreqAI brings machine learning predictions into your strategy. First, add FreqAI configuration: ```json
+FreqAI brings machine learning predictions into your strategy. First, add FreqAI configuration: `````json
 // Add to config.json
 "freqai": {
   "enabled": true,
@@ -342,11 +343,11 @@ FreqAI brings machine learning predictions into your strategy. First, add FreqAI
     "num_leaves": 32
   }
 }
-```
+`````
 
 ### FreqAI Strategy Example
 
-```python
+`````python
 # user_data/strategies/FreqAIStrategy.py
 import pandas as pd
 from freqtrade.strategy import IStrategy
@@ -402,19 +403,19 @@ class FreqAISrategy(IStrategy): """
             "exit_long"
         ] = 1
         return dataframe
-```
+`````
 
 ### Model Options
 
 FreqAI supports multiple ML backends: | Model | Backend | Best For | Training Speed |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LightGBM | LightGBM | Tabular data, speed | Very Fast |
 | XGBoost | XGBoost | Tabular data, accuracy | Fast |
@@ -426,7 +427,7 @@ FreqAI supports multiple ML backends: | Model | Backend | Best For | Training Sp
 
 ### Hyperparameter Optimization with Optuna
 
-```bash
+`````bash
 # Run hyperparameter optimization
 docker compose run --rm freqtrade hyperopt \
   --strategy SampleStrategy \
@@ -434,9 +435,9 @@ docker compose run --rm freqtrade hyperopt \
   --epochs 100 \
   --timerange 20260101-20260331 \
   --hyperopt-loss SharpeHyperOptLossDaily
-```
+`````
 
-```
+`````
 Best result: 87/100: 2469 trades. 1371/247/851 Wins/Draws/Losses. 
     Avg profit   0.34%. Median profit   0.18%. 
     Total profit  842.345 USDT ( 84.23%).
@@ -450,11 +451,11 @@ ROI table: minimal_roi = {0: 0.143, 30: 0.072, 60: 0.028, 120: 0}
 
 Stoploss: -0.08
 Trailing stop: True (positive: 0.025)
-```
+`````
 
 ### Backtesting with Edge Validation
 
-```bash
+`````bash
 # Download historical data first
 docker compose run --rm freqtrade download-data \
   --exchange binance \
@@ -469,27 +470,27 @@ docker compose run --rm freqtrade backtesting \
   --pairs BTC/USDT ETH/USDT SOL/USDT \
   --export trades \
   --export-filename user_data/backtest_results.json
-```
+`````
 
-```
+`````
 Result for strategy SampleStrategy
 ===========================================================
 BACKTESTING REPORT
----
+* * *
 | Pair        |  Entries |  Avg Profit % |  Cum Profit % |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | BTC/USDT    |      45  |         0.82  |        36.9   |
 | ETH/USDT    |      52  |         0.64  |        33.3   |
 | SOL/USDT    |      38  |         0.71  |        27.0   |
----
+* * *
 TOTAL: 97.2 USDT (9.72%)
 
 Sharpe Ratio: 2.34
@@ -498,11 +499,11 @@ Max Drawdown: 5.8%
 Avg Trade Duration: 52.3 min
 Win Rate: 64.2%
 Profit Factor: 2.1
-```
+`````
 
 ### Jupyter Notebook Integration
 
-```python
+`````python
 # Run inside Freqtrade's Jupyter container
 import pandas as pd
 from freqtrade.data.history import load_pair_history
@@ -528,11 +529,11 @@ dataframe = strategy.analyze_ticker(data, {pair: pair})
 signals = dataframe[dataframe[enter_long] == 1]
 print(f"Found {len(signals)} entry signals")
 print(signals[[date, close, rsi, macdhist]].head(10))
-```
+`````
 
 ### REST API for External Integration
 
-```bash
+`````bash
 # Start the API server (enabled in config.json)
 # Query current status
 curl -u admin:your-secure-password \
@@ -551,7 +552,7 @@ curl -X POST -u admin:your-secure-password \
   -H "Content-Type: application/json" \
   -d '{"pair": "BTC/USDT", "side": "long"}' \
   http://localhost:8080/api/v1/forceentry
-```
+`````
 
 ## Benchmarks and Real-World Performance
 
@@ -559,17 +560,17 @@ curl -X POST -u admin:your-secure-password \
 
 | Strategy Type | Avg Monthly Return | Sharpe Ratio | Max Drawdown | Win Rate | Trades/Month |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RSI + MACD (basic) | 4-8% | 1.2-1.8 | 8-12% | 55-60% | 80-150 |
 | FreqAI LightGBM | 8-15% | 1.8-2.5 | 6-10% | 60-68% | 60-120 |
@@ -581,15 +582,15 @@ curl -X POST -u admin:your-secure-password \
 
 | Resource | Dry Run | Live (1 pair) | Live (10 pairs) | Live with FreqAI |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | 1-3% | 3-8% | 10-20% | 30-60% |
 | RAM | 150MB | 200-300MB | 400-800MB | 1-2GB |
@@ -600,7 +601,7 @@ curl -X POST -u admin:your-secure-password \
 
 ### Edge Case: Drawdown Recovery
 
-A critical benchmark is how quickly a strategy recovers from drawdown: ```
+A critical benchmark is how quickly a strategy recovers from drawdown: `````
 Strategy: FreqAI LightGBM
 Timeline: 2026-01-01 to 2026-03-31
 
@@ -610,13 +611,13 @@ Days to recover: 8 trading days
 Feb return: +11.4%
 Mar return: +9.8%
 Q1 total return: +12.1%
-```
+`````
 
 ## Advanced Usage and Production Hardening
 
 ### Risk Management Configuration
 
-```json
+`````json
 // Advanced risk management settings
 "max_open_trades": 3,
 "stake_amount": "unlimited",
@@ -654,11 +655,11 @@ Q1 total return: +12.1%
     "stop_duration": 60
   }
 ]
-```
+`````
 
 ### Custom Stoploss with ATR
 
-```python
+`````python
 # Add to your strategy for dynamic stoploss
 def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float: """Dynamic stoploss based on ATR."""
@@ -673,11 +674,11 @@ def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
     
     # Convert to percentage from current rate
     return stoploss_from_absolute(stoploss_price, current_rate, is_short=trade.is_short)
-```
+`````
 
 ### Multi-Timeframe Analysis
 
-```python
+`````python
 def informative_pairs(self): """Define higher timeframe pairs for analysis."""
     return [
         ("BTC/USDT", "1h"),
@@ -702,11 +703,11 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
-```
+`````
 
 ### FreqAI with GPU Acceleration
 
-```yaml
+`````yaml
 # docker-compose.yml with GPU support for FreqAI
 version: '3.8'
 
@@ -720,11 +721,11 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
     environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
     command: >
       trade --strategy FreqAIStrategy --config user_data/config.json
-```
+`````
 
 ### Docker Compose for Production
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -754,23 +755,23 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
       - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
     depends_on: - freqtrade
 
-volumes: grafana_data: ```
+volumes: grafana_data: `````
 
 ## Comparison with Alternatives
 
 | Feature | Freqtrade | Hummingbot | 3Commas | Gunbot | Freqtrade (ref) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | GPL-3.0 | Apache-2.0 | Proprietary | Proprietary | GPL-3.0 |
 | **CEX Connectors** | 20+ (via CCXT) | 50+ | 15+ | 10+ | 20+ |
@@ -802,7 +803,7 @@ volumes: grafana_data: ```
 
 4. **Resource usage with FreqAI is significant.** Running FreqAI with 10+ pairs and neural network models requires 2-4GB RAM and significant CPU. Do not expect to run this on a $3/month VPS.
 
-5. **Shorting support varies by exchange.** Spot markets do not support short positions. For short strategies, you need a futures-enabled connector (Binance Futures, OKX) and `trading_mode: futures` in config.
+5. **Shorting support varies by exchange.** Spot markets do not support short positions. For short strategies, you need a futures-enabled connector (Binance Futures, OKX) and ````trading_mode: futures```` in config.
 
 ## Frequently Asked Questions
 
@@ -824,13 +825,13 @@ Yes. A **$5-10/month VPS** (1 CPU, 1GB RAM) handles basic strategies with 5-10 p
 
 ### How do I prevent my bot from losing money?
 
-No bot is guaranteed profitable. These practices minimize risk: (1) Always backtest on 1+ year of data before going live. (2) Run dry-run for at least 2 weeks. (3) Use `max_open_trades` to limit exposure. (4) Set `stoploss` to 5-10%. (5) Enable `protections` (CooldownPeriod, MaxDrawdown). (6) Start with 1-2% of your capital per trade.
+No bot is guaranteed profitable. These practices minimize risk: (1) Always backtest on 1+ year of data before going live. (2) Run dry-run for at least 2 weeks. (3) Use ````max_open_trades```` to limit exposure. (4) Set ````stoploss```` to 5-10%. (5) Enable ````protections```` (CooldownPeriod, MaxDrawdown). (6) Start with 1-2% of your capital per trade.
 
 ### Can I use custom machine learning models?
 
-Yes. FreqAI supports custom PyTorch models. Create a class inheriting from `IFreqaiModel` and implement `fit` and `predict` methods. You can use any sklearn-compatible model or a full PyTorch neural network. See the FreqAI documentation for examples.
+Yes. FreqAI supports custom PyTorch models. Create a class inheriting from ````IFreqaiModel```` and implement ````fit```` and ````predict```` methods. You can use any sklearn-compatible model or a full PyTorch neural network. See the FreqAI documentation for examples.
 
-```python
+`````python
 # Custom model example
 from freqtrade.freqai.base_models import BaseRegressionModel
 from sklearn.ensemble import RandomForestRegressor
@@ -838,11 +839,11 @@ from sklearn.ensemble import RandomForestRegressor
 class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10)
         model.fit(data_dictionary["train_features"], data_dictionary["train_labels"])
         return model
-```
+`````
 
 ### What happens if the exchange API goes down?
 
-Freqtrade handles exchange downtime gracefully. Open orders are tracked, and the bot resumes normal operation once the API recovers. Enable `stoploss_on_exchange` to ensure stop-loss orders exist on the exchange side as a safety net. Telegram notifications alert you when the bot detects issues.
+Freqtrade handles exchange downtime gracefully. Open orders are tracked, and the bot resumes normal operation once the API recovers. Enable ````stoploss_on_exchange``` to ensure stop-loss orders exist on the exchange side as a safety net. Telegram notifications alert you when the bot detects issues.
 
 ## Conclusion: Build Your AI Trading Bot Today
 
@@ -929,4 +930,4 @@ This guide contains affiliate links for [Binance](https://www.bsmkweb.cc/registe
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

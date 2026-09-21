@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/hunyuan-video/
 ---
 
+
 {{</* resource-info */>}}
 
 Một mô hình tạo video cần 60GB VRAM để tạo ra clip 5 giây ở 720p không phải là đồ chơi — nó là hạ tầng. HunyuanVideo của Tencent, một mô hình Diffusion Transformer 13 tỷ tham số để tạo video, đã tích lũy hơn 12.100 sao trên GitHub và trở thành lựa chọn hàng đầu cho các team cần tổng hợp video chất lượng điện ảnh trên phần cứng tự quản lý. Hướng dẫn này đi qua toàn bộ thiết lập production: từ triển khai Docker hoạt động được đến quantization FP8, suy luận song song đa GPU, tích hợp ComfyUI, và giám sát cần thiết khi phục vụ ở quy mô lớn.
@@ -54,7 +55,7 @@ Con đường nhanh nhất đến instance HunyuanVideo hoạt động là Docke
 
 ### Triển khai Docker (Khuyến nghị)
 
-```bash
+````bash
 # Pull image CUDA 12 chính thức
 docker pull hunyuanvideo/hunyuanvideo:cuda_12
 
@@ -67,11 +68,11 @@ docker run -itd --gpus all --init --net=host --uts=host --ipc=host \
   -v /mnt/models:/models \
   -p 8081:8081 \
   hunyuanvideo/hunyuanvideo:cuda_12
-```
+`````
 
 ### Cài đặt thủ công trên Ubuntu
 
-```bash
+`````bash
 # Clone repository
 git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git
 cd HunyuanVideo
@@ -93,11 +94,11 @@ python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.
 
 # Cài xDiT cho suy luận song song đa GPU
 python -m pip install xfuser==0.4.0
-```
+`````
 
 ### Tải trọng số Mô hình Pretrained
 
-```bash
+`````bash
 # Cài huggingface-cli
 pip install huggingface_hub
 
@@ -115,11 +116,11 @@ huggingface-cli download tencent/HunyuanVideo \
 huggingface-cli download tencent/HunyuanVideo \
   --include "*text_encoder*" \
   --local-dir ./ckpts
-```
+`````
 
 ### Chạy Suy luận đầu tiên
 
-```bash
+`````bash
 conda activate hunyuan
 
 python sample_video.py \
@@ -130,27 +131,27 @@ python sample_video.py \
     --flow-reverse \
     --use-cpu-offload \
     --save-path ./results
-```
+`````
 
-Flag `--use-cpu-offload` là bắt buộc cho GPU có dưới 80GB VRAM. Nó offload trọng số mô hình sang RAM hệ thống khi không sử dụng, đánh đổi tốc độ lấy bộ nhớ.
+Flag ````--use-cpu-offload```` là bắt buộc cho GPU có dưới 80GB VRAM. Nó offload trọng số mô hình sang RAM hệ thống khi không sử dụng, đánh đổi tốc độ lấy bộ nhớ.
 
 ## Tích hợp với Các Công cụ Phổ biến
 
 ### ComfyUI (Node Gốc)
 
-ComfyUI đã thêm hỗ trợ HunyuanVideo gốc vào đầu 2025. Tải các tệp mô hình repackaged từ Comfy-Org: ```bash
+ComfyUI đã thêm hỗ trợ HunyuanVideo gốc vào đầu 2025. Tải các tệp mô hình repackaged từ Comfy-Org: `````bash
 # Tệp mô hình đặt vào ComfyUI/models/
 # - text_encoders/clip_l.safetensors
 # - text_encoders/llava_llama3_vision.safetensors
 # - diffusion_models/hunyuan_video_720p_bf16.safetensors
 # - vae/hunyuan_video_vae_bf16.safetensors
-```
+`````
 
-Tải workflow chính thức bằng cách kéo JSON vào ComfyUI. Các node chính là `HunyuanVideoSampler`, `HunyuanVideoDecode`, và `TextEncodeHunyuanVideo`.
+Tải workflow chính thức bằng cách kéo JSON vào ComfyUI. Các node chính là ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, và ````TextEncodeHunyuanVideo````.
 
 ### HunyuanVideoWrapper của Kijai (Nâng cao)
 
-Cho suy luận FP8, video-to-video, và image-to-video, sử dụng wrapper cộng đồng: ```bash
+Cho suy luận FP8, video-to-video, và image-to-video, sử dụng wrapper cộng đồng: `````bash
 # Cài qua ComfyUI Manager hoặc git
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
@@ -158,13 +159,13 @@ git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
 # Cài dependencies
 cd ComfyUI-HunyuanVideoWrapper
 pip install -r requirements.txt
-```
+`````
 
-Tải trọng số FP8 từ `Kijai/HunyuanVideo_comfy` trên Hugging Face và đặt vào `ComfyUI/models/diffusion_models/`.
+Tải trọng số FP8 từ ````Kijai/HunyuanVideo_comfy```` trên Hugging Face và đặt vào ````ComfyUI/models/diffusion_models/````.
 
 ### Pipeline Diffusers
 
-```python
+`````python
 from diffusers import HunyuanVideoPipeline
 import torch
 
@@ -196,24 +197,24 @@ frames[0].save(
     duration=67,
     loop=0
 )
-```
+`````
 
 ### Máy chủ Gradio API
 
-```bash
+`````bash
 # Khởi động máy chủ Gradio
 python gradio_server.py --flow-reverse
 
 # Hoặc bind tới tất cả interface cho truy cập từ xa
 SERVER_NAME=0.0.0.0 SERVER_PORT=8081 \
   python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
-Giao diện Gradio expose các tham số cho prompt, độ phân giải, số khung hình, tỷ lệ CFG, và seed. Cho truy cập lập trình, kiểm tra tab network trong trình duyệt để tìm endpoint `/run/predict` và sao chép JSON payload.
+Giao diện Gradio expose các tham số cho prompt, độ phân giải, số khung hình, tỷ lệ CFG, và seed. Cho truy cập lập trình, kiểm tra tab network trong trình duyệt để tìm endpoint ````/run/predict```` và sao chép JSON payload.
 
 ### DigitalOcean GPU Droplets
 
-Cho các team không có phần cứng GPU tại chỗ, DigitalOcean GPU Droplets cung cấp instance NVIDIA H100 và A100 theo nhu cầu: ```yaml
+Cho các team không có phần cứng GPU tại chỗ, DigitalOcean GPU Droplets cung cấp instance NVIDIA H100 và A100 theo nhu cầu: `````yaml
 #cloud-config
 package_update: true
 packages: - docker.io
@@ -224,7 +225,7 @@ runcmd: - systemctl restart docker
       -p 8081:8081 -v /mnt/models:/models \
       hunyuanvideo/hunyuanvideo:cuda_12 \
       python gradio_server.py --flow-reverse --use-cpu-offload
-```
+`````
 
 ## Benchmark / Trường hợp Sử dụng Thực tế
 
@@ -250,7 +251,7 @@ Benchmark cộng đồng từ thử nghiệm RTX 4090 và GPU datacenter (tháng
 
 Quantization FP8 chuyển đổi trọng số FP32 sang định dạng dấu phẩy động 8-bit, giảm sử dụng bộ nhớ GPU khoảng 10GB với tác động chất lượng tối thiểu.
 
-```bash
+`````bash
 # Tải trọng số FP8 và tệp scale
 huggingface-cli download tencent/HunyuanVideo \
   --include "mp_rank_00_model_states_fp8.pt" \
@@ -268,13 +269,13 @@ python sample_video.py \
     --use-cpu-offload \
     --use-fp8 \
     --save-path ./results
-```
+`````
 
-Flag `--use-fp8` kích hoạt pipeline FP8 trong `hyvideo/modules/fp8_optimization.py`. Định dạng E4M3 (4 bit exponent, 3 bit mantissa) duy trì đủ độ chính xác cho suy luận trong khi cắt giảm ~40% bộ nhớ.
+Flag ````--use-fp8```` kích hoạt pipeline FP8 trong ````hyvideo/modules/fp8_optimization.py````. Định dạng E4M3 (4 bit exponent, 3 bit mantissa) duy trì đủ độ chính xác cho suy luận trong khi cắt giảm ~40% bộ nhớ.
 
 ### Suy luận Song song Đa GPU với xDiT
 
-Cho workload production, xDiT cung cấp Unified Sequence Parallelism mở rộng trên nhiều GPU: ```bash
+Cho workload production, xDiT cung cấp Unified Sequence Parallelism mở rộng trên nhiều GPU: `````bash
 # Suy luận song song 8 GPU
 torchrun --nproc_per_node=8 sample_video.py \
     --video-size 1280 720 \
@@ -286,7 +287,7 @@ torchrun --nproc_per_node=8 sample_video.py \
     --ulysses-degree 8 \
     --ring-degree 1 \
     --save-path ./results
-```
+`````
 
 Độ trễ mở rộng trên 1280x720, 129 khung hình, 50 bước: | GPU | Độ trễ (giây) | Tăng tốc |
 |---|---|---|
@@ -295,11 +296,11 @@ torchrun --nproc_per_node=8 sample_video.py \
 | 4 | 514 | 3.70x |
 | 8 | 338 | 5.64x |
 
-Các tham số `--ulysses-degree` và `--ring-degree` điều khiển chiến lược song song.
+Các tham số ````--ulysses-degree```` và ````--ring-degree```` điều khiển chiến lược song song.
 
 ### Gradio Production với Reverse Proxy
 
-```bash
+`````bash
 # Khởi động với cài đặt production
 SERVER_NAME=0.0.0.0 \
 SERVER_PORT=8081 \
@@ -309,9 +310,9 @@ python gradio_server.py \
   --use-fp8 \
   --max-queue-size 10 \
   --queue-timeout 300
-```
+`````
 
-Sau reverse proxy Nginx với giới hạn tốc độ: ```nginx
+Sau reverse proxy Nginx với giới hạn tốc độ: `````nginx
 upstream hunyuan {
     server 127.0.0.1:8081;
     keepalive 32;
@@ -334,11 +335,11 @@ server {
     limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m;
     limit_req zone=video burst=5 nodelay;
 }
-```
+`````
 
 ### Giám sát với Prometheus
 
-```python
+`````python
 # Thêm vào gradio_server.py hoặc wrap lờ gọi suy luận
 from prometheus_client import Counter, Histogram, start_http_server
 import time
@@ -354,7 +355,7 @@ def generate_video(prompt, height, width, frames, steps): inference_count.inc()
 
 # Khởi động máy chủ metrics trên cổng 9090
 start_http_server(9090)
-```
+`````
 
 ### Hardening Bảo mật
 
@@ -428,7 +429,7 @@ A: Đội Tencent duy trì máy chủ Discord và nhóm WeChat được liên k�
 HunyuanVideo là một framework tạo video đẳng cấp production bắc nhịp giữa API thương mại đóng và khả năng tiếp cận nguồn mở. Với bản 1.5 mang 8.3 tỷ tham số, attention SSTA, và khả năng tương thích GPU ngườ dùng, nó đã trở thành lựa chọn thực tế cho cả studio và ngườ sáng tạo độc lập.
 
 Các hành động để bắt đầu ngay hôm nay: 1. Clone repository và chạy Docker image trên instance GPU — image CUDA 12 chính thức là con đường nhanh nhất.
-2. Tải trọng số FP8 và chạy tạo 720p đầu tiên với `sample_video.py`.
+2. Tải trọng số FP8 và chạy tạo 720p đầu tiên với ````sample_video.py```.
 3. Tích hợp với ComfyUI bằng wrapper của Kijai để chỉnh sửa workflow trực quan.
 4. Tham gia [nhóm Telegram dibi8](https://t.me/dibi8Channel) để thảo luận chiến lược triển khai và chia sẻ video đã tạo.
 
@@ -482,7 +483,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -492,6 +493,6 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [comfyui-workflows-complete-guide](hunyuan-video)
 - [apple-container](hunyuan-video)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

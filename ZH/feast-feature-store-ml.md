@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/feast-feature-store-ml/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：200 毫秒的特征工程危机
@@ -46,9 +47,9 @@ Feast 架构由四个核心组件组成：
 
 ### 1. 特征注册中心
 
-注册中心是 Feast 的大脑。它以代码形式存储所有特征定义 (在 `feature_store.yaml` 和 Python 文件中) 并将元数据持久化到后端 — 文件 (本地、S3、GCS) 或 SQL 数据库 (PostgreSQL、MySQL)：
+注册中心是 Feast 的大脑。它以代码形式存储所有特征定义 (在 ```feature_store.yaml```` 和 Python 文件中) 并将元数据持久化到后端 — 文件 (本地、S3、GCS) 或 SQL 数据库 (PostgreSQL、MySQL)：
 
-```yaml
+`````yaml
 # feature_store.yaml — Feast 项目配置
 project: fraud_detection
 provider: local
@@ -59,9 +60,9 @@ offline_store: type: bigquery
   project: my-gcp-project
   dataset: feast_offline
 entity_key_serialization_version: 2
-```
+`````
 
-生产环境中，使用 **SQL 注册中心** (PostgreSQL) 以防止多名团队成员同时运行 `feast apply` 时发生冲突。
+生产环境中，使用 **SQL 注册中心** (PostgreSQL) 以防止多名团队成员同时运行 ````feast apply```` 时发生冲突。
 
 ### 2. 离线存储
 
@@ -72,7 +73,7 @@ entity_key_serialization_version: 2
 
 支持的后端：**BigQuery、Snowflake、Redshift、Spark、DuckDB、PostgreSQL、Trino**
 
-```python
+`````python
 # 检索历史特征用于训练
 from feast import FeatureStore
 
@@ -86,9 +87,9 @@ historical_df = store.get_historical_features(
         "user_features:days_since_last_order",
     ],
 ).to_df()
-```
+`````
 
-`get_historical_features()` 调用执行 **点连接** — 它检索 `entity_df` 中指定时间戳时存在的每个特征值。这可以防止数据泄漏，这是 ML 训练流水线中最常见的错误之一。
+````get_historical_features()```` 调用执行 **点连接** — 它检索 ````entity_df```` 中指定时间戳时存在的每个特征值。这可以防止数据泄漏，这是 ML 训练流水线中最常见的错误之一。
 
 ### 3. 在线存储
 
@@ -96,7 +97,7 @@ historical_df = store.get_historical_features(
 
 支持的后端：**Redis、Redis Cluster、Dragonfly、DynamoDB、Bigtable、Cassandra、SQLite、PostgreSQL、MySQL**
 
-```python
+`````python
 # 检索在线特征用于实时推理
 features = store.get_online_features(
     features=[
@@ -107,13 +108,13 @@ features = store.get_online_features(
 ).to_dict()
 
 # 返回: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
-```
+`````
 
 ### 4. 特征服务器
 
 Feast 特征服务器是一个基于 Go 的高性能服务，通过 REST 和 gRPC 暴露特征检索。将其作为 sidecar 部署在你的模型服务基础设施 (KServe、Seldon、自定义) 旁边：
 
-```bash
+`````bash
 # 启动特征服务器
 feast serve --port 6566
 
@@ -124,13 +125,13 @@ curl -X POST "http://localhost:6566/get-online-features" \
     "features": ["user_features:avg_order_amount_30d"],
     "entities": {"user_id": ["user_12345"]}
   }'
-```
+`````
 
 ## 安装与配置：5 分钟内完成
 
 Feast 需要 Python 3.9+ 和 pip。使用你需要的后端安装：
 
-```bash
+`````bash
 # 核心 Feast (最小安装)
 pip install feast
 
@@ -148,18 +149,18 @@ pip install "feast[postgres]"
 
 # 全量安装所有常用后端
 pip install "feast[gcp,redis,postgres,snowflake]"
-```
+`````
 
 验证安装：
 
-```bash
+`````bash
 feast version
 # Feast SDK Version: 0.63.0
-```
+`````
 
 初始化新的 Feast 项目：
 
-```bash
+`````bash
 # 创建并进入项目目录
 mkdir fraud_detection_feature_store
 cd fraud_detection_feature_store
@@ -174,7 +175,7 @@ feast init
 # │   ├── repo/
 # │   │   ├── example.py    # 特征定义
 # │   │   └── test_workflow.py
-```
+`````
 
 ## 定义特征：实体、特征视图和特征服务
 
@@ -182,7 +183,7 @@ Feast 围绕 **实体** (模型进行预测的对象) 和 **特征视图** (从�
 
 ### 第 1 步：定义实体
 
-```python
+`````python
 # features/entities.py
 from feast import Entity, ValueType
 
@@ -193,11 +194,11 @@ user = Entity(
     description="每个用户的唯一标识符",
     join_key="user_id",
 )
-```
+`````
 
 ### 第 2 步：定义数据源
 
-```python
+`````python
 # features/data_sources.py
 from feast import BigQuerySource
 
@@ -215,16 +216,16 @@ transaction_stats_source = BigQuerySource(
             avg_transaction_amount_7d,
             failed_transaction_rate_30d,
             created
-        FROM `my-gcp-project.featds.transaction_aggregates`
+        FROM ````my-gcp-project.featds.transaction_aggregates````
     """,
     timestamp_field="event_timestamp",
     created_timestamp_column="created",
 )
-```
+`````
 
 ### 第 3 步：定义特征视图
 
-```python
+`````python
 # features/feature_views.py
 from feast import FeatureView, Field
 from feast.types import Float32, Int64, Float64
@@ -250,11 +251,11 @@ user_transaction_features = FeatureView(
     tags={"team": "fraud", "domain": "transactions"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### 第 4 步：定义特征服务
 
-```python
+`````python
 # features/feature_services.py
 from feast import FeatureService
 from features.feature_views import user_transaction_features
@@ -266,11 +267,11 @@ fraud_detection_v1 = FeatureService(
     tags={"version": "1.0", "model": "fraud_xgboost"},
     owner="ml-team@company.com",
 )
-```
+`````
 
 ### 第 5 步：应用和物化
 
-```bash
+`````bash
 # 将特征定义应用到注册中心
 feast apply
 
@@ -280,7 +281,7 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 
 # 或物化特定时间范围
 feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
-```
+`````
 
 ## 生产配置：Redis + BigQuery
 
@@ -288,7 +289,7 @@ feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
 
 ### feature_store.yaml (生产环境)
 
-```yaml
+`````yaml
 # feature_store.yaml — 生产配置
 project: fraud_detection
 provider: gcp
@@ -309,25 +310,25 @@ entity_key_serialization_version: 2
 
 flags: alpha_features: true
   on_demand_transforms: true
-```
+`````
 
 ### Redis 在线存储配置
 
 对于亚毫秒级服务，使用带有适当分片的 Redis Cluster：
 
-```yaml
+`````yaml
 # Redis Cluster 配置
 online_store: type: redis
   redis_type: redis_cluster
   connection_string: "redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379"
   key_ttl_seconds: 604800
-```
+`````
 
 ### 在 VPS 上部署 Redis
 
 对于自托管部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 提供托管 Redis 集群，起价 $15/月，带自动故障转移。或者，在 Droplet 上部署 Redis：
 
-```bash
+`````bash
 # 在 Ubuntu 22.04 上部署 Redis (DigitalOcean Droplet)
 sudo apt update
 sudo apt install redis-server
@@ -346,13 +347,13 @@ sudo systemctl restart redis
 # 验证
 redis-cli ping
 # PONG
-```
+`````
 
 ## 与 ML 流水线集成
 
 ### 训练流水线集成 (Python SDK)
 
-```python
+`````python
 # training_pipeline.py
 from feast import FeatureStore
 import pandas as pd
@@ -388,11 +389,11 @@ model.fit(X_train, y_train)
 # 评估
 from sklearn.metrics import roc_auc_score
 print(f"AUC-ROC: {roc_auc_score(y_test, model.predict_proba(X_test)[:, 1]):.4f}")
-```
+`````
 
 ### 实时推理集成
 
-```python
+`````python
 # inference_service.py
 from feast import FeatureStore
 from fastapi import FastAPI
@@ -435,11 +436,11 @@ async def predict(user_id: str, transaction_amount: float): # 从 Redis 检索�
         "is_fraud": fraud_probability > 0.7,
         "features_retrieved": {k: v[0] for k, v in features.items()},
     }
-```
+`````
 
 ### Airflow DAG 用于物化
 
-```python
+`````python
 # dags/feast_materialize.py
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -476,7 +477,7 @@ with DAG(
     )
     
     materialize >> validate
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -484,11 +485,11 @@ Feast 为从初创公司到企业的公司提供生产级 ML 系统支持。以�
 
 | 指标 | 数值 | 来源 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | **7,000+** | GitHub (2026年5月) |
 | 贡献者 | **361** | GitHub |
@@ -503,13 +504,13 @@ Feast 为从初创公司到企业的公司提供生产级 ML 系统支持。以�
 
 | 操作 | p50 延迟 | p99 延迟 | 测试环境 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 在线特征检索 (Redis, 6 个特征) | **1.2ms** | **3.8ms** | 单 Redis 节点，本地网络 |
 | 在线特征检索 (DynamoDB, 6 个特征) | **4.5ms** | **12ms** | DynamoDB on-demand, us-east-1 |
@@ -538,7 +539,7 @@ Feast 为从初创公司到企业的公司提供生产级 ML 系统支持。以�
 
 计算无法在物化时完成的请求时特征：
 
-```python
+`````python
 from feast import on_demand_feature_view
 from feast.types import Float64
 
@@ -556,11 +557,11 @@ def transaction_transforms(inputs): import pandas as pd
         inputs["transaction_amount"] / inputs["avg_order_amount_30d"]
     ).fillna(0)
     return df
-```
+`````
 
 ### 特征监控与验证
 
-```python
+`````python
 from feast.dqm.profilers.ge_profiler import GeProfiler
 
 # 将数据质量期望附加到特征视图
@@ -593,11 +594,11 @@ user_transaction_features_with_validation = FeatureView(
         ]
     ),
 )
-```
+`````
 
 ### 多项目设置
 
-```yaml
+`````yaml
 # feature_store_team_a.yaml
 project: team_a_fraud
 registry: path: s3://shared-bucket/registry_team_a.db
@@ -606,11 +607,11 @@ online_store: type: redis
 offline_store: type: bigquery
   project: my-gcp-project
   dataset: team_a_features
-```
+`````
 
 ### 保护特征存储
 
-```yaml
+`````yaml
 # RBAC 配置 (Feast 0.60+)
 auth: type: oidc
   oidc_server_url: "https://auth.company.com"
@@ -618,23 +619,23 @@ auth: type: oidc
   client_secret: "${OIDC_CLIENT_SECRET}"
 
 dvc gc --workspace
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Feast | Tecton | SageMaker Feature Store | Vertex AI Feature Store | Hopsworks |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源** | 是 (Apache-2.0) | 否 | 否 (AWS 托管) | 否 (GCP 托管) | 是 (AGPL) |
 | **在线存储延迟** | **p99 < 5ms** (Redis) | **p99 < 10ms** | **p99 < 15ms** | **p99 < 10ms** | **p99 < 5ms** (RonDB) |
@@ -676,7 +677,7 @@ dvc gc --workspace
 数据仓库 (BigQuery、Snowflake) 存储用于分析的数据。特征存储增加了三个功能：(1) 用于亚秒级服务的在线存储，(2) 防止数据泄漏的点连接，(3) 用于发现和治理的特征注册中心。
 
 **Q: 在线特征有多新鲜？**
-特征新鲜度取决于你的物化计划。如果你每 5 分钟运行一次 `feast materialize-incremental`，你的在线特征最多延迟 5 分钟。对于真正的实时特征，使用 Push API 或流式摄取。
+特征新鲜度取决于你的物化计划。如果你每 5 分钟运行一次 ````feast materialize-incremental````，你的在线特征最多延迟 5 分钟。对于真正的实时特征，使用 Push API 或流式摄取。
 
 **Q: 我可以在没有云服务商的情况下使用 Feast 吗？**
 可以。使用 SQLite 或 PostgreSQL 作为离线存储，Redis (自托管) 或 SQLite 作为在线存储。Feast 完全在本地或单个 VM 上运行。
@@ -698,13 +699,13 @@ Feast 拥有 **7,000+ Stars**、**361 位贡献者**的活跃社区，以及对 
 
 今天就开始：
 
-```bash
+`````bash
 pip install feast[redis,bigquery]
 feast init
 # 定义你的实体、特征视图和特征服务
 feast apply
 feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
-```
+````
 
 加入 Feast 社区 [Slack](https://join.slack.com/t/feastopensource/shared_invite) 并在 [GitHub](https://github.com/feast-dev/feast) 上关注项目更新。
 
@@ -763,7 +764,7 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [juicefs-distributed-posix-file-system-redis-s3-cloud-storage](feast-feature-store-ml)
@@ -771,5 +772,5 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 - [wandb-ml-experiment-tracking-platform-2026](feast-feature-store-ml)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

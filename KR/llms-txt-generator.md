@@ -3,6 +3,7 @@ title: "llms.txt 생성기 — AI 크롤러(ChatGPT, Claude, Perplexity)가 사�
 description: "몇 초 만에 유효한 llms.txt 파일을 생성하세요. ChatGPT, Claude, Perplexity 같은 AI 크롤러가 사이트 구조를 이해하고 최고의 콘텐츠를 노출하도록 돕습..."
 tool_id: "llms-txt-generator"
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -41,16 +42,16 @@ This guide will help you get started with the topic. Whether you're a beginner o
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: ````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -60,22 +61,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -85,22 +86,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -110,22 +111,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -135,22 +136,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -160,22 +161,22 @@ npm install
 
 # Start development server
 npm run dev
-```
+`````
 
 This guide will help you get started with the topic. Whether you're a beginner or experienced developer, there's something here for you.
 
 ### Prerequisites
 
-Before diving in, make sure you have: ```bash
+Before diving in, make sure you have: `````bash
 # Check your environment
 node --version  # Should be >= 18
 npm --version   # Should be >= 9
 git --version
-```
+`````
 
 ### Installation
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/example/project.git
 cd project
@@ -185,4 +186,4 @@ npm install
 
 # Start development server
 npm run dev
-```
+````

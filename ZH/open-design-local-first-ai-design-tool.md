@@ -33,6 +33,7 @@ faqs: - q: 'Open Design 是什么？它与 Claude Design 有何不同？'
   - q: '使用 Open Design 需要付费吗？'
     a: '该工具本身基于 MIT 许可证，免费且开源，无需订阅费或按席位收费。唯一的成本是您实际消耗的 AI 服务商 API 用量，因此您只需为向 Anthropic、OpenAI 或 Google 等服务商发起的实际调用付费。'---
 
+
 {</* resource-info */>}
 
 # Open Design: 替代 Claude Design 的终极本地优先 AI 设计工具
@@ -83,9 +84,9 @@ Open Design 最突出的亮点之一是其 **71 套预配置、可用于生产�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | Material Design 3 | 移动端/网页 | Android 应用、跨平台 UI |
 | Apple Human Interface | iOS/macOS | Apple 生态系统原生应用 |
@@ -150,34 +151,34 @@ Open Design 不锁定任何单一 AI 提供商，它兼容：
 
 ### 第一步：克隆仓库
 
-```bash
+````bash
 git clone https://github.com/nexu-io/open-design.git
 cd open-design
-```
+`````
 
 ### 第二步：安装依赖
 
 Open Design 采用 monorepo 结构。使用以下命令安装所有依赖包：
 
-```bash
+`````bash
 npm install
 # 或
 pnpm install
 # 或
 yarn install
-```
+`````
 
 ### 第三步：配置环境变量
 
 复制示例环境文件并进行自定义：
 
-```bash
+`````bash
 cp .env.example .env
-```
+`````
 
-编辑 `.env` 文件，添加你的 AI 提供商 API 密钥。你只需配置计划使用的提供商：
+编辑 ````.env```` 文件，添加你的 AI 提供商 API 密钥。你只需配置计划使用的提供商：
 
-```env
+`````env
 # Anthropic Claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 
@@ -190,13 +191,13 @@ GEMINI_API_KEY=your-gemini-key
 # 可选：自定义模型端点
 CUSTOM_MODEL_URL=https://your-model-endpoint.com
 CUSTOM_MODEL_API_KEY=your-custom-key
-```
+`````
 
 ### 第四步：构建项目
 
-```bash
+`````bash
 npm run build
-```
+`````
 
 这会编译 TypeScript 源码并打包设计系统资源。
 
@@ -204,9 +205,9 @@ npm run build
 
 下载 71 套品牌级设计系统：
 
-```bash
+`````bash
 npm run init:design-systems
-```
+`````
 
 该命令会在本地获取并缓存所有设计系统定义，支持离线使用。
 
@@ -214,21 +215,21 @@ npm run init:design-systems
 
 启动本地开发服务器：
 
-```bash
+`````bash
 npm run dev
-```
+`````
 
-界面将在 `http://localhost:3000` 可用。打开浏览器，即可开始生成设计。
+界面将在 ````http://localhost:3000```` 可用。打开浏览器，即可开始生成设计。
 
 ### 第七步：配置 AI 助手（可选）
 
 如果你将 Open Design 与 Claude Code 或 Cursor 等外部 AI 助手配合使用，安装配套插件：
 
-```bash
+`````bash
 npm run install:cursor-plugin
 # 或
 npm run install:claude-plugin
-```
+````
 
 这些插件会将 Open Design 命令直接添加到你的编辑器命令面板中。
 
@@ -236,11 +237,11 @@ npm run install:claude-plugin
 
 | 特性 | Open Design | Claude Design |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **定价** | 免费开源 | 付费订阅 |
 | **部署方式** | 本地优先，支持离线 | 仅限云端 |
@@ -317,11 +318,11 @@ Open Design 代表了技术团队处理创意自动化的重要转变。通过�
 如需了解更多关于 AI 驱动开发工具的见解，请查看 dibi8 的相关文章：[AI 编程助手 2026 年度盘点](/resources/llm-frameworks/agent-skills-production-grade-ai-coding/)、[本地优先架构指南](/resources/llm-frameworks/anythingllm-architecture-local-rag/)，以及[开源 AI 工具替代方案](/resources/llm-frameworks/top-10-open-source-ai-tools-2026/)。
 
 
----
+* * *
 *你在项目中使用过 Open Design 吗？欢迎在评论区分享你的经验，或联系 dibi8 Tech Team 探讨合作机会。*
 
 
----
+* * *
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -394,7 +395,7 @@ Open Design: 替代 Claude Design 的终极本地优先 AI 设计工具 represen
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -426,15 +427,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

@@ -8,6 +8,7 @@ tags: ["实时流处理", "apache kafka", "flink", "spark streaming", "数据工
 aliases:
   - /zh/posts/real-time-data-streaming-tools/-
 ---
+
 # 2025年最佳实时数据流处理工具对比：Apache Kafka、Flink、Spark Streaming、Redpanda全面评测
 
 
@@ -23,11 +24,11 @@ aliases:
 
 | 特性 | 批处理（Batch） | 流处理（Streaming） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 数据单位 | 有限的数据集（文件、表） | 无限的数据流 |
 | 处理延迟 | 分钟到小时级 | 毫秒到秒级 |
@@ -119,19 +120,19 @@ aliases:
 
 | 功能特性 | Apache Kafka | Apache Flink | Spark Streaming | Redpanda | Pulsar | ksqlDB |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 处理模型 | 消息队列+流 | 原生流处理 | 微批处理 | 消息队列 | 消息队列+流 | SQL流处理 |
 | 处理延迟 | 毫秒级 | 毫秒级 | 秒级 | 毫秒级 | 毫秒级 | 毫秒级 |
@@ -173,15 +174,15 @@ aliases:
 
 | 部署方式 | 代表方案 | 运维开销 | 灵活性 | 成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 自托管 | 自建Kafka/Flink集群 | 高 | 最高 | 硬件+人力 |
 | 半托管 | Confluent Platform | 中 | 高 | 授权费+硬件 |
@@ -205,7 +206,7 @@ aliases:
 **实时AI** 是另一个重要方向。流处理平台正在与机器学习框架（如TensorFlow Serving、MLflow）深度集成，实现特征的实时计算和模型的在线推理。Flink的AI集成能力和Kafka在MLOps中的应用正在快速扩展，预计2025年将有更多实时AI场景落地。
 
 
----
+* * *
 ## 推荐部署与基础设施
 
 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
@@ -300,12 +301,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -315,6 +316,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [vercel-ai-sdk-edge-compute](real-time-data-streaming-tools)
 - [vercel-ai-sdk-edge-compute](real-time-data-streaming-tools)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

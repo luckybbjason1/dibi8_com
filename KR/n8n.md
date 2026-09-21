@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
 
+
 {{</* resource-info */>}}
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
@@ -70,7 +71,7 @@ n8n은 노드 기반 실행 엔진을 사용하며, 워크플로는 방향성 �
 
 ### 사전 요구사항
 
-```bash
+````bash
 # Ubuntu 22.04 LTS 권장
 # 최소: 2 vCPU, 4 GB RAM, 20 GB SSD
 # 권장: 4 vCPU, 8 GB RAM, 50 GB SSD
@@ -82,11 +83,11 @@ sudo sh get-docker.sh
 # Docker Compose 설치
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-```
+`````
 
 ### 기본 Docker Compose (개발)
 
-```yaml
+`````yaml
 # docker-compose.dev.yml
 version: '3.8'
 
@@ -102,16 +103,16 @@ services: n8n: image: n8nio/n8n:latest
       - TZ=UTC
     volumes: - n8n_data:/home/node/.n8n
 
-volumes: n8n_data: ```
+volumes: n8n_data: `````
 
-시작: ```bash
+시작: `````bash
 docker-compose -f docker-compose.dev.yml up -d
 # http://localhost:5678 접속
-```
+`````
 
 ### 프로덕션 Docker Compose (PostgreSQL 포함)
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -148,18 +149,18 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-`.env` 파일의 환경 변수: ```bash
+``.env`` 파일의 환경 변수: `````bash
 # .env
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 N8N_HOST=automation.yourdomain.com
-```
+`````
 
 ### 고처리량 큐 모드
 
-```yaml
+`````yaml
 # docker-compose.queue.yml
 version: '3.8'
 
@@ -228,9 +229,9 @@ services: postgres: image: postgres:16-alpine
     networks: - n8n_network
 
 volumes: postgres_data: redis_data: n8n_data: networks: n8n_network: driver: bridge
-```
+`````
 
-배포: ```bash
+배포: `````bash
 # 비밀 키 생성
 openssl rand -base64 32 > .postgres_password
 openssl rand -base64 32 > .redis_password
@@ -248,11 +249,11 @@ docker-compose -f docker-compose.queue.yml up -d
 # 확인
 docker-compose ps
 docker-compose logs -f n8n-main
-```
+`````
 
 ### Nginx 리버스 프록시 (SSL)
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/n8n
 server {
     listen 80;
@@ -285,22 +286,22 @@ server {
         proxy_read_timeout 300;
     }
 }
-```
+`````
 
-활성화: ```bash
+활성화: `````bash
 sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
 # SSL 인증서 획득
 sudo certbot --nginx -d automation.yourdomain.com
-```
+`````
 
 ## Claude Code, OpenAI, Slack, Discord, Telegram 연동
 
 ### OpenAI 채팅 모델 노드
 
-```javascript
+`````javascript
 // n8n의 OpenAI Chat Model 구성
 {
   "nodes": [
@@ -326,17 +327,17 @@ sudo certbot --nginx -d automation.yourdomain.com
     }
   ]
 }
-```
+`````
 
-c8n UI에서 자격 증명 추가: ```bash
+c8n UI에서 자격 증명 추가: `````bash
 # Settings > Credentials > Add Credential 이동
 # "OpenAI API" 선택
 # https://platform.openai.com/api-keys 에서 복사한 API 키 붙여넣기
-```
+`````
 
 ### Anthropic Claude 채팅 모델 노드
 
-```javascript
+`````javascript
 // Anthropic Claude Chat Model 구성
 {
   "nodes": [
@@ -358,11 +359,11 @@ c8n UI에서 자격 증명 추가: ```bash
     }
   ]
 }
-```
+`````
 
 ### Slack 알림 워크플로
 
-```json
+`````json
 {
   "name": "AI Summary to Slack",
   "nodes": [
@@ -418,11 +419,11 @@ c8n UI에서 자격 증명 추가: ```bash
     }
   }
 }
-```
+`````
 
 ### Telegram 봇 Webhook
 
-```javascript
+`````javascript
 // Telegram 트리거 노드 구성
 {
   "nodes": [
@@ -455,20 +456,20 @@ c8n UI에서 자격 증명 추가: ```bash
     }
   ]
 }
-```
+`````
 
 ### Discord 봇 연동
 
-```bash
+`````bash
 # 1. https://discord.com/developers/applications 에서 Discord 애플리케이션 생성
 # 2. 봇 사용자 생성 및 토큰 복사
 # 3. n8n에서: Settings > Credentials > Add Credential > Discord Bot API
 # 4. 봇 토큰 붙여넣기
 
 # 워크플로: Discord 메시지 트리거 -> AI 처리 -> Discord 응답
-```
+`````
 
-```json
+`````json
 {
   "nodes": [
     {
@@ -488,7 +489,7 @@ c8n UI에서 자격 증명 추가: ```bash
     }
   ]
 }
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -529,7 +530,7 @@ c8n UI에서 자격 증명 추가: ```bash
 
 ### 보안 체크리스트
 
-```bash
+`````bash
 # 1. 강력한 암호화 키 사용
 export N8N_ENCRYPTION_KEY=$(openssl rand -hex 32)
 
@@ -555,11 +556,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 # 7. 워커 컨테이너에서 편집기 비활성화
 # (워커는 command: worker 사용, UI 노출 없음)
-```
+`````
 
 ### 데이터베이스 최적화
 
-```sql
+`````sql
 -- 프로덕션용 PostgreSQL 튜닝
 ALTER SYSTEM SET shared_buffers = 512MB;
 ALTER SYSTEM SET effective_cache_size = 2GB;
@@ -576,11 +577,11 @@ CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_execution_entity_startedat
 
 -- 설정 다시 로드
 SELECT pg_reload_conf();
-```
+`````
 
 ### Prometheus 및 Grafana 모니터링
 
-```yaml
+`````yaml
 # docker-compose.queue.yml에 추가
   prometheus: image: prom/prometheus:latest
     restart: unless-stopped
@@ -597,20 +598,20 @@ SELECT pg_reload_conf();
     volumes: - grafana_data:/var/lib/grafana
     networks: - n8n_network
     ports: - "127.0.0.1:3000:3000"
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml
 global: scrape_interval: 15s
 
 scrape_configs: - job_name: n8n
     static_configs: - targets: ['n8n-main:5678']
     metrics_path: /metrics
-```
+`````
 
 ### 로그 로테이션
 
-```bash
+`````bash
 # /etc/logrotate.d/n8n
 /opt/n8n/logs/*.log {
     daily
@@ -624,11 +625,11 @@ scrape_configs: - job_name: n8n
         docker restart n8n-main
     endscript
 }
-```
+`````
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # backup-n8n.sh - cron을 통해 매일 실행
 
@@ -648,12 +649,12 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
 
 # S3 동기화 (선택)
 # aws s3 sync $BACKUP_DIR s3://your-backup-bucket/n8n/
-```
+`````
 
-crontab 추가: ```bash
+crontab 추가: `````bash
 # 매일 오전 2시 백업 실행
 0 2 * * * /opt/n8n/backup-n8n.sh >> /var/log/n8n-backup.log 2>&1
-```
+`````
 
 ## 대안과의 비교
 
@@ -709,7 +710,7 @@ n8n은 실행 기반 과금 모델(한 번의 워크플로 실행 = 한 번의 �
 
 ### n8n을 최신 버전으로 업데이트하려면 어떻게 해야 하는가?
 
-```bash
+`````bash
 # 최신 이미지 가져오기
 docker-compose pull
 
@@ -718,7 +719,7 @@ docker-compose up -d
 
 # 버전 확인
 docker-compose exec n8n-main n8n --version
-```
+`````
 
 주요 버전 업그레이드 전에 반드시 데이터베이스를 백업하라. 변경 로그는 https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md 에서 확인할 수 있다.
 
@@ -728,7 +729,7 @@ docker-compose exec n8n-main n8n --version
 
 ### 실패한 워크플로를 어떻게 해결하는가?
 
-n8n UI에서 실행 로그를 확인하라(Settings > Executions). `N8N_LOG_LEVEL=debug`로 디버깅 로그를 활성화하라. Webhook 문제의 경우 `WEBHOOK_URL`이 공개 도메인과 일치하는지 확인하라. 데이터베이스 오류의 경우 PostgreSQL 연결 풀 제한을 확인하라. 일반적인 해결: `docker-compose logs -f n8n-main | grep ERROR`.
+n8n UI에서 실행 로그를 확인하라(Settings > Executions). ````N8N_LOG_LEVEL=debug````로 디버깅 로그를 활성화하라. Webhook 문제의 경우 ````WEBHOOK_URL````이 공개 도메인과 일치하는지 확인하라. 데이터베이스 오류의 경우 PostgreSQL 연결 풀 제한을 확인하라. 일반적인 해결: ````docker-compose logs -f n8n-main | grep ERROR```.
 
 ### n8n은 어떤 데이터베이스를 지원하는가?
 
@@ -794,7 +795,7 @@ n8n은 상용 플랫폼 비용의 일부로 AI 기능을 갖춘 워크플로 자
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -804,7 +805,7 @@ n8n은 상용 플랫폼 비용의 일부로 AI 기능을 갖춘 워크플로 자
 - [n8n-ai-automation-complete-guide](n8n)
 - [n8n-vs-make-com-2026](n8n)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

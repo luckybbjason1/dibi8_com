@@ -16,6 +16,7 @@ faqs: - q: '部署 LLM 该用 Ollama 还是 vLLM？'
     a: '通常可以，但格式不同。Ollama 从其注册表用一条命令拉取量化的 GGUF 模型，针对有限内存优化。vLLM 通常从 Hugging Face 加载 safetensors 格式的全精度或量化模型，为 GPU 服务调优。同一个基础模型（比如某个 Llama 或 Qwen 版本）一般两边都有，但你要让每个工具指向它期望的格式，而不是共用一个文件。'
   - q: 'vLLM 比 Ollama 更难配置吗？'
     a: '是的。Ollama 以简单著称 — 装上二进制，运行一条 ollama run 之类的命令就能拉取并对话。vLLM 需要 GPU 环境、Python 依赖，以及对模型、并行和服务设置的配置，不过之后它会暴露一个易于调用的 OpenAI 兼容 API。给 Ollama 预留几分钟，给首次生产级 vLLM 部署预留一个下午（外加 GPU 准备）。'---
+
 # Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐
 
 
@@ -33,11 +34,11 @@ faqs: - q: '部署 LLM 该用 Ollama 还是 vLLM？'
 
 | 维度 | Ollama | vLLM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 主要用途 | 本地开发、原型 | 规模化生产服务 |
 | 配置 | 一条命令，极简 | GPU 环境+配置，较陡 |
@@ -52,7 +53,7 @@ faqs: - q: '部署 LLM 该用 Ollama 还是 vLLM？'
 
 ### 场景一：本地开发与原型
 
-如果你只想在自己机器上跑个模型开始构建，Ollama 无可匹敌。装上它，运行 `ollama run llama3`，不到一分钟就能和本地模型对话。不需要 GPU 集群，不需要 Python 依赖地狱。
+如果你只想在自己机器上跑个模型开始构建，Ollama 无可匹敌。装上它，运行 ```ollama run llama3````，不到一分钟就能和本地模型对话。不需要 GPU 集群，不需要 Python 依赖地狱。
 
 ### 场景二：隐私优先、离线工作
 
@@ -88,11 +89,11 @@ vLLM 暴露 OpenAI 兼容 API，所以基于 OpenAI SDK 写的应用代码只需
 
 | 要求 | Ollama | vLLM |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 需要 GPU | 否（可选） | 是（CUDA NVIDIA） |
 | 能在 MacBook 跑 | 能 | 实际上不能 |
@@ -185,11 +186,11 @@ Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐 represents
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -199,7 +200,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](ollama-vs-vllm)
 - [nanochat-karpathy-100-chatgpt-single-gpu](ollama-vs-vllm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -211,7 +212,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -222,4 +223,4 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````

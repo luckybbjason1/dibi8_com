@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/ragflow/
 ---
 
+
 {{</* resource-info */>}}
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
@@ -92,7 +93,7 @@ RAGFlow는 추적 가능한 인용이 포함된 검색된 청크로 구성된 �
 
 ### 배포 전: 시스템 튜닝
 
-RAGFlow를 시작하기 전에 커널 매개변수가 Elasticsearch에 맞게 튜닝되었는지 확인하세요: ```bash
+RAGFlow를 시작하기 전에 커널 매개변수가 Elasticsearch에 맞게 튜닝되었는지 확인하세요: ````bash
 # 현재 vm.max_map_count 확인
 sysctl vm.max_map_count
 
@@ -101,25 +102,25 @@ sudo sysctl -w vm.max_map_count=262144
 
 # 재부팅 후에도 유지
 echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
-```
+`````
 
 ### 1단계: 리포지토리 클론
 
-```bash
+`````bash
 git clone https://github.com/infiniflow/ragflow.git
 cd ragflow/docker
 git checkout -f v0.25.4
-```
+`````
 
 ### 2단계: 환경 변수 구성
 
-```bash
+`````bash
 # 환경 파일 편집
 cp .env .env.backup
 nano .env
-```
+`````
 
-설정해야 할 핵심 변수: ```bash
+설정해야 할 핵심 변수: `````bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -129,20 +130,20 @@ REDIS_PASSWORD=your_secure_redis_password
 
 # 문서 엔진 선택: elasticsearch 또는 infinity
 DOC_ENGINE=elasticsearch
-```
+`````
 
 ### 3단계: Docker Compose로 시작
 
-```bash
+`````bash
 # CPU 전용 배포
 docker compose -f docker-compose.yml up -d
 
 # GPU 가속 문서 파싱 (NVIDIA)
 # sed -i '1i DEVICE=gpu' .env
 # docker compose -f docker-compose.yml up -d
-```
+`````
 
-배포 확인: ```bash
+배포 확인: `````bash
 # 로그를 확인하여 성공 메시지가 나올 때까지 대기
 docker logs -f ragflow-server
 
@@ -152,29 +153,29 @@ docker logs -f ragflow-server
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
 # /_/ |_|/_/  |_|\____//_/    /_/ \____/ |__/|__/
 #  * Running on all addresses (0.0.0.0)
-```
+`````
 
 ### 4단계: LLM 공급자 구성
 
-`service_conf.yaml.template`를 편집하여 LLM API 키를 추가하세요: ```yaml
+``service_conf.yaml.template``를 편집하여 LLM API 키를 추가하세요: `````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
-지원되는 LLM 공급자는 OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, Ollama 또는 vLLM을 통한 로컬 모델을 포함합니다. 구성 변경 후 컨테이너를 재시작하세요: ```bash
+지원되는 LLM 공급자는 OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, Ollama 또는 vLLM을 통한 로컬 모델을 포함합니다. 구성 변경 후 컨테이너를 재시작하세요: `````bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### 5단계: 웹 UI 접속
 
-브라우저를 열고 `http://YOUR_SERVER_IP`로 이동하세요. 기본 로그인 정보는 다음과 같습니다: ```
+브라우저를 열고 ``http://YOUR_SERVER_IP``로 이동하세요. 기본 로그인 정보는 다음과 같습니다: `````
 이메일: admin@ragflow.io
 비밀번호: (첫 로그인 시 설정)
-```
+`````
 
 ![RAGFlow Web Interface](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/login.png)
 
@@ -182,38 +183,38 @@ docker compose -f docker-compose.yml up -d
 
 ### Ollama (로컬 LLM)
 
-에어갭 환경이나 프라이버시에 민감한 배포의 경우 RAGFlow를 Ollama에 연결하세요: ```yaml
+에어갭 환경이나 프라이버시에 민감한 배포의 경우 RAGFlow를 Ollama에 연결하세요: `````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
-```
+`````
 
-사용하기 전에 Ollama에서 모델을 가져오세요: ```bash
+사용하기 전에 Ollama에서 모델을 가져오세요: `````bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
-```
+`````
 
 RAGFlow 웹 UI의 **설정 > 모델 공급자**에서 임베딩 모델을 구성하세요.
 
 ### OpenAI (클우드 API)
 
-```yaml
+`````yaml
 user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
-환경 변수 치환을 사용하여 비밀 하드코딩을 피하세요: ```bash
+환경 변수 치환을 사용하여 비밀 하드코딩을 피하세요: `````bash
 # .env 에서
 OPENAI_API_KEY=sk-your-key
-```
+`````
 
 ### Elasticsearch에서 Infinity로 마이그레이션
 
-Infinity는 대규모 배포에 최적화된 RAGFlow의 융합 컨텍스트 엔진입니다. 전환 방법: ```bash
+Infinity는 대규모 배포에 최적화된 RAGFlow의 융합 컨텍스트 엔진입니다. 전환 방법: `````bash
 # 1. 모든 컨테이너 중지 및 볼륨 삭제
 docker compose -f docker-compose.yml down -v
 
@@ -222,23 +223,23 @@ sed -i 's/DOC_ENGINE=elasticsearch/DOC_ENGINE=infinity/' .env
 
 # 3. 재시작
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 > **경고:** 기존 데이터가 삭제됩니다. 마이그레이션 전 데이터셋을 백업하세요.
 
 ### Redis를 외부 캐시로 사용
 
-프로덕션 배포를 위해 외부 Redis 클러스터를 사용하세요: ```yaml
+프로덕션 배포를 위해 외부 Redis 클러스터를 사용하세요: `````yaml
 # docker-compose.yml (발췌)
 services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes: - redis_data:/data
     deploy: resources: limits: memory: 2G
-```
+`````
 
 ### Qdrant를 대안 벡터 스토어로 사용
 
-RAGFlow가 Elasticsearch 또는 Infinity를 기본으로 사용하지만, Python SDK를 통해 Qdrant를 통합하여 사용자 정의 검색 파이프라인을 구축할 수 있습니다: ```python
+RAGFlow가 Elasticsearch 또는 Infinity를 기본으로 사용하지만, Python SDK를 통해 Qdrant를 통합하여 사용자 정의 검색 파이프라인을 구축할 수 있습니다: `````python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -249,7 +250,7 @@ qdrant = QdrantClient(url="http://localhost:6333")
 # RAGFlow 청크와 Qdrant 벡터를 결합한 사용자 정의 하이브리드 검색
 chunks = ragflow.retrieve(dataset_id="ds_123", query="annual revenue 2025")
 vectors = qdrant.search(collection="financial_reports", vector=query_embedding, limit=5)
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -289,7 +290,7 @@ RAGFlow는 DeepDoc의 레이아웃 인식 파싱으로 인해 정확도와 인�
 
 ### 리버스 프록시로 HTTPS 활성화
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/ragflow
 server {
     listen 443 ssl http2;
@@ -307,11 +308,11 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### 다중 홉 추론을 위한 GraphRAG 활성화
 
-GraphRAG은 문서에서 지식 그래프를 추출하여 교차 문서 추론을 가능하게 합니다: ```python
+GraphRAG은 문서에서 지식 그래프를 추출하여 교차 문서 추론을 가능하게 합니다: `````python
 # RAGFlow 웹 UI 또는 API를 통해
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -319,24 +320,24 @@ POST /api/datasets/{dataset_id}/chunks/graph
   "entity_types": ["PERSON", "ORGANIZATION", "PRODUCT", "EVENT"],
   "max_workers": 4
 }
-```
+`````
 
 GraphRAG은 특히 법률 문서, 연구 논문, 금융 보고서에서 엔터티 간의 관계가 여러 페이지에 걸쳐 있는 경우 효과적입니다.
 
 ### 샌드박스 구성 (코드 실행)
 
-RAGFlow의 에이전트는 샌드박스 환경에서 Python 및 JavaScript 코드를 실행할 수 있습니다. 이는 gVisor가 필요합니다: ```bash
+RAGFlow의 에이전트는 샌드박스 환경에서 Python 및 JavaScript 코드를 실행할 수 있습니다. 이는 gVisor가 필요합니다: `````bash
 # gVisor 설치 (샌드박스에 필요)
 sudo apt-get install -y runsc
 
 # docker-compose.yml에서 활성화
 services: ragflow: environment: - ENABLE_SANDBOX=true
     devices: - /dev/kvm
-```
+`````
 
 ### Prometheus로 모니터링
 
-```yaml
+`````yaml
 # docker-compose.yml에 추가
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -346,18 +347,18 @@ services: prometheus: image: prom/prometheus:latest
   grafana: image: grafana/grafana:latest
     ports: - "3000:3000"
     volumes: - grafana_data:/var/lib/grafana
-```
+`````
 
-모니터링할 핵심 메트릭: ```yaml
+모니터링할 핵심 메트릭: `````yaml
 # prometheus.yml
 scrape_configs: - job_name: ragflow
     static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
-```
+`````
 
 ### 백업 전략
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/ragflow/backup.sh
 
@@ -377,7 +378,7 @@ docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio
 
 # 원격 저장소에 동기화
 rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
-```
+`````
 
 ## 대안과의 비교
 
@@ -425,7 +426,7 @@ rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
 
 ### RAGFlow를 로컬 LLM만 사용하도록 설정할 수 있나요?
 
-예. RAGFlow는 Ollama, vLLM, Xinference, LocalAI와 통합됩니다. `service_conf.yaml.template`에서 로컬 추론 서버의 base URL로 LLM 공급자를 구성하세요. 임베딩 모델의 경우 Ollama를 통해 임베딩 모델(`nomic-embed-text` 등)을 가져와 웹 UI의 모델 공급자에서 구성하세요.
+예. RAGFlow는 Ollama, vLLM, Xinference, LocalAI와 통합됩니다. ````service_conf.yaml.template````에서 로컬 추론 서버의 base URL로 LLM 공급자를 구성하세요. 임베딩 모델의 경우 Ollama를 통해 임베딩 모델(````nomic-embed-text```` 등)을 가져와 웹 UI의 모델 공급자에서 구성하세요.
 
 ### RAGFlow는 스캔 PDF와 이미지를 어떻게 처리하나요?
 
@@ -437,9 +438,9 @@ RAGFlow의 DeepDoc 엔진에는 스캔 PDF, PNG, JPEG를 처리하는 내장 OCR
 
 ### RAGFlow를 새 버전으로 업그레이드하려면 어떻게 하나요?
 
-먼저 MySQL 데이터베이스와 Elasticsearch 인덱스를 백업하세요. 그런 다음 새 Docker 이미지를 가져오고, `.env`의 `RAGFLOW_IMAGE` 변수를 업데이트하고, 컨테이너를 재시작하세요. 버전 간의 주요 변경 사항에 대해 항상 릴리스 노트를 확인하세요.
+먼저 MySQL 데이터베이스와 Elasticsearch 인덱스를 백업하세요. 그런 다음 새 Docker 이미지를 가져오고, ````.env````의 ````RAGFLOW_IMAGE```` 변수를 업데이트하고, 컨테이너를 재시작하세요. 버전 간의 주요 변경 사항에 대해 항상 릴리스 노트를 확인하세요.
 
-```bash
+`````bash
 cd ragflow/docker
 git fetch --tags
 git checkout -f v0.25.4
@@ -447,11 +448,11 @@ git checkout -f v0.25.4
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml pull
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### RAGFlow를 기존 애플리케이션에 통합할 수 있나요?
 
-예. RAGFlow는 완전한 REST API를 노출하고 Python 및 JavaScript SDK를 제공합니다. 프로그래밍 방식으로 데이터셋을 생성하고, 문서를 업로드하고, 채팅 세션을 시작하고, 답변을 검색할 수 있습니다. API 문서는 RAGFlow 인스턴스의 `/api/docs`에서 확인할 수 있습니다.
+예. RAGFlow는 완전한 REST API를 노출하고 Python 및 JavaScript SDK를 제공합니다. 프로그래밍 방식으로 데이터셋을 생성하고, 문서를 업로드하고, 채팅 세션을 시작하고, 답변을 검색할 수 있습니다. API 문서는 RAGFlow 인스턴스의 ````/api/docs```에서 확인할 수 있습니다.
 
 ### RAGFlow는 어떤 문서 형식을 지원하나요?
 

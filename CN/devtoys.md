@@ -23,6 +23,7 @@ tags: ["devtoys", "developer-tools", "offline-utilities", "json-formatter", "bas
 aliases:
   - /posts/devtoys/-
 ---
+
 {{</* resource-info */>}}
 
 ![DevToys Logo](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/logo/Logo.png)
@@ -41,7 +42,7 @@ Every developer has been there: you need to format a blob of JSON, decode a JWT 
 
 ### Architecture Overview
 
-DevToys follows a modular plugin-based architecture. The core application provides the shell, UI framework, and Smart Detection engine. Individual tools are packaged as extensions that register themselves with the host: ```
+DevToys follows a modular plugin-based architecture. The core application provides the shell, UI framework, and Smart Detection engine. Individual tools are packaged as extensions that register themselves with the host: ````
 ┌─────────────────────────────────────────┐
 │           DevToys Shell (C#)            │
 │  ┌─────────┐  ┌─────────┐  ┌──────────┐ │
@@ -56,7 +57,7 @@ DevToys follows a modular plugin-based architecture. The core application provid
 └─────────────────────────────────────────┘
          │ Windows │ macOS │ Linux │
          └─────────┴───────┴───────┘
-```
+`````
 
 ### Core Concepts
 
@@ -74,9 +75,9 @@ The fastest way to install DevToys on Windows is through WinGet or the Microsoft
 
 **Via WinGet (recommended):**
 
-```powershell
+`````powershell
 winget install DevToys-app.DevToys
-```
+`````
 
 **Via Microsoft Store:**
 
@@ -84,34 +85,34 @@ Search for "DevToys" in the Microsoft Store app, or visit the [store page](https
 
 **Via Chocolatey:**
 
-```powershell
+`````powershell
 choco install devtoys
-```
+`````
 
 **Manual installation with the classic installer:**
 
-```powershell
+`````powershell
 # Download the x64 installer
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64.exe" -OutFile "devtoys_installer.exe"
 
 # Run the installer
 .\devtoys_installer.exe /SILENT
-```
+`````
 
 **Portable ZIP (no installation required):**
 
-```powershell
+`````powershell
 # Download and extract
 Invoke-WebRequest -Uri "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_win_x64_portable.zip" -OutFile "devtoys.zip"
 Expand-Archive -Path "devtoys.zip" -DestinationPath "C:\Tools\DevToys"
 
 # Launch directly
 C:\Tools\DevToys\DevToys.exe
-```
+`````
 
 ### macOS
 
-```bash
+`````bash
 # Download the macOS DMG
 curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_macos.dmg"
 
@@ -119,15 +120,15 @@ curl -L -o devtoys.dmg "https://github.com/DevToys-app/DevToys/releases/download
 hdiutil attach devtoys.dmg
 cp -R "/Volumes/DevToys/DevToys.app" /Applications
 hdiutil detach "/Volumes/DevToys"
-```
+`````
 
-Or install via Homebrew (if available in your tap): ```bash
+Or install via Homebrew (if available in your tap): `````bash
 brew install --cask devtoys
-```
+`````
 
 ### Linux (Debian/Ubuntu)
 
-```bash
+`````bash
 # Download the .deb package
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64.deb
 
@@ -136,19 +137,19 @@ sudo dpkg -i devtoys_linux_x64.deb
 
 # Fix any dependency issues
 sudo apt-get install -f
-```
+`````
 
 **Portable ZIP for Linux:**
 
-```bash
+`````bash
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys_linux_x64_portable.zip
 unzip devtoys_linux_x64_portable.zip -d ~/devtoys
 ~/devtoys/DevToys
-```
+`````
 
 ### DevToys CLI Installation
 
-The CLI is distributed separately and is useful for headless environments and CI pipelines: ```bash
+The CLI is distributed separately and is useful for headless environments and CI pipelines: `````bash
 # Windows
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_win_x64_portable.zip
 
@@ -157,29 +158,29 @@ wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.c
 
 # Linux
 wget https://github.com/DevToys-app/DevToys/releases/download/v2.0.9.0/devtoys.cli_linux_x64_portable.zip
-```
+`````
 
-After installation, verify the CLI works: ```bash
+After installation, verify the CLI works: `````bash
 devtoys --version
 # Output: DevToys CLI 2.0.9.0
-```
+`````
 
 ### First Launch & Configuration
 
-On first launch, DevToys opens with a dark-themed sidebar listing all 30+ tools. Open **Settings** to configure: ```yaml
+On first launch, DevToys opens with a dark-themed sidebar listing all 30+ tools. Open **Settings** to configure: `````yaml
 # Recommended settings for production workflows
 Smart Detection: Enabled      # Auto-suggest tools from clipboard
 Theme: System default        # Or force Dark/Light
 Language: English             # 14+ languages supported
 Check for updates: Weekly     # Or disable in air-gapped environments
 Telemetry: Disabled          # DevToys has no telemetry by default
-```
+`````
 
 ## Integration with Popular Tools
 
 ### VS Code
 
-While DevToys runs as a standalone app, you can launch it directly from VS Code using keybindings. Add this to your `keybindings.json`: ```json
+While DevToys runs as a standalone app, you can launch it directly from VS Code using keybindings. Add this to your ``keybindings.json``: `````json
 [
   {
     "key": "ctrl+alt+d",
@@ -188,13 +189,13 @@ While DevToys runs as a standalone app, you can launch it directly from VS Code 
     "when": "editorTextFocus"
   }
 ]
-```
+`````
 
 For a fully integrated experience, install the **DevToys for VSCode** extension from the marketplace, which embeds a subset of tools directly in the editor sidebar.
 
 ### PowerShell / Terminal
 
-DevToys supports deep linking to individual tools via command-line arguments. This is useful for scripting and aliases: ```powershell
+DevToys supports deep linking to individual tools via command-line arguments. This is useful for scripting and aliases: `````powershell
 # Open specific tools directly
 start devtoys:?tool=jsonformat     # JSON Formatter
 start devtoys:?tool=jsonyaml       # JSON <> YAML Converter
@@ -206,11 +207,11 @@ start devtoys:?tool=uuid           # UUID Generator
 start devtoys:?tool=url            # URL Encoder/Decoder
 start devtoys:?tool=markdown       # Markdown Preview
 start devtoys:?tool=diff           # Text Comparer
-```
+`````
 
 ### CI/CD Pipelines (GitHub Actions)
 
-DevToys CLI integrates cleanly into CI workflows. Here is a GitHub Actions example that validates JSON files in a repository: ```yaml
+DevToys CLI integrates cleanly into CI workflows. Here is a GitHub Actions example that validates JSON files in a repository: `````yaml
 name: Validate JSON
 on: [push, pull_request]
 jobs: validate: runs-on: ubuntu-latest
@@ -225,11 +226,11 @@ jobs: validate: runs-on: ubuntu-latest
       - name: Validate all JSON files
         run: |
           find . -name "*.json" -exec devtoys json validate {} \;
-```
+`````
 
 ### Docker (Unofficial)
 
-For containerized workflows, you can wrap DevToys CLI in a lightweight image: ```dockerfile
+For containerized workflows, you can wrap DevToys CLI in a lightweight image: `````dockerfile
 FROM mcr.microsoft.com/dotnet/runtime:8.0
 
 RUN apt-get update && apt-get install -y wget unzip \
@@ -239,12 +240,12 @@ RUN apt-get update && apt-get install -y wget unzip \
     && apt-get remove -y wget unzip && apt-get autoremove -y
 
 ENTRYPOINT ["/app/devtoys"]
-```
+`````
 
-Build and run: ```bash
+Build and run: `````bash
 docker build -t devtoys-cli .
 echo '{"key":"value"}' | docker run -i devtoys-cli json format
-```
+`````
 
 ![DevToys Microsoft Store Rating](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/ms-store-rate.png)
 
@@ -254,15 +255,15 @@ echo '{"key":"value"}' | docker run -i devtoys-cli json format
 
 DevToys processes data entirely in-memory on your local machine. Here are measured performance figures on a standard developer laptop (AMD Ryzen 7, 16 GB RAM): | Operation | Data Size | DevToys (Desktop) | DevToys CLI | Online Alternative |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | JSON Format | 1 MB | ~45 ms | ~38 ms | ~200-500 ms* |
 | JSON Format | 10 MB | ~320 ms | ~280 ms | ~2-5 s* |
@@ -297,22 +298,22 @@ DevToys works entirely offline — no network connection is ever required for th
 
 ### Smart Detection Configuration
 
-Fine-tune Smart Detection to avoid false positives: ```yaml
+Fine-tune Smart Detection to avoid false positives: `````yaml
 # Settings > Smart Detection
 Behavior: "Always ask"        # Options: Auto-open, Always ask, Disabled
 Minimum confidence: 85%       # Adjust threshold for detection
 Excluded tools: # Disable detection for specific tools
   - "Lorem Ipsum Generator"
   - "Password Generator"
-```
+`````
 
 ### Extension Development
 
-Create custom tools using the DevToys SDK. Install the SDK NuGet package: ```bash
+Create custom tools using the DevToys SDK. Install the SDK NuGet package: `````bash
 dotnet add package DevToys.Sdk --version 2.0.0
-```
+`````
 
-A minimal extension implements the `IGuiTool` interface: ```csharp
+A minimal extension implements the ``IGuiTool`` interface: `````csharp
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
@@ -344,17 +345,17 @@ internal sealed class MyCustomTool : IGuiTool
         // Handle Smart Detection input
     }
 }
-```
+`````
 
 ### Monitoring Usage in Teams
 
-While DevToys has no built-in telemetry, you can track which tools your team uses most by wrapping the CLI with a logging script: ```bash
+While DevToys has no built-in telemetry, you can track which tools your team uses most by wrapping the CLI with a logging script: `````bash
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
 echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE"
 /devtoys "$@"
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -362,15 +363,15 @@ When evaluating **devtoys vs cyberchef** and other alternatives, it helps to loo
 
 | Feature | DevToys | CyberChef | DevUtils | Boop |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Platform** | Windows, macOS, Linux | Web (any browser) | macOS only | macOS only |
 | **Price** | Free | Free | $25-40 (one-time) | Free |
@@ -424,7 +425,7 @@ No. DevToys operates entirely offline. No tool data, clipboard contents, or file
 
 ### How does Smart Detection work?
 
-Smart Detection monitors your clipboard and analyzes copied content using pattern matching heuristics. When you copy a JWT token (which has a distinctive `header.payload.signature` structure), DevToys highlights the JWT Decoder tool. You can configure the behavior — auto-open the tool, show a suggestion, or disable entirely — in the Settings panel.
+Smart Detection monitors your clipboard and analyzes copied content using pattern matching heuristics. When you copy a JWT token (which has a distinctive ````header.payload.signature```` structure), DevToys highlights the JWT Decoder tool. You can configure the behavior — auto-open the tool, show a suggestion, or disable entirely — in the Settings panel.
 
 ### Can I use DevToys in CI/CD pipelines?
 
@@ -436,7 +437,7 @@ DevToys 2.0 is a ground-up rewrite that introduced cross-platform support (previ
 
 ### How do I build a custom extension for DevToys?
 
-Install the DevToys.Sdk NuGet package in a .NET class library, implement the `IGuiTool` interface, and package your extension as a NuGet package. Extensions can be distributed on nuget.org or installed manually from the Extension Manager inside DevToys. Full documentation is available at [devtoys.app/doc](https://devtoys.app/doc).
+Install the DevToys.Sdk NuGet package in a .NET class library, implement the ````IGuiTool``` interface, and package your extension as a NuGet package. Extensions can be distributed on nuget.org or installed manually from the Extension Manager inside DevToys. Full documentation is available at [devtoys.app/doc](https://devtoys.app/doc).
 
 ### Where can I get help or report bugs?
 
@@ -503,7 +504,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [superpowers](devtoys)
@@ -513,5 +514,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [2026-06-01-trending-ai-agents](devtoys)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

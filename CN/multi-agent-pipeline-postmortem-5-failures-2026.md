@@ -35,6 +35,7 @@ faq: - q: "What's the single most common multi-agent failure?"
   - q: "Is multi-agent orchestration worth the complexity if it fails this often?"
     a: "Yes, when the task genuinely exceeds one context window or needs independent verification — but these five failures are exactly why you don't reach for it reflexively. A single well-prompted agent beats a buggy five-agent pipeline every time. Use orchestration when the problem is real (comprehensive coverage, parallel independent work, adversarial review), and when you do, build in the verification and stop conditions that prevent these failure modes. Complexity you can't verify is worse than simplicity you can."
 ---
+
 # Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)
 
 
@@ -50,7 +51,7 @@ This is a postmortem of the five failure modes we've actually hit running agent 
 
 **Root cause.** A subagent returns a *summary* — a description of what it intended to do, not a verified record of what it did. "All tests pass" might mean it ran them, or it might mean it believes they would pass. The orchestrator treated prose as ground truth.
 
-**The fix.** Verify against artifacts, never against the summary. After a subagent claims a change, the orchestrator reads the actual `git diff`, checks the test command's exit code, or re-reads the file. We learned this one the hard way — and it's why, when we [wrote a 4-language article using a translation subagent](/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/), we ran `npm run build` as ground truth instead of trusting the agent's "YAML valid: yes." The summary is a claim. The build is evidence.
+**The fix.** Verify against artifacts, never against the summary. After a subagent claims a change, the orchestrator reads the actual ```git diff````, checks the test command's exit code, or re-reads the file. We learned this one the hard way — and it's why, when we [wrote a 4-language article using a translation subagent](/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/), we ran ````npm run build```` as ground truth instead of trusting the agent's "YAML valid: yes." The summary is a claim. The build is evidence.
 
 ## Failure 2: Context Bleed
 
@@ -58,7 +59,7 @@ This is a postmortem of the five failure modes we've actually hit running agent 
 
 **Root cause.** Both agents wrote to the same file, or each assumed a working-tree state the other changed underneath it. Parallel writers sharing one working tree is a race condition with extra steps.
 
-**The fix.** Disjoint scopes and worktree isolation. Scope agent A to `/auth/`, agent B to `/payments/`, with zero overlap. When agents make non-trivial edits, hand each its own git worktree so they operate on independent checkouts and you merge deliberately afterward. Never let two writers share one tree.
+**The fix.** Disjoint scopes and worktree isolation. Scope agent A to ````/auth/````, agent B to ````/payments/````, with zero overlap. When agents make non-trivial edits, hand each its own git worktree so they operate on independent checkouts and you merge deliberately afterward. Never let two writers share one tree.
 
 ## Failure 3: The Runaway Fan-Out
 
@@ -82,7 +83,7 @@ This is a postmortem of the five failure modes we've actually hit running agent 
 
 **Root cause.** Worktrees created for isolation but never treated as scoped resources. No cleanup on completion; no clear ownership of which tree is canonical.
 
-**The fix.** Treat every worktree as a resource with a lifecycle. Auto-clean when an agent makes no changes. On changes, explicitly review-and-merge or discard — don't leave it dangling. And never let a downstream agent read another agent's worktree as ground truth; the canonical state is the main tree, full stop. (We've personally cleaned up an orphaned worktree mid-pipeline — it's a five-second `git worktree remove` that saves an hour of "why is this file wrong.")
+**The fix.** Treat every worktree as a resource with a lifecycle. Auto-clean when an agent makes no changes. On changes, explicitly review-and-merge or discard — don't leave it dangling. And never let a downstream agent read another agent's worktree as ground truth; the canonical state is the main tree, full stop. (We've personally cleaned up an orphaned worktree mid-pipeline — it's a five-second ````git worktree remove``` that saves an hour of "why is this file wrong.")
 
 ## The Principle
 
@@ -170,12 +171,12 @@ Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](multi-agent-pipeline-postmortem-5-failures-2026)
@@ -184,7 +185,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](multi-agent-pipeline-postmortem-5-failures-2026)
 - [cursor-vs-claude-code](multi-agent-pipeline-postmortem-5-failures-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

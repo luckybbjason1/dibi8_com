@@ -21,6 +21,7 @@ draft: false
 aliases:
   - /posts/rag-architecture-implementation-guide/-
 ---
+
 {</* resource-info */>}
 
 Retrieval-Augmented Generation (RAG) has become the dominant architecture for grounding LLM applications in proprietary data. Unlike fine-tuning, which bakes knowledge into model weights, RAG retrieves relevant information at query time and feeds it to the LLM as context. This approach reduces hallucinations, provides source attribution, and keeps responses current without retraining.
@@ -53,11 +54,11 @@ RAG also provides source transparency. Users can see which documents informed th
 
 RAG and fine-tuning solve different problems and often work best together: | Factor | RAG | Fine-Tuning |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Knowledge updates** | Instant (add documents) | Requires retraining |
 | **Source attribution** | Built-in (retrieved chunks) | None |
@@ -76,11 +77,11 @@ A production RAG system consists of seven core components: document ingestion, t
 
 The ingestion pipeline processes source documents into a retrievable format. Supported sources include PDFs, Word documents, Markdown files, HTML pages, database records, and API responses.
 
-Popular document loaders include: - **LangChain loaders**: `PyPDFLoader`, `UnstructuredHTMLLoader`, `CSVLoader`
-- **LlamaIndex readers**: `SimpleDirectoryReader`, `PDFReader`, `DatabaseReader`
+Popular document loaders include: - **LangChain loaders**: ```PyPDFLoader````, ````UnstructuredHTMLLoader````, ````CSVLoader````
+- **LlamaIndex readers**: ````SimpleDirectoryReader````, ````PDFReader````, ````DatabaseReader````
 - **Custom parsers**: OCR for scanned documents, audio transcription for voice content
 
-For PDFs with tables, use `UnstructuredPDFLoader` or `PDFPlumberLoader` to preserve tabular structure. For web content, `FireCrawl` and `ScrapeGraphAI` handle JavaScript-rendered pages that simple HTTP requests miss.
+For PDFs with tables, use ````UnstructuredPDFLoader```` or ````PDFPlumberLoader```` to preserve tabular structure. For web content, ````FireCrawl```` and ````ScrapeGraphAI```` handle JavaScript-rendered pages that simple HTTP requests miss.
 
 ### Text Splitting and Chunking Strategies
 
@@ -92,13 +93,13 @@ Chunking strategy is the single most impactful configuration in a RAG system. Co
 
 Chunk size recommendations by use case: | Use Case | Chunk Size | Overlap | Rationale |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Factual Q&A | 512-1024 tokens | 50-100 | Balance context and specificity |
 | Code retrieval | 256-512 tokens | 50 | Functions fit in smaller chunks |
@@ -143,14 +144,14 @@ Re-ranking adds 50-200ms of latency but typically improves answer relevance by 1
 
 ### LLM Generation with Retrieved Context
 
-The final step combines retrieved chunks with the user query into a prompt template: ```
+The final step combines retrieved chunks with the user query into a prompt template: `````
 You are a helpful assistant. Use the following context to answer the question.
 If you cannot find the answer in the context, say "I don't have enough information."
 
 Context: {retrieved_chunks}
 
 Question: {user_query}
-Answer: ```
+Answer: `````
 
 Prompt engineering significantly impacts RAG quality. Include instructions for handling missing information, formatting requirements, and citation of sources.
 
@@ -158,7 +159,7 @@ Prompt engineering significantly impacts RAG quality. Include instructions for h
 
 ### Basic Implementation with LangChain
 
-A minimal RAG pipeline with LangChain: ```python
+A minimal RAG pipeline with LangChain: `````python
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
@@ -181,11 +182,11 @@ qa_chain = RetrievalQA.from_chain_type(
     retriever=retriever
 )
 result = qa_chain.invoke({"query": "What is the main topic?"})
-```
+`````
 
 ### Basic Implementation with LlamaIndex
 
-The same pipeline with [LlamaIndex](https://docs.llamaindex.ai): ```python
+The same pipeline with [LlamaIndex](https://docs.llamaindex.ai): `````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 
@@ -193,7 +194,7 @@ docs = SimpleDirectoryReader("./data").load_data()
 index = VectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine(llm=OpenAI(model="gpt-4o"))
 response = query_engine.query("What is the main topic?")
-```
+`````
 
 LlamaIndex requires less boilerplate for standard RAG but offers less customization than LangChain.
 
@@ -224,7 +225,7 @@ HyDE improves retrieval quality by 10-20% on average but can degrade performance
 
 ### Hybrid Search (Dense + Sparse Retrieval)
 
-Hybrid search combines the strengths of vector similarity (captures semantic meaning) and keyword matching (captures exact terms): ```python
+Hybrid search combines the strengths of vector similarity (captures semantic meaning) and keyword matching (captures exact terms): `````python
 # Weaviate hybrid search example
 results = (
     client.query
@@ -233,13 +234,13 @@ results = (
     .with_limit(10)
     .do()
 )
-```
+`````
 
 The alpha parameter balances vector vs. keyword weight (1.0 = pure vector, 0.0 = pure keyword). Alpha values of 0.6-0.8 typically work best for general RAG.
 
 ### Contextual Compression and Re-Ranking
 
-Contextual compression filters retrieved chunks to only the most relevant portions: ```python
+Contextual compression filters retrieved chunks to only the most relevant portions: `````python
 from langchain.retrieval import ContextualCompressionRetriever
 from langchain_community.document_transformers import EmbeddingsRedundantFilter
 
@@ -248,20 +249,20 @@ compression_retriever = ContextualCompressionRetriever(
     base_compressor=compressor,
     base_retriever=retriever
 )
-```
+`````
 
 Re-ranking with cross-encoders further improves quality by scoring query-document relevance more accurately than the embedding model's approximate similarity.
 
 ### Multi-Query Retrieval
 
-Generate multiple perspectives on the same question to improve retrieval coverage: ```python
+Generate multiple perspectives on the same question to improve retrieval coverage: `````python
 from langchain.retrieval.multi_query import MultiQueryRetriever
 
 multi_retriever = MultiQueryRetriever.from_llm(
     retriever=base_retriever,
     llm=ChatOpenAI()
 )
-```
+`````
 
 This technique is especially effective when the query uses different terminology than the source documents.
 
@@ -280,14 +281,14 @@ Similar to parent document retrieval, but the "parent" is a window of surroundin
 
 ### Hypothetical Document Embedding (HyDE)
 
-HyDE generates a hypothetical perfect answer to the query, embeds that answer, and retrieves chunks similar to the hypothetical rather than the query itself: ```python
+HyDE generates a hypothetical perfect answer to the query, embeds that answer, and retrieves chunks similar to the hypothetical rather than the query itself: `````python
 # 1. Generate hypothetical answer
 hypothetical = llm.invoke(f"Write a passage that answers: {query}")
 # 2. Embed hypothetical
 hypo_embedding = embeddings.embed_query(hypothetical)
 # 3. Retrieve similar chunks
 results = vectorstore.similarity_search_by_vector(hypo_embedding, k=5)
-```
+`````
 
 HyDE works best when the LLM can generate a reasonable hypothetical answer from its parametric knowledge.
 
@@ -297,7 +298,7 @@ HyDE works best when the LLM can generate a reasonable hypothetical answer from 
 
 Self-RAG, introduced in a [2023 research paper](https://arxiv.org/abs/2310.11511), teaches the LLM to reflect on whether retrieved information is sufficient before generating an answer. The model can decide to retrieve more documents, revise its search, or answer based on what it has. This reduces reliance on a fixed number of retrieved chunks and improves handling of complex queries.
 
-Implementation requires fine-tuning the LLM to emit special reflection tokens (e.g., `[Retrieve]`, `[NoRetrieve]`, `[Irrelevant]`) during generation, guided by a custom tokenizer.
+Implementation requires fine-tuning the LLM to emit special reflection tokens (e.g., ````[Retrieve]````, ````[NoRetrieve]````, ````[Irrelevant]````) during generation, guided by a custom tokenizer.
 
 ### Corrective RAG (CRAG)
 
@@ -311,7 +312,7 @@ A typical CRAG workflow: 1. Retrieve initial chunks
 
 ### Agentic RAG with Tool Use
 
-Agentic RAG combines RAG with autonomous agent capabilities. The LLM decides which tools to use, including retrieval, web search, calculators, and APIs. [LangGraph](https://github.com/langchain-ai/langgraph) and LlamaIndex agents implement this pattern: ```python
+Agentic RAG combines RAG with autonomous agent capabilities. The LLM decides which tools to use, including retrieval, web search, calculators, and APIs. [LangGraph](https://github.com/langchain-ai/langgraph) and LlamaIndex agents implement this pattern: `````python
 from langgraph.prebuilt import create_react_agent
 from langchain.tools.retriever import create_retriever_tool
 
@@ -322,7 +323,7 @@ tools = [
 ]
 agent = create_react_agent(llm, tools)
 response = agent.invoke({"messages": [{"role": "user", "content": query}]})
-```
+`````
 
 Agentic RAG handles complex multi-step questions but adds significant latency (5-30 seconds per query).
 
@@ -340,7 +341,7 @@ Start by auditing your data sources. Identify document types, update frequency, 
 
 ### Step 2: Choosing Embedding Models
 
-Select an embedding model based on the [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) rankings for your languages and use case. For English RAG, `text-embedding-3-large` (commercial) or `BAAI/bge-large-en-v1.5` (open-source) are safe defaults. For multilingual applications, consider `intfloat/multilingual-e5-large` or `nomic-ai/nomic-embed-text-v1.5`.
+Select an embedding model based on the [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard) rankings for your languages and use case. For English RAG, ````text-embedding-3-large```` (commercial) or ````BAAI/bge-large-en-v1.5```` (open-source) are safe defaults. For multilingual applications, consider ````intfloat/multilingual-e5-large```` or ````nomic-ai/nomic-embed-text-v1.5````.
 
 ### Step 3: Chunking Strategy Optimization
 
@@ -377,11 +378,11 @@ Test the complete pipeline with realistic queries including edge cases. Deploy w
 
 Measure retrieval quality independently from generation: | Metric | Description | Target |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Hit Rate @k | % queries with correct doc in top-k | > 90% @ 10 |
 | MRR | Mean reciprocal rank of first correct | > 0.7 |
@@ -397,7 +398,7 @@ Evaluate answer quality with and without human judgment: - **Faithfulness**: Doe
 
 ### End-to-End Evaluation (RAGAS Framework)
 
-[RAGAS](https://docs.ragas.io) (Retrieval-Augmented Generation Assessment) automates RAG evaluation: ```python
+[RAGAS](https://docs.ragas.io) (Retrieval-Augmented Generation Assessment) automates RAG evaluation: `````python
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision
 
@@ -405,7 +406,7 @@ result = evaluate(
     dataset=eval_dataset,
     metrics=[faithfulness, answer_relevancy, context_precision]
 )
-```
+`````
 
 RAGAS generates synthetic test questions from your documents, evaluates retrieval and generation quality, and produces quantitative scores for comparison across pipeline versions.
 
@@ -450,7 +451,7 @@ Caching can reduce costs by 30-70% for applications with repetitive query patter
 
 Production RAG latency targets are typically 1-3 seconds end-to-end. Optimization strategies: - **Async retrieval**: Start retrieval and query rewriting in parallel
 - **Streaming**: Stream LLM tokens to the user as they are generated
-- **Smaller embedding models**: `text-embedding-3-small` vs. `text-embedding-3-large` trades quality for 3x speed
+- **Smaller embedding models**: ````text-embedding-3-small```` vs. ````text-embedding-3-large```` trades quality for 3x speed
 - **Approximate nearest neighbor**: Use HNSW index parameters that balance recall vs. latency
 - **Connection pooling**: Reuse connections to vector databases and LLM APIs
 
@@ -465,7 +466,7 @@ RAG costs consist of embedding storage, embedding API calls, retrieval compute, 
 
 ### Using Ollama Embeddings + LLM
 
-Build a fully private RAG pipeline with local models: ```python
+Build a fully private RAG pipeline with local models: `````python
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
 
@@ -473,28 +474,28 @@ embeddings = OllamaEmbeddings(model="nomic-embed-text")
 llm = Ollama(model="llama3.1")
 vectorstore = Chroma.from_documents(docs, embeddings)
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever())
-```
+`````
 
 This configuration processes all data locally with zero external API calls.
 
 ### BGE Embeddings (Open-Source)
 
-BGE (BAAI General Embedding) models are the highest-performing open-source embedding models on the MTEB leaderboard: ```python
+BGE (BAAI General Embedding) models are the highest-performing open-source embedding models on the MTEB leaderboard: `````python
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 
 embeddings = HuggingFaceBgeEmbeddings(
     model_name="BAAI/bge-large-en-v1.5",
     model_kwargs={"device": "cuda"}
 )
-```
+`````
 
 BGE models run efficiently on consumer GPUs and produce embeddings comparable to commercial alternatives.
 
 ### Local Vector Database Setup
 
-For fully local RAG, use Chroma or Qdrant running in Docker: ```bash
+For fully local RAG, use Chroma or Qdrant running in Docker: `````bash
 docker run -p 6333:6333 qdrant/qdrant
-```
+`````
 
 Both support persistent storage and run efficiently on CPU-only machines for small-to-medium datasets.
 
@@ -573,7 +574,7 @@ Collections exceeding 10 million documents require: - Distributed vector databas
 
 ### Multi-Language Document Support
 
-For collections in multiple languages: - Use multilingual embedding models (`multilingual-e5`, `nomic-embed-text-v1.5`)
+For collections in multiple languages: - Use multilingual embedding models (````multilingual-e5````, ````nomic-embed-text-v1.5```)
 - Detect query language and route to language-specific indices
 - Consider translation as a preprocessing step for low-resource languages
 
@@ -620,7 +621,7 @@ Yes. A fully local RAG stack uses Ollama or vLLM for the LLM, local embedding mo
 Agentic RAG gives the LLM autonomous control over the retrieval process. Instead of a fixed pipeline (retrieve top-k chunks, then generate), the LLM decides whether to retrieve, what to search for, whether results are sufficient, and when to stop retrieving. Agentic RAG handles complex multi-step questions ("What company did the founder of Tesla"s main competitor start after leaving that company?") but adds 5-30 seconds of latency. It is implemented with frameworks like LangGraph, LlamaIndex agents, and ReAct patterns.
 
 
----
+* * *
 ## Recommended Infrastructure
 
 To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
@@ -677,4 +678,4 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
 
----
+* * *

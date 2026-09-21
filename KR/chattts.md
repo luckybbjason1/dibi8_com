@@ -13,6 +13,7 @@ aliases:
 - /kr/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -39,23 +40,23 @@ ChatTTS는 세 단계 파이프라인을 따릅니다: 1. **텍스트 정제**: 
 2. **의미 토큰 생성**: GPT 스타일 자기 회귀 디코더가 정제된 텍스트와 화자 임베딩을 조건으로 의미 토큰을 생성합니다. 이것이 리듬, 억양, 감정 표현을 결정하는 핵심 창의적 단계입니다.
 3. **오디오 디코딩**: 의미 토큰은 사전 학습된 보코더(Vocos)를 사용하여 원시 오디오 파형으로 변환됩니다. 출력은 24kHz 모노 오디오입니다.
 
-```
+````
 입력 텍스트 → 텍스트 정제기 (LLM) → 의미 토큰 (GPT 디코더) → 보코더 → 24kHz 오디오
                                       ↑
                                화자 임베딩 (spk_emb)
-```
+`````
 
 ![ChatTTS 아키텍처 — 화자 임베딩 조건과 운율 토큰 제어가 있는 3단계 텍스트-투-스피치 파이프라인](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/chattts/architecture-diagram.png)
 
 ### 핵심 개념
 
-- **화자 임베딩 (`spk_emb`)**: 음색 특성을 인코딩하는 텐서입니다. 무작위 화자를 샘플링하거나, 나중에 재사용할 수 있도록 저장하거나, 참조 오디오에서 추출할 수 있습니다.
-- **운율 토큰**: 표현을 제어하기 위해 텍스트에 삽입되는 특수 토큰: - `[laugh]` — 웃음 추가
-  - `[uv_break]` — 짧은 멈춤 추가
-  - `[lbreak]` — 긴 멈춤 추가
+- **화자 임베딩 (````spk_emb````)**: 음색 특성을 인코딩하는 텐서입니다. 무작위 화자를 샘플링하거나, 나중에 재사용할 수 있도록 저장하거나, 참조 오디오에서 추출할 수 있습니다.
+- **운율 토큰**: 표현을 제어하기 위해 텍스트에 삽입되는 특수 토큰: - ````[laugh]```` — 웃음 추가
+  - ````[uv_break]```` — 짧은 멈춤 추가
+  - ````[lbreak]```` — 긴 멈춤 추가
 - **추론 파라미터**: Temperature, top-P, top-K 샘플링이 생성된 음성의 무작위성과 다양성을 제어합니다.
 
-```python
+`````python
 import ChatTTS
 import torch
 
@@ -68,7 +69,7 @@ print(f"화자 임베딩 형태: {rand_spk.shape}")
 
 # 나중에 재사용하기 위해 저장
 torch.save(rand_spk, "speaker_embedding.pt")
-```
+`````
 
 ## 설치 및 설정
 
@@ -80,7 +81,7 @@ torch.save(rand_spk, "speaker_embedding.pt")
 
 ### PyPI에서 설치 (안정판)
 
-```bash
+`````bash
 # 가상 환경 생성
 conda create -n chattts python=3.11
 conda activate chattts
@@ -90,19 +91,19 @@ pip install ChatTTS
 
 # GPU 가속 선택적 의존성 설치
 pip install torchaudio
-```
+`````
 
 ### 소스에서 설치 (최신)
 
-```bash
+`````bash
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
 pip install -e .
-```
+`````
 
 ### Docker 설정
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/2noise/ChatTTS
 cd ChatTTS
@@ -110,11 +111,11 @@ cd ChatTTS
 # Docker로 빌드 및 실행
 docker build -t chattts .
 docker run --gpus all -p 8080:8080 chattts
-```
+`````
 
 ### 설치 확인
 
-```python
+`````python
 import ChatTTS
 print(f"ChatTTS 버전: {ChatTTS.__version__}")
 
@@ -124,31 +125,31 @@ chat.load(compile=False)
 texts = ["안녕하세요, ChatTTS 테스트입니다."]
 wavs = chat.infer(texts)
 print(f"생성된 오디오 형태: {wavs[0].shape}")
-```
+`````
 
 ### WebUI 실행
 
-```bash
+`````bash
 python examples/web/webui.py
-```
+`````
 
-브라우저에서 `http://localhost:7860`에 접속합니다. WebUI는 텍스트 입력, 화자 선택, 온도 조절, 오디오 재생을 지원합니다.
+브라우저에서 ````http://localhost:7860````에 접속합니다. WebUI는 텍스트 입력, 화자 선택, 온도 조절, 오디오 재생을 지원합니다.
 
 ### 명령줄 추론
 
-```bash
+`````bash
 python examples/cmd/run.py "첫 번째 텍스트입니다." "두 번째 텍스트입니다."
-```
+`````
 
-출력은 `./output_audio_n.mp3`로 저장됩니다.
+출력은 ````./output_audio_n.mp3````로 저장됩니다.
 
 ## 인기 도구와의 통합
 
 ### OpenAI 호환 API 서버
 
-ChatTTS는 `/v1/audio/speech` 엔드포인트를 지원하는 모든 도구와 통합할 수 있는 OpenAI 호환 API를 제공합니다.
+ChatTTS는 ````/v1/audio/speech```` 엔드포인트를 지원하는 모든 도구와 통합할 수 있는 OpenAI 호환 API를 제공합니다.
 
-```python
+`````python
 # openai_api_server.py — OpenAI 호환 ChatTTS 엔드포인트
 import ChatTTS
 import torch
@@ -178,15 +179,15 @@ async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.I
     torchaudio.save(buffer, torch.from_numpy(wavs[0]).unsqueeze(0), 24000, format="mp3")
     buffer.seek(0)
     return {"audio": base64.b64encode(buffer.read()).decode()}
-```
+`````
 
-서버 실행: ```bash
+서버 실행: `````bash
 uvicorn openai_api_server:app --host 0.0.0.0 --port 8000 --workers 2
-```
+`````
 
 ### LangChain / LLM 통합
 
-```python
+`````python
 # ChatTTS를 LangChain 에이전트 파이프라인에 통합
 from langchain.agents import Tool, AgentExecutor, create_react_agent
 from langchain_openai import ChatOpenAI
@@ -212,11 +213,11 @@ tools = [
 
 llm = ChatOpenAI(model="gpt-4o")
 agent = create_react_agent(llm, tools, prompt="당신은 음성 어시스턴트입니다.")
-```
+`````
 
 ### Gradio 웹 인터페이스 커스터마이징
 
-```python
+`````python
 # 프로덕션 배포용 커스텀 Gradio UI
 import gradio as gr
 import ChatTTS
@@ -254,11 +255,11 @@ demo = gr.Interface(
 )
 
 demo.launch(server_name="0.0.0.0", server_port=7860)
-```
+`````
 
 ### 실시간 애플리케이션용 스트리밍 설정
 
-```python
+`````python
 # 실시간 대화용 스트리밍 오디오 생성
 import ChatTTS
 import numpy as np
@@ -278,11 +279,11 @@ class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model
 
 streamer = StreamingTTS(chat)
 streamer.stream_and_play("잠깐 생각해 볼게요...")
-```
+`````
 
 ### Prometheus 모니터링
 
-```python
+`````python
 # ChatTTS API에 Prometheus 메트릭 추가
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
@@ -298,7 +299,7 @@ async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs
 
 @app.get("/metrics")
 async def metrics(): return Response(generate_latest(), media_type="text/plain")
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -332,7 +333,7 @@ async def metrics(): return Response(generate_latest(), media_type="text/plain")
 
 ### 사용 사례: LLM 음성 어시스턴트
 
-ChatTTS는 LLM 어시스턴트 파이프라인에서 탁월합니다. 약 300ms의 종단간 지연으로 응답을 생성합니다: ```python
+ChatTTS는 LLM 어시스턴트 파이프라인에서 탁월합니다. 약 300ms의 종단간 지연으로 응답을 생성합니다: `````python
 import ChatTTS
 import torchaudio
 import time
@@ -354,11 +355,11 @@ audio_path = assistant.synthesize_response(
     "흥미로운 질문이에요! 생각해 볼게요... [uv_break] "
     "네, 설정에 따라 달라집니다."
 )
-```
+`````
 
 ### 사용 사례: 다화자 대화 생성
 
-ChatTTS는 화자 임베딩을 전환하여 다화자 대화를 지원합니다: ```python
+ChatTTS는 화자 임베딩을 전환하여 다화자 대화를 지원합니다: `````python
 import ChatTTS
 import torchaudio
 
@@ -378,21 +379,21 @@ dialogue = [
 for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f"dialogue_{i}.wav", torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
-```
+`````
 
 ## 고급 사용법 / 프로덕션 강화
 
 ### Torch 컴파일로 속도 향상
 
-Ampere GPU에서 ~20% 추론 속도 향상을 위해 `torch.compile()`을 활성화합니다: ```python
+Ampere GPU에서 ~20% 추론 속도 향상을 위해 ``torch.compile()``을 활성화합니다: `````python
 import ChatTTS
 chat = ChatTTS.Chat()
 chat.load(compile=True)  # 지원 모델에서 torch.compile 활성화
-```
+`````
 
 ### 화자 임베딩 관리
 
-일관된 음성 프로필을 위해 화자 임베딩을 저장하고 로드합니다: ```python
+일관된 음성 프로필을 위해 화자 임베딩을 저장하고 로드합니다: `````python
 import ChatTTS
 import torch
 
@@ -408,11 +409,11 @@ for name in ["agent", "user", "narrator"]: spk = chat.sample_random_speaker()
 # 기존 화자 로드
 spk_agent = torch.load("speakers/agent.pt")
 params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
-```
+`````
 
 ### GPU 메모리 최적화
 
-VRAM이 제한된 서버의 경우 혼합 정밀도와 캐시 정리를 사용합니다: ```python
+VRAM이 제한된 서버의 경우 혼합 정밀도와 캐시 정리를 사용합니다: `````python
 import torch
 from ChatTTS import Chat
 
@@ -424,11 +425,11 @@ def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): # 혼합 
         wavs = chat.infer(texts, params_infer_code=params)
     torch.cuda.empty_cache()  # GPU 메모리 해제
     return wavs
-```
+`````
 
 ### 헬스 체크 엔드포인트
 
-```python
+`````python
 # health_check.py — Kubernetes용 헬스 프로브
 from fastapi import FastAPI, HTTPException
 import ChatTTS
@@ -447,11 +448,11 @@ def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail="
 
 @app.get("/ready")
 def ready(): return {"status": "ready"}
-```
+`````
 
 ### Kubernetes 배포
 
-```yaml
+`````yaml
 # chattts-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -471,7 +472,7 @@ spec: replicas: 2
         readinessProbe: httpGet: path: /ready
             port: 8000
           periodSeconds: 10
-```
+`````
 
 ## 대안과의 비교
 
@@ -482,8 +483,8 @@ spec: replicas: 2
 | **최소 VRAM** | 4 GB | 4 GB | 2 GB | 5 GB |
 | **RTF (RTX 4090)** | 0.30 | 0.25 | 0.08 | 0.45 |
 | **대화형 TTS** | 예 (전용 설계) | 보통 | 아니오 | 보통 |
-| **웃음 제어** | 토큰 수준 `[laugh]` | 아니오 | 아니오 | 제한적 |
-| **멈춤 제어** | 토큰 수준 `[uv_break]` | 아니오 | 구두점만 | 제한적 |
+| **웃음 제어** | 토큰 수준 ````[laugh]```` | 아니오 | 아니오 | 제한적 |
+| **멈춤 제어** | 토큰 수준 ````[uv_break]```` | 아니오 | 구두점만 | 제한적 |
 | **호흡 소리** | 예 | 아니오 | 아니오 | 아니오 |
 | **음성 클로닝** | 화자 임베딩 | 6초 오디오 클론 | 아니오 | 화자 프롬프트 |
 | **지원 언어** | 중국어, 영어 | 17개 언어 | 6개 언어 | 다국어 |
@@ -525,7 +526,7 @@ ChatTTS 코드는 AGPL-3.0이며, 모델 가중치는 CC BY-NC 4.0입니다. 상
 이것은 자기 회귀 TTS 모델의 고유한 특성입니다. 완화 방법: temperature를 낮추고, 고정 화자 임베딩을 사용하거나, 여러 샘플을 생성하여 최상의 결과를 선택합니다.
 
 **Q: 웃음과 멈춤을 어떻게 제어하나요?**
-ChatTTS는 입력 텍스트에서 `[laugh]`(웃음), `[uv_break]`(짧은 멈춤), `[lbreak]`(긴 멈춤)을 지원합니다. `RefineTextParams`로 문장 수준 제어도 가능합니다.
+ChatTTS는 입력 텍스트에서 ````[laugh]````(웃음), ````[uv_break]````(짧은 멈춤), ````[lbreak]````(긴 멈춤)을 지원합니다. ````RefineTextParams````로 문장 수준 제어도 가능합니다.
 
 **Q: ChatTTS는 음성 클로닝을 지원하나요?**
 예, 화자 임베딩을 통해 지원합니다. 그러나 이는 수 초 오디오의 제로샷 음성 클로닝과는 다륾니다. 이 기능은 로드맵에 있습니다.
@@ -537,7 +538,7 @@ GPT-SoVITS는 1분 참조 오디오로 음성을 클론하는 데 최적화되�
 실용적인 CPU 추론 경로가 없습니다. CPU 추론이 필요하면 MeloTTS를 고려하세요.
 
 **Q: Docker 컨테이너에서 ChatTTS를 어떻게 배포하나요?**
-`docker build -t chattts .`로 빌드하고 `docker run --gpus all -p 7860:7860 chattts`로 실행합니다.
+````docker build -t chattts .````로 빌드하고 ````docker run --gpus all -p 7860:7860 chattts````로 실행합니다.
 
 ## 결론
 
@@ -545,9 +546,9 @@ ChatTTS는 오픈소스 TTS 분야에서 독특한 위치를 차지합니다. �
 
 LLM 음성 어시스턴트를 구축하는 팀에게 ChatTTS 설치는 간단합니다 — pip로 설치하고, 모델을 로드하고, 5분 이내에 웃음과 멈춤이 있는 자연스러운 음성 생성을 시작하세요. 자기 회귀 아키텍처는 불안정성이라는 트레이드오프를 가져오지만, 대화 시나리오에서는 ChatTTS의 표현력을 능가하는 오픈소스 대안이 없습니다. conversational tts 분야에서 ChatTTS benchmark 결과는 경쟁 모델들과 비교했을 때 웃음과 호흡 소리 생성에서 압도적인 우위를 보여줍니다. 2026년 현재 chattts vs coqui 비교에서 ChatTTS는 중국어 대화의 자연스러움과 token 수준 prosodic control 면에서 명확한 차별화 요소를 가지고 있습니다. 다만 영어 합성 품질 면에서는 Coqui XTTS v2가 여전히 앞서 있으므로, 프로젝트의 주요 언어에 따라 적절한 모델 선택이 필요합니다.
 **액션 아이템:**
-1. 저장소를 클론하고 GPU 머신에서 WebUI 실행. `git clone https://github.com/2noise/ChatTTS` 명령으로 시작하여 Python 3.11 가상 환경에서 설치 완료
-2. 운율 토큰(`[laugh]`, `[uv_break]`)으로 대화 데이터셋 실험. temperature 0.2~0.5 범위에서 최적의 자연스러움 찾기
-3. LLM 파이프라인과 통합하기 위해 OpenAI 호환 API 배포. FastAPI 기반 서버로 `/v1/audio/speech` 엔드포인트 제공
+1. 저장소를 클론하고 GPU 머신에서 WebUI 실행. ````git clone https://github.com/2noise/ChatTTS```` 명령으로 시작하여 Python 3.11 가상 환경에서 설치 완료
+2. 운율 토큰(````[laugh]````, ````[uv_break]````)으로 대화 데이터셋 실험. temperature 0.2~0.5 범위에서 최적의 자연스러움 찾기
+3. LLM 파이프라인과 통합하기 위해 OpenAI 호환 API 배포. FastAPI 기반 서버로 ````/v1/audio/speech``` 엔드포인트 제공
 4. 스트리밍 생성 및 감정 제어 업데이트를 위해 Discord 또는 GitHub Discussions 커뮤니티 가입. 2026년 하반기 multi-emotion control 버전 공개 예정
 
 업데이트를 팔로우하고 [dibi8.com Telegram 그룹](https://t.me/dibi8_channel)에서 대화형 TTS 전략을 논의하세요.
@@ -599,7 +600,7 @@ LLM 음성 어시스턴트를 구축하는 팀에게 ChatTTS 설치는 간단합
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -609,7 +610,7 @@ LLM 음성 어시스턴트를 구축하는 팀에게 ChatTTS 설치는 간단합
 - [microsoft-markitdown-file-to-markdown-converter-cli](chattts)
 - [nanochat-karpathy-100-chatgpt-single-gpu](chattts)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

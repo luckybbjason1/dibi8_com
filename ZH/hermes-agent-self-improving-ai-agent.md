@@ -33,6 +33,7 @@ faqs: - q: 'Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工�
     a: 'Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 `hermes gateway setup` 命令进行配置。同一套命令和技能在每个平台上都能通用。'
   - q: '如何安装 Hermes Agent 并配置 LLM 提供商？'
     a: '在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 `./setup-hermes.sh`。随后你可以用类似 `hermes config set provider openai` 和 `hermes config set model gpt-4o` 的命令来设置提供商，或通过 `hermes config set provider ollama` 使用本地模型。'---
+
 {</* resource-info */>}
 
 ## 问题：大多数 AI 代理都把你忘了
@@ -61,9 +62,9 @@ faqs: - q: 'Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工�
 
 Hermes Agent 的核心创新是其**自我改进循环**：
 
-```
+````
 经验 → 反思 → 技能创建 → 实践 → 改进
-```
+`````
 
 当你用 Hermes 完成任务时，它会：
 1. **分析** 什么有效、什么无效
@@ -82,7 +83,7 @@ Hermes Agent 配备了全面的工具集：
 |
 ---
 |
----
+* * *
 |
 | **文件操作** | 读取、写入、搜索、差异对比、补丁 |
 | **终端** | 执行命令、Shell 会话、后台作业 |
@@ -103,9 +104,9 @@ Hermes Agent 配备了全面的工具集：
 - **验证步骤** —— 如何确认成功
 
 示例技能结构：
-```yaml
+`````yaml
 
----
+* * *
 name: "hugo-blog-deploy"
 trigger: "deploy hugo blog"
 steps: 1. "Run hugo --minify --cleanDestinationDir"
@@ -115,7 +116,7 @@ steps: 1. "Run hugo --minify --cleanDestinationDir"
 pitfalls: - "Future dates prevent building"
   - "Cloudflare cache may show stale content"
 verification: - "curl -s https://site.com | grep title"
-```
+`````
 
 技能可以：
 - **自动创建** —— 从成功完成的任务中
@@ -148,18 +149,18 @@ Hermes Agent 不仅仅是一个 CLI 工具——它是一个**多平台消息机
 
 | 平台 | 设置 | 使用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Telegram** | `hermes gateway setup` | 移动 AI 助手 |
-| **Discord** | `hermes gateway setup` | 团队协作 |
-| **Slack** | `hermes gateway setup` | 工作场所集成 |
-| **WhatsApp** | `hermes gateway setup` | 个人助手 |
-| **Signal** | `hermes gateway setup` | 注重隐私 |
-| **Email** | `hermes gateway setup` | 异步工作流 |
+| **Telegram** | ````hermes gateway setup```` | 移动 AI 助手 |
+| **Discord** | ````hermes gateway setup```` | 团队协作 |
+| **Slack** | ````hermes gateway setup```` | 工作场所集成 |
+| **WhatsApp** | ````hermes gateway setup```` | 个人助手 |
+| **Signal** | ````hermes gateway setup```` | 注重隐私 |
+| **Email** | ````hermes gateway setup```` | 异步工作流 |
 
 配置完成后，你可以从任何这些平台与 Hermes 聊天，使用相同的命令和技能。
 
@@ -178,7 +179,7 @@ Hermes Agent 支持**模型上下文协议（MCP）**，允许它连接到任何
 
 Hermes Agent 可以通过其内置的定时系统运行**定时任务**：
 
-```bash
+`````bash
 # 每天早上 9 点运行一个技能
 hermes cron add --skill "daily-report" --schedule "0 9 * * *"
 
@@ -187,7 +188,7 @@ hermes cron add --skill "backup-database" --schedule "0 2 * * 0"
 
 # 列出所有定时任务
 hermes cron list
-```
+`````
 
 非常适合需要按计划运行的自动化工作流。
 
@@ -204,7 +205,7 @@ Hermes Agent 认真对待安全：
 
 ### 安装
 
-```bash
+`````bash
 # 一行命令安装（Linux、macOS、WSL2）
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 
@@ -212,18 +213,18 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 git clone https://github.com/NousResearch/hermes-agent.git
 cd hermes-agent
 ./setup-hermes.sh
-```
+`````
 
 ### 首次对话
 
-```bash
+`````bash
 source ~/.bashrc    # 重新加载 Shell
 hermes              # 开始聊天
-```
+`````
 
 ### 配置提供商
 
-```bash
+`````bash
 # 设置你喜欢的 LLM 提供商
 hermes config set provider openai
 hermes config set model gpt-4o
@@ -231,11 +232,11 @@ hermes config set model gpt-4o
 # 或者使用本地模型
 hermes config set provider ollama
 hermes config set model llama3.1
-```
+`````
 
 ### 常用命令
 
-```bash
+`````bash
 # 开启全新对话
 /new
 
@@ -256,13 +257,13 @@ hermes config set model llama3.1
 
 # 压缩上下文以节省 Token
 /compress
-```
+`````
 
 ## 架构
 
 Hermes Agent 采用模块化架构构建：
 
-```
+`````
 Hermes Agent
 ├── CLI 界面（终端 UI）
 ├── 消息网关（Telegram、Discord 等）
@@ -273,7 +274,7 @@ Hermes Agent
 ├── MCP 客户端（外部集成）
 ├── 定时调度器（自动化任务）
 └── 安全层（审批、隔离）
-```
+````
 
 整个系统使用 **Python**（2800 万+ 行代码）编写，Web 界面使用 TypeScript 组件。
 
@@ -301,15 +302,15 @@ Hermes Agent
 
 | 功能 | Hermes Agent | Claude Code | Cursor | GitHub Copilot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **自我学习** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 |
 | **持久记忆** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 |
@@ -348,7 +349,7 @@ Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不�
 - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
 
 
----
+* * *
 ## 推荐自托管基础设施
 
 要 7×24 稳定跑这套，服务器选择很关键：
@@ -421,7 +422,7 @@ Hermes Agent：一个会自我进化的 AI 代理，越用越懂你 represents a
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -452,15 +453,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

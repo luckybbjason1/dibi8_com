@@ -32,6 +32,7 @@ faq: - q: "schema drift 란 무엇이며 왜 백테스트 결과를 가짜로 �
     a: "7개에서 13개로 확장되었습니다. 새로 추가된 항목은: schema 검증 없는 실험을 신뢰하지 말 것, 200 거래일 미만 데이터셋에 대해 판단을 내리지 말 것, 30 트레이드 미만에서 PF > 3 을 받아들이지 말 것, 크로스에셋 검증 없이 전략을 출시하지 말 것, stdev/mean 비율을 무시하지 말 것 (1 초과 = 노이즈), 세그먼트별 분해 없이 PF 를 보고하지 말 것, IS/OOS ratio 없이 보고서를 받아들이지 말 것."
 ---
 
+
 {{</* resource-info */>}}
 
 # 스키마 버그가 가짜로 만든 Overfit 진단
@@ -48,13 +49,13 @@ faq: - q: "schema drift 란 무엇이며 왜 백테스트 결과를 가짜로 �
 
 > **원본 결론**: BTC 304일 데이터에서 교과서적 overfit (PF 2.08 → 0.94, ratio 2.21).
 >
-> **실제 발견**: schema 필드 불일치. `evolved_final_params.json` 은 `leverage` / `tp_atr_mult` 필드 이름을 사용했지만, 현재 schema 는 `base_leverage` / `tp_rr_ratio` 를 사용합니다. `from_dict()` 가 이를 조용히 버렸습니다. 실제 실행은 진화된 2x 가 아니라 기본값 10x leverage 로 이루어졌습니다.
+> **실제 발견**: schema 필드 불일치. ```evolved_final_params.json```` 은 ````leverage```` / ````tp_atr_mult```` 필드 이름을 사용했지만, 현재 schema 는 ````base_leverage```` / ````tp_rr_ratio```` 를 사용합니다. ````from_dict()```` 가 이를 조용히 버렸습니다. 실제 실행은 진화된 2x 가 아니라 기본값 10x leverage 로 이루어졌습니다.
 >
 > **교정된 결과**: PF 1.494 / 1.478, ratio 1.01. 지루할 정도로 안정적. overfit 이 아닙니다.
 >
 > **하지만 또한**: 크로스에셋 테스트는 여전히 잘해야 손익분기를 보여줍니다. DOT 워크포워드 IS/OOS ratio 6.47 — 「운 좋은 세그먼트」 이야기 속에 실제 교과서적 overfit 이 숨어 있었습니다.
 >
-> **메타 교훈**: 백테스트 출력을 신뢰하기 전에 파라미터 로딩을 검증하십시오. `print(vars(params))` 5초가 7개의 실험을 절약했을 것입니다.
+> **메타 교훈**: 백테스트 출력을 신뢰하기 전에 파라미터 로딩을 검증하십시오. ````print(vars(params))```` 5초가 7개의 실험을 절약했을 것입니다.
 
 ## 원본 「발견」
 
@@ -84,30 +85,30 @@ ETH 가 돌았습니다. PF 1.154 → 0.697, ratio 1.66. 가벼운 overfit, 대�
 
 ## Schema Drift
 
-Python 의 전형적인 `dataclass.from_dict()` 패턴에서, 알 수 없는 필드는 조용히 버려집니다. Pydantic 도 strict 모드를 설정하지 않는 한 마찬가지입니다.
+Python 의 전형적인 ````dataclass.from_dict()```` 패턴에서, 알 수 없는 필드는 조용히 버려집니다. Pydantic 도 strict 모드를 설정하지 않는 한 마찬가지입니다.
 
-진화된 구성 파일에는 다음이 포함되어 있었습니다: ```json
+진화된 구성 파일에는 다음이 포함되어 있었습니다: `````json
 {
   "leverage": 2,
   "sl_atr_mult": 2.5,
   "tp_atr_mult": 2.5,
   ...
 }
-```
+`````
 
-런타임 `DecisionParams` schema 는 다음을 기대했습니다: ```python
+런타임 ``DecisionParams`` schema 는 다음을 기대했습니다: `````python
 base_leverage: float = 10.0
 max_leverage: float = 40.0
 sl_atr_mult: float = ...
 tp_rr_ratio: float = ...
-```
+`````
 
-`leverage` → 조용히 버려짐 → `base_leverage` 가 기본값 **10.0** 으로.
-`tp_atr_mult` → 조용히 버려짐 → `tp_rr_ratio` 가 자체 기본값으로.
+````leverage```` → 조용히 버려짐 → ````base_leverage```` 가 기본값 **10.0** 으로.
+````tp_atr_mult```` → 조용히 버려짐 → ````tp_rr_ratio```` 가 자체 기본값으로.
 
 우리가 돌리고 있다고 생각한 「대칭적인 2.5/2.5 ATR 승수가 있는 진화된 2x leverage」는 실제로는 「기본값 10x leverage 와 기본값 tp_rr_ratio」였습니다.
 
-`from_dict()` 이후 5초짜리 `print(vars(params))` 가 이를 보여줬을 것입니다. 우리는 하지 않았습니다.
+````from_dict()```` 이후 5초짜리 ````print(vars(params))```` 가 이를 보여줬을 것입니다. 우리는 하지 않았습니다.
 
 ## 교정된 숫자
 
@@ -141,7 +142,7 @@ DOT 가 두드러져 보였습니다 — Train 1.65, OOS 1.91, 양쪽 모두 강
 
 ## 방어선
 
-세 가지 레이어, 노력/가치 순: **1. 엄격한 디시리얼라이제이션.** 파라미터 로더가 알 수 없는 필드를 거부하게 만드십시오. Python 에서: ```python
+세 가지 레이어, 노력/가치 순: **1. 엄격한 디시리얼라이제이션.** 파라미터 로더가 알 수 없는 필드를 거부하게 만드십시오. Python 에서: `````python
 @dataclass(frozen=True, kw_only=True)
 class DecisionParams: base_leverage: float = 10.0
     # ...
@@ -151,15 +152,15 @@ class DecisionParams: base_leverage: float = 10.0
         unknown = set(d.keys()) - valid
         if unknown: raise ValueError(f"Unknown fields: {unknown}")
         return cls(**{k: v for k, v in d.items() if k in valid})
-```
+`````
 
-원본 `from_dict()` 는 유효한 필드로 필터링했지만 알 수 없는 필드에 대해 *예외를 던지지 않았습니다*. `raise` 하나가 빠진 비용이 7번의 실험이었습니다.
+원본 ````from_dict()```` 는 유효한 필드로 필터링했지만 알 수 없는 필드에 대해 *예외를 던지지 않았습니다*. ````raise```` 하나가 빠진 비용이 7번의 실험이었습니다.
 
-**2. 백테스트 전에 유효 파라미터 출력.** 세 줄: ```python
+**2. 백테스트 전에 유효 파라미터 출력.** 세 줄: `````python
 params = DecisionParams.from_dict(raw)
 print(f"Effective: leverage={params.base_leverage}, sl={params.sl_atr_mult}, tp={params.tp_rr_ratio}")
 assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "leverage mismatch"
-```
+````
 
 **3. 파라미터 파일 schema 버전 고정.** 프레임워크의 schema 가 변경되면, 오래된 파라미터 파일은 조용히 저하되는 것이 아니라 시끄럽게 실패해야 합니다.
 
@@ -187,7 +188,7 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 *제휴 링크 — 가격은 동일하며, dibi8.com 을 후원합니다.*
 
----
+* * *
 
 **관련 글**: [Moss Trade Bot Factory 2026 리뷰](https://dibi8.com/kr/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [백테스트 OVERFIT 5가지 패턴 2026](https://dibi8.com/kr/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python 백테스팅](https://dibi8.com/kr/resources/ai-trading/backtrader-python-backtesting/)
 
@@ -253,7 +254,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

@@ -12,9 +12,10 @@ maintainer: 'chopratejas'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
+
 # Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Headroom Compression Pipeline            │
 │                                                      │
@@ -35,7 +36,7 @@ featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headr
 │  │  (Claude Code / Codex / Copilot / Gemini CLI)  │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Headroom pipeline: input → compress → LLM with 60-95% fewer tokens*
 
@@ -54,13 +55,13 @@ Key capabilities: - **Input compression** — Deduplicate, prune, and summarize 
 - **Quality-preserving** — Benchmarked to produce equivalent answers at 60-95% token reduction
 - **Zero-config start** — Ships with sensible defaults; optimize later with custom rules
 
-The project is built with Python, uses minimal dependencies (just `tiktoken` for token counting), and integrates via standard HTTP APIs. It stores compression state in memory or Redis for multi-session scenarios.
+The project is built with Python, uses minimal dependencies (just ````tiktoken```` for token counting), and integrates via standard HTTP APIs. It stores compression state in memory or Redis for multi-session scenarios.
 
 ## How Headroom Works
 
 Headroom operates through a three-stage pipeline: ### Stage 1: Input Ingestion
 
-```bash
+`````bash
 # Install the library
 pip install "headroom-ai[all]"
 
@@ -74,11 +75,11 @@ print(f'Original: {result.original_tokens} tokens')
 print(f'Compressed: {result.compressed_tokens} tokens')
 print(f'Savings: {result.savings_pct}%')
 "
-```
+`````
 
 ### Stage 2: Compression Engine
 
-The compression engine applies multiple strategies: ```python
+The compression engine applies multiple strategies: `````python
 # Custom compression rules
 from headroom import Compressor
 
@@ -97,32 +98,32 @@ compressed = compressor.compress([
     {"type": "rag_chunk", "data": embedded_text},
     {"type": "code_file", "data": source_code},
 ])
-```
+`````
 
 ### Stage 3: LLM Integration
 
-```bash
+`````bash
 # Start the proxy server
 headroom serve --port 8787 --compressor balanced
 
 # Point your AI agent to the proxy instead of the LLM directly
 # Agent -> Headroom Proxy (8787) -> Compressed -> LLM API
-```
+`````
 
-```json
+`````json
 // .env — Configure which LLM to proxy through
 HEADROOM_PROXY_PORT=8787
 LLM_ENDPOINT=https://api.anthropic.com/v1/messages
 LLM_MODEL=claude-sonnet-4-20250514
 LLM_API_KEY=${ANTHROPIC_API_KEY}
 COMPRESSION_STRATEGY=balanced
-```
+`````
 
 ## Installation & Setup
 
 ### Quick Start (Library Mode)
 
-```bash
+`````bash
 # Install
 pip install "headroom-ai[all]"
 
@@ -132,18 +133,18 @@ import headroom
 compressed = headroom.compress(your_long_input)
 print(compressed.text)
 "
-```
+`````
 
 ### Node.js Setup
 
-```bash
+`````bash
 # Install
 npm install headroom-ai
-```
+`````
 
 ### Proxy Mode (Recommended for AI Agents)
 
-```bash
+`````bash
 # Install and start
 pip install "headroom-ai[all]"
 headroom serve --host 0.0.0.0 --port 8787
@@ -159,11 +160,11 @@ curl -X POST http://localhost:8787/compress \
 #   "savings_pct": 80.3,
 #   "compressed_text": "..."
 # }
-```
+`````
 
 ### MCP Server Mode
 
-```bash
+`````bash
 # Start as MCP server
 headroom mcp-serve --port 9090
 
@@ -173,7 +174,7 @@ claude-code --mcp http://localhost:9090
 # The MCP server exposes: # - headroom/compress — Compress text input
 # - headroom/benchmark — Run compression benchmark
 # - headroom/config — Get/update compression settings
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
@@ -181,7 +182,7 @@ claude-code --mcp http://localhost:9090
 
 Headroom adapts its compression strategy based on the input type. Code-heavy inputs retain more structure, while verbose log files get aggressive pruning.
 
-```python
+`````python
 # Context-aware compression example
 from headroom import ContextCompressor
 
@@ -195,25 +196,25 @@ ctx_compressor = ContextCompressor(
 result = ctx_compressor.compress(input_data)
 print(f"Type detected: {result.input_type}")
 print(f"Savings: {result.savings_pct}%")
-```
+`````
 
 ### Token Accounting Dashboard
 
 Track your savings in real-time when running the proxy server in dashboard mode.
 
-```bash
+`````bash
 # Start proxy with built-in monitoring dashboard
 headroom serve --port 8787 --dashboard --dashboard-port 3000
 
 # View dashboard at http://localhost:3000
 # See real-time token savings, compression ratios, and cost tracking
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
 Headroom works with any agent that sends HTTP requests to an LLM API. Here's how to integrate with popular tools: ### Claude Code
 
-```bash
+`````bash
 # Method 1: Use as MCP server
 headroom mcp-serve --port 9090
 # Then in Claude Code: add-mcp headroom http://localhost:9090
@@ -221,20 +222,20 @@ headroom mcp-serve --port 9090
 # Method 2: Set as API proxy in .claude-env
 export CLAUDE_API_BASE_URL=http://localhost:8787/v1
 # Claude Code automatically routes through Headroom
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # Point Codex through Headroom proxy
 export OPENAI_API_BASE=http://localhost:8787/v1
 codex --model gpt-4o --prompt "Fix the auth bug"
 # All context goes through Headroom compression first
-```
+`````
 
 ### OpenRouter Aggregation
 
-```bash
+`````bash
 # Use Headroom with OpenRouter for multi-model cost savings
 headroom serve \
   --proxy http://api.openrouter.ai/api/v1 \
@@ -243,7 +244,7 @@ headroom serve \
 
 # Headroom compresses inputs, then sends to OpenRouter
 # You pay for compressed tokens, not raw tokens
-```
+`````
 
 For self-hosted proxy infrastructure, [HTStack](https://my.htstack.com/aff.php?aff=27187) [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplets provide stable low-latency connections. Consider [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) data-center proxies for multi-region deployment. For token trading integrations, connect to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) or [OKX](https://www.promoohubly.com/join/12190433) via headroom's proxy layer.
 
@@ -253,15 +254,15 @@ For self-hosted proxy infrastructure, [HTStack](https://my.htstack.com/aff.php?a
 
 Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file contents, and RAG chunks): | Configuration | Avg Original Tokens | Avg Compressed Tokens | Savings | Answer Quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | No compression | 4,820 | 4,820 | 0% | 100% |
 | Conservative (90% cap) | 4,820 | 1,450 | 70% | 98% |
@@ -270,18 +271,18 @@ Testing on 100 real-world tool outputs (mix of terminal output, git diffs, file 
 
 ### Cost Reduction: Real Scenario
 
-A developer using Claude Code for a 50K-line Python project: ```bash
+A developer using Claude Code for a 50K-line Python project: `````bash
 # Before Headroom: # Daily context: ~120,000 tokens/day
 # Cost: ~$48/month (Claude Sonnet @ $3/M)
 
 # After Headroom (balanced mode): # Daily context: ~28,000 tokens/day
 # Cost: ~$11/month
 # Savings: ~$37/month = 77% reduction
-```
+`````
 
 ### RAG Chunk Compression
 
-Compressing retrieved documents before sending to LLM: ```python
+Compressing retrieved documents before sending to LLM: `````python
 from headroom import Compressor, rag_compress
 
 # Compress RAG chunks before LLM
@@ -294,11 +295,11 @@ compressed_chunks = rag_compress(
 
 # Result: 47 original chunks → 12 compressed chunks
 # Same answer quality, 74% fewer tokens
-```
+`````
 
 ### Real-World Use Case: CI/CD Log Analysis
 
-A team processes 500 GitHub Actions logs per week: ```bash
+A team processes 500 GitHub Actions logs per week: `````bash
 # Batch compress logs
 headroom compress-batch \
   --input ./ci-logs/*.log \
@@ -309,13 +310,13 @@ headroom compress-batch \
 # Analyze compressed logs with AI
 cat ./compressed-logs/build-42.log | \
   headroom serve --prompt "Find the root cause of this failure"
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Custom Compression Rules
 
-Define domain-specific compression rules: ```yaml
+Define domain-specific compression rules: `````yaml
 # headroom-config.yaml
 rules: # Skip compressing code files below a threshold
   - pattern: "\\.py$"
@@ -334,11 +335,11 @@ rules: # Skip compressing code files below a threshold
   - pattern: "openapi.*\\.yaml$"
     compress: false
     dedup: true
-```
+`````
 
 ### Redis-backed Session State
 
-For multi-session scenarios, persist compression state: ```bash
+For multi-session scenarios, persist compression state: `````bash
 # Start with Redis state backend
 headroom serve \
   --redis-url redis://localhost:6379/0 \
@@ -346,11 +347,11 @@ headroom serve \
 
 # Session state persists across requests
 # Useful for long-running agent sessions
-```
+`````
 
 ### Health Checks & Monitoring
 
-```bash
+`````bash
 # Health check endpoint
 curl -s http://localhost:8787/health | jq
 
@@ -365,21 +366,21 @@ curl -s http://localhost:8787/stats | jq
 
 # Rate limiting
 curl -s http://localhost:8787/config | jq
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Headroom | Tiktoken-only | RAG compression libs | Token-efficient frameworks |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Token savings | 60-95% | 0% (counting only) | 30-60% | 50-80% |
 | Multi-format (JSON, logs, files) | Yes | No | Limited | No |
@@ -412,7 +413,7 @@ A: Headroom uses structural analysis (token boundaries, format-aware deduplicati
 
 **Q: Does Headroom work with local models like Ollama?**
 
-A: Yes. Point the proxy to any Ollama endpoint: `LLM_ENDPOINT=http://localhost:11434/v1`. Compression happens before the request reaches Ollama, reducing VRAM usage.
+A: Yes. Point the proxy to any Ollama endpoint: ````LLM_ENDPOINT=http://localhost:11434/v1````. Compression happens before the request reaches Ollama, reducing VRAM usage.
 
 **Q: Can I run Headroom on a VPS for team usage?**
 
@@ -424,7 +425,7 @@ A: No. Headroom is open-source (MIT license), completely free, and has no usage 
 
 **Q: How does Headroom handle RAG retrieval?**
 
-A: Headroom includes a `rag_compress` function that scores, deduplicates, and prunes retrieved chunks before sending them to the LLM. It uses embedding similarity to preserve high-relevance chunks.
+A: Headroom includes a ````rag_compress``` function that scores, deduplicates, and prunes retrieved chunks before sending them to the LLM. It uses embedding similarity to preserve high-relevance chunks.
 
 ## Sources & Further Reading
 
@@ -471,7 +472,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](headroom-token-compression-proxy-library-mcp-server)
@@ -481,5 +482,5 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [codebase-memory-mcp-deep-code-intelligence](headroom-token-compression-proxy-library-mcp-server)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

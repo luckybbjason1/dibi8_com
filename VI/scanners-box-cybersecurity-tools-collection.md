@@ -38,6 +38,7 @@ faqs: - q: 'Scanners-Box là gì?'
     a: 'Những công cụ này chỉ hợp pháp khi dùng cho kiểm thử bảo mật được cấp phép; sử dụng chúng nhắm vào các hệ thống mà không có sự cho phép bằng văn bản rõ ràng là bất hợp pháp và phi đạo đức. Các luật liên quan bao gồm Đạo luật Gian lận và Lạm dụng Máy tính của Hoa Kỳ (CFAA), Đạo luật Lạm dụng Máy tính của Anh, Luật An ninh mạng của Trung Quốc và GDPR của EU, vì vậy hãy luôn xin ủy quyền bằng văn bản và xác định phạm vi trước khi kiểm thử.'
 ---
 
+
 {</* resource-info */>}
 
 ## Scanners-Box là gì?
@@ -49,7 +50,7 @@ faqs: - q: 'Scanners-Box là gì?'
 **Số lượng công cụ**: 200+  
 **Danh mục**: 15+
 
----
+* * *
 
 ## Tổng Quan Danh Mục Công Cụ
 
@@ -71,7 +72,7 @@ faqs: - q: 'Scanners-Box là gì?'
 | **Tình báo mối đe dọa** | 3+ | threat-intelligence, VirusTotal, ThreatBook |
 | **Tài nguyên học tập** | 20+ | sec-wiki, FreeBuf, Web Hacking 101 |
 
----
+* * *
 
 ## Phân Tích Sâu Các Công Cụ Nổi Bật
 
@@ -94,13 +95,13 @@ faqs: - q: 'Scanners-Box là gì?'
 - Hỗ trợ 6 loại cơ sở dữ liệu
 - Script can thiệp để vượt qua WAF
 
-```bash
+````bash
 # Cách sử dụng cơ bản
 sqlmap -u "http://target.com/page.php?id=1" --dbs
 
 # Kết xuất bảng cụ thể
 sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
-```
+`````
 
 ### 3. Khung Fuzzing
 
@@ -117,7 +118,7 @@ sqlmap -u "http://target.com/page.php?id=1" -D database -T users --dump
 ### 4. Quét cổng
 
 **Nmap** — Vua của máy quét mạng
-```bash
+`````bash
 # Quét cơ bản
 nmap -sV -sC target.com
 
@@ -126,7 +127,7 @@ nmap -p- -sV --script=vuln target.com
 
 # Quét tích cực
 nmap -A target.com
-```
+`````
 
 **masscan** — Máy quét cổng Internet nhanh nhất
 - Quét toàn bộ Internet trong 6 phút
@@ -146,7 +147,7 @@ nmap -A target.com
 - Bắt cookie phiên
 - Vượt qua xác thực hai yếu tố
 
----
+* * *
 
 ## Tài Nguyên Học Tập Bảo Mật
 
@@ -168,7 +169,7 @@ nmap -A target.com
 - **Vấn đề bảo mật Web Node.js**
 - **Loạt bài về bảo mật Python**
 
----
+* * *
 
 ## Mục tiêu dễ bị tổn thương để luyện tập
 
@@ -182,7 +183,7 @@ nmap -A target.com
 | **DVWA** | Ứng dụng Web dễ bị tổn thương | GitHub |
 | **WebGoat** | Luyện tập bảo mật Web OWASP | GitHub |
 
----
+* * *
 
 ## Tiết Lộ Có Trách Nhiệm
 
@@ -201,49 +202,49 @@ nmap -A target.com
 4. Báo cáo phát hiện kịp thời
 5. Xóa dữ liệu sau khi kiểm thử
 
----
+* * *
 
 ## Hướng Dẫn Chọn Công Cụ
 
 ### Kiểm thử ứng dụng web
-```
+`````
 Trinh sát: amass, subfinder, theHarvester
 Quét: Nmap, masscan, whatweb
 Lỗ hổng: sqlmap, máy quét XSS, dirsearch
 Khai thác: Burp Suite, script tùy chỉnh
 Báo cáo: Dradis, Faraday
-```
+`````
 
 ### Kiểm thử xâm nhập mạng
-```
+`````
 Khám phá: Nmap, masscan, nbtscan
 Liệt kê: enum4linux, snmp-check
 Lỗ hổng: OpenVAS, Nessus
 Khai thác: Metasploit, Cobalt Strike
 Hậu khai thác: PowerShell Empire, Mimikatz
-```
+`````
 
 ### Hoạt động Red Team
-```
+`````
 Truy cập ban đầu: SET, gophish, evilginx2
 Duy trì: Implant tùy chỉnh, tác vụ đã lên lịch
 Leo thang đặc quyền: PowerUp, BeRoot
 Di chuyển ngang: Pass-the-hash, Kerberoasting
 Rò rỉ dữ liệu: Đường hầm DNS, HTTPS C2
-```
+````
 
----
+* * *
 
 ## Bài Viết Liên Quan
 
 - [Agent Reach: Truy cập Internet AI Agent](/vi/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — Tự động hóa bảo mật dựa trên AI
 - [Free Claude Code: Mã hóa AI mã nguồn mở](/vi/resources/ai-tools/free-claude-code-open-source-proxy/) — Thực hành mã hóa an toàn
 
----
+* * *
 
 *Tuyên bố miễn trừ: Bài viết này chỉ dành cho mục đích giáo dục. Tất cả các công cụ nên được sử dụng có trách nhiệm và chỉ trên các hệ thống bạn sở hữu hoặc có sự cho phép rõ ràng để kiểm thử. Tác giả và dibi8.com không chịu trách nhiệm về bất kỳ việc lạm dụng thông tin được cung cấp nào.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -316,7 +317,7 @@ Scanners-Box: Bộ Sưu Tập 200+ Công Cụ An Ninh Mạng — Dành Cho Chuy�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

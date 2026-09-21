@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
 
+
 # paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Quản lý AI Agent quy mô lớn — Hướng dẫn thực tế 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │           paperclip AI Agent Workplace                │
 │                                                      │
@@ -29,7 +30,7 @@ featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/do
 │  │   Task Queue  │  Memory  │  Routing    │          │
 │  └──────────────────────────────────────┘          │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Kiến trúc paperclip: nền tảng phối hợp multi-agent*
 
@@ -50,29 +51,29 @@ Tính năng chính: - **Gán task multi-agent** — Gán task khác nhau cho age
 
 ### Docker Compose (Khuyến nghị)
 
-```bash
+`````bash
 git clone https://github.com/paperclipai/paperclip.git
 cd paperclip
 cp .env.example .env
 # Chỉnh sửa .env với API key của bạn
 docker compose up -d
 # Truy cập UI tại http://localhost:3000
-```
+`````
 
 ### Manual Installation
 
-```bash
+`````bash
 git clone https://github.com/paperclipai/paperclip.git
 cd paperclip
 pip install -r backend/requirements.txt
 cd frontend && npm install && cd ..
 python backend/main.py &
 npm run dev --prefix frontend
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, OpenCode, Custom Agents
 
-```yaml
+`````yaml
 # Template agent sẵn có
 templates: coder: model: claude-sonnet-4-20250514
     tools: [fs, terminal, git]
@@ -82,14 +83,14 @@ templates: coder: model: claude-sonnet-4-20250514
     tools: [web_search, file_read]
   deployer: model: claude-haiku-4-20250514
     tools: [fs, terminal]
-```
+`````
 
-Kết nối external agent: ```bash
+Kết nối external agent: `````bash
 paperclip agent register \
   --name "my-codex" \
   --type "openai-compatible" \
   --endpoint "http://localhost:4000/v1"
-```
+`````
 
 Self-hosted infrastructure: [HTStack](https://my.htstack.com/aff.php?aff=27187) kết nối ổn định, [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) data-center proxy.
 
@@ -103,13 +104,13 @@ Self-hosted infrastructure: [HTStack](https://my.htstack.com/aff.php?aff=27187) 
 
 ### Use Case 1: Codebase Migration
 
-```bash
+`````bash
 paperclip workspace create rails-to-fastapi
 paperclip task assign researcher "Analyze Rails routes"
 paperclip task assign coder "Implement FastAPI endpoints"
 paperclip task assign reviewer "Verify API compatibility"
 paperclip run pipeline
-```
+`````
 
 2 tuần hoàn thành trong 3 ngày, 94% test pass rate.
 
@@ -117,7 +118,7 @@ paperclip run pipeline
 
 ### Custom Agent Workflows
 
-```yaml
+`````yaml
 # workflows/code-review.yaml
 workflow: name: "full-code-review"
   steps: - agent: linter
@@ -126,14 +127,14 @@ workflow: name: "full-code-review"
     - agent: reviewer
       task: "Code review toàn diện"
       input: ["lint_results", "git_diff"]
-```
+`````
 
 ### Production Storage
 
-```bash
+`````bash
 paperclip storage configure --type postgres --host db.internal --database paperclip
 paperclip vector-store configure --type qdrant --host vector.internal --port 6333
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -180,7 +181,7 @@ A: Có. Hỗ trợ workspace isolation, team access control, audit log, on-premi
 
 **Q: Có export conversation và data không?**
 
-A: Có. Export được JSON hoặc Markdown. Dùng `paperclip export --format json --workspace my-workspace`.
+A: Có. Export được JSON hoặc Markdown. Dùng ````paperclip export --format json --workspace my-workspace````.
 
 ## Sources & Further Reading
 
@@ -196,7 +197,7 @@ paperclip giải quyết vấn đề thực tế: coordination nhiều AI agent 
 
 Nếu xử lý 2+ AI agent hàng ngày, paperclip cung cấp Kanban board, conversation history và deployment pipeline biến混乱 thành managed workflow. Self-hosted option nghĩa là không vendor lock-in.
 
-Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận về paperclip. Xem [cc-switch unified CLI](dibi8-internal-link) và [Langflow visual workflows](dibi8-internal-link). Thử paperclip hôm nay — `docker compose up`, thêm 2 agent, xem multi-agent pipeline đầu tiên chạy.
+Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận về paperclip. Xem [cc-switch unified CLI](dibi8-internal-link) và [Langflow visual workflows](dibi8-internal-link). Thử paperclip hôm nay — ````docker compose up```, thêm 2 agent, xem multi-agent pipeline đầu tiên chạy.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 
@@ -262,12 +263,12 @@ paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Qu�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -277,7 +278,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 - [2026-06-15-trending-ai-agents](paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

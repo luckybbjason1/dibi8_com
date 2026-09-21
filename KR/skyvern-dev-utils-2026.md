@@ -34,6 +34,7 @@ faqs: - q: 'Skyvern-AI/skyvern은 어떻게 설치하나요?'
     a: '공식 사이트 <https://www.skyvern.com> 와 GitHub README를 참고하세요. 두 곳 모두 설치, API, 예제 워크플로를 깊이 있게 다룹니다.'
 ---
 
+
 {{< resource-info >}}
 
 ## 들어가며
@@ -72,63 +73,63 @@ Skyvern을 예약된 프로덕션 작업으로 돌리려면 항상 켜져 있는
 
 Python에 익숙하다면 Skyvern 설치는 간단합니다. Python 3.11 이상과 최소 하나의 LLM API 키가 필요합니다.
 
-### `pip` 사용
+### ```pip```` 사용
 
 로컬 UI와 서버를 포함한 전체 패키지를 설치합니다.
 
-```bash
+`````bash
 pip install "skyvern[all]"
-```
+`````
 
 자신의 코드에서 Skyvern을 호출하는 SDK만 필요하다면, 더 가벼운 설치로 충분합니다.
 
-```bash
+`````bash
 pip install skyvern
-```
+`````
 
 ### 빠른 시작
 
 설치 후 동작하는 환경을 가장 빠르게 갖추는 방법은 내장된 quickstart 명령입니다. LLM 제공자를 설정하도록 안내한 뒤, SQLite를 백엔드로 하는 로컬 서버와 웹 UI를 실행합니다.
 
-```bash
+`````bash
 skyvern quickstart
-```
+`````
 
 Postgres 백엔드 구성을 선호한다면 플래그를 넘기면 됩니다.
 
-```bash
+`````bash
 skyvern quickstart --postgres
-```
+`````
 
 각 구성 요소를 따로 실행할 수도 있습니다.
 
-```bash
+`````bash
 skyvern run server   # API 서버만
 skyvern run ui       # 웹 UI만
-```
+`````
 
 ### 설정
 
-Skyvern은 최소 하나의 LLM API 키가 필요하며, 프로젝트의 `.env` 파일에서 이를 읽습니다. OpenAI를 사용하는 최소 예시는 다음과 같습니다.
+Skyvern은 최소 하나의 LLM API 키가 필요하며, 프로젝트의 ````.env```` 파일에서 이를 읽습니다. OpenAI를 사용하는 최소 예시는 다음과 같습니다.
 
-```bash
+`````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=sk-your-key-here
-```
+`````
 
-quickstart 명령이 이 파일을 대화식으로 생성해 줄 수 있습니다. Skyvern은 기본적으로 데이터를 로컬 SQLite 데이터베이스 `~/.skyvern/`에 저장합니다.
+quickstart 명령이 이 파일을 대화식으로 생성해 줄 수 있습니다. Skyvern은 기본적으로 데이터를 로컬 SQLite 데이터베이스 ````~/.skyvern/````에 저장합니다.
 
 ### 자주 겪는 오류와 해결
 
-첫 실행에서 흔한 문제는 서버는 떴는데 모든 작업이 실패하는 경우입니다. LLM 제공자가 하나도 활성화되지 않았기 때문입니다. 모델 누락 또는 비활성화 관련 오류가 보이면, 해당하는 `ENABLE_*` 스위치와 API 키가 `.env`에 모두 있는지 확인하세요. 예를 들면 다음과 같습니다.
+첫 실행에서 흔한 문제는 서버는 떴는데 모든 작업이 실패하는 경우입니다. LLM 제공자가 하나도 활성화되지 않았기 때문입니다. 모델 누락 또는 비활성화 관련 오류가 보이면, 해당하는 ````ENABLE_*```` 스위치와 API 키가 ````.env````에 모두 있는지 확인하세요. 예를 들면 다음과 같습니다.
 
-```bash
+`````bash
 ENABLE_ANTHROPIC=true
 ANTHROPIC_API_KEY=sk-ant-your-key-here
-```
+`````
 
-`.env`를 수정한 뒤에는 새 값이 적용되도록 서버를 재시작하세요.
+````.env````를 수정한 뒤에는 새 값이 적용되도록 서버를 재시작하세요.
 
 ## 핵심 사용법
 
@@ -136,9 +137,9 @@ Skyvern은 "자연어 프롬프트로 에이전트 작업 실행"을 중심으�
 
 ### 예제 1: 작업 실행
 
-가장 간단한 흐름은 로컬 Skyvern 클라이언트를 초기화하고 프롬프트와 함께 `run_task`를 호출하는 것입니다. 에이전트가 브라우저를 열고 목표를 완수한 뒤 결과를 반환합니다.
+가장 간단한 흐름은 로컬 Skyvern 클라이언트를 초기화하고 프롬프트와 함께 ````run_task````를 호출하는 것입니다. 에이전트가 브라우저를 열고 목표를 완수한 뒤 결과를 반환합니다.
 
-```python
+`````python
 import asyncio
 from skyvern import Skyvern
 
@@ -149,13 +150,13 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-```
+`````
 
 ### 예제 2: 구조화된 데이터 추출
 
-자유 텍스트가 아니라 깔끔한 구조화 출력을 원한다면 `data_extraction_schema`를 전달하세요. Skyvern이 스키마에 맞춘 추출 필드를 반환합니다.
+자유 텍스트가 아니라 깔끔한 구조화 출력을 원한다면 ````data_extraction_schema````를 전달하세요. Skyvern이 스키마에 맞춘 추출 필드를 반환합니다.
 
-```python
+`````python
 import asyncio
 from skyvern import Skyvern
 
@@ -181,13 +182,13 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-```
+`````
 
 ### 예제 3: 페이지 단위 명령
 
-더 세밀한 제어가 필요하다면 브라우저를 직접 구동하면서 개별 AI 명령을 내릴 수 있습니다 — `act`는 동작 수행, `extract`는 데이터 읽기, `validate`는 조건 확인입니다.
+더 세밀한 제어가 필요하다면 브라우저를 직접 구동하면서 개별 AI 명령을 내릴 수 있습니다 — ````act````는 동작 수행, ````extract````는 데이터 읽기, ````validate````는 조건 확인입니다.
 
-```python
+`````python
 import asyncio
 from skyvern import Skyvern
 
@@ -201,9 +202,9 @@ async def main(): skyvern = Skyvern.local()
     print(data)
 
 asyncio.run(main())
-```
+`````
 
-이 예제들은 주요 진입점을 모두 다룹니다 — 엔드투엔드 목표를 위한 고수준 `run_task`, 깔끔한 데이터를 위한 스키마 기반 추출, 그리고 단계별 제어가 필요할 때 쓰는 페이지 단위 명령입니다.
+이 예제들은 주요 진입점을 모두 다룹니다 — 엔드투엔드 목표를 위한 고수준 ````run_task````, 깔끔한 데이터를 위한 스키마 기반 추출, 그리고 단계별 제어가 필요할 때 쓰는 페이지 단위 명령입니다.
 
 - **Image**: ![](https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_screenshot.png)
 - **Stars**: 21,803
@@ -218,9 +219,9 @@ Skyvern의 SDK는 어디서든 호출할 수 있는 비동기 클라이언트일
 
 ### 웹 서비스에서 Skyvern 호출하기
 
-`run_task`가 비동기이므로 비동기 웹 프레임워크에 자연스럽게 들어맞습니다. 아래는 필요할 때 작업을 시작하는 FastAPI 엔드포인트에 연결한 예입니다.
+````run_task````가 비동기이므로 비동기 웹 프레임워크에 자연스럽게 들어맞습니다. 아래는 필요할 때 작업을 시작하는 FastAPI 엔드포인트에 연결한 예입니다.
 
-```python
+`````python
 from fastapi import FastAPI
 from skyvern import Skyvern
 
@@ -232,19 +233,19 @@ async def automate(): task = await skyvern.run_task(
         prompt="Go to example.com and click the Submit button",
     )
     return {"result": task}
-```
+`````
 
 ### 환경 변수로 설정하기
 
-프로덕션에서는 자격 증명과 제공자 선택을 코드에 박아두기보다 환경 변수에 두는 편이 깔끔합니다. Skyvern은 시작 시 이를 읽으므로, `.env` 파일이 이런 설정을 관리하기에 자연스러운 자리입니다.
+프로덕션에서는 자격 증명과 제공자 선택을 코드에 박아두기보다 환경 변수에 두는 편이 깔끔합니다. Skyvern은 시작 시 이를 읽으므로, ````.env```` 파일이 이런 설정을 관리하기에 자연스러운 자리입니다.
 
-```bash
+`````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=your_api_key_here
-```
+`````
 
-```python
+`````python
 from dotenv import load_dotenv
 from skyvern import Skyvern
 
@@ -252,7 +253,7 @@ load_dotenv()
 
 # Skyvern picks up the LLM provider settings from the environment
 skyvern = Skyvern.local()
-```
+`````
 
 설정을 환경에 두면, 코드를 한 줄도 고치지 않고 로컬·스테이징·프로덕션 사이를 오갈 수 있습니다.
 
@@ -321,12 +322,12 @@ Skyvern은 견고한 브라우저 자동화에 강력한 도구이지만, 알아
 
 ## 맺음말
 
-Skyvern-AI/skyvern은 AI로 브라우저 워크플로를 자동화하는 유능한 도구로, 스타 21,800개를 넘겼고 유지보수도 활발합니다. 자동화가 레이아웃 변경을 견뎌야 하거나 통제할 수 없는 여러 사이트에서 동작해야 한다면, 'LLM과 비전' 접근은 셀렉터 기반 스크립트에 비해 확실한 도약입니다. GitHub 저장소로 가서 `skyvern quickstart`를 한 번 실행하고, 자신만의 프롬프트로 시도해 보세요.
+Skyvern-AI/skyvern은 AI로 브라우저 워크플로를 자동화하는 유능한 도구로, 스타 21,800개를 넘겼고 유지보수도 활발합니다. 자동화가 레이아웃 변경을 견뎌야 하거나 통제할 수 없는 여러 사이트에서 동작해야 한다면, 'LLM과 비전' 접근은 셀렉터 기반 스크립트에 비해 확실한 도약입니다. GitHub 저장소로 가서 ````skyvern quickstart```를 한 번 실행하고, 자신만의 프롬프트로 시도해 보세요.
 
 - 오픈소스 AI 도구 소식을 받아보려면 [dibi8 영어 텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
 - 이어 읽기: [dibi8의 관련 가이드](dibi8-internal-link).
 
----
+* * *
 
 **출처 및 더 읽을거리**: - GitHub 저장소: https://github.com/Skyvern-AI/skyvern
 - 공식 문서 / README: https://github.com/Skyvern-AI/skyvern#readme

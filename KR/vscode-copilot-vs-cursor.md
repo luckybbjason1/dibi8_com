@@ -19,6 +19,7 @@ description: "GitHub Copilot in VS Code(Microsoft)와 Cursor 비교 — 가격 $
 
 ---
 
+
 ## Related Articles
 
 - [claude-code-vs-cline](vscode-copilot-vs-cursor)
@@ -27,7 +28,7 @@ description: "GitHub Copilot in VS Code(Microsoft)와 Cursor 비교 — 가격 $
 - [gemini-cli-vs-claude-code](vscode-copilot-vs-cursor)
 - [chatgpt-pro-vs-claude-pro](vscode-copilot-vs-cursor)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -13,6 +13,7 @@ license: MIT---
 
 
 
+
 # VoiceBox：开源AI语音工作室
 
 **VoiceBox** 是一个全面的开源AI语音工作室，支持语音克隆、语音生成和听写——全部在您的机器上本地运行。凭借 **33,745 个 GitHub Stars** 和活跃的开发者社区，它已成为开发人员、内容创作者和注重隐私的用户的首选解决方案，无需依赖云API即可获得强大的语音AI能力。
@@ -59,7 +60,7 @@ VoiceBox 支持多种硬件配置：
 
 ### 选项一：使用Pip快速安装
 
-```bash
+````bash
 # 从PyPI安装VoiceBox
 pip install voicebox-ai
 
@@ -68,11 +69,11 @@ voicebox --version
 
 # 初始化应用程序
 voicebox init --model qwen3-tts
-```
+`````
 
 ### 选项二：从源代码安装（最新功能）
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/jamiepine/voicebox.git
 cd voicebox
@@ -89,11 +90,11 @@ pip install -e .
 
 # 下载默认语音模型
 voicebox download-models --all
-```
+`````
 
 ### 选项三：Docker部署
 
-```bash
+`````bash
 # 拉取官方镜像
 docker pull jamiepine/voicebox:latest
 
@@ -113,11 +114,11 @@ docker run -d \
   -v ${HOME}/voicebox-data:/data \
   -e VOICEBOX_MODEL=qwen3-tts \
   jamiepine/voicebox:latest
-```
+`````
 
 ### 选项四：Windows安装
 
-```powershell
+`````powershell
 # 从Microsoft Store安装Python 3.11+
 # 然后安装VoiceBox
 pip install voicebox-ai
@@ -127,7 +128,7 @@ pip install voicebox-ai
 
 # 初始化VoiceBox
 voicebox init --gpu cuda
-```
+`````
 
 ## 语音克隆
 
@@ -135,7 +136,7 @@ voicebox init --gpu cuda
 
 要克隆语音，您需要至少3秒的清晰音频。为获得最佳效果，请提供30-60秒的语音：
 
-```bash
+`````bash
 # 使用内置录音机录制音频
 voicebox record --output sample.wav --duration 30
 
@@ -143,13 +144,13 @@ voicebox record --output sample.wav --duration 30
 voicebox clone --audio my_voice_sample.mp3 --name "my-voice"
 
 # VoiceBox自动处理音频并提取语音特征
-```
+`````
 
 ### 语音处理管道
 
 语音克隆管道包含几个阶段：
 
-```python
+`````python
 from voicebox.engine import VoiceCloner
 from voicebox.audio import AudioProcessor
 
@@ -179,13 +180,13 @@ output = voice_model.synthesize(
     emotion="neutral"
 )
 voice_model.save(output, "test_output.wav")
-```
+`````
 
 ### 高级语音参数
 
 VoiceBox 提供对语音合成的细粒度控制：
 
-```bash
+`````bash
 # 控制语速
 voicebox synthesize --input script.txt --output speech.wav --speed 0.8
 
@@ -203,13 +204,13 @@ voicebox synthesize \
   --pitch +100 \
   --emotion confident \
   --clarity high
-```
+`````
 
 ### 多语音支持
 
 您可以同时创建和管理多个语音克隆：
 
-```python
+`````python
 from voicebox.engine import VoiceManager
 
 manager = VoiceManager()
@@ -230,7 +231,7 @@ hybrid = manager.blend_voices(
     weight_b=0.3
 )
 output = hybrid.synthesize("混合语音输出")
-```
+`````
 
 ## 听写模式
 
@@ -238,7 +239,7 @@ VoiceBox的听写模式提供实时语音到文本转录，可与系统中的任
 
 ### 系统级听写设置
 
-```bash
+`````bash
 # 启用系统级听写
 voicebox dictation --enable
 
@@ -250,11 +251,11 @@ voicebox dictation --language en
 
 # 配置热键
 voicebox dictation --hotkey "ctrl+space"
-```
+`````
 
 ### 听写API使用
 
-```python
+`````python
 from voicebox.dictation import DictationEngine
 
 # 初始化听写引擎
@@ -282,13 +283,13 @@ result = await engine.listen_session(
 print(f"转录: {result.text}")
 print(f"置信度: {result.confidence:.2%}")
 print(f"字数: {result.word_count}")
-```
+`````
 
 ### 多语言听写
 
 VoiceBox 支持同时多语言听写，具有自动语言检测功能：
 
-```bash
+`````bash
 # 启用自动检测
 voicebox dictation --auto-detect
 
@@ -297,7 +298,7 @@ voicebox dictation --languages en,zh,ko,ja,es,fr,de
 
 # 设置首选语言（提高准确性）
 voicebox dictation --primary-language en
-```
+`````
 
 ## 文本转语音API
 
@@ -305,7 +306,7 @@ VoiceBox 提供完整的REST API用于程序化文本转语音生成：
 
 ### 基本TTS
 
-```bash
+`````bash
 # 简单文本转语音转换
 curl -X POST "https://your-voicebox/api/v1/tts" \
   -H "Content-Type: application/json" \
@@ -316,25 +317,25 @@ curl -X POST "https://your-voicebox/api/v1/tts" \
     "output_format": "wav"
   }' \
   --output speech.wav
-```
+`````
 
 ### 流式TTS
 
 用于实时音频流应用：
 
-```bash
+`````bash
 # 分块流式传输音频
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
   -d '{"text": "此音频将实时流式传输...", "voice": "cloned-voice"}' \
   --output - | aplay
-```
+`````
 
 ### 批处理
 
 同时处理多个文本：
 
-```python
+`````python
 from voicebox.api import VoiceBoxClient
 
 client = VoiceBoxClient("https://your-voicebox")
@@ -353,7 +354,7 @@ results = await client.tts.batch(
 )
 
 for i, result in enumerate(results): print(f"已生成: speech_{i}.mp3（{result.duration:.1f}秒）")
-```
+````
 
 ## 硬件需求与性能
 
@@ -435,7 +436,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](voicebox-open-source-ai-voice-studio)
@@ -444,6 +445,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 - [2026-06-15-trending-ai-agents](voicebox-open-source-ai-voice-studio)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

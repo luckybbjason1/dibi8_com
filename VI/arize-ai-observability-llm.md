@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/arize-ai-observability-llm/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Bạn Không Thể Sửa Những Gì Bạn Không Thấy
@@ -64,7 +65,7 @@ UI Phoenix hiển thị trace dưới dạng flame graph tương tác. Bạn có
 |---|---|
 | **Trace** | Vòng đờ yêu cầu hoàn chỉnh từ truy vấn ngườ dùng đến phản hồi cuối cùng |
 | **Span** | Một thao tác đơn lẻ trong trace (ví dụ: gọi retriever, LLM completion) |
-| **Attribute** | Metadata dạng key-value gắn vào span (ví dụ: `model=gpt-4o`) |
+| **Attribute** | Metadata dạng key-value gắn vào span (ví dụ: ```model=gpt-4o````) |
 | **Event** | Các mục log có timestamp trong span (ví dụ: prompt đã render) |
 | **Evaluation** | Đánh giá có điểm số gắn vào span hoặc trace (ví dụ: relevance=0.87) |
 
@@ -72,7 +73,7 @@ UI Phoenix hiển thị trace dưới dạng flame graph tương tác. Bạn có
 
 ### Tùy chọn A: Khởi động nhanh với pip
 
-Cách nhanh nhất để chạy Phoenix trên máy local: ```bash
+Cách nhanh nhất để chạy Phoenix trên máy local: `````bash
 python -m venv phoenix-env
 source phoenix-env/bin/activate
 
@@ -81,13 +82,13 @@ pip install "arize-phoenix[evals,llama-index,langchain]" --quiet
 
 # Khởi chạy server Phoenix
 python -c "import phoenix as px; px.launch_app()"
-```
+`````
 
-Sau khi chạy `launch_app()`, Phoenix khởi động một server nhúng tại **http://localhost:6006**. UI tự động mở trong trình duyệt. Giữ terminal này chạy — trace của bạn sẽ được stream đến đây.
+Sau khi chạy ````launch_app()````, Phoenix khởi động một server nhúng tại **http://localhost:6006**. UI tự động mở trong trình duyệt. Giữ terminal này chạy — trace của bạn sẽ được stream đến đây.
 
 ### Tùy chọn B: Triển khai Docker (Sản xuất)
 
-Cho môi trường sản xuất hoặc nhóm, chạy Phoenix dưới dạng container: ```bash
+Cho môi trường sản xuất hoặc nhóm, chạy Phoenix dưới dạng container: `````bash
 # Pull image chính thức
 docker pull arizephoenix/phoenix:latest
 
@@ -97,18 +98,18 @@ docker run -d \
   -p 6006:6006 \
   -v phoenix-data:/data \
   arizephoenix/phoenix:latest
-```
+`````
 
-Xác minh triển khai: ```bash
+Xác minh triển khai: `````bash
 curl http://localhost:6006/health
 # Kết quả mong đợi: {"status":"healthy"}
-```
+`````
 
 Cho triển khai VPS cloud, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp Droplet từ $4/tháng, đủ sức xử lý Phoenix thoải mái cho nhóm nhỏ đến trung bình. Triển khai Droplet có Docker cài sẵn, chạy container, và nền tảng giám sát của bạn sẽ hoạt động trong vòng 10 phút.
 
 ### Tùy chọn C: Docker Compose với PostgreSQL
 
-Cho lưu trữ liên tục và truy cập đa ngườ dùng: ```yaml
+Cho lưu trữ liên tục và truy cập đa ngườ dùng: `````yaml
 # docker-compose.yml
 version: "3.8"
 services: phoenix: image: arizephoenix/phoenix:latest
@@ -122,17 +123,17 @@ services: phoenix: image: arizephoenix/phoenix:latest
       POSTGRES_DB: phoenix
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
-```bash
+`````bash
 docker-compose up -d
-```
+`````
 
 ## Tích hợp với LangChain, LlamaIndex & OpenTelemetry
 
 ### Instrumentation Tự động cho LangChain
 
-Phoenix tích hợp với LangChain qua OpenTelemetry. Thêm hai dòng vào ứng dụng LangChain hiện có: ```python
+Phoenix tích hợp với LangChain qua OpenTelemetry. Thêm hai dòng vào ứng dụng LangChain hiện có: `````python
 # phoenix_langchain_demo.py
 import phoenix as px
 from phoenix.trace.langchain import LangChainInstrumentor
@@ -163,13 +164,13 @@ retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
 # Toàn bộ pipeline này bây giờ được truy vết tự động
 result = retriever.invoke("What is Phoenix?")
 print(result)
-```
+`````
 
 Chạy script và mở http://localhost:6006. Bạn sẽ thấy một cây trace hoàn chỉnh: gọi retriever → lấy tài liệu → xây dựng prompt → LLM completion → phân tích đầu ra.
 
 ### Tích hợp LlamaIndex
 
-Phoenix cung cấp hỗ trợ hàng đầu cho query engine LlamaIndex: ```python
+Phoenix cung cấp hỗ trợ hàng đầu cho query engine LlamaIndex: `````python
 # phoenix_llamaindex_demo.py
 import phoenix as px
 from phoenix.trace.llamaindex import LlamaIndexInstrumentor
@@ -192,11 +193,11 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine(llm=OpenAI(model="gpt-4o-mini"))
 response = query_engine.query("Summarize the main points in these documents.")
 print(response)
-```
+`````
 
 ### OpenTelemetry SDK (Không phụ thuộc Framework)
 
-Cho pipeline tùy chỉnh hoặc framework không có instrumentation chuyên dụng: ```python
+Cho pipeline tùy chỉnh hoặc framework không có instrumentation chuyên dụng: `````python
 # phoenix_otel_manual.py
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -222,11 +223,11 @@ with tracer.start_as_current_span("rag_pipeline") as span: span.set_attribute("q
         llm_span.set_attribute("model", "gpt-4o-mini")
         llm_span.set_attribute("tokens_used", response.usage.total_tokens)
         llm_span.set_attribute("latency_ms", 340)
-```
+`````
 
 ### Truy vết OpenAI SDK
 
-Phoenix cũng tự động truy vết các cuộc gọi OpenAI SDK trực tiếp: ```python
+Phoenix cũng tự động truy vết các cuộc gọi OpenAI SDK trực tiếp: `````python
 # phoenix_openai_demo.py
 import phoenix as px
 from phoenix.trace.openai import OpenAIInstrumentor
@@ -248,7 +249,7 @@ response = client.chat.completions.create(
     temperature=0.7,
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ## Benchmark & Các Trường hợp Sử dụng Thực tế
 
@@ -270,7 +271,7 @@ Phụ trội đến từ việc serial span và HTTP export, không phải từ 
 
 Một công ty tư vấn ML đã triển khai Phoenix cho khách hàng xử lý **~50,000 truy vấn RAG/ngày** trong tìm kiếm tài liệu pháp lý. Các phát hiện chính sau 30 ngày: - **18% truy vấn** truy xuất chunk không liên quan do model embedding cũ
 - Tiêu thụ token trung bình mỗi truy vấn là **4,200 token** — **cao hơn 2.1 lần** so với ước tính
-- Một retriever cấu hình sai (`top_k=20` thay vì `top_k=5`) chịu trách nhiệm cho **$1,200/tháng** chi phí API không cần thiết
+- Một retriever cấu hình sai (````top_k=20```` thay vì ````top_k=5````) chịu trách nhiệm cho **$1,200/tháng** chi phí API không cần thiết
 
 Sau khi khắc phục các vấn đề này dựa trên trace Phoenix, khách hàng đã giảm độ trễ mỗi truy vấn **34%** và chi phí token **52%**.
 
@@ -287,7 +288,7 @@ Phoenix bao gồm các evaluator tích hợp cho relevance, phát hiện halluci
 
 ### Thuộc tính Span Tùy chỉnh cho Chỉ số Kinh doanh
 
-Thêm thuộc tính liên quan đến kinh doanh vào trace để lọc và phân tích: ```python
+Thêm thuộc tính liên quan đến kinh doanh vào trace để lọc và phân tích: `````python
 from opentelemetry import trace
 
 tracer = trace.get_tracer("my-app")
@@ -297,13 +298,13 @@ with tracer.start_as_current_span("customer_query") as span: span.set_attribute(
     span.set_attribute("expected_revenue", 15000.00)
 
     # Logic RAG của bạn...
-```
+`````
 
-Trong UI Phoenix, lọc trace theo `customer_tier=enterprise` để debug truy vấn của khách hàng giá trị cao.
+Trong UI Phoenix, lọc trace theo ````customer_tier=enterprise```` để debug truy vấn của khách hàng giá trị cao.
 
 ### Đánh giá Lập trình
 
-Chạy đánh giá hàng loạt trên trace đã thu thập: ```python
+Chạy đánh giá hàng loạt trên trace đã thu thập: `````python
 # phoenix_evaluations.py
 import phoenix as px
 from phoenix.evals import HallucinationEvaluator, QAEvaluator
@@ -318,36 +319,36 @@ results = hallucination_eval.evaluate(traces)
 # Lọc trace rủi ro cao
 risky = results[results.score > 0.7]
 print(f"Phát hiện {len(risky)} phản hồi có thể bị hallucination")
-```
+`````
 
 ### Cảnh báo trên Chỉ số Trace
 
-Export chỉ số Phoenix sang Prometheus để cảnh báo: ```python
+Export chỉ số Phoenix sang Prometheus để cảnh báo: `````python
 # phoenix_prometheus.py
 from phoenix.trace import PrometheusExporter
 
 prometheus_exporter = PrometheusExporter(port=8000)
 px.launch_app(additional_exporters=[prometheus_exporter])
-```
+`````
 
-Sau đó tạo cảnh báo Prometheus: ```yaml
+Sau đó tạo cảnh báo Prometheus: `````yaml
 # alerts.yml
 - alert: HighTokenBurn
   expr: phoenix_tokens_total > 100000
   for: 5m
   annotations: summary: "Mức tiêu thụ token vượt quá 100K trong 5 phút"
-```
+`````
 
 ### Quản lý Phiên bản Prompt qua Tag Trace
 
-Theo dõi thay đổi prompt qua các lần triển khai: ```python
+Theo dõi thay đổi prompt qua các lần triển khai: `````python
 # Gán tag trace với phiên bản prompt đã sử dụng
 with tracer.start_as_current_span("llm_call") as span: span.set_attribute("prompt.version", "v2.3.1")
     span.set_attribute("prompt.git_sha", "abc1234")
     span.set_attribute("deployment.env", "production")
-```
+`````
 
-Dùng UI Phoenix để so sánh trace được tag `prompt.version=v2.3.0` với `prompt.version=v2.3.1` và đo tác động của thay đổi prompt.
+Dùng UI Phoenix để so sánh trace được tag ````prompt.version=v2.3.0```` với ````prompt.version=v2.3.1```` và đo tác động của thay đổi prompt.
 
 ## So sánh với Các Giải pháp Thay thế
 
@@ -386,7 +387,7 @@ Phoenix là ** lõi mã nguồn mở** tập trung vào truy vết LLM, đánh g
 
 ### Tôi có thể dùng Phoenix mà không cần LangChain hay LlamaIndex không?
 
-Có. Phoenix sử dụng **OpenTelemetry** làm mô hình dữ liệu, vì vậy bất kỳ framework hoặc code tùy chỉnh nào phát OTLP trace đều có thể được thu thập. Viết span thủ công bằng OpenTelemetry SDK (xem phần tích hợp ở trên) hoặc cấu hình thiết lập truy vết hiện tại của bạn để export sang `http://localhost:6006/v1/traces`.
+Có. Phoenix sử dụng **OpenTelemetry** làm mô hình dữ liệu, vì vậy bất kỳ framework hoặc code tùy chỉnh nào phát OTLP trace đều có thể được thu thập. Viết span thủ công bằng OpenTelemetry SDK (xem phần tích hợp ở trên) hoặc cấu hình thiết lập truy vết hiện tại của bạn để export sang ````http://localhost:6006/v1/traces````.
 
 ### Phoenix có lưu trữ API key LLM hay dữ liệu prompt không?
 
@@ -398,7 +399,7 @@ Overhead đã benchmark là tăng độ trễ **2.4–2.5%** cho các RAG pipeli
 
 ### Phoenix có giúp giảm hóa đơn API OpenAI không?
 
-Có. Truy vết token-level của Phoenix tiết lộ chính xác token bị đốt ở đâu. Một phát hiện phổ biến: các nhóm phát hiện retriever trả về **20 chunk** khi chỉ cần **3**, phình to prompt lên **5-10 lần**. Sau khi tối ưu `top_k` dựa trên dữ liệu Phoenix, các nhóm thường giảm tiêu thụ token **30-50%**.
+Có. Truy vết token-level của Phoenix tiết lộ chính xác token bị đốt ở đâu. Một phát hiện phổ biến: các nhóm phát hiện retriever trả về **20 chunk** khi chỉ cần **3**, phình to prompt lên **5-10 lần**. Sau khi tối ưu ````top_k``` dựa trên dữ liệu Phoenix, các nhóm thường giảm tiêu thụ token **30-50%**.
 
 ### Thiết lập triển khai khuyến nghị cho nhóm 10 lập trình viên là gì?
 
@@ -431,7 +432,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - "LLM Observability in Production" — Blog Arize, 2026
 - "RAG Pipeline Optimization Patterns" — Nghiên cứu nội bộ dibi8.com
 
----
+* * *
 
 **Tuyên bố Liên kết:** Một số liên kết trong bài viết này là liên kết affiliate. Nếu bạn dùng [liên kết giới thiệu DigitalOcean](https://m.do.co/c/eca87ac14ee0) của chúng tôi để đăng ký, bạn nhận được $200 tín dụng và chúng tôi nhận thưởng giới thiệu — không tốn thêm chi phí cho bạn. Điều này hỗ trợ nghiên cứu độc lập của chúng tôi và giữ nội dung miễn phí.
 
@@ -461,7 +462,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -471,7 +472,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](arize-ai-observability-llm)
 - [moneyprinterturbo-one-click-ai-video-generator](arize-ai-observability-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

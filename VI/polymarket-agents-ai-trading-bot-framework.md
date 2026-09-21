@@ -35,6 +35,7 @@ faqs: - q: 'Polymarket Agents là gì?'
     a: 'Chạy lệnh CLI ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''. Bạn cũng có thể liệt kê các thị trường bằng ''get-all-markets --sort-by volume'' hoặc xem một thị trường cụ thể bằng ''get-market --market-id <MARKET_ID>''."
 ---
 
+
 {</* resource-info */>}
 
 ![Polymarket Agents CLI hiển thị các lệnh](/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png)
@@ -52,7 +53,7 @@ Khung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI p
 
 🔗 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
+* * *
 
 ## Polymarket là gì?
 
@@ -64,7 +65,7 @@ Khung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI p
 
 Các nhà giao dịch mua cổ phiếu "Có" hoặc "Không" dựa trên dự đoán của họ, với giá phản ánh xác suất đồng thuận của thị trường.
 
----
+* * *
 
 ## Tính năng chính
 
@@ -79,7 +80,7 @@ Các nhà giao dịch mua cổ phiếu "Có" hoặc "Không" dựa trên dự đ
 | **Hỗ trợ Docker** | Triển khai container hóa để dễ dàng thiết lập |
 | **Giấy phép MIT** | Miễn phí và mã nguồn mở |
 
----
+* * *
 
 ## Kiến trúc
 
@@ -94,7 +95,7 @@ Polymarket Agents có các thành phần mô-đun có thể được duy trì v�
 
 ### Lệnh CLI
 
-Giao diện người dùng chính để tương tác với Polymarket: ```bash
+Giao diện người dùng chính để tương tác với Polymarket: ````bash
 # Lấy tất cả thị trường được sắp xếp theo khối lượng
 python scripts/python/cli.py get-all-markets --limit 10 --sort-by volume
 
@@ -103,36 +104,36 @@ python scripts/python/cli.py get-market --market-id <MARKET_ID>
 
 # Thực hiện giao dịch
 python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>
-```
+`````
 
----
+* * *
 
 ## Bắt đầu nhanh
 
 ### 1. Clone kho lưu trữ
 
-```bash
+`````bash
 git clone https://github.com/polymarket/agents.git
 cd agents
-```
+`````
 
 ### 2. Thiết lập môi trường
 
-```bash
+`````bash
 # Tạo môi trường ảo
 virtualenv --python=python3.9 .venv
 source .venv/bin/activate
 
 # Cài đặt phụ thuộc
 pip install -r requirements.txt
-```
+`````
 
 ### 3. Cấu hình khóa API
 
-Tạo tệp `.env`: ```env
+Tạo tệp ``.env``: `````env
 POLYGON_WALLET_PRIVATE_KEY="khóa riêng tư ví của bạn"
 OPENAI_API_KEY="khóa API OpenAI của bạn"
-```
+`````
 
 ### 4. Nạp USDC vào ví
 
@@ -140,26 +141,26 @@ Chuyển USDC vào ví Polygon của bạn để giao dịch.
 
 ### 5. Chạy CLI
 
-```bash
+`````bash
 # Đặt đường dẫn Python
 export PYTHONPATH="."
 
 # Chạy CLI
 python scripts/python/cli.py
-```
+`````
 
-Hoặc thực hiện giao dịch trực tiếp: ```bash
+Hoặc thực hiện giao dịch trực tiếp: `````bash
 python agents/application/trade.py
-```
+`````
 
 ### 6. Lựa chọn Docker
 
-```bash
+`````bash
 ./scripts/bash/build-docker.sh
 ./scripts/bash/run-docker-dev.sh
-```
+````
 
----
+* * *
 
 ## Chiến lược giao dịch
 
@@ -183,7 +184,7 @@ Polymarket Agents hỗ trợ nhiều chiến lược giao dịch dựa trên AI:
 - Sử dụng RAG để truy vấn dữ liệu lịch sử
 - Đưa ra dự đoán sáng suốt
 
----
+* * *
 
 ## Nguồn dữ liệu
 
@@ -195,7 +196,7 @@ Khung này tích hợp nhiều nguồn dữ liệu: | Nguồn | Loại | Trườ
 | **Mạng xã hội** | Phân tích tình cảm | Phát hiện xu hướng |
 | **Dữ liệu on-chain** | Dữ liệu giao dịch | Tình báo thị trường |
 
----
+* * *
 
 ## Triển khai RAG
 
@@ -204,7 +205,7 @@ Tạo sinh tăng cường truy xuất để giao dịch sáng suốt: 1. **Cơ s
 3. **Truy xuất** — Truy vấn thông tin liên quan dựa trên ngữ cảnh thị trường
 4. **Tạo sinh** — LLM tổng hợp dữ liệu đã truy xuất thành quyết định giao dịch
 
----
+* * *
 
 ## Quản lý rủi ro
 
@@ -216,7 +217,7 @@ Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm 
 | **Rủi ro vận hành** | Theo dõi hiệu suất bot thường xuyên |
 | **Rủi ro quy định** | Tuân thủ quy định địa phương |
 
----
+* * *
 
 ## So sánh với các công cụ khác
 
@@ -231,7 +232,7 @@ Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm 
 | **Tốc độ** | Nhanh | Nhanh | Chậm |
 | **Không cảm xúc** | ✅ | ✅ | ❌ |
 
----
+* * *
 
 ## Trường hợp sử dụng
 
@@ -255,7 +256,7 @@ Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm 
 - Dự đoán doanh thu phòng vé
 - Kết quả chương trình truyền hình thực tế
 
----
+* * *
 
 ## Kho lưu trữ liên quan
 
@@ -267,7 +268,7 @@ Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm 
 | [Langchain](https://github.com/langchain-ai/langchain) | Suy luận nhận biết ngữ cảnh |
 | [Chroma](https://docs.trychroma.com) | Cơ sở dữ liệu vector |
 
----
+* * *
 
 ## Tài nguyên đọc
 
@@ -275,14 +276,14 @@ Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm 
 - [Tiền mã hóa + Ứng dụng AI](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) của Vitalik Buterin
 - [Siêu dự đoán](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment)
 
----
+* * *
 
 ## Bài viết liên quan
 
 - [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/vi/resources/dev-utils/polymarket-trading-bot-stack/) — Kiến trúc bot giao dịch hoàn chỉnh
 - [Free Claude Code: Công Cụ Proxy Mã Nguồn Mở Để Sử Dụng Claude Code CLI Miễn Phí](/vi/resources/ai-tools/free-claude-code-open-source-proxy/) — Trợ lý lập trình AI
 
----
+* * *
 
 ## Kết luận
 
@@ -292,10 +293,10 @@ Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm 
 
 **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
 
----
+* * *
 
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 

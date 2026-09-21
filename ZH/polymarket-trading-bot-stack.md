@@ -32,6 +32,7 @@ faqs: - q: '为什么机器人可以通过 Binance 和 Polymarket 之间的套�
     a: 'Polymarket 共暴露四个接口：用于市场数据、价格和元数据的 Gamma API；用于订单簿和交易执行的 CLOB API；在 Polygon（链 ID 137）上以 USDC 进行的链上结算；以及用于实时价格更新的 WebSocket 推送。官方 Python 客户端 py-clob-client 封装了所有这些接口。'
   - q: '为什么使用相同 Polymarket 策略时，交易机器人的表现优于人类？'
     a: '在一段追踪期内，机器人获利约 $206,000，而使用相同逻辑的人类仅获利约 $100,000，差距达 2 倍。人类会犯四种系统性错误：错过窗口后才入场、情绪化且不一致的仓位管理、约 8 小时后产生疲劳，以及回撤心理导致的放弃或加仓。'---
+
 # Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元
 
 {</* resource-info */>}
@@ -40,7 +41,7 @@ faqs: - q: '为什么机器人可以通过 Binance 和 Polymarket 之间的套�
 
 **100万3450美元利润。3062次预测。一个钱包。**
 
-当交易者首次在Polymarket上看到钱包地址 `0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3` 的增长轨迹时，第一反应很简单：*假的*。一个散户钱包能累计七位数的盈亏，这听起来像是Telegram诈骗群的故事，而不是可验证的链上数据。
+当交易者首次在Polymarket上看到钱包地址 ``0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3`` 的增长轨迹时，第一反应很简单：*假的*。一个散户钱包能累计七位数的盈亏，这听起来像是Telegram诈骗群的故事，而不是可验证的链上数据。
 
 但区块链不会说谎。每笔交易都是公开的。每次结算都是可验证的。
 
@@ -102,9 +103,9 @@ coinman2机器人运行在 **Anthropic的Claude** 上。2026年3月，一项对�
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | **Claude (Anthropic)** | 主要策略师。推理市场问题，估计概率与当前价格的差距 | [anthropic.com](https://anthropic.com) |
 | **Qwen3-Coder** | 开源编程大模型。监控实时表现，自主重写模块 | [GitHub](https://github.com/QwenLM/Qwen3-Coder) |
@@ -119,11 +120,11 @@ coinman2机器人运行在 **Anthropic的Claude** 上。2026年3月，一项对�
 
 | 工具 | 用途 | 链接 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Agency Agents** | 牛市vs熊市辩论，风险管理人否决 | [GitHub](https://github.com/msitarzewski/agency-agents) |
 | **ClaudeAgent OneClick** | 一键部署。24/7市场监控，几分钟内启动 | [GitHub](https://github.com/cvxv666/ClaudeAgentOneClick) |
@@ -139,11 +140,11 @@ coinman2机器人运行在 **Anthropic的Claude** 上。2026年3月，一项对�
 
 | 工具 | 用途 | 链接 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **OpenBB** | 开源彭博终端。统一100+数据源 | [GitHub](https://github.com/OpenBB-finance/OpenBB) |
 | **Dexter** | 自主深度研究。SEC文件、财报电话会议记录 | [GitHub](https://github.com/virattt/dexter) |
@@ -162,11 +163,11 @@ coinman2机器人运行在 **Anthropic的Claude** 上。2026年3月，一项对�
 
 | 工具 | 用途 | 链接 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Polyscope** | 扫描2000+市场。巨鲸警报到Telegram | [thepolyscope.com](https://thepolyscope.com) |
 | **Polywhaler** | 10000美元+巨鲸交易追踪器，带AI信号 | [polywhaler.com](https://polywhaler.com) |
@@ -184,11 +185,11 @@ coinman2机器人运行在 **Anthropic的Claude** 上。2026年3月，一项对�
 
 | 工具 | 用途 | 链接 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **prediction-market-backtesting** | 针对真实历史Polymarket/Kalshi数据回测策略 | [GitHub](https://github.com/evan-kolberg/prediction-market-backtesting) |
 | **polybot** | 完整执行基础设施，带模拟交易。Kafka、ClickHouse、Grafana | [GitHub](https://github.com/ent0n29/polybot) |
@@ -204,7 +205,7 @@ Polymarket暴露四个API接口：
 3. **链上结算** - Polygon（链ID 137），USDC
 4. **WebSocket流** - 实时价格更新
 
-官方Python客户端 `py-clob-client` 封装了所有这些。三行代码获取订单簿，五行代码下达签名限价单。
+官方Python客户端 ```py-clob-client```` 封装了所有这些。三行代码获取订单簿，五行代码下达签名限价单。
 
 **关键仓库：**
 - [Polymarket/agents](https://github.com/Polymarket/agents) - 官方AI智能体框架，已集成LangChain
@@ -212,10 +213,10 @@ Polymarket暴露四个API接口：
 
 ## 完整信号流
 
-```
+`````
 世界事件 → Binance WebSocket (50毫秒) → AI分析 → 凯利仓位计算 → 
 CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损
-```
+````
 
 **理想路径总延迟：不到10秒。**
 
@@ -258,7 +259,7 @@ CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损
 **记住**：竞争比看起来弱。大多数人会喊"太难了"然后说是假的。只有建设者才能吃到肉。
 
 
----
+* * *
 ## 资源与链接
 
 - [Polymarket官方](https://polymarket.com)
@@ -270,7 +271,7 @@ CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损
 *免责声明：本文仅供教育目的。预测市场交易存在重大风险。过往表现不保证未来结果。交易前请务必进行自己的研究。*
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -343,7 +344,7 @@ Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 r
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -375,15 +376,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

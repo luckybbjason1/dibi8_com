@@ -6,6 +6,7 @@ maintainer: 'karpathy'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png'
 ---
+
 # nanochat: Karpathy's $100 ChatGPT — Build Your Own AI Chat App on a Single GPU — A Practical Guide 2026
 
 ![nanochat logo](https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png)
@@ -18,20 +19,20 @@ Crawl4AI jumped from 12,000 to 63,000 GitHub stars in 90 days. nanochat, on the 
 
 ## What Is nanochat?
 
-nanochat is **an open-source, minimal chat application** written by Andrej Karpathy that demonstrates how to build a ChatGPT-like experience using models you train yourself on a single GPU. It is not a framework or a library. It is a single `app.py` file (~400 lines) that implements: - Tokenizer-based text generation with streaming
+nanochat is **an open-source, minimal chat application** written by Andrej Karpathy that demonstrates how to build a ChatGPT-like experience using models you train yourself on a single GPU. It is not a framework or a library. It is a single ```app.py```` file (~400 lines) that implements: - Tokenizer-based text generation with streaming
 - Conversation history management (multi-turn)
 - A web UI rendered via Streamlit
 - Two modes: **SGLang** (train from scratch with real data) and **vLLM** (serve pre-trained models locally)
 
-The philosophy is "build it to understand it." Karpathy has a track record of making complex AI concepts accessible through minimal code — from `nanoGPT` to `karpathy/llm.c` — and nanochat continues this tradition by showing you exactly how a chat app works, end to end.
+The philosophy is "build it to understand it." Karpathy has a track record of making complex AI concepts accessible through minimal code — from ````nanoGPT```` to ````karpathy/llm.c```` — and nanochat continues this tradition by showing you exactly how a chat app works, end to end.
 
 ## How nanochat Works
 
 nanochat operates in two distinct modes, each with a different training/inference pipeline: ### SGLang Mode: Train from Scratch
 
-```
+`````
 Raw text corpus → Tokenizer training → Model training → Chat UI
-```
+`````
 
 1. **Data collection** — Download and parse a text corpus (e.g., Wikipedia, books, code)
 2. **Tokenizer training** — Train a BytePair Encoding (BPE) tokenizer on the corpus
@@ -40,15 +41,15 @@ Raw text corpus → Tokenizer training → Model training → Chat UI
 
 ### vLLM Mode: Serve Pre-Trained Models
 
-```
+`````
 Pre-trained model (HuggingFace) → vLLM serving → Chat UI
-```
+`````
 
 1. **Model download** — Pull a pre-trained model from HuggingFace (e.g., Qwen, Llama, Mistral)
 2. **vLLM serving** — Use vLLM's PagedAttention for high-throughput inference
 3. **Chat serving** — Nanochat wraps the vLLM endpoint with a streaming chat UI
 
-```
+`````
 ┌──────────────────────────────────────────────┐
 │              nanochat Web UI                 │
 │           (Streamlit + WebSocket)             │
@@ -57,7 +58,7 @@ Pre-trained model (HuggingFace) → vLLM serving → Chat UI
 ├──────────────────────────────────────────────┤
 │  SGLang Mode: Train from scratch  │  vLLM Mode: Serve HF models  │
 └──────────────────────────────────────────────┘
-```
+`````
 
 *nanoChat architecture: two modes, one web UI*
 
@@ -67,9 +68,9 @@ The key insight: both modes share the same chat interface. The only difference i
 
 ### Install Dependencies with uv
 
-nanochat uses uv for dependency management. Install uv first, then run: `uv sync --extra gpu` (for CUDA/A100/H100) or `uv sync --extra cpu` (for CPU-only/MPS). The project manages all dependencies through pyproject.toml.
+nanochat uses uv for dependency management. Install uv first, then run: ````uv sync --extra gpu```` (for CUDA/A100/H100) or ````uv sync --extra cpu```` (for CPU-only/MPS). The project manages all dependencies through pyproject.toml.
 
-```bash
+`````bash
 # Clone the repository
 git clone https://github.com/karpathy/nanochat.git
 cd nanochat
@@ -79,11 +80,11 @@ uv sync --extra gpu
 
 # CPU-only mode (for CPU-only/MPS)
 uv sync --extra cpu
-```
+`````
 
 ### SGLang Mode: Train from Scratch
 
-```bash
+`````bash
 # Train a tokenizer on your corpus
 python train_tokenizer.py --input data/wikipedia.txt --output tokenizer.json --vocab_size 50000
 
@@ -92,11 +93,11 @@ python train_model.py --tokenizer tokenizer.json --epochs 3 --batch_size 32
 
 # Launch the chat app
 python app.py --mode sglang --model_path checkpoints/latest.pth
-```
+`````
 
 ### vLLM Mode: Serve Pre-Trained Models
 
-```bash
+`````bash
 # Launch vLLM server with a HuggingFace model
 python -m vllm.entrypoints.openai.api_server \
   --model Qwen/Qwen2.5-1.5B-Instruct \
@@ -105,15 +106,15 @@ python -m vllm.entrypoints.openai.api_server \
 
 # Launch the chat app (points to vLLM)
 python app.py --mode vllm --api_url http://localhost:8000/v1/chat/completions
-```
+`````
 
-Access the web UI at `http://localhost:8501`.
+Access the web UI at ````http://localhost:8501````.
 
 ## Integration with SGLang, vLLM, HuggingFace Models
 
 nanochat is designed to work seamlessly with the broader AI inference ecosystem. Here's how each integration works in practice: ### SGLang Integration
 
-SGLang (Structured Generation Language) is the training backend. It provides distributed training capabilities optimized for transformer models: ```python
+SGLang (Structured Generation Language) is the training backend. It provides distributed training capabilities optimized for transformer models: `````python
 # sglang_config.py — SGLang-specific settings
 config = {
     "model_type": "gpt",
@@ -128,11 +129,11 @@ config = {
     "weight_decay": 0.01,
     "bf16": True,
 }
-```
+`````
 
 ### vLLM Integration
 
-vLLM provides high-throughput inference with PagedAttention, managing KV cache memory dynamically: ```python
+vLLM provides high-throughput inference with PagedAttention, managing KV cache memory dynamically: `````python
 # vllm_config.py — vLLM serving settings
 from vllm import LLM, SamplingParams
 
@@ -149,19 +150,19 @@ sampling_params = SamplingParams(
     max_tokens=2048,
     stop=["<|im_end|>"],
 )
-```
+`````
 
 ### HuggingFace Model Compatibility
 
 nanochat supports any HuggingFace model that follows the standard transformer architecture. The model list includes: | Model | Parameters | VRAM Required | Quality |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Qwen2.5-1.5B-Instruct | 1.5B | ~4 GB | Good for simple chat |
 | Qwen2.5-3B-Instruct | 3B | ~6 GB | Great balance |
@@ -177,13 +178,13 @@ For production self-hosting, I recommend deploying on [DigitalOcean](https://m.d
 
 Training performance on a single RTX 4090 (24 GB VRAM), training a 1B parameter GPT model on a 10GB text corpus: | Epochs | Training Time | Loss at End | VRAM Peak |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | ~4 hours | 2.87 | 18 GB |
 | 2 | ~8 hours | 2.34 | 18 GB |
@@ -194,11 +195,11 @@ Training performance on a single RTX 4090 (24 GB VRAM), training a 1B parameter 
 
 Serving Qwen2.5-7B-Instruct on a single A10G (24 GB VRAM): | Batch Size | Throughput (tok/s) | Latency (ms/token) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 45 tok/s | 22 ms |
 | 8 | 280 tok/s | 28 ms |
@@ -207,7 +208,7 @@ Serving Qwen2.5-7B-Instruct on a single A10G (24 GB VRAM): | Batch Size | Throug
 
 ### Real-World Use Case 1: Educational — Teaching LLM Fundamentals
 
-A computer science professor uses nanochat to teach students how LLMs work: ```bash
+A computer science professor uses nanochat to teach students how LLMs work: `````bash
 # Students start with tokenizer training
 python train_tokenizer.py --input data/shakespeare.txt --output tokenizer.json
 
@@ -216,13 +217,13 @@ python train_model.py --tokenizer tokenizer.json --epochs 2 --batch_size 16
 
 # Chat with their own trained model
 python app.py --mode sglang --model_path checkpoints/epoch2.pth
-```
+`````
 
 This gives students hands-on experience with tokenization, training loops, and inference that no textbook can match.
 
 ### Real-World Use Case 2: Prototype Custom Chatbots
 
-A startup prototype engineer uses nanochat to test custom-trained chatbots before committing to production infrastructure: ```bash
+A startup prototype engineer uses nanochat to test custom-trained chatbots before committing to production infrastructure: `````bash
 # Train on company-specific documentation
 python train_tokenizer.py --input data/docs/ --output company_tokenizer.json
 python train_model.py --tokenizer company_tokenizer.json --epochs 5
@@ -231,7 +232,7 @@ python train_model.py --tokenizer company_tokenizer.json --epochs 5
 # Prompt: "How do I reset my password?"
 # Model A (general): "Visit the settings page..."
 # Model B (custom-trained): "Go to /auth/reset or email support@company.com..."
-```
+`````
 
 The custom-trained model produces domain-specific responses that general models cannot.
 
@@ -239,7 +240,7 @@ The custom-trained model produces domain-specific responses that general models 
 
 ### Multi-GPU SGLang Training
 
-For larger models or faster training, SGLang supports multi-GPU distributed training: ```bash
+For larger models or faster training, SGLang supports multi-GPU distributed training: `````bash
 # Train on 4 GPUs
 python -m torch.distributed.run \
   --nproc_per_node=4 \
@@ -247,20 +248,20 @@ python -m torch.distributed.run \
   --tokenizer tokenizer.json \
   --epochs 5 \
   --distributed_backend nccl
-```
+`````
 
 ### Custom Chat System Prompts
 
-Edit the `app.py` to customize the system prompt: ```python
+Edit the ``app.py`` to customize the system prompt: `````python
 # Custom system prompt in app.py
 SYSTEM_PROMPT = """You are a helpful coding assistant specialized in Python.
 Always provide code examples with comments.
 Use markdown formatting for code blocks."""
-```
+`````
 
 ### uv Dependency Configuration
 
-nanochat uses `pyproject.toml` with `uv` for dependency management. Here's the project configuration for GPU-accelerated mode: ```toml
+nanochat uses ``pyproject.toml`` with ``uv`` for dependency management. Here's the project configuration for GPU-accelerated mode: `````toml
 # pyproject.toml — nanochat project configuration
 [project]
 name = "nanochat"
@@ -291,13 +292,13 @@ conflicts = [
         extra "cpu",
     ],
 ]
-```
+`````
 
-The `uv sync --extra gpu` command installs GPU dependencies including CUDA-aware PyTorch and Flash Attention, while `uv sync --extra cpu` installs optimized CPU inference backends.
+The ````uv sync --extra gpu```` command installs GPU dependencies including CUDA-aware PyTorch and Flash Attention, while ````uv sync --extra cpu```` installs optimized CPU inference backends.
 
 ### Model Selection and Quality Guide
 
-Choosing the right model for your use case matters. Here's a practical comparison of models available through nanochat's vLLM mode: ```bash
+Choosing the right model for your use case matters. Here's a practical comparison of models available through nanochat's vLLM mode: `````bash
 # Quick quality benchmark on your local model
 python -c "
 from vllm import LLM, SamplingParams
@@ -317,21 +318,21 @@ for model_name in models: llm = LLM(model=model_name, max_model_len=2048)
     gen = outputs[0].outputs[0].text[:80]
     print(f'{model_name}: {elapsed:.2f}s — {gen}...')
 "
-```
+`````
 
 This script helps you benchmark local models before committing to a single choice. Generally, 3B models offer the best quality-to-speed ratio on consumer GPUs with 12-24 GB VRAM.
 
 ## Comparison with Alternatives
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Self-trainable | Yes (SGLang) | No | No | No |
 | GPU required | Yes (8+ GB) | No (cloud) | Yes (4+ GB) | Yes (4+ GB) |
@@ -380,7 +381,7 @@ A: Yes. The Docker setup works on any cloud GPU provider. For cost-effective opt
 A: nanochat is designed as an educational prototype and research tool. It lacks production features like authentication, rate limiting, and load balancing. For production chatbot deployments, consider building on top of nanochat's architecture using proper production frameworks like FastAPI, LangServe, or vLLM's deployment tools.
 
 
-```bash
+`````bash
 # List available models after install
 nanochat list-models
 
@@ -392,7 +393,7 @@ nanochat export --format json --output chat-history.json
 
 # Import saved conversation
 nanochat import --file chat-history.json
-```
+`````
 
 
 ## 
@@ -413,7 +414,7 @@ nanochat proves that you don't need a $20/month API subscription or a datacenter
 
 Whether you're a student learning LLM fundamentals, a developer prototyping a custom chatbot, or just someone who wants to understand what happens inside "the black box," nanochat delivers a hands-on experience that no tutorial video can match.
 
-Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss nanochat experiences and training configurations. Check out our guides on [LLM Token压缩](https://dibi8.com/headroom-token-compre[AI Agent工作平台](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)memory systems]([headroom guide](https://dibi8.com/headroom-*) for complementary tools. Try nanochat today — clone the repo, run `python app.py`, and see your own model respond.
+Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss nanochat experiences and training configurations. Check out our guides on [LLM Token压缩](https://dibi8.com/headroom-token-compre[AI Agent工作平台](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)memory systems]([headroom guide](https://dibi8.com/headroom-*) for complementary tools. Try nanochat today — clone the repo, run ````python app.py```, and see your own model respond.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -444,7 +445,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [nanochat-karpathy-100-chatgpt-single-gpu](nanochat-karpathy-100-chatgpt-single-gpu)
@@ -454,5 +455,5 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [ollama-vs-vllm](nanochat-karpathy-100-chatgpt-single-gpu)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

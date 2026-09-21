@@ -31,6 +31,7 @@ faqs: - q: 'How do you earn tokens on TikChain?'
   - q: 'How do you get started on TikChain?'
     a: 'Sign up and create an account, connect and link your social media profiles, then start earning tokens through engagement, join community events and governance, and withdraw rewards to your wallet.'
 ---
+
 # Discover TikChain - Your Gateway to Social Media Blockchain
 
 
@@ -173,7 +174,7 @@ Don't miss out on this revolutionary platform that combines social media and blo
 **Disclaimer**: Cryptocurrency and blockchain investments carry risks. Always conduct thorough research before participating.
 
 
----
+* * *
 ## Recommended Tools
 
 For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
@@ -245,7 +246,7 @@ Discover TikChain - Your Gateway to Social Media Blockchain represents an import
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -276,15 +277,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

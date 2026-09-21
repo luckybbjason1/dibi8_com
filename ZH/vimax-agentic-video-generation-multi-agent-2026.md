@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/vimax-agentic-video-generation-multi-agent-2026/-
 ---
 
+
 ## 2025 年压垮 AI 视频的三道天花板
 
 2024–2025 年间所有冲进消费者视野的 AI 视频生成工具——Sora、Runway Gen-3、Pika、Luma Dream Machine、OpenSora——共享三道同样的天花板：
@@ -34,12 +35,12 @@ aliases:
 
 做短视频片段，这些限制还能忍。一旦想用 AI 真的*讲个故事*——讲解视频、教育内容、品牌叙事——只要用户希望场景 2 在逻辑上接着场景 1，整条流水线就当场断掉。
 
-**[ViMax](https://github.com/HKUDS/ViMax)**（GitHub：`HKUDS/ViMax`，**截至 2026 年 5 月 7,100+ stars**）由香港大学数据科学实验室推出，是首个被广泛采纳的开源尝试，思路是把视频生成当成*多智能体编排问题*，而不是一次性生成问题，来打破上面这三道天花板。
+**[ViMax](https://github.com/HKUDS/ViMax)**（GitHub：```HKUDS/ViMax````，**截至 2026 年 5 月 7,100+ stars**）由香港大学数据科学实验室推出，是首个被广泛采纳的开源尝试，思路是把视频生成当成*多智能体编排问题*，而不是一次性生成问题，来打破上面这三道天花板。
 
 它的 slogan 说得很直接：**"Director, Screenwriter, Producer, and Video Generator All-in-One."**
 
 
----
+* * *
 ## 四个智能体角色
 
 ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色流水线，那 AI 视频制作也应该是。框架定义了四个自主智能体角色，每个都有不同的 LLM 驱动任务：
@@ -59,10 +60,10 @@ ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色�
 每个角色都是一个独立的 LLM 智能体，自带 prompt、自带上下文窗口、自带确定性输出契约——教科书级的 [12-Factor Agents](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) 第 10 条（"小而专注的智能体"）应用。
 
 
----
+* * *
 ## 技术栈
 
-- **语言**：Python 3.12，用 `uv` 管理依赖。
+- **语言**：Python 3.12，用 ````uv```` 管理依赖。
 - **多智能体框架**：自研编排层。
 - **支持的 chat 模型**：Google Gemini 2.5 Flash Lite（通过 OpenRouter）、MiniMax-M2.7（1M 上下文）、MiniMax-M2.5（204K 上下文）。长上下文窗口在这里很重要——编剧 Agent 需要把整部剧本都放在工作记忆里。
 - **图像生成**：Google Nanobana API。
@@ -71,44 +72,44 @@ ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色�
 
 把像素级生成委托给商用 API（Veo、Nanobana）这个选择是诚实的。开源视频模型的视觉质量还没追上前沿商用模型，硬装作追上了只会毁掉 demo。ViMax 的贡献是*编排*——像素引擎你自己挑。
 
----
+* * *
 
 ## 快速上手
 
-```bash
+`````bash
 git clone https://github.com/HKUDS/ViMax.git
 cd ViMax
 uv sync
-```
+`````
 
 依赖安装就这两行。你需要至少一个 chat 模型的 API key（OpenRouter 接 Gemini 就行），再加 Google 的 Veo + Nanobana 做视频和图像生成。
 
 ### Idea-to-Video 工作流
 
-```python
+`````python
 idea = "If a cat and a dog are best friends, what would happen when they meet a new cat?"
 user_requirement = "For children, do not exceed 3 scenes."
 style = "Cartoon"
 # Run: python main_idea2video.py
-```
+`````
 
 编剧把想法展开成 3 个场景的剧本。导演规划镜头。制片选参考图并强制一致性。视频生成器渲染每个场景并拼接。
 
 ### Script-to-Video 工作流
 
-如果你已经有现成剧本，`main_script2video.py` 直接吃剧本，跳过编剧那一步。其余三个 Agent 照跑。
+如果你已经有现成剧本，````main_script2video.py``` 直接吃剧本，跳过编剧那一步。其余三个 Agent 照跑。
 
----
+* * *
 
 ## 它与 Sora、Runway、OpenSora 的差别
 
 | 维度 | ViMax | Sora / Runway / OpenSora |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **流水线** | 多智能体（剧本 → 分镜 → 素材 → 视频） | 直接 prompt → 视频 |
 | **叙事** | 基于 RAG 的结构化剧本生成 | 单 prompt，无剧本结构 |
@@ -120,7 +121,7 @@ style = "Cartoon"
 
 诚实的反方：Sora 和 Runway 在单镜头像素级质量上肉眼可见地更强。ViMax 赢在*跨镜头一致性*。要做 10 秒技术 demo，选 Sora；要做 90 秒讲解视频、第 4 个场景里那只狗还得是同一只狗，那 ViMax 这种编排才是你要的。
 
----
+* * *
 
 ## ViMax 不是什么
 
@@ -132,7 +133,7 @@ style = "Cartoon"
 - **README 里没有性能 benchmark。** ViMax 主打的是*定性*优势（一致性、长度、叙事），定量的消融实验暂未公开。
 - **对 Google API 有硬依赖。** Veo 和 Nanobana 不免费也不开源，预算要算上。
 
----
+* * *
 
 ## 真实使用场景
 
@@ -146,7 +147,7 @@ ViMax 这套智能体流水线真正能挪动指针的地方：
 
 对这些场景来说，*没有* ViMax 时的备选要么是昂贵的真人制作，要么是撑不起一个故事的短片 AI 工具。
 
----
+* * *
 
 ## ViMax 在 2026 年 AI 视频版图里的位置
 
@@ -157,7 +158,7 @@ ViMax 这套智能体流水线真正能挪动指针的地方：
 
 ViMax + Supertonic + 开源图像生成，是 2026 年最接近"描述一部电影，得到一部电影"的流水线，而且大部分环节都在用户自己手里。
 
----
+* * *
 
 ## 谁该试 ViMax
 
@@ -172,7 +173,7 @@ ViMax + Supertonic + 开源图像生成，是 2026 年最接近"描述一部电�
 - 受不了研究者级别的 Python 工具链。
 - 需要完全端到端自托管（再等开源视频模型一轮迭代）。
 
----
+* * *
 
 ## 结论
 
@@ -182,7 +183,7 @@ MIT 协议 + HKUDS 的学术背景 + 几个月攒出来的 7,100 stars，指向�
 
 如果你拍过任何一部带剧本的视频，这套 AI 工作流终于第一次和真实创作流程对上号了。
 
----
+* * *
 
 **GitHub**：[HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **协议**：MIT · **Stars**：7.1K+ · **作者**：香港大学数据科学实验室 · **状态**：积极开发中，尚无正式 tag release
 
@@ -248,12 +249,12 @@ ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -263,7 +264,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [hkuds-ai-trader](vimax-agentic-video-generation-multi-agent-2026)
 - [agency-agents-complete-ai-agency-framework](vimax-agentic-video-generation-multi-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

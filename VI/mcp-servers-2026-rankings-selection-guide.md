@@ -30,6 +30,7 @@ faq: - q: "MCP là gì và tại sao quan trọng năm 2026?"
     a: "Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take >500ms initialize, nó đang slow mọi agent session."
 ---
 
+
 {{</* resource-info */>}}
 
 # MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn
@@ -40,17 +41,17 @@ Tháng 11/2024 Anthropic release Model Context Protocol với 8 reference server
 
 ## ⚡ TL;DR — 2 phút
 
-> **Quy mô hệ sinh thái**: 1000+ public MCP servers, 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version `2025-06` là current standard.
+> **Quy mô hệ sinh thái**: 1000+ public MCP servers, 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` là current standard.
 >
-> **Sử dụng thực tế**: Hầu hết developers cài 5-10 core servers + dựa vào per-project `mcp.json` cho project-specific additions.
+> **Sử dụng thực tế**: Hầu hết developers cài 5-10 core servers + dựa vào per-project ````mcp.json```` cho project-specific additions.
 >
-> **Top 5 cho AI coding**: `filesystem`, `git`, `github`, `postgres`, `playwright`.
+> **Top 5 cho AI coding**: ````filesystem````, ````git````, ````github````, ````postgres````, ````playwright````.
 >
 > **Decision principle**: stdio > HTTP > OAuth, theo thứ tự ưu tiên này.
 >
 > **Đừng cài mù quáng**: mỗi community MCP server là code chạy với local permissions của bạn.
 
----
+* * *
 
 ## Ba Transport Modes
 
@@ -94,7 +95,7 @@ kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elast
 
 ## Cây Quyết Định Lựa Chọn
 
-```
+`````
 Data/action có thể live trên local machine?
 │
 ├── Yes → Ưu tiên stdio MCP server
@@ -107,7 +108,7 @@ Data/action có thể live trên local machine?
           ├── Có OAuth-bridged version + cần per-session credentials? → OAuth bridge
           ├── Không → HTTP/SSE với PAT
           ├── Audit: token scope minimal? trustworthy infra? rate limits documented?
-```
+`````
 
 Ngắn nhất: **stdio > HTTP > OAuth. Anthropic > community > archived. Đọc source trước khi cài.**
 
@@ -116,22 +117,22 @@ Ngắn nhất: **stdio > HTTP > OAuth. Anthropic > community > archived. Đọc 
 Mỗi MCP server bạn cài chạy code với full local permissions.
 
 ### Real attack patterns 2026
-- **Typosquatting**: Fake `github-mcp-server-v2` exfiltrate tokens.
+- **Typosquatting**: Fake ````github-mcp-server-v2```` exfiltrate tokens.
 - **Supply chain injection**: Popular community server maintainer transfer ownership → telemetry leaks file paths.
 - **Over-scoped tokens**: GitHub server với full-access PAT → prompt injection delete repos.
-- **Prompt injection via fetched content**: `fetch` server pulled malicious markdown → exfil `~/.ssh/id_rsa`.
+- **Prompt injection via fetched content**: ````fetch```` server pulled malicious markdown → exfil ````~/.ssh/id_rsa````.
 
 ### Defense checklist
 1. **Fine-grained tokens**. Không bao giờ full-access.
 2. **Audit trước khi cài**. 5 phút save breaches.
 3. **Pin versions**. Không auto-upgrade community.
-4. **Sandbox**. Container hoặc `firejail`.
+4. **Sandbox**. Container hoặc ````firejail````.
 5. **Monitor agent logs**.
 
 ## Discovery
-- **`mcp.so`** — Comprehensive community registry
-- **`smithery.ai`** — High-curation + one-click install
-- **`glama.ai/mcp/servers`** — Enterprise-friendly
+- **````mcp.so````** — Comprehensive community registry
+- **````smithery.ai````** — High-curation + one-click install
+- **````glama.ai/mcp/servers```** — Enterprise-friendly
 
 Anthropic reference servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers).
 
@@ -150,7 +151,7 @@ Sai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi a
 
 **Cure là selection, không phải abundance**. Chọn 5 core stdio servers, thêm 2-3 project-specific per repo, audit trước khi cài, treat MCP servers như security-relevant code that happens to ergonomic. Workflow scales 18 tháng tới.
 
----
+* * *
 
 **Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars**: 60K+
 
@@ -216,12 +217,12 @@ MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -231,7 +232,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](mcp-servers-2026-rankings-selection-guide)
 - [cursor-vs-claude-code](mcp-servers-2026-rankings-selection-guide)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

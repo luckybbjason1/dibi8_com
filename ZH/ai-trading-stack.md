@@ -24,6 +24,7 @@ aliases:
   - /posts/ai-trading-stack/-
 ---
 
+
 > ⚠️ **免责声明**：本文是构建 AI 交易 stack 的技术指南，**不是投资建议**。量化交易有实质性的资本损失风险。部署真金前在 paper / testnet 上充分测试。过去回测表现不预测未来收益。
 
 2026 散户量化的工具栈终于追上 2018 年对冲基金的水平：每一层都有开源框架、AI 增强策略、无中介把关的链上场所。和 SaaS 量化平台（3Commas $74/月、Cryptohopper $129/月、TradingView Premium $59/月）的取舍是学习曲线更陡 但**完全控制 + 零按笔手续费 + 你的 alpha 永不离开你的机器**。
@@ -34,15 +35,15 @@ aliases:
 
 | # | 组件 | 层 | 角色 | 深度指南 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **ta-lib** | 信号 | 200+ 技术指标（RSI / MACD / Bollinger 等）| [ta-lib 指南](/zh/resources/ai-trading/ta-lib-technical-analysis-trading/) |
 | 2 | **vectorbt** | 回测 | 向量化 Python 回测，比 for 循环快 100× | [vectorbt 2026](/zh/resources/ai-trading/vectorbt-quantitative-backtesting/) |
@@ -68,7 +69,7 @@ aliases:
 
 ## 2. 架构 —— 信号 → 回测 → 实盘 → AI 循环
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ 市场数据（websocket / REST）                     │
    │  - Hyperliquid order book + trades               │
@@ -104,7 +105,7 @@ aliases:
    │  → 提策略调整                                    │
    │  → 交回 backtest 验证                            │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 不会写代码想要 AI agent 体验的用户：**Minara** 在 Hyperliquid 之上提供用户友好 hub 层。
 
@@ -115,21 +116,21 @@ aliases:
 **为什么选它**：30+ 年实战检验。每个量化框架要么用 ta-lib 要么重实现它的函数。用原版。
 
 **快装**：
-```bash
+`````bash
 # Linux
 apt install libta-lib-dev
 pip install TA-Lib
 
 # 或预编译 wheel: pip install TA-Lib-Precompiled
-```
+`````
 
 **Hello world** —— 1000 根 K 线计算 RSI <10ms：
-```python
+`````python
 import talib
 import numpy as np
 close = np.random.random(1000)
 rsi = talib.RSI(close, timeperiod=14)
-```
+`````
 
 完整指南含 walk-forward 指标组合模式：[ta-lib 技术分析交易](/zh/resources/ai-trading/ta-lib-technical-analysis-trading/)。
 
@@ -140,12 +141,12 @@ rsi = talib.RSI(close, timeperiod=14)
 **为什么选它**：walk-forward 优化、参数扫描、蒙特卡洛模拟、Sharpe / Sortino / Calmar 指标、仓位大小 —— 全内置。严肃散户量化的事实选择。
 
 **快装**：
-```bash
+`````bash
 pip install vectorbt
-```
+`````
 
 **回测例**——1 年 BTCUSDT 上的布林带挤压：
-```python
+`````python
 import vectorbt as vbt
 import yfinance as yf
 
@@ -156,7 +157,7 @@ exits = data > bb.upperband
 
 pf = vbt.Portfolio.from_signals(data, entries, exits, init_cash=10000, fees=0.001)
 print(pf.stats())  # Sharpe / 回撤 / 总收益等
-```
+`````
 
 完整指南含 walk-forward 和蒙特卡洛：[vectorbt 量化回测](/zh/resources/ai-trading/vectorbt-quantitative-backtesting/)。
 
@@ -167,12 +168,12 @@ print(pf.stats())  # Sharpe / 回撤 / 总收益等
 **为什么选它**：~31k GitHub stars，5+ 年实战。策略热加载、dry-run 模式（实时数据上的纸面交易）、Telegram bot 集成、web UI、Docker 部署。开源 CEX 交易机器人默认。
 
 **快装**：
-```bash
+`````bash
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
 # UI at http://localhost:8080
-```
+`````
 
-策略 `.py` 丢进 `user_data/strategies/`，配交易所 API key，dry-run 起步，验证 2 周，切实盘。
+策略 ````.py```` 丢进 ````user_data/strategies/````，配交易所 API key，dry-run 起步，验证 2 周，切实盘。
 
 部署在低延迟 VPS —— 我们内部 freqtrade 实例跑在 {{< aff "htstack" "trading-vps-hk" "HTStack 的香港 VPS" >}} 上拿亚洲交易所 sub-50ms 延迟，或 {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplet" >}} 在纽约给偏美场所。
 
@@ -185,10 +186,10 @@ docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compo
 **为什么这重要**：静态策略衰减。2026 年 5 月的加密市场不是 2024 年 1 月的市场。没调整循环时，你策略的 edge 在 6-12 个月内被侵蚀。AI Trader 是唯一专为此循环广泛采用的开源框架。
 
 **快装**：
-```bash
+`````bash
 pip install ai-trader
 # 配 LLM provider（Claude / DeepSeek / Gemini）
-```
+`````
 
 模式：AI Trader 每晚跑，读前日 PnL + 市场数据，生 5-10 策略变体候选，交 vectorbt 做 walk-forward 验证，浮出顶 1-2 给人审，再通过 freqtrade 部署。
 
@@ -201,18 +202,18 @@ pip install ai-trader
 **为什么这对 AI 交易重要**：通过钱包签名直接 Python SDK 访问意味着无需管 API key、无 rate limit（除了 gas 等效的链上限）。代码里执行策略不碰 CEX 仪表盘。
 
 **快装**：
-```bash
+`````bash
 pip install hyperliquid-python-sdk
-```
+`````
 
-```python
+`````python
 from hyperliquid.exchange import Exchange
 from hyperliquid.info import Info
 
 info = Info("https://api.hyperliquid.xyz")
 print(info.l2_snapshot("BTC"))  # 实时 order book
 # 交易需要钱包配置 —— 见深度文
-```
+`````
 
 完整指南含钱包配置和订单类型：[Hyperliquid perp DEX 交易](/zh/resources/ai-trading/hyperliquid-perp-dex-trading/)。
 
@@ -242,7 +243,7 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 ## 10. Day 1 安装顺序（4-5 小时，投真金之前）
 
 1. **VPS + Python 环境**（15 分）—— {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB，装 Python 3.11 + Docker
-2. **ta-lib + vectorbt**（15 分）—— `pip install`，在 1 年 BTC 数据上跑样本回测
+2. **ta-lib + vectorbt**（15 分）—— ````pip install```，在 1 年 BTC 数据上跑样本回测
 3. **freqtrade dry-run**（30 分）—— Docker compose，用只读 Binance API key 配置，纸面跑基础 Bollinger 策略 2 周后再实盘
 4. **Hyperliquid testnet**（30 分）—— 拿 testnet USDC，装 SDK，testnet 上下测试订单验证执行
 5. **AI Trader 集成**（45 分）—— 配 DeepSeek（便宜）或 Claude（premium）API key，指向你 freqtrade dry-run 日志
@@ -256,13 +257,13 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 
 | 项 | 单干散户 | 主动策略 dev | 小基金（3 策略实盘）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | VPS | $12-24 | $24-48 | $60-120 |
 | 数据 feed（多数交易所有免费 websocket）| $0 | $0-20 | $50-150 |
@@ -312,7 +313,7 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 开一个 {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} 拿低延迟执行，部署真金前纸面交易 2-4 周，从你能损失的资本起步，实盘表现匹配回测预期后才扩。
 
 
----
+* * *
 *配套合集：[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 给 AI Trader 的 LLM API 成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 想让自主 agent 驱动交易循环。[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给策略代码开发侧。*
 
 *⚠️ 重申：非投资建议。风险自担。*
@@ -380,11 +381,11 @@ AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -394,7 +395,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](ai-trading-stack)
 - [2026-06-15-trending-ai-agents](ai-trading-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

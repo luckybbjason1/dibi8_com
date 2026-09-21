@@ -28,6 +28,7 @@ faqs: - q: 'Claude Code에 영구 메모리를 추가하는 방법은?'
     a: '네. MemPalace는 MIT 라이선스 하에 오픈소스로 제공되며 $0의 비용으로 API 요금이나 구독료가 없습니다. 구독 또는 사용 요금을 부과하는 Pinecone과 달리 완전 무료입니다.'
 ---
 
+
 {</* resource-info */>}
 
 # Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)
@@ -48,7 +49,7 @@ AI 에이전트가 프로젝트 히스토리를 기억하게 하려면 몇 가�
 
 ### MCP를 통한 네이티브 통합
 
-MemPalace는 표준 모델 컨텍스트 프로토콜(MCP) 서버를 노출합니다. `claude_code_config.json`을 수정하여 `http://localhost:8787/mcp`를 가리키도록 하고 읽기/쓰기 권한을 부여하기만 하면 됩니다. 이제 Claude에게 '이 아키텍처 결정을 기억해둬'라고 말하면, 자동으로 MemPalace의 원문-벡터 이중 스토리지에 저장됩니다.
+MemPalace는 표준 모델 컨텍스트 프로토콜(MCP) 서버를 노출합니다. ```claude_code_config.json````을 수정하여 ````http://localhost:8787/mcp```를 가리키도록 하고 읽기/쓰기 권한을 부여하기만 하면 됩니다. 이제 Claude에게 '이 아키텍처 결정을 기억해둬'라고 말하면, 자동으로 MemPalace의 원문-벡터 이중 스토리지에 저장됩니다.
 
 ## FAQ
 
@@ -58,7 +59,7 @@ A: 로컬에서 MemPalace를 실행하고 해당 MCP 엔드포인트를 Claude C
 **Q: Claude Code 세션 메모리 영구 보존이 가능한가요?**
 A: 네. MemPalace는 데이터를 로컬 SQLite/ChromaDB 디스크에 기록하기 때문에, 컴퓨터를 재부팅하거나 완전히 새로운 터미널 세션을 열어도 AI의 메모리는 영구적으로 유지됩니다.
 
----
+* * *
 
 ## 추천 도구
 
@@ -130,7 +131,7 @@ Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

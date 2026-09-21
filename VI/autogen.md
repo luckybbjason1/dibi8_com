@@ -25,6 +25,7 @@ aliases:
 - /vi/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới Thiệu
@@ -39,12 +40,12 @@ AutoGen là framework lập trình mã nguồn mở để xây dựng ứng dụ
 
 Kiến trúc của AutoGen được chia thành bốn lớp: | Lớp | Mục Đích | Điểm Vào |
 |------|---------|----------|
-| **Core** | Runtime hướng sự kiện cho messaging và trạng thái agent | `autogen-core` |
-| **AgentChat** | Agent hội thoại cấp cao xây dựng trên Core | `autogen-agentchat` |
-| **Extensions** | Tích hợp với OpenAI, Docker, MCP, gRPC | `autogen-ext` |
-| **Studio** | UI web để prototype mà không cần viết code | `autogenstudio` |
+| **Core** | Runtime hướng sự kiện cho messaging và trạng thái agent | ```autogen-core```` |
+| **AgentChat** | Agent hội thoại cấp cao xây dựng trên Core | ````autogen-agentchat```` |
+| **Extensions** | Tích hợp với OpenAI, Docker, MCP, gRPC | ````autogen-ext```` |
+| **Studio** | UI web để prototype mà không cần viết code | ````autogenstudio```` |
 
-Mô hình tư duy cốt lõi là truyền tin giữa các agent. `AssistantAgent` tạo kế hoạch và code. `UserProxyAgent` thực thi code local hoặc trong Docker và chuyển tiếp output. `GroupChatManager` định tuyến tin nhắn giữa các thành viên theo chiến lược chọn (round-robin, tự động chọn, hoặc tùy chỉnh).
+Mô hình tư duy cốt lõi là truyền tin giữa các agent. ````AssistantAgent```` tạo kế hoạch và code. ````UserProxyAgent```` thực thi code local hoặc trong Docker và chuyển tiếp output. ````GroupChatManager```` định tuyến tin nhắn giữa các thành viên theo chiến lược chọn (round-robin, tự động chọn, hoặc tùy chỉnh).
 
 ![Kiến trúc AutoGen](https://raw.githubusercontent.com/microsoft/autogen/main/website/static/img/autogen_agentchat.png)
 
@@ -66,31 +67,31 @@ AutoGen yêu cầu **Python 3.10+**. Đường dẫn cài đặt phụ thuộc v
 
 ### Cài Đặt Cơ Bản (AgentChat)
 
-```bash
+`````bash
 # Tạo môi trường ảo
 python -m venv .venv
 source .venv/bin/activate
 
 # Cài đặt AgentChat + tiện ích mở rộng OpenAI
 pip install -U "autogen-agentchat" "autogen-ext[openai]"
-```
+`````
 
 ### Cài Đặt Đầy Đủ Với Mọi Tiện Ích Mở Rộng
 
-```bash
+`````bash
 pip install -U "autogen-agentchat" "autogen-ext[openai,azure,docker,mcp]"
-```
+`````
 
 ### Xác Minh Cài Đặt
 
-```python
+`````python
 import autogen_agentchat
 print(autogen_agentchat.__version__)
-```
+`````
 
 ### Agent "Hello World" Tối Thiểu
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
@@ -107,16 +108,16 @@ async def main() -> None: agent = AssistantAgent(
     print(result.messages[-1].content)
 
 asyncio.run(main())
-```
+`````
 
-Chạy: ```bash
+Chạy: `````bash
 export OPENAI_API_KEY="sk-..."
 python hello_agent.py
-```
+`````
 
 ### Thiết Lập Docker (Khuyến Nghị Cho Production)
 
-```bash
+`````bash
 # Pull image chính thức
 docker pull mcr.microsoft.com/autogen/python:latest
 
@@ -125,13 +126,13 @@ docker run -it \
   -e OPENAI_API_KEY="$OPENAI_API_KEY" \
   -v "$(pwd)/workspace:/workspace" \
   mcr.microsoft.com/autogen/python:latest
-```
+`````
 
 ## Tích Hợp Với Các Công Cụ Phổ Biến
 
 ### OpenAI / Azure OpenAI
 
-AgentChat của AutoGen sử dụng `OpenAIChatCompletionClient` cho cả endpoint OpenAI và Azure: ```python
+AgentChat của AutoGen sử dụng ``OpenAIChatCompletionClient`` cho cả endpoint OpenAI và Azure: `````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 # OpenAI trực tiếp
@@ -147,11 +148,11 @@ azure_client = OpenAIChatCompletionClient(
     api_key="YOUR_AZURE_KEY",
     api_version="2024-12-01-preview"
 )
-```
+`````
 
 ### Ollama (Model Local)
 
-```python
+`````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 local_client = OpenAIChatCompletionClient(
@@ -165,11 +166,11 @@ local_client = OpenAIChatCompletionClient(
         "family": "unknown"
     }
 )
-```
+`````
 
 ### Thực Thi Code Docker
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 from autogen_agentchat.agents import CodeExecutorAgent
 
@@ -185,19 +186,19 @@ code_agent = CodeExecutorAgent(
     name="code_executor",
     code_executor=executor
 )
-```
+`````
 
 ### Tiện Ích Mở Rộng VS Code
 
-Tiện ích mở rộng AutoGen VS Code cung cấp inline debugging cho hội thoại agent: ```bash
+Tiện ích mở rộng AutoGen VS Code cung cấp inline debugging cho hội thoại agent: `````bash
 # Cài đặt từ marketplace (tìm kiếm "AutoGen")
 # Hoặc qua CLI
 code --install-extension microsoft.autogen
-```
+`````
 
 ### Model Context Protocol (MCP)
 
-AutoGen 0.5+ hỗ trợ MCP server cho khám phá công cụ: ```python
+AutoGen 0.5+ hỗ trợ MCP server cho khám phá công cụ: `````python
 from autogen_ext.tools.mcp import McpWorkbench
 
 workbench = McpWorkbench(
@@ -205,7 +206,7 @@ workbench = McpWorkbench(
 )
 
 # Các công cụ từ MCP server trở nên khả dụng cho các agent
-```
+`````
 
 ## Benchmark / Use Case Thực Tế
 
@@ -245,7 +246,7 @@ AutoGen vượt trội hơn các lựa chọn thay thế trong các kịch bản
 
 ### Group Chat Với Selector Tùy Chỉnh
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
@@ -287,11 +288,11 @@ async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
     for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
-```
+`````
 
 ### Selector-Based Group Chat (Định Tuyến Động)
 
-```python
+`````python
 from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination
 
@@ -302,11 +303,11 @@ team = SelectorGroupChat(
     termination_condition=MaxMessageTermination(max_messages=15),
     allow_repeated_speaker=False  # Ngăn cùng một agent nói hai lần liên tiếp
 )
-```
+`````
 
 ### Tích Hợp Công Cụ Tùy Chỉnh
 
-```python
+`````python
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
@@ -322,11 +323,11 @@ agent = AssistantAgent(
     tools=[search_tool],
     system_message="Use the search_knowledge_base tool to answer questions."
 )
-```
+`````
 
 ### Persistence Trạng Thái Cho Workflow Chạy Dài
 
-```python
+`````python
 from autogen_agentchat.teams import GroupChat
 from autogen_core import CancellationToken
 
@@ -341,11 +342,11 @@ with open("team_state.json", "w") as f: json.dump(state, f)
 with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
-```
+`````
 
 ### Bảo Mật: Thực Thi Code Trong Sandbox
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
@@ -362,11 +363,11 @@ with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCode
         code_executor=executor
     )
     # Agent chạy mọi code bên trong container
-```
+`````
 
 ### Giám Sát Với OpenTelemetry
 
-```python
+`````python
 from autogen_core import TRACE_LOGGER_NAME
 import logging
 
@@ -378,7 +379,7 @@ from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
 tracer = trace.get_tracer("autogen.production")
-```
+`````
 
 ## So Sánh Với Các Lựa Chọn Thay Thế
 
@@ -413,7 +414,7 @@ tracer = trace.get_tracer("autogen.production")
 
 AutoGen không phải công cụ phù hợp cho mọi công việc. Đây là những gì nó KHÔNG phù hợp: 1. **API production throughput cao**: Pattern hội thoại tạo ra 20+ lần gọi LLM mỗi tác vụ. Ở 1.000 yêu cầu/phút, hóa đơn LLM và độ trễ của bạn sẽ không thể chấp nhận được. Sử dụng LangGraph cho workload giao dịch.
 
-2. **Pipeline tuyến tính đơn giản**: Nếu workflow của bạn là "A làm bước 1, B làm bước 2, C làm bước 3" mà không cần backtracking, `Process.sequential` của CrewAI đơn giản và rẻ hơn.
+2. **Pipeline tuyến tính đơn giản**: Nếu workflow của bạn là "A làm bước 1, B làm bước 2, C làm bước 3" mà không cần backtracking, ````Process.sequential```` của CrewAI đơn giản và rẻ hơn.
 
 3. **Team không dùng Python**: Mặc dù AutoGen có bản port .NET, hệ sinh thái là Python-first. Team TypeScript và Java sẽ thấy LangGraph (hỗ trợ JS) hoặc Semantic Kernel (.NET) tự nhiên hơn.
 
@@ -429,11 +430,11 @@ Microsoft Agent Framework (MAF) là sự phát triển thế hệ tiếp theo c�
 
 **Q: Làm thế nào để chạy AutoGen với model local như Llama hoặc Mistral?**
 
-Sử dụng Ollama hoặc bất kỳ server local tương thích OpenAI nào. Đặt `base_url` trong `OpenAIChatCompletionClient` thành endpoint local của bạn (ví dụ: `http://localhost:11434/v1`). Cung cấp dict `model_info` để AutoGen biết khả năng của model (vision, function calling, JSON output).
+Sử dụng Ollama hoặc bất kỳ server local tương thích OpenAI nào. Đặt ````base_url```` trong ````OpenAIChatCompletionClient```` thành endpoint local của bạn (ví dụ: ````http://localhost:11434/v1````). Cung cấp dict ````model_info```` để AutoGen biết khả năng của model (vision, function calling, JSON output).
 
 **Q: AutoGen agent có thể thực thi code an toàn không?**
 
-Có, thông qua `DockerCommandLineCodeExecutor`. Mọi code được tạo đều chạy bên trong container Docker với timeout có thể cấu hình và bind mounts. Không bao giờ sử dụng `LocalCommandLineCodeExecutor` cho code không đáng tin cậy được tạo bởi LLM trong production.
+Có, thông qua ````DockerCommandLineCodeExecutor````. Mọi code được tạo đều chạy bên trong container Docker với timeout có thể cấu hình và bind mounts. Không bao giờ sử dụng ````LocalCommandLineCodeExecutor```` cho code không đáng tin cậy được tạo bởi LLM trong production.
 
 **Q: Có thể đặt bao nhiêu agent trong một GroupChat?**
 
@@ -441,15 +442,15 @@ Giới hạn thực tế là 5-8 agent. Ngoài con số đó, bộ chọn hội 
 
 **Q: AutoGen có hỗ trợ phản hồi streaming không?**
 
-Có, AgentChat hỗ trợ streaming qua `run_stream()`: ```python
+Có, AgentChat hỗ trợ streaming qua ``run_stream()``: `````python
 async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
-```
+`````
 
 Streaming ở cấp mỗi tin nhắn (không phải mỗi token), nên độ chi tiết thô hơn so với streaming OpenAI thô.
 
 **Q: Làm thế nào để debug một cuộc hội thoại multi-agent bị lỗi?**
 
-Bật logging chi tiết và lưu trạng thái hội thoại: ```python
+Bật logging chi tiết và lưu trạng thái hội thoại: `````python
 # In mọi tin nhắn khi nó xảy ra
 team = RoundRobinGroupChat(
     participants=[agent1, agent2],
@@ -457,7 +458,7 @@ team = RoundRobinGroupChat(
 )
 result = await team.run(task="Debug task", max_turns=10)
 for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
-```
+`````
 
 ## Kết Luận
 
@@ -467,7 +468,7 @@ Sự linh hoạt tương tự trở thành trở ngại ở quy mô production. 
 
 **Các hành động:**
 
-1. Cài đặt AutoGen AgentChat với `pip install "autogen-agentchat" "autogen-ext[openai]"`
+1. Cài đặt AutoGen AgentChat với ````pip install "autogen-agentchat" "autogen-ext[openai]"```
 2. Xây dựng GroupChat 3-agent cho use case của bạn bằng các ví dụ code ở trên
 3. Đo lường token sử dụng và độ trễ so với LangGraph và CrewAI với prompt giống hệt
 4. Tham gia [AutoGen Discord](https://aka.ms/autogen-discord) để được hỗ trợ cộng đồng
@@ -521,7 +522,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -531,7 +532,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [agent-reach-internet-access-ai-agents](autogen)
 - [microsoft-markitdown-file-to-markdown-converter-cli](autogen)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -17,6 +17,7 @@ faqs: - q: 'Is OpenAI Codex CLI free?'
   - q: 'Which is better for enterprise?'
     a: 'Claude Code has the more mature enterprise story in 2026 — Anthropic offers SOC 2 Type II, HIPAA via API, and Claude Enterprise plans with private VPC deployment. OpenAI Codex CLI is newer (open-sourced Nov 2025) and ties into the standard OpenAI enterprise plans, but the CLI itself doesn''t yet have a dedicated enterprise tier. For regulated industries today, Claude Code wins; OpenAI is closing the gap fast.'
 ---
+
 # OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?
 
 
@@ -29,16 +30,16 @@ Use **OpenAI Codex CLI** if: You already pay for OpenAI API, want open-source co
 Use **Claude Code** if: You work in 200K+ LOC monorepos that benefit from 1M context, want the most refined CLI agent UX in 2026, need enterprise-grade compliance (SOC 2, HIPAA), or already pay for Claude Pro/Max.
 
 
----
+* * *
 ## Side-by-Side Comparison
 
 | Feature | OpenAI Codex CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Vendor** | OpenAI | Anthropic |
 | **Released** | November 2025 (open-sourced) | February 2025 |
@@ -54,11 +55,11 @@ Use **Claude Code** if: You work in 200K+ LOC monorepos that benefit from 1M con
 | **Pricing (model)** | ~$1.50/1M in, ~$10/1M out (gpt-5-codex) | ~$3/1M in, ~$15/1M out (Sonnet 4.6) |
 | **Enterprise** | OpenAI Enterprise plan (no CLI-specific tier) | Claude Enterprise, SOC 2, HIPAA, private VPC |
 | **Best codebase size** | < 80K LOC (400K context) | < 250K LOC (1M context) |
-| **Hooks / custom commands** | Configurable via `~/.codex/config.toml` | First-class (`hooks`, slash commands, agents) |
+| **Hooks / custom commands** | Configurable via ```~/.codex/config.toml```` | First-class (````hooks````, slash commands, agents) |
 | **Multi-file edits** | Yes (sandbox-confirmed) | Yes (diff preview + approval) |
 
 
----
+* * *
 ## When to Choose OpenAI Codex CLI
 
 ### Use case 1: Fully open-source and auditable
@@ -70,7 +71,7 @@ Out of the box, Codex CLI runs every shell command and file write through OS-lev
 ### Use case 3: Tight OpenAI ecosystem integration
 If your team already runs on OpenAI (Assistants API, ChatGPT Enterprise, OpenAI o1 for planning), Codex CLI plugs in cleanly. Shared API key, shared usage dashboard, shared rate limits. Cheaper net cost if you already commit to OpenAI volume discounts.
 
----
+* * *
 
 ## When to Choose Claude Code
 
@@ -83,7 +84,7 @@ Claude Code in 2026 is the most refined CLI agent UX on the market — diff prev
 ### Use case 3: Enterprise compliance
 Claude Enterprise offers SOC 2 Type II, HIPAA-eligible deployments, private VPC residency, and audit logs. For regulated industries (healthcare, finance, public sector), Claude Code is the defensible choice today. OpenAI offers similar at the platform layer, but the CLI itself hasn't yet shipped a dedicated enterprise tier.
 
----
+* * *
 
 ## Pricing Deep Dive
 
@@ -111,17 +112,17 @@ For occasional use: **Codex CLI PAYG** wins on pure token cost (gpt-5-codex is c
 For heavy daily use under $20: **Claude Pro at $20/mo flat** is hard to beat — predictable cost, no surprise bills.
 For unlimited heavy use: **Claude Max 20x at $200/mo** outpaces equivalent PAYG spend at scale.
 
----
+* * *
 
 ## Performance Benchmarks (Subjective, From My Daily Use)
 
 | Task | OpenAI Codex CLI | Claude Code |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Single-file bug fix | 8/10 | 9/10 |
 | Multi-file refactor (small repo) | 8/10 | 9/10 |
@@ -136,30 +137,30 @@ For unlimited heavy use: **Claude Max 20x at $200/mo** outpaces equivalent PAYG 
 
 → Codex CLI wins sandbox safety and open-source. Claude Code wins context-bound tasks, UX polish, and enterprise.
 
----
+* * *
 
 ## Migration Tips
 
 ### Codex CLI → Claude Code
-- Install: `npm i -g @anthropic-ai/claude-code` then `claude` to launch
+- Install: ````npm i -g @anthropic-ai/claude-code```` then ````claude```` to launch
 - Bring your Anthropic API key or log into Pro/Max
-- Codex CLI `~/.codex/config.toml` hooks → Claude Code `~/.claude/settings.json` hooks
-- Replace sandbox-confirmed runs with `--dangerously-skip-permissions` only on disposable VMs
+- Codex CLI ````~/.codex/config.toml```` hooks → Claude Code ````~/.claude/settings.json```` hooks
+- Replace sandbox-confirmed runs with ````--dangerously-skip-permissions```` only on disposable VMs
 - Re-wire MCP servers — Claude Code supports MCP natively, so you can usually drop your tools straight in
 - Plan for higher per-token cost but bigger context window — set up Anthropic prompt caching to recoup 60-90% on repeated reads
 
 ### Claude Code → Codex CLI
-- Install: `npm i -g @openai/codex` (or `brew install codex`)
-- Set `OPENAI_API_KEY` in env
-- Verify sandbox: `codex --sandbox` should report Seatbelt/Landlock active
-- Map Claude Code hooks → `~/.codex/config.toml`
+- Install: ````npm i -g @openai/codex```` (or ````brew install codex````)
+- Set ````OPENAI_API_KEY```` in env
+- Verify sandbox: ````codex --sandbox```` should report Seatbelt/Landlock active
+- Map Claude Code hooks → ````~/.codex/config.toml```
 - Slash commands and skills don't translate 1:1 — rebuild critical ones as shell scripts callable from Codex's tool layer
 - Expect smaller context window — be more disciplined about which files load per task
 
 ### Self-Hosting Note
 Running both CLIs against a real codebase to decide? Spin up a {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet with $200 free credit" >}} — a $12/mo regular droplet runs both CLIs comfortably and lets you keep an isolated staging environment for unattended agent runs. Two months of free evaluation, then $12/mo. Cheaper than maintaining two parallel local environments, and you keep the infrastructure when you decide.
 
----
+* * *
 
 ## Alternatives Worth Trying
 
@@ -168,7 +169,7 @@ If neither Codex CLI nor Claude Code fits, consider: - **[Cursor vs Claude Code]
 - **[Claude Code vs Aider](https://dibi8.com/vs/claude-code-vs-aider/)** — Open-source CLI agent comparison
 - **[cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/)** — Route Claude Code through cheaper providers, cut costs 60-80%
 
----
+* * *
 
 ## dibi8's Take
 
@@ -182,13 +183,13 @@ For an indie dev shipping a SaaS solo on a medium codebase? **Claude Code Pro at
 
 The honest answer for most devs in 2026: try both for a week, keep the one whose UX feels like home.
 
----
+* * *
 
 ## FAQ
 
 (rendered via faqs frontmatter — visible inline + JSON-LD for AIO)
 
----
+* * *
 
 ## Further Reading
 
@@ -233,7 +234,7 @@ The honest answer for most devs in 2026: try both for a week, keep the one whose
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -243,7 +244,7 @@ The honest answer for most devs in 2026: try both for a week, keep the one whose
 - [claude-code-vs-aider](openai-codex-cli-vs-claude-code)
 - [cursor-vs-claude-code](openai-codex-cli-vs-claude-code)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

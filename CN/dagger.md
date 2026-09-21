@@ -23,6 +23,7 @@ tags: ["cicd", "devops", "containers", "pipeline-as-code", "docker", "github-act
 aliases:
   - /posts/dagger/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction
@@ -60,7 +61,7 @@ Dagger's architecture consists of four layers: 1. **Your Pipeline Code** (Go / P
 3. **Dagger Engine** — a BuildKit-based container runtime that executes the pipeline graph.
 4. **Container Runtime** — Docker, Podman, or any OCI-compliant runtime hosting the engine.
 
-```
+````
 ┌─────────────────────────────────────────────────────────────┐
 │  Pipeline Code (Go/Python/TS)                               │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐                 │
@@ -85,28 +86,28 @@ Dagger's architecture consists of four layers: 1. **Your Pipeline Code** (Go / P
 ┌─────────────────────────────────────────────────────────────┐
 │  Docker / Podman / OCI Runtime                              │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### The Execution Model
 
 When you run a Dagger pipeline, the SDK translates your function calls into a Directed Acyclic Graph (DAG) of operations. Each node in the DAG represents a container operation: pulling an image, copying files, running a command, or exporting an artifact. The Dagger Engine schedules these operations with automatic parallelism and caches every intermediate result.
 
-```
+`````
 # Example DAG execution flow
 Pull base image ──┬── Install deps ──┬── Run tests ──┬── Export binary
                   │                   │                │
                   └── Cache hit? Skip  └── Cache hit?   └── Cache hit?
-```
+`````
 
 ### Key Concepts
 
 | Concept | Description |
 |
----
+* * *
 |
----
+* * *
 |
-| **Module** | A reusable package of Dagger functions defined in a `dagger.json` manifest |
+| **Module** | A reusable package of Dagger functions defined in a ````dagger.json```` manifest |
 | **Function** | A typed, sandboxed operation that accepts inputs and produces outputs |
 | **Directory** | A content-addressed filesystem tree passed between functions |
 | **Container** | An OCI container image or running container manipulated through the API |
@@ -124,18 +125,18 @@ Pull base image ──┬── Install deps ──┬── Run tests ──┬
 
 **macOS (Homebrew):**
 
-```bash
+`````bash
 # Install via Homebrew tap
 brew install dagger/tap/dagger
 
 # Verify the installation
 dagger version
 # Expected: dagger v0.19.7 (registry.dagger.io/engine:v0.19.7)
-```
+`````
 
 **Linux:**
 
-```bash
+`````bash
 # Install using the official install script
 curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=/usr/local/bin sh
 
@@ -145,22 +146,22 @@ curl -fsSL https://dl.dagger.io/dagger/install.sh | \
 
 # Verify
 dagger version
-```
+`````
 
 **Windows:**
 
-```powershell
+`````powershell
 # Install via scoop
 scoop bucket add dagger https://github.com/dagger/scoop-bucket
 scoop install dagger
 
 # Verify
 dagger version
-```
+`````
 
 ### Initialize Your First Project
 
-```bash
+`````bash
 # Create a new Dagger module
 dagger init --sdk=python --source=./dagger my-pipeline
 
@@ -174,11 +175,11 @@ dagger init --sdk=typescript --source=./dagger my-pipeline
 # │   └── src/main.py (or main.go, or index.ts)
 # ├── dagger.json
 # └── .gitignore
-```
+`````
 
 ### Quick Local Test
 
-```python
+`````python
 # dagger/src/main.py — A minimal Dagger pipeline
 import dagger
 from dagger import dag, function, object_type
@@ -189,20 +190,20 @@ class MyPipeline: @function
             .from_("alpine:latest")
             .with_exec(["echo", f"Hello, {name}!"])
             .stdout()
-```
+`````
 
-```bash
+`````bash
 # Run the function locally
 dagger call hello --name="Dagger"
 
 # Output: # Hello, Dagger!
-```
+`````
 
 ## Integration with Docker, Go, Python, and TypeScript
 
 ### Docker Integration — Building and Pushing Images
 
-Dagger natively manipulates containers through the Docker ecosystem. Here is a complete pipeline that builds, tags, and pushes a Docker image: ```python
+Dagger natively manipulates containers through the Docker ecosystem. Here is a complete pipeline that builds, tags, and pushes a Docker image: `````python
 # dagger/src/main.py — Build and push a Docker image
 import dagger
 from dagger import dag, function, object_type, Directory
@@ -226,9 +227,9 @@ class CiPipeline: @function
             .publish(f"{registry}/{repository}:{tag}")
 
         return digest
-```
+`````
 
-```bash
+`````bash
 # Run the build-and-push function
 dagger call build-and-push \
   --source=. \
@@ -237,11 +238,11 @@ dagger call build-and-push \
   --password=env:GITHUB_TOKEN \
   --repository=my-org/my-app \
   --tag=v1.2.3
-```
+`````
 
 ### Go SDK — Full CI Pipeline
 
-```go
+`````go
 // dagger/main.go — Go-based CI pipeline with testing
 dagger "dagger.io/dagger"
 
@@ -277,16 +278,16 @@ func (m *CiPipeline) Run(ctx context.Context, source *dagger.Directory) (*dagger
     // Extract the built binary as a file
     return binary.File("/src/bin/myapp"), nil
 }
-```
+`````
 
-```bash
+`````bash
 # Run the Go pipeline from the project root
 dagger call run --source=. -o ./bin/myapp
-```
+`````
 
 ### Python SDK — Integration Testing with Services
 
-```python
+`````python
 # dagger/src/main.py — Integration test with PostgreSQL service
 import dagger
 from dagger import dag, function, object_type, Directory, Service
@@ -317,11 +318,11 @@ class TestPipeline: @function
         )
 
         return test_result
-```
+`````
 
 ### TypeScript SDK — Multi-Platform Build
 
-```typescript
+`````typescript
 // dagger/src/index.ts — Multi-platform container build
 import { dag, function, objectType, Directory } from "@dagger.io/dagger";
 
@@ -336,14 +337,14 @@ class BuildPipeline {
             platforms.map(async (platform) => {
                 return await image
                     .platform(platform)
-                    .publish(`ghcr.io/my-org/my-app:${platform.replace("/", "-")}`);
+                    .publish(````ghcr.io/my-org/my-app:${platform.replace("/", "-")}````);
             })
         );
 
         return digests;
     }
 }
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -353,15 +354,15 @@ Dagger's content-addressed cache provides measurable speedups over traditional C
 
 | Scenario | GitHub Actions | GitLab CI | Dagger (local cache) | Dagger (shared cache) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cold build | 4m 12s | 3m 48s | 4m 05s | 4m 05s |
 | 2nd run (no code changes) | 3m 55s | 3m 30s | 8s | 8s |
@@ -384,20 +385,20 @@ Daggerverse ([daggerverse.dev](https://daggerverse.dev)) is a community registry
 - Security scanning: Trivy, Snyk, SLSA verification
 - Testing: k6 load tests, Playwright browser tests
 
-```bash
+`````bash
 # Install and use a module from Daggerverse
 dagger -m github.com/kpenfound/blueprints/go call build \
   --source=. --args=./cmd/myapp
 
 # List installed modules
 dagger module use github.com/Dudesons/daggerverse/node
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Secret Management
 
-Never pass secrets as plain strings. Dagger's `Secret` type ensures sensitive values are masked in logs and traces: ```python
+Never pass secrets as plain strings. Dagger's ``Secret`` type ensures sensitive values are masked in logs and traces: `````python
 import dagger
 from dagger import dag, function, object_type, Secret
 
@@ -419,18 +420,18 @@ class SecurePipeline: @function
             ])
             .stdout()
         )
-```
+`````
 
-```bash
+`````bash
 # Pass the secret from an environment variable
 dagger call deploy \
   --kubeconfig=file:$HOME/.kube/config \
   --image-digest=ghcr.io/my-org/my-app@sha256:abc123...
-```
+`````
 
 ### Parallel Execution Patterns
 
-Dagger automatically parallelizes independent operations. Explicitly structure pipelines to maximize parallelism: ```python
+Dagger automatically parallelizes independent operations. Explicitly structure pipelines to maximize parallelism: `````python
 import asyncio
 from dagger import dag, function, object_type, Directory
 
@@ -464,11 +465,11 @@ class ParallelPipeline: @function
             .with_workdir("/src")
             .with_exec(["trivy", "fs", "--scanners=vuln", "."])
             .stdout()
-```
+`````
 
 ### Monitoring with OpenTelemetry
 
-Dagger emits OpenTelemetry traces for every operation. Export them to a backend for pipeline observability: ```bash
+Dagger emits OpenTelemetry traces for every operation. Export them to a backend for pipeline observability: `````bash
 # Run with OTel export to Jaeger
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
@@ -476,11 +477,11 @@ export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 dagger call run --source=. --otel-export=auto
 
 # View the trace in Jaeger UI at http://localhost:16686
-```
+`````
 
 ### CI Integration — GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/dagger.yml
 name: Dagger CI
 
@@ -496,11 +497,11 @@ jobs: ci: runs-on: ubuntu-latest
           module: .
           args: run --source=.
         env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+`````
 
 ### CI Integration — GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: [build]
 
@@ -513,11 +514,11 @@ dagger:build: stage: build
   script: - dagger call run --source=.
   cache: key: dagger-cache
     paths: - .dagger-cache/
-```
+`````
 
 ### CI Integration — Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -536,24 +537,24 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Dagger | GitHub Actions | GitLab CI | Jenkins |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Pipeline Definition** | Go/Python/TypeScript code | YAML workflows | YAML `.gitlab-ci.yml` | Groovy/Java DSL |
-| **Local Execution** | Native — identical to CI | Not supported (act is partial) | Limited (`gitlab-runner exec`) | Full support |
+| **Pipeline Definition** | Go/Python/TypeScript code | YAML workflows | YAML ````.gitlab-ci.yml```` | Groovy/Java DSL |
+| **Local Execution** | Native — identical to CI | Not supported (act is partial) | Limited (````gitlab-runner exec````) | Full support |
 | **Caching Granularity** | Per-operation (content-addressed) | Key-value + Docker layer cache | Key-value + cache layers | Plugin-dependent |
 | **Vendor Lock-in** | None — runs on any CI | GitHub-only for orchestration | GitLab-only for orchestration | None (self-hosted) |
 | **Learning Curve** | Moderate (requires Go/TS/Py) | Low (YAML + marketplace) | Low-Medium (YAML + DSL) | High (Groovy complexity) |
@@ -613,7 +614,7 @@ Dagger uses content-addressed caching at the operation level, which is more gran
 Yes, but with caveats. Dagger's content-addressed caching works well in monorepos because unchanged packages are skipped entirely. However, the initial DAG construction and file scanning can be slower for very large repositories (10GB+). The Dagger team is actively optimizing monorepo performance in the v0.20.x release cycle.
 
 **Q: How do I migrate an existing GitHub Actions workflow to Dagger?**
-Start incrementally. Port one job at a time — typically the build or test job first. Keep the GitHub Actions workflow as the orchestration layer and replace individual steps with `dagger call` invocations. This hybrid approach lets you validate Dagger locally while maintaining your existing CI infrastructure. Over time, consolidate the remaining jobs into Dagger functions.
+Start incrementally. Port one job at a time — typically the build or test job first. Keep the GitHub Actions workflow as the orchestration layer and replace individual steps with ````dagger call```` invocations. This hybrid approach lets you validate Dagger locally while maintaining your existing CI infrastructure. Over time, consolidate the remaining jobs into Dagger functions.
 
 **Q: What container runtimes does Dagger support?**
 Dagger requires a Linux container runtime: Docker Engine 24.0+, Podman 4.0+, containerd, or any OCI-compliant runtime. On macOS and Windows, Docker Desktop or Podman Desktop is required. Rootless Docker and Podman are supported with some configuration caveats documented in the official reference.
@@ -629,8 +630,8 @@ For teams working in Go, Python, or TypeScript, Dagger eliminates the cognitive 
 
 ### Action Items
 
-1. Install the Dagger CLI: `brew install dagger/tap/dagger`
-2. Run the quickstart: `dagger init --sdk=python --source=./dagger my-pipeline`
+1. Install the Dagger CLI: ````brew install dagger/tap/dagger````
+2. Run the quickstart: ````dagger init --sdk=python --source=./dagger my-pipeline```
 3. Port your build job first — keep existing CI as the trigger layer
 4. Join the Dagger community on [Discord](https://discord.com/invite/dagger-io) for support
 5. Explore the [Daggerverse](https://daggerverse.dev) for reusable modules
@@ -688,7 +689,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](dagger)
@@ -698,5 +699,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [moneyprinterturbo-one-click-ai-video-generator](dagger)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/agno/
 ---
 
+
 {{</* resource-info */>}}
 
 2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 "에이전트 개발을 단순화"하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. **40,233개의 GitHub Star**, **452명의 기여자**, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 **agno tutorial** —는 **agno setup**, 아키텍처, 실제 코드 예제, **agno vs crewai** 벤치마크 비교, 그리고 이 **lightweight ai framework**의 부족한 부분에 대한 진실한 분석을 다룹니다.
@@ -40,7 +41,7 @@ Agno의 가치 제안은 간단합니다: 일반 Python 클래스로 에이전�
 
 ### 아키텍처 개요
 
-Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ```
+Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ````
 ┌─────────────────────────────────────────────────────────────┐
 │                 컨트롤 플레인 (AgentOS UI)                   │
 │         채팅 · 트레이스 검사 · 세션 관리                      │
@@ -54,7 +55,7 @@ Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리
 │              모델 제공업체 (23개 이상 지원)                   │
 │  OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok ...  │
 └─────────────────────────────────────────────────────────────┘
-```
+`````
 
 ### 핵심 개념
 
@@ -76,7 +77,7 @@ Agno는 Python 3.10+ 이외의 외부 의존성 없이 2분 이내에 설치됩�
 
 ### 1단계: 가상 환경 생성
 
-```bash
+`````bash
 # uv 사용 (권장)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv --python 3.12
@@ -85,11 +86,11 @@ source .venv/bin/activate
 # 또는 표준 venv 사용
 python3 -m venv ~/.venvs/agno
 source ~/.venvs/agno/bin/activate
-```
+`````
 
 ### 2단계: Agno 설치
 
-```bash
+`````bash
 # 최소 설치
 uv pip install -U agno
 
@@ -98,18 +99,18 @@ uv pip install -U agno openai
 
 # 일반적인 도구 포함 전체 설치
 uv pip install -U agno openai duckduckgo-search chromadb
-```
+`````
 
 ### 3단계: 설치 확인
 
-```bash
+`````bash
 python -c "import agno; print(agno.__version__)"
 # 예상: 2.6.8 이상
-```
+`````
 
 ### 4단계: 첫 번째 에이전트 실행
 
-`basic_agent.py`를 생성합니다: ```python
+``basic_agent.py``를 생성합니다: `````python
 from agno.agent import Agent
 
 agent = Agent(
@@ -119,12 +120,12 @@ agent = Agent(
 )
 
 agent.print_response("Python에서 asyncio와 threading의 차이점을 설명하세요.", stream=True)
-```
+`````
 
-```bash
+`````bash
 export OPENAI_API_KEY="sk-your-key-here"
 python basic_agent.py
-```
+`````
 
 이것으로 끝입니다 — 10줄의 Python으로 작동하는 에이전트입니다. YAML 설정, 그래프 정의, 번거로움이 없습니다.
 
@@ -132,7 +133,7 @@ python basic_agent.py
 
 ### OpenAI 통합
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -145,11 +146,11 @@ agent = Agent(
 )
 
 agent.print_response("양자 컴퓨팅의 최신 소식", stream=True)
-```
+`````
 
 ### Anthropic Claude 통합
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 
@@ -160,11 +161,11 @@ agent = Agent(
 )
 
 agent.print_response("동남아시아의 EV 시장을 분석하세요.", stream=True)
-```
+`````
 
 ### Ollama 통합 (로컬 모델)
 
-```python
+`````python
 from agno.agent import Agent
 from agno.models.ollama import Ollama
 
@@ -175,9 +176,9 @@ agent = Agent(
 )
 
 agent.print_response("Python 예제로 재귀를 설명하세요.", stream=True)
-```
+`````
 
-```bash
+`````bash
 # Ollama 설치
 curl -fsSL https://ollama.com/install.sh | sh
 
@@ -186,11 +187,11 @@ ollama pull qwen3
 
 # 실행
 python ollama_agent.py
-```
+`````
 
 ### Docker 배포
 
-```dockerfile
+`````dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -201,9 +202,9 @@ COPY . .
 EXPOSE 8000
 
 CMD ["python", "workbench.py"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: agentos: build: .
@@ -212,11 +213,11 @@ services: agentos: build: .
       - AGNO_ENV=production
     volumes: - ./data:/app/data
     restart: unless-stopped
-```
+`````
 
 ### AWS 배포 (ECS with Fargate)
 
-```bash
+`````bash
 # 빌드 및 ECR에 푸시
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 
@@ -231,7 +232,7 @@ aws ecs create-service \
   --task-definition agno-task:1 \
   --desired-count 2 \
   --launch-type FARGATE
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -264,7 +265,7 @@ Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점�
 
 ### 멀티 에이전트 시스템
 
-Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: ```python
+Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: `````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -293,11 +294,11 @@ team = Team(
 )
 
 team.print_response("2026년 재생 에너지 동향에 대한 기사를 작성하세요.", stream=True)
-```
+`````
 
 ### Agentic RAG 지식 베이스
 
-```python
+`````python
 from agno.agent import Agent
 from agno.knowledge.embedder.google import GeminiEmbedder
 from agno.knowledge.knowledge import Knowledge
@@ -325,11 +326,11 @@ agent = Agent(
 )
 
 agent.print_response("Agno란 무엇인가요?", stream=True)
-```
+`````
 
 ### 세션 스토리지가 있는 프로덕션 서비스
 
-```python
+`````python
 from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.os import AgentOS
@@ -348,9 +349,9 @@ workbench = Agent(
 # API로 서비스 제공
 AgentOS.agent = workbench
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
-```bash
+`````bash
 # 서비스 시작
 python workbench.py
 
@@ -358,11 +359,11 @@ python workbench.py
 curl -X POST http://localhost:8000/v1/agents/workbench/run \
   -H "Content-Type: application/json" \
   -d '{"message": "내 다운로드 폴더를 정리해줘", "session_id": "user-123"}"
-```
+`````
 
 ### 보안 및 모니터링
 
-```python
+`````python
 from agno.agent import Agent
 from agno.os import AgentOS
 
@@ -379,7 +380,7 @@ agent = Agent(
 # OpenTelemetry 트레이싱 (AgentOS에서 자동 구성)
 AgentOS.agent = agent
 AgentOS.serve(host="0.0.0.0", port=8000)
-```
+`````
 
 ## 대안과의 비교
 
@@ -427,11 +428,11 @@ Agno는 런타임 오버헤드와 서비스 패키징을 우선시합니다 — 
 
 ### Agno를 로컬 모델만으로 실행할 수 있나요?
 
-네. Agno는 Ollama, LM Studio, 그리고 모든 OpenAI 호환 로컬 엔드포인트와 통합됩니다. `Ollama` 모델 제공업체를 사용하면 Llama 3, Qwen3, Mistral과 같은 모델로 완전히 오프라인에서 실행할 수 있습니다. 로컬 배포에는 API 키나 클라우드 의존성이 필요하지 않습니다.
+네. Agno는 Ollama, LM Studio, 그리고 모든 OpenAI 호환 로컬 엔드포인트와 통합됩니다. ````Ollama```` 모델 제공업체를 사용하면 Llama 3, Qwen3, Mistral과 같은 모델로 완전히 오프라인에서 실행할 수 있습니다. 로컬 배포에는 API 키나 클라우드 의존성이 필요하지 않습니다.
 
 ### Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?
 
-Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, LanceDB를 지원합니다. `SqliteDb`, `PostgresDb`, `LanceDb` 클래스가 세션 읽기/쓰기를 자동으로 처리합니다 — 수동 SQL이 필요 없습니다. 지원되는 벡터 데이터베이스는 ChromaDB, LanceDB, RAG 지식 베이스용 pgvector를 포함합니다.
+Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, LanceDB를 지원합니다. ````SqliteDb````, ````PostgresDb````, ````LanceDb```` 클래스가 세션 읽기/쓰기를 자동으로 처리합니다 — 수동 SQL이 필요 없습니다. 지원되는 벡터 데이터베이스는 ChromaDB, LanceDB, RAG 지식 베이스용 pgvector를 포함합니다.
 
 ### Agno는 엔터프라이즈 배포에 적합한가요?
 
@@ -439,7 +440,7 @@ Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, La
 
 ### Phidata에서 Agno로 어떻게 마이그레이션하나요?
 
-마이그레이션은 패키지 임포트를 `phidata`에서 `agno`로 업데이트하고 2.x API 변경 사항에 적응하는 것을 포함합니다. Agno 팀은 일반적인 패턴을 다루는 [마이그레이션 가이드](https://docs.agno.com/migration)를 제공합니다. 주요 변경 사항은 `Agent` 클래스가 `PhiAgent`를 대체하고, `Team` 클래스가 `PhiTeam`을 대체하며, AgentOS 런타임이 별도의 모듈이 되는 것입니다. 대부분의 마이그레이션은 중간 규모의 코드베이스에 대해 몇 시간이 소요됩니다.
+마이그레이션은 패키지 임포트를 ````phidata````에서 ````agno````로 업데이트하고 2.x API 변경 사항에 적응하는 것을 포함합니다. Agno 팀은 일반적인 패턴을 다루는 [마이그레이션 가이드](https://docs.agno.com/migration)를 제공합니다. 주요 변경 사항은 ````Agent```` 클래스가 ````PhiAgent````를 대체하고, ````Team```` 클래스가 ````PhiTeam```을 대체하며, AgentOS 런타임이 별도의 모듈이 되는 것입니다. 대부분의 마이그레이션은 중간 규모의 코드베이스에 대해 몇 시간이 소요됩니다.
 
 ### AgentOS 런타임 없이 Agno를 사용할 수 있나요?
 
@@ -475,7 +476,7 @@ Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다:
 - [AI Agents Kit 비교 2026](https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/) — 커뮤니티 주도 프레임워크 순위
 - [Agno vs CrewAI 상세 비교](https://respan.ai/market-map/compare/agno-vs-crewai) — 커뮤니티 리뷰가 포함된 기능별 분석
 
----
+* * *
 
 *이 기사에는 제휴 링크가 포함되어 있습니다. 이러한 링크를 통해 서비스에 가입하면 추가 비용 없이 dibi8.com에 커미션이 지급될 수 있습니다.*
 
@@ -505,7 +506,7 @@ Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다:
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -515,7 +516,7 @@ Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다:
 - [ollama-vs-vllm](agno)
 - [ollama-vs-lm-studio](agno)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,25 +24,26 @@ aliases:
   - /kr/posts/supabase-postgres-vector-ai-apps/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: AI 앱 빌더가 Firebase에서 Supabase로 전환하는 이유
 
 2026년 1월, 샌프란시스코에 기반을 둔 AI 스타트업이 법률 문서 분석 도구를 구축하던 중 벽에 부딪혔다. **230만 개**의 PDF 임베딩에 대한 벡터 검색, 주석 팀을 위한 실시간 협업, OAuth 로그인이 모두 단일 백엔드 내에서 필요했다. Firebase의 Firestore는 네이티브 벡터 검색 기능이 없었고, Algolia + Firebase Auth + Cloud Functions를 연결하면 세 가지 별도 서비스가 호환되지 않는 가격 책정 계층을 갖게 되었다. 그들은 Supabase로 마이그레이션하고 **3시간 이내**에 작동하는 RAG 파이프라인을 구축했으며 백엔드 인프라 비용을 **62%** 절감했다.
 
-2026년 5월 기준, Supabase는 **80,000개 이상의 GitHub 스타**를 돌파하고 **100만 개 이상의 활성 프로젝트**를 구동하고 있다. `pgvector`가 내장된 **PostgreSQL 16** 기반의 오픈소스 Firebase 대안이다. Firebase의 독점 문서 저장소와 달리 Supabase는 SQL, ACID 트랜잭션 및 검증된 관계형 데이터베이스의 전체 기능을 제공하면서도 자동 생성 API, 실시간 구독 및 내장 인증의 편의성을 제공한다.
+2026년 5월 기준, Supabase는 **80,000개 이상의 GitHub 스타**를 돌파하고 **100만 개 이상의 활성 프로젝트**를 구동하고 있다. ```pgvector````가 내장된 **PostgreSQL 16** 기반의 오픈소스 Firebase 대안이다. Firebase의 독점 문서 저장소와 달리 Supabase는 SQL, ACID 트랜잭션 및 검증된 관계형 데이터베이스의 전체 기능을 제공하면서도 자동 생성 API, 실시간 구독 및 내장 인증의 편의성을 제공한다.
 
 이 가이드에서는 로컬 설정 및 벡터 검색 구성부터 RAG 파이프라인 통합, Edge 함수, Docker를 통한 자체 호스팅 배포, 프로덕션 강화까지 모든 것을 다룬다. 다음 AI SaaS를 구축하든 기존 앱에 의미 검색을 추가하든, Supabase는 스택에 원하는 백엔드이다.
 
 ## Supabase란 무엇인가?
 
-Supabase는 즉각적인 REST 및 GraphQL API, 인증, 파일 저장, 실시간 구독, Edge 함수 및 `pgvector`를 통한 벡터 검색이라는 개발자 도구 제품군으로 PostgreSQL을 포장하는 오픈소스 백엔드 서비스(BaaS) 플랫폼이다. 2020년 Paul Copplestone과 Ant Wilson이 창립했으며 Apache-2.0 라이선스를 따를 Y Combinator의 후원을 받는다. 호스팅 버전은 관대한 무제 계층을 제공한다. 전체 스택은 모든 VPS 또는 베어메탈 서버에서 Docker Compose를 통해 자체 호스팅할 수 있다.
+Supabase는 즉각적인 REST 및 GraphQL API, 인증, 파일 저장, 실시간 구독, Edge 함수 및 ````pgvector````를 통한 벡터 검색이라는 개발자 도구 제품군으로 PostgreSQL을 포장하는 오픈소스 백엔드 서비스(BaaS) 플랫폼이다. 2020년 Paul Copplestone과 Ant Wilson이 창립했으며 Apache-2.0 라이선스를 따를 Y Combinator의 후원을 받는다. 호스팅 버전은 관대한 무제 계층을 제공한다. 전체 스택은 모든 VPS 또는 베어메탈 서버에서 Docker Compose를 통해 자체 호스팅할 수 있다.
 
 ## 아키텍처: Supabase가 AI 애플리케이션을 구동하는 방식
 
 Supabase는 단순한 데이터베이스 래퍼가 아니다. 아키텍처는 한 가지 원칙을 중심으로 설계되었다: **"PostgreSQL이 모든 것의 중심이다."**
 
-1. **PostgreSQL 16 + pgvector** — 데이터베이스 엔진은 `pgvector` 확장을 통해 구조화된 데이터, JSONB 문서, 전체 텍스트 검색 및 벡터 유사성 검색(HNSW 인덱싱을 통해 현재 최대 **2,048 차원** 지원)을 처리한다.
+1. **PostgreSQL 16 + pgvector** — 데이터베이스 엔진은 ````pgvector```` 확장을 통해 구조화된 데이터, JSONB 문서, 전체 텍스트 검색 및 벡터 유사성 검색(HNSW 인덱싱을 통해 현재 최대 **2,048 차원** 지원)을 처리한다.
 
 2. **PostgREST** — 데이터베이스 스키마에서 직접 RESTful API를 자동 생성한다. 모든 테이블, 뷰 및 함수가 백엔드 코드 작성 없이 HTTP 엔드포인트가 된다.
 
@@ -54,24 +55,24 @@ Supabase는 단순한 데이터베이스 래퍼가 아니다. 아키텍처는 �
 
 6. **Edge Functions** — 에지에 배포되는 Deno 기반 서버리스 함수이다. 외부 AI API 호출, 문서 전처리 또는 경량 추론 실행에 이상적이다.
 
-7. **Vector / AI** — `pgvector`를 통해 임베딩을 저장하고, HNSW 인덱스를 구축하며, 코사인 유사성 쿼리를 실행한다 — 모든 RAG 애플리케이션의 중추이다.
+7. **Vector / AI** — ````pgvector````를 통해 임베딩을 저장하고, HNSW 인덱스를 구축하며, 코사인 유사성 쿼리를 실행한다 — 모든 RAG 애플리케이션의 중추이다.
 
 ## 설치 및 설정: 제로에서 프로덕션 준비 백엔드까지
 
 ### 호스팅 클라우드 (가장 빠른 경로)
 
-```bash
+`````bash
 # 프로젝트에는 다음이 포함된다: # - PostgreSQL 16 데이터베이스
 # - 자동 생성 REST API
 # - 내장 인증
 # - 500 MB 데이터베이스 저장소 (묶제 계층)
 # - 1 GB 파일 저장소 (묶제 계층)
 # - 2 GB 대역폭 (묶제 계층)
-```
+`````
 
 ### CLI를 사용한 로컬 개발
 
-```bash
+`````bash
 # Supabase CLI 설치
 # macOS
 brew install supabase/tap/supabase
@@ -97,13 +98,13 @@ supabase start
 # API URL: http://localhost:54321
 # GraphQL URL: http://localhost:54321/graphql/v1
 # anon key: eyJhbGciOiJIUzI1NiIs...
-```
+`````
 
-로컬 스택에는 PostgreSQL, PostgREST, GoTrue, Realtime, Storage 및 Studio(`http://localhost:54323`의 웹 기반 데이터베이스 GUI)이 포함된다.
+로컬 스택에는 PostgreSQL, PostgREST, GoTrue, Realtime, Storage 및 Studio(````http://localhost:54323````의 웹 기반 데이터베이스 GUI)이 포함된다.
 
 ### Docker Compose를 통한 자체 호스팅
 
-자체 인프라에서 프로덕션 자체 호스팅을 위해서([DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 등): ```bash
+자체 인프라에서 프로덕션 자체 호스팅을 위해서([DigitalOcean](https://m.do.co/c/eca87ac14ee0) 또는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 등): `````bash
 # 공식 자체 호스팅 저장소 클론
 git clone https://github.com/supabase/supabase.git
 cd supabase/docker
@@ -133,21 +134,21 @@ docker compose ps
 # supabase-storage    healthy
 # supabase-meta       healthy
 # supabase-studio     healthy
-```
+`````
 
 관리형 Postgres 및 벡터 지원이 필요한 프로젝트의 경우 [HTStack](https://my.htstack.com/aff.php?aff=27187)은 자동 백업 기능을 갖춘 Supabase 배포에 최적화된 비용 효율적인 호스팅을 제공한다.
 
 ### 애플리케이션 연결
 
-```bash
+`````bash
 # 클라이언트 라이브러리 설치
 npm install @supabase/supabase-js
 
 # 또는 Python용
 pip install supabase
-```
+`````
 
-```typescript
+`````typescript
 // TypeScript / Next.js
 import { createClient } from '@supabase/supabase-js'
 
@@ -159,9 +160,9 @@ const supabase = createClient(
 // 연결 테스트
 const { data, error } = await supabase.from(test).select('*')
 console.log(data)
-```
+`````
 
-```python
+`````python
 # Python
 from supabase import create_client
 
@@ -173,23 +174,23 @@ supabase = create_client(
 # 연결 테스트
 response = supabase.table(test).select('*').execute()
 print(response.data)
-```
+`````
 
 ## 벡터 검색 설정: AI 애플리케이션을 위한 pgvector 활성화
 
 ### pgvector 확장 활성화
 
-```sql
+`````sql
 -- Supabase SQL 편집기 또는 psql에서
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 확장이 설치되었는지 확인
 SELECT * FROM pg_extension WHERE extname = vector;
-```
+`````
 
 ### 벡터 열이 있는 테이블 생성
 
-```sql
+`````sql
 -- 임베딩이 있는 문서 테이블 생성
 CREATE TABLE documents (
     id          BIGSERIAL PRIMARY KEY,
@@ -210,13 +211,13 @@ WITH (m = 16, ef_construction = 64);
 -- 하이브리드 검색을 위한 전체 텍스트 검색 인덱스 추가
 CREATE INDEX idx_documents_fts ON documents
 USING GIN (to_tsvector(english, content));
-```
+`````
 
-`vector(1536)` 차원은 OpenAI의 `text-embedding-3-large` 출력과 일치한다. 다른 임베딩 모델의 경우 이에 따라 조정한다. Cohere embed-v4는 **1,024** 차원을, Jina AI 임베딩은 **768** 차원을 사용한다.
+````vector(1536)```` 차원은 OpenAI의 ````text-embedding-3-large```` 출력과 일치한다. 다른 임베딩 모델의 경우 이에 따라 조정한다. Cohere embed-v4는 **1,024** 차원을, Jina AI 임베딩은 **768** 차원을 사용한다.
 
 ### 임베딩이 있는 문서 삽입
 
-```python
+`````python
 # Python: 임베딩 생성 및 Supabase에 삽입
 from supabase import create_client
 import openai
@@ -247,11 +248,11 @@ insert_document(
     content="Use multi-stage builds to reduce image size...",
     source_url="https://docs.docker.com"
 )
-```
+`````
 
 ### 벡터 유사성 검색 수행
 
-```sql
+`````sql
 -- 순수 SQL: 가장 유사한 상위 5개 문서 찾기
 SELECT
     id,
@@ -261,9 +262,9 @@ SELECT
 FROM documents
 ORDER BY embedding <=> :query_embedding::vector
 LIMIT 5;
-```
+`````
 
-```python
+`````python
 # Python: RAG 검색 함수
 async def search_similar_documents(query: str, top_k: int = 5): # 쿼리 임베딩 생성
     response = client.embeddings.create(
@@ -282,11 +283,11 @@ async def search_similar_documents(query: str, top_k: int = 5): # 쿼리 임베�
         }
     ).execute()
     return result.data
-```
+`````
 
 ### match_documents RPC 함수 생성
 
-```sql
+`````sql
 -- 문서 검색을 위한 저장 프로시저 생성
 CREATE OR REPLACE FUNCTION match_documents(
     query_embedding VECTOR(1536),
@@ -314,20 +315,20 @@ BEGIN
     LIMIT match_count;
 END;
 $$;
-```
+`````
 
 ## 완전한 RAG 파이프라인 구축
 
 ### 아키텍처 개요
 
-Supabase를 사용한 일반적인 RAG 파이프라인은 네 단계로 구성된다: 1. **수집** — 문서가 청킹되고 임베딩되며 `documents` 테이블에 저장된다.
-2. **검색** — 사용자 쿼리가 임베딩되고 `pgvector`를 통해 저장된 벡터와 일치된다.
+Supabase를 사용한 일반적인 RAG 파이프라인은 네 단계로 구성된다: 1. **수집** — 문서가 청킹되고 임베딩되며 ````documents```` 테이블에 저장된다.
+2. **검색** — 사용자 쿼리가 임베딩되고 ````pgvector````를 통해 저장된 벡터와 일치된다.
 3. **생성** — 검색된 청크가 LLM(OpenAI, [Ollama](dibi8-internal-link) 또는 Claude)에 컨텍스트로 제공된다.
-4. **저장** — 대화가 지속성을 위해 `conversations` 테이블에 저장된다.
+4. **저장** — 대화가 지속성을 위해 ````conversations```` 테이블에 저장된다.
 
 ### 전체 RAG 구현
 
-```python
+`````python
 # rag_pipeline.py
 from supabase import create_client
 from openai import OpenAI
@@ -402,13 +403,13 @@ class SupabaseRAG: def __init__(self, supabase_url: str, supabase_key: str, open
 rag = SupabaseRAG(SUPABASE_URL, SUPABASE_KEY, OPENAI_KEY)
 result = rag.chat("Docker 모범 사례는 무엇인가?")
 print(result[answer])
-```
+`````
 
 ## 인증 및 행 수준 보안 (RLS)
 
 ### 테이블에서 RLS 활성화
 
-```sql
+`````sql
 -- 행 수준 보안 활성화
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 
@@ -421,11 +422,11 @@ USING (auth.uid() = user_id);
 CREATE POLICY "사용자는 자신의 문서를 삽입할 수 있음"
 ON documents FOR INSERT
 WITH CHECK (auth.uid() = user_id);
-```
+`````
 
 ### 클라이언트 측 인증
 
-```typescript
+`````typescript
 // 새 사용자 가입
 const { data: authData, error: authError } = await supabase.auth.signUp({
   email: 'user@example.com',
@@ -445,19 +446,19 @@ const accessToken = session.session?.access_token
 const { data } = await supabase
   .from(documents)
   .select('*')
-```
+`````
 
-```python
+`````python
 # Python: 서비스 역할 키를 사용한 서버 측 인증
 supabase_admin = create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 
 # 관리 작업을 위해 RLS 우회
 all_docs = supabase_admin.table(documents).select('*').execute()
-```
+`````
 
 ## 라이브 AI 기능을 위한 실시간 구독
 
-```typescript
+`````typescript
 // 실시간 데이터베이스 변경 구독
 const channel = supabase
   .channel('documents-changes')
@@ -473,9 +474,9 @@ const channel = supabase
 
 // 완료 시 구독 취소
 supabase.removeChannel(channel)
-```
+`````
 
-```python
+`````python
 # Python asyncio 버전
 import asyncio
 
@@ -490,21 +491,21 @@ async def subscribe_to_changes(): channel = supabase.channel('documents-changes'
     ).subscribe()
 
 asyncio.run(subscribe_to_changes())
-```
+`````
 
 ## Edge 함수: 에지에서 서버리스 실행
 
 ### Edge 함수 생성
 
-```bash
+`````bash
 # Edge 함수 초기화
 supabase functions new ai-completion
 
 # 생성된 파일 편집
 # supabase/functions/ai-completion/index.ts
-```
+`````
 
-```typescript
+`````typescript
 // supabase/functions/ai-completion/index.ts
 import { serve } from 'https://deno.land/std@0.224.0/http/server.ts'
 
@@ -515,7 +516,7 @@ serve(async (req) => {
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: POST,
     headers: {
-      Authorization: `Bearer ${Deno.env.get(OPENAI_API_KEY)}`,
+      Authorization: ````Bearer ${Deno.env.get(OPENAI_API_KEY)}````,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -532,9 +533,9 @@ serve(async (req) => {
     { headers: { 'Content-Type': 'application/json' } }
   )
 })
-```
+`````
 
-```bash
+`````bash
 # 비밀 설정
 supabase secrets set OPENAI_API_KEY=sk-...
 
@@ -543,7 +544,7 @@ supabase functions deploy ai-completion
 
 # HTTP를 통해 호출
 supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
-```
+`````
 
 ## 벤치마크: Supabase 벡터 검색 성능
 
@@ -562,14 +563,14 @@ supabase functions invoke ai-completion --data '{"prompt": "Explain RAG"}'
 
 - HNSW 인덱싱은 더 높은 리콜로 ivfflat보다 **2–3배 빠른 쿼리 지연 시간**을 제공한다.
 - **100K 문서 이하**의 데이터셋에서는 보통 하드웨어에서 쿼리 지연 시간이 **50ms 이하**를 유지한다.
-- `ef_search` 매개변수는 쿼리별로 조정할 수 있다: 더 높은 값은 속도를 희생시키며 리콜을 개선한다.
+- ````ef_search```` 매개변수는 쿼리별로 조정할 수 있다: 더 높은 값은 속도를 희생시키며 리콜을 개선한다.
 - 적절한 인덱싱을 통해 Supabase는 2 vCPU 인스턴스에서 **100만 벡터 문서**를 편안하게 처리한다.
 
 ## 자체 호스팅 프로덕션 배포
 
 ### Docker Compose 프로덕션 구성
 
-```yaml
+`````yaml
 # docker-compose.prod.yml (발췌)
 services: db: image: supabase/postgres:15.8.1.040
     environment: POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -594,11 +595,11 @@ services: db: image: supabase/postgres:15.8.1.040
       - rest
       - realtime
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### 환경 변수
 
-```bash
+`````bash
 # 프로덕션용 .env 파일
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 JWT_SECRET=$(openssl rand -base64 32)
@@ -616,19 +617,19 @@ STORAGE_S3_BUCKET=your-bucket
 STORAGE_S3_ENDPOINT=s3.amazonaws.com
 STORAGE_S3_ACCESS_KEY=AKIA...
 STORAGE_S3_SECRET_KEY=...
-```
+`````
 
 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)를 통해 VPS에 배포하여 월 **$4**부터 시작하는 신뢰할 수 있는 전역 분산 인프라를 확보하라.
 
 ### 백업 전략
 
-```bash
+`````bash
 # pg_dump를 사용한 자동화된 매일 백업
 0 2 * * * docker exec supabase-db pg_dump -U postgres -Fc postgres > /backups/supabase-$(date +\%Y\%m\%d).dump
 
 # 또는 Supabase의 내장 특정 시점 복구(PITR) 사용
 # Pro 계층 이상에서 사용 가능
-```
+`````
 
 ## 대안과의 비교
 
@@ -649,13 +650,13 @@ STORAGE_S3_SECRET_KEY=...
 
 ## 한계: 정직한 평가
 
-1. **pgvector 차원 제한.** 현재 `pgvector`는 최대 **2,048 차원**을 지원한다. 일부 임베딩 모델(예: 4,096 차원의 GTE-large)은 저장하기 전에 차원 축소가 필요하다.
+1. **pgvector 차원 제한.** 현재 ````pgvector````는 최대 **2,048 차원**을 지원한다. 일부 임베딩 모델(예: 4,096 차원의 GTE-large)은 저장하기 전에 차원 축소가 필요하다.
 
 2. **자체 호스팅 설정 복잡성.** Docker Compose 스택에는 **15개 이상의 서비스**가 있다. 모니터링, 로그 집계 및 업데이트에는 운영 전문성이 필요하다. DevOps 리소스가 없는 팀은 호스팅 버전을 강력히 권장한다.
 
 3. **Edge 함수 콜드 스타트.** Deno edge 함수는 지역 및 종속성에 따라 **500ms–2s 콜드 스타트** 지연 시간을 가질 수 있다. 지연 시간에 민감한 경로의 경우 클라이언트 측 로직을 사용하거나 함수를 웜하게 유지하라.
 
-4. **내장 벡터 양자화 없음.** Pinecone이나 Weaviate와 달리 `pgvector`는 곱 양자화나 이진 임베딩을 지원하지 않는다. 대규모 배포(1000만+ 벡터)는 샤딩이나 외부 벡터 저장소가 필요할 수 있다.
+4. **내장 벡터 양자화 없음.** Pinecone이나 Weaviate와 달리 ````pgvector````는 곱 양자화나 이진 임베딩을 지원하지 않는다. 대규모 배포(1000만+ 벡터)는 샤딩이나 외부 벡터 저장소가 필요할 수 있다.
 
 5. **Realtime 확장성.** Realtime 서버(Elixir/Phoenix)는 보통 하드웨어에서 인스턴스당 **10K 동시 연결**의 실제 한계를 가진다. 매우 큰 배포에는 클러스터링이 필요하다.
 
@@ -669,7 +670,7 @@ STORAGE_S3_SECRET_KEY=...
 
 ### OpenAI 대신 [Ollama](dibi8-internal-link)와 같은 로컬 LLM과 Supabase를 함께 사용할 수 있는가?
 
-물론이다. Supabase는 벡터를 저장하고 검색한다 — 임베딩 생성 단계는 분리되어 있다. 임베딩 파이프라인을 `nomic-embed-text`나 다른 임베딩 모델을 사용하는 로컬 [Ollama](dibi8-internal-link) 인스턴스로 지정하라. `pgvector` 저장소 및 HNSW 검색은 임베딩 소스와 관계없이 동일하게 작동한다.
+물론이다. Supabase는 벡터를 저장하고 검색한다 — 임베딩 생성 단계는 분리되어 있다. 임베딩 파이프라인을 ````nomic-embed-text````나 다른 임베딩 모델을 사용하는 로컬 [Ollama](dibi8-internal-link) 인스턴스로 지정하라. ````pgvector```` 저장소 및 HNSW 검색은 임베딩 소스와 관계없이 동일하게 작동한다.
 
 ### AI 앱에 대한 Supabase 가격 책정은 Firebase와 어떻게 비교되는가?
 
@@ -677,7 +678,7 @@ STORAGE_S3_SECRET_KEY=...
 
 ### pgvector는 RAG 애플리케이션에 프로덕션 준비가 되었는가?
 
-예. Supabase와 번들된 `pgvector` v0.8.0은 HNSW 인덱싱, 병렬 인덱스 빌드 및 ACID 준수 벡터 작업을 지원한다. 수천 개의 AI 애플리케이션에서 프로덕션으로 사용된다. 고가용성 RAG의 경우 읽기 전용 복제본을 활성화하고 쿼리별로 `hnsw.ef_search`를 조정하라: **속도를 위해 64**, **정확성을 위해 256**.
+예. Supabase와 번들된 ````pgvector```` v0.8.0은 HNSW 인덱싱, 병렬 인덱스 빌드 및 ACID 준수 벡터 작업을 지원한다. 수천 개의 AI 애플리케이션에서 프로덕션으로 사용된다. 고가용성 RAG의 경우 읽기 전용 복제본을 활성화하고 쿼리별로 ````hnsw.ef_search````를 조정하라: **속도를 위해 64**, **정확성을 위해 256**.
 
 ### 인터넷 액세스 없이 완전히 온프레미스에서 Supabase를 실행할 수 있는가?
 
@@ -685,7 +686,7 @@ STORAGE_S3_SECRET_KEY=...
 
 ### Supabase에서 스키마 마이그레이션을 어떻게 처리하는가?
 
-Supabase CLI 마이그레이션 시스템을 사용하라: ```bash
+Supabase CLI 마이그레이션 시스템을 사용하라: `````bash
 # 새 마이그레이션 생성
 supabase migration new add_documents_table
 
@@ -700,11 +701,11 @@ supabase db push
 
 # 스키마에서 TypeScript 타입 생성
 supabase gen types typescript --local > src/types/supabase.ts
-```
+`````
 
 ### Supabase는 멀티테넌트 AI 애플리케이션을 지원하는가?
 
-예, RLS 정책과 스키마 격리의 조합을 통해. **공유 데이터베이스** 멀티테넌시의 경우 모든 테이블에 `tenant_id` 열을 추가하고 RLS를 통해 강제하라. **테넌트당 데이터베이스**의 경우 Supabase는 관리 API를 통해 프로그래밍 방식으로 프로젝트 생성을 지원한다. 대부분의 AI SaaS 빌더는 비용 효율성을 위해 RLS가 있는 공유 접근 방식을 사용한다.
+예, RLS 정책과 스키마 격리의 조합을 통해. **공유 데이터베이스** 멀티테넌시의 경우 모든 테이블에 ````tenant_id``` 열을 추가하고 RLS를 통해 강제하라. **테넌트당 데이터베이스**의 경우 Supabase는 관리 API를 통해 프로그래밍 방식으로 프로젝트 생성을 지원한다. 대부분의 AI SaaS 빌더는 비용 효율성을 위해 RLS가 있는 공유 접근 방식을 사용한다.
 
 ## 결론: 오늘 Supabase에서 AI 백엔드 구축하기
 
@@ -764,7 +765,7 @@ Supabase는 프로덕션 AI 애플리케이션을 구축하는 데 필요한 모
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -774,6 +775,6 @@ Supabase는 프로덕션 AI 애플리케이션을 구축하는 데 필요한 모
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 - [supabase-vs-firebase](supabase-postgres-vector-ai-apps)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

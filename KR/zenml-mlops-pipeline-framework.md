@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/zenml-mlops-pipeline-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 당신의 ML 파이프라인은 망가졌다
@@ -40,7 +41,7 @@ ZenML의 아키텍처는 실제 ML 워크플로우 요구사항에 직접 매핑
 **파이프라인**은 여러 단계를 연결하는 데코레이트된 Python 함수이다. ZenML은 이 함수를 DAG로 컴파일하고, 의존성을 검증하고, 선택한 오케스트레이터에서 실행한다.
 
 ### 단계(Steps)
-**단계**는 가장 작은 작업 단위 — 데이터 로드, 전처리, 학습, 평가 등 하나의 작업을 수행하는 Python 함수이다. 단계는 `@step`으로 데코레이트되고 타입 어노테이션을 통해 입력/출력을 선언한다.
+**단계**는 가장 작은 작업 단위 — 데이터 로드, 전처리, 학습, 평가 등 하나의 작업을 수행하는 Python 함수이다. 단계는 ```@step````으로 데코레이트되고 타입 어노테이션을 통해 입력/출력을 선언한다.
 
 ### 아티팩트(Artifacts)
 각 단계의 출력은 **아티팩트** — 아티팩트 저장소에 저장된 타입화되고 버전 관리된 객체이다. 아티팩트는 데이터셋(pandas DataFrame, NumPy 배열), 모델(sklearn, PyTorch, TensorFlow), 또는 커스텀 객체가 될 수 있다. ZenML은 모든 아티팩트에 대해 자동으로 직렬화, 버전 관리, 리니지 추적을 수행한다.
@@ -64,7 +65,7 @@ ZenML의 아키텍처는 실제 ML 워크플로우 요구사항에 직접 매핑
 
 ### 단계 1: ZenML 설치
 
-```bash
+`````bash
 python -m venv zenml-env
 source zenml-env/bin/activate  # Linux/Mac
 # zenml-env\Scripts\activate  # Windows
@@ -75,23 +76,23 @@ pip install zenml
 # 설치 확인
 zenml version
 # Output: ZenML version 0.80.0
-```
+`````
 
 ### 단계 2: ZenML 초기화
 
-```bash
+`````bash
 # ZenML 리포지토리 초기화 (.zen 디렉토리 생성)
 zenml init
 
 # 상태 확인
 zenml status
-```
+`````
 
-`zenml init` 명령은 `.zen` 설정 디렉토리를 생성한다. 이는 `git init`과 유사하다 — ZenML 프로젝트의 루트를 표시하고 스택 구성을 로컬에 저장한다.
+````zenml init```` 명령은 ````.zen```` 설정 디렉토리를 생성한다. 이는 ````git init````과 유사하다 — ZenML 프로젝트의 루트를 표시하고 스택 구성을 로컬에 저장한다.
 
 ### 단계 3: 로컬 스택 등록
 
-```bash
+`````bash
 # 로컬 아티팩트 저장소 등록
 zenml artifact-store register local_store --flavor=local --path=./artifacts
 
@@ -106,11 +107,11 @@ zenml stack register local_stack \
 
 # 활성 스택 확인
 zenml stack describe
-```
+`````
 
 ### 단계 4: 첫 번째 파이프라인 실행
 
-`first_pipeline.py` 파일을 생성한다: ```python
+``first_pipeline.py`` 파일을 생성한다: `````python
 from zenml import pipeline, step
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -159,11 +160,11 @@ def training_pipeline(): """End-to-end ML training pipeline."""
 
 if __name__ == "__main__": run = training_pipeline()
     print(f"Pipeline run completed: {run.name}")
-```
+`````
 
-실행: ```bash
+실행: `````bash
 python first_pipeline.py
-```
+`````
 
 각 단계가 순차적으로 실행되는 출력을 볼 수 있으며, 최종적으로 모델 정확도는 약 **0.9667**이다. ZenML은 이미 모든 아티팩트를 추적하고, 중간 출력을 캐싱하고, 실행 기록을 기록했다.
 
@@ -172,7 +173,7 @@ python first_pipeline.py
 ZenML의 강력함은 통합 에코시스템에 있다. 다음은 ML 라이프사이클 전반에서 가장 일반적으로 연결되는 도구들이다.
 
 ### 오케스트레이터
-ZenML은 다양한 규모 요구사항을 위해 여러 오케스트레이터를 지원한다: ```bash
+ZenML은 다양한 규모 요구사항을 위해 여러 오케스트레이터를 지원한다: `````bash
 # Airflow 통합 설치
 pip install zenml[airflow]
 
@@ -183,13 +184,13 @@ zenml orchestrator register airflow_orchestrator \
 
 # Airflow 스택으로 전환
 zenml stack update local_stack -o airflow_orchestrator
-```
+`````
 
 기타 오케스트레이터: **Kubernetes**, **GitHub Actions**, **AzureML**, **Vertex AI**, **SageMaker**, **Databricks**, **Kubeflow**.
 
 ### MLflow를 이용한 실험 추적
 
-```bash
+`````bash
 # MLflow 통합 설치
 pip install zenml[mlflow]
 
@@ -210,9 +211,9 @@ zenml model-registry register mlflow_registry \
 zenml stack update local_stack \
   -e mlflow_tracker \
   -r mlflow_registry
-```
+`````
 
-이제 실험 로깅을 위해 파이프라인을 수정한다: ```python
+이제 실험 로깅을 위해 파이프라인을 수정한다: `````python
 from zenml import pipeline, step
 from zenml.client import Client
 import mlflow
@@ -244,11 +245,11 @@ def register_model(
         print(f"Model registered: {model_version}")
         return "iris-classifier"
     return "below-threshold"
-```
+`````
 
 ### S3를 이용한 아티팩트 저장
 
-```bash
+`````bash
 # S3 아티팩트 저장소 등록
 zenml artifact-store register s3_store \
   --flavor=s3 \
@@ -258,11 +259,11 @@ zenml artifact-store register s3_store \
 
 # S3를 사용하도록 스택 업데이트
 zenml stack update local_stack -a s3_store
-```
+`````
 
 ### 클라우드 실행을 위한 컨테이너 레지스트리
 
-```bash
+`````bash
 # Docker 컨테이너 레지스트리 등록
 zenml container-registry register docker_registry \
   --flavor=default \
@@ -271,22 +272,22 @@ zenml container-registry register docker_registry \
 # Docker를 사용하도록 스택 업데이트
 zenml stack update local_stack -c docker_registry
 zenml pipeline run first_pipeline.py --build-docker
-```
+`````
 
 ### Weights & Biases 통합
 
-```bash
+`````bash
 pip install zenml[wandb]
 
 zenml experiment-tracker register wandb_tracker \
   --flavor=wandb \
   --api_key=$WANDB_API_KEY \
   --project_name="zenml-mlops"
-```
+`````
 
 ### 전체 스택 구성 예시
 
-```yaml
+`````yaml
 # stack.yaml — 코드로 전체 MLOps 스택 정의
 stack_name: production_stack
 components: orchestrator: flavor: kubernetes
@@ -304,11 +305,11 @@ components: orchestrator: flavor: kubernetes
   step_operator: flavor: sagemaker
     configuration: role: arn:aws:iam::123456789:role/SageMakerRole
       instance_type: ml.p3.2xlarge
-```
+`````
 
-이 스택 등록: ```bash
+이 스택 등록: `````bash
 zenml stack register -f stack.yaml --set
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -338,7 +339,7 @@ ZenML은 다양한 산업에서 프로덕션 환경에 사용되고 있다. 다�
 
 ### 확장 특성
 
-```
+`````
 # ZenML 파이프라인 실행 시간 vs. 단계 수
 # DigitalOcean 8 vCPU / 32GB 드롭릿에서 측정
 
@@ -348,7 +349,7 @@ ZenML은 다양한 산업에서 프로덕션 환경에 사용되고 있다. 다�
   10  |    2.8    |     68
   20  |    5.2    |     95
   50  |   11.5    |    175
-```
+`````
 
 로컬 모드의 선형 확장은 개발에 이상적이다. Kubernetes 모드는 고정 오버헤드(~45s)가 있지만 분산 리소스의 이점을 받는 계산 집약적 단계에서 더 나은 확장성을 보인다.
 
@@ -356,7 +357,7 @@ ZenML은 다양한 산업에서 프로덕션 환경에 사용되고 있다. 다�
 
 ### GPU 워크로드를 위한 커스텀 단계 오퍼레이터
 
-학습에 GPU가 필요할 때 파이프라인 코드를 변경하지 않고 특정 단계를 클라우드 인스턴스에 오프로드한다: ```python
+학습에 GPU가 필요할 때 파이프라인 코드를 변경하지 않고 특정 단계를 클라우드 인스턴스에 오프로드한다: `````python
 from zenml.step_operators import BaseStepOperator
 
 @step(step_operator="sagemaker_gpu")
@@ -374,11 +375,11 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series): """Sag
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model
-```
+`````
 
 ### 파이프라인 스케줄링
 
-```python
+`````python
 from zenml.pipelines import Schedule
 
 # 매일 UTC 3시에 파이프라인 실행
@@ -389,11 +390,11 @@ daily_schedule = Schedule(
 )
 
 zenml.pipeline_schedule register daily_schedule
-```
+`````
 
 ### 캐싱과 재현 가능성
 
-ZenML의 캐싱 시스템은 자동적이고 아티팩트를 인식한다. 입력과 단계 코드가 변경되지 않으면 ZenML은 캐시된 출력을 재사용한다: ```python
+ZenML의 캐싱 시스템은 자동적이고 아티팩트를 인식한다. 입력과 단계 코드가 변경되지 않으면 ZenML은 캐시된 출력을 재사용한다: `````python
 @step(enable_cache=True)  # 기본 동작
 def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """입력 df 또는 이 함수가 변경될 때만 재실행."""
     # 30분 걸리는 무거운 변환
@@ -401,11 +402,11 @@ def expensive_preprocessing(df: pd.DataFrame) -> pd.DataFrame: """입력 df 또�
 
 # 필요시 강제 재실행
 zenml pipeline run training_pipeline.py --no-cache
-```
+`````
 
 ### 시크릿 관리
 
-```bash
+`````bash
 # 데이터베이스 자격 증명을 위한 시크릿 등록
 zenml secrets-manager register aws_secrets \
   --flavor=aws \
@@ -418,9 +419,9 @@ zenml secrets-manager secret register db_credentials \
   --schema=username_password \
   --username=ml_user \
   --password=$DB_PASSWORD
-```
+`````
 
-단계에서 접근: ```python
+단계에서 접근: `````python
 from zenml.client import Client
 
 @step
@@ -436,11 +437,11 @@ def load_from_database() -> pd.DataFrame: """ZenML 시크릿 매니저의 자격
     )
     df = pd.read_sql("SELECT * FROM training_data", conn)
     return df
-```
+`````
 
 ### CI/CD 통합
 
-```yaml
+`````yaml
 # .github/workflows/ml-pipeline.yml
 name: ML Pipeline CI
 on: push: branches: [main]
@@ -465,7 +466,7 @@ jobs: train: runs-on: ubuntu-latest
         run: |
           curl -X POST $SLACK_WEBHOOK \
             -d '{"text":"Pipeline failed! Check ZenML dashboard."}"
-```
+`````
 
 ## 대안과의 비교
 
@@ -504,22 +505,22 @@ ZenML은 만병통치약이 아니다. 투입하기 전에 이해해야 할 트�
 ## 자주 묻는 질문
 
 **Q: 기존 Jupyter 노트북과 ZenML을 함께 사용할 수 있나요?**
-A: 네, 재구성이 필요합니다. 셀 로직을 `@step` 데코레이터 함수로 추출하고 `@pipeline` 함수로 구성합니다. ZenML은 `zenml notebook` 명령으로 이 마이그레이션을 돕습니다. 노트북 커널은 여전히 개발과 디버깅에 사용할 수 있습니다.
+A: 네, 재구성이 필요합니다. 셀 로직을 ````@step```` 데코레이터 함수로 추출하고 ````@pipeline```` 함수로 구성합니다. ZenML은 ````zenml notebook```` 명령으로 이 마이그레이션을 돕습니다. 노트북 커널은 여전히 개발과 디버깅에 사용할 수 있습니다.
 
 **Q: ZenML은 데이터 버전 관리를 어떻게 처리하나요?**
-A: 모든 단계 출력은 콘텐츠 해싱을 사용해 자동 버전 관리됩니다. 아티팩트 저장소(로컬, S3, GCS)는 모든 버전을 유지합니다. `Client().get_artifact_version(name, version)`으로 모든 과거 아티팩트를 검색할 수 있습니다. 이를 통해 수동 데이터 관리 없이 완전한 재현 가능성을 제공합니다.
+A: 모든 단계 출력은 콘텐츠 해싱을 사용해 자동 버전 관리됩니다. 아티팩트 저장소(로컬, S3, GCS)는 모든 버전을 유지합니다. ````Client().get_artifact_version(name, version)````으로 모든 과거 아티팩트를 검색할 수 있습니다. 이를 통해 수동 데이터 관리 없이 완전한 재현 가능성을 제공합니다.
 
 **Q: ZenML은 실시간 추론 파이프라인에 적합한가요?**
 A: ZenML은 주로 배치 학습과 배치 추론 파이프라인용으로 설계되었습니다. 실시간 서빙의 경우 ZenML로 학습하고 모델을 등록한 후 [KServe](dibi8-internal-link), [Seldon](dibi8-internal-link), 또는 [BentoML](dibi8-internal-link)로 배포하세요. ZenML에는 이러한 도구에 대한 내장 배포 통합이 있습니다.
 
 **Q: 팀 협업을 위해 ZenML 서버를 어떻게 배포하나요?**
-A: `zenml deploy`로 AWS, GCP, Azure에 ZenML 서버를 배포하거나 셀프 호스팅 Kubernetes용 Helm 차트를 사용하세요. [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 빠르게 팀 설정하려면 드롭릿을 배포하고 `zenml up --docker`를 실행하세요 — Docker Compose로 ZenML 서버가 분 내에 시작됩니다.
+A: ````zenml deploy````로 AWS, GCP, Azure에 ZenML 서버를 배포하거나 셀프 호스팅 Kubernetes용 Helm 차트를 사용하세요. [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 빠르게 팀 설정하려면 드롭릿을 배포하고 ````zenml up --docker````를 실행하세요 — Docker Compose로 ZenML 서버가 분 내에 시작됩니다.
 
 **Q: 파이프라인 단계가 실패하면 어떻게 되나요?**
-A: ZenML은 구성 가능한 재시도 로직(`@step(retry=3)`)을 지원합니다. 실패한 실행은 대시보드에서 전체 스택 추적과 함께 기록됩니다. `zenml pipeline run --from-failure`로 실패한 단계부터 재개할 수 있으며, 이는 성공한 업스트림 단계의 캐시된 출력을 재사용합니다.
+A: ZenML은 구성 가능한 재시도 로직(````@step(retry=3)````)을 지원합니다. 실패한 실행은 대시보드에서 전체 스택 추적과 함께 기록됩니다. ````zenml pipeline run --from-failure````로 실패한 단계부터 재개할 수 있으며, 이는 성공한 업스트림 단계의 캐시된 출력을 재사용합니다.
 
 **Q: Docker 없이 ZenML을 사용할 수 있나요?**
-A: 완전히 가능합니다. 기본 로컬 스택은 Docker 없이 완전히 실행됩니다. Docker는 원격 오케스트레이터(Kubernetes, Docker 모드의 Airflow)에서 컨테이너화 실행에만 필요합니다. 로컬 개발과 테스트는 `pip install zenml` 이외에 아무것도 필요하지 않습니다.
+A: 완전히 가능합니다. 기본 로컬 스택은 Docker 없이 완전히 실행됩니다. Docker는 원격 오케스트레이터(Kubernetes, Docker 모드의 Airflow)에서 컨테이너화 실행에만 필요합니다. 로컬 개발과 테스트는 ````pip install zenml``` 이외에 아무것도 필요하지 않습니다.
 
 ## 결론: 노트북 혼돈에서 프로덕션 파이프라인으로
 

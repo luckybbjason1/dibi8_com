@@ -33,6 +33,7 @@ faq: - q: "如果我已经在用 Claude Code subagent，还需要 LangGraph 或 
   - q: "我能在 LangGraph 或 CrewAI 里用 Claude 模型吗？"
     a: "可以。LangGraph、CrewAI 和 AutoGen 都是模型无关的——你可以在它们背后跑 Claude、GPT、Gemini 或本地模型。Claude Agent SDK（2025 年底从 Claude Code SDK 改名而来，现在同时以 Python 和 TypeScript 包发布）设计上只支持 Claude，用模型灵活性换取了原生的安全特性和扩展思考。所以如果多厂商灵活性是硬性要求，就选其中一个模型无关的框架；如果你全押 Claude 并想要最紧密的集成，Agent SDK 就是原生路径。"
 ---
+
 # Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时候该升级到独立框架
 
 
@@ -62,19 +63,19 @@ faq: - q: "如果我已经在用 Claude Code subagent，还需要 LangGraph 或 
 
 | | 编排模型 | 学习曲线 | 生产就绪度 | 模型锁定 | 星标（2026 年 4 月） | 最适合 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Claude Code subagent** | 父派生 worker，内置 | 无（就在 CLI 里） | 开发/CI 工作高 | 仅 Claude | — | 编码、研究扇出、流水线 |
 | **Claude Agent SDK** | 工具调用链 + subagent | 低 | 高（安全优先） | 仅 Claude | — | Anthropic 原生的生产应用 |
@@ -89,11 +90,11 @@ faq: - q: "如果我已经在用 Claude Code subagent，还需要 LangGraph 或 
 如果你的需求是下面任意一种，就别升级。内置 subagent 今天就能覆盖它们，无需任何新基础设施：
 
 - **并行研究扇出。** 五个智能体各读一个不同子系统，结果合并。这是 ROI 最高的 subagent 模式，而且它是免费的。
-- **专家委派。** 一个 `security-auditor` 或 `code-reviewer` 自定义智能体，带自己的工具白名单和系统提示。
+- **专家委派。** 一个 ```security-auditor```` 或 ````code-reviewer```` 自定义智能体，带自己的工具白名单和系统提示。
 - **上下文保护。** 把一个 30 文件的探索卸载出去，免得它挤占你父对话的工作记忆。
 - **开发任务的流水线编排。** 查找 → 验证 → 综合，每个阶段是一个被委派的 worker。
 
-实打实的证据：**dibi8 自己的多语言流水线。** 你在这里读到的每一篇英文、中文、韩文和越南文文章，都是由并行的 Claude Code 翻译 subagent 生产的——每种语言一个，扇出后将结果对照 `npm run build` 的基准事实进行验证。我们刻意*没有*去抓 LangGraph。这里没有需要 checkpoint 的持久状态、没有人工审批关卡、没有多厂商要求。内置 subagent 午饭前就能交付成果；上框架纯属额外负担。
+实打实的证据：**dibi8 自己的多语言流水线。** 你在这里读到的每一篇英文、中文、韩文和越南文文章，都是由并行的 Claude Code 翻译 subagent 生产的——每种语言一个，扇出后将结果对照 ````npm run build``` 的基准事实进行验证。我们刻意*没有*去抓 LangGraph。这里没有需要 checkpoint 的持久状态、没有人工审批关卡、没有多厂商要求。内置 subagent 午饭前就能交付成果；上框架纯属额外负担。
 
 ## 什么时候该升级到独立框架
 
@@ -203,12 +204,12 @@ Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
@@ -217,7 +218,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 - [cursor-vs-claude-code](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

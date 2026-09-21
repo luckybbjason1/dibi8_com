@@ -25,6 +25,7 @@ aliases:
 - /zh/resources/llm-frameworks/crewai-multi-agent-orchestration/-
 ---
 
+
 {{</* resource-info */>}}
 
 > 如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。
@@ -47,18 +48,18 @@ CrewAI 的架构将智能体定义与编排逻辑分离：
 
 | 组件 | 用途 | 配置文件 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **Agent** | 具有目标、背景故事和工具的基于角色的 AI 工作者 | `agents.yaml` |
-| **Task** | 分配给智能体的工作单元，包含预期输出 | `tasks.yaml` |
-| **Crew** | 通过定义的过程执行任务的智能体团队 | `crew.py` |
-| **Flow** | 通过状态管理串联多个 crew 的事件驱动工作流 | `flow.py` |
-| **Tool** | 外部能力（搜索、API、计算） | `tools/` |
-| **Process** | 执行策略：顺序、层级或并行 | `crew.py` |
+| **Agent** | 具有目标、背景故事和工具的基于角色的 AI 工作者 | ```agents.yaml```` |
+| **Task** | 分配给智能体的工作单元，包含预期输出 | ````tasks.yaml```` |
+| **Crew** | 通过定义的过程执行任务的智能体团队 | ````crew.py```` |
+| **Flow** | 通过状态管理串联多个 crew 的事件驱动工作流 | ````flow.py```` |
+| **Tool** | 外部能力（搜索、API、计算） | ````tools/```` |
+| **Process** | 执行策略：顺序、层级或并行 | ````crew.py```` |
 
 ![CrewAI Architecture](https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png)
 
@@ -78,17 +79,17 @@ CrewAI 的架构将智能体定义与编排逻辑分离：
 
 CrewAI 需要 Python 3.10–3.13 以及至少一个 LLM 提供商的 API 密钥。
 
-```bash
+`````bash
 # 检查 Python 版本
 python --version  # 必须是 3.10、3.11、3.12 或 3.13
 
 # 安装 uv（推荐的包管理器）
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+`````
 
 ### 安装 CrewAI
 
-```bash
+`````bash
 # 安装 CrewAI 核心框架
 uv pip install crewai
 
@@ -97,11 +98,11 @@ uv pip install 'crewai[tools]'
 
 # 验证安装
 crewai version
-```
+`````
 
 ### 创建新项目
 
-```bash
+`````bash
 # 搭建新的 CrewAI 项目
 crewai create crew research_crew
 
@@ -110,11 +111,11 @@ cd research_crew
 
 # 安装项目依赖
 crewai install
-```
+`````
 
 生成的项目结构：
 
-```
+`````
 research_crew/
 ├── .gitignore
 ├── pyproject.toml
@@ -131,30 +132,30 @@ research_crew/
         └── tools/
             ├── __init__.py
             └── custom_tool.py
-```
+`````
 
 ### 配置环境变量
 
-```bash
+`````bash
 # .env — 将此文件添加到 .gitignore！
 OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
-```
+`````
 
 对于通过 Ollama 使用本地 LLM（无需 API 密钥）：
 
-```bash
+`````bash
 # 拉取本地模型
 ollama pull llama3.1
 
 # 在智能体配置中使用：ollama/llama3.1
-```
+`````
 
 ## 定义你的第一个智能体
 
-编辑 `src/research_crew/config/agents.yaml` 来定义基于角色的智能体：
+编辑 ````src/research_crew/config/agents.yaml```` 来定义基于角色的智能体：
 
-```yaml
+`````yaml
 # src/research_crew/config/agents.yaml
 
 researcher: role: >
@@ -193,33 +194,33 @@ editor: role: >
   llm: openai/gpt-4o-mini
   max_iter: 8
   verbose: true
-```
+`````
 
 每个智能体的关键配置选项：
 
 | 参数 | 描述 | 示例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| `role` | 智能体的工作职责 | `Senior Research Analyst` |
-| `goal` | 智能体要达到的目标 | 研究 `{topic}` |
-| `backstory` | 塑造智能体行为的背景 | 经验和性格 |
-| `llm` | 通过 LiteLLM 使用的模型 | `openai/gpt-4o` |
-| `max_iter` | 每个任务的最大推理循环次数 | `15` |
-| `verbose` | 在控制台打印思考过程 | `true` |
-| `allow_delegation` | 可以委派给其他智能体 | `false` |
+| ````role```` | 智能体的工作职责 | ````Senior Research Analyst```` |
+| ````goal```` | 智能体要达到的目标 | 研究 ````{topic}```` |
+| ````backstory```` | 塑造智能体行为的背景 | 经验和性格 |
+| ````llm```` | 通过 LiteLLM 使用的模型 | ````openai/gpt-4o```` |
+| ````max_iter```` | 每个任务的最大推理循环次数 | ````15```` |
+| ````verbose```` | 在控制台打印思考过程 | ````true```` |
+| ````allow_delegation```` | 可以委派给其他智能体 | ````false```` |
 
 ## 定义任务并连接 Crew
 
 ### 任务配置
 
-编辑 `src/research_crew/config/tasks.yaml`：
+编辑 ````src/research_crew/config/tasks.yaml````：
 
-```yaml
+`````yaml
 # src/research_crew/config/tasks.yaml
 
 research_task: description: >
@@ -251,13 +252,13 @@ editing_task: description: >
   agent: editor
   context: [writing_task]
   output_file: output/final_article.md
-```
+`````
 
 ### Crew 定义
 
-在 `src/research_crew/crew.py` 中连接智能体和任务：
+在 ````src/research_crew/crew.py```` 中连接智能体和任务：
 
-```python
+`````python
 # src/research_crew/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
@@ -308,11 +309,11 @@ class ResearchCrew: """Research crew for producing high-quality articles."""
             process=Process.sequential,
             verbose=True,
         )
-```
+`````
 
 ### 入口点与执行
 
-```python
+`````python
 # src/research_crew/main.py
 #!/usr/bin/env python
 from research_crew.crew import ResearchCrew
@@ -327,21 +328,21 @@ def run(): """Run the research crew."""
     print(f"\nToken usage: {result.token_usage}")
 
 if __name__ == "__main__": run()
-```
+`````
 
 运行 crew：
 
-```bash
+`````bash
 # 通过 CLI 执行
 crewai run
 
 # 或通过 Python 直接运行
 python -m research_crew.main
-```
+`````
 
 预期输出：
 
-```
+`````
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
@@ -353,7 +354,7 @@ python -m research_crew.main
 ========== FINAL OUTPUT ==========
 [完整的编辑后文章显示在此处]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
-```
+`````
 
 ## 高级用法：Flows、工具和生产模式
 
@@ -361,7 +362,7 @@ Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 
 Flows 提供具有状态管理的事件驱动编排：
 
-```python
+`````python
 # src/research_crew/flow.py
 from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
@@ -388,11 +389,11 @@ class ArticleFlow(Flow[ArticleState]): @start()
             with open("output/article.md", "w") as f: f.write(self.state.final_article)
 
 if __name__ == "__main__": ArticleFlow().kickoff()
-```
+`````
 
 ### 创建自定义工具
 
-```python
+`````python
 # src/research_crew/tools/custom_tool.py
 from crewai.tools import tool
 import requests
@@ -404,11 +405,11 @@ def web_search(query: str) -> str: """Search the web for information on a given 
         params={"q": query, "api_key": "${SERPER_API_KEY}"}
     )
     return response.json()["organic_results"][0]["snippet"]
-```
+`````
 
 在你的 crew 中注册工具：
 
-```python
+`````python
 # 在 crew.py 中，导入并附加
 from research_crew.tools.custom_tool import web_search
 
@@ -418,11 +419,11 @@ def researcher(self) -> Agent: return Agent(
         tools=[web_search],  # 附加自定义工具
         allow_delegation=False,
     )
-```
+`````
 
 ### 使用管理器智能体的层级过程
 
-```python
+`````python
 @crew
 def crew(self) -> Crew: return Crew(
         agents=self.agents,
@@ -431,11 +432,11 @@ def crew(self) -> Crew: return Crew(
         manager_llm="openai/gpt-4o",
         verbose=True,
     )
-```
+`````
 
 ### 使用 FastAPI 进行生产部署
 
-```python
+`````python
 # api_server.py — 生产部署
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
@@ -464,7 +465,7 @@ def run_crew(job_id: str, topic: str): jobs[job_id]["status"] = "running"
     jobs[job_id]["result"] = result.raw
 
 # 运行：uvicorn api_server:app --host 0.0.0.0 --port 8000
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -476,15 +477,15 @@ CrewAI 与其他框架在标准多智能体研究任务上的性能对比：
 
 | 指标 | CrewAI | AutoGen | LangGraph | Agno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 首次成功运行所需时间 | ~15 分钟 | ~30 分钟 | ~60 分钟 | ~20 分钟 |
 | Token 成本（标准化） | 1.5–2x | 5–6x | 1x 基准 | 1.2x |
@@ -508,25 +509,25 @@ CrewAI 与其他框架在标准多智能体研究任务上的性能对比：
 
 CrewAI 使用 LiteLLM 进行提供商无关的模型路由：
 
-```yaml
+`````yaml
 # agents.yaml — 每个智能体的模型选择
 researcher: role: Research Analyst
   llm: anthropic/claude-sonnet-4-20250514
   # 或: openai/gpt-4o
   # 或: gemini/gemini-2.0-flash
-```
+`````
 
 ### Ollama（本地 LLM）
 
-```yaml
+`````yaml
 researcher: role: Research Analyst
   llm: ollama/llama3.1
   # 需要：ollama pull llama3.1
-```
+`````
 
 ### LangChain 工具
 
-```python
+`````python
 # 在 CrewAI 中使用 LangChain 工具
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
@@ -540,11 +541,11 @@ agent = Agent(
     tools=[wiki_tool],  # LangChain 工具直接可用
     verbose=True,
 )
-```
+`````
 
 ### LlamaIndex（RAG 集成）
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from crewai.tools import tool
 
@@ -554,11 +555,11 @@ def document_search(query: str) -> str: """Search internal documents for relevan
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
     return str(query_engine.query(query))
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -572,30 +573,30 @@ RUN crewai install
 EXPOSE 8000
 
 CMD ["crewai", "run"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: crewai: build: .
     env_file: .env
     volumes: - ./output:/app/output
     ports: - "8000:8000"
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | CrewAI | AutoGen | LangGraph | Agno |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 编排模型 | 基于角色的 crew | 对话式智能体 | 状态图 | 轻量级智能体 |
 | 原型开发速度 | 15 分钟（最快） | 30 分钟 | 60 分钟（最陡） | 20 分钟 |
@@ -623,13 +624,13 @@ services: crewai: build: .
 ## 常见问题解答
 
 **Q: CrewAI 需要什么 Python 版本？**
-A: CrewAI 需要 Python 3.10 至 3.13。不支持 Python 3.9 或更早版本。使用 `pyenv` 在系统上管理多个 Python 版本。
+A: CrewAI 需要 Python 3.10 至 3.13。不支持 Python 3.9 或更早版本。使用 ````pyenv```` 在系统上管理多个 Python 版本。
 
 **Q: 如何安装支持本地 LLM 的 CrewAI？**
-A: 正常使用 `pip install crewai` 安装，然后单独安装 Ollama。在智能体配置中设置 `llm: ollama/llama3.1`（或你偏好的模型）。本地推理不需要 API 密钥。
+A: 正常使用 ````pip install crewai```` 安装，然后单独安装 Ollama。在智能体配置中设置 ````llm: ollama/llama3.1````（或你偏好的模型）。本地推理不需要 API 密钥。
 
 **Q: CrewAI 可以使用非 OpenAI 模型吗？**
-A: 可以。CrewAI 支持任何 LiteLLM 兼容的模型，包括 Anthropic Claude、Google Gemini、Azure OpenAI、DeepSeek、Mistral 以及通过 Ollama 的本地模型。在智能体配置中使用 `provider/model-name` 格式。
+A: 可以。CrewAI 支持任何 LiteLLM 兼容的模型，包括 Anthropic Claude、Google Gemini、Azure OpenAI、DeepSeek、Mistral 以及通过 Ollama 的本地模型。在智能体配置中使用 ````provider/model-name```` 格式。
 
 **Q: CrewAI Crews 和 Flows 的区别是什么？**
 A: Crews 是通过顺序、层级或并行过程协作完成任务的智能体团队。Flows 是通过条件逻辑、通过 Pydantic 模型进行状态管理和分支来串联多个 crew 的事件驱动工作流。Crews 用于单工作流协作，Flows 用于多阶段流水线。
@@ -638,7 +639,7 @@ A: Crews 是通过顺序、层级或并行过程协作完成任务的智能体�
 A: 对于每天运行 100 次的 3 智能体 crew 使用 GPT-4o，预计 LLM API 成本约为每月 $100–$300。为简单任务使用 GPT-4o-mini 等更便宜的模型可以将成本降低 40–60%。CrewAI 本身是免费开源的（MIT 许可证）。
 
 **Q: 如何调试输出质量不佳的 CrewAI 智能体？**
-A: 在智能体上设置 `verbose: true` 以查看其思考过程。使用 `max_iter` 限制推理循环。添加结构化输出模式来强制格式。在每次运行后查看 Token 使用指标。对于持续存在的问题，简化任务描述并验证工具配置。
+A: 在智能体上设置 ````verbose: true```` 以查看其思考过程。使用 ````max_iter```` 限制推理循环。添加结构化输出模式来强制格式。在每次运行后查看 Token 使用指标。对于持续存在的问题，简化任务描述并验证工具配置。
 
 **Q: CrewAI 对于企业使用是否已具备生产就绪性？**
 A: 对于中小规模的生产工作负载，是的。CrewAI+ 增加了托管可观测性和部署功能，起价为每月 $99。对于高容量或需要审计的关键工作负载，考虑将 CrewAI 与自定义检查点配对或评估 LangGraph。
@@ -649,10 +650,10 @@ CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其�
 
 **今天开始的行动项目：**
 
-1. 安装 CrewAI：`pip install crewai`
-2. 搭建你的第一个项目：`crewai create crew my_project`
-3. 在 `agents.yaml` 中定义 2–3 个具有不同角色的智能体
-4. 使用 `crewai run` 运行你的 crew
+1. 安装 CrewAI：````pip install crewai````
+2. 搭建你的第一个项目：````crewai create crew my_project````
+3. 在 ````agents.yaml```` 中定义 2–3 个具有不同角色的智能体
+4. 使用 ````crewai run``` 运行你的 crew
 5. 加入 CrewAI 社区获取支持和高级模式
 
 加入 Telegram 讨论：[加入 dibi8.com 社区](https://t.me/dibi8tech) 获取多智能体 AI 技巧和生产部署策略。
@@ -708,7 +709,7 @@ CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [tradingagents-llm-multi-agent-trading-framework-2026](crewai)
@@ -718,7 +719,7 @@ CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其�
 - [cleanlab-11k-star-ai-data-cleaning](crewai)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

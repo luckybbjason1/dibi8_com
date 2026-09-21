@@ -12,6 +12,7 @@ maintainer: HKUDS
 license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 ---
+
 ## Introduction
 
 The convergence of AI agents and financial markets is one of the most consequential trends in technology. Autonomous trading systems powered by machine learning have existed for years, but they have always been tightly coupled to specific frameworks and required deep expertise to configure and maintain. The barrier to entry has been high: you need to understand both finance and machine learning infrastructure.
@@ -47,7 +48,7 @@ Each AI coding agent (Claude Code, Codex, Cursor, OpenClaw, nanobot) acts as an 
 
 The trading engine handles order execution, portfolio management, and risk control. It interfaces with multiple exchanges and brokers, normalizing their APIs into a consistent interface that AI agents can reason about.
 
-```python
+````python
 # Register your AI agent as a trader
 # Read https://ai4trade.ai/SKILL.md and register
 
@@ -55,13 +56,13 @@ The trading engine handles order execution, portfolio management, and risk contr
 # 2. Connecting a trading account
 # 3. Defining your risk parameters
 # 4. Selecting your strategies
-```
+`````
 
 ### Market Data Service
 
 The platform provides real-time and historical market data through its unified data service, supporting stocks, crypto, forex, and commodities. The data service normalizes feeds from multiple providers into a consistent format.
 
-```bash
+`````bash
 # Query market data
 ai-trader data query --symbol AAPL --interval 1h --days 30
 
@@ -70,17 +71,17 @@ ai-trader data download --symbol BTC-USD --start 2024-01-01 --end 2026-01-01 --f
 
 # Stream live data
 ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
-```
+`````
 
 ## Supported AI Agents
 
 AI-Trader supports a growing list of AI coding agents as operators: | Agent | Support Level | Configuration |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Claude Code | Full | SKILL.md integration |
 | Codex | Full | API key + context config |
@@ -96,7 +97,7 @@ This broad support means that teams can choose the AI agent that best fits their
 
 The typical workflow for AI-Trader involves these steps: ### 1. Registration and Setup
 
-Agents register with the platform by reading the SKILL.md documentation and following the registration process: ```bash
+Agents register with the platform by reading the SKILL.md documentation and following the registration process: `````bash
 # Agent registration process
 # Step 1: Read the skill documentation
 # Command: "Read https://ai4trade.ai/SKILL.md and register"
@@ -113,11 +114,11 @@ Agents register with the platform by reading the SKILL.md documentation and foll
 }
 
 # Step 4: Platform validates and activates the agent
-```
+`````
 
 ### 2. Strategy Configuration
 
-Agents configure trading strategies based on their objectives. AI-Trader provides both built-in strategies and the ability to define custom strategies: ```python
+Agents configure trading strategies based on their objectives. AI-Trader provides both built-in strategies and the ability to define custom strategies: `````python
 # Define a custom trading strategy
 from ai_trader import Strategy
 
@@ -141,11 +142,11 @@ class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, thresh
                 size=current_position.size
             )
         return None
-```
+`````
 
 ### 3. Execution and Monitoring
 
-Once strategies are configured, agents execute trades and monitor performance: ```bash
+Once strategies are configured, agents execute trades and monitor performance: `````bash
 # Start the trading agent
 ai-trader start --agent claude_code --strategy momentum_reversal
 
@@ -157,11 +158,11 @@ ai-trader portfolio --agent claude_code
 
 # View recent trades
 ai-trader trades --agent claude_code --limit 20
-```
+`````
 
 ## Installation and Getting Started
 
-AI-Trader is accessed through a combination of the GitHub repository, the platform website, and agent-specific SKILL.md integration: ```bash
+AI-Trader is accessed through a combination of the GitHub repository, the platform website, and agent-specific SKILL.md integration: `````bash
 # Clone the repository
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -171,11 +172,11 @@ pip install -e .
 
 # Verify installation
 ai-trader --version
-```
+`````
 
 ### Agent Registration
 
-Each AI agent registers differently: ```bash
+Each AI agent registers differently: `````bash
 # For Claude Code: # Read https://ai4trade.ai/SKILL.md and register
 
 # For Codex: ai-trader register --agent codex --api-key $OPENAI_API_KEY
@@ -185,13 +186,13 @@ Each AI agent registers differently: ```bash
 # For OpenClaw: ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
 
 # For nanobot: ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
-```
+`````
 
 ## Integration Patterns
 
 ### Exchange Integration
 
-AI-Trader supports multiple exchanges out of the box: ```python
+AI-Trader supports multiple exchanges out of the box: `````python
 # Configure exchange connections
 exchanges = {
     "binance": {
@@ -211,11 +212,11 @@ exchanges = {
 }
 
 for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
-```
+`````
 
 ### Strategy Library Integration
 
-The platform includes a rich strategy library: ```python
+The platform includes a rich strategy library: `````python
 from ai_trader.strategies import (
     MomentumReversal,
     MeanReversion,
@@ -239,11 +240,11 @@ portfolio = ai_trader.create_portfolio(
         "max_leverage": 2.0
     }
 )
-```
+`````
 
 ### Backtesting Engine
 
-AI-Trader includes a powerful backtesting engine for evaluating strategies: ```python
+AI-Trader includes a powerful backtesting engine for evaluating strategies: `````python
 # Run a backtest
 results = ai_trader.backtest(
     strategy="momentum_reversal",
@@ -263,7 +264,7 @@ print(f"Total Trades: {results.total_trades}")
 
 # Generate equity curve
 results.plot_equity_curve(save_path="equity_curve.png")
-```
+`````
 
 ![AI-Trader Strategy Performance](https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/performance-charts.png)
 
@@ -273,15 +274,15 @@ results.plot_equity_curve(save_path="equity_curve.png")
 
 AI-Trader has demonstrated strong performance across multiple markets: | Market | Strategy | Annual Return | Sharpe Ratio | Max Drawdown |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | US Stocks | Momentum + ML | 34.2% | 1.85 | -12.3% |
 | Crypto | Mean Reversion | 28.7% | 1.42 | -18.5% |
@@ -292,9 +293,9 @@ AI-Trader has demonstrated strong performance across multiple markets: | Market 
 
 | Operation | Latency |
 |
----
+* * *
 |
----
+* * *
 |
 | Order placement (crypto) | 45ms |
 | Order placement (stocks) | 120ms |
@@ -306,13 +307,13 @@ AI-Trader has demonstrated strong performance across multiple markets: | Market 
 
 When multiple AI agents operate simultaneously: | Agents | Portfolio Size | Avg. Latency | Trade Success Rate |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 1 | 45ms | 99.2% |
 | 3 | 3 | 52ms | 98.9% |
@@ -323,7 +324,7 @@ When multiple AI agents operate simultaneously: | Agents | Portfolio Size | Avg.
 
 ### Multi-Agent Coordination
 
-Advanced users can set up multi-agent coordination where different agents specialize in different tasks: ```python
+Advanced users can set up multi-agent coordination where different agents specialize in different tasks: `````python
 # Set up a multi-agent trading team
 trading_team = ai_trader.create_team(
     name="Alpha Team",
@@ -352,11 +353,11 @@ trading_team = ai_trader.create_team(
 
 # Start the team
 trading_team.start()
-```
+`````
 
 ### Custom Data Sources
 
-AI-Trader supports custom data sources for alternative data: ```python
+AI-Trader supports custom data sources for alternative data: `````python
 # Add custom data source
 ai_trader.add_data_source(
     name="news_sentiment",
@@ -376,11 +377,11 @@ strategy = SentimentAnalysis(
     model="finbert",
     custom_data_source="news_sentiment"
 )
-```
+`````
 
 ### Risk Management Rules
 
-Configure comprehensive risk management: ```python
+Configure comprehensive risk management: `````python
 # Set risk management rules
 ai_trader.configure_risk(
     global_limits={
@@ -404,7 +405,7 @@ ai_trader.configure_risk(
         }
     }
 )
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -412,15 +413,15 @@ How does AI-Trader compare to other AI trading platforms?
 
 | Feature | AI-Trader | QuantConnect | MetaTrader | Backtrader |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Agent-Native | Yes | No | No | No |
 | Agent Support | 5+ agents | API only | No | No |
@@ -446,20 +447,20 @@ While AI-Trader is a powerful platform, some limitations are worth noting: **Lea
 **Regulatory Compliance.** AI-Trader is a tool, not a financial advisor. Users are responsible for ensuring their trading activities comply with local regulations.
 
 
-```bash
+`````bash
 # Register your agent
 echo "Read https://ai4trade.ai/SKILL.md and register" | your-agent-cli
-```
+`````
 
-```bash
+`````bash
 # Check your agent's portfolio status
 curl -s https://ai4trade.ai/api/portfolio | jq .
-```
+`````
 
-```bash
+`````bash
 # View agent trading history
 curl -s https://ai4trade.ai/api/history?days=30 | jq '.trades[] | {symbol, pnl}'
-```
+````
 
 ## Frequently Asked Questions
 ## Frequently Asked Questions
@@ -505,7 +506,7 @@ The SKILL.md-based registration is a clever design choice that puts the AI agent
 
 
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://ai-trader.dev (check official repo)
 - GitHub repository: https://github.com/ai-trader/11/ai/trader
 - Community discussion: https://github.com/ai-trader/discussions
@@ -520,7 +521,7 @@ Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
 
----
+* * *
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
@@ -549,7 +550,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -559,7 +560,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 - [12-factor-agents](hkuds-ai-trader)
 - [2026-05-25-trending-ai-agents](hkuds-ai-trader)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

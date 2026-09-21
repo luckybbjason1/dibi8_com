@@ -22,6 +22,7 @@ aliases:
   - /posts/llm-data-analysis-workflow-complete-guide/
 ---
 
+
 {</* resource-info */>}
 
 Large Language Models (LLMs) đang thay đổi cách chúng ta tiếp cận phân tích dữ liệu. Thay vì viết hàng trăm dòng code Python để khám phá dữ liệu, giờ đây chúng ta có thể đặt câu hỏi bằng ngôn ngữ tự nhiên và nhận được câu trả lờI kèm visualization. Xu hướng **conversational data analysis** — phân tích dữ liệu qua hội thoại — đang trở thành hiện thực nhờ các công cụ như PandasAI, ChatGPT Code Interpreter, và OpenAI API.
@@ -45,12 +46,12 @@ Vì vậy, cách tiếp cận đúng đắn là **kết hợp LLM với kiểm t
 
 ### Thiết Lập Và Sử Dụng Cơ Bản
 
-```bash
+````bash
 # Cài đặt
 pip install pandasai
-```
+`````
 
-```python
+`````python
 import pandas as pd
 from pandasai import SmartDataframe
 
@@ -72,11 +73,11 @@ sdf.chat("Vẽ biểu đồ đường thể hiện doanh thu theo thờI gian")
 
 # Truy vấn phức tạp hơn
 sdf.chat("So sánh doanh thu Q1 và Q2, chỉ ra top 5 sản phẩm tăng trưởng mạnh nhất")
-```
+`````
 
 ### Tính Năng Nâng Cao CủA PandasAI
 
-Từ phiên bản 2.0, PandasAI cung cấp **Agent mode** cho các tác vụ phức tạp đòi hỏi nhiều bước suy luận: ```python
+Từ phiên bản 2.0, PandasAI cung cấp **Agent mode** cho các tác vụ phức tạp đòi hỏi nhiều bước suy luận: `````python
 from pandasai import Agent
 
 agent = Agent([df1, df2], config={"llm": "openai"})
@@ -86,7 +87,7 @@ response = agent.chat(
     "Tìm correlation giữa doanh thu trong df1 và chi phí marketing trong df2, "
     "sau đó vẽ scatter plot với regression line"
 )
-```
+`````
 
 PandasAI còn hỗ trợ: - **Custom instructions**: Định nghĩa prompt template riêng
 - **Skill definitions**: Thêm hàm tùy chỉnh cho LLM sử dụng
@@ -95,7 +96,7 @@ PandasAI còn hỗ trợ: - **Custom instructions**: Định nghĩa prompt templ
 
 ### Sử Dụng PandasAI Với Local LLMs
 
-Đối với dữ liệu nhạy cảm, bạn có thể sử dụng local LLMs thay vì OpenAI: ```python
+Đối với dữ liệu nhạy cảm, bạn có thể sử dụng local LLMs thay vì OpenAI: `````python
 # Với Ollama (chạy local)
 sdf = SmartDataframe(df, config={
     "llm": "ollama",
@@ -107,11 +108,11 @@ sdf = SmartDataframe(df, config={
     "llm": "local",
     "api_base": "http://localhost:1234/v1"
 })
-```
+`````
 
 ### Kết Nối Với SQL Databases
 
-PandasAI có thể kết nối trực tiếp với SQL databases: ```python
+PandasAI có thể kết nối trực tiếp với SQL databases: `````python
 from pandasai import SmartDatalake
 from sqlalchemy import create_engine
 
@@ -119,7 +120,7 @@ engine = create_engine('postgresql://user:pass@localhost/db')
 sql_df = SmartDatalake([], config={"llm": "openai", "connection": engine})
 
 result = sql_df.chat("Tổng doanh thu theo từng vùng từ bảng orders")
-```
+`````
 
 ## ChatGPT Code Interpreter: Phân Tích Dữ Liệu Không Cần Code
 
@@ -153,7 +154,7 @@ Khi cần tích hợp LLM vào ứng dụng hoặc pipeline production, **OpenAI
 
 ### Function Calling Cho Kết Quả Có Cấu Trúc
 
-Function calling cho phép LLM trả về kết quả theo schema định sẵn: ```python
+Function calling cho phép LLM trả về kết quả theo schema định sẵn: `````python
 from openai import OpenAI
 import json
 
@@ -190,11 +191,11 @@ response = client.chat.completions.create(
 )
 
 result = json.loads(response.choices[0].message.function_call.arguments)
-```
+`````
 
 ### Assistants API Với Code Interpreter Tool
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI()
@@ -222,7 +223,7 @@ run = client.beta.threads.runs.create(
     thread_id=thread.id,
     assistant_id=assistant.id
 )
-```
+`````
 
 ### Chi Phí Sử Dụng OpenAI API
 
@@ -238,7 +239,7 @@ Với một file CSV 50MB (~500K tokens), một lần phân tích với GPT-4o c
 
 ### Kiến Trúc Pipeline Đề Xuất
 
-```
+`````
 ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
 │   Data       │───▶│   LLM        │───▶│  Validation  │
 │   Ingestion  │    │  Processing  │    │  & Review    │
@@ -252,7 +253,7 @@ Với một file CSV 50MB (~500K tokens), một lần phân tích với GPT-4o c
                                           ┌─────▼───────┐
                                           │   Output    │
                                           └─────────────┘
-```
+````
 
 ### Best Practices Cho Pipeline LLM-Powered
 
@@ -357,7 +358,7 @@ Quan trọng nhất: LLM là công cụ hỗ trợ, không phải thay thế. S�
 - [Python Documentation](https://docs.python.org/3/) — Tham khảo ngôn ngữ Python
 - [PandasAI GitHub](https://github.com/gventuri/pandas-ai) — Mã nguồn và issues
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

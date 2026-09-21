@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/grafana/
 ---
 
+
 {{</* resource-info */>}}
 
 모든 프로덕션 사고는 하나의 질문으로 시작된다: "무엇이 바뀌었나?" 메트릭, 로그, 추적 데이터를 중앙 집중화된 뷰 없이는 그 질문에 답하는 데 몇 분 — 때로는 몇 시간 — 이 걸린다. GitHub 73,876 스타를 보유한 오픈소스 시각화 플랫폼인 Grafana는 그 질문을 한눈에 보이는 대시보드로 바꾼다. 이 가이드에서는 프로덕션급 Docker 배포, 데이터 소스 통합, 그리고 개념 검증과 프로덕션 준비 모니터링 스택을 구분하는 강화 결정을 다룬다.
@@ -56,7 +57,7 @@ Grafana는 데이터 소스와 운영 팀 사이에서 상태 비저장(stateles
 
 ### Docker CLI — 단일 컨테이너 (30초)
 
-로컬 탐색을 위해 Grafana를 가장 빠르게 실행하는 방법: ```bash
+로컬 탐색을 위해 Grafana를 가장 빠르게 실행하는 방법: ````bash
 # Grafana 데이터를 위한 지속 볼륨 생성
 docker volume create grafana-storage
 
@@ -66,20 +67,20 @@ docker run -d \
   --name=grafana \
   --volume grafana-storage:/var/lib/grafana \
   grafana/grafana-enterprise
-```
+`````
 
-`http://localhost:3000`으로 접속한다. 기본 자격 증명은 `admin` / `admin`이다. 첫 로그인 시 비밀번호 변경을 요청받는다.
+````http://localhost:3000````으로 접속한다. 기본 자격 증명은 ````admin```` / ````admin````이다. 첫 로그인 시 비밀번호 변경을 요청받는다.
 
 ### Docker Compose — 프로덕션 준비 스택
 
-프로덕션급 모니터링 스택을 위해 Grafana와 Prometheus, Loki를 함께 구성한다. 다음 디렉터리 구조를 생성한다: ```bash
+프로덕션급 모니터링 스택을 위해 Grafana와 Prometheus, Loki를 함께 구성한다. 다음 디렉터리 구조를 생성한다: `````bash
 mkdir -p ~/grafana-stack/{prometheus,loki,grafana/provisioning/datasources,grafana/provisioning/dashboards,grafana/dashboards}
 cd ~/grafana-stack
-```
+`````
 
 **docker-compose.yml:**
 
-```yaml
+`````yaml
 version: "3.8"
 
 services: grafana: image: grafana/grafana-enterprise:11.6.0
@@ -128,11 +129,11 @@ services: grafana: image: grafana/grafana-enterprise:11.6.0
     networks: - monitoring
 
 volumes: grafana-data: prometheus-data: loki-data: networks: monitoring: driver: bridge
-```
+`````
 
 **prometheus/prometheus.yml:**
 
-```yaml
+`````yaml
 global: scrape_interval: 15s
   evaluation_interval: 15s
 
@@ -144,11 +145,11 @@ scrape_configs: - job_name: prometheus
 
   - job_name: grafana
     static_configs: - targets: [grafana:3000]
-```
+`````
 
 **loki/loki-config.yml:**
 
-```yaml
+`````yaml
 auth_enabled: false
 
 server: http_listen_port: 3100
@@ -179,11 +180,11 @@ compactor: working_directory: /loki/compactor
   retention_delete_delay: 2h
 
 limits_config: retention_period: 720h
-```
+`````
 
 **loki/promtail-config.yml:**
 
-```yaml
+`````yaml
 server: http_listen_port: 9080
   grpc_listen_port: 0
 
@@ -195,17 +196,17 @@ scrape_configs: - job_name: system-logs
     static_configs: - targets: - localhost
         labels: job: system-logs
           __path__: /var/log/*.log
-```
+`````
 
-스택 시작: ```bash
+스택 시작: `````bash
 docker compose up -d
-```
+`````
 
-`http://your-server-ip:3000`에서 Grafana에 접속한다. Prometheus는 9090 포트, Loki는 3100 포트에서 사용할 수 있다.
+````http://your-server-ip:3000````에서 Grafana에 접속한다. Prometheus는 9090 포트, Loki는 3100 포트에서 사용할 수 있다.
 
 ### 데이터 소스 자동 프로비저닝
 
-UI를 수동으로 클릭하여 데이터 소스를 추가하는 대신 Grafana의 프로비저닝 시스템을 사용한다. `grafana/provisioning/datasources/datasources.yml`을 생성한다: ```yaml
+UI를 수동으로 클릭하여 데이터 소스를 추가하는 대신 Grafana의 프로비저닝 시스템을 사용한다. ``grafana/provisioning/datasources/datasources.yml``을 생성한다: `````yaml
 apiVersion: 1
 
 datasources: - name: Prometheus
@@ -226,17 +227,17 @@ datasources: - name: Prometheus
     access: proxy
     url: http://tempo:3200
     editable: false
-```
+`````
 
-Grafana를 재시작하면 데이터 소스가 미리 구성된 상태로 나타난다: ```bash
+Grafana를 재시작하면 데이터 소스가 미리 구성된 상태로 나타난다: `````bash
 docker compose restart grafana
-```
+`````
 
 ## Prometheus, Loki, InfluxDB 및 Elasticsearch와의 통합
 
 ### Prometheus — 메트릭 대시보드
 
-Prometheus는 Grafana의 사실상 표준 메트릭 소스이다. 전형적인 CPU 모니터링 패널은 PromQL을 사용한다: ```promql
+Prometheus는 Grafana의 사실상 표준 메트릭 소스이다. 전형적인 CPU 모니터링 패널은 PromQL을 사용한다: `````promql
 # CPU 사용률 백분율
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
@@ -245,30 +246,30 @@ Prometheus는 Grafana의 사실상 표준 메트릭 소스이다. 전형적인 C
 
 # 디스크 사용률
 100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"})
-```
+`````
 
-Grafana 대시보드 라이브러리에서 공식 Node Exporter Full 대시보드(ID: `1860`)를 가져와 115개 이상의 사전 구축된 시스템 메트릭 패널을 사용할 수 있다.
+Grafana 대시보드 라이브러리에서 공식 Node Exporter Full 대시보드(ID: ````1860````)를 가져와 115개 이상의 사전 구축된 시스템 메트릭 패널을 사용할 수 있다.
 
 ### Loki — 로그 집계
 
-Loki는 동일한 대시보드에서 로그 라인을 메트릭과 나란히 표시한다. 오류 라인을 찾는 LogQL 쿼리: ```logql
+Loki는 동일한 대시보드에서 로그 라인을 메트릭과 나란히 표시한다. 오류 라인을 찾는 LogQL 쿼리: `````logql
 # 애플리케이션별 오류 로그 수 집계
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # 특정 오류 패턴 검색
 {job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
-```
+`````
 
 ### InfluxDB — 시계열 데이터
 
-IoT 및 고기수(cardinality) 메트릭 워크로드의 경우 InfluxDB가 Grafana와 잘 어울린다: ```sql
+IoT 및 고기수(cardinality) 메트릭 워크로드의 경우 InfluxDB가 Grafana와 잘 어울린다: `````sql
 -- InfluxQL 예제: 센서별 평균 온도
 SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id", time($__interval) fill(null)
-```
+`````
 
 ### Elasticsearch — 로그 검색
 
-이미 Elastic Stack에 투자한 팀을 위해 Grafana는 Elasticsearch 인덱스를 직접 쿼리할 수 있다: ```json
+이미 Elastic Stack에 투자한 팀을 위해 Grafana는 Elasticsearch 인덱스를 직접 쿼리할 수 있다: `````json
 {
   "query": {
     "bool": {
@@ -279,7 +280,7 @@ SELECT mean("temperature") FROM "sensors" WHERE $timeFilter GROUP BY "sensor_id"
     }
   }
 }
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -308,7 +309,7 @@ Grafana의 알림 타임라인 대시보드는 시간에 따른 알림 발동 �
 
 ### SSL/TLS 종료 및 리버스 프록시
 
-Grafana를 인터넷에 직접 노출하지 마라. Traefik이나 Nginx를 리버스 프록시로 사용한다: ```yaml
+Grafana를 인터넷에 직접 노출하지 마라. Traefik이나 Nginx를 리버스 프록시로 사용한다: `````yaml
 # docker-compose.yml 추가 구성
   traefik: image: traefik:v3.3
     command: - "--api.insecure=true"
@@ -321,11 +322,11 @@ Grafana를 인터넷에 직접 노출하지 마라. Traefik이나 Nginx를 리�
     volumes: - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
     networks: - monitoring
-```
+`````
 
 ### 고가용성 설정
 
-제로 다운타임이 필요한 프로덕션 환경을 위해: ```yaml
+제로 다운타임이 필요한 프로덕션 환경을 위해: `````yaml
 # Grafana HA에는 공유 데이터베이스(PostgreSQL 또는 MySQL)와
 # 로드 밸런서 뒤의 여러 Grafana 인스턴스가 필요하다
 
@@ -344,11 +345,11 @@ Grafana를 인터넷에 직접 노출하지 마라. Traefik이나 Nginx를 리�
       - GF_REMOTE_CACHE_TYPE=redis
       - GF_REMOTE_CACHE_CONNSTR=redis:6379
     depends_on: - postgres
-```
+`````
 
 ### 코드로서의 알림 구성
 
-프로비저닝을 통해 알림 규칙을 정의한다: ```yaml
+프로비저닝을 통해 알림 규칙을 정의한다: `````yaml
 # grafana/provisioning/alerting/alert-rules.yml
 apiVersion: 1
 groups: - orgId: 1
@@ -367,11 +368,11 @@ groups: - orgId: 1
         execErrState: Error
         for: 5m
         annotations: summary: "{{ $labels.instance }}에서 CPU 사용률이 높습니다"
-```
+`````
 
 ### Git에서 대시보드 프로비저닝
 
-대시보드를 JSON으로 저장소에 저장하고 자동으로 프로비저닝한다: ```yaml
+대시보드를 JSON으로 저장소에 저장하고 자동으로 프로비저닝한다: `````yaml
 # grafana/provisioning/dashboards/dashboards.yml
 apiVersion: 1
 
@@ -384,16 +385,16 @@ providers: - name: default
     updateIntervalSeconds: 30
     options: path: /var/lib/grafana/dashboards
       foldersFromFilesStructure: true
-```
+`````
 
 ### 보안 체크리스트
 
 - 기본 관리자 비밀번호를 즉시 변경한다
-- 사용자 가입 비활성화: `GF_USERS_ALLOW_SIGN_UP=false`
+- 사용자 가입 비활성화: ````GF_USERS_ALLOW_SIGN_UP=false````
 - 유효한 인증서로 HTTPS를 활성화한다
 - 팀 환경에서는 OAuth 2.0이나 LDAP을 사용하여 인증한다
 - 데이터 소스 프록시 액세스를 관리자 역할로 제한한다
-- 감사 로그 활성화: `GF_AUDIT_ENABLED=true`
+- 감사 로그 활성화: ````GF_AUDIT_ENABLED=true````
 - 컨테이너에서 비 root 사용자로 Grafana를 실행한다
 - 플러그인을 최신 상태로 유지한다 — 취약한 플러그인은 일반적인 공격 벡터이다
 
@@ -444,7 +445,7 @@ Grafana는 만능이 아니다. 투입하기 전에 다음 한계를 이해하�
 
 **Q3: Grafana 대시보드를 어떻게 백업하나?**
 
-대시보드는 JSON 형식으로 Grafana 데이터베이스에 저장된다. API를 사용하여 낼 수 있다: `curl -H "Authorization: Bearer $API_KEY" http://grafana:3000/api/dashboards/uid/<uid>`. GitOps 워크플로의 경우 버전 관리에서 JSON 파일로 대시보드를 프로비저닝한다.
+대시보드는 JSON 형식으로 Grafana 데이터베이스에 저장된다. API를 사용하여 낼 수 있다: ````curl -H "Authorization: Bearer $API_KEY" http://grafana:3000/api/dashboards/uid/<uid>````. GitOps 워크플로의 경우 버전 관리에서 JSON 파일로 대시보드를 프로비저닝한다.
 
 **Q4: Grafana OSS와 Grafana Enterprise의 차이점은 무엇인가?**
 
@@ -470,7 +471,7 @@ Grafana는 구체적인 문제를 해결함으로써 73,876개의 GitHub Star를
 
 1. [Grafana GitHub 저장소](https://github.com/grafana/grafana)를 복제하고 코드베이스를 탐색하라
 2. 본 가이드의 Docker Compose 스택을 인프라에 배포하라
-3. 대시보드 ID `1860`(Node Exporter Full)을 가져와 즉각적인 시스템 가시성을 확보하라
+3. 대시보드 ID ````1860```(Node Exporter Full)을 가져와 즉각적인 시스템 가시성을 확보하라
 4. 지원을 위해 [Grafana 커뮤니티 포럼](https://community.grafana.com/)에 가입하라
 5. 매주 개발 도구 심층 분석을 위해 [dibi8 Telegram 그룹](https://t.me/dibi8hub)을 팔로우하라
 
@@ -524,7 +525,7 @@ Grafana는 구체적인 문제를 해결함으로써 73,876개의 GitHub Star를
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -534,6 +535,6 @@ Grafana는 구체적인 문제를 해결함으로써 73,876개의 GitHub Star를
 - [moneyprinterturbo-one-click-ai-video-generator](grafana)
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](grafana)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/freqtrade-ai-trading-strategies/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：为什么90%的自制交易机器人会亏钱
@@ -42,7 +43,7 @@ Freqtrade是一款免费的开源加密货币交易机器人，使用Python编�
 
 Freqtrade的架构围绕状态机构建，通过你的策略处理市场数据：
 
-```
+````
 ┌──────────────────────────────────────────────────────────────┐
 │                    策略文件 (.py)                             │
 │  (populate_indicators / populate_buy_trend /                  │
@@ -60,7 +61,7 @@ Freqtrade的架构围绕状态机构建，通过你的策略处理市场数据�
 │                    基础设施                                   │
 │  (SQLite 数据库 / Telegram / Web UI / Docker)               │
 └──────────────────────────────────────────────────────────────┘
-```
+`````
 
 **交易循环**工作流程如下：
 1. Freqtrade通过CCXT从交易所获取OHLCV K线数据
@@ -85,7 +86,7 @@ Freqtrade的架构围绕状态机构建，通过你的策略处理市场数据�
 
 ### 步骤一：创建目录结构
 
-```bash
+`````bash
 # 创建user_data目录结构
 mkdir -p freqtrade/user_data/strategies
 mkdir -p freqtrade/user_data/configs
@@ -93,16 +94,16 @@ mkdir -p freqtrade/user_data/configs
 # 下载官方docker-compose文件
 cd freqtrade
 curl -o docker-compose.yml https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docker-compose.yml
-```
+`````
 
 ### 步骤二：初始化配置
 
-```bash
+`````bash
 # 运行初始化命令创建默认配置
 docker compose run --rm freqtrade new-config --config user_data/config.json
-```
+`````
 
-```
+`````
 ? Do you want to enable Dry Run (simulated trading)? Yes
 ? Please insert your exchange name (binance, coinbase, kraken, ...) binance
 ? Please insert your API Key for binance YOUR_API_KEY
@@ -110,11 +111,11 @@ docker compose run --rm freqtrade new-config --config user_data/config.json
 ? Do you want to enable Telegram? Yes
 ? Insert your Telegram token YOUR_BOT_TOKEN
 ? Insert your Telegram chat ID YOUR_CHAT_ID
-```
+`````
 
 ### 步骤三：创建你的第一个策略
 
-```python
+`````python
 # user_data/strategies/SampleStrategy.py
 import numpy as np
 import talib.abstract as ta
@@ -175,46 +176,46 @@ class SampleStrategy(IStrategy): """
             exit_long
         ] = 1
         return dataframe
-```
+`````
 
 ### 步骤四：启动机器人
 
-```bash
+`````bash
 # 使用你的策略启动Freqtrade
 docker compose up -d
 
 # 查看日志
 docker compose logs -f freqtrade
-```
+`````
 
-```
+`````
 freqtrade  | 2026-05-19 08:00:01 freqtrade.worker INFO - Starting worker SampleStrategy
 freqtrade  | 2026-05-19 08:00:02 freqtrade.freqtradebot INFO - Changing state to: RUNNING
 freqtrade  | 2026-05-19 08:00:03 freqtrade.wallets INFO - Wallets synced.
 freqtrade  | 2026-05-19 08:00:04 freqtrade.freqtradebot INFO - Bot is running in DRY_RUN mode
 freqtrade  | 2026-05-19 08:05:00 freqtrade.persistence.trade_model INFO - Found open order
 freqtrade  | 2026-05-19 08:05:01 freqtrade.freqtradebot INFO - Long signal detected for BTC/USDT
-```
+`````
 
 ### 步骤五：通过Telegram监控
 
 发送命令给你的机器人：
-```
+`````
 /status - 显示当前交易和表现
 /profit - 显示利润摘要
 /balance - 显示钱包余额
 /daily - 显示每日盈亏
 /performance - 显示各交易对表现
-```
+`````
 
-```
+`````
 Status: Running
 Trade Count: 12
 Open Trades: 2
 Closed Profit: +3.24 USDT
 Best Performing: ETH/USDT (+1.8%)
 Worst Performing: SOL/USDT (-0.4%)
-```
+`````
 
 ## 与机器学习集成（FreqAI）
 
@@ -222,7 +223,7 @@ Worst Performing: SOL/USDT (-0.4%)
 
 FreqAI将机器学习预测带入你的策略。首先添加FreqAI配置：
 
-```json
+`````json
 // 添加到 config.json
 "freqai": {
   "enabled": true,
@@ -253,11 +254,11 @@ FreqAI将机器学习预测带入你的策略。首先添加FreqAI配置：
     "num_leaves": 32
   }
 }
-```
+`````
 
 ### FreqAI策略示例
 
-```python
+`````python
 # user_data/strategies/FreqAIStrategy.py
 import pandas as pd
 from freqtrade.strategy import IStrategy
@@ -313,7 +314,7 @@ class FreqAISrategy(IStrategy): """
             "exit_long"
         ] = 1
         return dataframe
-```
+`````
 
 ### 模型选项
 
@@ -321,13 +322,13 @@ FreqAI支持多种ML后端：
 
 | 模型 | 后端 | 最适合 | 训练速度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LightGBM | LightGBM | 表格数据，速度 | 非常快 |
 | XGBoost | XGBoost | 表格数据，精度 | 快 |
@@ -339,7 +340,7 @@ FreqAI支持多种ML后端：
 
 ### 使用Optuna进行超参数优化
 
-```bash
+`````bash
 # 运行超参数优化
 docker compose run --rm freqtrade hyperopt \
   --strategy SampleStrategy \
@@ -347,9 +348,9 @@ docker compose run --rm freqtrade hyperopt \
   --epochs 100 \
   --timerange 20260101-20260331 \
   --hyperopt-loss SharpeHyperOptLossDaily
-```
+`````
 
-```
+`````
 Best result: 87/100: 2469 trades. 1371/247/851 Wins/Draws/Losses. 
     Avg profit   0.34%. Median profit   0.18%. 
     Total profit  842.345 USDT ( 84.23%).
@@ -363,11 +364,11 @@ ROI table: minimal_roi = {0: 0.143, 30: 0.072, 60: 0.028, 120: 0}
 
 Stoploss: -0.08
 Trailing stop: True (positive: 0.025)
-```
+`````
 
 ### 带有边缘验证的回测
 
-```bash
+`````bash
 # 首先下载历史数据
 docker compose run --rm freqtrade download-data \
   --exchange binance \
@@ -382,27 +383,27 @@ docker compose run --rm freqtrade backtesting \
   --pairs BTC/USDT ETH/USDT SOL/USDT \
   --export trades \
   --export-filename user_data/backtest_results.json
-```
+`````
 
-```
+`````
 Result for strategy SampleStrategy
 ===========================================================
 BACKTESTING REPORT
----
+* * *
 | 交易对      |  入场次数 |  平均利润 %   |  累计利润 %   |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | BTC/USDT    |      45  |         0.82  |        36.9   |
 | ETH/USDT    |      52  |         0.64  |        33.3   |
 | SOL/USDT    |      38  |         0.71  |        27.0   |
----
+* * *
 总计: 97.2 USDT (9.72%)
 
 夏普比率: 2.34
@@ -411,11 +412,11 @@ BACKTESTING REPORT
 平均持仓时间: 52.3分钟
 胜率: 64.2%
 盈亏比: 2.1
-```
+`````
 
 ### Jupyter Notebook集成
 
-```python
+`````python
 # 在Freqtrade的Jupyter容器中运行
 import pandas as pd
 from freqtrade.data.history import load_pair_history
@@ -441,11 +442,11 @@ dataframe = strategy.analyze_ticker(data, {pair: pair})
 signals = dataframe[dataframe[enter_long] == 1]
 print(f"发现 {len(signals)} 个入场信号")
 print(signals[[date, close, rsi, macdhist]].head(10))
-```
+`````
 
 ### 用于外部集成的REST API
 
-```bash
+`````bash
 # 启动API服务器（在config.json中启用）
 # 查询当前状态
 curl -u admin:your-secure-password \
@@ -464,7 +465,7 @@ curl -X POST -u admin:your-secure-password \
   -H "Content-Type: application/json" \
   -d '{"pair": "BTC/USDT", "side": "long"}' \
   http://localhost:8080/api/v1/forceentry
-```
+`````
 
 ## 基准测试与真实性能
 
@@ -472,17 +473,17 @@ curl -X POST -u admin:your-secure-password \
 
 | 策略类型 | 月均收益 | 夏普比率 | 最大回撤 | 胜率 | 月均交易次数 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RSI + MACD (基础) | 4-8% | 1.2-1.8 | 8-12% | 55-60% | 80-150 |
 | FreqAI LightGBM | 8-15% | 1.8-2.5 | 6-10% | 60-68% | 60-120 |
@@ -494,15 +495,15 @@ curl -X POST -u admin:your-secure-password \
 
 | 资源 | 模拟模式 | 实盘（1对） | 实盘（10对） | FreqAI模式 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | CPU | 1-3% | 3-8% | 10-20% | 30-60% |
 | RAM | 150MB | 200-300MB | 400-800MB | 1-2GB |
@@ -515,7 +516,7 @@ curl -X POST -u admin:your-secure-password \
 
 关键基准是策略从回撤中恢复的速度：
 
-```
+`````
 策略: FreqAI LightGBM
 时间线: 2026-01-01 至 2026-03-31
 
@@ -525,13 +526,13 @@ curl -X POST -u admin:your-secure-password \
 2月收益: +11.4%
 3月收益: +9.8%
 Q1总收益: +12.1%
-```
+`````
 
 ## 高级用法与生产环境加固
 
 ### 风险管理配置
 
-```json
+`````json
 // 高级风险管理设置
 "max_open_trades": 3,
 "stake_amount": "unlimited",
@@ -569,11 +570,11 @@ Q1总收益: +12.1%
     "stop_duration": 60
   }
 ]
-```
+`````
 
 ### 基于ATR的动态止损
 
-```python
+`````python
 # 添加到策略中实现动态止损
 def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float: """基于ATR的动态止损."""
@@ -588,11 +589,11 @@ def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
     
     # 从当前价格转换为百分比
     return stoploss_from_absolute(stoploss_price, current_rate, is_short=trade.is_short)
-```
+`````
 
 ### 多时间框架分析
 
-```python
+`````python
 def informative_pairs(self): """定义用于分析的高时间框架交易对."""
     return [
         ("BTC/USDT", "1h"),
@@ -616,11 +617,11 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
-```
+`````
 
 ### FreqAI GPU加速
 
-```yaml
+`````yaml
 # 支持FreqAI GPU的docker-compose.yml
 version: '3.8'
 
@@ -634,11 +635,11 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
     environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda
     command: >
       trade --strategy FreqAIStrategy --config user_data/config.json
-```
+`````
 
 ### 生产环境Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -659,21 +660,21 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
       start_period: 60s
     command: >
       trade --strategy SampleStrategy --config user_data/config.json
-```
+`````
 
 ## 与替代方案对比
 
 | 功能 | Freqtrade | Hummingbot | 3Commas | Gunbot |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | GPL-3.0 | Apache-2.0 | 专有 | 专有 |
 | **CEX连接器** | 20+ (CCXT) | 50+ | 15+ | 10+ |
@@ -707,7 +708,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
 
 4. **FreqAI的资源占用显著。** 运行10+交易对的FreqAI和神经网络模型需要2-4GB RAM和大量CPU。别指望在$3/月的VPS上运行这个。
 
-5. **做空支持因交易所而异。** 现货市场不支持做空。对于做空策略，你需要支持合约的连接器（Binance合约、OKX）和配置中的 `trading_mode: futures`。
+5. **做空支持因交易所而异。** 现货市场不支持做空。对于做空策略，你需要支持合约的连接器（Binance合约、OKX）和配置中的 ````trading_mode: futures````。
 
 ## 常见问题解答
 
@@ -729,13 +730,13 @@ FreqAI抽象了ML工程复杂性 —— 特征工程、模型训练、推理和�
 
 ### 如何防止我的机器人亏钱？
 
-没有机器人能保证盈利。这些做法可以最小化风险：(1) 实盘之前始终在1年以上的数据上回测。(2) 至少运行2周模拟交易。(3) 使用 `max_open_trades` 限制敞口。(4) 将 `stoploss` 设置为5-10%。(5) 启用 `protections`（冷却期、最大回撤）。(6) 每笔交易从1-2%的资金开始。
+没有机器人能保证盈利。这些做法可以最小化风险：(1) 实盘之前始终在1年以上的数据上回测。(2) 至少运行2周模拟交易。(3) 使用 ````max_open_trades```` 限制敞口。(4) 将 ````stoploss```` 设置为5-10%。(5) 启用 ````protections````（冷却期、最大回撤）。(6) 每笔交易从1-2%的资金开始。
 
 ### 可以使用自定义机器学习模型吗？
 
-可以。FreqAI支持自定义PyTorch模型。创建一个继承自 `IFreqaiModel` 的类并实现 `fit` 和 `predict` 方法。你可以使用任何sklearn兼容的模型或完整的PyTorch神经网络。查看FreqAI文档了解示例。
+可以。FreqAI支持自定义PyTorch模型。创建一个继承自 ````IFreqaiModel```` 的类并实现 ````fit```` 和 ````predict```` 方法。你可以使用任何sklearn兼容的模型或完整的PyTorch神经网络。查看FreqAI文档了解示例。
 
-```python
+`````python
 # 自定义模型示例
 from freqtrade.freqai.base_models import BaseRegressionModel
 from sklearn.ensemble import RandomForestRegressor
@@ -743,11 +744,11 @@ from sklearn.ensemble import RandomForestRegressor
 class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10)
         model.fit(data_dictionary["train_features"], data_dictionary["train_labels"])
         return model
-```
+`````
 
 ### 如果交易所API宕机会发生什么？
 
-Freqtrade优雅地处理交易所停机。未成交订单被追踪，API恢复后机器人恢复正常操作。启用 `stoploss_on_exchange` 确保止损订单存在于交易所侧作为安全网。Telegram通知会在机器人检测到问题时提醒你。
+Freqtrade优雅地处理交易所停机。未成交订单被追踪，API恢复后机器人恢复正常操作。启用 ````stoploss_on_exchange``` 确保止损订单存在于交易所侧作为安全网。Telegram通知会在机器人检测到问题时提醒你。
 
 ## 结论：今天就开始构建你的AI交易机器人
 
@@ -837,4 +838,4 @@ Freqtrade与FreqAI是2026年用于ML增强加密货币交易的最强大开源�
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
 
----
+* * *

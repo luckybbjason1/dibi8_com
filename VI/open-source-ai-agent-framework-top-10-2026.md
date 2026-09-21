@@ -28,6 +28,7 @@ faq: - q: "Nên chọn framework AI agent nào vào năm 2026?"
     a: "Có thể nhưng đau đớn. Mỗi framework có API gọi tool riêng, mô hình trạng thái, và hook quan sát riêng. Hãy lên kế hoạch cam kết tối thiểu 6 tháng khi đã chọn. Chi phí chuyển đổi gần bằng chi phí xây 1-2 workflow agent mới."
 ---
 
+
 {{</* resource-info */>}}
 
 # Top 10 Framework AI Agent Mã Nguồn Mở (2026)
@@ -126,7 +127,7 @@ Bối cảnh framework AI agent đã được củng cố vào năm 2026. Từ h
 
 Chọn theo stack ngôn ngữ và phong cách workflow. Năng lực đã hội tụ đủ để lựa chọn phụ thuộc vào sự phù hợp hệ sinh thái hơn là tính năng. LangGraph nếu sản xuất Python, Mastra nếu TypeScript, OpenHands nếu code tự động. Cam kết 6+ tháng — chi phí chuyển đổi là thực.
 
----
+* * *
 
 **Liên quan**: [Hướng Dẫn Sản Xuất 12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [Hệ Thống Bộ Nhớ AI Agent](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -192,12 +193,12 @@ Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng Theo Mức Độ
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -207,7 +208,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-agent-frameworks-comparison-2026](open-source-ai-agent-framework-top-10-2026)
 - [langgraph-vs-crewai](open-source-ai-agent-framework-top-10-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

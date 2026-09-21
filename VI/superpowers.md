@@ -13,11 +13,12 @@ license: MIT
 featureImage: ''
 ---
 
+
 ## Giới thiệu
 
 Là những nhà phát triển, chúng ta luôn tìm kiếm những công cụ giúp đơn giản hóa các tác vụ phức tạp và tăng tốc quy trình làm việc của mình. Sự trỗi dậy của các Mô hình Ngôn ngữ Lớn (LLM) đã mang đến một mô hình mới cho việc phát triển phần mềm, cho phép tạo ra các tác nhân thông minh và tự chủ hơn. Tuy nhiên, khai thác tiềm năng này thường đòi hỏi phải điều hướng qua các framework và phương pháp luận phức tạp.
 
-Xin giới thiệu Superpowers. Với hơn 200.000 stars trên GitHub tính đến tháng 5 năm 2026, dự án này của `obra` đã nhanh chóng trở thành một nhân tố quan trọng trong không gian kỹ năng tác nhân LLM. Đây không chỉ là một thư viện khác; nó được trình bày như một framework toàn diện và một phương pháp luận phát triển phần mềm được thiết kế để thực tế và hiệu quả. Bài viết này đi sâu vào Superpowers, bao gồm các khái niệm cốt lõi, thiết lập, khả năng tích hợp, ứng dụng trong thế giới thực và cách nó so sánh với các giải pháp thay thế phổ biến. Mục tiêu của chúng ta là cung cấp cho bạn những thông tin chi tiết cần thiết để thiết lập trong 5 phút, có benchmark thực tế và sự tự tin để triển khai sản xuất.
+Xin giới thiệu Superpowers. Với hơn 200.000 stars trên GitHub tính đến tháng 5 năm 2026, dự án này của ```obra```` đã nhanh chóng trở thành một nhân tố quan trọng trong không gian kỹ năng tác nhân LLM. Đây không chỉ là một thư viện khác; nó được trình bày như một framework toàn diện và một phương pháp luận phát triển phần mềm được thiết kế để thực tế và hiệu quả. Bài viết này đi sâu vào Superpowers, bao gồm các khái niệm cốt lõi, thiết lập, khả năng tích hợp, ứng dụng trong thế giới thực và cách nó so sánh với các giải pháp thay thế phổ biến. Mục tiêu của chúng ta là cung cấp cho bạn những thông tin chi tiết cần thiết để thiết lập trong 5 phút, có benchmark thực tế và sự tự tin để triển khai sản xuất.
 
 ## Superpowers là gì?
 
@@ -44,7 +45,7 @@ Superpowers hoạt động dựa trên nguyên tắc kết hợp các "kỹ năn
 
 Hãy hình dung một tương tác đơn giản. Tưởng tượng một tác nhân được giao nhiệm vụ tìm thời tiết cho một thành phố nhất định.
 
-```ascii
+`````ascii
 +-------------------+      +-------------------+      +-------------------+
 |                   |      |                   |      |                   |
 |      Tác nhân     |----->|    Kỹ năng: Lấy    |----->|   API Bên ngoài   |
@@ -56,11 +57,11 @@ Hãy hình dung một tương tác đơn giản. Tưởng tượng một tác nh
           +----------------------------------------------------+
                      (Phản hồi API)
 
-```
+`````
 
 Trong sơ đồ này: *   **Tác nhân** nhận một yêu cầu (ví dụ: "Thời tiết ở London thế nào?").
-*   Nó xác định nhu cầu thông tin thời tiết và gọi kỹ năng `get_weather`.
-*   Kỹ năng `get_weather` có thể tương tác với một API thời tiết bên ngoài, có thể sử dụng các công cụ như `curl` hoặc `wget`.
+*   Nó xác định nhu cầu thông tin thời tiết và gọi kỹ năng ````get_weather````.
+*   Kỹ năng ````get_weather```` có thể tương tác với một API thời tiết bên ngoài, có thể sử dụng các công cụ như ````curl```` hoặc ````wget````.
 *   Phản hồi từ API được xử lý bởi kỹ năng và trả về cho tác nhân.
 *   Tác nhân có thể sử dụng LLM để định dạng thông tin này thành một phản hồi có thể đọc được bởi con người.
 
@@ -73,42 +74,42 @@ Lời hứa "thiết lập trong 5 phút" là một điểm thu hút lớn của
 **Điều kiện tiên quyết:**
 
 *   Một môi trường giống Unix (Linux, macOS, WSL trên Windows).
-*   Đã cài đặt `git`.
-*   Một trình thông dịch Shell hiện đại (ví dụ: `bash`, `zsh`).
-*   (Tùy chọn, để tích hợp LLM) Một khóa API LLM và các công cụ liên quan (như `ollama`, `openai-cli`, v.v.).
+*   Đã cài đặt ````git````.
+*   Một trình thông dịch Shell hiện đại (ví dụ: ````bash````, ````zsh````).
+*   (Tùy chọn, để tích hợp LLM) Một khóa API LLM và các công cụ liên quan (như ````ollama````, ````openai-cli````, v.v.).
 
 **Các bước cài đặt:**
 
 1.  **Clone Repository:**
     Cách chính để lấy Superpowers là clone kho lưu trữ GitHub của nó.
 
-    ```bash
+    `````bash
     git clone https://github.com/obra/superpowers.git
     cd superpowers
-    ```
+    `````
 
 2.  **Source Môi trường:**
     Superpowers dựa vào việc source script chính của nó để thiết lập các biến môi trường và hàm cần thiết.
 
-    ```bash
+    `````bash
     source ./superpowers.sh
-    ```
+    `````
 
-    Lệnh này làm cho các lệnh và hàm Superpowers có sẵn trong phiên shell hiện tại của bạn. Để truy cập liên tục, bạn thường thêm dòng này vào tệp cấu hình shell của mình (ví dụ: `~/.bashrc`, `~/.zshrc`).
+    Lệnh này làm cho các lệnh và hàm Superpowers có sẵn trong phiên shell hiện tại của bạn. Để truy cập liên tục, bạn thường thêm dòng này vào tệp cấu hình shell của mình (ví dụ: ````~/.bashrc````, ````~/.zshrc````).
 
 3.  **Khởi tạo Cấu hình (Tùy chọn nhưng Khuyến nghị):**
     Superpowers thường sử dụng một tệp cấu hình để quản lý cài đặt, khóa API và đường dẫn. Bạn có thể khởi tạo một cấu hình mặc định.
 
-    ```bash
+    `````bash
     # Lệnh này có thể tạo một tệp cấu hình mặc định, ví dụ: ~/.config/superpowers/config
     superpowers init
-    ```
+    `````
 
-    Sau đó, bạn sẽ cần chỉnh sửa tệp cấu hình này (ví dụ: `~/.config/superpowers/config`) để thiết lập nhà cung cấp LLM, khóa API và bất kỳ tham số cần thiết nào khác.
+    Sau đó, bạn sẽ cần chỉnh sửa tệp cấu hình này (ví dụ: ````~/.config/superpowers/config````) để thiết lập nhà cung cấp LLM, khóa API và bất kỳ tham số cần thiết nào khác.
 
-    **Ví dụ `~/.config/superpowers/config`:**
+    **Ví dụ ````~/.config/superpowers/config````:**
 
-    ```ini
+    `````ini
     # Cấu hình Superpowers
     # Tính đến ngày 2026-05-23
 
@@ -128,12 +129,12 @@ Lời hứa "thiết lập trong 5 phút" là một điểm thu hút lớn của
     SKILL_DIR="$HOME/.superpowers/skills"
 
     # ... các cấu hình khác
-    ```
+    `````
 
 4.  **Tạo Kỹ năng Đầu tiên của Bạn (Ví dụ):**
     Hãy tạo một kỹ năng "hello world" đơn giản.
 
-    ```bash
+    `````bash
     # Tạo thư mục kỹ năng nếu nó chưa tồn tại
     mkdir -p ~/.superpowers/skills
     cd ~/.superpowers/skills
@@ -152,20 +153,20 @@ Lời hứa "thiết lập trong 5 phút" là một điểm thu hút lớn của
 
     # Làm cho kỹ năng có thể thực thi
     chmod +x hello.sh
-    ```
+    `````
 
 5.  **Chạy một Tác nhân Đơn giản:**
     Bây giờ, bạn có thể thử chạy một tác nhân sử dụng kỹ năng này. Superpowers thường cung cấp một giao diện dòng lệnh để tương tác với các tác nhân.
 
-    ```bash
+    `````bash
     # Giả sử lệnh 'superpowers' hiện có sẵn sau khi source
     # Đây là một ví dụ khái niệm, lệnh chính xác có thể thay đổi dựa trên CLI của Superpowers
     superpowers agent --prompt "Greet my friend John" --skills ~/.superpowers/skills
-    ```
+    `````
 
-    Nếu logic của tác nhân phân tích cú pháp đúng lời nhắc và gọi kỹ năng `hello.sh` với "John" làm đầu vào, đầu ra có thể là: ```
+    Nếu logic của tác nhân phân tích cú pháp đúng lời nhắc và gọi kỹ năng ``hello.sh`` với "John" làm đầu vào, đầu ra có thể là: `````
     greeting=Hello, John!
-    ```
+    `````
 
 Quá trình thiết lập này, đặc biệt là việc source script chính và thiết lập cấu hình cơ bản, có thể thực tế hoàn thành trong vòng 5 phút trên một hệ thống mới.
 
@@ -178,25 +179,25 @@ Sức mạnh của Superpowers nằm ở khả năng hoạt động như một b
 Đây có lẽ là tích hợp quan trọng nhất cho một framework tác nhân. Superpowers cho phép các tác nhân tận dụng khả năng suy luận và tạo của LLM.
 
 **Cách hoạt động:**
-Script `superpowers.sh` (hoặc CLI liên quan) thường sẽ có logic để gọi tới API LLM hoặc các mô hình cục bộ. Cấu hình trong `~/.config/superpowers/config` chỉ định nhà cung cấp, mô hình và điểm cuối API/khóa.
+Script ````superpowers.sh```` (hoặc CLI liên quan) thường sẽ có logic để gọi tới API LLM hoặc các mô hình cục bộ. Cấu hình trong ````~/.config/superpowers/config```` chỉ định nhà cung cấp, mô hình và điểm cuối API/khóa.
 
-**Ví dụ Cấu hình (`~/.config/superpowers/config`):**
+**Ví dụ Cấu hình (````~/.config/superpowers/config````):**
 
-```ini
+`````ini
 LLM_PROVIDER="ollama"
 LLM_MODEL="llama3:latest"
 LLM_API_BASE="http://localhost:11434"
-```
+`````
 
-Hoặc cho OpenAI: ```ini
+Hoặc cho OpenAI: `````ini
 LLM_PROVIDER="openai"
 LLM_MODEL="gpt-4o-mini"
 LLM_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+`````
 
-**Ví dụ Kỹ năng (Khái niệm `llm_query.sh`):**
+**Ví dụ Kỹ năng (Khái niệm ````llm_query.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Kỹ năng Superpowers: Truy vấn LLM
 # Mô tả: Gửi một lời nhắc đến LLM đã cấu hình và trả về phản hồi.
@@ -220,18 +221,18 @@ elif [ "\$PROVIDER" = "openai" ]; then
     # Logic tương tự cho API OpenAI sử dụng curl hoặc openai-cli
     echo "response=Tích hợp OpenAI chưa được triển khai đầy đủ trong ví dụ này."
 fi
-```
+`````
 
 ### 2. Hệ thống Quản lý Phiên bản (Git)
 
 Các tác nhân có thể cần tương tác với các kho mã nguồn, checkout nhánh, commit thay đổi hoặc quản lý mã.
 
 **Cách hoạt động:**
-Superpowers có thể định nghĩa các kỹ năng bao bọc các lệnh `git` tiêu chuẩn. Sau đó, một tác nhân có thể được hướng dẫn thực hiện các thao tác kiểm soát phiên bản.
+Superpowers có thể định nghĩa các kỹ năng bao bọc các lệnh ````git```` tiêu chuẩn. Sau đó, một tác nhân có thể được hướng dẫn thực hiện các thao tác kiểm soát phiên bản.
 
-**Ví dụ Kỹ năng (`git_commit.sh`):**
+**Ví dụ Kỹ năng (````git_commit.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Kỹ năng Superpowers: Git Commit
 # Mô tả: Commit các thay đổi đã staging trong kho Git hiện tại.
@@ -261,7 +262,7 @@ else
     echo "error=Git commit thất bại."
     exit 1
 fi
-```
+`````
 
 Một tác nhân có thể sử dụng kỹ năng này sau khi tạo mã hoặc tài liệu.
 
@@ -270,11 +271,11 @@ Một tác nhân có thể sử dụng kỹ năng này sau khi tạo mã hoặc 
 Thao tác tệp cơ bản là cần thiết cho nhiều tác vụ của tác nhân, chẳng hạn như đọc cấu hình, ghi đầu ra hoặc xử lý tệp dữ liệu.
 
 **Cách hoạt động:**
-Superpowers có thể sử dụng các tiện ích Unix tiêu chuẩn như `cat`, `echo`, `mkdir`, `mv`, `rm`, `grep`, `sed`, `awk`, v.v., làm kỹ năng.
+Superpowers có thể sử dụng các tiện ích Unix tiêu chuẩn như ````cat````, ````echo````, ````mkdir````, ````mv````, ````rm````, ````grep````, ````sed````, ````awk````, v.v., làm kỹ năng.
 
-**Ví dụ Kỹ năng (`write_file.sh`):**
+**Ví dụ Kỹ năng (````write_file.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Kỹ năng Superpowers: Write File
 # Mô tả: Ghi nội dung vào tệp được chỉ định.
@@ -299,18 +300,18 @@ else
     echo "error=Không thể ghi vào tệp \$FILEPATH."
     exit 1
 fi
-```
+`````
 
-### 4. Web Scraping / Tương tác API (ví dụ: `curl`, `wget`)
+### 4. Web Scraping / Tương tác API (ví dụ: ````curl````, ````wget````)
 
 Các tác nhân thường cần lấy dữ liệu từ web hoặc tương tác với các API bên ngoài.
 
 **Cách hoạt động:**
-Các công cụ tiêu chuẩn như `curl` và `wget` là những ứng cử viên hoàn hảo cho các kỹ năng.
+Các công cụ tiêu chuẩn như ````curl```` và ````wget```` là những ứng cử viên hoàn hảo cho các kỹ năng.
 
-**Ví dụ Kỹ năng (`fetch_url.sh`):**
+**Ví dụ Kỹ năng (````fetch_url.sh````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Kỹ năng Superpowers: Fetch URL
 # Mô tả: Lấy nội dung từ một URL nhất định.
@@ -334,20 +335,20 @@ if [ \$? -ne 0 ]; then
 fi
 
 echo "content=\$CONTENT"
-```
+`````
 
-Đối với web scraping phức tạp hơn, bạn có thể tích hợp với các script Python sử dụng các thư viện như `BeautifulSoup` hoặc `Scrapy`, được gọi thông qua một kỹ năng `run_python_script.sh`.
+Đối với web scraping phức tạp hơn, bạn có thể tích hợp với các script Python sử dụng các thư viện như ````BeautifulSoup```` hoặc ````Scrapy````, được gọi thông qua một kỹ năng ````run_python_script.sh````.
 
-### 5. Xử lý Dữ liệu (ví dụ: `jq`, `awk`, `sed`)
+### 5. Xử lý Dữ liệu (ví dụ: ````jq````, ````awk````, ````sed````)
 
 Thao tác dữ liệu có cấu trúc hoặc không có cấu trúc là một tác vụ phổ biến của tác nhân.
 
 **Cách hoạt động:**
 Các công cụ dòng lệnh mạnh mẽ để xử lý dữ liệu có thể được hiển thị trực tiếp dưới dạng kỹ năng.
 
-**Ví dụ Kỹ năng (`process_json.sh` với `jq`):**
+**Ví dụ Kỹ năng (````process_json.sh```` với ````jq````):**
 
-```bash
+`````bash
 #!/bin/bash
 # Kỹ năng Superpowers: Process JSON with jq
 # Mô tả: Xử lý dữ liệu JSON bằng bộ lọc jq.
@@ -377,7 +378,7 @@ if [ \$? -ne 0 ]; then
 fi
 
 echo "processed_data=\$PROCESSED_DATA"
-```
+`````
 
 Khả năng tích hợp với các công cụ và dịch vụ dòng lệnh hiện có này làm cho Superpowers trở thành một framework linh hoạt để xây dựng các tác nhân thông minh có thể tương tác với hệ sinh thái phần mềm rộng lớn hơn. Để truy cập proxy tốc độ cao cho web scraping hoặc gọi API, hãy cân nhắc sử dụng một dịch vụ như [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f).
 
@@ -388,7 +389,7 @@ Tính đến tháng 5 năm 2026, Superpowers vẫn đang phát triển, nhưng t
 ### Trường hợp sử dụng 1: Tự động Tái cấu trúc Mã và Tài liệu hóa
 
 **Kịch bản:** Một nhóm sử dụng Superpowers để tự động hóa quy trình tái cấu trúc mã Python cũ. Một tác nhân được giao nhiệm vụ: 1.  Xác định các khu vực cần tái cấu trúc (ví dụ: hàm dài, mã trùng lặp).
-2.  Áp dụng các công cụ tái cấu trúc tự động (ví dụ: `autopep8`, `black`, các script thao tác AST tùy chỉnh).
+2.  Áp dụng các công cụ tái cấu trúc tự động (ví dụ: ````autopep8````, ````black````, các script thao tác AST tùy chỉnh).
 3.  Tạo hoặc cập nhật các docstring cho mã đã tái cấu trúc.
 4.  Commit các thay đổi vào kho lưu trữ Git với một thông báo mô tả.
 
@@ -397,21 +398,21 @@ Tính đến tháng 5 năm 2026, Superpowers vẫn đang phát triển, nhưng t
 *   **Thời gian hoàn thành tác vụ:** Một tác vụ tái cấu trúc phức tạp trước đây mất 2-3 ngày công sức của nhà phát triển có thể được khởi tạo và hoàn thành bởi tác nhân trong vòng chưa đầy 4 giờ, bao gồm cả chu kỳ xem xét mã.
 *   **Tính nhất quán:** Đảm bảo định dạng và tài liệu nhất quán trên toàn bộ cơ sở mã, giảm chi phí xem xét.
 
-**Các kỹ năng liên quan:** `run_python_script.sh`, `git_commit.sh`, `find_files.sh`, `llm_query.sh` (để tạo docstring).
+**Các kỹ năng liên quan:** ````run_python_script.sh````, ````git_commit.sh````, ````find_files.sh````, ````llm_query.sh```` (để tạo docstring).
 
 ### Trường hợp sử dụng 2: Quy trình Tạo và Phân phối Nội dung
 
 **Kịch bản:** Một nhóm tiếp thị sử dụng Superpowers để tự động hóa việc tạo và phân phối nội dung. Quy trình làm việc của một tác nhân: 1.  Truy xuất các chủ đề thịnh hành từ một nguồn cấp RSS hoặc API tin tức.
 2.  Sử dụng LLM để soạn thảo một bài đăng blog hoặc cập nhật mạng xã hội dựa trên một chủ đề.
 3.  Định dạng nội dung cho các nền tảng khác nhau (ví dụ: Twitter, LinkedIn).
-4.  (Tùy chọn) Lập lịch đăng bài thông qua API của nền tảng (sử dụng kỹ năng tùy chỉnh `post_to_platform.sh`).
+4.  (Tùy chọn) Lập lịch đăng bài thông qua API của nền tảng (sử dụng kỹ năng tùy chỉnh ````post_to_platform.sh````).
 
 **Benchmark / Kết quả:**
 *   **Thông lượng nội dung:** Tăng gấp 3 lần sản lượng nội dung mỗi tuần.
 *   **Tiết kiệm thời gian:** Giảm 70% thời gian chuẩn bị nội dung thủ công.
 *   **Khả năng thích ứng:** Nhanh chóng thích ứng với các chủ đề thịnh hành mới bằng cách chỉ cần cập nhật lời nhắc của tác nhân hoặc nguồn đầu vào.
 
-**Các kỹ năng liên quan:** `fetch_url.sh`, `llm_query.sh`, `format_text.sh` (script tùy chỉnh), `post_to_twitter.sh` (kỹ năng tùy chỉnh).
+**Các kỹ năng liên quan:** ````fetch_url.sh````, ````llm_query.sh````, ````format_text.sh```` (script tùy chỉnh), ````post_to_twitter.sh```` (kỹ năng tùy chỉnh).
 
 ### Trường hợp sử dụng 3: Tăng cường Quy trình CI/CD
 
@@ -425,9 +426,9 @@ Tính đến tháng 5 năm 2026, Superpowers vẫn đang phát triển, nhưng t
 *   **Tập trung cho nhà phát triển:** Cho phép các nhà phát triển tập trung vào các vấn đề mới thay vì gỡ lỗi lặp đi lặp lại.
 *   **Hiệu quả chi phí:** Tự động hóa nhiều tác vụ lẽ ra sẽ yêu cầu sự can thiệp thủ công từ các kỹ sư DevOps.
 
-**Các kỹ năng liên quan:** `read_file.sh`, `grep_logs.sh`, `run_script.sh` (để áp dụng sửa lỗi), `send_notification.sh`.
+**Các kỹ năng liên quan:** ````read_file.sh````, ````grep_logs.sh````, ````run_script.sh```` (để áp dụng sửa lỗi), ````send_notification.sh````.
 
-### Cân nhắc về Hiệu suất: *   **Tốc độ Shell Script:** Các thao tác Shell cơ bản cực kỳ nhanh. Lệnh `grep` hoặc `sed` thực thi trong mili giây.
+### Cân nhắc về Hiệu suất: *   **Tốc độ Shell Script:** Các thao tác Shell cơ bản cực kỳ nhanh. Lệnh ````grep```` hoặc ````sed```` thực thi trong mili giây.
 *   **Độ trễ LLM:** Nút thắt cổ chai chính đối với nhiều tác vụ tác nhân là thời gian suy luận của LLM. Điều này vốn có trong LLM chứ không phải là hạn chế của bản thân Superpowers.
 *   **Gọi API Bên ngoài:** Độ trễ mạng cho các lệnh gọi API bên ngoài sẽ ảnh hưởng đến thời gian hoàn thành tác vụ.
 *   **Độ phức tạp của Kỹ năng:** Hiệu quả của các kỹ năng tùy chỉnh phụ thuộc vào nhà phát triển. Các script được viết tốt, được tối ưu hóa là rất quan trọng.
@@ -440,14 +441,14 @@ Mặc dù Superpowers dễ thiết lập, việc triển khai tác nhân trong m
 
 ### 1. Thiết kế Kỹ năng Mạnh mẽ
 
-*   **Xử lý Lỗi:** Mỗi kỹ năng nên có xử lý lỗi toàn diện. Sử dụng `set -e` (thoát ngay lập tức nếu một lệnh trả về trạng thái không phải là không) và `set -o pipefail` (giá trị trả về của một pipeline là trạng thái của lệnh cuối cùng thoát với trạng thái không phải là không, hoặc không nếu không có lệnh nào thoát với trạng thái không phải là không).
+*   **Xử lý Lỗi:** Mỗi kỹ năng nên có xử lý lỗi toàn diện. Sử dụng ````set -e```` (thoát ngay lập tức nếu một lệnh trả về trạng thái không phải là không) và ````set -o pipefail```` (giá trị trả về của một pipeline là trạng thái của lệnh cuối cùng thoát với trạng thái không phải là không, hoặc không nếu không có lệnh nào thoát với trạng thái không phải là không).
 *   **Xác thực Đầu vào:** Làm sạch và xác thực tất cả đầu vào cho các kỹ năng để ngăn chặn hành vi bất ngờ hoặc lỗ hổng bảo mật.
 *   **Tính lũy đẳng (Idempotency):** Nếu có thể, hãy thiết kế các kỹ năng có tính lũy đẳng – chạy chúng nhiều lần với cùng một đầu vào sẽ cho kết quả giống nhau mà không có tác dụng phụ.
 *   **Quản lý Tài nguyên:** Lưu ý đến việc sử dụng tài nguyên (CPU, bộ nhớ, mạng). Đối với các kỹ năng chạy dài hoặc tốn nhiều tài nguyên, hãy cân nhắc chuyển chúng sang các dịch vụ chuyên dụng.
 
-**Ví dụ về đoạn mã `robust_skill.sh`:**
+**Ví dụ về đoạn mã ````robust_skill.sh````:**
 
-```bash
+`````bash
 #!/bin/bash
 # Kỹ năng Superpowers: Ví dụ Mạnh mẽ
 # ... (mô tả, đầu vào, đầu ra)
@@ -469,7 +470,7 @@ RESULT="Đã xử lý: $INPUT_DATA"
 
 # Định dạng đầu ra
 echo "result=$RESULT"
-```
+`````
 
 ### 2. Quản lý Trạng thái và Lưu trữ Bền vững
 
@@ -481,7 +482,7 @@ echo "result=$RESULT"
 
 **Ví dụ: Sử dụng tệp cho trạng thái tác nhân:**
 
-```bash
+`````bash
 # Kỹ năng cập nhật trạng thái tiến trình của tác nhân
 update_agent_state.sh: #!/bin/bash
 set -e
@@ -516,19 +517,19 @@ if [ -f "$STATE_FILE" ]; then
 else
     echo "{}"
 fi
-```
+`````
 
 ### 3. Ghi nhật ký và Giám sát
 
 Ghi nhật ký hiệu quả là điều cần thiết để gỡ lỗi và hiểu hành vi của tác nhân trong môi trường sản xuất.
 
-*   **Standard Output/Error:** Đảm bảo các kỹ năng ghi thông tin có ý nghĩa vào `stdout` và `stderr`. Môi trường chạy Superpowers nên ghi lại chúng.
+*   **Standard Output/Error:** Đảm bảo các kỹ năng ghi thông tin có ý nghĩa vào ````stdout```` và ````stderr````. Môi trường chạy Superpowers nên ghi lại chúng.
 *   **Ghi nhật ký tập trung:** Tích hợp với hệ thống ghi nhật ký tập trung (ví dụ: ngăn xếp ELK, Splunk) bằng cách có các kỹ năng gửi nhật ký đến đó, hoặc bằng cách xử lý các tệp nhật ký đầu ra của Superpowers.
 *   **Số liệu:** Theo dõi các số liệu chính như tỷ lệ thành công của tác vụ, thời gian thực thi và tần suất lỗi.
 
 **Ví dụ: Thêm dấu thời gian vào nhật ký:**
 
-```bash
+`````bash
 # Trong script thực thi tác nhân hoặc một kỹ năng bao bọc: log_with_timestamp() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
 }
@@ -537,7 +538,7 @@ Ghi nhật ký hiệu quả là điều cần thiết để gỡ lỗi và hiể
 ./my_skill.sh arg1 arg2 >> agent.log 2>&1
 EXIT_CODE=$?
 log_with_timestamp "Kỹ năng my_skill.sh kết thúc với mã thoát $EXIT_CODE"
-```
+`````
 
 ### 4. Cân nhắc Bảo mật
 
@@ -554,11 +555,11 @@ log_with_timestamp "Kỹ năng my_skill.sh kết thúc với mã thoát $EXIT_CO
 
 **Ví dụ: Kích hoạt tác nhân Superpowers qua cron:**
 
-```bash
+`````bash
 # Trong crontab của bạn (chạy 'crontab -e")
 # Chạy tác vụ tác nhân hàng ngày lúc 3 giờ sáng
 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf >> /var/log/superpowers_agent.log 2>&1
-```
+`````
 
 Bằng cách triển khai các thực hành nâng cao này, bạn có thể xây dựng các tác nhân AI mạnh mẽ, đáng tin cậy và an toàn bằng framework Superpowers cho môi trường sản xuất.
 
@@ -603,8 +604,8 @@ Mặc dù có sự tăng trưởng ấn tượng và sức hấp dẫn thực t�
 ### 1. Những Thách thức Vốn có của Shell Scripting
 
 *   **Quản lý Độ phức tạp:** Mặc dù Shell rất tuyệt vời cho các tác vụ đơn giản, việc quản lý logic tác nhân rất phức tạp chỉ bằng Shell có thể trở nên khó khăn. Gỡ lỗi các script Shell phức tạp có thể đầy thách thức, đặc biệt đối với các nhà phát triển ít quen thuộc với các sắc thái của nó.
-*   **Sắc thái Khả năng Di động:** Mặc dù Shell có tính di động, nhưng những khác biệt tinh tế giữa các phiên bản Shell và hệ điều hành (ví dụ: hành vi của `sed`, xử lý đường dẫn tệp) đôi khi có thể dẫn đến các sự cố cụ thể cho nền tảng đòi hỏi kiểm thử cẩn thận.
-*   **Thiếu Cấu trúc Dữ liệu Phong phú:** Shell chủ yếu xử lý chuỗi. Các cấu trúc dữ liệu phức tạp (như từ điển lồng nhau hoặc danh sách) yêu cầu các công cụ bên ngoài như `jq` hoặc phân tích cú pháp tùy chỉnh, điều này làm tăng thêm chi phí.
+*   **Sắc thái Khả năng Di động:** Mặc dù Shell có tính di động, nhưng những khác biệt tinh tế giữa các phiên bản Shell và hệ điều hành (ví dụ: hành vi của ````sed````, xử lý đường dẫn tệp) đôi khi có thể dẫn đến các sự cố cụ thể cho nền tảng đòi hỏi kiểm thử cẩn thận.
+*   **Thiếu Cấu trúc Dữ liệu Phong phú:** Shell chủ yếu xử lý chuỗi. Các cấu trúc dữ liệu phức tạp (như từ điển lồng nhau hoặc danh sách) yêu cầu các công cụ bên ngoài như ````jq```` hoặc phân tích cú pháp tùy chỉnh, điều này làm tăng thêm chi phí.
 
 ### 2. Sự Trưởng thành của Hệ sinh thái
 
@@ -614,7 +615,7 @@ Mặc dù có sự tăng trưởng ấn tượng và sức hấp dẫn thực t�
 ### 3. Thay đổi Mô hình Phát triển
 
 *   **Mức độ Trừu tượng:** Các nhà phát triển quen thuộc với các trừu tượng Python cấp cao có thể thấy việc Superpowers dựa trực tiếp vào các lệnh và script shell kém "thân thiện với nhà phát triển" về mặt tải nhận thức cho các tác vụ phức tạp. Bạn gần với phần cứng hơn, đó là một con dao hai lưỡi.
-*   **Truyền Lỗi:** Mặc dù `set -e` và `set -o pipefail` hữu ích, việc theo dõi lỗi trên nhiều script Shell được nối chuỗi đôi khi có thể kém rõ ràng hơn so với việc gỡ lỗi một ngăn xếp lệnh gọi Python.
+*   **Truyền Lỗi:** Mặc dù ````set -e```` và ````set -o pipefail```` hữu ích, việc theo dõi lỗi trên nhiều script Shell được nối chuỗi đôi khi có thể kém rõ ràng hơn so với việc gỡ lỗi một ngăn xếp lệnh gọi Python.
 
 ### 4. Điểm nghẽn Hiệu suất
 
@@ -638,13 +639,13 @@ Superpowers tỏa sáng trong việc làm cho khả năng của LLM có thể tr
 ## Câu hỏi thường gặp
 
 **H1: Superpowers có chỉ dành cho Shell scripting không? Tôi có thể sử dụng Python hoặc các ngôn ngữ khác không?**
-A1: Superpowers chủ yếu là một framework dựa trên Shell, có nghĩa là công cụ thực thi cốt lõi và nhiều tiện ích được cung cấp của nó đều bằng Shell. Tuy nhiên, bạn hoàn toàn có thể tích hợp các kỹ năng được viết bằng Python, Node.js, Go hoặc bất kỳ ngôn ngữ nào khác. Bạn thường sẽ tạo một script Shell (một "kỹ năng") thực thi script Python của bạn, truyền đối số và ghi lại đầu ra của nó. Ví dụ: một kỹ năng `run_python_script.sh`.
+A1: Superpowers chủ yếu là một framework dựa trên Shell, có nghĩa là công cụ thực thi cốt lõi và nhiều tiện ích được cung cấp của nó đều bằng Shell. Tuy nhiên, bạn hoàn toàn có thể tích hợp các kỹ năng được viết bằng Python, Node.js, Go hoặc bất kỳ ngôn ngữ nào khác. Bạn thường sẽ tạo một script Shell (một "kỹ năng") thực thi script Python của bạn, truyền đối số và ghi lại đầu ra của nó. Ví dụ: một kỹ năng ````run_python_script.sh````.
 
 **H2: Superpowers xử lý chi phí LLM như thế nào?**
-A2: Bản thân Superpowers không trực tiếp quản lý chi phí LLM. Nó hoạt động như một bộ điều phối. Chi phí phát sinh từ nhà cung cấp LLM mà bạn cấu hình trong tệp `~/.config/superpowers/config` của mình (ví dụ: OpenAI, Anthropic). Bạn chịu trách nhiệm quản lý khóa API và theo dõi việc sử dụng của mình với các nhà cung cấp đó. Một số nhà cung cấp LLM cục bộ (như Ollama) không có chi phí trên mỗi token, chỉ có chi phí phần cứng/điện.
+A2: Bản thân Superpowers không trực tiếp quản lý chi phí LLM. Nó hoạt động như một bộ điều phối. Chi phí phát sinh từ nhà cung cấp LLM mà bạn cấu hình trong tệp ````~/.config/superpowers/config```` của mình (ví dụ: OpenAI, Anthropic). Bạn chịu trách nhiệm quản lý khóa API và theo dõi việc sử dụng của mình với các nhà cung cấp đó. Một số nhà cung cấp LLM cục bộ (như Ollama) không có chi phí trên mỗi token, chỉ có chi phí phần cứng/điện.
 
 **H3: Làm thế nào tôi có thể chia sẻ kỹ năng hoặc tác nhân trong một nhóm?**
-A3: Các kỹ năng thường là các script riêng lẻ (ví dụ: tệp `.sh`). Bạn có thể chia sẻ chúng bằng cách: *   Lưu trữ chúng trong một kho lưu trữ Git chung.
+A3: Các kỹ năng thường là các script riêng lẻ (ví dụ: tệp ````.sh```). Bạn có thể chia sẻ chúng bằng cách: *   Lưu trữ chúng trong một kho lưu trữ Git chung.
     *   Sử dụng một cấu trúc thư mục chung và trỏ các tác nhân đến thư mục đó.
     *   Đóng gói chúng như một phần của ứng dụng lớn hơn hoặc hình ảnh Docker.
     Các cấu hình và quy trình làm việc của tác nhân cũng có thể được kiểm soát phiên bản và chia sẻ.
@@ -703,7 +704,7 @@ Sẵn sàng đi sâu hơn và xây dựng các tác nhân thông minh của riê
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -713,7 +714,7 @@ Sẵn sàng đi sâu hơn và xây dựng các tác nhân thông minh của riê
 - [windsurf-ai-ide](superpowers)
 - [windsurf-ai-ide](superpowers)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

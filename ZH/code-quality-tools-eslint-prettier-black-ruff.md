@@ -6,6 +6,7 @@ draft: false
 aliases:
   - /posts/code-quality-tools-eslint-prettier-black-ruff/-
 ---
+
 # 代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程
 
 
@@ -28,9 +29,9 @@ aliases:
 
 ### ESLint 9 Flat Config基础配置
 
-创建 `eslint.config.js`（替代旧的 `.eslintrc`）：
+创建 ```eslint.config.js````（替代旧的 ````.eslintrc````）：
 
-```javascript
+`````javascript
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -64,7 +65,7 @@ export default [
     ignores: ['dist/', 'node_modules/', '*.config.js'],
   },
 ];
-```
+`````
 
 Flat Config相比传统配置的优势：
 
@@ -84,9 +85,9 @@ Flat Config相比传统配置的优势：
 
 [Prettier](https://prettier.io/) 采用"Opinionated"哲学——几乎没有配置选项，直接按照一套精心设计的规则格式化。这种设计减少了团队内的风格争论。
 
-配置 `.prettierrc`：
+配置 ````.prettierrc````：
 
-```json
+`````json
 {
   "semi": true,
   "singleQuote": true,
@@ -95,35 +96,35 @@ Flat Config相比传统配置的优势：
   "printWidth": 100,
   "bracketSpacing": true
 }
-```
+`````
 
-**Prettier与ESLint不是竞争关系**。Prettier管格式，ESLint管逻辑。两者配合需要关闭ESLint中所有与格式相关的规则，使用 `eslint-config-prettier` 一键关闭：
+**Prettier与ESLint不是竞争关系**。Prettier管格式，ESLint管逻辑。两者配合需要关闭ESLint中所有与格式相关的规则，使用 ````eslint-config-prettier```` 一键关闭：
 
-```bash
+`````bash
 npm install --save-dev eslint-config-prettier
-```
+`````
 
-然后在 `eslint.config.js` 末尾添加：
+然后在 ````eslint.config.js```` 末尾添加：
 
-```javascript
+`````javascript
 import prettierConfig from 'eslint-config-prettier';
 
 export default [
   // ... 其他配置
   prettierConfig, // 必须放在最后，覆盖所有格式相关规则
 ];
-```
+`````
 
 ## ESLint + Prettier 完整集成步骤
 
 新项目从零配置的步骤：
 
-1. 安装依赖：`npm install --save-dev eslint prettier eslint-config-prettier typescript-eslint`
-2. 创建 `eslint.config.js`（Flat Config格式）
-3. 创建 `.prettierrc` 和 `.prettierignore`
-4. 在 `package.json` 中添加脚本：
+1. 安装依赖：````npm install --save-dev eslint prettier eslint-config-prettier typescript-eslint````
+2. 创建 ````eslint.config.js````（Flat Config格式）
+3. 创建 ````.prettierrc```` 和 ````.prettierignore````
+4. 在 ````package.json```` 中添加脚本：
 
-```json
+`````json
 {
   "scripts": {
     "lint": "eslint .",
@@ -132,11 +133,11 @@ export default [
     "format:check": "prettier --check ."
   }
 }
-```
+`````
 
 5. 配置VS Code自动格式化：
 
-```json
+`````json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -144,7 +145,7 @@ export default [
     "source.fixAll.eslint": "explicit"
   }
 }
-```
+`````
 
 这套配置实现了**保存时自动格式化+自动修复ESLint问题**的无缝体验。
 
@@ -154,16 +155,16 @@ export default [
 
 安装与使用：
 
-```bash
+`````bash
 pip install black
 black src/           # 格式化目录
 black --check src/   # CI中检查格式（不改文件）
 black --diff src/    # 查看将要做的修改
-```
+`````
 
-在 `pyproject.toml` 中配置：
+在 ````pyproject.toml```` 中配置：
 
-```toml
+`````toml
 [tool.black]
 line-length = 88
 target-version = ['py311', 'py312']
@@ -176,9 +177,9 @@ extend-exclude = '''
   | dist
 )/
 '''
-```
+`````
 
-Black的88字符行宽（PEP 8默认79字符）经过精心设计，能在大多数显示器上并排显示两个文件。Black与Jupyter Notebook配合良好：`black notebook.ipynb` 可直接格式化Notebook中的代码单元格。
+Black的88字符行宽（PEP 8默认79字符）经过精心设计，能在大多数显示器上并排显示两个文件。Black与Jupyter Notebook配合良好：````black notebook.ipynb```` 可直接格式化Notebook中的代码单元格。
 
 ## Python：Ruff——极速全功能Linter
 
@@ -188,9 +189,9 @@ Black的88字符行宽（PEP 8默认79字符）经过精心设计，能在大多
 - **统一**：替代Flake8 + Black + isort + pydocstyle + pyupgrade 等多个工具
 - **兼容**：原生支持Black的格式化风格和isort的导入排序
 
-Ruff在 `pyproject.toml` 中的完整配置：
+Ruff在 ````pyproject.toml```` 中的完整配置：
 
-```toml
+`````toml
 [tool.ruff]
 target-version = "py311"
 line-length = 88
@@ -215,7 +216,7 @@ convention = "google"
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-```
+`````
 
 **2025年的推荐**：新项目直接使用Ruff替代Flake8+Black组合。Ruff的格式化输出与Black高度一致，且单个工具减少了依赖管理的复杂度。
 
@@ -223,61 +224,61 @@ indent-style = "space"
 
 ### Go：官方工具链
 
-Go语言的格式化工具是官方内置的 `gofmt`，没有配置选项，所有Go代码统一格式：
+Go语言的格式化工具是官方内置的 ````gofmt````，没有配置选项，所有Go代码统一格式：
 
-```bash
+`````bash
 gofmt -w .        # 格式化
 go vet ./...      # 静态分析
 golangci-lint run # 综合Linting（推荐）
-```
+`````
 
-[golangci-lint](https://golangci-lint.run/) 是Go生态的事实标准Linter聚合工具，集成了50+个Linter，一次运行完成全部检查。配置 `.golangci.yml` 启用需要的Linter。
+[golangci-lint](https://golangci-lint.run/) 是Go生态的事实标准Linter聚合工具，集成了50+个Linter，一次运行完成全部检查。配置 ````.golangci.yml```` 启用需要的Linter。
 
 ### Rust：rustfmt + Clippy
 
 Rust的官方工具链同样内置了格式化工具：
 
-```bash
+`````bash
 rustfmt src/main.rs    # 格式化
 cargo clippy           # 综合Linting
 cargo fmt -- --check   # CI中检查格式
-```
+`````
 
-[Clippy](https://doc.rust-lang.org/clippy/) 是Rust的官方Linter，提供了500+条检查规则，从性能优化到代码风格全覆盖。运行 `cargo clippy -- -D warnings` 可将所有警告视为错误，在CI中强制零警告。
+[Clippy](https://doc.rust-lang.org/clippy/) 是Rust的官方Linter，提供了500+条检查规则，从性能优化到代码风格全覆盖。运行 ````cargo clippy -- -D warnings```` 可将所有警告视为错误，在CI中强制零警告。
 
 ## 各语言工具链一览对比
 
 | 语言 | 格式化工具 | Linter | 配置文件 | 速度评级 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| **JavaScript/TypeScript** | Prettier | ESLint | `eslint.config.js` + `.prettierrc` | ★★★☆ |
-| **Python（传统）** | Black | Flake8 + isort | `pyproject.toml` | ★★☆☆ |
-| **Python（2025推荐）** | Ruff format | Ruff lint | `pyproject.toml` | ★★★★ |
-| **Go** | gofmt | golangci-lint | `.golangci.yml` | ★★★★ |
-| **Rust** | rustfmt | Clippy | `rustfmt.toml` | ★★★★ |
+| **JavaScript/TypeScript** | Prettier | ESLint | ````eslint.config.js```` + ````.prettierrc```` | ★★★☆ |
+| **Python（传统）** | Black | Flake8 + isort | ````pyproject.toml```` | ★★☆☆ |
+| **Python（2025推荐）** | Ruff format | Ruff lint | ````pyproject.toml```` | ★★★★ |
+| **Go** | gofmt | golangci-lint | ````.golangci.yml```` | ★★★★ |
+| **Rust** | rustfmt | Clippy | ````rustfmt.toml```` | ★★★★ |
 
 ## Pre-Commit Hooks：自动化代码质量守门
 
-手动运行lint和format容易遗忘。[pre-commit](https://pre-commit.com/) 框架在每次 `git commit` 前自动运行指定的检查，未通过则阻止提交。
+手动运行lint和format容易遗忘。[pre-commit](https://pre-commit.com/) 框架在每次 ````git commit```` 前自动运行指定的检查，未通过则阻止提交。
 
 安装配置：
 
-```bash
+`````bash
 pip install pre-commit
-```
+`````
 
-创建 `.pre-commit-config.yaml`：
+创建 ````.pre-commit-config.yaml````：
 
-```yaml
+`````yaml
 repos: - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks: - id: trailing-whitespace
@@ -298,25 +299,25 @@ repos: - repo: https://github.com/pre-commit/pre-commit-hooks
         language: system
         types: [javascript, jsx, tsx]
         pass_filenames: true
-```
+`````
 
 初始化钩子：
 
-```bash
+`````bash
 pre-commit install  # 注册到.git/hooks/pre-commit
 pre-commit run --all-files  # 首次运行检查所有已有文件
-```
+`````
 
 JavaScript项目也可以使用 [Husky](https://typicode.github.io/husky/) + lint-staged 实现类似效果：
 
-```json
+`````json
 {
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
     "*.py": ["ruff check --fix", "ruff format"]
   }
 }
-```
+`````
 
 ## CI/CD中的代码质量检查
 
@@ -324,7 +325,7 @@ JavaScript项目也可以使用 [Husky](https://typicode.github.io/husky/) + lin
 
 ### GitHub Actions示例（JavaScript + Python混合项目）
 
-```yaml
+`````yaml
 name: Code Quality
 on: [push, pull_request]
 jobs: lint-js: runs-on: ubuntu-latest
@@ -341,11 +342,11 @@ jobs: lint-js: runs-on: ubuntu-latest
       - run: uv pip install ruff
       - run: ruff check .
       - run: ruff format --check .
-```
+`````
 
 ### GitLab CI示例
 
-```yaml
+`````yaml
 stages: [lint]
 
 lint:js: stage: lint
@@ -360,40 +361,40 @@ lint:python: stage: lint
     - ruff check .
     - ruff format --check .
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-```
+`````
 
-关键原则：**CI中的检查命令与本地配置完全一致**，使用相同的配置文件（`pyproject.toml`、`eslint.config.js`），确保本地通过即CI通过。
+关键原则：**CI中的检查命令与本地配置完全一致**，使用相同的配置文件（````pyproject.toml````、````eslint.config.js````），确保本地通过即CI通过。
 
 ## 如何渐进式引入代码质量工具？
 
 存量项目一次性开启所有规则可能导致成百上千个错误，推荐渐进式策略：
 
-1. **第一周**：安装工具，启用最基础规则（语法错误、未使用变量），`--fix` 自动修复大部分问题
+1. **第一周**：安装工具，启用最基础规则（语法错误、未使用变量），````--fix```` 自动修复大部分问题
 2. **第二周**：加入格式化工具（Prettier/Ruff format），格式化全部代码
 3. **第三周**：逐步启用更多lint规则，每次新增5-10条
 4. **第四周**：配置pre-commit hooks和CI流水线，强制执行
 
-对于遗留代码库，可以使用ESLint的 `override` 或Ruff的 `per-file-ignores` 对旧文件临时豁免，新文件严格执行，避免一次性改动过大。
+对于遗留代码库，可以使用ESLint的 ````override```` 或Ruff的 ````per-file-ignores```` 对旧文件临时豁免，新文件严格执行，避免一次性改动过大。
 
 ## FAQ：代码质量工具常见问题
 
 **Q: ESLint和Prettier要一起用吗？**
-A: 强烈推荐一起使用，但职责要分开。ESLint负责逻辑问题（未使用变量、类型错误），Prettier负责代码格式（缩进、引号、行宽）。使用 `eslint-config-prettier` 关闭冲突规则即可无缝配合。
+A: 强烈推荐一起使用，但职责要分开。ESLint负责逻辑问题（未使用变量、类型错误），Prettier负责代码格式（缩进、引号、行宽）。使用 ````eslint-config-prettier```` 关闭冲突规则即可无缝配合。
 
 **Q: Python开发该用Black还是Ruff？**
 A: 2025年推荐直接用Ruff。Ruff的格式化输出与Black几乎完全一致，且同时提供lint和format功能，一个工具替代整个工具链，速度也快10倍以上。新项目首选Ruff。
 
 **Q: 如何设置pre-commit hooks？**
-A: 安装 `pre-commit` 包，创建 `.pre-commit-config.yaml` 定义需要的hooks，运行 `pre-commit install` 注册到Git钩子。提交代码时会自动运行检查，未通过则阻止提交并显示问题。
+A: 安装 ````pre-commit```` 包，创建 ````.pre-commit-config.yaml```` 定义需要的hooks，运行 ````pre-commit install```` 注册到Git钩子。提交代码时会自动运行检查，未通过则阻止提交并显示问题。
 
 **Q: 有没有一个工具能覆盖多种语言？**
-A: 没有真正意义上的全语言通用工具。但pre-commit框架可以统一编排不同语言的工具，在一个配置中管理JS/Python/Go等项目的检查。EditorConfig（`.editorconfig`）则提供跨语言的基础格式约定（缩进、换行符、编码）。
+A: 没有真正意义上的全语言通用工具。但pre-commit框架可以统一编排不同语言的工具，在一个配置中管理JS/Python/Go等项目的检查。EditorConfig（````.editorconfig````）则提供跨语言的基础格式约定（缩进、换行符、编码）。
 
 **Q: 如何在CI/CD中强制执行代码质量？**
-A: 在CI流水线中添加lint和format检查步骤，使用 `--check` 模式（只检查不修复），任何不合规的代码都会导致流水线失败。配合分支保护规则，未通过检查的PR禁止合并。
+A: 在CI流水线中添加lint和format检查步骤，使用 ````--check``` 模式（只检查不修复），任何不合规的代码都会导致流水线失败。配合分支保护规则，未通过检查的PR禁止合并。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -467,6 +468,6 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

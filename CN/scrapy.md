@@ -23,6 +23,7 @@ tags: ["web-scraping", "python", "crawler", "async", "docker", "scrapy-tutorial"
 aliases:
   - /posts/scrapy/-
 ---
+
 {{</* resource-info */>}}
 
 When a single Python framework powers an estimated **34% of production scraping projects** worldwide and maintains a 61,700-star GitHub repository, it warrants a closer look. Scrapy has been the workhorse of web crawling since 2008, but in 2026 the landscape includes modern browser automation tools like Playwright and proven libraries like BeautifulSoup. The question is no longer "Can Scrapy crawl?" — it is "Should you still pick Scrapy over the alternatives for your specific workload?"
@@ -52,11 +53,11 @@ Scrapy's architecture follows an event-driven, non-blocking design that separate
 
 ### Data Flow
 
-```
+````
 Spider → Engine → Scheduler → Engine → Downloader → Spider → Item Pipeline
                               ↓                              ↓
                          (dupe filter)                  (new requests)
-```
+`````
 
 The engine gets initial Requests from the Spider, schedules them, sends them through the Downloader, receives the Response, passes it back to the Spider for parsing, and sends extracted Items through the Pipeline. New Requests discovered during parsing cycle back into the Scheduler. This loop continues until no requests remain.
 
@@ -72,7 +73,7 @@ The key performance advantage comes from Scrapy's asynchronous architecture: whi
 
 ### Basic Installation
 
-```bash
+`````bash
 # Create a virtual environment
 python -m venv scrapy_env
 source scrapy_env/bin/activate  # Linux/Mac
@@ -87,20 +88,20 @@ scrapy version
 
 # Run a built-in benchmark
 scrapy bench
-```
+`````
 
 ### Project Scaffolding
 
-```bash
+`````bash
 # Create a new Scrapy project
 scrapy startproject price_monitor
 cd price_monitor
 
 # Generate a spider template
 scrapy genspider products example.com
-```
+`````
 
-This creates the standard project structure: ```
+This creates the standard project structure: `````
 price_monitor/
 ├── scrapy.cfg              # Project configuration
 ├── price_monitor/
@@ -112,11 +113,11 @@ price_monitor/
 │   └── spiders/
 │       ├── __init__.py
 │       └── products.py     # Your spider
-```
+`````
 
 ### First Spider: Product Scraper
 
-```python
+`````python
 # price_monitor/spiders/products.py
 import scrapy
 
@@ -141,11 +142,11 @@ class ProductsSpider(scrapy.Spider): name = products
         # Follow pagination
         next_page = response.css('.next-page::attr(href)').get()
         if next_page: yield response.follow(next_page, self.parse)
-```
+`````
 
 ### Running the Spider
 
-```bash
+`````bash
 # Run spider and output to JSON
 scrapy crawl products -o products.json
 
@@ -154,11 +155,11 @@ scrapy crawl products -o products.csv
 
 # Run with logging level control
 scrapy crawl products -L INFO
-```
+`````
 
 ### Scrapy Docker Deployment
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -168,9 +169,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["scrapy", "crawl", "products"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 services: scrapy: build: .
@@ -188,27 +189,27 @@ services: scrapy: build: .
       POSTGRES_PASSWORD: scraper_pass
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ## Integration with Popular Tools
 
 ### Redis for Distributed Crawling (scrapy-redis)
 
-When a single machine is not enough, scrapy-redis distributes the crawl across multiple nodes using Redis as a shared queue: ```bash
+When a single machine is not enough, scrapy-redis distributes the crawl across multiple nodes using Redis as a shared queue: `````bash
 pip install scrapy-redis
-```
+`````
 
-```python
+`````python
 # settings.py
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_URL = "redis://localhost:6379"
 SCHEDULER_PERSIST = True  # Keep queue between runs
-```
+`````
 
 ### PostgreSQL Pipeline
 
-```python
+`````python
 # pipelines.py
 import psycopg2
 from scrapy.exceptions import DropItem
@@ -242,24 +243,24 @@ class PostgresPipeline: def open_spider(self, spider): self.conn = psycopg2.conn
 
     def close_spider(self, spider): self.cur.close()
         self.conn.close()
-```
+`````
 
 ### Playwright for JavaScript-Rendered Pages
 
-```bash
+`````bash
 pip install scrapy-playwright
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-```
+`````
 
-```python
+`````python
 # spider with Playwright
 import scrapy
 from scrapy_playwright.page import PageMethod
@@ -282,11 +283,11 @@ class JSSpider(scrapy.Spider): name = js_site
                 name: item.css('.name::text').get(),
                 price: item.css('.price::text').get(),
             }
-```
+`````
 
 ### Proxy Rotation with WebShare
 
-For production crawling, a reliable rotating proxy pool is essential. WebShare provides datacenter and residential proxies that integrate cleanly with Scrapy's middleware: ```python
+For production crawling, a reliable rotating proxy pool is essential. WebShare provides datacenter and residential proxies that integrate cleanly with Scrapy's middleware: `````python
 # middlewares.py
 import base64
 
@@ -298,16 +299,16 @@ class ProxyMiddleware: def __init__(self, proxy_url): self.proxy_url = proxy_url
     def process_request(self, request, spider): request.meta[proxy] = self.proxy_url
         # WebShare supports IP rotation per request
         spider.logger.debug(f'Using proxy for {request.url}')
-```
+`````
 
-```python
+`````python
 # settings.py
 DOWNLOADER_MIDDLEWARES = {
     'price_monitor.middlewares.ProxyMiddleware': 350,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 400,
 }
 WEBSHARE_PROXY_URL = 'http://proxy.webshare.io:80'
-```
+`````
 
 Configure your proxy list in the Scrapy settings and the middleware will rotate IPs automatically. For high-volume scraping, WebShare's rotating proxy endpoint handles authentication and rotation transparently — you point Scrapy at a single URL and get a different egress IP per request.
 
@@ -319,15 +320,15 @@ Configure your proxy list in the Scrapy settings and the middleware will rotate 
 
 Benchmarks conducted across 50+ sites in early 2026 on a 4-core VPS with 8GB RAM reveal substantial differences between tools: | Metric | Scrapy | BeautifulSoup + requests | Selenium | Playwright |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Throughput (pages/sec)** | 100+ | 1–3 | 2–4 | 3–5 |
 | **Memory per instance** | ~150 MB | ~80 MB | ~500 MB | ~400 MB |
@@ -361,29 +362,29 @@ A production price monitoring pipeline at a mid-size e-commerce intelligence fir
 
 ### Autothrottle Configuration
 
-Without throttling, Scrapy can overwhelm target servers and get banned within seconds. Autothrottle dynamically adjusts download delay based on server response times: ```python
+Without throttling, Scrapy can overwhelm target servers and get banned within seconds. Autothrottle dynamically adjusts download delay based on server response times: `````python
 # settings.py
 AUTOTHROTTLE_ENABLED = True
 AUTOTHROTTLE_START_DELAY = 1.0
 AUTOTHROTTLE_MAX_DELAY = 10.0
 AUTOTHROTTLE_TARGET_CONCURRENCY = 2.0
 AUTOTHROTTLE_DEBUG = False
-```
+`````
 
 ### Retry and Timeout Policies
 
-```python
+`````python
 # settings.py
 RETRY_ENABLED = True
 RETRY_TIMES = 3
 RETRY_HTTP_CODES = [500, 502, 503, 504, 408, 429]
 DOWNLOAD_TIMEOUT = 30
 DOWNLOAD_FAIL_ON_DATALOSS = False
-```
+`````
 
 ### Custom User-Agent Rotation
 
-```python
+`````python
 # middlewares.py
 import random
 
@@ -394,11 +395,11 @@ USER_AGENTS = [
 ]
 
 class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers[User-Agent] = random.choice(USER_AGENTS)
-```
+`````
 
 ### Monitoring with Stats Collection
 
-```python
+`````python
 # extensions.py
 from scrapy import signals
 
@@ -418,11 +419,11 @@ class StatsCollector: def __init__(self): self.requests_count = 0
 
     def item_scraped(self, item, spider): self.items_count += 1
         if self.items_count % 1000 == 0: spider.logger.info(f'Scraped {self.items_count} items, {self.requests_count} requests')
-```
+`````
 
 ### Log Rotation and Structured Logging
 
-```python
+`````python
 # settings.py
 LOG_LEVEL = INFO
 LOG_FILE = 'logs/scrapy.log'
@@ -437,34 +438,34 @@ LOG_STDOUT = False
 #     compress
 #     missingok
 # }
-```
+`````
 
 ### Scaling Horizontally with Scrapyd
 
-```bash
+`````bash
 pip install scrapyd
 scrapyd  # Starts the daemon on port 6800
-```
+`````
 
-```bash
+`````bash
 # Deploy and schedule via HTTP API
 curl http://localhost:6800/schedule.json -d project=price_monitor -d spider=products
 curl http://localhost:6800/listjobs.json -d project=price_monitor
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | Scrapy | BeautifulSoup | Selenium | Playwright |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | BSD-3-Clause | MIT | Apache-2.0 | Apache-2.0 |
 | **Language** | Python | Python | Multi | Multi |
@@ -526,7 +527,7 @@ The decision matrix is straightforward: **BeautifulSoup** for quick scripts unde
 
 **Action items:**
 
-1. Clone the Scrapy repository and run `scrapy bench` on your hardware.
+1. Clone the Scrapy repository and run ````scrapy bench``` on your hardware.
 2. Set up a Docker-based project with PostgreSQL and Redis integration.
 3. Configure proxy rotation for production crawling.
 4. Join the community on Telegram for daily tips and troubleshooting: [dibi8_tg_group](https://t.me/dibi8open)
@@ -552,7 +553,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Scrapy vs BeautifulSoup Analysis (HasData): https://hasdata.com/blog/scrapy-vs-beautifulsoup
 
 
----
+* * *
 *This article contains affiliate links. When you purchase proxy services through WebShare links in this article, we may receive a commission at no additional cost to you. All benchmark data and recommendations are based on independent testing and community-verified sources.*
 
 
@@ -582,7 +583,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ray-distributed-ai-framework-complete-guide](scrapy)
@@ -591,6 +592,6 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [agent-reach-internet-access-ai-agents](scrapy)
 - [microsoft-markitdown-file-to-markdown-converter-cli](scrapy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

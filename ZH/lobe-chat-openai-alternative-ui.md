@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/lobe-chat-openai-alternative-ui/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：ChatGPT 已经不够用了
@@ -32,7 +33,7 @@ Lobe Chat 是 LobeHub 团队构建的开源聊天界面，支持 **20+ LLM 提�
 
 Lobe Chat 的架构将表示层与模型推理分离。Next.js 前端处理 UI 渲染、对话状态和插件编排，而 LLM 调用通过可配置的 API 端点代理：
 
-```
+````
 ┌─────────────────────────────────────────────┐
 │           用户浏览器 / PWA                    │
 │  ┌─────────┐  ┌─────────┐  ┌────────────┐  │
@@ -55,7 +56,7 @@ Lobe Chat 的架构将表示层与模型推理分离。Next.js 前端处理 UI �
 │  OpenAI  │  │  Claude  │  │   Ollama   │
 │  API     │  │  API     │  │  (本地)    │
 └──────────┘  └──────────┘  └────────────┘
-```
+`````
 
 **核心组件：**
 
@@ -73,21 +74,21 @@ Lobe Chat 的架构将表示层与模型推理分离。Next.js 前端处理 UI �
 
 **第一步 —— 拉取并运行官方镜像：**
 
-```bash
+`````bash
 docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY \
   -e ACCESS_CODE=your-secure-password \
   --name lobe-chat \
   lobehub/lobe-chat:latest
-```
+`````
 
 **第二步 —— 访问 UI：**
 
-打开 `http://localhost:3210`。你会看到一个设置向导，用于选择默认 LLM 提供商并输入 API 密钥。
+打开 ````http://localhost:3210````。你会看到一个设置向导，用于选择默认 LLM 提供商并输入 API 密钥。
 
 **第三步 —— 配置额外提供商（可选）：**
 
-```bash
+`````bash
 # 通过环境变量配置多提供商
 docker run -d -p 3210:3210 \
   -e OPENAI_API_KEY=sk-xxx \
@@ -97,11 +98,11 @@ docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password \
   --name lobe-chat \
   lobehub/lobe-chat:latest
-```
+`````
 
 ### 方法二：带持久化存储的 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 services: lobe-chat: image: lobehub/lobe-chat:latest
     ports: - "3210:3210"
@@ -119,16 +120,16 @@ services: lobe-chat: image: lobehub/lobe-chat:latest
     volumes: - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
-volumes: lobe-data: pgdata: ```
+volumes: lobe-data: pgdata: `````
 
-```bash
+`````bash
 # 带持久化的启动方式
 docker compose up -d
-```
+`````
 
 ### 方法三：部署到 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)
 
-```bash
+`````bash
 # 在 2 vCPU / 4GB RAM Droplet 上（约 $24/月）
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
@@ -147,7 +148,7 @@ chat.yourdomain.com {
     reverse_proxy localhost:3210
 }
 EOF
-```
+`````
 
 添加指向 Droplet IP 的 DNS A 记录，15 分钟内即可上线。[在此获取 DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)。
 
@@ -157,32 +158,32 @@ Lobe Chat 通过统一适配器规范化跨提供商的 API 调用。以下是�
 
 ### OpenAI (GPT-4, GPT-4o)
 
-```bash
+`````bash
 # 通过环境变量
 echo "OPENAI_API_KEY=sk-xxxxxxxx" >> .env
 
 # 通过 UI：设置 → 语言模型 → OpenAI → 输入密钥
-```
+`````
 
 ### Anthropic Claude (Claude 3.5 Sonnet)
 
-```bash
+`````bash
 # 环境变量
 echo "ANTHROPIC_API_KEY=sk-ant-xxxxxxxx" >> .env
 
 # 重启容器
 docker restart lobe-chat
-```
+`````
 
 ### Google Gemini (Gemini 1.5 Pro)
 
-```bash
+`````bash
 echo "GOOGLE_API_KEY=AIzaxxxxxxxx" >> .env
-```
+`````
 
 ### Ollama（本地模型 — Llama, Mistral 等）
 
-```bash
+`````bash
 # 在宿主机上运行 Ollama
 docker run -d -p 11434:11434 --name ollama ollama/ollama
 
@@ -194,38 +195,38 @@ docker run -d -p 3210:3210 \
   -e OLLAMA_PROXY_URL=http://host.docker.internal:11434 \
   -e ACCESS_CODE=mypassword \
   lobehub/lobe-chat
-```
+`````
 
 ### Azure OpenAI Service
 
-```bash
+`````bash
 # 需要端点、API 密钥和部署名称
 echo "AZURE_API_KEY=your-azure-key" >> .env
 echo "AZURE_API_ENDPOINT=https://your-resource.openai.azure.com" >> .env
 echo "AZURE_API_VERSION=2024-06-01" >> .env
-```
+`````
 
 ### AWS Bedrock
 
-```bash
+`````bash
 echo "AWS_ACCESS_KEY_ID=AKIAxxx" >> .env
 echo "AWS_SECRET_ACCESS_KEY=xxx" >> .env
 echo "AWS_REGION=us-east-1" >> .env
-```
+`````
 
 ### 运行时切换提供商
 
 用户可以在 UI 中按对话切换提供商。这允许你并排比较 GPT-4 和 Claude：
 
-```
+`````
 # 无需重启 —— 提供商切换是客户端操作
 # 点击对话头部中的提供商图标 → 选择不同模型
 # 每个对话记住其提供商选择
-```
+`````
 
 ## 插件系统：扩展 Lobe Chat
 
-Lobe Chat 的插件架构采用基于清单的系统。插件在 `manifest.json` 中声明功能，聊天 UI 将它们渲染为交互式工具。
+Lobe Chat 的插件架构采用基于清单的系统。插件在 ````manifest.json```` 中声明功能，聊天 UI 将它们渲染为交互式工具。
 
 ### 从插件市场安装
 
@@ -238,7 +239,7 @@ Lobe Chat 的插件架构采用基于清单的系统。插件在 `manifest.json`
 
 创建一个查询内部 API 的简单插件：
 
-```json
+`````json
 {
   "api": [
     {
@@ -265,7 +266,7 @@ Lobe Chat 的插件架构采用基于清单的系统。插件在 `manifest.json`
   },
   "version": "1.0.0"
 }
-```
+`````
 
 将其托管在公共 URL，然后通过 **插件商店 → 自定义插件 → 输入 URL** 添加。
 
@@ -273,7 +274,7 @@ Lobe Chat 的插件架构采用基于清单的系统。插件在 `manifest.json`
 
 插件在沙箱化的 iframe 中执行，权限受限：
 
-```
+`````
 ┌─────────────────────────────┐
 │  Lobe Chat 主窗口           │
 │  ┌───────────────────────┐  │
@@ -284,7 +285,7 @@ Lobe Chat 的插件架构采用基于清单的系统。插件在 `manifest.json`
 │  │  - 强制执行 CORS      │  │
 │  └───────────────────────┘  │
 └─────────────────────────────┘
-```
+`````
 
 每个插件请求都需要用户显式批准。LLM 建议工具调用，但执行前用户必须确认。
 
@@ -300,23 +301,23 @@ Lobe Chat 作为渐进式 Web 应用运行，在所有平台上提供原生应�
 
 ### 移动设备安装（iOS Safari）
 
-```
+`````
 1. 在 Safari 中打开 Lobe Chat
 2. 点击分享 → 「添加到主屏幕」
 3. 作为原生应用图标出现
 4. 支持推送通知（通过 service worker）
-```
+`````
 
 ### 离线支持
 
 Service worker 缓存应用外壳和最近对话。没有网络时：
 
-```
+`````
 ✅ 浏览对话历史
 ✅ 查看之前的回复
 ✅ 撰写消息（排队发送）
 ❌ 新的 LLM 回复（需要 API 连接）
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -324,13 +325,13 @@ Service worker 缓存应用外壳和最近对话。没有网络时：
 
 | 提供商 | 首个 Token 时间 | 完整响应（100 tokens） | 备注 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI GPT-4o | **0.8秒** | **2.1秒** | 总体最快 |
 | Claude 3.5 Sonnet | 1.1秒 | 2.8秒 | 推理质量更高 |
@@ -343,15 +344,15 @@ Service worker 缓存应用外壳和最近对话。没有网络时：
 
 | 部署方式 | 内存 | CPU | 用户数 | 月费用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Docker 单实例 | **350MB** | **0.2 核** | 1–5 | $0（自托管） |
 | Docker + 5 个提供商 | 400MB | 0.3 核 | 1–10 | 仅 API 费用 |
@@ -384,34 +385,34 @@ Service worker 缓存应用外壳和最近对话。没有网络时：
 
 团队部署时设置访问密码：
 
-```bash
+`````bash
 docker run -d -p 3210:3210 \
   -e ACCESS_CODE=your-secure-password-2026 \
   -e OPENAI_API_KEY=sk-xxx \
   lobehub/lobe-chat:latest
-```
+`````
 
 SSO 集成，配置 OAuth：
 
-```bash
+`````bash
   -e AUTH_PROVIDER=auth0 \
   -e AUTH_AUTH0_ID=your-client-id \
   -e AUTH_AUTH0_SECRET=your-secret \
   -e AUTH_AUTH0_ISSUER=https://your-domain.us.auth0.com \
-```
+`````
 
 ### 自定义主题
 
 创建主题 JSON 文件：
 
-```json
+`````json
 {
   "primaryColor": "#1890ff",
   "neutralColor": "#8c8c8c",
   "backgroundColor": "#f0f2f5",
   "sidebarWidth": 280
 }
-```
+`````
 
 通过 **设置 → 主题 → 自定义主题** 上传。
 
@@ -419,7 +420,7 @@ SSO 集成，配置 OAuth：
 
 多用户持久化，配置 PostgreSQL：
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 services: lobe-chat: image: lobehub/lobe-chat:latest
     environment: - DATABASE_URL=postgresql://user:pass@db:5432/lobechat
@@ -432,11 +433,11 @@ services: lobe-chat: image: lobehub/lobe-chat:latest
       POSTGRES_DB: lobechat
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
 ### 使用 Caddy 反向代理
 
-```bash
+`````bash
 # Caddyfile 自动 HTTPS
 chat.yourdomain.com {
     reverse_proxy localhost:3210
@@ -446,17 +447,17 @@ chat.yourdomain.com {
         X-Content-Type-Options nosniff
     }
 }
-```
+`````
 
-```bash
+`````bash
 caddy run --config Caddyfile
-```
+`````
 
 ### 使用 Prometheus 监控
 
-Lobe Chat 在 `/api/metrics` 暴露指标：
+Lobe Chat 在 ````/api/metrics```` 暴露指标：
 
-```yaml
+`````yaml
 # docker-compose.monitoring.yml
 services: prometheus: image: prom/prometheus
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -464,21 +465,21 @@ services: prometheus: image: prom/prometheus
 
   grafana: image: grafana/grafana
     ports: - "3000:3000"
-```
+`````
 
 ## 与替代方案对比
 
 | 特性 | Lobe Chat | LibreChat | ChatGPT Web | HuggingChat |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **GitHub Stars** | **~60,000** | ~20,000 | ~30,000 | N/A（产品） |
 | **LLM 提供商** | **20+** | 10+ | 仅 OpenAI | 仅 HF 模型 |
@@ -528,7 +529,7 @@ services: prometheus: image: prom/prometheus
 
 **Q: 如何将 Lobe Chat 更新到最新版本？**
 
-```bash
+`````bash
 # 拉取最新镜像
 docker pull lobehub/lobe-chat:latest
 
@@ -537,7 +538,7 @@ docker compose down && docker compose up -d
 
 # 对话在浏览器 localStorage 中持久化
 # 对于 PostgreSQL 后端，数据库迁移自动运行
-```
+````
 
 每周发布更新。更新前请查看 [releases 页面](https://github.com/lobehub/lobe-chat/releases) 了解破坏性变更。
 
@@ -570,7 +571,7 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 加入 AI 开发者 Telegram 社区：**@dibi8dev** —— 分享你的 Lobe Chat 配置，从 5,000+ 开发者那里获取帮助。
 
 
----
+* * *
 ## 来源与延伸阅读
 
 1. [Lobe Chat GitHub 仓库](https://github.com/lobehub/lobe-chat) — 官方源码、发布和文档
@@ -580,7 +581,7 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 5. [LobeHub 插件市场](https://lobechat.com/plugins) — 浏览可用插件
 6. [Next.js 文档](https://nextjs.org/docs) — 底层框架文档
 
----
+* * *
 
 ## 推荐部署与基础设施
 
@@ -621,7 +622,7 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -631,6 +632,6 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 - [9router-smart-llm-proxy-token-saver-free-coding](lobe-chat-openai-alternative-ui)
 - [ai-engineering-from-scratch](lobe-chat-openai-alternative-ui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

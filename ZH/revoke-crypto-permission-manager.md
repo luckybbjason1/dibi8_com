@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/revoke-crypto-permission-manager/-
 ---
 
+
 {{</* resource-info */>}}
 
 **日期：** 2026-05-19  
@@ -33,7 +34,7 @@ aliases:
 **联盟披露：** *本文包含联盟链接。如果您通过我们的合作伙伴链接注册，我们可能会获得佣金 —— 无需您额外付费。我们的编辑观点保持独立。*
 
 
----
+* * *
 ## 简介：代币授权背后的隐藏危险
 
 每次您在 Uniswap 上交换代币、存入收益金库或铸造 NFT 时，您都在授予**代币授权** —— 允许智能合约花费您的代币的权限。大多数用户没有意识到这些授权通常默认为**无限金额**，并且无限期保持活跃，即使您已经停止使用该协议。
@@ -45,10 +46,10 @@ aliases:
 **👉 想在安全的交易所交易吗？[在 Binance 注册](https://www.bsmkweb.cc/register?ref=DIBI8) —— 世界上最受信任的加密平台。**
 
 
----
+* * *
 ## Revoke.cash 是什么？了解代币授权
 
-当您与 DeFi 协议交互时，您必须首先**批准**协议的智能合约访问您的代币。这是一种 ERC-20 机制，旨在防止合约任意花费您的资金。然而，大多数 dApp 请求**无限授权**（`type(uint256).max`）以节省用户未来的 Gas 费用。
+当您与 DeFi 协议交互时，您必须首先**批准**协议的智能合约访问您的代币。这是一种 ERC-20 机制，旨在防止合约任意花费您的资金。然而，大多数 dApp 请求**无限授权**（```type(uint256).max````）以节省用户未来的 Gas 费用。
 
 问题在哪里？该授权永远持续 —— 即使：
 - 协议被黑客攻击
@@ -60,7 +61,7 @@ Revoke.cash 通过提供一个简单的界面来**查看和撤销**您在多个�
 
 ### ERC-20 授权机制
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -73,9 +74,9 @@ interface IERC20 {
 // 当您"批准"Uniswap 时，会发生以下情况：
 // token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
 // 这个数字 = type(uint256).max = 无限
-```
+`````
 
----
+* * *
 
 ## 快速入门指南：使用 Revoke.cash
 
@@ -83,7 +84,7 @@ interface IERC20 {
 
 ### 第一步 — 访问 Revoke.cash
 
-```bash
+`````bash
 # 官方网站（务必验证网址）
 # https://revoke.cash
 # 
@@ -92,11 +93,11 @@ interface IERC20 {
 # - revoke-cash.app（伪造）
 # - revok3.cash（伪造）
 # 首次访问后务必将官方网址添加到书签
-```
+`````
 
 ### 第二步 — 连接您的钱包
 
-```javascript
+`````javascript
 // Revoke.cash 支持所有主流钱包
 const supportedWallets = [
   "MetaMask",
@@ -108,11 +109,11 @@ const supportedWallets = [
   "Phantom（EVM 模式）",
   "Trust Wallet"
 ];
-```
+`````
 
 ### 第三步 — 查看所有活跃授权
 
-```bash
+`````bash
 # Revoke.cash 仪表板显示：
 # ┌────────────────┬─────────────────┬──────────────┬──────────┐
 # │ 代币           │ 已批准花费者    │ 金额         │ 风险     │
@@ -122,11 +123,11 @@ const supportedWallets = [
 # │ DAI            │ 1inch           │ 5,000 DAI    │ 🟡 中   │
 # │ USDT           │ 未知合约        │ 无限         │ 🔴 严重 │
 # └────────────────┴─────────────────┴──────────────┴──────────┘
-```
+`````
 
 ### 第四步 — 撤销风险授权
 
-```javascript
+`````javascript
 // Revoke.cash 执行新的授权，金额 = 0
 // 这有效地取消了之前的无限授权
 
@@ -141,9 +142,9 @@ const tokenContract = new ethers.Contract(
 const tx = await tokenContract.approve("0xSuspiciousContract", 0);
 await tx.wait();
 console.log("授权已撤销！交易：", tx.hash);
-```
+`````
 
----
+* * *
 
 ## 深入了解：Revoke.cash 的工作原理
 
@@ -151,7 +152,7 @@ Revoke.cash 没有任何特殊权限 —— 它只是为基本的区块链操作
 
 ### 技术机制
 
-```solidity
+`````solidity
 // 要"撤销"授权，您只需批准 0 个代币
 // 这是删除先前授权的唯一方法
 
@@ -166,11 +167,11 @@ function setLimitedApproval(address token, address spender, uint256 amount) exte
     IERC20(token).approve(spender, amount);
     // 花费者最多只能花费 amount 个代币
 }
-```
+`````
 
 ### 事件日志分析
 
-```javascript
+`````javascript
 // Revoke.cash 从区块链读取 Approval 事件
 const filter = {
   address: tokenAddress,           // 代币合约
@@ -187,11 +188,11 @@ const approvalEvents = await provider.getLogs({
   fromBlock: 0,
   toBlock: "latest"
 });
-```
+`````
 
 ### 读取当前授权额度
 
-```javascript
+`````javascript
 // 直接合约调用以检查当前授权
 const checkAllowance = async (tokenAddress, owner, spender) => {
   const token = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
@@ -210,9 +211,9 @@ const checkAllowance = async (tokenAddress, owner, spender) => {
     return { status: "已撤销", risk: "无" };
   }
 };
-```
+`````
 
----
+* * *
 
 ## 多链支持：跨网络保护资产
 
@@ -220,7 +221,7 @@ Revoke.cash 支持所有主要的 EVM 兼容链，允许您在任何与 DeFi 交
 
 ### 支持的网络（2026 年）
 
-```yaml
+`````yaml
 # 2026 年完整网络支持
 ethereum: chain_id: 1
   rpc_required: true
@@ -249,27 +250,27 @@ bnb_chain: chain_id: 56
 avalanche: chain_id: 43114
   rpc_required: true
   features: ["C-Chain 支持", "TraderJoe 授权"]
-```
+`````
 
 ### 切换网络
 
-```javascript
+`````javascript
 // Revoke.cash 自动检测您当前的网络
 // 在钱包中切换网络以审计不同链上的授权
 
 const switchNetwork = async (chainId) => {
   await window.ethereum.request({
     method: "wallet_switchEthereumChain",
-    params: [{ chainId: `0x${chainId.toString(16)}` }]
+    params: [{ chainId: ````0x${chainId.toString(16)}```` }]
   });
   // Revoke.cash 将自动刷新新链的数据
 };
 
 // 示例：切换到 Polygon
 await switchNetwork(137);
-```
+`````
 
----
+* * *
 
 ## 浏览器扩展：实时保护
 
@@ -277,7 +278,7 @@ Revoke.cash 提供了一个**浏览器扩展**，在您签署潜在危险授权�
 
 ### 扩展安装
 
-```bash
+`````bash
 # Chrome 网上应用店：
 # https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
 
@@ -289,11 +290,11 @@ Revoke.cash 提供了一个**浏览器扩展**，在您签署潜在危险授权�
 # - 批准已知恶意合约时发出警报
 # - 显示估计的美元风险价值
 # - 从弹出窗口一键撤销
-```
+`````
 
 ### 扩展配置
 
-```javascript
+`````javascript
 // 扩展设置（可通过弹出窗口配置）
 const extensionConfig = {
   // 当授权超过此美元阈值时发出警告
@@ -311,17 +312,17 @@ const extensionConfig = {
   // 暗色模式
   theme: "dark"
 };
-```
+`````
 
----
+* * *
 
 ## 高级功能：Permit 和 Permit2 签名
 
-现代 DeFi 使用 **gasless 授权**通过 EIP-2612 `permit()` 和 Uniswap 的 **Permit2** 合约。这些特别危险，因为它们不需要链上交易 —— 只需签名即可。
+现代 DeFi 使用 **gasless 授权**通过 EIP-2612 ````permit()```` 和 Uniswap 的 **Permit2** 合约。这些特别危险，因为它们不需要链上交易 —— 只需签名即可。
 
 ### 理解 Permit 签名
 
-```solidity
+`````solidity
 // EIP-2612 permit：链下签名变成链上授权
 function permit(
     address owner,
@@ -335,11 +336,11 @@ function permit(
     // 调用后，spender 可以花费 value 个代币
     // 用户从未发送交易 —— 只签署了一条消息！
 }
-```
+`````
 
 ### 撤销 Permit2 授权
 
-```javascript
+`````javascript
 // 撤销 Permit2 需要向 Permit2 合约发送交易
 const revokePermit2 = async (token, spender) => {
   const permit2 = new ethers.Contract(PERMIT2_ADDRESS, PERMIT2_ABI, signer);
@@ -355,9 +356,9 @@ const revokePermit2 = async (token, spender) => {
   await tx.wait();
   console.log("Permit2 授权已撤销！");
 };
-```
+`````
 
----
+* * *
 
 ## Gas 高效的撤销策略
 
@@ -365,7 +366,7 @@ const revokePermit2 = async (token, spender) => {
 
 ### 批量撤销
 
-```javascript
+`````javascript
 // 使用 multicall 在一次交易中撤销多个授权
 const multicall3Address = "0xcA11bde05977b3631167028862bE2a173976CA11";
 
@@ -383,17 +384,17 @@ const batchRevoke = async (revocations) => {
   const tx = await multicall.aggregate3(calls);
   await tx.wait();
   
-  console.log(`在一次交易中撤销了 ${revocations.length} 个授权！`);
+  console.log(````在一次交易中撤销了 ${revocations.length} 个授权！````);
 };
-```
+`````
 
----
+* * *
 
 ## 安全警报系统
 
 Revoke.cash 监控已知的漏洞利用，并主动向可能拥有受损协议授权的用户发出警报。
 
-```javascript
+`````javascript
 // 订阅安全警报（通过浏览器扩展或 Telegram）
 const subscribeToAlerts = async (address) => {
   const alertConfig = {
@@ -408,15 +409,15 @@ const subscribeToAlerts = async (address) => {
   
   return alertConfig;
 };
-```
+`````
 
----
+* * *
 
 ## 代币授权安全的最佳实践
 
 ### 安全检查清单
 
-```bash
+`````bash
 # 每周例行：
 # 1. 访问 revoke.cash 并扫描所有活跃授权
 # 2. 撤销您未积极使用的协议的无限授权
@@ -431,11 +432,11 @@ const subscribeToAlerts = async (address) => {
 # 1. 立即检查 revoke.cash 查看您是否使用过该协议
 # 2. 撤销所有受损合约的授权
 # 3. 监控您的地址是否有未经授权的转账
-```
+`````
 
 ### 使用有限授权
 
-```javascript
+`````javascript
 // 代替无限授权，设置特定金额
 const setLimitedApproval = async (token, spender, humanAmount) => {
   const decimals = await token.decimals();
@@ -445,14 +446,14 @@ const setLimitedApproval = async (token, spender, humanAmount) => {
   const tx = await token.approve(spender, amount);
   await tx.wait();
   
-  console.log(`批准了 ${humanAmount} 个代币给 ${spender}`);
+  console.log(````批准了 ${humanAmount} 个代币给 ${spender}````);
 };
 
 // 示例：只为一次交换批准 1000 USDC
 await setLimitedApproval(usdcContract, uniswapRouter, "1000");
-```
+````
 
----
+* * *
 
 ## 常见问题解答（FAQ）
 
@@ -480,7 +481,7 @@ A：是的！ERC-721 和 ERC-1155 代币授权的工作方式与 ERC-20 类似�
 **Q8：如果我不撤销授权会发生什么？**
 A：您的代币将无限期地处于风险之中。如果已批准的合约被利用、被黑客攻击或变得恶意，您整个已批准的余额可能会在单笔交易中被耗尽。许多备受瞩目的黑客攻击（如 6 亿美元的 Poly Network 漏洞）都是由于 lingering 的授权而成为可能的。
 
----
+* * *
 
 
 
@@ -501,7 +502,7 @@ A：您的代币将无限期地处于风险之中。如果已批准的合约被�
 
 **正在寻找安全的交易场所？[在 Binance 注册](https://www.bsmkweb.cc/register?ref=DIBI8) —— 全球最大的加密交易所，拥有行业领先的安全性、最低费用和保险基金保护。**
 
----
+* * *
 
 *免责声明：本文仅供信息参考，不构成财务或安全建议。始终验证合约地址，对重要持仓使用硬件钱包，并保持良好的操作安全。本文包含联盟链接 —— 当您使用我们的合作伙伴链接时，我们可能会获得补偿，对您不产生额外费用。*
 
@@ -567,7 +568,7 @@ revoke-crypto-permission-manager represents an important step forward in AI-powe
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
@@ -599,15 +600,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

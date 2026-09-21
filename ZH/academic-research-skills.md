@@ -20,6 +20,7 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
+
 ## 快速概览
 
 Academic Research Skills 将 Claude Code 转变为研究助手，能够搜索论文、提取关键发现、综合文献并生成全面的综述报告。拥有 31,628 颗星，它自动化了学术研究中最为耗时的环节。
@@ -38,21 +39,21 @@ Academic Research Skills 是一套专为 Claude Code 设计的模块化技能系
 - **综合引擎**——将多篇论文的发现整合为结构化摘要
 - **文献综述撰写器**——生成带有规范引用的出版级文献综述
 
-```bash
+````bash
 # 安装学术研究技能
 npx skills add https://github.com/Imbad0202/academic-research-skills
 
 # 列出可用的研究技能
 npx skills list | grep research
-```
+`````
 
 ## 研究流水线的工作原理
 
 研究流水线作为一个有向无环图（DAG）运行，每个技能的输出都会流入下一个环节：
 
-```
+`````
 查询 → 搜索 → 过滤 → 提取 → 分析 → 综合 → 撰写
-```
+`````
 
 1. **查询构建**——你提供研究问题或主题
 2. **数据库搜索**——搜索技能同时查询多个学术数据库
@@ -62,7 +63,7 @@ npx skills list | grep research
 6. **跨论文综合**——对所有论文的发现进行比较和综合
 7. **综述生成**——撰写结构化的文献综述并附上规范引用
 
-```bash
+`````bash
 # 示例："transformer 效率"研究流水线
 # 第一步：搜索
 python3 scripts/search.py --query "transformer model efficiency optimization" --databases arxiv,pubmed --max-results 50
@@ -75,13 +76,13 @@ python3 scripts/extract.py --papers filtered_papers.json --fields methods,result
 
 # 第四步：综合
 python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md
-```
+`````
 
 ## 安装与配置
 
 安装 Academic Research Skills 需要 Python 3.10+ 以及对学术数据库的 API 访问权限：
 
-```bash
+`````bash
 # 克隆仓库
 curl -sL "https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip" -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
@@ -93,17 +94,17 @@ pip install -r requirements.txt
 # 配置 API 密钥
 cp config.example.yaml config.yaml
 # 编辑 config.yaml 填入你的 API 密钥
-```
+`````
 
 ### 必需的 API 密钥
 
 | 服务 | 用途 | 免费额度 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Semantic Scholar** | 论文搜索和引文数据 | 100 次/分钟 |
 | **arXiv** | 预印本论文访问 | 无限 |
@@ -111,9 +112,9 @@ cp config.example.yaml config.yaml
 | **Crossref** | 引文元数据 | 无限 |
 | **DOI 解析器** | 论文 DOI 查询 | 无限 |
 
-每个 API 密钥在 `config.yaml` 对应的服务配置节中进行设置。系统在启动时会验证所有密钥，并在开始研究流水线之前报告任何失败。
+每个 API 密钥在 ````config.yaml```` 对应的服务配置节中进行设置。系统在启动时会验证所有密钥，并在开始研究流水线之前报告任何失败。
 
-```bash
+`````bash
 # 验证 API 密钥配置
 python3 scripts/verify_config.py
 
@@ -126,13 +127,13 @@ resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', par
 })
 print(f'Status: {resp.status_code}, Results: {len(resp.json().get("data", []))}')
 "
-```
+`````
 
 ### Docker 部署
 
 为了获得可复现的研究环境，Academic Research Skills 提供了官方 Docker 镜像，将所有依赖和 API 客户端打包到一个容器中。
 
-```bash
+`````bash
 # 构建 Docker 镜像
 docker build -t research-skills:latest .
 
@@ -143,7 +144,7 @@ docker run -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
 # 使用 GPU 支持进行 PDF OCR
 docker run --gpus all -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \
   python3 scripts/extract.py --papers papers.json --with-ocr
-```
+`````
 
 Docker 镜像包含了 tesseract-ocr 用于扫描文档处理和 poppler-utils 用于 PDF 文本提取。
 
@@ -153,11 +154,11 @@ Academic Research Skills 与流行的研究和写作工具集成：
 
 | 工具 | 集成方式 | 用例 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Zotero** | CSV 导出/导入 | 参考文献管理 |
 | **Notion** | Markdown 导入 | 研究笔记 |
@@ -165,39 +166,39 @@ Academic Research Skills 与流行的研究和写作工具集成：
 | **Obsidian** | Markdown 仓库同步 | 知识管理 |
 | **Connected Papers** | API 集成 | 引文可视化 |
 
-```bash
+`````bash
 # 将研究发现导出为 Zotero 兼容的 CSV
 python3 scripts/export.py --format zotero --input synthesis.json --output references.csv
 
 # 生成 Overleaf 可用的 LaTeX 参考文献
 python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib
-```
+`````
 
 ## 基准测试：手动研究 vs 自动化研究
 
 自动化文献综述带来的时间节省是显著的：
 
-```
+`````
 研究任务                    | 手动     | 自动化    | 加速比
 
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |---
 搜索 50 篇相关论文          | 8 小时   | 15 分钟   | 32 倍
 从 20 篇论文中提取关键发现  | 16 小时  | 45 分钟   | 21 倍
 综合为综述                 | 12 小时  | 2 小时    | 6 倍
 规范格式化引用              | 3 小时   | 5 分钟    | 36 倍
 总计                       | 39 小时  | 3 小时    | 13 倍
-```
+`````
 
 上述基准是在一篇计算机科学领域的 20 篇论文的系统综述中测得的。自动化流水线在提取发现方面保持了 94% 的准确率（与手动综述相比），且在论文之间的一致性更高。
 
 ### 准确率对比
 
-```python
+`````python
 # 自动化与手动引文提取准确率对比
 metrics = {
     "precision": 0.91,    # 在提取的引文中，91% 是正确的
@@ -205,7 +206,7 @@ metrics = {
     "f1_score": 0.90,     # 精确率和召回率的调和平均
     "time_saved_hours": 36 # 每次综述节省 36 小时
 }
-```
+`````
 
 ## 进阶用法：自定义研究工作流
 
@@ -213,7 +214,7 @@ metrics = {
 
 ### 多数据库搜索策略
 
-```python
+`````python
 # 跨多个数据库搜索并统一结果
 from research_pipeline import MultiDatabaseSearcher
 
@@ -226,11 +227,11 @@ searcher = MultiDatabaseSearcher(
 
 results = searcher.run()
 print(f"在 {len(set(r['database'] for r in results))} 个数据库中找到了 {len(results)} 篇论文")
-```
+`````
 
 ### 引文网络分析
 
-```python
+`````python
 # 构建和可视化引文网络
 from citation_network import CitationGraph
 
@@ -240,11 +241,11 @@ graph.compute_centrality()  # PageRank、H指数、引用次数
 # 识别开创性论文
 seminal = graph.get_top_cited(k=10)
 for paper in seminal: print(f"{paper.title} — {paper.citation_count} 次引用")
-```
+`````
 
 ### 自定义综合模板
 
-```python
+`````python
 # 为不同类型的综述定义自定义综合模板
 templates = {
     "systematic_review": {
@@ -263,13 +264,13 @@ templates = {
         "min_papers": 8
     }
 }
-```
+`````
 
 ### 自动化引文格式化
 
 规范的引文格式对学术工作至关重要。技能套件包含一个引文格式化器，支持 APA、IEEE、Chicago 和 Vancouver 格式：
 
-```python
+`````python
 from citation_formatter import CitationFormatter
 
 formatter = CitationFormatter(style="APA", version="7th")
@@ -279,7 +280,7 @@ formatted = formatter.format(results)
 formatted.export("references_apa.txt")
 formatted.export("references_bib.bib")
 formatted.export("references_ris.ris")
-```
+`````
 
 ## 与替代方案的比较
 
@@ -287,17 +288,17 @@ formatted.export("references_ris.ris")
 
 | 特性 | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 星标数 | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 |
 | 多数据库搜索 | 4 个数据库 | 仅 Semantic Scholar | 仅 Semantic Scholar | 仅 Semantic Scholar | 仅 Crossref |
@@ -324,14 +325,14 @@ formatted.export("references_ris.ris")
 
 5. **新方法论的发现**——该系统擅长总结现有工作，但难以识别尚未被广泛引用的真正新颖的方法论途径。在这种情况下，手动文献探索往往能产生更好的结果。研究者应将自动化流水线输出与领域专业知识相结合，以获得全面的覆盖。
 
-```bash
+`````bash
 # 快速适用性检查
 # ✅ 系统性文献综述 → 适合
 # ✅ 引文网络分析 → 适合
 # ✅ 查找特定主题的论文 → 适合
 # ✅ 从零撰写基金提案 → 部分适合（需要手动输入）
 # ✅ 非英语文献综述 → 不适合（谨慎使用）
-```
+`````
 
 ## 常见问题
 
@@ -369,14 +370,14 @@ Academic Research Skills 让系统性文献综述变得民主化。过去需要�
 
 克隆仓库并安装依赖，今天就开始自动化你的研究工作流。
 
-```bash
+`````bash
 npx skills add https://github.com/Imbad0202/academic-research-skills
-```
+````
 
 **相关文章**：[比较 AI 编程 Agent](https://dibi8.com/ai-tools/oh-my-pi) · [构建生产级 AI 系统](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch)
 
 
----
+* * *
 **来源与延伸阅读**：
 - GitHub 仓库：https://github.com/Imbad0202/academic-research-skills
 - Semantic Scholar API：https://api.semanticscholar.org/
@@ -455,11 +456,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -469,7 +470,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-01-trending-ai-agents](academic-research-skills)
 - [2026-06-08-trending-ai-agents](academic-research-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -500,15 +501,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

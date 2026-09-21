@@ -22,6 +22,7 @@ aliases:
   - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
 ---
 
+
 {</* resource-info */>}
 
 ## Mở đầu: Đây Không Chỉ Là Một Công Cụ Mới
@@ -34,13 +35,13 @@ Từ đầu năm 2026 đến nay, lĩnh vực trợ lý lập trình AI đã bi�
 
 Với lập trình viên, điều này tạo ra hai thực tế song song: **giới hạn năng lực đã bị phá vỡ**, và **rủi ro bị khóa chặt vào nhà cung cấp (vendor lock-in) chưa bao giờ thực tế hơn thế.**
 
----
+* * *
 
 ## Phần 1: Hệ Sinh Thái Claude Code Skills—Từ Đồ Chơi Đến Hạ Tầng
 
 ### 1.1 Skills Market Đã Bùng Nổ Như Thế Nào
 
-Trước tháng 4/2026, "skills" trong Claude Code chỉ là một tính năng nhỏ. Bạn thả vài file markdown vào `~/.claude/skills/`, Claude sẽ tham khảo khi cần. Hữu ích, nhưng chưa đủ để thay đổi cách làm việc.
+Trước tháng 4/2026, "skills" trong Claude Code chỉ là một tính năng nhỏ. Bạn thả vài file markdown vào ```~/.claude/skills/````, Claude sẽ tham khảo khi cần. Hữu ích, nhưng chưa đủ để thay đổi cách làm việc.
 
 Hai sự kiện đã thay đổi mọi thứ.
 
@@ -52,7 +53,7 @@ Sự phân chia đơn vị đóng gói là điểm then chốt. Một "plugin" g
 
 ### 1.2 Cài Đặt Một Skill Chỉ Mất 10 Giây
 
-```bash
+`````bash
 # Clone kho skills của Karpathy vào thư viện skills local
 gh repo clone andrej-karpathy/skills ~/.claude/skills/karpathy
 
@@ -62,7 +63,7 @@ ls ~/.claude/skills/karpathy
 # Sử dụng trong Claude Code
 claude
 > run the profiling skill on this Go module
-```
+`````
 
 File skill về bản chất là markdown có cấu trúc với bốn phần: - **Triggers** — các mẫu ngôn ngữ tự nhiên kích hoạt skill
 - **Context injection** — file, biến môi trường, hoặc dữ liệu cần load
@@ -80,7 +81,7 @@ Skills mã hóa best practices thành các module tái sử dụng—bộ nhớ 
 
 **Ý nghĩa:** Kỹ sư mới cài đặt gói skills của team, Claude lập tức viết code theo tiêu chuẩn team. Tài liệu trở thành có thể thực thi.
 
----
+* * *
 
 ## Phần 2: MCP—USB-C Của Thế Giới AI Tooling
 
@@ -112,7 +113,7 @@ Tính đến thời điểm này, các MCP server chính thức và cộng đồ
 
 **Insight then chốt:** MCP đang biến AI từ "chatbot trong sidebar" thành "tầng thực thi có thể vận hành toàn bộ stack công nghệ của bạn."
 
----
+* * *
 
 ## Phần 3: Các Giải Pháp Mã Nguồn Mở Đang Trở Nên Nghiêm Túc
 
@@ -128,7 +129,7 @@ Những sự kiện này không phải ngẫu nhiên. Chúng kết tinh một n�
 
 Đề xuất giá trị của Hermes Agent rất thẳng thắn: **mặc định đơn giản, tương thích MCP, thân thiện với model local.**
 
-```python
+`````python
 from hermes import Agent, Skill
 
 # Chạy với model local—không cần cloud
@@ -137,7 +138,7 @@ agent.load_skill("git-workflow")
 
 # Thực thi tác vụ refactoring phức tạp
 agent.run("Refactor the auth module to use JWT tokens")
-```
+`````
 
 So với orchestration nặng nề của LangGraph, Hermes gần với "scripting nâng cao" hơn—đường cong học tập thoải, nhưng trần năng lực đủ cao. Nó là Python của thế giới AI agent: không phải lộng lẫy nhất, nhưng bạn có thể ship sản phẩm ngay lập tức.
 
@@ -145,7 +146,7 @@ So với orchestration nặng nề của LangGraph, Hermes gần với "scriptin
 
 Vị thế của OpenCode là cố ý đối lập: **không khóa nhà cung cấp, không khóa model, hoàn toàn tự host.**
 
-```bash
+`````bash
 # Cài đặt
 pip install opencode
 
@@ -154,7 +155,7 @@ opencode config --model ollama/llama3:70b
 
 # Khởi động agent mode trên dự án
 opencode agent --project ./my-app
-```
+`````
 
 Chuyển từ Claude sang GPT sang model 70B parameter local chỉ là một dòng thay đổi cấu hình. OpenCode xử lý đàm phán MCP, quản lý context window, và gọi công cụ một cách đồng nhất.
 
@@ -171,13 +172,13 @@ Chuyển từ Claude sang GPT sang model 70B parameter local chỉ là một dò
 
 **Sự thật thẳng thắn:** Đóng source vẫn thắng về sức mạnh suy luận thô cho các tác vụ phức tạp. Nhưng khoảng cách đang thu hẹp nhanh chóng, và phương trình tổng chi phí sở hữu ngày càng nghiêng về tự host cho công việc thường nhật.
 
----
+* * *
 
 ## Phần 4: Xây Dựng Workflow Lập Trình AI Chống Lock-in
 
 ### 4.1 Kiến Trúc Phân Tầng
 
-```
+`````
 ┌─────────────────────────────────────┐
 │  Tầng 3: AI Agent (có thể thay thế) │  ← Claude, OpenCode, Codex, Gemini
 ├─────────────────────────────────────┤
@@ -185,7 +186,7 @@ Chuyển từ Claude sang GPT sang model 70B parameter local chỉ là một dò
 ├─────────────────────────────────────┤
 │  Tầng 1: Toolchain (bền vững)       │  ← Git, database, cloud API
 └─────────────────────────────────────┘
-```
+`````
 
 **Nguyên tắc:** Lối thoát của bạn là tầng MCP. Thay agent ở trên, toolchain integration ở dưới vẫn nguyên vẹn.
 
@@ -193,17 +194,17 @@ Chuyển từ Claude sang GPT sang model 70B parameter local chỉ là một dò
 
 **Bước 1: Cài MCP CLI**
 
-```bash
+`````bash
 # Qua npm
 npm install -g @anthropics/mcp-cli
 
 # Hoặc Python
 pip install mcp-cli
-```
+`````
 
 **Bước 2: Đăng ký các MCP server cốt lõi**
 
-```bash
+`````bash
 # GitHub MCP server (thao tác code)
 mcp server add github --command npx -y @modelcontextprotocol/server-github
 
@@ -212,11 +213,11 @@ mcp server add postgres --command uvx mcp-server-postgres
 
 # Filesystem MCP server (truy cập file local)
 mcp server add fs --command npx -y @modelcontextprotocol/server-filesystem
-```
+`````
 
 **Bước 3: Cấu hình agent sử dụng MCP**
 
-Với Claude Code, sửa `~/.claude/config.json`: ```json
+Với Claude Code, sửa ``~/.claude/config.json``: `````json
 {
   "mcpServers": {
     "github": {
@@ -229,22 +230,22 @@ Với Claude Code, sửa `~/.claude/config.json`: ```json
     }
   }
 }
-```
+`````
 
-Với OpenCode, trong `opencode.yaml`: ```yaml
+Với OpenCode, trong ``opencode.yaml``: `````yaml
 mcp: servers: - name: github
       command: npx -y @modelcontextprotocol/server-github
     - name: postgres
       command: uvx mcp-server-postgres postgresql://localhost/mydb
-```
+`````
 
 **Bước 4: Viết team skill**
 
-Tạo `team-standard.md`: ```markdown
----
+Tạo ``team-standard.md``: `````markdown
+* * *
 skill: team-standard
 version: "1.0"
----
+* * *
 
 # Tiêu chuẩn coding team
 
@@ -254,7 +255,7 @@ version: "1.0"
 - Types/Interfaces: PascalCase
 
 ## Pattern xử lý lỗi
-Mọi hàm async phải dùng try/catch với requestId: ```typescript
+Mọi hàm async phải dùng try/catch với requestId: `````typescript
 const requestId = crypto.randomUUID();
 try {
   await riskyOperation();
@@ -262,24 +263,24 @@ try {
   logger.error({ requestId, error: err.message });
   throw new AppError("OPERATION_FAILED", { requestId });
 }
-```
+`````
 
 ## Yêu cầu testing
 - Mỗi hàm exported cần ít nhất 1 unit test
 - Dùng vitest + @testing-library
-```
+`````
 
-Thả vào `~/.claude/skills/` hoặc thư mục skills của Hermes. Xong.
+Thả vào ````~/.claude/skills/```` hoặc thư mục skills của Hermes. Xong.
 
----
+* * *
 
 ## Phần 5: Dự Báo 12 Tháng Tới
 
 ### 5.1 Skills Sẽ Trở Thành "Package Management" Mới
 
-`npm install`, `pip install`, `cargo add` quản lý phụ thuộc code. Skills quản lý **phụ thuộc hành vi**—AI nên hành xử như thế nào khi làm việc với framework, API, hoặc quy ước team cụ thể.
+````npm install````, ````pip install````, ````cargo add```` quản lý phụ thuộc code. Skills quản lý **phụ thuộc hành vi**—AI nên hành xử như thế nào khi làm việc với framework, API, hoặc quy ước team cụ thể.
 
-Cuối 2026, tôi dự đoán các hệ sinh thái ngôn ngữ chính sẽ hỗ trợ file `skills.yaml`, khóa phiên bản và chia sẻ như `package.json`.
+Cuối 2026, tôi dự đoán các hệ sinh thái ngôn ngữ chính sẽ hỗ trợ file ````skills.yaml````, khóa phiên bản và chia sẻ như ````package.json```.
 
 ### 5.2 Sự Xuất Hiện Của "Agent Store"
 
@@ -300,7 +301,7 @@ Hãy đợi: - Nhật ký thực thi skills với audit trail chống giả mạ
 - Phát lại và phân tích pháp y hành vi agent
 - Sản phẩm bảo hiểm bao phủ "lỗi AI agent"
 
----
+* * *
 
 ## Phần 6: Lời Khuyên Thực Hành Theo Kiểu Lập Trình Viên
 
@@ -322,7 +323,7 @@ Hãy đợi: - Nhật ký thực thi skills với audit trail chống giả mạ
 2. **Thiết lập chính sách sử dụng công cụ AI.** Dữ liệu nào được phép rời khỏi network? Cái nào phải ở local? Viết ra.
 3. **Thử nghiệm kiến trúc lai.** Model đóng frontier cho tác vụ suy luận phức tạp, model mở local cho công việc hàng loạt thường nhật.
 
----
+* * *
 
 ## Kết Luận
 
@@ -334,7 +335,7 @@ Sự khóa chặt thực sự không phải kỹ thuật—nó là thói quen. C
 
 **Hãy luôn có thể di chuyển. Đó là hào rào duy nhất đáng giá.**
 
----
+* * *
 
 ## Tài Liệu Tham Khảo
 
@@ -345,11 +346,11 @@ Sự khóa chặt thực sự không phải kỹ thuật—nó là thói quen. C
 - [Kho Skills Andrej Karpathy](https://github.com/andrej-karpathy/skills)
 - [Registry MCP Servers](https://mcp-servers.io)
 
----
+* * *
 
 *Từ khóa được đặt có chủ đích: AI coding agent so sánh 2026, Claude Code skills marketplace, Model Context Protocol hướng dẫn, trợ lý lập trình AI mã nguồn mở, OpenCode cài đặt, Hermes Agent vs Claude Code, tránh vendor lock-in AI, trợ lý lập trình LLM local, cấu hình MCP server, công cụ năng suất lập trình AI*
 
----
+* * *
 
 ## Hạ Tầng Tự Lưu Trữ Được Đề Xuất
 

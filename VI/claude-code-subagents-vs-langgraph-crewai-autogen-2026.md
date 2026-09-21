@@ -34,6 +34,7 @@ faq: - q: "Tôi có cần LangGraph hay CrewAI không nếu tôi đã dùng suba
     a: "Được. LangGraph, CrewAI và AutoGen đều không phụ thuộc vào model (model-agnostic) — bạn có thể chạy Claude, GPT, Gemini, hay các model cục bộ phía sau chúng. Claude Agent SDK (đổi tên từ Claude Code SDK vào cuối năm 2025, nay phát hành dưới dạng cả gói Python lẫn TypeScript) được thiết kế chỉ dành cho Claude, đánh đổi tính linh hoạt về model để lấy các tính năng an toàn nguyên bản và extended thinking. Vậy nên nếu tính linh hoạt đa nhà cung cấp là yêu cầu bắt buộc, hãy chọn một trong các framework agnostic; còn nếu bạn dồn toàn lực vào Claude và muốn tích hợp chặt chẽ nhất, thì Agent SDK là con đường nguyên bản."
 ---
 
+
 # Claude Code Subagent so với LangGraph, CrewAI và AutoGen (2026): Khi nào nên chuyển sang một framework độc lập
 
 
@@ -74,11 +75,11 @@ Sắc thái benchmark: trong các bài kiểm thử năm 2026, LangGraph dẫn �
 ## Khi subagent Claude Code đã là đủ
 
 Đừng tốt nghiệp nếu nhu cầu của bạn là bất kỳ điều nào sau đây. Subagent tích hợp sẵn bao quát chúng ngay hôm nay, không cần hạ tầng mới: - **Fan-out nghiên cứu song song.** Năm agent, mỗi agent đọc một hệ thống con khác nhau, kết quả được gộp lại. Đây là mẫu subagent có ROI cao nhất và nó miễn phí.
-- **Ủy thác cho chuyên gia.** Một agent tùy chỉnh `security-auditor` hoặc `code-reviewer` với danh sách công cụ được phép và system prompt riêng.
+- **Ủy thác cho chuyên gia.** Một agent tùy chỉnh ```security-auditor```` hoặc ````code-reviewer```` với danh sách công cụ được phép và system prompt riêng.
 - **Bảo vệ ngữ cảnh.** Đẩy một cuộc khám phá 30 file ra ngoài để nó không chiếm hết bộ nhớ làm việc của cuộc trò chuyện cha.
 - **Điều phối pipeline cho tác vụ dev.** Tìm → xác minh → tổng hợp, trong đó mỗi giai đoạn là một worker được ủy thác.
 
-Bằng chứng cụ thể: **chính pipeline đa ngôn ngữ của dibi8.** Mỗi bài viết bạn đọc ở đây bằng tiếng Anh, tiếng Trung, tiếng Hàn và tiếng Việt đều được tạo ra bởi các subagent dịch thuật Claude Code song song — mỗi ngôn ngữ một subagent, triển khai fan-out, kết quả được xác minh dựa trên một mốc chuẩn `npm run build`. Chúng tôi đã cố tình *không* với tay tới LangGraph. Không có trạng thái bền vững nào để checkpoint, không có cổng phê duyệt của con người, không có yêu cầu đa nhà cung cấp. Subagent tích hợp sẵn cho ra kết quả trước giờ ăn trưa; một framework sẽ chỉ là gánh nặng thừa thãi.
+Bằng chứng cụ thể: **chính pipeline đa ngôn ngữ của dibi8.** Mỗi bài viết bạn đọc ở đây bằng tiếng Anh, tiếng Trung, tiếng Hàn và tiếng Việt đều được tạo ra bởi các subagent dịch thuật Claude Code song song — mỗi ngôn ngữ một subagent, triển khai fan-out, kết quả được xác minh dựa trên một mốc chuẩn ````npm run build```. Chúng tôi đã cố tình *không* với tay tới LangGraph. Không có trạng thái bền vững nào để checkpoint, không có cổng phê duyệt của con người, không có yêu cầu đa nhà cung cấp. Subagent tích hợp sẵn cho ra kết quả trước giờ ăn trưa; một framework sẽ chỉ là gánh nặng thừa thãi.
 
 ## Khi nào tốt nghiệp lên một framework độc lập
 
@@ -149,7 +150,7 @@ Hãy ngừng đóng khung nó thành "Claude Code vs LangGraph." Subagent tích 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -159,7 +160,7 @@ Hãy ngừng đóng khung nó thành "Claude Code vs LangGraph." Subagent tích 
 - [claude-code-vs-aider](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 - [cursor-vs-claude-code](claude-code-subagents-vs-langgraph-crewai-autogen-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

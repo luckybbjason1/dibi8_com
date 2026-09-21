@@ -32,6 +32,7 @@ faqs: - q: 'AiWind은 무료로 사용할 수 있나요?'
   - q: 'AiWind는 PromptHero, Lexica, Civitai와 어떻게 비교되나요?'
     a: 'AiWind는 완전 무료 이용, 강력한 중국어 지원, 10개 이상의 모델 커버리지로 차별화됩니다. 반면 Lexica는 약 3개 모델을 지원하고, Civitai는 주로 Stable Diffusion에 집중합니다. AiWind, PromptHero, Civitai는 모두 커뮤니티 프롬프트 제출을 지원하지만, Lexica는 지원하지 않습니다.'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -110,67 +111,67 @@ GPT-Image 2, Midjourney 또는 Stable Diffusion에 큰돈을 들여 구독했지
 
 ### 1. 사실적 초상화 — 두바이 야금 금발 슈퍼모델
 
-```
+````
 두바이 야금 금발 슈퍼모델
 키워드: dubai, night, blonde
 스타일: 패션 사진, 야경 인물
 적용: GPT-Image 2, Midjourney
-```
+`````
 
 **효과**: 금발 모델이 두바이 야경 앞에서 도시 조명을 배경광으로 활용하여 고급 패션 잡지 느낌을 연출합니다.
 
 ### 2. 미식 대작 — 공중에 떠 있는 식재료 8K
 
-```
+`````
 공중에 떠 있는 식재료 8K 미식 대작
 키워드: food, 8k, suspended
 스타일: 상업 미식 사진, 공중 구도
 적용: Nanobanana, Stable Diffusion
-```
+`````
 
 **효과**: 식재료가 공중에 떠 있고 물방울이 튀어 8K 초고화질 질감으로 레스토랑 메뉴와 광고에 적합합니다.
 
 ### 3. 3D 렌더링 — 픽사 스타일 햇살 소년
 
-```
+`````
 픽사 스타일 햇살 소년
 키워드: pixar, disney, 3d
 스타일: 3D 애니메이션 캐릭터, 픽사 스타일
 적용: GPT-Image 2, Flux
-```
+`````
 
 **효과**: 햇살이 소년의 얼굴에 비치고 피부에 차표면 산란이 있으며 눈에 하이라이트 반사가 있는 전형적인 픽사 캐릭터 질감입니다.
 
 ### 4. 초현실 — 전구 속 로켓 발사
 
-```
+`````
 전구 속 로켓 발사
 키워드: surreal, rocket, lightbulb
 스타일: 초현실주의, 컨셉 아트
 적용: Midjourney, Stable Diffusion
-```
+`````
 
 **효과**: 로켓이 전구에서 발사되고 유리 파편이 사방으로 흩날려 포스터와 커버에 창의적입니다.
 
 ### 5. 국풍 — 한푸 꽃병 미녀도
 
-```
+`````
 한푸 꽃병 미녀도
 키워드: hanfu, chinese, traditional
 스타일: 중국 전통 공필화, 미녀도
 적용: Nanobanana, Hunyuan
-```
+`````
 
 **효과**: 미녀가 한푸를 입고 꽃병을 들고 배경에 산수 요소가 있는 섬세한 공필과 우아한 색채입니다.
 
 ### 6. 패션 대작 — 다크 포식 Vogue 커버
 
-```
+`````
 다크 포식 Vogue 커버
 키워드: vogue, editorial, predatory
 스타일: 하이엔드 패션 에디토리얼, 다크 미학
 적용: GPT-Image 2, Midjourney
-```
+`````
 
 **효과**: 모델의 눈빛이 날카롭고 메이크업이 다크하며 구도가 Vogue 커버를 참고하여 고급스러운 질감입니다.
 
@@ -189,7 +190,7 @@ GPT-Image 2, Midjourney 또는 Stable Diffusion에 큰돈을 들여 구독했지
 
 ### 단계 3: 복사하여 사용
 
-프롬프트를 AI 이미지 생성 도구에 복사합니다: ```
+프롬프트를 AI 이미지 생성 도구에 복사합니다: `````
 # Midjourney 예시
 /imagine prompt: 두바이 야금 금발 슈퍼모델, dubai night blonde, 
 fashion photography, golden hour lighting, 
@@ -200,7 +201,7 @@ editorial style, 8k, ultra detailed --ar 3:4 --v 6
 golden hour, editorial, 8k, ultra detailed, 
 best quality, masterpiece
 부정 프롬프트: blurry, low quality, distorted face, extra limbs
-```
+`````
 
 ### 단계 4: 투고 공유
 
@@ -210,7 +211,7 @@ best quality, masterpiece
 
 ### 1. 구조화된 프롬프트
 
-```
+`````
 [주체] + [스타일] + [조명] + [구도] + [품질 단어]
 
 예시: 주체: 금발 슈퍼모델이 두바이 야경 앞에 서 있다
@@ -218,23 +219,23 @@ best quality, masterpiece
 조명: 골든 아워, 도시 조명 배경광
 구도: 미디엄 샷, 삼분법
 품질: 8K, 초고화질, 최고 품질, 걸작
-```
+`````
 
 ### 2. 가중치 제어（Stable Diffusion）
 
-```
+`````
 (금발 슈퍼모델:1.3) 가중치 증가를 의미
 [야경:0.8] 가중치 감소를 의미
-```
+`````
 
 ### 3. 부정 프롬프트
 
-```
+`````
  blurry, lowres, bad anatomy, bad hands, text, error, 
  missing fingers, extra digit, fewer digits, cropped, 
  worst quality, low quality, normal quality, 
  jpeg artifacts, signature, watermark, username
-```
+````
 
 ### 4. 파라미터 튜닝
 
@@ -277,7 +278,7 @@ AI로 이미지를 생성할 때 항상 "뭔가 부족"하다면 AiWind에서 �
 - [TabPFN: 테이블 데이터 기반 모델](/kr/resources/ai-tools/tabpfn-foundation-model-tabular-data/)
 - [Hermes Agent: 자기 개선하는 AI 에이전트](/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
----
+* * *
 
 ## 추천 도구
 

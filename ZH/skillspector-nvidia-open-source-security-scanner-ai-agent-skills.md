@@ -13,6 +13,7 @@ license: Apache-2.0---
 
 
 
+
 # SkillSpector：NVIDIA 面向 AI Agent 技能的开源安全扫描工具
 
 **SkillSpector** 是一款专为 AI Agent 技能设计的安全扫描工具——这些模块化插件和扩展程序为 Claude Code、GitHub Copilot、Codex CLI 和 Gemini CLI 等框架提供动力。该工具由 NVIDIA 开发，在 GitHub 上已获得 **10,273 个 Star**，旨在解决在生产环境中安装未经审核的 Agent 技能所带来的日益增长的安全隐患。
@@ -46,7 +47,7 @@ SkillSpector 源于一个关键的观察：随着 AI Agent 技能在开发者工
 
 ### 方式一：通过 Pip 安装
 
-```bash
+````bash
 # 从 PyPI 安装 SkillSpector
 pip install skillspector
 
@@ -55,11 +56,11 @@ skillspector --version
 
 # 下载最新的技能数据库
 skillspector update-db
-```
+`````
 
 ### 方式二：从源码安装
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/NVIDIA/SkillSpector.git
 cd SkillSpector
@@ -73,11 +74,11 @@ pip install -e .
 
 # 初始化扫描器
 skillspector init --download-database
-```
+`````
 
 ### 方式三：Docker 部署
 
-```bash
+`````bash
 # 拉取官方镜像
 docker pull nvcr.io/nvidia/skillspector:latest
 
@@ -94,7 +95,7 @@ docker run -d \
   -v ${PWD}/reports:/app/reports \
   nvcr.io/nvidia/skillspector:latest \
   daemon --interval 3600
-```
+````
 
 ## 扫描能力
 
@@ -178,7 +179,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
@@ -187,7 +188,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 - [cursor-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -257,15 +258,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

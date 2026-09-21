@@ -38,6 +38,7 @@ faqs: - q: 'What is the best open-source alternative to Midjourney in 2026?'
     a: 'Dify is a visual LLM engine that replaces hardcoded API calls. It lets you build complex RAG pipelines and multi-agent workflows using a drag-and-drop visual interface.'
   - q: 'How can AI coding agents keep memory across sessions without API calls?'
     a: 'MemPalace acts as an MCP (Model Context Protocol) server that gives local coding agents like Claude Code permanent memory. Because it runs locally as an MCP server, it provides persistent context without making external API calls.'---
+
 {</* resource-info */>}
 
 # Top 10 Open-Source AI Tools for Developers in 2026 (Free Alternatives)
@@ -195,7 +196,7 @@ Top 10 Open-Source AI Tools for Developers in 2026 (Free Alternatives) represent
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -226,15 +227,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

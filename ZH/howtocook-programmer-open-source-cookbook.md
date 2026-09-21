@@ -31,6 +31,7 @@ faqs: - q: '什么是 HowToCook？'
     a: '拉取并运行镜像：docker pull ghcr.io/anduin2017/how-to-cook:latest，再执行 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest，然后访问 http://localhost:5000 即可。'
   - q: '如何向 HowToCook 贡献菜谱？'
     a: 'Fork 仓库，复制模板菜谱，按项目规定的结构化格式编写你的菜谱，然后提交 Pull Request。该项目已有 200 多位贡献者，支持中文、英文和日文。'---
+
 {</* resource-info */>}
 
 ## HowToCook 是什么？
@@ -52,11 +53,11 @@ faqs: - q: '什么是 HowToCook？'
 
 | 问题 | 例子 | HowToCook 解决方案 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 模糊用量 | "少许盐" | "3克盐（1/2茶匙）" |
 | 含糊时间 | "炒至金黄" | "每面煎90秒" |
@@ -74,18 +75,18 @@ faqs: - q: '什么是 HowToCook？'
 - **错误处理**：常见错误及避免方法
 
 
----
+* * *
 ## 菜谱分类
 
 ### 按难度
 
 | 星级 | 数量 | 例子 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | ⭐ | 45 | 番茄炒蛋、泡面升级 |
 | ⭐⭐ | 78 | 宫保鸡丁、红烧肉 |
@@ -102,11 +103,11 @@ faqs: - q: '什么是 HowToCook？'
 - **早餐**: 23 道（粥、饼、三明治）
 - **甜品**: 17 道（蛋糕、布丁、甜汤）
 
----
+* * *
 
 ## 示例菜谱：番茄炒蛋
 
-```markdown
+````markdown
 # 西红柿炒鸡蛋 ⭐
 
 ## 食材
@@ -143,9 +144,9 @@ faqs: - q: '什么是 HowToCook？'
 - 不要炒过头 — 鸡蛋出锅后还会继续熟
 - 如果西红柿太酸，多加 1克糖
 - 想要更嫩口感，蛋液中加 10毫升牛奶
-```
+`````
 
----
+* * *
 
 ## 社区与贡献
 
@@ -165,27 +166,27 @@ faqs: - q: '什么是 HowToCook？'
 
 ### 网页部署
 
-```bash
+`````bash
 # 本地部署
 docker pull ghcr.io/anduin2017/how-to-cook:latest
 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 
 # 访问 http://localhost:5000
-```
+`````
 
----
+* * *
 
 ## NPM 包
 
 作为 Node.js 包安装：
 
-```bash
+`````bash
 npm install how-to-cook
-```
+`````
 
 编程方式使用：
 
-```javascript
+`````javascript
 const recipes = require('how-to-cook');
 
 // 搜索菜谱
@@ -196,9 +197,9 @@ const easyRecipes = recipes.filterByStars(1);
 
 // 随机获取
 const dinner = recipes.random();
-```
+````
 
----
+* * *
 
 ## 学习路径
 
@@ -220,7 +221,7 @@ const dinner = recipes.random();
 - 味道平衡
 - 摆盘
 
----
+* * *
 
 ## 为什么这个项目值得关注
 
@@ -232,7 +233,7 @@ const dinner = recipes.random();
 4. **常青内容**：烹饪永远不会过时
 5. **多语言**：中文、英文、日文版本
 
----
+* * *
 
 ## 相关文章
 
@@ -240,11 +241,11 @@ const dinner = recipes.random();
 - [Pixelle-Video AI 短视频生成器](/zh/resources/ai-tools/pixelle-video-ai-short-video-generator/) — AI 内容创作工具
 - [OpenClaw 42 个用例](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 代理日常任务
 
----
+* * *
 
 *免责声明：本文介绍开源项目。所有菜谱内容归 HowToCook 社区所有。烹饪时请遵循食品安全指南。*
 
----
+* * *
 
 ## 推荐工具
 
@@ -318,7 +319,7 @@ HowToCook 程序员做饭指南：297 个开源菜谱让 coding 更香 represent
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

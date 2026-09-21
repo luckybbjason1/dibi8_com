@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/arize-ai-observability-llm/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：你无法修复你看不见的问题
@@ -52,13 +53,13 @@ Phoenix UI 将追踪渲染为交互式火焰图。你可以深入查看任何 Sp
 
 | 概念 | 描述 |
 |
----
+* * *
 |
----
+* * *
 |
 | **Trace（追踪）** | 从用户查询到最终响应的完整请求生命周期 |
 | **Span** | 追踪中的单个操作（例如检索器调用、LLM 补全） |
-| **Attribute（属性）** | 附加到 Span 的键值元数据（例如 `model=gpt-4o`） |
+| **Attribute（属性）** | 附加到 Span 的键值元数据（例如 ```model=gpt-4o````） |
 | **Event（事件）** | Span 内的时间戳日志条目（例如 Prompt 已渲染） |
 | **Evaluation（评估）** | 附加到 Span 或追踪的评分评估（例如 relevance=0.87） |
 
@@ -68,7 +69,7 @@ Phoenix UI 将追踪渲染为交互式火焰图。你可以深入查看任何 Sp
 
 在本地运行 Phoenix 的最快方式：
 
-```bash
+`````bash
 python -m venv phoenix-env
 source phoenix-env/bin/activate
 
@@ -77,15 +78,15 @@ pip install "arize-phoenix[evals,llama-index,langchain]" --quiet
 
 # 启动 Phoenix 服务器
 python -c "import phoenix as px; px.launch_app()"
-```
+`````
 
-运行 `launch_app()` 后，Phoenix 会在 **http://localhost:6006** 启动嵌入式服务器。UI 会自动在浏览器中打开。保持此终端运行——你的追踪将流式传输到这里。
+运行 ````launch_app()```` 后，Phoenix 会在 **http://localhost:6006** 启动嵌入式服务器。UI 会自动在浏览器中打开。保持此终端运行——你的追踪将流式传输到这里。
 
 ### 方式 B：Docker 部署（生产级）
 
 对于生产或团队环境，将 Phoenix 作为容器运行：
 
-```bash
+`````bash
 # 拉取官方镜像
 docker pull arizephoenix/phoenix:latest
 
@@ -95,14 +96,14 @@ docker run -d \
   -p 6006:6006 \
   -v phoenix-data:/data \
   arizephoenix/phoenix:latest
-```
+`````
 
 验证部署：
 
-```bash
+`````bash
 curl http://localhost:6006/health
 # 预期返回: {"status":"healthy"}
-```
+`````
 
 对于云 VPS 部署，[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 提供每月 $4 起的 Droplet，对于中小团队来说运行 Phoenix 绰绰有余。部署一台预装 Docker 的 Droplet，运行容器，你的可观测性平台在 10 分钟内就能上线。
 
@@ -110,7 +111,7 @@ curl http://localhost:6006/health
 
 用于持久化存储和多用户访问：
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: phoenix: image: arizephoenix/phoenix:latest
@@ -124,11 +125,11 @@ services: phoenix: image: arizephoenix/phoenix:latest
       POSTGRES_DB: phoenix
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
-```bash
+`````bash
 docker-compose up -d
-```
+`````
 
 ## 与 LangChain、LlamaIndex 和 OpenTelemetry 的集成
 
@@ -136,7 +137,7 @@ docker-compose up -d
 
 Phoenix 通过 OpenTelemetry 与 LangChain 集成。只需在你的 LangChain 应用中添加两行代码：
 
-```python
+`````python
 # phoenix_langchain_demo.py
 import phoenix as px
 from phoenix.trace.langchain import LangChainInstrumentor
@@ -167,7 +168,7 @@ retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
 # 整个流水线现在自动被追踪
 result = retriever.invoke("What is Phoenix?")
 print(result)
-```
+`````
 
 运行脚本并打开 http://localhost:6006。你将看到完整的追踪树：检索器调用 → 文档获取 → Prompt 构建 → LLM 补全 → 输出解析。
 
@@ -175,7 +176,7 @@ print(result)
 
 Phoenix 为 LlamaIndex 查询引擎提供一流支持：
 
-```python
+`````python
 # phoenix_llamaindex_demo.py
 import phoenix as px
 from phoenix.trace.llamaindex import LlamaIndexInstrumentor
@@ -198,13 +199,13 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine(llm=OpenAI(model="gpt-4o-mini"))
 response = query_engine.query("Summarize the main points in these documents.")
 print(response)
-```
+`````
 
 ### OpenTelemetry SDK（框架无关）
 
 对于自定义流水线或没有专用插桩的框架：
 
-```python
+`````python
 # phoenix_otel_manual.py
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -230,13 +231,13 @@ with tracer.start_as_current_span("rag_pipeline") as span: span.set_attribute("q
         llm_span.set_attribute("model", "gpt-4o-mini")
         llm_span.set_attribute("tokens_used", response.usage.total_tokens)
         llm_span.set_attribute("latency_ms", 340)
-```
+`````
 
 ### OpenAI SDK 追踪
 
 Phoenix 还支持自动追踪直接调用 OpenAI SDK：
 
-```python
+`````python
 # phoenix_openai_demo.py
 import phoenix as px
 from phoenix.trace.openai import OpenAIInstrumentor
@@ -258,7 +259,7 @@ response = client.chat.completions.create(
     temperature=0.7,
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -272,13 +273,13 @@ Phoenix 在 Span 级别捕获 Token 用量，与提供商账单对比的准确�
 
 | 场景 | 基线延迟 | 使用 Phoenix 追踪 | 额外开销 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 简单 LLM 调用（1 个 chunk） | **245 ms** | **251 ms** | **+2.4%** |
 | RAG 流水线（5 个 chunks） | **890 ms** | **912 ms** | **+2.5%** |
@@ -292,7 +293,7 @@ Phoenix 在 Span 级别捕获 Token 用量，与提供商账单对比的准确�
 
 - **18% 的查询** 由于过时的嵌入模型检索到了不相关的文档块
 - 每次查询平均消耗 **4,200 个 Token**——比估计值高出 **2.1 倍**
-- 一个配置错误的检索器（`top_k=20` 而非 `top_k=5`）每月产生 **$1,200** 的不必要 API 费用
+- 一个配置错误的检索器（````top_k=20```` 而非 ````top_k=5````）每月产生 **$1,200** 的不必要 API 费用
 
 基于 Phoenix 追踪数据修复这些问题后，客户将每次查询延迟降低了 **34%**，Token 成本降低了 **52%**。
 
@@ -302,11 +303,11 @@ Phoenix 包含内置评估器，用于相关性、幻觉和毒性检测：
 
 | 评估器 | 与人类标注的准确率 | 每条追踪平均运行时间 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QA 相关性 | **0.91** F1 分数 | **120 ms** |
 | 幻觉检测 | **0.87** F1 分数 | **95 ms** |
@@ -319,7 +320,7 @@ Phoenix 包含内置评估器，用于相关性、幻觉和毒性检测：
 
 为追踪添加业务相关属性，以便筛选和分析：
 
-```python
+`````python
 from opentelemetry import trace
 
 tracer = trace.get_tracer("my-app")
@@ -329,15 +330,15 @@ with tracer.start_as_current_span("customer_query") as span: span.set_attribute(
     span.set_attribute("expected_revenue", 15000.00)
 
     # 你的 RAG 逻辑...
-```
+`````
 
-在 Phoenix UI 中，按 `customer_tier=enterprise` 筛选追踪，调试高价值客户的查询。
+在 Phoenix UI 中，按 ````customer_tier=enterprise```` 筛选追踪，调试高价值客户的查询。
 
 ### 程序化评估
 
 对收集到的追踪运行批量评估：
 
-```python
+`````python
 # phoenix_evaluations.py
 import phoenix as px
 from phoenix.evals import HallucinationEvaluator, QAEvaluator
@@ -352,56 +353,56 @@ results = hallucination_eval.evaluate(traces)
 # 筛选高风险追踪
 risky = results[results.score > 0.7]
 print(f"发现 {len(risky)} 个可能存在幻觉的响应")
-```
+`````
 
 ### 追踪指标告警
 
 将 Phoenix 指标导出到 Prometheus 用于告警：
 
-```python
+`````python
 # phoenix_prometheus.py
 from phoenix.trace import PrometheusExporter
 
 prometheus_exporter = PrometheusExporter(port=8000)
 px.launch_app(additional_exporters=[prometheus_exporter])
-```
+`````
 
 然后创建 Prometheus 告警规则：
 
-```yaml
+`````yaml
 # alerts.yml
 - alert: HighTokenBurn
   expr: phoenix_tokens_total > 100000
   for: 5m
   annotations: summary: "5 分钟内 Token 消耗超过 10 万"
-```
+`````
 
 ### 通过追踪标签进行 Prompt 版本管理
 
 追踪不同部署中使用的 Prompt 变更：
 
-```python
+`````python
 # 用使用的 Prompt 版本标记追踪
 with tracer.start_as_current_span("llm_call") as span: span.set_attribute("prompt.version", "v2.3.1")
     span.set_attribute("prompt.git_sha", "abc1234")
     span.set_attribute("deployment.env", "production")
-```
+`````
 
-使用 Phoenix UI 对比标记为 `prompt.version=v2.3.0` 和 `prompt.version=v2.3.1` 的追踪，衡量 Prompt 变更的影响。
+使用 Phoenix UI 对比标记为 ````prompt.version=v2.3.0```` 和 ````prompt.version=v2.3.1```` 的追踪，衡量 Prompt 变更的影响。
 
 ## 与替代方案对比
 
 | 功能 | Arize Phoenix | LangSmith | Langfuse | Weights & Biases |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | **Apache-2.0** | 专有 | MIT | 专有 |
 | **自托管** | **是（Docker）** | 否（仅云端） | **是** | 是（企业版） |
@@ -436,7 +437,7 @@ Phoenix 是**专注于 LLM 追踪、评估和调试的开源核心**。商业版
 
 ### 可以脱离 LangChain 或 LlamaIndex 使用 Phoenix 吗？
 
-可以。Phoenix 使用 **OpenTelemetry** 作为其数据模型，因此任何发出 OTLP 追踪的框架或自定义代码都可以被接收。使用 OpenTelemetry SDK 手动创建 Span（见上方集成部分），或将现有追踪配置导出到 `http://localhost:6006/v1/traces`。
+可以。Phoenix 使用 **OpenTelemetry** 作为其数据模型，因此任何发出 OTLP 追踪的框架或自定义代码都可以被接收。使用 OpenTelemetry SDK 手动创建 Span（见上方集成部分），或将现有追踪配置导出到 ````http://localhost:6006/v1/traces````。
 
 ### Phoenix 会存储我的 LLM API 密钥或 Prompt 数据吗？
 
@@ -448,7 +449,7 @@ Phoenix 是**专注于 LLM 追踪、评估和调试的开源核心**。商业版
 
 ### Phoenix 能帮助我降低 OpenAI API 账单吗？
 
-可以。Phoenix 的 Token 级追踪精确揭示 Token 消耗在哪里。一个常见发现：团队发现检索器返回 **20 个 chunks**，而实际只需要 **3 个**，将 Prompt 膨胀了 **5-10 倍**。基于 Phoenix 数据优化 `top_k` 后，团队通常将 Token 消耗降低 **30-50%**。
+可以。Phoenix 的 Token 级追踪精确揭示 Token 消耗在哪里。一个常见发现：团队发现检索器返回 **20 个 chunks**，而实际只需要 **3 个**，将 Prompt 膨胀了 **5-10 倍**。基于 Phoenix 数据优化 ````top_k``` 后，团队通常将 Token 消耗降低 **30-50%**。
 
 ### 10 人开发团队的推荐部署方案是什么？
 
@@ -484,7 +485,7 @@ LLM 可观测性不是奢侈品——它是**基础设施**。能够交付可靠
 - "RAG Pipeline Optimization Patterns" —— dibi8.com 内部研究
 
 
----
+* * *
 **联盟披露：** 本文中的部分链接是联盟链接。如果你使用我们的 [DigitalOcean 推荐链接](https://m.do.co/c/eca87ac14ee0) 注册，你将获得 $200 信用额度，我们也会获得推荐奖励——不会增加你的额外成本。这支持我们的独立研究并保持内容免费。
 
 
@@ -550,11 +551,11 @@ Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水�
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -564,7 +565,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](arize-ai-observability-llm)
 - [moneyprinterturbo-one-click-ai-video-generator](arize-ai-observability-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -12,6 +12,7 @@ maintainer: ruvnet
 license: MIT
 featureImage: "https://raw.githubusercontent.com/ruvnet/RuView/main/assets/ruview-seed.png"
 ---
+
 ## Introduction
 
 WiFi has become more than just a means of connecting devices to the internet — it has evolved into a spatial intelligence platform capable of tracking real-time positions, mapping building layouts, and optimizing wireless networks. RuView, developed by ruvnet, is an open-source Python platform that transforms WiFi signals into precise spatial data, turning your existing WiFi infrastructure into a powerful sensing system.
@@ -54,53 +55,53 @@ RuView is distributed as a Python package on PyPI, making installation straightf
 
 ### Install via pip
 
-```bash
+````bash
 pip install ruview
-```
+`````
 
 This installs the core RuView package with default dependencies including NumPy, SciPy, and scikit-learn. The installation typically completes in under 30 seconds on a standard connection.
 
 ### Verify Installation
 
-```bash
+`````bash
 ruview --help
-```
+`````
 
 ### Install with All Optional Dependencies
 
-```bash
+`````bash
 pip install ruview[all]
-```
+`````
 
-The `[all]` extra installs additional dependencies for advanced features including CSI processing, real-time streaming, and GPU acceleration.
+The ````[all]```` extra installs additional dependencies for advanced features including CSI processing, real-time streaming, and GPU acceleration.
 
 ### Install from Source
 
-```bash
+`````bash
 git clone https://github.com/ruvnet/RuView.git && cd RuView && pip install -e .
-```
+`````
 
 Installing from source gives you access to the latest features and allows you to contribute changes back to the project.
 
 ### Docker Installation
 
-```bash
+`````bash
 docker run --rm -it ruview/ruview ruview --help
-```
+`````
 
 ### Install with GPU Acceleration
 
-```bash
+`````bash
 pip install ruview[cuda]
-```
+`````
 
 Requires NVIDIA CUDA toolkit version 11.0 or higher. GPU acceleration significantly improves CSI processing speeds, increasing throughput from 500 to 2500 samples per second.
 
 ### Install with Home Assistant MQTT Integration
 
-```bash
+`````bash
 pip install ruview[mqtt]
-```
+`````
 
 This installs the MQTT broker integration for Home Assistant compatibility, enabling automatic device registration via HA-DISCO.
 
@@ -110,61 +111,61 @@ This installs the MQTT broker integration for Home Assistant compatibility, enab
 
 ### Scan Available WiFi Devices
 
-```bash
+`````bash
 ruview scan --device wlan0
-```
+`````
 
 This scans the wlan0 network interface and outputs a list of visible WiFi devices with their signal strength and position estimates. Use this to discover devices in your environment.
 
 ### Start Real-Time Tracking
 
-```bash
+`````bash
 ruview track --device wlan0 --output tracking.json
-```
+`````
 
 This starts continuous position tracking of all WiFi-enabled devices visible through the wlan0 interface. Results are written to tracking.json in real-time at configurable intervals.
 
 ### Generate Floor Plan
 
-```bash
+`````bash
 ruview map --device wlan0 --output floorplan.png --resolution 0.1
-```
+`````
 
 This generates a floor plan image from WiFi signal data with 0.1 meter resolution. The output visualizes signal strength across the building, revealing walls, rooms, and coverage gaps.
 
 ### Optimize Mesh Network
 
-```bash
+`````bash
 ruview optimize --device wlan0 --points 100 --output config.yaml
-```
+`````
 
 This analyzes WiFi coverage and recommends optimal access point positions for a mesh network with 100 evaluation points. The output is a YAML configuration file that can be imported into network management tools.
 
 ### CSI Processing
 
-```bash
+`````bash
 ruview csi --device wlan0 --output csi-data.npy
-```
+`````
 
 This captures Channel State Information data from the specified WiFi interface and saves it to a NumPy array for further analysis.
 
 ### Export Position Data
 
-```bash
+`````bash
 ruview export --format csv --output positions.csv
-```
+`````
 
 ### View Statistics
 
-```bash
+`````bash
 ruview stats --device wlan0
-```
+`````
 
 ### MQTT Streaming
 
-```bash
+`````bash
 ruview --mqtt
-```
+`````
 
 Enables MQTT streaming mode, publishing position data to an MQTT broker for integration with IoT platforms and smart home systems.
 
@@ -172,21 +173,21 @@ Enables MQTT streaming mode, publishing position data to an MQTT broker for inte
 
 ### MQTT Integration with HA-DISCO
 
-```bash
+`````bash
 ruview mqtt --broker localhost:1883 --topic ruview/positions --qos 1
-```
+`````
 
 This streams position data to an MQTT broker for integration with smart building management systems. When used with Home Assistant's HA-DISCO MQTT publisher, RuView devices are automatically discovered and added to your Home Assistant instance.
 
 ### REST API Server
 
-```bash
+`````bash
 ruview api --host 0.0.0.0 --port 5000 --database ruview.db
-```
+`````
 
 Starts a REST API server for querying position data, managing tracked devices, and configuring tracking parameters. The API server runs on port 5000 by default.
 
-```bash
+`````bash
 # Query tracked devices
 curl http://localhost:5000/api/devices
 
@@ -197,33 +198,33 @@ curl http://localhost:5000/api/devices/device-001/position
 curl -X POST http://localhost:5000/api/config \
   -H "Content-Type: application/json" \
   -d '{"algorithm": "tof", "confidence_threshold": 0.9}'
-```
+`````
 
 ### Home Assistant Integration
 
-```yaml
+`````yaml
 # In your Home Assistant configuration.yaml
 sensor: - platform: ruview
     host: localhost
     port: 5000
     scan_interval: 5
-```
+`````
 
 RuView can integrate directly with Home Assistant for smart home automation based on presence detection. Combined with Matter Bridge support, tracked devices can be exposed to Apple Home, Google Home, and Alexa.
 
 ### Grafana Dashboard Integration
 
-```bash
+`````bash
 ruview grafana --port 3000 --dataset ruview
-```
+`````
 
 Pushes position data to Grafana for real-time visualization and monitoring. Configure dashboards to track device movements, coverage heatmaps, and network optimization metrics.
 
 ### Real-Time WebSocket Streaming
 
-```bash
+`````bash
 ruview stream --port 8765 --format websocket
-```
+`````
 
 This starts a WebSocket server on port 8765 that streams position data in real-time. Web applications can connect to receive live tracking updates without polling.
 
@@ -233,13 +234,13 @@ This starts a WebSocket server on port 8765 that streams position data in real-t
 
 | Environment | Algorithm | RMSE | Max Error |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Open office (RSSI) | RSSI-based | 1.2m | 3.5m |
 | Open office (ToF) | Time of Flight | 0.4m | 1.2m |
@@ -251,13 +252,13 @@ This starts a WebSocket server on port 8765 that streams position data in real-t
 
 | Method | Samples/sec | CPU Usage | Memory |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RSSI-based | 5000 | ~15% | ~200MB |
 | ToF | 2000 | ~30% | ~350MB |
@@ -266,35 +267,35 @@ This starts a WebSocket server on port 8765 that streams position data in real-t
 
 ### Mesh Optimization Performance
 
-For a 5000 square meter building with 10 access points: ```bash
+For a 5000 square meter building with 10 access points: `````bash
 time ruview optimize --device wlan0 --points 5000 --output optimization.yaml
 real 2m45s
 user 2m30s
 sys 0m12s
-```
+`````
 
 The optimizer finds optimal access point placements in under 3 minutes for typical building sizes, using simulated annealing to maximize coverage.
 
 ### Real-World Case: Smart Retail Store
 
-A retail chain uses RuView to track customer movement patterns across 12 store locations: ```bash
+A retail chain uses RuView to track customer movement patterns across 12 store locations: `````bash
 #!/bin/bash
 # Daily retail analytics pipeline
 for store in /data/stores/*/; do
     ruview scan --device wlan0 --output "$store/positions-$(date +%Y%m%d).json"
     ruview detect --device wlan0 --sensitivity 0.7 --output "$store/motion.json"
 done
-```
+`````
 
 The store uses this data to optimize product placement, analyze foot traffic patterns, and measure the effectiveness of in-store promotions.
 
 ### Real-World Case: Office Building WiFi Optimization
 
-An office building management team uses RuView to optimize WiFi coverage across 3 floors: ```bash
+An office building management team uses RuView to optimize WiFi coverage across 3 floors: `````bash
 # Run optimization across all floors
 ruview optimize --device wlan0 --points 5000 --output optimization.yaml
 ruview map --device wlan0 --output floorplan.svg --format svg
-```
+`````
 
 The optimization identifies 4 dead zones and recommends 3 additional access point placements, improving coverage from 72% to 98%.
 
@@ -302,30 +303,30 @@ The optimization identifies 4 dead zones and recommends 3 additional access poin
 
 ### Config File Setup
 
-```bash
+`````bash
 ruview init --config ruview.yaml
-```
+`````
 
-This creates a `ruview.yaml` configuration file with default settings. You can then customize: ```yaml
+This creates a ``ruview.yaml`` configuration file with default settings. You can then customize: `````yaml
 device: wlan0
 sample_rate: 100
 position_algorithm: tof
 confidence_threshold: 0.85
 output_format: json
 tracking_interval: 0.5
-```
+`````
 
 ### Multi-Device Tracking
 
-```bash
+`````bash
 ruview track --device wlan0 --device wlan1 --mode multi
-```
+`````
 
 Tracks devices using multiple WiFi interfaces simultaneously, improving accuracy through sensor fusion and redundant measurements.
 
 ### Custom Positioning Algorithm
 
-```python
+`````python
 import ruview
 
 # Define a custom positioning algorithm
@@ -338,47 +339,47 @@ ruview.register_algorithm("custom_tri", custom_triangulation)
 
 # Use the custom algorithm
 ruview.track(device="wlan0", algorithm="custom_tri")
-```
+`````
 
 ### Batch Processing
 
-```bash
+`````bash
 ruview batch --input /data/wifi-captures/ --output /data/positions/ --parallel 4
-```
+`````
 
 Processes multiple WiFi capture files in parallel using 4 worker processes, ideal for processing historical data.
 
 ### Floor Plan Export Formats
 
-```bash
+`````bash
 ruview map --device wlan0 --output floorplan.svg --format svg
 ruview map --device wlan0 --output floorplan.pdf --format pdf
 ruview map --device wlan0 --output floorplan.json --format json
-```
+`````
 
 RuView supports multiple output formats for floor plan generation including PNG, SVG, PDF, and JSON.
 
 ### Motion Detection
 
-```bash
+`````bash
 ruview detect --device wlan0 --sensitivity 0.7 --output motion.json
-```
+`````
 
 Detects motion and activity patterns through WiFi signal analysis. The sensitivity parameter controls the threshold for motion detection (0.0 to 1.0).
 
 ### Mesh Network Simulation
 
-```bash
+`````bash
 ruview simulate --floor-plan floorplan.json --num-aps 5 --iterations 1000 --output optimization.yaml
-```
+`````
 
 Simulates mesh network optimization over 1000 iterations to find optimal access point placements for a given floor plan.
 
 ### CSI Visualization
 
-```bash
+`````bash
 ruview visualize-csi --input csi-data.npy --output csi-visualization.html
-```
+`````
 
 Generates an interactive HTML visualization of Channel State Information data for detailed signal analysis.
 
@@ -386,17 +387,17 @@ Generates an interactive HTML visualization of Channel State Information data fo
 
 | Feature | RuView | AirWatch | Ekahau | NetSurveyor |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
-| Install Method | `pip install ruview` | Enterprise SaaS | Enterprise SaaS | Desktop app |
+| Install Method | ````pip install ruview```` | Enterprise SaaS | Enterprise SaaS | Desktop app |
 | Cost | Free (MIT) | $50K+/year | $25K+/year | $300/license |
 | Python API | Yes | No | No | Limited |
 | Real-Time Tracking | Yes | Yes | Yes | No |
@@ -448,13 +449,13 @@ A: Yes, RuView has built-in Home Assistant integration with HA-DISCO MQTT publis
 
 ## Conclusion: CTA
 
-RuView transforms standard WiFi infrastructure into a powerful spatial intelligence platform. With a simple `pip install ruview` command, you can start tracking device positions, generating floor plans, and optimizing WiFi mesh networks — all using standard WiFi adapters and no specialized hardware. The addition of Matter Bridge support means your WiFi sensing data can seamlessly integrate with smart home ecosystems including Apple Home, Google Home, and Alexa.
+RuView transforms standard WiFi infrastructure into a powerful spatial intelligence platform. With a simple ````pip install ruview```` command, you can start tracking device positions, generating floor plans, and optimizing WiFi mesh networks — all using standard WiFi adapters and no specialized hardware. The addition of Matter Bridge support means your WiFi sensing data can seamlessly integrate with smart home ecosystems including Apple Home, Google Home, and Alexa.
 
 Whether you are building a smart building system, optimizing WiFi coverage, developing location-aware applications, or creating privacy-preserving presence detection for Home Assistant, RuView provides the flexibility, accuracy, and ease of use you need at zero cost.
 
 For hosting your smart building infrastructure and IoT pipelines, consider deploying on affordable cloud servers. Use [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for development servers, [HTStack](https://my.htstack.com/aff.php?aff=27187) for production hosting, and [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) for reliable proxy and content distribution.
 
-Get started today: `pip install ruview && ruview scan --device wlan0` and discover what your WiFi network can really do.
+Get started today: ````pip install ruview && ruview scan --device wlan0``` and discover what your WiFi network can really do.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 
@@ -500,7 +501,7 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [ruvnet-ruview-wifi-spatial-intelligence-guide](ruvnet-ruview-wifi-spatial-intelligence-guide)
@@ -510,5 +511,5 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ruvnet-ruview-wifi-spatial-intelligence-guide)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -12,6 +12,7 @@ maintainer: humanlayer
 license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 ---
+
 ## Introduction
 
 Large language models have rapidly evolved from simple chat interfaces into complex, autonomous agents that make decisions, execute code, interact with external APIs, and collaborate with humans. Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful. Teams building LLM applications face the same structural challenges that plagued early cloud applications: brittle configurations, opaque behavior, inconsistent observability, and deployments that are hard to reproduce.
@@ -45,13 +46,13 @@ The framework defines twelve core principles. Each one maps a traditional softwa
 
 Maintain a single codebase for each agent, tracked in version control. Unlike traditional microservice architectures where code is distributed across many repositories, 12-Factor Agents recommends that each distinct agent — even if it orchestrates multiple LLM calls — be represented by a single, cohesive codebase. This keeps the configuration, prompt templates, tool definitions, and business logic tightly coupled and easy to reason about.
 
-```
+````
 # Initialize a new 12-factor agent project
 npx create-12-factor-agent my-agent
 
 # Or with uvx
 uvx create-12-factor-agent my-agent
-```
+`````
 
 ### 2. Dependencies
 
@@ -61,13 +62,13 @@ Explicitly declare and isolate all dependencies. LLM agents have an unusually ri
 
 Store configuration in the environment. Agent configuration — API keys, model endpoints, temperature settings, guardrail thresholds — must never be hardcoded. Use environment variables or a secrets manager. This principle is especially critical for agents because they frequently access sensitive external services and user data.
 
-```bash
+`````bash
 # Set environment variables for your agent
 export OPENAI_API_KEY="sk-..."
 export REDIS_URL="redis://localhost:6379"
 export GUARDRAIL_THRESHOLD="0.85"
 export HUMAN_APPROVAL_ENDPOINT="https://approval.example.com/queue"
-```
+`````
 
 ### 4. Backing Services
 
@@ -77,13 +78,13 @@ Treat backing services as attached resources. LLM agents connect to a proliferat
 
 Strictly separate build and run stages. The build phase assembles your agent code, its dependencies, prompt templates, and tool definitions into a release artifact. The run phase executes that release against any environment. This separation is critical for reproducibility: the same release should behave identically whether running in development, staging, or production.
 
-```bash
+`````bash
 # Build phase: package the agent
 npx create-12-factor-agent build --output dist/agent-release.tar.gz
 
 # Run phase: deploy the release
 docker run --env-file .env agent-release:latest
-```
+`````
 
 ### 6. Processes
 
@@ -93,10 +94,10 @@ Execute the agent as one or more stateless processes. Each agent process should 
 
 Export services via port binding. Agents that expose HTTP APIs, WebSocket endpoints, or event listeners should bind to ports explicitly rather than relying on a framework-managed reverse proxy. This gives operators full control over networking, routing, and load balancing.
 
-```bash
+`````bash
 # Run the agent server on a specific port
 python agent_server.py --port 8080 --host 0.0.0.0
-```
+`````
 
 ### 8. Concurrency
 
@@ -110,11 +111,11 @@ Maximize robustness with fast startup and graceful shutdown. Agent processes sho
 
 Keep development, staging, and production as similar as possible. The biggest source of bugs in LLM agents is the gap between development and production environments. The framework recommends using identical model providers, identical prompt templates, and identical backing services across all environments, with only configuration differences.
 
-```bash
+`````bash
 # Use identical setup across environments
 npx create-12-factor-agent init --env staging
 npx create-12-factor-agent init --env production
-```
+`````
 
 ### 11. Logs
 
@@ -124,17 +125,17 @@ Treat logs as event streams. Agent logs should be emitted as structured JSON eve
 
 Run admin/management processes as one-off processes. Administrative tasks — database migrations, prompt template updates, model provider configuration changes, audit log exports — should be run as one-off processes attached to the release. This keeps admin operations consistent with the framework's deployment model.
 
-```bash
+`````bash
 # Run admin tasks as one-off processes
 npx create-12-factor-agent admin:migrate --env production
 npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv
-```
+`````
 
 ## How It Works
 
-The 12-Factor Agents framework operates through a combination of CLI tooling and architectural conventions. The primary entry point is the `create-12-factor-agent` CLI, which scaffolds a project with the recommended directory structure, configuration management, and observability hooks.
+The 12-Factor Agents framework operates through a combination of CLI tooling and architectural conventions. The primary entry point is the ````create-12-factor-agent```` CLI, which scaffolds a project with the recommended directory structure, configuration management, and observability hooks.
 
-Here is a typical workflow: ```bash
+Here is a typical workflow: `````bash
 # Step 1: Scaffold a new agent project
 npx create-12-factor-agent finance-bot
 
@@ -148,7 +149,7 @@ cd finance-bot
 # - services/      (backing service integrations)
 # - tests/         (testing utilities)
 # - docker-compose.yml (local development environment)
-```
+`````
 
 The generated project uses a layered architecture. At the bottom layer, backing services connect to the environment's configuration. Above that, the tools and services layers provide the agent's capabilities. At the top, the prompt templates orchestrate these capabilities into coherent agent behaviors.
 
@@ -156,25 +157,25 @@ The generated project uses a layered architecture. At the bottom layer, backing 
 
 ## Installation and Setup
 
-As a principles-based framework, 12-Factor Agents does not require a traditional `pip install` or `npm install`. Instead, you use one of two CLI tools to generate a project scaffold: ```bash
+As a principles-based framework, 12-Factor Agents does not require a traditional ``pip install`` or ``npm install``. Instead, you use one of two CLI tools to generate a project scaffold: `````bash
 # Method 1: Using npx (Node.js)
 npx create-12-factor-agent
 
 # Method 2: Using uvx (Python, requires uv package manager)
 uvx create-12-factor-agent
-```
+`````
 
-Both tools create a new directory with the recommended project structure, a `.env.example` file listing all required environment variables, a Dockerfile, and a basic agent implementation that you customize.
+Both tools create a new directory with the recommended project structure, a ````.env.example```` file listing all required environment variables, a Dockerfile, and a basic agent implementation that you customize.
 
-```bash
+`````bash
 # Install uv if you haven't already
 pip install uv
 
 # Create a new agent project
 uvx create-12-factor-agent --name my-agent --template production
-```
+`````
 
-For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation: ```bash
+For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation: `````bash
 # Checklist verification script
 # Verify your agent follows 12-factor principles
 cat > verify-12factor.sh << 'EOF'
@@ -187,7 +188,7 @@ echo "Verification complete."
 EOF
 chmod +x verify-12factor.sh
 ./verify-12factor.sh
-```
+`````
 
 ## Integration Patterns
 
@@ -197,7 +198,7 @@ chmod +x verify-12factor.sh
 
 The framework has first-class support for human-in-the-loop workflows. When an agent encounters an action that requires human approval, it pauses and posts a request to the configured approval endpoint. The human reviews the request in a dashboard, approves or rejects it, and the agent resumes.
 
-```bash
+`````bash
 # Configure human approval in environment
 export HUMAN_APPROVAL_SERVICE="https://approval.example.com"
 export HUMAN_APPROVAL_TIMEOUT="300"
@@ -205,11 +206,11 @@ export HUMAN_APPROVAL_RETRIES="3"
 
 # Start the agent with human-in-the-loop enabled
 npx create-12-factor-agent run --enable-hil
-```
+`````
 
 ### Observability Integration
 
-Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends: ```bash
+Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends: `````bash
 # Configure OpenTelemetry for distributed tracing
 export OTEL_SERVICE_NAME="finance-bot"
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://jaeger:4317"
@@ -217,13 +218,13 @@ export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
 
 # Run with telemetry enabled
 npx create-12-factor-agent run --telemetry enabled
-```
+`````
 
 ### Multi-Agent Orchestration
 
 For complex tasks, the framework supports orchestrating multiple agents that each follow the 12-factor principles. A supervisor agent delegates subtasks to worker agents, collects their results, and synthesizes a final response.
 
-```bash
+`````bash
 # Define a multi-agent configuration
 cat > agents.yaml << 'EOF'
 supervisor: model: gpt-4o
@@ -235,7 +236,7 @@ workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [data_analysis, chart_generation]
 EOF
-```
+`````
 
 ## Benchmarks and Adoption
 
@@ -245,13 +246,13 @@ While 12-Factor Agents is a principles framework rather than a benchmarked produ
 
 Teams adopting the 12-factor principles report measurable improvements: | Metric | Before 12-Factor | After 12-Factor | Improvement |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Mean Time to Recovery (MTTR) | 4.2 hours | 47 minutes | 81% reduction |
 | Agent failure rate | 18.5% | 3.2% | 83% reduction |
@@ -267,7 +268,7 @@ The framework has been adopted by hundreds of teams building production LLM appl
 
 ### Custom Tool Registries
 
-12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code: ```bash
+12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code: `````bash
 # Register custom tools
 npx create-12-factor-agent tools:register \
   --source ./tools/custom \
@@ -277,11 +278,11 @@ npx create-12-factor-agent tools:register \
 npx create-12-factor-agent tools:test \
   --registry ./tools/registry.yaml \
   --output ./test-results
-```
+`````
 
 ### Prompt Template Versioning
 
-Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme: ```bash
+Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme: `````bash
 # Version prompt templates
 npx create-12-factor-agent prompts:version \
   --name "finance-summary" \
@@ -292,11 +293,11 @@ npx create-12-factor-agent prompts:version \
 npx create-12-factor-agent prompts:rollback \
   --name "finance-summary" \
   --to-version v2.0.3
-```
+`````
 
 ### Rate Limiting and Guardrails
 
-Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting: ```bash
+Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting: `````bash
 # Configure rate limits
 cat > rate-limits.yaml << 'EOF'
 global: requests_per_minute: 60
@@ -308,17 +309,17 @@ EOF
 
 # Apply rate limits
 npx create-12-factor-agent run --rate-limits rate-limits.yaml
-```
+`````
 
 ### Audit Logging
 
-For regulated industries, audit logging tracks every decision an agent makes: ```bash
+For regulated industries, audit logging tracks every decision an agent makes: `````bash
 # Enable comprehensive audit logging
 export AUDIT_LOG_PATH="/var/log/agents/finance-bot/audit.jsonl"
 export AUDIT_LOG_RETENTION_DAYS="365"
 
 npx create-12-factor-agent run --audit-logging enabled
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -326,15 +327,15 @@ How does 12-Factor Agents compare to other approaches for building reliable LLM 
 
 | Feature | 12-Factor Agents | LangChain | LlamaIndex | DSPy |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Philosophy | Principles-based framework | Code library | Code library | Compiler-based optimization |
 | Learning curve | Medium (conceptual) | High | High | High |
@@ -356,7 +357,7 @@ No framework is perfect, and 12-Factor Agents has some notable limitations: **No
 
 **Steep Conceptual Learning Curve.** Understanding why each of the twelve factors matters in the LLM context requires reading and reflection. New teams may find it overwhelming to adopt all twelve factors at once. The recommended approach is to start with factors 1, 2, 3, and 10 (Codebase, Dependencies, Config, and Dev/Prod Parity) and layer in the rest over time.
 
-**No Official SDK.** Unlike competing frameworks, there is no official software development kit that implements all twelve factors. The `create-12-factor-agent` CLI is a community tool, not an official product. This means you may need to adapt the scaffold to your specific stack.
+**No Official SDK.** Unlike competing frameworks, there is no official software development kit that implements all twelve factors. The ````create-12-factor-agent``` CLI is a community tool, not an official product. This means you may need to adapt the scaffold to your specific stack.
 
 **Limited Native Support for Specific LLM Providers.** The framework is provider-agnostic by design, which is a feature but also means it doesn't provide deep integrations with any single model provider's unique features.
 
@@ -403,7 +404,7 @@ Whether you are just starting with LLM agents or scaling an existing system, the
 
 
 
----
+* * *
 **Sources & Further Reading**: - Official docs: https://12-factor-agents.dev (check official repo)
 - GitHub repository: https://github.com/12-factor-agents/11/12/factor/agents
 - Community discussion: https://github.com/12-factor-agents/discussions
@@ -418,7 +419,7 @@ Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
 Try the tool discussed above. If it's a paid service, check for affiliate offers.
 
 
----
+* * *
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 
 
@@ -447,7 +448,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -457,7 +458,7 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 - [12-factor-agents-production-llm-software-2026](12-factor-agents)
 - [1m-context-window-llm-2026-real-test](12-factor-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

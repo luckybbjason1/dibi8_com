@@ -11,7 +11,8 @@ tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agen
 aliases:
   - /posts/claude-code-custom-agent-authoring/
 faq: - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
-    a: "自定义 agent 是带 YAML frontmatter 的 Markdown 文件，存放在项目里的 .claude/agents/ 目录（或 ~/.claude/agents/ 用于希望在所有项目中都可用的 agent）。文件名去掉 .md 后缀并不是 agent 的身份——frontmatter 里的 name 字段才是。frontmatter 声明 name、description、可选的 tools 白名单和可选的 model；结尾--- 之下的全部内容就是 agent 的系统提示词。"
+    a: "自定义 agent 是带 YAML frontmatter 的 Markdown 文件，存放在项目里的 .claude/agents/ 目录（或 ~/.claude/agents/ 用于希望在所有项目中都可用的 agent）。文件名去掉 .md 后缀并不是 agent 的身份——frontmatter 里的 name 字段才是。frontmatter 声明 name、description、可选的 tools 白名单和可选的 model；结尾---
+ 之下的全部内容就是 agent 的系统提示词。"
   - q: "description 字段和系统提示词正文有什么区别？"
     a: "description 是路由信号：父 agent 在决定是否委派时读的就是它，所以它必须说清楚『何时』使用该 agent，而不只是它是什么。系统提示词正文则是 agent 被调用后运行的指令集——它的角色、方法、输出契约。description 出色但正文含糊，会在对的时机被触发却干出平庸的活；正文出色但 description 含糊，会干出色的活却永远不被触发。"
   - q: "我该给自定义 agent 开放所有工具，还是限制它们？"
@@ -29,7 +30,7 @@ faq: - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
 
 ## 引言
 
-在 [Claude Code 子智能体五大模式](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) 一文里，我们讲了五种善用上下文窗口的工作流——其中第五个，**用自定义 agent 做流水线编排**，是团队问得最多的。"把你的审查清单编码成子智能体"听起来很美，直到你打开一个空白的 `.claude/agents/migration-reviewer.md`，面对一个闪烁的光标。
+在 [Claude Code 子智能体五大模式](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) 一文里，我们讲了五种善用上下文窗口的工作流——其中第五个，**用自定义 agent 做流水线编排**，是团队问得最多的。"把你的审查清单编码成子智能体"听起来很美，直到你打开一个空白的 ```.claude/agents/migration-reviewer.md````，面对一个闪烁的光标。
 
 这篇指南就是那本缺失的手册。我们会走一遍自定义 agent 定义的解剖结构、每个 frontmatter 字段到底控制什么、怎么写出能产出结构化报告而非啰嗦闲聊的系统提示词、为什么工具白名单比看起来重要、以及两个完整、可直接投产、今天就能抄走的范例。然后讲坑——因为这里的失败模式很微妙，而且第一次漏掉明显问题时，你对这个 agent 的信任就崩了。
 
@@ -39,52 +40,52 @@ faq: - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
 
 一个自定义 agent 就是一个带 YAML frontmatter 的 Markdown 文件。它住在两个位置之一：
 
-- `.claude/agents/<name>.md` —— 项目级、受版本控制、与全团队共享
-- `~/.claude/agents/<name>.md` —— 用户级、在你机器上的每个项目里都可用
+- ````.claude/agents/<name>.md```` —— 项目级、受版本控制、与全团队共享
+- ````~/.claude/agents/<name>.md```` —— 用户级、在你机器上的每个项目里都可用
 
 结构极其简单：
 
-```markdown
+`````markdown
 
----
+* * *
 name: migration-reviewer
 description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
 tools: Read, Grep, Glob
 model: sonnet
 
----
+* * *
 You are a database migration reviewer. Your job is to catch unsafe
 migrations before they reach production...
-```
+`````
 
-结尾 `
----
-` 之上的全是配置，之下的全是**系统提示词**——子智能体运行时的人设与指令集。这就是全部契约。没有构建步骤、没有注册、没有插件清单。把文件放进去，运行 `/agents` 确认 Claude Code 识别到了，就能调用。
+结尾 ````
+* * *
+```` 之上的全是配置，之下的全是**系统提示词**——子智能体运行时的人设与指令集。这就是全部契约。没有构建步骤、没有注册、没有插件清单。把文件放进去，运行 ````/agents```` 确认 Claude Code 识别到了，就能调用。
 
 ## Frontmatter 字段
 
 四个字段完成全部工作。其中三个是可选的，但默认值很少是你认真做一个 agent 时想要的。
 
-### `name`（必填）
+### ````name````（必填）
 
-agent 的身份——这是父 agent 作为 `subagent_type` 传入的字符串。保持 kebab-case 且有描述性：用 `security-auditor`，别用 `agent2`。文件名是表面的；`name` 字段才是规范来源。
+agent 的身份——这是父 agent 作为 ````subagent_type```` 传入的字符串。保持 kebab-case 且有描述性：用 ````security-auditor````，别用 ````agent2````。文件名是表面的；````name```` 字段才是规范来源。
 
-### `description`（必填——也是最被低估的）
+### ````description````（必填——也是最被低估的）
 
 这是**路由信号**。父 agent 决定是否委派时，读的是 description，不是系统提示词。所以 description 必须用具体的触发条件编码出『何时』该找这个 agent：
 
-> ❌ `description: A code reviewer.`
-> ✅ `description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.`
+> ❌ ````description: A code reviewer.````
+> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
 
 "proactively"（主动地）这个词是承重的——它推动父 agent 不必被明确要求就主动调用。如果你的 agent 似乎从不触发，几乎总是 description 的问题。
 
-### `tools`（可选——但还是声明上）
+### ````tools````（可选——但还是声明上）
 
 逗号分隔的白名单。省略它，agent 就继承父 agent 拥有的每一个工具。我们会用一整节讲为什么这通常是错的。
 
-### `model`（可选）
+### ````model````（可选）
 
-钉死一个档位：`haiku` 用于便宜的机械化处理，`sonnet` 用于均衡的审查工作，`opus` 用于深度推理。一个高频的 linter 式 agent 用 `haiku` 能把成本压住；一个漏掉就代价高昂的安全审计器配 `opus`。
+钉死一个档位：````haiku```` 用于便宜的机械化处理，````sonnet```` 用于均衡的审查工作，````opus```` 用于深度推理。一个高频的 linter 式 agent 用 ````haiku```` 能把成本压住；一个漏掉就代价高昂的安全审计器配 ````opus````。
 
 ## 编写系统提示词
 
@@ -94,40 +95,40 @@ agent 的身份——这是父 agent 作为 `subagent_type` 传入的字符串�
 
 **2. 明确输出契约。**含糊的提示词产出散文；你要的是结构。把它写死：
 
-```markdown
+`````markdown
 Report your findings as a list. For each issue: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM: one sentence
 - FIX: the concrete change
 End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
-```
+`````
 
 **3. 给它清单，不是感觉。**"审查安全性"是个愿望。把要检查的内容逐条列出——agent 会确定性地走完你的清单，这正是把它编码下来的全部价值。
 
 ## 工具白名单：给 Agent 立最小权限
 
-这里有个陷阱。把 `tools` 留空，你的"审查器"就继承了 `Write`、`Edit`、`Bash`。它第一次发现问题时，可能就"热心地"修了——改动你的工作树、运行命令，毁掉了让这次审查有价值的那份独立性。
+这里有个陷阱。把 ````tools```` 留空，你的"审查器"就继承了 ````Write````、````Edit````、````Bash````。它第一次发现问题时，可能就"热心地"修了——改动你的工作树、运行命令，毁掉了让这次审查有价值的那份独立性。
 
 解法是最小权限。让工具匹配职责：
 
 | Agent 类型 | 工具 |
 | --- | --- |
-| 审查器 / 审计器 | `Read, Grep, Glob` |
-| 调研器 / 探索器 | `Read, Grep, Glob, WebSearch, WebFetch` |
-| 测试运行器 | `Read, Grep, Glob, Bash` |
-| 修复器（罕见、刻意） | `Read, Edit, Bash` |
+| 审查器 / 审计器 | ````Read, Grep, Glob```` |
+| 调研器 / 探索器 | ````Read, Grep, Glob, WebSearch, WebFetch```` |
+| 测试运行器 | ````Read, Grep, Glob, Bash```` |
+| 修复器（罕见、刻意） | ````Read, Edit, Bash```` |
 
 一个只读的审查器字面上『无法』乱来。这份可预测性，正是让你不必复查它碰过的一切就敢信它报告的原因。（如果你之后通过 [MCP 服务器](/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) 接入外部系统，同样的纪律适用——只授予 agent 真正需要的 MCP 工具。）
 
 ## 实战范例：迁移审查器
 
-```markdown
----
+`````markdown
+* * *
 name: migration-reviewer
 description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
 tools: Read, Grep, Glob
 model: sonnet
----
+* * *
 
 You are a database migration reviewer. You do NOT edit files or run
 migrations — you read the proposed migration and report risks.
@@ -142,19 +143,19 @@ Report findings as: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM / FIX
 End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
-```
+`````
 
-用自然语言请求从父 agent 调用它——"审查这个分支上的迁移"——因为 description 点名了 `db/migrate/`，父 agent 会自己路由过去。
+用自然语言请求从父 agent 调用它——"审查这个分支上的迁移"——因为 description 点名了 ````db/migrate/````，父 agent 会自己路由过去。
 
 ## 实战范例：安全闸门
 
-```markdown
----
+`````markdown
+* * *
 name: security-gate
 description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
 tools: Read, Grep, Glob
 model: opus
----
+* * *
 
 You are a security reviewer with a threat-modeling mindset. Assume the
 input is hostile. You report only — you never modify code.
@@ -167,17 +168,17 @@ For the diff, check: - Authn/authz: can this path be reached without the expecte
 For each finding give an EXPLOIT SKETCH (how an attacker triggers it),
 then the FIX. Default to flagging when uncertain — false positives are
 cheap, a missed auth hole is not.
-```
+`````
 
-注意 `opus` 档位和"不确定时默认标记"的指令——对安全闸门，你要往偏执方向调。
+注意 ````opus```` 档位和"不确定时默认标记"的指令——对安全闸门，你要往偏执方向调。
 
 ## 测试与迭代 Agent
 
-别上线一个你没试图骗过的 agent。开一个 [git worktree](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) 或临时分支，里面放一个『埋好』的问题——缺 `CONCURRENTLY` 的迁移、缺所有权检查的接口——然后调用 agent。
+别上线一个你没试图骗过的 agent。开一个 [git worktree](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) 或临时分支，里面放一个『埋好』的问题——缺 ````CONCURRENTLY```` 的迁移、缺所有权检查的接口——然后调用 agent。
 
 你在测两件互相独立的事：
 
-- **它被自然请求触发了吗？**没有就改 `description`。
+- **它被自然请求触发了吗？**没有就改 ````description````。
 - **它抓到你埋的 bug 了吗？**没有就改系统提示词的清单。
 
 这俩出问题的原因不同，所以分开迭代。一个常见的意外：你显式点名时 agent 工作完美，但从不自己触发——那永远是 description 问题，不是正文问题。
@@ -185,7 +186,7 @@ cheap, a missed auth hole is not.
 ## 常见编写错误
 
 - **description 含糊。**agent 干着没人触发的好活。加上具体文件路径和"proactively"。
-- **没有工具白名单。**你的审查器把本该审查的代码改了。声明 `Read, Grep, Glob`。
+- **没有工具白名单。**你的审查器把本该审查的代码改了。声明 ````Read, Grep, Glob```。
 - **散文输出、无契约。**你拿到三段意见而非分级清单。明确指定报告格式。
 - **一个巨型 agent。**单个"啥都干"的 agent 不过是带额外步骤的父 agent。按关注点拆分——那就是 [专家委派模式](/zh/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) 在为你工作。
 - **建完即忘。**agent 是代码。无人维护的清单会随着技术栈变化而腐烂。每季度审一次。
@@ -279,12 +280,12 @@ Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -294,7 +295,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-custom-agent-authoring-guide-2026)
 - [cursor-vs-claude-code](claude-code-custom-agent-authoring-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -325,15 +326,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

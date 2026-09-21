@@ -34,6 +34,7 @@ faqs: - q: 'ML Systems Book 涵盖哪些主题？'
   - q: 'ML Systems Book 适合哪些读者？'
     a: '本书面向需要在生产环境中扩展训练规模、部署低延迟模型的 ML 工程师，正在向 ML 方向转型的软件工程师，希望加速实验迭代的研究人员，以及需要规划 ML 基础设施投入与团队架构的工程管理者。'---
 
+
 {</* resource-info */>}
 
 ## 问题：算法之外，ML 工程师还需要什么？
@@ -64,7 +65,7 @@ faqs: - q: 'ML Systems Book 涵盖哪些主题？'
 
 ### 1. 数据工程（Data Engineering）
 
-```python
+````python
 # 低效的数据加载是训练瓶颈的第一元凶
 # 本书教你构建高效的数据流水线
 
@@ -78,7 +79,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
            .map(preprocess, num_parallel_calls=tf.data.AUTOTUNE)
            .cache()
            .prefetch(tf.data.AUTOTUNE))
-```
+`````
 
 覆盖主题：
 - 数据格式（TFRecord, Parquet, Arrow）
@@ -92,9 +93,9 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 |
 ---
 |
----
+* * *
 |
----
+* * *
 |
 | **量化 (Quantization)** | INT8/FP16 推理 | 边缘设备部署 |
 | **剪枝 (Pruning)** | 减少参数量 | 模型压缩 |
@@ -104,13 +105,13 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ### 3. 硬件感知训练（Hardware-Aware Training）
 
-```python
+`````python
 # 理解硬件特性才能写出高效的训练代码
 
 # GPU: 内存带宽是瓶颈 → 减少数据传输
 # TPU: 矩阵乘法优化 → 使用合适的 batch size
 # Edge NPU: 定点运算 → 量化感知训练
-```
+`````
 
 - **GPU**: CUDA 编程、内存管理、多卡并行
 - **TPU**: XLA 编译、Pod 架构、GSPMD
@@ -118,7 +119,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ### 4. 推理加速（Inference Acceleration）
 
-```python
+`````python
 # 从 100ms 降到 10ms 的工程实践
 
 # 1. 模型转换: ONNX → TensorRT
@@ -126,7 +127,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 # 3. 内存优化: 权重共享、激活重计算
 # 4. 批处理: 动态 batching + 请求合并
 # 5. 缓存: 结果缓存 + 模型预热
-```
+`````
 
 ### 5. 部署与 MLOps
 
@@ -137,13 +138,13 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ### 6. 边缘与嵌入式 ML（Edge / TinyML）
 
-```cpp
+`````cpp
 // 在微控制器上运行 ML (TinyML)
 #include "tensorflow/lite/micro/micro_interpreter.h"
 
 // 模型只有 20KB，运行在 16MHz 的 Arduino 上
 // 却能做语音唤醒、手势识别
-```
+`````
 
 - **模型压缩**: 从 100MB 压到 100KB
 - **硬件平台**: Arduino, ESP32, Raspberry Pi
@@ -151,7 +152,7 @@ dataset = (tf.data.Dataset.from_tensor_slices(data)
 
 ## 知识架构
 
-```
+`````
 ML Systems Book
 ├── Part 1: Foundations
 │   ├── ML 回顾
@@ -181,27 +182,27 @@ ML Systems Book
     ├── CI/CD for ML
     ├── 监控与可观测性
     └── 伦理与安全
-```
+`````
 
 ## 获取方式
 
 ### 免费在线阅读
 
-```
+`````
 https://mlsysbook.ai/book/
-```
+`````
 
 ### 免费 PDF 下载
 
-```
+`````
 https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf
-```
+`````
 
 ### GitHub 源码
 
-```bash
+`````bash
 git clone https://github.com/harvard-edge/cs249r_book.git
-```
+````
 
 ### 纸质版购买
 
@@ -213,9 +214,9 @@ git clone https://github.com/harvard-edge/cs249r_book.git
 
 | 读者 | 收获 |
 |
----
+* * *
 |
----
+* * *
 |
 | **ML 研究员** | 理解模型之外的系统约束 |
 | **Software Engineering师** | 转型 ML 工程的知识地图 |
@@ -227,13 +228,13 @@ git clone https://github.com/harvard-edge/cs249r_book.git
 
 | 资源 | 侧重点 | 价格 | 实践性 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **ML Systems Book** | 系统工程 | 免费 | ⭐⭐⭐⭐⭐ |
 | **Deep Learning Book** (Goodfellow) | 算法理论 | $80 | ⭐⭐⭐ |
@@ -270,7 +271,7 @@ ML Systems Book 是**目前最全面的 ML 系统工程教材**，而且**完全
 - [Hermes Agent: Self-Improving AI Agent](/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/)
 
 
----
+* * *
 ## 推荐工具
 
 跑或部署开源 AI 工具时，推荐：
@@ -344,6 +345,6 @@ ML Systems Book：MIT 出品的免费机器学习系统圣经 represents an impo
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

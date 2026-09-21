@@ -23,6 +23,7 @@ tags: ["bookstack", "documentation", "wiki", "self-hosted", "php", "laravel", "k
 aliases:
   - /posts/bookstack-documentation-wiki/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: The Documentation Mess Every Team Faces
@@ -43,9 +44,9 @@ BookStack is a free, open-source, MIT-licensed documentation wiki built with PHP
 
 BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward: | Layer | Technology |
 |
----
+* * *
 |
----
+* * *
 |
 | **Backend** | PHP 8.2+ on Laravel 11.x |
 | **Database** | MySQL 8.0+ or MariaDB 10.6+ |
@@ -69,7 +70,7 @@ The fastest way to run BookStack is with Docker Compose. You need a server with 
 
 ### Step 1: Create the Docker Compose file
 
-```yaml
+````yaml
 version: '3.8'
 
 services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
@@ -98,13 +99,13 @@ services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4
       - MYSQL_PASSWORD=your_secure_db_password
     volumes: - ./bookstack_db_data:/config
     restart: unless-stopped
-```
+`````
 
 This compose file defines two services: the BookStack application on port 6875 and a MariaDB database for persistence.
 
 ### Step 2: Launch the stack
 
-```bash
+`````bash
 # Create data directories
 mkdir -p bookstack_app_data bookstack_db_data
 
@@ -116,23 +117,23 @@ sleep 45
 
 # Check logs to confirm startup
 docker logs bookstack
-```
+`````
 
-You should see Laravel bootstrapping messages followed by `NOTICE: ready to handle connections` from PHP-FPM. If the database connection fails, check that the DB_HOST matches the service name `bookstack_db` and the credentials align.
+You should see Laravel bootstrapping messages followed by ````NOTICE: ready to handle connections```` from PHP-FPM. If the database connection fails, check that the DB_HOST matches the service name ````bookstack_db```` and the credentials align.
 
 ### Step 3: Access and configure
 
-```bash
+`````bash
 # Default credentials on first boot
 # Username: admin@admin.com
 # Password: password
-```
+`````
 
-Navigate to `http://your-server-ip:6875` and log in. **Immediately change the admin password** under Settings → Users. Then configure your APP_URL to use HTTPS — BookStack generates absolute URLs in email notifications and exports, so getting the APP_URL right from the start prevents broken links later.
+Navigate to ````http://your-server-ip:6875```` and log in. **Immediately change the admin password** under Settings → Users. Then configure your APP_URL to use HTTPS — BookStack generates absolute URLs in email notifications and exports, so getting the APP_URL right from the start prevents broken links later.
 
 ### Step 4: Nginx reverse proxy with SSL
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/bookstack
 server {
     listen 443 ssl http2;
@@ -155,13 +156,13 @@ server {
     server_name docs.yourdomain.com;
     return 301 https://$server_name$request_uri;
 }
-```
+`````
 
-After enabling the site and obtaining certificates with Certbot, update the `APP_URL` in your docker-compose.yml to `https://docs.yourdomain.com` and restart the container.
+After enabling the site and obtaining certificates with Certbot, update the ````APP_URL```` in your docker-compose.yml to ````https://docs.yourdomain.com```` and restart the container.
 
 ### Manual installation (Ubuntu 24.04 LTS)
 
-If you prefer bare-metal deployment: ```bash
+If you prefer bare-metal deployment: `````bash
 # Install dependencies
 sudo apt update
 sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap \
@@ -189,7 +190,7 @@ php artisan migrate
 chown -R www-data:www-data /var/www/BookStack
 chmod -R 755 /var/www/BookStack
 chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache
-```
+`````
 
 The manual route gives you more control but requires you to manage PHP, the web server, and MySQL separately. For production, Docker is the recommended path.
 
@@ -199,7 +200,7 @@ BookStack supports multiple authentication backends. For enterprise deployments,
 
 ### LDAP Authentication (Active Directory / OpenLDAP)
 
-```bash
+`````bash
 # Add to your .env file
 AUTH_METHOD=ldap
 LDAP_SERVER=ldap.company.com
@@ -212,13 +213,13 @@ LDAP_TLS=true
 LDAP_ID_ATTRIBUTE=uid
 LDAP_DISPLAY_NAME_ATTRIBUTE=cn
 LDAP_EMAIL_ATTRIBUTE=mail
-```
+`````
 
 After restarting the container, BookStack will authenticate users against your LDAP directory. Users are auto-provisioned on first login, so you do not need to manually create accounts.
 
 ### SAML 2.0 (for Okta, Azure AD, OneLogin)
 
-```bash
+`````bash
 # SAML configuration in .env
 AUTH_METHOD=saml2
 SAML2_NAME=SSO
@@ -228,19 +229,19 @@ SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name
 SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata
 SAML2_IDP_SSO=https://your-idp.example.com/sso
 SAML2_IDP_x509="MIIDXTCCAkWgAwIBAgIJAJC1HiIA..."
-```
+`````
 
 ## Image Management & Content Editing
 
 BookStack ships with two editors. The **WYSIWYG editor** (TinyMCE-based) is the default — it handles images via drag-and-drop upload, supports tables, code blocks with syntax highlighting, and callout blocks for tips and warnings. The **Markdown editor** offers a split-screen experience with live preview, ideal for developers who prefer writing in Markdown.
 
-Uploading images is straightforward: ```markdown
+Uploading images is straightforward: `````markdown
 # In Markdown mode - images are uploaded to BookStack's gallery
 ![Alt text](uploaded-image-name.png)
 
 # Image gallery is accessible from the editor toolbar
 # All uploaded images are stored in the bookstack_app_data volume
-```
+`````
 
 BookStack also supports embedded diagrams via Draw.io integration. When you insert a diagram, BookStack stores the Draw.io source XML alongside the rendered image, so you can re-edit diagrams later without losing the source.
 
@@ -248,9 +249,9 @@ BookStack also supports embedded diagrams via Draw.io integration. When you inse
 
 I ran BookStack on a 2 vCPU / 4GB RAM VPS with 50 concurrent simulated users reading and editing pages. The results: | Metric | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | Cold start time | 3.2 seconds |
 | Page load (average) | 180ms |
@@ -270,7 +271,7 @@ For context: Confluence Cloud charges $6.05/user/month. At 50 users, that is $30
 
 ### GitHub Actions: Automated Documentation Publishing
 
-```yaml
+`````yaml
 # .github/workflows/publish-docs.yml
 name: Publish API Docs to BookStack
 
@@ -287,13 +288,13 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'$(cat docs/api.html | base64 -w 0)'"}' \
             "https://docs.yourdomain.com/api/pages/42"
-```
+`````
 
 BookStack exposes a REST API for programmatic content management. Generate API tokens in Settings → API. The API supports CRUD operations on shelves, books, chapters, and pages, plus image upload and search.
 
 ### Backup Automation
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/backup-bookstack.sh
 
@@ -309,24 +310,24 @@ tar czf "$BACKUP_DIR/bookstack_app_$DATE.tar.gz" -C /path/to ./bookstack_app_dat
 
 # Keep only last 14 days
 find "$BACKUP_DIR" -name "*.gz" -mtime +14 -delete
-```
+`````
 
-Add this to cron for daily backups: `0 3 * * * /opt/scripts/backup-bookstack.sh`
+Add this to cron for daily backups: ````0 3 * * * /opt/scripts/backup-bookstack.sh````
 
 ### Monitoring with Prometheus
 
-```yaml
+`````yaml
 # Add to docker-compose.yml for monitoring
   node-exporter: image: prom/node-exporter:v1.7.0
     volumes: - /proc:/host/proc:ro
       - /sys:/host/sys:ro
     command: - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
-```
+`````
 
 ### Health check script
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/scripts/health-check-bookstack.sh
 
@@ -340,24 +341,24 @@ if [ "$HTTP_CODE" != "200" ]; then
 else
     echo "OK: BookStack is healthy"
 fi
-```
+`````
 
-Add to cron for automated health checks: `*/5 * * * * /opt/scripts/health-check-bookstack.sh`
+Add to cron for automated health checks: ````*/5 * * * * /opt/scripts/health-check-bookstack.sh````
 
 ## Advanced Usage: Production Hardening
 
 ### Enable HTTPS-only cookies
 
-```bash
+`````bash
 # In your .env file
 SESSION_SECURE_COOKIE=true
-```
+`````
 
 This ensures session cookies are only transmitted over HTTPS connections. Critical if your BookStack instance is exposed to the internet.
 
 ### Custom theme via the module system (v26.03+)
 
-```bash
+`````bash
 # Create a custom module directory
 mkdir -p /config/www/themes/my_theme/modules/welcome_module
 
@@ -381,36 +382,36 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 # views/welcome.blade.php
 Welcome, {{ user()->name }}! Check out the onboarding docs.
 </div>
-```
+`````
 
-Install the module with: `php artisan bookstack:install-module /path/to/module.zip`
+Install the module with: ````php artisan bookstack:install-module /path/to/module.zip````
 
 ### Page content filtering control
 
-```bash
+`````bash
 # In .env (new in v25.12.4+)
 # Options: false, true, or a comma-separated list of filter names
 APP_CONTENT_FILTERING=default
 
 # Available filters: script, form, iframe, object, embed, style, css_expression
 # To disable style filtering (useful if you need inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression
-```
+`````
 
 ## Comparison: BookStack vs. Alternatives
 
 | Feature | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 |
 | **Stack** | PHP / Laravel | Node.js | PHP (no DB) | PHP | Node.js |
@@ -455,7 +456,7 @@ There is no official Confluence importer, but you can export Confluence pages as
 
 ### How do I update BookStack?
 
-With Docker, updating is a one-liner: change the image tag in docker-compose.yml and run `docker compose up -d`. With manual installation, pull the latest release, run `git pull` or download the new release archive, then run `php artisan migrate` and clear caches. Always back up your database before updating — BookStack releases security patches monthly.
+With Docker, updating is a one-liner: change the image tag in docker-compose.yml and run ````docker compose up -d````. With manual installation, pull the latest release, run ````git pull```` or download the new release archive, then run ````php artisan migrate```` and clear caches. Always back up your database before updating — BookStack releases security patches monthly.
 
 ### Does BookStack support two-factor authentication?
 
@@ -467,11 +468,11 @@ BookStack officially supports MySQL and MariaDB. PostgreSQL support has been dis
 
 ### What is the difference between the LinuxServer.io image and the official image?
 
-The `lscr.io/linuxserver/bookstack` image is community-maintained and widely used. It abstracts away PHP-FPM and Nginx configuration, making it the easiest way to run BookStack in Docker. There is no official Docker image from the BookStack maintainers — the LinuxServer image is the de facto standard.
+The ````lscr.io/linuxserver/bookstack```` image is community-maintained and widely used. It abstracts away PHP-FPM and Nginx configuration, making it the easiest way to run BookStack in Docker. There is no official Docker image from the BookStack maintainers — the LinuxServer image is the de facto standard.
 
 ### How do backups work?
 
-Back up two things: the MySQL/MariaDB database (for all content and metadata) and the `/config/www/files` directory (for uploaded images and attachments). With the Docker setup shown above, both are in named volumes. A simple `mysqldump` plus `tar` of the app data volume is sufficient. Test your restore procedure quarterly.
+Back up two things: the MySQL/MariaDB database (for all content and metadata) and the ````/config/www/files```` directory (for uploaded images and attachments). With the Docker setup shown above, both are in named volumes. A simple ````mysqldump```` plus ````tar``` of the app data volume is sufficient. Test your restore procedure quarterly.
 
 ## Conclusion: Should You Run BookStack in 2026?
 
@@ -482,7 +483,7 @@ For teams of 5 to 50 people who want internal documentation without vendor lock-
 Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.
 
 
----
+* * *
 ## Sources & Further Reading
 
 - [BookStack Official Documentation](https://www.bookstackapp.com/docs/)
@@ -492,7 +493,7 @@ Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for
 - [LinuxServer.io BookStack Docker Image](https://docs.linuxserver.io/images/docker-bookstack/)
 - [BookStack vs Wiki.js Comparison](https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/)
 
----
+* * *
 
 ## Recommended Hosting & Infrastructure
 
@@ -531,7 +532,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -541,7 +542,7 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 - [2026-06-15-trending-ai-agents](bookstack-documentation-wiki)
 - [2026-06-22-trending-ai-agents](bookstack-documentation-wiki)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

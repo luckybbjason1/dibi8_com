@@ -23,6 +23,7 @@ faq: - q: "多少个 MCP 服务器算太多？"
     a: "HTTP：持久化状态、集中式凭证管理、依赖服务器可用性。stdio：零延迟、不暴露凭证、随会话结束而终止。默认使用 stdio。仅在 (a) 需要跨会话持久化状态，或 (b) 集成无本地对应方案的 SaaS 时才使用 HTTP。"
 ---
 
+
 {{</* resource-info */>}}
 
 # Claude Code MCP 进阶 2026：10 服务器生产级技术栈
@@ -39,7 +40,7 @@ faq: - q: "多少个 MCP 服务器算太多？"
 >
 > **启动成本**：合计约 1.5 秒。
 >
-> **按项目覆盖**：postgres、github、linear 通过仓库内的 `.claude/mcp.json` 配置。
+> **按项目覆盖**：postgres、github、linear 通过仓库内的 ```.claude/mcp.json```` 配置。
 
 ## 技术栈详解
 
@@ -99,9 +100,9 @@ faq: - q: "多少个 MCP 服务器算太多？"
 
 ## 配置
 
-`~/.claude/mcp.json`（全局通用工具）：
+````~/.claude/mcp.json````（全局通用工具）：
 
-```json
+`````json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -113,11 +114,11 @@ faq: - q: "多少个 MCP 服务器算太多？"
     "playwright": {"command": "npx", "args": ["-y", "@executeautomation/playwright-mcp-server"]}
   }
 }
-```
+`````
 
-`.claude/mcp.json`（按项目，敏感工具）：
+````.claude/mcp.json````（按项目，敏感工具）：
 
-```json
+`````json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -125,20 +126,20 @@ faq: - q: "多少个 MCP 服务器算太多？"
     "linear": {"command": "...", "env": {"LINEAR_API_KEY": "${LINEAR_KEY}"}}
   }
 }
-```
+`````
 
 ## 为什么不加更多服务器？
 
-### 为什么不加 `slack` MCP？
+### 为什么不加 ````slack```` MCP？
 有用但权限管理摩擦大。如果 Slack 是日常必需才纳入。
 
-### 为什么不加 `notion` MCP？
+### 为什么不加 ````notion```` MCP？
 与 Slack 同理——有用，但对大多数用户每日收益不足以抵消启动开销。
 
-### 为什么不加 `kubernetes` MCP？
+### 为什么不加 ````kubernetes```` MCP？
 强大但使用频率低。运维工作需要时按项目加入。
 
-### 为什么不加 `aws` / `gcp` MCP？
+### 为什么不加 ````aws```` / ````gcp```` MCP？
 同理——按项目安装。不要让云凭证常驻全局可访问。
 
 ## 启动优化
@@ -147,7 +148,7 @@ faq: - q: "多少个 MCP 服务器算太多？"
 
 技巧：
 - 在 stdio（本地）与 HTTP 同时存在时优先选 stdio
-- 审计每个服务器的启动耗时——用 `time npx <server>` 测量
+- 审计每个服务器的启动耗时——用 ````time npx <server>``` 测量
 - 在 Anthropic 有官方替代品时，替换缓慢的社区服务器
 
 ## 安全模式
@@ -173,7 +174,7 @@ faq: - q: "多少个 MCP 服务器算太多？"
 按项目覆盖比全局配置更重要。把敏感令牌限定在它所属的项目中。坚持「本项目只用本项目需要的」纪律，能避免凭证泄漏并让启动保持轻快。
 
 
----
+* * *
 **相关阅读**：[MCP 服务器 2026 排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP 服务器安全审计 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code 配置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/)
 
 
@@ -239,11 +240,11 @@ Claude Code MCP 进阶 2026：10 服务器生产级技术栈 represents an impor
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -253,7 +254,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-mcp-advanced-10-server-stack-2026)
 - [cursor-vs-claude-code](claude-code-mcp-advanced-10-server-stack-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -297,15 +298,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

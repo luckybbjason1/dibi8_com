@@ -26,6 +26,7 @@ tags: ["ai trading", "quant", "crypto", "hyperliquid", "polymarket", "stack", "c
 aliases:
   - /posts/ai-trading-stack/-
 ---
+
 > ⚠️ **Disclaimer**: This is a technical guide to building an AI trading stack, not investment advice. Quantitative trading carries substantial risk of capital loss. Test extensively on paper / testnet before deploying real capital. Past backtest performance does not predict future returns.
 
 The 2026 retail quant landscape has finally caught up with what hedge funds had in 2018: open-source frameworks at every layer of the stack, AI-enhanced strategies, on-chain venues without a broker gatekeeper. The trade-off vs SaaS quant platforms (3Commas at $74/mo, Cryptohopper at $129/mo, TradingView Premium at $59/mo) is steeper learning curve but **full control + zero per-trade fees + your alpha never leaves your machine**.
@@ -36,15 +37,15 @@ This collection assembles **7 components** spanning signal generation → backte
 
 | # | Component | Layer | Role | Deep dive |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **ta-lib** | Signal | 200+ technical indicators (RSI, MACD, Bollinger, etc.) | [ta-lib guide](/resources/ai-trading/ta-lib-technical-analysis-trading/) |
 | 2 | **vectorbt** | Backtest | Vectorized Python backtesting, 100× faster than for-loops | [vectorbt 2026](/resources/ai-trading/vectorbt-quantitative-backtesting/) |
@@ -68,7 +69,7 @@ The retail trader who builds this stack in 2026 has tools 2018 hedge funds paid 
 
 ## 2. Architecture — Signal → Backtest → Live → AI Loop
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ Market data (websocket / REST)                   │
    │  - Hyperliquid order book + trades               │
@@ -104,7 +105,7 @@ The retail trader who builds this stack in 2026 has tools 2018 hedge funds paid 
    │  → Propose strategy adjustments                  │
    │  → Hand back to backtest for validation          │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 For non-technical users who want the AI agent experience without coding: **Minara** provides the user-friendly hub layer on top of Hyperliquid.
 
@@ -114,20 +115,20 @@ For non-technical users who want the AI agent experience without coding: **Minar
 
 **Why this pick**: 30+ years of battle-testing. Every quant framework either uses ta-lib or reimplements its functions. Use the original.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 # Linux
 apt install libta-lib-dev
 pip install TA-Lib
 
 # Or via pre-built wheels: pip install TA-Lib-Precompiled
-```
+`````
 
-**Hello world** — compute RSI on 1000 candles in <10ms: ```python
+**Hello world** — compute RSI on 1000 candles in <10ms: `````python
 import talib
 import numpy as np
 close = np.random.random(1000)
 rsi = talib.RSI(close, timeperiod=14)
-```
+`````
 
 Full guide including walk-forward indicator combination patterns: [ta-lib technical analysis trading](/resources/ai-trading/ta-lib-technical-analysis-trading/).
 
@@ -137,11 +138,11 @@ Full guide including walk-forward indicator combination patterns: [ta-lib techni
 
 **Why this pick**: Walk-forward optimization, parameter sweep, Monte Carlo simulation, Sharpe / Sortino / Calmar metrics, position sizing — all built-in. The de-facto choice for serious retail quants.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install vectorbt
-```
+`````
 
-**Backtest example** — Bollinger Band squeeze on 1 year of BTCUSDT: ```python
+**Backtest example** — Bollinger Band squeeze on 1 year of BTCUSDT: `````python
 import vectorbt as vbt
 import yfinance as yf
 
@@ -152,7 +153,7 @@ exits = data > bb.upperband
 
 pf = vbt.Portfolio.from_signals(data, entries, exits, init_cash=10000, fees=0.001)
 print(pf.stats())  # Sharpe, drawdown, total return, etc.
-```
+`````
 
 Full guide including walk-forward and Monte Carlo: [vectorbt quantitative backtesting](/resources/ai-trading/vectorbt-quantitative-backtesting/).
 
@@ -162,12 +163,12 @@ Full guide including walk-forward and Monte Carlo: [vectorbt quantitative backte
 
 **Why this pick**: ~31k GitHub stars, 5+ years of battle-testing. Strategy hot-reload, dry-run mode (paper trading on live data), Telegram bot integration, web UI, Docker deploy. The default open-source CEX trading bot.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
 # UI at http://localhost:8080
-```
+`````
 
-Drop your strategy `.py` into `user_data/strategies/`, configure exchange API keys, start in dry-run, validate for 2 weeks, switch to live.
+Drop your strategy ````.py```` into ````user_data/strategies/````, configure exchange API keys, start in dry-run, validate for 2 weeks, switch to live.
 
 Deploy on a low-latency VPS — we run our internal freqtrade instances on {{< aff "htstack" "trading-vps-hk" "HTStack's Hong Kong VPS" >}} for sub-50ms latency to Asian exchanges, or {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplets" >}} in NYC for US-leaning venues.
 
@@ -179,10 +180,10 @@ Full setup including AI strategy patterns: [freqtrade AI trading strategies](/re
 
 **Why this matters**: Static strategies decay. The crypto market in May 2026 isn't the market of January 2024. Without an adjustment loop, your strategy's edge erodes within 6-12 months. AI Trader is the only widely-adopted open-source framework specifically for this loop.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install ai-trader
 # Configure with your LLM provider (Claude / DeepSeek / Gemini)
-```
+`````
 
 The pattern: AI Trader runs nightly, reads the prior day's PnL + market data, generates 5-10 strategy variant candidates, hands them to vectorbt for walk-forward validation, surfaces the top 1-2 for human review before deploying via freqtrade.
 
@@ -194,18 +195,18 @@ Full setup: [AI Trader guide](/resources/llm-frameworks/ai-trader/).
 
 **Why this matters for AI trading**: Direct Python SDK access via wallet signature means no API keys to manage, no rate limits beyond gas-equivalent on-chain limits. Execute strategies in code without touching a CEX dashboard.
 
-**Quick install**: ```bash
+**Quick install**: `````bash
 pip install hyperliquid-python-sdk
-```
+`````
 
-```python
+`````python
 from hyperliquid.exchange import Exchange
 from hyperliquid.info import Info
 
 info = Info("https://api.hyperliquid.xyz")
 print(info.l2_snapshot("BTC"))  # Live order book
 # Trading requires wallet setup — see deep dive
-```
+`````
 
 Full guide including wallet setup and order types: [Hyperliquid perp DEX trading](/resources/ai-trading/hyperliquid-perp-dex-trading/).
 
@@ -234,7 +235,7 @@ Full review: [Minara AI trading on Hyperliquid 2026 review](/resources/ai-tradin
 ## 10. Day 1 Setup Order (4-5 hours, before any real capital)
 
 1. **VPS + Python env** (15 min) — {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB, install Python 3.11 + Docker
-2. **ta-lib + vectorbt** (15 min) — `pip install`, run sample backtest on 1 year of BTC data
+2. **ta-lib + vectorbt** (15 min) — ````pip install```, run sample backtest on 1 year of BTC data
 3. **freqtrade in dry-run** (30 min) — Docker compose, configure with read-only Binance API key, deploy a basic Bollinger strategy on paper for 2 weeks before going live
 4. **Hyperliquid testnet** (30 min) — Get testnet USDC, install SDK, place a test order on testnet, verify execution
 5. **AI Trader integration** (45 min) — Configure with DeepSeek (cheap) or Claude (premium) API key, point at your freqtrade dry-run logs
@@ -248,13 +249,13 @@ After 5 hours of setup + 2 weeks of paper trading, you have a real production-gr
 
 | Item | Solo retail | Active strategy dev | Small fund (3 strategies live) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | VPS | $12-24 | $24-48 | $60-120 |
 | Data feed (most exchanges have free websocket) | $0 | $0-20 | $50-150 |
@@ -299,7 +300,7 @@ Build the stack. Paper trade for 1-3 months. Start with capital you can afford t
 Spin up an {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} for low-latency execution, paper trade for 2-4 weeks before going live, start with capital you can lose, scale only after live performance matches backtest expectations.
 
 
----
+* * *
 *Companion collections: [Cheap LLM Stack](/collections/cheap-llm-stack/) for the LLM API cost side of AI Trader. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) if you want autonomous agents driving the trading loop. [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for the strategy code development side.*
 
 *⚠️ Re-stating: Not investment advice. Trade at your own risk.*
@@ -331,7 +332,7 @@ Spin up an {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} for low-laten
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [hkuds-ai-trader](ai-trading-stack)
@@ -340,7 +341,7 @@ Spin up an {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} for low-laten
 - [2026-06-01-trending-ai-agents](ai-trading-stack)
 - [2026-06-08-trending-ai-agents](ai-trading-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

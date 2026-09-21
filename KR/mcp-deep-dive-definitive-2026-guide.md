@@ -22,9 +22,10 @@ aliases:
   - /kr/posts/mcp-deep-dive-definitive-2026-guide/
 ---
 
+
 {</* resource-info */>}
 
----
+* * *
 
 ## 서론: 2026년 가장 주목할 만한 기술 투자, MCP
 
@@ -36,7 +37,7 @@ aliases:
 
 이 글은 개념 소개가 아닙니다. 첫 번째 코드 라인부터 직접 **프로덕션급 MCP 서버**를 구축하고, Claude, Cursor, VS Code Copilot 등 주요 클라이언트에 연결하는 과정을 안내합니다. 글을 다 읽고 나면, **실제로 동작하는 서버 모니터링 MCP 도구**를 갖게 될 것입니다. AI 대화창에서 자연어로 웹사이트 상태를 조회하고, SSL 인증서 만료일을 확인할 수 있습니다.
 
----
+* * *
 
 ## 목차
 
@@ -50,7 +51,7 @@ aliases:
 8. [에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버](#8-에코시스템-가이드-지금-당장-써볼-15개-mcp-서버)
 9. [자주 묻는 질문 FAQ](#9-자주-묻는-질문-faq)
 
----
+* * *
 
 ## 1. MCP의 본질: AI 세상의 USB-C 포트
 
@@ -83,7 +84,7 @@ MCP는 이 복잡도를 **M+N**으로 낮추었습니다.
 - **GitHub Copilot Agent Mode**: VS Code v1.99부터 내장 MCP
 - **Sourcegraph Cody**: 엔터프라이즈 MCP 배포
 
----
+* * *
 
 ## 2. 아키텍처 분석: 클라이언트와 서버의 협업
 
@@ -91,12 +92,12 @@ MCP는 **JSON-RPC 2.0** 기반의 클래식 **클라이언트-서버 아키텍�
 
 ### 핵심 구성 요소
 
-```
+````
 ┌─────────────┐      JSON-RPC 2.0       ┌─────────────┐
 │  MCP Host   │  ◄──────────────────►  │  MCP Server │
 │  (AI Agent) │    stdio / HTTP+SSE      │  (Tool Box) │
 └─────────────┘                          └─────────────┘
-```
+`````
 
 **Host**: AI 모델을 실행하는 주 프로그램(예: Claude Desktop).  
 **Client**: Host 내부에서 Server와 통신을 담당하는 모듈.  
@@ -118,7 +119,7 @@ MCP는 **JSON-RPC 2.0** 기반의 클래식 **클라이언트-서버 아키텍�
 
 **개발 권장사항**: 로컬 프로토타입은 stdio로, 프로덕션은 HTTP/SSE로 마이그레이션.
 
----
+* * *
 
 ## 3. 개발 환경 구축: 5분 완료
 
@@ -126,40 +127,40 @@ MCP 공식 SDK는 **Python**과 **TypeScript/JavaScript**를 지원하며, 커�
 
 ### uv 설치(권장 패키지 관리자)
 
-```bash
+`````bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+`````
 
 ### 프로젝트 생성
 
-```bash
+`````bash
 mkdir mcp-site-monitor && cd mcp-site-monitor
 uv init
 uv add "mcp[cli]" httpx
-```
+`````
 
 ### 프로젝트 구조
 
-```
+`````
 mcp-site-monitor/
 ├── .env              # API 키(.gitignore에 추가)
 ├── .gitignore
 ├── pyproject.toml
 └── server.py         # MCP 서버 메인 파일
-```
+`````
 
----
+* * *
 
 ## 4. 실전: 사이트 모니터링 MCP 서버 구축
 
 **SiteMonitor**라는 이름의 MCP 서버를 생성하여 두 가지 도구를 노출합니다.
 
-- `check_site_status`: 웹사이트 온라인 여부와 응답 시간 확인
-- `check_ssl_expiry`: 도메인 SSL 인증서 잔여 유효기간 확인
+- ````check_site_status````: 웹사이트 온라인 여부와 응답 시간 확인
+- ````check_ssl_expiry````: 도메인 SSL 인증서 잔여 유효기간 확인
 
 ### 완성된 코드(server.py)
 
-```python
+`````python
 import asyncio
 import ssl
 import socket
@@ -217,23 +218,23 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """도메인 
 
 
 if __name__ == "__main__": mcp.run(transport="stdio")
-```
+`````
 
 ### 코드 핵심 해설
 
-1. **`@mcp.tool()` 데코레이터**: 일반 Python 함수를 MCP 도구로 등록. 함수의 docstring은 도구 설명으로 자동 추출되며, AI가 언제 호출할지 결정하는 근거가 됩니다.
+1. **````@mcp.tool()```` 데코레이터**: 일반 Python 함수를 MCP 도구로 등록. 함수의 docstring은 도구 설명으로 자동 추출되며, AI가 언제 호출할지 결정하는 근거가 됩니다.
 2. **타입 어노테이션**: 매개변수 타입(str, int)이 JSON Schema로 자동 변환되어 AI가 입력을 검증합니다.
-3. **`transport="stdio"`**: 표준 입출력으로 통신하며, Claude Desktop이 Server를 자식 프로세스로 시작합니다.
+3. **````transport="stdio"````**: 표준 입출력으로 통신하며, Claude Desktop이 Server를 자식 프로세스로 시작합니다.
 4. **오류 처리**: 모든 예외를 포착하여 친화적인 텍스트로 반환, JSON-RPC 메시지 흐름이 파괴되지 않도록 합니다.
 
 ### 로컬 테스트
 
-```bash
+`````bash
 uv run server.py
 # 이 시점에서 Server는 stdin 입력을 대기합니다. MCP Inspector로 먼저 테스트할 수 있습니다.
-```
+`````
 
----
+* * *
 
 ## 5. Claude Desktop 및 Cursor 연동
 
@@ -241,13 +242,13 @@ uv run server.py
 
 설정 파일을 편집합니다.
 
-```bash
+`````bash
 ~/Library/Application\ Support/Claude/claude_desktop_config.json
-```
+`````
 
 Server 설정을 추가합니다.
 
-```json
+`````json
 {
   "mcpServers": {
     "site-monitor": {
@@ -261,19 +262,19 @@ Server 설정을 추가합니다.
     }
   }
 }
-```
+`````
 
 **Claude Desktop을 재시작**한 후 대화창에서 사용합니다.
 
 > "https://github.com의 상태를 확인하고 SSL 인증서가 얼마나 남았는지 알려줘."
 
-Claude는 자동으로 `check_site_status`와 `check_ssl_expiry`를 호출하고 결과를 정리하여 답변합니다.
+Claude는 자동으로 ````check_site_status````와 ````check_ssl_expiry````를 호출하고 결과를 정리하여 답변합니다.
 
 ### Cursor
 
-프로젝트 루트에 `.cursor/mcp.json`을 생성합니다.
+프로젝트 루트에 ````.cursor/mcp.json````을 생성합니다.
 
-```json
+`````json
 {
   "mcpServers": {
     "site-monitor": {
@@ -287,15 +288,15 @@ Claude는 자동으로 `check_site_status`와 `check_ssl_expiry`를 호출하고
     }
   }
 }
-```
+`````
 
 Cursor의 AI Chat이 도구를 직접 인식하고 사용합니다.
 
 ### VS Code Copilot Agent Mode
 
-VS Code v1.99+ Copilot Agent Mode는 MCP를 네이티브 지원합니다. `settings.json`에 설정합니다.
+VS Code v1.99+ Copilot Agent Mode는 MCP를 네이티브 지원합니다. ````settings.json````에 설정합니다.
 
-```json
+`````json
 {
   "github.copilot.chat.mcpServers": {
     "site-monitor": {
@@ -305,9 +306,9 @@ VS Code v1.99+ Copilot Agent Mode는 MCP를 네이티브 지원합니다. `setti
     }
   }
 }
-```
+`````
 
----
+* * *
 
 ## 6. 심화: 리소스, 프롬프트, 스트리밍 HTTP
 
@@ -315,7 +316,7 @@ VS Code v1.99+ Copilot Agent Mode는 MCP를 네이티브 지원합니다. `setti
 
 AI가 서버의 설정 파일이나 로그를 읽을 수 있도록 합니다.
 
-```python
+`````python
 @mcp.resource("config://app")
 def get_app_config() -> str: """현재 애플리케이션 설정을 가져옵니다."""
     import json
@@ -324,11 +325,11 @@ def get_app_config() -> str: """현재 애플리케이션 설정을 가져옵니
 @mcp.resource("log://latest")
 def get_latest_log() -> str: """최신 모니터링 로그를 읽습니다."""
     return "[2026-05-15 08:00:00] github.com: OK (23ms)"
-```
+`````
 
 ### 프롬프트 노출(재사용 가능한 템플릿)
 
-```python
+`````python
 @mcp.prompt()
 def debug_site_issue(url: str, error_code: int) -> str: """사이트 장애 진단 프롬프트를 생성합니다."""
     return f"""웹사이트 {url}이 HTTP {error_code}를 반환합니다. 다음 단계로 조사하세요: 1. DNS 해결이 정상인지 확인
@@ -336,11 +337,11 @@ def debug_site_issue(url: str, error_code: int) -> str: """사이트 장애 진�
 3. 최근 10분간의 애플리케이션 로그 확인
 4. CDN 대시보드에서 트래픽 급증 패턴 분석
 """
-```
+`````
 
 ### HTTP + SSE로 마이그레이션(프로덕션)
 
-```python
+`````python
 from mcp.server.sse import SseServerTransport
 from starlette.applications import Starlette
 from starlette.routing import Route
@@ -350,11 +351,11 @@ sse = SseServerTransport("/messages/")
 async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options())
 
 app = Starlette(routes=[Route("/sse", endpoint=handle_sse)])
-```
+`````
 
 ASGI를 지원하는 모든 플랫폼(Vercel, Railway, 자체 서버)에 배포하고 원격 URL로 AI 클라이언트를 연결합니다.
 
----
+* * *
 
 ## 7. 보안 및 프로덕션 모범 사례
 
@@ -366,11 +367,11 @@ AI를 외부 세계와 연결하는 것은 강력하면서도 위험합니다. �
 2. **최소 권한 원칙** — Server는 필요한 최소 도구와 최소 범위의 데이터만 노출하세요. AI에게 전체 파일시스템 읽기 권한을 주지 마세요.
 3. **입력 검증** — Pydantic/Zod로 모든 매개변수를 엄격히 검증하고 잘못된 입력은 거부하세요.
 4. **민감 작업 이중 확인** — 데이터 삭제, 송금, 이메일 발송 등의 작업은 Server가 직접 실행하지 말고 확인 요청을 반환하세요.
-5. **환경 변수 관리** — API 키는 `.env` 파일에 작성하고 절대 하드코딩하지 마세요. Git에 커밋하지 마세요.
+5. **환경 변수 관리** — API 키는 ````.env```` 파일에 작성하고 절대 하드코딩하지 마세요. Git에 커밋하지 마세요.
 6. **프로덕션에서는 HTTPS** — HTTP 전송에는 반드시 TLS를 적용하여 중간자 공격을 방지하세요.
 7. **모니터링 및 감사** — 모든 도구 호출 로그를 기록하고 이상 행위를 알림으로 전달하세요. 2025년 7월에 공개된 MCP Inspector RCE 취약점(CVE-2025-49596, CVSS 9.4)이 바로 경고입니다.
 
----
+* * *
 
 ## 8. 에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버
 
@@ -394,13 +395,13 @@ AI를 외부 세계와 연결하는 것은 강력하면서도 위험합니다. �
 
 전체 목록은 [Smithery.ai](https://smithery.ai)와 [MCP.so](https://mcp.so)에서 확인하세요.
 
----
+* * *
 
 ## 9. 자주 묻는 질문 FAQ
 
 **Q1: MCP와 Function Calling/Tool Use의 차이는 무엇인가요?**
 
-Function Calling은 모델 레벨의 능력(예: GPT-4의 `tools` 매개변수)이며 플랫폼마다 형식이 다릅니다. MCP는 **프로토콜 레벨**의 표준으로, Server가 도구를 어떻게 노출하고 Client가 어떻게 발견·호출할지를 정의합니다. 둘은 상호 보완적입니다 — MCP Server는 Function Calling의 하위 구현체가 될 수 있습니다.
+Function Calling은 모델 레벨의 능력(예: GPT-4의 ````tools```` 매개변수)이며 플랫폼마다 형식이 다릅니다. MCP는 **프로토콜 레벨**의 표준으로, Server가 도구를 어떻게 노출하고 Client가 어떻게 발견·호출할지를 정의합니다. 둘은 상호 보완적입니다 — MCP Server는 Function Calling의 하위 구현체가 될 수 있습니다.
 
 **Q2: MCP Server는 로컬에서만 실행할 수 있나요?**
 
@@ -412,7 +413,7 @@ Function Calling은 모델 레벨의 능력(예: GPT-4의 `tools` 매개변수)�
 
 **Q4: MCP와 LangChain의 관계는 무엇인가요?**
 
-LangChain은 **프레임워크**로, 체인 호출, 기억 관리, 에이전트 오케스트레이션을 제공합니다. MCP는 **프로토콜**로, 도구 연결 방식을 표준화합니다. LangChain은 `langchain-mcp-adapters`를 통해 MCP를 지원하며, 둘은 협력적으로 사용할 수 있습니다.
+LangChain은 **프레임워크**로, 체인 호출, 기억 관리, 에이전트 오케스트레이션을 제공합니다. MCP는 **프로토콜**로, 도구 연결 방식을 표준화합니다. LangChain은 ````langchain-mcp-adapters````를 통해 MCP를 지원하며, 둘은 협력적으로 사용할 수 있습니다.
 
 **Q5: 기업에서 MCP를 사용할 때 추가 고려사항은 무엇인가요?**
 
@@ -422,7 +423,7 @@ LangChain은 **프레임워크**로, 체인 호출, 기억 관리, 에이전트 
 - 신뢰 도메인 격리(Trust Domain Isolation)
 - 모든 도구 호출 로그 감사
 
----
+* * *
 
 ## 마무리: 지금 바로 시작하세요
 
@@ -430,7 +431,7 @@ MCP는 미래 기술이 아닙니다. **2026년에 이미 활발히 사용되는
 
 오늘 이 글의 코드는 바로 복사해서 실행할 수 있습니다. 다음 단계를 권장합니다.
 
-1. 지금 `uv`로 SiteMonitor를 실행해보세요
+1. 지금 ````uv```로 SiteMonitor를 실행해보세요
 2. Claude Desktop에 연결하여 자연어 기반 운영 조회를 경험해보세요
 3. 팀에서 가장 자주 사용하는 내부 API를 MCP Server로 포장하세요
 4. GitHub에 오픈소스로 공개하고 MCP 생태계의 10,000+에 참여하세요
@@ -443,17 +444,17 @@ MCP는 미래 기술이 아닙니다. **2026년에 이미 활발히 사용되는
 - [Smithery.ai — MCP 서버 디렉토리](https://smithery.ai)
 - [MCP.so — 커뮤니티 마켓플레이스](https://mcp.so)
 
----
+* * *
 
 ## 🔌 JSON Schema 보일러플레이트 건너뛰기
 
 모든 tool에 JSON Schema를 손으로 쓰는 것은 MCP 개발에서 가장 지루한 부분입니다. dibi8의 무료 **[MCP Tool Builder](/kr/tools/mcp-tool-builder/)**를 사용하세요 — Python 또는 TypeScript 함수 시그니처를 붙여넣으면 표준 준수 tool 정의 + 완전한 server 보일러플레이트(FastMCP / TypeScript SDK) + cURL 테스트 명령을 자동 생성. 보일러플레이트 작업 80% 절약.
 
----
+* * *
 
 *2026년 5월 15일 발행. MCP 프로토콜 스펙 2025-11-25 주년 버전을 기준으로 작성.*
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 

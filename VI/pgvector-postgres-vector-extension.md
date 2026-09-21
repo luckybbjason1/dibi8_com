@@ -24,17 +24,18 @@ aliases:
   - /vi/posts/pgvector-postgres-vector-extension/
 ---
 
+
 {{</* resource-info */>}}
 
 ## Giới thiệu: Câu truy vấn 47 giây đã giết chết buổi demo
 
 Tháng 3 năm 2025. Một nhà sáng lập startup AI đứng trước một khách hàng doanh nghiệp tiềm năng, chạy demo RAG. Câu hỏi rất đơn giản: *"Sản phẩm của các bạn làm gì?"* Tìm kiếm vector trên 2 triệu tài liệu trong cơ sở dữ liệu PostgreSQL của họ mất **47 giây** để trả về. Khách hàng đã rồi phòng trước khi kết quả đầu tiên xuất hiện.
 
-Vấn đề không phải PostgreSQL. Nó là **chỉ mục HNSW** bị thiếu trên cột `vector`. Sau khi thêm `CREATE INDEX ... USING hnsw`, cùng một truy vấn giảm xuống còn **3.2 mili giây** — cải thiện **14,000 lần**. Không di chuyển cơ sở dữ liệu, không cơ sở hạ tầng mới, chỉ một câu lệnh SQL.
+Vấn đề không phải PostgreSQL. Nó là **chỉ mục HNSW** bị thiếu trên cột ```vector````. Sau khi thêm ````CREATE INDEX ... USING hnsw````, cùng một truy vấn giảm xuống còn **3.2 mili giây** — cải thiện **14,000 lần**. Không di chuyển cơ sở dữ liệu, không cơ sở hạ tầng mới, chỉ một câu lệnh SQL.
 
 Đây là sức mạnh của **pgvector 0.8.2**, phần mở rộng PostgreSQL mã nguồn mở biến cơ sở dữ liệu quan hệ đáng tin cậy nhất thế giới thành một cơ sở dữ liệu vector hiệu năng cao. Với **15,000+ GitHub Stars** và hỗ trợ native trên Supabase, Neon, AWS RDS và Google Cloud SQL, pgvector là lựa chọn thực tế cho **70% khối lượng công việc AI-agent** duy trì dưới 10 triệu vector.
 
-Hướng dẫn này bao gồm mọi thứ: cài đặt trên PostgreSQL 18, tối ưu HNSW, lượng tử hóa `halfvec`, tìm kiếm lai có lọc và tích hợp RAG sản xuất.
+Hướng dẫn này bao gồm mọi thứ: cài đặt trên PostgreSQL 18, tối ưu HNSW, lượng tử hóa ````halfvec````, tìm kiếm lai có lọc và tích hợp RAG sản xuất.
 
 ## pgvector là gì? — Vector bên trong PostgreSQL
 
@@ -62,7 +63,7 @@ Lựa chọn mặc định cho hầu hết các khối lượng công việc. HN
 
 **Phù hợp cho:** Truy vấn độ chính xác cao, độ trễ thấp trên tập dữ liệu tối đa ~50M vector.
 **Thờ gian xây dựng:** Chậm hơn IVFFlat (đơn luồng trong pgvector 0.8.2).
-**Tham số truy vấn:** `hnsw.ef_search` điều khiển đánh đổi độ chính xác so với độ trễ.
+**Tham số truy vấn:** ````hnsw.ef_search```` điều khiển đánh đổi độ chính xác so với độ trễ.
 
 ### IVFFlat (Inverted File with Flat Index)
 
@@ -70,9 +71,9 @@ Phân vùng vector thành các cụm (danh sách) bằng k-means. Tại thờ đ
 
 **Phù hợp cho:** Xây dựng chỉ mục nhanh hơn, môi trường bị giới hạn bộ nhớ.
 **Đánh đổi:** Độ chính xác thấp hơn HNSW với cùng ngân sách độ trễ.
-**Tham số truy vấn:** `ivfflat.probes` điều khiển số lượng cụm cần quét.
+**Tham số truy vấn:** ````ivfflat.probes```` điều khiển số lượng cụm cần quét.
 
-```sql
+`````sql
 -- Chỉ mục HNSW (khuyến nghị cho hầu hết các khối lượng công việc)
 CREATE INDEX ON documents
   USING hnsw (embedding vector_l2_ops)
@@ -82,17 +83,17 @@ CREATE INDEX ON documents
 CREATE INDEX ON documents
   USING ivfflat (embedding vector_l2_ops)
   WITH (lists = 100);
-```
+`````
 
 ### Toán tử khoảng cách
 
 pgvector cung cấp ba toán tử khoảng cách: | Toán tử | Mô tả | Trường hợp sử dụng |
 |----------|-------------|----------|
-| `<->` | Khoảng cách Euclid (L2) | Tương tự chung (mặc định) |
-| `<#>` | Tích trong âm | OpenAI embeddings |
-| `<=>` | Khoảng cách Cosine | Tương tự ngữ nghĩa (vector đã chuẩn hóa) |
+| ````<->```` | Khoảng cách Euclid (L2) | Tương tự chung (mặc định) |
+| ````<#>```` | Tích trong âm | OpenAI embeddings |
+| ````<=>```` | Khoảng cách Cosine | Tương tự ngữ nghĩa (vector đã chuẩn hóa) |
 
-```sql
+`````sql
 -- Khoảng cách L2 (nhỏ hơn = tương tự hơn)
 SELECT id, embedding <-> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
@@ -100,13 +101,13 @@ FROM documents ORDER BY distance LIMIT 10;
 -- Khoảng cách Cosine (cho embedding đã chuẩn hóa)
 SELECT id, embedding <=> query_vec AS distance
 FROM documents ORDER BY distance LIMIT 10;
-```
+`````
 
 ## Cài đặt & Thiết lập: Dưới 5 phút
 
 ### Tùy chọn A: Docker (Nhanh nhất)
 
-```bash
+`````bash
 docker run -d \
   --name pgvector-demo \
   -e POSTGRES_PASSWORD=mysecretpassword \
@@ -116,11 +117,11 @@ docker run -d \
 
 # Xác minh
 docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
-```
+`````
 
 ### Tùy chọn B: PostgreSQL hiện có
 
-```bash
+`````bash
 # Cài đặt phụ thuộc build (Ubuntu/Debian)
 sudo apt-get install postgresql-server-dev-18 build-essential git
 
@@ -132,31 +133,31 @@ sudo make install
 
 -- Kích hoạt extension trong cơ sở dữ liệu
 psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
-```
+`````
 
 ### Tùy chọn C: Supabase (Managed)
 
-```sql
+`````sql
 -- pgvector được cài sẵn trên Supabase. Chỉ cần kích hoạt: CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Xác minh phiên bản
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Trả về: 0.8.2
-```
+`````
 
 ### Tùy chọn D: AWS RDS / Google Cloud SQL
 
-```sql
+`````sql
 -- Trên RDS PostgreSQL 18, pgvector có sẵn như một extension
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Kiểm tra các extension khả dụng nếu cần
 SELECT * FROM pg_available_extensions WHERE name = vector;
-```
+`````
 
 ### Xác minh Cài đặt
 
-```sql
+`````sql
 -- Kiểm tra phiên bản pgvector
 SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Mong đợi: 0.8.2
@@ -164,13 +165,13 @@ SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Kiểm tra kiểu vector
 SELECT '[1,2,3]'::vector(3) <-> '[4,5,6]'::vector(3) AS l2_distance;
 -- Mong đợi: ~5.196
-```
+`````
 
 ## Thao tác Cốt lõi: Tạo Bảng, Chèn và Truy vấn
 
 ### Tạo Bảng Vector
 
-```sql
+`````sql
 -- Tạo bảng với cột vector (1536 chiều = OpenAI embeddings)
 CREATE TABLE documents (
     id          BIGSERIAL PRIMARY KEY,
@@ -185,11 +186,11 @@ CREATE TABLE documents (
 -- Thêm chỉ mục cho các cột filter thường dùng
 CREATE INDEX idx_docs_tenant ON documents(tenant_id);
 CREATE INDEX idx_docs_created ON documents(created_at);
-```
+`````
 
 ### Chèn Vector
 
-```sql
+`````sql
 -- Chèn một tài liệu đơn với embedding
 INSERT INTO documents (title, content, embedding, metadata, tenant_id)
 VALUES (
@@ -202,9 +203,9 @@ VALUES (
 
 -- Chèn với OpenAI embedding thực (từ Python)
 -- Xem phần Tích hợp RAG bên dưới cho ví dụ đầy đủ
-```
+`````
 
-```python
+`````python
 # Chèn vector hàng loạt từ Python
 import psycopg2
 import numpy as np
@@ -227,11 +228,11 @@ cur.executemany(
 )
 conn.commit()
 print(f"Đã chèn {batch_size} tài liệu")
-```
+`````
 
 ### Xây dựng Chỉ mục HNSW (Tối ưu Sản xuất)
 
-```sql
+`````sql
 -- Đặt tham số cho xây dựng chỉ mục song song
 SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
@@ -247,19 +248,19 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
 -- Kiểm tra kích thước chỉ mục
 SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- Điển hình: ~450 MB cho 100K vector 1536 chiều
-```
+`````
 
 ### Tìm kiếm Tương tự Vector
 
-```sql
+`````sql
 -- Tìm kiếm ANN cơ bản
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-```sql
+`````sql
 -- Tìm kiếm vector có lọc (pattern sản xuất phổ biến nhất)
 SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
@@ -268,11 +269,11 @@ WHERE tenant_id = 42
   AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
-```
+`````
 
 ### Tìm kiếm Lai: Vector + Toàn văn
 
-```sql
+`````sql
 -- Bật pg_trgm cho tìm kiếm văn bản
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
@@ -287,13 +288,13 @@ WHERE d.title % $2  -- trigram similarity filter
 ORDER BY
     (d.embedding <-> $1::vector) * 0.7 + (1 - similarity(d.title, $2)) * 0.3
 LIMIT 10;
-```
+`````
 
 ## Tối ưu Hiệu năng: Từ 47 giây đến 3 mili giây
 
 ### Tham số GUC cho HNSW
 
-```sql
+`````sql
 -- Tinh chỉnh ef_search cho độ chính xác so với độ trễ
 -- Cao hơn = độ chính xác tốt hơn, truy vấn chậm hơn
 SET hnsw.ef_search = 100;  -- Mặc định là 40; 64-128 là điển hình cho sản xuất
@@ -305,11 +306,11 @@ FROM documents
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
 -- Tìm: Index Scan using idx_docs_embedding_hnsw
-```
+`````
 
 ### Lượng tử hóa Half-Precision (halfvec)
 
-pgvector 0.8.2 hỗ trợ kiểu `halfvec` để **giảm 50% lưu trữ** với mất mát độ chính xác tối thiểu: ```sql
+pgvector 0.8.2 hỗ trợ kiểu ``halfvec`` để **giảm 50% lưu trữ** với mất mát độ chính xác tối thiểu: `````sql
 -- Thêm cột halfvec cho lưu trữ lượng tử
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);
 
@@ -331,11 +332,11 @@ SELECT
     pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
     pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size thường là ~45-50% của full_size
-```
+`````
 
 ### Connection Pooling (Pgbouncer)
 
-```ini
+`````ini
 ; pgbouncer.ini cho khối lượng công việc pgvector
 [databases]
 vectordb = host=localhost port=5432 dbname=vectordb
@@ -345,7 +346,7 @@ pool_mode = transaction
 max_client_conn = 10000
 default_pool_size = 50
 reserve_pool_size = 10
-```
+`````
 
 ### So sánh Benchmark: Trước và Sau khi Tinh chỉnh
 
@@ -361,11 +362,11 @@ reserve_pool_size = 10
 
 ### LangChain + pgvector
 
-```bash
+`````bash
 pip install langchain-postgres==0.0.13 langchain-openai==0.3.0
-```
+`````
 
-```python
+`````python
 from langchain_postgres import PGVector
 from langchain_openai import OpenAIEmbeddings
 
@@ -393,15 +394,15 @@ results = vector_store.similarity_search(
     filter={"source": "blog"}
 )
 for doc in results: print(f"Content: {doc.page_content}")
-```
+`````
 
 ### LlamaIndex + pgvector
 
-```bash
+`````bash
 pip install llama-index-vector-stores-postgres==0.4.2
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.postgres import PGVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -430,11 +431,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("How does pgvector work?")
 print(response)
-```
+`````
 
 ### Pipeline RAG Trực tiếp (Không Framework)
 
-```python
+`````python
 import psycopg2
 from openai import OpenAI
 import numpy as np
@@ -472,13 +473,13 @@ def rag_query(user_question: str) -> str: docs = retrieve_documents(user_questio
     return response.choices[0].message.content
 
 print(rag_query("What is pgvector used for?"))
-```
+`````
 
 ## Củng cố Sản xuất
 
 ### Bảo mật Cấp Hàng cho Đa ngườ thuê
 
-```sql
+`````sql
 -- Bật RLS
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 
@@ -491,11 +492,11 @@ SET app.current_tenant = 42;
 
 -- Giờ mọi truy vấn tự động lọc theo tenant
 SELECT * FROM documents;  -- Chỉ hiển thị tài liệu của tenant 42
-```
+`````
 
 ### Giám sát Hiệu năng Truy vấn
 
-```sql
+`````sql
 -- Theo dõi truy vấn vector chậm
 CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
@@ -505,18 +506,18 @@ FROM pg_stat_statements
 WHERE query LIKE '%<->%'
 ORDER BY mean_exec_time DESC
 LIMIT 10;
-```
+`````
 
-```bash
+`````bash
 # Bật pg_stat_statements trong postgresql.conf
 shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
-```
+`````
 
 ### Sao lưu với pg_dump (Bao gồm Vector)
 
-```bash
+`````bash
 # Sao lưu đầy đủ bao gồm dữ liệu vector
 pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 
@@ -524,11 +525,11 @@ pg_dump -h localhost -U postgres -d vectordb -Fc > vectordb_backup.dump
 pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
 
 # Vector được sao lưu dưới dạng mảng văn bản và được khôi phục chính xác
-```
+`````
 
 ### Thực hành Tốt nhất về Kết nối cho QPS Cao
 
-```python
+`````python
 # Sử dụng connection pooling cho khối lượng công việc sản xuất
 from psycopg2 import pool
 
@@ -549,7 +550,7 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
         )
         return cur.fetchall()
     finally: conn_pool.putconn(conn)
-```
+`````
 
 ## So sánh với Các Lựa chọn Thay thế
 
@@ -585,7 +586,7 @@ def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn()
 
 **Chỉ một node:** pgvector chạy bên trong một phiên bản PostgreSQL duy nhất. Không có chế độ phân tán native. Đối với các tập dữ liệu vượt quá RAM khả dụng, hiệu năng giảm đáng kể. Trên 50M vector, hãy xem xét một cơ sở dữ liệu vector chuyên dụng.
 
-**HNSW build là đơn luồng:** Tính đến pgvector 0.8.2, việc xây dựng chỉ mục HNSW chỉ sử dụng một lõi CPU. Đối với 10M vector, điều này có thể mất **20-30 phút**. Thiết lập `max_parallel_maintenance_workers` không tăng tốc việc xây dựng HNSW.
+**HNSW build là đơn luồng:** Tính đến pgvector 0.8.2, việc xây dựng chỉ mục HNSW chỉ sử dụng một lõi CPU. Đối với 10M vector, điều này có thể mất **20-30 phút**. Thiết lập ````max_parallel_maintenance_workers```` không tăng tốc việc xây dựng HNSW.
 
 **Độ trễ truy vấn cao hơn:** Độ trễ p99 25-40ms là chấp nhận được cho hầu hết các ứng dụng RAG (nơi LLM inference chiếm ưu thế ở 1-5 giây), nhưng nó chậm hơn các cơ sở dữ liệu vector chuyên dụng như Qdrant (~12ms) hoặc Milvus GPU (~8ms).
 
@@ -605,11 +606,11 @@ pgvector 0.8.2 hỗ trợ **PostgreSQL 14 đến 18**. Đối với các triển
 
 ### Làm thế nào để chọn giữa chỉ mục HNSW và IVFFlat?
 
-Sử dụng **HNSW** làm mặc định. Nó cung cấp độ chính xác tốt hơn (~95%) và độ trễ truy vấn thấp hơn. Chỉ sử dụng **IVFFlat** khi: (a) thờ gian xây dựng chỉ mục là quan trọng, (b) bạn có hạn chế bộ nhớ nghiêm trọng, hoặc (c) vector của bạn hiếm khi thay đổi. Đối với hầu hết các ứng dụng RAG, HNSW với `m=16` và `ef_construction=64` là điểm khởi đầu phù hợp.
+Sử dụng **HNSW** làm mặc định. Nó cung cấp độ chính xác tốt hơn (~95%) và độ trễ truy vấn thấp hơn. Chỉ sử dụng **IVFFlat** khi: (a) thờ gian xây dựng chỉ mục là quan trọng, (b) bạn có hạn chế bộ nhớ nghiêm trọng, hoặc (c) vector của bạn hiếm khi thay đổi. Đối với hầu hết các ứng dụng RAG, HNSW với ````m=16```` và ````ef_construction=64```` là điểm khởi đầu phù hợp.
 
 ### Tôi có thể sử dụng pgvector với các dịch vụ PostgreSQL được quản lý không?
 
-Có. pgvector có sẵn trên: - **Supabase** — cài sẵn, chỉ cần chạy `CREATE EXTENSION vector;`
+Có. pgvector có sẵn trên: - **Supabase** — cài sẵn, chỉ cần chạy ````CREATE EXTENSION vector;````
 - **Neon** — được hỗ trợ trên mọi gói, bao gồm gói miễn phí
 - **AWS RDS** — có sẵn trên PostgreSQL 15+
 - **Google Cloud SQL** — có sẵn trên PostgreSQL 15+
@@ -619,7 +620,7 @@ Không cần thay đổi cơ sở hạ tầng — đây là một phần mở r�
 
 ### pgvector có hỗ trợ tìm kiếm vector có lọc không?
 
-Có, và đây là nơi pgvector vượt trội hơn các cơ sở dữ liệu vector chuyên dụng. Vì dữ liệu vector sống trong PostgreSQL, bạn có thể áp dụng bất kỳ mệnh đề SQL `WHERE` nào cùng với vector similarity: ```sql
+Có, và đây là nơi pgvector vượt trội hơn các cơ sở dữ liệu vector chuyên dụng. Vì dữ liệu vector sống trong PostgreSQL, bạn có thể áp dụng bất kỳ mệnh đề SQL ``WHERE`` nào cùng với vector similarity: `````sql
 SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
@@ -627,23 +628,23 @@ WHERE tenant_id = 42
   AND metadata @> '{"status": "published"}"
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
-```
+`````
 
-Trình tối ưu hóa của PostgreSQL tối ưu hóa điều này bằng cách push down các predicate `WHERE` trong quá trình duyệt HNSW.
+Trình tối ưu hóa của PostgreSQL tối ưu hóa điều này bằng cách push down các predicate ````WHERE```` trong quá trình duyệt HNSW.
 
 ### Làm thế nào để tinh chỉnh HNSW cho khối lượng công việc của tôi?
 
-Hai tham số chính: - `ef_construction` (mặc định 64): Cao hơn = chất lượng chỉ mục tốt hơn, bản dựng chậm hơn. Đối với RAG sản xuất, sử dụng **128-256**.
-- `ef_search` (mặc định 40): Cao hơn = độ chính xác tốt hơn, truy vấn chậm hơn. Đánh giá độ chính xác của bạn và đặt thành **64-100**.
+Hai tham số chính: - ````ef_construction```` (mặc định 64): Cao hơn = chất lượng chỉ mục tốt hơn, bản dựng chậm hơn. Đối với RAG sản xuất, sử dụng **128-256**.
+- ````ef_search```` (mặc định 40): Cao hơn = độ chính xác tốt hơn, truy vấn chậm hơn. Đánh giá độ chính xác của bạn và đặt thành **64-100**.
 
-```sql
+`````sql
 -- Đánh giá các giá trị ef_search
 SET hnsw.ef_search = 64;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
 
 SET hnsw.ef_search = 128;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding <-> $1 LIMIT 10;
-```
+`````
 
 ## Kết luận: Lựa chọn Thực tế
 
@@ -651,7 +652,7 @@ pgvector 0.8.2 là cơ sở dữ liệu vector thực tế nhất cho các nhóm
 
 **Các bước tiếp theo:**
 
-1. Kích hoạt pgvector trên phiên bản PostgreSQL hiện có của bạn (`CREATE EXTENSION vector;`).
+1. Kích hoạt pgvector trên phiên bản PostgreSQL hiện có của bạn (````CREATE EXTENSION vector;```).
 2. Thêm một cột vector và chỉ mục HNSW vào bảng tài liệu của bạn.
 3. Tải embedding của bạn và chạy các đánh giá hiệu năng từ hướng dẫn này.
 4. Tích hợp với LangChain hoặc LlamaIndex cho RAG sản xuất.
@@ -707,7 +708,7 @@ Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -717,7 +718,7 @@ Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https
 - [cognee-ai-memory-platform](pgvector-postgres-vector-extension)
 - [flowise](pgvector-postgres-vector-extension)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -24,13 +24,14 @@ aliases:
   - /zh/posts/llamaindex/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)
 
 ## 简介
 
-大多数 RAG 教程止步于 Jupyter Notebook。你加载一个 PDF，调用 `VectorStoreIndex.from_documents()`，得到一个漂亮的答案，然后就觉得完成了。然后你尝试部署它——嵌入步骤在启动时花费 40 分钟，容器因为索引未持久化而崩溃，你根本不知道用户投诉的那个答案实际检索了哪些文档。
+大多数 RAG 教程止步于 Jupyter Notebook。你加载一个 PDF，调用 ```VectorStoreIndex.from_documents()````，得到一个漂亮的答案，然后就觉得完成了。然后你尝试部署它——嵌入步骤在启动时花费 40 分钟，容器因为索引未持久化而崩溃，你根本不知道用户投诉的那个答案实际检索了哪些文档。
 
 LlamaIndex 已经悄然成为构建生产级 RAG 系统的首选数据框架。凭借 **49,517 个 GitHub Stars**、**1,866 名贡献者**，以及在 2026 年 5 月发布 0.14.22 版本的迭代速度，这个项目发展很快。本指南将带你构建一个生产级 RAG 流水线：从 Docker 部署到查询路由、监控和加固。无论你是在评估 **llamaindex vs langchain**，还是需要一个涵盖真实部署场景的 **llamaindex 教程**，本文都为你提供全栈指导。
 
@@ -46,10 +47,10 @@ LlamaIndex 已经悄然成为构建生产级 RAG 系统的首选数据框架。�
 
 LlamaIndex 将职责分为四个层次：
 
-1. **数据加载** — `SimpleDirectoryReader` 和 160+ LlamaHub 连接器将 PDF、数据库、API 和云存储解析为 `Document` 对象。
-2. **索引** — 文档被拆分为 `Node`。嵌入向量输入到索引中（`VectorStoreIndex`、`SummaryIndex`、`TreeIndex`、`KnowledgeGraphIndex`）。
-3. **查询** — `QueryEngine`、`ChatEngine` 和 `RouterQueryEngine` 处理检索、后处理和响应合成。
-4. **Agent 与工作流** — 事件驱动的 `Workflow` 类和 Agent 工具支持多步推理，并具备人工介入能力。
+1. **数据加载** — ````SimpleDirectoryReader```` 和 160+ LlamaHub 连接器将 PDF、数据库、API 和云存储解析为 ````Document```` 对象。
+2. **索引** — 文档被拆分为 ````Node````。嵌入向量输入到索引中（````VectorStoreIndex````、````SummaryIndex````、````TreeIndex````、````KnowledgeGraphIndex````）。
+3. **查询** — ````QueryEngine````、````ChatEngine```` 和 ````RouterQueryEngine```` 处理检索、后处理和响应合成。
+4. **Agent 与工作流** — 事件驱动的 ````Workflow```` 类和 Agent 工具支持多步推理，并具备人工介入能力。
 
 ![RAG 架构图](https://cdn.hashnode.com/res/hashnode/image/upload/v1724944925051/e525c6cb-6a99-4eec-8b47-3dc827ddff25.png)
 
@@ -57,14 +58,14 @@ LlamaIndex 将职责分为四个层次：
 
 - **Node 而非原始文档**：索引前进行分块，让你可以按用例调整重叠和大小。
 - **StorageContext 抽象**：索引可持久化到磁盘、S3 或任何向量存储，无需修改代码。
-- **可组合检索器**：向量 + 关键词 + 图检索器通过 `RouterQueryEngine` 组合。
-- **原生异步**：`.aquery()` 和异步摄取是原生功能，非后期附加。
+- **可组合检索器**：向量 + 关键词 + 图检索器通过 ````RouterQueryEngine```` 组合。
+- **原生异步**：````.aquery()```` 和异步摄取是原生功能，非后期附加。
 
 ## 安装与设置
 
 ### 基础安装
 
-```bash
+`````bash
 # 创建虚拟环境
 python -m venv venv && source venv/bin/activate
 
@@ -75,22 +76,22 @@ pip install llama-index
 pip install llama-index-vector-stores-qdrant
 pip install llama-index-llms-openai
 pip install llama-index-embeddings-openai
-```
+`````
 
 ### 环境配置
 
-```bash
+`````bash
 # .env 文件
 export OPENAI_API_KEY="sk-..."
 export OPENAI_EMBEDDING_MODEL="text-embedding-3-large"
 
 # 本地 LLM
 export OLLAMA_BASE_URL="http://localhost:11434"
-```
+`````
 
 ### 你的第一个 RAG 流水线
 
-```python
+`````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
 # 加载文档
@@ -105,11 +106,11 @@ query_engine = index.as_query_engine()
 # 查询
 response = query_engine.query("What are the key takeaways?")
 print(response)
-```
+`````
 
 ### 持久化索引
 
-```python
+`````python
 import os
 from llama_index.core import StorageContext, load_index_from_storage
 
@@ -120,7 +121,7 @@ if not os.path.exists(PERSIST_DIR): documents = SimpleDirectoryReader("./data").
     index.storage_context.persist(persist_dir=PERSIST_DIR)
 else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
     index = load_index_from_storage(storage_context)
-```
+`````
 
 此模式避免每次重启时重新计算嵌入向量。对于 10,000 份文档的语料库，每次部署可节省 6 分钟以上时间和 API 费用。
 
@@ -128,7 +129,7 @@ else: storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
 
 ### OpenAI / Anthropic
 
-```python
+`````python
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
@@ -138,11 +139,11 @@ Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-large")
 
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine()
-```
+`````
 
 ### Ollama（本地 LLM）
 
-```python
+`````python
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core import Settings
@@ -152,11 +153,11 @@ Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine()
-```
+`````
 
 ### Qdrant（向量数据库）
 
-```python
+`````python
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from llama_index.core import StorageContext
 import qdrant_client
@@ -166,11 +167,11 @@ vector_store = QdrantVectorStore(client=client, collection_name="my_docs")
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ### Weaviate
 
-```python
+`````python
 from llama_index.vector_stores.weaviate import WeaviateVectorStore
 import weaviate
 
@@ -179,11 +180,11 @@ vector_store = WeaviateVectorStore(weaviate_client=client, index_name="Documents
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ### Chroma
 
-```python
+`````python
 from llama_index.vector_stores.chroma import ChromaVectorStore
 import chromadb
 
@@ -193,7 +194,7 @@ vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -203,15 +204,15 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 | 指标 | LlamaIndex | LangChain | Haystack | RAGFlow |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RAG 准确率（RAGAS） | 0.81 | 0.72 | 0.79 | 0.77 |
 | 平均查询延迟 | 0.9s | 1.2s | 1.1s | 1.4s |
@@ -223,24 +224,24 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 ### 生产用例
 
-- **企业知识库**：一家金融科技公司使用 `VectorStoreIndex` + Qdrant 索引 50 万份监管 PDF，实现亚秒级查询延迟。
-- **多文档问答**：法律团队使用 `RouterQueryEngine` 在向量搜索（案例法）和关键词搜索（精确法规引用）之间路由查询。
-- **智能研究助手**：带工具调用的 `Workflow` 类 Agent 执行多步研究、网络搜索和引用生成。
-- **带记忆的聊天机器人**：`ChatEngine` 配合 `CondensePlusContextMode` 处理基于专有文档的多轮对话。
+- **企业知识库**：一家金融科技公司使用 ````VectorStoreIndex```` + Qdrant 索引 50 万份监管 PDF，实现亚秒级查询延迟。
+- **多文档问答**：法律团队使用 ````RouterQueryEngine```` 在向量搜索（案例法）和关键词搜索（精确法规引用）之间路由查询。
+- **智能研究助手**：带工具调用的 ````Workflow```` 类 Agent 执行多步研究、网络搜索和引用生成。
+- **带记忆的聊天机器人**：````ChatEngine```` 配合 ````CondensePlusContextMode```` 处理基于专有文档的多轮对话。
 
 ### 何时选择 LlamaIndex
 
 | 场景 | 推荐方案 |
 |
----
+* * *
 |
----
+* * *
 |
-| 文档密集型问答 | `VectorStoreIndex` + 查询引擎 |
-| 多个数据源 | `RouterQueryEngine` + 多索引 |
-| 多轮对话 | `ChatEngine` + 记忆 |
-| 复杂推理 | `Workflow` + Agent 工具 |
-| 结构化提取 | `PydanticProgram` 响应模型 |
+| 文档密集型问答 | ````VectorStoreIndex```` + 查询引擎 |
+| 多个数据源 | ````RouterQueryEngine```` + 多索引 |
+| 多轮对话 | ````ChatEngine```` + 记忆 |
+| 复杂推理 | ````Workflow```` + Agent 工具 |
+| 结构化提取 | ````PydanticProgram```` 响应模型 |
 
 ## 高级用法 / 生产加固
 
@@ -248,7 +249,7 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 根据意图将查询路由到不同索引：
 
-```python
+`````python
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.query_engine import RouterQueryEngine
 from llama_index.core.selectors import PydanticSingleSelector
@@ -286,11 +287,11 @@ router_engine = RouterQueryEngine(
 )
 
 response = router_engine.query("Summarize the main points")
-```
+`````
 
 ### 自定义 Node 后处理器
 
-```python
+`````python
 from llama_index.core.postprocessor import BaseNodePostprocessor
 from llama_index.core.schema import NodeWithScore, QueryBundle
 
@@ -305,11 +306,11 @@ class ScoreThresholdPostprocessor(BaseNodePostprocessor): def __init__(self, thr
 query_engine = index.as_query_engine(
     node_postprocessors=[ScoreThresholdPostprocessor(threshold=0.75)]
 )
-```
+`````
 
 ### 异步查询流水线
 
-```python
+`````python
 import asyncio
 
 async def batch_queries(queries: list[str]) -> list[str]: tasks = [query_engine.aquery(q) for q in queries]
@@ -324,11 +325,11 @@ queries = [
 
 results = asyncio.run(batch_queries(queries))
 for q, r in zip(queries, results): print(f"Q: {q}\nA: {r}\n")
-```
+`````
 
 ### Docker 部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM python:3.12-slim
 
@@ -340,9 +341,9 @@ COPY . .
 EXPOSE 8000
 
 CMD ["python", "app.py"]
-```
+`````
 
-```python
+`````python
 # app.py - FastAPI 服务
 from fastapi import FastAPI
 from llama_index.core import StorageContext, load_index_from_storage
@@ -364,9 +365,9 @@ async def query_docs(request: QueryRequest): response = query_engine.query(reque
         "answer": str(response),
         "sources": [n.metadata for n in response.source_nodes],
     }
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: app: build: .
@@ -379,7 +380,7 @@ services: app: build: .
     ports: - "6333:6333"
     volumes: - qdrant_data:/qdrant/storage
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
 ### DigitalOcean 部署
 
@@ -387,19 +388,19 @@ volumes: qdrant_data: ```
 
 将 Docker Compose 堆栈部署到 DigitalOcean Droplet：
 
-```bash
+`````bash
 # 在你的 Droplet 上
 docker-compose up -d
 
 # 或使用 doctl
 doctl apps create --spec .do/app.yaml
-```
+`````
 
 *本文包含 DigitalOcean 的联盟链接。如果你通过我们的推荐链接注册，我们可能会获得佣金，不会对你产生额外费用。*
 
 ### 使用回调进行监控
 
-```python
+`````python
 from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
 import tiktoken
 
@@ -412,45 +413,45 @@ Settings.callback_manager = CallbackManager([token_counter])
 # 查询后
 print(f"LLM Tokens: {token_counter.total_llm_token_count}")
 print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
-```
+`````
 
 ### 生产检查清单
 
 | 关注点 | 实现方式 |
 |
----
+* * *
 |
----
+* * *
 |
-| 索引持久化 | 构建时调用 `storage_context.persist()` |
+| 索引持久化 | 构建时调用 ````storage_context.persist()```` |
 | 热重载 | 启动时从存储加载 |
 | API 速率限制 | 添加 FastAPI 中间件 |
 | 输入验证 | 所有端点使用 Pydantic 模式 |
-| 来源引用 | 返回 `source_nodes` 元数据 |
-| Token 预算 | `TokenCountingHandler` 监控 |
-| 异步支持 | 并发负载使用 `.aquery()` |
+| 来源引用 | 返回 ````source_nodes```` 元数据 |
+| Token 预算 | ````TokenCountingHandler```` 监控 |
+| 异步支持 | 并发负载使用 ````.aquery()```` |
 | 密钥管理 | 环境变量，禁止硬编码 |
 
 ## 与替代方案对比
 
 | 特性 | LlamaIndex | LangChain | Haystack | RAGFlow |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **核心定位** | 数据索引与检索 | Agent 编排与链式调用 | 生产级 RAG 流水线 | 可视化 RAG 构建器 |
 | **GitHub Stars** | 49.5k | 95k | 25.3k | 80.9k |
 | **许可证** | MIT | MIT | Apache-2.0 | Apache-2.0 |
 | **数据连接器** | 160+ | 100+ | 30+ | 50+ |
 | **索引类型** | 8+（向量、树、图等） | 基础（FAISS、Chroma） | 自定义（文档存储） | 向量 + 全文 |
-| **查询路由** | 原生 `RouterQueryEngine` | LangGraph / 手动 | 基于流水线 | 基于工作流 |
+| **查询路由** | 原生 ````RouterQueryEngine```` | LangGraph / 手动 | 基于流水线 | 基于工作流 |
 | **检索速度** | 比 LangChain 快 40% | 基线 | 有竞争力 | 较慢（可视化开销） |
 | **Agent 支持** | 工作流 + 工具 | LangGraph Agent | 自定义 Agent | 内置 Agent 模板 |
 | **学习曲线** | RAG 场景平缓 | 陡峭（高度模块化） | 中等 | 低（可视化界面） |
@@ -465,8 +466,8 @@ print(f"Embedding Tokens: {token_counter.total_embedding_token_count}")
 1. **复杂多 Agent 编排**：LangGraph 在条件分支、循环和并行执行方面提供更好的抽象。
 2. **零代码用户**：RAGFlow 的可视化构建器更适合偏好拖拽界面的团队。
 3. **复杂文档解析**：虽然 LlamaParse 作为付费服务存在，但 RAGFlow 的 DeepDoc 解析器在处理复杂 PDF（表格、布局）方面开箱即用效果更好。
-4. **非 Python 技术栈**：TypeScript 支持存在（`llamaindex` npm 包），但功能完整性落后于 Python。
-5. **小型资源环境**：该框架导入大量模块。对于受限的边缘部署，`txtai` 或直接 API 调用可能是更好的选择。
+4. **非 Python 技术栈**：TypeScript 支持存在（````llamaindex```` npm 包），但功能完整性落后于 Python。
+5. **小型资源环境**：该框架导入大量模块。对于受限的边缘部署，````txtai```` 或直接 API 调用可能是更好的选择。
 
 ## 常见问题解答
 
@@ -476,27 +477,27 @@ LlamaIndex 专注于数据摄取、索引和检索优化。LangChain 是用于�
 
 **Q2: 我可以仅使用本地模型运行 LlamaIndex 吗？**
 
-可以。Ollama 集成支持任何通过 Ollama 可用的模型，包括 Llama 3.2、Mistral 和 CodeLlama。设置 `OLLAMA_BASE_URL` 并使用 `Ollama` 作为 LLM、`OllamaEmbedding` 作为嵌入模型。这消除了所有外部 API 依赖。
+可以。Ollama 集成支持任何通过 Ollama 可用的模型，包括 Llama 3.2、Mistral 和 CodeLlama。设置 ````OLLAMA_BASE_URL```` 并使用 ````Ollama```` 作为 LLM、````OllamaEmbedding```` 作为嵌入模型。这消除了所有外部 API 依赖。
 
 **Q3: 如何将 LlamaIndex 扩展到百万级文档？**
 
-使用生产级向量数据库（Qdrant、Weaviate 或 Pinecone）替代内存存储。将摄取作为与查询服务分离的批处理作业运行。考虑使用 `IngestionPipeline` 配合并行节点解析和批量嵌入生成。
+使用生产级向量数据库（Qdrant、Weaviate 或 Pinecone）替代内存存储。将摄取作为与查询服务分离的批处理作业运行。考虑使用 ````IngestionPipeline```` 配合并行节点解析和批量嵌入生成。
 
 **Q4: LlamaIndex 支持流式响应吗？**
 
-支持。将 `streaming=True` 传递给 `as_query_engine()` 并迭代响应：
+支持。将 ````streaming=True```` 传递给 ````as_query_engine()```` 并迭代响应：
 
-```python
+`````python
 query_engine = index.as_query_engine(streaming=True)
 response = query_engine.query("Explain the architecture")
 for token in response.response_gen: print(token, end="")
-```
+`````
 
 **Q5: 如何评估 RAG 流水线质量？**
 
 LlamaIndex 提供内置评估模块：
 
-```python
+`````python
 from llama_index.core.evaluation import FaithfulnessEvaluator, RelevancyEvaluator
 
 faith_eval = FaithfulnessEvaluator()
@@ -508,7 +509,7 @@ relevancy_result = relevancy_eval.evaluate(response=response, query="What is the
 
 print(f"Faithful: {faith_result.passing}")
 print(f"Relevant: {relevancy_result.passing}")
-```
+````
 
 **Q6: LlamaIndex 可以商业免费使用吗？**
 
@@ -609,12 +610,12 @@ LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026 represents an importa
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents-production-llm-software-2026](llamaindex)
@@ -623,7 +624,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](llamaindex)
 - [ai-engineering-from-scratch](llamaindex)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

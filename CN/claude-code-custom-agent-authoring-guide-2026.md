@@ -23,7 +23,8 @@ tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agen
 aliases:
   - /posts/claude-code-custom-agent-authoring/
 faq: - q: "Where do custom agent definition files live, and what format are they?"
-    a: "Custom agents are Markdown files with YAML frontmatter, stored in .claude/agents/ in your project (or ~/.claude/agents/ for ones you want available across every project). The filename minus the .md extension is not the agent's identity — the name field in the frontmatter is. The frontmatter declares name, description, an optional tools allowlist, and an optional model; everything below the closing--- is the agent's system prompt."
+    a: "Custom agents are Markdown files with YAML frontmatter, stored in .claude/agents/ in your project (or ~/.claude/agents/ for ones you want available across every project). The filename minus the .md extension is not the agent's identity — the name field in the frontmatter is. The frontmatter declares name, description, an optional tools allowlist, and an optional model; everything below the closing---
+ is the agent's system prompt."
   - q: "What's the difference between the description field and the system prompt body?"
     a: "The description is the routing signal: it's what the parent agent reads when deciding whether to delegate to this subagent, so it must say WHEN to use the agent, not just what it is. The system prompt body is the instruction set the subagent runs under once it's invoked — its role, its method, its output contract. A great description with a vague body gets invoked at the right time but does mediocre work; a great body with a vague description does excellent work that never gets triggered."
   - q: "Should I give my custom agent access to all tools or restrict them?"
@@ -41,7 +42,7 @@ faq: - q: "Where do custom agent definition files live, and what format are they
 
 ## Introduction
 
-In [Claude Code Subagent Patterns](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) we covered five workflows for spending your context window wisely — and the fifth, **pipeline orchestration with custom agents**, is the one teams ask about most. "Codify your review checklist as a subagent" sounds great until you open an empty `.claude/agents/migration-reviewer.md` and a blinking cursor.
+In [Claude Code Subagent Patterns](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) we covered five workflows for spending your context window wisely — and the fifth, **pipeline orchestration with custom agents**, is the one teams ask about most. "Codify your review checklist as a subagent" sounds great until you open an empty ```.claude/agents/migration-reviewer.md```` and a blinking cursor.
 
 This guide is the missing manual. We'll walk through the anatomy of a custom agent definition, what each frontmatter field actually controls, how to write a system prompt that produces a structured report instead of a chatty ramble, why tool allowlists matter more than they look, and two complete, production-ready examples you can copy today. Then the mistakes — because the failure modes here are subtle and they cost you trust in the agent the first time it misses something obvious.
 
@@ -49,86 +50,86 @@ If you've never delegated to a subagent before, read the [patterns piece](/resou
 
 ## Anatomy of a Custom Agent
 
-A custom agent is a single Markdown file with YAML frontmatter. It lives in one of two places: - `.claude/agents/<name>.md` — project-scoped, version-controlled, shared with your whole team
-- `~/.claude/agents/<name>.md` — user-scoped, available across every project on your machine
+A custom agent is a single Markdown file with YAML frontmatter. It lives in one of two places: - ````.claude/agents/<name>.md```` — project-scoped, version-controlled, shared with your whole team
+- ````~/.claude/agents/<name>.md```` — user-scoped, available across every project on your machine
 
-The structure is dead simple: ```markdown
+The structure is dead simple: `````markdown
 
----
+* * *
 name: migration-reviewer
 description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
 tools: Read, Grep, Glob
 model: sonnet
 
----
+* * *
 You are a database migration reviewer. Your job is to catch unsafe
 migrations before they reach production...
-```
+`````
 
-Everything above the closing `
----
-` is configuration. Everything below it is the **system prompt** — the persona and instruction set the subagent runs under. That's the entire contract. No build step, no registration, no plugin manifest. Drop the file in, run `/agents` to confirm Claude Code picked it up, and it's invokable.
+Everything above the closing ````
+* * *
+```` is configuration. Everything below it is the **system prompt** — the persona and instruction set the subagent runs under. That's the entire contract. No build step, no registration, no plugin manifest. Drop the file in, run ````/agents```` to confirm Claude Code picked it up, and it's invokable.
 
 ## The Frontmatter Fields
 
 Four fields do all the work. Three of them are optional, but the defaults are rarely what you want for a serious agent.
 
-### `name` (required)
+### ````name```` (required)
 
-The agent's identity — this is the string the parent passes as `subagent_type`. Keep it kebab-case and descriptive: `security-auditor`, not `agent2`. The filename is cosmetic; the `name` field is canonical.
+The agent's identity — this is the string the parent passes as ````subagent_type````. Keep it kebab-case and descriptive: ````security-auditor````, not ````agent2````. The filename is cosmetic; the ````name```` field is canonical.
 
-### `description` (required — and the one people underweight)
+### ````description```` (required — and the one people underweight)
 
-This is **the routing signal**. When the parent agent is deciding whether to delegate, it reads descriptions, not system prompts. So a description must encode *when* to reach for this agent, with concrete triggers: > ❌ `description: A code reviewer.`
-> ✅ `description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.`
+This is **the routing signal**. When the parent agent is deciding whether to delegate, it reads descriptions, not system prompts. So a description must encode *when* to reach for this agent, with concrete triggers: > ❌ ````description: A code reviewer.````
+> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
 
 The word "proactively" is load-bearing — it nudges the parent to invoke without being explicitly asked. If your agent never seems to fire, the description is almost always why.
 
-### `tools` (optional — but declare it anyway)
+### ````tools```` (optional — but declare it anyway)
 
 A comma-separated allowlist. Omit it and the agent inherits every tool the parent has. We'll spend a whole section on why that's usually wrong.
 
-### `model` (optional)
+### ````model```` (optional)
 
-Pin a tier: `haiku` for cheap mechanical passes, `sonnet` for balanced review work, `opus` for deep reasoning. A high-volume linter-style agent on `haiku` keeps costs sane; a security auditor where a miss is expensive earns `opus`.
+Pin a tier: ````haiku```` for cheap mechanical passes, ````sonnet```` for balanced review work, ````opus```` for deep reasoning. A high-volume linter-style agent on ````haiku```` keeps costs sane; a security auditor where a miss is expensive earns ````opus````.
 
 ## Writing the System Prompt
 
 The body is where most agents are won or lost. Three rules produce reliable workers: **1. State the role and the boundary in the first sentence.** "You are a migration reviewer. You do not write code or apply fixes — you report findings." Telling the agent what *not* to do is as important as the job itself.
 
-**2. Specify the output contract.** Vague prompts produce prose; you want structure. Spell it out: ```markdown
+**2. Specify the output contract.** Vague prompts produce prose; you want structure. Spell it out: `````markdown
 Report your findings as a list. For each issue: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM: one sentence
 - FIX: the concrete change
 End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
-```
+`````
 
 **3. Give it a checklist, not a vibe.** "Review for safety" is a wish. Enumerate exactly what to check — the agent will work through your list deterministically, which is the entire value of codifying it.
 
 ## Tool Allowlists: Least Privilege for Agents
 
-Here's the trap. Leave `tools` out, and your "reviewer" inherits `Write`, `Edit`, and `Bash`. The first time it finds an issue, it may "helpfully" fix it — mutating your working tree, running commands, and destroying the independence that made the review worth requesting.
+Here's the trap. Leave ````tools```` out, and your "reviewer" inherits ````Write````, ````Edit````, and ````Bash````. The first time it finds an issue, it may "helpfully" fix it — mutating your working tree, running commands, and destroying the independence that made the review worth requesting.
 
 The fix is least privilege. Match tools to the job: | Agent kind | Tools |
 | --- | --- |
-| Reviewer / auditor | `Read, Grep, Glob` |
-| Researcher / explorer | `Read, Grep, Glob, WebSearch, WebFetch` |
-| Test runner | `Read, Grep, Glob, Bash` |
-| Fixer (rare, deliberate) | `Read, Edit, Bash` |
+| Reviewer / auditor | ````Read, Grep, Glob```` |
+| Researcher / explorer | ````Read, Grep, Glob, WebSearch, WebFetch```` |
+| Test runner | ````Read, Grep, Glob, Bash```` |
+| Fixer (rare, deliberate) | ````Read, Edit, Bash```` |
 
 A read-only reviewer literally *cannot* go rogue. That predictability is what lets you trust its report without re-checking everything it touched. (If you later wire in external systems through [MCP servers](/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/), the same discipline applies — only grant the MCP tools the agent genuinely needs.)
 
 ## Worked Example: A Migration Reviewer
 
-```markdown
+`````markdown
 
----
+* * *
 name: migration-reviewer
 description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
 tools: Read, Grep, Glob
 model: sonnet
----
+* * *
 
 You are a database migration reviewer. You do NOT edit files or run
 migrations — you read the proposed migration and report risks.
@@ -143,19 +144,19 @@ Report findings as: - SEVERITY: blocker | warning | nit
 - LOCATION: file:line
 - PROBLEM / FIX
 End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
-```
+`````
 
-Invoke it from the parent with a natural request — "review the migration on this branch" — and because the description names `db/migrate/`, the parent routes there on its own.
+Invoke it from the parent with a natural request — "review the migration on this branch" — and because the description names ````db/migrate/````, the parent routes there on its own.
 
 ## Worked Example: A Security Gate
 
-```markdown
----
+`````markdown
+* * *
 name: security-gate
 description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
 tools: Read, Grep, Glob
 model: opus
----
+* * *
 
 You are a security reviewer with a threat-modeling mindset. Assume the
 input is hostile. You report only — you never modify code.
@@ -168,15 +169,15 @@ For the diff, check: - Authn/authz: can this path be reached without the expecte
 For each finding give an EXPLOIT SKETCH (how an attacker triggers it),
 then the FIX. Default to flagging when uncertain — false positives are
 cheap, a missed auth hole is not.
-```
+`````
 
-Note the `opus` model and the "default to flagging when uncertain" instruction — for a security gate you tune toward paranoia.
+Note the ````opus```` model and the "default to flagging when uncertain" instruction — for a security gate you tune toward paranoia.
 
 ## Testing and Iterating on Agents
 
-Don't ship an agent you haven't tried to fool. Spin up a [git worktree](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) or a throwaway branch with a *planted* problem — a migration missing `CONCURRENTLY`, an endpoint missing an ownership check — and invoke the agent.
+Don't ship an agent you haven't tried to fool. Spin up a [git worktree](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) or a throwaway branch with a *planted* problem — a migration missing ````CONCURRENTLY````, an endpoint missing an ownership check — and invoke the agent.
 
-You're testing two independent things: - **Did it get triggered** by a natural request? If not, fix the `description`.
+You're testing two independent things: - **Did it get triggered** by a natural request? If not, fix the ````description````.
 - **Did it catch the planted bug?** If not, fix the system prompt's checklist.
 
 These fail for different reasons, so iterate on them separately. A common surprise: the agent works perfectly when you name it explicitly but never fires on its own — that's always a description problem, never a body problem.
@@ -184,7 +185,7 @@ These fail for different reasons, so iterate on them separately. A common surpri
 ## Common Authoring Mistakes
 
 - **Vague description.** The agent does great work nobody ever triggers. Add concrete file paths and the word "proactively."
-- **No tool allowlist.** Your reviewer edits the code it was supposed to review. Declare `Read, Grep, Glob`.
+- **No tool allowlist.** Your reviewer edits the code it was supposed to review. Declare ````Read, Grep, Glob```.
 - **Prose output, no contract.** You get three paragraphs of opinion instead of a triaged list. Specify the exact report format.
 - **One mega-agent.** A single "do-everything" agent is just the parent with extra steps. Split by concern — that's the [specialist delegation pattern](/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/) working for you.
 - **Set-and-forget.** Agents are code. An unmaintained checklist rots as your stack changes. Review them quarterly.
@@ -240,7 +241,7 @@ Start with one — the migration reviewer above is the highest-leverage first ag
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -250,7 +251,7 @@ Start with one — the migration reviewer above is the highest-leverage first ag
 - [claude-code-vs-aider](claude-code-custom-agent-authoring-guide-2026)
 - [cursor-vs-claude-code](claude-code-custom-agent-authoring-guide-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

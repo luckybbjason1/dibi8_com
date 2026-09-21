@@ -22,11 +22,12 @@ aliases:
   - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
 ---
 
+
 {</* resource-info */>}
 
 Terminal là ngôi nhà thứ hai của mọi lập trình viên. Một terminal được cấu hình tốt có thể tăng gấp đôi năng suất làm việc, giảm thiểu thao tác lặp lại và biến những tác vụ phức tạp thành vài cú phím. Năm 2025, hệ sinh thái công cụ dòng lệnh phát triển mạnh mẽ hơn bao giờ hết, với hàng loạt công cụ hiện đại thay thế các tiện ích Unix truyền thống.
 
-Bài viết này hướng dẫn bạn xây dựng một môi trường terminal hoàn chỉnh — từ shell nâng cao với [zsh](https://www.zsh.org) và [Oh My Zsh](https://ohmyz.sh), quản lý session với [tmux](https://github.com/tmux/tmux), tìm kiếm siêu tốc với [fzf](https://github.com/junegunn/fzf) và [ripgrep](https://github.com/BurntSushi/ripgrep), cho đến những công cụ thay thế hiện đại cho `ls`, `cat`, `find` quen thuộc.
+Bài viết này hướng dẫn bạn xây dựng một môi trường terminal hoàn chỉnh — từ shell nâng cao với [zsh](https://www.zsh.org) và [Oh My Zsh](https://ohmyz.sh), quản lý session với [tmux](https://github.com/tmux/tmux), tìm kiếm siêu tốc với [fzf](https://github.com/junegunn/fzf) và [ripgrep](https://github.com/BurntSushi/ripgrep), cho đến những công cụ thay thế hiện đại cho ```ls````, ````cat````, ````find```` quen thuộc.
 
 ## Tại Sao Năng Suất Terminal Quan Trọng Với Developer?
 
@@ -44,11 +45,11 @@ Từ macOS Catalina (10.15) phát hành tháng 10 năm 2019, Apple đã chuyển
 
 ### Cài Đặt Oh My Zsh
 
-[Oh My Zsh](https://ohmyz.sh) là framework quản lý cấu hình zsh phổ biến nhất với hơn 300 plugin và 150 theme. Cài đặt chỉ cần một dòng lệnh: ```bash
+[Oh My Zsh](https://ohmyz.sh) là framework quản lý cấu hình zsh phổ biến nhất với hơn 300 plugin và 150 theme. Cài đặt chỉ cần một dòng lệnh: `````bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+`````
 
-Sau khi cài đặt, file `~/.zshrc` trở thành trung tâm điều khiển mọi tùy chỉnh shell của bạn.
+Sau khi cài đặt, file ````~/.zshrc```` trở thành trung tâm điều khiển mọi tùy chỉnh shell của bạn.
 
 ### Các Plugin Thiết Yếu
 
@@ -60,11 +61,11 @@ Sau khi cài đặt, file `~/.zshrc` trở thành trung tâm điều khiển m�
 | **zsh-syntax-highlighting** | Tô màu cú pháp lệnh theo thờii gian thực | Thủ công |
 | **docker** | Completion cho Docker CLI | Mặc định |
 
-Để thêm plugin, chỉ cần chỉnh sửa dòng `plugins=(...)` trong `~/.zshrc`.
+Để thêm plugin, chỉ cần chỉnh sửa dòng ````plugins=(...)```` trong ````~/.zshrc````.
 
 ### Theme Phổ Biến: Powerlevel10k
 
-[Powerlevel10k](https://github.com/romkatv/powerlevel10k) là theme zsh phổ biến nhất năm 2025 nhờ tốc độ render nhanh, biểu tượng phong phú, và trình hướng dẫn cấu hình tương tác (`p10k configure`). Theme hiển thị branch Git hiện tại, trạng thái dirty/clean, phiên bản ngôn ngữ lập trình, và thờii gian thực thi lệnh — tất cả trong một dòng prompt gọn gàng.
+[Powerlevel10k](https://github.com/romkatv/powerlevel10k) là theme zsh phổ biến nhất năm 2025 nhờ tốc độ render nhanh, biểu tượng phong phú, và trình hướng dẫn cấu hình tương tác (````p10k configure````). Theme hiển thị branch Git hiện tại, trạng thái dirty/clean, phiên bản ngôn ngữ lập trình, và thờii gian thực thi lệnh — tất cả trong một dòng prompt gọn gàng.
 
 ## Terminal Multiplexer: tmux Masterclass
 
@@ -78,20 +79,20 @@ tmux (Terminal Multiplexer) cho phép chia một terminal window thành nhiều 
 
 | Thao tác | Phím tắt |
 |----------|----------|
-| Tạo session mới | `tmux new -s ten` |
-| Liệt kê sessions | `tmux ls` |
-| Attach session | `tmux attach -t ten` |
-| Prefix key (mọi lệnh bắt đầu bằng) | `Ctrl+b` |
-| Chia pane theo chiều dọc | `Ctrl+b %` |
-| Chia pane theo chiều ngang | `Ctrl+b "` |
-| Chuyển pane | `Ctrl+b + mũi tên` |
-| Tạo window mới | `Ctrl+b c` |
-| Chuyển window | `Ctrl+b 0-9` |
-| Detach session | `Ctrl+b d` |
+| Tạo session mới | ````tmux new -s ten```` |
+| Liệt kê sessions | ````tmux ls```` |
+| Attach session | ````tmux attach -t ten```` |
+| Prefix key (mọi lệnh bắt đầu bằng) | ````Ctrl+b```` |
+| Chia pane theo chiều dọc | ````Ctrl+b %```` |
+| Chia pane theo chiều ngang | ````Ctrl+b "```` |
+| Chuyển pane | ````Ctrl+b + mũi tên```` |
+| Tạo window mới | ````Ctrl+b c```` |
+| Chuyển window | ````Ctrl+b 0-9```` |
+| Detach session | ````Ctrl+b d```` |
 
 ### Tùy Chỉnh .tmux.conf
 
-File `~/.tmux.conf` là nơi bạn định nghĩa mọi tùy chỉnh tmux. Một số cấu hình phổ biến: ```bash
+File ``~/.tmux.conf`` là nơi bạn định nghĩa mọi tùy chỉnh tmux. Một số cấu hình phổ biến: `````bash
 # Đổi prefix key sang Ctrl+a (giống screen)
 unbind C-b
 set -g prefix C-a
@@ -108,11 +109,11 @@ bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
-```
+`````
 
 ### Tmux Plugin Manager (TPM)
 
-[TPM](https://github.com/tmux-plugins/tpm) giúp cài đặt và quản lý plugin tmux. Các plugin phổ biến bao gồm `tmux-resurrect` (lưu và phục hồi session sau khi khởi động lại) và `tmux-continuum` (tự động lưu session theo chu kỳ).
+[TPM](https://github.com/tmux-plugins/tpm) giúp cài đặt và quản lý plugin tmux. Các plugin phổ biến bao gồm ````tmux-resurrect```` (lưu và phục hồi session sau khi khởi động lại) và ````tmux-continuum```` (tự động lưu session theo chu kỳ).
 
 ## Fuzzy Finding: fzf
 
@@ -122,34 +123,34 @@ bind -n M-Down select-pane -D
 
 ### Tích Hợp Với Shell History (Ctrl+R)
 
-Một trong những tính năng mạnh nhất của fzf là thay thế chức năng tìm kiếm lịch sử mặc định. Sau khi cài đặt fzf và source shell integration, nhấn `Ctrl+R` sẽ mở giao diện tương tác cho phép tìm kiếm lệnh đã chạy trước đó — nhanh hơn và trực quan hơn nhiều so với cách nhấn `Ctrl+R` nhiều lần của bash/zsh mặc định.
+Một trong những tính năng mạnh nhất của fzf là thay thế chức năng tìm kiếm lịch sử mặc định. Sau khi cài đặt fzf và source shell integration, nhấn ````Ctrl+R```` sẽ mở giao diện tương tác cho phép tìm kiếm lệnh đã chạy trước đó — nhanh hơn và trực quan hơn nhiều so với cách nhấn ````Ctrl+R```` nhiều lần của bash/zsh mặc định.
 
 ### fzf + ripgrep: Combo Tìm Kiếm Code
 
-Kết hợp fzf với ripgrep tạo ra workflow tìm kiếm code tuyệt vờii: ```bash
+Kết hợp fzf với ripgrep tạo ra workflow tìm kiếm code tuyệt vờii: `````bash
 # Tìm file và preview nội dung
 rg --files | fzf --preview 'bat --style=numbers --color=always {}'
 
 # Tìm kiếm nội dung file với preview
 rg --line-number --no-heading --smart-case "pattern" | fzf --delimiter ':' --preview 'bat --style=numbers --color=always --highlight-line {2} {1}'
-```
+`````
 
 ### Các Key Bindings mặc định của fzf
 
 | Key binding | Chức năng |
 |-------------|-----------|
-| `Ctrl+T` | Chèn file được chọn vào dòng lệnh |
-| `Alt+C` | Chuyển đến thư mục được chọn (cd) |
-| `Ctrl+R` | Tìm kiếm trong lịch sử lệnh |
+| ````Ctrl+T```` | Chèn file được chọn vào dòng lệnh |
+| ````Alt+C```` | Chuyển đến thư mục được chọn (cd) |
+| ````Ctrl+R```` | Tìm kiếm trong lịch sử lệnh |
 
 ## Tìm Kiếm Siêu Tốc: ripgrep (rg)
 
 ### Tại Sao ripgrep Thay Thế grep, ack, và ag?
 
-[ripgrep](https://github.com/BurntSushi/ripgrep) (viết tắt `rg`) là công cụ tìm kiếm dòng lệnh được viết bằng Rust, nhanh hơn grep truyền thống từ 3-10 lần trong hầu hết các tình huống thực tế. Điều làm nên sự khác biệt: - **Tự động tôn trọng .gitignore**: rg bỏ qua các file và thư mục được liệt kê trong `.gitignore` mặc định, loại bỏ kết quả nhiễu từ `node_modules/`, `vendor/`, `.git/`
+[ripgrep](https://github.com/BurntSushi/ripgrep) (viết tắt ````rg````) là công cụ tìm kiếm dòng lệnh được viết bằng Rust, nhanh hơn grep truyền thống từ 3-10 lần trong hầu hết các tình huống thực tế. Điều làm nên sự khác biệt: - **Tự động tôn trọng .gitignore**: rg bỏ qua các file và thư mục được liệt kê trong ````.gitignore```` mặc định, loại bỏ kết quả nhiễu từ ````node_modules/````, ````vendor/````, ````.git/````
 - **Song song hóa mặc định**: rg tự động sử dụng nhiều CPU core
 - **Hỗ trợ Unicode**: Xử lý file UTF-8 tốt hơn grep
-- **Cú pháp đơn giản hơn**: Không cần flag `-r` hay `-n` — đệ quy và hiển thị số dòng là mặc định
+- **Cú pháp đơn giản hơn**: Không cần flag ````-r```` hay ````-n```` — đệ quy và hiển thị số dòng là mặc định
 
 ### Bảng So Sánh Tốc Độ
 
@@ -162,7 +163,7 @@ rg --line-number --no-heading --smart-case "pattern" | fzf --delimiter ':' --pre
 
 ### Các Pattern Tìm Kiếm Thường Dùng
 
-```bash
+`````bash
 # Tìm kiếm đơn giản (tự động đệ quy, bỏ qua .gitignore)
 rg "function name"
 
@@ -177,40 +178,40 @@ rg "import React" -l
 
 # Tìm với regex
 rg "^export (const|let|var)"
-```
+`````
 
 ### Tích Hợp Với Editor
 
-ripgrep là backend tìm kiếm mặc định cho nhiều plugin editor phổ biến: VS Code sử dụng rg cho tính năng global search, plugin `fzf.vim` dùng rg để tìm kiếm nội dung file, và Emacs `counsel-rg` cung cấp interface tương tác.
+ripgrep là backend tìm kiếm mặc định cho nhiều plugin editor phổ biến: VS Code sử dụng rg cho tính năng global search, plugin ````fzf.vim```` dùng rg để tìm kiếm nội dung file, và Emacs ````counsel-rg```` cung cấp interface tương tác.
 
 ## Công Cụ Hiện Đại Thay Thế Các Lệnh Cổ Điển
 
 | Lệnh cũ | Công cụ mới | Điểm cải tiến | GitHub |
 |---------|------------|---------------|--------|
-| `ls` | **eza** | Icon, màu sắc, cây thư mục, git status | [eza-community/eza](https://github.com/eza-community/eza) |
-| `cat` | **bat** | Syntax highlighting, git gutter, paging | [sharkdp/bat](https://github.com/sharkdp/bat) |
-| `find` | **fd** | Cú pháp đơn giản, tôn trọng .gitignore, màu sắc | [sharkdp/fd](https://github.com/sharkdp/fd) |
-| `du` | **duf** | Giao diện đẹp, thông tin chi tiết về filesystem | [muesli/duf](https://github.com/muesli/duf) |
-| `ps` | **procs** | Màu sắc, cây tiến trình, thông tin chi tiết | [dalance/procs](https://github.com/dalance/procs) |
-| `sed` | **sd** | Cú pháp đơn giản, thay thế recursive | [chmln/sd](https://github.com/chmln/sd) |
-| `diff` | **delta** | Syntax highlighting, side-by-side, git integration | [dandavison/delta](https://github.com/dandavison/delta) |
-| `time` | **hyperfine** | Benchmark chính xác, so sánh nhiều lệnh, thống kê | [sharkdp/hyperfine](https://github.com/sharkdp/hyperfine) |
+| ````ls```` | **eza** | Icon, màu sắc, cây thư mục, git status | [eza-community/eza](https://github.com/eza-community/eza) |
+| ````cat```` | **bat** | Syntax highlighting, git gutter, paging | [sharkdp/bat](https://github.com/sharkdp/bat) |
+| ````find```` | **fd** | Cú pháp đơn giản, tôn trọng .gitignore, màu sắc | [sharkdp/fd](https://github.com/sharkdp/fd) |
+| ````du```` | **duf** | Giao diện đẹp, thông tin chi tiết về filesystem | [muesli/duf](https://github.com/muesli/duf) |
+| ````ps```` | **procs** | Màu sắc, cây tiến trình, thông tin chi tiết | [dalance/procs](https://github.com/dalance/procs) |
+| ````sed```` | **sd** | Cú pháp đơn giản, thay thế recursive | [chmln/sd](https://github.com/chmln/sd) |
+| ````diff```` | **delta** | Syntax highlighting, side-by-side, git integration | [dandavison/delta](https://github.com/dandavison/delta) |
+| ````time```` | **hyperfine** | Benchmark chính xác, so sánh nhiều lệnh, thống kê | [sharkdp/hyperfine](https://github.com/sharkdp/hyperfine) |
 
 ### bat: cat Với Syntax Highlighting
 
-`bat` không chỉ hiển thị file với màu sắc theo ngôn ngữ lập trình, mà còn hiển thị **git gutter** (dấu +, -, ~ cho biết dòng nào đã thay đổi) và tự động **paging** cho file dài. `bat` cũng là công cụ preview phổ biến nhất cho fzf.
+````bat```` không chỉ hiển thị file với màu sắc theo ngôn ngữ lập trình, mà còn hiển thị **git gutter** (dấu +, -, ~ cho biết dòng nào đã thay đổi) và tự động **paging** cho file dài. ````bat```` cũng là công cụ preview phổ biến nhất cho fzf.
 
 ### eza: ls Cho Thập Kỷ 2020
 
-`eza` (fork và kế thừa `exa`) hiển thị danh sách file với icon, cây thư mục, thông tin git, và header. Lệnh `eza -la --git --icons` cho bạn cái nhìn tổng quan về thư mục chỉ trong một dòng lệnh.
+````eza```` (fork và kế thừa ````exa````) hiển thị danh sách file với icon, cây thư mục, thông tin git, và header. Lệnh ````eza -la --git --icons```` cho bạn cái nhìn tổng quan về thư mục chỉ trong một dòng lệnh.
 
 ### fd: find Không Đau Đầu
 
-`fd` đơn giản hóa việc tìm kiếm file: `fd "*.js"` thay vì `find . -name "*.js" -type f`. fd tự động bỏ qua `.gitignore`, hỗ trợ regex, và cú pháp trực quan hơn nhiều.
+````fd```` đơn giản hóa việc tìm kiếm file: ````fd "*.js"```` thay vì ````find . -name "*.js" -type f````. fd tự động bỏ qua ````.gitignore````, hỗ trợ regex, và cú pháp trực quan hơn nhiều.
 
 ## Starship: Cross-Shell Prompt Tối Giản
 
-[Starship](https://starship.rs) là prompt shell đa nền tảng — hoạt động với bash, zsh, fish, PowerShell — hiển thị thông tin context quan trọng: branch Git, trạng thái working tree, phiên bản Node.js/Python/Rust được phát hiện tự động, và thờii gian thực thi lệnh nếu quá ngưỡng. Cấu hình trong file `~/.config/starship.toml`: ```toml
+[Starship](https://starship.rs) là prompt shell đa nền tảng — hoạt động với bash, zsh, fish, PowerShell — hiển thị thông tin context quan trọng: branch Git, trạng thái working tree, phiên bản Node.js/Python/Rust được phát hiện tự động, và thờii gian thực thi lệnh nếu quá ngưỡng. Cấu hình trong file ``~/.config/starship.toml``: `````toml
 [git_branch]
 symbol = "🌿 "
 
@@ -224,11 +225,11 @@ symbol = "⬢ "
 [cmd_duration]
 min_time = 500
 format = "took [$duration](bold yellow)"
-```
+`````
 
 ## Quản Lý Dotfiles Hiệu Quả
 
-Dotfiles là các file cấu hình (bắt đầu bằng `.`) như `.zshrc`, `.tmux.conf`, `starship.toml`. Việc tổ chức và đồng bộ dotfiles giữa nhiều máy tính là kỹ năng quan trọng của developer chuyên nghiệp.
+Dotfiles là các file cấu hình (bắt đầu bằng ````.````) như ````.zshrc````, ````.tmux.conf````, ````starship.toml````. Việc tổ chức và đồng bộ dotfiles giữa nhiều máy tính là kỹ năng quan trọng của developer chuyên nghiệp.
 
 ### Các Phương Pháp Quản Lý Dotfiles
 
@@ -240,7 +241,7 @@ Dotfiles là các file cấu hình (bắt đầu bằng `.`) như `.zshrc`, `.tm
 
 ### Ví Dụ Cấu Trúc Dotfiles Với GNU Stow
 
-```
+`````
 dotfiles/
 ├── zsh/
 │   └── .zshrc
@@ -251,31 +252,31 @@ dotfiles/
 └── starship/
     └── .config/
         └── starship.toml
-```
+`````
 
-Chạy `stow zsh tmux git starship` để tự động tạo symlink vào thư mục home.
+Chạy ````stow zsh tmux git starship```` để tự động tạo symlink vào thư mục home.
 
 ## Hướng Dẫn Thiết Lập Theo Hệ Điều Hành
 
 ### Thiết Lập Terminal Trên macOS
 
 1. Cài đặt [Homebrew](https://brew.sh) — package manager cho macOS
-2. Cài đặt các công cụ: `brew install zsh tmux fzf ripgrep bat eza fd starship`
+2. Cài đặt các công cụ: ````brew install zsh tmux fzf ripgrep bat eza fd starship````
 3. Cài đặt [iTerm2](https://iterm2.com) — terminal emulator tốt nhất cho macOS với hỗ trợ split pane, tìm kiếm, và trigger
-4. Cài đặt font hỗ trợ icon: `brew tap homebrew/cask-fonts && brew install font-meslo-lg-nerd-font`
+4. Cài đặt font hỗ trợ icon: ````brew tap homebrew/cask-fonts && brew install font-meslo-lg-nerd-font````
 5. Cấu hình iTerm2 sử dụng font MesloLGS NF trong Preferences → Profiles → Text
 
 ### Thiết Lập Terminal Trên Linux
 
-1. Cài đặt qua package manager: - Ubuntu/Debian: `apt install zsh tmux fzf ripgrep bat eza fd-find`
-   - Arch Linux: `pacman -S zsh tmux fzf ripgrep bat eza fd starship`
-   - Fedora: `dnf install zsh tmux fzf ripgrep bat eza fd-find`
+1. Cài đặt qua package manager: - Ubuntu/Debian: ````apt install zsh tmux fzf ripgrep bat eza fd-find````
+   - Arch Linux: ````pacman -S zsh tmux fzf ripgrep bat eza fd starship````
+   - Fedora: ````dnf install zsh tmux fzf ripgrep bat eza fd-find````
 2. Lựa chọn terminal emulator: [Alacritty](https://github.com/alacritty/alacritty) (GPU-accelerated, tối giản) hoặc [Kitty](https://sw.kovidgoyal.net/kitty/) (feature-rich, hỗ trợ tabs và splits)
 3. Font: cài đặt Nerd Fonts tương tự macOS
 
 ### Các Alias và Functions Thiết Yếu
 
-Thêm vào `~/.zshrc`: ```bash
+Thêm vào ``~/.zshrc``: `````bash
 # thay thế ls bằng eza
 alias ls='eza --icons'
 alias ll='eza -la --icons --git'
@@ -300,7 +301,7 @@ alias gc='git commit'
 alias gp='git push'
 alias gl='git pull'
 alias gs='git status"
-```
+`````
 
 ## Kết Luận
 
@@ -318,7 +319,7 @@ Thiết lập phổ biến nhất năm 2025 là: shell zsh với Oh My Zsh + Pow
 
 ### tmux có tốt hơn screen không?
 
-Về tính năng, tmux vượt trội hơn GNU Screen: cấu hình dễ dàng hơn qua `.tmux.conf`, hỗ trợ chuột tốt hơn, ecosystem plugin phong phú hơn (qua TPM), và giao diện mặc định hiện đại hơn. Tuy nhiên, screen vẫn có mặt trên hầu hết hệ thống Unix mặc định, trong khi tmux cần cài đặt thêm.
+Về tính năng, tmux vượt trội hơn GNU Screen: cấu hình dễ dàng hơn qua ````.tmux.conf```, hỗ trợ chuột tốt hơn, ecosystem plugin phong phú hơn (qua TPM), và giao diện mặc định hiện đại hơn. Tuy nhiên, screen vẫn có mặt trên hầu hết hệ thống Unix mặc định, trong khi tmux cần cài đặt thêm.
 
 ### Làm thế nào để terminal trông đẹp hơn?
 
@@ -344,7 +345,7 @@ Có, thông qua **Windows Subsystem for Linux (WSL2)** — đây là cách đư�
 - [fd GitHub Repository](https://github.com/sharkdp/fd)
 - [Chezmoi Dotfiles Manager](https://www.chezmoi.io)
 
----
+* * *
 
 ## Hạ Tầng Đề Xuất
 

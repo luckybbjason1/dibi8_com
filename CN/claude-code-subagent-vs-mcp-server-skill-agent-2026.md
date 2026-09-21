@@ -35,6 +35,7 @@ faq: - q: "What's the one-sentence difference between a skill, a subagent, and a
   - q: "Do skills, subagents, and MCP servers all work in CI / headless mode?"
     a: "Yes, all three. Skills and subagents are version-controlled files in your repo, so CI picks them up automatically. MCP servers need to be configured and reachable from the CI environment (credentials in CI secrets, network access to the service). The headless -p mode respects all three; the only practical gotcha is making sure your MCP server's auth works without an interactive login when running unattended."
 ---
+
 # Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)
 
 
@@ -56,7 +57,7 @@ Say it as a sentence and the confusion dissolves: **a skill changes behavior, a 
 
 ### Skills move the "knowledge" axis
 
-A skill is the answer to *"Claude doesn't know our specific procedure."* Your release process, your code-review rubric, your incident-response runbook — knowledge that's situational. You don't want it in `CLAUDE.md` (that loads on every interaction and bloats the base context); you want it loaded only when the task calls for it. A skill is a markdown file with a trigger description; when the work matches, the detailed instructions enter the conversation, and otherwise they stay out of the way.
+A skill is the answer to *"Claude doesn't know our specific procedure."* Your release process, your code-review rubric, your incident-response runbook — knowledge that's situational. You don't want it in ```CLAUDE.md```` (that loads on every interaction and bloats the base context); you want it loaded only when the task calls for it. A skill is a markdown file with a trigger description; when the work matches, the detailed instructions enter the conversation, and otherwise they stay out of the way.
 
 ### Subagents move the "context" axis
 
@@ -85,9 +86,9 @@ The cheapest option that solves your problem is almost always the right one. A m
 
 - **Capability?** Reading code — Claude already has it. No MCP server needed.
 - **Context?** Auditing the whole codebase means reading dozens of files. That *would* bloat the parent. → **Subagent.**
-- **Procedure?** You want the audit to follow OWASP's specific checklist. → **Skill** (or bake the checklist into a `security-auditor` custom agent's system prompt).
+- **Procedure?** You want the audit to follow OWASP's specific checklist. → **Skill** (or bake the checklist into a ````security-auditor```` custom agent's system prompt).
 
-**Answer:** a `security-auditor` subagent whose system prompt encodes the checklist. One artifact, two axes covered. No server.
+**Answer:** a ````security-auditor``` subagent whose system prompt encodes the checklist. One artifact, two axes covered. No server.
 
 ## Worked Scenario 2: "Show me which customers churned last month"
 
@@ -198,12 +199,12 @@ Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [claude-code-vs-cline](claude-code-subagent-vs-mcp-server-skill-agent-2026)
@@ -212,7 +213,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 - [cursor-vs-claude-code](claude-code-subagent-vs-mcp-server-skill-agent-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

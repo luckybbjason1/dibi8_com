@@ -14,6 +14,7 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
+
 ## TL;DR
 
 오 마이 파이는 자동 설정, 사전 구성된 대시보드, 원클릭 서비스 배포로 라즈베리 파이를 완전히 구성된 스마트 기기로 변환합니다. 12,554 스타를 달성하며 GitHub에서 가장 인기 있는 라즈베리 파이 자동화 프레임워크입니다.
@@ -35,7 +36,7 @@ featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-devic
 - **Network Scanner** — 자동 장치 발견 및 모니터링
 - **Backup Manager** — 암호화 저장으로 예약된 백업
 
-```bash
+````bash
 # 새로 설치한 Raspberry Pi OS에 오 마이 파이 설치
 curl -sSL https://ohmypi.sh/install | sudo bash
 
@@ -43,7 +44,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 git clone https://github.com/can1357/oh-my-pi.git
 cd oh-my-pi
 sudo ./install.sh
-```
+`````
 
 ## 오 마이 파이의 작동 방식
 
@@ -51,7 +52,7 @@ sudo ./install.sh
 2. **서비스 설치** — 합리적인 기본값으로 Docker Compose를 통해 선택한 서비스 배포
 3. **대시보드 조립** — 모든 서비스를 관리하기 위한 통합 웹 대시보드 생성
 
-```bash
+`````bash
 # 1단계: 시스템 프로비저닝
 sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
 
@@ -60,7 +61,7 @@ sudo omp install homeassistant grafana vaultwarden
 
 # 3단계: 대시보드 생성
 sudo omp dashboard --title "My Smart Pi" --theme dark
-```
+`````
 
 프로비저닝 단계는 일반적으로 수 시간이 걸리는 모든 것을 처리합니다: 정적 IP 구성, SSH 키 설정, 방화벽 규칙, 로그 회전, 자동 업데이트. 서비스는 데이터용 지속적 볼륨과 함께 격리된 Docker 컨테이너로 배포됩니다.
 
@@ -68,7 +69,7 @@ sudo omp dashboard --title "My Smart Pi" --theme dark
 
 요구사항: 라즈베리 파이 3B+ 이상(Pi 4 권장), 8GB 이상 microSD 카드, Raspberry Pi OS Lite (64비트).
 
-```bash
+`````bash
 # 1단계: Raspberry Pi OS Lite 플래시
 # https://www.raspberrypi.com/software/에서 다운로드
 
@@ -81,11 +82,11 @@ sudo omp dashboard --title "My Smart Pi" --theme dark
 # 4단계: SSH 접속 및 오 마이 파이 설치
 ssh pi@<pi-ip>
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+`````
 
 ### Docker 구성
 
-오 마이 파이는 모든 서비스 배포에 Docker Compose를 사용합니다: ```yaml
+오 마이 파이는 모든 서비스 배포에 Docker Compose를 사용합니다: `````yaml
 # 서비스 설치 후 생성된 docker-compose.yaml
 version: "3.9"
 services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
@@ -108,11 +109,11 @@ services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
     environment: SIGNUPS_ALLOWED: "false"
     restart: unless-stopped
 
-volumes: ha-data: adguard-conf: adguard-work: vw-data: ```
+volumes: ha-data: adguard-conf: adguard-work: vw-data: `````
 
 ### 네트워크 구성
 
-자동 네트워크 설정은 DHCP 예약, DNS 포워딩, 방화벽 규칙을 처리합니다: ```bash
+자동 네트워크 설정은 DHCP 예약, DNS 포워딩, 방화벽 규칙을 처리합니다: `````bash
 # 정적 IP 구성
 sudo omp network static --ip 192.168.1.100 --gateway 192.168.1.1 --dns 8.8.8.8
 
@@ -121,7 +122,7 @@ sudo omp network dns --upstream 1.1.1.1 --local 127.0.0.1
 
 # 방화벽 구성
 sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
-```
+`````
 
 ## 서비스 카탈로그: 상세 분석
 
@@ -134,14 +135,14 @@ sudo omp firewall enable --allow 22 --allow 80 --allow 443 --allow 8123
 || **보안** | Vaultwarden, FileBrowser, Uptime Kuma | 3분 | 256MB RAM |
 || **모니터링** | Grafana, Prometheus, AlertManager | 6분 | 512MB RAM |
 
-```bash
+`````bash
 # 전체 스마트 홈 설정 설치
 sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 # 모든 서비스가 조율된 시작 순서로 배포됨
 # Home Assistant가 먼저 시작되고, Zigbee2MQTT가 연결되며,
 # AdGuard가 DNS를 처리하고, Grafana가 모든 것을 모니터링
-```
+`````
 
 ## 대체재와의 비교
 
@@ -162,7 +163,7 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 
 오 마이 파이의 확장 시스템을 통해 사용자 지정 서비스 배포: ### 사용자 지정 서비스 정의 작성
 
-```yaml
+`````yaml
 # my-service.yaml — 사용자 지정 서비스 정의
 service: name: my-custom-app
   version: "1.0"
@@ -183,11 +184,11 @@ service: name: my-custom-app
   backup: enabled: true
     schedule: "0 2 * * *"  # 매일 오전 2시
     volumes: - myapp-data
-```
+`````
 
 ### 자동 백업
 
-오 마이 파이에는 암호화 저장 기능이 포함된 내장 백업 시스템이 있습니다: ```bash
+오 마이 파이에는 암호화 저장 기능이 포함된 내장 백업 시스템이 있습니다: `````bash
 # 백업 대상 구성
 sudo omp backup configure --remote s3 --bucket ohmypi-backups --region us-east-1
 
@@ -199,11 +200,11 @@ sudo omp backup restore --date 2026-06-14 --verify
 
 # 매일 백업 예약
 sudo omp backup schedule --frequency daily --retention 30
-```
+`````
 
 ### 원격 접근 및 터널링
 
-자동 HTTPS 터널링으로 어디서나 Pi 서비스에 접근: ```bash
+자동 HTTPS 터널링으로 어디서나 Pi 서비스에 접근: `````bash
 # Cloudflare Tunnel 설정 (무료, 포트 포워딩 불필요)
 sudo omp tunnel cloudflare --token <cloudflare-token>
 
@@ -212,11 +213,11 @@ sudo omp tunnel ngrok --authtoken <ngrok-token>
 
 # Caddy로 리버스 프록시 구성 (자동 HTTPS)
 sudo omp proxy caddy --domain mypi.local --ssl auto
-```
+`````
 
 ### 멀티파이 클러스터 관리
 
-단일 대시보드에서 여러 Pi 관리: ```bash
+단일 대시보드에서 여러 Pi 관리: `````bash
 # 클러스터에 두 번째 Pi 추가
 sudo omp cluster add --host pi2.local --user pi --key ~/.ssh/id_ed25519
 
@@ -225,11 +226,11 @@ sudo omp cluster deploy --services homeassistant,grafana --nodes all
 
 # 클러스터 상태 확인
 sudo omp cluster health
-```
+`````
 
 ### SD 카드 상태 모니터링
 
-라즈베리 파이 SD 카드는 경고 없이 고장날 수 있습니다. 오 마이 파이에는 내장 SMART 유사 모니터링이 있습니다: ```bash
+라즈베리 파이 SD 카드는 경고 없이 고장날 수 있습니다. 오 마이 파이에는 내장 SMART 유사 모니터링이 있습니다: `````bash
 # SD 카드 상태 확인
 sudo omp storage health
 
@@ -238,11 +239,11 @@ sudo omp storage alerts --enable --threshold 70
 
 # 자동 건강 검사 예약
 sudo omp storage schedule --interval hourly
-```
+`````
 
 ### 전원 모니터링 및 UPS 통합
 
-중단 없는 운전을 위해 오 마이 파이는 UPS 하드웨어 모니터링과 정상 종료 지원을 제공합니다: ```bash
+중단 없는 운전을 위해 오 마이 파이는 UPS 하드웨어 모니터링과 정상 종료 지원을 제공합니다: `````bash
 # UPS 모니터링 구성
 sudo omp ups configure --driver usb --shutdown-delay 300
 
@@ -251,11 +252,11 @@ sudo omp ups threshold --battery 20 --action shutdown
 
 # 전원 이벤트 모니터링
 sudo omp ups logs --tail 50
-```
+`````
 
 ### 리소스 모니터링 및 알림
 
-```bash
+`````bash
 # 리소스 임계값 설정
 sudo omp monitor thresholds --cpu 90 --memory 85 --disk 80
 
@@ -264,7 +265,7 @@ sudo omp monitor alerts --channel telegram --token <bot-token> --chat <chat-id>
 
 # 리소스 이력 보기
 sudo omp monitor history --period 7d --graph
-```
+`````
 
 ## 한계: 오 마이 파이가 적합하지 않은 경우
 
@@ -280,14 +281,14 @@ sudo omp monitor history --period 7d --graph
 
 6. **ARM 전용 최적화 제한** — Docker 이미지는 멀티 아키텍처이지만, 일부 x86 최적화 이미지는 ARM 프로세서에서 성능이 저하될 수 있습니다. 배포 전에 반드시 이미지 호환성을 확인하세요.
 
-```bash
+`````bash
 # 간단한 적합성 체크
 # ✅ 홈 오토메이션 허브 → 네
 # ✅ 미디어 서버 → 네
 # ✅ 개발 작업공간 → 네
 # ✅ 프로덕션 데이터베이스 서버 → 아니오 (전용 하드웨어 사용)
 # ✅ IoT 센서 프로젝트 → 아니오 (네트워크 서비스만 집중)
-```
+`````
 
 ## 자주 묻는 질문
 
@@ -313,15 +314,15 @@ RAM 4GB 이상의 Pi 4 또는 Pi 5가 권장됩니다. Pi 3B+는 기본 서비�
 
 ### 설치된 서비스는 어떻게 업데이트하나요?
 
-`sudo omp update`를 실행하여 서비스 업데이트를 확인하고 가능하면 다운타임 없이 적용합니다. 업데이트 시스템은 대부분의 서비스에 롤링 업데이트를 지원하며, 업데이트 후 서비스가 시작되지 않으면 자동으로 롤백할 수 있습니다.
+````sudo omp update````를 실행하여 서비스 업데이트를 확인하고 가능하면 다운타임 없이 적용합니다. 업데이트 시스템은 대부분의 서비스에 롤링 업데이트를 지원하며, 업데이트 후 서비스가 시작되지 않으면 자동으로 롤백할 수 있습니다.
 
 ### 라즈베리 파이가 아닌 보드에서 오 마이 파이를 사용할 수 있나요?
 
-네. 이 프레임워크는 Docker가 설치된 모든 ARM64 또는 x86_64 Linux 머신을 지원합니다. `omp provision` 명령은 하드웨어를 자동 감지하고 리소스 제한을 조정합니다.
+네. 이 프레임워크는 Docker가 설치된 모든 ARM64 또는 x86_64 Linux 머신을 지원합니다. ````omp provision```` 명령은 하드웨어를 자동 감지하고 리소스 제한을 조정합니다.
 
 ### 서비스를 관리하기 위한 웹 대시보드가 있나요?
 
-네. 오 마이 파이는 설치 후 `http://<pi-ip>:3001`에서 통합 웹 대시보드를 생성합니다. 대시보드는 모든 실행 중인 서비스, 리소스 사용량을 표시하며 각 서비스의 관리자 패널에 원클릭 접근을 제공합니다.
+네. 오 마이 파이는 설치 후 ````http://<pi-ip>:3001````에서 통합 웹 대시보드를 생성합니다. 대시보드는 모든 실행 중인 서비스, 리소스 사용량을 표시하며 각 서비스의 관리자 패널에 원클릭 접근을 제공합니다.
 
 ## 결론
 
@@ -331,13 +332,13 @@ RAM 4GB 이상의 Pi 4 또는 Pi 5가 권장됩니다. Pi 3B+는 기본 서비�
 
 **시작하기:**
 
-```bash
+`````bash
 curl -sSL https://ohmypi.sh/install | sudo bash
-```
+````
 
 **내부 링크**: [스마트 홈 가이드](https://dibi8.com/) · [Pi로 엣지 컴퓨팅](https://dibi8.com/ai-tools/)
 
----
+* * *
 
 **소스 및 추가 읽을거리**: - GitHub 레포지토리: https://github.com/can1357/oh-my-pi
 - Raspberry Pi 문서: https://www.raspberrypi.com/documentation/
@@ -377,7 +378,7 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -387,6 +388,6 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 - [apple-container](oh-my-pi)
 - [oh-my-pi](oh-my-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

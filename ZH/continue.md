@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/continue/-
 ---
 
+
 {{</* resource-info */>}}
 
 ![Continue.dev 横幅](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
@@ -40,9 +41,9 @@ aliases:
 
 | 指标 | 数值 |
 |
----
+* * *
 |
----
+* * *
 |
 | GitHub Stars | 33,277+ |
 | 贡献者 | 473+ |
@@ -60,7 +61,7 @@ Continue.dev 作为 IDE 扩展运行，通过三层架构拦截编辑器上下�
 
 **IDE 层** —— 扩展将聊天面板、行内自动补全引擎和 Agent 执行器直接嵌入 VS Code 或 JetBrains。通过 IDE 原生 API 读取文件内容、终端输出和项目结构。
 
-**配置层** —— 单个 `config.yaml`（或旧版 `config.json`）文件定义不同任务由哪个模型处理。Continue 使用"模型角色"将不同 LLM 分配给聊天、自动补全、编辑和 Agent 操作。这意味着可以使用快速的本地 1.5B 模型做 Tab 补全，同时将复杂推理路由给 Claude Sonnet。
+**配置层** —— 单个 ```config.yaml````（或旧版 ````config.json````）文件定义不同任务由哪个模型处理。Continue 使用"模型角色"将不同 LLM 分配给聊天、自动补全、编辑和 Agent 操作。这意味着可以使用快速的本地 1.5B 模型做 Tab 补全，同时将复杂推理路由给 Claude Sonnet。
 
 **LLM 后端层** —— Continue 使用标准 HTTP API。支持 OpenAI 兼容端点、Anthropic 原生 API、Ollama 本地服务器或任何代理。无供应商锁定：更改 YAML 中的键即可切换提供商。
 
@@ -72,38 +73,38 @@ Continue.dev 作为 IDE 扩展运行，通过三层架构拦截编辑器上下�
 
 ### VS Code 安装（≤2 分钟）
 
-```bash
+`````bash
 # 方法 1：应用商店搜索
 # 打开 VS Code → 扩展 (Ctrl+Shift+X) → 搜索 "Continue" → 安装
 
 # 方法 2：直接安装链接
 # 在 VS Code 应用商店中点击 Continue
-```
+`````
 
-安装后，使用 `Ctrl+L`（macOS 上 `Cmd+L`）打开 Continue 侧边栏。
+安装后，使用 ````Ctrl+L````（macOS 上 ````Cmd+L````）打开 Continue 侧边栏。
 
 ### JetBrains IDE 安装（≤3 分钟）
 
-```bash
+`````bash
 # 打开 JetBrains IDE (IntelliJ IDEA、PyCharm 等)
 # 文件 → 设置 → 插件 → 应用市场
 # 搜索 "Continue" → 安装 → 重启 IDE
-```
+`````
 
 ### 验证安装
 
 打开 Continue 聊天面板并检查版本：
 
-```bash
+`````bash
 # VS Code: 打开侧边栏 (Ctrl+L) → 齿轮图标 → 显示版本 v1.2.22
 # 预期结果：左侧边栏显示橙色 "C" 图标
-```
+`````
 
 ### 首个模型配置（config.yaml）
 
 创建全局配置文件：
 
-```bash
+`````bash
 # macOS / Linux
 mkdir -p ~/.continue
 cat > ~/.continue/config.yaml << EOF
@@ -127,19 +128,19 @@ models: - name: Claude Sonnet
 EOF
 
 # Windows: %USERPROFILE%\.continue\config.yaml
-```
+`````
 
 **将 API 密钥设为环境变量：**
 
-```bash
+`````bash
 # 添加到 ~/.bashrc 或 ~/.zshrc
 export ANTHROPIC_API_KEY="sk-ant-xxxxx"
 export OPENAI_API_KEY="sk-xxxxx"
-```
+`````
 
 ### Ollama 本地 LLM 配置
 
-```bash
+`````bash
 # 第 1 步：安装 Ollama
 # macOS: brew install ollama
 # Linux: curl -fsSL https://ollama.com/install.sh | sh
@@ -151,11 +152,11 @@ ollama pull nomic-embed-text       # @codebase 使用的嵌入模型
 
 # 第 3 步：启动 Ollama 服务器（默认：http://localhost:11434）
 ollama serve
-```
+`````
 
-添加到 `config.yaml`：
+添加到 ````config.yaml````：
 
-```yaml
+`````yaml
 models: - name: Qwen Coder 7B
     provider: ollama
     model: qwen2.5-coder:7b
@@ -175,11 +176,11 @@ models: - name: Qwen Coder 7B
     model: nomic-embed-text
     apiBase: http://localhost:11434
     roles: [embed]
-```
+`````
 
 ### Docker 团队部署
 
-```dockerfile
+`````dockerfile
 # Dockerfile.continue-ci
 FROM node:20-slim
 
@@ -190,9 +191,9 @@ ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
 
 # 在 CI 中运行 Continue 检查
 CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml 团队 Ollama + Continue
 version: '3.8"
 services: ollama: image: ollama/ollama:latest
@@ -202,7 +203,7 @@ services: ollama: image: ollama/ollama:latest
               count: 1
               capabilities: [gpu]
 
-volumes: ollama-data: ```
+volumes: ollama-data: `````
 
 ## 与 VS Code、Ollama、OpenAI、Anthropic 和 JetBrains 集成
 
@@ -210,7 +211,7 @@ volumes: ollama-data: ```
 
 Continue.dev 在 VS Code 中的杀手级功能是为**不同任务使用不同模型**。以下是生产级配置：
 
-```yaml
+`````yaml
 # ~/.continue/config.yaml —— 生产级 VS Code 配置
 name: 生产环境 VS Code
 version: 1.0.0
@@ -257,23 +258,23 @@ rules: - name: TypeScript 标准
     rule: |
       使用严格 TypeScript。优先使用 interface 而非 type。
       使用 async/await，不使用回调。显式处理所有错误。
-```
+`````
 
 ### Ollama：完全离线模式
 
-```bash
+`````bash
 # 验证 Ollama 正在运行
 curl http://localhost:11434/api/tags
 
 # 预期输出：可用模型列表
 # {"models":[{"name":"qwen2.5-coder:7b",...}]}
-```
+`````
 
 使用上述 Ollama 配置，所有代码处理都在本地完成。无网络调用，数据不离开 localhost。金融和医疗等合规要求严格的团队采用此方案。
 
 ### Anthropic Claude 集成
 
-```yaml
+`````yaml
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
@@ -281,13 +282,13 @@ models: - name: Claude Opus
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
-```
+`````
 
 Claude 模型原生支持 MCP 工具调用 —— 使 Continue 的 Agent 模式能够调用外部工具。
 
 ### OpenAI 集成
 
-```yaml
+`````yaml
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
@@ -300,31 +301,31 @@ models: - name: GPT-4o
     apiKey: ${{ secrets.OPENAI_API_KEY }}
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
-```
+`````
 
 ### JetBrains：全功能配置
 
-JetBrains 中的 Continue 支持相同的 `config.yaml`。存放位置：
+JetBrains 中的 Continue 支持相同的 ````config.yaml````。存放位置：
 
-```bash
+`````bash
 # 全局（所有项目）
 # macOS: ~/.continue/config.yaml
 # Windows: %USERPROFILE%\.continue\config.yaml
 
 # 项目级
 # <项目根目录>/.continue/config.yaml
-```
+`````
 
 JetBrains 快捷键：
-- `Cmd/Ctrl + J` —— 打开 Continue 聊天
-- `Tab` —— 接受自动补全
-- `Cmd/Ctrl + Shift + L` —— 切换行内编辑
+- ````Cmd/Ctrl + J```` —— 打开 Continue 聊天
+- ````Tab```` —— 接受自动补全
+- ````Cmd/Ctrl + Shift + L```` —— 切换行内编辑
 
 ### MCP（模型上下文协议）集成
 
-Continue.dev 支持 MCP 服务器的工具调用。添加到 `config.yaml`：
+Continue.dev 支持 MCP 服务器的工具调用。添加到 ````config.yaml````：
 
-```yaml
+`````yaml
 mcpServers: - name: filesystem
     command: npx
     args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
@@ -337,7 +338,7 @@ mcpServers: - name: filesystem
   - name: postgres
     command: npx
     args: ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
-```
+`````
 
 ## 基准测试 / 实际使用案例
 
@@ -345,15 +346,15 @@ mcpServers: - name: filesystem
 
 | 指标 | Continue.dev + Claude | Continue.dev + Ollama | GitHub Copilot | Cursor Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 代码接受率 | 68% | 52% | 72% | 75% |
 | 平均响应时间（聊天） | 2.1秒 | 0.8秒（本地） | 1.4秒 | 1.2秒 |
@@ -377,7 +378,7 @@ mcpServers: - name: filesystem
 
 使用本地和云端模型混合的开发者：
 
-```yaml
+`````yaml
 # 优化成本性能配置
 models: - name: Claude Haiku
     provider: anthropic
@@ -389,7 +390,7 @@ models: - name: Claude Haiku
     provider: ollama
     model: qwen2.5-coder:7b
     roles: [autocomplete, edit]  # 免费
-```
+`````
 
 每月 API 账单：**3-8 美元**，编码 40 小时。零订阅费。
 
@@ -399,7 +400,7 @@ models: - name: Claude Haiku
 
 Continue.dev 的 2026 年 Agent 模式可自主规划和执行多步骤任务：
 
-```yaml
+`````yaml
 # 启用带工具策略的 Agent 模式
 models: - name: Claude Sonnet Agent
     provider: anthropic
@@ -408,13 +409,13 @@ models: - name: Claude Sonnet Agent
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
-```
+`````
 
 Agent 工作流：描述任务 → AI 分析代码库 → 创建计划 → 执行文件修改 → 运行终端命令 → 验证结果。每个工具的工具策略可设为"先询问"、"自动"或"排除"。
 
 ### 自定义规则保障代码质量
 
-```yaml
+`````yaml
 # ~/.continue/rules/typescript.yaml
 name: TypeScript 规则
 version: 1.0.0
@@ -423,36 +424,36 @@ schema: v1
 rules: - pattern: "**/*.ts"
     rule: |
       1. 使用严格 TypeScript（noImplicitAny、strictNullChecks）
-      2. 优先使用 `interface` 而非 `type` 定义对象形状
+      2. 优先使用 ````interface```` 而非 ````type```` 定义对象形状
       3. 始终使用 try/catch 处理 Promise 拒绝
       4. 使用依赖注入，避免全局状态
       5. 函数不得超过 50 行
-```
+`````
 
 ### 上下文提供者实现深度理解
 
-Continue 的 `@` 命令为 AI 提供精准上下文：
+Continue 的 ````@```` 命令为 AI 提供精准上下文：
 
-```
+`````
 @codebase    —— 整个项目的语义搜索
 @docs        —— 引用外部文档站点
 @terminal    —— 包含最后一条命令输出
 @file        —— 引用特定文件
 @web         —— 搜索网络获取最新信息
 @github      —— 拉取 issues 和 PR
-```
+`````
 
 聊天示例：
 
-```
+`````
 > @codebase 解释本项目中的认证中间件如何工作
 > @docs https://docs.nestjs.com/security/authentication
 > 使用文档中的模式重构登录处理器
-```
+`````
 
 ### 安全：密钥管理
 
-```yaml
+`````yaml
 # 切勿硬编码 API 密钥。使用环境变量替换：
 models: - name: Claude
     provider: anthropic
@@ -462,11 +463,11 @@ models: - name: Claude
 # CI/CD 中使用运行器的密钥存储：
 # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
 # GitLab CI: $ANTHROPIC_API_KEY (CI/CD 变量)
-```
+`````
 
 ### 监控使用量
 
-```bash
+`````bash
 # 跟踪每个模型的 API 费用
 # 添加到 shell 配置文件：
 export CONTINUE_LOG_LEVEL=debug
@@ -475,13 +476,13 @@ export CONTINUE_LOG_LEVEL=debug
 # macOS: ~/Library/Logs/Continue/
 # Linux: ~/.config/Continue/logs/
 # Windows: %APPDATA%\Continue\logs\
-```
+`````
 
 ## 与替代品对比
 
 | 特性 | Continue.dev | GitHub Copilot | Cursor | Tabby |
 |
----
+* * *
 |: ---
 :|: ---
 :|: ---
@@ -516,7 +517,7 @@ Continue.dev 并非适合每位开发者。以下是坦诚的局限性：
 
 **1. 自动补全稳定性问题。** Tab 补全功能在各版本中存在已知的可靠性问题。在特定模型（Codestral、Qwen 2.5 Coder）上表现良好，但其他模型可能出现问题或静默失败。如果自动补全是你的主要需求，Copilot 或 Tabby 更可靠。
 
-**2. 手动配置开销。** 每次更换模型都需要编辑 `config.yaml`。相比之下，Copilot 安装即用。Continue 奖励喜欢折腾的用户，惩罚追求零配置的用户。
+**2. 手动配置开销。** 每次更换模型都需要编辑 ````config.yaml````。相比之下，Copilot 安装即用。Continue 奖励喜欢折腾的用户，惩罚追求零配置的用户。
 
 **3. 无内置模型。** 需要自带 API 密钥并按量付费。没有像 Cursor 免费版提供的 2,000 次补全这样的捆绑免费计算额度。对于重度云端 LLM 用户，费用可能超过订阅制替代方案。
 
@@ -530,7 +531,7 @@ Continue.dev 并非适合每位开发者。以下是坦诚的局限性：
 
 ### Continue.dev 能完全离线工作吗？
 
-可以，当配置使用 Ollama 或 LM Studio 运行本地模型时。所有代码处理在本地完成，无网络调用。唯一的限制是网络搜索（`@web`）和基于云的上下文提供者显然需要联网。对于完全气隙环境，Continue.dev 是少数能工作的 AI 编程助手之一。
+可以，当配置使用 Ollama 或 LM Studio 运行本地模型时。所有代码处理在本地完成，无网络调用。唯一的限制是网络搜索（````@web````）和基于云的上下文提供者显然需要联网。对于完全气隙环境，Continue.dev 是少数能工作的 AI 编程助手之一。
 
 ### Continue.dev 与 GitHub Copilot 在日常编程中如何比较？
 
@@ -547,7 +548,7 @@ Continue.dev 在聊天功能上与 Copilot 相当，在模型灵活性上超越�
 ### 如何从 Copilot 迁移到 Continue.dev？
 
 1. 安装 Continue 扩展（先不卸载 Copilot）
-2. 在 `~/.continue/config.yaml` 中配置你偏好的模型
+2. 在 ````~/.continue/config.yaml```` 中配置你偏好的模型
 3. 并行运行 1-2 周进行对比
 4. 在 VS Code 设置中禁用 Copilot 自动补全，保留 Continue
 5. 适应后取消 Copilot 订阅
@@ -556,7 +557,7 @@ Continue.dev 在聊天功能上与 Copilot 相当，在模型灵活性上超越�
 
 ### config.yaml 和 config.json 有什么区别？
 
-Continue.dev 在 2025 年从 JSON 迁移到 YAML 作为推荐格式。`config.yaml` 支持完整功能集，包括新规则系统、Hub 导入和更好的可读性。`config.json` 仍兼容但缺少新功能。新设置应完全使用 YAML。
+Continue.dev 在 2025 年从 JSON 迁移到 YAML 作为推荐格式。````config.yaml```` 支持完整功能集，包括新规则系统、Hub 导入和更好的可读性。````config.json```` 仍兼容但缺少新功能。新设置应完全使用 YAML。
 
 ## 结论
 
@@ -564,7 +565,7 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 
 **行动项：**
 1. 从 VS Code 应用商店安装 Continue.dev（2 分钟）
-2. 在 `~/.continue/config.yaml` 中配置你的首个模型（10 分钟）
+2. 在 ````~/.continue/config.yaml``` 中配置你的首个模型（10 分钟）
 3. 使用 Ollama 配合 Qwen 2.5 Coder 设置免费本地自动补全
 4. 加入 GitHub Discussions 上的 Continue 社区获取配置技巧
 
@@ -620,7 +621,7 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](continue)
@@ -630,7 +631,7 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 - [nanochat-karpathy-100-chatgpt-single-gpu](continue)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
 ## Frequently Asked Questions (FAQ)

@@ -7,6 +7,7 @@ aliases:
   - /posts/log-monitoring-observability-tools-developers/
 ---
 
+
 {</* resource-info */>}
 
 애플리케이션이 복잡해질수록 "왜 장애가 났는가?"를 추적하는 작업은 개발의 핵심 업무가 되었다. 단순히 서버가 살아있는지 확인하는 모니터링을 넘어, 시스템 납부에서 무슨 일이 일어나는지 **관측 가능(observable)**하게 만드는 것이 2025년 개발자의 필수 역량이다. 이 글에서는 관측 가능성의 3대 기둥과 주요 도구들을 심층 분석한다.
@@ -29,7 +30,7 @@ aliases:
 
 2025년에는 단순 텍스트 로그 대신 **구조화 로깅(Structured Logging)**이 표준이다. JSON 형태로 로그를 기록하면 검색, 집계, 알람 설정이 훨씬 쉬워진다.
 
-```json
+````json
 {
   "timestamp": "2025-05-18T14:32:01Z",
   "level": "ERROR",
@@ -39,9 +40,9 @@ aliases:
   "user_id": "98765",
   "duration_ms": 1240
 }
-```
+`````
 
-**Correlation ID**(위 예시의 `trace_id`)는 분산 시스템에서 동일한 요청이 여러 서비스를 거치더라도 로그를 추적할 수 있게 해주는 핵심 메커니즘이다. 각 요청의 헤더에 고유 ID를 부여하고, 모든 로그에 해당 ID를 포함시켜야 한다.
+**Correlation ID**(위 예시의 ````trace_id````)는 분산 시스템에서 동일한 요청이 여러 서비스를 거치더라도 로그를 추적할 수 있게 해주는 핵심 메커니즘이다. 각 요청의 헤더에 고유 ID를 부여하고, 모든 로그에 해당 ID를 포함시켜야 한다.
 
 로그 레벨은 일관되게 사용해야 한다. ERROR는 즉시 대응이 필요한 문제, WARN은 주의가 필요한 상황, INFO는 정상적인 비즈니스 이벤트, DEBUG는 개발 시 상세 정보에 사용한다.
 
@@ -55,7 +56,7 @@ Loki는 **레이블만 인덱싱**하고 로그 본문은 압축해서 객체 �
 
 Promtail은 로그 수집 에이전트로, 각 노드의 로그 파일을 읽어 Loki로 전송한다. Docker 환경에서는 간단하게 설정할 수 있다.
 
-```yaml
+`````yaml
 # docker-compose.yml 예시
 services: loki: image: grafana/loki:3.0
     ports: - "3100:3100"
@@ -65,7 +66,7 @@ services: loki: image: grafana/loki:3.0
       - ./promtail-config.yaml:/etc/promtail/config.yml
   grafana: image: grafana/grafana:11.0
     ports: - "3000:3000"
-```
+````
 
 Loki는 Prometheus/Grafana를 이미 사용 중인 팀에게 가장 적합하다. 인프라 비용을 최소화하면서도 로그 시각화가 가능하다.
 
@@ -152,7 +153,7 @@ CodeStream 통합 기능으로 IDE(VS Code, JetBrains) 내에서 직접 에러�
 
 2025년 관측 가능성 시장의 가장 중요한 트렌드는 [OpenTelemetry](https://opentelemetry.io)의 표준화다. 벤더 종속을 피하고 하나의 계측 코드로 여러 백엔드를 사용할 수 있게 되면서, 개발자는 도구 선택의 자유를 얻게 되었다.
 
----
+* * *
 
 ## 자주 묻는 질문
 
@@ -176,7 +177,7 @@ OpenTelemetry는 로그, 메트릭, 트레이스를 하나의 표준으로 계�
 
 인프라 관리 인력이 있고 데이터 주권이 중요하다면 자체 호스팅(Loki, Prometheus, Jaeger)을 선택하세요. 빠른 도입과 유지보수 부담 감소가 우선이라면 Datadog, New Relic 같은 SaaS를 선택하세요. 많은 팀이 민감한 데이터는 자체 호스팅으로, 나머지는 SaaS로 혼합 운영합니다.
 
----
+* * *
 
 ## 추천 인프라
 
@@ -248,7 +249,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

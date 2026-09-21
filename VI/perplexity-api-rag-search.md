@@ -12,13 +12,14 @@ aliases:
   - /vi/posts/perplexity-api-rag-search/
 ---
 
+
 {{</* resource-info */>}}
 
 Cuộc đua xây dựng các ứng dụng thông minh, nhận thức được sự kiện đã đạt đến cột mốc then chốt với Perplexity API — một dịch vụ tìm kiếm RAG (Retrieval-Augmented Generation) được xây dựng chuyên biệt kết hợp các mô hình ngôn ngữ lớn với lập chỉ mục web trực tiếp. Không giống như các API LLM truyền thống chỉ dựa vào dữ liệu huấn luyện tĩnh, các mô hình Sonar của Perplexity truy vấn internet theo thờigian thực, truy xuất các nguồn có thẩm quyền và trả về câu trả lờ có cấu trúc kèm theo trích dẫn nội tuyến. Đối với các nhà phát triển xây dựng chatbot, công cụ nghiên cứu, trợ lý kiến thức và đường ống xác minh nội dung, điều này đại diện cho một sự chuyển đổi paradigma: các ứng dụng không chỉ tạo ra văn bản, mà còn căn cứ mọi khẳng định vào thực tế có thể xác minh được.
 
 Hướng dẫn này cung cấp lộ trình tích hợp toàn diện cho Perplexity API trong năm 2026. Bạn sẽ tìm hiểu kiến trúc tìm kiếm RAG hoạt động như thế nào, mô hình Sonar nào phù hợp với trường hợp sử dụng của bạn, cách triển khai chat completions streaming, xử lý trích dẫn theo chương trình, quản lý giớ hạn tốc độ và triển khai các ứng dụng tìm kiếm cấp sản xuất cung cấp câu trả lờ chính xác, có nguồn gốc cho ngườ dùng.
 
----
+* * *
 
 ## Perplexity API là gì và tại sao RAG lại quan trọng?
 
@@ -30,7 +31,7 @@ Kiến trúc này quan trọng vì nó biến đổi các LLM từ ngườ thi c
 
 Đối với các nhà phát triển, ảnh hưởng thực tế là sâu sắc: bạn không còn cần xây dựng đường ống truy xuất riêng, quản lý cơ sở dữ liệu vector hoặc điều chỉnh chiến lược phân đoạn. Perplexity tự động xử lý truy xuất tài liệu, đánh giá mức độ liên quan và tiêm ngữ cảnh, hiển thị một giao diện chat completions sạch sẽ mà quen thuộc với bất kỳ ai đã từng làm việc với API của OpenAI.
 
----
+* * *
 
 ## Hiểu về dòng mô hình Sonar: Chọn mô hình nào
 
@@ -52,7 +53,7 @@ Biến thể suy luận áp dụng phân tích từng bước rõ ràng trước
 
 Đối với nghiên cứu cấp doanh nghiệp và khám phá chủ đề toàn diện, Sonar Deep Research tiến hành điều tra đa nguồn mở rộng, đánh giá hàng chục tài liệu để tạo ra các báo cáo chi tiết, có cấu trúc tốt. Mong đợi độ trễ và mức sử dụng token cao hơn, nhưng sự toàn diện không thể sánh bằng.
 
-```python
+````python
 # Ánh xạ chọn mô hình cho các trường hợp sử dụng khác nhau
 MODEL_MAP = {
     "fast_chat": "sonar",           # Q&A nhanh, độ trễ thấp
@@ -60,22 +61,22 @@ MODEL_MAP = {
     "analytical": "sonar-reasoning", # Suy luận từng bước
     "enterprise": "sonar-deep-research"  # Báo cáo toàn diện
 }
-```
+`````
 
----
+* * *
 
 ## Bắt đầu: Khóa API và Xác thực
 
 Trước khi viết mã tích hợp, bạn cần một khóa API Perplexity. Truy cập cổng thông tin nhà phát triển Perplexity, tạo tài khoản và tạo khóa API từ bảng điều khiển. Perplexity sử dụng xác thực token Bearer tiêu chuẩn qua HTTPS.
 
-```bash
+`````bash
 # Lưu trữ khóa API của bạn một cách an toàn
 export PERPLEXITY_API_KEY="pplx-your-api-key-here"
-```
+`````
 
-Tất cả các yêu cầu API đều yêu cầu header `Authorization: Bearer <token>`. Điểm cuối cơ bản cho chat completions là `https://api.perplexity.ai/chat/completions`.
+Tất cả các yêu cầu API đều yêu cầu header ````Authorization: Bearer <token>````. Điểm cuối cơ bản cho chat completions là ````https://api.perplexity.ai/chat/completions````.
 
-```python
+`````python
 import os
 
 API_KEY = os.environ.get("PERPLEXITY_API_KEY")
@@ -84,17 +85,17 @@ HEADERS = {
     "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
-```
+`````
 
 Perplexity cung cấp gói miễn phí hào phóng cho việc thử nghiệm, với các gói trả phí mở rộng dựa trên khối lượng truy vấn và lựa chọn mô hình. Cấu trúc giá dựa trên truy vấn thay vì dựa trên token để đơn giản hóa việc thanh toán, mặc dù mức tiêu thụ token được theo dõi để phân tích sử dụng.
 
----
+* * *
 
 ## Chat Completions Cơ bản: Truy vấn RAG đầu tiên của bạn
 
 Perplexity API triển khai giao diện chat completions tương thích với OpenAI, giúp việc di chuyển trở nên đơn giản nếu bạn đã sử dụng các mô hình dựa trên GPT. Sự khác biệt quan trọng là tìm kiếm web tự động và tiêm trích dẫn diễn ra ở hậu trường.
 
-```python
+`````python
 import requests
 import json
 
@@ -126,11 +127,11 @@ result = perplexity_query(
     "Những phát triển mới nhất trong năng lượng nhiệt hạch từ 2026 là gì?"
 )
 print(result["choices"][0]["message"]["content"])
-```
+`````
 
 Lưu ý rằng không cần tham số tìm kiếm, ID tài liệu hoặc cấu hình truy xuất. Perplexity tự động xác định xem có cần tìm kiếm web hay không, thực hiện truy xuất và căn cứ phản hồi trên tài liệu có nguồn.
 
-Phản hồi bao gồm không chỉ văn bản được tạo mà cả siêu dữ liệu trích dẫn: ```python
+Phản hồi bao gồm không chỉ văn bản được tạo mà cả siêu dữ liệu trích dẫn: `````python
 # Trích xuất trích dẫn từ phản hồi
 message = result["choices"][0]["message"]
 answer_text = message["content"]
@@ -139,9 +140,9 @@ citations = message.get("citations", [])
 print(f"Câu trả lờ: {answer_text[:200]}...")
 print(f"\nSố nguồn được trích dẫn: {len(citations)}")
 for i, citation in enumerate(citations[:5], 1): print(f"  [{i}] {citation}")
-```
+`````
 
----
+* * *
 
 ## Làm việc với Trích dẫn: Xây dựng Niềm tin thông qua Minh bạch
 
@@ -149,9 +150,9 @@ Trích dẫn là đặc điểm xác định của triển khai RAG của Perple
 
 ### Hiểu Định dạng Trích dẫn
 
-Perplexity trả về trích dẫn dưới dạng danh sách URL trong trường `citations` của tin nhắn trợ lý. Trong văn bản nội dung, các trích dẫn được tham chiếu bằng chỉ số trong ngoặc vuông `[1]`, `[2]`, v.v., khớp với thứ tự của mảng trích dẫn.
+Perplexity trả về trích dẫn dưới dạng danh sách URL trong trường ````citations```` của tin nhắn trợ lý. Trong văn bản nội dung, các trích dẫn được tham chiếu bằng chỉ số trong ngoặc vuông ````[1]````, ````[2]````, v.v., khớp với thứ tự của mảng trích dẫn.
 
-```python
+`````python
 def format_response_with_citations(result: dict) -> str: """Định dạng phản hồi Perplexity với các liên kết trích dẫn có thể nhấp."""
     message = result["choices"][0]["message"]
     content = message["content"]
@@ -163,11 +164,11 @@ def format_response_with_citations(result: dict) -> str: """Định dạng phả
     return formatted
 
 print(format_response_with_citations(result))
-```
+`````
 
 ### Hiển thị Trích dẫn trong Ứng dụng Web
 
-Khi xây dựng giao diện web, hiển thị trích dẫn dưới dạng chú thích tương tác hoặc tham chiếu thanh bên: ```html
+Khi xây dựng giao diện web, hiển thị trích dẫn dưới dạng chú thích tương tác hoặc tham chiếu thanh bên: `````html
 function CitedResponse({ content, citations }) {
   // Phân tích các đánh dấu [1], [2] trong nội dung
   const parts = content.split(/(\[\d+\])/g);
@@ -194,15 +195,15 @@ function CitedResponse({ content, citations }) {
     </div>
   );
 }
-```
+`````
 
----
+* * *
 
 ## Phản hồi Streaming cho Trải nghiệm Ngườ dùng Thờigian Thực
 
 Đối với các ứng dụng tương tác, Perplexity hỗ trợ streaming Server-Sent Events (SSE), phân phối token khi chúng được tạo thay vì đợi phản hồi hoàn chỉnh. Điều này tạo ra nhận thức về tốc độ và cho phép hiển thị trích dẫn dần dần.
 
-```python
+`````python
 import sseclient
 import io
 
@@ -246,15 +247,15 @@ def perplexity_stream(query: str, model: str = "sonar-pro"): """Phát trực ti�
 answer, sources = perplexity_stream(
     "Kết quả của hội nghị khí hậu UN mới nhất là gì?"
 )
-```
+`````
 
-```javascript
+`````javascript
 // Ví dụ streaming Node.js sử dụng fetch
 async function streamPerplexity(query) {
   const response = await fetch('https://api.perplexity.ai/chat/completions', {
     method: POST,
     headers: {
-      Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+      Authorization: ````Bearer ${process.env.PERPLEXITY_API_KEY}````,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -284,15 +285,15 @@ async function streamPerplexity(query) {
     }
   }
 }
-```
+`````
 
----
+* * *
 
 ## Hội thoại Đa lượt với Tìm kiếm theo Ngữ cảnh
 
 Perplexity duy trì ngữ cảnh hội thoại xuyên suốt nhiều lượt, cho phép các câu hỏi tiếp theo tham chiếu các cuộc trao đổi trước đó. Hệ thống tìm kiếm thích ứng với luồng hội thoại, tinh chỉnh các truy xuất dựa trên ngữ cảnh tích lũy.
 
-```python
+`````python
 class PerplexityConversation: """Trình xử lý hội thoại trạng thái với bộ nhớ tìm kiếm RAG."""
     
     def __init__(self, model: str = "sonar-pro", system_prompt: str = None): self.model = model
@@ -348,9 +349,9 @@ r2 = conv.ask("Trong số này, công ty nào đầu tư mạnh nhất vào R&D?
 r3 = conv.ask("Họ đang ra mắt sản phẩm cụ thể nào trong năm nay?")
 
 print(conv.get_conversation_summary())
-```
+`````
 
----
+* * *
 
 ## Các Mẫu Truy vấn Nâng cao: Dữ liệu Có cấu trúc và Lọc Miền
 
@@ -358,7 +359,7 @@ Vượt ra ngoài Q&A cơ bản, Perplexity API hỗ trợ các mẫu truy vấn
 
 ### Nhắm mục tiêu Miền Tìm kiếm
 
-Hạn chế tìm kiếm vào các miền cụ thể để có nguồn có thẩm quyền trong các lĩnh vực chuyên môn: ```python
+Hạn chế tìm kiếm vào các miền cụ thể để có nguồn có thẩm quyền trong các lĩnh vực chuyên môn: `````python
 def targeted_search(query: str, domains: list[str]) -> dict: """Tìm kiếm trong các miền đã chỉ định để có kết quả có thẩm quyền."""
     payload = {
         "model": "sonar-pro",
@@ -385,11 +386,11 @@ medical_result = targeted_search(
     "Những phát triển mới nhất về vắc-xin mRNA là gì?",
     domains=["who.int", "cdc.gov", "nejm.org", " Lancet.com"]
 )
-```
+`````
 
 ### Lọc Thờigian gần đây
 
-Kiểm soát phạm vi thờigian của tìm kiếm web để đảm bảo độ mới: ```python
+Kiểm soát phạm vi thờigian của tìm kiếm web để đảm bảo độ mới: `````python
 def recent_search(query: str, recency_days: int = 7) -> dict: """Chỉ tìm kiếm thông tin gần đây."""
     payload = {
         "model": "sonar-pro",
@@ -407,11 +408,11 @@ def recent_search(query: str, recency_days: int = 7) -> dict: """Chỉ tìm ki�
 
 # Chỉ lấy tin tức từ 24 giờ qua
 breaking = recent_search("Các thương vụ công nghệ lớn hôm nay", recency_days=1)
-```
+`````
 
 ### Chế độ JSON để Trích xuất Có cấu trúc
 
-Khi xây dựng đường ống dữ liệu, yêu cầu đầu ra có cấu trúc để phân tích tự động: ```python
+Khi xây dựng đường ống dữ liệu, yêu cầu đầu ra có cấu trúc để phân tích tự động: `````python
 import json
 
 def structured_search(query: str, schema: dict) -> dict: """Tìm kiếm và trả về JSON có cấu trúc phù hợp với lược đồ."""
@@ -454,15 +455,15 @@ structured = structured_search(
     company_schema
 )
 print(json.dumps(structured["structured"], indent=2))
-```
+`````
 
----
+* * *
 
 ## Triển khai Sản xuất: Giớ hạn Tốc độ, Xử lý Lỗi và Logic Thử lại
 
 Các tích hợp sản xuất đòi hỏi khả năng xử lý mạnh mẽ các giớ hạn API và lỗi tạm thờ. Perplexity thực thi các giớ hạn tốc độ dựa trên cấp đăng ký của bạn, với các giớ hạn điển hình từ 20 đến 1000 yêu cầu mỗi phút.
 
-```python
+`````python
 import time
 from functools import wraps
 
@@ -538,15 +539,15 @@ for q in queries: try: result = client.query(q)
         results.append(result)
         print(f"✓ Truy vấn hoàn thành: {q[:50]}...")
     except Exception as e: print(f"✗ Truy vấn thất bại: {q[:50]}... - {e}")
-```
+`````
 
----
+* * *
 
 ## Xây dựng Ứng dụng Tìm kiếm RAG Hoàn chỉnh
 
 Hãy tổng hợp mọi thứ thành một ứng dụng Flask hoàn chỉnh minh họa các mẫu sản xuất cho một dịch vụ tìm kiếm được hỗ trợ bởi RAG.
 
-```python
+`````python
 # app.py - API Tìm kiếm RAG Hoàn chỉnh
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
@@ -634,9 +635,9 @@ def health(): """Điểm cuối kiểm tra sức khỏe."""
     return jsonify({"status": "healthy", "service": "rag-search"})
 
 if __name__ == "__main__": app.run(host="0.0.0.0", port=5000, debug=True)
-```
+`````
 
-```bash
+`````bash
 # Dockerfile để triển khai container
 FROM python:3.11-slim
 
@@ -650,9 +651,9 @@ ENV FLASK_ENV=production
 
 EXPOSE 5000
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: rag-search: build: .
@@ -663,9 +664,9 @@ services: rag-search: build: .
       interval: 30s
       timeout: 10s
       retries: 3
-```
+`````
 
----
+* * *
 
 ## FAQ
 
@@ -683,7 +684,7 @@ Hiện tại, Perplexity API tập trung vào tìm kiếm web RAG thay vì tiế
 
 ### Trích dẫn do Perplexity cung cấp có độ chính xác như thế nào?
 
-Hệ thống trích dẫn của Perplexity có độ chính xác cao, với các nguồn được liên kết trực tiếp đến URL được truy xuất trong giai đoạn tìm kiếm. Các đánh dấu `[1]`, `[2]` trong phản hồi tương ứng chính xác với mảng trích dẫn. Tuy nhiên, hãy luôn xác thực thông tin quan trọng với các nguồn chính.
+Hệ thống trích dẫn của Perplexity có độ chính xác cao, với các nguồn được liên kết trực tiếp đến URL được truy xuất trong giai đoạn tìm kiếm. Các đánh dấu ````[1]````, ````[2]```` trong phản hồi tương ứng chính xác với mảng trích dẫn. Tuy nhiên, hãy luôn xác thực thông tin quan trọng với các nguồn chính.
 
 ### Streaming có được hỗ trợ cho tất cả các mô hình Sonar không?
 
@@ -695,9 +696,9 @@ Perplexity sử dụng mô hình định giá kết hợp dựa trên khối lư
 
 ### Tôi có thể lọc tìm kiếm đến các miền hoặc phạm vi ngày cụ thể không?
 
-Có, API hỗ trợ `search_domain_filter` để giớ hạn truy vấn vào các miền cụ thể và `search_recency_filter` để giớ hạn kết quả theo thờigian gần đây. Các tham số này giúp đảm bảo nguồn có thẩm quyền và kịp thờ.
+Có, API hỗ trợ ````search_domain_filter```` để giớ hạn truy vấn vào các miền cụ thể và ````search_recency_filter``` để giớ hạn kết quả theo thờigian gần đây. Các tham số này giúp đảm bảo nguồn có thẩm quyền và kịp thờ.
 
----
+* * *
 
 
 
@@ -742,7 +743,7 @@ Khi chúng ta bước qua năm 2026, kỳ vọng rằng các ứng dụng AI cun
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -752,7 +753,7 @@ Khi chúng ta bước qua năm 2026, kỳ vọng rằng các ứng dụng AI cun
 - [llm-inference-cost-optimization-guide-2026](perplexity-api-rag-search)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](perplexity-api-rag-search)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

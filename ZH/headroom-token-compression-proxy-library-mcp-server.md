@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
+
 # Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 2026 实用指南
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Headroom 压缩流水线                       │
 │                                                      │
@@ -35,7 +36,7 @@ featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headr
 │  │  (Claude Code / Codex / Copilot / Gemini CLI)   │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 ## Introduction
 
@@ -53,7 +54,7 @@ Headroom 是一个**面向 LLM 流水线的 token 压缩层**，在输入到达�
 - **质量保持** — 基准测试显示在 60-95% token 缩减下产生等价答案
 - **零配置启动** — 自带合理默认值，之后可自定义规则
 
-项目基于 Python 构建，仅依赖 `tiktoken`（用于 token 计数），通过标准 HTTP API 集成。压缩状态存储在内存或 Redis 中以支持多会话场景。
+项目基于 Python 构建，仅依赖 ````tiktoken````（用于 token 计数），通过标准 HTTP API 集成。压缩状态存储在内存或 Redis 中以支持多会话场景。
 
 ## How Headroom Works
 
@@ -61,7 +62,7 @@ Headroom 通过三个阶段运作：
 
 ### 第一阶段：输入摄入
 
-```bash
+`````bash
 # 安装库
 pip install headroom-compress
 
@@ -76,11 +77,11 @@ print(f'压缩后: {result.compressed_tokens} tokens')
 print(f'节省: {result.savings_pct}%')
 # 输出: 原始: 5000 → 压缩后: 950 → 节省: 81%
 "
-```
+`````
 
 ### 第二阶段：压缩引擎
 
-```python
+`````python
 # 自定义压缩规则
 from headroom import Compressor
 
@@ -99,30 +100,30 @@ compressed = compressor.compress([
     {"type": "rag_chunk", "data": embedded_text},
     {"type": "code_file", "data": source_code},
 ])
-```
+`````
 
 ### 第三阶段：LLM 集成
 
-```bash
+`````bash
 # 启动代理服务器
 headroom serve --port 8787 --compressor balanced
 
 # 让 AI 代理指向代理而非直接连接 LLM
 # 代理 → Headroom 代理 (8787) → 压缩 → LLM API
-```
+`````
 
 ## Installation & Setup
 
 ### 快速开始（库模式）
 
-```bash
+`````bash
 pip install headroom-compress
 python -c "import headroom; compressed = headroom.compress(your_input); print(compressed.text)"
-```
+`````
 
 ### 代理模式（推荐用于 AI 代理）
 
-```bash
+`````bash
 pip install headroom-compress
 headroom serve --host 0.0.0.0 --port 8787
 
@@ -137,11 +138,11 @@ curl -X POST http://localhost:8787/compress \
 #   "savings_pct": 80.3,
 #   "compressed_text": "..."
 # }
-```
+`````
 
 ### MCP 服务器模式
 
-```bash
+`````bash
 # 启动为 MCP 服务器
 headroom mcp-serve --port 9090
 
@@ -150,11 +151,11 @@ claude-code --mcp http://localhost:9090
 # MCP 服务器暴露: # - headroom/compress — 压缩文本输入
 # - headroom/benchmark — 运行压缩基准测试
 # - headroom/config — 获取/更新压缩设置
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 docker run -d --name headroom-proxy -p 8787:8787 \
   -e LLM_ENDPOINT=https://api.anthropic.com/v1/messages \
   -e LLM_API_KEY=${ANTH...KEY} \
@@ -162,7 +163,7 @@ docker run -d --name headroom-proxy -p 8787:8787 \
 
 # 监控压缩统计
 curl http://localhost:8787/stats | jq
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
@@ -170,31 +171,31 @@ Headroom 兼容任何通过 HTTP 请求 LLM API 的代理：
 
 ### Claude Code
 
-```bash
+`````bash
 # 方法 1: 使用 MCP 服务器
 headroom mcp-serve --port 9090
 # 然后在 Claude Code: add-mcp headroom http://localhost:9090
 
 # 方法 2: 设置 API 代理
 export CLAUDE_API_BASE_URL=http://localhost:8787/v1
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 export OPENAI_API_BASE=http://localhost:8787/v1
 codex --model gpt-4o --prompt "修复认证 bug"
 # 所有上下文先经过 Headroom 压缩
-```
+`````
 
 ### OpenRouter 聚合
 
-```bash
+`````bash
 headroom serve --proxy http://api.openrouter.ai/api/v1 \
   --model meta-llama/llama-3.1-405b --compressor balanced
 # Headroom 压缩输入，然后发送到 OpenRouter
 # 你为压缩后的 token 付费，而非原始 token
-```
+`````
 
 自托管：[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 稳定低延迟连接，[HTStack](https://my.htstack.com/aff.php?aff=27187) 多区域部署，[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 数据中心代理。
 
@@ -206,15 +207,15 @@ headroom serve --proxy http://api.openrouter.ai/api/v1 \
 
 | 配置 | 平均原始 Token | 平均压缩 Token | 节省 | 答案质量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 无压缩 | 4,820 | 4,820 | 0% | 100% |
 | 保守 (90% 上限) | 4,820 | 1,450 | 70% | 98% |
@@ -225,18 +226,18 @@ headroom serve --proxy http://api.openrouter.ai/api/v1 \
 
 一位开发者用 Claude Code 处理 50K 行 Python 项目：
 
-```bash
+`````bash
 # 使用前: # 每日上下文: ~120,000 tokens/天
 # 成本: ~$48/月 (Claude Sonnet @ $3/M)
 
 # 使用后 (均衡模式): # 每日上下文: ~28,000 tokens/天
 # 成本: ~$11/月
 # 节省: ~$37/月 = 77% 降低
-```
+`````
 
 ### RAG 文本块压缩
 
-```python
+`````python
 from headroom import rag_compress
 
 compressed_chunks = rag_compress(
@@ -247,13 +248,13 @@ compressed_chunks = rag_compress(
 )
 # 结果: 47 原始块 → 12 压缩块
 # 同等答案质量，74% 更少 token
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### 自定义压缩规则
 
-```yaml
+`````yaml
 # headroom-config.yaml
 rules: - pattern: "\\.py$"
     min_compress_ratio: 0.5
@@ -265,19 +266,19 @@ rules: - pattern: "\\.py$"
   - pattern: "openapi.*\\.yaml$"
     compress: false
     dedup: true
-```
+`````
 
 ### Redis 会话状态
 
-```bash
+`````bash
 headroom serve --redis-url redis://localhost:6379/0 --session-ttl 3600
 # 会话状态跨请求持久化
 # 适用于长运行代理会话
-```
+`````
 
 ### 健康检查与监控
 
-```bash
+`````bash
 curl -s http://localhost:8787/health | jq
 curl -s http://localhost:8787/stats | jq
 # {
@@ -286,21 +287,21 @@ curl -s http://localhost:8787/stats | jq
 #   "avg_savings_pct": 76.4,
 #   "error_rate": 0.02
 # }
-```
+`````
 
 ## Comparison with Alternatives
 
 | 功能 | Headroom | 仅 Tiktoken | RAG 压缩库 | 令牌优化框架 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Token 节省 | 60-95% | 0% (仅计数) | 30-60% | 50-80% |
 | 多格式 (JSON, 日志, 文件) | 是 | 否 | 有限 | 否 |
@@ -331,7 +332,7 @@ A: Headroom 使用结构分析（token 边界、格式感知去重、相关性�
 
 **Q: Headroom 能用于 Ollama 等本地模型吗？**
 
-A: 可以。将代理指向任何 Ollama 端点：`LLM_ENDPOINT=http://localhost:11434/v1`。压缩在请求到达 Ollama 前发生，减少 VRAM 使用。
+A: 可以。将代理指向任何 Ollama 端点：````LLM_ENDPOINT=http://localhost:11434/v1````。压缩在请求到达 Ollama 前发生，减少 VRAM 使用。
 
 **Q: 能在 VPS 上为团队运行吗？**
 
@@ -343,7 +344,7 @@ A: 没有。Headroom 开源 (MIT 许可)，完全免费，无使用限制。唯�
 
 **Q: Headroom 如何处理 RAG 检索？**
 
-A: Headroom 包含 `rag_compress` 函数，在发送给 LLM 前对检索文本块进行评分、去重和修剪。使用嵌入相似度保留高相关文本块。
+A: Headroom 包含 ````rag_compress``` 函数，在发送给 LLM 前对检索文本块进行评分、去重和修剪。使用嵌入相似度保留高相关文本块。
 
 ## Sources & Further Reading
 
@@ -426,12 +427,12 @@ Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 �
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](headroom-token-compression-proxy-library-mcp-server)
@@ -440,6 +441,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [codebase-memory-mcp-deep-code-intelligence](headroom-token-compression-proxy-library-mcp-server)
 - [ecc-agent-harness-performance-optimization](headroom-token-compression-proxy-library-mcp-server)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

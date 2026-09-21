@@ -36,6 +36,7 @@ faqs: - q: 'What is Goose AI agent?'
   - q: 'What safety features does Goose include?'
     a: 'Goose includes an approval mode that asks before executing dangerous commands, a sandbox mode for running commands in isolated environments, an audit log to track all actions, and rate limiting to prevent API abuse.'
 ---
+
 {</* resource-info */>}
 
 ## What Is Goose?
@@ -88,7 +89,7 @@ Goose follows a **plan-execute-verify** loop: 1. **Understand** — Parse your n
 
 ### Installation
 
-```bash
+````bash
 # macOS
 brew install goose
 
@@ -97,11 +98,11 @@ curl -fsSL https://github.com/block/goose/releases/latest/download/install.sh | 
 
 # Verify
 goose --version
-```
+`````
 
 ### Configuration
 
-```bash
+`````bash
 # Set your API key
 goose configure
 
@@ -110,11 +111,11 @@ goose session
 
 # Run a task directly
 goose run "Create a Python script that fetches weather data"
-```
+`````
 
 ### Example Tasks
 
-```bash
+`````bash
 # Code generation
 goose run "Write a React component for a login form"
 
@@ -126,7 +127,7 @@ goose run "Organize my Downloads folder by file type"
 
 # Web scraping
 goose run "Extract all product prices from this URL"
-```
+````
 
 ## Use Cases
 
@@ -159,15 +160,15 @@ goose run "Extract all product prices from this URL"
 
 | Feature | Goose | AutoGPT | BabyAGI | MetaGPT |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open Source** | Yes | Yes | Yes | Yes |
 | **Linux Foundation** | Yes | No | No | No |
@@ -226,7 +227,7 @@ If you want an AI assistant that can actually **do things** — not just chat �
 - [Free Claude Code: Open Source Proxy](/resources/ai-tools/free-claude-code-open-source-proxy/)
 
 
----
+* * *
 ## Recommended Infrastructure for Self-Hosting
 
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
@@ -305,7 +306,7 @@ Goose AI Agent: Open-Source Automation by Linux Foundation AAIF represents an im
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -336,15 +337,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

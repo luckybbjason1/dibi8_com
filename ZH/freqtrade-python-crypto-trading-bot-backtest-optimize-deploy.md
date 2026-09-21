@@ -7,9 +7,10 @@ license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
 
+
 # Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2026 实战指南
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Freqtrade 交易引擎                         │
 │                                                      │
@@ -26,7 +27,7 @@ featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/doc
 │                                                      │
 │  交易所：Binance | OKX | Bitget | Dex-Trade          │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Freqtrade 架构：回测 → 优化 → 部署*
 
@@ -55,7 +56,7 @@ Freqtrade 通过四个阶段运行：
 
 ### 第一阶段：策略开发
 
-```python
+`````python
 # strategies/MyStrategy.py
 from freqtrade.strategy import IStrategy
 from pandas import DataFrame
@@ -83,13 +84,13 @@ class MyStrategy(IStrategy): # 策略接口设置
             (dataframe['ema_fast'] < dataframe['ema_slow']),
             'sell'] = 1
         return dataframe
-```
+`````
 
-上面的策略使用 RSI（相对强弱指数）和 EMA（指数移动平均线）交叉作为买卖信号。`populate_indicators` 负责计算技术指标，`populate_buy_trend` 和 `populate_sell_trend` 分别定义买入和卖出条件。
+上面的策略使用 RSI（相对强弱指数）和 EMA（指数移动平均线）交叉作为买卖信号。````populate_indicators```` 负责计算技术指标，````populate_buy_trend```` 和 ````populate_sell_trend```` 分别定义买入和卖出条件。
 
 ### 第二阶段：策略回测
 
-```bash
+`````bash
 # 下载历史数据
 freqtrade download-data --timerange 20230101-20260101 --days 1000
 
@@ -99,26 +100,26 @@ freqtrade backtesting \
   --timerange 20240101-20251231 \
   --datadir ./data \
   --export trades
-```
+`````
 
 回测阶段使用下载的历史 K 线数据模拟策略表现，Freqtrade 会自动计算交易次数、胜率、总收益和最大回撤等关键指标。
 
 ### 第三阶段：Hyperopt 参数优化
 
-```bash
+`````bash
 # 优化策略参数
 freqtrade hyperopt \
   --strategy MyStrategy \
   --hyperopt-loss SharpeHyperOptLossDaily \
   --epochs 500 \
   --spaces buy sell roi stoploss trailing
-```
+`````
 
-Hyperopt 使用遗传算法对策略参数进行自动调优。通过 `--spaces` 参数可以指定要优化的空间（买卖信号参数、ROI 表、止损值、追踪止损等），`--epochs` 指定迭代次数。优化完成后，Freqtrade 会输出最佳参数组合。
+Hyperopt 使用遗传算法对策略参数进行自动调优。通过 ````--spaces```` 参数可以指定要优化的空间（买卖信号参数、ROI 表、止损值、追踪止损等），````--epochs```` 指定迭代次数。优化完成后，Freqtrade 会输出最佳参数组合。
 
 ### 第四阶段：实盘部署
 
-```bash
+`````bash
 # 先用模拟模式（纸面交易）测试
 freqtrade trade \
   --strategy MyStrategy \
@@ -130,27 +131,27 @@ freqtrade trade \
 freqtrade trade \
   --strategy MyStrategy \
   --config config.json
-```
+`````
 
-部署时建议先在 `--dry-run` 模拟模式下运行至少一周，确认策略行为符合预期后再切换到实盘。
+部署时建议先在 ````--dry-run```` 模拟模式下运行至少一周，确认策略行为符合预期后再切换到实盘。
 
 ## 交易所集成：Binance、OKX、Bitget 等 20+ 交易所
 
-Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加密货币交易所：
+Freqtrade 使用 ````ccxt```` 库实现交易所连接，支持几乎所有主流加密货币交易所：
 
 ### 支持的交易所
 
 | 交易所 | API 类型 | 手续费 | 最低资金 | 是否需要 KYC |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Binance | 现货/合约 | 0.1% | $10 | 是 |
 | OKX | 现货/合约 | 0.08% | $10 | 部分 |
@@ -163,7 +164,7 @@ Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加�
 
 ### 交易所配置示例
 
-```json
+`````json
 // config.json
 {
     "exchange": {
@@ -186,7 +187,7 @@ Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加�
         "dry_run": false
     }
 }
-```
+`````
 
 对于自托管交易基础设施，我推荐使用 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU 轻量服务器以降低延迟，或者使用 [HTStack](https://my.htstack.com/aff.php?aff=27187) 实现亚洲到交易所的高速路由。如果需要去中心化交易所交易，可以考虑 [Dex-Trade](https://dex-trade.com/refcode/1mviku)，无需中心化交易所即可进行交易。
 
@@ -198,15 +199,15 @@ Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加�
 
 | 策略 | 胜率 | 总收益 | 最大回撤 | 交易次数 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RSI + EMA 交叉 | 58% | +34.2% | -12.3% | 142 |
 | MACD + 布林带 | 52% | +18.7% | -18.5% | 89 |
@@ -219,15 +220,15 @@ Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加�
 
 | 迭代轮次 | 最佳 ROI | 最佳买入参数 | 最佳卖出参数 | 收益 (%) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | 0.02 | rsi=40 | rsi=75 | 12.3 |
 | 100 | 0.08 | rsi=32 | rsi=68 | 28.7 |
@@ -240,7 +241,7 @@ Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加�
 
 一位开发者在 5 个山寨币上、跨 3 个时间框架运行网格策略：
 
-```bash
+`````bash
 # 多币种交易配置
 # config.json: # "stake_currency": "USDT"
 # "stake_amount": 100
@@ -250,13 +251,13 @@ Freqtrade 使用 `ccxt` 库实现交易所连接，支持几乎所有主流加�
 
 # 启动 24/7 交易
 freqtrade trade --strategy GridStrategy --config config.json --dry-run &
-```
+`````
 
 该机器人在 30 天内执行了 347 笔交易，胜率 61%，组合增长 +23.8%。
 
 ### 实际用例 2：带风险管理的波段交易
 
-```python
+`````python
 # 带风控保护的策略
 class SwingStrategy(IStrategy): stoploss = -0.08
     trailing_stop = True
@@ -271,7 +272,7 @@ class SwingStrategy(IStrategy): stoploss = -0.08
     def populate_indicators(self, dataframe, metadata): dataframe['bb_upper'], dataframe['bb_middle'], dataframe['bb_lower'] = ta.BBANDS(dataframe, timeperiod=20)
         dataframe['atr'] = ta.ATR(dataframe, timeperiod=14)
         return dataframe
-```
+`````
 
 该策略将每日亏损限制在组合的 2% 以内，同时捕捉 3-8% 的波段行情。
 
@@ -279,7 +280,7 @@ class SwingStrategy(IStrategy): stoploss = -0.08
 
 ### Docker 生产环境部署
 
-```dockerfile
+`````dockerfile
 FROM freqtradeorg/freqtrade:stable
 
 # 复制自定义策略
@@ -288,9 +289,9 @@ COPY config.json /freqtrade/user_data/config.json
 
 # 以挂载配置的方式运行
 CMD ["trade", "--strategy", "MyStrategy", "--config", "/freqtrade/user_data/config.json"]
-```
+`````
 
-```bash
+`````bash
 # 生产环境部署命令
 docker run -d \
   --name freqtrade-bot \
@@ -298,13 +299,13 @@ docker run -d \
   -v $(pwd)/user_data:/freqtrade/user_data \
   -e FREQTRADE_MODE=trade \
   freqtradeorg/freqtrade:stable
-```
+`````
 
 使用 Docker 部署的优势在于环境隔离和一键部署。你可以将策略文件和配置文件挂载到容器外部，这样修改策略时无需重新构建镜像。
 
 ### 自定义数据源接入
 
-```bash
+`````bash
 # 导入自定义 CSV 交易数据
 freqtrade convert-trade-data \
   --input-file /path/to/trades.csv \
@@ -318,13 +319,13 @@ freqtrade download-data \
   --timeframes 5m 15m 1h \
   --exchange custom \
   --datadir ./custom_data
-```
+`````
 
 对于非标准数据源或私有数据，Freqtrade 提供了灵活的导入和转换工具。
 
 ### Telegram 机器人集成
 
-```bash
+`````bash
 # 启用 Telegram 通知
 # 在 config.json 中配置：
 {
@@ -340,11 +341,11 @@ freqtrade download-data \
 # - 每日盈亏摘要
 # - 错误告警
 # - 通过聊天室手动卖出指令
-```
+`````
 
 ### 常用命令行操作
 
-```bash
+`````bash
 # 查看当前运行的交易对
 freqtrade list-trades
 
@@ -359,13 +360,13 @@ freqtrade list-strategies --userdir user_data
 
 # 查看 hyperopt 历史结果
 freqtrade hyperopt-list --best --min-trades 10
-```
+`````
 
 ### 策略保护（Protections）配置
 
 Freqtrade 内置多种保护机制来降低风险：
 
-```json
+`````json
 // config.json 中的 protections 配置
 {
     "protections": [
@@ -384,7 +385,7 @@ Freqtrade 内置多种保护机制来降低风险：
         }
     ]
 }
-```
+`````
 
 通过保护机制，可以在连续亏损时自动暂停交易，或在组合回撤超过阈值时限制新增仓位。
 
@@ -394,15 +395,15 @@ Telegram 集成让你在手机上就能实时掌握交易状态，无需一直�
 
 | 功能 | Freqtrade | Hummingbot | 3Commas | Cryptohopper |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | 是 | 是 | 否 | 否 |
 | 自托管 | 是 | 是 | 否 | 否 |
@@ -433,7 +434,7 @@ Freqtrade 并非适合所有人。以下是它不适合的场景：
 
 以下是一个最小化的策略文件结构示例，帮助快速上手：
 
-```python
+`````python
 # 策略文件基本结构
 from freqtrade.strategy import IStrategy
 from pandas import DataFrame
@@ -456,7 +457,7 @@ class QuickStartStrategy(IStrategy): # === 基本参数 ===
 
     def populate_sell_trend(self, dataframe, metadata): dataframe.loc[dataframe['rsi'] > self.sell_rsi, 'sell'] = 1
         return dataframe
-```
+`````
 
 ## 常见问题（FAQ）
 
@@ -478,11 +479,11 @@ A：可以。Docker 让 VPS 部署变得简单。一台 1 vCPU、1GB 内存的�
 
 **Q：Freqtrade 支持期货/杠杆交易吗？**
 
-A：支持。Freqtrade 支持在 Binance、OKX、Bybit 等交易所进行现货和期货交易。在策略中配置 `contract_size` 和 `margin_mode` 即可启用期货交易。
+A：支持。Freqtrade 支持在 Binance、OKX、Bybit 等交易所进行现货和期货交易。在策略中配置 ````contract_size```` 和 ````margin_mode```` 即可启用期货交易。
 
 **Q：数据下载很慢怎么办？**
 
-A：可以使用 `--timerange` 参数限制下载范围，或只下载你需要的交易对和时间框架。对于大规模数据，建议在 VPS 上下载而非本地机器。
+A：可以使用 ````--timerange```` 参数限制下载范围，或只下载你需要的交易对和时间框架。对于大规模数据，建议在 VPS 上下载而非本地机器。
 
 ## 来源与参考文献
 
@@ -498,7 +499,7 @@ A：可以使用 `--timerange` 参数限制下载范围，或只下载你需要�
 
 无论你是构建算法化日内交易策略、波段交易系统，还是刚入门量化金融，Freqtrade 都提供了从想法到实盘交易的工具链，整个过程只需几天而非几个月。Docker 部署省去了本地环境配置的麻烦，Telegram 集成让你随时随地都能监控。
 
-加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 Freqtrade 策略和配置。也可以查看我们的 [Minara AI 交易](dibi8-internal-link) 和 [n8n 工作流自动化](dibi8-internal-link) 教程，了解更多互补工具。立即开始：克隆仓库，运行 `freqtrade download-data`，迈出你的第一个回测。
+加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 Freqtrade 策略和配置。也可以查看我们的 [Minara AI 交易](dibi8-internal-link) 和 [n8n 工作流自动化](dibi8-internal-link) 教程，了解更多互补工具。立即开始：克隆仓库，运行 ````freqtrade download-data```，迈出你的第一个回测。
 
 **推荐交易所（注册即享手续费优惠）：**
 
@@ -579,12 +580,12 @@ Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [llm-inference-cost-optimization-guide-2026](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
@@ -593,7 +594,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ray-distributed-ai-framework-complete-guide](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 - [cleanlab-11k-star-ai-data-cleaning](freqtrade-python-crypto-trading-bot-backtest-optimize-deploy)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

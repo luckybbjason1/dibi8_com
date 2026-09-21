@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
 
+
 ## 소개
 
 AI 코드 도구들의 시장은 놀라울 정도로 분절되었다. 개발자들은 클라우드 코드, 쿨러, 쿨러, 코덱스, 그리고 CLI 도구의 생태계가 각각의 구성, 가격, 기능을 가진 다양한 모델 제공자를 관리하고 있습니다. 개발자들이 구축하는 인공지능 애플리케이션을 위한 여러 모델을 관리하고, 각각 다른 API, 속도 제한, 토큰 비용을 갖는 다양한 모델 제공자를 관리해야 한다면 이는 팀이 인공지능 애플리케이션을 구축하는 데는 중대한 운영 부담을 초래합니다.
@@ -59,7 +60,7 @@ Ruv Pi 는 무엇인가요?
 
 Pi 는 기존 개발 워크플로우와 자연스럽게 통합되도록 설계되었습니다. 주요 통합 패턴은 다음과 같습니다: ### Git 통합
 
-Pi 는 Git 저장소와 상호작용하여 커밋, 브랜치 생성 및 풀 리퀘스트 관리 등을 지원합니다: ```bash
+Pi 는 Git 저장소와 상호작용하여 커밋, 브랜치 생성 및 풀 리퀘스트 관리 등을 지원합니다: ````bash
 # Git 통합 설정
 export PI_GIT_ENABLED="true"
 export PI_GIT_AUTO_COMMIT="true"
@@ -67,32 +68,32 @@ export PI_GIT_COMMIT_MESSAGE="Pi 에이전트 자동 커밋"
 
 # Pi 를 통한 Git 작업 관리
 pi start --task "데이터베이스 모듈 리팩토링 및 변경 사항 커밋"
-```
+`````
 
 ### CI/CD Pipeline 통합
 
-Pi 는 CI/CD pipeline 와 자동화 테스트, 코드 검토, 배포를 연결할 수 있습니다: ```bash
+Pi 는 CI/CD pipeline 와 자동화 테스트, 코드 검토, 배포를 연결할 수 있습니다: `````bash
 # Pi 를 CI/CD 로 설정
 export PI_CI_ENABLED="true"
 export PI_CI_MODE="review"  # review, test, 또는 deploy
 
 # CI review 모드에서 실행
 pi ci-review --base main --head feature-branch
-```
+`````
 
 ### IDE 통합
 
-Pi 는 선호하는 IDE 와 함께 작동하여 지능적 제언과 실행 작업을 제공합니다: ```bash
+Pi 는 선호하는 IDE 와 함께 작동하여 지능적 제언과 실행 작업을 제공합니다: `````bash
 # watch 모드로 Pi 실행, 파일 변경 감시
 pi watch --directory ./src --interval 5
 
 # VS Code 와 연결하기
 # Marketplace 에서 VS Code 에 Pi 확장 프로그램 설치
-```
+`````
 
 ### 다중 공급자 라우팅
 
-Pi 의 가장 강력한 기능 중 하나는 지능적 모델 라우팅입니다. 작업 유형에 따라 Pi 는 자동으로 최적의 모델을 선택할 수 있습니다: ```yaml
+Pi 의 가장 강력한 기능 중 하나는 지능적 모델 라우팅입니다. 작업 유형에 따라 Pi 는 자동으로 최적의 모델을 선택할 수 있습니다: `````yaml
 # pi-config.yaml
 routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
@@ -104,7 +105,7 @@ routing: code_generation: model: claude-sonnet-4-20250514
     temperature: 0.3
   default: model: auto
     temperature: 0.7
-```
+`````
 
 ![Ruv Pi 모델 라우팅](https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/model-routing-diagram.png)
 
@@ -114,7 +115,7 @@ routing: code_generation: model: claude-sonnet-4-20250514
 
 강력한 사용자를 위한 커스텀 도구 제작은 Pi 의 기능에 대한 완전한 통제를 제공합니다. Pi 는 매우 유연한 프론트엔드와 백엔드 프레임워크를 제공합니다.
 
-```python
+`````python
 import subprocess
 
 def custom_tool(): # 고급 커스텀 도구 오류 처리
@@ -124,34 +125,34 @@ def custom_tool(): # 고급 커스텀 도구 오류 처리
 if __name__ == "__main__": result = custom_tool()
     if result: print(f"Success: {result}")
     else: print("Error: Custom tool failed.")
-```
+`````
 
 ## 에이전트 메모리 및 컨텍스트 관리
 
 장기 실행 세션에서 컨텍스트 관리가 중요합니다. Pi 는 메모리 관리가 핵심입니다.
 
-```bash
+`````bash
 # 에이전트 메모리 확인
 pi memory status
 
 # 컨텍스트 상태 확인
 pi context status
-```
+`````
 
 ### 다중 에이전트 협업
 
 Pi 는 여러 에이전트 (AIG, RAG) 를 통합하여 작업합니다.
 
-```bash
+`````bash
 # 다중 에이전트 협업 확인
 pi multi-agent status
-```
+`````
 
 ### 플러그인 시스템
 
 Pi 를 확장하기 위한 플러그인 시스템은 매우 중요합니다.
 
-```bash
+`````bash
 # 플러그인 목록 확인
 pi plugins list
 
@@ -160,7 +161,7 @@ pi plugins install
 
 # 플러그인 설정
 pi plugins configure
-```
+````
 
 ## 제한 사항
 
@@ -248,12 +249,12 @@ Ruv Pi: 확장 가능한 개발 에이전트 CLI 를 위한 다중 제공자 대
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -263,7 +264,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents-production-llm-software-2026](ruv-pi)
 - [12-factor-agents](ruv-pi)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

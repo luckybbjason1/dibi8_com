@@ -27,6 +27,7 @@ aliases:
   - /posts/knowledge-base-stack/-
 ---
 
+
 你有 500 个 PDF、2000 条笔记、10 年邮件，但编辑器里的 AI 一个都不知道存在。Notion AI 每座 $10/月还看不到本地文件。Glean 每年起步 $30k。Mem.ai 不错但是 SaaS —— 你的"第二大脑"住在别人的硬件上。
 
 这个合集组装的是**5 组件自托管知识库 stack**，吃下所有东西（PDF / 笔记 / 网页 / 代码），本地向量化，让你用 chat + API 查询，并通过 MCP 暴露给 AI 编程 agent —— **月成本 $10-25**。
@@ -35,15 +36,15 @@ aliases:
 
 | # | 组件 | 角色 | 为什么 | 深度指南 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **AnythingLLM** | 一体化 RAG UI + 文档管理 + chat 界面 | "前门" —— 你和团队实际点进去的地方 | [AnythingLLM 本地 RAG 架构](/zh/resources/llm-frameworks/anythingllm-architecture-local-rag/) |
 | 2 | **RAGFlow** | 深度文档解析（表格、公式、多栏 PDF）| AnythingLLM 解析停在"够用"，RAGFlow 处理硬文档 | [RAGFlow 指南](/zh/resources/llm-frameworks/ragflow/) |
@@ -59,7 +60,7 @@ aliases:
 
 三件事汇聚：
 
-1. **本地 embedding 模型到生产质量** —— `nomic-embed-text` 和 `bge-large` 跑在 4GB VPS 上，embedding 速度 200 文档/分，检索 sub-100ms。不再需要"把数据发给 OpenAI 做 embedding"
+1. **本地 embedding 模型到生产质量** —— ```nomic-embed-text```` 和 ````bge-large```` 跑在 4GB VPS 上，embedding 速度 200 文档/分，检索 sub-100ms。不再需要"把数据发给 OpenAI 做 embedding"
 2. **MCP 标准化了 agent 到知识库的集成** —— 一旦你的知识库说 MCP，所有 AI 编程 agent（Claude Desktop / OpenCode / Cursor / Continue）都能查它，不用写定制集成代码。见 [MCP server 注册中心指南](/zh/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/) 看协议细节
 3. **RAGFlow 把企业级文档解析开源了** —— 多栏 PDF / 合并单元格表格 / 嵌入公式。每个"自建 RAG" stack 都死在这步，现在解决了
 
@@ -67,7 +68,7 @@ aliases:
 
 ## 2. 架构总览
 
-```
+`````
    ┌────────────────────────────────────────────────────┐
    │ VPS ($10-25/月)                                     │
    │                                                    │
@@ -99,7 +100,7 @@ aliases:
    │  │    （Claude / Cursor / OpenCode）│               │
    │  └─────────────────────────────────┘               │
    └────────────────────────────────────────────────────┘
-```
+`````
 
 分工：AnythingLLM 是用户前门，RAGFlow 处理 AnythingLLM 解析器搞不定的文档，向量库是共享检索后端，mem0 + AgentMemory MCP 把同一份知识暴露给 AI 编程 agent。
 
@@ -110,16 +111,16 @@ aliases:
 **为什么选它**：28k+ stars，单 Docker 容器 10 分钟部署，是所有开源 RAG 工具里 Web UI 最精美的。chat 后端支持 40+ LLM provider（Ollama / DeepSeek / Claude / GPT-5 / OpenRouter），成本灵活性留住。
 
 **快装**：
-```bash
+`````bash
 docker run -d --name anythingllm \
   -p 3001:3001 \
   -v anythingllm-storage:/app/server/storage \
   -e LLM_PROVIDER=ollama \
   -e EMBEDDING_ENGINE=native \
   mintplexlabs/anythingllm:latest
-```
+`````
 
-开 `http://your-vps:3001`，建 workspace，拖 PDF 进去。内置解析器搞 80% 文档。剩 20% 路由给 RAGFlow（下个组件）。
+开 ````http://your-vps:3001````，建 workspace，拖 PDF 进去。内置解析器搞 80% 文档。剩 20% 路由给 RAGFlow（下个组件）。
 
 **完整设置**（团队认证 / workspace 结构 / LLM provider 路由）：[AnythingLLM 本地 RAG 架构](/zh/resources/llm-frameworks/anythingllm-architecture-local-rag/)。
 
@@ -130,10 +131,10 @@ docker run -d --name anythingllm \
 **为什么选它**：RAGFlow 的 "DeepDoc" 解析器对每页用视觉模型，保留表格结构（合并单元格、嵌套行），按语义块而非 token 数 chunk 文档。结果是硬文档检索准确率提升 3-5×。
 
 **快装**：
-```bash
+`````bash
 docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-compose.yml up -d
 # Web UI :80, API :9380
-```
+`````
 
 **工作流模式**：AnythingLLM 是日常 driver。某个文档检索质量下降时，过一遍 RAGFlow 重处理，把解析好的 chunk 存回共享向量库。
 
@@ -141,17 +142,17 @@ docker compose -f https://github.com/infiniflow/ragflow/raw/main/docker/docker-c
 
 ## 5. 组件 3 —— mem0（agent 记忆层）
 
-**角色**：跨 chat session 和跨 agent 持久化的语义记忆。"记住用户用 Tailwind v4，auth 在 `src/lib/auth.ts`" —— 任何跟 mem0 说话的 agent 下个 session / 下个月 / 明年都拿到这个事实。
+**角色**：跨 chat session 和跨 agent 持久化的语义记忆。"记住用户用 Tailwind v4，auth 在 ````src/lib/auth.ts````" —— 任何跟 mem0 说话的 agent 下个 session / 下个月 / 明年都拿到这个事实。
 
 **为什么选它**：30k+ stars。专为 agent 记忆设计（不是通用向量库）。自动从对话提取事实、去重、老事实自然衰减。
 
 **快装**：
-```bash
+`````bash
 pip install mem0ai
 # 或作为 service: docker run -d --name mem0 -p 8765:8765 \
   -e VECTOR_DB=chroma \
   mem0ai/mem0-server:latest
-```
+`````
 
 **用法**：把 mem0 接成 AnythingLLM workspace 的 writeback 层。每次 chat 对话自动提炼成 mem0 事实。你的 AI 编程 agent（下个组件）就同时拿到文档语料 AND 对话提取的事实。
 
@@ -161,13 +162,13 @@ pip install mem0ai
 
 **角色**：把 mem0（可选还有 AnythingLLM 向量库）暴露给任意 MCP host —— Claude Desktop / OpenCode / Cursor / Continue / Hermes Agent。你的知识库现在说每个现代 AI 编程 agent 都懂的协议。
 
-**为什么这关键**：没 MCP 时，把定制知识库集成进每个 AI 编程工具需要每个工具一份定制代码。有 AgentMemory MCP 时，在 `claude_desktop_config.json` 加一次，每个 MCP 感知的 agent 都拿到它。
+**为什么这关键**：没 MCP 时，把定制知识库集成进每个 AI 编程工具需要每个工具一份定制代码。有 AgentMemory MCP 时，在 ````claude_desktop_config.json```` 加一次，每个 MCP 感知的 agent 都拿到它。
 
 **快装**：
-```bash
+`````bash
 npm install -g @mem0/mem0-mcp
 # 加到 OpenCode / Claude Desktop MCP config: # { "agentmemory": { "command": "mem0-mcp", "env": { "MEM0_URL": "http://localhost:8765" } } }
-```
+`````
 
 **效果**：你的编程 agent 现在能回答"基于我们的项目文档和过往对话，新 auth 流程应该怎么设计？" —— 带引用，引用同时来自 PDF 和过往决策。
 
@@ -185,11 +186,11 @@ npm install -g @mem0/mem0-mcp
 
 **默认推荐**：从 Chroma 起（AnythingLLM 已内置）。语料 > 100 GB 或查询延迟 > 200ms 时迁 Qdrant。
 
-```bash
+`````bash
 # 超出 Chroma 时上 Qdrant: docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
   -v qdrant-storage:/qdrant/storage \
   qdrant/qdrant:latest
-```
+````
 
 ## 8. Day 1 安装顺序（90 分钟）
 
@@ -207,13 +208,13 @@ npm install -g @mem0/mem0-mcp
 
 | 项 | 单干（10 GB 文档）| 小团队（10 GB，5 用户）| 组织（100 GB，50 用户）|
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | VPS | $12（8 GB）| $24（16 GB）| $120（64 GB + 副本）|
 | AnythingLLM | $0（自托管）| $0 | $0 |
@@ -254,7 +255,7 @@ npm install -g @mem0/mem0-mcp
 开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/月 droplet" >}} 起入门档，跟第 8 节做，明天你的知识库就能从 Claude Desktop / Cursor / OpenCode 查询。
 
 
----
+* * *
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 把这个知识库插进编程 agent stack。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖 chat-LLM 成本侧。[跨境出海 AI 营销 Stack](/zh/collections/cross-border-ai-marketing-stack/) 给需要中国友好 hosting 的中国团队。*
 
 
@@ -320,11 +321,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -334,7 +335,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [arize-ai-observability-llm](knowledge-base-stack)
 - [cognee-ai-memory-platform](knowledge-base-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

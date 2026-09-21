@@ -34,6 +34,7 @@ faqs: - q: 'AI Token Monitor có hoạt động trên macOS hoặc Windows khôn
     a: 'Kiểm tra Grok gọi GET /v1/models — trả về 200 khi xác thực hợp lệ và còn số dư, 403 khi hết số dư. Mã 403 từ xAI đặc biệt có nghĩa là số dư tài khoản bằng 0. Nếu còn số dư mà vẫn thấy 403, hãy kiểm tra lại API key trong ~/.config/.ai_monitor_keys.'
 ---
 
+
 {{< resource-info >}}
 
 ## Vấn đề: Quản lý sáu dịch vụ AI cùng lúc mà không biết cái nào đã hết hạn ngạch
@@ -44,25 +45,25 @@ Kết quả: bạn vào rate limit giữa chừng công việc, mất 5 phút ch
 
 **AI Token Monitor** giải quyết điều này bằng một widget desktop luôn hiển thị — không cần rời khỏi trình soạn thảo, một cái nhìn là biết trạng thái mọi dịch vụ.
 
-```
+````
 ● Claude  ░░░░░░░░░  Không có số dư
 ● Gemini  ░░░░░░░░░  Hết hạn ngạch
 ● Grok    ░░░░░░░░░  Đã hết
 ● Kimi    █████████  22.4M còn lại
 ● Codex   ─────────  18:42:01
 ● Kilo    ─────────  18:42:01
-```
+`````
 
 ## Cách hoạt động
 
-Monitor gồm hai thành phần: **`api_fetcher.py`** — script nền (cron mỗi 5 phút) poll API từng dịch vụ và ghi kết quả vào `~/token-monitor/api_cache.json`.
+Monitor gồm hai thành phần: **````api_fetcher.py````** — script nền (cron mỗi 5 phút) poll API từng dịch vụ và ghi kết quả vào ````~/token-monitor/api_cache.json````.
 
-**`conky_ai.py`** — đọc cache mỗi 30 giây và xuất text định dạng Conky với inline `${color}` tag. Conky render thành widget desktop.
+**````conky_ai.py````** — đọc cache mỗi 30 giây và xuất text định dạng Conky với inline ````${color}```` tag. Conky render thành widget desktop.
 
-```
+`````
 api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Hiển thị Conky
   (cron/5 phút)    (cache JSON)       (poll 30s)     (luôn hiển thị)
-```
+`````
 
 Kiến trúc này đảm bảo lỗi API không đóng băng desktop. Cache luôn lưu trạng thái cuối cùng đã biết.
 
@@ -70,17 +71,17 @@ Kiến trúc này đảm bảo lỗi API không đóng băng desktop. Cache luô
 
 Tính năng chính là **hiển thị hạn ngạch kiểu thanh HP** — hàng ký tự Unicode block trực quan thể hiện hạn ngạch còn lại: | Màu sắc | Trạng thái |
 |---------|-----------|
-| `█████████` xanh lá | Hơn 50% hạn ngạch |
-| `████░░░░░` cam | Còn 20–50% |
-| `█░░░░░░░░` đỏ | Dưới 20% |
-| `░░░░░░░░░` đỏ | Đã hết / không có số dư |
-| `─────────` xám | Chưa cấu hình API key |
+| ````█████████```` xanh lá | Hơn 50% hạn ngạch |
+| ````████░░░░░```` cam | Còn 20–50% |
+| ````█░░░░░░░░```` đỏ | Dưới 20% |
+| ````░░░░░░░░░```` đỏ | Đã hết / không có số dư |
+| ````─────────```` xám | Chưa cấu hình API key |
 
-Thanh tiến trình rộng 9 ký tự. Mỗi `█` đại diện cho khoảng 11% hạn ngạch.
+Thanh tiến trình rộng 9 ký tự. Mỗi ````█```` đại diện cho khoảng 11% hạn ngạch.
 
 ## Cài đặt
 
-```bash
+`````bash
 # 1. Clone
 git clone https://github.com/luckybbjason1/ai-token-monitor
 cd ai-token-monitor
@@ -93,29 +94,29 @@ nano ~/.config/.ai_monitor_keys
 
 # 4. Khởi động lại Conky
 pkill conky && conky --daemonize --pause=1
-```
+`````
 
-Script cài đặt tự động: - Sao chép script vào `~/token-monitor/`
-- Thêm `${execpi 30 python3 ~/token-monitor/conky_ai.py}` vào cấu hình Conky
-- Thiết lập cron job cho `api_fetcher.py`
+Script cài đặt tự động: - Sao chép script vào ````~/token-monitor/````
+- Thêm ````${execpi 30 python3 ~/token-monitor/conky_ai.py}```` vào cấu hình Conky
+- Thiết lập cron job cho ````api_fetcher.py````
 
 ## Dịch vụ được hỗ trợ và phương thức API
 
 | Dịch vụ | API Endpoint | Nội dung phát hiện |
 |---------|-------------|-------------------|
-| **Kimi** (Moonshot) | `GET /v1/users/me` | Hạn ngạch token còn lại chính xác |
-| **Claude** (Anthropic) | `POST /v1/messages` | Header rate-limit theo cửa sổ |
-| **Gemini** (Google) | `POST .../generateContent` | 429 = hết hạn ngạch |
-| **Grok** (xAI) | `GET /v1/models` | 403 = hết số dư |
+| **Kimi** (Moonshot) | ````GET /v1/users/me```` | Hạn ngạch token còn lại chính xác |
+| **Claude** (Anthropic) | ````POST /v1/messages```` | Header rate-limit theo cửa sổ |
+| **Gemini** (Google) | ````POST .../generateContent```` | 429 = hết hạn ngạch |
+| **Grok** (xAI) | ````GET /v1/models```` | 403 = hết số dư |
 | Codex / Kilo | — | Đếm ngược đến nửa đêm UTC+8 |
 
 ## Thiết kế bảo mật
 
-API key lưu trong `~/.config/.ai_monitor_keys` với quyền `chmod 600`. Bị loại trừ khỏi git qua `.gitignore`. Key không bao giờ được in ra terminal hay ghi vào file log — fetcher đọc một lần khi khởi động và chỉ giữ trong bộ nhớ trong thời gian gọi HTTP.
+API key lưu trong ````~/.config/.ai_monitor_keys```` với quyền ````chmod 600````. Bị loại trừ khỏi git qua ````.gitignore````. Key không bao giờ được in ra terminal hay ghi vào file log — fetcher đọc một lần khi khởi động và chỉ giữ trong bộ nhớ trong thời gian gọi HTTP.
 
 ## Thêm dịch vụ tùy chỉnh
 
-Thêm block vào `api_fetcher.py`: ```python
+Thêm block vào ``api_fetcher.py``: `````python
 # ── Dịch vụ tùy chỉnh ────────────────────────────
 key = keys.get(yourservice)
 if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
@@ -130,9 +131,9 @@ if key: try: r = requests.get('https://api.yourservice.com/v1/usage',
             }
         else: cache[YourService] = {ok: False, label: 'Lỗi API'}
     except Exception: pass
-```
+`````
 
-Sau đó thêm `{name: YourService, reset_h: 24}` vào danh sách `SERVICES` trong `conky_ai.py`.
+Sau đó thêm ````{name: YourService, reset_h: 24}```` vào danh sách ````SERVICES```` trong ````conky_ai.py```.
 
 ## Công cụ liên quan trên dibi8
 
@@ -210,12 +211,12 @@ AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Grok, Kimi trực ti�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -225,6 +226,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-08-trending-ai-agents](ai-token-monitor-conky-linux)
 - [2026-06-15-trending-ai-agents](ai-token-monitor-conky-linux)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

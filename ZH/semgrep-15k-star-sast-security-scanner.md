@@ -10,6 +10,7 @@ github_repo: "https://github.com/semgrep/semgrep"
 license: MIT
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
 # Semgrep：这款拥有 1.5 万星的 SAST 工具能在不到 30 秒的时间内发现你代码库中的 500 多个漏洞——快速、轻量、适合生产环境
 
 {
@@ -74,12 +75,12 @@ Semgrep：15K+ Stars 的 SAST 工具，30 秒内在你的代码库中发现 500+
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [semgrep-15k-star-sast-security-scanner](semgrep-15k-star-sast-security-scanner)
@@ -88,7 +89,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [trivy-production-security-scanner-2026](semgrep-15k-star-sast-security-scanner)
 - [codegraph-pre-indexed-code-knowledge-graph-ai-agents](semgrep-15k-star-sast-security-scanner)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -117,7 +118,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 Security is paramount when deploying AI systems. Here are essential principles: ### 1. Least Privilege
 
-Grant minimum permissions necessary: ```yaml
+Grant minimum permissions necessary: ````yaml
 # Kubernetes RBAC example
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -126,7 +127,7 @@ metadata: namespace: ai-system
 rules: - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list"]  # Limited verbs
-```
+`````
 
 ### 2. Defense in Depth
 
@@ -138,7 +139,7 @@ Layer multiple security controls: - Network segmentation
 
 ### 3. Input Validation
 
-Never trust user input: ```python
+Never trust user input: `````python
 def validate_input(user_input: str) -> bool: # Check length
     if len(user_input) > 4000: return False
     
@@ -153,11 +154,11 @@ def validate_input(user_input: str) -> bool: # Check length
     for pattern in suspicious_patterns: if re.search(pattern, user_input, re.IGNORECASE): return False
     
     return True
-```
+`````
 
 Security is paramount when deploying AI systems. Here are essential principles: ### 1. Least Privilege
 
-Grant minimum permissions necessary: ```yaml
+Grant minimum permissions necessary: `````yaml
 # Kubernetes RBAC example
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -166,7 +167,7 @@ metadata: namespace: ai-system
 rules: - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list"]  # Limited verbs
-```
+`````
 
 ### 2. Defense in Depth
 
@@ -178,7 +179,7 @@ Layer multiple security controls: - Network segmentation
 
 ### 3. Input Validation
 
-Never trust user input: ```python
+Never trust user input: `````python
 def validate_input(user_input: str) -> bool: # Check length
     if len(user_input) > 4000: return False
     
@@ -193,11 +194,11 @@ def validate_input(user_input: str) -> bool: # Check length
     for pattern in suspicious_patterns: if re.search(pattern, user_input, re.IGNORECASE): return False
     
     return True
-```
+`````
 
 Security is paramount when deploying AI systems. Here are essential principles: ### 1. Least Privilege
 
-Grant minimum permissions necessary: ```yaml
+Grant minimum permissions necessary: `````yaml
 # Kubernetes RBAC example
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -206,7 +207,7 @@ metadata: namespace: ai-system
 rules: - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list"]  # Limited verbs
-```
+`````
 
 ### 2. Defense in Depth
 
@@ -218,7 +219,7 @@ Layer multiple security controls: - Network segmentation
 
 ### 3. Input Validation
 
-Never trust user input: ```python
+Never trust user input: `````python
 def validate_input(user_input: str) -> bool: # Check length
     if len(user_input) > 4000: return False
     
@@ -233,11 +234,11 @@ def validate_input(user_input: str) -> bool: # Check length
     for pattern in suspicious_patterns: if re.search(pattern, user_input, re.IGNORECASE): return False
     
     return True
-```
+`````
 
 Security is paramount when deploying AI systems. Here are essential principles: ### 1. Least Privilege
 
-Grant minimum permissions necessary: ```yaml
+Grant minimum permissions necessary: `````yaml
 # Kubernetes RBAC example
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -246,7 +247,7 @@ metadata: namespace: ai-system
 rules: - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list"]  # Limited verbs
-```
+`````
 
 ### 2. Defense in Depth
 
@@ -258,7 +259,7 @@ Layer multiple security controls: - Network segmentation
 
 ### 3. Input Validation
 
-Never trust user input: ```python
+Never trust user input: `````python
 def validate_input(user_input: str) -> bool: # Check length
     if len(user_input) > 4000: return False
     
@@ -273,21 +274,21 @@ def validate_input(user_input: str) -> bool: # Check length
     for pattern in suspicious_patterns: if re.search(pattern, user_input, re.IGNORECASE): return False
     
     return True
-```
+````
 
 ## Security Tools Comparison
 
 | Tool | Type | Stars | License | Best For |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
 | **Trivy** | Container | 10K+ | Apache 2.0 | Container security |

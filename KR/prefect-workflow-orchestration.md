@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/prefect-workflow-orchestration/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 당신의 Cron 작업은 시한폭탄이다
@@ -37,7 +38,7 @@ Prefect 3.x는 로컬 개발의 단순성과 분산 오케스트레이션의 강
 ### 흐름(Flows)과 작업(Tasks)
 **흐름**은 워크플로우를 정의하는 데코레이트된 Python 함수이다. **작업**은 흐름 내의 작업 단위 — 역시 데코레이트된 Python 함수이다. 작업은 자동으로 재시도, 캐싱, 타임아웃, 동시성 제한을 받는다. 흐름은 다른 흐름을 호출할 수 있다(서브플로우) — 모듈식 구성을 위해.
 
-```python
+````python
 from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=5)
@@ -51,7 +52,7 @@ def fetch_data(url: str) -> dict: """Fetch data from an API with automatic retry
 def main_flow(): """Main pipeline orchestrating multiple tasks."""
     raw_data = fetch_data("https://api.example.com/data")
     # ... more tasks
-```
+`````
 
 ### Prefect 서버
 **Prefect 서버**는 다음을 제공하는 경량의 셀프 호스팅 가능한 제어 평면이다: - 흐름 등록, 스케줄링, 실행 추적을 위한 **REST API**
@@ -67,11 +68,11 @@ def main_flow(): """Main pipeline orchestrating multiple tasks."""
 - 오케스트레이션과 컴퓨팅의 분리
 
 ### 상태와 상태 전환
-모든 작업과 흐름 실행은 잘 정의된 상태 머신을 통해 전환된다: ```
+모든 작업과 흐름 실행은 잘 정의된 상태 머신을 통해 전환된다: `````
 Scheduled → Pending → Running → Completed
                               → Failed → Retrying → Running
                               → Cancelled
-```
+`````
 
 전환은 Prefect 데이터베이스에 지속되고 대시보드에서 실시간으로 볼 수 있다. 모든 전환에서 작업을 트리거하는 **상태 변경 훅**(알림 전송, 정리 실행, 하류 흐름 트리거)을 정의할 수 있다.
 
@@ -84,7 +85,7 @@ Scheduled → Pending → Running → Completed
 
 ### 단계 1: Prefect 설치
 
-```bash
+`````bash
 python -m venv prefect-env
 source prefect-env/bin/activate  # Linux/Mac
 # prefect-env\Scripts\activate  # Windows
@@ -95,19 +96,19 @@ pip install prefect>=3.3.0
 # 설치 확인
 prefect version
 # Expected output: 3.3.0+
-```
+`````
 
 ### 단계 2: Prefect 서버 시작 (셀프 호스팅)
 
-```bash
+`````bash
 # 옵션 A: SQLite로 빠른 시작 (단일 머신)
 prefect server start
 
 # 서버가 http://localhost:4200에서 시작
 # 브라우저에서 대시보드 열기
-```
+`````
 
-PostgreSQL을 사용한 팀 배포: ```bash
+PostgreSQL을 사용한 팀 배포: `````bash
 # 옵션 B: PostgreSQL이 있는 Docker Compose
 cat > docker-compose.yml << EOF
 services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
@@ -130,20 +131,20 @@ services: prefect-server: image: prefecthq/prefect:3.3.0-python3.12
 volumes: postgres_data: EOF
 
 docker-compose up -d
-```
+`````
 
-Prefect 클라이언트 연결 구성: ```bash
+Prefect 클라이언트 연결 구성: `````bash
 # Prefect CLI를 서버로 향하게 설정
 prefect config set PREFECT_API_URL=http://localhost:4200/api
 
 # 연결 확인
 prefect version
 # Should show: Server: http://localhost:4200/api
-```
+`````
 
 ### 단계 3: 첫 번째 흐름 빌드
 
-`etl_pipeline.py` 생성: ```python
+``etl_pipeline.py`` 생성: `````python
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from prefect.artifacts import create_table_artifact
@@ -221,17 +222,17 @@ def etl_pipeline(endpoint: str = "https://api.example.com/transactions", api_key
 
 if __name__ == "__main__": result = etl_pipeline()
     print(f"Pipeline completed: {result}")
-```
+`````
 
-실행: ```bash
+실행: `````bash
 python etl_pipeline.py
-```
+`````
 
-브라우저에서 `http://localhost:4200`을 연다. 요약 아티팩트 테이블을 포함하여 모든 작업 상태 전환이 실시간으로 추적되는 흐름 실행을 볼 수 있다.
+브라우저에서 ````http://localhost:4200````을 연다. 요약 아티팩트 테이블을 포함하여 모든 작업 상태 전환이 실시간으로 추적되는 흐름 실행을 볼 수 있다.
 
 ### 단계 4: 흐름 스케줄링
 
-```python
+`````python
 from prefect import flow
 from prefect.schedules import IntervalSchedule
 from datetime import timedelta
@@ -242,15 +243,15 @@ etl_pipeline.serve(
     schedule=IntervalSchedule(interval=timedelta(hours=24)),
     tags=["production", "etl"]
 )
-```
+`````
 
-또는 cron 구문 사용: ```bash
+또는 cron 구문 사용: `````bash
 # cron 일정으로 배포
 prefect deployment build etl_pipeline.py:etl_pipeline \
   --name "daily-etl-cron" \
   --cron "0 6 * * *" \
   --apply
-```
+`````
 
 ## 20개 이상 도구와의 통합: 프로덕션 데이터 스택 구축
 
@@ -258,7 +259,7 @@ Prefect는 현대적인 데이터 에코시스템과 네이티브 통합된다. 
 
 ### Docker 및 Kubernetes 실행
 
-격리된 Docker 컨테이너에서 흐름 실행: ```python
+격리된 Docker 컨테이너에서 흐름 실행: `````python
 from prefect.docker import DockerImage
 
 @flow
@@ -271,17 +272,17 @@ containerized_flow.deploy(
     work_pool_name="docker-pool",
     image=DockerImage(name="my-etl", tag="1.0")
 )
-```
+`````
 
-Docker 작업 풀 구성: ```bash
+Docker 작업 풀 구성: `````bash
 # Docker 작업 풀 생성
 prefect work-pool create docker-pool --type docker
 
 # 워커 시작
 prefect worker start --pool docker-pool
-```
+`````
 
-Kubernetes용: ```bash
+Kubernetes용: `````bash
 # Kubernetes 작업 풀 생성
 prefect work-pool create k8s-pool --type kubernetes
 
@@ -291,11 +292,11 @@ prefect deployment build etl_pipeline.py:etl_pipeline \
   --pool k8s-pool \
   --infra kubernetes-job \
   --apply
-```
+`````
 
 ### dbt 통합
 
-Prefect에서 직접 dbt 모델 오케스트레이션: ```python
+Prefect에서 직접 dbt 모델 오케스트레이션: `````python
 from prefect import flow
 from prefect_dbt.cli.commands import trigger_dbt_cli_command
 from prefect_dbt.cli.configs import TargetConfigs
@@ -316,15 +317,15 @@ def run_dbt_models(): """Run dbt models with Prefect orchestration."""
 
 # Deploy
 run_dbt_models.serve(name="dbt-daily")
-```
+`````
 
-통합 설치: ```bash
+통합 설치: `````bash
 pip install prefect-dbt[cli]
-```
+`````
 
 ### AWS 서비스
 
-```python
+`````python
 from prefect import flow, task
 from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
@@ -344,18 +345,18 @@ def s3_pipeline(): """Pipeline moving data through S3."""
     data = download_from_s3("raw-data", "input.csv")
     # ... process ...
     upload_to_s3("processed.csv", "processed-data", "output.csv")
-```
+`````
 
-AWS 자격 증명 구성: ```bash
+AWS 자격 증명 구성: `````bash
 pip install prefect-aws
 
 # AWS 자격 증명 블록 등록
 prefect block register --module prefect_aws.credentials
-```
+`````
 
 ### Slack 알림
 
-```python
+`````python
 from prefect import flow
 from prefect.blocks.notifications import SlackWebhook
 
@@ -369,11 +370,11 @@ def send_slack_alert(flow, flow_run, state): """Send alert to Slack when flow fa
         body=f"Flow {flow.name} failed with state {state.name}. "
              f"Check: http://localhost:4200/flow-runs/{flow_run.id}"
     )
-```
+`````
 
 ### 커스텀 이벤트 기반 트리거
 
-폴링 없이 외부 이벤트에 반응: ```python
+폴링 없이 외부 이벤트에 반응: `````python
 from prefect.events import emit_event
 from prefect import flow
 
@@ -390,11 +391,11 @@ def on_file_uploaded(file_path: str): """Process file when S3 upload event fires
 
 # 이 이벤트에서 트리거하는 자동화 정의
 # Prefect 대시보드 또는 API에서 구성
-```
+`````
 
 ### 비동기 및 동시 실행
 
-Prefect의 비동기 지원은 대규모 동시성을 허용한다: ```python
+Prefect의 비동기 지원은 대규모 동시성을 허용한다: `````python
 import asyncio
 from prefect import flow, task
 
@@ -413,7 +414,7 @@ async def concurrent_fetch_flow(urls: list[str]): """Fetch all URLs concurrently
 # 100개 API 호출 동시 실행
 urls = [f"https://api.example.com/item/{i}" for i in range(100)]
 results = asyncio.run(concurrent_fetch_flow(urls))
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -443,7 +444,7 @@ Prefect는 스타트업부터 포춘 500대 기업까지 조직의 데이터 파
 
 ### 처리량 확장
 
-```
+`````
 # Prefect 3.3.0 처리량 테스트
 # DigitalOcean 8 vCPU / 32GB 드롭릿
 
@@ -454,7 +455,7 @@ Prefect는 스타트업부터 포춘 500대 기업까지 조직의 데이터 파
       50         |       41.7           |       24
      100         |       83.3           |       12
      500         |      250.0           |        4
-```
+`````
 
 500개 동시 작업에서 Prefect는 **초당 250개 작업**을 4ms 평균 지연으로 유지한다 — 고주파 이벤트 처리와 실시간 데이터 파이프라인에 적합하다.
 
@@ -462,7 +463,7 @@ Prefect는 스타트업부터 포춘 500대 기업까지 조직의 데이터 파
 
 ### 지수 백오프가 있는 커스텀 재시도 로직
 
-```python
+`````python
 from prefect import task
 from datetime import timedelta
 
@@ -476,11 +477,11 @@ def call_external_api(endpoint: str) -> dict: """Call external API with smart re
     response = requests.get(endpoint, timeout=10)
     response.raise_for_status()
     return response.json()
-```
+`````
 
 ### 작업 동시성 제한
 
-전역 동시성 제한으로 리소스 고갈 방지: ```python
+전역 동시성 제한으로 리소스 고갈 방지: `````python
 from prefect import flow, task
 from prefect.concurrency.sync import concurrency
 
@@ -494,16 +495,16 @@ def limited_processing_flow(item_ids: list[str]): """Process items with max 10 c
     from prefect.tasks import map
     results = map(process_with_resource_limit, item_ids)
     return results
-```
+`````
 
-제한 구성: ```bash
+제한 구성: `````bash
 # CLI를 통해 동시성 제한 생성
 prefect concurrency-limit create database-slots 10
-```
+`````
 
 ### Pydantic을 사용한 입력/출력 검증
 
-```python
+`````python
 from prefect import flow, task
 from pydantic import BaseModel, Field
 from typing import List
@@ -532,11 +533,11 @@ def validated_pipeline(raw_data: List[dict]) -> PipelineOutput: """Pipeline with
         transaction_count=len(transactions),
         currency=transactions[0].currency if transactions else "USD"
     )
-```
+`````
 
 ### GitHub Actions를 사용한 CI/CD 배포
 
-```yaml
+`````yaml
 # .github/workflows/prefect-deploy.yml
 name: Deploy Prefect Flows
 on: push: branches: [main]
@@ -565,11 +566,11 @@ jobs: deploy: runs-on: ubuntu-latest
       - name: Run health check
         run: |
           prefect flow-run list --limit 5
-```
+`````
 
 ### Prefect.yaml 구성
 
-```yaml
+`````yaml
 # prefect.yaml — 코드로 배포 정의
 name: production-pipelines
 prefect-version: 3.3.0
@@ -598,11 +599,11 @@ deployments: - name: daily-etl
     work_pool: name: k8s-pool
     schedule: interval: 3600
     tags: ["production", "analytics"]
-```
+`````
 
 ### 모니터링 및 알림
 
-```python
+`````python
 from prefect import flow
 from prefect.blocks.webhook import Webhook
 from datetime import timedelta
@@ -634,7 +635,7 @@ def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for c
             }
         })
     )
-```
+`````
 
 ## 대안과의 비교
 
@@ -660,7 +661,7 @@ def escalate_to_pagerduty(flow, flow_run, state): """Escalate to PagerDuty for c
 
 Prefect는 모든 워크플로우에 적합한 도구가 아니다. 이러한 트레이드오프를 이해하라: 1. **플러그인 생태계 성숙도**: Airflow는 500+ 프로바이더 패키지를 보유한다. Prefect의 통합 라이브러리는 더 작지만 빠르게 성장 중이다. 커스텀 통합은 자체 작업 래퍼를 작성해야 한다.
 
-2. **장기 실행 워크플로우**: Prefect의 기본 타임아웃은 흐름당 1시간이다. ML 학습에서 일반적인 멀티데이 워크플로우의 경우 `timeout_seconds=None`을 구성하고 워커 프로세스가 재시작 후에도 살아남도록 해야 한다.
+2. **장기 실행 워크플로우**: Prefect의 기본 타임아웃은 흐름당 1시간이다. ML 학습에서 일반적인 멀티데이 워크플로우의 경우 ````timeout_seconds=None````을 구성하고 워커 프로세스가 재시작 후에도 살아남도록 해야 한다.
 
 3. **Prefect Cloud 가격**: 물층은 3개 활성 워커와 월 10,000작업 실행을 허용한다. 더 큰 팀의 경우 월 $500 Pro 플랜이 필요하다. 오픈소스 서버를 셀프 호스팅하면 이를 피할 수 있지만 운영 전문 지식이 필요하다.
 
@@ -671,7 +672,7 @@ Prefect는 모든 워크플로우에 적합한 도구가 아니다. 이러한 �
 ## 자주 묻는 질문
 
 **Q: Apache Airflow에서 Prefect로 점진적으로 마이그레이션할 수 있나요?**
-A: 예. Prefect는 `PrefectAirflow` 통합을 통해 Airflow DAG를 호출할 수 있어, 작업별로 마이그레이션할 수 있다. 기존 Python 함수를 Prefect 작업으로 감싸는 것부터 시작하고, 점진적으로 DAG 종속성을 Prefect 흐름으로 대체한다. 중간 복잡도 파이프라인의 마이그레이션은 일반적으로 2-4주가 소요된다.
+A: 예. Prefect는 ````PrefectAirflow```` 통합을 통해 Airflow DAG를 호출할 수 있어, 작업별로 마이그레이션할 수 있다. 기존 Python 함수를 Prefect 작업으로 감싸는 것부터 시작하고, 점진적으로 DAG 종속성을 Prefect 흐름으로 대체한다. 중간 복잡도 파이프라인의 마이그레이션은 일반적으로 2-4주가 소요된다.
 
 **Q: Prefect는 작업 상태 지속성을 어떻게 처리하나요?**
 A: 모든 작업과 흐름 상태는 Prefect 데이터베이스(SQLite 또는 PostgreSQL)에 지속된다. 실행 중 워커가 충돌하면 새 워커가 이전 워커가 중단된 지점부터 다시 시작한다 — 상태 손실 없음. 이는 실패 시 모든 컨텍스트를 잃는 cron 기반 솔루션에 비해 핵심적인 이점이다.
@@ -680,15 +681,15 @@ A: 모든 작업과 흐름 상태는 Prefect 데이터베이스(SQLite 또는 Po
 A: Prefect Cloud는 RBAC, SSO, 감사 로그, 관리형 인프라를 추가한다. 셀프 호스팅 오픈소스 서버는 핵심 오케스트레이션 기능을 모두 갖추고 있지만 엔터프라이즈 인증이 없다. 10인 이하 팀의 경우 PostgreSQL을 사용한 셀프 호스팅이 일반적으로 충분하다. 규정 준수 요건(SOC2, HIPAA)의 경우 Prefect Cloud를 권장한다.
 
 **Q: 서버 없이 Prefect를 실행할 수 있나요?**
-A: 예. Prefect는 흐름 실행이 완전히 로컬에서 수행되는 **임시 모드**를 지원한다. 임시 실행에는 `prefect flow-run`을 사용한다. 서버는 스케줄링, 멀티 워커 조정, 대시보드에만 필요하다.
+A: 예. Prefect는 흐름 실행이 완전히 로컬에서 수행되는 **임시 모드**를 지원한다. 임시 실행에는 ````prefect flow-run````을 사용한다. 서버는 스케줄링, 멀티 워커 조정, 대시보드에만 필요하다.
 
 **Q: Kubernetes에 Prefect를 어떻게 배포하나요?**
-A: 공식 Helm 차트를 사용한다: `helm install prefect prefecthq/prefect-server`. 워커의 경우 `prefect worker start --pool <pool-name>`으로 Kubernetes deployment로 배포한다. 즉시 사용 가능한 관리형 K8s 클러스터는 [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0)를 참조하라.
+A: 공식 Helm 차트를 사용한다: ````helm install prefect prefecthq/prefect-server````. 워커의 경우 ````prefect worker start --pool <pool-name>````으로 Kubernetes deployment로 배포한다. 즉시 사용 가능한 관리형 K8s 클러스터는 [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0)를 참조하라.
 
 **Q: Prefect는 동적 작업 매핑을 지원하나요?**
-A: 예. Prefect의 `map` 함수는 런타임에 동적 작업 생성을 허용한다. 입력 목록에 매핑하면 Prefect가 자동으로 종속성 추적이 있는 병렬 작업 실행을 생성한다. 이는 가변 수의 파일 처리와 같은 팬아웃 패턴에 이상적이다.
+A: 예. Prefect의 ````map```` 함수는 런타임에 동적 작업 생성을 허용한다. 입력 목록에 매핑하면 Prefect가 자동으로 종속성 추적이 있는 병렬 작업 실행을 생성한다. 이는 가변 수의 파일 처리와 같은 팬아웃 패턴에 이상적이다.
 
-```python
+`````python
 from prefect import flow, task
 from prefect.tasks import map
 
@@ -703,7 +704,7 @@ def dynamic_processing_flow(directory: str): """Dynamically process all files in
     files = [f for f in os.listdir(directory) if f.endswith(".csv")]
     results = map(process_file, files)
     return results
-```
+````
 
 ## 결론: 관찰 가능한 파이프라인으로 Cron 대체하기
 

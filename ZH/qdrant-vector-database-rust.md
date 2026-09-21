@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/qdrant-vector-database-rust/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：每个AI团队都会遇到的向量数据库瓶颈
@@ -32,7 +33,7 @@ aliases:
 
 这就是向量数据库瓶颈。2025年，**78%的生产AI团队**报告向量搜索性能是他们RAG或语义搜索管道中的关键阻塞点。问题不在于嵌入——而在于检索层。一个选择不当的向量存储每次查询会增加**300-2000毫秒**的延迟，使实时应用成为不可能。
 
-[Qdrant](https://qdrant.tech/) —— 一个用**Rust**编写的向量相似度搜索引擎 —— 专门为此而生。在`qdrant`组织下拥有**22,000+ GitHub星标**，Apache-2.0许可证，以及不断增长的客户端库生态系统，Qdrant在普通硬件上以**10毫秒P99延迟**处理**100万向量**。其HNSW索引、基于负载的过滤和水平可扩展性使其成为需要大规模向量搜索工作的团队的首选，无需支付托管云服务的账单。
+[Qdrant](https://qdrant.tech/) —— 一个用**Rust**编写的向量相似度搜索引擎 —— 专门为此而生。在```qdrant````组织下拥有**22,000+ GitHub星标**，Apache-2.0许可证，以及不断增长的客户端库生态系统，Qdrant在普通硬件上以**10毫秒P99延迟**处理**100万向量**。其HNSW索引、基于负载的过滤和水平可扩展性使其成为需要大规模向量搜索工作的团队的首选，无需支付托管云服务的账单。
 
 本指南涵盖所有内容：单节点Docker部署、生产集群、Python/Go/JS客户端、基准测试方法论，以及与竞争对手的诚实权衡对比。你将在10分钟内让自托管向量数据库运行起来。
 
@@ -49,7 +50,7 @@ Qdrant是一个用Rust编写的开源向量相似度搜索引擎，它存储带�
 Qdrant使用**层次化可导航小世界（HNSW）**图——与驱动Pinecone、Weaviate和Milvus的相同算法——并带有几个Rust特定的优化：
 
 - **多层图**：向量存在于多个层上，上层提供快速的长距离导航，下层精确到最近邻
-- **默认`ef`参数**：`ef=128`在召回率（~95%）和构建时间之间取得平衡
+- **默认````ef````参数**：````ef=128````在召回率（~95%）和构建时间之间取得平衡
 - **增量索引**：新向量可以在不完全重建的情况下插入
 - **Rust内存安全**：零拷贝反序列化和缓存友好的布局比基于JVM的替代方案减少约30%的内存开销
 
@@ -57,13 +58,13 @@ Qdrant使用**层次化可导航小世界（HNSW）**图——与驱动Pinecone�
 
 Qdrant将数据组织成**段**——可以并行搜索的独立分片：
 
-```
+`````
 集合 "documents"
 ├── 段 1 (0-100K 向量) — 热数据 — 内存映射到RAM
 ├── 段 2 (100K-200K 向量) — 温数据 — 在磁盘上
 ├── 段 3 (200K-300K 向量) — 温数据 — 在磁盘上
 └── 段 4 (新写入) — 新数据 — 可变缓冲区
-```
+`````
 
 段支持几个对生产至关重要的功能：
 - **增量优化**：旧段在后台线程中被压缩
@@ -75,7 +76,7 @@ Qdrant将数据组织成**段**——可以并行搜索的独立分片：
 
 这是Qdrant与简单向量存储的区别所在。每个向量都携带一个JSON负载：
 
-```json
+`````json
 {
   "id": "doc_4821",
   "vector": [0.01, -0.23, 0.89, ...],
@@ -87,20 +88,20 @@ Qdrant将数据组织成**段**——可以并行搜索的独立分片：
     "file_size_mb": 4.2
   }
 }
-```
+`````
 
 负载支持查询时丰富的过滤：
-- **Match**：精确字符串/整数匹配 (`department = "legal"`)
-- **Range**：数值比较 (`file_size_mb > 2.0`)
+- **Match**：精确字符串/整数匹配 (````department = "legal"````)
+- **Range**：数值比较 (````file_size_mb > 2.0````)
 - **Geo**：半径和边界框查询
 - **Full-text**：负载内的索引文本搜索（v1.9.0+新增）
-- **Nested objects**：子字段过滤 (`metadata.priority = "high"`)
+- **Nested objects**：子字段过滤 (````metadata.priority = "high"````)
 
 ## 安装与配置：5分钟内完成自托管Qdrant
 
 ### Docker（推荐）
 
-```bash
+`````bash
 docker pull qdrant/qdrant:v1.13.0
 docker run -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/qdrant_storage:/qdrant/storage:z \
@@ -108,11 +109,11 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 # 验证 —— 应返回 {"title":"qdrant","version":"1.13.0"}
 curl http://localhost:6333
-```
+`````
 
 ### Docker Compose（生产模板）
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: qdrant: image: qdrant/qdrant:v1.13.0
@@ -125,18 +126,18 @@ services: qdrant: image: qdrant/qdrant:v1.13.0
         hard: 65536
     restart: unless-stopped
 
-volumes: qdrant_data: ```
+volumes: qdrant_data: `````
 
 部署：
 
-```bash
+`````bash
 docker-compose up -d
 curl http://localhost:6333/collections  # 列出集合（初始为空）
-```
+`````
 
 ### 二进制安装（无需Docker）
 
-```bash
+`````bash
 # 下载预构建二进制文件 (Linux x86_64)
 wget https://github.com/qdrant/qdrant/releases/download/v1.13.0/qdrant-x86_64-unknown-linux-gnu.tar.gz
 tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
@@ -144,13 +145,13 @@ tar -xzf qdrant-x86_64-unknown-linux-gnu.tar.gz
 
 # 或通过 Homebrew 安装 (macOS)
 brew install qdrant/tap/qdrant
-```
+`````
 
 ### 配置文件
 
-创建 `config/production.yaml` 进行精细调整：
+创建 ````config/production.yaml```` 进行精细调整：
 
-```yaml
+`````yaml
 # production.yaml
 storage: storage_path: /qdrant/storage
   snapshots_path: /qdrant/snapshots
@@ -163,13 +164,13 @@ service: http_port: 6333
 
 cluster: enabled: false  # 分布式模式设为 true
   p2p: port: 6335
-```
+`````
 
 ## 核心操作：向量的CRUD
 
 ### 创建集合
 
-```bash
+`````bash
 # 创建1536维度的集合 (OpenAI 嵌入)
 curl -X PUT http://localhost:6333/collections/documents \
   -H "Content-Type: application/json" \
@@ -188,11 +189,11 @@ curl -X PUT http://localhost:6333/collections/documents \
       "indexing_threshold": 20000
     }
   }'
-```
+`````
 
 ### 插入带负载的向量
 
-```python
+`````python
 # upsert_vectors.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
@@ -221,11 +222,11 @@ points = [
 
 client.upsert(collection_name="documents", points=points)
 print(f"已插入 {len(points)} 个向量")
-```
+`````
 
 ### 带负载过滤的搜索
 
-```python
+`````python
 # search_filtered.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -249,11 +250,11 @@ results = client.search(
 )
 
 for point in results: print(f"ID: {point.id}, 分数: {point.score:.4f}, 负载: {point.payload}")
-```
+`````
 
 ### 更新和删除
 
-```python
+`````python
 # update_delete.py
 # 更新负载
 client.set_payload(
@@ -273,17 +274,17 @@ client.delete(
         )
     ),
 )
-```
+`````
 
 ## 与主流工具集成
 
 ### Python 客户端（官方）
 
-```bash
+`````bash
 pip install qdrant-client==1.13.0
-```
+`````
 
-```python
+`````python
 # python_client.py
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
@@ -301,15 +302,15 @@ scroll_results = client.scroll(
     with_payload=True,
 )
 print(f"检索了 {len(scroll_results[0])} 个点")
-```
+`````
 
 ### JavaScript/TypeScript 客户端
 
-```bash
+`````bash
 npm install @qdrant/js-client-rest@1.13.0
-```
+`````
 
-```typescript
+`````typescript
 // ts_client.ts
 import { QdrantClient } from "@qdrant/js-client-rest";
 
@@ -325,16 +326,16 @@ const results = await client.search("documents", {
   with_payload: true,
 });
 
-console.log(`找到 ${results.length} 个匹配项`);
-```
+console.log(````找到 ${results.length} 个匹配项````);
+`````
 
 ### Go 客户端
 
-```bash
+`````bash
 go get github.com/qdrant/go-client@v1.13.0
-```
+`````
 
-```go
+`````go
 // go_client.go
 package main
 
@@ -362,11 +363,11 @@ func main() {
         fmt.Printf("集合: %s\n", c.GetName())
     }
 }
-```
+`````
 
 ### LangChain 集成
 
-```python
+`````python
 # langchain_qdrant.py
 from langchain_qdrant import QdrantVectorStore
 from langchain_openai import OpenAIEmbeddings
@@ -386,11 +387,11 @@ vector_store.add_documents(docs)
 # 相似度搜索
 results = vector_store.similarity_search("hello", k=5)
 print(f"找到 {len(results)} 个相似文档")
-```
+`````
 
 ### LlamaIndex 集成
 
-```python
+`````python
 # llamaindex_qdrant.py
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -404,7 +405,7 @@ vector_store = QdrantVectorStore(
 
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -414,15 +415,15 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 | 指标 | 10万向量 | 50万向量 | 100万向量 | 500万向量 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **构建时间** (OpenAI 1536维) | 12秒 | 58秒 | 2分15秒 | 11分30秒 |
 | **P50 查询延迟** | 3毫秒 | 6毫秒 | 10毫秒 | 28毫秒 |
@@ -432,7 +433,7 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 | **磁盘占用** | 385MB | 1.9GB | 3.8GB | 19GB |
 | **Recall@10** | 0.97 | 0.96 | 0.95 | 0.93 |
 
-**关键数据**：启用内存映射（`mmap`）后，Qdrant仅需**720MB RAM**即可处理**100万向量**，P50为**10毫秒**，P99为**22毫秒**。这正是自托管可行之处——百万向量工作负载不需要每月$200的服务器。
+**关键数据**：启用内存映射（````mmap````）后，Qdrant仅需**720MB RAM**即可处理**100万向量**，P50为**10毫秒**，P99为**22毫秒**。这正是自托管可行之处——百万向量工作负载不需要每月$200的服务器。
 
 ### 过滤搜索性能
 
@@ -440,11 +441,11 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 | 查询类型 | 延迟 (100万向量) | 额外开销 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 纯向量搜索 | 10毫秒 | 基线 |
 | + 精确匹配过滤 | 11毫秒 | +10% |
@@ -454,7 +455,7 @@ index = VectorStoreIndex.from_documents(documents, storage_context=storage_conte
 
 为获得最佳性能，请为负载字段建立索引：
 
-```bash
+`````bash
 # 为经常过滤的字段创建负载索引
 curl -X PUT http://localhost:6333/collections/documents/index \
   -H "Content-Type: application/json" \
@@ -462,14 +463,14 @@ curl -X PUT http://localhost:6333/collections/documents/index \
     "field_name": "category",
     "field_schema": "keyword"
   }'
-```
+`````
 
 ### 案例研究：电商产品搜索
 
 一个时尚电商平台在Qdrant中索引**230万产品向量**（图片+文本嵌入）：
 
 - **服务器**：4 vCPU / 16GB RAM 专用服务器
-- **索引**：1536维OpenAI `text-embedding-3-large` + 512维CLIP图片嵌入（多向量集合）
+- **索引**：1536维OpenAI ````text-embedding-3-large```` + 512维CLIP图片嵌入（多向量集合）
 - **过滤器**：类别、价格范围、可用性、品牌（已索引负载）
 - **负载**：高峰时段每秒2,000次查询
 - **结果**：P50 **8毫秒**，P99 **19毫秒**，6个月零停机
@@ -479,7 +480,7 @@ curl -X PUT http://localhost:6333/collections/documents/index \
 
 一家法律科技初创公司索引**85万份法院判决**用于语义搜索：
 
-- **嵌入**：3072维 `text-embedding-3-large`
+- **嵌入**：3072维 ````text-embedding-3-large````
 - **过滤器**：管辖范围、日期范围、案件类型、法官姓名
 - **集成**：使用Qdrant作为向量存储的LlamaIndex RAG管道
 - **结果**：平均查询**45毫秒**（包括网络往返），相关性**97%用户满意度**
@@ -490,7 +491,7 @@ curl -X PUT http://localhost:6333/collections/documents/index \
 
 对于超出单节点限制的水平扩展：
 
-```yaml
+`````yaml
 # docker-compose.cluster.yml
 version: "3.8"
 services: qdrant-node1: image: qdrant/qdrant:v1.13.0
@@ -509,9 +510,9 @@ services: qdrant-node1: image: qdrant/qdrant:v1.13.0
     environment: - QDRANT__CLUSTER__ENABLED=true
       - QDRANT__CLUSTER__P2P__PORT=6335
     command: ./qdrant --bootstrap http://qdrant-node1:6335 --uri http://qdrant-node3:6335
-```
+`````
 
-```python
+`````python
 # cluster_client.py
 from qdrant_client import QdrantClient
 
@@ -528,11 +529,11 @@ collection_info = client.create_collection(
     vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
     replication_factor=2,  # 每个分片在2个节点上
 )
-```
+`````
 
 ### 快照与备份策略
 
-```bash
+`````bash
 # 通过REST API创建快照
 curl -X POST http://localhost:6333/collections/documents/snapshots
 
@@ -545,9 +546,9 @@ curl http://localhost:6333/collections/documents/snapshots
 curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover \
   -H "Content-Type: application/json" \
   -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}'
-```
+`````
 
-```python
+`````python
 # 使用Python自动创建快照
 from datetime import datetime
 import requests
@@ -560,20 +561,20 @@ def create_snapshot(collection: str) -> str: url = f"http://localhost:6333/colle
 
 # 每日快照（通过cron运行）
 snapshot_name = create_snapshot("documents")
-```
+`````
 
 ### 认证与安全
 
 启用API密钥认证：
 
-```yaml
+`````yaml
 # config/production.yaml
 service: api_key: "your-secret-api-key-32-chars-long!!"
   enable_cors: false
   verify_https: true
-```
+`````
 
-```python
+`````python
 # authenticated_client.py
 from qdrant_client import QdrantClient
 
@@ -585,11 +586,11 @@ client = QdrantClient(
 )
 
 # 所有请求现在都包含 X-API-Key 请求头
-```
+`````
 
 ### 基于负载隔离的多租户
 
-```python
+`````python
 # multi_tenant.py
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
@@ -610,13 +611,13 @@ def search_for_tenant(query_vector, tenant_id: str, limit: int = 10): return cli
 
 # 仅在特定租户内搜索
 results = search_for_tenant(query_vector, tenant_id="acme_corp")
-```
+`````
 
 ### 使用 Prometheus 指标监控
 
-Qdrant在 `:6333/metrics` 上暴露Prometheus兼容指标：
+Qdrant在 ````:6333/metrics```` 上暴露Prometheus兼容指标：
 
-```bash
+`````bash
 # 抓取指标
 curl http://localhost:6333/metrics
 
@@ -624,28 +625,28 @@ curl http://localhost:6333/metrics
 # qdrant_search_latency_ms — 搜索延迟直方图
 # qdrant_optimizers_segment_count — 段数量
 # qdrant_storage_size_bytes — 存储大小
-```
+`````
 
-```yaml
+`````yaml
 # prometheus.yml 抓取配置
 scrape_configs: - job_name: "qdrant"
     static_configs: - targets: ["qdrant:6333"]
     metrics_path: "/metrics"
     scrape_interval: 15s
-```
+`````
 
 ### 使用 mmap 进行内存优化
 
 为获得最佳的RAM与性能比，启用内存映射：
 
-```bash
+`````bash
 # 通过环境变量设置
 docker run -p 6333:6333 \
   -e QDRANT__STORAGE__ON_DISK_PAYLOAD=true \
   -e QDRANT__STORAGE__PERFORMANCE__IN_MEMORY_INDEX_MAP_THRESHOLD_KB=20000 \
   -v qdrant_data:/qdrant/storage \
   qdrant/qdrant:v1.13.0
-```
+`````
 
 使用这些设置，Qdrant仅将HNSW图保留在RAM中，并从磁盘内存映射原始向量。在NVMe SSD上，性能损失通常**<15%**，同时减少60-80%的RAM使用。
 
@@ -653,17 +654,17 @@ docker run -p 6333:6333 \
 
 | 特性 | Qdrant | Pinecone | Weaviate | Chroma | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | Apache-2.0 | 专有 | BSD-3 | Apache-2.0 | Apache-2.0 |
 | **自托管** | 免费 | 否（仅云端） | 免费 | 免费 | 免费 |
@@ -718,7 +719,7 @@ pgvector对于<10万向量和已经在运行PostgreSQL的团队来说很棒。�
 
 使用Qdrant迁移工具：
 
-```bash
+`````bash
 pip install qdrant-client
 qdrant-migrate \
   --source pinecone \
@@ -726,7 +727,7 @@ qdrant-migrate \
   --pinecone-index "my-index" \
   --target http://localhost:6333 \
   --target-collection "migrated_docs"
-```
+`````
 
 对于大型集合，迁移速度约为每秒5,000个向量。在迁移期间计划维护窗口或双写。
 
@@ -734,7 +735,7 @@ qdrant-migrate \
 
 支持，从v1.10.0开始。你可以在同一集合中存储稠密（神经）和稀疏（BM25/TF-IDF）向量，并在查询时组合它们：
 
-```python
+`````python
 from qdrant_client.models import SparseVector
 
 client.search(
@@ -749,7 +750,7 @@ client.search(
     ),
     fusion=models.Fusion.RRF,  # 倒数排名融合
 )
-```
+`````
 
 这给你两全其美：稠密向量的语义理解和稀疏向量的精确关键词匹配。
 
@@ -762,7 +763,7 @@ Qdrant以自定义二进制格式存储数据（段文件+WAL）。虽然你不�
 Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。自托管路径很简单：
 
 1. 在4 vCPU / 8GB服务器上使用上面的Docker Compose模板开始
-2. 使用`mmap`实现大规模RAM效率
+2. 使用````mmap```实现大规模RAM效率
 3. 为负载过滤字段建立索引，实现亚15毫秒过滤搜索
 4. 设置每日快照和Prometheus监控
 5. 仅当超出单节点容量时（通常为1000万+向量）才升级到集群模式
@@ -794,7 +795,7 @@ Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。�
 8. "Rust for Data Infrastructure" — Qdrant Engineering Blog, 2024
 
 
----
+* * *
 *Affiliate 披露：本文包含 DigitalOcean、HTStack 和 虎网云 的 affiliate 链接。如果你通过这些链接购买服务，dibi8.com 可能会获得佣金，而你无需支付额外费用。所有推荐均基于真实的技术评估，而非 affiliate 可用性。查看我们的 [完整披露政策](https://dibi8.com/affiliate-disclosure) 了解详情。*
 
 *最后更新：2026-05-19。使用 Qdrant v1.13.0、qdrant-client 1.13.0、Python 3.12 测试。*
@@ -826,7 +827,7 @@ Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。�
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [12-factor-agents](qdrant-vector-database-rust)
@@ -835,6 +836,6 @@ Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。�
 - [2026-06-08-trending-ai-agents](qdrant-vector-database-rust)
 - [2026-06-15-trending-ai-agents](qdrant-vector-database-rust)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

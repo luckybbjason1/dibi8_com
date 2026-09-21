@@ -24,11 +24,12 @@ aliases:
   - /zh/posts/open-sora/-
 ---
 
+
 {{</* resource-info */>}}
 
 大多数开发者在尝试 AI 视频生成时都会遇到同样的难题：商业 API 每秒收费 0.10-0.50 美元，自托管方案需要深奥的 CUDA 知识，而现有的开源项目要么缺乏文档，要么需要企业级 GPU。2024 年 3 月，HPC-AI Tech 发布了 Open-Sora 来改变这一局面。15 个月过去，29,000 个 GitHub stars 之后，该项目已从研究原型发展为能够生成 5 秒 768p 视频的生产级框架，质量可与商业替代品媲美 —— 全部运行在你可以按小时租用的硬件上。
 
-本教程（open-sora tutorial）将完整介绍 Open-Sora 的设置流程：本地安装、Docker 部署、ComfyUI 集成、生产环境加固，以及与 CogVideoX、HunyuanVideo 和 Wan 的诚实的性能对比。每个命令都针对最新的 `main` 分支进行了验证。
+本教程（open-sora tutorial）将完整介绍 Open-Sora 的设置流程：本地安装、Docker 部署、ComfyUI 集成、生产环境加固，以及与 CogVideoX、HunyuanVideo 和 Wan 的诚实的性能对比。每个命令都针对最新的 ```main```` 分支进行了验证。
 
 ## 什么是 Open-Sora？
 
@@ -55,17 +56,17 @@ Open-Sora 的生成流水线由三个按顺序工作的主要组件组成：
 
 ### 生成流程
 
-```
+`````
 提示词 → T5 编码器 → 文本嵌入
                                  ↘
 随机噪声 → STDiT (50 步) → 潜变量视频 → DC-AE 解码器 → MP4 输出
                                  ↗
                                 条件化
-```
+`````
 
 在推理阶段，Open-Sora 使用整流流采样调度器（默认 50 步），文本分类器自由引导尺度为 7.5，图像条件化尺度为 3.0。T2I2V（文生图-图生视频）流水线首先使用 FLUX 文生图模型生成关键帧，然后通过 I2V 路径为其添加动画 —— 这种两阶段方法比直接 T2V 生成产生显著更高的质量。
 
-```python
+`````python
 # 核心推理流水线（简化版）
 import torch
 from opensora.models import STDiT3, T5Encoder, DC_AE
@@ -90,7 +91,7 @@ for t in scheduler.timesteps: noise_pred = stdit(latent, t, prompt_embed)
 
 # 解码为视频
 video = vae.decode(latent)  # [1, 3, 65, 768, 768]
-```
+`````
 
 ## 安装与配置
 
@@ -98,11 +99,11 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 
 | 配置 | 最低要求 | 推荐配置 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GPU 显存 | 16 GB | 24+ GB (RTX 4090 / A100) |
 | GPU 型号 | RTX 3090 | RTX 4090 / A100 80GB |
@@ -112,7 +113,7 @@ video = vae.decode(latent)  # [1, 3, 65, 768, 768]
 
 ### 方案 A：Conda 安装（推荐用于开发）
 
-```bash
+`````bash
 # 创建虚拟环境
 conda create -n opensora python=3.10 -y
 conda activate opensora
@@ -130,11 +131,11 @@ pip install -v .
 # 安装可选加速器
 pip install xformers==0.0.27.post2 --index-url https://download.pytorch.org/whl/cu121
 pip install flash-attn --no-build-isolation
-```
+`````
 
 ### 方案 B：Docker 安装（推荐用于生产）
 
-```bash
+`````bash
 # 克隆仓库
 git clone https://github.com/hpcaitech/Open-Sora.git
 cd Open-Sora
@@ -152,13 +153,13 @@ docker run -ti --gpus all \
 # 在容器内下载模型权重
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
-```
+`````
 
 ### Dockerfile 说明
 
-官方 Dockerfile 以 `nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04` 作为基础镜像。主要阶段包括：
+官方 Dockerfile 以 ````nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04```` 作为基础镜像。主要阶段包括：
 
-```dockerfile
+`````dockerfile
 FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 WORKDIR /workspace/Open-Sora
@@ -183,13 +184,13 @@ RUN pip install flash-attn --no-build-isolation
 
 EXPOSE 7860
 CMD ["/bin/bash"]
-```
+`````
 
 ### 模型权重下载
 
 Open-Sora 2.0 权重可从 HuggingFace 和 ModelScope 获取：
 
-```bash
+`````bash
 # 方案 1：HuggingFace
 pip install "huggingface_hub[cli]"
 huggingface-cli download hpcai-tech/Open-Sora-v2 --local-dir ./ckpts
@@ -201,7 +202,7 @@ modelscope download hpcai-tech/Open-Sora-v2 --local_dir ./ckpts
 # 验证下载
 ls -la ./ckpts/
 # 预期输出：model.safetensors, config.json, vae/, text_encoder/
-```
+`````
 
 110 亿参数的 checkpoint 约需 22 GB 磁盘空间。VAE 和文本编码器权重额外需要约 8 GB。
 
@@ -211,7 +212,7 @@ ls -la ./ckpts/
 
 Open-Sora 可以通过官方 API 节点或社区自定义节点与 ComfyUI 集成。虽然 Open-Sora 目前还没有原生 ComfyUI 节点，但你可以通过桥接方式使用：
 
-```bash
+`````bash
 # 在独立环境中安装 ComfyUI
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -220,9 +221,9 @@ pip install -r requirements.txt
 # 为 Open-Sora 创建自定义节点
 mkdir -p custom_nodes/opensora-bridge
 cd custom_nodes/opensora-bridge
-```
+`````
 
-```python
+`````python
 # custom_nodes/opensora-bridge/opensora_node.py
 import subprocess
 import torch
@@ -268,13 +269,13 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "OpenSoraTextToVideo": "Open-Sora Text to Video",
 }
-```
+`````
 
 ### Stable Diffusion / FLUX 集成
 
 Open-Sora 2.0 使用 FLUX 作为 T2I2V 流水线的 T2I 骨干。你可以配置使用哪个 T2I 模型：
 
-```python
+`````python
 # configs/diffusion/inference/t2i2v_768px.py
 # 文生图-图生视频配置
 model = dict(
@@ -304,21 +305,21 @@ t2i_model = dict(
 num_sampling_steps = 50
 cfg_scale = 7.5
 cfg_channel = 3  # 图像条件化尺度
-```
+`````
 
 ### Gradio Web UI
 
 Open-Sora 内置 Gradio 界面用于交互式生成：
 
-```bash
+`````bash
 # 安装 Gradio 依赖
 pip install gradio spaces
 
 # 启动 Web UI
 python gradio/app.py --model-type v2 --checkpoint ./ckpts
-```
+`````
 
-在浏览器中访问 `http://localhost:7860`。界面支持：
+在浏览器中访问 ````http://localhost:7860````。界面支持：
 
 - 文生视频生成，支持实时预览
 - 图生视频上传和条件化
@@ -330,7 +331,7 @@ python gradio/app.py --model-type v2 --checkpoint ./ckpts
 
 如果你计划在自定义数据上微调 Open-Sora，ColossalAI 提供分布式训练骨干：
 
-```bash
+`````bash
 # 安装 ColossalAI
 pip install colossalai
 
@@ -348,7 +349,7 @@ torchrun --nproc_per_node 8 --standalone \
     configs/diffusion/train/stage2_sp.py \
     --data-path /path/to/video/dataset \
     --sequence-parallel-size 4
-```
+`````
 
 ## 基准测试 / 实际用例
 
@@ -361,17 +362,17 @@ VBench 是视频生成的标准评估套件，在视觉质量、时间一致性�
 
 | 模型 | 参数量 | VBench 总分 | 质量分数 | 时间分数 | 训练成本 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | OpenAI Sora | ~? | 82.5% | 85.2% | 79.8% | 专有 |
 | **Open-Sora 2.0** | **11B** | **81.8%** | **84.1%** | **79.5%** | **$200K** |
@@ -386,23 +387,23 @@ VBench 是视频生成的标准评估套件，在视觉质量、时间一致性�
 
 | 分辨率 | 时长 | 步数 | 1x GPU | 2x GPU (TP) | 8x GPU (SP) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 256x256 | 5秒 (65帧) | 50 | ~45秒 | ~28秒 | ~12秒 |
 | 768x768 | 5秒 (65帧) | 50 | ~240秒 | ~150秒 | ~55秒 |
 | 768x768 | 5秒 (65帧) | 30 | ~145秒 | ~90秒 | ~33秒 |
 
-时间数据使用 `offload=True` 测量 256x256，序列并行测量 768x768。Flash Attention 3 可额外减少 15-20% 的时间。
+时间数据使用 ````offload=True```` 测量 256x256，序列并行测量 768x768。Flash Attention 3 可额外减少 15-20% 的时间。
 
 ### 实际部署场景
 
@@ -421,7 +422,7 @@ VBench 是视频生成的标准评估套件，在视觉质量、时间一致性�
 
 对于显存有限的 GPU，Open-Sora 提供多种优化策略：
 
-```bash
+`````bash
 # 1. CPU 卸载（节省 ~40% 显存，慢 25%）
 torchrun --nproc_per_node 1 --standalone \
     scripts/diffusion/inference.py \
@@ -448,11 +449,11 @@ torchrun --nproc_per_node 1 --standalone \
     configs/diffusion/inference/t2i2v_256px.py \
     --prompt "raining, sea" \
     --mixed-precision bf16
-```
+`````
 
 ### 多 GPU 张量并行部署
 
-```bash
+`````bash
 # 高分辨率生成的张量并行
 torchrun --nproc_per_node 8 --standalone \
     scripts/diffusion/inference.py \
@@ -460,13 +461,13 @@ torchrun --nproc_per_node 8 --standalone \
     --save-dir samples \
     --prompt "A soaring drone footage captures coastal cliffs" \
     --tp-size 4
-```
+`````
 
 ### Open-Sora 提示词工程
 
 该模型对结构化提示词（含明确场景描述）响应最好：
 
-```python
+`````python
 # 有效提示词结构
 prompt = """A cinematic wide shot of a golden retriever running along a sandy beach at sunset. 
 Ocean waves break in the background with warm golden hour lighting. 
@@ -476,11 +477,11 @@ High production value, anamorphic lens, shallow depth of field."""
 # 避免：模糊或抽象的提示词
 # 差："a dog video"
 # 好：详细主体 + 动作 + 环境 + 光照 + 摄像机运动
-```
+`````
 
 ### 生产部署 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.prod.yml
 version: '3.8'
 
@@ -513,11 +514,11 @@ services: opensora: build: .
               count: 4
               capabilities: [gpu]
 
-volumes: huggingface_cache: ```
+volumes: huggingface_cache: `````
 
 ### 监控和日志
 
-```python
+`````python
 # production_monitor.py
 import torch
 import time
@@ -554,28 +555,28 @@ def generate_with_monitoring(prompt, config): process = psutil.Process()
 
 # 在端口 9090 启动指标服务器
 start_http_server(9090)
-```
+`````
 
 ### 安全注意事项
 
 1. **模型权重完整性**：根据官方注册表验证下载的 checkpoint 的 SHA-256 校验和。
 2. **输入清理**：在编码前清理所有文本提示词，防止通过 T5 分词器注入攻击。
-3. **资源限制**：设置 `CUDA_VISIBLE_DEVICES` 和 Docker 内存限制，防止失控的生成进程消耗所有 GPU 资源。
+3. **资源限制**：设置 ````CUDA_VISIBLE_DEVICES```` 和 Docker 内存限制，防止失控的生成进程消耗所有 GPU 资源。
 4. **内容过滤**：如果部署面向公众的服务，请实现输出过滤。该模型没有内置安全分类器。
 
 ## 与替代品对比
 
 | 特性 | Open-Sora 2.0 | CogVideoX-5B | HunyuanVideo | Wan 2.1 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **参数量** | 11B | 5B / 10B | 13B | 1.3B / 14B |
 | **最大分辨率** | 768x768 | 1440x960 | 1080p | 1080p |
@@ -617,7 +618,7 @@ Open-Sora 是一个能力强大的框架，但并非适合所有用例。在决�
 
 ### Q1：Open-Sora 能在 RTX 3060 或 RTX 4070 等消费级 GPU 上运行吗？
 
-110 亿参数模型至少需要 16GB 显存用于 256px 生成（INT8 量化）。RTX 3060 (12GB) 无法运行 11B 模型，但旧的 724M 模型 (Open-Sora 1.0) 可以在 8GB 显存上运行。对于 RTX 4070 Ti Super (16GB)，使用 `--offload True` 可以运行 256px FP16 生成。要运行 768px，你需要 RTX 4090 (24GB) 或多 GPU。
+110 亿参数模型至少需要 16GB 显存用于 256px 生成（INT8 量化）。RTX 3060 (12GB) 无法运行 11B 模型，但旧的 724M 模型 (Open-Sora 1.0) 可以在 8GB 显存上运行。对于 RTX 4070 Ti Super (16GB)，使用 ````--offload True```` 可以运行 256px FP16 生成。要运行 768px，你需要 RTX 4090 (24GB) 或多 GPU。
 
 ### Q2：Open-Sora 与 OpenAI 的 Sora 相比如何？
 
@@ -633,7 +634,7 @@ OpenAI 的 Sora 是闭源订阅服务，峰值质量更高，原生 1080p 输出
 
 ### Q5：如何将 Open-Sora 部署为 API 服务？
 
-将推理流水线包装在带有 GPU 工作队列的 FastAPI 应用中。使用 Redis 或 RabbitMQ 进行任务分发，在 GPU 节点上运行推理工作器。仓库中包含的 Gradio 应用 (`gradio/app.py`) 提供参考实现。生产环境需要添加请求验证、速率限制和输出缓存。仓库的 `examples/api_server/` 目录提供完整的 FastAPI 样板代码。
+将推理流水线包装在带有 GPU 工作队列的 FastAPI 应用中。使用 Redis 或 RabbitMQ 进行任务分发，在 GPU 节点上运行推理工作器。仓库中包含的 Gradio 应用 (````gradio/app.py````) 提供参考实现。生产环境需要添加请求验证、速率限制和输出缓存。仓库的 ````examples/api_server/```` 目录提供完整的 FastAPI 样板代码。
 
 ### Q6：什么提示词格式最适合 Open-Sora？
 
@@ -651,7 +652,7 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 
 **下一步：**
 
-1. 克隆仓库：`git clone https://github.com/hpcaitech/Open-Sora.git`
+1. 克隆仓库：````git clone https://github.com/hpcaitech/Open-Sora.git```
 2. 在 GitHub Discussions 上加入社区讨论获取微调技巧
 3. 在 GitHub 上关注项目获取 1.4/2.1 版本发布通知
 4. 在 dibi8 Telegram 社区分享你的部署经验：[https://t.me/dibi8tech](https://t.me/dibi8tech)
@@ -708,7 +709,7 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [2026-06-22-trending-ai-agents](open-sora)
@@ -718,5 +719,5 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 - [nanochat-karpathy-100-chatgpt-single-gpu](open-sora)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

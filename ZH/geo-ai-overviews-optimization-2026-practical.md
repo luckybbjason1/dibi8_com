@@ -28,6 +28,7 @@ faq: - q: "什么是 GEO？它和 SEO 有什么区别？"
     a: "比 SEO 更快。AI Overviews 的抓取 + 索引以天为单位，而非月。新增 FAQ schema 通常在 1-2 周内出现在 AI 引用中。为可引用性而进行的全文重写需要 2-4 周才会在答案中显现。"
 ---
 
+
 {{</* resource-info */>}}
 
 # GEO / AI Overviews 优化 2026：实战指南
@@ -63,15 +64,15 @@ AI 引擎权衡的信号：
 为每个含多组问答的页面加上 FAQ JSON-LD。每个问答对都成为可直接引用的原子答案。
 
 实现方式：
-```yaml
+````yaml
 # Hugo frontmatter
 faq: - q: "What is X?"
     a: "X is..."
   - q: "How does X work?"
     a: "..."
-```
+`````
 
-Hugo 模板会生成带有 FAQPage schema 的 `<script type="application/ld+json">`。AI Overviews 非常喜欢。
+Hugo 模板会生成带有 FAQPage schema 的 ````<script type="application/ld+json">````。AI Overviews 非常喜欢。
 
 ### 2. 原子答案块
 每个段落的结构都要让**第一段就直接回答一个问题**。不要把重点埋起来。
@@ -95,15 +96,15 @@ Hugo 模板会生成带有 FAQPage schema 的 `<script type="application/ld+json
 多语言站点会在对应语言的 AI 引擎中被引用。dibi8.com 运行 en/zh/kr/vi——每种语言都拥有自己的引用池。
 
 ### 5. llms.txt
-放在 `/llms.txt`：
-```
+放在 ````/llms.txt````：
+`````
 # dibi8.com - Open-source AI tools curation
 > Curated rankings of AI coding agents, LLM frameworks, MCP servers, developer utilities. Tested 2026 workloads.
 
 ## Most cited
 - /resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/
 - /resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
-```
+`````
 
 投入极小，随着 AI 爬虫采用该标准而带来潜在收益。
 
@@ -117,7 +118,7 @@ Hugo 模板会生成带有 FAQPage schema 的 `<script type="application/ld+json
 
 需要追踪的三项指标：
 1. **AI 引用出现次数**（条件允许时使用 Google Search Console 的 "AI Overviews" 报告）
-2. **来自 AI 引擎的直接引流流量** — 通过 `?utm_source=perplexity` 等 UTM 追踪
+2. **来自 AI 引擎的直接引流流量** — 通过 ````?utm_source=perplexity```` 等 UTM 追踪
 3. **AI 引用内容中的品牌提及量** — 定期在 Perplexity/ChatGPT 上搜索 "dibi8"
 
 ## 推荐的基础设施
@@ -135,7 +136,7 @@ GEO 是真实存在的，这些技巧也确实有效。FAQ schema 是单点 ROI 
 先从你最重要的 10 个页面开始加 FAQ schema。2 周后衡量引用率。看到提升后再扩展到更多页面。复利回报是真实的——GEO 的早期行动者会获得不成比例的引用。
 
 
----
+* * *
 **相关阅读**：[MCP Servers 2026 排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Coding 2026-Q2 对决](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/)
 
 
@@ -201,11 +202,11 @@ GEO / AI Overviews 优化 2026：来自真实站点数据的实战指南 represe
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -214,7 +215,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](geo-ai-overviews-optimization-2026-practical)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -226,7 +227,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -237,7 +238,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+`````
 
 Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
 2. **Composition**: Build complex systems from simple parts
@@ -247,7 +248,7 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
 
 ### Architecture Overview
 
-```
+`````
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
@@ -258,21 +259,21 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
                      │   Cache     │
                      │  (Redis)    │
                      └─────────────┘
-```
+````
 
 ## Trading Bot Comparison
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

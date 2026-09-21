@@ -9,6 +9,7 @@ slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---
 
+
 # 规格套件：GitHub 革命性的规格驱动开发工具包
 
  软件开发一直受到根本性脱节的困扰：**我们指定的**很少与**我们构建的**相匹配。 需求文档落满灰尘，PRD 在几天之内就过时了，最终产品往往与最初的愿景有很大偏差。 
@@ -23,17 +24,17 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
 传统的开发工作流程如下所示：
 
- ````
+ `````
  需求→设计→实施→测试→部署
  （文档）（文档）（代码）（测试）（产品）
- ````
+ ``````
 
  规格套件将其更改为：
 
- ````
+ ``````
  规范→实施→测试→部署
  （可执行文件）（代码）（测试）（产品）
- ````
+ ``````
 
  规范成为**真相的来源** - 活生生的，呼吸的，并直接连接到代码库。 
 
@@ -78,18 +79,18 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  ### 第 1 步：安装指定 CLI
 
- ````bash
+ ``````bash
  # 使用 uv 安装
  uv 工具安装指定-cli \
  --来自 git+https://github.com/github/spec-kit.git@latest
 
  # 验证安装
  指定--版本
- ````
+ ``````
 
  ### 第 2 步：初始化项目
 
- ````bash
+ ``````bash
  # 使用spec-kit创建一个新项目
  指定 init my-awesome-app --integration copilot
 
@@ -103,13 +104,13 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  # │ └── 模板/
  # ├── 规格.md
  # └── README.md
- ````
+ ``````
 
  ### 第 3 步：建立项目原则
 
  在项目目录中启动编码代理并使用“/speckit.constitution”命令：
 
- ````bash
+ ``````bash
  # 在你的人工智能编码代理中：
  /speckit.constitution 创建重点关注的原则：
  - 代码质量标准
@@ -117,7 +118,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  - 性能基准
  - 安全指南
  - 文档期望
- ````
+ ``````
 
  这将创建一个“constitution.md”文件来管理所有后续的开发决策。 
 
@@ -125,13 +126,13 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  使用“/speckit.specify”命令来描述您想要构建的内容：
 
- ````bash
+ ``````bash
  /speckit.specify 构建具有以下功能的照片组织应用程序：
  - 用户可以创建按日期分组的相册
  - 相册可以通过拖放重新组织
  - 照片支持元数据编辑
  - 协作共享相册
- ````
+ ``````
 
  该规范被保存为人工智能代理可以使用的结构化文档。 
 
@@ -139,7 +140,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  ### 规范驱动的开发工作流程
 
- ````
+ ``````
  ┌──────────────────────────────────────────────────────────────┐
  │ 规格套件工作流程 │
  ├──────────────────────────────────────────────────────────────┤
@@ -163,13 +164,13 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  │ └─ 投入生产 │
  │ │
  └──────────────────────────────────────────────────────────────┘
- ````
+ ``````
 
  ### 规格格式
 
  规范遵循结构化格式：
 
- ``降价
+ ````降价
  # 规格：相册管理器
 
  ## 总结
@@ -191,7 +192,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  - [ ] 拖放可在桌面和移动设备上使用
  - [ ] 共享相册跨设备同步
  - [ ] 性能：1000 张照片 <100 毫秒
- ````
+ ``````
 
  ### AI 代理集成
 
@@ -199,12 +200,12 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  | 代理| 积分方法|
  |
----
+* * *
 |
----
+* * *
 |
- | GitHub 副驾驶 | `/speckit.*` 斜线命令 |
- | 法典 CLI | `$speckit-*` 命令 |
+ | GitHub 副驾驶 | ````/speckit.*```` 斜线命令 |
+ | 法典 CLI | ````$speckit-*```` 命令 |
  | 克劳德·代码 | 代理提示模板|
  | 双子座 CLI | 自定义函数调用|
  | 开放代码 | 技能定义|
@@ -213,7 +214,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  ### 示例 1：构建 REST API
 
- ````bash
+ ``````bash
  # 定义规范
  /speckit.specify 为博客平台构建 REST API：
  - 帖子的CRUD操作
@@ -227,11 +228,11 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  # 根据规范进行验证
  /speckit.validate
- ````
+ ``````
 
  ### 示例 2：创建移动应用程序
 
- ````bash
+ ``````bash
  # 定义规范
  /speckit.specify 使用以下内容构建健身跟踪移动应用程序：
  - 使用运动库记录运动记录
@@ -242,11 +243,11 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  # 生成实现
  /speckit.create --framework 颤动
- ````
+ ``````
 
  ### 示例 3：微服务架构
 
- ````bash
+ ``````bash
  # 定义规范
  /speckit.specify 设计微服务架构：
  - 用户服务（身份验证、配置文件）
@@ -258,7 +259,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  # 生成实现
  /speckit.plan --架构微服务
  /speckit.create --framework kubernetes
- ````
+ ``````
 
  ## 捆绑包：基于角色的设置
 
@@ -268,9 +269,9 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  针对个人开发者优化：
 
- ````bash
+ ``````bash
  指定 init --bundle 开发者
- ````
+ ``````
 
  包括：
  - 简化的工作流程
@@ -281,9 +282,9 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  专为协作开发而设计：
 
- ````bash
+ ``````bash
  指定 init --bundle team
- ````
+ ``````
 
  包括：
  - 代码审查门
@@ -294,9 +295,9 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  对于大型组织：
 
- ````bash
+ ``````bash
  指定 init --bundle enterprise
- ````
+ ``````
 
  包括：
  - 合规模板
@@ -310,19 +311,19 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  规格套件支持自定义工作流程的扩展：
 
- ````bash
+ ``````bash
  # 安装扩展
  指定扩展安装 github/spec-kit-extension-ci
 
  # 创建自定义模板
  指定模板创建 my-custom-spec
- ````
+ ``````
 
  ### 自定义预设
 
  定义您自己的规格预设：
 
- ````yaml
+ ``````yaml
  # .spec-kit/presets.yaml
  预设：
  网络应用程序：
@@ -337,19 +338,19 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  框架：颤动
  州： 河波德
  测试：集成测试
- ````
+ ``````
 
  ### 漂移检测
 
  规格套件会自动检测实施何时偏离规格：
 
- ````bash
+ ``````bash
  # 检查规格漂移
  指定漂移检查
 
  # 查看漂移报告
  指定漂移报告--输出html
- ````
+ ``````
 
  报告包括：
  - 规范中缺少功能
@@ -363,11 +364,11 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  | 方面| 传统珠三角| 规格套件 |
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 格式| 自由格式文档 | 结构化规范|
  | 生活状况| 已经过时了| 始终保持同步 |
@@ -380,11 +381,11 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  | 方面| 用户故事 | 规格套件 |
  |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
  | 粒度| 高水平| 详细 |
  | 技术规格| 分开| 包含 |
@@ -404,7 +405,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
 
  ### 与 CI/CD 集成
 
- ````yaml
+ ``````yaml
  # .github/workflows/spec-validate.yml
  名称：验证规格
  上：[pull_request]
@@ -420,7 +421,7 @@ Spec Kit 是由 GitHub 开发的一个**开源工具包**，它支持**规范驱
  运行：指定漂移检查
  - 名称：运行基于规范的测试
  运行：指定测试 --from-spec
- ````
+ `````
 
  ### 团队协作
 
@@ -494,7 +495,7 @@ Spec Kit 与敏捷工作流程集成：
  - [Spec Kit 官方文档](https://github.github.io/spec-kit/)
  - [规范驱动开发宣言](https://github.com/github/spec-kit/blob/main/docs/manifesto.md)
 
- ---
+* * *
 
  💬 加入我们的电报群讨论群组: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
@@ -560,12 +561,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
 
----
+* * *
 ## Related Articles
 
 - [free-mcp-tools-top10-2026](spec-kit-github-spec-driven-development-toolkit)
@@ -574,7 +575,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [codebase-memory-mcp-high-performance-code-intelligence](spec-kit-github-spec-driven-development-toolkit)
 - [prompts-chat](spec-kit-github-spec-driven-development-toolkit)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -582,15 +583,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

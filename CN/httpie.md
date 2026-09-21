@@ -23,38 +23,39 @@ tags: ["httpie", "cli", "http-client", "api-testing", "curl-alternative", "json"
 aliases:
   - /posts/httpie/-
 ---
+
 {{</* resource-info */>}}
 
-**HTTPie** (pronounced "aitch-tee-tee-pie") is a command-line HTTP client designed for the API era. With **38,200 GitHub stars**, it stands as one of the most popular developer tools in the `api testing cli` category. This guide covers everything from `httpie setup` to `httpie vs curl` comparisons with real benchmarks.
+**HTTPie** (pronounced "aitch-tee-tee-pie") is a command-line HTTP client designed for the API era. With **38,200 GitHub stars**, it stands as one of the most popular developer tools in the ```api testing cli```` category. This guide covers everything from ````httpie setup```` to ````httpie vs curl```` comparisons with real benchmarks.
 
 ![HTTPie Logo](https://raw.githubusercontent.com/httpie/cli/master/docs/httpie-logo.svg)
 
 ## Introduction
 
-Every developer has been there: staring at a wall of unformatted JSON spewed from `curl`, squinting to find the one field that matters, copying the output to a formatter just to make sense of it. The command-line HTTP tools of the 1990s were built for machines. HTTPie, created by Jakub Roztocil in 2012, was built for humans.
+Every developer has been there: staring at a wall of unformatted JSON spewed from ````curl````, squinting to find the one field that matters, copying the output to a formatter just to make sense of it. The command-line HTTP tools of the 1990s were built for machines. HTTPie, created by Jakub Roztocil in 2012, was built for humans.
 
-In 2026, REST and GraphQL APIs dominate the web. JSON is the default language of data exchange. Yet most developers still default to `curl` out of habit, not because it is the right tool for interactive API debugging. HTTPie fills this gap with an intuitive syntax, built-in JSON support, colorized output, and persistent sessions — all without sacrificing scripting capability.
+In 2026, REST and GraphQL APIs dominate the web. JSON is the default language of data exchange. Yet most developers still default to ````curl```` out of habit, not because it is the right tool for interactive API debugging. HTTPie fills this gap with an intuitive syntax, built-in JSON support, colorized output, and persistent sessions — all without sacrificing scripting capability.
 
-This HTTPie tutorial walks you through installation, real-world usage, performance benchmarks against curl and wget, production hardening, and honest limitations. Whether you are looking for a `curl alternative` or want to speed up your API testing workflow, this guide gives you production-ready commands and configurations.
+This HTTPie tutorial walks you through installation, real-world usage, performance benchmarks against curl and wget, production hardening, and honest limitations. Whether you are looking for a ````curl alternative```` or want to speed up your API testing workflow, this guide gives you production-ready commands and configurations.
 
 ## What Is HTTPie?
 
-HTTPie is an open-source command-line HTTP client written in Python that makes CLI interaction with web services as human-friendly as possible. It provides two commands — `http` and `https` — for creating and sending arbitrary HTTP requests using a natural syntax, with formatted and colorized terminal output.
+HTTPie is an open-source command-line HTTP client written in Python that makes CLI interaction with web services as human-friendly as possible. It provides two commands — ````http```` and ````https```` — for creating and sending arbitrary HTTP requests using a natural syntax, with formatted and colorized terminal output.
 
 The tool is designed specifically for testing, debugging, and interacting with APIs and HTTP servers. Unlike general-purpose download tools, HTTPie optimizes for the read-eval-print loop of API development: send a request, read the formatted response, tweak, repeat.
 
 Key characteristics at a glance: | Attribute | Value |
 |
----
+* * *
 |
----
+* * *
 |
 | **Language** | Python (3.7+) |
 | **License** | BSD-3-Clause |
 | **GitHub Stars** | 38,200+ |
 | **Latest Version** | 3.2.4 (Nov 2024) |
 | **Maintainer** | HTTPie, Inc. |
-| **Default Content-Type** | `application/json` |
+| **Default Content-Type** | ````application/json```` |
 | **Platforms** | Linux, macOS, Windows, FreeBSD |
 
 ## How HTTPie Works
@@ -64,8 +65,8 @@ Key characteristics at a glance: | Attribute | Value |
 HTTPie sits on top of two well-known Python libraries: 1. **Requests** — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects)
 2. **Pygments** — provides syntax highlighting for terminal output
 
-When you run an HTTPie command, the tool performs these steps: 1. **Parse request items** — headers (`Name:Value`), query params (`name==value`), data fields (`name=value`), raw JSON fields (`name:=value`), and file uploads (`name@file`)
-2. **Build the request** — serialize data to JSON (default), form data (`--form`), or multipart (`--multipart`)
+When you run an HTTPie command, the tool performs these steps: 1. **Parse request items** — headers (````Name:Value````), query params (````name==value````), data fields (````name=value````), raw JSON fields (````name:=value````), and file uploads (````name@file````)
+2. **Build the request** — serialize data to JSON (default), form data (````--form````), or multipart (````--multipart````)
 3. **Send via Requests library** — handle SSL, authentication, proxies, cookies
 4. **Format and colorize response** — use Pygments for syntax highlighting based on Content-Type
 5. **Stream or buffer output** — stream large files, buffer for formatted display
@@ -74,7 +75,7 @@ When you run an HTTPie command, the tool performs these steps: 1. **Parse reques
 
 ### Core Design Philosophy
 
-The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: ```http
+The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: `````http
 POST /post HTTP/1.1
 Host: pie.dev
 X-API-Key: 123
@@ -82,17 +83,17 @@ User-Agent: Bacon/1.0
 Content-Type: application/x-www-form-urlencoded
 
 name=value&name2=value2
-```
+`````
 
-With the HTTPie command: ```bash
+With the HTTPie command: `````bash
 http -f POST pie.dev/post \
     X-API-Key:123 \
     User-Agent:Bacon/1.0 \
     name=value \
     name2=value2
-```
+`````
 
-The order and syntax are nearly identical. The only HTTPie-specific flag is `-f` for form encoding.
+The order and syntax are nearly identical. The only HTTPie-specific flag is ````-f```` for form encoding.
 
 ![HTTPie Terminal Screenshot](https://httpie.io/_next/static/media/hero-terminal.5a23ab28.svg)
 
@@ -100,13 +101,13 @@ The order and syntax are nearly identical. The only HTTPie-specific flag is `-f`
 
 ### Prerequisites
 
-HTTPie requires **Python 3.7 or newer**. Verify your version: ```bash
+HTTPie requires **Python 3.7 or newer**. Verify your version: `````bash
 python --version
-```
+`````
 
 ### Method 1: pip (Universal — Linux, macOS, Windows)
 
-```bash
+`````bash
 # Upgrade pip and wheel first
 python -m pip install --upgrade pip wheel
 
@@ -115,21 +116,21 @@ python -m pip install httpie
 
 # Verify installation
 http --version
-```
+`````
 
 ### Method 2: Homebrew (macOS)
 
-```bash
+`````bash
 brew update
 brew install httpie
 
 # Upgrade later
 brew upgrade httpie
-```
+`````
 
 ### Method 3: Debian/Ubuntu (APT)
 
-```bash
+`````bash
 # Add the official HTTPie repository
 curl -SsL https://packages.httpie.io/deb/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./" | \
@@ -138,41 +139,41 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages
 # Install
 sudo apt update
 sudo apt install httpie
-```
+`````
 
 ### Method 4: Fedora / RHEL
 
-```bash
+`````bash
 # Fedora
 sudo dnf install httpie
 
 # CentOS / RHEL
 sudo yum install epel-release
 sudo yum install httpie
-```
+`````
 
 ### Method 5: Windows (Chocolatey)
 
-```powershell
+`````powershell
 choco install httpie
 
 # Upgrade
 choco upgrade httpie
-```
+`````
 
 ### Method 6: Docker
 
-```bash
+`````bash
 # Pull and run
 docker run --rm httpie/cli https://httpie.io/hello
 
 # Create a shell alias for convenience
 alias http='docker run --rm -it --net=host httpie/cli'
-```
+`````
 
 ### Method 7: Standalone Binary (Linux)
 
-```bash
+`````bash
 # Download the standalone binary
 https --download packages.httpie.io/binaries/linux/http-latest -o http
 ln -s ./http ./https
@@ -180,11 +181,11 @@ chmod +x ./http ./https
 
 # Now use ./http and ./https directly
 ./http https://api.example.com/users
-```
+`````
 
 ### Quick Verification
 
-```bash
+`````bash
 $ http https://httpie.io/hello
 
 HTTP/1.1 200 OK
@@ -193,13 +194,13 @@ Content-Type: application/json
 {
     "message": "Hello, world!"
 }
-```
+`````
 
 ## Integration with Popular Tools
 
 ### Integration with jq (JSON Processing)
 
-HTTPie's JSON output pairs naturally with `jq`, the CLI JSON processor: ```bash
+HTTPie's JSON output pairs naturally with ``jq``, the CLI JSON processor: `````bash
 # Extract specific fields from API response
 http GET https://api.github.com/repos/httpie/cli | jq '.stargazers_count, .forks_count'
 
@@ -208,11 +209,11 @@ http GET https://jsonplaceholder.typicode.com/posts | jq '.[] | {id: .id, title:
 
 # Pipe HTTPie to jq to HTTPie (chaining APIs)
 http GET https://api.github.com/user | jq -r '.login' | http POST example.com/webhook user=@-
-```
+`````
 
 ### Integration with Shell Scripts
 
-Best practices for scripting with HTTPie: ```bash
+Best practices for scripting with HTTPie: `````bash
 #!/bin/bash
 
 # Always use --ignore-stdin in scripts to avoid hanging
@@ -228,9 +229,9 @@ else
         *) echo 'Other error!' ;;
     esac
 fi
-```
+`````
 
-```bash
+`````bash
 #!/bin/bash
 
 # Store auth token from login
@@ -238,11 +239,11 @@ TOKEN=$(http POST api.example.com/auth username=user password=pass | jq -r '.tok
 
 # Use token in subsequent requests
 http GET api.example.com/protected "Authorization:Bearer $TOKEN"
-```
+`````
 
 ### Integration with Git Hooks
 
-```bash
+`````bash
 #!/bin/bash
 # .git/hooks/pre-push — verify API health before pushing
 
@@ -250,11 +251,11 @@ http --check-status --timeout=5 --ignore-stdin GET https://api.staging.example.c
     echo "ERROR: Staging API is not healthy. Push aborted."
     exit 1
 }
-```
+`````
 
 ### Integration with CI/CD (GitHub Actions)
 
-```yaml
+`````yaml
 # .github/workflows/api-test.yml
 name: API Health Check
 
@@ -268,11 +269,11 @@ jobs: test: runs-on: ubuntu-latest
         run: |
           http --check-status --timeout=10 GET ${{ secrets.API_URL }}/health
           http --check-status POST ${{ secrets.API_URL }}/users name=Test email=test@example.com
-```
+`````
 
 ### Integration with VS Code
 
-Add HTTPie commands as VS Code tasks in `.vscode/tasks.json`: ```json
+Add HTTPie commands as VS Code tasks in ``.vscode/tasks.json``: `````json
 {
   "version": "2.0.0",
   "tasks": [
@@ -284,7 +285,7 @@ Add HTTPie commands as VS Code tasks in `.vscode/tasks.json`: ```json
     }
   ]
 }
-```
+`````
 
 ## Benchmarks / Real-World Use Cases
 
@@ -292,13 +293,13 @@ Add HTTPie commands as VS Code tasks in `.vscode/tasks.json`: ```json
 
 In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Requests foundation shows its limits against curl's C/libcurl implementation: | Tool | Version | Time (80GB) | Throughput |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | curl | 7.51.0 | 25 sec | 3,276 MB/s |
 | HTTPie | 0.9.8 | 153 sec | 535 MB/s |
@@ -311,13 +312,13 @@ In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Reques
 
 A timed task study of 50 developers performing 10 common API operations: | Operation | HTTPie (avg) | curl (avg) | Time Saved |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | GET + parse JSON | 4.2s | 12.8s | 67% |
 | POST with auth | 6.1s | 18.3s | 67% |
@@ -331,17 +332,17 @@ A timed task study of 50 developers performing 10 common API operations: | Opera
 
 **Microservice Health Checks:**
 
-```bash
+`````bash
 # Check all services in a cluster
 for service in api-gateway user-service order-service payment-service; do
     http --check-status --timeout=3 GET "http://$service.internal/health" && \
         echo "✓ $service OK" || echo "✗ $service FAILED"
 done
-```
+`````
 
 **API Documentation Generation:**
 
-```bash
+`````bash
 # Build a request without sending (offline mode)
 http --offline POST api.example.com/v2/users \
     Content-Type:application/json \
@@ -350,32 +351,32 @@ http --offline POST api.example.com/v2/users \
     email="jane@example.com" \
     role:="[admin, editor]" \
     active:=true
-```
+`````
 
 **Webhook Testing:**
 
-```bash
+`````bash
 # Send test webhook payload
 http POST https://webhook.site/your-uuid \
     event=order.created \
     order:='{"id": 12345, "total": 99.99, "currency": "USD"}' \
     signature="sha256=abc123..."
-```
+`````
 
 **Batch API Operations:**
 
-```bash
+`````bash
 # Delete multiple resources
 for id in $(cat ids.txt); do
     http --check-status DELETE "https://api.example.com/items/$id"
 done
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Authentication Patterns
 
-```bash
+`````bash
 # Basic auth (username:password)
 http -a username:password api.example.com/protected
 
@@ -392,11 +393,11 @@ http -A bearer -a YOUR_TOKEN api.example.com/protected
 cat ~/.netrc
 # machine api.example.com login myuser password mypass
 http api.example.com/protected  # auto-uses .netrc
-```
+`````
 
 ### Persistent Sessions
 
-```bash
+`````bash
 # Create a named session with auth and headers
 http --session=prod -a user:pass api.example.com/login API-Key:123
 
@@ -409,11 +410,11 @@ http --session-read-only=prod api.example.com/data
 # Anonymous session (file-based, cross-host)
 http --session=./shared-session.json api.host1.com/data
 http --session=./shared-session.json api.host2.com/data
-```
+`````
 
 ### SSL/TLS Configuration
 
-```bash
+`````bash
 # Skip SSL verification (development only — never in production)
 http --verify=no https://self-signed.example.com
 
@@ -428,11 +429,11 @@ http --ssl=tls1.2 https://legacy.example.com
 
 # Custom cipher suite
 http --ciphers=ECDHE-RSA-AES128-GCM-SHA256 https://secure.example.com
-```
+`````
 
 ### Output Control and Formatting
 
-```bash
+`````bash
 # Show only response body
 http --body GET api.example.com/users
 
@@ -459,11 +460,11 @@ http GET api.example.com/report > report.json
 
 # Download with progress bar (wget-style)
 http --download GET api.example.com/files/large-archive.zip
-```
+`````
 
 ### Request Building with Nested JSON
 
-```bash
+`````bash
 # Build complex nested JSON structures inline
 http POST api.example.com/orders \
     customer[name]=Alice \
@@ -477,11 +478,11 @@ http POST api.example.com/orders \
     shipping[address][street]='123 Main St' \
     shipping[address][city]=Boston \
     shipping[method]=express
-```
+`````
 
 ### Plugin Management
 
-```bash
+`````bash
 # List installed plugins
 httpie cli plugins list
 
@@ -498,11 +499,11 @@ httpie cli plugins uninstall httpie-jwt-auth
 
 # Check for HTTPie updates
 httpie cli check-updates
-```
+`````
 
 ### Configuration File
 
-```json
+`````json
 // ~/.config/httpie/config.json
 {
     "default_options": [
@@ -513,21 +514,21 @@ httpie cli check-updates
     ],
     "plugins_dir": "~/.config/httpie/plugins"
 }
-```
+`````
 
 ## Comparison with Alternatives
 
 | Feature | HTTPie | curl | wget | Postman CLI (Newman) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use Case** | API testing & debugging | General HTTP/file transfer | File downloading | Collection-based API testing |
 | **Language** | Python | C | C | JavaScript (Node.js) |
@@ -542,7 +543,7 @@ httpie cli check-updates
 | **Persistent Sessions** | Yes — JSON files | No (cookie jar file) | No | Yes — collection vars |
 | **Plugin System** | Yes — Python plugins | No | No | Yes — Node.js packages |
 | **Offline Mode** | Yes (dry-run requests) | No | No | No |
-| **Default Content-Type** | `application/json` | None | None | `application/json` |
+| **Default Content-Type** | ````application/json```` | None | None | ````application/json```` |
 | **Authentication** | Basic, Digest, Bearer, plugins | Basic, Digest, NTLM, many | Basic only | OAuth, Bearer, many |
 | **Binary Size** | ~20MB (with Python deps) | ~200KB | ~500KB | ~50MB (with Node) |
 | **Ships with OS** | No | macOS, Windows, Linux | Most Linux | No |
@@ -568,7 +569,7 @@ HTTPie is purpose-built for API interaction, and that focus creates clear bounda
 
 **5. No recursive downloading.** Unlike wget, HTTPie has no built-in website mirroring or recursive link following.
 
-**6. Restricted header manipulation.** HTTPie prevents sending invalid UTF-8 in headers and blocks modifying internal headers like `Content-Length`. curl gives you more rope.
+**6. Restricted header manipulation.** HTTPie prevents sending invalid UTF-8 in headers and blocks modifying internal headers like ````Content-Length````. curl gives you more rope.
 
 **Bottom line:** HTTPie is a specialized tool. It is the best CLI HTTP client for interactive API work, but it is not a universal replacement for curl or wget.
 
@@ -584,28 +585,28 @@ Not entirely. HTTPie excels at interactive API testing and debugging but lacks c
 
 ### How do I send JSON data with HTTPie?
 
-HTTPie uses `=` for string fields and `:=` for raw JSON types (numbers, booleans, arrays, objects): ```bash
+HTTPie uses ``=`` for string fields and ``:=`` for raw JSON types (numbers, booleans, arrays, objects): `````bash
 http POST api.example.com/users \
     name="John Doe" \
     age:=29 \
     active:=true \
     roles:='["admin", "editor"]' \
     profile:='{"city": "Boston", "timezone": "EST"}'
-```
+`````
 
-HTTPie automatically sets `Content-Type: application/json` and serializes the data.
+HTTPie automatically sets ````Content-Type: application/json```` and serializes the data.
 
 ### Is HTTPie suitable for CI/CD pipelines?
 
-Yes, with the `--check-status`, `--ignore-stdin`, and `--timeout` flags. The `--check-status` option makes HTTPie exit with error codes (3 for 3xx, 4 for 4xx, 5 for 5xx), which CI systems can detect. Always use `--ignore-stdin` in non-interactive environments to prevent hanging.
+Yes, with the ````--check-status````, ````--ignore-stdin````, and ````--timeout```` flags. The ````--check-status```` option makes HTTPie exit with error codes (3 for 3xx, 4 for 4xx, 5 for 5xx), which CI systems can detect. Always use ````--ignore-stdin```` in non-interactive environments to prevent hanging.
 
 ### How does HTTPie handle authentication securely?
 
-HTTPie supports Basic, Digest, and Bearer authentication natively, plus a plugin ecosystem for OAuth, JWT, AWS SigV4, NTLM, and more. Passwords can be prompted interactively (not echoed to terminal) or stored in `.netrc`. Session files store auth data in plain JSON, so protect them with appropriate file permissions (`chmod 600`).
+HTTPie supports Basic, Digest, and Bearer authentication natively, plus a plugin ecosystem for OAuth, JWT, AWS SigV4, NTLM, and more. Passwords can be prompted interactively (not echoed to terminal) or stored in ````.netrc````. Session files store auth data in plain JSON, so protect them with appropriate file permissions (````chmod 600````).
 
 ### Can I use HTTPie with proxies?
 
-Yes. HTTPie supports HTTP, HTTPS, and SOCKS proxies via the `--proxy` flag or standard environment variables: ```bash
+Yes. HTTPie supports HTTP, HTTPS, and SOCKS proxies via the ``--proxy`` flag or standard environment variables: `````bash
 # Per-request proxy
 http --proxy=http:http://proxy.company.com:8080 api.example.com
 
@@ -613,38 +614,38 @@ http --proxy=http:http://proxy.company.com:8080 api.example.com
 export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=https://proxy.company.com:8080
 export NO_PROXY=localhost,127.0.0.1
-```
+`````
 
 ### Does HTTPie support file uploads?
 
-Yes, via the `@` syntax for file fields combined with `--form` or `--multipart`: ```bash
+Yes, via the ``@`` syntax for file fields combined with ``--form`` or ``--multipart``: `````bash
 # Form upload with file
 http -f POST api.example.com/upload name="My File" file@~/documents/report.pdf
 
 # Multipart without files
 http --multipart POST api.example.com/data field1=value1 field2=value2
-```
+`````
 
 ### How do I disable colors in HTTPie output?
 
-For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use: ```bash
+For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use: `````bash
 http --pretty=none GET api.example.com/data
 # Or set environment variable
 export HTTPIE_NO_COLORS=1
-```
+`````
 
 ## Conclusion
 
 HTTPie earns its 38,200 GitHub stars by solving a specific problem well: making API interaction from the terminal intuitive, readable, and fast. The natural syntax, built-in JSON support, persistent sessions, and colorized output remove friction from the daily workflow of API development.
 
-This `httpie tutorial` covered installation across seven methods, real integration patterns with `jq`, shell scripts, Git hooks, GitHub Actions, and VS Code, performance benchmarks against `curl` and `wget`, production hardening for SSL and auth, and an honest look at where HTTPie falls short.
+This ````httpie tutorial```` covered installation across seven methods, real integration patterns with ````jq````, shell scripts, Git hooks, GitHub Actions, and VS Code, performance benchmarks against ````curl```` and ````wget````, production hardening for SSL and auth, and an honest look at where HTTPie falls short.
 
 **Action items to get started:**
 
-1. Install HTTPie via `pip install httpie` or your system package manager
-2. Run `http https://httpie.io/hello` to verify
+1. Install HTTPie via ````pip install httpie```` or your system package manager
+2. Run ````http https://httpie.io/hello```` to verify
 3. Replace your next API debugging session with HTTPie instead of curl
-4. Configure `~/.config/httpie/config.json` with your preferred defaults
+4. Configure ````~/.config/httpie/config.json``` with your preferred defaults
 5. Join the community on [Discord](https://httpie.io/discord) for support
 
 **Discuss this guide:** Join our [Telegram group](https://t.me/dibi8opensource) to share your HTTPie workflows and get help from the community.
@@ -695,7 +696,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [superpowers](httpie)
@@ -705,5 +706,5 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](httpie)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

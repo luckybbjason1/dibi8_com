@@ -24,6 +24,7 @@ aliases:
   - /posts/ai-trading-stack/
 ---
 
+
 # AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Nguồn Mở Cho Crypto + Thị Trường Dự Đoán
 
 
@@ -59,7 +60,7 @@ Trader retail xây stack này năm 2026 có công cụ mà quỹ đầu cơ 2018
 
 ## 2. Kiến Trúc — Tín Hiệu → Backtest → Live → Vòng AI
 
-```
+````
    ┌──────────────────────────────────────────────────┐
    │ Dữ liệu thị trường (websocket / REST)            │
    │  - Hyperliquid order book + trade                │
@@ -95,7 +96,7 @@ Trader retail xây stack này năm 2026 có công cụ mà quỹ đầu cơ 2018
    │  → Đề xuất điều chỉnh chiến lược                 │
    │  → Trao lại backtest để verify                   │
    └──────────────────────────────────────────────────┘
-```
+`````
 
 Cho user phi kỹ thuật muốn trải nghiệm AI agent mà không code: **Minara** cung cấp layer hub thân thiện user trên Hyperliquid.
 
@@ -105,10 +106,10 @@ Cho user phi kỹ thuật muốn trải nghiệm AI agent mà không code: **Min
 
 **Vì sao chọn**: 30+ năm thử nghiệm trận chiến. Mọi framework quant hoặc dùng ta-lib hoặc tái triển khai hàm của nó. Dùng bản gốc.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 apt install libta-lib-dev
 pip install TA-Lib
-```
+`````
 
 Hướng dẫn đầy đủ pattern kết hợp chỉ báo walk-forward: [ta-lib phân tích kỹ thuật trading](/vi/resources/ai-trading/ta-lib-technical-analysis-trading/).
 
@@ -118,9 +119,9 @@ Hướng dẫn đầy đủ pattern kết hợp chỉ báo walk-forward: [ta-lib
 
 **Vì sao chọn**: Tối ưu walk-forward, sweep tham số, mô phỏng Monte Carlo, metric Sharpe/Sortino/Calmar, sizing position — tất cả built-in. Lựa chọn de-facto cho quant retail nghiêm túc.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 pip install vectorbt
-```
+`````
 
 Hướng dẫn đầy đủ walk-forward và Monte Carlo: [vectorbt backtesting định lượng](/vi/resources/ai-trading/vectorbt-quantitative-backtesting/).
 
@@ -130,9 +131,9 @@ Hướng dẫn đầy đủ walk-forward và Monte Carlo: [vectorbt backtesting 
 
 **Vì sao chọn**: ~31k GitHub stars, 5+ năm thử nghiệm. Hot-reload chiến lược, mode dry-run (paper trading trên dữ liệu live), tích hợp Telegram bot, UI web, deploy Docker. Bot trading CEX mã nguồn mở mặc định.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
-```
+`````
 
 Deploy trên VPS độ trễ thấp — chúng tôi chạy instance freqtrade nội bộ trên {{< aff "htstack" "trading-vps-hk" "VPS Hong Kong của HTStack" >}} cho độ trễ sub-50ms tới các exchange Châu Á, hoặc {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplet" >}} ở NYC cho venue thiên Mỹ.
 
@@ -144,9 +145,9 @@ Setup đầy đủ pattern chiến lược AI: [Chiến lược AI trading freqt
 
 **Vì sao quan trọng**: Chiến lược tĩnh suy giảm. Thị trường crypto tháng 5/2026 không phải thị trường tháng 1/2024. Không có vòng điều chỉnh, edge chiến lược của bạn xói mòn trong 6-12 tháng. AI Trader là framework mã nguồn mở duy nhất được áp dụng rộng rãi đặc biệt cho vòng này.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 pip install ai-trader
-```
+`````
 
 Setup đầy đủ: [Hướng dẫn AI Trader](/vi/resources/llm-frameworks/ai-trader/).
 
@@ -156,9 +157,9 @@ Setup đầy đủ: [Hướng dẫn AI Trader](/vi/resources/llm-frameworks/ai-t
 
 **Vì sao quan trọng cho AI trading**: Truy cập SDK Python trực tiếp qua chữ ký ví = không API key để quản, không rate limit ngoài giới hạn gas-equivalent on-chain. Thực thi chiến lược trong code không chạm CEX dashboard.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 pip install hyperliquid-python-sdk
-```
+`````
 
 Hướng dẫn đầy đủ setup ví và loại order: [Hyperliquid perp DEX trading](/vi/resources/ai-trading/hyperliquid-perp-dex-trading/).
 
@@ -183,7 +184,7 @@ Setup đầy đủ: [Polymarket Agents — framework bot AI trading](/vi/resourc
 ## 10. Thứ Tự Setup Day 1 (4-5 giờ, trước bất kỳ vốn thực)
 
 1. **VPS + môi trường Python** (15 phút) — {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB, cài Python 3.11 + Docker
-2. **ta-lib + vectorbt** (15 phút) — `pip install`, chạy backtest mẫu trên 1 năm dữ liệu BTC
+2. **ta-lib + vectorbt** (15 phút) — ````pip install```, chạy backtest mẫu trên 1 năm dữ liệu BTC
 3. **freqtrade dry-run** (30 phút) — Docker compose, cấu hình với API key Binance chỉ đọc, deploy chiến lược Bollinger cơ bản trên paper 2 tuần trước khi đi live
 4. **Hyperliquid testnet** (30 phút) — Lấy USDC testnet, cài SDK, đặt order test trên testnet, verify thực thi
 5. **Tích hợp AI Trader** (45 phút) — Cấu hình với DeepSeek (rẻ) hoặc Claude (premium) API key, trỏ vào log dry-run freqtrade
@@ -237,7 +238,7 @@ Xây stack. Paper trade 1-3 tháng. Bắt đầu với vốn bạn có thể m�
 
 Bật {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} cho thực thi độ trễ thấp, paper trade 2-4 tuần trước khi đi live, bắt đầu với vốn bạn có thể mất, scale chỉ sau khi hiệu suất live khớp kỳ vọng backtest.
 
----
+* * *
 
 *Bộ sưu tập đồng hành: [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cho phía chi phí LLM API của AI Trader. [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) nếu muốn agent tự trị điều khiển vòng trading. [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho phía phát triển code chiến lược.*
 
@@ -269,7 +270,7 @@ Bật {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} cho thực thi đ�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -279,7 +280,7 @@ Bật {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} cho thực thi đ�
 - [2026-06-01-trending-ai-agents](ai-trading-stack)
 - [2026-06-08-trending-ai-agents](ai-trading-stack)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

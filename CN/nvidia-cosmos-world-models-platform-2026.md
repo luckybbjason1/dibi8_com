@@ -10,6 +10,7 @@ github_repo: "https://github.com/NVIDIA/cosmos"
 license: 'Apache-2.0'
 featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
 ---
+
 ![NVIDIA Cosmos platform](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 
 # NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)
@@ -24,12 +25,12 @@ The models range from 16B (Nano) to 64B (Super) parameters, available on Hugging
 
 ## What Is NVIDIA Cosmos?
 
-NVIDIA Cosmos is an **open platform of world models, datasets, and tools** designed for building Physical AI systems. It goes beyond what traditional AI can do: ```
+NVIDIA Cosmos is an **open platform of world models, datasets, and tools** designed for building Physical AI systems. It goes beyond what traditional AI can do: ````
 Traditional AI: Cosmos: Input → Output      →  Input → Reasoning → Output
   (image in,          (understand physics,
    caption out)        predict future,
                        generate actions)
-```
+`````
 
 Key capabilities: - **World understanding**: Analyze videos and images for captions, temporal events, next actions, spatial grounding, physical plausibility, and causal outcomes
 - **World generation**: Produce images, videos, synchronized sound, and action-conditioned rollouts from text, image, video, or action inputs
@@ -37,11 +38,11 @@ Key capabilities: - **World understanding**: Analyze videos and images for capti
 
 The Cosmos 3 model family includes: | Model | Size | Capability |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cosmos3-Nano | 16B | Compact omnimodal model for understanding and simulation |
 | Cosmos3-Super | 64B | Frontier-scale model for advanced multimodal tasks |
@@ -54,7 +55,7 @@ The Cosmos 3 model family includes: | Model | Size | Capability |
 Cosmos 3 uses a unified **Mixture-of-Transformers (MoT)** architecture that combines: 1. **Autoregressive (AR) transformer** for reasoning — processes language and visual tokens through causal self-attention for next-token prediction
 2. **Diffusion Transformer (DM)** for generation — denoises image, video, audio, and action tokens through full attention
 
-```
+`````
 ┌─────────────────────────────────────────────┐
 │         Cosmos 3: Unified MoT               │
 ├─────────────────┬───────────────────────────┤
@@ -71,7 +72,7 @@ Cosmos 3 uses a unified **Mixture-of-Transformers (MoT)** architecture that comb
 │ - Multimodal attention layers            │
 │ - 3D mRoPE (spatial + temporal encoding) │
 └─────────────────┴──────────────────────────┘
-```
+`````
 
 Both modes share the same transformer architecture, multimodal attention layers, and a unified 3D multi-dimensional rotary position embedding (mRoPE) that encodes spatial and temporal structure across modalities.
 
@@ -79,13 +80,13 @@ Both modes share the same transformer architecture, multimodal attention layers,
 
 Cosmos 3 exposes two distinct runtime surfaces: ### Reasoner (Understanding)
 
-Processes inputs and produces textual output for world understanding tasks: ```
+Processes inputs and produces textual output for world understanding tasks: `````
 Input: Text + Image + Video + Action
          ↓
     Reasoner (AR Transformer)
          ↓
 Output: Text (captions, next actions, physical reasoning, task plans)
-```
+`````
 
 **Use cases**: - World understanding from video streams
 - Next action prediction for robots
@@ -95,13 +96,13 @@ Output: Text (captions, next actions, physical reasoning, task plans)
 
 ### Generator (Creation)
 
-Produces non-text outputs conditioned by multimodal inputs: ```
+Produces non-text outputs conditioned by multimodal inputs: `````
 Input: Text + Image + Video + Sound + Action
          ↓
     Generator (Diffusion Transformer)
          ↓
 Output: Image + Video + Sound + Action
-```
+`````
 
 **Use cases**: - Text-to-image generation
 - Image-to-video generation
@@ -112,7 +113,7 @@ Output: Image + Video + Sound + Action
 
 ## Quickstart: Installation
 
-Cosmos runs on Linux with NVIDIA GPUs (Ampere, Hopper, or Blackwell). Installation uses `uv` (the fast Python package manager): ### System Requirements
+Cosmos runs on Linux with NVIDIA GPUs (Ampere, Hopper, or Blackwell). Installation uses ````uv```` (the fast Python package manager): ### System Requirements
 
 - **OS**: Linux
 - **GPU**: NVIDIA GPU (Ampere/A100/H100/Blackwell RTX 6000+)
@@ -122,7 +123,7 @@ Cosmos runs on Linux with NVIDIA GPUs (Ampere, Hopper, or Blackwell). Installati
 
 ### Install with uv
 
-```bash
+`````bash
 # Install system dependencies
 sudo apt-get install -y --no-install-recommends curl ffmpeg git-lfs \
   libx11-dev tree wget
@@ -136,11 +137,11 @@ uv sync --all-extras --group=cu128-train
 source .venv/bin/activate
 
 # Or CUDA 13.0 (recommended): # uv sync --all-extras --group=cu130-train
-```
+`````
 
 ### Quick Inference
 
-```python
+`````python
 # Single-GPU inference with Diffusers backend
 python -m cosmos_framework.scripts.inference \
     --parallelism-preset=latency \
@@ -148,21 +149,21 @@ python -m cosmos_framework.scripts.inference \
     -o outputs/omni_nano \
     --checkpoint-path Cosmos3-Nano \
     --seed=0
-```
+`````
 
 ### HuggingFace Models
 
-```bash
+`````bash
 # Download a model from HuggingFace
 huggingface-cli download nvidia/Cosmos3-Nano \
     --local-dir ~/cosmos/models/nano
-```
+`````
 
 ## Generator Mode: World Generation
 
 The Generator produces images, videos, audio, and action outputs conditioned by multimodal inputs: ### Text-to-Image
 
-```python
+`````python
 from cosmos_framework.scripts.inference import run_inference
 
 # Generate an image from text
@@ -175,11 +176,11 @@ result = run_inference(
     seed=42
 )
 # Output: High-fidelity image of robot assembling circuit board
-```
+`````
 
 ### Image-to-Video
 
-```python
+`````python
 # Generate temporally coherent video from a single image
 result = run_inference(
     checkpoint="Cosmos3-Super-Image2Video",
@@ -191,11 +192,11 @@ result = run_inference(
     resolution="720p"
 )
 # Output: Video of the robot lab scene in motion
-```
+`````
 
 ### Text-to-Video
 
-```python
+`````python
 # Generate video directly from text prompt
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -207,15 +208,15 @@ result = run_inference(
     resolution="720p"
 )
 # Output: Video with synchronized audio (AAC stereo at 48kHz)
-```
+`````
 
 ### Supported Generation Settings
 
 | Parameter | Options |
 |
----
+* * *
 |
----
+* * *
 |
 | Resolution | 256p, 480p, 720p (default: 480p) |
 | Aspect Ratio | 16:9, 4:3, 1:1, 3:4, 9:16 (default: 16:9) |
@@ -225,7 +226,7 @@ result = run_inference(
 
 ## Reasoner Mode: World Understanding
 
-The Reasoner provides textual output for understanding and planning: ```python
+The Reasoner provides textual output for understanding and planning: `````python
 # World understanding from video
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -255,24 +256,24 @@ result = run_inference(
     task="check_physical_plausibility"
 )
 # Output: "The ball trajectory violates gravity..."
-```
+`````
 
 ## Use Cases
 
 ### Robot Training with Synthetic Data
 
-Cosmos generates synthetic training data for robots, reducing the need for expensive real-world data collection: ```bash
+Cosmos generates synthetic training data for robots, reducing the need for expensive real-world data collection: `````bash
 # Generate 1000 synthetic video clips of warehouse robots
 # for training a manipulation policy
 cosmos_framework.scripts.training.train \
     --recipe examples/launch_sft_vision_nano.sh \
     --num-samples 1000 \
     --output-dir /data/warehouse_synthetic
-```
+`````
 
 ### Autonomous Vehicle Simulation
 
-```python
+`````python
 # Simulate autonomous driving scenarios
 result = run_inference(
     checkpoint="Cosmos3-Nano",
@@ -283,11 +284,11 @@ result = run_inference(
     task="predict_vehicle_dynamics"
 )
 # Output: Video of car stopping + action vector (steering, throttle, brake)
-```
+`````
 
 ### Smart Infrastructure Monitoring
 
-```python
+`````python
 # Analyze security camera footage for anomalies
 result = run_inference(
     checkpoint="Cosmos3-Super",
@@ -297,11 +298,11 @@ result = run_inference(
     task="detect_anomalies"
 )
 # Output: "At 14:32:15, unmarked vehicle entered restricted zone..."
-```
+`````
 
 ## Training: Fine-Tuning Cosmos Models
 
-The Cosmos framework includes training scripts for supervised fine-tuning (SFT) on custom data: ```bash
+The Cosmos framework includes training scripts for supervised fine-tuning (SFT) on custom data: `````bash
 # Multi-GPU SFT training on 8× H100 80GB
 bash examples/launch_sft_vision_nano.sh
 
@@ -311,9 +312,9 @@ bash examples/launch_sft_vision_nano.sh
 # - JSONL / WebDataset / LeRobot dataset adapters
 # - Mixed precision training
 # - Checkpoint resume support
-```
+`````
 
-```python
+`````python
 # Training configuration example
 training_config = {
     "model": "Cosmos3-Nano",
@@ -327,21 +328,21 @@ training_config = {
     },
     "checkpoint_dir": "/checkpoints/sft_nano"
 }
-```
+````
 
 ## Comparison with Alternatives
 
 | Feature | NVIDIA Cosmos | Runway Gen-3 | Sora | Pika Labs |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open-source** | ✅ Yes | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary |
 | **Reasoning mode** | ✅ Built-in | ❌ | ❌ | ❌ |
@@ -356,13 +357,13 @@ training_config = {
 
 | Feature | NVIDIA Cosmos | Stable Video Diffusion | Luma Dream Machine |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Open-source** | ✅ Yes | ✅ Yes | ❌ Proprietary |
 | **Multimodal** | ✅ Text+Image+Video+Audio+Action | ❌ Image→Video only | ❌ Text→Video only |
@@ -375,15 +376,15 @@ training_config = {
 
 Cosmos 3 models are evaluated on multiple benchmarks: | Benchmark | Cosmos3-Nano | Cosmos3-Super | Runway Gen-3 | Sora |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | VideoFID (↓) | 8.2 | 5.1 | 6.3 | 4.8 |
 | CLIP-I Score (↑) | 0.89 | 0.93 | 0.91 | 0.92 |
@@ -396,15 +397,15 @@ Cosmos 3 models are evaluated on multiple benchmarks: | Benchmark | Cosmos3-Nano
 
 | Model | Resolution | Frame Count | GPU | Time |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Cosmos3-Nano | 480p | 189 frames | 1× H100 | ~45s |
 | Cosmos3-Nano | 720p | 189 frames | 1× H100 | ~90s |
@@ -455,14 +456,14 @@ For robotics, autonomous driving, and smart infrastructure, Cosmos is not just a
 If you"re building Physical AI systems, Cosmos should be at the top of your research list.
 
 
----
+* * *
 **Sources & Further Reading**: - Technical report: https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
 - Cosmos 3 models: https://huggingface.co/collections/nvidia/cosmos3
 - Cosmos Framework: https://github.com/NVIDIA/cosmos-framework
 - Website: https://www.nvidia.com/en-us/ai/cosmos/
 
 
----
+* * *
 **Try NVIDIA Cosmos**: Visit [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) for a guided experience, or clone [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) for the full framework.
 
 Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
@@ -497,7 +498,7 @@ Internal links: [runway-gen3-review-2026](https://dibi8.com/runway-gen3-review-2
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -507,6 +508,6 @@ Internal links: [runway-gen3-review-2026](https://dibi8.com/runway-gen3-review-2
 - [paddleocr-81k-star-ocr-engine](nvidia-cosmos-world-models-platform-2026)
 - [markitdown-universal-file-to-markdown-converter](nvidia-cosmos-world-models-platform-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

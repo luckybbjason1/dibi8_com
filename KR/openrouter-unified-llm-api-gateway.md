@@ -12,6 +12,7 @@ aliases:
   - /kr/posts/openrouter-unified-llm-api-gateway/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개: 모든 개발자가 직면하는 API 키 악몽
@@ -34,13 +35,13 @@ OpenRouter는 단일 OpenAI 호환 엔드포인트를 통해 60개 이상 제공
 
 ### 아키텍처 개요
 
-OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프록시 레이어**로 작동한다: ```
+OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프록시 레이어**로 작동한다: ````
 앱 → OpenRouter 게이트웨이 → 제공업체 (OpenAI / Anthropic / Google / ...)
                 ↓
          [대체 제공업체]
                 ↓
          [묶음 제공업체]
-```
+`````
 
 게이트웨이는 네 가지 중요한 기능을 처리한다: 1. **요청 라우팅** — 원시 프로토콜을 사용하여 선택한 제공업체로 API 호출을 전달한다
 2. **응답 정규화** — 상위 제공업체에 관계없이 OpenAI 호환 형식으로 결과를 반환한다
@@ -49,7 +50,7 @@ OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프�
 
 ### OpenRouter 가치 파이프라인
 
-```
+`````
 제공업체 통합 레이어
 ├── 60개 이상 제공업체 엔드포인트 (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek...)
 ├── 제공업천별 인증 관리
@@ -69,7 +70,7 @@ OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프�
 ├── 사용량 분석 대시보드
 ├── 모델별 비용 추적
 └── 최종 사용자 결제용 OAuth
-```
+`````
 
 ## 설치 및 설정
 
@@ -77,14 +78,14 @@ OpenRouter는 애플리케이션과 상위 LLM 제공업체 사이에서 **프�
 
 [openrouter.ai](https://openrouter.ai/)에서 가입하고 API 키를 받아라. 묶음 계층에는 테스트 및 프로토타이핑에 충분한 속도 제한과 함께 선택한 오픈소스 모델에 대한 액세스가 포함된다.
 
-```bash
+`````bash
 # API 키를 안전하게 저장
 export OPENROUTER_API_KEY="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+`````
 
 ### 2단계: cURL로 테스트 (30초)
 
-```bash
+`````bash
 # 기본 채팅 완성 요청
 curl -s https://openrouter.ai/api/v1/chat/completions \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -95,18 +96,18 @@ curl -s https://openrouter.ai/api/v1/chat/completions \
       {"role": "user", "content": "양자 컴퓨팅을 3문장으로 설명해줘"}
     ]
   }'
-```
+`````
 
 응답은 정확히 OpenAI 형식을 따른다.
 
 ### 3단계: Python SDK 설정 (2분)
 
-```bash
+`````bash
 # 특수 SDK 불필요 — OpenAI 클라이언트 사용
 pip install openai>=1.30.0
-```
+`````
 
-```python
+`````python
 # openrouter_demo.py
 from openai import OpenAI
 import os
@@ -130,19 +131,19 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 print(f"사용된 모델: {response.model}")
 print(f"토큰 수: {response.usage.total_tokens}")
-```
+`````
 
-실행: ```bash
+실행: `````bash
 python openrouter_demo.py
-```
+`````
 
 ### 4단계: JavaScript/TypeScript 설정
 
-```bash
+`````bash
 npm install openai
-```
+`````
 
-```typescript
+`````typescript
 // openrouter-demo.ts
 import OpenAI from "openai";
 
@@ -163,22 +164,22 @@ async function main() {
 }
 
 main();
-```
+`````
 
 ### 5단계: 사용 가능한 모델 쿼리
 
-```bash
+`````bash
 # 300개 이상의 모델과 가격 책정 나열
 curl -s https://openrouter.ai/api/v1/models \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" | \
   jq '.data[] | {id: .id, pricing: .pricing}' | head -50
-```
+`````
 
 ## 인기 프레임워크와의 통합
 
 ### LangChain 통합
 
-```python
+`````python
 # openrouter_langchain.py
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -199,11 +200,11 @@ chain = prompt | llm
 
 result = chain.invoke({"input": "Write a FastAPI middleware for rate limiting"})
 print(result.content)
-```
+`````
 
 ### LlamaIndex 통합
 
-```python
+`````python
 # openrouter_llamaindex.py
 from llama_index.llms.openai import OpenAI as LlamaOpenAI
 from llama_index.core import Settings
@@ -224,11 +225,11 @@ index = VectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine()
 response = query_engine.query("What does OpenRouter do?")
 print(response)
-```
+`````
 
 ### Vercel AI SDK 통합
 
-```typescript
+`````typescript
 // app/api/chat/route.ts
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { convertToModelMessages, streamText } from "ai";
@@ -248,11 +249,11 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse();
 }
-```
+`````
 
 ### Go SDK 통합
 
-```go
+`````go
 // openrouter_demo.go
 package main
 
@@ -283,11 +284,11 @@ func main() {
 
 	fmt.Println(resp.Choices[0].Message.Content)
 }
-```
+`````
 
 ### OpenRouter "Auto" 라우터 사용
 
-Auto 라우터는 가격, 속도, 품질 지표를 기반으로 실시간으로 최적의 사용 가능한 모델을 선택한다: ```python
+Auto 라우터는 가격, 속도, 품질 지표를 기반으로 실시간으로 최적의 사용 가능한 모델을 선택한다: `````python
 # OpenRouter가 자동으로 최적의 모델 선택
 response = client.chat.completions.create(
     model="openrouter/auto",  # 58개 이상의 후보 모델에서 자동 선택
@@ -301,7 +302,7 @@ response = client.chat.completions.create(
     }
 )
 print(response.model)
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -345,7 +346,7 @@ print(response.model)
 
 ### 자동 장애 조치 체인
 
-```python
+`````python
 # 프로덕션 장애 조치 설정
 response = client.chat.completions.create(
     model="anthropic/claude-sonnet-4.5",
@@ -357,11 +358,11 @@ response = client.chat.completions.create(
         }
     }
 )
-```
+`````
 
 ### 사용자 정의 제공업체 키 사용 (BYOK)
 
-```bash
+`````bash
 # 직접 제공업체 키 저장
 curl -X POST https://openrouter.ai/api/v1/credentials \
   -H "Authorization: Bearer $OPENROUTER_API_KEY" \
@@ -370,11 +371,11 @@ curl -X POST https://openrouter.ai/api/v1/credentials \
     "provider": "openai",
     "key": "sk-proj-your-direct-openai-key"
   }"
-```
+`````
 
 ### 비용 또는 속도별 요청 라우팅
 
-```python
+`````python
 # 가장 저렴한 사용 가능한 모델로 라우팅
 response = client.chat.completions.create(
     model="openrouter/auto",
@@ -386,11 +387,11 @@ response = client.chat.completions.create(
         }
     }
 )
-```
+`````
 
 ### Docker를 사용한 자체 호스팅 배포
 
-```dockerfile
+`````dockerfile
 # Dockerfile.openrouter-proxy
 FROM node:20-alpine
 WORKDIR /app
@@ -399,9 +400,9 @@ RUN npm install express axios
 COPY . .
 EXPOSE 3000
 CMD ["node", "proxy.js"]
-```
+`````
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: "3.8"
 services: openrouter-proxy: build: context: .
@@ -411,13 +412,13 @@ services: openrouter-proxy: build: context: .
       - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro
       - CACHE_ENABLED=true
     restart: unless-stopped
-```
+`````
 
 [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)에 배포하여 월 $6부터 시작하는 프로덕션급 설정을 구성하라.
 
 ### 모니터링 및 알림
 
-```python
+`````python
 # 사용량과 비용을 프로그래밍 방식으로 추적
 import requests
 
@@ -430,7 +431,7 @@ usage = requests.get(
 
 print(f"남은 크레딧: ${usage[data][total_credits] - usage[data][total_usage]}")
 print(f"총 사용량: ${usage[data][total_usage]}")
-```
+`````
 
 ## 대안과의 비교
 
@@ -482,19 +483,19 @@ OpenRouter는 대부분의 제공업체에 대해 요청 콘텐츠를 영구 저
 
 ### 코드를 변경하지 않고 모델을 전환하려면 어떻게 하나요?
 
-API 호출에서 `model` 매개변수만 변경하면 된다. OpenRouter는 모든 제공업체에 대해 동일한 OpenAI 호환 형식을 사용한다.
+API 호출에서 ````model```` 매개변수만 변경하면 된다. OpenRouter는 모든 제공업체에 대해 동일한 OpenAI 호환 형식을 사용한다.
 
-```python
+`````python
 model = "anthropic/claude-sonnet-4.5"  # 또는 "openai/gpt-5" 또는 "google/gemini-3-pro"
 response = client.chat.completions.create(
     model=model,
     messages=[{"role": "user", "content": "Hello!"}]
 )
-```
+`````
 
 ### 제공업체가 중단되면 어떻게 되나요?
 
-`allow_fallbacks: true`를 활성화하면 OpenRouter가 자동으로 대체 제공업체로 재시도한다. 모든 제공업체가 실패하면 OpenRouter가 구조화된 오류를 반환한다.
+````allow_fallbacks: true```를 활성화하면 OpenRouter가 자동으로 대체 제공업체로 재시도한다. 모든 제공업체가 실패하면 OpenRouter가 구조화된 오류를 반환한다.
 
 ## 결론: 지금 바로 OpenRouter로 시작하라
 
@@ -555,7 +556,7 @@ OpenRouter는 **하나의 API 키**, **하나의 SDK**, **5분의 설정**으로
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -565,7 +566,7 @@ OpenRouter는 **하나의 API 키**, **하나의 SDK**, **5분의 설정**으로
 - [llm-inference-cost-optimization-guide-2026](openrouter-unified-llm-api-gateway)
 - [12-factor-agents-production-llm-software-2026](openrouter-unified-llm-api-gateway)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

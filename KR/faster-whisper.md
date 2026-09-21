@@ -24,9 +24,10 @@ aliases:
   - /kr/posts/faster-whisper/
 ---
 
+
 {{</* resource-info */>}}
 
-OpenAI의 Whisper는 2022년 음성-텍스트(STT) 분야를 바꿨지만, 원본 Python 구현은 하드웨어 성능을 충분히 활용하지 못했다. 13분짜리 오디오 파일의 경우 `openai/whisper` large-v2 모델을 Tesla V100 GPU에서 실행하면 4분 이상 소요된다 — 매일 수백 시간의 오디오를 처리하는 프로덕션 파이프라인에서는 받아들일 수 없는 수준이다. SYSTRAN의 **faster-whisper**는 CTranslate2를 활용해 Whisper 추론을 재구현하여 동일한 정확도로 최대 4배의 속도 향상을 달성하고 VRAM 사용량을 거의 70% 줄였다. GitHub 23,000+ stars를 보유한 faster-whisper는 Python 환경의 프로덕션 음성-텍스트 변환을 위한 사실상 표준 런타임이 되었다.
+OpenAI의 Whisper는 2022년 음성-텍스트(STT) 분야를 바꿨지만, 원본 Python 구현은 하드웨어 성능을 충분히 활용하지 못했다. 13분짜리 오디오 파일의 경우 ```openai/whisper```` large-v2 모델을 Tesla V100 GPU에서 실행하면 4분 이상 소요된다 — 매일 수백 시간의 오디오를 처리하는 프로덕션 파이프라인에서는 받아들일 수 없는 수준이다. SYSTRAN의 **faster-whisper**는 CTranslate2를 활용해 Whisper 추론을 재구현하여 동일한 정확도로 최대 4배의 속도 향상을 달성하고 VRAM 사용량을 거의 70% 줄였다. GitHub 23,000+ stars를 보유한 faster-whisper는 Python 환경의 프로덕션 음성-텍스트 변환을 위한 사실상 표준 런타임이 되었다.
 
 이 가이드에서는 설치, 벤치마크, Docker 배포, WhisperX 및 whisper.cpp과의 통합을 포함하는 프로덕션급 faster whisper 튜토리얼을 제공한다. 모든 명령과 설정은 복사-붙여넣기로 즉시 사용 가능하다.
 
@@ -62,7 +63,7 @@ PyTorch 추론을 CTranslate2의 최적화된 런타임으로 교체하는 아�
 
 ### pip 설치(CPU)
 
-```bash
+`````bash
 # 가상 환경 생성
 python -m venv venv-whisper
 source venv-whisper/bin/activate  # Linux/Mac
@@ -70,11 +71,11 @@ source venv-whisper/bin/activate  # Linux/Mac
 
 # faster-whisper 설치
 pip install faster-whisper
-```
+`````
 
 ### pip 설치(GPU 지원)
 
-```bash
+`````bash
 # pip로 cuBLAS 및 cuDNN 설치(Linux 전용)
 pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.*
 
@@ -83,11 +84,11 @@ export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import
 
 # faster-whisper 설치
 pip install faster-whisper
-```
+`````
 
 ### Docker 설정
 
-```bash
+`````bash
 # 공식 NVIDIA CUDA 이미지 가져오기
 docker run -it --rm --gpus all \
   -v $(pwd)/audio:/audio \
@@ -97,11 +98,11 @@ docker run -it --rm --gpus all \
 # 컨테이너 내에서
 apt-get update && apt-get install -y python3-pip
 pip install faster-whisper
-```
+`````
 
 ### 설치 확인
 
-```python
+`````python
 # verify_setup.py
 from faster_whisper import WhisperModel
 import torch
@@ -112,11 +113,11 @@ print(f"CUDA 장치 수: {torch.cuda.device_count()}")
 model = WhisperModel("tiny", device="cuda", compute_type="float16")
 print(f"모델 로드 장치: {model.model.device}")
 print("설치 확인 성공")
-```
+`````
 
 ### 첫 번째 전사
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 # 모델 로드(첫 실행 시 Hugging Face에서 자동 다운로드)
@@ -129,7 +130,7 @@ print(f"감지된 언어: {info.language} "
       f"(확률: {info.language_probability:.2f})")
 
 for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
-```
+`````
 
 ## 인기 도구와의 통합
 
@@ -137,11 +138,11 @@ for segment in segments: print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {s
 
 WhisperX는 faster-whisper 위에 구축되어 단어 수준 타임스탬프와 화자 분리를 추가한다. 회의 전사를 위한 필수 도구이다.
 
-```bash
+`````bash
 pip install whisperx
-```
+`````
 
-```python
+`````python
 import whisperx
 import torch
 
@@ -169,20 +170,20 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 for segment in result["segments"]: speaker = segment.get("speaker", "UNKNOWN")
     print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
           f"{speaker}: {segment[text]}")
-```
+`````
 
 ### whisper-asr-webservice(OpenAI 호환 API)
 
-OpenAI 호환 HTTP API로 faster-whisper를 노출한다: ```bash
+OpenAI 호환 HTTP API로 faster-whisper를 노출한다: `````bash
 docker run -d --gpus all \
   -p 9000:9000 \
   -e ASR_MODEL=large-v3 \
   -e ASR_ENGINE=faster_whisper \
   -e COMPUTE_TYPE=int8 \
   onerahming/openai-whisper-asr
-```
+`````
 
-```python
+`````python
 import requests
 
 with open("audio.mp3", "rb") as f: response = requests.post(
@@ -191,30 +192,30 @@ with open("audio.mp3", "rb") as f: response = requests.post(
         data={"language": "en", "output": "json"}
     )
 print(response.json())
-```
+`````
 
 ### Speaches(자체 호스팅 OpenAI 호환 서버)
 
-```bash
+`````bash
 docker run -d --gpus all \
   -p 8000:8000 \
   -e WHISPER__MODEL=large-v3 \
   -e WHISPER__COMPUTE_TYPE=int8 \
   fedirz/speaches:latest-gpu
-```
+`````
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="dummy")
 
 with open("audio.mp3", "rb") as f: transcript = client.audio.transcriptions.create(model="large-v3", file=f)
 print(transcript.text)
-```
+`````
 
 ### LibreTranslate(번역 파이프라인)
 
-```python
+`````python
 from faster_whisper import WhisperModel
 import requests
 
@@ -226,7 +227,7 @@ response = requests.post("http://localhost:5000/translate", json={
     "q": japanese_text, "source": "ja", "target": "en"
 })
 print(response.json()["translatedText"])
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -273,7 +274,7 @@ print(response.json()["translatedText"])
 
 ### VAD 필터 사전 분할
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v3", device="cuda", compute_type="int8")
@@ -288,11 +289,11 @@ segments, info = model.transcribe(
     ),
     beam_size=5
 )
-```
+`````
 
 ### 배치 추론으로 처리량 최대화
 
-```python
+`````python
 from faster_whisper import WhisperModel
 import glob, time
 
@@ -304,18 +305,18 @@ for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_si
     text = " ".join([s.text for s in segments])
     print(f"{file_path}: {len(text)} 문자")
 print(f"총 소요: {time.time() - start:.1f}초, {len(audio_files)}개 파일")
-```
+`````
 
 ### 단어 수준 타임스탬프
 
-```python
+`````python
 segments, _ = model.transcribe("audio.mp3", word_timestamps=True)
 for segment in segments: for word in segment.words: print(f"[{word.start:.2f}s -> {word.end:.2f}s] {word.word}")
-```
+`````
 
 ### 커스텀 모델 변환
 
-```bash
+`````bash
 pip install transformers[torch]>=4.23
 
 ct2-transformers-converter \
@@ -323,11 +324,11 @@ ct2-transformers-converter \
   --output_dir whisper-large-v3-ct2 \
   --copy_files tokenizer.json preprocessor_config.json \
   --quantization float16
-```
+`````
 
 ### Prometheus로 모니터링
 
-```python
+`````python
 from faster_whisper import WhisperModel
 from prometheus_client import Counter, Histogram, start_http_server
 
@@ -341,11 +342,11 @@ def transcribe(audio_path): REQUEST_COUNT.inc()
     return model.transcribe(audio_path, beam_size=5)
 
 start_http_server(8000)
-```
+`````
 
 ### 우아한 오류 처리
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_float16", "float16", "float32"]
@@ -355,7 +356,7 @@ def safe_transcribe(audio_path, device="cuda"): compute_types = ["int8", "int8_f
         except RuntimeError as e: print(f"{ct} 실패: {e}, 재시도...")
             continue
     raise RuntimeError("모든 컴퓨트 타입 실패")
-```
+`````
 
 ## 대안과의 비교
 
@@ -405,7 +406,7 @@ GPU 추론에는 CUDA 12.x를 지원하는 NVIDIA GPU가 필요하다. INT8 양�
 
 ### Docker에서 faster-whisper를 어떻게 설치하나?
 
-cuDNN 9이 포함된 공식 NVIDIA CUDA 런타임 이미지를 사용하라. 위의 설치 및 설정 섹션에 전체 Dockerfile이 나와 있다. 핵심 요구사항은 `nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04` 베이스 이미지이다. `--gpus all`로 GPU를 노출하라.
+cuDNN 9이 포함된 공식 NVIDIA CUDA 런타임 이미지를 사용하라. 위의 설치 및 설정 섹션에 전체 Dockerfile이 나와 있다. 핵심 요구사항은 ````nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04```` 베이스 이미지이다. ````--gpus all````로 GPU를 노출하라.
 
 ### 전사 정확도는 OpenAI Whisper와 동일한가?
 
@@ -413,7 +414,7 @@ cuDNN 9이 포함된 공식 NVIDIA CUDA 런타임 이미지를 사용하라. 위
 
 ### 내 GPU에 최적인 compute_type은 무엇인가?
 
-8GB GPU와 GTX 10xx 카드에는 `int8`을, 최신 GPU(RTX 30xx/40xx/50xx, A100, H100)에는 `float16`을 사용하라. Pascal 소비자 카드(GTX 1060/1070/1080)는 fp16 지원이 제한되어 `int8`을 사용해야 한다.
+8GB GPU와 GTX 10xx 카드에는 ````int8````을, 최신 GPU(RTX 30xx/40xx/50xx, A100, H100)에는 ````float16````을 사용하라. Pascal 소비자 카드(GTX 1060/1070/1080)는 fp16 지원이 제한되어 ````int8````을 사용해야 한다.
 
 ### faster-whisper와 WhisperX의 차이점은 무엇인가?
 
@@ -425,7 +426,7 @@ Whisper-Streaming이나 WhisperLive와 통합하면 가능하다. faster-whisper
 
 ### 미세 조정된 Whisper 모델을 어떻게 변환하나?
 
-고급 사용법 섹션에 표시된 `ct2-transformers-converter` CLI 도구를 사용하라. Hugging Face Hub의 모든 모델이나 Transformers와 호환되는 로컬 체크포인트를 변환할 수 있다. 변환 중 FP16과 INT8 양자화를 모두 지원한다.
+고급 사용법 섹션에 표시된 ````ct2-transformers-converter```` CLI 도구를 사용하라. Hugging Face Hub의 모든 모델이나 Transformers와 호환되는 로컬 체크포인트를 변환할 수 있다. 변환 중 FP16과 INT8 양자화를 모두 지원한다.
 
 ### faster-whisper는 모든 Whisper 모델 크기를 지원하나?
 
@@ -439,7 +440,7 @@ faster-whisper는 Python 환경에서 OpenAI Whisper의 프로덕션 런타임 �
 
 **액션 아이템:**
 
-1. `pip install faster-whisper`를 실행하고 위의 확인 스크립트를 실행하라.
+1. ````pip install faster-whisper```를 실행하고 위의 확인 스크립트를 실행하라.
 2. 저장소의 13분 테스트 오디오로 하드웨어를 벤치마크하라.
 3. 프로덕션 파이프라인을 위해 Docker 배포를 설정하라.
 4. [dibi8.com Telegram 그룹](https://t.me/dibi8tech)에 가입하여 벤치마크 결과를 공유하고 프로덕션 지원을 받아라.
@@ -491,7 +492,7 @@ faster-whisper는 Python 환경에서 OpenAI Whisper의 프로덕션 런타임 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -501,6 +502,6 @@ faster-whisper는 Python 환경에서 OpenAI Whisper의 프로덕션 런타임 �
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](faster-whisper)
 - [agent-reach-internet-access-ai-agents](faster-whisper)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -18,6 +18,7 @@ faqs: - q: 'Supabase hay Firebase rẻ hơn?'
     a: 'Supabase thắng tuyệt đối — nó có pgvector tích hợp sẵn, bạn có thể lưu embedding và chạy truy vấn cosine-similarity trong cùng database với dữ liệu app. Firebase không hỗ trợ vector native và phải gắn thêm Vertex AI hoặc DB vector riêng. Cho app RAG/AI năm 2026, Supabase là lựa chọn hiển nhiên.'
 ---
 
+
 # Supabase vs Firebase 2026: BaaS nào tốt hơn?
 
 
@@ -29,7 +30,7 @@ Chọn **Supabase** nếu: Bạn muốn Postgres + SQL + JOIN, coi trọng mã n
 
 Chọn **Firebase** nếu: Bạn cần đồng bộ realtime cực ổn ở quy mô lớn, bạn đã đang dùng Google Cloud, bạn thích model document NoSQL, hoặc bạn đang ship app mobile-first hưởng lợi từ Firebase Auth + Crashlytics + Analytics trong một bộ.
 
----
+* * *
 
 ## So Sánh Trực Diện
 
@@ -52,7 +53,7 @@ Chọn **Firebase** nếu: Bạn cần đồng bộ realtime cực ổn ở quy 
 | **Vendor lock-in** | Thấp (Postgres + S3 chuẩn) | Cao (model dữ liệu Firestore độc quyền) |
 | **Ngôn ngữ SDK** | JS, Dart, Swift, Kotlin, Python, Go | JS, Dart, Swift, Kotlin, Unity, C++ |
 
----
+* * *
 
 ## Khi Nào Chọn Supabase
 
@@ -63,12 +64,12 @@ Nếu app của bạn có user, order, product, post, comment — bất cứ th�
 pgvector tích hợp sẵn. Lưu embedding OpenAI/Anthropic trong cùng database với dữ liệu user, chạy truy vấn cosine-similarity bằng một dòng SQL, kết quả dưới 100ms tới vài triệu vector. Firebase không có gì tương đương — bạn cần thêm Pinecone/Weaviate/Vertex AI riêng.
 
 ### Use case 3: Mã nguồn mở + self-host
-Supabase license Apache 2.0 / PostgreSQL. Bạn có thể clone repo, chạy `docker compose up`, và có toàn bộ stack — Postgres + GoTrue auth + Storage + Realtime + Studio — chạy trên laptop hoặc VPS. Nếu một ngày cần thoát khỏi cloud, lối thoát đã có sẵn. Firebase không có.
+Supabase license Apache 2.0 / PostgreSQL. Bạn có thể clone repo, chạy ```docker compose up````, và có toàn bộ stack — Postgres + GoTrue auth + Storage + Realtime + Studio — chạy trên laptop hoặc VPS. Nếu một ngày cần thoát khỏi cloud, lối thoát đã có sẵn. Firebase không có.
 
 ### Use case 4: Giá có thể dự đoán
 Supabase Pro phẳng $25/tháng có compute bao gồm, cộng phụ phí theo dùng. Bạn có thể lập ngân sách. Firebase Blaze trả theo dùng với phí mỗi document đọc, mỗi lần gọi function, mỗi GB egress — một tweet viral hoặc loop bị bug có thể đẻ ra hóa đơn $400 chỉ trong một đêm. Nhiều chuyện kinh dị về Firebase trên Reddit bắt đầu bằng "Tôi không biết loop có thể đọc 1M document."
 
----
+* * *
 
 ## Khi Nào Chọn Firebase
 
@@ -84,7 +85,7 @@ Nếu bạn đã sâu trong GCP — BigQuery export, Cloud Run, Vertex AI, IAM �
 ### Use case 4: Auth ẩn danh + phone ở quy mô lớn
 Firebase Auth có auth ẩn danh và SMS phone auth trưởng thành nhất trong giới BaaS. Cho app xã hội nơi user duyệt trước rồi đăng ký sau, Firebase làm nâng cấp anonymous → tài khoản vĩnh viễn cực mượt.
 
----
+* * *
 
 ## Phân Tích Giá Chuyên Sâu
 
@@ -108,7 +109,7 @@ Hóa đơn dự đoán được: **Supabase Pro $25/tháng** thắng cách xa.
 Side project không traffic: **Firebase Spark** kéo lâu hơn vì không có tạm dừng project.
 App nặng phân tích hoặc AI/RAG: **Supabase thắng 5-10 lần** về hóa đơn hàng tháng.
 
----
+* * *
 
 ## Benchmark Hiệu Năng (Chủ quan, từ sử dụng hàng ngày)
 
@@ -128,29 +129,29 @@ App nặng phân tích hoặc AI/RAG: **Supabase thắng 5-10 lần** về hóa 
 
 → Supabase thắng quan hệ, AI, giá, lock-in. Firebase thắng realtime quy mô lớn và observability mobile-first.
 
----
+* * *
 
 ## Mẹo Migration
 
 ### Firebase → Supabase
-- Export dữ liệu Firestore sang JSON qua `firebase-tools` (`firebase firestore:export`)
+- Export dữ liệu Firestore sang JSON qua ````firebase-tools```` (````firebase firestore:export````)
 - Thiết kế schema Postgres trước — denormalize Firestore thành bảng quan hệ
-- Dùng bulk import của Supabase qua `psql` hoặc CSV uploader của Studio
-- Thay listener Firestore bằng `supabase.channel().on(postgres_changes, ...)`
-- Migrate user Firebase Auth qua API `auth.admin.createUser()` của Supabase (mật khẩu cần re-hash — gửi email reset mật khẩu cho user)
+- Dùng bulk import của Supabase qua ````psql```` hoặc CSV uploader của Studio
+- Thay listener Firestore bằng ````supabase.channel().on(postgres_changes, ...)````
+- Migrate user Firebase Auth qua API ````auth.admin.createUser()```` của Supabase (mật khẩu cần re-hash — gửi email reset mật khẩu cho user)
 - Chạy song song hai stack một chu kỳ thanh toán để so sánh hóa đơn
 
 ### Supabase → Firebase
-- Export bảng Postgres sang CSV (`COPY ... TO STDOUT`)
+- Export bảng Postgres sang CSV (````COPY ... TO STDOUT````)
 - Làm phẳng dữ liệu quan hệ thành document Firestore denormalize (phần khó nhất — lập kế hoạch 1-2 tuần redesign schema)
 - Thay truy vấn SQL bằng gọi Firestore SDK — mất JOIN, xây lại bằng composite index
-- Migrate auth user qua `importUsers()` của Firebase Admin SDK với blob passwordHash
+- Migrate auth user qua ````importUsers()``` của Firebase Admin SDK với blob passwordHash
 - Lập ngân sách cho hóa đơn bất ngờ tháng đầu — bật cảnh báo ngân sách GCP ngày đầu
 
 ### Lưu Ý Self-Hosting
 Muốn chạy Supabase trên server riêng để thoát hoàn toàn hóa đơn cloud hoặc giữ dữ liệu on-prem để tuân thủ? Bật một {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — droplet 4 GB $24/tháng xử lý thoải mái stack Supabase self-host (Postgres + GoTrue + Storage + Realtime + Studio) cho SaaS nhỏ-tới-trung bình. Rẻ hơn Supabase Pro từ tháng 4, và dữ liệu không bao giờ rời cơ sở hạ tầng của bạn. Firebase không có cái tương đương — không có cách self-host ra khỏi cloud của Google.
 
----
+* * *
 
 ## Phương Án Thay Thế Đáng Thử
 
@@ -160,7 +161,7 @@ Nếu Supabase và Firebase đều không hợp, hãy xem xét: - **[Appwrite](h
 - **Nhost** — Postgres + Hasura GraphQL + Auth, tương tự Supabase nhưng GraphQL native
 - **Neon + Clerk + Cloudflare R2** — Stack DIY composable, linh hoạt tối đa, nhiều dây nối hơn
 
----
+* * *
 
 ## Quan Điểm dibi8
 
@@ -172,13 +173,13 @@ Nếu bạn muốn cả data portability và realtime quy mô Google → **Supab
 
 Indie dev ship một SaaS năm 2026? **Supabase Pro $25/tháng** là ROI thô tốt nhất hiện nay trong category BaaS — hóa đơn dự đoán được, linh hoạt SQL, pgvector tích hợp cho tính năng AI, và lối thoát thật qua self-hosting. Firebase vẫn là vua realtime mobile quy mô lớn, nhưng bạn trả giá bằng lock-in và hóa đơn hàng tháng không dự đoán được.
 
----
+* * *
 
 ## FAQ
 
 (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)
 
----
+* * *
 
 ## Đọc Thêm
 
@@ -222,7 +223,7 @@ Indie dev ship một SaaS năm 2026? **Supabase Pro $25/tháng** là ROI thô t�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -232,6 +233,6 @@ Indie dev ship một SaaS năm 2026? **Supabase Pro $25/tháng** là ROI thô t�
 - [claude-code-vs-cline](supabase-vs-firebase)
 - [cursor-vs-windsurf](supabase-vs-firebase)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

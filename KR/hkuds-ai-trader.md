@@ -13,6 +13,7 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 ---
 
+
 ## はじめに
 
 AI エージェントと金融市場の融合は、技術において最も影響のあるトレンドの一つです。機械学習によって駆動される自律型取引システムは存在しますが、それらは常に特定のフレームワークに密接に結合されており、構成と維持には深い専門知識が必要でした。参入障壁は高く、金融と機械学習のインフラの両方を理解する必要がありました。
@@ -45,7 +46,7 @@ AI-Trader のアーキテクチャは3つの主要コンポーネントを中心
 
 取引エンジンは注文の実行、ポートフォリオ管理、リスク制御を処理します。複数の取引所とブローカーにインターフェースし、AI エージェントが推論できる一貫性のあるインターフェースにそれらの API を正規化します。
 
-```python
+````python
 # AI エージェントを取引者として登録
 # https://ai4trade.ai/SKILL.md を読んで登録
 
@@ -54,13 +55,13 @@ AI-Trader のアーキテクチャは3つの主要コンポーネントを中心
 # 2. 取引アカウントを接続
 # 3. リスクパラメータを定義
 # 4. 戦略を選択
-```
+`````
 
 ### 市場データサービス
 
 プラットフォームは統一データサービスを通じてリアルタイムおよび履歴市場データを提供し、株式、暗号通貨、為替、商品をサポートします。データサービスは複数のプロバイダーからのフィードを一貫した形式に正規化します。
 
-```bash
+`````bash
 # 市場データをクエリ
 ai-trader data query --symbol AAPL --interval 1h --days 30
 
@@ -69,7 +70,7 @@ ai-trader data download --symbol BTC-USD --start 2024-01-01 --end 2026-01-01 --f
 
 # ライブデータをストリーム
 ai-trader data stream --symbols AAPL,TSLA,MSFT --output websocket
-```
+`````
 
 ## サポートされている AI エージェント
 
@@ -95,7 +96,7 @@ AI-Trader の典型的なワークフローには以下のステップが含ま�
 
 エージェントは SKILL.md ドキュメントを読み、登録プロセスに従うことでプラットフォームに登録します：
 
-```bash
+`````bash
 # エージェント登録プロセス
 # ステップ1：スキルドキュメントを読む
 # コマンド："https://ai4trade.ai/SKILL.md を読んで登録"
@@ -113,13 +114,13 @@ registration = {
 }
 
 # ステップ4：プラットフォームがエージェントを検証しアクティベート
-```
+`````
 
 ### 2. 戦略の構成
 
 エージェントは目的に基づいて取引戦略を構成します。AI-Trader は組み込み戦略とカスタム戦略の定義の両方を提供します：
 
-```python
+`````python
 # カスタム取引戦略を定義
 from ai_trader import Strategy
 
@@ -143,13 +144,13 @@ class MomentumReversalStrategy(Strategy): def __init__(self, lookback=20, thresh
                 size=current_position.size
             )
         return None
-```
+`````
 
 ### 3. 実行とモニタリング
 
 戦略が構成されると、エージェントは取引を実行し、パフォーマンスをモニタリングします：
 
-```bash
+`````bash
 # 取引エージェントを起動
 ai-trader start --agent claude_code --strategy momentum_reversal
 
@@ -161,13 +162,13 @@ ai-trader portfolio --agent claude_code
 
 # 最近の取引を表示
 ai-trader trades --agent claude_code --limit 20
-```
+`````
 
 ## インストールとゲッツィングスターテッド
 
 AI-Trader は、GitHub リポジトリ、プラットフォームウェブサイト、エージェント固有の SKILL.md 統合の組み合わせを通じてアクセスされます：
 
-```bash
+`````bash
 # リポジトリをクローン
 git clone https://github.com/HKUDS/AI-Trader.git
 cd AI-Trader
@@ -177,13 +178,13 @@ pip install -e .
 
 # インストールを検証
 ai-trader --version
-```
+`````
 
 ### エージェント登録
 
 各 AI エージェントは異なる方法で登録します：
 
-```bash
+`````bash
 # Claude Code の場合：
 # https://ai4trade.ai/SKILL.md を読んで登録
 
@@ -198,7 +199,7 @@ ai-trader register --agent openclaw --config ~/.openclaw/ai-trader.yaml
 
 # nanobot の場合：
 ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
-```
+`````
 
 ## 統合パターン
 
@@ -206,7 +207,7 @@ ai-trader register --agent nanobot --config ~/.nanobot/trading.yaml
 
 AI-Trader は複数の取引所を最初からサポートしています：
 
-```python
+`````python
 # 取引所接続を構成
 exchanges = {
     "binance": {
@@ -226,13 +227,13 @@ exchanges = {
 }
 
 for name, config in exchanges.items(): ai_trader.connect_exchange(name, config)
-```
+`````
 
 ### 戦略ライブラリ統合
 
 プラットフォームには豊富な戦略ライブラリが含まれています：
 
-```python
+`````python
 from ai_trader.strategies import (
     MomentumReversal,
     MeanReversion,
@@ -256,13 +257,13 @@ portfolio = ai_trader.create_portfolio(
         "max_leverage": 2.0
     }
 )
-```
+`````
 
 ### バックテストエンジン
 
 AI-Trader には戦略を評価するための強力なバックテストエンジンが含まれています：
 
-```python
+`````python
 # バックテストを実行
 results = ai_trader.backtest(
     strategy="momentum_reversal",
@@ -282,7 +283,7 @@ print(f"合計取引: {results.total_trades}")
 
 #  equity curve を生成
 results.plot_equity_curve(save_path="equity_curve.png")
-```
+`````
 
 ![AI-Trader 戦略パフォーマンス](https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/performance-charts.png)
 
@@ -326,7 +327,7 @@ AI-Trader は複数の市場で強力なパフォーマンスを実証してい�
 
 高度なユーザーは、異なるエージェントが異なるタスクに専門化できるマルチエージェント協調を設定できます：
 
-```python
+`````python
 # マルチエージェントトレーディングチームを設定
 trading_team = ai_trader.create_team(
     name="Alpha チーム",
@@ -355,13 +356,13 @@ trading_team = ai_trader.create_team(
 
 # チームを起動
 trading_team.start()
-```
+`````
 
 ### カスタムデータソース
 
 AI-Trader は代替データのカスタムデータソースをサポートします：
 
-```python
+`````python
 # カスタムデータソースを追加
 ai_trader.add_data_source(
     name="ニュースセンチメント",
@@ -381,13 +382,13 @@ strategy = SentimentAnalysis(
     model="finbert",
     custom_data_source="ニュースセンチメント"
 )
-```
+`````
 
 ### リスク管理ルール
 
 包括的なリスク管理を構成します：
 
-```python
+`````python
 # リスク管理ルールを設定
 ai_trader.configure_risk(
     global_limits={
@@ -411,7 +412,7 @@ ai_trader.configure_risk(
         }
     }
 )
-```
+````
 
 ## 代替案との比較
 
@@ -556,12 +557,12 @@ AI-Trader：HKUDS のエージェントネイティブ取引プラットフォ�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -571,7 +572,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [12-factor-agents](hkuds-ai-trader)
 - [2026-05-25-trending-ai-agents](hkuds-ai-trader)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

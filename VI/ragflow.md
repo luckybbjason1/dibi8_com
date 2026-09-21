@@ -24,6 +24,7 @@ aliases:
   - /vi/posts/ragflow/
 ---
 
+
 {{</* resource-info */>}}
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
@@ -92,7 +93,7 @@ Vượt ra ngoài hỏi đáp đơn giản, framework agent của RAGFlow hỗ t
 
 ### Trước triển khai: Tối ưu hệ thống
 
-Trước khi khởi động RAGFlow, đảm bảo tham số kernel được tối ưu cho Elasticsearch: ```bash
+Trước khi khởi động RAGFlow, đảm bảo tham số kernel được tối ưu cho Elasticsearch: ````bash
 # Kiểm tra giá trị vm.max_map_count hiện tại
 sysctl vm.max_map_count
 
@@ -101,25 +102,25 @@ sudo sysctl -w vm.max_map_count=262144
 
 # Duy trì sau khởi động lại
 echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
-```
+`````
 
 ### Bước 1: Clone kho mã nguồn
 
-```bash
+`````bash
 git clone https://github.com/infiniflow/ragflow.git
 cd ragflow/docker
 git checkout -f v0.25.4
-```
+`````
 
 ### Bước 2: Cấu hình biến môi trường
 
-```bash
+`````bash
 # Chỉnh sửa tệp môi trường
 cp .env .env.backup
 nano .env
-```
+`````
 
-Các biến quan trọng cần thiết lập: ```bash
+Các biến quan trọng cần thiết lập: `````bash
 # docker/.env
 RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
 SVR_HTTP_PORT=80
@@ -129,20 +130,20 @@ REDIS_PASSWORD=your_secure_redis_password
 
 # Chọn engine tài liệu: elasticsearch hoặc infinity
 DOC_ENGINE=elasticsearch
-```
+`````
 
 ### Bước 3: Khởi động với Docker Compose
 
-```bash
+`````bash
 # Triển khai CPU-only
 docker compose -f docker-compose.yml up -d
 
 # GPU tăng tốc phân tích tài liệu (NVIDIA)
 # sed -i '1i DEVICE=gpu' .env
 # docker compose -f docker-compose.yml up -d
-```
+`````
 
-Xác minh triển khai: ```bash
+Xác minh triển khai: `````bash
 # Theo dõi log cho đến khi thấy thông báo thành công
 docker logs -f ragflow-server
 
@@ -152,29 +153,29 @@ docker logs -f ragflow-server
 #  / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
 # /_/ |_|/_/  |_|\____//_/    /_/ \____/ |__/|__/
 #  * Running on all addresses (0.0.0.0)
-```
+`````
 
 ### Bước 4: Cấu hình nhà cung cấp LLM
 
-Chỉnh sửa `service_conf.yaml.template` để thêm API key LLM: ```yaml
+Chỉnh sửa ``service_conf.yaml.template`` để thêm API key LLM: `````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: OpenAI
   api_key: sk-your-openai-api-key
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
-Các nhà cung cấp LLM được hỗ trợ bao gồm OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, và các mô hình local qua Ollama hoặc vLLM. Khởi động lại container sau khi thay đổi cấu hình: ```bash
+Các nhà cung cấp LLM được hỗ trợ bao gồm OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, và các mô hình local qua Ollama hoặc vLLM. Khởi động lại container sau khi thay đổi cấu hình: `````bash
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### Bước 5: Truy cập giao diện Web
 
-Mở trình duyệt và điều hướng đến `http://YOUR_SERVER_IP`. Thông tin đăng nhập mặc định: ```
+Mở trình duyệt và điều hướng đến ``http://YOUR_SERVER_IP``. Thông tin đăng nhập mặc định: `````
 Email: admin@ragflow.io
 Mật khẩu: (thiết lập lần đầu đăng nhập)
-```
+`````
 
 ![RAGFlow Web Interface](https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/login.png)
 
@@ -182,38 +183,38 @@ Mật khẩu: (thiết lập lần đầu đăng nhập)
 
 ### Ollama (LLM cục bộ)
 
-Đối với triển khai air-gapped hoặc nhạy cảm về quyền riêng tư, kết nối RAGFlow với Ollama: ```yaml
+Đối với triển khai air-gapped hoặc nhạy cảm về quyền riêng tư, kết nối RAGFlow với Ollama: `````yaml
 # docker/service_conf.yaml.template
 user_default_llm: factory: Ollama
   api_key: ""
   base_url: http://host.docker.internal:11434
   default_model: llama3.2
-```
+`````
 
-Pull model trong Ollama trước khi sử dụng: ```bash
+Pull model trong Ollama trước khi sử dụng: `````bash
 ollama pull llama3.2
 ollama pull nomic-embed-text
-```
+`````
 
 Cấu hình mô hình embedding trong giao diện web RAGFlow tại **Cài đặt > Nhà cung cấp mô hình**.
 
 ### OpenAI (API đám mây)
 
-```yaml
+`````yaml
 user_default_llm: factory: OpenAI
   api_key: ${OPENAI_API_KEY}
   base_url: https://api.openai.com/v1
   default_model: gpt-4.1-mini
-```
+`````
 
-Sử dụng thay thế biến môi trường để tránh hardcode bí mật: ```bash
+Sử dụng thay thế biến môi trường để tránh hardcode bí mật: `````bash
 # Trong .env
 OPENAI_API_KEY=sk-your-key
-```
+`````
 
 ### Chuyển từ Elasticsearch sang Infinity
 
-Infinity là engine ngữ cảnh hội tụ của RAGFlow, được tối ưu cho triển khai quy mô lớn. Để chuyển đổi: ```bash
+Infinity là engine ngữ cảnh hội tụ của RAGFlow, được tối ưu cho triển khai quy mô lớn. Để chuyển đổi: `````bash
 # 1. Dừng tất cả container và xóa volume
 docker compose -f docker-compose.yml down -v
 
@@ -222,23 +223,23 @@ sed -i 's/DOC_ENGINE=elasticsearch/DOC_ENGINE=infinity/' .env
 
 # 3. Khởi động lại
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 > **Cảnh báo:** Thao tác này sẽ xóa dữ liệu hiện có. Sao lưu dataset trước khi di chuyển.
 
 ### Redis làm cache bên ngoài
 
-Đối với triển khai production, sử dụng Redis cluster bên ngoài: ```yaml
+Đối với triển khai production, sử dụng Redis cluster bên ngoài: `````yaml
 # docker-compose.yml (trích)
 services: redis: image: redis:7-alpine
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes: - redis_data:/data
     deploy: resources: limits: memory: 2G
-```
+`````
 
 ### Qdrant làm kho lưu trữ vector thay thế
 
-Mặc dù RAGFlow sử dụng Elasticsearch hoặc Infinity một cách tự nhiên, bạn có thể tích hợp Qdrant qua Python SDK cho các pipeline retrieval tùy chỉnh: ```python
+Mặc dù RAGFlow sử dụng Elasticsearch hoặc Infinity một cách tự nhiên, bạn có thể tích hợp Qdrant qua Python SDK cho các pipeline retrieval tùy chỉnh: `````python
 from qdrant_client import QdrantClient
 from ragflow_sdk import RAGFlow
 
@@ -249,7 +250,7 @@ qdrant = QdrantClient(url="http://localhost:6333")
 # Hybrid retrieval tùy chỉnh kết hợp chunk RAGFlow với vector Qdrant
 chunks = ragflow.retrieve(dataset_id="ds_123", query="doanh thu hàng năm 2025")
 vectors = qdrant.search(collection="financial_reports", vector=query_embedding, limit=5)
-```
+`````
 
 ## Benchmark / Trường hợp sử dụng thực tế
 
@@ -289,7 +290,7 @@ RAGFlow dẫn đầu về độ chính xác và căn cứ trích dẫn nhờ ph�
 
 ### Bật HTTPS với Reverse Proxy
 
-```nginx
+`````nginx
 # /etc/nginx/sites-available/ragflow
 server {
     listen 443 ssl http2;
@@ -307,11 +308,11 @@ server {
         proxy_read_timeout 300s;
     }
 }
-```
+`````
 
 ### Bật GraphRAG cho suy luận đa bước
 
-GraphRAG trích xuất đồ thị tri thức từ tài liệu, cho phép suy luận xuyên tài liệu: ```python
+GraphRAG trích xuất đồ thị tri thức từ tài liệu, cho phép suy luận xuyên tài liệu: `````python
 # Qua giao diện web RAGFlow hoặc API
 POST /api/datasets/{dataset_id}/chunks/graph
 {
@@ -319,24 +320,24 @@ POST /api/datasets/{dataset_id}/chunks/graph
   "entity_types": ["NGUOI", "TO_CHUC", "SAN_PHAM", "SU_KIEN"],
   "max_workers": 4
 }
-```
+`````
 
 GraphRAG đặc biệt hiệu quả cho tài liệu pháp lý, bài báo nghiên cứu và báo cáo tài chính nơi mối quan hệ giữa các thực thể trải dài nhiều trang.
 
 ### Cấu hình Sandbox (Thực thi mã)
 
-Agent của RAGFlow có thể thực thi mã Python và JavaScript trong môi trường sandbox. Điều này yêu cầu gVisor: ```bash
+Agent của RAGFlow có thể thực thi mã Python và JavaScript trong môi trường sandbox. Điều này yêu cầu gVisor: `````bash
 # Cài đặt gVisor (bắt buộc cho sandbox)
 sudo apt-get install -y runsc
 
 # Bật trong docker-compose.yml
 services: ragflow: environment: - ENABLE_SANDBOX=true
     devices: - /dev/kvm
-```
+`````
 
 ### Giám sát với Prometheus
 
-```yaml
+`````yaml
 # Thêm vào docker-compose.yml
 services: prometheus: image: prom/prometheus:latest
     volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -346,18 +347,18 @@ services: prometheus: image: prom/prometheus:latest
   grafana: image: grafana/grafana:latest
     ports: - "3000:3000"
     volumes: - grafana_data:/var/lib/grafana
-```
+`````
 
-Các chỉ số chính cần giám sát: ```yaml
+Các chỉ số chính cần giám sát: `````yaml
 # prometheus.yml
 scrape_configs: - job_name: ragflow
     static_configs: - targets: ['ragflow-server:9380']
     metrics_path: /metrics
-```
+`````
 
 ### Chiến lược sao lưu
 
-```bash
+`````bash
 #!/bin/bash
 # /opt/ragflow/backup.sh
 
@@ -377,7 +378,7 @@ docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio
 
 # Đồng bộ lên lưu trữ từ xa
 rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
-```
+`````
 
 ## So sánh với các lựa chọn thay thế
 
@@ -425,7 +426,7 @@ rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
 
 ### RAGFlow có thể chỉ dùng LLM cục bộ không?
 
-Có. RAGFlow tích hợp với Ollama, vLLM, Xinference và LocalAI. Cấu hình nhà cung cấp LLM trong `service_conf.yaml.template` với base URL của máy chủ inference cục bộ. Cho embedding, pull model embedding qua Ollama (như `nomic-embed-text`) và cấu hình trong giao diện web tại Nhà cung cấp mô hình.
+Có. RAGFlow tích hợp với Ollama, vLLM, Xinference và LocalAI. Cấu hình nhà cung cấp LLM trong ````service_conf.yaml.template```` với base URL của máy chủ inference cục bộ. Cho embedding, pull model embedding qua Ollama (như ````nomic-embed-text````) và cấu hình trong giao diện web tại Nhà cung cấp mô hình.
 
 ### RAGFlow xử lý PDF quét và hình ảnh như thế nào?
 
@@ -437,9 +438,9 @@ Khi tự lưu trữ, tất cả dữ liệu ở lại trên cơ sở hạ tầng
 
 ### Nâng cấp RAGFlow lên phiên bản mới như thế nào?
 
-Đầu tiên, sao lưu CSDL MySQL và chỉ mục Elasticsearch. Sau đó pull image Docker mới, cập nhật biến `RAGFLOW_IMAGE` trong `.env`, và khởi động lại container. Luôn kiểm tra release notes cho các thay đổi phá vỡ giữa các phiên bản.
+Đầu tiên, sao lưu CSDL MySQL và chỉ mục Elasticsearch. Sau đó pull image Docker mới, cập nhật biến ````RAGFLOW_IMAGE```` trong ````.env````, và khởi động lại container. Luôn kiểm tra release notes cho các thay đổi phá vỡ giữa các phiên bản.
 
-```bash
+`````bash
 cd ragflow/docker
 git fetch --tags
 git checkout -f v0.25.4
@@ -447,11 +448,11 @@ git checkout -f v0.25.4
 docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml pull
 docker compose -f docker-compose.yml up -d
-```
+`````
 
 ### Có thể tích hợp RAGFlow vào ứng dụng hiện có không?
 
-Có. RAGFlow expose REST API đầy đủ và cung cấp SDK Python và JavaScript. Bạn có thể tạo dataset, tải lên tài liệu, bắt đầu phiên chat và truy xuất câu trả lờ lập trình. Tài liệu API có tại `/api/docs` trên instance RAGFlow của bạn.
+Có. RAGFlow expose REST API đầy đủ và cung cấp SDK Python và JavaScript. Bạn có thể tạo dataset, tải lên tài liệu, bắt đầu phiên chat và truy xuất câu trả lờ lập trình. Tài liệu API có tại ````/api/docs``` trên instance RAGFlow của bạn.
 
 ### RAGFlow hỗ trợ những định dạng tài liệu nào?
 

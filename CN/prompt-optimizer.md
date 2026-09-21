@@ -8,6 +8,7 @@ tool_id: "prompt-optimizer"
 aliases:
   - /posts/prompt-optimizer/
 ---
+
 # Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)
 
 
@@ -74,7 +75,7 @@ Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemi
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -170,15 +171,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
@@ -187,4 +188,4 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
 
 
----
+* * *

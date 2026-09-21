@@ -7,6 +7,7 @@ aliases:
   - /posts/vector-database-comparison/
 ---
 
+
 # 벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Milvus
 
 
@@ -70,11 +71,11 @@ Chroma는 2023년 등장한 가장 젊은 벡터 데이터베이스로, 단순�
 - **Persistent/In-Memory 모드**: 개발용 메모리 모드와 프로덕션용 영속 모드
 - **LangChain 기본 통합**: 가장 광범위한 프레임워크 지원
 
-```python
+````python
 import chromadb
 client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.create_collection("my_docs")
-```
+`````
 
 Chroma는 프로토타입과 소규모 프로젝트에 최적화되어 있으며, 수백만 개 이상의 벡터를 다룰 때는 한계가 있습니다.
 
@@ -126,7 +127,7 @@ Milvus는 2019년 Zilliz에서 시작한 오픈소스 벡터 데이터베이스�
 
 ### LLM 프레임워크와의 통합
 
-LangChain의 경우 `Pinecone`, `Weaviate`, `Chroma`, `Milvus` 전용 벡터 스토어 클래스를 제공합니다. LlamaIndex 역시 모든 주요 벡터 DB를 기본 지원합니다.
+LangChain의 경우 ````Pinecone````, ````Weaviate````, ````Chroma````, ````Milvus``` 전용 벡터 스토어 클래스를 제공합니다. LlamaIndex 역시 모든 주요 벡터 DB를 기본 지원합니다.
 
 ## 주목할 만한 다른 벡터 데이터베이스
 
@@ -166,7 +167,7 @@ Milvus가 ANN-Benchmarks에서 일관되게 상위 성능을 보입니다. GPU �
 - [Zilliz Cloud](https://zilliz.com)
 - [LangChain Vector Store 통합](https://python.langchain.com/docs/integrations/vectorstores/)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -238,7 +239,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*

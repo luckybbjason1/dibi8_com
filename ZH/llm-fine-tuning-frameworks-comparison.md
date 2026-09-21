@@ -7,6 +7,7 @@ aliases:
   - /posts/llm-fine-tuning-frameworks-comparison/-
 ---
 
+
 {</* resource-info */>}
 
 微调（Fine-tuning）是让预训练大模型适配特定业务场景的核心技术。但面对 Llama 3 70B（参数 700 亿，FP16 权重约 140GB）这类大模型，全参数微调需要数十张 A100 GPU，成本极高。
@@ -26,11 +27,11 @@ aliases:
 
 | 维度 | 全参数微调 | PEFT（LoRA/QLoRA） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 可训练参数量 | 100% | 0.1% - 1% |
 | 显存需求（7B模型） | 80-150GB | 8-20GB |
@@ -54,9 +55,9 @@ LoRA（Low-Rank Adaptation）由微软研究院在 2021 年提出，核心思想
 
 其中 r（rank，秩）远小于 d 和 k。前向传播时：
 
-```
+````
 h = W·x + (B·A)·x
-```
+`````
 
 BA 的乘积模拟了权重的变化量 ΔW，但由于 rank r 很小，参数量大幅减少。
 
@@ -64,11 +65,11 @@ BA 的乘积模拟了权重的变化量 ΔW，但由于 rank r 很小，参数�
 
 | 超参数 | 推荐值 | 作用 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | rank (r) | 8, 16, 32, 64 | 秩越高，表达能力越强，但参数量也越大 |
 | alpha | 2×rank | 缩放系数，控制 LoRA 层输出幅度 |
@@ -104,13 +105,13 @@ QLoRA 由 Tim Dettmers 于 2023 年提出，在 LoRA 基础上引入 **4-bit 量
 
 | 指标 | LoRA (FP16) | QLoRA (4-bit) | 差距 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 7B 模型显存占用 | ~18GB | ~6GB | **3x 降低** |
 | 13B 模型显存占用 | ~32GB | ~10GB | **3.2x 降低** |
@@ -129,11 +130,11 @@ QLoRA 的精度损失在实际任务中几乎可以忽略，这使得它成为 2
 
 | 方法 | 原理 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | LoRA | 低秩分解 | 通用微调，最常用 |
 | QLoRA | 4-bit 量化 + LoRA | 显存受限环境 |
@@ -143,7 +144,7 @@ QLoRA 的精度损失在实际任务中几乎可以忽略，这使得它成为 2
 
 ### PEFT 的典型使用流程
 
-```python
+`````python
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from transformers import AutoModelForCausalLM
 
@@ -171,7 +172,7 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 # 输出: trainable params: 20M || all params: 8B || trainable%: 0.25%
-```
+`````
 
 PEFT 的核心价值在于**统一接口**：无论底层用 LoRA 还是 IA³，训练、保存、加载的代码完全一致。
 
@@ -190,11 +191,11 @@ PEFT 的核心价值在于**统一接口**：无论底层用 LoRA 还是 IA³，
 
 | 特性 | Unsloth 免费版 | Unsloth Pro |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 支持的模型 | Llama、Mistral、Gemma、Qwen 等 | 全部 + 优先支持新模型 |
 | 最大上下文 | 4K | 128K+ |
@@ -204,7 +205,7 @@ PEFT 的核心价值在于**统一接口**：无论底层用 LoRA 还是 IA³，
 
 ### Unsloth 实战示例
 
-```python
+`````python
 from unsloth import FastLanguageModel
 
 # 加载模型 —— 自动启用所有优化
@@ -236,21 +237,21 @@ trainer.train()
 
 # 导出到 GGUF（一行代码）
 model.save_pretrained_gguf("output", tokenizer, quantization_method="q4_k_m")
-```
+`````
 
 ## 四者横向对比
 
 | 维度 | LoRA | QLoRA | PEFT (库) | Unsloth |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **类型** | 算法方法 | 算法方法 | 框架/库 | 框架 |
 | **显存优化** | 中 | 极强 | 依赖底层方法 | 极强 |
@@ -270,11 +271,11 @@ model.save_pretrained_gguf("output", tokenizer, quantization_method="q4_k_m")
 
 | GPU | 可用方法 | 最大模型 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Colab T4 (16GB) | QLoRA | 7B-13B |
 | RTX 4090 (24GB) | QLoRA | 70B |
@@ -286,7 +287,7 @@ model.save_pretrained_gguf("output", tokenizer, quantization_method="q4_k_m")
 
 微调数据集应格式化为指令-响应对：
 
-```json
+`````json
 [
   {
     "instruction": "请将以下中文翻译成英文",
@@ -294,11 +295,11 @@ model.save_pretrained_gguf("output", tokenizer, quantization_method="q4_k_m")
     "output": "Welcome to our service"
   }
 ]
-```
+`````
 
 ### 使用 Unsloth 微调 Llama 3.1 8B（完整流程）
 
-```python
+`````python
 # 1. 安装
 # !pip install unsloth transformers datasets trl
 
@@ -344,7 +345,7 @@ trainer.train()
 # 6. 保存并导出
 model.save_pretrained("lora_adapter")
 model.save_pretrained_merged("merged_model")
-```
+`````
 
 ## 微调最佳实践
 
@@ -358,37 +359,37 @@ model.save_pretrained_merged("merged_model")
 
 ### 合并 LoRA 权重
 
-```python
+`````python
 from peft import AutoPeftModelForCausalLM
 model = AutoPeftModelForCausalLM.from_pretrained("lora_adapter")
 model = model.merge_and_unload()  # 合并为一个完整模型
 model.save_pretrained("merged_model")
-```
+`````
 
 ### 转换为 GGUF（用于 Ollama/llama.cpp）
 
-```bash
+`````bash
 python convert_hf_to_gguf.py --outfile model.gguf merged_model/
-```
+`````
 
 ### 使用 vLLM 部署（高并发服务）
 
-```bash
+`````bash
 python -m vllm.entrypoints.openai.api_server \
   --model merged_model \
   --tensor-parallel-size 1 \
   --port 8000
-```
+`````
 
 ## 其他值得关注的微调工具
 
 | 工具 | 特点 | 适用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Axolotl** | YAML 配置驱动，一行命令训练 | 偏好配置文件的团队 |
 | **LLaMA-Factory** | Web UI + 多种训练方法 | 可视化操作偏好者 |
@@ -409,11 +410,11 @@ python -m vllm.entrypoints.openai.api_server \
 
 | 模型 | LoRA (FP16) | QLoRA (4-bit) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 7B | ~18GB | ~6GB |
 | 13B | ~32GB | ~10GB |
@@ -423,18 +424,18 @@ python -m vllm.entrypoints.openai.api_server \
 
 **免费 Colab GPU 可以微调吗？**
 
-可以。Colab T4（16GB）使用 QLoRA 可以微调 7B 模型。建议选择 Unsloth 优化的模型版本（如 `unsloth/llama-3-8b-bnb-4bit`），使用 rank=8 或 16，上下文长度设为 512-1024 以节省显存。
+可以。Colab T4（16GB）使用 QLoRA 可以微调 7B 模型。建议选择 Unsloth 优化的模型版本（如 ````unsloth/llama-3-8b-bnb-4bit```），使用 rank=8 或 16，上下文长度设为 512-1024 以节省显存。
 
 **PEFT 和全参数微调有什么区别？**
 
 PEFT 只训练少量参数（通常 < 1%），显存需求低、训练快、可多任务切换；全参数微调更新所有参数，通常精度略高但需要大量 GPU。对于大多数应用场景，PEFT 的精度已经足够，且成本优势巨大。
 
 
----
+* * *
 更多技术细节可参考 [PEFT 官方文档](https://huggingface.co/docs/peft)、[Unsloth GitHub](https://github.com/unslothai/unsloth)、[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) 及 [QLoRA 论文](https://arxiv.org/abs/2305.14314)。
 
 
----
+* * *
 ## 推荐基础设施
 
 要 7×24 稳跑上述工具，服务器选择关键：
@@ -507,7 +508,7 @@ LLM微调框架对比2025：LoRA、QLoRA、PEFT与Unsloth深度解析 represents
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
@@ -539,15 +540,15 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 | Framework | Primary Use | Learning Curve | Community | Production Ready |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **LangChain** | General-purpose | Medium | Large | ✅ Yes |
 | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |

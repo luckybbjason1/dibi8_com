@@ -28,6 +28,7 @@ faq: - q: "2026년에 왜 완전 오프라인으로 가야 하나?"
     a: "가능. 패턴: 로컬 Ollama를 주력으로, 어려운 작업은 상용 API로 폴백. Aider는 세션 중간에 모델 전환을 지원한다. 대부분의 개발자는 하이브리드로 — 기본은 로컬, 필요한 10-20%는 클라우드 — 운용한다."
 ---
 
+
 {{</* resource-info */>}}
 
 # 로컬 우선 AI 스택 2026: 오프라인 개발 환경
@@ -58,34 +59,34 @@ faq: - q: "2026년에 왜 완전 오프라인으로 가야 하나?"
 ## 스택 (4개 구성 요소)
 
 ### 1. Ollama (LLM 런타임)
-```bash
+````bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.3:70b-instruct-q4_K_M
 ollama pull deepseek-coder-v2:16b-lite-instruct-q4_K_M
-```
-모델 두 개 로드 — 하나는 범용, 하나는 코딩 특화. Ollama가 `localhost:11434`에서 서비스한다.
+`````
+모델 두 개 로드 — 하나는 범용, 하나는 코딩 특화. Ollama가 ````localhost:11434````에서 서비스한다.
 
 ### 2. Aider (코딩 에이전트)
-```bash
+`````bash
 pip install aider-chat
 aider --model ollama/llama3.3:70b-instruct-q4_K_M
-```
+`````
 Aider가 로컬 Ollama에 연결된다. 이제 오프라인 페어 프로그래밍이 가능하다.
 
 ### 3. ChromaDB (로컬 RAG)
-```bash
+`````bash
 pip install chromadb
 # 인프로세스로 사용하거나 서비스로 실행
 chroma run --path ./chroma-data
-```
+`````
 벡터 DB가 로컬에서 동작. 코드베이스 / 문서를 인덱싱해 시맨틱 검색에 활용한다.
 
 ### 4. 로컬 임베딩 (BGE-M3)
-```python
+`````python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("BAAI/bge-m3")
 # 임베딩을 로컬에서 생성
-```
+````
 임베딩은 본인 머신에 머문다. 외부 호출 없음.
 
 ## 하드웨어 실상
@@ -149,7 +150,7 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 올바른 하이브리드는 로컬 기본 + 상용 API 폴백이다. 대부분의 "로컬 우선" 개발자는 결국 이 패턴으로 수렴한다 — 프라이버시 이점을 대부분 챙기면서, 필요할 때 클라우드 품질을 쓸 수 있다.
 
----
+* * *
 
 **관련 글**: [셀프 호스팅 LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/kr/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Ollama 설치 가이드](https://dibi8.com/kr/resources/llm-frameworks/ollama/) · [2026 로컬 우선 AI 스택 프로덕션 아키텍처](https://dibi8.com/kr/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
 
@@ -215,12 +216,12 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -230,7 +231,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [llm-inference-cost-optimization-guide-2026](local-first-ai-stack-offline-development-2026)
 - [ollama-vs-vllm](local-first-ai-stack-offline-development-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

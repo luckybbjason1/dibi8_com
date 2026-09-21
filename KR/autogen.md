@@ -25,6 +25,7 @@ aliases:
 - /kr/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
 
+
 {{</* resource-info */>}}
 
 ## 소개
@@ -39,12 +40,12 @@ AutoGen은 멀티 에이전트 AI 애플리케이션을 구축하기 위한 오�
 
 AutoGen의 아키텍처는 네 개의 계층으로 구분됩니다: | 계층 | 목적 | 진입점 |
 |------|------|--------|
-| **Core** | 에이전트 메시징 및 상태를 위한 이벤트 기반 런타임 | `autogen-core` |
-| **AgentChat** | Core 위에 구축된 고수준 대화형 에이전트 | `autogen-agentchat` |
-| **Extensions** | OpenAI, Docker, MCP, gRPC와의 통합 | `autogen-ext` |
-| **Studio** | 코드 작성 없이 프로토타이핑을 위한 웹 UI | `autogenstudio` |
+| **Core** | 에이전트 메시징 및 상태를 위한 이벤트 기반 런타임 | ```autogen-core```` |
+| **AgentChat** | Core 위에 구축된 고수준 대화형 에이전트 | ````autogen-agentchat```` |
+| **Extensions** | OpenAI, Docker, MCP, gRPC와의 통합 | ````autogen-ext```` |
+| **Studio** | 코드 작성 없이 프로토타이핑을 위한 웹 UI | ````autogenstudio```` |
 
-핵심 정신 모델은 에이전트 간 메시지 전달입니다. `AssistantAgent`가 계획과 코드를 생성합니다. `UserProxyAgent`가 로컬 또는 Docker에서 코드를 실행하고 출력을 다시 전달합니다. `GroupChatManager`가 선택 전략(라운드 로빈, 자동 선택 또는 사용자 정의)에 따라 참가자 간 메시지를 라우팅합니다.
+핵심 정신 모델은 에이전트 간 메시지 전달입니다. ````AssistantAgent````가 계획과 코드를 생성합니다. ````UserProxyAgent````가 로컬 또는 Docker에서 코드를 실행하고 출력을 다시 전달합니다. ````GroupChatManager````가 선택 전략(라운드 로빈, 자동 선택 또는 사용자 정의)에 따라 참가자 간 메시지를 라우팅합니다.
 
 ![AutoGen 아키텍처](https://raw.githubusercontent.com/microsoft/autogen/main/website/static/img/autogen_agentchat.png)
 
@@ -66,31 +67,31 @@ AutoGen에는 **Python 3.10+**가 필요합니다. 설치 경로는 필요한 �
 
 ### 기본 설치 (AgentChat)
 
-```bash
+`````bash
 # 가상 환경 생성
 python -m venv .venv
 source .venv/bin/activate
 
 # AgentChat + OpenAI 확장 설치
 pip install -U "autogen-agentchat" "autogen-ext[openai]"
-```
+`````
 
 ### 모든 확장 기능이 포함된 전체 설치
 
-```bash
+`````bash
 pip install -U "autogen-agentchat" "autogen-ext[openai,azure,docker,mcp]"
-```
+`````
 
 ### 설치 확인
 
-```python
+`````python
 import autogen_agentchat
 print(autogen_agentchat.__version__)
-```
+`````
 
 ### 최소 "Hello World" 에이전트
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
@@ -107,16 +108,16 @@ async def main() -> None: agent = AssistantAgent(
     print(result.messages[-1].content)
 
 asyncio.run(main())
-```
+`````
 
-실행: ```bash
+실행: `````bash
 export OPENAI_API_KEY="sk-..."
 python hello_agent.py
-```
+`````
 
 ### Docker 설정 (프로덕션 권장)
 
-```bash
+`````bash
 # 공식 이미지 가져오기
 docker pull mcr.microsoft.com/autogen/python:latest
 
@@ -125,13 +126,13 @@ docker run -it \
   -e OPENAI_API_KEY="$OPENAI_API_KEY" \
   -v "$(pwd)/workspace:/workspace" \
   mcr.microsoft.com/autogen/python:latest
-```
+`````
 
 ## 인기 도구와의 통합
 
 ### OpenAI / Azure OpenAI
 
-AutoGen의 AgentChat은 OpenAI와 Azure 엔드포인트 모두에 `OpenAIChatCompletionClient`를 사용합니다: ```python
+AutoGen의 AgentChat은 OpenAI와 Azure 엔드포인트 모두에 ``OpenAIChatCompletionClient``를 사용합니다: `````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 # OpenAI 직접 연결
@@ -147,11 +148,11 @@ azure_client = OpenAIChatCompletionClient(
     api_key="YOUR_AZURE_KEY",
     api_version="2024-12-01-preview"
 )
-```
+`````
 
 ### Ollama (로컬 모델)
 
-```python
+`````python
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 
 local_client = OpenAIChatCompletionClient(
@@ -165,11 +166,11 @@ local_client = OpenAIChatCompletionClient(
         "family": "unknown"
     }
 )
-```
+`````
 
 ### Docker 코드 실행
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 from autogen_agentchat.agents import CodeExecutorAgent
 
@@ -185,19 +186,19 @@ code_agent = CodeExecutorAgent(
     name="code_executor",
     code_executor=executor
 )
-```
+`````
 
 ### VS Code 확장
 
-AutoGen VS Code 확장은 에이전트 대화를 위한 인라인 디버깅을 제공합니다: ```bash
+AutoGen VS Code 확장은 에이전트 대화를 위한 인라인 디버깅을 제공합니다: `````bash
 # 마켓플레이스에서 설치 ("AutoGen" 검색)
 # 또는 CLI를 통해
 code --install-extension microsoft.autogen
-```
+`````
 
 ### Model Context Protocol (MCP)
 
-AutoGen 0.5+는 도구 검색을 위한 MCP 서버를 지원합니다: ```python
+AutoGen 0.5+는 도구 검색을 위한 MCP 서버를 지원합니다: `````python
 from autogen_ext.tools.mcp import McpWorkbench
 
 workbench = McpWorkbench(
@@ -205,7 +206,7 @@ workbench = McpWorkbench(
 )
 
 # MCP 서버의 도구가 에이전트가 사용할 수 있게 됩니다
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -245,7 +246,7 @@ AutoGen은 특정 시나리오에서 대안을 능가합니다: - **멀티 에�
 
 ### 사용자 정의 선택기가 있는 그룹 챗
 
-```python
+`````python
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.teams import GroupChat, RoundRobinGroupChat
@@ -287,11 +288,11 @@ async def main(): model_client = OpenAIChatCompletionClient(model="gpt-4o")
     for msg in result.messages: print(f"[{msg.source}]: {msg.content[:100]}...")
 
 asyncio.run(main())
-```
+`````
 
 ### 선택자 기반 그룹 챗 (동적 라우팅)
 
-```python
+`````python
 from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.conditions import MaxMessageTermination
 
@@ -302,11 +303,11 @@ team = SelectorGroupChat(
     termination_condition=MaxMessageTermination(max_messages=15),
     allow_repeated_speaker=False  # 동일한 에이전트가 연속으로 발언하는 것을 방지
 )
-```
+`````
 
 ### 사용자 정의 도구 통합
 
-```python
+`````python
 from autogen_core.tools import FunctionTool
 from autogen_agentchat.agents import AssistantAgent
 
@@ -322,11 +323,11 @@ agent = AssistantAgent(
     tools=[search_tool],
     system_message="Use the search_knowledge_base tool to answer questions."
 )
-```
+`````
 
 ### 장기 실행 워크플로우의 상태 지속성
 
-```python
+`````python
 from autogen_agentchat.teams import GroupChat
 from autogen_core import CancellationToken
 
@@ -341,11 +342,11 @@ with open("team_state.json", "w") as f: json.dump(state, f)
 with open("team_state.json") as f: state = json.load(f)
 await team.load_state(state)
 result = await team.run(task="Continue from where we left off.")
-```
+`````
 
 ### 보안: 샌드박스 코드 실행
 
-```python
+`````python
 from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 import tempfile
 
@@ -362,11 +363,11 @@ with tempfile.TemporaryDirectory() as work_dir: executor = DockerCommandLineCode
         code_executor=executor
     )
     # 에이전트는 컨테이너 납부에서 모든 코드를 실행합니다
-```
+`````
 
 ### OpenTelemetry를 사용한 모니터링
 
-```python
+`````python
 from autogen_core import TRACE_LOGGER_NAME
 import logging
 
@@ -378,7 +379,7 @@ from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
 tracer = trace.get_tracer("autogen.production")
-```
+`````
 
 ## 대안과의 비교
 
@@ -413,7 +414,7 @@ tracer = trace.get_tracer("autogen.production")
 
 AutoGen은 모든 작업에 적합한 도구가 아닙니다. 다음은 그것이 적합하지 않은 것들입니다: 1. **고처리량 프로덕션 API**: 대화 패턴은 작업당 20번 이상의 LLM 호출을 생성합니다. 1,000요청/분에서 LLM 비용과 지연 시간이 받아들일 수 없게 됩니다. 트랜잭션 워크로드에는 LangGraph를 사용하세요.
 
-2. **단순한 선형 파이프라인**: 워크플로우가 "A가 1단계, B가 2단계, C가 3단계"이고 백트래킹이 없다면, CrewAI의 `Process.sequential`이 더 간단하고 저렴합니다.
+2. **단순한 선형 파이프라인**: 워크플로우가 "A가 1단계, B가 2단계, C가 3단계"이고 백트래킹이 없다면, CrewAI의 ````Process.sequential````이 더 간단하고 저렴합니다.
 
 3. **비 Python 팀**: AutoGen에 .NET 포트가 있지만, 생태계는 Python 중심입니다. TypeScript 및 Java 팀은 LangGraph(JS 지원) 또는 Semantic Kernel(.NET)이 더 자연스럽습니다.
 
@@ -429,11 +430,11 @@ Microsoft Agent Framework(MAF)는 AutoGen의 차세대 발전으로, 2026년 4�
 
 **Q: Llama나 Mistral과 같은 로컬 모델로 AutoGen을 어떻게 실행하나요?**
 
-Ollama 또는 모든 OpenAI 호환 로컬 서버를 사용하세요. `OpenAIChatCompletionClient`에서 `base_url`을 로컬 엔드포인트(예: `http://localhost:11434/v1`)로 설정하세요. AutoGen이 모델의 기능(비전, 함수 호출, JSON 출력)을 알 수 있도록 `model_info` 딕셔너리를 제공하세요.
+Ollama 또는 모든 OpenAI 호환 로컬 서버를 사용하세요. ````OpenAIChatCompletionClient````에서 ````base_url````을 로컬 엔드포인트(예: ````http://localhost:11434/v1````)로 설정하세요. AutoGen이 모델의 기능(비전, 함수 호출, JSON 출력)을 알 수 있도록 ````model_info```` 딕셔너리를 제공하세요.
 
 **Q: AutoGen 에이전트는 코드를 안전하게 실행할 수 있나요?**
 
-네, `DockerCommandLineCodeExecutor`를 통해 가능합니다. 모든 생성된 코드는 구성 가능한 타임아웃과 바인드 마운트가 있는 Docker 컨테이너에서 실행됩니다. 프로덕션에서 신뢰할 수 없는 LLM 생성 코드에 대해 `LocalCommandLineCodeExecutor`를 절대 사용하지 마세요.
+네, ````DockerCommandLineCodeExecutor````를 통해 가능합니다. 모든 생성된 코드는 구성 가능한 타임아웃과 바인드 마운트가 있는 Docker 컨테이너에서 실행됩니다. 프로덕션에서 신뢰할 수 없는 LLM 생성 코드에 대해 ````LocalCommandLineCodeExecutor````를 절대 사용하지 마세요.
 
 **Q: GroupChat에 몇 개의 에이전트를 넣을 수 있나요?**
 
@@ -441,15 +442,15 @@ Ollama 또는 모든 OpenAI 호환 로컬 서버를 사용하세요. `OpenAIChat
 
 **Q: AutoGen은 스트리밍 응답을 지원하나요?**
 
-네, AgentChat은 `run_stream()`을 통해 스트리밍을 지원합니다: ```python
+네, AgentChat은 ``run_stream()``을 통해 스트리밍을 지원합니다: `````python
 async for message in team.run_stream(task="Explain Kubernetes"): if message.source == "assistant": print(message.content, end="", flush=True)
-```
+`````
 
 스트리밍은 메시지당입니다(토큰당 아님), 따라서 세분성은 원시 OpenAI 스트리밍보다 거칩니다.
 
 **Q: 잘못 진행된 멀티 에이전트 대화를 어떻게 디버깅하나요?**
 
-자세한 로깅을 활성화하고 대화 상태를 저장하세요: ```python
+자세한 로깅을 활성화하고 대화 상태를 저장하세요: `````python
 # 진행 중인 모든 메시지 출력
 team = RoundRobinGroupChat(
     participants=[agent1, agent2],
@@ -457,7 +458,7 @@ team = RoundRobinGroupChat(
 )
 result = await team.run(task="Debug task", max_turns=10)
 for msg in result.messages: print(f"{msg.source} -> {msg.content[:200]}")
-```
+`````
 
 ## 결론
 
@@ -467,7 +468,7 @@ AutoGen은 어려운 문제를 해결하여 58,196개의 스타를 얻었습니�
 
 **실행 항목:**
 
-1. `pip install "autogen-agentchat" "autogen-ext[openai]"`로 AutoGen AgentChat 설치
+1. ````pip install "autogen-agentchat" "autogen-ext[openai]"```로 AutoGen AgentChat 설치
 2. 위 코드 예제를 사용하여 귀하의 사용 사례를 위한 3 에이전트 GroupChat 구축
 3. 동일한 프롬프트로 LangGraph 및 CrewAI와의 토큰 사용량 및 지연 시간 측정
 4. 커뮤니티 지원을 위해 [AutoGen Discord](https://aka.ms/autogen-discord) 참여
@@ -521,7 +522,7 @@ AutoGen은 어려운 문제를 해결하여 58,196개의 스타를 얻었습니�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -531,7 +532,7 @@ AutoGen은 어려운 문제를 해결하여 58,196개의 스타를 얻었습니�
 - [agent-reach-internet-access-ai-agents](autogen)
 - [microsoft-markitdown-file-to-markdown-converter-cli](autogen)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

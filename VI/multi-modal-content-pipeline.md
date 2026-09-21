@@ -24,6 +24,7 @@ aliases:
   - /posts/multi-modal-content-pipeline/
 ---
 
+
 Nền kinh tế creator năm 2026 chạy trên nội dung đa phương thức — podcast với co-host AI, video ngắn với narration AI trên visual sinh ra, bài blog với ảnh header minh họa AI, sách nói đọc bởi giọng AI ổn định. Cách stack SaaS tốn $200-500/tháng (ElevenLabs + Midjourney + Descript + Pictory + chục thứ khác). Bộ sưu tập này lắp ráp **lựa chọn thay thế self-host 5 thành phần $30-80/tháng** — dùng cùng mô hình SaaS providers dùng, trên GPU bạn thuê theo giờ.
 
 ## TL;DR — Stack Một Cái Nhìn
@@ -50,7 +51,7 @@ Mở khóa không phải tool nào; là tất cả nói workflow JSON và Python
 
 ## 2. Kiến Trúc — Pipeline Creator
 
-```
+````
    Script / outline (bạn, hoặc LLM sinh)
             │
             ▼
@@ -77,28 +78,28 @@ Mở khóa không phải tool nào; là tất cả nói workflow JSON và Python
                      │
                      ▼
               Đầu ra MP4 / WAV / PNG
-```
+`````
 
 Phân chia: ChatTTS và SD WebUI cover sinh "đơn phát". ComfyUI cover bất kỳ pipeline đa bước (đặc biệt video). FFmpeg là chất kết dính chán nhưng thiết yếu. faster-whisper xử phía "audio vào" (phiên phỏng vấn ghi âm) và "audio ra" (tự sinh file subtitle).
 
 ## 3. Thành Phần 1 — faster-whisper (Audio → Text)
 
-**Vai trò**: Phiên phỏng vấn, podcast, soundtrack video. Sinh file subtitle `.srt` cho bất kỳ đầu ra video.
+**Vai trò**: Phiên phỏng vấn, podcast, soundtrack video. Sinh file subtitle ````.srt```` cho bất kỳ đầu ra video.
 
 **Vì sao faster-whisper hơn openai-whisper**: Nhanh hơn 4× trên cùng phần cứng qua CTranslate2 backend, độ chính xác gần như tương đương. Lựa chọn de-facto năm 2026 cho phiên production.
 
-**Cài nhanh**: ```bash
+**Cài nhanh**: `````bash
 pip install faster-whisper
-```
+`````
 
-```python
+`````python
 from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v3", device="cuda", compute_type="float16")
 segments, info = model.transcribe("input.mp3", beam_size=5)
 
 for segment in segments: print(f"[{segment.start:.2f} → {segment.end:.2f}] {segment.text}")
-```
+`````
 
 **Chi phí**: $0 nếu self-host. ~5× real-time trên RTX 3060, ~30× real-time trên RTX 4090.
 
@@ -140,7 +141,7 @@ Hướng dẫn đầy đủ: [ComfyUI dựa node AI 2026](/vi/resources/ai-tools
 
 **Vai trò**: Ráp deliverable cuối. Kết hợp audio + video. Thêm subtitle. Nén tới kích thước mục tiêu. Vấn đề tiêu chuẩn qua mọi creator video.
 
-**3 lệnh bạn sẽ dùng 90% thời gian**: ```bash
+**3 lệnh bạn sẽ dùng 90% thời gian**: `````bash
 # Kết hợp audio narration + video b-roll
 ffmpeg -i visuals.mp4 -i narration.wav -c:v copy -c:a aac final.mp4
 
@@ -149,7 +150,7 @@ ffmpeg -i final.mp4 -vf "subtitles=captions.srt" final-with-subs.mp4
 
 # Nén cho YouTube (mục tiêu 5 MB/phút)
 ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload.mp4
-```
+`````
 
 Không cần deep dive — FFmpeg có hàng triệu hướng dẫn online. Học 3 lệnh này; hoãn học phần còn lại cho đến khi cần.
 
@@ -159,9 +160,9 @@ Không cần deep dive — FFmpeg có hàng triệu hướng dẫn online. Học
 2. **Cài Docker + cơ bản Python venv** (15 phút)
 3. **ComfyUI + ComfyUI Manager** (30 phút) — Cừu công cho mọi công việc trực quan
 4. **ChatTTS** (15 phút) — Pre-tạo 3-5 speaker ổn định, lưu embedding
-5. **faster-whisper** (10 phút) — `pip install`, test trên audio mẫu
+5. **faster-whisper** (10 phút) — ````pip install````, test trên audio mẫu
 6. **SD WebUI** (15 phút) — Tùy chọn nếu đã thoải mái với ComfyUI một mình
-7. **FFmpeg** (5 phút) — `apt install ffmpeg`
+7. **FFmpeg** (5 phút) — ````apt install ffmpeg```
 8. **Pipeline thực đầu tiên** (90 phút) — Sinh video test 30 giây: script → narration ChatTTS → 5 panel ảnh ComfyUI → ráp FFmpeg → subtitle faster-whisper
 
 Sau 3-4 giờ bạn có pipeline đa phương thức hoạt động mà bạn có thể iterate hàng tuần.
@@ -197,7 +198,7 @@ Khi vượt qua: - **>1 giờ TTS/ngày** — Chuyển ChatTTS hosting từ Vast
 
 Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} khi sản xuất, tắt khi không. Toán đánh bại SaaS ngay khi bạn vượt qua ~2 giờ/ngày sản xuất nội dung tích cực.
 
----
+* * *
 
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) và [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) cho phía dev. [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí sinh script. [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) để agent điều khiển pipeline này tự trị.*
 
@@ -227,7 +228,7 @@ Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} khi sản xuất, t�
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -236,6 +237,6 @@ Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} khi sản xuất, t�
 - [moneyprinterturbo-one-click-ai-video-generator](multi-modal-content-pipeline)
 - [prompts-chat](multi-modal-content-pipeline)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

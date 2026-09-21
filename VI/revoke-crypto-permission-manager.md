@@ -13,6 +13,7 @@ aliases:
   - /vi/posts/revoke-crypto-permission-manager/
 ---
 
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  
@@ -21,7 +22,7 @@ aliases:
 **GitHub:** [RevokeCash/revoke.cash](https://github.com/RevokeCash/revoke.cash)（★ 2,500 · Giấy phép GPL-3.0）  
 **Tiết lộ Liên kết:** *Bài viết này chứa liên kết liên kết. Chúng tôi có thể kiếm được hoa hồng nếu bạn đăng ký qua liên kết đối tác — không phát sinh thêm chi phí cho bạn. Ý kiến biên tập của chúng tôi vẫn độc lập.*
 
----
+* * *
 
 ## Giới thiệu: Mối Nguy Hại Ẩn Giấu CủA Phê Duyệt Token
 
@@ -33,11 +34,11 @@ Mối đe dọa vô hình này đã dẫn đến hàng trăm triệu đô la thi
 
 **👉 Muốn giao dịch trên sàn giao dịch an toàn? [Đăng ký trên Binance](https://www.bsmkweb.cc/register?ref=DIBI8) — nền tảng crypto đáng tin cậy nhất thế giớI.**
 
----
+* * *
 
 ## Revoke.cash Là Gì? Hiểu Về Phê Duyệt Token
 
-Khi bạn tương tác vớI một giao thức DeFi, trước tiên bạn phải **phê duyệt** hợp đồng thông minh của giao thức để truy cập token của bạn. Đây là một cơ chế ERC-20 được thiết kế để ngăn các hợp đồng tùy ý chi tiêu tiền của bạn. Tuy nhiên, hầu hết các dApp đều yêu cầu **phê duyệt không giớI hạn** (`type(uint256).max`) để tiết kiệm gas cho ngườI dùng trong các giao dịch tương lai.
+Khi bạn tương tác vớI một giao thức DeFi, trước tiên bạn phải **phê duyệt** hợp đồng thông minh của giao thức để truy cập token của bạn. Đây là một cơ chế ERC-20 được thiết kế để ngăn các hợp đồng tùy ý chi tiêu tiền của bạn. Tuy nhiên, hầu hết các dApp đều yêu cầu **phê duyệt không giớI hạn** (```type(uint256).max````) để tiết kiệm gas cho ngườI dùng trong các giao dịch tương lai.
 
 Vấn đề? Phê duyệt đó tồn tại mãi mãi — ngay cả khi: - Giao thức bị tấn công
 - Bạn ngừng sử dụng dApp
@@ -48,7 +49,7 @@ Revoke.cash giải quyết vấn đề này bằng cách cung cấp một giao d
 
 ### Cơ Chế Phê Duyệt ERC-20
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -60,9 +61,9 @@ interface IERC20 {
 
 // Khi bạn "phê duyệt" Uniswap, điều này sẽ xảy ra: // token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
 // Con số này = type(uint256).max = KHÔNG GIỚI HẠN
-```
+`````
 
----
+* * *
 
 ## Hướng Dẫn Bắt Đầu Nhanh: Sử Dụng Revoke.cash
 
@@ -70,7 +71,7 @@ Bắt đầu vớI Revoke.cash mất chưa đầy hai phút. Sau đây là cách
 
 ### Bước 1 — Truy Cập Revoke.cash
 
-```bash
+`````bash
 # Trang web chính thức (luôn xác minh URL)
 # https://revoke.cash
 # 
@@ -78,11 +79,11 @@ Bắt đầu vớI Revoke.cash mất chưa đầy hai phút. Sau đây là cách
 # - revoke-cash.app (giả mạo)
 # - revok3.cash (giả mạo)
 # Luôn đánh dấu URL chính thức sau lần truy cập đầu tiên
-```
+`````
 
 ### Bước 2 — Kết NốI Ví CủA Bạn
 
-```javascript
+`````javascript
 // Revoke.cash hỗ trợ tất cả các ví chính
 const supportedWallets = [
   "MetaMask",
@@ -94,11 +95,11 @@ const supportedWallets = [
   "Phantom (chế độ EVM)",
   "Trust Wallet"
 ];
-```
+`````
 
 ### Bước 3 — Xem Tất Cả Các Phê Duyệt Đang Hoạt Động
 
-```bash
+`````bash
 # Bảng điều khiển Revoke.cash hiển thị: # ┌────────────────┬─────────────────┬──────────────┬──────────┐
 # │ Token          │ NgườI Chi Tiêu  │ Số Lượng     │ Rủi Ro   │
 # │                │ Được Phê Duyệt  │              │          │
@@ -108,11 +109,11 @@ const supportedWallets = [
 # │ DAI            │ 1inch           │ 5,000 DAI    │ 🟡 TB    │
 # │ USDT           │ Hợp Đồng Lạ     │ Không giớI hạn│ 🔴 Nghêm│
 # └────────────────┴─────────────────┴──────────────┴──────────┘
-```
+`````
 
 ### Bước 4 — Thu HồI Các Phê Duyệt Rủi Ro
 
-```javascript
+`````javascript
 // Revoke.cash thực thi phê duyệt mới vớI số lượng = 0
 // Điều này có hiệu lực hủy phê duyệt không giớI hạn trước đó
 
@@ -127,9 +128,9 @@ const tokenContract = new ethers.Contract(
 const tx = await tokenContract.approve("0xSuspiciousContract", 0);
 await tx.wait();
 console.log("Đã thu hồI phê duyệt! Giao dịch:", tx.hash);
-```
+`````
 
----
+* * *
 
 ## Tìm Hiểu Sâu: Revoke.cash Hoạt Động Như Thế Nào
 
@@ -137,7 +138,7 @@ Revoke.cash không có quyền lực đặc biệt nào — nó chỉ cung cấp
 
 ### Cơ Chế Kỹ Thuật
 
-```solidity
+`````solidity
 // Để "thu hồI" phê duyệt, bạn chỉ cần phê duyệt 0 token
 // Đây là CÁCH DUY NHẤT để xóa phê duyệt trước đó
 
@@ -152,11 +153,11 @@ function setLimitedApproval(address token, address spender, uint256 amount) exte
     IERC20(token).approve(spender, amount);
     // NgườI chi tiêu chỉ có thể chi tiêu tối đa amount token
 }
-```
+`````
 
 ### Phân Tích Nhật Ký Sự Kiện
 
-```javascript
+`````javascript
 // Revoke.cash đọc các sự kiện Phê duyệt từ blockchain
 const filter = {
   address: tokenAddress,           // Hợp đồng token
@@ -176,11 +177,11 @@ const approvalEvents = await provider.getLogs({
 
 // Sự kiện gần đây nhất cho mỗi bộ ba (chủ sở hữu, ngườI chi tiêu, token)
 // đại diện cho phê duyệt HIỆN TẠI đang hoạt động
-```
+`````
 
 ### Đọc Các Hạn Mức Hiện TạI
 
-```javascript
+`````javascript
 // Gọi hợp đồng trực tiếp để kiểm tra hạn mức hiện tạI
 const checkAllowance = async (tokenAddress, owner, spender) => {
   const token = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
@@ -199,9 +200,9 @@ const checkAllowance = async (tokenAddress, owner, spender) => {
     return { status: "DA_THU_HOI", risk: "KHONG" };
   }
 };
-```
+`````
 
----
+* * *
 
 ## Hỗ Trợ Đa ChuỗI: Bảo Vệ Tài Sản Trên Nhiều Mạng
 
@@ -209,7 +210,7 @@ Revoke.cash hỗ trợ tất cả các chuỗI tương thích EVM chính, cho ph
 
 ### Các Mạng Được Hỗ Trợ (2026)
 
-```yaml
+`````yaml
 # Hỗ trợ mạng đầy đủ tính đến năm 2026
 ethereum: chain_id: 1
   rpc_required: true
@@ -238,27 +239,27 @@ bnb_chain: chain_id: 56
 avalanche: chain_id: 43114
   rpc_required: true
   features: ["Hỗ trợ C-Chain", "Phê duyệt TraderJoe"]
-```
+`````
 
 ### Chuyển ĐổI Mạng
 
-```javascript
+`````javascript
 // Revoke.cash tự động phát hiện mạng hiện tạI của bạn
 // Chuyển đổI mạng trong ví của bạn để kiểm toán phê duyệt trên các chuỗI khác nhau
 
 const switchNetwork = async (chainId) => {
   await window.ethereum.request({
     method: "wallet_switchEthereumChain",
-    params: [{ chainId: `0x${chainId.toString(16)}` }]
+    params: [{ chainId: ````0x${chainId.toString(16)}```` }]
   });
   // Revoke.cash sẽ tự động làm mớI cho chuỗI mới
 };
 
 // Ví dụ: Chuyển sang Polygon
 await switchNetwork(137);
-```
+`````
 
----
+* * *
 
 ## Tiện Ích Mở Rộng Trình Duyệt: Bảo Vệ ThờI Gian Thực
 
@@ -266,7 +267,7 @@ Revoke.cash cung cấp **tiện ích mở rộng trình duyệt** cung cấp c�
 
 ### Cài Đặt Tiện Ích Mở Rộng
 
-```bash
+`````bash
 # Cửa hàng Chrome Web: # https://chrome.google.com/webstore/detail/revokecash/revokecash-extension
 
 # Tiện ích bổ sung Firefox: # https://addons.mozilla.org/firefox/addon/revokecash/
@@ -275,11 +276,11 @@ Revoke.cash cung cấp **tiện ích mở rộng trình duyệt** cung cấp c�
 # - Cảnh báo khi phê duyệt các hợp đồng độc hạI đã biết
 # - Hiển thị giá trị USD ước tính có rủi ro
 # - Thu hồI chỉ bằng một cú nhấp chuột từ cửa sổ bật lên
-```
+`````
 
 ### Cấu Hình Tiện Ích Mở Rộng
 
-```javascript
+`````javascript
 // Cài đặt tiện ích mở rộng (có thể đặt qua cửa sổ bật lên)
 const extensionConfig = {
   // Cảnh báo khi phê duyệt vượt quá ngưỡng USD này
@@ -297,17 +298,17 @@ const extensionConfig = {
   // Chế độ tối
   theme: "dark"
 };
-```
+`````
 
----
+* * *
 
 ## Nâng Cao: Chữ Ký Permit và Permit2
 
-DeFi hiện đạI sử dụng **phê duyệt không cần gas** thông qua EIP-2612 `permit()` và hợp đồng **Permit2** của Uniswap. Những cái này đặc biệt nguy hiểm vì chúng không yêu cầu giao dịch on-chain — chỉ cần một chữ ký.
+DeFi hiện đạI sử dụng **phê duyệt không cần gas** thông qua EIP-2612 ````permit()```` và hợp đồng **Permit2** của Uniswap. Những cái này đặc biệt nguy hiểm vì chúng không yêu cầu giao dịch on-chain — chỉ cần một chữ ký.
 
 ### Hiểu Về Chữ Ký Permit
 
-```solidity
+`````solidity
 // EIP-2612 permit: Chữ ký off-chain trở thành phê duyệt on-chain
 function permit(
     address owner,
@@ -321,11 +322,11 @@ function permit(
     // Sau lệnh gọi này, spender có thể chi tiêu value token
     // NGƯỜI DÙNG KHÔNG BAO GIỜ gửi giao dịch — chỉ ký một thông điệp!
 }
-```
+`````
 
 ### Thu HồI Các Hạn Mức Permit2
 
-```javascript
+`````javascript
 // Thu hồI Permit2 yêu cầu một giao dịch đến hợp đồng Permit2
 const revokePermit2 = async (token, spender) => {
   const permit2 = new ethers.Contract(PERMIT2_ADDRESS, PERMIT2_ABI, signer);
@@ -341,9 +342,9 @@ const revokePermit2 = async (token, spender) => {
   await tx.wait();
   console.log("Đã thu hồI hạn mức Permit2!");
 };
-```
+`````
 
----
+* * *
 
 ## Chiến Lược Thu HồI Hiệu Quả Về Gas
 
@@ -351,7 +352,7 @@ Việc thu hồI phê duyệt tốn gas. Sau đây là các chiến lược đ�
 
 ### Thu HồI Hàng Loạt
 
-```javascript
+`````javascript
 // Sử dụng multicall để thu hồI nhiều phê duyệt trong một giao dịch
 const multicall3Address = "0xcA11bde05977b3631167028862bE2a173976CA11";
 
@@ -369,13 +370,13 @@ const batchRevoke = async (revocations) => {
   const tx = await multicall.aggregate3(calls);
   await tx.wait();
   
-  console.log(`Đã thu hồI ${revocations.length} phê duyệt trong một giao dịch!`);
+  console.log(````Đã thu hồI ${revocations.length} phê duyệt trong một giao dịch!````);
 };
-```
+`````
 
 ### ThờI Điểm Thu HồI
 
-```bash
+`````bash
 # Chiến lược: Thu hồI trong các giai đoạn gas thấp
 # - Các ngày trong tuần thường có gas thấp hơn
 # - Sáng sớm UTC (2AM - 6AM) thường là rẻ nhất
@@ -390,15 +391,15 @@ const batchRevoke = async (revocations) => {
 # │ Optimism        │ ~46,000      │ ~$0.30           │
 # │ BNB Chain       │ ~46,000      │ ~$0.10           │
 # └─────────────────┴──────────────┴──────────────────┘
-```
+`````
 
----
+* * *
 
 ## Hệ Thống Cảnh Báo Bảo Mật
 
 Revoke.cash theo dõi các khaI thác đã biết và chủ động cảnh báo ngườI dùng có thể có phê duyệt vớI các giao thức bị xâm phạm.
 
-```javascript
+`````javascript
 // Đăng ký nhận cảnh báo bảo mật (qua tiện ích mở rộng trình duyệt hoặc Telegram)
 const subscribeToAlerts = async (address) => {
   const alertConfig = {
@@ -413,15 +414,15 @@ const subscribeToAlerts = async (address) => {
   
   return alertConfig;
 };
-```
+`````
 
----
+* * *
 
 ## Các Thực Hành Tốt Nhất Về Bảo Mật Phê Duyệt Token
 
 ### Danh Sách Kiểm Tra Bảo Mật
 
-```bash
+`````bash
 # THÓI QUEN HÀNG TUẦN: # 1. Truy cập revoke.cash và quét tất cả các phê duyệt đang hoạt động
 # 2. Thu hồI các phê duyệt không giớI hạn cho các giao thức bạn không sử dụng tích cực
 # 3. Kiểm tra cột "Rủi ro" để tìm ngườI chi tiêu không xác định
@@ -433,11 +434,11 @@ const subscribeToAlerts = async (address) => {
 # SAU KHI GIAO THỨC BỊ TẤN CÔNG: # 1. Ngay lập tức kiểm tra revoke.cash xem bạn có từng sử dụng giao thức không
 # 2. Thu hồI TẤT CẢ các phê duyệt vớI hợp đồng bị xâm phạm
 # 3. Theo dõI địa chỉ của bạn để phát hiện chuyển khoản trái phép
-```
+`````
 
 ### Sử Dụng Phê Duyệt Có GiớI Hạn
 
-```javascript
+`````javascript
 // Thay vì phê duyệt không giớI hạn, hãy đặt một số lượng cụ thể
 const setLimitedApproval = async (token, spender, humanAmount) => {
   const decimals = await token.decimals();
@@ -447,16 +448,16 @@ const setLimitedApproval = async (token, spender, humanAmount) => {
   const tx = await token.approve(spender, amount);
   await tx.wait();
   
-  console.log(`Đã phê duyệt ${humanAmount} token cho ${spender}`);
+  console.log(````Đã phê duyệt ${humanAmount} token cho ${spender}````);
 };
 
 // Ví dụ: Chỉ phê duyệt 1000 USDC để hoán đổI
 await setLimitedApproval(usdcContract, uniswapRouter, "1000");
-```
+`````
 
 ### Chiến Lược "Ví Dùng Một Lần"
 
-```javascript
+`````javascript
 // Để khám phá các giao thức mới/chưa được kiểm tra: // 1. Tạo một ví "dùng một lần" riêng biệt
 // 2. Chỉ chuyển tiền bạn có thể đủ khả năng để mất
 // 3. Cấp phê duyệt từ ví dùng một lần
@@ -467,9 +468,9 @@ const burnerStrategy = {
   approvalPolicy: "LIMITED_ONLY", // Không bao giờ không giớI hạn
   postUseAction: "REVOKE_ALL"     // Luôn dọn dẹp sau khi sử dụng
 };
-```
+````
 
----
+* * *
 
 ## Câu HỏI Thường Gặp (FAQ)
 
@@ -497,7 +498,7 @@ A: Có! Phê duyệt token ERC-721 và ERC-1155 hoạt động tương tự như
 **Câu 8: Điều gì sẽ xảy ra nếu tôi không thu hồI phê duyệt?**
 A: Token của bạn sẽ gặp rủi ro vô thờI hạn. Nếu hợp đồng được phê duyệt bị khaI thác, bị tấn công hoặc trở nên độc hạI, toàn bộ số dư được phê duyệt của bạn có thể bị rút cạn trong một giao dịch duy nhất. Nhiều vụ tấn công nổi tiếng (như vụ khaI thác Poly Network 600 triệu đô la) đã được thực hiện nhờ các phê duyệt tồn tại lâu dài.
 
----
+* * *
 
 
 
@@ -516,7 +517,7 @@ VớI hơn **1 tỷ USD tài sản được bảo vệ** và các cảnh báo b�
 
 **Đang tìm kiếm một nơi an toàn để giao dịch? [Đăng ký trên Binance](https://www.bsmkweb.cc/register?ref=DIBI8) — sàn giao dịch crypto lớn nhất thế giớI vớI bảo mật hàng đầu, phí thấp nhất và bảo hiểm quỹ bảo vệ.**
 
----
+* * *
 
 *Tuyên bố Miễn trừ: Bài viết này chỉ nhằm mục đích thông tin và không cấu thành lờI khuyên tài chính hoặc bảo mật. Luôn xác minh địa chỉ hợp đồng, sử dụng ví phần cứng cho các khoản nắm giữ đáng kể và thực hành bảo mật vận hành tốt. Bài đăng này chứa các liên kết liên kết — chúng tôi có thể nhận được khoản bồi thường khi bạn sử dụng liên kết đối tác của chúng tôi mà không phát sinh thêm chi phí cho bạn.*
 

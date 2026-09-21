@@ -23,6 +23,7 @@ tags: ["llm", "observability", "arize phoenix", "rag", "langchain", "llamaindex"
 aliases:
   - /posts/arize-ai-observability-llm/-
 ---
+
 {{</* resource-info */>}}
 
 ## Introduction: You Can't Fix What You Can't See
@@ -61,13 +62,13 @@ The Phoenix UI renders traces as interactive flame graphs. You can drill down in
 
 | Concept | Description |
 |
----
+* * *
 |
----
+* * *
 |
 | **Trace** | A complete request lifecycle from user query to final response |
 | **Span** | A single operation within a trace (e.g., retriever call, LLM completion) |
-| **Attribute** | Key-value metadata attached to a span (e.g., `model=gpt-4o`) |
+| **Attribute** | Key-value metadata attached to a span (e.g., ```model=gpt-4o````) |
 | **Event** | Timestamped log entries within a span (e.g., prompt rendered) |
 | **Evaluation** | A scored assessment attached to a span or trace (e.g., relevance=0.87) |
 
@@ -75,7 +76,7 @@ The Phoenix UI renders traces as interactive flame graphs. You can drill down in
 
 ### Option A: Quick Start with pip
 
-The fastest way to get Phoenix running locally: ```bash
+The fastest way to get Phoenix running locally: `````bash
 python -m venv phoenix-env
 source phoenix-env/bin/activate
 
@@ -84,13 +85,13 @@ pip install "arize-phoenix[evals,llama-index,langchain]" --quiet
 
 # Launch the Phoenix server
 python -c "import phoenix as px; px.launch_app()"
-```
+`````
 
-After running `launch_app()`, Phoenix starts an embedded server on **http://localhost:6006**. The UI opens automatically in your browser. Keep this terminal running — your traces will stream here.
+After running ````launch_app()````, Phoenix starts an embedded server on **http://localhost:6006**. The UI opens automatically in your browser. Keep this terminal running — your traces will stream here.
 
 ### Option B: Docker Deployment (Production)
 
-For production or team environments, run Phoenix as a container: ```bash
+For production or team environments, run Phoenix as a container: `````bash
 # Pull the official image
 docker pull arizephoenix/phoenix:latest
 
@@ -100,18 +101,18 @@ docker run -d \
   -p 6006:6006 \
   -v phoenix-data:/data \
   arizephoenix/phoenix:latest
-```
+`````
 
-Verify the deployment: ```bash
+Verify the deployment: `````bash
 curl http://localhost:6006/health
 # Expected: {"status":"healthy"}
-```
+`````
 
 For a cloud VPS deployment, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $4/month droplets that handle Phoenix comfortably for small-to-medium teams. Deploy a Droplet with Docker pre-installed, run the container, and your observability stack is live in under 10 minutes.
 
 ### Option C: Docker Compose with PostgreSQL
 
-For persistent storage and multi-user access: ```yaml
+For persistent storage and multi-user access: `````yaml
 # docker-compose.yml
 version: "3.8"
 services: phoenix: image: arizephoenix/phoenix:latest
@@ -125,17 +126,17 @@ services: phoenix: image: arizephoenix/phoenix:latest
       POSTGRES_DB: phoenix
     volumes: - pgdata:/var/lib/postgresql/data
 
-volumes: pgdata: ```
+volumes: pgdata: `````
 
-```bash
+`````bash
 docker-compose up -d
-```
+`````
 
 ## Integration with LangChain, LlamaIndex & OpenTelemetry
 
 ### LangChain Auto-Instrumentation
 
-Phoenix integrates with LangChain via OpenTelemetry. Add two lines to your existing LangChain application: ```python
+Phoenix integrates with LangChain via OpenTelemetry. Add two lines to your existing LangChain application: `````python
 # phoenix_langchain_demo.py
 import phoenix as px
 from phoenix.trace.langchain import LangChainInstrumentor
@@ -166,13 +167,13 @@ retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
 # This entire pipeline is now traced automatically
 result = retriever.invoke("What is Phoenix?")
 print(result)
-```
+`````
 
 Run the script and open http://localhost:6006. You will see a complete trace tree: retriever call → document fetch → prompt construction → LLM completion → output parsing.
 
 ### LlamaIndex Integration
 
-Phoenix provides first-class support for LlamaIndex query engines: ```python
+Phoenix provides first-class support for LlamaIndex query engines: `````python
 # phoenix_llamaindex_demo.py
 import phoenix as px
 from phoenix.trace.llamaindex import LlamaIndexInstrumentor
@@ -195,11 +196,11 @@ index = VectorStoreIndex.from_documents(
 query_engine = index.as_query_engine(llm=OpenAI(model="gpt-4o-mini"))
 response = query_engine.query("Summarize the main points in these documents.")
 print(response)
-```
+`````
 
 ### OpenTelemetry SDK (Framework-Agnostic)
 
-For custom pipelines or frameworks without dedicated instrumentation: ```python
+For custom pipelines or frameworks without dedicated instrumentation: `````python
 # phoenix_otel_manual.py
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -225,11 +226,11 @@ with tracer.start_as_current_span("rag_pipeline") as span: span.set_attribute("q
         llm_span.set_attribute("model", "gpt-4o-mini")
         llm_span.set_attribute("tokens_used", response.usage.total_tokens)
         llm_span.set_attribute("latency_ms", 340)
-```
+`````
 
 ### OpenAI SDK Tracing
 
-Phoenix also auto-traces direct OpenAI SDK calls: ```python
+Phoenix also auto-traces direct OpenAI SDK calls: `````python
 # phoenix_openai_demo.py
 import phoenix as px
 from phoenix.trace.openai import OpenAIInstrumentor
@@ -251,7 +252,7 @@ response = client.chat.completions.create(
     temperature=0.7,
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ## Benchmarks & Real-World Use Cases
 
@@ -263,13 +264,13 @@ Phoenix captures token usage at the span level with **>99% accuracy** compared t
 
 Instrumentation adds minimal overhead. Measured on a 4-core DigitalOcean droplet: | Scenario | Baseline Latency | With Phoenix Tracing | Overhead |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Simple LLM call (1 chunk) | **245 ms** | **251 ms** | **+2.4%** |
 | RAG pipeline (5 chunks) | **890 ms** | **912 ms** | **+2.5%** |
@@ -281,7 +282,7 @@ The overhead comes from span serialization and HTTP export, not from blocking th
 
 A machine learning consultancy deployed Phoenix for a client processing **~50,000 RAG queries/day** across legal document search. Key findings after 30 days: - **18% of queries** retrieved irrelevant chunks due to a stale embedding model
 - Average token burn per query was **4,200 tokens** — **2.1x higher** than estimated
-- A single misconfigured retriever (`top_k=20` instead of `top_k=5`) was responsible for **$1,200/month** in unnecessary API costs
+- A single misconfigured retriever (````top_k=20```` instead of ````top_k=5````) was responsible for **$1,200/month** in unnecessary API costs
 
 After fixing these issues based on Phoenix traces, the client reduced per-query latency by **34%** and token costs by **52%**.
 
@@ -289,11 +290,11 @@ After fixing these issues based on Phoenix traces, the client reduced per-query 
 
 Phoenix includes built-in evaluators for relevance, hallucination, and toxicity detection: | Evaluator | Accuracy vs. Human Label | Avg. Runtime per Trace |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QA Relevance | **0.91** F1 score | **120 ms** |
 | Hallucination Detection | **0.87** F1 score | **95 ms** |
@@ -304,7 +305,7 @@ Phoenix includes built-in evaluators for relevance, hallucination, and toxicity 
 
 ### Custom Span Attributes for Business Metrics
 
-Add business-relevant attributes to traces for filtering and analysis: ```python
+Add business-relevant attributes to traces for filtering and analysis: `````python
 from opentelemetry import trace
 
 tracer = trace.get_tracer("my-app")
@@ -314,13 +315,13 @@ with tracer.start_as_current_span("customer_query") as span: span.set_attribute(
     span.set_attribute("expected_revenue", 15000.00)
 
     # Your RAG logic here...
-```
+`````
 
-In the Phoenix UI, filter traces by `customer_tier=enterprise` to debug high-value customer queries.
+In the Phoenix UI, filter traces by ````customer_tier=enterprise```` to debug high-value customer queries.
 
 ### Programmatic Evaluations
 
-Run batch evaluations on collected traces: ```python
+Run batch evaluations on collected traces: `````python
 # phoenix_evaluations.py
 import phoenix as px
 from phoenix.evals import HallucinationEvaluator, QAEvaluator
@@ -337,53 +338,53 @@ results = hallucination_eval.evaluate(traces)
 # Filter high-risk traces
 risky = results[results.score > 0.7]
 print(f"Found {len(risky)} potentially hallucinated responses")
-```
+`````
 
 ### Alerting on Trace Metrics
 
-Export Phoenix metrics to Prometheus for alerting: ```python
+Export Phoenix metrics to Prometheus for alerting: `````python
 # phoenix_prometheus.py
 from phoenix.trace import PrometheusExporter
 
 # Add Prometheus exporter alongside Phoenix
 prometheus_exporter = PrometheusExporter(port=8000)
 px.launch_app(additional_exporters=[prometheus_exporter])
-```
+`````
 
-Then create a Prometheus alert: ```yaml
+Then create a Prometheus alert: `````yaml
 # alerts.yml
 - alert: HighTokenBurn
   expr: phoenix_tokens_total > 100000
   for: 5m
   annotations: summary: "Token burn exceeded 100K in 5 minutes"
-```
+`````
 
 ### Prompt Versioning via Trace Tags
 
-Track prompt changes across deployments: ```python
+Track prompt changes across deployments: `````python
 # Tag traces with the prompt version used
 tracer = trace.get_tracer("my-app")
 
 with tracer.start_as_current_span("llm_call") as span: span.set_attribute("prompt.version", "v2.3.1")
     span.set_attribute("prompt.git_sha", "abc1234")
     span.set_attribute("deployment.env", "production")
-```
+`````
 
-Use the Phoenix UI to compare traces tagged `prompt.version=v2.3.0` against `prompt.version=v2.3.1` and measure the impact of prompt changes.
+Use the Phoenix UI to compare traces tagged ````prompt.version=v2.3.0```` against ````prompt.version=v2.3.1```` and measure the impact of prompt changes.
 
 ## Comparison with Alternatives
 
 | Feature | Arize Phoenix | LangSmith | Langfuse | Weights & Biases |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **License** | **Apache-2.0** | Proprietary | MIT | Proprietary |
 | **Self-hosted** | **Yes (Docker)** | No (Cloud only) | **Yes** | Yes (Enterprise) |
@@ -418,11 +419,11 @@ Phoenix is the **open-source core** focused on LLM tracing, evaluation, and debu
 
 ### Can I use Phoenix without LangChain or LlamaIndex?
 
-Yes. Phoenix uses **OpenTelemetry** as its data model, so any framework or custom code that emits OTLP traces can be ingested. Write manual spans using the OpenTelemetry SDK (shown in the integration section above) or configure your existing tracing setup to export to `http://localhost:6006/v1/traces`.
+Yes. Phoenix uses **OpenTelemetry** as its data model, so any framework or custom code that emits OTLP traces can be ingested. Write manual spans using the OpenTelemetry SDK (shown in the integration section above) or configure your existing tracing setup to export to ````http://localhost:6006/v1/traces````.
 
 ### Does Phoenix store my LLM API keys or prompt data?
 
-When self-hosted, Phoenix stores trace data — including prompts and responses — in your own infrastructure. API keys are **never** stored; they remain in your application code. If you are using sensitive data, run Phoenix on a private network and configure PostgreSQL encryption at rest via the `PHOENIX_SQL_DATABASE_URL` with SSL parameters.
+When self-hosted, Phoenix stores trace data — including prompts and responses — in your own infrastructure. API keys are **never** stored; they remain in your application code. If you are using sensitive data, run Phoenix on a private network and configure PostgreSQL encryption at rest via the ````PHOENIX_SQL_DATABASE_URL```` with SSL parameters.
 
 ### How much overhead does Phoenix add to production traffic?
 
@@ -430,7 +431,7 @@ Benchmarked overhead is **2.4–2.5%** latency increase for typical RAG pipeline
 
 ### Can Phoenix help me reduce my OpenAI API bill?
 
-Yes. Phoenix's token-level tracing reveals exactly where tokens are burned. One common finding: teams discover their retriever returns **20 chunks** when only **3** are needed, inflating the prompt by **5–10x**. After optimizing `top_k` based on Phoenix data, teams typically reduce token consumption by **30–50%**.
+Yes. Phoenix's token-level tracing reveals exactly where tokens are burned. One common finding: teams discover their retriever returns **20 chunks** when only **3** are needed, inflating the prompt by **5–10x**. After optimizing ````top_k``` based on Phoenix data, teams typically reduce token consumption by **30–50%**.
 
 ### What is the recommended deployment setup for a team of 10 developers?
 
@@ -464,7 +465,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - "RAG Pipeline Optimization Patterns" — dibi8.com internal research
 
 
----
+* * *
 **Affiliate Disclosure:** Some links in this article are affiliate links. If you use our [DigitalOcean referral link](https://m.do.co/c/eca87ac14ee0) to sign up, you receive $200 in credits and we earn a referral bonus — at no extra cost to you. This supports our independent research and keeps the content free.
 
 
@@ -494,7 +495,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [apple-container](arize-ai-observability-llm)
@@ -503,7 +504,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](arize-ai-observability-llm)
 - [moneyprinterturbo-one-click-ai-video-generator](arize-ai-observability-llm)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

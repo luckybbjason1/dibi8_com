@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/shellcheck/
 ---
 
+
 {{</* resource-info */>}}
 
 ShellCheck는 셸 스크립트의 버그를 프로덕션 배포 전에 잡아내는 사실상의 표준 도구입니다. 39,456개 이상의 GitHub 스타와 활발한 오픈소스 커뮤니티를 보유한 ShellCheck는 bash, sh, dash, ksh 스크립트에서 가장 널리 채택된 정적 분석 도구입니다. 본 가이드에서는 ShellCheck 설치, 에디터 통합, CI/CD 파이프라인 구성, 프로덕션 환경 강화 방법을 다룹니다.
@@ -48,7 +49,7 @@ Haskell로 작성된 이 프로젝트(코드베이스의 96.4%)는 GPL-3.0 라�
 
 - **구문 검증**: 런타임 전 잘못된 구조 포착
 - **의미 분석**: 인용되지 않은 변수, 도달 불가능한 코드, 마스킹된 종료 코드 감지
-- **이식성 검사**: POSIX 준수를 위한 `/bin/sh` 스크립트에서 bash 전용 구문 플래그
+- **이식성 검사**: POSIX 준수를 위한 ```/bin/sh```` 스크립트에서 bash 전용 구문 플래그
 - **보안 감사**: 명령 주입 벡터와 안전하지 않은 eval 패턴 식별
 - **스타일 강제**: 더 이상 사용되지 않는 구문 대신 현대적 구조 제안
 
@@ -58,11 +59,11 @@ ShellCheck는 다단계 분석 파이프라인으로 작동합니다. 이 아키
 
 ### 아키텍처 개요
 
-```
+`````
 소스 스크립트 → 렉서 → 파서 (AST) → 분석기 → 리포터
                     ↓           ↓            ↓
                 토큰      구문 트리     SC-경고
-```
+`````
 
 1. **렉서**: 스크립트를 식별자, 키워드, 연산자, 리터럴로 토큰화
 2. **파서**: 토큰 스트림에서 AST를 구축하며 셸 특유의 문법 처리
@@ -80,7 +81,7 @@ ShellCheck는 다단계 분석 파이프라인으로 작동합니다. 이 아키
 
 ### 핵심 검사 카테고리
 
-- **SC1xxx**: 구문 및 파싱 문제 (예: SC1007 — `=` 뒤 공백)
+- **SC1xxx**: 구문 및 파싱 문제 (예: SC1007 — ````=```` 뒤 공백)
 - **SC2xxx**: 의미 및 이식성 경고 (예: SC2086 — 인용되지 않은 변수)
 - **SC3xxx**: Bash/dash/ksh 전용 호환성 참고
 - **SC4xxx**: 선택적 검사 및 실험적 규칙
@@ -91,7 +92,7 @@ ShellCheck는 모든 주요 플랫폼에서 사용 가능합니다. 설치는 2�
 
 ### Linux (APT / Debian / Ubuntu)
 
-```bash
+`````bash
 # 패키지 인덱스 업데이트
 sudo apt update
 
@@ -104,41 +105,41 @@ shellcheck --version
 # version: 0.11.0
 # license: GNU General Public License, version 3
 # website: https://www.shellcheck.net
-```
+`````
 
 ### Linux (DNF / Fedora / RHEL)
 
-```bash
+`````bash
 # DNF를 통해 설치
 sudo dnf install -y shellcheck
 
 # 버전 확인
 shellcheck --version
-```
+`````
 
 ### macOS (Homebrew)
 
-```bash
+`````bash
 # Homebrew를 통해 설치
 brew install shellcheck
 
 # 버전 확인
 shellcheck --version
-```
+`````
 
 ### Windows (Chocolatey)
 
-```powershell
+`````powershell
 # Chocolatey를 통해 설치 (관리자 권한)
 choco install shellcheck
 
 # 버전 확인
 shellcheck --version
-```
+`````
 
 ### Docker (플랫폼 독립적)
 
-```bash
+`````bash
 # 로컬 설치 없이 Docker로 실행
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
   /mnt/deploy.sh
@@ -150,11 +151,11 @@ docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable \
 # 재현 가능한 CI 빌드를 위해 특정 버전 고정
 docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:v0.11.0 \
   /mnt/deploy.sh
-```
+`````
 
 ### 소스에서 빌드 (Haskell Stack)
 
-```bash
+`````bash
 # 저장소 클론
 git clone https://github.com/koalaman/shellcheck.git
 cd shellcheck
@@ -165,17 +166,17 @@ stack install
 # 또는 Cabal로 빌드
 cabal update
 cabal install
-```
+`````
 
 ### Pre-commit 훅
 
-```bash
+`````bash
 # .pre-commit-config.yaml에 추가
 repos: - repo: https://github.com/koalaman/shellcheck-precommit
     rev: v0.11.0
     hooks: - id: shellcheck
         args: ["--severity=warning"]
-```
+`````
 
 ## 에디터 통합
 
@@ -183,9 +184,9 @@ repos: - repo: https://github.com/koalaman/shellcheck-precommit
 
 ### VS Code
 
-Timon Wong의 **ShellCheck** 확장을 설치합니다 (마켓플레이스 ID: `timonwong.shellcheck`).
+Timon Wong의 **ShellCheck** 확장을 설치합니다 (마켓플레이스 ID: ````timonwong.shellcheck````).
 
-```json
+`````json
 // settings.json
 {
   "shellcheck.executablePath": "shellcheck",
@@ -193,11 +194,11 @@ Timon Wong의 **ShellCheck** 확장을 설치합니다 (마켓플레이스 ID: `
   "shellcheck.severity": "warning",
   "shellcheck.run": "onType"
 }
-```
+`````
 
 ### Vim / Neovim
 
-ALE(비동기 린트 엔진) 사용: ```vim
+ALE(비동기 린트 엔진) 사용: `````vim
 " .vimrc 또는 init.vim
 let g:ale_linters = {
 \   sh: [shellcheck],
@@ -206,9 +207,9 @@ let g:ale_linters = {
 " 저장 시 및 입력 중 실행
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = always
-```
+`````
 
-Neovim에서 네이티브 LSP 사용: ```lua
+Neovim에서 네이티브 LSP 사용: `````lua
 -- init.lua (nvim-lspconfig)
 require(lspconfig).bashls.setup {
   settings = {
@@ -217,21 +218,21 @@ require(lspconfig).bashls.setup {
     }
   }
 }
-```
+`````
 
 ### Emacs
 
-```elisp
+`````elisp
 ;; Flycheck와 함께 사용 (init.el)
 (add-hook 'sh-mode-hook #'flycheck-mode)
 (setq flycheck-shellcheck-severity "warning")
-```
+`````
 
 ### Sublime Text
 
 Package Control을 통해 설치: **SublimeLinter-shellcheck**.
 
-```json
+`````json
 // SublimeLinter.sublime-settings
 {
   "linters": {
@@ -241,7 +242,7 @@ Package Control을 통해 설치: **SublimeLinter-shellcheck**.
     }
   }
 }
-```
+`````
 
 ## CI/CD 통합
 
@@ -249,7 +250,7 @@ CI에서 ShellCheck을 실행하면 버그가 있는 스크립트가 병합되�
 
 ### GitHub Actions
 
-```yaml
+`````yaml
 # .github/workflows/shellcheck.yml
 name: ShellCheck
 
@@ -265,9 +266,9 @@ jobs: shellcheck: runs-on: ubuntu-latest
         with: ignore_paths: >-
             ./vendor
             ./third_party
-```
+`````
 
-수동 설정 (버전 고정): ```yaml
+수동 설정 (버전 고정): `````yaml
 # .github/workflows/shellcheck-manual.yml
 name: ShellCheck Manual
 
@@ -285,11 +286,11 @@ jobs: shellcheck: runs-on: ubuntu-latest
         run: |
           find . -name "*.sh" -type f -print0 | \
             xargs -0 shellcheck --severity=warning --format=tty
-```
+`````
 
 ### GitLab CI
 
-```yaml
+`````yaml
 # .gitlab-ci.yml
 stages: - lint
 
@@ -298,11 +299,11 @@ shellcheck: stage: lint
   script: - find . -name "*.sh" -type f -exec shellcheck --severity=warning {} +
   rules: - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-```
+`````
 
 ### Jenkins
 
-```groovy
+`````groovy
 // Jenkinsfile
 pipeline {
     agent any
@@ -332,18 +333,18 @@ pipeline {
         }
     }
 }
-```
+`````
 
 ### CircleCI
 
-```yaml
+`````yaml
 # .circleci/config.yml
 version: 2.1
 orbs: shellcheck: circleci/shellcheck@3.2.0
 
 workflows: lint: jobs: - shellcheck/check: severity: "warning"
           exclude: "SC1090,SC1091"
-```
+`````
 
 ## 구성 및 규칙 관리
 
@@ -351,7 +352,7 @@ ShellCheck는 실행할 검사와 보고 방식을 제어하는 여러 메커니
 
 ### 인라인 지시문
 
-```bash
+`````bash
 #!/bin/bash
 # shellcheck disable=SC2086
 echo $UNQUOTED_VAR  # 이 줄에서 SC2086 비활성화
@@ -362,11 +363,11 @@ UNUSED_VAR="이 변수는 할당되었지만 사용되지 않음"
 # 블록 후 재활성화
 # shellcheck enable=SC2086
 echo "$PROPERLY_QUOTED"
-```
+`````
 
 ### 구성 파일 (.shellcheckrc)
 
-```bash
+`````bash
 # .shellcheckrc — 프로젝트 수준 구성
 # 저장소 루트 또는 $HOME/.shellcheckrc에 배치
 
@@ -384,21 +385,21 @@ enable=require-variable-braces,check-set-e-suppressed
 
 # 외부 소스 지정 (소스 파일의 경우)
 external-sources=true
-```
+`````
 
 ### 심각도 필터링
 
-```bash
+`````bash
 # 오류와 경고만 보고 (info/style 제외)
 shellcheck --severity=warning script.sh
 
 # 오류만 보고
 shellcheck --severity=error script.sh
-```
+`````
 
 ### 출력 형식
 
-```bash
+`````bash
 # 사람이 읽을 수 있는 터미널 출력 (기본)
 shellcheck --format=tty script.sh
 
@@ -413,7 +414,7 @@ shellcheck --format=gcc script.sh
 
 # SARIF 출력 — GitHub Security 탭 통합
 shellcheck --format=sarif script.sh > shellcheck.sarif
-```
+`````
 
 ## 벤치마크 및 실제 사용 사례
 
@@ -430,7 +431,7 @@ ShellCheck 도입은 개인 개발자부터 엔터프라이즈 CI/CD 파이프�
 
 ### 실제 도입 사례
 
-- **GitHub Actions**: 공식 `ludeeus/action-shellcheck` 월 50만+ 실행
+- **GitHub Actions**: 공식 ````ludeeus/action-shellcheck```` 월 50만+ 실행
 - **Homebrew**: 5,000개 이상 formula 셸 스크립트를 ShellCheck로 린팅
 - **Google Shell 스타일 가이드**: 모든 셸 스크립트에 ShellCheck 권장
 - **NixOS**: 공식 패키지 빌드 파이프라인에 ShellCheck 사용
@@ -452,7 +453,7 @@ ShellCheck 도입은 개인 개발자부터 엔터프라이즈 CI/CD 파이프�
 
 ### 다중 스크립트 일괄 분석
 
-```bash
+`````bash
 #!/bin/bash
 set -euo pipefail
 
@@ -470,11 +471,11 @@ find "${SCRIPT_DIRS[@]}" -name "*.sh" -type f -print0 | \
     xargs -0 shellcheck --severity="$SEVERITY" "${EXCLUDES[@]}"
 
 echo "모든 스크립트가 심각도 $SEVERITY 로 ShellCheck 통과"
-```
+`````
 
 ### SARIF를 GitHub 보안 대시보드에 업로드
 
-```yaml
+`````yaml
 # .github/workflows/security-scan.yml
 name: Security Scan
 on: [push, pull_request]
@@ -493,11 +494,11 @@ jobs: scan: runs-on: ubuntu-latest
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with: sarif_file: shellcheck.sarif
-```
+`````
 
 ### Dockerfile 린팅 단계
 
-```dockerfile
+`````dockerfile
 # Dockerfile
 FROM koalaman/shellcheck:stable AS lint
 WORKDIR /scripts
@@ -507,11 +508,11 @@ RUN find . -name "*.sh" -exec shellcheck --severity=warning {} +
 FROM alpine:3.20 AS runtime
 COPY --from=lint /scripts/deploy.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/deploy.sh"]
-```
+`````
 
 ### CI에서 ShellCheck 모니터링
 
-팀 메트릭으로 ShellCheck 실패를 추적: ```bash
+팀 메트릭으로 ShellCheck 실패를 추적: `````bash
 #!/bin/bash
 # ci-metrics.sh — 시간 경과에 따른 shellcheck 경고 수 추적
 
@@ -519,11 +520,11 @@ WARNINGS=$(find . -name "*.sh" -exec shellcheck --severity=warning --format=json
     jq '. | length")
 
 echo "shellcheck_warnings $WARNINGS" >> metrics.txt
-```
+`````
 
 ## 대안과의 비교
 
-| 기능 | ShellCheck | `bash -n` | shfmt | checkbashisms |
+| 기능 | ShellCheck | ````bash -n```` | shfmt | checkbashisms |
 |---------|-----------|-----------|-------|---------------|
 | 정적 분석 깊이 | 의미론적 (AST 기반) | 구문만 | 파서/포매터 | 패턴 매칭 |
 | 검사 수 | ~280+ | ~20개 오류 | 0 (포매터) | ~40개 패턴 |
@@ -539,7 +540,7 @@ echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ### 각 도구 선택 기준
 
 - **ShellCheck**: 범용 셸 스크립트 품질 및 보안 감사. 기본 선택.
-- **`bash -n`**: 다른 것이 없을 때 bash 스크립트의 빠른 구문 검증.
+- **````bash -n````**: 다른 것이 없을 때 bash 스크립트의 빠른 구문 검증.
 - **shfmt**: 코드 포맷팅 및 스타일 정규화. ShellCheck을 보완함 (대체가 아님).
 - **checkbashisms**: Debian 전용 이식성 검사. Debian/Ubuntu용 패키징 시 사용.
 
@@ -549,15 +550,15 @@ ShellCheck는 만능이 아닙니다. 경계를 이해하면 과도한 신뢰를
 
 ### ShellCheck이 포착하지 못하는 것
 
-- **런타임 논리 오류**: `curl` 명령이 올바른 엔드포인트를 대상으로 하는지 판단할 수 없음
+- **런타임 논리 오류**: ````curl```` 명령이 올바른 엔드포인트를 대상으로 하는지 판단할 수 없음
 - **비즈니스 로직 버그**: 백업 스크립트가 올바른 디렉토리를 백업하는지 검증하지 않음
 - **성능 문제**: 유효한 구문의 무한 루프는 깨끗하게 통과됨
-- **튜링 완전 분석**: 일부 동적 동작(예: `eval "$DYNAMIC_CMD"`)은 본질적으로 분석 불가능
+- **튜링 완전 분석**: 일부 동적 동작(예: ````eval "$DYNAMIC_CMD"````)은 본질적으로 분석 불가능
 
 ### 플랫폼 및 환경 격차
 
 - ShellCheck은 표준 Unix 유틸리티를 가정합니다. 임베디드 시스템이나 busybox 환경을 대상으로 하는 스크립트는 오탐을 유발할 수 있음
-- 일부 SC 규칙은 주관적입니다. 팀은 모든 제안을 맹목적으로 적용하기보다 `.shellcheckrc`를 검토하고 커스터마이징해야 함
+- 일부 SC 규칙은 주관적입니다. 팀은 모든 제안을 맹목적으로 적용하기보다 ````.shellcheckrc````를 검토하고 커스터마이징해야 함
 - Windows 네이티브 스크립트(PowerShell, CMD)는 지원되지 않음
 
 ### 빌드 및 종속성 고려사항
@@ -570,11 +571,11 @@ ShellCheck는 만능이 아닙니다. 경계를 이해하면 과도한 신뢰를
 
 ### ShellCheck은 어떤 셸을 지원하나요?
 
-ShellCheck은 bash, dash, sh, ksh, busybox sh를 지원합니다. PowerShell, zsh(부분), fish는 지원하지 않습니다. `--shell bash|sh|dash|ksh`로 대상 셸을 지정하거나 스크립트의 shebang 행을 사용합니다.
+ShellCheck은 bash, dash, sh, ksh, busybox sh를 지원합니다. PowerShell, zsh(부분), fish는 지원하지 않습니다. ````--shell bash|sh|dash|ksh````로 대상 셸을 지정하거나 스크립트의 shebang 행을 사용합니다.
 
 ### 특정 ShellCheck 경고를 억제하려면?
 
-인라인 지시문을 사용하세요: 경고가 있는 행 앞에 `# shellcheck disable=SC2086`을 추가합니다. 프로젝트 전역 억제를 위해서는 `.shellcheckrc`에 `disable=SC2086`을 추가하세요. 각 검사에는 `https://www.shellcheck.net/wiki/SC2086`에서 근거를 설명하는 위키 페이지가 있습니다.
+인라인 지시문을 사용하세요: 경고가 있는 행 앞에 ````# shellcheck disable=SC2086````을 추가합니다. 프로젝트 전역 억제를 위해서는 ````.shellcheckrc````에 ````disable=SC2086````을 추가하세요. 각 검사에는 ````https://www.shellcheck.net/wiki/SC2086````에서 근거를 설명하는 위키 페이지가 있습니다.
 
 ### ShellCheck이 스크립트를 자동으로 수정할 수 있나요?
 
@@ -582,7 +583,7 @@ ShellCheck은 bash, dash, sh, ksh, busybox sh를 지원합니다. PowerShell, zs
 
 ### Pre-commit 훅에 ShellCheck을 어떻게 통합하나요?
 
-`.pre-commit-config.yaml`에 `https://github.com/koalaman/shellcheck-precommit`의 공식 pre-commit 훅을 추가합니다. 경고가 있는 커밋을 차단하려면 `args: ["--severity=warning"]`을, 오류만 차단하려면 `args: ["--severity=error"]`을 설정합니다.
+````.pre-commit-config.yaml````에 ````https://github.com/koalaman/shellcheck-precommit````의 공식 pre-commit 훅을 추가합니다. 경고가 있는 커밋을 차단하려면 ````args: ["--severity=warning"]````을, 오류만 차단하려면 ````args: ["--severity=error"]````을 설정합니다.
 
 ### ShellCheck은 보안 감사에 적합한가요?
 
@@ -594,15 +595,15 @@ ShellCheck은 명령 주입(SC2096), 안전하지 않은 eval 사용, 악의적�
 
 ### Docker 컨테이너에서 ShellCheck을 실행하려면?
 
-공식 이미지를 사용하세요: `docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh`. 재현 가능한 CI 빌드를 위해 `v0.11.0`이나 다른 특정 버전에 고정하세요. 이미지는 Alpine Linux 기반이며 약 15 MB입니다.
+공식 이미지를 사용하세요: ````docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh````. 재현 가능한 CI 빌드를 위해 ````v0.11.0````이나 다른 특정 버전에 고정하세요. 이미지는 Alpine Linux 기반이며 약 15 MB입니다.
 
 ## 결론
 
-ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 분석 도구입니다. 39,456개 이상의 GitHub 스타, 포괄적인 CI/CD 통합, 모든 주요 에디터 지원을 갖춘 ShellCheck은 모든 개발자의 툴체인에 속해야 합니다. Docker 한 줄 명령으로 즉각적인 피드백부터 시작하고, 팀 일관성을 위해 `.shellcheckrc` 프로젝트 구성을 추가하고, 버그를 병합 전에 잡기 위해 GitHub Actions에 연결하세요.
+ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 분석 도구입니다. 39,456개 이상의 GitHub 스타, 포괄적인 CI/CD 통합, 모든 주요 에디터 지원을 갖춘 ShellCheck은 모든 개발자의 툴체인에 속해야 합니다. Docker 한 줄 명령으로 즉각적인 피드백부터 시작하고, 팀 일관성을 위해 ````.shellcheckrc```` 프로젝트 구성을 추가하고, 버그를 병합 전에 잡기 위해 GitHub Actions에 연결하세요.
 
-팀을 위한 액션 아이템: 1. 오늘 가장 중요한 상위 5개 배포 스크립트에 `shellcheck` 실행
+팀을 위한 액션 아이템: 1. 오늘 가장 중요한 상위 5개 배포 스크립트에 ````shellcheck```` 실행
 2. 실시간 피드백을 위해 VS Code 확장이나 Vim ALE 통합 설치
-3. 저장소 루트에 프로젝트별 규칙으로 `.shellcheckrc` 생성
+3. 저장소 루트에 프로젝트별 규칙으로 ````.shellcheckrc``` 생성
 4. 경고가 있는 병합을 차단하는 GitHub Actions 워크플로 설정
 
 [dibi8 Telegram 그룹](https://t.me/dibi8)에 참여하여 개발자 도구, CI/CD 모범 사례, DevOps 자동화에 대해 논의하세요.
@@ -655,7 +656,7 @@ ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 �
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -665,6 +666,6 @@ ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 �
 - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](shellcheck)
 - [moneyprinterturbo-one-click-ai-video-generator](shellcheck)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -29,6 +29,7 @@ faq:
     a: "用于摄入 + 总结：两家都不错。跨文件查找特定 bug：Gemini 的「大海捞针」表现更稳定。跨文件做多步推理：Claude 即使有效上下文较短也更胜一筹。"
 ---
 
+
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']
@@ -54,7 +55,7 @@ faq: - q: "Gemini 2.5 Pro 和 Claude Sonnet 4.6 真的都能处理 1M token 吗�
     a: "语料库低于约 200K token 时，直接塞上下文胜出（更简单，没有检索误差）。200K-1M 之间则要看更新频率和语料稳定性。超过 1M（数百万 token），必须做 RAG——即使是 1M 模型也装不下全部。"
   - q: "读取整个代码库哪个更好？"
     a: "用于摄入 + 总结：两家都不错。跨文件查找特定 bug：Gemini 的「大海捞针」表现更稳定。跨文件做多步推理：Claude 即使有效上下文较短也更胜一筹。"
----
+* * *
 
 {{</* resource-info */>}}
 
@@ -87,11 +88,11 @@ faq: - q: "Gemini 2.5 Pro 和 Claude Sonnet 4.6 真的都能处理 1M token 吗�
 
 | 位置 | Gemini 2.5 Pro | Claude Sonnet 4.6 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 前 100K token | 100% | 100% |
 | 中段 400-600K token | 95% | 90% |
@@ -128,13 +129,13 @@ faq: - q: "Gemini 2.5 Pro 和 Claude Sonnet 4.6 真的都能处理 1M token 吗�
 
 ## 决策树
 
-```
+````
 Corpus size?
 ├── < 100K tokens → stuff context, any model
 ├── 100K-700K → either Gemini or Claude works
 ├── 700K-1M → Gemini (Claude degrades)
 └── > 1M → must use RAG, even 1M models can't fit
-```
+````
 
 ## 推荐基础设施
 
@@ -151,7 +152,7 @@ Corpus size?
 2026 年大多数生产场景：交互式流程别用 1M（太慢 + 太贵）。用 RAG。把 1M 上下文留给一次性深度分析任务——成本由洞察广度来证明合理。
 
 
----
+* * *
 **相关阅读**：[RAG vs 微调 2026](https://dibi8.com/zh/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [AI 编程工具 2026 Q2 大乱斗](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [MCP 服务器 2026 排行](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -217,11 +218,11 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -231,7 +232,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [9router-smart-llm-proxy-token-saver-free-coding](1m-context-window-llm-2026-real-test)
 - [ai-engineering-from-scratch](1m-context-window-llm-2026-real-test)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -260,13 +261,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 When choosing an LLM framework, consider these factors: | Factor | LangChain | LlamaIndex | Haystack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
 | **Learning Curve** | Medium | Low | Medium |

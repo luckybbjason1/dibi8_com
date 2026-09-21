@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/zilliz-milvus-vector-database-scale/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：十亿向量难题
@@ -44,9 +45,9 @@ aliases:
 
 | 指标 | 数值 |
 |
----
+* * *
 |
----
+* * *
 |
 | 当前版本 | **2.5.10** |
 | GitHub Stars | **32,000+** |
@@ -67,27 +68,27 @@ Milvus 2.5 采用 **云原生微服务架构**，包含五个核心组件：
 
 存储解耦：**etcd** 存储元数据，**MinIO/S3** 存储实际的向量数据和索引。这种分离实现了 **分层存储** —— 热向量保留在本地 NVMe 上，温向量迁移到对象存储，冷向量可以归档。
 
-```bash
+````bash
 # etcd: 元数据协调
 # MinIO: 对象存储，存储段和索引
 # Pulsar/Kafka: 日志代理，处理流式插入
 # Milvus: proxy、query/data/index 节点、coordinators
-```
+`````
 
 **GPU 索引（2.5 新特性）：** Milvus 2.5 通过 NVIDIA RAFT 引入 GPU 加速索引构建。在单张 Tesla T4 上，索引构建速度比纯 CPU 快 **约 6 倍**。查询吞吐翻倍。对于运行 GPU 驱动的 Kubernetes 集群的团队（例如在 [DigitalOcean GPU Droplet](https://m.do.co/c/eca87ac14ee0) 上），这是一个巨大的优势。
 
-```yaml
+`````yaml
 # Milvus index node 的 GPU 资源分配（Helm values）
 indexNode: resources: limits: nvidia.com/gpu: 1  # 为索引构建请求 1 块 GPU
     requests: memory: "16Gi"
       cpu: "8"
-```
+`````
 
 ## 安装与配置：从 Docker 到 Kubernetes
 
 ### 方案 A：Docker 单机版（<5 分钟）
 
-```bash
+`````bash
 # 下载 docker-compose 文件
 curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
 
@@ -97,9 +98,9 @@ bash standalone_embed.sh start
 # 验证
 docker ps | grep milvus
 # 输出: milvusdb/milvus:v2.5.10  "milvus run standalone"
-```
+`````
 
-```bash
+`````bash
 # 安装 Python SDK
 pip install pymilvus==2.5.10
 
@@ -109,11 +110,11 @@ from pymilvus import connections, utility
 connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
-```
+`````
 
 ### 方案 B：使用 Helm 部署 Kubernetes（生产环境）
 
-```bash
+`````bash
 # 添加 Milvus Helm 仓库
 helm repo add milvus https://zilliztech.github.io/milvus-helm/
 helm repo update
@@ -128,28 +129,28 @@ helm install my-milvus milvus/milvus \
 
 # 验证所有 Pod 运行正常
 kubectl get pods -l app.kubernetes.io/instance=my-milvus
-```
+`````
 
-```bash
+`````bash
 # 通过 LoadBalancer 暴露服务
 kubectl patch svc my-milvus-proxy -p '{"spec":{"type":"LoadBalancer"}}'
 
 # 获取访问地址
 export MILVUS_HOST=$(kubectl get svc my-milvus-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo $MILVUS_HOST
-```
+`````
 
 ### 方案 C：Zilliz Cloud（全托管，零运维）
 
-```bash
+`````bash
 # 在 https://cloud.zilliz.com 注册
 # 创建免费集群（支持最高 100 万向量）
 # 获取 API key 和 endpoint
 
 pip install pymilvus==2.5.10
-```
+`````
 
-```python
+`````python
 from pymilvus import connections, Collection
 
 # 连接到 Zilliz Cloud
@@ -160,13 +161,13 @@ connections.connect(
 )
 
 print("Connected to Zilliz Cloud!")
-```
+`````
 
 ## 核心操作：创建 Collection、插入与搜索
 
 ### 使用 HNSW 索引创建 Collection
 
-```python
+`````python
 from pymilvus import FieldSchema, CollectionSchema, DataType, Collection
 
 # 定义字段
@@ -188,11 +189,11 @@ index_params = {
 }
 collection.create_index(field_name="embedding", index_params=index_params)
 collection.load()
-```
+`````
 
 ### 插入向量（单条与批量）
 
-```python
+`````python
 import numpy as np
 
 # 生成示例数据：10 万条向量，每条 1536 维
@@ -209,11 +210,11 @@ for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch
 # 刷新确保持久化
 collection.flush()
 print(f"总插入数: {collection.num_entities}")
-```
+`````
 
 ### 带元数据过滤的向量搜索
 
-```python
+`````python
 # 单向量搜索
 results = collection.search(
     data=[np.random.randn(1536).tolist()],
@@ -224,9 +225,9 @@ results = collection.search(
 )
 
 for hit in results[0]: print(f"ID: {hit.id}, 距离: {hit.distance:.4f}, 文本: {hit.entity.text}")
-```
+`````
 
-```python
+`````python
 # 混合搜索：向量相似度 + 元数据过滤
 from pymilvus import Filter
 
@@ -242,25 +243,25 @@ results = collection.search(
 )
 
 print(f"找到 {len(results[0])} 条过滤结果")
-```
+`````
 
 ## 性能基准测试：真实数据
 
-2026 年 4 月独立基准测试，使用 `dbpedia-openai-1M` 数据集（100 万向量，1536 维，AWS c6i.8xlarge 除非特别注明）：
+2026 年 4 月独立基准测试，使用 ````dbpedia-openai-1M```` 数据集（100 万向量，1536 维，AWS c6i.8xlarge 除非特别注明）：
 
 | 指标 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **p99 查询延迟** | 18 ms | **8 ms** | 28 ms | 19 ms | 12 ms |
 | **Recall@10** | **0.99** | **0.99** | 0.94 | 0.97 | 0.99 |
@@ -279,7 +280,7 @@ print(f"找到 {len(results[0])} 条过滤结果")
 
 ### 大规模插入基准测试
 
-```python
+`````python
 # 索引插入吞吐基准测试脚本
 import time
 from pymilvus import Collection
@@ -297,17 +298,17 @@ print(f"已插入 {batch:,} 条向量，耗时 {elapsed:.2f}s")
 print(f"吞吐: {batch/elapsed:,.0f} 向量/秒")
 # GPU index node 输出: 已插入 100,000 条向量，耗时 0.31s
 # 输出: 吞吐: 320,000 向量/秒
-```
+`````
 
 ## 与主流 AI 框架集成
 
 ### LangChain 集成
 
-```python
+`````python
 pip install langchain-milvus==0.1.8
-```
+`````
 
-```python
+`````python
 from langchain_milvus import Milvus
 from langchain_openai import OpenAIEmbeddings
 
@@ -327,15 +328,15 @@ vector_store.add_documents(docs)
 # 相似度搜索
 results = vector_store.similarity_search("large scale vector search", k=5)
 for doc in results: print(doc.page_content)
-```
+`````
 
 ### LlamaIndex 集成
 
-```python
+`````python
 pip install llama-index-vector-stores-milvus==0.6.0
-```
+`````
 
-```python
+`````python
 from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 
@@ -354,11 +355,11 @@ index = VectorStoreIndex.from_documents(documents, vector_store=vector_store)
 query_engine = index.as_query_engine()
 response = query_engine.query("What is Milvus architecture?")
 print(response)
-```
+`````
 
 ### OpenAI Embeddings 集成
 
-```python
+`````python
 from openai import OpenAI
 import numpy as np
 
@@ -374,7 +375,7 @@ def get_embedding(text: str) -> list[float]: resp = client.embeddings.create(
 # 将 OpenAI embedding 插入 Milvus
 embedding = get_embedding("Milvus vector database handles 10 billion vectors")
 collection.insert([[embedding], ["milvus_overview"]])
-```
+`````
 
 ## 高级用法与生产环境加固
 
@@ -382,7 +383,7 @@ collection.insert([[embedding], ["milvus_overview"]])
 
 Milvus 2.5 支持分层存储以降低大规模数据集成本：
 
-```yaml
+`````yaml
 # 分层存储的 Helm values
 extraConfigFiles: user.yaml: |+
     common: storageType: remote
@@ -394,11 +395,11 @@ extraConfigFiles: user.yaml: |+
         memoryLimit: 8GB  # 热数据保存在内存中
       disk: enabled: true     # 温数据保存在本地磁盘
         capacity: 100GB
-```
+`````
 
 ### 备份与灾难恢复
 
-```bash
+`````bash
 # 安装 Milvus Backup 工具
 git clone https://github.com/zilliztech/milvus-backup.git
 cd milvus-backup
@@ -409,30 +410,30 @@ make
 
 # 恢复到新集群
 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection
-```
+`````
 
 ### 使用 Prometheus 和 Grafana 监控
 
-```yaml
+`````yaml
 # Helm values 中的 Milvus 监控配置
 metrics: enabled: true
   serviceMonitor: enabled: true
     interval: 30s
 
 # Grafana 仪表板: https://github.com/zilliztech/milvus-insight
-```
+`````
 
-```bash
+`````bash
 # 端口转发访问 Milvus 指标
 kubectl port-forward svc/my-milvus-proxy 9091:9091
 
 # 检查健康状态
 curl http://localhost:9091/metrics | grep milvus_querynode_latency
-```
+`````
 
 ### 使用 Partition 实现多租户
 
-```python
+`````python
 # 创建 partition 实现多租户隔离
 collection.create_partition("tenant_acme")
 collection.create_partition("tenant_globalcorp")
@@ -451,23 +452,23 @@ results = collection.search(
     limit=10,
     partition_names=["tenant_acme"]
 )
-```
+`````
 
 ## 与竞品对比
 
 | 特性 | Milvus 2.5 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | pgvector 0.8 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **开源协议** | Apache-2.0 | No | BSD-3 | Apache-2.0 | PostgreSQL |
 | **最大规模** | **10B+ 向量** | 无限 | 200M/节点 | 500M/节点 | ~50M |
@@ -531,9 +532,9 @@ Milvus 2.5 集成 NVIDIA RAFT 实现 GPU 加速的 HNSW 和 IVF 索引构建。�
 
 Milvus Backup（官方工具）支持将完整集群快照备份到 S3 兼容存储。生产环境建议通过 cron 计划每日备份：
 
-```bash
+`````bash
 0 2 * * * /usr/local/bin/milvus-backup create -n "auto_$(date +\%Y\%m\%d)"
-```
+````
 
 使用 Pulsar 作为消息代理时支持时间点恢复，Pulsar 会保留操作日志。
 
@@ -602,12 +603,12 @@ Milvus 2.5 是十亿级工作负载中最强大的开源向量数据库。如果
 </script>
 
 
----
+* * *
 ## Related Articles
 
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale)
 
 
----
+* * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

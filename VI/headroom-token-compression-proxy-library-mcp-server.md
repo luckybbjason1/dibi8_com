@@ -13,9 +13,10 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
+
 # Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026
 
-```
+````
 ┌──────────────────────────────────────────────────────┐
 │              Đường dẫn nén Headroom                    │
 │                                                      │
@@ -36,7 +37,7 @@ featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headr
 │  │  (Claude Code / Codex / Copilot / Gemini CLI)  │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-```
+`````
 
 *Đường dẫn Headroom: đầu vào → nén → LLM với ít hơn 60-95% token*
 
@@ -55,13 +56,13 @@ Tính năng chính: - **Nén đầu vào** — Loại bỏ trùng lặp, cắt g
 - **Duy trì chất lượng** — Đã benchmark để tạo ra câu trả lời tương đương ở mức giảm 60-95% token
 - **Bắt đầu không cần config** — Có sẵn các giá trị mặc định hợp lý; tối ưu sau bằng quy tắc tùy chỉnh
 
-Dự án được xây dựng bằng Python, sử dụng tối thiểu phụ thuộc (chỉ `tiktoken` để đếm token) và tích hợp qua HTTP API tiêu chuẩn. Nó lưu trạng thái nén trong bộ nhớ hoặc Redis cho các kịch bản đa phiên.
+Dự án được xây dựng bằng Python, sử dụng tối thiểu phụ thuộc (chỉ ````tiktoken```` để đếm token) và tích hợp qua HTTP API tiêu chuẩn. Nó lưu trạng thái nén trong bộ nhớ hoặc Redis cho các kịch bản đa phiên.
 
 ## How Headroom Works
 
 Headroom hoạt động qua 3 giai đoạn trong đường dẫn: ### Giai đoạn 1: Thu thập đầu vào
 
-```bash
+`````bash
 # Cài đặt thư viện
 pip install headroom-compress
 
@@ -76,11 +77,11 @@ print(f'Compressed: {result.compressed_tokens} tokens')
 print(f'Savings: {result.savings_pct}%')
 # Output: Original: 5000 → Compressed: 950 → Savings: 81%
 "
-```
+`````
 
 ### Giai đoạn 2: Công cụ nén
 
-Công cụ nén áp dụng nhiều chiến lược: ```python
+Công cụ nén áp dụng nhiều chiến lược: `````python
 # Quy tắc nén tùy chỉnh
 from headroom import Compressor
 
@@ -99,32 +100,32 @@ compressed = compressor.compress([
     {"type": "rag_chunk", "data": embedded_text},
     {"type": "code_file", "data": source_code},
 ])
-```
+`````
 
 ### Giai đoạn 3: Tích hợp LLM
 
-```bash
+`````bash
 # Khởi động proxy server
 headroom serve --port 8787 --compressor balanced
 
 # Điều hướng agent của bạn đến proxy thay vì LLM trực tiếp
 # Agent → Headroom Proxy (8787) → Nén → LLM API
-```
+`````
 
-```json
+`````json
 // .env — Cấu hình LLM sẽ proxy qua
 HEADROOM_PROXY_PORT=8787
 LLM_ENDPOINT=https://api.anthropic.com/v1/messages
 LLM_MODEL=claude-sonnet-4-20250514
 LLM_API_KEY=${ANTH...KEY}
 COMPRESSION_STRATEGY=balanced
-```
+`````
 
 ## Installation & Setup
 
 ### Bắt đầu nhanh (Chế độ thư viện)
 
-```bash
+`````bash
 # Cài đặt
 pip install headroom-compress
 
@@ -134,11 +135,11 @@ import headroom
 compressed = headroom.compress(your_long_input)
 print(compressed.text)
 "
-```
+`````
 
 ### Chế độ proxy (Khuyến nghị cho AI Agents)
 
-```bash
+`````bash
 # Cài đặt và khởi động
 pip install headroom-compress
 headroom serve --host 0.0.0.0 --port 8787
@@ -154,11 +155,11 @@ curl -X POST http://localhost:8787/compress \
 #   "savings_pct": 80.3,
 #   "compressed_text": "..."
 # }
-```
+`````
 
 ### Chế độ máy chủ MCP
 
-```bash
+`````bash
 # Khởi động làm máy chủ MCP
 headroom mcp-serve --port 9090
 
@@ -168,11 +169,11 @@ claude-code --mcp http://localhost:9090
 # Máy chủ MCP expose: # - headroom/compress — Nén đầu vào văn bản
 # - headroom/benchmark — Chạy benchmark nén
 # - headroom/config — Lấy/cập nhật cài đặt nén
-```
+`````
 
 ### Triển khai Docker
 
-```bash
+`````bash
 # Chạy trong Docker
 docker run -d \
   --name headroom-proxy \
@@ -183,13 +184,13 @@ docker run -d \
 
 # Giám sát thống kê nén
 curl http://localhost:8787/stats | jq
-```
+`````
 
 ## Integration with Claude Code, Codex CLI, Copilot, and Gemini CLI
 
 Headroom hoạt động với mọi agent gửi HTTP request đến LLM API. Dưới đây là cách tích hợp với các công cụ phổ biến: ### Claude Code
 
-```bash
+`````bash
 # Cách 1: Dùng làm máy chủ MCP
 headroom mcp-serve --port 9090
 # Sau đó trong Claude Code: add-mcp headroom http://localhost:9090
@@ -197,20 +198,20 @@ headroom mcp-serve --port 9090
 # Cách 2: Đặt làm API proxy trong .claude-env
 export CLAUDE_API_BASE_URL=http://localhost:8787/v1
 # Claude Code tự động định tuyến qua Headroom
-```
+`````
 
 ### Codex CLI
 
-```bash
+`````bash
 # Điều hướng Codex qua proxy Headroom
 export OPENAI_API_BASE=http://localhost:8787/v1
 codex --model gpt-4o --prompt "Sửa lỗi auth"
 # Mọi ngữ cảnh đều đi qua nén Headroom trước
-```
+`````
 
 ### OpenRouter Aggregation
 
-```bash
+`````bash
 # Dùng Headroom với OpenRouter để tiết kiệm chi phí đa mô hình
 headroom serve \
   --proxy http://api.openrouter.ai/api/v1 \
@@ -219,7 +220,7 @@ headroom serve \
 
 # Headroom nén đầu vào rồi gửi đến OpenRouter
 # Bạn trả tiền cho token đã nén, không phải token thô
-```
+`````
 
 Tự host proxy infrastructure: [DigitalOcean](https://m.do.co/c/eca87ac14ee0) droplets cung cấp kết nối độ trễ thấp ổn định. [HTStack](https://my.htstack.com/aff.php?aff=27187) triển khai đa vùng, [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) proxy data-center cho triển khai đa khu vực.
 
@@ -236,18 +237,18 @@ Kiểm tra trên 100 đầu ra công cụ thực tế (hỗn hợp đầu ra ter
 
 ### Giảm chi phí: Kịch bản thực tế
 
-Một developer dùng Claude Code cho dự án Python 50K dòng: ```bash
+Một developer dùng Claude Code cho dự án Python 50K dòng: `````bash
 # Trước Headroom: # Ngữ cảnh hàng ngày: ~120.000 tokens/ngày
 # Chi phí: ~$48/tháng (Claude Sonnet @ $3/M)
 
 # Sau Headroom (chế độ cân bằng): # Ngữ cảnh hàng ngày: ~28.000 tokens/ngày
 # Chi phí: ~$11/tháng
 # Tiết kiệm: ~$37/tháng = giảm 77%
-```
+`````
 
 ### Nén chunk RAG
 
-Nén tài liệu được truy xuất trước khi gửi đến LLM: ```python
+Nén tài liệu được truy xuất trước khi gửi đến LLM: `````python
 from headroom import Compressor, rag_compress
 
 # Nén chunk RAG trước LLM
@@ -260,11 +261,11 @@ compressed_chunks = rag_compress(
 
 # Result: 47 chunk gốc → 12 chunk nén
 # Cùng chất lượng câu trả lời, ít hơn 74% token
-```
+`````
 
 ### Use case thực tế: Phân tích nhật ký CI/CD
 
-Một team xử lý 500 GitHub Actions logs mỗi tuần: ```bash
+Một team xử lý 500 GitHub Actions logs mỗi tuần: `````bash
 # Nén batch logs
 headroom compress-batch \
   --input ./ci-logs/*.log \
@@ -275,13 +276,13 @@ headroom compress-batch \
 # Phân tích logs đã nén bằng AI
 cat ./compressed-logs/build-42.log | \
   headroom serve --prompt "Tìm nguyên nhân gốc của lỗi này"
-```
+`````
 
 ## Advanced Usage / Production Hardening
 
 ### Quy tắc nén tùy chỉnh
 
-Định nghĩa quy tắc nén đặc thù cho domain: ```yaml
+Định nghĩa quy tắc nén đặc thù cho domain: `````yaml
 # headroom-config.yaml
 rules: # Bỏ qua nén file code dưới threshold
   - pattern: "\\.py$"
@@ -300,11 +301,11 @@ rules: # Bỏ qua nén file code dưới threshold
   - pattern: "openapi.*\\.yaml$"
     compress: false
     dedup: true
-```
+`````
 
 ### Session State với Redis
 
-Cho các kịch bản đa phiên, lưu trạng thái nén: ```bash
+Cho các kịch bản đa phiên, lưu trạng thái nén: `````bash
 # Khởi động với Redis state backend
 headroom serve \
   --redis-url redis://localhost:6379/0 \
@@ -312,11 +313,11 @@ headroom serve \
 
 # Trạng thái session được lưu qua các request
 # Hữu ích cho các session agent dài
-```
+`````
 
 ### Health Checks & Monitoring
 
-```bash
+`````bash
 # Health check endpoint
 curl -s http://localhost:8787/health | jq
 
@@ -331,7 +332,7 @@ curl -s http://localhost:8787/stats | jq
 
 # Rate limiting
 curl -s http://localhost:8787/config | jq
-```
+`````
 
 ## Comparison with Alternatives
 
@@ -368,7 +369,7 @@ A: Headroom dùng phân tích cấu trúc (ranh giới token, loại bỏ trùng
 
 **Q: Headroom có hoạt động với local models như Ollama không?**
 
-A: Có. Điều hướng proxy đến endpoint Ollama: `LLM_ENDPOINT=http://localhost:11434/v1`. Nén xảy ra trước khi request đến Ollama, giảm usage VRAM.
+A: Có. Điều hướng proxy đến endpoint Ollama: ````LLM_ENDPOINT=http://localhost:11434/v1````. Nén xảy ra trước khi request đến Ollama, giảm usage VRAM.
 
 **Q: Tôi có thể chạy Headroom trên VPS cho team không?**
 
@@ -380,7 +381,7 @@ A: Không. Headroom là mã nguồn mở (license MIT), hoàn toàn free và kh�
 
 **Q: Headroom xử lý RAG retrieval thế nào?**
 
-A: Headroom có hàm `rag_compress` scores, deduplicates và prunes các chunk truy xuất trước khi gửi đến LLM. Nó dùng embedding similarity để bảo toàn các chunk có relevance cao.
+A: Headroom có hàm ````rag_compress``` scores, deduplicates và prunes các chunk truy xuất trước khi gửi đến LLM. Nó dùng embedding similarity để bảo toàn các chunk có relevance cao.
 
 ## Sources & Further Reading
 
@@ -426,7 +427,7 @@ Một số link trên là affiliate link. dibi8.com có thể nhận commission 
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -436,7 +437,7 @@ Một số link trên là affiliate link. dibi8.com có thể nhận commission 
 - [headroom-token-compression-proxy-library-mcp-server](headroom-token-compression-proxy-library-mcp-server)
 - [codebase-memory-mcp-deep-code-intelligence](headroom-token-compression-proxy-library-mcp-server)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

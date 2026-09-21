@@ -24,6 +24,7 @@ aliases:
   - /kr/posts/stable-diffusion-webui/
 ---
 
+
 {{</* resource-info */>}}
 
 AUTOMATIC1111이 개발한 Stable Diffusion WebUI는 2026년 현재 로컬 AI 이미지 생성 분야에서 가장 널리 사용되는 오픈소스 인터페이스이다. **159,000개 이상의 GitHub stars**를 보유하며, 경쟁사들의 커뮤니티를 모두 합친 것보다 더 큰 규모를 자랑한다. 로컬 AI 이미지 파이프라인을 구축하고 있다면 이 도구의 설치, 구성, 확장 방법을 익히는 것은 선택이 아닌 필수이다.
@@ -35,7 +36,7 @@ AUTOMATIC1111이 개발한 Stable Diffusion WebUI는 2026년 현재 로컬 AI �
 
 ## Stable Diffusion WebUI란?
 
-Stable Diffusion WebUI는 Stable Diffusion 모델을 로컬에서 실행하기 위한 브라우저 기반 인터페이스이다. `http://localhost:7860`에서 접근 가능한 탭 기반 웹 애플리케이션으로 txt2img, img2img, 인페인팅, 업스케일링, 모델 머징, LoRA/DreamBooth 학습 등의 기능을 코드 작성 없이 제공한다.
+Stable Diffusion WebUI는 Stable Diffusion 모델을 로컬에서 실행하기 위한 브라우저 기반 인터페이스이다. ```http://localhost:7860````에서 접근 가능한 탭 기반 웹 애플리케이션으로 txt2img, img2img, 인페인팅, 업스케일링, 모델 머징, LoRA/DreamBooth 학습 등의 기능을 코드 작성 없이 제공한다.
 
 프로젝트는 AUTOMATIC1111이 AGPL-3.0 라이선스로 유지보수하고 있다. v1.10.1 버전(2025년 초 릴리스)은 SDXL 정제 패스 개선, 8GB GPU의 메모리 관리 최적화, SD3 Medium 추론의 기본 지원을 추가했다. 확장 생태계에는 1,000개 이상의 커뮤니티 플러그인이 있으며 프롬프트 자동 완성부터 배치 처리 파이프라인까지 다양한 기능을 커버한다.
 
@@ -44,7 +45,7 @@ Stable Diffusion WebUI는 Stable Diffusion 모델을 로컬에서 실행하기 �
 아키텍처는 모듈식 Python 백엔드 + Gradio 프론트엔드 패턴을 따른다: ![WebUI 아키텍처 흐름](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png)
 *아키텍처: Gradio 프론트엔드가 로컬 HTTP를 통해 모듈식 Python 백엔드와 통신*
 
-```
+`````
 사용자 브라우저 (Gradio UI)
     |
     v
@@ -59,9 +60,9 @@ Python 백엔드 (modules/)
     |
     v
 PyTorch + CUDA --- GPU (VRAM: 4-24GB)
-```
+`````
 
-설치 전 이해해야 할 핵심 개념: - **Checkpoint**: 훈련된 확산 가중치를 포함한 주 모델 파일(`.safetensors` 또는 `.ckpt`). SD 1.5 모델은 약 4GB, SDXL 모델은 약 6-7GB이다.
+설치 전 이해해야 할 핵심 개념: - **Checkpoint**: 훈련된 확산 가중치를 포함한 주 모델 파일(````.safetensors```` 또는 ````.ckpt````). SD 1.5 모델은 약 4GB, SDXL 모델은 약 6-7GB이다.
 - **VAE (변분 오토인코더)**: 픽셀 공간과 잠재 공간 사이의 인코딩/디코딩을 담당한다. 잘못 매칭된 VAE는 채도가 낮거나 흐릿한 출력을 만든다.
 - **Sampler**: 잠재 공간 노이즈를 점진적으로 이미지로 디노이징하는 알고리즘. DPM++ 2M Karras가 품질과 속도의 가장 널리 추천되는 균형점이다.
 - **CFG Scale**: 모델이 프롬프트를 얼마나 엄격히 따를지 제어한다. 7-9 값이 대부분의 사용 사례에 적합하며, 높은 값은 대비를 증가시키지만 아티팩트를 유발할 수 있다.
@@ -83,7 +84,7 @@ Stable Diffusion WebUI는 Windows, Linux, macOS를 지원한다. 모든 플랫�
 
 ### Windows 설치 (자동)
 
-자동 설치 프로그램은 Git, Python, 종속성 설정을 처리한다: ```batch
+자동 설치 프로그램은 Git, Python, 종속성 설정을 처리한다: `````batch
 :: 릴리스 페이지에서 sd.webui.zip 다운로드
 :: C:\stable-diffusion-webui에 압축 해제
 :: 먼저 업데이터 실행
@@ -92,13 +93,13 @@ update.bat
 
 :: WebUI 실행
 run.bat
-```
+`````
 
-첫 실행 시 스크립트가 PyTorch, transformers, 기본 SD 1.5 모델(약 4GB)을 다운로드한다. 이후 시작은 15-30초 소요된다. UI는 `http://127.0.0.1:7860`에서 사용 가능하다.
+첫 실행 시 스크립트가 PyTorch, transformers, 기본 SD 1.5 모델(약 4GB)을 다운로드한다. 이후 시작은 15-30초 소요된다. UI는 ````http://127.0.0.1:7860````에서 사용 가능하다.
 
 ### Windows 명령줄 인수
 
-VRAM이 제한적이거나 특정 최적화가 필요한 GPU의 경우 `webui-user.bat`을 편집한다: ```batch
+VRAM이 제한적이거나 특정 최적화가 필요한 GPU의 경우 ``webui-user.bat``을 편집한다: `````batch
 @echo off
 
 set PYTHON=python
@@ -114,11 +115,11 @@ set COMMANDLINE_ARGS=--xformers --autolaunch --update-check
 :: 검은색/녹색 이미지의 경우 --precision full --no-half 추가
 
 call webui.bat
-```
+`````
 
 ### Linux 설치 (수동)
 
-수동 설치는 Python 환경을 완전히 제어할 수 있다: ```bash
+수동 설치는 Python 환경을 완전히 제어할 수 있다: `````bash
 # 종속성 설치 (Ubuntu/Debian)
 sudo apt update && sudo apt install -y wget git python3 python3-venv libgl1 libglib2.0-0
 
@@ -134,13 +135,13 @@ pip install -r requirements.txt
 
 # 실행
 ./webui.sh --xformers --listen
-```
+`````
 
-디스플레이가 없는 시스템(헤드리스 서버)의 경우 `--listen`을 추가하여 모든 인터페이스에서 UI를 노출하고 `--gradio-auth 사용자명:비밀번호`로 기본 인증을 설정한다.
+디스플레이가 없는 시스템(헤드리스 서버)의 경우 ````--listen````을 추가하여 모든 인터페이스에서 UI를 노출하고 ````--gradio-auth 사용자명:비밀번호````로 기본 인증을 설정한다.
 
 ### Docker 설치 (프로덕션 환경 권장)
 
-Docker는 가장 재현 가능한 설정을 제공하며 특히 서버 배포에 적합하다: ```dockerfile
+Docker는 가장 재현 가능한 설정을 제공하며 특히 서버 배포에 적합하다: `````dockerfile
 # Dockerfile.stable-diffusion-webui
 FROM nvidia/cuda:12.1.1-devel-ubuntu22.04
 
@@ -169,9 +170,9 @@ USER sduser
 EXPOSE 7860
 
 ENTRYPOINT ["bash", "-c", ". venv/bin/activate && python3 launch.py --listen --api --xformers"]
-```
+`````
 
-빌드 및 실행: ```bash
+빌드 및 실행: `````bash
 # 이미지 빌드
 docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .
 
@@ -185,9 +186,9 @@ docker run -d \
   -v $(pwd)/extensions:/home/sduser/stable-diffusion-webui/extensions \
   -e NVIDIA_VISIBLE_DEVICES=all \
   sd-webui:latest
-```
+`````
 
-docker-compose 구성: ```yaml
+docker-compose 구성: `````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -205,11 +206,11 @@ services: stable-diffusion-webui: build: context: .
               count: all
               capabilities: [gpu]
     restart: unless-stopped
-```
+`````
 
-한 번의 명령으로 배포: ```bash
+한 번의 명령으로 배포: `````bash
 docker-compose up -d
-```
+`````
 
 ## ControlNet, LoRA 및 인기 도구와의 통합
 
@@ -218,7 +219,7 @@ docker-compose up -d
 ControlNet은 구조적 제어 생성을 가능하게 한다 — 포즈 전송, 깊이 인식 구도, 엣지 기반 제어: ![ControlNet 인터페이스](https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png)
 *WebUI txt2img 탭의 ControlNet 확장 패널*
 
-```bash
+`````bash
 # 확장 탭을 통해 설치 (권장)
 # 1. WebUI 열기 → 확장 → 사용 가능
 # 2. "불러오기" 클릭
@@ -228,9 +229,9 @@ ControlNet은 구조적 제어 생성을 가능하게 한다 — 포즈 전송, 
 
 # 또는 수동 설치: cd extensions
 git clone https://github.com/Mikubill/sd-webui-controlnet.git
-```
+`````
 
-ControlNet 모델을 `models/ControlNet/`에 다운로드: ```bash
+ControlNet 모델을 ``models/ControlNet/``에 다운로드: `````bash
 # 핵심 ControlNet 모델 (SD 1.5)
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
@@ -240,9 +241,9 @@ wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/res
 # SDXL ControlNet 모델
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors
 wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_mid.safetensors
-```
+`````
 
-UI에서 ControlNet 구성: ```json
+UI에서 ControlNet 구성: `````json
 // settings.json - ControlNet 구성
 {
   "control_net_max_models_num": 3,
@@ -254,28 +255,28 @@ UI에서 ControlNet 구성: ```json
   "control_net_unit_mode": false,
   "control_net_sync_field_args": true
 }
-```
+`````
 
 ### LoRA (Low-Rank Adaptation) 통합
 
-LoRA 파일은 베이스 체크포인트를 교체하지 않고 모델 동작을 미세 조정하는 경량 어댑터(약 10-200MB)이다: ```bash
+LoRA 파일은 베이스 체크포인트를 교체하지 않고 모델 동작을 미세 조정하는 경량 어댑터(약 10-200MB)이다: `````bash
 # LoRA 모델을 전용 디렉토리에 다운로드
 # .safetensors LoRA 파일을 다음 위치에 배치: # models/Lora/
 
 # 예시: 인기 있는 스타일 LoRA 다운로드
 wget -P models/Lora/ "https://civitai.com/api/download/models/12345"
-```
+`````
 
-프롬프트에서 LoRA 사용: ```
+프롬프트에서 LoRA 사용: `````
 <lora:add-detail-xl:1.0>, masterpiece, best quality, portrait of a warrior
 <lora:epiCRealismHelper:0.6>, photorealistic, 8k uhd
-```
+`````
 
-구문은 `<lora:파일명:가중치>`이며 가중치 범위는 0.0에서 1.0이다. 단일 프롬프트에 여러 LoRA를 스택할 수 있다.
+구문은 ````<lora:파일명:가중치>````이며 가중치 범위는 0.0에서 1.0이다. 단일 프롬프트에 여러 LoRA를 스택할 수 있다.
 
 ### ComfyUI 워크플로우 브리지
 
-노드 기반 워크플로우가 필요한 사용자를 위한 설정: ```bash
+노드 기반 워크플로우가 필요한 사용자를 위한 설정: `````bash
 # 보조 도구로 ComfyUI 설치 (마이그레이션 대신 권장)
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
@@ -288,13 +289,13 @@ ln -s /path/to/stable-diffusion-webui/models/ControlNet models/controlnet
 
 # 다른 포트에서 실행
 python main.py --port 8188
-```
+`````
 
 이 설정을 통해 Stable Diffusion WebUI로 빠른 프로토타이핑을 하고 ComfyUI로 복잡한 다단계 파이프라인을 구축하며 동일한 모델 라이브러리를 공유할 수 있다.
 
 ### 필수 확장 목록
 
-```bash
+`````bash
 # 프로덕션 준비 환경을 위해 다음 확장 설치
 cd extensions
 
@@ -317,7 +318,7 @@ git clone https://github.com/vladmandic/sd-extension-system-info.git
 git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 
 # 확장 설치 후 WebUI 재시작
-```
+`````
 
 ## 벤치마크 / 실제 사용 사례
 
@@ -338,13 +339,13 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 |-----------|----------------------|------|
 | txt2img SD 1.5 @ 512x512 | ~4.5 GB | 모든 현대 GPU에서 실행 가능 |
 | txt2img SDXL @ 1024x1024 | ~8.0 GB | 8GB+ VRAM 필요 |
-| SDXL + 1x ControlNet | ~12.5 GB | 8GB 카드에서는 `--medvram` 사용 |
+| SDXL + 1x ControlNet | ~12.5 GB | 8GB 카드에서는 ````--medvram```` 사용 |
 | SDXL + Hi-Res Fix 2x | ~14.0 GB | Tiled VAE 권장 |
 | SDXL + 2x ControlNet + Adetailer | ~20.0 GB | RTX 3090/4090 권장 |
 
 ### 메모리 최적화 플래그
 
-```bash
+`````bash
 # 4GB VRAM GPU (입문): python3 launch.py --lowvram --precision full --no-half --xformers
 
 # 6-8GB VRAM GPU (메인스트림): python3 launch.py --medvram --xformers --opt-split-attention
@@ -352,13 +353,13 @@ git clone https://github.com/Uminosachi/sd-webui-inpaint-anything.git
 # 12GB+ VRAM GPU (하이엔드): python3 launch.py --xformers --opt-sdp-attention
 
 # 24GB VRAM GPU (엔터프라이즈): python3 launch.py --xformers --opt-sdp-attention --no-half-vae
-```
+`````
 
 ## 고급 사용법 / 프로덕션 하드닝
 
 ### API 통합
 
-Stable Diffusion WebUI는 `/sdapi/v1/`에서 전체 REST API를 제공한다: ```python
+Stable Diffusion WebUI는 ``/sdapi/v1/``에서 전체 REST API를 제공한다: `````python
 # txt2img API용 Python 클라이언트
 import requests
 import json
@@ -386,11 +387,11 @@ result = response.json()
 # 생성된 이미지 저장
 import base64
 for i, img_data in enumerate(result[images]): with open(f"output_{i}.png", "wb") as f: f.write(base64.b64decode(img_data))
-```
+`````
 
 ### 배치 처리 스크립트
 
-```python
+`````python
 # batch_generate.py - 여러 프롬프트 처리
 import requests
 import csv
@@ -420,11 +421,11 @@ with open("prompts.csv", "r") as f: reader = csv.DictReader(f)
     for i, row in enumerate(reader): filename = f"output_{i:04d}.png"
         generate_image(row[prompt], filename)
         print(f"생성됨: {filename}")
-```
+`````
 
 ### 공개 배포를 위한 보안 하드닝
 
-```bash
+`````bash
 # 1. 인증 활성화
 python3 launch.py --listen --gradio-auth admin:강력한비밀번호
 
@@ -456,11 +457,11 @@ sudo ufw default deny incoming
 sudo ufw allow ssh
 sudo ufw allow 443/tcp
 sudo ufw enable
-```
+`````
 
 ### 모니터링 및 로깅
 
-```bash
+`````bash
 # 간단한 상태 확인 스크립트 생성
 #!/bin/bash
 # health_check.sh
@@ -470,9 +471,9 @@ if [ "$STATUS" != "200" ]; then
     echo "$(date): WebUI 다운 (HTTP $STATUS), 재시작 중..." >> /var/log/sd-webui.log
     systemctl restart sd-webui
 fi
-```
+`````
 
-```ini
+`````ini
 # 자동 시작을 위한 systemd 서비스
 # /etc/systemd/system/sd-webui.service
 [Unit]
@@ -490,13 +491,13 @@ Environment="PYTHONUNBUFFERED=1"
 
 [Install]
 WantedBy=multi-user.target
-```
+`````
 
-자동 시작 활성화: ```bash
+자동 시작 활성화: `````bash
 sudo systemctl daemon-reload
 sudo systemctl enable sd-webui
 sudo systemctl start sd-webui
-```
+`````
 
 ## 대안과의 비교
 
@@ -538,27 +539,27 @@ Stable Diffusion WebUI는 모든 이미지 생성 사용 사례에 적합한 도
 
 ### Stable Diffusion WebUI에 필요한 GPU는?
 
-SD 1.5 512x512 해상도의 경우 NVIDIA GPU에 최소 4GB VRAM이 필요하다. SDXL 1024x1024의 경우 8GB VRAM이 실질적인 최소 사양이다(`--medvram` 최적화 사용). 12GB VRAM 카드(RTX 3060, RTX 4060 Ti)는 타협 없이 편안한 SDXL 생성을 제공한다. ControlNet과 Hi-Res Fix를 함께 사용하는 전문적 용도는 24GB(RTX 3090/4090)를 권장한다.
+SD 1.5 512x512 해상도의 경우 NVIDIA GPU에 최소 4GB VRAM이 필요하다. SDXL 1024x1024의 경우 8GB VRAM이 실질적인 최소 사양이다(````--medvram```` 최적화 사용). 12GB VRAM 카드(RTX 3060, RTX 4060 Ti)는 타협 없이 편안한 SDXL 생성을 제공한다. ControlNet과 Hi-Res Fix를 함께 사용하는 전문적 용도는 24GB(RTX 3090/4090)를 권장한다.
 
 ### Stable Diffusion WebUI를 어떻게 업데이트하나요?
 
-설치 디렉토리에서 `git pull`을 실행하여 최신 코드를 가져온 다음 WebUI를 재시작한다. Windows에서는 `update.bat`을 더블클릭한다. 확장이 업데이트 후 손상된 경우 `venv` 폴드를 삭제하여 종속성 재설치를 강제한다.
+설치 디렉토리에서 ````git pull````을 실행하여 최신 코드를 가져온 다음 WebUI를 재시작한다. Windows에서는 ````update.bat````을 더블클릭한다. 확장이 업데이트 후 손상된 경우 ````venv```` 폴드를 삭제하여 종속성 재설치를 강제한다.
 
 ### NVIDIA GPU 없이 Stable Diffusion WebUI를 실행할 수 있나요?
 
-예, 하지만 상당한 제한이 있다. AMD GPU는 Linux에서 ROCm을 통해 작동한다(`--precision full --no-half` 추가). Apple Silicon Mac은 `./webui.sh`로 MPS 백엔드를 통해 실행할 수 있지만 동등한 NVIDIA 하드웨어보다 3-5배 느리다. CPU 전용 모드는 `--use-cpu all`로 가능하지만 512x512 이미지 하나를 생성하는 데 5-10분이 소요된다.
+예, 하지만 상당한 제한이 있다. AMD GPU는 Linux에서 ROCm을 통해 작동한다(````--precision full --no-half```` 추가). Apple Silicon Mac은 ````./webui.sh````로 MPS 백엔드를 통해 실행할 수 있지만 동등한 NVIDIA 하드웨어보다 3-5배 느리다. CPU 전용 모드는 ````--use-cpu all````로 가능하지만 512x512 이미지 하나를 생성하는 데 5-10분이 소요된다.
 
 ### 생성된 이미지가 검은색 또는 녹색인 이유는?
 
-특정 GPU/드라이버 조합에서의 반정밀도 문제이다. `--precision full --no-half`를 추가한다. VAE에서 특정 NaN 오류의 경우 `--no-half-vae`를 대신 사용한다. RTX 16 시리즈와 일부 GTX 카드가 이 문제에 더 취약하다.
+특정 GPU/드라이버 조합에서의 반정밀도 문제이다. ````--precision full --no-half````를 추가한다. VAE에서 특정 NaN 오류의 경우 ````--no-half-vae````를 대신 사용한다. RTX 16 시리즈와 일부 GTX 카드가 이 문제에 더 취약하다.
 
 ### "CUDA out of memory" 오류를 어떻게 해결하나요?
 
-먼저 `--xformers`로 xFormers를 활성화한다(VRAM 20-30% 감소). 8GB 카드는 `--medvram`을, 4-6GB 카드는 `--lowvram`을 사용한다. 고해상도 생성을 위해 Tiled VAE 확장을 설치한다. FP8 또는 NF4 양자화 모델을 고려하면 품질 손실은 미미하면서 VRAM을 50% 절약할 수 있다.
+먼저 ````--xformers````로 xFormers를 활성화한다(VRAM 20-30% 감소). 8GB 카드는 ````--medvram````을, 4-6GB 카드는 ````--lowvram````을 사용한다. 고해상도 생성을 위해 Tiled VAE 확장을 설치한다. FP8 또는 NF4 양자화 모델을 고려하면 품질 손실은 미미하면서 VRAM을 50% 절약할 수 있다.
 
 ### Stable Diffusion WebUI를 인터넷에 노출하는 것이 안전한가요?
 
-아니요 —— 추가 보안 조치 없이는 안전하지 않다. `--listen` 플래그는 인증 없이 UI를 노출한다. 항상 `--gradio-auth 사용자명:비밀번호`와 HTTPS 리버스 프록시(nginx/Caddy) 및 방화벽 규칙을 함께 사용해야 한다.
+아니요 —— 추가 보안 조치 없이는 안전하지 않다. ````--listen```` 플래그는 인증 없이 UI를 노출한다. 항상 ````--gradio-auth 사용자명:비밀번호````와 HTTPS 리버스 프록시(nginx/Caddy) 및 방화벽 규칙을 함께 사용해야 한다.
 
 ## 결론
 
@@ -569,7 +570,7 @@ AUTOMATIC1111의 Stable Diffusion WebUI는 2026년에도 로컬 AI 이미지 생
 1. GPU가 8GB+ VRAM을 갖추고 있는지 확인하고 자동 설치 프로그램(Windows) 또는 Docker(Linux/서버)로 WebUI 설치
 2. ControlNet + 4개 핵심 모델(openpose, depth, canny, lineart) 설치
 3. 2-3개 고품질 SDXL 체크포인트와 사용 사례에 맞는 5-10개 LoRA 어댑터 다운로드
-4. 하드웨어에 맞는 `--xformers` 및 적절한 VRAM 플래그 구성
+4. 하드웨어에 맞는 ````--xformers``` 및 적절한 VRAM 플래그 구성
 5. localhost 이외에 배포하는 경우 nginx 리버스 프록시와 인증 설정
 
 **Telegram 그룹에서 이 가이드에 대해 논의하거나 도움을 받으세요:** [t.me/dibi8opensource](https://t.me/dibi8opensource)
@@ -622,7 +623,7 @@ AUTOMATIC1111의 Stable Diffusion WebUI는 2026년에도 로컬 AI 이미지 생
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -632,6 +633,6 @@ AUTOMATIC1111의 Stable Diffusion WebUI는 2026년에도 로컬 AI 이미지 생
 - [comfyui-workflows-complete-guide](stable-diffusion-webui)
 - [modal-serverless-gpu-compute](stable-diffusion-webui)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

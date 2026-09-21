@@ -30,6 +30,7 @@ faqs: - q: 'How do you add persistent memory to Claude Code?'
     a: 'MemPalace stores data 100% locally using ChromaDB, so no project context is sent to external cloud servers. This differs from Pinecone, which sends data to cloud servers.'
   - q: 'Is MemPalace free to use?'
     a: 'Yes. MemPalace is open source under the MIT license and costs $0 with no API or subscription fees, unlike Pinecone which charges subscription or usage fees.'---
+
 {</* resource-info */>}
 
 # Claude Code Session Memory: How to Integrate MemPalace for 96.6% Recall (2026 Guide)
@@ -50,7 +51,7 @@ If you want your AI agent to remember project history, you have a few options. H
 
 ### How to integrate via MCP
 
-MemPalace exposes a standard Model Context Protocol (MCP) server. You simply configure your `claude_code_config.json` to point to `http://localhost:8787/mcp` and grant it read/write access. From then on, whenever you say 'Remember this architectural decision', Claude routes it directly to MemPalace's dual verbatim-vector storage.
+MemPalace exposes a standard Model Context Protocol (MCP) server. You simply configure your ``claude_code_config.json`` to point to ``http://localhost:8787/mcp`` and grant it read/write access. From then on, whenever you say 'Remember this architectural decision', Claude routes it directly to MemPalace's dual verbatim-vector storage.
 
 ## FAQ
 
@@ -133,7 +134,7 @@ Claude Code Session Memory: How to Integrate MemPalace for 96.6% Recall (2026 Gu
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -164,15 +165,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

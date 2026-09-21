@@ -7,6 +7,7 @@ aliases:
   - /posts/ollama-local-llm-guide/
 ---
 
+
 {</* resource-info */>}
 
 Ollama는 로컬 환경에서 대규모 언어 모델(LLM)을 가장 쉽게 실행할 수 있게 해주는 오픈소스 도구다. 2024년 초 출시 이후 GitHub Star 86,000개 이상을 기록하며, 개발자와 기업 모두에게 사실상의 로컬 LLM 실행 표준으로 자리잡았다. 이 가이드는 macOS, Windows, Linux 전 플랫폼 설치부터 모델 관리, API 통합, 프로덕션 배포까지 전 과정을 담는다.
@@ -38,58 +39,58 @@ Ollama는 Go 언어로 작성된 경량 실행 환경으로, Llama, Mistral, Qwe
 
 ### macOS 설치
 
-```bash
+````bash
 # Homebrew로 설치
 brew install ollama
 
 # 또는 공식 웹사이트에서 DMG 다운로드
 # https://ollama.com/download
-```
+`````
 
 ### Windows 설치
 
-```powershell
+`````powershell
 # PowerShell 관리자 권한으로 실행
 winget install Ollama.Ollama
 
 # 또는 https://ollama.com/download 에서 설치 프로그램 다운로드
-```
+`````
 
 ### Linux 설치
 
-```bash
+`````bash
 curl -fsSL https://ollama.com/install.sh | sh
 
 # 수동 설치
 sudo curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/local/bin/ollama
 sudo chmod +x /usr/local/bin/ollama
-```
+`````
 
 ### Docker로 실행
 
-```bash
+`````bash
 # CPU 전용
 docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
 # NVIDIA GPU 사용
 docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-```
+`````
 
 ### 설치 확인
 
-```bash
+`````bash
 ollama --version
 # ollama version 0.5.4
 
 ollama list
 # NAME    ID    SIZE    MODIFIED
-```
+`````
 
 ## 첫 번째 로컬 LLM 실행하기
 
 ### 모델 다운로드
 
-```bash
+`````bash
 # Llama 3.1 8B 모델 다운로드 (약 4.7GB)
 ollama pull llama3.1
 
@@ -98,19 +99,19 @@ ollama pull mistral
 
 # 한국어에 강한 Qwen2.5 7B (약 4.4GB)
 ollama pull qwen2.5:7b
-```
+`````
 
 ### 대화형 실행
 
-```bash
+`````bash
 ollama run llama3.1
 >>> 한국의 역사에 대해 3문장으로 설명해줘
 한국은 ...
-```
+`````
 
 ### REST API 사용
 
-```bash
+`````bash
 # curl로 API 호출
 curl http://localhost:11434/api/generate -d '{
   "model": "llama3.1",
@@ -122,15 +123,15 @@ curl http://localhost:11434/api/chat -d '{
   "model": "llama3.1",
   "messages": [{"role": "user", "content": "안녕하세요"}]
 }'
-```
+`````
 
 ### 모델 목록 관리
 
-```bash
+`````bash
 ollama list          # 설치된 모델 목록
 ollama rm mistral    # 모델 삭제
 ollama cp llama3.1 my-model  # 모델 복사
-```
+`````
 
 ## 2025년 주요 Ollama 모델
 
@@ -160,18 +161,18 @@ ollama cp llama3.1 my-model  # 모델 복사
 ### GPU 가속 설정
 
 **NVIDIA GPU:**
-```bash
+`````bash
 # CUDA가 자동으로 감지됨
 ollama run llama3.1  # GPU 자동 사용
 
 # 특정 GPU 지정
 CUDA_VISIBLE_DEVICES=0 ollama serve
-```
+`````
 
 **AMD GPU (ROCm):**
-```bash
+`````bash
 HSA_OVERRIDE_GFX_VERSION=10.3.0 ollama serve
-```
+`````
 
 **Apple Silicon:**
 M1/M2/M3/M4 칩의 통합 메모리와 Neural Engine을 자동으로 활용한다. Unified Memory 아키텍처 덕분에 16GB Mac에서도 70B 모델의 Q4 양자화 버전을 실행할 수 있다.
@@ -180,13 +181,13 @@ M1/M2/M3/M4 칩의 통합 메모리와 Neural Engine을 자동으로 활용한�
 
 - 8코어 이상의 CPU 권장
 - AVX2 명령어 세트 지원 확인
-- `OLLAMA_NUM_PARALLEL=1`로 병렬 처리 제한하여 메모리 절약
+- ````OLLAMA_NUM_PARALLEL=1````로 병렬 처리 제한하여 메모리 절약
 
 ## 개발자를 위한 Ollama
 
 ### REST API 상세
 
-```bash
+`````bash
 # 생성 API (스토리밍)
 curl -X POST http://localhost:11434/api/generate \
   -H "Content-Type: application/json" \
@@ -204,15 +205,15 @@ curl -X POST http://localhost:11434/api/generate \
 curl http://localhost:11434/api/embeddings \
   -H "Content-Type: application/json" \
   -d '{"model": "llama3.1", "prompt": "임베딩할 텍스트"}'
-```
+`````
 
 ### Python 통합
 
-```bash
+`````bash
 pip install ollama
-```
+`````
 
-```python
+`````python
 import ollama
 
 # 텍스트 생성
@@ -234,11 +235,11 @@ embedding = ollama.embeddings(
     model="llama3.1",
     prompt="임베딩할 문장"
 )["embedding"]
-```
+`````
 
 ### LangChain과 Ollama 연동
 
-```python
+`````python
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 
 llm = ChatOllama(model="llama3.1", temperature=0.7)
@@ -246,13 +247,13 @@ embeddings = OllamaEmbeddings(model="llama3.1")
 
 # RAG 체인 구성
 response = llm.invoke("LangChain이란 무엇인가?")
-```
+`````
 
 ### OpenAI 호환 API
 
-Ollama는 `/v1/chat/completions` 엔드포인트를 제공하여 OpenAI SDK와 호환된다.
+Ollama는 ````/v1/chat/completions```` 엔드포인트를 제공하여 OpenAI SDK와 호환된다.
 
-```python
+`````python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
@@ -261,13 +262,13 @@ response = client.chat.completions.create(
     model="llama3.1",
     messages=[{"role": "user", "content": "안녕하세요"}]
 )
-```
+`````
 
 ## 고급 Ollama 기능
 
 ### 커스텀 Modelfile 생성
 
-```dockerfile
+`````dockerfile
 FROM llama3.1
 
 SYSTEM """당신은 전문적인 소프트웨어 엔지니어 어시스턴트입니다.
@@ -276,37 +277,37 @@ SYSTEM """당신은 전문적인 소프트웨어 엔지니어 어시스턴트입
 PARAMETER temperature 0.2
 PARAMETER top_p 0.9
 PARAMETER num_ctx 4096
-```
+`````
 
-```bash
+`````bash
 ollama create my-coder -f Modelfile
 ollama run my-coder
-```
+`````
 
 ### 멀티 모델 서빙
 
-```bash
+`````bash
 # 터미널 1
 ollama serve
 
 # 터미널 2 - 여러 모델 동시 호출 가능
 curl http://localhost:11434/api/chat -d '{"model": "llama3.1", ...}'
 curl http://localhost:11434/api/chat -d '{"model": "mistral", ...}'
-```
+`````
 
 ### 동시 요청 처리
 
-Ollama 0.4부터 `OLLAMA_NUM_PARALLEL` 환경 변수로 동시 처리 수를 조정할 수 있다.
+Ollama 0.4부터 ````OLLAMA_NUM_PARALLEL```` 환경 변수로 동시 처리 수를 조정할 수 있다.
 
-```bash
+`````bash
 OLLAMA_NUM_PARALLEL=4 ollama serve
-```
+`````
 
 ## 프로덕션 환경에서의 Ollama
 
 ### Docker Compose 구성
 
-```yaml
+`````yaml
 version: "3.8"
 services: ollama: image: ollama/ollama:latest
     container_name: ollama
@@ -318,13 +319,13 @@ services: ollama: image: ollama/ollama:latest
     environment: - OLLAMA_NUM_PARALLEL=4
       - OLLAMA_MAX_LOADED_MODELS=2
 
-volumes: ollama-data: ```
+volumes: ollama-data: `````
 
 ### 로드 밸런싱
 
 고가용성을 위해 여러 Ollama 인스턴스를 NGINX 로드 밸런서 뒤에 배치한다.
 
-```nginx
+`````nginx
 upstream ollama {
     server localhost:11434;
     server localhost:11435;
@@ -337,11 +338,11 @@ server {
         proxy_pass http://ollama;
     }
 }
-```
+`````
 
 ### 모니터링과 로깅
 
-Ollama는 Prometheus 메트릭 엔드포인트를 기본 제공하지 않는다. 대신 `ollama ps` 명령으로 현재 로드된 모델과 메모리 사용량을 확인할 수 있다. 프로덕션에서는 컨테이너 로그 수집과 메모리/CPU 모니터링을 필수적으로 구성해야 한다.
+Ollama는 Prometheus 메트릭 엔드포인트를 기본 제공하지 않는다. 대신 ````ollama ps```` 명령으로 현재 로드된 모델과 메모리 사용량을 확인할 수 있다. 프로덕션에서는 컨테이너 로그 수집과 메모리/CPU 모니터링을 필수적으로 구성해야 한다.
 
 ### 보안 모범 사례
 
@@ -364,31 +365,31 @@ Ollama는 Prometheus 메트릭 엔드포인트를 기본 제공하지 않는다.
 
 **추론 속도가 느릴 때:**
 
-- GPU가 올바르게 감지되었는지 `ollama ps`로 확인
+- GPU가 올바르게 감지되었는지 ````ollama ps````로 확인
 - 더 낮은 양자화 레벨의 모델 사용 (Q5 → Q4)
-- `num_ctx`를 2048 이하로 줄여 메모리 사용 감소
+- ````num_ctx````를 2048 이하로 줄여 메모리 사용 감소
 
 **모델 다운로드 실패:**
 
-- `~/.ollama` 디렉토리의 남은 용량 확인
-- 프록시 환경 시 `HTTP_PROXY`, `HTTPS_PROXY` 환경 변수 설정
-- `ollama pull` 명령 재실행
+- ````~/.ollama```` 디렉토리의 남은 용량 확인
+- 프록시 환경 시 ````HTTP_PROXY````, ````HTTPS_PROXY```` 환경 변수 설정
+- ````ollama pull```` 명령 재실행
 
 **메모리 부족:**
 
 - 더 작은 모델 선택 (13B → 7B)
 - 양자화 레벨 낮추기 (Q8 → Q4)
-- `OLLAMA_MAX_LOADED_MODELS=1`로 동시 로드 모델 수 제한
+- ````OLLAMA_MAX_LOADED_MODELS=1````로 동시 로드 모델 수 제한
 
 **네트워크/프록시 문제:**
 
-```bash
+`````bash
 export HTTP_PROXY=http://proxy:port
 export HTTPS_PROXY=http://proxy:port
 ollama pull llama3.1
-```
+`````
 
----
+* * *
 
 ## 자주 묻는 질문 (FAQ)
 
@@ -402,7 +403,7 @@ ollama pull llama3.1
 네, CPU 전용 모드로 실행할 수 있습니다. 다만 7B 모델 기준 토큰 생성 속도가 GPU 대비 5~10배 느립니다. AVX2를 지원하는 최신 CPU에서 양호한 성능을 얻을 수 있습니다.
 
 **LangChain과 Ollama를 함께 사용하려면?**
-`langchain-ollama` 패키지를 설치하고 `ChatOllama`와 `OllamaEmbeddings` 클래스를 사용합니다. LangChain의 모든 체인과 에이전트 패턴을 로컬 모델로 실행할 수 있습니다. OpenAI 호환 API 엔드포인트도 제공됩니다.
+````langchain-ollama```` 패키지를 설치하고 ````ChatOllama````와 ````OllamaEmbeddings``` 클래스를 사용합니다. LangChain의 모든 체인과 에이전트 패턴을 로컬 모델로 실행할 수 있습니다. OpenAI 호환 API 엔드포인트도 제공됩니다.
 
 **코딩에 가장 적합한 Ollama 모델은 무엇인가요?**
 2025년 기준 CodeLlama, DeepSeek Coder, Qwen 2.5 Coder가 코딩 작업에서 우수한 성능을 보입니다. 7B 크기에서는 Qwen 2.5 Coder가 Python, JavaScript, SQL에서 균형 잡힌 성능을 제공합니다. 13B 이상에서는 DeepSeek V3가 가장 강력합니다.
@@ -415,7 +416,7 @@ ollama pull llama3.1
 - [LangChain Ollama 통합 문서](https://python.langchain.com)
 - [Hugging Face 모델 허브](https://huggingface.co)
 
----
+* * *
 
 ## 추천 인프라
 

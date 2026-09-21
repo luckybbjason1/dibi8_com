@@ -24,11 +24,12 @@ aliases:
   - /zh/posts/meilisearch-fast-search-engine/-
 ---
 
+
 {{</* resource-info */>}}
 
-## 引言：数据库的 `LIKE` 查询正在扼杀你的用户体验
+## 引言：数据库的 ```LIKE```` 查询正在扼杀你的用户体验
 
-搜索是大多数应用中交互频率最高的功能。然而，**2026 年仍有 63% 的 Web 应用使用数据库 `LIKE` 查询**进行搜索。结果是什么？在超过 10 万行的数据集上，查询耗时 **300 毫秒到 3 秒**。用户在 500 毫秒后就会放弃搜索。你正在流失用户。
+搜索是大多数应用中交互频率最高的功能。然而，**2026 年仍有 63% 的 Web 应用使用数据库 ````LIKE```` 查询**进行搜索。结果是什么？在超过 10 万行的数据集上，查询耗时 **300 毫秒到 3 秒**。用户在 500 毫秒后就会放弃搜索。你正在流失用户。
 
 你听说过 Elasticsearch。它有效，但需要 **至少 8GB 内存**、JVM 调优和一个专门的运维团队。Algolia 很快，但规模化成本为 **每 1000 次搜索 $1.00**。你需要一种能在几分钟内部署、在 $20 VPS 上运行、并轻松处理数百万文档的方案。
 
@@ -42,9 +43,9 @@ aliases:
 
 | 属性 | 详情 |
 |
----
+* * *
 |
----
+* * *
 |
 | **最新版本** | 1.12（2026 年 3 月） |
 | **GitHub Stars** | 51", "300+ |
@@ -96,7 +97,7 @@ Meilisearch 使用自定义排序规则系统。默认排序规则（按顺序�
 Meilisearch 支持：
 
 - **动态分面** — 为任何可过滤属性请求分面计数
-- **复杂过滤** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
+- **复杂过滤** — ````price >= 10 AND (category = "shoes" OR in_stock = true)````
 - **查询时排序** — 按任何可排序属性排序
 - **地理搜索** — 按与经纬度的距离过滤和排序
 - **多租户** — 通过租户令牌实现安全的多用户隔离（v1.12）
@@ -108,7 +109,7 @@ Meilisearch 支持：
 
 Meilisearch 的启动速度比几乎所有搜索引擎都快。需要 **Docker 24.0+** 和 **至少 512MB RAM**（建议 1GB）。
 
-```bash
+`````bash
 docker run -d \
   --name meilisearch \
   --restart unless-stopped \
@@ -121,15 +122,15 @@ docker run -d \
 # 验证健康状态
 curl -s http://localhost:7700/health | jq .
 # 预期输出: { "status": "available" }
-```
+`````
 
-**注意**：`MEILI_MASTER_KEY` 生产环境至少需要 16 字节。将 `your-secure-master-key-32-chars-long!!` 替换为真正的密钥。
+**注意**：````MEILI_MASTER_KEY```` 生产环境至少需要 16 字节。将 ````your-secure-master-key-32-chars-long!!```` 替换为真正的密钥。
 
 ### 第二步：创建索引并添加文档
 
 Meilisearch 使用"索引"而非"集合"。与 Typesense 不同，**Meilisearch 不需要预定义 Schema** —— 它在首次导入文档时自动检测字段类型。
 
-```bash
+`````bash
 # 创建索引
 curl -s -X POST 'http://localhost:7700/indexes' \
   -H 'Content-Type: application/json' \
@@ -148,13 +149,13 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
     }", "{
       "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
     }"]' | jq .
-```
+`````
 
 ### 第三步：配置可搜索和可过滤字段
 
 告诉 Meilisearch 哪些字段用于搜索，哪些用于过滤：
 
-```bash
+`````bash
 # 更新索引设置
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -172,11 +173,11 @@ curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
       "exactness"
     ]
   }' | jq .
-```
+`````
 
 ### 第四步：容错搜索
 
-```bash
+`````bash
 # 容错搜索（"headphons" 而非 "headphones"）
 curl -s -X POST 'http://localhost:7700/indexes/products/search' \
   -H 'Content-Type: application/json' \
@@ -188,7 +189,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "facets": ["category"],
     "limit": 10
   }' | jq .
-```
+`````
 
 响应包含匹配的文档、每个类别的分面计数和高亮匹配项 —— 全部在 **30 毫秒以内**。
 
@@ -196,22 +197,22 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 
 Meilisearch 异步处理文档添加。检查任务状态：
 
-```bash
+`````bash
 # 检查最新任务
 curl -s 'http://localhost:7700/tasks?limit=1' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq '.results[0] | {uid, status, type, duration}'
 # 预期输出: { "uid": 1, "status": "succeeded", "type": "documentAdditionOrUpdate", "duration": "PT0.234S" }
-```
+`````
 
 ## 与 JavaScript、Python、PHP、Go 和 React 的集成
 
 ### JavaScript/Node.js SDK
 
-```bash
+`````bash
 npm install meilisearch
-```
+`````
 
-```javascript
+`````javascript
 const { MeiliSearch } = require(meilisearch);
 
 const client = new MeiliSearch({
@@ -231,24 +232,24 @@ async function search(query) {
     attributesToHighlight: [name, description]
   });
 
-  console.log(`Found ${results.estimatedTotalHits} hits`);
+  console.log(````Found ${results.estimatedTotalHits} hits````);
   console.log('Facets:', results.facetDistribution);
   
   results.hits.forEach(hit => {
-    console.log(`- ${hit.name} ($${hit.price}) [${hit._formatted.name}]`);
+    console.log(````- ${hit.name} ($${hit.price}) [${hit._formatted.name}]````);
   });
 }
 
 search(headphons); // 自动处理拼写错误
-```
+`````
 
 ### Python SDK
 
-```bash
+`````bash
 pip install meilisearch
-```
+`````
 
-```python
+`````python
 import meilisearch
 import os
 
@@ -274,17 +275,17 @@ results = index.search(
 print(f"Hits: {results[estimatedTotalHits]}")
 print(f"Facets: {results.get(facetDistribution, {})}")
 for hit in results[hits]: print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
-```
+`````
 
 ### React InstantSearch 集成
 
-Meilisearch 提供了 `meilisearch/instant-meilisearch` 用于 React InstantSearch 兼容性：
+Meilisearch 提供了 ````meilisearch/instant-meilisearch```` 用于 React InstantSearch 兼容性：
 
-```bash
+`````bash
 npm install @meilisearch/instant-meilisearch react-instantsearch-dom
-```
+`````
 
-```jsx
+`````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList, Stats } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -326,15 +327,15 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-```
+`````
 
 ### PHP SDK
 
-```bash
+`````bash
 composer require meilisearch/meilisearch-php
-```
+`````
 
-```php
+`````php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -356,15 +357,15 @@ foreach ($results->getHits() as $hit) {
     echo "- {$hit[name]} \${$hit[price]}\n";
 }
 ?>
-```
+`````
 
 ### Go SDK
 
-```bash
+`````bash
 go get github.com/meilisearch/meilisearch-go
-```
+`````
 
-```go
+`````go
 package main
 
 import (
@@ -398,7 +399,7 @@ func main() {
         fmt.Printf("- %s ($%.0f)\n", doc["name"], doc["price"])
     }
 }
-```
+`````
 
 ## 基准测试与实际案例
 
@@ -408,9 +409,9 @@ func main() {
 
 | 指标 | 结果 |
 |
----
+* * *
 |
----
+* * *
 |
 | **索引构建时间** | 52 秒（250 万文档） |
 | **平均查询延迟（p50）** | **9 毫秒** |
@@ -426,9 +427,9 @@ func main() {
 
 ### AI 搜索（Meilisearch AI）
 
-自 v1.10 起，Meilisearch 通过 `embedders` 配置支持**向量搜索和混合搜索**：
+自 v1.10 起，Meilisearch 通过 ````embedders```` 配置支持**向量搜索和混合搜索**：
 
-```bash
+`````bash
 # 为语义搜索配置嵌入器
 curl -s -X PATCH 'http://localhost:7700/indexes/products/settings' \
   -H 'Content-Type: application/json' \
@@ -452,7 +453,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
     "hybrid": { "semanticRatio": 0.5 },
     "limit": 5
   }' | jq '.hits[] | {name, _rankingScore}'
-```
+`````
 
 这实现了**语义搜索** —— 当用户搜索 "comfortable audio device" 时找到 "headphones" —— 无需单独的向量数据库。
 
@@ -460,11 +461,11 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 
 | 公司 | 规模 | 使用场景 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Louis Vuitton** | 奢侈品零售 | 带容错的产品搜索 |
 | **Elementary OS** | 开源 | AppCenter 包搜索 |
@@ -476,7 +477,7 @@ curl -s -X POST 'http://localhost:7700/indexes/products/search' \
 
 ### 1. 生产环境 Docker Compose
 
-```yaml
+`````yaml
 # docker-compose.yml
 version: '3.8'
 
@@ -500,7 +501,7 @@ services: meilisearch: image: getmeili/meilisearch:v1.12
     volumes: - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
 
-volumes: meilisearch-data: caddy-data: ```
+volumes: meilisearch-data: caddy-data: `````
 
 在任何 VPS 上部署。需要可靠的主机？[DigitalOcean](https://m.do.co/c/eca87ac14ee0) 提供 **$200 免费额度** —— 足够在 2GB 云服务器上运行 Meilisearch 11 个月。
 
@@ -508,7 +509,7 @@ volumes: meilisearch-data: caddy-data: ```
 
 Meilisearch 1.12 支持通过租户令牌实现安全的多租户：
 
-```javascript
+`````javascript
 const { MeiliSearch } = require(meilisearch);
 const crypto = require(crypto);
 
@@ -532,11 +533,11 @@ const token = client.generateTenantToken(
 
 console.log('Tenant token:', token);
 // 此令牌只能搜索 user_id = 123 的文档
-```
+`````
 
 ### 3. 定时快照和备份
 
-```bash
+`````bash
 # 触发转储（快照）
 curl -s -X POST 'http://localhost:7700/dumps' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' | jq .
@@ -545,11 +546,11 @@ curl -s -X POST 'http://localhost:7700/dumps' \
 # 任务完成后从 /dumps/ 下载
 
 # 自动备份，添加到 crontab: # 0 2 * * * curl -s -X POST 'http://localhost:7700/dumps' -H 'Authorization: Bearer YOUR_KEY' > /dev/null
-```
+`````
 
 ### 4. 同义词和停用词
 
-```bash
+`````bash
 # 配置同义词
 curl -s -X PUT 'http://localhost:7700/indexes/products/settings/synonyms' \
   -H 'Content-Type: application/json' \
@@ -565,13 +566,13 @@ curl -s -X PUT 'http://localhost:7700/indexes/products/settings/stop-words' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '["the", "a", "an", "and", "or"]' | jq .
-```
+`````
 
 ### 5. 使用 Prometheus 监控（官方集成）
 
 Meilisearch 原生暴露 Prometheus 指标：
 
-```bash
+`````bash
 # 启用指标端点
 curl -s -X PATCH 'http://localhost:7700/experimental-features' \
   -H 'Content-Type: application/json' \
@@ -582,21 +583,21 @@ curl -s -X PATCH 'http://localhost:7700/experimental-features' \
 curl -s http://localhost:7700/metrics
 # meilisearch_search_requests_total{index="products"} 15420
 # meilisearch_http_requests_duration_seconds_sum 2.45
-```
+`````
 
 ## 与替代方案的对比
 
 | 特性 | **Meilisearch** | Typesense | Elasticsearch | Algolia |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **许可证** | MIT | GPL-3.0 | SSPL/Elastic | 专有 |
 | **GitHub Stars** | **51,300+** | 23,200+ | 72,000+ | N/A（闭源） |
@@ -653,11 +654,11 @@ Meilisearch 并不完美。以下是它的真实局限性：
 
 ### 如何在不停机的情况下升级 Meilisearch？
 
-Meilisearch 暂不支持零停机滚动升级。推荐方法：(1) 通过 `/dumps` 端点触发转储，(2) 用新版本启动新的 Meilisearch 容器，(3) 恢复转储，(4) 切换流量。生产环境使用蓝绿部署配合负载均衡器。根据数据集大小，该过程需要 5-15 分钟。
+Meilisearch 暂不支持零停机滚动升级。推荐方法：(1) 通过 ````/dumps```` 端点触发转储，(2) 用新版本启动新的 Meilisearch 容器，(3) 恢复转储，(4) 切换流量。生产环境使用蓝绿部署配合负载均衡器。根据数据集大小，该过程需要 5-15 分钟。
 
 ### Meilisearch 是否支持用户生成内容的实时搜索？
 
-支持。文档添加后 **1-2 秒内**即可搜索。对于典型 UGC 应用（评论、帖子、评论），这实际上是实时的。Meilisearch 通过内部队列异步处理任务。可以通过 `/tasks/{taskUid}` 端点检查任务完成状态。对于延迟敏感的场景，以 100-1000 文档的批量写入以获得最佳吞吐量。
+支持。文档添加后 **1-2 秒内**即可搜索。对于典型 UGC 应用（评论、帖子、评论），这实际上是实时的。Meilisearch 通过内部队列异步处理任务。可以通过 ````/tasks/{taskUid}```` 端点检查任务完成状态。对于延迟敏感的场景，以 100-1000 文档的批量写入以获得最佳吞吐量。
 
 ### Meilisearch Cloud 与自托管相比是否值得？
 
@@ -665,7 +666,7 @@ Meilisearch Cloud 开发者版 **$29/月**（含自动升级、备份和监控�
 
 ## 结论：3 分钟内部署即时搜索
 
-Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 `docker run` 到第一个搜索结果，整个过程 **不到 3 分钟**。凭借 MIT 许可证、10+ SDK、内置容错功能，以及现在的 AI 语义搜索，它为使用数据库 `LIKE` 查询消除了所有借口。
+Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 ````docker run```` 到第一个搜索结果，整个过程 **不到 3 分钟**。凭借 MIT 许可证、10+ SDK、内置容错功能，以及现在的 AI 语义搜索，它为使用数据库 ````LIKE``` 查询消除了所有借口。
 
 对于新项目，从本指南的 Docker 设置开始。对于每月向 Algolia 支付 $500+ 的团队，$18 VPS 上运行的 Meilisearch 处理等效流量。对于从 Elasticsearch 迁移的开发者，运维简洁性将感觉像度假。
 
@@ -695,7 +696,7 @@ Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 `dock
 - [搜索引擎 Docker 最佳实践](dibi8-internal-link)
 
 
----
+* * *
 *联盟披露：本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外费用。我们基于真实测试独立推荐服务。Meilisearch 是免费开源软件 —— 唯一的费用是托管成本。*
 
 
@@ -723,4 +724,4 @@ Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 `dock
   }
 }
 </script>
----
+* * *

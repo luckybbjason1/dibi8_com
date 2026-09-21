@@ -27,6 +27,7 @@ faq: - q: "Which vector DB is best in 2026?"
   - q: "How much hardware do I need?"
     a: "1M vectors @ 768 dimensions: ~3GB memory. 10M vectors: ~30GB. Most production workloads run comfortably on a single 32GB VM. Above 100M vectors, plan for sharded deployment."
 ---
+
 {{</* resource-info */>}}
 
 # Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus
@@ -58,13 +59,13 @@ The vector DB space settled in 2026. Qdrant, Weaviate, Milvus dominate. This art
 
 | Workload | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Pure similarity (top 10) | 8 | 12 | 14 |
 | Filtered similarity | 15 | 10 | 22 |
@@ -76,13 +77,13 @@ The vector DB space settled in 2026. Qdrant, Weaviate, Milvus dominate. This art
 
 | | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | QPS | 2400 | 1800 | 1200 |
 
@@ -92,13 +93,13 @@ The vector DB space settled in 2026. Qdrant, Weaviate, Milvus dominate. This art
 
 | | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | RAM used | 14GB | 18GB | 22GB |
 
@@ -108,13 +109,13 @@ The vector DB space settled in 2026. Qdrant, Weaviate, Milvus dominate. This art
 
 | | Qdrant | Weaviate | Milvus |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | Docker compose | 5 min | 10 min | 20 min |
 | Production tuning | 1-2 hrs | 2-4 hrs | 4-8 hrs |
@@ -128,24 +129,24 @@ Under 10K documents, **SQLite FTS5** often outperforms vector DB for the followi
 - < 1ms query latency
 - Zero memory overhead beyond the file
 
-Try this first: ```python
+Try this first: ````python
 import sqlite3
 conn = sqlite3.connect("docs.db")
 conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 # Insert docs, query with MATCH operator
-```
+`````
 
 Above 50K documents or when semantic similarity (not keyword) matters, switch to vector DB.
 
 ## Choosing Between the Three
 
-```
+`````
 Single-node, simple RAG, small team → Qdrant
 Need hybrid search (vector + keyword + filters) → Weaviate
 Multi-node, billion+ vectors → Milvus
 Already have Postgres → pgvector (up to ~1M vectors)
 < 10K docs → SQLite FTS5
-```
+````
 
 ## Recommended Infrastructure
 
@@ -161,7 +162,7 @@ All three vector DBs are production-ready in 2026. Pick by workload: Qdrant for 
 The real lesson: most teams over-engineer their retrieval layer. Start with the simplest thing that works, upgrade when you measure a real ceiling. Vector DB justifies its complexity only above the simple-tool threshold.
 
 
----
+* * *
 **Related**: [RAG vs Fine-Tuning 2026 Decision Framework](https://dibi8.com/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [Vector Database Comparison](https://dibi8.com/resources/llm-frameworks/vector-database-comparison/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
 
@@ -227,11 +228,11 @@ Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (Real Workload Test) repr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -241,7 +242,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cognee-ai-memory-platform](vector-db-2026-qdrant-weaviate-milvus)
 - [flowise](vector-db-2026-qdrant-weaviate-milvus)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -34,6 +34,7 @@ faqs: - q: 'Local Deep Research là gì và độ chính xác của nó ra sao?'
     a: 'Một agent trước tiên sử dụng Local Deep Research để tạo ra một báo cáo đã được xác minh và có trích dẫn, sau đó dùng InsForge để cấp phát toàn bộ backend (cơ sở dữ liệu, edge functions, lưu trữ, xác thực) thông qua các MCP tool calls, xây dựng frontend theo quy trình spec-to-ship của Agent Skills, và áp dụng các lan can hành vi lấy cảm hứng từ Karpathy xuyên suốt để ngăn việc kỹ thuật hóa quá mức và các giả định sai. Mỗi trụ cột giải quyết một dạng thất bại riêng biệt trong phát triển tự chủ.'
 ---
 
+
 # Vượt Qua Chatbot: 4 Trụ Cột Của Hệ Thống AI Tự Động Năm 2026
 
 {</* resource-info */>}
@@ -56,11 +57,11 @@ Hầu hết các công cụ AI chỉ đưa ra câu trả lời. Local Deep Resea
 - **thông tin đa nguồn**: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — mỗi nguồn đều được lập chỉ số và tham chiếu chéo
 - **mã hóa zero-knowledge**: User data isolated per-database, ngay cả quản trị viên máy chủ cũng không thể đọc nội dung của bạn
 
-The architecture is instructive: ```
+The architecture is instructive: ````
 User Query -> Strategy Selector -> Question Generator 
     -> Parallel Search (academic + web + documents) 
     -> Analysis Loop -> Report Synthesis -> Multi-format Export
-```
+`````
 
 What's novel is the **iterative research loop**. Instead of one-shot query-response, the system generates sub-questions, searches across diverse sources, analyzes results, and iterates until confidence thresholds are met. This mimics how human experts actually do research: hypothesize, investigate, evaluate, refine.
 
@@ -87,14 +88,14 @@ The key innovation is **dual interface support**: 1. **MCP Server** — Self-hos
 
 This means an AI agent doesn't just generate code — it can provision its own database schema, configure authentication, deploy edge functions, set up storage buckets, and even route its own API calls through the model gateway. End-to-end autonomy.
 
-The SDK is elegantly simple: ```javascript
+The SDK is elegantly simple: `````javascript
 import { createClient } from '@insforge/sdk';
 
 const client = createClient({
   baseUrl: 'https://your-app.region.insforge.app',
   anonKey: 'your-anon-key-here'
 });
-```
+`````
 
 Everything from database CRUD to auth flows to AI operations is available through this unified client. For a coding agent, this reduces what would normally require a DevOps engineer to a single API call.
 
@@ -110,15 +111,15 @@ The core insight: **kỹ năng mã hóa các mẫu quyết định mà kỹ sư 
 
 The seven-slash-command framework maps to the complete development lifecycle: ||Command|Phase|Principle||
 ||---------|-------|-----------||
-||`/spec`|Define|Spec before code — requirements first||
-||`/plan`|Plan|Small, atomic tasks — break down complexity||
-||`/build`|Build|One slice at a time — incremental delivery||
-||`/test`|Verify|Tests are proof — not decoration||
-||`/review`|Review|Improve code health — continuous refinement||
-||`/code-simplify`|Simplify|Clarity over cleverness — readability wins||
-||`/ship`|Ship|Faster is safer — ship incrementally||
+||````/spec````|Define|Spec before code — requirements first||
+||````/plan````|Plan|Small, atomic tasks — break down complexity||
+||````/build````|Build|One slice at a time — incremental delivery||
+||````/test````|Verify|Tests are proof — not decoration||
+||````/review````|Review|Improve code health — continuous refinement||
+||````/code-simplify````|Simplify|Clarity over cleverness — readability wins||
+||````/ship````|Ship|Faster is safer — ship incrementally||
 
-But the real magic is **context-aware auto-discovery**. When designing an API, the `api-and-interface-design` skill activates automatically. Building UI? `frontend-ui-engineering` triggers. The agent understands its task and loads the appropriate expertise.
+But the real magic is **context-aware auto-discovery**. When designing an API, the ````api-and-interface-design```` skill activates automatically. Building UI? ````frontend-ui-engineering```` triggers. The agent understands its task and loads the appropriate expertise.
 
 This transforms AI coding from "write code that happens to work" to "follow proven engineering workflows that produce maintainable results."
 
@@ -128,7 +129,7 @@ This transforms AI coding from "write code that happens to work" to "follow prov
 
 Even the best engineering frameworks fail if the underlying behavior is flawed. Andrej Karpathy identified a pattern in LLM coding failures: > "The models make wrong assumptions on your behalf and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."
 
-This project distills Karpathy's observations into four behavioral principles embedded in a `CLAUDE.md` file: **1. Think Before Coding** — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.
+This project distills Karpathy's observations into four behavioral principles embedded in a ````CLAUDE.md```` file: **1. Think Before Coding** — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.
 
 **2. Simplicity First** — Minimum viable solution. No speculative features. No abstractions for single-use code. If 200 lines could be 50, rewrite it. The test: "Would a senior engineer say this is overcomplicated?"
 
@@ -144,7 +145,7 @@ The breakthrough moment comes when you connect all four pillars into a single wo
 
 2. **Platform** (InsForge): The agent provisions the entire backend — PostgreSQL for market data, edge functions for real-time updates, storage for historical charts, auth for user accounts, model gateway for analysis APIs. All via MCP tool calls.
 
-3. **Engineering** (Agent Skills): The agent builds the frontend following the `/spec → /plan → /build → /test → /review → /ship` workflow. Context-aware skills activate as needed — `frontend-ui-engineering` for the dashboard, `data-visualization` for charting, `api-integration` for real-time websockets.
+3. **Engineering** (Agent Skills): The agent builds the frontend following the ````/spec → /plan → /build → /test → /review → /ship```` workflow. Context-aware skills activate as needed — ````frontend-ui-engineering```` for the dashboard, ````data-visualization```` for charting, ````api-integration```` for real-time websockets.
 
 4. **Wisdom** (Karpathy Skills): Throughout this process, the behavioral guardrails prevent classic LLM mistakes — no overengineered abstractions, no touching unrelated code, explicit assumption-stating before every architectural decision, verifiable success criteria instead of vague "make it work" targets.
 
@@ -165,16 +166,16 @@ Together, these four open-source projects form the first complete stack for genu
 
 ## Getting Started
 
-All four projects are open-source and free: - **Local Deep Research**: `pip install local-deep-research` or Docker Compose
-- **InsForge**: `npm install @insforge/sdk` (cloud) or self-hosted MCP server
-- **Agent Skills**: Claude Code marketplace plugin or `.cursor/rules/`
-- **Karpathy Skills**: Single `CLAUDE.md` file merge
+All four projects are open-source and free: - **Local Deep Research**: ````pip install local-deep-research```` or Docker Compose
+- **InsForge**: ````npm install @insforge/sdk```` (cloud) or self-hosted MCP server
+- **Agent Skills**: Claude Code marketplace plugin or ````.cursor/rules/````
+- **Karpathy Skills**: Single ````CLAUDE.md``` file merge
 
 You don't need to adopt all four simultaneously. Start with what addresses your biggest gap. But once you experience the synergy — research informing architecture, architecture guiding implementation, implementation disciplined by skills, all guided by wisdom — it's hard to go back to doing it alone.
 
 The future of software development isn't humans replacing AI or AI replacing humans. It's humans orchestrating AI systems that combine deep intelligence, robust infrastructure, engineering discipline, and practical wisdom. And those systems are already here.
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 

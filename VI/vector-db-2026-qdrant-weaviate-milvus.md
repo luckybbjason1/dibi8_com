@@ -28,6 +28,7 @@ faq: - q: "Vector DB nào tốt nhất năm 2026?"
     a: "1 triệu vector @ 768 chiều: khoảng 3GB RAM. 10 triệu vector: khoảng 30GB. Hầu hết workload production chạy thoải mái trên một VM 32GB. Trên 100 triệu vector cần lên kế hoạch sharding."
 ---
 
+
 {{</* resource-info */>}}
 
 # Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus
@@ -97,24 +98,24 @@ Dưới 10K tài liệu, **SQLite FTS5** thường vượt vector DB vì các l�
 - Độ trễ truy vấn < 1ms
 - Không có overhead bộ nhớ ngoài chính file
 
-Thử cái này trước: ```python
+Thử cái này trước: ````python
 import sqlite3
 conn = sqlite3.connect("docs.db")
 conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 # Insert tài liệu, truy vấn bằng toán tử MATCH
-```
+`````
 
 Khi vượt 50K tài liệu hoặc khi sự tương đồng ngữ nghĩa (không phải keyword) trở nên quan trọng, hãy chuyển sang vector DB.
 
 ## Chọn Giữa Ba Cái
 
-```
+`````
 Một node, RAG đơn giản, đội nhỏ → Qdrant
 Cần hybrid search (vector + keyword + filter) → Weaviate
 Đa node, từ tỷ vector trở lên → Milvus
 Đã có Postgres → pgvector (đến khoảng 1 triệu vector)
 < 10K tài liệu → SQLite FTS5
-```
+````
 
 ## Hạ Tầng Đề Xuất
 
@@ -129,7 +130,7 @@ Cả ba vector DB đều sẵn sàng cho production trong năm 2026. Chọn theo
 
 Bài học thực sự: hầu hết các đội thiết kế quá mức tầng retrieval của mình. Bắt đầu từ thứ đơn giản nhất chạy được, nâng cấp khi bạn đo được trần thực sự. Vector DB chỉ xứng đáng với độ phức tạp của nó khi vượt qua ngưỡng của công cụ đơn giản.
 
----
+* * *
 
 **Bài liên quan**: [Khung Quyết Định RAG vs Fine-Tuning 2026](https://dibi8.com/vi/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [So Sánh Vector Database](https://dibi8.com/vi/resources/llm-frameworks/vector-database-comparison/) · [Bảng Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
 
@@ -195,12 +196,12 @@ Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (Test Workload Thực 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -210,7 +211,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [cognee-ai-memory-platform](vector-db-2026-qdrant-weaviate-milvus)
 - [flowise](vector-db-2026-qdrant-weaviate-milvus)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

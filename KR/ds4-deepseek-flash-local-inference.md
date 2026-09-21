@@ -32,6 +32,7 @@ faqs: - q: 'DS4(DwarfStar 4)란 무엇이며, 누가 만들었나요?'
     a: '네. DS4를 빌드하면 http://127.0.0.1:8000 에서 OpenAI 및 Anthropic 호환 HTTP API를 노출하는 ds4-server 바이너리가 생성됩니다. /v1/chat/completions, /v1/completions, /v1/messages 등의 엔드포인트를 포함하며, OpenAI 스타일의 함수 호출을 지원하고 OpenCode, Pi, Claude Code 등의 에이전트 프레임워크와 연동됩니다.'
 ---
 
+
 {</* resource-info */>}
 
 # DS4 (DwarfStar 4): DeepSeek V4 Flash 로컬 추론 완벽 가이드
@@ -42,7 +43,7 @@ faqs: - q: 'DS4(DwarfStar 4)란 무엇이며, 누가 만들었나요?'
 
 이 포괄적인 가이드에서는 DS4의 특별한 점, 기술 아키텍처가 Ollama와 llama.cpp 같은 대안과 어떻게 다른지, 그리고 단계별 설치 방법, 성능 벤치마크, 코드 예제, 실제 사용 사례를 살펴보겠습니다.
 
----
+* * *
 
 ## 로컬 추론 벤치마크: DS4 vs Ollama vs llama.cpp
 DeepSeek V4 Flash 같은 괴물 모델을 돌리려면 하드코어한 최적화가 필수입니다. M-시리즈 Mac에서 DS4가 경쟁자들을 어떻게 박살내는지 보십시오: | 프레임워크 | 2-bit 양자화(Quantization) 속도 | KV Cache 영구 보존 | 하드웨어 가속 최적화 | 설치 난이도 |
@@ -72,7 +73,7 @@ Sanfilippo는 DeepSeek V4 Flash가 로컬 배포를 위해 독특하게 매력�
 6. **압축된 KV 캐시**: 로컬 컴퓨터에서 장문 맥락 추론을 가능하게 하고 **디스크 KV 캐시 지속성**을 지원합니다 — 이는 에이전트 워크플로우에 게임 체인저입니다.
 7. **2-bit 양자화 실현 가능성**: 비대칭 양자화(라우팅된 전문가 계층만 양자화)를 사용할 때, 2-bit 가중치는 놀라울 정도로 잘 작동하여 96-128GB 메모리의 MacBook에서 실행됩니다.
 
----
+* * *
 
 ## 기술 아키텍처: Metal 대 CUDA 최적화
 
@@ -80,10 +81,10 @@ DS4의 아키텍처는 명확한 설계 철학을 반영합니다: **목표 하�
 
 | 빌드 타겟 | 플랫폼 | 용도 |
 |---------|--------|------|
-| `make` | macOS | Metal 최적화 프로덕션 빌드 |
-| `make cuda-spark` | Linux (DGX Spark / GB10) | NVIDIA GB10 시스템용 CUDA |
-| `make cuda-generic` | Linux (기타 CUDA GPU) | 일반 CUDA GPU 지원 |
-| `make cpu` | 모든 플랫폼 | 참조/디버그 전용 |
+| ```make```` | macOS | Metal 최적화 프로덕션 빌드 |
+| ````make cuda-spark```` | Linux (DGX Spark / GB10) | NVIDIA GB10 시스템용 CUDA |
+| ````make cuda-generic```` | Linux (기타 CUDA GPU) | 일반 CUDA GPU 지원 |
+| ````make cpu```` | 모든 플랫폼 | 참조/디버그 전용 |
 
 ### macOS의 Metal 백엔드
 
@@ -97,7 +98,7 @@ Metal 백엔드는 DS4의 macOS **주요 최적화 타겟**입니다. 이는 App
 
 ### Linux의 CUDA 백엔드
 
-Linux 워크스테이션용으로 DS4는 두 가지 CUDA 빌드 경로를 제공합니다. `cuda-spark` 타겟은 NVIDIA의 DGX Spark(GB10) 플랫폼에 최적화되어 있고, `cuda-generic`은 더 넓은 범위의 로컬 CUDA GPU를 지원합니다. 128GB RAM을 탑재한 DGX Spark GB10에서 엔진은 q2 가중치로 **343 토큰/초 프리필** 및 **13.75 토큰/초 생성**에 도달합니다.
+Linux 워크스테이션용으로 DS4는 두 가지 CUDA 빌드 경로를 제공합니다. ````cuda-spark```` 타겟은 NVIDIA의 DGX Spark(GB10) 플랫폼에 최적화되어 있고, ````cuda-generic````은 더 넓은 범위의 로컬 CUDA GPU를 지원합니다. 128GB RAM을 탑재한 DGX Spark GB10에서 엔진은 q2 가중치로 **343 토큰/초 프리필** 및 **13.75 토큰/초 생성**에 도달합니다.
 
 CUDA 경로는 Metal 빌드와 동일한 그래프 실행 엔진, KV 캐시 압축, API 서버를 공유하여 플랫폼 간 일관된 동작을 보장합니다.
 
@@ -107,7 +108,7 @@ DS4에는 CPU 백엔드가 포함되어 있지만, Sanfilippo는 명확히 합�
 
 ### 핵심 아키텍처 혁신
 
-1. **비대칭 2-bit 양자화**: 모든 계층의 품질을 균일하게 저하시키는 양자화와 달리, DS4의 q2 양자화는 라우팅된 MoE의 up/gate 프로젝션에 `IQ2_XXS`를, down 프로젝션에 `Q2_K`를 적용하고, 공유 전문가, 프로젝션, 라우팅 계층은 그대로 둡니다. 이는 가장 중요한 곳에서 품질을 보존합니다.
+1. **비대칭 2-bit 양자화**: 모든 계층의 품질을 균일하게 저하시키는 양자화와 달리, DS4의 q2 양자화는 라우팅된 MoE의 up/gate 프로젝션에 ````IQ2_XXS````를, down 프로젝션에 ````Q2_K````를 적용하고, 공유 전문가, 프로젝션, 라우팅 계층은 그대로 둡니다. 이는 가장 중요한 곳에서 품질을 보존합니다.
 
 2. **디스크 지속성이 있는 압축 KV 캐시**: DS4는 KV 캐시를 "일급 디스크 시민"으로 취급합니다. KV 상태가 반드시 RAM에 상주해야 한다고 가정하지 않고, 체크포인트를 고속 SSD에 기록합니다. 이는 메모리가 제한된 기계에서 10만~30만(심지어 100만) 토큰 맥락 윈도우를 가능하게 합니다.
 
@@ -115,7 +116,7 @@ DS4에는 CPU 백엔드가 포함되어 있지만, Sanfilippo는 명확히 합�
 
 4. **모델 전용 그래프 실행기**: 모든 GGUF 파일을 지원하려고 하지 않음으로써, DS4는 범용 텐서 디스패치 오버헤드를 제거하고, DeepSeek V4 Flash의 MoE 아키텍처에 대해 최적의 메모리 레이아웃과 커널 퓨전 전략을 하드코딩할 수 있습니다.
 
----
+* * *
 
 ## macOS 및 Linux 설치 가이드
 
@@ -133,20 +134,20 @@ DS4에는 CPU 백엔드가 포함되어 있지만, Sanfilippo는 명확히 합�
 - CUDA 지원 NVIDIA GPU
 - CUDA Toolkit 12.x+
 - q2 실행을 위한 **96GB+ 시스템 메모리**; q4는 **256GB+**
-- `build-essential`, `curl`, `git`
+- ````build-essential````, ````curl````, ````git````
 
 ### 1단계: 저장소 클론
 
-```bash
+`````bash
 git clone https://github.com/antirez/ds4.git
 cd ds4
-```
+`````
 
 ### 2단계: 모델 가중치 다운로드
 
 DS4는 이 프로젝트 전용으로 제작된 GGUF 파일에서만 작동합니다. 제공된 다운로드 스크립트를 사용하세요.
 
-```bash
+`````bash
 # 96-128GB 메모리 머신용 (권장)
 ./download_model.sh q2-imatrix
 
@@ -155,54 +156,54 @@ DS4는 이 프로젝트 전용으로 제작된 GGUF 파일에서만 작동합니
 
 # 선택: 투기적 디코딩 지원
 ./download_model.sh mtp
-```
+`````
 
-스크립트는 Hugging Face(`antirez/deepseek-v4-gguf`)에서 가져와 `./gguf/`에 파일을 저장하고 `./ds4flash.gguf`에 심볼릭 링크를 생성합니다.
+스크립트는 Hugging Face(````antirez/deepseek-v4-gguf````)에서 가져와 ````./gguf/````에 파일을 저장하고 ````./ds4flash.gguf````에 심볼릭 링크를 생성합니다.
 
 ### 3단계: 엔진 빌드
 
 **macOS (Metal):**
-```bash
+`````bash
 make
-```
+`````
 
 **Linux (CUDA — DGX Spark / GB10):**
-```bash
+`````bash
 make cuda-spark
-```
+`````
 
 **Linux (CUDA — 일반 GPU):**
-```bash
+`````bash
 make cuda-generic
-```
+`````
 
 **CPU 전용 (진단 전용):**
-```bash
+`````bash
 make cpu
-```
+`````
 
 빌드는 두 개의 바이너리를 생성합니다.
-- `./ds4` — 대화형 CLI
-- `./ds4-server` — OpenAI/Anthropic 호환 HTTP API 서버
+- ````./ds4```` — 대화형 CLI
+- ````./ds4-server```` — OpenAI/Anthropic 호환 HTTP API 서버
 
 ### 4단계: 설치 확인
 
-```bash
+`````bash
 # 빠른 일회성 테스트
 ./ds4 -p "CAP 정리를 한 문단으로 설명하세요."
 
 # 모든 옵션 확인
 ./ds4 --help
 ./ds4-server --help
-```
+`````
 
----
+* * *
 
 ## 성능 벤치마크: DS4 대 Ollama 대 llama.cpp
 
 LLM 추론 벤치마킹은 notoriously 까다롭습니다 — 수치는 프롬프트 길이, 양자화, 배치 크기, 하드웨어에 따라 달라집니다. 그럼에도 불구하고 DS4의 공개된 수치는 인상적인 성능, 특히 **장문 맥락 프리필**에서 그렇습니다.
 
-### DS4 공식 벤치마크 (Metal, `--ctx 32768`, 탐욕 디코딩, `-n 256`)
+### DS4 공식 벤치마크 (Metal, ````--ctx 32768````, 탐욕 디코딩, ````-n 256````)
 
 | 머신 구성 | 양자화 | 프롬프트 | 프리필 속도 | 생성 속도 |
 |---------|--------|---------|-----------|----------|
@@ -223,48 +224,48 @@ llama.cpp는 로컬 LLM 추론을 가능하게 한 기초 프로젝트입니다.
 
 **결론:** 다양한 모델을 지원하는 스위스 아미 나이프를 원한다면 Ollama나 llama.cpp가 더 나은 선택입니다. Mac Studio나 CUDA 워크스테이션에서 DeepSeek V4 Flash를 가능한 한 가장 빠르고 안정적으로 실행하고 싶다면, DS4는 정확히 그 목적을 위해 설계되었습니다.
 
----
+* * *
 
 ## 추론 코드 예제
 
 ### 일회성 CLI 프롬프트
 
-```bash
+`````bash
 ./ds4 -p "병합 정렬을 구현하는 Python 함수를 작성하세요."
-```
+`````
 
 ### 대화형 채팅 세션
 
-```bash
+`````bash
 ./ds4
-```
+`````
 
-이는 지속적인 KV 상태를 가진 다중 턴 대화를 시작합니다. 유용한 명령어: - `/help` — 사용 가능한 명령어 표시
-- `/think` — 사고 모드 활성화 (기본값)
-- `/think-max` — 최대 추론 노력
-- `/nothink` — 더 빠른 응답을 위해 사고 비활성화
-- `/ctx 100000` — 맥락 윈도우 크기 설정
-- `/read FILE` — 파일 내용을 맥락에 포함
-- `/quit` — 종료
+이는 지속적인 KV 상태를 가진 다중 턴 대화를 시작합니다. 유용한 명령어: - ````/help```` — 사용 가능한 명령어 표시
+- ````/think```` — 사고 모드 활성화 (기본값)
+- ````/think-max```` — 최대 추론 노력
+- ````/nothink```` — 더 빠른 응답을 위해 사고 비활성화
+- ````/ctx 100000```` — 맥락 윈도우 크기 설정
+- ````/read FILE```` — 파일 내용을 맥락에 포함
+- ````/quit```` — 종료
 
 ### 서버 모드 및 OpenAI 호환 API
 
-```bash
+`````bash
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir /tmp/ds4-kv \
   --kv-disk-space-mb 8192
-```
+`````
 
-서버는 `http://127.0.0.1:8000`에서 시작하며 다음 엔드포인트를 제공합니다.
-- `GET /v1/models`
-- `POST /v1/chat/completions`
-- `POST /v1/completions`
-- `POST /v1/messages` (Anthropic 호환)
+서버는 ````http://127.0.0.1:8000````에서 시작하며 다음 엔드포인트를 제공합니다.
+- ````GET /v1/models````
+- ````POST /v1/chat/completions````
+- ````POST /v1/completions````
+- ````POST /v1/messages```` (Anthropic 호환)
 
 ### cURL 예제 (채팅 완성)
 
-```bash
+`````bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -274,11 +275,11 @@ curl http://127.0.0.1:8000/v1/chat/completions \
     ],
     "stream": true
   }'
-```
+`````
 
 ### Python 클라이언트 예제
 
-```python
+`````python
 import openai
 
 client = openai.OpenAI(
@@ -297,13 +298,13 @@ response = client.chat.completions.create(
 )
 
 for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
 ### 도구 사용 예제
 
 DS4는 OpenAI 스타일 함수 호출을 지원합니다. 서버는 도구 스키마를 DeepSeek의 DSML 형식으로 자동 변환하고 결과를 매핑합니다.
 
-```bash
+`````bash
 curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -324,9 +325,9 @@ curl http://127.0.0.1:8000/v1/chat/completions \
     }],
     "tool_choice": "auto"
   }'
-```
+````
 
----
+* * *
 
 ## 사용 사례: DS4가 빛나는 분야
 
@@ -354,7 +355,7 @@ DS4는 **코딩 에이전트 워크플로우**를 위해 명시적으로 설계�
 
 토큰당 0달러의 비용으로, DS4를 사용한 로컬 추론은 고처리량 워크플로우의 API 비용을 제거합니다. 사전 하드웨어 투자(고급 Mac이나 워크스테이션)는 매월 수백만 토큰을 처리할 때 빠르게 상환됩니다.
 
----
+* * *
 
 ## 알아야 할 한계점
 
@@ -376,7 +377,7 @@ DS4는 강력하지만, 그 제약을 이해하는 것이 중요합니다.
 
 8. **플랫폼 범위**: Metal(macOS)과 CUDA(Linux)에 최적화되어 있습니다. Windows 및 AMD GPU 지원은 현재 우선순위가 아닙니다.
 
----
+* * *
 
 ## 결론
 
@@ -386,11 +387,11 @@ DS4는 로컬 LLM 추론의 미래에 대한 대담한 베팅을 표현합니다
 
 프로젝트가 알파에서 안정화로 성숙해감에 따라, DS4는 DeepSeek V4 Flash를 로컬로 실행하는 확실한 방법이 될 수 있습니다. 하드웨어와 사용 사례가 있다면, Ollama와 llama.cpp와 함께 평가해 볼 가치가 충분합니다.
 
----
+* * *
 
 **DS4를 시도할 준비가 되셨나요?** [github.com/antirez/ds4](https://github.com/antirez/ds4)를 방문하여 저장소를 클론하고, q2-imatrix 가중치를 다운로드하고, 오늘 바로 프론티어급 로컬 추론을 경험해 보세요.
 
----
+* * *
 
 *dibi8 Tech Team이 발행했습니다. AI 도구, 개발자 리소스, 오픈소스 소프트웨어에 관한 더 많은 가이드는 [dibi8.com](https://dibi8.com)을 방문하세요.*
 
@@ -405,7 +406,7 @@ A: 코딩 에이전트를 24시간 내내 굴린다면 API 비용은 월 $1,000�
 **Q: DS4의 디스크 KV Cache는 대체 뭔가요?**
 A: 창을 닫으면 문맥을 다 까먹는 Ollama와 달리, DS4는 방대한 KV Cache를 SSD에 기록합니다. 10만 토큰짜리 대화도 프롬프트 재연산 대기 시간 없이 즉시 복구됩니다!
 
----
+* * *
 
 ## 자체 호스팅 추천 인프라
 

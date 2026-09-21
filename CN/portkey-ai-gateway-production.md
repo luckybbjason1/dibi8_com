@@ -12,6 +12,7 @@ tags: ["portkey ai gateway"]
 aliases:
   - /posts/portkey-ai-gateway-production/-
 ---
+
 {{</* resource-info */>}}
 
 Managing multiple Large Language Model (LLM) providers in production is a nightmare. Each provider has its own API format, authentication scheme, rate limits, and failure modes. Your application code becomes littered with conditional logic for OpenAI, Anthropic, Google, Azure, and the dozens of new providers emerging every month. Enter **Portkey AI Gateway** — the open-source LLM gateway that unifies 200+ models behind a single API, complete with load balancing, fallback routing, spend tracking, request caching, and enterprise-grade observability.
@@ -21,7 +22,7 @@ In this comprehensive guide, we'll walk through a production-ready setup of Port
 > **Quick Start**: Portkey AI Gateway is open-source under MIT license with 14,000+ GitHub stars. You can self-host it or use the managed cloud option. Ready? Let's dive in.
 
 
----
+* * *
 ## What is Portkey AI Gateway?
 
 Portkey AI Gateway is an open-source AI gateway that sits between your application and LLM providers. Think of it as a smart reverse proxy designed specifically for AI workloads. It normalizes the API surface across 200+ models from providers like OpenAI, Anthropic, Google, Azure, Cohere, Mistral, and many more, so your code only needs to speak one language.
@@ -38,7 +39,7 @@ The gateway handles the messy parts of LLM production deployments: - **Unified A
 Whether you're a startup running a single model or an enterprise juggling dozens of providers, Portkey provides the infrastructure layer you need to productionize your AI applications.
 
 
----
+* * *
 ## Architecture Overview and Deployment Options
 
 Portkey AI Gateway offers two deployment modes: **Cloud (managed)** and **Self-hosted**. The architecture is built around a lightweight, high-performance gateway server that intercepts LLM requests, applies your configured policies, and routes them to the appropriate provider.
@@ -53,18 +54,18 @@ For organizations with strict data residency or security requirements, self-host
 
 **Deploy with Docker:**
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/Portkey-AI/gateway.git
 cd gateway
 
 # Run with Docker
 docker run -p 8787:8787 -e PORTKEY_GATEWAY_API_KEY=your-gateway-key portkeyai/gateway:latest
-```
+`````
 
 **Deploy with Docker Compose:**
 
-```yaml
+`````yaml
 version: '3.8'
 services: portkey-gateway: image: portkeyai/gateway:latest
     ports: - "8787:8787"
@@ -73,11 +74,11 @@ services: portkey-gateway: image: portkeyai/gateway:latest
       - CACHE_TTL=3600
     volumes: - ./config:/app/config
     restart: unless-stopped
-```
+`````
 
 **Deploy to Kubernetes:**
 
-```yaml
+`````yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata: name: portkey-gateway
@@ -90,7 +91,7 @@ spec: replicas: 3
         env: - name: PORTKEY_GATEWAY_API_KEY
           valueFrom: secretKeyRef: name: portkey-secrets
               key: gateway-api-key
----
+* * *
 apiVersion: v1
 kind: Service
 metadata: name: portkey-gateway-service
@@ -98,11 +99,11 @@ spec: selector: app: portkey-gateway
   ports: - port: 80
     targetPort: 8787
   type: ClusterIP
-```
+`````
 
 For production deployments, we recommend Kubernetes with at least 3 replicas for high availability. If you need a reliable cloud platform to host your cluster, [DigitalOcean Kubernetes](https://m.do.co/c/eca87ac14ee0) offers a developer-friendly managed Kubernetes service that pairs perfectly with Portkey.
 
----
+* * *
 
 ## Configuring Providers and API Keys
 
@@ -110,7 +111,7 @@ Before routing requests, you need to configure your LLM providers. Portkey uses 
 
 ### Setting Up Providers
 
-Create a `providers.yaml` configuration file: ```yaml
+Create a ``providers.yaml`` configuration file: `````yaml
 providers: openai-primary: type: openai
     api_key: ${OPENAI_API_KEY}
     organization: ${OPENAI_ORG_ID}
@@ -130,11 +131,11 @@ providers: openai-primary: type: openai
   mistral-local: type: mistral
     api_key: ${MISTRAL_API_KEY}
     base_url: http://mistral-service:8000/v1
-```
+`````
 
 ### Loading Configuration
 
-```bash
+`````bash
 # Set environment variables
 export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-ant-..."
@@ -145,9 +146,9 @@ docker run -p 8787:8787 \
   -e PORTKEY_GATEWAY_API_KEY=$GATEWAY_API_KEY \
   -v $(pwd)/providers.yaml:/app/config/providers.yaml \
   portkeyai/gateway:latest
-```
+`````
 
----
+* * *
 
 ## Unified API: One Endpoint for 200+ Models
 
@@ -155,7 +156,7 @@ The core value of Portkey is its unified API. Regardless of which model or provi
 
 ### Basic Chat Completion Request
 
-```bash
+`````bash
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
   -H "Content-Type: application/json" \
@@ -167,11 +168,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
       {"role": "user", "content": "Explain quantum computing in simple terms."}
     ]
   }'
-```
+`````
 
 ### Switching Providers Instantly
 
-```bash
+`````bash
 # Same request, different provider — just change the model/provider fields
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -184,11 +185,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     ],
     "max_tokens": 1024
   }'
-```
+`````
 
 ### Python SDK Example
 
-```python
+`````python
 from portkey_ai import Portkey
 
 # Initialize client
@@ -206,11 +207,11 @@ response = portkey.chat.completions.create(
     ]
 )
 print(response.choices[0].message.content)
-```
+`````
 
 ### Streaming Responses
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(api_key="your-gateway-api-key")
@@ -222,9 +223,9 @@ stream = portkey.chat.completions.create(
 )
 
 for chunk in stream: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end="")
-```
+`````
 
----
+* * *
 
 ## Load Balancing and Fallback Routing
 
@@ -232,7 +233,7 @@ Production AI systems cannot tolerate provider outages. Portkey's load balancing
 
 ### Round-Robin Load Balancing
 
-Distribute traffic evenly across multiple API keys or providers: ```yaml
+Distribute traffic evenly across multiple API keys or providers: `````yaml
 # config/load-balance.yaml
 strategies: gpt4-pool: type: load_balance
     providers: - provider: openai-primary
@@ -241,20 +242,20 @@ strategies: gpt4-pool: type: load_balance
         weight: 1
       - provider: openai-backup
         weight: 1
-```
+`````
 
-```python
+`````python
 # Use the load-balanced pool
 response = portkey.chat.completions.create(
     model="gpt-4o",
     config="gpt4-pool",  # References the strategy
     messages=[{"role": "user", "content": "Hello!"}]
 )
-```
+`````
 
 ### Priority-Based Fallback Routing
 
-Define fallback chains for automatic failover: ```yaml
+Define fallback chains for automatic failover: `````yaml
 strategies: production-fallback: type: fallback
     targets: - provider: azure-gpt4
         timeout: 10
@@ -268,9 +269,9 @@ strategies: production-fallback: type: fallback
       - provider: google-gemini
         model: gemini-2.5-pro
         timeout: 20
-```
+`````
 
-```bash
+`````bash
 # The gateway tries each target in order until one succeeds
 curl -X POST http://localhost:8787/v1/chat/completions \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -279,11 +280,11 @@ curl -X POST http://localhost:8787/v1/chat/completions \
     "config": "production-fallback",
     "messages": [{"role": "user", "content": "Critical business query here"}]
   }'
-```
+`````
 
 ### Conditional Routing Based on Request Properties
 
-Route requests based on content, user, or other request properties: ```yaml
+Route requests based on content, user, or other request properties: `````yaml
 strategies: smart-router: type: conditional
     rules: - condition: "request.messages[0].content.length > 4000"
         target: provider: anthropic-primary
@@ -294,9 +295,9 @@ strategies: smart-router: type: conditional
       - condition: "default"
         target: provider: azure-gpt4
           model: gpt-4o-mini
-```
+`````
 
----
+* * *
 
 ## Request Caching: Reduce Costs and Latency
 
@@ -304,15 +305,15 @@ LLM API calls are expensive and slow. Portkey's semantic caching stores response
 
 ### Enabling Cache
 
-```yaml
+`````yaml
 cache: enabled: true
   mode: semantic  # or "exact" for exact-match caching
   ttl: 3600       # Cache time-to-live in seconds
   max_size: 10000 # Maximum number of cached entries
   similarity_threshold: 0.95  # For semantic caching
-```
+`````
 
-```python
+`````python
 # First call hits the provider and caches the result
 response1 = portkey.chat.completions.create(
     model="gpt-4o",
@@ -326,17 +327,17 @@ response2 = portkey.chat.completions.create(
     messages=[{"role": "user", "content": "Explain Kubernetes to me"}],
     cache=True
 )
-```
+`````
 
 ### Cache Statistics and Invalidation
 
-```bash
+`````bash
 # Check cache metrics
 curl http://localhost:8787/v1/admin/cache/stats \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # Invalidate specific cache entries
 curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}" \
@@ -345,9 +346,9 @@ curl -X POST http://localhost:8787/v1/admin/cache/invalidate \
     "pattern": "kubernetes",
     "provider": "openai-primary"
   }'
-```
+`````
 
----
+* * *
 
 ## Spend Tracking and Cost Observability
 
@@ -355,7 +356,7 @@ Understanding your AI spending across providers, models, and users is critical f
 
 ### Cost Tracking Setup
 
-```python
+`````python
 import portkey_ai
 
 portkey = portkey_ai.Portkey(
@@ -377,25 +378,25 @@ response = portkey.chat.completions.create(
 print(f"Input tokens: {response.usage.prompt_tokens}")
 print(f"Output tokens: {response.usage.completion_tokens}")
 print(f"Total cost: ${response.usage.estimated_cost}")
-```
+`````
 
 ### Querying Spend Analytics
 
-```bash
+`````bash
 # Get spend report by provider
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=provider" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```bash
+`````bash
 # Get spend report by user
 curl "http://localhost:8787/v1/admin/analytics/spend?start_date=2026-05-01&end_date=2026-05-19&group_by=user_id" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
 ### Budget Alerts
 
-```yaml
+`````yaml
 alerts: daily-budget: type: budget
     threshold: 500  # USD
     period: daily
@@ -409,9 +410,9 @@ alerts: daily-budget: type: budget
     window: 1h
     channels: - type: pagerduty
         integration_key: your-pd-key
-```
+`````
 
----
+* * *
 
 ## Prompt Management and Versioning
 
@@ -419,7 +420,7 @@ Managing prompts separately from application code enables non-technical team mem
 
 ### Creating Managed Prompts
 
-```python
+`````python
 from portkey_ai import Portkey
 
 portkey = Portkey(api_key="your-gateway-api-key")
@@ -438,11 +439,11 @@ prompt = portkey.prompts.deploy(
         "max_tokens": 50
     }
 )
-```
+`````
 
 ### Rendering Prompts with Variables
 
-```python
+`````python
 # Render and execute a managed prompt
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -453,11 +454,11 @@ response = portkey.prompts.render(
 
 print(response.choices[0].message.content)
 # Output: "Billing"
-```
+`````
 
 ### A/B Testing Prompts
 
-```python
+`````python
 # Run A/B test between prompt versions
 response = portkey.prompts.render(
     name="customer-support-classifier",
@@ -465,9 +466,9 @@ response = portkey.prompts.render(
     test_version="1.3.0-beta",  # 50% traffic
     variables={"ticket_content": "App crashes when I upload photos"}
 )
-```
+`````
 
----
+* * *
 
 ## Guardrails and Content Safety
 
@@ -475,7 +476,7 @@ Portkey's guardrails system lets you enforce content policies on both requests a
 
 ### Configuring Guardrails
 
-```yaml
+`````yaml
 guardrails: input-validation: - type: keyword_filter
       blocklist: ["password", "ssn", "credit_card", "secret_key"]
       action: block
@@ -492,20 +493,20 @@ guardrails: input-validation: - type: keyword_filter
     - type: response_format
       required_schema: type: json_object
       action: retry
-```
+`````
 
-```python
+`````python
 # Apply guardrails to requests
 response = portkey.chat.completions.create(
     model="gpt-4o",
     messages=[{"role": "user", "content": "User input here"}],
     guardrails=["input-validation", "output-validation"]
 )
-```
+`````
 
 ### Custom Guardrail Functions
 
-```python
+`````python
 from portkey_ai import Portkey
 import json
 
@@ -518,9 +519,9 @@ def custom_validator(request, response): """Custom business logic validation."""
     except json.JSONDecodeError: return False, "Response must be valid JSON"
 
 portkey.guardrails.register("confidence-check", custom_validator)
-```
+`````
 
----
+* * *
 
 ## Observability: Logging, Metrics, and Tracing
 
@@ -528,13 +529,13 @@ Understanding how your AI systems behave in production is non-negotiable. Portke
 
 ### Request Logging
 
-```bash
+`````bash
 # Query recent request logs
 curl "http://localhost:8787/v1/admin/logs?limit=100&status=error" \
   -H "Authorization: Bearer ${GATEWAY_API_KEY}"
-```
+`````
 
-```python
+`````python
 # Enable detailed logging per request
 response = portkey.chat.completions.create(
     model="gpt-4o",
@@ -545,35 +546,35 @@ response = portkey.chat.completions.create(
         "user_id": "user-456"
     }
 )
-```
+`````
 
 ### OpenTelemetry Integration
 
-```yaml
+`````yaml
 observability: tracing: enabled: true
     exporter: otlp
     endpoint: http://jaeger-collector:4317
   metrics: enabled: true
     exporter: prometheus
     port: 9090
-```
+`````
 
 ### Prometheus Metrics
 
-The gateway exposes Prometheus-compatible metrics at `/metrics`: ```bash
+The gateway exposes Prometheus-compatible metrics at ``/metrics``: `````bash
 # Scrape metrics
 curl http://localhost:8787/metrics
-```
+`````
 
-Key metrics include: - `portkey_requests_total` — Total requests by provider, model, status
-- `portkey_request_duration_seconds` — Request latency histogram
-- `portkey_tokens_total` — Token usage by type (input/output) and model
-- `portkey_cache_hits_total` — Cache hit/miss counts
-- `portkey_spend_total` — Estimated spend in USD
+Key metrics include: - ````portkey_requests_total```` — Total requests by provider, model, status
+- ````portkey_request_duration_seconds```` — Request latency histogram
+- ````portkey_tokens_total```` — Token usage by type (input/output) and model
+- ````portkey_cache_hits_total```` — Cache hit/miss counts
+- ````portkey_spend_total```` — Estimated spend in USD
 
 ### Grafana Dashboard
 
-Import Portkey's official Grafana dashboard (ID: `portkey-ai-gateway`) for out-of-the-box visualizations: ```json
+Import Portkey's official Grafana dashboard (ID: ``portkey-ai-gateway``) for out-of-the-box visualizations: `````json
 {
   "dashboard": {
     "title": "Portkey AI Gateway Overview",
@@ -605,15 +606,15 @@ Import Portkey's official Grafana dashboard (ID: `portkey-ai-gateway`) for out-o
     ]
   }
 }
-```
+`````
 
----
+* * *
 
 ## Production Deployment Checklist
 
 Before taking Portkey AI Gateway to production, ensure you've covered these critical items: ### Infrastructure
 
-```yaml
+`````yaml
 # Production docker-compose with Redis for caching and PostgreSQL for logs
 version: '3.8'
 services: gateway: image: portkeyai/gateway:latest
@@ -636,17 +637,17 @@ services: gateway: image: portkeyai/gateway:latest
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes: - postgres-data:/var/lib/postgresql/data
 
-volumes: redis-data: postgres-data: ```
+volumes: redis-data: postgres-data: `````
 
 ### Security Checklist
 
 | Item | Status | Notes |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | API key rotation | Required | Rotate gateway keys monthly |
 | TLS termination | Required | Use reverse proxy or load balancer |
@@ -657,15 +658,15 @@ volumes: redis-data: postgres-data: ```
 
 ### Health Checks
 
-```bash
+`````bash
 # Gateway health endpoint
 curl http://localhost:8787/health
 
 # Expected response
 {"status": "healthy", "version": "2.5.0", "uptime": 86400}
-```
+`````
 
-```yaml
+`````yaml
 # Kubernetes liveness and readiness probes
 livenessProbe: httpGet: path: /health
     port: 8787
@@ -676,9 +677,9 @@ readinessProbe: httpGet: path: /ready
     port: 8787
   initialDelaySeconds: 5
   periodSeconds: 5
-```
+`````
 
----
+* * *
 
 ## FAQ: Portkey AI Gateway
 
@@ -704,7 +705,7 @@ Fallback routing works by defining a priority list of providers. If the primary 
 
 ### Can I use Portkey with my existing OpenAI SDK code?
 
-Yes. Portkey provides drop-in compatibility with the OpenAI SDK. Simply change the `base_url` to your gateway endpoint and use your Portkey API key: ```python
+Yes. Portkey provides drop-in compatibility with the OpenAI SDK. Simply change the ``base_url`` to your gateway endpoint and use your Portkey API key: `````python
 import openai
 
 client = openai.OpenAI(
@@ -714,9 +715,9 @@ client = openai.OpenAI(
 
 # Your existing code works unchanged
 response = client.chat.completions.create(...)
-```
+````
 
----
+* * *
 
 
 
@@ -735,7 +736,7 @@ Whether you choose the managed cloud option or self-host on your own infrastruct
 
 Start with the Docker quick-start, configure your providers, set up load balancing with fallback routes, enable caching, and connect your observability stack. In under an hour, you"ll have a production-grade LLM gateway handling 200+ models with full observability.
 
----
+* * *
 
 *Published: 2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
 
@@ -765,7 +766,7 @@ Start with the Docker quick-start, configure your providers, set up load balanci
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -775,7 +776,7 @@ Start with the Docker quick-start, configure your providers, set up load balanci
 - [2026-06-08-trending-ai-agents](portkey-ai-gateway-production)
 - [2026-06-15-trending-ai-agents](portkey-ai-gateway-production)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

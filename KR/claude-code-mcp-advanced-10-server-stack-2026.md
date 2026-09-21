@@ -28,6 +28,7 @@ faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
     a: "HTTP: 영속 상태, 자격 증명 중앙화, 서버 가동 시간에 의존. stdio: 지연 없음, 자격 증명 노출 없음, 세션 종료 시 함께 종료. 기본은 stdio. HTTP는 (a) 세션 간 영속 상태가 필요하거나, (b) 로컬 대체가 없는 SaaS와 통합해야 할 때만 사용하세요."
 ---
 
+
 {{</* resource-info */>}}
 
 # Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택
@@ -44,7 +45,7 @@ faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
 >
 > **시작 비용**: 총 약 1.5초.
 >
-> **프로젝트별 오버라이드**: postgres, github, linear는 리포지토리 내 `.claude/mcp.json`으로 설정.
+> **프로젝트별 오버라이드**: postgres, github, linear는 리포지토리 내 ```.claude/mcp.json````으로 설정.
 
 ## 스택
 
@@ -104,7 +105,7 @@ faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
 
 ## 구성
 
-`~/.claude/mcp.json` (글로벌, 범용 도구): ```json
+``~/.claude/mcp.json`` (글로벌, 범용 도구): `````json
 {
   "mcpServers": {
     "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/work"]},
@@ -116,9 +117,9 @@ faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
     "playwright": {"command": "npx", "args": ["-y", "@executeautomation/playwright-mcp-server"]}
   }
 }
-```
+`````
 
-`.claude/mcp.json` (프로젝트별, 민감한 도구): ```json
+``.claude/mcp.json`` (프로젝트별, 민감한 도구): `````json
 {
   "mcpServers": {
     "github": {"command": "...", "env": {"GITHUB_PAT": "${PROJECT_GITHUB_PAT}"}},
@@ -126,20 +127,20 @@ faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
     "linear": {"command": "...", "env": {"LINEAR_API_KEY": "${LINEAR_KEY}"}}
   }
 }
-```
+`````
 
 ## 왜 더 많은 서버를 넣지 않는가?
 
-### 왜 `slack` MCP는 없는가?
+### 왜 ````slack```` MCP는 없는가?
 유용하지만 권한 관리 마찰이 큽니다. Slack 통합이 매일 필요할 때만 추가하세요.
 
-### 왜 `notion` MCP는 없는가?
+### 왜 ````notion```` MCP는 없는가?
 Slack과 동일—유용하지만 대부분 사용자에게 매일 돌아오는 보상에 비해 시작 시간 부담이 큽니다.
 
-### 왜 `kubernetes` MCP는 없는가?
+### 왜 ````kubernetes```` MCP는 없는가?
 강력하지만 사용 빈도가 낮습니다. 운영 업무가 요구할 때 프로젝트별로 추가하세요.
 
-### 왜 `aws` / `gcp` MCP는 없는가?
+### 왜 ````aws```` / ````gcp```` MCP는 없는가?
 동일—프로젝트별로 설치하세요. 클라우드 자격 증명을 글로벌로 상시 접근 가능하게 두지 마세요.
 
 ## 시작 최적화
@@ -147,7 +148,7 @@ Slack과 동일—유용하지만 대부분 사용자에게 매일 돌아오는 
 서버 하나당 약 100~300ms 추가. 서버 10개: 합계 약 1.5초. 15개 이상: 눈에 띄게 느려짐.
 
 팁: - 동일 기능이 stdio(로컬)와 HTTP 모두에 있으면 stdio 우선
-- 각 서버의 시작 시간 감사—`time npx <server>`로 측정
+- 각 서버의 시작 시간 감사—````time npx <server>```로 측정
 - Anthropic 공식 대체가 있을 때 느린 커뮤니티 서버를 교체
 
 ## 보안 패턴
@@ -171,7 +172,7 @@ MCP 서버 10개가 최적점입니다. 위 스택은 코드, 검색, 프로젝�
 
 프로젝트별 오버라이드가 글로벌 설정보다 더 중요합니다. 민감 토큰은 해당 프로젝트로 한정하세요. "이 프로젝트가 필요한 것만" 원칙을 지키면 자격 증명 유출을 방지하고 시작을 빠르게 유지할 수 있습니다.
 
----
+* * *
 
 **관련 글**: [MCP 서버 2026 순위](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP 서버 보안 감사 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/)
 
@@ -237,12 +238,12 @@ Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택 represents an impo
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -252,7 +253,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [claude-code-vs-aider](claude-code-mcp-advanced-10-server-stack-2026)
 - [cursor-vs-claude-code](claude-code-mcp-advanced-10-server-stack-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

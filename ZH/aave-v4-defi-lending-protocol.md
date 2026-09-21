@@ -12,6 +12,7 @@ aliases:
   - /zh/posts/aave-v4-defi-lending-protocol/-
 ---
 
+
 {{</* resource-info */>}}
 
 去中心化借贷已成为现代DeFi的基石，而AAVE站在这场革命的最前沿。AAVE在多条链上拥有超过150亿美元的总锁定价值，是加密货币生态系统中最大且经过最多实战检验的借贷协议。2025年底发布的AAVE v4引入了重大的架构改进，使其比以往任何时候都更高效、更安全、更开发者友好。
@@ -26,7 +27,7 @@ aliases:
 Explore more articles in this category: 1. [1Inch Dex Aggregator Routing](/zh/1inch-dex-aggregator-routing)
 2. [Alpaca Trading Api Stock Broker](/zh/alpaca-trading-api-stock-broker)
 
----
+* * *
 
 ## AAVE是什么
 
@@ -44,7 +45,7 @@ AAVE v4引入了多项架构创新：
 - **账户抽象集成**用于无gas交易和社交恢复
 
 
----
+* * *
 ## 理解AAVE v4架构
 
 在深入代码之前，了解AAVE v4的核心架构组件非常重要。
@@ -61,36 +62,36 @@ AAVE v4引入了多项架构创新：
 
 **风险模块。** v4中的新模块化组件，封装风险参数、抵押品配置和隔离模式逻辑。这种分离允许治理在不修改核心池的情况下更新风险设置。
 
----
+* * *
 ## 设置开发环境
 
 要与AAVE v4集成，您需要正确配置的开发环境。
 
 ### Hardhat项目设置
 
-```bash
+````bash
 mkdir aave-integration && cd aave-integration
 npm init -y
 npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
 npx hardhat init
-```
+`````
 
 ### 安装AAVE依赖
 
-```bash
+`````bash
 npm install @aave/core-v4 @aave/periphery-v4
 npm install ethers dotenv
-```
+`````
 
 ### 环境配置
 
-```bash
+`````bash
 # .env
 ETHEREUM_RPC=https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY
 PRIVATE_KEY=your_private_key
-```
+`````
 
-```javascript
+`````javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
 require(dotenv).config();
@@ -110,19 +111,19 @@ module.exports = {
     },
   },
 };
-```
+`````
 
----
+* * *
 
 ## 核心智能合约集成
 
-与AAVE v4交互的主要接口是`IPool`合约。所有供应、借贷和还款操作都通过这个合约进行。
+与AAVE v4交互的主要接口是````IPool````合约。所有供应、借贷和还款操作都通过这个合约进行。
 
 ### 向AAVE供应资产
 
 当您向AAVE供应资产时，您将ERC-20代币存入池中，并收到aToken作为交换。这些aToken会随着利息的累积自动增长。
 
-```solidity
+`````solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
@@ -150,13 +151,13 @@ contract AaveSupplier {
         pool.supply(asset, amount, msg.sender, 0);
     }
 }
-```
+`````
 
 ### 借贷资产
 
 借贷要求用户有足够的抵押品供应。最大借贷金额由供应资产的抵押因子决定。
 
-```solidity
+`````solidity
 contract AaveBorrower {
     IPool public immutable pool;
     
@@ -183,11 +184,11 @@ contract AaveBorrower {
         pool.repay(asset, amount, interestRateMode, msg.sender);
     }
 }
-```
+`````
 
 ### 提取供应的资产
 
-```solidity
+`````solidity
 function withdrawAsset(
     address asset,
     uint256 amount // 使用 type(uint256).max 全额提取
@@ -195,15 +196,15 @@ function withdrawAsset(
     // 提取aToken并接收基础资产
     pool.withdraw(asset, amount, msg.sender);
 }
-```
+`````
 
----
+* * *
 
 ## 读取用户账户数据
 
 AAVE提供一个数据提供合约，聚合用户特定的信息，包括健康因子、可用借贷额度和抵押品明细。
 
-```solidity
+`````solidity
 import {IPoolDataProvider} from '@aave/core-v4/contracts/interfaces/IPoolDataProvider.sol';
 
 contract AaveDataReader {
@@ -240,13 +241,13 @@ contract AaveDataReader {
         return dataProvider.getReserveConfigurationData(asset);
     }
 }
-```
+`````
 
 ### 使用ethers.js的JavaScript集成
 
 对于前端和脚本集成，ethers.js提供了便捷的接口。
 
-```javascript
+`````javascript
 const { ethers } = require(ethers);
 require(dotenv).config();
 
@@ -274,9 +275,9 @@ async function getUserAccountData(userAddress) {
   console.log('健康因子:', ethers.formatUnits(data.healthFactor, 18));
   return data;
 }
-```
+`````
 
----
+* * *
 
 ## 使用闪电贷
 
@@ -284,7 +285,7 @@ async function getUserAccountData(userAddress) {
 
 ### 闪电贷接收合约
 
-```solidity
+`````solidity
 import {IFlashLoanSimpleReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanSimpleReceiver.sol';
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
@@ -333,13 +334,13 @@ contract FlashLoanArbitrage is IFlashLoanSimpleReceiver {
         return true;
     }
 }
-```
+`````
 
 ### 多资产闪电贷
 
 对于需要多种资产的高级策略，使用完整的闪电贷接口。
 
-```solidity
+`````solidity
 import {IFlashLoanReceiver} from '@aave/core-v4/contracts/flashloan/interfaces/IFlashLoanReceiver.sol';
 
 contract MultiAssetFlashLoan is IFlashLoanReceiver {
@@ -380,9 +381,9 @@ contract MultiAssetFlashLoan is IFlashLoanReceiver {
         return true;
     }
 }
-```
+`````
 
----
+* * *
 
 ## 隔离模式与风险管理
 
@@ -390,7 +391,7 @@ AAVE v4增强了隔离模式，允许针对具有有限敞口上限的特定抵�
 
 ### 在隔离模式下供应
 
-```solidity
+`````solidity
 contract IsolationModeSupplier {
     IPool public immutable pool;
     
@@ -424,11 +425,11 @@ contract IsolationModeSupplier {
         return pool.getReserveData(asset).isolationModeTotalDebt;
     }
 }
-```
+`````
 
 ### 检查隔离模式约束
 
-```javascript
+`````javascript
 async function checkIsolationModeConstraints(userAddress, asset) {
   const reserveData = await pool.getReserveData(asset);
   const userConfig = await pool.getUserConfiguration(userAddress);
@@ -443,9 +444,9 @@ async function checkIsolationModeConstraints(userAddress, asset) {
   console.log('用户抵押品:', 
     ethers.formatUnits(userReserveConfig.currentATokenBalance, 18));
 }
-```
+`````
 
----
+* * *
 
 ## GHO稳定币集成
 
@@ -453,7 +454,7 @@ GHO是AAVE的原生去中心化稳定币，通过AAVE协议直接针对供应的
 
 ### 针对抵押品铸造GHO
 
-```solidity
+`````solidity
 import {IGhoToken} from '@aave/gho-core/contracts/gho/interfaces/IGhoToken.sol';
 
 contract GhoMinter {
@@ -494,11 +495,11 @@ contract GhoMinter {
         return gho.getDiscountPercent(user);
     }
 }
-```
+`````
 
 ### GHO促进者模式
 
-```solidity
+`````solidity
 import {IGhoFacilitator} from '@aave/gho-core/contracts/gho/interfaces/IGhoFacilitator.sol';
 
 contract CustomGhoFacilitator is IGhoFacilitator {
@@ -526,9 +527,9 @@ contract CustomGhoFacilitator is IGhoFacilitator {
         // 费用分配的实现
     }
 }
-```
+`````
 
----
+* * *
 
 ## 跨链门户与桥接操作
 
@@ -536,7 +537,7 @@ AAVE v4利用Chainlink CCIP进行跨链流动性转移，允许用户在之间�
 
 ### 跨链桥接aToken
 
-```solidity
+`````solidity
 import {IPool} from '@aave/core-v4/contracts/interfaces/IPool.sol';
 
 contract AaveCrossChainBridge {
@@ -577,15 +578,15 @@ contract AaveCrossChainBridge {
         return address(0); // 实现细节
     }
 }
-```
+`````
 
----
+* * *
 
 ## 清算机器人实现
 
 清算是协议偿付能力的关键机制。构建清算机器人既可以盈利，又可以为协议健康做出贡献。
 
-```solidity
+`````solidity
 contract AaveLiquidator {
     IPool public immutable pool;
     
@@ -630,11 +631,11 @@ contract AaveLiquidator {
         return (healthFactor < 1e18, healthFactor);
     }
 }
-```
+`````
 
 ### JavaScript清算扫描器
 
-```javascript
+`````javascript
 async function scanForLiquidations(usersToCheck) {
   const liquidatableUsers = [];
   
@@ -650,24 +651,24 @@ async function scanForLiquidations(usersToCheck) {
           totalCollateral: ethers.formatUnits(data.totalCollateralBase, 8),
           totalDebt: ethers.formatUnits(data.totalDebtBase, 8),
         });
-        console.log(`可清算: ${user} 健康因子: ${healthFactor}`);
+        console.log(````可清算: ${user} 健康因子: ${healthFactor}````);
       }
     } catch (error) {
-      console.error(`检查 ${user} 时出错:`, error.message);
+      console.error(````检查 ${user} 时出错:````, error.message);
     }
   }
   
   return liquidatableUsers;
 }
-```
+`````
 
----
+* * *
 
 ## 使用React的前端集成
 
 现代DeFi前端通常使用wagmi和viem进行区块链交互。
 
-```typescript
+`````typescript
 // hooks/useAave.ts
 import { useContractWrite, usePrepareContractWrite } from wagmi;
 import { parseUnits } from viem;
@@ -693,18 +694,18 @@ export function useSupplyAsset(asset: string, amount: string, decimals: number) 
     abi: POOL_ABI,
     functionName: supply,
     args: [
-      asset as `0x${string}`,
+      asset as ````0x${string}````,
       parseUnits(amount, decimals),
-      0xYourAddress as `0x${string}`,
+      0xYourAddress as ````0x${string}````,
       0,
     ],
   });
 
   return useContractWrite(config);
 }
-```
+`````
 
-```tsx
+`````tsx
 // components/SupplyButton.tsx
 import { useSupplyAsset } from '../hooks/useAave';
 
@@ -721,9 +722,9 @@ export function SupplyButton({ asset, amount }: { asset: string; amount: string 
     </button>
   );
 }
-```
+````
 
----
+* * *
 
 ## 常见问题解答
 
@@ -751,7 +752,7 @@ GHO是AAVE的原生去中心化稳定币，与美元锚定。与由法币储备�
 
 可以，AAVE v4部署在多个Layer 2网络上，包括Arbitrum、Optimism、Base和Polygon。跨链的集成模式几乎相同，但您应该使用每个网络的适当合约地址和RPC端点。Layer 2部署通常提供显著更低的gas成本，同时通过rollup架构保持相同的安全保证。
 
----
+* * *
 
 
 
@@ -834,7 +835,7 @@ AAVE v4 2026：管理150亿美元以上存款的DeFi借贷协议 — 智能合�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

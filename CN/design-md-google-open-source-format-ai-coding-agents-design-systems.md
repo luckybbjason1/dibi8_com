@@ -10,6 +10,7 @@ github_repo: "https://github.com/google-labs-code/design.md"
 license: Apache-2.0
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+
 # DESIGN.md: Google's Open-Source Format for Giving AI Coding Agents a Design System
 
 
@@ -27,7 +28,7 @@ When you ask an AI coding agent to build a landing page, it produces something f
 
 DESIGN.md is a markdown file that serves as the single source of truth for a project's visual identity. It's designed to be read by AI coding agents (Claude, ChatGPT, Codex, Cursor, etc.) so they can generate UI that consistently matches your brand — without you having to re-explain your design system every time.
 
-The format has two complementary layers: ```
+The format has two complementary layers: ````
 ┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
@@ -37,39 +38,39 @@ The format has two complementary layers: ```
 │  ---                                           │
 │                                                  │
 │  ## Colors                                     │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  colors: │
 │    paper: '#F4F0E4'                             │
 │    ink: '#1E1A14'                               │
 │    accent: '#C3402A'                            │
-│  ```                                           │
+│  `````                                           │
 │  <!-- Prose -->                                │
 │  A warm paper-and-ink system with a single     │
 │  vermilion accent for diagrams only.           │
 │                                                  │
 │  ## Typography                                 │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  typography: │
 │    heading: 'Playfair Display'                 │
 │    body: 'Source Serif 4'                      │
 │    mono: 'JetBrains Mono'                      │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Spacing                                    │
-│  ```yaml                                       │
+│  `````yaml                                       │
 │  spacing: │
 │    unit: 8px                                   │
 │    scale: [4, 8, 16, 24, 32, 48, 64]           │
-│  ```                                           │
+│  `````                                           │
 │                                                  │
 │  ## Do's and Don'ts                            │
 │  - **Do** use the accent color only in charts  │
 │  - **Don't** add gradients or glass effects    │
 │                                                  │
 └──────────────────────────────────────────────────┘
-```
+`````
 
-The YAML tokens provide machine-readable values. The prose provides human-readable *context* — explaining why a color is `#F4F0E4` (warmed xerox stock, never pure white) rather than just stating the hex code. This distinction is what makes DESIGN.md fundamentally different from a design token JSON file.
+The YAML tokens provide machine-readable values. The prose provides human-readable *context* — explaining why a color is ````#F4F0E4```` (warmed xerox stock, never pure white) rather than just stating the hex code. This distinction is what makes DESIGN.md fundamentally different from a design token JSON file.
 
 ## Why Prose Matters More Than Tokens
 
@@ -81,7 +82,7 @@ DESIGN.md formalizes this principle. The tokens are context, not instructions. T
 
 ## How It Works Under the Hood
 
-The DESIGN.md repository is structured as a Bun monorepo with Turbo for orchestration: ```
+The DESIGN.md repository is structured as a Bun monorepo with Turbo for orchestration: `````
 design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
@@ -94,11 +95,11 @@ design.md/
 ├── turbo.json                  # Turbo build orchestration
 ├── tsconfig.base.json          # Shared TypeScript config
 └── PHILOSOPHY.md               # Design philosophy manifesto
-```
+`````
 
-The CLI tool (`@google/design.md`) provides: - **Linting**: Validates DESIGN.md files against the specification schema
+The CLI tool (````@google/design.md````) provides: - **Linting**: Validates DESIGN.md files against the specification schema
 - **Token extraction**: Parses YAML blocks into structured data
-- **Agent integration**: Ships as an `.agents/skills/` definition for Claude, ChatGPT, and other coding agents
+- **Agent integration**: Ships as an ````.agents/skills/```` definition for Claude, ChatGPT, and other coding agents
 
 The linter enforces that required sections (name, colors, typography, spacing, rounded, components) are present while allowing arbitrary custom sections for motion, iconography, elevation, and other design dimensions specific to each project.
 
@@ -106,58 +107,58 @@ The linter enforces that required sections (name, colors, typography, spacing, r
 
 ### 1. Install the CLI
 
-```bash
+`````bash
 bun install -g @google/design.md
-```
+`````
 
-Or use it directly with npx: ```bash
+Or use it directly with npx: `````bash
 npx @google/design.md lint DESIGN.md
-```
+`````
 
 ### 2. Create Your First DESIGN.md
 
-Start with the minimal required structure: ```markdown
+Start with the minimal required structure: `````markdown
 
----
+* * *
 name: My Project Design
 
----
+* * *
 ## Colors
 
-```yaml
+`````yaml
 colors: primary: '#2563EB'
   background: '#FFFFFF'
   text: '#111827'
-```
+`````
 
 A clean blue-and-white system for a professional SaaS product.
 
 ## Typography
 
-```yaml
+`````yaml
 typography: heading: 'Inter'
   body: 'Inter'
   mono: 'JetBrains Mono'
-```
+`````
 
 Single-family typography system for consistency.
 
 ## Spacing
 
-```yaml
+`````yaml
 spacing: unit: 4px
   scale: [4, 8, 16, 24, 32, 48, 64]
-```
+`````
 
 4px base grid, 8px for larger elements.
-```
+`````
 
 ### 3. Ship It to Your Coding Agents
 
-Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: ```
+Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: `````
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
-```
+`````
 
 The agent will now consistently apply your design system across every generation.
 
@@ -167,7 +168,7 @@ The repository includes several example DESIGN.md files demonstrating different 
 
 **Motion Design System**: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes "Nothing bounces, nothing overshoots, nothing lingers" — giving agents a clear temporal aesthetic.
 
-**Custom Design Dimensions**: The format accepts any section name. One team defines `motion` tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.
+**Custom Design Dimensions**: The format accepts any section name. One team defines ````motion```` tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.
 
 ## Why This Matters for AI-Assisted Development
 
@@ -202,7 +203,7 @@ DESIGN.md is developed by Google Labs Code and has attracted significant attenti
 - **18 issues** and **17 pull requests** showing active development
 - **4 published tags** with semantic versioning
 
-The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the `.agents/skills/` directory provides ready-to-use configurations for popular coding agents.
+The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.
 
 ## Conclusion
 
@@ -222,7 +223,7 @@ Check out internal guides on AI Coding Agent Comparison and Developer Tooling Be
 
 Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discussions on AI tools, dev utilities, and open-source projects.
 
----
+* * *
 **Sources & Further Reading**: - Official repository: https://github.com/google-labs-code/design.md
 - DESIGN.md philosophy: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md
 - CLI toolkit: https://github.com/google-labs-code/design.md/tree/main/packages/cli
@@ -258,7 +259,7 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 }
 </script>
 
----
+* * *
 
 ## Related Articles
 
@@ -268,7 +269,7 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 - [prompts-chat](design-md-google-open-source-format-ai-coding-agents-design-systems)
 - [llm-inference-cost-optimization-guide-2026](design-md-google-open-source-format-ai-coding-agents-design-systems)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

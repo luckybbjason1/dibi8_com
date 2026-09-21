@@ -10,9 +10,10 @@ github_repo: "https://github.com/microsoft/markitdown"
 license: MIT
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto
 ---
+
 th--.png
 
----
+* * *
 ## 引言
 
 你有一个 PDF、一个 Word 文档、一个 PowerPoint、一个 Excel 表格——甚至可能还有带手写笔记的扫描图片。你需要的是里面的文字内容。不是格式。不是布局。只是内容，干净且有结构，准备好让大型语言模型处理。
@@ -31,15 +32,15 @@ MarkItDown 是由微软的 AutoGen 团队开发的一个 Python 实用库和 CLI
 
 关键见解：大型语言模型不需要像素级完美的渲染，它们需要结构化的文本。Markdown 是大型语言模型最接近母语的东西——它们经过数十亿个 Markdown 文档的训练，能够本地理解它。MarkItDown 弥合了“我有一个文件”和“我有可以让我的大型语言模型推理的文本”之间的差距。
 
-```bash
+````bash
 pip install 'markitdown[all]'
-```
+`````
 
-这就是整个安装过程。`[all]` 附加包涵盖了所有支持的文件格式。各个格式的单独附加包也可用：
+这就是整个安装过程。````[all]```` 附加包涵盖了所有支持的文件格式。各个格式的单独附加包也可用：
 
-```bash
+`````bash
 pip install 'markitdown[pdf,docx,pptx]'
-```
+`````
 
 只安装你需要的东西，以保持依赖项精简。
 
@@ -47,7 +48,7 @@ pip install 'markitdown[pdf,docx,pptx]'
 
 MarkItDown 使用基于插件的架构。每种文件格式都有一个专用的提取器来处理特定格式的解析：
 
-```
+`````
 Input File ──► Format Detector ──► Format-Specific Parser ──► Markdown Output
                 │                      │
                 │                  PDF → PyMuPDF
@@ -60,45 +61,45 @@ Input File ──► Format Detector ──► Format-Specific Parser ──► 
                 │                  YouTube → yt-dlp + transcript API
                 ▼
          Unsupported → Raw text fallback
-```
+`````
 
 格式检测器检查文件头（魔术字节）和扩展名，以导向正确的解析器。如果两者都不匹配，它将回退为将文件视为原始文本——这可以优雅地处理不常见的格式。
 
-每个解析器都会语义化地提取内容：表格变为 Markdown 表格，标题变为 `#` 标记，列表变为 `-` 项目符号。输出是干净、节省 token 的 Markdown，同时保留文档结构而没有视觉噪音。
+每个解析器都会语义化地提取内容：表格变为 Markdown 表格，标题变为 ````#```` 标记，列表变为 ````-```` 项目符号。输出是干净、节省 token 的 Markdown，同时保留文档结构而没有视觉噪音。
 
 ## 安装与设置
 
 ### 快速开始（推荐）
 
-```bash
+`````bash
 # Full installation with all format support
 pip install 'markitdown[all]'
 
 # Verify installation
 markitdown --version
-```
+`````
 
 ### 使用 uv（最快）
 
-```bash
+`````bash
 uv venv --python=3.12 .venv
 source .venv/bin/activate
 uv pip install 'markitdown[all]'
-```
+`````
 
 ### 来自源（开发）
 
-```bash
+`````bash
 git clone git@github.com:microsoft/markitdown.git
 cd markitdown
 pip install -e 'packages/markitdown[all]'
-```
+`````
 
 ### 可选依赖项
 
 安装特定格式支持以减少依赖项：
 
-```bash
+`````bash
 # PDF support only
 pip install 'markitdown[pdf]'
 
@@ -107,50 +108,50 @@ pip install 'markitdown[docx,pptx,xlsx]'
 
 # Image + audio (includes OCR and speech recognition)
 pip install 'markitdown[images,audio]'
-```
+`````
 
 ### Docker 部署
 
-```bash
+`````bash
 docker pull ghcr.io/microsoft/markitdown:latest
 docker run -v $(pwd):/data markitdown /data/document.pdf > output.md
-```
+`````
 
 ## 与主流工具的集成
 
 ### LangChain 集成
 
-```python
+`````python
 from langchain_community.document_loaders import MarkItDownLoader
 
 loader = MarkItDownLoader("report.pdf")
 documents = loader.load()
 
 for doc in documents: print(doc.page_content[:500])
-```
+`````
 
 ### LlamaIndex 集成
 
-```python
+`````python
 from llama_index.readers.markitdown import MarkItDownReader
 
 reader = MarkItDownReader()
 documents = reader.load_data("presentation.pptx")
-```
+`````
 
 ### Unstructured.io 流水线
 
-```python
+`````python
 from unstructured.partition.auto import partition
 
 # MarkItDown complements unstructured.io
 # Use MarkItDown for clean Markdown output,
 # unstructured for chunking and metadata extraction
-```
+`````
 
 ### 干草堆文档存储
 
-```python
+`````python
 from haystack.document_stores import InMemoryDocumentStore
 from markitdown import MarkItDown
 
@@ -161,11 +162,11 @@ doc_store = InMemoryDocumentStore()
 doc_store.write_documents([
     {"content": result.text_content, "metadata": result.metadata}
 ])
-```
+`````
 
 ### 向量数据库管道（RAG）
 
-```python
+`````python
 from markitdown import MarkItDown
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -188,7 +189,7 @@ vectorstore = Chroma.from_texts(chunks, embeddings)
 
 # Query
 results = vectorstore.similarity_search("What are the API rate limits?")
-```
+`````
 
 ## 基准测试与实际应用案例
 
@@ -222,7 +223,7 @@ results = vectorstore.similarity_search("What are the API rate limits?")
 
 一家律师事务所每月处理200多份合同。在使用MarkItDown之前，他们使用了每份文档收费0.05美元的商业API组合。在切换之后：
 
-```python
+`````python
 import glob
 from markitdown import MarkItDown
 
@@ -232,7 +233,7 @@ contract_dir = "/contracts/2026/"
 for filepath in glob.glob(f"{contract_dir}*.pdf"): result = md.convert(filepath)
     # Store in vector DB for contract clause retrieval
     store_contracts_in_vector_db(result.text_content, filepath)
-```
+`````
 
 成本从大约 $10/月 降至 $0。每份文件的处理时间：不到 2 秒。
 
@@ -240,7 +241,7 @@ for filepath in glob.glob(f"{contract_dir}*.pdf"): result = md.convert(filepath)
 
 学术研究人员收集来自 arXiv、会议论文集和机构存储库的论文——所有这些都采用不同的格式。MarkItDown 对所有内容进行规范化：
 
-```python
+`````python
 from markitdown import MarkItDown
 from pathlib import Path
 
@@ -250,7 +251,7 @@ md = MarkItDown()
 for paper in papers_dir.rglob("*"): if paper.suffix in ['.pdf', '.docx', '.pptx']: converted = md.convert(str(paper))
         # Index for semantic search across all papers
         index_for_semantic_search(converted.text_content, paper.stem)
-```
+`````
 
 ## 高级用法 / 生产环境强化
 
@@ -258,7 +259,7 @@ for paper in papers_dir.rglob("*"): if paper.suffix in ['.pdf', '.docx', '.pptx'
 
 使用自定义解析器扩展 MarkItDown 以支持专有格式：
 
-```python
+`````python
 from markitdown import MarkItDown
 from markitdown.perceptual import PerceptualMarkdownConverter
 
@@ -273,13 +274,13 @@ class CustomFormatConverter(PerceptualMarkdownConverter): """Custom handler for 
 # Register custom converter
 md = MarkItDown()
 md.register_converter(CustomFormatConverter())
-```
+`````
 
 ### Azure 内容理解集成
 
 MarkItDown 与 Azure 内容理解集成，实现 AI 驱动的提取：
 
-```python
+`````python
 from azure.ai.contentsynthesis import ContentUnderstandingClient
 from azure.identity import DefaultAzureCredential
 
@@ -290,11 +291,11 @@ client = ContentUnderstandingClient(
 # Use Azure's AI analyzers for enhanced extraction
 # Sentiment, key phrases, entity recognition
 # alongside MarkItDown's structural conversion
-```
+`````
 
 ### 批处理管道
 
-```python
+`````python
 import concurrent.futures
 from markitdown import MarkItDown
 from pathlib import Path
@@ -309,13 +310,13 @@ def convert_single_file(filepath): md = MarkItDown()
 # Process 1000 files in parallel
 files = list(Path("/documents").rglob("*"))
 with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor: results = list(executor.map(convert_single_file, files))
-```
+`````
 
 ### 元数据提取
 
 MarkItDown 保存文档元数据：
 
-```python
+`````python
 from markitdown import MarkItDown
 
 md = MarkItDown()
@@ -326,19 +327,19 @@ print("Author:", result.metadata.get("author"))
 print("Created:", result.metadata.get("creation_date"))
 print("Keywords:", result.metadata.get("keywords"))
 print("Page Count:", result.metadata.get("page_count"))
-```
+`````
 
 ### 流式传输大文件
 
 对于大于可用内存的文件，请使用流模式：
 
-```python
+`````python
 from markitdown import MarkItDown
 
 md = MarkItDown()
 # Stream output to avoid loading entire file in memory
 with open("output.md", "w") as f: for chunk in md.convert_stream("large_document.pdf"): f.write(chunk)
-```
+`````
 
 ## 与替代方案的比较
 
@@ -350,7 +351,7 @@ with open("output.md", "w") as f: for chunk in md.convert_stream("large_document
 | 支持的格式 | 二十 | 三十 | 仅限 PDF | 文件与表格 |
 | OCR 支持 | ✅（泰瑟拉克特） | ✅（EasyOCR） | ✅ | ✅ |
 | 大型语言模型优化 | ✅ 母语 | ⚠️ 通用 | ❌ | ❌ |
-| 安装 | `pip install` | `pip install` + server | 软件开发工具包 | SDK + API |
+| 安装 | ````pip install```` | ````pip install```` + server | 软件开发工具包 | SDK + API |
 | 离线支持 | ✅ 完全 | 部分 | ❌ | ❌ |
 | Python API | ✅ | ✅ | ✅ | ✅ |
 | 批处理 | ✅ 内置 | ✅ 内置 | ❌ | ✅ |
@@ -369,7 +370,7 @@ MarkItDown 在它擅长的领域表现出色——但它确实有一些限制：
 
 3. **不支持实时协作。** 这是一个批处理工具，而不是协作文档编辑器。
 
-4. **可选依赖可能很大。** `[all]` 附加包包括 Tesseract、LibreOffice 以及其他系统依赖。对于生产部署，只安装你需要的部分。
+4. **可选依赖可能很大。** ````[all]```` 附加包包括 Tesseract、LibreOffice 以及其他系统依赖。对于生产部署，只安装你需要的部分。
 
 5. **YouTube 字幕可用性。** 并非所有 YouTube 视频都有字幕/文字记录。没有字幕的视频将悄无声息地失败。
 
@@ -391,7 +392,7 @@ MarkItDown 需要 Python 3.10 或更高版本。建议使用 Python 3.12 以获�
 
 **问：MarkItDown 如何处理受密码保护的文件？**
 
-受密码保护的 PDF 和加密的 Office 文档不受支持。您需要先使用工具解密它们，例如对于 PDF 使用 `qpdf`，对于 Office 文件使用带密码参数的 `python-docx`。
+受密码保护的 PDF 和加密的 Office 文档不受支持。您需要先使用工具解密它们，例如对于 PDF 使用 ````qpdf````，对于 Office 文件使用带密码参数的 ````python-docx````。
 
 **问：MarkItDown 能从 Excel/CSV 文件中提取表格吗？**
 
@@ -399,7 +400,7 @@ MarkItDown 需要 Python 3.10 或更高版本。建议使用 Python 3.12 以获�
 
 **问：MarkItDown 支持批量处理吗？**
 
-是的。虽然没有内置的批处理命令，但你可以使用 Python 的 `concurrent.futures` 或 `multiprocessing` 来并行处理数千个文件。该工具是为批处理工作流设计的——每次转换都是独立且无状态的。
+是的。虽然没有内置的批处理命令，但你可以使用 Python 的 ````concurrent.futures```` 或 ````multiprocessing```` 来并行处理数千个文件。该工具是为批处理工作流设计的——每次转换都是独立且无状态的。
 
 **问：MarkItDown 与商业 PDF 转 Markdown 服务相比如何？**
 
@@ -417,7 +418,7 @@ MarkItDown 需要 Python 3.10 或更高版本。建议使用 Python 3.12 以获�
 
 MarkItDown 是面向 AI 时代的多功能文件转文本工具。微软开发它是因为他们需要一个可以处理所有内容的单一工具——PDF、Word 文档、PowerPoint 幻灯片、Excel 电子表格、图片、音频——并输出 LLM 能原生理解的干净 Markdown 文本。
 
-美在于它的简洁：`pip install 'markitdown[all]'`，然后 `md.convert("anything.pdf")`。无需配置。无需 API 密钥。没有速率限制。只是一个能用的 Python 工具。
+美在于它的简洁：````pip install 'markitdown[all]'````，然后 ````md.convert("anything.pdf")```。无需配置。无需 API 密钥。没有速率限制。只是一个能用的 Python 工具。
 
 对于任何构建 RAG 流水线、文档处理系统或 AI 驱动的知识库的人来说，MarkItDown 应该是您进行文件转换的首选。它是免费的、开源的，由微软积极维护，并且受到 153,000 多名开发者的信任。
 
@@ -426,7 +427,7 @@ MarkItDown 是面向 AI 时代的多功能文件转文本工具。微软开发�
 想了解更多关于文档处理的信息，请查看我们关于 [人工智能驱动搜索](dibi8-ai-search-pipeline) 和 [RAG 优化](dibi8-rag-best-practices) 的指南。
 
 
----
+* * *
 **来源及进一步阅读**：
 - 官方文档：https://github.com/microsoft/markitdown
 - GitHub 仓库: https://github.com/microsoft/markitdown
@@ -502,12 +503,12 @@ MarkItDown：通用文件到 Markdown 转换器——微软面向 LLM 流水线�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -517,7 +518,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [ai-agent-frameworks-comparison-2026](markitdown-universal-file-to-markdown-converter)
 - [flowise-ai-workflow-builder-lowcode](markitdown-universal-file-to-markdown-converter)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

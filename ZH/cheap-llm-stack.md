@@ -8,6 +8,7 @@ tags: ["便宜大模型", "免费层", "成本优化", "stack", "合集"]
 aliases:
   - /posts/cheap-llm-stack/-
 ---
+
 # 便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15
 
 
@@ -19,15 +20,15 @@ aliases:
 
 | # | 组件 | 成本 | 角色 | 深度指南 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 1 | **Ollama**（本地）| $0 | 重/敏感负载在自己硬件上 | [Ollama 指南](/zh/resources/llm-frameworks/ollama/) |
 | 2 | **DeepSeek API** | $2-8/月 | 硬任务便宜推理（$0.27/M 输入 vs Claude $3）| [DeepSeek vs OpenAI](/zh/resources/llm-frameworks/deepseek-ds4-vs-openai-api/) |
@@ -51,7 +52,7 @@ aliases:
 
 ## 2. 架构 —— 智能路由模式
 
-```
+````
    你的应用
        │
        ▼
@@ -64,7 +65,7 @@ aliases:
        ├─► Gemini 免费层       （1k 请求/天，简单任务）
        │
        └─► OpenRouter 免费     （轮换社区模型，实验）
-```
+`````
 
 每个 provider 有"专长区"。9Router（或不想加新服务就写 10 行 Python 包装器）检查任务后路由。
 
@@ -105,11 +106,11 @@ aliases:
 **注意点**：Google 在免费层会记录你的 prompt 做"模型改进" —— 别发专有代码或 PII。
 
 **快装**：
-```bash
+`````bash
 npm install -g @google/gemini-cli
 gemini auth login  # 开浏览器，用你的 Google 账号
 gemini "解释这个正则：/^[a-z]+$/i"
-```
+`````
 
 或直接调 Gemini REST API —— 同 1000/天预算。
 
@@ -122,12 +123,12 @@ gemini "解释这个正则：/^[a-z]+$/i"
 **原理**：语义去重。同一份 2000-token system prompt 今天发了 50 次，RTK 第 2 次起识别它，发个指针而不是完整文本。
 
 **快装**：
-```bash
+`````bash
 docker run -d --name rtk -p 8765:8765 \
   ghcr.io/rtk-ai/rtk:latest
-```
+`````
 
-把 API base URL 从 `https://api.deepseek.com/v1` 改成 `http://localhost:8765/v1/deepseek`，完事。
+把 API base URL 从 ````https://api.deepseek.com/v1```` 改成 ````http://localhost:8765/v1/deepseek````，完事。
 
 RTK 工作原理 + benchmark 完整深度：[RTK Rust CLI 代理 + token 节省](/zh/resources/llm-frameworks/rtk-rust-cli-proxy-ai-token-saver/)。
 
@@ -140,11 +141,11 @@ RTK 工作原理 + benchmark 完整深度：[RTK Rust CLI 代理 + token 节省]
 **附加值**：9Router 自带 RTK 压缩层给 premium provider 用，加自动 fallback —— 免费层撞当日上限时自动切。
 
 **快装**：
-```bash
+`````bash
 docker run -d --name 9router -p 9999:9999 \
   -e PROVIDERS=ollama,deepseek,gemini,openrouter \
   ghcr.io/rtk-ai/9router:latest
-```
+`````
 
 完整配置 + 免费编程套餐配方：[9Router 智能代理指南](/zh/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/)。
 
@@ -154,11 +155,11 @@ docker run -d --name 9router -p 9999:9999 \
 
 | 任务类型 | Provider | 为什么 |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 内联代码补全 | **Ollama**（Qwen 3 Coder 14B 本地）| 延迟比质量重要 |
 | 代码生成（函数级）| **DeepSeek-V4 via RTK** | 质量重要，压缩省钱 |
@@ -194,7 +195,7 @@ docker run -d --name 9router -p 9999:9999 \
 
 1. **Ollama**（15 分）—— 装、拉 Llama 3.2 3B + Qwen 3 Coder 14B
 2. **DeepSeek 账号**（5 分）—— 注册、拿 API key、充 $10
-3. **Gemini CLI**（5 分）—— `npm i -g @google/gemini-cli`，Google 账号授权
+3. **Gemini CLI**（5 分）—— ````npm i -g @google/gemini-cli```，Google 账号授权
 4. **RTK 代理**（10 分）—— Docker run，指向 DeepSeek
 5. **9Router**（10 分）—— Docker run，配 4 provider
 6. **测路由**（15 分）—— 发 5 种不同任务，确认每种命中预期 provider
@@ -224,7 +225,7 @@ $0-15 stack 撑到你撞上以下任一情况：
 你当前 AI SaaS 月支出 $30+ 的话这 stack 立刻回本。在笔记本上跑就行（便宜 LLM 不必非要 VPS —— 但 {{< aff "digitalocean" "footer-cta" "$6/月 DigitalOcean droplet" >}} 适合团队常驻）。
 
 
----
+* * *
 *这个合集和 [自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 配套食用最佳 —— 共享 Ollama + 9Router + RTK 三个底层组件。*
 
 
@@ -290,7 +291,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -301,7 +302,7 @@ Explore more articles in this category: 1. [Ai Agent Code Of Ethics](/zh/ai-agen
 2. [Ai Agent Tool Chain](/zh/ai-agent-tool-chain)
 3. [Ai Seo Geo Toolkit Stack](/zh/ai-seo-geo-toolkit-stack)
 
----
+* * *
 
 ## Frequently Asked Questions (FAQ)
 

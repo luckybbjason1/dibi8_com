@@ -7,6 +7,7 @@ aliases:
   - /posts/rag-architecture-implementation-guide/
 ---
 
+
 {</* resource-info */>}
 
 LLM은 방대한 지식을 갖추고 있지만, 학습 데이터에 없는 최신 정볼나 기업 내 납부 문서에 대해서는 답변할 수 없습니다. RAG(Retrieval-Augmented Generation)는 외부 지식 베이스에서 관련 정보를 검색해 LLM의 문맥으로 제공함으로써 이 문제를 해결합니다. 이 글에서는 RAG 아키텍처의 기본부터 고급 기법, 프로덕션 배포까지 전 과정을 다룹니다.
@@ -39,7 +40,7 @@ RAG와 파인튜닝을 동시에 적용하면 시너지 효과를 얻을 수 있
 
 ### 문서 수집 파이프라인
 
-문서는 PDF, 웹 페이지, 마크다운, 데이터베이스 등 다양한 형태로 존재합니다. LangChain의 문서 로더(`PyPDFLoader`, `WebBaseLoader`, `CSVLoader`)로 형태별 수집이 가능합니다.
+문서는 PDF, 웹 페이지, 마크다운, 데이터베이스 등 다양한 형태로 존재합니다. LangChain의 문서 로더(```PyPDFLoader````, ````WebBaseLoader````, ````CSVLoader````)로 형태별 수집이 가능합니다.
 
 ### 텍스트 분할과 청킹 전략
 
@@ -83,7 +84,7 @@ Chroma(프로토타입), Pinecone(클리우드), Milvus(대규모) 등을 선택
 
 ### LangChain으로 기본 RAG 구현
 
-```python
+`````python
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.chains import RetrievalQA
@@ -106,7 +107,7 @@ qa = RetrievalQA.from_chain_type(
     retriever=vectorstore.as_retriever(search_kwargs={"k": 5})
 )
 result = qa.invoke({"query": "RAG가 무엇인가요?"})
-```
+`````
 
 ### Naive RAG의 한계와 실패 모드
 
@@ -123,18 +124,18 @@ result = qa.invoke({"query": "RAG가 무엇인가요?"})
 
 ### 하이브리드 검색 (밀집 + 희소)
 
-```python
+`````python
 retriever = vectorstore.as_retriever(
     search_type="mmr",  # Max Marginal Relevance
     search_kwargs={"k": 10, "lambda_mult": 0.5}
 )
-```
+`````
 
 MMR(최대 한계 관련성)은 관련성과 다양성을 동시에 고려해 중복된 내용의 청크를 줄입니다.
 
 ### 문맥 압축과 재랭킹
 
-```python
+`````python
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain_community.document_transformers import EmbeddingsRedundantFilter
 
@@ -142,7 +143,7 @@ compression_retriever = ContextualCompressionRetriever(
     base_retriever=retriever,
     base_compressor=EmbeddingsRedundantFilter(embeddings=OpenAIEmbeddings())
 )
-```
+`````
 
 ### 멀티 쿼리 검색
 
@@ -219,7 +220,7 @@ LangSmith나 Langfuse로 추적하면서 검색 품질과 생성 품질을 모�
 
 ### RAGAS 프레임워크
 
-```python
+`````python
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
 
@@ -227,7 +228,7 @@ result = evaluate(
     dataset=eval_dataset,
     metrics=[faithfulness, answer_relevancy]
 )
-```
+`````
 
 [RAGAS](https://docs.ragas.io)는 RAG 시스템의 종합적인 평가를 자동화하는 오픈소스 프레임워크입니다.
 
@@ -245,13 +246,13 @@ result = evaluate(
 
 ### Ollama 임베딩 + LLM
 
-```python
+`````python
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
 
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 llm = Ollama(model="llama3.1:8b")
-```
+````
 
 BGE 임베딩과 Ollama LLM, Chroma 벡터 DB 조합으로 완전한 물로 RAG 시스템을 구축할 수 있습니다.
 
@@ -295,7 +296,7 @@ Ollama로 Llama 3.1 8B와 nomic-embed-text를 실행하고, Chroma를 벡터 DB�
 - [LangChain GitHub 저장소](https://github.com/langchain-ai/langchain)
 - [RAG Survey Paper (arXiv:2312.10997)](https://arxiv.org/abs/2312.10997)
 
----
+* * *
 
 ## 추천 인프라
 
@@ -367,7 +368,7 @@ RAG 아키텍처 구현 가이드 2025: 프로덕션급 검색 증강 생성 시
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*

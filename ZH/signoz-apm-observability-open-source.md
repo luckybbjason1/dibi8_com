@@ -24,6 +24,7 @@ aliases:
   - /zh/posts/signoz-apm-observability-open-source/-
 ---
 
+
 {{</* resource-info */>}}
 
 ## 引言：没人谈论的每年$65,000可观测性账单
@@ -64,7 +65,7 @@ SigNoz采用现代可观测性管道架构：
 5. **查询服务（Go）**：处理API请求，对ClickHouse和Druid运行查询
 6. **前端（React）**：用于追踪探索、指标仪表板、日志搜索和告警配置的Web UI
 
-```yaml
+````yaml
 应用（OTel SDK） → OTLP/gRPC → SigNoz Otel Collector
                                         ↓
                               ┌──────────────────┐
@@ -78,7 +79,7 @@ SigNoz采用现代可观测性管道架构：
                               查询服务（Go）
                                      ↓
                                 React前端
-```
+`````
 
 ### 为什么追踪和日志使用ClickHouse？
 
@@ -93,7 +94,7 @@ ClickHouse是专为大型数据集分析查询优化的列式OLAP数据库。对
 
 与需要专有代理的Datadog或New Relic不同，SigNoz消费标准OpenTelemetry数据：
 
-```python
+`````python
 # 不需要供应商特定的SDK —— 仅标准OTel
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -110,7 +111,7 @@ provider = TracerProvider()
 processor = BatchSpanProcessor(otlp_exporter)
 provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
-```
+`````
 
 如果你需要迁移离开SigNoz，只需将同一个OTLP导出器指向不同的后端。无需更改代码。
 
@@ -125,7 +126,7 @@ trace.set_tracer_provider(provider)
 
 ### 方案A：Docker Compose（推荐）
 
-```bash
+`````bash
 # 1. 克隆SigNoz仓库
 git clone -b main https://github.com/SigNoz/signoz.git
 cd signoz/deploy/docker
@@ -138,13 +139,13 @@ cd signoz/deploy/docker
 # - 拉取所有所需镜像（ClickHouse、Kafka、查询服务、前端）
 # - 启动所有服务
 # - 打印访问URL
-```
+`````
 
-安装完成后，访问`http://localhost:3301`进入SigNoz。
+安装完成后，访问````http://localhost:3301````进入SigNoz。
 
 ### 方案B：通过Helm部署Kubernetes
 
-```bash
+`````bash
 # 1. 添加SigNoz Helm仓库
 helm repo add signoz https://charts.signoz.io
 helm repo update
@@ -161,13 +162,13 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=signoz -n signo
 
 # 4. 端口转发前端
 kubectl port-forward svc/signoz-frontend 3301:3301 -n signoz
-```
+`````
 
 ### 方案C：生产VPS部署
 
 对于在[DigitalOcean](https://m.do.co/c/eca87ac14ee0)或[HTStack](https://my.htstack.com/aff.php?aff=27187)上的生产部署：
 
-```bash
+`````bash
 # docker-compose.production.yml
 version: "3.8"
 services: signoz-frontend: image: signoz/frontend:0.76.0
@@ -212,13 +213,13 @@ services: signoz-frontend: image: signoz/frontend:0.76.0
     volumes: - kafka-data:/bitnami/kafka
     depends_on: - zookeeper
 
-volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: ```
+volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````
 
-使用`docker compose -f docker-compose.production.yml up -d`部署。
+使用````docker compose -f docker-compose.production.yml up -d````部署。
 
 ### 验证安装
 
-```bash
+`````bash
 # 检查所有容器是否运行中
 docker ps --format "table {{.Names}}\t{{.Status}}"
 
@@ -234,7 +235,7 @@ docker ps --format "table {{.Names}}\t{{.Status}}"
 # 测试健康端点
 curl http://localhost:3301/api/v1/health
 # 输出：{"status":"ok"}
-```
+`````
 
 ## 为应用埋点
 
@@ -242,7 +243,7 @@ curl http://localhost:3301/api/v1/health
 
 SigNoz支持大多数语言的自动埋点，无需代码更改：
 
-```bash
+`````bash
 # Node.js —— 零代码更改
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=payment-service" \
@@ -263,13 +264,13 @@ java -javaagent:opentelemetry-javaagent.jar \
 OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" \
 OTEL_RESOURCE_ATTRIBUTES="service.name=api-gateway" \
 go run main.go
-```
+`````
 
 ### 手动埋点（生产级）
 
 对于生产服务，手动埋点提供更好的控制：
 
-```python
+`````python
 # 使用手动埋点的Python Flask
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
@@ -300,13 +301,13 @@ def process_payment(): with tracer.start_as_current_span("process_payment") as s
             pass
 
         return {"status": "success"}
-```
+`````
 
 ### 自定义仪表板和指标
 
 数据流入后，在SigNoz UI或通过API创建仪表板：
 
-```bash
+`````bash
 # 通过API创建自定义仪表板
 curl -X POST http://localhost:3301/api/v1/dashboards \
   -H "Content-Type: application/json" \
@@ -333,7 +334,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
       }
     ]
   }'
-```
+`````
 
 ## 基准测试与真实用例
 
@@ -341,13 +342,13 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 | 指标 | SigNoz（自托管） | Datadog | New Relic |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 50主机APM | $40–$120/月（VPS） | $2,040/月 | $1,470/月 |
 | 追踪（100万span/天） | 包含 | ~$180/月 | ~$150/月 |
@@ -366,9 +367,9 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 | 指标 | 结果 |
 |
----
+* * *
 |
----
+* * *
 |
 | Span摄取速率 | 持续12,000 span/秒 |
 | 查询延迟（最近1小时） | p95 45ms |
@@ -388,7 +389,7 @@ curl -X POST http://localhost:3301/api/v1/dashboards \
 
 ### 高可用设置
 
-```yaml
+`````yaml
 # docker-compose.ha.yml —— 带ZooKeeper的多节点ClickHouse
 services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - clickhouse1-data:/var/lib/clickhouse
@@ -413,11 +414,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     volumes: - ./nginx-clickhouse.conf:/etc/nginx/nginx.conf
     ports: - "8123:8123"
       - "9000:9000"
-```
+`````
 
 ### 使用S3的长期存储
 
-```yaml
+`````yaml
 # ClickHouse S3备份配置
 <clickhouse>
   <storage_configuration>
@@ -444,11 +445,11 @@ services: clickhouse-1: image: clickhouse/clickhouse-server:24.3-alpine
     </policies>
   </storage_configuration>
 </clickhouse>
-```
+`````
 
 ### 告警配置
 
-```yaml
+`````yaml
 # alert-rules.yml —— SigNoz告警管理器规则
 groups: - name: payment_service_alerts
     rules: - alert: HighErrorRate
@@ -478,7 +479,7 @@ groups: - name: payment_service_alerts
 
 ### Kubernetes自动埋点
 
-```yaml
+`````yaml
 # signoz-otel-collector-service.yaml
 apiVersion: v1
 kind: Service
@@ -493,7 +494,7 @@ spec: ports: - name: otlp-grpc
   selector: app.kubernetes.io/name: otel-collector
 
 
----
+* * *
 # 通过添加OTel环境变量为Deployment埋点
 apiVersion: apps/v1
 kind: Deployment
@@ -508,13 +509,13 @@ spec: template: spec: containers: - name: payment-service
               value: "parentbased_traceidratio"
             - name: OTEL_TRACES_SAMPLER_ARG
               value: "0.1"  # 采样10%的追踪
-```
+`````
 
 ### 高流量服务的采样策略
 
 对于每秒处理>10,000请求的服务，实现基于头部的采样：
 
-```yaml
+`````yaml
 # otel-collector-config.yaml
 receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317
       http: endpoint: 0.0.0.0:4318
@@ -538,7 +539,7 @@ exporters: clickhousetraces: datasource: tcp://clickhouse:9000
 service: pipelines: traces: receivers: [otlp]
       processors: [tail_sampling]
       exporters: [clickhousetraces]
-```
+`````
 
 此配置采样100%的错误追踪、100%的慢请求（>500ms）和10%的正常流量——在控制存储成本的同时为你提供完整的错误可见性。
 
@@ -546,15 +547,15 @@ service: pipelines: traces: receivers: [otlp]
 
 | 功能 | SigNoz | Datadog | New Relic | Grafana Stack |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 开源 | MIT许可证 | 专有 | 专有 | AGPL（部分） |
 | 自托管 | 完整Docker/K8s | 否 | 否 | 是 |
@@ -599,12 +600,12 @@ SigNoz提供统一体验：一个二进制文件、一个UI、一个追踪/指�
 
 **Q: 我可以将现有的Prometheus指标与SigNoz一起使用吗？**
 
-可以。SigNoz的OTel Collector包含Prometheus接收器。在`otel-collector-config.yaml`中配置：
+可以。SigNoz的OTel Collector包含Prometheus接收器。在````otel-collector-config.yaml````中配置：
 
-```yaml
+`````yaml
 receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
           static_configs: - targets: ['my-app:9090']
-```
+`````
 
 现有的Prometheus scrape配置可以直接导入。SigNoz将在Druid中存储指标以供长期查询。
 
@@ -626,7 +627,7 @@ SigNoz提供了规模化工程团队真正需要的东西：**一个生产级APM
 
 凭借5分钟的Docker设置、ClickHouse驱动的数十亿span亚秒级查询，以及零供应商锁定，每年花费$50,000+购买云APM的理由变得难以成立。
 
-**立即部署**：在[DigitalOcean](https://m.do.co/c/eca87ac14ee0)（8GB $48/月）或[HTStack](https://my.htstack.com/aff.php?aff=27187)上创建VPS，运行`./install.sh`，并在10分钟内开始为你的第一个服务埋点。
+**立即部署**：在[DigitalOcean](https://m.do.co/c/eca87ac14ee0)（8GB $48/月）或[HTStack](https://my.htstack.com/aff.php?aff=27187)上创建VPS，运行````./install.sh```，并在10分钟内开始为你的第一个服务埋点。
 
 **加入社区**：[Telegram群组](https://t.me/dibi8zh)中文开发者 | [GitHub Discussions](https://github.com/SigNoz/signoz/discussions) | [Slack](https://signoz.io/slack)
 
@@ -652,7 +653,7 @@ SigNoz提供了规模化工程团队真正需要的东西：**一个生产级APM
 - [自托管指南](dibi8-internal-link) — dibi8.com上的通用自托管最佳实践
 
 
----
+* * *
 *联盟营销披露：本文包含DigitalOcean和HTStack的联盟链接。如果你通过这些链接购买服务，dibi8.com将获得佣金，不会额外增加你的成本。所有推荐均基于实践测试，而非联盟可用性。*
 
 
@@ -717,11 +718,11 @@ SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -731,6 +732,6 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [worldmonitor-real-time-global-intelligence-dashboard](signoz-apm-observability-open-source)
 - [apple-container](signoz-apm-observability-open-source)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

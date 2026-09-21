@@ -28,6 +28,7 @@ faq: - q: "Gemini CLI có phải là đối thủ thực sự của Claude Code 
     a: "Nhiều lập trình viên làm vậy. Gemini CLI cho việc khám phá ở gói miễn phí + công việc cần ngữ cảnh dài. Claude Code cho các vòng lặp agentic sản xuất + sử dụng công cụ đáng tin cậy. Kết hợp lại bao phủ nhiều quy trình hơn là dùng riêng từng cái, và gói miễn phí của Gemini có nghĩa là gần như không tốn thêm chi phí."
 ---
 
+
 {{</* resource-info */>}}
 
 # Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 quy trình làm việc
@@ -139,7 +140,7 @@ Gemini CLI là công cụ nghiêm túc trong 2026 nhưng chưa phải là thay t
 
 Stack tốt nhất 2026 cho hầu hết lập trình viên chuyên nghiệp: Claude Code làm chính + Gemini CLI làm công cụ "khám phá mọi thứ" ở gói miễn phí. Gói miễn phí của Gemini có nghĩa là gần như không tốn thêm chi phí.
 
----
+* * *
 
 **Liên quan**: [AI Coding 2026-Q2 Đại chiến](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Hướng dẫn cài đặt Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/) · [LLM cửa sổ ngữ cảnh 1M 2026](https://dibi8.com/vi/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
 
@@ -205,12 +206,12 @@ Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 quy trình làm vi�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -220,7 +221,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [gemini-cli-vs-claude-code](gemini-cli-vs-claude-code-2026-real-comparison)
 - [claude-code-vs-cline](gemini-cli-vs-claude-code-2026-real-comparison)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

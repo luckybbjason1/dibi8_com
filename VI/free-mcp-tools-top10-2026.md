@@ -18,6 +18,7 @@ faqs: - q: 'MCP là gì và tại sao quan trọng?'
     a: 'Plugin và extension được xây cho một ứng dụng cụ thể (ví dụ: plugin ChatGPT chỉ hoạt động trong ChatGPT). MCP server không phụ thuộc client — cùng một filesystem server hoạt động trong Claude, Cursor và bất kỳ MCP client nào khác mà không cần chỉnh sửa. Đây là ưu điểm then chốt của tiêu chuẩn mở so với hệ thống plugin độc quyền.'
 ---
 
+
 # Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất
 
 
@@ -29,21 +30,21 @@ MCP (Model Context Protocol) thay đổi cách AI model tương tác với hệ 
 
 Danh sách này tập trung vào MCP server **miễn phí, mã nguồn mở, sẵn sàng production** từ [kho MCP chính thức](https://github.com/modelcontextprotocol/servers) và các dự án cộng đồng uy tín.
 
----
+* * *
 
 ## Top 10 MCP Server Miễn Phí
 
 ### 1. Filesystem — Đọc & Ghi File Cục Bộ
 
-**Package**: `@modelcontextprotocol/server-filesystem`
+**Package**: ```@modelcontextprotocol/server-filesystem````
 
 MCP server thiết yếu nhất. Cho AI truy cập trực tiếp đọc, ghi, tạo và xóa file trên máy cục bộ hoặc thư mục được cấu hình.
 
-**Công cụ**: `read_file`, `write_file`, `list_directory`, `create_directory`, `search_files`, `get_file_info`
+**Công cụ**: ````read_file````, ````write_file````, ````list_directory````, ````create_directory````, ````search_files````, ````get_file_info````
 
 **Dùng cho**: Cho Claude chỉnh sửa file code trực tiếp, tạo và lưu tài liệu, quản lý tài nguyên dự án.
 
-```json
+`````json
 {
   "mcpServers": {
     "filesystem": {
@@ -52,43 +53,43 @@ MCP server thiết yếu nhất. Cho AI truy cập trực tiếp đọc, ghi, t�
     }
   }
 }
-```
+`````
 
 **Kết luận**: Cài đây đầu tiên. Không phụ thuộc, giá trị tức thì.
 
----
+* * *
 
 ### 2. Fetch — Lấy Nội Dung Trang Web
 
-**Package**: `@modelcontextprotocol/server-fetch`
+**Package**: ````@modelcontextprotocol/server-fetch````
 
 Cho AI lấy và đọc trang web, chuyển HTML thành markdown sạch. Cần thiết cho nghiên cứu, tra cứu tài liệu và đọc nội dung online.
 
-**Công cụ**: `fetch` (lấy URL, trả về markdown), xử lý redirect, tuân thủ robots.txt.
+**Công cụ**: ````fetch```` (lấy URL, trả về markdown), xử lý redirect, tuân thủ robots.txt.
 
 **Dùng cho**: Tra tài liệu API mới nhất, đọc bài viết để tóm tắt, xác minh URL thời gian thực.
 
 **Kết luận**: Kết hợp hoàn hảo với filesystem server. Cài cùng lúc.
 
----
+* * *
 
 ### 3. Memory — Knowledge Graph Bền Vững
 
-**Package**: `@modelcontextprotocol/server-memory`
+**Package**: ````@modelcontextprotocol/server-memory````
 
 Cung cấp bộ nhớ bền vững qua các cuộc hội thoại cho AI bằng knowledge graph cục bộ. Các thực thể, quan hệ và quan sát được lưu trữ tồn tại sau khi khởi động lại.
 
-**Công cụ**: `create_entities`, `create_relations`, `add_observations`, `search_nodes`, `open_nodes`
+**Công cụ**: ````create_entities````, ````create_relations````, ````add_observations````, ````search_nodes````, ````open_nodes````
 
 **Dùng cho**: Ghi nhớ ngữ cảnh dự án, tùy chọn người dùng, ghi chú nghiên cứu dài hạn, dữ liệu quan hệ.
 
 **Kết luận**: Cải thiện đáng kể workflow AI dài hạn. Cần thiết cho người dùng nâng cao.
 
----
+* * *
 
 ### 4. GitHub — Truy Cập Repository Đầy Đủ
 
-**Package**: `@modelcontextprotocol/server-github`
+**Package**: ````@modelcontextprotocol/server-github````
 
 Kết nối AI với repository GitHub. Đọc code, quản lý issue, tạo PR, tìm kiếm repository — tất cả qua ngôn ngữ tự nhiên.
 
@@ -100,15 +101,15 @@ Kết nối AI với repository GitHub. Đọc code, quản lý issue, tạo PR,
 
 **Kết luận**: Không thể thiếu cho developer. Kết hợp với filesystem server để bao phủ cả local lẫn remote.
 
----
+* * *
 
 ### 5. Brave Search — Tìm Kiếm Web Thời Gian Thực
 
-**Package**: `@modelcontextprotocol/server-brave-search`
+**Package**: ````@modelcontextprotocol/server-brave-search````
 
 Thêm tìm kiếm web thời gian thực vào AI bằng Brave Search API. Free tier có sẵn (2.000 query/tháng).
 
-**Công cụ**: `brave_web_search` (10 kết quả với tiêu đề, mô tả, URL), `brave_local_search` cho truy vấn theo địa điểm.
+**Công cụ**: ````brave_web_search```` (10 kết quả với tiêu đề, mô tả, URL), ````brave_local_search```` cho truy vấn theo địa điểm.
 
 **Yêu cầu**: API key miễn phí tại [brave.com/search/api](https://brave.com/search/api/).
 
@@ -116,11 +117,11 @@ Thêm tìm kiếm web thời gian thực vào AI bằng Brave Search API. Free t
 
 **Kết luận**: Lựa chọn tìm kiếm miễn phí tốt nhất cho MCP. Các thay thế Bing và Google tồn tại nhưng tốn kém hơn.
 
----
+* * *
 
 ### 6. PostgreSQL — Truy Vấn Database
 
-**Package**: `@modelcontextprotocol/server-postgres`
+**Package**: ````@modelcontextprotocol/server-postgres````
 
 Truy cập chỉ đọc vào PostgreSQL database. Hỏi AI về dữ liệu bằng ngôn ngữ thuần túy.
 
@@ -132,39 +133,39 @@ Truy cập chỉ đọc vào PostgreSQL database. Hỏi AI về dữ liệu bằ
 
 **Kết luận**: Thay đổi cuộc chơi cho team có dữ liệu trong Postgres. Không tốn thêm chi phí ngoài DB hiện có.
 
----
+* * *
 
 ### 7. Puppeteer — Tự Động Hóa Trình Duyệt
 
-**Package**: `@modelcontextprotocol/server-puppeteer`
+**Package**: ````@modelcontextprotocol/server-puppeteer````
 
 Điều khiển trình duyệt đầy đủ cho AI — điều hướng trang, chụp màn hình, điền form, click phần tử.
 
-**Công cụ**: `puppeteer_navigate`, `puppeteer_screenshot`, `puppeteer_click`, `puppeteer_fill`, `puppeteer_evaluate`
+**Công cụ**: ````puppeteer_navigate````, ````puppeteer_screenshot````, ````puppeteer_click````, ````puppeteer_fill````, ````puppeteer_evaluate````
 
 **Dùng cho**: Web scraping, kiểm thử tự động, điền form, chụp trạng thái hình ảnh của web app.
 
 **Kết luận**: MCP server mạnh nhất trong danh sách này. Cài đặt phức tạp (cần Chrome/Chromium) nhưng khả năng vô song.
 
----
+* * *
 
 ### 8. Sequential Thinking — Giải Quyết Vấn Đề Có Cấu Trúc
 
-**Package**: `@modelcontextprotocol/server-sequential-thinking`
+**Package**: ````@modelcontextprotocol/server-sequential-thinking````
 
 Tăng cường lập luận của AI bằng cách hướng dẫn qua từng bước suy nghĩ rõ ràng trước khi trả lời. Đặc biệt hữu ích cho phân tách vấn đề phức tạp.
 
-**Công cụ**: `sequentialthinking` — buộc lập luận nhiều bước với khả năng sửa đổi.
+**Công cụ**: ````sequentialthinking```` — buộc lập luận nhiều bước với khả năng sửa đổi.
 
 **Dùng cho**: Thiết kế hệ thống, debug vấn đề phức tạp, lập kế hoạch dự án nhiều giai đoạn.
 
 **Kết luận**: Vô hình nhưng mạnh mẽ. Thêm server này khi muốn lập luận sâu hơn mà không chuyển sang extended thinking mode.
 
----
+* * *
 
 ### 9. Slack — Giao Tiếp Nhóm
 
-**Package**: `@modelcontextprotocol/server-slack`
+**Package**: ````@modelcontextprotocol/server-slack````
 
 Kết nối AI với workspace Slack — đọc channel, gửi tin nhắn, quản lý thread.
 
@@ -176,11 +177,11 @@ Kết nối AI với workspace Slack — đọc channel, gửi tin nhắn, quả
 
 **Kết luận**: Giá trị cao cho nhóm làm việc. Biến AI thành thành viên thực sự của Slack.
 
----
+* * *
 
 ### 10. SQLite — Database Cục Bộ Nhẹ
 
-**Package**: `@modelcontextprotocol/server-sqlite`
+**Package**: ````@modelcontextprotocol/server-sqlite````
 
 Truy cập đọc/ghi vào database SQLite cục bộ, thêm hệ thống "memo" tích hợp để lưu trữ ghi chú.
 
@@ -192,7 +193,7 @@ Truy cập đọc/ghi vào database SQLite cục bộ, thêm hệ thống "memo"
 
 **Kết luận**: MCP server database dễ chạy nhất. Bắt đầu ở đây nếu muốn AI + database mà không cần hạ tầng.
 
----
+* * *
 
 ## So Sánh Nhanh
 
@@ -209,11 +210,11 @@ Truy cập đọc/ghi vào database SQLite cục bộ, thêm hệ thống "memo"
 | Slack | Giao tiếp | Slack Bot Token (miễn phí) | ⭐⭐ Trung bình |
 | SQLite | Database | Không | ⭐ Dễ |
 
----
+* * *
 
 ## Stack Khởi Đầu Cho Developer
 
-Năng suất tối đa với thiết lập tối thiểu — cài ba cái này trước: ```json
+Năng suất tối đa với thiết lập tối thiểu — cài ba cái này trước: `````json
 {
   "mcpServers": {
     "filesystem": {
@@ -230,7 +231,7 @@ Năng suất tối đa với thiết lập tối thiểu — cài ba cái này t
     }
   }
 }
-```
+````
 
 Ba cái này cho bạn: truy cập file cục bộ + duyệt web + bộ nhớ liên tục — cốt lõi của một AI assistant hiệu quả.
 
@@ -300,12 +301,12 @@ Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nh�
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~7 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -315,7 +316,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [headroom-token-compression-proxy-library-mcp-server](free-mcp-tools-top10-2026)
 - [codebase-memory-mcp-deep-code-intelligence](free-mcp-tools-top10-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

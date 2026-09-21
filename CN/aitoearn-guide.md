@@ -31,6 +31,7 @@ faqs: - q: 'Is AiToEarn a free alternative to Buffer and Hootsuite?'
     a: 'It uses Playwright headless browsers to bypass the restrictive APIs on platforms such as Xiaohongshu (RED) and TikTok, rather than relying solely on official posting APIs.'
   - q: 'What does it take to self-host AiToEarn reliably?'
     a: 'AiToEarn ships Docker Compose files that isolate its SQLite database and Playwright headless browsers, and it can run with around 99.9% uptime on a cheap $5 VPS.'---
+
 {</* resource-info */>}
 
 # Best Open Source Alternative to Buffer (2026): AiToEarn vs Hootsuite Comparison
@@ -142,7 +143,7 @@ Best Open Source Alternative to Buffer (2026): AiToEarn vs Hootsuite Comparison 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -150,15 +151,15 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 | Bot | Exchange | Strategy | Cost | Difficulty |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Freqtrade** | Multi | Custom | Free | Medium |
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |

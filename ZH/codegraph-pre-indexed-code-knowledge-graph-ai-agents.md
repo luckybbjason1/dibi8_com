@@ -8,6 +8,7 @@ tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
 
+
 # CodeGraph：从代码库构建知识图谱
 
 ## 引言
@@ -40,9 +41,9 @@ CodeGraph 在精简的包中集成了令人惊讶的丰富功能：
 
 ### 通过 Gradle 安装
 
-在 `build.gradle.kts` 中将 CodeGraph 添加为依赖项：
+在 ```build.gradle.kts```` 中将 CodeGraph 添加为依赖项：
 
-```kotlin
+`````kotlin
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
 }
@@ -51,60 +52,60 @@ dependencies {
     implementation("io.codegraph:codegraph-core:1.2.0")
     implementation("io.codegraph:codegraph-cli:1.2.0")
 }
-```
+`````
 
 ### 通过 Maven 安装
 
-```xml
+`````xml
 <dependency>
     <groupId>io.codegraph</groupId>
     <artifactId>codegraph-core</artifactId>
     <version>1.2.0</version>
 </dependency>
-```
+`````
 
 ### 安装 CLI 工具
 
 下载最新的 CLI JAR 文件并直接运行：
 
-```bash
+`````bash
 curl -L -o codegraph-cli.jar https://repo.maven.apache.org/maven2/io/codegraph/codegraph-cli/1.2.0/codegraph-cli-1.2.0.jar
 java -jar codegraph-cli.jar --version
-```
+`````
 
 或者在 macOS 上通过 Homebrew 安装：
 
-```bash
+`````bash
 brew tap codegraph/tap
 brew install codegraph
-```
+`````
 
 ## 构建第一个图
 
 安装 CodeGraph 后，生成代码库的知识图只需一条命令：
 
-```bash
+`````bash
 codegraph scan \
   --source-dir ./src/main \
   --output-dir ./codegraph-output \
   --format json
-```
+`````
 
-这条命令扫描 `./src/main` 下的所有 Kotlin 和 Java 源文件，构建依赖图，并将其导出为 JSON 格式到 `./codegraph-output`。你可以将 `json` 替换为 `dot`（Graphviz 格式）或 `graphml`（与图数据库工具兼容的格式）。
+这条命令扫描 ````./src/main```` 下的所有 Kotlin 和 Java 源文件，构建依赖图，并将其导出为 JSON 格式到 ````./codegraph-output````。你可以将 ````json```` 替换为 ````dot````（Graphviz 格式）或 ````graphml````（与图数据库工具兼容的格式）。
 
 生成后，检查输出内容：
 
-```bash
+`````bash
 codegraph inspect \
   --input ./codegraph-output/graph.json \
   --query "classes package=com.example.service"
-```
+`````
 
 ## 使用程序化 API
 
 为了实现更深度的集成，CodeGraph 提供了一个丰富的程序化 API。以下是加载图、查询图以及以编程方式提取关系的示例：
 
-```kotlin
+`````kotlin
 import io.codegraph.*
 import io.codegraph.query.*
 
@@ -140,7 +141,7 @@ fun main() {
     println("调用者数量: ${callers.count()}")
     println("传递依赖: ${dependencies.count()}")
 }
-```
+`````
 
 ## 使用内置查询语言查询图
 
@@ -148,44 +149,44 @@ CodeGraph 内置了一套强大的声明式查询语言。以下是几种常见�
 
 ### 查找包中的所有类
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "classes package=com.example.api"
-```
+`````
 
 ### 查找调用特定方法的函数
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "callers of UserService.login"
-```
+`````
 
 ### 追踪函数的调用链
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "call chain of UserController.processRequest" \
   --depth 5
-```
+`````
 
 ### 查找孤儿函数（无人调用的函数）
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "functions with zero callers"
-```
+`````
 
 ### 检测循环依赖
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "circular dependencies among packages"
-```
+`````
 
 ## 实际应用场景
 
@@ -193,7 +194,7 @@ CodeGraph 服务于广泛的各种开发场景。以下是影响力最大的几�
 
 ### 新员工入职培训
 
-新团队成员可以通过查询图来了解代码库结构，而无需阅读每个文件。一个简单的查询如 `classes package=com.example` 会返回按包组织的所有类的清晰列表，为架构提供一个即时的心理地图。
+新团队成员可以通过查询图来了解代码库结构，而无需阅读每个文件。一个简单的查询如 ````classes package=com.example```` 会返回按包组织的所有类的清晰列表，为架构提供一个即时的心理地图。
 
 ### 重构安全保障
 
@@ -203,24 +204,24 @@ CodeGraph 服务于广泛的各种开发场景。以下是影响力最大的几�
 
 CodeGraph 可以自动检测架构违规。例如，你可以查询从 UI 层到数据层的任何绕过服务层的依赖：
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "classes package=ui" \
   --follow "DEPENDS_ON" \
   --filter "classes package=repo" \
   --violation "should go through service layer"
-```
+`````
 
 ### 技术债务识别
 
 具有过多入边或没有任何调用者的函数可能表明维护负担。CodeGraph 通过以下查询标记这些问题：
 
-```bash
+`````bash
 codegraph query \
   --input ./codegraph-output/graph.json \
   --filter "functions with callers > 20"
-```
+`````
 
 ### API 表面分析
 
@@ -232,17 +233,17 @@ codegraph query \
 
 | 功能 | CodeGraph | Sourcetrail | IDE 索引 | jOOQ Codegen | ArchUnit |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 图可视化 | 是 | 是 | 否 | 否 | 否 |
 | 查询语言 | 内置 DSL | 手动过滤 | 搜索栏 | 不适用 | Java DSL |
@@ -259,7 +260,7 @@ codegraph query \
 
 假设你正在使用 Ktor 构建一个 GraphQL 服务器。CodeGraph 帮助你可视化数据模型、GraphQL 类型和解析器之间的关系：
 
-```kotlin
+`````kotlin
 import io.codegraph.*
 
 fun analyzeGraphQLServer() {
@@ -291,7 +292,7 @@ fun analyzeGraphQLServer() {
     println("解析器数量: ${resolvers.count()}")
     println("模型-解析器映射: ${mappings.count()}")
 }
-```
+`````
 
 此分析揭示了你的解析器覆盖范围中的缺口，并确保每个数据模型都有相应的 GraphQL 解析器。
 
@@ -299,13 +300,13 @@ fun analyzeGraphQLServer() {
 
 | 方面 | CodeGraph | 手动代码审查 | 代码搜索（grep/ripgrep） |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | 关系理解 | 完整图、传递依赖 | 部分，依赖经验 | 基于文本，无语义上下文 |
 | 查找连接所需时间 | 秒 | 分钟到小时 | 秒但不完整 |
@@ -320,7 +321,7 @@ fun analyzeGraphQLServer() {
 
 CodeGraph 无缝集成到 CI/CD 流水线中，自动执行架构规则：
 
-```yaml
+`````yaml
 # .github/workflows/codegraph.yml
 name: CodeGraph 分析
 on: pull_request: branches: [main]
@@ -342,7 +343,7 @@ jobs: analyze: runs-on: ubuntu-latest
         uses: actions/upload-artifact@v4
         with: name: codegraph-report
           path: build/codegraph/
-```
+`````
 
 ## 限制与不足
 
@@ -364,19 +365,19 @@ CodeGraph 目前支持 Kotlin 和 Java。它使用 Kotlin 编译器的内部 API
 
 ### Q2：CodeGraph 可以分析 Gradle 多模块项目吗？
 
-可以。CodeGraph 原生支持多模块 Gradle 和 Maven 项目。当你在项目根目录运行 `codegraph scan` 时，它会自动检测所有模块及其模块间依赖关系。`--multi-module` 标志启用了额外的模块间分析：
+可以。CodeGraph 原生支持多模块 Gradle 和 Maven 项目。当你在项目根目录运行 ````codegraph scan```` 时，它会自动检测所有模块及其模块间依赖关系。````--multi-module```` 标志启用了额外的模块间分析：
 
-```bash
+`````bash
 codegraph scan --source-dir . --multi-module
-```
+`````
 
 ### Q3：CodeGraph 能处理多大规模的代码库？
 
 CodeGraph 已在高达 200 万行代码的代码库上进行了测试。性能大致随代码规模线性扩展。对于非常大的代码库（100 万行以上），将 JVM 堆大小增加到 8GB 或更多：
 
-```bash
+`````bash
 java -Xmx8g -jar codegraph-cli.jar scan --source-dir ./src
-```
+`````
 
 ### Q4：我可以在非 Kotlin 项目中使用 CodeGraph 吗？
 
@@ -386,19 +387,19 @@ java -Xmx8g -jar codegraph-cli.jar scan --source-dir ./src
 
 CodeGraph 分析静态编译的源代码。如果你的项目使用代码生成（如 Kotlin Poet、jOOQ codegen、Protobuf），你应该确保将生成的代码包含在扫描目标中。将生成的源目录添加到扫描路径：
 
-```bash
+`````bash
 codegraph scan \
   --source-dir ./src/main \
   --source-dir ./build/generated
-```
+`````
 
 ### Q6：CodeGraph 可用于代码质量度量吗？
 
-可以。CodeGraph 可以从图结构计算多种代码质量指标：结合 AST 分析的圈复杂度、耦合度量、内聚分数和依赖深度。使用 `codegraph metrics` 子命令：
+可以。CodeGraph 可以从图结构计算多种代码质量指标：结合 AST 分析的圈复杂度、耦合度量、内聚分数和依赖深度。使用 ````codegraph metrics```` 子命令：
 
-```bash
+`````bash
 codegraph metrics --input ./codegraph-output/graph.json --output ./report.json
-```
+````
 
 ### Q7：CodeGraph 与 IDE 内置的代码洞察工具有何区别？
 
@@ -427,7 +428,7 @@ IDE 工具提供针对当前打开文件的即时分析。CodeGraph 分析整个
 - HTStack：管理你的云基础设施。加入链接：https://my.htstack.com/aff.php?aff=27187
 
 
----
+* * *
 DIBI8 是你探索最佳开源工具、AI 创新和开发者资源的门户。订阅我们的 Telegram 频道，获取科技领域最具影响力项目的每日更新。
 
 
@@ -493,11 +494,11 @@ CodeGraph: 从代码库构建知识图谱 represents an important step forward i
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -507,7 +508,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
 - [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
@@ -538,15 +539,15 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |

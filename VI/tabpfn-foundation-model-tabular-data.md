@@ -35,6 +35,7 @@ faqs: - q: 'TabPFN là gì?'
     a: 'Cài đặt bằng lệnh ''pip install tabpfn'', sau đó import TabPFNClassifier từ package tabpfn rồi gọi clf.fit(X_train, y_train) tiếp theo là clf.predict(X_test). Mô hình tự động nhận dạng kiểu đặc trưng và xử lý các giá trị bị thiếu cũng như đặc trưng dạng phân loại.'
 ---
 
+
 {</* resource-info */>}
 
 ## TabPFN là gì?
@@ -46,7 +47,7 @@ faqs: - q: 'TabPFN là gì?'
 **Ngôn ngữ**: Python
 **Giấy phép**: Apache-2.0
 
----
+* * *
 
 ## Vấn đề với ML Dạng Bảng Truyền Thống
 
@@ -70,7 +71,7 @@ faqs: - q: 'TabPFN là gì?'
 | Nhận kết quả | Tức thì | Bất kỳ ai |
 | **Tổng cộng** | **~2 phút** | **Không cần chuyên môn** |
 
----
+* * *
 
 ## TabPFN Hoạt Động Như Thế Nào
 
@@ -88,7 +89,7 @@ TabPFN được đào tạo trên **hàng triệu tập dữ liệu tổng hợp
 3. **Không có Siêu tham số**: Loại bỏ tìm kiếm lưới và điều chỉnh
 4. **Suy luận Nhanh**: Kết quả trong vài giây, không phải giờ
 
----
+* * *
 
 ## Điểm chuẩn Hiệu suất
 
@@ -110,19 +111,19 @@ TabPFN được đào tạo trên **hàng triệu tập dữ liệu tổng hợp
 | FLAML | 10-30 phút | 0.1 giây |
 | **TabPFN** | **0 giây** | **0.5-2 giây** |
 
----
+* * *
 
 ## Bắt đầu Nhanh
 
 ### Cài đặt
 
-```bash
+````bash
 pip install tabpfn
-```
+`````
 
 ### Sử dụng Cơ bản
 
-```python
+`````python
 from tabpfn import TabPFNClassifier
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -142,11 +143,11 @@ y_prob = clf.predict_proba(X_test)
 # Đánh giá
 accuracy = (y_pred == y_test).mean()
 print(f"Độ chính xác: {accuracy:.4f}")
-```
+`````
 
 ### Tính năng Nâng cao
 
-```python
+`````python
 # Xử lý tự động các giá trị bị thiếu
 clf = TabPFNClassifier()
 clf.fit(X_train_with_nans, y_train)
@@ -162,9 +163,9 @@ y = df['target']
 
 clf = TabPFNClassifier()
 clf.fit(X, y)  # Tự động phát hiện các loại đặc trưng
-```
+`````
 
----
+* * *
 
 ## Các Trường hợp Sử dụng
 
@@ -189,15 +190,15 @@ clf.fit(X, y)  # Tự động phát hiện các loại đặc trưng
 - Xử lý dữ liệu khảo sát
 - Phân loại dữ liệu bộ gen
 
----
+* * *
 
 ## Phân tích Sâu về Kiến trúc
 
 ### Transformer cho Bảng
 
-TabPFN điều chỉnh **kiến trúc transformer** (phổ biến trong NLP) cho dữ liệu dạng bảng: ```
+TabPFN điều chỉnh **kiến trúc transformer** (phổ biến trong NLP) cho dữ liệu dạng bảng: `````
 Đặc trưng Đầu vào → Lớp Nhúng → Các Khối Transformer → Đầu ra
-```
+````
 
 Các điểm khác biệt chính so với transformer NLP: - **Các nhúng đặc trưng cụ thể** cho các loại dữ liệu hỗn hợp
 - **Cơ chế chú ý** được tối ưu hóa cho các mối quan hệ cột
@@ -210,7 +211,7 @@ Các điểm khác biệt chính so với transformer NLP: - **Các nhúng đặ
 3. **Meta-learning** cho phép thích ứng với các tập dữ liệu mới
 4. **Kết quả**: Một mô hình duy nhất xử lý các tác vụ dạng bảng đa dạng
 
----
+* * *
 
 ## Hạn chế
 
@@ -221,7 +222,7 @@ Các điểm khác biệt chính so với transformer NLP: - **Các nhúng đặ
 | Yêu cầu GPU | Cần GPU để suy luận | Sử dụng chế độ CPU (chậm hơn) |
 | Chỉ phân loại | Hiện tại chỉ phân loại | Hồi quy đang được phát triển |
 
----
+* * *
 
 ## Bài viết Liên quan
 
@@ -229,11 +230,11 @@ Các điểm khác biệt chính so với transformer NLP: - **Các nhúng đặ
 - [Polymarket Agents: Bot Giao dịch AI](/vi/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/) — AI trong tài chính
 - [OpenClaw 42 Trường hợp Sử dụng](/vi/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — Ứng dụng tác nhân AI
 
----
+* * *
 
 *Tuyên bố miễn trừ: Bài viết này giới thiệu một dự án AI mã nguồn mở. TabPFN là một công cụ nghiên cứu và nên được xác thực trên trường hợp sử dụng cụ thể của bạn trước khi triển khai sản xuất.*
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
@@ -306,7 +307,7 @@ TabPFN: Mô Hình Nền Tảng cho Dữ Liệu Dạng Bảng — Đột Phá AI 
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
----
+* * *
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*

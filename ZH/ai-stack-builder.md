@@ -6,6 +6,7 @@ lastmod: 2026-05-19
 layout: "tool-ai-stack-builder"
 tool_id: "ai-stack-builder"
 ---
+
 # AI 技术栈推荐器 — 找到最适合你的 LLM + 向量库 + 框架组合
 
 
@@ -72,7 +73,7 @@ AI 技术栈推荐器 — 找到最适合你的 LLM + 向量库 + 框架组合 r
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
@@ -168,15 +169,15 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 
 | Feature | Claude Code | Cursor | Codex CLI | OpenCode |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Price** | $20/month | $20/month | Free | Free |
 | **Interface** | CLI + IDE | Full IDE | CLI | CLI |
@@ -185,4 +186,4 @@ AI agents have access to sensitive systems. Always: - Use least-privilege princi
 | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
 
 
----
+* * *

@@ -26,6 +26,7 @@ tags: ["axolotl", "fine-tuning", "lora", "qlora", "dpo", "open-source"]
 aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/-
 ---
+
 If you've ever tried to fine-tune a Llama model and ended up writing 300 lines of PyTorch + DeepSpeed config + Hugging Face Trainer wrapper, you've felt the gap **Axolotl** fills. One YAML file describes your entire fine-tuning run — model, dataset, LoRA config, hyperparams, distributed strategy — and Axolotl handles the rest.
 
 12k GitHub stars, Apache 2.0, supports every major LLM family (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, etc.) and every fine-tuning method that matters in 2026 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO preference tuning, GRPO/GDPO reinforcement learning, reward modeling).
@@ -44,7 +45,7 @@ This is the framework most production fine-tuning pipelines settle on when they 
 ## 1. Why Axolotl Exists (the problem it solves)
 
 Three common patterns Axolotl replaces: 1. **Custom HF Trainer scripts** — 300 lines of boilerplate per experiment, brittle, doesn't survive a framework version bump
-2. **DeepSpeed config archaeology** — figuring out which combination of `zero_stage`, `offload_optimizer`, `gradient_checkpointing` works for your model size + GPU
+2. **DeepSpeed config archaeology** — figuring out which combination of ```zero_stage````, ````offload_optimizer````, ````gradient_checkpointing```` works for your model size + GPU
 3. **Cloud fine-tuning platforms** (Together, Fireworks, etc.) — easy but you don't own the resulting weights or the process
 
 Axolotl gives you the "cloud platform" UX (one config file, one command) while keeping you on infrastructure you own and weights you control.
@@ -53,9 +54,9 @@ Axolotl gives you the "cloud platform" UX (one config file, one command) while k
 
 | Setup | Models you can fine-tune |
 |
----
+* * *
 |
----
+* * *
 |
 | 24 GB GPU (RTX 4090 / 3090) | Llama 3.2 8B QLoRA, Mistral 7B QLoRA |
 | 48 GB GPU (A6000) | Llama 3.2 8B LoRA, Mistral 7B full fine-tune |
@@ -67,13 +68,13 @@ Cloud rental option: H100 on Vast.ai $1.50-2/hr, or for sustained workloads grab
 
 ## 3. Quick Install (15 min)
 
-```bash
+`````bash
 git clone https://github.com/axolotl-ai-cloud/axolotl
 cd axolotl
 pip install -e '.[flash-attn,deepspeed]'
-```
+`````
 
-A minimal training run — QLoRA fine-tune Llama 3.2 8B on a sample dataset: ```yaml
+A minimal training run — QLoRA fine-tune Llama 3.2 8B on a sample dataset: `````yaml
 # config.yml
 base_model: meta-llama/Llama-3.2-8B
 datasets: - path: tatsu-lab/alpaca
@@ -84,18 +85,18 @@ lora_alpha: 32
 load_in_4bit: true
 num_epochs: 3
 output_dir: ./outputs/llama-alpaca
-```
+`````
 
-```bash
+`````bash
 axolotl train config.yml
-```
+`````
 
 That's it. The same YAML works on 1 GPU, 8 GPUs, or multi-node — Axolotl auto-detects via accelerate/DeepSpeed.
 
 ## 4. The YAML Config Is the Killer Feature
 
 Why YAML is genuinely the right abstraction here: - **Git-friendly**: every fine-tune is a config file in your repo. Reproducible by checkout.
-- **Experiment matrix**: parameter sweeps via `yq` substitution or W&B sweeps. No 50 copy-pasted scripts.
+- **Experiment matrix**: parameter sweeps via ````yq```` substitution or W&B sweeps. No 50 copy-pasted scripts.
 - **Team handoff**: ML engineer writes the YAML, ops engineer runs it. Clear contract.
 - **Auto-upgrade**: Axolotl maintains backwards compat for configs across versions, so your 6-month-old experiments still run.
 
@@ -105,11 +106,11 @@ Compare against custom scripts: every fine-tune was a snowflake, version bumps b
 
 | Method | When to use | VRAM (8B model) |
 |
----
+* * *
 |
----
+* * *
 |
----
+* * *
 |
 | **Full** fine-tune | Have lots of compute, want best quality | ~80 GB |
 | **LoRA** | Most cases, balanced cost/quality | ~24-32 GB |
@@ -123,7 +124,7 @@ For most teams in 2026: QLoRA for experiments, LoRA for production deploys, DPO 
 
 ## 6. Real-World Workflow
 
-```
+`````
 1. Prepare dataset (JSONL with prompt/response or messages format)
    └─> push to HuggingFace Hub for versioning
 
@@ -143,7 +144,7 @@ For most teams in 2026: QLoRA for experiments, LoRA for production deploys, DPO 
    └─> Sanity-check responses on held-out prompts
 
 7. Merge LoRA + base → push to HuggingFace Hub or serve via vLLM
-```
+`````
 
 The "30-line YAML + one command" workflow is what turns fine-tuning from a research project into a deployable engineering practice.
 
@@ -151,9 +152,9 @@ The "30-line YAML + one command" workflow is what turns fine-tuning from a resea
 
 | Pick | When |
 |
----
+* * *
 |
----
+* * *
 |
 | **Axolotl** | Production fine-tuning pipelines, multi-node, broad method support (DPO/GRPO/KTO/ORPO), YAML-config-as-code workflow |
 | **Unsloth** | Single-GPU, want 2× speed + 70% less VRAM, RL fine-tuning specifically. See our [Unsloth deep-dive](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/) |
@@ -164,10 +165,10 @@ Default 2026 recommendation: **Axolotl for production multi-GPU + Unsloth for fa
 
 ## 8. Production Tips
 
-The 5 things that bite first-time Axolotl users: 1. **Tokenizer pad token** — many configs miss `tokenizer.pad_token = eos_token`. Axolotl's defaults handle this for known models; verify for new ones
-2. **`max_seq_length` and OOM** — start small (1024), bump until you OOM, then back off 10%. Don't guess
+The 5 things that bite first-time Axolotl users: 1. **Tokenizer pad token** — many configs miss ````tokenizer.pad_token = eos_token````. Axolotl's defaults handle this for known models; verify for new ones
+2. **````max_seq_length```` and OOM** — start small (1024), bump until you OOM, then back off 10%. Don't guess
 3. **Flash Attention compile time** — first install can take 20-30 min compiling FA2. Be patient
-4. **Dataset format mismatch** — the `type` field must match your data. `alpaca` ≠ `sharegpt` ≠ `chat_template`. Read the docs
+4. **Dataset format mismatch** — the ````type```` field must match your data. ````alpaca```` ≠ ````sharegpt```` ≠ ````chat_template```. Read the docs
 5. **DeepSpeed ZeRO stage confusion** — Stage 1 = no offload (fastest, most VRAM). Stage 2 = optimizer offload. Stage 3 = full param offload (slowest, least VRAM). Match to your VRAM budget
 
 ## 9. When NOT to Use Axolotl
@@ -184,7 +185,7 @@ Axolotl = **YAML-driven LLM fine-tuning framework, production multi-GPU default 
 Spin up an H100 instance, write the 20-line YAML in section 3, and 15 minutes later you have a fine-tuning run going.
 
 
----
+* * *
 *Part of dibi8's Fine-Tuning Stack — pairs with [Unsloth for fast single-GPU iteration](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/). For the full LLM ops picture see the upcoming Fine-Tuning Stack collection.*
 
 
@@ -250,11 +251,11 @@ Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Pr
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
 
----
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
 
----
+* * *
 
 ## Related Articles
 
@@ -264,7 +265,7 @@ For the latest updates and community discussions, join our Telegram channel: htt
 - [2026-06-15-trending-ai-agents](axolotl-llm-fine-tuning-framework-2026)
 - [2026-06-22-trending-ai-agents](axolotl-llm-fine-tuning-framework-2026)
 
----
+* * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 

@@ -34,6 +34,7 @@ faqs: - q: 'Pixelle-Video là gì?'
   - q: 'Pixelle-Video có thể làm gì ngoài tạo video cơ bản?'
     a: 'Công cụ này bao gồm ba mô-đun mở rộng: Digital Human Avatar — biến một bức ảnh thành video đầu người nói có đồng bộ môi bằng tiếng Hàn, tiếng Trung hoặc tiếng Anh; Image-to-Video — chuyển ảnh tĩnh thành video động; và Motion Transfer — ánh xạ chuyển động từ video tham chiếu lên ảnh tĩnh.'
 ---
+
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -84,7 +85,7 @@ faqs: - q: 'Pixelle-Video là gì?'
 
 🔗 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
+* * *
 
 ## Tính năng nổi bật
 
@@ -101,7 +102,7 @@ faqs: - q: 'Pixelle-Video là gì?'
 | **Nhiều mô hình AI** | GPT, Tongyi Qianwen, DeepSeek, Ollama, v.v. |
 | **Kiến trúc ComfyUI** | Thiết kế mô-đun, có thể tùy chỉnh mọi khả năng |
 
----
+* * *
 
 ## Quy trình tạo video
 
@@ -109,7 +110,7 @@ Pixelle-Video sử dụng thiết kế mô-đun với quy trình rõ ràng: **T�
 
 Mỗi giai đoạn đều hỗ trợ tùy chỉnh linh hoạt — có thể chọn mô hình AI khác nhau, công cụ âm thanh, phong cách thị giác, v.v. để đáp ứng nhu cầu sáng tạo cá nhân.
 
----
+* * *
 
 ## Mô-đun mở rộng
 
@@ -122,7 +123,7 @@ Chuyển đổi hình ảnh tĩnh thành video động bằng mô hình tạo vi
 ### 💃 Chuyển giao chuyển động
 Tải lên video tham chiếu và ảnh để chuyển chuyển động sang ảnh — ví dụ: làm cho người trong ảnh nhảy theo video.
 
----
+* * *
 
 ## Mô hình AI được hỗ trợ
 
@@ -146,26 +147,26 @@ Tải lên video tham chiếu và ảnh để chuyển chuyển động sang ả
 - ChatTTS
 - Quy trình TTS ComfyUI tùy chỉnh
 
----
+* * *
 
 ## Bắt đầu nhanh
 
 ### 1. Clone kho lưu trữ
 
-```bash
+````bash
 git clone https://github.com/AIDC-AI/Pixelle-Video.git
 cd Pixelle-Video
-```
+`````
 
 ### 2. Cài đặt phụ thuộc
 
-```bash
+`````bash
 pip install -r requirements.txt
-```
+`````
 
 ### 3. Cấu hình khóa API
 
-Chỉnh sửa `config.json` với khóa API của bạn: ```json
+Chỉnh sửa ``config.json`` với khóa API của bạn: `````json
 {
   "llm": {
     "api_key": "khóa-api-của-bạn",
@@ -176,15 +177,15 @@ Chỉnh sửa `config.json` với khóa API của bạn: ```json
     "comfyui_url": "http://127.0.0.1:8188"
   }
 }
-```
+`````
 
 ### 4. Khởi động giao diện Web
 
-```bash
+`````bash
 python webui.py
-```
+`````
 
-Mở `http://localhost:7860` trong trình duyệt.
+Mở ````http://localhost:7860``` trong trình duyệt.
 
 ### 5. Tạo video đầu tiên
 
@@ -194,7 +195,7 @@ Mở `http://localhost:7860` trong trình duyệt.
 4. Nhấp "Tạo video"
 5. Đợi 2-5 phút để nhận video hoàn chỉnh
 
----
+* * *
 
 ## Kịch bản sử dụng
 
@@ -207,7 +208,7 @@ Mở `http://localhost:7860` trong trình duyệt.
 | **Bình luận tin tức** | "Xu hướng AI năm 2026" |
 | **Đánh giá sách/phim** | "Bài học từ 'Thói quen nguyên tử"" |
 
----
+* * *
 
 ## Ví dụ phong cách video
 
@@ -221,7 +222,7 @@ Pixelle-Video hỗ trợ nhiều phong cách video: - 🌄 **Phong cách tài li
 - 📜 **Bình luận tiểu thuyết** — Đánh giá tiểu thuyết, phân tích nhân vật
 - 🧬 **Kiến thức khoa học** — Kiến thức y tế, lời khuyên sức khỏe
 
----
+* * *
 
 ## Kiến trúc kỹ thuật
 
@@ -231,7 +232,7 @@ Pixelle-Video được xây dựng trên kiến trúc **ComfyUI**: - **Quy trìn
 - **Giao diện Web** — Giao diện dễ sử dụng dựa trên Gradio
 - **Xử lý hàng loạt** — Tạo nhiều video đồng thời
 
----
+* * *
 
 ## Hiệu suất và chi phí
 
@@ -245,7 +246,7 @@ Cấu hình khuyến nghị cho người mới: - LLM: DeepSeek API (rẻ, chấ
 - Hình ảnh: RunningHub (không cần GPU cục bộ)
 - TTS: Edge-TTS (miễn phí, đa ngôn ngữ)
 
----
+* * *
 
 ## So sánh với các công cụ khác
 
@@ -260,7 +261,7 @@ Cấu hình khuyến nghị cho người mới: - LLM: DeepSeek API (rẻ, chấ
 | **Con người kỹ thuật số** | ✅ | ✅ | ✅ | ❌ |
 | **Chuyển giao chuyển động** | ✅ | ❌ | ❌ | ❌ |
 
----
+* * *
 
 ## Mẹo để có kết quả tốt nhất
 
@@ -270,14 +271,14 @@ Cấu hình khuyến nghị cho người mới: - LLM: DeepSeek API (rẻ, chấ
 4. **Xem trước giọng nói** — Luôn xem trước TTS trước khi tạo video đầy đủ
 5. **Tạo hàng loạt** — Tạo 3-5 phiên bản cùng lúc, chọn cái tốt nhất
 
----
+* * *
 
 ## Bài viết liên quan
 
 - [Free Claude Code: Công Cụ Proxy Mã Nguồn Mở Để Sử Dụng Claude Code CLI Miễn Phí](/vi/resources/ai-tools/free-claude-code-open-source-proxy/) — Trợ lý lập trình AI miễn phí
 - [Agent Reach: Trao Siêu Năng Lực Internet cho AI Agent của Bạn](/vi/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) — Công cụ kết nối AI agent với internet
 
----
+* * *
 
 ## Kết luận
 
@@ -289,10 +290,10 @@ Kiến trúc dựa trên ComfyUI có nghĩa là nó không chỉ là công cụ 
 
 **GitHub**: [https://github.com/AIDC-AI/Pixelle-Video](https://github.com/AIDC-AI/Pixelle-Video)
 
----
+* * *
 
 
----
+* * *
 
 ## Công Cụ Đề Xuất
 
