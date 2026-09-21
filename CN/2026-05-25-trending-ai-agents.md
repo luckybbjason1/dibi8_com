@@ -3,31 +3,23 @@ title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
 draft: false
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
 date: 2026-05-25T00:00:00+09:00
-lastmod: 2026-05-25T00:00:00+09:00tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
+lastmod:
+   2026-05-25T00:00:00+09:00tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w21
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources: - "GitHub Search API"
+sources: ["GitHub Search API"]
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_FINAL_APPROVAL"
-review_checklist: - "✅ Editor's Take 段已填实际分析 (5 趋势 + 推荐 ollama 入门)"
+review_checklist:
+  - "✅ Editor's Take 段已填实际分析 (5 趋势 + 推荐 ollama 入门)"
   - "✅ 2 个 repo 编辑加了 hands-on 评注 (#4 ollama + #1 ECC)"
   - "✅ #7 JavaGuide LLM topic 误抓 — Editor's Take 已透明标注"
   - "✅ 无 placeholder URL (所有 github.com 实链)"
   - "✅ 无 aff 链接 (Tribe 文章纪律 D3)"
 ---
-
-![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
-
-
-# This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of May 25, 2026)
-
-
-> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel — an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
-
-## Editor's Take
 
 This week's list says something quieter than "AI is everywhere" — it says the **infrastructure layer around agents is starting to thicken**. Five trends to call out: 1. **Agent harnesses are a thing now.** [ECC](https://github.com/affaan-m/ECC) (#1) doesn't try to be another agent — it's a *performance and memory* layer for Claude Code, Codex, Cursor, Opencode. When meta-tooling out-stars the agents themselves, you know the ecosystem matured past "let's build an agent."
 2. **Workflow + agent is converging.** [n8n](https://github.com/n8n-io/n8n) (#2, an older workflow OG) and [Dify](https://github.com/langgenius/dify) (#8, the new agentic-platform challenger) both pitch "agentic workflow" as the unit of work. The wall between cron-job land and autonomous-agent land is dissolving.
