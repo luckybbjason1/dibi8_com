@@ -11,7 +11,8 @@ license: 'MIT'
 tech_stack: - Bash
   - Python
   - Shell
-featureImage: /images/articles/polymarket-agents-polymarket-예측-시장용-ai-자.jpg---
+featureImage: /images/articles/polymarket-agents-polymarket-예측-시장용-ai-자.jpg
+---
 
 
 

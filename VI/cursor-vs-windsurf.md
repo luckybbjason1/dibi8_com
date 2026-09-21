@@ -2,7 +2,8 @@
 title: "Cursor vs Windsurf 2026: AI IDE nào tốt hơn?"
 description: "So sánh trực tiếp Cursor và Windsurf (Codeium) — Composer vs Cascade, giá cả, hiệu năng, mẹo chuyển ..."
 date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00
+  draft: false
 tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
 categories: ["vs"]
 faqs: - q: 'Cursor hay Windsurf rẻ hơn?'

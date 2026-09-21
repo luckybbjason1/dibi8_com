@@ -8,7 +8,8 @@ category: data-science
 tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
 github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
 license: 'MIT'
-featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png---
+featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
+---
 
 # Personal AI Infrastructure：为人类打造的 Agentic AI 设置 — 2026 指南
 

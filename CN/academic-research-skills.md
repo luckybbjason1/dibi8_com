@@ -17,7 +17,8 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
     alt: "Skill Architecture"
     role: architecture
-featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg---
+featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
+---
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 

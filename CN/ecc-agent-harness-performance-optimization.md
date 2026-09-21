@@ -8,7 +8,8 @@ slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 github_repo: "https://github.com/affaan-m/ECC"
 license: 'MIT'
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
+featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
+---
 # ECC: Agent Harness Performance Optimization — 2026 Guide
 
 ECC (212,000+ stars) is an agent harness performance optimization system that reduces context window usage and speeds up AI coding agents. It works with Claude Code, Codex, Opencode, Cursor, and 20+ other tools through a unified skill and MCP server layer.

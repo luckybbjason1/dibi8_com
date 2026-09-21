@@ -5,7 +5,8 @@ category: llm-frameworks
 tags: ["ai-sdk", "vercel", "react-server-components", "streaming", "tool-calling", "llm-integration"]
 slug: vercel-ai-sdk-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg---
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg
+---
 
 ## TL;DR
 

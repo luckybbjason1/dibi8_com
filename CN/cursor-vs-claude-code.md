@@ -2,7 +2,8 @@
 title: "Cursor vs Claude Code in 2026: Which AI Coding Tool Wins?"
 description: "Side-by-side breakdown of Cursor and Claude Code — pricing, performance, ideal use cases, migration ..."
 date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00
+  draft: false
 tags: ["cursor", "claude-code", "ai-coding", "comparison", "dev-tools"]
 categories: ["vs"]
 faqs: - q: 'Is Cursor or Claude Code cheaper?'

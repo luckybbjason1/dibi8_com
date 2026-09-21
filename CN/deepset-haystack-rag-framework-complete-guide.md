@@ -5,7 +5,8 @@ category: llm-frameworks
 tags: ["haystack", "rag", "retrieval-augmented-generation", "deepset", "document-processing", "llm-pipeline"]
 slug: deepset-haystack-rag-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg---
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg
+---
 
 ## TL;DR
 

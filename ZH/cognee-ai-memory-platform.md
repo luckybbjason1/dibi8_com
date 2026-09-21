@@ -11,7 +11,8 @@ license: 'MIT'
 tech_stack: - Python
   - TypeScript
   - Docker
-featureImage: /images/articles/mem0-56k-stars-ai-agent-memory-performan.jpg---
+featureImage: /images/articles/mem0-56k-stars-ai-agent-memory-performan.jpg
+---
 
 
 <<<<<<< HEAD

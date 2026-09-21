@@ -17,7 +17,8 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
   - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
     alt: "Taste Skill GitHub OG"
     role: reference
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg---
+featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
+---
 ## TL;DR
 
 Taste Skill gives your AI agent a design brain. Instead of generating the same generic, centered, boring UI that every AI tool produces, it enforces stronger layout variance, intentional motion, and premium visual density. It ships as portable SKILL.md files that work with Codex, Cursor, Claude Code, and ChatGPT Images.

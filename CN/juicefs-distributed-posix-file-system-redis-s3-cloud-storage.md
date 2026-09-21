@@ -8,7 +8,8 @@ slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
 category: dev-utils
 github_repo: "https://github.com/juicedata/juicefs"
 license: 'Apache-2.0'
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
+featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
+---
 # JuiceFS: Cloud Storage, Local Speed
 
 Imagine your team needs to share massive datasets across 50+ workers for AI training. Each worker expects a standard Linux filesystem — but your data lives in S3. Mounting S3 as a local filesystem has been frustrating: slow, unreliable, or both. JuiceFS solves this by combining the best of both worlds.

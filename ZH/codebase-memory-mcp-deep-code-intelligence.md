@@ -11,7 +11,8 @@ license: 'MIT'
 tech_stack: - C
   - Rust
   - Python
-featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg---
+featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg
+---
 
 
 <<<<<<< HEAD

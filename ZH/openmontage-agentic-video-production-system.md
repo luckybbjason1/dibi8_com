@@ -39,7 +39,8 @@ faqs: - q: '什么是OpenMontage？'
     a: 'OpenMontage 支持 Claude Code、Cursor、GitHub Copilot、Codex 和 Windsurf。每个平台都有一个专用的配置文件（CLAUDE.md、CURSOR.md、COPILOT.md、CODEX.md、.windsurfrules），这些文件指向共享的 AGENT_GUIDE.md 和 PROJECT_CONTEXT.md。系统以代理为先：没有代码协调器——您的 AI 编程助手就是协调器，它读取 YAML 流水线清单和 Markdown 技能文件来执行生产。'
   - q: '质量执行系统是什么？'
     a: 'OpenMontage 实现了生产级的质量门控：预合成验证（阻止违反交付承诺或存在关键幻灯片风险的渲染）、渲染后自我审核（ffprobe 验证、在 4 个位置提取帧以检测黑屏、音频级别分析以检测静音/削波、交付承诺验证）、以及六维幻灯片风险评分系统。每次提供者选择都记录了考虑的备选方案、置信度评分和理由。预算控制包括执行前的成本估算、每项操作的审批阈值以及可配置的支出上限。'
-featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png---
+featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
+---
 
 
 

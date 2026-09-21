@@ -17,7 +17,8 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "星标历史"
     role: reference
-featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg---
+featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
+---
 
 ## 快速概览
 

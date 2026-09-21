@@ -5,7 +5,8 @@ category: ai-tools
 tags: ["speech-recognition", "openai", "whisper", "transcription", "multilingual", "voice-to-text"]
 slug: openai-whisper-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/openai-whisper-speech-recognition.jpg---
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/openai-whisper-speech-recognition.jpg
+---
 
 ## TL;DR
 

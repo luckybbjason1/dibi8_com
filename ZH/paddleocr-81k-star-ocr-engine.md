@@ -8,7 +8,8 @@ category: ai-tools
 tags: ["paddleocr", "ocr", "text-recognition", "document-ai", "table-ocr", "layout-analysis", "multi-language", "open-source"]
 github_repo: "https://github.com/PaddlePaddle/PaddleOCR"
 license: Apache-2.0
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
+featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
+---
 # PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost
 
 

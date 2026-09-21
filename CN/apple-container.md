@@ -18,7 +18,8 @@ faqs: - q: "Does container work on Intel Macs?"
     a: "OrbStack is faster for single-container workflows. container offers true VM-level isolation and deep macOS integration."
   - q: "Can I run Windows containers?"
     a: "No. container runs Linux containers only. It produces OCI-compatible Linux images."
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
+featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
+---
 # Apple's Container: Docker-Like Experience on Mac with 37K Stars
 
 When Apple released `container` on May 30, 2025, the developer community went quiet. No fanfare, no keynote — just a single GitHub repository that quietly accumulated **37,130 stars** and became the most-watched new open-source project from Apple in years.

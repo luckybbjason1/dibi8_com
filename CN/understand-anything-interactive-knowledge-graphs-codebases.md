@@ -8,7 +8,8 @@ slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 license: MIT
-featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg---
+featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
+---
 ## Introduction
 
 You clone a new codebase. 50,000 lines of code across 200 files. You open VS Code and stare at the file tree. Where do you even start?

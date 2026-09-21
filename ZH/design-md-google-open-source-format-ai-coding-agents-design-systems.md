@@ -8,7 +8,8 @@ slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: "https://github.com/google-labs-code/design.md"
 license: Apache-2.0
-featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png---
+featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
+---
 # DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式
 
 

@@ -6,7 +6,8 @@ lastmod: 2026-06-20
 (tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 slug: spec-kit-github-spec-driven-development-toolkit
-featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png---
+featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
+---
 
 # 规格套件：GitHub 革命性的规格驱动开发工具包
 

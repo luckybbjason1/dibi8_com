@@ -2,7 +2,8 @@
 title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
 date: 2026-07-06T00:00:00+09:00
-lastmod: 2026-07-06T00:00:00+09:00draft: false
+lastmod: 2026-07-06T00:00:00+09:00
+  draft: false
 tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w27
@@ -17,7 +18,8 @@ review_checklist:
   - "至少 1 个 repo 编辑加了 hands-on 评注"
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"
-featureImage: /images/articles/this-week-ai-agents-2026-w27-83d4f10a.png---
+featureImage: /images/articles/this-week-ai-agents-2026-w27-83d4f10a.png
+---
 # This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of July 06, 2026)
 
 

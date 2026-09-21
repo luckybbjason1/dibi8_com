@@ -20,7 +20,8 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill banner"
     role: hero
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg---
+featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
+---
 
 ## 快速概览
 

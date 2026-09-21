@@ -2,7 +2,8 @@
 title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
 date: 2026-07-13T00:00:00+09:00
-lastmod: 2026-07-13T00:00:00+09:00draft: false
+lastmod: 2026-07-13T00:00:00+09:00
+  draft: false
 tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w28

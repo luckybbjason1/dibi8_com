@@ -5,7 +5,8 @@ tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00
+  draft: false
 slug: vercel-ai-sdk-edge-compute
 ---
 

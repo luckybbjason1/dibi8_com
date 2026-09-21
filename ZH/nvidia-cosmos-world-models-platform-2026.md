@@ -8,7 +8,8 @@ category: ai-tools
 tags: ["nvidia-cosmos", "world-models", "physical-ai", "robotics", "video-generation", "multimodal", "mixture-of-transformers", "open-source", "ai-simulation"]
 github_repo: "https://github.com/NVIDIA/cosmos"
 license: 'Apache-2.0'
-featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg---
+featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
+---
 
 ![NVIDIA Cosmos 平台](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 

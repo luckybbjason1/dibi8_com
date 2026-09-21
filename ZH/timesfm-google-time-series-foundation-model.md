@@ -2,7 +2,8 @@
 title: "TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型"
 description: "TimesFM 2.5 完整指南——用于时间序列预测的 Google Research 仅解码器基础模型。涵盖安装、微调、基准测试和实际应用。". Comprehensive guide coveri..."
 slug: timesfm-google-time-series-foundation-model
-featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png---
+featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png
+---
 
 # TimesFM 2.5：Google 革命性的预测时间序列基础模型
 

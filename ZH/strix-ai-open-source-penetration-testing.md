@@ -11,7 +11,8 @@ license: 'GPL-3.0'
 tech_stack: - Python
   - TypeScript
   - Bash
-featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg---
+featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg
+---
 
 
 

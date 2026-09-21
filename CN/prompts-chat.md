@@ -8,7 +8,8 @@ slug: 'prompts-chat"
 category: llm-frameworks
 github_repo: "https://github.com/f/prompts.chat"
 license: NOASSERTION
-featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg---
+featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
+---
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
 If you are a developer, product manager, or AI researcher, you have likely hit the wall where the model is capable, but the prompt is not. We spend hours tweaking system instructions, debugging few-shot examples, and trying to get consistent outputs from LLMs.

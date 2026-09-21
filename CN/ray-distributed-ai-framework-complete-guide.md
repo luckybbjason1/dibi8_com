@@ -5,7 +5,8 @@ category: llm-frameworks
 tags: ["ray", "distributed-computing", "ai-scaling", "machine-learning", "python", "parallel-processing"]
 slug: ray-distributed-ai-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/ray-distributed-computing-ai.jpg---
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/ray-distributed-computing-ai.jpg
+---
 
 ## TL;DR
 

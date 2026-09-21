@@ -6,7 +6,8 @@ lastmod: 2026-06-20
 (tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 slug: cc-switch-all-in-one-ai-coding-agent-manager
-featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png---
+featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
+---
 
 # CC Switch：用于多平台开发的终极 AI 编码代理管理器
 

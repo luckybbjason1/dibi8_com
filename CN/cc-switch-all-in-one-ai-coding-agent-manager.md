@@ -6,7 +6,8 @@ lastmod: 2026-06-20
 (tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
 category: "dev-utils"
 slug: cc-switch-all-in-one-ai-coding-agent-manager
-featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png---
+featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
+---
 # CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development
 
 In the rapidly evolving landscape of AI-assisted software development, developers are increasingly adopting multiple AI coding agents — **Claude Code**, **Codex CLI**, **Gemini CLI**, **OpenCode**, **OpenClaw**, and **Hermes Agent** — each with its own strengths. But managing these tools across different projects, providers, and configurations quickly becomes overwhelming.

@@ -5,7 +5,8 @@ category: data-science
 tags: ["jax", "google", "machine-learning", "automatic-differentiation", "jit-compilation", "neural-networks"]
 slug: google-jax-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg---
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg
+---
 
 ## TL;DR
 

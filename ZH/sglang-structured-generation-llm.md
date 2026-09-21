@@ -5,7 +5,8 @@ tags: ["llm-serving", "structured-generation", "constrained-decoding", "inferenc
 category: llm-frameworks
 featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00draft: false
+lastmod: 2026-07-15T00:00:00+00:00
+  draft: false
 slug: sglang-structured-generation-llm
 -CN---
 

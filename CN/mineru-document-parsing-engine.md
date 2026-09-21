@@ -7,7 +7,8 @@ lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: "https://github.com/opendatalab/MinerU"
 license: MinerU Open Source License (Apache 2.0-based)
-featureImage: /images/articles/mineru-docs.png---
+featureImage: /images/articles/mineru-docs.png
+---
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 
 *MinerU — the open-source document parsing engine that turned 70,600 GitHub stars in just over a year.*

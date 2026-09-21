@@ -8,7 +8,8 @@ category: llm-frameworks
 tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
 github_repo: "https://github.com/f/prompts.chat"
 license: NOASSERTION
-featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg---
+featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
+---
 # prompts.chat：16.3万+ 提示——开源提示库指南 2026
 
 title: "prompts.chat：16.3万+ 提示词——2026年开源提示词库指南"

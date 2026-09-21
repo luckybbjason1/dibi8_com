@@ -2,7 +2,8 @@
 title: "OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?"
 description: "Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M c..."
 date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00
+  draft: false
 tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
 categories: ["vs"]
 faqs: - q: 'Is OpenAI Codex CLI free?'

@@ -8,7 +8,8 @@ slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 github_repo: "https://github.com/pbakaus/impeccable"
 license: 'Apache-2.0'
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
+featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
+---
 # Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review
 
 Impeccable (37,000+ stars) is a design language specifically built for AI coding agents. It solves one of the most visible problems in AI-assisted development: AI-generated UIs that look like generic template copies. With 23 commands, 41 deterministic detector rules, and live browser iteration, Impeccable gives your AI agent the design guidance it needs to produce polished, non-generic interfaces.

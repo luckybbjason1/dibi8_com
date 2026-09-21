@@ -8,7 +8,8 @@ slug: 'llm-inference-cost-optimization-guide-2026'
 category: dev-utils
 github_repo: "https://github.com/ollama/ollama"
 license: MIT
-featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg---
+featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
+---
 ![Ollama - Local LLM inference made simple](https://opengraph.github.com/github/ollama/ollama)
 
 # LLM Inference Cost Optimization: Run Any Model for Pennies — The 2026 Definitive Guide

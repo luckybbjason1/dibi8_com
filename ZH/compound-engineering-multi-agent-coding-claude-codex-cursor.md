@@ -2,7 +2,8 @@
 title: "Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多...
 description: "Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执..."
 license: 'MIT'
-featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg---
+featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
+---
 
 # Compound Engineering：多代理编排插件 — 2026 指南
 

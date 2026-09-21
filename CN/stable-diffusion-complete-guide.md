@@ -5,7 +5,8 @@ category: ai-tools
 tags: ["stable-diffusion", "ai-image-generation", "diffusion-models", "openai-alternative", "midjourney-alternative", "comfyui"]
 slug: stable-diffusion-complete-guide
 date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/stable-diffusion-ai-image-generation.jpg---
+lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/stable-diffusion-ai-image-generation.jpg
+---
 
 ## TL;DR
 

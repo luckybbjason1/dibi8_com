@@ -2,7 +2,8 @@
 title: "本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）"
 description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目--数据由 Dibi8 Tribe Intel 自动收集，分析由 Dibi8 编辑团队完成。"
 date: 2026-06-22T00:00:00+09:00
-lastmod: 2026-06-22T00:00:00+09:00draft: false
+lastmod: 2026-06-22T00:00:00+09:00
+  draft: false
 tags: ["人工智能代理", "开源", "每周回顾", "github 趋势", "大型语言模型框架"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w25
@@ -17,7 +18,8 @@ review_checklist:
   - "至少 1 个 repo 编辑加了 hands-on 评注"
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"
-featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png---
+featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png
+---
 # 本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）
 
 

@@ -2,7 +2,8 @@
 title: "Claude Code vs Aider in 2026: Commercial vs Open Source ...
 description: "Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — ..."
 date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00
+  draft: false
 tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
 categories: ["vs"]
 faqs: - q: 'Is Claude Code or Aider cheaper for daily use?'

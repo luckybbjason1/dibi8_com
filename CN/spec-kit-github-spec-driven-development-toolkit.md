@@ -6,7 +6,8 @@ lastmod: 2026-06-20
 (tags: [ai, copilot, development, engineering, prd, spec, spec-driven]
 category: "dev-utils"
 slug: spec-kit-github-spec-driven-development-toolkit
-featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png---
+featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
+---
 # Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit
 
 Software development has always been plagued by a fundamental disconnect: **what we specify** rarely matches **what we build**. Requirements documents gather dust, PRDs become outdated within days, and the final product often diverges significantly from the original vision.

@@ -8,7 +8,8 @@ slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
 github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
 license: 'MIT'
-featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg---
+featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
+---
 # Compound Engineering: Multi-Agent Orchestration Plugin — 2026 Guide
 
 Compound Engineering (20,000+ stars) is a multi-agent orchestration plugin that coordinates AI coding agents (Claude Code, Codex, Cursor) through a structured planning-review-compound loop. Its philosophy is simple: plan thoroughly before writing code, review meticulously, and document learnings so future work gets easier.

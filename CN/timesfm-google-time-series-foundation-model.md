@@ -6,7 +6,8 @@ date: 2026-06-19
 lastmod: 2026-06-19layout: article
 category: data-science
 slug: timesfm-google-time-series-foundation-model
-featureImage: /images/articles/fine-tuning-stack.png---
+featureImage: /images/articles/fine-tuning-stack.png
+---
 # TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting
 
 Time series forecasting has long been one of the most challenging problems in data science. From predicting stock prices to forecasting weather patterns, from sales projections to energy consumption estimates — accurate predictions can make or break businesses.

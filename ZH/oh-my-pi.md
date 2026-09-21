@@ -17,7 +17,8 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
     alt: "智能家居架构图"
     role: diagram
-featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg---
+featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
+---
 
 ## 快速概览
 

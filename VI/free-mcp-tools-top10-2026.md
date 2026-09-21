@@ -2,7 +2,8 @@
 title: "Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
 description: "10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tì..."
 date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00draft: false
+lastmod: 2026-06-06 00:00:00+08:00
+  draft: false
 tags: ["mcp", "model-context-protocol", "công-cụ-mcp-miễn-phí", "mcp-server", "claude-mcp", "ai-mã-nguồn-mở", "công-cụ-ai"]
 categories: ["tools"]
 faqs: - q: 'MCP là gì và tại sao quan trọng?'

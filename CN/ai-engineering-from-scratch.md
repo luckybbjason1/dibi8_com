@@ -17,7 +17,8 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "Star History"
     role: reference
-featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg---
+featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
+---
 ## TL;DR
 
 AI Engineering From Scratch is a comprehensive, hands-on curriculum for building production-grade AI systems. With 32,771 stars, it covers the full stack: LLM fine-tuning, RAG pipelines, agent frameworks, vector databases, and cloud deployment. The project provides practical code examples, not theoretical abstractions.

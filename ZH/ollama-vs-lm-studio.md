@@ -2,7 +2,8 @@
 title: "Ollama vs LM Studio 2026：哪款本地大模型运行器更值得选？"
 description: "Ollama 和 LM Studio 横向对比 — CLI vs GUI、模型库、GPU 支持、OpenAI 兼容 API、量化格式、自托管。2026 年更新。"
 date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00draft: false
+lastmod: 2026-05-22 00:00:00+08:00
+  draft: false
 tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]
 categories: ["vs"]
 faqs: - q: 'Ollama 和 LM Studio 哪个更适合新手？'

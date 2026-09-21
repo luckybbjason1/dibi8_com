@@ -36,7 +36,8 @@ faqs: - q: 'What is Microsoft Presidio?'
     a: 'Presidio Image Redactor uses computer vision models to detect and redact PII from images. It supports standard image formats (PNG, JPEG, etc.) and DICOM medical images. The redaction can replace detected text with black boxes, blur regions, or remove the text entirely. This is particularly valuable for healthcare organizations that need to anonymize medical imaging data before sharing or publication.'
   - q: 'Can Presidio run in production at scale?'
     a: 'Yes. Presidio supports multiple deployment options: Python or PySpark workloads, Docker containers, and Kubernetes deployments. The analyzer and anonymizer can run as REST APIs, and the structured component can process large tabular datasets. It is designed for both fully automated and semi-automated PII de-identification flows across multiple platforms.'
-featureImage: /images/articles/pii-detection-redaction-7b4e12.png---
+featureImage: /images/articles/pii-detection-redaction-7b4e12.png
+---
 ## Why PII Detection Matters More Than Ever
 
 Every organization that processes user data faces the same growing challenge: **knowing where sensitive information lives and protecting it**. Credit card numbers in customer support chats. Social security numbers in HR documents. Patient names in medical images. Email addresses in marketing databases.

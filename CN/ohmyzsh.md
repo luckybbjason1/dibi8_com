@@ -8,7 +8,8 @@ slug: 'ohmyzsh'
 category: dev-utils
 github_repo: "https://github.com/ohmyzsh/ohmyzsh"
 license: MIT
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
+featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
+---
 # Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026
 
 If you spend more than an hour a day in a terminal, your shell is your primary interface with the world. For years, `bash` was the default. It worked. It was boring. Then `zsh` arrived, bringing syntax highlighting, autosuggestions, and a more modern scripting language. But configuring `zsh` from scratch is a pain. Enter **Oh My Zsh**.

@@ -8,7 +8,8 @@ category: ai-tools
 tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
 github_repo: "https://github.com/pbakaus/impeccable"
 license: 'Apache-2.0'
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
+featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
+---
 
 # Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测
 

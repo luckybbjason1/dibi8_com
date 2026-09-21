@@ -36,7 +36,8 @@ faqs: - q: '微软 Presidio 是什么？'
     a: 'Presidio 图像编辑器使用计算机视觉模型检测并编辑图像中的个人身份信息（PII）。它支持标准图像格式（PNG、JPEG 等）和 DICOM 医学图像。编辑可以将检测到的文本替换为黑色方框、模糊区域或完全删除文本。这对于需要在共享或发布前匿名化医学影像数据的医疗机构尤其有价值。'
   - q: 'Presidio 能否在大规模生产环境中运行？'
     a: '是的。Presidio 支持多种部署选项：Python 或 PySpark 工作负载、Docker 容器以及 Kubernetes 部署。分析器和匿名化工具可以作为 REST API 运行，结构化组件可以处理大型表格数据集。它设计用于跨多个平台的全自动和半自动 PII 去标识化流程。'
-featureImage: /images/articles/pii-detection-redaction-7b4e12.png---
+featureImage: /images/articles/pii-detection-redaction-7b4e12.png
+---
 
 
 

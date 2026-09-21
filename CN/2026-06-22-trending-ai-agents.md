@@ -4,7 +4,7 @@ description: "Hand-edited weekly roundup of top trending open-source AI agent, L
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-22T00:00:00+09:00
 lastmod: 2026-06-22T00:00:00+09:00
-  categories: ["llm-frameworks"]
+categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w25
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
@@ -17,7 +17,8 @@ review_checklist:
   - "至少 1 个 repo 编辑加了 hands-on 评注"
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"
-featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png---
+featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png
+---
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 
 

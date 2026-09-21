@@ -10,7 +10,8 @@ github_repo: https://github.com/earendil-works/pi
 stars: 61200
 maintainer: earendil-works
 license: MIT
-featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png---
+featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
+---
 # Ruv Pi：自我扩展编码代理CLI多提供商LLM API
 
 ## 介绍

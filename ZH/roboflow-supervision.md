@@ -10,7 +10,8 @@ github_repo: https://github.com/roboflow/supervision
 stars: 42819
 maintainer: roboflow
 license: MIT
-featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png---
+featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
+---
 Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness: 1. **Introduction Section**: - Consider including a brief overview of what makes Supervision unique compared to other CV toolkits.
    - Add a mention of the community support or active development status.
 

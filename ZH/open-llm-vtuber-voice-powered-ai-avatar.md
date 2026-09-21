@@ -8,7 +8,8 @@ category: ai-tools
 tags: ["open-llm-vtuber", "live2d", "voice-ai", "ai-avatar", "local-llm", "openai-api", "anthropic", "self-hosted"]
 github_repo: "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber"
 license: MIT
-featureImage: /articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg/images/articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg---
+featureImage: /articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg/images/articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg
+---
 # Open-LLM-VTuber：与 Live2D 角色进行语音驱动的大语言模型聊天 — 免费运行拥有 10K+ 星的开源 AI 头像
 
 {

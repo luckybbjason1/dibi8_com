@@ -2,7 +2,8 @@
 title: "Top 10 Free MCP Tools in 2026: Best Model Context Protoc...
 description: "The 10 best free MCP servers for Claude, Cursor, and any MCP-compatible AI client — filesystem, web ..."
 date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00draft: false
+lastmod: 2026-06-06 00:00:00+08:00
+  draft: false
 tags: ["mcp", "model-context-protocol", "free-mcp-tools", "mcp-servers", "claude-mcp", "open-source-ai", "ai-tools"]
 categories: ["tools"]
 faqs: - q: 'What is MCP and why does it matter?'

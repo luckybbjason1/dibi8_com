@@ -5,7 +5,8 @@ tags: ["ai-ide", "coding-agent", "windsurf", "codeium", "cursor-alternative", "a
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
 date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00draft: false
+lastmod: 2026-07-16T00:00:00+00:00
+  draft: false
 slug: windsurf-ai-ide
 -CN---
 

@@ -8,7 +8,8 @@ slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
 github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
 license: MIT
-featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png---
+featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
+---
 # Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide
 
 Personal AI Infrastructure (PAI) (15,000+ stars) by Daniel Miessler is a "Life Operating System" that combines AI strategy, execution, and reflection into one unified platform. With 45 skills, 171 workflows, 37 hooks, and Algorithm v6.3.0, PAI transforms AI from a simple tool into an intelligent partner that knows who you are and what you're trying to achieve.

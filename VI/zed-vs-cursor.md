@@ -2,7 +2,8 @@
 title: "Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So S...
 description: "So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) —..."
 date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00draft: false
+lastmod: 2026-06-06 00:00:00+08:00
+  draft: false
 tags: ["zed", "cursor", "ai-editor", "code-editor", "ai-coding", "comparison", "dev-tools", "rust"]
 categories: ["vs"]
 faqs: - q: 'Zed hay Cursor nhanh hơn?'

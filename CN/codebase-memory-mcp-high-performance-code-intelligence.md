@@ -6,7 +6,8 @@ date: 2026-06-19
 lastmod: 2026-06-19layout: article
 category: dev-utils
 slug: codebase-memory-mcp-high-performance-code-intelligence
-featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg---
+featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
+---
 # Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents
 
 In the rapidly evolving landscape of AI-assisted software development, one bottleneck remains stubbornly persistent: **how do AI coding agents efficiently understand and navigate large codebases?** Traditional approaches like file-by-file search or naive RAG systems waste enormous amounts of tokens, produce fragmented context, and struggle with structural code understanding.

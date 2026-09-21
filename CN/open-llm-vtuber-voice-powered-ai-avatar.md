@@ -8,7 +8,8 @@ slug: 'open-llm-vtuber-voice-powered-ai-avatar'
 category: ai-tools
 github_repo: "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber"
 license: MIT
-featureImage: /articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg/images/articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg---
+featureImage: /articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg/images/articles/open-llm-vtuber-voice-powered-llm-chat-with-live2d-character.jpg
+---
 # Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free
 
 
