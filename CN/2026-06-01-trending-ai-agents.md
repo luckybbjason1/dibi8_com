@@ -1,4 +1,4 @@
----
+
 title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
 date: 2026-06-01T00:00:00+09:00
@@ -19,7 +19,7 @@ review_status: "AWAITING_EDITOR_REVIEW"
 # This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of June 01, 2026)
 
 
-> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
+**Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
 
 ## Editor's Take
 

@@ -1,4 +1,4 @@
----
+
 title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending ..."
 description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent tha..."
 date: 2026-05-15T04:20:25+09:00

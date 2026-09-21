@@ -1,4 +1,4 @@
----
+
 title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
 date: 2026-07-06T00:00:00+09:00
